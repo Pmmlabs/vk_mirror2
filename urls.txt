@@ -402,7 +402,6 @@ http://vk.com/js/lib/swfobject2.js
 http://vk.com/js/lib/swfobject.js
 http://vk.com/js/lib/ui_controls.js
 http://vk.com/js/lib/utils.js
-http://vk.com/js/loader_nav0_0.js
 http://vk.com/js/map2.js
 http://vk.com/js/map.js
 http://vk.com/js/market.js
