@@ -2,4 +2,4 @@
 
 wget -N -nv -i urls.txt
 
-#git commit -A -m "$(date +%x)"
+git commit -a -m "$(date +%x)"
