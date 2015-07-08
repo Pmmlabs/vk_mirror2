@@ -1,0 +1,335 @@
+#content {
+  padding: 12px 0px 0px 0px;
+}
+#noAdmin {
+  font-size: 12px;
+  text-align: center;
+  padding: 50px 10px;
+  color: gray;
+  background: #ffffff;
+  border: 1px solid #CAD1D9;
+}
+#pageAdmin {
+  background-color: #f7f7f7;
+  font-size: 11px;
+  padding: 10px;
+}
+.adminTable {
+  border: 1px solid #CDD5DB;
+  border-top: 1px solid #ddd;
+  background-color: #fff;
+}
+.adminTable th {
+  font-size: 9px;
+  font-weight: bold;
+  height: 30px;
+  padding: 5px;
+  vertical-align: middle;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+.adminTable td {
+  padding: 5px;
+}
+.adminTable .odd {
+  background-color: #F3F5F7;
+}
+#karmaPlus {
+  padding: 20px;
+}
+#karmaPlus div {
+  padding-left: 5px;
+}
+.warnRow {
+  border: 1px solid #CAD1D9;
+  background-color: #fff;
+  margin-bottom: 5px;
+}
+.warnTop {
+  padding: 10px 0px 10px 157px;
+  border-bottom: 1px solid #CAD1D9;
+  border-top: 1px solid #CAD1D9;
+  margin-bottom: 5px;
+  background-color: #DAE1E8;
+  font-size: 11px;
+  text-align: left;
+}
+.warnArrow {
+  width: 100px;
+  font-size: 30px;
+  color: #36638E;
+  text-align: center;
+}
+.summaryBar {
+  border-bottom: 1px solid #DAE2E8;
+  clear: both;
+  padding: 11px 10px 0 10px;
+  color: black;
+  font-weight: normal;
+  line-height: normal;
+}
+.summaryBar .summary {
+  color: #45688E;
+  float: left;
+  font-weight: bold;
+  padding-top: 3px;
+  padding-bottom: 4px;
+}
+ul.adminNav {
+  font-size: 11px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.adminNav li {
+  float: left;
+  display: inline;
+  margin-left: 5px;
+  text-align: center;
+  width: expression(this.getElementsByTagName('a')[0].offsetWidth+16+'px');;
+  border-bottom: 1px solid #eee;
+  border: 1px solid #CAD1D9;
+  background-color: #DAE1E8;
+  padding: 5px 7px;
+}
+.adminNav li a:hover {
+  color: #2B587A;
+  text-decoration: none;
+}
+.adminNav li a {
+  color: #2B587A;
+  display: inline;
+  white-space: nowrap;
+}
+.adminNav li.falseAlarm {
+  margin: 3px 0px 0px 0px;
+  background-color: #FFF;
+  font-size: 9px;
+  border: 0px;
+}
+.itemRow {
+  border: 1px solid #CAD1D9;
+  background-color: #fff;
+  margin-bottom: 5px;
+}
+.itemName {
+  padding: 5px 10px;
+  border-left: 1px solid #e7e7e7;
+  margin: 15px 0px 5px 0px;
+  background-color: #f3f6f9;
+  background-color: #fbfbfb;
+  font-size: 11px;
+  text-align: left;
+}
+.itemName a {
+  font-size: 10px;
+}
+.itemName span {
+  color: #999;
+  font-size: 10px;
+}
+.itemName div {
+  margin-top: 4px;
+}
+.greylink {
+  font-weight: bold;
+  color: lightgrey;
+}
+.greylink:hover {
+  color: #36638E;
+}
+.banned .banned_row {
+  padding: 8px;
+  margin-bottom: 2px;
+  background: #fff;
+  border: 1px solid #D8DFEA;
+  clear: both;
+}
+.banned .banned_row.hl {
+  background-color: #E7F1F9;
+  border-color: #4C96D4;
+}
+.banned .banned_row .banned_number {
+  float: left;
+}
+.banned .banned_row .banned_name {
+  margin-left: 4px;
+  float: left;
+}
+.banned .banned_row .banned_option {
+  float: right;
+}
+.banned .banned_row .banned_name .banned_option {
+  float: none;
+  margin-top: 1px;
+}
+.banned .banned_row b {
+  color: #000;
+}
+.banned_additional_info {
+  float: right;
+  text-align: right;
+}
+a.filter_btn_off,
+a.filter_btn_on {
+  cursor: pointer;
+  margin: 0px 2px 3px 2px;
+  padding: 2px 10px 3px 10px;
+}
+a.filter_btn_off {
+  background-color: #F7F7F7;
+  border: 1px solid #F7F7F7;
+  color: #36638E;
+}
+a.filter_btn_on {
+  background-color: #FFF;
+  border: 1px solid #DAE2E8;
+  color: #36638E;
+}
+a.filter_btn_off:hover,
+a.filter_btn_on:hover {
+  background-color: #EDF0F3;
+  border: 1px solid #C0CAD5;
+  color: #36638E;
+  text-decoration: none;
+}
+.box_panel {
+  display: block;
+  padding: 2px;
+  background: #EDEFF1;
+}
+.box_panel_editor {
+  background: white;
+  border: 1px solid #ADBBCA;
+  display: block;
+}
+.box_panel_editor h2 {
+  border-bottom: 1px solid #DAE2E8;
+  color: #45688E;
+  padding: 5px 0px 3px 0px;
+  margin: 0px 0px 10px 0px;
+  font-size: 13px;
+}
+.box_panel_border {
+  border: 10px solid #DAE2E8;
+  padding: 10px;
+}
+.progressBar {
+  margin: 5px 0px 0px 10px;
+  vertical-align: 0px;
+  float: left;
+  display: none;
+}
+.boxButtons {
+  margin-top: 10px;
+  height: 23px;
+}
+#addingModeratorMessageCont {
+  margin-bottom: 10px;
+  font-size: 11px;
+  font-weight: bold;
+  display: none;
+}
+.errorMessage {
+  border: 1px solid #E89B88;
+  background-color: #FFEFE8;
+  padding: 8px 11px;
+}
+.infoMessage {
+  border: 1px solid #4C96D4;
+  background-color: #E7F1F9;
+  padding: 8px 11px;
+}
+.addingModerator {
+  padding: 10px 40px 10px 40px;
+  background: #f7f7f7;
+  border-bottom: solid 1px #D8DFEA;
+  display: none;
+}
+#informer_moders_table div.even,
+#informer_moders_table div.odd {
+  padding: 5px;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-top: 0px;
+  width: 260px;
+}
+#informer_moders_table div.odd {
+  background-color: #F3F5F7;
+}
+#informer_moders_table div.even.removed {
+  background-color: #FEFAE4;
+  border-bottom-color: #ded8b1;
+  color: #908851;
+}
+#informer_moders_table div.odd.removed {
+  background-color: #FAF6E1;
+  border-bottom-color: #ded8b1;
+  color: #908851;
+}
+/* Timepicker */
+.result_list .listH1 li {
+  border-color: #CCCCCC #FFFFFF #FFFFFF #CCCCCC;
+  padding: 3px 8px;
+  text-align: right;
+}
+.result_list .listH2 li {
+  border-color: #CCCCCC #FFFFFF #FFFFFF #EEEEEE;
+  padding: 3px 8px;
+  text-align: right;
+}
+.result_list .listM li {
+  padding: 3px 8px;
+  text-align: right;
+}
+.timepicker_container {
+  width: 160px;
+}
+.result_list i {
+  font-style: normal;
+  color: #999999;
+}
+.result_list .active i {
+  color: #FFFFFF;
+}
+.result_list ul li.ts_active {
+  background-color: #E1E8ED;
+  border: 1px solid #C3C8CC;
+  padding-top: 2px;
+  z-index: 1;
+}
+.result_list ul li.ts_first_active {
+  padding-top: 2px;
+  margin-top: 0px;
+}
+.moder_in_tree {
+  clear: left;
+  cursor: pointer;
+  float: left;
+  font-size: 11px;
+  margin: 5px 0 0;
+  padding: 4px 4px 4px 25px;
+  width: 420px;
+  background-color: #F7F7F7;
+  border: 1px solid #F7F7F7;
+}
+.sort_rev_icon_wrap {
+  padding: 2px;
+  margin-right: 5px;
+}
+.sort_rev_icon,
+.sort_not_rev_icon {
+  display: block;
+  width: 15px;
+  height: 11px;
+  background: url(/images/photoorder.gif) left 0;
+}
+.sort_not_rev_icon {
+  background-position: left -14px;
+}
+.is_2x .sort_rev_icon,
+.is_2x .sort_not_rev_icon {
+  background-image: url(/images/photoorder_2x.gif);
+  background-size: 15px 25px;
+}

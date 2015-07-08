@@ -1,0 +1,153 @@
+.criteriaLabel {
+  color: #666;
+  padding: 3px 0px;
+}
+.myPad {
+  padding: 3px 6px;
+  margin-right: 10px;
+  color: #666;
+  float: left;
+  cursor: pointer;
+  cursor: hand;
+}
+.selPad {
+  background-color: #DFE6EB;
+  padding: 3px 6px;
+  margin-right: 5px;
+  color: #45688E;
+  font-weight: bold;
+  float: left;
+  cursor: pointer;
+  cursor: hand;
+}
+.prePad {
+  padding: 3px 6px 3px 3px;
+  color: #666;
+  float: left;
+}
+.selPad a:hover {
+  background-color: #FFF;
+}
+.results {
+  padding: 8px 7px 5px 0px;
+  width: 460px;
+}
+#sponsoredGroups {
+  margin-bottom: 6px;
+  margin-left: 2px;
+}
+#sponsoredGroups .sponsored {
+  background-color: #FFF;
+  border: 1px solid #DAE2E8;
+  padding: 5px 0px 5px 5px;
+  margin: 3px 0px 4px 6px;
+  width: 216px;
+  float: left;
+  display: inline;
+}
+#sponsoredGroups table.sponsoredInfo td {
+  text-align: center;
+}
+#sponsoredGroups table.sponsoredInfo .groupLink {
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 12px;
+}
+#sponsoredGroups table.sponsoredInfo .groupImage {
+  vertical-align: top;
+}
+.result {
+  margin-left: 8px;
+}
+.result .info {
+  float: left;
+  padding: 0px;
+  width: 217px;
+}
+.result .info dl,
+.result .info dt,
+.result .info dd {
+  margin: 0px;
+  padding: 0px;
+}
+.result .info dl {
+  line-height: 15px;
+}
+.result .info dt {
+  color: gray;
+  clear: both;
+  float: left;
+  padding: 0px;
+  width: 70px;
+}
+.result .info dd {
+  float: left;
+  display: inline;
+  padding: 0px;
+  width: 137px;
+}
+.result .info dt.matches {
+  padding-top: 0px;
+}
+.result .info dd.aux {
+  margin-left: 70px;
+}
+.result .info dd.matches {
+  padding-bottom: 5px;
+}
+.result .info dd.matches div {
+  padding: 0px;
+}
+.uTitle {
+  font-weight: bold;
+  color: #666;
+}
+.uArrow {
+  padding-left: 17px;
+  background: url(/images/filterset_on.gif) 2px 4px no-repeat;
+}
+.bOpen,
+.bShut {
+  padding-bottom: 0px;
+}
+.pPad {
+  padding-top: 5px;
+}
+.bOpen .uArrow {
+  padding-left: 17px;
+  background: url(/images/filterset_on.gif) 2px 5px no-repeat;
+}
+.bShut .uArrow {
+  padding-left: 17px;
+  background: url(/images/filterset_off.gif) 4px 3px no-repeat;
+}
+.uBorders {
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #DDD;
+}
+.ageOne {
+  width: 50px;
+  margin-left: 0px;
+  margin-right: 4px;
+}
+.ageTwo {
+  width: 50px;
+  margin-left: 4px;
+  margin-right: 0px;
+}
+.filterControls {
+  display: block;
+  padding-left: 1px;
+}
+.handy {
+  cursor: hand;
+  cursor: pointer;
+}
+#uCB {
+  margin-top: 1px;
+  vertical-align: middle;
+}
+#uCO {
+  margin-top: -1px;
+  vertical-align: middle;
+}

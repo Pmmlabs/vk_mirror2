@@ -1,0 +1,110 @@
+#dialog {
+  margin: 0px auto;
+  border: solid 1px #ADBBCA;
+}
+#shadowLine {
+  margin: 0px auto;
+  border-top: solid 2px #EDEFF1;
+}
+#dialog td.dialog {
+  padding-top: 10px;
+  background: #FFFFFF;
+  border: solid 10px #DAE2E8;
+}
+#dialog td .formtable {
+  margin: 5px 10px 0px;
+}
+#dialog p {
+  margin: 10px;
+  text-align: left;
+}
+#dialog h4 {
+  border-bottom: solid 1px #DAE2E8;
+  margin: 5px 10px 5px;
+  padding: 0px 0px 2px;
+  font-size: 13px;
+}
+#dialog .buttons {
+  padding: 10px;
+  text-align: right;
+}
+#dialog .buttons input {
+  margin-left: 10px;
+}
+#dialog small {
+  color: gray;
+}
+#dialog_note {
+  margin: 10px auto 0px auto;
+  border: 0;
+}
+#dialog_note td {
+  text-align: center;
+}
+div.notice {
+  width: 400px;
+  margin: 80px 100px;
+  padding: 10px;
+  position: absolute;
+  z-index: 100;
+  background: #f7f7f7;
+  border: solid 3px #45688E;
+}
+div.notice h4 {
+  margin-bottom: 10px;
+}
+div.notice .buttons {
+  margin: 10px 0px 0px;
+  text-align: center;
+}
+div.notice .buttons input {
+  margin-left: 10px;
+  width: 60px;
+}
+#dynamic_dialog {
+  position: absolute;
+  z-index: 1;
+  background: #FFFFFF;
+  left: 0px;
+  top: 0px;
+  width: 360px;
+}
+.messageImage {
+  margin-left: 10px;
+  margin-right: 8px;
+  margin-top: 3px;
+}
+#to_image {
+  width: 50px;
+}
+#message_report {
+  margin-top: 5px;
+}
+#messageFields {
+  width: 360px;
+  margin: 0px;
+  padding: 0px;
+}
+#messageFields td.label {
+  width: 50px;
+}
+#messageFields td.label div {
+  font-weight: normal;
+  font-size: 10px;
+  color: #999;
+}
+#messageFields p {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.topTime {
+  color: #808080;
+  font-size: 9px;
+  font-weight: normal;
+  padding-left: 10px;
+  position: relative;
+  top: -3px;
+}
+#sms_box input#phone {
+  height: 14px;
+}

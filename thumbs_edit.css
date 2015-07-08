@@ -1,0 +1,133 @@
+#thumbs_edit_css {
+  display: none;
+}
+div.editable_thumbs {
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  margin-bottom: 2px;
+  overflow: visible !important;
+}
+.editable_thumbs.wide .thumb_wrap {
+  margin: 0 6px 6px 0;
+}
+.editable_thumbs .thumb_wrap.last_row {
+  margin-bottom: 0;
+}
+.editable_thumbs .thumb_wrap.last_column {
+  margin-right: 0;
+}
+.editable_thumbs .thumb_wrap {
+  margin: 0 3px 3px 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  transition: all ease .15s;
+  -webkit-transition: all ease .15s;
+  -moz-transition: all ease .15s;
+  -o-transition: all ease .15s;
+  -ms-transition: all ease .15s;
+}
+.editable_thumbs .thumb_wrap .draggable_thumb {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.editable_thumbs .thumb_wrap .draggable_thumb .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  display: none;
+}
+.editable_thumbs .thumb_wrap .draggable_thumb .preview {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.editable_thumbs .thumb_wrap .draggable_thumb .duration {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  padding: 0px 3px 1px;
+  z-index: 9;
+}
+.editable_thumbs .thumb_wrap .draggable_thumb.unsized {
+  background: 50% 50% no-repeat;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+.editable_thumbs .thumb_wrap .draggable_thumb.unsized_single {
+  background-size: contain;
+}
+.editable_thumbs .thumb_wrap .thumb_x_button {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  padding: 3px;
+  cursor: pointer;
+}
+.editable_thumbs .thumb_wrap.break_next {
+  clear: right;
+}
+.editable_thumbs .thumb_wrap .thumb_x_button .thumb_x {
+  display: block;
+  background: url("/images/notifier_close.gif") no-repeat scroll 0 0 transparent;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  width: 7px;
+  height: 7px;
+}
+.editable_thumbs .thumb_wrap .thumb_x_button:hover .thumb_x {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+.editable_thumbs .thumb_wrap .draggable_thumb.moving .thumb_x_button {
+  display: none;
+}
+.editable_thumbs .thumb_wrap .album_title {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: left;
+  padding: 5px 0 4px;
+  overflow: hidden;
+  line-height: 12px;
+  font-weight: bold;
+}
+.editable_thumbs .thumb_wrap .album_title .title_text {
+  overflow: hidden;
+  padding-left: 5px;
+  height: 14px;
+  max-width: 208px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  visibility: visible;
+}
+.editable_thumbs .thumb_wrap .draggable_thumb.moving .album_title .title_text {
+  visibility: hidden;
+}
+.editable_thumbs .thumb_wrap .album_title .album_size {
+  position: absolute;
+  right: 5px;
+  background: url(/images/camera_white.png) 0 2px no-repeat;
+  padding-left: 14px;
+}
+.editable_thumbs .thumb_wrap .draggable_thumb.changing .thumb_x_button {
+  display: none;
+}

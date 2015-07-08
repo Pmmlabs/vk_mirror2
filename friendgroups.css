@@ -1,0 +1,538 @@
+.vcheck {
+  float: left;
+  margin: 3px 0px 0px 0px;
+  padding: 6px;
+  width: 13px;
+  height: 10px;
+  background-color: #fff;
+  background-image: url(/images/check.gif);
+  background-repeat: no-repeat;
+  background-position: 5px 7px;
+}
+.noncheck {
+  float: left;
+  margin: 3px 0px 0px 0px;
+  padding: 6px;
+  width: 13px;
+  height: 10px;
+}
+.FG {
+  text-align: center;
+  vertical-align: bottom;
+  list-style-type: none;
+  margin: 7px 0px 0px 0px;
+  padding: 0px;
+  width: 607px;
+}
+.FGYellow,
+.FGRed,
+.FGGreen,
+.FGOrange,
+.FGWhite,
+.FGBlue,
+.FGMarine,
+.FGPurple,
+.FGTeal,
+.FGWhiteOn,
+.FGYellowOn,
+.FGRedOn,
+.FGGreenOn,
+.FGOrangeOn,
+.FGBlueOn,
+.FGMarineOn,
+.FGPurpleOn,
+.FGTealOn {
+  height: 24px;
+  float: left;
+  margin: 3px;
+  text-align: center;
+  white-space: nowrap;
+}
+.FGYellow a,
+.FGRed a,
+.FGGreen a,
+.FGOrange a,
+.FGWhite a,
+.FGBlue a,
+.FGMarine a,
+.FGPurple a,
+.FGTeal a,
+.FGWhiteOn a,
+.FGYellowOn a,
+.FGRedOn a,
+.FGGreenOn a,
+.FGOrangeOn a,
+.FGBlueOn a,
+.FGMarineOn a,
+.FGPurpleOn a,
+.FGTealOn a {
+  float: left;
+  padding: 5px 10px 6px 10px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.FGYellow a:hover,
+.FGGreen a:hover,
+.FGRed a:hover,
+.FGTeal a:hover,
+.FGWhite a:hover,
+.FGOrange a:hover,
+.FGBlue a:hover,
+.FGMarine a:hover,
+.FGPurple a:hover {
+  text-decoration: none;
+}
+.FGYellowOn a:hover,
+.FGGreenOn a:hover,
+.FGRedOn a:hover,
+.FGTealOn a:hover,
+.FGOrangeOn a:hover,
+.FGBlueOn a:hover,
+.FGMarineOn a:hover,
+.FGPurpleOn a:hover {
+  text-decoration: none;
+  cursor: text;
+}
+.FGWhiteOn a:hover {
+  text-decoration: none;
+  cursor: default;
+}
+a.FGEdit {
+  padding: 1px 1px 2px 3px;
+  margin: 4px 4px 3px 0px;
+}
+.FGYellow {
+  border: 1px solid #E8E0C3;
+  background-color: #FAF3D8;
+}
+.FGYellowOn {
+  border: 1px solid #C4BB98;
+  background-color: #EEE3BD;
+}
+.FGYellowOn a,
+.FGYellow a:hover,
+.FGYellowOn a:hover {
+  color: #817945;
+}
+.FGYellow a {
+  color: #A49E79;
+}
+.FGGreen {
+  border: 1px solid #CFDEBF;
+  background-color: #E8F2DC;
+}
+.FGGreenOn {
+  border: 1px solid #8DBF56;
+  background-color: #C8E0AC;
+}
+.FGGreenOn a,
+.FGGreen a:hover,
+.FGGreenOn a:hover {
+  color: #37702A;
+}
+.FGGreen a {
+  color: #83A67B;
+}
+.FGRed {
+  border: 1px solid #E4D4CA;
+  background-color: #F5E9E2;
+}
+.FGRedOn {
+  border: 1px solid #CA9573;
+  background-color: #E7CBBA;
+}
+.FGRedOn a,
+.FGRed a:hover,
+.FGRedOn a:hover {
+  color: #8B4C23;
+}
+.FGRed a {
+  color: #B79076;
+}
+.FGOrange {
+  border: 1px solid #E8D7C3;
+  background-color: #FAEAD8;
+}
+.FGOrangeOn {
+  border: 1px solid #DBB488;
+  background-color: #F6D1A9;
+}
+.FGOrangeOn a,
+.FGOrange a:hover,
+.FGOrangeOn a:hover {
+  color: #764F14;
+}
+.FGOrange a {
+  color: #A49379;
+}
+.FGBlue {
+  border: 1px solid #CED8E0;
+  background-color: #E4EBF1;
+}
+.FGBlueOn {
+  border: 1px solid #99B3C9;
+  background-color: #CBE2F1;
+}
+.FGBlueOn a,
+.FGBlue a:hover,
+.FGBlueOn a:hover {
+  color: #0B5588;
+}
+.FGBlue a {
+  color: #7B99B2;
+}
+.FGMarine {
+  border: 1px solid #CDD1E1;
+  background-color: #E4E7F2;
+}
+.FGMarineOn {
+  border: 1px solid #A2AECC;
+  background-color: #D2DCF3;
+}
+.FGMarineOn a,
+.FGMarine a:hover,
+.FGMarineOn a:hover {
+  color: #2F54AA;
+}
+.FGMarine a {
+  color: #7681B7;
+}
+.FGPurple {
+  border: 1px solid #DACEDD;
+  background-color: #EDE5F0;
+}
+.FGPurpleOn {
+  border: 1px solid #BEA8C4;
+  background-color: #ECDAF0;
+}
+.FGPurpleOn a,
+.FGPurple a:hover,
+.FGPurpleOn a:hover {
+  color: #80478F;
+}
+.FGPurple a {
+  color: #A67CB1;
+}
+.FGTeal {
+  border: 1px solid #C6D7D5;
+  background-color: #E0ECEA;
+}
+.FGTealOn {
+  border: 1px solid #90B5B5;
+  background-color: #C7E4E4;
+}
+.FGTealOn a,
+.FGTeal a:hover,
+.FGTealOn a:hover {
+  color: #4C7171;
+}
+.FGTeal a {
+  color: #82999F;
+}
+.FGWhite {
+  border: 1px solid #E0E0E0;
+  background-color: #FCFCFC;
+}
+.FGWhiteOn {
+  border: 1px solid #BEBEBE;
+  background-color: #FFFFFF;
+}
+.FGWhiteOn a,
+.FGWhite a:hover,
+.FGWhiteOn a:hover {
+  color: #343434;
+}
+.FGWhite a {
+  color: #7F7F7F;
+}
+.FV {
+  text-align: center;
+  height: 24px;
+  vertical-align: bottom;
+  list-style-type: none;
+  margin: 7px auto 0px auto;
+  padding: 0px;
+}
+.FVYellow,
+.FVRed,
+.FVGreen,
+.FVOrange,
+.FVWhite,
+.FVBlue,
+.FVMarine,
+.FVPurple,
+.FVTeal,
+.FVWhiteOn,
+.FVYellowOn,
+.FVRedOn,
+.FVGreenOn,
+.FVOrangeOn,
+.FVBlueOn,
+.FVMarineOn,
+.FVPurpleOn,
+.FVTealOn {
+  height: 24px;
+  margin: 0px;
+  text-align: center;
+  white-space: nowrap;
+  float: left;
+}
+.FVYellow a,
+.FVRed a,
+.FVGreen a,
+.FVOrange a,
+.FVWhite a,
+.FVBlue a,
+.FVMarine a,
+.FVPurple a,
+.FVTeal a,
+.FVWhiteOn a,
+.FVYellowOn a,
+.FVRedOn a,
+.FVGreenOn a,
+.FVOrangeOn a,
+.FVBlueOn a,
+.FVMarineOn a,
+.FVPurpleOn a,
+.FVTealOn a {
+  padding: 5px 10px 6px 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  float: left;
+}
+.FVYellow a:hover,
+.FVGreen a:hover,
+.FVRed a:hover,
+.FVTeal a:hover,
+.FVWhite a:hover,
+.FVOrange a:hover,
+.FVBlue a:hover,
+.FVMarine a:hover,
+.FVPurple a:hover {
+  text-decoration: none;
+}
+.FVYellowOn a:hover,
+.FVGreenOn a:hover,
+.FVRedOn a:hover,
+.FVTealOn a:hover,
+.FVWhiteOn a:hover,
+.FVOrangeOn a:hover,
+.FVBlueOn a:hover,
+.FVMarineOn a:hover,
+.FVPurpleOn a:hover {
+  text-decoration: none;
+}
+a.FVEdit {
+  padding: 1px 1px 2px 3px;
+  margin: 4px 4px 3px 0px;
+}
+.FVYellow {
+  border: 1px solid #E8E0C3;
+  background-color: #FAF3D8;
+}
+.FVYellowOn {
+  border: 1px solid #C4BB98;
+  background-color: #EEE3BD;
+}
+.FVYellowOn a,
+.FVYellow a:hover,
+.FVYellowOn a:hover {
+  color: #817945;
+}
+.FVYellow a {
+  color: #A49E79;
+}
+.FVGreen {
+  border: 1px solid #CFDEBF;
+  background-color: #E8F2DC;
+}
+.FVGreenOn {
+  border: 1px solid #8DBF56;
+  background-color: #C8E0AC;
+}
+.FVGreenOn a,
+.FVGreen a:hover,
+.FVGreenOn a:hover {
+  color: #37702A;
+}
+.FVGreen a {
+  color: #83A67B;
+}
+.FVRed {
+  border: 1px solid #E4D4CA;
+  background-color: #F5E9E2;
+}
+.FVRedOn {
+  border: 1px solid #CA9573;
+  background-color: #E7CBBA;
+}
+.FVRedOn a,
+.FVRed a:hover,
+.FVRedOn a:hover {
+  color: #8B4C23;
+}
+.FVRed a {
+  color: #B79076;
+}
+.FVOrange {
+  border: 1px solid #E8D7C3;
+  background-color: #FAEAD8;
+}
+.FVOrangeOn {
+  border: 1px solid #DBB488;
+  background-color: #F6D1A9;
+}
+.FVOrangeOn a,
+.FVOrange a:hover,
+.FVOrangeOn a:hover {
+  color: #764F14;
+}
+.FVOrange a {
+  color: #A49379;
+}
+.FVBlue {
+  border: 1px solid #CED8E0;
+  background-color: #E4EBF1;
+}
+.FVBlueOn {
+  border: 1px solid #99B3C9;
+  background-color: #CBE2F1;
+}
+.FVBlueOn a,
+.FVBlue a:hover,
+.FVBlueOn a:hover {
+  color: #0B5588;
+}
+.FVBlue a {
+  color: #7B99B2;
+}
+.FVMarine {
+  border: 1px solid #CDD1E1;
+  background-color: #E4E7F2;
+}
+.FVMarineOn {
+  border: 1px solid #A2AECC;
+  background-color: #D2DCF3;
+}
+.FVMarineOn a,
+.FVMarine a:hover,
+.FVMarineOn a:hover {
+  color: #2F54AA;
+}
+.FVMarine a {
+  color: #7681B7;
+}
+.FVPurple {
+  border: 1px solid #DACEDD;
+  background-color: #EDE5F0;
+}
+.FVPurpleOn {
+  border: 1px solid #BEA8C4;
+  background-color: #ECDAF0;
+}
+.FVPurpleOn a,
+.FVPurple a:hover,
+.FVPurpleOn a:hover {
+  color: #80478F;
+}
+.FVPurple a {
+  color: #A67CB1;
+}
+.FVTeal {
+  border: 1px solid #C6D7D5;
+  background-color: #E0ECEA;
+}
+.FVTealOn {
+  border: 1px solid #90B5B5;
+  background-color: #C7E4E4;
+}
+.FVTealOn a,
+.FVTeal a:hover,
+.FVTealOn a:hover {
+  color: #4C7171;
+}
+.FVTeal a {
+  color: #82999F;
+}
+.FVWhite {
+  border: 1px solid #E0E0E0;
+  background-color: #FCFCFC;
+}
+.FVWhiteOn {
+  border: 1px solid #BEBEBE;
+  background-color: #FFFFFF;
+}
+.FVWhiteOn a,
+.FVWhite a:hover,
+.FVWhiteOn a:hover {
+  color: #343434;
+}
+.FVWhite a {
+  color: #7F7F7F;
+}
+.edGr a {
+  color: #CCC;
+  font-weight: bold;
+}
+.Group1,
+.Group2,
+.Group3,
+.Group4,
+.Group5,
+.Group6,
+.Group7,
+.Group8 {
+  margin: 2px 2px 5px 0px;
+  padding: 2px 4px;
+  line-height: 200%;
+  white-space: nowrap;
+}
+.Group1 {
+  background-color: #F5E9E2;
+  color: #8B4C23;
+}
+.Group2 {
+  background-color: #FAEAD8;
+  color: #764F14;
+}
+.Group3 {
+  background-color: #FAF3D8;
+  color: #817945;
+}
+.Group4 {
+  background-color: #E8F2DC;
+  color: #37702A;
+}
+.Group5 {
+  background-color: #E0ECEA;
+  color: #4C7171;
+}
+.Group6 {
+  background-color: #E4EBF1;
+  color: #0B5588;
+}
+.Group7 {
+  background-color: #E4E7F2;
+  color: #2F54AA;
+}
+.Group8 {
+  background-color: #EDE5F0;
+  color: #80478F;
+}
+#Hint {
+  display: none;
+  z-index: 250;
+  margin: 0px;
+  position: absolute;
+  top: 175px;
+  left: 502px;
+  width: 209px;
+  background: #FFF;
+  border: 1px solid #C0CBD5;
+}
+#Hint div {
+  z-index: 260;
+  line-height: 150%;
+  color: #000;
+  padding: 7px 18px;
+}

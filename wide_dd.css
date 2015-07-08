@@ -1,0 +1,245 @@
+#wide_dd_css {
+  display: none;
+}
+div.wdd {
+  background: #FFF;
+  border: 1px solid #C0CAD5;
+  padding: 2px;
+  position: relative;
+  overflow: visible !important;
+}
+.wdd_bubble {
+  padding: 2px;
+}
+.wdd_text::-webkit-input-placeholder {
+  color: #777;
+}
+.wdd_text:-moz-placeholder {
+  color: #777;
+}
+.wdd_text {
+  height: 14px;
+  padding: 4px 6px 6px;
+  outline: 0px;
+  margin: 0px;
+  border: 0px;
+  color: #000;
+}
+.wdd_arr {
+  width: 21px;
+  height: 24px;
+  overflow: hidden;
+  cursor: pointer;
+  background: url(/images/wide_dd.gif) no-repeat 0px 0px;
+}
+.wdd_lwrap {
+  position: absolute;
+  z-index: 1010;
+  display: none;
+  left: -1px;
+  top: -1px;
+}
+.wdd_list {
+  border: solid #C0CAD5;
+  border-width: 0px 1px 1px;
+  overflow: hidden;
+}
+.wdd_toup .wdd_list {
+  border-width: 1px 1px 0px;
+}
+.wdd_bottom1,
+.wdd_bottom2 {
+  background: #000;
+  height: 1px;
+  overflow: hidden;
+  position: relative;
+  opacity: 0.1;
+  filter: alpha(opacity=10);
+}
+.wdd_bottom2 {
+  opacity: 0.05;
+  filter: alpha(opacity=5);
+}
+.wdd_toup .wdd_bottom1,
+.wdd_toup .wdd_bottom2 {
+  display: none;
+}
+.wddi,
+.wddi_over {
+  cursor: pointer;
+  display: block;
+  padding: 0px 6px;
+  background: #FFF;
+}
+.wddi_data {
+  padding: 6px 0px;
+  border-bottom: 1px solid #EDEDED;
+  min-height: 32px;
+  _height: 32px;
+}
+.wddi:last-child .wddi_data,
+.wddi_over .wddi_data,
+.wddi:last-child,
+.wddi_over:last-child {
+  border-bottom: 0px;
+}
+.wddi_over {
+  background: #F1F5F9;
+  border: solid #E1E7ED;
+  border-width: 1px 0px;
+  margin-top: -1px;
+}
+.wddi:first-child,
+.wddi_over:first-child {
+  border-top: 0px;
+  margin-top: 0px;
+}
+.wddi_thumb {
+  width: 38px;
+  height: 32px;
+  overflow: hidden;
+}
+.wddi_img {
+  vertical-align: top;
+  width: 32px;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+}
+.wddi_text {
+  padding-top: 0;
+}
+.wddi_sub {
+  padding-top: 2px;
+  color: #777;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.wddi_over .wddi_sub {
+  color: #738392;
+}
+.wddi_no {
+  background: #F1F1F1;
+  color: #000;
+  padding: 6px;
+}
+.wdd_bubbles .summary_tab_sel {
+  padding: 2px;
+  cursor: default;
+}
+.wdd_add {
+  padding: 2px;
+  cursor: pointer;
+  display: none;
+}
+.wdd_add2 {
+  background: #e5e8ed;
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  padding: 3px 5px 4px;
+}
+.wdd_add3 {
+  height: 13px;
+  overflow: hidden;
+  font-weight: bold;
+  color: #45688E;
+  padding: 0px 3px;
+  line-height: 130%;
+}
+.wdd_add_plus {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  width: 11px;
+  height: 11px;
+  margin: 2px 1px 0px;
+  background: url(/images/pics/im_plus.gif) 0 0;
+  -webkit-transition: opacity 200ms linear;
+  -moz-transition: opacity 200ms linear;
+  -o-transition: opacity 200ms linear;
+  transition: opacity 200ms linear;
+}
+.wdd_add:hover .wdd_add_plus {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.wdd_hl {
+  font-weight: bold;
+  font-style: normal;
+  background: #DAE2E8;
+  color: #000;
+}
+.wdd_imgs {
+  width: 50px;
+  height: 50px;
+  position: relative;
+}
+.wdd_img_full,
+.wdd_img_half,
+.wdd_img_tiny {
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  display: block;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
+}
+.wdd_img_full,
+.wdd_img_half,
+.wdd_img_tiny,
+.wdd_img {
+  border-radius: 2px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+}
+.wdd_img {
+  width: 50px;
+  vertical-align: top;
+}
+.wdd_img_half {
+  width: 23px;
+  overflow: hidden;
+}
+.wdd_img_half .wdd_img {
+  margin: 0px -13px;
+}
+.wdd_img_tiny {
+  width: 23px;
+  height: 23px;
+  margin-bottom: 4px;
+}
+.wdd_img_tiny .wdd_img {
+  width: 23px;
+}
+.wdd_img_layer {
+  margin: 0px -1px;
+  padding: 0px 1px 3px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  z-index: 12;
+}
+.wdd_mark {
+  margin: 0px 44px;
+  _display: none;
+  position: relative;
+  top: -6px;
+  width: 4px;
+  height: 4px;
+  border: 1px solid #EEE;
+  background: #8FA9C7;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  z-index: 10;
+}
+.wdd_img_tiny .wdd_mark,
+.wdd_img_half .wdd_mark {
+  margin: 0px 17px;
+}
+.wddi_thumb .wdd_mark {
+  margin: 0px 26px;
+}

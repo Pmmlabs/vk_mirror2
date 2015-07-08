@@ -1,0 +1,121 @@
+#regForm {
+  padding: 20px;
+}
+h4 {
+  border-bottom: solid 1px #b9c4da;
+  margin: 0px;
+  padding: 0px 0px 4px;
+  font-size: 15px;
+}
+h6 {
+  color: #45668E;
+  font-size: 13px;
+  padding-bottom: 3px;
+}
+#about {
+  padding-left: 50px;
+  font-size: 11px;
+  line-height: 140%;
+  margin: 15px 0px 0px;
+}
+.blockCaption {
+  clear: both;
+  padding: 10px 0px 10px 50px;
+}
+.regRow {
+  clear: both;
+  padding: 6px 0px 0px;
+}
+.labelField {
+  width: 144px;
+  padding-top: 4px;
+  color: #666;
+  padding: 4px 16px 0;
+}
+.inputField input.inputText,
+.selectField input.ph {
+  margin: 0px;
+  width: 192px;
+}
+.detailsField {
+  color: #777;
+  font-size: 10px;
+  margin: 0 10px;
+  width: 160px;
+}
+#regButton {
+  clear: both;
+  height: 23px;
+  padding-top: 10px;
+  margin: 0px 176px 10px;
+}
+#termsAccepted {
+  font-size: 10px;
+  color: #777;
+  text-align: center;
+}
+.progress {
+  float: right;
+  position: relative;
+  top: 4px;
+  display: none;
+}
+.anotherCity {
+  position: relative;
+  top: 5px;
+}
+#reg_progress {
+  float: left;
+  position: relative;
+  top: 8px;
+  left: 10px;
+  display: none;
+}
+#correct_text {
+  float: right;
+  color: #777;
+}
+#selectSchoolType {
+  float: left;
+  width: 92px;
+}
+#selectSchool {
+  float: left;
+}
+#message {
+  border: 1px solid #D4BC4C;
+  background-color: #F9F6E7;
+  padding: 8px 11px;
+  font-size: 11px;
+  font-weight: bold;
+  margin: 0px 10px 0px 10px;
+  text-align: left;
+}
+.forgotPass {
+  padding-top: 10px;
+}
+#uniContainer {
+  margin-top: 6px;
+}
+.wikiSubHeader {
+  border-bottom: 1px solid #DAE1E8;
+  color: #45688E;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.detailsField .error {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: #fff;
+  color: #880000;
+  font-size: 10px;
+}
+.detailsField {
+  margin-left: 0px;
+  padding-left: 10px;
+}
+#quickLogin a:hover {
+  text-decoration: underline;
+}

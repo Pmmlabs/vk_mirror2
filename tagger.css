@@ -1,0 +1,37 @@
+#tagger_css {
+  display: none;
+}
+.tag_frame {
+  position: absolute;
+  overflow: hidden;
+  display: none;
+  text-align: left;
+  /* Even for rtl langs */
+  direction: ltr;
+}
+.tag_faded {
+  position: absolute;
+  background: #000;
+  opacity: 0.75;
+  filter: alpha(opacity=75);
+  display: none;
+}
+.tag_frame_handle {
+  position: absolute;
+  background: #DCDCDC;
+  width: 10px;
+  height: 10px;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+  display: none;
+  overflow: hidden;
+}
+.tag_bg {
+  z-index: 2000;
+  left: 0px;
+  top: 0px;
+  background-color: #FFF;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  display: none;
+}

@@ -1,0 +1,268 @@
+#paginated_table_css {
+  display: none;
+}
+/*
+ * Controls
+ */
+.paginated_table_control,
+.scroll_layout_table,
+.paginate_layout_table {
+  width: 100%;
+}
+.row_div {
+  display: -moz-inline-stack;
+  display: inline-block;
+  _overflow: hidden;
+  *zoom: 1;
+  *display: inline;
+  padding: 7px 10px 0px 10px;
+}
+.page_list_table {
+  float: right;
+  border-collapse: collapse;
+}
+.page_list_table td {
+  padding: 0px;
+}
+.page_list_table a {
+  border-style: solid;
+  border-color: white;
+  cursor: pointer;
+  padding: 2px;
+}
+.page_list_table .selected a {
+  font-weight: bold;
+  border-color: #2B587A;
+  cursor: text;
+}
+.page_list_table a:hover {
+  background-color: #2B587A;
+  color: white;
+  border-color: #2B587A;
+  text-decoration: none;
+}
+.page_list_table .selected a:hover {
+  background-color: transparent;
+  color: #2B587A;
+}
+.top_control .page_list_table a {
+  border-width: 0px 0px 2px 0px;
+  padding-top: 3px;
+}
+.top_control .page_list_table a:hover {
+  border-width: 0px 0px 1px 0px;
+}
+.top_control .page_list_table .selected a:hover {
+  border-width: 0px 0px 2px 0px;
+}
+.bottom_control .page_list_table a {
+  border-width: 2px 0px 0px 0px;
+  padding-bottom: 3px;
+}
+.bottom_control .page_list_table a:hover {
+  border-width: 0px 0px 1px 0px;
+}
+.bottom_control .page_list_table .selected a:hover {
+  border-width: 2px 0px 0px 0px;
+}
+.paginated_table_control input {
+  height: 19px;
+}
+.show_size_chooser table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.show_size_chooser table td {
+  padding: 0px;
+}
+.show_size_chooser .control_label {
+  width: 150px;
+}
+.control_label {
+  color: #666;
+}
+.paginated_table_control .control_label.page_summary,
+.paginated_table_control .control_label.table_filter {
+  color: #45688E;
+  font-weight: bold;
+  white-space: nowrap;
+  width: 1px;
+}
+.paginated_table_control .control_label.table_filter .table_filter_dd {
+  margin: 0px 5px;
+}
+.bottom_control .control_label.page_summary,
+.bottom_control .control_label.table_filter {
+  visibility: hidden;
+  display: none;
+}
+/*
+ *  Table
+ */
+.paginated_table {
+  margin: 1px 0px;
+}
+.paginated_table,
+.paginated_table table {
+  width: 100%;
+}
+.paginated_table table {
+  border-collapse: collapse;
+  border-width: 0px 1px 1px 1px;
+  border-style: solid;
+}
+.paginated_table table.table_loading {
+  border-width: 0px;
+}
+.paginated_table_header {
+  border-color: #D3DBE1;
+}
+.paginated_table table,
+.paginated_table_cell {
+  border-color: #d3dbe1;
+}
+.paginated_table_header {
+  background-color: #E3E9EE;
+}
+.paginated_table_header th.paginated_table_cell span.table_header_upper_span {
+  vertical-align: top;
+}
+.paginated_table_header th.paginated_table_cell.sort_desc span.table_header_upper_span {
+  background: url('/images/flydead_flat.gif') no-repeat scroll right 1px transparent;
+  padding-right: 17px;
+}
+.paginated_table_header th.paginated_table_cell.sort_asc span.table_header_upper_span {
+  background: url('/images/flydead_flat.gif') no-repeat scroll right -77px transparent;
+  padding-right: 17px;
+}
+.paginated_table_header th.paginated_table_cell.unsortable.sort_desc span.table_header_upper_span {
+  background: #E3E9EE;
+}
+.paginated_table_header th.paginated_table_cell.unsortable.sort_asc span.table_header_upper_span {
+  background: #E3E9EE;
+}
+.paginated_table_header th.paginated_table_cell {
+  background-color: #E3E9EE;
+  border-width: 1px 0px 1px 1px;
+  border-style: solid;
+  border-color: #d3dbe1;
+  cursor: pointer;
+}
+.paginated_table_header th.paginated_table_cell.unsortable {
+  cursor: default;
+}
+.paginated_table_header th.paginated_table_cell.first_column {
+  border-left: 0px;
+}
+.paginated_table_header th.paginated_table_cell:hover {
+  background-color: #EFF2F5;
+}
+.paginated_table_header th.paginated_table_cell.unsortable:hover {
+  background-color: #E3E9EE;
+}
+.paginated_table_header th.paginated_table_cell.first_column div {
+  border-left: 0px;
+}
+.paginated_table_header .paginated_table_cell,
+.paginated_table_header .paginated_table_cell * {
+  color: #51677a;
+}
+.paginated_table_header th.paginated_table_cell {
+  height: 32px;
+  padding: 0px;
+}
+.paginated_table_header th.paginated_table_cell div {
+  height: 12px;
+  padding: 10px 8px;
+  border-left: 1px solid #eff2f5;
+  white-space: nowrap;
+}
+.paginated_table_header th.paginated_table_cell.first_column div {
+  padding-left: 10px;
+}
+.paginated_table_header th.paginated_table_cell.last_column div {
+  padding-right: 10px;
+}
+.paginated_table_header th.paginated_table_cell.cb_cell.first_column,
+.paginated_table_header th.paginated_table_cell.cb_cell.last_column,
+.paginated_table_header th.paginated_table_cell.cb_cell {
+  padding: 0px 0px 0px 5px;
+  width: 21px;
+  overflow: visible;
+}
+.paginated_table_header th.paginated_table_cell.cb_cell:hover {
+  background-color: #E3E9EE;
+}
+.paginated_table .paginated_table_cell.cb_cell {
+  padding: 0px 0px 0px 6px;
+  overflow: visible;
+}
+.paginated_table .paginated_table_cell.cb_cell a {
+  text-decoration: none;
+}
+.paginated_table .paginated_table_cell.cb_cell {
+  line-height: 10px;
+}
+.cb_cell.cb_shift + .paginated_table_cell {
+  border-left-color: #D3DBE1;
+}
+.cb_cell.cb_shift + .paginated_table_cell div {
+  border-left-color: #E3E9EE;
+}
+.paginated_table_footer {
+  background-color: #F6F7F9;
+  border-top: 1px solid #D3DBE1;
+}
+.paginated_table_footer td.paginated_table_cell {
+  white-space: nowrap;
+  height: 12px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.paginated_table .paginated_table_cell {
+  height: 32px;
+  padding: 0px 8px;
+  border: 0px;
+  margin: 0px;
+}
+.paginated_table td.paginated_table_cell.first_column {
+  padding-left: 10px;
+}
+.paginated_table td.paginated_table_cell.last_column {
+  padding-right: 10px;
+}
+.paginated_table td.paginated_table_cell.first_column.cb_cell {
+  padding-left: 6px;
+}
+.paginated_table_row.even_row,
+.paginated_table_row.even_row td {
+  background-color: #F0F2F4;
+}
+.paginated_table .empty_row td {
+  background-color: #F7F7F7;
+  color: #666;
+  padding: 20px 0px;
+  text-align: center !important;
+}
+.paginated_table .paginated_table_cell.pt_align_left {
+  text-align: left;
+}
+.paginated_table .paginated_table_cell.pt_align_right {
+  text-align: right;
+}
+.paginated_table .paginated_table_cell.pt_align_center {
+  text-align: center;
+}
+/*
+ * Features
+ */
+.pt_search_container {
+  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+}
+.pt_search_container input.text {
+  background: transparent;
+  padding-left: 19px;
+  height: 15px;
+  width: 123px;
+  border-color: #C7C8CA;
+}

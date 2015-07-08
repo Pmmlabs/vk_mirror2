@@ -1,0 +1,182 @@
+.profile {
+  margin: 0px;
+  padding: 0px 10px 0px;
+  background: url(../images/narrowleftbg.gif) repeat-y 10px;
+}
+.profile .left {
+  padding: 0px;
+  width: 200px;
+}
+.profile .right {
+  padding: 0px 0px 0px 10px;
+  width: 396px;
+}
+.profile .wallpost .walltext {
+  word-wrap: break-word;
+  width: 260px;
+}
+.profile .picture {
+  background: white;
+  text-align: center;
+  font-size: 1px;
+}
+.profile .actionspro {
+  padding: 0px 10px 10px 10px;
+}
+.profile .actionspro {
+  background: white;
+}
+/* Profile Sections */
+.profile .flexHeader h2 {
+  margin: 0px;
+  padding: 0px;
+  float: none;
+  text-align: left;
+}
+.profile .header {
+  margin: 0px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #45688E;
+  background: #D8DFEA;
+}
+.profile .withedit {
+  text-align: right;
+}
+.profile .withedit h2 {
+  float: left;
+}
+.profile .subheader {
+  color: #45688E;
+  font-weight: bold;
+  font-size: 12px;
+  margin: 0px;
+  padding: 2px 8px;
+  background: #eee;
+  border-top: solid 1px #ccc;
+}
+.profile .darklink {
+  color: #555;
+}
+.profile .fallback {
+  background: #f7f7f7;
+  border-top: solid 1px #ccc;
+  border-bottom: solid 1px #D8DFEA;
+  color: gray;
+  padding: 15px 0px 15px 0px;
+  text-align: center;
+}
+/* People Table */
+.people_table {
+  margin: 0px;
+  padding: 0px;
+}
+.people_table td {
+  width: 62px;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0px 0px 5px;
+}
+.people_table table {
+  height: 100%;
+}
+.people_table table td.image {
+  padding-bottom: 0px;
+  font-size: 1px;
+  line-height: 1px;
+}
+.people_table table td.name div {
+  width: 60px;
+  word-wrap: break-word;
+}
+.img_table {
+  margin: 0px;
+  padding: 0px;
+}
+.img_table table td img {
+  background: white;
+  padding: 4px;
+  border: solid 1px #ccc;
+}
+.profile .see_all {
+  margin: 5px 0px 0px;
+}
+/* Info Table */
+.profile .info_table {
+  margin: 0px;
+  margin-bottom: 10px;
+  padding: 0px 0px 0px;
+}
+.profile .info_table caption {
+  color: #45688E;
+  font-weight: bold;
+  text-align: left;
+  padding: 0px;
+  padding-bottom: 2px;
+  margin: 0px 0px 0px;
+}
+.profile .info_table caption a {
+  margin-left: 4px;
+  color: lightgrey;
+}
+.profile .info_table caption a:hover {
+  color: inherit;
+}
+.profile .info_table td {
+  vertical-align: top;
+  font-size: 11px;
+  line-height: 13px;
+  margin: 0px;
+  padding: 1px 0px 1px;
+}
+.profile .info_table td.label {
+  width: 120px;
+  width: 100px;
+  color: gray;
+}
+/* Discussions Box */
+.profile .discussions {
+  padding: 0 0 10px 0;
+}
+.profile .discussions .board_topic {
+  border-color: #eee;
+  padding: 7px 8px;
+}
+.profile .discussions .board_topic h3 {
+  font-weight: bold;
+}
+.profile .discussions .board_topic .topic_info {
+  width: 100%;
+}
+/* Profile Photos */
+.profile .photos {
+  padding: 0px;
+}
+.profile .photos table {
+  width: 100%;
+  padding: 5px 0px 10px;
+  background: white;
+}
+.profile .photos td {
+  vertical-align: center;
+  text-align: center;
+}
+.profile .photos img {
+  background: white;
+  padding: 4px;
+  border: solid 1px #ccc;
+}
+.profile .photos img:hover {
+  border: solid 1px #45688E;
+}
+.profile .photos .fallback {
+  margin-bottom: 10px;
+}
+/* The Wall */
+.profile .thewall {
+  padding: 0px;
+}
+.profile .thewall .wall_posts {
+  padding: 10px 8px 15px 8px;
+}

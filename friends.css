@@ -1,0 +1,715 @@
+#content {
+  padding: 0px;
+}
+.t_filter_area {
+  border-bottom: 1px solid #D8DFEA;
+  padding: 10px;
+  background-color: #F7F7F7;
+  _padding-bottom: 18px;
+}
+*:first-child + html .t_filter_area {
+  padding-bottom: 18px;
+}
+.t_filter_selected {
+  float: left;
+  border-bottom: 1px solid #FFFFFF;
+  margin-right: 10px;
+  margin-bottom: -1px;
+  cursor: pointer;
+}
+.t_filter_selected .t_filter2 {
+  border: 1px solid #3B6798;
+  border-top: 1px solid #395676;
+  border-bottom: 1px solid #4A73A0;
+}
+.t_filter_selected .t_filter3 {
+  border: 1px solid #5C82AB;
+  padding: 2px 5px 3px 5px;
+  background-color: #6D8FB3;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+.t_filter_off {
+  cursor: pointer;
+  padding: 4px 7px 5px;
+  color: #45688E;
+  font-weight: bold;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: -1px;
+}
+#friend_lookup {
+  float: right;
+  width: 180px;
+}
+.summaryBar {
+  border-bottom: 1px solid #DAE2E8;
+  clear: both;
+  padding: 11px 10px 0 10px;
+  color: black;
+  font-weight: normal;
+  line-height: normal;
+}
+.summaryBar .summary {
+  color: #45688E;
+  float: left;
+  font-weight: bold;
+  padding-top: 3px;
+  padding-bottom: 4px;
+}
+.searchResults {
+  background: #f7f7f7;
+}
+table.searchResults {
+  border-collapse: collapse;
+  width: 100%;
+}
+.searchResults td {
+  padding: 0;
+  vertical-align: top;
+}
+td#results {
+  padding: 0px;
+  border-right: 1px solid #F7F7F7;
+}
+td.filters {
+  padding: 0px 0px 10px 0px;
+  width: 220px;
+}
+#noResults,
+#noResultsWhite {
+  padding: 128px 0px;
+  text-align: center;
+  background: #f7f7f7;
+  border: 1px solid #DAE2E8;
+  color: #777;
+  font-size: 13px;
+}
+#noResults {
+  background-color: #fff;
+  margin: 8px 0px 8px 8px;
+}
+#progressTop,
+#progressBottom {
+  float: right;
+  margin: 3px 3px 0px 0px;
+  display: none;
+}
+td#results .result {
+  background: #fff;
+  border: 1px solid #DAE2E8;
+  padding: 5px 4px 4px 4px;
+  margin: 8px;
+}
+.result .info {
+  float: left;
+  padding: 0;
+  width: 360px;
+  overflow: hidden;
+}
+.mine .result .info {
+  width: 217px;
+}
+.result .info dl,
+.result .info dt,
+.result .info dd {
+  margin: 0px;
+  padding: 0px;
+}
+.result .info dl {
+  line-height: 15px;
+}
+.result .info dt {
+  color: gray;
+  clear: both;
+  float: left;
+  padding: 0px;
+  width: 70px;
+}
+.result .info dd {
+  float: left;
+  display: inline;
+  padding: 0px;
+  width: 255px;
+}
+.mine .result .info dd {
+  width: 137px;
+}
+.result .info dd .bbb {
+  color: #BBBBBB;
+}
+.image {
+  height: 100px;
+  width: 108px;
+  overflow: hidden;
+}
+.info em {
+  background: #D8DFEA;
+  color: #000000;
+  font-weight: bold;
+  font-style: normal;
+  text-decoration: inherit;
+}
+.friend_list_top {
+  border-bottom: 0px solid #C1C1C1;
+  padding: 8px 10px 9px 8px;
+  background-color: #F6F6F6;
+  _padding-bottom: 18px;
+}
+*:first-child + html .friend_list_top {
+  padding-bottom: 18px;
+}
+#privacy_box_friend_list_lookup,
+#list_edit_box_friend_list_lookup {
+  float: right;
+  width: 180px;
+}
+.friend_list_body {
+  padding: 4px 0px 0px 3px;
+  width: 474px;
+  height: 276px;
+  border-top: 0px solid #E1E1E1;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: #FFF;
+}
+.flist_cell,
+.flist_cell_over,
+.flist_cell_on {
+  float: left;
+  border-bottom: 1px solid #FFF;
+  margin: 0px 3px 2px 0px;
+  cursor: pointer;
+}
+.flist_cell_over {
+  border-bottom: 1px solid #F4F4F4;
+}
+.flist_cell_on {
+  border-bottom: 1px solid #D1D1D1;
+}
+.flist_cell .flist_border_wrap {
+  border: 1px solid #FFF;
+}
+.flist_cell_over .flist_border_wrap {
+  background-color: #E1E8ED;
+  border: 1px solid #C3C8CC;
+}
+.flist_cell_on .flist_border_wrap {
+  border: 1px solid #3B6798;
+  background: #6d8fb3 url(/images/check_friend.gif) right bottom no-repeat;
+}
+.flist_wrap {
+  border: 1px solid #FFF;
+  width: 138px;
+  height: 56px;
+  padding: 3px;
+}
+.flist_div {
+  margin-right: 3px;
+  float: left;
+  border: 1px solid #D1D1D1;
+  background-color: #FFF;
+  cursor: pointer;
+}
+.flist_cell_over .flist_div {
+  border: 1px solid #A2ADB5;
+}
+.flist_cell_on .flist_div {
+  border: 1px solid #3B6798;
+}
+.flist_cell_over .flist_wrap {
+  border: 1px solid #D8DEE1;
+  border-top: 1px solid #EDF3F7;
+}
+.flist_cell_on .flist_wrap {
+  border: 1px solid #5C82AB;
+  border-top: 1px solid #7E9CBC;
+}
+.flist_image {
+  margin: 2px;
+  overflow: hidden;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+}
+.flist_name {
+  margin-left: 3px;
+  overflow: hidden;
+  float: left;
+  word-wrap: break-word;
+  word-wrap: nowrap;
+  width: 68px;
+  width: 75px;
+  color: #000;
+}
+.flist_cell_on .flist_name {
+  color: #FFF;
+}
+.flist_cell em,
+.flist_cell_on em,
+.flist_cell_over em {
+  background-color: #D8DFEA;
+  color: #000;
+  font-style: normal;
+  font-weight: bold;
+  text-decoration: inherit;
+}
+.flist_cell_on em {
+  background-color: #2F5C86;
+  color: #FFF;
+}
+.flist_cell_over em {
+  background-color: #C0C7D2;
+}
+.flist_empty {
+  background-color: #FFF;
+  color: #777777;
+  font-size: 13px;
+  text-align: center;
+  padding: 103px 0px 90px 0px;
+  margin: 10px 10px 12px 10px;
+}
+.flist_more {
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+.flist_shadow {
+  opacity: 0.25;
+  width: 478px;
+  filter: alpha(opacity=25);
+  background-color: #000;
+  height: 1px;
+  overflow: hidden;
+  z-index: 2000;
+  position: absolute;
+}
+/*.flist_shadow {
+ opacity:0.25;
+ width: 480px;
+ filter:alpha(opacity=25);
+ background-color: #000;
+ margin: -1px;
+ height: 1px;
+ overflow:hidden;
+ z-index: 2000;
+ position: relative;
+ top: 0px;
+ left: 0px;
+} */
+.side_filters {
+  width: 8px;
+}
+.mine .side_filters {
+  width: 134px;
+  padding: 8px 8px 8px 0;
+}
+.blue_button_shadow {
+  border-bottom: 1px solid #D1D1D1;
+}
+.blue_button {
+  border: 1px solid #3B6798;
+}
+.blue_button_body,
+.blue_button_body_over {
+  border: 1px solid #5C82AB;
+  border-top: 1px solid #7E9CBC;
+  background-color: #6D8FB3;
+  _width: 120px;
+  color: #FFF;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+.blue_button_body_over {
+  border: 1px solid #7293B7;
+  border-top: 1px solid #92ACC7;
+  background-color: #84A1BF;
+}
+.side_filter {
+  border: 1px solid #F7F7F7;
+  color: #2B587A;
+  padding: 4px 5px 4px 10px;
+}
+.side_filter_over {
+  background-color: #DAE1E8;
+  border: 1px solid #DAE1E8;
+  color: #2B587A;
+  padding: 4px 5px 4px 10px;
+  cursor: pointer;
+}
+.side_filter_selected {
+  background-color: #6D8FB3;
+  border: 1px solid #3B6798;
+  color: #FFFFFF;
+  cursor: pointer;
+  padding: 4px 5px 4px 10px;
+}
+.side_filter_sep {
+  border-bottom: 1px solid #DAE2E8;
+  height: 1px;
+  overflow: hidden;
+  margin: 5px 0px;
+}
+/* Friends lists */
+.Group1,
+.Group2,
+.Group3,
+.Group4,
+.Group5,
+.Group6,
+.Group7,
+.Group8 {
+  margin: 3px 0px;
+  padding: 2px 4px;
+  line-height: 175%;
+  white-space: nowrap;
+}
+.Group1 {
+  background-color: #F5E9E2;
+  color: #8B4C23;
+}
+.Group2 {
+  background-color: #FAEAD8;
+  color: #764F14;
+}
+.Group3 {
+  background-color: #FAF3D8;
+  color: #817945;
+}
+.Group4 {
+  background-color: #E8F2DC;
+  color: #37702A;
+}
+.Group5 {
+  background-color: #E0ECEA;
+  color: #4C7171;
+}
+.Group6 {
+  background-color: #E4EBF1;
+  color: #0B5588;
+}
+.Group7 {
+  background-color: #E4E7F2;
+  color: #2F54AA;
+}
+.Group8 {
+  background-color: #EDE5F0;
+  color: #80478F;
+}
+.Group1,
+.Group2,
+.Group3,
+.Group4,
+.Group5,
+.Group6,
+.Group7,
+.Group8 {
+  cursor: pointer;
+  margin: 0px 0px;
+  padding: 1px 3px;
+  apadding: 0px;
+  line-height: 160%;
+  aline-height: 140%;
+  white-space: nowrap;
+  abackground-color: #FFF;
+  abackground-color: #EEF2F6;
+  acolor: #2B587A;
+  acolor: #000;
+}
+.ddChoose,
+.ddChooseOn {
+  margin: 0px -1px 0px -1px;
+  padding: 3px 17px 4px 6px;
+  abackground: transparent url(http://vkontakte.ru/images/dropdead.gif) right 5px no-repeat;
+  color: #36638E;
+  cursor: pointer;
+  border: 1px solid #96AABE;
+  border: 1px solid #FFFFFF;
+}
+.ddChooseOn {
+  background: #DAE1E8;
+  background: #dae1e8 url(http://vkontakte.ru/images/dropdead.gif) right 4px no-repeat;
+  _background-position: right 5px;
+  border-top: 1px solid #CAD1D9;
+}
+.ddHead {
+  border: 1px solid #3B6798;
+}
+.ddChooseTop {
+  text-align: left;
+  margin-right: 0px;
+  padding: 2px 16px 2px 4px;
+  border: 1px solid #5C82AB;
+  border-top: 1px solid #7E9CBC;
+  background: #6d8fb3 url(http://vkontakte.ru/images/flydead.gif) right -15px no-repeat;
+  _background-position: right -14px;
+  abackground: #6D8FB3;
+  color: #FFF;
+}
+#ddHead {
+  position: absolute;
+  display: none;
+  cursor: pointer;
+  z-index: 2001;
+}
+#ddMenu {
+  position: absolute;
+  display: none;
+  cursor: pointer;
+  z-index: 2000;
+}
+.ddBody {
+  border: 1px solid #96AABE;
+  width: 156px;
+  _width: 157px;
+}
+.ddBottom,
+.ddBottom2 {
+  height: 1px;
+  overflow: hidden;
+  background: #000;
+  opacity: 0.12;
+  filter: alpha(opacity=12);
+}
+.ddBottom2 {
+  opacity: 0.05;
+  filter: alpha(opacity=5);
+  height: 1px;
+}
+.ddSide {
+  width: 1px;
+  overflow: hidden;
+  background: #000;
+  opacity: 0.06;
+  filter: alpha(opacity=6);
+}
+.ddItem,
+.ddItemChecked,
+.ddItemOn,
+.ddItemCheckedOn {
+  padding: 3px 3px 3px 22px;
+  background-color: #FFF;
+  color: #2C587D;
+  _width: 132px;
+}
+.ddItemOn {
+  background-color: #EEF2F6;
+}
+.ddItemChecked {
+  background: #ffffff url(http://vkontakte.ru/images/dropdead_check.gif) 4px 2px no-repeat;
+}
+.ddItemCheckedOn {
+  background: #eef2f6 url(http://vkontakte.ru/images/dropdead_check.gif) 4px 2px no-repeat;
+}
+.flist_outer_wrap {
+  height: 42px;
+  overflow: hidden;
+  border-bottom: 1px solid #d1d1d1;
+  aline-height: 100%;
+}
+#flist_name_edit {
+  margin: 0px;
+  height: 16px;
+  width: 160px;
+  font-size: 12px;
+  padding-top: 5px;
+  padding-left: 3px;
+}
+#flist_edit_wrap {
+  padding: 8px 0px 0px 8px;
+}
+#list_change_name {
+  margin-left: 6px;
+}
+#flist_wrap {
+  padding: 14px 0px 0px 13px;
+}
+#list_edit_box_flist_name,
+#privacy_box_flist_name {
+  font-size: 12px;
+}
+/* Friend Requests */
+.request_declined {
+  border: 1px solid #DBE0EA;
+  background-color: #F6F7F9;
+  padding: 10px;
+  float: left;
+}
+.request_accepted {
+  border: 1px solid #D4BC4C;
+  background-color: #F9F6E7;
+  padding: 10px;
+  float: left;
+}
+.friend_removed {
+  border: 1px solid #D7CF9E;
+  background-color: #F4EBBD;
+  padding: 8px 11px;
+  margin: 8px 8px 0;
+  font-weight: normal;
+}
+/* Send Message */
+tr.messageTallRow td {
+  vertical-align: top;
+}
+td.messageLabel {
+  width: 50px;
+  color: gray;
+  font-weight: bold;
+  padding-right: 10px;
+}
+.messageTable td {
+  margin: 0;
+  padding: 3px 1px;
+}
+.friendRows {
+  padding-right: 8px;
+}
+.friendRowBtns {
+  margin: 5px 0px 0px 67px;
+}
+.friendRowBtn {
+  float: left;
+  margin-right: 7px;
+}
+/*
+.requestRow{
+  margin: 8px !important;
+}
+*/
+.label {
+  color: #555;
+  text-align: right;
+  width: 160px;
+  float: left;
+  clear: both;
+  padding: 9px 15px 0px 50px;
+}
+.labeled {
+  padding-top: 5px;
+  text-align: left;
+  float: left;
+  /*width: 360px;*/
+}
+.labeled_text {
+  padding-top: 9px;
+}
+.labeled input,
+.labeled_small input {
+  width: 142px;
+}
+.buttons {
+  height: 26px;
+  margin-left: 225px;
+  clear: both;
+  padding-top: 10px;
+}
+.inv_info {
+  width: 270px !important;
+}
+.settingsPanel h4 {
+  clear: both;
+}
+.alien {
+  border: 1px solid #C0CAD5;
+  border-top: 0;
+  padding: 2px 8px;
+}
+.alien0 {
+  background: #FFFFFF;
+}
+.alien1 {
+  background: #F6F8F9;
+}
+.alientop {
+  margin: 8px 8px 0 8px;
+  border: 1px solid #C0CAD5;
+  background: #E1E8ED;
+  padding: 0px 8px;
+}
+#inviteContent h4 {
+  border-bottom: 1px solid #B9C4DA;
+  color: #36638E;
+  font-size: 12px;
+  font-weight: bold;
+  padding-bottom: 2px;
+}
+.listProgress {
+  padding: 130px 0px 90px 160px;
+}
+.inviteAliens {
+  padding: 0 180px;
+  margin-bottom: 8px;
+}
+.inviteAll {
+  padding: 0 8px;
+  width: 160px;
+}
+.alienName {
+  width: 180px;
+  float: left;
+}
+.alienMail {
+  color: #777;
+  float: left;
+}
+.inviteLocals {
+  margin-top: 8px;
+}
+.alienBody {
+  overflow: auto;
+  margin: 0 8px;
+}
+#results .common_friends_label {
+  color: #777777;
+  margin: 6px 0px 6px 0px;
+}
+/*#searchResults.mine .common_friends {
+  display: none;
+}*/
+#results .common_friends {
+  padding-bottom: 4px;
+}
+#results .common_friends {
+  overflow: hidden;
+  width: 185px;
+}
+.mine #results .common_friends {
+  width: 145px;
+}
+#results .common_friends a {
+  display: block;
+  margin: 0px 4px 0px 0px;
+  float: left;
+  outline: none;
+}
+.common_friends_box {
+  overflow: auto;
+  max-height: 380px;
+  padding: 10px;
+  padding-bottom: 0px;
+}
+.common_friends_box .common_row {
+  border-bottom: 1px solid #dee4e8;
+  margin-bottom: 5px;
+  padding-bottom: 2px;
+  height: 53px;
+}
+.common_friends_box .common_row:last-child {
+  border-bottom: none;
+}
+.common_friends_box .common_row .common_info {
+  display: block;
+  float: left;
+  width: 300px;
+}
+.common_friends_box .common_row .photo {
+  display: block;
+  width: 60px;
+  float: left;
+}
+.common_friends_box .common_row b {
+  color: #888888;
+  font-weight: normal;
+}

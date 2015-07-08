@@ -1,0 +1,86 @@
+#stickers_office_css {
+  display: none;
+}
+.stickers_office_summary {
+  border-bottom: 1px solid #E7EAED;
+  color: #47688D;
+  padding: 13px 10px 3px;
+}
+.stickers_office_summary .summary {
+  font-weight: bold;
+}
+#stickers_office_progress {
+  display: none;
+}
+.sticker_row {
+  margin: 0;
+  padding: 11px 12px;
+  border-bottom: 1px solid #E7EAED;
+  cursor: pointer;
+}
+.sticker_row_over {
+  background-color: #EDF1F5;
+}
+.sticker_image {
+  padding: 0;
+  vertical-align: top;
+}
+.sticker_description {
+  padding-left: 5px;
+  vertical-align: top;
+}
+.sticker_subdimage {
+  margin-right: 8px;
+  height: 75px;
+  width: 75px;
+  overflow: hidden;
+  text-align: center;
+}
+.sticker_subdimage img {
+  border-radius: 5px;
+  width: 75px;
+}
+.sticker_description {
+  padding-left: 5px;
+  vertical-align: top;
+}
+.sticker_info_rows {
+  width: 515px;
+}
+.sticker_name {
+  vertical-align: top;
+  padding: 0 0 10px;
+}
+.sticker_name a {
+  font-weight: bold;
+}
+.sticker_info,
+.sticker_info_hidden {
+  padding: 2px 0 3px;
+}
+.sticker_info_label {
+  color: #777777;
+  width: 120px;
+}
+a.sticker_action {
+  display: block;
+  padding: 6px 14px 0px;
+  font-weight: normal;
+  height: 19px;
+  text-align: left;
+}
+a.sticker_action:hover {
+  background-color: #E1E7ED;
+  text-decoration: none;
+}
+#stickers_no_results {
+  margin: 10px 0;
+  padding: 100px 0;
+  color: #777777;
+  font-size: 1.18em;
+  text-align: center;
+}
+#sticker_update_comment {
+  width: 370px;
+  height: 80px;
+}

@@ -1,0 +1,149 @@
+.dropdown-container {
+  z-index: 202;
+  background: #fff;
+  position: absolute;
+}
+.default-dropdown {
+  background: #fff;
+  z-index: 203;
+  border: 1px solid #C0CAD5;
+  border-bottom: 1px solid #45688E;
+  border-top: none;
+  padding: 0px 0px 0px 0px;
+}
+.default-text {
+  text-align: left;
+  z-index: 100;
+  background: #C0CAD5;
+  color: #777;
+  border-left: 1px solid #C0CAD5;
+  border-right: 1px solid #C0CAD5;
+  border-bottom: 1px solid #ccc;
+  padding: 3px 4px 3px;
+  height: auto;
+  overflow: auto;
+}
+.typeahead_header {
+  padding: 4px 4px 4px 4px;
+  background-color: #7888a2;
+  background-color: red;
+  color: #FFFFFF;
+  overflow: none;
+  font-size: 11px;
+  display: none;
+}
+.dropdown {
+  overflow: auto;
+  overflow-x: hidden;
+  max-height: 320px;
+  /*
+  height: 150px;
+  height: expression(this.scrollHeight > 150 ? '150px' : this.scrollHeight + "px");
+  */
+  background: #C0CAD5;
+  z-index: 204;
+  border: 1px solid #C0CAD5;
+  border-top: none;
+  border-bottom: none;
+  padding: 0px;
+}
+.dropdown .list_element_container,
+.default-dropdown .list_element_container {
+  text-align: left;
+  z-index: 20;
+  background-color: #fff;
+  color: #000000;
+  cursor: default;
+  padding: 0px;
+}
+.dropdown .list_element_container_selected,
+.default-dropdown .list_element_container_selected {
+  z-index: 20;
+  text-align: left;
+  background-color: #DAE2E8;
+  cursor: default;
+  padding: 0px;
+}
+.dropdown .list_element_name,
+.default-dropdown .list_element_name {
+  z-index: 20;
+  color: #000;
+  padding: 2px 2px 0px 4px;
+  overflow: hidden;
+}
+.dropdown .list_element_loc {
+  padding: 0px 2px 2px 8px;
+  height: 10px;
+  font-size: 9px;
+  color: #777;
+  display: none;
+  overflow: hidden;
+}
+.dropdown .list_element_loc_selected {
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 2px;
+  height: 10px;
+  font-size: 9px;
+  color: #DAE2E8;
+  display: none;
+  overflow: hidden;
+}
+.dropdown .list_element_name .suggest,
+.default-dropdown .list_element_name .suggest,
+.dropdown .list_element_loc .suggest {
+  color: #000;
+  font-weight: bold;
+  background: #DAE2E8;
+  padding: 0px;
+}
+.dropdown .list_element_name_selected,
+.default-dropdown .list_element_name_selected {
+  text-align: left;
+  color: #000;
+  padding: 2px 2px 0px 4px;
+  /*height: 14px;*/
+  overflow: hidden;
+}
+.default-dropdown .list_element_name,
+.default-dropdown .list_element_name_selected {
+  padding: 3px 2px 2px 4px;
+}
+.dropdown .list_element_name_selected .suggest,
+.default-dropdown .list_element_name_selected .suggest,
+.dropdown .list_element_loc_selected .suggest {
+  color: #000;
+  font-weight: bold;
+  background: #DAE2E8;
+}
+.dropdown .list_element_divider {
+  height: 1px;
+  overflow: hidden;
+  background-color: #C0CAD5;
+  padding: 0px;
+}
+.default-dropdown .list_element_divider {
+  height: 1px;
+  overflow: hidden;
+  background-color: #C0CAD5;
+  padding: 0px;
+}
+#goodFrame {
+  position: absolute;
+  z-index: 0;
+  border: 0px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(style=0, opacity=0);
+  padding: 0px;
+}
+.goodFrame {
+  padding: 0px;
+  position: absolute;
+  z-index: 0;
+  border: 0px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(style=0, opacity=0);
+}
+.list_element_small {
+  color: #777;
+  font-size: 9px;
+  padding-left: 5px;
+}

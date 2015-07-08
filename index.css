@@ -1,0 +1,369 @@
+#index_css {
+  display: none;
+}
+#index,
+#ij_block {
+  line-height: 160%;
+}
+#index p {
+  margin: 15px 0px;
+}
+#index .content,
+#ij_block .content {
+  padding: 5px 30px 10px;
+}
+#index .reg,
+#ij_block .reg {
+  padding: 0px 0px 20px;
+}
+#index .reg h2,
+#ij_block .reg h2 {
+  margin: 0px 30px 10px;
+}
+#index_log_after_reg {
+  position: absolute;
+  left: -50;
+  width: 20px;
+  overflow: hidden;
+}
+#index .reg_row {
+  padding-top: 6px;
+}
+#index .label {
+  width: 174px;
+  padding-top: 4px;
+  color: #666;
+  padding: 4px 16px 0;
+}
+#index .labeled input.text {
+  margin: 0px;
+  width: 192px;
+}
+#index .details {
+  color: #777;
+  font-size: 0.9em;
+  margin: 0 10px;
+  width: 190px;
+}
+#index_reg_wrap {
+  margin: 0px 196px;
+  padding: 10px;
+}
+#index_reg_wrap .progress {
+  margin: 6px 10px 0px;
+}
+#index .terms_accepted {
+  color: #777;
+  font-size: 0.9em;
+  text-align: center;
+}
+.reg_content {
+  padding: 0px 50px;
+  line-height: 150%;
+}
+.index_terms {
+  line-height: 170%;
+  padding: 10px 20px 20px;
+}
+.index_terms .wikiSubHeader {
+  border-bottom: 1px solid #DAE1E8;
+  color: #45688E;
+  font-size: 1.09em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.ij_button {
+  margin: 10px auto 10px;
+  width: 160px;
+}
+.index_fb_btn {
+  padding: 3px 0px;
+}
+.index_fb_btn:active,
+.is_2x .index_fb_btn:active {
+  padding: 4px 0px 2px 0px;
+}
+.ij_scr {
+  padding: 0px 20px 20px;
+}
+#ij_screens {
+  margin: 0px auto 25px;
+}
+.ijs_img {
+  width: 132px;
+  height: 100px;
+}
+.ij_phone {
+  text-align: center;
+}
+.ij_reg_row {
+  width: 160px;
+  margin: 0px auto;
+  position: relative;
+  padding-top: 10px;
+}
+#ijp_input,
+#ij_first_name,
+#ij_last_name,
+#ij_full_name {
+  width: 150px;
+}
+#ij_msg {
+  margin: 20px 0px 10px;
+  display: none;
+}
+#ij_sex_row {
+  display: none;
+}
+#ij_sex_row .selector_container td.selector {
+  padding-top: 3px;
+  padding-bottom: 2px;
+}
+.ij_with_arr {
+  padding-right: 25px;
+  background: url(/images/backlink.gif?4) no-repeat right -127px;
+}
+.is_rtl1 .ij_with_arr {
+  padding-right: 0px;
+  padding-left: 25px;
+  background: url(/images/backlink.gif?4) no-repeat left -97px;
+}
+#ij_submit {
+  padding-right: 2px;
+  margin: 15px 0px 8px;
+}
+.is_rtl1 #ij_submit {
+  padding-right: 14px;
+  padding-left: 2px;
+}
+.ij_form {
+  padding: 1px 0px 23px;
+}
+#ij_error {
+  margin: 5px 49px 15px;
+  display: none;
+}
+.jpv_fixed {
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  z-index: 601;
+}
+.jpv_fixed div {
+  position: absolute;
+  z-index: 630;
+}
+.jpv_fixed div div {
+  position: static;
+}
+#layer_bg.jpv_dark {
+  background: #000;
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+}
+.jpv_dark #layer {
+  padding-bottom: 1px;
+}
+@-moz-document url-prefix() {
+  #layer_bg.jpv_dark {
+    background: url(/images/layer_bg_black.png);
+    opacity: 1 !important;
+  }
+}
+.jpv_wrap {
+  overflow: auto;
+  z-index: 610;
+}
+.jpv_left,
+.jpv_close {
+  width: 17px;
+  height: 17px;
+  top: 25px;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  background: url(/images/photonav.gif?1) no-repeat;
+  z-index: 630;
+  cursor: pointer;
+}
+.jpv_left {
+  background-position: 0px 0px;
+}
+.jpv_close {
+  background-position: 0px -19px;
+}
+.jpv_cont {
+  position: relative;
+  width: 758px;
+  margin: 0px auto;
+  padding: 10px 0px 0px;
+}
+.jpv_cont table {
+  margin: 0px auto;
+}
+.jpv_cont .sidesh {
+  background: #000;
+  width: 1px;
+}
+.jpv_cont .sidesh div {
+  width: 1px;
+  overflow: hidden;
+}
+.jpv_cont .bottomsh {
+  background: #000;
+  height: 1px;
+}
+.jpv_cont .bottomsh div {
+  height: 1px;
+  overflow: hidden;
+}
+.jpv_cont .s1 {
+  opacity: 0.05;
+  filter: alpha(opacity=5);
+}
+.jpv_cont .s2 {
+  opacity: 0.15;
+  filter: alpha(opacity=15);
+}
+.jpv_cont .s3 {
+  opacity: 0.25;
+  filter: alpha(opacity=25);
+}
+#jpv_box {
+  padding: 1px 0px 25px;
+  background: #FFF;
+  position: relative;
+}
+#jpv_summary {
+  height: 13px;
+  padding: 0px 27px;
+  margin: 15px auto 0px;
+  width: 600px;
+}
+#jpv_summary .summary {
+  color: #2B587A;
+  font-weight: bold;
+}
+.jpv_data {
+  position: relative;
+}
+#jpv_comments_data {
+  margin: 25px auto 0px;
+  width: 604px;
+  display: none;
+}
+#jpv_desc {
+  text-align: center;
+  color: #45688E;
+  font-weight: bold;
+  font-size: 1.18em;
+  line-height: 120%;
+  padding-bottom: 10px;
+  margin-left: 70px;
+}
+.jpv_cont .wide_column {
+  width: 394px;
+}
+#jpv_photo {
+  display: block;
+  text-align: center;
+  padding: 15px 25px;
+  outline: none;
+}
+#jpv_photo img {
+  vertical-align: top;
+  margin: 0px auto;
+}
+#jpv_left_nav,
+#jpv_right_nav {
+  position: absolute;
+  left: 0px;
+  top: 11px;
+  z-index: 620;
+  cursor: pointer;
+}
+.jpv_close_link {
+  padding: 15px 27px 0px;
+}
+#index_fbsign,
+#index_fbsign_box {
+  display: none;
+  position: relative;
+}
+.index_or {
+  width: 204px;
+  margin-left: 185px;
+  text-align: center;
+}
+.index_or_l {
+  position: absolute;
+  border-bottom: 1px solid #DAE1E8;
+  height: 9px;
+  width: 204px;
+  z-index: -1;
+}
+.index_or_s {
+  background: #FFFFFF;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  padding: 0px 4px;
+  margin: 0px auto 0px;
+  z-index: 2;
+  color: #888888;
+}
+#index_fbsign_box {
+  padding-top: 10px;
+}
+#index_fbsign_box .index_fbb {
+  width: auto;
+}
+#index_fbsign_box .index_or {
+  margin: 0px -22px;
+}
+#index_fbsign_box .index_or_s {
+  position: relative;
+  background: #F7F7F7;
+  z-index: 1006;
+}
+#index_fbsign_box .index_or_l {
+  z-index: 1004;
+}
+.index_fbb {
+  width: 567px;
+  position: absolute;
+  height: 54px;
+  bottom: 0px;
+}
+#index_fbsign div.index_fb_btn,
+#index_fbsign_box div.index_fb_btn {
+  padding: 0px;
+  text-align: left;
+  background-image: url(/images/fb_buttonf.png);
+  border-bottom-color: #5b78a4;
+}
+#index_fbsign div.index_fb_btn:active,
+#index_fbsign_box div.index_fb_btn:active,
+#index_fbsign div.index_fb_btn.active,
+#index_fbsign_box div.index_fb_btn.active {
+  background: #5d7bac;
+}
+.index_fb_logo {
+  position: absolute;
+  background: url(/images/icons/facebook_btn_icon.png) 10px 3px no-repeat;
+  width: 26px;
+  height: 22px;
+  vertical-align: top;
+  border-right: 1px solid #5B78A4;
+}
+.index_fb_l {
+  padding: 4px 5px 5px 10px;
+  margin-left: 27px;
+  text-align: left;
+}
+.index_fb_btn:active .index_fb_l {
+  margin-left: 25px;
+  padding-left: 12px;
+}
+.index_fb_btn:active {
+  background: #5e7ca9;
+}

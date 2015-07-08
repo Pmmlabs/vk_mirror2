@@ -1,0 +1,56 @@
+#widget_recommended_css {
+  display: none;
+}
+#wrecommended_page {
+  border: 1px solid #BDC7D2;
+}
+.wrecommended_head_wrap {
+  background: #DAE2E8;
+  padding: 2px 2px;
+  border-bottom: 1px solid #CCD3DA;
+}
+.wrecommended_head {
+  padding: 2px 0 1px 5px;
+  line-height: 100%;
+  color: #45688E;
+  font-weight: bold;
+}
+.wrecommended_head_icon {
+  height: 16px;
+  width: 16px;
+  overflow: hidden;
+}
+#wrecommended_more_link {
+  padding: 10px 0px;
+  text-align: center;
+  border-top: 1px solid #DAE1E8;
+  display: block;
+  height: 13px;
+  margin: 0 5px 5px;
+}
+#wrecommended_more_link:hover {
+  text-decoration: none;
+  background: #E9EDF1;
+}
+#wrecommended_more_progress {
+  margin: 0 auto;
+}
+#wrecommended_items {
+  padding: 15px 15px 5px;
+}
+.wrecommended_item {
+  padding-bottom: 10px;
+}
+.wrecommended_title {
+  font-weight: bold;
+  line-height: 150%;
+}
+.wrecommended_stats {
+  color: #767676;
+  line-height: 150%;
+}
+.wrecommended_empty {
+  color: #777;
+  padding: 15px 15px 25px;
+  text-align: center;
+}

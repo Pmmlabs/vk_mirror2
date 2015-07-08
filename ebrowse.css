@@ -1,0 +1,132 @@
+.main {
+  width: 156px;
+  text-align: center;
+}
+.month {
+  text-align: center;
+  background-color: #36638E;
+  font: normal 11px Tahoma;
+  padding: 4px;
+  color: white;
+}
+.monthArr {
+  text-align: center;
+  padding: 2px;
+  background-color: #36638E;
+}
+a.monthArrow {
+  color: #FFF;
+  text-align: center;
+  font: bold 13px Tahoma;
+  text-decoration: none;
+}
+a.monthArrow:hover {
+  color: #DAE2E8;
+  text-align: center;
+  font: bold 13px Tahoma;
+  text-decoration: none;
+}
+.daysofweek {
+  background-color: #6B8CAB;
+  font: bold 9px Tahoma;
+  text-align: center;
+  height: 16px;
+  width: 50px;
+  color: white;
+  border-bottom: 1px solid #36638E;
+}
+.day {
+  height: 20px;
+  width: 10px;
+  font-size: 11px;
+  font-family: Tahoma;
+  color: #333;
+  background-color: #FFF;
+  text-decoration: none;
+  cursor: pointer;
+  cursor: hand;
+  text-align: center;
+  border-right: 1px solid #DAE2E8;
+  border-bottom: 1px solid #DAE2E8;
+}
+.dayLeft {
+  border-left: 1px solid #DAE2E8;
+  height: 20px;
+  width: 10px;
+  font-size: 11px;
+  font-family: Tahoma;
+  color: #333;
+  background-color: #FFF;
+  text-decoration: none;
+  cursor: pointer;
+  cursor: hand;
+  text-align: center;
+  border-right: 1px solid #DAE2E8;
+  border-bottom: 1px solid #DAE2E8;
+}
+.dayOn {
+  height: 20px;
+  width: 10px;
+  font-size: 11px;
+  font-family: Tahoma;
+  color: #36638E;
+  background-color: #EDF0F3;
+  text-decoration: none;
+  cursor: pointer;
+  cursor: hand;
+  text-align: center;
+  border-right: 1px solid #DAE2E8;
+  border-bottom: 1px solid #DAE2E8;
+}
+.today {
+  height: 20px;
+  width: 10px;
+  font-size: 11px;
+  font-family: Tahoma;
+  color: #36638E;
+  background-color: #DAE2E8;
+  text-decoration: none;
+  cursor: pointer;
+  cursor: hand;
+  text-align: center;
+}
+.pastDay {
+  color: #666;
+}
+.noMonthDay {
+  color: #CCC;
+  background-color: #F5F8FA;
+}
+.todayOn {
+  height: 20px;
+  width: 10px;
+  font-size: 11px;
+  font-family: Tahoma;
+  color: #36638E;
+  background-color: #DAE2E8;
+  text-decoration: none;
+  cursor: pointer;
+  cursor: hand;
+  text-align: center;
+}
+.btn {
+  cursor: pointer;
+  margin: 0px 7px 3px 0px;
+  padding: 4px 10px 5px;
+}
+.btnTrigger {
+  background-color: #FFF;
+  border: 1px solid #DAE2E8;
+  color: #36638E;
+}
+.btnTriggerOn {
+  background-color: #DAE2E8;
+  border: 1px solid #C0CAD5;
+  color: #36638E;
+}
+.btnTrigger:hover {
+  background-color: #EDF0F3;
+  border: 1px solid #C0CAD5;
+  color: #36638E;
+  text-decoration: none;
+}

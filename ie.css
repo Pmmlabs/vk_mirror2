@@ -1,0 +1,165 @@
+#nav li#myprofile {
+  border-bottom: 1px solid #FFF;
+}
+#pageHeader {
+  margin-left: 3px;
+}
+#nav li a {
+  width: 100%;
+  height: 100%;
+}
+.headNav #qsearch_link {
+  margin-left: 80px;
+}
+#quick_search {
+  margin-top: 10px;
+}
+/* #search_cont { margin-top: 1px; } */
+ul.topNav a {
+  display: block;
+  margin: auto 0px;
+  padding: 0px 4px;
+  padding-bottom: 2px;
+  color: #DAE1E8;
+  margin-top: 2px;
+}
+ul.buttonRow a {
+  padding-top: 0px;
+}
+.dropdown-container {
+  margin-left: 2px;
+}
+.forgotPass {
+  padding-top: 0px;
+}
+.postOptions {
+  width: 99px;
+}
+.vRow p {
+  padding-top: 3px;
+}
+#historyContents {
+  margin-top: -12px;
+}
+#tagging_instructions,
+.youBeenTagged {
+  margin: 2px 2px 12px 1px;
+}
+.playline {
+  margin-bottom: -5px;
+  position: static;
+}
+.upArrow a,
+.dArrow a {
+  padding: 2px 6px 0px 6px;
+}
+.rateTabs {
+  padding-left: 10px;
+}
+.rateTabOn,
+.rateTabOff {
+  position: relative;
+  top: 1px;
+}
+#ratePagesTopDiv {
+  padding-right: 18px;
+}
+#ratePagesBottomDiv {
+  padding-right: 8px;
+}
+.editor td.servDesc,
+.editor td.servLabel {
+  padding-top: 6px;
+}
+.radiobtn_container table td.radiobtn {
+  padding-top: 2px;
+}
+.qdiv_over,
+.qdiv_over_top,
+.qdiv_off,
+.qdiv_on {
+  width: 127px;
+}
+.comment .body .justComment {
+  width: 340px;
+}
+.comment .appbody .justComment {
+  width: 440px;
+}
+.comment .notebody .justComment {
+  width: 350px;
+}
+.comment .bigbody .justComment {
+  width: 420px;
+}
+.tl1,
+.tl2 {
+  display: none;
+}
+ul.t0 a {
+  padding-top: 5px;
+}
+div.postOptions {
+  width: 95px;
+}
+#status_help_wrap {
+  height: 125px;
+}
+#status_help {
+  height: 103px;
+}
+#status_help_content {
+  height: 83px;
+}
+#sms_box input#phone {
+  position: relative;
+  top: -1px;
+  height: 13px;
+}
+form#upload_new_form {
+  padding-top: 2px;
+}
+* html {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+body {
+  margin: 0;
+  border: 0;
+  width: 100%;
+  overflow-x: auto;
+}
+body div#pageContainer {
+  position: relative;
+  height: expression(document.documentElement.clientHeight + 'px');;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+div.floating_tooltip {
+  position: absolute;
+  right: 16px;
+  bottom: -1px;
+}
+.tooltip_bottom {
+  display: none;
+}
+.tooltip_line1 {
+  display: none;
+}
+.tooltip_line2 {
+  display: none;
+}
+.commentBody textarea {
+  float: none;
+}
+.commentBody .mention_rich_ta {
+  margin: 1px 0;
+}
+.pv_dark,
+.pv_light,
+.pv_fixed {
+  position: absolute ! important;
+  left: 0px;
+  top: 0px;
+}

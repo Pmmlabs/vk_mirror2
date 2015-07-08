@@ -1,0 +1,192 @@
+#writebox_css {
+  display: none;
+}
+.mail_box_warning {
+  line-height: 160%;
+  margin-bottom: 26px;
+}
+#mail_box_topic_wrap {
+  background: #597BA5;
+  padding: 10px 10px 11px;
+  position: relative;
+  overflow: hidden;
+}
+.mail_box_close {
+  padding: 17px 26px 18px;
+  margin: -10px -10px -11px;
+  color: #C7D7E9;
+  -webkit-transition: color 100ms linear;
+  -moz-transition: color 100ms linear;
+  -o-transition: color 100ms linear;
+  transition: color 100ms linear;
+}
+.mail_box_close:hover {
+  color: #FFF;
+  text-decoration: none;
+}
+#mail_box_topic {
+  color: #FFF;
+  padding: 7px 16px;
+  margin-left: 26px;
+  font-weight: bold;
+  font-size: 1.09em;
+}
+.mail_box_label {
+  color: #45688E;
+  line-height: 1.27em;
+  margin: 0px;
+  padding: 26px 0px 9px;
+  font-size: 1.09em;
+  font-weight: bold;
+}
+#mail_box_title_wrap {
+  display: none;
+}
+#mail_box_title {
+  width: 438px;
+  outline: 0;
+  padding: 6px 5px 8px;
+}
+#mail_box_ava {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  margin-top: -1px;
+}
+#mail_box_ava .wdd_img_layer {
+  background: #597BA5;
+}
+.mail_box_cont .wdd_text {
+  width: 405px;
+}
+#mail_box_ava .wdd_img {
+  width: 32px;
+}
+#mail_box_ava .wdd_img_full,
+#mail_box_ava .wdd_img_half,
+#mail_box_ava .wdd_img_tiny {
+  width: 32px;
+  height: 32px;
+}
+#mail_box_ava .wdd_img_half {
+  width: 15px;
+}
+#mail_box_ava .wdd_img_half .wdd_img {
+  margin-left: -8px;
+}
+#mail_box_ava .wdd_img_tiny {
+  width: 15px;
+  height: 15px;
+  margin-bottom: 2px;
+}
+#mail_box_ava .wdd_img_tiny .wdd_img {
+  width: 15px;
+}
+#mail_box_ava .wdd_mark {
+  margin: 0px 26px;
+}
+#mail_box_ava .wdd_img_tiny .wdd_mark,
+#mail_box_ava .wdd_img_half .wdd_mark {
+  margin: 0px 9px;
+}
+#mail_box_text {
+  width: 418px;
+  height: 120px;
+  padding: 5px 25px 5px 5px;
+  vertical-align: top;
+  outline: 0;
+  margin: 0px;
+}
+#mail_box_controls {
+  padding-top: 16px;
+}
+#mail_box_add_row {
+  position: relative;
+  padding: 5px 1px;
+}
+#mail_box_added_row .editable_thumbs_wrap {
+  width: 350px;
+}
+.mail_box_cont {
+  padding: 26px;
+  background: #F7F7F7;
+}
+#mail_box_to_header {
+  padding-top: 0px;
+}
+.mail_box_text_wrap {
+  margin-bottom: 10px;
+  position: relative;
+}
+#mail_box_to_full {
+  margin: 0px;
+}
+#mail_box_editable {
+  background: #FFFFFF;
+  color: black;
+  border: 1px solid #C0CAD5;
+  width: 418px;
+  min-height: 120px;
+  padding: 5px 25px 5px 5px;
+  vertical-align: top;
+  margin: 0;
+  overflow: auto;
+  outline: 0;
+  line-height: 150%;
+  word-wrap: break-word;
+  cursor: text;
+}
+#mail_box_editable p {
+  margin: 0px;
+  padding: 0px;
+}
+.is_rtl1 #mail_box_text,
+.is_rtl1 #mail_box_editable {
+  padding: 5px 5px 5px 25px;
+}
+#mbe_smile {
+  position: absolute;
+  z-index: 100;
+  padding: 0px;
+  cursor: pointer;
+}
+.is_rtl1 #mbe_smile {
+  margin-left: 0px;
+  margin-right: 425px;
+}
+.mbe_emoji_done {
+  font-size: 1em;
+  font-weight: bold;
+}
+.mbe_emoji_intro {
+  font-weight: bold;
+  line-height: 160%;
+}
+#mbe_rcemoji {
+  width: 400px;
+}
+.mbe_rc_emojibtn {
+  display: inline-block;
+  *display: block;
+  zoom: 1;
+  padding: 3px 3px;
+}
+.mbe_rc_emojibtn:hover {
+  background: #D5DDE5;
+  text-decoration: none;
+  -webkit-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+.mbe_rc_emojibtn:active {
+  background: #C9D2DB;
+}
+.mbe_rcem_cont {
+  width: 168px;
+  overflow: hidden;
+  padding: 1px 6px 0px;
+}
+#mbe_emoji_progress {
+  padding-top: 2px;
+}

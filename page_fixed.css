@@ -1,0 +1,250 @@
+#page_fixed_css {
+  display: none;
+}
+/* Wall Fixed */
+.wall_fixed .wall_module div.post_image {
+  display: none;
+}
+.wall_fixed .wall_module .post {
+  border: none;
+  padding: 5px 1px 0px;
+}
+.wall_fixed .wall_module .post_media {
+  width: 386px;
+}
+.wall_fixed .wide_wall_module .post_media {
+  width: 580px;
+}
+.wall_fixed .wide_wall_module .post {
+  border: none;
+}
+.wall_fixed .wall_module .post_info {
+  margin-left: 6px;
+  width: 390px;
+}
+.is_rtl1 .wall_fixed .wall_module .post_info {
+  margin-right: 6px;
+  width: 390px;
+}
+.wall_fixed .wide_wall_module .post_info {
+  width: 580px;
+}
+.wall_fixed .wall_module .wall_text {
+  width: 390px;
+  padding: 0px;
+}
+.wall_fixed .wall_module .wall_text_name {
+  width: 390px;
+}
+.wall_fixed .wide_wall_module .wall_text {
+  width: 580px;
+}
+.wall_fixed .wall_post_text {
+  width: 390px;
+  line-height: 160%;
+}
+.wall_fixed .wide_wall_module .wall_post_text {
+  width: 580px;
+}
+.wall_fixed .wall_module .post_thumbs_num1 .page_media_video .video img {
+  max-width: 386px;
+  max-height: 290px;
+  width: 386px;
+  height: 290px;
+}
+.wall_fixed .wide_wall_module .post_thumbs_num1 .page_media_video .video img {
+  max-width: 580px;
+  max-height: 435px;
+  width: 580px;
+  height: 435px;
+}
+.wall_fixed .wall_module .post_thumbs_num1 .page_media_video,
+.wall_fixed .wall_module .page_media_full_video {
+  max-width: 386px;
+  max-height: 290px;
+}
+.wall_fixed .wide_wall_module .post_thumbs_num1 .page_media_video,
+.wall_fixed .wide_wall_module .page_media_full_video {
+  max-width: 580px;
+  max-height: 435px;
+}
+.wall_fixed .wall_module .page_media_video .video div.video_play_inline {
+  left: 170px;
+  top: 122px;
+}
+.wall_fixed .wide_wall_module .page_media_video .video div.video_play_inline {
+  left: 267px;
+  top: 194px;
+}
+.wall_fixed .wall_module .video div.page_video_play_live {
+  left: 113px;
+  top: 122px;
+  font-size: 13px;
+}
+.wall_fixed .wide_wall_module .video div.page_video_play_live {
+  left: 210px;
+  top: 194px;
+  font-size: 13px;
+}
+.wall_fixed .wall_fixed_more {
+  background: #EFF1F3;
+  display: block;
+  text-align: center;
+  color: #738392;
+  padding: 8px;
+}
+.wall_fixed .wall_fixed_more:hover {
+  text-decoration: none;
+  background: #E9EDF1;
+}
+#group .wall_fixed_more {
+  margin-bottom: 10px;
+}
+.wall_fixed .wall_module .post_thumbs_num1 .page_media_thumb1,
+.wall_fixed .wall_module .post_thumbs_num3 .page_media_thumb1,
+.wall_fixed .wall_module .post_thumbs_num4 .page_media_thumb1,
+.wall_fixed .wall_module .post_thumbs_num2 .page_media_thumb1,
+.wall_fixed .wall_module .post_thumbs_num2 .page_media_thumb2 {
+  max-width: 386px;
+  max-height: 290px;
+  height: auto;
+  float: left;
+  *width: auto;
+}
+.wall_fixed .wide_wall_module .post_thumbs_num1 .page_media_video {
+  width: 580px;
+  height: 435px;
+}
+.wall_fixed .wide_wall_module .post_thumbs_num1 .page_media_thumb1,
+.wall_fixed .wide_wall_module .post_thumbs_num3 .page_media_thumb1,
+.wall_fixed .wide_wall_module .post_thumbs_num4 .page_media_thumb1,
+.wall_fixed .wide_wall_module .post_thumbs_num2 .page_media_thumb1,
+.wall_fixed .wide_wall_module .post_thumbs_num2 .page_media_thumb2 {
+  max-width: 580px;
+  max-height: 435px;
+}
+.wall_fixed .wall_module .post_thumbs_num1 .page_media_thumb1 img,
+.wall_fixed .wall_module .post_thumbs_num3 .page_media_thumb1 img,
+.wall_fixed .wall_module .post_thumbs_num4 .page_media_thumb1 img,
+.wall_fixed .wall_module .post_thumbs_num2 .page_media_thumb1 img,
+.wall_fixed .wall_module .post_thumbs_num2 .page_media_thumb2 img {
+  max-width: 386px;
+  max-height: 290px;
+  width: auto;
+  height: auto;
+  *height: 290px;
+}
+.wall_fixed .wide_wall_module .post_thumbs_num1 .page_media_thumb1 img,
+.wall_fixed .wide_wall_module .post_thumbs_num3 .page_media_thumb1 img,
+.wall_fixed .wide_wall_module .post_thumbs_num4 .page_media_thumb1 img,
+.wall_fixed .wide_wall_module .post_thumbs_num2 .page_media_thumb1 img,
+.wall_fixed .wide_wall_module .post_thumbs_num2 .page_media_thumb2 img {
+  max-width: 386px;
+  max-height: 290px;
+  width: auto;
+  height: auto;
+  *height: 290px;
+}
+.wall_fixed .wall_module .post_empty_text {
+  padding-top: 5px;
+}
+.wall_fixed .wall_module .page_post_sized_thumbs {
+  margin-top: 6px;
+}
+.wall_fixed .wall_module .wall_album_photos .page_post_sized_thumbs {
+  margin: 0;
+  padding: 0;
+}
+.wall_fixed .wall_fixed_more_arrow {
+  display: inline-block;
+  *display: block;
+  *zoom: 1;
+  width: 10px;
+  height: 10px;
+  padding: 2px 0px 0px 4px;
+  background: url('/images/icons/wall_fixed_more_arrows.gif') 1px 2px no-repeat;
+}
+.wall_fixed .wall_fixed_more_arrow_back {
+  background: url('/images/icons/wall_fixed_more_arrows.gif') 1px -10px no-repeat;
+}
+.page_fixed_wide #page_wall_posts.all .own {
+  display: none;
+}
+.wall_fixed .more_link {
+  margin: 0px 7px;
+}
+.fixed_module_cont #info_module_wrap {
+  margin-bottom: 0px;
+}
+#content .wall_fixed_info {
+  padding-bottom: 2px;
+}
+.page_fixed_wide .module {
+  display: none;
+}
+/* Comment form */
+.wall_fixed .wall_module .reply_box {
+  background: #F1F1F1;
+  padding: 7px;
+  margin-top: 13px;
+  padding-bottom: 27px;
+}
+.wall_fixed .wall_module a.reply_form_image {
+  display: block;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+}
+.wall_fixed .wall_module .reply_form_img {
+  width: 50px;
+  height: 50px;
+}
+.wall_fixed .reply_form {
+  margin: 0px 0px 0px 57px;
+}
+.wall_fixed .reply_field_wrap {
+  position: relative;
+  padding: 6px 5px 3px 5px;
+}
+.wall_fixed .reply_field {
+  height: 19px;
+}
+.wall_fixed_replies {
+  padding: 0px 7px;
+}
+.wall_fixed .wide_wall_module .reply_media_lnk {
+  display: none;
+}
+.wall_fixed .wall_module .reply {
+  border-bottom: 1px solid #E9EDF1;
+  border-top: none;
+}
+.wall_fixed .wall_module .reply:last-child {
+  border-bottom: none;
+}
+.wall_fixed_preload {
+  text-align: center;
+  padding: 10px;
+}
+.wall_fixed .wide_wall_module .reply_info {
+  width: 512px;
+}
+#wall_fixed_input_hint {
+  position: absolute;
+  margin-top: -22px;
+  margin-left: 65px;
+  color: #777777;
+}
+.wall_fixed_reply_to #wall_fixed_input_hint {
+  display: none;
+}
+.wall_fixed .wall_fixed_reply_to .reply_box {
+  padding-bottom: 7px;
+}
+.wall_fixed .reply_composer_dd .wdd_lwrap {
+  left: -6px;
+  top: 4px;
+}
+.wall_fixed .reply_hint_text {
+  display: none;
+}

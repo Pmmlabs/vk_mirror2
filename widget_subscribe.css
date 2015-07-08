@@ -1,0 +1,104 @@
+#al_subscribe_css {
+  display: none;
+}
+.w_subscr_img {
+  width: 22px;
+  height: 22px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+}
+.w_subscr_pic {
+  height: 22px;
+}
+.w_subscr_name {
+  display: block;
+  font-size: 11px;
+  font-weight: bold;
+  height: 12px;
+  padding: 5px 10px 5px 10px;
+}
+.w_subscr_btn {
+  display: block;
+  border: 1px solid #ADBCCB;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+}
+.w_subscr_btn:hover {
+  text-decoration: none;
+  border: 1px solid #8798aa;
+}
+.w_subscr_btn_c {
+  display: block;
+  background: #EDF2F6;
+  border: 1px solid #EDF2F6;
+  border-top: 1px solid #FFFFFF;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  height: 12px;
+  font-size: 11px;
+  padding: 3px 7px;
+  color: #2F5879;
+  text-shadow: 0px 1px 0px white;
+}
+.w_subscr_btn:hover .w_subscr_btn_c {
+  background: #E3EAF1;
+  color: #426389;
+  border: 1px solid #E3EAF1;
+  border-top: 1px solid #FFFFFF;
+}
+.w_subscr_btn:active .w_subscr_btn_c {
+  background: #D4E2EA;
+  border: 1px solid #E3EAF1;
+  border-bottom: 1px solid #DAE4F0;
+  border-top: 1px solid #DAE4F0;
+  text-shadow: 0px 1px 0px #white;
+  /*padding-top: 4px;
+  padding-bottom: 2px;*/
+}
+#w_subscr_done {
+  padding: 5px;
+  height: 12px;
+  color: #777777;
+}
+.subscr_light .w_subscr_btn {
+  border: none;
+}
+.subscr_light .w_subscr_btn_c {
+  padding: 5px 8px;
+  text-shadow: none;
+  border: none;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+.subscr_light .w_subscr_btn_c:hover {
+  border: none;
+}
+.subscr_light .w_subscr_btn_c:active {
+  border: none;
+  background: #D4E2EA;
+}
+.subscr_link .w_subscr_btn {
+  border: none;
+  background: none;
+  margin-left: 5px;
+}
+.subscr_link .w_subscr_btn_c {
+  padding: 5px 8px;
+  text-shadow: none;
+  border: none;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background: none;
+}
+.subscr_link .w_subscr_btn_c:hover {
+  border: none;
+  text-decoration: underline;
+  background: none;
+}
+.subscr_link .w_subscr_btn_c:active {
+  border: none;
+}

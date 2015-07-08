@@ -1,0 +1,86 @@
+#recover_css {
+  display: none;
+}
+#recover_wrap {
+  padding: 25px 30px;
+}
+#recover_header {
+  font-weight: bold;
+  font-size: 1.09em;
+  color: #45688E;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #DAE1E8;
+  margin-bottom: 10px;
+}
+#recover_skip {
+  font-size: 1em;
+  font-weight: normal;
+  margin-top: 1px;
+}
+#recover_text {
+  font-size: 1.09em;
+  line-height: 160%;
+  text-align: center;
+  padding: 24px 0px 18px;
+}
+#recover_msg {
+  display: none;
+}
+.recover_submit {
+  margin: 10px 0px;
+}
+.recover_wide_row,
+.recover_row,
+.recover_small_row {
+  margin: 0px auto;
+}
+.recover_wide_row {
+  width: 172px;
+}
+#recover_login {
+  width: 162px;
+}
+.recover_row {
+  width: 154px;
+}
+.recover_small_row {
+  width: 134px;
+}
+.recover_row_header {
+  font-weight: bold;
+  font-size: 1.09em;
+  color: #45688E;
+  padding: 12px 0px 10px;
+}
+.recover_submit {
+  margin: ;
+}
+#recover_img {
+  width: 225px;
+  height: 160px;
+  margin: 17px auto 14px;
+}
+.recover_img_by_login {
+  background-image: url(/images/join/school_f.gif);
+}
+#recover_skip_wrap {
+  padding: 20px;
+  text-align: center;
+}
+button.recover_skip_button {
+  padding-left: 17px;
+  padding-right: 4px;
+}
+.is_rtl1 button.recover_skip_button {
+  padding-left: 4px;
+  padding-right: 17px;
+}
+.recover_arr_button {
+  padding-right: 25px;
+  background: url(/images/backlink.gif?4) no-repeat right -127px;
+}
+.is_rtl1 .recover_arr_button {
+  padding-right: 0px;
+  padding-left: 25px;
+  background: url(/images/backlink.gif?4) no-repeat left -97px;
+}

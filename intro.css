@@ -1,0 +1,202 @@
+#intro_css {
+  display: none;
+}
+#intr_tt_pointer {
+  background: url(/images/ddtooltip.png) -8px 0 no-repeat;
+  width: 8px;
+  height: 11px;
+  position: absolute;
+  left: 221px;
+  top: 40px;
+  overflow: hidden;
+  z-index: 10;
+}
+#intr_tt_pointer_head {
+  background: url(/images/ddtooltip.png) -8px 0 no-repeat;
+  width: 7px;
+  height: 11px;
+  position: absolute;
+  left: 211px;
+  top: 7px;
+  overflow: hidden;
+  z-index: 10;
+}
+.is_rtl1 #intr_tt_pointer_head {
+  background: url(/images/ddtooltip.png) 0px 0 no-repeat;
+  left: -6px;
+}
+#intr_tt_pointer_top {
+  background: url(/images/ddtooltip.png) 0px 0px no-repeat;
+  width: 16px;
+  height: 6px;
+  position: absolute;
+  left: 30px;
+  top: -5px;
+  overflow: hidden;
+  z-index: 10;
+}
+#intr_tt_pointer_left {
+  background: url(/images/ddtooltip.png) 0px 0 no-repeat;
+  width: 8px;
+  height: 11px;
+  position: absolute;
+  left: -7px;
+  top: 40px;
+  overflow: hidden;
+  z-index: 10;
+}
+#intr_tt_pointer_lb {
+  background: url(/images/ddtooltip.png) 0px 0 no-repeat;
+  width: 8px;
+  height: 11px;
+  position: absolute;
+  left: -7px;
+  bottom: 16px;
+  overflow: hidden;
+  z-index: 10;
+}
+#intr_tt {
+  width: 192px;
+  padding: 13px 14px;
+  border: 1px solid #96AABE;
+  background: #FFF;
+}
+#intr_header {
+  font-weight: bold;
+  color: #45688E;
+  padding-bottom: 14px;
+}
+#intr_text {
+  line-height: 160%;
+  padding-bottom: 10px;
+}
+.intr_img_m,
+.intr_img_f {
+  width: 160px;
+  height: 160px;
+  margin: 0px auto;
+}
+.intr_img_m {
+  background-image: url(/images/join/photo_f.gif?2);
+}
+.intr_img_f {
+  background-image: url(/images/join/photo_f.gif?2);
+}
+#intr_tt_error {
+  margin: 12px 9px;
+  display: none;
+}
+#intr_input_wrap {
+  margin: 5px 9px 2px;
+}
+#intr_input_wrap .file_button {
+  padding: 0px;
+}
+#intr_input_wrap .file_button_text {
+  padding: 5px 14px;
+}
+.intr_progress_wrap {
+  position: absolute;
+  margin: -21px 9px 0px;
+  width: 172px;
+  height: 10px;
+  background: #FFF;
+  border: 1px solid #CCC;
+}
+.intr_progress {
+  height: 10px;
+  background: #597da3 url(/images/progress_grad.gif) repeat;
+  border: 1px solid #45688E;
+  margin: -1px;
+}
+.intr_check_upload {
+  position: absolute;
+  visibility: hidden;
+}
+#intr_hide {
+  background: url(/images/pics/statusx_op.gif) no-repeat;
+  cursor: pointer;
+  height: 12px;
+  width: 12px;
+  opacity: 0.3;
+  margin-top: 2px;
+  filter: alpha(opacity=30);
+  -webkit-transition: opacity 200ms linear;
+  -moz-transition: opacity 200ms linear;
+  -o-transition: opacity 200ms linear;
+  transition: opacity 200ms linear;
+}
+#intr_hide:hover {
+  opacity: 1;
+  filter: none;
+}
+#intr_dropbox {
+  position: absolute;
+  top: auto;
+  left: auto;
+  width: 200px;
+  height: 200px;
+  margin: -210px 10px 0px;
+  background-image: none;
+}
+#intr_dropbox .dropbox_wrap {
+  padding: 9px;
+  width: 182px;
+}
+#intr_dropbox .dropbox_area {
+  font-size: 1em;
+}
+.intr_square {
+  width: 160px;
+  height: 160px;
+  margin: 0px auto;
+}
+.intr_friends_m {
+  background: url(/images/join/search_f.gif) 0px 0px no-repeat;
+}
+.intr_places_m {
+  background: url(/images/join/places_f.gif) 0px 0px no-repeat;
+}
+.intr_age_m {
+  background: url(/images/join/weigth_f.gif) 0px 0px no-repeat;
+}
+.intr_edit_m {
+  background: url(/images/join/edit_f.gif) 0px 0px no-repeat;
+}
+.intr_back_m {
+  background: url(/images/join/back_f.gif?2) 0px 0px no-repeat;
+}
+.intr_add_friend_m {
+  background: url(/images/join/friend_f.gif?2) 0px 0px no-repeat;
+}
+.intr_message_friend_m {
+  background: url(/images/join/message_f.gif?2) 0px 0px no-repeat;
+}
+.intr_photos_m {
+  background: url(/images/join/photo_album_f.gif) 0px 0px no-repeat;
+}
+.intr_photo_upload_m {
+  background: url(/images/join/photo_upload_f.gif) 0px 0px no-repeat;
+}
+.intr_photo_uploaded_m {
+  background: url(/images/join/photo_uploaded_f.gif) 0px 0px no-repeat;
+}
+.intr_wall_m {
+  background: url(/images/join/wall_f.gif) 0px 0px no-repeat;
+}
+.intr_wall_en {
+  background: url(/images/join/wall_en.gif) 0px 0px no-repeat;
+}
+.intr_like_m {
+  background: url(/images/join/like_f.gif) 0px 0px no-repeat;
+}
+.intr_profile_m {
+  background: url(/images/join/profile_f.gif) 0px 0px no-repeat;
+}
+.intr_news_m {
+  background: url(/images/join/news_f.gif) 0px 0px no-repeat;
+}
+.tt.profile_intro_side_tt,
+.profile_intro_side_tt {
+  z-index: 10;
+}

@@ -1,0 +1,79 @@
+#btagger_css {
+  display: none;
+}
+.btagger_border {
+  border-style: solid;
+  border-color: #000000;
+  position: absolute;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.btagger_corners {
+  position: absolute;
+}
+.btagger_pin {
+  width: 10px;
+  height: 10px;
+  background: #FFFFFF;
+  background-color: rgba(220, 220, 220, 0.5);
+  position: absolute;
+  cursor: pointer;
+}
+.btagger_active .btagger_pin {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.btagger_tl {
+  top: -5px;
+  left: -5px;
+  cursor: nw-resize;
+}
+.btagger_tm {
+  top: -5px;
+  left: 50%;
+  margin-left: -5px;
+  cursor: n-resize;
+}
+.btagger_bm {
+  bottom: -5px;
+  left: 50%;
+  margin-left: -5px;
+  cursor: s-resize;
+}
+.btagger_ml {
+  top: 50%;
+  left: -5px;
+  margin-top: -5px;
+  cursor: w-resize;
+}
+.btagger_mr {
+  top: 50%;
+  right: -5px;
+  margin-top: -5px;
+  cursor: e-resize;
+}
+.btagger_tr {
+  top: -5px;
+  right: -5px;
+  cursor: ne-resize;
+}
+.btagger_bl {
+  bottom: -5px;
+  left: -5px;
+  cursor: sw-resize;
+}
+.btagger_br {
+  bottom: -5px;
+  right: -5px;
+  cursor: se-resize;
+}
+.btagger_bg {
+  z-index: 2000;
+  left: 0px;
+  top: 0px;
+  background-color: #FFF;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+.btagger_corners {
+  cursor: move;
+}

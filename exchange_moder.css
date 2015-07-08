@@ -1,0 +1,263 @@
+#exchange_moder_css {
+  display: none;
+}
+.exchange_moder_tabs {
+  padding-top: 0;
+}
+.exchange_moder_tabs ul.t0 {
+  width: auto;
+}
+#ads_page.exchange_moder_page {
+  padding: 0;
+}
+#exchange_moder_premoderation_wrap {
+  padding: 15px 10px;
+  background-color: #F7F7F7;
+}
+.exchange_moder_summary {
+  margin-bottom: 15px;
+  padding: 8px 10px;
+  border: 1px solid #D3DBE1;
+  background-color: #FFF;
+  line-height: 160%;
+}
+#exchange_moder_requests_button_wrap {
+  padding: 20px 0;
+  text-align: center;
+}
+#exchange_moder_premoderation_empty {
+  margin: 100px 0;
+  text-align: center;
+  font-size: 1.18em;
+}
+.exchange_moder_request {
+  margin-bottom: 15px;
+  padding: 8px 11px;
+  border: 1px solid #D3DBE1;
+  background-color: #FFF;
+}
+.exchange_moder_request_info_wrap {
+  padding: 10px;
+  background-color: #F7F7F7;
+  border: 1px solid #D3DBE1;
+}
+.exchange_moder_request_info {
+  width: 442px;
+}
+.exchange_moder_request_info_row {
+  padding-bottom: 7px;
+}
+.exchange_moder_request_info_row .label {
+  width: 100px;
+  color: #000;
+}
+.exchange_moder_request_info_row .value {
+  margin-left: 100px;
+}
+.exchange_moder_request_info_box .label {
+  color: #707070;
+}
+.exchange_moder_request_preview_wrap {
+  padding-top: 10px;
+}
+.exchange_moder_preview_cur {
+  position: relative;
+}
+.exchange_moder_preview_last {
+  margin-right: 10px;
+  position: relative;
+}
+.exchange_moder_preview_single .exchange_moder_preview_last {
+  display: none;
+}
+.exchange_moder_preview_single .exchange_moder_preview_cur {
+  margin-left: 230px;
+  float: none;
+}
+.exchange_preview {
+  width: 448px;
+}
+.exchange_post_msg {
+  background-color: #edf1f5;
+  padding: 6px 10px 10px;
+}
+.exchange_preview_short .exchange_post_msg {
+  max-height: 150px;
+  overflow: hidden;
+}
+.exchange_post_msg .wall_post_text,
+.exchange_post_msg .wpe_buttons {
+  width: 428px;
+}
+.exchange_post_msg #wpe_text {
+  width: 430px;
+}
+.exchange_post_msg #wpe_cont {
+  margin-top: 4px;
+}
+.exchange_post_msg .fw_post_author,
+.exchange_post_msg .wpe_info {
+  display: none;
+}
+.exchange_post_msg_more {
+  margin-top: -3px;
+  overflow: hidden;
+  display: none;
+}
+.exchange_preview_short .exchange_post_msg_more {
+  display: block;
+}
+.exchange_post_msg_more a {
+  display: block;
+  text-align: center;
+  color: #45688E;
+  padding: 10px 0px 12px;
+  background: #E7ECF1;
+}
+.exchange_post_msg_more a:hover {
+  text-decoration: none;
+  background: #E0E6EC;
+}
+.exchange_post_msg_more .more_sh {
+  background: #C1C7CA;
+  height: 3px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1550;
+  opacity: 0.55;
+  filter: alpha(opacity=55);
+}
+.exchange_moder_marker_wrap {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  z-index: 10;
+}
+.exchange_moder_marker {
+  float: left;
+  width: 5px;
+  height: 5px;
+  margin-right: 2px;
+  border-radius: 1px;
+}
+.exchange_moder_preview_cur:hover .exchange_moder_marker,
+.exchange_moder_preview_last:hover .exchange_moder_marker {
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+}
+.exchange_moder_marker_approved {
+  background-color: #0000dd;
+}
+.exchange_moder_marker_disapproved {
+  background-color: #aa0000;
+}
+.exchange_moder_info_marker {
+  position: absolute;
+  z-index: 20;
+  top: 2px;
+  right: 2px;
+  background-color: #D5DDE5;
+  border-radius: 3px;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 1px;
+  opacity: 0.5;
+  display: none;
+}
+.exchange_moder_preview_last:hover .exchange_moder_info_marker {
+  display: block;
+  text-decoration: none;
+}
+.exchange_moder_preview_last .exchange_moder_info_marker:hover {
+  font-size: 11px;
+  opacity: 1;
+}
+.exchange_moder_request_controls {
+  padding-left: 230px;
+  width: 448px;
+}
+.exchange_moder_request_offer_link {
+  padding-top: 8px;
+}
+.exchange_moder_request_comment {
+  margin-top: 8px;
+  width: 426px;
+  height: 40px;
+  overflow: hidden;
+  resize: none;
+}
+.exchange_moder_request_buttons {
+  padding-top: 10px;
+}
+.exchange_moder_request_buttons .button_blue {
+  margin-right: 10px;
+}
+.exchange_moder_request_reasons_wrap {
+  padding: 7px 0 0 20px;
+}
+.exchange_moder_request_result {
+  margin: 10px 0;
+}
+.exchange_moder_request_result span {
+  color: #808080;
+}
+.exchange_moder_request_result_success {
+  color: #37702a;
+}
+.exchange_moder_request_result_error {
+  color: #aa3333;
+}
+.exchange_moder_refund_row .label {
+  padding-top: 6px;
+}
+.exchange_moder_refund_comment textarea {
+  width: 294px;
+  height: 60px;
+  resize: vertical;
+}
+.exchange_moder_refund_amount input {
+  text-align: right;
+}
+#exchange_moder_check_money_union_id {
+  width: 200px;
+}
+.exchange_post_info_row.exchange_moder_refund_row .value,
+.exchange_post_info_row.exchange_moder_refund_comment .value {
+  max-width: none;
+}
+.exchange_post_info_row.exchange_moder_refund_amount .value {
+  max-width: 200px;
+}
+.exchange_moder_club_wrap {
+  position: relative;
+}
+#exchange_moder_club_search_progress {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+#ads_premoderation_stat .ads_unions_list th.column_moder *,
+#ads_premoderation_stat .ads_unions_list td.column_moder,
+#ads_premoderation_stat .ads_unions_list th.column_period *,
+#ads_premoderation_stat .ads_unions_list td.column_period {
+  text-align: left;
+}
+.ads_premoderation_stat_moder_name_wrap {
+  visibility: hidden;
+  position: relative;
+}
+.ads_premoderation_stat_moder_name {
+  visibility: visible;
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+}
+.ads_premoderation_stat_value_hint,
+.ads_premoderation_stat_value_hint a {
+  color: gray;
+}
+/* empty line */

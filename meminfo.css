@@ -1,0 +1,262 @@
+#meminfo_css {
+  display: none;
+}
+#mi_panel {
+  padding: 10px 0 0 0;
+}
+.mi_section {
+  margin: 0 0 25px 10px;
+  width: 600px;
+}
+.mi_section h2 {
+  margin: 5px 0 7px 0;
+  font-weight: bold;
+  font-size: 1.09em;
+  color: #36638E;
+  border-color: #B9C4DA;
+}
+tr.mi_meminforow .mi_meminforow_labeled {
+  padding-top: 8px;
+  max-width: 300px;
+}
+tr.mi_meminforow .mi_meminforow_label {
+  padding-top: 8px;
+  color: #777777;
+}
+table.history tr td,
+table.history tr th {
+  padding-top: 10px;
+}
+table.history tr.old_session {
+  color: #999;
+}
+table.history .cur_session {
+  color: #999;
+  padding-left: 5px;
+}
+.activity_history_link {
+  padding-top: 20px;
+}
+.settings_about_tt table .tt_text {
+  color: #000;
+  padding: 10px;
+  width: 400px;
+}
+.settings_about_tt table.toup1 .bottom_pointer {
+  margin-right: 0px;
+  margin-left: 64px;
+  display: block;
+  background: url(/images/tooltip_arrow_white.gif) no-repeat;
+}
+.settings_about_tt table.toup .top_pointer {
+  margin-right: 0px;
+  margin-left: 64px;
+  display: block;
+  bottom: -2px;
+  background: url(/images/tooltip_arrow_up.gif) no-repeat;
+}
+#member_apps_table,
+#member_apps_table th,
+#member_apps_table td {
+  border: none;
+}
+#member_apps_table th {
+  background-color: #F5F7F9;
+}
+.mi_section .msg {
+  margin-bottom: 10px;
+}
+#mi_payments_buttons {
+  padding-top: 10px;
+  width: 150px;
+}
+#mi_payments_buttons .info_msg {
+  padding: 5px;
+  color: #36638E;
+  font-weight: bold;
+  font-size: 1.19em;
+  text-align: center;
+}
+#mi_payments_buttons div {
+  margin-bottom: 10px;
+}
+.mi_payments_info {
+  margin-left: 10px;
+}
+.mi_payments_info .mi_meminforow_label {
+  width: 130px;
+  vertical-align: top;
+}
+.mi_section_title {
+  padding: 6px 9px;
+  background-color: #dfe5eb;
+  color: #36638E;
+  font-weight: bold;
+}
+.mi_section_data {
+  margin: 0 10px 0;
+  padding-top: 10px;
+}
+.mi_tabsbar {
+  padding: 5px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e8ebed;
+}
+.mi_payments_table {
+  margin: 10px;
+  width: 100%;
+}
+.mi_payments_table th,
+.mi_payments_table td {
+  padding: 0 10px 10px 0;
+}
+.mi_more_link {
+  padding: 10px;
+  display: block;
+  text-align: center;
+  background-color: #EFF1F3;
+  color: #738392;
+}
+.mi_more_link:hover {
+  background-color: #E9EDF1;
+  text-decoration: none;
+}
+#mi_payments_tabsbar_progress,
+#mi_votes_history_tabsbar_progress {
+  padding: 14px 5px 0 0;
+  display: none;
+}
+.mi_summary_tab_hidden {
+  display: none;
+}
+.mi_payments_empty {
+  text-align: center;
+}
+#change_balance_box td {
+  vertical-align: top;
+}
+.mi_new_balance_wrap {
+  padding-top: 5px;
+}
+#balance_change_votes {
+  width: 170px;
+}
+#balance_comment {
+  width: 170px;
+  height: 40px;
+}
+#change_balance_box .radiobtn {
+  padding-bottom: 5px;
+}
+#change_balance_error {
+  display: none;
+}
+#refund_comment {
+  width: 170px;
+  height: 40px;
+}
+#refund_payment_error {
+  display: none;
+}
+.mi_status_cancelled,
+.mi_status_cancelled_fm,
+.mi_status_in_process {
+  color: red;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.mi_status_cancelled_fm {
+  color: #45688E;
+}
+.mi_status_in_process {
+  color: #878700;
+}
+.mi_payment_status_tt_row {
+  cursor: pointer;
+  border-bottom: 1px dashed;
+}
+.mi_payment_status_tt table .tt_text {
+  color: #000;
+  padding: 10px;
+  width: 300px;
+  line-height: 160%;
+}
+.mi_payment_status_tt table.toup1 .bottom_pointer {
+  margin-right: 0px;
+  margin-left: 25px;
+  display: block;
+  background: url(/images/tooltip_arrow_white.gif) no-repeat;
+}
+.mi_payment_status_tt table.toup .top_pointer {
+  margin-right: 0px;
+  margin-left: 25px;
+  display: block;
+  bottom: -2px;
+  background: url(/images/tooltip_arrow_up.gif) no-repeat;
+}
+.mi_tt_label {
+  color: #777;
+}
+.mi_history_add_votes {
+  color: green;
+  font-weight: bold;
+}
+.mi_history_withdraw_votes {
+  color: red;
+  font-weight: bold;
+}
+#mi_access_check {
+  padding: 200px;
+}
+.mi_block_label {
+  color: #777;
+  padding-top: 4px;
+  width: 40px;
+}
+.mi_block_msg {
+  line-height: 160%;
+  padding-bottom: 10px;
+}
+.mi_blank {
+  padding: 100px 50px;
+  text-align: center;
+  color: #777;
+  font-size: 15px;
+}
+.mi_subtabsbar {
+  padding: 5px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e8ebed;
+}
+.mi_summary_subtab_hidden {
+  display: none;
+}
+#mi_interests_table td {
+  padding: 3px 0;
+}
+.mi_interest_bar {
+  background-color: #DAE2E8;
+  height: 16px;
+}
+.mi_personal_info_disclaimer {
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  background-color: #f7f7f7;
+  margin-top: -10px;
+  border-bottom: 1px solid #dae1e8;
+  line-height: 160%;
+}
+.mi_privacy_label {
+  margin-bottom: 5px;
+}
+.mi_privacy_comment {
+  margin-bottom: 8px;
+}
+.mi_privacy_comment .cl_priv_comment {
+  width: 300px;
+  height: 45px;
+  padding: 6px 8px 8px 7px;
+}
+.mi_close_privacy_text {
+  margin-top: 0px;
+}

@@ -1,0 +1,188 @@
+.wrn,
+.err,
+.ntc {
+  padding: 8px 11px;
+  font-size: 11px;
+  margin: 0 0 10px;
+  line-height: 150%;
+  clear: both;
+}
+.ntc {
+  background-color: #F6F7F9;
+  border: 1px solid #DBE0EA;
+}
+.wrn {
+  background-color: #F4EBBD;
+  border: 1px solid #D7CF9E;
+}
+.err {
+  background-color: #FFEFE8;
+  border: 1px solid #E89B88;
+}
+#content {
+  padding: 0px;
+}
+.t_filter_area {
+  border-bottom: 1px solid #D8DFEA;
+  padding: 10px;
+  background-color: #F7F7F7;
+  _padding-bottom: 18px;
+}
+*:first-child + html .t_filter_area {
+  padding-bottom: 18px;
+}
+.t_filter_selected {
+  float: left;
+  border-bottom: 1px solid #FFFFFF;
+  margin-right: 10px;
+  margin-bottom: -1px;
+  cursor: pointer;
+}
+.t_filter_selected .t_filter2 {
+  border: 1px solid #3B6798;
+  border-top: 1px solid #395676;
+  border-bottom: 1px solid #4A73A0;
+}
+.t_filter_selected .t_filter3 {
+  border: 1px solid #5C82AB;
+  padding: 2px 5px 3px 5px;
+  background-color: #6D8FB3;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+.t_filter_off {
+  cursor: pointer;
+  padding: 4px 7px 5px;
+  color: #45688E;
+  font-weight: bold;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: -1px;
+}
+.fan_row,
+.idol_row {
+  background-color: #FFF;
+  border: 1px solid #DAE2E8;
+  padding: 5px 5px 5px 5px;
+  margin: 0px 10px 5px 10px;
+  width: 595px;
+}
+.summaryBar {
+  border-bottom: 1px solid #DAE2E8;
+  clear: both;
+  padding: 11px 10px 0 10px;
+  color: black;
+  font-weight: normal;
+  line-height: normal;
+}
+.summaryBar .summary {
+  color: #45688E;
+  float: left;
+  font-weight: bold;
+  padding-top: 3px;
+  padding-bottom: 4px;
+}
+.summaryBar a {
+  font-weight: normal;
+}
+.info {
+  vertical-align: top;
+  width: 370px;
+  padding-left: 5px;
+}
+.fan_name {
+  padding: 5px 0px;
+}
+.idol_link {
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 12px;
+}
+.fan_image {
+  vertical-align: top;
+}
+.fan_actions {
+  vertical-align: top;
+  padding: 6px 5px;
+  width: 300px;
+}
+.actions {
+  vertical-align: top;
+  padding: 0px 5px;
+}
+.actions .dld {
+  padding: 8px;
+  margin: 8px 4px;
+  text-align: center;
+  font-weight: normal;
+}
+.fan_subimage {
+  height: 100px;
+  width: 110px;
+  overflow: hidden;
+}
+.fan_thumb {
+  height: 25px;
+  width: 30px;
+  overflow: hidden;
+}
+.fan_thumb img {
+  width: 25px;
+}
+.searchResults {
+  background: #f7f7f7;
+  padding: 10px 0px 5px;
+  border-bottom: 1px solid #DAE2E8;
+}
+#no_fans {
+  font-size: 12px;
+  text-align: center;
+  margin: 20px 20px 28px 20px;
+  padding: 50px 10px;
+  color: gray;
+  background: #fff;
+  border: solid 1px #ddd;
+}
+.idol_row em {
+  background: none repeat scroll 0 0 #D8DFEA;
+  color: #000000;
+  font-style: normal;
+  font-weight: bold;
+  text-decoration: inherit;
+}
+.fan_nav {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+  vertical-align: top;
+}
+.fan_nav li {
+  border-bottom: 1px solid #FFF;
+  font-size: 1.0em;
+  white-space: nowrap;
+}
+.fan_nav li a {
+  border: 0;
+  border-top: 1px solid #fff;
+  background: #eee;
+  background: white;
+  display: block;
+  padding: 3px 6px;
+}
+.fan_nav li a:hover {
+  background: #DAE1E8;
+  color: #36638E;
+  border-top: 1px solid #CAD1D9;
+  text-decoration: none;
+}
+.result {
+  padding-top: 10px;
+}
+#fans_pages_bottom {
+  padding: 0 10px;
+}
+#pages_progress_top,
+#pages_progress_bottom {
+  padding: 3px 5px 0;
+  display: none;
+}

@@ -1,0 +1,32 @@
+#blank_css {
+  display: none;
+}
+.groups_blocked {
+  padding: 40px 50px;
+}
+.groups_blocked_text {
+  padding: 30px 0px;
+  text-align: left;
+  font-size: 1.2em;
+  line-height: 160%;
+  text-align: center;
+}
+.groups_block_act {
+  padding: 6px 10px 7px;
+  margin-left: 10px;
+}
+.groups_block_act:hover {
+  background: #E1E7ED;
+  text-decoration: none;
+}
+.groups_blocked_cb {
+  margin-top: 1px;
+}
+.groups_blocked_cb_cont {
+  width: 607px;
+  margin: 24px -40px 0;
+}
+#groups_blocked_unblock_btn {
+  width: 200px;
+  margin: 0 auto;
+}

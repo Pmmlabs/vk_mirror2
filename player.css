@@ -1,0 +1,122 @@
+.playerContainerClass {
+  position: absolute;
+  height: 14px;
+  margin: 0px;
+  padding: 0px;
+  z-index: 100;
+}
+.audioRow b,
+.audioRowWall b {
+  color: #45688E;
+}
+.audioRowWall {
+  width: 315px;
+}
+.toddler {
+  position: absolute;
+  background: #5f7d9d;
+  width: 7px !important;
+  height: 0px !important;
+  margin: 4px 0 -10px 300px;
+  z-index: 10;
+  overflow: hidden;
+}
+.playline {
+  position: absolute;
+  border-top: dashed 1px #D8DfEA;
+  width: 402px;
+  height: 5px;
+  margin-top: 5px;
+  z-index: 100;
+}
+.playimg {
+  cursor: pointer;
+}
+.duration {
+  float: right;
+  color: #777;
+  padding: 4px 0px 0px;
+  font-size: 10px;
+}
+.playerClass {
+  height: 14px;
+  width: 402px;
+}
+.playerClass.gsearch,
+.playline.gsearch {
+  width: 342px;
+}
+.audioRowWall .playerClass,
+.audioRowWall .playline {
+  width: 278px;
+}
+.audioTitle {
+  float: left;
+}
+.audioTitle small {
+  padding: 0 5px;
+}
+.audioTitle b,
+.audioTitle span {
+  float: left;
+}
+.editTitle {
+  float: left;
+}
+.audio_play_btn {
+  width: 20px;
+  vertical-align: top;
+}
+.audio_desc {
+  width: 350px;
+}
+.audio_line {
+  height: 14px;
+  margin-left: 28px;
+}
+.audio_add_btn {
+  width: 21px;
+  height: 21px;
+}
+.audio_add {
+  margin: 2px 4px 0;
+  background: url(/images/icons/plus_icon1.gif?1) no-repeat 0px -21px;
+  width: 21px;
+  height: 21px;
+  position: absolute;
+  cursor: pointer;
+  visibility: hidden;
+  overflow: hidden;
+}
+.audioRow.over .audio_add,
+.audioRowWall.over .audio_add,
+.audio_add.active,
+.audio_add.added {
+  visibility: visible;
+}
+.audio_add.added,
+.audio_add.over.added {
+  background: url(/images/icons/plus_icon1.gif?1) no-repeat 0px -42px;
+}
+.audio_add.over {
+  background: url(/images/icons/plus_icon1.gif?1) no-repeat 0px 0px;
+}
+.audioRow td,
+.audioRowWall td {
+  padding: 3px 2px;
+}
+.add_audio_plus {
+  background: url(/images/icons/plus_icon3.gif?1) no-repeat #c4d2e1;
+  height: 17px;
+  width: 16px;
+  cursor: pointer;
+  margin-top: -2px;
+}
+.add_audio_plus.done {
+  background-position: 0 -17px;
+  background-color: #6B8DB1;
+  cursor: default;
+}
+.choose_audio_row {
+  min-height: 38px;
+}

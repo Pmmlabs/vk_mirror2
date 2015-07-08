@@ -1,0 +1,18 @@
+#about_css {
+  display: none;
+}
+.about_cont .wall_fixed .wall_module .post_fixed {
+  padding-top: 0px;
+}
+.about_cont .wall_module .author {
+  display: none;
+}
+.about_cont .wall_module .post {
+  border-top: none;
+}
+.about_cont .wall_fixed .wall_module .post_info {
+  margin-left: 0px;
+}
+.about_cont .wall_fixed .wall_module .wall_text {
+  margin-left: 0px;
+}

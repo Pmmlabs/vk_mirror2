@@ -1,0 +1,37 @@
+#graph_css {
+  display: none;
+}
+.graph_right_menu {
+  float: right;
+  padding-bottom: 10px;
+}
+.graph_menu_item {
+  float: left;
+  margin-left: 10px;
+  padding: 2px 5px 3px 5px;
+  color: #45688E;
+  font-size: 11px;
+  font-weight: bold;
+  text-decoration: none;
+  max-width: 230px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+a.graph_menu_item_sel {
+  background-color: #6588ab!important;
+  color: #fff !important;
+}
+a.graph_menu_item:hover {
+  background-color: #e1e7ed;
+  text-decoration: none;
+}
+.tt_text i {
+  font-weight: normal;
+  font-style: normal;
+  font-size: 0.9em;
+}

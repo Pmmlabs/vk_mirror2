@@ -1,0 +1,255 @@
+#restore_css {
+  display: none;
+}
+#restore h2 {
+  margin: 0 27px 10px;
+  padding-top: 15px;
+}
+#request_form,
+#request_result {
+  padding: 15px 54px 35px;
+  line-height: 160%;
+}
+#request_form {
+  padding-top: 0px;
+}
+#request_result,
+#request_result_msg {
+  display: none;
+}
+#comment {
+  height: 80px;
+}
+.request_thumb {
+  width: 60px;
+  height: 50px;
+  overflow: hidden;
+}
+.request_name {
+  width: 140px;
+}
+.request_name_wrap {
+  padding: 7px 0 10px;
+  line-height: 100%;
+}
+.request_name_lnk {
+  margin: 0;
+  color: #45688E;
+  font-size: 1.09em;
+  font-weight: bold;
+}
+.request_name_city {
+  color: #777;
+}
+.request_section {
+  padding: 10px 0px;
+  clear: both;
+  position: relative;
+  line-height: 100%;
+}
+.request_section_wrap {
+  width: 210px;
+}
+.request_section_info,
+.request_section_info_s,
+.request_name_info {
+  margin: 0 0 10px 228px !important;
+  padding: 8px 11px !important;
+  width: 266px;
+  clear: none;
+  position: absolute;
+  bottom: 0;
+  min-height: 56px;
+}
+.request_section_info_s {
+  min-height: 58px;
+}
+.request_name_info {
+  min-height: 32px;
+}
+.request_section h3,
+.restore_section h3 {
+  margin: 0;
+  padding: 10px 0;
+  color: #45688E;
+  font-size: 1.09em;
+  font-weight: bold;
+  line-height: 100%;
+}
+.request_section .info_msg {
+  margin: 0 0 10px 0;
+  padding: 8px 11px 10px 11px;
+  text-align: left;
+  line-height: 160%;
+}
+.request_section_wrap input,
+.request_section_wrap textarea {
+  width: 202px;
+}
+.request_section_wrap textarea {
+  margin: 0;
+  height: 66px;
+  display: block;
+}
+.request_section .file_button_gray,
+.restore_section .file_button_gray {
+  display: block;
+  width: 150px;
+  line-height: 100%;
+  float: left;
+}
+.request_section .button_blue {
+  margin-top: 10px;
+}
+.restore_section {
+  padding: 10px 0;
+}
+.restore_section_wrap {
+  width: 228px;
+}
+.restore_section_wrap input,
+.restore_section_wrap textarea {
+  width: 202px;
+  height: 14px;
+}
+.info_msg.restore_section_info {
+  padding: 9px 11px;
+}
+.info_msg.restore_section_info.restore_section_info_dbl {
+  padding: 11px 11px;
+}
+.restore_section_info,
+.restore_name_info {
+  width: 266px;
+  margin-top: 31px;
+}
+.restore_section_info.restore_section_info_top {
+  margin-top: 0;
+}
+.restore_name_info {
+  margin-top: 0;
+}
+.restore_section #photo_photos,
+.restore_section #doc_photos {
+  margin-top: 10px;
+}
+.restore_section .file_button_gray,
+.restore_section .button_blue {
+  margin-top: 10px;
+}
+.restore_fill_info {
+  padding: 10px 0;
+}
+#doc_upload_frame,
+#photo_upload_frame {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: -10000px;
+}
+#doc_photos,
+#photo_photos {
+  margin-bottom: 5px;
+  display: none;
+  text-align: center;
+}
+#doc_photos div,
+#photo_photos div {
+  margin: 0 5px;
+  display: inline-block;
+  text-align: center;
+}
+#doc_photos div img,
+#photo_photos div img {
+  display: block;
+}
+#doc_photos div span,
+#photo_photos div span {
+  color: #2B587A;
+  cursor: pointer;
+  line-height: 200%;
+}
+#doc_photos div span.over,
+#photo_photos div span.over {
+  text-decoration: underline;
+}
+#phone_confirm_box .msg {
+  display: none;
+  margin-bottom: 10px;
+}
+#phone_confirm_box .clear_fix {
+  padding: 10px 0px;
+}
+#phone_confirm_box .label {
+  padding: 4px 10px 0px;
+  color: #777;
+  width: 150px;
+}
+#phone_confirm_box .labeled {
+  width: 200px;
+}
+#phone_confirm_box .labeled input {
+  width: 150px;
+}
+#phone_confirm_box .labeled small {
+  color: #777;
+}
+#occupiedEmailForm li {
+  margin: 10px 0;
+}
+#occupiedEmailForm input.text {
+  margin: 5px 0;
+  width: 200px;
+}
+#request_result_wrap,
+#request_result_msg {
+  padding-bottom: 10px;
+}
+#request_result_msg {
+  line-height: 160%;
+}
+#request_result_wrap .info {
+  padding-bottom: 0;
+}
+#restore_cancel_button {
+  width: 200px;
+  margin: 20px auto 10px;
+}
+.request_result_msg {
+  text-align: left;
+  margin-top: 10px;
+  display: none;
+}
+#request_email_or_phone_need,
+#request_old_password_need {
+  display: none;
+}
+#request_email_or_phone {
+  color: #000;
+  margin: 10px 0px;
+}
+.restore_blocked_wrap {
+  padding: 30px;
+}
+.restore_blocked_wrap .restore_blocked_centered {
+  margin: 0 auto;
+  padding-bottom: 20px;
+  text-align: center;
+  font-size: 1.09em;
+  color: #111;
+  line-height: 160%;
+  width: 500px;
+}
+.restore_blocked_wrap .restore_blocked_img {
+  height: 160px;
+  width: 225px;
+  margin-bottom: 15px;
+}
+.restore_blocked_wrap .restore_blocked_bottom {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.09em;
+  color: #111;
+  line-height: 160%;
+  width: 400px;
+}

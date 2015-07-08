@@ -1,0 +1,1021 @@
+#login_css {
+  display: none;
+}
+.page_section {
+  margin: 0 0 20px 82px;
+  padding: 60px 0px 18px;
+  width: 463px;
+}
+.page_section .error {
+  margin-bottom: 10px;
+  display: none;
+}
+.page_section .info {
+  padding-bottom: 25px;
+}
+.page_section .section_row {
+  padding-bottom: 5px;
+}
+.page_section .label {
+  padding: 4px 10px 0px 0px;
+  float: left;
+  text-align: right;
+  width: 135px;
+  color: #777;
+}
+.page_section .labeled {
+  float: left;
+}
+.page_section .labeled .text {
+  width: 192px;
+}
+.page_section .button_blue {
+  margin-top: 5px;
+}
+.page_section .msg {
+  margin: 20px 0;
+}
+.page_section .msg,
+.page_section .error,
+.page_section .info {
+  line-height: 160%;
+}
+.page_section h2 {
+  margin: 0 0 10px 0;
+  padding: 0 0 3px 0;
+}
+.bottom_row {
+  background-color: #FAFAFA;
+  border-top: 1px solid #C3CAD2;
+  color: #444444;
+  font-size: 1em;
+  padding: 10px 6px;
+  text-align: center;
+}
+#pass_wrap {
+  display: none;
+}
+.login_sure_thumb {
+  width: 60px;
+  height: 50px;
+  overflow: hidden;
+}
+.login_sure_name {
+  width: 140px;
+}
+.login_sure_name_wrap {
+  padding: 7px 0 10px;
+  line-height: 100%;
+}
+.login_sure_name_lnk {
+  margin: 0;
+  color: #45688E;
+  font-size: 1.09em;
+  font-weight: bold;
+}
+.login_sure_name_city {
+  color: #777;
+}
+.login_sure {
+  padding: 20px 0px 20px 90px;
+}
+.login_sure_btns {
+  padding-top: 20px;
+  margin: 0px -5px;
+}
+.login_sure_btns .button_blue,
+.login_sure_btns .button_cancel {
+  margin: 0px 5px;
+}
+.login_help_content {
+  line-height: 160%;
+  padding: 25px 35px;
+}
+.login_help_back {
+  width: 130px;
+  margin: 20px auto 0px;
+}
+#login_blocked_wrap {
+  padding: 20px 30px 35px 30px;
+}
+.login_blocked_centered {
+  margin: 0 auto;
+  padding-bottom: 20px;
+  text-align: center;
+  font-size: 1.09em;
+  color: #111;
+  line-height: 160%;
+  width: 400px;
+}
+.login_blocked_bottom {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.09em;
+  color: #111;
+  line-height: 160%;
+  width: 400px;
+}
+.login_blocked_bad_form {
+  width: 200px;
+  margin: 20px auto 0;
+}
+#login_blocked_wrap h2 {
+  padding-top: 10px;
+  margin-bottom: 20px;
+  font-size: 1.09em;
+}
+#blocked_reasons_btn_wrap {
+  padding-top: 10px;
+  text-align: center;
+}
+.login_blocked_msg {
+  padding-bottom: 20px;
+  font-size: 1.09em;
+  color: #111;
+  line-height: 160%;
+}
+#login_blocked_img {
+  margin-bottom: 10px;
+}
+#blocked_submit_result {
+  display: none;
+  margin: 0 auto 10px auto;
+  width: 515px;
+}
+#login_blocked_wrap .login_blocked_row {
+  margin: 0 auto 10px auto;
+  padding: 0;
+  width: 134px;
+}
+.login_blocked_submit {
+  width: 134px;
+  margin: 11px auto 0px;
+}
+#login_blocked_wrap .login_blocked_label {
+  padding: 6px 0 10px 0;
+  font-weight: bold;
+  font-size: 1.09em;
+  color: #45688E;
+  width: 200px;
+}
+.login_blocked_submit {
+  margin: 11px auto 0px;
+  width: 134px;
+}
+input.login_big_text {
+  font-family: tahoma, tahoma, verdana, arial, sans-serif, Lucida Sans;
+  background: #FFF;
+  border: 1px solid #C0CAD5;
+  font-size: 1.09em !important;
+  padding: 5px 4px 4px;
+  margin: 0px;
+}
+.login_blocked_tt_pointer {
+  background: url(/images/ddtooltip.png) 0 0 no-repeat;
+  width: 8px;
+  height: 11px;
+  position: absolute;
+  left: -7px;
+  overflow: hidden;
+  z-index: 10;
+  top: 31px;
+}
+.login_blocked_tt table .tt_text {
+  line-height: 120%;
+  color: #000;
+  padding: 10px;
+  width: 200px;
+}
+.login_blocked_phone_tt table div.tt_text {
+  width: 220px;
+}
+#blocked_phone,
+#blocked_code,
+#blocked_pass {
+  width: 124px;
+  outline: none;
+}
+.login_select_wrap input.login_readonly {
+  background: #E1E7ED;
+}
+.login_readonly_wrap {
+  background: #E1E7ED;
+}
+#blocked_other_phone,
+#blocked_use_reg_phone {
+  position: absolute;
+  margin: -19px 0px 0px 144px;
+}
+.is_rtl1 #blocked_other_phone,
+.is_rtl1 #blocked_use_reg_phone {
+  margin-left: 0px;
+  margin-right: 144px;
+}
+#blocked_about_pass {
+  position: absolute;
+  margin-top: -1px;
+  height: 5px;
+  width: 134px;
+  overflow: hidden;
+}
+.blocked_about_login {
+  padding-top: 5px;
+  font-size: 0.9em;
+  color: #777;
+}
+#blocked_phone_table {
+  border: 1px solid #C0CAD5;
+  width: 134px;
+}
+#blocked_phone_prefix {
+  vertical-align: top;
+  width: 1px;
+  color: #777;
+  font-size: 1.09em;
+  padding: 5px 0px 4px 5px;
+}
+.login_readonly_wrap #blocked_phone_prefix {
+  color: #000;
+}
+.blocked_phone_field {
+  vertical-align: top;
+  width: 100%;
+  padding: 5px 0px 0px;
+}
+.is_rtl1 #blocked_phone_prefix {
+  padding: 5px 5px 4px 0px;
+}
+#blocked_phone_table #blocked_phone {
+  width: 100%;
+  outline: none;
+  border: 0px;
+  padding: 0px;
+  margin: 0px -1px;
+  background: transparent;
+}
+#blocked_country_wrap .selector_container td.selector {
+  padding-top: 3px;
+  padding-bottom: 4px;
+}
+#blocked_country_wrap .selector_container td.selector input {
+  font-family: tahoma, tahoma, verdana, arial, sans-serif, Lucida Sans;
+  font-size: 1.09em !important;
+}
+#blocked_country_wrap .disabled.selector_container .selector_dropdown {
+  background-color: #F2F2F2;
+  border-color: #F2F2F2;
+}
+.blocked_no_code {
+  padding-top: 10px;
+  text-align: center;
+}
+#blocked_send_pass {
+  padding-left: 4px;
+  padding-right: 5px;
+}
+.blocked_pwd_level0 {
+  display: none;
+}
+.blocked_pwd_level1 {
+  background: #CD4849;
+  width: 25%;
+}
+.blocked_pwd_level2 {
+  background: #FF762D;
+  width: 50%;
+}
+.blocked_pwd_level3 {
+  background: #C9B72D;
+  width: 75%;
+}
+.blocked_pwd_level4 {
+  background: #60B92B;
+  width: 100%;
+}
+#blocked_pass_strength {
+  color: #777;
+}
+.login_blocked_resend_box {
+  line-height: 160%;
+}
+.login_blocked_robot {
+  width: 160px;
+  height: 160px;
+  margin: -7px auto -9px;
+  background: url(/images/join/robot.gif) no-repeat;
+}
+.login_blocked_reason {
+  position: relative;
+  padding: 10px;
+  margin: 0 auto 20px auto;
+  width: 390px;
+  background-color: #EDF0F5;
+  line-height: 160%;
+}
+.login_blocked_reason_photo {
+  position: absolute;
+}
+.login_blocked_reason_img {
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+}
+.login_blocked_reason_info {
+  margin-left: 45px;
+}
+.login_blocked_reason_label {
+  padding-bottom: 2px;
+  font-weight: bold;
+  color: #45668E;
+}
+.login_blocked_reason_wout_msg {
+  min-height: 30px;
+  overflow: hidden;
+}
+.login_blocked_reason_wout_msg .login_blocked_reason_label {
+  margin-top: 6px;
+}
+table.login_blocked_reason_thumbs {
+  margin-bottom: 20px;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.login_blocked_reason_td {
+  vertical-align: top;
+}
+.login_blocked_thumb_cell {
+  overflow: hidden;
+  text-align: center;
+  width: 66px;
+}
+.login_blocked_thumb_photo {
+  margin: 0 8px;
+  display: block;
+  padding-bottom: 6px;
+  height: 50px;
+  width: 50px;
+}
+.login_blocked_thumb_name {
+  text-align: center;
+}
+.login_blocked_photo_cell {
+  margin: 0 3px 0 2px;
+  max-height: 130px;
+  max-width: 130px;
+  overflow: hidden;
+}
+.login_blocked_photo_img {
+  max-width: 130px;
+}
+.login_blocked_photo_caption {
+  padding: 10px;
+}
+.login_blocked_video_cell_a {
+  margin: 0 3px 0 2px;
+  display: block;
+  overflow: hidden;
+  text-align: center;
+}
+.login_blocked_video_title_a {
+  margin-top: 5px;
+  display: block;
+  text-align: center;
+}
+.login_blocked_reason_wrap {
+  padding-bottom: 20px;
+}
+.login_blocked_reason_wrap .login_blocked_reason {
+  margin-bottom: 0;
+}
+.login_btn_with_arr {
+  padding-right: 25px;
+  background: url(/images/backlink.gif) no-repeat right -127px;
+}
+/* Auth check */
+#login_authcheck_wrap {
+  padding: 20px 30px 35px 30px;
+}
+#login_authcheck_error {
+  margin-bottom: 20px;
+}
+.login_authcheck_info {
+  padding-bottom: 20px;
+  font-size: 1.09em;
+  color: #111;
+  line-height: 160%;
+}
+.login_authcheck_row {
+  margin: 0 auto 10px auto;
+  padding: 0;
+  width: 134px;
+}
+.login_authcheck_row input {
+  width: 124px;
+}
+.login_blocked_submit {
+  width: 134px;
+  margin: 11px auto 0px;
+}
+.login_authcheck_submit {
+  margin: 11px auto 0px;
+  width: 134px;
+}
+#login_authcheck_no_code {
+  display: block;
+  position: absolute;
+  margin: -19px 0px 0px 144px;
+}
+.is_rtl1 #login_authcheck_no_code {
+  margin-left: 0px;
+  margin-right: 144px;
+}
+#login_authcheck_options {
+  padding: 20px 0 0 0;
+}
+#login_authcheck_options ul.listing {
+  margin: 0;
+}
+#login_authcheck_remember {
+  margin-top: 10px;
+  width: 200px;
+}
+/* old */
+.login_blocked_activity_row {
+  position: relative;
+  padding: 0 4px 4px;
+  margin-bottom: 13px;
+}
+.login_blocked_activity_photo {
+  position: absolute;
+  padding-top: 2px;
+}
+.login_blocked_activity_img {
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+}
+.login_blocked_activity_info {
+  margin-left: 40px;
+}
+.login_blocked_activity_label {
+  color: #777;
+}
+.login_blocked_activity_label .mem_link {
+  font-weight: bold;
+}
+.login_blocked_reasons {
+  margin: 10px 0;
+}
+.login_blocked_text {
+  padding: 10px 7px;
+  line-height: 160%;
+}
+.login_blocked_period {
+  background: #F6F7F9;
+  border: 1px solid #DBE0EA;
+  padding: 8px;
+  line-height: 160%;
+  margin-bottom: 20px;
+}
+.login_blocked_label {
+  width: 130px;
+  color: #777;
+  padding: 4px 10px 0;
+}
+#login_blocked_phone {
+  width: 130px;
+}
+.login_blocked_row {
+  padding-bottom: 10px;
+}
+#login_blocked_error {
+  margin-bottom: 10px;
+  display: none;
+}
+.login_blocked_sure {
+  line-height: 160%;
+}
+#login_blocked_finish {
+  display: none;
+}
+#login_blocked_success {
+  margin-bottom: 10px;
+}
+#login_mobile_wrap {
+  width: 267px;
+}
+.login_mobile_cover {
+  position: absolute;
+  z-index: 10;
+  width: 258px;
+  height: 418px;
+  cursor: default;
+}
+#login_mobile_frame {
+  position: absolute;
+  width: 202px;
+  margin: 56px 28px;
+  height: 248px;
+  overflow: hidden;
+  zoom: 1;
+  font-family: Lucida Grande, verdana, tahoma, arial, sans-serif, Lucida Sans;
+}
+.login_mobile_img {
+  width: 267px;
+  height: 418px;
+  position: relative;
+  z-index: 5;
+}
+.login_mobile_device_mock {
+  background-image: url(/images/mobile.png?1);
+  width: 258px;
+  height: 418px;
+}
+.login_mobile_addr {
+  padding: 5px 7px;
+  font-size: 13px;
+}
+.login_mobile_head {
+  font-size: 12px;
+  line-height: 1.5em;
+  background: #5d80a6;
+  color: white;
+  overflow: hidden;
+  zoom: 1;
+  position: relative;
+  z-index: 1;
+  padding: 0 7px 0 9px;
+}
+.login_mobile_logo,
+.login_mobile_logo1 {
+  width: 124px;
+  height: 34px;
+  background: url(//m.vk.com/images/s_logo.png) no-repeat 0 center;
+}
+.login_mobile_logo1 {
+  width: 39px;
+  margin-left: -4px;
+  background-image: url(//m.vk.com/images/s_vkn_logo.png);
+}
+.login_mobile_top {
+  background: url(//m.vk.com/images/s_notify.png) no-repeat center;
+  padding: 5px 9px;
+}
+.login_mobile_top_new {
+  padding-left: 5px;
+  font-size: 13px;
+}
+.login_mobile_mail {
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  color: white;
+  width: 32px;
+  font-size: 13px;
+  padding: 8px 0px;
+  font-weight: bold;
+}
+.login_mobile_cont {
+  background: #F7F7F7;
+  border-bottom: 1px solid #E9E9E9;
+  padding: 5px 7px 7px;
+}
+.login_mobile_pic {
+  width: 32px;
+  height: 32px;
+  padding: 2px 5px 0px 0px;
+}
+.login_mobile_user {
+  position: relative;
+  overflow: hidden;
+  padding-right: 15px;
+}
+.login_mobile_lvi {
+  padding: 0 2px 1px;
+  background: url(//m.vk.com/images/online.png) no-repeat 1px center;
+}
+.login_mobile_arr {
+  background: url(//m.vk.com/images/profile_arrow.png) no-repeat center;
+  position: absolute;
+  right: 0;
+  width: 10px;
+  height: 100%;
+}
+.login_mobile_prof {
+  overflow: hidden;
+}
+.login_mobile_name {
+  color: #565656;
+  font-size: 14px;
+  font-weight: bold;
+}
+.login_mobile_status {
+  padding-top: 3px;
+}
+.login_mobile_menu {
+  padding: 0px;
+  margin: 0px;
+}
+.login_mobile_menu li {
+  list-style: none;
+  margin: 0px;
+  padding: 8px 7px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #4C6B8F;
+  border-bottom: 1px solid #EEE;
+}
+.login_mobile_new {
+  padding: 2px 4px;
+  margin-left: 7px;
+  background-color: #E1E7ED;
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+.login_mobile_promo {
+  padding-bottom: 25px;
+}
+.login_appdevices_promo_wrap {
+  margin-bottom: 30px;
+}
+.login_appdevices_promo {
+  padding: 20px 30px 0;
+  background-color: #EDF1F5;
+  position: relative;
+}
+.login_about_appdevices {
+  font-size: 13px;
+  line-height: 160%;
+  margin-bottom: 16px;
+}
+.login_app_device_screen_wrap {
+  overflow: hidden;
+}
+.login_app_device_screen {
+  width: 168px;
+  height: 259px;
+}
+#login_app_device_ios .login_app_device_screen {
+  background-image: url(/images/login/ios_ru.png?2);
+}
+#login_app_device_ios .login_app_device_screen.login_app_device_en {
+  background-image: url(/images/login/ios_en.png?2);
+}
+#login_app_device_ios .login_app_device_screen.login_app_device_ua {
+  background-image: url(/images/login/ios_ua.png?2);
+}
+#login_app_device_ios .login_app_device_screen.login_app_device_br {
+  background-image: url(/images/login/ios_br.png?2);
+}
+#login_app_device_android .login_app_device_screen {
+  background-image: url(/images/login/android_ru.png);
+}
+#login_app_device_android .login_app_device_screen.login_app_device_en {
+  background-image: url(/images/login/android_en.png);
+}
+#login_app_device_android .login_app_device_screen.login_app_device_ua {
+  background-image: url(/images/login/android_ua.png);
+}
+#login_app_device_android .login_app_device_screen.login_app_device_br {
+  background-image: url(/images/login/android_br.png);
+}
+#login_app_device_wp .login_app_device_screen {
+  background-image: url(/images/login/wp_ru.png?2);
+}
+#login_app_device_wp .login_app_device_screen.login_app_device_en {
+  background-image: url(/images/login/wp_en.png?2);
+}
+#login_app_device_wp .login_app_device_screen.login_app_device_ua {
+  background-image: url(/images/login/wp_ua.png?2);
+}
+#login_app_device_wp .login_app_device_screen.login_app_device_br {
+  background-image: url(/images/login/wp_br.png?2);
+}
+#login_mobile_app_install_button {
+  display: table;
+  margin: 0 auto;
+  padding: 7px 18px 8px 18px;
+  font-size: 12px;
+}
+#login_mobile_app_install_button:active {
+  padding: 8px 18px 7px 18px;
+}
+#login_app_sms_sent {
+  display: none;
+  color: #818181;
+  text-align: center;
+  height: 28px;
+  font-size: 12px;
+}
+.login_app_devices {
+  white-space: nowrap;
+  position: relative;
+  top: 42px;
+}
+.login_app_devices a,
+.login_app_devices a:hover {
+  text-decoration: none;
+}
+.login_app_device {
+  display: inline-block;
+  margin-right: 26px;
+  vertical-align: bottom;
+}
+.login_app_device .login_app_device_screen {
+  display: block;
+  position: relative;
+  top: 3px;
+  cursor: pointer;
+  -webkit-transition: top 100ms ease-out;
+  -moz-transition: top 100ms ease-out;
+  -o-transition: top 100ms ease-out;
+  transition: top 100ms ease-out;
+}
+.login_app_device:hover .login_app_device_screen {
+  top: 0px;
+}
+.login_app_download_wrap {
+  font-size: 12px;
+  cursor: pointer;
+  padding: 5px 0px;
+  border-radius: 2px;
+  margin-top: 8px;
+}
+.login_app_download_wrap:hover {
+  background-color: #EDF1F5;
+}
+.login_app_download_cont {
+  display: table;
+  margin: 0 auto;
+}
+.login_appdevices_buttons {
+  padding: 8px 30px 0;
+  white-space: nowrap;
+}
+.login_app_download_icon {
+  background-image: url(/images/login/platforms.png);
+  width: 18px;
+  height: 22px;
+  display: inline-block;
+}
+#login_app_device_ios .login_app_download_icon {
+  background-position: 0px 0px;
+}
+#login_app_device_android .login_app_download_icon {
+  background-position: 0px -23px;
+}
+#login_app_device_wp .login_app_download_icon {
+  background-position: 0px -44px;
+}
+.login_app_download_name {
+  color: #406a99;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 5px;
+  margin-left: 8px;
+}
+.login_app_download_version {
+  color: #999;
+  margin-left: 24px;
+}
+.login_mobile_promo_wrap {
+  padding: 0 30px;
+  margin-top: 80px;
+}
+.login_loggedout_header {
+  font-weight: bold;
+  font-size: 13px;
+  color: #45688E;
+  padding-bottom: 16px;
+}
+.login_about_mobile {
+  font-size: 12px;
+  padding-bottom: 20px;
+  line-height: 160%;
+}
+.login_about_mobile a {
+  color: #45688E;
+}
+.login_mobile_available {
+  padding: 0px 17px 45px;
+  width: 260px;
+  font-size: 12px;
+}
+.login_mobile_avail {
+  padding: 16px 0px 0px 16px;
+  margin: 0px;
+  font-size: 12px;
+}
+.login_mobile_avail li {
+  padding: 5px 0px;
+  color: #758EAE;
+  list-style-type: square;
+}
+.login_mobile_avail li span {
+  color: #000;
+}
+.login_mobile_sms_wrap {
+  line-height: 160%;
+  font-size: 12px;
+  margin-top: 20px;
+  color: #808080;
+}
+.login_mobile_sms_wrap * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.login_mobile_get_sms {
+  margin-top: 15px;
+  text-align: center;
+  padding: 7px 18px 8px 18px !important;
+  font-size: 12px;
+}
+.login_mobile_get_sms:active {
+  padding: 8px 18px 7px 18px !important;
+}
+.login_mobile_get_sms button {
+  line-height: 15px;
+  font-size: 12px;
+}
+#login_mobile_sms_done {
+  margin-top: 15px;
+  padding: 6px 0px;
+  display: none;
+}
+.login_m_vk_com {
+  background: #F5F7F8;
+  border: 1px solid #EBEFF2;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+.login_mobile_header {
+  font-weight: bold;
+  color: #45688E;
+}
+.login_mobile_hidebox {
+  font-size: 13px;
+  padding: 30px 30px 0px;
+  margin: -30px -30px 0px;
+  display: none;
+}
+#box_layer .login_mobile_hidebox {
+  display: block;
+}
+#login_relogin_wrap {
+  padding-top: 40px;
+  padding-bottom: 0;
+}
+#login_relogin_wrap .info {
+  padding: 0;
+}
+#login_relogin_wrap .button_blue,
+#login_relogin_wrap .flat_button,
+#login_relogin_wrap .button_cancel {
+  margin-top: 20px;
+}
+#login_relogin_wrap .button_cancel {
+  margin-left: 10px;
+}
+#login_auth_frame_wrap {
+  padding: 30px 10px 60px;
+  margin: 30px 114px 0px;
+  border-bottom: 1px solid #DAE1E8;
+}
+#login_auth_frame {
+  width: 383px;
+  height: 182px;
+}
+#login_form_wrap {
+  padding: 5px;
+}
+#login_form_wrap .text {
+  width: 115px;
+}
+#login_form_wrap .submit {
+  position: absolute;
+  color: #FFF;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: #FFF;
+  left: -8000px;
+  top: -8000px;
+}
+#login_form_wrap .label {
+  color: #666;
+  width: 110px;
+  padding: 4px 10px 0px;
+}
+#login_form_wrap #quick_reg_button {
+  margin-top: 0px;
+}
+#login_form_wrap .labeled {
+  padding-bottom: 10px;
+  width: 123px;
+}
+#code_resend_wrap {
+  padding-top: 5px;
+}
+.cont_login_app_sms_tt {
+  background: white;
+  border: 1px solid #96AABE;
+  text-align: center;
+  width: 320px;
+}
+.login_app_sms_msg_wrap {
+  background-color: #EFF0F2;
+  padding: 15px;
+  text-align: left;
+  line-height: 160%;
+}
+.login_app_sms_phone_wrap {
+  margin: 25px 0;
+  display: inline-block;
+  text-align: center;
+}
+.login_app_sms_phone_changer {
+  margin-top: 10px;
+  margin-left: -14px;
+}
+.login_app_sms_reg_phone {
+  font-weight: bold;
+  font-size: 13px;
+}
+.login_app_sms_reg_phone_change {
+  color: #2B587A;
+  cursor: pointer;
+  margin-left: 3px;
+}
+.login_app_sms_reg_phone_change:hover {
+  text-decoration: underline;
+}
+button#login_app_sms_send_btn {
+  margin-top: 35px;
+}
+#login_app_sms_info_message {
+  display: none;
+  margin: 10px 30px -5px;
+  text-align: left;
+}
+#login_app_sms_phone_chooser {
+  display: none;
+}
+.login_app_sms_tform {
+  border-collapse: collapse;
+}
+.login_app_sms_tform td {
+  padding: 5px 0 0 4px;
+  vertical-align: top;
+}
+.login_app_sms_tform .label {
+  padding: 5px 10px 6px 0;
+  color: #777;
+  width: 110px;
+  text-align: right;
+}
+.login_app_sms_tform .labeled {
+  padding: 0;
+}
+.apps_sms_tform .labeled input {
+  padding: 4px 3px 5px 3px;
+  width: 130px;
+}
+.login_app_sms_tform .selector_container td.selector {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+#login_app_sms_phone_table {
+  border: 1px solid #C0CAD5;
+  width: 160px;
+}
+#login_app_sms_phone_prefix {
+  vertical-align: top;
+  width: 1px;
+  color: #777;
+  font-size: 1em;
+  padding: 5px 0px 4px 5px;
+  line-height: 14px;
+}
+.login_app_sms_tform td.apps_sms_phone_field {
+  vertical-align: top;
+  width: 100%;
+  padding: 5px 0px 0px 3px;
+}
+#login_app_sms_phone_table #phone {
+  width: 100%;
+  outline: none;
+  border: 0px;
+  padding: 0px;
+  margin: 0px -1px;
+  background: transparent;
+}
+#login_app_sms_cancel {
+  margin-top: 35px;
+  margin-left: 5px;
+}

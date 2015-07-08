@@ -1,0 +1,149 @@
+.flatTabs {
+  border-bottom: 1px solid #DAE1E8;
+  height: 24px;
+  list-style-type: none;
+  margin: 0pt;
+  padding: 0px 7px;
+  vertical-align: bottom;
+}
+.flatTabOn {
+  background-color: #FFFFFF;
+  border-color: #C3CAD2;
+  border-style: solid solid none;
+  border-width: 1px 1px 0px;
+  float: left;
+  height: 24px;
+  margin: 0px 3px -1px;
+  text-align: center;
+  position: relative;
+}
+.flatTabOn a {
+  float: left;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+.flatTab {
+  background-color: #F5F7FA;
+  border-color: #C3CAD2;
+  border-style: solid solid none;
+  border-width: 1px 1px 0px;
+  float: left;
+  height: 23px;
+  margin: 0px 3px;
+  text-align: center;
+}
+.flatTab a {
+  border-bottom: 2px solid #EEF0F3;
+  float: left;
+  padding: 5px 10px 3px;
+  text-decoration: none;
+}
+.flatTab a:hover,
+.tabOn a:hover {
+  background-color: #FFFFFF;
+  text-decoration: none;
+}
+.flatTab a:hover {
+  background-color: #FFFFFF;
+  border-bottom: 2px solid #F5F9FC;
+  text-decoration: none;
+}
+a.flatButtonActive {
+  background: #4b769f url(/images/flatBtnTopActive.gif) repeat-x scroll 0 0;
+  border: 1px solid #2B587A;
+  color: #FFFFFF;
+  display: block;
+  line-height: 100%;
+  padding: 5px 10px 6px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+a.flatButtonActive:hover {
+  background-color: #678BAE;
+  text-decoration: none;
+  border: 1px solid #3B688A;
+}
+a.flatButton {
+  background: #f3f3f3 url(/images/flatBtnTop.gif) repeat-x scroll 0 0;
+  border: 1px solid #cccccc;
+  color: #000000;
+  display: block;
+  line-height: 100%;
+  padding: 5px 10px 6px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+a.flatButton:hover {
+  background-color: #f9f9f9;
+  text-decoration: none;
+  border: 1px solid #d6d6d6;
+}
+ul.flatButtons {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.flatButtons li {
+  float: left;
+  display: inline;
+  margin-left: 5px;
+}
+.flatTrigger,
+.flatTriggerActive {
+  cursor: pointer;
+  margin: 0 7px 3px 0;
+  padding: 4px 10px 5px;
+}
+.flatTrigger {
+  background-color: #FFFFFF;
+  border: 1px solid #DAE2E8;
+  color: #36638E;
+}
+.flatTriggerActive {
+  background-color: #DAE2E8;
+  border: 1px solid #C0CAD5;
+  color: #36638E;
+}
+.cooltabsep.subactive {
+  background: url('/images/cooltab_subactive.gif') left top no-repeat;
+}
+.cooltabsep.active {
+  background: url('/images/cooltab_active.gif') left top no-repeat;
+}
+.cooltabsep.first {
+  background: url('/images/cooltab_first.gif') left top no-repeat;
+  margin-left: 10px;
+}
+.cooltabsep.first.active {
+  background: url('/images/cooltab_first_active.gif') left top no-repeat;
+}
+.cooltabsep.last {
+  background: url('/images/cooltab_last.gif') left top no-repeat;
+  width: 8px;
+}
+.cooltabsep.last.subactive {
+  background: url('/images/cooltab_last_active.gif') left top no-repeat;
+}
+.cooltabsep {
+  background: url('/images/cooltab.gif') left top no-repeat;
+  height: 18px;
+  width: 18px;
+  float: left;
+  cursor: pointer;
+}
+.cooltabbody {
+  height: 14px;
+  background: #EFEFEF;
+  border-top: 1px solid #B1BDD6;
+  border-bottom: 1px solid #B1BDD6;
+  float: left;
+  padding: 1px 7px;
+  cursor: pointer;
+  color: #2B587A;
+}
+.cooltabbody.active {
+  background: #FFF;
+  border-bottom: 1px solid #FFF;
+}
