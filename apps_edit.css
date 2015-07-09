@@ -1224,6 +1224,16 @@ input.apps_edit_input_readonly {
   display: block;
   cursor: pointer;
 }
+.apps_edit_cont_name_c:hover {
+  background: #e9edf1;
+  text-decoration: none;
+}
+.activity .apps_edit_cont_name_c {
+  cursor: default;
+}
+.activity .apps_edit_cont_name_c:hover {
+  background: #eef1f6;
+}
 input.apps_edit_cont_name {
   border: none;
   color: #54657d;
@@ -1255,16 +1265,19 @@ input.apps_edit_cont_name {
 .apps_edit_cont_row:last-child {
   margin-bottom: 0px;
 }
-.apps_edit_requests_data {
+.apps_edit_requests_data,
+.apps_edit_activities_data {
   background-color: #f7f8fa;
   border: 1px solid #dfe4ed;
   border-top: 0px;
   padding: 21px 11px 20px;
 }
-.apps_edit_request_info {
+.apps_edit_request_info,
+.apps_edit_activity_info {
   padding: 5px;
 }
-.apps_edit_request_field {
+.apps_edit_request_field,
+.apps_edit_activity_field {
   width: 135px;
   color: #666666;
   padding: 4px 15px 0px 0px;
@@ -1289,24 +1302,35 @@ input.apps_edit_cont_name {
   padding-left: 0px;
   background: none;
 }
+.apps_edit_input_block input.apps_edit_input.apps_edit_no_user {
+  padding-left: 10px;
+  width: 446px;
+}
+.apps_edit_input_block input.apps_edit_input.apps_edit_activity_points {
+  width: 30px;
+}
 .apps_edit_requests_review {
   padding: 12px 0px 5px;
   line-height: 160%;
   color: #4b4b4b;
 }
-.apps_edit_requests_block {
+.apps_edit_requests_block,
+.apps_edit_activities_block {
   padding-bottom: 20px;
 }
-.apps_edit_request_user {
+.apps_edit_request_user,
+.apps_edit_activity_user {
   width: 48px;
   padding: 4px 0px 6px 9px;
   height: 18px;
   color: #777777;
 }
-.apps_edit_requests_data input {
+.apps_edit_requests_data input,
+.apps_edit_activities_data input {
   width: 399px;
 }
-.apps_edit_requests_data input.accept {
+.apps_edit_requests_data input.accept,
+.apps_edit_activities_data input.accept {
   width: 447px;
 }
 .apps_edit_row_acts {
@@ -1848,10 +1872,6 @@ input.execute_field_input {
 }
 .apps_edit_cont_row.request.active > .apps_edit_cont_name_c > input {
   margin: 0 0 0 -2px;
-}
-.apps_edit_cont_name_c:hover {
-  background: #e9edf1;
-  text-decoration: none;
 }
 .apps_edit_cont_row.active > .apps_edit_cont_name_c {
   background: #d6dce6;

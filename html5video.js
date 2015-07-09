@@ -343,7 +343,7 @@ var html5video = {
 
   playVideo: function(forceStatus) {
     var video = ge('the_video'), vars = this.vars;
-    if (forceStatus === true && !video.paused || forceStatus === false && video.paused) {
+    if (!video || forceStatus === true && !video.paused || forceStatus === false && video.paused) {
       return;
     }
     re('video_thumb');

@@ -561,7 +561,9 @@ var Feed = {
         break;
       }
       case 'vote_poll': {
-        if (!el) break;
+        if (!ge('post_poll' + post_id)) {
+          break;
+        }
         wall.updatePollResults(post_id, ev[3]);
         break;
       }
@@ -1052,6 +1054,7 @@ var Feed = {
       stManager.add(['ui_controls.js', 'ui_controls.css'], feed.initUi);
     }
   },
+  // from: 3 - init, 2 - navigation, undefined - other
   applyOptions: function(options, from) {
     from = from || 0;
     if (options.owner) {
@@ -1086,9 +1089,9 @@ var Feed = {
         if (options.add_queue === true) {
           cur.add_queue = options.add_queue = false;
         }
-        feed.getNewQKey(0);
       }
-      if (cur.add_queue = options.add_queue) {
+      feed.getNewQKey(0);
+      if (options.add_queue !== true && (cur.add_queue = options.add_queue)) {
         setTimeout(feed.update.pbind(0), 0);
       }
     } else if (from && cur.section != 'search' && cur.section != 'news' && cur.section) {
