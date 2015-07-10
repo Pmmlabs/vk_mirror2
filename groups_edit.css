@@ -15,7 +15,7 @@
   color: #707070;
 }
 .group_edit_labeled {
-  padding: 4px 7px 9px;
+  padding: 4px 7px 9px 0;
   position: relative;
   border: 1px solid #F7F7F7;
   border-color: transparent;
