@@ -1261,9 +1261,13 @@ input.apps_edit_cont_name {
   -moz-border-radius: 2px;
   border-radius: 2px;
   overflow: hidden;
+  cursor: pointer;
 }
 .apps_edit_cont_row:last-child {
   margin-bottom: 0px;
+}
+.apps_edit_activity_cont_name {
+  padding-left: 3px;
 }
 .apps_edit_requests_data,
 .apps_edit_activities_data {

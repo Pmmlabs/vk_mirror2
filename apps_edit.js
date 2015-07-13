@@ -1345,9 +1345,11 @@ requestInsertRow: function(row, list) {
 },
 
 onActivityNameChange: function(input, ev) {
+  var parent = gpeByClass('apps_edit_cont_row', input);
+  var nameContainer = geByClass1('apps_edit_activity_cont_name', parent);
   clearTimeout(cur._activityInputChangeTO);
   cur._activityInputChangeTO = setTimeout(function() {
-    ge('apps_edit_cont_name_c').innerHTML = clean(trim(input.value) || 'No name');
+    nameContainer.innerHTML = clean(trim(input.value) || 'No name');
   }, 50);
 },
 
@@ -1534,6 +1536,12 @@ saveActivity: function(btn, id) {
       }
     }
   })
+},
+
+toggleActivity: function(btn, id) {
+  var parent = gpeByClass('apps_edit_cont_row', btn);
+  var content = geByClass1('apps_edit_content', parent);
+  toggle(content);
 },
 
 saveRequest: function(btn, id) {
