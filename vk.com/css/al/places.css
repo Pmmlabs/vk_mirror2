@@ -1,0 +1,507 @@
+#places_css {
+  display: none;
+}
+#place_map_old {
+  width: 478px;
+  height: 314px;
+}
+.place_map {
+  width: 638px;
+  height: 370px;
+  position: relative;
+}
+#place_map_yandex,
+#place_map_google,
+#place_map_mapbox {
+  display: none;
+}
+#place_recent_checkins {
+  display: none;
+  height: 314px;
+  overflow: auto;
+}
+.checkin_shadow {
+  background-color: #000;
+  height: 1px;
+  opacity: 0.25;
+  filter: alpha(opacity=25);
+  overflow: hidden;
+  position: absolute;
+  width: 478px;
+  z-index: 1550;
+}
+.checkin_table {
+  border-bottom: 1px solid #C0CAD5;
+}
+.checkin_table_last {
+  border-bottom: 0;
+}
+.checkin_table td {
+  vertical-align: top;
+  padding: 10px 0;
+}
+.checkin_table .info {
+  padding-left: 10px;
+}
+.checkin_image {
+  padding-left: 10px;
+  height: 50px;
+  overflow: hidden;
+  width: 55px;
+}
+.checkin_table .image {
+  width: 60px;
+}
+.checkin_table .name_link {
+  font-weight: bold;
+}
+.checkin_table .info_msg {
+  padding-top: 3px;
+}
+.checkin_table .info_no_msg {
+  display: none;
+}
+.checkin_table .info_footer {
+  font-size: 0.9em;
+  padding-top: 3px;
+  color: #808080;
+}
+.no_checkins {
+  background-color: #F6F7F9;
+  border: 1px solid #DBE0EA;
+  font-weight: normal;
+  line-height: 150%;
+  margin: 10px;
+  padding: 8px 11px;
+}
+#checkins_load_more {
+  display: none;
+}
+.place_search_bar {
+  padding: 5px;
+}
+#choose_map {
+  padding-bottom: 7px;
+}
+#choose_map .place_search_bar {
+  padding: 12px 16px 12px 20px;
+  background-color: #F7F7F7;
+}
+#choose_map #places_filter {
+  width: 335px;
+  margin-right: 10px;
+}
+#choose_map .place_search_bar button {
+  width: 90px;
+}
+#choose_map_content {
+  padding: 13px 20px;
+  position: relative;
+}
+#choose_map #places_provider {
+  padding: 0px 20px 13px;
+}
+.choose_map_controls {
+  padding: 0px 20px 13px;
+}
+.choose_map_controls_text {
+  padding: 0 20px;
+  line-height: 25px;
+}
+.choose_map_controls .button_gray {
+  margin-left: 10px;
+}
+.choose_map_delete {
+  padding: 5px 15px 0px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#places_filter {
+  margin: 0;
+  padding: 5px 4px 4px 20px;
+  width: 320px;
+  height: 14px;
+  line-height: 1.27em;
+  background: white url(/images/magglass.png) no-repeat 5px 6px;
+  margin-right: 5px;
+}
+#places_provider {
+  margin-top: -1px;
+}
+#places_provider .radiobtn {
+  padding-right: 20px;
+}
+.place_map_cont {
+  padding: 0px 14px 14px;
+}
+.place_map_header {
+  padding: 16px 20px 10px;
+}
+.place_map_header_f {
+  font-size: 1.18em;
+  color: #45688E;
+  font-weight: bold;
+}
+.place_map_close {
+  padding: 16px 20px 0px;
+}
+#place_map_cont {
+  width: 670px;
+  height: 360px;
+  padding: 4px 4px 4px;
+}
+.place_map_summary {
+  font-size: 1.18em;
+}
+.place_map_summary_cont {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+#place_map_other {
+  padding: 4px 4px 4px;
+}
+#place_map_other_list {
+  padding: 14px 0px 0px 0px;
+  width: 678px;
+}
+.place_map_photo {
+  display: block;
+  overflow: hidden;
+  width: 130px;
+  height: 86px;
+  background: #F1F1F1;
+  margin: 0px 4px 4px 0px;
+  position: relative;
+}
+.place_add_map_photo {
+  width: 130px;
+  height: 87px;
+  background: #F1F1F1;
+  text-align: center;
+  margin: 2px;
+  position: relative;
+}
+.place_map_photo_cont {
+  height: 87px;
+  overflow: hidden;
+}
+#places_photo_progress {
+  display: none;
+  margin-top: 3px;
+}
+.places_photo_right_act {
+  padding-top: 4px;
+}
+#place_map_edit {
+  display: none;
+  padding: 4px 4px 4px;
+}
+#places_map_add_list {
+  padding-top: 6px;
+}
+.places_photo_hint_cont {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  padding: 4px 7px 4px;
+  color: #FFFFFF;
+  font-size: 1em;
+  font-weight: bold;
+  z-index: 1000;
+  margin-top: 118px;
+}
+#places_photo_pointer {
+  position: absolute;
+  z-index: 500;
+  height: 5px;
+  overflow: hidden;
+  width: 100%;
+  *padding-top: 4px;
+  margin-top: 4px;
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+  background: url('/images/blacktip.gif') 0px -5px no-repeat;
+}
+#places_photo_more {
+  display: block;
+  margin: 0px 2px;
+  background: #EFF1F3;
+  padding: 10px;
+  margin-top: 10px;
+  text-align: center;
+  color: #738392;
+}
+#places_photo_more:hover {
+  text-decoration: none;
+  background: #E9EDF1;
+}
+.place_photo_over {
+  display: none;
+}
+.places_photo_checked {
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+}
+.places_photo_checked .place_photo_over {
+  margin-top: -11px;
+  margin-left: -11px;
+  display: block;
+  position: absolute;
+  background: url(/images/photo_selected.png) no-repeat;
+  width: 154px;
+  height: 111px;
+  cursor: pointer;
+}
+#places_photos_save_panel {
+  display: none;
+  margin-top: -20px;
+}
+.places_photos_act_btn {
+  margin-right: 20px;
+}
+#places_photos_save_buttons {
+  display: none;
+  padding: 15px 25px;
+  width: 656px;
+}
+.places_buttons_panel_shadow {
+  position: absolute;
+  width: 706px;
+  height: 3px;
+  z-index: 100;
+  background: #555;
+  opacity: 0.12;
+  filter: alpha(opacity=12);
+  margin-top: -18px;
+  margin-left: -25px;
+  display: none;
+}
+.places_panel_fixed .places_buttons_panel_shadow {
+  display: block;
+}
+.places_panel_fixed {
+  background: #F1F1F1;
+  border-top: 1px solid #DAE1E8;
+}
+#places_photo_upload_area {
+  background: #eff1f3;
+  padding: 14px;
+  text-align: center;
+  color: #738392;
+  font-size: 1.18em;
+  line-height: 16px;
+  display: block;
+  margin: 0px 2px 5px;
+}
+#places_photo_upload_area:hover {
+  text-decoration: none;
+}
+.places_photo_upload_area_drop {
+  display: none;
+}
+.places_photo_upload_area_enter .places_photo_upload_area_upload {
+  display: none;
+}
+#places_photo_upload_area_label {
+  background: url('/images/camera.png') left 0px no-repeat;
+  padding: 3px 0px 3px 35px;
+}
+.places_photo_upload_area_enter .places_photo_upload_area_drop {
+  display: block;
+  padding: 13px;
+  border: 1px dashed #A3B6C9;
+  background: #FFFFFF;
+}
+#places_add_p_line {
+  background: white;
+  border: 1px solid #c8d3dd;
+  height: 11px;
+  width: 175px;
+  margin-left: 231px;
+  margin-top: 0px;
+}
+#places_add_p_inner {
+  position: absolute;
+  border: 1px solid #577799;
+  height: 11px;
+  width: 0px;
+  margin: -1px 0px 0px -1px;
+  background: url('/images/photos_add_progress.gif?1') 0px 0px;
+}
+#places_add_p_str {
+  margin-top: 6px;
+}
+#places_ph_add_progress {
+  text-align: center;
+}
+.places_photo_add_line {
+  display: block;
+  margin: 18px 0px 0px;
+  background: #EFF1F3;
+  padding: 10px;
+  text-align: center;
+  color: #738392;
+}
+.places_photo_add_line:hover {
+  text-decoration: none;
+  background: #E9EDF1;
+}
+.places_add_lines {
+  margin: 0px 0px 16px;
+  width: 646px;
+}
+.places_map_edit_header {
+  background: #f0f1f2;
+  height: 55px;
+  border-bottom: 1px solid #d2d2d2;
+}
+.places_map_edit_header .place_map_close {
+  padding-top: 19px;
+}
+.place_map_header_btn {
+  width: 506px;
+  text-align: center;
+  padding: 16px 100px 10px;
+}
+.place_map_header_text {
+  color: #45688E;
+  padding: 20px 19px;
+  font-size: 1.21em;
+  font-weight: bold;
+  text-align: left;
+}
+.place_map_header_both {
+  color: #45688E;
+  padding: 16px 19px 10px;
+  font-size: 1.21em;
+  font-weight: bold;
+  text-align: left;
+}
+.place_map_both_btn {
+  margin-left: 12px;
+}
+.places_map_edit_shadow {
+  background: rgba(90, 90, 90, 0.2);
+  height: 1px;
+}
+.places_map_edit_sub_shadow {
+  background: rgba(80, 80, 80, 0.1);
+  height: 1px;
+  margin-bottom: 12px;
+}
+#place_map_point {
+  display: none;
+}
+#place_map_point_cont {
+  width: 678px;
+  height: 360px;
+}
+.place_map_search_cont {
+  background: #f7f7f7;
+  padding: 10px 5px 10px 11px;
+  border-bottom: 1px solid #dae1e8;
+}
+.place_map_search_cont button {
+  width: 90px;
+}
+input.place_map_point_search {
+  line-height: 20px;
+  margin: 0px 10px 0px 0px;
+  padding: 5px 4px 5px 20px;
+  width: 528px;
+  height: 13px;
+  line-height: 1.27em;
+  background: white url(/images/magglass.png) no-repeat 5px 6px;
+}
+.places_map_preview {
+  z-index: 10000;
+  position: absolute;
+  bottom: 14px;
+  padding: 5px;
+  background: #94acc6;
+  background: rgba(0, 0, 0, 0.15);
+}
+.places_map_preview_cont {
+  width: 174px;
+  overflow: hidden;
+  max-height: 130px;
+}
+.places_map_preview_img {
+  width: 174px;
+}
+#places_edit_header {
+  z-index: 1000;
+  width: 706px;
+}
+.places_edit_header_cont {
+  height: 70px;
+}
+.places_edit_fixed {
+  position: fixed;
+  top: 0;
+}
+.places_mapped_point {
+  z-index: 10;
+  position: absolute;
+  background: url(/images/photo_pin.png?3) 0px 0px no-repeat;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 28px;
+  height: 28px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  margin-top: 57px;
+  margin-left: 101px;
+}
+.places_photo_cont {
+  display: block;
+  cursor: pointer;
+  text-align: center;
+}
+.place_search_bar .summary_tab_sel {
+  padding: 0px;
+}
+.places_provider_switcher {
+  padding: 0px;
+  margin: 2px 4px 0px 4px;
+}
+.places_group_img {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
+.places_group_name {
+  font-weight: bold;
+}
+.places_group_info {
+  padding: 0px 0px 12px 16px;
+  width: 250px;
+  height: 100px;
+}
+.places_group_desc {
+  color: #777777;
+}
+.places_checkins_header {
+  color: #2B587A;
+  font-weight: bold;
+}
+.places_checkin_row {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  padding: 5px 5px 0px 0px;
+}
+.places_group_photos {
+  padding: 0px 0px 8px 0px;
+}
+.places_group_checkins {
+  padding-left: 10px;
+}
+.places_map_type {
+  font-size: 11px;
+}
+.font_medium .places_map_type {
+  font-size: 12px;
+}

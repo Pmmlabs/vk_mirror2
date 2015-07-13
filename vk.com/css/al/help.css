@@ -1,0 +1,262 @@
+#help_css {
+  display: none;
+}
+.help_page {
+  padding: 20px;
+  line-height: 170%;
+  margin: 0px;
+}
+.ccform_header {
+  margin-top: 24px;
+}
+.ccform_row {
+  padding: 5px 0;
+}
+.ccform_label {
+  color: #555;
+  width: 215px;
+  padding: 1px 10px 0 0;
+}
+.ccform_field {
+  padding: 0px 0px 9px;
+}
+.ccform_field_static {
+  padding: 1px 0px 9px;
+}
+#ccform_content_name,
+#ccform_content_links {
+  padding: 3px 6px;
+  vertical-align: top;
+  width: 300px;
+  height: 70px;
+}
+#ccform_natural_info input,
+#ccform_legal_info input {
+  width: 244px;
+}
+#ccform_natural_info textarea,
+#ccform_legal_info textarea {
+  vertical-align: top;
+  width: 244px;
+  height: 50px;
+}
+.ccform_field .radiobtn {
+  margin: 2px 20px 0 0;
+}
+.help_page hr {
+  border: solid #DAE1E8;
+  border-width: 0 0 1px 0;
+  margin: 16px 0;
+}
+.help_page .checkbox {
+  margin: 16px;
+  padding-left: 20px;
+  line-height: 170%;
+  position: relative;
+}
+.help_page .checkbox div {
+  margin-top: 2px;
+  left: 0px !important;
+  left: -20px;
+  position: absolute;
+}
+.ccform_button {
+  margin: 0 0 16px 36px;
+}
+.ccform_select_progress {
+  margin: 7px;
+  display: none;
+}
+#ccform_objection textarea {
+  vertical-align: top;
+  width: 300px;
+  height: 70px;
+}
+#ccform_objection input {
+  width: 300px;
+}
+#ccform_objection .file_button_gray {
+  display: block;
+  width: 150px;
+  line-height: 100%;
+  float: left;
+}
+#doc_upload_frame {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: -10000px;
+}
+/* Help security test */
+.help_test_intro_wrap {
+  background: #f7f7f7;
+  padding: 20px;
+}
+.help_test_intro_image {
+  background: url(/images/help_stest_med.png) no-repeat 0 0;
+  width: 50px;
+  height: 50px;
+  padding-right: 14px;
+}
+.help_test_intro_text {
+  padding: 5px 0;
+  line-height: 1.9em;
+}
+.help_test_intro_header {
+  font-weight: bold;
+  line-height: 170%;
+}
+.help_test_form {
+  padding-bottom: 22px;
+}
+.help_question_wrap {
+  padding: 22px 84px 0;
+}
+.help_question_header {
+  font-weight: bold;
+  line-height: 1.81em;
+}
+.help_question {
+  font-size: 1.09em;
+  color: #46678d;
+  font-weight: bold;
+  line-height: 140%;
+  padding: 3px 0 12px;
+}
+.help_answer_wrap {
+  padding: 5px 0 6px;
+}
+.help_answer_wrap .radiobtn div {
+  margin-right: 8px;
+}
+.help_question_hint {
+  background: #edf1f5;
+  display: none;
+  margin: 20px 10px 0;
+  padding: 10px;
+}
+.help_question_hint_image {
+  background: url(/images/help_stest_bud.png) no-repeat 0 0;
+  width: 50px;
+  height: 50px;
+  padding-right: 14px;
+}
+.help_question_hint_wrong {
+  background: #f3ebd7;
+}
+.help_question_hint_wrong .help_question_hint_image {
+  background: url(/images/help_stest_age.png) no-repeat 0 0;
+}
+.help_question_hint_text {
+  line-height: 170%;
+  padding-left: 65px;
+}
+.help_answers_lock {
+  position: absolute;
+  z-index: 100;
+  background: #FFF;
+  opacity: 0.01;
+  filter: alpha(opacity=1);
+}
+.help_done_answer .radiobtn div {
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+.help_right_answer .radiobtn div {
+  background: url(/images/icons/help_stest_tick.gif) 0px 2px no-repeat;
+}
+.help_test_results_wrap {
+  padding: 20px 100px;
+  background: #f7f7f7;
+}
+.help_test_results_wrap #help_test_finish_btn {
+  display: block;
+  width: 170px;
+  margin: 0 auto;
+}
+#help_test_finish_btn_lock {
+  position: absolute;
+  z-index: 100;
+  background: #FFF;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+  width: 172px;
+  height: 25px;
+  margin: -1px 0 0 -1px;
+}
+.help_test_results_wrap #help_test_finish_btn button {
+  width: 170px;
+}
+#help_test_results_warn {
+  padding: 8px 0 0;
+  color: #777;
+  text-align: center;
+}
+.help_test_intro_resulted0 .help_test_intro_image,
+.help_test_intro_resulted1 .help_test_intro_image {
+  background: url(/images/help_stest_age.png) no-repeat 0 0;
+}
+.help_test_intro_resulted2 .help_test_intro_image,
+.help_test_intro_resulted3 .help_test_intro_image {
+  background: url(/images/help_stest_bud_blue.png) no-repeat 0 0;
+}
+.help_test_intro_resulted4 .help_test_intro_image {
+  background: url(/images/help_stest_bud.png) no-repeat 0 0;
+}
+.help_test_hints_wrap {
+  padding: 25px 70px 0 85px;
+}
+.help_test_hints_title {
+  font-size: 1.09em;
+  color: #46678d;
+  font-weight: bold;
+  line-height: 140%;
+}
+div.help_test_hints {
+  padding: 10px 0;
+  line-height: 160%;
+}
+ul.help_test_hints {
+  padding-top: 10px;
+  padding-left: 50px;
+  margin-bottom: 0;
+}
+.help_test_results_like_wrap {
+  margin: 20px 85px 20px;
+}
+#help_test_results_like {
+  min-height: 23px;
+  *height: 23px;
+}
+#terms_box_content,
+#privacy_box_content,
+#licence_box_content {
+  line-height: 170%;
+  padding: 20px;
+}
+#terms_box_content .wikiSubHeader,
+#privacy_box_content .wikiSubHeader,
+#licence_box_content .wikiSubHeader {
+  border-bottom: 1px solid #DAE1E8;
+  color: #45688E;
+  font-size: 1.09em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+#privacy_box_content .listing,
+#licence_box_content .listing {
+  margin-bottom: 0px;
+}
+.help_privacy_header,
+.help_licence_header {
+  font-size: 14px;
+  font-weight: bold;
+  padding-bottom: 3px;
+  color: #45688E;
+  border-bottom: 1px solid #DAE1E8;
+}
+.help_faq_fixed {
+  background: url('/images/faq_fixed.png') no-repeat 0px 0px;
+  width: 32px;
+  height: 32px;
+}

@@ -1,0 +1,443 @@
+#wall_css {
+  display: none;
+}
+.full_wall_tabs {
+  background: #FFF;
+  padding-top: 11px;
+}
+#full_wall_progress {
+  margin-top: 5px;
+}
+#fw_summary_wrap {
+  padding: 13px 15px 0px;
+}
+#fw_summary_switch {
+  padding: 4px 0px 0px;
+  display: block;
+}
+.fw_like_wrap {
+  margin: 0px 1px;
+  color: #2F5879;
+  cursor: pointer;
+}
+.fw_like_count {
+  color: #7295B2;
+  font-weight: bold;
+}
+.fw_like_icon {
+  margin: 3px 3px 0px;
+  background: url(/images/icons/like.gif?1) no-repeat 1px 0px;
+  height: 10px;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  width: 11px;
+}
+i.fw_my_like {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+#fw_post_wrap {
+  padding: 0px 0px 15px;
+}
+#fw_post {
+  padding: 15px 15px 0px;
+}
+#fw_post.fw_note {
+  padding: 0px;
+}
+#fw_one_replies_wrap {
+  padding: 8px 27px 0px 80px;
+}
+#fw_one_replies_wrap.fwn_replies {
+  padding: 8px 20px 0px;
+}
+.fw_post_table {
+  width: 100%;
+}
+.fw_post_thumb_td {
+  vertical-align: top;
+}
+.fw_post_thumb {
+  display: block;
+  width: 61px;
+  height: 50px;
+  overflow: hidden;
+}
+td.fw_post_info {
+  vertical-align: top;
+}
+div.fw_post_info {
+  padding-left: 4px;
+  width: 537px;
+}
+.is_rtl1 div.fw_post_info {
+  padding-left: 0px;
+  padding-right: 4px;
+}
+.fw_post_author {
+  font-weight: bold;
+  color: #45688E;
+}
+#fw_post .wall_post_text {
+  line-height: 1.54em;
+  width: 482px;
+  overflow: hidden;
+}
+#fw_post .wall_text,
+#fw_post .wall_post_text,
+#fw_post .post_media {
+  width: 537px;
+}
+.fw_post_name {
+  width: 537px;
+}
+#fw_post .published_by_quote .wall_text,
+#fw_post .published_by_quote .wall_post_text,
+#fw_post .published_by_quote .post_media {
+  width: 510px;
+}
+#fw_post .media_desc,
+#fw_post .post_media {
+  padding-bottom: 2px;
+}
+#fw_post .post_media {
+  line-height: 100%;
+}
+#fw_post .post_media .audio .title_wrap {
+  line-height: normal;
+}
+#fw_post .fw_post_info .explain {
+  color: #777;
+}
+.fw_post_bottom {
+  padding-top: 4px;
+  padding-bottom: 3px;
+  height: 13px;
+  color: #999;
+}
+.fw_post_gray_link {
+  color: #999;
+}
+.fwn_bottom {
+  padding: 4px 20px 3px;
+  height: 13px;
+  color: #999;
+}
+#fwp_summary_wrap {
+  border: 0px;
+  padding: 4px 0px 0px;
+}
+.fw_reply {
+  border-top: 1px solid #DAE1E8;
+  padding: 10px 0px 11px;
+}
+.fw_reply:last-child {
+  padding-bottom: 11px;
+}
+.fw_reply_tt .header {
+  display: none;
+}
+.fw_reply_tt div.fw_reply {
+  padding: 0px;
+  border: 0px;
+}
+.fw_reply_table {
+  width: 100%;
+}
+.fw_reply_thumb_td {
+  vertical-align: top;
+  padding: 0px 1px;
+}
+.fw_reply_thumb {
+  display: block;
+  width: 61px;
+  height: 50px;
+  overflow: hidden;
+}
+.fw_reply_info {
+  vertical-align: top;
+  width: 100%;
+}
+.fw_reply_author {
+  font-weight: bold;
+  color: #45688E;
+}
+.fw_reply_text {
+  padding: 4px 0px;
+  line-height: 160%;
+  width: 458px;
+  overflow: hidden;
+}
+.fwn_replies .fw_reply_text {
+  width: 520px;
+}
+.fw_reply_tt div.fw_reply_text {
+  width: 295px;
+}
+.fw_reply_bottom {
+  height: 13px;
+  color: #999;
+}
+.fwn_header {
+  background: #F7F7F7;
+  border-bottom: solid 1px #DAE1E8;
+  line-height: 185%;
+  padding: 9px 20px 7px;
+}
+.fwn_title {
+  font-size: 1.18em;
+  font-weight: bold;
+  color: #45688E;
+}
+.fwn_author {
+  padding: 0px 1px;
+}
+.fwn_post {
+  width: 587px;
+  overflow: hidden;
+  padding: 15px 20px 10px;
+  word-wrap: break-word;
+  line-height: 160%;
+}
+#fwr_wrap {
+  position: relative;
+}
+#fwr_form {
+  padding: 6px 27px 10px 80px;
+  background: #FFF;
+  border-top: 1px solid #FFF;
+  bottom: 0px;
+  z-index: 20;
+  -webkit-transition: background 400ms linear, border 400ms linear;
+  -moz-transition: background 400ms linear, border 400ms linear;
+  -o-transition: background 400ms linear, border 400ms linear;
+  transition: background 400ms linear, border 400ms linear;
+}
+.fwr_note #fwr_form {
+  padding: 6px 20px 10px;
+}
+#fwr_form.fixed {
+  background: #FAFAFA;
+  border-top: 1px solid #EEE;
+}
+.fwr_no_to {
+  background: url(/images/hide_to.gif) no-repeat;
+  width: 0px;
+  height: 14px;
+  padding-left: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  -webkit-transition: opacity 200ms linear;
+  -moz-transition: opacity 200ms linear;
+  -o-transition: opacity 200ms linear;
+  transition: opacity 200ms linear;
+}
+.fwr_no_to:hover {
+  opacity: 1;
+  filter: none;
+}
+#fwr_text {
+  vertical-align: top;
+  width: 492px;
+  min-height: 42px;
+  max-height: 500px;
+  overflow: auto;
+  margin-bottom: 5px;
+  background: #FFF;
+  border: 1px solid #C3CBD4;
+  padding: 3px;
+  padding-right: 23px;
+}
+.is_rtl1 #fwr_text {
+  padding-right: 3px;
+  padding-left: 23px;
+}
+.fwr_text_cont {
+  position: relative;
+}
+.fwr_note #fwr_text {
+  width: 579px;
+  height: 62px;
+}
+#fwr_warn {
+  padding-top: 10px;
+  color: #777;
+  display: none;
+}
+.fwr_buttons {
+  height: 25px;
+  padding-top: 5px;
+}
+#fwr_cancel {
+  display: none;
+}
+#fwr_to_title {
+  padding: 6px 10px 0px;
+}
+#fwr_reply_media_lnk {
+  display: block;
+}
+#fwr_reply_media_preview .media_preview {
+  margin: 6px 0 0;
+}
+.fwr_header {
+  font-weight: bold;
+  color: #45688E;
+  padding-bottom: 6px;
+}
+.fw_deleted {
+  padding: 19px 65px 20px;
+  color: #777;
+}
+.fw_note .fw_deleted {
+  padding-top: 35px;
+}
+.fw_reply_prg {
+  margin: 0px 10px;
+}
+.fw_date_lnk {
+  color: #999;
+}
+.fw_post_info #wpe_cont,
+.fw_post_info .wpe_buttons {
+  width: 520px;
+}
+.fw_post_info #wpe_text {
+  width: 492px;
+  line-height: 1.54em;
+}
+.fw_post_info #wpe_cont .mention_rich_ta {
+  line-height: 1.54em;
+}
+.fwp_prg {
+  padding-left: 10px;
+}
+.fw_published_by {
+  padding-left: 12px;
+  background: url(/images/icons/published.gif) no-repeat 0px 1px;
+}
+.wall_view_note {
+  padding-top: 8px;
+}
+.wall_note_type {
+  color: #222222;
+  display: block;
+  padding: 6px 0px 2px 0px;
+  font-weight: bold;
+}
+#wall_notification {
+  margin: 15px 15px 15px;
+  line-height: 160%;
+  background: #F7F7F7;
+  border-top: 1px solid #DAE1E8;
+  border-bottom: 1px solid #DAE1E8;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+}
+.wall_notify_h {
+  padding-bottom: 6px;
+  font-weight: bold;
+}
+#wall_notification .hide_notice_wrap {
+  height: 13px;
+  width: 17px;
+}
+#wall_notification .hide_notice {
+  background: #c4d2e1 url("/images/icons/xicon_f7.gif") no-repeat;
+  cursor: pointer;
+  height: 17px;
+  width: 17px;
+}
+.wall_notify_img {
+  margin: 15px 15px 15px 0px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+#wall_search_bar {
+  padding: 10px;
+  background: #F7F7F7;
+  border-bottom: 1px solid #DAE1E8;
+}
+#wall_search_wrap {
+  clear: left;
+  padding: 0;
+  position: relative;
+}
+#wall_search {
+  margin: 0;
+  padding: 5px 4px 4px 20px;
+  width: 492px;
+  height: 14px;
+  line-height: 1.27em;
+  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+}
+#wall_search_btn {
+  padding-left: 2px;
+  padding-right: 4px;
+  width: 80px;
+}
+#wall_empty {
+  color: #777;
+  font-size: 1.09em;
+  line-height: 170%;
+  padding: 100px 30px;
+  text-align: center;
+}
+#page_wall_posts .post .match {
+  background: #E1E7ED;
+  border-bottom: 1px solid #DAE1E8;
+  margin: 0px;
+  padding: 0px 1px;
+}
+.fwr_as_group_wrap {
+  padding: 6px 0 0 10px;
+}
+.wall_preview_link {
+  padding: 6px 9px 0;
+}
+div.fw_publish_controls {
+  margin: 0px;
+  padding: 20px;
+}
+#fw_summary_wrap {
+  position: relative;
+}
+#wall_datesearch_datepicker_container {
+  display: inline;
+}
+#wall_datesearch_datepicker_container .datepicker_control {
+  display: none;
+}
+#wall_datesearch_datepicker_container .cal_table .day {
+  color: #999;
+}
+#wall_datesearch_datepicker_container .cal_table .past_day,
+#wall_datesearch_datepicker_container .cal_table .today {
+  color: #000;
+}
+.wall_cal_clear {
+  background: #F2F2F2;
+  padding: 5px 0px;
+}
+#wall_cal_clear_lnk {
+  display: block;
+  padding: 5px 0px;
+  text-align: center;
+  margin: 0px auto;
+}
+#wall_reset_search {
+  margin: 1px 0px 0px 495px;
+  display: none;
+  cursor: pointer;
+  background: transparent url(/images/icons/input_clear.gif) 6px 6px no-repeat;
+  padding: 2px;
+  width: 19px;
+  height: 19px;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  position: absolute;
+  z-index: 95;
+}

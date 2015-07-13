@@ -1,0 +1,523 @@
+#fave_css {
+  display: none;
+}
+.fave_search {
+  clear: both;
+  padding: 5px;
+}
+.fave_new_link {
+  clear: both;
+  padding: 5px;
+}
+.fave_new_link .button_blue button {
+  width: 130px;
+  overflow: hidden;
+  text-align: center;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+#fave_new_link {
+  width: 449px;
+  outline: none;
+  padding: 5px 5px 6px;
+  margin-right: 5px;
+}
+#fave_new_link_desc {
+  width: 444px;
+  outline: none;
+  padding: 5px 5px 5px 10px;
+  margin-top: 10px;
+}
+#users_content {
+  padding: 15px 0px 0px 12px;
+}
+#users_online_content {
+  padding: 15px 0px 0px 12px;
+}
+.fave_filter {
+  background: #f7f7f7;
+  padding: 9px;
+  height: 27px;
+  border-bottom: 1px solid #dae1e8;
+}
+.fave_module.fave_nosummary {
+  margin-top: 0px;
+}
+.fave_module.fave_nomargin {
+  margin: 0;
+}
+#fave_search {
+  width: 582px;
+  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+  outline: none;
+  padding: 5px 5px 6px 20px;
+}
+.fave_empty_list_message {
+  color: #777;
+  font-size: 1.09em;
+  line-height: 1.45em;
+  padding: 60px 20px;
+  text-align: center;
+}
+.fave_user_div {
+  display: inline;
+  display: inline-block;
+  zoom: 1;
+  width: 120px;
+  vertical-align: top;
+  text-align: center;
+  cursor: default !important;
+}
+.fave_online {
+  padding-top: 5px;
+  width: 120px;
+  color: #777;
+  font-weight: normal;
+}
+.fave_user_image {
+  display: block;
+  vertical-align: top;
+  overflow: hidden;
+  height: 100px;
+  text-decoration: none;
+}
+.fave_user_image:hover {
+  text-decoration: none;
+}
+.fave_group_image {
+  vertical-align: middle;
+  overflow: hidden;
+  max-height: 50px;
+  padding-right: 10px;
+}
+.fave_link_image {
+  vertical-align: middle;
+  overflow: hidden;
+  max-height: 50px;
+}
+.fave_users_not_found {
+  padding: 50px 10px;
+  margin: 15px 15px;
+  text-align: center;
+  font-size: 1.09em;
+  color: #777;
+  overflow: hidden;
+}
+.fave_msg {
+  margin: 10px;
+  margin-bottom: 0px;
+}
+#fave_notes_tab_wrap {
+  padding: 11px 5px 0;
+}
+#likes_posts_content .wall_post_text,
+#likes_posts_content .wall_reply_text,
+#likes_notes_content .wall_post_text,
+#likes_notes_content .wall_reply_text {
+  line-height: 160%;
+}
+#likes_posts_content .text,
+#likes_notes_content .text {
+  width: 500px;
+}
+.groups_table {
+  margin: 0px;
+  padding: 5px 10px;
+}
+.groups_table > tbody > tr {
+  border-top: 1px solid black;
+  height: 60px;
+}
+.people_table {
+  margin: 0px;
+  padding: 6px 0px 0px 9px;
+}
+.people_table tr {
+  height: 40px;
+}
+.people_table td {
+  width: 120px;
+  vertical-align: middle;
+  text-align: center;
+}
+.people_table table {
+  height: 100%;
+}
+.people_table table td.image {
+  overflow: hidden;
+  vertical-align: middle;
+  padding-bottom: 0px;
+  font-size: 1px;
+  line-height: 1px;
+}
+.fave_user_name {
+  font-weight: bold;
+  word-wrap: break-word;
+  text-align: center;
+  padding-bottom: 10px;
+}
+.fave_user_name a {
+  *background-color: white;
+}
+.fave_user_comment {
+  color: #333;
+  font-size: 0.9em;
+  font-weight: normal;
+}
+#likes_photo_content {
+  margin-left: 11px;
+  padding-bottom: 10px;
+}
+#likes_posts_content,
+#likes_notes_content {
+  margin-top: 4px;
+}
+.fave_module_header {
+  width: 600px;
+  padding-left: 10px;
+}
+.fave_module_header_top {
+  background: #e1e7ed;
+  border-top: 1px solid #d3dae0;
+  border-bottom: 1px solid #d8dfe5;
+  padding: 3px 8px;
+}
+.fave_module_header_bottom {
+  border-bottom: 1px solid #EEEEEE;
+  color: #777777;
+  background: #F1F1F1;
+  padding: 3px 8px;
+}
+.people_table .fave_online {
+  width: auto;
+  height: auto;
+  color: #777;
+  font-weight: normal;
+}
+/* Show more */
+.fave_show_more_progress {
+  margin: 0px auto;
+}
+.fave_more_link {
+  display: none;
+  margin: 0px 20px 15px;
+  padding: 10px;
+  text-align: center;
+}
+.fave_more_link:hover {
+  text-decoration: none;
+  background: #E8EBEE;
+}
+#fave_all_shown {
+  border-top: 1px solid #CAD1D9;
+  color: #777;
+  display: block;
+  padding: 10px 0px;
+  text-align: center;
+}
+#fave_list_empty {
+  color: #777;
+  display: none;
+  font-size: 1.09em;
+  line-height: 170%;
+  padding: 50px;
+  text-align: center;
+}
+/* FROM SEARCH HINTS */
+#likes_posts_content #results,
+#likes_notes_content #results {
+  padding: 0px 20px;
+}
+.wall_module .first {
+  border-top: none !important;
+}
+.fave_module .wall_module .like_wrap {
+  margin-bottom: 0;
+}
+.fave_module .wall_module .replies_wrap {
+  display: none;
+}
+.fave_photo_item_wrap {
+  padding: 9px 9px 9px 10px;
+  width: 130px;
+  height: 98px;
+}
+a.fave_photo_item {
+  display: block;
+}
+.fave_photo_inner {
+  display: block;
+  width: 130px;
+  height: 98px;
+  overflow: hidden;
+  text-align: center;
+  background: #f1f1f1 no-repeat 50% top;
+}
+.fave_photo_memlink {
+  display: block;
+  margin-top: -20px;
+  background: url(/images/mv_bg.png);
+  background: rgba(0, 0, 0, 0.6);
+  text-shadow: 0px 1px 0px #262626;
+  color: #FFF;
+  padding: 5px 0;
+  height: 13px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+.fave_video_item {
+  display: inline-block;
+  *display: block;
+  *zoom: 1;
+  padding: 6px;
+  width: 295px;
+}
+.fave_video_item:hover {
+  text-decoration: none;
+}
+.fave_link_item {
+  border-top: 1px solid #EDF1F5;
+  padding: 10px;
+  width: 583px;
+  overflow: hidden;
+}
+.fave_video_item_first {
+  border: none;
+  padding-top: 3px;
+}
+.fave_link_item_first {
+  border: none;
+  padding-top: 3px;
+}
+.fave_video_info {
+  padding: 5px 6px;
+  color: white;
+  position: absolute;
+  background: url(/images/mv_bg.png);
+  background: rgba(0, 0, 0, 0.5);
+  height: 12px;
+  margin-top: 143px;
+  width: 283px;
+  text-align: center;
+}
+.fave_video_thumb {
+  width: 295px;
+  height: 165px;
+  background-size: cover;
+  background-position: center;
+}
+.fave_link_info {
+  padding: 0px 0px 4px 10px;
+  font-weight: bold;
+}
+.fave_video_duration {
+  padding: 4px 7px 5px;
+  height: 12px;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, 0.5);
+  margin: 6px 6px 0 0;
+  border-radius: 2px;
+}
+.fave_video_duration_cont {
+  position: absolute;
+  width: 295px;
+}
+.fave_video_desc {
+  padding: 0px 0px 5px 11px;
+  color: black;
+}
+.fave_link_desc {
+  padding: 0px 0px 5px 11px;
+  color: black;
+}
+.fave_delete_link {
+  background: url(/images/pics/statusx_op.gif) no-repeat;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  cursor: pointer;
+  height: 17px;
+  width: 17px;
+}
+.fave_user_div em {
+  font-style: normal;
+  background: #FFF8CC none repeat scroll 0 0;
+  border-bottom: 1px solid #FFE222;
+}
+.fave_user_div a.fave_user_bg {
+  display: none;
+}
+.fave_user_div_up > div {
+  position: absolute;
+}
+.fave_user_div_up .fave_user_name {
+  text-shadow: white 0px 0px 1px, white 0px 0px 3px, white 0px 0px 6px, white 0px 0px 8px, white 0px 0px 12px;
+}
+#likes_posts_content .wall_module .info,
+#likes_notes_content .wall_module .info {
+  padding: 0px 0px 8px;
+}
+#likes_posts_content .wall_module .group_share .info,
+#likes_posts_content .wall_module .event_share .info {
+  width: 350px;
+  overflow: hidden;
+  padding: 0 10px;
+}
+.fave_face {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  padding: 10px;
+}
+.fave_face:hover {
+  text-decoration: none;
+}
+.fave_face_cont {
+  padding: 0px 12px;
+}
+.fave_face_name {
+  display: block;
+  position: absolute;
+  margin-top: 80px;
+  background: url(/images/mv_bg.png);
+  background: rgba(0, 0, 0, 0.6);
+  text-shadow: 0px 1px 0px #262626;
+  color: #FFF;
+  padding: 4px 0px;
+  height: 12px;
+  text-align: center;
+  width: 100px;
+  overflow: hidden;
+}
+/* LIKES */
+.fave_like_wrap {
+  margin: 4px 1px 8px;
+  color: #2F5879;
+  cursor: pointer;
+  margin-top: -15px;
+}
+.fave_like_link,
+.no_likes {
+  visibility: hidden;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+.like_link {
+  visibility: visible;
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.no_likes {
+  visibility: visible;
+}
+.fave_like_wrap div {
+  background: url(/images/icons/like.gif?1) no-repeat 1px 0px;
+  height: 10px;
+  margin: 3px 3px 0px;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  width: 11px;
+}
+.fave_like_wrap div.my_like {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.fave_like_wrap div.no_likes {
+  margin-right: 0px;
+}
+.fave_like_count {
+  margin-right: 3px;
+}
+.fave_more_button {
+  padding: 5px 5px 0px;
+}
+b.fave_mob_onl {
+  background-position: -31px 0px;
+  *background-position: -31px -1px;
+}
+.fave_u_bl_wrap {
+  position: absolute;
+  z-index: 10;
+  right: 0px;
+  top: 0px;
+  background: #222;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 3px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-transition: opacity 100ms linear;
+  -moz-transition: opacity 100ms linear;
+  -o-transition: opacity 100ms linear;
+  transition: opacity 100ms linear;
+}
+a:hover .fave_u_bl_wrap {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.fave_u_bl {
+  background: url(/images/notifier_close.gif) no-repeat;
+  width: 7px;
+  height: 7px;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  -webkit-transition: opacity 100ms linear;
+  -moz-transition: opacity 100ms linear;
+  -o-transition: opacity 100ms linear;
+  transition: opacity 100ms linear;
+}
+.fave_u_bl_wrap:hover .fave_u_bl {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.fave_uph_wrap {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0px auto 5px;
+  overflow: hidden;
+}
+.fave_uph {
+  position: absolute;
+  color: #FFF;
+  margin-top: 100px;
+  background: #333;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100px;
+  height: 15px;
+  line-height: 15px;
+  padding: 4px 0px 6px 0px;
+  text-align: center;
+  filter: alpha(opacity=75);
+}
+@media all and (min-width: 0) {
+  /* IE9-10 */
+  .fave_uph {
+    filter: none;
+  }
+}
+.fave_uph:hover {
+  text-decoration: none;
+}
+.fave_uph_label {
+  opacity: 0.75;
+  -webkit-transition: opacity 100ms linear;
+  -moz-transition: opacity 100ms linear;
+  -o-transition: opacity 100ms linear;
+  transition: opacity 100ms linear;
+  padding: 0px 0px 1px 20px;
+  background: url(/images/icons/photo_icons.png?2) no-repeat left -62px;
+}
+.is_rtl1 .fave_uph_label {
+  padding: 0px 20px 1px 0px;
+  background-position: right -62px;
+}
+.fave_uph:hover .fave_uph_label {
+  opacity: 1;
+}
+.fave_u_img {
+  width: 100px;
+}
