@@ -1145,6 +1145,7 @@ extPageSubscribe: function(btn, oid, hash, msg) {
 
 wallBeforeInitPost: function (opts) {
   if (window.tooltips) tooltips.destroyAll();
+  revertLastInlineVideo();
 
   if (wkcur.postInited) {
     return false;
