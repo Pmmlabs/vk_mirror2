@@ -545,7 +545,7 @@ print_user_change_address='¬ы можете изменить адрес своей страницы в {link}настр
 print_user_no_address='%s не имеет короткого адреса. Ќаклейки можно создать только дл€ страниц, у которых есть короткий адрес вида <b>vk.com/cafe</b>.';
 // section = 69; version = 20;
 
-chronicle_landing_title='Ѕольше €рких моментов';
+chronicle_landing_title='Ќовое фотоприложение';
 // section = 70; version = 1;
 
 
