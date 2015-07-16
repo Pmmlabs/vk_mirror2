@@ -41,6 +41,10 @@ var Groups = {
         } else {
           setCookie('remixage18', 1);
         }
+
+        if (cur.zNavInfo) {
+          zNav(cur.zNavInfo.info, cur.zNavInfo.opts);
+        }
       }, 'yes', true);
 
       var buttons = geByClass1('box_controls', domPN(box.bodyNode));

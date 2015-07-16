@@ -1938,6 +1938,44 @@ stlOnScroll: function (resize) {
   }
   setStyle(wkcur.lSTL, {opacity: Math.min(Math.max(o, 0), 1)});
 },
+subscribe: function(btn, hash) {
+  var ttVisible = btn.tt && (btn.tt.shown || btn.tt.showing);
+  if (ttVisible) {
+    tooltips.hide(btn, {fasthide : 1});
+  } else if (btn.tt && btn.ttimer) {
+    clearTimeout(btn.ttimer);
+    ttVisible = true;
+  }
 
-
+  ajax.post('/al_wall.php', { act: 'toggle_subscribe', post: wkcur.post, hash: hash }, {
+    onDone: function(data) {
+      WkView.setSubscribed(btn, data.subscribed, ttVisible);
+    },
+    showProgress: function() {
+      addClass(btn, 'processing');
+    },
+    hideProgress: function() {
+      removeClass(btn, 'processing');
+    }
+  });
+},
+setSubscribed: function(btn, subscribed, showTt) {
+  btn.innerHTML = wkcur.lang[subscribed ? 'wall_unsubscribe_post' : 'wall_subscribe_post'];
+  toggleClass(btn, 'wl_post_subscribed', subscribed);
+  if (showTt) {
+    WkView.showSubscribeTooltip(btn);
+  }
+},
+showSubscribeTooltip: function(btn) {
+  var subscribed = hasClass(btn, 'wl_post_subscribed'), s = getSize(btn), btnW = s[0];
+  showTooltip(btn, {
+    text: function() { return wkcur.lang[subscribed ? 'wall_unsubscribe_post_tt' : 'wall_subscribe_post_tt']; },
+    shift: function() {
+      var s = getSize(btn.tt.container);
+      return [(s[0] - btnW)/2, 8, 8];
+    },
+    showdt: 400,
+    className: 'subscribe_post_tt' + (subscribed ? ' subscribe_post_tt__undo' : '')
+  });
+},
 _eof: 1};try{stManager.done('wkview.js');}catch(e){}

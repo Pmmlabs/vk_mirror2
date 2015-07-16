@@ -8,7 +8,7 @@ var html5video = {
   liked: false,
   added: false,
   fixed_player_size: false,
-  actionsW: 31,
+  actionsW: 39,
   cur_res: -1,
   inside: 0,
   moveState: 0,
@@ -27,7 +27,7 @@ var html5video = {
     html5video.volume = html5video.lastVolume = 0.65;
     html5video.cur_res = -1;
     html5video.fixed_player_size = false;
-    html5video.actionsW = 31;
+    html5video.actionsW = 39;
     html5video.inside = 0;
     html5video.moveState = 0;
     html5video.notLoaded = 1;
@@ -85,9 +85,13 @@ var html5video = {
       setStyle(ge('vid_link_bg'), {width: w + 48});
       setStyle(ge('vid_link'), {width: w + 48});
     }
-    if (vars.can_rotate && this.transformAvailable()) {
+    if (false && vars.can_rotate && this.transformAvailable()) {
       actsEl.insertBefore(se('<div id="rotate_btn" class="rotate_button fl_l" onmouseover="html5video.rotateOver(this, event)" onmouseout="html5video.rotateOut(this, event)" onclick="html5video.rotateVideo()"></div>'), ge('quality_btn'));
       html5video.actionsW += 34;
+    }
+    if (vars.is_inline) {
+      actsEl.insertBefore(se('<div id="popup_btn" class="popup_button fl_l" onmouseover="html5video.openPopupOver(this, event)" onmouseout="html5video.openPopupOut(this, event)" onmouseout="" onclick="html5video.openVideoPopup()"></div>'), ge('quality_btn'));
+      html5video.actionsW += 28;
     }
     if (fullScreenApi.supportsFullScreen) {
       actsEl.insertBefore(se('<div id="fullscreen_btn" class="fullscreen_button fl_l" onmouseover="html5video.fullscreenOver(this, event)" onmouseout="html5video.fullscreenOut(this, event)" onclick="html5video.toggleFullscreen()"></div>'), ge('quality_btn'));
@@ -100,7 +104,7 @@ var html5video = {
         addEvent(ge('html5_player'), fullScreenApi.fullScreenEventName, html5video.updateFullscreen);
       }
       addEvent(ge('video_cont'), 'dblclick', html5video.toggleFullscreen);
-      html5video.actionsW += 33;
+      html5video.actionsW += 25;
     }
     if (!vars.nologo) {
       actsEl.appendChild(se('<div id="logo_btn" class="logo ' + (vars.is_vk ? 'vk ' : '') +  'fl_l" onmouseover="html5video.logoOver(this, event)" onmouseout="html5video.logoOut(this, event)" onclick="html5video.logoClick()"></div>'), ge('quality_btn'));
@@ -109,7 +113,7 @@ var html5video = {
     html5video.noQualityBtn = !vars.vtag || !vars.hd;
     if (html5video.noQualityBtn) {
       hide('quality_btn');
-      html5video.actionsW -= 31;
+      html5video.actionsW -= 39;
     }
     html5video.maxActionsW = html5video.actionsW;
 
@@ -125,6 +129,7 @@ var html5video = {
     html5video.updVol();
     ge('video_title').innerHTML = decodeURIComponent(html5video.vars.md_title || '').replace(/\+/g, ' ');
     ge('video_author').innerHTML = decodeURIComponent(html5video.vars.md_author || '').replace(/\+/g, ' ');
+    ge('video_author').href = decodeURIComponent(html5video.vars.author_href || '')
 
     html5video.initVideoLinks();
     html5video.addVideoListeners();
@@ -137,6 +142,10 @@ var html5video = {
     } else {
       setStyle(pl.parentNode, {width:'100%',height:'100%'});
     }
+    html5video.timeLabelW = getSize('time_label')[0];
+    setStyle('time_label', {
+      width: html5video.timeLabelW + 'px'
+    });
     html5video.centerPopup();
     html5video.updateActions();
 
@@ -145,21 +154,21 @@ var html5video = {
       hide('the_video');
     }
     html5video.updateRotation();
-    var transition = {
-      webkitTransition: 'all 200ms ease-in-out',
-      msTransition: 'all 200ms ease-in-out',
-      transition: 'all 200ms ease-in-out'
-    };
-    setStyle(ge('the_video'), transition);
-    setStyle(ge('rotate_btn'), transition);
+    // var transition = {
+    //   webkitTransition: 'all 200ms ease-in-out',
+    //   msTransition: 'all 200ms ease-in-out',
+    //   transition: 'all 200ms ease-in-out'
+    // };
+    // setStyle(ge('the_video'), transition);
+    // setStyle(ge('rotate_btn'), transition);
 
-    if (vars.thumb) {
-      setTimeout(setStyle.pbind(ge('video_thumb'), {
-        webkitTransition: 'all 200ms ease-in-out',
-        msTransition: 'all 200ms ease-in-out',
-        transition: 'all 200ms ease-in-out'
-      }), 200);
-    }
+    // if (vars.thumb) {
+    //   setTimeout(setStyle.pbind(ge('video_thumb'), {
+    //     webkitTransition: 'all 200ms ease-in-out',
+    //     msTransition: 'all 200ms ease-in-out',
+    //     transition: 'all 200ms ease-in-out'
+    //   }), 200);
+    // }
 
     if (vars.timeline_thumbs) {
       var spritesheets = '';
@@ -169,14 +178,15 @@ var html5video = {
       ge('menu_controls').appendChild(se('<div id="video_preview_tip"><div id="video_preview_tip_img_wrap">' + spritesheets + '</div><div id="video_preview_tip_text"></div><div id="video_preview_tip_arrow"></div></div>'));
     }
 
-    html5video.updTime();
+    html5video.onResize();
+
     setInterval(function(){
       if (html5video.moveState != 1) {
         html5video.updTime();
         html5video.addViewTimer();
       }
     }, 100);
-    if (vars.autoplay) {
+    if (vars.autoplay || html5video.timeFromStr(vars.t)) {
       html5video.playVideo();
     }
 
@@ -220,11 +230,12 @@ var html5video = {
     } else {
       re('button1080');
     }
-    setStyle(ge('quality_panel_wrap'), {top: -4 - linksCount * 20});
-    setStyle(ge('quality_bk'), {height: linksCount * 20 - 10});
-    var initQuality = Math.min(this.max_res, intval(getCookie('video_quality') || 360))
+    setStyle(ge('quality_panel_wrap'), {top: -4 - linksCount * 22});
+    setStyle(ge('quality_bk'), {height: linksCount * 22 - 5});
+    var initQuality = Math.min(this.max_res, intval(getCookie('video_quality') || 360));
+    var playFrom = this.timeFromStr(this.vars.t);
 
-    this.changeQuality(initQuality);
+    this.changeQuality(initQuality, false, playFrom);
   },
 
   addVideoListeners: function() {
@@ -271,26 +282,21 @@ var html5video = {
     return host + 'u' + vars.uid + '/video/' + vars.vtag + '.' + res + '.mp4';
   },
 
-  changeQuality: function(res, force) {
+  changeQuality: function(res, force, playFrom) {
     if (res == html5video.cur_res) return;
     html5video.cur_res = res;
     html5video.onPause();
     ge('quality_val').innerHTML = res;
-    ge('quality_label').innerHTML = res;
-    setStyle('quality_val', {
-      background: res == 1080 ? 'none' : ''
-    });
-    setStyle('quality_label', {
-      background: res == 1080 ? 'none' : ''
-    });
-    each (geByTag('button', ge('quality_panel')), function() {
+    toggle('quality_val_hd', res > 480);
+    toggle('quality_val_arrow', res < 720);
+    each(geByTag('button', ge('quality_panel')), function() {
       removeClass(this, 'selected');
     });
     var b = ge('button' + res);
     if (b) {
       addClass(b, 'selected');
     }
-    toggleClass(ge('popup1'), 'show_hd', html5video.cur_res < html5video.max_res);
+    toggleClass(ge('popup1'), 'show_hd', html5video.max_res > 480 && html5video.cur_res < 720);
     var video = ge('the_video');
     html5video.changeQualityTime = video.currentTime;
     video.pause();
@@ -304,10 +310,10 @@ var html5video = {
       hide('popup1');
       html5video.showLoading();
     }
-    animate(ge('menu_layer'), {bottom: 46}, 200);
-    animate(ge('popup_actions'), {opacity: 1}, 200);
+    animate(ge('menu_layer'), {bottom: 36}, 200);
+    removeClass('popup_actions', 'hidden');
     removeClass(video, 'no_cursor');
-    video.src = html5video.pathToHD(res);
+    video.src = html5video.pathToHD(res) + (playFrom > 0 && playFrom < html5video.vars.duration ? '#t=' + playFrom : '');
     if (this.videoClicked) {
       video.load();
     }
@@ -330,7 +336,22 @@ var html5video = {
   },
 
   onResize: function() {
+    if (!ge('the_video')) return;
+    var minSize = html5video.minSize = getSize('bg')[0] < 500;
     html5video.centerPopup();
+    addClass('popup_actions', 'no-transition');
+    toggleClass('popup_actions', 'popup_actions_min', minSize);
+    toggleClass('time_label', 'time_label_min', minSize);
+    setStyle('time_label', {
+      width: minSize ? Math.round((html5video.timeLabelW-11) / 2) : html5video.timeLabelW
+    });
+    if (minSize) {
+      ge('volume_dropdown').appendChild(ge('vid_vol'));
+      hide('vid_vol_cell');
+    } else {
+      ge('vid_vol_cell').appendChild(ge('vid_vol'));
+      show('vid_vol_cell');
+    }
     html5video.calcPrLineW();
     html5video.updateActions();
     if (ge('video_thumb')) {
@@ -339,6 +360,9 @@ var html5video = {
     if (html5video.videoFinished && ge('vid_finish_layer')) {
       html5video.resizeFinishScreen();
     }
+    setTimeout(function() {
+      removeClass('popup_actions', 'no-transition');
+    }, 0);
   },
 
   playVideo: function(forceStatus) {
@@ -370,8 +394,8 @@ var html5video = {
       if (this.incSmallViewTimer) {
         this.incSmallViewTimer.resume();
       }
-      if (window.videoCallback && !this.streamPlaying && vars.oid && vars.vid && vars.hash) {
-        this.streamPlaying = true;
+      if (window.videoCallback) {
+        // this.streamPlaying = true;
         videoCallback(['onVideoStreamPlaying', vars.oid, vars.vid, vars.hash]);
       }
     } else {
@@ -390,14 +414,19 @@ var html5video = {
     videoCallback(['onVideoNext', vid, isTimer, byTimeout]);
   },
 
+  isMinimized: function() {
+    return !!(window.mvcur && mvcur.minimized);
+  },
+
   showFinishLayer: function() {
     var vars = html5video.vars;
     var html = '\
-      <div class="vid_finish_title">' + vars.md_title + '</div>\
+      <div class="vid_finish_layer_bk" onclick="html5video.onFinishLayerClick()"></div>\
+      <div id="vid_finish_title" class="vid_finish_title">' + vars.md_title + '</div>\
       <div id="vid_finish_actions" class="vid_finish_actions clear_fix">\
-        <div id="vid_finish_like" class="vid_finish_like fl_l ' + (html5video.liked?'selected':'') + '" onmouseover="html5video.finishLikeOver()" onmouseout="html5video.finishLikeOut()" onclick="html5video.onLike(2)"><div id="vid_finish_like_bg" class="vid_finish_like_bg"></div><div id="vid_finish_like_fg" class="vid_finish_like_fg"></div><div id="vid_finish_liked_fg" class="vid_finish_liked_fg"></div></div>\
-        <div id="vid_finish_share" class="vid_finish_share fl_l" onmouseover="html5video.finishShareOver()" onmouseout="html5video.finishShareOut()" onclick="html5video.onShare(2)"><div id="vid_finish_share_bg" class="vid_finish_share_bg"></div><div id="vid_finish_share_fg" class="vid_finish_share_fg"></div></div>\
-        ' + (vars.viewer_id !== vars.oid && vars.can_add ? '<div id="vid_finish_add" class="vid_finish_add fl_l ' + (html5video.added?'selected':'') + '" onmouseover="html5video.finishAddOver()" onmouseout="html5video.finishAddOut()" onclick="html5video.onAdd(2)"><div id="vid_finish_add_bg" class="vid_finish_add_bg"></div><div id="vid_finish_add_fg" class="vid_finish_add_fg"></div><div id="vid_finish_added_fg" class="vid_finish_added_fg"></div></div>' : '') + '\
+        <div id="vid_finish_like" class="vid_finish_like fl_l ' + (html5video.liked?'selected':'') + '" onclick="html5video.onLike(2)"><div id="vid_finish_like_bg" class="vid_finish_like_bg"></div><div id="vid_finish_like_fg" class="vid_finish_like_fg"></div><div id="vid_finish_liked_fg" class="vid_finish_liked_fg"></div></div>\
+        <div id="vid_finish_share" class="vid_finish_share fl_l" onclick="html5video.onShare(2)"><div id="vid_finish_share_bg" class="vid_finish_share_bg"></div><div id="vid_finish_share_fg" class="vid_finish_share_fg"></div></div>\
+        ' + (vars.viewer_id !== vars.oid && vars.can_add ? '<div id="vid_finish_add" class="vid_finish_add fl_l ' + (html5video.added?'selected':'') + '" onclick="html5video.onAdd(2)"><div id="vid_finish_add_bg" class="vid_finish_add_bg"></div><div id="vid_finish_add_fg" class="vid_finish_add_fg"></div><div id="vid_finish_added_fg" class="vid_finish_added_fg"></div></div>' : '') + '\
       </div>\
       <div>\
         <div id="vid_finish_content" class="vid_finish_content"></div>\
@@ -412,24 +441,20 @@ var html5video = {
 
     ge('html5_player').insertBefore(layer, ge('menu_layer'));
 
-    var playerSize = getSize(ge('bg'));
-    var actionsSize = getSize(ge('vid_finish_actions'));
-
-    setStyle(ge('vid_finish_actions'), {
-      left: playerSize[0] / 2 - actionsSize[0] / 2 + 'px',
-      top: playerSize[1] / 2 - actionsSize[1] / 2 + 'px'
-    });
+    html5video.resizeFinishScreen();
   },
 
   showFinishExtendedLayer: function() {
     var vars = html5video.vars;
+    var canAdd = vars.viewer_id !== vars.oid && vars.can_add;
 
     var html = '\
-      <div class="vid_finish_title">' + vars.md_title + '</div>\
+      <div class="vid_finish_layer_bk" onclick="html5video.onFinishLayerClick()"></div>\
+      <div id="vid_finish_title" class="vid_finish_title">' + vars.md_title + '</div>\
       <div id="vid_finish_actions" class="vid_finish_actions vid_finish_extended_actions clear_fix">\
-        <div id="vid_finish_like" class="vid_finish_like vid_finish_extended_like fl_l ' + (html5video.liked?'selected':'') + '" onmouseover="html5video.finishLikeOver(true)" onmouseout="html5video.finishLikeOut(true)" onclick="html5video.onLike(3)"><div id="vid_finish_like_bg" class="vid_finish_like_bg"></div><div id="vid_finish_like_fg" class="vid_finish_like_fg"></div><div id="vid_finish_liked_fg" class="vid_finish_liked_fg"></div><div id="vid_finish_like_text" class="vid_finish_like_text">' + vars.lang_like + '</div></div>\
-        ' + (vars.viewer_id !== vars.oid && vars.can_add ? '<div id="vid_finish_add" class="vid_finish_add vid_finish_extended_add fl_l ' + (html5video.added?'selected':'') + '" onmouseover="html5video.finishAddOver(true)" onmouseout="html5video.finishAddOut(true)" onclick="html5video.onAdd(3)"><div id="vid_finish_add_bg" class="vid_finish_add_bg"></div><div id="vid_finish_add_fg" class="vid_finish_add_fg"></div><div id="vid_finish_added_fg" class="vid_finish_added_fg"></div></div>' : '') + '\
-        <div id="vid_finish_share" class="vid_finish_share vid_finish_extended_share fl_l" onmouseover="html5video.finishShareOver(true)" onmouseout="html5video.finishShareOut(true)" onclick="html5video.onShare(3)"><div id="vid_finish_share_bg" class="vid_finish_share_bg"></div><div id="vid_finish_share_fg" class="vid_finish_share_fg"></div><div id="vid_finish_share_text" class="vid_finish_share_text">' + vars.lang_share + '</div></div>\
+        <div id="vid_finish_like" class="vid_finish_like vid_finish_extended_like fl_l ' + (html5video.liked?'selected':'') + '"' + (!canAdd?' style="width:230px"':'') + ' onclick="html5video.onLike(3)"><div id="vid_finish_like_bg" class="vid_finish_like_bg"></div><div id="vid_finish_like_fg" class="vid_finish_like_fg"></div><div id="vid_finish_liked_fg" class="vid_finish_liked_fg"></div><div id="vid_finish_like_text" class="vid_finish_like_text">' + vars.lang_like + '</div></div>\
+        ' + (canAdd ? '<div id="vid_finish_add" class="vid_finish_add vid_finish_extended_add fl_l ' + (html5video.added?'selected':'') + '" onclick="html5video.onAdd(3)"><div id="vid_finish_add_bg" class="vid_finish_add_bg"></div><div id="vid_finish_add_fg" class="vid_finish_add_fg"></div><div id="vid_finish_added_fg" class="vid_finish_added_fg"></div></div>' : '') + '\
+        <div id="vid_finish_share" class="vid_finish_share vid_finish_extended_share fl_l" onclick="html5video.onShare(3)"><div id="vid_finish_share_bg" class="vid_finish_share_bg"></div><div id="vid_finish_share_fg" class="vid_finish_share_fg"></div><div id="vid_finish_share_text" class="vid_finish_share_text">' + vars.lang_share + '</div></div>\
       </div>\
       <div>\
         <div id="vid_finish_content" class="vid_finish_content"></div>\
@@ -444,13 +469,7 @@ var html5video = {
 
     ge('html5_player').insertBefore(layer, ge('menu_layer'));
 
-    var playerSize = getSize(ge('bg'));
-    var actionsSize = getSize(ge('vid_finish_actions'));
-
-    setStyle(ge('vid_finish_actions'), {
-      left: playerSize[0] / 2 - actionsSize[0] / 2 + 'px',
-      top: playerSize[1] / 2 - actionsSize[1] / 2 + 'px'
-    });
+    html5video.resizeFinishScreen();
   },
 
   showNextVideoLayer: function() {
@@ -477,16 +496,8 @@ var html5video = {
 
     ge('vid_finish_content').innerHTML = contentHtml;
 
-    var playerSize = getSize(ge('bg'));
+    html5video.resizeFinishScreen();
 
-    setStyle(ge('vid_finish_actions'), {
-      top: playerSize[1] / 2 - 110 + 'px',
-    });
-
-    setStyle(ge('vid_finish_content'), {
-      left: playerSize[0] / 2 - 181 + 'px',
-      top: playerSize[1] / 2 - 25 + 'px',
-    });
     if (!html5video.nextTimerStopped) {
       html5video.nextTimerStart();
     }
@@ -512,17 +523,7 @@ var html5video = {
 
     ge('vid_finish_content').innerHTML = contentHtml;
 
-    var playerSize = getSize(ge('bg'));
-    var contentSize = getSize(ge('vid_finish_content'));
-
-    setStyle(ge('vid_finish_actions'), {
-      top: playerSize[1] / 2 - 110 + 'px',
-    });
-
-    setStyle(ge('vid_finish_content'), {
-      left: playerSize[0] / 2 - contentSize[0] / 2 + 'px',
-      top: playerSize[1] / 2 - 25 + 'px',
-    });
+    html5video.resizeFinishScreen();
 
     setTimeout(function () {
       removeClass(ge('vid_suggestions'), 'hidden');
@@ -530,31 +531,12 @@ var html5video = {
 
   },
 
-  finishLikeOver: function() {
-    // show tip
-  },
-
-  finishLikeOut: function() {
-    // this.hideTip();
-  },
-
-  finishShareOver: function() {
-    // show tip
-  },
-
-  finishShareOut: function() {
-    // this.hideTip();
-  },
-
-  finishAddOver: function() {
-    // show tip
-  },
-
-  finishAddOut: function() {
-    // this.hideTip();
+  onFinishLayerClick: function(e) {
+    html5video.playVideo(true);
   },
 
   resizeFinishScreen: function() {
+    console.info('resizeFinishScreen');
     var finishLayer = ge('vid_finish_layer'),
         playerSize = getSize(ge('bg'));
 
@@ -570,6 +552,10 @@ var html5video = {
       html5video.showFinishLayer();
       return;
     }
+
+    setStyle('vid_finish_title', {
+      display: html5video.isMinimized() ? 'none' : null
+    });
 
     var actions = ge('vid_finish_actions'),
         content = ge('vid_finish_content'),
@@ -588,11 +574,11 @@ var html5video = {
     } else {
       setStyle(actions, {
         left: playerSize[0] / 2 - actionsSize[0] / 2 + 'px',
-        top: playerSize[1] / 2 - actionsSize[1] / 2 + 'px'
+        top: playerSize[1] / 2 - actionsSize[1] / 2 - 10 + 'px'
       });
     }
 
-    setTimeout(html5video.resizeFinishScreen, 10);
+    // setTimeout(html5video.resizeFinishScreen, 10);
   },
 
   nextThumbOver: function() {},
@@ -734,26 +720,42 @@ var html5video = {
 
   showMenu: function(e) {
     html5video.inside = 1;
-    animate(ge('menu_layer'), {bottom: 46}, 200);
+    animate(ge('menu_layer'), {bottom: 36}, 200);
     if (!html5video.videoFinished) {
-      animate(ge('popup_actions'), {opacity: 1}, 200);
+      removeClass('popup_actions', 'hidden');
     }
     removeClass(ge('the_video'), 'no_cursor');
   },
 
   hideMenu: function(e) {
+    var video = ge('the_video');
     html5video.inside = 0;
-    if (!ge('the_video').paused) {
-      setTimeout(function(){
-        if (html5video.inside == 0) {
+    if (video && !video.paused) {
+      html5video.hideMenuTO = setTimeout(function(){
+        if (html5video.inside == 0 && html5video.moveState == 0 && !html5video.isMenuOver) {
           html5video.hideResMenu(true);
           html5video.hideTip();
           html5video.hidePreviewTip();
           animate(ge('menu_layer'), {bottom: 0}, 200);
-          animate(ge('popup_actions'), {opacity: 0}, 200);
+          addClass('popup_actions', 'hidden');
           addClass(ge('the_video'), 'no_cursor');
         }
       }, 0);
+    }
+  },
+
+  onMenuOver: function () {
+    html5video.isMenuOver = true;
+  },
+
+  onMenuOut: function () {
+    html5video.isMenuOver = false;
+    html5video.updateMenu();
+  },
+
+  unhideMenu: function () {
+    if (html5video.hideMenuTO) {
+      clearTimeout(html5video.hideMenuTO);
     }
   },
 
@@ -774,21 +776,36 @@ var html5video = {
     return intval(e.clientX + (window.scrollX || 0));
   },
 
-  centerPopup: function() {
-    var sz = getSize(ge('bg')),
-        small = sz[0] < 400 || !!html5video.vars.min_controls;
-    toggleClass(ge('popup1'), 'small', small);
-    show('popup_bk','video_title','big_play','video_author');
-    var popupSz = getSize(ge('popup1'));
+  defY: function(e) {
+    return intval(e.clientY + (window.scrollY || 0));
+  },
 
-    setStyle(ge('loading_gif2'), {
-      left:(sz[0] - 64) / 2,
-      top:(sz[1] - 16) / 2
+  centerPopup: function() {
+    var playerSize = getSize('bg'),
+        popupMode,
+        popupSize;
+
+    if (playerSize[0] < 300 || playerSize[1] < 250) {
+      popupMode = 2;
+    } else if (html5video.vars.min_controls || playerSize[0] < 400) {
+      popupMode = 1;
+    } else {
+      popupMode = 0;
+    }
+
+    toggleClass('popup1', 'min', popupMode == 2);
+    toggleClass('popup1', 'small', popupMode >= 1);
+    show('popup_bk', 'video_title', 'big_play', 'video_author');
+    popupSize = getSize('popup1');
+
+    setStyle('loading_gif2', {
+      left:(playerSize[0] - 64) / 2,
+      top:(playerSize[1] - 16) / 2
     });
-    setStyle(ge('popup1'), {
+    setStyle('popup1', {
       position:'absolute',
-      left:(sz[0] - popupSz[0]) / 2,
-      top:(sz[1] - popupSz[1] - 46) / 2
+      left:(playerSize[0] - popupSize[0]) / 2,
+      top:(playerSize[1] - popupSize[1]) / 2
     });
   },
 
@@ -805,6 +822,33 @@ var html5video = {
     return (h > 0 ? h + ':' + html5video.addZero(m) : m) + ':' + html5video.addZero(s);
   },
 
+  timeFromStr: function(str) {
+    var pattern = /^(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?$/,
+        match = typeof str === 'string' ? str.match(pattern) : null;
+
+    if (match) {
+      return (match[1] * 3600 || 0) + (match[2] * 60 || 0) + (+match[3] || 0);
+    } else {
+      return 0;
+    }
+  },
+
+  timeToStr: function(t) {
+    var str = '';
+    if (t >= 3600) {
+      str += Math.floor(t / 3600) + 'h';
+      t = t % 3600;
+    }
+    if (t >= 60) {
+      str += Math.floor(t / 60) + 'm';
+      t = t % 60;
+    }
+    if (t > 0) {
+      str += Math.floor(t) + 's';
+    }
+    return str;
+  },
+
   updTime: function() {
     var vars = html5video.vars,
         video = ge('the_video');
@@ -812,7 +856,7 @@ var html5video = {
       var c = video.currentTime || 0, d = video.duration || vars.duration || 0,
           percent = Math.min(100, Math.max(0, (d > 0 ? 100 * c / d : 0)));
       setStyle(ge('progress_line'), {width: percent + '%'});
-      ge('curtime').innerHTML = html5video.formatTime(c);
+      ge('curtime').innerHTML = html5video.reversed && html5video.minSize ? html5video.formatTime(d - c) : html5video.formatTime(c);
       ge('duration').innerHTML = html5video.formatTime(d);
     }
   },
@@ -833,7 +877,7 @@ var html5video = {
     var volume = this.volume + delta * this.volStep;
     this.volume = Math.min(1, Math.max(0, volume));
     this.updVol();
-    this.showTip(Math.round(this.volume * 100) + '%', getXY(ge('volume_line'))[0] + getSize('volume_line')[0] - getXY(ge('html5_player'))[0], 4);
+    this.showTip(Math.round(this.volume * 100) + '%', getXY(ge('volume_line'))[0] + getSize('volume_line')[0] - getXY(ge('html5_player'))[0]);
   },
 
   changePr: function(delta) {
@@ -855,14 +899,27 @@ var html5video = {
   },
 
   updateActions: function() {
-    var btns = ['quality_btn', 'fullscreen_btn', 'rotate_btn', 'add_btn'], btnsW = {
-      'quality_btn': 31,
-      'fullscreen_btn': 33,
-      'rotate_btn': 34,
-      'add_btn': 33
+    var btns = ['quality_btn', 'time_label_cell', 'fullscreen_btn'];
+    var btnsW = {
+      'quality_btn': 39,
+      'time_label_cell': (html5video.minSize ? (html5video.timeLabelW-11)/2 : html5video.timeLabelW) + 14,
+      'fullscreen_btn': 25
     };
     if (html5video.noQualityBtn) {
       btns = btns.slice(1);
+    }
+    if (html5video.vars.is_inline) {
+      if (fullScreenApi.isFullScreen()) {
+        if (isVisible('popup_btn')) {
+          hide('popup_btn');
+          html5video.maxActionsW -= 28;
+        }
+      } else {
+        if (!isVisible('popup_btn')) {
+          show('popup_btn');
+          html5video.maxActionsW += 28;
+        }
+      }
     }
     var actsEl = ge('video_actions');
     for (var i in btns) {
@@ -897,7 +954,7 @@ var html5video = {
     </div>\
     <div id="menu_layer">\
       <div id="menu_bk"></div>\
-        <div id="menu_controls">\
+        <div id="menu_controls" onmouseenter="html5video.onMenuOver()" onmouseleave="html5video.onMenuOut()">\
           <div id="video_tip_wrap">\
             <div id="video_tip_bk"></div>\
             <div id="video_tip"></div>\
@@ -905,46 +962,41 @@ var html5video = {
           </div>\
           <table border="0" cellpadding="0" cellspacing="0" ondragstart="cancelEvent(event); return false" onstartselect="cancelEvent(event); return false">\
             <tr>\
-              <td style="padding:16px 10px 0px 21px">\
+              <td style="padding:10px 14px 0px 12px">\
                 <div id="play_button" class="play_button" onclick="html5video.playVideo()"></div>\
               </td>\
-              <td style="padding:15px 7px 0px 18px; display:none">\
+              <td style="padding:9px 10px 0px 10px; display:none">\
                 <div id="replay_button" class="replay_button" onclick="html5video.playVideo()"></div>\
               </td>\
-              <td style="padding:18px 10px 0px 5px; display:none">\
+              <td style="padding:12px 12px 0px 0; display:none">\
                 <div id="next_button" class="next_button" onmouseover="html5video.nextOver(this, event)" onmouseout="html5video.nextOut(this, event)"  onclick="html5video.nextVideo(null)"></div>\
               </td>\
-              <td width="100%" style="padding-top: 5px;">\
-                <table width="100%" border="0" cellpadding="1" cellspacing="0">\
-                  <tr>\
-                    <td></td>\
-                    <td width="100%"></td>\
-                    <td>\
-                      <div id="curtime" class="time1_text">0:00</div>\
-                    </td>\
-                    <td>\
-                      <div id="duration" class="time2_text">0:00</div>\
-                    </td>\
-                  </tr>\
-                  <tr>\
-                    <td colspan="4" class="pr_td">\
-                      <div id="vid_pr" onmouseover="html5video.sliderOver(this, event)" onmouseout="html5video.sliderOut(this, event)" onmousedown="html5video.prClick(event)">\
-                        <div id="pr_white_line" class="white_line"></div>\
-                        <div id="pr_back_line" class="back_line"><!-- --></div>\
-                        <div id="pr_load_line" class="load_line"><!-- --></div>\
-                        <div id="progress_line" class="progress_line">\
-                          <div id="progress_slider" class="slider"><!-- --></div>\
-                        </div>\
-                      </div>\
-                    </td>\
-                  </tr>\
-                </table>\
+              <td width="100%" style="padding:16px 0 0">\
+                <div id="vid_pr" onmouseover="html5video.sliderOver(this, event)" onmouseout="html5video.sliderOut(this, event)" onmousedown="html5video.prClick(event)">\
+                  <div id="pr_white_line" class="white_line"></div>\
+                  <div id="pr_back_line" class="back_line"><!-- --></div>\
+                  <div id="pr_load_line" class="load_line"><!-- --></div>\
+                  <div id="progress_line" class="progress_line">\
+                    <div id="progress_slider" class="slider"><!-- --></div>\
+                  </div>\
+                </div>\
               </td>\
-              <td style="padding:17px 0 0px 20px">\
-                <div id="volume_button" class="volume_button" value="ave" onmouseover="html5video.volumeBtnOver(this, event)" onmouseout="html5video.volumeBtnOut(this, event)"  onclick="html5video.onVolumeBut()"></div>\
+              <td style="padding:11px 0 0 14px" id="time_label_cell">\
+                <div id="time_label" class="time_label" onclick="html5video.onTimeClick(this)">\
+                  <span id="curtime" class="time1_text">' + this.formatTime(this.vars.duration || 0) + '</span>\
+                  <span id="duration" class="time2_text">' + this.formatTime(this.vars.duration || 0) + '</span>\
+                </div>\
               </td>\
-              <td style="padding:22px 13px 0 0">\
-                <div id="vid_vol" onmousedown="html5video.volClick(event)">\
+              <td style="padding:11px 0 0px 16px">\
+                <div id="volume_wrap" class="volume_wrap" onmouseover="html5video.volumeBtnOver(this, event)" onmouseout="html5video.volumeBtnOut(this, event)">\
+                  <div id="volume_dropdown" class="volume_dropdown hidden">\
+                    <div class="volume_dropdown_bk"></div>\
+                  </div>\
+                  <div id="volume_button" class="volume_button" value="ave" onclick="html5video.onVolumeBut()"></div>\
+                </div>\
+              </td>\
+              <td style="padding:16px 13px 0 0" id="vid_vol_cell">\
+                <div id="vid_vol" onmouseover="html5video.sliderOver(this, event)" onmouseout="html5video.sliderOut(this, event)" onmousedown="html5video.volClick(event)">\
                   <div id="vol_white_line" class="white_line"><!-- --></div>\
                   <div id="vol_back_line" class="load_line"><!-- --></div>\
                   <div id="volume_line" class="progress_line">\
@@ -952,19 +1004,22 @@ var html5video = {
                   </div>\
                 </div>\
               </td>\
-              <td style="padding:14px 10px 5px 5px">\
+              <td style="padding:9px 10px 5px 5px">\
                 <div id="video_actions" class="clear_fix">\
                   <div id="quality_btn" class="quality_button fl_l" onclick="html5video.toggleResMenu()">\
-                    <div id="quality_val" class="quality_val" onmouseover="html5video.qualityOver(this, event)" onmouseout="html5video.qualityOut(this, event)">360</div>\
-                    <div id="quality_panel_wrap" class="quality_panel_wrap fl_l" onmouseover="html5video.unhideResMenu()" onmouseout="html5video.hideResMenu()">\
+                    <div class="quality_label">\
+                      <div id="quality_val" class="quality_val" onmouseover="html5video.qualityOver(this, event);html5video.unhideResMenu()" onmouseout="html5video.qualityOut(this, event);html5video.hideResMenu()"></div>\
+                      <div id="quality_val_arrow" class="quality_val_arrow"></div>\
+                      <div id="quality_val_hd" class="quality_val_hd"></div>\
+                    </div>\
+                    <div id="quality_panel_wrap" class="quality_panel_wrap hidden fl_l" onmouseover="html5video.unhideResMenu()" onmouseout="html5video.hideResMenu()">\
                       <div id="quality_bk" class="quality_bk"></div>\
                       <div id="quality_panel" class="quality_panel">\
-                        <button id="button1080" value="1080p" onclick="html5video.changeQuality(1080, true);"><span>1080</span></button>\
-                        <button id="button720" value="720p" onclick="html5video.changeQuality(720, true);"><span>720</span></button>\
-                        <button id="button480" value="480p" onclick="html5video.changeQuality(480, true);"><span>480</span></button>\
-                        <button id="button360" value="360p" onclick="html5video.changeQuality(360, true);" class="selected"><span>360</span></button>\
-                        <button id="button240" value="240p" onclick="html5video.changeQuality(240, true);"><span>240</span></button>\
-                        <div id="quality_label">360</button>\
+                        <button id="button1080" value="1080p" onclick="html5video.changeQuality(1080, true);"><span class="quality_item_text">1080</span><span class="quality_item_hd"></span></button>\
+                        <button id="button720" value="720p" onclick="html5video.changeQuality(720, true);"><span class="quality_item_text">720</span><span class="quality_item_hd"></span></button>\
+                        <button id="button480" value="480p" onclick="html5video.changeQuality(480, true);"><span class="quality_item_text">480</span></button>\
+                        <button id="button360" value="360p" onclick="html5video.changeQuality(360, true);"><span class="quality_item_text">360</span></button>\
+                        <button id="button240" value="240p" onclick="html5video.changeQuality(240, true);"><span class="quality_item_text">240</span></button>\
                       </div>\
                     </div>\
                   </div>\
@@ -976,12 +1031,12 @@ var html5video = {
       </div>\
       <div id="popup1" onclick="html5video.playVideo()">\
         <div id="popup_bk" class="popup_bk"></div>\
-        <div id="video_title" class="video_title">Title</div>\
+        <div id="video_title" class="video_title"></div>\
         <div id="big_play" class="big_play" onmouseover="addClass(this, \'over\');" onmouseout="removeClass(this, \'over\');"></div>\
-        <div id="video_author" class="video_author">Author</div>\
+        <a id="video_author" class="video_author" target="_blank" onclick="event.stopPropagation();"></a>\
         <div id="video_show_hd" class="video_show_hd" onclick="return html5video.playHD()">' + (this.vars.video_play_hd || 'Play HD') + '</div>\
       </div>\
-      <div id="popup_actions" class="clear_fix"></div>\
+      <div id="popup_actions" class="clear_fix" onmouseenter="html5video.onMenuOver()" onmouseleave="html5video.onMenuOut()"></div>\
      </div>';
   },
 
@@ -1086,7 +1141,7 @@ var html5video = {
 
     setStyle('video_preview_tip', {
       left: Math.round(x - w/2 - 3) + 'px', // 3 is border width
-      bottom: '36px',
+      bottom: '30px',
     });
     show('video_preview_tip');
 
@@ -1103,27 +1158,25 @@ var html5video = {
   },
 
   toggleResMenu: function() {
-    var isShowing = !isVisible(ge('quality_panel_wrap'));
+    var isShowing = !hasClass('quality_panel_wrap', 'hidden');
     if (isShowing) {
       html5video.hideTip();
     } else {
       // html5video.showTip();
     }
-    toggle('quality_panel_wrap', isShowing);
-    toggle('quality_val', !isShowing);
+    toggleClass('quality_panel_wrap', 'hidden', isShowing);
   },
 
   hideResMenu: function(instant) {
-    clearTimeout(html5video.hideMenuTO);
-    html5video.hideMenuTO = setTimeout(function() {
-      hide('quality_panel_wrap');
-      show('quality_val');
+    clearTimeout(html5video.hideResMenuTO);
+    html5video.hideResMenuTO = setTimeout(function() {
+      addClass('quality_panel_wrap', 'hidden');
     }, instant ? 0 : 1000);
   },
 
   unhideResMenu: function() {
-    if (html5video.hideMenuTO) {
-      clearTimeout(html5video.hideMenuTO);
+    if (html5video.hideResMenuTO) {
+      clearTimeout(html5video.hideResMenuTO);
     };
   },
 
@@ -1201,6 +1254,19 @@ var html5video = {
     this.updateRotation();
   },
 
+  openVideoPopup: function () {
+    var vars = html5video.vars,
+        video = ge('the_video'),
+        timeString = video ? html5video.timeToStr(video.currentTime) : '';
+        videoRaw = vars.oid + '_' + vars.vid;
+
+    if (fullScreenApi.isFullScreen()) {
+      html5video.toggleFullscreen();
+    }
+
+    videoCallback(['onOpenInPopup', videoRaw, vars.list_id, timeString]);
+  },
+
   addClick: function () {
     var vars = this.vars;
     this.added = !this.added;
@@ -1246,10 +1312,12 @@ var html5video = {
       img.style.transform = 'rotate('+this.angle+'deg) scale('+s+', '+s+')';
     }
 
-    btn.style.webkitTransform = 'rotate('+this.angle+'deg)';
-    btn.style.msTransform = 'rotate('+this.angle+'deg)';
-    btn.style.MozTransform = 'rotate('+this.angle+'deg)';
-    btn.style.transform = 'rotate('+this.angle+'deg)';
+    if (btn) {
+      btn.style.webkitTransform = 'rotate('+this.angle+'deg)';
+      btn.style.msTransform = 'rotate('+this.angle+'deg)';
+      btn.style.MozTransform = 'rotate('+this.angle+'deg)';
+      btn.style.transform = 'rotate('+this.angle+'deg)';
+    }
   },
 
   updateRepeat: function(val) {
@@ -1280,8 +1348,8 @@ var html5video = {
     }
     html5video.updateActions();
     html5video.centerPopup();
-    animate(ge('menu_layer'), {bottom: 46}, 200);
-    animate(ge('popup_actions'), {opacity: 1}, 200);
+    animate(ge('menu_layer'), {bottom: 36}, 200);
+    removeClass('popup_actions', 'hidden');
     removeClass(video, 'no_cursor');
   },
 
@@ -1324,6 +1392,7 @@ var html5video = {
     }
     if (ge('play_button')) ge('play_button').className = 'play_button';
     show('popup1');
+    html5video.showMenu();
   },
 
   onProgress: function() {
@@ -1412,8 +1481,8 @@ var html5video = {
     if (html5video.incSmallViewTimer) {
       html5video.incSmallViewTimer.pause();
     }
-    setStyle(ge('menu_layer'), {bottom: 46});
-    setStyle(ge('popup_actions'), {opacity: 0});
+    setStyle(ge('menu_layer'), {bottom: 36});
+    addClass('popup_actions', 'hidden');
     removeClass(video, 'no_cursor');
     if (fullScreenApi.isFullScreen()) {
       html5video.toggleFullscreen();
@@ -1423,7 +1492,9 @@ var html5video = {
     if (vars.is_ext != 0) return;
     var playerSize = getSize(ge('bg'));
 
-    if (vars.show_next && playerSize[0] > 400 && playerSize[1] > 300 && (html5video.nextVideosData = videoview.getNextVideosData())) {
+    if (vars.min_controls || vars.nolikes) {
+      // show('popup1');
+    } else if (vars.show_next && playerSize[0] > 400 && playerSize[1] > 300 && (html5video.nextVideosData = videoview.getNextVideosData())) {
       html5video.showNextVideoLayer();
     } else if (playerSize[0] > 250 && playerSize[1] > 200) {
       html5video.showFinishExtendedLayer();
@@ -1437,12 +1508,14 @@ var html5video = {
     if (checkEvent(event)) return;
     html5video.onPrMove(event);
     html5video.moveState = 1;
+    addClass(ge('vid_pr'), 'down');
   },
 
   volClick: function(event) {
     event.preventDefault();
     html5video.onVolMove(event);
     html5video.moveState = 2;
+    addClass(ge('vid_vol'), 'down');
   },
 
   onPrMove: function(e) {
@@ -1451,18 +1524,23 @@ var html5video = {
         video = ge('the_video'),
         percent = html5video.prLineW ? (html5video.defX(e) - xy[0] + (fullScreenApi.isFullScreen() ? getXY(ge('html5_player'))[0] : 0)) / html5video.prLineW : 0;
     percent = Math.min(1, Math.max(0, percent));
+
     video.currentTime = (video.duration || vars.duration) * percent;
-    html5video.updTime();
     video.play();
+    html5video.updTime();
   },
 
   onVolMove: function(e) {
-    var xy = getXY(ge('volume_line')), video = ge('the_video'),
-        percent = html5video.volLineW ? (html5video.defX(e) - xy[0] + (fullScreenApi.isFullScreen() ? getXY(ge('html5_player'))[0] : 0)) / html5video.volLineW : 0;
+    var vertical = getSize('html5_player')[0] < 500 ? 1 : 0;
+        xy = getXY(ge('volume_line')), video = ge('the_video'),
+        percent = html5video.volLineW ? ((vertical ? xy[1] - html5video.defY(e) : html5video.defX(e) - xy[0]) + (fullScreenApi.isFullScreen() ? getXY(ge('html5_player'))[vertical] : 0)) / html5video.volLineW : 0;
+
     percent = Math.min(1, Math.max(0, percent));
     html5video.volume = percent;
     html5video.updVol();
-    html5video.showTip(Math.round(percent * 100) + '%', getXY(ge('volume_slider'))[0] - getXY(ge('html5_player'))[0] + 3, 4);
+    if (!vertical) {
+      html5video.showTip(Math.round(percent * 100) + '%', getXY(ge('volume_slider'))[0] - getXY(ge('html5_player'))[0] + 3, -2);
+    }
   },
 
   onVolumeBut: function() {
@@ -1506,16 +1584,33 @@ var html5video = {
     // animate(ge('vid_link_content'), {opacity: 0.65}, 200);
   },
 
+  onTimeClick: function(el) {
+    var playerSize = getSize('bg');
+    if (playerSize[0] > 500) return;
+    html5video.reversed = !html5video.reversed;
+    toggleClass(el, 'time_label_reversed', html5video.reversed);
+  },
+
   volumeBtnOver: function(el, event) {
     // animate(el, {opacity: 0.7}, 200);
     var vol = ge('the_video').volume, vars = this.vars,
         label = vol > 0 ? vars.lang_volume_off || 'Mute' : vars.lang_volume_on || 'Unmute';
-    this.showTip(label, getXY(el)[0] - getXY(ge('html5_player'))[0] + 7);
+    if (html5video.minSize && html5video.transformAvailable()) {
+      removeClass('volume_dropdown', 'hidden');
+    } else {
+      this.showTip(label, getXY(el)[0] - getXY(ge('html5_player'))[0] + 7, -5);
+    }
   },
 
   volumeBtnOut: function(el, event) {
     // animate(el, {opacity: 1}, 200);
-    this.hideTip();
+    if (html5video.minSize && html5video.transformAvailable()) {
+      if (html5video.moveState !== 2) {
+        addClass('volume_dropdown', 'hidden');
+      }
+    } else {
+      this.hideTip();
+    }
   },
 
   rotateOver: function(el, event) {
@@ -1529,11 +1624,20 @@ var html5video = {
     this.hideTip();
   },
 
+  openPopupOver: function(el, event) {
+    var label = this.vars.lang_open_popup || 'Open in popup';
+    this.showTip(label, getXY(el)[0] - getXY(ge('html5_player'))[0] + 9, -5);
+  },
+
+  openPopupOut: function(el, event) {
+    this.hideTip();
+  },
+
   fullscreenOver: function(el, event) {
     // animate(el, {opacity: 0.7}, 200);
     var vars = this.vars,
         label = fullScreenApi.isFullScreen() ? vars.lang_window || 'Minimize' : vars.lang_fullscreen || 'Full Screen';
-    this.showTip(label, getXY(el)[0] - getXY(ge('html5_player'))[0] + 7);
+    this.showTip(label, getXY(el)[0] - getXY(ge('html5_player'))[0] + 7, -5);
   },
 
   fullscreenOut: function(el, event) {
@@ -1544,7 +1648,9 @@ var html5video = {
   qualityOver: function(el, event) {
     // animate(el, {opacity: 0.7}, 200);
     var label = this.vars.lang_hdsd || 'Change Video Quality';
-    this.showTip(label, getXY(el)[0] - getXY(ge('html5_player'))[0] + 8);
+    if (!isVisible('quality_panel_wrap')) {
+      this.showTip(label, getXY(el)[0] - getXY(ge('html5_player'))[0] + (getSize(el)[0]-9)/2, -4);
+    }
   },
 
   qualityOut: function(el, event) {
@@ -1565,21 +1671,16 @@ var html5video = {
 
   docKeyPressed: function(event) {
     var video = ge('the_video');
-    if (!video) return;
+    if (!video || !(html5video.inside || fullScreenApi.isFullScreen())) return;
+
     switch (event.keyCode) {
       case KEY.DOWN:  html5video.changeVol(-1); break;
       case KEY.UP:    html5video.changeVol(1);  break;
       case KEY.LEFT:  html5video.changePr(-1);  break;
       case KEY.RIGHT: html5video.changePr(1);   break;
-      case KEY.SPACE:
-        if (html5video.inside || fullScreenApi.isFullScreen()) {
-          html5video.playVideo();
-        }
-        break;
+      case KEY.SPACE: html5video.playVideo();   break;
     }
-    if (html5video.inside) {
-      cancelEvent(event);
-    }
+    cancelEvent(event);
     html5video.updateMenu();
   },
 
@@ -1591,25 +1692,52 @@ var html5video = {
   },
 
   docMouseUp: function() {
+    switch (html5video.moveState) {
+      case 1:
+        removeClass('vid_pr', 'down');
+        html5video.hideTip();
+        html5video.hidePreviewTip();
+        break;
+      case 2:
+        removeClass('vid_vol', 'down');
+        if (html5video.minSize && html5video.transformAvailable()) {
+          addClass('volume_dropdown', 'hidden');
+        } else {
+          html5video.hideTip();
+        }
+        break;
+    }
     html5video.moveState = 0;
+    if (html5video.inside == 0) {
+      html5video.hideMenu();
+    }
   },
 
   docMouseMove: function(event) {
     var vars = html5video.vars,
         video = ge('the_video'),
         duration = video && video.duration || vars.duration;
-    if (html5video.moveState == 1) { html5video.onPrMove(event); } else
-    if (html5video.moveState == 2) { html5video.onVolMove(event); }
-    if (hasClass(ge('vid_pr'), 'over') && duration) {
-      var xy = getXY(ge('progress_line')),
-          x = html5video.defX(event) - xy[0] + (fullScreenApi.isFullScreen() ? getXY(ge('html5_player'))[0] : 0),
-          percent = Math.min(1, Math.max(0, html5video.prLineW ? x / html5video.prLineW : 0)),
-          timeString = html5video.formatTime(duration * percent);
+
+    if (html5video.moveState == 1) {
+      html5video.onPrMove(event);
+    } else if (html5video.moveState == 2) {
+      html5video.onVolMove(event);
+    }
+
+    if ((html5video.moveState == 1 || hasClass('vid_pr', 'over')) && duration) {
+      var playerX = getXY('html5_player')[0],
+          prLineX = getXY('progress_line')[0],
+          prLineW = html5video.prLineW,
+          sliderX = html5video.defX(event) - prLineX + (fullScreenApi.isFullScreen() ? playerX : 0),
+          percent = Math.min(1, Math.max(0, html5video.prLineW ? sliderX / html5video.prLineW : 0)),
+          timeString = html5video.formatTime(duration * percent),
+          tipX = Math.min(prLineX + prLineW, Math.max(prLineX, sliderX + prLineX)) - playerX;
+
       if (vars.timeline_thumbs) {
         var thumbIndex = Math.min(vars.timeline_thumbs_total, Math.max(0, Math.floor(vars.timeline_thumbs_total * percent - 0.5)));
-        html5video.showPreviewTip(timeString, x + xy[0] - getXY('html5_player')[0], thumbIndex);
+        html5video.showPreviewTip(timeString, tipX, thumbIndex);
       } else {
-        html5video.showTip(timeString, x + xy[0] - getXY('html5_player')[0], 4);
+        html5video.showTip(timeString, tipX, -2);
       }
     }
     html5video.updateMenu();

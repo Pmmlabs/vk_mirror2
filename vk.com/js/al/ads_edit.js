@@ -1269,7 +1269,7 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
     cost_per_click:         {value: '', edited: false, last_value: ''},
     views_places:           {value: 0, data: [], data_all: [], value_normal: 0, value_disabled: 0},
     views_limit_flag:       {value: 0},
-    views_limit_exact:      {value: 0, data: []},
+    views_limit_exact:      {value: 0, data: [], default_values: [], data_ranges: []},
     client_id:              {value: 0},
     campaign_type:          {value: AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_OLD, allow_special_app: false},
     campaign_id:            {value: 0, data: [], value_normal: 0, value_app: 0},
@@ -2038,6 +2038,12 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
       } else {
         addClass(targetElem, 'ads_edit_label_input_ui');
       }
+      if (paramName === 'views_limit_exact') {
+        this.initUiParam(paramName);
+        if (this.params[paramName].uiInited) {
+          this.params[paramName].ui.selectItem(this.params[paramName].value);
+        }
+      }
       break;
     case 'campaign_id':
       this.initUiParam(paramName);
@@ -2091,6 +2097,8 @@ AdsViewEditor.prototype.getUiParamData = function(paramName) {
         }
       }
       return data;
+    case 'views_limit_exact':
+      return this.params[paramName].data_ranges[this.params.format_type.value] || [];
     default:
       return this.params[paramName].data || [];
   }
@@ -2126,6 +2134,8 @@ AdsViewEditor.prototype.updateUiParamData = function(paramName) {
 
 AdsViewEditor.prototype.getUiParamDefaultData = function(paramName) {
   switch (paramName) {
+    case 'views_limit_exact':
+      this.params[paramName].value = this.params[paramName].default_values[this.params.format_type.value] || 0;
     default:
       var data = this.getUiParamData(paramName);
       if (typeof(data) === 'string') {
@@ -2427,6 +2437,11 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         var photoSize = this.getPhotoSize();
         this.params.cost_type.cpm_only            = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST]);
         this.params.cost_type.hidden              = this.params.cost_type.cpm_only;
+
+        if (this.params.cost_type.cpm_only) {
+          this.setCostType(AdsEdit.ADS_AD_COST_TYPE_VIEWS);
+        }
+
         this.params.title.hidden                  = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST);
         this.params.title.disabled                = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS, AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]);
         this.params.description.hidden            = !inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]);
@@ -2437,7 +2452,9 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         this.params.disclaimer_supplements.hidden = (!this.params.disclaimer_medical.may_be_any || !this.params.disclaimer_supplements.allow)
         this.params.stats_url.hidden              = !(this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.stats_url.allow_exclusive || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.stats_url.allow_promoted_post);
         this.params.views_limit_flag.hidden       = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.views_limit_exact.allow || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST);
-        this.params.views_limit_exact.hidden      = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE || !this.params.views_limit_exact.allow);
+        this.params.views_limit_exact.hidden      = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS
+          || ((this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE || !this.params.views_limit_exact.allow)
+              &&  this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST));
 
         if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY) {
           this.setTitle(this.params.title.value_p);
@@ -2470,8 +2487,8 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
           }
         }
 
-        if (this.params.cost_type.cpm_only) {
-          this.setCostType(AdsEdit.ADS_AD_COST_TYPE_VIEWS);
+        if (inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST])) {
+          this.setViewsLimitExact(this.params.views_limit_exact.default_values[this.params.format_type.value]);
         }
 
         this.updateUiParam('title');
@@ -2480,6 +2497,8 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         this.updateUiParam('cost_per_click');
         this.updateUiParam('views_places');
         this.updateUiParam('views_limit_flag');
+        this.updateUiParamData('views_limit_exact');
+        this.updateUiParam('views_limit_exact');
         this.updateUiParamData('views_places');
         this.updateUiParamVisibility('_format_type');
         this.updateUiParamVisibility('cost_type');
@@ -2509,7 +2528,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         break;
       case 'cost_type':
         this.params.views_limit_flag.hidden  = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.views_limit_exact.allow || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST);
-        this.params.views_limit_exact.hidden = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE || !this.params.views_limit_exact.allow);
+        this.params.views_limit_exact.hidden = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST || !this.params.views_limit_exact.allow);
 
         this.updateUiParam('cost_per_click');
         this.updateUiParam('views_places');
@@ -3285,6 +3304,13 @@ AdsViewEditor.prototype.setCostType = function(costType) {
   this.onParamUpdate('cost_type', costType, false, true);
   if (this.params.cost_type.uiInited) {
     Radiobutton.select(this.options.targetIdPrefix + 'cost_type', this.params.cost_type.value);
+  }
+}
+
+AdsViewEditor.prototype.setViewsLimitExact = function(viewsLimitExact) {
+  this.onParamUpdate('views_limit_exact', viewsLimitExact, false, true);
+  if (this.params.views_limit_exact.uiInited) {
+    this.params.views_limit_exact.ui.selectedItems(this.params.views_limit_exact.value);
   }
 }
 

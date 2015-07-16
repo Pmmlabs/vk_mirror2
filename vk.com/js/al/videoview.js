@@ -54,6 +54,10 @@ playerCallback: {
       });
     }
   },
+  onOpenInPopup: function(videoRaw, listId, timeString) {
+    Videoview.sendPlayerStats(8, 0);
+    showVideo(videoRaw, listId, {autoplay: 1, queue: 1, addParams: {t: timeString}});
+  },
 
   onVideoAdEvent: function(oid, vid, hash, eventId, adType, errorStr) {
     if (hash) {

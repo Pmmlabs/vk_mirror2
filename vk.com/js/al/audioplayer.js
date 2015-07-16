@@ -376,7 +376,10 @@ var audioPlayer = {
     var _n = window.Notifier;
     if (_n) _n.lcSend('audio_start', data);
     try {
-      if (ge('video_player') && ge('video_player').playVideo) ge('video_player').playVideo(false);
+      var videoPlayer = ge('video_player') || window.html5video || null;
+      if (videoPlayer && videoPlayer.playVideo) {
+        videoPlayer.playVideo(false);
+      }
     } catch(e) {}
   },
   setAid: function(aid) {

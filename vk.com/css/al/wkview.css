@@ -801,8 +801,15 @@ div#wl_post_actions_wrap a.wl_post_action_link {
   padding: 6px 10px 7px;
 }
 div#wl_post_actions_wrap a.wl_post_action_link:hover {
-  background: #E1E7ED;
+  background-color: #E1E7ED;
   text-decoration: none;
+}
+div#wl_post_actions_wrap a.wl_post_action_link.processing {
+  pointer-events: none;
+  background-image: url(/images/upload.gif);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  color: transparent;
 }
 .wl_post_progress {
   padding: 7px;
