@@ -1975,7 +1975,7 @@ showSubscribeTooltip: function(btn) {
       return [(s[0] - btnW)/2, 8, 8];
     },
     showdt: 400,
-    className: 'subscribe_post_tt' + (subscribed ? ' subscribe_post_tt__undo' : '')
+    className: 'subscribe_post_tt'
   });
 },
 _eof: 1};try{stManager.done('wkview.js');}catch(e){}

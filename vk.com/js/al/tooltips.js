@@ -14,16 +14,6 @@ var tooltips = {
         tt_text.innerHTML = options.text();
       }
     }
-    var newClasses = options.className || '';
-    if (newClasses != el.customClasses) {
-      each(el.customClasses.split(' '), function(i, className) {
-        if (className != '') {
-          removeClass(el.tt.container, className);
-        }
-      });
-      addClass(el.tt.container, newClasses);
-      el.customClasses = newClasses;
-    }
 
     var opts = extend(el.tt.opts ? clone(el.tt.opts) : {}, options || {});
     if (!el.tt.el) {
@@ -232,7 +222,6 @@ var tooltips = {
       shift: (options.black ? [11, 3, 3] : [2, 3, 3]), // [leftShift, toupTopShift, notToupTopShift]
       toup: true
     }, options);
-    el.customClasses = (opts.className || '');
     if (!el.tthide) {
       el.tthide = tooltips.hide.pbind(el);
       if (!options.nohide) addEvent(el, 'mouseout', el.tthide);
@@ -266,7 +255,7 @@ var tooltips = {
       }
       opts.content = '<div class="tt_text">' + opts.text + '</div>';
     }
-    var cls = (opts.black ? 'ttb ' : 'tt ') + el.customClasses;
+    var cls = (opts.black ? 'ttb ' : 'tt ') + (opts.className || '');
     if (el.tt && el.tt.el) {
       var cont = el.tt.container;
       if (el.tt.onClean) el.tt.onClean();
