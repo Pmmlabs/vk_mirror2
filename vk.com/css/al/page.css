@@ -6003,6 +6003,16 @@ button.wall_block_app_btn {
 .page_pladform {
   background-image: url(/images/icons/pladform_watermark.png);
 }
+.wall_tt_thumb {
+  width: 75px;
+}
+.wall_tt_link_img {
+  width: 100%;
+}
+.wall_tt_description {
+  padding: 0px 10px;
+  width: 234px;
+}
 .wall_error_hint {
   color: #777;
   cursor: pointer;
