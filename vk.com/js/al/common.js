@@ -2000,6 +2000,7 @@ function updSideTopLink(resized) {
 
 window.__adsLoaded = vkNow();
 function __adsGetAjaxParams(ajaxParams, ajaxOptions) {
+  if (window.noAdsAtAll) return false;
   __adsGetAjaxParams = function() {
     return window.AdsLight && AdsLight.getAjaxParams.apply(AdsLight.getAjaxParams, arguments) || {al_ad: null};
   };
@@ -2007,18 +2008,21 @@ function __adsGetAjaxParams(ajaxParams, ajaxOptions) {
   return result || {al_ad: null};
 }
 function __adsUpdate(force) {
+  if (window.noAdsAtAll) return false;
   __adsUpdate = function() {
     window.AdsLight && AdsLight.updateBlock.apply(AdsLight.updateBlock, arguments);
   };
   stManager.add(['aes_light.js'], __adsUpdate.pbind(force));
 }
 function __adsSet(adsHtml, adsSection, adsCanShow, adsShowed, adsParams) {
+  if (window.noAdsAtAll) return false;
   __adsSet = function() {
     window.AdsLight && AdsLight.setNewBlock.apply(AdsLight.setNewBlock, arguments);
   };
   stManager.add(['aes_light.js'], __adsSet.pbind(adsHtml, adsSection, adsCanShow, adsShowed, adsParams));
 }
 function __adsUpdateExternalStats(elem) {
+  if (window.noAdsAtAll) return false;
   __adsUpdateExternalStats = function() {
     window.AdsLight && AdsLight.updateExternalStats.apply(AdsLight.updateExternalStats, arguments);
   };

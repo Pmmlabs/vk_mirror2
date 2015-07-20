@@ -2162,10 +2162,10 @@ div.audio td {
 #box_layer .video_box .wrap {
   position: relative;
 }
-#box_layer .video_box div {
+/*#box_layer .video_box div { // bad style
   position: relative;
   z-index: 1011;
-}
+}*/
 #box_layer .video_box .background {
   position: absolute;
   z-index: 1010;

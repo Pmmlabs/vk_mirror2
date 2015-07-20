@@ -283,7 +283,7 @@ var ShareBox = {
           Wall.likeFullUpdate(cur.sbObj, likeData);
         }
 
-        if (window.Videoview) {
+        if (window.Videoview && /^video\-?\d+_\d+$/.test(cur.sbObj)) {
           Videoview.onVideoShared(cur.shareAction, cur.sbObj, cur.sbList);
         }
         delete cur.shareAction;

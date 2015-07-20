@@ -62,11 +62,19 @@ deinit: function(iUpload) {
     removeEvent(dragEl, 'dragover');
     removeEvent(dragEl, 'dragleave');
   }
-  each(['obj', 'dropbox', 'options', 'vars', 'types', 'uploadUrls', 'callbacks'], function(i, v) {if (Upload[v]) delete Upload[v][iUpload]});
+  each(['obj', 'dropbox', 'options', 'vars', 'types', 'uploadUrls', 'callbacks'], function(i, v) {
+    if (Upload[v]) {
+      delete Upload[v][iUpload];
+    }
+  });
   if (Upload.callbacks) {
-    if (Upload.callbacks['oncheck'+iUpload]) delete Upload.callbacks['oncheck'+iUpload];
-    if (Upload.callbacks['ondone'+iUpload]) delete Upload.callbacks['ondone'+iUpload];
-    if (Upload.callbacks['onfail'+iUpload]) delete Upload.callbacks['onfail'+iUpload];
+    var clbks = ['oncheck', 'ondone', 'onfail'];
+    each(Upload.flashCallbacks(), function(i, v) {
+      clbks.push(i);
+    });
+    each(clbks, function(i, v) {
+      delete Upload.callbacks[v + iUpload];
+    });
   }
   clearTimeout(Upload.checks['timer'+iUpload]);
   clearTimeout(Upload.dragTimer[iUpload]);
@@ -312,26 +320,21 @@ initFlash: function(iUpload, obj) {
   if (!options.signed && !vars['ajx']) {
     postData.push('ajx=1');
   }
+  var clbksRaw = this.flashCallbacks(), clbks = {};
+  this.callbacks = this.callbacks || {};
+  each(clbksRaw, function(i, v) {
+    Upload.callbacks[i + iUpload] = v.pbind(iUpload);
+    clbks[i] = 'Upload.callbacks.' + i + iUpload;
+  });
 
-  var flashVars = clone(vars)
-  extend(flashVars, {
+  var flashVars = clone(vars);
+  extend(flashVars, clbks, {
     'upload_url': Upload.uploadUrls[iUpload],
     'file_size_limit': options.file_size_limit,
     'file_types_description': options.file_types_description,
     'file_types': options.file_types,
     'file_name': options.file_name,
-    'post_data': escape(postData.join('&')),
-    'onUploadStart': "Upload.onUploadStart.pbind("+iUpload+")",
-    'onUploadProgress': "Upload.onUploadProgress.pbind("+iUpload+")",
-    'onUploadSuccess': "Upload.onUploadComplete.pbind("+iUpload+")",
-    'onUploadComplete': "Upload.onUploadCompleteAll.pbind("+iUpload+")",
-    'onUploadError': "Upload.onUploadError.pbind("+iUpload+")",
-    'onDebug': "Upload.onDebug.pbind("+iUpload+")",
-    'onMouseDown': "Upload.buttonDown.pbind("+iUpload+")",
-    'onMouseUp': "Upload.buttonUp.pbind("+iUpload+")",
-    'onMouseOver': "Upload.buttonOver.pbind("+iUpload+")",
-    'onMouseOut': "Upload.buttonOut.pbind("+iUpload+")",
-    'onSelectClick': "Upload.onSelectClick.pbind("+iUpload+")"
+    'post_data': escape(postData.join('&'))
   });
 
   if (!options.flash_lite) {
@@ -1257,6 +1260,22 @@ insideDropbox: function(i, e) {
     el = el.parentNode;
   }
   return false;
+},
+
+flashCallbacks: function() {
+  return {
+    'onUploadStart': Upload.onUploadStart,
+    'onUploadProgress': Upload.onUploadProgress,
+    'onUploadSuccess': Upload.onUploadComplete,
+    'onUploadComplete': Upload.onUploadCompleteAll,
+    'onUploadError': Upload.onUploadError,
+    'onDebug': Upload.onDebug,
+    'onMouseDown': Upload.buttonDown,
+    'onMouseUp': Upload.buttonUp,
+    'onMouseOver': Upload.buttonOver,
+    'onMouseOut': Upload.buttonOut,
+    'onSelectClick': Upload.onSelectClick
+  }
 },
 
 _eof: 1};

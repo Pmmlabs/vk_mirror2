@@ -187,6 +187,10 @@ input.docs_search {
 }
 .docs_item_name {
   font-weight: bold;
+  max-width: 325px;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .docs_item_date {
   padding-top: 4px;
@@ -500,6 +504,12 @@ input.docs_search {
 }
 .docs_choose_link {
   font-weight: bold;
+  max-width: 440px;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .docs_choose_date {
   color: #999999;

@@ -26,7 +26,7 @@ Notifier = {
       onConnectionId: []
     }, options);
 
-    if (!this.initFrameTransport() && !this.initFlashTransport(options)) {
+    if (!this.initFrameTransport()) {
       return false;
     }
     this.initIdleMan();
@@ -176,27 +176,6 @@ Notifier = {
       vk.spentLastSendTS = vkNow();
     });
     curNotifier.idle_manager.start();
-  },
-  initFlashTransport: function (options) {
-    return false;
-    var flashVars = extend({
-      onConnectionInit: 'Notifier.onConnectionInit',
-      onConnectionFailed: 'Notifier.onConnectionFailed',
-      onRelogin: 'Notifier.onRelogin',
-      onMessageReceive: 'Notifier.onMessage',
-      onInstanceFocus: 'Notifier.onInstanceFocus',
-      onInstanceServer: 'Notifier.onInstanceServer'
-    }, options);
-    if (vk.id == 13033) {
-      flashVars.onDebug = 'debugLog';
-    }
-    var queueCont = Notifier.getTransportWrap();
-    if (!renderFlash(queueCont, {url: curNotifier.flash_url, id: 'queue_transport', name: 'queue_transport'}, {}, flashVars)) {
-      return false;
-    }
-    curNotifier.flash_transport = ge('queue_transport') || false;
-    curNotifier.transport = 'flash';
-    return true;
   },
   initFrameTransport: function () {
     if (!ls.checkVersion() || browser.msie8 || !('onmessage' in window || 'postMessage' in window)) return false;
@@ -4979,6 +4958,14 @@ FastChat = {
   closeTab: function (peer) {
     var box = curFastChat.tabs[peer].box;
     box.close();
+  },
+
+  openSnapsterLayer: function(e) {
+    if (checkEvent(e)) {
+      return;
+    }
+    showBox('/snapster.php', {act: 'show'}, {containerClass: 'chronicle_layer', dark: 1});
+    return cancelEvent(e);
   },
 
   nicePeer: function(peer) {

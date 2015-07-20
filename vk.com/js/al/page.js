@@ -5230,7 +5230,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
             attrs = ' id="pam' + lnkId + '_doc' + media + '"';
           } else {
             preview = '<a target="_blank" href="' + data.href + '" class="medadd_h medadd_h_doc inl_bl">' + data.lang.profile_choose_doc + '</a>';
-            postview = '<div class="medadd_c medadd_c_doc"><a target="_blank" href="' + data.href + '">' + data.title + '</a></div>';
+            postview = '<div class="medadd_c medadd_c_doc"><a target="_blank" href="' + data.href + '" title="' + data.title + '">' + data.title + '</a></div>';
             attrs = ' id="pam' + lnkId + '_doc' + media + '"';
           }
         break;

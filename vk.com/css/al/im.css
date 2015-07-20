@@ -2090,6 +2090,8 @@ b.im_friend_mob_onl {
   width: 300px;
   height: 150px;
   overflow: hidden;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
   border-radius: 5px;
   text-align: center;
   margin-top: 5px;
@@ -2101,6 +2103,7 @@ b.im_friend_mob_onl {
   filter: alpha(opacity=70);
   line-height: 140%;
   padding: 0px 40px;
+  width: 300px;
 }
 .wall_module .im_chronicle_txt td {
   vertical-align: middle;
@@ -2113,12 +2116,17 @@ b.im_friend_mob_onl {
   padding: 3px 0px;
   width: 258px;
 }
+.im_fwd_log_wrap .im_app_row .im_chronicle_desc .im_chronicle_name b {
+  background-image: none;
+}
 .im_chronicle_desc {
   width: 296px;
   padding: 6px 2px;
 }
 .im_chronicle_icon {
-  background: url(/images/icons/snap_app.png);
+  background-image: url(/images/icons/snap_app.png);
+  background-size: 22px 22px;
+  background-repeat: no-repeat;
   width: 22px;
   height: 22px;
 }

@@ -859,6 +859,15 @@ div.wall_module .ext_video div {
   width: 11px;
   height: 11px;
 }
+.wall_post_source_icon.wall_post_source_chronicle {
+  background-image: url('/images/chronicle/icon_tab.png?3');
+  background-size: 11px 11px;
+  margin: 0px 0px -2px 4px;
+}
+.is_2x .wall_post_source_icon.wall_post_source_chronicle {
+  background-image: url('/images/chronicle/icon_tab_2x.png?3');
+  background-size: 11px 11px;
+}
 .wall_post_source_default {
   background-position: 0px -132px;
 }
@@ -2277,6 +2286,11 @@ div.med_no_attach {
 .wall_module .media_desc b.note,
 .wall_module .media_preview .note b {
   background-position: 0 -134px;
+}
+.wall_module .media_desc.media_desc_doc {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .wall_module .media_preview .poll {
   max-width: 300px;
@@ -5574,6 +5588,9 @@ div.create_poll_cb,
   overflow: hidden;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
+}
+.im_write_form .medadd_c_doc {
+  max-width: 330px;
 }
 .medadd_h,
 .medadd_c_pollh {

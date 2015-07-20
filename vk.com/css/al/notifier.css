@@ -820,6 +820,66 @@ a.fc_msg_att_lnk:hover .fc_msg_att_text {
 .fc_audio_splitter {
   padding: 0 3px;
 }
+.fc_chronicle_row {
+  cursor: pointer;
+}
+.fc_chronicle_blur {
+  position: absolute;
+  margin: -10px 0px 0px -10px;
+  width: 194px;
+  height: 100px;
+  background-position: center center;
+  background-size: 152px auto;
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+}
+.fc_chronicle_blur_cont {
+  position: relative;
+  width: 174px;
+  height: 80px;
+  overflow: hidden;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  text-align: center;
+}
+.fc_chronicle_txt {
+  font-size: 12px;
+  color: #FFFFFF;
+  opacity: 0.8;
+  filter: alpha(opacity=70);
+  line-height: 140%;
+  padding: 0px 20px;
+  width: 174px;
+}
+.fc_chronicle_txt td {
+  vertical-align: middle;
+  height: 74px;
+  padding: 0px;
+}
+.fc_chronicle_name {
+  color: #2B587A;
+  height: 18px;
+  padding: 4px 0px 0px 5px;
+  width: 144px;
+}
+.fc_fwd_log_wrap .fc_app_row .fc_chronicle_desc .fc_chronicle_name b {
+  background-image: none;
+}
+.fc_chronicle_desc {
+  width: 296px;
+  padding: 6px 2px;
+}
+.fc_chronicle_icon {
+  background-image: url(/images/icons/snap_app.png);
+  background-size: 22px 22px;
+  background-repeat: no-repeat;
+  width: 22px;
+  height: 22px;
+}
 /*Emoji*/
 .emoji_cont {
   position: relative;

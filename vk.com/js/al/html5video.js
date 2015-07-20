@@ -43,8 +43,6 @@ var html5video = {
       delete this.incSmallViewTimer;
     }
     var cacheData = {};
-    window.mvcur = window.mvcur || {};
-    mvcur.mvData = mvcur.mvData || {};
     if (vars.no_flv) {
       each([240, 360, 480, 720, 1080], function() {
         if (vars['cache'+this]) {
@@ -53,6 +51,11 @@ var html5video = {
         }
       });
     }
+    /*window.mvcur = window.mvcur || {};
+    mvcur.mvData = mvcur.mvData || {};
+    mvcur.mvData.videoRaw = vars['oid']+'_'+vars['vid'];
+    mvcur.mvData.videoRaw = vars['oid']+'_'+vars['vid'];
+    mvcur.mvData.likeHash = vars['list_id'];*/
     html5video.liked = vars.liked;
     html5video.added = vars.added;
     vars.cacheData = cacheData;
@@ -1343,7 +1346,7 @@ var html5video = {
     ge(video_box_id).style.height = h;
     ge(video_box_id).style.width = w;
     var box = document.getElementsByClassName('popup_box_container')[0];
-    if (box) {
+    if (box && !cur.snapsterIsLayer) {
       box.style.width = (html5video.cur_res > 240) ? '629px' : '502px';
     }
     html5video.updateActions();

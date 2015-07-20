@@ -294,6 +294,10 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
   background-image: url(/images/icons/self_destruct_2x.png);
   background-size: 13px 16px;
 }
+.is_2x .im_chronicle_icon,
+.is_2x .fc_chronicle_icon {
+  background-image: url(/images/icons/snap_app_2x.png);
+}
 .is_2x .page_photos_upload_label,
 .is_2x .page_audios_upload_label,
 .is_2x .page_links_upload_label,
@@ -1719,8 +1723,8 @@ body.dev.is_2x .priv_h_arrow,
   background-image: url(/images/icons/dropdown_check_2x.png);
   background-size: 13px 10px;
 }
-.is_2x #apps_collection45_wrap {
-  background-image: url(/images/apps/apps_kissday2015_bkg_2x.png?2);
+.is_2x #apps_collection46_wrap {
+  background-image: url(/images/apps/apps_fishday2015_bkg_2x.png);
   background-size: 627px 235px;
 }
 .is_2x .gift_icon {
