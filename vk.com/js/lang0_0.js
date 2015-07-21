@@ -530,6 +530,9 @@ mobile_wall_publish_postponed='Опубликовать сейчас';
 mobile_zphoto_save_btn='Сохранить';
 // section = 61; version = 36;
 
+adslight_age_restriction_none='Не указывать';
+// section = 67; version = 2;
+
 print_close_text='Ваши наклейки в данный момент создаются. Вы уверены, что хотите закрыть страницу?';
 print_close_title='Закрыть страницу';
 print_epsp_hint='Векторный формат, предназначенный для печатного оборудования.<br>{tag}В файле добавлены вылеты и кривые, по которым наклейка будет вырезаться{/tag}';
