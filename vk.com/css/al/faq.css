@@ -372,6 +372,9 @@ h4.faq_question .faq_info {
   padding: 3px 8px 4px;
   font-weight: bold;
 }
+.faq_platform_dd {
+  margin-left: 10px;
+}
 .faq_subtab_plain {
   float: right;
   margin-left: 5px;
