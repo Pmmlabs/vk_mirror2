@@ -1058,12 +1058,15 @@ hide: function(noLoc, force, ev, closeButtonClick) {
       return true;
     }
   }
-  var _a = window.audioPlayer, _n = window.Notifier;
-  if (_a && _a.player && _a.player.paused() && _a.pausedByVideo && !window.forcePauseAudio) {
-    _a.playTrack();
-    _a.pausedByVideo = null;
+
+  if (!window.forcePauseAudio) {
+    var _a = window.audioPlayer, _n = window.Notifier;
+    if (_a && _a.player && _a.player.paused() && _a.pausedByVideo) {
+      _a.playTrack();
+      _a.pausedByVideo = null;
+    }
+    if (_n) _n.lcSend('video_hide');
   }
-  if (_n) _n.lcSend('video_hide');
 
   if (wasmin) {
     hide(mvLayerWrap);

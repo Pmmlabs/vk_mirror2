@@ -1525,6 +1525,7 @@ var Video = {
 
     var linkAddr = '?section='+cur.vSection;
     for (var i = cur.shown; i < limit; i++) {
+      list[i][3] = replaceEntities(list[i][3]);
       cur.vRows.appendChild(se(this.drawVideo(list[i], linkAddr)));
       cur.shown++;
     }
@@ -2130,7 +2131,7 @@ var Video = {
       var realHeight = name.offsetHeight || getSize(name)[1];
       removeClass(name, 'for_size');
       if (initialHeight < realHeight) {
-        linkEl.setAttribute('title', trim(linkEl.innerHTML.replace(/(<em>)|(<\/em>)/g, '').replace(/&amp;/g, '&')));
+        linkEl.setAttribute('title', replaceEntities(linkEl.innerHTML));
       }
     }
   },
