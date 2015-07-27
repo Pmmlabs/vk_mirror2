@@ -6039,3 +6039,8 @@ button.wall_block_app_btn {
 .wall_text_name_explain_promoted_post {
   padding-left: 5px;
 }
+.video_external_inline,
+.video_external_inline .wrap,
+.video_external_inline .video_box_wrap_external {
+  height: 100%;
+}
