@@ -1147,6 +1147,30 @@ switchEditFunc: function(id) {
   slideDown(newContent, 150);
 },
 
+switchEditActivity: function(id, duration) {
+  if (duration === undefined) {
+    duration = 150;
+  }
+  if (cur.currentActivity) {
+    var oldRow = ge('activity_row_' + cur.currentActivity);
+    if (oldRow) {
+      removeClass(oldRow, 'active');
+      var oldContent = geByClass1('apps_edit_content', oldRow);
+      slideUp(oldContent, duration);
+    }
+  }
+  if (cur.currentActivity == id) {
+    cur.currentActivity = null;
+    return;
+  }
+  cur.currentActivity = id;
+  var newRow = ge('activity_row_' + id);
+  addClass(newRow, 'active');
+  var newContent = geByClass1('apps_edit_content', newRow);
+  slideDown(newContent, duration);
+},
+
+
 switchEditRequest: function(id, duration) {
   if (duration === undefined) {
     duration = 150;
@@ -1200,8 +1224,7 @@ collectActivityData: function(id) {
     name: trim(val('activity_text_name_' + id)),
     text_m: trim(val('activity_text_m_' + id)),
     text_f: trim(val('activity_text_f_' + id)),
-    points: trim(val('activity_text_points_' + id)),
-    response: !!isChecked('activity_response_' + id)
+    points: parseInt(trim(val('activity_text_points_' + id))),
   };
 },
 
@@ -1280,6 +1303,26 @@ requestNotModified: function(id) {
   return true;
 },
 
+activityNotModified: function(id) {
+  cur.activityChanged = cur.activityChanged || {};
+
+  if (!cur.activities[id] && !cur.activityChanged[id]) {
+    return true;
+  }
+  var activity = cur.activities[id],
+      data = this.collectActivityData(id);
+
+  if (!activity) return false;
+
+  for (var i in data) {
+    if (activity[i] !== data[i]) {
+      return false;
+    }
+  }
+
+  return true;
+},
+
 defaultRequestData: function() {
   return {
     name: 'newRequest',
@@ -1292,35 +1335,41 @@ defaultRequestData: function() {
 },
 
 defaultActivityData: function() {
-  var sample = unclean(cur.activitySamples).split('<@>');
+  var sample = unclean(cur.activitySamples).split('<#>');
   sample = sample[Math.floor(Math.random() * sample.length)].split('<!>');
 
   return {
     name: sample[0],
     text_m: sample[1],
     text_f: sample[2],
-    points: 10,
-    button: getLang('apps_request_button_accept'),
-    response: false
+    points: 10
   };
 },
 
-defaultActivityData: function() {
-  var sample = unclean(cur.activitySamples).split('<@>');
-  sample = sample[Math.floor(Math.random() * sample.length)].split('<!>');
+updateRemainingPoints: function() {
+  var sum = 0;
+  each(geByClass('apps_edit_activity_points'), function() {
+    sum += parseInt(val(this)) || 0;
+  });
 
-  return {
-    name: sample[0],
-    text_m: sample[1],
-    text_f: sample[2],
-    points: 10,
-    button: getLang('apps_request_button_accept'),
-    response: false
-  };
+  var remain = Math.max(cur.maxTotalPoints - sum, 0);
+  var text = langNumeric(remain, cur.lang.apps_activities_edit_points_remain);
+
+  each(geByClass('apps_edit_points_remain_text'), function() {
+    this.innerHTML = text;
+  });
+
+  cur.activityRemainPoints = remain;
+
+  return cur.maxTotalPoints - sum;
 },
 
 toggleRequestsBtn: function() {
   toggle('add_requests_btn', geByClass('apps_edit_cont_row', ge('apps_edit_requests')).length < cur.maxRequests);
+},
+
+toggleActivitiesBtn: function() {
+  toggle('add_activities_btn', geByClass('apps_edit_cont_row', ge('apps_edit_activities')).length < cur.maxActivities);
 },
 
 requestInsertRow: function(row, list) {
@@ -1344,12 +1393,53 @@ requestInsertRow: function(row, list) {
   }
 },
 
-onActivityNameChange: function(input, ev) {
+activityInsertRow: function(row, list) {
+  if (!row || !list) {
+    return;
+  }
+  var rows = geByClass('apps_edit_cont_row', list),
+      curId = parseInt(row.id.replace('activity_row_', '')),
+      rowAfter = false;
+  for (var i in rows) {
+    var id = parseInt(rows[i].id.replace('activity_row_', ''));
+    if (id < curId) {
+      rowAfter = rows[i];
+      break;
+    }
+  }
+  if (rowAfter) {
+    list.insertBefore(row, rowAfter);
+  } else {
+    list.appendChild(row);
+  }
+},
+
+onActivityInputsChange: function(input, ev) {
   var parent = gpeByClass('apps_edit_cont_row', input);
-  var nameContainer = geByClass1('apps_edit_activity_cont_name', parent);
+
+  if (!parent) return;
+
+  var activityId = parent.getAttribute('data-id');
+  if (activityId > 2000000000) {
+    cur.activityChanged = cur.activityChanged || {};
+    cur.activityChanged[activityId] = true;
+  }
+
+  var nameInputEl = geByClass1('apps_edit_activity_name', parent);
+  var pointsInputEl = geByClass1('apps_edit_activity_points', parent);
+
+  var nameContainer = geByClass1('apps_edit_activity_title_name', parent);
+  var pointsContainer = geByClass1('apps_edit_activity_title_points', parent);
+
+  var points = parseInt(val(pointsInputEl)) || 0;
+  if (points > cur.maxPointsPerActivity || points < 0) {
+    val(pointsInputEl, Math.max(0, Math.min(cur.maxPointsPerActivity, points)));
+  }
+
   clearTimeout(cur._activityInputChangeTO);
   cur._activityInputChangeTO = setTimeout(function() {
-    nameContainer.innerHTML = clean(trim(input.value) || 'No name');
+    nameContainer.innerHTML = clean(trim(nameInputEl.value) || 'No name');
+    pointsContainer.innerHTML = clean(langNumeric(trim(pointsInputEl.value) || 0, cur.lang.apps_edit_activities_points) || '');
   }, 50);
 },
 
@@ -1367,7 +1457,10 @@ addActivity: function() {
   AppsEdit.toggleRequestsBtn();
 
   AppsEdit.switchEditRequest(id);
-  //geByClass1('apps_edit_cont_name', row).focus();
+  AppsEdit.updateRemainingPoints();
+  geByClass1('apps_edit_activity_name', row).select();
+
+  re(geByClass1('apps_edit_activity_delete_btn', row));
 },
 
 addRequest: function() {
@@ -1411,8 +1504,14 @@ showRequestUserTT: function(el, langKey) {
   });
 },
 
-showActivityUserTT: function(el) {
-  AppsEdit.showRequestUserTT(el);
+showActivityUserTT: function(el, langKey, shift) {
+  var text = getLang(langKey || 'apps_edit_request_user_name');
+  showTooltip(el, {
+    text: '<div class="apps_edit_bottom_tt_pointer"></div>' + text,
+    className: 'apps_edit_tt user',
+    slide: 15,
+    shift: shift || [1, 9, 9]
+  });
 },
 
 showRequestStatusTT: function(el, id) {
@@ -1426,6 +1525,27 @@ showRequestStatusTT: function(el, id) {
     case 0: msg = getLang('apps_edit_request_created'); break;
     case 1: msg = getLang('apps_edit_request_accepted'); break;
     case 2: msg = getLang('apps_edit_request_declined'); break;
+  }
+  window.tooltips && tooltips.hideAll();
+  showTooltip(el, {
+    text: '<div class="apps_edit_bottom_tt_pointer"></div>' + msg,
+    className: 'apps_edit_tt user',
+    slide: 15,
+    shift: [17, 15, 15]
+  });
+},
+
+showActivityStatusTT: function(el, id) {
+  var msg = getLang('apps_edit_activity_created'),
+      activity = cur.activities[id];
+  if (!activity) {
+    return;
+  }
+
+  switch (activity.status) {
+    case 0: msg = getLang('apps_edit_activity_created'); break;
+    case 1: msg = getLang('apps_edit_activity_accepted'); break;
+    case 2: msg = getLang('apps_edit_activity_declined'); break;
   }
   window.tooltips && tooltips.hideAll();
   showTooltip(el, {
@@ -1464,7 +1584,7 @@ rowFromRequest: function(id, request) {
   return se(rs(cur.requestRowTpl, rowData));
 },
 
-rowFromActivity: function(id, activity) {
+rowFromActivity: function(id, activity, noHide) {
   var row_class = '';
   switch (activity.status) {
     case 0:
@@ -1485,9 +1605,16 @@ rowFromActivity: function(id, activity) {
     text_m: activity.text_m,
     text_f: activity.text_f,
     points: activity.points,
+    points_text: langNumeric(activity.points, cur.lang.apps_edit_activities_points),
     check_class: (activity.response ? ' on' : ''),
     disabled_attr: (activity.status == 1 ? ' disabled="disabled"' : ''),
-    disabled_class: (activity.status == 1 ? ' disabled' : '')
+    disabled_class: (activity.status == 1 ? ' disabled' : ''),
+
+    id_hide_style: noHide ? '' : 'display: none',
+    points_label_hide_style: noHide ? '' : 'display: none',
+
+    disabled_points_attr: (activity.status == 1 ? ' ' : ''),
+    disabled_points_class: (activity.status == 1 ? ' ' : ''),
   };
   return se(rs(cur.activityRowTpl, rowData));
 },
@@ -1510,14 +1637,14 @@ saveActivity: function(btn, id) {
       var oldActivity = cur.activities[newId],
           oldCnt = AppsEdit.activityRowsCnt();
       cur.activities[newId] = activity;
-      var newRow = AppsEdit.rowFromActivity(newId, activity),
+      var newRow = AppsEdit.rowFromActivity(newId, activity, true),
           oldList = domPN(row),
           newList = ge('apps_edit_activities_status' + activity.status);
       if (oldList.id == newList.id && oldActivity && oldActivity.status == activity.status) {
         oldList.replaceChild(newRow, row);
       } else {
         AppsEdit.removeActivity(id, true);
-        AppsEdit.requestInsertRow(newRow, newList);
+        AppsEdit.activityInsertRow(newRow, newList);
         show(newList);
       }
       cur.currentActivity = null;
@@ -1527,6 +1654,7 @@ saveActivity: function(btn, id) {
         AppsEdit.showActivityStatusTT(geByClass1('apps_edit_cont_icon', newRow), newId);
       }
       AppsEdit.showRequestMsg(newRow, false, msg);
+      AppsEdit.updateRemainingPoints();
     },
     onFail: AppsEdit.showRequestMsg.pbind(row, true),
     hideProgress: function() {
@@ -1590,6 +1718,43 @@ saveRequest: function(btn, id) {
   })
 },
 
+correctActivityPointsInput: function(inputEl) {
+  var points = parseInt(val(inputEl)) || 0;
+  val(inputEl, points);
+},
+
+cancelActivityChange: function(id) {
+  if (cur.activitySaving) {
+    return;
+  }
+
+  var row = ge('activity_row_' + id), activity = cur.activities[id], content = geByClass1('apps_edit_content', row);
+
+  if (AppsEdit.activityNotModified(id)) {
+    if (!activity) {
+      AppsEdit.removeActivity(id);
+    } else {
+      toggle(content);
+    }
+    return;
+  }
+
+  var box = showFastBox({title: getLang('apps_cancel_activity'), dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'}, getLang('apps_cancel_activity_confrim'), getLang('developers_do_cancel'), function() {
+    if (!activity) {
+      AppsEdit.removeActivity(id);
+    } else {
+      val('activity_text_m_' + id, activity.text_m);
+      val('activity_text_f_' + id, activity.text_f);
+      val('activity_text_name_' + id, activity.name);
+      val('activity_points_' + id, activity.points);
+
+      AppsEdit.onActivityNameChange(ge('activity_text_name_' + id));
+      toggle(content);
+    }
+    box.hide();
+  });
+},
+
 cancelRequestChange: function(id) {
   if (cur.requestSaving) {
     return;
@@ -1623,6 +1788,15 @@ cancelRequestChange: function(id) {
   });
 },
 
+activityRowsCnt: function(parent) {
+  if (!parent) {
+    parent = ge('apps_edit_activities');
+  }
+  var rows = parent && geByClass('apps_edit_cont_row', parent) || [];
+
+  return rows.length;
+},
+
 requestRowsCnt: function(parent) {
   if (!parent) {
     parent = ge('apps_edit_requests');
@@ -1651,6 +1825,58 @@ removeRequest: function(id, onlyHide) {
   if (!rowsCnt) {
     show('apps_edit_requests_empty');
   }
+},
+
+removeActivity: function(id, onlyHide) {
+  var row = ge('activity_row_' + id),
+      list = domPN(row);
+  re(row);
+  var rowsCnt = AppsEdit.activityRowsCnt(ge('apps_edit_requests')),
+      curRowsCnt = AppsEdit.activityRowsCnt(list);
+  if (!curRowsCnt) {
+    hide(list);
+  }
+  if (onlyHide) {
+    return;
+  }
+
+  delete cur.activities[id];
+  AppsEdit.toggleActivitiesBtn();
+
+  if (!rowsCnt) {
+    show('apps_edit_activities_empty');
+  }
+},
+
+removeActivityBox: function(id) {
+  if (cur.activitySaving) {
+    return false;
+  }
+
+  var activity = cur.activities[id];
+  if (AppsEdit.activityNotModified(id) && !activity) {
+    AppsEdit.removeActivity(id);
+    return;
+  }
+
+  var removedRow = ge('activity_row_' + id),
+      name = val(geByClass1('apps_edit_cont_name', removedRow));
+
+  var box = showFastBox({title: getLang('apps_remove_activity'), dark: 1}, getLang('apps_remove_activity_confirm').replace('%s', clean(name)), getLang('developers_do_remove'), function() {
+    if (!activity) {
+      AppsEdit.removeActivity(id);
+    } else {
+      cur.activitySaving = true;
+      ajax.post('editapp', {act: 'delete_activity', aid: cur.aid, hash: cur.activityHash, activity_id: id}, {
+        onDone: AppsEdit.removeActivity.pbind(id, false),
+        onFail: AppsEdit.showRequestMsg.pbind(removedRow, true),
+        hideProgress: function() {
+          cur.activitySaving = false;
+        }
+      });
+    }
+    box.hide();
+  }, getLang('global_cancel'));
 },
 
 removeRequestBox: function(id) {
