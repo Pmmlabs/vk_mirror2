@@ -1020,6 +1020,12 @@ body.mobfixed #mv_layer_wrap {
   -webkit-transition: width 200ms ease, height 200ms ease;
   transition: width 200ms ease, height 200ms ease;
 }
+#mv_content .video_box_wrap_external {
+  height: 504px !important;
+}
+.mv_wpl #mv_content .video_box_wrap_external {
+  height: 369px !important;
+}
 embed#video_player {
   vertical-align: top;
 }
@@ -1391,9 +1397,8 @@ embed#video_player {
   padding-top: 93px;
 }
 .video_no_flash_wrap {
-  padding-top: 20px;
+  padding-top: 40px;
   color: #BBBBBB;
-  width: 640px;
   text-align: center;
 }
 .video_no_flash_wrap a {
