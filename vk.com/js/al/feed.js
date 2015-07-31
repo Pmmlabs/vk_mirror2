@@ -1,4 +1,14 @@
 var Feed = {
+  videoRecomsBlockHideCancel: function() {
+    ajax.post('/al_feed.php', { act: 'a_video_recom_hide_cancel' });
+    debugger;
+    feed.restorePost('video_recoms');
+  },
+  videoRecomsBlockHideReason: function(reasonHash, reason) {
+    re(geByClass1('feed_rb_video_reason_wrap'));
+    show(geByClass1('feed_rb_video_reason_thankyou'));
+    ajax.post('/al_feed.php', { act: 'a_video_recom_hide_reason', reason: reason, reason_hash: reasonHash });
+  },
   expandVideosPost: function(event, btn) {
     var wrapEl = geByClass1('page_post_sized_thumbs', domPN(btn));
     var shownCount = 0;
@@ -1137,6 +1147,14 @@ var Feed = {
     } else {
       hide('feed_empty', 'all_shown');
       show('show_more_link');
+    }
+
+    if (options.plb_tpl) {
+      cur.plb_tpl = options.plb_tpl;
+    }
+
+    if (options.plb_item_tpl) {
+      cur.plb_item_tpl = options.plb_item_tpl;
     }
 
     if (options.playlistsData && window.Videocat) {

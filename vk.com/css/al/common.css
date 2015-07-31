@@ -3796,6 +3796,11 @@ a.ts_search_link.active {
   image-rendering: optimize-contrast;
   -ms-interpolation-mode: nearest-neighbor;
 }
+.video_thumb_wrap {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
 .video_thumb_duration {
   position: absolute;
   padding: 2px 6px 3px 6px;
