@@ -6039,6 +6039,12 @@ button.wall_block_app_btn {
 .wall_text_name_explain_promoted_post {
   padding-left: 5px;
 }
+.wall_text_name_explain_promoted_post_age_restriction {
+  padding: 1px 3px;
+  color: #888;
+  margin-left: 2px;
+  font-size: 9px;
+}
 .video_external_inline,
 .video_external_inline .wrap,
 .video_external_inline .video_box_wrap_external {

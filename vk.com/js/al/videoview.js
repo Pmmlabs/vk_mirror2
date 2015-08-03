@@ -253,6 +253,11 @@ playerCallback: {
   onShare: function(actionType) {
     Videoview.share();
     Videoview.sendPlayerStats(2, actionType);
+  },
+
+  onSubscribe: function(gid, hash, isSubscribe, actionType) {
+    Videoview.subscribeToAuthor(null, null, gid, hash, isSubscribe, null, true);
+    Videoview.sendPlayerStats(isSubscribe ? 9 : 10, actionType);
   }
 },
 
@@ -368,13 +373,17 @@ sendVideoAdStat: function(oid, vid, hash) {
   st.events = [];
 },
 
-subscribeToAuthor: function(btn, event, gid, hash, isSubscribe, isClosed) {
+subscribeToAuthor: function(btn, event, gid, hash, isSubscribe, isClosed, noPlayerUpdate) {
   if (!hash) return;
 
   function _leaveGroup() {
     toggleClass(ge('mv_subscribe_btn_wrap'), 'mv_state_subscribed', isSubscribe);
     toggleClass(ge('mv_subscribed_msg'), 'mv_state_subscribed', isSubscribe);
     ajax.post('al_video.php', { act: 'a_subscribe', gid: gid, hash: hash, unsubscribe: intval(!isSubscribe), from: 'videoview' });
+    if (!noPlayerUpdate) {
+      var player = Videoview.getPlayerObject();
+      player && player.onSubscribed && player.onSubscribed();
+    }
   }
 
   if (!isSubscribe && isClosed) {

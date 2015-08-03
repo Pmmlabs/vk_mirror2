@@ -1119,13 +1119,19 @@ var Photoview = {
         return false;
       }
     });
+    if (ph.chronicle) {
+      var photoApp = '<a onmouseover="wall.postTooltip(this, \'snapster\', {i: -1, dark: 1})" onclick="if (!checkEvent(event)) {showBox(\'/snapster.php\', {act: \'show\'}, {containerClass: \'chronicle_layer\', dark: 1}); return false;}" href="http://snapster.io/" class="pv_chronicle_icon"></a>';
+    } else {
+      var photoApp = '';
+    }
+    console.log(ph);
     cur.pvWide.innerHTML = '\
 <div id="pv_desc" style="' + ((ph.actions.edit & 1 || ph.desc) ? '' : 'display: none') + '">' + descText + '</div>\
 <div id="pv_microdata">' + (ph.microdata_html ? ph.microdata_html : '') + (ph.microdata_preview_button ? ph.microdata_preview_button : '') + '</div>\
 <div id="pv_place">' + placeText + '</div>\
 <div id="pv_tags"' + tagsst + '>' + getLang('photos_onthisphoto') + ': ' + ph.tagshtml + '</div>\
 <div id="pv_inlineedit_prg" class="fl_r progress"></div>\
-<div id="pv_date_wrap" class="fl_l">' + getLang('photos_added') + ' <span id="pv_date">' + ph.date + '</span></div>\
+<div id="pv_date_wrap" class="fl_l">' + getLang('photos_added') + ' <span id="pv_date">' + ph.date + '</span><span id="pv_date_app">' + photoApp + '</span></div>\
 ' + addPlace + (cur.pvNoLikes ? '' : '<span class="divider fl_l">|</span>\
 <div id="pv_like_wrap" class="fl_l" onmouseover="Photoview.likeOver()" onmouseout="Photoview.likeOut()" onclick="Photoview.like()">\
   <span class="fl_l" id="pv_like_link">' + getLang('photos_i_like') + '</span>\

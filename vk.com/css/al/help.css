@@ -247,8 +247,8 @@ ul.help_test_hints {
 #licence_box_content .listing {
   margin-bottom: 0px;
 }
-.help_privacy_header,
-.help_licence_header {
+#privacy_box_content .wikiHeader,
+#licence_box_content .wikiHeader {
   font-size: 14px;
   font-weight: bold;
   padding-bottom: 3px;
