@@ -1436,7 +1436,7 @@ var Friends = {
       act: 'select_friends_box',
       Checked: checked.join(','),
       from: 'list',
-      list_name: (listId ? cur.userLists[listId] : ''),
+      list_name: (listId ? replaceEntities(stripHTML(cur.userLists[listId])) : ''),
       list_id: listId
     }, {
       stat: ['privacy.js', 'ui_controls.js', 'ui_controls.css'],
