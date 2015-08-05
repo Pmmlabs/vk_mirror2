@@ -1225,8 +1225,10 @@ doPass: function(section, text, box) {
 passTo: function(el, id, no_autoanswer) {
   var msg = cur.lang.pass_warnings && cur.lang.pass_warnings[id] || cur.lang.pass_warnings[0];
   var text = '<div class="msg" style="margin-bottom: 15px;">' + msg + '</div><div style="line-height: 160%">' + getLang('support_sure_pass').replace('{section}', val(el)) + '<br>';
-  if (intval(cur.cat_average_times[id]) > 0) {
-    text += getLang('cat_median_waiting') + '<b>' + cur.cat_average_times[id] + '</b>.<br>';
+  if (cur.cat_average_times) {
+    if (intval(cur.cat_average_times[id]) > 0) {
+      text += getLang('cat_median_waiting') + '<b>' + cur.cat_average_times[id] + '</b>.<br>';
+    }
   }
   text += '</div>';
   text += '\
