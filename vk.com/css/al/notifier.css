@@ -693,6 +693,11 @@ img.fc_msgs_author {
   height: 13px;
   background: #ffffff url(/images/upload.gif) no-repeat right 50%;
 }
+.fc_msg_progress_transparent_right {
+  background-color: transparent;
+  left: 50%;
+  margin: 5px 0 0 -35px;
+}
 .fc_msg_unread .fc_msg_progress {
   background-color: transparent;
   position: relative;

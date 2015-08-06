@@ -1928,6 +1928,7 @@ FastChat = {
     delete curFastChat.standby;
     delete curFastChat.standbyTO;
     Notifier.addRecvClbk('fastchat', 0, FastChat.lcRecv, true);
+    Notifier.addRecvClbk('logged_off', 0, FastChat.standby, true);
     FastChat.lcSend('needSettings', {version: options.version, lang_id: langConfig.id});
     clearTimeout(curFastChat.getSettingsTO);
     curFastChat.getSettingsTO = setTimeout(FastChat.getSettings, 300);
@@ -4228,6 +4229,10 @@ FastChat = {
       });
       //val(tab.previewEl, '');
       tab.imMedia.onChange = setTimeout.pbind(function() {
+        if (curFastChat.sendOnUpload) {
+          FastChat.send(curFastChat.sendOnUpload);
+          curFastChat.sendOnUpload = undefined;
+        }
         FastChat.onTxtResize(peer);
       }, 0);
     });
@@ -4473,6 +4478,7 @@ FastChat = {
         }
         return;
       }
+
       if (e.type == 'keydown' && e.ctrlKey && e.keyCode == KEY.RETURN) {
         var val = this.value;
         if (typeof this.selectionStart == "number" && typeof this.selectionEnd == "number") {
@@ -4650,6 +4656,16 @@ FastChat = {
     }, 2000);
   },
 
+  createProgress: function(row, id, after, cls) {
+    var el = ce('span', {className: 'fc_msg_progress progress ' + cls, id: 'fc_msg_progress' + id});
+    row.insertBefore(el, after);
+    return el;
+  },
+
+  removeProgress: function(id) {
+    re('fc_msg_progress' + id);
+  },
+
   send: function (peer, stickerId) {
     var t = this, tab = curFastChat.tabs[peer], msg = trim(tab.editable ? Emoji.editableVal(tab.txt) : val(tab.txt));
     if (stickerId) {
@@ -4657,6 +4673,19 @@ FastChat = {
       msg = '';
     } else {
       var media = tab.imMedia ? tab.imMedia.getMedias() : []
+    }
+    var typer = ge('fc_tab_typing' + peer);
+    var progressBars = geByClass1('page_progress_preview', tab.wrap);
+    if (progressBars && progressBars.childNodes.length > 0) {
+      curFastChat.sendOnUpload = peer;
+      var row = geByClass('fc_tab_log', tab.wrap)[0];
+      FastChat.createProgress(row, peer, row.lastChild, 'fc_msg_progress_transparent_right');
+      typer.style.visibility = 'hidden';
+      return;
+    } else {
+      curFastChat.sendOnUpload = false;
+      FastChat.removeProgress(peer);
+      typer.style.visibility = 'visible';
     }
     if ((!msg && !media.length)/* || tab.sending*/) {
       if (tab.editable) {
@@ -4712,13 +4741,13 @@ FastChat = {
         tab.sendProgressTO = setTimeout(function () {
           var row = ge('fc_msg' + msgId);
           if (!row) return;
-          row.insertBefore(ce('span', {className: 'fc_msg_progress progress', id: 'fc_msg_progress' + msgId}), row.firstChild);
+          FastChat.createProgress(row, msgId, row.firstChild);
         }, 2000);
       },
       hideProgress: function () {
         tab.sending = false;
         clearTimeout(tab.sendProgressTO);
-        re('fc_msg_progress' + msgId);
+        FastChat.removeProgress(msgId);
       }
     });
     re('fc_error' + peer);

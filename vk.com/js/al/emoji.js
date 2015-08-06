@@ -1169,10 +1169,12 @@ emojiToHTML: function(str, replaceSymbols, noBr) {
     'D83DDE28': /(\s|^)(:[oîOÎ])([\s\.,]|$)/g,
     '2764': /(\s|^)(&lt;3)([\s\.,]|$)/g
   };
-  for (var code in regs) {
-    str = str.replace(regs[code], function(match, pre, smile, space) {
-      return (pre || '') + Emoji.getEmojiHTML(code)+(space || '');
-    });
+  for (var i = 0; i < 2; i++) {
+    for (var code in regs) {
+      str = str.replace(regs[code], function(match, pre, smile, space) {
+        return (pre || '') + Emoji.getEmojiHTML(code)+(space || '');
+      });
+    }
   }
   var regs = {
     'D83DDE0A': /(:-\))([\s\.,]|$)/g,
