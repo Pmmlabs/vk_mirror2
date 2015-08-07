@@ -51,7 +51,7 @@ var OwnerPhoto = {
     cur.ownerPhotoBoxRefresh = b.setOptions.pbind({});
     stManager.add(['tagger.css', 'tagger.js']);
   },
-  showError: function(step, err) {
+  showError: function(step, err, wide) {
     if (!err.match(/^ERR_[A-Z0-9_]+(\:|$)/)) err = 'ERR_CLIENT_BAD_ERROR: error "' + clean(err.toString()) + '"';
     var e = err.match(/^(ERR_[A-Z0-9_]+)(\:\s*|$)([\S\s]*)\s*$/), code = e[1], el = ge('owner_photo_error'), msg;
     switch (code) {
@@ -59,7 +59,12 @@ var OwnerPhoto = {
       case 'ERR_UPLOAD_FILE_NOT_UPLOADED':
         msg = getLang('profile_oph_err_upload').replace('{link}', '<a href="/support">').replace('{/link}', '</a>'); break;
       case 'ERR_UPLOAD_BAD_IMAGE_SIZE':
-        msg = getLang('profile_oph_err_size').replace('{min}', '200').replace('{max}', '7<span class="num_delim"> </span>000'); break;
+        if (wide) {
+          msg = getLang('profile_custom_snippet_photo_error_size').replace('{width}', '537').replace('{height}', '240'); break;
+        } else {
+          msg = getLang('profile_oph_err_size').replace('{min}', '200').replace('{max}', '7<span class="num_delim"> </span>000'); break;
+        }
+
       case 'ERR_STORAGE_ENGINE_NOT_CONNECTED':
       case 'ERR_STORAGE_ENGINE_SAVE_FAILED':
         if (!isVisible('owner_photo_upload_return')) {
@@ -216,7 +221,7 @@ var OwnerPhoto = {
       onUploadComplete: function(i, res, errorAdd) {
         var obj = parseJSON(res) || {};
         if (obj.error) {
-          OwnerPhoto.showError(1, obj.error + (errorAdd || ''));
+          OwnerPhoto.showError(1, obj.error + (errorAdd || ''), opts.wide);
         } else if (!obj.x_src || !obj.x_size || !obj.size) {
           var txt = (res === false) ? '[FALSE]' : ((res === null) ? '[NULL]' : ((res === undefined) ? '[UNDEFINED]' : ('&laquo;' + clean(res.toString().substr(0, 1024)) + '&raquo;')));
           OwnerPhoto.showError(1, 'ERR_CLIENT_BAD_RESPONSE: bad upload owner photo response, recv ' + txt);
@@ -230,7 +235,9 @@ var OwnerPhoto = {
             thumbSize: obj.x_size,
             size: obj.size,
             uploadUrl: url,
-            square: opts.square
+            square: opts.square,
+            no_crop: opts.no_crop,
+            wide: opts.wide
           });
         }
       },
@@ -341,11 +348,27 @@ var OwnerPhoto = {
     setStyle(domLC(wrap), extend(vk.rtl ? {left: d} : {right: d}, {bottom: -d}));
   },
   editTagger: function() {
-    var opts = cur.ownerPhotoEditOpts, size = opts.size, tsize = opts.thumbSize, minSize = [
+    var opts = cur.ownerPhotoEditOpts;
+    var size = opts.size, tsize = opts.thumbSize;
+    var rect, mul1 = opts.square ? 1 : 1.5, mul2 = opts.square ? 1 : 2.5, div1 = opts.square ? 1 : 0.4;
+    var mina = div1, maxa = 1;
+    var minSize = [
       Math.max(100, Math.ceil(200 * tsize[0] / size[0])),
       Math.max(100, Math.ceil(200 * tsize[1] / size[1]))
-    ], rect, mul1 = opts.square ? 1 : 1.5, mul2 = opts.square ? 1 : 2.5, div1 = opts.square ? 1 : 0.4;
-    if (tsize[0] < minSize[0] || tsize[1] < minSize[1]) nav.reload();
+    ];
+    if (opts.wide) {
+      mina = 2.2375; // 537x240 aspect ratio
+      maxa = 2.2375;
+      minSize = [
+        Math.max(100, Math.ceil(537 * tsize[0] / size[0])),
+        Math.max(45, Math.ceil(240 * tsize[1] / size[1]))
+      ];
+    }
+
+
+    if (tsize[0] < minSize[0] || tsize[1] < minSize[1]) {
+      nav.reload();
+    }
     if (opts.rect) {
       if (opts.strict) {
         rect = {
@@ -393,8 +416,18 @@ var OwnerPhoto = {
         }
       }
     } else {
-      rect = {width: Math.max(minSize[0], tsize[0] - 40), height: Math.max(minSize[1], tsize[1] - 40)};
-      if (rect.width > rect.height) {
+      if (opts.wide) {
+        if (tsize[1] >= (tsize[0] / maxa)) {
+          rect = {width: tsize[0] - 40};
+          rect.height = Math.ceil(rect.width / maxa);
+        } else {
+          rect = {height: tsize[1] - 40};
+          rect.width = Math.ceil(rect.height * maxa);
+        }
+      } else {
+        rect = {width: Math.max(minSize[0], tsize[0] - 40), height: Math.max(minSize[1], tsize[1] - 40)};
+      }
+      if (!opts.wide && (rect.width > rect.height)) {
         rect.width = rect.height;
       }
       if (rect.height > rect.width * mul2) {
@@ -409,8 +442,8 @@ var OwnerPhoto = {
     cur.ownerPhotoEditTagger = photoTagger('owner_photo_img', {
       minw: minSize[0],
       minh: minSize[1],
-      mina: div1,
-      maxa: 1,
+      mina: mina,
+      maxa: maxa,
       rect: rect,
       zstart: 1000
     });
@@ -431,8 +464,7 @@ var OwnerPhoto = {
       Math.ceil(rect[2] * cx),
       Math.ceil(rect[3] * cy)
     ], url = cur.ownerPhotoEditOpts.uploadUrl + '&_full=' + encodeURIComponent(crop.join(',')) + '&_rot=' + intval(cur.ownerPhotoRotation);
-
-    if (opts.square) {
+    if (opts.square || opts.no_crop) {
       lockButton('owner_photo_done_edit');
       clearTimeout(cur.ownerPhotoCropTimer);
       cur.ownerPhotoCropTimer = setTimeout(OwnerPhoto.cropSuccess.pbind(true, '{"error":"ERR_CLIENT_UPLOAD_TIMEOUT: no response on owner_photo_crop iframe request"}'), 10000);
@@ -573,8 +605,12 @@ var OwnerPhoto = {
       if (cur.photoTooltipHide) {
         cur.photoTooltipHide(true);
       }
+      var onDone = squareEdit && window.IM ? IM.chatPhotoSaved : nav.reload;
+      if (cur && cur.shareSetOwnPhoto) {
+        onDone = cur.shareSetOwnPhoto;
+      }
       ajax.post('al_page.php', {act: 'owner_photo_save', _query: res}, {
-        onDone: squareEdit && window.IM ? IM.chatPhotoSaved : nav.reload,
+        onDone: onDone,
         onFail: function(text) {
           OwnerPhoto.showError(squareEdit ? 2 : 3, text);
           return true;

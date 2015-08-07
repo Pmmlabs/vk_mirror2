@@ -1745,6 +1745,9 @@ a.reply_parent_link,
   display: block;
   color: #777777;
 }
+.medadd_c_linkcon .page_media_link_addr {
+  padding: 3px 5px 0 5px;
+}
 .wall_module a.page_media_thumbed_link {
   cursor: pointer !important;
 }
@@ -1931,6 +1934,7 @@ a.page_media_link_desc {
 }
 .page_media_link_text {
   padding-left: 14px;
+  font-size: 11px;
 }
 .wall_module td.page_media_stickers_link_thumb {
   background-position: 50% 3px;
@@ -5690,23 +5694,272 @@ div.medadd_c_nofixed {
   height: auto;
 }
 .medadd_c_linkcon {
+  padding: 6px 8px;
   overflow: hidden;
   background: #FFF;
-  padding: 6px 8px;
   border: 1px solid #C0CAD5;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 div.medadd_c_linkprg {
   display: block;
   margin: 0px auto;
 }
+.medadd_c_linkdomain {
+  color: #777;
+}
+.medadd_c_linkimg_loader {
+  position: absolute;
+  width: 32px;
+  height: 8px;
+  top: 50%;
+  left: 50%;
+  margin-top: -4px;
+  margin-left: -16px;
+  z-index: 10;
+  display: none;
+  background-image: url(/images/upload.gif);
+  background-size: 32px 8px;
+  background-repeat: no-repeat;
+}
 .medadd_c_linkimg {
-  padding: 5px 10px 5px 5px;
+  max-width: 150px;
+  position: relative;
+  top: 50%;
+}
+.medadd_c_linkimg_container {
+  min-width: 130px;
+  min-height: 40px;
+  overflow: hidden;
+  position: relative;
+  margin: 5px 10px 5px 5px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 0;
+  text-align: center;
+}
+.medadd_c_linkimg_big .medadd_c_linkimg_container {
+  width: 100%;
+  max-height: 150px;
+  margin: 0;
+}
+.big_wall_post .medadd_c_linkimg_big .medadd_c_linkimg_container {
+  max-height: 240px;
+}
+.medadd_c_linkimg_big.medadd_c_linkcon {
+  padding: 0;
+}
+.medadd_c_linkimg_big .medadd_c_linkimg {
+  left: 0;
+  top: 0;
+  max-width: 640px;
+}
+.medadd_c_linkimg_big .page_media_link_url {
+  bottom: 10px;
+}
+.medadd_c_linkimg_big .medadd_c_linkdsc {
+  padding: 0 15px 10px 15px;
+  margin-top: -2px;
+  line-height: 15px;
+}
+.medadd_c_linkimg_big .medadd_c_linkhead {
+  padding: 10px 15px 6px 15px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  line-height: 15px;
+}
+.medadd_c_linkimg_big .medadd_c_linkhead:hover {
+  text-decoration: underline;
+}
+.medadd_c_linkimg_controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0.55;
+  -o-transition: opacity 70ms linear;
+  -ms-transition: opacity 70ms linear;
+  -moz-transition: opacity 70ms linear;
+  -webkit-transition: opacity 70ms linear;
+  transition: opacity 70ms linear;
+}
+.medadd_c_linkimg_controls .medadd_c_linkimg_controls_btn_group {
+  background-color: rgba(0, 0, 0, 0.55);
+  margin: 5px;
+  border-radius: 2px;
+}
+.medadd_c_linkimg_controls .medadd_c_linkimg_controls_btn_arrows_group {
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+}
+.medadd_c_linkimg_controls .medadd_c_linkimg_controls_btn {
+  width: 26px;
+  height: 26px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: 4px 0px;
+  background-image: url('/images/icons/link_attach.png?1');
+  cursor: pointer;
+  opacity: 0.7;
+}
+.medadd_c_linkimg_controls .medadd_c_linkimg_controls_btn:hover {
+  opacity: 1.0;
+}
+.medadd_c_linkimg_controls .medadd_c_linkimg_controls_btn:active {
+  position: relative;
+  top: 1px;
+}
+.medadd_c_linkimg_controls .medadd_c_linkimg_controls_btn#medadd_ctrl_right {
+  background-position: 6px -27px;
+}
+.medadd_c_linkimg_controls .medadd_c_linkimg_controls_btn#medadd_ctrl_upload {
+  background-position: 5px -54px;
+}
+.medadd_c_linkimg_controls .medadd_c_linkimg_controls_btn#medadd_ctrl_remove {
+  background-position: 4px -108px;
+}
+.medadd_c_linkimg_controls .medadd_c_linkimg_controls_btn.medadd_c_btn_side_padd {
+  padding-right: 2px;
+}
+.medadd_c_linkcon:hover .medadd_c_linkimg_controls {
+  opacity: 1;
+}
+.medadd_c_linkimg_container:hover .medadd_c_linkimg_scroll_wrap {
+  opacity: 0.5;
+}
+.medadd_c_linkimg_container:hover .medadd_c_linkimg_scroll_wrap:hover {
+  opacity: 0.8;
+}
+.medadd_c_linkimg_scroll_wrap {
+  position: absolute;
+  top: 0;
+  width: 26px;
+  height: 100%;
+  z-index: 10;
+  opacity: 0;
+  cursor: pointer;
+  -webkit-transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+.medadd_c_linkimg_scroll_wrap_left {
+  left: 0;
+  background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(0, 0, 0, 0.3)), color-stop(100%, rgba(0, 0, 0, 0)));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+  /* IE10+ */
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4d000000', endColorstr='#00000000', GradientType=1);
+  /* IE6-9 */
+}
+.medadd_c_linkimg_scroll_wrap_right {
+  right: 0;
+  background: -moz-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0.3)));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+  /* IE10+ */
+  background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#4d000000', GradientType=1);
+  /* IE6-9 */
+}
+.medadd_c_linkimg_scroll {
+  position: absolute;
+  width: 26px;
+  height: 20px;
+  top: 50%;
+  margin-top: -11px;
+  background-image: url(/images/link_arrows.png);
+  background-size: 38px 40px;
+  background-repeat: no-repeat;
+}
+.medadd_c_linkimg_scroll_wrap_left .medadd_c_linkimg_scroll {
+  background-position: -23px -20px;
+  -webkit-transition: background-position 0.2s;
+  -moz-transition: background-position 0.2s;
+  -ms-transition: background-position 0.2s;
+  -o-transition: background-position 0.2s;
+  transition: background-position 0.2s;
+}
+.medadd_c_linkimg_scroll_wrap_left_first .medadd_c_linkimg_scroll {
+  background-position: 3px -20px;
+}
+.medadd_c_linkimg_scroll_wrap_right .medadd_c_linkimg_scroll {
+  background-position: -14px 0;
+}
+.medadd_c_linkimg_scroll_wrap_close {
+  background: rgba(0, 0, 0, 0.5) url(/images/delete.png);
+  background-size: 9px 9px;
+  background-position: center center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 2px;
+  opacity: 0.5;
+  width: 13px;
+  height: 13px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  -webkit-transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+.medadd_c_linkimg_scroll_wrap_close:hover {
+  opacity: 0.8;
+}
+.medadd_c_linkimg_own {
+  width: 150px;
+  height: 67px;
+  margin-top: -33px;
+  position: absolute;
+  top: 50%;
+  background-color: #eef2f6;
+  padding-top: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 8pt;
+}
+.medadd_c_linkimg_own_link {
+  background-image: url(/images/link_photo.png);
+  background-size: 36px 27px;
+  background-position: center 0;
+  background-repeat: no-repeat;
+  padding-top: 35px;
+  display: inline-block;
 }
 .medadd_c_linkhead {
   margin: 0px;
-  padding: 5px;
+  padding: 5px 5px 0 5px;
   border: 0px;
   font-size: 11px;
+}
+.info_tab h4.medadd_c_linkhead {
+  border-bottom: 0;
 }
 .font_medium .medadd_c_linkhead {
   font-size: 12px;

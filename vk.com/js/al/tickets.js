@@ -187,6 +187,7 @@ saveTicket: function(hash) {
   if (nav.objLoc.gid) query.gid = nav.objLoc.gid;
   if (nav.objLoc.app_id) query.app_id = nav.objLoc.app_id;
   if (nav.objLoc.union_id) query.union_id = nav.objLoc.union_id;
+  if (nav.objLoc.act == 'new') { query.section = 0; }
   if (nav.objLoc.act == 'new_ads') query.section = 1;
   if (nav.objLoc.act == 'new_pay') query.section = 16;
   if (nav.objLoc.act == 'new_name') query.section = 20;
@@ -194,6 +195,7 @@ saveTicket: function(hash) {
   if (nav.objLoc.act == 'new_mobile') query.section = 24;
   if (nav.objLoc.act == 'new_app') query.section = 9;
   ajax.post(nav.objLoc[0], query, {
+    onDone: function(message) { showDoneBox(message); },
     showProgress: lockButton.pbind(ge('tickets_send')),
     hideProgress: unlockButton.pbind(ge('tickets_send'))
   });
@@ -237,6 +239,7 @@ savePayTicket: function(hash) {
   if (nav.objLoc.act == 'new_ads') query.section = 1;
   if (nav.objLoc.act == 'new_pay') query.section = 16;
   ajax.post(nav.objLoc[0], query, {
+    onDone: function(message) { showDoneBox(message); },
     showProgress: lockButton.pbind(ge('tickets_send')),
     hideProgress: unlockButton.pbind(ge('tickets_send'))
   });
@@ -265,6 +268,7 @@ saveDMCATicket: function(hash) {
     query.audio_orig = ce('div', {innerHTML: orig.replace(/z9q2m/g, 'audio')}).innerHTML;
   }
   ajax.post('/support', query, {
+    onDone: function(message) { showDoneBox(message); },
     showProgress: lockButton.pbind(ge('tickets_send')),
     hideProgress: unlockButton.pbind(ge('tickets_send'))
   });
@@ -1395,7 +1399,6 @@ chooseFail: function(addMedia, info, code) {
     var lnkId, ind = info.fileName ? i+'_'+info.fileName : info;
     if (addMedia) {
       re('upload'+ind+'_progress_wrap');
-      addMedia.unchooseMedia();
     }
   }
   var msg = '', type = (Upload.options[i] || {}).type || '';
@@ -2104,7 +2107,7 @@ toggleFAQRow: function(id, hash, el, evt) {
   return false;
 },
 
-rateFAQ: function(id, val, hash) {
+rateFAQ: function(id, val, hash, evt) {
   if (!vk.id) return false;
   ajax.post(nav.objLoc[0], {act: 'faq_rate', faq_id: id, val: val, hash: hash});
   ajax.post(nav.objLoc[0], {act: 'faq_clicked', faq_id: id, hash: hash}, {cache: 1});
@@ -2114,18 +2117,24 @@ rateFAQ: function(id, val, hash) {
   } else {
     show('tickets_faq_unuseful'+id);
   }
+  if (evt) {
+    evt.stopPropagation();
+  }
   return false;
 },
 
-cancelRateFAQ: function(id, val, hash) {
+cancelRateFAQ: function(id, val, hash, evt) {
   if (!vk.id) return false;
   ajax.post(nav.objLoc[0], {act: 'faq_rate', faq_id: id, val: val, cancel: 1, hash: hash});
   hide('tickets_faq_useful'+id, 'tickets_faq_unuseful'+id);
   show('tickets_faq_links'+id);
+  if (evt) {
+    evt.stopPropagation();
+  }
   return false;
 },
 
-showAverageTime: function(time) {
+showAverageTime: function(time, confirmCallback) {
   if (cur.timeShown) {
     Tickets.toggleDetailedForm();
     return;
@@ -2134,7 +2143,7 @@ showAverageTime: function(time) {
   var box = showFastBox({title: getLang('support_average_wait_time'), width: 430, dark: true, bodyStyle: 'padding: 20px; line-height: 160%;'}, msg, getLang('support_ask_question'), function() {
       box.hide();
       cur.timeShown = true;
-      Tickets.toggleDetailedForm(true);
+      confirmCallback();
     }, getLang('support_back_to_faq'));
 },
 
@@ -2863,4 +2872,231 @@ restoreDraft: function(ticket_id) {
   }
 },
 
+listUpdateSearch: function(e, obj) {
+  clearTimeout(cur.faqTimeout);
+  cur.faqTimeout = setTimeout((function() {
+    var origStr = obj.value,
+      str = trim(origStr),
+      words = str.split(' '),
+      textInput = ge('tickets_redesign_text');
+
+    if (str == cur.searchStr && (words.length < 4 || words.length == 4 && origStr[origStr.length - 1] != ' ')) {
+      return;
+    }
+    if (str) {
+      addClass(ge('tickets_search_reset'), 'shown');
+    } else {
+      removeClass(ge('tickets_search_reset'), 'shown');
+    }
+    cur.searchStr = str;
+    clearTimeout(cur.searchFAQTimeout);
+    cur.searchFAQTimeout = setTimeout((function() {
+      Tickets.listSearch(cur.searchStr);
+    }).bind(this), 300);
+
+    if (!browser.mobile) scrollToTop();
+  }).bind(this), 10);
+},
+
+listSearch: function(val) {
+  if (val[val.length - 1] == ' ') {
+    val[val.length - 1] = '_';
+  }
+  addClass(ge('faq_search_form'), 'loading');
+  setStyle(ge('tickets_search_reset'), {opacity: .6});
+
+  var query = {act: 'load_faq_list', q: val };
+
+  ajax.post(nav.objLoc[0], query, {
+    cache: 1,
+    onDone: function(content, showButton) {
+      ge('help_table_questions_l').innerHTML = content;
+      removeClass(ge('faq_search_form'), 'loading');
+      var obj = {act: 'faqs'};
+      obj[0] = nav.objLoc[0];
+      if (val) {
+        obj['q'] = val;
+      }
+      nav.setLoc(obj);
+      Tickets.listDiselectCategory();
+      Tickets.listOpenFAQs();
+      Tickets.listSetTitle(getLang(val ? 'support_list_search_result_title' : 'support_list_title'));
+      Tickets.listToggleUnusefulButton(showButton);
+      if (val == '') {
+        addClass(ge('help_table_category_top'), 'help_table_categories__a_sel');
+      }
+    },
+    onFail: function() {
+      removeClass(ge('tickets_search'), 'loading');
+    }
+  });
+},
+listToggleQuestion: function(question, e) {
+  if (e.target.tagName.toLowerCase() == 'a' && !hasClass(e.target, 'help_table_question__q')) return true;
+
+  var t = '';
+  if (window.getSelection) {
+    t = window.getSelection();
+  } else if (document.getSelection) {
+    t = document.getSelection();
+  } else if (document.selection) {
+    t = document.selection.createRange().text;
+  }
+
+  var ans = geByClass1('help_table_question__ans', question);
+
+  if (isVisible(ans)) {
+    if (t == '' || (e.target.tagName.toLowerCase() == 'a' && hasClass(e.target, 'help_table_question__q'))) {
+      removeClass(question, 'help_table_question_visible');
+      slideUp(ans, 200);
+    }
+  } else {
+    addClass(question, 'help_table_question_visible');
+    slideDown(ans, 200);
+  }
+},
+listQuestionUrlClick: function(e) {
+  var button = e.which || e.button;
+  if (button == 1 && !e.ctrlKey && !e.metaKey) {
+    e.preventDefault();
+  } else {
+    e.stopPropagation();
+  }
+},
+listToggleUnusefulButton: function(v) {
+  toggle(ge('help_table_questions_btn'), v);
+},
+goToForm: function() {
+  var titleInput = ge('faq_search_form__title'), title = '';
+  if (titleInput) {
+    title = titleInput.value.trim();
+  }
+  nav.go(nav.objLoc[0]+'?act=new'+(title ? '&title='+ encodeURIComponent(title) : ''));
+  return false;
+},
+goToList: function(category_id, question_id, evt) {
+  if (evt !== null) {
+    var b = evt.which || evt.button;
+    if (b != 1) {
+      return;
+    }
+  }
+
+  var e = Tickets.listSelectCategory(category_id, true);
+  var query = {act: 'load_faq_list'};
+  if (category_id != 'top') {
+    query['c'] = category_id;
+  }
+
+  ajax.post(nav.objLoc[0], query, {
+    cache: 1,
+    onDone: function(content, showButton) {
+      Tickets.listToggleUnusefulButton(showButton);
+      Tickets.listClearSearchInput();
+      Tickets.listOpenFAQs();
+
+      Tickets.listRemoveCategoryLoading();
+      Tickets.listSetTitle(e.innerHTML);
+
+      var obj = {act:'faqs'};
+      obj[0] = nav.objLoc[0];
+      if (category_id != 'top') {
+        obj['c'] = category_id;
+      }
+      if (question_id) {
+        obj['id'] = question_id;
+      }
+      nav.setLoc(obj);
+
+      ge('help_table_questions_l').innerHTML = content;
+      var question = null;
+      if (question_id) {
+        question = ge('help_table_question_' + question_id);
+      }
+      if (question) {
+        scrollToY(getXY(question)[1]);
+        addClass(question, 'help_table_question_visible');
+        slideDown(geByClass1('help_table_question__ans', question), 200);
+      }
+    }
+  });
+  return false;
+},
+listClearSearchInput: function() {
+  ge('faq_search_form__title').value = '';
+  removeClass(ge('tickets_search_reset'), 'shown');
+},
+listClearSearch: function(el, event) {
+  var field = ge('faq_search_form__title');
+  setStyle(el, {opacity: .6});
+  field.value = '';
+  ge('faq_search_form__title').focus();
+  Tickets.listUpdateSearch(event, field);
+},
+listSelectCategory: function(category_id, add_loading) {
+  each(geByClass('help_table_categories__a_sel', ge('help_table_categories')), function(i, v) {
+    if ('help_table_category_'+category_id != v.id) {
+      removeClass(v, 'help_table_categories__a_sel');
+    }
+  });
+  var e = ge('help_table_category_'+category_id);
+  addClass(e, 'help_table_categories__a_sel');
+  if (add_loading) {
+    addClass(e, 'loading');
+  }
+  return e;
+},
+listDiselectCategory: function() {
+  each(geByClass('help_table_categories__a', ge('help_table_categories')), function(i, v) {
+    removeClass(v, 'help_table_categories__a_sel');
+  });
+},
+listRemoveCategoryLoading: function() {
+  each(geByClass('loading', ge('help_table_categories')), function(i, v) {
+    removeClass(v, 'loading');
+  });
+},
+listSetTitle: function(title) {
+  var e = ge('help_table_questions__title');
+  if (title) {
+    show(e);
+    e.innerHTML = title;
+  } else {
+    hide(e);
+  }
+},
+listOpenFAQs: function() {
+  hide(ge('help_tiles'));
+  show(ge('help_faqs'));
+  removeClass(ge('help_tab'), 'active_link');
+  addClass(ge('faqs_tab'), 'active_link');
+},
+listOpenTiles: function() {
+  show(ge('help_tiles'));
+  hide(ge('help_faqs'));
+  addClass(ge('help_tab'), 'active_link');
+  removeClass(ge('faqs_tab'), 'active_link');
+
+  var obj = {act:'home'};
+  obj[0] = nav.objLoc[0];
+  nav.setLoc(obj);
+
+  Tickets.listClearSearchInput();
+  return false;
+},
+tryAskQuestion: function(callback) {
+  var s = cur.askQuestion.permission;
+  if (s == 0) {
+    setTimeout(showFastBox({
+      dark: 1,
+      bodyStyle: 'line-height: 160%;',
+      title: getLang('global_error')
+    }, getLang('support_flood_error')).hide, 4000);
+  } else if (s == 1) {
+    Tickets.showAverageTime(cur.askQuestion.time, callback);return false;
+  } else {
+    callback();
+  }
+  return false;
+},
 _eof: 1};try{stManager.done('tickets.js');}catch(e){}

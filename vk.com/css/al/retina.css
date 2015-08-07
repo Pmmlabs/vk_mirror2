@@ -150,6 +150,22 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
   background-image: url(/images/icons/audio_icons_2x.png?6);
   background-size: 257px 63px;
 }
+.is_2x .medadd_c_linkimg_loader {
+  background-image: url(/images/upload_2x.gif);
+}
+.is_2x .medadd_c_linkimg_scroll {
+  background-image: url(/images/link_arrows_2x.png);
+}
+.is_2x .medadd_c_linkimg_own_link {
+  background-image: url(/images/link_photo_2x.png);
+}
+.is_2x .medadd_c_linkimg_scroll_wrap_close {
+  background-image: url(/images/delete_2x.png);
+}
+.is_2x .medadd_c_linkimg_controls .medadd_c_linkimg_controls_btn {
+  background-image: url('/images/icons/link_attach_2x.png?1');
+  background-size: 16px 135px;
+}
 .is_2x .microdata_rate {
   background-image: url(/images/icons/app_stars_2x.png?1);
   background-size: 13px 224px;
@@ -1800,4 +1816,18 @@ body.dev.is_2x .priv_h_arrow,
 .is_2x .feed_hint_close {
   background-image: url('/images/icons/video_hide_channel_2x.png');
   background-size: 11px 11px;
+}
+.is_2x .help_tile_urgent:before {
+  background-image: url(/images/faq_new_alert_2x.png);
+}
+.is_2x .help_tile__all:after {
+  background-image: url(/images/faq_arrow_2x.png);
+  background-size: 6px 10px;
+}
+.is_2x .help_table_question_act_ok:before {
+  background-image: url(/images/faq_helpful_2x.png);
+  background-size: 13px 10px;
+}
+.is_2x .help_table_categories__a.loading {
+  background-image: url('/images/upload_inv_mini_2x.gif');
 }

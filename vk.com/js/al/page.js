@@ -1,4 +1,7 @@
 var Page = {
+  buildMediaLinkEl: function(url) {
+    return '<div class="page_media_link_url"><div class="page_media_link_icon"></div><div class="page_media_link_text">' + url + '</div></div>';
+  },
   showManyPhoto: function(el, photoId, listId, opts) {
     var m = allPhotos = [];
     each(domPN(el).childNodes, function(k, v) {
@@ -1539,8 +1542,8 @@ var Wall = {
                 return;
               }
             }
-            attachVal = (share.user_id && share.photo_id) ? share.user_id + '_' + share.photo_id : '';
-            if (share.images && share.images.length) {
+            attachVal = (!share.noPhoto && share.user_id && share.photo_id) ? share.user_id + '_' + share.photo_id : '';
+            if (share.images && share.images.length && !share.share_own_image) {
               addmedia.uploadShare(Wall.sendPost);
               ret = true;
               return false;
@@ -1554,7 +1557,7 @@ var Wall = {
               description: replaceEntities(share.description),
               extra: share.extra,
               extra_data: share.extraData,
-              photo_url: replaceEntities(share.photo_url),
+              photo_url: share.noPhoto ? '' : replaceEntities(share.photo_url),
               open_graph_data: (share.openGraph || {}).data,
               open_graph_hash: (share.openGraph || {}).hash
             });
@@ -5251,6 +5254,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
               photo_id: data[7]
             };
           };
+          data.media = data.media || media;
           if (data.draft) {
             addMedia.checkURL(data.url);
             return false;
@@ -5971,22 +5975,90 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
     },
     shareImgUrl: function(index) {
       var data = addMedia.shareData;
-      if (data.images_proxy) {
+      if (data.images_proxy && data.images_proxy[index]) {
         return data.images_proxy_url + data.images_proxy[index];
       }
-      return data.images[index];
+
+      if (data.images) {
+        var imgUrl = data.images[index];
+        if (isArray(imgUrl)) {
+          if (imgUrl[0]) {
+            imgUrl = imgUrl[0];
+          } else {
+            imgUrl = '';
+          }
+        }
+        return imgUrl;
+      } else {
+        return '';
+      }
     },
     showPreview: function(fast) {
       var data = addMedia.shareData,
-          prev = addMedia.sharePreview || addMedia.addPreview();
+          prev = addMedia.sharePreview || addMedia.addPreview(), image, bigLinkClass;
+
+      if (data.images) {
+        image = data.images[cur.shareShowImg];
+        bigLinkClass = addMedia.bigLink || data.big_link || (image && isArray(image) && image[0]) ? 'medadd_c_linkimg_big' : '';
+      }
 
       if (data.failed) {
         var html = getLang('page_not_loaded');
       } else {
         var onloadStr = fast ? '' : 'onload="if (this.width < 130 && !cur.onLoadSwitched) {cur.onLoadSwitched=1;setTimeout(cur.shareShowNext, 0);}"';
         var imghtml = '';
-        if (data.images && data.images[cur.shareShowImg]) {
-          imghtml = '<img class="medadd_c_linkimg fl_l" src="' + clean(addMedia.shareImgUrl(cur.shareShowImg)) + '" ' + onloadStr + (data.imagesStyles && data.imagesStyles[cur.shareShowImg] || '') + ' />';
+        var imgUrl = clean(addMedia.shareImgUrl(cur.shareShowImg));
+
+        if (data.images && data.images[cur.shareShowImg] && imgUrl) {
+          var curImage = data.images[cur.shareShowImg];
+
+          var style = bigLinkClass ? 'style="width: 100%"' : (data.imagesStyles && data.imagesStyles[cur.shareShowImg] || '');
+          imghtml = '<img class="medadd_c_linkimg" src="' + imgUrl + '" ' + onloadStr + ' ' + style + ' />';
+          imghtml += bigLinkClass ? Page.buildMediaLinkEl(data.domain) : '';
+
+          if (data.images.length > 0) {
+            var leftScroller = ((data.images.length > 1) ? ('<div class="medadd_c_linkimg_scroll_wrap medadd_c_linkimg_scroll_wrap_left ' + ((cur.shareShowImg == 0) ? 'medadd_c_linkimg_scroll_wrap_left_first' : '') + '" onclick="'+((cur.shareShowImg == 0) ? 'Page.ownerPhoto(\''+data.media+'\');' : 'cur.shareShowNext(true);')+'"><div class="medadd_c_linkimg_scroll"></div></div>') : '');
+            var rightScroller = '';
+            var closeButton = '';
+            if (cur.shareShowImg < (data.images.length - 1)) {
+              rightScroller = '<div class="medadd_c_linkimg_scroll_wrap medadd_c_linkimg_scroll_wrap_right" onclick="cur.shareShowNext();"><div class="medadd_c_linkimg_scroll"></div></div>';
+            } else if ((cur.shareShowImg == (data.images.length - 1)) && isArray(curImage) && !!curImage[0]) {
+              rightScroller = '';
+              //closeButton = '<div class="medadd_c_linkimg_scroll_wrap_close" onclick="cur.shareClearOwnPhoto();"></div>';
+            }
+
+            var hasOwnPhoto = isArray(data.images[data.images.length - 1]) && !!data.images[data.images.length - 1][0];
+            var availableImagesCount = data.uniqueImagesCount + intval(hasOwnPhoto);
+
+            var uploadTooltip = 'onmouseover="showTooltip(this, {text: \'' + getLang('global_link_choose_own_photo') + '\', black: 1, shift: [7, 1, 0]})"';
+            var removeTooltip = 'onmouseover="showTooltip(this, {text: \'' + getLang('global_link_remove_photo') + '\', black: 1, shift: [7, 1, 0]})"';
+
+            var imgControls = !data.media ? '' : '<div class="medadd_c_linkimg_controls">' +
+                              '  <div class="medadd_c_linkimg_controls_btn_group clear_fix fl_l">' +
+                              (availableImagesCount > 1 ?
+                              '    <div class="medadd_c_linkimg_controls_btn_arrows_group">' +
+                              '      <div class="medadd_c_linkimg_controls_btn" id="medadd_ctrl_left" onclick="cur.shareShowNext(true);"></div>' +
+                              '      <div class="medadd_c_linkimg_controls_btn" id="medadd_ctrl_right" onclick="cur.shareShowNext();"></div>' +
+                              '    </div>' : ''
+                              ) +
+                              '    <div class="medadd_c_linkimg_controls_btn ' + (availableImagesCount > 1 ? 'medadd_c_btn_side_padd' : '') + '" id="medadd_ctrl_upload" ' + uploadTooltip + ' onclick="Page.ownerPhoto(\''+data.media+'\');"></div>'+
+                              '  </div>' +
+                              '  <div class="medadd_c_linkimg_controls_btn_group clear_fix fl_r">' +
+                              '    <div class="medadd_c_linkimg_controls_btn" id="medadd_ctrl_remove" ' + removeTooltip + ' onclick="cur.removeLinkImage(this)"></div>' +
+                              '  </div>' +
+                              '</div>';
+
+            var containerImageStyle = image ? '' : 'display: none';
+
+            imghtml =
+              '<div class="medadd_c_linkimg_container fl_l" style="' + containerImageStyle + '">' +
+                imghtml +
+                imgControls +
+                closeButton +
+                '<div id="medadd_c_linkimg_loader" class="medadd_c_linkimg_loader"></div>' +
+              '</div>'
+            ;
+          }
         }
         var microdata = '';
         if (data.microdata) {
@@ -5994,11 +6066,14 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
             microdata = data.microdata_preview_html;
           }
         }
+        var description = (cur.wallPageWide ? data.description_short : data.description_short_narrow ) || data.description;
         var html =
           imghtml +
           (data.title ? '<h4 class="medadd_c_linkhead">' + data.title + '</h4>' : '') +
+          (!bigLinkClass ? '<div class="page_media_link_addr">' + data.domain + '</div>' : '') +
+          //(data.domain ? '<div class="medadd_c_linkdomain">' + data.domain + '</div>' : '') +
           (microdata ? '<div class="medadd_c_linkmicrodata">' + microdata + '</div>' : '') +
-          (data.description ? '<div class="medadd_c_linkdsc">' + data.description + '</div>' : '') +
+          (description ? '<div class="medadd_c_linkdsc">' + description + '</div>' : '') +
           '<div class="clear"></div>';
       }
 
@@ -6013,7 +6088,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
         var hidden = !isVisible(ldocsEl);
         show(ldocsEl);
         var tmpDiv = ge(previewId).appendChild(ce('div', {
-          innerHTML: '<div class="medadd_c_linkcon">' + html + '</div>'
+          innerHTML: '<div class="medadd_c_linkcon ' + bigLinkClass + '">' + html + '</div>'
         }, {
           position: 'absolute',
           width: getSize(prev)[0] - 10,
@@ -6022,14 +6097,40 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
         var height = getSize(tmpDiv)[1];
         re(tmpDiv);
 
-        cur.preventShareAnim = animate(domFC(prev), {height: height}, 200, function () {
-          val(domFC(prev), html);
-          shortCurrency();
-        });
+        val(domFC(prev), html);
+        shortCurrency();
+
+        cur.preventShareAnim = animate(domFC(prev), {height: height}, 200);
+
+        re(geByClass1('medadd_c_linkprg', ldocsEl));
+      }
+
+      if (bigLinkClass) {
+        addClass(geByClass1('medadd_c_linkcon', ldocsEl), bigLinkClass);
       }
     },
     showExternalPreview: function () {
       var data = addMedia.shareData;
+      if (!data.images) {
+        data.images = [];
+      }
+
+      var _unique = [], _uniqueProxies = [], _uniqueMap = {};
+      each(data.images, function(i, im) {
+        if (!_uniqueMap[im]) {
+          _uniqueMap[im] = true;
+          _unique.push(im);
+          if (data.images_proxy) {
+            _uniqueProxies.push(data.images_proxy[i]);
+          }
+        }
+      });
+      data.uniqueImagesCount = _unique.length;
+      data.images = _unique;
+      data.images_proxy = _uniqueProxies;
+
+      data.images.push([]); // holder for own photo
+
       if (!data.images || !data.images.length) {
         cur.shareShowImg = 0;
         addMedia.showPreview();
@@ -6041,12 +6142,52 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
       data.imagesStyles = {};
       var fast = false;
 
-      cur.shareShowNext = function () {
-        var tmpImg = vkImage();
-        cur.shareShowImg += 1;
 
-        if (cur.shareShowImg > data.images.length - 1) {
+      cur.shareSetOwnPhoto = function (res) {
+        if (curBox()) curBox().hide();
+        addMedia.bigLink = true;
+        data.images[data.images.length-1] = [res.photo_url, res.user_id, res.photo_id];
+        cur.shareShowNext(0, 1);
+      }
+
+      cur.shareClearOwnPhoto = function () {
+        data.images[data.images.length-1] = [];
+        cur.shareShowNext(0, 0, 1);
+      }
+
+      cur.removeLinkImage = function(removeBtn) {
+        var linkWrap = gpeByClass('medadd_c_linkcon', removeBtn);
+        re(gpeByClass('medadd_c_linkimg_container', removeBtn));
+        setStyle(linkWrap, 'height', '');
+
+        addMedia.shareData.noPhoto = true;
+      }
+
+      cur.shareShowNext = function (previous, last, current) {
+        var tmpImg = vkImage();
+
+        cur.prevShareShowDir = previous;
+
+        if (current) {
+          // nothing
+        } else if (last) {
+          cur.shareShowImg = data.images.length - 1;
+        } else if (previous) {
+          cur.shareShowImg -= 1;
+        } else {
+          cur.shareShowImg += 1;
+        }
+
+        var hasOwnPhoto = isArray(data.images[data.images.length - 1]) && !!data.images[data.images.length - 1][0];
+
+        if (!hasOwnPhoto && cur.shareShowImg > data.images.length - 2) {
           cur.shareShowImg = 0;
+        } else if (cur.shareShowImg > data.images.length - 1) {
+          cur.shareShowImg = 0;
+        } else if (!hasOwnPhoto && cur.shareShowImg < 0) {
+          cur.shareShowImg = data.images.length - 2;
+        } else if (cur.shareShowImg < 0) {
+          cur.shareShowImg = data.images.length - 1;
         } else if (cur.shareShowImg == 0) {
           for (var i = 1; i < data.images.length - 1; i++) {
             var t = vkImage();
@@ -6058,47 +6199,93 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
           fast = true;
           return;
         }
-        tmpImg.src = addMedia.shareImgUrl(cur.shareShowImg);
+        var tmpImgSrc = addMedia.shareImgUrl(cur.shareShowImg);
+        if (tmpImgSrc) {
+          tmpImg.src = tmpImgSrc;
+        }
+        if (isArray(data.images[cur.shareShowImg]) && data.images[cur.shareShowImg][1] && data.images[cur.shareShowImg][2]) {
+          data.user_id = data.images[cur.shareShowImg][1];
+          data.photo_id = data.images[cur.shareShowImg][2];
+          data.share_own_image = true;
+        } else {
+          data.user_id = undefined;
+          data.photo_id = undefined;
+          data.share_own_image = false;
+        }
 
-        var imgLoadTimeout = setTimeout(function() {
-          if (cur.shareImgInterval === true) return;
-          data.images.splice(cur.shareShowImg, 1);
-          if (data.images_proxy && data.images_proxy.length > cur.shareShowImg) {
-            data.images_proxy.splice(cur.shareShowImg, 1);
-          }
-          cur.shareShowNext();
-        }, 5000);
+        var imgLoadTimeout = null;
+
+        if (tmpImgSrc) {
+          imgLoadTimeout = setTimeout(function() {
+            if (cur.shareImgInterval === true) return;
+            if (isArray(data.images[cur.shareShowImg])) return;
+            data.images.splice(cur.shareShowImg, 1);
+            if (data.images_proxy && data.images_proxy.length > cur.shareShowImg) {
+              data.images_proxy.splice(cur.shareShowImg, 1);
+            }
+            cur.shareShowNext();
+          }, 5000);
+        }
+
+        var showLoaderTimeout = setTimeout(function () {
+          show('medadd_c_linkimg_loader');
+          showLoaderTimeout = null;
+        }, 100);
 
         var updatePreview = function() {
-          if (tmpImg.width || tmpImg.height) {
+          if (tmpImg.width || tmpImg.height || !tmpImgSrc) {
             var w = tmpImg.width, h = tmpImg.height;
             var imgStyle = '';
             var imgParams = '';
             if (imgLoadTimeout) {
               clearTimeout(imgLoadTimeout);
+              imgLoadTimeout = null;
             }
+            if (showLoaderTimeout) {
+              clearTimeout(showLoaderTimeout);
+              showLoaderTimeout = null;
+            }
+            hide('medadd_c_linkimg_loader');
             clearInterval(cur.shareImgInterval);
-            if (w < 20 || h < 20) {
+            if (!isArray(data.images[cur.shareShowImg]) && (w < 20 || h < 20)) {
               data.images.splice(cur.shareShowImg, 1);
               if (data.images_proxy && data.images_proxy.length > cur.shareShowImg) {
                 data.images_proxy.splice(cur.shareShowImg, 1);
               }
               if (data.images.length) {
-                return setTimeout(cur.shareShowNext, 0);
+                return setTimeout(cur.shareShowNext.pbind(0, 0, 1), 0);
               }
             } else {
-              if (w > h && w > 150) {
+              var bigLink = (w >= 537 && h >= 240);
+
+              if (!bigLink && addMedia.bigLink && (cur.shareShowImg != data.images.length - 1)) {
+                data.images.splice(cur.shareShowImg, 1);
+                data.images_proxy.splice(cur.shareShowImg, 1);
+                if (!cur.prevShareShowDir) cur.shareShowImg --;
+                cur.shareShowNext(cur.prevShareShowDir);
+                return;
+              }
+
+              addMedia.bigLink = addMedia.bigLink || bigLink;
+
+              if (w > 150) {
                 h = 150 * h / w;
                 w = 150;
-              } else if (h > 150) {
-                w = 150 * w / h;
-                h = 150;
               }
+              var hHalf = (Math.round(h / 2));
+              var wHalf = (Math.round(w / 2));
+              var marginTop = (bigLink && (h > 150)) ? -Math.round(67/2) : -hHalf;
+
+              var marginLeft = (w > 150) ? -Math.round(150/2) : -wHalf;
+              //imgStyle = 'width: ' + w + 'px; height: ' + h + 'px; margin-top: ' + marginTop + 'px; margin-left: ' + marginLeft + 'px;';
               imgStyle = 'width: ' + w + 'px; height: ' + h + 'px;';
+
+              if (bigLink) {
+                imgStyle = 'width: 100%;';
+              }
             }
             if (data.images.length > 1) {
-              imgStyle += 'cursor: pointer';
-              imgParams = ' onclick="cur.shareShowNext();"';
+              imgParams = '';
             }
             data.imagesStyles[cur.shareShowImg] = 'style="' + imgStyle + '"' + imgParams;
             addMedia.showPreview(fast);

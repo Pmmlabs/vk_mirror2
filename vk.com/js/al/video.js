@@ -1525,7 +1525,7 @@ var Video = {
 
     var linkAddr = '?section='+cur.vSection;
     for (var i = cur.shown; i < limit; i++) {
-      list[i][3] = replaceEntities(list[i][3]);
+      list[i][3] = list[i][3].replace(/&amp;/g, '&');
       cur.vRows.appendChild(se(this.drawVideo(list[i], linkAddr)));
       cur.shown++;
     }

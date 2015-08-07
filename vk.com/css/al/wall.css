@@ -143,10 +143,12 @@ div.fw_post_info {
 }
 .fw_reply_table {
   width: 100%;
+  table-layout: fixed;
 }
 .fw_reply_thumb_td {
   vertical-align: top;
   padding: 0px 1px;
+  width: 61px;
 }
 .fw_reply_thumb {
   display: block;
