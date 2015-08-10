@@ -6940,36 +6940,4 @@ ImUpload = {
   }
 };
 
-var DesktopNotifications = {
-  supported: function() {
-    return !!(window.webkitNotifications || window.Notification);
-  },
-  checkPermission: function() {
-    if (window.webkitNotifications) {
-      return webkitNotifications.checkPermission();
-    } else {
-      return (Notification.permission == "granted") ? 0 : 1;
-    }
-  },
-  requestPermission: function(f) {
-    (window.webkitNotifications || window.Notification).requestPermission(f);
-  },
-  createNotification: function(photo, title, text) {
-    var notification;
-    if (window.webkitNotifications) {
-      return webkitNotifications.createNotification(photo, title, text);
-    } else {
-      notification = new Notification(title, {
-        icon: photo,
-        body: text
-      });
-      notification.cancel = function() {
-        this.close();
-      };
-      notification.show = function() {};
-      return notification;
-    }
-  }
-};
-
 try{stManager.done('im.js');}catch(e){}

@@ -843,8 +843,10 @@ var GroupsEdit = {
       sw: swInput ? trim(swInput.value) : undefined,
       rss: trim(ge('group_rss').value),
       age_limits: radioval('group_age_limits'),
+      obscene_filter: isChecked('group_obcene_words'),
       hash: cur.hash
     }, btn = ge('group_save');
+
     if (cur.cls == 0 || cur.cls == 2) {
       extend(params, GroupsEdit.getFields(
         'wall', 'photos', 'video', 'audio', 'docs', 'topics', 'wiki', 'access'

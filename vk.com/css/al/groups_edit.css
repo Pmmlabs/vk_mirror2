@@ -1471,3 +1471,71 @@ a.group_ad_post_link.deleted:hover {
 .gedit_user_info .gedit_user_app_row.narrow > div:first-child {
   margin-bottom: 7px;
 }
+.group_bl_section .summary_tab {
+  cursor: pointer;
+  padding-top: 10px;
+  padding-bottom: 0;
+}
+.group_bl_section .summary_tab:first-child {
+  padding-left: 0;
+}
+.group_obscene_words_wrap {
+  padding: 15px;
+}
+.group_obscene_words_wrap .group_obscene_time_info {
+  padding: 10px 20px 0px;
+  font-size: 10px;
+  text-align: right;
+  color: #777;
+}
+.group_obscene_words .group_obscene_preload {
+  font-size: 12px;
+  padding: 35px 0;
+  text-align: center;
+  color: #707070;
+}
+.group_obscene_words .progress {
+  padding: 20px 0;
+  display: block;
+  margin: 0 auto;
+}
+.group_obscene_words .paginated_table .empty_row td {
+  font-size: 12px;
+  background-color: #fff;
+}
+.group_obscene_words .paginated_table_table {
+  border: 0px;
+}
+.group_obscene_words .paginated_table_table td {
+  background-color: #fff;
+}
+.group_obscene_words .paginated_table_header {
+  border: 0px;
+}
+.group_obscene_words .paginated_table_header .paginated_table_cell {
+  border: 0px;
+}
+.group_obscene_words .paginated_table_header .paginated_table_cell div {
+  border-left: 0px;
+}
+.group_obscene_words .paginated_table_row {
+  height: 40px;
+}
+.group_obscene_words .paginated_table_row .paginated_table_cell {
+  border-bottom: #eeeff3 1px solid;
+}
+.group_obscene_words .paginated_table_row.even_row td {
+  background: #fff;
+}
+.group_obscene_words .paginated_table_row .text_delim {
+  color: #cccccc;
+}
+.group_obscene_words .paginated_table_row:last-child .paginated_table_cell {
+  border-bottom: none;
+}
+.group_obscene_words .groups_obscene_interval_stats {
+  font-weight: 700;
+}
+.group_obscene_words .group_obscene_interval_label {
+  color: #777;
+}

@@ -6070,7 +6070,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
         var html =
           imghtml +
           (data.title ? '<h4 class="medadd_c_linkhead">' + data.title + '</h4>' : '') +
-          (!bigLinkClass ? '<div class="page_media_link_addr">' + data.domain + '</div>' : '') +
+          (!bigLinkClass && data.domain ? '<div class="page_media_link_addr">' + data.domain + '</div>' : '') +
           //(data.domain ? '<div class="medadd_c_linkdomain">' + data.domain + '</div>' : '') +
           (microdata ? '<div class="medadd_c_linkmicrodata">' + microdata + '</div>' : '') +
           (description ? '<div class="medadd_c_linkdsc">' + description + '</div>' : '') +

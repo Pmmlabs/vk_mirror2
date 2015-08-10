@@ -59,6 +59,9 @@
 .video_upload_privacy {
   margin-bottom: 10px;
 }
+.video_upload_privacy_wrap {
+  margin-top: 15px;
+}
 .video_upload_checkbox {
   margin: 11px 0px;
 }
@@ -335,9 +338,6 @@
   font-weight: bold;
   text-align: left;
   margin: 12px auto 8px;
-}
-.video_upload_album_chooser {
-  margin-bottom: 16px;
 }
 .video_upload_item_label.video_upload_name_label {
   margin-top: 0;
