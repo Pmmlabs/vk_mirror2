@@ -464,7 +464,7 @@ Notifier = {
     }
     if (push && ev.type == 'mail') {
       var lastImTime = intval(ls.get('im_opened' + vk.id));
-      if (false && vkNow() - lastImTime < 2000) {
+      if (vkNow() - lastImTime < 2000) {
         // So, currently IM is active
         push = 0;
       } else {
@@ -496,11 +496,8 @@ Notifier = {
       return;
     }
     var ev = curNotifier.q_events.shift();
-    if (curNotifier.idle_manager.is_idle
-      && curNotifier.is_server
-      && document.hidden
-      && this.canNotifyUi()) {
-        this.showEventUi(ev);
+    if (curNotifier.idle_manager.is_idle && curNotifier.is_server && this.canNotifyUi()) {
+      this.showEventUi(ev);
     } else {
       this.showEvent(ev);
     }
@@ -613,9 +610,8 @@ Notifier = {
   },
 
   canNotifyUi: function () {
-    return DesktopNotifications.supported()
-      && DesktopNotifications.checkPermission() <= 0
-      && !ls.get('im_ui_notify_off');
+    // if (vk.id == 13033) return false;
+    return window.webkitNotifications && (webkitNotifications.checkPermission() <= 0 && !ls.get('im_ui_notify_off'));
   },
 
   showEventUi: function (ev) {
@@ -624,7 +620,7 @@ Notifier = {
     // curNotifier.q_shown.push(ev);
     var title = stripHTML(replaceEntities(ev.title));
     var text = stripHTML(replaceEntities(ev.text).replace(/<br>/g, "\n").replace(/(<span class='notifier_author_quote'.*<\/span>)/, '$1:')).replace(/&laquo;|&raquo;/gi, '"');
-    var notification = ev.uiNotification = DesktopNotifications.createNotification(ev.author_photo, title, text);
+    var notification = ev.uiNotification = webkitNotifications.createNotification(ev.author_photo, title, text);
     notification.onclick = function (e) {
       window.focus();
       eval(ev.onclick);
@@ -5501,37 +5497,5 @@ Scrollbar.prototype.update = function(noChange, updateScroll) {
   }
 }
 // Tiny Scrollbars end
-
-var DesktopNotifications = {
-  supported: function() {
-    return !!(window.webkitNotifications || window.Notification);
-  },
-  checkPermission: function() {
-    if (window.webkitNotifications) {
-      return webkitNotifications.checkPermission();
-    } else {
-      return (Notification.permission == "granted") ? 0 : 1;
-    }
-  },
-  requestPermission: function(f) {
-    (window.webkitNotifications || window.Notification).requestPermission(f);
-  },
-  createNotification: function(photo, title, text) {
-    var notification;
-    if (window.webkitNotifications) {
-      return webkitNotifications.createNotification(photo, title, text);
-    } else {
-      notification = new Notification(title, {
-        icon: photo,
-        body: text
-      });
-      notification.cancel = function() {
-        this.close();
-      };
-      notification.show = function() {};
-      return notification;
-    }
-  }
-};
 
 try{stManager.done('notifier.js');}catch(e){}

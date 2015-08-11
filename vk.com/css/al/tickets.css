@@ -427,12 +427,11 @@ body.dev #tickets_name .info {
   padding: 4px 6px;
 }
 #tickets_templates .template > a:hover {
-  background: #E1E7ED;
-  text-decoration: none;
   -webkit-border-radius: 2px;
-  -khtml-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
+  background: #E1E7ED;
+  text-decoration: none;
 }
 #tickets_pt_links {
   width: 532px;
@@ -448,12 +447,11 @@ body.dev #tickets_name .info {
   padding: 4px 6px;
 }
 .tickets_pt_link > a:hover {
-  background: #E1E7ED;
-  text-decoration: none;
   -webkit-border-radius: 2px;
-  -khtml-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
+  background: #E1E7ED;
+  text-decoration: none;
 }
 .template_wrap {
   display: table-cell;
@@ -514,10 +512,10 @@ body.dev .tu_thumb {
   width: 32px;
 }
 body.dev .tu_img {
-  width: 40px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
+  width: 40px;
 }
 .tu_mem {
   color: #2B587A;
@@ -1220,6 +1218,9 @@ body.dev #tickets_search_reset {
   position: relative;
   width: 32px;
   z-index: 95;
+}
+#faq_search_form .tickets_search_progress {
+  height: 29px;
 }
 #tickets_search.loading .tickets_search_progress,
 #tickets_search_reset.shown {
@@ -2029,12 +2030,13 @@ body.dev .tickets_dmca_data_row.links .value {
   overflow: hidden;
 }
 .tickets_box_close {
+  -o-transition: color 100ms linear;
+  -ms-transition: color 100ms linear;
+  -moz-transition: color 100ms linear;
+  -webkit-transition: color 100ms linear;
+  transition: color 100ms linear;
   padding: 7px 5px;
   color: #C7D7E9;
-  -webkit-transition: color 100ms linear;
-  -moz-transition: color 100ms linear;
-  -o-transition: color 100ms linear;
-  transition: color 100ms linear;
 }
 .tickets_box_close:hover {
   color: #FFF;
@@ -2198,7 +2200,8 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 7px 7px 8px;
+  background: #ffffff url(/images/magglass.png) no-repeat 8px 9px;
+  padding: 7px 7px 7px 24px;
   width: 595px;
   outline: none;
 }
@@ -2250,6 +2253,8 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   width: 50%;
 }
 .help_tile__title {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
   font-size: 15px;
   font-weight: normal;
   line-height: 1;
@@ -2263,7 +2268,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 }
 .help_tile_faqs__row {
   line-height: 16px;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
 }
 .help_tile__all {
   color: #8fa0b2;
@@ -2298,18 +2303,61 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   vertical-align: top;
 }
 .help_table_questions__title {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
   font-size: 15px;
   font-weight: normal;
   line-height: 1;
   margin: 0 0 8px;
+}
+.help_table_questions_not_found .help_table_found {
+  display: none;
+}
+.help_table_questions_not_found .help_table_not_found {
+  display: block;
+}
+.help_table_not_found {
+  display: none;
+  padding-top: 124px;
+  text-align: center;
+}
+.help_table_not_found__text {
+  color: #777;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.help_table_not_found__query {
+  font-weight: bold;
+}
+.help_table_not_found__btn {
+  margin-top: 18px;
 }
 .help_table_questions_none {
   color: #888;
   margin-top: 12px;
 }
 .help_table_question {
-  border-bottom: 1px solid #e7eaed;
-  cursor: pointer;
+  border-bottom: 1px solid #ebedf0;
+  padding: 0;
+  position: relative;
+}
+.help_table_question:before {
+  content: "\2022";
+  color: #ced7e0;
+  font-size: 10px;
+  left: 0;
+  line-height: 1;
+  position: absolute;
+  top: 10px;
+}
+.help_table_question_visible {
+  background: #f3f4f6;
+}
+.help_table_question_visible.help_table_question:before {
+  display: none;
+}
+.help_table_question_visible.help_table_question_sa {
+  background: #fff;
 }
 .help_table_question.help_table_question_noborder {
   border-bottom: 0px none;
@@ -2319,12 +2367,16 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 }
 .help_table_question__q {
   display: block;
-  padding: 7px 0 8px;
+  padding: 7px 10px 8px;
   line-height: 1.5;
+}
+.help_table_question_visible .help_table_question__q:before {
+  color: transparent;
+  font-weight: normal;
 }
 .help_table_question__ans {
   line-height: 1.6;
-  padding: 0 1px 10px;
+  padding: 0 10px 10px;
 }
 .help_table_question__m {
   padding-top: 8px;
@@ -2333,8 +2385,8 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   padding: 0;
 }
 .help_table_question_act {
-  background: #fff;
   color: #2b587a;
+  cursor: pointer;
   display: inline-block;
   line-height: 13px;
   padding: 6px 11px 7px;

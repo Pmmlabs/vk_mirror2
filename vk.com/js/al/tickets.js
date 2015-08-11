@@ -2910,20 +2910,34 @@ listSearch: function(val) {
   ajax.post(nav.objLoc[0], query, {
     cache: 1,
     onDone: function(content, showButton) {
-      ge('help_table_questions_l').innerHTML = content;
+      var qlist = ge('help_table_questions_l'), updateLoc = true;
       removeClass(ge('faq_search_form'), 'loading');
-      var obj = {act: 'faqs'};
-      obj[0] = nav.objLoc[0];
-      if (val) {
-        obj['q'] = val;
+
+      if (content == '') {
+        if (qlist.innerHTML == '') {
+          Tickets.listShowNotFound(val);
+        } else {
+          updateLoc = false;
+        }
+      } else {
+        Tickets.listHideNotFound();
+        qlist.innerHTML = content;
+        Tickets.listDiselectCategory();
+        Tickets.listOpenFAQs();
+        Tickets.listSetTitle(getLang(val ? 'support_list_search_result_title' : 'support_list_title'));
+        Tickets.listToggleUnusefulButton(showButton);
+        if (val == '') {
+          addClass(ge('help_table_category_top'), 'help_table_categories__a_sel');
+        }
       }
-      nav.setLoc(obj);
-      Tickets.listDiselectCategory();
-      Tickets.listOpenFAQs();
-      Tickets.listSetTitle(getLang(val ? 'support_list_search_result_title' : 'support_list_title'));
-      Tickets.listToggleUnusefulButton(showButton);
-      if (val == '') {
-        addClass(ge('help_table_category_top'), 'help_table_categories__a_sel');
+
+      if (updateLoc) {
+        var obj = {act: 'faqs'};
+        obj[0] = nav.objLoc[0];
+        if (val) {
+          obj['q'] = val;
+        }
+        nav.setLoc(obj);
       }
     },
     onFail: function() {
@@ -2931,18 +2945,8 @@ listSearch: function(val) {
     }
   });
 },
-listToggleQuestion: function(question, e) {
-  if (e.target.tagName.toLowerCase() == 'a' && !hasClass(e.target, 'help_table_question__q')) return true;
-
-  var t = '';
-  if (window.getSelection) {
-    t = window.getSelection();
-  } else if (document.getSelection) {
-    t = document.getSelection();
-  } else if (document.selection) {
-    t = document.selection.createRange().text;
-  }
-
+listToggleQuestion: function(e) {
+  var question = e.target.parentNode;
   var ans = geByClass1('help_table_question__ans', question);
 
   if (isVisible(ans)) {
@@ -2954,14 +2958,7 @@ listToggleQuestion: function(question, e) {
     addClass(question, 'help_table_question_visible');
     slideDown(ans, 200);
   }
-},
-listQuestionUrlClick: function(e) {
-  var button = e.which || e.button;
-  if (button == 1 && !e.ctrlKey && !e.metaKey) {
-    e.preventDefault();
-  } else {
-    e.stopPropagation();
-  }
+  return false;
 },
 listToggleUnusefulButton: function(v) {
   toggle(ge('help_table_questions_btn'), v);
@@ -2991,6 +2988,7 @@ goToList: function(category_id, question_id, evt) {
   ajax.post(nav.objLoc[0], query, {
     cache: 1,
     onDone: function(content, showButton) {
+      Tickets.listHideNotFound();
       Tickets.listToggleUnusefulButton(showButton);
       Tickets.listClearSearchInput();
       Tickets.listOpenFAQs();
@@ -3016,7 +3014,7 @@ goToList: function(category_id, question_id, evt) {
       if (question) {
         scrollToY(getXY(question)[1]);
         addClass(question, 'help_table_question_visible');
-        slideDown(geByClass1('help_table_question__ans', question), 200);
+        show(geByClass1('help_table_question__ans', question));
       }
     }
   });
@@ -3098,5 +3096,12 @@ tryAskQuestion: function(callback) {
     callback();
   }
   return false;
+},
+listHideNotFound: function(query) {
+  removeClass(ge('help_table_questions'), 'help_table_questions_not_found');
+},
+listShowNotFound: function(query) {
+  addClass(ge('help_table_questions'), 'help_table_questions_not_found');
+  ge('help_table_not_found__query').innerHTML = query;
 },
 _eof: 1};try{stManager.done('tickets.js');}catch(e){}
