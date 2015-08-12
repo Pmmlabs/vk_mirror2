@@ -411,12 +411,19 @@ var searcher = {
   },
 
   onResize: function() {
-    var sf = ge('search_filters');
-    if (isVisible(sf) && hasClass(sf, 'fixed')) {
-      removeClass(sf, 'fixed');
-      setTimeout(addClass.pbind(sf, 'fixed'), 0);
-    }
+    searcher.onScroll();
     searcher.scrollCheck();
+  },
+
+  onScroll: function() {
+    var sf = ge('search_filters');
+    if (sf && isVisible(sf)) {
+      if (hasClass(sf, 'fixed')) {
+        sf.style.marginLeft = (vk.rtl ? -379.5 : 207.5) - document.body.scrollLeft + 'px';
+      } else {
+        sf.style.marginLeft = 0;
+      }
+    }
   },
 
   // scrollTop check
@@ -524,6 +531,7 @@ var searcher = {
     window.scrollTop = bodyNode.scrollTop = pageNode.scrollTop = htmlNode.scrollTop = 0;
     addEvent(searcher.scrollnode, 'scroll', searcher.scrollCheck);
     addEvent(window, 'resize', searcher.onResize);
+    addEvent(window, 'scroll', searcher.onScroll);
     setTimeout(searcher.scrollCheck, 50);
 
     var _a = window.audioPlayer;

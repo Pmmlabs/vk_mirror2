@@ -2914,17 +2914,17 @@ listSearch: function(val) {
       removeClass(ge('faq_search_form'), 'loading');
 
       if (content == '') {
-        if (qlist.innerHTML == '') {
-          Tickets.listShowNotFound(val);
-        } else {
+        if (nav.objLoc['act'] == 'home' || qlist.innerHTML != '') {
           updateLoc = false;
+        } else {
+          Tickets.listShowNotFound(val);
         }
       } else {
         Tickets.listHideNotFound();
         qlist.innerHTML = content;
         Tickets.listDiselectCategory();
         Tickets.listOpenFAQs();
-        Tickets.listSetTitle(getLang(val ? 'support_list_search_result_title' : 'support_list_title'));
+        Tickets.listSetTitle(getLang(val ? 'support_list_search_result_title' : 'support_list_popular_questions'));
         Tickets.listToggleUnusefulButton(showButton);
         if (val == '') {
           addClass(ge('help_table_category_top'), 'help_table_categories__a_sel');
@@ -3029,7 +3029,11 @@ listClearSearch: function(el, event) {
   setStyle(el, {opacity: .6});
   field.value = '';
   ge('faq_search_form__title').focus();
-  Tickets.listUpdateSearch(event, field);
+  if (nav.objLoc['act'] == 'faqs') {
+    Tickets.listUpdateSearch(event, field);
+  } else {
+    removeClass(el, 'shown');
+  }
 },
 listSelectCategory: function(category_id, add_loading) {
   each(geByClass('help_table_categories__a_sel', ge('help_table_categories')), function(i, v) {

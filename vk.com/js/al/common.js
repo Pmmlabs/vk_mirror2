@@ -4760,9 +4760,6 @@ function __phCheck(el, opts, focus, blur) {
       activeColor = opts.activeColor || '#C0C8D0';
   if (editable) {
     var v = (el.textContent !== undefined ? el.textContent : el.innerText) || geByTag('img', el).length;
-    if (v && browser.opera && v.match(/^[ ]+$/)) {
-      v = '';
-    }
   } else {
     var v = el.value;
   }

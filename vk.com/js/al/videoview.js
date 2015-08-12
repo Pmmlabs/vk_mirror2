@@ -338,10 +338,12 @@ playerOnLiked: function() {
 playerNextTimerUpdate: function() {
   var timerFunc;
 
-  if (mvcur.scrolledAway || mvcur.commentingInProgress) {
+  if (mvcur.scrolledAway || mvcur.commentingInProgress || isVisible(window.boxLayerWrap)) {
     timerFunc = 'nextTimerReset';
+    mvcur.nextTimerStopped = true;
   } else {
     timerFunc = 'nextTimerStart';
+    mvcur.nextTimerStopped = false;
   }
 
   var td = mvcur.playerPrevTimerFunc == timerFunc ? 100 : 0;
@@ -351,6 +353,7 @@ playerNextTimerUpdate: function() {
   mvcur.playerTimerDebounce = setTimeout(function() {
     var player = Videoview.getPlayerObject();
     player && player[timerFunc] && player[timerFunc]();
+    mvcur.nextTimer && mvcur.nextTimer[timerFunc] && mvcur.nextTimer[timerFunc]();
   }, td);
 },
 
@@ -380,9 +383,23 @@ subscribeToAuthor: function(btn, event, gid, hash, isSubscribe, isClosed, noPlay
     toggleClass(ge('mv_subscribe_btn_wrap'), 'mv_state_subscribed', isSubscribe);
     toggleClass(ge('mv_subscribed_msg'), 'mv_state_subscribed', isSubscribe);
     ajax.post('al_video.php', { act: 'a_subscribe', gid: gid, hash: hash, unsubscribe: intval(!isSubscribe), from: 'videoview' });
+
+    var mv = false;
+    if (window.mvcur && mvcur.mvData) {
+      mv = mvcur.mvData;
+    } else if (cur.mvData) {
+      mv = cur.mvData;
+    }
+    mv.subscribed = isSubscribe;
+
     if (!noPlayerUpdate) {
       var player = Videoview.getPlayerObject();
       player && player.onSubscribed && player.onSubscribed();
+    }
+
+    var finishSubscribeBtn = geByClass1('mv_finish_subscribe_btn', 'mv_external_finish');
+    if (finishSubscribeBtn) {
+      finishSubscribeBtn.innerHTML = isSubscribe ? getLang('video_view_subscribed_msg') : getLang('video_view_subscribe_to_author');
     }
   }
 
@@ -434,6 +451,7 @@ addPlaylist: function(onlyPrivate) {
       });
     }
   });
+  Videoview.playerNextTimerUpdate();
 },
 updateVideo: function(oid, vid, newTitle, newDesc) {
   if (!window.mvcur || mvcur.mvData.oid != oid || mvcur.mvData.vid != vid) return;
@@ -525,6 +543,8 @@ initAddButton: function() {
     if (!noPlayerUpdate && isAddedState != added) {
       Videoview.playerOnAdded();
     }
+
+    toggleClass(geByClass1('mv_finish_add', 'mv_external_finish'), 'selected', added);
 
     isAddedState = added;
   }
@@ -1230,6 +1250,8 @@ onResize: function() {
   setTimeout(function() {
     Videoview.updatePlaylistBoxPosition();
   }, 10);
+
+  Videoview.updateExternalVideoFinishBlock();
 },
 
 updateSize: function() {
@@ -1942,6 +1964,8 @@ like: function(btn, noPlayerUpdate) {
   if (!noPlayerUpdate) {
     Videoview.playerOnLiked();
   }
+
+  toggleClass(geByClass1('mv_finish_like', 'mv_external_finish'), 'selected', !mv.liked);
 
   Videoview.likeUpdate(!mv.liked, mv.likes + (mv.liked ? -1 : 1));
 },
@@ -2951,6 +2975,9 @@ onMinResize: function(event) {
   if (ge('html5_player') && window.html5video) {
     html5video.onResize();
   }
+
+  Videoview.updateExternalVideoFinishBlock();
+
   return false;
 },
 
@@ -3073,6 +3100,8 @@ minimize: function(ev) {
     hide(plBlockEl);
     removeClass(geByClass1('mv_data'), 'mv_wpl');
   }
+
+  Videoview.updateExternalVideoFinishBlock();
 
   return false;
 },
@@ -3293,6 +3322,7 @@ sendVideo: function(isExport) {
     Videoview.showPlayer();
     return true;
   }});
+  Videoview.playerNextTimerUpdate();
 },
 
 showDD: function(obj, dd) {
@@ -3627,6 +3657,177 @@ saveInline: function() {
     show(d);
     re(domNS(d));
   }, progress: 'mv_inlineedit_prg'});
+},
+
+onExternalVideoEnded: function(noTimerStart) {
+  var container = geByClass1('video', ge('mv_content'));
+  var containerSize = getSize(container);
+  var nextVideo = (Videoview.getNextVideosData() || [])[0];
+  var supportsCanvas = !!window.CanvasRenderingContext2D;
+
+  if (!container || containerSize[0] < 400 || containerSize[1] < 300 || !mvcur.mvData || !nextVideo) return;
+
+  var mv = mvcur.mvData;
+  var isLiked = mv.liked;
+  var isAdded = false;
+  var canAdd = vk.id != mv.oid;
+  var isSubscribed = mv.subscribed;
+
+  each(mv.playlists, function () {
+    if (this.added) {
+      isAdded = true;
+      return false;
+    }
+  });
+
+  var finishBlock = se('\
+<div class="mv_external_finish" id="mv_external_finish">\
+  <div class="mv_finish_header">\
+    <div class="mv_finish_subscribe fl_r">\
+      <button class="mv_finish_subscribe_btn fl_l" onclick="Videoview.onExternalVideoSubscribe()">' + (isSubscribed ? getLang('video_view_subscribed_msg') : getLang('video_view_subscribe_to_author')) + '</button>\
+      <a href="' + mv.authorHref + '" target="_blank" class="fl_l"><img class="mv_finish_author_img" src="' + mv.authorPhoto + '"></a>\
+    </div>\
+    <div class="mv_finish_title">' + mv.title + '</div>\
+  </div>\
+  <div class="mv_finish_actions">\
+    <div class="mv_finish_like ' + (isLiked ? 'selected' : '') + '" onclick="Videoview.onExternalVideoLike()"><div class="mv_finish_like_icon mv_finish_icon"></div><div class="mv_finish_liked_icon mv_finish_icon"></div></div>\
+    <div class="mv_finish_share" onclick="Videoview.onExternalVideoShare()"><div class="mv_finish_share_icon mv_finish_icon"></div></div>\
+    <div class="mv_finish_add ' + (isAdded ? 'selected' : '') + '" onclick="Videoview.onExternalVideoAdd()"><div class="mv_finish_add_icon mv_finish_icon"></div><div class="mv_finish_added_icon mv_finish_icon"></div></div>\
+  </div>\
+  <div class="mv_finish_next" onclick="Videoview.onExternalVideoNext(true)">\
+    <div class="mv_finish_next_caption">' + getLang('video_player_next_title') + '</div>\
+    <div class="mv_finish_next_thumb" style="background-image: url(' + nextVideo.thumb + ')"></div>\
+    <div class="mv_finish_next_timer">\
+      <canvas class="mv_finish_next_timer_canvas" width="100" height="100"></canvas>\
+      <div class="mv_finish_next_timer_play mv_finish_icon"></div>\
+    </div>\
+    <div class="mv_finish_next_info">\
+      <div class="mv_finish_next_title">' + nextVideo.title + '</div>\
+      <div class="mv_finish_next_views">' + nextVideo.views + '</div>\
+    </div>\
+    <div class="mv_finish_next_cancel mv_finish_icon" onclick="Videoview.onExternalVideoNextCancel(event)"></div>\
+  </div>\
+</div>\
+  ');
+
+  if (!mv.canSubscribe) {
+    re(geByClass1('mv_finish_subscribe', finishBlock));
+  }
+
+  if (mv.noControls) {
+    re(geByClass1('mv_finish_actions', finishBlock));
+  }
+
+  if (!canAdd) {
+    re(geByClass1('mv_finish_add', finishBlock));
+  }
+
+  container.appendChild(finishBlock);
+
+  if (supportsCanvas) {
+    mvcur.nextTimer = {
+      ctx: geByClass1('mv_finish_next_timer_canvas', finishBlock).getContext('2d'),
+      nextTimerReset: function() {
+        clearTimeout(mvcur.nextTimer.timeout);
+        mvcur.nextTimer.ctx.clearRect(0, 0, 100, 100);
+        mvcur.nextTimer.started = null;
+      },
+      nextTimerStart: function() {
+        if (mvcur.nextTimer.started) return;
+        mvcur.nextTimer.started = new Date().getTime();
+        Videoview.onExternalVideoTimer();
+      }
+    };
+
+    mvcur.nextTimer.ctx.lineWidth = 6;
+    mvcur.nextTimer.ctx.lineCap = 'round';
+    mvcur.nextTimer.ctx.strokeStyle = '#fff';
+
+    if (!mvcur.nextTimerStopped && !noTimerStart) {
+      mvcur.nextTimer.nextTimerStart();
+    }
+  }
+},
+
+onExternalVideoTimer: function() {
+  if (!mvcur || !mvcur.nextTimer || !mvcur.nextTimer.ctx || !mvcur.nextTimer.started) return;
+
+  var progress = Math.min(1, Math.max(0, (new Date().getTime() - mvcur.nextTimer.started) / 10000));
+  var ctx = mvcur.nextTimer.ctx;
+
+  ctx.clearRect(0, 0, 100, 100);
+  ctx.beginPath();
+  ctx.arc(50, 50, 47, -Math.PI/2, -Math.PI/2 + Math.PI*2*progress);
+  ctx.stroke();
+
+  if (progress < 1) {
+    mvcur.nextTimer.timeout = setTimeout(Videoview.onExternalVideoTimer, 20);
+  } else {
+    Videoview.onExternalVideoNext();
+  }
+},
+
+onExternalVideoNext: function(clickedByUser) {
+  mvcur.nextTimer = null;
+  re('mv_external_finish');
+  Videocat.nextVideo();
+  Videoview.sendPlayerStats(clickedByUser ? 6 : 5, 4);
+},
+
+onExternalVideoNextCancel: function(event) {
+  event && event.stopPropagation();
+  clearTimeout(mvcur.nextTimer.timeout);
+  mvcur.nextTimer = null;
+  re('mv_external_finish');
+},
+
+onExternalVideoLike: function() {
+  Videoview.like();
+  Videoview.sendPlayerStats(1, 4);
+},
+
+onExternalVideoShare: function() {
+  mvcur.nextTimer && mvcur.nextTimer.nextTimerReset && mvcur.nextTimer.nextTimerReset();
+  Videoview.sendVideo();
+  Videoview.sendPlayerStats(2, 4);
+},
+
+onExternalVideoAdd: function() {
+  var isAdded = false;
+  each(mvcur.mvData.playlists, function () {
+    if (this.added) {
+      isAdded = true;
+      return false;
+    }
+  });
+  if (isAdded) {
+    Videoview.removeVideo();
+  } else {
+    Videoview.addSmall();
+  }
+  Videoview.sendPlayerStats(3, 4);
+},
+
+onExternalVideoSubscribe: function() {
+  var mv = false;
+  if (window.mvcur && mvcur.mvData) {
+    mv = mvcur.mvData;
+  } else if (cur.mvData) {
+    mv = cur.mvData;
+  }
+  if (!mv) return;
+  var isSubscribe = !mv.subscribed;
+  Videoview.subscribeToAuthor(null, null, mv.oid, mv.subscribeHash, isSubscribe);
+  Videoview.sendPlayerStats(isSubscribe ? 9 : 10, 4);
+},
+
+updateExternalVideoFinishBlock: function() {
+  var finishBlock = ge('mv_external_finish');
+  if (!finishBlock) return;
+  var containerSize = getSize(finishBlock);
+  if (containerSize[0] < 400 || containerSize[1] < 300) {
+    Videoview.onExternalVideoNextCancel();
+  }
 },
 
 _eof: 1}, videoview = Videoview;try{stManager.done('videoview.js');}catch(e){}

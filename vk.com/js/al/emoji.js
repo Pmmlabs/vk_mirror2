@@ -455,8 +455,8 @@ checkEditable: function(optId, obj, options) {
 },
 
 emojiEnter: function(optId, e) {
-  var opts = Emoji.opts[optId]
-  if (opts.emojiFocused && opts.emojiOvered) {
+  var opts = Emoji.opts[optId];
+  if (opts.emojiFocused && opts.emojiOvered && opts.curTab === 0) {
     var img = geByTag1('img', opts.emojiOvered);
     Emoji.addEmoji(optId, Emoji.getCode(img), opts.emojiOvered);
     opts.emojiFocused = true;
@@ -486,7 +486,7 @@ insertHTML: function(html) {
 },
 
 addEmoji: function(optId, code, obj) {
-  if (optId === false) {
+  if (optId === false || code === false) {
     return false;
   }
   var opts = Emoji.opts[optId];
@@ -996,13 +996,6 @@ emojiOver: function(optId, obj) {
     removeClass(opts.emojiOvered, 'emoji_over');
   }
   opts.emojiOvered = obj;
-  Emoji.emojiOpera(optId);
-},
-emojiOpera: function(optId) { // fuck opera!
-  if (browser.opera && !browser.mobile) {
-    var tt = Emoji.opts[optId].tt;
-    animate(tt, {opacity: 0.99}, 20, animate.pbind(tt, {opacity: 1}, 20));
-  }
 },
 emojiExpand: function(optId, block) {
   var opts = Emoji.opts[optId];
@@ -1049,7 +1042,6 @@ emojiExpand: function(optId, block) {
         /*if (top > 10 && !opts.emojiMoreSt) {
           Emoji.emojiLoadMore(optId);
         }*/
-        Emoji.emojiOpera(optId);
         if (opts.imagesLoader) {
           opts.imagesLoader.processLoad();
         }
@@ -1067,53 +1059,56 @@ emojiExpand: function(optId, block) {
 emojiMove: function(e) {
   var optId = Emoji.shownId;
   var opts = Emoji.opts[optId];
-  if (Emoji.shown && opts.emojiFocused) {
-    var el = opts.emojiOvered;
-    switch (e.keyCode) {
-      case KEY.LEFT:
-        el = el.previousSibling;
-        break;
-      case KEY.RIGHT:
-        el = el.nextSibling;
-        break;
-      case KEY.UP:
-        var i = 11;
-        while (el.previousSibling && --i > 0) {
+  if (Emoji.shown) {
+    cancelEvent(e);
+    if (opts.emojiFocused) {
+      var el = opts.emojiOvered;
+      switch (e.keyCode) {
+        case KEY.LEFT:
           el = el.previousSibling;
-        }
-        if (i > 1) {
-          return cancelEvent(e);
-        }
-        break;
-      case KEY.DOWN:
-        var i = 11;
-        while (el.nextSibling && --i > 0) {
+          break;
+        case KEY.RIGHT:
           el = el.nextSibling;
-        }
-        if (i > 1) {
-          return cancelEvent(e);
-        }
-        break;
-      case KEY.ENTER:
-        return Emoji.emojiEnter(optId, e);
-        break;
-      default:
-        return true;
-    }
-    if (el) {
-      var diff = el.offsetTop - cur.emojiList.scrollTop;
-      if (diff > 72) {
-        animate(cur.emojiList, {scrollTop: cur.emojiList.scrollTop + (diff - 72)}, 80, function() {
-          opts.emojiScroll.update(true, true)
-        });
-      } else if (diff < 0) {
-        animate(cur.emojiList, {scrollTop: cur.emojiList.scrollTop + diff}, 80, function() {
-          opts.emojiScroll.update(true, true)
-        });
+          break;
+        case KEY.UP:
+          var i = 11;
+          while (el.previousSibling && --i > 0) {
+            el = el.previousSibling;
+          }
+          if (i > 1) {
+            return cancelEvent(e);
+          }
+          break;
+        case KEY.DOWN:
+          var i = 11;
+          while (el.nextSibling && --i > 0) {
+            el = el.nextSibling;
+          }
+          if (i > 1) {
+            return cancelEvent(e);
+          }
+          break;
+        case KEY.ENTER:
+          return Emoji.emojiEnter(optId, e);
+          break;
+        default:
+          return true;
       }
-      Emoji.emojiOver(optId, el);
+      if (el) {
+        var diff = el.offsetTop - cur.emojiList.scrollTop;
+        if (diff > 72) {
+          animate(cur.emojiList, {scrollTop: cur.emojiList.scrollTop + (diff - 72)}, 80, function() {
+            opts.emojiScroll.update(true, true)
+          });
+        } else if (diff < 0) {
+          animate(cur.emojiList, {scrollTop: cur.emojiList.scrollTop + diff}, 80, function() {
+            opts.emojiScroll.update(true, true)
+          });
+        }
+        Emoji.emojiOver(optId, el);
+      }
+      return false;
     }
-    return cancelEvent(e);
   }
   return true;
 },
@@ -1360,6 +1355,9 @@ tabSwitch: function(obj, selId, optId) {
   cont.innerHTML = html;
   if (opts.imagesLoader) {
     opts.imagesLoader.processLoad();
+  }
+  if (opts.emojiOvered && opts.curTab === 0) {
+    Emoji.emojiOver(optId, geByClass1('emoji_scroll', tt).firstChild);
   }
   opts.emojiScroll.scrollTop();
   opts.emojiScroll.update();

@@ -2352,6 +2352,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 }
 .help_table_question_visible {
   background: #f3f4f6;
+  border-bottom-color: #e4e7ed;
 }
 .help_table_question_visible.help_table_question:before {
   display: none;
@@ -2398,7 +2399,12 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
-  background: #e9edf2;
+  -o-transition: background-color 100ms ease-in-out;
+  -ms-transition: background-color 100ms ease-in-out;
+  -moz-transition: background-color 100ms ease-in-out;
+  -webkit-transition: background-color 100ms ease-in-out;
+  transition: background-color 100ms ease-in-out;
+  background: #e1e6eb;
   color: #6b7b8c;
   padding-left: 28px;
   position: relative;
@@ -2419,7 +2425,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   left: 9px;
 }
 .help_table_question_act_ok:hover {
-  background-color: #e1e7ed;
+  background-color: #d8dee5;
   color: #607282;
   text-decoration: none;
 }

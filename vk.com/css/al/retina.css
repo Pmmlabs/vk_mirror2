@@ -1150,7 +1150,8 @@ body.dev.is_2x .paginated_table_header th.paginated_table_cell.sort_desc span.ta
 .is_2x #html5_player .vid_finish_add_fg,
 .is_2x #html5_player .vid_finish_added_fg,
 .is_2x #html5_player .vid_next_video_play,
-.is_2x #html5_player .vid_next_video_cancel {
+.is_2x #html5_player .vid_next_video_cancel,
+.is_2x #mv_external_finish .mv_finish_icon {
   background-image: url(/images/video/iconset_2x.png?4);
   background-size: 380px 68px;
 }
