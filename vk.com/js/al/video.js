@@ -1463,7 +1463,7 @@ var Video = {
     if (!cur.pageEnd) {
       return;
     }
-    if (st + ch > cur.pageEnd.offsetTop) {
+    if (st + ch > cur.pageEnd.offsetTop && !geByClass1('qs_drag_started')) {
       setTimeout(function() {
         Video.showMore();
       }, 0);

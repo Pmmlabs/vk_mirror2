@@ -361,12 +361,14 @@ var searcher = {
         lastPos = cur.filterLastPos || 0, lastSt = cur.lastSt || 0;
     if  (st > filtPos && !tooBig) {
       addClass(sf, 'fixed');
+      searcher.fixPositionFixed();
       pos = (wh > sfY) ? Math.min(0, wh - sfY - bottomPad) : Math.max(Math.min(0, lastPos + lastSt - st), wh - sfY - bottomPad);
       if (cur.onSearchPosChange) {
         cur.onSearchPosChange(true, pos);
       }
     } else {
       removeClass(sf, 'fixed');
+      searcher.fixPositionFixed();
       pos = 0;
       if (cur.onSearchPosChange) {
         cur.onSearchPosChange(false, pos);
@@ -411,11 +413,11 @@ var searcher = {
   },
 
   onResize: function() {
-    searcher.onScroll();
+    searcher.fixPositionFixed();
     searcher.scrollCheck();
   },
 
-  onScroll: function() {
+  fixPositionFixed: function() {
     var sf = ge('search_filters');
     if (sf && isVisible(sf)) {
       if (hasClass(sf, 'fixed')) {
@@ -531,7 +533,6 @@ var searcher = {
     window.scrollTop = bodyNode.scrollTop = pageNode.scrollTop = htmlNode.scrollTop = 0;
     addEvent(searcher.scrollnode, 'scroll', searcher.scrollCheck);
     addEvent(window, 'resize', searcher.onResize);
-    addEvent(window, 'scroll', searcher.onScroll);
     setTimeout(searcher.scrollCheck, 50);
 
     var _a = window.audioPlayer;
