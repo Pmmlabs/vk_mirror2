@@ -523,7 +523,7 @@ var Video = {
 
     var isInAlbum = Video.isCurrentSectionAlbum();
 
-    if (Video.isCurrentChannel() || Video.isCurrentCategory() || isInAlbum) {
+    if (Video.isCurrentChannel() || Video.isCurrentCategory() || isInAlbum || Video.isInVideosList()) {
       options = options || {};
       options.module = isInAlbum ? options.module : Videocat.VIDEO_MODULE;
 
@@ -534,6 +534,11 @@ var Video = {
         options.playlistId = sectionId.substr(Video.CATEGORY_PREFIX.length);
       } else if (isInAlbum) {
         options.playlistId = cur.vSection;
+      } else if (Video.isInVideosList()) {
+        var videoList = cur.videoList[cur.vSection];
+        if (videoList && videoList.list.length > 4) {
+          options.playlistId = cur.oid;
+        }
       }
 
       if (!opts.hidden) {
@@ -550,6 +555,9 @@ var Video = {
   },
   isCurrentSectionAlbum: function() {
     return cur.vSection && cur.vSection.indexOf('album_') == 0;
+  },
+  isInVideosList: function() {
+    return indexOf(['all', 'uploaded', 'tagged'], cur.vSection) > -1;
   },
   getSearchModule: function(videoId) {
     var isLocal = false;

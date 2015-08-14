@@ -1026,7 +1026,6 @@ body.mobfixed #mv_layer_wrap {
 .mv_plb_collapsed #mv_loader {
   width: 960px;
   height: 540px;
-  padding-right: 240px;
 }
 .mv_plb_collapsed #video_player,
 .mv_plb_collapsed .video_box_wrap,
@@ -1065,7 +1064,8 @@ embed#video_player {
   -webkit-border-radius: 3px;
   -khtml-border-radius: 3px;
 }
-.mv_minimized #mv_content .video .wrap {
+.mv_minimized #mv_content .video .wrap,
+.mv_minimized #mv_content .video_box_wrap_external {
   width: auto !important;
   height: auto !important;
 }
