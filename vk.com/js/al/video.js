@@ -525,7 +525,7 @@ var Video = {
 
     if (Video.isCurrentChannel() || Video.isCurrentCategory() || isInAlbum || Video.isInVideosList()) {
       options = options || {};
-      options.module = isInAlbum ? options.module : Videocat.VIDEO_MODULE;
+      options.module = isInAlbum || Video.isInVideosList() ? options.module : Videocat.VIDEO_MODULE;
 
       var sectionId = nav.objLoc.section || '';
       if (Video.isCurrentChannel()) {
@@ -545,6 +545,9 @@ var Video = {
         var showNext = Videocat.initFullPlaylist(options.playlistId, videoId);
         if (showNext) {
           options.addParams = extend(options.addParams || {}, { show_next: intval(showNext) });
+        }
+        if (options.playlistId) {
+          options.addParams = extend(options.addParams || {}, { playlist_id: options.playlistId });
         }
       }
     } else if (cur.module == 'video' && cur.vSection == 'search') {

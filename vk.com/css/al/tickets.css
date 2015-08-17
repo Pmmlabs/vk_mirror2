@@ -2444,7 +2444,8 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   display: none;
 }
 .help_table_questions_btn {
-  margin-top: 30px;
+  line-height: 32px;
+  margin: 30px -20px 0;
   padding-bottom: 10px;
   text-align: center;
 }

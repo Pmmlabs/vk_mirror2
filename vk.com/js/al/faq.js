@@ -83,6 +83,9 @@ showMsg: function(text) {
         parent = ge('faq_msg_p');
         show('faq_msg_p');
         break;
+      case 'tiles':
+        parent = ge('faq_tiles_editor');
+        break;
     }
     msg = parent.insertBefore(ce('div', {id: 'faq_msg', className: 'msg'}), parent.firstChild);
   }
@@ -442,6 +445,94 @@ toggleRow: function(id, el, evt) {
     removeClass(el, 'detailed');
   }
   return false;
+},
+
+saveTilesTop: function(button, language, hash) {
+  var query = { act: 'save_tiles', lang: language, hash: hash };
+  each(geByClass('faq_tiles_editor_tile__questions', ge('faq_tiles_editor__tiles')), function(i, questions) {
+
+    var v = [];
+
+    each(questions.children, function(j, q) {
+      v.push(q.id.replace('faq_tiles_editor_tile_question', ''));
+    });
+
+    var categoryId = questions.id.replace('faq_tiles_editor_tile__questions', '');
+    query['faq' + categoryId] = v.join(',');
+  });
+
+  ajax.post(nav.objLoc[0], query, {
+    showProgress: function() { addClass(button, 'flat_btn_lock'); },
+    hideProgress: function() { removeClass(button, 'flat_btn_lock'); }
+  });
+},
+
+tilesShowSearch: function(evt, categoryId) {
+  hide(evt.target);
+  var searchInput = ge('faq_tiles_editor_tile_search__input'+categoryId);
+  show(searchInput);
+  geByClass1('selector_input', searchInput).focus();
+  return false;
+},
+
+tilesQuestionRemove: function(questionId, event) {
+  var question = ge('faq_tiles_editor_tile_question'+questionId), questions = question.parentNode, categoryId = questions.id.replace('faq_tiles_editor_tile__questions', '');
+
+  FAQ.tilesSorterDestroy(questions);
+  re(question);
+  sorter.init(questions, {});
+
+  if (!questions.hasChildNodes()) {
+    hide(questions);
+  }
+  if (geByClass('faq_tiles_editor_tile_question', questions).length < cur.perCategoryLimit) {
+    show('faq_tiles_editor_tile_search'+categoryId);
+  }
+
+  if (event) {
+    event.stopPropagation();
+  }
+},
+
+tilesQuestionAdd: function(categoryId, questionId, questionTitle) {
+  if (!questionId) {
+    return;
+  }
+
+  var question = ge('faq_tiles_editor_tile_question'+questionId);
+  if (question) {
+    FAQ.tilesQuestionRemove(questionId);
+    /*existingQuestion.style.backgroundColor = '#FEE';
+    existingQuestion.style.color = '#a00';
+    animate(existingQuestion, {backgroundColor: '#FFF', color: "#000" }, 2000);
+    return;*/
+  }
+
+  var question = ce('div', {
+    className: 'faq_tiles_editor_tile_question',
+    id: 'faq_tiles_editor_tile_question'+questionId
+  });
+
+  question.innerHTML =
+  '<span class="faq_tiles_editor_tile_question__title">'+questionTitle+'</span>\
+    <span class="faq_tiles_editor_tile_question__remove" onclick="FAQ.tilesQuestionRemove('+questionId+', event);"></span>';
+
+  var questions = ge('faq_tiles_editor_tile__questions'+categoryId);
+  show(questions);
+
+  FAQ.tilesSorterDestroy(questions);
+  questions.appendChild(question);
+  sorter.init(questions, {});
+  if (geByClass('faq_tiles_editor_tile_question', questions).length >= cur.perCategoryLimit) {
+    hide('faq_tiles_editor_tile_search'+categoryId);
+  }
+},
+
+tilesSorterDestroy: function(questions) {
+  questions.sorter.destroy();
+  each(geByClass('faq_tiles_editor_tile_question', questions), function(i, question) {
+    question.removeAttribute('style');
+  });
 },
 
 _eof: 1};try{stManager.done('faq.js');}catch(e){}

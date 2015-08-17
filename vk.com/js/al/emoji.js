@@ -5,6 +5,7 @@ opts: {},
 last: 0,
 shownId: false,
 hasNewStickers: false,
+preventMouseOver: false,
 
 ttShift: 45,
 
@@ -36,6 +37,11 @@ init: function(txt, opts) {
       }
 
     }
+
+    addEvent(window, 'mousemove', function(e) {
+      Emoji.preventMouseOver = false;
+    });
+
     addEvent(txt, browser.opera ? 'click' : 'mousedown', function(e) {
       if (e.target && e.target.tagName == 'IMG') {
         if (Emoji.getCode(e.target)) {
@@ -46,7 +52,6 @@ init: function(txt, opts) {
       if (Emoji.shown) {
         Emoji.ttClick(optId, geByClass1('emoji_smile', opts.controlsCont), true);
       }
-      opts.emojiFocused = false;
     });
 
     addEvent(txt, 'keypress keydown keyup paste', function(e) {
@@ -456,11 +461,11 @@ checkEditable: function(optId, obj, options) {
 
 emojiEnter: function(optId, e) {
   var opts = Emoji.opts[optId];
-  if (opts.emojiFocused && opts.emojiOvered && opts.curTab === 0) {
-    var img = geByTag1('img', opts.emojiOvered);
-    Emoji.addEmoji(optId, Emoji.getCode(img), opts.emojiOvered);
-    opts.emojiFocused = true;
-    Emoji.ttClick(optId, ge((cur.peer == -3) ? 'imw_smile' : 'im_smile'), true);
+  if (opts.emojiFocused && opts.emojiOvered) {
+    if (opts.curTab === 0) {
+      var img = geByTag1('img', opts.emojiOvered);
+      Emoji.addEmoji(optId, Emoji.getCode(img), opts.emojiOvered);
+    }
     return cancelEvent(e);
   }
   return true;
@@ -490,7 +495,6 @@ addEmoji: function(optId, code, obj) {
     return false;
   }
   var opts = Emoji.opts[optId];
-  opts.emojiFocused = false;
   if (opts.editable) {
     var img = ' '+Emoji.getEmojiHTML(code)+'&nbsp;';
     var editable = opts.txt;
@@ -651,6 +655,7 @@ ttClick: function(optId, obj, needHide, needShow, ev) {
   }
   if (!obj) {
     obj = Emoji.shown || ge((cur.peer == -3) ? 'imw_smile' : 'im_smile');
+    if (!obj) return;
   }
   if (obj.tt && obj.tt.destroy) {
     obj.tt.destroy();
@@ -699,10 +704,10 @@ ttClick: function(optId, obj, needHide, needShow, ev) {
       className: 'emoji_tt_wrap'+(!Emoji.showShadow() ? ' emoji_no_opacity' : '')+classAddr,
       innerHTML: '<div class="emoji_sprite emoji_pointer'+pointerClass+'"></div><div class="emoji_block_cont"><div class="emoji_block_rel"><div class="emoji_sprite emoji_expand_shadow"></div><div class="emoji_sprite emoji_expand_shadow_top"></div><div class="emoji_list_cont"><div class="emoji_list"><div class="emoji_scroll">'+tabContent+'</div></div></div></div><div class="emoji_tabs clear_fix">'+tabs+'</div></div>',
       onmouseover: function(e) {
-        Emoji.ttShow(optId, false, e);
+        if (!hasClass(tt, 'emoji_animated')) Emoji.ttShow(optId, false, e);
       },
       onmouseout: function(e) {
-        Emoji.ttHide(optId, false, e);
+        if (!hasClass(tt, 'emoji_animated')) Emoji.ttHide(optId, false, e);
       }
     });
     opts.tt = tt;
@@ -720,6 +725,7 @@ ttClick: function(optId, obj, needHide, needShow, ev) {
   if (Emoji.shownId !== false && Emoji.shownId != optId) {
     Emoji.ttClick(Emoji.shownId, geByClass1('emoji_smile', Emoji.opts[Emoji.shownId].controlsCont), true);
   }
+  Emoji.preventMouseOver = false;
   if (Emoji.shown) {
     var toParams = {opacity: 0};
     setTimeout(function() {
@@ -758,6 +764,7 @@ ttClick: function(optId, obj, needHide, needShow, ev) {
     opts.ttShown = true;
     opts.ttShowT = vkNow();
     opts.emojiFocused = true;
+    removeEvent(document, 'keydown', Emoji.emojiMove);
     setTimeout(function() {
       cur.onMouseClick = function(e) {
         var el = e.target;
@@ -769,6 +776,7 @@ ttClick: function(optId, obj, needHide, needShow, ev) {
         }
         Emoji.ttClick(optId, false, true);
       }
+
       addEvent(document, 'keydown', Emoji.emojiMove);
     }, 0);
     addClass(obj, 'emoji_smile_on');
@@ -898,7 +906,7 @@ emojiWrapItem: function(optId, code, i) {
   if (browser.mobile) {
     var overEvent = '';
   } else {
-    var overEvent = ' onmouseover="return Emoji.emojiOver('+optId+', this);"';
+    var overEvent = ' onmouseover="return Emoji.emojiOver('+optId+', this, true);"';
   }
   return '<a class="emoji_smile_cont '+((code != '2764' && i && (i < 54)) ? 'emoji_smile_shadow' : '')+'" '+titleStr+' onmousedown="Emoji.addEmoji(Emoji.shownId, \''+code+'\', this); return cancelEvent(event);" onclick="return cancelEvent(event);"'+overEvent+'><div class="emoji_bg"></div><div class="emoji_shadow"></div>'+Emoji.getEmojiHTML(code, false, false, true)+'</a>'
 },
@@ -986,8 +994,8 @@ repositionEmoji: function(optId, obj, tt) {
   var topShift = (opts.topShift || -Emoji.ttMarginTop(optId, obj, tt));
   setStyle(tt, {marginTop: -topShift});
 },
-emojiOver: function(optId, obj) {
-  if (browser.mobile) {
+emojiOver: function(optId, obj, withMouse) {
+  if (browser.mobile || withMouse && Emoji.preventMouseOver) {
     return true;
   }
   var opts = Emoji.opts[optId]
@@ -1059,56 +1067,59 @@ emojiExpand: function(optId, block) {
 emojiMove: function(e) {
   var optId = Emoji.shownId;
   var opts = Emoji.opts[optId];
-  if (Emoji.shown) {
-    cancelEvent(e);
-    if (opts.emojiFocused) {
-      var el = opts.emojiOvered;
-      switch (e.keyCode) {
-        case KEY.LEFT:
+  if (Emoji.shown && opts.emojiFocused) {
+    var el = opts.emojiOvered;
+    switch (e.keyCode) {
+      case KEY.LEFT:
+        el = el.previousSibling;
+        cancelEvent(e);
+        break;
+      case KEY.RIGHT:
+        el = el.nextSibling;
+        cancelEvent(e);
+        break;
+      case KEY.UP:
+        var i = 11;
+        while (el.previousSibling && --i > 0) {
           el = el.previousSibling;
-          break;
-        case KEY.RIGHT:
-          el = el.nextSibling;
-          break;
-        case KEY.UP:
-          var i = 11;
-          while (el.previousSibling && --i > 0) {
-            el = el.previousSibling;
-          }
-          if (i > 1) {
-            return cancelEvent(e);
-          }
-          break;
-        case KEY.DOWN:
-          var i = 11;
-          while (el.nextSibling && --i > 0) {
-            el = el.nextSibling;
-          }
-          if (i > 1) {
-            return cancelEvent(e);
-          }
-          break;
-        case KEY.ENTER:
-          return Emoji.emojiEnter(optId, e);
-          break;
-        default:
-          return true;
-      }
-      if (el) {
-        var diff = el.offsetTop - cur.emojiList.scrollTop;
-        if (diff > 72) {
-          animate(cur.emojiList, {scrollTop: cur.emojiList.scrollTop + (diff - 72)}, 80, function() {
-            opts.emojiScroll.update(true, true)
-          });
-        } else if (diff < 0) {
-          animate(cur.emojiList, {scrollTop: cur.emojiList.scrollTop + diff}, 80, function() {
-            opts.emojiScroll.update(true, true)
-          });
         }
-        Emoji.emojiOver(optId, el);
-      }
-      return false;
+        cancelEvent(e);
+        if (i > 1) {
+          return false;
+        }
+        break;
+      case KEY.DOWN:
+        var i = 11;
+        while (el.nextSibling && --i > 0) {
+          el = el.nextSibling;
+        }
+        cancelEvent(e);
+        if (i > 1) {
+          return false;
+        }
+        break;
+      case KEY.ENTER:
+        return Emoji.emojiEnter(optId, e);
+        cancelEvent(e);
+        break;
+      default:
+        return true;
     }
+    if (el) {
+      var diff = el.offsetTop - cur.emojiList.scrollTop;
+      if (diff > 210) {
+        animate(cur.emojiList, {scrollTop: cur.emojiList.scrollTop + (diff - 210)}, 80, function() {
+          opts.emojiScroll.update(true, true)
+        });
+      } else if (diff < 0) {
+        animate(cur.emojiList, {scrollTop: cur.emojiList.scrollTop + diff}, 80, function() {
+          opts.emojiScroll.update(true, true)
+        });
+      }
+      Emoji.preventMouseOver = true;
+      Emoji.emojiOver(optId, el);
+    }
+    return false;
   }
   return true;
 },

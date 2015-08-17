@@ -1049,10 +1049,10 @@ a.fc_msg_att_lnk:hover .fc_msg_att_text {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  display: none;
+  visibility: hidden;
 }
 .emoji_shadow {
-  display: none;
+  visibility: hidden;
   position: absolute;
   width: 20px;
   height: 1px;
@@ -1060,10 +1060,10 @@ a.fc_msg_att_lnk:hover .fc_msg_att_text {
   margin-top: 20px;
 }
 .emoji_over .emoji_bg {
-  display: block;
+  visibility: visible;
 }
 .emoji_over .emoji_shadow {
-  display: block;
+  visibility: visible;
 }
 .emoji_scrollbar_cont {
   width: 7px;
