@@ -558,6 +558,52 @@ var IM = {
     }
   },
 
+  notify: function (peer_id, msg) {
+    if (!cur.notify_on) {
+      return;
+    }
+    var peer, peer_photo, peer_name, title = IM.goodTitle(msg[2], peer_id) && msg[2] || '';
+        message = ((title ? (title + ' ') : '') + msg[3]) || '',
+        peer_data = cur.tabs[peer_id].data,
+        actual_peer = msg[3].match(/<\*>from:(\d+)/);
+
+    if(!peer_data) {
+      return;
+    }
+
+    message = trim(replaceEntities(stripHTML(message.replace(/<br>/g, "\n").replace(/<\*>.*$/, ''))));
+    actual_peer = actual_peer && actual_peer[1] || msg[5].from || peer_id;
+
+    if (peer_data && peer_data.members[actual_peer]) {
+      peer_name = peer_data.members[actual_peer].name;
+      if (peer_data.title) {
+        peer_name += ' « ' + peer_data.title;
+      }
+      peer_photo = peer_data.members[actual_peer].photo;
+    } else if (peer = cur.friends[actual_peer + '_']) {
+      peer_name = peer[1];
+      peer_photo = peer[2];
+    } else if (peer = cur.tabs[actual_peer]) {
+      peer_name = peer.tab_text;
+      peer_photo = peer.photo;
+    } else {
+      return;
+    }
+    if (msg[5].attach1_type) {
+      message += "\n[" + getLang('mail_added_' + msg[5].attach1_type) + "]";
+    } else if (msg[5].fwd) {
+      message += "\n[" + getLang('mail_added_msgs') + "]";
+    }
+    peer_name = trim(replaceEntities(stripHTML((peer_name || '').replace('&nbsp;', ' '))));
+    Notifier.proxyIm({
+      id: msg[4],
+      text: message,
+      author_id: peer_id,
+      title: peer_name,
+      author_photo: peer_photo
+    });
+  },
+
   receivePeerData: function(peer_id, data) {
     if (data.hash) {
       data.hash = IM.decodehash(data.hash);
@@ -3030,7 +3076,7 @@ var IM = {
 
     cur.urlsCancelled = {};
     cur.uiNotifications = {};
-    if (cur.notify_on = (DesktopNotifications.supported())) {
+    if (cur.notify_on = (window.DesktopNotifications && DesktopNotifications.supported())) {
       cur.notify_on = (DesktopNotifications.checkPermission() <= 0);
       if (ls.get('im_ui_notify_off')) {
         cur.notify_on = false;
@@ -3042,11 +3088,16 @@ var IM = {
         notify_button.innerHTML = getLang('mail_im_notifications_off');
       }
       var enableNotify = function () {
-        cur.notify_on = (DesktopNotifications.checkPermission() <= 0);
-        if (!cur.notify_on) {
-          DesktopNotifications.requestPermission(enableNotify);
+        if (window.DesktopNotifications) {
+          cur.notify_on = (DesktopNotifications.checkPermission() <= 0);
+          if (!cur.notify_on) {
+            DesktopNotifications.requestPermission(enableNotify);
+          } else {
+            notify_button.innerHTML = getLang('mail_im_notifications_on');
+            ls.set('im_ui_notify_off', 0);
+          }
         } else {
-          notify_button.innerHTML = getLang('mail_im_notifications_on');
+          cur.notify_on = false;
           ls.set('im_ui_notify_off', 0);
         }
       }
@@ -6257,59 +6308,6 @@ var IM = {
       case 'unmute': IM.unmute(cur.peer); break;
     }
   },
-  notify: function (peer_id, msg) {
-    if (!cur.notify_on) {
-      return;
-    }
-    var peer, peer_photo, peer_name, title = IM.goodTitle(msg[2], peer_id) && msg[2] || '';
-        message = ((title ? (title + ' ') : '') + msg[3]) || '',
-        peer_data = cur.tabs[peer_id].data,
-        actual_peer = msg[3].match(/<\*>from:(\d+)/);
-
-    message = trim(replaceEntities(stripHTML(message.replace(/<br>/g, "\n").replace(/<\*>.*$/, ''))));
-    actual_peer = actual_peer && actual_peer[1] || msg[5].from || peer_id;
-
-    if (peer_data && peer_data.members[actual_peer]) {
-      peer_name = peer_data.members[actual_peer].name;
-      if (peer_data.title) {
-        peer_name += ' « ' + peer_data.title;
-      }
-      peer_photo = peer_data.members[actual_peer].photo;
-    } else if (peer = cur.friends[actual_peer + '_']) {
-      peer_name = peer[1];
-      peer_photo = peer[2];
-    } else if (peer = cur.tabs[actual_peer]) {
-      peer_name = peer.tab_text;
-      peer_photo = peer.photo;
-    } else {
-      return;
-    }
-    if (msg[5].attach1_type) {
-      message += "\n[" + getLang('mail_added_' + msg[5].attach1_type) + "]";
-    } else if (msg[5].fwd) {
-      message += "\n[" + getLang('mail_added_msgs') + "]";
-    }
-    peer_name = trim(replaceEntities(stripHTML((peer_name || '').replace('&nbsp;', ' '))));
-    if (cur.uiNotifications[peer_id]) {
-      cur.uiNotifications[peer_id].cancel();
-    }
-
-    var notification = cur.uiNotifications[peer_id] = DesktopNotifications.createNotification(peer_photo, peer_name, message);
-    notification.onclick = function (e) {
-      IM.activateTab(peer_id);
-      window.focus();
-      notification.cancel();
-      setTimeout(elfocus.bind('im_txt' + peer_id), 250);
-      cur.uiNotifications[peer_id] = false;
-      elfocus('im_txt' + peer_id);
-    };
-    notification.replaceId = 'im_txt' + peer_id;
-    cur.notifyTO = setTimeout(function () {
-      notification.cancel();
-      cur.uiNotifications[peer_id] = false;
-    }, 10000);
-    notification.show();
-  },
   r: function(peer) { // is peer reserved
     if (peer === undefined) {
       peer = cur.peer;
@@ -6935,38 +6933,6 @@ ImUpload = {
     });
     cur.uploadInited = true;
     ImUpload.show();
-  }
-};
-
-var DesktopNotifications = {
-  supported: function() {
-    return !!(window.webkitNotifications || window.Notification);
-  },
-  checkPermission: function() {
-    if (window.webkitNotifications) {
-      return webkitNotifications.checkPermission();
-    } else {
-      return (Notification.permission == "granted") ? 0 : 1;
-    }
-  },
-  requestPermission: function(f) {
-    (window.webkitNotifications || window.Notification).requestPermission(f);
-  },
-  createNotification: function(photo, title, text) {
-    var notification;
-    if (window.webkitNotifications) {
-      return webkitNotifications.createNotification(photo, title, text);
-    } else {
-      notification = new Notification(title, {
-        icon: photo,
-        body: text
-      });
-      notification.cancel = function() {
-        this.close();
-      };
-      notification.show = function() {};
-      return notification;
-    }
   }
 };
 

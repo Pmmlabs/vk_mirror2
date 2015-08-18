@@ -533,9 +533,12 @@ var Video = {
       } else if (Video.isCurrentCategory()) {
         options.playlistId = sectionId.substr(Video.CATEGORY_PREFIX.length);
       } else if (isInAlbum) {
-        options.playlistId = cur.vSection;
+        var videoList = cur.videoList && cur.videoList[cur.vSection];
+        if (videoList && videoList.list.length > 4) {
+          options.playlistId = cur.vSection;
+        }
       } else if (Video.isInVideosList()) {
-        var videoList = cur.videoList[cur.vSection];
+        var videoList = cur.videoList && cur.videoList[cur.vSection];
         if (videoList && videoList.list.length > 4) {
           options.playlistId = cur.oid;
         }

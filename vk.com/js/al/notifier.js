@@ -14,8 +14,11 @@ Notifier = {
       q_events: [],
       q_shown: [],
       q_closed: [],
+      negotiations: {},
+      currentIm: {},
       q_max: 3,
       q_idle_max: 5,
+      browser_shown: {},
       done_events: {},
       addQueues: curNotifier.addQueues || {},
       recvClbks: curNotifier.recvClbks || {},
@@ -298,7 +301,6 @@ Notifier = {
     if (curNotifier.done_events[ev.id]) return;
     curNotifier.done_events[ev.id] = 1;
     // debugLog(ev.type, ev.add, !!cnt);
-
     switch (ev.type) {
       case 'video_process_ready':
         if (ev.add && window.Video && Video.isVideoPlayerOpen(ev.add)) {
@@ -462,23 +464,11 @@ Notifier = {
         push = 0;
         break;
     }
-    if (push && ev.type == 'mail') {
-      var lastImTime = intval(ls.get('im_opened' + vk.id));
-      if (vkNow() - lastImTime < 2000) {
-        // So, currently IM is active
-        push = 0;
-      } else {
-        push |= 2;
-      }
-      if (window.curFastChat && curFastChat.inited && ev.author_id) {
-        if (curFastChat.tabs && curFastChat.tabs[ev.author_id] ||
-            curFastChat.clistBox && curFastChat.clistBox.visible) {
-          push = 2; // Only sound notification
-        } else {
-          ev.onclick = 'FastChat.selectPeer(\'' + ev.author_id + '\');';
-        }
-      }
+
+    if(ev.type === 'mail') {
+      push = this.sendMailNotification(ev);
     }
+
     if (push & 1) {
       curNotifier.q_events.push(ev);
       if (curNotifier.q_events.length > 30) {
@@ -488,6 +478,94 @@ Notifier = {
     }
     return push;
   },
+
+  isActive: function() {
+    return window.curNotifier
+    && curNotifier.idle_manager
+    && !curNotifier.idle_manager.is_idle;
+  },
+
+  sendImProxy: function(data) {
+    if(!curNotifier.browser_shown[data.id] && !(Notifier.isActive() && cur.module === 'im')) {
+      curNotifier.browser_shown[data.id] = true;
+      Notifier.trySendBrowserNotification(data, true);
+      setTimeout(function() {
+        curNotifier.browser_shown[data.id] = undefined;
+      }, 2000);
+    }
+  },
+
+  sendSimpleNotification: function(ev) {
+    if (FastChat.isChatOpen(ev.author_id)) {
+      return 2; // Only sound notification
+    }
+    if (cur.module === 'im') {
+      return 0; // No notification on IM
+    }
+    return 1 | 2; // Sound + VK Notification
+  },
+
+  sendBrowserNotification: function(ev) {
+    var token = 'notify_token_' + Date.now() + Math.round(rand(0, 1000));
+    if(cur.module !== 'im') {
+      Notifier.negotiate({
+        message: 'send_im_notification',
+        onSuccess: function(data) {
+          Notifier.lcSend('negotiate_back', {
+            token: data.msg,
+            ev: ev
+          });
+        },
+        onFail: function() {
+          Notifier.showEventUi(ev);
+        }
+      });
+    } else {
+      ev.onclick = 'IM.activateTab(' + ev.author_id + ');';
+      Notifier.showEventUi(ev);
+    }
+  },
+
+  trySendBrowserNotification: function(ev, onlyBrowser) {
+    Notifier.negotiate({
+      message: 'who_is_active',
+      msg: ev.author_id,
+      onFail: function() {
+        if(Notifier.canNotifyUi()) {
+          Notifier.sendBrowserNotification(ev);
+        } else if (!onlyBrowser) {
+          Notifier.lcSend('show_notification', ev);
+          if (cur.module !== 'im') {
+            Notifier.showEvent(ev, true);
+          }
+        }
+        if (cur.module === 'im' && FastChat.isChatOpen(ev.author_id)
+          || cur.module !== 'im') {
+            curNotifier.sound_im.play();
+        }
+      }
+    });
+  },
+
+  proxyIm: function(ev) {
+    if(!this.isActive() && curNotifier.is_server) {
+      ev.onclick = 'IM.activateTab(' + ev.author_id + ');';
+      this.sendImProxy(ev);
+    } else if(!curNotifier.is_server) {
+      this.lcSend('message_from_im', ev);
+    }
+  },
+
+  sendMailNotification: function(ev) {
+    ev.onclick = 'FastChat.selectPeer(\'' + ev.author_id + '\');';
+    if (this.isActive()) {
+      return this.sendSimpleNotification(ev);
+    } else if (curNotifier.is_server) {
+      this.trySendBrowserNotification(ev);
+    }
+    return 0; // No notification if not active and not server
+  },
+
   checkEvents: function () {
     if (!curNotifier.q_events.length ||
         curNotifier.q_shown.length >= (curNotifier.idle_manager.is_idle ? curNotifier.q_idle_max : curNotifier.q_max) ||
@@ -496,14 +574,10 @@ Notifier = {
       return;
     }
     var ev = curNotifier.q_events.shift();
-    if (curNotifier.idle_manager.is_idle && curNotifier.is_server && this.canNotifyUi()) {
-      this.showEventUi(ev);
-    } else {
-      this.showEvent(ev);
-    }
+    this.showEvent(ev);
   },
 
-  showEvent: function (ev) {
+  showEvent: function (ev, force) {
     curNotifier.q_shown.push(ev);
     var imgClass = '';
     if (ev.type == 'gift') {
@@ -604,23 +678,34 @@ Notifier = {
     setStyle(curNotifier.cont, {bottom: -h});
     setStyle(ev.baloonWrapEl, {visibility: 'visible'});
     animate(curNotifier.cont, {bottom: 0}, 200);
-    if (!curNotifier.idle_manager.is_idle) {
+    if (!curNotifier.idle_manager.is_idle || force) {
       ev.fadeTO = setTimeout(ev.startFading, 7000);
     }
   },
 
   canNotifyUi: function () {
-    // if (vk.id == 13033) return false;
-    return window.webkitNotifications && (webkitNotifications.checkPermission() <= 0 && !ls.get('im_ui_notify_off'));
+    return !ls.get('im_ui_notify_off')
+      && DesktopNotifications.supported()
+      && DesktopNotifications.checkPermission() <= 0;
   },
 
   showEventUi: function (ev) {
     if (!this.canNotifyUi()) return false;
+    var title, text;
+    if(ev.type === 'mail') {
+      title = stripHTML(replaceEntities(ev.text).replace(/<br>/g, "\n")
+        .replace(/<span class='notifier_author_quote'.*?>(.*?)<\/span>.*$/, '$1'))
+        .replace(/&laquo;|&raquo;/gi, '"');
+      text = stripHTML(replaceEntities(ev.text).replace(/<br>/g, "\n")
+        .replace(/<span class='notifier_author_quote'.*<\/span>(.*?)/, '$1')
+        .replace(/<img.*?alt="(.*?)".*?>/ig, '$1'))
+        .replace(/&laquo;|&raquo;/gi, '"').trim();
+    } else {
+      title = ev.title;
+      text = ev.text;
+    }
 
-    // curNotifier.q_shown.push(ev);
-    var title = stripHTML(replaceEntities(ev.title));
-    var text = stripHTML(replaceEntities(ev.text).replace(/<br>/g, "\n").replace(/(<span class='notifier_author_quote'.*<\/span>)/, '$1:')).replace(/&laquo;|&raquo;/gi, '"');
-    var notification = ev.uiNotification = webkitNotifications.createNotification(ev.author_photo, title, text);
+    var notification = ev.uiNotification = DesktopNotifications.createNotification(ev.author_photo, title, text);
     notification.onclick = function (e) {
       window.focus();
       eval(ev.onclick);
@@ -792,6 +877,7 @@ Notifier = {
       } catch (e) {debugLog(e, e.message, e.stack);}
     }
   },
+
   lcRecv: function (data) {
     if (isEmpty(data) || data.__client == curNotifier.instance_id) return;
     var act = data.__act;
@@ -866,6 +952,39 @@ Notifier = {
           ls.set('pad_pltime', vkNow());
         }
         break;
+      case 'who_is_active':
+        if(Notifier.isActive()
+          && ((intval(data.msg) > 2000000000 && cur.module === 'im')
+          || intval(data.msg) < 2000000000)) {
+            this.lcSend('negotiate_back', data);
+        }
+        break;
+
+      case 'show_notification':
+        if (cur.module !== 'im') {
+          Notifier.showEvent(data, true);
+        }
+        break;
+
+      case 'send_im_notification':
+        if (cur.module === 'im') {
+          var slot = Notifier.createNegotiationSlot({
+            onSuccess: function(data) {
+              data.ev.onclick = 'IM.activateTab(' + data.ev.author_id + ');';
+              Notifier.showEventUi(data.ev);
+            }
+          });
+
+          Notifier.lcSend('negotiate_back', {
+            msg: slot.token,
+            token: data.token
+          });
+        }
+        break;
+
+      case 'negotiate_back':
+        Notifier.endNegotiation(data)
+        break;
 
       default:
         if (curNotifier.recvClbks && curNotifier.recvClbks[act]) {
@@ -889,8 +1008,48 @@ Notifier = {
       case 'check':
         this.lcSend('check_ok');
         break;
+
+      case 'message_from_im':
+        Notifier.sendImProxy(data);
+        break;
     }
   },
+
+  negotiate: function(opts) {
+    opts = this.createNegotiationSlot(opts);
+    this.lcSend(opts.message, {token: opts.token, msg: opts.msg});
+  },
+
+  createNegotiationSlot: function(opts) {
+    var token = "negotiations_" + Date.now() + Math.round(rand(0, 10000));
+    opts = extend({
+      timeout: 600,
+      token: token,
+      msg: ''
+    }, opts);
+    curNotifier.negotiations[opts.token] = {};
+    curNotifier.negotiations[opts.token].timer = setTimeout(function() {
+      opts.onFail && opts.onFail();
+      if (curNotifier.negotiations[opts.token]) {
+        curNotifier.negotiations[opts.token] = undefined;
+      }
+    }, opts.timeout);
+    curNotifier.negotiations[opts.token].success = opts.onSuccess;
+    return opts;
+  },
+
+  endNegotiation: function(data) {
+    var token = data.token;
+    var negotiation = curNotifier.negotiations[token];
+    if(negotiation) {
+      clearTimeout(negotiation.timer);
+      if(curNotifier.negotiations[token].success) {
+        curNotifier.negotiations[token].success(data);
+      }
+      curNotifier.negotiations[token] = undefined;
+    }
+  },
+
   lcOnStorage: function (e) { // receiving messages from native onstorage event
     e = e || window.event;
     Notifier.debug && debugLog('onstorage', e.key, e.newValue, e);
@@ -2026,6 +2185,17 @@ FastChat = {
     curFastChat = {inited: false};
     return true;
   },
+
+  isChatOpen: function(id) {
+    if (window.curFastChat && curFastChat.inited && id) {
+      if (curFastChat.tabs && curFastChat.tabs[id] ||
+        curFastChat.clistBox && curFastChat.clistBox.visible) {
+          return true;
+      }
+    }
+    return false;
+  },
+
   standby: function (version) {
     FastChat.destroy();
     curFastChat.standby = true;
@@ -5497,5 +5667,37 @@ Scrollbar.prototype.update = function(noChange, updateScroll) {
   }
 }
 // Tiny Scrollbars end
+
+var DesktopNotifications = {
+  supported: function() {
+    return !!(window.webkitNotifications || window.Notification);
+  },
+  checkPermission: function() {
+    if (window.webkitNotifications) {
+      return webkitNotifications.checkPermission();
+    } else {
+      return (Notification.permission == "granted") ? 0 : 1;
+    }
+  },
+  requestPermission: function(f) {
+    (window.webkitNotifications || window.Notification).requestPermission(f);
+  },
+  createNotification: function(photo, title, text) {
+    var notification;
+    if (window.webkitNotifications) {
+      return webkitNotifications.createNotification(photo, title, text);
+    } else {
+      notification = new Notification(title, {
+        icon: photo,
+        body: text
+      });
+      notification.cancel = function() {
+        this.close();
+      };
+      notification.show = function() {};
+      return notification;
+    }
+  }
+};
 
 try{stManager.done('notifier.js');}catch(e){}
