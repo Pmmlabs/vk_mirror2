@@ -2269,6 +2269,17 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 .help_tile_faqs__row {
   line-height: 16px;
   margin-bottom: 5px;
+  padding-left: 10px;
+  position: relative;
+}
+.help_tile_faqs__row:before {
+  content: "\2022";
+  color: #ced7e0;
+  font-size: 10px;
+  left: 0;
+  line-height: 16px;
+  position: absolute;
+  top: 0;
 }
 .help_tile__all {
   color: #8fa0b2;

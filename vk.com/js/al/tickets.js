@@ -2922,16 +2922,14 @@ listSearch: function(val) {
       removeClass(ge('faq_search_form'), 'loading');
 
       if (content == '') {
-        if (nav.objLoc['act'] == 'home' || qlist.innerHTML != '') {
-          updateLoc = false;
-        } else {
+        if (cur.listPrevSearchStr.indexOf(val) == -1 || cur.listPrevSearchStr == '') {
           Tickets.listShowNotFound(val);
+        } else {
+          updateLoc = false;
         }
       } else {
         Tickets.listHideNotFound();
         qlist.innerHTML = content;
-        Tickets.listDiselectCategory();
-        Tickets.listOpenFAQs();
         Tickets.listSetTitle(getLang(val ? 'support_list_search_result_title' : 'support_list_popular_questions'));
         Tickets.listToggleUnusefulButton(showButton);
         Tickets.listShowAltButton(altButtonId);
@@ -2940,7 +2938,10 @@ listSearch: function(val) {
         }
       }
 
+      Tickets.listOpenFAQs();
+
       if (updateLoc) {
+        Tickets.listDiselectCategory();
         var obj = {act: 'faqs'};
         obj[0] = nav.objLoc[0];
         if (val) {
@@ -2948,6 +2949,7 @@ listSearch: function(val) {
         }
         nav.setLoc(obj);
       }
+      cur.listPrevSearchStr = val;
 
       if (val != '' && ge('faq_search_form__title').tt) {
         ge('faq_search_form__title').tt.hide();
@@ -3053,7 +3055,7 @@ listScrollToQuestion: function(questionId) {
   }
 },
 listClearSearchInput: function() {
-  ge('faq_search_form__title').value = '';
+  val('faq_search_form__title', '');
   removeClass(ge('tickets_search_reset'), 'shown');
 },
 listClearSearch: function(el, event) {

@@ -539,8 +539,9 @@ Notifier = {
             Notifier.showEvent(ev, true);
           }
         }
-        if (cur.module === 'im' && FastChat.isChatOpen(ev.author_id)
-          || cur.module !== 'im') {
+        if (!ls.get('sound_notify_off')
+          && (cur.module === 'im' && FastChat.isChatOpen(ev.author_id)
+          || cur.module !== 'im')) {
             curNotifier.sound_im.play();
         }
       }
