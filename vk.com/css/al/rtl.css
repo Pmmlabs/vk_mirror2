@@ -950,6 +950,53 @@ body.dev.is_rtl1 .priv_h_arrow {
 .is_rtl1 #im_smile {
   margin: 1px 333px 0px 0px;
 }
+.is_rtl1 .emoji_tabs_r_s {
+  margin-right: 35px;
+  margin-left: 0;
+}
+.is_rtl1 .emoji_tabs_r_sc {
+  margin-right: 18px;
+}
+.is_rtl1 .emoji_tabs_r_si {
+  margin-right: 4px;
+  margin-left: 0;
+}
+.is_rtl1 .emoji_tabs_l_s {
+  margin-right: 240px;
+  margin-left: 0;
+}
+.is_rtl1 .emoji_tabs_l_si {
+  margin-left: 0;
+  margin-right: 5px;
+}
+.is_rtl1 .emoji_tabs_l_sc {
+  margin-left: 0;
+  margin-right: -9px;
+}
+.is_rtl1 .fc_tab_wrap .emoji_tt_wrap {
+  margin-right: 130px;
+}
+.is_rtl1 .fc_in_msg_arr {
+  left: auto;
+  right: 33px;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.is_rtl1 .fc_out_msg_arr {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+  left: 9px;
+  right: auto;
+}
+.is_rtl1 .fc_msgs_wrap {
+  padding: 3px 4px 3px 13px;
+}
+.is_rtl1 .fc_msgs {
+  margin-right: 33px;
+  margin-left: 0;
+}
 .is_rtl1 .emoji_tt_wrap {
   margin: -128px 303px 0px 0px;
 }

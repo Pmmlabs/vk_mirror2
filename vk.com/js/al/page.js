@@ -4781,16 +4781,41 @@ function initCustomMedia(lnk, types, opts) {
     },
     _updatePosition: function(visible) {
       var coords = getXY(lnk, mediaMenu.fixed),
+          pointerShift = 0,
           xShift = opts.leftOffset || 0, yShift = opts.topOffset || 0,
           top = coords[1] + yShift - 4 + (browser.msie && browser.version < 8 ? 1 : 0);
       var rowsEl = menuNode.firstChild, more = geByClass1('add_media_more', menuNode);
       if (vk.rtl) {
-        var right = (lastInnerWidth - 1) - (coords[0] + getSize(lnk)[0] + 8 - xShift);
+        var right =
+          lastInnerWidth - 4 // full screen width
+           - coords[0] // lnk coords
+           - 3 * getSize(lnk)[0] / 2 // 3/2 of lnk width
+           + xShift // shift from options;
+        if(right < 0) {
+          pointerShift = -right;
+          right = 0;
+        }
         setStyle(menuNode, {right: right, top: top});
       } else {
-        var left = coords[0] + xShift - 8 + (browser.msie6 ? 1 : 0);
+        var left =
+          coords[0]
+          + xShift // shift from options
+          - getSize(menuNode)[0]/2 // half of media menu width
+          + getSize(lnk)[0]/2 // half of lnk
+          + (browser.msie6 ? 1 : 0); // hack for ie6
+        if(left < 0) {
+          pointerShift = left;
+          left = 0;
+        }
         setStyle(menuNode, {left: left, top: top});
       }
+
+      // before we make it relative, fix 100% to prevent twitching
+      setStyle(rowsEl.firstChild, { width: '100%' });
+      setStyle(geByClass1('add_media_pointer', menuNode), {
+        position: 'relative',
+        left: pointerShift  + 'px'
+      });
 
       // Showing to up in case of little widget height
       if (!visible) {

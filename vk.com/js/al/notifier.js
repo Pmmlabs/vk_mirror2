@@ -1,3 +1,6 @@
+// https://github.com/Olical/EventEmitter
+(function(){"use strict";function t(){}function i(t,n){for(var e=t.length;e--;)if(t[e].listener===n)return e;return-1}function n(e){return function(){return this[e].apply(this,arguments)}}var e=t.prototype,r=this,s=r.EventEmitter;e.getListeners=function(n){var r,e,t=this._getEvents();if(n instanceof RegExp){r={};for(e in t)t.hasOwnProperty(e)&&n.test(e)&&(r[e]=t[e])}else r=t[n]||(t[n]=[]);return r},e.flattenListeners=function(t){var e,n=[];for(e=0;e<t.length;e+=1)n.push(t[e].listener);return n},e.getListenersAsObject=function(n){var e,t=this.getListeners(n);return t instanceof Array&&(e={},e[n]=t),e||t},e.addListener=function(r,e){var t,n=this.getListenersAsObject(r),s="object"==typeof e;for(t in n)n.hasOwnProperty(t)&&-1===i(n[t],e)&&n[t].push(s?e:{listener:e,once:!1});return this},e.on=n("addListener"),e.addOnceListener=function(e,t){return this.addListener(e,{listener:t,once:!0})},e.once=n("addOnceListener"),e.defineEvent=function(e){return this.getListeners(e),this},e.defineEvents=function(t){for(var e=0;e<t.length;e+=1)this.defineEvent(t[e]);return this},e.removeListener=function(r,s){var n,e,t=this.getListenersAsObject(r);for(e in t)t.hasOwnProperty(e)&&(n=i(t[e],s),-1!==n&&t[e].splice(n,1));return this},e.off=n("removeListener"),e.addListeners=function(e,t){return this.manipulateListeners(!1,e,t)},e.removeListeners=function(e,t){return this.manipulateListeners(!0,e,t)},e.manipulateListeners=function(r,t,i){var e,n,s=r?this.removeListener:this.addListener,o=r?this.removeListeners:this.addListeners;if("object"!=typeof t||t instanceof RegExp)for(e=i.length;e--;)s.call(this,t,i[e]);else for(e in t)t.hasOwnProperty(e)&&(n=t[e])&&("function"==typeof n?s.call(this,e,n):o.call(this,e,n));return this},e.removeEvent=function(e){var t,r=typeof e,n=this._getEvents();if("string"===r)delete n[e];else if(e instanceof RegExp)for(t in n)n.hasOwnProperty(t)&&e.test(t)&&delete n[t];else delete this._events;return this},e.removeAllListeners=n("removeEvent"),e.emitEvent=function(r,o){var e,i,t,s,n=this.getListenersAsObject(r);for(t in n)if(n.hasOwnProperty(t))for(i=n[t].length;i--;)e=n[t][i],e.once===!0&&this.removeListener(r,e.listener),s=e.listener.apply(this,o||[]),s===this._getOnceReturnValue()&&this.removeListener(r,e.listener);return this},e.trigger=n("emitEvent"),e.emit=function(e){var t=Array.prototype.slice.call(arguments,1);return this.emitEvent(e,t)},e.setOnceReturnValue=function(e){return this._onceReturnValue=e,this},e._getOnceReturnValue=function(){return this.hasOwnProperty("_onceReturnValue")?this._onceReturnValue:!0},e._getEvents=function(){return this._events||(this._events={})},t.noConflict=function(){return r.EventEmitter=s,t},"function"==typeof define&&define.amd?define(function(){return t}):"object"==typeof module&&module.exports?module.exports=t:r.EventEmitter=t}).call(this);
+
 if (!window.curNotifier) {
   curNotifier = {
     addQueues: {},
@@ -6,6 +9,131 @@ if (!window.curNotifier) {
     onConnectionId: []
   };
 }
+
+function IdleManager(opts) {
+  this.started = false;
+  this.is_idle = true;
+  this.is_activated = false;
+  this.cbActiveB = this.cbActive.bind(this);
+  this.cbInactiveB = this.cbInactive.bind(this);
+  this.cbInactiveB = this.cbInactive.bind(this);
+
+  this.opts = extend({
+    triggerEvents: 'mousemove keydown',
+    onIdleCb: function() {},
+    onUnIdleCb: function() {},
+    focusElement: opts.element,
+    element: null,
+    idleTimeout: 30000
+  }, opts);
+}
+
+extend(IdleManager.prototype, EventEmitter.prototype);
+
+extend(IdleManager.prototype, {
+  stop: function() {
+    this.started = false;
+    removeEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB);
+    removeEvent(this.opts.focusElement, 'focus', this.cbActiveB);
+    removeEvent(this.opts.focusElement, 'blur', this.cbInactiveB);
+    clearTimeout(this.setIdleTo);
+    clearTimeout(this.checkIdleCbTo);
+    clearTimeout(this.sendCbTO);
+    this.is_idle = true;
+    if(this.opts.parentManager) {
+      this.opts.parentManager.off('idle', this.cbInactiveB);
+    }
+  },
+
+  idle: function(quite) {
+    this.is_idle = true;
+    if(!quite) {
+      this.opts.onIdleCb();
+    }
+    this.emit('idle');
+  },
+
+  unidle: function(quite) {
+    this.is_idle = false;
+    if(!quite) {
+      this.opts.onUnIdleCb();
+    }
+    this.emit('unidle');
+  },
+
+  activate: function() {
+    this.is_idle = false;
+    this.is_activated = true;
+  },
+
+  start: function() {
+    this.started = true;
+    if (browser.mobile) {
+      return;
+    }
+    if(this.opts.parentManager) {
+      this.opts.parentManager.on('idle', this.cbInactiveB);
+    }
+    addEvent(this.opts.focusElement, 'focus', this.cbActiveB);
+    addEvent(this.opts.focusElement, 'blur', this.cbInactiveB);
+    clearTimeout(this.checkIdleCbTo);
+    this.checkIdleCb();
+    this.checkIdleCbTo = setTimeout(this.checkIdleCb.bind(this),
+      this.opts.idleTimeout);
+  },
+
+  checkIdleCb: function() {
+    if (!this.started) {
+      return;
+    }
+    addEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB);
+    clearTimeout(this.setIdleTo);
+    this.setIdleTo = setTimeout(this.cbInactiveB,
+      this.opts.idleTimeout); // tab becomes idle in 30 secs without moving mouse or typing
+  },
+
+  cbActive: function() {
+    if (!this.started) {
+      return;
+    }
+    clearTimeout(this.setIdleTo);
+    if (this.is_idle) {
+      this.is_idle = false;
+      clearTimeout(this.sendCbTO);
+      this.sendCbTO = setTimeout(function () {
+        this.emit('unidle');
+        if (this.opts.onUnIdleCb) {
+          this.opts.onUnIdleCb();
+        }
+      }.bind(this), 100);
+    }
+    removeEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB);
+    clearTimeout(this.checkIdleCbTo);
+    this.checkIdleCbTo = setTimeout(this.checkIdleCb.bind(this),
+      this.opts.idleTimeout);
+  },
+
+  cbInactive: function() {
+    if (!this.started) {
+      return;
+    }
+    if (!this.is_idle) {
+      this.is_idle = true;
+      clearTimeout(this.sendCbTO);
+      this.sendCbTO = setTimeout(function () {
+        this.emit('idle');
+        if (this.opts.onIdleCb) {
+          this.opts.onIdleCb();
+        }
+      }.bind(this), 100);
+    }
+    clearTimeout(this.checkIdleCbTo);
+    removeEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB);
+    addEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB);
+    this.checkIdleCbTo = setTimeout(this.checkIdleCb, this.opts.idleTimeout);
+  }
+
+});
 
 Notifier = {
   debug: false,
@@ -104,79 +232,22 @@ Notifier = {
   initIdleMan: function () {
     if (curNotifier.idle_manager && curNotifier.idle_manager.started) return;
 
-    curNotifier.idle_manager = (function (onIdleCb, onUnIdleCb) {
-      var setIdleTo, checkIdleCb, checkIdleCbTo, sendCbTO, cb_active, cb_inactive, params = {
-        started: false,
-        is_idle: true,
-        is_activated: false,
-        onIdle: onIdleCb || null,
-        onUnIdle: onUnIdleCb || null,
-        stop: function () {
-          params.started = false;
-          removeEvent(document, 'mousemove keydown', cb_active);
-          removeEvent(window, 'focus', cb_active);
-          removeEvent(window, 'blur', cb_inactive);
-          clearTimeout(setIdleTo);
-          clearTimeout(checkIdleCbTo);
-          clearTimeout(sendCbTO);
-        },
-        start: function () {
-          params.started = true;
-          if (browser.mobile) return;
-          checkIdleCb = function () {
-            if (!(window.curNotifier && curNotifier.idle_manager)) return;
-            addEvent(document, 'mousemove keydown', cb_active);
-            clearTimeout(setIdleTo);
-            setIdleTo = setTimeout(cb_inactive, 30000); // tab becomes idle in 30 secs without moving mouse or typing
-          };
-          cb_active = function (e) {
-            if (!(window.curNotifier && curNotifier.idle_manager)) return;
-            clearTimeout(setIdleTo);
-            if (params.is_idle) {
-              params.is_idle = false;
-              clearTimeout(sendCbTO);
-              sendCbTO = setTimeout(function () {
-                if (params.onUnIdle) {
-                  params.onUnIdle();
-                }
-              }, 100);
-            }
-            removeEvent(document, 'mousemove keydown', cb_active);
-            clearTimeout(checkIdleCbTo);
-            checkIdleCbTo = setTimeout(checkIdleCb, 30000);
-          };
-          cb_inactive = function (e) {
-            if (!(window.curNotifier && curNotifier.idle_manager)) return;
-            if (!params.is_idle) {
-              params.is_idle = true;
-              clearTimeout(sendCbTO);
-              sendCbTO = setTimeout(function () {
-                if (params.onIdle) {
-                  params.onIdle();
-                }
-              }, 100);
-            }
-            removeEvent(document, 'mousemove keydown', cb_active);
-            clearTimeout(checkIdleCbTo);
-            checkIdleCbTo = setTimeout(checkIdleCb, 30000);
-          };
-          addEvent(window, 'focus', cb_active);
-          addEvent(window, 'blur', cb_inactive);
-          clearTimeout(checkIdleCbTo);
-          checkIdleCbTo = setTimeout(checkIdleCb, 30000);
-        }
-      };
-      return params;
-    })(function () { // on IDLE
-      Notifier.freezeEvents();
-      Notifier.setFocus(0);
-      cur.onIdle && each(cur.onIdle, function (k, cb) {cb();});
-    }, function () { // on ACTIVE
-      Notifier.unfreezeEvents();
-      Notifier.setFocus(1);
-      cur.onUnidle && each(cur.onUnidle, function (k, cb) {cb()});
-      FastChat && FastChat.onUnidle();
-      vk.spentLastSendTS = vkNow();
+    curNotifier.idle_manager = new IdleManager({
+      onIdleCb: function () { // on IDLE
+        Notifier.freezeEvents();
+        Notifier.setFocus(0);
+        cur.onIdle && each(cur.onIdle, function (k, cb) {cb();});
+      },
+      onUnIdleCb: function () { // on ACTIVE
+        Notifier.unfreezeEvents();
+        Notifier.setFocus(1);
+        cur.onUnidle && each(cur.onUnidle, function (k, cb) {cb()});
+        FastChat && FastChat.onUnidle();
+        vk.spentLastSendTS = vkNow();
+      },
+      id: 'window',
+      element: document,
+      focusElement: window
     });
     curNotifier.idle_manager.start();
   },
@@ -205,8 +276,7 @@ Notifier = {
   },
   onActivated: function() {
     if (curNotifier.idle_manager && !curNotifier.idle_manager.is_activated) {
-      curNotifier.idle_manager.is_activated = true;
-      curNotifier.idle_manager.is_idle = false;
+      curNotifier.idle_manager.activate();
     } else {
       if (!curNotifier.idle_manager || !curNotifier.idle_manager.is_idle) {
         Notifier.setFocus(1);
@@ -245,8 +315,7 @@ Notifier = {
     }
     if (instance != curNotifier.instance_id) {
       if (!curNotifier.idle_manager.is_idle) {
-        curNotifier.idle_manager.is_idle = true;
-        curNotifier.idle_manager.onIdle();
+        curNotifier.idle_manager.idle();
       }
       Notifier.hideAllEvents();
     }
@@ -3332,12 +3401,20 @@ FastChat = {
   },
 
   authorOver: function(obj, ev) {
-    var text = obj.getAttribute('title');
+    var text = obj.getAttribute('data-title');
+    var container = gpeByClass('fc_tab_log', obj);
+    var forcetodown = false;
+    var offsetAuthor = obj.getBoundingClientRect().top;
+    var offsetContainer = container.getBoundingClientRect().top;
+    if(offsetAuthor - offsetContainer < 10) {
+      forcetodown = true;
+    }
     if (text) {
       showTooltip(obj, {
         text: text,
         black: 1,
         center: 1,
+        forcetodown: forcetodown,
         shift: [1, 8, 0]
       });
     }
@@ -3767,9 +3844,13 @@ FastChat = {
       opts.onPeerAdded = function() {
         FastChat.movePointer(peer, animatePointer);
       }
+      opts.onHistoryLoaded = FastChat.readLastMsgs.pbind(peer);
       FastChat.addPeer(peer, false, true, opts);
     }
-    FastChat.readLastMsgs(peer);
+    if(curFastChat.tabs[peer].iman) {
+      curFastChat.tabs[peer].iman.unidle();
+    }
+
     return false;
   },
 
@@ -3782,6 +3863,7 @@ FastChat = {
     addClass(tabEl, 'chat_tab_hiding');
     delete Chat.tabs[peer];
     if (curFastChat.tabs[peer] && curFastChat.tabs[peer].box.options.fixed) {
+      curFastChat.tabs[peer].iman.stop();
       delete curFastChat.tabs[peer];
     }
     var onAmin = function() {
@@ -4042,11 +4124,19 @@ FastChat = {
   gotPeers: function (data) {
     each (curFastChat.needPeers, function (peer) {
       if (data[peer]) {
+        curFastChat.friends[peer + '_'] = [
+          data[peer].name,
+          data[peer].photo,
+          data[peer].fname,
+          data[peer].hash,
+          intval(data[peer].sex)
+        ];
         var events = this[1], opts = this[3];
         if (!(this[0] & 2) || data[peer].history !== undefined) {
           clearTimeout(this[2]);
           delete curFastChat.needPeers[peer];
         }
+
         if (!curFastChat.tabs[peer]) {
           if (opts.fixedLoad) {
             FastChat.addTabIcon(peer, data[peer]);
@@ -4069,6 +4159,10 @@ FastChat = {
         } else {
           FastChat.gotHistory(peer, data[peer].history);
         }
+
+        if (opts.onHistoryLoaded) {
+          opts.onHistoryLoaded();
+        }
       }
     });
   },
@@ -4085,7 +4179,6 @@ FastChat = {
       }
     });
     val(tab.log, log);
-    // FastChat.readLastMsgs(peer);
     tab.logWrap.scrollTop = tab.logWrap.scrollHeight;
     setTimeout(function () {
       tab.logWrap.scrollTop = tab.logWrap.scrollHeight;
@@ -4618,6 +4711,17 @@ FastChat = {
       opts.onShow =  FastChat.showChatCtrl;
     }
     tab.box = new RBox(wrap, opts);
+    tab.iman = new IdleManager({
+      id: 'tab' + peer,
+      element: tab.box.content,
+      onUnIdleCb: function() {
+        FastChat.readLastMsgs(peer);
+      },
+      parentManager: curNotifier.idle_manager,
+      idleTimeout: 10000
+    });
+    curFastChat.tabs[peer].iman.start();
+
     if (opts.fixed) {
       FastChat.setActive(tab.box);
     }
@@ -4693,7 +4797,6 @@ FastChat = {
         tab.saveDraftTO = setTimeout(FastChat.saveDraft.pbind(peer), curVal.length ? 300 : 0);
         FastChat.checkEditable(tab.emojiId, tab.txt);
       }
-      FastChat.readLastMsgs(peer);
     });
     FastChat.restoreDraft(peer);
     if (opts.onPeerAdded) {
@@ -4887,7 +4990,6 @@ FastChat = {
       onDone: function(response) {
         clearTimeout(tab.saveDraftTO);
         FastChat.saveDraft(peer);
-
         FastChat.sendOnResponse(response, msgId, tab);
       },
       onFail: function(error) {
@@ -5104,25 +5206,39 @@ FastChat = {
     if (last && last.className == 'fc_msgs_error') {
       last = last.previousSibling;
     }
+    if(tab
+      && !data.out
+      && tab.box.visible
+      && !tab.iman.is_idle
+      && !curNotifier.idle_manager.is_idle) {
+        data.unread = false;
+        FastChat.markRead(data.from_id, [data.id]);
+    }
 
-    if (!last || !hasClass(last, 'fc_msgs_wrap') || last.getAttribute('data-from') != data.from_id || data.date - intval(last.getAttribute('data-date')) >= 300 || data.sticker || hasClass(last, 'fc_msg_sticker')) {
-      re('fc_log_empty' + peer);
-      var classname = (data.out ? 'fc_msgs_out ' : '') + (data.unread ? 'fc_msgs_unread' : '');
-      if (data.sticker) {
-        classname += ' fc_msg_sticker';
-      }
-      var tpl = data.out ? curFastChat.tpl.msgs_out : curFastChat.tpl.msgs;
-      last = se(rs(tpl, {
-        from_id: data.from_id,
-        link: data.link,
-        photo: Notifier.fixPhoto(data.photo),
-        name: data.from_id == curFastChat.me.id ? getLang('mail_im_thats_u') : stripHTML(data.name),
-        classname: classname,
-        date: data.date,
-        date_str: data.date_str,
-        msgs: ''
-      }))
-      log.appendChild(last);
+    if (!last
+      || !hasClass(last, 'fc_msgs_wrap')
+      || (!hasClass(last, 'fc_msgs_unread') && data.unread === true)
+      || last.getAttribute('data-from') != data.from_id
+      || data.date - intval(last.getAttribute('data-date')) >= 300
+      || data.sticker
+      || hasClass(last, 'fc_msg_sticker')) {
+        re('fc_log_empty' + peer);
+        var classname = (data.out ? 'fc_msgs_out ' : '') + (data.unread ? 'fc_msgs_unread' : '');
+        if (data.sticker) {
+          classname += ' fc_msg_sticker';
+        }
+        var tpl = data.out ? curFastChat.tpl.msgs_out : curFastChat.tpl.msgs;
+        last = se(rs(tpl, {
+          from_id: data.from_id,
+          link: data.link,
+          photo: Notifier.fixPhoto(data.photo),
+          name: data.from_id == curFastChat.me.id ? getLang('mail_im_thats_u') : stripHTML(data.name),
+          classname: classname,
+          date: data.date,
+          date_str: data.date_str,
+          msgs: ''
+        }))
+        log.appendChild(last);
     } else if (!data.unread) {
       removeClass(last, 'fc_msgs_unread');
     }

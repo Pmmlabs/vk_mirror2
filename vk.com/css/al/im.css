@@ -1331,6 +1331,14 @@ div.im_preview_photo_doc {
   position: relative;
   z-index: 100;
 }
+.im_error {
+  font-size: 1.09em;
+  line-height: 160%;
+  margin: 0px 10px;
+  padding: 100px 0px;
+  text-align: center;
+  color: #777;
+}
 .im_none {
   font-size: 1.09em;
   line-height: 160%;

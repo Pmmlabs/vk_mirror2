@@ -1784,6 +1784,7 @@ div.review_commdata i.no_like_hide {
   cursor: pointer;
   outline: none;
   white-space: nowrap;
+  overflow: hidden;
   -o-transition: background 0.2s, color 0.2s;
   -ms-transition: background 0.2s, color 0.2s;
   -moz-transition: background 0.2s, color 0.2s;
@@ -1794,6 +1795,12 @@ div.review_commdata i.no_like_hide {
   background: #595959;
   background: rgba(89, 89, 89, 0.85);
   color: #fff;
+}
+#mv_external_finish .mv_finish_subscribe.mv_finish_subscribed .mv_finish_subscribe_btn {
+  display: none;
+}
+#mv_external_finish .mv_finish_subscribe.mv_finish_subscribed:hover .mv_finish_subscribe_btn {
+  display: block;
 }
 #mv_external_finish .mv_finish_actions {
   position: absolute;

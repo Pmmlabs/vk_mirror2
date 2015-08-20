@@ -540,6 +540,9 @@ h4.faq_question .faq_info {
 .faq_tiles_editor .msg {
   margin: 15px 15px 0;
 }
+.faq_sort_editor .msg {
+  margin: 0 15px 8px;
+}
 .faq_tiles_editor__tiles {
   font-size: 0;
   padding-top: 8px;
@@ -616,4 +619,52 @@ h4.faq_question .faq_info {
 }
 .flat_button.flat_btn_lock {
   color: transparent;
+}
+.faq_sort_editor {
+  background: #fff;
+  padding-top: 12px;
+}
+.faq_sort_editor__descr {
+  background: #eff1f3;
+  line-height: 1.5;
+  margin: 0 15px;
+  padding: 10px;
+}
+.faq_sort_editor__by_rate {
+  background: #eff1f3;
+  margin: 8px 15px;
+  padding: 10px;
+}
+.faq_sort_editor__title {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 1;
+  margin: 0 0 8px;
+  padding: 8px 20px 0;
+}
+.faq_sort_editor__questions {
+  position: relative;
+  padding: 0 15px 0;
+}
+.faq_sort_editor__save {
+  padding: 12px 20px 20px;
+}
+.faq_sort_editor_question {
+  padding: 7px 15px 8px;
+  position: relative;
+  line-height: 1.5;
+}
+.faq_sort_editor_question:before {
+  content: "\2022";
+  color: #888;
+  font-size: 10px;
+  left: 5px;
+  line-height: 1;
+  position: absolute;
+  top: 10px;
+}
+.faq_sort_editor_question_moved {
+  background: #f2f4f6;
 }

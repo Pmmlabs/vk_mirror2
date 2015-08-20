@@ -1761,12 +1761,14 @@ checkEmojiSlider: function(opts) {
       }
     }
   }
+
+  var rdir = vk.rtl ? 'l' : 'r';
   if (shouldShow) {
     opts.sliderShown = true;
-    Emoji.scrollToggleArrow(true, 'r', opts, true);
+    Emoji.scrollToggleArrow(true, rdir, opts, true);
   } else if (opts.sliderShown) {
     opts.sliderShown = false;
-    Emoji.scrollToggleArrow(false, 'r', opts, true);
+    Emoji.scrollToggleArrow(false, rdir, opts, true);
   }
 },
 

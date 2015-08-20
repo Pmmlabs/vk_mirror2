@@ -2283,6 +2283,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 }
 .help_tile__all {
   color: #8fa0b2;
+  margin-left: 10px;
   padding-right: 10px;
   position: relative;
 }

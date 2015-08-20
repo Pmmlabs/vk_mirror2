@@ -84,15 +84,21 @@ var tooltips = {
       }
 
       if (opts.center && ttsize[0] != elsize[0]) {
-        newleft -= (ttsize[0] - elsize[0]) / 2;
+        newleft -= asrtl ? 0 : (ttsize[0] - elsize[0]) / 2;
         var pointer = geByClass1(toup ? 'bottom_pointer' : 'top_pointer', container)
         if (pointer) {
-          setStyle(pointer, {marginLeft: ((ttsize[0] - getSize(pointer)[0]) / 2 || 0) + 'px'});
+          var marginLeft;
+          if(newleft < 0) {
+            marginLeft = (ttsize[0] - getSize(pointer)[0]) / 2 + newleft || 0;
+            newleft = 0;
+          } else {
+            marginLeft = (ttsize[0] - getSize(pointer)[0]) / 2 || 0;
+          }
+          setStyle(pointer, {marginLeft: marginLeft + 'px'});
         }
       }
 
       addClass(container, toup ? 'tt_toup' : '');
-
       var startleft = newleft + intval(opts.slideX);
 
       el.tt.showing = true;

@@ -534,12 +534,12 @@ var Video = {
         options.playlistId = sectionId.substr(Video.CATEGORY_PREFIX.length);
       } else if (isInAlbum) {
         var videoList = cur.videoList && cur.videoList[cur.vSection];
-        if (videoList && videoList.list.length > 4) {
+        if (videoList && videoList.list.length > 1) {
           options.playlistId = cur.vSection;
         }
       } else if (Video.isInVideosList()) {
         var videoList = cur.videoList && cur.videoList[cur.vSection];
-        if (videoList && videoList.list.length > 4) {
+        if (videoList && videoList.list.length > 1) {
           options.playlistId = cur.oid;
         }
       }
@@ -2145,7 +2145,7 @@ var Video = {
       var realHeight = name.offsetHeight || getSize(name)[1];
       removeClass(name, 'for_size');
       if (initialHeight < realHeight) {
-        linkEl.setAttribute('title', replaceEntities(linkEl.innerHTML));
+        linkEl.setAttribute('title', replaceEntities(trim(linkEl.innerHTML).replace(/<em>|<\/em>/g, '')));
       }
     }
   },
