@@ -1740,8 +1740,23 @@ body.dev.is_2x .priv_h_arrow,
   background-image: url(/images/icons/dropdown_check_2x.png);
   background-size: 13px 10px;
 }
-.is_2x #apps_collection46_wrap {
-  background-image: url(/images/apps/apps_fishday2015_bkg_2x.png);
+.is_2x #apps_collection47_wrap,
+.is_2x #apps_collection48_wrap,
+.is_2x #apps_collection49_wrap,
+.is_2x #apps_collection50_wrap,
+.is_2x #apps_collection51_wrap,
+.is_2x #apps_collection52_wrap,
+.is_2x #apps_collection53_wrap,
+.is_2x #apps_collection54_wrap,
+.is_2x #apps_collection55_wrap,
+.is_2x #apps_collection56_wrap,
+.is_2x #apps_collection57_wrap,
+.is_2x #apps_collection58_wrap,
+.is_2x #apps_collection59_wrap,
+.is_2x #apps_collection60_wrap,
+.is_2x #apps_collection61_wrap,
+.is_2x #apps_collection62_wrap {
+  background-image: url(/images/apps/apps_growth2015_bkg_2x.png);
   background-size: 627px 235px;
 }
 .is_2x .gift_icon {
@@ -1818,7 +1833,7 @@ body.dev.is_2x .priv_h_arrow,
   background-image: url('/images/icons/video_hide_channel_2x.png');
   background-size: 11px 11px;
 }
-.is_2x .help_tile_urgent:before {
+.is_2x .help_tile_alert_urgent:before {
   background-image: url(/images/faq_new_alert_2x.png);
 }
 .is_2x .help_tile__all:after {

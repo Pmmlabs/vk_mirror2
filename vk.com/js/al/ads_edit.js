@@ -3640,6 +3640,23 @@ AdsViewEditor.prototype.completeLink = function() {
       }
     }
 
+    var oldGroupId = false;
+    if (this.params_old && inArray(this.params_old.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC])) {
+      oldGroupId = this.params_old.link_id.value;
+    } else if (this.params_old && this.params_old.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_POST) {
+      oldGroupId = -this.params_old.link_owner_id.value;
+    }
+    if (!this.targetingEditor.criteria.groups_not.value || oldGroupId == this.targetingEditor.criteria.groups_not.value) {
+      var selectedValue = false;
+      if (inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC])) {
+        selectedValue = this.params.link_id.value;
+      } else if (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_POST) {
+        selectedValue = -this.params.link_owner_id.value;
+      }
+
+      this.targetingEditor.setAutoGroupsNotValue(selectedValue);
+    }
+
     this.updateUiParam('views_places');
     this.updateUiParam('cost_per_click');
     this.updateUiParamData('views_places');
@@ -4103,6 +4120,7 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
     interest_categories:    {value: '', data: []},
     group_types:            {value: '', data: []},
     groups:                 {value: '', data: [], defaultData: [], selectedData: [], defaultDataOriginal: [], link_object_id: 0, link_object_item: null, link_object_processed: true},
+    groups_not:             {value: '', data: [],                  selectedData: [] },
     apps:                   {value: '', data: [], defaultData: [], selectedData: [], defaultDataOriginal: [], link_object_id: 0, link_object_item: null, link_object_processed: true},
     apps_not:               {value: '', data: [],                  selectedData: []},
     religions:              {value: '', data: []},
@@ -4356,6 +4374,7 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
     case 'interest_categories':
     case 'group_types':
     case 'groups':
+    case 'groups_not':
     case 'apps':
     case 'apps_not':
     case 'religions':
@@ -4384,7 +4403,7 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
 
         dropdown:      true,
         big:           true,
-        withIcons:     inArray(criterionName, ['groups', 'apps', 'apps_not']),
+        withIcons:     inArray(criterionName, ['groups', 'groups_not', 'apps', 'apps_not']),
         maxItems:      this.options.uiMaxSelected,
         width:         this.options.uiWidth,
         height:        this.options.uiHeight,
@@ -4533,6 +4552,7 @@ AdsTargetingEditor.prototype.getUiCriterionData = function(criterionName) {
     case 'interests':
       return '/select.php?act=ainterests';
     case 'groups':
+    case 'groups_not':
       return '/adsedit?act=search_user_objects&section=groups';
     case 'apps':
     case 'apps_not':
@@ -4649,6 +4669,8 @@ AdsTargetingEditor.prototype.getUiCriterionDefaultData = function(criterionName)
   switch (criterionName) {
     case 'cities_not':
       return this.criteria['cities'].defaultData || [];
+    case 'groups_not':
+      return this.criteria['groups'].defaultData || [];
     case 'apps_not':
       return this.criteria['apps'].defaultData || [];
     case 'retargeting_groups_not':
@@ -4856,6 +4878,7 @@ AdsTargetingEditor.prototype.getUiCriterionIntroText = function(criterionName) {
     case 'interest_categories': return getLang('ads_select_interest_category');
     case 'group_types':         return getLang('ads_starttypingname_group');
     case 'groups':              return getLang('ads_type_group_public');
+    case 'groups_not':          return getLang('ads_type_group_public');
     case 'apps':                return getLang('ads_type_app_site');
     case 'apps_not':            return getLang('ads_type_app_site');
     case 'religions':           return getLang('ads_select_religion');
@@ -4927,6 +4950,7 @@ AdsTargetingEditor.prototype.getUiCriterionPlaceholderText = function(criterionN
     case 'interest_categories':    return getLang('ads_select_interest_category');
     case 'group_types':            return getLang('ads_starttypingname_group');
     case 'groups':                 return getLang('ads_type_community');
+    case 'groups_not':             return getLang('ads_type_community');
     case 'apps':                   return getLang('ads_type_app_site');
     case 'apps_not':               return getLang('ads_type_app_site');
     case 'religions':              return getLang('ads_select_religion');
@@ -4955,6 +4979,7 @@ AdsTargetingEditor.prototype.getUiCriterionNoResultText = function(criterionName
     case 'interest_categories':    return getLang('ads_notfound_interest_category');
     case 'group_types':
     case 'groups':                 return getLang('ads_notfound_group');
+    case 'groups_not':             return getLang('ads_notfound_group');
     case 'apps':                   return getLang('ads_notfound_app');
     case 'apps_not':               return getLang('ads_notfound_app');
     case 'religions':              return getLang('ads_notfound_religion');
@@ -5003,6 +5028,18 @@ AdsTargetingEditor.prototype.updateUiCriterionDisabledText = function(criterionN
 
   var disabledText = this.getUiCriterionDisabledText(criterionName);
   this.criteria[criterionName].ui.setOptions({disabledText: disabledText});
+}
+
+AdsTargetingEditor.prototype.setAutoGroupsNotValue = function(selectedValue) {
+  if (selectedValue === false) return;
+
+  this.showGroupMore('interests');
+  this.initUiCriterion('groups_not');
+
+  if (this.criteria.groups_not.uiInited) {
+    this.criteria.groups_not.ui.clear();
+    this.criteria.groups_not.ui.selectItem(selectedValue);
+  }
 }
 
 AdsTargetingEditor.prototype.correctCriterion = function(criterionName) {
@@ -5244,6 +5281,16 @@ AdsTargetingEditor.prototype.onUiTagAdd = function(criterionName, criterionValue
         this.criteria.cities.ui.removeTagData(criterionTag[0]);
       }.bind(this), 1);
       break;
+    case 'groups':
+      setTimeout(function(){
+        this.criteria.groups_not.ui.removeTagData(criterionTag[0]);
+      }.bind(this), 1);
+      break;
+    case 'groups_not':
+      setTimeout(function(){
+        this.criteria.groups.ui.removeTagData(criterionTag[0]);
+      }.bind(this), 1);
+      break;
     case 'apps':
       setTimeout(function(){
         this.criteria.apps_not.ui.removeTagData(criterionTag[0]);
@@ -5393,12 +5440,22 @@ AdsTargetingEditor.prototype.setUpdateData = function(data, result) {
         this.criteria.groups.link_object_item      = result.groups_link_object_item;
         this.criteria.groups.link_object_processed = false;
         this.updateUiCriterionDefaultData('groups');
+        this.updateUiCriterionDefaultData('groups_not');
+      }
+    } else if (isObject(result) && 'post_group_object_id' in result && 'post_group_object_item' in result && result.post_group_object_id != 0) {
+      if (result.groups_link_object_id != this.criteria.groups.link_object_id) {
+        this.criteria.groups.link_object_id        = result.post_group_object_id;
+        this.criteria.groups.link_object_item      = result.post_group_object_item;
+        this.criteria.groups.link_object_processed = false;
+        this.updateUiCriterionDefaultData('groups');
+        this.updateUiCriterionDefaultData('groups_not');
       }
     } else {
       this.criteria.groups.link_object_id        = 0;
       this.criteria.groups.link_object_item      = null;
       this.criteria.groups.link_object_processed = false;
       this.updateUiCriterionDefaultData('groups');
+      this.updateUiCriterionDefaultData('groups_not');
     }
     if (isObject(result) && 'apps_link_object_id' in result && 'apps_link_object_item' in result && result.apps_link_object_id != 0) {
       if (result.apps_link_object_id != this.criteria.apps.link_object_id) {

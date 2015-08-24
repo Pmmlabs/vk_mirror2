@@ -3847,7 +3847,7 @@ FastChat = {
       opts.onHistoryLoaded = FastChat.readLastMsgs.pbind(peer);
       FastChat.addPeer(peer, false, true, opts);
     }
-    if(curFastChat.tabs[peer].iman) {
+    if(curFastChat.tabs[peer] && curFastChat.tabs[peer].iman) {
       curFastChat.tabs[peer].iman.unidle();
     }
 
@@ -4124,13 +4124,15 @@ FastChat = {
   gotPeers: function (data) {
     each (curFastChat.needPeers, function (peer) {
       if (data[peer]) {
-        curFastChat.friends[peer + '_'] = [
-          data[peer].name,
-          data[peer].photo,
-          data[peer].fname,
-          data[peer].hash,
-          intval(data[peer].sex)
-        ];
+        if (data[peer] < 2e9) {
+          curFastChat.friends[peer + '_'] = [
+            data[peer].name,
+            data[peer].photo,
+            data[peer].fname,
+            data[peer].hash,
+            intval(data[peer].sex)
+          ];
+        }
         var events = this[1], opts = this[3];
         if (!(this[0] & 2) || data[peer].history !== undefined) {
           clearTimeout(this[2]);
@@ -5212,7 +5214,7 @@ FastChat = {
       && !tab.iman.is_idle
       && !curNotifier.idle_manager.is_idle) {
         data.unread = false;
-        FastChat.markRead(data.from_id, [data.id]);
+        FastChat.markRead(data.peer, [data.id]);
     }
 
     if (!last

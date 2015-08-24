@@ -3077,8 +3077,23 @@ button#apps_sms_send_btn {
 .new_apps_tab_selected .new_apps_tab3 .new_apps_tab3_link {
   color: #FFF;
 }
-#apps_collection46_wrap {
-  background-image: url(/images/apps/apps_fishday2015_bkg.png);
+#apps_collection47_wrap,
+#apps_collection48_wrap,
+#apps_collection49_wrap,
+#apps_collection50_wrap,
+#apps_collection51_wrap,
+#apps_collection52_wrap,
+#apps_collection53_wrap,
+#apps_collection54_wrap,
+#apps_collection55_wrap,
+#apps_collection56_wrap,
+#apps_collection57_wrap,
+#apps_collection58_wrap,
+#apps_collection59_wrap,
+#apps_collection60_wrap,
+#apps_collection61_wrap,
+#apps_collection62_wrap {
+  background-image: url(/images/apps/apps_growth2015_bkg.png);
   background-size: 627px 235px;
 }
 .apps_genres_tt {

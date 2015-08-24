@@ -2917,7 +2917,7 @@ listSearch: function(val) {
 
   ajax.post(nav.objLoc[0], query, {
     cache: 1,
-    onDone: function(content, showButton, altButtonId) {
+    onDone: function(content, showButton, altButtonId, saveSearchHash) {
       var qlist = ge('help_table_questions_l'), updateLoc = true;
       removeClass(ge('faq_search_form'), 'loading');
 
@@ -2953,6 +2953,14 @@ listSearch: function(val) {
 
       if (val != '' && ge('faq_search_form__title').tt) {
         ge('faq_search_form__title').tt.hide();
+      }
+
+      if (saveSearchHash) {
+        clearTimeout(cur.searchFAQStatTimeout);
+        var objLoc0 = nav.objLoc[0];
+        cur.searchFAQStatTimeout = setTimeout(function () {
+          ajax.post(objLoc0, {act: 'save_last_search', hash: saveSearchHash});
+        }, 3000);
       }
     },
     onFail: function() {

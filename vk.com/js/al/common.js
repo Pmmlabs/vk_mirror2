@@ -2625,6 +2625,12 @@ function domReady() {
   }
 
   setTimeout(initFixedMenu, 0);
+
+  if (Math.random() < 0.0001 && window.performance && performance.timing && performance.timing.navigationStart) {
+    var page_load_time = (new Date().getTime()) - performance.timing.navigationStart;
+    statlogsValueEvent('page_load', page_load_time, 'domReady');
+  }
+
 }
 function onDomReady(f) {
   f();
@@ -7868,6 +7874,52 @@ function IframeLoader() {
     abort: abort,
     repeat: repeat
   }
+}
+
+function aquireLock(name, fn, noretry) {
+  var lockKey = 'lockkk_' + name;
+  if (ls.get(lockKey) !== true) {
+    ls.set(lockKey, true);
+    try {
+      fn();
+    } catch(e) {}
+    ls.set(lockKey, false);
+    return;
+  }
+  if (ls.checkVersion()) {
+    if (!noretry) {
+      setTimeout(aquireLock.pbind(name, fn, true), 100);
+    }
+  } else {
+    fn();
+  }
+}
+
+function statlogsValueEvent(statName, value, key1, key2, key3) {
+  if (typeof(statName) === 'undefined' || typeof(value) === 'undefined') {
+    return;
+  }
+  var stats,
+      cookieName = 'remixsts',
+      keys = [].slice.apply(arguments, [2, 5]);
+  aquireLock('stats_cookie_lock', function() {
+    try {
+      stats = JSON.parse(getCookie(cookieName));
+      stats = stats.data;
+    } catch(e) {
+      stats = [];
+    }
+    stats.push([
+      Math.round(Date.now()/1000),
+      statName,
+      value
+    ].concat(keys));
+    while (stats.length > 100) {
+      stats.shift();
+    }
+    var uniqueId = Math.round(rand(0, 1000000000)); // unique id
+    setCookie(cookieName, JSON.stringify({data: stats, uniqueId: uniqueId}), 0.01)
+  });
 }
 
 try{stManager.done('common.js');}catch(e){}
