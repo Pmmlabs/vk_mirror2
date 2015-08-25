@@ -1586,7 +1586,7 @@ var IM = {
       body = srvMsg;
     }
     // Inline author
-    if (!srvMsg && (lastMsg[2] || kludges.from && tab.data.members[kludges.from])) {
+    if (!srvMsg && (lastMsg[2] || kludges.from && tab.data && tab.data.members[kludges.from])) {
       if (!lastMsg[2]) {
         body = '<div class="dialogs_chat_title">' + tab.data.members[kludges.from].name + '</div>' + body;
       }

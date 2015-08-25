@@ -2107,18 +2107,15 @@ toggleFAQRow: function(id, hash, el, evt) {
   return false;
 },
 
-rateFAQ: function(id, val, hash, evt) {
+rateFAQ: function(id, val, hash, fromNew) {
   if (!vk.id) return false;
-  ajax.post(nav.objLoc[0], {act: 'faq_rate', faq_id: id, val: val, hash: hash});
+  ajax.post(nav.objLoc[0], {act: 'faq_rate', faq_id: id, val: val, hash: hash, from_new: fromNew });
   ajax.post(nav.objLoc[0], {act: 'faq_clicked', faq_id: id, hash: hash}, {cache: 1});
   hide('tickets_faq_links'+id);
   if (val > 0) {
     show('tickets_faq_useful'+id);
   } else {
     show('tickets_faq_unuseful'+id);
-  }
-  if (evt) {
-    evt.stopPropagation();
   }
   return false;
 },
@@ -2915,6 +2912,7 @@ listSearch: function(val) {
 
   var query = {act: 'load_faq_list', q: val };
 
+  clearTimeout(cur.searchFAQStatTimeout);
   ajax.post(nav.objLoc[0], query, {
     cache: 1,
     onDone: function(content, showButton, altButtonId, saveSearchHash) {
@@ -2956,7 +2954,6 @@ listSearch: function(val) {
       }
 
       if (saveSearchHash) {
-        clearTimeout(cur.searchFAQStatTimeout);
         var objLoc0 = nav.objLoc[0];
         cur.searchFAQStatTimeout = setTimeout(function () {
           ajax.post(objLoc0, {act: 'save_last_search', hash: saveSearchHash});

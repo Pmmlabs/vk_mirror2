@@ -441,6 +441,10 @@ updateList: function(event, obj, noProgress) {
 
     var list = Docs.getList();
     var secLen = list.length;
+    if (!cur.searchStr) {
+      cur.searchCont.innerHTML = '';
+    }
+
     if (cur.searchStr || secLen) {
       Docs.showList(list.slice(0, 50), cur.searchStr);
       if (secLen < 50) {

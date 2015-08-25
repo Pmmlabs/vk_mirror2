@@ -822,8 +822,14 @@ var GroupsEdit = {
   nbAddr: function() {
     notaBene('group_edit_addr');
   },
-  saveInfo: function() {
+  saveInfo: function(state) {
     var name = trim(ge('group_edit_name').value), addr = trim(ge('group_edit_addr').value);
+    if (!state) state = 0;
+
+    if (!state && isChecked('group_obscene_stopwords')) {
+      return GroupsEdit.saveObsceneWords();
+    }
+
     if (!name) {
       return notaBene(ge('group_edit_name'));
     }
@@ -844,6 +850,7 @@ var GroupsEdit = {
       rss: trim(ge('group_rss').value),
       age_limits: radioval('group_age_limits'),
       obscene_filter: isChecked('group_obcene_words'),
+      obscene_stopwords: isChecked('group_obscene_stopwords'),
       hash: cur.hash
     }, btn = ge('group_save');
 
@@ -1665,11 +1672,8 @@ var GroupsEdit = {
     showFastBox({title: getLang('groups_age_limits_title'), dark: 1, width: 500}, '<div class="group_edit_age_limits_box">' + getLang('groups_age_limits_description') + '</div>');
   },
   showAgeLimitsBlock: function() {
-    setStyle('group_edit_limits_link_placeholder', 'height', getSize('group_edit_limits_link')[1] + 'px');
     hide('group_edit_limits_link');
-    show('group_edit_limits_link_placeholder');
-    slideDown('group_edit_limits', 300);
-    slideUp('group_edit_limits_link_placeholder', 300);
+    setTimeout(slideDown.pbind('group_edit_limits_wrap', 300), 20);
   },
   showAddrTooltip: function(text) {
     var ttEl = ge('group_edit_addr_table');
@@ -1685,6 +1689,123 @@ var GroupsEdit = {
       if (!ttEl.tt || !ttEl.tt.hide) return;
       ttEl.tt.hide();
     }
+  },
+  saveObsceneEdit: function(el) {
+    cur.obscene.words = val(el).replace(/\&nbsp\;/ig, ' ');
+    debugLog(cur.obscene.words);
+  },
+  saveObsceneWords: function() {
+    var words = cur.obscene.words,
+        btn = ge('group_save');
+    var params = {
+      gid : cur.gid,
+      act : 'save',
+      obscene_words : words,
+      hash: cur.hash,
+    }
+    var onDone = function(code, word) {
+      switch (code) {
+        case 7:  key = 'obscene_add_pattern_success'; break;
+        case -7: key = 'obscene_word_wrong_chars';    break;
+        case -6: key = 'obscene_word_too_short';      break;
+        default: key = 'obscene_save_patterns_error';
+      }
+      if (code < 0) {
+        words_field = ge('group_edit_obscene_stopwords');
+        return notaBene(words_field, 'warning');
+      }
+      GroupsEdit.saveInfo(1);
+    }
+    var onFail = GroupsEdit.uShowMessage.pbind(getLang('global_unknown_error'), 0);
+    ajax.post('al_groups.php', params, {onDone: onDone, onFail: onFail, showProgress: lockButton.pbind(btn), hideProgress: unlockButton.pbind(btn)});
+  },
+  deleteObscenePattern: function(pid, hash) {
+    var button = ge('groups_obscene_delete_box_button');
+    var params = {
+      gid     : cur.gid,
+      act     : 'a_obscene_delete_pattern',
+      delete  : 1,
+      pid     : pid,
+      hash    : hash || '',
+    }
+    var onDone = function(code) {
+      switch (code) {
+        case 7:  key = 'obscene_pattern_deleted'; break;
+        default: key = 'obscene_delete_pattern_error';
+      }
+      GroupsEdit.uShowMessage(getLang(key)+ ' (code: '+ code +')');
+      unlockFlatButton(button);
+    }
+    var onFail = GroupsEdit.uShowMessage.pbind(getLang('global_unknown_error'), 0);
+
+    lockFlatButton(button);
+    ajax.post('al_groups.php', params, {onDone: onDone, onFail: onFail});
+  },
+  addObscenePattern: function(override, hash) {
+    var box = curBox(),
+        is_box = box && box.isVisible(),
+        button = ge(is_box ? 'groups_obscene_edit_box_save' : 'group_bl_submit');
+
+    var onDone = function(code) {
+      switch (code) {
+        case 15:
+        case 7:
+          key = (code & 3 ? 'obscene_edit_pattern_success' : 'obscene_add_pattern_success');
+          break;
+        case -7: key = 'obscene_word_wrong_chars';         break;
+        case -6: key = 'obscene_word_too_short';           break;
+        case -2: key = 'obscene_word_alredy_exists';       break;
+        default: key = 'obscene_add_pattern_error';
+      }
+      GroupsEdit.uShowMessage(getLang(key)+ ' (code: '+ code +')');
+      unlockFlatButton(button);
+    }
+    var onFail = GroupsEdit.uShowMessage.pbind(getLang('global_unknown_error'), 0);
+    var params = {
+      gid     : cur.gid,
+      act     : 'a_obscene_add_pattern',
+      word    : is_box ? val('obs_pattern_word') : val('group_bl_search'),
+      pid     : intval(val('obs_pattern_pid') || 0),
+      hash    : hash || '',
+      override: override,
+    }
+
+    if (!trim(params.word)) {
+      el = is_box ? 'obs_pattern_word' : 'group_bl_search';
+      return notaBene(el, 'warning');
+    }
+
+    lockFlatButton(button);
+    ajax.post('al_groups.php', params, {onDone: onDone, onFail: onFail});
+  },
+  showObsceneWordsHint: function(el) {
+    var hint = getLang('obscene_settings_stopwords_hint');
+    var params = {
+      text: hint,
+      className: 'group_edit_obscene_stopwords_hint',
+      hasover: 1,
+      slideX: 15,
+      showsp: 150,
+      shift: function(){
+        var tt = geByClass1('group_edit_obscene_stopwords_hint');
+        var xpoz = (tt.offsetHeight + el.offsetHeight) / 2 - 2;
+        return [-278, 0, -xpoz];
+      },
+      forcetodown: true,
+      no_shadow: true,
+    };
+    showTooltip(el, params);
+  },
+  enableObsceneStopWords: function(el, e) {
+    var box = 'group_edit_obscene_stopwords',
+        words_wrap = 'group_edit_obscene_stopwords_wrap';
+
+    if (isChecked(el.id)) {
+      show(ge('group_activity'));
+      show(words_wrap);
+      return elfocus(box);
+    }
+    hide(words_wrap);
   }
 }
 

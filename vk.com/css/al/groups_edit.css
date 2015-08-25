@@ -740,6 +740,9 @@ input#stickers_phone {
 .age_limits_tt .age_limits_tt_pointer {
   top: 31px;
 }
+.group_edit_limits_link {
+  padding-top: 4px;
+}
 .group_edit_age_limits_about {
   display: block;
   padding-top: 10px;
@@ -1537,5 +1540,189 @@ a.group_ad_post_link.deleted:hover {
   font-weight: 700;
 }
 .group_obscene_words .group_obscene_interval_label {
+  color: #777;
+}
+.group_obscene_words .groups_obscene_edit_pattern {
+  color: #2b587a;
+}
+.groups_obscene_edit_box {
+  background: #f7f7f7;
+  padding: 20px;
+}
+.groups_obscene_edit_box .groups_obscene_edit_box_label {
+  border: none;
+}
+.groups_obscene_edit_box .groups_obscene_edit_box_labeled input {
+  width: 238px;
+}
+.groups_obscene_edit_box .groups_obscene_edit_box_button {
+  margin-top: 15px;
+}
+.groups_obscene_delete_box {
+  padding: 20px;
+}
+.groups_obscene_delete_box p {
+  margin: 0;
+}
+.groups_obscene_delete_box .groups_obscene_delete_box_button {
+  margin-top: 15px;
+}
+.group_edit_obscene_wrap .checkbox {
+  margin-bottom: 10px;
+}
+.group_edit_obscene_stopwords_field {
+  border: 1px solid #c1cdd5;
+  background: #fff;
+  padding: 3px 6px;
+  vertical-align: top;
+  width: 252px;
+  min-height: 50px;
+}
+.group_edit_obscene_stopwords_field .obscene_words_error {
+  background: #e0e4e9;
+}
+.grop_obscene_stopwords_hint {
+  padding-top: 4px;
+  font-size: 10px;
+  color: #808080;
+  line-height: 14px;
+}
+.tt.group_edit_obscene_words_hint {
+  width: 330px;
+}
+.tt.group_edit_obscene_words_hint .tt_text {
+  padding: 7px 8px;
+  color: #000;
+}
+.tt.group_edit_obscene_words_hint .bottom_pointer {
+  margin-right: 0px;
+  margin-left: 68px;
+  display: block;
+  background-image: url(/images/tooltip_arrow_white.gif);
+  background-repeat: no-repeat;
+  background-size: 11px 8px;
+}
+.is_2x .tt.group_edit_obscene_words_hint .bottom_pointer {
+  background-image: url(/images/tooltip_arrow_white_2x.gif);
+  background-repeat: no-repeat;
+}
+.tt.group_edit_obscene_stopwords_hint {
+  width: 210px;
+}
+.tt.group_edit_obscene_stopwords_hint .listing {
+  padding-left: 20px;
+  margin-bottom: 8px;
+}
+.tt.group_edit_obscene_stopwords_hint .listing li {
+  margin-bottom: 6px;
+}
+.tt.group_edit_obscene_stopwords_hint .listing li:last-child {
+  margin-bottom: 0px;
+}
+.tt.group_edit_obscene_stopwords_hint .tt_text {
+  padding: 8px 9px;
+  color: #000;
+}
+.tt.group_edit_obscene_stopwords_hint .toup {
+  position: relative;
+}
+.tt.group_edit_obscene_stopwords_hint .toup .top_pointer {
+  display: block;
+  background-image: url(/images/ddtooltip.png);
+  background-repeat: no-repeat;
+  background-size: 16px 11px;
+  left: -7px;
+  width: 8px;
+  height: 11px;
+  overflow: hidden;
+  z-index: 10;
+  position: absolute;
+  margin: -7px 0 0 0;
+  top: 50%;
+}
+.is_2x .tt.group_edit_obscene_stopwords_hint .top_pointer {
+  background-image: url(/images/ddtooltip_2x.png);
+}
+.group_activity_row_wrap {
+  padding: 15px 15px 0 15px;
+  position: relative;
+}
+.group_activity_row_wrap .group_activity_delete_row {
+  visibility: hidden;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 11px;
+  height: 11px;
+  background-image: url(/images/pics/statusx_op.gif);
+  background-size: 11px 11px;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+}
+.group_activity_row_wrap .group_activity_delete_row:hover {
+  opacity: 1;
+}
+.group_activity_row_wrap:hover {
+  background-color: #edf1f5;
+  border-top: 1px solid #dae1e8;
+  border-bottom: 1px solid #dae1e8;
+  margin-top: -1px;
+}
+.group_activity_row_wrap:hover:last-child {
+  border-bottom: none;
+}
+.group_activity_row_wrap:hover .group_obscene_word {
+  background: #ecf2f5;
+  border-bottom: 1px solid #ecf2f5;
+}
+.group_activity_row_wrap:hover .group_activity_delete_row {
+  visibility: visible;
+}
+.group_activity_row_wrap:hover .group_activity_obscene_comment_wrap {
+  border-top: none;
+  border-bottom: none;
+}
+.group_activity_row_wrap .group_activity_obscene_comment_wrap {
+  border-bottom: 1px solid #dae1e8;
+  padding-bottom: 15px;
+}
+.group_activity_row_wrap .group_activity_photo {
+  width: 60px;
+  height: 50px;
+  overflow: hidden;
+}
+.group_activity_row_wrap .group_activity_photo_img {
+  width: 50px;
+}
+.group_activity_row_wrap .group_activity_content {
+  padding-left: 60px;
+}
+.group_activity_row_wrap .group_activity_content_owner {
+  font-weight: bold;
+}
+.group_activity_row_wrap .group_activity_content_date {
+  color: #999;
+  white-space: nowrap;
+}
+.group_activity_row_wrap .group_activity_content_message {
+  line-height: 140%;
+  padding: 2px 0 4px;
+  word-wrap: break-word;
+}
+.group_activity_row_wrap .group_obscene_word {
+  background: #e1e7ed;
+  border-bottom: 1px solid #dae1e8;
+  margin: 0px;
+  padding: 0px 1px;
+}
+.group_activity_row_wrap:last-child .group_activity_obscene_comment_wrap {
+  border-bottom: none;
+}
+.group_activity_row_empty {
+  padding: 85px 130px;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
   color: #777;
 }
