@@ -326,7 +326,7 @@ var IM = {
       IM.updateLoc(); // remove msgid
     }
 
-    if (!out && status > 1 && cur.notify_on && cur.focused != peer_id && !inArray(peer_id, cur.mutedPeers)) {
+    if (!out && status > 1 && cur.focused != peer_id && !inArray(peer_id, cur.mutedPeers)) {
       IM.notify(peer_id, [status, out, title, message, date, kludges]);
     }
 
@@ -559,9 +559,6 @@ var IM = {
   },
 
   notify: function (peer_id, msg) {
-    if (!cur.notify_on) {
-      return;
-    }
     var peer, peer_photo, peer_name, title = IM.goodTitle(msg[2], peer_id) && msg[2] || '';
         message = ((title ? (title + ' ') : '') + msg[3]) || '',
         peer_data = cur.tabs[peer_id].data,
@@ -1460,11 +1457,7 @@ var IM = {
         cur.titleTO = setInterval(IM.changeTitle, 1000);
       }
     }
-    if (cur.focused != peer && show_new && cur.sound && !cur.sound_off && ls.get('sound_notify_off') !== 1 && !inArray(peer, cur.mutedPeers)) {
-      if (!curFastChat || !curFastChat.tabs || !curFastChat.tabs[peer]) {
-        cur.sound.play();
-      }
-    }
+
     if (cur.tabs[peer].unread) {
       if (cur.peer != peer) {
         if (show_new) {
@@ -3181,7 +3174,6 @@ var IM = {
       IM.updateFriends();
     }
 
-    IM.initSound();
     IM.initEvents();
     IM.initInts();
     IM.updateTopNav();
@@ -3539,14 +3531,6 @@ var IM = {
     cur.updateNotifierInt = setInterval(function () {
       ls.set('im_opened' + vk.id, vkNow());
     }, 1000);
-  },
-
-  initSound: function() {
-    if (!window.Sound) {
-      cur.sound = {play: function () {}, stop: function() {}};
-    } else {
-      cur.sound = new Sound('mp3/bb2');
-    }
   },
 
   addEmail: function(mid, email) {

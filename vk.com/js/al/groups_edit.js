@@ -1692,7 +1692,6 @@ var GroupsEdit = {
   },
   saveObsceneEdit: function(el) {
     cur.obscene.words = val(el).replace(/\&nbsp\;/ig, ' ');
-    debugLog(cur.obscene.words);
   },
   saveObsceneWords: function() {
     var words = cur.obscene.words,
@@ -1801,7 +1800,6 @@ var GroupsEdit = {
         words_wrap = 'group_edit_obscene_stopwords_wrap';
 
     if (isChecked(el.id)) {
-      show(ge('group_activity'));
       show(words_wrap);
       return elfocus(box);
     }

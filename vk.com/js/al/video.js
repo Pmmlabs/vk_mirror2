@@ -529,9 +529,9 @@ var Video = {
 
       var sectionId = nav.objLoc.section || '';
       if (Video.isCurrentChannel()) {
-        options.playlistId = sectionId.substr(Video.CHANNEL_PREFIX.length);
+        options.playlistId = sectionId;
       } else if (Video.isCurrentCategory()) {
-        options.playlistId = sectionId.substr(Video.CATEGORY_PREFIX.length);
+        options.playlistId = sectionId;
       } else if (isInAlbum) {
         var videoList = cur.videoList && cur.videoList[cur.vSection];
         if (videoList && videoList.list.length > 1) {

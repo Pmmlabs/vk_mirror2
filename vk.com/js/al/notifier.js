@@ -564,18 +564,19 @@ Notifier = {
     }
   },
 
+  shouldShowNotification: function(ev) {
+    return cur.module !== 'im' && !FastChat.isChatOpen(ev.author_id);
+  },
+
   sendSimpleNotification: function(ev) {
-    if (FastChat.isChatOpen(ev.author_id)) {
-      return 2; // Only sound notification
+    Notifier.playSound(ev);
+    if (!Notifier.shouldShowNotification(ev)) {
+      return 0;
     }
-    if (cur.module === 'im') {
-      return 0; // No notification on IM
-    }
-    return 1 | 2; // Sound + VK Notification
+    return 1 | 2;
   },
 
   sendBrowserNotification: function(ev) {
-    var token = 'notify_token_' + Date.now() + Math.round(rand(0, 1000));
     if(cur.module !== 'im') {
       Notifier.negotiate({
         message: 'send_im_notification',
@@ -586,12 +587,24 @@ Notifier = {
           });
         },
         onFail: function() {
-          Notifier.showEventUi(ev);
+          Notifier.showBrowserNotification(ev);
         }
       });
     } else {
       ev.onclick = 'IM.activateTab(' + ev.author_id + ');';
-      Notifier.showEventUi(ev);
+      Notifier.showBrowserNotification(ev);
+    }
+  },
+
+  shouldPlaySound: function(ev) {
+    return !ls.get('sound_notify_off')
+      && cur.focused != ev.author_id
+      && !inArray(ev.author_id, cur.mutedPeers);
+  },
+
+  playSound: function(ev) {
+    if (Notifier.shouldPlaySound(ev)) {
+      curNotifier.sound_im.play();
     }
   },
 
@@ -604,20 +617,27 @@ Notifier = {
           Notifier.sendBrowserNotification(ev);
         } else if (!onlyBrowser) {
           Notifier.lcSend('show_notification', ev);
-          if (cur.module !== 'im') {
+          if (Notifier.shouldShowNotification(ev)) {
             Notifier.showEvent(ev, true);
           }
-        }
-        if (!ls.get('sound_notify_off')
-          && (cur.module === 'im' && FastChat.isChatOpen(ev.author_id)
-          || cur.module !== 'im')) {
-            curNotifier.sound_im.play();
+          Notifier.playSound(ev);
+        } else {
+          Notifier.playSound(ev);
         }
       }
     });
   },
 
+  showBrowserNotification: function(ev) {
+    Notifier.showEventUi(ev);
+    Notifier.playSound(ev);
+  },
+
   proxyIm: function(ev) {
+    if(this.isActive()) {
+      this.playSound(ev);
+      return;
+    }
     if(!this.isActive() && curNotifier.is_server) {
       ev.onclick = 'IM.activateTab(' + ev.author_id + ');';
       this.sendImProxy(ev);
@@ -1031,7 +1051,7 @@ Notifier = {
         break;
 
       case 'show_notification':
-        if (cur.module !== 'im') {
+        if (Notifier.shouldShowNotification(data)) {
           Notifier.showEvent(data, true);
         }
         break;
@@ -1041,7 +1061,7 @@ Notifier = {
           var slot = Notifier.createNegotiationSlot({
             onSuccess: function(data) {
               data.ev.onclick = 'IM.activateTab(' + data.ev.author_id + ');';
-              Notifier.showEventUi(data.ev);
+              Notifier.showBrowserNotification(data.ev);
             }
           });
 
@@ -2258,7 +2278,7 @@ FastChat = {
 
   isChatOpen: function(id) {
     if (window.curFastChat && curFastChat.inited && id) {
-      if (curFastChat.tabs && curFastChat.tabs[id] ||
+      if (curFastChat.tabs && curFastChat.tabs[id] && curFastChat.tabs[id].box.visible ||
         curFastChat.clistBox && curFastChat.clistBox.visible) {
           return true;
       }
@@ -4553,7 +4573,7 @@ FastChat = {
       },
       onHide: function() {
         if (options.fixed) {
-          FastChat.hideChatCtrl;
+          FastChat.hideChatCtrl();
         }
 
         if (curFastChat.activeBox) {
@@ -5802,6 +5822,9 @@ var DesktopNotifications = {
     (window.webkitNotifications || window.Notification).requestPermission(f);
   },
   createNotification: function(photo, title, text) {
+    if(window.statlogsValueEvent && Math.round(rand(0, 100)) === 1) {
+      statlogsValueEvent('browser_notification', 0);
+    }
     var notification;
     if (window.webkitNotifications) {
       return webkitNotifications.createNotification(photo, title, text);
