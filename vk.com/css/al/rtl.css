@@ -2234,3 +2234,58 @@ body.dev.is_rtl1 .app_edit_block_header .app_edit_dev_header {
   left: 0;
   right: auto;
 }
+.is_rtl1 .help_tile_faqs__row {
+  padding-left: 0;
+  padding-right: 10px;
+}
+.is_rtl1 .help_tile_faqs__row:before {
+  left: auto;
+  right: 0;
+}
+.is_rtl1 .help_tile__all {
+  padding-left: 10px;
+  padding-right: 0;
+}
+.is_rtl1 .help_tile__all:after {
+  left: 0;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+  right: auto;
+}
+.is_rtl1 .help_tiles,
+.is_rtl1 .help_table_question__q,
+.is_rtl1 .help_table_question__ans_text {
+  direction: ltr;
+}
+.is_rtl1 #tickets_search_reset {
+  margin-left: auto;
+  margin-right: -27px;
+}
+.is_rtl1 .tickets_search_progress {
+  margin-left: auto;
+  margin-right: -41px;
+}
+.is_rtl1 .help_table_questions {
+  border-right: 0px none;
+  border-left: 1px solid #dae1e8;
+}
+.is_rtl1 .help_table_question:before {
+  left: auto;
+  right: 0;
+}
+.is_rtl1 .help_table_question_act.help_table_question_act_ok {
+  padding-left: 11px;
+  padding-right: 28px;
+}
+.is_rtl1 .help_table_question_act_ok:before {
+  left: auto;
+  right: 9px;
+}
+.is_rtl1 .help_table_categories__a.loading {
+  background-position: 8px center;
+  padding-right: 9px;
+  padding-left: 27px;
+}

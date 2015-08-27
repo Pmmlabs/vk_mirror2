@@ -2099,18 +2099,38 @@ toggleFAQRow: function(id, hash, el, evt) {
   if (isVisible('tickets_faq_full_text'+id)) {
     addClass(el, 'detailed');
     if (vk.id) {
-      ajax.post(nav.objLoc[0], {act: 'faq_clicked', faq_id: id, hash: hash}, {cache: 1});
+      Tickets.setFAQclicked(id, hash, 0, false);
     }
   } else {
     removeClass(el, 'detailed');
+    Tickets.cancelFAQclicked(id);
   }
   return false;
+},
+
+setFAQclicked: function(id, hash, fromNew, now) {
+  if (now) {
+    clearTimeout(cur.faqViewTimeouts[id]);
+    cur.faqViewTimeouts[id] = null;
+    ajax.post(nav.objLoc[0], {act: 'faq_clicked', faq_id: id, hash: hash, from_new: fromNew }, {cache: 1});
+  } else if (!cur.faqViewTimeouts.hasOwnProperty(id)) {
+    cur.faqViewTimeouts[id] = setTimeout(function() {
+      ajax.post(nav.objLoc[0], {act: 'faq_clicked', faq_id: id, hash: hash, from_new: fromNew }, {cache: 1});
+    }, 1500);
+  }
+},
+
+cancelFAQclicked: function(id) {
+  if (cur.faqViewTimeouts[id]) {
+    clearTimeout(cur.faqViewTimeouts[id]);
+    delete cur.faqViewTimeouts[id];
+  }
 },
 
 rateFAQ: function(id, val, hash, fromNew) {
   if (!vk.id) return false;
   ajax.post(nav.objLoc[0], {act: 'faq_rate', faq_id: id, val: val, hash: hash, from_new: fromNew });
-  ajax.post(nav.objLoc[0], {act: 'faq_clicked', faq_id: id, hash: hash}, {cache: 1});
+  Tickets.setFAQclicked(id, hash, fromNew, true);
   hide('tickets_faq_links'+id);
   if (val > 0) {
     show('tickets_faq_useful'+id);
@@ -2915,7 +2935,7 @@ listSearch: function(val) {
   clearTimeout(cur.searchFAQStatTimeout);
   ajax.post(nav.objLoc[0], query, {
     cache: 1,
-    onDone: function(content, showButton, altButtonId, saveSearchHash) {
+    onDone: function(content, showButton, altButtonId, saveSearchHash, clickedData) {
       var qlist = ge('help_table_questions_l'), updateLoc = true;
       removeClass(ge('faq_search_form'), 'loading');
 
@@ -2939,7 +2959,9 @@ listSearch: function(val) {
       Tickets.listOpenFAQs();
 
       if (updateLoc) {
-        Tickets.listDiselectCategory();
+        if (val) {
+          Tickets.listDiselectCategory();
+        }
         var obj = {act: 'faqs'};
         obj[0] = nav.objLoc[0];
         if (val) {
@@ -2959,13 +2981,18 @@ listSearch: function(val) {
           ajax.post(objLoc0, {act: 'save_last_search', hash: saveSearchHash});
         }, 3000);
       }
+
+      if (clickedData) {
+        var p = clickedData.split('|');
+        Tickets.setFAQclicked(p[0], p[1], 1, false);
+      }
     },
     onFail: function() {
       removeClass(ge('tickets_search'), 'loading');
     }
   });
 },
-listToggleQuestion: function(e) {
+listToggleQuestion: function(e, id, hash) {
   if (checkEvent(e)) {
     return true;
   }
@@ -2973,13 +3000,13 @@ listToggleQuestion: function(e) {
   var ans = geByClass1('help_table_question__ans', question);
 
   if (isVisible(ans)) {
-    if (t == '' || (e.target.tagName.toLowerCase() == 'a' && hasClass(e.target, 'help_table_question__q'))) {
-      removeClass(question, 'help_table_question_visible');
-      slideUp(ans, 200);
-    }
+    removeClass(question, 'help_table_question_visible');
+    slideUp(ans, 200);
+    Tickets.cancelFAQclicked(id);
   } else {
     addClass(question, 'help_table_question_visible');
     slideDown(ans, 200);
+    Tickets.setFAQclicked(id, hash, 1, false);
   }
   return false;
 },
@@ -3016,7 +3043,7 @@ goToList: function(categoryId, questionId, evt) {
 
   ajax.post(nav.objLoc[0], query, {
     cache: 1,
-    onDone: function(content, showButton) {
+    onDone: function(content, showButton, altButtonId, saveSearchHash, clickedData) {
       Tickets.listHideNotFound();
       Tickets.listToggleUnusefulButton(showButton);
       Tickets.listClearSearchInput();
@@ -3037,6 +3064,10 @@ goToList: function(categoryId, questionId, evt) {
 
       ge('help_table_questions_l').innerHTML = content;
       Tickets.listScrollToQuestion(questionId);
+      if (questionId) {
+        var p = clickedData.split('|');
+        Tickets.setFAQclicked(questionId, p[1], 1, false);
+      }
     }
   });
   return false;
@@ -3138,7 +3169,7 @@ tryAskQuestion: function(callback) {
   }
   return false;
 },
-listHideNotFound: function(query) {
+listHideNotFound: function() {
   removeClass(ge('help_table_questions'), 'help_table_questions_not_found');
 },
 listShowNotFound: function(query) {

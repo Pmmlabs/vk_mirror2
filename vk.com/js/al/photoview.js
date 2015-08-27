@@ -1124,7 +1124,6 @@ var Photoview = {
     } else {
       var photoApp = '';
     }
-    console.log(ph);
     cur.pvWide.innerHTML = '\
 <div id="pv_desc" style="' + ((ph.actions.edit & 1 || ph.desc) ? '' : 'display: none') + '">' + descText + '</div>\
 <div id="pv_microdata">' + (ph.microdata_html ? ph.microdata_html : '') + (ph.microdata_preview_button ? ph.microdata_preview_button : '') + '</div>\

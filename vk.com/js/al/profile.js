@@ -338,7 +338,8 @@ var Profile = {
       if (!sh) return;
 
       if (ge('ddreq_wrap')) re('ddreq_wrap');
-      domPN(el).insertBefore(domFC(ce('div', {innerHTML: html})), el);
+      var firstChild = domFC(ce('div', {innerHTML: html}));
+      if (firstChild) domPN(el).insertBefore(firstChild, el);
       eval(js);
     }, cache: 1});
   },

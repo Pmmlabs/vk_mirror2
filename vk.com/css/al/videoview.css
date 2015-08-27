@@ -1048,6 +1048,9 @@ body.mobfixed #mv_layer_wrap {
 .mv_wpl #mv_content .video_box_wrap_external {
   height: 405px !important;
 }
+.mv_plb_collapsed #mv_content .video_box_wrap_external {
+  height: 540px !important;
+}
 embed#video_player {
   vertical-align: top;
 }
