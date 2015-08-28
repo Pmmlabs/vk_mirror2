@@ -2072,13 +2072,15 @@ b.im_friend_mob_onl {
 #im_search_cancel:hover {
   background: #E1E7ED;
 }
-.im_chronicle_blur {
+.im_chronicle_img {
   position: absolute;
   margin: -10px 0px 0px -10px;
   width: 320px;
   height: 170px;
   background-position: center center;
   background-size: 300px auto;
+}
+.im_chronicle_blur {
   -webkit-filter: blur(10px);
   -moz-filter: blur(10px);
   -o-filter: blur(10px);
@@ -2109,6 +2111,7 @@ b.im_friend_mob_onl {
   vertical-align: middle;
   height: 148px;
   padding: 0px;
+  text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.7);
 }
 .im_chronicle_name {
   color: #2B587A;

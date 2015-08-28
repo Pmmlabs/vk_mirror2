@@ -1661,9 +1661,11 @@ addEvent(window, 'unload', function() {
     }
   }
 });
-addEvent(window, 'load', function() {
-  vk.loaded = true;
-  updSideTopLink();
+addEvent(window, 'DOMContentLoaded load', function() {
+  if(!vk.loaded) {
+    vk.loaded = true;
+    updSideTopLink();
+  }
 });
 function tnActive(el) {
   window.tnAct = el;

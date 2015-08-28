@@ -1658,12 +1658,12 @@ var GroupsEdit = {
       hideProgress: unlockButton('group_ad_save_notify')
     });
   },
-  showAgeLimitsTT: function(el, title, text, allBlock) {
+  showAgeLimitsTT: function(el, title, text, itemsCount) {
     showTooltip(el, {
-      text: '<div class="age_limits_tt_pointer"></div><div class="age_limits_tt_title">' + title + '</div>' + text.replace('{link}', "<a href=\"https://vk.com/support?act=new\">").replace('{/link}', '</a>'),
+      text: '<div class="age_limits_tt_pointer"></div><div class="age_limits_tt_title">' + title + '</div>' + text,
       className: 'age_limits_tt',
       slideX: 15,
-      shift: [-150, allBlock ? -63 : -50, 3],
+      shift: [-150, itemsCount == 2 ? -80 : (itemsCount == 1 ? -65 : -136), 3],
       hidedt: 1000,
       nohideover: true
     });

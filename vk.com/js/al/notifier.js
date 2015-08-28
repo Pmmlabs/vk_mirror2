@@ -138,6 +138,9 @@ extend(IdleManager.prototype, {
 Notifier = {
   debug: false,
   init: function (options) {
+    if(window.curNotifier && curNotifier.connection_id) {
+      return;
+    }
     curNotifier = extend({
       q_events: [],
       q_shown: [],
@@ -161,7 +164,6 @@ Notifier = {
       return false;
     }
     this.initIdleMan();
-
     if (!(curNotifier.cont = ge('notifiers_wrap'))) {
       bodyNode.insertBefore(curNotifier.cont = ce('div', {id: 'notifiers_wrap', className: 'fixed'}), ge('page_wrap'));
     }
@@ -939,7 +941,6 @@ Notifier = {
         ls.remove('audio_id');
       }
     }.bind(this), 1000 + intval(rand(-100, 100)));
-
     if (curNotifier.fc !== undefined) {
       stManager.add(['emoji.js'], function() {
         FastChat.init(curNotifier.fc);

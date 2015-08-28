@@ -2225,12 +2225,13 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   padding-left: 60px;
 }
 .help_tile_alert_urgent:before {
-  background: url(/images/faq_new_alert.png) no-repeat top left;
-  background-size: 31px 26px;
-  content: "";
-  position: absolute;
   height: 26px;
   width: 31px;
+  background-image: url('/images/faq_new_alert.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  content: "";
+  position: absolute;
   left: 15px;
   top: 16px;
 }
@@ -2248,17 +2249,68 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   display: inline-block;
-  padding: 12px 16px 14px 22px;
+  padding: 12px 22px 14px 28px;
   vertical-align: top;
   width: 50%;
 }
 .help_tile__title {
-  -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: auto;
-  font-size: 1.37em;
-  font-weight: normal;
+  color: #476586;
+  font-size: 1.1em;
+  font-weight: bold;
   line-height: 1;
   margin: 0 0 11px;
+  padding-left: 10px;
+  position: relative;
+}
+.help_tile__title_a {
+  color: #476586;
+}
+.help_tile__title:after {
+  height: 16px;
+  width: 16px;
+  background-image: url('/images/faq_icons.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  content: "";
+  position: absolute;
+  left: -13px;
+  top: -2px;
+}
+#help_tile__title0:after {
+  background-position: 0 -16px;
+}
+#help_tile__title1:after {
+  background-position: 0 -96px;
+}
+#help_tile__title2:after {
+  background-position: 0 -48px;
+}
+#help_tile__title3:after {
+  background-position: 0 -112px;
+}
+#help_tile__title4:after {
+  background-position: 0 -80px;
+}
+#help_tile__title5:after {
+  background-position: 0 -64px;
+}
+#help_tile__title6:after {
+  background-position: 0 -32px;
+}
+#help_tile__title7:after {
+  background-position: 0 -144px;
+}
+#help_tile__title8:after {
+  background-position: 0 -160px;
+}
+#help_tile__title30:after {
+  background-position: 0 -176px;
+}
+#help_tile__title11:after {
+  background-position: 0 0;
+}
+#help_tile__title12:after {
+  background-position: 0 -128px;
 }
 .help_tile_faqs {
   list-style: none;
@@ -2268,18 +2320,9 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 }
 .help_tile_faqs__row {
   line-height: 16px;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   padding-left: 10px;
   position: relative;
-}
-.help_tile_faqs__row:before {
-  content: "\2022";
-  color: #ced7e0;
-  font-size: 10px;
-  left: 0;
-  line-height: 16px;
-  position: absolute;
-  top: 0;
 }
 .help_tile__all {
   color: #8fa0b2;
@@ -2288,14 +2331,16 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   position: relative;
 }
 .help_tile__all:after {
-  background: url(/images/faq_arrow.png) no-repeat center center;
-  content: "";
   height: 10px;
-  opacity: 0.7;
-  position: absolute;
-  right: 0px;
-  top: 3px;
   width: 6px;
+  background-image: url('/images/faq_arrow.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  content: "";
+  position: absolute;
+  opacity: 0.7;
+  right: 0;
+  top: 0.2em;
 }
 .help_tile__all:hover {
   color: #677f99;
@@ -2426,13 +2471,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   color: #607282;
 }
 .help_table_question_act_ok:before {
-  background-image: url(/images/faq_helpful.png);
-  content: '';
-  display: inline-block;
   height: 10px;
   width: 13px;
-  opacity: 0.8;
+  background-image: url('/images/faq_helpful.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  content: "";
   position: absolute;
+  display: inline-block;
+  opacity: 0.8;
   top: 8px;
   left: 9px;
 }

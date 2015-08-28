@@ -1836,6 +1836,10 @@ body.dev.is_2x .priv_h_arrow,
 .is_2x .help_tile_alert_urgent:before {
   background-image: url(/images/faq_new_alert_2x.png);
 }
+.is_2x .help_tile__title:after {
+  background-image: url(/images/faq_icons_2x.png);
+  background-size: 16px 192px;
+}
 .is_2x .help_tile__all:after {
   background-image: url(/images/faq_arrow_2x.png);
   background-size: 6px 10px;
