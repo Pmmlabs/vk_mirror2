@@ -2640,7 +2640,8 @@ span#im_important_count {
 .im_stickerpack_buy {
   margin-top: 11px;
 }
-.im_stickerpack_author {
+.im_stickerpack_author,
+.im_stickerpack_author a {
   color: #9fa2aa;
 }
 .im_stickerpack_offer_label {

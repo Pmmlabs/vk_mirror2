@@ -1729,3 +1729,12 @@ a.group_ad_post_link.deleted:hover {
   text-align: center;
   color: #777;
 }
+.group_activity_more_link {
+  padding: 15px 0;
+  display: block;
+  text-align: center;
+  height: 13px;
+}
+.group_activity_more_link .progress {
+  margin: 0 auto;
+}

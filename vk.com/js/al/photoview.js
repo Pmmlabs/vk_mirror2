@@ -879,13 +879,17 @@ var Photoview = {
       }
     }
 
+    if (navigator.userAgent.indexOf('Windows NT 5.1') >= 0) { // xp
+      return -1;
+    }
+
     if (!tryWebGL()) {
       if (browser.safari) {
-        return -2;
+        return -2; // need enable
       }
-      return -1;
+      return -1; // doesn't support
     } else {
-      return 1;
+      return 1; // enabled
     }
   },
   openEditor: function(mediaId, src) { // parameters optional and for webcam
