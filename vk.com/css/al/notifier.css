@@ -141,7 +141,7 @@ div.notifier_baloon_msg span.group_link {
 }
 /* Chat styles */
 .rb_box_wrap {
-  z-index: 700;
+  z-index: 1010;
   display: none;
 }
 .fc_tab_wrap {

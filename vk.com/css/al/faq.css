@@ -536,6 +536,20 @@ h4.faq_question .faq_info {
 .shown .faq_show_all {
   display: none;
 }
+.faq_content_search {
+  border-bottom: 1px solid #DAE1E8;
+  padding: 16px 0;
+  text-align: center;
+}
+.faq_content_search__text {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 446px;
+}
+.faq_content_search__text.text {
+  padding: 6px 8px;
+}
 .faq_tiles_editor {
   background: #fff;
   padding: 0;

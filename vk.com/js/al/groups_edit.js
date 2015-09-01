@@ -1102,8 +1102,6 @@ var GroupsEdit = {
     var st = scrollGetY();
     var lnk = ge(cur.moreLink);
 
-    debugLog(ch, st, lnk);
-
     if (!isVisible(lnk)) return;
     if (st + ch > lnk.offsetTop) {
       cur.showMore();

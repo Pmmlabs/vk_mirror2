@@ -2194,9 +2194,12 @@ var IM = {
       });
 
       addEvent(txt, 'paste', function(event) {
-        var blob, items = (event.clipboardData  || event.originalEvent.clipboardData).items;
-
-        if(!items) return;
+        var blob, items = (event.clipboardData  || event.originalEvent.clipboardData);
+        if(!items) {
+          return;
+        } else {
+          items = items.items;
+        }
 
         for (var i = 0; i < items.length; i++) {
           if (items[i].type.indexOf("image") == 0) {
@@ -2260,6 +2263,9 @@ var IM = {
         val(txt, draftv);
       }
     }
+    setTimeout(function() {
+      txt.scrollTop = txt.scrollHeight;
+    }, 10);
     IM.checkEditable(cur.emojiId[peer], txt);
     if ((draft.medias || []).length && !(cur.imPeerMedias[peer] || []).length) {
       var m = [];
@@ -5463,13 +5469,15 @@ var IM = {
         notaBene(inp);
         return;
       }
-      IM.updateChat(peer, true, {new_title: topicVal});
+      if(topicVal !== cur.tabs[peer].data.title) {
+        IM.updateChat(peer, true, {new_title: topicVal});
+      }
       box.hide();
     },
-        box = showFastBox({title: getLang('mail_chat_topic_change_title'), dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'}, '<div class="im_change_topic_wrap clear_fix"><div class="im_change_topic_label fl_l ta_r">' + getLang('mail_chat_topic_change_label') + '</div><div class="im_change_topic_labeled fl_l"><input id="im_change_topic_val" class="text" /></div></div>', getLang('global_save'), onsubmit, getLang('global_cancel'), function () {
+    box = showFastBox({title: getLang('mail_chat_topic_change_title'), dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'}, '<div class="im_change_topic_wrap clear_fix"><div class="im_change_topic_label fl_l ta_r">' + getLang('mail_chat_topic_change_label') + '</div><div class="im_change_topic_labeled fl_l"><input id="im_change_topic_val" class="text" /></div></div>', getLang('global_save'), onsubmit, getLang('global_cancel'), function () {
       box.hide();
     }),
-        inp = ge('im_change_topic_val');
+    inp = ge('im_change_topic_val');
     val(inp, replaceEntities(cur.tabs[cur.peer].name));
     elfocus(inp);
     addEvent(inp, 'keydown', function (e) {

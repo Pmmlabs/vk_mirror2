@@ -10,6 +10,8 @@ if (!window.curNotifier) {
   };
 }
 
+var BASIC_CHAT_ZINDEX = 1010;
+
 function IdleManager(opts) {
   this.started = false;
   this.is_idle = true;
@@ -785,9 +787,9 @@ Notifier = {
     if (!this.canNotifyUi()) return false;
     var title, text;
     if(ev.type === 'mail') {
-      title = stripHTML(replaceEntities(ev.text).replace(/<br>/g, "\n")
-        .replace(/<span class='notifier_author_quote'.*?>(.*?)<\/span>.*$/, '$1'))
-        .replace(/&laquo;|&raquo;/gi, '"');
+      var div = ce('div');
+      div.innerHTML = ev.text;
+      title = div.firstChild.textContent.trim();
       text = stripHTML(replaceEntities(ev.text).replace(/<br>/g, "\n")
         .replace(/<span class='notifier_author_quote'.*<\/span>(.*?)/, '$1')
         .replace(/<img.*?alt="(.*?)".*?>/ig, '$1'))
@@ -1613,13 +1615,18 @@ function updateWndVScroll() {
   } else {
     vScroll = false;
   }
+  each (curRBox.tabs, function (id) {
+    if (this.options.marginFixedToLayer) {
+      setStyle(this.wrap, {marginRight: hasClass(document.body, 'layers_shown') ? sbWidth() + 1 : 0})
+    }
+  });
   if (vScroll === lastWndScroll[0]) {
     return;
   }
   lastWndScroll[0] = vScroll;
 
   each (curRBox.tabs, function (id) {
-    if (this.toRight) {
+    if (this.toRight && !this.options.marginFixedToLayer) {
       setStyle(this.wrap, {marginRight: vScroll ? sbWidth() + 1 : 0});
     }
   });
@@ -1769,6 +1776,9 @@ function RBox(content, options) {
   if (this.toBottom) {
     setStyle(t.wrap, {marginRight: lastWndScroll[0] ? sbWidth() + 1 : 0});
     addClass(t.wrap, 'fc_tobottom');
+  }
+  if (this.options.marginFixedToLayer) {
+    setStyle(t.wrap, {marginRight: hasClass(document.body, 'layers_shown') ? sbWidth() + 1 : 0});
   }
 
   // console.log(['s', st,st === '0',st === 0, sb, sl,sl==='0',sl===0, sr, this.toBottom, this.toRight]);
@@ -2063,7 +2073,7 @@ extend(RBox.prototype, {
     }
     curRBox.focused.unshift(t.id);
 
-    var zIndex = 700 + curRBox.focused.length, first = true;
+    var zIndex = BASIC_CHAT_ZINDEX + curRBox.focused.length, first = true;
     each(curRBox.focused, function (k, id) {
       var wrap = curRBox.tabs[id].wrap;
       if (first) {
@@ -4542,6 +4552,7 @@ FastChat = {
     wndInner = getWndInner(),
     opts = {
       id: 'fc_peer' + peer,
+      marginFixedToLayer: true,
       peer: peer,
       movable: geByClass1('fc_tab_head', wrap),
       closer: geByClass1('fc_tab_close_wrap', wrap, 'a'),
@@ -4938,14 +4949,14 @@ FastChat = {
     if (tab.blinking || curFastChat.peer == peer) return;
     tab.blinking = true;
     clearTimeout(tab.blinkingTO);
-    var wrap = tab.box.wrap, className = wrap.className, zIndex = Math.min(700, intval(getStyle(wrap, 'zIndex')));
-    setStyle(wrap, {zIndex: 700});
+    var wrap = tab.box.wrap, className = wrap.className, zIndex = Math.min(BASIC_CHAT_ZINDEX, intval(getStyle(wrap, 'zIndex')));
+    setStyle(wrap, {zIndex: BASIC_CHAT_ZINDEX});
     removeClass(wrap, 'rb_inactive');
     tab.blinkingTO = setTimeout(function () {
       delete tab.blinking;
       delete tab.blinkingTO;
 
-      if (getStyle(wrap, 'zIndex') != 700) {
+      if (getStyle(wrap, 'zIndex') != BASIC_CHAT_ZINDEX) {
         return;
       }
       setStyle(wrap, {zIndex: zIndex});
@@ -5104,6 +5115,9 @@ FastChat = {
       val(txt, draft.txt || '');
     }
     FastChat.checkEditable(tab.emojiId, txt);
+    setTimeout(function() {
+      txt.scrollTop = txt.scrollHeight;
+    }, 10);
     return true;
   },
   error: function (peer, msg) {

@@ -2896,6 +2896,9 @@ restoreDraft: function(ticket_id) {
 
 listUpdateSearch: function(e, obj) {
   clearTimeout(cur.faqTimeout);
+  if (cur.faqSearchBlocked) {
+    return;
+  }
   cur.faqTimeout = setTimeout((function() {
     var origStr = obj.value,
       str = trim(origStr),
@@ -2905,6 +2908,12 @@ listUpdateSearch: function(e, obj) {
       return;
     }
     if (str.length > 0 && str.length < 3) {
+      return;
+    }
+    if (str.length > 70 && cur.askQuestion.permission > 0) {
+      cur.faqSearchBlocked = true;
+      addClass(ge('faq_search_form'), 'loading');
+      nav.go(nav.objLoc[0]+'?act=new&title=' + encodeURIComponent(str));
       return;
     }
 
@@ -2924,9 +2933,7 @@ listUpdateSearch: function(e, obj) {
 },
 
 listSearch: function(val) {
-  if (val[val.length - 1] == ' ') {
-    val[val.length - 1] = '_';
-  }
+
   addClass(ge('faq_search_form'), 'loading');
   setStyle(ge('tickets_search_reset'), {opacity: .6});
 
@@ -3051,6 +3058,7 @@ goToList: function(categoryId, questionId, evt) {
 
       Tickets.listRemoveCategoryLoading();
       Tickets.listSetTitle(e.innerHTML);
+      Tickets.listShowAltButton(altButtonId);
 
       var obj = {act:'faqs'};
       obj[0] = nav.objLoc[0];

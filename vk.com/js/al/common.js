@@ -7878,6 +7878,57 @@ function IframeLoader() {
   }
 }
 
+var getCaretPixelPos = function ($node, offsetx, offsety){
+    offsetx = offsetx || 0;
+    offsety = offsety || 0;
+
+    var nodeLeft = 0,
+        nodeTop = 0;
+    if ($node){
+        nodeLeft = $node.offsetLeft;
+        nodeTop = $node.offsetTop;
+    }
+
+    var pos = { left: 0, top: 0 };
+
+    if (document.selection){
+        var range = document.selection.createRange();
+        pos.left = range.offsetLeft + offsetx - nodeLeft;
+        pos.top = range.offsetTop + offsety - nodeTop;
+    } else if (window.getSelection){
+        var sel = window.getSelection();
+        var range = sel.getRangeAt(0).cloneRange();
+        try {
+            range.setStart(range.startContainer, range.startOffset-1);
+        } catch(e){}
+        var rect = range.getBoundingClientRect();
+        if (range.endOffset == 0 || range.toString() === ''){
+            // first char of line
+            if (range.startContainer == $node){
+                // empty div
+                if (range.endOffset == 0){
+                    pos.top = 0;
+                    pos.left = 0;
+                } else {
+                    // firefox need this
+                    var range2 = range.cloneRange();
+                    range2.setStart(range2.startContainer, 0);
+                    var rect2 = range2.getBoundingClientRect();
+                    pos.left = rect2.left + offsetx - nodeLeft;
+                    pos.top = rect2.top + rect2.height + offsety - nodeTop;
+                }
+            } else {
+                pos.top = range.startContainer.offsetTop;
+                pos.left = range.startContainer.offsetLeft;
+            }
+        } else {
+            pos.left = rect.left + rect.width + offsetx - nodeLeft;
+            pos.top = rect.top + offsety - nodeTop;
+        }
+    }
+    return pos;
+};
+
 function aquireLock(name, fn, noretry) {
   var lockKey = 'lockkk_' + name;
   if (ls.get(lockKey) !== true) {
@@ -7923,5 +7974,6 @@ function statlogsValueEvent(statName, value, key1, key2, key3) {
     setCookie(cookieName, JSON.stringify({data: stats, uniqueId: uniqueId}), 0.01)
   });
 }
+
 
 try{stManager.done('common.js');}catch(e){}
