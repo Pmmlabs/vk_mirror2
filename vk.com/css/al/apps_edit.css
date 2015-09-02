@@ -290,6 +290,14 @@ td.apps_edit_header {
   text-align: center;
   width: 517px;
 }
+.app_platform_no_payments {
+  color: #777777;
+  line-height: 200%;
+  /* margin: 0 0 6px 40px; */
+  padding: 60px 0;
+  text-align: center;
+  /* width: 517px; */
+}
 .apps_payments_table {
   margin: 20px 30px;
 }
@@ -323,6 +331,15 @@ td.apps_edit_header {
 }
 .header .app_pay_link {
   width: 362px;
+}
+.apps_platform_payments_table .app_pay_link {
+  width: 240px;
+}
+.apps_platform_payments_table .header .app_pay_link {
+  width: 280px;
+}
+.apps_platform_payments_table .app_pay_platform {
+  width: 140px;
 }
 .app_pay_votes {
   width: 110px;

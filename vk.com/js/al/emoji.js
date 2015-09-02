@@ -176,7 +176,7 @@ lcRecv: function(data) {
 },
 
 correctCaret: function(txt) {
-  if(browser.chrome) {
+  if(!browser.msie) {
     var top = getCaretPixelPos(txt).top;
     var txtBox = txt.getBoundingClientRect();
     var relativeTop = top - txtBox.top;

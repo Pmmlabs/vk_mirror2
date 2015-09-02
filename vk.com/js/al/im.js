@@ -2201,6 +2201,10 @@ var IM = {
           items = items.items;
         }
 
+        if(!items) {
+          return;
+        }
+
         for (var i = 0; i < items.length; i++) {
           if (items[i].type.indexOf("image") == 0) {
             blob = items[i].getAsFile();

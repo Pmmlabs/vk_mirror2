@@ -232,6 +232,7 @@ AdsPayments.reqsInit = function(params) {
   cur.contractDayEnabled = params.contract_day_enabled;
   cur.uiContractDate = false;
   cur.uiModerId = false;
+  cur.uiSegmentId = false;
   cur.freeCompany = cur.params.free_company;
   cur.checkReqInnDelayed = 0;
 
@@ -255,6 +256,15 @@ AdsPayments.reqsInit = function(params) {
 
   if (isVisible('row_contract_day') && isVisible('row_contract_day_edit')) {
     AdsPayments.reqsReinitContractDay(params.contract_day_year, params.contract_day_month, params.contract_day_day);
+  }
+
+  if (isVisible('row_segment_id') && isVisible('row_segment_id_edit')) {
+    ge('segment_id').removeAttribute('autocomplete');
+    cur.uiSegmentId = new Dropdown(ge('segment_id'), params.segments_data, {
+      width: 250 + 8,
+      selectedItem: params.segment_id
+    });
+    cur.destroy.push(cur.uiSegmentId.destroy.bind(cur.uiSegmentId));
   }
 
   if (isVisible('row_moder_id') && isVisible('row_moder_id_edit')) {
@@ -552,6 +562,10 @@ AdsPayments.reqsApplyFreeCompany = function() {
 
   if ('moder_id' in cur.freeCompany) {
     cur.uiModerId.selectItem(cur.freeCompany.moder_id);
+  }
+
+  if ('segment_id' in cur.freeCompany) {
+    cur.uiSegmentId.selectItem(cur.freeCompany.segment_id);
   }
 
   var activeElem = document.activeElement;
