@@ -1625,6 +1625,10 @@ if (!VK.Widgets) {
     if (VK._iframeAppWidget) {
       params.iframe_app = 1;
     }
+    var pData = VK.Util.getPageData();
+    params.url      = params.url     || pData.url || "";
+    params.referrer = params.referrer || document.referrer || "";
+    params.title    = params.title   || pData.title  || document.title || "";
     for (i in params) {
       if (i == 'title' && params[i].length > 80) params[i] = params[i].substr(0, 80)+'...';
       if (i == 'description' && params[i].length > 160) params[i] = params[i].substr(0, 160)+'...';

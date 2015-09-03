@@ -6377,7 +6377,8 @@ function zNav(changed, opts, fin) {
             if (Videocat.initFullPlaylist(playlistId, zt[2]) || Videocat.isTop3Playlist(playlistId)) {
               var autoplay = intval(nav.objLoc.autoplay);
               var needLoad = intval(playlistId.indexOf('_') > 0);
-              options = extend(options, {playlistId: playlistId, module: 'videocat', addParams: { force_no_repeat: 1, show_next: 1, playlist_id: playlistId, autoplay: autoplay, load_playlist: needLoad }});
+              var module = window.Video && Video.isInCatalogue() ? Videocat.VIDEO_MODULE : cur.module;
+              options = extend(options, {playlistId: playlistId, module: module, addParams: { force_no_repeat: 1, show_next: 1, playlist_id: playlistId, autoplay: autoplay, load_playlist: needLoad }});
             }
           }
         }
