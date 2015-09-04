@@ -294,6 +294,7 @@
   margin: 25px 0px 0px 105px;
   height: 256px;
   overflow: hidden;
+  padding: 25px 0;
 }
 .gift_tip {
   width: 338px;
@@ -996,4 +997,11 @@
 .gifts_constr_ready_box .flat_button {
   font-size: 12px;
   padding: 10px 24px 11px;
+}
+.gift_rot {
+  -webkit-transform: rotateZ(180deg);
+  transform: rotateZ(180deg);
+}
+.gift_anim {
+  transition: all 5000ms ease-in-out;
 }

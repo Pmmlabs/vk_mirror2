@@ -921,6 +921,10 @@ function OList (box, owners, selected, options) {
   }
 
   (cur.onOListTabChange = function (tab) {
+      if (tab === undefined) {
+        tab = self.selPrev === undefined ? 0 : self.selPrev;
+      }
+      self.selPrev = self.sel;
       self.sel = tab;
       toggle(tabsEl, tab != 2);
       if (tab == 2) {
@@ -939,6 +943,7 @@ function OList (box, owners, selected, options) {
         box.setControlsText(tab == 2 ? options.ignored_return_link : options.ignored_link.replace('%s', self.ignoredCnt));
       }
       self.renderList(val(filter), 0, tab);
+
       if (!options.nofocus) {
         setTimeout(elfocus.pbind(filter), 100);
       }

@@ -5850,7 +5850,7 @@ var DesktopNotifications = {
       };
       notification.show = function() {};
     }
-    if(Math.random() < 0.01) {
+    if(vk.id % 100 < 10) {
       statlogsValueEvent('browser_notification', 0);
     }
     return notification;

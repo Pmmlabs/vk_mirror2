@@ -54,3 +54,38 @@
 .YMaps-b-balloon_full .YMaps-b-balloon-tail-bottom {
   right: 14px;
 }
+.ymap_zoom_wrap > div {
+  width: 26px;
+  height: 26px;
+  color: black;
+  text-align: center;
+  border: 1px solid #ccc;
+  font: bold 18px 'Lucida Console', Monaco, monospace;
+  background-color: white;
+  cursor: default;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.ymap_zoom_wrap > div:hover {
+  background-color: #F4F4F4;
+}
+.ymap_zoom_wrap > div:active {
+  background-color: #E2E2E2;
+}
+.ymap_zoom_wrap #ymap_zoom_wrap_p {
+  line-height: 26px;
+  border-radius: 2px 2px 0 0;
+}
+.ymap_zoom_wrap #ymap_zoom_wrap_m {
+  border-radius: 0 0 2px 2px;
+  border-top: none;
+  line-height: 26px;
+  font-size: 22px;
+}
+.is_2x .ymap_zoom_wrap #ymap_zoom_wrap_p {
+  line-height: 25px;
+}
+.is_2x .ymap_zoom_wrap #ymap_zoom_wrap_m {
+  line-height: 25px;
+}

@@ -4906,11 +4906,11 @@ function placeholderSetup(id, opts) {
   if (!o.reload) {
     if (!cur.__phinputs) {
       cur.__phinputs = [];
-      cur.destroy.push(function() {
-        for (var i = 0, l = cur.__phinputs.length; i < l; ++i) {
-          removeData(cur.__phinputs[i]);
+      cur.destroy.push(function(__phinputs) {
+        for (var i = 0, l = __phinputs.length; i < l; ++i) {
+          removeData(__phinputs[i]);
         }
-      });
+      }.pbind(cur.__phinputs));
     }
     cur.__phinputs.push(el);
   }
