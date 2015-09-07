@@ -1848,6 +1848,10 @@ body.dev.is_2x .priv_h_arrow,
   background-image: url(/images/faq_arrow_2x.png);
   background-size: 6px 10px;
 }
+.is_2x .help_table_question__edit {
+  background-image: url('/images/doc_icons_2x.png');
+  background-size: 20px 80px;
+}
 .is_2x .help_table_question_act_ok:before {
   background-image: url(/images/faq_helpful_2x.png);
   background-size: 13px 10px;

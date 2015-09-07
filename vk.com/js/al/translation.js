@@ -1142,7 +1142,6 @@ window.translation = window.translation || {
     translatorsTableFilter: function(immediate, force) {
       var _this = this;
       this.currTranslatorsFilters = this.currTranslatorsFilters || '';
-      var tableEl = ge('translators_table_cont');
 
       this.updateTranslatorsTable = this.updateTranslatorsTable || function(showCoordsFilter, textFilter, langId, selectedStatDate, force) {
         var fstr = '' + (+showCoordsFilter) + textFilter + langId + selectedStatDate;
@@ -1151,6 +1150,7 @@ window.translation = window.translation || {
         }
         _this.currTranslatorsFilters = fstr;
 
+        var tableEl = ge('translators_table_cont');
         showMask(tableEl, true);
 
         ajax.post('al_translation.php', { act: 'get_translators_table', show_coords_filter: +showCoordsFilter, text_filter: textFilter, lang_id: langId, stat_date: selectedStatDate }, {

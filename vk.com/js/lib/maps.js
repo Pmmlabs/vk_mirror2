@@ -698,7 +698,6 @@ VKMap: {
         var _this = this;
         clearTimeout(this._curClickTO);
         this._curClickTO = setTimeout(function() {
-          console.log('fire');
           _this.click.fire({'location': new vkMaps.LatLonPoint(lat, lon)});
         }, 250);
       }).bind(this));
@@ -773,10 +772,9 @@ VKMap: {
   },
   addLargeControls: function() {
     var map = this.maps[this.api];
-    //this.controls.unshift(new YMaps.Zoom({noTips: true}));
+    this.controls.unshift(new YCustomZoomControl());
     this.addControlsArgs.zoom = 'large';
     map.addControl(this.controls[0]);
-    map.addControl(new YCustomZoomControl());
   },
   addMapTypeControls: function() {
     var me = this, map = this.maps[this.api],

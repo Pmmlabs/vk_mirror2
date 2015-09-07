@@ -3185,4 +3185,9 @@ listShowNotFound: function(query) {
   addClass(ge('help_table_questions'), 'help_table_questions_not_found');
   ge('help_table_not_found__query').innerHTML = query;
 },
+listClearCache: function() {
+  var obj = nav.objLoc;
+  obj['cc'] = 1;
+  nav.go(obj);
+},
 _eof: 1};try{stManager.done('tickets.js');}catch(e){}
