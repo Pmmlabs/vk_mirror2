@@ -564,6 +564,11 @@ var IM = {
         peer_data = cur.tabs[peer_id].data,
         actual_peer = msg[3].match(/<\*>from:(\d+)/);
 
+    if (!cur.notify_msg && peer_id < 2e9) {
+      Notifier.playSound({ author_id: msg[4] });
+    }
+
+
     if(!peer_data) {
       return;
     }

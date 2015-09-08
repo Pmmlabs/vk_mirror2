@@ -1051,7 +1051,7 @@ var ProfileEditor = {
     if (authorized && !cur.disableFbExport) {
       return showBox('al_profileEdit.php', {act: 'facebook_settings_box'});
     }
-    var url = 'https://graph.facebook.com/oauth/authorize?client_id=' + app_id + '&redirect_uri=' + redir + '&scope=offline_access,publish_stream&display=popup';
+    var url = 'https://graph.facebook.com/oauth/authorize?client_id=' + app_id + '&redirect_uri=' + redir + '&scope=email,user_birthday&display=popup';
     var params = 'scrollbars=0,resizable=1,menubar=0,location=0,left='+(Math.floor(screen.width / 2) - 300)+',top='+(Math.floor(screen.height / 2) - 240)+',width=600,height=400,toolbar=0,status=0';
     var win = window.open(url, 'fb', params);
     try {

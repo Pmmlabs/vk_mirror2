@@ -1701,10 +1701,12 @@ var GroupsEdit = {
     }
     var onDone = function(code, word) {
       switch (code) {
-        case 7:  key = 'obscene_add_pattern_success'; break;
         case -7: key = 'obscene_word_wrong_chars';    break;
         case -6: key = 'obscene_word_too_short';      break;
         default: key = 'obscene_save_patterns_error';
+      }
+      if (!code) {
+        return GroupsEdit.uShowMessage(getLang(key));
       }
       if (code < 0) {
         words_field = ge('group_edit_obscene_stopwords');
@@ -1720,7 +1722,7 @@ var GroupsEdit = {
     var params = {
       gid     : cur.gid,
       act     : 'a_obscene_delete_pattern',
-      delete  : 1,
+      approve : 1,
       pid     : pid,
       hash    : hash || '',
     }

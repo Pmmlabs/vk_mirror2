@@ -1698,17 +1698,23 @@ a.group_ad_post_link.deleted:hover {
 .group_activity_row_wrap .group_activity_content {
   padding-left: 60px;
 }
-.group_activity_row_wrap .group_activity_content_owner {
+.group_activity_row_wrap .group_activity_content .group_activity_content_owner {
+  white-space: nowrap;
+}
+.group_activity_row_wrap .group_activity_content .group_activity_content_owner_name {
   font-weight: bold;
 }
-.group_activity_row_wrap .group_activity_content_date {
+.group_activity_row_wrap .group_activity_content .group_activity_content_date {
   color: #999;
   white-space: nowrap;
 }
-.group_activity_row_wrap .group_activity_content_message {
+.group_activity_row_wrap .group_activity_content .group_activity_content_message {
   line-height: 140%;
-  padding: 2px 0 4px;
+  padding: 5px 0 8px;
   word-wrap: break-word;
+}
+.group_activity_row_wrap .group_activity_content .group_activity_actions {
+  color: #999;
 }
 .group_activity_row_wrap .group_obscene_word {
   background: #e1e7ed;
@@ -1731,10 +1737,39 @@ a.group_ad_post_link.deleted:hover {
 }
 .group_activity_more_link {
   padding: 15px 0;
+  margin: 0 15px;
   display: block;
   text-align: center;
   height: 13px;
+  border-top: 1px solid #dae1e8;
 }
 .group_activity_more_link .progress {
   margin: 0 auto;
+}
+.group_obscene_announce_info {
+  background-color: #ecf1f5;
+  padding: 11px;
+}
+.group_obscene_announce_info .group_obscene_announce_img {
+  width: 110px;
+  height: 110px;
+  background-image: url(/images/pics/obscene_words.png);
+  background-size: 110px 110px;
+}
+.group_obscene_announce_info .group_obscene_announce_data {
+  width: 480px;
+}
+.group_obscene_announce_info .group_obscene_announce_header {
+  font-size: 16px;
+  color: #45688e;
+  padding: 5px 0px 10px;
+}
+.group_obscene_announce_info .group_obscene_announce_text {
+  line-height: 170%;
+}
+.group_obscene_announce_info .flat_button {
+  margin-top: 8px;
+}
+.is_2x .group_obscene_announce_info .group_obscene_announce_img {
+  background-image: url(/images/pics/obscene_words_2x.png);
 }

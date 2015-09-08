@@ -996,12 +996,13 @@ Geocoder: {
     var me = this;
   },
   geocode: function(address) {
-    var VKMap_geocoder = this;
+    var VKMap_geocoder = this,s = 1;
     if (!address.hasOwnProperty('address') || address.address === null || address.address === '') {
       address.address = [address.street, address.locality, address.region, address.country ].join(', ');
     }
     if (address.lat && address.lon) {
-      address.address = new YMaps.GeoPoint(address.lon, address.lat)
+      address.address = new YMaps.GeoPoint(address.lon, address.lat);
+      s = 0;
     }
     var geocoder = new YMaps.Geocoder(address.address, { results: 1 });
     YMaps.Events.observe(geocoder, geocoder.Events.Load, function (response) {
@@ -1014,6 +1015,7 @@ Geocoder: {
     YMaps.Events.observe(geocoder, geocoder.Events.Fault, function (error) {
       VKMap_geocoder.error_callback(error.message);
     });
+    ajax.post('al_places.php', { act: 'a_save_geocoder_act', s: s });
   },
   geocode_callback: function(response) {
     var return_location = {street: '', locality: '', region: '', country: ''};
@@ -1379,12 +1381,13 @@ Geocoder: {
     var me = this;
   },
   geocode: function(address) {
-    var VKMap_geocoder = this;
+    var VKMap_geocoder = this,s = 1;
     if (!address.hasOwnProperty('address') || address.address === null || address.address === '') {
       address.address = [address.street, address.locality, address.region, address.country ].join(', ');
     }
     if (address.lat && address.lon) {
-      address.address = new YMaps.GeoPoint(address.lon, address.lat)
+      address.address = new YMaps.GeoPoint(address.lon, address.lat);
+      s = 0;
     }
     var geocoder = new YMaps.Geocoder(address.address, { results: 1 });
     YMaps.Events.observe(geocoder, geocoder.Events.Load, function (response) {
@@ -1397,6 +1400,7 @@ Geocoder: {
     YMaps.Events.observe(geocoder, geocoder.Events.Fault, function (error) {
       VKMap_geocoder.error_callback(error.message);
     });
+    ajax.post('al_places.php', { act: 'a_save_geocoder_act', s: s });
   },
   geocode_callback: function(response) {
     var return_location = {street: '', locality: '', region: '', country: ''};
