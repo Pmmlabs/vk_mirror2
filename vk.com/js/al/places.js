@@ -27,9 +27,15 @@ initPhotoMap: function(opts) {
           Places.initPhotoMap(opts);
         });
       }
+      var langCode = 'en_US';
+      if (cur.vkLngCode == 'ru') {
+        langCode = 'ru_RU';
+      } else if (cur.vkLngCode == 'uk') {
+        langCode = 'uk_UA';
+      }
       headNode.appendChild(ce('script', {
         type: 'text/javascript',
-        src: (window.locProtocol || 'http:') + '//api-maps.yandex.ru/2.1/?lang='+(cur.vkLngCode == 'ru' ? 'ru_RU' : 'en_US')+'&onload=yandexMapInit&load=package.standard'
+        src: (window.locProtocol || 'http:') + '//api-maps.yandex.ru/2.1/?lang='+langCode+'&onload=yandexMapInit&load=package.standard'
       }));
       return false;
     }

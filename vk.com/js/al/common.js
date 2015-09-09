@@ -4254,6 +4254,7 @@ var nav = {
       strLoc = nav.toStr(loc);
       objLoc = loc;
     }
+    statDurationsLoadImage();
     var _a = window.audioPlayer, aid = currentAudioId();
     if (_a && aid && (_a.gpDisabled || !ge('gp')) && !opts.back) _a.stop();
     if (_a && (_a.player && _a.player.paused() || !_a.player)) {
@@ -6638,7 +6639,6 @@ function showInlineVideo(videoId, listId, options, ev, thumb) {
   };
   stManager.add('videoview.js', function() {
     ajax.post('al_video.php', options.params, options);
-
     vkImage().src = locProtocol + '//vk.com/rtrg?r=w*Z1Flwi3QdbWaoLMc7zOA*7Cr4Nrtojr9otHjsjIhsb2CVqRWalgbvxZw3MzxZa6be3Siu2XY3gvK5fysYtWLWgNwHMpjRTupSGZrcGRNlj7fduqq9*t7ij6CX4aMcBTD5be8mIXJsbTsvP8Zl2RZEd76a4FTuCOFqzMxqGtFc-';
   });
   return false;
@@ -7946,6 +7946,39 @@ function aquireLock(name, fn, noretry) {
     }
   } else {
     fn();
+  }
+}
+
+function statDurationsLoadImage() {
+  if (Math.random() < 0.0001 && window.performance && window.performance.getEntriesByType) {
+    if (window.clientStatsInited) return false;
+
+    var resourceList = window.performance.getEntriesByType('resource');
+    if (!resourceList) return false;
+    var countImg = {};
+    for (var i = 0; i < resourceList.length; i++) {
+      if (resourceList[i] && resourceList[i].initiatorType == 'img') {
+        if (resourceList[i].duration < 100) {
+          countImg['<100'] = (countImg['<100'] || 0) + 1;
+        } else if (resourceList[i].duration < 250) {
+          countImg['100-250'] = (countImg['100-250'] || 0) + 1;
+        } else if (resourceList[i].duration < 5000) {
+          countImg['250-500'] = (countImg['250-500'] || 0) + 1;
+        } else if (resourceList[i].duration < 1000) {
+          countImg['500-1000'] = (countImg['500-1000'] || 0) + 1;
+        } else if (resourceList[i].duration < 2000) {
+          countImg['1000-2000'] = (countImg['1000-2000'] || 0) + 1;
+        } else if (resourceList[i].duration < 5000) {
+          countImg['2000-5000'] = (countImg['2000-5000'] || 0) + 1;
+        } else {
+          countImg['>5000'] = (countImg['>5000'] || 0) + 1;
+        }
+      }
+    }
+    for (var key in countImg) {
+      statlogsValueEvent('img_load', countImg[key], key);
+    }
+    window.clientStatsInited = true;
   }
 }
 
