@@ -199,7 +199,7 @@ saveFAQ: function(hash) {
     return notaBene('faq_text');
   }
   var language = cur.langsDD && cur.langsDD.val() || 0,
-      query = {act: 'save', title: title, text: text, keywords: keywords, description: description, hash: hash, imgs: imgs, faq_id: cur.id, fixed: cur.fixFAQ.val(), urgent: cur.urgentFAQ.val(), server: trim(val('faq_server')), id_mask: trim(val('faq_id_mask')), cdn: trim(val('faq_cdn')), language: language, parent_id: (language ? cur.parentId : 0), about_phone: cur.aboutPhoneFAQ.val(), about_profile: cur.aboutProfileFAQ.val(), about_group: cur.aboutGroupFAQ.val() };
+      query = {act: 'save', title: title, text: text, keywords: keywords, description: description, hash: hash, imgs: imgs, faq_id: cur.id, fixed: cur.fixFAQ.val(), urgent: cur.urgentFAQ.val(), server: trim(val('faq_server')), id_mask: trim(val('faq_id_mask')), cdn: trim(val('faq_cdn')), language: language, parent_id: (language ? cur.parentId : 0), about_phone: cur.aboutPhoneFAQ.val(), about_profile: cur.aboutProfileFAQ.val(), about_group: cur.aboutGroupFAQ.val(), about_email: cur.aboutEmailFAQ.val() };
 
   if (cur.sectionSelector) {
     query.section = intval(cur.sectionSelector.val());
