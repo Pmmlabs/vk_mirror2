@@ -1748,28 +1748,61 @@ a.group_ad_post_link.deleted:hover {
 }
 .group_obscene_announce_info {
   background-color: #ecf1f5;
-  padding: 11px;
+  position: relative;
+  padding: 20px 15px 15px;
+  line-height: 160%;
 }
 .group_obscene_announce_info .group_obscene_announce_img {
+  position: relative;
+  float: left;
   width: 110px;
   height: 110px;
   background-image: url(/images/pics/obscene_words.png);
   background-size: 110px 110px;
+  margin-top: -5px;
 }
 .group_obscene_announce_info .group_obscene_announce_data {
-  width: 480px;
+  padding-left: 135px;
 }
 .group_obscene_announce_info .group_obscene_announce_header {
-  font-size: 16px;
-  color: #45688e;
-  padding: 5px 0px 10px;
+  font-size: 14px;
+  color: #5c7b9b;
+  padding-bottom: 10px;
 }
 .group_obscene_announce_info .group_obscene_announce_text {
-  line-height: 170%;
+  line-height: 160%;
 }
-.group_obscene_announce_info .flat_button {
+.group_obscene_announce_info .group_obscene_announce_text br {
+  display: block;
+  line-height: 24px;
+}
+.group_obscene_announce_info .obscene_announce_setup {
+  display: block;
   margin-top: 8px;
+}
+.group_obscene_announce_info .obscene_announce_setup a {
+  margin: 4px 33px 0 0;
+  line-height: 18px;
+}
+.group_obscene_announce_info .group_obscene_announce_hide {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-image: url(/images/icons/cm_chr_close.png);
+  background-size: 12px 12px;
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+  top: 14px;
+  right: 15px;
+  cursor: pointer;
+}
+.group_obscene_announce_info .group_obscene_announce_hide:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
 }
 .is_2x .group_obscene_announce_info .group_obscene_announce_img {
   background-image: url(/images/pics/obscene_words_2x.png);
+}
+.is_2x .group_obscene_announce_info .group_obscene_announce_hide {
+  background-image: url(/images/icons/cm_chr_close_2x.png);
 }

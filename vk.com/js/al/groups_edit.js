@@ -1794,15 +1794,32 @@ var GroupsEdit = {
     };
     showTooltip(el, params);
   },
-  enableObsceneStopWords: function(el, e) {
+  enableObsceneStopWords: function(el) {
     var box = 'group_edit_obscene_stopwords',
-        words_wrap = 'group_edit_obscene_stopwords_wrap';
+        words_wrap = 'group_edit_obscene_stopwords_wrap',
+        el = ge(el);
 
     if (isChecked(el.id)) {
       show(words_wrap);
       return elfocus(box);
     }
     hide(words_wrap);
+  },
+  hideOsceneAnnounce: function (hash) {
+    hide('group_obscene_announce_info');
+    ajax.post('groupsedit.php', {act: 'hide_obscene_announce', hash: hash, id: cur.gid});
+  },
+  setupObsceneFilter: function(el) {
+    var ypos = Math.round(geByClass1('group_edit').offsetHeight / 2) - scrollY;
+    var onScrollDone = function(){
+      if (!isChecked('group_obscene_stopwords')) {
+        checkbox('group_obscene_stopwords');
+      }
+      GroupsEdit.enableObsceneStopWords('group_obscene_stopwords');
+    }
+    each([bodyNode, htmlNode], function(index, el){
+      animate(el, {scrollTop: ypos, transition: Fx.Transitions.linear}, 500, onScrollDone);
+    });
   }
 }
 
