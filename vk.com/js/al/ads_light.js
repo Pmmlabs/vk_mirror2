@@ -1481,7 +1481,13 @@ AdsLight.tryRenderCriteo = function () {
       re(iframe);
       AdsLight.tryRenderCriteo();
     });
+    if (Math.random() < 0.05) {
+      ajax.post('/ads_light.php?act=mlet&mt=748', {}, {onFail: function () { return true; }});
+    }
     return;
+  }
+  if (Math.random() < 0.05) {
+    ajax.post('/ads_light.php?act=mlet&mt=749', {}, {onFail: function () { return true; }});
   }
 
   iframe = ce('iframe', {
