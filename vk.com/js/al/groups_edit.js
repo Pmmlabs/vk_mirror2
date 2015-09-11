@@ -878,8 +878,32 @@ var GroupsEdit = {
         params[v] = isChecked(v);
       });
     }
+    if (cur.marketCountryDD) {
+      if (cur.cls == 1) {
+        params.enable_market = isChecked('enable_market');
+      } else {
+        params.market = cur.privacy['g_market'][0];
+      }
+      if (params.market || params.enable_market) {
+        params.market_comments = cur.privacy['g_market_comments'][0];
+        if (cur.privacy['g_market_wiki']) {
+          params.market_wiki = cur.privacy['g_market_wiki'][0];
+        }
+        params.market_country = cur.marketCountryDD.val();
+        if (isVisible('group_market_city_wrap')) {
+          params.market_city = cur.marketCityDD.val();
+        }
+        params.market_contact = cur.marketContactDD.val();
+      }
+    }
 
     ajax.post('al_groups.php', params, {onDone: function(result, oldaddr) {
+      if (result == -2) {
+        return notaBene(domPN(ge('group_market_country')));
+      }
+      if (result == -3) {
+        return notaBene(domPN(ge('group_market_contact')));
+      }
       if (result < 0) {
         return GroupsEdit.nbAddr();
       }
@@ -1019,6 +1043,79 @@ var GroupsEdit = {
       }
     }
 
+    if (cur.cls != 2 && selData.marketCountries) {
+      selectsData.setCountries(selData.marketCountries);
+      selectsData.setCities(selData.marketCountry, selData.marketCities);
+      cur.marketCountryChange = function() {
+        var val = clone(cur.marketCountryDD.val_full()),
+            cnt = val.length;
+        if (!cnt) return;
+        if (cur.tagRemoved) {
+          cur.tagRemoved = false;
+          return;
+        }
+        val = val.pop();
+        if (val[0] < 0) {
+          cur.marketCountryDD.clear();
+          cur.marketCountryDD.val(val, false);
+          cur.marketCountryDD.setOptions({maxItems: 1});
+          cur.marketCityDD.hide();
+        } else if (cnt > 1) {
+          cur.marketCityDD.hide();
+        } else {
+          cur.marketCountryDD.setOptions({maxItems: 10});
+          cur.marketCityDD.show();
+        }
+      }
+
+      cur.marketCityDD = new CitySelect(ge('group_market_city'), ge('group_market_city_wrap'), {
+        width: 186,
+        multiselect: true,
+        maxItems: 10,
+        progressBar: ge('group_market_country_progress'),
+        placeholder: getLang('groups_market_select_city'),
+        placeholderColor: '#999',
+        city: selData.marketCityVal,
+        country: selData.marketCountry,
+        maxItemsShown: function(query_length) {
+          return (query_length > 6) ? 500 : 350;
+        }
+      });
+      cur.marketCountryDD = new CountrySelect(ge('group_market_country'), ge('group_market_country_wrap'), {
+        width: 186,
+        multiselect: true,
+        maxItems: 10,
+        progressBar: ge('group_market_country_progress'),
+        placeholder: getLang('groups_market_select_country'),
+        placeholderColor: '#999',
+        noDefaultCountry: true,
+        country: 0,
+        selectedItems: selData.marketCountryVal,
+        citySelect: cur.marketCityDD,
+        onChange: cur.marketCountryChange,
+        onTagRemove: function(i, v) {
+          cur.tagRemoved = true;
+          var val = v.split(',');
+          if (val.length == 1) {
+            cur.marketCityDD.show();
+            cur.marketCountryDD.setOptions({maxItems: 10});
+          }
+        }
+      });
+      cur.marketCountryChange();
+      cur.marketContactDD = new Dropdown(ge('group_market_contact'), selData.marketContacts, {
+        width: 186,
+        multiselect: false,
+        autocomplete: true,
+        introText: getLang('groups_start_typing_contact'),
+        noResult: '',
+        placeholder: getLang('groups_choose_market_contact')
+      });
+      if (selData.marketContact && selData.marketContact != '0') {
+        cur.marketContactDD.val(selData.marketContact);
+      }
+    }
+
     cur.destroy.push(function(c) {
       if (c.cls == 0) {
         c.subjectDD.destroy();
@@ -1029,7 +1126,24 @@ var GroupsEdit = {
         c.subjectDD.destroy();
         if (c.hostDD) c.hostDD.destroy();
       }
+      if (c.marketCountryDD) {
+        c.marketCountryDD.destroy();
+        c.marketCityDD.destroy();
+        c.marketContactDD.destroy();
+      }
     });
+
+    cur.onPrivacyChanged = function(key, dt) {
+      var val = Privacy.getValue(key);
+      switch (key) {
+        case 'g_market':
+          GroupsEdit.toggleMarketBlock(val && val !== '0');
+          break;
+        case 'g_market_wiki':
+          toggle('group_edit_market_wiki_link', val && val !== '0');
+          break;
+      }
+    }
 
     placeholderSetup('group_rss');
   },
@@ -1689,6 +1803,30 @@ var GroupsEdit = {
       if (!ttEl.tt || !ttEl.tt.hide) return;
       ttEl.tt.hide();
     }
+  },
+  toggleMarketBlock: function(s) {
+    if (s) {
+      setStyle('group_edit_market_placeholder', 'height', getSize('group_edit_market_link')[1] + 'px');
+      hide('group_edit_market_link');
+      show('group_edit_market_placeholder');
+      slideDown('group_edit_market', 300);
+      slideUp('group_edit_market_placeholder', 300);
+    } else {
+      hide('group_edit_market_link');
+      slideUp('group_edit_market', 300);
+    }
+  },
+  showMarketTT: function(el, text, type) {
+    var shift = type ? [-200, -43, 3] : [-110, -100, 3];
+    showTooltip(el, {
+      text: '<div class="age_limits_tt_pointer"></div>' + text,
+      className: 'age_limits_tt',
+      slideX: 15,
+      shift: shift,
+      showdt: 200,
+      hidedt: 500,
+      nohideover: true
+    });
   },
   saveObsceneWords: function() {
     var words = val('group_edit_obscene_stopwords'),

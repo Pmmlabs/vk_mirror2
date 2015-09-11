@@ -178,7 +178,8 @@ a.page_module_upload:hover,
 .page_docs_upload_label,
 .page_events_upload_label,
 .page_contacts_upload_label,
-.page_places_upload_label {
+.page_places_upload_label,
+.page_market_upload_label {
   background-image: url('/images/icons/group_icons.png');
   background-repeat: no-repeat;
   display: block;
@@ -211,6 +212,9 @@ a.page_module_upload:hover,
 }
 .page_places_upload_label {
   background-position: 0px -192px;
+}
+.page_market_upload_label {
+  background: none!important;
 }
 .page_upload_photos_input {
   position: absolute;
@@ -1248,7 +1252,8 @@ a.reply_parent_link,
 .wall_module .bp_post .like_link,
 .wall_module .reply_info .like_link,
 .wall_module .pv_comment .like_link,
-.wall_module .mv_comment .like_link {
+.wall_module .mv_comment .like_link,
+.wall_module .market_comment .like_link {
   cursor: pointer;
   color: #2F5879;
   visibility: visible;
@@ -1741,7 +1746,8 @@ a.reply_parent_link,
   padding: 0px 0px;
   overflow: hidden;
 }
-.page_media_link_addr {
+.page_media_link_addr,
+.page_media_link_addr a {
   display: block;
   color: #777777;
 }
@@ -1772,6 +1778,9 @@ a.reply_parent_link,
 .wall_module .im_msg_media_link .page_media_link_desc_td {
   padding-top: 0;
   padding-bottom: 0;
+}
+.page_market_owner_link .page_media_link_text {
+  padding-left: 0;
 }
 .page_microdata_container {
   padding-top: 2px;
@@ -1805,6 +1814,49 @@ a.reply_parent_link,
 }
 .wall_module a.page_media_link_thumb:hover {
   text-decoration: none;
+}
+.wall_module .page_media_market .page_media_link_thumb {
+  min-height: 100px;
+  *height: 100px;
+  background-position: 50% 0;
+  position: relative;
+}
+.wide_wall_module.wall_module .page_media_market .page_media_link_thumb {
+  min-height: 130px;
+  *height: 130px;
+}
+.wide_wall_module.wall_module .page_media_market .page_media_link_thumb .page_media_link_thumb_shadow {
+  height: 60px;
+}
+.wall_module .page_media_link_thumb_shadow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0);
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.4)));
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+}
+.wall_module .page_media_link_thumb_legend {
+  padding: 10px;
+  font-weight: bold;
+  color: #FFF;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 0.91em;
+  line-height: 0.91em;
+}
+.wall_module .page_media_market .page_media_link_desc_td .page_media_link_desc {
+  color: #777;
 }
 .wall_module div.page_media_link_desc_wrap {
   line-height: 15px;
@@ -3372,6 +3424,66 @@ a.choose:hover {
 }
 .groups_list_module .line_cell .info {
   padding: 5px 0px 0px;
+}
+.market_module .module_body {
+  padding-bottom: 10px;
+}
+.info_tab .market_module {
+  margin-top: 10px;
+}
+.page_market_items_wrap {
+  margin: 5px 0 0 -5px;
+  text-align: center;
+}
+.page_market_item {
+  display: inline-block;
+  margin: 0 0 0 5px;
+  overflow: hidden;
+  width: 129px;
+  vertical-align: top;
+}
+.page_market_item_img {
+  width: 129px;
+  height: 129px;
+  overflow: hidden;
+}
+.page_market_item_title {
+  padding-top: 3px;
+  line-height: 1.4em;
+  max-height: 2.8em;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+.page_market_price {
+  padding-top: 3px;
+  font-weight: bold;
+  color: #3b4045;
+  text-align: left;
+}
+.page_market_show_all {
+  display: block;
+  margin: 10px 0 0;
+  padding: 10px;
+  background-color: #EFF1F3;
+  color: #738392;
+  cursor: pointer;
+  text-align: center;
+}
+.page_market_show_all:hover {
+  background-color: #E9EDF1;
+  text-decoration: none;
+}
+.page_market_show_all_arr {
+  display: inline-block;
+  *display: block;
+  *zoom: 1;
+  width: 10px;
+  height: 10px;
+  padding: 2px 0px 0px 4px;
+  background: url('/images/icons/wall_fixed_more_arrows.gif') 1px 2px no-repeat;
 }
 #own_reply_add_media {
   padding: 10px 9px 0px;

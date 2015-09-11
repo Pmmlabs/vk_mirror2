@@ -135,6 +135,7 @@ var WriteBox = {
       delete cur.mbField;
       cur.postTo = tmp;
       cur.mbEmojiScroll = cur.mbEmojiExpanded = false;
+      cur.mbForceAttach = false;
       if (window.WideDropdown) WideDropdown.deinit('mail_box_dd');
     }});
     addEvent(document, 'keydown', WriteBox.onKey);
@@ -204,6 +205,9 @@ var WriteBox = {
         }
       })) {
         WideDropdown.select('mail_box_dd', false, cur.mbTo);
+        if (opts.checkedRecipent) {
+          WideDropdown.disable('mail_box_dd', true);
+        }
       }
     });
     stManager.add(['page.js', 'page.css'], function() {
@@ -305,6 +309,9 @@ var WriteBox = {
 
   showToFull: function() {
     hide('mail_box_to_full');
+    if (cur.mbForceAttach && cur.mbForceAttach[0] == 'market') {
+      return;
+    }
     var mid = false, dd = cur.wdd && cur.wdd['mail_box_dd'], sex = 0, text = '', sel;
     for (var i in dd.selected) {
       sel = dd.selected[i];
@@ -342,6 +349,11 @@ var WriteBox = {
       media: [],
       to_ids: []
     };
+    if (cur.mbForceAttach) {
+      params.attach1_type = cur.mbForceAttach[0];
+      params.attach1 = cur.mbForceAttach[1];
+      params.attach1_hash = cur.mbForceAttach[2];
+    }
     for (var i = 0, l = media.length, v; i < l; ++i) {
       if (v = media[i]) {
         params.media.push(v[0] + ':' + v[1]);

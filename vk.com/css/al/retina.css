@@ -87,7 +87,8 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x #places_filter,
 .is_2x #ads_user_link,
 .is_2x #pt_1_search_default_container,
-.is_2x #print_search {
+.is_2x #print_search,
+.is_2x #market_search_input {
   background-image: url(/images/magglass_2x.png);
   background-size: 11px 11px;
 }
@@ -322,7 +323,8 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x .page_docs_upload_label,
 .is_2x .page_events_upload_label,
 .is_2x .page_places_upload_label,
-.is_2x .page_contacts_upload_label {
+.is_2x .page_contacts_upload_label,
+.is_2x .page_market_upload_label {
   background-image: url(/images/icons/group_icons_2x.png);
   background-size: 24px 216px;
 }
@@ -565,7 +567,8 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x .owner_photo_bubble_delete,
 .is_2x .app_delete_el,
 .is_2x .editable_thumbs .thumb_wrap .thumb_x_button .thumb_x,
-.is_2x .chat_tab_close {
+.is_2x .chat_tab_close,
+.is_2x .market_x_button .market_x {
   background-image: url(/images/notifier_close_2x.png);
   background-size: 7px 7px;
 }
@@ -1001,7 +1004,8 @@ body.dev.is_2x .paginated_table_header th.paginated_table_cell.sort_desc span.ta
 .is_2x .mv_views_count .mv_views_icon,
 .is_2x .mv_small_close_icon,
 .is_2x .mv_minimize_icon,
-.is_2x .mv_pl_toggle_icon {
+.is_2x .mv_pl_toggle_icon,
+.is_2x .wk_glance .wk_close {
   background-image: url(/images/icons/video_icon_2x.png?2);
   background-size: 14px 51px;
 }
@@ -1542,7 +1546,8 @@ body.dev.is_2x #page_wrap .big.disabled.selector_container td.selector_dropdown 
   background-size: 16px 54px;
 }
 .is_2x .wall_fixed .wall_fixed_more_arrow,
-.is_2x .wall_fixed .wall_fixed_more_arrow_back {
+.is_2x .wall_fixed .wall_fixed_more_arrow_back,
+.is_2x .group_market_show_all_arr {
   background-image: url(/images/icons/wall_fixed_more_arrows_2x.gif);
   background-size: 12px 24px;
 }
@@ -1668,7 +1673,8 @@ body.dev.is_2x .priv_h_arrow,
   background-image: url(/images/icons/photo_actions_2x.png?4);
   background-size: 20px 160px;
 }
-.is_2x .pvs_actions .pvs_action > div {
+.is_2x .pvs_actions .pvs_action > div,
+.is_2x .market_item_bigph .market_item_bigph_icon {
   background-image: url(/images/icons/photo_controls_2x.png?1);
   background-size: 21px 63px;
 }
@@ -1800,7 +1806,9 @@ body.dev.is_2x .priv_h_arrow,
   background-image: url(/images/icons/flat_plus_2x.png);
   background-size: 16px 16px;
 }
-.is_2x .mv_playlist_controls .mv_playlist_controls_icon {
+.is_2x .mv_playlist_controls .mv_playlist_controls_icon,
+.is_2x .wk_glance #wk_left_arrow,
+.is_2x .wk_glance #wk_right_arrow {
   background-image: url(/images/icons/videocat_slider_arrows_2x.png);
   background-size: 30px 23px;
 }

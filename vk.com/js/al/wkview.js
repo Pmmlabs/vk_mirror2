@@ -155,6 +155,9 @@ edit: function() {
   } else {
     params['id'] = wkcur.pid;
   }
+  if (wkcur.from) {
+    params['from'] = wkcur.from;
+  }
   ajax.post('wkview.php', params, {
     stat: ['pages.js','wysiwyg.js', 'wysiwyg.css'],
     onDone: function(content, js, info, options) {
@@ -178,6 +181,9 @@ onScroll: function(ev, resize) {
   if (wkcur.lSTL) {
     WkView.stlOnScroll(resize);
   }
+  if (wkcur.layerGlance && !resize) {
+    WkView.updateSize(true);
+  }
 
   switch (wkcur.type) {
     case 'wall':
@@ -188,6 +194,12 @@ onScroll: function(ev, resize) {
 
     case 'history':
       return WkView.historyOnScroll(resize);
+
+    case 'market':
+      if (window.Market) {
+        return Market.updateCommentsOnScroll(resize);
+      }
+      break;
   }
 
   var y = wkLayerWrap.scrollTop;
@@ -301,6 +313,12 @@ saveInfo: function(autosave) {
       return false;
     }*/
   }
+  if (wkcur.type == 'page_new') {
+    params.page_new = 1;
+  }
+  if (wkcur.from) {
+    params.from = wkcur.from;
+  }
   if (autosave && wkcur.lockAutoSave) {
     return false;
   }
@@ -314,7 +332,10 @@ saveInfo: function(autosave) {
         saveEl.innerHTML = text;
         show(saveEl);
       }
-      if (data) {
+      if (wkcur.from == 'market' && data) {
+        ge('group_edit_market_wiki').innerHTML = data.html;
+        eval(data.js);
+      } else if (data) {
         if (data.nid) {
           wkcur.nid = data.nid;
         }
@@ -468,6 +489,10 @@ show: function(title, html, options, script, ev) {
   var colorClass = wkcur.layerLight ? 'wk_light' : 'wk_dark';
 
   addClass(wkLayerWrap, colorClass);
+  if (wkcur.layerGlance) {
+    addEvent(wkLayerWrap, 'scroll', WkView.onScroll);
+    addClass(wkLayerWrap, 'wk_glance');
+  }
   addClass(layerBG, colorClass);
 
   var content = html,
@@ -569,7 +594,7 @@ show: function(title, html, options, script, ev) {
     removeClass(wkcur.wkBox, 'wk_overflow_hidden');
   }
 
-  if (wkcur.canEdit && !wkcur.toStatus && wkcur.type != 'wall') {
+  if (wkcur.canEdit && !wkcur.toStatus && wkcur.type != 'wall' && wkcur.type != 'page_new') {
     addClass(wkcur.wkBox, 'wk_view_edit_link');
   } else {
     removeClass(wkcur.wkBox, 'wk_view_edit_link');
@@ -818,12 +843,18 @@ updateArrows: function() {
   }
   var size = getSize(wkcur.wkBox),
       width = size[0],
-      height = size[1];
+      height = size[1],
+      arrowBgW = getSize(wkcur.wkLeftArrowBg)[0],
+      arrowBgW0 = arrowBgW - (wkcur.layerGlance ? 20 : 0),
+      arrowW = getSize(wkcur.wkLeftArrow)[0];
   wkcur.wkLeftNav.style.width = Math.floor((lastWindowWidth - sbw - width - 2) / 2) + 'px';
   wkcur.wkRightNav.style.left = Math.floor((lastWindowWidth - sbw + width + 2) / 2) + 'px';
   wkcur.wkRightNav.style.width = Math.floor((lastWindowWidth - sbw - width - 2) / 2) + 'px';
   if (wkcur.wkClose) {
     wkcur.wkClose.style.left = (lastWindowWidth - sbw - 2 - 37) + 'px';
+  }
+  if (wkcur.layerGlance) {
+    wkcur.wkRight.style.left = Math.floor((lastWindowWidth - sbw + width + 2) / 2) + 10 + 'px';
   }
 
   var arrowActions = WkView.getNextWkRaws();
@@ -833,8 +864,8 @@ updateArrows: function() {
       show(wkcur.wkLeftArrow);
       show(wkcur.wkLeftArrowBg);
 
-      setStyle(wkcur.wkLeftArrowBg, {left: (lastWindowWidth - sbw - width) / 2 - 90});
-      setStyle(wkcur.wkLeftArrow, {left: (lastWindowWidth - sbw - width) / 2 - 52, top: arrowTop});
+      setStyle(wkcur.wkLeftArrowBg, {left: (lastWindowWidth - sbw - width) / 2 - arrowBgW});
+      setStyle(wkcur.wkLeftArrow, {left: (lastWindowWidth - sbw - width) / 2 - arrowBgW0 + (arrowBgW0 - arrowW) / 2, top: arrowTop});
     } else {
       hide(wkcur.wkLeftArrow, wkcur.wkLeftArrowBg);
     }
@@ -843,7 +874,7 @@ updateArrows: function() {
       show(wkcur.wkRightArrow);
       show(wkcur.wkRightArrowBg);
       setStyle(wkcur.wkRightArrowBg, {left: (lastWindowWidth - sbw - width) / 2 + width});
-      setStyle(wkcur.wkRightArrow, {left: (lastWindowWidth - sbw - width) / 2 + width + 36, top: arrowTop});
+      setStyle(wkcur.wkRightArrow, {left: (lastWindowWidth - sbw - width) / 2 + width + (arrowBgW0 - arrowW) / 2, top: arrowTop});
     } else {
       hide(wkcur.wkRightArrow, wkcur.wkRightArrowBg);
     }
@@ -897,7 +928,7 @@ updateHeight: function() {
   setStyle(wkcur.wkRightArrowBg.firstChild, {height: boxH});
 },
 
-updateSize: function() {
+updateSize: function(scroll) {
   var size = getSize(wkcur.wkCont);
 
   var docEl = document.documentElement,
@@ -907,8 +938,18 @@ updateSize: function() {
       paddingBottom = wkLayer.offsetHeight - size[1] + top + 90;
 
   wkcur.wkCont.style.top = top + 'px';
-  wkcur.wkLeftArrowBg.style.paddingTop = wkcur.wkRightArrowBg.style.paddingTop = paddingTop + 'px';
+  if (wkcur.layerGlance) {
+    paddingTop = Math.max(paddingTop - wkLayerWrap.scrollTop, 10);
+    wkcur.wkRight.style.top = paddingTop + 'px';
+    wkcur.wkRightArrowBg.style.top = paddingTop + 'px';
+  } else {
+    wkcur.wkRightArrowBg.style.paddingTop = paddingTop + 'px';
+  }
+  wkcur.wkLeftArrowBg.style.paddingTop = paddingTop + 'px';
   wkcur.wkLeftArrowBg.style.paddingBottom = wkcur.wkRightArrowBg.style.paddingBottom = paddingBottom + 'px';
+  if (scroll) {
+    return;
+  }
 
   onBodyResize();
   WkView.onResize();
@@ -1831,7 +1872,14 @@ preloadArrow: function (next) {
         preloadWkRaw = actions[next ? 1 : 0];
 
     if (preloadWkRaw) {
-      ajax.post('wkview.php', extend({act: 'show', loc: nav.objLoc[0]}, {w: preloadWkRaw}), {cache: 1});
+      var page = {w: preloadWkRaw};
+      if (preloadWkRaw && preloadWkRaw.substr(-6) == '/query') {
+        var loc = clone(nav.objLoc);
+        delete loc[0];
+        delete loc.w;
+        page.query = JSON.stringify(loc);
+      }
+      ajax.post('wkview.php', extend({act: 'show', loc: nav.objLoc[0]}, page), {cache: 1});
     }
   }
 },

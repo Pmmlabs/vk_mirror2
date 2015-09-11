@@ -1618,7 +1618,7 @@ function CitySelect(input, container, options) {
 
   // extend default options with user defined
   options = extend(defaults, options);
-  options.defaultItems = [[0, options.placeholder]];
+  options.defaultItems = !options.multiselect ? [[0, options.placeholder]] : [];
   options.country = intval(options.country);
   var selector = new Selector(input, '/select_ajax.php?act=a_get_cities&country=' + options.country, options);
 
@@ -1721,7 +1721,7 @@ function CitySelect(input, container, options) {
       selectsData.getCountryInfo(options.country, 1, function(response) {
         var new_options = {
           selectedItems: options.selectedItems,
-          defaultItems: [[0, options.placeholder]].concat(response.cities),
+          defaultItems: (!options.multiselect ? [[0, options.placeholder]] : []).concat(response.cities),
           dropdown: true
         };
 
@@ -1755,7 +1755,7 @@ function CitySelect(input, container, options) {
         }
       }, options.progressBar);
     } else {
-      var new_options = {defaultItems: [[0, options.placeholder]], selectedItems: '', dropdown: true};
+      var new_options = {defaultItems: (!options.multiselect ? [[0, options.placeholder]] : []), selectedItems: '', dropdown: true};
       selector.old_setOptions(new_options);
     }
     updateVisibility();
@@ -1813,7 +1813,7 @@ function CountrySelect(input, container, options) {
 
   // extend default options with user defined
   options = extend(defaults, options);
-  options.defaultItems = [[0, options.placeholder]];
+  options.defaultItems = !options.multiselect ? [[0, options.placeholder]] : [];
   var selector = new Dropdown(input, options.defaultItems, options);
 
   function updateChildren(new_value) {
@@ -1858,13 +1858,13 @@ function CountrySelect(input, container, options) {
         selector.clear();
         updateChildren(0);
         selectsData.getCountriesFull(function(countries) {
-          var new_options = {defaultItems: [[0, options.placeholder]].concat(countries)};
+          var new_options = {defaultItems: (!options.multiselect ? [[0, options.placeholder]] : []).concat(countries)};
           selector.old_setOptions(new_options);
           if (options.country) {
             selector.val(options.country);
           }
         }, options.progressBar);
-      } else {
+      } else if (value >= 0) {
         options.country = value;
         var fields = 0;
         if (options.citySelect) {
@@ -1918,7 +1918,7 @@ function CountrySelect(input, container, options) {
   }
 
   selectsData.getCountries(function(countries) {
-    var new_options = {defaultItems: [[0, options.placeholder]].concat(countries)};
+    var new_options = {defaultItems: (!options.multiselect ? [[0, options.placeholder]] : []).concat(countries)};
     if (countries.length > 200) { // English langpack - full list already
       new_options.autocomplete = true;
       selector.old_setOptions(new_options);

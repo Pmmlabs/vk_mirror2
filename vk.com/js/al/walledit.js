@@ -22,6 +22,8 @@ var WallEdit = {
       postNode = ge('pv_comment' + post.replace(/(\d+)photo_(\d+)pv/, '$1_$2'));
     } else if (opts.reply == 'video_comment') {
       postNode = ge('mv_comment' + post.replace(/(\d+)video_(\d+)mv/, '$1_$2'));
+    } else if (opts.reply == 'market_comment') {
+      postNode = ge('market_comment' + post.replace(/(\d+)market_(\d+)/, '$1_$2'));
     } else {
       postNode = ge('post' + post);
     }
@@ -280,6 +282,8 @@ var WallEdit = {
       from = 'photo';
     } else if (post.match(/^-?\d+video_/) && window.mvcur && mvcur.mvShown && !mvcur.minimized) {
       from = 'video';
+    } else if (post.match(/^-?\d+market_/) && ge('market_comments_wrap')) {
+      from = 'market';
     }
 
     if (params.delayed) {

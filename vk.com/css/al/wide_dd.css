@@ -243,3 +243,28 @@ div.wdd {
 .wddi_thumb .wdd_mark {
   margin: 0px 26px;
 }
+div.wdd_disabled {
+  background-color: #f5f6f7;
+  border-color: #c9cdd1;
+}
+div.wdd_disabled .wdd_arr:hover {
+  cursor: default;
+}
+div.wdd_disabled .wdd_add {
+  display: none!important;
+}
+div.wdd_disabled .summary_tab2,
+div.wdd_disabled .summary_tab2:hover {
+  background: #E7E7E7;
+}
+div.wdd_disabled .summary_tab3,
+div.wdd_disabled .summary_tab3:hover {
+  color: #777777;
+}
+div.wdd_disabled .summary_tab_x,
+div.wdd_disabled .summary_tab_x:hover {
+  background-position: 0 0;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+  cursor: default;
+}

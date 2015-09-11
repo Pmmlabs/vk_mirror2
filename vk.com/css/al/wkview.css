@@ -611,6 +611,46 @@ a.wk_extpage_head_domain {
   position: relative;
   width: 1px;
 }
+.wk_glance .wk_close {
+  padding: 5px;
+  background: url(/images/icons/video_icon.png) no-repeat;
+  background-position: 5px 5px;
+  width: 15px;
+  height: 15px;
+  opacity: 0.55;
+  filter: alpha(opacity=55);
+  -o-transition: opacity 0.15s ease-in-out;
+  -ms-transition: opacity 0.15s ease-in-out;
+  -moz-transition: opacity 0.15s ease-in-out;
+  -webkit-transition: opacity 0.15s ease-in-out;
+  transition: opacity 0.15s ease-in-out;
+}
+.wk_glance .wk_close:hover {
+  opacity: 1 !important;
+  filter: none !important;
+}
+.wk_glance .wk_arrow_bg_inner {
+  opacity: 0 !important;
+  filter: alpha(opacity=0) !important;
+}
+.wk_glance #wk_left_arrow_bg,
+.wk_glance #wk_right_arrow_bg {
+  position: fixed;
+  width: 70px;
+}
+.wk_glance #wk_right_arrow_bg {
+  margin-top: 30px;
+}
+.wk_glance #wk_left_arrow,
+.wk_glance #wk_right_arrow {
+  width: 14px;
+  height: 23px;
+  background: url(/images/icons/videocat_slider_arrows.png) no-repeat;
+  background-position: -16px 0;
+}
+.wk_glance #wk_left_arrow {
+  background-position: 0 0;
+}
 /* Wall posts */
 .wl_owner_head_wrap {
   background-color: #EEE;
@@ -1430,4 +1470,13 @@ div#wl_post_body_wrap.wl_postreach_wall_module .post_actions_wrap {
   color: #999;
   font-size: 10px;
   padding-left: 30px;
+}
+.wk_product_box .wk_close_link {
+  display: none;
+}
+.wk_product_box #wk_content {
+  width: 800px;
+}
+.wk_product_box .wk_wiki_content {
+  padding: 0;
 }

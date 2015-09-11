@@ -2801,7 +2801,7 @@ var Wall = {
   replyOver: function(post) {
     if (!vk.id) return;
     var postParts = post.split('_'),
-        reply = postParts.join(postParts[0].match(/(-?\d+)(photo|video|topic)/) ? '_comment' : '_wall_reply'),
+        reply = postParts.join(postParts[0].match(/(-?\d+)(photo|video|topic|market)/) ? '_comment' : '_wall_reply'),
         lnk = ge('like_link' + reply),
         icon = ge('like_icon' + reply);
 
@@ -2827,7 +2827,7 @@ var Wall = {
   replyOut: function(post) {
     if (!vk.id) return;
     var postParts = post.split('_'),
-        reply = postParts.join(postParts[0].match(/(-?\d+)(photo|video|topic)/) ?  '_comment' : '_wall_reply'),
+        reply = postParts.join(postParts[0].match(/(-?\d+)(photo|video|topic|market)/) ?  '_comment' : '_wall_reply'),
         lnk = ge('like_link' + reply),
         icon = ge('like_icon' + reply);
 
@@ -2862,7 +2862,7 @@ var Wall = {
       setStyle(icon, {opacity: 1});
     }
     if (cur.viewAsBox) return;
-    var matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|)(\d+)/)
+    var matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/)
         like_obj = (matches[3] || 'wall') + matches[1] + '_' + matches[4],
         linkW = link.clientWidth || link.offsetWidth,
         leftShift = opts.leftShift || (link.parentNode == icon.parentNode ? 0 : linkW),
@@ -2933,7 +2933,7 @@ var Wall = {
 
     if (!icon || cur.viewAsBox) return;
     opts = opts || {};
-    var matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|)(\d+)/)
+    var matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|market|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/)
         like_obj = (matches[3] || 'wall') + matches[1] + '_' + matches[4],
         linkW = link.clientWidth || link.offsetWidth,
         leftShift = opts.leftShift || (link.parentNode == icon.parentNode ? 0 : linkW),
@@ -2989,7 +2989,7 @@ var Wall = {
         count = ge('share_count' + post);
     if (!icon || cur.viewAsBox) return;
     opts = opts || {};
-    var matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|)(\d+)/)
+    var matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|market|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/)
         like_obj = (matches[3] || 'wall') + matches[1] + '_' + matches[4],
         linkW = link.clientWidth || link.offsetWidth,
         leftShift = opts.leftShift || (link.parentNode == icon.parentNode ? 0 : linkW),
@@ -3059,7 +3059,7 @@ var Wall = {
   },
   likeFullUpdate: function (like_obj, likeData) {
     // debugLog(like_obj, likeData);
-    var matches = like_obj.match(/^(wall|photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|)(-?\d+_)(\d+)/),
+    var matches = like_obj.match(/^(wall|photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(-?\d+_)(\d+)/),
         post = matches ? (matches[2] + (matches[1] == 'wall' ? '' : matches[1]) + matches[3]) : like_obj;
 
     Wall.likeUpdate(post, likeData.like_my, likeData.like_num, likeData.like_title);
@@ -3070,7 +3070,7 @@ var Wall = {
     // debugLog(post, my, count, title);
     count = intval(count);
 
-    var m = post.match(/(-?\d+)(_?)(photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|)(\d+)/),
+    var m = post.match(/(-?\d+)(_?)(photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/),
         like_obj = (m[3] || 'wall') + m[1] + '_' + m[4];
 
     var countInput = ge('like_real_count_' + like_obj) || {}, rows = ge('like_table_' + like_obj);
@@ -3116,7 +3116,7 @@ var Wall = {
     // debugLog(post, my, count, title);
     count = intval(count);
 
-    var m = post.match(/(-?\d+)(_?)(photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|)(\d+)/),
+    var m = post.match(/(-?\d+)(_?)(photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/),
         like_obj = (m[3] || 'wall') + m[1] + '_' + m[4];
 
     var countInput = ge('like_real_countshares_' + like_obj) || {},
@@ -3166,7 +3166,7 @@ var Wall = {
 
     var icon = ge('like_icon' + post),
         my = hasClass(icon, hasClass(icon, 'fw_like_icon') ? 'fw_my_like' : 'my_like'),
-        matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|)(\d+)/),
+        matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|market|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/),
         like_obj = (matches[3] || 'wall') + matches[1] + '_' + matches[4],
         ref = cur.wallType ? (cur.wallType == 'feed' ? 'feed_' + cur.section : ('wall_' + (cur.onepost ? 'one' : (!(cur.wallType || '').indexOf('full_') ? 'full' : 'page')))) : cur.module;
 
@@ -3181,7 +3181,7 @@ var Wall = {
   },
   likeShare: function(post, hash) {
     if (!vk.id || cur.viewAsBox) return;
-    var matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|)(\d+)/),
+    var matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|market|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/),
         like_obj = (matches[3] || 'wall') + matches[1] + '_' + matches[4],
         el = ge('like_share_' + like_obj), was = isChecked(el),
         ref = cur.wallType ? (cur.wallType == 'feed' ? 'feed_' + cur.section : ('wall_' + (cur.onepost ? 'one' : (!(cur.wallType || '').indexOf('full_') ? 'full' : 'page')))) : cur.module;
@@ -3195,7 +3195,7 @@ var Wall = {
     Wall.likeUpdate(post, true, intval(count) + (my ? 0 : 1));
   },
   likeShareCustom: function (post, params) {
-    var matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|)(\d+)/),
+    var matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|market|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/),
         like_obj = (matches[3] || 'wall') + matches[1] + '_' + matches[4];
 
     showBox('like.php', extend({act: 'publish_box', object: like_obj}, params));

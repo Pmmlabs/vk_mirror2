@@ -178,6 +178,7 @@ createChildClass('Selector', UiControl, {
     resultField: undefined,
     customField: undefined,
     enableCustom: false,
+    multiCustom: false,
     valueForCustom: -1,
     width: 300,
     height: 250,
@@ -663,7 +664,7 @@ createChildClass('Selector', UiControl, {
         break;
 
       case 'keypress':
-        if (e.which == KEY.RETURN && browser.opera && self.options.enableCustom && (self.select.selectedItem() === null || self.select.selectedItem() === undefined)) {
+        if (e.which == KEY.RETURN && browser.opera && self.options.enableCustom && (self.options.multiCustom || self.select.selectedItem() === null || self.select.selectedItem() === undefined)) {
           self.select.hide();
           if (!self.options.noBlur) { self.input.blur(); }
           else if (isFunction(self.options.onChange)) {
@@ -712,7 +713,7 @@ createChildClass('Selector', UiControl, {
             return true;
           break;
           case KEY.RETURN:
-            if (!browser.opera && self.options.enableCustom && (self.select.selectedItem() === null || self.select.selectedItem() === undefined)) {
+            if (!browser.opera && self.options.enableCustom && (self.options.multiCustom || self.select.selectedItem() === null || self.select.selectedItem() === undefined)) {
               self.select.hide();
               if (!self.options.noBlur) { self.input.blur(); }
               else if (isFunction(self.options.onChange)) {
@@ -781,14 +782,32 @@ createChildClass('Selector', UiControl, {
     }
     return true;
   },
-  updateCustom: function() {
+  updateCustom: function(forceVal) {
     var self = this;
-    if (self.options.enableCustom && self.input.value.length) {
-      var custom_val = self.input.value;
-      if (self._selectedItems.length == 0) {
-        self.resultField.value = parseInt(!self.options.valueForCustom);
-        self.customField.value = custom_val;
-        self._selectItem([self.options.valueForCustom, custom_val]);
+    if (self.options.enableCustom && (self.input.value.length || forceVal && forceVal.length)) {
+      var custom_val = self.input.value || forceVal;
+      if (self._selectedItems.length == 0 || self.options.multiCustom) {
+        var valid = true, multiValue = false;
+        if (self.options.multiCustom) {
+          custom_val = custom_val.split(',');
+          if (custom_val.length > 1) multiValue = custom_val.slice(1).join(',');
+          custom_val = trim(custom_val[0]);
+          for (var i = 0, l = this._selectedItems.length; i < l; i++) {
+            if (this._selectedItems[i][1] == custom_val) {
+              valid = false;
+              break;
+            }
+          }
+        }
+        if (valid) {
+          self.resultField.value = parseInt(!self.options.valueForCustom);
+          self.customField.value = custom_val;
+          self._selectItem([self.options.valueForCustom, custom_val], true, true);
+          if (self.options.multiCustom) {
+            this.options.valueForCustom--;
+          }
+        }
+        if (multiValue) self.updateCustom(multiValue);
       }
     } else if (self._selectedItems.length == 0) {
       self.input.value = '';
@@ -1265,7 +1284,11 @@ createChildClass('Selector', UiControl, {
           }
         }
         if (!formatted) continue;
-        adding.push([it[0], formatted]);
+        var a = [it[0], formatted];
+        if (it[5] === '1') {
+          a.push(true);
+        }
+        adding.push(a);
       }
     }
     if (text && adding.length > 1) {
@@ -3433,7 +3456,7 @@ InlineDropdown.prototype._onClick = function(event) {
 
   var popupEl = this._els.popupEl = se('<div class="idd_popup"></div>');
 
-  this.openToUp = isOpenToUp();
+  this.openToUp = this._opts.forceDir == 1 || this._opts.forceDir == 'up' || this._opts.forceDir != -1 && this._opts.forceDir != 'down' && isOpenToUp();
   if (this.openToUp) {
     popupEl.appendChild(this._els.popupItems);
     popupEl.appendChild(this._els.popupHeader);
@@ -3702,7 +3725,14 @@ InlineDropdown.prototype._showSubmenu = function(itemEl) {
       }
 
       if (item) {
-        var res = sublist.onSelect ? sublist.onSelect(item.getAttribute('data-id')) : true;
+        var res = true,
+            item_id = item.getAttribute('data-id'),
+            item_name = geByClass1('idd_item_name', item).innerHTML;
+        if (sublist.onSelect) {
+          res = sublist.onSelect(item_id, item_name);
+        } else if (_this._opts.onSelect) {
+          res = _this._opts.onSelect(item_id, item_name);
+        }
         if (res) {
           _this._hide();
         }

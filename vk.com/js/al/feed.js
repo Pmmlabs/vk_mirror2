@@ -2106,16 +2106,16 @@ var Feed = {
   unsubscribe: function (post_raw, hash) {
     triggerEvent(ge('post_delete' + post_raw), 'mouseout');
     cur.feedEntriesHTML[post_raw] = ge('post' + post_raw).innerHTML;
-    var matches = post_raw.match(/(\-?\d+)_(photo|video|topic|note|)(\d+)/);
+    var matches = post_raw.match(/(\-?\d+)_(photo|video|topic|note|market|)(\d+)/);
     if (!matches) return;
-    ajax.post('al_feed.php', {act: 'unsubscribe', type: {'': 24, photo: 21, video: 22, topic: 20, note: 23}[matches[2]], owner_id: matches[1], place_id: matches[3], hash: hash, feed: 1}, {
+    ajax.post('al_feed.php', {act: 'unsubscribe', type: {'': 24, photo: 21, video: 22, topic: 20, note: 23, market: 25}[matches[2]], owner_id: matches[1], place_id: matches[3], hash: hash, feed: 1}, {
       onDone: function(html) { ge('post' + post_raw).innerHTML = html.replace('%post_raw%', post_raw); }
     });
   },
   subscribe: function (post_raw, hash) {
-    var matches = post_raw.match(/(\-?\d+)_(photo|video|topic|note|)(\d+)/);
+    var matches = post_raw.match(/(\-?\d+)_(photo|video|topic|note|market|)(\d+)/);
     if (!matches) return;
-    ajax.post('al_feed.php', {act: 'subscribe', type: {'': 24, photo: 21, video: 22, topic: 20, note: 23}[matches[2]], owner_id: matches[1], place_id: matches[3], hash: hash, feed: 1}, {
+    ajax.post('al_feed.php', {act: 'subscribe', type: {'': 24, photo: 21, video: 22, topic: 20, note: 23, market: 25}[matches[2]], owner_id: matches[1], place_id: matches[3], hash: hash, feed: 1}, {
       onDone: feed.restorePost.pbind(post_raw)
     });
   },

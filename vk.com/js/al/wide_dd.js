@@ -81,7 +81,7 @@ var wdd = {
     setTimeout(wdd._widenTextInput.pbind(dd), 0);
   },
   _focusText: function(dd) {
-    if (dd.full) {
+    if (dd.full || dd.disabled) {
       return;
     }
     hide(dd.add);
@@ -338,7 +338,7 @@ var wdd = {
     dd.listWrap.style.marginTop = mt + 'px';
   },
   _showList: function(dd) {
-    if (!dd.text.focused) return;
+    if (!dd.text.focused || dd.disabled) return;
     if (!isVisible(dd.listWrap)) {
       ge(dd.listWrap).style.display = 'block';
       wdd._updateList(dd, true);
@@ -619,6 +619,10 @@ var wdd = {
   },
   deselect: function(id, sel, e) {
     var dd = cur.wdd[id];
+    if (dd.disabled) {
+      if (e) return cancelEvent(e);
+      return;
+    }
     if (sel === undefined) {
       dd.selCount = dd.full = 0;
       dd.arrow.style.visibility = 'hidden';
@@ -674,6 +678,17 @@ var wdd = {
     dd.text.blur();
     wdd._textEvent({target: dd.text, type: dd.text.focused ? 'focus' : 'blur'});
     wdd._updateList(dd, true);
+  },
+  disable: function(id, value) {
+    var dd = cur.wdd[id];
+    if (value && !dd.disabled) {
+      dd.disabled = true;
+      addClass(id, 'wdd_disabled');
+    } else if (!value && dd.disabled) {
+      dd.disabled = false;
+      removeClass(id, 'wdd_disabled');
+      wdd._updateList(dd, true);
+    }
   }
 };
 

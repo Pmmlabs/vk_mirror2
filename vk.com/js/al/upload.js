@@ -561,7 +561,7 @@ onUploadComplete: function(info, result, extra_info) {
   if (options.onUploadComplete) {
     var errorAdd = '';
     if (options.signed) {
-      var obj = parseJSON(result);
+      var obj = result ? parseJSON(result) : '';
       if (!obj) {
         result = '{"error":"ERR_CLIENT_UPLOAD_FAIL: upload request bad result, url \\"' + Upload.uploadUrls[i] + '\\""}';
       } else {
@@ -600,7 +600,7 @@ onUploadError: function(info, result) {
   }
   if (options.signed) {
     if (options.onUploadComplete) {
-      options.onUploadComplete('{"error":"ERR_CLIENT_UPLOAD_FAIL: upload request fail, code \\"' + result.replace(/([\\\"])/g, '\\$1').replace(/\n/g, '\\n') + '\\", url \\"' + Upload.uploadUrls[i] + '\\""}');
+      options.onUploadComplete(info, '{"error":"ERR_CLIENT_UPLOAD_FAIL: upload request fail, code \\"' + result.replace(/([\\\"])/g, '\\$1').replace(/\n/g, '\\n') + '\\", url \\"' + Upload.uploadUrls[i] + '\\""}');
     }
   } else if (options.onUploadError) {
     options.onUploadError(info, result);
@@ -1112,7 +1112,7 @@ terminateUpload: function(i, name) {
       }
     }
     re('upload' + ind + '_progress_wrap');
-    Upload.onUploadComplete(info, '');
+    Upload.onUploadComplete(info, '{"error":"ERR_UPLOAD_TERMINATED: upload request was terminated"}');
     if (!inQueue && options.xhr) options.xhr.abort();
     var url = this.uploadUrls[i] + (this.uploadUrls[i].match(/\?/) ? '&' : '?') + params.join('&');
     if (!inQueue) {

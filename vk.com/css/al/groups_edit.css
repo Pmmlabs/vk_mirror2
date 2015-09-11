@@ -40,9 +40,6 @@ div.gedit_public_labeled {
 .group_edit_next {
   margin-top: 7px;
 }
-.group_save_button {
-  margin-top: 10px;
-}
 .group_conv_header {
   color: #36638E;
   font-size: 1.09em;
@@ -179,6 +176,10 @@ input#group_edit_addr {
   display: inline-block;
   color: #707070;
   margin-left: 5px;
+}
+.group_edit_row_sep {
+  border-bottom: 1px solid #e0e0e0;
+  margin: 10px 0 15px;
 }
 #event_phone,
 #event_mail {
@@ -1725,27 +1726,6 @@ a.group_ad_post_link.deleted:hover {
 .group_activity_row_wrap:last-child .group_activity_obscene_comment_wrap {
   border-bottom: none;
 }
-.is_2x .group_activity_row_wrap .group_activity_delete_row {
-  background-image: url(/images/pics/statusx_op_2x.gif);
-}
-.group_activity_row_empty {
-  padding: 85px 130px;
-  font-size: 12px;
-  line-height: 14px;
-  text-align: center;
-  color: #777;
-}
-.group_activity_more_link {
-  padding: 15px 0;
-  margin: 0 15px;
-  display: block;
-  text-align: center;
-  height: 13px;
-  border-top: 1px solid #dae1e8;
-}
-.group_activity_more_link .progress {
-  margin: 0 auto;
-}
 .group_obscene_announce_info {
   background-color: #ecf1f5;
   position: relative;
@@ -1805,4 +1785,35 @@ a.group_ad_post_link.deleted:hover {
 }
 .is_2x .group_obscene_announce_info .group_obscene_announce_hide {
   background-image: url(/images/icons/cm_chr_close_2x.png);
+}
+.is_2x .group_activity_row_wrap .group_activity_delete_row {
+  background-image: url(/images/pics/statusx_op_2x.gif);
+}
+.group_activity_row_empty {
+  padding: 85px 130px;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  color: #777;
+}
+.group_activity_more_link {
+  padding: 15px 0;
+  margin: 0 15px;
+  display: block;
+  text-align: center;
+  height: 13px;
+  border-top: 1px solid #dae1e8;
+}
+.group_activity_more_link .progress {
+  margin: 0 auto;
+}
+.group_edit_public .group_edit_market_link {
+  padding-left: 20px;
+}
+.group_edit_public .group_edit_market {
+  padding-top: 5px;
+}
+.group_market_country_progress {
+  display: none;
+  padding: 6px 0 0 10px;
 }

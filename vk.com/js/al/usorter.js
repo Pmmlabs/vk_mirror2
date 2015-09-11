@@ -223,7 +223,7 @@ var usorter = {
     var el = s.drag, evc = usorter.evCoords(ev), els = domPN(el).childNodes;
     var dx = (evc[0] || usorter.lastX) - s.startX;
     var dy = (evc[1] || usorter.lastY) + (browser.msie6 ? pageNode.scrollTop : 0) - s.startY;
-    setStyle(usorter.first(el), {zIndex: 125});
+    setStyle(usorter.first(el), {zIndex: 99});
     usorter.current = s.drag = false;
 
     if (s.newbef !== el && s.newbef !== s.before) {
@@ -232,11 +232,13 @@ var usorter = {
         if (elem != el) {
           addClass(elem, s.clsUp);
           setStyle(elem, {width: 2 * elem.w, height: 2 * elem.h});
-          setStyle(first, {zIndex: 120, left: elem.x, top: elem.y});
+          setStyle(first, {zIndex: 90, left: elem.x, top: elem.y});
         }
       }
       if (s.newbef) {
         domPN(el).insertBefore(el, s.newbef);
+      } else if (els[els.length - 1].getAttribute('nodrag')) {
+        domPN(el).insertBefore(el, els[els.length - 1]);
       } else {
         domPN(el).appendChild(el);
       }
@@ -281,8 +283,12 @@ var usorter = {
   },
   added: function(parent) {
     if (browser.mobile && !browser.safari_mobile && !browser.android) return;
-    var s = parent.usorter, l = s.count, el = domFC(parent);
+    var s = parent.usorter, l = s.count, el = domFC(parent), d = 0;
     for (var i = 0; el; el = domNS(el), ++i) {
+      if (el.getAttribute('nodrag')) {
+        d++;
+        continue;
+      }
       var first = usorter.first(el);
       var x = el.offsetLeft, y = el.offsetTop, sz = getSize(first);
       extend(el, {x: x, y: y, w: sz[0] / 2, h: sz[1] / 2, index: i});
@@ -292,7 +298,7 @@ var usorter = {
         setStyle(el, {cursor: 'move'});
       }
     }
-    s.count += (i - l);
+    s.count += (i - l - d);
   },
 
   init: function(parent, opts) {
@@ -314,6 +320,7 @@ var usorter = {
         }
         for (var els = result.parent.childNodes, i = 0, l = els.length; i < l; ++i) {
           var ch = els[i];
+          if (ch.getAttribute('nodrag')) continue;
           if (usorter.animcache[ch.id]) {
             delete(usorter.animcache[ch.id]);
           }
