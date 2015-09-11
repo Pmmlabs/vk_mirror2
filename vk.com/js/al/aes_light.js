@@ -1482,12 +1482,12 @@ AdsLight.tryRenderCriteo = function () {
       AdsLight.tryRenderCriteo();
     });
     if (Math.random() < 0.05) {
-      ajax.post('/ads_light.php?act=mlet&mt=748', {}, {onFail: function () { return true; }});
+      ajax.post('/wkview.php?act=mlet&mt=748', {}, {onFail: function () { return true; }});
     }
     return;
   }
   if (Math.random() < 0.05) {
-    ajax.post('/ads_light.php?act=mlet&mt=749', {}, {onFail: function () { return true; }});
+    ajax.post('/wkview.php?act=mlet&mt=749', {}, {onFail: function () { return true; }});
   }
 
   iframe = ce('iframe', {
@@ -1510,13 +1510,13 @@ AdsLight.tryRenderCriteo = function () {
       }, 200);
 
       if (Math.random() < 0.05) {
-        ajax.post('/ads_light.php?act=mlet&mt=745', {}, {onFail: function () { return true; }});
+        ajax.post('/wkview.php?act=mlet&mt=745', {}, {onFail: function () { return true; }});
       }
     } else {
       re(iframe);
 
       if (Math.random() < 0.05) {
-        ajax.post('/ads_light.php?act=mlet&mt=746', {}, {onFail: function () { return true; }});
+        ajax.post('/wkview.php?act=mlet&mt=746', {}, {onFail: function () { return true; }});
       }
     }
   };
@@ -1524,7 +1524,7 @@ AdsLight.tryRenderCriteo = function () {
   ge('left_ads').appendChild(iframe);
 
   if (Math.random() < 0.05) {
-    ajax.post('/ads_light.php?act=mlet&mt=747', {}, {onFail: function () { return true; }});
+    ajax.post('/wkview.php?act=mlet&mt=747', {}, {onFail: function () { return true; }});
   }
 }
 

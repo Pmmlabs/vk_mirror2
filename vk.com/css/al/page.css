@@ -757,7 +757,7 @@ div.wall_module .ext_video div {
 .wall_module .post_actions,
 .wall_module .reply_actions {
   height: 11px;
-  width: 32px;
+  width: 50px;
   padding-top: 4px;
   position: absolute;
   right: 0;
@@ -777,6 +777,24 @@ div.wall_module .ext_video div {
 .wall_module .reply_edit_button,
 .wall_module .post_edit_button {
   background-image: url(/images/pics/statusedit.gif);
+}
+.wall_module .post_promote_button {
+  background: url(/images/wall_post_promote.png) 0 0 no-repeat;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  cursor: pointer;
+  height: 12px;
+  width: 12px;
+  margin-left: 5px;
+}
+.wall_module .post_promoted_stats_button {
+  background: url(/images/wall_post_promoted_stats.png) 0 0 no-repeat;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  cursor: pointer;
+  height: 11px;
+  width: 11px;
+  margin-left: 5px;
 }
 .wall_module div.post_table {
   position: relative;
@@ -3466,7 +3484,7 @@ a.choose:hover {
 .page_market_show_all {
   display: block;
   margin: 10px 0 0;
-  padding: 10px;
+  padding: 9px 10px 10px;
   background-color: #EFF1F3;
   color: #738392;
   cursor: pointer;

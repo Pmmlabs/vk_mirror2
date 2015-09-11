@@ -238,6 +238,14 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
   background-image: url(/images/pics/statusx_op_2x.gif);
   background-size: 11px 11px;
 }
+.is_2x .wall_module .post_promote_button {
+  background-image: url(/images/wall_post_promote_2x.png);
+  background-size: 11px 11px;
+}
+.is_2x .wall_module .post_promoted_stats_button {
+  background-image: url(/images/wall_post_promoted_stats_2x.png);
+  background-size: 11px 11px;
+}
 .is_2x #friends .delete_row div {
   background-image: url(/images/pics/statusx_2x.png);
   background-size: 17px 17px;
@@ -1547,7 +1555,7 @@ body.dev.is_2x #page_wrap .big.disabled.selector_container td.selector_dropdown 
 }
 .is_2x .wall_fixed .wall_fixed_more_arrow,
 .is_2x .wall_fixed .wall_fixed_more_arrow_back,
-.is_2x .group_market_show_all_arr {
+.is_2x .page_market_show_all_arr {
   background-image: url(/images/icons/wall_fixed_more_arrows_2x.gif);
   background-size: 12px 24px;
 }

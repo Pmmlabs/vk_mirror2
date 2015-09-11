@@ -55,7 +55,7 @@ var Market = {
       width: 150,
       big: 1,
       selectedItems: cur.order,
-      onChange: Market.updateList
+      onChange: Market.updateList.pbind(false)
     });
 
     Market.initSorter();
@@ -177,9 +177,14 @@ var Market = {
     }
     return true;
   },
-  updateList: function() {
+  updateList: function(offset) {
     clearTimeout(cur.searchTimeout);
-    cur.searchTimeout = setTimeout((function() {
+    var _update = function() {
+      if (offset && offset > 0) {
+        cur.searchOffset = offset;
+      } else {
+        cur.searchOffset = 0;
+      }
       var params = Market.getSearchParams();
       if ((!Market.sameParams(params) || cur.ignoreEqual)) {
         delete cur.ignoreEqual;
@@ -197,7 +202,12 @@ var Market = {
       if (!params.offset) {
         scrollToTop();
       }
-    }).bind(this), 10);
+    }
+    if (offset) {
+      _update();
+    } else {
+      cur.searchTimeout = setTimeout(_update.bind(this), 10);
+    }
   },
   searchItems: function() {
     var query = cur.params || Market.getSearchParams();
@@ -237,7 +247,7 @@ var Market = {
 
         var searchParamsCount = 0;
         each (query, function(k, v) {
-          if (!inArray(k, ['id', 'load', 'sort']) && v != '') {
+          if (!inArray(k, ['id', 'load', 'sort', 'offset']) && v != '' || (k == 'sort' && v != 1)) {
             searchParamsCount++;
           }
         });
@@ -270,11 +280,11 @@ var Market = {
     Market.updateList();
   },
   showMore: function() {
+    if (cur.mSection == 'albums') return false;
     var offset = cur.searchOffset || 0;
     offset += cur.itemsPerPage;
-    cur.searchOffset = offset;
     addClass(cur.more, 'load_more');
-    Market.updateList();
+    Market.updateList(offset);
     return false;
   },
 

@@ -2019,6 +2019,11 @@ function __adsUpdate(force) {
 function __adsSet(adsHtml, adsSection, adsCanShow, adsShowed, adsParams) {
   if (window.noAdsAtAll) return false;
   __adsSet = function() {
+    if (adsHtml.slice(0, '<!--criteo'.length) === '<!--criteo') {
+      if (Math.random() < 0.05) {
+        ajax.post('/wkview.php?act=mlet&mt=750', {}, {onFail: function () { return true; }});
+      }
+    }
     window.AdsLight && AdsLight.setNewBlock.apply(AdsLight.setNewBlock, arguments);
   };
   stManager.add(['aes_light.js'], __adsSet.pbind(adsHtml, adsSection, adsCanShow, adsShowed, adsParams));

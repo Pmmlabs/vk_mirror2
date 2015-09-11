@@ -669,6 +669,18 @@ img.fc_msgs_author {
   font-weight: bold;
   padding: 0 0 3px 3px;
 }
+.fc_msg_media .media_desc .lnk.lnk_mail {
+  border-left: 2px solid #C3D1E0;
+  padding-left: 10px;
+}
+.fc_msg_media .media_desc .lnk .lnk_mail_title {
+  font-weight: bold;
+  color: #446790;
+}
+.fc_msg_media .media_desc .lnk .lnk_mail_description {
+  color: black;
+  padding-top: 6px;
+}
 .fc_msgs_unread {
   background-color: #E6ECF1;
 }

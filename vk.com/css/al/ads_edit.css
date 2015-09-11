@@ -434,6 +434,10 @@ a.ads_edit_link_go:hover {
   text-decoration: none;
   cursor: pointer;
 }
+.info_msg.promoted_post_union_warning_msg {
+  background-color: white;
+  margin-bottom: 20px;
+}
 /* ------------------ */
 /* Edit ad - behavior */
 /* ------------------ */

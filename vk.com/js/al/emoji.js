@@ -278,6 +278,7 @@ editableFocus: function(editable, obj, after, noCollapse) {
   if (!editable) {
     return false;
   }
+  editable = ge(editable);
   editable.focus();
   if (editable.phonfocus) {
     editable.phonfocus();

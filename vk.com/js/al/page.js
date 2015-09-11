@@ -4463,10 +4463,14 @@ var wall = extend(Wall, {
   showDeletePost: function (post) {
     Wall._animDelX(0.3, undefined, post, 'post_delete');
     Wall._animDelX(0.3, undefined, post, 'post_edit');
+    Wall._animDelX(0.3, undefined, post, 'post_promote');
+    Wall._animDelX(0.3, undefined, post, 'post_promoted_stats');
   },
   hideDeletePost: function (post) {
     Wall._animDelX(0, undefined, post, 'post_delete');
     Wall._animDelX(0, undefined, post, 'post_edit');
+    Wall._animDelX(0, undefined, post, 'post_promote');
+    Wall._animDelX(0, undefined, post, 'post_promoted_stats');
   },
   activeDeletePost: function(post, tt, action) {
     Wall._animDelX(1, 1, post, action);
