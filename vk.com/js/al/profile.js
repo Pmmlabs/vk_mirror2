@@ -784,6 +784,25 @@ var Profile = {
         }
       }
     }
+
+    if (cur.module == 'profile' && opts.bvg) {
+      var pageWrapEl = ge('page_wrap');
+      bodyNode.appendChild(cur.bvg = se(trim(opts.bvg)));
+      setTimeout(function() {
+        setStyle(cur.bvg, 'opacity', 1);
+      }, 1000);
+      addEvent(cur.bvg, 'click', function() {
+        toggleClass(pageWrapEl, 'rbvg');
+      });
+
+      addClass(pageWrapEl, 'bvg');
+
+      cur.destroy.push(function() {
+        re(cur.bvg);
+        removeClass(pageWrapEl, 'bvg');
+        removeClass(pageWrapEl, 'rbvg');
+      });
+    }
   },
   inviteHintUpdate: function() {
     var hint = ge('top_invite_hint');

@@ -39,13 +39,19 @@ var Graffiti = {
     this.addSlider("size", this.controlsCtx, 267, 31, 20);
     this.addSlider("opacity", this.controlsCtx, 483, 31, 80);
     this.redrawColorPickerButton(this.controlsCtx, 147, 30, "51, 102, 153", false);
-    this.addText(this.controlsCtx, cur.lang['graffiti_flash_color'], 100, 35.5);
-    this.addText(this.controlsCtx, cur.lang['graffiti_flash_opacity'], 390, 35.5);
-    this.addText(this.controlsCtx, cur.lang['graffiti_flash_thickness'], 206, 35.5);
+    this.addText(this.controlsCtx, decodeHtmlText(cur.lang['graffiti_flash_color']), 137, 35.5);
+    this.addText(this.controlsCtx, decodeHtmlText(cur.lang['graffiti_flash_opacity']), 473, 35.5);
+    this.addText(this.controlsCtx, decodeHtmlText(cur.lang['graffiti_flash_thickness']), 257, 35.5);
     this.drawColorPicker(this.cpCtx);
     this.attachEvents();
     this.canvWrapper.style.width = this.W + "px";
     this.canvWrapper.style.height = this.H + "px";
+
+    function decodeHtmlText(htmlText) {
+      var el = ce('div');
+      el.innerHTML = htmlText.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      return el.textContent || el.innerText;
+    }
   },
 
   mouse: {
@@ -511,6 +517,7 @@ var Graffiti = {
     ctx.fillStyle = "#000000";
     ctx.strokeStyle = "#000000";
     ctx.font = "11px Tahoma, Arial, Verdana, Sans-Serif, Lucida Sans";
+    ctx.textAlign = "right";
     ctx.beginPath();
     ctx.fillText(str, Math.floor(x+0.5), Math.floor(y+0.5));
     ctx.closePath();

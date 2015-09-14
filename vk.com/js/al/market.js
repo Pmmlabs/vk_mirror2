@@ -36,8 +36,12 @@ var Market = {
       addEvent(elem, 'keydown', function(event) {
         if (event.keyCode == KEY.ENTER) Market.updateList();
       });
-      addEvent(elem, 'keydown keyup keypress change paste cut drop input blur', function(event) {
-        val(elem, elem.value.replace(/[^0-9\.]/g, ''));
+      addEvent(elem, 'keydown keyup keypress paste cut drop input blur', function(event) {
+        var v = elem.value.replace(/[^0-9\.]/g, '');
+        if (elem.value != v) {
+          val(elem, v);
+        }
+        return true;
       });
     });
 
@@ -902,8 +906,14 @@ var Market = {
     return false;
   },
 
-  showItem: function(oid, id) {
-    showWiki({w: 'product'+oid+'_'+id + '/query'});
+  showItem: function(oid, id, from) {
+    var _from = '';
+    if (from) {
+      _from = from;
+    } else if (cur.module) {
+      _from = cur.module;
+    }
+    showWiki({w: 'product'+oid+'_'+id + '/query', from: _from});
     return false;
   },
   showWriteMessage: function(e, id, item_id, hash) {
@@ -933,6 +943,7 @@ var Market = {
       addEvent(domPN(ge('market_item_photo')), 'click', Market.switchPhoto.pbind(false));
     }
     if (cur.options.canEnlarge && !cur.showPhotoActionsEn) {
+      show('market_item_bigph');
       addEvent(wkcur.wkBox, 'mousemove', Market.showPhotoActions);
       cur.showPhotoActionsEn = true;
     }
