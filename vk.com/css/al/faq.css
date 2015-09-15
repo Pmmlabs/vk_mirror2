@@ -235,7 +235,7 @@ h4.faq_question .faq_info {
   width: 10px;
 }
 .faq_row {
-  margin: 0px 75px;
+  margin: 0 25px;
 }
 #faq_content #tickets_faq_list .faq_row {
   margin: 0px;
@@ -268,10 +268,12 @@ h4.faq_question .faq_info {
   background-color: #FFF3F2;
 }
 .faq_short_text {
+  width: 385px;
   display: block;
 }
 .faq_full_text {
   display: none;
+  width: 385px;
 }
 .faq_inner_row.detailed .faq_short_text {
   display: none;
@@ -294,7 +296,7 @@ h4.faq_question .faq_info {
   height: 50px;
 }
 .faq_content {
-  width: 385px;
+  /*width: 385px;*/
   overflow: hidden;
 }
 .faq_row.wide .faq_content {
@@ -305,10 +307,12 @@ h4.faq_question .faq_info {
   font-weight: bold;
   padding-bottom: 5px;
   line-height: 160%;
+  width: 385px;
 }
 .faq_row.wide .faq_title {
   font-size: 12px;
   padding-bottom: 15px;
+  width: auto;
 }
 .faq_text {
   line-height: 160%;
@@ -335,6 +339,15 @@ h4.faq_question .faq_info {
 }
 .faq_minus_rate {
   color: #880000;
+}
+.faq_dislike_rate {
+  color: #c00;
+}
+.faq_inexplicit_rate {
+  color: #d58512;
+}
+.faq_inexact_rate {
+  color: #0000dd;
 }
 .faq_attachs {
   margin: 0px -5px;
@@ -545,7 +558,7 @@ h4.faq_question .faq_info {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  width: 446px;
+  width: 530px;
 }
 .faq_content_search__text.text {
   padding: 6px 8px;

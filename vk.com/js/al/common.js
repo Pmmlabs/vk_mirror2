@@ -2021,7 +2021,11 @@ function __adsSet(adsHtml, adsSection, adsCanShow, adsShowed, adsParams) {
   __adsSet = function() {
     if (adsHtml.slice(0, '<!--criteo'.length) === '<!--criteo') {
       if (Math.random() < 0.05) {
-        ajax.post('/wkview.php?act=mlet&mt=750', {}, {onFail: function () { return true; }});
+        if (window.AdsLight && AdsLight.setNewBlock) {
+          ajax.post('/wkview.php?act=mlet&mt=750', {}, {onFail: function () { return true; }});
+        } else {
+          ajax.post('/wkview.php?act=mlet&mt=751', {}, {onFail: function () { return true; }});
+        }
       }
     }
     window.AdsLight && AdsLight.setNewBlock.apply(AdsLight.setNewBlock, arguments);

@@ -33,6 +33,9 @@ switchTab: function(name, evt) {
     if (!wide_tabs) {
       link = link.firstChild;
     }
+    if (cur.fromNotFound) {
+      link += '&from=n';
+    }
     return nav.go(link, evt, {onFail: function(text) {
       hide('new_tab');
       show('show_tab', 'new_link');
@@ -194,6 +197,11 @@ saveTicket: function(hash) {
   if (nav.objLoc.act == 'new_api') query.section = 12;
   if (nav.objLoc.act == 'new_mobile') query.section = 24;
   if (nav.objLoc.act == 'new_app') query.section = 9;
+  if (cur.fromFaqId) {
+    query.faq = cur.fromFaqId;
+  } else if (cur['from']) {
+    query.from = cur['from'];
+  }
   ajax.post(nav.objLoc[0], query, {
     onDone: function(message) { showDoneBox(message); },
     showProgress: lockButton.pbind(ge('tickets_send')),
@@ -2136,11 +2144,25 @@ rateFAQ: function(id, val, hash, fromNew) {
   if (val > 0) {
     show('tickets_faq_useful'+id);
   } else {
-    show('tickets_faq_unuseful'+id);
+    var b = ge('tickets_faq_unuseful'+id), btns = geByClass1('help_table_question_rated_additional__btns', b);
+    show(b, geByClass1('help_table_question_rated_additional', b));
+    hide(btns, geByClass1('help_table_question__rated_final', b));
+    slideDown(btns, 200);
   }
   return false;
 },
-
+rateFAQAdditional: function(id, additional_id, hash, evt) {
+  if (!vk.id) return false;
+  var b = ge('tickets_faq_unuseful'+id);
+  ajax.post(nav.objLoc[0], {act: 'faq_rate_additional', faq_id: id, additional_id: additional_id, hash: hash});
+  if (additional_id != 2 || !cur.askQuestion.permission) {
+    hide(geByClass1('help_table_question_rated_additional', b));
+    show(geByClass1('help_table_question__rated_final', b));
+  } else {
+    addClass(evt.target, 'help_table_question_btn__processing');
+    Tickets.goToForm(id);
+  }
+},
 cancelRateFAQ: function(id, val, hash, evt) {
   if (!vk.id) return false;
   ajax.post(nav.objLoc[0], {act: 'faq_rate', faq_id: id, val: val, cancel: 1, hash: hash});
@@ -2914,7 +2936,7 @@ listUpdateSearch: function(e, obj) {
     if (str.length > 70 && cur.askQuestion.permission > 0) {
       cur.faqSearchBlocked = true;
       addClass(ge('faq_search_form'), 'loading');
-      nav.go(nav.objLoc[0]+'?act=new&title=' + encodeURIComponent(str));
+      nav.go(nav.objLoc[0]+'?act=new&from=t&title=' + encodeURIComponent(str));
       return;
     }
 
@@ -3030,12 +3052,20 @@ listShowAltButton: function(altButtonId) {
     }
   });
 },
-goToForm: function() {
-  var titleInput = ge('faq_search_form__title'), title = '';
-  if (titleInput) {
-    title = titleInput.value.trim();
+goToForm: function(from_faq_id) {
+  var urlParams = '';
+  if (from_faq_id) {
+    urlParams += '&faq='+from_faq_id;
+  } else {
+    var titleInput = ge('faq_search_form__title'), title = '';
+    if (titleInput) {
+      title = titleInput.value.trim();
+      if (title) {
+        urlParams += '&title='+ encodeURIComponent(title);
+      }
+    }
   }
-  nav.go(nav.objLoc[0]+'?act=new'+(title ? '&title='+ encodeURIComponent(title) : ''));
+  nav.go(nav.objLoc[0]+'?act=new'+urlParams);
   return false;
 },
 goToList: function(categoryId, questionId, evt) {

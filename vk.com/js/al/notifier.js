@@ -402,6 +402,8 @@ Notifier = {
       case 'comment_video':
       case 'comment_video_reply':
       case 'comment_video_mention':
+      case 'comment_market_reply':
+      case 'comment_market_mention':
       case 'board_mention':
         handlePageCount('nws', ev.add, 'feed' + (ge('l_nwsf') ? '?section=notifications' : ''), ge('l_nwsf') ? '' : 'section=notifications');
         break;

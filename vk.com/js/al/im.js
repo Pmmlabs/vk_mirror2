@@ -1085,12 +1085,17 @@ var IM = {
       return;
     }
 
-    if (progressNode.childNodes.length || urlAttachmentLoading && vkNow() - urlAttachmentLoading[0] < 3000) {
+    if (!cur.sendOnUploadTrigger && (progressNode.childNodes.length || urlAttachmentLoading && vkNow() - urlAttachmentLoading[0] < 3000)) {
       lockButton(ge('im_send'));
       cur.sendOnUploadDone = true;
+      cur.sendOnUploadTrigger = true;
       return;
     } else {
       delete cur.sendOnUploadDone;
+      if (cur.sendOnUploadTrigger) {
+        unlockButton(ge('im_send'));
+        cur.sendOnUploadTrigger = false;
+      }
     }
 
     if (cur.editable) {

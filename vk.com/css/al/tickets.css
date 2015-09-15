@@ -2477,6 +2477,27 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   line-height: 13px;
   padding: 6px 11px 7px;
 }
+.help_table_question_btn {
+  color: #2b587a;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 13px;
+  padding: 6px 11px 7px;
+  -o-transition: background-color 100ms ease-in-out;
+  -ms-transition: background-color 100ms ease-in-out;
+  -moz-transition: background-color 100ms ease-in-out;
+  -webkit-transition: background-color 100ms ease-in-out;
+  transition: background-color 100ms ease-in-out;
+  position: relative;
+  padding: 0;
+}
+.help_table_question_btn.help_table_question_btn__processing {
+  background-image: url('/images/upload.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  color: transparent;
+  cursor: default;
+}
 .help_table_question_act:hover {
   text-decoration: underline;
 }
@@ -2531,6 +2552,11 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 }
 .help_table_question__rated {
   display: none;
+}
+.help_table_question_rated_additional__btns {
+  line-height: 2em;
+  margin: 0;
+  padding: 0 0 0 1.5em;
 }
 .help_table_questions_btn {
   line-height: 32px;
