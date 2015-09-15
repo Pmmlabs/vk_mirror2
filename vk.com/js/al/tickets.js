@@ -2155,12 +2155,12 @@ rateFAQAdditional: function(id, additional_id, hash, evt) {
   if (!vk.id) return false;
   var b = ge('tickets_faq_unuseful'+id);
   ajax.post(nav.objLoc[0], {act: 'faq_rate_additional', faq_id: id, additional_id: additional_id, hash: hash});
-  if (additional_id != 2 || !cur.askQuestion.permission) {
-    hide(geByClass1('help_table_question_rated_additional', b));
-    show(geByClass1('help_table_question__rated_final', b));
-  } else {
-    addClass(evt.target, 'help_table_question_btn__processing');
-    Tickets.goToForm(id);
+  hide(geByClass1('help_table_question_rated_additional', b));
+  show(geByClass1('help_table_question__rated_final', b));
+  if (additional_id == 2 && cur.askQuestion.permission) {
+    Tickets.tryAskQuestion(function() {
+      Tickets.goToForm(id);
+    });
   }
 },
 cancelRateFAQ: function(id, val, hash, evt) {

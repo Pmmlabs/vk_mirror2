@@ -561,6 +561,7 @@ Notifier = {
   },
 
   sendImProxy: function(data) {
+    data.text = winToUtf(data.text);
     if(!curNotifier.browser_shown[data.id] && !(Notifier.isActive() && cur.module === 'im')) {
       curNotifier.browser_shown[data.id] = true;
       Notifier.trySendBrowserNotification(data, true);

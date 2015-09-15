@@ -2491,13 +2491,6 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   position: relative;
   padding: 0;
 }
-.help_table_question_btn.help_table_question_btn__processing {
-  background-image: url('/images/upload.gif');
-  background-position: center;
-  background-repeat: no-repeat;
-  color: transparent;
-  cursor: default;
-}
 .help_table_question_act:hover {
   text-decoration: underline;
 }
