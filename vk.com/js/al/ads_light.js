@@ -946,6 +946,9 @@ AdsLight.applyAds = function(delayed) {
 
     var ajaxParams = {};
     ajaxParams.ads_ids_apply = vk__adsLight.adsIdsApplyProcess.join(';');
+    if (cur && cur.adsDelayedViewsSrc) {
+      ajaxParams.ads_src = cur.adsDelayedViewsSrc;
+    }
 
     vk__adsLight.adsIdsApplyProcess = [];
 

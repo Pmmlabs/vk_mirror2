@@ -951,10 +951,8 @@ var Market = {
     if (cur.options.photos && cur.options.photos.length > 1) {
       addEvent(domPN(ge('market_item_photo')), 'click', Market.switchPhoto.pbind(false));
     }
-    if (cur.options.canEnlarge && !cur.showPhotoActionsEn) {
+    if (cur.options.canEnlarge) {
       show('market_item_bigph');
-      addEvent(wkcur.wkBox, 'mousemove', Market.showPhotoActions);
-      cur.showPhotoActionsEn = true;
     }
     for (var i = 1; i < cur.options.photos.length && i <= 5; i++) {
       vkImage().src = cur.options.photos[i].thumb_x;
@@ -962,10 +960,6 @@ var Market = {
 
     wkcur._hide.push(function() {
       removeEvent(domPN(ge('market_item_photo')), 'click');
-      if (cur.showPhotoActionsEn) {
-        removeEvent(wkcur.wkBox, 'mousemove', Market.showPhotoActions);
-        cur.showPhotoActionsEn = false;
-      }
     });
 
     WkView.updateSize();

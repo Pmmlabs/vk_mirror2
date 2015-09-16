@@ -2382,22 +2382,33 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 }
 .help_table_not_found {
   display: none;
-  padding: 104px 0 124px;
-  text-align: center;
+  padding: 20px 0 184px;
 }
 .help_table_questions_has_popular .help_table_not_found {
   padding: 30px 0 50px;
 }
-.help_table_not_found__text {
+.help_table_not_found_text {
   color: #777;
   font-size: 1.1em;
   line-height: 1.5;
+}
+.help_table_not_found_text__p {
+  margin-bottom: 20px;
+}
+.help_table_not_found_text__l {
+  color: #999;
+  margin: 6px 0;
+}
+.help_table_not_found_text__l:before {
+  content: '\2022';
+  margin-right: 0.5em;
 }
 .help_table_not_found__query {
   font-weight: bold;
 }
 .help_table_not_found__btn {
-  margin-top: 18px;
+  text-align: center;
+  margin-top: 22px;
 }
 .help_table_questions_none {
   color: #888;

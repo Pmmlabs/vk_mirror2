@@ -3521,6 +3521,11 @@ var Apps = { // can be removed soon
         callback = function() {
           data(rowsWrap, 'loaded', 1);
         };
+        if (!cur.adsAppsInCatalogScrolls) {
+          cur.adsAppsInCatalogScrolls = 0;
+        }
+        cur.adsAppsInCatalogScrolls++;
+        cur.adsDelayedViewsSrc = 'apps_in_catalog_' + cur.adsAppsInCatalogScrolls;
         Apps.updateScrollWrapWidth(rowsWrap);
         break;
       case 'friends':

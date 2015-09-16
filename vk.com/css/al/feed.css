@@ -392,7 +392,7 @@ a#posts_filter:hover {
   margin: 1px 0 0 4px;
   width: 11px;
   height: 11px;
-  background-image: url(/images/icons/mono_iconset.png?1);
+  background-image: url(/images/icons/mono_iconset.png?2);
   background-repeat: no-repeat;
 }
 .feed_filter_check {
@@ -448,6 +448,9 @@ a#posts_filter:hover {
 }
 .feed_icon_mt {
   background-position: 0 0;
+}
+.feed_icon_mk {
+  background-position: 0 -378px;
 }
 .feed_tab_add .summary_tab3 {
   padding: 0;
