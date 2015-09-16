@@ -671,9 +671,9 @@ bClick: function(obj, uplNum, newFormat) {
   ajax.post('editapp', {act: 'a_clear_full_banner', hash: cur.photoHash, aid: cur.aid, format: newFormat ? 1 : 0, edit_lang: cur.editLang});
 },
 
-certUploadBox: function(obj) {
+certUploadBox: function(obj, type) {
   var push = (Privacy.getValue('push') || '').split('_');
-  showBox('editapp', {act: 'select_cert', aid: cur.aid, push: push[2]}, {params: {dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'}});
+  showBox('editapp', {act: 'select_cert', aid: cur.aid, push: push[2], cert_type: type}, {params: {dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'}});
 },
 
 urlFocus: function(obj, hint) {

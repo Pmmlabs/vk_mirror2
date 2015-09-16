@@ -901,18 +901,22 @@ navigate: function (el, event, delta) {
     wkcur.arrowOver = (delta == 1);
     wkcur.arrowClicked = vkNow();
   }
-  var actions = WkView.getNextWkRaws();
+  var actions = WkView.getNextWkRaws(),
+      options = {};
+  if (wkcur.from) {
+    options.from = wkcur.from;
+  }
   if (delta > 0 && actions[1]) {
     wkcur.wkRawLoading = true;
     addClass(wkcur.wkRightArrow, 'wk_arrow_progress');
     // debugLog(wkcur.wkRightArrow, wkcur.wkRightArrow.className);
-    showWiki({w: actions[1]}, false, false, {fromlist: 1, noloader: true, preload: {cache: 1}});
+    showWiki(extend(options, {w: actions[1]}), false, false, {fromlist: 1, noloader: true, preload: {cache: 1}});
     cancelEvent(event);
   }
   if (delta < 0 && actions[0]) {
     wkcur.wkRawLoading = true;
     addClass(wkcur.wkLeftArrow, 'wk_arrow_progress');
-    showWiki({w: actions[0]}, false, false, {fromlist: -1, noloader: true, preload: {cache: 1}});
+    showWiki(extend(options, {w: actions[0]}), false, false, {fromlist: -1, noloader: true, preload: {cache: 1}});
     cancelEvent(event);
   }
 },
@@ -1878,6 +1882,9 @@ preloadArrow: function (next) {
         delete loc[0];
         delete loc.w;
         page.query = JSON.stringify(loc);
+      }
+      if (wkcur.from) {
+        page.from = wkcur.from;
       }
       ajax.post('wkview.php', extend({act: 'show', loc: nav.objLoc[0]}, page), {cache: 1});
     }

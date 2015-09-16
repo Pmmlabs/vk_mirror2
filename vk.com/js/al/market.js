@@ -833,35 +833,44 @@ var Market = {
       hideProgress: unlockButton.pbind(btn)
     });
   },
-  deleteItem: function() {
+  deleteItem: function(id, oid, hash) {
     var box = showFastBox({title: getLang('market_item_delete_confirm_title'), dark: 1}, getLang('market_item_delete_confirm'), getLang('global_delete'), function() {
-      ajax.post('al_market.php?act=a_delete_item', {oid: cur.options.oid, id: cur.options.item_id, hash: cur.options.hash}, {
+      if (id !== undefined) {
+        var params = {oid: oid, id: id, hash: hash};
+      } else {
+        var params = {oid: cur.options.oid, id: cur.options.item_id, hash: cur.options.hash};
+      }
+      ajax.post('al_market.php?act=a_delete_item', params, {
         onDone: function(text, albums) {
           boxQueue.hideAll();
-          re('market_item' + cur.options.item_id);
-          cur.itemsCount--;
-          var summary = '';
-          if (cur.itemsCount > 0) {
-            summary = getLang('market_summary_X_goods', cur.itemsCount, true);
-          } else {
-            summary = getLang('market_summary_no_goods');
-            geByClass1('market_empty', cur.notFound).innerHTML = cur.aid ? getLang('market_album_empty') : getLang('market_catalog_empty');
-            hide(cur.listEl);
-            show(cur.notFound);
+          if (window.WkView) {
+            WkView.hide()
           }
-          var summaryEl = geByClass1('market_summary_text', cur.summaryEl);
-          if (!summaryEl) summaryEl = cur.summaryEl;
-          summaryEl.innerHTML = summary;
+          re('market_item' + params.id);
+          if (cur.module == 'market') {
+            cur.itemsCount--;
+            var summary = '';
+            if (cur.itemsCount > 0) {
+              summary = getLang('market_summary_X_goods', cur.itemsCount, true);
+            } else {
+              summary = getLang('market_summary_no_goods');
+              geByClass1('market_empty', cur.notFound).innerHTML = cur.aid ? getLang('market_album_empty') : getLang('market_catalog_empty');
+              hide(cur.listEl);
+              show(cur.notFound);
+            }
+            var summaryEl = geByClass1('market_summary_text', cur.summaryEl);
+            if (!summaryEl) summaryEl = cur.summaryEl;
+            summaryEl.innerHTML = summary;
 
-          if (albums) {
-            each(albums, function(k, v) {
-              var block = geByClass1('market_album_size', 'market_album_block'+k);
-              if (block) {
-                block.innerHTML = v;
-              }
-            });
+            if (albums) {
+              each(albums, function(k, v) {
+                var block = geByClass1('market_album_size', 'market_album_block'+k);
+                if (block) {
+                  block.innerHTML = v;
+                }
+              });
+            }
           }
-
           showDoneBox(text);
         },
         showProgress: box.showProgress,
