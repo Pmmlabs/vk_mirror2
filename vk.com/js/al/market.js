@@ -94,7 +94,9 @@ var Market = {
       addClass('market', 'market_albums_section');
       show(cur.albumbEl);
       Market.clearItemsSearch();
-      Market.toggleExtendedControls(false);
+      if (isVisible(cur.controlsEl)) {
+        Market.toggleExtendedControls(false);
+      }
       cur.searchInp.blur();
     } else if (section.substr(0, 6) == 'album_' ||
                cur.aid && !section) {

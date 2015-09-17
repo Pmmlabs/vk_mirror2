@@ -321,12 +321,7 @@ sendPlayerStats: function(action, type) {
 },
 
 removeVideo: function() {
-  var mv = false;
-  if (window.mvcur && mvcur.mvData) {
-    mv = mvcur.mvData;
-  } else if (cur.mvOpts) {
-    mv = cur.mvOpts;
-  }
+  var mv = Videoview.getMvData();
 
   if (mv && mv.deleteFromAllAlbumsHash) {
     ajax.post('/al_video.php', { act: 'a_delete_from_all_albums', vid: mv.vid, oid: mv.oid, target_id: vk.id, hash: mv.deleteFromAllAlbumsHash }, {});
@@ -348,7 +343,12 @@ getNextVideosData: function() {
 },
 
 getSuggestionsData: function() {
-  return mvcur && mvcur.mvData && mvcur.mvData.playerSuggestions;
+  var mvData = Videoview.getMvData();
+  return mvData && mvData.playerSuggestions;
+},
+
+getMvData: function() {
+  return cur.mvOpts || window.mvcur && mvcur.mvData;
 },
 
 getPlayerObject: function() {
@@ -418,12 +418,7 @@ subscribeToAuthor: function(btn, event, gid, hash, isSubscribe, isClosed, noPlay
     toggleClass(ge('mv_subscribed_msg'), 'mv_state_subscribed', isSubscribe);
     ajax.post('al_video.php', { act: 'a_subscribe', gid: gid, hash: hash, unsubscribe: intval(!isSubscribe), from: from });
 
-    var mv = false;
-    if (window.mvcur && mvcur.mvData) {
-      mv = mvcur.mvData;
-    } else if (cur.mvData) {
-      mv = cur.mvData;
-    }
+    var mv = Videoview.getMvData();
     mv.subscribed = isSubscribe;
 
     if (!noPlayerUpdate) {
@@ -498,7 +493,7 @@ updateVideo: function(oid, vid, newTitle, newDesc) {
 },
 
 setAddButtonStateAdded: function() {
-  if (window.mvcur) {
+  if (window.mvcur && mvcur.mvShown) {
     mvcur.mvData.published = true;
     triggerEvent('mv_add_button', 'setAdded');
   }
@@ -1806,12 +1801,7 @@ addVideo: function(videoRaw, hash, obj, gid, accessHash, from) {
 likeUpdate: function(my, count, title, nott) {
   count = intval(count);
 
-  var mv = false;
-  if (window.mvcur && mvcur.mvData) {
-    mv = mvcur.mvData;
-  } else if (cur.mvData) {
-    mv = cur.mvData;
-  }
+  var mv = Videoview.getMvData();
 
   var likeType = (window.mvcur && mvcur.statusVideo) ? 'wall' : 'video';
 
@@ -1886,7 +1876,7 @@ likeSmall: function() {
 },
 
 _isCurrentVideoPublished: function() {
-  return (window.mvcur && mvcur.mvData && mvcur.mvData.published) || cur._videoPublished;
+  return cur.mvOpts ? cur._videoPublished : (window.mvcur && mvcur.mvData && mvcur.mvData.published);
 },
 
 addSmall: function(videoRaw, hash, gid, accessHash) {
@@ -1951,9 +1941,8 @@ showAddDialog: function(videoRaw) {
 
 share: function(videoRaw, obj, actionType) {
   if (!vk.id) return;
-  var mvData = window.mvcur ? mvcur.mvData : false;
-  if (!mvData && cur.mvOpts) {
-    mvData = cur.mvOpts;
+  var mvData = Videoview.getMvData();
+  if (mvData && !mvData.addedVideo) {
     mvData.addedVideo = mvData.videoRaw;
   }
   if (mvData || videoRaw) {
@@ -1965,12 +1954,7 @@ share: function(videoRaw, obj, actionType) {
 like: function(btn, noPlayerUpdate) {
   if (!vk.id) return;
 
-  var mvData = false;
-  if (window.mvcur && mvcur.mvData) {
-    mvData = mvcur.mvData;
-  } else if (cur.mvOpts) {
-    mvData = cur.mvOpts;
-  }
+  var mvData = Videoview.getMvData();
 
   if (!mvData) {
     return;
@@ -3850,12 +3834,7 @@ onExternalVideoAdd: function() {
 },
 
 onExternalVideoSubscribe: function() {
-  var mv = false;
-  if (window.mvcur && mvcur.mvData) {
-    mv = mvcur.mvData;
-  } else if (cur.mvData) {
-    mv = cur.mvData;
-  }
+  var mv = Videoview.getMvData();
   if (!mv) return;
   var isSubscribe = !mv.subscribed;
   var isClosed = mv.isClosed;

@@ -2367,6 +2367,13 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   line-height: 1;
   margin: 0 0 8px;
 }
+.help_table_popular .help_table_questions__title {
+  color: #476586;
+  font-size: 1.1em;
+  font-weight: bold;
+  line-height: 1;
+  margin: 0 0 11px;
+}
 .help_table_questions_not_found .help_table_found {
   display: none;
 }
@@ -2385,7 +2392,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   padding: 20px 0 184px;
 }
 .help_table_questions_has_popular .help_table_not_found {
-  padding: 30px 0 50px;
+  padding: 10px 0 30px;
 }
 .help_table_not_found_text {
   color: #777;
@@ -2393,7 +2400,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   line-height: 1.5;
 }
 .help_table_not_found_text__p {
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 .help_table_not_found_text__l {
   color: #999;

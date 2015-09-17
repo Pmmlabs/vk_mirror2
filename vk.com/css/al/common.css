@@ -3835,3 +3835,16 @@ a.ts_search_link.active {
 .video_thumb_play:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
+.disabled_module_text {
+  padding: 45px 50px 0;
+  color: #75808B;
+  font-size: 1.3em;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  line-height: 170%;
+}
+.disabled_module_img {
+  margin: 30px auto 50px;
+  display: block;
+}
