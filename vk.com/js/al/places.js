@@ -19,7 +19,7 @@ initPhotoMap: function(opts) {
       });
       return false;
     }
-  } else if (opts.provider == 'yandex') {
+  } else if (opts.provider == 'yandex2') {
     if (!window.yandexMapsInited) {
       window.yandexMapInit = function() {
         ymaps.modules.require(['package.standard'], function (Map, Placemark) {
@@ -28,10 +28,10 @@ initPhotoMap: function(opts) {
         });
       }
       var langCode = 'en_US';
-      if (cur.vkLngCode == 'ru') {
+      if (opts.countryCode == 'UA') {
+        langCode = (cur.vkLngCode == 'uk' ? 'uk' : 'ru') + '_UA';
+      } else if (cur.vkLngCode == 'ru') {
         langCode = 'ru_RU';
-      } else if (cur.vkLngCode == 'uk') {
-        langCode = 'uk_UA';
       }
       headNode.appendChild(ce('script', {
         type: 'text/javascript',

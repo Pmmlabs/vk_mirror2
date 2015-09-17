@@ -1780,11 +1780,17 @@ a.group_ad_post_link.deleted:hover {
   opacity: 1;
   filter: alpha(opacity=100);
 }
+.group_market_announce_info .group_obscene_announce_img {
+  background-image: url(/images/pics/market.png);
+}
 .is_2x .group_obscene_announce_info .group_obscene_announce_img {
   background-image: url(/images/pics/obscene_words_2x.png);
 }
 .is_2x .group_obscene_announce_info .group_obscene_announce_hide {
   background-image: url(/images/icons/cm_chr_close_2x.png);
+}
+.is_2x .group_market_announce_info .group_obscene_announce_img {
+  background-image: url(/images/pics/market_2x.png);
 }
 .is_2x .group_activity_row_wrap .group_activity_delete_row {
   background-image: url(/images/pics/statusx_op_2x.gif);

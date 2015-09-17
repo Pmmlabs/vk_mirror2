@@ -233,25 +233,27 @@ var VKMap = vkMaps.VKMap = function(element, opts, debug) {
 vkMaps.load = function(api, callback, lngcode, ver) {
   switch (api) {
     case 'yandex2':
-      if (window.YMaps) {
+      if (window.ymaps) {
         callback();
       } else {
-        if (window.yandexMapsInited) {
+        if (window.yandex2MapsInited) {
           callback();
         } else {
-          window.yandexMapInit = function() {
+          window.yandex2MapInit = function() {
             ymaps.modules.require(['package.standard'], function (Map, Placemark) {
-              window.yandexMapsInited = true;
+              window.yandex2MapsInited = true;
               callback();
             });
           }
           var lng = 'ru_RU';
-          if (lngcode && lngcode != 'ru' && lngcode != 'br') {
-            lng = (lngcode == 'ua') ? 'uk_UA' : 'en_US';
+          if (cur.countryCode == 'UA') {
+            lng = (lngcode && lngcode == 'ua' ? 'uk' : 'ru') + '_UA';
+          } else if (lngcode && lngcode != 'ru' && lngcode != 'br') {
+            lng = 'en_US';
           }
           headNode.appendChild(ce('script', {
             type: 'text/javascript',
-            src: (window.locProtocol || 'http:') + '//api-maps.yandex.ru/2.1/?lang='+lng+'&onload=yandexMapInit&load=package.standard'
+            src: (window.locProtocol || 'http:') + '//api-maps.yandex.ru/2.1/?lang='+lng+'&onload=yandex2MapInit&load=package.standard'
           }));
         }
       }
@@ -707,17 +709,6 @@ function YGeocoderResponseFromJson(resp) {
   return resp;
 }
 
-function YGeocoderSaveCoords(lat, lon, yResult) {
-  var q = { act: 'ya_save_geocoder_coords', lat: lat, lon: lon };
-  if (yResult) {
-    q.kind = yResult.kind;
-    q.precision = yResult.precision;
-    q.text = yResult.text;
-    q = extend(q, YGeocoderResponseToJson(yResult));
-  }
-  ajax.post('al_places.php', q);
-}
-
 function YCustomZoomControl(offices) {
   this.onAddToMap = function (map, position) {
     this.container = YMaps.jQuery("<div class=\"ymap_zoom_wrap\"><div class=\"ymap_zoom_btn\" id=\"ymap_zoom_wrap_p\" data-z=\"1\">+</div><div class=\"ymap_zoom_btn\" id=\"ymap_zoom_wrap_m\" data-z=\"-1\">-</div></div>");
@@ -1070,29 +1061,10 @@ Geocoder: {
 
     ajax.post('al_places.php', q, {
       onDone: function(found, resp) {
-        if (found) {
-          if (isObject(resp)) {
-            VKMap_geocoder.callback(YGeocoderResponseFromJson(resp));
-          } else {
-            VKMap_geocoder.error_callback('');
-          }
+        if (isObject(resp)) {
+          VKMap_geocoder.callback(YGeocoderResponseFromJson(resp));
         } else {
-          var geocoder = new YMaps.Geocoder(address.address, { results: 1 });
-          YMaps.Events.observe(geocoder, geocoder.Events.Load, function (response) {
-            var res = response.found > 0 ? response.get(0) : null;
-            if (!s) {
-              YGeocoderSaveCoords(address.lat, address.lon, res);
-            }
-            if (res) {
-              VKMap_geocoder.geocode_callback(res);
-            } else {
-              VKMap_geocoder.error_callback(response);
-            }
-          });
-          YMaps.Events.observe(geocoder, geocoder.Events.Fault, function (error) {
-            VKMap_geocoder.error_callback(error.message);
-          });
-          ajax.post('al_places.php', { act: 'ya_save_geocoder_act', s: s, addr: address.address });
+          VKMap_geocoder.error_callback('');
         }
       },
       onFail: function(error) {
@@ -1133,7 +1105,7 @@ vkMaps.register('yandex2', {
 VKMap: {
   init: function(element, api) {
     vkMaps.load(api, (function() {
-      var yandexMap = this.maps[api] = new ymaps.Map(element, {center: [0, 0], controls: [], zoom: 10});
+      var yandexMap = this.maps[api] = new ymaps.Map(element, {center: [0, 0], controls: [], zoom: 10}, { suppressMapOpenBlock: true, suppressObsoleteBrowserNotifier: true });
       yandexMap.events.add('click', (function(ev) {
         var coords = ev.get('coords');
         this.click.fire({'location': new vkMaps.LatLonPoint(coords[0], coords[1])});
@@ -1258,7 +1230,6 @@ VKMap: {
     };
     var typeDD = new TypeSelector();
 
-
     var me = this, map = this.maps[this.api];
     var onChange = function(type) {
       this.setMapType(intval(type));
@@ -1281,40 +1252,37 @@ VKMap: {
   addMarker: function(marker, old) {
     var map = this.maps[this.api],
     pin = marker.toProprietary(this.api);
-    map.addOverlay(pin);
+    map.geoObjects.add(pin);
     return pin;
   },
   removeMarker: function(marker) {
     var map = this.maps[this.api];
-    map.removeOverlay(marker.proprietary_marker);
+    map.geoObjects.remove(marker.proprietary_marker);
   },
   getCenter: function() {
     var map = this.maps[this.api],
     pt = map.getCenter(),
-    point = new vkMaps.LatLonPoint(pt.getLat(),pt.getLng());
+    point = new vkMaps.LatLonPoint(pt[0], pt[1]);
     return point;
   },
   setCenter: function(point, options) {
-    var map = this.maps[this.api],
-    pt = point.toProprietary(this.api);
-    map.setCenter(pt);
+    var map = this.maps[this.api];
+    map.setCenter(point.toProprietary(this.api));
   },
   setZoom: function(zoom) {
     var map = this.maps[this.api];
     map.setZoom(zoom);
   },
   getZoom: function() {
-    var map = this.maps[this.api],
-    zoom = map.getZoom();
-    return zoom;
+    var map = this.maps[this.api];
+    return map.getZoom();
   },
   getZoomLevelForBoundingBox: function(bbox) {
     var map = this.maps[this.api];
-    var ne = bbox.getNorthEast().toProprietary(this.api);
-    var sw = bbox.getSouthWest().toProprietary(this.api);
-    var zoom = new YMaps.GeoBounds(ne, sw).getMapZoom(map);
-
-    return zoom;
+    var ne = bbox.getNorthEast(), sw = bbox.getSouthWest();
+    var s = getSize(map.container.getElement());
+    var cz = ymaps.util.bounds.getCenterAndZoom([[ne.lat, ne.lon], [sw.lat, sw.lon]], s);
+    return cz.zoom;
   },
   setMapType: function(type) {
     var map = this.maps[this.api];
@@ -1359,7 +1327,7 @@ VKMap: {
   },
   removeMap: function() {
     var map = this.maps[this.api];
-    map.destructor();
+    map.destroy();
   }
 },
 
@@ -1368,8 +1336,12 @@ LatLonPoint: {
     return [this.lat, this.lon];
   },
   fromProprietary: function(yandexPoint) {
-    this.lat = yandexPoint[0];
-    this.lon = yandexPoint[1];
+    var c = yandexPoint;
+    if (isObject(yandexPoint)) {
+      var c = yandexPoint.getCoordinates();
+    }
+    this.lat = c[0];
+    this.lon = c[1];
     return this;
   }
 },
@@ -1382,79 +1354,71 @@ Marker: {
       draggable: this.draggable
     };
     if (this.iconUrl) {
-      var style = new YMaps.Style(),
-      icon = style.iconStyle = new YMaps.IconStyle();
-      icon.href = this.iconUrl;
+      options.iconLayout = 'default#image';
+      options.iconImageHref = this.iconUrl;
       if (this.iconSize) {
-        icon.size = new YMaps.Point(this.iconSize[0], this.iconSize[1]);
-        var anchor;
+        options.iconImageSize = this.iconSize;
         if (this.iconAnchor) {
-          anchor = new YMaps.Point(-this.iconAnchor[0], -this.iconAnchor[1]);
+          options.iconImageOffset = [-this.iconAnchor[0], -this.iconAnchor[1]];
+        } else {
+          options.iconImageOffset = [0,0];
         }
-        else {
-          anchor = new YMaps.Point(0, 0);
-        }
-        icon.offset = anchor;
       }
+
       if (this.iconShadowUrl) {
-        icon.shadow = new YMaps.IconShadowStyle();
-        icon.shadow.href = this.iconShadowUrl;
+        //  установить тень иконки
+        options.iconShadowlayout = 'default#image';
+        options.iconShadowImageHref = this.iconShadowUrl;
         if (this.iconShadowSize) {
-          icon.shadow.size = new YMaps.Point(this.iconShadowSize[0], this.iconShadowSize[1]);
-          icon.shadow.offset = new YMaps.Point(0, 0);
+          options.iconShadowImageSize = this.iconShadowSize;
+          options.iconShadowImageOffset = [0,0];
         }
       }
-      options.style = style;
     }
-    var ymarker = new YMaps.Placemark(this.location.toProprietary('yandex'), options);
+    var properties = {};
+    if (this.infoBubble) {
+      options.hasBalloon = true;
+      options.hideIcon = true;
+      properties.balloonContent = this.infoBubble;
+    }
+
+    var ymarker = new ymaps.Placemark(this.location.toProprietary('yandex2'), properties, options);
     if (this.hoverIconUrl) {
       var me = this;
-      YMaps.Events.observe(ymarker, ymarker.Events.MouseEnter, function(map, mouseEvent) {
-        var markerOptions = ymarker.getOptions();
-        if (! me.iconUrl) {
-          me.iconUrl = ymarker._icon._context._computedStyle.iconStyle.href;
-          markerOptions.style = ymarker._icon._context._computedStyle;
-        }
-        markerOptions.style.iconStyle.href = me.hoverIconUrl;
-        ymarker.setOptions(markerOptions);
+      ymarker.events.add('mouseenter', function(e) {
+        ymarker.options.set('iconImageHref', this.hoverIconUrl);
       });
-      YMaps.Events.observe(ymarker, ymarker.Events.MouseLeave, function(map, mouseEvent) {
-        var markerOptions = ymarker.getOptions();
-        markerOptions.style.iconStyle.href = me.iconUrl;
-        ymarker.setOptions(markerOptions);
+      ymarker.events.add('mouseleave', function(e) {
+        ymarker.options.set('iconImageHref', this.iconUrl);
       });
     }
     if (this.labelText) {
-      ymarker.name = this.labelText;
+      ymarker.hint = this.labelText;
     }
-    if (this.infoBubble) {
-      ymarker.setOptions({hasBalloon: true, hideIcon: true});
-      ymarker.setBalloonContent(this.infoBubble);
-    }
-    YMaps.Events.observe(ymarker, ymarker.Events.DragEnd, function(ymarker) {
-      var latLon = new vkMaps.LatLonPoint().fromProprietary('yandex', ymarker.getGeoPoint());
-      this.VKMap_marker.location = latLon;
-      if (this.VKMap_marker.dragend) {
-        this.VKMap_marker.dragend.fire(latLon);
+    ymarker.events.add('dragend', function(e) {
+      var latLon = new vkMaps.LatLonPoint().fromProprietary('yandex2', ymarker.geometry);
+      ymarker.VKMap_marker.location = latLon;
+      if (ymarker.VKMap_marker.dragend) {
+        ymarker.VKMap_marker.dragend.fire(latLon);
       }
     });
     return ymarker;
   },
   openBubble: function() {
-    this.proprietary_marker.openBalloon();
+    this.proprietary_marker.balloon.open();
   },
   closeBubble: function() {
-    this.proprietary_marker.closeBalloon();
+    this.proprietary_marker.balloon.close();
   },
   hide: function() {
-    this.proprietary_marker._$iconContainer.addClass("YMaps-display-none");
+    this.proprietary_marker.options.set('visible', false);
   },
   show: function() {
-    this.proprietary_marker._$iconContainer.removeClass("YMaps-display-none");
+    this.proprietary_marker.options.set('visible', true);
   },
   update: function() {
     point = new vkMaps.LatLonPoint();
-    point.fromProprietary('yandex', this.proprietary_marker.getGeoPoint());
+    point.fromProprietary('yandex2', this.proprietary_marker.geometry);
     this.location = point;
   }
 },
@@ -1464,46 +1428,36 @@ Geocoder: {
     var me = this;
   },
   geocode: function(address) {
-    var VKMap_geocoder = this,s = 1;
+    var VKMap_geocoder = this;
     if (!address.hasOwnProperty('address') || address.address === null || address.address === '') {
       address.address = [address.street, address.locality, address.region, address.country ].join(', ');
     }
+    var q = null, s = 1;
     if (address.lat && address.lon) {
-      address.address = new YMaps.GeoPoint(address.lon, address.lat);
       s = 0;
-    }
-    var geocoder = new YMaps.Geocoder(address.address, { results: 1 });
-    YMaps.Events.observe(geocoder, geocoder.Events.Load, function (response) {
-      var res = response.found > 0 ? response.get(0) : null;
-
-      if (!s) {
-        var q = { act: 'a_save_geocoder_coords', lat: address.lat, lon: address.lon };
-        if (res) {
-          q.kind = res.kind;
-          q.precision = res.precision;
-          q.text = res.text;
-          q = extend(q, YGeocoderResponseToJson(res));
-        }
-        ajax.post('al_places.php', q);
-      }
-
-      if (res) {
-        VKMap_geocoder.geocode_callback(res);
-      } else {
-        VKMap_geocoder.error_callback(response);
-      }
-    });
-    YMaps.Events.observe(geocoder, geocoder.Events.Fault, function (error) {
-      VKMap_geocoder.error_callback(error.message);
-    });
-    var q = { act: 'ya_save_geocoder_act', s: s };
-    if (s) {
-      q.addr = address.address;
+      address.address = new YMaps.GeoPoint(address.lon, address.lat);
+      q = { act: 'ya_get_geocoder_coords', lat: address.lat, lon: address.lon };
     } else {
-      q.lat = address.lat;
-      q.lon = address.lon;
+      var b = address.bounds, lat = 0, lon = 0;
+      if (b) {
+        lat = (b.ne.lat + b.sw.lat) / 2;
+        lon = (b.ne.lon + b.sw.lon) / 2;
+      }
+      q = { act: 'ya_get_geocoder_string', addr: address.address, lon: lon, lat: lat };
     }
-    ajax.post('al_places.php', q);
+
+    ajax.post('al_places.php', q, {
+      onDone: function(found, resp) {
+        if (isObject(resp)) {
+          VKMap_geocoder.callback(YGeocoderResponseFromJson(resp));
+        } else {
+          VKMap_geocoder.error_callback('');
+        }
+      },
+      onFail: function(error) {
+        VKMap_geocoder.error_callback(error);
+      }
+    });
   },
   geocode_callback: function(response) {
     var return_location = {street: '', locality: '', region: '', country: ''};

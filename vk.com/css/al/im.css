@@ -724,9 +724,10 @@ a.im_date_link {
 .im_attach_wall,
 .im_attach_gift,
 .im_attach_link,
-.im_attach_sticker {
+.im_attach_sticker,
+.im_attach_market {
   float: left;
-  background: url(/images/icons/mono_iconset.png?1) no-repeat 0 0;
+  background: url(/images/icons/mono_iconset.png?2) no-repeat 0 0;
   width: 12px;
   height: 12px;
   margin: 3px 4px 2px 0;
@@ -767,6 +768,9 @@ a.im_date_link {
 }
 .im_attach_sticker {
   background-position: 0px -362px;
+}
+.im_attach_market {
+  background-position: 0px -378px;
 }
 /* Im fwd log */
 .im_media_mail_title {

@@ -893,6 +893,7 @@ var GroupsEdit = {
         if (isVisible('group_market_city_wrap')) {
           params.market_city = cur.marketCityDD.val();
         }
+        params.market_currency = cur.marketCurrencyDD.val();
         params.market_contact = cur.marketContactDD.val();
       }
     }
@@ -1103,6 +1104,11 @@ var GroupsEdit = {
         }
       });
       cur.marketCountryChange();
+      cur.marketCurrencyDD = new Dropdown(ge('group_market_currency'), selData.marketCurrencies, {
+        width: 186,
+        multiselect: false,
+        selectedItems: selData.marketCurrency
+      });
       cur.marketContactDD = new Dropdown(ge('group_market_contact'), selData.marketContacts, {
         width: 186,
         multiselect: false,
@@ -1129,6 +1135,7 @@ var GroupsEdit = {
       if (c.marketCountryDD) {
         c.marketCountryDD.destroy();
         c.marketCityDD.destroy();
+        c.marketCurrencyDD.destroy();
         c.marketContactDD.destroy();
       }
     });
@@ -1828,6 +1835,33 @@ var GroupsEdit = {
       nohideover: true
     });
   },
+  hideMarketAnnounce: function (hash) {
+    hide('group_market_announce_info');
+    ajax.post('groupsedit.php', {act: 'hide_market_announce', hash: hash, id: cur.gid});
+  },
+  setupMarket: function(el) {
+    hide('group_market_announce_info');
+    var ypos = Math.round(geByClass1('group_edit').offsetHeight);
+    var onScrollDone = function(){
+      if (cur.cls == 1) {
+        if (!isChecked('enable_market')) {
+          checkbox('enable_market');
+        }
+      } else {
+        if (!cur.privacy['g_market'][0]) {
+          cur.privacy['g_market'][0] = 1;
+          val('privacy_edit_g_market', cur.privacy['g_market_types'][1]);
+        }
+      }
+      if (!isVisible('group_edit_market')) {
+        GroupsEdit.toggleMarketBlock(true);
+      }
+    }
+    each([bodyNode, htmlNode], function(index, el){
+      animate(el, {scrollTop: ypos, transition: Fx.Transitions.linear}, 500, onScrollDone);
+    });
+  },
+
   saveObsceneWords: function() {
     var words = val('group_edit_obscene_stopwords'),
         btn = ge('group_save');

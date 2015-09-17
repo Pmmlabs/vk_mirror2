@@ -88,8 +88,12 @@
   background-color: #F7F7F7;
 }
 #choose_map #places_filter {
-  width: 335px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 362px;
   margin-right: 10px;
+  height: 26px;
 }
 #choose_map .place_search_bar button {
   width: 90px;

@@ -821,6 +821,10 @@ show: function(ev, videoRaw, listId, options) {
 
   if (!isVisible(mvLayerWrap)) {
     otherList = true;
+    //do no attach them twice
+    removeEvent(window, 'resize', Videoview.onResize);
+    removeEvent(document, 'keydown', Videoview.onKeyDown);
+    removeEvent(mvLayerWrap, 'click', Videoview.onClick);
     addEvent(window, 'resize', Videoview.onResize);
     addEvent(document, 'keydown', Videoview.onKeyDown);
     addEvent(mvLayerWrap, 'click', Videoview.onClick);
