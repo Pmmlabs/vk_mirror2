@@ -154,9 +154,6 @@ saveOptions: function(act, confirm) {
   if (act != 'save_info') {
     params['openapi'] = Privacy.getValue('openapi');
     params['need_install'] = Privacy.getValue('install');
-    if (isChecked('apps_push_sandbox')) {
-      params['apps_push_sandbox'] = 1;
-    }
     if (cur.privacy['push']) {
       params['push'] = Privacy.getValue('push');
     }

@@ -2360,15 +2360,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   vertical-align: top;
 }
 .help_table_questions__title {
-  -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: auto;
-  font-size: 1.37em;
-  font-weight: normal;
-  line-height: 1;
-  margin: 0 0 8px;
-}
-.help_table_popular .help_table_questions__title {
-  color: #476586;
+  color: #456;
   font-size: 1.1em;
   font-weight: bold;
   line-height: 1;
