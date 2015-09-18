@@ -294,6 +294,7 @@
   margin: 25px 0px 0px 105px;
   height: 256px;
   overflow: hidden;
+  position: relative;
 }
 .gift_tip {
   width: 338px;
@@ -1003,4 +1004,107 @@
 }
 .gift_anim {
   transition: all 5000ms ease-in-out;
+}
+.gift_item {
+  display: block;
+}
+.gift_duck_wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+}
+.gift_duck_clone {
+  display: block;
+  width: 256px;
+  height: 256px;
+  position: relative;
+}
+.gift_duck_act {
+  -webkit-transform-origin: 163px 42px;
+  -moz-transform-origin: 163px 42px;
+  -o-transform-origin: 163px 42px;
+  transform-origin: 163px 42px;
+  -webkit-animation: gift_duck 190ms linear;
+  -moz-animation: gift_duck 190ms linear;
+  -o-animation: gift_duck 190ms linear;
+  animation: gift_duck 190ms linear;
+}
+img.gift_duck_tease,
+.gift_duck_tease img {
+  -webkit-animation: gift_duck_tease 2100ms infinite;
+  -moz-animation: gift_duck_tease 2100ms infinite;
+  -o-animation: gift_duck_tease 2100ms infinite;
+  animation: gift_duck_tease 2100ms infinite;
+}
+@-webkit-keyframes gift_duck {
+  0% {
+    -webkit-transform: scale(0.7);
+  }
+  20% {
+    -webkit-transform: scale(1.1);
+  }
+  60% {
+    -webkit-transform: scale(0.98);
+  }
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+@keyframes gift_duck {
+  0% {
+    -moz-transform: scale(0.7);
+    transform: scale(0.7);
+  }
+  20% {
+    -moz-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  60% {
+    -moz-transform: scale(0.98);
+    transform: scale(0.98);
+  }
+  100% {
+    -moz-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes gift_duck_tease {
+  60% {
+    -webkit-transform: rotateZ(0deg);
+  }
+  64% {
+    -webkit-transform: rotateZ(2deg);
+  }
+  68% {
+    -webkit-transform: rotateZ(-2deg);
+  }
+  72% {
+    -webkit-transform: rotateZ(0.8deg);
+  }
+  75% {
+    -webkit-transform: rotateZ(0deg);
+  }
+}
+@keyframes gift_duck_tease {
+  60% {
+    -moz-transform: rotateZ(0deg);
+    transform: rotateZ(0deg);
+  }
+  64% {
+    -moz-transform: rotateZ(2deg);
+    transform: rotateZ(2deg);
+  }
+  68% {
+    -moz-transform: rotateZ(-2deg);
+    transform: rotateZ(-2deg);
+  }
+  72% {
+    -moz-transform: rotateZ(0.8deg);
+    transform: rotateZ(0.8deg);
+  }
+  75% {
+    -moz-transform: rotateZ(0deg);
+    transform: rotateZ(0deg);
+  }
 }
