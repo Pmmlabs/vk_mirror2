@@ -2066,6 +2066,8 @@ a.page_media_link_desc {
   padding: 1px 0 5px;
   line-height: 160%;
   word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 span.post_video_title {
   font-weight: bold;

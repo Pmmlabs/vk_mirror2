@@ -2244,6 +2244,9 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 .help_tile_alert__text {
   line-height: 1.5;
 }
+.help_tile_alert__acts {
+  margin-top: 5px;
+}
 .help_tile {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;

@@ -3102,10 +3102,12 @@ goToList: function(categoryId, questionId, evt) {
       nav.setLoc(obj);
 
       ge('help_table_questions_l').innerHTML = content;
-      Tickets.listScrollToQuestion(questionId);
       if (questionId) {
+        Tickets.listScrollToQuestion(questionId);
         var p = clickedData.split('|');
         Tickets.setFAQclicked(questionId, p[1], 1, false);
+      } else {
+        scrollToY(0, 200);
       }
     }
   });
