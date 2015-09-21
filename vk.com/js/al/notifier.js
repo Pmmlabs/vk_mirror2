@@ -793,7 +793,7 @@ Notifier = {
       var div = ce('div');
       div.innerHTML = ev.text;
       title = div.firstChild.textContent.trim();
-      text = stripHTML(replaceEntities(ev.text).replace(/<br>/g, "\n")
+      text = stripHTML(replaceEntities(ev.text.replace(/<br\/?>/g, "\n"))
         .replace(/<span class='notifier_author_quote'.*<\/span>(.*?)/, '$1')
         .replace(/<img.*?alt="(.*?)".*?>/ig, '$1'))
         .replace(/&laquo;|&raquo;/gi, '"').trim();
