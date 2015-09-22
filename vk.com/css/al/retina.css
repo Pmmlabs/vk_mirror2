@@ -309,7 +309,7 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x .friends_tt_add,
 .is_2x .friends_tt_gift,
 .is_2x .jobs_apply_doc_icon {
-  background-image: url(/images/icons/mono_iconset_2x.png?4);
+  background-image: url(/images/icons/mono_iconset_2x.png?5);
   background-size: 12px 389px;
 }
 .is_2x .public_contacts_list .extra_info span {
@@ -369,7 +369,7 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x .profile_gift_send .send_thumb,
 .is_2x .page_fronly,
 .is_2x .page_media_place_label_inline:before {
-  background-image: url(/images/profile_icons_2x.png?13);
+  background-image: url(/images/profile_icons_2x.png?14);
   background-size: 13px 288px;
 }
 .is_2x #pv_actions .left,
@@ -1165,7 +1165,8 @@ body.dev.is_2x .paginated_table_header th.paginated_table_cell.sort_desc span.ta
 .is_2x #html5_player .vid_finish_added_fg,
 .is_2x #html5_player .vid_next_video_play,
 .is_2x #html5_player .vid_next_video_cancel,
-.is_2x #mv_external_finish .mv_finish_icon {
+.is_2x #mv_external_finish .mv_finish_icon,
+.is_2x #video_yt .video_yt_icon {
   background-image: url(/images/video/iconset_2x.png?4);
   background-size: 380px 68px;
 }

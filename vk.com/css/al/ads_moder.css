@@ -547,12 +547,12 @@ table.ads_logs_info th {
   display: block;
   width: 11px;
   height: 11px;
-  background-image: url(/images/profile_icons.png?13);
+  background-image: url(/images/profile_icons.png?14);
   background-size: 13px auto;
   background-position: 0 -198px;
 }
 .is_2x .ads_mobile_apps_type_icon {
-  background-image: url(/images/profile_icons_2x.png?13);
+  background-image: url(/images/profile_icons_2x.png?14);
 }
 .ads_mobile_apps_type_icon.android {
   background-position: 0 -174px;
@@ -580,12 +580,12 @@ table.ads_logs_info th {
   display: block;
   width: 11px;
   height: 11px;
-  background-image: url(/images/profile_icons.png?13);
+  background-image: url(/images/profile_icons.png?14);
   background-size: 13px auto;
   margin: 4px 0 0 8px;
 }
 .is_2x .ads_mobile_apps_photo_icon {
-  background-image: url(/images/profile_icons_2x.png?13);
+  background-image: url(/images/profile_icons_2x.png?14);
 }
 .ads_mobile_apps_photos_wrap {
   display: block;

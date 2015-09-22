@@ -424,7 +424,7 @@ a:hover .profile_photo_hide_wrap {
 }
 .gifts_list_module a span.thumb,
 .counts_module div a span.thumb {
-  background: url(/images/profile_icons.png?13) no-repeat;
+  background: url(/images/profile_icons.png?14) no-repeat;
   margin: 3px 0px 0px;
   width: 14px;
 }
@@ -498,7 +498,7 @@ a:hover .profile_photo_hide_wrap {
   background: #E1E7ED;
 }
 .profile_gift_send .send_thumb {
-  background: url(/images/profile_icons.png?13) no-repeat 0 -262px;
+  background: url(/images/profile_icons.png?14) no-repeat 0 -262px;
   padding: 0 16px 0 0;
 }
 .counts_module div a.gifts_inverted,

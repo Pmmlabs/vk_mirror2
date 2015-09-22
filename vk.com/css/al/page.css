@@ -877,7 +877,7 @@ div.wall_module .ext_video div {
   display: inline-block;
   *display: block;
   zoom: 1;
-  background: url(/images/profile_icons.png?13) no-repeat;
+  background: url(/images/profile_icons.png?14) no-repeat;
   width: 11px;
   height: 11px;
 }
@@ -6388,7 +6388,7 @@ button.wall_block_app_btn {
 .page_media_place_label_inline:before {
   height: 11px;
   width: 9px;
-  background-image: url("/images/profile_icons.png");
+  background-image: url("/images/profile_icons.png?14");
   background-repeat: no-repeat;
   background-position: 0 0;
   content: "";

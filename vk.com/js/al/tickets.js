@@ -201,6 +201,8 @@ saveTicket: function(hash) {
     query.faq = cur.fromFaqId;
   } else if (cur['from']) {
     query.from = cur['from'];
+  } else if (nav.objLoc['from']) {
+    query.from = nav.objLoc['from'];
   }
   ajax.post(nav.objLoc[0], query, {
     onDone: function(message) { showDoneBox(message); },
