@@ -2314,3 +2314,11 @@ body.dev.is_rtl1 .app_edit_block_header .app_edit_dev_header {
   padding-right: 9px;
   padding-left: 27px;
 }
+.is_rtl1 .page_media_place_label_inline {
+  padding-left: 0;
+  padding-right: 13px;
+}
+.is_rtl1 .page_media_place_label_inline:before {
+  left: auto;
+  right: 0;
+}

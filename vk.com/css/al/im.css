@@ -1175,6 +1175,15 @@ div.im_preview_photo_doc {
 }
 #im_sdocs_preview .im_preview_share_wrap .im_media_x {
   margin-top: 2px;
+  margin-bottom: 1px;
+  vertical-align: bottom;
+}
+#im_sdocs_preview .medadd_h_share {
+  display: inline-block;
+  max-width: 314px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 #im_media_dpreview .pam_dpic .im_media_x {
   position: absolute;

@@ -98,6 +98,35 @@
 #choose_map .place_search_bar button {
   width: 90px;
 }
+#choose_map .places_set_current_position_button {
+  margin-right: 5px;
+  padding-left: 30px;
+  position: relative;
+}
+#choose_map .places_set_current_position_button:hover:before {
+  opacity: 1;
+}
+#choose_map .places_set_current_position_button.processing {
+  color: transparent;
+  background-image: url('/images/upload.gif');
+  background-position: center center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+#choose_map .places_set_current_position_button:before {
+  height: 22px;
+  width: 20px;
+  background-image: url('/images/icons/attach_icons.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  content: "";
+  position: absolute;
+  background-position: center -88px;
+  z-index: 10000;
+  top: 1px;
+  left: 6px;
+  opacity: 0.7;
+}
 #choose_map_content {
   padding: 13px 20px;
   position: relative;

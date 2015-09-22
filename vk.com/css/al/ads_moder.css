@@ -547,7 +547,7 @@ table.ads_logs_info th {
   display: block;
   width: 11px;
   height: 11px;
-  background-image: url(/images/profile_icons.gif?13);
+  background-image: url(/images/profile_icons.png?13);
   background-size: 13px auto;
   background-position: 0 -198px;
 }
@@ -580,7 +580,7 @@ table.ads_logs_info th {
   display: block;
   width: 11px;
   height: 11px;
-  background-image: url(/images/profile_icons.gif?13);
+  background-image: url(/images/profile_icons.png?13);
   background-size: 13px auto;
   margin: 4px 0 0 8px;
 }

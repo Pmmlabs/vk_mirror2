@@ -367,9 +367,10 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x .search_verified,
 .is_2x .wall_post_source_icon,
 .is_2x .profile_gift_send .send_thumb,
-.is_2x .page_fronly {
+.is_2x .page_fronly,
+.is_2x .page_media_place_label_inline:before {
   background-image: url(/images/profile_icons_2x.png?13);
-  background-size: 13px 275px;
+  background-size: 13px 288px;
 }
 .is_2x #pv_actions .left,
 .is_2x #pv_actions .right {
@@ -1283,6 +1284,10 @@ body.dev.is_2x #page_wrap .big.disabled.selector_container td.selector_dropdown 
   background-image: url(/images/icons/checkin_big_2x.png);
   background-size: 17px 22px;
 }
+.is_2x .page_media_place_img_wrap:before {
+  background-image: url(/images/map/small_2x.png);
+  background-size: 24px 20px;
+}
 .is_2x #groups_ad_withdraw_logo {
   background-image: url(/images/socialcentrum_2x.png);
   background-size: 248px 47px;
@@ -1880,4 +1885,12 @@ body.dev.is_2x .priv_h_arrow,
 .is_2x #faq_search_form__title {
   background-image: url(/images/magglass_2x.png);
   background-size: 11px 11px;
+}
+.is_2x #choose_map .places_set_current_position_button:before {
+  background-image: url('/images/icons/attach_icons_2x.png');
+  background-size: 20px 220px;
+}
+.is_2x #choose_map .places_set_current_position_button.processing {
+  background-image: url('/images/upload_2x.gif');
+  background-size: 32px 8px;
 }

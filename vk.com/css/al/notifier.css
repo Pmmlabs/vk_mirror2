@@ -940,7 +940,7 @@ a.fc_msg_att_lnk:hover .fc_msg_att_text {
 }
 .emoji_smile.emoji_smile_on {
   opacity: 1;
-  filter: alpha(opacity=1);
+  filter: alpha(opacity=100);
 }
 .emoji_smile_icon_promo,
 .emoji_shop_icon_promo {

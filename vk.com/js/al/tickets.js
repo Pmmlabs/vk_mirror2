@@ -3222,4 +3222,22 @@ listClearCache: function() {
   obj['cc'] = 1;
   nav.go(obj);
 },
+
+subscribeToTag: function(tag, hash) {
+  ajax.post(nav.objLoc[0], {act: 'subscribe_to_tag', tag: tag, hash: hash}, {
+    cache: 1,
+    onDone: function(text) {
+      ge('agent_tag' + tag + '_subscribe').innerHTML = text;
+    }
+  })
+},
+unsubscribeFromTag: function(tag, hash) {
+  ajax.post(nav.objLoc[0], {act: 'unsubscribe_from_tag', tag: tag, hash: hash}, {
+    cache: 1,
+    onDone: function(text) {
+      ge('agent_tag' + tag + '_subscribe').innerHTML = text;
+    }
+  })
+},
+
 _eof: 1};try{stManager.done('tickets.js');}catch(e){}

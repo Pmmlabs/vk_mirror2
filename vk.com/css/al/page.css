@@ -877,7 +877,7 @@ div.wall_module .ext_video div {
   display: inline-block;
   *display: block;
   zoom: 1;
-  background: url(/images/profile_icons.gif?13) no-repeat;
+  background: url(/images/profile_icons.png?13) no-repeat;
   width: 11px;
   height: 11px;
 }
@@ -6327,10 +6327,14 @@ button.wall_block_app_btn {
   line-height: 17px;
   margin: 4px 0px;
 }
-.page_media_place:hover {
+.page_media_place_label_wrap:hover {
   text-decoration: none;
   background-color: #F5F6F7;
   color: #85909b;
+}
+.page_media_place_strong {
+  color: #2D5979;
+  font-weight: bold;
 }
 .feedback_row_content .page_media_place:hover {
   background-color: #E9EDF1;
@@ -6343,9 +6347,55 @@ button.wall_block_app_btn {
 .page_media_place:hover .checkin_big {
   background-color: #E7EAEE;
 }
+.page_media_place_img {
+  position: relative;
+  vertical-align: middle;
+}
+.wide_wall_module .page_media_place_img {
+  margin-left: 0;
+}
+.page_media_place_img_wrap {
+  display: inline-block;
+  margin-bottom: 4px;
+  max-width: 337px;
+  overflow: hidden;
+  position: relative;
+  vertical-align: middle;
+}
+.page_media_place_img_wrap:before {
+  height: 20px;
+  width: 24px;
+  background-image: url('/images/map/small.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -6px;
+  margin-top: -18px;
+  z-index: 1;
+}
 .page_media_place_label {
   width: 270px;
   padding: 2px 9px;
+}
+.page_media_place_label_inline {
+  display: inline-block;
+  padding-left: 13px;
+  position: relative;
+}
+.page_media_place_label_inline:before {
+  height: 11px;
+  width: 9px;
+  background-image: url("/images/profile_icons.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  content: "";
+  position: absolute;
+  background-position: 0 -277px;
+  top: 3px;
+  left: 0;
 }
 .page_report_progress {
   vertical-align: top;

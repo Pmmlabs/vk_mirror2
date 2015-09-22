@@ -7,8 +7,8 @@ playerCallback: {
   },
   debugLog: function() {
     var args = Array.prototype.slice.call(arguments);
-    args.unshift('flashPlayer: ');
-    debugLog(args);
+    args.unshift('video player:');
+    debugLog.apply(null, args);
   },
   fullscreen: function(value) {
     Videoview.isFS = value;

@@ -1353,9 +1353,12 @@ Marker: {
       hasBalloon: false,
       draggable: this.draggable
     };
-    if (this.iconUrl) {
+
+    var iconUrl = this.iconUrl ? (window.devicePixelRatio >= 2 && this.iconRetinaUrl ? this.iconRetinaUrl : this.iconUrl) : '';
+
+    if (iconUrl) {
       options.iconLayout = 'default#image';
-      options.iconImageHref = this.iconUrl;
+      options.iconImageHref = iconUrl;
       if (this.iconSize) {
         options.iconImageSize = this.iconSize;
         if (this.iconAnchor) {
@@ -1389,7 +1392,7 @@ Marker: {
         ymarker.options.set('iconImageHref', this.hoverIconUrl);
       });
       ymarker.events.add('mouseleave', function(e) {
-        ymarker.options.set('iconImageHref', this.iconUrl);
+        ymarker.options.set('iconImageHref', iconUrl);
       });
     }
     if (this.labelText) {

@@ -3705,7 +3705,7 @@ a.ts_search_link.active {
 }
 /* Verified accounts */
 .page_verified {
-  background: url(/images/profile_icons.gif?13) no-repeat 0 -73px;
+  background: url(/images/profile_icons.png?13) no-repeat 0 -73px;
   width: 13px;
   height: 11px;
   display: -moz-inline-stack;

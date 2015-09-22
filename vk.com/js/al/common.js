@@ -7899,55 +7899,37 @@ function IframeLoader() {
   }
 }
 
-var getCaretPixelPos = function ($node, offsetx, offsety){
-    offsetx = offsetx || 0;
-    offsety = offsety || 0;
-
-    var nodeLeft = 0,
-        nodeTop = 0;
-    if ($node){
-        nodeLeft = $node.offsetLeft;
-        nodeTop = $node.offsetTop;
+function getCaretBoundingRect(node) {
+    var rectNode = node.getBoundingClientRect(),
+      rectCaret = null,
+      range = null;
+    if (rectNode.top === rectNode.bottom) return {left: 0, top: 0, bottom: 0};
+    if (document.selection) { // using textRange
+      range = document.selection.createRange();
+      rectCaret = range.getClientRects();
+      if (!rectCaret.length) { // fix empty range
+        range.text = ' ';
+        range.moveStart('character', -1);
+        rectCaret = range.getClientRects();
+        range.text = '';
+      }
+      rectCaret = rectCaret[rectCaret.length - 1];
+    } else if (window.getSelection) { // using Range
+      var sel = getSelection();
+      range = sel.getRangeAt(0);
+      if (range.collapsed) { // fix empty range
+        var offset = range.startOffset;
+        range.setStart(range.startContainer, 0);
+        rectCaret = range.getClientRects();
+        range.setStart(range.startContainer, offset);
+      }
+      rectCaret = rectCaret.length ? rectCaret[rectCaret.length - 1] : {right: rectNode.left, top: rectNode.top, bottom: rectNode.top};
     }
-
-    var pos = { left: 0, top: 0 };
-
-    if (document.selection){
-        var range = document.selection.createRange();
-        pos.left = range.offsetLeft + offsetx - nodeLeft;
-        pos.top = range.offsetTop + offsety - nodeTop;
-    } else if (window.getSelection){
-        var sel = window.getSelection();
-        var range = sel.getRangeAt(0).cloneRange();
-        try {
-            range.setStart(range.startContainer, range.startOffset-1);
-        } catch(e){}
-        var rect = range.getBoundingClientRect();
-        if (range.endOffset == 0 || range.toString() === ''){
-            // first char of line
-            if (range.startContainer == $node){
-                // empty div
-                if (range.endOffset == 0){
-                    pos.top = 0;
-                    pos.left = 0;
-                } else {
-                    // firefox need this
-                    var range2 = range.cloneRange();
-                    range2.setStart(range2.startContainer, 0);
-                    var rect2 = range2.getBoundingClientRect();
-                    pos.left = rect2.left + offsetx - nodeLeft;
-                    pos.top = rect2.top + rect2.height + offsety - nodeTop;
-                }
-            } else {
-                pos.top = range.startContainer.offsetTop;
-                pos.left = range.startContainer.offsetLeft;
-            }
-        } else {
-            pos.left = rect.left + rect.width + offsetx - nodeLeft;
-            pos.top = rect.top + offsety - nodeTop;
-        }
-    }
-    return pos;
+    return {
+      left: rectCaret.right - rectNode.left,
+      top: rectCaret.top - rectNode.top,
+      bottom: rectCaret.bottom - rectNode.top
+    };
 };
 
 function aquireLock(name, fn, noretry) {
