@@ -1441,6 +1441,30 @@ b.search_mob_onl {
   background-color: #5e82a8;
   color: #FFFFFF;
 }
+.search_catalog_subrow {
+  display: block;
+  color: #777;
+  max-width: 150px;
+  cursor: pointer;
+  position: relative;
+}
+.search_catalog_subrow .label {
+  max-width: 128px;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 6px 11px 7px 21px;
+}
+.search_catalog_subrow:hover {
+  text-decoration: none;
+  background-color: #E1E7ED;
+}
+.search_catalog_subrow.selected,
+.search_catalog_subrow.selected:hover {
+  background-color: #5e82a8;
+  color: #FFFFFF;
+}
 #search_catalog_filters {
   padding: 10px 0px;
 }

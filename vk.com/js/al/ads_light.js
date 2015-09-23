@@ -695,6 +695,11 @@ AdsLight.setNewBlock = function(adsHtml, adsSection, adsCanShow, adsShowed, adsP
     AdsLight.tryRenderCriteo();
     return;
   }
+  if (adsHtml.slice(0, '<!--target'.length) === '<!--target') {
+    var parts = adsHtml.split(';', 3);
+    AdsLight.tryRenderTarget(parts[1]);
+    return;
+  }
   vk__adsLight.adsCanShow = ((adsCanShow || adsCanShow === '0') ? 1 : -vkNow());
   vk__adsLight.adsShowed     = adsShowed;
   vk__adsLight.adsShowedHash = +new Date;
@@ -1529,6 +1534,87 @@ AdsLight.tryRenderCriteo = function () {
   if (Math.random() < 0.05) {
     ajax.post('/wkview.php?act=mlet&mt=747', {}, {onFail: function () { return true; }});
   }
+}
+
+AdsLight.getRBAds = function (container_id, onsuccess, onfail, params) {
+  var callback = "__rb" + new Date().getTime(),
+    SLOT = "13270",
+    url = "https://ad.mail.ru/adq/?callback=" +callback+ "&q%5B%5D=" + SLOT + "%3Fn%3D" + encodeURIComponent(container_id),
+    prms = {}, // {bdate: '12.09.1989', sex: 1}
+    errorTimeout,
+    TIMEOUT_TIME = 5e3;
+
+  function ajax(url, succ, err) {
+    clearTimeout(errorTimeout);
+    errorTimeout = setTimeout(err, TIMEOUT_TIME);
+    window[callback] = function(e) {
+      clearTimeout(errorTimeout);
+      try {
+        var containerElem = ge(container_id);
+        var isContainerVisible = (containerElem && isVisible(containerElem) || vk.ad_preview);
+        if (!containerElem) {
+          var sideBarElem = ge('side_bar');
+          if (!sideBarElem) {
+            AdsLight.resizeBlockWrap([0,0], false, false, true);
+            return;
+          }
+          containerElem = sideBarElem.appendChild(ce('div', {id: 'left_ads'}, {display: isContainerVisible ? 'block' : 'none'}));
+        }
+
+        AdsLight.showNewBlock(containerElem, e[0].html, isContainerVisible);
+      }catch(E){}
+      succ(e);
+    }
+    var script = document.createElement('script');
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
+
+  if (params && params.sex) prms.g = (3-params.sex);
+  if (params && params.bdate) prms.a = getAge(params.bdate.split('.').reverse().join('/'));
+  if (params && params.test_id) prms.test_id = params.test_id;
+
+  var param_id;
+  for (param_id in prms){
+    url += "&" + param_id + "=" + prms[param_id];
+  }
+
+  ajax(url, onsuccess, onfail);
+}
+
+AdsLight.tryRenderTarget = function (test_group_id) {
+  if (Math.random() < 0.05) {
+    ajax.post('/wkview.php?act=mlet&mt=756', {}, {onFail: function () { return true; }});
+  }
+
+  AdsLight.getRBAds('left_ads', function () { // ok
+    if (Math.random() < 0.05) {
+      ajax.post('/wkview.php?act=mlet&mt=754', {}, {onFail: function () { return true; }});
+    }
+  }, function () { // fail
+    if (Math.random() < 0.05) {
+      ajax.post('/wkview.php?act=mlet&mt=755', {}, {onFail: function () { return true; }});
+    }
+
+    var oldAdsParams = vk__adsLight.adsParams;
+    vk__adsLight.adsParams = vk__adsLight.adsParams || {};
+    vk__adsLight.adsParams.target_failed = 1;
+    AdsLight.updateBlock('force_hard', 2);
+    vk__adsLight.adsParams = oldAdsParams;
+  }, {
+    test_id: test_group_id
+  });
 }
 
 AdsLight.init();

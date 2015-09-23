@@ -1085,11 +1085,18 @@ window.searchActions = {
   deactivate: function(obj, value) {
     animate(obj, {opacity: value === undefined ? 0.8 : value}, 100);
   },
-  selectCategory: function(el, id) {
+  selectCategory: function(el, id, isSubcategory) {
     ge('c[category]').value = id;
     each(geByClass('search_catalog_row', ge('search_catalog_filters')), function() {
       removeClass(this, 'selected');
     });
+    each(geByClass('search_catalog_subrow', ge('search_catalog_filters')), function() {
+      removeClass(this, 'selected');
+    });
+    if (!isSubcategory) {
+      each(geByClass('search_subcategory_wrap', 'search_catalog_filters'), hide);
+      show('search_subcategory_wrap_'+id);
+    }
     addClass(el, 'selected');
     var el = ge('search_query');
     if (val(el)) {

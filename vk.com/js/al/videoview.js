@@ -1970,7 +1970,7 @@ share: function(videoRaw, obj, actionType) {
     mvData.addedVideo = mvData.videoRaw;
   }
   if (mvData || videoRaw) {
-    showBox('like.php', {act: 'publish_box', object: 'video'+(mvData.addedVideo || videoRaw), action_type: actionType });
+    showBox('like.php', {act: 'publish_box', object: 'video'+(mvData.addedVideo || videoRaw), action_type: actionType}, {onDone: Videoview.playerNextTimerUpdate});
   }
   return false;
 },
@@ -3754,6 +3754,8 @@ onExternalVideoEnded: function(container) {
   <div class="mv_finish_next_cancel mv_finish_icon" onclick="Videoview.onExternalVideoNextCancel(event)"></div>\
 </div>\
     ';
+  } else {
+    if (!ge('video_yt')) return;
   }
 
   var suggestionsData = Videoview.getSuggestionsData();
@@ -3884,7 +3886,7 @@ onExternalVideoNextCancel: function(event) {
   event && event.stopPropagation();
   clearTimeout(mvcur.nextTimer.timeout);
   mvcur.nextTimer = null;
-  if (ge('video_yt_controls')) {
+  if (ge('video_yt')) {
     re('mv_finish_next');
     removeClass('mv_finish_suggestions', 'hidden');
   } else {
@@ -3897,7 +3899,7 @@ onExternalVideoLike: function() {
   player.onLiked && player.onLiked();
 },
 onExternalVideoShare: function() {
-  window.mvcur && mvcur.nextTimer && mvcur.nextTimer.nextTimerReset && mvcur.nextTimer.nextTimerReset();
+  // window.mvcur && mvcur.nextTimer && mvcur.nextTimer.nextTimerReset && mvcur.nextTimer.nextTimerReset();
   if (Videoview.isFS) {
     var player = Videoview.getPlayerObject();
     player && player.toggleFullscreen && player.toggleFullscreen();

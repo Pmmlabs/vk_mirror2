@@ -96,7 +96,7 @@ var ShareBox = {
 
     cur.sbHidden = true;
     autosizeSetup(cur.sbField, {minHeight: 80})
-    setTimeout(elfocus.pbind((opts.rbVal == 2) ? 'like_mail_inp' : (opts.rbVal ? 'like_club_inp' : cur.sbField)), 0);
+    setTimeout(elfocus.pbind(cur.sbField), 0);
 
     Wall.initComposer(cur.sbField, {
       lang: {

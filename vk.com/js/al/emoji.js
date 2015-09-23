@@ -514,7 +514,7 @@ addEmoji: function(optId, code, obj) {
   }
   var opts = Emoji.opts[optId];
   if (opts.editable) {
-    var img = ' '+Emoji.getEmojiHTML(code)+'&nbsp;';
+    var img = Emoji.getEmojiHTML(code);
     var editable = opts.txt;
     var sel = window.getSelection ? window.getSelection() : false;
     if (sel && sel.rangeCount) {
