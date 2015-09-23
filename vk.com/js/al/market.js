@@ -753,8 +753,9 @@ var Market = {
   },
   // end upload
 
-  showEditBox: function(id, ev) {
-    showBox('al_market.php', {act: 'a_edit_item_box', id: id, oid: cur.oid, aid: cur.aid}, {dark: 1});
+  showEditBox: function(id, oid, ev) {
+    if (!oid) oid = cur.oid;
+    showBox('al_market.php', {act: 'a_edit_item_box', id: id, oid: oid, aid: cur.aid}, {dark: 1});
     return ev && cancelEvent(ev);
   },
   saveItem: function(btn) {
@@ -963,6 +964,19 @@ var Market = {
     wkcur._hide.push(function() {
       removeEvent(domPN(ge('market_item_photo')), 'click');
     });
+
+    if (cur.options.ddActions) {
+      new InlineDropdown('market_item_actions', {
+        items: cur.options.ddActions,
+        withArrow: true,
+        keepTitle: true,
+        autoShow: true,
+        autoHide: 300,
+        onSelect: function(action) {
+          Market[action]();
+        }
+      });
+    }
 
     WkView.updateSize();
   },
@@ -1487,6 +1501,16 @@ var Market = {
       return false;
     }
     return Emoji.ttClick(cur.mkEmoji, obj, false, false, ev);
+  },
+
+  _onEdit: function() {
+    if (window.WkView) {
+      WkView.hide()
+    }
+    Market.showEditBox(cur.options.itemId, cur.options.itemOwnerId);
+  },
+  _onDelete: function() {
+    Market.deleteItem(cur.options.itemId, cur.options.itemOwnerId, cur.options.editHash);
   }
 }
 
