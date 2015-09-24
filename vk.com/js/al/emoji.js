@@ -1837,5 +1837,17 @@ giftSticker: function(packId, peersIds, ev, opts) {
   return cancelEvent(ev);
 },
 
+showStickerTT: function(el) {
+  var text = el.getAttribute('data-title');
+  if (!text) return;
+  showTooltip(el, {
+    text: text,
+    slide: 15,
+    shift: [74 - getSize(el)[0] / 2, 120, 5],
+    className: 'sticker_hint_tt',
+    hasover: 1
+  });
+},
+
 __eof: 1}}
 try{stManager.done('emoji.js');}catch(e){}

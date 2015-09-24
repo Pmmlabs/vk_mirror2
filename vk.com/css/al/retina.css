@@ -619,14 +619,16 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x .exchange_table_tt table.toup .top_pointer,
 .is_2x .payments_tt table.toup .top_pointer,
 .is_2x .wall_error_tt table.toup .top_pointer,
-.is_2x .group_addr_tt table.toup .top_pointer {
+.is_2x .group_addr_tt table.toup .top_pointer,
+.is_2x .sticker_hint_tt .toup .top_pointer {
   background-image: url(/images/tooltip_arrow_up_2x.gif);
   background-size: 11px 8px;
 }
 .is_2x .exchange_table_tt table.toup1 .bottom_pointer,
 .is_2x .payments_tt table.toup1 .bottom_pointer,
 .is_2x .wall_error_tt table.toup1 .bottom_pointer,
-.is_2x .group_addr_tt table.toup1 .bottom_pointer {
+.is_2x .group_addr_tt table.toup1 .bottom_pointer,
+.is_2x .sticker_hint_tt .toup1 .bottom_pointer {
   background-image: url(/images/tooltip_arrow_white_2x.gif);
   background-size: 11px 8px;
 }
