@@ -2064,10 +2064,13 @@ a.page_media_link_desc {
 }
 .page_media_caption {
   padding: 1px 0 5px;
-  line-height: 160%;
+  line-height: 140%;
   word-wrap: break-word;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.wide_wall_module .page_media_caption {
+  line-height: 160%;
 }
 span.post_video_title {
   font-weight: bold;

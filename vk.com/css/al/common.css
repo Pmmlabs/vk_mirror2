@@ -3632,7 +3632,7 @@ a.ts_search_link.active {
 .flat_button.active,
 .button_blue button:active,
 .button_blue button.active {
-  background: #5c7ca1;
+  background-color: #5c7ca1;
   padding-top: 7px;
   padding-bottom: 6px;
 }
