@@ -17,7 +17,7 @@ var html5video = {
   nextTimerStopped: false,
 
   initHTML5Video: function(vars, fixedWidth, fixedHeight) {
-    html5video.removeListeners();
+    html5video.destroy();
     addEvent(document, 'mouseup', html5video.docMouseUp);
     addEvent(document, 'mousemove', html5video.docMouseMove);
     addEvent(document, browser.opera ? 'keypress' : 'keydown', html5video.docKeyPressed);
@@ -180,6 +180,12 @@ var html5video = {
       });
       ge('menu_controls').appendChild(se('<div id="video_preview_tip"><div id="video_preview_tip_img_wrap">' + spritesheets + '</div><div id="video_preview_tip_text"></div><div id="video_preview_tip_arrow"></div></div>'));
     }
+    setStyle('video_preview_tip_img_wrap', {
+      webkitTransform: 'rotate(' + (90 * vars.angle) + 'deg)',
+      mozTransform: 'rotate(' + (90 * vars.angle) + 'deg)',
+      msTransform: 'rotate(' + (90 * vars.angle) + 'deg)',
+      transform: 'rotate(' + (90 * vars.angle) + 'deg)'
+    });
 
     html5video.onResize();
 
@@ -539,7 +545,6 @@ var html5video = {
   },
 
   resizeFinishScreen: function() {
-    console.info('resizeFinishScreen');
     var finishLayer = ge('vid_finish_layer'),
         playerSize = getSize(ge('bg'));
 
@@ -1361,25 +1366,7 @@ var html5video = {
   },
 
   onErr: function(e) {
-    var msg;
-    switch (e.target.error.code) {
-      case e.target.error.MEDIA_ERR_ABORTED:
-        msg = 'playback aborted.';
-        break;
-      case e.target.error.MEDIA_ERR_NETWORK:
-        msg = 'network error.';
-        break;
-      case e.target.error.MEDIA_ERR_DECODE:
-        msg = 'decode error.';
-        break;
-      case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
-        msg = 'the server or network failed or the format is not supported.';
-        break;
-      default:
-        msg = 'an unknown error occurred.';
-        break;
-    }
-    topError('<b>Video loading error:</b> ' + msg, {dt: 5});
+    window.debugLog && debugLog('html5 videoplayer error: ', e.target.error);
   },
 
   onPlay: function() {
@@ -1746,11 +1733,19 @@ var html5video = {
     html5video.updateMenu();
   },
 
-  removeListeners: function() {
+  destroy: function() {
     removeEvent(document, 'mouseup', html5video.docMouseUp);
     removeEvent(document, 'mousemove', html5video.docMouseMove);
     removeEvent(document, browser.opera ? 'keypress' : 'keydown', html5video.docKeyPressed);
     removeEvent(window, 'resize', html5video.onResize);
+    removeEvent(ge('video_cont'), 'mousewheel', html5video.docScroll);
+
+    var video = ge('the_video');
+    if (video) {
+      video.src = '';
+      video.load();
+      re(video);
+    }
   }
 };
 

@@ -420,10 +420,10 @@ mail_delete='Удалить';
 mail_deleteall1='Удалить все сообщения';
 mail_delete_all_spam='Удалить все сообщения, содержащие спам?';
 mail_error='Ошибка';
-mail_im_get_invitation_link='Получить приглашение';
+mail_im_get_invitation_link='Ссылка на беседу';
 mail_im_joined_chat_from_invitation=['','{from} присоединился к беседе','{from} присоединилась к беседе'];
 mail_marked_as_spam='Сообщение помечено как спам и удалено.';
-// section = 22; version = 241;
+// section = 22; version = 242;
 
 matches_close='закрыть';
 matches_closed='закрыто';

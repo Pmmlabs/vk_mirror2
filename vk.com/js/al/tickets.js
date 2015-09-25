@@ -2972,7 +2972,10 @@ listSearch: function(val) {
       removeClass(ge('faq_search_form'), 'loading');
 
       if (content == '') {
-        if (cur.listPrevSearchStr.indexOf(val) == -1 || cur.listPrevSearchStr == '') {
+        var valAdded = (val.indexOf(cur.listPrevSearchStr) != -1 || !cur.listPrevSearchStr),
+          valRemoved = (cur.listPrevSearchStr.indexOf(val) != -1);
+        if (!valAdded && !valRemoved || Tickets.listNotFoundVisible()) {
+          cur.listSearchFailCount++;
           Tickets.listShowNotFound(val);
         } else {
           updateLoc = false;
@@ -3212,12 +3215,19 @@ tryAskQuestion: function(callback) {
   }
   return false;
 },
+listNotFoundVisible: function() {
+  return hasClass('help_table_questions', 'help_table_questions_not_found');
+},
 listHideNotFound: function() {
-  removeClass(ge('help_table_questions'), 'help_table_questions_not_found');
+  removeClass('help_table_questions', 'help_table_questions_not_found');
 },
 listShowNotFound: function(query) {
-  addClass(ge('help_table_questions'), 'help_table_questions_not_found');
+  addClass('help_table_questions', 'help_table_questions_not_found');
   ge('help_table_not_found__query').innerHTML = query;
+  var b = ge('help_table_not_found__btn');
+  if (cur.listSearchFailCount >= 5 && !isVisible(b)) {
+    slideDown(b, 250);
+  }
 },
 listClearCache: function() {
   var obj = nav.objLoc;
