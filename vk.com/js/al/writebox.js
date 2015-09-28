@@ -211,7 +211,18 @@ var WriteBox = {
       }
     });
     stManager.add(['page.js', 'page.css'], function() {
-      cur.mbMedia = initAddMedia('mail_box_add_link', 'mail_box_added_row', cur.mbMediaTypes, {mail: 1, nocl: 1, editable: 1, sortable: 1, teWidth: 350, teHeight: 300, toggleLnk: true});
+      var mbOpts = {mail: 1, nocl: 1, editable: 1, sortable: 1, teWidth: 350, teHeight: 300, toggleLnk: true};
+      if (cur.mbForceAttach && cur.mbForceAttach[0] == 'market') {
+        mbOpts.onMediaAdd = function() {
+          for (var i in cur.mbMedia.chosenMedias) {
+            if (cur.mbMedia.chosenMedias[i][0] == 'market') {
+              hide(geByClass1('page_media_x_wrap', cur.mbMedia.chosenMedias[i][2]));
+              cur.mbMedia.chosenMedias.splice(i, 1);
+            }
+          }
+        }
+      }
+      cur.mbMedia = initAddMedia('mail_box_add_link', 'mail_box_added_row', cur.mbMediaTypes, mbOpts);
       cur.mbMedia.onChange = function() {
         box.changed = true;
       }
@@ -236,6 +247,12 @@ var WriteBox = {
     if (!peer || needPeer && peer != intval(needPeer) || browser.mobile || !cur.mbMedia) return;
 
     var draft = ls.get('im_draft' + vk.id + '_' + peer);
+    if (cur.mbForceAttach && cur.mbForceAttach[0] == 'market') {
+      draft = {
+        txt: getLang('mail_market_tmpl').replace(/&#33;/g, '!').replace(/<br>/g, "\n"),
+        medias: [cur.mbForceAttach]
+      };
+    }
     if (draft) {
       if (!WriteBox.editableHasVal(cur.mbField)) {
         if (cur.mbEditable) {

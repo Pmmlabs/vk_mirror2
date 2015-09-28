@@ -1291,6 +1291,10 @@ body.dev.is_2x #page_wrap .big.disabled.selector_container td.selector_dropdown 
   background-image: url(/images/map/small_2x.png);
   background-size: 24px 20px;
 }
+.is_2x .page_media_map_point {
+  background-image: url(/images/map/small_2x.png);
+  background-size: 24px 20px;
+}
 .is_2x #groups_ad_withdraw_logo {
   background-image: url(/images/socialcentrum_2x.png);
   background-size: 248px 47px;
@@ -1890,10 +1894,10 @@ body.dev.is_2x .priv_h_arrow,
   background-size: 11px 11px;
 }
 .is_2x #choose_map .places_set_current_position_button:before {
-  background-image: url('/images/icons/attach_icons_2x.png');
-  background-size: 20px 220px;
+  background-image: url('/images/map_target_2x.png');
+  background-size: 18px 18px;
 }
-.is_2x #choose_map .places_set_current_position_button.processing {
-  background-image: url('/images/upload_2x.gif');
-  background-size: 32px 8px;
+.is_2x #choose_map .move_to_button.processing:before {
+  background-image: url(/images/upload_gray_mini.gif);
+  background-size: 16px 4px;
 }

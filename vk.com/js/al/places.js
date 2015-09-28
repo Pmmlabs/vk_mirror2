@@ -431,7 +431,7 @@ initPhotoMap: function(opts) {
     if (opts.map) {
       map = opts.map;
     } else {
-      map = new ymaps.Map(opts.cont, mapOpts);
+      map = new ymaps.Map(opts.cont, mapOpts, {suppressMapOpenBlock: true, suppressObsoleteBrowserNotifier: true});
     }
     setMapOpts(map);
 

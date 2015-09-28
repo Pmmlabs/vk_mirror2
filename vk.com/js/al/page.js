@@ -5348,6 +5348,10 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
           toEl = ldocsEl;
         break;
 
+        case 'market':
+          preview = '<div class="medadd_c_market fl_l"><a target="_blank" href="' + data.href + '"><img class="medadd_c_market_thumb fl_l" src="' + data.thumb + '" /></a><div class="medadd_c_market_info fl_l"><a class="medadd_c_market_title" target="_blank" href="' + data.href + '">' + data.title + '</a><div class="medadd_c_market_price">' + data.price + '</div></div>';
+        break;
+
         case 'postpone':
           preview = '<div class="medadd_h medadd_h_timer inl_bl">' + data.lang.profile_choose_timer + '<span id="postpone_preview' + lnkId + '"></span></div>';
 

@@ -36,6 +36,9 @@ switchTab: function(name, evt) {
     if (cur.fromNotFound) {
       link += '&from=n';
     }
+    if (cur.fromTopLink) {
+      link += '&from=top';
+    }
     return nav.go(link, evt, {onFail: function(text) {
       hide('new_tab');
       show('show_tab', 'new_link');

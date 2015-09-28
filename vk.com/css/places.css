@@ -10,7 +10,8 @@
   height: 370px;
 }
 #place_map_yandex,
-#place_map_google {
+#place_map_google,
+#place_map_yandex2 {
   display: none;
 }
 #place_recent_checkins {

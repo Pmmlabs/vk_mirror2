@@ -12,7 +12,8 @@
 }
 #place_map_yandex,
 #place_map_google,
-#place_map_mapbox {
+#place_map_mapbox,
+#place_map_yandex2 {
   display: none;
 }
 #place_recent_checkins {
@@ -98,34 +99,113 @@
 #choose_map .place_search_bar button {
   width: 90px;
 }
-#choose_map .places_set_current_position_button {
-  margin-right: 5px;
-  padding-left: 30px;
-  position: relative;
+.places_set_current_position_tt {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 5px -1px rgba(51, 51, 51, 0.2);
+  -moz-box-shadow: 1px 1px 5px -1px rgba(51, 51, 51, 0.2);
+  box-shadow: 1px 1px 5px -1px rgba(51, 51, 51, 0.2);
+  -o-transition: left 200ms ease-out;
+  -ms-transition: left 200ms ease-out;
+  -moz-transition: left 200ms ease-out;
+  -webkit-transition: left 200ms ease-out;
+  transition: left 200ms ease-out;
+  background: #fff;
+  border: 1px solid #BCCAD7;
+  bottom: 28px;
+  left: 78px;
+  line-height: 16px;
+  padding: 5px 12px;
+  position: absolute;
 }
-#choose_map .places_set_current_position_button:hover:before {
-  opacity: 1;
+.places_set_current_position_tt.places_set_current_position_tt_over {
+  left: 68px;
 }
-#choose_map .places_set_current_position_button.processing {
-  color: transparent;
-  background-image: url('/images/upload.gif');
+.places_set_current_position_tt:before {
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid #bccad7;
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  left: -5px;
+  top: 50%;
+  margin-top: -5px;
+}
+.places_set_current_position_tt:after {
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid #ffffff;
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  left: -4px;
+  top: 50%;
+  margin-top: -5px;
+}
+#choose_map .move_to_button {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.07);
+  -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.07);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.07);
+  height: 28px;
+  width: 28px;
+  background-color: #ffffff;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#eeeeee));
+  background: -webkit-linear-gradient(top, #ffffff, #eeeeee);
+  background: -moz-linear-gradient(top, #ffffff, #eeeeee);
+  background: -ms-linear-gradient(top, #ffffff, #eeeeee);
+  background: -o-linear-gradient(top, #ffffff, #eeeeee);
+  border: 1px solid #333;
+  border: 1px solid rgba(51, 51, 51, 0.5);
+  bottom: 28px;
+  cursor: pointer;
+  left: 35px;
+  position: absolute;
+}
+#choose_map .move_to_button:hover {
+  background-color: #ffffff;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f6f5f4));
+  background: -webkit-linear-gradient(top, #ffffff, #f6f5f4);
+  background: -moz-linear-gradient(top, #ffffff, #f6f5f4);
+  background: -ms-linear-gradient(top, #ffffff, #f6f5f4);
+  background: -o-linear-gradient(top, #ffffff, #f6f5f4);
+}
+#choose_map .move_to_button:active {
+  -webkit-box-shadow: inset 0 2px 1px -1px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.2);
+  -moz-box-shadow: inset 0 2px 1px -1px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 2px 1px -1px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+#choose_map .move_to_button:before {
   background-position: center center;
-  background-repeat: no-repeat;
-  pointer-events: none;
+  top: 4px;
+  left: 4px;
 }
 #choose_map .places_set_current_position_button:before {
-  height: 22px;
-  width: 20px;
-  background-image: url('/images/icons/attach_icons.png');
+  height: 18px;
+  width: 18px;
+  background-image: url('/images/map_target.png');
   background-repeat: no-repeat;
   background-position: 0 0;
   content: "";
   position: absolute;
-  background-position: center -88px;
-  z-index: 10000;
-  top: 1px;
-  left: 6px;
-  opacity: 0.7;
+  background-position: center center;
+}
+#choose_map .move_to_button.processing {
+  pointer-events: none;
+}
+#choose_map .move_to_button.processing:before {
+  background-image: url(/images/upload_gray_mini.gif);
 }
 #choose_map_content {
   padding: 13px 20px;
