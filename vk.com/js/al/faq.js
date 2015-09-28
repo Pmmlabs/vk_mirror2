@@ -207,6 +207,7 @@ saveFAQ: function(hash) {
     if (query.section == 0) {
       var categories = cur.desktopCategorySelector.val();
       query.categories = categories;
+      query.spec_section = cur.specSectionSelector.val();
     } else if (query.section == 31) {
       var platforms = cur.platformSelector.val();
       if (!platforms) {
