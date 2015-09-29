@@ -6353,6 +6353,9 @@ button.wall_block_app_btn {
   line-height: 17px;
   margin: 4px 0px;
 }
+.page_media_place.page_media_place__no_img {
+  margin-top: 0;
+}
 .page_media_place_label_wrap:hover {
   text-decoration: none;
   background-color: #F5F6F7;

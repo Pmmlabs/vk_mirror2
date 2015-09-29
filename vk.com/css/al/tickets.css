@@ -2247,6 +2247,24 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 .help_tile_alert__acts {
   margin-top: 5px;
 }
+.help_tile_alert__edit {
+  height: 20px;
+  width: 20px;
+  background-image: url('/images/doc_icons.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  content: "";
+  position: absolute;
+  background-color: #eff1f3;
+  background-position: 0 -20px;
+  display: inline-block;
+  opacity: 0.2;
+  right: 10px;
+  top: 10px;
+}
+.help_tile_alert__edit:hover {
+  opacity: 1;
+}
 .help_tile {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
