@@ -1619,6 +1619,9 @@ AdsLight.tryRenderTarget = function (test_group_id) {
     if (Math.random() < 0.05) {
       ajax.post('/wkview.php?act=mlet&mt=754', {}, {onFail: function () { return true; }});
     }
+    if (window.RB && window.RB.doCheck) {
+      window.RB.doCheck();
+    }
   }, function (data) { // fail
     if (Math.random() < 0.05) {
       ajax.post('/wkview.php?act=mlet&mt=755', data, {onFail: function () { return true; }});

@@ -1990,7 +1990,10 @@ var IM = {
     }
 
     for (var peer in update_chats) {
-      IM.updateChat(peer, true);
+      var tab = cur.tabs[peer];
+      if (tab && !tab.loading) {
+        IM.updateChat(peer, true);
+      }
     }
 
     return true;
