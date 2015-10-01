@@ -1974,7 +1974,11 @@ share: function(videoRaw, obj, actionType) {
     mvData.addedVideo = mvData.videoRaw;
   }
   if (mvData || videoRaw) {
-    showBox('like.php', {act: 'publish_box', object: 'video'+(mvData.addedVideo || videoRaw), action_type: actionType}, {onDone: Videoview.playerNextTimerUpdate});
+    showBox('like.php', {act: 'publish_box', object: 'video'+(mvData.addedVideo || videoRaw), action_type: actionType}, {onDone: function() {
+      if (window.mvcur && mvcur.mvShown) {
+        Videoview.playerNextTimerUpdate();
+      }
+    }});
   }
   return false;
 },
@@ -3163,7 +3167,7 @@ minimize: function(ev) {
 },
 
 enabledResize: function() {
-  return (browser.safari || browser.chrome || browser.mozilla | browser.opera) && !browser['safari_mobile'];
+  return (browser.safari || browser.chrome || browser.mozilla || browser.opera) && !browser['safari_mobile'];
 },
 
 minimizePlayer: function() {
