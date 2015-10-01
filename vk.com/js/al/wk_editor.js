@@ -1084,13 +1084,13 @@ extend(WkEditor.prototype, {
           if (!text[i]) {
             continue;
           }
-          html += before + text[i] + after;
+          html += before + clean(text[i]) + after;
         }
         if (!html) {
           html = before + (defText || 'header') + after;
         }
       } else {
-        html = before + (text || '') + after;
+        html = before + clean(text || '') + after;
       }
       obj.innerHTML = html;
     }
