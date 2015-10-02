@@ -339,6 +339,7 @@
   color: #ffffff;
   font-weight: bold;
   text-align: right;
+  white-space: nowrap;
   width: 28px;
   padding-right: 9px;
 }
