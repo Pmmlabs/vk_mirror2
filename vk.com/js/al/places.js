@@ -879,8 +879,7 @@ showPlaceTT: function(obj, text) {
 
 showPhotoPlace: function(lat, lng) {
   var map = cur.placeBoxMap;
-  map.setCenter(new google.maps.LatLng(lat, lng));
-  map.setZoom(16);
+  map.setCenter([lat, lng], 16);
   animate(boxLayerWrap, {scrollTop: 0}, 200);
 }
 

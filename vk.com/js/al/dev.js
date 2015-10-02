@@ -598,7 +598,7 @@ wrapObject: function(obj, rootNode, objName, parentContext) {
       break;
   }
   if (rootNode && obj.response && obj.response['upload_url']) {
-    html += '<div class="dev_upload_form"><form id="dev_file_submit" action="'+obj.response['upload_url']+'" target="dev_upload_iframe" enctype="multipart/form-data" method="post"><input type="file" name="file" onchange="this.parentNode.submit(); show(\'dev_upload_iframe_wrap\')" class="dev_upload_input" /></form></div><div id="dev_upload_iframe_wrap"><iframe id="dev_upload_iframe" name="dev_upload_iframe"></iframe></div>';
+    html += '<div class="dev_upload_form"><form id="dev_file_submit" action="'+clean(obj.response['upload_url'])+'" target="dev_upload_iframe" enctype="multipart/form-data" method="post"><input type="file" name="file" onchange="this.parentNode.submit(); show(\'dev_upload_iframe_wrap\')" class="dev_upload_input" /></form></div><div id="dev_upload_iframe_wrap"><iframe id="dev_upload_iframe" name="dev_upload_iframe"></iframe></div>';
   }
   return html;
 },
