@@ -435,3 +435,4 @@ http://vk.com/js/wall.js
 http://vk.com/js/wiki.js
 http://vk.com/js/wysiwyg.js
 http://vk.com/js/al/market.js
+http://vk.com/js/al/video_youtube.js
