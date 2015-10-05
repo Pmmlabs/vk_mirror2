@@ -6667,7 +6667,7 @@ Composer = {
 
     Composer.hideSelectList(composer);
     if (isEmoji) {
-      Emoji.val(composer.input, prefValue + suffValue);
+      Emoji.val(composer.input, clean(prefValue) + suffValue);
       Emoji.focus(composer.input);
       Emoji.editableFocus(composer.input, ge('tmp_sel_'+cur.selNum), false, true)
     } else {
