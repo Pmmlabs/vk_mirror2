@@ -1902,3 +1902,7 @@ body.dev.is_2x .priv_h_arrow,
   background-image: url(/images/upload_gray_mini.gif);
   background-size: 16px 4px;
 }
+.is_2x .tickets_thank_you_form.processing .flat_button {
+  background-image: url('/images/upload_inv_2x.gif');
+  background-size: 32px 8px;
+}

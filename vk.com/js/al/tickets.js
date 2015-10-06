@@ -1003,7 +1003,42 @@ closeTicket: function(hash) {
   });
   return false;
 },
-
+closeTicketByAuthor: function(hash) {
+  ajax.post(nav.objLoc[0], {act: 'close_ticket_by_author', ticket_id: cur.ticket_id, hash: hash}, {
+    onDone: function() {
+      addClass('tickets_thank_you_form', 'you_re_welcome');
+    },
+    showProgress: function() {
+      addClass('tickets_thank_you_form', 'processing');
+    },
+    hideProgress: function() {
+      removeClass('tickets_thank_you_form', 'processing');
+    }
+  });
+},
+reopenTicketByAuthor: function(hash) {
+  ajax.post(nav.objLoc[0], {act: 'reopen_ticket_by_author', ticket_id: cur.ticket_id, hash: hash}, {
+    onDone: function() {
+      removeClass('tickets_thank_you_form', 'you_re_welcome');
+    },
+    showProgress: function() {
+      addClass('tickets_thank_you_form', 'processing');
+    },
+    hideProgress: function() {
+      removeClass('tickets_thank_you_form', 'processing');
+    }
+  });
+  return false;
+},
+showPostField: function() {
+  hide('tickets_thank_you_form');
+  show('tickets_post_field');
+  elfocus('tickets_reply');
+},
+hidePostField: function() {
+  show('tickets_thank_you_form');
+  hide('tickets_post_field');
+},
 showAllReplies: function() {
   var link = ge('show_all_replies_link'), pr = geByClass1('progress', link), label = geByClass1('label', link);
   hide(label);
