@@ -2643,25 +2643,31 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   margin-left: 5px;
 }
 .tickets_thank_you_form {
-  padding: 23px 5px 10px 80px;
+  padding: 10px 5px 10px 80px;
   background: #F7F7F7;
   border-top: 1px solid #DAE1E8;
 }
-.tickets_thank_you_form__title {
-  line-height: 16px;
-  height: 34px;
+.tickets_thank_you_form__inner {
+  height: 91px;
 }
-.tickets_thank_you_form__btns {
-  padding-bottom: 18px;
+.tickets_thank_you_form__title {
+  line-height: 18px;
+  margin-bottom: 17px;
+  padding-top: 13px;
+}
+.tickets_thank_you_form_undo .tickets_thank_you_form__title {
+  margin-bottom: 15px;
+  padding-top: 5px;
 }
 .tickets_thank_you_form__you_re_welcome {
   display: none;
-  line-height: 2.4em;
-  padding-bottom: 18px;
+  line-height: 18px;
+  padding-top: 33px;
 }
 .tickets_thank_you_form.you_re_welcome .tickets_thank_you_form__you_re_welcome {
   display: block;
 }
+.tickets_thank_you_form.you_re_welcome .tickets_thank_you_form__title,
 .tickets_thank_you_form.you_re_welcome .tickets_thank_you_form__btns {
   display: none;
 }
@@ -2677,4 +2683,10 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 }
 .tickets_thank_you_form.processing .secondary {
   display: none;
+}
+.tickets_post_field_disabled #tickets_send {
+  display: none;
+}
+.tickets_post_field_disabled .tickets_post_form__cancel {
+  margin-left: 0;
 }
