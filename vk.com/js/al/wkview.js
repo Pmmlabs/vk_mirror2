@@ -284,6 +284,7 @@ saveInfo: function(autosave) {
     hash: wkcur.hash
   }
   if (wkcur.newEditor) {
+
     params['Body'] = wkcur.editor.val();
     if (params['Body'] === false) {
       return false;

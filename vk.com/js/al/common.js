@@ -7908,7 +7908,7 @@ function getCaretBoundingRect(node) {
       range = document.selection.createRange();
       rectCaret = range.getClientRects();
       if (!rectCaret.length) { // fix empty range
-        range.text = ' ';
+        range.text = '_';
         range.moveStart('character', -1);
         rectCaret = range.getClientRects();
         range.text = '';

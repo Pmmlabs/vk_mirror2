@@ -104,13 +104,12 @@ setLeftNav: function(sel) {
     Dev.diselectLeftNav();
     return;
   }
-
   var p = ge('dev_mlist_'+sel);
   if (p) {
     var submenu = ge('dev_mlist_submenu_'+sel);
     if (submenu) {
       show(submenu);
-    } else {
+    } else if (!geByClass1('nav_selected', p.parentNode)) {
       addClass(p, 'nav_selected');
       show(p.parentNode);
     }
@@ -671,7 +670,7 @@ requestError: function(code) {
 requestResult: function(res) {
   if (ge('dev_const_start_from')) {
     var nextBtn = ge('dev_req_next');
-    if (res.response['next_from']) {
+    if (res && res.response && res.response['next_from']) {
       cur.nextFrom = res.response['next_from'];
       show(nextBtn);
     } else {
