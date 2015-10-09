@@ -769,6 +769,14 @@ a.tasks_preview_header:hover {
   height: 17px;
   clear: both;
 }
+.tasks_ticket_row_thank_you {
+  margin-top: 4px;
+  font-weight: bold;
+  list-style: none;
+}
+.tasks_ticket_row_thank_you__a {
+  color: #5e82a8;
+}
 .tasks_ticket_author {
   color: #777;
   margin: 0 2px 0 5px;
@@ -823,6 +831,17 @@ li.over .tasks_ticket_unbind {
 }
 #task_support a.my {
   color: #008800;
+}
+#task_support .thanks {
+  -o-transition: opacity 500ms ease-out;
+  -ms-transition: opacity 500ms ease-out;
+  -moz-transition: opacity 500ms ease-out;
+  -webkit-transition: opacity 500ms ease-out;
+  transition: opacity 500ms ease-out;
+  opacity: 0.6;
+}
+#task_support .thanks:hover {
+  opacity: 1;
 }
 #tasks_support_reply_chk {
   margin: 10px 0px 3px;
