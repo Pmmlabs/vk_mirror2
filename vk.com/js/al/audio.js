@@ -2401,24 +2401,75 @@ var Audio = {
     }
   },
 
-  hideRecommendation: function(aid, q, hash, event) {
-    if (window.audioPlayer && currentAudioId() == aid) {
+  hideRecommendation: function(id, q, hash, event) {
+    if (window.audioPlayer && currentAudioId() == id) {
       audioPlayer.nextTrack(true);
     }
-    var recRow = ge('audio'+aid);
-    if (recRow) {
+
+    var el = ge('audio'+id),
+        aid = id.split('_')[1];
+
+    if (el) {
       if (window.tooltips) {
-        tooltips.hide(ge('remove'+aid))
+        tooltips.hide(ge('remove'+id));
       }
-      slideUp(recRow, 200, function() {
-        recRow.parentNode.removeChild(recRow);
-        Audio.removeFromPlaylist(aid);
-        cur.recsCount--;
-        Audio.changeHTitle();
+      var title_wrap = el && geByClass1('title_wrap', el),
+          performer  = clean(title_wrap && (geByTag1('a', title_wrap) || {}).innerHTML) || '',
+          title      = clean(title_wrap && (geByClass1('lyrics_link', title_wrap) || geByClass1('title', title_wrap) || {}).innerHTML) || '';
+
+      if (!cur.deletedAudios) cur.deletedAudios = [];
+      cur.deletedAudios[aid] = el.innerHTML;
+
+      var acts = geByClass1('actions', el);
+      each(acts.children, function(){if (this.tt && this.tt.hide) this.tt.hide()});
+
+      el.innerHTML = rs(cur.recommendTpl, {
+        audio_id: id,
+        performer: performer,
+        query: q,
+        title: title,
+        delete_all: ''
       });
+      el.setAttribute('nosorthandle', '1');
+
+      Audio.removeFromPlaylist(id);
+      Audio.changeHTitle();
+      cur.recsCount--;
     }
+
     ajax.post(Audio.address, {act: 'hide_recommendation', q: q, hash: hash});
     if (event) cancelEvent(event);
+
+    return false;
+  },
+
+  restoreRecommendation: function(id, q, hash) {
+    if (cur.restoring) {
+      return;
+    }
+    cur.restoring = true;
+    var el = ge('audio' + id), aid = id.split('_')[1];
+    var acts = geByClass1('actions', el);
+
+    each(acts.children, function(){if (this.tt && this.tt.hide) this.tt.hide()});
+
+    var hideProgress = function() {
+      cur.restoring = false;
+    }
+    var onDone = function() {
+      el.innerHTML = cur.deletedAudios[aid];
+      el.removeAttribute('nosorthandle');
+
+      Audio.backToPlaylist(id);
+      Audio.changeHTitle();
+      cur.recsCount++;
+
+      toggleClass(el, 'playing', id == currentAudioId());
+    }
+
+    params = {act: 'restore_recommendation', q: q, aid: aid, hash: cur.hashes.restore_recommend_hash};
+    ajax.post(Audio.address, params, {onDone: onDone, hideProgress: hideProgress});
+
     return false;
   },
 

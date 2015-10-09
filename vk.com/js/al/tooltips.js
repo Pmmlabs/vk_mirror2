@@ -41,75 +41,86 @@ var tooltips = {
     el.ttimer = setTimeout(function() {
       var container = el.tt.container;
       if (isVisible(container)) return;
-
-      var fix = el.tt.isFixed || false, xy = opts.forcexy ? opts.forcexy : getXY(el, fix),
-          elsize = opts.forcesize ? opts.forcesize : getSize(el),
-          toup = opts.toup,
-          asrtl = vk.rtl && !opts.asrtl || opts.asrtl && !vk.rtl;
+      var elsize = opts.forcesize ? opts.forcesize : getSize(el);
       if (!elsize[0] && !elsize[1]) {
         hide(el.tt.container);
         return;
       }
-
       container.style.opacity = 0;
       show(container);
-      container.firstChild.className = 'toup' + (opts.toup ? 1 : '');
-      var shift = opts.shift;
-      if (isFunction(shift)) {
-        shift = shift();
-      }
-      var st = fix ? 0 : (bodyNode.scrollTop || htmlNode.scrollTop || 0), ttsize = getSize(container), needDown = (xy[1] - ttsize[1] - shift[1]) < st, needUp = (xy[1] + elsize[1] + ttsize[1] + shift[2] - lastWindowHeight) > st;
-      if (browser.msie7) {
-        setStyle(container, {width: ttsize[0]});
-      }
-
-      var needLeft = (opts.black && lastWindowWidth && lastWindowWidth - (xy[0] + (asrtl ? elsize[0] : ttsize[0])) < 1);
-
-      if (toup && needDown) {
-        toup = false;
-      } else if (!toup && needUp && !needDown) {
-        toup = true;
-      }
-      if (opts.forcetodown) toup = false;
-      if (opts.forcetoup) toup = true;
-      if (toup != opts.toup || needLeft) {
-        container.firstChild.className = 'toup' + (toup ? 1 : '') + (needLeft ? ' toleft' : '');
-        ttsize = getSize(container);
-      }
-      var newtop = xy[1] + (toup ? -(ttsize[1] + shift[1]) : (elsize[1] + shift[2]));
-      var starttop = newtop + intval(opts.slide) * (toup ? -1 : 1);
-      var newleft = xy[0] + (asrtl ? (shift[0] + elsize[0] - ttsize[0]) : (toup ? -shift[0] : -(shift[3] || shift[0])));
-      if (needLeft) {
-        newleft -= ttsize[0] - 39;
-      }
-
-      if (opts.center && ttsize[0] != elsize[0]) {
-        newleft -= asrtl ? 0 : (ttsize[0] - elsize[0]) / 2;
-        var pointer = geByClass1(toup ? 'bottom_pointer' : 'top_pointer', container)
-        if (pointer) {
-          var marginLeft;
-          if(newleft < 0) {
-            marginLeft = (ttsize[0] - getSize(pointer)[0]) / 2 + newleft || 0;
-            newleft = 0;
-          } else {
-            marginLeft = (ttsize[0] - getSize(pointer)[0]) / 2 || 0;
-          }
-          setStyle(pointer, {marginLeft: marginLeft + 'px'});
-        }
-      }
-
-      addClass(container, toup ? 'tt_toup' : '');
-      var startleft = newleft + intval(opts.slideX);
-
+      var coords = tooltips.rePosition(el, opts);
       el.tt.showing = true;
-      setStyle(container, {top: starttop, left: startleft});
-      animate(container, {top: newtop, left: newleft, opacity: 1}, opts.showsp !== undefined ? opts.showsp : 200, function() {
+      setStyle(container, {top: coords.starttop, left: coords.startleft});
+      animate(container, {top: coords.endtop, left: coords.endleft, opacity: 1}, opts.showsp !== undefined ? opts.showsp : 200, function() {
         el.tt && el.tt.showing && (el.tt.showing = false);
         if (opts.onShowEnd) opts.onShowEnd();
         el.tt && (el.tt.shown = true);
       });
       if (opts.onShowStart) opts.onShowStart(el.tt);
     }, opts.showdt || 0);
+  },
+  rePosition: function (el, opts) {
+    if (!el.tt) return;
+    var coords = {
+        startleft: 0,
+        starttop: 0,
+        endleft: 0,
+        endtop: 0
+      },
+      container = el.tt.container,
+      shift = opts.shift,
+      toup = opts.toup,
+      asrtl = vk.rtl && !opts.asrtl || opts.asrtl && !vk.rtl,
+      fix = el.tt.isFixed || false,
+      xy = opts.forcexy ? opts.forcexy : getXY(el, fix),
+      elsize = opts.forcesize ? opts.forcesize : getSize(el);
+    container.firstChild.className = toup ? 'toup1' : 'toup';
+    if (isFunction(shift)) shift = shift();
+    var st = fix ? 0 : (bodyNode.scrollTop || htmlNode.scrollTop || 0),
+      ttsize = getSize(container),
+      needDown = (xy[1] - ttsize[1] - shift[1]) < st,
+      needUp = (xy[1] + elsize[1] + ttsize[1] + shift[2] - lastWindowHeight) > st;
+    if (browser.msie7) setStyle(container, {width: ttsize[0]});
+    var needLeft = (opts.black || opts.white) && lastWindowWidth && lastWindowWidth - (xy[0] + (asrtl ? elsize : ttsize)[0]) < 1;
+    if (opts.forcetodown) {
+      toup = false;
+    } else if (opts.forcetoup) {
+      toup = true;
+    } else if (opts.preferdown && !needDown && !needUp) {
+      toup = false;
+    } else if (opts.preferup && !needDown && !needUp) {
+      toup = true;
+    } else if (needDown) {
+      toup = false;
+    } else if (needUp) {
+      toup = true;
+    }
+    if (toup != opts.toup || needLeft) {
+      container.firstChild.className = (toup ? 'toup1' : 'toup') + (needLeft ? ' toleft' : '');
+      ttsize = getSize(container);
+    }
+    coords.endtop = xy[1] + (toup ? - (ttsize[1] + shift[1]) : (elsize[1] + shift[2]));
+    coords.starttop = coords.endtop + intval(opts.slide) * (toup ? -1 : 1);
+    coords.endleft = xy[0] + (asrtl ? (shift[0] + elsize[0] - ttsize[0]) : (toup ? -shift[0] : -(shift[3] || shift[0])));
+    if (needLeft) coords.endleft -= ttsize[0] - 39;
+    if (opts.center && ttsize[0] != elsize[0]) {
+      coords.endleft -= asrtl ? 0 : (ttsize[0] - elsize[0]) / 2;
+      var pointer = geByClass1(toup ? 'bottom_pointer' : 'top_pointer', container)
+      if (pointer) {
+        var marginLeft;
+        if(coords.endleft < 0) {
+          marginLeft = (ttsize[0] - getSize(pointer)[0]) / 2 + coords.endleft || 0;
+          coords.endleft = 0;
+        } else {
+          marginLeft = (ttsize[0] - getSize(pointer)[0]) / 2 || 0;
+        }
+        setStyle(pointer, {marginLeft: marginLeft + 'px'});
+      }
+    }
+    coords.startleft = coords.endleft + intval(opts.slideX);
+    toup ? addClass(container, 'tt_toup') : removeClass(container, 'tt_toup');
+    el.tt.show && setStyle(container, {top: coords.starttop, left: coords.startleft});
+    return coords;
   },
   hide: function(el, options) {
     if (el.tt) {
@@ -119,7 +130,10 @@ var tooltips = {
       clearTimeout(el.hidetimer);
       clearTimeout(el.ttimer);
       el.hidetimer = 0;
-      if (el.tt && el.tt.el) hide(el.tt.container);
+      if (el.tt && el.tt.el) {
+        hide(el.tt.container);
+        el.tt.opts && isFunction(el.tt.opts.onFastHide) && el.tt.opts.onFastHide();
+      }
       return;
     }
     if (el.hidetimer) return;
@@ -141,6 +155,7 @@ var tooltips = {
           if (el.tt && el.tt.container) {
             setStyle(el.tt.container, {pointerEvents: 'auto'});
           }
+          isFunction(opts.onHideEnd) && opts.onHideEnd();
         });
         if (opts.onHide) {
           opts.onHide();
@@ -173,7 +188,7 @@ var tooltips = {
       if (!elsize[0] && !elsize[1]) continue;
 
       var ttsize = getSize(container);
-      var needLeft = (opts.black && lastWindowWidth && lastWindowWidth - (xy[0] + ttsize[0]) < 1);
+      var needLeft = ((opts.black || opts.white) && lastWindowWidth && lastWindowWidth - (xy[0] + ttsize[0]) < 1);
       var toup = hasClass(container.firstChild, 'toup1');
       var shift = opts.shift;
       if (isFunction(shift)) {
@@ -225,7 +240,7 @@ var tooltips = {
 
   create: function(el, options) {
     var opts = extend({
-      shift: (options.black ? [11, 3, 3] : [2, 3, 3]), // [leftShift, toupTopShift, notToupTopShift]
+      shift: (options.black ? [11, 3, 3] : (options.white ? [20, 14, 6] : [2, 3, 3])), // [leftShift, toupTopShift, notToupTopShift]
       toup: true
     }, options);
     if (!el.tthide) {
@@ -261,7 +276,7 @@ var tooltips = {
       }
       opts.content = '<div class="tt_text">' + opts.text + '</div>';
     }
-    var cls = (opts.black ? 'ttb ' : 'tt ') + (opts.className || '');
+    var cls = (opts.black ? 'ttb ' : (opts.white ? 'ttw' : 'tt ')) + (opts.className || '');
     if (el.tt && el.tt.el) {
       var cont = el.tt.container;
       if (el.tt.onClean) el.tt.onClean();
@@ -276,6 +291,11 @@ var tooltips = {
       if (opts.black) {
         var c = ce('div', {
           innerHTML: '<div><div class="top_pointer"></div><div class="ttb_cont">'+opts.content+'</div><div class="bottom_pointer"></div></div>',
+          className: cls
+        }, {display: 'none'});
+      } else if (opts.white) {
+        var c = ce('div', {
+          innerHTML: '<div><div class="top_pointer"></div><div class="ttw_cont">'+opts.content+'</div><div class="bottom_pointer"></div></div>',
           className: cls
         }, {display: 'none'});
       } else {
@@ -302,6 +322,7 @@ var tooltips = {
         el: el,
         opts: opts,
         show: tooltips.show.pbind(el, options),
+        rePosition: tooltips.rePosition.pbind(el, opts),
         hide: el.tthide,
         destroy: tooltips.destroy.pbind(el),
         container: c

@@ -2314,6 +2314,37 @@ body.dev.is_rtl1 .app_edit_block_header .app_edit_dev_header {
   padding-right: 9px;
   padding-left: 27px;
 }
+.is_rtl1 .apps_featured_wrap .apps_featured_small_thumbs_wrap {
+  margin-left: 0;
+  margin-right: 9px;
+}
+.is_rtl1 .apps_featured_wrap .apps_featured_small_thumbs_wrap .apps_featured_thumb_name {
+  margin-left: 0;
+  margin-right: 7px;
+}
+/* apps notifications */
+.is_rtl1 .app_delete_cont {
+  margin-left: 3px;
+  margin-right: 58px;
+}
+.is_rtl1 .app_notifications_row_background {
+  padding-left: 16px;
+  padding-right: 58px;
+}
+.is_rtl1 .app_notifications_row_new .app_notifications_row_background {
+  padding-right: 58px;
+  padding-left: 16px;
+}
+.is_rtl1 .app_notifications_row_time {
+  margin-left: 0;
+  margin-right: 8px;
+}
+.is_rtl1 .app_notifications_wrap {
+  -webkit-border-radius: 0 0 0 5px;
+  -moz-border-radius: 0 0 0 5px;
+  border-radius: 0 0 0 5px;
+  padding: 2px;
+}
 .is_rtl1 .page_media_place_label_inline {
   padding-left: 0;
   padding-right: 13px;

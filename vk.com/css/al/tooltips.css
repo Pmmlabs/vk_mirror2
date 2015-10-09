@@ -2,7 +2,8 @@
   display: none;
 }
 .tt,
-.ttb {
+.ttb,
+.ttw {
   position: absolute;
   z-index: 2000;
   cursor: default;
@@ -676,6 +677,68 @@ div.own_reply_tt .content {
 }
 .ttb a {
   color: #B1DAFF;
+}
+/* White */
+.ttw_cont {
+  background-color: white;
+  min-width: 60px;
+  min-height: 20px;
+  border: 1px solid #BCCAD7;
+  border-radius: 2px;
+  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.1);
+  margin-top: 5px;
+}
+.ttw .top_pointer,
+.ttw .bottom_pointer {
+  display: none;
+  z-index: 2;
+  position: relative;
+}
+.ttw .toup1 .bottom_pointer,
+.ttw .toup .top_pointer {
+  display: block;
+}
+.ttw .top_pointer:after,
+.ttw .top_pointer:before,
+.ttw .bottom_pointer:after,
+.ttw .bottom_pointer:before {
+  border: 5px solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.ttw .top_pointer:after,
+.ttw .top_pointer:before {
+  bottom: -1px;
+}
+.ttw .bottom_pointer:after,
+.ttw .bottom_pointer:before {
+  top: -1px;
+}
+.ttw .bottom_pointer:after,
+.ttw .top_pointer:after,
+.ttw .bottom_pointer:before,
+.ttw .top_pointer:before {
+  margin: 0 26px;
+}
+.ttw .top_pointer:after {
+  border-bottom-color: #ffffff;
+}
+.ttw .top_pointer:before {
+  border-bottom-color: #BCCAD7;
+  bottom: 0px;
+}
+.ttw .bottom_pointer:after {
+  border-top-color: #ffffff;
+}
+.ttw .bottom_pointer:before {
+  border-top-color: #BCCAD7;
+  top: 0px;
+}
+.ttw a {
+  color: #2B587A;
 }
 /* Wall mentions tooltip */
 .mention_tt {

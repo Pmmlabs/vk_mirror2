@@ -296,7 +296,7 @@ h4.faq_question .faq_info {
   height: 50px;
 }
 .faq_content {
-  /*width: 385px;*/
+  width: 385px;
   overflow: hidden;
 }
 .faq_row.wide .faq_content {
@@ -307,7 +307,7 @@ h4.faq_question .faq_info {
   font-weight: bold;
   padding-bottom: 5px;
   line-height: 160%;
-  width: 385px;
+  width: 385px !important;
 }
 .faq_row.wide .faq_title {
   font-size: 12px;

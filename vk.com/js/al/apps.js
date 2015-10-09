@@ -978,6 +978,7 @@ var Apps = { // can be removed soon
   address: 'apps',
 
   init: function(obj, appTpl) {
+    Apps.notifications.setQueueAction('reset');
     extend(cur, {
       searchCont: ge('apps_search') || ge('apps_search_wrap'),
       module: 'apps',
@@ -1256,7 +1257,7 @@ var Apps = { // can be removed soon
     addEvent(window, 'resize', Apps.scrollCheck);
     addEvent(cur.aSearch, 'blur', Apps.searchBlur);
     addEvent(cur.aSearch, 'focus', Apps.searchFocus);
-
+    Apps.notifications.startEvents();
     Apps.initFeaturedAutoScroll();
   },
 
@@ -1265,7 +1266,7 @@ var Apps = { // can be removed soon
     removeEvent(window, 'resize', Apps.scrollCheck);
     removeEvent(cur.aSearch, 'blur', Apps.searchBlur);
     removeEvent(cur.aSearch, 'focus', Apps.searchFocus);
-
+    Apps.notifications.stopEvents();
     clearInterval(cur.featuredAutoScrollTimer);
   },
 
@@ -2127,8 +2128,11 @@ var Apps = { // can be removed soon
         params.from = 'recent';
         params.offset = cur.recentOffset;
       }
+      Apps.notifications.setQueueAction('frameDestroy', aid);
       ajax.post(Apps.address, params, {
-        onDone: function(text, data) {
+        onDone: function(text, data, padCounter, tabCounter) {
+          Apps.notifications.setQueueAction('setPadCounter', padCounter);
+          Apps.notifications.setQueueAction('setTabCounter', tabCounter);
           delete cur.preload;
           cur.appsIndex.remove(cur.apps[aid]);
           cur.deletedCount++;
@@ -2505,6 +2509,7 @@ var Apps = { // can be removed soon
   },
 
   switchType: function(type, obj) {
+    Apps.notifications.setQueueAction('frameHide');
     cur.genrestt.hide();
 
     cur.searchType = type;
@@ -2699,7 +2704,7 @@ var Apps = { // can be removed soon
     } else if (el.active) {
       return;
     }
-    animate(el, {opacity: opacity}, 200);
+    animate(el, {opacity: opacity}, 100);
   },
 
   rowActive: function(aid, tt) {
@@ -2709,10 +2714,10 @@ var Apps = { // can be removed soon
     }
   },
   rowInactive: function(aid) {
-    Apps._animDelX(aid, 0.5, 0);
+    Apps._animDelX(aid, 0.7, 0);
   },
   rowOver: function(aid) {
-    Apps._animDelX(aid, 0.5);
+    Apps._animDelX(aid, 0.7);
   },
   rowOut: function(aid) {
     Apps._animDelX(aid, 0);
@@ -2751,6 +2756,7 @@ var Apps = { // can be removed soon
           var cont = ge('notify_info'+nid);
           hide('notify_hide'+nid);
           cont.innerHTML = response;
+          Apps.notifications.setQueueAction('frameDestroy', nid.split('_')[1]);
         }
         delete cur.deletingNot;
       },
@@ -2764,7 +2770,8 @@ var Apps = { // can be removed soon
     var block = ge("apps_request_row_"+rid), y = getSize(geByClass1('apps_request_info_wrap', block))[1];
     cur['req_'+rid+'_back'] = block.innerHTML;
     ajax.post('al_apps.php', {act: 'a_reject_request', rid: rid, hash: hash}, {
-      onDone: function(text) {
+      onDone: function(text, isNew) {
+        isNew && Apps.notifications.setQueueAction('setPadCounter', -1);
         block.innerHTML = trim(text);
         var msgBlock = geByClass1('apps_request_removed', block), newY = getSize(msgBlock)[1];
         setStyle(msgBlock, 'padding', Math.max(0, (y - newY) / 2));
@@ -3061,10 +3068,9 @@ var Apps = { // can be removed soon
       if (Apps._mouseOnFeatured) return;
 
       var currEl = geByClass1('apps_featured_row_selected');
-      if (currEl) {
+      if (currEl && currEl.nextSibling) {
         currEl = currEl.nextSibling;
-        currEl = currEl.nodeType == Node.ELEMENT_NODE ? currEl : geByClass1('apps_featured_row');
-
+        currEl = currEl.nodeType == 1 ? currEl : geByClass1('apps_featured_row');
         Apps.onFeaturedClick(currEl);
       }
     }, 6000);
@@ -3143,6 +3149,7 @@ var Apps = { // can be removed soon
     ajax.post('apps', {act: 'a_remove_all_notifies', hash: hash}, {
       onDone: function() {
         nav.reload();
+        Apps.notifications.reset();
       },
       onFail: function() {
         obj.innerHTML = back;
@@ -3376,6 +3383,7 @@ var Apps = { // can be removed soon
       black: 1,
       showsp: showsp,
       shift: [0, 2, 10],
+      js: "var af = Apps.notifications.frameGetActive(); return af && af.wrapper === tip.el ? false : true",
       text: '<div class="apps_score_tt_cont"><b>'+name+'</b>'+(info ? '<div class="apps_score_tt">'+info+'</div>' : '')+'</div>'
     });
   },
@@ -4116,7 +4124,567 @@ var Apps = { // can be removed soon
     ajax.post('/al_apps.php', {act: 'do_call_reject'}, {
       onDone: function() {}
     });
-  }
+  },
+
+  /**
+   * Manage apps requests and notifications tts
+   */
+  notifications: (function() {
+    if (window.Apps) return window.Apps.notifications;
+
+    // options
+
+    var optReadTimeout = 1000,
+      optGetRowsLimit = 20,
+      optClassNames = {
+        container: 'app_notifications_container',
+        content: 'app_notifications_content',
+        loaderMax: 'app_notifications_loader_max',
+        loaderMin: 'app_notifications_loader_min',
+        loaderRow: 'app_notifications_loader_row',
+        appOld: 'app_notifications_old',
+        appNew: 'app_notifications_new',
+        appActive: 'app_notifications_active',
+        rowNew: 'app_notifications_row_new'
+      };
+
+    // private
+
+    var frames = {},
+      activeFrame = null,
+      tts = [],
+      tab = null,
+      queue = [],
+      readed = {},
+      pub = null,
+      events = false;
+
+    function hideActiveFrameHandler(e) {
+      if (activeFrame) {
+        if (
+          e.type === 'mousedown' &&
+          e.target && !(
+            e.target === activeFrame.el ||
+            e.target === activeFrame.container ||
+            activeFrame.el.contains(e.target) ||
+            activeFrame.container && activeFrame.container.contains(e.target)
+          )
+        ) {
+          activeFrame.hide();
+        } else if (e.keyCode == KEY.ESC) {
+          activeFrame.hide();
+          cancelEvent(e);
+        }
+      }
+    }
+
+    function runQueue() {
+      if (queue.length) {
+        var item = null;
+        while (queue.length) {
+          item = queue.pop();
+          isFunction(pub[item[1]]) && pub[item[1]].apply(pub, item[0]);
+        }
+      }
+    }
+
+    function setOrDecrementCounter(el, num, plus) {
+      if (num < 0) {
+        var value = data(el, 'nextCount') * 1;
+        if (isNaN(value)) value = data(el, 'curCount') * 1;
+        if (isNaN(value)) value = positive(val(el)) * 1;
+        num = value + num;
+      }
+      animateCount(el, num > 0 ? (plus ? '+' : '') + num : '', {str: true});
+      return num > 0;
+    }
+
+    function row(data) {
+      this.id = data[0];
+      this.old = !!data[2];
+      this.loading = false;
+      this.type = data[3];
+      var node = domFC(ce('div', {
+        'innerHTML': data[4]
+      }));
+      this.node = node;
+      if (!data[2]) addClass(node, optClassNames.rowNew);
+      this.nodes = {
+        main: node,
+        reject: false,
+        ban: false
+      };
+    }
+    row.prototype = {
+
+      read: function() {
+        if (this.old) return false;
+        this.old = true;
+        removeClass(this.nodes.main, optClassNames.rowNew);
+        if (!readed[this.frame.app]) readed[this.frame.app] = {};
+        readed[this.frame.app][this.id] = true;
+        return true;
+      },
+
+      show: function(name) {
+        if (!this.nodes[name] || this.node === this.nodes[name] || !this.node.parentNode) return;
+        this.node.parentNode.insertBefore(this.nodes[name], this.node);
+        re(this.node);
+        this.node = this.nodes[name];
+        this.frame.scrollbar.update(false, true);
+      },
+
+      restore: function(hash) {
+        if (this.loading || this.frame.destroyed || this.type === 'n') return;
+        this.loader(true);
+        ajax.post('al_apps.php', {
+          act: 'notifications_restore_request',
+          tid: this.id,
+          aid: this.frame.app,
+          hash: hash
+        }, {
+          onDone: function() {
+            this.show('main');
+            this.loader(false);
+          }.bind(this),
+          onFail: this.loader.bind(this, false)
+        });
+      },
+
+      ban: function(hash, tid) {
+        if (this.loading || this.frame.destroyed) return;
+        this.loader(true);
+        ajax.post('al_apps.php', {
+          act: 'notifications_ban_'+(this.type == 'r' ? 'request' : 'notify'),
+          tid: tid || 0,
+          aid: this.frame.app,
+          hash: hash
+        }, {
+          onDone: function(html) {
+            this.nodes.ban = domFC(ce('div', {'innerHTML': html}));
+            this.show('ban');
+            if (!this.old && !readed[this.frame.app][this.id]) {
+              pub.setPadCounter(-1);
+              var apps = {};
+              apps[this.frame.app] = {};
+              apps[this.frame.app][this.id] = this.type == 'r' ? 0 : 1;
+              pub.frameRead(apps);
+            }
+            this.loader(false);
+          }.bind(this),
+          onFail: this.loader.bind(this, false)
+        });
+      },
+
+      remove: function(hash) {
+        if (this.loading || this.frame.destroyed) return;
+        this.loader(true);
+        ajax.post('al_apps.php', {
+          act: 'notifications_remove_'+(this.type == 'r' ? 'request' : 'notify'),
+          tid: this.id,
+          aid: this.frame.app,
+          hash: hash
+        }, {
+          onDone: function(html) {
+            this.nodes.remove = domFC(ce('div', {'innerHTML': html}));
+            this.show('remove');
+            if (!this.old && !readed[this.frame.app][this.id]) {
+              pub.setPadCounter(-1);
+              var apps = {};
+              apps[this.frame.app] = {};
+              apps[this.frame.app][this.id] = this.type == 'r' ? 0 : 1;
+              pub.frameRead(apps);
+            }
+            this.loader(false);
+          }.bind(this),
+          onFail: this.loader.bind(this, false)
+        });
+      },
+
+      loader: function(needLoader) {
+        for (var name in this.nodes) {
+          if (this.nodes[name]) {
+            window[needLoader ? 'addClass' : 'removeClass'](this.nodes[name], optClassNames.loaderRow);
+          }
+        }
+        this.loading = needLoader;
+      }
+
+    };
+
+    function frame(app, hash, el, count) {
+      this.hash = hash;
+      this.el = el;
+      this.wrapper = el.parentNode;
+      this.app = app;
+      this.date = 0;
+      this.tt = null;
+      this.done = false;
+      this.fails = 0;
+      this.readTimeout = null;
+      this.loading = false;
+      this.destroyed = false;
+      this.container = ce('div', {'className': optClassNames.container});
+      this.content = ce('div', {'className': optClassNames.content});
+      this.loader = ce('div', {'className': optClassNames.loaderMax});
+      this.container.appendChild(this.content).appendChild(this.loader);
+      if (!readed[this.app]) readed[this.app] = {};
+      var opts = {
+        prefix: 'app_notifications_',
+        nokeys: true,
+        nomargin: true,
+        shadows: true,
+        more: this.load.bind(this),
+        scrollChange: this.read.bind(this)
+      };
+      if (vk.rtl) {
+        opts.left = 2;
+        opts.right = 'auto';
+      } else {
+        opts.left = 'auto';
+        opts.right = 2;
+      }
+      this.scrollbar = new Scrollbar(this.content, opts);
+      this.rows = {};
+      this.counterWrap = domFC(el);
+      this.counterCurrent = count;
+      this.load();
+    }
+    frame.prototype = {
+
+      mark: function(ids) {
+        if (this.destroyed) return;
+        var i = ids.length,
+          counter = 0;
+        while (i--) {
+          if (this.rows[ids[i]]) {
+            this.rows[ids[i]].read() && counter++;
+          } else if (!readed[this.app][ids[i]]) {
+            readed[this.app][ids[i]] = true;
+            counter++;
+          }
+        }
+        this.counter(this.counterCurrent - counter);
+      },
+
+      read: function() {
+        if (activeFrame !== this) return;
+        if (this.readTimeout) clearTimeout(this.readTimeout);
+        this.readTimeout = setTimeout(this.readed.bind(this), optReadTimeout);
+      },
+
+      readed: function() {
+        var edge = this.content.scrollTop + this.content.offsetHeight,
+          id = null,
+          ids = [],
+          tabCounter = 0;
+        if (!edge) return;
+        for (id in this.rows) {
+          if (!this.rows[id].old && this.rows[id].node.offsetTop + this.rows[id].node.offsetHeight / 2 < edge) {
+            this.rows[id].type == 'n' && tabCounter--;
+            this.rows[id].read();
+            ids.push(id);
+          }
+        }
+        if (!ids.length) return;
+        this.counter(this.counterCurrent - ids.length);
+        ajax.post('al_apps.php', {
+          act: 'notifications_read',
+          aid: this.app,
+          ids: ids.join(','),
+          hash: this.hash
+        }, {
+          onDone: function (res, padCounter) {
+            pub.setPadCounter(padCounter);
+            tabCounter && pub.setTabCounter(tabCounter);
+          }
+        });
+      },
+
+      destroy: function() {
+        this.hide(true);
+        this.scrollbar && this.scrollbar.destroyList && this.scrollbar.destroy();
+        delete readed[this.app];
+        delete frames[this.app];
+        this.destroyed = true;
+      },
+
+      hide: function(needDestroyTT) {
+        if (this.tt) {
+          needDestroyTT ? this.tt.destroy() : this.tt.hide();
+        }
+        this.active(false);
+      },
+
+      active: function(needActive) {
+        if (this.destroyed) return;
+        if (needActive) {
+          activeFrame = this;
+          addClass(this.el, optClassNames.appActive);
+        } else {
+          if (activeFrame === this) activeFrame = null;
+          removeClass(this.el, optClassNames.appActive);
+        }
+      },
+
+      show: function() {
+        if (this === activeFrame || this.destroyed) return;
+        activeFrame && activeFrame.hide();
+        this.wrapper && this.wrapper.tt && this.wrapper.tt.hide && this.wrapper.tt.hide();
+        this.active(true);
+        showTooltip(this.el, {
+          text: '<div class="container_'+this.app+'"></div>',
+          white: true,
+          nohide: true,
+          nohideover: true,
+          hasover: true,
+          preferdown: true,
+          onHideEnd: this.active.bind(this, false),
+          onFastHide: this.active.bind(this, false),
+          onCreate: function() {
+            if (this.destroyed) return;
+            this.tt = this.el.tt;
+            geByClass('container_'+this.app, this.tt.container)[0].appendChild(this.container);
+          }.bind(this),
+          onShowStart: this.scrollbar.scrollTop.bind(this.scrollbar, 0),
+          onShowEnd: function() {
+            if (this.destroyed) return;
+            this.scrollbar.update(false, true);
+            this.read();
+          }.bind(this)
+        });
+      },
+
+      loaded: function(param) {
+        re(this.loader);
+        this.done = true;
+        this.scrollbar.update(false, true);
+      },
+
+      counter: function(num) {
+        if (num < 0) num = 0;
+        if (this.counterCurrent === num) return;
+        animateCount(this.counterWrap, num, {str:''});
+        this.counterCurrent = num;
+        if (num) {
+          replaceClass(this.el, optClassNames.appOld, optClassNames.appNew);
+        } else {
+          replaceClass(this.el, optClassNames.appNew, optClassNames.appOld);
+        }
+      },
+
+      empty: function(html) {
+        var empty = domFC(ce('div', {innerHTML: html}));
+        this.content.insertBefore(empty, this.loader);
+      },
+
+      load: function() {
+        if (this.loading || this.done) return;
+        this.loading = true;
+        this.ajax = ajax.post('al_apps.php', {
+          act: 'notifications_get',
+          aid: this.app,
+          date: this.date,
+          limit: optGetRowsLimit,
+          hash: this.hash
+        }, {
+          onDone: function(data, done, empty, counter, tabCounter) {
+            if (this.destroyed) return;
+            this.date || this.counter(this.counterCurrent = counter);
+            if (empty) {
+              this.empty(empty);
+            } else if (data.length) {
+              this.feed(data);
+            }
+            done && this.loaded();
+            this.loading = false;
+          }.bind(this),
+          onFail: function() {
+            if (this.destroyed) return;
+            var count = 0,
+              row = null;
+            for (row in this.rows) count++;
+            if (count) {
+              this.loaded();
+              this.loading = false;
+            }
+          }.bind(this)
+        });
+      },
+
+      feed: function(data) {
+        var i = 0,
+          needRePosition = false,
+          frag = document.createDocumentFragment();
+        for (;i < data.length;i++) {
+          if (this.rows[data[i][0]]) continue;
+          needRePosition = true;
+          if (readed[this.app][data[i][0]]) data[i][2] = 1;
+          this.rows[data[i][0]] = new row(data[i]);
+          this.rows[data[i][0]].frame = this;
+          this.date = data[i][1];
+          frag.appendChild(this.rows[data[i][0]].node);
+        }
+        this.content.insertBefore(frag, this.loader);
+        replaceClass(this.loader, optClassNames.loaderMax, optClassNames.loaderMin);
+        this.tt && needRePosition && this.tt.rePosition();
+        this.scrollbar.update(false, true);
+      }
+
+    }
+
+    // public
+
+    return pub = {
+
+      // row actions
+
+      rowRemove: function(app, id, hash) {
+        frames[app] && frames[app].rows[id] && frames[app].rows[id].remove(hash);
+      },
+
+      rowRestore: function(app, id, hash) {
+        frames[app] && frames[app].rows[id] && frames[app].rows[id].restore(hash);
+      },
+
+      rowBan: function(app, id, hash, tid) {
+        frames[app] && frames[app].rows[id] && frames[app].rows[id].ban(hash, tid);
+      },
+
+      // frame actions
+
+      framePrepare: function (app, hash, el, count) {
+        frames[app] && frames[app].el !== el && frames[app].destroy();
+        if (!frames[app]) frames[app] = new frame(app, hash, el, count);
+      },
+
+      frameShow: function (app) {
+        if (frames[app]) frames[app] === activeFrame ? frames[app].hide() : frames[app].show();
+      },
+
+      frameGetActive: function() {
+        return activeFrame;
+      },
+
+      frameHide: function(app) {
+        frames[app] ? frames[app].hide() : activeFrame && activeFrame.hide();
+      },
+
+      frameDestroy: function(app) {
+        frames[app] ? frames[app].destroy() : activeFrame && activeFrame.destroy();
+      },
+
+      frameRead: function(apps) {
+        if (apps === void(0)) { // read all
+          this.reset();
+          var anchors = geByClass(optClassNames.appNew),
+            i = anchors.length;
+          while (i--) {
+            setOrDecrementCounter(domFC(anchors[i]), 0);
+            replaceClass(anchors[i], optClassNames.appNew, optClassNames.appOld);
+          }
+          pub.setTabCounter(0);
+          pub.setPadCounter(0);
+          return;
+        } else { // read required notifications
+          var el = null,
+            aid = null,
+            keys = null,
+            nid = null,
+            tabCounter = 0;
+          for (aid in apps) {
+            keys = [];
+            if (!readed[aid]) readed[aid] = {};
+            for (nid in apps[aid]) {
+              if (readed[aid][nid]) continue;
+              if (!frames[aid]) readed[aid][nid] = true;
+              apps[aid][nid] && tabCounter--;
+              keys.push(nid);
+            }
+            if (!keys.length) return;
+            if (frames[aid]) {
+              frames[aid].mark(keys);
+            } else if (el = ge('app_anchor_'+aid)) {
+              setOrDecrementCounter(domFC(el), keys.length * -1) || replaceClass(el, optClassNames.appNew, optClassNames.appOld);
+            }
+          }
+          tabCounter && this.setTabCounter(tabCounter);
+        }
+      },
+
+      frameTooltip: function (el, text) {
+        el.tt ? el.tt.show() : showTooltip(el, {
+          text: text,
+          center: 1,
+          black: 1,
+          shift: [0, 2, 10],
+          black: true,
+          onShowStart: function (tt) {
+            tts.push(tt);
+          }
+        });
+      },
+
+      // global notifications actions
+
+      setTabCounter: function(num) {
+        if (!tab) {
+          tab = ge('apps_notifications_count');
+          if (!tab) return;
+        }
+        setOrDecrementCounter(tab, num, true);
+      },
+
+      setPadCounter: function(num) {
+        if (!window.handlePageCount) return;
+        if (num < 0) {
+          handlePageCount('ap', intval(vk.counts['ap']) + num);
+        } else {
+          handlePageCount('ap', num);
+        }
+      },
+
+      setQueueAction: function() {
+        var args = Array.prototype.slice.call(arguments);
+        queue.push([args, args.splice(0, 1)[0]]);
+        events && runQueue();
+      },
+
+      dropCache: function() {
+        globalHistoryDestroy('apps?act=catalog');
+        globalHistoryDestroy('apps');
+        if (cur.preload) delete cur.preload['catalog'];
+      },
+
+      startEvents: function() {
+        if (!events) {
+          runQueue();
+          addEvent(document, 'mousedown keydown', hideActiveFrameHandler, void(0), void(0), true);
+          events = true;
+        }
+      },
+
+      stopEvents: function() {
+        if (events) {
+          removeEvent(document, 'mousedown keydown', hideActiveFrameHandler);
+          this.frameHide();
+          events = false;
+        }
+      },
+
+      reset: function() {
+        queue = [];
+        var i = tts.length,
+          app = null;
+        while (i--) {
+          tts[i].destroy();
+        }
+        for (app in frames) frames[app].destroy();
+      }
+
+    }
+
+  })()
 };
 
 try{stManager.done('apps.js');}catch(e){}
