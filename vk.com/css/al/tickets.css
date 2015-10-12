@@ -2577,6 +2577,11 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 .help_table_question__rated {
   display: none;
 }
+.help_table_question__rated_no_perm {
+  line-height: 1.6;
+  padding-bottom: 0.2em;
+  color: #666;
+}
 .help_table_question_rated_additional__btns {
   line-height: 2em;
   margin: 0;

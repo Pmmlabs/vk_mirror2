@@ -3274,7 +3274,7 @@ function Scrollbar(obj, options) {
   this.clPref = options.prefix || '';
   this.isHorizontal = options.horizontal;
   this.scrollProp = this.isHorizontal ? 'scrollLeft' : 'scrollTop';
-  this.scrollDimensionProp = this.isHorizontal ? 'scrollHeight' : 'scrollWidth';
+  this.scrollDimensionProp = this.isHorizontal ? 'scrollWidth' : 'scrollHeight';
 
   setTimeout((function() {
     setStyle(obj, {

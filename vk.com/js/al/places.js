@@ -71,94 +71,106 @@ initPhotoMap: function(opts) {
   }
 
   function expandPoint(point, possive) {
-    if (point.diff && point.diff < 0.00002) {
-      return false;
-    }
-    if (point.diff && point.diff <= (point.count + 1) * 0.000001) {
-      return false;
-    }
-    var p = point.points;
-    if (p) {
-      if (point.expanded || possive) {
-        return false;
-      }
-      var len = p.length;
-      while (len--) {
-        var subPoint = p[len];
-        if (subPoint.overlay) {
-          if (isMapbox) {
-            map.addLayer(subPoint.overlay);
-          } else {
-            subPoint.overlay.setMap(map);
-          }
+    if (point.loading || !point.points || point.expanded || possive) return false;
+    var p = point.points,
+      len = p.length;
+    while (len--) {
+      var subPoint = p[len];
+      if (subPoint.overlay) {
+        if (isMapbox) {
+          map.addLayer(subPoint.overlay);
         } else {
-          if (isMapbox) {
-            var pt = new L.LatLng(subPoint.lat, subPoint.lng);
-            subPoint.overlay = createMarker(pt, map, subPoint.src, subPoint.count, subPoint.diff);
-            subPoint.overlay.on('click', (pointClick).pbind(subPoint));
-          } else {
-            subPoint.overlay = new CustomMarker([subPoint.lat, subPoint.lng], map, subPoint.src, subPoint.count, subPoint.diff, (function(subPoint) {
-              pointClick(subPoint);
-            }).pbind(subPoint));
-          }
+          subPoint.overlay.setMap(map);
         }
-      }
-      if (isMapbox) {
-        map.removeLayer(point.overlay);
       } else {
-        point.overlay.setMap(null);
-      }
-      point.expanded = true;
-    } else if (!point.loading) {
-      point.loading = true;
-      ajax.post('al_places.php', {
-        act: 'a_get_points',
-        diff: point.diff || opts.diffZone,
-        lat: point.lat,
-        lng: point.lng,
-        uid: opts.uid
-      }, {
-        onDone: function(points) {
-          point.points = points;
-          expandPoint(point, possive);
-        },
-        onFail: function() {
-          point.loading = false;
+        if (isMapbox) {
+          var pt = new L.LatLng(subPoint.lat, subPoint.lng);
+          subPoint.overlay = createMarker(pt, map, subPoint.src, subPoint.count, subPoint.diff);
+          subPoint.overlay.on('click', (pointClick).pbind(subPoint));
+        } else {
+          subPoint.overlay = new CustomMarker([subPoint.lat, subPoint.lng], map, subPoint.src, subPoint.count, subPoint.diff, (function(subPoint) {
+            pointClick(subPoint);
+          }).pbind(subPoint));
         }
-      })
+      }
     }
+    if (isMapbox) {
+      map.removeLayer(point.overlay);
+    } else {
+      point.overlay.setMap(null);
+    }
+    point.expanded = true;
   }
 
-  function checkPointsReq(points, mapBounds) {
-    if (!points) {
-      return false;
+  function checkPointsReq(points, mapBounds, toBeExpanded) {
+    if (!points) return false;
+    if(!toBeExpanded) {
+      opts.diff = Math.max((mapBounds.neLat - mapBounds.swLat), (mapBounds.neLng - mapBounds.swLng));
+      toBeExpanded = {};
     }
-    for (i in points) {
-      var point = points[i];
-      if (point.count <= 1) {
-        continue;
-      }
-      var diff = (point.diff * 15) || opts.diffZone;
-      var inside = (point.lat + diff > mapBounds.neLat && point.lat - diff < mapBounds.swLat && point.lng + diff > mapBounds.neLng && point.lng - diff < mapBounds.swLng);
-
-      if (!inside) {
+    var i = points.length;
+    while (i--) {
+      if (points[i].loading || points[i].count <= 1) continue;
+      var point = points[i],
+        diff = point.diff * 20;
+      if (
+        diff > opts.diff &&
+        point.lat >= mapBounds.swLat - diff &&
+        point.lat <= mapBounds.neLat + diff &&
+        point.lng >= mapBounds.swLng - diff &&
+        point.lng <= mapBounds.neLng + diff
+      ) {
         if (point.expanded) {
-          unexpandPoint(point);
+          checkPointsReq(point.points, mapBounds, toBeExpanded);
+        } else {
+          toBeExpanded[point.photo.split('_')[1]] = point;
         }
-        continue;
-      }
-      if (point.expanded) {
-        checkPointsReq(point.points, mapBounds);
-      } else if (inside) {
-        expandPoint(point);
       } else if (point.expanded) {
         unexpandPoint(point);
       }
     }
+    return toBeExpanded;
   }
 
   function updateMapPoints() {
-    checkPointsReq(opts.points, getMapBounds());
+    var toBeExpanded = checkPointsReq(opts.points, getMapBounds()),
+      id = null,
+      params = {
+        uid: opts.uid,
+        act: 'a_get_points',
+        points: [],
+        ids: [],
+        diffs: []
+      };
+    for (id in toBeExpanded) {
+      toBeExpanded[id].loading = true;
+      params.points.push(id);
+      params.ids.push(toBeExpanded[id].ids);
+      params.diffs.push(toBeExpanded[id].diff);
+    }
+    if (params.points.length === 0) return;
+    if (opts.diff) {
+      delete params.diffs;
+      params.diff = opts.diff;
+    } else {
+      params.diffs = params.diffs.join(',');
+    }
+    params.points = params.points.join(',');
+    params.ids = params.ids.join(',');
+    ajax.post('al_places.php', params, {
+      onDone: function(points, data) {
+        for (var id in data) {
+          if (!points[id]) continue;
+          points[id].loading = false;
+          if (!data[id].length) continue;
+          points[id].points = data[id];
+          expandPoint(points[id]);
+        }
+      }.pbind(toBeExpanded),
+      onFail: function(points) {
+        for (var id in points) points[id].loading = false;
+      }.pbind(toBeExpanded)
+    });
   }
 
   function zoomToPoint(point) {
