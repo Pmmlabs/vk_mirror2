@@ -1030,8 +1030,8 @@
   -o-animation: gift_duck 190ms linear;
   animation: gift_duck 190ms linear;
 }
-img.gift_duck_tease,
-.gift_duck_tease img {
+img.gift_duck_tease#gift_item_733,
+.gift_duck_tease#gift_item_733 img {
   -webkit-animation: gift_duck_tease 2100ms infinite;
   -moz-animation: gift_duck_tease 2100ms infinite;
   -o-animation: gift_duck_tease 2100ms infinite;
@@ -1107,4 +1107,29 @@ img.gift_duck_tease,
     -moz-transform: rotateZ(0deg);
     transform: rotateZ(0deg);
   }
+}
+#gift_item_736 {
+  position: relative;
+}
+.gift_zing {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  -o-transition: opacity 400ms linear;
+  -ms-transition: opacity 400ms linear;
+  -moz-transition: opacity 400ms linear;
+  -webkit-transition: opacity 400ms linear;
+  transition: opacity 400ms linear;
+}
+.gift_zing.zing_shown {
+  opacity: 1;
+}
+.im_gift_row .gift_zing {
+  left: 6px;
+  top: 6px;
+}
+.pad_msg_rows .im_gift_row .gift_zing {
+  left: 0;
+  top: 0;
 }

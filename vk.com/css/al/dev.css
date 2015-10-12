@@ -658,6 +658,33 @@ input.dev_wide_input {
   -moz-border-radius: 16px;
   border-radius: 16px;
 }
+.dev_left_feature {
+  border-radius: 2px;
+  -webkit-box-shadow: 0 1px 2px rgba(6, 33, 63, 0.13);
+  -moz-box-shadow: 0 1px 2px rgba(6, 33, 63, 0.13);
+  box-shadow: 0 1px 2px rgba(6, 33, 63, 0.13);
+  position: relative;
+  width: 215px;
+  background: #FFF;
+  margin-top: 20px;
+}
+.dev_left_feature .feature_image {
+  background-image: url('/images/hackaween.png');
+  width: 100%;
+  height: 138px;
+  background-size: cover;
+  background-position: center;
+}
+.dev_left_feature .feature_info {
+  padding: 14px 18px;
+  font-size: 12px;
+  line-height: 140%;
+}
+.dev_left_feature a.feature_title {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: inline-block;
+}
 #dev_left_nav {
   position: relative;
   width: 215px;

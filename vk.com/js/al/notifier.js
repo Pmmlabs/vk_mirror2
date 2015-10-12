@@ -5365,13 +5365,7 @@ function Scrollbar(obj, options) {
   this.clPref = options.prefix || '';
   this.isHorizontal = options.horizontal;
   this.scrollProp = this.isHorizontal ? 'scrollLeft' : 'scrollTop';
-  this.scrollDimensionProp = this.isHorizontal ? 'scrollWidth' : 'scrollHeight';
-  this.measureEl = ce('div', null, {
-    position: 'static',
-    margin: 0,
-    border: 0,
-    float: 'none'
-  });
+  this.scrollDimensionProp = this.isHorizontal ? 'scrollHeight' : 'scrollWidth';
 
   setTimeout((function() {
     setStyle(obj, {
@@ -5712,12 +5706,12 @@ Scrollbar.prototype.contHeight = function() {
   if (this.contHashCash) {
     return this.contHashCash;
   }
-  var position = this.obj.style.position;
-  this.obj.style.position = 'relative';
-  this.obj.appendChild(this.measureEl);
-  var height = this.measureEl.offsetTop;
-  this.obj.removeChild(this.measureEl);
-  this.obj.style.position = position;
+  var nodes = this.obj.childNodes;
+  var height = 0;
+  var i = nodes.length;
+  while (i--) {
+    height += nodes[i].offsetHeight || 0;
+  }
   this.contHashCash = height;
   return height;
 }

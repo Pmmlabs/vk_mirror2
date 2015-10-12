@@ -415,9 +415,6 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x .bugs_search_progress,
 .is_2x .bugs_subscribers_prg,
 .is_2x .tickets_search_progress,
-.is_2x .app_notifications_row.app_notifications_loader_row,
-.is_2x .app_notifications_loader_max,
-.is_2x .app_notifications_loader_min,
 .is_2x .fc_msg_attachments_loading {
   background-image: url(/images/upload_2x.gif);
   background-size: 32px 8px;
@@ -1896,12 +1893,6 @@ body.dev.is_2x .priv_h_arrow,
 .is_2x #faq_search_form__title {
   background-image: url(/images/magglass_2x.png);
   background-size: 11px 11px;
-}
-.is_2x .app_notifications_scrollbar_top,
-.is_2x .app_notifications_scrollbar_bottom,
-.is_2x .app_notifications_old .app_notifications {
-  background-image: url(/images/apps_notifications_2x.png);
-  background-size: 8px 44px;
 }
 .is_2x #choose_map .places_set_current_position_button:before {
   background-image: url('/images/map_target_2x.png');
