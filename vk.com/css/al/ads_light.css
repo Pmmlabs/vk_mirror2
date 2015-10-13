@@ -247,12 +247,14 @@
   font-size: 0.91em;
   text-align: center;
 }
-.ads_ads_all_ads {
+.ads_ads_all_ads,
+.ads_ads_create_ad {
   padding: 3px 0 4px 0;
   font-size: 0.91em;
   text-align: center;
 }
-.ads_ads_all_ads_link {
+.ads_ads_all_ads_link,
+.ads_ads_create_ad_link {
   color: #777777;
 }
 .ads_ads_about {

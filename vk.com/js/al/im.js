@@ -2458,6 +2458,10 @@ var IM = {
         cls = '';
         break;
 
+      case 'market':
+        preview = '<div class="medadd_c_market fl_l"><a target="_blank" href="' + data.href + '"><img class="medadd_c_market_thumb fl_l" src="' + data.thumb + '" /></a><div class="medadd_c_market_info fl_l"><a class="medadd_c_market_title" target="_blank" href="' + data.href + '">' + data.title + '</a><div class="medadd_c_market_price">' + data.price + '</div></div>';
+        break;
+
       case false:
         break;
 
