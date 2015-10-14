@@ -99,6 +99,7 @@ var Market = {
       }
       cur.searchInp.blur();
     } else if (section.substr(0, 6) == 'album_' ||
+               section == 'disabled' || cur.mSection == 'disabled' ||
                cur.aid && !section) {
       return true;
     } else {
@@ -170,6 +171,9 @@ var Market = {
     };
     if (cur.aid) {
       params.aid = cur.aid;
+    }
+    if (cur.mSection == 'disabled') {
+      params.disabled = 1;
     }
     return params;
   },
@@ -783,6 +787,7 @@ var Market = {
       photo: JSON.stringify(cur.itemPhoto),
       extraPhotos: Market.getUploadedPhotos().join(','),
       album: cur.uiAlbum ? cur.uiAlbum.val() : 0,
+      disabled: isChecked('item_disabled'),
       hash: cur.options.hash
     };
     if (cur.options.item_id) {
@@ -823,6 +828,11 @@ var Market = {
               block.innerHTML = v;
             }
           });
+        }
+        if (params.disabled && !params.id) {
+          nav.change({section: 'disabled'});
+        } else if (params.disabled || cur.mSection == 'disabled' && !params.disabled) {
+          addClass('market_item' + params.id, 'market_row_disabled');
         }
       },
       onFail: function(text) {

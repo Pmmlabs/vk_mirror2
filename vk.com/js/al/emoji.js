@@ -378,7 +378,7 @@ val: function(cont, value) {
 
 editableVal: function(cont, opts) {
   if (!cont) return '';
-  if (cont.tagName == 'TEXTAREA') return clean(val(cont));
+  if (cont.tagName == 'TEXTAREA') return val(cont);
   var el = cont.firstChild;
   var v = '';
   var contTag = new RegExp('^(DIV|P|LI|OL|TR|TD|BLOCKQUOTE)$');
