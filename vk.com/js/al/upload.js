@@ -607,6 +607,13 @@ onUploadError: function(info, result) {
   };
 },
 
+onConnectionLost: function(info) {
+  var i = info.ind !== undefined ? info.ind : info, options = Upload.options[i];
+  if (options.onConnectionLost) {
+    options.onConnectionLost(info);
+  }
+},
+
 onUploadProgress: function(info, bytesLoaded, bytesTotal) {
   var i = info.ind !== undefined ? info.ind : info, options = Upload.options[i];
   if (options.onUploadProgress) {
@@ -948,8 +955,217 @@ getFileInfo: function(i, options, file) {
   } : i;
 },
 
+supportsChunkedUpload: function() {
+  return !!Blob && !!(Blob.prototype.webkitSlice || Blob.prototype.mozSlice || Blob.prototype.slice);
+},
+
+uploadFileChunked: function(uplId, file, url) {
+  var options = this.options[uplId];
+  var info = Upload.getFileInfo(uplId, options, file);
+  if (options.multi_sequence) {
+    this.onUploadStart(info);
+  }
+
+  var DEFAULT_CHUNK_SIZE = 4 * 1024 * 1024; // 4 MB
+  var MAX_THREADS_NUM = 4;
+  var MAX_RETRIES_NUM = 50;
+  var CHUNKS_EXPIRE_TIME = 24 * 60 * 60 * 1000; // one day
+
+  var curUpload = {
+    file: file,
+    fileName: (file.name || file.fileName).replace(/[&<>"']/g, ''),
+    fileSize: file.size,
+    fileMime: file.type,
+    retryCount: 0,
+    timeouts: [],
+    activeRequests: [],
+    requestsProgress: {},
+    pointer: 0,
+    state: {
+      url: url,
+      started: Date.now(),
+      loaded: null,
+      chunkSize: options.chunkSize || DEFAULT_CHUNK_SIZE,
+      sessionId: (Math.random() * 10e16).toString(16)
+    },
+  };
+  curUpload.abort = _abortAllChunks.bind(null, curUpload);
+
+  curUpload.storageKey = ['upload', vk.id, encodeURIComponent(curUpload.fileName), curUpload.fileSize].join('_');
+  curUpload.chunksNum = Math.ceil(curUpload.fileSize / curUpload.state.chunkSize);
+  curUpload.chunksLeft = curUpload.chunksNum;
+
+  options.uploading = true;
+  options.chunkedUpload = curUpload;
+
+  var savedState = ls.get(curUpload.storageKey);
+  if (savedState) {
+    if (Date.now() - savedState.started < CHUNKS_EXPIRE_TIME) {
+      curUpload.state = savedState;
+      url = savedState.url;
+    } else {
+      ls.remove(curUpload.storageKey);
+    }
+  }
+
+  try {
+    console.log('%c Warning: if devtools is logging network requests it may cause high memory usage during file upload', 'font-size:16px;color:orange;');
+  } catch(e) {}
+
+  _startUpload();
+
+  function _startUpload() {
+    curUpload.pointer = 0;
+    curUpload.chunksLeft = curUpload.chunksNum;
+    while (curUpload.activeRequests.length < MAX_THREADS_NUM && curUpload.pointer < curUpload.fileSize) {
+      _uploadNextChunk();
+    }
+  }
+
+  function _uploadNextChunk() {
+    var pointerStart = curUpload.pointer;
+    var pointerEnd = Math.min(pointerStart + curUpload.state.chunkSize, curUpload.fileSize) - 1;
+    if (pointerStart >= curUpload.fileSize) return;
+
+    if (curUpload.state.loaded) {
+      var isChunkLoaded = false;
+      each(curUpload.state.loaded.split(','), function(i, range) {
+        var matches = range.match(/^(\d+)-(\d+)\/\d+$/);
+        var loadedStart = parseInt(matches[1]);
+        var loadedEnd = parseInt(matches[2]);
+        if (pointerStart >= loadedStart && pointerEnd <= loadedEnd) {
+          isChunkLoaded = true;
+          curUpload.chunksLeft -= Math.ceil((loadedEnd + 1 - pointerStart) / curUpload.state.chunkSize); // ceil to avoid fractional number when current range is at the end of file
+          console.log('chunksLeft: ', curUpload.chunksLeft);
+          curUpload.pointer = loadedEnd + 1;
+          return false;
+        }
+      });
+    }
+
+    if (isChunkLoaded) {
+      _onProgress();
+      _uploadNextChunk();
+    } else {
+      _uploadChunk(pointerStart, pointerEnd);
+      curUpload.pointer += curUpload.state.chunkSize;
+    }
+  }
+
+  function _uploadChunk(pointerStart, pointerEnd) {
+    var chunk = (file.slice || file.webkitSlice || file.mozSlice).call(file, pointerStart, pointerEnd + 1);
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('POST', url, true);
+
+    xhr.upload.onprogress = function(e) {
+      if (e.lengthComputable) {
+        curUpload.requestsProgress[pointerStart] = e.loaded;
+      }
+      _onProgress();
+    };
+
+    xhr.onload = function(e) {
+      curUpload.activeRequests.splice(indexOf(curUpload.activeRequests, e.target), 1);
+      curUpload.retryCount = 0;
+
+      if (e.target.status == 201 && --curUpload.chunksLeft) {
+        curUpload.state.loaded = e.target.responseText;
+        ls.set(curUpload.storageKey, curUpload.state);
+        _uploadNextChunk();
+      } else {
+        if (e.target.status == 201) {
+          // chunksLeft is 0 but server is waiting for next chunks. Reindex file
+          curUpload.state.loaded = e.target.responseText;
+          ls.set(curUpload.storageKey, curUpload.state);
+          _startUpload();
+        } else {
+          ls.remove(curUpload.storageKey);
+          _onUploadComplete(e.target.responseText);
+        }
+      }
+      delete curUpload.requestsProgress[pointerStart];
+      _onProgress();
+    };
+
+    xhr.onerror = function(e) {
+      curUpload.activeRequests.splice(indexOf(curUpload.activeRequests, e.target), 1);
+      if (++curUpload.retryCount <= MAX_RETRIES_NUM) {
+        var timeoutId = setTimeout(_uploadChunk.bind(null, pointerStart, pointerEnd), 300 * curUpload.retryCount);
+        curUpload.timeouts.push(timeoutId);
+      } else {
+        curUpload.abort();
+        Upload.onConnectionLost(info);
+      }
+      delete curUpload.requestsProgress[pointerStart];
+      _onProgress();
+    };
+
+    xhr.setRequestHeader('Content-Disposition', 'attachment, filename="' + encodeURI(curUpload.fileName) + '"');
+    xhr.setRequestHeader('Content-Type', curUpload.fileMime || 'application/octet-stream');
+    xhr.setRequestHeader('Content-Range', 'bytes ' + pointerStart + '-' + pointerEnd + '/' + curUpload.fileSize);
+    xhr.setRequestHeader('Session-ID', curUpload.state.sessionId);
+
+    xhr.send(chunk);
+    chunk = null;
+    curUpload.activeRequests.push(xhr);
+  }
+
+  function _onProgress() {
+    var total = curUpload.fileSize;
+    var loaded = (curUpload.chunksNum - curUpload.chunksLeft) * curUpload.state.chunkSize;
+    each(curUpload.requestsProgress, function(key, value) {
+      loaded += value;
+    });
+
+    extend(info, Upload.getFileInfo(uplId, options, file));
+    if (!options.multi_progress) {
+      Upload.onUploadProgress(uplId, Math.min(loaded + options.filesLoadedSize, options.filesTotalSize), options.filesTotalSize);
+    } else {
+      Upload.onUploadProgress(info, loaded, total);
+    }
+  }
+
+  function _onUploadComplete(responseText) {
+    extend(info, Upload.getFileInfo(uplId, options, file)); // can be extended
+    Upload.options[uplId].filesLoadedSize += curUpload.fileSize;
+    Upload.options[uplId].filesLoadedCount += 1;
+    Upload.onUploadComplete(info, responseText);
+    if (Upload.options[uplId].filesQueue && Upload.options[uplId].filesQueue.length > 0) {
+      Upload.uploadFile(uplId, Upload.options[uplId].filesQueue.pop(), url);
+    } else {
+      Upload.startNextQueue(uplId);
+      Upload.onUploadCompleteAll(info, responseText);
+      options.uploading = false;
+    }
+  }
+
+  function _abortAllChunks(curUpload) {
+    each(curUpload.timeouts, function(i, timeout) {
+      clearTimeout(timeout);
+    });
+    each(curUpload.activeRequests, function(i, xhr) {
+      xhr.abort();
+    });
+    curUpload.timeouts = [];
+    curUpload.activeRequests = [];
+  }
+},
+
+resumeUpload: function(uplId) {
+  var curUpload = this.options[uplId].chunkedUpload;
+  Upload.uploadFileChunked(uplId, curUpload.file, curUpload.state.url);
+},
+
 uploadFile: function(uplId, file, url) {
   var options = this.options[uplId];
+
+  if (options.chunked && Upload.supportsChunkedUpload()) {
+    Upload.uploadFileChunked.apply(Upload, arguments);
+    return;
+  }
+
   var XHR = (browser.msie && intval(browser.version) < 10) ? window.XDomainRequest : window.XMLHttpRequest;
 
   var info = Upload.getFileInfo(uplId, options, file);
@@ -963,10 +1179,11 @@ uploadFile: function(uplId, file, url) {
   if (window.FormData) {
     var formData = new FormData();
 
-    if (file instanceof File)
+    if (file instanceof File) {
       formData.append(options.file_name, file);
-    else // blob
+    } else { // blob
       formData.append(options.file_name, file, file.filename.replace(/[&<>"']/g, ''));
+    }
 
     var xhr = new XHR(), fastFail = true;
     xhr.open('POST', url, true);
@@ -1114,6 +1331,7 @@ terminateUpload: function(i, name) {
     re('upload' + ind + '_progress_wrap');
     Upload.onUploadComplete(info, '{"error":"ERR_UPLOAD_TERMINATED: upload request was terminated"}');
     if (!inQueue && options.xhr) options.xhr.abort();
+    if (!inQueue && options.chunkedUpload) options.chunkedUpload.abort();
     var url = this.uploadUrls[i] + (this.uploadUrls[i].match(/\?/) ? '&' : '?') + params.join('&');
     if (!inQueue) {
       if (queue.length > 0) {

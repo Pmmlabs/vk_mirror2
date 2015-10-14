@@ -698,6 +698,7 @@
   overflow: hidden;
   width: 0;
   height: 0;
+  will-change: transform;
 }
 #html5_player .video_preview_tip_img {
   position: absolute;

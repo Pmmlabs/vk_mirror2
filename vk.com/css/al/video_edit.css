@@ -240,6 +240,11 @@
   width: 0%;
   height: 20px;
   background: #597da3 url(/images/progress_grad_flat.gif) repeat;
+  -o-transition: width 0.2s;
+  -ms-transition: width 0.2s;
+  -moz-transition: width 0.2s;
+  -webkit-transition: width 0.2s;
+  transition: width 0.2s;
 }
 .video_upload_progress_element {
   padding: 5px 0 15px 0px;
@@ -262,6 +267,11 @@
 .video_upload_progress_front {
   position: absolute;
   overflow: hidden;
+  -o-transition: width 0.2s;
+  -ms-transition: width 0.2s;
+  -moz-transition: width 0.2s;
+  -webkit-transition: width 0.2s;
+  transition: width 0.2s;
 }
 .video_upload_progress_front_indicator {
   width: 435px;
@@ -296,20 +306,14 @@
 }
 .upload_video_error_panel {
   display: none;
-  background-color: #f8e9e9;
-  padding: 9px;
-  margin: 15px 14px 8px 0;
-}
-.upload_video_try_again {
-  text-align: center;
-  margin-top: 6px;
-  cursor: pointer;
-  width: 418px;
+  margin: 15px 14px 15px 0;
 }
 .upload_video_error_label {
-  text-align: center;
+  margin-bottom: 8px;
+  padding: 10px 16px;
+  background-color: #f8e9e9;
   color: #b43d37;
-  font-size: 1.08em;
+  line-height: 1.4em;
 }
 .video_upload_with_divider:after {
   content: ' ';

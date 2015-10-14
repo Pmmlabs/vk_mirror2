@@ -305,7 +305,7 @@ input.login_big_text {
   background: url(/images/join/robot.gif) no-repeat;
 }
 .login_blocked_reason,
-.login_blocked_reason_comment {
+.login_blocked_reason_text {
   position: relative;
   padding: 10px;
   margin: 0 auto 20px auto;
