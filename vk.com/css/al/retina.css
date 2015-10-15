@@ -1037,6 +1037,14 @@ body.dev.is_2x .paginated_table_header th.paginated_table_cell.sort_desc span.ta
   background-image: url(/images/icons/video_actions_2x.png?1);
   background-size: 12px 81px;
 }
+.is_2x .mv_monetized {
+  background-image: url(/images/video_monetized_2x.png);
+  background-size: 19px 19px;
+}
+.is_2x .mv_in_moder {
+  background-image: url(/images/video_in_moder_2x.png);
+  background-size: 19px 19px;
+}
 .is_2x .top_info_wrap .hide_butto {
   background-image: url('/images/close_2x.png');
   background-size: 15px 19px;
