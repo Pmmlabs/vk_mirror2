@@ -1036,7 +1036,6 @@ uploadFileChunked: function(uplId, file, url) {
         if (pointerStart >= loadedStart && pointerEnd <= loadedEnd) {
           isChunkLoaded = true;
           curUpload.chunksLeft -= Math.ceil((loadedEnd + 1 - pointerStart) / curUpload.state.chunkSize); // ceil to avoid fractional number when current range is at the end of file
-          console.log('chunksLeft: ', curUpload.chunksLeft);
           curUpload.pointer = loadedEnd + 1;
           return false;
         }
@@ -1098,7 +1097,7 @@ uploadFileChunked: function(uplId, file, url) {
         curUpload.abort();
         Upload.onConnectionLost(info);
       }
-      delete curUpload.requestsProgress[pointerStart];
+      // delete curUpload.requestsProgress[pointerStart];
       _onProgress();
     };
 
