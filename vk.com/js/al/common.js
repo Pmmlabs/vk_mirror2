@@ -3873,6 +3873,20 @@ function comScoreUDM(url, referrer) {
 function updateOtherCounters(url, referrer) {
   if (vk.zero) return;
   referrer = referrer || document.referrer;
+  var cleanRe = [
+    [new RegExp('(\\/(?:write|mail|im|al_im.php))(\\?[a-z0-9&=\\-_]*)?$'), '$1'],
+    [new RegExp('(\\/write)(\\d*)(\\?[a-zA-Z0-9&=\\-_]*)?$'), '$1']
+  ], toClean = {
+    referrer: referrer,
+    url: url
+  };
+  each(toClean, function(i, k) {
+    each (cleanRe, function() {
+      toClean[i] = toClean[i].replace(this[0], this[1]);
+    });
+  });
+  referrer = toClean.referrer;
+  url = toClean.url;
   vkImage().src = locProtocol + '//counter.yadro.ru/hit?r' + escape(referrer) + (window.screen === undefined ? '' : ';s' + screen.width + '*' + screen.height + '*' + (screen.colorDepth ? screen.colorDepth : screen.pixelDepth)) + ';u' + escape(url) + ';' + Math.random() + '';
   vkImage().src = locProtocol + '//www.tns-counter.ru/V13a***R>' + referrer.replace(/\*/g,'%2a') + '*vk_com/ru/UTF-8/tmsec=vksite_total/' + Math.round(Math.random()*1E9);
   comScoreUDM(url, referrer);
@@ -4051,7 +4065,14 @@ function handlePageParams(params) {
     __adsSet(params.leftads, params.ads_section || '', params.ads_can_show, params.ads_showed);
   }
 
-  var currentURL = locProtocol+'//'+location.host+'/'+params.loc;
+  var currentURL = locProtocol+'//'+location.host+'/';
+  if (params.loc) {
+    if (params.loc.charAt(0) == '?') {
+      currentURL += nav.strLoc;
+    } else {
+      currentURL += params.loc;
+    }
+  }
   var referrer = (document.URL == currentURL) ? '' : document.URL;
   setTimeout(updateOtherCounters.pbind(currentURL, referrer), 10);
 

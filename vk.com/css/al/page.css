@@ -2381,7 +2381,8 @@ div.med_no_attach {
 .wall_module .media_preview .note b {
   background-position: 0 -134px;
 }
-.wall_module .media_desc.media_desc_doc {
+.wall_module .media_desc.media_desc__doc,
+.wall_module .media_desc.media_desc__checkin {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;

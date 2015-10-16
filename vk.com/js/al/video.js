@@ -555,6 +555,14 @@ var Video = {
       }
     } else if (cur.module == 'video' && cur.vSection == 'search') {
       options.module = Video.getSearchModule(videoId);
+      if (options.module == 'search') {
+        if (vk.sampleUser == 1 || vk.sampleUser == 2) {
+          options.playlistId = 'search';
+          if (Videocat.initFullPlaylist(options.playlistId, videoId)) {
+            options.addParams = extend(options.addParams || {}, { show_next: 1 });
+          }
+        }
+      }
     }
 
     return showVideo(videoId, listId, options, e);
@@ -1382,6 +1390,7 @@ var Video = {
   loadFromSearch: function(str) {
     var hd = cur.vHD ? cur.vHD : 0;
     var index = str+hd.toString()+cur.vOrder.toString()+cur.vDateAdded;
+    var overwritePlaylist = index != cur._videoSearchDataIndex;
 
     if (!cur.searchData[index]) {
       cur.searchData[index] = {
@@ -1422,6 +1431,9 @@ var Video = {
             }
           }
           Array.prototype.push.apply(searchData.list, data.slice(duplicateOffset));
+          if (window.Videocat) {
+            Videocat.addSearchList(data, overwritePlaylist);
+          }
         }
 
         if (str != cur.vStr) {

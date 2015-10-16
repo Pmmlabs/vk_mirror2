@@ -2400,6 +2400,19 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   margin: 0 -5px;
   padding: 20px 5px;
 }
+.help_table_not_found_replaced {
+  color: #777;
+  font-size: 1.1em;
+  line-height: 1.5;
+  margin-bottom: 0.6em;
+}
+.help_table_not_found_replaced__d {
+  color: #999;
+  font-size: 0.9em;
+}
+.help_table_not_found_replaced__query {
+  font-weight: bold;
+}
 .help_table_not_found {
   display: none;
   padding: 20px 0 184px;
