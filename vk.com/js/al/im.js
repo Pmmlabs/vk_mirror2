@@ -3578,7 +3578,19 @@ var IM = {
 
     cur.imPeerMedias = {};
     cur.imSortedMedias = {};
-    cur.imMedia = initAddMedia('im_add_media_link', 'im_media_preview', [['photo', getLang('profile_wall_photo')], ['video', getLang('profile_wall_video')], ['audio', getLang('profile_wall_audio')], ['doc', getLang('profile_wall_doc')], ['map', getLang('profile_wall_map')], ['gift', getLang('profile_wall_gift')]], {mail: 1, onCheckURLDone: IM.onUploadDone});
+    var mediaTypes = [
+      ['photo', getLang('profile_wall_photo')],
+      ['video', getLang('profile_wall_video')],
+      ['audio', getLang('profile_wall_audio')],
+      ['doc', getLang('profile_wall_doc')],
+      ['map', getLang('profile_wall_map')]
+    ];
+
+    if (!cur.gid) {
+      mediaTypes.push(['gift', getLang('profile_wall_gift')]);
+    }
+
+    cur.imMedia = initAddMedia('im_add_media_link', 'im_media_preview', mediaTypes, {mail: 1, onCheckURLDone: IM.onUploadDone, toId: cur.gid ? -cur.gid : undefined});
     val('im_media_preview', '');
 
     cur.imMedia.onChange = IM.onMediaChange;
@@ -7434,6 +7446,7 @@ ImUpload = {
       className: 'im_upload_dropbox',
       innerHTML: '<div class="im_upload_dropbox_inner noselect"><span class="im_upload_drop_label">' + getLang('mail_drop_photos_here') + '</span><span class="im_upload_release_label">' + getLang('mail_release_photos_here') + '</span></div>'
     }), submitBox.firstChild);
+
     cur.imUploadInd = Upload.init('im_upload', data.url, data.params, {
       file_name: 'photo',
       file_size_limit: 1024 * 1024 * 25, // 25Mb

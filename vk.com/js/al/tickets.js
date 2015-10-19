@@ -2254,29 +2254,35 @@ getSearchQuery: function() {
   return input ? input.value : '';
 },
 
-switchToPayForm: function(event) {
+getFormQuery: function(act, ask) {
+  var q = {0: nav.objLoc[0], act: 'new_pay', title: Tickets.getSearchQuery() };
+  if (ask) q['ask'] = 1;
+  return q;
+},
+
+switchToPayForm: function(event, ask) {
   lockButton('tickets_create_pay');
-  return nav.go({0: nav.objLoc[0], act: 'new_pay', title: Tickets.getSearchQuery()}, event);
+  return nav.go(Tickets.getFormQuery('new_pay', ask), event);
 },
 
-switchToAdsForm: function(event) {
+switchToAdsForm: function(event, ask) {
   lockButton('tickets_create_ads');
-  return nav.go({0: nav.objLoc[0], act: 'new_ads', title: Tickets.getSearchQuery()}, event);
+  return nav.go(Tickets.getFormQuery('new_ads', ask), event);
 },
 
-switchToNameForm: function(event) {
+switchToNameForm: function(event, ask) {
   lockButton('tickets_create_name');
-  return nav.go({0: nav.objLoc[0], act: 'new_name', title: Tickets.getSearchQuery()}, event);
+  return nav.go(Tickets.getFormQuery('new_name', ask), event);
 },
 
-switchToApiForm: function(event) {
+switchToApiForm: function(event, ask) {
   lockButton('tickets_create_api');
-  return nav.go({0: nav.objLoc[0], act: 'new_api', title: Tickets.getSearchQuery()}, event);
+  return nav.go(Tickets.getFormQuery('new_api', ask), event);
 },
 
-switchToMobileForm: function(event) {
+switchToMobileForm: function(event, ask) {
   lockButton('tickets_create_mobile');
-  return nav.go({0: nav.objLoc[0], act: 'new_mobile', title: Tickets.getSearchQuery()}, event);
+  return nav.go(Tickets.getFormQuery('new_mobile', ask), event);
 },
 
 updateFAQ: function(e, obj) {
