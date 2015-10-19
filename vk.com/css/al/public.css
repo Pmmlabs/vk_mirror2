@@ -922,3 +922,6 @@ div.gtop_message {
 .gtop_mesage_buttons a {
   margin: 6px 0 0 20px;
 }
+#public_like_module .group_send_msg {
+  margin-bottom: 10px;
+}

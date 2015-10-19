@@ -1783,6 +1783,12 @@ a.group_ad_post_link.deleted:hover {
 .group_market_announce_info .group_obscene_announce_img {
   background-image: url(/images/pics/market.png);
 }
+.is_2x .group_messages_announce_info.group_obscene_announce_info .group_obscene_announce_img {
+  background-image: url(/images/pics/messages_2x.png);
+}
+.group_messages_announce_info.group_obscene_announce_info .group_obscene_announce_img {
+  background-image: url(/images/pics/messages_1x.png);
+}
 .is_2x .group_obscene_announce_info .group_obscene_announce_img {
   background-image: url(/images/pics/obscene_words_2x.png);
 }

@@ -4926,6 +4926,11 @@ function placeholderSetup(id, opts) {
   el.getValue = function() {
     return o.editable ? el.innerHTML : el.value;
   }
+
+  el.setPlaceholder = function(ph) {
+    geByClass1('input_back_content', b1).textContent = ph;
+  },
+
   el.setValue = function(v) {
     if (o.editable) {
       el.innerHTML = v;
@@ -6515,7 +6520,7 @@ function showPhoto(photoId, listId, options, ev) {
     return false;
   }
 
-  ajax.post('al_photos.php', extend({act: 'show', photo: photoId, list: listId, module: cur.module || ''}, options.additional), options);
+  ajax.post('al_photos.php', extend({act: 'show', gid: cur.gid, photo: photoId, list: listId, module: cur.module || ''}, options.additional), options);
 
   return false;
 }
@@ -6715,6 +6720,11 @@ function pauseLastInlineVideo() {
 function showWiki(page, edit, e, opts) {
   if (checkEvent(e)) return true;
   var opts = opts || {};
+
+  if (cur.gid !== 0) {
+    page.gid = cur.gid;
+  }
+
   if (window.wkcur && wkcur.shown && wkcur.wkRaw == page.w && page.w && !page.reply) {
     WkView.restoreLayer(opts);
     return cancelEvent(e);
@@ -8085,6 +8095,14 @@ function statlogsValueEvent(statName, value, key1, key2, key3) {
     var uniqueId = Math.round(rand(0, 1000000000)); // unique id
     setCookie(cookieName, JSON.stringify({data: stats, uniqueId: uniqueId}), 0.01)
   });
+}
+
+function onLoaded(fn) {
+  if (vk.loaded) {
+    fn();
+  } else {
+    addEvent(window, 'load', fn);
+  }
 }
 
 

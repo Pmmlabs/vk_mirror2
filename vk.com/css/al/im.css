@@ -29,6 +29,9 @@
   line-height: 1.36em;
   height: 24px;
 }
+.im_add_to_fav {
+  margin-right: 5px;
+}
 .im_cancel_mark {
   padding: 6px 0 0;
 }
@@ -38,6 +41,42 @@
 }
 #im_tabs {
   padding: 3px 0;
+}
+.im_group_peer .im_tab3 {
+  padding-top: 7px;
+}
+.im_group_peer .im_tab3 a {
+  color: #45688E;
+}
+.im_group_peer_img {
+  width: 29px;
+  height: 29px;
+  margin: 0 10px 0 5px;
+  border-radius: 3px;
+}
+.im_group_tabs#im_tabs .im_tab,
+.im_group_tabs#im_tabs .im_tab_selected {
+  display: none !important;
+}
+.im_dialog_fav {
+  margin-top: 1px;
+}
+.im_dialog_fav i {
+  background: url(/images/icons/im_actions_iconset2.png?9) 0 -281px no-repeat;
+  display: block;
+  width: 20px;
+  height: 14px;
+  cursor: pointer;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+.im_dialog_fav.im_dialog_fav_active i {
+  opacity: 1;
+  filter: alha(opacity=100);
+}
+.im_tabs_group_actions {
+  width: 200px;
+  margin-top: 7px;
 }
 .im_tab,
 .im_tab_selected,
@@ -181,6 +220,22 @@
   background: #edf1f5;
   border-color: #DAE1E8;
 }
+.dialogs_row_important {
+  position: relative;
+}
+.dialogs_row_important::before {
+  display: block;
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: #597DA3;
+  -moz-box-shadow: 0px 0px 0px 0.5px #597DA3;
+  -webkit-box-shadow: 0px 0px 0px 0.5px #597DA3;
+  box-shadow: 0px 0px 0px 0.5px #597DA3;
+}
 .dialogs_row_t {
   width: 100%;
 }
@@ -235,6 +290,13 @@
   color: #777;
   line-height: 1.81em;
   text-align: center;
+}
+.im_pogress_blacklist {
+  position: absolute;
+  margin-top: 4px;
+}
+.im_rows_group_wrap .dialogs_deleted_row .dialogs_msg_body {
+  text-align: left;
 }
 .dialogs_msg_text {
   color: #67829E;
@@ -333,13 +395,38 @@ img.dialogs_inline_chatter_half {
   filter: alpha(opacity=60);
   z-index: 99999;
 }
+.dialogs_star_wrap {
+  display: none;
+  position: absolute;
+  right: 35px;
+  margin-top: 9px;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  z-index: 99999;
+}
+.dialogs_row_over .dialogs_star_wrap.dialogs_star_wrap_active {
+  display: block;
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.dialogs_star {
+  cursor: pointer;
+  background: url(/images/icons/im_actions_iconset2.png?9) -3px -242px no-repeat;
+  height: 14px;
+  width: 14px;
+}
+.dialogs_new_msg .dialogs_star_wrap {
+  margin-top: 1px;
+}
 .dialogs_new_msg .dialogs_del_wrap {
   margin-top: 2px;
 }
-.dialogs_row_over .dialogs_del_wrap {
+.dialogs_row_over .dialogs_del_wrap,
+.dialogs_row_over.dialogs_group_row .dialogs_star_wrap {
   display: block;
 }
-.dialogs_del_wrap:hover {
+.dialogs_del_wrap:hover,
+.dialogs_star_wrap:hover {
   opacity: 1;
   filter: alpha(opacity=100);
 }
@@ -701,7 +788,12 @@ a.im_date_link {
 .im_add_row td {
   border-top: 0;
 }
+.im_rows_group_wrap .im_date_link {
+  position: absolute;
+  right: 85px;
+}
 .im_add_row .im_log_author a,
+.im_add_row .im_who,
 .im_add_row .im_log_date span,
 .im_add_row .im_log_date a.im_date_link,
 .im_add_row .im_log_author_chat_thumb,
@@ -1310,7 +1402,8 @@ div.im_preview_photo_doc {
   padding: 5px;
   position: relative;
 }
-#im_filter {
+#im_filter_out_groups .im_filter,
+#im_filter_out .im_filter {
   margin: 0;
   padding: 4px 20px 5px 20px;
   width: 304px;
@@ -1318,14 +1411,18 @@ div.im_preview_photo_doc {
   line-height: 15px;
   background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
 }
-#im_filter::-ms-clear {
+.im_filter::-ms-clear {
   display: none;
 }
-#im_filter::-webkit-input-placeholder {
+.im_filter::-webkit-input-placeholder {
   padding: 0 2px;
 }
-#im_filter:moz-input-placeholder {
+.im_filter:moz-input-placeholder {
   padding: 0 2px;
+}
+#im_filter_out_groups .im_filter.im_filter_small {
+  width: 158px;
+  margin: 5px 5px 0 10px;
 }
 #im_filter_out .input_back_content {
   height: 15px;
@@ -1352,6 +1449,9 @@ div.im_preview_photo_doc {
   text-align: center;
   color: #777;
   display: none;
+}
+.im_none.im_none_bigger {
+  font-size: 1.2em;
 }
 #transport_frame {
   position: absolute;
@@ -1431,6 +1531,12 @@ div.im_preview_photo_doc {
 }
 #im_rows_wrap {
   overflow: hidden;
+}
+#im_rows_wrap.im_rows_group_wrap {
+  overflow: visible;
+}
+#im_rows_wrap.im_rows_group_wrap .im_important_toggler {
+  display: none;
 }
 .im_rows {
   padding: 10px 0 0;
@@ -1862,6 +1968,10 @@ b.im_friend_mob_onl {
   line-height: 150%;
   word-wrap: break-word;
   cursor: text;
+}
+.im_txt_wrap.im_editable_txt.im_editable_txt_disabled .im_editable {
+  background: #F5F5F5;
+  pointer-events: none;
 }
 .im_editable p {
   margin: 0px;

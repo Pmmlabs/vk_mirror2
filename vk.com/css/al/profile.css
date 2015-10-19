@@ -1271,3 +1271,15 @@ b.profile_mob_onl {
 .profile_gift_side_tt {
   z-index: 10;
 }
+.profile_gift_side_tt.profile_gift_side_tt_right #gift_tt_pointer {
+  top: 29px;
+  right: -7px;
+  left: auto;
+  background-position: -8px 0;
+}
+.profile_gift_side_tt.profile_gift_side_tt_right #gift_tt_text {
+  padding-bottom: 0;
+}
+.profile_gift_side_tt.profile_gift_side_tt_right #gift_tt {
+  width: 280px;
+}

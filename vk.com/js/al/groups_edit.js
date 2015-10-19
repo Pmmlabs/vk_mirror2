@@ -815,7 +815,9 @@ var GroupsEdit = {
     var result = {};
     for (var i = 0; i < arguments.length; ++i) {
       var n = arguments[i];
-      result[n] = cur.privacy['g_' + n][0];
+      if (cur.privacy['g_' + n]) {
+        result[n] = cur.privacy['g_' + n][0];
+      }
     }
     return result;
   },
@@ -856,7 +858,7 @@ var GroupsEdit = {
 
     if (cur.cls == 0 || cur.cls == 2) {
       extend(params, GroupsEdit.getFields(
-        'wall', 'photos', 'video', 'audio', 'docs', 'topics', 'wiki', 'access'
+        'wall', 'photos', 'video', 'audio', 'docs', 'topics', 'wiki', 'access', 'messages'
       ));
       params.subject = cur.subjectDD.val();
       if (cur.cls == 2) {
@@ -877,6 +879,7 @@ var GroupsEdit = {
       each(['enable_replies', 'enable_topics', 'enable_photos', 'enable_video', 'enable_audio', 'enable_links', 'enable_events', 'enable_places', 'enable_contacts'], function(i, v) {
         params[v] = isChecked(v);
       });
+      extend(params, GroupsEdit.getFields('messages'));
     }
     if (cur.marketCountryDD) {
       if (cur.cls == 1) {
@@ -1835,10 +1838,30 @@ var GroupsEdit = {
       nohideover: true
     });
   },
+
+  setupMessages: function() {
+    hide('group_messages_announce_info');
+    var onScrollDone = function() {
+      Privacy.show(ge('privacy_edit_g_messages'), {}, 'g_messages');
+    }
+    var ypos = ge('privacy_edit_g_messages').getBoundingClientRect().top;
+
+    each([bodyNode], function(index, el){
+      animate(el, {scrollTop: ypos, transition: Fx.Transitions.linear}, 500, onScrollDone);
+    });
+    return false;
+  },
+
   hideMarketAnnounce: function (hash) {
     hide('group_market_announce_info');
     ajax.post('groupsedit.php', {act: 'hide_market_announce', hash: hash, id: cur.gid});
   },
+
+  hideMessagesAnnounce: function(hash) {
+    hide('group_messages_announce_info');
+    ajax.post('groupsedit.php', {act: 'hide_messages_announce', hash: hash, id: cur.gid});
+  },
+
   setupMarket: function(el) {
     hide('group_market_announce_info');
     var ypos = Math.round(geByClass1('group_edit').offsetHeight);

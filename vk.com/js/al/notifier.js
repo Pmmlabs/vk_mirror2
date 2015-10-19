@@ -3754,7 +3754,7 @@ FastChat = {
     if (peer > 2e9) {
       var peerHref = 'im?sel=c'+(peer - 2e9);
     } else {
-      var peerHref = '/id'+peer;
+      var peerHref = data.alink || '/id'+peer;
     }
     var t = se('<a class="chat_tab_wrap'+(noAnim ? '' : ' chat_tab_beforeanim')+(data.online ? ' chat_tab_online' : '')+'" id="chat_tab_icon_'+peer+'" href="'+peerHref+'" onclick="FastChat.itemsOut();return FastChat.togglePeer('+peer+', event);"><div class="chat_tab_imgcont"><div class="chats_sp chat_tab_online_icon"></div><div class="chat_tab_typing_wrap"><div class="chats_sp chat_tab_typing_icon"></div></div><div class="chat_tab_close" onclick="return FastChat.closeTabIcon('+peer+', event)"></div>'+imgRow+'</div></a>');
     Chat.itemsCont.insertBefore(t, Chat.itemsCont.firstChild);
@@ -4432,7 +4432,7 @@ FastChat = {
       name: data.name,
       fname: data.fname,
       photo: data.photo,
-      link: '/id' + peer,
+      link: data.alink || '/id' + peer,
       hash: data.hash,
       sendhash: FastChat.decodehash(data.hash),
       sex: data.sex || 0,
@@ -5246,6 +5246,7 @@ FastChat = {
     if (last && last.className == 'fc_msgs_error') {
       last = last.previousSibling;
     }
+
     if(tab
       && !data.out
       && tab.box.visible

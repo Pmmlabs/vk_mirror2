@@ -68,6 +68,7 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x #pd_apps_search,
 .is_2x #feed_search,
 .is_2x #im_filter,
+.is_2x #im_filter_small,
 .is_2x #groups_list_search,
 .is_2x .tdd_search .tdd_control,
 .is_2x #search_query,
@@ -256,9 +257,11 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 }
 .is_2x #im_log_fav_btn i,
 .is_2x .im_important_toggler,
-.is_2x .im_important_icon {
+.is_2x .im_important_icon,
+.is_2x .dialogs_star,
+.is_2x .im_dialog_fav i {
   background-image: url(/images/icons/im_actions_iconset2_2x.png?9);
-  background-size: 20px 344px;
+  background-size: 20px 363px;
 }
 .is_2x .places_module .icon,
 .is_2x .wall_signed_by,
@@ -1913,4 +1916,8 @@ body.dev.is_2x .priv_h_arrow,
 .is_2x .tickets_thank_you_form.processing .flat_button {
   background-image: url('/images/upload_inv_2x.gif');
   background-size: 32px 8px;
+}
+.is_2x #tickets_search_reset {
+  background-image: url('/images/icons/input_clear_2x.gif');
+  background-size: 11px 11px;
 }

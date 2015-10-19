@@ -728,6 +728,9 @@ div.gl_message {
 #group_like_module .like_link_state {
   width: 180px;
 }
+#group_like_module .group_send_msg {
+  margin-bottom: 10px;
+}
 #group_like_module #group_subscribe.like_link_state {
   padding: 6px 0px 8px;
 }
