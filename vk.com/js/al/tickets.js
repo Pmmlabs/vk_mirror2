@@ -2255,7 +2255,7 @@ getSearchQuery: function() {
 },
 
 getFormQuery: function(act, ask) {
-  var q = {0: nav.objLoc[0], act: 'new_pay', title: Tickets.getSearchQuery() };
+  var q = {0: nav.objLoc[0], act: act, title: Tickets.getSearchQuery() };
   if (ask) q['ask'] = 1;
   return q;
 },
