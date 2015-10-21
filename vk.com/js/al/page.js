@@ -5035,7 +5035,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
   opts = opts || {};
   each (mediaTypes || [], function (i, v) {
     if (!v[1]) return;
-    var handler = false, toId = opts.toId || cur.postTo, params = {to_id: toId, scrollbar_width: sbWidth()};
+    var handler = false, toId = opts.toId || cur.postTo, params = {to_id: toId, scrollbar_width: sbWidth(), blockPersonal: opts.blockPersonal};
     params.mail_add = opts.mail ? 1 : '';
     switch (v[0]) {
       case 'graffiti':
