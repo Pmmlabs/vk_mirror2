@@ -256,6 +256,9 @@ var Feed = {
             adminLevel = (flags & 8) ? 2 : ((flags & 2) ? 1 : 0);
           }
         }
+        if (s == 'search') {
+          statlogsValueEvent('feed_switch', 0, 'search_update', (cur.options.q && cur.options.q.charAt(0) == '#') ? 'hashtag' : '');
+        }
         var cont = cur.rowsCont,
             cnodes = cont.childNodes,
             postHTML = wall.getNewPostHTML(ev, adminLevel, feed.feedPostRepl),
@@ -1082,6 +1085,11 @@ var Feed = {
     if (options.loc && from == 2) {
       nav.setLoc(options.loc);
     }
+
+    if (options.section && options.section == 'news' && options.subsection && options.subsection == 'top') {
+      statlogsValueEvent('feed_switch', 0, 'top_news', from);
+    }
+
     if (options.summary) {
       val('feed_summary', options.summary);
     }
@@ -1402,6 +1410,7 @@ var Feed = {
     Feed.setSection('search', 4);
     Feed.searchToggleExtended(true);
     setTimeout(elfocus.pbind('feed_search'), 10);
+    statlogsValueEvent('feed_switch', 0, 'search');
   },
   switchList: function (list_id) {
     cur.prevList = cur.list;
