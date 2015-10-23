@@ -2551,7 +2551,8 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 .help_table_question_act:hover {
   text-decoration: underline;
 }
-.help_table_question_act.help_table_question_act_ok {
+.help_table_question_act.help_table_question_act_ok,
+.help_table_question_act.help_table_question_act_do {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
@@ -2569,6 +2570,27 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   background-color: #d8dfe8;
   color: #607282;
 }
+.help_table_question_act_do:before {
+  height: 10px;
+  width: 13px;
+  background-image: url('/images/support_arrow.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  content: "";
+  position: absolute;
+  -o-transition: left 100ms ease-out;
+  -ms-transition: left 100ms ease-out;
+  -moz-transition: left 100ms ease-out;
+  -webkit-transition: left 100ms ease-out;
+  transition: left 100ms ease-out;
+  display: inline-block;
+  opacity: 0.8;
+  top: 8px;
+  left: 8px;
+}
+.help_table_question_act_do:hover:before {
+  left: 10px;
+}
 .help_table_question_act_ok:before {
   height: 10px;
   width: 13px;
@@ -2582,11 +2604,13 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   top: 8px;
   left: 9px;
 }
-.help_table_question_act_ok:hover {
+.help_table_question_act_ok:hover,
+.help_table_question_act_do:hover {
   background-color: #d8dee5;
   text-decoration: none;
 }
-.help_table_question_act_ok:hover:before {
+.help_table_question_act_ok:hover:before,
+.help_table_question_act_do:hover:before {
   opacity: 1;
 }
 .help_table_question__rated {

@@ -203,6 +203,7 @@ saveFAQ: function(hash) {
 
   if (cur.sectionSelector) {
     query.section = intval(cur.sectionSelector.val());
+    query.action_id = intval(cur.actionButtonSelector.val());
 
     if (query.section == 0) {
       var categories = cur.desktopCategorySelector.val();

@@ -2301,13 +2301,31 @@ body.dev.is_rtl1 .app_edit_block_header .app_edit_dev_header {
 .is_rtl1 .help_table_question_rated_additional__btns {
   padding: 0 1.5em 0 0;
 }
-.is_rtl1 .help_table_question_act.help_table_question_act_ok {
+.is_rtl1 .help_table_question_act.help_table_question_act_ok,
+.is_rtl1 .help_table_question_act.help_table_question_act_do {
   padding-left: 11px;
   padding-right: 28px;
 }
 .is_rtl1 .help_table_question_act_ok:before {
   left: auto;
   right: 9px;
+}
+.is_rtl1 .help_table_question_act_do:before {
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+  -o-transition: right 100ms ease-out;
+  -ms-transition: right 100ms ease-out;
+  -moz-transition: right 100ms ease-out;
+  -webkit-transition: right 100ms ease-out;
+  transition: right 100ms ease-out;
+  left: auto;
+  right: 8px;
+}
+.is_rtl1 .help_table_question_act_do:hover:before {
+  right: 10px;
 }
 .is_rtl1 .help_table_categories__a.loading {
   background-position: 8px center;

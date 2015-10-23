@@ -109,7 +109,8 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x #friends_reset_search,
 .is_2x #im_filter_reset,
 .is_2x .apps_search_wrap .search_reset,
-.is_2x .app_search .search_reset {
+.is_2x .app_search .search_reset,
+.is_2x #tickets_search_reset {
   background-image: url(/images/icons/input_clear_2x.gif);
   background-size: 11px 11px;
 }
@@ -1894,6 +1895,10 @@ body.dev.is_2x .priv_h_arrow,
   background-image: url('/images/doc_icons_2x.png');
   background-size: 20px 80px;
 }
+.is_2x .help_table_question_act_do:before {
+  background-image: url(/images/support_arrow_2x.png);
+  background-size: 12px 10px;
+}
 .is_2x .help_table_question_act_ok:before {
   background-image: url(/images/faq_helpful_2x.png);
   background-size: 13px 10px;
@@ -1916,8 +1921,4 @@ body.dev.is_2x .priv_h_arrow,
 .is_2x .tickets_thank_you_form.processing .flat_button {
   background-image: url('/images/upload_inv_2x.gif');
   background-size: 32px 8px;
-}
-.is_2x #tickets_search_reset {
-  background-image: url('/images/icons/input_clear_2x.gif');
-  background-size: 11px 11px;
 }
