@@ -632,6 +632,6 @@ saveDictionary: function(btn, lang, hash) {
   });
 },
 showHistory: function(id, faq_id, hash) {
-  return !showBox(nav.objLoc[0], {act: 'show_history', id: id, faq_id: faq_id, hash: hash}, {params: {bodyStyle: 'padding: 0px', width: 550}});
+  return !showBox(nav.objLoc[0], {act: 'show_history', id: id, faq_id: faq_id, hash: hash}, {params: {bodyStyle: 'padding: 0px', width: 590}});
 },
 _eof: 1};try{stManager.done('faq.js');}catch(e){}

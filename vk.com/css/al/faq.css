@@ -6,19 +6,19 @@
   padding: 6px 0px 0px 0px;
 }
 #new_faq {
-  padding: 50px 0;
+  padding: 25px 0;
   background: #F7F7F7;
 }
 .faq_envelope_wrap {
   border: 1px solid #ADBBCA;
   padding: 0;
   margin: 0 auto;
-  width: 510px;
+  width: 570px;
 }
 .faq_envelope_wrap input {
   padding: 5px 9px 6px;
   line-height: 160%;
-  width: 311px;
+  width: 368px;
 }
 .faq_envelope_wrap input,
 .faq_envelope_wrap textarea {
@@ -43,7 +43,7 @@
   margin-left: 5px;
 }
 .faq_optional_label {
-  width: 115px;
+  width: 118px;
   padding: 6px 0 0;
   color: #555555;
 }
@@ -55,9 +55,9 @@
   color: #555555;
 }
 #faq_source_link {
-  max-width: 310px;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
+  max-width: 310px;
   overflow: hidden;
   white-space: nowrap;
   padding: 2px 0px 3px;
@@ -93,14 +93,17 @@ h4.faq_question .faq_info {
 #faq_text,
 #faq_keywords,
 #faq_description {
-  width: 426px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
   vertical-align: top;
   margin-bottom: 15px;
   padding: 5px 9px 6px;
 }
 #faq_text,
 #faq_keywords {
-  height: 94px;
+  height: 105px;
 }
 #faq_description {
   height: 40px;
@@ -147,9 +150,11 @@ h4.faq_question .faq_info {
   padding: 5px 0 3px;
 }
 #faq_title {
-  margin-top: 3px;
-  margin-bottom: 20px;
-  width: 426px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 3px 0 20px;
+  width: 100%;
 }
 .fis_box {
   position: relative;

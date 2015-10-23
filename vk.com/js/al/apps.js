@@ -2054,6 +2054,16 @@ var Apps = { // can be removed soon
     }
   },
 
+  showAppStandalone: function(event, aid, need_install, ref_num, from_id, data, hash) {
+    data && data.request_id && ajax.post('al_apps.php', {act: 'a_mark', mark: 'read', notif_ids: data.request_id, hash: hash}, {
+      onDone: function(res, cnt) {
+        handlePageCount('ap', cnt);
+      }
+    });
+    showApp.apply(null, Array.prototype.slice.call(arguments));
+    return false;
+  },
+
   showInviteBox: function(aid, hash) {
     if (!aid) {
       aid = cur.app.options.aid;

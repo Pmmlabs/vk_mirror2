@@ -1363,9 +1363,15 @@ var Pads = {
     });
   },
 
-  apMark: function(ids) {
+  showAppStandalone: function(event, aid, need_install, ref_num, from_id, data, hash) {
+    data && data.request_id && this.apMark([data.request_id], hash);
+    showApp.apply(null, Array.prototype.slice.call(arguments));
+    return false;
+  },
+
+  apMark: function(ids, hash) {
     if (!ids.length) return;
-    ajax.post('al_apps.php', {act: 'a_mark', mark: 'read', notif_ids: ids.join(','), hash: _pads.hash}, {
+    ajax.post('al_apps.php', {act: 'a_mark', mark: 'read', notif_ids: ids.join(','), hash: hash || _pads.hash}, {
       onDone: function(res, cnt) {
         handlePageCount('ap', cnt);
       }
