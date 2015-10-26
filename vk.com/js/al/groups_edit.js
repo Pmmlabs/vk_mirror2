@@ -1120,7 +1120,7 @@ var GroupsEdit = {
         noResult: '',
         placeholder: getLang('groups_choose_market_contact')
       });
-      if (selData.marketContact && selData.marketContact != '0') {
+      if (selData.marketContact !== undefined) {
         cur.marketContactDD.val(selData.marketContact);
       }
     }

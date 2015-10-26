@@ -2173,18 +2173,21 @@ cancelFAQclicked: function(id) {
   }
 },
 
-rateFAQ: function(id, val, hash, fromNew) {
+rateFAQ: function(id, val, hash, fromNew, quiet) {
   if (!vk.id) return false;
   ajax.post(nav.objLoc[0], {act: 'faq_rate', faq_id: id, val: val, hash: hash, from_new: fromNew });
   Tickets.setFAQclicked(id, hash, fromNew, true);
-  hide('tickets_faq_links'+id);
-  if (val > 0) {
-    show('tickets_faq_useful'+id);
-  } else {
-    var b = ge('tickets_faq_unuseful'+id), btns = geByClass1('help_table_question_rated_additional__btns', b);
-    show(b, geByClass1('help_table_question_rated_additional', b));
-    hide(btns, geByClass1('help_table_question__rated_final', b), geByClass1('help_table_question__rated_no_perm', b));
-    slideDown(btns, 200);
+
+  if (!quiet) {
+    hide('tickets_faq_links'+id);
+    if (val > 0) {
+      show('tickets_faq_useful' + id);
+    } else {
+      var b = ge('tickets_faq_unuseful' + id), btns = geByClass1('help_table_question_rated_additional__btns', b);
+      show(b, geByClass1('help_table_question_rated_additional', b));
+      hide(btns, geByClass1('help_table_question__rated_final', b), geByClass1('help_table_question__rated_no_perm', b));
+      slideDown(btns, 200);
+    }
   }
   return false;
 },

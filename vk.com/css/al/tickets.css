@@ -2533,6 +2533,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   display: inline-block;
   line-height: 13px;
   padding: 6px 11px 7px;
+  vertical-align: middle;
 }
 .help_table_question_btn {
   color: #2b587a;
@@ -2540,6 +2541,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   display: inline-block;
   line-height: 13px;
   padding: 6px 11px 7px;
+  vertical-align: middle;
   -o-transition: background-color 100ms ease-in-out;
   -ms-transition: background-color 100ms ease-in-out;
   -moz-transition: background-color 100ms ease-in-out;
@@ -2612,6 +2614,16 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 .help_table_question_act_ok:hover:before,
 .help_table_question_act_do:hover:before {
   opacity: 1;
+}
+.help_table_question_act.help_table_question_act_ok:active,
+.help_table_question_act.help_table_question_act_do:active {
+  padding-top: 7px;
+  padding-bottom: 6px;
+  background-color: #d4dae1;
+}
+.help_table_question_act.help_table_question_act_ok:active:before,
+.help_table_question_act.help_table_question_act_do:active:before {
+  top: 9px;
 }
 .help_table_question__rated {
   line-height: 26px;
