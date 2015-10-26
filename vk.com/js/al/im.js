@@ -4,6 +4,7 @@ var IM = {
 
   FOLDER_UNRESPOND: 2,
   FOLDER_IMPORTANT: 1,
+  LOCK_TIMEOUT: 100 * 1000,
 
   updateCounts: function (cnts) {
     if (!cnts || !cnts.length) {
@@ -383,7 +384,7 @@ var IM = {
       onDone: function(msg, admin, name) {
         var row = ge('mess' + msg);
         var lnk = geByClass1('im_date_link', row);
-        lnk.textContent = name + " " + cur.lang.mail_by_who + " " + lnk.textContent;
+        lnk.textContent = name + " " + getLang('mail_by_who') + " " + lnk.textContent;
         cur.admins[admin] = name;
       }.pbind(msgid, admin)
     });
@@ -409,13 +410,13 @@ var IM = {
 
     if (cur.gid && kludges['from_admin']) {
       if (after_id == -1) {
-        aname = cur.lang.mail_groups_by_you;
+        aname = getLang('mail_groups_by_you');
       } else {
         aid = intval(kludges['from_admin']);
-        aname = aid === vk.id ? cur.lang.mail_groups_by_you : cur.admins[aid];
+        aname = aid === vk.id ? getLang('mail_groups_by_you') : cur.admins[aid];
       }
       if (aname) {
-        whois = aname + " " + cur.lang.mail_by_who + " ";
+        whois = aname + " " + getLang('mail_by_who') + " ";
       } else {
         IM.updateAdminName(msg_id, aid);
       }
@@ -3027,6 +3028,9 @@ var IM = {
         }
       }
     });
+    if (cur.gid) {
+      IM.updateDialogLocks();
+    }
   },
   updateTyping: function (forced) {
     var peer = cur.peer,
@@ -3256,6 +3260,7 @@ var IM = {
       filterTO: 0,
       titleTO: 0,
       txtsblock: {},
+      blocksTs: {},
       wasFocused: 0,
       lastDialogsY: 0,
       lastDialogsPeer: 0,
@@ -3430,7 +3435,7 @@ var IM = {
           if (cur.tabs[cur.peer]) {
             value = cur.tabs[cur.peer].folders & IM.FOLDER_IMPORTANT;
           }
-          return value ? cur.lang.mail_im_unmark_important : cur.lang.mail_im_mark_important;
+          return value ? getLang('mail_im_unmark_important') : getLang('mail_im_mark_important');
         },
         black: 1,
         center: true,
@@ -3609,6 +3614,9 @@ var IM = {
 
       if (cur.gid && changed[0]) {
         showBackLink(false);
+        if (cur.lockCheckcerTO) {
+          clearInterval(cur.lockCheckcerTO);
+        }
       }
 
       if (changed[0] !== undefined || n.act) return;
@@ -3743,6 +3751,10 @@ var IM = {
         IM.toggleInput(tab.block[0], txt, peerId, tab.block[2]);
       }
     });
+    if (cur.gid) {
+      IM.updateDialogLocks();
+      IM.spawnLockChecker();
+    }
   },
   lcRecv: function (data) {
     if (isEmpty(data)) return;
@@ -3988,11 +4000,77 @@ var IM = {
         IM.processLock(msg);
       }
     });
+    IM.updateDialogLocks();
+  },
+
+  updateDialogLocks: function(cpeers) {
+    if (!cpeers) {
+      cpeers = cur.blocks;
+    }
+    for(var peer in cpeers) {
+      IM.updateDialogLock(peer);
+    }
+  },
+
+  spawnLockChecker: function() {
+    cur.lockCheckcerTO = setInterval(function() {
+      var changed = {};
+      for (var peer in cur.blocks) {
+        if (cur.blocksTs[peer] && !cur.blocks[peer][0]) {
+          var timeout = vkNow() - cur.blocksTs[peer] > IM.LOCK_TIMEOUT;
+          cur.blocks[peer] = timeout ? [true] : cur.blocks[peer];
+          if (timeout) {
+            changed[peer] = true;
+          }
+          if (cur.tabs[peer] && timeout) {
+            cur.tabs[peer].block = [true];
+            IM.toggleInput(true, IM.getTxt(peer), peer);
+          }
+        } else {
+          cur.blocksTs[peer] = vkNow();
+        }
+        if (changed.length) {
+          IM.updateDialogLocks(changed);
+        }
+      }
+    }, 500);
+  },
+
+  updateDialogLock: function(peer) {
+    var dialogEl = ge('im_dialog' + peer);
+
+    if (!dialogEl) {
+      return;
+    }
+
+    var msgBodyEl = geByClass1('dialogs_msg_body', dialogEl);
+    var typingEl = geByClass1('dialogs_block_box', dialogEl);
+
+    if (!typingEl) {
+      typingEl = ce('div', { className: 'dialogs_block_box' });
+      msgBodyEl.parentNode.appendChild(typingEl);
+    }
+    var name = cur.blocks[peer] ? cur.blocks[peer][3] : '';
+    if (cur.blocks[peer] && !cur.blocks[peer][0]) {
+      var text = getLang('mail_community_answering').replace('{username}', name);
+      setStyle(msgBodyEl, { visibility: 'hidden' });
+      setStyle(typingEl, { opacity: 1.0 });
+      addClass(msgBodyEl.parentNode, 'dialogs_blocked_box');
+
+      typingEl.textContent = text;
+    } else {
+      setStyle(msgBodyEl, { visibility: 'visible' });
+      setStyle(typingEl, { opacity: 0 });
+      typingEl.textContent = '';
+    }
+    toggleClass(msgBodyEl.parentNode, 'dialogs_blocked_box', cur.blocks[peer] && !cur.blocks[peer][0]);
   },
 
   processLock: function(msg) {
+    var notBlock = msg.action || msg.whoid == vk.id;
+    cur.blocks[msg.peer] = [notBlock, parseInt(msg.whoid), ,msg.name];
+    cur.blocksTs[msg.peer] = vkNow();
     if (cur.tabs[msg.peer] && cur.gid) {
-      var notBlock = msg.action || msg.whoid == vk.id;
       cur.tabs[msg.peer].block = [notBlock, msg.whoid];
       var txt = IM.getTxt(msg.peer);
       if (txt) {
@@ -4920,12 +4998,13 @@ var IM = {
     if (!cur.txtsblock) {
       cur.txtsblock = {};
     }
+
     if (!result) {
       addClass(txt.parentNode, 'im_editable_txt_disabled');
       txt.setAttribute('contenteditable', 'false');
       setTimeout(function() {
         if (name) {
-          var placeholder = cur.lang['mail_community_answering'].replace('{username}', name);
+          var placeholder = getLang('mail_community_answering').replace('{username}', name);
           txt.setPlaceholder(placeholder);
           IM.saveWriteDraft();
           Emoji.val(txt, "");
@@ -5137,7 +5216,7 @@ var IM = {
   },
 
   actionEndConversation: function() {
-    return ['mark_answered', cur.lang.mail_end_conversation, '4px -340px', IM.markAnswered, false, false];
+    return ['mark_answered', getLang('mail_end_conversation'), '4px -340px', IM.markAnswered, false, false];
   },
 
   markAnswered: function() {
@@ -5152,7 +5231,7 @@ var IM = {
       cur.tabs[peer].folders |= IM.FOLDER_UNRESPOND;
     }
 
-    showDoneBox(cur.lang.mail_marked_as_answered, {
+    showDoneBox(getLang('mail_marked_as_answered'), {
       out: 1000
     });
     IM.activateTab(-1);
@@ -5314,6 +5393,7 @@ var IM = {
 
           if (cur.gid) {
             IM.updateScroll();
+            IM.updateDialogLocks();
           }
         } else {
           if (cur.gid) {

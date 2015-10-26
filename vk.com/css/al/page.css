@@ -180,7 +180,7 @@ a.page_module_upload:hover,
 .page_contacts_upload_label,
 .page_places_upload_label,
 .page_market_upload_label {
-  background-image: url('/images/icons/group_icons.png');
+  background-image: url('/images/icons/group_icons.png?1');
   background-repeat: no-repeat;
   display: block;
   height: 14px;
@@ -214,7 +214,7 @@ a.page_module_upload:hover,
   background-position: 0px -192px;
 }
 .page_market_upload_label {
-  background: none!important;
+  background-position: 0px -215px;
 }
 .page_upload_photos_input {
   position: absolute;
@@ -2381,8 +2381,7 @@ div.med_no_attach {
 .wall_module .media_preview .note b {
   background-position: 0 -134px;
 }
-.wall_module .media_desc.media_desc__doc,
-.wall_module .media_desc.media_desc__checkin {
+.wall_module .media_desc.media_desc_doc {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;

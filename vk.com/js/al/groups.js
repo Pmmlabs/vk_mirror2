@@ -131,14 +131,13 @@ var Groups = {
     }});
   },
 
-  actionsDropdown: function(el) {
-    show('group_actions_wrap');
-  },
-
   sendMessage: function(e) {
     showWriteMessageBox(e, cur.oid);
   },
 
+  actionsDropdown: function(el) {
+    show('group_actions_wrap');
+  },
   actionsDropdownHide: function(force) {
     if (force === 1) return hide('group_actions_wrap');
     clearTimeout(cur.actDdHide);
