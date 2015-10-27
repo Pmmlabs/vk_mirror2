@@ -896,6 +896,7 @@ var Feed = {
     if (newSection == 'comments') {
       cur.reposts = cur.options.reposts = '';
     }
+    statlogsValueEvent('feed_switch', 0, newSection);
     feed.setSection(newSection, 1);
     var params = feed.getSectionParams(newSection || 'news');
     delete cur.feedUpdateLoading;
@@ -3141,6 +3142,10 @@ var Feed = {
       showProgress: lockButton.pbind(btn),
       hideProgress: unlockButton.pbind(btn)
     });
+  },
+  toggleAdvancedSearch: function() {
+    var feedSearchWrap = ge('feed_bar');
+    toggleClass('feed_bar', 'feed_bar_extended_search');
   }
 };
 window.feed = Feed;

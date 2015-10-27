@@ -6416,10 +6416,11 @@ function zNav(changed, opts, fin) {
             playlistId = playlistId.substr('pl_'.length);
 
             if (Videocat.initFullPlaylist(playlistId, zt[2]) || Videocat.isTop3Playlist(playlistId)) {
-              var autoplay = intval(nav.objLoc.autoplay) || vk.sampleUser == 8 || vk.sampleUser == 9;
+              var autoplay = intval(nav.objLoc.autoplay);
               var needLoad = intval(playlistId.indexOf('_') > 0);
               var module = window.Video && Video.isInCatalogue() ? Videocat.VIDEO_MODULE : cur.module;
-              options = extend(options, {playlistId: playlistId, module: module, addParams: { force_no_repeat: 1, show_next: 1, playlist_id: playlistId, autoplay: autoplay, load_playlist: needLoad }});
+              var focusPlay = autoplay ? 0 : 1;
+              options = extend(options, {playlistId: playlistId, module: module, focusPlay: focusPlay, addParams: { force_no_repeat: 1, show_next: 1, playlist_id: playlistId, autoplay: autoplay, load_playlist: needLoad }});
             }
           }
         }
