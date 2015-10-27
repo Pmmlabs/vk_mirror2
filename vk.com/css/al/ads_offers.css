@@ -705,16 +705,16 @@ a.offers_edit_link_go:hover {
 }
 .offers_int_type_image {
   display: inline-block;
-  width: 95px;
-  height: 82px;
+  width: 62px;
+  height: 62px;
   background: url(/images/ads_intro_icons.png) no-repeat center center;
-  background-size: 95px auto;
+  background-size: 62px auto;
 }
 .offers_int_type_regular .offers_int_type_image {
   background-position: 0 0px;
 }
 .offers_int_type_integration .offers_int_type_image {
-  background-position: 0 -164px;
+  background-position: 0 -124px;
 }
 .offers_int_description {
   font-size: 12px;

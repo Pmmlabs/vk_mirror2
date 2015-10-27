@@ -180,7 +180,7 @@ a.page_module_upload:hover,
 .page_contacts_upload_label,
 .page_places_upload_label,
 .page_market_upload_label {
-  background-image: url('/images/icons/group_icons.png?1');
+  background-image: url('/images/icons/group_icons.png?2');
   background-repeat: no-repeat;
   display: block;
   height: 14px;
@@ -214,7 +214,7 @@ a.page_module_upload:hover,
   background-position: 0px -192px;
 }
 .page_market_upload_label {
-  background-position: 0px -215px;
+  background-position: 0px -217px;
 }
 .page_upload_photos_input {
   position: absolute;

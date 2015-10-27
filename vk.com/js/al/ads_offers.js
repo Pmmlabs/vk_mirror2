@@ -998,7 +998,7 @@ var Offers = {
         var rub = paramValue * cur.options.voteCost;
         rub = parseInt(rub, 10) == rub ? rub.toFixed(0) : rub.toFixed(1);
         ge('offers_param_cost_currency').innerHTML = paramValue ? getLang('votes_flex', paramValue) : '';
-        ge('offers_param_price').innerHTML = paramValue ? getLang('ads_offers_price_with_nds', rub) : '&ndash;';
+        ge('offers_param_price').innerHTML = paramValue ? (cur.options.isNonResident ? getLang('ads_offers_price_without_nds', rub) : getLang('ads_offers_price_with_nds', rub)) : '&ndash;';
         ge('offers_param_price_notice').innerHTML = cur.options.priceNotices[paramValue] ? cur.options.priceNotices[paramValue] : (cur.options.priceNotices[''] ? cur.options.priceNotices[''] : '&nbsp;');
         if (!cur.options.canEditIntruction) {
           Offers.updateDefaultInstruction();

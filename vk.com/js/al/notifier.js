@@ -610,7 +610,7 @@ Notifier = {
   },
 
   playSound: function(ev) {
-    if (Notifier.shouldPlaySound(ev)) {
+    if (curNotifier.sound_im && curNotifier.sound_im.play && Notifier.shouldPlaySound(ev)) {
       curNotifier.sound_im.play();
     }
   },

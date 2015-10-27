@@ -338,8 +338,8 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x .page_places_upload_label,
 .is_2x .page_contacts_upload_label,
 .is_2x .page_market_upload_label {
-  background-image: url(/images/icons/group_icons_2x.png?1);
-  background-size: 24px 237px;
+  background-image: url(/images/icons/group_icons_2x.png?2);
+  background-size: 24px 239px;
 }
 .is_2x .ge_ad_box_fields {
   background-image: url(/images/join/adspost_2x.png);
