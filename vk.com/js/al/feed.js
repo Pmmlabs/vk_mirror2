@@ -1179,7 +1179,7 @@ var Feed = {
           cur.feedVideoTabHintEl = new ElementTooltip(videoTabEl, {
             showImmediate: true,
             content: options.showVideoTabHint,
-            offset: [-4, 0],
+            offset: [0, -4],
             noHideOnMouseLeave: true,
             onHide: function() {
               setTimeout(function() {

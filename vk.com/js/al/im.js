@@ -4,7 +4,7 @@ var IM = {
 
   FOLDER_UNRESPOND: 2,
   FOLDER_IMPORTANT: 1,
-  LOCK_TIMEOUT: 100 * 1000,
+  LOCK_TIMEOUT: 50 * 1000,
 
   updateCounts: function (cnts) {
     if (!cnts || !cnts.length) {
@@ -1824,6 +1824,10 @@ var IM = {
     var dRow = se(rs(cur.drow_template, repls)),
         cont = ge('im_dialogs'),
         insBefore = cont && cont.firstChild;
+
+    if (cur.gid && cur.blocks[peer] && cur.blocks[peer][0] === false) {
+      IM.updateDialogLock(peer, dRow);
+    }
     while (insBefore) {
       if (hasClass(insBefore, 'dialogs_row') &&
           repls.timestamp > intval(insBefore.getAttribute('data-date'))) {
@@ -2393,7 +2397,11 @@ var IM = {
         sendWrap: ge('im_send_wrap'),
         onKeyAction: function(e) {
           clearTimeout(tab.saveDraftTO);
-          tab.saveDraftTO = setTimeout(IM.saveDraft.pbind(cur.peer, e.type), e.type == 'paste' ? 0 : 300);
+          if (e.type == 'paste') {
+            IM.saveDraft(cur.peer, e.type);
+          } else {
+            tab.saveDraftTO = setTimeout(IM.saveDraft.pbind(cur.peer, e.type), 300);
+          }
 
           if (e.type == 'keyup') {
             IM.readLastMsgs();
@@ -4036,8 +4044,10 @@ var IM = {
     }, 500);
   },
 
-  updateDialogLock: function(peer) {
-    var dialogEl = ge('im_dialog' + peer);
+  updateDialogLock: function(peer, dialogEl) {
+    if (!dialogEl) {
+      dialogEl = ge('im_dialog' + peer);
+    }
 
     if (!dialogEl) {
       return;
@@ -4069,7 +4079,9 @@ var IM = {
   processLock: function(msg) {
     var notBlock = msg.action || msg.whoid == vk.id;
     cur.blocks[msg.peer] = [notBlock, parseInt(msg.whoid), ,msg.name];
-    cur.blocksTs[msg.peer] = vkNow();
+    if (notBlock) {
+      cur.blocksTs[msg.peer] = vkNow();
+    }
     if (cur.tabs[msg.peer] && cur.gid) {
       cur.tabs[msg.peer].block = [notBlock, msg.whoid];
       var txt = IM.getTxt(msg.peer);
@@ -4197,7 +4209,7 @@ var IM = {
         var chatBack = chatCont.innerHTML;
       }
       var loadingTimeout = false;
-      ajax.post('al_im.php', {act: 'a_start', peer: mid, gid: cur.gid}, {
+      ajax.post('al_im.php', {act: 'a_start', peer: mid, gid: cur.gid, block: cur.gid && activate ? 1 : 0}, {
         onDone: function (res) {
           var _t = cur.tabs[mid];
           delete cur.tabs[mid];

@@ -4065,7 +4065,9 @@ function ElementTooltip(el, opts) {
   this._opts = extend({
     delay: 200,
     showImmediate: false,
-    offset: [0, 0]
+    offset: [0, 0],
+    to: 'up',
+    id: '',
   }, opts);
 
   if (!isArray(this._opts.offset) || this._opts.offset.length != 2) {
@@ -4110,7 +4112,7 @@ ElementTooltip.prototype.show = function() {
   this._clearTimeouts();
 
   if (!this._ttel) {
-    this._ttel = se('<div class="eltt"></div>');
+    this._ttel = se('<div class="eltt" id="' + this._opts.id + '"></div>');
 
     if (this._opts.content) {
       if (typeof this._opts.content == 'string') {
@@ -4129,20 +4131,33 @@ ElementTooltip.prototype.show = function() {
     });
   }
 
+  addClass(this._ttel, 'eltt_' + this._opts.to);
+
   this._opts.onShow && this._opts.onShow(this._ttel);
 
   var elSize = getSize(this._el);
   var ttelSize = getSize(this._ttel);
   var elPos = getXY(this._el);
+  var arrowSize = 5;
 
-  setStyle(this._ttel, {
-    display: null,
-    marginTop: null,
-    left: -ttelSize[0]/2 + elSize[0]/2 + this._opts.offset[1],
-    top: elSize[1] + 5 + this._opts.offset[0]
-  });
+  var style = {};
+  if (this._opts.to == 'up') {
+    style = {
+      marginTop: null,
+      left: -ttelSize[0]/2 + elSize[0]/2 + this._opts.offset[0],
+      top: elSize[1] + arrowSize + this._opts.offset[1]
+    };
+  } else if (this._opts.to == 'left') {
+    style = {
+      marginLeft: null,
+      left: elSize[0] + arrowSize + this._opts.offset[0],
+      top: elSize[1]/2 - ttelSize[1]/2 + this._opts.offset[1]
+    };
+  }
 
-  cssAnim(this._ttel, {opacity: 1, marginTop: 0}, {duration: 140});
+  setStyle(this._ttel, extend({ display: null }, style));
+
+  cssAnim(this._ttel, {opacity: 1, marginTop: 0, marginLeft: 0}, {duration: 140});
 
   this._opts.elClassWhenTooltip && addClass(this._el, this._opts.elClassWhenTooltip);
 }

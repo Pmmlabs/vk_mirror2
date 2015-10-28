@@ -1056,7 +1056,6 @@ x:-moz-any-link {
   border-radius: 2px;
   box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.1);
   opacity: 0;
-  margin-top: 5px;
   cursor: default;
   z-index: 100;
   -webkit-perspective: 1000;
@@ -1068,8 +1067,6 @@ x:-moz-any-link {
 }
 .eltt:after,
 .eltt:before {
-  bottom: 100%;
-  left: 50%;
   border: solid transparent;
   content: " ";
   height: 0;
@@ -1079,13 +1076,41 @@ x:-moz-any-link {
 }
 .eltt:after {
   border-color: rgba(255, 255, 255, 0);
-  border-bottom-color: #ffffff;
   border-width: 5px;
-  margin-left: -5px;
 }
 .eltt:before {
   border-color: rgba(188, 202, 215, 0);
-  border-bottom-color: #BCCAD7;
   border-width: 6px;
-  margin-left: -6px;
+}
+.eltt.eltt_top {
+  margin-top: 5px;
+}
+.eltt.eltt_top:after,
+.eltt.eltt_top:before {
+  bottom: 100%;
+  left: 50%;
+}
+.eltt.eltt_top:after {
+  border-right-color: #ffffff;
+  margin-top: -5px;
+}
+.eltt.eltt_top:before {
+  border-right-color: #BCCAD7;
+  margin-top: -6px;
+}
+.eltt.eltt_left {
+  margin-left: 5px;
+}
+.eltt.eltt_left:after,
+.eltt.eltt_left:before {
+  right: 100%;
+  top: 50%;
+}
+.eltt.eltt_left:after {
+  border-right-color: #ffffff;
+  margin-top: -5px;
+}
+.eltt.eltt_left:before {
+  border-right-color: #BCCAD7;
+  margin-top: -6px;
 }

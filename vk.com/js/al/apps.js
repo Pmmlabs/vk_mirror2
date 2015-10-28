@@ -1100,7 +1100,7 @@ var Apps = { // can be removed soon
           each(geByClass(SELECTED_CLS), function() { removeClass(this, SELECTED_CLS) });
           addClass('apps_genres_tt_' + cur.searchType, SELECTED_CLS);
         },
-        offset: [-4, 0],
+        offset: [0, -4],
         elClassWhenTooltip: 'apps_tt_hover',
         delay: 0
       });

@@ -874,6 +874,37 @@ div.left_holiday h4 {
 .left_congratulate {
   padding-top: 3px;
 }
+div.left_announce {
+  line-height: 140%;
+  padding: 7px 3px;
+  width: 112px;
+  overflow: visible;
+}
+div.left_announce h4 {
+  border: 0px;
+  margin: 0px;
+}
+.left_announce_title {
+  display: inline-block;
+  padding-left: 15px;
+}
+.left_why_icon {
+  color: #879AAD;
+  font-size: 10px;
+  padding: 1px 3px;
+  margin-left: 5px;
+  background-color: #E1E3E6;
+  border-radius: 2px;
+  cursor: default;
+  position: relative;
+}
+#eltt_announce {
+  font-size: 11px;
+  color: black;
+  padding: 12px 15px;
+  width: 240px;
+  text-align: left;
+}
 .left_gift_new {
   display: block;
   color: #777;
