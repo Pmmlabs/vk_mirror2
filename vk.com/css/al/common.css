@@ -893,7 +893,7 @@ div.left_announce h4 {
   font-size: 10px;
   padding: 1px 3px;
   margin-left: 5px;
-  background-color: #E1E3E6;
+  background-color: #EAEDF0;
   border-radius: 2px;
   cursor: default;
   position: relative;
@@ -901,8 +901,8 @@ div.left_announce h4 {
 #eltt_announce {
   font-size: 11px;
   color: black;
-  padding: 12px 15px;
-  width: 240px;
+  padding: 10px 15px;
+  width: 200px;
   text-align: left;
 }
 .left_gift_new {

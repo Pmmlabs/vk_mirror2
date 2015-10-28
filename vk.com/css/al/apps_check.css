@@ -145,6 +145,14 @@ a.lists_select:hover {
 .app_check_info_rows {
   width: 615px;
 }
+.app_check_platform_name {
+  text-align: center;
+  font-size: 13px;
+  color: #666666;
+  width: 75px;
+  padding-top: 5px;
+  font-weight: bold;
+}
 a.app_action {
   display: block;
   padding: 6px 14px 0px;

@@ -208,15 +208,17 @@ checkRule: function(obj, uid, listId) {
   }
 },
 
-declineRequest: function(id) {
-  return !showBox('apps_check', {act: 'decline_box', aid: id, from: cur.section}, {cache: 1, params:{width: '500px', bodyStyle: 'padding: 10px'}});
+declineRequest: function(id, platform) {
+  platform = platform || '';
+  return !showBox('apps_check', {act: 'decline_box', aid: id, from: cur.section, platform: platform}, {cache: 1, params:{width: '500px', bodyStyle: 'padding: 10px'}});
 },
 
-doDeclineRequest: function(id, box) {
+doDeclineRequest: function(id, box, platform) {
   if (cur.deletingRequest) return;
   cur.deletingRequest = true;
   box.showProgress();
-  ajax.post('apps_check', {act: (cur.section == 'reports') ? 'disable' : 'decline_request', aid: id, rule: cur.selectedRules, comment: ge('decline_comment').value, hash: cur.hashes.decline_hash, do_return: isChecked('return_check')}, {
+  platform = platform || '';
+  ajax.post('apps_check', {act: (cur.section == 'reports') ? 'disable' : 'decline_request', aid: id, rule: cur.selectedRules, platform: platform, comment: ge('decline_comment').value, hash: cur.hashes.decline_hash, do_return: isChecked('return_check')}, {
     onDone: function(title, text) {
       delete cur.deletingRequest;
       if (box) box.hide();
@@ -239,8 +241,9 @@ doDeclineRequest: function(id, box) {
   });
 },
 
-approveRequest: function(id) {
-  return !showBox('apps_check', {act: 'approve_box', aid: id}, {cache: 1, params:{width: '400px', bodyStyle: 'padding: 10px'}});
+approveRequest: function(id, platform) {
+  platform = platform || '';
+  return !showBox('apps_check', {act: 'approve_box', aid: id, platform: platform}, {cache: 1, params:{width: '400px', bodyStyle: 'padding: 10px'}});
 },
 
 changeType: function(aid, obj, newType) {
@@ -256,11 +259,12 @@ changeType: function(aid, obj, newType) {
   });
 },
 
-doApproveRequest: function(id, box) {
+doApproveRequest: function(id, box, platform) {
   if (cur.approvingRequest) return;
   cur.approvingRequest = true;
   box.showProgress();
-  ajax.post('apps_check', {act: 'approve_request', aid: id, hash: cur.hashes.approve_hash}, {
+  platform = platform || '';
+  ajax.post('apps_check', {act: 'approve_request', aid: id, hash: cur.hashes.approve_hash, platform: platform}, {
     onDone: function() {
       delete cur.approvingRequest;
       if (box) box.hide();
@@ -436,6 +440,19 @@ startCheck: function(app_id, width, height) {
       }
     }
   });
+},
+startCheckStandalone: function(app_id, platform) {
+  if (cur.shownApp) {
+    this.finishCheck(cur.shownApp);
+  }
+  cur.shownApp = app_id;
+  showBox('apps_check', {act: 'start_check', app_id: app_id, platform: platform, uid: cur.viewer_id, hash: cur.hashes.check_hash},
+    {params:{width: '400px', bodyStyle: 'padding: 20px; line-height: 160%;', dark: 1, onHide: function() {AppsCheck.finishCheck(app_id);}}});
+  /*ajax.post('apps_check', {act: 'start_check', platform: platform, uid: cur.viewer_id, hash: cur.hashes.check_hash}, {
+    onDone: function(text) {
+      showFastBox({bodyStyle: 'padding: 0px;', onHide: function() {AppsCheck.finishCheck(app_id);}}, text, getLang('global_cancel'));
+    }
+  });*/
 },
 
 finishCheck: function(app_id) {

@@ -941,7 +941,7 @@ var Market = {
   showWriteMessage: function(e, id, item_id, hash) {
     stManager.add(['page.js', 'wide_dd.js']);
     cur.mbForceAttach = ['market', item_id, hash];
-    var box = showBox('al_mail.php', {act: 'write_box', to: id, hash: hash, from: 'market'}, {stat: ['writebox.js', 'writebox.css', 'wide_dd.css', 'page.css', 'emoji.js', 'notifier.css'], cache: 1}, e);
+    var box = showBox('al_mail.php', {act: 'write_box', to: id, hash: hash, from: 'market'+item_id}, {stat: ['writebox.js', 'writebox.css', 'wide_dd.css', 'page.css', 'emoji.js', 'notifier.css'], cache: 1}, e);
     if (box) cancelEvent(e);
     return !box;
   },

@@ -1922,3 +1922,11 @@ body.dev.is_2x .priv_h_arrow,
   background-image: url('/images/upload_inv_2x.gif');
   background-size: 32px 8px;
 }
+.is_2x .apps_edit_platform_status .icon {
+  background-image: url(/images/icons/app_platforms_2x.png);
+  background-size: 100%;
+}
+.is_2x .apps_edit_platform_status .icon {
+  background-image: url(/images/icons/app_platforms_2x.png);
+  background-size: 100%;
+}

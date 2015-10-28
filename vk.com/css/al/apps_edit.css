@@ -2311,3 +2311,47 @@ input.execute_field_input {
   height: 18px;
   color: #777777;
 }
+.apps_edit_platform_status {
+  padding: 15px 0;
+  border-bottom: 1px solid #EEF0F3;
+  line-height: 150%;
+}
+.apps_edit_platform_status:first-child {
+  padding-top: 0;
+}
+.apps_edit_platform_status:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.apps_edit_platform_status .apps_edit_check_platform_link {
+  padding-top: 10px;
+}
+.apps_edit_platform_status .icon {
+  width: 40px;
+  height: 40px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: #7394b5 url(/images/icons/app_platforms.png) no-repeat;
+}
+.apps_edit_platform_status.apps_edit_platform_status_android .icon {
+  background-position: 0px 0px;
+}
+.apps_edit_platform_status.apps_edit_platform_status_ios .icon {
+  background-position: 0px -40px;
+}
+.apps_edit_platform_status.apps_edit_platform_status_win .icon {
+  background-position: 0px -80px;
+}
+.apps_edit_platform_status .apps_edit_check_text {
+  padding: 0 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.apps_edit_platform_status .apps_edit_platform_name {
+  font-weight: bold;
+  font-size: 0.923em;
+}
+.apps_edit_platform_status .text {
+  color: #777777;
+}
