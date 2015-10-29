@@ -266,7 +266,7 @@ cleanCont: function(cont) {
         }
         break;
       case 3:
-        var str = el.textContent || el.innerText;
+        var str = clean(el.textContent || el.innerText);
 
         if (str && str.match(Emoji.emojiRegEx)) { // emoji pasted
           str = str.replace(Emoji.emojiRegEx, Emoji.emojiReplace).replace(/\uFE0F/g, '');

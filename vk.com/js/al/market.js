@@ -66,7 +66,8 @@ var Market = {
 
     cur.nav.push((function(changed, old, n) {
       if (old[0] == n[0] && (changed.section !== undefined)) {
-        if (old.section !== undefined && old.section.substr(0, 6) == 'album_') {
+        if (old.section !== undefined &&
+            (old.section.substr(0, 6) == 'album_' || old.section == 'comments')) {
           re(geByClass1('market_tab_' + old.section, 'market_tabs'));
         }
         nav.setLoc(n);
@@ -89,7 +90,12 @@ var Market = {
   },
   section: function(section) {
     section = section || '';
-    if (section == 'albums') {
+    if (section.substr(0, 6) == 'album_' ||
+               section == 'disabled' || cur.mSection == 'disabled' ||
+               section == 'comments' || cur.mSection == 'comments' && !cur.isSearchLoading ||
+               cur.aid && !section) {
+      return true;
+    } else if (section == 'albums') {
       cur.mAlbumsSwitching = true;
       addClass('market', 'market_albums_section');
       show(cur.albumbEl);
@@ -98,10 +104,6 @@ var Market = {
         Market.toggleExtendedControls(false);
       }
       cur.searchInp.blur();
-    } else if (section.substr(0, 6) == 'album_' ||
-               section == 'disabled' || cur.mSection == 'disabled' ||
-               cur.aid && !section) {
-      return true;
     } else {
       ge('market').className = '';
       if (!cur.albumsCount) {
@@ -109,6 +111,7 @@ var Market = {
       }
     }
     cur.mSection = section;
+    document.title = replaceEntities(stripHTML(cur.htitles[section] || cur.htitles['']));
     Market.initSorter();
     return false;
   },
@@ -202,7 +205,7 @@ var Market = {
         Market.searchItems();
 
         if (!cur.mAlbumsSwitching) {
-          if (cur.mSection == 'albums') {
+          if (cur.mSection == 'albums' || cur.mSection == 'comments') {
             Market.switchTab('', domFC(geByClass1('market_tab_', 'market_tabs')));
             hide(cur.albumbEl);
           }
@@ -223,13 +226,7 @@ var Market = {
     var query = cur.params || Market.getSearchParams();
     ajax.post('/al_market.php', query, {
       cache: 1,
-      onDone: function(count, rows, showMore) {
-        var summary;
-        if (count) {
-          summary = getLang('market_summary_X_goods', count, true);
-        } else {
-          summary = getLang('market_summary_no_goods');
-        }
+      onDone: function(count, summary, rows, showMore) {
         cur.summaryEl.innerHTML = summary;
 
         hide(cur.notFound);
@@ -261,7 +258,14 @@ var Market = {
             searchParamsCount++;
           }
         });
-        (searchParamsCount ? addClass : removeClass)('market', 'market_search_section');
+        if (searchParamsCount) {
+          addClass('market', 'market_search_section');
+        } else {
+          removeClass('market', 'market_search_section');
+          if (cur.albumsCount) {
+            show(cur.albumbEl);
+          }
+        }
 
         each(query, function(i, v) {
           if (v && v != 0 && !inArray(i, ['load', 'id', 'offset', 'aid']) && (i != 'sort' || v != 1)) {
@@ -289,12 +293,40 @@ var Market = {
     removeClass(cur.searchEl, 'not_empty');
     Market.updateList();
   },
+  loadComments: function(offset) {
+    if (cur.loadComments) return;
+    cur.searchOffset = offset;
+    cur.loadComments = 1;
+
+    var params = {
+      load: 1,
+      section: 'comments',
+      id: cur.oid,
+      offset: cur.searchOffset || 0
+    }
+    ajax.post('/al_market.php', params, {
+      onDone: function(count, summary, rows, showMore) {
+        cur.listEl.appendChild(cf(rows));
+        removeClass(cur.more, 'load_more');
+        if (showMore) {
+          show(cur.more);
+        } else {
+          hide(cur.more);
+        }
+        cur.loadComments = 0;
+      }
+    });
+  },
   showMore: function() {
     if (cur.mSection == 'albums') return false;
     var offset = cur.searchOffset || 0;
     offset += cur.itemsPerPage;
     addClass(cur.more, 'load_more');
-    Market.updateList(offset);
+    if (cur.mSection == 'comments') {
+      Market.loadComments(offset);
+    } else {
+      Market.updateList(offset);
+    }
     return false;
   },
 

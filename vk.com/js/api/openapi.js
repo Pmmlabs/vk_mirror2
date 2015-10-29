@@ -1,316 +1,313 @@
 (function(w) {
-if (w.fastXDM) return;
+  if (w.fastXDM) return;
 
-var handlers = {};
-var onEnvLoad = [];
-var env = {};
+  var handlers = {};
+  var onEnvLoad = [];
+  var env = {};
 
 // Key generation
-function genKey() {
-  var key = '';
-  for (i=0;i<5;i++) key += Math.ceil(Math.random()*15).toString(16);
-  return key;
-}
-
-function waitFor(obj, prop, func, self,  count) {
-  if (obj[prop]) {
-     func.apply(self);
-  } else {
-    count = count || 0;
-    if (count < 1000) setTimeout(function() {
-      waitFor(obj, prop, func, self, count + 1)
+  function genKey() {
+    var key = '';
+    for (i=0;i<5;i++) key += Math.ceil(Math.random()*15).toString(16);
+    return key;
+  }
+  function waitFor(obj, prop, func, self,  count) {
+    if (obj[prop]) {
+      func.apply(self);
+    } else {
+      count = count || 0;
+      if (count < 1000) setTimeout(function() {
+        waitFor(obj, prop, func, self, count + 1)
+      }, 0);
+    }
+  }
+  function attachScript(url) {
+    setTimeout(function() {
+      var newScript = document.createElement('script');
+      newScript.type = 'text/javascript';
+      newScript.src = url || w.fastXDM.helperUrl;
+      waitFor(document, 'body', function() {
+        document.getElementsByTagName('HEAD')[0].appendChild(newScript);
+      });
     }, 0);
   }
-}
 
-function attachScript(url) {
-  setTimeout(function() {
-    var newScript = document.createElement('script');
-    newScript.type = 'text/javascript';
-    newScript.src = url || w.fastXDM.helperUrl;
-    waitFor(document, 'body', function() {
-      document.getElementsByTagName('HEAD')[0].appendChild(newScript);
-    });
-  }, 0);
-}
-
-function walkVar(value, clean) {
-  switch (typeof value) {
-    case 'string':
-      if (clean) {
-        return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
-      }
-      return value.replace(/&#039;/g, '\'').replace(/&quot;/g, '"').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
-
-    case 'object':
-      if (Object.prototype.toString.apply(value) === '[object Array]') {
-        newValue = [];
-        for (var i = 0; i < value.length; i++) {
-          newValue[i] = walkVar(value[i], clean);
+  function walkVar(value, clean) {
+    switch (typeof value) {
+      case 'string':
+        if (clean) {
+          return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
         }
-      } else {
-        for (var k in value) {
-          newValue = {};
-          if (Object.hasOwnProperty.call(value, k)) {
-            newValue[k] = walkVar(value[k], clean);
+        return value.replace(/&#039;/g, '\'').replace(/&quot;/g, '"').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
+
+      case 'object':
+        if (Object.prototype.toString.apply(value) === '[object Array]') {
+          newValue = [];
+          for (var i = 0; i < value.length; i++) {
+            newValue[i] = walkVar(value[i], clean);
+          }
+        } else {
+          for (var k in value) {
+            newValue = {};
+            if (Object.hasOwnProperty.call(value, k)) {
+              newValue[k] = walkVar(value[k], clean);
+            }
           }
         }
-      }
-    default:
-      newValue = value;
-  }
+      default:
+        newValue = value;
+    }
 
-  return newValue;
-}
+    return newValue;
+  }
 
 // Env functions
-function getEnv(callback, self) {
-  if (env.loaded) {
-    callback.apply(self, [env]);
-  } else {
-    onEnvLoad.push([self, callback]);
-  }
-}
-
-function envLoaded() {
-  env.loaded = true;
-  var i = onEnvLoad.length;
-  while (i--) {
-    onEnvLoad[i][1].apply(onEnvLoad[i][0], [env]);
-  }
-}
-
-function applyMethod(strData, self) {
-  getEnv(function(env) {
-    var data = env.json.parse(strData);
-    if (data[0]) {
-      if (!data[1]) data[1] = [];
-      var i = data[1].length;
-      while (i--) {
-        if (data[1][i]._func) {
-          var funcNum = data[1][i]._func;
-          data[1][i] = function() {
-            var args = Array.prototype.slice.call(arguments);
-            args.unshift('_func'+funcNum);
-            self.callMethod.apply(self, args);
-          }
-        } else if (self.options.safe) {
-          data[1][i] = walkVar(data[1][i], true);
-        }
-      }
-      setTimeout(function() {
-        if (!self.methods[data[0]]) {
-          throw Error('fastXDM: Method ' + data[0] + ' is undefined');
-        }
-        self.methods[data[0]].apply(self, data[1]);
-      }, 0);
+  function getEnv(callback, self) {
+    if (env.loaded) {
+      callback.apply(self, [env]);
+    } else {
+      onEnvLoad.push([self, callback]);
     }
-  });
-}
+  }
+
+  function envLoaded() {
+    env.loaded = true;
+    var i = onEnvLoad.length;
+    while (i--) {
+      onEnvLoad[i][1].apply(onEnvLoad[i][0], [env]);
+    }
+  }
+
+  function applyMethod(strData, self) {
+    getEnv(function(env) {
+      var data = env.json.parse(strData);
+      if (data[0]) {
+        if (!data[1]) data[1] = [];
+        var i = data[1].length;
+        while (i--) {
+          if (data[1][i]._func) {
+            var funcNum = data[1][i]._func;
+            data[1][i] = function() {
+              var args = Array.prototype.slice.call(arguments);
+              args.unshift('_func'+funcNum);
+              self.callMethod.apply(self, args);
+            }
+          } else if (self.options.safe) {
+            data[1][i] = walkVar(data[1][i], true);
+          }
+        }
+        setTimeout(function() {
+          if (!self.methods[data[0]]) {
+            throw Error('fastXDM: Method ' + data[0] + ' is undefined');
+          }
+          self.methods[data[0]].apply(self, data[1]);
+        }, 0);
+      }
+    });
+  }
 
 // XDM object
-w.fastXDM = {
-  _id: 0,
-  helperUrl: ((location.protocol === 'https:') ? 'https:' : 'http:') + '//vk.com/js/api/xdmHelper.js',
+  w.fastXDM = {
+    _id: 0,
+    helperUrl: ((location.protocol === 'https:') ? 'https:' : 'http:') + '//vk.com/js/api/xdmHelper.js',
 
-  Server: function(methods, filter, options) {
-    this.methods = methods || {};
-    this.id = w.fastXDM._id++;
-    this.options = options || {};
-    this.filter = filter;
-    this.key = genKey();
-    this.methods['%init%'] = this.methods.__fxdm_i = function() {
+    Server: function(methods, filter, options) {
+      this.methods = methods || {};
+      this.id = w.fastXDM._id++;
+      this.options = options || {};
+      this.filter = filter;
+      this.key = genKey();
+      this.methods['%init%'] = this.methods.__fxdm_i = function() {
+        w.fastXDM.run(this.id);
+        if (this.methods.onInit) this.methods.onInit();
+      };
+      this.frameName = 'fXD'+this.key;
+      this.server = true;
+      handlers[this.key] = [applyMethod, this];
+    },
+
+    Client: function(methods, options) {
+      this.methods = methods || {};
+      this.id = w.fastXDM._id++;
+      this.options = options || {};
       w.fastXDM.run(this.id);
-      if (this.methods.onInit) this.methods.onInit();
-    };
-    this.frameName = 'fXD'+this.key;
-    this.server = true;
-    handlers[this.key] = [applyMethod, this];
-  },
-
-  Client: function(methods, options) {
-    this.methods = methods || {};
-    this.id = w.fastXDM._id++;
-    this.options = options || {};
-    w.fastXDM.run(this.id);
-    if (window.name.indexOf('fXD') === 0) {
-      this.key = window.name.substr(3);
-    } else {
-      throw Error('Wrong window.name property.');
-    }
-    this.caller = window.parent;
-    handlers[this.key] = [applyMethod, this];
-    this.client = true;
-
-    w.fastXDM.on('helper', function() {
-      w.fastXDM.onClientStart(this);
-    }, this);
-
-    getEnv(function(env) {
-      env.send(this, env.json.stringify(['%init%']));
-      var methods = this.methods;
-      setTimeout(function() {
-        if (methods.onInit) methods.onInit();
-      }, 0);
-    }, this);
-  },
-
-  onMessage: function(e) {
-    if (!e.data) return false;
-    var data = e.data;
-    if (typeof data != 'string' && !(data instanceof String)) return false;
-    var key = data.substr(0, 5);
-    if (handlers[key]) {
-      var self = handlers[key][1];
-      if (self && (!self.filter || self.filter(e.origin))) {
-        handlers[key][0](e.data.substr(6), self);
+      if (window.name.indexOf('fXD') === 0) {
+        this.key = window.name.substr(3);
+      } else {
+        throw Error('Wrong window.name property.');
       }
-    }
-  },
+      this.caller = window.parent;
+      handlers[this.key] = [applyMethod, this];
+      this.client = true;
 
-  setJSON: function(json) {
-    env.json = json;
-  },
+      w.fastXDM.on('helper', function() {
+        w.fastXDM.onClientStart(this);
+      }, this);
 
-  getJSON: function(callback) {
-    if (!callback) return env.json;
-    getEnv(function(env) {
-      callback(env.json);
-    });
-  },
-
-  setEnv: function(exEnv) {
-    var i;
-    for (i in exEnv) {
-      env[i] = exEnv[i];
-    }
-    envLoaded();
-  },
-
-  _q: {},
-
-  on: function(key, act, self) {
-    if (!this._q[key]) this._q[key] = [];
-    if (this._q[key] == -1) {
-      act.apply(self);
-    } else {
-      this._q[key].push([act, self]);
-    }
-  },
-
-  run: function(key) {
-    var len = (this._q[key] || []).length;
-    if (this._q[key] && len > 0) {
-      for (var i = 0; i < len; i++) this._q[key][i][0].apply(this._q[key][i][1]);
-    }
-    this._q[key] = -1;
-  },
-
-  waitFor: waitFor
-}
-
-w.fastXDM.Server.prototype.start = function(obj, count) {
-  if (obj.contentWindow) {
-    this.caller = obj.contentWindow;
-    this.frame = obj;
-
-    w.fastXDM.on('helper', function() {
-      w.fastXDM.onServerStart(this);
-    }, this);
-
-  } else { // Opera old versions
-    var self = this;
-    count = count || 0;
-    if (count < 50) setTimeout(function() {
-      self.start.apply(self, [obj, count+1]);
-    }, 100);
-  }
-}
-
-w.fastXDM.Server.prototype.destroy = function() {
-  handlers.splice(handlers.indexOf(this.key), 1);
-}
-
-function extend(obj1, obj2){
-  for (var i in obj2) {
-    if (obj1[i] && typeof(obj1[i]) == 'object') {
-      extend(obj1[i], obj2[i])
-    } else {
-      obj1[i] = obj2[i];
-    }
-  }
-}
-
-w.fastXDM.Server.prototype.append = function(obj, options) {
-  var div = document.createElement('DIV');
-  div.innerHTML = '<iframe name="'+this.frameName+'" ></iframe>';
-  var frame = div.firstChild;
-  var self = this;
-  setTimeout(function() {
-    frame.frameBorder = '0';
-    if (options) extend(frame, options);
-    obj.insertBefore(frame, obj.firstChild);
-    self.start(frame);
-  }, 0);
-  return frame;
-}
-
-w.fastXDM.Client.prototype.callMethod = w.fastXDM.Server.prototype.callMethod = function() {
-  var args = Array.prototype.slice.call(arguments);
-  var method = args.shift();
-  var i = args.length;
-  while (i--) {
-    if (typeof(args[i]) == 'function') {
-      this.funcsCount = (this.funcsCount || 0) + 1;
-      var func = args[i];
-      var funcName = '_func' + this.funcsCount;
-      this.methods[funcName] = function() {
-        func.apply(this, arguments);
-        delete this.methods[funcName];
-      }
-      args[i] = {_func: this.funcsCount};
-    } else if (this.options.safe) {
-      args[i] = walkVar(args[i], false);
-    }
-  }
-  waitFor(this, 'caller', function() {
-    w.fastXDM.on(this.id, function() {
       getEnv(function(env) {
-        env.send(this, env.json.stringify([method, args]));
+        env.send(this, env.json.stringify(['%init%']));
+        var methods = this.methods;
+        setTimeout(function() {
+          if (methods.onInit) methods.onInit();
+        }, 0);
+      }, this);
+    },
+
+    onMessage: function(e) {
+      if (!e.data) return false;
+      var data = e.data;
+      if (typeof data != 'string' && !(data instanceof String)) return false;
+      var key = data.substr(0, 5);
+      if (handlers[key]) {
+        var self = handlers[key][1];
+        if (self && (!self.filter || self.filter(e.origin))) {
+          handlers[key][0](e.data.substr(6), self);
+        }
+      }
+    },
+
+    setJSON: function(json) {
+      env.json = json;
+    },
+
+    getJSON: function(callback) {
+      if (!callback) return env.json;
+      getEnv(function(env) {
+        callback(env.json);
+      });
+    },
+
+    setEnv: function(exEnv) {
+      var i;
+      for (i in exEnv) {
+        env[i] = exEnv[i];
+      }
+      envLoaded();
+    },
+
+    _q: {},
+
+    on: function(key, act, self) {
+      if (!this._q[key]) this._q[key] = [];
+      if (this._q[key] == -1) {
+        act.apply(self);
+      } else {
+        this._q[key].push([act, self]);
+      }
+    },
+
+    run: function(key) {
+      var len = (this._q[key] || []).length;
+      if (this._q[key] && len > 0) {
+        for (var i = 0; i < len; i++) this._q[key][i][0].apply(this._q[key][i][1]);
+      }
+      this._q[key] = -1;
+    },
+
+    waitFor: waitFor
+  }
+
+  w.fastXDM.Server.prototype.start = function(obj, count) {
+    if (obj.contentWindow) {
+      this.caller = obj.contentWindow;
+      this.frame = obj;
+
+      w.fastXDM.on('helper', function() {
+        w.fastXDM.onServerStart(this);
+      }, this);
+
+    } else { // Opera old versions
+      var self = this;
+      count = count || 0;
+      if (count < 50) setTimeout(function() {
+        self.start.apply(self, [obj, count+1]);
+      }, 100);
+    }
+  }
+
+  w.fastXDM.Server.prototype.destroy = function() {
+    handlers.splice(handlers.indexOf(this.key), 1);
+  }
+
+  function extend(obj1, obj2){
+    for (var i in obj2) {
+      if (obj1[i] && typeof(obj1[i]) == 'object') {
+        extend(obj1[i], obj2[i])
+      } else {
+        obj1[i] = obj2[i];
+      }
+    }
+  }
+
+  w.fastXDM.Server.prototype.append = function(obj, options) {
+    var div = document.createElement('DIV');
+    div.innerHTML = '<iframe name="'+this.frameName+'" ></iframe>';
+    var frame = div.firstChild;
+    var self = this;
+    setTimeout(function() {
+      frame.frameBorder = '0';
+      if (options) extend(frame, options);
+      obj.insertBefore(frame, obj.firstChild);
+      self.start(frame);
+    }, 0);
+    return frame;
+  }
+
+  w.fastXDM.Client.prototype.callMethod = w.fastXDM.Server.prototype.callMethod = function() {
+    var args = Array.prototype.slice.call(arguments);
+    var method = args.shift();
+    var i = args.length;
+    while (i--) {
+      if (typeof(args[i]) == 'function') {
+        this.funcsCount = (this.funcsCount || 0) + 1;
+        var func = args[i];
+        var funcName = '_func' + this.funcsCount;
+        this.methods[funcName] = function() {
+          func.apply(this, arguments);
+          delete this.methods[funcName];
+        }
+        args[i] = {_func: this.funcsCount};
+      } else if (this.options.safe) {
+        args[i] = walkVar(args[i], false);
+      }
+    }
+    waitFor(this, 'caller', function() {
+      w.fastXDM.on(this.id, function() {
+        getEnv(function(env) {
+          env.send(this, env.json.stringify([method, args]));
+        }, this);
       }, this);
     }, this);
-  }, this);
-}
+  }
 
-if (w.JSON && typeof(w.JSON) == 'object' && w.JSON.parse && w.JSON.stringify && w.JSON.stringify({a:[1,2,3]}).replace(/ /g, '') == '{"a":[1,2,3]}') {
-  env.json = {parse: w.JSON.parse, stringify: w.JSON.stringify};
-} else {
-  w.fastXDM._needJSON = true;
-}
+  if (w.JSON && typeof(w.JSON) == 'object' && w.JSON.parse && w.JSON.stringify && w.JSON.stringify({a:[1,2,3]}).replace(/ /g, '') == '{"a":[1,2,3]}') {
+    env.json = {parse: w.JSON.parse, stringify: w.JSON.stringify};
+  } else {
+    w.fastXDM._needJSON = true;
+  }
 
 // PostMessage cover
-if (w.postMessage) {
-  env.protocol = 'p';
-  env.send = function(xdm, strData) {
-    var win = (xdm.frame ? xdm.frame.contentWindow : xdm.caller);
-    win.postMessage(xdm.key+':'+strData, "*");
-  }
-  if (w.addEventListener) {
-    w.addEventListener("message", w.fastXDM.onMessage, false);
-  } else {
-    w.attachEvent("onmessage", w.fastXDM.onMessage);
-  }
+  if (w.postMessage) {
+    env.protocol = 'p';
+    env.send = function(xdm, strData) {
+      var win = (xdm.frame ? xdm.frame.contentWindow : xdm.caller);
+      win.postMessage(xdm.key+':'+strData, "*");
+    }
+    if (w.addEventListener) {
+      w.addEventListener("message", w.fastXDM.onMessage, false);
+    } else {
+      w.attachEvent("onmessage", w.fastXDM.onMessage);
+    }
 
-  if (w.fastXDM._needJSON) {
-    w.fastXDM._onlyJSON = true;
+    if (w.fastXDM._needJSON) {
+      w.fastXDM._onlyJSON = true;
+      attachScript();
+    } else {
+      envLoaded();
+    }
+  } else {
     attachScript();
-  } else {
-    envLoaded();
   }
-} else {
-  attachScript();
-}
-
 })(window);
 
 
@@ -345,509 +342,428 @@ if (VK._protocol !== 'https:') {
 
 if (!VK.xdConnectionCallbacks) {
 
-VK.extend(VK, {
-  version: 1,
-  _apiId: null,
-  _session: null,
-  _userStatus: 'unknown',
-  _domain: {
-    main: 'https://oauth.vk.com/',
-    api: 'https://api.vk.com/'
-  },
-  _path: {
-    login: 'authorize',
-    proxy: 'fxdm_oauth_proxy.html'
-  },
-  _rootId: 'vk_api_transport',
-  _nameTransportPath: '',
-  xdReady: false,
-  access: {
-    FRIENDS:   0x2,
-    PHOTOS:    0x4,
-    AUDIO:     0x8,
-    VIDEO:     0x10,
-    MATCHES:   0x20,
-    QUESTIONS: 0x40,
-    WIKI:      0x80
-  }
-});
+  VK.extend(VK, {
+    version: 1,
+    _apiId: null,
+    _session: null,
+    _userStatus: 'unknown',
+    _domain: {
+      main: 'https://oauth.vk.com/',
+      api: 'https://api.vk.com/'
+    },
+    _path: {
+      login: 'authorize',
+      proxy: 'fxdm_oauth_proxy.html'
+    },
+    _rootId: 'vk_api_transport',
+    _nameTransportPath: '',
+    xdReady: false,
+    access: {
+      FRIENDS:   0x2,
+      PHOTOS:    0x4,
+      AUDIO:     0x8,
+      VIDEO:     0x10,
+      MATCHES:   0x20,
+      QUESTIONS: 0x40,
+      WIKI:      0x80
+    }
+  });
 
-VK.init = function(options) {
-  var body, root;
+  VK.init = function(options) {
+    var body, root;
 
-  VK._apiId = null;
-  if (!options.apiId) {
-    throw Error('VK.init() called without an apiId');
-  }
-  VK._apiId = options.apiId;
+    VK._apiId = null;
+    if (!options.apiId) {
+      throw Error('VK.init() called without an apiId');
+    }
+    VK._apiId = options.apiId;
 
-  if (options.onlyWidgets) return true;
+    if (options.onlyWidgets) return true;
 
-  if (options.nameTransportPath && options.nameTransportPath !== '') {
-    VK._nameTransportPath = options.nameTransportPath;
-  }
-
-  root = document.getElementById(VK._rootId);
-  if (!root) {
-    root = document.createElement('div');
-    root.id = VK._rootId;
-    body = document.getElementsByTagName('body')[0];
-    body.insertBefore(root, body.childNodes[0]);
-  }
-  root.style.position = 'absolute';
-  root.style.top = '-10000px';
-
-  var session = VK.Cookie.load();
-  if (session) {
-    VK.Auth._loadState = 'loaded';
-    VK.Auth.setSession(session, session ? 'connected' : 'unknown');
-  }
-};
-
-if (!VK.Cookie) {
-VK.Cookie = {
-  _domain: null,
-  load: function() {
-    var
-      cookie = document.cookie.match('\\bvk_app_' + VK._apiId + '=([^;]*)\\b'),
-      session;
-
-    if (cookie) {
-      session = this.decode(cookie[1]);
-      if (session.secret != 'oauth') {
-        return false;
-      }
-      session.expire = parseInt(session.expire, 10);
-      VK.Cookie._domain = '.' + window.location.hostname;//session.base_domain;
+    if (options.nameTransportPath && options.nameTransportPath !== '') {
+      VK._nameTransportPath = options.nameTransportPath;
     }
 
-    return session;
-  },
-  setRaw: function(val, ts, domain, time) {
-    var rawCookie;
-    rawCookie = 'vk_app_' + VK._apiId + '=' + val + '';
-    var exp = time ? (new Date().getTime() + time * 1000) : ts * 1000;
-    rawCookie += (val && ts === 0 ? '' : '; expires=' + new Date(exp).toGMTString());
-    rawCookie += '; path=/';
-    rawCookie += (domain ? '; domain=.' + domain : '');
-    document.cookie = rawCookie;
+    root = document.getElementById(VK._rootId);
+    if (!root) {
+      root = document.createElement('div');
+      root.id = VK._rootId;
+      body = document.getElementsByTagName('body')[0];
+      body.insertBefore(root, body.childNodes[0]);
+    }
+    root.style.position = 'absolute';
+    root.style.top = '-10000px';
 
-    this._domain = domain;
-  },
-  set: function(session, resp) {
+    var session = VK.Cookie.load();
     if (session) {
-      this.setRaw(this.encode(session), session.expire, window.location.hostname, (resp || {}).time);
-    } else {
-      this.clear();
-    }
-  },
-  clear: function() {
-    this.setRaw('', 0, this._domain, 0);
-  },
-  encode: function(params) {
-    var
-      pairs = [],
-      key;
-
-    for (key in params) {
-      if (key != 'user') pairs.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
-    }
-    pairs.sort();
-
-    return pairs.join('&');
-  },
-  decode: function(str) {
-    var
-      params = {},
-      parts = str.split('&'),
-      i,
-      pair;
-
-    for (i=0; i < parts.length; i++) {
-      pair = parts[i].split('=', 2);
-      if (pair && pair[0]) {
-        params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
-      }
-    }
-
-    return params;
-  }
-};
-}
-
-if (!VK.Api) {
-VK.Api = {
-  _headId: null,
-  _callbacks: {},
-
-  ie6_7: function() {
-    if (!VK.Api.ieTested) {
-      VK.Api.isIE6_7 = navigator.userAgent.match(/MSIE [6|7]/i);
-      VK.Api.ieTested = true;
-    }
-    return VK.Api.isIE6_7;
-  },
-
-  makeRequest: function(url, cb) {
-    var xhr = VK.Api.createRequest('GET', url);
-    if (!xhr) {
-      return;
-    }
-
-    xhr.onload = function() {
-      var text = xhr.responseText;
-      if (xhr.status === 200) {
-        cb(text);
-      } else {
-        try {
-          console.error('Open api access error', xhr.response);
-        } catch(e) {
-          //nop
-        }
-      }
-    };
-
-    xhr.onerror = function() {
-      try {
-        console.error('Open api access error');
-      } catch(e) {
-        //nop
-      }
-    };
-
-    xhr.send();
-  },
-
-  createRequest: function(method, url) {
-    var xhr = new XMLHttpRequest();
-    if ("withCredentials" in xhr) {
-      // XHR for Chrome/Firefox/Opera/Safari.
-      xhr.open(method, url, true);
-    } else if (typeof XDomainRequest != "undefined") {
-      // XDomainRequest for IE.
-      xhr = new XDomainRequest();
-      xhr.open(method, url);
-    } else {
-      // CORS not supported.
-      xhr = null;
-    }
-
-    return xhr;
-  },
-
-  attachScript: function(url) {
-    if (!VK.Api._headId) VK.Api._headId = document.getElementsByTagName("head")[0];
-    var newScript = document.createElement('script');
-    newScript.type = 'text/javascript';
-    newScript.setAttribute('encoding', 'UTF-8');
-    newScript.src = url;
-    VK.Api._headId.appendChild(newScript);
-  },
-
-  checkMethod: function(method, params, cb, queryTry) {
-    var m = method.toLowerCase();
-    if (m == 'wall.post' || m == 'activity.set') {
-      var text = (m == 'activity.set') ? params.text : params.message;
-      if (!text) {
-        text = '';
-      }
-      var query =  VK._protocol + '//vk.com/al_apps.php?act=wall_post_box&widget=1&method='+m+'&aid=' + parseInt(VK._apiId, 10) + '&text=' + encodeURIComponent(text);
-      if (m == 'wall.post') {
-        query += '&owner_id=' + parseInt(params.owner_id || 0, 10) + '&attachments=' + (params.attachments || params.attachment || '') + '&publish_date=' + (params.publish_date || '');
-      }
-      var method_access = '_'+(Math.random()).toString(16).substr(2);
-      query += '&method_access='+method_access;
-      var popup = VK.UI.popup({
-        url: query,
-        width: 460,
-        height: 249
-      });
-      var timer = setInterval(function() {
-        if (VK.UI.active.closed) {
-          clearInterval(timer);
-          params.method_access = method_access;
-          VK.Api.call(method, params, cb, queryTry);
-        }
-      }, 500);
-      return false;
-    }
-    return true;
-  },
-
-  call: function(method, params, cb, queryTry) {
-    var
-      query = params || {},
-      qs,
-      responseCb;
-
-    if (typeof query != 'object' || typeof cb != 'function') {
-      return false;
-    }
-    if (!params.method_access && !params.method_force && !VK.Api.checkMethod(method, params, cb, queryTry)) {
-      return;
-    }
-
-    if (!queryTry) queryTry = 0;
-
-    if (VK.Auth._loadState != 'loaded') {
-      var authFunc = function(result) {
-        if (result && result.session) {
-          VK.Observer.unsubscribe('auth.loginStatus', authFunc);
-          VK.Api.call(method, params, cb);
-        }
-      };
-      VK.Observer.subscribe('auth.loginStatus', authFunc);
-      VK.Auth.getLoginStatus();
-      return;
-    }
-
-    if (VK.Api.queryLength(query) < 1500 && !VK.Api.ie6_7()) {
-      var useXDM = false;
-      var rnd = parseInt(Math.random() * 10000000, 10);
-      while (VK.Api._callbacks[rnd]) {
-        rnd = parseInt(Math.random() * 10000000, 10)
-      }
-      query.callback = 'VK.Api._callbacks['+rnd+']';
-    } else {
-      var useXDM = true;
-    }
-
-    if (VK._session && VK._session.sid) {
-      query.access_token = VK._session.sid;
-    }
-
-    qs = VK.Cookie.encode(query);
-
-    responseCb = function(response) {
-      if (response.error && (response.error.error_code == 3 || response.error.error_code == 4 || response.error.error_code == 5)) {
-        if (queryTry > 3) return false;
-        var repeatCall = function(resp) {
-          VK.Observer.unsubscribe('auth.sessionChange', repeatCall);
-          delete params.access_token;
-          if (resp.session) VK.Api.call(method, params, cb, queryTry + 1);
-        }
-        VK.Observer.subscribe('auth.sessionChange', repeatCall);
-        VK.Auth.getLoginStatus();
-      } else {
-        cb(response);
-      }
-      if (!useXDM) delete VK.Api._callbacks[rnd];
-    };
-
-    if (useXDM) {
-      if (VK.xdReady) {
-        VK.XDM.remote.callMethod('apiCall', method, qs, responseCb);
-      } else {
-        VK.Observer.subscribe('xdm.init', function() {
-          VK.XDM.remote.callMethod('apiCall', method, qs, responseCb);
-        });
-        VK.XDM.init();
-      }
-    } else {
-      VK.Api._callbacks[rnd] = responseCb;
-      VK.Api.attachScript(VK._domain.api + 'method/' + method +'?' + qs);
-    }
-  },
-
-  queryLength: function(query) {
-    var len = 100, i; // sid + sig
-    for (i in query) {
-      len += i.length + encodeURIComponent(query[i]).length + 1;
-    }
-    return len;
-  }
-};
-
-// Alias
-VK.api = function(method, params, cb) {VK.Api.call(method, params, cb);}
-};
-
-if (!VK.Auth) {
-VK.Auth = {
-  popup: null,
-
-  setSession: function(session, status, settings, resp) {
-    var
-      login = !VK._session && session,
-      logout = VK._session && !session,
-      both = VK._session && session && VK._session.mid != session.mid,
-      sessionChange = login || logout || (VK._session && session && VK._session.sid != session.sid),
-      statusChange = status != VK._userStatus,
-      response = {
-        'session': session,
-        'status': status,
-        'settings': settings
-      };
-
-    VK._session = session;
-
-    VK._userStatus = status;
-
-    VK.Cookie.set(session, resp);
-
-    if (sessionChange || statusChange || both) {
-      setTimeout(function() {
-        if (statusChange) {
-          VK.Observer.publish('auth.statusChange', response);
-        }
-
-        if (logout || both) {
-          VK.Observer.publish('auth.logout', response);
-        }
-
-        if (login || both) {
-          VK.Observer.publish('auth.login', response);
-        }
-
-        if (sessionChange) {
-          VK.Observer.publish('auth.sessionChange', response);
-        }
-      }, 0);
-    }
-
-    return response;
-  },
-
-  // Public VK.Auth methods
-  login: function(cb, settings) {
-    if (!VK._apiId) {
-      return false;
-    }
-
-    var url = VK._domain.main + VK._path.login + '?client_id='+VK._apiId+'&display=popup&redirect_uri=close.html&response_type=token';
-    if (settings && parseInt(settings, 10) > 0) {
-      url += '&scope=' + settings;
-    }
-
-    VK.Observer.unsubscribe('auth.onLogin');
-    VK.Observer.subscribe('auth.onLogin', cb);
-
-    VK.UI.popup({
-      width: 665,
-      height: 370,
-      url: url
-    });
-
-    var authCallback = function() {
-      VK.Auth.getLoginStatus(function(resp) {
-        VK.Observer.publish('auth.onLogin', resp);
-        VK.Observer.unsubscribe('auth.onLogin');
-      }, true);
-    }
-
-    VK.UI.popupOpened = true;
-    var popupCheck = function() {
-      if (!VK.UI.popupOpened) return false;
-      try {
-        if (!VK.UI.active.top || VK.UI.active.closed) {
-          VK.UI.popupOpened = false;
-          authCallback();
-          return true;
-        }
-      } catch(e) {
-        VK.UI.popupOpened = false;
-        authCallback();
-        return true;
-      }
-      setTimeout(popupCheck, 100);
-    };
-
-    setTimeout(popupCheck, 100);
-  },
-
-  // Logout user from app, vk.com & login.vk.com
-  logout: function(cb) {
-    VK.Auth.revokeGrants(cb);
-  },
-
-  revokeGrants: function(cb) {
-    var onLogout = function(resp) {
-      VK.Observer.unsubscribe('auth.statusChange', onLogout);
-      if (cb) {
-        cb(resp);
-      }
-    }
-
-    VK.Observer.subscribe('auth.statusChange', onLogout);
-    if (VK._session && VK._session.sid) {
-      logoutCallback = function() {
-        VK.Auth.setSession(null, 'unknown');
-      };
-
-      VK.Api.makeRequest('https://login.vk.com/?act=openapi&oauth=1&aid=' + parseInt(VK._apiId, 10) + '&location=' + encodeURIComponent(window.location.hostname) + '&do_logout=1&token=' + VK._session.sid + '&new=1', logoutCallback);
-    }
-
-    VK.Cookie.clear();
-  },
-
-  // Get current login status from session (sync) (not use on load time)
-  getSession: function() {
-    return VK._session;
-  },
-
-  // Get current login status from vk.com (async)
-  getLoginStatus: function(cb, force) {
-    if (!VK._apiId) {
-      return;
-    }
-
-    if (cb) {
-      if (!force && VK.Auth._loadState == 'loaded') {
-        cb({status: VK._userStatus, session: VK._session});
-        return;
-      } else {
-        VK.Observer.subscribe('auth.loginStatus', cb);
-      }
-    }
-
-    if (!force && VK.Auth._loadState == 'loading') {
-      return;
-    }
-
-    VK.Auth._loadState = 'loading';
-
-    var loginCallback = function(response) {
-      if (!this.JSON) {
-        this.JSON = {};
-      }
-
-      if (typeof JSON.parse !== 'function') {
-        //IE6 and IE7
-        response = eval(response);
-      } else {
-        response = JSON.parse(response);
-      }
-
       VK.Auth._loadState = 'loaded';
-      if (response && response.auth) {
-        var session = {
-          mid: response.user.id,
-          sid: response.access_token,
-          sig: response.sig,
-          secret: response.secret,
-          expire: response.expire
+      VK.Auth.setSession(session, session ? 'connected' : 'unknown');
+    }
+  };
+
+  if (!VK.Cookie) {
+    VK.Cookie = {
+      _domain: null,
+      load: function() {
+        var
+            cookie = document.cookie.match('\\bvk_app_' + VK._apiId + '=([^;]*)\\b'),
+            session;
+
+        if (cookie) {
+          session = this.decode(cookie[1]);
+          if (session.secret != 'oauth') {
+            return false;
+          }
+          session.expire = parseInt(session.expire, 10);
+          VK.Cookie._domain = '.' + window.location.hostname;//session.base_domain;
+        }
+
+        return session;
+      },
+      setRaw: function(val, ts, domain, time) {
+        var rawCookie;
+        rawCookie = 'vk_app_' + VK._apiId + '=' + val + '';
+        var exp = time ? (new Date().getTime() + time * 1000) : ts * 1000;
+        rawCookie += (val && ts === 0 ? '' : '; expires=' + new Date(exp).toGMTString());
+        rawCookie += '; path=/';
+        rawCookie += (domain ? '; domain=.' + domain : '');
+        document.cookie = rawCookie;
+
+        this._domain = domain;
+      },
+      set: function(session, resp) {
+        if (session) {
+          this.setRaw(this.encode(session), session.expire, window.location.hostname, (resp || {}).time);
+        } else {
+          this.clear();
+        }
+      },
+      clear: function() {
+        this.setRaw('', 0, this._domain, 0);
+      },
+      encode: function(params) {
+        var
+            pairs = [],
+            key;
+
+        for (key in params) {
+          if (key != 'user') pairs.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
+        }
+        pairs.sort();
+
+        return pairs.join('&');
+      },
+      decode: function(str) {
+        var
+            params = {},
+            parts = str.split('&'),
+            i,
+            pair;
+
+        for (i=0; i < parts.length; i++) {
+          pair = parts[i].split('=', 2);
+          if (pair && pair[0]) {
+            params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+          }
+        }
+
+        return params;
+      }
+    };
+  }
+
+  if (!VK.Api) {
+    VK.Api = {
+      _headId: null,
+      _callbacks: {},
+      ie6_7: function() {
+        if (!VK.Api.ieTested) {
+          VK.Api.isIE6_7 = navigator.userAgent.match(/MSIE [6|7]/i);
+          VK.Api.ieTested = true;
+        }
+        return VK.Api.isIE6_7;
+      },
+      attachScript: function(url) {
+        if (!VK.Api._headId) VK.Api._headId = document.getElementsByTagName("head")[0];
+        var newScript = document.createElement('script');
+        newScript.type = 'text/javascript';
+        newScript.setAttribute('encoding', 'UTF-8');
+        newScript.src = url;
+        VK.Api._headId.appendChild(newScript);
+      },
+      checkMethod: function(method, params, cb, queryTry) {
+        var m = method.toLowerCase();
+        if (m == 'wall.post' || m == 'activity.set') {
+          var text = (m == 'activity.set') ? params.text : params.message;
+          if (!text) {
+            text = '';
+          }
+          var query =  VK._protocol + '//vk.com/al_apps.php?act=wall_post_box&widget=1&method='+m+'&aid=' + parseInt(VK._apiId, 10) + '&text=' + encodeURIComponent(text);
+          if (m == 'wall.post') {
+            query += '&owner_id=' + parseInt(params.owner_id || 0, 10) + '&attachments=' + (params.attachments || params.attachment || '') + '&publish_date=' + (params.publish_date || '');
+          }
+          var method_access = '_'+(Math.random()).toString(16).substr(2);
+          query += '&method_access='+method_access;
+          var popup = VK.UI.popup({
+            url: query,
+            width: 460,
+            height: 249
+          });
+          var timer = setInterval(function() {
+            if (VK.UI.active.closed) {
+              clearInterval(timer);
+              params.method_access = method_access;
+              VK.Api.call(method, params, cb, queryTry);
+            }
+          }, 500);
+          return false;
+        }
+        return true;
+      },
+      call: function(method, params, cb, queryTry) {
+        var
+            query = params || {},
+            qs,
+            responseCb;
+
+        if (typeof query != 'object' || typeof cb != 'function') {
+          return false;
+        }
+        if (!params.method_access && !params.method_force && !VK.Api.checkMethod(method, params, cb, queryTry)) {
+          return;
+        }
+
+        if (!queryTry) queryTry = 0;
+
+        if (VK.Auth._loadState != 'loaded') {
+          var authFunc = function(result) {
+            if (result && result.session) {
+              VK.Observer.unsubscribe('auth.loginStatus', authFunc);
+              VK.Api.call(method, params, cb);
+            }
+          };
+          VK.Observer.subscribe('auth.loginStatus', authFunc);
+          VK.Auth.getLoginStatus();
+          return;
+        }
+
+        if (VK.Api.queryLength(query) < 1500 && !VK.Api.ie6_7()) {
+          var useXDM = false;
+          var rnd = parseInt(Math.random() * 10000000, 10);
+          while (VK.Api._callbacks[rnd]) {
+            rnd = parseInt(Math.random() * 10000000, 10)
+          }
+          query.callback = 'VK.Api._callbacks['+rnd+']';
+        } else {
+          var useXDM = true;
+        }
+
+        if (VK._session && VK._session.sid) {
+          query.access_token = VK._session.sid;
+        }
+
+        qs = VK.Cookie.encode(query);
+
+        responseCb = function(response) {
+          if (response.error && (response.error.error_code == 3 || response.error.error_code == 4 || response.error.error_code == 5)) {
+            if (queryTry > 3) return false;
+            var repeatCall = function(resp) {
+              VK.Observer.unsubscribe('auth.sessionChange', repeatCall);
+              delete params.access_token;
+              if (resp.session) VK.Api.call(method, params, cb, queryTry + 1);
+            }
+            VK.Observer.subscribe('auth.sessionChange', repeatCall);
+            VK.Auth.getLoginStatus();
+          } else {
+            cb(response);
+          }
+          if (!useXDM) delete VK.Api._callbacks[rnd];
         };
 
-        if (force) {
-          session.user = response.user;
+        if (useXDM) {
+          if (VK.xdReady) {
+            VK.XDM.remote.callMethod('apiCall', method, qs, responseCb);
+          } else {
+            VK.Observer.subscribe('xdm.init', function() {
+              VK.XDM.remote.callMethod('apiCall', method, qs, responseCb);
+            });
+            VK.XDM.init();
+          }
+        } else {
+          VK.Api._callbacks[rnd] = responseCb;
+          VK.Api.attachScript(VK._domain.api + 'method/' + method +'?' + qs);
         }
-
-        var status = 'connected';
-      } else {
-        var session = null;
-        var status = response.user ? 'not_authorized' : 'unknown';
-        VK.Cookie.clear();
+      },
+      queryLength: function(query) {
+        var len = 100, i; // sid + sig
+        for (i in query) {
+          len += i.length + encodeURIComponent(query[i]).length + 1;
+        }
+        return len;
       }
-
-      VK.Auth.setSession(session, status, false, response);
-      VK.Observer.publish('auth.loginStatus', {session: session, status: status});
-      VK.Observer.unsubscribe('auth.loginStatus');
     };
 
-    VK.Api.makeRequest('https://login.vk.com/?act=openapi&oauth=1&aid=' + parseInt(VK._apiId, 10) + '&location=' + encodeURIComponent(window.location.hostname) + '&new=1', loginCallback);
+// Alias
+    VK.api = function(method, params, cb) {VK.Api.call(method, params, cb);}
+  };
+
+  if (!VK.Auth) {
+    VK.Auth = {
+      popup: null,
+      lsCb: {},
+      setSession: function(session, status, settings, resp) {
+        var
+            login = !VK._session && session,
+            logout = VK._session && !session,
+            both = VK._session && session && VK._session.mid != session.mid,
+            sessionChange = login || logout || (VK._session && session && VK._session.sid != session.sid),
+            statusChange = status != VK._userStatus,
+            response = {
+              'session': session,
+              'status': status,
+              'settings': settings
+            };
+
+        VK._session = session;
+
+        VK._userStatus = status;
+
+        VK.Cookie.set(session, resp);
+
+        if (sessionChange || statusChange || both) {
+          setTimeout(function() {
+            if (statusChange) {
+              VK.Observer.publish('auth.statusChange', response);
+            }
+
+            if (logout || both) {
+              VK.Observer.publish('auth.logout', response);
+            }
+
+            if (login || both) {
+              VK.Observer.publish('auth.login', response);
+            }
+
+            if (sessionChange) {
+              VK.Observer.publish('auth.sessionChange', response);
+            }
+          }, 0);
+        }
+
+        return response;
+      },
+      // Public VK.Auth methods
+      login: function(cb, settings) {
+        var channel, url;
+        if (!VK._apiId) {
+          return false;
+        }
+        channel = window.location.protocol + '//' + window.location.hostname;
+        url = VK._domain.main + VK._path.login + '?client_id='+VK._apiId+'&display=popup&redirect_uri=close.html&response_type=token';
+        if (settings && parseInt(settings, 10) > 0) {
+          url += '&scope=' + settings;
+        }
+        VK.Observer.unsubscribe('auth.onLogin');
+        VK.Observer.subscribe('auth.onLogin', cb);
+        VK.UI.popup({
+          width: 665,
+          height: 370,
+          url: url
+        });
+        var authCallback = function() {
+          VK.Auth.getLoginStatus(function(resp) {
+            VK.Observer.publish('auth.onLogin', resp);
+            VK.Observer.unsubscribe('auth.onLogin');
+          }, true);
+        }
+
+        VK.UI.popupOpened = true;
+        var popupCheck = function() {
+          if (!VK.UI.popupOpened) return false;
+          try {
+            if (!VK.UI.active.top || VK.UI.active.closed) {
+              VK.UI.popupOpened = false;
+              authCallback();
+              return true;
+            }
+          } catch(e) {
+            VK.UI.popupOpened = false;
+            authCallback();
+            return true;
+          }
+          setTimeout(popupCheck, 100);
+        };
+
+        setTimeout(popupCheck, 100);
+      },
+      // Logout user from app, vk.com & login.vk.com
+      logout: function(cb) {
+        VK.Auth.revokeGrants(cb);
+      },
+      revokeGrants: function(cb) {
+        var onLogout = function(resp) {
+          VK.Observer.unsubscribe('auth.statusChange', onLogout);
+          if (cb) cb(resp);
+        }
+        VK.Observer.subscribe('auth.statusChange', onLogout);
+        if (VK._session && VK._session.sid) VK.Api.attachScript('https://login.vk.com/?act=openapi&oauth=1&aid=' + parseInt(VK._apiId, 10) + '&location=' + encodeURIComponent(window.location.hostname)+'&do_logout=1&token='+VK._session.sid);
+        VK.Cookie.clear();
+      },
+      // Get current login status from session (sync) (not use on load time)
+      getSession: function() {
+        return VK._session;
+      },
+      // Get current login status from vk.com (async)
+      getLoginStatus: function(cb, force) {
+        if (!VK._apiId) {
+          return;
+        }
+
+        if (cb) {
+          if (!force && VK.Auth._loadState == 'loaded') {
+            cb({status: VK._userStatus, session: VK._session});
+            return;
+          } else {
+            VK.Observer.subscribe('auth.loginStatus', cb);
+          }
+        }
+
+        if (!force && VK.Auth._loadState == 'loading') {
+          return;
+        }
+
+        VK.Auth._loadState = 'loading';
+        var rnd = parseInt(Math.random() * 10000000, 10);
+        while (VK.Auth.lsCb[rnd]) {
+          rnd = parseInt(Math.random() * 10000000, 10)
+        }
+        VK.Auth.lsCb[rnd] = function(response) {
+          delete VK.Auth.lsCb[rnd];
+          VK.Auth._loadState = 'loaded';
+          if (response && response.auth) {
+            var session = {
+              mid: response.user.id,
+              sid: response.access_token,
+              sig: response.sig,
+              secret: response.secret,
+              expire: response.expire
+            };
+            if (force) session.user = response.user;
+            var status = 'connected';
+          } else {
+            var session = null;
+            var status = response.user ? 'not_authorized' : 'unknown';
+            VK.Cookie.clear();
+          }
+          VK.Auth.setSession(session, status, false, response);
+          VK.Observer.publish('auth.loginStatus', {session: session, status: status});
+          VK.Observer.unsubscribe('auth.loginStatus');
+        };
+        // AttachScript here
+        VK.Api.attachScript('https://login.vk.com/?act=openapi&oauth=1&aid=' + parseInt(VK._apiId, 10) + '&location=' + encodeURIComponent(window.location.hostname)+'&rnd='+rnd);
+      }
+    };
   }
-};
-}
 
 } else { // if VK.xdConnectionCallbacks
   setTimeout(function() {
@@ -862,153 +778,153 @@ VK.Auth = {
 }
 
 if (!VK.UI) {
-VK.UI = {
-  active: null,
-  _buttons: [],
-  popup: function(options) {
-    var
-      screenX = typeof window.screenX != 'undefined' ? window.screenX : window.screenLeft,
-      screenY = typeof window.screenY != 'undefined' ? window.screenY : window.screenTop,
-      outerWidth = typeof window.outerWidth != 'undefined' ? window.outerWidth : document.body.clientWidth,
-      outerHeight = typeof window.outerHeight != 'undefined' ? window.outerHeight : (document.body.clientHeight - 22),
-      width = options.width,
-      height = options.height,
-      left = parseInt(screenX + ((outerWidth - width) / 2), 10),
-      top = parseInt(screenY + ((outerHeight - height) / 2.5), 10),
-      features = (
-        'width=' + width +
-        ',height=' + height +
-        ',left=' + left +
-        ',top=' + top
-      );
+  VK.UI = {
+    active: null,
+    _buttons: [],
+    popup: function(options) {
+      var
+          screenX = typeof window.screenX != 'undefined' ? window.screenX : window.screenLeft,
+          screenY = typeof window.screenY != 'undefined' ? window.screenY : window.screenTop,
+          outerWidth = typeof window.outerWidth != 'undefined' ? window.outerWidth : document.body.clientWidth,
+          outerHeight = typeof window.outerHeight != 'undefined' ? window.outerHeight : (document.body.clientHeight - 22),
+          width = options.width,
+          height = options.height,
+          left = parseInt(screenX + ((outerWidth - width) / 2), 10),
+          top = parseInt(screenY + ((outerHeight - height) / 2.5), 10),
+          features = (
+              'width=' + width +
+              ',height=' + height +
+              ',left=' + left +
+              ',top=' + top
+          );
       this.active = window.open(options.url, 'vk_openapi', features);
-  },
-  button: function(el, handler) {
-    var html = '';
+    },
+    button: function(el, handler) {
+      var html = '';
 
-    if (typeof el == 'string') {
-      el = document.getElementById(el);
-    }
+      if (typeof el == 'string') {
+        el = document.getElementById(el);
+      }
 
 
-    this._buttons.push(el);
-    index = this._buttons.length - 1;
+      this._buttons.push(el);
+      index = this._buttons.length - 1;
 
-    html = (
-      '<table cellspacing="0" cellpadding="0" id="openapi_UI_' + index + '" onmouseover="VK.UI._change(1, ' + index + ');" onmouseout="VK.UI._change(0, ' + index + ');" onmousedown="VK.UI._change(2, ' + index + ');" onmouseup="VK.UI._change(1, ' + index + ');" style="cursor: pointer; border: 0px; font-family: tahoma, arial, verdana, sans-serif, Lucida Sans; font-size: 10px;"><tr style="vertical-align: middle">' +
-      '<td><div style="border: 1px solid #3b6798;border-radius: 2px 0px 0px 2px;-moz-border-radius: 2px 0px 0px 2px;-webkit-border-radius: 2px 0px 0px 2px;"><div style="border: 1px solid #5c82ab; border-top-color: #7e9cbc; background-color: #6D8DB1; color: #fff; text-shadow: 0px 1px #45688E; height: 15px; padding: 2px 4px 0px 6px;line-height: 13px;">&#1042;&#1086;&#1081;&#1090;&#1080;</div></div></td>' +
-      '<td><div style="background: url(' + VK._protocol + '//vk.com/images/btns.png) 0px -42px no-repeat; width: 21px; height: 21px"></div></td>' +
-      '<td><div style="border: 1px solid #3b6798;border-radius: 0px 2px 2px 0px;-moz-border-radius: 0px 2px 2px 0px;-webkit-border-radius: 0px 2px 2px 0px;"><div style="border: 1px solid #5c82ab; border-top-color: #7e9cbc; background-color: #6D8DB1; color: #fff; text-shadow: 0px 1px #45688E; height: 15px; padding: 2px 6px 0px 4px;line-height: 13px;">&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1077;</div></div></td>' +
-      '</tr></table>'
-    );
-    el.innerHTML = html;
-    el.style.width = el.childNodes[0].offsetWidth + 'px';
-  },
-  _change: function(state, index) {
-    var row = document.getElementById('openapi_UI_' + index).rows[0];
-    var elems = [row.cells[0].firstChild.firstChild, row.cells[2].firstChild.firstChild];
-    for (var i = 0; i < 2; ++i) {
-       var elem = elems[i];
-      if (state === 0) {
-        elem.style.backgroundColor = '#6D8DB1';
-        elem.style.borderTopColor = '#7E9CBC';
-        elem.style.borderLeftColor = elem.style.borderRightColor = elem.style.borderBottomColor = '#5C82AB';
+      html = (
+          '<table cellspacing="0" cellpadding="0" id="openapi_UI_' + index + '" onmouseover="VK.UI._change(1, ' + index + ');" onmouseout="VK.UI._change(0, ' + index + ');" onmousedown="VK.UI._change(2, ' + index + ');" onmouseup="VK.UI._change(1, ' + index + ');" style="cursor: pointer; border: 0px; font-family: tahoma, arial, verdana, sans-serif, Lucida Sans; font-size: 10px;"><tr style="vertical-align: middle">' +
+          '<td><div style="border: 1px solid #3b6798;border-radius: 2px 0px 0px 2px;-moz-border-radius: 2px 0px 0px 2px;-webkit-border-radius: 2px 0px 0px 2px;"><div style="border: 1px solid #5c82ab; border-top-color: #7e9cbc; background-color: #6D8DB1; color: #fff; text-shadow: 0px 1px #45688E; height: 15px; padding: 2px 4px 0px 6px;line-height: 13px;">&#1042;&#1086;&#1081;&#1090;&#1080;</div></div></td>' +
+          '<td><div style="background: url(' + VK._protocol + '//vk.com/images/btns.png) 0px -42px no-repeat; width: 21px; height: 21px"></div></td>' +
+          '<td><div style="border: 1px solid #3b6798;border-radius: 0px 2px 2px 0px;-moz-border-radius: 0px 2px 2px 0px;-webkit-border-radius: 0px 2px 2px 0px;"><div style="border: 1px solid #5c82ab; border-top-color: #7e9cbc; background-color: #6D8DB1; color: #fff; text-shadow: 0px 1px #45688E; height: 15px; padding: 2px 6px 0px 4px;line-height: 13px;">&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1077;</div></div></td>' +
+          '</tr></table>'
+      );
+      el.innerHTML = html;
+      el.style.width = el.childNodes[0].offsetWidth + 'px';
+    },
+    _change: function(state, index) {
+      var row = document.getElementById('openapi_UI_' + index).rows[0];
+      var elems = [row.cells[0].firstChild.firstChild, row.cells[2].firstChild.firstChild];
+      for (var i = 0; i < 2; ++i) {
+        var elem = elems[i];
+        if (state === 0) {
+          elem.style.backgroundColor = '#6D8DB1';
+          elem.style.borderTopColor = '#7E9CBC';
+          elem.style.borderLeftColor = elem.style.borderRightColor = elem.style.borderBottomColor = '#5C82AB';
+        } else if (state == 1) {
+          elem.style.backgroundColor = '#7693B6';
+          elem.style.borderTopColor = '#88A4C4';
+          elem.style.borderLeftColor = elem.style.borderRightColor = elem.style.borderBottomColor = '#6088B4';
+        } else if (state == 2) {
+          elem.style.backgroundColor = '#6688AD';
+          elem.style.borderBottomColor = '#7495B8';
+          elem.style.borderLeftColor = elem.style.borderRightColor = elem.style.borderTopColor = '#51779F';
+        }
+      }
+      if (state === 0 || state == 2) {
+        row.cells[2].firstChild.style.backgroundPosition = '0px -42px';
       } else if (state == 1) {
-        elem.style.backgroundColor = '#7693B6';
-        elem.style.borderTopColor = '#88A4C4';
-        elem.style.borderLeftColor = elem.style.borderRightColor = elem.style.borderBottomColor = '#6088B4';
-      } else if (state == 2) {
-        elem.style.backgroundColor = '#6688AD';
-        elem.style.borderBottomColor = '#7495B8';
-        elem.style.borderLeftColor = elem.style.borderRightColor = elem.style.borderTopColor = '#51779F';
+        row.cells[2].firstChild.style.backgroundPosition = '0px -63px';
       }
     }
-    if (state === 0 || state == 2) {
-      row.cells[2].firstChild.style.backgroundPosition = '0px -42px';
-    } else if (state == 1) {
-      row.cells[2].firstChild.style.backgroundPosition = '0px -63px';
-    }
-  }
-};
+  };
 }
 
 if (!VK.XDM) {
-VK.XDM = {
-  remote: null,
-  init: function() {
-    if (this.remote) return false;
-    var url = VK._domain.api + VK._path.proxy;
-    this.remote = new fastXDM.Server({
-      onInit: function() {
-        VK.xdReady = true;
-        VK.Observer.publish('xdm.init');
-      }
-    });
+  VK.XDM = {
+    remote: null,
+    init: function() {
+      if (this.remote) return false;
+      var url = VK._domain.api + VK._path.proxy;
+      this.remote = new fastXDM.Server({
+        onInit: function() {
+          VK.xdReady = true;
+          VK.Observer.publish('xdm.init');
+        }
+      });
 
-    this.remote.append(document.getElementById(VK._rootId), {
-      src: url
-    });
-  },
-  xdHandler: function(code) {
-    try {
-      eval('VK.' + code);
-    } catch(e) {}
-  }
-};
+      this.remote.append(document.getElementById(VK._rootId), {
+        src: url
+      });
+    },
+    xdHandler: function(code) {
+      try {
+        eval('VK.' + code);
+      } catch(e) {}
+    }
+  };
 }
 
 if (!VK.Observer) {
-VK.Observer = {
-  _subscribers: function() {
-    if (!this._subscribersMap) {
-      this._subscribersMap = {};
-    }
-    return this._subscribersMap;
-  },
-  publish: function(eventName) {
-    var
-      args = Array.prototype.slice.call(arguments),
-      eventName = args.shift(),
-      subscribers = this._subscribers()[eventName],
-      i, j;
-
-    if (!subscribers) return;
-
-    for (i = 0, j = subscribers.length; i < j; i++) {
-      if (subscribers[i] != null) {
-        subscribers[i].apply(this, args);
+  VK.Observer = {
+    _subscribers: function() {
+      if (!this._subscribersMap) {
+        this._subscribersMap = {};
       }
-    }
-  },
-  subscribe: function(eventName, handler) {
-    var
-      subscribers = this._subscribers();
+      return this._subscribersMap;
+    },
+    publish: function(eventName) {
+      var
+          args = Array.prototype.slice.call(arguments),
+          eventName = args.shift(),
+          subscribers = this._subscribers()[eventName],
+          i, j;
 
-    if (typeof handler != 'function') return false;
+      if (!subscribers) return;
 
-    if (!subscribers[eventName]) {
-      subscribers[eventName] = [handler];
-    } else {
-      subscribers[eventName].push(handler);
-    }
-  },
-  unsubscribe: function(eventName, handler) {
-    var
-      subscribers = this._subscribers()[eventName],
-      i, j;
-
-    if (!subscribers) return false;
-    if (typeof handler == 'function') {
       for (i = 0, j = subscribers.length; i < j; i++) {
-        if (subscribers[i] == handler) {
-          subscribers[i] = null;
+        if (subscribers[i] != null) {
+          subscribers[i].apply(this, args);
         }
       }
-    } else {
-      delete this._subscribers()[eventName];
+    },
+    subscribe: function(eventName, handler) {
+      var
+          subscribers = this._subscribers();
+
+      if (typeof handler != 'function') return false;
+
+      if (!subscribers[eventName]) {
+        subscribers[eventName] = [handler];
+      } else {
+        subscribers[eventName].push(handler);
+      }
+    },
+    unsubscribe: function(eventName, handler) {
+      var
+          subscribers = this._subscribers()[eventName],
+          i, j;
+
+      if (!subscribers) return false;
+      if (typeof handler == 'function') {
+        for (i = 0, j = subscribers.length; i < j; i++) {
+          if (subscribers[i] == handler) {
+            subscribers[i] = null;
+          }
+        }
+      } else {
+        delete this._subscribers()[eventName];
+      }
     }
-  }
-};
+  };
 }
 
 if (!VK.Widgets) {
@@ -1153,25 +1069,25 @@ if (!VK.Widgets) {
     options = VK.extend(options || {}, {allowTransparency: true});
     if (options.type == 'button' || options.type == 'vertical' || options.type == 'mini') delete options.width;
     var
-      type = (options.type == 'full' || options.type == 'button' || options.type == 'vertical' || options.type == 'mini') ? options.type : 'full',
-      width = type == 'full' ? Math.max(200, options.width || 350) : (type == 'button' ? 180 : (type == 'mini' ? 100 : 41)),
-      btnHeight = parseInt(options.height, 10) || 22,
-      height = type == 'vertical' ? (2 * btnHeight + 7) : (type == 'full' ? btnHeight + 1 : btnHeight),
-      params = {
-        page: page || 0,
-        url: options.pageUrl || pData.url,
-        type: type,
-        verb: options.verb == 1 ? 1 : 0,
-        color: options.color || '',
-        title: options.pageTitle || pData.title,
-        description: options.pageDescription || pData.description,
-        image: options.pageImage || pData.image,
-        text: (options.text || '').substr(0, 140),
-        h: btnHeight
-      },
-      ttHere = options.ttHere || false,
-      isOver = false,
-      obj, buttonIfr, buttonRpc, tooltipIfr, tooltipRpc, checkTO, statsBox;
+        type = (options.type == 'full' || options.type == 'button' || options.type == 'vertical' || options.type == 'mini') ? options.type : 'full',
+        width = type == 'full' ? Math.max(200, options.width || 350) : (type == 'button' ? 180 : (type == 'mini' ? 100 : 41)),
+        btnHeight = parseInt(options.height, 10) || 22,
+        height = type == 'vertical' ? (2 * btnHeight + 7) : (type == 'full' ? btnHeight + 1 : btnHeight),
+        params = {
+          page: page || 0,
+          url: options.pageUrl || pData.url,
+          type: type,
+          verb: options.verb == 1 ? 1 : 0,
+          color: options.color || '',
+          title: options.pageTitle || pData.title,
+          description: options.pageDescription || pData.description,
+          image: options.pageImage || pData.image,
+          text: (options.text || '').substr(0, 140),
+          h: btnHeight
+        },
+        ttHere = options.ttHere || false,
+        isOver = false,
+        obj, buttonIfr, buttonRpc, tooltipIfr, tooltipRpc, checkTO, statsBox;
 
     function showTooltip(force) {
       if ((!isOver && !force) || !tooltipRpc) return;
@@ -1211,7 +1127,7 @@ if (!VK.Widgets) {
         tooltipRpc = new fastXDM.Server({
           onInit: counter ? function() {showTooltip(true)} : function() {},
           proxy: function() {
-             buttonRpc.callMethod.apply(buttonRpc, arguments);
+            buttonRpc.callMethod.apply(buttonRpc, arguments);
           },
           showBox: function(url, props) {
             var box = VK.Util.Box((options.base_domain || VK._protocol + '//vk.com/') + url, [props.width, props.height], {
@@ -1795,156 +1711,151 @@ if (!VK.Widgets) {
 }
 
 if (!VK.Util) {
-VK.Util = {
-  getPageData: function() {
-    if (!VK._pData) {
-      var metas = document.getElementsByTagName('meta'), pData = {}, keys = ['description', 'title', 'url', 'image', 'app_id'], metaName;
-      for (var i in metas) {
-        if (!metas[i].getAttribute) continue;
-        if (metas[i].getAttribute && ((metaName = metas[i].getAttribute('name')) || (metaName = metas[i].getAttribute('property')))) {
-          for (var j in keys) {
-            if (metaName == keys[j] || metaName == 'og:'+keys[j] || metaName == 'vk:'+keys[j]) {
-              pData[keys[j]] = metas[i].content;
+  VK.Util = {
+    getPageData: function() {
+      if (!VK._pData) {
+        var metas = document.getElementsByTagName('meta'), pData = {}, keys = ['description', 'title', 'url', 'image', 'app_id'], metaName;
+        for (var i in metas) {
+          if (!metas[i].getAttribute) continue;
+          if (metas[i].getAttribute && ((metaName = metas[i].getAttribute('name')) || (metaName = metas[i].getAttribute('property')))) {
+            for (var j in keys) {
+              if (metaName == keys[j] || metaName == 'og:'+keys[j] || metaName == 'vk:'+keys[j]) {
+                pData[keys[j]] = metas[i].content;
+              }
             }
           }
         }
-      }
-      if (pData.app_id && !VK._apiId) {
-        VK._apiId = pData.app_id;
-      }
-      pData.title = pData.title || document.title || '';
-      pData.description = pData.description || '';
-      pData.image = pData.image || '';
-      if (!pData.url && VK._iframeAppWidget && VK._apiId) {
-        pData.url = '/app' + VK._apiId;
-        if (VK._browserHash) {
-          pData.url += VK._browserHash
+        if (pData.app_id && !VK._apiId) {
+          VK._apiId = pData.app_id;
         }
-      }
-      var loc = location.href.replace(/#.*$/, '');
-      if (!pData.url || !pData.url.indexOf(loc)) {
-        pData.url = loc;
-      }
-      VK._pData = pData;
-    }
-    return VK._pData;
-  },
-  getStyle: function(elem, name) {
-    var ret, defaultView = document.defaultView || window;
-    if (defaultView.getComputedStyle) {
-      name = name.replace(/([A-Z])/g, '-$1').toLowerCase();
-      var computedStyle = defaultView.getComputedStyle(elem, null);
-      if (computedStyle) {
-        ret = computedStyle.getPropertyValue(name);
-      }
-    } else if (elem.currentStyle) {
-      var camelCase = name.replace(/\-(\w)/g, function(all, letter){
-        return letter.toUpperCase();
-      });
-      ret = elem.currentStyle[name] || elem.currentStyle[camelCase];
-    }
-
-    return ret;
-  },
-
-  getXY: function(obj, fixed) {
-    if (!obj || obj === undefined) return;
-
-    var left = 0, top = 0;
-    if (obj.getBoundingClientRect !== undefined) {
-      var rect = obj.getBoundingClientRect();
-      left = rect.left;
-      top = rect.top;
-      fixed = true;
-    } else if (obj.offsetParent) {
-      do {
-        left += obj.offsetLeft;
-        top += obj.offsetTop;
-        if (fixed) {
-          left -= obj.scrollLeft;
-          top -= obj.scrollTop;
+        pData.title = pData.title || document.title || '';
+        pData.description = pData.description || '';
+        pData.image = pData.image || '';
+        if (!pData.url && VK._iframeAppWidget && VK._apiId) {
+          pData.url = '/app' + VK._apiId;
+          if (VK._browserHash) {
+            pData.url += VK._browserHash
+          }
         }
-      } while (obj = obj.offsetParent);
-    }
-    if (fixed) {
-      top += window.pageYOffset || window.scrollNode && scrollNode.scrollTop || document.documentElement.scrollTop;
-      left += window.pageXOffset || window.scrollNode && scrollNode.scrollLeft || document.documentElement.scrollLeft;
-    }
-
-    return [left, top];
-  },
-
-  Box: function(src, sizes, fnc, options) {
-    fnc = fnc || {};
-    var overflowB = document.body.style.overflow;
-    var loader = document.createElement('DIV');
-    var rpc = new fastXDM.Server(VK.extend(fnc, {
-      onInit: function() {
-        iframe.style.background = 'transparent';
-        iframe.style.visibility = 'visible';
-        document.body.style.overflow = 'hidden';
-        document.body.removeChild(loader);
-      },
-      hide: function() {
-        iframe.style.display = 'none';
-      },
-      tempHide: function() {
-        iframe.style.left = '-10000px';
-        iframe.style.top = '-10000px';
-        iframe.style.width = '10px';
-        iframe.style.height = '10px';
-        document.body.style.overflow = overflowB;
-      },
-      destroy: function() {
-        try {
-          iframe.src = 'about: blank;';
-        } catch (e) {}
-        iframe.parentNode.removeChild(iframe);
-        document.body.style.overflow = overflowB;
-      },
-      resize: function(w, h) {
+        var loc = location.href.replace(/#.*$/, '');
+        if (!pData.url || !pData.url.indexOf(loc)) {
+          pData.url = loc;
+        }
+        VK._pData = pData;
       }
-    }, true), false, {safe: true}),
-    iframe = rpc.append(document.body, {
-      src: src.replace(/&amp;/g, '&'),
-      scrolling: 'no',
-      allowTransparency: true,
-      style: {position: 'fixed', left: 0, top: 0, zIndex: 1002, background: VK._protocol + '//vk.com/images/upload.gif center center no-repeat transparent', padding: '0', border: '0', width: '100%', height: '100%', overflow: 'hidden', visibility: 'hidden'}
-    });
-    loader.innerHTML = '<div style="position: fixed;left: 50%;top: 50%;margin: 0px auto 0px -60px;z-index: 1002;width: 100px;"><div style="background: url(//vk.com/images/upload_inv_mono'+(window.devicePixelRatio >= 2 ? '_2x' : '')+'.gif) no-repeat 50% 50%;background-size: 64px 16px;height: 50px;position: absolute;width: 100%;z-index: 100;"></div><div style="background-color: #000;opacity: 0.7;filter: alpha(opacity=70);height: 50px;-webkit-border-radius: 5px;-khtml-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;-webkit-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);-moz-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);"></div></div>';
-    document.body.insertBefore(loader, document.body.firstChild);
-    return {
-      show: function(scrollTop, height) {
-        iframe.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-      },
-      hide: function() {
-        iframe.style.display = 'none';
-        document.body.style.overflow = overflowB;
-      },
-      iframe: iframe,
-      rpc: rpc
-    }
-  },
+      return VK._pData;
+    },
+    getStyle: function(elem, name) {
+      var ret, defaultView = document.defaultView || window;
+      if (defaultView.getComputedStyle) {
+        name = name.replace(/([A-Z])/g, '-$1').toLowerCase();
+        var computedStyle = defaultView.getComputedStyle(elem, null);
+        if (computedStyle) {
+          ret = computedStyle.getPropertyValue(name);
+        }
+      } else if (elem.currentStyle) {
+        var camelCase = name.replace(/\-(\w)/g, function(all, letter){
+          return letter.toUpperCase();
+        });
+        ret = elem.currentStyle[name] || elem.currentStyle[camelCase];
+      }
 
-  addEvent: function(type, func) {
-    if (window.document.addEventListener) {
-      window.document.addEventListener(type, func, false);
-    } else if (window.document.attachEvent) {
-      window.document.attachEvent('on'+type, func);
-    }
-  },
+      return ret;
+    },
+    getXY: function(obj, fixed) {
+      if (!obj || obj === undefined) return;
 
-  removeEvent: function(type, func) {
-    if (window.document.removeEventListener) {
-      window.document.removeEventListener(type, func, false);
-    } else if (window.document.detachEvent) {
-      window.document.detachEvent('on'+type, func);
-    }
-  },
+      var left = 0, top = 0;
+      if (obj.getBoundingClientRect !== undefined) {
+        var rect = obj.getBoundingClientRect();
+        left = rect.left;
+        top = rect.top;
+        fixed = true;
+      } else if (obj.offsetParent) {
+        do {
+          left += obj.offsetLeft;
+          top += obj.offsetTop;
+          if (fixed) {
+            left -= obj.scrollLeft;
+            top -= obj.scrollTop;
+          }
+        } while (obj = obj.offsetParent);
+      }
+      if (fixed) {
+        top += window.pageYOffset || window.scrollNode && scrollNode.scrollTop || document.documentElement.scrollTop;
+        left += window.pageXOffset || window.scrollNode && scrollNode.scrollLeft || document.documentElement.scrollLeft;
+      }
 
-  ss: function(el, styles) {VK.extend(el.style, styles, true);}
-};
+      return [left, top];
+    },
+    Box: function(src, sizes, fnc, options) {
+      fnc = fnc || {};
+      var overflowB = document.body.style.overflow;
+      var loader = document.createElement('DIV');
+      var rpc = new fastXDM.Server(VK.extend(fnc, {
+            onInit: function() {
+              iframe.style.background = 'transparent';
+              iframe.style.visibility = 'visible';
+              document.body.style.overflow = 'hidden';
+              document.body.removeChild(loader);
+            },
+            hide: function() {
+              iframe.style.display = 'none';
+            },
+            tempHide: function() {
+              iframe.style.left = '-10000px';
+              iframe.style.top = '-10000px';
+              iframe.style.width = '10px';
+              iframe.style.height = '10px';
+              document.body.style.overflow = overflowB;
+            },
+            destroy: function() {
+              try {
+                iframe.src = 'about: blank;';
+              } catch (e) {}
+              iframe.parentNode.removeChild(iframe);
+              document.body.style.overflow = overflowB;
+            },
+            resize: function(w, h) {
+            }
+          }, true), false, {safe: true}),
+          iframe = rpc.append(document.body, {
+            src: src.replace(/&amp;/g, '&'),
+            scrolling: 'no',
+            allowTransparency: true,
+            style: {position: 'fixed', left: 0, top: 0, zIndex: 1002, background: VK._protocol + '//vk.com/images/upload.gif center center no-repeat transparent', padding: '0', border: '0', width: '100%', height: '100%', overflow: 'hidden', visibility: 'hidden'}
+          });
+      loader.innerHTML = '<div style="position: fixed;left: 50%;top: 50%;margin: 0px auto 0px -60px;z-index: 1002;width: 100px;"><div style="background: url(//vk.com/images/upload_inv_mono'+(window.devicePixelRatio >= 2 ? '_2x' : '')+'.gif) no-repeat 50% 50%;background-size: 64px 16px;height: 50px;position: absolute;width: 100%;z-index: 100;"></div><div style="background-color: #000;opacity: 0.7;filter: alpha(opacity=70);height: 50px;-webkit-border-radius: 5px;-khtml-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;-webkit-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);-moz-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);"></div></div>';
+      document.body.insertBefore(loader, document.body.firstChild);
+      return {
+        show: function(scrollTop, height) {
+          iframe.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+        },
+        hide: function() {
+          iframe.style.display = 'none';
+          document.body.style.overflow = overflowB;
+        },
+        iframe: iframe,
+        rpc: rpc
+      }
+    },
+    addEvent: function(type, func) {
+      if (window.document.addEventListener) {
+        window.document.addEventListener(type, func, false);
+      } else if (window.document.attachEvent) {
+        window.document.attachEvent('on'+type, func);
+      }
+    },
+    removeEvent: function(type, func) {
+      if (window.document.removeEventListener) {
+        window.document.removeEventListener(type, func, false);
+      } else if (window.document.detachEvent) {
+        window.document.detachEvent('on'+type, func);
+      }
+    },
+    ss: function(el, styles) {VK.extend(el.style, styles, true);}
+  };
 }
 
 // Init asynchronous library loading
