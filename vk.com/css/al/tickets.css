@@ -619,6 +619,14 @@ body.dev .tu_info {
   max-width: 225px;
   color: #000000;
 }
+.tickets_tt_list_abuse {
+  list-style: url(/images/bullet.gif) outside;
+  padding: 0 16px 16px 16px;
+  margin: 0;
+  line-height: 160%;
+  max-width: 225px;
+  color: #000000;
+}
 .tickets_side_tt .hint_title {
   color: #2A5779;
   font-weight: bold;

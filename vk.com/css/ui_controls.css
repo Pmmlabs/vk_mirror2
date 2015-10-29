@@ -1082,21 +1082,21 @@ x:-moz-any-link {
   border-color: rgba(188, 202, 215, 0);
   border-width: 6px;
 }
-.eltt.eltt_top {
+.eltt.eltt_up {
   margin-top: 5px;
 }
-.eltt.eltt_top:after,
-.eltt.eltt_top:before {
+.eltt.eltt_up:after,
+.eltt.eltt_up:before {
   bottom: 100%;
   left: 50%;
 }
-.eltt.eltt_top:after {
-  border-right-color: #ffffff;
-  margin-top: -5px;
+.eltt.eltt_up:after {
+  border-bottom-color: #ffffff;
+  margin-left: -5px;
 }
-.eltt.eltt_top:before {
-  border-right-color: #BCCAD7;
-  margin-top: -6px;
+.eltt.eltt_up:before {
+  border-bottom-color: #BCCAD7;
+  margin-left: -6px;
 }
 .eltt.eltt_left {
   margin-left: 5px;

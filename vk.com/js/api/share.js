@@ -44,7 +44,7 @@ if (!VK.Share) {
       }
       this._base_domain = this._base_domain.replace('vkontakte.ru', 'vk.com');
       if (!this._base_domain) {
-        this._base_domain = 'http://vk.com/';
+        this._base_domain = '//vk.com/';
       }
       if (!old && (but.type == 'button' || but.type == 'round')) {
         var elem = document.createElement('script');

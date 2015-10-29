@@ -1802,6 +1802,11 @@ body.dev.is_2x .priv_h_arrow,
   background-image: url(/images/apps/apps_firstseptember2015_bkg_2x.png);
   background-size: 627px 235px;
 }
+.is_2x #apps_collection66_wrap,
+.is_2x #apps_collection67_wrap {
+  background-image: url(/images/apps/apps_halloween2015_bkg_2x.png);
+  background-size: 627px 235px;
+}
 .is_2x .gift_icon {
   background-image: url(/images/gift_magic_2x.png?1);
   background-size: 24px 24px;
