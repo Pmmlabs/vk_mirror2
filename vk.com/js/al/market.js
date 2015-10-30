@@ -78,7 +78,7 @@ var Market = {
     }).bind(this));
 
     var back_link = ge('top_back_link');
-    if (!back_link || back_link.href !== cur.ownerHref) {
+    if (!back_link || back_link.pathname !== cur.ownerHref) {
       show('market_owner_link');
     }
   },

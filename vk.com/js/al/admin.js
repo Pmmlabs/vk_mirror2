@@ -157,14 +157,12 @@ var adminAddItem = {
   schoolInit: function () {
     // client search
     var options = {
-      width: 150,
+      width: 230,
       progressBar: 'adm_additem_progress',
       school: cur.addItem.options.school_val || '',
       city: cur.addItem.options.city,
       forceEnableCustom: 1,
       type: 0,
-      types: cur.addItem.options.schoolTypes,
-      type_width: 72,
       dark: 1,
       visible: 1
     };
@@ -172,7 +170,7 @@ var adminAddItem = {
     if (cur.addItem.uiSchool) {
       cur.addItem.uiSchool.setOptions(options);
     } else {
-      cur.addItem.uiSchool = new SchoolSelect(ge('adm_additem_school'), ge('row_adm_additem_school'), ge('adm_additem_school_type'), ge('row_adm_additem_school_type'), options);
+      cur.addItem.uiSchool = new SchoolSelect(ge('adm_additem_school'), ge('row_adm_additem_school'), false, false, options);
     }
 
     this.cityInit({
@@ -343,7 +341,7 @@ var adminAddItem = {
           country1: cur.addItem.uiCountry.val(),
           city1: cur.addItem.uiCity.val(),
           school1: cur.addItem.uiSchool.val(),
-          school1_type: val('adm_additem_school_type'),
+          school1_type: 0,
           school1_custom: cur.addItem.uiSchool.customVal()
         });
         break;
