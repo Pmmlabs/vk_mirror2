@@ -902,6 +902,9 @@ var GroupsEdit = {
     }
 
     ajax.post('al_groups.php', params, {onDone: function(result, oldaddr) {
+      if ((result == -2 || result == -3) && !isVisible('group_edit_market')) {
+        GroupsEdit.toggleMarketBlock(true);
+      }
       if (result == -2) {
         return notaBene(domPN(ge('group_market_country')));
       }

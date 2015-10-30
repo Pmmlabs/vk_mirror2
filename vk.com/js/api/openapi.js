@@ -11,6 +11,7 @@
     for (i=0;i<5;i++) key += Math.ceil(Math.random()*15).toString(16);
     return key;
   }
+
   function waitFor(obj, prop, func, self,  count) {
     if (obj[prop]) {
       func.apply(self);
@@ -21,6 +22,7 @@
       }, 0);
     }
   }
+
   function attachScript(url) {
     setTimeout(function() {
       var newScript = document.createElement('script');
@@ -308,6 +310,7 @@
   } else {
     attachScript();
   }
+
 })(window);
 
 
@@ -476,6 +479,7 @@ if (!VK.xdConnectionCallbacks) {
     VK.Api = {
       _headId: null,
       _callbacks: {},
+
       ie6_7: function() {
         if (!VK.Api.ieTested) {
           VK.Api.isIE6_7 = navigator.userAgent.match(/MSIE [6|7]/i);
@@ -483,6 +487,70 @@ if (!VK.xdConnectionCallbacks) {
         }
         return VK.Api.isIE6_7;
       },
+
+      supportCORS: function() {
+        var xhr = new XMLHttpRequest();
+        if ("withCredentials" in xhr) {
+          return true;
+        }
+
+        if (typeof XDomainRequest != "undefined") {
+          return true;
+        }
+
+        return false;
+      },
+
+      makeRequest: function(url, cb) {
+        var xhr = VK.Api.createRequest('GET', url);
+        if (!xhr) {
+          return false;
+        }
+
+        xhr.onload = function() {
+          var text = xhr.responseText;
+          if (xhr.status === 200) {
+            cb(text);
+          } else {
+            try {
+              console.error('Open api access error', xhr.response);
+            } catch(e) {
+              //nop
+            }
+          }
+        };
+
+        xhr.onerror = function() {
+          try {
+            console.error('Open api access error');
+          } catch(e) {
+            //nop
+          }
+        };
+
+        xhr.send();
+        return true;
+      },
+
+      createRequest: function(method, url) {
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        if ("withCredentials" in xhr) {
+          // XHR for Chrome/Firefox/Opera/Safari.
+          xhr.open(method, url, true);
+        } else if (typeof XDomainRequest != "undefined") {
+          // XDomainRequest for IE.
+          xhr = new XDomainRequest();
+          xhr.open(method, url);
+        } else {
+          // CORS not supported.
+          xhr = null;
+        }
+
+        return xhr;
+      },
+
       attachScript: function(url) {
         if (!VK.Api._headId) VK.Api._headId = document.getElementsByTagName("head")[0];
         var newScript = document.createElement('script');
@@ -491,6 +559,7 @@ if (!VK.xdConnectionCallbacks) {
         newScript.src = url;
         VK.Api._headId.appendChild(newScript);
       },
+
       checkMethod: function(method, params, cb, queryTry) {
         var m = method.toLowerCase();
         if (m == 'wall.post' || m == 'activity.set') {
@@ -520,6 +589,7 @@ if (!VK.xdConnectionCallbacks) {
         }
         return true;
       },
+
       call: function(method, params, cb, queryTry) {
         var
             query = params || {},
@@ -594,6 +664,7 @@ if (!VK.xdConnectionCallbacks) {
           VK.Api.attachScript(VK._domain.api + 'method/' + method +'?' + qs);
         }
       },
+
       queryLength: function(query) {
         var len = 100, i; // sid + sig
         for (i in query) {
@@ -611,6 +682,7 @@ if (!VK.xdConnectionCallbacks) {
     VK.Auth = {
       popup: null,
       lsCb: {},
+
       setSession: function(session, status, settings, resp) {
         var
             login = !VK._session && session,
@@ -652,24 +724,27 @@ if (!VK.xdConnectionCallbacks) {
 
         return response;
       },
+
       // Public VK.Auth methods
       login: function(cb, settings) {
-        var channel, url;
         if (!VK._apiId) {
           return false;
         }
-        channel = window.location.protocol + '//' + window.location.hostname;
-        url = VK._domain.main + VK._path.login + '?client_id='+VK._apiId+'&display=popup&redirect_uri=close.html&response_type=token';
+
+        var url = VK._domain.main + VK._path.login + '?client_id='+VK._apiId+'&display=popup&redirect_uri=close.html&response_type=token';
         if (settings && parseInt(settings, 10) > 0) {
           url += '&scope=' + settings;
         }
+
         VK.Observer.unsubscribe('auth.onLogin');
         VK.Observer.subscribe('auth.onLogin', cb);
+
         VK.UI.popup({
           width: 665,
           height: 370,
           url: url
         });
+
         var authCallback = function() {
           VK.Auth.getLoginStatus(function(resp) {
             VK.Observer.publish('auth.onLogin', resp);
@@ -679,7 +754,10 @@ if (!VK.xdConnectionCallbacks) {
 
         VK.UI.popupOpened = true;
         var popupCheck = function() {
-          if (!VK.UI.popupOpened) return false;
+          if (!VK.UI.popupOpened) {
+            return false;
+          }
+
           try {
             if (!VK.UI.active.top || VK.UI.active.closed) {
               VK.UI.popupOpened = false;
@@ -696,23 +774,42 @@ if (!VK.xdConnectionCallbacks) {
 
         setTimeout(popupCheck, 100);
       },
+
       // Logout user from app, vk.com & login.vk.com
       logout: function(cb) {
         VK.Auth.revokeGrants(cb);
       },
+
       revokeGrants: function(cb) {
         var onLogout = function(resp) {
           VK.Observer.unsubscribe('auth.statusChange', onLogout);
-          if (cb) cb(resp);
+          if (cb) {
+            cb(resp);
+          }
         }
+
         VK.Observer.subscribe('auth.statusChange', onLogout);
-        if (VK._session && VK._session.sid) VK.Api.attachScript('https://login.vk.com/?act=openapi&oauth=1&aid=' + parseInt(VK._apiId, 10) + '&location=' + encodeURIComponent(window.location.hostname)+'&do_logout=1&token='+VK._session.sid);
+        if (VK._session && VK._session.sid) {
+          var url = 'https://login.vk.com/?act=openapi&oauth=1&aid=' + parseInt(VK._apiId, 10) + '&location=' + encodeURIComponent(window.location.hostname) + '&do_logout=1&token=' + VK._session.sid;
+          if (VK.Api.supportCORS()) {
+            var logoutCallback = function() {
+              VK.Auth.setSession(null, 'unknown');
+            };
+
+            VK.Api.makeRequest(url + '&new=1', logoutCallback);
+          } else {
+            VK.Api.attachScript(url);
+          }
+        }
+
         VK.Cookie.clear();
       },
+
       // Get current login status from session (sync) (not use on load time)
       getSession: function() {
         return VK._session;
       },
+
       // Get current login status from vk.com (async)
       getLoginStatus: function(cb, force) {
         if (!VK._apiId) {
@@ -733,34 +830,80 @@ if (!VK.xdConnectionCallbacks) {
         }
 
         VK.Auth._loadState = 'loading';
-        var rnd = parseInt(Math.random() * 10000000, 10);
-        while (VK.Auth.lsCb[rnd]) {
-          rnd = parseInt(Math.random() * 10000000, 10)
-        }
-        VK.Auth.lsCb[rnd] = function(response) {
-          delete VK.Auth.lsCb[rnd];
-          VK.Auth._loadState = 'loaded';
-          if (response && response.auth) {
-            var session = {
-              mid: response.user.id,
-              sid: response.access_token,
-              sig: response.sig,
-              secret: response.secret,
-              expire: response.expire
-            };
-            if (force) session.user = response.user;
-            var status = 'connected';
-          } else {
-            var session = null;
-            var status = response.user ? 'not_authorized' : 'unknown';
-            VK.Cookie.clear();
+
+        var url = 'https://login.vk.com/?act=openapi&oauth=1&aid=' + parseInt(VK._apiId, 10) + '&location=' + encodeURIComponent(window.location.hostname);
+        if (VK.Api.supportCORS()) {
+          var loginCallback = function(response) {
+            if (!this.JSON) {
+              this.JSON = {};
+            }
+
+            if (typeof JSON.parse !== 'function') {
+              //IE6 and IE7
+              response = eval(response);
+            } else {
+              response = JSON.parse(response);
+            }
+
+            VK.Auth._loadState = 'loaded';
+            if (response && response.auth) {
+              var session = {
+                mid: response.user.id,
+                sid: response.access_token,
+                sig: response.sig,
+                secret: response.secret,
+                expire: response.expire
+              };
+
+              if (force) {
+                session.user = response.user;
+              }
+
+              var status = 'connected';
+            } else {
+              var session = null;
+              var status = response.user ? 'not_authorized' : 'unknown';
+              VK.Cookie.clear();
+            }
+
+            VK.Auth.setSession(session, status, false, response);
+            VK.Observer.publish('auth.loginStatus', {session: session, status: status});
+            VK.Observer.unsubscribe('auth.loginStatus');
+          };
+
+          VK.Api.makeRequest(url + '&new=1', loginCallback);
+        } else {
+          var rnd = parseInt(Math.random() * 10000000, 10);
+          while (VK.Auth.lsCb[rnd]) {
+            rnd = parseInt(Math.random() * 10000000, 10);
           }
-          VK.Auth.setSession(session, status, false, response);
-          VK.Observer.publish('auth.loginStatus', {session: session, status: status});
-          VK.Observer.unsubscribe('auth.loginStatus');
-        };
-        // AttachScript here
-        VK.Api.attachScript('https://login.vk.com/?act=openapi&oauth=1&aid=' + parseInt(VK._apiId, 10) + '&location=' + encodeURIComponent(window.location.hostname)+'&rnd='+rnd);
+
+          VK.Auth.lsCb[rnd] = function(response) {
+            delete VK.Auth.lsCb[rnd];
+            VK.Auth._loadState = 'loaded';
+            if (response && response.auth) {
+              var session = {
+                mid: response.user.id,
+                sid: response.access_token,
+                sig: response.sig,
+                secret: response.secret,
+                expire: response.expire
+              };
+              if (force) session.user = response.user;
+              var status = 'connected';
+            } else {
+              var session = null;
+              var status = response.user ? 'not_authorized' : 'unknown';
+              VK.Cookie.clear();
+            }
+            VK.Auth.setSession(session, status, false, response);
+            VK.Observer.publish('auth.loginStatus', {session: session, status: status});
+            VK.Observer.unsubscribe('auth.loginStatus');
+          };
+
+            // AttachScript here
+          VK.Api.attachScript(url+'&rnd='+rnd);
+        }
       }
     };
   }
@@ -1762,6 +1905,7 @@ if (!VK.Util) {
 
       return ret;
     },
+
     getXY: function(obj, fixed) {
       if (!obj || obj === undefined) return;
 
@@ -1788,6 +1932,7 @@ if (!VK.Util) {
 
       return [left, top];
     },
+
     Box: function(src, sizes, fnc, options) {
       fnc = fnc || {};
       var overflowB = document.body.style.overflow;
@@ -1840,6 +1985,7 @@ if (!VK.Util) {
         rpc: rpc
       }
     },
+
     addEvent: function(type, func) {
       if (window.document.addEventListener) {
         window.document.addEventListener(type, func, false);
@@ -1847,6 +1993,7 @@ if (!VK.Util) {
         window.document.attachEvent('on'+type, func);
       }
     },
+
     removeEvent: function(type, func) {
       if (window.document.removeEventListener) {
         window.document.removeEventListener(type, func, false);
@@ -1854,6 +2001,7 @@ if (!VK.Util) {
         window.document.detachEvent('on'+type, func);
       }
     },
+
     ss: function(el, styles) {VK.extend(el.style, styles, true);}
   };
 }

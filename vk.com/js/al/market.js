@@ -76,6 +76,11 @@ var Market = {
         return false;
       }
     }).bind(this));
+
+    var back_link = ge('top_back_link');
+    if (!back_link || back_link.href !== cur.ownerHref) {
+      show('market_owner_link');
+    }
   },
   switchTab: function(section, el, event) {
     var tabs = geByClass('active_link', ge('market_tabs'));
@@ -818,7 +823,7 @@ var Market = {
       price: val('item_price'),
       photo: JSON.stringify(cur.itemPhoto),
       extraPhotos: Market.getUploadedPhotos().join(','),
-      album: cur.uiAlbum ? cur.uiAlbum.val() : 0,
+      albums: cur.uiAlbums ? cur.uiAlbums.val() : 0,
       disabled: isChecked('item_disabled'),
       hash: cur.options.hash
     };

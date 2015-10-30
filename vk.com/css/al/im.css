@@ -697,7 +697,8 @@ img.im_photo_thumb {
   width: 52px;
   /* width: 110px; */
 }
-a.im_date_link {
+.im_date_link,
+.im_date_link a {
   color: #999;
 }
 .im_log_act div.im_log_check_wrap,
@@ -736,6 +737,10 @@ a.im_date_link {
 }
 .im_new_msg .im_log_date a.im_date_link,
 .im_sel_row .im_log_date a.im_date_link,
+.im_new_msg .im_log_date .im_date_link a,
+.im_sel_row .im_log_date .im_date_link a,
+.im_new_msg .im_log_date .im_date_link,
+.im_sel_row .im_log_date .im_date_link,
 .im_new_msg .im_fwd_log_date,
 .im_sel_row .im_fwd_log_date {
   color: #879BB0;
@@ -807,6 +812,7 @@ a.im_date_link {
 .im_add_row .im_who,
 .im_add_row .im_log_date span,
 .im_add_row .im_log_date a.im_date_link,
+.im_add_row .im_log_date .im_date_link,
 .im_add_row .im_log_author_chat_thumb,
 .im_add_row .im_log_author_chat_name {
   display: none;
@@ -2181,6 +2187,8 @@ b.im_friend_mob_onl {
   color: #7F7661;
 }
 .im_gift_msg.im_sel_row .im_log_date a.im_date_link,
+.im_gift_msg.im_sel_row .im_log_date .im_date_link a,
+.im_new_msg.im_gift_msg .im_log_date .im_date_link a,
 .im_new_msg.im_gift_msg .im_log_date a.im_date_link {
   color: #7F7661;
 }

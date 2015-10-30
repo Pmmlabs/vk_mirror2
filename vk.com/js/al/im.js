@@ -375,17 +375,26 @@ var IM = {
     }
   },
 
+  getAdminName: function(peer, aname, href) {
+    if (vk.id !== peer) {
+      return getLang('mail_by_who_nw')
+        .replace('{user_href}', '<a href="' + href + '" target="_blank">' + aname +'</a>');
+    } else {
+      return getLang('mail_by_who_nw').replace('{user_href}', aname);
+    }
+  },
+
   updateAdminName: function(msgid, admin) {
     ajax.post('al_im.php', {
       act: 'a_get_admin',
       admin: admin,
       gid: cur.gid
     }, {
-      onDone: function(msg, admin, name) {
+      onDone: function(msg, admin, name, href) {
         var row = ge('mess' + msg);
         var lnk = geByClass1('im_date_link', row);
-        lnk.textContent = name + " " + getLang('mail_by_who') + " " + lnk.textContent;
-        cur.admins[admin] = name;
+        lnk.innerHTML = IM.getAdminName(admin, name, href) + lnk.innerHTML;
+        cur.admins[admin] = [name, href];
       }.pbind(msgid, admin)
     });
   },
@@ -406,17 +415,24 @@ var IM = {
         actual_peer = kludges.from || false,
         susp = (status == 4 && !out),
         willMark = IM.needMark(peer_id),
-        aname, aid, whois = '';
+        aname, aid, whois = '', ahref, me;
 
     if (cur.gid && kludges['from_admin']) {
       if (after_id == -1) {
         aname = getLang('mail_groups_by_you');
       } else {
         aid = intval(kludges['from_admin']);
-        aname = aid === vk.id ? getLang('mail_groups_by_you') : cur.admins[aid];
+        me = aid === vk.id;
+        if (me) {
+          aname = getLang('mail_groups_by_you');
+          ahref = cur.real_author_link;
+        } else if (cur.admins[aid]) {
+          aname = cur.admins[aid][0];
+          ahref = cur.admins[aid][1];
+        }
       }
       if (aname) {
-        whois = aname + " " + getLang('mail_by_who') + " ";
+        whois = IM.getAdminName(aid, aname, ahref);
       } else {
         IM.updateAdminName(msg_id, aid);
       }
@@ -678,8 +694,8 @@ var IM = {
       extend(row.insertCell(0), {className: 'im_log_act', innerHTML: actions_html});
       extend(row.insertCell(1), {className: 'im_log_author', innerHTML: author_html});
       extend(row.insertCell(2), {className: 'im_log_body', innerHTML: '<div class="wrapped">' + message + '</div>'});
-
-      var dateLink = msg_id > 0 ? '<a class="im_important_toggler" onclick="return IM.toggleImportant(' + msg_id + ');" onmouseover="IM.showImportantTT(this);"></a><a class="im_date_link" href="/mail?act=show&id=' + msg_id + '">' + whois + full_date + '</a>' : '<span class="im_date_link">' + whois + full_date + '</span>';
+      var msgLink = !cur.gid ? "mail?act=show&id=" + msg_id : "gim" + cur.gid + "?msgid=" + msg_id + "&sel=" + cur.peer;
+      var dateLink = msg_id > 0 ? '<a class="im_important_toggler" onclick="return IM.toggleImportant(' + msg_id + ');" onmouseover="IM.showImportantTT(this);"></a><div class="im_date_link">' + whois + '<a href="/' + msgLink + '">' + full_date + '</a></div>' : '<span class="im_date_link">' + whois + full_date + '</span>';
       extend(row.insertCell(3), {className: 'im_log_date', innerHTML: dateLink});
 
       row.insertCell(4).className = 'im_log_rspacer';
@@ -1375,7 +1391,6 @@ var IM = {
 
     ajax.post('al_im.php', params, {
       onDone: function(response) {
-
         if (cur.textSendCut) {
           setTimeout(IM.send.pbind(false, false, cur.peer), 0);
         }
@@ -1401,8 +1416,14 @@ var IM = {
           }
         }
 
+        var whois = ''
+        if (cur.gid) {
+          whois = IM.getAdminName(vk.id, getLang('mail_groups_by_you'), cur.real_author_link);
+          cur.last_admin = vk.id.toString();
+        }
 
-        msg_row.cells[3].innerHTML = '<a class="im_important_toggler" onclick="return IM.toggleImportant(' + new_msg_id + ');" onmouseover="IM.showImportantTT(this);"></a><a class="im_date_link" href="/mail?act=show&id=' + new_msg_id + '">' + IM.mkdate(response.date + cur.tsDiff) + '</a><input type="hidden" id="im_date' + new_msg_id + '" value="' + response.date + '" />';
+        var msgLink = !cur.gid ? 'mail?act=show&id=' + new_msg_id : 'gim' + cur.gid + "?msgid=" + new_msg_id + "&sel=" + cur.peer;
+        msg_row.cells[3].innerHTML = '<a class="im_important_toggler" onclick="return IM.toggleImportant(' + new_msg_id + ');" onmouseover="IM.showImportantTT(this);"></a><div class="im_date_link">' + whois + '<a href="">' + IM.mkdate(response.date + cur.tsDiff) + '</a><input type="hidden" id="im_date' + new_msg_id + '" value="' + response.date + '" />';
         msg_row.id = 'mess' + new_msg_id;
         msg_row.cells[0].innerHTML = '<div id="ma'+new_msg_id+'" class="im_log_check_wrap"><div class="im_log_check" id="mess_check'+new_msg_id+'"></div></div>';
         addEvent(msg_row, 'mouseover', IM.logMessState.pbind(1, new_msg_id));
@@ -1560,7 +1581,6 @@ var IM = {
         }
         show_new = show_new || new_unread;
         // debugLog(clone(cur_msg), new_unread, row);
-
         if (!row && !cur.tabs[peer].q_new[i]) { // New message appeared
           if (!cur.tabs[peer].history && cur.tabs[peer].loadingHistory) {
             continue;
@@ -3759,6 +3779,7 @@ var IM = {
         IM.toggleInput(tab.block[0], txt, peerId, tab.block[2]);
       }
     });
+    IM.checkDisableGroupPeer(cur.peer);
     if (cur.gid) {
       IM.updateDialogLocks();
       IM.spawnLockChecker();
@@ -3864,7 +3885,7 @@ var IM = {
         }
       });
       if (!hasDel) IM.updateDialogs();
-    } else if (!IM.r() && !cur.txtsblock[peer] && IM.restoreDraft(peer)) {
+    } else if (!IM.r() && (!cur.txtsblock || !cur.txtsblock[peer]) && IM.restoreDraft(peer)) {
       IM.restorePeerMedia(peer);
     } else if (cur.peer == -3) {
       IM.restoreWriteDraft();
@@ -4158,7 +4179,7 @@ var IM = {
     }
     var activate = !events && !dont_activate;
     var start = vkNow();
-    var doAdd = function(mid, tab, name, photo, hash, sex, data, block, folders, href, _t) {
+    var doAdd = function(mid, tab, name, photo, hash, sex, data, block, folders, href, idisabled, _t) {
       if (cur.debug) debugLog('fetched in ', vkNow() - start);
       var r = ge('im_dialog' + mid);
       if (r) removeClass(r, 'dialogs_row_over');
@@ -4177,7 +4198,8 @@ var IM = {
           unr: _t.unr,
           unread: _t.unread,
           block: block,
-          folders: folders
+          folders: folders,
+          idisabled: idisabled
         });
       }
       if (events) {
@@ -4215,7 +4237,7 @@ var IM = {
           delete cur.tabs[mid];
 
           if (IM.isImportantDialog(res.folders)) {
-            doAdd(mid, res.tab, res.name, res.photo, res.hash, res.sex, res.data, res.block, res.folders, res.href, _t);
+            doAdd(mid, res.tab, res.name, res.photo, res.hash, res.sex, res.data, res.block, res.folders, res.href, res.input_disabled, _t);
           }
         },
         onFail: function () {
@@ -4374,6 +4396,7 @@ var IM = {
   },
 
   updateTopLink: function(p) {
+    p = intval(p)
     if (p !== -1) {
       var url = !cur.gid ? 'im?sel=-1' : 'gim' + cur.gid + '?sel=-1';
       showBackLink(url, getLang(cur.gid  ? 'mail_im_back_to_dialogs_groups' : 'mail_im_back_to_dialogs'), 1);
@@ -4862,8 +4885,10 @@ var IM = {
     if (!IM.r(cur.peer = peer)) {
       cur.tabs[peer].auto = 0;
       show('im_txt_wrap' + peer);
-      IM.restoreDraft(peer);
-      IM.restorePeerMedia(peer);
+      if (!cur.txtsblock[peer]) {
+        IM.restoreDraft(peer);
+        IM.restorePeerMedia(peer);
+      }
 
       var chatTab;
       /*if (window.curFastChat && curFastChat.tabs && (chatTab = curFastChat.tabs[peer])) {
@@ -4991,12 +5016,22 @@ var IM = {
       IM.toggleInput(cur.tabs[peer].block[0], txt, peer, cur.tabs[peer].block[2]);
     }
 
+    IM.checkDisableGroupPeer(peer);
+
     if (peer > 0 || peer == -3) {
       IM.checkEditable(cur.emojiId[peer], ge('im_editable' + peer));
       Emoji.reappendEmoji(cur.emojiId[cur.peer]);
     }
 
 
+  },
+
+  checkDisableGroupPeer: function(peer) {
+    if (cur.tabs[peer] && peer < 0 && cur.tabs[peer].idisabled && !cur.gid) {
+      var txt = IM.getTxt(peer);
+      var placeHolder = getLang('mail_cant_send_messages_to_community');
+      IM.toggleInput(false, txt, peer, " ", placeHolder);
+    }
   },
 
   preventFocus: function(e) {
@@ -5006,22 +5041,27 @@ var IM = {
     return cancelEvent(e);
   },
 
-  toggleInput: function(result, txt, peer, name) {
+  toggleInput: function(result, txt, peer, name, placeholder) {
     if (!cur.txtsblock) {
       cur.txtsblock = {};
     }
 
     if (!result) {
       addClass(txt.parentNode, 'im_editable_txt_disabled');
-      txt.setAttribute('contenteditable', 'false');
+      txt.removeAttribute('contenteditable');
       setTimeout(function() {
         if (name) {
-          var placeholder = getLang('mail_community_answering').replace('{username}', name);
+          if (!placeholder) {
+            placeholder = getLang('mail_community_answering').replace('{username}', name);
+          }
           txt.setPlaceholder(placeholder);
           IM.saveWriteDraft();
           Emoji.val(txt, "");
           txt.focus();
           txt.blur();
+          if (txt.setDisabled) {
+            txt.setDisabled(true);
+          }
         }
       }, 100);
       if (!cur.txtsblock[peer]) {
@@ -5032,6 +5072,9 @@ var IM = {
     } else if (result) {
       removeClass(txt.parentNode, 'im_editable_txt_disabled');
       txt.setAttribute('contenteditable', 'true');
+      if (txt.setDisabled) {
+        txt.setDisabled(false);
+      }
       if (cur.txtsblock[peer]) {
         removeEvent(txt, 'focus', IM.preventFocus);
         removeEvent(txt.parentNode, 'focus keypress keydown keyup paste', cancelEvent, true);

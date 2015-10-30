@@ -4835,6 +4835,7 @@ function __phCheck(el, opts, focus, blur) {
 
 function placeholderSetup(id, opts) {
   var el = ge(id);
+  var disabled = false;
   var ph;
   var o = opts ? clone(opts) : {};
   if (!el || (el.phevents && !o.reload) || !(ph = (el.getAttribute ? el.getAttribute('placeholder') : el.placeholder))) {
@@ -4888,6 +4889,9 @@ function placeholderSetup(id, opts) {
     setStyle(b, {marginTop: 1});
   }
   el.phonfocus = function(hid) {
+    if (disabled) {
+      return;
+    }
     el.focused = true;
     cur.__focused = el;
     if (hid === true) {
@@ -4897,6 +4901,9 @@ function placeholderSetup(id, opts) {
     checkValue(true, false);
   }
   el.phonblur = function() {
+    if (disabled) {
+      return;
+    }
     cur.__focused = el.focused = false;
     show(b);
     checkValue(false, true);
@@ -4910,6 +4917,9 @@ function placeholderSetup(id, opts) {
 
   if (!browser.opera_mobile) {
     addEvent(b1, 'focus click', function(ev) {
+      if (disabled) {
+        return;
+      }
       if (o.editableFocus) {
         setTimeout(o.editableFocus.pbind(el), 0);
         el.phonfocus();
@@ -4929,6 +4939,10 @@ function placeholderSetup(id, opts) {
 
   el.setPlaceholder = function(ph) {
     geByClass1('input_back_content', b1).textContent = ph;
+  },
+
+  el.setDisabled = function(dis) {
+    disabled = dis;
   },
 
   el.setValue = function(v) {
