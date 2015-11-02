@@ -1935,3 +1935,7 @@ body.dev.is_2x .priv_h_arrow,
   background-image: url(/images/icons/app_platforms_2x.png);
   background-size: 100%;
 }
+.is_2x .im_dialog_respond i {
+  background: url(/images/icons/reply_mark_2x.png?2) center center no-repeat;
+  background-size: 21px 12px;
+}

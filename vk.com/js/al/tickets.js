@@ -157,12 +157,53 @@ getBrowser: function() {
   return _uafull;
 },
 
+initExtraFields: function() {
+  for (var i in cur.extraFields) {
+    var f = cur.extraFields[i], inp = ge('tickets_new_extra_field_'+i+'_inp'), shift = cur.textShift;
+    if (!inp) {
+      data(ge('tickets_new_extra_field_'+i), 'value', '');
+      continue;
+    }
+    if (f.title) {
+      placeholderSetup(inp, {back: true});
+    }
+    if (f.note) {
+      data(inp, 'note', f.note);
+      addEvent(inp, 'focus', function(event) {
+        var inp = event.target;
+        showTooltip(inp, {
+          text: '<div class="tail_wrap"><div class="tail"></div></div>\
+          <div class="hint_wrap">'+data(inp, 'note')+'</div>',
+          slideX: -15,
+          className: 'tickets_side_tt text',
+          shift: shift,
+          hasover: 1,
+          onCreate: function () {
+            var pointer = geByClass1('tail_wrap', inp.tt.container),
+                h = getSize(inp.tt.container)[1], elH = getSize(inp)[1], elY = getXY(inp)[1];
+            setStyle(pointer, {top: (h - 13) / 2});
+            inp.tt.opts.shift[1] = -intval((h + elH) / 2);
+            setStyle(inp.tt.container, {top: elY - h - inp.tt.opts.shift[1]});
+            removeEvent(inp, 'mouseout');
+          }
+        });
+      });
+      addEvent(inp, 'blur', function(event) {
+        if (event.target.tt && event.target.tt.hide) {
+          event.target.tt.hide();
+        }
+      });
+    }
+  }
+},
+
 saveTicket: function(hash) {
   var title = trim(val('tickets_title')),
-      text = trim(val('tickets_text'));
+      text = trim(val('tickets_text')),
+      fieldsValid = true;
   if (!title) {
-    notaBene('tickets_title');
-    return;
+    notaBene('tickets_title', false, !fieldsValid);
+    fieldsValid = false;
   }
   var attachs = [], chosen = cur.ticketsNewMedia.chosenMedias;
   if (chosen) {
@@ -173,9 +214,9 @@ saveTicket: function(hash) {
       }
     }
   }
-  if (!text && !attachs.length) {
-    notaBene('tickets_text');
-    return;
+  if (!text && !cur.descriptionNotNeeded && !attachs.length) {
+    notaBene('tickets_text', false, !fieldsValid);
+    fieldsValid = false;
   }
   var _uafull = Tickets.getBrowser();
   var query = {act: 'save', title: title, text: text, hash: hash, attachs: attachs, browser: _uafull};
@@ -203,6 +244,24 @@ saveTicket: function(hash) {
     query.from = cur['from'];
   } else if (nav.objLoc['from']) {
     query.from = nav.objLoc['from'];
+  }
+  for (var i in cur.extraFields) {
+    var f = cur.extraFields[i], inp = ge('tickets_new_extra_field_'+i+'_inp'), v = '', t = inp;
+
+    if (inp) {
+      v = inp.value.trim();
+    } else {
+      t = ge('tickets_new_extra_field_'+i);
+      v = data(t, 'value');
+    }
+    if (!v && f.required) {
+      notaBene(t, false, !fieldsValid);
+      fieldsValid = false;
+    }
+    query['extra_field_'+i] = v;
+  }
+  if (!fieldsValid) {
+    return false;
   }
   ajax.post(nav.objLoc[0], query, {
     onDone: function(message) { showDoneBox(message); },
@@ -1395,19 +1454,29 @@ showPhoto: function(photoRaw, listId, opts) {
 },
 
 // screenshot attachment
-addScreen: function(onShow) {
+showAddScreenBox: function(onShow) {
   var opts = {title: getLang('support_adding_screen'), width: 460, bodyStyle: 'padding: 0px', dark: 1};
   if (onShow) {
     opts.onShow = onShow;
   }
   return showFastBox(opts, cur.screenBox);
 },
-addDoc: function(onShow) {
+showAddDocBox: function(onShow) {
   var opts = {title: getLang('support_adding_doc'), width: 460, bodyStyle: 'padding: 0px', dark: 1};
   if (onShow) {
     opts.onShow = onShow;
   }
   return showFastBox(opts, cur.docBox);
+},
+showAddExtraFieldFileBox: function(index) {
+  return showFastBox({
+    onShow: Tickets.initExtraFieldUpload.pbind('tis_add_data', {hideOnStart: true, fieldIndex: index }),
+    title: getLang('support_adding_image'),
+    width: 460,
+    bodyStyle: 'padding: 0px',
+    dark: 1,
+    hideButtons: true
+  }, cur.extraFieldsBox);
 },
 choosePhotoUploaded: function(info, params, addMedia) {
   var i = info.ind !== undefined ? info.ind : info,
@@ -1437,6 +1506,82 @@ chooseDocUploaded: function(info, params, addMedia) {
     },
     onFail: Tickets.chooseFail.pbind(addMedia, info)
   });
+},
+chooseExtraFieldUploaded: function(fieldIndex, info, params) {
+  var i = info.ind !== undefined ? info.ind : info,
+      fileName = (info.fileName || info).replace(/[&<>"']/g, ''),
+      ind = info.fileName ? i + '_' + info.fileName : info,
+      prg = ge('upload' + ind + '_progress_wrap');
+
+  prg && hide(geByClass1('progress_x', prg));
+  ajax.post('al_photos.php', extend({act: 'choose_uploaded_support'}, params), {
+    onDone: function(media, data) {
+      Tickets.chooseExtraFieldComplete(fieldIndex, media, extend(data, {upload_ind: i + '_' + fileName}));
+    },
+    onFail: function(code) {
+      console.log('Tickets.chooseExtraFieldUploaded:onFail');
+      Tickets.chooseFail(null, info, code);
+    }
+  });
+},
+removeExtraFieldFile: function(evt, fieldIndex) {
+  var p = evt.target.parentNode;
+  if (p.tt && p.tt.hide) {
+    p.tt.hide();
+  }
+  re('tickets_new_extra_field__file_'+fieldIndex);
+  hide('tickets_new_extra_field__uploaded_'+fieldIndex, 'tis_add_lnk');
+  show('tickets_new_extra_field__upload_btn_'+fieldIndex, 'tickets_new_extra_field__example_'+fieldIndex, 'tickets_new_extra_field__note_'+fieldIndex);
+  data(ge('tickets_new_extra_field_'+fieldIndex), 'value', '');
+},
+allExtraFieldFilesUploaded: function() {
+  for (var i in cur.extraFields) {
+    var f = cur.extraFields[i];
+    if (f.type == 6 || f.type == 7 || f.type == 8) {
+      var v = data(ge('tickets_new_extra_field_'+i), 'value');
+      if (!v) {
+        return false;
+      }
+    }
+  }
+  return true;
+},
+chooseExtraFieldComplete: function(fieldIndex, media, uplData) {
+  if (uplData.upload_ind === undefined) {
+    return false;
+  }
+
+  if (!isObject(uplData)) {
+    uplData = {
+      thumb_m: uplData[0] || '',
+      thumb_s: uplData[1] || '',
+      list: uplData[2] || '',
+      view_opts: uplData[3] || '',
+      upload_ind: uplData.upload_ind || undefined
+    };
+  }
+  vkImage().src = uplData.thumb_m;
+  var preview = '<div onclick="return Tickets.showPhoto(\'' + media + '\', \'' + uplData.list + '\', ' + uplData.view_opts.replace(/"/g, '&quot;') + ');" class="fl_l page_preview_photo"><img class="page_preview_photo" src="' + uplData.thumb_m + '" /></div>';
+
+  var mediaEl = se('<div class="page_preview_photo_wrap fl_l" id="tickets_new_extra_field__file_'+fieldIndex+'">' + preview + '<div class="page_media_x_wrap inl_bl" '+ (browser.msie ? 'title' : 'tootltip') + '="' + getLang('dont_attach') + '" onmouseover="if (browser.msie) return; showTooltip(this, {text: this.getAttribute(\'tootltip\'), shift: [13, 3, 3], black: 1})"><div class="page_media_x" onclick="Tickets.removeExtraFieldFile(event, '+fieldIndex+');"></div></div></div>');
+
+  re('upload' + uplData.upload_ind + '_progress_wrap');
+  data(ge('tickets_new_extra_field_'+fieldIndex), 'value', media);
+  ge('tickets_new_extra_field__uploaded_'+fieldIndex).appendChild(mediaEl);
+
+  if (!cur.fileApiUploadStarted) {
+    boxQueue.hideLast();
+  }
+
+  cur.lastPostMsg = false;
+
+  if (uplData.upload_ind !== undefined) {
+    delete uplData.upload_ind;
+  }
+  if (Tickets.allExtraFieldFilesUploaded()) {
+    show('tis_add_lnk');
+  }
+  return false;
 },
 chooseFail: function(addMedia, info, code) {
   var i = info.ind !== undefined ? info.ind : info,
@@ -1693,6 +1838,159 @@ initDocUpload: function(el, params) {
   });
 },
 
+showExtraFieldProgress: function(index, i, data, lnkId) {
+  var frac = data.loaded / data.total, percent = intval(frac * 100),
+      fileName = (data.fileName || data.name || '').replace(/[&<>"']/g, ''),
+      ind = fileName ? i + '_' + fileName : i,
+      label = fileName ? (fileName.length > 33 ? fileName.substr(0, 30) + '...' : fileName) : '';
+
+  var prg = ge('upload' + ind + '_progress');
+  if (!prg) {
+    hide('tickets_new_extra_field__upload_btn_'+index, 'tickets_new_extra_field__example_'+index, 'tickets_new_extra_field__note_'+index);
+    var container = ge('tickets_new_extra_field__uploaded_'+index);
+
+    if (!cur.attachMediaIndexes) cur.attachMediaIndexes = {};
+    cur.attachMediaIndexes[ind] = lnkId;
+
+    var progress = '\
+<div class="fl_l"><div class="page_attach_progress_wrap" style="margin-top: 3px; margin-bottom: 4px;">\
+  <div id="upload' + ind + '_progress" class="page_attach_progress"></div>\
+</div></div></div>' + (label ? '<div class="attach_label fl_l">' + label + '</div>' : '') + '<div class="progress_x fl_l" onmouseover="animate(this, {opacity: 1}, 200); showTooltip(this, {text: \'' + getLang('dont_attach') + '\', shift: [6, 3, 3]})" onmouseout="animate(this, {opacity: 0.6}, 200);" onclick="Upload.terminateUpload(' + i + ', \'' + (fileName || i) + '\');"></div>';
+
+    container.appendChild(ce('div', {id: 'upload' + ind + '_progress_wrap', innerHTML: progress, className: 'clear_fix upload_' + i + '_progress'}, {marginTop: '6px'}));
+    show(container);
+    prg = ge('upload' + ind + '_progress');
+    prg.full = false;
+
+    if (percent) {
+      setStyle(prg, {width: prg.full ? (intval(prg.full * frac) + 'px') : percent + '%'})
+    } else {
+      setStyle(prg, {width: '1px'});
+      hide(prg);
+    }
+  } else {
+    show(prg);
+    if (prg.full) {
+      var tw = data(prg, 'tween'), w = intval(prg.full * frac);
+      if (tw && tw.isTweening) {
+        tw.to.width = w;
+      } else {
+        animate(prg, {width: w + 'px'}, 500);
+      }
+    } else {
+      setStyle(prg, {width: percent + '%'});
+    }
+  }
+},
+
+initExtraFieldUpload: function(el, params) {
+  el = ge(el);
+  if (!el) return;
+
+  var uploadData = cur.uploadExtraFieldsData, opts = uploadData.options, fieldIndex = params.fieldIndex;
+
+  return Upload.init(el, uploadData.url, uploadData.vars, {
+    file_name: 'file',
+
+    file_size_limit: 1024*1024*10, // 10Mb
+    file_types_description: 'Image files (*.jpg, *.jpeg, *.png)',
+    file_types: '*.jpg;*.JPG;*.jpeg;*.JPEG;*.png;*.PNG',
+    accept: 'image/jpeg,image/png',
+    file_match: '\.(jpg|jpeg|png)$',
+    lang: opts.lang,
+
+    onUploadStart: function(info, res) {
+      console.log('onUploadStart');
+      console.log(info);
+      var i = info.ind !== undefined ? info.ind : info, options = Upload.options[i];
+      if (Upload.types[i] == 'form') {
+        geByClass1('file', el).disabled = true;
+      }
+      if (Upload.types[i] == 'fileApi') {
+        if (cur.notStarted) {
+          if (params && params.hideOnStart) boxQueue.hideLast();
+          delete cur.notStarted;
+        }
+        if (options.multi_progress) this.onUploadProgress(info, 0, 0);
+      }
+    },
+    onUploadComplete: function(info, res) {
+      console.log('onUploadComplete');
+      console.log(info);
+      var params;
+      try {
+        params = eval('(' + res + ')');
+      } catch(e) {
+        params = q2ajx(res);
+      }
+      if (!params.photos) {
+        Upload.onUploadError(info);
+        return;
+      }
+      Tickets.chooseExtraFieldUploaded(fieldIndex, info, params);
+    },
+    onUploadProgress: function(info, bytesLoaded, bytesTotal) {
+      var i = info.ind !== undefined ? info.ind : info;
+      if (Upload.types[i] == 'fileApi') {
+        var lnkId = (cur.attachMediaIndexes || {})[i];
+        //if (lnkId === undefined || lnkId) { //  && cur.addMedia[lnkId].chosenMedia
+        var data = {loaded: bytesLoaded, total: bytesTotal};
+        if (info.fileName) {
+          data.fileName = info.fileName.replace(/[&<>"']/g, '');
+        }
+
+        Tickets.showExtraFieldProgress(fieldIndex, i, data, lnkId);
+      } else if (Upload.types[i] == 'flash') {
+        if (!ge('form'+i+'_progress')) {
+          var obj = Upload.obj[i], objHeight = getSize(obj)[1], tm = objHeight / 2 + 10;
+          var node = obj.firstChild;
+          while (node) {
+            if (node.nodeType == 1) {
+              if (node.id == 'uploader'+i && browser.msie) {
+                setStyle(node, {position: 'relative', left: '-5000px'});
+              } else {
+                setStyle(node, {visibility: 'hidden'});
+              }
+            }
+            node = node.nextSibling;
+          }
+          obj.appendChild(ce('div', {innerHTML: '<div class="tickets_progress_wrap">\
+          <div id="form' + i + '_progress" class="tickets_progress" style="width: 0%;"></div>\
+        </div></div>'}, {height: tm + 'px', marginTop: -tm + 'px'}));
+        }
+        var percent = intval(bytesLoaded / bytesTotal * 100);
+        setStyle(ge('form' + i + '_progress'), {width: percent + '%'});
+      }
+    },
+    onCheckComplete: false,
+    onUploadError: function() {
+      console.log('onUploadError');
+    },
+    onUploadCompleteAll: function (info) {
+      console.log('onUploadCompleteAll');
+      console.log(info);
+      var i = info.ind !== undefined ? info.ind : info;
+      if (Upload.types[i] !== 'fileApi') {
+        if (params.hideOnStart) {
+          boxQueue.hideLast();
+        } else {
+          Upload.embed(i);
+        }
+      }
+    },
+    multiple: false,
+    multi_progress: 1,
+    clear: 1,
+    type: 'photo',
+    max_attempts: 3,
+    file_input: null,
+    server: opts.server,
+    error: opts.default_error,
+    error_hash: opts.error_hash,
+    dropbox: 'tis_dropbox'
+  });
+},
+
 initAddMedia: function(lnk, previewId, mediaTypes, opts) {
   var types = [], bgposes = {photo: 3, doc: -64}, addMedia;
   opts = opts || {};
@@ -1741,7 +2039,7 @@ initAddMedia: function(lnk, previewId, mediaTypes, opts) {
               }));
               inp.click();
             } else {
-              Tickets.addScreen(Tickets.initPhotoUpload.pbind('tis_add_data', {hideOnStart: true, target: target}));
+              Tickets.showAddScreenBox(Tickets.initPhotoUpload.pbind('tis_add_data', {hideOnStart: true, target: target}));
             }
           });
         }
@@ -1764,7 +2062,7 @@ initAddMedia: function(lnk, previewId, mediaTypes, opts) {
               }));
               inp.click();
             } else {
-              Tickets.addDoc(Tickets.initDocUpload.pbind('tis_add_data', {hideOnStart: true, target: target}));
+              Tickets.showAddDocBox(Tickets.initDocUpload.pbind('tis_add_data', {hideOnStart: true, target: target}));
             }
           });
         }
@@ -2084,7 +2382,6 @@ showModerStats: function(id, hash) {
   }
   return false;
 },
-
 
 showSpecAgentStats: function(id, hash) {
   var cont = ge('support_moders_stats'+id),

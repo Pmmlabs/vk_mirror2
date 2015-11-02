@@ -892,7 +892,7 @@ var Market = {
       }
       ajax.post('al_market.php?act=a_delete_item', params, {
         onDone: function(text, albums) {
-          boxQueue.hideAll();
+          while (boxQueue.count()) boxQueue.hideLast(false, window.event);
           if (window.WkView) {
             WkView.hide()
           }

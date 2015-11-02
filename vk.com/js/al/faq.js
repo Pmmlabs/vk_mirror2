@@ -181,7 +181,74 @@ checkTextLength: function(el, maxLen, warn) {
     hide(warn);
   }
 },
+appendExtraField: function(btn) {
+  var list = ge('faq_optional_extra_fields_list'), origin = ge('faq_optional_extra_field_example');
+  if (!list) {
+    return;
+  }
+  var block = origin.cloneNode(true), ind = 0, idPrefix = 'faq_optional_extra_field_';
+  while (ge('faq_optional_extra_field_'+ind)) {
+    ind++;
+  }
+  block.id = 'faq_optional_extra_field_'+ind;
+  list.appendChild(block);
 
+  var typeInp = geByClass1('faq_optional_extra_field_type__inp', block);
+  typeInp.id = block.id+'_type';
+
+  var titleInp = geByClass1('faq_optional_extra_field__title', block);
+  titleInp.id = block.id+'_title';
+  placeholderSetup(titleInp, {back:true});
+
+  var noteInp = geByClass1('faq_optional_extra_field__note', block);
+  noteInp.id = block.id+'_note';
+  placeholderSetup(noteInp, {back:true});
+
+  var requiredChb = geByClass1('faq_optional_extra_field_required__inp', block);
+  requiredChb.id = block.id+'_required';
+
+  if (list.children.length >= 10) {
+    hide(btn);
+  }
+
+  FAQ.prepareExtraField(block, typeInp, requiredChb, titleInp, noteInp);
+},
+prepareExtraField: function(block, typeInp, requiredInp, titleInp, noteInp) {
+  var typeSelector = new Dropdown(typeInp, cur.selData['extra_field_types'], {
+    width: 188,
+    introText: '',
+    noResult: '',
+    multiselect: false,
+    autocomplete: false,
+    big: 1
+  });
+  data(block, 'typeSelector', typeSelector);
+  placeholderSetup(titleInp, {back:true});
+  placeholderSetup(noteInp, {back:true});
+
+  var chb = new Checkbox(requiredInp, {label: requiredInp.title, width: 120});
+  data(block, 'requiredCheckbox', chb);
+
+  var removeBtn = geByClass1('faq_optional_extra_field__close', block);
+  addEvent(removeBtn, 'click', function() {
+    FAQ.removeExtraField(block);
+  });
+},
+removeExtraField: function(block) {
+  var ts = data(block, 'typeSelector');
+  ts.destroy.bind(ts)();
+  re(block);
+  show('faq_optional_extra_field_add');
+},
+destroyExtraFields: function() {
+  for (var i = 0; i < 10; i++) {
+    var eBlock = ge('faq_optional_extra_field_' + i);
+    if (eBlock) {
+      var ts = data(eBlock, 'typeSelector');
+      ts.destroy.bind(ts)();
+    }
+  }
+},
 saveFAQ: function(hash) {
   var title = trim(val('faq_title')),
       text = trim(val('faq_text')),
@@ -200,7 +267,7 @@ saveFAQ: function(hash) {
     return notaBene('faq_text');
   }
   var language = cur.langsDD && cur.langsDD.val() || 0,
-      query = {act: 'save', title: title, text: text, keywords: keywords, description: description, hash: hash, imgs: imgs, faq_id: cur.id, fixed: cur.fixFAQ.val(), urgent: cur.urgentFAQ.val(), server: trim(val('faq_server')), id_mask: trim(val('faq_id_mask')), cdn: trim(val('faq_cdn')), language: language, parent_id: (language ? cur.parentId : 0), about_phone: cur.aboutPhoneFAQ.val(), about_profile: cur.aboutProfileFAQ.val(), about_group: cur.aboutGroupFAQ.val(), about_email: cur.aboutEmailFAQ.val() };
+      query = {act: 'save', title: title, text: text, keywords: keywords, description: description, hash: hash, imgs: imgs, faq_id: cur.id, fixed: cur.fixFAQ.val(), urgent: cur.urgentFAQ.val(), server: trim(val('faq_server')), id_mask: trim(val('faq_id_mask')), cdn: trim(val('faq_cdn')), language: language, parent_id: (language ? cur.parentId : 0), about_phone: cur.aboutPhoneFAQ.val(), about_profile: cur.aboutProfileFAQ.val(), about_group: cur.aboutGroupFAQ.val(), about_email: cur.aboutEmailFAQ.val(), hidden: cur.hiddenFAQ.val() };
 
   if (cur.sectionSelector) {
     query.section = intval(cur.sectionSelector.val());
@@ -241,7 +308,21 @@ saveFAQ: function(hash) {
       }
     }
   }
+  if (ge('faq_optional_extra_field_add') && (!cur.sectionSelector || cur.sectionSelector.val() == 0)) {
+    var d = {}, blocks = ge('faq_optional_extra_fields_list').children;
+    for (var i = 0; i < blocks.length; i++) {
+      var b = blocks[i];
+      d['ef_'+i+'_type'] = data(b, 'typeSelector').val();
 
+      d['ef_'+i+'_title'] = geByClass1('faq_optional_extra_field__title', b).value;
+      d['ef_'+i+'_note'] = geByClass1('faq_optional_extra_field__note', b).value;
+      d['ef_'+i+'_required'] = data(b, 'requiredCheckbox').val();
+    }
+    query = extend(query, d);
+  }
+  if (cur.descriptionNotNeeded) {
+    query.descr_not_needed = cur.descriptionNotNeeded.val();
+  }
   ajax.post(nav.objLoc[0], query, {
     onFail: FAQ.showError,
     showProgress: lockButton.pbind(ge('faq_send')),
@@ -484,7 +565,9 @@ updateSearchString: function(event, inp) {
     FAQ.updateSearch(val);
   }, 350);
 },
-
+updateSearchDisabled: function() {
+  FAQ.updateSearch(ge('faq_content_search__text').value.trim());
+},
 updateSearch: function(val) {
   var loc = nav.objLoc;
   if (val) {
@@ -492,8 +575,12 @@ updateSearch: function(val) {
   } else {
     delete loc['q'];
   }
+  if (cur.searchDisabled.val()) {
+    loc['disabled'] = 1;
+  } else {
+    delete loc['disabled'];
+  }
   nav.setLoc(loc);
-
   var query = extend({}, loc);
   query['act'] = 'load_list';
   delete query[0];

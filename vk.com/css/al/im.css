@@ -74,6 +74,19 @@
   opacity: 1;
   filter: alha(opacity=100);
 }
+.flat_button.im_dialog_respond {
+  margin-top: 1px;
+  background-color: #E4E8ED;
+}
+.flat_button.im_dialog_respond:hover {
+  background-color: #DAE0E6;
+}
+.im_dialog_respond i {
+  width: 21px;
+  height: 14px;
+  display: block;
+  background: url(/images/icons/reply_mark.png?2) center center no-repeat;
+}
 .im_tabs_group_actions {
   width: 200px;
   margin-top: 7px;

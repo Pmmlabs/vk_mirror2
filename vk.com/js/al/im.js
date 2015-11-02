@@ -1369,6 +1369,9 @@ var IM = {
         }
       });
       params.media = media.join(',');
+      if (lastShareUrl) {
+        params.share_url = lastShareUrl;
+      }
       cur.imPeerMedias[peer] = false;
       cur.imSortedMedias[peer] = false;
       IM.restorePeerMedia(peer);
@@ -2057,13 +2060,12 @@ var IM = {
     }
 
     if (cur.peer === peer || cur.prev_peer === peer) {
-      var first = cur.actions_types[0];
-      if (first[0] !== 'mark_answered' && val) {
-        cur.actions_types.unshift(IM.actionEndConversation());
-      } else if (first[0] === 'mark_answered' && !val) {
-        cur.actions_types.shift();
+      var respBtn = geByClass1('_add_to_responded');
+      if (val) {
+        show(respBtn);
+      } else {
+        hide(respBtn);
       }
-      cur.actionsMenu.setItems(cur.actions_types);
     }
   },
 
@@ -3270,6 +3272,7 @@ var IM = {
 
     removeEvent(document, 'mousemove mousedown keydown', IM.updLA);
     addEvent(document, 'mousemove mousedown keydown', IM.updLA);
+    addEvent(geByClass1('_add_to_responded'), 'click', IM.markAnswered);
     if (options.emoji_stickers) {
       window.emojiStickers = options.emoji_stickers;
     }
@@ -3470,6 +3473,15 @@ var IM = {
         shift: [0, 0, 5, 0]
       });
     });
+
+      addEvent(geByClass1('_add_to_responded'), 'mouseover', function(e) {
+        showTooltip(this, {
+          text: getLang('mail_end_conversation'),
+          black: 1,
+          center: true,
+          shift: [0, 0, 5, 0]
+        });
+      });
 
     for (var i in cur.tabs) {
       cur.tabs[i].elem = ge('im_tab' + i);
@@ -5248,7 +5260,9 @@ var IM = {
     }
 
     if (cur.gid && !(cur.tabs[peer].folders & IM.FOLDER_UNRESPOND)) {
-      types.push(IM.actionEndConversation());
+      show(geByClass1('_add_to_responded'));
+    } else if (cur.gid) {
+      hide(geByClass1('_add_to_responded'));
     }
 
     each(['chat', 'invite', 'topic', 'avatar', 'photos', 'search', 'history', 'mute', 'unmute', 'clear', 'leave', 'return'], function(k, v) {
@@ -5268,10 +5282,6 @@ var IM = {
     toggle('im_rcpt', peer > 2e9);
     toggleClass(ge('im_peer_controls'), 'im_peer_multi', peer > 2e9);
     IM.updateTyping(true);
-  },
-
-  actionEndConversation: function() {
-    return ['mark_answered', getLang('mail_end_conversation'), '4px -340px', IM.markAnswered, false, false];
   },
 
   markAnswered: function() {

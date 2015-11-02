@@ -2765,3 +2765,77 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 .tickets_post_field_disabled .tickets_post_form__cancel {
   margin-left: 0;
 }
+.tickets_new_extra_fields {
+  padding-bottom: 1em;
+}
+.tickets_new_extra_field {
+  margin: 0.5em 0;
+  padding-bottom: 0.5em;
+}
+.tickets_new_extra_field__label {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 1.4em;
+  padding-top: 0.6em;
+  padding-right: 10px;
+  width: 200px;
+}
+.tickets_new_extra_field__note {
+  color: #777;
+  font-size: 0.9em;
+  margin-top: 0.5em;
+}
+.tickets_new_extra_field__control .text {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none;
+  padding: 7px 15px 8px 7px;
+  width: 450px;
+}
+.tickets_new_extra_field__control .text.half_long {
+  width: 225px;
+}
+.tickets_new_extra_field__control_w {
+  width: 250px;
+}
+.tickets_new_extra_field__upload_btn {
+  color: #2B587A;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 1.4em;
+  padding-top: 0.6em;
+}
+.tickets_new_extra_field__upload_btn:hover {
+  text-decoration: underline;
+}
+.tickets_new_extra_field__uploaded .page_preview_photo_wrap {
+  height: auto;
+}
+.tickets_new_extra_field__uploaded div.page_preview_photo {
+  height: auto;
+  max-height: 57px;
+  min-height: 25px;
+}
+.tickets_extra_fields {
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top: 1px solid #f2f4f6;
+}
+.tickets_extra_field {
+  margin-bottom: 0.5em;
+}
+.tickets_extra_field_col {
+  width: 50%;
+}
+.tickets_extra_field__label {
+  font-weight: bold;
+}
+.tickets_extra_field__image {
+  margin-top: 0.5em;
+}
+.tickets_new_extra_field__example {
+  margin-top: 0.5em;
+}

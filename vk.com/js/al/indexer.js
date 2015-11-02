@@ -11,22 +11,22 @@ function vkIndexer(list, prepareFunc, callback) {
   setTimeout(this.indexIteration.bind(this), 10);
 }
 
-vkIndexer.prototype.delimiter = new RegExp('[\\s\\-\\.,\\"\\\'\\«\\(\\)\\[\\]\\{\\}\\+\\\\]+', 'g');
-vkIndexer.prototype.trimmer = new RegExp('^[\\s\\-\\.,\\"\\\'\\«\\(\\)\\[\\]\\{\\}\\+\\\\]+|[\\s\\-,\\"\\\'\\«\\(\\)\\[\\]\\{\\}\\\\]+$', 'g');
+vkIndexer.prototype.delimiter = new RegExp('[\\s\\-\\.,\\"\\\'\\«\\(\\)\\[\\]\\{\\}\\+\\?\\\\]+', 'g');
+vkIndexer.prototype.trimmer = new RegExp('^[\\s\\-\\.,\\"\\\'\\«\\(\\)\\[\\]\\{\\}\\+\\?\\\\]+|[\\s\\-,\\"\\\'\\«\\(\\)\\[\\]\\{\\}\\\\]+$', 'g');
 
 vkIndexer.prototype.toTranslit = {1072:"a",1073:"b",1074:"v",1075:"g",1076:"d",1077:"e",1078:"zh",
 1079:"z",1080:"i",1081:"y",1082:"k",1083:"l",1084:"m",1085:"n",1086:"o",1087:"p",1088:"r",
 1089:"s",1090:"t",1091:"u",1092:"f",1093:"h",1094:"ts",1095:"ch",1096:"sh",1097:"sh",1099:"y",
-1101:"e",1102:"yu",1103:"ya", 1105:"e", 1098:"", 1100:""}
+1101:"e",1102:"yu",1103:"ya", 1105:"e", 1098:"", 1100:""};
 
 vkIndexer.prototype.toLocalCase = {'f':"a",',':"b",'<':"b",'d':"v",'u':"g",'l':"d",'t':"e",';':"zh",
 ':':"zh",'p':"z",'b':"i",'q':"y",'r':"k",'k':"l",'v':"m",'y':"n",'j':"o",'g':"p",'h':"r",'c':"s",'n':"t",
 'e':"u",'a':"f",'[':"h",'{':"kh",'w':"ts",'x':"ch",'i':"sh",'o':"sh",'s':"y",'\'':"e",'"':"e",'.':"yu",
-'>':"yu",'z':"ya",'`':"e",'~':"e",'m':"",']':"",'}':""}
+'>':"yu",'z':"ya",'`':"e",'~':"e",'m':"",']':"",'}':""};
 
 vkIndexer.prototype.toLocalTranslit = {1072:"f",1074:"d",1075:"u",1076:"l",1077:"t",
 1079:"p",1080:"b",1081:"q",1082:"r",1083:"k",1084:"v",1085:"y",1086:"j",1087:"g",1088:"h",
-1089:"c",1090:"n",1091:"e",1092:"a",1094:"w",1095:"x",1096:"i",1097:"o",1099:"s",1103:"z", 1098:"m"}
+1089:"c",1090:"n",1091:"e",1092:"a",1094:"w",1095:"x",1096:"i",1097:"o",1099:"s",1103:"z", 1098:"m"};
 
 vkIndexer.prototype.indexIteration = function() {
   var end = Math.min(this.iterEnd, this.iterCur + 200);
@@ -62,7 +62,7 @@ vkIndexer.prototype.strToPrefixes = function(val) {
     prefixes[key] = 1;
   }
   return prefixes;
-}
+};
 
 vkIndexer.prototype.strToSearchPrefixes = function(val) {
   var result = [];
@@ -93,7 +93,7 @@ vkIndexer.prototype.strToSearchPrefixes = function(val) {
     result.push(prefixes);
   }
   return result;
-}
+};
 
 vkIndexer.prototype.toIndexTree = function(key, obj) {
   var prnt = this.index;
@@ -106,14 +106,14 @@ vkIndexer.prototype.toIndexTree = function(key, obj) {
     }
   }
   prnt.push(obj);
-}
+};
 
 vkIndexer.prototype.remove = function(obj) {
   var item = this.prepareFunc(obj);
   var prefixes = this.strToPrefixes(item);
   for (var key in prefixes) {
     var prnt = this.index;
-    for (var i=0; i < 6; i++) {
+    for (var i = 0; i < 6; i++) {
       var k = key.substr(i, 1) || -1;
       if (prnt[k]) {
         prnt = prnt[k];
@@ -130,24 +130,24 @@ vkIndexer.prototype.remove = function(obj) {
       }
     }
   }
-}
+};
 
 vkIndexer.prototype.equals = function(obj1, obj2) {
   for (var i in obj1) {
     switch(typeof(obj1[i])) {
       case 'object':
-        if (!this.equals(obj1[i], obj2[i])) { return false }; break;
+        if (!this.equals(obj1[i], obj2[i])) { return false } break;
       case 'function':
-        if (typeof(obj1[i])=='undefined' || (obj1[i].toString() != obj2[i].toString())) { return false; }; break;
+        if (typeof(obj1[i])=='undefined' || (obj1[i].toString() != obj2[i].toString())) { return false; } break;
       default:
         if (obj1[i] != obj2[i]) { return false; }
     }
   }
-  for(var i in obj2) {
+  for (var i in obj2) {
     if(typeof(obj2[i])=='undefined') {return false;}
   }
   return true;
-}
+};
 
 vkIndexer.prototype.intersect = function(a, b)
 {
@@ -163,7 +163,7 @@ vkIndexer.prototype.intersect = function(a, b)
     }
   }
   return result;
-}
+};
 
 vkIndexer.prototype.add = function(obj) {
   var item = this.prepareFunc(obj);
@@ -191,12 +191,10 @@ vkIndexer.prototype.search = function(text) {
     if (val != last) {
       rows.push(last);
       last = val;
-    } else {
-      continue;
     }
   }
   return rows;
-}
+};
 
 vkIndexer.prototype.localSearch = function(prefixes, deep, prnt) {
   if (!prnt) {
@@ -225,6 +223,6 @@ vkIndexer.prototype.localSearch = function(prefixes, deep, prnt) {
     }
   }
   return result;
-}
+};
 
 try{stManager.done('indexer.js');}catch(e){}
