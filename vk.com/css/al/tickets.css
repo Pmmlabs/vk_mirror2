@@ -594,6 +594,18 @@ body.dev .tu_info {
   color: #000000;
   line-height: 160%;
 }
+.tickets_side_tt.extra_field {
+  width: 256px;
+}
+.tickets_side_tt.extra_field > .toup1 {
+  float: right;
+}
+.tickets_side_tt.extra_field .hint_wrap {
+  width: auto;
+  max-width: 230px;
+  color: #000000;
+  line-height: 160%;
+}
 .tickets_side_tt.mobile .hint_wrap {
   width: 203px;
   color: #000000;

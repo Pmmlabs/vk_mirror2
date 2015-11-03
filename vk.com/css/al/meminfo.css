@@ -261,3 +261,28 @@ table.history .cur_session {
 .mi_close_privacy_text {
   margin-top: 0px;
 }
+.mi_deleted_content_wrap {
+  padding: 10px;
+}
+.mi_deleted_photo {
+  width: 300px;
+  margin-bottom: 10px;
+}
+.mi_deleted_photo .mi_deleted_photo_img {
+  width: 100%;
+  display: block;
+}
+.mi_deleted_photo:last-child {
+  margin-bottom: 0;
+}
+.mi_deleted_video {
+  width: 150px;
+  margin-bottom: 10px;
+}
+.mi_deleted_video .mi_deleted_video_img {
+  width: 100%;
+  display: block;
+}
+.mi_deleted_video:last-child {
+  margin-bottom: 0;
+}

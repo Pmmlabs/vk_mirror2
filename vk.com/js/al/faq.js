@@ -323,6 +323,12 @@ saveFAQ: function(hash) {
   if (cur.descriptionNotNeeded) {
     query.descr_not_needed = cur.descriptionNotNeeded.val();
   }
+  if (ge('description_placeholder_key')) {
+    query.description_placeholder_key = val('description_placeholder_key');
+  }
+  if (ge('description_tooltip_key')) {
+    query.description_tooltip_key = val('description_tooltip_key');
+  }
   ajax.post(nav.objLoc[0], query, {
     onFail: FAQ.showError,
     showProgress: lockButton.pbind(ge('faq_send')),

@@ -159,7 +159,7 @@ getBrowser: function() {
 
 initExtraFields: function() {
   for (var i in cur.extraFields) {
-    var f = cur.extraFields[i], inp = ge('tickets_new_extra_field_'+i+'_inp'), shift = cur.textShift;
+    var f = cur.extraFields[i], inp = ge('tickets_new_extra_field_'+i+'_inp'), shift = clone(cur.textShift);
     if (!inp) {
       data(ge('tickets_new_extra_field_'+i), 'value', '');
       continue;
@@ -175,7 +175,7 @@ initExtraFields: function() {
           text: '<div class="tail_wrap"><div class="tail"></div></div>\
           <div class="hint_wrap">'+data(inp, 'note')+'</div>',
           slideX: -15,
-          className: 'tickets_side_tt text',
+          className: 'tickets_side_tt extra_field',
           shift: shift,
           hasover: 1,
           onCreate: function () {
@@ -240,7 +240,8 @@ saveTicket: function(hash) {
   if (nav.objLoc.act == 'new_app') query.section = 9;
   if (cur.fromFaqId) {
     query.faq = cur.fromFaqId;
-  } else if (cur['from']) {
+  }
+  if (cur['from']) {
     query.from = cur['from'];
   } else if (nav.objLoc['from']) {
     query.from = nav.objLoc['from'];
@@ -2497,7 +2498,7 @@ rateFAQAdditional: function(id, additional_id, hash, evt) {
   if (additional_id == 2) {
     if (cur.askQuestion.permission) {
       Tickets.tryAskQuestion(function() {
-        Tickets.goToForm(id);
+        Tickets.goToForm(id, 'dislike');
       });
     } else {
       show(geByClass1('help_table_question__rated_no_perm', b));
@@ -3413,7 +3414,7 @@ listShowAltButton: function(altButtonId) {
 goToForm: function(from_faq_id, from) {
   var urlParams = '';
   if (from_faq_id) {
-    urlParams += '&faq='+from_faq_id;
+    urlParams += '&id='+from_faq_id;
   } else {
     var titleInput = ge('faq_search_form__title'), title = '';
     if (titleInput) {
@@ -3422,9 +3423,9 @@ goToForm: function(from_faq_id, from) {
         urlParams += '&title='+ encodeURIComponent(title);
       }
     }
-    if (from) {
-      urlParams += '&from='+from;
-    }
+  }
+  if (from) {
+    urlParams += '&from='+from;
   }
   nav.go(nav.objLoc[0]+'?act=new'+urlParams);
   return false;

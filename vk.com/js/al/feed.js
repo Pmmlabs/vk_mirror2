@@ -3022,6 +3022,9 @@ var Feed = {
     cur.searchSortMenu = new DropdownMenu(cur.options.search_sorts, {
       target: ge('feed_search_sort_dd'),
       onSelect: function (e) {
+        if (cur && cur.section == 'search') {
+          statlogsValueEvent('feed_change_sort', 0, e && e.currentTarget ? e.currentTarget.index : -1);
+        }
         feed.submitSearch()
       },
       fadeSpeed: 0
