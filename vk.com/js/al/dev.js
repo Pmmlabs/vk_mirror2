@@ -524,6 +524,15 @@ btShow: function(obj) {
   show(cont);
 },
 
+
+checkUploadUrl: function(url) {
+  if (url && url.match(/^((https?:\/\/)?)(?:[a-z0-9\.]+\.)?(vkontakte\.ru|vk\.com)\//ig)) {
+    return true;
+  }
+
+  return false;
+},
+
 wrapObject: function(obj, rootNode, objName, parentContext) {
   var html = '';
   if (!cur.wrapNum) {
@@ -596,7 +605,7 @@ wrapObject: function(obj, rootNode, objName, parentContext) {
       debugLog('unknown type', typeof obj);
       break;
   }
-  if (rootNode && obj.response && obj.response['upload_url']) {
+  if (rootNode && obj.response && obj.response['upload_url'] && Dev.checkUploadUrl(obj.response['upload_url'])) {
     html += '<div class="dev_upload_form"><form id="dev_file_submit" action="'+clean(obj.response['upload_url'])+'" target="dev_upload_iframe" enctype="multipart/form-data" method="post"><input type="file" name="file" onchange="this.parentNode.submit(); show(\'dev_upload_iframe_wrap\')" class="dev_upload_input" /></form></div><div id="dev_upload_iframe_wrap"><iframe id="dev_upload_iframe" name="dev_upload_iframe"></iframe></div>';
   }
   return html;
