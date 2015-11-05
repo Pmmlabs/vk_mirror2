@@ -255,7 +255,8 @@ saveTicket: function(hash) {
       t = ge('tickets_new_extra_field_'+i);
       v = data(t, 'value');
     }
-    if (!v && f.required) {
+    if ((!v && f.required) ||
+        (f.type == 4 && f.required && v.indexOf('vk.com') == -1)) {
       notaBene(t, false, !fieldsValid);
       fieldsValid = false;
     }

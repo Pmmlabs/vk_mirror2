@@ -5365,6 +5365,13 @@ b.wall_mob_onl {
 .wide_wall_module .wall_album_under_row {
   padding-top: 6px;
 }
+.wall_market_album_cover .wall_album_count {
+  background: none!important;
+  font-weight: normal;
+}
+.wall_market_album_cover.wall_album_nocover {
+  background: #f1f1f1 url('/images/icons/mall_icon.png') 50% 40% no-repeat !important;
+}
 .page_gif_preview {
   display: block;
   min-width: 130px;

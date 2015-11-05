@@ -1191,6 +1191,11 @@ body.dev.is_2x .paginated_table_header th.paginated_table_cell.sort_desc span.ta
   background-image: url(/images/camera_big_2x.png);
   background-size: 64px 48px;
 }
+.is_2x .wall_market_album_cover.wall_album_nocover,
+.is_2x .editable_thumbs .thumb_market_album_wrap.thumb_no_cover .draggable_thumb {
+  background-image: url(/images/icons/mall_icon_2x.png?1) !important;
+  background-size: 66px 75px!important;
+}
 .is_2x .dropbox,
 .is_2x .dropbox.choose {
   background-image: url(/images/dropbox_arrow_2x.png);

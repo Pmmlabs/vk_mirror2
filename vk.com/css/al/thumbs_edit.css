@@ -122,12 +122,26 @@ div.editable_thumbs {
 .editable_thumbs .thumb_wrap .draggable_thumb.moving .album_title .title_text {
   visibility: hidden;
 }
-.editable_thumbs .thumb_wrap .album_title .album_size {
+.editable_thumbs .thumb_wrap .album_title .album_size,
+.editable_thumbs .thumb_wrap .album_title .album_market_size {
   position: absolute;
   right: 5px;
   background: url(/images/camera_white.png) 0 2px no-repeat;
   padding-left: 14px;
 }
+.editable_thumbs .thumb_wrap .album_title .album_market_size {
+  background: none;
+  font-weight: normal;
+}
 .editable_thumbs .thumb_wrap .draggable_thumb.changing .thumb_x_button {
   display: none;
+}
+.editable_thumbs .thumb_market_album_wrap.thumb_no_cover .draggable_thumb {
+  background: #ebeef2 url(/images/icons/mall_icon.png?1) no-repeat 50% 40%;
+}
+.editable_thumbs .thumb_market_album_wrap.thumb_no_cover .draggable_thumb.moving {
+  background-size: 22px 25px!important;
+}
+.editable_thumbs .thumb_market_album_wrap.thumb_no_cover .draggable_thumb img.preview {
+  display: none!important;
 }

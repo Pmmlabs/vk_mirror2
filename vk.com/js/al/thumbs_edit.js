@@ -23,6 +23,9 @@ var ThumbsEdit = {
       case 'album':
         result.album = {owner_id: ids[0], aid: ids[1], title: media.title, size: media.size, thumb: {sizes: media.sizes}};
       break;
+      case 'market_album':
+        result.market_album = {owner_id: ids[0], aid: ids[1], title: media.title, msize: media.msize, thumb: {sizes: media.sizes}};
+      break;
     }
     return result;
   },
@@ -38,6 +41,8 @@ var ThumbsEdit = {
         case 'photo': res.push(['photo', arr[i].photo.owner_id + '_' + arr[i].photo.pid]); break;
         case 'video': res.push(['video', arr[i].video.owner_id + '_' + arr[i].video.vid]); break;
         case 'album': res.push(['album', arr[i].album.owner_id + '_' + arr[i].album.aid]); break;
+        case 'market_album': res.push(['market_album', arr[i].market_album.owner_id + '_' + arr[i].market_album.aid])
+          break;
       }
     }
     return res;
@@ -68,7 +73,7 @@ var ThumbsEdit = {
     var atts = [];
 
     each(attachments, function(k, a){
-      if(a.type == 'photo' || a.type == 'video' || a.type == 'album') atts[atts.length] = a;
+      if(a.type == 'photo' || a.type == 'video' || a.type == 'album' || a.type == 'market_album') atts[atts.length] = a;
     });
     _e.cache()[el.id] = {previews: atts, thumbs: thumbs.thumbs, height: thumbs.height, opts: options, wide: wide};
 
@@ -88,7 +93,7 @@ var ThumbsEdit = {
   thumbElement: function(thumb, index){
     var style = { width: intval(thumb.width), height: intval(thumb.height) };
 
-    var el = ce('div', { className: 'thumb_wrap fl_l' + (thumb.lastColumn ? ' last_column' : '') + (thumb.lastRow ? ' last_row' : '') }, style);
+    var el = ce('div', { className: 'thumb_wrap fl_l' + (thumb.lastColumn ? ' last_column' : '') + (thumb.lastRow ? ' last_row' : '') + (thumb.msize ? ' thumb_market_album_wrap' : '') + (thumb.image.src.match('x_noalbum') ? ' thumb_no_cover' : '') }, style);
     var img = ce('img', { className: 'preview'});
     var overlay = ce('div', { className: 'overlay' });
     var xbutn = ce('div', { className: 'thumb_x_button', innerHTML: '<div class="thumb_x"></div>' });
@@ -150,7 +155,11 @@ var ThumbsEdit = {
     if((thumb.title || thumb.thumb) && !thumb.duration){
       var title = ce('div', {className: 'album_title'});
       title.appendChild(ce('div', {innerHTML: thumb.height > 100 ? thumb.title : ' ', className: 'fl_l title_text'}, {width: style.width - 70}));
-      title.appendChild(ce('div', {innerHTML: thumb.size, className: 'album_size'}));
+      if (thumb.msize) {
+        title.appendChild(ce('div', {innerHTML: thumb.msize, className: 'album_market_size'}));
+      } else {
+        title.appendChild(ce('div', {innerHTML: thumb.size, className: 'album_size'}));
+      }
       draggable.appendChild(title);
     }
 
@@ -652,7 +661,8 @@ var ThumbsEdit = {
       if (
         (arr[i].type == 'photo' && arr[i].photo.id == attId) ||
         (arr[i].type == 'video' && arr[i].video.id == attId) ||
-        (arr[i].type == 'album' && arr[i].album.id == attId)
+        (arr[i].type == 'album' && arr[i].album.id == attId) ||
+        (arr[i].type == 'market_album' && arr[i].market_album.id == attId)
       ) {
         return ThumbsEdit.removeMedia(el, i);
       }
@@ -749,7 +759,7 @@ var ThumbsEdit = {
     return {src: size[0], width: size[1], height: size[2]};
   },
   compute: function(t, w, h, opt){
-    t.id = t.vid ? 'video' + t.owner_id + '_' + t.vid : t.pid ? 'photo' + t.owner_id + '_' + t.pid : 'album' + t.owner_id + '_' + t.aid;
+    t.id = t.vid ? 'video' + t.owner_id + '_' + t.vid : t.pid ? 'photo' + t.owner_id + '_' + t.pid : t.msize ? 'market_album' + t.owner_id + '_' + t.aid : 'album' + t.owner_id + '_' + t.aid;
 
     var res = {
       id: t.id,
@@ -763,8 +773,10 @@ var ThumbsEdit = {
       orig: t
     };
 
-    if(t.title && t.size != undefined){
+    if (t.title && t.size != undefined){
       extend(res, {title: t.title, size: t.size, isAlbum: true});
+    } else if(t.title && t.msize != undefined){
+      extend(res, {title: t.title, msize: t.msize, isAlbum: true});
     }
 
     if(t.duration){
@@ -810,7 +822,7 @@ var ThumbsEdit = {
 
     var thumbs = [], result = [];
     each(attachments, function(k, a){
-      if(a.type == 'photo' || a.type == 'video' || a.type == 'album') {
+      if(a.type == 'photo' || a.type == 'video' || a.type == 'album' || a.type == 'market_album') {
         thumbs[thumbs.length] = a[a.type];
       }
       if (a.type == 'video') {

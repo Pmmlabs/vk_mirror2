@@ -5353,6 +5353,33 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
           hide(lnk);
         break;
 
+        case 'market_album':
+          if (editable) {
+            if (!data.editable) return false;
+            extend(data.editable, {
+              title: data.title,
+              msize: langNumeric(data.count, data.lang.profile_X_market_items),
+              click: false
+            });
+          }
+          var lst = media.split('_');
+
+          vkImage().src = data.thumb;
+          oncl = opts.nocl ? '' : ' href="/market' + lst[0] + '?section=album_' + lst[1] + '"';
+          var cls = 'fl_l page_preview_album wall_album_cover_wrap wall_market_album_cover' + (data.thumb ? '' : ' wall_album_nocover');
+          preview = '<a class="' + cls + '" ' + oncl + '>\
+' + (data.thumb ? '<img class="wall_album_cover" src="' + data.thumb + '"/>' : '') + '\
+  <div class="wall_album_caption">\
+    <div class="wall_album_title_wrap clear_fix">\
+      <div class="wall_album_count fl_r">' + data.count + '</div>\
+      <div class="wall_album_title">' + data.title + '</div>\
+    </div>\
+  </div>\
+</a>';
+          toPics = 1;
+          toEl = picsEl;
+        break;
+
         case 'postpone':
           preview = '<div class="medadd_h medadd_h_timer inl_bl">' + data.lang.profile_choose_timer + '<span id="postpone_preview' + lnkId + '"></span></div>';
 
@@ -5946,7 +5973,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
         }
         var valid = true;
         if (domain.match(/(^|\.|\/\/)(vkontakte\.ru|vk\.com)/)) {
-          valid = query.match(/(#photo|^\/(photo|video|album|page|audio|doc)|z=(album|photo|video)|w=(page|product))(-?\d+_)?\d+|\.(jpg|png|gif)$|^\/stickers\/.+$|^http:\/\/instagram\.com\/p\/.+/) ? true : false;
+          valid = query.match(/(#photo|^\/(photo|video|album|page|audio|doc)|z=(album|photo|video)|w=(page|product))(-?\d+_)?\d+|\.(jpg|png|gif)$|market-?\d+\?section=album_\d+|^\/stickers\/.+$|^http:\/\/instagram\.com\/p\/.+/) ? true : false;
         }
         if (valid) {
           addMedia.checkURL(initialUrl);
