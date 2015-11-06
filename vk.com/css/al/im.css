@@ -60,25 +60,28 @@
 }
 .im_dialog_fav {
   margin-top: 1px;
+  background-color: #E4E8ED;
 }
 .im_dialog_fav i {
-  background: url(/images/icons/im_actions_iconset2.png?9) 0 -281px no-repeat;
+  background: url(/images/icons/fav_mark.png?9) 3px 0 no-repeat;
   display: block;
   width: 20px;
   height: 14px;
   cursor: pointer;
-  opacity: 0.6;
-  filter: alpha(opacity=60);
 }
 .im_dialog_fav.im_dialog_fav_active i {
-  opacity: 1;
-  filter: alha(opacity=100);
+  background-position: 3px -18px;
+}
+.im_dialog_fav.im_dialog_fav_active,
+.flat_button.im_dialog_fav.im_dialog_fav_active:hover {
+  background-color: #6383a8;
 }
 .flat_button.im_dialog_respond {
   margin-top: 1px;
   background-color: #E4E8ED;
 }
-.flat_button.im_dialog_respond:hover {
+.flat_button.im_dialog_respond:hover,
+.flat_button.im_dialog_fav:hover {
   background-color: #DAE0E6;
 }
 .im_dialog_respond i {

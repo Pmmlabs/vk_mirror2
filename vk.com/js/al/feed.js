@@ -2451,8 +2451,8 @@ var Feed = {
     if (cur.module == 'feed') {
       if (cur.section == 'search') {
         res.module = 'feed_search';
-      } else if (cur.section == 'news' && cur.subsection) {
-        res.module = 'feed_news_' + cur.subsection;
+      } else if (cur.section == 'news') {
+        res.module = cur.subsection ? 'feed_news_' + cur.subsection : 'feed_news';
       } else {
         res.module = 'feed_other';
       }

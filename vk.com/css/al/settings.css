@@ -1028,6 +1028,9 @@ table.history .cur_session {
   border-color: #537698;
   cursor: pointer;
 }
+.settings_group_rows .olist_item_wrap:hover .olist_item_photo {
+  border-color: #E1E8ED;
+}
 .settings_group_rows .olist_item_wrap.olist_item_wrap_on:hover .olist_checkbox,
 .settings_group_rows .olist_item_wrap.olist_item_wrap_on .olist_checkbox {
   background: url(/images/icons/check_follow.gif) 0 0 no-repeat;
