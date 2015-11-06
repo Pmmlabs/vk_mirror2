@@ -1,4 +1,7 @@
 var Settings = {
+
+  MAX_LEFT_GROUPS: 5,
+
   go: function(el, ev) {
     var current = Settings.getsect();
     var result = checkEvent(ev);
@@ -526,6 +529,48 @@ var Settings = {
       onDone: function (html) {
         ge('settings_services').innerHTML = html;
       }
+    });
+  },
+
+  getAdminSelectShowCt: function(data) {
+    return Object.keys(data).filter(function(key) {
+      return data[key];
+    }).length;
+  },
+
+  showAdminedGroups: function() {
+    showBox('al_settings.php', { act: 'a_get_admined_groups' }, {
+      stat: ['privacy.css'],
+      onDone: function(box, data) {
+        if (data) {
+          cur.admin_groups = data;
+          var cntrl = geByClass1('box_controls', box.bodyNode.parentNode);
+          var ct = ce('div', {
+            className: "settings_adm_groups_counter _settings_adm_groups_counter"
+          });
+          cntrl.appendChild(ct);
+          cur.adminCt = ct;
+          ct.innerHTML = getLang('settings_admin_groups_left')
+            .replace('{count}', Settings.getAdminSelectShowCt(data))
+            .replace('{amt}', Settings.MAX_LEFT_GROUPS);
+        }
+      },
+      params: {
+        bodyStyle: 'padding: 0;',
+        dark: 1,
+        onHide: function() {
+          if (cur.adminGroupsDirty) {
+            if (window.Notifier) {
+              Notifier.resetCommConnection();
+            }
+            ajax.post('al_settings.php', { act: 'a_get_left_menu' }, {
+              onDone: function(lm) {
+                geByTag1('ol', ge('side_bar')).innerHTML = lm;
+              }
+            });
+          }
+        }
+      },
     });
   },
 
@@ -1546,6 +1591,36 @@ var Settings = {
       }
     });
     return false;
+  },
+  toggleAdminGroup: function(gid, el) {
+    var ct = Settings.getAdminSelectShowCt(cur.admin_groups);
+    cur.adminGroupsDirty = true;
+    var value = cur.admin_groups[gid];
+
+    if (!value && ct >= Settings.MAX_LEFT_GROUPS - 1) {
+      addClass(el.parentNode, 'settings_group_rows_disabled');
+    } else {
+      removeClass(el.parentNode, 'settings_group_rows_disabled');
+    }
+
+    if (!value && ct >= Settings.MAX_LEFT_GROUPS) {
+      return false;
+    }
+    var op = !value ? 1 : -1;
+    toggleClass(el, 'olist_item_wrap_on', !value);
+    cur.admin_groups[gid] = !value;
+    ls.set('im_m_comms_key', false);
+
+    ls.set('im_m_comms_key', false);
+
+    ajax.post('al_settings.php', {
+      act: 'a_toggle_admin_fast',
+      gid: gid
+    });
+
+    cur.adminCt.innerHTML = getLang('settings_admin_groups_left')
+      .replace('{count}', ct + op)
+      .replace('{amt}', Settings.MAX_LEFT_GROUPS);
   }
 };
 

@@ -166,10 +166,68 @@ Notifier = {
       return false;
     }
     this.initIdleMan();
+    this.initCommunityQueues();
     if (!(curNotifier.cont = ge('notifiers_wrap'))) {
       bodyNode.insertBefore(curNotifier.cont = ce('div', {id: 'notifiers_wrap', className: 'fixed'}), ge('page_wrap'));
     }
   },
+
+  initCommunityQueues: function(fails) {
+    if (ls.get('im_m_comms_key')) {
+      return Notifier.proccessCommunityQueues(ls.get('im_m_comms_key'), fails || 0);
+    }
+    ajax.post('al_im.php', { act: 'a_get_comms_key' }, {
+      onDone: function(queue) {
+        ls.set('im_m_comms_key', queue);
+        Notifier.proccessCommunityQueues(queue, fails || 0);
+      },
+      onFail: function() {
+        return true;
+      }
+    })
+  },
+
+  resetCommConnection: function(fails) {
+    var key = ls.get('im_m_comms_key');
+    delete curNotifier.addQueues[key.queue];
+    ls.set('im_m_comms_key', false);
+    Notifier.initCommunityQueues(fails || 0);
+  },
+
+  proccessCommunityQueues: function(queue, fails) {
+    if (queue === 'empty' || !queue) {
+      return false;
+    }
+    Notifier.addKey(queue, function(key, ev) {
+      if (ev.failed) {
+        fails++;
+        if (fails < 50) {
+          setTimeout(Notifier.resetCommConnection.pbind(fails), 100);
+        }
+        return;
+      }
+
+      var key = ls.get('im_m_comms_key');
+      key.ts = ev.ts;
+      ls.set('im_m_comms_key', key);
+
+
+      var evs = ev.events;
+      if (!evs) {
+        return;
+      }
+      evs.map(function(ev) {
+        return ev.split('<!>');
+      }).forEach(function(ev) {
+        if (ev[1] === 'update_cnt') {
+          var gid = ev[5];
+          var ct = ev[4];
+          handlePageCount('mgid' + gid, ct);
+        }
+      })
+    });
+  },
+
   destroy: function () {
     Notifier.hideAllEvents();
     curNotifier.idle_manager.stop();
@@ -1269,7 +1327,7 @@ Notifier = {
     };
 
     each (curNotifier.addQueues, function (queue, data) {
-      if (now - data[0] > 30000) {
+      if (now - data[0] > 30000 && !queue.match(/nccts/)) {
         // old queue
         debugLog('drop key', queue, now - data[0]);
         delete curNotifier.addQueues[queue];

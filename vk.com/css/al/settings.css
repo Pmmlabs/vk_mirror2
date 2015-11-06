@@ -991,3 +991,45 @@ table.history .cur_session {
 .settings_otp_app_disabled {
   color: #888;
 }
+.settings_group_rows {
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.settings_group_tabs {
+  padding: 15px;
+}
+.settings_adm_groups_counter {
+  color: #777;
+}
+.settings_group_rows .olist_item_wrap:hover {
+  background: #E1E8ED;
+  border-color: #E1E8ED;
+}
+.settings_group_rows .olist_item_wrap:hover .olist_checkbox {
+  display: block;
+  width: 18px;
+  height: 16px;
+  margin: 13px 5px;
+  background: url(/images/icons/check_follow.gif) 0 0 no-repeat;
+  background-position: 0 -16px;
+}
+.settings_group_rows.settings_group_rows_disabled .olist_item_wrap {
+  background: none;
+  border-color: transparent;
+  cursor: default;
+}
+.settings_group_rows.settings_group_rows_disabled .olist_item_wrap .olist_checkbox {
+  display: none;
+}
+.settings_group_rows .olist_item_wrap.olist_item_wrap_on:hover,
+.settings_group_rows .olist_item_wrap.olist_item_wrap_on {
+  background: #6C8CAC;
+  border-color: #537698;
+  cursor: pointer;
+}
+.settings_group_rows .olist_item_wrap.olist_item_wrap_on:hover .olist_checkbox,
+.settings_group_rows .olist_item_wrap.olist_item_wrap_on .olist_checkbox {
+  background: url(/images/icons/check_follow.gif) 0 0 no-repeat;
+  display: inline-block;
+}

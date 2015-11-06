@@ -935,15 +935,14 @@ show: function(ev, videoRaw, listId, options) {
     } else {
       var showControls = '';
       //var controlsClass = 'mv_controls_shown';
-      var hasPlbClass = Videoview.getPlaylistBlockEl() ? 'mv_has_plb' : '';
     }
-
 
     if (vk.rtl) {
     var minimizeBtn = '';
   } else {
     var minimizeBtn = '<div class="divider fl_r">|</div><div onmouseover="Videoview.activate(this, 2);" onmouseout="Videoview.deactivate(this, 2);" onclick="return Videoview.minimize(event);" class="mv_top_button fl_r">'+getLang('global_min')+'</div>';
   }
+  var hasPlbClass = Videoview.getPlaylistBlockEl() ? 'mv_has_plb' : '';
 
 // '+' - fix for buggy firefox
     mvLayer.innerHTML = '\
@@ -2494,22 +2493,20 @@ showVideo: function(title, html, js, desc, info, controlsLine, opt) {
     Videocat.addList(plList);
 
     var plFullId = Object.keys(plList)[0];
-    if (plFullId.split('_')[1] == -2 /* system album all*/) {
-      if (Videocat.getCurrentPlaylistId().indexOf('s_') == 0 && plList[plFullId].list.length > 4) {
-        var currPlaylist = Videocat.getCurrentPlaylist();
+    if (plFullId.split('_')[1] == -2 && Videocat.getCurrentPlaylistId().indexOf('s_') == 0 && plList[plFullId].list.length > 4) {
+      var currPlaylist = Videocat.getCurrentPlaylist();
 
-        var videosList = [], existsMap = {};
-        each(currPlaylist.list.concat(plList[plFullId].list), function(i, v) {
-          if (!existsMap[v.vid]) {
-            videosList.push(v);
-            existsMap[v.vid] = true;
-          }
-        });
-        currPlaylist.list = videosList;
+      var videosList = [], existsMap = {};
+      each(currPlaylist.list.concat(plList[plFullId].list), function(i, v) {
+        if (!existsMap[v.vid]) {
+          videosList.push(v);
+          existsMap[v.vid] = true;
+        }
+      });
+      currPlaylist.list = videosList;
 
-        mvcur.needPlaylistRebuildId = Videocat.getCurrentPlaylistId();
-        plNeedExtend = true;
-      }
+      mvcur.needPlaylistRebuildId = Videocat.getCurrentPlaylistId();
+      plNeedExtend = true;
     } else {
       mvcur.needPlaylistRebuildId = plFullId;
     }

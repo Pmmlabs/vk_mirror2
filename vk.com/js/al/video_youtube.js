@@ -44,6 +44,7 @@ var VideoYoutube = {
     player.addEventListener('onReady', VideoYoutube.onPlayerReady);
     player.addEventListener('onStateChange', VideoYoutube.onStateChange);
     player.addEventListener('onPlaybackQualityChange', VideoYoutube.onPlaybackQualityChange);
+    player.addEventListener('onError', VideoYoutube.onError)
     addEvent(container, 'mouseenter', VideoYoutube.onMouseEnter);
     addEvent(container, 'mouseleave', VideoYoutube.onMouseLeave);
     addEvent(container, 'mousemove', VideoYoutube.onMouseMove);
@@ -323,6 +324,25 @@ var VideoYoutube = {
 
   onPlaybackQualityChange: function(event) {
     VideoYoutube.updateQualityLabel(event.data);
+  },
+
+  onError: function(event) {
+    var videoUnavaiableErrors = [100, 101, 150];
+    console.log(event);
+    if (videoUnavaiableErrors.indexOf(event.data) != -1) {
+      ajax.post('/al_video.php', {
+        act: 'reparseDeletedYoutube',
+        vid: VideoYoutube.cur.vars.vid,
+        oid: VideoYoutube.cur.vars.oid
+      }, {
+        onDone: function(html, stat_html) {
+
+        },
+        onFail: function() {
+
+        }
+      })
+    }
   },
 
 

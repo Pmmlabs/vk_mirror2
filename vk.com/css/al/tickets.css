@@ -633,8 +633,8 @@ body.dev .tu_info {
 }
 .tickets_tt_list_abuse {
   list-style: url(/images/bullet.gif) outside;
-  padding: 0 16px 16px 16px;
-  margin: 0;
+  padding: 0 16px 16px 8px;
+  margin: 0 -16px 0 0;
   line-height: 160%;
   max-width: 225px;
   color: #000000;

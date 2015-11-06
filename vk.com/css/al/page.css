@@ -115,12 +115,22 @@
 .module_header span {
   font-weight: normal;
 }
-.p_header_bottom .fl_r {
+.p_header_bottom .fl_r,
+.p_header_bottom_link {
   color: #2B587A;
+}
+.p_header_bottom_text {
+  display: block;
+  padding-right: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
 .module_header .header_top .fl_r:hover,
 .module_header .header_bottom .fl_r:hover,
-.module_header .p_header_bottom .fl_r:hover {
+.module_header .p_header_bottom .fl_r:hover,
+.module_header .p_header_bottom_link:hover {
   text-decoration: underline;
 }
 .module_inverted .header_top {
@@ -571,6 +581,9 @@ a.page_module_upload:hover,
   padding: 10px 10px 0px;
   overflow: hidden;
 }
+.video_module .video_row_single {
+  margin: 0 auto;
+}
 .video_module .video {
   position: relative;
   margin: 10px 10px 0px;
@@ -588,16 +601,46 @@ a.page_module_upload:hover,
 .font_medium .video_module .video div {
   font-size: 11px;
 }
+#public .wide_column .video_module .module_body {
+  padding-bottom: 10px;
+}
+.wide_column .video_module {
+  margin-top: 10px;
+}
 .wide_column .video_module .video img {
   width: 112px;
   height: 84px;
 }
 .wide_column .video_module .video div {
-  width: 113px;
-  margin-top: 73px;
+  right: 7px;
 }
 .wide_column .video_module .video_row {
-  width: 130px;
+  width: 203px;
+}
+.wide_column .video_module .video_row:first-child {
+  width: 193px;
+}
+.wide_column .video_module .video {
+  width: 193px;
+  height: 108px;
+  margin: 10px 0 0 10px;
+}
+.wide_column .video_module .video_row:first-child .video {
+  margin-left: 0;
+}
+.wide_column .video_module .video .page_video_thumb {
+  width: 193px;
+  height: 105px;
+}
+.wide_column .video_module .info {
+  margin: 2px 0 0 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+.wide_column .video_module .video_row:first-child .info {
+  margin-left: 0;
 }
 .video_module .video div span.bg {
   background: #000;
@@ -3126,6 +3169,7 @@ a.choose:hover {
 .module.docs_module.empty .module_body,
 .module.page_list_module.empty .module_body,
 .module.page_module.empty .module_body,
+.module.market_module.empty .module_body,
 .module.people_list_module.empty .module_body,
 #public .narrow_column .module.audios_module.empty .module_body,
 .narrow_column #public_links.empty .module_body,
@@ -4637,15 +4681,20 @@ a.page_post_thumb_unsized:hover {
   left: 0;
 }
 .video_module .video div.page_video_play_icon {
+  background-image: url(/images/icons/video_play.png);
+  width: 10px;
+  height: 15px;
   position: absolute;
-  background: url(/images/module_inline_video_play.png) no-repeat;
-  margin-left: -16px;
-  margin-top: -20px;
-  width: 36px;
-  height: 36px;
   top: 50%;
   left: 50%;
-  z-index: 10;
+  margin-left: -20px;
+  margin-top: -20px;
+  background-color: rgba(0, 0, 0, 0.45);
+  padding: 12px 15px;
+  background-repeat: no-repeat;
+  background-position: 14px 11px;
+  border-radius: 4px;
+  cursor: pointer;
   opacity: 0.9;
   -o-transition: opacity 100ms linear;
   -ms-transition: opacity 100ms linear;
@@ -6541,4 +6590,14 @@ button.wall_block_app_btn {
 .video_external_inline .wrap,
 .video_external_inline .video_box_wrap_external {
   height: 100%;
+}
+.videos_edit_main_album_label {
+  color: #36638E;
+  font-size: 1.09em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.videos_edit_main_album_description {
+  margin-bottom: 10px;
+  color: #777;
 }

@@ -658,9 +658,9 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
   background-image: url(/images/inline_video_play_2x.png);
   background-size: 100%;
 }
-.video_module .video div.page_video_play_icon {
-  background-image: url(/images/module_inline_video_play_2x.png);
-  background-size: 100%;
+.is_2x .video_module .video div.page_video_play_icon {
+  background-image: url(/images/icons/video_play_2x.png);
+  background-size: 14px 18px;
 }
 .is_2x .apps_i_run_box,
 .is_2x .wall_module .video div.page_video_play_live {
@@ -1943,4 +1943,9 @@ body.dev.is_2x .priv_h_arrow,
 .is_2x .im_dialog_respond i {
   background: url(/images/icons/reply_mark_2x.png?2) center center no-repeat;
   background-size: 21px 12px;
+}
+.is_2x .settings_group_rows .olist_item_wrap:hover .olist_checkbox,
+.is_2x .settings_group_rows .olist_item_wrap.olist_item_wrap_on:hover .olist_checkbox {
+  background-image: url(/images/icons/check_follow_2x.png);
+  background-size: 18px 32px;
 }

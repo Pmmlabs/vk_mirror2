@@ -2448,6 +2448,15 @@ var Feed = {
     if (!f) return res;
 
     res.module = cur.module;
+    if (cur.module == 'feed') {
+      if (cur.section == 'search') {
+        res.module = 'feed_search';
+      } else if (cur.section == 'news' && cur.subsection) {
+        res.module = 'feed_news_' + cur.subsection;
+      } else {
+        res.module = 'feed_other';
+      }
+    }
 
     var dataAdView = f.getAttribute('data-ad-view');
     if (dataAdView) {

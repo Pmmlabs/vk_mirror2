@@ -1316,6 +1316,9 @@ a.ad_box_new:hover {
   -o-transition: background-color 200ms linear, color 200ms linear;
   transition: background-color 200ms linear, color 200ms linear;
 }
+.left_count_wrap.left_count_wrap_hovered:hover {
+  background-color: #BBC7D3;
+}
 .is_rtl1 .left_count_wrap {
   margin: 1px 1px 1px 0px !important;
 }

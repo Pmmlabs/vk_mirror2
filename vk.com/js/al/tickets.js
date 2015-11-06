@@ -1409,7 +1409,26 @@ onFavoriteChanged: function(val) {
   ajax.post(nav.objLoc[0], {act: 'favorite', ticket_id: cur.ticket_id, add: val ? 1 : 0, hash: cur.hashes.favorite_hash});
   return false;
 },
-
+onThanksChanged: function(disable) {
+  var fav = ge('thanks'), v, bg,
+      l = disable ? cur.lang.enable_thanks : cur.lang.disable_thanks;
+  if (fav) {
+    v = disable ? 0 : 1;
+    var text = '<a href="#" onclick="return Tickets.onThanksChanged(' + v + ');">' + l + '</a>';
+    fav.innerHTML = text;
+  } else {
+    v = disable ? 'enable_thanks' : 'disable_thanks';
+    bg = disable ? '3px -500px' : '3px -500px';
+    for (var i in cur.ticketsActions) {
+      if (cur.ticketsActions[i][0] == 'enable_thanks' || cur.ticketsActions[i][0] == 'disable_thanks') {
+        cur.ticketsActions[i] = [v, l, bg, cur.onPrivacyChanged.pbind('tickets_actions', v)];
+      }
+    }
+    cur.ticketsMenu.setItems(cur.ticketsActions);
+  }
+  ajax.post(nav.objLoc[0], {act: 'thanks_mod', ticket_id: cur.ticket_id, disable: disable ? 1 : 0, hash: cur.hashes.thanks_hash});
+  return false;
+},
 showPhoto: function(photoRaw, listId, opts) {
   var cbox = curBox();
   if (!cbox) {
