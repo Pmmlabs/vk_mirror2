@@ -3173,7 +3173,14 @@ var Wall = {
         my = hasClass(icon, hasClass(icon, 'fw_like_icon') ? 'fw_my_like' : 'my_like'),
         matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|market|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/),
         like_obj = (matches[3] || 'wall') + matches[1] + '_' + matches[4],
-        ref = cur.wallType ? (cur.wallType == 'feed' ? 'feed_' + cur.section : ('wall_' + (cur.onepost ? 'one' : (!(cur.wallType || '').indexOf('full_') ? 'full' : 'page')))) : cur.module;
+        ref = cur.module;
+    if (cur.wallType) {
+      if (cur.wallType == 'feed') {
+        ref = 'feed_' + ((cur.section == 'news' && cur.subsection) ? cur.subsection : cur.section)
+      } else {
+        ref = 'wall_' + (cur.onepost ? 'one' : (!(cur.wallType || '').indexOf('full_') ? 'full' : 'page'))
+      }
+    }
 
     ajax.post('like.php', {act: 'a_do_' + (my ? 'un' : '') + 'like', 'object': like_obj, hash: hash, wall: 2, from: ref}, {
       onDone: Wall.likeFullUpdate.pbind(post)
