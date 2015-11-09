@@ -11,6 +11,38 @@
   position: relative;
   overflow: hidden;
 }
+#mail_box_topic_wrap.mail_box_topic_wrap_no_ava #mail_box_ava {
+  display: none;
+}
+#mail_box_topic_wrap.mail_box_topic_wrap_no_ava #mail_box_topic {
+  margin-left: 0;
+}
+.mail_box_single_ava {
+  display: block;
+  float: left;
+  margin-right: 13px;
+}
+.mail_box_to_single {
+  margin: 8px 0;
+}
+.mail_box_label_peer {
+  color: #45688E;
+  display: block;
+  line-height: 1.27em;
+  padding: 8px 0 4px 0;
+  font-size: 1.09em;
+  font-weight: bold;
+}
+.mail_box_label_info {
+  color: #666666;
+  margin: 0;
+  padding: 0;
+}
+.mail_box_single_ava .mail_box_single_ava_img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
 .mail_box_close {
   padding: 17px 26px 18px;
   margin: -10px -10px -11px;
@@ -121,6 +153,11 @@
 #mail_box_to_full {
   margin: 0px;
 }
+#mail_box_to_full.mail_box_to_full_cls {
+  position: absolute;
+  right: 27px;
+  margin-top: 26px;
+}
 #mail_box_editable {
   background: #FFFFFF;
   color: black;
@@ -189,4 +226,14 @@
 }
 #mbe_emoji_progress {
   padding-top: 2px;
+}
+.mail_box_qm {
+  color: #9CABB8;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 11px;
+}
+.mailbox_hidden_override .wdd_bubbles,
+.mailbox_hidden_override .wdd_bubbles .wdd_add {
+  display: none !important;
 }

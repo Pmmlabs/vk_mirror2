@@ -5428,10 +5428,15 @@ var IM = {
     var tabEl = geByClass1('tab_word', ge('tab_dialogs'), 'b');
     ajax.post('al_im.php', {act: 'a_get_dialogs', offset: 0, unread: cur.unr, gid: cur.gid, type: cur.gfilter}, {
       onDone: function (options, rows, next_rows) {
-        hide('im_progress');
+        setStyle('im_progress', { display: 'none' });
         show('im_dialogs_summary');
         if (options.summary) {
           val('im_dialogs_summary', options.summary);
+          if (cur.gid) {
+            var sm = geByClass1('summary', ge('im_dialogs_summary'));
+            var time = getLang('mail_average_response_time_admin').replace('{time}', cur.average_time);
+            sm.innerHTML += '<div class="fl_r im_group_average_summary">' + time + '</div>';
+          }
           show('im_dialogs_summary');
         } else {
           hide('im_dialogs_summary');
@@ -5498,7 +5503,7 @@ var IM = {
       }
     });
     if (force) {
-      show('im_progress');
+      setStyle('im_progress', { display: 'inline-block' });
     }
   },
 
