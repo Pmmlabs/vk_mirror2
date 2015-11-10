@@ -1339,7 +1339,7 @@ var Apps = { // can be removed soon
     var p_options = [];
     for (var i in items) {
       var item = items[i];
-      p_options.push({i:i, l:item[0], onClick: (function(item) {
+      p_options.push({i:i, l:item[0], c:item[2] || '', onClick: (function(item) {
         eval(item[1]);
         cur.adminMenu.hide();
         return false;

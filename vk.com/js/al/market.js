@@ -516,12 +516,12 @@ var Market = {
     switch (code) {
       case 'ERR_UPLOAD_FILE_NOT_SUPPORTED': msg = getLang('profile_oph_err_format'); break;
       case 'ERR_UPLOAD_FILE_NOT_UPLOADED':
-        msg = getLang('profile_oph_err_upload').replace('{link}', '<a href="/support">').replace('{/link}', '</a>'); break;
+        msg = getLang('profile_oph_err_upload').replace('{link}', '<a href="/support?act=new&from=ph">').replace('{/link}', '</a>'); break;
       case 'ERR_UPLOAD_BAD_IMAGE_SIZE':
         msg = getLang('profile_oph_err_size').replace('{min}', '400').replace('{max}', '7<span class="num_delim"> </span>000'); break;
       case 'ERR_UPLOAD_TERMINATED': return;
       default:
-        msg = getLang('profile_oph_err_unknown').replace('{link}', '<a href="/support">').replace('{/link}', '</a>'); break;
+        msg = getLang('profile_oph_err_unknown').replace('{link}', '<a href="/support?act=new&from=ph">').replace('{/link}', '</a>'); break;
     }
     msg = msg.replace('{sorry}', '<b>' + getLang('global_error_occured') + '</b>');
 

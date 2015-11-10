@@ -330,6 +330,7 @@ var VideoYoutube = {
     var videoUnavaiableErrors = [100, 101, 150];
     console.log(event);
     if (videoUnavaiableErrors.indexOf(event.data) != -1) {
+      /*
       ajax.post('/al_video.php', {
         act: 'reparseDeletedYoutube',
         vid: VideoYoutube.cur.vars.vid,
@@ -342,6 +343,7 @@ var VideoYoutube = {
 
         }
       })
+      */
     }
   },
 

@@ -304,6 +304,22 @@ adminApp: function(act, id, hash, action, penalty, newCheck, banDomain, warnUser
   }, 'yes');
 },
 
+adminTogglePlatform: function(app_id, platform, hash) {
+  var el_node = geByClass1('app_admin_platform_toggle_item'+platform, cur.adminMenu.container);
+  console.log(el_node);
+  var params = {
+    act: 'a_toggle_platform_enabled',
+    app_id: app_id,
+    platform: platform,
+    hash: hash
+  };
+  ajax.post('apps_check', params, {
+    onDone: function(new_text) {
+      el_node.innerHTML = new_text;
+    }
+  });
+},
+
 uploadIcon: function() {
   showBox('editapp', {act: 'upload_icon_box', aid: cur.aid}, {params: {width: '430px', bodyStyle: 'padding: 0px; position: relative;', dark: 1}});
 },
