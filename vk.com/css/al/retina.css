@@ -110,7 +110,8 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x #im_filter_reset,
 .is_2x .apps_search_wrap .search_reset,
 .is_2x .app_search .search_reset,
-.is_2x #tickets_search_reset {
+.is_2x #tickets_search_reset,
+.is_2x #feed_query_reset {
   background-image: url(/images/icons/input_clear_2x.gif);
   background-size: 11px 11px;
 }
@@ -1751,7 +1752,8 @@ body.dev.is_2x .priv_h_arrow,
 }
 .is_2x .idd_wrap .idd_arrow,
 .is_2x .idd_popup .idd_header.idd_arrow,
-.video_extended_search_toggle .video_extended_search_toggle_icon {
+.is_2x .video_extended_search_toggle .video_extended_search_toggle_icon,
+.is_2x .feed_search_toggle_ext_btn_icon {
   background-image: url(/images/flydead_flat_2x.gif);
   background-size: 14px 90px;
 }

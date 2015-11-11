@@ -925,3 +925,7 @@ div.gtop_message {
 #public_like_module .group_send_msg {
   margin-bottom: 10px;
 }
+#public_like_module .group_send_msg .flat_button {
+  padding-top: 7px;
+  padding-bottom: 8px;
+}

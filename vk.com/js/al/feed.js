@@ -849,7 +849,8 @@ var Feed = {
         if (!(params.q = trim(val('feed_search')))) {
           delete params.section;
         }
-        if (!(params.sort = intval(cur.searchSortMenu && cur.searchSortMenu.val()))) {
+        // if (!(params.sort = intval(cur.searchSortMenu && cur.searchSortMenu.val()))) {
+        if (!(params.sort = intval(cur.search_sort_value))) {
           delete params.sort;
         }
         break;
@@ -883,6 +884,7 @@ var Feed = {
       cur.feedVideoTabHintEl.destroy();
     }
 
+    Feed.searchToggleHotHashtags(false);
     hide('feed_new_posts');
     cur.newPostsCount = 0;
     if (newSection == 'search' && !trim(val('feed_search'))) {
@@ -1031,7 +1033,16 @@ var Feed = {
         toggle('feed_bar', newTopTab != 'source');
       }
 
-      toggleClass('feed_bar', 'feed_bar_extended_search', newSection == 'search');
+      if (cur.section != 'search') {
+        toggle('feed_search_toggle_ext', newSection == 'search');
+        if (from == 3) {
+          Feed.searchToggleExtended(newSection == 'search');
+        }
+        Feed.toggleAdvancedSearch(false);
+        Feed.searchToggleHotHashtags(newSection == 'search');
+      }
+
+      toggle('feed_recommends', newSection == 'news');
     }
 
     if (from > 1 && newSection.indexOf('search') == -1 && val('feed_search')) {
@@ -1058,7 +1069,7 @@ var Feed = {
       hide('feed_menu_toggle');
     }
     toggle('feed_edit_hidden', newSection == 'news' || newSection == 'photos');
-    toggle('feed_search_sort', inArray(newSection, ['search'/*, 'photos_search'*/]));
+    // toggle('feed_search_sort', inArray(newSection, ['search'/*, 'photos_search'*/]));
     toggle('feed_period_select', newSection == 'articles' && cur.subsection == 'top');
     toggle('feed_rate_slider_wrap', newSection == 'articles' && cur.subsection == 'top');
 
@@ -1410,6 +1421,7 @@ var Feed = {
   switchSearch: function () {
     Feed.setSection('search', 4);
     Feed.searchToggleExtended(true);
+    Feed.searchToggleHotHashtags(true);
     setTimeout(elfocus.pbind('feed_search'), 10);
     statlogsValueEvent('feed_switch', 0, 'search');
   },
@@ -1440,9 +1452,14 @@ var Feed = {
       feed.switchSection(switchToBad);
       return;
     }
+    toggle('feed_search_hashtags', section == 'search' && Feed.highlightHotHashtag(query));
     var loadCb = false; // inArray(cur.section, ['comments', 'photos', 'search', 'articles_search']) ? false : feed.onLocalTabLoad;
     feed.setSection(switchTo, 1);
     feed.go(feed.getSectionParams(cur.section), loadCb);
+  },
+  setSearchSort: function(value) {
+    cur.search_sort_value = value;
+    Feed.submitSearch();
   },
   onLocalTabLoad: function (content) {
     if (window.wall) wall.cancelEdit();
@@ -2503,7 +2520,7 @@ var Feed = {
     ajax.post('al_feed.php', {act: 'a_get_search_extended'}, {cache: 1});
   },
   searchToggleExtended: function (enabled) {
-    if (cur.feedSearchExtendedLoaded || !enabled) {
+    if (cur.feedSearchExtendedLoaded || enabled === false) {
       toggle('feed_search_extform', enabled);
       return;
     }
@@ -2518,7 +2535,7 @@ var Feed = {
         hide('feed_progress');
         toggle('feed_menu_toggle', visibleBefore[0]);
         toggle('feed_edit_hidden', visibleBefore[1]);
-        toggle('feed_search_sort', visibleBefore[2]);
+        // toggle('feed_search_sort', visibleBefore[2]);
       },
       cache: 1,
       onDone: function (html, js) {
@@ -2528,6 +2545,48 @@ var Feed = {
         eval(js);
       }
     });
+  },
+  searchPreloadHotHashtags: function() {
+    ajax.post('al_feed.php', {act: 'a_get_hot_hashtags'}, {cache: 1});
+  },
+  searchToggleHotHashtags: function(visible) {
+    if (cur.feedSearchHashtagsLoaded || visible === false) {
+      toggle('feed_search_hashtags', visible);
+      return;
+    }
+
+    ajax.post('al_feed.php', {act: 'a_get_hot_hashtags'}, {cache: 1, onDone: onDone});
+    function onDone(html) {
+      if (cur.feedSearchHashtagsLoaded) return;
+      cur.feedSearchHashtagsLoaded = true;
+      if (html) {
+        ge('feed_bar').insertAdjacentHTML('afterend', html);
+      }
+      if (cur.section == 'search' && cur.q) {
+        toggle('feed_search_hashtags', Feed.highlightHotHashtag(cur.q));
+      }
+    }
+  },
+  searchSelectHotHashtag: function(el) {
+    Feed.submitSearch(val(el));
+  },
+  highlightHotHashtag: function(q) {
+    if (!cur.feedSearchHashtagsLoaded) return false;
+
+    q = q.toLowerCase();
+    var isHot = false;
+    var hashtags = geByClass('feed_search_hashtags_item', 'feed_search_hashtags');
+
+    each(hashtags, function(i, item) {
+      if (val(item).toLowerCase() == q) {
+        isHot = true;
+        addClass(item, 'feed_search_hashtags_item_active');
+        cur.hashtag = item;
+      } else {
+        removeClass(item, 'feed_search_hashtags_item_active');
+      }
+    });
+    return isHot;
   },
   searchAppendTag: function (tag, pattern, nosubmit) {
     if (!trim(tag) && !pattern) {
@@ -2662,6 +2721,14 @@ var Feed = {
     });
     Feed.searchUnchooseGeoPoint();
     Feed.searchUpdate();
+
+    if (cur.hashtag) {
+      removeClass(cur.hashtag, 'feed_search_hashtags_item_active');
+      cur.hashtag = null;
+    }
+    if (cur.section == 'search') {
+      Feed.searchToggleHotHashtags(true);
+    }
     if (!fire) {
       return;
     }
@@ -2802,6 +2869,7 @@ var Feed = {
         } else {
           val(cur.rowsCont, rows || '');
         }
+        options.section = cur.section;
         feed.applyOptions(options, 2);
         js && eval(js);
 
@@ -2854,19 +2922,21 @@ var Feed = {
 
     addEvent(searchEl, 'keydown focus', function (e) {
       if (e.type == 'focus') {
-        if (cur.section.indexOf('articles') && cur.section.indexOf('photos')) {
-          addClass('feed_bar', 'feed_bar_extended_search');
-        }
+        // if (cur.section.indexOf('articles') && cur.section.indexOf('photos')) { // TODO: remove
+        //   addClass('feed_bar', 'feed_bar_extended_search');
+        // }
         return;
       }
       if (e.keyCode == KEY.RETURN && (!FeedSearch.select || FeedSearch.select.active < 0)) {
-        if (val(searchEl)) {
+        var queryText = val(searchEl);
+        if (queryText) {
           feed.submitSearch();
-        } else if (cur.section == 'search' || cur.section == 'articles_search') {
-          if (feed.returnToFeed(false, false)) {
-            feed.go(feed.getSectionParams(cur.section == 'search' ? 'news' : 'articles'));
-          }
         }
+        //  else if (cur.section == 'search' || cur.section == 'articles_search') {
+        //   if (feed.returnToFeed(false, false)) {
+        //     feed.go(feed.getSectionParams(cur.section == 'search' ? 'news' : 'articles'));
+        //   }
+        // }
         searchEl.blur();
         clearTimeout(cur.requestTimeout);
         return cancelEvent(e);
@@ -2933,10 +3003,12 @@ var Feed = {
       }()),
 
       onFrameBlocksDone: /*vkLocal(*/function () {
-        hide('feed_progress');
+        if (cur.section != 'search') {
+          hide('feed_progress');
+        }
         feed.sliderHideProgress();
         toggle('feed_edit_hidden', cur.section == 'news' || cur.section == 'photos');
-        toggle('feed_search_sort', cur.section == 'search'/* || cur.section == 'photos_search'*/);
+        // toggle('feed_search_sort', cur.section == 'search'/* || cur.section == 'photos_search'*/);
         toggle('feed_menu_toggle', ge(feed.getTypesSection() + '_filters'));
         toggle('feed_rate_slider_wrap', cur.section == 'articles' && cur.subsection == 'top');
         cur.isFeedLoading = false;
@@ -3155,9 +3227,8 @@ var Feed = {
       hideProgress: unlockButton.pbind(btn)
     });
   },
-  toggleAdvancedSearch: function() {
-    var feedSearchWrap = ge('feed_bar');
-    toggleClass('feed_bar', 'feed_bar_extended_search');
+  toggleAdvancedSearch: function(visible) {
+    toggleClass('feed_bar', 'feed_bar_extended_search', visible);
   }
 };
 window.feed = Feed;

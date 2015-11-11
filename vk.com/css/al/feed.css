@@ -28,6 +28,47 @@
   height: 0 !important;
   opacity: 0 !important;
 }
+.feed_search_form {
+  display: table;
+  width: 100%;
+}
+.feed_search_input_wrap,
+.feed_search_toggle_ext {
+  display: table-cell;
+}
+.feed_search_input_wrap {
+  width: 100%;
+  position: relative;
+}
+.feed_search_toggle_ext {
+  vertical-align: middle;
+}
+.feed_search_toggle_ext_btn {
+  margin-left: 9px;
+  padding: 7px 5px 7px 9px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  white-space: nowrap;
+  color: #45688E;
+  cursor: pointer;
+}
+.feed_search_toggle_ext_btn:hover {
+  background-color: #E1E6EB;
+}
+.feed_search_toggle_ext_btn_icon {
+  display: inline-block;
+  vertical-align: top;
+  background-image: url(/images/flydead_flat.gif);
+  background-position: 0px 0px;
+  width: 14px;
+  height: 9px;
+  margin-left: 3px;
+  margin-top: 2px;
+}
+.feed_bar_extended_search .feed_search_toggle_ext_btn_icon {
+  background-position: 0 -79px;
+}
 #feed_search_wrap {
   clear: left;
   padding: 0;
@@ -36,7 +77,10 @@
 #feed_search {
   margin: 0;
   padding: 6px 21px 6px 20px;
-  width: 554px;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
   line-height: 1.27em;
   background: #ffffff url(/images/magglass.png) no-repeat 5px 8px;
   outline: none;
@@ -51,11 +95,12 @@
   padding: 1px;
   width: 22px;
   height: 25px;
-  margin: 0 0 0 573px;
   opacity: 0.6;
   filter: alpha(opacity=60);
   z-index: 100;
   position: absolute;
+  top: 0;
+  right: 0;
 }
 #feed_query_reset:hover {
   opacity: 1;
@@ -1899,4 +1944,27 @@ a.feed_article_thumb {
 }
 .feed_rb_cancel_hide:hover {
   text-decoration: underline;
+}
+.feed_search_hashtags_wrap {
+  padding: 10px 10px 0;
+}
+.feed_search_hashtags_item {
+  display: inline-block;
+  float: left;
+  padding: 3px 8px 4px;
+  margin: 0 6px 6px 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  font-weight: bold;
+  background-color: #E1E7ED;
+  color: #44688E;
+  cursor: pointer;
+}
+.feed_search_hashtags_item:hover {
+  background-color: #D5DDE6;
+}
+.feed_search_hashtags_item.feed_search_hashtags_item_active {
+  background-color: #597DA3;
+  color: #fff;
 }

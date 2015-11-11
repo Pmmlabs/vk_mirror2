@@ -636,19 +636,20 @@ h4.faq_question .faq_info {
 }
 .faq_content_search {
   border-bottom: 1px solid #DAE1E8;
-  padding: 16px 9px;
+  padding: 11px 65px 6px;
 }
 .faq_content_search__text {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  width: 390px;
+  width: 495px;
 }
 .faq_content_search__text.text {
-  margin-right: 15px;
-}
-.faq_content_search__text.text {
+  margin-bottom: 2px;
   padding: 6px 8px;
+}
+.faq_content_search__filters {
+  padding-left: 36px;
 }
 .faq_tiles_editor {
   background: #fff;
