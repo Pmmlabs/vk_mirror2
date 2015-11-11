@@ -1959,10 +1959,12 @@ a.feed_article_thumb {
   font-weight: bold;
   background-color: #E1E7ED;
   color: #44688E;
+  text-decoration: none;
   cursor: pointer;
 }
 .feed_search_hashtags_item:hover {
   background-color: #D5DDE6;
+  text-decoration: none;
 }
 .feed_search_hashtags_item.feed_search_hashtags_item_active {
   background-color: #597DA3;

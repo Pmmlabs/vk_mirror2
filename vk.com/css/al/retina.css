@@ -1955,3 +1955,7 @@ body.dev.is_2x .priv_h_arrow,
   background-image: url(/images/icons/check_follow_2x.png);
   background-size: 18px 32px;
 }
+.is_2x .tickets_mobile_notice__close {
+  background-image: url(/images/icons/thin_close_2x.png);
+  background-size: 11px 11px;
+}

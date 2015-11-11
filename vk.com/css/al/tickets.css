@@ -2851,3 +2851,30 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 .tickets_new_extra_field__example {
   margin-top: 0.5em;
 }
+.tickets_mobile_notice {
+  background: #e6ecf1;
+  border-bottom: 1px solid #cdd8e0;
+  color: #4C6B8F;
+  padding: 18px 18px;
+  position: relative;
+}
+.tickets_mobile_notice__close {
+  height: 11px;
+  width: 11px;
+  background-image: url('/images/icons/thin_close.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  content: "";
+  position: absolute;
+  cursor: pointer;
+  top: 7px;
+  right: 7px;
+  opacity: 0.5;
+}
+.tickets_mobile_notice__close:hover {
+  opacity: 1;
+}
+.tickets_mobile_notice__a {
+  color: #476586;
+  font-weight: bold;
+}

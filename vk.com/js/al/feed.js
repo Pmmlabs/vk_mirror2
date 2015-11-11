@@ -2569,6 +2569,7 @@ var Feed = {
   },
   searchSelectHotHashtag: function(el) {
     Feed.submitSearch(val(el));
+    return false;
   },
   highlightHotHashtag: function(q) {
     if (!cur.feedSearchHashtagsLoaded) return false;
