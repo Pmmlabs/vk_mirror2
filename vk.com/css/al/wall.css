@@ -347,7 +347,7 @@ div.fw_post_info {
   width: 17px;
 }
 #wall_notification .hide_notice {
-  background: #c4d2e1 url("/images/icons/xicon_f7.gif") no-repeat;
+  background: #C4D2E1 url("/images/icons/xicon_f7.gif") no-repeat;
   cursor: pointer;
   height: 17px;
   width: 17px;
@@ -374,7 +374,7 @@ div.fw_post_info {
   width: 492px;
   height: 14px;
   line-height: 1.27em;
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+  background: #FFF url(/images/magglass.png) no-repeat 5px 6px;
 }
 #wall_search_btn {
   padding-left: 2px;

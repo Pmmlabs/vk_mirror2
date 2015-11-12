@@ -490,7 +490,7 @@ body.mobfixed #ba_post.fixed {
 }
 #board_q {
   width: 265px;
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+  background: #FFF url(/images/magglass.png) no-repeat 5px 6px;
   outline: none;
   padding: 5px 20px;
 }

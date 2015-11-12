@@ -15,8 +15,8 @@ body {
 }
 .box_login {
   background: #F4F4F4;
-  background: -webkit-gradient(linear, left top, left bottom, from(#f4f4f4), to(#e4e4e4));
-  background: -moz-linear-gradient(top, #f4f4f4, #e4e4e4);
+  background: -webkit-gradient(linear, left top, left bottom, from(#F4F4F4), to(#E4E4E4));
+  background: -moz-linear-gradient(top, #F4F4F4, #E4E4E4);
 }
 .box_access {
   background: #FFFFFF;

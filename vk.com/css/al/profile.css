@@ -73,7 +73,7 @@
 }
 #profile_no_lohotron .hide_notice,
 #profile_notification .hide_notice {
-  background: #c4d2e1 url("/images/icons/xicon_f7.gif") no-repeat;
+  background: #C4D2E1 url("/images/icons/xicon_f7.gif") no-repeat;
   cursor: pointer;
   height: 17px;
   width: 17px;
@@ -518,7 +518,7 @@ a:hover .profile_photo_hide_wrap {
 }
 .module_inverted_loading #gifts_module_header,
 .gifts_inverted_loading .profile_gifts_send {
-  background: #597da3 url('/images/upload_inv_mini.gif') right 5px no-repeat;
+  background: #597DA3 url('/images/upload_inv_mini.gif') right 5px no-repeat;
   padding-right: 23px;
 }
 .gifts_inverted_loading .profile_gifts_send {
@@ -850,7 +850,7 @@ div.profile_grad {
 }
 .profile_upload_progress {
   height: 18px;
-  background: #597da3 url(/images/progress_grad.gif) repeat;
+  background: #597DA3 url(/images/progress_grad.gif) repeat;
   border: 1px solid #45688E;
   margin: -1px;
 }
@@ -1010,7 +1010,7 @@ a#profile_photos_upload:hover,
 }
 .profile_progress {
   height: 18px;
-  background: #597da3 url(/images/progress_grad.gif) repeat;
+  background: #597DA3 url(/images/progress_grad.gif) repeat;
   border: 1px solid #45688E;
   margin: -1px;
 }
@@ -1122,7 +1122,7 @@ b.profile_mob_onl {
   height: 200px;
 }
 #profile_map_cont > ymaps:first-child {
-  background: #ffffff url(/images/upload.gif) no-repeat 50% 50% !important;
+  background: #FFFFFF url(/images/upload.gif) no-repeat 50% 50% !important;
   background-size: 32px 8px;
 }
 .is_2x #profile_map_cont > ymaps:first-child {

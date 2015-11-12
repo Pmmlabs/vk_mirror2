@@ -1442,7 +1442,7 @@ body.dev a.dev_platform_info {
   margin-bottom: 12px;
 }
 input.dev_section_search {
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 7px;
+  background: #FFF url(/images/magglass.png) no-repeat 5px 7px;
   outline: none;
   width: 94px;
   padding: 6px 40px 6px 20px;

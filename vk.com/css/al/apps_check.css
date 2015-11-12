@@ -88,7 +88,7 @@
   background: url('/images/dropdead_check.gif') no-repeat 4px 4px;
 }
 .apps_lists_menu .apps_lists_rows a.checked:hover {
-  background: #eef2f6 url('/images/dropdead_check.gif') no-repeat 4px 4px;
+  background: #EEF2F6 url('/images/dropdead_check.gif') no-repeat 4px 4px;
 }
 a.lists_select {
   padding: 5px 19px 4px 7px;
@@ -384,7 +384,7 @@ a.app_action:hover {
   width: 502px;
   height: 14px;
   line-height: 1.27em;
-  background: #ffffff url('/images/magglass.png') no-repeat 5px 6px;
+  background: #FFF url('/images/magglass.png') no-repeat 5px 6px;
 }
 .apps_check_img_wrap {
   background: #F0F2F5;

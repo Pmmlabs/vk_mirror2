@@ -24,13 +24,13 @@
 }
 #friends #s_search {
   width: 545px;
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+  background: #FFF url(/images/magglass.png) no-repeat 5px 6px;
   outline: none;
   padding: 5px 40px 6px 20px;
 }
 .is_rtl1 #friends #s_search {
   padding: 5px 20px 6px 40px;
-  background: #ffffff url(/images/magglass.png) no-repeat 328px 6px;
+  background: #FFF url(/images/magglass.png) no-repeat 328px 6px;
 }
 #friends #s_search.s_search_inv {
   width: 284px;
@@ -528,7 +528,7 @@
   margin-top: -2px;
 }
 #friends .delete_row div {
-  background: #ffffff url(/images/pics/statusx.gif) no-repeat;
+  background: #FFFFFF url(/images/pics/statusx.gif) no-repeat;
   cursor: pointer;
   height: 17px;
   width: 17px;
@@ -558,7 +558,7 @@
   height: 18px;
 }
 #friend_convert_bar div {
-  background: #597da3 url(/images/progress_grad.gif) repeat;
+  background: #597DA3 url(/images/progress_grad.gif) repeat;
   border: 1px solid #45688E;
   margin: -1px;
   width: 1%;

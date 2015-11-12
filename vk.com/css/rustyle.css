@@ -267,21 +267,21 @@ h5 .edit a:hover {
   position: absolute;
   width: 100%;
   height: 40px;
-  background: #4e729a url(/images/hatf.gif?1) 0px -43px repeat-x;
+  background: #4E729A url(/images/hatf.gif?1) 0px -43px repeat-x;
 }
 #pageHeader .header_left {
   position: absolute;
   left: 0px;
   width: 134px;
   height: 40px;
-  background: #4e729a url(/images/hatf.gif?1) 0px -1px;
+  background: #4E729A url(/images/hatf.gif?1) 0px -1px;
 }
 #top_logo_down {
   margin-left: 4px;
   visibility: hidden;
   width: 134px;
   height: 36px;
-  background: #4e729a url(/images/hatf.gif?1) -4px 0px;
+  background: #4E729A url(/images/hatf.gif?1) -4px 0px;
   margin-right: 8px;
 }
 .is_2x #pageHeader .header_back,
@@ -337,7 +337,7 @@ h5 .edit a:hover {
   width: 11px;
   border-right: 1px solid #FFF;
   height: 40px;
-  background: #4e729a url(/images/hatf.gif?1) 100% -1px;
+  background: #4E729A url(/images/hatf.gif?1) 100% -1px;
 }
 /*
 #pageHeader.p_head_l777 .header_left, #pageHeader.p_head_l777 .header_right, #pageHeader.p_head_l777 .header_back {
@@ -367,10 +367,10 @@ h5 .edit a:hover {
 }
 #pageHeader.p_head1 .header_left {
   width: 48px;
-  background: #4e729a url(/images/hatf_vk.gif?1) 0px -1px;
+  background: #4E729A url(/images/hatf_vk.gif?1) 0px -1px;
 }
 #pageHeader.p_head1 #top_logo_down {
-  background: #4e729a url(/images/hatf_vk.gif?1) -4px 0px;
+  background: #4E729A url(/images/hatf_vk.gif?1) -4px 0px;
 }
 .is_2x #pageHeader.p_head1 .header_left,
 .is_2x #pageHeader.p_head1 #top_logo_down {
@@ -1464,7 +1464,7 @@ p#dld,
   margin: 8px;
   text-align: left;
   background-color: #F9F6E7;
-  border: 1px solid #d4bc4c;
+  border: 1px solid #D4BC4C;
 }
 ul.nNav {
   font-size: 11px;
@@ -1498,7 +1498,7 @@ ul.nNav {
   height: 1px;
   font-size: .01em;
   overflow: hidden;
-  background: #4d7196;
+  background: #4D7196;
 }
 .nc1 {
   margin-left: 1px;
@@ -1510,7 +1510,7 @@ ul.nNav {
 .nc2 {
   border-left: 1px solid #93A9BD;
   border-right: 1px solid #93A9BD;
-  background: #55789b;
+  background: #55789B;
 }
 .ncc {
   display: block;
@@ -1533,7 +1533,7 @@ ul.nNav {
   _width: 108px;
   _overflow: hidden;
   text-align: center;
-  background: #faf3d8 url(/images/golden.gif) repeat-x bottom;
+  background: #FAF3D8 url(/images/golden.gif) repeat-x bottom;
   margin: 0px 0px 10px 0px;
   border-bottom: 1px solid #FBE172;
 }
@@ -1562,7 +1562,7 @@ ul.nNav {
 .rateRedBody {
   padding: 4px;
   text-align: center;
-  background: #f0d6c7 url(/images/redl.gif) repeat-x top;
+  background: #F0D6C7 url(/images/redl.gif) repeat-x top;
   border: 8px solid #C68D69;
 }
 .rateRedBody div {
@@ -1587,7 +1587,7 @@ ul.nNav {
 }
 .rateGreenBody {
   padding: 4px;
-  background: #d5eabb url(/images/greenl.gif) repeat-x top;
+  background: #D5EABB url(/images/greenl.gif) repeat-x top;
   border: 8px solid #8DBF56;
   padding-bottom: 7px;
   text-align: center;
@@ -1622,7 +1622,7 @@ ul.nNav {
 .rateBlueBody {
   padding: 4px;
   text-align: center;
-  background: #d9e6ee url(/images/bluel.gif) repeat-x top;
+  background: #D9E6EE url(/images/bluel.gif) repeat-x top;
   border: 8px solid #99B3C9;
 }
 .rateBlueBody div {
@@ -1725,7 +1725,7 @@ wbr {
   padding: 2px 22px 4px 0px;
   color: #999;
   cursor: pointer;
-  background: #ffffff url('/images/darr.gif') no-repeat 132px 4px;
+  background: #FFF url('/images/darr.gif') no-repeat 132px 4px;
 }
 .qdrop_on,
 .qdrop_over {
@@ -1941,7 +1941,7 @@ a.qfr_lnk:hover {
   margin: 7px 5px 0px 0px;
   cursor: pointer;
   padding: 0;
-  background: #9db7d4 url(/images/boxicon_vk.gif) -23px -2px;
+  background: #9DB7D4 url(/images/boxicon_vk.gif) -23px -2px;
 }
 .box_full_page_link {
   background-position: -2px -2px;
@@ -2089,7 +2089,7 @@ a.button_gray:hover {
   border: 0;
   border-bottom: 1px solid #496b93;
   text-shadow: 0 1px 0 #5578A0;
-  background: #658ab0 url(/images/button_bgf.png?1) repeat-x top;
+  background: #658AB0 url(/images/button_bgf.png?1) repeat-x top;
   background-position: 0px -12px;
   *border: 0;
   color: #FFF;
@@ -2124,7 +2124,7 @@ a.button_gray:hover {
   color: #555;
   text-shadow: 0 1px 0 #F6F6F6;
   *border: 0;
-  background: #e9e9e9 url(/images/button_bgf.png?1) repeat-x top;
+  background: #E9E9E9 url(/images/button_bgf.png?1) repeat-x top;
   background-position: 0px -59px;
 }
 .button_gray button:hover,

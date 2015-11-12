@@ -148,10 +148,10 @@ body.landscape #touch_layout {
   border-top: 1px solid #5A7B9F;
   border-bottom: 1px solid #466891;
   background: #6786A9;
-  background: -webkit-gradient(linear, left top, left bottom, from(#6786a9), to(#4b6e96));
-  background: -webkit-linear-gradient(top, #6786a9, #4b6e96);
-  background: -moz-linear-gradient(top, #6786a9, #4b6e96);
-  background: -o-linear-gradient(top, #6786a9, #4b6e96);
+  background: -webkit-gradient(linear, left top, left bottom, from(#6786A9), to(#4B6E96));
+  background: -webkit-linear-gradient(top, #6786A9, #4B6E96);
+  background: -moz-linear-gradient(top, #6786A9, #4B6E96);
+  background: -o-linear-gradient(top, #6786A9, #4B6E96);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 #body_footer_scroller .touch_header {
@@ -221,10 +221,10 @@ body.landscape #touch_layout {
   -moz-border-radius: 5px;
   border-radius: 5px;
   background: #5A799E;
-  background: -webkit-gradient(linear, left top, left bottom, from(#5a799e), to(#3e6088)) transparent;
-  background: -webkit-linear-gradient(top, #5a799e, #3e6088);
-  background: -moz-linear-gradient(top, #5a799e, #3e6088);
-  background: -o-linear-gradient(top, #5a799e, #3e6088);
+  background: -webkit-gradient(linear, left top, left bottom, from(#5A799E), to(#3E6088)) transparent;
+  background: -webkit-linear-gradient(top, #5A799E, #3E6088);
+  background: -moz-linear-gradient(top, #5A799E, #3E6088);
+  background: -o-linear-gradient(top, #5A799E, #3E6088);
   font-weight: bold;
   color: #FFF;
   text-shadow: #335479 0px 1px 0;
@@ -241,10 +241,10 @@ body.landscape #touch_layout {
   border-color: #345379;
   text-shadow: #2A4B71 0px 1px 0;
   background: #47688E;
-  background: -webkit-gradient(linear, left top, left bottom, from(#47688e), to(#37587f));
-  background: -webkit-linear-gradient(top, #47688e, #37587f);
-  background: -moz-linear-gradient(top, #47688e, #37587f);
-  background: -o-linear-gradient(top, #47688e, #37587f);
+  background: -webkit-gradient(linear, left top, left bottom, from(#47688E), to(#37587F));
+  background: -webkit-linear-gradient(top, #47688E, #37587F);
+  background: -moz-linear-gradient(top, #47688E, #37587F);
+  background: -o-linear-gradient(top, #47688E, #37587F);
   -webkit-box-shadow: inset #36567C 0px 1px 0px, #7B95B2 0px 1px 1px;
   -moz-box-shadow: inset #36567C 0px 1px 0px, #7B95B2 0px 1px 1px;
   box-shadow: inset #36567C 0px 1px 0px, #7B95B2 0px 1px 1px;
@@ -253,10 +253,10 @@ body.landscape #touch_layout {
   color: #E4ECF6;
   border-color: #345379;
   background: #47688E !important;
-  background: -webkit-gradient(linear, left top, left bottom, from(#47688e), to(#37587f)) !important;
-  background: -webkit-linear-gradient(top, #47688e, #37587f) !important;
-  background: -moz-linear-gradient(top, #47688e, #37587f) !important;
-  background: -o-linear-gradient(top, #47688e, #37587f) !important;
+  background: -webkit-gradient(linear, left top, left bottom, from(#47688E), to(#37587F)) !important;
+  background: -webkit-linear-gradient(top, #47688E, #37587F) !important;
+  background: -moz-linear-gradient(top, #47688E, #37587F) !important;
+  background: -o-linear-gradient(top, #47688E, #37587F) !important;
   -webkit-box-shadow: inset #36567C 0px 1px 0px, #7B95B2 0px 1px 1px !important;
   -moz-box-shadow: inset #36567C 0px 1px 0px, #7B95B2 0px 1px 1px !important;
   box-shadow: inset #36567C 0px 1px 0px, #7B95B2 0px 1px 1px !important;
@@ -277,10 +277,10 @@ body.landscape #touch_layout {
   -moz-border-radius: 3px;
   border-radius: 3px;
   background: #5A799E;
-  background: -webkit-gradient(linear, left top, right bottom, from(#5a799e), to(#3e6088)) transparent;
-  background: -webkit-linear-gradient(top, #5a799e, #3e6088);
-  background: -moz-linear-gradient(top, #5a799e, #3e6088);
-  background: -o-linear-gradient(top, #5a799e, #3e6088);
+  background: -webkit-gradient(linear, left top, right bottom, from(#5A799E), to(#3E6088)) transparent;
+  background: -webkit-linear-gradient(top, #5A799E, #3E6088);
+  background: -moz-linear-gradient(top, #5A799E, #3E6088);
+  background: -o-linear-gradient(top, #5A799E, #3E6088);
   font-weight: bold;
   color: #FFF;
   -webkit-box-shadow: #7B95B2 0px 1px 0px;
@@ -419,10 +419,10 @@ a.mention_link {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   background: #6B8AAC;
-  background: -webkit-gradient(linear, left top, left bottom, from(#6b8aac), to(#4d7098));
-  background: -webkit-linear-gradient(top, #6b8aac, #4d7098);
-  background: -moz-linear-gradient(top, #6b8aac, #4d7098);
-  background: -o-linear-gradient(top, #6b8aac, #4d7098);
+  background: -webkit-gradient(linear, left top, left bottom, from(#6B8AAC), to(#4D7098));
+  background: -webkit-linear-gradient(top, #6B8AAC, #4D7098);
+  background: -moz-linear-gradient(top, #6B8AAC, #4D7098);
+  background: -o-linear-gradient(top, #6B8AAC, #4D7098);
 }
 .touch_tabs li span {
   color: #3C5F85;
@@ -441,10 +441,10 @@ a.mention_link {
 /* Textarea and input container */
 .input_bar {
   background: #F5F5F5;
-  background: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#e4e4e4));
-  background: -webkit-linear-gradient(top, #f5f5f5, #e4e4e4);
-  background: -moz-linear-gradient(top, #f5f5f5, #e4e4e4);
-  background: -o-linear-gradient(top, #f5f5f5, #e4e4e4);
+  background: -webkit-gradient(linear, left top, left bottom, from(#F5F5F5), to(#E4E4E4));
+  background: -webkit-linear-gradient(top, #F5F5F5, #E4E4E4);
+  background: -moz-linear-gradient(top, #F5F5F5, #E4E4E4);
+  background: -o-linear-gradient(top, #F5F5F5, #E4E4E4);
   border-bottom: 1px solid #C6C6C6;
   padding: 11px 10px 10px;
   z-index: 100;
@@ -555,10 +555,10 @@ a.mention_link {
   border-color: #3B5B80;
   text-shadow: #3F5F84 0px 1px 0;
   background: #6A88AB;
-  background: -webkit-gradient(linear, left top, left bottom, from(#6a88ab), to(#4d7098));
-  background: -webkit-linear-gradient(top, #6a88ab, #4d7098);
-  background: -moz-linear-gradient(top, #6a88ab, #4d7098);
-  background: -o-linear-gradient(top, #6a88ab, #4d7098);
+  background: -webkit-gradient(linear, left top, left bottom, from(#6A88AB), to(#4D7098));
+  background: -webkit-linear-gradient(top, #6A88AB, #4D7098);
+  background: -moz-linear-gradient(top, #6A88AB, #4D7098);
+  background: -o-linear-gradient(top, #6A88AB, #4D7098);
   -webkit-box-shadow: inset #7A97B8 0px 1px 0px, #EFEFEF 0px 1px 0px;
   -moz-box-shadow: inset #7A97B8 0px 1px 0, #EFEFEF 0px 1px 0px;
   box-shadow: inset #7A97B8 0 1px 0, #EFEFEF 0px 1px 0;
@@ -567,10 +567,10 @@ a.mention_link {
   color: #E5EBF1;
   border-color: #3B5B80 #3B5B80 #4F6C8D;
   text-shadow: #37587D 0px 1px 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(#5a7ba0), to(#41658e));
-  background: -webkit-linear-gradient(top, #5a7ba0, #41658e);
-  background: -moz-linear-gradient(top, #5a7ba0, #41658e);
-  background: -o-linear-gradient(top, #5a7ba0, #41658e);
+  background: -webkit-gradient(linear, left top, left bottom, from(#5A7BA0), to(#41658E));
+  background: -webkit-linear-gradient(top, #5A7BA0, #41658E);
+  background: -moz-linear-gradient(top, #5A7BA0, #41658E);
+  background: -o-linear-gradient(top, #5A7BA0, #41658E);
   -webkit-box-shadow: inset #496A90 0 1px 0px, #EFEFEF 0px 1px 0px;
   -moz-box-shadow: inset #496A90 0 1px 0px, #EFEFEF 0px 1px 0px;
   box-shadow: inset #496A90 0px 1px 0, #EFEFEF 0px 1px 0px;
@@ -581,10 +581,10 @@ a.mention_link {
   border-color: #A8A8A8 #A8A8A8 #949494;
   text-shadow: #E6E6E6 0px 1px 0;
   background: #E9E9E9;
-  background: -webkit-gradient(linear, left top, left bottom, from(#e9e9e9), to(#d0d0d0));
-  background: -webkit-linear-gradient(top, #e9e9e9, #d0d0d0);
-  background: -moz-linear-gradient(top, #e9e9e9, #d0d0d0);
-  background: -o-linear-gradient(top, #e9e9e9, #d0d0d0);
+  background: -webkit-gradient(linear, left top, left bottom, from(#E9E9E9), to(#D0D0D0));
+  background: -webkit-linear-gradient(top, #E9E9E9, #D0D0D0);
+  background: -moz-linear-gradient(top, #E9E9E9, #D0D0D0);
+  background: -o-linear-gradient(top, #E9E9E9, #D0D0D0);
   -webkit-box-shadow: inset #FFFFFF 0px 1px 0px, #EFEFEF 0px 1px 0px;
   -moz-box-shadow: inset #FFFFFF 0px 1px 0px, #EFEFEF 0px 1px 0px;
   box-shadow: inset #FFFFFF 0px 1px 0px, #EFEFEF 0px 1px 0px;
@@ -594,10 +594,10 @@ a.mention_link {
   border-color: #949494 #949494 #A1A1A1;
   text-shadow: #CECECE 0px 1px 0;
   background: #CCCCCC;
-  background: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#acacac));
-  background: -webkit-linear-gradient(top, #cccccc, #acacac);
-  background: -moz-linear-gradient(top, #cccccc, #acacac);
-  background: -o-linear-gradient(top, #cccccc, #acacac);
+  background: -webkit-gradient(linear, left top, left bottom, from(#CCCCCC), to(#ACACAC));
+  background: -webkit-linear-gradient(top, #CCCCCC, #ACACAC);
+  background: -moz-linear-gradient(top, #CCCCCC, #ACACAC);
+  background: -o-linear-gradient(top, #CCCCCC, #ACACAC);
   -webkit-box-shadow: inset #AFB0B0 0px 1px 0px, #EFEFEF 0px 1px 0px;
   -moz-box-shadow: inset #AFB0B0 0px 1px 0px, #EFEFEF 0px 1px 0px;
   box-shadow: inset #AFB0B0 0px 1px 0px, #EFEFEF 0px 1px 0px;
@@ -627,9 +627,9 @@ a.mention_link {
   border-width: 1px 1px 0;
   border-style: solid;
   border-color: #AFBAC6 #D0D7DF;
-  -webkit-box-shadow: inset #c5ccd4 0px 1px 0px, inset #d0d7df 0px 2px 0px, inset #d9dfe6 1px 3px 0px, inset #d9dfe6 -1px 3px 0px, inset #dee4eb 2px 4px 0px, inset #dee4eb -2px 4px 0px;
-  -moz-box-shadow: inset #c5ccd4 0px 1px 0px, inset #d0d7df 0px 2px 0px, inset #d9dfe6 1px 3px 0px, inset #d9dfe6 -1px 3px 0px, inset #dee4eb 2px 4px 0px, inset #dee4eb -2px 4px 0px;
-  box-shadow: inset #c5ccd4 0px 1px 0px, inset #d0d7df 0px 2px 0px, inset #d9dfe6 1px 3px 0px, inset #d9dfe6 -1px 3px 0px, inset #dee4eb 2px 4px 0px, inset #dee4eb -2px 4px 0px;
+  -webkit-box-shadow: inset #C5CCD4 0px 1px 0px, inset #D0D7DF 0px 2px 0px, inset #D9DFE6 1px 3px 0px, inset #D9DFE6 -1px 3px 0px, inset #DEE4EB 2px 4px 0px, inset #DEE4EB -2px 4px 0px;
+  -moz-box-shadow: inset #C5CCD4 0px 1px 0px, inset #D0D7DF 0px 2px 0px, inset #D9DFE6 1px 3px 0px, inset #D9DFE6 -1px 3px 0px, inset #DEE4EB 2px 4px 0px, inset #DEE4EB -2px 4px 0px;
+  box-shadow: inset #C5CCD4 0px 1px 0px, inset #D0D7DF 0px 2px 0px, inset #D9DFE6 1px 3px 0px, inset #D9DFE6 -1px 3px 0px, inset #DEE4EB 2px 4px 0px, inset #DEE4EB -2px 4px 0px;
 }
 .plain_footer {
   border: 0;
@@ -694,10 +694,10 @@ a.mention_link {
 }
 .touch_main .hover {
   background: #6786A9;
-  background: -webkit-gradient(linear, left top, left bottom, from(#6786a9), to(#4c6e97));
-  background: -webkit-linear-gradient(top, #6786a9, #4c6e97);
-  background: -moz-linear-gradient(top, #6786a9, #4c6e97);
-  background: -o-linear-gradient(top, #6786a9, #4c6e97);
+  background: -webkit-gradient(linear, left top, left bottom, from(#6786A9), to(#4C6E97));
+  background: -webkit-linear-gradient(top, #6786A9, #4C6E97);
+  background: -moz-linear-gradient(top, #6786A9, #4C6E97);
+  background: -o-linear-gradient(top, #6786A9, #4C6E97);
   border-bottom-color: #486588;
 }
 .touch_main .menu_item:nth-last-child(1) {
@@ -824,10 +824,10 @@ a.mention_link {
 #friends .hover,
 #profile_wall .hover {
   background: #6786A9;
-  background: -webkit-gradient(linear, left top, left bottom, from(#6786a9), to(#4c6e97));
-  background: -webkit-linear-gradient(top, #6786a9, #4c6e97);
-  background: -moz-linear-gradient(top, #6786a9, #4c6e97);
-  background: -o-linear-gradient(top, #6786a9, #4c6e97);
+  background: -webkit-gradient(linear, left top, left bottom, from(#6786A9), to(#4C6E97));
+  background: -webkit-linear-gradient(top, #6786A9, #4C6E97);
+  background: -moz-linear-gradient(top, #6786A9, #4C6E97);
+  background: -o-linear-gradient(top, #6786A9, #4C6E97);
   border-bottom-color: #486588;
 }
 .post_row:nth-last-child(1),
@@ -1122,10 +1122,10 @@ a.mention_link {
   padding-bottom: 0px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
   background: #F4F4F4;
-  background: -webkit-gradient(linear, left top, left bottom, from(#f4f4f4), to(#e4e4e4));
-  background: -webkit-linear-gradient(top, #f4f4f4, #e4e4e4);
-  background: -moz-linear-gradient(top, #f4f4f4, #e4e4e4);
-  background: -o-linear-gradient(top, #f4f4f4, #e4e4e4);
+  background: -webkit-gradient(linear, left top, left bottom, from(#F4F4F4), to(#E4E4E4));
+  background: -webkit-linear-gradient(top, #F4F4F4, #E4E4E4);
+  background: -moz-linear-gradient(top, #F4F4F4, #E4E4E4);
+  background: -o-linear-gradient(top, #F4F4F4, #E4E4E4);
   border-bottom: 1px solid #C9C9C9;
   min-height: 60px;
 }
@@ -1176,10 +1176,10 @@ a.mention_link {
 /* Profile pages */
 #profile_top {
   background: #F4F4F4;
-  background: -webkit-gradient(linear, left top, left bottom, from(#f4f4f4), to(#e4e4e4));
-  background: -webkit-linear-gradient(top, #f4f4f4, #e4e4e4);
-  background: -moz-linear-gradient(top, #f4f4f4, #e4e4e4);
-  background: -o-linear-gradient(top, #f4f4f4, #e4e4e4);
+  background: -webkit-gradient(linear, left top, left bottom, from(#F4F4F4), to(#E4E4E4));
+  background: -webkit-linear-gradient(top, #F4F4F4, #E4E4E4);
+  background: -moz-linear-gradient(top, #F4F4F4, #E4E4E4);
+  background: -o-linear-gradient(top, #F4F4F4, #E4E4E4);
   position: relative;
   min-height: 70px;
   border-bottom: 1px solid #C9C9C9;
@@ -1249,10 +1249,10 @@ a.mention_link {
 #group_common {
   padding: 10px;
   background: #F4F4F4;
-  background: -webkit-gradient(linear, left top, left bottom, from(#f4f4f4), to(#e4e4e4));
-  background: -webkit-linear-gradient(top, #f4f4f4, #e4e4e4);
-  background: -moz-linear-gradient(top, #f4f4f4, #e4e4e4);
-  background: -o-linear-gradient(top, #f4f4f4, #e4e4e4);
+  background: -webkit-gradient(linear, left top, left bottom, from(#F4F4F4), to(#E4E4E4));
+  background: -webkit-linear-gradient(top, #F4F4F4, #E4E4E4);
+  background: -moz-linear-gradient(top, #F4F4F4, #E4E4E4);
+  background: -o-linear-gradient(top, #F4F4F4, #E4E4E4);
   border-bottom: 1px solid #C9C9C9;
 }
 #group_common .photo {
@@ -1643,10 +1643,10 @@ a.mention_link {
 }
 #place_add .menu_item_hover {
   /*background: url("/images/iphone/menu_bg.png");*/
-  background: -webkit-gradient(linear, left top, left bottom, from(#2d96de), to(#0069d7)) no-repeat bottom;
-  background: -webkit-linear-gradient(top, #2d96de, #0069d7) no-repeat bottom;
-  background: -moz-linear-gradient(top, #2d96de, #0069d7) no-repeat bottom;
-  background: -o-linear-gradient(top, #2d96de, #0069d7) no-repeat bottom;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2D96DE), to(#0069D7)) no-repeat bottom;
+  background: -webkit-linear-gradient(top, #2D96DE, #0069D7) no-repeat bottom;
+  background: -moz-linear-gradient(top, #2D96DE, #0069D7) no-repeat bottom;
+  background: -o-linear-gradient(top, #2D96DE, #0069D7) no-repeat bottom;
   color: #FFF;
 }
 #place_add .menu_item_hover .menu_desc {

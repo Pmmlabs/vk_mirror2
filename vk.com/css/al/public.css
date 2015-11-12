@@ -54,7 +54,7 @@
 .public_avatar.no_avatar {
   padding: 175px 10px 25px;
   text-align: center;
-  background: #eef2f6 url(/images/community_200.gif) no-repeat 0 0;
+  background: #EEF2F6 url(/images/community_200.gif) no-repeat 0 0;
 }
 .public_be_first {
   padding-bottom: 2px;
@@ -908,7 +908,7 @@ a.fwd_link:hover {
 #page_avatar.public_no_avatar {
   padding: 175px 10px 25px;
   text-align: center;
-  background: #eef2f6 url(/images/community_200.gif) no-repeat 0 0;
+  background: #EEF2F6 url(/images/community_200.gif) no-repeat 0 0;
 }
 div.gtop_message {
   margin: 0 0 10px 0;

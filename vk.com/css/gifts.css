@@ -159,7 +159,7 @@ b.rbottom b.r {
   border: 1px solid #ADBBCA;
   left: 50%;
   margin-left: -139px;
-  background: url('../images/merger-loader.gif') no-repeat center #ffffff;
+  background: url('../images/merger-loader.gif') no-repeat center #FFF;
 }
 #giftPreviewBox img {
   display: block;
@@ -354,7 +354,7 @@ ul.commentsPages {
   width: 256px;
   height: 256px;
   margin: 0 auto;
-  background: url('../images/merger-loader.gif') no-repeat center #ffffff;
+  background: url('../images/merger-loader.gif') no-repeat center #FFF;
 }
 .noGifts {
   font-size: 12px;
@@ -398,7 +398,7 @@ ul.commentsPages {
   display: block;
   width: 100px;
   height: 100px;
-  background: #ffffff no-repeat 50% 50%;
+  background: #FFF no-repeat 50% 50%;
   padding: 4px;
   border: 0px;
   /*1px solid #B4B4B4;*/
@@ -592,7 +592,7 @@ div.mb_tab_selected a.mb_tab2 {
   height: 96px;
   float: left;
   margin: 3px 10px 3px 0px;
-  background: #ffffff url(/images/upload.gif) no-repeat 50% 50%;
+  background: #FFF url(/images/upload.gif) no-repeat 50% 50%;
 }
 .box_body .image_cont img {
   margin: 0px;

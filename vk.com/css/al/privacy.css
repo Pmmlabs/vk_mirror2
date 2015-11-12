@@ -115,7 +115,7 @@
 }
 #flist_search {
   width: 486px;
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+  background: #FFFFFF url(/images/magglass.png) no-repeat 5px 6px;
   outline: none;
   padding: 5px 20px;
 }
@@ -303,7 +303,7 @@ td.flist_item_act {
 }
 #privacy_dropdown .header div {
   padding: 1px 21px 3px 4px;
-  background: #eef2f6 url(/images/flydead.gif?1) no-repeat 100% 2px;
+  background: #EEF2F6 url(/images/flydead.gif?1) no-repeat 100% 2px;
   border: 1px solid #EEF2F6;
   color: #2C587D;
 }
@@ -372,7 +372,7 @@ td.flist_item_act {
   color: #2C587D;
 }
 #privacy_dropdown .l_item_sel {
-  background: #ffffff url(/images/dropdead_check.gif) no-repeat 4px 2px;
+  background: #FFF url(/images/dropdead_check.gif) no-repeat 4px 2px;
 }
 #privacy_dropdown .l_item:hover,
 #privacy_dropdown .l_item_sel:hover {
@@ -690,7 +690,7 @@ input.olist_filter {
   height: 14px;
   width: 143px;
   line-height: 1.27em;
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+  background: #FFF url(/images/magglass.png) no-repeat 5px 6px;
   outline: none;
 }
 .olist_actions .olist_filter {

@@ -430,7 +430,7 @@
   height: 1px;
   font-size: .01em;
   overflow: hidden;
-  background: #4d7196;
+  background: #4D7196;
 }
 .notes_nc1 {
   margin-left: 1px;
@@ -442,7 +442,7 @@
 .notes_nc2 {
   border-left: 1px solid #93A9BD;
   border-right: 1px solid #93A9BD;
-  background: #55789b;
+  background: #55789B;
 }
 .notes_inactive_tab:hover {
   cursor: default;

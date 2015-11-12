@@ -22,7 +22,7 @@
 .edb_country_lnk {
   display: block;
   font-size: 13px;
-  background: #ffffff no-repeat 15px 18px;
+  background: #FFF no-repeat 15px 18px;
   padding: 15px 40px;
 }
 .edb_country_lnk:hover {
@@ -59,7 +59,7 @@
 #edb_filter {
   padding: 5px 20px;
   width: 565px;
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+  background: #FFF url(/images/magglass.png) no-repeat 5px 6px;
   outline: none;
 }
 .edb_country_lnk .edb_hl {
@@ -151,7 +151,7 @@
   margin: 0px 5px;
   padding: 5px 5px 5px 20px;
   width: 145px;
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+  background: #FFF url(/images/magglass.png) no-repeat 5px 6px;
   outline: none;
 }
 #edb_city_by_name {

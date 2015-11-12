@@ -682,7 +682,7 @@ ul.commentsPages li.current {
 .side_filter.drag_on.drag_over {
   border: 1px solid #DAE1E8;
   color: #2B587A;
-  background: #dae1e8 url(/images/plus.gif) 138px center no-repeat;
+  background: #DAE1E8 url(/images/plus.gif) 138px center no-repeat;
 }
 .side_filter_over {
   background-color: #DAE1E8;
@@ -748,7 +748,7 @@ ul.commentsPages li.current {
 }
 .alist_cell_on .alist_border_wrap {
   border: 1px solid #3B6798;
-  background: #6d8fb3 url(/images/check_friend.gif) right bottom no-repeat;
+  background: #6D8FB3 url(/images/check_friend.gif) right bottom no-repeat;
 }
 .alist_wrap {
   border: 1px solid #FFF;
@@ -1020,7 +1020,7 @@ ul.commentsPages li.current {
   position: relative;
 }
 .repeat {
-  background: #ffffff url(/images/repeat.gif?1) no-repeat 0px 0px;
+  background: #FFF url(/images/repeat.gif?1) no-repeat 0px 0px;
   cursor: pointer;
   position: absolute;
   top: 3px;

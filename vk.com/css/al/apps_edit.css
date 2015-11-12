@@ -367,7 +367,7 @@ td.apps_edit_header {
   margin-top: 17px;
   width: 180px;
   padding: 6px 25px 7px;
-  background: #ffffff url(/images/head_magglass.png) no-repeat 0px -28px;
+  background: #FFF url(/images/head_magglass.png) no-repeat 0px -28px;
 }
 .app_status_msg,
 .app_info_msg,
@@ -745,7 +745,7 @@ body.dev .app_author {
 }
 .apps_upload_progress {
   height: 18px;
-  background: #597da3 url(/images/progress_grad.gif) repeat;
+  background: #597DA3 url(/images/progress_grad.gif) repeat;
   border: 1px solid #45688E;
   margin: -1px;
 }
@@ -2332,7 +2332,7 @@ input.execute_field_input {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  background: #7394b5 url(/images/icons/app_platforms.png) no-repeat;
+  background: #7394B5 url(/images/icons/app_platforms.png) no-repeat;
 }
 .apps_edit_platform_status.apps_edit_platform_status_android .icon {
   background-position: 0px 0px;

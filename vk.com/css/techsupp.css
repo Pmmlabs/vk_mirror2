@@ -394,7 +394,7 @@ h3 .search_word {
   font-weight: bold;
 }
 .topics_in_results .topicInfo .topicPager {
-  color: #333333;
+  color: #333;
 }
 .topics_in_results .more_info {
   color: 333;
@@ -495,7 +495,7 @@ table.topics_pages_links td.topics_pages_current {
   border: 1px solid #F7F7F7;
 }
 .forum_filter_checked {
-  background: #ffffff url('/images/check.gif') 7px 5px no-repeat;
+  background: #FFF url('/images/check.gif') 7px 5px no-repeat;
   border: 1px solid #DAE2E8;
   color: #36638E;
 }

@@ -366,13 +366,13 @@ a#rotateleft {
   background: white url(../images/ccw.gif) no-repeat 7px 5px;
 }
 a#rotateleft:hover {
-  background: #dae1e8 url(../images/ccwhover.gif) no-repeat 7px 5px;
+  background: #DAE1E8 url(../images/ccwhover.gif) no-repeat 7px 5px;
 }
 a#rotateright {
   background: white url(../images/cw.gif) no-repeat 7px 5px;
 }
 a#rotateright:hover {
-  background: #dae1e8 url(../images/cwhover.gif) no-repeat 7px 5px;
+  background: #DAE1E8 url(../images/cwhover.gif) no-repeat 7px 5px;
 }
 /* Edit Photo Album */
 #editphotoalbum {

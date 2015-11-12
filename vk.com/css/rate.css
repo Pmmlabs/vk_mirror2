@@ -18,7 +18,7 @@
   float: left;
 }
 .rateRow {
-  background: #faf3d8 url(/images/golden.gif) repeat-x bottom;
+  background: #FAF3D8 url(/images/golden.gif) repeat-x bottom;
   border: 1px solid #E6E0B6;
   width: 416px;
   padding: 10px 0px;
@@ -414,7 +414,7 @@ ul.ratePages li.current {
   background-color: #E9DEB4;
 }
 .rateYellow .rateBoxInner2 {
-  background: #faf3d8 url(/images/goldenhigh.gif) repeat-x bottom;
+  background: #FAF3D8 url(/images/goldenhigh.gif) repeat-x bottom;
 }
 .rateYellow .rateBoxQ {
   color: #817945;
@@ -448,7 +448,7 @@ ul.ratePages li.current {
   background-color: #8DBF56;
 }
 .rateGreen .rateBoxInner2 {
-  background: #bed8a1 url(/images/greenhigh.gif) repeat-x bottom;
+  background: #BED8A1 url(/images/greenhigh.gif) repeat-x bottom;
 }
 .rateGreen .rateBoxQ {
   color: #37702A;
@@ -485,7 +485,7 @@ ul.ratePages li.current {
   background-color: #C68D69;
 }
 .rateRed .rateBoxInner2 {
-  background: #dcbba8 url(/images/redhigh.gif) repeat-x bottom;
+  background: #DCBBA8 url(/images/redhigh.gif) repeat-x bottom;
 }
 .rateRed .rateBoxQ {
   color: #8B4C23;

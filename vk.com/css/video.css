@@ -1170,7 +1170,7 @@ ul.commentsPages li.current {
 .side_filter.drag_on.drag_over {
   border: 1px solid #DAE1E8;
   color: #2B587A;
-  background: #dae1e8 url(/images/plus.gif) 120px center no-repeat;
+  background: #DAE1E8 url(/images/plus.gif) 120px center no-repeat;
 }
 .side_filter_over {
   background-color: #DAE1E8;

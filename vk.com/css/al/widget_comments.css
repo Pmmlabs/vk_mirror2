@@ -295,7 +295,7 @@ div.wall_module .ext_video div {
   background: #F1F1F1;
 }
 .wall_album_nocover {
-  background: #f1f1f1 url('/images/camera_big.png') 50% 45% no-repeat !important;
+  background: #F1F1F1 url('/images/camera_big.png') 50% 45% no-repeat !important;
 }
 .wall_album_cover {
   vertical-align: top;
@@ -787,7 +787,7 @@ span.post_video_duration {
   display: block;
   height: 18px;
   position: relative;
-  background: #ffffff no-repeat;
+  background: #FFF no-repeat;
 }
 .add_media_item:last-child,
 .add_media_head:last-child,
@@ -1197,7 +1197,7 @@ img.wcomments_userpic {
 .wcomments_posts_loading {
   border-top: 1px solid #DAE1E8;
   height: 400px;
-  background: #ffffff url(/images/progress7.gif) 50% 50% no-repeat;
+  background: #FFF url(/images/progress7.gif) 50% 50% no-repeat;
 }
 /* Blacklist */
 .wcomments_bl_row {

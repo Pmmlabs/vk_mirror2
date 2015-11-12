@@ -22,7 +22,7 @@
 .site_stats_round_tabs {
   padding: 10px 10px 5px 10px;
   background-color: #F7F7F7;
-  border-bottom: 1px solid #dae1e8;
+  border-bottom: 1px solid #DAE1E8;
 }
 .site_stats_round_tab {
   padding: 0 5px 5px 0;
@@ -67,7 +67,7 @@
 }
 #referrers_search {
   width: 150px;
-  background: url("/images/magglass.png") no-repeat scroll 5px 5px #ffffff;
+  background: url("/images/magglass.png") no-repeat scroll 5px 5px #FFFFFF;
   outline: medium none;
   padding-right: 40px;
   padding-left: 20px;

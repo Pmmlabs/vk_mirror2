@@ -241,11 +241,11 @@
 }
 .privacy_save {
   text-decoration: none;
-  color: #ffffff;
+  color: #fff;
 }
 a.privacy_save:hover {
   text-decoration: none;
-  color: #dae1e8;
+  color: #DAE1E8;
 }
 .edit_privacy {
   margin-left: 15px;
@@ -266,7 +266,7 @@ a.privacy_save:hover {
   padding-top: 8px;
 }
 .addrOuterCont {
-  background: #ffffff url(/images/addr_1.gif) repeat-y scroll 0px 50%;
+  background: #fff url(/images/addr_1.gif) repeat-y scroll 0px 50%;
 }
 .addrColumn {
   float: right;

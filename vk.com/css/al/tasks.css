@@ -124,7 +124,7 @@ input.search {
   padding-top: 4px;
   padding-left: 19px;
   width: 122px;
-  background: #ffffff url(/images/magglass.png) no-repeat 4px 4px;
+  background: #FFF url(/images/magglass.png) no-repeat 4px 4px;
 }
 .tasks_filter_sep {
   border-bottom: 1px solid #DAE2E8;
@@ -233,7 +233,7 @@ input.search {
   padding-top: 3px;
 }
 .tasks_unsubscribe div {
-  background: url("/images/hide_left.gif") no-repeat scroll 0px -1px #ffffff;
+  background: url("/images/hide_left.gif") no-repeat scroll 0px -1px #FFFFFF;
   cursor: pointer;
   height: 14px;
   width: 14px;
@@ -740,7 +740,7 @@ a.tasks_preview_header:hover {
 }
 .tasks_upload_progress {
   height: 18px;
-  background: #597da3 url(/images/progress_grad.gif) repeat;
+  background: #597DA3 url(/images/progress_grad.gif) repeat;
   border: 1px solid #45688E;
   margin: -1px;
 }

@@ -48,7 +48,7 @@
 }
 #fave_search {
   width: 582px;
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+  background: #FFF url(/images/magglass.png) no-repeat 5px 6px;
   outline: none;
   padding: 5px 5px 6px 20px;
 }
@@ -251,7 +251,7 @@ a.fave_photo_item {
   height: 98px;
   overflow: hidden;
   text-align: center;
-  background: #f1f1f1 no-repeat 50% top;
+  background: #F1F1F1 no-repeat 50% top;
 }
 .fave_photo_memlink {
   display: block;

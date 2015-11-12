@@ -100,7 +100,7 @@
   color: #FFF;
 }
 #reg_point {
-  background: #ffffff url(/images/regpoint.gif?2) top left no-repeat;
+  background: #FFF url(/images/regpoint.gif?2) top left no-repeat;
   position: absolute;
   width: 23px;
   height: 13px;

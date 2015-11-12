@@ -703,7 +703,7 @@ img.fc_msgs_author {
   /*right: 0;*/
   width: 50px;
   height: 13px;
-  background: #ffffff url(/images/upload.gif) no-repeat right 50%;
+  background: #FFF url(/images/upload.gif) no-repeat right 50%;
 }
 .fc_msg_progress_transparent_right {
   background-color: transparent;

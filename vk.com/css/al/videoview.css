@@ -721,10 +721,10 @@ body.mobfixed #mv_layer_wrap {
   background: #E1E7ED;
 }
 #mv_actions .loading {
-  background: #ffffff url('/images/upload.gif') 120px 7px no-repeat;
+  background: #FFF url('/images/upload.gif') 120px 7px no-repeat;
 }
 #mv_actions .loading:hover {
-  background: #e1e7ed url('/images/upload.gif') 120px 7px no-repeat;
+  background: #E1E7ED url('/images/upload.gif') 120px 7px no-repeat;
 }
 #mv_rotate {
   color: #777;
@@ -895,7 +895,7 @@ body.mobfixed #mv_layer_wrap {
 }
 #mv_tags .delete,
 #mv_del_reply_to {
-  background: #c4d2e1 url(/images/small_delete.gif) no-repeat 0px 0px;
+  background: #C4D2E1 url(/images/small_delete.gif) no-repeat 0px 0px;
   width: 0px;
   height: 14px;
   z-index: 615;
@@ -1729,8 +1729,8 @@ div.review_commdata i.no_like_hide {
 }
 .mv_claimed,
 .mv_is_in_progress {
-  color: #6b3d2e;
-  background-color: #f6dfd8;
+  color: #6B3D2E;
+  background-color: #F6DFD8;
   padding: 20px 10px;
   text-align: center;
   font-size: 12px;

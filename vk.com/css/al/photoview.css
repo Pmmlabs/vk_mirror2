@@ -371,7 +371,7 @@
 #pv_actions .left,
 #pv_actions .right {
   cursor: pointer;
-  background: #ffffff url(/images/photorot.gif) no-repeat 0px 0px;
+  background: #FFF url(/images/photorot.gif) no-repeat 0px 0px;
   padding: 3px 10px 4px;
 }
 #pv_actions .left {
@@ -534,7 +534,7 @@
 }
 #pv_tags .delete,
 #pv_del_reply_to {
-  background: #c4d2e1 url(/images/small_delete.gif) no-repeat 0px 0px;
+  background: #C4D2E1 url(/images/small_delete.gif) no-repeat 0px 0px;
   width: 0px;
   z-index: 615;
   padding-left: 14px;
@@ -866,7 +866,7 @@
 }
 .pva_no_photos {
   cursor: default;
-  background: #f1f1f1 url('/images/camera_big.png') 50% 56px no-repeat !important;
+  background: #F1F1F1 url('/images/camera_big.png') 50% 56px no-repeat !important;
 }
 .pva_no_photos .pva_img,
 .pva_no_photos .pva_camera {

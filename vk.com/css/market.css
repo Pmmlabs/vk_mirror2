@@ -324,7 +324,7 @@ td.label.check {
 }
 td.label small {
   display: block;
-  color: #999999;
+  color: #999;
 }
 td.labelField {
   width: 430px;
@@ -347,14 +347,14 @@ td.labelField small {
 }
 td.labelField label {
   font-weight: normal;
-  color: #000000;
+  color: #000;
 }
 td.labelField ul.nNav {
   margin-top: 10px;
 }
 td.labelField .note {
   font-weight: bold;
-  color: #777777;
+  color: #777;
 }
 td.buttons {
   padding: 11px 0px 0px 0px;
@@ -846,7 +846,7 @@ img.deleted {
   background-color: #F0F8FF;
 }
 .item_checkbox.selected {
-  background: #f0f8ff url(/images/check.gif) no-repeat scroll 7px 6px;
+  background: #F0F8FF url(/images/check.gif) no-repeat scroll 7px 6px;
 }
 .selector_container td.selector input {
   color: #000;

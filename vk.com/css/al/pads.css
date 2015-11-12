@@ -19,7 +19,7 @@
   position: relative;
 }
 #pad_cont.pad_loading {
-  background: #ffffff url(/images/upload.gif) no-repeat center center;
+  background: #FFF url(/images/upload.gif) no-repeat center center;
   height: 100px;
   border: 1px solid #ADBAC7;
 }
@@ -786,7 +786,7 @@ div.pad_msg_text div.im_fwd_log_wrap {
   height: 13px;
   padding: 5px 20px;
   width: 261px;
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+  background: #FFF url(/images/magglass.png) no-repeat 5px 6px;
   outline: none;
 }
 #pad_audio_search input.pad_search::-ms-clear {
@@ -1527,7 +1527,7 @@ div.pad_msg_text div.im_fwd_log_wrap {
 #pd_apps_search {
   height: 13px;
   padding: 5px 40px 5px 20px;
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+  background: #FFFFFF url(/images/magglass.png) no-repeat 5px 6px;
   outline: none;
   width: 140px;
   border: 1px solid #CFDAE5;

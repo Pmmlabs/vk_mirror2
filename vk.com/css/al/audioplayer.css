@@ -176,7 +176,7 @@ body.dev #gp_back {
   filter: alpha(opacity=100);
 }
 #gp div.wrap.active #gp_back {
-  background-color: #5f7fa2;
+  background-color: #5F7FA2;
 }
 #gp.head div.wrap.active #gp_back {
   background-color: #d9e0e8;

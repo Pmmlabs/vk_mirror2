@@ -201,7 +201,7 @@ textarea {
   margin: 0px;
 }
 input.search {
-  background: #ffffff url(/images/magglass.png) no-repeat 3px 4px;
+  background: #FFF url(/images/magglass.png) no-repeat 3px 4px;
   padding-left: 17px;
 }
 input.file {
@@ -371,7 +371,7 @@ wbr {
   margin: 5px 5px 0px;
   cursor: pointer;
   padding: 0;
-  background: #9db7d4 url(/images/icons/boxicons.gif) -23px -2px;
+  background: #9DB7D4 url(/images/icons/boxicons.gif) -23px -2px;
 }
 .box_body {
   background-color: #fff;
@@ -551,7 +551,7 @@ wbr {
   border: 0;
   border-bottom: 1px solid #496b93;
   text-shadow: 0 1px 0 #5578A0;
-  background: #658ab0 url(/images/button_bgf.png?1) repeat-x top;
+  background: #658AB0 url(/images/button_bgf.png?1) repeat-x top;
   background-position: 0px -12px;
   *border: 0;
   color: #FFF;
@@ -592,7 +592,7 @@ wbr {
   color: #555;
   text-shadow: 0 1px 0 #F6F6F6;
   *border: 0;
-  background: #e9e9e9 url(/images/button_bgf.png?1) repeat-x top;
+  background: #E9E9E9 url(/images/button_bgf.png?1) repeat-x top;
   background-position: 0px -59px;
 }
 .button_gray button:hover,

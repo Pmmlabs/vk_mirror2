@@ -33,7 +33,7 @@
 .public_avatar.no_avatar {
   padding: 175px 10px 25px;
   text-align: center;
-  background: #eef2f6 url(/images/community_200.gif) no-repeat 0 0;
+  background: #EEF2F6 url(/images/community_200.gif) no-repeat 0 0;
 }
 #event .like_module {
   margin: 0px 0px 10px;
@@ -824,7 +824,7 @@
   padding: 10px;
 }
 .events_list_search .text {
-  background: url(/images/magglass.png) no-repeat scroll 5px 6px #ffffff;
+  background: url(/images/magglass.png) no-repeat scroll 5px 6px #FFFFFF;
   height: 13px;
   outline: medium none;
   width: 582px;

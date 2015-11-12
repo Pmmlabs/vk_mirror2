@@ -89,7 +89,7 @@
   height: 13px;
   width: 400px;
   padding: 5px 20px;
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+  background: #FFF url(/images/magglass.png) no-repeat 5px 6px;
   outline: none;
 }
 #audio.new .audio_search .s_search {
@@ -809,7 +809,7 @@
 }
 .audio_progress {
   height: 18px;
-  background: #597da3 url(/images/progress_grad.gif) repeat;
+  background: #597DA3 url(/images/progress_grad.gif) repeat;
   border: 1px solid #45688E;
   margin: -1px;
 }
@@ -1109,7 +1109,7 @@
 }
 .audio_friends_search_btn {
   margin: 8px 10px 4px;
-  background: #e3e9ef url(/images/magglass_audio_blue.png) no-repeat 138px 7px;
+  background: #E3E9EF url(/images/magglass_audio_blue.png) no-repeat 138px 7px;
   color: #6A7889;
   height: 13px;
   padding: 6px 11px;
@@ -1120,7 +1120,7 @@
 }
 .audio_friends_search_input.text {
   margin: 2px 10px 4px;
-  background: #ffffff url(/images/magglass_audio.png) no-repeat 137px 6px;
+  background: #FFF url(/images/magglass_audio.png) no-repeat 137px 6px;
   width: 134px;
   height: 13px;
   padding: 5px 10px;

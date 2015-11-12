@@ -177,7 +177,7 @@
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  background: #000000 url(/images/gift_magic.png?1) no-repeat center;
+  background: #000 url(/images/gift_magic.png?1) no-repeat center;
   background-color: rgba(0, 0, 0, 0.6);
   opacity: .6;
 }
@@ -219,7 +219,7 @@
   height: 96px;
   float: left;
   margin: 3px 10px 3px 0px;
-  background: #ffffff url(/images/upload.gif) no-repeat 50% 50%;
+  background: #FFF url(/images/upload.gif) no-repeat 50% 50%;
 }
 .box_body .image_cont img {
   margin: 0px;

@@ -263,7 +263,7 @@ input.pages_user_field {
   width: 402px;
   height: 14px;
   line-height: 1.27em;
-  background: #ffffff url('/images/magglass.png') no-repeat 5px 6px;
+  background: #FFFFFF url('/images/magglass.png') no-repeat 5px 6px;
 }
 .pages_help {
   overflow-y: auto;

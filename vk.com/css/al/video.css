@@ -129,13 +129,13 @@
 .video_search #v_search {
   padding: 7px 70px 8px 26px;
   width: 100%;
-  background: #ffffff url(/images/magglass.png) no-repeat 8px 9px;
+  background: #FFF url(/images/magglass.png) no-repeat 8px 9px;
   outline: none;
   box-sizing: border-box;
 }
 .is_rtl1 .video_search #v_search {
   padding: 7px 26px 8px 70px;
-  background: #ffffff url(/images/magglass.png) no-repeat 8px 9px;
+  background: #FFF url(/images/magglass.png) no-repeat 8px 9px;
 }
 .video_search #v_search::-ms-clear {
   display: none;
@@ -391,7 +391,7 @@
 #choose_video_album_content .video_row .video_image_div {
   width: 190px;
   height: 106px;
-  background: #e8e8e8 center center no-repeat;
+  background: #E8E8E8 center center no-repeat;
   background-size: 100%;
   position: relative;
 }
@@ -792,7 +792,7 @@
   height: 18px;
 }
 #video_delete_tags div {
-  background: #597da3 url(/images/progress_grad.gif) repeat;
+  background: #597DA3 url(/images/progress_grad.gif) repeat;
   border: 1px solid #45688E;
   margin: -1px;
   width: 1%;
@@ -1345,7 +1345,7 @@ textarea.video_box_disabled {
 }
 .video_row_img {
   display: block;
-  background: #eeeeee center center no-repeat;
+  background: #EEEEEE center center no-repeat;
   background-image: url('/images/icons/playlist.png');
   width: 190px;
   height: 106px;

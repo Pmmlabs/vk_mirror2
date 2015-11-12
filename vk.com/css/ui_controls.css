@@ -549,11 +549,11 @@ a.dd_link,
   line-height: 1.27em;
   *line-height: 1.18em;
   *padding-right: 16px;
-  background: #6d8fb3 url(/images/flydead.gif) no-repeat right -15px;
+  background: #6D8FB3 url(/images/flydead.gif) no-repeat right -15px;
   *background-position: -14px right;
 }
 .dd_menu_header.leftArrow div {
-  background: #6d8fb3 url(/images/flydead.gif) no-repeat 1px -15px;
+  background: #6D8FB3 url(/images/flydead.gif) no-repeat 1px -15px;
   padding-right: 5px;
   padding-left: 16px;
   *background-position: 14px left;
@@ -564,7 +564,7 @@ a.dd_link,
   filter: alpha(opacity=60);
 }
 .dd_header_hover div {
-  background: #dae1e8 url(/images/flydead.gif) no-repeat right 3px;
+  background: #DAE1E8 url(/images/flydead.gif) no-repeat right 3px;
   *background-position: 4px right;
   color: #2B587A;
   border-color: #DAE1E8;
@@ -814,7 +814,7 @@ x:-moz-any-link {
 }
 .mdd-rtl.mdd-wrap .mdd-item-selected,
 .mdd-rtl.mdd-wrap .mdd-item-selected:hover {
-  background: #edf1f5 url(/images/flydead_flat.gif) no-repeat 0% 1px;
+  background: #EDF1F5 url(/images/flydead_flat.gif) no-repeat 0% 1px;
   text-align: right;
 }
 .mdd-wrap .mdd-selected {

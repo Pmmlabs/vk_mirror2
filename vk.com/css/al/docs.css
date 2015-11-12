@@ -9,7 +9,7 @@
 }
 input.docs_search {
   width: 400px;
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+  background: #FFFFFF url(/images/magglass.png) no-repeat 5px 6px;
   outline: none;
   padding: 5px 20px;
 }
@@ -74,7 +74,7 @@ input.docs_search {
 }
 .docs_progress {
   height: 18px;
-  background: #597da3 url(/images/progress_grad.gif) repeat;
+  background: #597DA3 url(/images/progress_grad.gif) repeat;
   border: 1px solid #45688E;
   margin: -1px;
 }
@@ -153,7 +153,7 @@ input.docs_search {
   border-top: none;
 }
 .docs_item_icon {
-  background: #e1e7ed url('/images/icons/darr.gif') 8px 7px no-repeat;
+  background: #E1E7ED url('/images/icons/darr.gif') 8px 7px no-repeat;
   width: 30px;
   height: 17px;
   border-radius: 3px;
@@ -518,7 +518,7 @@ input.docs_search {
 }
 .docs_choose_def_icon {
   padding: 3px 0px 0px 17px;
-  background: #e1e7ed url('/images/icons/darr.gif') 6px 7px no-repeat;
+  background: #E1E7ED url('/images/icons/darr.gif') 6px 7px no-repeat;
   width: 27px;
   height: 17px;
   border-radius: 3px;

@@ -134,7 +134,7 @@ body.font_medium .settings_tabs {
   width: 402px;
   height: 14px;
   line-height: 1.27em;
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 7px;
+  background: #FFF url(/images/magglass.png) no-repeat 5px 7px;
 }
 #search_bl_submit {
   padding-left: 8px;
@@ -754,7 +754,7 @@ table.history .cur_session {
 .settings_history_thumb {
   width: 32px;
   height: 32px;
-  background: #dfe4eb url(/images/icons/payments_s.png?1) no-repeat 1px 1px;
+  background: #DFE4EB url(/images/icons/payments_s.png?1) no-repeat 1px 1px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;

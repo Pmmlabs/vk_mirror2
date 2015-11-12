@@ -31,7 +31,7 @@
 }
 .pp_menu .dd_menu_header div {
   text-align: left;
-  background: #eef2f6 url(/images/flydead.gif?1) right 2px no-repeat;
+  background: #EEF2F6 url(/images/flydead.gif?1) right 2px no-repeat;
   _background-position: right 3px;
   cursor: pointer;
   color: #2C587D;
@@ -40,7 +40,7 @@
   margin: 0px;
 }
 .pp_menu.dd_up .dd_menu_header div {
-  background: #eef2f6 url(/images/flydead.gif?1) right -75px no-repeat;
+  background: #EEF2F6 url(/images/flydead.gif?1) right -75px no-repeat;
   _background-position: right -74px;
 }
 .pp_menu .dd_menu_rows a {
@@ -61,7 +61,7 @@
 .pp_menu .dd_menu_rows a.dp_top_over {
   border: 1px solid #6D8FB3;
   border-bottom-color: #FFFFFF;
-  background: #6d8fb3 url(/images/flydead.gif?1) right -16px no-repeat;
+  background: #6D8FB3 url(/images/flydead.gif?1) right -16px no-repeat;
   _width: 158px;
   color: #FFF;
 }
@@ -99,7 +99,7 @@
 .ppChooseTop,
 .ppChooseTopOver {
   text-align: left;
-  background: #eef2f6 url(/images/flydead.gif?1) right 2px no-repeat;
+  background: #EEF2F6 url(/images/flydead.gif?1) right 2px no-repeat;
   _background-position: right 3px;
   cursor: pointer;
   color: #2C587D;
@@ -115,11 +115,11 @@
 .body_rtl .ppChooseTopOver {
   text-align: right;
   padding: 1px 4px 3px 21px;
-  background: #eef2f6 url(/images/flydead.gif?1) left 2px no-repeat;
+  background: #EEF2F6 url(/images/flydead.gif?1) left 2px no-repeat;
   _background-position: left 3px;
 }
 .ppChooseTopOver {
-  background: #6d8fb3 url(/images/flydead.gif?1) right -15px no-repeat;
+  background: #6D8FB3 url(/images/flydead.gif?1) right -15px no-repeat;
   color: #FFF;
   border: 1px solid #5C82AB;
   border-top: 1px solid #7E9CBC;
@@ -185,7 +185,7 @@
 }
 .ppItemOverPlus,
 .ppItemOverBottom {
-  background: #6d8fb3 url(/images/flydead.gif?1) right -32px no-repeat;
+  background: #6D8FB3 url(/images/flydead.gif?1) right -32px no-repeat;
 }
 .ppMenuBody .ppItemOverBottom {
   border-bottom: 1px solid #7C9ABA;
@@ -282,7 +282,7 @@
   border-top: 1px solid #7E9CBC;
   border: 1px solid #6D8FB3;
   border-bottom: 0px;
-  background: #6d8fb3 url(/images/flydead.gif?1) right -16px no-repeat;
+  background: #6D8FB3 url(/images/flydead.gif?1) right -16px no-repeat;
   _width: 158px;
   color: #FFF;
 }
@@ -349,10 +349,10 @@
   background-color: #EEF2F6;
 }
 .dpItemChecked {
-  background: #ffffff url(/images/dropdead_check.gif) 4px 2px no-repeat;
+  background: #FFF url(/images/dropdead_check.gif) 4px 2px no-repeat;
 }
 .dpItemCheckedOn {
-  background: #eef2f6 url(/images/dropdead_check.gif) 4px 2px no-repeat;
+  background: #EEF2F6 url(/images/dropdead_check.gif) 4px 2px no-repeat;
 }
 .dpCustom,
 .dpCustomOver {
@@ -513,7 +513,7 @@
 }
 .flist_cell_on .flist_border_wrap {
   border: 1px solid #3B6798;
-  background: #6d8fb3 url(/images/check_friend.gif) right bottom no-repeat;
+  background: #6D8FB3 url(/images/check_friend.gif) right bottom no-repeat;
 }
 .flist_wrap {
   border: 1px solid #FFF;

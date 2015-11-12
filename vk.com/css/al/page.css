@@ -2272,7 +2272,7 @@ span.post_video_duration {
   display: block;
   height: 18px;
   position: relative;
-  background: #ffffff no-repeat;
+  background: #FFF no-repeat;
 }
 .add_media_item:last-child,
 .add_media_head:last-child,
@@ -2824,7 +2824,7 @@ div.med_no_attach {
 }
 .page_upload_progress {
   height: 18px;
-  background: #597da3 url(/images/progress_grad.gif) repeat;
+  background: #597DA3 url(/images/progress_grad.gif) repeat;
   border: 1px solid #45688E;
   margin: -1px;
 }
@@ -2838,7 +2838,7 @@ div.med_no_attach {
 }
 .page_attach_progress {
   height: 8px;
-  background: #597da3 url(/images/progress_grad.gif) repeat;
+  background: #597DA3 url(/images/progress_grad.gif) repeat;
   border: 1px solid #45688E;
   margin: -1px;
 }
@@ -3717,6 +3717,7 @@ a.choose:hover {
   height: 300px;
 }
 #place_map_yandex,
+#place_map_yandex2,
 #place_map_google,
 #place_map_mapbox {
   display: none;
@@ -3810,7 +3811,7 @@ a.wall_reply_greeting {
   display: block;
 }
 .page_doc_icon {
-  background: #e1e7ed url('/images/icons/darr.gif') 6px 7px no-repeat;
+  background: #E1E7ED url('/images/icons/darr.gif') 6px 7px no-repeat;
   width: 27px;
   height: 17px;
   border-radius: 3px;
@@ -5333,7 +5334,7 @@ b.wall_mob_onl {
   background: #F1F1F1;
 }
 .wall_album_nocover {
-  background: #f1f1f1 url('/images/camera_big.png') 50% 45% no-repeat !important;
+  background: #F1F1F1 url('/images/camera_big.png') 50% 45% no-repeat !important;
 }
 .wall_album_cover {
   vertical-align: top;
@@ -5419,7 +5420,7 @@ b.wall_mob_onl {
   font-weight: normal;
 }
 .wall_market_album_cover.wall_album_nocover {
-  background: #f1f1f1 url('/images/icons/mall_icon.png') 50% 40% no-repeat !important;
+  background: #F1F1F1 url('/images/icons/mall_icon.png') 50% 40% no-repeat !important;
 }
 .page_gif_preview {
   display: block;
@@ -6430,7 +6431,7 @@ button.wall_block_app_btn {
 .checkin_big {
   width: 39px;
   height: 39px;
-  background: #e9edf1 url(/images/icons/checkin_big.png) center center no-repeat;
+  background: #E9EDF1 url(/images/icons/checkin_big.png) center center no-repeat;
 }
 .page_media_place:hover .checkin_big {
   background-color: #E7EAEE;

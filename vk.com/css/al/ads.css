@@ -36,7 +36,7 @@ a .ads_sub_link:hover {
 }
 .ads_gradient_progress {
   height: 18px;
-  background: #597da3 url(/images/progress_grad.gif) repeat;
+  background: #597DA3 url(/images/progress_grad.gif) repeat;
   border: 1px solid #45688E;
   margin: -1px;
 }
@@ -672,7 +672,7 @@ div.ads_selecting_subclasses {
   margin-bottom: 4px;
 }
 .dd_menu_header.ads_dd_wide.ads_dd_header_popup div {
-  background: url(/images/flydead.gif) no-repeat right 6px #ffffff;
+  background: url(/images/flydead.gif) no-repeat right 6px #FFFFFF;
   padding-right: 17px;
   border: 1px solid #FFFFFF;
   color: #2B587A;
@@ -1353,7 +1353,7 @@ table.ads_inline_edit_table td {
   border-color: #517295;
 }
 .ads_unions_navigation_about .ad_box_preview {
-  border: 1px solid #dce3e9;
+  border: 1px solid #DCE3E9;
 }
 #ads_contacts_form {
   margin: 20px 0 0 0;
@@ -1635,7 +1635,7 @@ a.ads_dd_menu_multi_item.label:hover {
 }
 .ads_upload_progress {
   height: 18px;
-  background: #597da3 url(/images/progress_grad.gif) repeat;
+  background: #597DA3 url(/images/progress_grad.gif) repeat;
   border: 1px solid #45688E;
   margin: -1px;
 }

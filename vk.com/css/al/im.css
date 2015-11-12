@@ -1447,7 +1447,7 @@ div.im_preview_photo_doc {
   width: 304px;
   height: 15px;
   line-height: 15px;
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+  background: #FFF url(/images/magglass.png) no-repeat 5px 6px;
 }
 .im_filter::-ms-clear {
   display: none;
@@ -2777,9 +2777,9 @@ span#im_important_count {
   right: -3px;
   vertical-align: top;
   -webkit-font-smoothing: antialiased;
-  -webkit-box-shadow: 0 0 1px #ffffff;
-  -moz-box-shadow: 0 0 1px #ffffff;
-  box-shadow: 0 0 1px #ffffff;
+  -webkit-box-shadow: 0 0 1px #fff;
+  -moz-box-shadow: 0 0 1px #fff;
+  box-shadow: 0 0 1px #fff;
 }
 .im_sticker_bl_btn {
   padding-top: 5px;

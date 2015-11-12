@@ -383,11 +383,11 @@ table.hiderOpened {
   user-select: none;
 }
 .editor_body table.hiderOpened td.hiderArrow {
-  background: #f5f7f8 url('/images/light_arrow_open.gif') left 3px no-repeat;
+  background: #F5F7F8 url('/images/light_arrow_open.gif') left 3px no-repeat;
   border-bottom: 1px solid #ECF0F2;
 }
 .editor_body table.hider td.hiderArrow {
-  background: #f5f7f8 url('/images/light_arrow_shut.gif') left 3px no-repeat;
+  background: #F5F7F8 url('/images/light_arrow_shut.gif') left 3px no-repeat;
   border-bottom: 1px solid #DEE4E8;
 }
 .editor_body table.hider td.hiderHeader,

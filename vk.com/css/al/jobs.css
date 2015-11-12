@@ -267,7 +267,7 @@ td.labeled.jobs_apply_doc {
 }
 .jobs_apply_uploading_progress {
   height: 8px;
-  background: #597da3 url(/images/progress_grad.gif) repeat;
+  background: #597DA3 url(/images/progress_grad.gif) repeat;
   border: 1px solid #45688E;
   margin: -1px;
 }

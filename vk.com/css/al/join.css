@@ -30,7 +30,7 @@
   float: right;
   height: 50px;
   width: 16px;
-  background: #ffffff url(/images/join_tabs.png?3) 100% -150px no-repeat;
+  background: #fff url(/images/join_tabs.png?3) 100% -150px no-repeat;
 }
 .join_tabs li.active_link {
   background-position: 0 -200px;

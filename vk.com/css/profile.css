@@ -85,16 +85,16 @@ div#message_crop {
   height: 8px;
 }
 .bOpen .flexNarrow {
-  background: url('../images/arrow_up.gif') no-repeat center #eeeeee;
+  background: url('../images/arrow_up.gif') no-repeat center #eee;
 }
 .bOpen :hover.flexNarrow {
-  background: url('../images/arrow_up.gif') no-repeat center #dae2e8;
+  background: url('../images/arrow_up.gif') no-repeat center #DAE2E8;
 }
 .bShut .flexNarrow {
-  background: url('../images/arrow_down.gif') no-repeat center #eeeeee;
+  background: url('../images/arrow_down.gif') no-repeat center #eee;
 }
 .bShut :hover.flexNarrow {
-  background: url('../images/arrow_down.gif') no-repeat center #dae2e8;
+  background: url('../images/arrow_down.gif') no-repeat center #DAE2E8;
 }
 .bOpen .flexHeader {
   border-top: solid 1px #b1bdd6;
@@ -424,7 +424,7 @@ div#message_crop {
   padding: 0px 0px 6px 22px;
 }
 .notes_titles li.question {
-  background: #ffffff url(/images/qmark.gif) no-repeat 4px 2px;
+  background: #FFF url(/images/qmark.gif) no-repeat 4px 2px;
   padding: 0px 0px 6px 22px;
 }
 .notes_titles li a {
@@ -471,7 +471,7 @@ div#message_crop {
   padding: 4px;
   font-size: 10px;
   text-align: center;
-  color: #444444;
+  color: #444;
 }
 /* activity */
 .activity_all {
@@ -539,7 +539,7 @@ input#edit_activity_text {
   width: 16px;
   color: #45688E;
   border-left: 1px solid #FFF;
-  background: #ffffff url(../images/darr_dd_out.gif) no-repeat scroll center center;
+  background: #FFFFFF url(../images/darr_dd_out.gif) no-repeat scroll center center;
   text-align: center;
 }
 #edit_activity_toggle:hover {
@@ -819,7 +819,7 @@ a.wallFunc:hover {
   margin: 8px;
   text-align: left;
   background-color: #F4EBBD;
-  border: 1px solid #d7cf9e;
+  border: 1px solid #D7CF9E;
 }
 .appListTable {
   border-collapse: collapse;
@@ -1055,7 +1055,7 @@ form#upload_new_form {
   padding: 4px 10px 0px 27px;
   display: block;
   height: 18px;
-  background: #ffffff no-repeat;
+  background: #FFF no-repeat;
 }
 .add_wall_rows div.rows a:hover,
 #menu_edit_photo_cont div.rows a:hover {
@@ -1084,7 +1084,7 @@ form#upload_new_form {
   cursor: pointer;
 }
 #menu_edit_photo_cont div.rows a {
-  background: #ffffff url(/images/edit_photo_icons.gif) no-repeat left center;
+  background: #fff url(/images/edit_photo_icons.gif) no-repeat left center;
   outline: none;
   padding-left: 26px;
 }

@@ -77,7 +77,7 @@
   color: #444;
   text-shadow: 0 1px 0 #FFF;
   *border: 0;
-  background: url(/images/button_vk.png) #dddddd repeat-x top;
+  background: url(/images/button_vk.png) #DDD repeat-x top;
   background-position: 0px -54px;
 }
 .file_button_gray .file_button:hover {

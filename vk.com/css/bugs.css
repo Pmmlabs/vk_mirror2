@@ -100,7 +100,7 @@
   color: #A49E79;
 }
 .status-2 .bugRowInner {
-  background: #faf3c8 url('/images/icons/money.gif') no-repeat right center;
+  background: #FAF3C8 url('/images/icons/money.gif') no-repeat right center;
   padding: 2px 0;
   padding-right: 25px;
 }
@@ -501,7 +501,7 @@ ul.commentsPages li.current {
   border: 1px solid #F7F7F7;
 }
 .filter_btn_on {
-  background: #edf0f3 url('/images/checkbox.gif') 3px 5px no-repeat;
+  background: #EDF0F3 url('/images/checkbox.gif') 3px 5px no-repeat;
   border: 1px solid #C0CAD5;
   color: #36638E;
   background-color: #FFF;
@@ -510,7 +510,7 @@ ul.commentsPages li.current {
 .filter_dropdown,
 .filter_droppeddown {
   cursor: pointer;
-  background: #edf0f3 url('/images/dropdown.gif') 95% 5px no-repeat;
+  background: #EDF0F3 url('/images/dropdown.gif') 95% 5px no-repeat;
   margin: 0px 2px 3px 2px;
   border: 1px solid #C0CAD5;
   padding: 2px 40px 3px 10px;

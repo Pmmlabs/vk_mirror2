@@ -196,7 +196,7 @@ td#results .result {
 }
 .flist_cell_on .flist_border_wrap {
   border: 1px solid #3B6798;
-  background: #6d8fb3 url(/images/check_friend.gif) right bottom no-repeat;
+  background: #6D8FB3 url(/images/check_friend.gif) right bottom no-repeat;
 }
 .flist_wrap {
   border: 1px solid #FFF;
@@ -429,7 +429,7 @@ td#results .result {
 }
 .ddChooseOn {
   background: #DAE1E8;
-  background: #dae1e8 url(http://vkontakte.ru/images/dropdead.gif) right 4px no-repeat;
+  background: #DAE1E8 url(http://vkontakte.ru/images/dropdead.gif) right 4px no-repeat;
   _background-position: right 5px;
   border-top: 1px solid #CAD1D9;
 }
@@ -442,7 +442,7 @@ td#results .result {
   padding: 2px 16px 2px 4px;
   border: 1px solid #5C82AB;
   border-top: 1px solid #7E9CBC;
-  background: #6d8fb3 url(http://vkontakte.ru/images/flydead.gif) right -15px no-repeat;
+  background: #6D8FB3 url(http://vkontakte.ru/images/flydead.gif) right -15px no-repeat;
   _background-position: right -14px;
   abackground: #6D8FB3;
   color: #FFF;
@@ -497,10 +497,10 @@ td#results .result {
   background-color: #EEF2F6;
 }
 .ddItemChecked {
-  background: #ffffff url(http://vkontakte.ru/images/dropdead_check.gif) 4px 2px no-repeat;
+  background: #FFF url(http://vkontakte.ru/images/dropdead_check.gif) 4px 2px no-repeat;
 }
 .ddItemCheckedOn {
-  background: #eef2f6 url(http://vkontakte.ru/images/dropdead_check.gif) 4px 2px no-repeat;
+  background: #EEF2F6 url(http://vkontakte.ru/images/dropdead_check.gif) 4px 2px no-repeat;
 }
 .flist_outer_wrap {
   height: 42px;
