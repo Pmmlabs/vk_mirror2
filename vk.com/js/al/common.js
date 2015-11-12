@@ -6593,6 +6593,10 @@ function showVideo(videoId, listId, options, ev) {
     return false;
   }
 
+  if (!options) {
+    options = {};
+  }
+
   var claim = nav.objLoc.claim;
 
   var stat = ['videoview.js', 'videoview.css', 'page.js', 'page.css'];
@@ -6613,10 +6617,6 @@ function showVideo(videoId, listId, options, ev) {
       options.hidden(hub.data, options, listId, videoId);
     }
   }, 2);
-
-  if (!options) {
-    options = {};
-  }
 
   stManager.add(stat, function() {
     if (!options.hidden) {
@@ -6817,7 +6817,9 @@ function showApp(ev, aid, needInstall, ref, mid, options) {
   }
   if (cur.apps && cur.apps[aid] || !needInstall) {
     delete params['w'];
-    return nav.go('/app' + aid + (mid ? '_' + mid : '') + nav.toStr(params), ev);
+    var loc = 'app' + aid + (mid ? '_' + mid : ''),
+      nocur = nav.objLoc && !nav.objLoc[1] && nav.objLoc[0] === loc;
+    return nav.go('/' + loc + nav.toStr(params), ev, {nocur: nocur});
   }
   if (mid) {
     params['mid'] = mid;

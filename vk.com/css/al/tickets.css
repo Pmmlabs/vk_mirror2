@@ -326,6 +326,10 @@ body.dev #tickets_name {
   font-size: 1.09em;
   overflow: hidden;
 }
+#tickets_name .title .title_deleted {
+  color: #606060;
+  text-decoration: line-through;
+}
 body.dev #tickets_name .title {
   font-weight: normal;
   font-size: 1.46em;
@@ -555,6 +559,10 @@ body.dev .tu_row.last {
   padding: 0px 0px 4px;
   font-size: 1.09em;
   line-height: 1.27em;
+}
+.tu_row_title .deleted {
+  color: #606060;
+  text-decoration: line-through;
 }
 body.dev .tu_row_title {
   font-size: 1em;
@@ -921,7 +929,7 @@ body.dev #tis_add_lnk_edit {
 }
 .tis_progress {
   height: 8px;
-  background: #597da3 url(/images/progress_grad.gif) repeat;
+  background: #597DA3 url(/images/progress_grad.gif) repeat;
   border: 1px solid #45688E;
   margin: -1px;
 }
@@ -954,7 +962,7 @@ body.dev #tis_add_lnk_edit {
 }
 .tickets_progress {
   height: 18px;
-  background: #597da3 url(/images/progress_grad.gif) repeat;
+  background: #597DA3 url(/images/progress_grad.gif) repeat;
   border: 1px solid #45688E;
   margin: -1px;
 }
@@ -1493,7 +1501,7 @@ a.tickets_question_row_tt:hover {
   height: 13px;
   width: 418px;
   padding: 5px 20px;
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+  background: #FFF url(/images/magglass.png) no-repeat 5px 6px;
   outline: none;
 }
 #tickets_all_search .all_search_progress {
@@ -1674,10 +1682,10 @@ a.tickets_question_row_tt:hover {
   cursor: pointer;
 }
 .tickets_l_arr {
-  background: #ffffff url(/images/stat_arrow_left.gif) 1px 2px no-repeat;
+  background: #FFFFFF url(/images/stat_arrow_left.gif) 1px 2px no-repeat;
 }
 .tickets_r_arr {
-  background: #ffffff url(/images/stat_arrow_right.gif) 2px 2px no-repeat;
+  background: #FFFFFF url(/images/stat_arrow_right.gif) 2px 2px no-repeat;
 }
 .tickets_l_arr.over,
 .tickets_r_arr.over {
@@ -1827,7 +1835,7 @@ a.tickets_question_row_tt:hover {
 .tickets_unbind {
   margin-top: 2px;
   margin-left: 3px;
-  background: url("/images/hide_to.gif") no-repeat scroll 0px -1px #f7f7f7;
+  background: url("/images/hide_to.gif") no-repeat scroll 0px -1px #F7F7F7;
   cursor: pointer;
   height: 12px;
   width: 14px;
@@ -2220,7 +2228,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  background: #ffffff url(/images/magglass.png) no-repeat 8px 9px;
+  background: #fff url(/images/magglass.png) no-repeat 8px 9px;
   padding: 7px 7px 7px 24px;
   width: 595px;
   outline: none;

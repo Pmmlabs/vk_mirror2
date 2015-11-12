@@ -1503,7 +1503,7 @@ body.dev.is_2x #page_wrap .big.disabled.selector_container td.selector_dropdown 
 }
 .is_2x .mdd-rtl.mdd-wrap .mdd-item-selected,
 .is_2x .mdd-rtl.mdd-wrap .mdd-item-selected:hover {
-  background: #edf1f5 url(/images/flydead_flat_2x.gif?1) no-repeat 0% 2px;
+  background: #EDF1F5 url(/images/flydead_flat_2x.gif?1) no-repeat 0% 2px;
   text-align: right;
   background-size: 14px 90px;
 }

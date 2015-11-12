@@ -202,7 +202,7 @@ input#group_edit_addr {
   height: 14px;
   line-height: 1.27em;
   outline: none;
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 6px;
+  background: #FFF url(/images/magglass.png) no-repeat 5px 6px;
 }
 #group_bl_submit,
 #group_l_submit {

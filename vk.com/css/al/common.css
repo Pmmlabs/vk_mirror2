@@ -442,7 +442,7 @@ input.dark {
   padding: 7px 10px 8px;
 }
 input.search {
-  background: #ffffff url(/images/magglass.png) no-repeat 3px 4px;
+  background: #FFF url(/images/magglass.png) no-repeat 3px 4px;
   padding-left: 17px;
 }
 input.file {
@@ -534,21 +534,21 @@ div#utils {
   position: absolute;
   width: 100%;
   height: 40px;
-  background: #4e729a url(/images/hatf.gif?1) 0px -43px repeat-x;
+  background: #4E729A url(/images/hatf.gif?1) 0px -43px repeat-x;
 }
 #page_header .left {
   position: absolute;
   left: 0px;
   width: 134px;
   height: 40px;
-  background: #4e729a url(/images/hatf.gif?1) 0px -1px;
+  background: #4E729A url(/images/hatf.gif?1) 0px -1px;
 }
 #page_header .right {
   position: absolute;
   right: 0px;
   width: 10px;
   height: 40px;
-  background: #4e729a url(/images/hatf.gif?1) 100% -1px;
+  background: #4E729A url(/images/hatf.gif?1) 100% -1px;
 }
 #page_header .content {
   position: absolute;
@@ -572,14 +572,14 @@ div#utils {
 }
 */
 #page_header.p_head1 .right {
-  background: #4e729a url(/images/hatf_vk.gif?1) 100% -1px;
+  background: #4E729A url(/images/hatf_vk.gif?1) 100% -1px;
 }
 #page_header.p_head1 .left {
   width: 48px;
-  background: #4e729a url(/images/hatf_vk.gif?1) 0px -1px;
+  background: #4E729A url(/images/hatf_vk.gif?1) 0px -1px;
 }
 #page_header.p_head1 .back {
-  background: #4e729a url(/images/hatf_vk.gif?1) 0px -43px repeat-x;
+  background: #4E729A url(/images/hatf_vk.gif?1) 0px -43px repeat-x;
 }
 /*
 #page_header.p_head1.p_head_l100 .left {
@@ -606,17 +606,17 @@ div#utils {
   visibility: hidden;
   width: 134px;
   height: 36px;
-  background: #4e729a url(/images/hatf.gif?1) -4px 0px;
+  background: #4E729A url(/images/hatf.gif?1) -4px 0px;
   margin-right: 8px;
 }
 #top_logo_down.tld_d {
   visibility: visible;
 }
 #page_header.p_head1 #top_logo_down {
-  background: #4e729a url(/images/hatf_vk.gif?1) -4px 0px;
+  background: #4E729A url(/images/hatf_vk.gif?1) -4px 0px;
 }
 .is_rtl1 #page_header.p_head1 #top_logo_down {
-  background: #4e729a url(/images/hatf_vk_rtl.gif?1) -3px 0px;
+  background: #4E729A url(/images/hatf_vk_rtl.gif?1) -3px 0px;
 }
 .top_back_link_td {
   width: 100%;
@@ -978,7 +978,7 @@ div.left_announce h4 {
   color: #99B3C9;
 }
 .left_rate .body {
-  background: #faf3d8 url(/images/golden.gif) repeat-x 50% 100%;
+  background: #FAF3D8 url(/images/golden.gif) repeat-x 50% 100%;
   border-bottom: 1px solid #FBE172;
   margin: 0px 0px 10px;
   padding: 5px;
@@ -1007,7 +1007,7 @@ div.left_announce h4 {
 .left_rate.green .body,
 .left_rate.red .body,
 .left_rate.blue .body {
-  background: #d5eabb url(/images/greenl.gif) repeat-x 50% 0%;
+  background: #D5EABB url(/images/greenl.gif) repeat-x 50% 0%;
   border: 8px solid #8DBF56;
   margin-bottom: 0px;
 }
@@ -1030,7 +1030,7 @@ div.left_announce h4 {
   border-color: #8B4C23;
 }
 .left_rate.red .body {
-  background: #f0d6c7 url(/images/redl.gif) repeat-x 50% 0%;
+  background: #F0D6C7 url(/images/redl.gif) repeat-x 50% 0%;
   border-color: #C68D69;
 }
 .left_rate.red .body div {
@@ -1046,7 +1046,7 @@ div.left_announce h4 {
   border-color: #2F6C95;
 }
 .left_rate.blue .body {
-  background: #d9e6ee url(/images/bluel.gif) repeat-x 50% 0%;
+  background: #D9E6EE url(/images/bluel.gif) repeat-x 50% 0%;
   border-color: #99B3C9;
 }
 .left_rate.blue .body div {
@@ -1656,7 +1656,7 @@ body.no_stl #stl_left {
   margin: 7px 5px 0px;
   cursor: pointer;
   padding: 0;
-  background: #9db7d4 url(/images/boxicon_vk.gif) -23px -2px;
+  background: #9DB7D4 url(/images/boxicon_vk.gif) -23px -2px;
 }
 .box_dark .box_x_button {
   background: none;
@@ -2113,7 +2113,7 @@ div.audio td {
   padding-left: 10px;
 }
 .add_audio_plus {
-  background: #c4d2e1 url(/images/icons/plus_icon3.gif) no-repeat;
+  background: #C4D2E1 url(/images/icons/plus_icon3.gif) no-repeat;
   height: 17px;
   width: 16px;
   cursor: pointer;
@@ -3020,11 +3020,11 @@ div.top_result_baloon a {
   width: 100%;
   height: 100%;
   z-index: 1550;
-  background: #ffffff url(/images/dropbox_arrow.png) no-repeat 55px 11px;
+  background: #FFF url(/images/dropbox_arrow.png) no-repeat 55px 11px;
   display: none;
 }
 .dropbox.choose {
-  background: #ffffff url(/images/dropbox_arrow.png) no-repeat 75px 31px;
+  background: #FFF url(/images/dropbox_arrow.png) no-repeat 75px 31px;
   border-bottom: 1px solid #DAE1E8;
 }
 .dropbox_wrap {

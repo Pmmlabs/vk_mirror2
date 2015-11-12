@@ -82,7 +82,7 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   line-height: 1.27em;
-  background: #ffffff url(/images/magglass.png) no-repeat 5px 8px;
+  background: #FFF url(/images/magglass.png) no-repeat 5px 8px;
   outline: none;
 }
 #feed_search::-ms-clear {
