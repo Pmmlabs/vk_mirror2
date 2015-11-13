@@ -361,6 +361,7 @@ gifts_X_votes=['','%s голос','%s голоса','%s голосов'];
 
 groups_admins='Администраторы';
 groups_admins_of_group='Администраторы группы';
+groups_adspost_notify_pm='Личные сообщения';
 groups_appl_rejected='Заявка отклонена.';
 groups_assign='Назначить';
 groups_assigned='Участник назначен руководителем.';

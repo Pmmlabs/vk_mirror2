@@ -2569,6 +2569,7 @@ var Feed = {
   },
   searchSelectHotHashtag: function(el) {
     Feed.submitSearch(val(el));
+    statlogsValueEvent('top_hashtag_search', 0, 'click');
     return false;
   },
   highlightHotHashtag: function(q) {

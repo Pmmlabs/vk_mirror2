@@ -1226,7 +1226,6 @@ tplSmile: function(optId, placeholder, classAddr) {
   return '<div title="'+placeholder+'" class="fl_l emoji_smile'+classAddr+'" onmouseover="Emoji.ttShow('+optId+', this);" onmouseout="Emoji.ttHide('+optId+', this);" onclick="return cancelEvent(event);"><div class="emoji_smile_icon_on"></div><div class="emoji_smile_icon"></div></div>'
 },
 
-
 emojiToHTML: function(str, replaceSymbols, noBr) {
   if (browser.ipad || browser.iphone) {
     return str;
@@ -1247,6 +1246,7 @@ emojiToHTML: function(str, replaceSymbols, noBr) {
     'D83DDE28': /(\s|^)(:[oîOÎ])([\s\.,]|$)/g,
     '2764': /(\s|^)(&lt;3)([\s\.,]|$)/g
   };
+
   for (var i = 0; i < 2; i++) {
     for (var code in regs) {
       str = str.replace(regs[code], function(match, pre, smile, space) {
@@ -1254,6 +1254,7 @@ emojiToHTML: function(str, replaceSymbols, noBr) {
       });
     }
   }
+
   var regs = {
     'D83DDE0A': /(:-\))([\s\.,]|$)/g,
     'D83DDE03': /(:-D)([\s\.,]|$)/g,
@@ -1284,8 +1285,9 @@ emojiToHTML: function(str, replaceSymbols, noBr) {
   }
 
   str = str.replace(/\n/g, '<br>');
+
   if (replaceSymbols) {
-    str = str.replace(Emoji.emojiRegEx, Emoji.emojiReplace).replace(/\uFE0F/g, '');
+    str = str.replace(Emoji.emojiRegEx, Emoji.emojiReplace);
   }
 
   return str;
@@ -1293,38 +1295,66 @@ emojiToHTML: function(str, replaceSymbols, noBr) {
 
 emojiReplace: function(symbolstr) {
   var i = 0;
-  var buffer = '', altBuffer = '', num;
+  var buffer = '';
+  var altBuffer = '';
+  var num = '';
   var symbols = [];
   var codes = [];
-  while(num = symbolstr.charCodeAt(i++)) {
+  var collectCodes = true;
+
+  if (symbolstr.match(/\uFE0F\u20E3/g)) {
+    symbolstr = symbolstr.replace(/\uFE0F/g, '');
+  }
+
+  do {
+    var num = symbolstr.charCodeAt(i++);
+
+    if (!num) {
+      collectCodes = false;
+      continue;
+    }
+
     var code = num.toString(16).toUpperCase();
     var symbol = symbolstr.charAt(i - 1);
-    if (i == 2 && num == 8419) {
-      codes.push('003'+symbolstr.charAt(0)+'20E3');
-      symbols.push(symbolstr.charAt(0));
+
+    if (num == 8419) {
+      var numPrevPos = i - 2;
+      var numPrevChar = symbolstr.charAt(numPrevPos);
+
+      codes.push('003' + numPrevChar + '20E3');
+      symbols.push(numPrevChar);
+
       buffer = '';
       altBuffer = '';
       continue;
     }
+
     buffer += code;
     altBuffer += symbol;
+
     if (!symbol.match(Emoji.emojiCharSeq)) {
       codes.push(buffer);
       symbols.push(altBuffer);
       buffer = '';
       altBuffer = '';
     }
-  }
+
+  } while (collectCodes)
+
   if (buffer) {
     codes.push(buffer);
     symbols.push(altBuffer);
   }
+
   var out = '';
-  var buffer = '';
-  var altBuffer = '';
   var joiner = false;
   var isFlag = false;
-  for(var i in codes) {
+
+  i = 0;
+  buffer = '';
+  altBuffer = '';
+
+  for (var i in codes) {
     var code = codes[i];
     var symbol = symbols[i];
     if (symbol.match(/\uD83C[\uDFFB-\uDFFF]/)) { // colors
@@ -1364,15 +1394,17 @@ emojiReplace: function(symbolstr) {
     buffer = code;
     altBuffer = symbol;
   }
+
   if (buffer) {
     out += Emoji.getEmojiHTML(buffer, altBuffer, true);
   }
+
   return out;
 },
 
 emojiCharSeq: /[0-9\uD83D\uD83C\uD83E]/,
 
-emojiRegEx: /((?:[\u2122\u231B\u2328\u25C0\u2601\u260E\u261d\u2626\u262A\u2638\u2639\u263a\u267B\u267F\u2702\u2708]|[\u2600\u26C4\u26BE\u2705\u2764]|[\u25FB-\u25FE]|[\u2602-\u2618]|[\u2648-\u2653]|[\u2660-\u2668]|[\u26A0-\u26FA]|[\u270A-\u2764]|[\uE000-\uF8FF]|[\u2692-\u269C]|[\u262E-\u262F]|[\u2622-\u2623]|[\u23ED-\u23EF]|[\u23F8-\u23FA]|[\u23F1-\u23F4]|[\uD83D\uD83C\uD83E]|[\uDC00-\uDFFF]|[0-9]\u20e3|[\u200C\u200D])+)/g,
+emojiRegEx: /((?:[\u203C\u2049\u2122\u2328\u2601\u260E\u261d\u2626\u262A\u2638\u2639\u263a\u267B\u267F\u2702\u2708]|[\u2600\u26C4\u26BE\u2705\u2764]|[\u2194-\u2199\u21AA\u21A9]|[\u231A-\u231B]|[\u23E9-\u23EF]|[\u23F0-\u23F4]|[\u23F8-\u23FA]|[\u24C2]|[\u25AA-\u25AB]|[\u25B6\u25C0]|[\u25FB-\u25FE]|[\u2602-\u2618]|[\u2648-\u2653]|[\u2660-\u2668]|[\u26A0-\u26FA]|[\u2692-\u269C]|[\u262E-\u262F]|[\u2622-\u2623]|[\u2709-\u2764]|[\u2795-\u2797]|[\u27A1]|[\u27BF]|[\u2934-\u2935]|[\u2B05-\u2B07]|[\u2B1B]|[\u2B50\u2B55]|[\u303D]|[\u3297\u3299]|[\uE000-\uF8FF]|[\uD83D\uD83C\uD83E][\uDC00-\uDFFF]|[0-9]\u20E3|[\u0023-\u0039\u203C-\u21AA]\uFE0F\u20E3|[\u200C\u200D])+)/g,
 
 emojiFlagRegEx: /\uD83C\uDDE8\uD83C\uDDF3|\uD83C\uDDE9\uD83C\uDDEA|\uD83C\uDDEA\uD83C\uDDF8|\uD83C\uDDEB\uD83C\uDDF7|\uD83C\uDDEC\uD83C\uDDE7|\uD83C\uDDEE\uD83C\uDDF9|\uD83C\uDDEF\uD83C\uDDF5|\uD83C\uDDF0\uD83C\uDDF7|\uD83C\uDDF7\uD83C\uDDFA|\uD83C\uDDFA\uD83C\uDDF8/,
 

@@ -1440,6 +1440,9 @@ Geocoder: {
       s = 0;
       address.address = new YMaps.GeoPoint(address.lon, address.lat);
       q = { act: 'ya_get_geocoder_coords', lat: address.lat, lon: address.lon };
+      if (cur.countryCode && cur.countryCode == 'UA') {
+        q['country'] = cur.countryCode;
+      }
     } else {
       var b = address.bounds, lat = 0, lon = 0;
       if (b) {
