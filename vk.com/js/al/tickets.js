@@ -1489,9 +1489,9 @@ showAddDocBox: function(onShow) {
   }
   return showFastBox(opts, cur.docBox);
 },
-showAddExtraFieldFileBox: function(index) {
+showAddExtraFieldFileBox: function(index, withSize) {
   return showFastBox({
-    onShow: Tickets.initExtraFieldUpload.pbind('tis_add_data', {hideOnStart: true, fieldIndex: index }),
+    onShow: Tickets.initExtraFieldUpload.pbind('tis_add_data', {hideOnStart: true, fieldIndex: index, withSize: withSize }),
     title: getLang('support_adding_image'),
     width: 460,
     bodyStyle: 'padding: 0px',
@@ -1540,7 +1540,6 @@ chooseExtraFieldUploaded: function(fieldIndex, info, params) {
       Tickets.chooseExtraFieldComplete(fieldIndex, media, extend(data, {upload_ind: i + '_' + fileName}));
     },
     onFail: function(code) {
-      console.log('Tickets.chooseExtraFieldUploaded:onFail');
       Tickets.chooseFail(null, info, code);
     }
   });
@@ -1907,7 +1906,10 @@ showExtraFieldProgress: function(index, i, data, lnkId) {
 initExtraFieldUpload: function(el, params) {
   el = ge(el);
   if (!el) return;
-
+  var about = ge('tis_about');
+  if (about) {
+    about.innerHTML = getLang(params.withSize ? 'support_extra_field_limits_photo' : 'support_extra_field_limits');
+  }
   var uploadData = cur.uploadExtraFieldsData, opts = uploadData.options, fieldIndex = params.fieldIndex;
 
   return Upload.init(el, uploadData.url, uploadData.vars, {
@@ -1921,8 +1923,6 @@ initExtraFieldUpload: function(el, params) {
     lang: opts.lang,
 
     onUploadStart: function(info, res) {
-      console.log('onUploadStart');
-      console.log(info);
       var i = info.ind !== undefined ? info.ind : info, options = Upload.options[i];
       if (Upload.types[i] == 'form') {
         geByClass1('file', el).disabled = true;
@@ -1936,8 +1936,6 @@ initExtraFieldUpload: function(el, params) {
       }
     },
     onUploadComplete: function(info, res) {
-      console.log('onUploadComplete');
-      console.log(info);
       var params;
       try {
         params = eval('(' + res + ')');
@@ -1985,11 +1983,8 @@ initExtraFieldUpload: function(el, params) {
     },
     onCheckComplete: false,
     onUploadError: function() {
-      console.log('onUploadError');
     },
     onUploadCompleteAll: function (info) {
-      console.log('onUploadCompleteAll');
-      console.log(info);
       var i = info.ind !== undefined ? info.ind : info;
       if (Upload.types[i] !== 'fileApi') {
         if (params.hideOnStart) {

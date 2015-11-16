@@ -107,7 +107,7 @@ var VideoYoutube = {
         <td style="padding-right:12px;' + (vars.show_next ? '' : 'display:none') + '">\
           <div id="video_yt_next_btn" class="video_yt_icon" onmouseover="VideoYoutube.onNextBtnOver(this)" onmouseout="VideoYoutube.onNextBtnOut(this)" onclick="VideoYoutube.nextVideo()"></div>\
         </td>\
-        <td width="100%" style="padding:10px 0">\
+        <td width="100%" style="padding:6px 0">\
           <div id="video_yt_progressbar" onmousemove="VideoYoutube.onProgressMove(event)" onmouseover="VideoYoutube.onProgressOver()" onmouseout="VideoYoutube.onProgressOut()" onmousedown="VideoYoutube.onProgressDragStart(event)">\
             <div class="video_yt_progressbar_bg"></div>\
             <div id="video_yt_progressbar_loaded"></div>\
@@ -150,6 +150,9 @@ var VideoYoutube = {
               <span id="video_yt_quality_btn_icon"></span>\
             </span>\
           </div>\
+        </td>\
+        <td style="padding-left:9px">\
+          <div id="video_yt_logo_btn" onclick="VideoYoutube.onLogoClick()"></div>\
         </td>\
       </tr>\
     </table>\
@@ -704,6 +707,7 @@ var VideoYoutube = {
     videoCallback(['onOpenInPopup', videoRaw, vars.list_id, curTime]);
   },
 
+
   onFullScreenBtnOver: function(btn) {
     var vars = VideoYoutube.cur.vars;
     var containerPos = getXY('video_yt');
@@ -744,6 +748,14 @@ var VideoYoutube = {
         VideoYoutube.toggleControls(false);
       }
     }, 3000);
+  },
+
+  onLogoClick: function() {
+    var player = VideoYoutube.cur.player;
+    var url = player.getVideoUrl();
+    VideoYoutube.togglePlay(false);
+    var win = window.open(url);
+    win.opener = null;
   },
 
   onFullscreenChange: function() {

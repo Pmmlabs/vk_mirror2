@@ -1188,6 +1188,10 @@ body.dev.is_2x .paginated_table_header th.paginated_table_cell.sort_desc span.ta
   background-image: url(/images/video/iconset_2x.png?4);
   background-size: 380px 68px;
 }
+.is_2x #video_yt #video_yt_logo_btn {
+  background-image: url(/images/video/youtube_logo_light_2x.png);
+  background-size: 38px 16px;
+}
 .is_2x .wall_album_nocover,
 .is_2x .pva_no_photos,
 .is_2x #photos_albums_container .photo_row .img_link.no_photo,
