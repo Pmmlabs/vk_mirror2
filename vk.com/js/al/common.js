@@ -8019,7 +8019,7 @@ function aquireLock(name, fn, noretry) {
 
 function statNavigationTiming () {
   if (window.clientStatsInitedNT) return false;
-  if (Math.random() < 0.0001 && window.performance && performance.timing) {
+  if (Math.random() < 0.001 && window.performance && performance.timing) {
 
     var perTiming = {};
     if (performance.timing.redirectStart && performance.timing.redirectEnd) {

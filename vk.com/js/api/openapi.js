@@ -534,15 +534,16 @@ if (!VK.xdConnectionCallbacks) {
 
       createRequest: function(method, url) {
         var xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
 
         if ("withCredentials" in xhr) {
           // XHR for Chrome/Firefox/Opera/Safari.
           xhr.open(method, url, true);
+          xhr.withCredentials = true;
         } else if (typeof XDomainRequest != "undefined") {
           // XDomainRequest for IE.
           xhr = new XDomainRequest();
           xhr.open(method, url);
+          xhr.withCredentials = true;
         } else {
           // CORS not supported.
           xhr = null;

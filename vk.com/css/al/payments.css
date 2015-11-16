@@ -468,6 +468,9 @@ h2.payments_getvotes_title {
   overflow-y: auto;
   overflow-x: hidden;
 }
+.payments_threeds_frame {
+  -webkit-overflow-scrolling: touch;
+}
 .payments_tform {
   margin-left: 15px;
   border-collapse: collapse;
