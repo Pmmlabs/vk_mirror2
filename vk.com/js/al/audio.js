@@ -1313,7 +1313,9 @@ var Audio = {
     var query = {act:'add', aid:aid, oid:oid, hash:hash, top:top};
     if (gid) query.gid = cur.gid || cur.oid < 0 && -cur.oid;
     if (__cur && __cur.curSection == 'recommendations') query.recommendation = 1;
+    if (nav.objLoc.audio_id) query.recommendation_type = 'query';
     if ((cur.module == 'audio' || cur.module == 'feed') && nav.objLoc['q'] || cur.module == 'search' && nav.objLoc['c[q]']) query.search = 1;
+
     ajax.post(Audio.address, query, {
       onDone: function (data, res) {
         var obj = eval('('+data+')'), all_list;
@@ -2437,7 +2439,9 @@ var Audio = {
       cur.recsCount--;
     }
 
-    ajax.post(Audio.address, {act: 'hide_recommendation', q: q, hash: hash});
+    var params = {act: 'hide_recommendation', q: q, hash: hash, recommendation_type: nav.objLoc.audio_id ? 'query' : ''};
+
+    ajax.post(Audio.address, params);
     if (event) cancelEvent(event);
 
     return false;
