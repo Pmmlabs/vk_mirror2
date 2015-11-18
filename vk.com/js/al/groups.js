@@ -191,12 +191,14 @@ var Groups = {
   updateCnt: function(cnt) {
     cnt = parseInt(cnt);
     var cntEl = geByClass1('_group_message_cnt');
-    cntEl.textContent = "+" + cnt;
+    if (cntEl) {
+      cntEl.textContent = "+" + cnt;
 
-    if (cnt === 0) {
-      addClass(cntEl.parentNode, "hidden");
-    } else {
-      removeClass(cntEl.parentNode, "hidden");
+      if (cnt === 0) {
+        addClass(cntEl.parentNode, "hidden");
+      } else {
+        removeClass(cntEl.parentNode, "hidden");
+      }
     }
   },
 

@@ -885,15 +885,22 @@ var Photoview = {
 
     if (!tryWebGL()) {
       if (browser.safari) {
+        debugLog('photo editor: webgl enable needed');
         return -2; // need enable
       }
+      debugLog('photo editor: webgl not suported');
       return -1; // doesn't support
     } else {
       return 1; // enabled
     }
   },
   openEditor: function(mediaId, src) { // parameters optional and for webcam
+    src = src ? src : cur.pvCurData.src;
+
     function _openEditor(hasCors) {
+      if (!hasCors) {
+        debugLog('photo editor: CORS not available (' + src + ')');
+      }
       return showBox('al_photos.php', {
         act: 'edit_photo',
         photo: mediaId ? mediaId : cur.pvData[cur.pvListId][cur.pvIndex].id,
@@ -912,7 +919,7 @@ var Photoview = {
       _openEditor(1);
     }
     testImg.crossOrigin = '';
-    testImg.src = src ? src : cur.pvCurData.src;
+    testImg.src = src;
   },
   doShow: function() {
     var img = cur.pvCurData;
