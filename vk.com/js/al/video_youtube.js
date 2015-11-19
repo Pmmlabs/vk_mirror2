@@ -291,6 +291,9 @@ var VideoYoutube = {
       var savedVolume = localStorage.getItem('video_volume');
       VideoYoutube.cur.player.setVolume(savedVolume || 60);
     }
+    if (VideoYoutube.cur.vars.mute) {
+      VideoYoutube.cur.player.mute();
+    }
     videoCallback(['onInitialized']);
   },
 

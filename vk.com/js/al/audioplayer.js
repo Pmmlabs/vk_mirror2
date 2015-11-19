@@ -496,6 +496,10 @@ var audioPlayer = {
       _a.gpHidden = false;
       updGlobalPlayer();
     }
+
+    if (_a.playbackParams.recommendation) {
+      statlogsValueEvent('audios_recommend', 'rec_audio_played', _a.playbackParams.recommendation, nav.objLoc.audio_id || '');
+    }
   },
   setGraphics: function(act) {
     var _a = audioPlayer, head_play = ge('head_play_btn'), aid = currentAudioId(),
