@@ -98,18 +98,22 @@ playerCallback: {
     }
   },
   onInitialized: function() {
-    Videoview.togglePlaylistsBlock(!Videoview.isPlaylistBlockCollapsed());
-    if (window.mvcur && mvcur.mvShown && mvcur.options.focusPlay) {
-      if (document.visibilityState == 'visible') {
-        // page is focused, play
-        Videoview.togglePlay(true);
-      } else if (document.visibilityState == 'hidden') {
-        // wait for focus
-        addEvent(window, 'focus', function focusHandler() {
+    if (window.mvcur && mvcur.mvShown) {
+      Videoview.togglePlaylistsBlock(!Videoview.isPlaylistBlockCollapsed());
+      if (mvcur.options.focusPlay) {
+        if (document.visibilityState == 'visible') {
+          // page is focused, play
           Videoview.togglePlay(true);
-          removeEvent(window, 'focus', focusHandler);
-        });
+        } else if (document.visibilityState == 'hidden') {
+          // wait for focus
+          addEvent(window, 'focus', function focusHandler() {
+            Videoview.togglePlay(true);
+            removeEvent(window, 'focus', focusHandler);
+          });
+        }
       }
+    } else if (cur.pinnedVideoInitHandlers) {
+      cur.pinnedVideoInitHandlers();
     }
   },
   onVideoPlayProgress: function(oid, vid, hash, time_progress, time_total) {

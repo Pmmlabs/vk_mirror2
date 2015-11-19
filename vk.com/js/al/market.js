@@ -121,14 +121,17 @@ var Market = {
     return false;
   },
   initSorter: function() {
-    if (cur.mSection != 'albums') {
-      return;
+    if (cur.itemsSorter) {
+      cur.itemsSorter.destroy();
     }
     if (cur.albumsSorter) {
       cur.albumsSorter.destroy();
     }
+    if (!cur.canEdit) {
+      return;
+    }
 
-    if (cur.canEdit && cur.albumsCount > 1) {
+    if (cur.mSection == 'albums' && cur.albumsCount > 1) {
       var block = geByClass1('market_album_block', 'market_albums_cont'),
           size = getSize(block);
 
@@ -147,7 +150,32 @@ var Market = {
           },
         });
       }, 10);
+    } else if ((!cur.mSection || cur.aid) && cur.itemsCount > 1 && !hasClass('market', 'market_search_section')) {
+      var block = geByClass1('market_row', cur.listEl),
+          size = getSize(block);
+
+      setTimeout(function() {
+        cur.qsorterNoOperaStyle = true;
+        cur.qsorterRowClass = 'market_row';
+        cur.qsorterRowUpClass = 'market_row market_row_up';
+        cur.itemsSorter = qsorter.init(cur.listEl, {
+          onReorder: Market.onItemReorder,
+          xsize: 3,
+          width: size[0] + parseInt(getStyle(block, 'marginRight')),
+          height: size[1] + parseInt(getStyle(block, 'marginBottom')),
+          noMoveCursor: 1,
+          canDrag: function(el) {
+            return cur.mSection !== 'disabled';
+          },
+        });
+      }, 10);
     }
+  },
+  onItemReorder: function (item, before, after) {
+    var item_id = item.id.replace('market_item', '');
+    var before_id = (before && before.id || '').replace('market_item', '');
+    var after_id = (after && after.id || '').replace('market_item', '');
+    ajax.post('al_market.php', {act: 'a_reorder_items', oid: cur.oid, aid: cur.aid, id: item_id, before: before_id, after: after_id, hash: cur.reorderHash});
   },
   onAlbumReorder: function (album, before, after) {
     var album_id = album.id.replace('market_album_block', '');
@@ -259,7 +287,7 @@ var Market = {
 
         var searchParamsCount = 0;
         each (query, function(k, v) {
-          if (!inArray(k, ['id', 'load', 'sort', 'offset']) && v != '' || (k == 'sort' && v != 1)) {
+          if (!inArray(k, ['id', 'load', 'sort', 'offset']) && v != '' || (k == 'sort' && v != 0)) {
             searchParamsCount++;
           }
         });
@@ -271,9 +299,10 @@ var Market = {
             show(cur.albumbEl);
           }
         }
+        Market.initSorter();
 
         each(query, function(i, v) {
-          if (v && v != 0 && !inArray(i, ['load', 'id', 'offset', 'aid']) && (i != 'sort' || v != 1)) {
+          if (v && v != 0 && !inArray(i, ['load', 'id', 'offset', 'aid']) && (i != 'sort' || v != 0)) {
             nav.objLoc[i] = v;
           } else {
             delete nav.objLoc[i];
@@ -921,6 +950,7 @@ var Market = {
               });
             }
           }
+          Market.initSorter();
           showDoneBox(text);
         },
         showProgress: box.showProgress,
