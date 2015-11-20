@@ -1748,6 +1748,10 @@ body.dev.is_2x .priv_h_arrow,
   background-image: url(/images/icons/android_ru_app_2x.png);
   background-size: 29px 29px;
 }
+.is_2x .validation_device_thumb_wphone {
+  background-image: url(/images/icons/wphone_app_2x.png);
+  background-size: 29px 29px;
+}
 .is_2x .el_mask .el_mask_progress_wrap .el_mask_progress,
 .is_2x .translation-progress,
 .is_2x .secondary.flat_btn_lock {

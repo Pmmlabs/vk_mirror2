@@ -124,6 +124,9 @@ var html5video = {
 
     if (vars.min_controls) {
       hide(actsEl.parentNode);
+    }
+
+    if (vars.min_controls || vars.mute) {
       html5video.volume = 0;
     }
 
@@ -196,10 +199,14 @@ var html5video = {
       }
     }, 100);
     if (vars.autoplay || html5video.timeFromStr(vars.t)) {
-      html5video.playVideo();
+      html5video.playVideo(true, true);
     }
 
     Videoview.updatePlaylistBoxPosition();
+
+    if (window.videoCallback) {
+      videoCallback(['onInitialized']);
+    }
   },
 
   initVideoLinks: function() {
@@ -374,7 +381,7 @@ var html5video = {
     }, 0);
   },
 
-  playVideo: function(forceStatus) {
+  playVideo: function(forceStatus, fromAutoplay) {
     var video = ge('the_video'), vars = this.vars;
     if (!video || forceStatus === true && !video.paused || forceStatus === false && video.paused) {
       return;
@@ -415,6 +422,12 @@ var html5video = {
       if (this.incSmallViewTimer) {
         this.incSmallViewTimer.pause();
       }
+    }
+
+    if (!fromAutoplay && !this.touchedByUser) {
+      this.touchedByUser = true;
+      this.volume = this.lastVolume;
+      this.updVol();
     }
   },
 
@@ -1491,6 +1504,10 @@ var html5video = {
     } else {
       html5video.showFinishLayer();
     }
+
+    if (window.videoCallback) {
+      videoCallback(['onVideoPlayFinished']);
+    }
   },
 
   prClick: function(event) {
@@ -1531,6 +1548,7 @@ var html5video = {
     if (!vertical) {
       html5video.showTip(Math.round(percent * 100) + '%', getXY(ge('volume_slider'))[0] - getXY(ge('html5_player'))[0] + 3, -2);
     }
+    html5video.touchedByUser = true;
   },
 
   onVolumeBut: function() {
@@ -1540,8 +1558,9 @@ var html5video = {
     } else {
       html5video.volume = html5video.lastVolume;
     }
-    html5video.updVol()
+    html5video.updVol();
     html5video.volumeBtnOver(ge('volume_button'), window.event);
+    html5video.touchedByUser = true;
   },
 
   sliderOver: function(el, event) {
@@ -1731,6 +1750,10 @@ var html5video = {
       }
     }
     html5video.updateMenu();
+  },
+
+  isTouchedByUser: function() {
+    return !!html5video.touchedByUser;
   },
 
   destroy: function() {

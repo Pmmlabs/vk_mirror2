@@ -6693,11 +6693,14 @@ function showInlineVideo(videoId, listId, options, ev, thumb) {
     } catch (e) {
       debugLog('video inline error', e.message, e.stack, e, js);
     }
-    var _n = window.Notifier, _a = window.audioPlayer;
-    if (_n) setTimeout(function() { _n.lcSend('video_start'); }, 0);
-    if (_a && _a.player && !_a.player.paused()) {
-      _a.pauseTrack();
-      _a.pausedByVideo = 1;
+
+    if (!options.params.mute) {
+      var _n = window.Notifier, _a = window.audioPlayer;
+      if (_n) setTimeout(function() { _n.lcSend('video_start'); }, 0);
+      if (_a && _a.player && !_a.player.paused()) {
+        _a.pauseTrack();
+        _a.pausedByVideo = 1;
+      }
     }
   };
   options.onFail = function(text) {

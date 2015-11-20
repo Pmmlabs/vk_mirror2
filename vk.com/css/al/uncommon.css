@@ -540,6 +540,9 @@ ul.vk_com_only_good {
 .validation_device_thumb_android_ru {
   background-image: url(/images/icons/android_ru_app.png);
 }
+.validation_device_thumb_wphone {
+  background-image: url(/images/icons/wphone_app.png);
+}
 .validation_device_info {
   color: #777;
   line-height: 120%;
@@ -548,6 +551,10 @@ ul.vk_com_only_good {
   padding-bottom: 2px;
   color: #000;
   font-weight: bold;
+  width: 131px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .validation_no_push {
   display: block;

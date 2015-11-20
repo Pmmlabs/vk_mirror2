@@ -1503,7 +1503,7 @@ stickerOver: function(stickerNum, el) {
   var params = {act: 'a_stickers_hover', sticker_id: stickerNum, from: cur.module};
   var tt_index = (cur.tooltips || []).length;
 
-  if (typeof(el.tt) !== 'undefined') {
+  if (isObject(el.tt) && el.firstChild.nodeName === 'IMG') {
     return el.tt.show();
   }
 

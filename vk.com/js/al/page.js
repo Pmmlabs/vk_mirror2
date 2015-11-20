@@ -6110,7 +6110,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
             var uploadTooltip = 'onmouseover="showTooltip(this, {text: \'' + getLang('global_link_choose_own_photo') + '\', black: 1, shift: [7, 1, 0]})"';
             var removeTooltip = 'onmouseover="showTooltip(this, {text: \'' + getLang('global_link_remove_photo') + '\', black: 1, shift: [7, 1, 0]})"';
 
-            var imgControls = !data.media ? '' : '<div class="medadd_c_linkimg_controls">' +
+            var imgControls = (!data.media || data.media === '_') ? '' : '<div class="medadd_c_linkimg_controls">' +
                               '  <div class="medadd_c_linkimg_controls_btn_group clear_fix fl_l">' +
                               (availableImagesCount > 1 ?
                               '    <div class="medadd_c_linkimg_controls_btn_arrows_group">' +
