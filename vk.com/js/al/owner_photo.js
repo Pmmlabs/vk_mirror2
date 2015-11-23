@@ -57,7 +57,7 @@ var OwnerPhoto = {
     switch (code) {
       case 'ERR_UPLOAD_FILE_NOT_SUPPORTED': msg = getLang('profile_oph_err_format'); break;
       case 'ERR_UPLOAD_FILE_NOT_UPLOADED':
-        msg = getLang('profile_oph_err_upload').replace('{link}', '<a href="/support">').replace('{/link}', '</a>'); break;
+        msg = getLang('profile_oph_err_upload').replace('{link}', '<a href="/support?act=new&from=ph">').replace('{/link}', '</a>'); break;
       case 'ERR_UPLOAD_BAD_IMAGE_SIZE':
         if (wide) {
           msg = getLang('profile_custom_snippet_photo_error_size').replace('{width}', '537').replace('{height}', '240'); break;
@@ -71,7 +71,7 @@ var OwnerPhoto = {
           msg = getLang('profile_oph_error_server'); break;
         }
       default:
-        msg = getLang('profile_oph_err_unknown').replace('{link}', '<a href="/support">').replace('{/link}', '</a>'); break;
+        msg = getLang('profile_oph_err_unknown').replace('{link}', '<a href="/support?act=new&from=ph">').replace('{/link}', '</a>'); break;
     }
     msg = msg.replace('{sorry}', '<b>' + getLang('global_sorry_error') + '</b>') + '<br><a onclick="OwnerPhoto.detailsError(this);">' + getLang('global_error_details') + '</a><div class="unshown">Error: ' + code + (e[3] ? ('. Details: ' + e[3]) : '.') + '</div>';
     val(el, msg);

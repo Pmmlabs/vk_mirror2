@@ -2787,6 +2787,14 @@ var Video = {
     event && cancelEvent(event);
 
     return false;
+  },
+
+  deleteUploadedVideo: function() {
+    ajax.post('al_video.php',
+      {
+        act: 'deleteAllUploaded',
+        oid: cur.oid
+      });
   }
 }
 

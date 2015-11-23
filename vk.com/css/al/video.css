@@ -1498,6 +1498,11 @@ textarea.video_box_disabled {
 .video_summary_tabs .summary_tab_sel {
   padding: 8px 3px 7px;
 }
+.video_summary_tabs .video_delete_by_time {
+  position: absolute;
+  top: 13px;
+  right: 80px;
+}
 #video_playlists_edit_box {
   padding: 5px 10px;
 }

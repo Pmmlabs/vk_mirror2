@@ -320,6 +320,7 @@ app_comments_showcomms='Показать комментарии';
 
 video_add_to_public='Вернуть в публичный доступ';
 video_comment_placeholder='Комментировать..';
+video_delete_all_user_uploaded='Удалить все загруженные пользователем видео?';
 video_delete_from_public='Изъять из доступа';
 video_delete_tag='Удалить отметку';
 video_flash_needed='Для просмотра необходим {flash_player} последней версии.';
