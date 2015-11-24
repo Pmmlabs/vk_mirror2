@@ -2432,7 +2432,15 @@ var Feed = {
     ) {
       return;
     }
-    for (el = domPS(cur.topRow); el && cur.topRow.offsetTop > st; el = domPS(el)) cur.topRow = el;
+    postsUnseen = [];
+    for (el = domPS(cur.topRow); el; el = domPS(el)) {
+      if (cur.topRow.offsetTop > st) cur.topRow = el;
+      if (!el.unseen) {
+        el.unseen = true;
+        postsUnseen.push(Feed.postsGetRaws(el));
+      }
+    }
+    Page.postsUnseen(postsUnseen);
     for (el = cur.topRow; el; el = nel) {
       top = ntop ? ntop : el.offsetTop;
       if (top >= st + ch) break;
@@ -2458,6 +2466,7 @@ var Feed = {
   },
 
   postsGetRaws: function(el) {
+    var index = indexOf(domPN(el).children, el);
     var f = domFC(el);
     var r = /^post(-?\d+_\d+)$/;
     var res = {};
@@ -2465,6 +2474,7 @@ var Feed = {
     if (!f) return res;
 
     res.module = cur.module;
+    res.index = index;
     if (cur.module == 'feed') {
       if (cur.section == 'search') {
         res.module = 'feed_search';

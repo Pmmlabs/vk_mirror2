@@ -7662,7 +7662,7 @@ function padAudioPlaylist() {
   return window.audioPlaylist || ls.get('pad_playlist');
 }
 
-var _postsSeen = {}, _postsSaved = {}, _postsSaveTimer, _postsSendTimer, _postsCleanTimer, _postsSeenModules = {};
+var _postsSeen = {}, _postsSaved = {}, _postsSaveTimer, _postsSendTimer, _postsCleanTimer, _postsSeenModules = {}, _postsExtras = {};
 var ls = {
   checkVersion: function() {
     return (window.localStorage !== undefined && window.JSON !== undefined);

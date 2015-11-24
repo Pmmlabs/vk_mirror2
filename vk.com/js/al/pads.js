@@ -24,7 +24,8 @@ var Pads = {
       if (!padAudioPlaylist()) query.playlist = 1;
       if (!Pads.audioInited) query.init = 1;
     }
-    ajax.post('pads.php', query, {onDone: function(html, script, data) {
+    ajax.post('pads.php', query, {onDone: function(html, script, data, cnt) {
+      if (cnt !== void(0) && cnt !== null && cnt > -1) handlePageCount(id, cnt);
       if (data.onLoadScript) {
         eval(data.onLoadScript);
         delete data.onLoadScript;
@@ -411,7 +412,8 @@ var Pads = {
     if (row) {
       if (vkNow() - c.tim > 3000) {
         ajax.post('pads.php', {act: 'pad', offset: 0, pad_id: id, till: row.id.replace('pad_' + id, '')}, {
-          onDone: function(rows, all) {
+          onDone: function(rows, all, cnt) {
+            if (cnt !== void(0) && cnt !== null && cnt > -1) handlePageCount(id, cnt);
             if (_pads.shown != id) return;
             if (!rows) Pads.invalidate();
             Pads.feed(rows, all, true);
@@ -518,8 +520,10 @@ var Pads = {
   preloadMore: function() {
     if (_pads.cur.more !== undefined || !isVisible('pad_more')) return;
     _pads.cur.more = 'load';
+    var id = _pads.shown;
     ajax.post('pads.php', {act: 'pad', offset: _pads.cur.offset, pad_id: _pads.shown, pad_section: _pads.cur.sect || 0}, {
-      onDone: function(rows, all) {
+      onDone: function(rows, all, cnt) {
+        if (cnt !== void(0) && cnt !== null && cnt > -1) handlePageCount(id, cnt);
         var sh = (_pads.cur.more == 'show');
         _pads.cur.more = rows;
         _pads.cur.all = all;
@@ -1377,14 +1381,18 @@ var Pads = {
       }
     });
   },
-  apDone: function(nid, fail, text) {
+  apDone: function(nid, fail, text, cnt) {
     if (fail) {
       text = '<span class="pad_error">' + text + '</span>';
       if (_pads.cur.processed[nid] > 0) {
         delete(_pads.cur.processed[nid]);
       }
     } else if (_pads.cur.processed[nid] > 0 && vk.counts.ap >= _pads.cur.savedcnts[nid]) {
-      Pads.decr('ap');
+      if (cnt !== void(0) && cnt !== null && cnt > -1) {
+        handlePageCount('ap', cnt);
+      } else {
+        Pads.decr('ap');
+      }
       for (var i in _pads.cur.savedcnts) {
         --_pads.cur.savedcnts[i];
       }
