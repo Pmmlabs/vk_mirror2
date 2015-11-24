@@ -2790,11 +2790,27 @@ var Video = {
   },
 
   deleteUploadedVideo: function() {
-    ajax.post('al_video.php',
-      {
-        act: 'deleteAllUploaded',
-        oid: cur.oid
-      });
+    var box = showFastBox(
+      {title: getLang('video_header_delete'),
+        bodyStyle: 'padding: 20px; line-height: 160%;',
+        dark: 1,
+        forceNoBtn: 1
+      }, getLang('video_delete_all_user_uploaded'), getLang('box_yes'), function() {
+
+        ajax.post('al_video.php',
+          {
+            act: 'deleteAllUploaded',
+            oid: cur.oid
+          }, {
+            showProgress: function() {
+              curBox().showProgress();
+            },
+            onDone: function() {
+              boxQueue.hideLast();
+            }
+          }
+        );
+      }, getLang('box_no'));
   }
 }
 

@@ -2405,14 +2405,14 @@ licensed: function(obj, hash) {
     obj.innerHTML = text;
   }});
 },
-claimed: function(claim_id, action) {
+claimed: function(claim_id, action, status) {
   ge('claim_link').innerHTML = '<img src="/images/upload.gif" />';
 
-  ajax.post('al_claims.php', {act: 'a_' + action, type: 'video', id: mvcur.mvData.vid, owner_id: mvcur.mvData.oid, claim_id: claim_id}, {onDone: function() {
+  ajax.post('al_claims.php', {act: 'a_' + action, type: 'video', id: mvcur.mvData.vid, owner_id: mvcur.mvData.oid, claim_id: claim_id, extra: status}, {onDone: function() {
     if (action == 'claim') {
-      ge('claim_link').innerHTML = '<a onclick="return Videoview.claimed(' + claim_id + ', \'unclaim\');\">Вернуть</a>';
+      ge('claim_link').innerHTML = '<a onclick="return Videoview.claimed(' + claim_id + ', \'unclaim\', \'' + status + '\');\">Вернуть</a>';
     } else {
-      ge('claim_link').innerHTML = '<a onclick="return Videoview.claimed(' + claim_id + ', \'claim\');\">Изъять</a>';
+      ge('claim_link').innerHTML = '<a onclick="return Videoview.claimed(' + claim_id + ', \'claim\', \'' + status + '\');\">Изъять</a>';
     }
   }});
 },
