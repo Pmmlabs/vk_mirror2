@@ -331,6 +331,20 @@ saveFAQ: function(hash) {
   if (ge('description_tooltip_key')) {
     query.description_tooltip_key = val('description_tooltip_key');
   }
+  if (cur.faqFromAllCheckbox && cur.faqFromCheckboxes) {
+    var from_list = [], all_val = cur.faqFromAllCheckbox.val();
+    if (all_val) {
+      from_list.push(all_val);
+    } else {
+      each(cur.faqFromCheckboxes, function(i, chb) {
+        var v = chb.val();
+        if (v) {
+          from_list.push(v);
+        }
+      });
+    }
+    query.from_list = from_list.join(",");
+  }
   ajax.post(nav.objLoc[0], query, {
     onFail: FAQ.showError,
     showProgress: lockButton.pbind(ge('faq_send')),
@@ -587,6 +601,11 @@ updateSearch: function(val) {
     loc['disabled'] = 1;
   } else {
     delete loc['disabled'];
+  }
+  if (cur.searchExpired.val()) {
+    loc['expired'] = 1;
+  } else {
+    delete loc['expired'];
   }
   if (cur.searchWithAction.val()) {
     loc['with_action'] = 1;

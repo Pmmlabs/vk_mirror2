@@ -4295,7 +4295,7 @@ FastChat = {
   onMyTyping: function (peer) {
     peer = intval(peer);
     var tab = curFastChat.tabs[peer];
-    if (peer <= 0 || !tab) return;
+    if (peer <= -2e9 || !tab) return;
     var ts = vkNow();
     if (curFastChat.myTypingEvents[peer] && ts - curFastChat.myTypingEvents[peer] < 5000) {
       return;

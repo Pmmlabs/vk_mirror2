@@ -569,12 +569,12 @@ table.ads_logs_info th {
   height: 20px;
   margin-top: 2px;
   margin-right: -2px;
-  background-image: url(/images/icons/im_actions_iconset2.png?9);
+  background-image: url(/images/icons/im_actions_iconset2.png?10);
   background-size: 20px auto;
   background-position: 0 -238px;
 }
 .is_2x .ads_mobile_apps_rating_icon {
-  background-image: url(/images/icons/im_actions_iconset2_2x.png?9);
+  background-image: url(/images/icons/im_actions_iconset2_2x.png?10);
 }
 .ads_mobile_apps_photo_icon {
   display: block;

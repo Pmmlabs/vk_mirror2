@@ -24,6 +24,25 @@
 div.gedit_public_labeled {
   padding: 4px 0px 6px;
 }
+.group_edit .gedit_left_menu {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 0.8s;
+  -moz-transition: max-height 0.8s;
+  transition: max-height 0.8s;
+  margin: 0 0 -12px 0;
+}
+.group_edit.group_edit_public .gedit_left_menu {
+  position: relative;
+  top: -5px;
+}
+.gedit_left_menu .group_edit_label {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.gedit_left_menu.gedit_left_menu_shown {
+  max-height: 30px;
+}
 .gedit_public_feedback {
   margin-bottom: 6px;
 }

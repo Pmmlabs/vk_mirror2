@@ -3888,3 +3888,7 @@ a.ts_search_link.active {
 .hidden_override {
   display: none !important;
 }
+.left_fixer,
+.left_fixer > span {
+  display: block;
+}

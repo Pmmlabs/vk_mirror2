@@ -13,6 +13,9 @@ body.dev #new_ticket {
   margin: 0px 63px;
   padding: 25px;
 }
+.tickets_new_wrap.tickets_new_wrap_nopad {
+  padding-top: 15px;
+}
 #ads_page .tickets_new_wrap {
   margin: 0px 144px;
 }
@@ -1145,6 +1148,21 @@ body.dev #tickets_faq_list,
   padding: 15px 10px;
   border-top: 1px solid #DAE1E8;
   cursor: pointer;
+}
+.tickets_new_urgent {
+  background: #fff;
+  border-bottom: 1px solid #DAE1E8;
+  padding: 4px 0 2px 35px;
+}
+.tickets_new_urgent .tickets_faq_row {
+  margin: 0;
+  width: 540px;
+}
+.tickets_new_urgent .tickets_faq_content {
+  width: 450px;
+}
+.tickets_new_urgent .tickets_faq_links {
+  padding-top: 10px;
 }
 body.dev .tickets_faq_row {
   width: 515px;

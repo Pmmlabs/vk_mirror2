@@ -23,9 +23,28 @@ var GroupsEdit = {
     cur.destroy.push(function(c) {
       if (c == cur) GroupsEdit.uDeinitScroll();
     });
+
     if (cur.opts.admin) GroupsEdit.uIndex('admins', cur.opts.data.admins);
     GroupsEdit.uStart();
   },
+
+  addToLeftMenu: function(ev, el) {
+    ajax.post('al_settings.php', {
+      act: 'a_toggle_admin_fast',
+      gid: cur.gid,
+      update_menu: true
+    }, {
+      onDone: function(res, lm) {
+        geByTag1('ol', ge('side_bar')).innerHTML = lm;
+      },
+      onFail: function() {
+        checkbox(el);
+        showFastBox(getLang('global_error'), getLang('groups_too_much_comms').replace('{amt}', 5));
+        return true;
+      }
+    });
+  },
+
   uNav: function(ch, from, to) {
     if (ch[0] || cur.noLocNav) return;
     var oldTab = cur.tab, newTab = to.tab || 'members';
@@ -1154,6 +1173,11 @@ var GroupsEdit = {
           break;
         case 'g_market_wiki':
           toggle('group_edit_market_wiki_link', val && val !== '0');
+          break;
+
+        case 'g_messages':
+          var value = parseInt(GroupsEdit.getFields('messages').messages);
+          toggleClass(geByClass1('_gedit_left_menu'), 'gedit_left_menu_shown', value)
           break;
       }
     }

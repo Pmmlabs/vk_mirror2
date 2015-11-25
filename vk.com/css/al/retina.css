@@ -261,8 +261,8 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x .im_important_toggler,
 .is_2x .im_important_icon,
 .is_2x .dialogs_star {
-  background-image: url(/images/icons/im_actions_iconset2_2x.png?9);
-  background-size: 20px 363px;
+  background-image: url(/images/icons/im_actions_iconset2_2x.png?10);
+  background-size: 20px 382px;
 }
 .is_2x .im_dialog_fav i {
   background-image: url(/images/icons/fav_mark_2x.png?9);

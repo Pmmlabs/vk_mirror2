@@ -1071,14 +1071,25 @@ var IM = {
     });
   },
 
-  blackList: function(peer, hash, el, value) {
+  blackList: function(peer) {
+    var times = 0;
     showBox('al_groups.php', {
       act: 'bl_edit',
       name: '/id' + peer,
       gid: cur.gid
     }, {
       stat: ['page.css', 'ui_controls.js', 'ui_controls.css'],
-      dark: 1
+      dark: 1,
+      onDone: function(f, s) {
+        if (times > 0) {
+          var save = cur.blbSave;
+          cur.blbSave = function() {
+            save.apply(cur, arguments);
+            IM.activateTab(-1);
+          };
+        }
+        times++;
+      }
     });
   },
 
@@ -3559,9 +3570,9 @@ var IM = {
     IM.updateTopNav(IM.shouldActivateSmallSearch());
 
     if (window.devicePixelRatio >= 2) {
-      var customMenuOpts = {bgsprite: '/images/icons/im_actions_iconset2_2x.png?9', bgSize: '20px 363px'};
+      var customMenuOpts = {bgsprite: '/images/icons/im_actions_iconset2_2x.png?10', bgSize: '20px 382px'};
     } else {
-      var customMenuOpts = {bgsprite: '/images/icons/im_actions_iconset2.png?9'};
+      var customMenuOpts = {bgsprite: '/images/icons/im_actions_iconset2.png?10'};
     }
 
     // ugly hack to align actions, but redesign soon
@@ -5253,6 +5264,11 @@ var IM = {
       } else {
         var peerLink = '/id' + peer;
       }
+
+      if (cur.tabs[peer].href) {
+        peerLink = cur.tabs[peer].href;
+      }
+
       val('im_peer_holders', '<div class="im_peer_holder fl_l"><div class="im_photo_holder"><a href="'+peerLink+'" target="_blank"><img src="'+user.photo+'" width="50" height="50"/></a></div><div class="im_status_holder" id="im_status_holder"></div></div>');
 
       if (cur.friends[peer + '_']) {
@@ -5273,6 +5289,10 @@ var IM = {
       show(geByClass1('_add_to_responded'));
     } else if (cur.gid) {
       hide(geByClass1('_add_to_responded'));
+    }
+
+    if (cur.gid) {
+      types.push(['block', getLang('mail_block_user'), '3px -360px', IM.blackList.pbind(cur.peer), false, false]);
     }
 
     each(['chat', 'invite', 'topic', 'avatar', 'photos', 'search', 'history', 'mute', 'unmute', 'clear', 'leave', 'return'], function(k, v) {

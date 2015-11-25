@@ -196,8 +196,17 @@ initExtraFields: function() {
     }
   }
 },
-
-saveTicket: function(hash) {
+trySaveTicket: function(callback, checkPermissions) {
+  var from = nav.objLoc['from'];
+  if (!checkPermissions || from == 'n' || from == 'top' || from == 's' || (from == 'dislike' && nav.objLoc['id'])) {
+    callback();
+  } else {
+    Tickets.tryAskQuestion(function () {
+      callback();
+    });
+  }
+},
+saveTicket: function(hash, checkPermissions) {
   var title = trim(val('tickets_title')),
       text = trim(val('tickets_text')),
       fieldsValid = true;
@@ -265,11 +274,13 @@ saveTicket: function(hash) {
   if (!fieldsValid) {
     return false;
   }
-  ajax.post(nav.objLoc[0], query, {
-    onDone: function(message) { showDoneBox(message); },
-    showProgress: lockButton.pbind(ge('tickets_send')),
-    hideProgress: unlockButton.pbind(ge('tickets_send'))
-  });
+  Tickets.trySaveTicket(function() {
+    ajax.post(nav.objLoc[0], query, {
+      onDone: function(message) { showDoneBox(message); },
+      showProgress: lockButton.pbind(ge('tickets_send')),
+      hideProgress: unlockButton.pbind(ge('tickets_send'))
+    });
+  }, checkPermissions);
 },
 
 savePayTicket: function(hash) {
@@ -2530,7 +2541,30 @@ cancelRateFAQ: function(id, val, hash, evt) {
   }
   return false;
 },
-
+rateFAQUrgent: function(id, val, hash) {
+  if (!vk.id) return false;
+  ajax.post(nav.objLoc[0], {act: 'faq_rate', faq_id: id, val: val, hash: hash, from_new: 1 });
+  Tickets.setFAQclicked(id, hash, 1, true);
+  hide('tickets_faq_urgent_links'+id);
+  if (val > 0) {
+    show('tickets_faq_useful'+id);
+    slideUp('tickets_new_wrap', 450);
+  } else {
+    show('tickets_faq_unuseful'+id);
+  }
+  return false;
+},
+cancelRateFAQUrgent: function(id, val, hash) {
+  if (!vk.id) return false;
+  ajax.post(nav.objLoc[0], {act: 'faq_rate', faq_id: id, val: val, cancel: 1, hash: hash});
+  hide('tickets_faq_useful'+id, 'tickets_faq_unuseful'+id);
+  show('tickets_faq_urgent_links'+id);
+  var form = ge('tickets_new_wrap');
+  if (!isVisible(form)) {
+    slideDown(form, 500);
+  }
+  return false;
+},
 showAverageTime: function(time, confirmCallback) {
   if (cur.timeShown) {
     Tickets.toggleDetailedForm();
@@ -3577,8 +3611,11 @@ listOpenTiles: function() {
   return false;
 },
 tryAskQuestion: function(callback) {
-  var s = cur.askQuestion.permission;
-  if (s == 0) {
+  var s = 2;
+  if (cur.askQuestion) {
+    s = cur.askQuestion.permission;
+  }
+  if (!s) {
     setTimeout(showFastBox({
       dark: 1,
       bodyStyle: 'line-height: 160%;',

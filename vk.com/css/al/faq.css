@@ -324,11 +324,17 @@ h4.faq_question .faq_info {
 .faq_inner_row.only {
   cursor: default;
 }
+.faq_inner_row_orphan {
+  background: #FFFD9E;
+}
 .faq_inner_row.disabled {
   background: #eee;
 }
 .faq_inner_row.over {
   background-color: #EDF1F5;
+}
+.faq_inner_row.over.faq_inner_row_orphan {
+  background: #FFFED1;
 }
 .faq_inner_row.over.disabled {
   background: #ddd;
@@ -401,6 +407,14 @@ h4.faq_question .faq_info {
 }
 .faq_text {
   line-height: 160%;
+}
+.faq_from_chb_list_other {
+  border-top: 1px solid #f2f4f6;
+}
+.faq_from_chb_list_other__col {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
 }
 .new_faq_in_top {
   background: #eff1f3;
@@ -648,8 +662,18 @@ h4.faq_question .faq_info {
   margin-bottom: 2px;
   padding: 6px 8px;
 }
+.faq_content_search__expired {
+  display: none;
+}
+.faq_content_search__filters_with_expired .faq_content_search__expired {
+  display: block;
+}
 .faq_content_search__filters {
   padding-left: 36px;
+}
+.faq_content_search__filters.faq_content_search__filters_with_expired {
+  padding-left: 40px;
+  margin: 0 -50px;
 }
 .faq_tiles_editor {
   background: #fff;
