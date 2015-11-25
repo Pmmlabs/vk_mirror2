@@ -233,34 +233,16 @@ var Page = {
     hide(ge('more_link_text'));
     show(progress);
   },
-  postsUnseen: function(posts) {
-    var now = vkNow();
-    var ch = false;
-    for (i in posts) {
-      for (j in posts[i]) {
-        if (j == 'module' || j == 'index') continue;
-        var pdict = _postsExtras[j];
-        if (pdict && pdict.diff == null) {
-          pdict.diff = now - pdict.start;
-          ch = true;
-        }
-      }
-    }
-    if (ch) {
-      Page.postsClearTimeouts();
-    }
-  },
   postsSeen: function(posts) {
-    var i, j, ch, p, se, sa, module, index;
+    var i, j, ch, p, se, sa, module;
     if (!vk.id || !posts.length || vk.pd) return;
 
     if (!window._postsSeenModules) _postsSeenModules = {};
-    var now = vkNow();
+
     for (i in posts) {
       module = Page.getPostModuleCode(posts[i].module ? posts[i].module : '');
-      index = posts[i].index;
       for (j in posts[i]) {
-        if (j == 'module' || j == 'index') continue;
+        if (j == 'module') continue;
 
         _postsSeenModules[j] = module;
 
@@ -269,7 +251,6 @@ var Page = {
         sa = _postsSaved[j];
         if (sa == -1 || se == -1 || p == 1 && (sa || se)) continue;
         ch = _postsSeen[j] = p;
-        _postsExtras[j] = {start: now, diff: null, index: index};
       }
     }
     if (ch) {
@@ -288,13 +269,11 @@ var Page = {
     var sent = ls.get('posts_sent') || {};
     var seen = ls.get('posts_seen') || {};
     var modules = ls.get('posts_seen_modules') || {};
-    var extras = ls.get('posts_extras') || {};
+
     var t = Math.floor((vk.ts + Math.floor((vkNow() - vk.started) / 1000)) / 3600);
     var ch, i, p, snt, sn;
     for (i in _postsSeen) {
       sn = _postsSeen[i];
-      if (_postsExtras[i].diff == null) continue;
-      extras[i] = {diff: _postsExtras[i].diff, index: _postsExtras[i].index};
       p = i.split('_');
       if (p[0] !== 'ad') {
         p[0] = intval(p[0]);
@@ -312,14 +291,12 @@ var Page = {
         }
       }
       _postsSaved[i] = sn;
-      delete _postsExtras[i];
-      delete _postsSeen[i];
-      delete _postsSeenModules[i];
     }
+    _postsSeen = {};
+    _postsSeenModules = {};
     if (ch) {
       ls.set('posts_seen', seen);
       ls.set('posts_seen_modules', modules);
-      ls.set('posts_extras', extras);
     }
   },
   getPostModuleCode: function(module) {
@@ -338,13 +315,11 @@ var Page = {
   postsSend: function() {
     var seen = {};
     var modules = {};
-    var extras = {};
     var data = [];
     var i, j, r, m;
     if (ls.checkVersion()) {
       seen = ls.get('posts_seen');
       modules = ls.get('posts_seen_modules') || {};
-      extras = ls.get('posts_extras') || {};
     } else {
       r = Page.postsSave();
       for (i in r) {
@@ -360,15 +335,12 @@ var Page = {
         }
       }
     }
+
     for (i in seen) {
       r = [];
       for (j in seen[i]) {
-        var full_id = i + '_' + j;
-        m = modules[full_id] || '';
-        if (extras[full_id] != undefined) {
-          var extra = extras[full_id];
-          r.push(m + ((seen[i][j] > 0) ? j : -j) + ':' + extra.diff + ':' + extra.index);
-        }
+        m = modules[i + '_' + j] || '';
+        r.push(m + ((seen[i][j] > 0) ? j : -j));
       }
       if (r.length) {
         data.push(i + '_' + r.join(','));
@@ -376,6 +348,7 @@ var Page = {
     }
     if (!data.length) return;
     if (!vk.id) return Page.postsClear();
+
     ajax.post('al_page.php', {act: 'seen', data: data.join(';')}, {onDone: function() {
       if (!ls.checkVersion()) {
         return extend(_postsSaved, _postsSeen);
@@ -435,8 +408,7 @@ var Page = {
   },
   postsClear: function() {
     ls.set('posts_seen', {});
-    ls.set('posts_extras', {});
-    ls.set('posts_sent', _postsSaved = _postsSeen = _postsSeenModules = _postsExtras = {});
+    ls.set('posts_sent', _postsSaved = _postsSeen = _postsSeenModules = {});
   },
   showContacts: function(oid, edit, callback) {
     var b = showBox('/al_page.php', {act: 'a_get_contacts', oid: oid, edit: edit}, {params:{width:467, dark: 1}});
@@ -3387,15 +3359,9 @@ var Wall = {
         !cur.topRow.id.match(/page_wall_count_/) &&
         !((window.curNotifier || {}).idle_manager || {}).is_idle
       ) {
-        postsUnseen = [];
-        for (el = Wall.domPS(cur.topRow); el ; el = Wall.domPS(el)) {
-          if (cur.topRow.offsetTop > st) cur.topRow = el;
-          if (!el.unseen) {
-            el.unseen = true;
-            postsUnseen.push(Wall.postsGetRaws(el));
-          }
+        for (el = Wall.domPS(cur.topRow); el && cur.topRow.offsetTop > st; el = Wall.domPS(el)) {
+          cur.topRow = el;
         }
-        Page.postsUnseen(postsUnseen);
         for (el = cur.topRow; el; el = nel) {
           top = ntop ? ntop : el.offsetTop;
           if (top >= st + ch) break;
@@ -3434,12 +3400,10 @@ var Wall = {
     }
   },
   postsGetRaws: function(el) {
-    var index = indexOf(domPN(el).children, el);
     var m, res = {};
     if (!el) return res;
 
     res.module = cur.module;
-    res.index = index;
 
     var dataAdView = el.getAttribute('data-ad-view');
     if (dataAdView) {

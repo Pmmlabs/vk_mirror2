@@ -1739,6 +1739,13 @@ var GroupsEdit = {
           width: 60
         });
       }
+      if (ev[3] >= 0) {
+        new Checkbox(ge('notification_event_pm_' + k), {
+          label: getLang('groups_adspost_notify_pm'),
+          checked: ev[3],
+          width: 120
+        });
+      }
     }
   },
   updateAdRecommendedCost: function(subject) {
@@ -1763,14 +1770,17 @@ var GroupsEdit = {
       gid: cur.gid,
       hash: hash,
       events: [],
-      sms_events: []
+      sms_events: [],
+      pm_events: []
     };
     for (var k in cur.selData.events) {
       params.events.push(k + ':' + ge('notification_event_' + k).value);
       params.sms_events.push(k + ':' + ge('notification_event_sms_' + k).value);
+      params.pm_events.push(k + ':' + ge('notification_event_pm_' + k).value);
     }
     params.events = params.events.join(',');
     params.sms_events = params.sms_events.join(',');
+    params.pm_events = params.pm_events.join(',');
 
     hide('ge_ad_notifications_error');
     ajax.post('al_groups.php', params, {

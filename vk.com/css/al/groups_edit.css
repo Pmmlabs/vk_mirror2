@@ -1181,8 +1181,13 @@ b.gedit_mob_onl {
 .group_ad_table .grey {
   color: #666666;
   display: inline-block;
-  min-width: 63px;
+  min-width: 84px;
   margin-right: 5px;
+}
+.group_ad_table .extra_info_text {
+  max-width: 120px;
+  display: inline-block;
+  vertical-align: top;
 }
 .group_ad_table .green {
   color: #37702a;
@@ -1426,6 +1431,7 @@ a.group_ad_post_link.deleted:hover {
 }
 #group_ad_other_settings #ge_ad_notifications_wrap {
   padding: 0;
+  padding-bottom: 20px;
 }
 #group_ad_other_settings .group_save_button {
   margin-bottom: 5px;

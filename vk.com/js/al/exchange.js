@@ -320,6 +320,15 @@ var Exchange = {
     ajax.post('/exchange', {act: 'a_save_request', ad_id: ad_id, gid: gid, price: price, from_office: from_office, hash: hash, text: val('exchange_request_comment'), time_from: val('exchange_request_time_from_d'), time_to: val('exchange_request_time_to_d'), date_from: val('exchange_request_date_from'), date_to: val('exchange_request_date_to')}, {
       showProgress: lockButton.pbind(btn),
       hideProgress: unlockButton.pbind(btn),
+      onDone: function (data) {
+        curBox().hide();
+        var box = showFastBox({title: getLang('ads_posts_request_sent_title'), dark: true, width: 430, bodyStyle: 'line-height: 160%; padding: 16px 20px;'}, data.message);
+        setTimeout(function () {
+          box.hide();
+          elfocus('exchange_search_input');
+        }, 3000);
+        return true;
+      },
       onFail: function(msg) {
         ge('exchange_request_box_error').innerHTML = msg;
         show('exchange_request_box_error');

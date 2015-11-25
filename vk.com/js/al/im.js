@@ -3421,11 +3421,16 @@ var IM = {
       if (!cur.notify_on) {
         notify_button.innerHTML = getLang('mail_im_notifications_off');
       }
-      var enableNotify = function () {
+      var enableNotify = function (repeat) {
         if (window.DesktopNotifications) {
           cur.notify_on = (DesktopNotifications.checkPermission() <= 0);
-          if (!cur.notify_on) {
-            DesktopNotifications.requestPermission(enableNotify);
+          if (!cur.notify_on && !repeat) {
+            DesktopNotifications.requestPermission(enableNotify.bind(null, true));
+          } else if (!cur.notify_on) {
+            showFastBox({
+              title: getLang('global_error'),
+              dark: 1,
+            }, getLang('mail_please_enable_notifications'));
           } else {
             notify_button.innerHTML = getLang('mail_im_notifications_on');
             ls.set('im_ui_notify_off', 0);
