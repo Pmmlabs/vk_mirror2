@@ -2138,11 +2138,18 @@ var Apps = { // can be removed soon
         params.offset = cur.recentOffset;
       }
       ajax.post(Apps.address, params, {
-        onDone: function(text, data) {
+        onDone: function(text, data, count_all) {
           delete cur.preload;
+          while (globalHistory[0]) {
+            var h = globalHistory.shift();
+            globalHistoryDestroy(h.loc);
+            processDestroy(h.cur);
+            h.content.innerHTML = '';
+          }
           cur.appsIndex.remove(cur.apps[aid]);
           cur.deletedCount++;
           cur.apps[aid].deleted = true;
+          if (count_all !== void(0) && count_all > -1) handlePageCount('ap', count_all);
           if (cur.section == 'catalog' && force == 2) {
             var row = ge('delete_row' + aid);
             var newRow = geByClass1('apps_recent_row_hidden', ge('apps_recent_list'));
@@ -2980,7 +2987,9 @@ var Apps = { // can be removed soon
     cur.appDeleteBtn = obj.innerHTML;
     obj.innerHTML = '<img src="/images/upload' + (hasClass(bodyNode, 'is_2x') ? '_2x' : '') + '.gif" width="32" height="8"/>';
     ajax.post('/apps', {act: 'quit', id: aid, hash: (hash || cur.app.options.hash), from: 'app'}, {
-      onDone: function(text) {
+      onDone: function(text, count_all) {
+        if (count_all !== void(0) && count_all > -1) handlePageCount('ap', count_all);
+        delete cur.preload;
         cur._back = false;
         nav.go('/apps', false);
       },

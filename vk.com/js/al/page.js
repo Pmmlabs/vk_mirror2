@@ -286,7 +286,7 @@ var Page = {
     clearTimeout(_postsSaveTimer);
     _postsSaveTimer = setTimeout(Page.postsSave, 2500);
     clearTimeout(_postsSendTimer);
-    _postsSendTimer = setTimeout(Page.postsSend, 5000);
+    _postsSendTimer = setTimeout(Page.postsSend, 10000);
   },
   postsSave: function() {
     if (!ls.checkVersion() || isEmpty(_postsSeen)) return _postsSeen;
@@ -360,8 +360,10 @@ var Page = {
       for (i in r) {
         sn = r[i];
         p = i.split('_');
-        p[0] = intval(p[0]);
-        p[1] = intval(p[1]);
+        if (p[0] !== 'ad') {
+          p[0] = intval(p[0]);
+          p[1] = intval(p[1]);
+        }
         if (!seen[p[0]]) {
           seen[p[0]] = {};
         }
