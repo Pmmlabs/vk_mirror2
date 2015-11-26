@@ -34,7 +34,15 @@ var FullWall = {
     ) {
       return;
     }
-    for (el = domPS(cur.topRow); el && cur.topRow.offsetTop > st; el = domPS(el)) cur.topRow = el;
+    postsUnseen = [];
+    for (el = domPS(cur.topRow); el; el = domPS(el)) {
+      if (cur.topRow.offsetTop > st) cur.topRow = el;
+      if (!el.unseen) {
+        el.unseen = true;
+        postsUnseen.push(FullWall.postsGetRaws(el));
+      }
+    }
+    Page.postsUnseen(postsUnseen);
     for (el = cur.topRow; el; el = nel) {
       top = ntop ? ntop : el.offsetTop;
       if (top >= st + ch) break;
@@ -57,6 +65,7 @@ var FullWall = {
     Page.postsSeen(posts);
   },
   postsGetRaws: function(el) {
+    var index = indexOf(domPN(el).children, el);
     var m, res = {};
     if (m = el.id.match(new RegExp('^post(' + cur.oid + '_\\d+)$', ''))) {
       res[m[1]] = 1;
@@ -64,6 +73,7 @@ var FullWall = {
         res[m[1]] = -1;
       }
     }
+    res.index = index;
     res.module = cur.module;
     return res;
   },
