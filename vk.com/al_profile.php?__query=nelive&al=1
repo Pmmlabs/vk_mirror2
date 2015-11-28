@@ -1,0 +1,166 @@
+setTimeout(function() {
+  document.title = replaceEntities(stripHTML('Не LIVE | VK'));
+}, browser.chrome ? 50 : 100);
+updateMoney(0);
+gSearch.init();
+if (window.qArr && qArr[5]) qArr[5] = [5, "by item", "", "goods", 0x00000100];
+if (browser.iphone || browser.ipad || browser.ipod) {
+  setStyle(bodyNode, {webkitTextSizeAdjust: 'none'});
+}window.changeQuickRegButton = function(noShow) {
+  if (!vk.intnat) {
+    (noShow ? hide : show)('top_links');
+  }
+};
+if (1) {
+  hide('support_link_td');
+}
+var ts_input = ge('ts_input'), oldFF = browser.mozilla && parseInt(browser.version) < 8;
+if (browser.mozilla && !oldFF) {
+  setStyle(ts_input, {padding: (vk.rtl ? '3px 20px 6px 40px' : '3px 41px 6px 20px')});
+}
+placeholderSetup(ts_input, {back: false, reload: true});
+if (browser.opera || browser.msie || browser.mozilla) {
+  setStyle(ts_input, {padding: (vk.rtl ? '4px 20px 5px 40px' : '4px 41px 5px 20px')});
+} else if (browser.chrome || browser.safari) {
+  setStyle(ts_input, {padding: (vk.rtl ? '4px 21px 5px 40px' : '4px 40px 5px 21px')});
+}
+
+TopSearch.init();
+if (browser.msie8 || browser.msie7) {
+  var st = {border: '1px solid #a6b6c6'};
+  if (hasClass(ge('ts_wrap'), 'vk')) {
+    if (vk.rtl) st.left = '1px';
+    else st.right = '0px';
+  } else {
+    if (vk.rtl) st.right = '146px';
+    else st.left = '146px';
+  }
+  setStyle(ge('ts_cont_wrap'), st);
+}
+window.tsHintsEnabled = 1;;shortCurrency();public.init({"only_official":true,"public_id":34371983,"public_link":"\/nelive","reply_names":[],"max_post_len":280,"post_hash":"01c7b02dd192571054","media_types":false,"wall_type":"own","wall_no":"No posts yet","wall_counts":["","%s post","%s posts"],"wall_suggest_post":"suggest a post","wall_return_to_posts":"back to posts","wall_no_suggests_label":"You haven&#39;t suggested any posts yet","wall_suggests_label":["","You have suggested %s post","You have suggested %s posts"],"all_link":"go to published posts","own_link":"you have post suggestions","rmedia_types":[["photo","Photo"],["video","Video"],["audio","Audio file"],["graffiti","Graffiti"],["note","Note"],["doc","Document"],["map","Map"],["postpone","Timer",{"lang":{"profile_choose_timer":"Timer","profile_wall_postpone_at":"at","profile_wall_postpone_btn":"Enqueue","export_to_twitter":"Export to Twitter","export_to_facebook":"Export to Facebook","friends_only":"Friends only"},"date":1448740407}]],"share":{"url":"","hash":"","rhash":"","timehash":"1448726007_5818bc8661f78c3408"},"feedLists":0,"feedListsHash":"dabb281ed711949bfb","photo_hash":null,"liked":false,"enterHash":"eccb9972e597dbd9fe","info_headers":{"info_module_tab":"<h4 class=\"simple page_top\">\n  <div class=\"top_header page_name\">Не LIVE<\/div>\n  \n<\/h4>"},"tab_actions":"","otherCount":"3 followers","back":"Не LIVE","ciAudioTip":"Now playing in Не LIVE","ciAudioHash":"bde111e56038100605","fixed_post_id":6});
+cur.lang = extend(cur.lang || {}, {
+  show_full: 'Show full information',
+  groups_user_about_messages: '',
+  hide_full: 'Hide full information',
+  sure_delete_photo: 'Are you sure you want to delete this photo?',
+  change_current_info: 'edit status message',
+  share_current_info: 'Post to community wall',
+  wall_link_label: 'Link',
+  create_poll: 'Poll',
+  dont_attach: 'Remove attachment',
+  attachments_limit: ["","A post can only have %s attachment.","A post can only have %s attachments."],
+  publish_postponed_title: 'Confirmation required',
+  publish_postponed_confirm: 'Are you sure you want to publish your post now?',
+  publish_postponed_btn: 'Publish',
+  global_store_stickers: 'Stickers store',
+  global_store_stickers_new_available: 'New stickers available',
+  global_link_choose_own_photo: 'Choose your own image',
+  global_link_remove_photo: 'Delete image',
+});
+extend(cur, {
+  boxForMap:null,
+  boxMap:null,
+  mapKey: 'AKPeBEwBAAAA0qePSQIA03AwA4O4ze6XTqIecsNp7REB6VYAAAAAAAAAAADNzChqedeUxsCAyYkFUHiD7MPITA==',
+  onPlaceAdd: function() {
+    Public.showPlaces(1);
+  }
+});  cur.messagetts = geByClass('_groups_messages_btn_tt');
+
+  cur.messagettHide = function() {
+    ajax.post('groupsedit.php', {
+      act: 'hide_message_tts',
+      hash: '19cfe2f6a25e7b40d2',
+      type: 1,
+      id: '34371983'
+    });
+    cur.messagett.tt.hide();
+  };
+
+  cur.messageTTImg = geByTag1('img', ge('page_avatar'));
+
+  stManager.add(['profile.css'], function() {
+    cur.messageTTFunc = function() {
+      each(cur.messagetts, function(t, el) {
+        if (isVisible(el.parentNode.parentNode)) {
+          cur.messagett = el;
+          showTooltip(el, {
+            content: '\
+              <div id="gift_tt_pointer"></div>\
+              <div id="gift_tt">\
+                <div id="gift_tt_hide" class="fl_r" onclick="cur.messagettHide();" onmouseover="showTooltip(this, {text: \'Hide this notification\', black: 1, shift: [14, 4, 4]})"></div>\
+                <div id="gift_tt_header">Community messages</div>\
+                <div id="gift_tt_text">Now you can contact community administrators to express your wishes, make suggestions or ask your questions.</div>\
+              </div>',
+            slideX: -15,
+            className: 'profile_gift_side_tt profile_gift_side_tt_right',
+            shift: [320, 0, -47],
+            forcetodown: true,
+            nohide: true,
+            nohideover: true
+          });
+        }
+      });
+    };
+
+    if (!cur.messageTTImg || cur.messageTTImg.complete) {
+      cur.messageTTFunc();
+    } else {
+      cur.messageTTImg.onload = cur.messageTTFunc;
+    }
+  });cur.pinnedVideo = '-460389_160321403';
+cur.pinnedVideoInitHandlers = function() {
+  var post = ge('post-34371983_6');
+  var playerEl = ge('video_player') || ge('html5_player');
+  if (post && playerEl && isAncestor(playerEl, post)) {
+    addEvent(window, 'scroll', cur.pinnedVideoScrollHandler);
+    cur.destroy.push(cur.pinnedVideoDestroyHandlers);
+    cur.pinnedVideoScrollHandler();
+  }
+  delete cur.pinnedVideoInitHandlers;
+};
+
+cur.pinnedVideoScrollHandler = function(evt) {
+  var post = ge('post-34371983_6');
+  var playerEl = ge('video_player') || ge('html5_player');
+  var playerObj = ge('video_player') || window.html5video;
+  if (!post || !playerEl || !isAncestor(playerEl, post) || (playerObj.isTouchedByUser && playerObj.isTouchedByUser())) {
+    cur.pinnedVideoDestroyHandlers();
+    return;
+  }
+
+  var playerY = getXY(playerEl)[1];
+  var playerHeight = getSize(playerEl)[1];
+  var scrollY = scrollGetY();
+  var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+  var inViewport = (playerY + playerHeight/2 > scrollY) && (playerY + playerHeight/2 < scrollY + viewportHeight);
+
+  if (inViewport != cur.pinnedVideoPrevInViewport) {
+    window.Videoview && Videoview.togglePlay(inViewport);
+    cur.pinnedVideoPrevInViewport = inViewport;
+  }
+};
+
+cur.pinnedVideoDestroyHandlers = function() {
+  removeEvent(window, 'scroll', cur.pinnedVideoScrollHandler);
+  delete cur.pinnedVideo;
+  delete cur.pinnedVideoScrollHandler;
+  delete cur.pinnedVideoDestroyHandlers;
+  delete cur.pinnedVideoPrevInViewport;
+};
+
+var startVideo = function() {
+  if (browser.mobile || window.mvcur && mvcur.mvShown) return;
+  var post = ge('post-34371983_6');
+  var column = geByClass1('page_post_queue_narrow', post);
+  var thumb = geByClass1('page_post_thumb_video', column);
+  if (!post || !column || !thumb) return;
+
+  showInlineVideo('-460389_160321403', '9f205571d389be88bb', {autoplay: 1, addParams: { post_id: '-34371983_6', mute: 1 }}, null, thumb);
+};
+
+if (vk.loaded) {
+  startVideo();
+} else {
+  addEvent(window, 'DOMContentLoaded', startVideo);
+}
