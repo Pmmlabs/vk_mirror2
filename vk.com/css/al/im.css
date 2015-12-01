@@ -123,9 +123,19 @@
   padding-right: 5px;
   max-width: 300px;
   overflow: hidden;
+  white-space: nowrap;
+}
+.im_tab4 {
+  max-width: 280px;
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  vertical-align: middle;
+  line-height: 1em;
+  position: relative;
+  top: -1px;
 }
 .im_tab_selected .im_tab3 {
   color: #FFF;

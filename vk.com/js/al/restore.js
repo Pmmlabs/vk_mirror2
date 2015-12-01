@@ -84,6 +84,8 @@ var Restore = {
       err = getLang('restore_bad_format');
     } else if (code == 5) {
       err = getLang('restore_bad_size');
+    } else if (code == 7) {
+      err = getLang('restore_too_small_image');
     }
     setTimeout(showFastBox(getLang('global_error'), err).hide, 2000);
 

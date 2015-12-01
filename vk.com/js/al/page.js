@@ -5117,7 +5117,8 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
         handler = function () {addMedia.chooseMedia('poll', '', v[2])};
         break;
       case 'doc':
-        handler = showBox.pbind('docs.php', extend(params, {act: 'a_choose_doc_box'}), {stat: ['docs.css']});
+        var dcparams = opts.docParams || {};
+        handler = showBox.pbind('docs.php', extend(params, extend({act: 'a_choose_doc_box'}, dcparams)), {stat: ['docs.css']});
         break;
       case 'map':
         handler = showBox.pbind('al_places.php', extend(params, {act: 'a_choose_place_box'}), {stat: ['places.css', 'map.css', 'maps.js', 'ui_controls.css', 'ui_controls.js', 'boxes.css'], width: 640, bodyStyle: 'padding: 0px;', dark: 1});
