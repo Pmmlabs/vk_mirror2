@@ -100,6 +100,8 @@
   cursor: pointer;
   padding: 5px 1px 5px 5px;
   float: left;
+  height: 30px;
+  box-sizing: border-box;
 }
 .im_tab2 {
   padding: 3px 6px 4px;
@@ -127,15 +129,11 @@
 }
 .im_tab4 {
   max-width: 280px;
-  overflow: hidden;
-  display: inline-block;
   white-space: nowrap;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
-  vertical-align: middle;
-  line-height: 1em;
-  position: relative;
-  top: -1px;
+  float: left;
+  overflow: hidden;
 }
 .im_tab_selected .im_tab3 {
   color: #FFF;

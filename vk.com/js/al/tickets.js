@@ -3381,9 +3381,9 @@ listSearch: function(v) {
           var repl = ge('help_table_not_found_replaced');
           if (!isVisible(repl)) {
             show(repl);
-            ge('help_table_not_found_replaced__prev_query').innerHTML = cur.listPrevSearchStr;
+            ge('help_table_not_found_replaced__prev_query').innerHTML = clean(cur.listPrevSearchStr);
           }
-          ge('help_table_not_found_replaced__query').innerHTML = v;
+          ge('help_table_not_found_replaced__query').innerHTML = clean(v);
         }
       } else {
         hide('help_table_not_found_replaced');
@@ -3636,7 +3636,7 @@ listHideNotFound: function() {
 },
 listShowNotFound: function(query) {
   addClass('help_table_questions', 'help_table_questions_not_found');
-  ge('help_table_not_found__query').innerHTML = query;
+  ge('help_table_not_found__query').innerHTML = clean(query);
   var btn = ge('help_table_not_found__btn');
   if (!isVisible(btn) && query.trim().indexOf(' ') != -1) {
     show(btn);
