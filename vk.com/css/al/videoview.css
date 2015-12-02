@@ -83,6 +83,7 @@ body.mobfixed #mv_layer_wrap {
   text-align: center;
   width: 896px;
   height: 504px;
+  padding: 0;
   vertical-align: middle;
   display: table-cell;
 }
