@@ -87,7 +87,7 @@ var Restore = {
     } else if (code == 7) {
       err = getLang('restore_too_small_image');
     }
-    setTimeout(showFastBox(getLang('global_error'), err).hide, 2000);
+    setTimeout(showFastBox(getLang('global_error'), err).hide, 4000);
 
     var prefix = type ? 'photo_' : 'doc_';
     var btn = ge(prefix + 'file_button');

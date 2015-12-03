@@ -649,10 +649,34 @@ getFilesNames: function(i, files) {
   }
 },
 
+checkFileType: function(filename, fileTypes) {
+  var valid = false;
+  each(fileTypes.split(';'), function(i, type) {
+    type = type.substr(1).toLowerCase();
+    if (filename.substr(-type.length).toLowerCase() == type || type == '.*') {
+      valid = true;
+      return false;
+    }
+  });
+  return valid;
+},
+
 onFileApiSend: function(i, files, force) {
   if (!files || !files.length) return;
 
   var options = this.options[i];
+
+  if (options.file_types) {
+    var filteredFiles = [];
+    each(files, function(i, file) {
+      if (Upload.checkFileType(file.name, options.file_types)) {
+        filteredFiles.push(file);
+      }
+    });
+    files = filteredFiles;
+    if (!files.length) return;
+  }
+
   if (options.reverse_files) {
     files = Array.prototype.slice.call(files).reverse();
   }
@@ -1462,6 +1486,9 @@ drop: function(e) {
     }
     if (!Upload.options[i].visibleDropbox) {
       hide(dropbox);
+    }
+    if (Upload.options[i].onDrop) {
+      Upload.options[i].onDrop();
     }
     removeClass(dropbox, 'dropbox_over');
   });
