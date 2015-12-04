@@ -42,7 +42,7 @@
 }
 .public_info .label,
 .public_add_event_box .label {
-  width: 120px;
+  width: 110px;
 }
 .public_info .labeled,
 .public_add_event_box .labeled {
@@ -482,12 +482,23 @@ a.fwd_link:hover {
   padding: 5px 0 0;
 }
 .public_add_event_box .labeled {
-  width: 260px;
+  width: 280px;
 }
 .public_add_event_box .labeled .text,
 .public_add_event_box .labeled .textarea {
-  width: 250px;
   display: block;
+}
+.public_add_event_box .public_add_event_at {
+  padding-top: 4px;
+}
+.public_add_event_box .public_add_event_title {
+  padding: 3px 5px;
+  width: 254px;
+}
+.public_add_event_box .public_add_event_desc {
+  padding: 3px 6px;
+  width: 252px;
+  height: 50px;
 }
 .public_edit_contact_info h2 {
   margin: 0 0 10px 10px;
