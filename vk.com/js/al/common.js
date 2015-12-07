@@ -2195,7 +2195,9 @@ function onBodyResize(force) {
       pageNode.style.height = dheight + 'px';
     }
   }
-  updSideTopLink(1);
+  if (!vk.noSideTop) {
+    updSideTopLink(1);
+  }
   if (changed && w.curRBox && w.curRBox.boxes && window.getWndInner) {
     var wndInner = getWndInner();
     each (curRBox.boxes, function() {this._wnd_resize(wndInner[0], wndInner[1])});
