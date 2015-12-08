@@ -134,8 +134,12 @@
 .ads_edit_ad_view_wrap.groups_only {
   padding-right: 35px;
 }
+.ads_edit_ad_view_wrap.big_app {
+  padding-bottom: 15px;
+}
 .ads_edit_panel_preview {
   float: right;
+  overflow: hidden;
 }
 .ads_edit_panel_preview.mobile {
   float: none;
@@ -146,6 +150,10 @@
   float: none;
   padding-left: 129px;
   padding-bottom: 15px;
+}
+.ads_edit_panel_preview.big_app {
+  float: none;
+  padding-left: 200px;
 }
 .ads_edit_panel_preview .ads_ad_box.app_in_news,
 .ads_edit_panel_preview .ads_ad_box.apps_only,

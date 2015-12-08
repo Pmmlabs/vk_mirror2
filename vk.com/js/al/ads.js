@@ -1456,6 +1456,7 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
         var suffixesAll     = '';
         suffixesAll        += (additionalParams.is_cost_per_click ? '_click'         : '_views');
         suffixesAll        += (additionalParams.is_special_ad     ? '_special'       : '');
+        suffixesAll        += (additionalParams.is_big_app        ? '_big_app'       : '');
         suffixesAll        += (additionalParams.is_mobile_app     ? '_mobile'        : '');
         suffixesAll        += (additionalParams.is_promoted_post  ? '_promoted_post' : '');
         suffixesAll        += (additionalParams.is_exclusive_ad   ? '_exclusive'     : '');

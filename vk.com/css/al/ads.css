@@ -723,7 +723,8 @@ td.paginated_table_cell.column_status_view {
 #ads_unions_content .table_label.mobile {
   max-width: 150px;
 }
-#ads_unions_content .table_label.promoted_post {
+#ads_unions_content .table_label.promoted_post,
+#ads_unions_content .table_label.big_app {
   min-width: 130px;
   max-width: 130px;
 }
@@ -731,6 +732,10 @@ td.paginated_table_cell.column_status_view {
   padding: 0 0 7px 0;
   vertical-align: top;
   word-wrap: break-word;
+}
+#ads_unions_content .table_value.big_app {
+  min-width: 150px;
+  max-width: 150px;
 }
 #ads_unions_content.ad_help {
   padding: 0;
@@ -1191,6 +1196,10 @@ table.ads_inline_edit_table td {
 .ads_general_info .table_large_text.promoted_post {
   width: 215px;
   max-width: 215px;
+}
+.ads_general_info .table_large_text.big_app {
+  width: 130px;
+  max-width: 130px;
 }
 #ads_unions_content h4 span {
   font-weight: bold;
@@ -1664,6 +1673,7 @@ td.ads_settings_notifacations_label {
 #ad_preview_top.no_border .ads_ad_box_border.apps_only,
 #ad_preview_top.no_border .ads_ad_box_border.groups_only,
 #ad_preview_top.no_border .ads_ad_box_border.mobile,
+#ad_preview_top.no_border .ads_ad_box_border.big_app,
 #ad_preview_top.no_border .ads_ad_box_border.promoted_post {
   border-style: none;
 }
@@ -1673,6 +1683,7 @@ td.ads_settings_notifacations_label {
   padding-bottom: 5px;
 }
 #ad_preview_top .ads_ad_box.mobile,
+#ad_preview_top .ads_ad_box.big_app,
 #ad_preview_top .ads_ad_box.promoted_post {
   padding-bottom: 10px;
 }

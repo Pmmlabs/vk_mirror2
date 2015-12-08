@@ -9,6 +9,7 @@ AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE              = 6;
 AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY           = 7;
 AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY         = 8;
 AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST       = 9;
+AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP             = 10;
 
 AdsEdit.ADS_AD_LINK_TYPE_GROUP              = 1;
 AdsEdit.ADS_AD_LINK_TYPE_EVENT              = 2;
@@ -776,6 +777,7 @@ AdsEdit.showCropPhotoBox = function(photoData) {
       case AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS: adWidth = 175; break;
       case AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY:   adWidth = 128; break;
       case AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY: adWidth = 128; break;
+      case AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP:     adWidth = 448; break;
     }
     showOptions.params.width = Math.max(photoWidth + boxPadding + 15 + adWidth, 490);
   } else if (photoWidth && photoWidth <= 860) {
@@ -1271,7 +1273,7 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
     link_url_vk:            {value: 0,  link_type_value: 0, link_id_value: 0},
     link_domain:            {value: '', value_p: '', value_a: '', value_k: '', value_d: '', link_url: '', delayed_error: '', needed: false, is_ok: false},
     link_domain_confirm:    {value: 0},
-    title:                  {value: '', value_escaped: '', value_default: '', max_length: 0, max_new_lines: 0, value_p: '', value_a: '', value_k: '', value_d: '', value_max: '', update_value_max: true},
+    title:                  {value: '', value_escaped: '', value_default: '', max_length: 0, max_new_lines: 0, value_p: '', value_a: '', value_k: '', value_d: '', value_e: '', value_max: '', update_value_max: true},
     description:            {value: '', value_escaped: '', value_default: '', max_length: 0, max_new_lines: 0, max_length_normal: 0, max_length_mobile: 0},
     category1_id:           {value: 0, data: []},
     subcategory1_id:        {value: 0, data: []},
@@ -1282,8 +1284,8 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
     disclaimer_specialist:  {value: 0},
     disclaimer_supplements: {value: 0},
     age_restriction:        {value: 0, data: []},
-    photo:                  {value: '', value_s: '', value_m: '', value_b: '', value_p: '', value_a: '', value_k: '', value_d: '', value_i: ''},
-    photo_link:             {value: '', value_s: '', value_m: '', value_b: '', value_p: '', value_a: '', value_k: '', value_d: '', value_i: '', value_default_s: '', value_default_m: '', value_empty_m: '', value_default_b: '', value_empty_b: '', value_default_p: '', value_default_p_app: '', value_default_a: '', value_default_k: '', value_default_k_group: '', value_default_d: '', value_default_i: ''},
+    photo:                  {value: '', value_s: '', value_m: '', value_b: '', value_p: '', value_a: '', value_k: '', value_d: '', value_i: '', value_e: ''},
+    photo_link:             {value: '', value_s: '', value_m: '', value_b: '', value_p: '', value_a: '', value_k: '', value_d: '', value_i: '', value_e: '', value_default_s: '', value_default_m: '', value_empty_m: '', value_default_b: '', value_empty_b: '', value_default_p: '', value_default_p_app: '', value_default_a: '', value_default_k: '', value_default_k_group: '', value_default_d: '', value_default_i: '', value_default_e: ''},
     video_hash:             {value: '', value_old: ''},
     cost_per_click:         {value: '', edited: false, last_value: ''},
     platform:               {value: 0, data: [], data_all: [], values_normal: 0, values_disabled: 0},
@@ -1358,9 +1360,13 @@ AdsViewEditor.prototype.initPreview = function(paramName) {
   this.preview.layout                 = geByClass1('ads_edit_panel_preview');
   this.preview.link                   = geByClass1('ads_ad_box2', this.preview.layout);
   this.preview.title                  = geByClass1('ads_ad_title', this.preview.layout);
+  this.preview.title_box              = geByClass1('ads_ad_title_box', this.preview.layout);
+  this.preview.title_regular          = geByClass1('ads_ad_title_regular', this.preview.layout);
+  this.preview.title_big_app          = geByClass1('ads_ad_title_big_app', this.preview.layout);
   this.preview.description            = geByClass1('ads_ad_description', this.preview.layout);
   this.preview.description_up         = geByClass1('ads_ad_description_up', this.preview.layout);
   this.preview.description_down       = geByClass1('ads_ad_description_down', this.preview.layout);
+  this.preview.description_big_app    = geByClass1('ads_ad_description_big_app', this.preview.layout);
   this.preview.community_join         = geByClass1('ads_ad_community_join', this.preview.layout);
   this.preview.app_rating             = geByClass1('ads_ad_app_rating', this.preview.layout);
   this.preview.mobile_app_bottom      = geByClass1('ads_ad_mobile_app_bottom', this.preview.layout);
@@ -1381,6 +1387,7 @@ AdsViewEditor.prototype.initPreview = function(paramName) {
   this.preview.photo_icon             = geByClass1('ads_ad_photo_icon', this.preview.layout);
   this.preview.play                   = geByClass1('ads_ad_play', this.preview.layout);
   this.preview.promoted_post          = geByClass1('ads_ad_promoted_post', this.preview.layout);
+  this.preview.big_app_info_box       = geByClass1('ads_ad_big_app_info_box', this.preview.layout);
 
   var targetElem = geByClass1('wall_module', this.preview.promoted_post);
   AdsLight.overrideClickEvents(targetElem, true);
@@ -1554,7 +1561,7 @@ AdsViewEditor.prototype.initUiParam = function(paramName) {
       targetElem = ge(this.options.targetIdPrefix + 'format_type_apps_only');
       this.params[paramName].ui_apps_only = new Radiobutton(targetElem, {
         width:    this.options.uiWidth,
-        label:    getLang('ads_edit_ad_format_type_apps_only') + ' <span class="ads_edit_ad_format_type_new">new</span>',
+        label:    getLang('ads_edit_ad_format_type_apps_only'),
         onSelect: function(value) { this.onUiSelect(paramName, value) }.bind(this)
       });
       this.cur.destroy.push(function(){ this.params[paramName].ui_apps_only.destroy(); }.bind(this));
@@ -1562,10 +1569,18 @@ AdsViewEditor.prototype.initUiParam = function(paramName) {
       targetElem = ge(this.options.targetIdPrefix + 'format_type_groups_only');
       this.params[paramName].ui_group = new Radiobutton(targetElem, {
         width:    this.options.uiWidth,
-        label:    getLang('ads_edit_ad_format_type_groups_only') + ' <span class="ads_edit_ad_format_type_new">new</span>',
+        label:    getLang('ads_edit_ad_format_type_groups_only'),
         onSelect: function(value) { this.onUiSelect(paramName, value) }.bind(this)
       });
       this.cur.destroy.push(function(){ this.params[paramName].ui_group.destroy(); }.bind(this));
+
+      targetElem = ge(this.options.targetIdPrefix + 'format_type_big_app');
+      this.params[paramName].ui_big_app = new Radiobutton(targetElem, {
+        width:    this.options.uiWidth,
+        label:    getLang('ads_edit_ad_format_type_big_app') + ' <span class="ads_edit_ad_format_type_new">new</span>',
+        onSelect: function(value) { this.onUiSelect(paramName, value) }.bind(this)
+      });
+      this.cur.destroy.push(function(){ this.params[paramName].ui_big_app.destroy(); }.bind(this));
 
       targetElem = ge(this.options.targetIdPrefix + 'format_type_mobile');
       this.params[paramName].ui_mobile = new Radiobutton(targetElem, {
@@ -2028,7 +2043,7 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
 
       var isAppCampaign = (this.params.campaign_type.value == AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_APPS_WITH_BUDGET || (this.params.campaign_id.value_app && this.params.campaign_id.value == this.params.campaign_id.value_app));
       var isAppAdminLink = (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_APP && this.params.link_id.app_admin_links_ids[this.params.link_id.value]);
-      var isApp = (isAppCampaign && isAppAdminLink && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS);
+      var isApp = (isAppCampaign && isAppAdminLink && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP);
 
       var suffixesAll = '';
       suffixesAll    += ((this.params.cost_type.value == AdsEdit.ADS_AD_COST_TYPE_CLICK)         ? '_click'     : '_views');
@@ -2245,6 +2260,7 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
       toggleClass(this.options.targetIdPrefix + paramName + '_app_in_news_wrap',         'unshown', elemsHidden[AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS]         = !(inArray(linkTypeValue, [AdsEdit.ADS_AD_LINK_TYPE_APP]) && this.params.link_id.app_in_news_links_ids[this.params.link_id.value] && this.params.format_type.allow_app_in_news));
       toggleClass(this.options.targetIdPrefix + paramName + '_apps_only_wrap',           'unshown', elemsHidden[AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY]           = !(inArray(linkTypeValue, [AdsEdit.ADS_AD_LINK_TYPE_APP]) && this.params.link_id.app_trusted_links_ids[this.params.link_id.value]));
       toggleClass(this.options.targetIdPrefix + paramName + '_groups_only_wrap',         'unshown', elemsHidden[AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY]         = !(inArray(linkTypeValue, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC]) && this.params.format_type.allow_groups_only));
+      toggleClass(this.options.targetIdPrefix + paramName + '_big_app_wrap',             'unshown', elemsHidden[AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP]             = !(inArray(linkTypeValue, [AdsEdit.ADS_AD_LINK_TYPE_APP]) && this.params.link_id.app_trusted_links_ids[this.params.link_id.value] && this.params.format_type.allow_big_app));
       toggleClass(this.options.targetIdPrefix + paramName + '_mobile_wrap',              'unshown', elemsHidden[AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]              = !(inArray(linkTypeValue, [AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE])));
       toggleClass(this.options.targetIdPrefix + paramName + '_promoted_post_wrap',       'unshown', elemsHidden[AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST]       = !(inArray(linkTypeValue, [AdsEdit.ADS_AD_LINK_TYPE_POST])));
 
@@ -2317,7 +2333,7 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
       toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
       break;
     case '_title':
-      toggleClass(this.options.targetIdPrefix + 'title_reduce', 'unshown', !(inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS, AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]) && this.params.title.value_max.match(/[^\s:,][\s:,]+[^\s:,]/)));
+      toggleClass(this.options.targetIdPrefix + 'title_reduce', 'unshown', !(inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS, AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]) && this.params.title.value_max.match(/[^\s:,][\s:,]+[^\s:,]/)));
       break;
     case 'description':
       this.initUiParam(paramName);
@@ -2436,18 +2452,34 @@ AdsViewEditor.prototype.updateUiParamDisabledText = function(paramName) {
 }
 
 AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDataUpdate, delayed) {
+  var paramValueOld = this.params[paramName].value;
 
+  // postpone function execution
   if (!delayed) {
+    var delayMs = 1;
+
+    switch (paramName) {
+      case 'format_type': // animate layout when switching from/to big_app format
+        if (((paramValue == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP) || (paramValueOld == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP)) && (paramValueOld != paramValue)) {
+          animate(this.preview.layout, {height: 0}, 200, function () {
+            setTimeout(function () {
+              animate(this.preview.layout, {height: 291}, 200);
+            }.bind(this), 400);
+          }.bind(this));
+          delayMs = 200;
+        }
+        break;
+    }
+
     setTimeout(function() {
       this.onParamUpdate(paramName, paramValue, forceDataUpdate, true);
-    }.bind(this), 1);
+    }.bind(this), delayMs);
     return;
   }
 
+  // main function logic
   var isUpdateNeeded = false;
   do {
-    var paramValueOld = this.params[paramName].value;
-
     if (typeof(this.params[paramName].value) === 'number' && intval(this.params[paramName].value) == this.params[paramName].value) {
       paramValue = intval(paramValue);
     }
@@ -2470,7 +2502,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
     switch (paramName) {
       case 'format_type':
         var photoSize = this.getPhotoSize();
-        this.params.cost_type.cpm_only            = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST]);
+        this.params.cost_type.cpm_only            = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST]);
         this.params.cost_type.hidden              = this.params.cost_type.cpm_only;
 
         if (this.params.cost_type.cpm_only) {
@@ -2478,8 +2510,8 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         }
 
         this.params.title.hidden                  = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST);
-        this.params.title.disabled                = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS, AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]);
-        this.params.description.hidden            = !inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]);
+        this.params.title.disabled                = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS, AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]);
+        this.params.description.hidden            = !inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP]);
         this.params.description.max_length        = ((this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE) ? this.params.description.max_length_mobile : this.params.description.max_length_normal);
         this.params.disclaimer_medical.may_be_any = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY]);
         this.params.disclaimer_medical.hidden     = (!this.params.disclaimer_medical.may_be_any || !this.params.disclaimer_medical.allow);
@@ -2513,6 +2545,12 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
           this.setTitle(this.params.title.value_p);
           if (!this.params.photo.value_k) {
             this.updateNeeded.need_format_promotion_community = true;
+          }
+        }
+        if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP) {
+          this.setTitle(this.params.title.value_e);
+          if (!this.params.title.value_e) {
+            this.updateNeeded.need_format_big_app = true;
           }
         }
         if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE) {
@@ -2555,6 +2593,8 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         this.updatePreview('app_rating');
         this.updatePreview('mobile_app_bottom');
         this.updatePreview('age_restriction');
+        this.updatePreview('big_app_info_box');
+        this.updatePreview('disclaimers');
         this.updatePhotoData();
         this.updatePhotoData('i');
 
@@ -2762,13 +2802,15 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
 
         var isAppCampaign = (this.params.campaign_type.value == AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_APPS_WITH_BUDGET || (this.params.campaign_id.value_app && this.params.campaign_id.value == this.params.campaign_id.value_app));
         var isAppAdminLink = (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_APP && this.params.link_id.app_admin_links_ids[this.params.link_id.value]);
-        var isApp = (isAppCampaign && isAppAdminLink && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS);
+        var isApp = (isAppCampaign && isAppAdminLink && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP);
 
         var auctionName = 'site';
         if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY) {
           auctionName = 'apps_only';
         } else if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY) {
           auctionName = 'groups_only';
+        } else if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP) {
+          auctionName = 'big_app';
         } else if (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID) {
           auctionName = 'android';
         } else if (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE) {
@@ -3156,6 +3198,17 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
     }
   }
 
+  if (isObject(result) && 'e_title' in result) {
+    var vkLinkType = ((this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_URL && this.params.link_url_vk.link_type_value) ? this.params.link_url_vk.link_type_value : this.params.link_type.value);
+    if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP && data.link_type == this.params.link_type.value && data.link_id == this.params.link_id.value && data.link_url == this.params.link_url.value && vkLinkType == AdsEdit.ADS_AD_LINK_TYPE_APP) {
+      var titleUnescaped = AdsEdit.unescapeValueInit(result['e_title']);
+      var descriptionUnescaped = AdsEdit.unescapeValueInit(result['e_description']);
+      this.setPhotoData('e', result['e_photo']);
+      this.setTitle(titleUnescaped, false, {value_e: titleUnescaped});
+      this.setDescription(descriptionUnescaped);
+    }
+  }
+
   if (isObject(result) && 'd_title' in result) {
     if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE && inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_MOBILE_APP) && data.link_type == this.params.link_type.value && data.link_url == this.params.link_url.value) {
       var titleUnescaped = AdsEdit.unescapeValueInit(result['d_title']);
@@ -3255,6 +3308,7 @@ AdsViewEditor.prototype.getPhotoSize = function() {
     case AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS:         return 'a';
     case AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY:           return 'k';
     case AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY:         return 'k';
+    case AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP:             return 'e';
     case AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE:              return 'd';
     case AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST:       return ''; // No photo needed for promoted post
     default:                                             return '';
@@ -3373,7 +3427,7 @@ AdsViewEditor.prototype.setTitle = function(title, noUpdateValueMax, titleValues
   targetElem.value = title;
   var clearTitleValues = (titleValues === '');
   if (clearTitleValues || isObject(titleValues)) {
-    var valuesKeys = ['value_p', 'value_a', 'value_k', 'value_d'];
+    var valuesKeys = ['value_p', 'value_a', 'value_k', 'value_d', 'value_e'];
     for (var i in valuesKeys) {
       var valueKey = valuesKeys[i];
       if (clearTitleValues || valueKey in titleValues) {
@@ -3654,6 +3708,10 @@ AdsViewEditor.prototype.completeLink = function() {
         this.setTitle(this.params.title.value_k);
         this.updateNeeded.need_format_apps_only = true;
       }
+      if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP) {
+        this.setTitle(this.params.title.value_e);
+        this.updateNeeded.need_format_big_app = true;
+      }
       if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE) {
         this.setTitle(this.params.title.value_d);
         this.updateNeeded.need_format_mobile = true;
@@ -3719,6 +3777,7 @@ AdsViewEditor.prototype.completeLink = function() {
     this.updatePreview('app_rating');
     this.updatePreview('mobile_app_bottom');
     this.updatePreview('promoted_post');
+    this.updatePreview('big_app_info_box');
 
     this.updateNeeded.need_link_object = true;
     this.needDataUpdate();
@@ -3921,6 +3980,7 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
       var isAppInNews    = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS);
       var isAppsOnly     = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY);
       var isGroupsOnly   = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY);
+      var isBigApp       = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP);
       var isMobile       = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE);
       var isAndroid      = (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID);
       var isIphone       = (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE);
@@ -3932,15 +3992,18 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
         toggleClass(elems[i], 'app_in_news',   !!isAppInNews);
         toggleClass(elems[i], 'apps_only',     !!isAppsOnly);
         toggleClass(elems[i], 'groups_only',   !!isGroupsOnly);
+        toggleClass(elems[i], 'big_app',       !!isBigApp);
         toggleClass(elems[i], 'mobile',        !!isMobile);
         toggleClass(elems[i], 'android',       !!isAndroid);
         toggleClass(elems[i], 'iphone',        !!(isIphone || isWphone)); // isWphone - temporary
         toggleClass(elems[i], 'promoted_post', !!isPromotedPost);
       }
-      var descriptionPlaceElem = ((isMobile) ? this.preview.description_up : this.preview.description_down);
+      var titlePlaceElem       = (isBigApp ? this.preview.title_big_app : this.preview.title_regular);
+      var descriptionPlaceElem = ((isMobile) ? this.preview.description_up : (isBigApp ? this.preview.description_big_app : this.preview.description_down));
       var photoBoxPlaceElem    = ((isAppInNews || isAppsOnly || isGroupsOnly) ? this.preview.photo_box_hor : this.preview.photo_box_ver);
       var domainPlaceElem      = ((isAppInNews || isAppsOnly || isGroupsOnly) ? this.preview.domain_out    : this.preview.domain_ver);
       var disclaimersPlaceElem = (isGroupsOnly ? this.preview.disclaimers_photo : this.preview.disclaimers_bottom);
+      titlePlaceElem.parentNode.insertBefore(this.preview.title_box, titlePlaceElem);
       descriptionPlaceElem.parentNode.insertBefore(this.preview.description, descriptionPlaceElem);
       photoBoxPlaceElem.parentNode.insertBefore(this.preview.photo_box, photoBoxPlaceElem);
       domainPlaceElem.parentNode.insertBefore(this.preview.domain, domainPlaceElem);
@@ -3955,7 +4018,7 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
       break;
     case 'description':
       this.preview[previewParamName].innerHTML = (this.params.description.value_escaped || this.params.description.value_default);
-      toggle(this.preview[previewParamName], !!inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]));
+      toggle(this.preview[previewParamName], !!inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP]));
       break;
     case 'community_join':
       var isAppGame = (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_APP && this.params.link_id.app_game_links_ids[this.params.link_id.value]);
@@ -3997,16 +4060,18 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
       }
       break;
     case 'disclaimers':
-      toggle(this.preview.disclaimers, !!(this.params.disclaimer_medical.value) || !!(this.params.disclaimer_specialist.value) || !!(this.params.disclaimer_supplements.value));
+      var isDisclaimersAllowed = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY]);
+      toggle(this.preview.disclaimers, isDisclaimersAllowed && (!!(this.params.disclaimer_medical.value) || !!(this.params.disclaimer_specialist.value) || !!(this.params.disclaimer_supplements.value)));
       break;
     case 'domain':
       var domainValue = this.getPreviewDomain();
       var isMobile    = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE);
+      var isBigApp    = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP);
       if (isMobile && this.params.age_restriction.value) {
         domainValue += ' ' + this.getAgeRestrictionText(this.params.age_restriction.value);
       }
       this.preview[previewParamName].innerHTML = domainValue;
-      toggle(this.preview[previewParamName], !!(domainValue));
+      toggle(this.preview[previewParamName], !!(domainValue && !isBigApp));
       break;
     case 'photo':
       if (this.params.photo.value && this.params.photo_link.value) {
@@ -4044,6 +4109,10 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
         targetElem = geByClass1('wall_module', this.preview[previewParamName]);
         AdsLight.overrideClickEvents(targetElem, true);
       }
+      break;
+    case 'big_app_info_box':
+      var isBigApp = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP);
+      toggle(this.preview.big_app_info_box, !!isBigApp);
       break;
   }
 }

@@ -378,6 +378,9 @@
   width: 283px;
   overflow: hidden;
 }
+.ads_premoderation_request.big_app {
+  width: 910px;
+}
 .ads_premoderation_request.app_in_news,
 .ads_premoderation_request.groups_only,
 .ads_premoderation_request.apps_only {
@@ -394,6 +397,12 @@
 }
 .ads_premoderation_request_ad_wrap2 {
   display: inline-block;
+}
+.ads_premoderation_request.big_app .ads_premoderation_request_ad_wrap {
+  padding-right: 4px;
+}
+.ads_premoderation_request.big_app .ads_premoderation_request_ad_wrap:last-of-type {
+  padding-right: 0;
 }
 .ads_premoderation_request_ad_page_link_wrap {
   font-size: 30px;

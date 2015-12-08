@@ -29,6 +29,9 @@
 .ads_ad_box.ver.repeat_ver.size_site.promoted_post {
   width: 388px;
 }
+.ads_ad_box.ver.repeat_ver.size_site.big_app {
+  width: 448px;
+}
 .ads_ad_box.ver.repeat_ver.size_small {
   width: 120px;
 }
@@ -66,6 +69,10 @@
 }
 .ads_ad_box2.ver.repeat_ver.size_site.mobile {
   width: 300px;
+  padding: 0;
+}
+.ads_ad_box2.ver.repeat_ver.size_site.big_app {
+  width: 448px;
   padding: 0;
 }
 .ads_ad_box2.ver.repeat_ver.size_small {
@@ -473,6 +480,11 @@ a.ads_ad_box2:hover {
   max-height: 128px;
   overflow: hidden;
 }
+.ads_ad_photo_box.big_app {
+  padding-top: 0;
+  border-radius: 3px;
+  overflow: hidden;
+}
 .ads_ad_text_box.hor {
   display: table-cell;
   vertical-align: top;
@@ -501,6 +513,10 @@ a.ads_ad_box2:hover {
   margin: 0;
   max-width: 128px;
 }
+.ads_ad_photo.ver.big_app {
+  margin: 0;
+  max-width: 448px;
+}
 .ads_ad_play {
   position: absolute;
   top: 46px;
@@ -515,6 +531,24 @@ a.ads_ad_box2:hover {
 }
 .ads_ad_play.big {
   top: 66px;
+}
+.ads_ad_big_app_info_box.big_app .ads_ad_play {
+  position: absolute;
+  right: 20px;
+  bottom: 17px;
+  top: auto;
+  left: auto;
+  width: auto;
+  height: auto;
+  background-image: none;
+  color: white;
+  background-color: #5d84b1;
+  cursor: pointer;
+  font-size: 1.1em;
+  padding: 6px 21px 7px 21px;
+}
+.ads_ad_big_app_info_box.big_app .ads_ad_play:hover {
+  background-color: #6A93C3;
 }
 .ads_ad_play_app {
   display: none;
@@ -613,6 +647,13 @@ a.ads_ad_box2:hover {
   display: inline;
   font-weight: bold;
 }
+.ads_ad_title.big_app {
+  color: white;
+  font-size: 1.3em;
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+  margin-bottom: 5px;
+}
 .ads_ad_title.app_in_news:hover,
 .ads_ad_title.groups_only:hover,
 .ads_ad_title.apps_only:hover {
@@ -627,6 +668,34 @@ a.ads_ad_box2:hover {
 .ads_ad_description.mobile {
   font-size: 14px;
   padding-top: 8px;
+}
+.ads_ad_description.big_app {
+  color: white;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
+  font-size: 1.1em;
+  line-height: 1.5em;
+  padding-top: 0;
+}
+.ads_ad_big_app_info_box {
+  position: absolute;
+  bottom: 0;
+  width: 448px;
+  text-align: left;
+}
+.ads_ad_big_app_info_shadow {
+  width: 100%;
+  height: 106px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: url(/images/app_featured_shadow.png?1) 0 0 repeat;
+  border-radius: 3px;
+}
+.ads_ad_big_app_info_wrap {
+  position: absolute;
+  bottom: 17px;
+  left: 20px;
+  width: 300px;
 }
 .ads_ad_domain {
   color: #777777;
@@ -876,7 +945,8 @@ a.ads_ad_box2:hover {
   line-height: 10px;
 }
 .ads_ad_age_restriction.groups_only,
-.ads_ad_age_restriction.apps_only {
+.ads_ad_age_restriction.apps_only,
+.ads_ad_age_restriction.big_app {
   position: absolute;
   top: 110px;
   right: 4px;
@@ -885,6 +955,9 @@ a.ads_ad_box2:hover {
   border: none;
   margin: 0;
   color: #fff;
+}
+.ads_ad_age_restriction.big_app {
+  top: 4px;
 }
 .ads_ad_age_restriction.inline {
   margin-top: 0;
