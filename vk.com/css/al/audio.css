@@ -1209,6 +1209,9 @@
   padding-left: 10px;
   text-align: center;
 }
+.audio_list .no_restore .actions {
+  display: none;
+}
 .audio_list .actions a {
   display: block;
   padding: 4px 3px 4px 6px;
