@@ -286,7 +286,7 @@ var Page = {
     clearTimeout(_postsSaveTimer);
     _postsSaveTimer = setTimeout(Page.postsSave, 2500);
     clearTimeout(_postsSendTimer);
-    _postsSendTimer = setTimeout(Page.postsSend, 10000);
+    _postsSendTimer = setTimeout(Page.postsSend, 5000);
   },
   postsSave: function() {
     if (!ls.checkVersion() || isEmpty(_postsSeen)) return _postsSeen;
