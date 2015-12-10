@@ -492,10 +492,10 @@ var Board = {
             post_id: ev[5],
             post_uid: ev[6],
             name: ev[7],
-            photo: ev[8],
+            photo: psr(ev[8]),
             link: ev[9],
             text: ev[10],
-            media: ev[11],
+            media: psr(ev[11]),
             date: Board.getAbsDate(),
             online: ''
           }, skin = cur.updates.skin, actions = '';
@@ -528,7 +528,7 @@ var Board = {
           break;
 
         case 'del_post':
-          if (cur.topicMyDeleted[ev[4]] || !el) break;
+          if (cur.topicMyDeleted[postId] || !el) break;
           hide(el);
           cur.pgOffset--;
           cur.pgCount--;

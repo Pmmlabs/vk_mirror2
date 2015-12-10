@@ -1154,6 +1154,7 @@ var Apps = { // can be removed soon
 
   initUpdates: function(opts) {
     cur.updatesKey = opts.key;
+    cur.updatesVersion = opts.version;
     var checkCb = function() {
       if (window.Notifier && cur.updatesKey) {
         var res = Notifier.addKey(cur.updatesKey, function(key, data) {
@@ -1180,6 +1181,9 @@ var Apps = { // can be removed soon
 
   parseEvent: function(ev) {
     var ev = ev.split('<!>');
+    var evVer = ev[0];
+    if (!cur.updatesVersion || evVer != cur.updatesVersion) return;
+
     var html = ev[3];
     var d = new Date();
     var h = d.getHours();
