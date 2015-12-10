@@ -35,6 +35,7 @@ global_edit='Редактировать';
 global_error='Ошибка';
 global_error_occured='Произошла ошибка';
 global_lang_box_title='Выбор языка';
+global_last_notifitications='Последние уведомления';
 global_media_selector_more='Ещё';
 global_min='Свернуть';
 global_mobile_need_validation='Для этого действия необходима привязка номера телефона. {link}Привязать номер »{/link}';
