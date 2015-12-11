@@ -529,3 +529,33 @@ th.piechart_col_header_second {
   float: left;
   margin-right: 10px;
 }
+.stats_tab_hint {
+  padding: 0px;
+  width: 265px;
+}
+.stats_tab_hint .stats_tab_hint_text {
+  float: left;
+  font-weight: normal;
+  color: #424242;
+  width: 220px;
+  padding: 10px;
+  margin-top: -3px;
+}
+.stats_tab_hint .stats_tab_hint_text_header {
+  font-weight: bold;
+  padding: 5px 0px;
+  color: #2e2e2e;
+}
+.stats_tab_hint .stats_tab_hint_text_close {
+  width: 11px;
+  height: 11px;
+  background-image: url('/images/icons/video_hide_channel.png?3');
+  position: absolute;
+  top: 11px;
+  right: 11px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.stats_tab_hint .stats_tab_hint_text_close:hover {
+  opacity: 1.0;
+}

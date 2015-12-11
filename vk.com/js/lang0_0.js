@@ -44,6 +44,7 @@ global_money_amount_rub_from=['','от %s рубля','от %s рублей','от %s рублей'];
 global_money_amount_rub_text=['','рубль','рубля','рублей'];
 global_money_amount_votes_text=['','голос','голоса','голосов'];
 global_month_label='Месяц:';
+global_notify_show_all='Показать все';
 global_not_activated_title='Привязка номера телефона';
 global_num_date_year_time=['','{num_day}.{month}.{short_year} {num_hour}:{minute}','вчера, {num_hour}:{minute}','сегодня, {num_hour}:{minute}','завтра, {num_hour}:{minute}'];
 global_n_votes=['','%s голос','%s голоса','%s голосов'];
