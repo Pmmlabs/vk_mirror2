@@ -417,7 +417,7 @@ var Market = {
 
     var options = {
       file_name: 'photo',
-      file_size_limit: 1024*1024*5, // 5Mb
+      file_size_limit: 1024*1024*25, // 25Mb
       file_types_description: 'Image files (*.jpg, *.png, *.gif)',
       file_types: '*.jpg;*.JPG;*.png;*.PNG;*.gif;*.GIF;*.bmp;*.BMP',
       accept: 'image/*',

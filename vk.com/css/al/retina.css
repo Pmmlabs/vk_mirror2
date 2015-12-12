@@ -138,6 +138,7 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x #audio.new .audio.current .play_new,
 .is_2x #audio.new .audio_edit,
 .is_2x #audio.new .audio_add,
+.is_2x #audio.new .audio_rec,
 .is_2x #audio_tip_arrow,
 .is_2x #pad_playlist .audio_add,
 .is_2x #pad_playlist .audio.current .play_new,

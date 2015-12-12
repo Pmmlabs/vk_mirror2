@@ -1356,6 +1356,8 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
       break;
   }
 
+  var elemParams = {};
+
   function saveValue(newValue, isRemoveValue) {
 
     if (valueGeneralType == 'limit') {
@@ -1461,11 +1463,15 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
         suffixesAll        += (additionalParams.is_promoted_post  ? '_promoted_post' : '');
         suffixesAll        += (additionalParams.is_exclusive_ad   ? '_exclusive'     : '');
         suffixesAll        += (additionalParams.is_app_admin      ? '_app'           : '');
-        var minValue        = cur.unionsLimits['cost_per' + suffixesAll + '_min'];
-        var maxValue        = cur.unionsLimits['cost_per' + suffixesAll + '_max'];
+        var suffixesExt     = '';
+        suffixesExt        += (additionalParams.is_cis            ? '_cis'           : '');
+        var minValue        = elemParams.minCost || cur.unionsLimits['cost_per' + suffixesAll + suffixesExt + '_min'] || cur.unionsLimits['cost_per' + suffixesAll + '_min'];
+        var maxValue        = elemParams.maxCost || cur.unionsLimits['cost_per' + suffixesAll + suffixesExt + '_max'] || cur.unionsLimits['cost_per' + suffixesAll + '_max'];
+
         var minErrorLangKey = (additionalParams.is_cost_per_click ? 'ads_error_cost_per_click_min_value' : 'ads_error_cost_per_views_min_value');
         var maxErrorLangKey = (additionalParams.is_cost_per_click ? 'ads_error_cost_per_click_max_value' : 'ads_error_cost_per_views_max_value');
         if (!minValue || valueFloat < minValue) {
+          elemParams.minCostError = {value: minValue};
           return getLang(minErrorLangKey).replace('{money}', getLang('global_money_amount_rub', minValue));
         }
         if (!maxValue || valueFloat > maxValue) {
@@ -1638,14 +1644,23 @@ Ads.createInlineEdit = function(editElem, progressElem, unionType, unionId, valu
       var recommendedCostText     = geByClass('ads_inline_recommended_cost_text',     this.contentTable)[0];
 
       function onDone(response) {
-        if (response && response.recommended_costs && response.recommended_costs.cost_text) {
-          recommendedCostText.innerHTML = response.recommended_costs.cost_text;
-          hide(recommendedCostProgress);
-          show(recommendedCostText);
-          if (!this.is_user_action && self.input.value == '0') {
-            self.input.value = response.recommended_costs.cost_value;
+        if (response) {
+          if (response.recommended_costs && response.recommended_costs.cost_text) {
+            recommendedCostText.innerHTML = response.recommended_costs.cost_text;
+            hide(recommendedCostProgress);
+            show(recommendedCostText);
+            if (!this.is_user_action && self.input.value == '0') {
+              self.input.value = response.recommended_costs.cost_value;
+            }
+            self.recommended_cost_loaded = true;
           }
-          self.recommended_cost_loaded = true;
+          if (response.min_cost && response.max_cost) {
+            elemParams.minCost = response.min_cost;
+            elemParams.maxCost = response.max_cost;
+            if (elemParams.minCostError && elemParams.minCostError.value != elemParams.minCost) {
+              hide(self.fastErrorRow);
+            }
+          }
         }
       };
       var ajaxParams = {ad_id: unionId};

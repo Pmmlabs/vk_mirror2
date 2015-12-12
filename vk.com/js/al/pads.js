@@ -1610,11 +1610,14 @@ var Pads = {
       if (cur.addedIds && cur.addedIds[audio[0]+'_'+audio[1]]) {
         actions += '<div class="audio_add_wrap added fl_r" onclick="return cancelEvent(event);"><div class="audio_add"></div></div>';
       } else {
-        actions += '<div class="audio_add_wrap fl_r" onmouseover="Audio.rowActive(this, \'' + getLang('audio_add_to_audio') + '\', [9, 5, 0]);" onmouseout="Audio.rowInactive(this);" onclick="Pads.addAudio(this, '+audio[1]+', '+audio[0]+'); return cancelEvent(event);"><div class="audio_add"></div></div>';
+        var onclick = "Pads.addAudio(this, "+ audio[1] +", "+ audio[0] +"); return cancelEvent(event);";
+        actions += rs(_pads.addBtnTpl, {aid: aid, label: getLang('audio_add_to_audio'), onclick: onclick});
       }
     }
 
-    return rs(Pads.audioTpl, {
+    actions += rs(_pads.recommendBtnTpl, {aid: aid, from_pad: 1});
+
+    return rs(_pads.audioPadTpl, {
       audio_id: (aid.substr(-4) == '_pad') ? aid : aid+'_pad',
       performer: performer,
       title: audio[6].replace(/\\$/g, "\\&#36;"),

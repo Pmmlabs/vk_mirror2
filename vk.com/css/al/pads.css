@@ -920,6 +920,14 @@ div.pad_msg_text div.im_fwd_log_wrap {
   width: 424px;
   margin: 0px;
 }
+#pad_playlist_panel .pad_playlist_panel.claimed .play_btn_wrap,
+#pad_playlist_panel .audio.claimed .title_wrap,
+#pad_playlist_panel .audio.claimed .duration,
+#pad_playlist_panel .area.deleted .play_btn_wrap,
+#pad_playlist_panel .area.deleted .title_wrap {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}
 #pad_playlist_panel .audio.over .area {
   background-color: #EDF1F5;
 }
@@ -944,11 +952,10 @@ div.pad_msg_text div.im_fwd_log_wrap {
 #pad_playlist_panel .audio.current .title_wrap a {
   color: #fff;
 }
-#pad_playlist_panel .audio .area .actions {
-  right: -2px;
-}
-#pad_playlist_panel .audio_add_wrap {
-  margin: 7px 7px 7px 0;
+#pad_playlist_panel .audio_add_wrap,
+#pad_playlist_panel .audio_remove_wrap,
+#pad_playlist_panel .audio_rec_wrap {
+  margin: 6px 6px 6px 0;
   padding: 4px;
   opacity: 0.4;
   filter: alpha(opacity=40);
@@ -962,48 +969,50 @@ div.pad_msg_text div.im_fwd_log_wrap {
 #pad_playlist_panel .wall_module .audio.current .audio_add {
   background-position: -79px -51px;
 }
-#pad_playlist_panel .wall_module .audio.current .audio_add_wrap.added .audio_add,
+#pad_playlist_panel .audio.rec_source .audio_rec,
+#pad_playlist_panel .audio.over .audio_rec #pad_playlist_panel .wall_module .audio.current .audio_add_wrap.added .audio_add,
 #pad_playlist_panel .wall_module .audio.current .audio_add_wrap .audio_add.done {
   background-position: -166px -51px;
 }
-#pad_playlist_panel .audio_add {
+#pad_playlist_panel .audio_add,
+#pad_playlist_panel .audio_remove,
+#pad_playlist_panel .audio_rec {
   background: url(/images/icons/audio_icons.png?6) -79px -51px no-repeat;
   position: relative;
   width: 13px;
-  height: 12px;
-  margin: 0px;
-  cursor: pointer;
-  overflow: hidden;
-}
-#pad_playlist_panel .audio_rec_wrap {
-  margin: 7px 7px 7px 0;
-  padding: 4px;
-  opacity: 0.4;
-  filter: alpha(opacity=40);
-}
-#pad_playlist_panel .rec_source .audio_rec_wrap {
-  opacity: 1;
-  filter: alpha(opacity=100);
-}
-#pad_playlist_panel .audio.current .audio_add {
-  background-position: -93px -51px;
-}
-#pad_playlist_panel .audio_rec {
-  background: url(/images/icons/audio_icons.png?6) -202px -51px no-repeat;
-  position: relative;
-  width: 12px;
-  height: 12px;
+  height: 13px;
   margin: 0px;
   cursor: pointer;
   overflow: hidden;
   visibility: hidden;
 }
+#pad_playlist_panel .audio_remove {
+  background: url(/images/icons/audio_icons.png?6) -107px -51px no-repeat;
+}
+#pad_playlist_panel .audio_rec {
+  background: url(/images/icons/audio_icons.png?6) -202px -51px no-repeat;
+  width: 12px;
+}
+#pad_playlist_panel .rec_source .audio_rec_wrap {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+#pad_playlist_panel .audio.rec_source .audio_add,
+#pad_playlist_panel .audio.over .audio_add,
+#pad_playlist_panel .audio.rec_source .audio_remove,
+#pad_playlist_panel .audio.over .audio_remove,
 #pad_playlist_panel .audio.rec_source .audio_rec,
 #pad_playlist_panel .audio.over .audio_rec {
   visibility: visible;
 }
+#pad_playlist_panel .audio.current .audio_add {
+  background-position: -93px -51px;
+}
 #pad_playlist_panel .audio.current .audio_rec {
-  background-position: -218px -51px;
+  background-position: -214px -51px;
+}
+#pad_playlist_panel .audio.current .audio_remove {
+  background-position: -121px -51px;
 }
 #pad_playlist_panel .audio_add_wrap.added {
   opacity: 1;
@@ -1135,6 +1144,8 @@ div.pad_msg_text div.im_fwd_log_wrap {
 #pad_playlist_panel .wall_module .audio.current .title_wrap {
   color: #000;
 }
+#pad_playlist_panel .audio.claimed .title_wrap,
+#pad_playlist_panel .area.deleted .title_wrap,
 #pad_playlist_panel .wall_module .audio.current .title_wrap a {
   color: #2B587A;
 }
