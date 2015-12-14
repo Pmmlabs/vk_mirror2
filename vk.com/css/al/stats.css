@@ -549,7 +549,7 @@ th.piechart_col_header_second {
 .stats_tab_hint .stats_tab_hint_text_close {
   width: 11px;
   height: 11px;
-  background-image: url('/images/icons/video_hide_channel.png?3');
+  background-image: url('/images/icons/stats_hint_hide.png');
   position: absolute;
   top: 11px;
   right: 11px;

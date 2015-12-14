@@ -442,7 +442,7 @@
   overflow: hidden;
 }
 #audio.new .audio_rec_wrap {
-  margin: 6px 6px 6px 0;
+  margin: 6px 8px 6px 0;
   padding: 4px;
   opacity: 0.4;
   filter: alpha(opacity=40);

@@ -141,6 +141,7 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x #audio.new .audio_rec,
 .is_2x #audio_tip_arrow,
 .is_2x #pad_playlist .audio_add,
+.is_2x #pad_playlist .audio_rec,
 .is_2x #pad_playlist .audio.current .play_new,
 .is_2x #pd_play,
 .is_2x #pd .ctrl,
@@ -1966,5 +1967,9 @@ body.dev.is_2x .priv_h_arrow,
 }
 .is_2x .tickets_mobile_notice__close {
   background-image: url(/images/icons/thin_close_2x.png);
+  background-size: 11px 11px;
+}
+.is_2x .stats_tab_hint .stats_tab_hint_text_close {
+  background-image: url('/images/icons/stats_hint_hide_2x.png');
   background-size: 11px 11px;
 }

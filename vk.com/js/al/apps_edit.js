@@ -1022,8 +1022,8 @@ runFunc: function(id, btn) {
 },
 
 adjustHeight: function(editor, el) {
-  var lineHeight = editor.renderer.lineHeight <= 1 ? 15 : editor.renderer.lineHeight;
-  var newHeight = editor.getSession().getScreenLength() * lineHeight + editor.renderer.scrollBar.getWidth();
+  var lineHeight = editor.renderer.lineHeight <= 1 ? 16 : editor.renderer.lineHeight;
+  var newHeight = (editor.getSession().getScreenLength() * lineHeight) + editor.renderer.scrollBar.width;
   var row = domPN(el);
   while (!hasClass(row, 'apps_edit_cont_row')) {
     row = domPN(row);
@@ -1157,7 +1157,10 @@ switchEditFunc: function(id) {
   var newName = geByClass1("apps_edit_cont_name", newRow);
   newName.readOnly = false;
   var newContent = geByClass1('apps_edit_content', newRow);
-  slideDown(newContent, 150);
+  slideDown(newContent, 150, function() {
+    var el = geByClass1('apps_edit_editor', ge('func_row_' + id));
+    AppsEdit.adjustHeight(el.ace, el);
+  });
 },
 
 switchEditActivity: function(id, duration) {
@@ -1180,7 +1183,10 @@ switchEditActivity: function(id, duration) {
   var newRow = ge('activity_row_' + id);
   addClass(newRow, 'active');
   var newContent = geByClass1('apps_edit_content', newRow);
-  slideDown(newContent, duration);
+  slideDown(newContent, duration, function() {
+    var el = geByClass1('apps_edit_editor', ge('func_row_' + id));
+    AppsEdit.adjustHeight(el.ace, el);
+  });
 },
 
 
@@ -1210,7 +1216,10 @@ switchEditRequest: function(id, duration) {
   var newName = geByClass1("apps_edit_cont_name", newRow);
   if (newName) newName.readOnly = false;
   var newContent = geByClass1('apps_edit_content', newRow);
-  slideDown(newContent, duration);
+  slideDown(newContent, duration, function() {
+    var el = geByClass1('apps_edit_editor', ge('func_row_' + id));
+    AppsEdit.adjustHeight(el.ace, el);
+  });
 },
 
 collectRequestData: function(id) {
