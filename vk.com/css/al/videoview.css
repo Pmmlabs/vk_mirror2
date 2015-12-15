@@ -86,6 +86,11 @@ body.mobfixed #mv_layer_wrap {
   padding: 0;
   vertical-align: middle;
   display: table-cell;
+  -o-transition: none !important;
+  -ms-transition: none !important;
+  -moz-transition: none !important;
+  -webkit-transition: none !important;
+  transition: none !important;
 }
 .mv_minimized .video_layer_message {
   width: auto;

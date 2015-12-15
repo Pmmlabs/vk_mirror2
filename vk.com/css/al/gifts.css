@@ -919,6 +919,9 @@
   display: table-cell;
   text-align: center;
 }
+.gifts_constr_step_cell.gifts_constr_step_cell_1 {
+  width: 50%;
+}
 .gifts_constr_step {
   font-size: 12px;
   color: #45688e;
