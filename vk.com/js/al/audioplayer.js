@@ -496,7 +496,15 @@ var audioPlayer = {
       _a.gpHidden = false;
       updGlobalPlayer();
     }
-
+    if (cur.id && cur.id % 1000 == 706) {
+      var source_audio = Object.keys(_a.playbackParams);
+      if (source_audio[0]) {
+        source_audio = source_audio[0];
+      } else {
+        source_audio = "my_audio";
+      }
+      statlogsValueEvent('audio_play', 1, source_audio);
+    }
     if (_a.playbackParams.recommendation) {
       statlogsValueEvent('audios_recommend', 'rec_audio_played', _a.playbackParams.recommendation, nav.objLoc.audio_id || '');
     }
