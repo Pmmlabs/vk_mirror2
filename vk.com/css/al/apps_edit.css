@@ -1271,8 +1271,9 @@ input.apps_edit_cont_name {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
-  overflow: hidden;
+  /*overflow: hidden;*/
   cursor: pointer;
+  position: relative;
 }
 .apps_edit_cont_row:last-child {
   margin-bottom: 0px;
@@ -2354,4 +2355,42 @@ input.execute_field_input {
 }
 .apps_edit_platform_status .text {
   color: #777777;
+}
+.apps_edit_versions_dd {
+  padding: 3px;
+  margin-left: 8px;
+  display: none;
+}
+.apps_edit_cont_row.active .apps_edit_versions_dd_loaded {
+  display: inline-block;
+}
+.apps_edit_ver_dd {
+  display: none;
+  position: absolute;
+  top: 8px;
+  left: 232px;
+  z-index: 11;
+}
+.apps_edit_ver_str {
+  position: absolute;
+  left: 243px;
+  top: 13px;
+  display: none;
+  z-index: 10;
+}
+.apps_edit_ver_str_hidden {
+  display: none !important;
+}
+.apps_edit_add_version {
+  position: absolute;
+  left: 445px;
+  width: 16px;
+  height: 16px;
+  top: 15px;
+  background: url(/images/icons/news_iconset.png?5) no-repeat 0 -144px;
+  z-index: 11;
+  display: none;
+}
+.apps_edit_cont_row.active .apps_edit_ver_str {
+  display: block;
 }
