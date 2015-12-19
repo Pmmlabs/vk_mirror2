@@ -2328,12 +2328,13 @@ reportBox: function(oid, vid) {
   }, stat: ['ui_controls.js', 'ui_controls.css'], dark: 1});
 },
 
-setAdult: function(oid, vid, hash) {
+setAdult: function(oid, vid, hash, value) {
   ajax.post('al_video.php', {
     act: 'set_adult_video',
     vid: vid,
     oid: oid,
-    hash: hash
+    hash: hash,
+    value: value
   }, {onDone: function(text, label) {
     ge('mv_setadult_line').innerHTML = label;
   }});
