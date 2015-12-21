@@ -680,6 +680,9 @@
   top: 6px;
   right: 6px;
 }
+.audio_filter.drag_on div.icon_wrap.recommend_wrap {
+  visibility: hidden;
+}
 .audio_filter.drag_on.drag_over {
   color: #2B587A;
   background-color: #E1E7ED;

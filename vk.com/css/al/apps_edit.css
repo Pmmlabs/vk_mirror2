@@ -1245,6 +1245,12 @@ input.apps_edit_input_readonly {
   background: #e9edf1;
   text-decoration: none;
 }
+.apps_edit_sortable_row .apps_edit_cont_name_c {
+  cursor: move;
+}
+.apps_edit_no_sortable .apps_edit_cont_name_c {
+  cursor: pointer;
+}
 input.apps_edit_cont_name {
   border: none;
   color: #54657d;
@@ -1274,6 +1280,38 @@ input.apps_edit_cont_name {
   /*overflow: hidden;*/
   cursor: pointer;
   position: relative;
+  width: 665px;
+  z-index: 1 !important;
+}
+.apps_edit_cont_row.active {
+  z-index: 2 !important;
+}
+.apps_edit_sortable_row {
+  min-height: 42px;
+  padding-bottom: 20px;
+}
+.apps_edit_sortable_row .apps_edit_cont_row {
+  margin-bottom: 0px;
+}
+.apps_edit_sortable_row_up {
+  cursor: move;
+  width: 665px;
+}
+.apps_edit_sortable_row_up .apps_edit_cont_row {
+  position: absolute;
+  max-height: 42px;
+  overflow: hidden;
+  z-index: 100;
+}
+.apps_edit_cont_row.active {
+  position: relative !important;
+  top: 0px !important;
+  left: 0px !important;
+  max-height: none;
+  overflow: initial;
+}
+.qs_drag_started.apps_edit_sortable_row_up {
+  opacity: 0.7;
 }
 .apps_edit_cont_row:last-child {
   margin-bottom: 0px;
@@ -2390,6 +2428,17 @@ input.execute_field_input {
   background: url(/images/icons/news_iconset.png?5) no-repeat 0 -144px;
   z-index: 11;
   display: none;
+}
+.dev_func_loaded.active .apps_edit_add_version,
+.dev_func_loaded.active .apps_edit_ver_dd {
+  display: block;
+}
+.dev_no_func_versions .apps_edit_ver_dd,
+.apps_edit_new_func .apps_edit_add_version {
+  display: none !important;
+}
+.dev_no_func_versions .apps_edit_add_version {
+  left: 230px;
 }
 .apps_edit_cont_row.active .apps_edit_ver_str {
   display: block;

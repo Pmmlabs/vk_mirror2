@@ -15,9 +15,9 @@ initPage: function() {
   window.Dev && Dev.checkBlockHeight();
 },
 
-switchTab: function(tab, event) {
-  if (checkEvent(event)) return;
-  if (nav.objLoc.section == tab) return;
+switchTab: function(tab, event, noNavGo) {
+  if (!noNavGo && checkEvent(event)) return;
+  if (!noNavGo && nav.objLoc.section == tab) return;
   var el = ge('apps_nav_' + tab);
   if (el) {
     var tabs = geByClass('nav_selected', ge('dev_navigation'));
@@ -35,6 +35,7 @@ switchTab: function(tab, event) {
       }})
     }
   }
+  if (noNavGo) return;
   return nav.go(el, event);
 },
 
@@ -785,15 +786,24 @@ addFunc: function() {
     code: 'return "Hello World";',
     id: id
   }));
+  addClass(geByClass1('apps_edit_cont_row', row), 'apps_edit_new_func');
   list.insertBefore(row, list.firstChild);
+
+  cur.funcsVersions[id] = {
+    last_v: 1,
+    versions: [[-1, -1]]
+  };
+
+  var item = ge('func_row_' + id);
+  addClass(item, 'dev_func_loaded');
+  addClass(item, 'dev_no_func_versions');
 
   var el = geByClass1('apps_edit_editor', row);
   AppsEdit.switchEditFunc(id);
-  AppsEdit.initEditor(el);
-  //AppsEdit.initVersionDropdown(id);
+  //AppsEdit.initEditor(el);
   geByClass1('apps_edit_cont_name', row).focus();
 
-  hide('apps_edit_ver_str'+id);
+  AppsEdit.updateFuncsSort();
 },
 
 removeFunc: function(id) {
@@ -806,7 +816,7 @@ removeFunc: function(id) {
   if (el && el.ace) {
     el.ace.destroy();
   }
-  re(removedRow);
+  re(removedRow.parentNode);
 
   if (cur.funcIds.length == 0) {
     show('apps_edit_funcs_empty');
@@ -832,19 +842,38 @@ removeFunc: function(id) {
   delete cur.funcsVersion[id];
   delete cur.funcsVersions[id];
   delete cur.funcsVersionsDD[id];
+  delete cur.editedFuncs[id];
 },
 
 removeFuncVersion: function(id, v) {
-  var versions = cur.funcsVersions[id].versions;
+  var versions = cur.funcsVersions[id].versions,
+    prev_v = -1;
+
   for(var i = 0; i < versions.length; i++) {
     if (versions[i][0] == v) {
+      prev_v = versions[i + 1][0];
       var sliced = versions.slice(i + 1);
       cur.funcsVersions[id].versions = versions.slice(0, i).concat(sliced);
       break;
     }
   }
   AppsEdit.updateVersionsDD(id);
-  AppsEdit.putVersionCode(id, -1);
+  AppsEdit.putVersionCode(id, prev_v);
+
+  if (cur.funcsVersions[id].disable_add == v) {
+    show('apps_edit_add_version' + id);
+    delete cur.funcsVersions[id].disable_add;
+  }
+
+  if (cur.funcsVersions[id].last_v == v) {
+    cur.funcsVersions[id].last_v--;
+  }
+
+  if (cur.funcsVersions[id].versions.length <= 1) {
+    addClass('func_row_' + id, 'dev_no_func_versions');
+  }
+
+  delete cur.editedFuncs[id];
 },
 
 removeFuncBox: function(id) {
@@ -876,7 +905,7 @@ removeFuncBox: function(id) {
     ajax.post('editapp', params, {
       onDone: function(type, num, errText) {
         if (version > 0) {
-          AppsEdit.removeFuncVersion(id, version);
+          //AppsEdit.removeFuncVersion(id, version);
         } else {
           AppsEdit.removeFunc(id);
         }
@@ -964,6 +993,7 @@ saveFunc: function(btn, id, ajaxLoader) {
         } else {
           if (params.v == cur.funcsVersions[id].disable_add) {
             delete cur.funcsVersions[id].disable_add;
+            show('apps_edit_add_version' + id);
           }
         }
         var errEls = geByClass('apps_edit_err_info_cont', row);
@@ -972,8 +1002,6 @@ saveFunc: function(btn, id, ajaxLoader) {
             slideUp(errEls[i], 150);
           }
         }
-
-        show('apps_edit_ver_str'+id);
 
         var b = geByClass1('apps_edit_cancel_button', row);
         fadeOut(b, 150, function() {
@@ -985,7 +1013,14 @@ saveFunc: function(btn, id, ajaxLoader) {
               fadeIn(b, 150);
             })
           }, 2000);
-        })
+        });
+
+        removeClass(row, 'apps_edit_new_func');
+        if (cur.needSaveSort[id]) {
+          row = row.parentNode;
+          delete cur.needSaveSort[id];
+          AppsEdit.saveFuncsPosition(row, false, row.previousSibling);
+        }
       }
       if (btn) {
         unlockFlatButton(btn);
@@ -1033,7 +1068,7 @@ cancelFuncChange: function(id) {
       AppsEdit.removeFunc(id);
     } else {
       if (codeEl && codeEl.ace) {
-        codeEl.ace.setValue(func['code'], 1);
+        codeEl.ace.setValue(func['code'].replace(/\_\!\_/g, '<!>'), 1);
         codeEl.ace.focus();
       }
       var nameEl = geByClass1('apps_edit_cont_name', row);
@@ -1119,6 +1154,10 @@ initEditor: function(el, id) {
   session.setUseWorker(false);
   this.adjustHeight(editor, el);
   session.on('tokenizerUpdate', function() { AppsEdit.updateExecuteParams(editor, el) });
+
+  setTimeout(function() {
+    AppsEdit.updateExecuteParams(editor, el);
+  }, 50);
 },
 
 getExecuteFields: function(row) {
@@ -1207,6 +1246,101 @@ updateExecuteParams: function(editor, el) {
   this.adjustHeight(editor, el);
 },
 
+closeEditFunc: function() {
+  if (cur.currentFunc) {
+    hide('apps_edit_add_version' + cur.currentFunc);
+    var oldRow = ge('func_row_' + cur.currentFunc);
+    if (oldRow) {
+      removeClass(oldRow, 'active');
+      var oldName = geByClass1("apps_edit_cont_name", oldRow);
+      setTimeout(function() {
+        oldName.readOnly = true;
+      }, 0);
+      var oldContent = geByClass1('apps_edit_content', oldRow);
+      slideUp(oldContent, 150, function() {
+        AppsEdit.updateFuncsSort();
+      });
+    }
+    //cur.currentFunc = false;
+  }
+},
+
+onDestroyFuncs: function(changed, old, n, opts){
+  if (cur.leaving) {
+    delete cur.leaving;
+    delete cur.editedFuncs;
+    return;
+  }
+  var funcs = [];
+  for(var i in cur.editedFuncs) {
+    funcs.push(cur.funcInfos[i].name);
+  }
+
+  if (funcs.length == 0) {
+    return true;
+  }
+
+  cur.dev_prev_sec = nav.objLoc.section;
+  AppsEdit.switchTab('functions', {}, 1);
+
+  var message = cur.lang.developers_func_nosaved_confirm.replace('%s', funcs.join(', '));
+
+  var box = showFastBox({title: getLang('global_warning'), dark: 1}, message, getLang('global_continue'), function () {
+    cur.leaving = true;
+    box.hide();
+    if (cur.onContinueCb) {
+      cur.onContinueCb();
+    }
+  }, getLang('global_cancel'), function () {
+    box.hide();
+    if (cur.onCancelCb) {
+      cur.onCancelCb();
+    }
+  });
+
+  cur.onContinueCb = function() {
+    nav.go(n);
+    if (n[0] == 'editapp') {
+      AppsEdit.switchTab(n.section, {}, 1);
+    }
+  };
+
+  return false;
+},
+
+initFuncsSort: function() {
+  if (cur.sorter) {
+    cur.sorter.destroy();
+  }
+
+  setTimeout(function(){
+    cur.qsorterNoOperaStyle = true;
+    cur.qsorterRowClass = 'apps_edit_sortable_row clear_fix ';
+    cur.qsorterRowUpClass = 'apps_edit_sortable_row apps_edit_sortable_row_up';
+    cur.sorter = qsorter.init(ge('apps_edit_funcs'), {
+      width: 665,
+      height: 62,
+      xsize: 1,
+      dragEls: geByClass('apps_edit_sortable_row', ge('apps_edit_funcs')),
+      canDrag: function(el) {
+        if (cur.disableSort || hasClass(geByClass('apps_edit_cont_row', el)[0], 'active') || cur.currentFunc) {
+          return false;
+        }
+        return true;
+      },
+      onReorder: AppsEdit.saveFuncsPosition,
+      noMoveCursor: 1
+    });
+  }, 100);
+},
+
+updateFuncsSort: function() {
+  var el = ge('apps_edit_funcs');
+  qsorter.update(el, {
+    dragEls: geByClass('apps_edit_sortable_row', el)
+  });
+},
+
 switchEditFunc: function(id, e) {
 
   if (e) {
@@ -1224,18 +1358,8 @@ switchEditFunc: function(id, e) {
     return;
   }
 
-  if (cur.currentFunc) {
-    var oldRow = ge('func_row_' + cur.currentFunc);
-    if (oldRow) {
-      removeClass(oldRow, 'active');
-      var oldName = geByClass1("apps_edit_cont_name", oldRow);
-      setTimeout(function() {
-        oldName.readOnly = true;
-      }, 0);
-      var oldContent = geByClass1('apps_edit_content', oldRow);
-      slideUp(oldContent, 150);
-    }
-  }
+  AppsEdit.closeEditFunc();
+
   if (!cur.initedFunctions[id]) {
     AppsEdit.initEditor(geByClass('apps_edit_editor', ge('func_row_'+id))[0], id);
     AppsEdit.initVersionDropdown(id);
@@ -1252,19 +1376,27 @@ switchEditFunc: function(id, e) {
         if (!val) {
           return;
         }
-        AppsEdit.putVersionCode(id, val);
+        AppsEdit.checkSaveFuncs(id, val);
       },
       onBlur: function() {
-        hide('apps_edit_ver_dd' + id, 'apps_edit_add_version' + id);
+        //hide('apps_edit_ver_dd' + id, 'apps_edit_add_version' + id);
         setTimeout(function() {
           cur.funcDDShown = false;
-        }, 1000);
+        }, 500);
       }
     });
   }
   if (cur.currentFunc == id) {
     cur.currentFunc = null;
+    if (!cur.disableSort) {
+      removeClass('apps_edit_funcs', 'apps_edit_no_sortable');
+    }
     return;
+  } else {
+    addClass('apps_edit_funcs', 'apps_edit_no_sortable');
+    if (cur.funcsVersions[id] && !cur.funcsVersions[id].disable_add) {
+      show('apps_edit_add_version' + id);
+    }
   }
   cur.currentFunc = id;
   var newRow = ge('func_row_' + id);
@@ -1278,7 +1410,37 @@ switchEditFunc: function(id, e) {
   });
 },
 
+checkSaveFuncs: function(id, val) {
+  if (cur.editedFuncs[id]) {
+    var box = new MessageBox({
+      title: getLang('global_warning'),
+      dark: 1
+    })
+    .content(cur.lang.developers_confirmation_sh_func)
+    .addButton(getLang('box_no'), function(){
+      AppsEdit.putVersionCode(id, val);
+      box.hide();
+    }, 'gray')
+    .addButton(getLang('box_yes'), function(){
+      // save before change
+      cur.funcsSaveCallbacks[id] = function() {
+        delete cur.editedFuncs[id];
+        AppsEdit.putVersionCode(id, val);
+      };
+      AppsEdit.saveFunc(false, id, 1);
+      box.hide();
+    }).show();
+  } else {
+    AppsEdit.putVersionCode(id, val);
+  }
+},
+
 loadFuncVersions: function(id) {
+
+  if (cur.funcsVersions[id]) {
+    return;
+  }
+
   var func = cur.funcInfos[id];
   ajax.post('al_apps_edit.php', {act: 'a_get_func_versions', func: func['name'], aid: cur.aid}, {
     onDone: function(d) {
@@ -1294,7 +1456,13 @@ loadFuncVersions: function(id) {
       };
       AppsEdit.updateVersionsDD(id);
       cur.funcsVersionsDD[id].val(-1);
-      removeClass('apps_edit_ver_str'+id, 'apps_edit_ver_str_hidden');
+      var row = ge('func_row_' + id);
+      addClass(row, 'dev_func_loaded');
+      if (d.versions.length <= 1) {
+        addClass(row, 'dev_no_func_versions');
+      } else {
+        show('apps_edit_add_version' + id);
+      }
     }
   });
 },
@@ -1333,12 +1501,47 @@ addFuncVersion: function(id, force) {
 
   cur.funcsVersions[id].last_v++;
   var v = cur.funcsVersions[id].last_v;
-  cur.funcsVersions[id].versions.unshift([v, 'return "Hello World";']);
+
+  var code = AppsEdit.getFuncVersionCode(id, cur.funcsVersions[id].versions[0][0]);
+  cur.funcsVersions[id].versions.unshift([v, code]);
 
   AppsEdit.updateVersionsDD(id);
   AppsEdit.putVersionCode(id, v);
 
+  removeClass('func_row_' + id, 'dev_no_func_versions');
+
+  hide('apps_edit_add_version' + id);
+
   cur.funcsVersions[id].disable_add = v;
+},
+
+saveFuncsPosition: function() {
+  var list = [],
+    elems = arguments;
+
+  if (hasClass(geByClass1('apps_edit_cont_row', elems[0]), 'apps_edit_new_func')) {
+    var id = parseInt(elems[0].id.replace('func_sort', ''));
+    cur.needSaveSort[id] = true;
+    return;
+  }
+
+  // if not created, then get previous element
+  if (elems[2] && elems[2].nodeType == 1 && hasClass(geByClass1('apps_edit_cont_row', elems[2]), 'apps_edit_new_func')) {
+    elems[2] = elems[2].previousSibling;
+  }
+
+  for(var i in elems) {
+    if (elems[i] && elems[i].nodeType == 1) {
+      var name = geByClass1('apps_edit_cont_name', elems[i]).value;
+    } else {
+      name = null;
+    }
+    list.push(name);
+  }
+
+  ajax.post('al_apps_edit.php', {act: 'a_resort_funcs', aid: cur.aid, list: list.join(',')}, {
+    onDone: function() { }
+  });
 },
 
 showVersionsDD: function(id) {
@@ -1363,9 +1566,9 @@ updateVersionsDD: function(id) {
 
 },
 
-putVersionCode: function (id, v) {
+getFuncVersionCode: function(id, v) {
   if (v == -1) { // default
-    var code = cur.funcInfos[id].code;
+    var code = cur.funcInfos[id].code.replace(/\_\!\_/g, '<!>');
   } else {
     var versions = cur.funcsVersions[id].versions;
     for(var i = 0; i < versions.length; i++) {
@@ -1375,11 +1578,23 @@ putVersionCode: function (id, v) {
       }
     }
   }
+  return code;
+},
+
+putVersionCode: function (id, v) {
+  var code = AppsEdit.getFuncVersionCode(id, v);
+  if (v == -1) { // default
+    ge('func_remove_btn' + id).innerHTML = cur.lang.developers_func_remove;
+  } else {
+    ge('func_remove_btn' + id).innerHTML = cur.lang.developers_remove_func_version;
+  }
   cur.funcsVersion[id] = parseInt(v);
   var editor = geByClass('apps_edit_editor', ge('func_row_'+id))[0].ace;
   editor.setValue(code);
 
-  ge('apps_edit_ver_str'+id).innerHTML = cur.lang.developers_version_pref + ' ' + Math.abs(v);
+  delete cur.editedFuncs[id];
+  delete cur.funcsSaveCallbacks[id];
+
   cur.funcsVersionsDD[id].val(v);
 },
 
@@ -2175,12 +2390,17 @@ resetList: function(obj) {
 searchList: function(str) {
   if (str) {
     str = str.toLowerCase();
+    cur.disableSort = true;
+    addClass('apps_edit_funcs', 'apps_edit_no_sortable');
+  } else {
+    delete cur.disableSort;
+    removeClass('apps_edit_funcs', 'apps_edit_no_sortable');
   }
   toggle('apps_edit_reset_search', !!str);
   var errorPanel = ge('apps_edit_funcs_not_found'),
       notFoundMsg = getLang('developers_no_funcs_found'),
       cont = ge('apps_edit_funcs'),
-      rows = geByClass('apps_edit_cont_row', cont),
+      rows = geByClass('apps_edit_sortable_row', cont),
       shownCount = 0;
   for (var i in rows) {
     var row = rows[i];
