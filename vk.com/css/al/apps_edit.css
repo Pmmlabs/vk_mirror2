@@ -2405,7 +2405,7 @@ input.execute_field_input {
 .apps_edit_ver_dd {
   display: none;
   position: absolute;
-  top: 8px;
+  top: 7px;
   left: 232px;
   z-index: 11;
 }

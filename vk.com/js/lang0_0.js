@@ -154,7 +154,7 @@ Religion='Мировоззрение:';
 Remove_from_friends='Убрать из друзей';
 rate_you_have_N_unused=['','У Вас <b>%s</b> неиспользованный голос.','У Вас <b>%s</b> неиспользованных голоса.','У Вас <b>%s</b> неиспользованных голосов.'];
 Save='Сохранить';
-Secondary_education='Среднее образование';
+Secondary_education='Среднее и дополнительное образование';
 Sex='Пол:';
 Sex_fm='Женский';
 Sex_m='Мужской';
@@ -214,7 +214,7 @@ videofile_num=['','видеозапись','видеозаписи','видеозаписей'];
 votes_flex=['','голос','голоса','голосов'];
 Work_place='Место работы:';
 yesterday='вчера';
-// section = 0; version = 423;
+// section = 0; version = 424;
 
 friends_no_user_selected='Вы не выбрали ни одного пользователя.';
 // section = 2; version = 207;
