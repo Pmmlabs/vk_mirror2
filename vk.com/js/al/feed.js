@@ -2587,15 +2587,15 @@ var Feed = {
 
     q = q.toLowerCase();
     var isHot = false;
-    var hashtags = geByClass('feed_search_hashtags_item', 'feed_search_hashtags');
+    var hashtags = geByClass('feed_top_hashtags_item', 'feed_search_hashtags');
 
     each(hashtags, function(i, item) {
       if (val(item).toLowerCase() == q) {
         isHot = true;
-        addClass(item, 'feed_search_hashtags_item_active');
+        addClass(item, 'feed_top_hashtags_item_active');
         cur.hashtag = item;
       } else {
-        removeClass(item, 'feed_search_hashtags_item_active');
+        removeClass(item, 'feed_top_hashtags_item_active');
       }
     });
     return isHot;
@@ -2735,7 +2735,7 @@ var Feed = {
     Feed.searchUpdate();
 
     if (cur.hashtag) {
-      removeClass(cur.hashtag, 'feed_search_hashtags_item_active');
+      removeClass(cur.hashtag, 'feed_top_hashtags_item_active');
       cur.hashtag = null;
     }
     if (cur.section == 'search') {
