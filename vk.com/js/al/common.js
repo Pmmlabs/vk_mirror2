@@ -2229,6 +2229,24 @@ function onBodyScroll() {
     var ml = Math.min(0, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(ge('page_layout'))[0]));
     setStyle(ge('dev_top_nav_wrap'), {marginLeft: ml});
   }
+
+  if (vk.id && vk.id % 1000 == 1) {
+    var scrolledPixels = window.pageYOffset || document.documentElement.scrollTop;
+
+    window.scrollmarked = window.scrollmarked || {};
+    var scrollPart = '-';
+    if (scrolledPixels > 100 && scrolledPixels < 500) {
+      scrollPart = '100';
+    } else if (scrolledPixels > 500 && scrolledPixels < 1000) {
+      scrollPart = '500';
+    } else if (scrolledPixels > 1000) {
+      scrollPart = '1000';
+    }
+    if (!window.scrollmarked[scrollPart]) {
+      window.scrollmarked[scrollPart] = true;
+      statlogsValueEvent('page_scroll', 0, cur.module, scrollPart);
+    }
+  }
 }
 
 if (!window._pads) _pads = {cache: {}};
@@ -4028,6 +4046,13 @@ function handlePageParams(params) {
   if (params.pvbig !== undefined) vk.pvbig = params.pvbig;
   if (params.pvdark !== undefined) vk.pvdark = params.pvdark;
   cur._level = params.level;
+
+  if (vk.id && vk.id % 1000 == 1) {
+    setTimeout(function () {
+      window.scrollmarked = {};
+      statlogsValueEvent('page_scroll', 0, cur.module, '0');
+    }, 300);
+  }
 
   handlePageView(params);
 

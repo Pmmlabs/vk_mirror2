@@ -852,7 +852,9 @@ show: function(ev, videoRaw, listId, options) {
     _a.pausedByVideo = 1;
   }
   window.forcePauseAudio = true;
-  Videoview.playerCallback.onVideoStreamPlaying();
+  if (options && options.autoplay) {
+    Videoview.playerCallback.onVideoStreamPlaying();
+  }
   debugLog('show video ' + videoRaw);
   if (window.mvcur && mvcur.minimized) {
     if (options.nomin) {

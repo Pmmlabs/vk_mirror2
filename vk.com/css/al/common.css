@@ -3546,10 +3546,10 @@ a.ts_search_link.active {
   white-space: nowrap;
 }
 .counter_css_anim_wrap {
-  -webkit-transition: width 100ms linear;
+  /*-webkit-transition: width 100ms linear;
   -moz-transition: width 100ms linear;
   -o-transition: width 100ms linear;
-  transition: width 100ms linear;
+  transition: width 100ms linear;*/
 }
 .counter_css_anim_wrap .counter_anim {
   -webkit-transition: margin-top 300ms ease-out;

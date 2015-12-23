@@ -2427,7 +2427,7 @@ var Feed = {
       !vk.id ||
       !cur.topRow ||
       cur.topRow.id == 'feed_rows_next' ||
-      cur.section != 'news' && cur.section != 'recommended' ||
+      cur.section != 'news' && cur.section != 'recommended' && cur.section != 'search' ||
       ((window.curNotifier || {}).idle_manager || {}).is_idle
     ) {
       return;
@@ -2478,6 +2478,7 @@ var Feed = {
     if (cur.module == 'feed') {
       if (cur.section == 'search') {
         res.module = 'feed_search';
+        res.q = cur.q;
       } else if (cur.section == 'news') {
         res.module = cur.subsection ? 'feed_news_' + cur.subsection : 'feed_news';
       } else {
