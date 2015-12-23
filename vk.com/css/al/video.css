@@ -1082,6 +1082,7 @@
 .video_moder_actions {
   color: #777;
   cursor: pointer;
+  padding: 0 10px 0 0;
 }
 .video_moder_actions:hover {
   text-decoration: underline;

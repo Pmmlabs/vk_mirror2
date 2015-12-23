@@ -3025,7 +3025,7 @@ var Feed = {
         toggle('feed_menu_toggle', ge(feed.getTypesSection() + '_filters'));
         toggle('feed_rate_slider_wrap', cur.section == 'articles' && cur.subsection == 'top');
         cur.isFeedLoading = false;
-        if (cur.wasScroll === 0 || cur.wasScroll > 0) {
+        if (cur.wasScroll === 0 || cur.wasScroll > 0 || (cur.wasScroll === false && cur.section == 'search' && cur.q && cur.q.substr(0, 1) == '#')) {
           scrollToY(st, 0);
           cur.wasScroll = false;
         }
