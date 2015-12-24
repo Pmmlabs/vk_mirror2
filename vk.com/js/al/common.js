@@ -7044,6 +7044,11 @@ function animateCount(el, newCount, opts) {
     }
     if (vert) setStyle(animEl, margin);
     setTimeout(onDone, 300);
+
+    if (opts.fadeMode) {
+      setStyle(geByClass1('counter_anim_big', el), 'opacity', 1);
+      setStyle(geByClass1('counter_anim_small', el), 'opacity', 0);
+    }
   } else {
     if (bigW != smallW) {
       animate(animwrapEl, {width: incr ? bigW : smallW}, {duration: 100});

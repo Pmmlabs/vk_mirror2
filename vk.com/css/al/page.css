@@ -5779,6 +5779,14 @@ b.wall_mob_onl {
 .page_gif_added .page_gif_add_icon {
   background: url(/images/icons/audio_icons.png?6) -184px -51px no-repeat;
 }
+.page_gif_mp4 {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 2px 5px;
+  font-weight: bold;
+  color: white;
+}
 div.create_poll_cb,
 .wall_module #submit_post div.create_poll_cb {
   color: #777;
