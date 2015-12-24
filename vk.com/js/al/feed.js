@@ -2519,6 +2519,8 @@ var Feed = {
         if (m = p.id.match(r)) {
           res[m[1]] = 1;
         }
+      } else {
+        res[f.id] = 1;
       }
     }
     return res;
