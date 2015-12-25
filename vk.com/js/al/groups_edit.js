@@ -1177,7 +1177,11 @@ var GroupsEdit = {
 
         case 'g_messages':
           var value = parseInt(GroupsEdit.getFields('messages').messages);
-          toggleClass(geByClass1('_gedit_left_menu'), 'gedit_left_menu_shown', value)
+          var leftMenuCheckBox = geByClass1('group_add_to_left_menu_checkbox');
+          toggleClass(geByClass1('_gedit_left_menu'), 'gedit_left_menu_shown', value);
+          if (!isChecked(leftMenuCheckBox) && value) {
+            leftMenuCheckBox.click(); // enable
+          }
           break;
       }
     }
