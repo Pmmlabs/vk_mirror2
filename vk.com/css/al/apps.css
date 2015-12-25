@@ -2330,14 +2330,30 @@ td.apps_cat_new_h {
   margin-left: -1px;
   margin-top: -1px;
 }
-.apps_sticker_ru {
+.app_new_sticker.apps_sticker_ru {
   background: url('/images/ads_intro_label_new_ru.png') 0px 0px no-repeat;
 }
-.apps_sticker_en {
+.app_new_sticker.apps_sticker_en {
   background: url('/images/icons/ads_intro_label_new_en.png') 0px 0px no-repeat;
 }
-.apps_sticker_ua {
+.app_new_sticker.apps_sticker_ua {
   background: url('/images/ads_intro_label_new_ua.png') 0px 0px no-repeat;
+}
+.app_best_sticker {
+  width: 83px;
+  height: 83px;
+  position: absolute;
+  margin-left: -1px;
+  margin-top: -1px;
+}
+.app_best_sticker.apps_sticker_ru {
+  background: url('/images/icons/label_best_ru.png');
+}
+.app_best_sticker.apps_sticker_en {
+  background: url('/images/icons/label_best_en.png');
+}
+.app_best_sticker.apps_sticker_ua {
+  background: url('/images/icons/label_best_ua.png');
 }
 #apps_new_hidden {
   display: none;

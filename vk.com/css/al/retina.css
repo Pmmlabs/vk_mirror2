@@ -1293,19 +1293,33 @@ body.dev.is_2x #page_wrap .big.disabled.selector_container td.selector_dropdown 
   background-image: url(/images/icons/new_audio_ua_2x.png);
 }
 .is_2x .ads_intro_section_label.label_ru,
-.is_2x .apps_sticker_ru {
+.is_2x .app_new_sticker.apps_sticker_ru {
   background-image: url(/images/ads_intro_label_new_ru_2x.png);
   background-size: 60px 60px;
 }
 .is_2x .ads_intro_section_label.label_en,
-.is_2x .apps_sticker_en {
+.is_2x .app_new_sticker.apps_sticker_en {
   background-image: url(/images/ads_intro_label_new_en_2x.png);
   background-size: 60px 60px;
 }
 .is_2x .ads_intro_section_label.label_ua,
-.is_2x .apps_sticker_ua {
+.is_2x .app_new_sticker.apps_sticker_ua {
   background-image: url(/images/ads_intro_label_new_ua_2x.png);
   background-size: 60px 60px;
+}
+.is_2x .app_best_sticker.apps_sticker_ru,
+.is_2x .app_best_sticker.apps_sticker_en,
+.is_2x .app_best_sticker.apps_sticker_ua {
+  background-size: 83px 83px;
+}
+.is_2x .app_best_sticker.apps_sticker_ru {
+  background-image: url(/images/icons/label_best_ru_2x.png);
+}
+.is_2x .app_best_sticker.apps_sticker_en {
+  background-image: url(/images/icons/label_best_en_2x.png);
+}
+.is_2x .app_best_sticker.apps_sticker_ua {
+  background-image: url(/images/icons/label_best_ua_2x.png);
 }
 .is_2x .pv_filter_font_icon {
   background-image: url(/images/icons/switch_fonts_2x.png);
