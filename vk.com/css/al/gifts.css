@@ -1136,3 +1136,9 @@ img.gift_duck_tease#gift_item_733,
   left: 0;
   top: 0;
 }
+.gift_loop {
+  background-color: #fff;
+  outline: none;
+  width: 256px;
+  height: 256px;
+}

@@ -520,7 +520,7 @@ a#posts_filter:hover {
   width: 16px;
   height: 16px;
   margin: 0;
-  background: url(/images/icons/news_iconset.png?5) no-repeat 0 -144px;
+  background: url(/images/icons/news_iconset.png?6) no-repeat 0 -144px;
 }
 #feed_tab_add_menu .feed_tab_add_icon {
   background-position: 0 -128px;
@@ -569,7 +569,7 @@ a#posts_filter:hover {
   width: 16px;
   height: 16px;
   margin: 0;
-  background-image: url(/images/icons/news_iconset.png?5);
+  background-image: url(/images/icons/news_iconset.png?6);
 }
 .feed_filter_tabs_icon {
   margin-right: 8px;
@@ -613,6 +613,9 @@ a#posts_filter:hover {
 }
 .feed_icon_may9 {
   background-position: 0 -176px;
+}
+.feed_icon_vk2016 {
+  background-position: 0 -208px;
 }
 .feed_filter_lists_row .feed_filter_tabs_icon {
   background: none;
