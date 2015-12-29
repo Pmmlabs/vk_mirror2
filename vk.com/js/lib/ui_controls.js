@@ -3364,10 +3364,11 @@ InlineDropdown.IDD_HEADER_CORRECTION_TOP = -7 - 1; // .idd_header padding & bord
 InlineDropdown.prototype._rebuildDropdown = function() {
   var iconCls = this._opts.withIcon ? 'idd_with_icon' : '';
   var arrowCls = this._opts.withArrow ? 'idd_arrow' : '';
+  var idPrefix = this._opts.idPrefix ? this._opts.idPrefix : '';
 
   var headerHTML =
                   '<div class="idd_header_wrap ' + iconCls + '">' +
-                    '<div class="idd_header ' + arrowCls + '" id="' + this._items[0][0] + '"></div>' +
+                    '<div class="idd_header ' + arrowCls + '" id="' + idPrefix + this._items[0][0] + '"></div>' +
                   '</div>';
 
   var itemsHTML = '<div class="idd_items_wrap">' +

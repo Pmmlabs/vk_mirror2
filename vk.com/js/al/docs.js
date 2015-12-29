@@ -218,7 +218,7 @@ getDocHTML: function(item) {
   }
   var thumb = item[8];
   if (thumb) {
-    ext = '<a class="docs_item_thumb fl_l" href="'+url+'" ext="'+ext+'" onmouseover="Docs.showFileTT(this, '+oid+', '+id+')" onclick="return Docs.downloadItem('+oid+', '+id+');"><img class="docs_item_thumb_img" src="'+thumb+'"></a>';
+    ext = '<a class="docs_item_thumb fl_l" href="'+url+'" ext="'+ext+'" onmouseover="Docs.showFileTT(this, '+oid+', '+id+')" onmouseout="Docs.hideFileTT(this)" onclick="return Docs.downloadItem('+oid+', '+id+');"><img class="docs_item_thumb_img" src="'+thumb+'"></a>';
   } else {
     if (ext.length > 6) {
       var extStr = ext.substr(0, 4)+'..';
@@ -514,13 +514,17 @@ showFileTT: function(obj, oid, did) {
   var href = icon.href+'?wnd=1';
   var ext = trim(icon.getAttribute('ext'));
   if (ext == 'gif') {
+    var el = obj.parentNode;
+    el.overed = true;
+    clearTimeout(el.hidetimer);
+
     var img = new vkImage();
     img.src = href;
     img.onload = function() {
-      var el = obj.parentNode;
-      if (cur.prevTT && cur.prevTT != el && cur.prevTT.tt) {
-        cur.prevTT.tt.hide();
+      if (!el.overed) {
+        return;
       }
+
       clearTimeout(el.hidetimer);
       el.hidetimer = false;
       cur.prevTT = el;
@@ -536,7 +540,11 @@ showFileTT: function(obj, oid, did) {
     }
     stManager.add(['tooltips.js', 'tooltips.css']);
   }
+},
 
+hideFileTT: function(obj) {
+  var el = obj.parentNode;
+  el.overed = false;
 },
 
 deleteItem: function(oid, did, hash) {
