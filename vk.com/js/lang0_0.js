@@ -27,6 +27,7 @@ global_charged_zone_continue='Продолжить';
 global_charged_zone_title='Предупреждение';
 global_close='Закрыть';
 global_continue='Продолжить';
+global_date=['','{day} {month} {year}','вчера','сегодня','завтра'];
 global_day_label='День:';
 global_delete='Удалить';
 global_done='Готово';
