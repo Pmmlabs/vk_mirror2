@@ -1990,3 +1990,12 @@ input.dev_wrong_val {
   width: 0;
   border-left: 3px solid #EFBC4E;
 }
+.dev_similar_methods_wrap {
+  width: 665px !important;
+}
+.dev_similar_methods_wrap .dev_methods_list_row {
+  display: block;
+}
+.dev_similar_methods_wrap .dev_methods_list_desc {
+  width: 505px !important;
+}

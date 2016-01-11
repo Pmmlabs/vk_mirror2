@@ -916,9 +916,14 @@ button.mention_tt_half_btn {
   display: block;
   color: #2d2d2d;
 }
-.sticker_extra_tt a.wikiExtLink:last-child {
+.sticker_extra_tt a.wikiExtLink {
   display: block;
   margin-top: 8px;
+  border: none;
+  background: none;
+}
+.sticker_extra_tt a.wikiExtLink:hover {
+  text-decoration: underline;
 }
 .sticker_extra_tt .stickers_extra_image_wrap {
   margin-bottom: 20px;
