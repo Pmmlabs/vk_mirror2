@@ -143,7 +143,7 @@ input {
   height: 33px;
   width: 33px;
   margin-right: 15px;
-  background: url('/images/app_settings_icons.png?2') 0px 0px no-repeat;
+  background: url('/images/app_settings_icons.png?3') 0px 0px no-repeat;
 }
 .apps_access_photos {
   background-position: 0px -74px;
@@ -180,6 +180,12 @@ input {
 }
 .apps_access_email {
   background-position: 0px -518px;
+}
+.apps_access_group_messages {
+  background-position: 0px -592px;
+}
+.apps_access_market {
+  background-position: 0px -629px;
 }
 .apps_sett_access_list {
   padding: 5px 0px 15px;
