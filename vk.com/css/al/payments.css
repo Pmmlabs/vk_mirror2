@@ -1141,6 +1141,13 @@ h2.payments_getvotes_title {
   width: 222px;
   line-height: 100%;
 }
+#payments_transfer_wrap .wrn-message {
+  padding: 3px 0 0 0;
+  color: #777;
+  line-height: 100%;
+  width: 222px;
+  font-size: 10px;
+}
 .payments_sticker_phumb {
   margin: -4px 12px -4px -11px;
 }

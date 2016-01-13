@@ -809,7 +809,14 @@ var Page = {
     var s = getSize(obj);
     var previewHref = obj.getAttribute('data-preview');
     var el;
-    if (previewHref) {
+    var canPlay = previewHref;
+    if (canPlay) {
+      var v = document.createElement('video');
+      if (!v.canPlayType || !v.canPlayType('video/mp4').replace(/no/, '')) {
+        canPlay = false;
+      }
+    }
+    if (canPlay) {
       el = document.createElement("video");
       el.setAttribute('autoplay', true);
       el.setAttribute('loop', 'loop');
@@ -825,9 +832,6 @@ var Page = {
     addHash = addHash || '';
     var canAdd = (vk.id && parseInt(doc.split('_')[0]) != vk.id && addHash != '');
     var acts = canAdd ? '<div class="page_gif_add" onmouseover="return Page.overGifAdd(this, \'' + addTxt + '\', \''+doc+'\', event);" onmouseout="Page.outGifAdd(this, event);" onclick="return Page.addGif(this, \''+doc+'\', \''+hash+'\', \''+addHash+'\', event);"><div class="page_gif_add_icon"></div></div>' : '';
-    if (previewHref) {
-      acts += '<div class="page_gif_mp4">mp4</div>';
-    }
     var imgCont = se('<a href="'+obj.href+'" class="page_gif_preview'+(cur.gifAdded[doc] ? ' page_gif_added' : '')+'" '+(canAdd ? 'onmouseover="animate(geByClass1(\'page_gif_add\', this), {opacity: 0.7}, 200);" onmouseout="animate(geByClass1(\'page_gif_add\', this), {opacity: 0}, 200);"' : '')+' style="background: '+getStyle(obj.firstChild, 'background')+'"><div class="page_gif_loading progress_inv" style="display: block;"></div>'+acts+'</a>');
     imgCont.appendChild(el);
     cur.loadGif = imgCont;
@@ -843,6 +847,7 @@ var Page = {
         addClass(el, 'page_gif_big');
         addClass(imgCont, 'page_gif_loaded');
       }
+      statlogsValueEvent('gif_play', 0, canPlay ? 'mp4' : 'gif');
     }
     var l = setInterval(loaded, 10);
     el.onload = loaded;
