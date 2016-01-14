@@ -1202,6 +1202,33 @@ var Feed = {
       });
     }
 
+    if (options.showSubsectionTopHint) {
+      stManager.add(['ui_controls.js', 'ui_controls.css'], function() {
+        var feedSummary = ge('feed_summary');
+        if (!feedSummary) return;
+
+        var feedTopLinkEl = geByClass1('feed_summary_top', feedSummary);
+        cur.feedTopHintEl = new ElementTooltip(feedTopLinkEl, {
+          showImmediate: true,
+          content: options.showSubsectionTopHint,
+          offset: [4, 0],
+          to: 'left',
+          noHideOnMouseLeave: true,
+          onHide: function() {
+            setTimeout(function() {
+              cur.feedTopHintEl.destroy();
+            }, 100);
+          }
+        });
+
+        cur.closeFeedTopHint = function() {
+          cur.feedTopHintEl.destroy();
+          delete cur.feedTopHintEl;
+          delete cur.closeFeedTopHint;
+        };
+      });
+    }
+
     if ((cur.section == 'notifications' || cur.section == 'replies') && cur.notify) {
       var el = ge('feedback_row_' + cur.notify);
       if (el) {

@@ -34,6 +34,7 @@ var Video = {
       catWrap: ge('video_cat_wrap'),
       bottomProgress: ge('video_bottom_progress'),
       channelTab: ge('video_tab_channel'),
+      btnHot: geByClass1('video_playlist_hot'),
       module: 'video',
       vDateAdded: '',
       vOrder: 2
@@ -400,6 +401,8 @@ var Video = {
               } else {
                 Array.prototype.push.apply(cur.videoList[sec].list, list[sec].list);
               }
+              Video.clearOutput();
+              Video.showMore();
             }
             if (!extended) {
               cur.videoList[sec].silent = false;
@@ -1062,6 +1065,15 @@ var Video = {
     }, true);
   },
   searchVideos: function(str, force) {
+    cur.orderByViews = false;
+    cur.cansort = !cur.orderByViews;
+    toggleClass(cur.btnHot, 'active', cur.orderByViews); // orderByViews can be changed in another thread
+    if (str == false) {
+      show(cur.btnHot);
+    }
+    else {
+      hide(cur.btnHot);
+    }
     var hd = cur.vHD ? cur.vHD : 0;
     cur.searchData = cur.searchData || {};
     cur.searchData[str + hd.toString() + (cur.vOrder || '').toString() + cur.vDateAdded] = {
@@ -1529,10 +1541,17 @@ var Video = {
     }
 
     var sectionObject = cur.videoList[sec] || {};
-    var list = sectionObject.list;
+    var list = (sectionObject.list) ? sectionObject.list.slice() : [];
+
+
     if (!list) {
       return;
     }
+
+    if (cur.orderByViews) {
+      list.sort(function (x, y) { return y[16] - x[16];});
+    }
+
     var usersLen = list.length;
 
     //var listLen = usersLen + searchCount;
@@ -1807,6 +1826,12 @@ var Video = {
     });
   },
   section: function(section, force) {
+    if (cur.vSection != section) {
+      cur.orderByViews = false;
+      cur.cansort = !cur.orderByViews;
+      toggleClass(cur.btnHot, 'active', cur.orderByViews); // orderByViews can be changed in another thread
+    }
+
     if (section == cur.vSection && !force) return false;
     section = section || '';
 
@@ -2465,6 +2490,15 @@ var Video = {
     showBox('/al_video.php', { act: 'video_playlists_box', target_id: cur.oid, oid: oid, vid: vid }, {dark: 1});
     cancelEvent(event);
   },
+
+  toggleOrderByViews: function() {
+    cur.orderByViews = !cur.orderByViews;
+    cur.cansort = !cur.orderByViews;
+    toggleClass(cur.btnHot, 'active', cur.orderByViews);
+    Video.clearOutput();
+    Video.showMore();
+  },
+
   videoPlaylistsEditInit: function(box, playlists, video, gid, hash, inPlaylists) {
     var oid = video[0], vid = video[1];
     var checkboxes = [], body = ge('video_playlists_edit_box');
