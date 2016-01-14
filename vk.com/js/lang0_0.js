@@ -280,6 +280,7 @@ audio_repeat_tooltip='Повторять эту композицию';
 audio_search_enter_audio_name='Введите название или исполнителя';
 audio_search_not_found='По запросу {search} ничего не найдено.';
 audio_search_results='Результаты поиска';
+audio_set_next_audio='Воспроизвести следующей';
 audio_show_more_audios='Показать больше аудиозаписей';
 audio_show_recommendations='Показать похожие';
 audio_shuffle='Перемешать';
@@ -288,7 +289,7 @@ audio_title_search='Поиск по запросу {q}';
 audio_uploading_over='Загрузка завершена';
 audio_upl_not_enabled_ingroup='В данной группе отключены аудиозаписи, поэтому загрузка аудиофайлов недоступна.';
 audio_user_no_recs='У пользователя ещё нет аудиозаписей.';
-// section = 3; version = 106;
+// section = 3; version = 107;
 
 apps_addapp='Добавить приложение';
 apps_addedtogroup='Приложение добавлено в группу';
