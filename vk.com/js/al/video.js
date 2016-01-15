@@ -1550,6 +1550,16 @@ var Video = {
 
     if (cur.orderByViews) {
       list.sort(function (x, y) { return y[16] - x[16];});
+      var unique = [];
+      var unique_ids = [];
+      each(list, function(i, e) {
+        var key = e[0] + '_' + e[1];
+        if (unique_ids.indexOf(key) == -1) {
+          unique_ids.push(key);
+          unique.push(e);
+        }
+      });
+      list = unique;
     }
 
     var usersLen = list.length;
