@@ -832,7 +832,9 @@ var Page = {
     addHash = addHash || '';
     var canAdd = (vk.id && parseInt(doc.split('_')[0]) != vk.id && addHash != '');
     var acts = canAdd ? '<div class="page_gif_add" onmouseover="return Page.overGifAdd(this, \'' + addTxt + '\', \''+doc+'\', event);" onmouseout="Page.outGifAdd(this, event);" onclick="return Page.addGif(this, \''+doc+'\', \''+hash+'\', \''+addHash+'\', event);"><div class="page_gif_add_icon"></div></div>' : '';
-    var imgCont = se('<a href="'+obj.href+'" class="page_gif_preview'+(cur.gifAdded[doc] ? ' page_gif_added' : '')+'" '+(canAdd ? 'onmouseover="animate(geByClass1(\'page_gif_add\', this), {opacity: 0.7}, 200);" onmouseout="animate(geByClass1(\'page_gif_add\', this), {opacity: 0}, 200);"' : '')+' style="background: '+getStyle(obj.firstChild, 'background')+'"><div class="page_gif_loading progress_inv" style="display: block;"></div>'+acts+'</a>');
+    var background = getStyle(obj.firstChild, 'background');
+    background = background ? background.replace(/"/g, '\'') : '';
+    var imgCont = se('<a href="'+obj.href+'" class="page_gif_preview'+(cur.gifAdded[doc] ? ' page_gif_added' : '')+'" '+(canAdd ? 'onmouseover="animate(geByClass1(\'page_gif_add\', this), {opacity: 0.7}, 200);" onmouseout="animate(geByClass1(\'page_gif_add\', this), {opacity: 0}, 200);"' : '')+' style="background: '+ background +'"><div class="page_gif_loading progress_inv" style="display: block;"></div>'+acts+'</a>');
     imgCont.appendChild(el);
     cur.loadGif = imgCont;
     obj.parentNode.insertBefore(imgCont, obj);
