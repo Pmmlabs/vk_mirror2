@@ -1097,16 +1097,17 @@ uploadFileChunked: function(uplId, file, url) {
         curUpload.state.loaded = e.target.responseText;
         ls.set(curUpload.storageKey, curUpload.state);
         _uploadNextChunk();
+      } else if (e.target.status == 201) {
+        // chunksLeft is 0 but server is waiting for next chunks. Reindex file
+        curUpload.state.loaded = e.target.responseText;
+        ls.set(curUpload.storageKey, curUpload.state);
+        _startUpload();
+      } else if (e.target.status == 200 && !--curUpload.chunksLeft) {
+        ls.remove(curUpload.storageKey);
+        _onUploadComplete(e.target.responseText);
       } else {
-        if (e.target.status == 201) {
-          // chunksLeft is 0 but server is waiting for next chunks. Reindex file
-          curUpload.state.loaded = e.target.responseText;
-          ls.set(curUpload.storageKey, curUpload.state);
-          _startUpload();
-        } else {
-          ls.remove(curUpload.storageKey);
-          _onUploadComplete(e.target.responseText);
-        }
+        _logChunkError(e.target.status, e.target.responseText, pointerStart + '-' + pointerEnd);
+        Upload.onUploadError(info);
       }
       delete curUpload.requestsProgress[pointerStart];
       _onProgress();

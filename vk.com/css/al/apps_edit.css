@@ -2394,6 +2394,12 @@ input.execute_field_input {
 .apps_edit_platform_status .text {
   color: #777777;
 }
+.apps_edit_platform_status.apps_edit_platform_welcomes {
+  padding: 0;
+}
+.apps_edit_platform_status.apps_edit_platform_welcomes .apps_edit_platform_welcome {
+  padding-bottom: 15px;
+}
 .apps_edit_versions_dd {
   padding: 3px;
   margin-left: 8px;
