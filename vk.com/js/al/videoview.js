@@ -115,6 +115,11 @@ playerCallback: {
     } else if (cur.pinnedVideoInitHandlers) {
       cur.pinnedVideoInitHandlers();
     }
+
+    var player = ge('video_player');
+    if (player) {
+      player.focus();
+    }
   },
   onVideoPlayProgress: function(oid, vid, hash, time_progress, time_total) {
     var rawId = oid+'_'+vid;

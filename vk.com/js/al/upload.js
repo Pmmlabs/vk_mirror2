@@ -1123,6 +1123,7 @@ uploadFileChunked: function(uplId, file, url) {
       }
       // delete curUpload.requestsProgress[pointerStart];
       _onProgress();
+      _logChunkError(e.target.status, e.target.responseText, pointerStart + '-' + pointerEnd);
     };
 
     xhr.setRequestHeader('Content-Disposition', 'attachment, filename="' + encodeURI(curUpload.fileName) + '"');
@@ -1173,6 +1174,16 @@ uploadFileChunked: function(uplId, file, url) {
     });
     curUpload.timeouts = [];
     curUpload.activeRequests = [];
+  }
+
+  function _logChunkError(status, text, range) {
+    ajax.post('al_video.php', {
+      act: 'uploadVideoFailStat',
+      url: url,
+      error: status + ',' + text,
+      range: range,
+      sessionId: curUpload.state.sessionId
+    });
   }
 },
 

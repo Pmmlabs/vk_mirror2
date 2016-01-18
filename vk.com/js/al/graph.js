@@ -100,7 +100,14 @@ function getFont(size, orig) {
 }
 
 function fullDate(time, params) {
-  var fmt = (params && params.show_time) ? ((params.show_minutes) ? 'dayHourMin' : 'dayHour') : 'dayFullYear';
+  var fmt = 'dayFullYear';
+  if (params) {
+    if (params.show_time) {
+      fmt = params.show_minutes ? 'dayHourMin' : 'dayHour';
+    } else if (params.only_month) {
+      fmt = 'monthFull';
+    }
+  }
   return formatDate(time, fmt);
 }
 
@@ -933,6 +940,11 @@ Graph.prototype = {
       g.highlightBar(ev);
       return;
     }
+    if (g.XSTEP >= MONTH) {
+      g.params.only_month = true;
+    } else {
+      g.params.only_month = false;
+    }
     var nearTime = -1, nnd = 0, cx = g.getXValue(ev.pageX, true);
     var ccx = ev.pageX - getXY(g.zinView)[0], ccy = ev.pageY - getXY(g.zinView)[1];
     var max_coltext = [0, 0];
@@ -1044,7 +1056,11 @@ Graph.prototype = {
     }
     var ctx = getContext(g.dotsLayer);
     clearRect(ctx, 0, 0, g.viewWidth, g.viewHeight);
-    g.title.innerHTML = fullDate(g.localLeft) + (g.localRight > g.localLeft ? ' &ndash; ' + fullDate(g.localRight) : '');
+    var params = {};
+    if (g.XSTEP >= MONTH) {
+      params.only_month = true;
+    }
+    g.title.innerHTML = fullDate(g.localLeft, params) + (g.localRight > g.localLeft ? ' &ndash; ' + fullDate(g.localRight, params) : '');
     if (window.tooltips) {
       tooltips.hide(g.mainLayout, {fasthide: 1});
     }
@@ -1302,7 +1318,11 @@ Graph.prototype = {
     this.smoothLines = dotsVisible < 30 ? true : false;
 
     // update title
-    this.title.innerHTML = fullDate(this.localLeft) + (this.localRight > this.localLeft ? ' &ndash; ' + fullDate(this.localRight) : '');
+    var params = {};
+    if (this.XSTEP >= MONTH) {
+      params.only_month = true;
+    }
+    this.title.innerHTML = fullDate(this.localLeft, params) + (this.localRight > this.localLeft ? ' &ndash; ' + fullDate(this.localRight, params) : '');
 
     // redraw zinView
     var ctx = getContext(this.zinView);
