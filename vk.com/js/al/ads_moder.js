@@ -169,13 +169,13 @@ AdsModer.saveFeatures = function(unionId, hash, featuresInfo, editBox) {
   }
 }
 
-AdsModer.openDomainCommentEditBox = function(domain, buttons) {
+AdsModer.openDomainCommentEditBox = function(domain, reload, buttons) {
   function onBoxHide() {
     delete cur.domainCommentEditBox;
   }
 
   var linked_note_id = undefined;
-  var search_button = ge('ads_moder_domain_search_button');
+  var add_button = ge('ads_moder_domain_add_button');
   if (cur.linked_domain_notes) {
     linked_note_id = cur.linked_domain_notes[domain];
   }
@@ -222,7 +222,7 @@ AdsModer.openDomainCommentEditBox = function(domain, buttons) {
           }
         }
         for (var i in buttons) {
-          cur.domainCommentEditBox.addButton(buttons[i][1], AdsModer.saveDomainComment.pbind(buttons[i][0]), 'yes');
+          cur.domainCommentEditBox.addButton(buttons[i][1], AdsModer.saveDomainComment.pbind(buttons[i][0], reload), 'yes');
         }
       }
 
@@ -234,13 +234,13 @@ AdsModer.openDomainCommentEditBox = function(domain, buttons) {
       return true;
     },
     showProgress: function () {
-      if (search_button) {
-        lockButton(search_button);
+      if (add_button) {
+        lockButton(add_button);
       }
     },
     hideProgress: function () {
-      if (search_button) {
-        unlockButton(search_button);
+      if (add_button) {
+        unlockButton(add_button);
       }
     }
   });
@@ -343,31 +343,25 @@ AdsModer.saveTemplate = function (action, template_id) {
 AdsModer.addCurrentDomain = function () {
   var domain = ge('ads_moder_domain_search').value;
   if (domain.length) {
-    AdsModer.openDomainCommentEditBox(domain);
+    AdsModer.openDomainCommentEditBox(domain, true);
   }
 }
 
 AdsModer.onSearchDomainsKeyUp = function (event) {
   if (event.keyCode == 13) {
-    AdsModer.addCurrentDomain();
+    AdsModer.searchCurrentDomain();
   }
-  /*cur.searchDomainsTimer = setTimeout(function () {
-    ajax.post('/adsmoder?act=a_search_domains', {
-      prefix: ge('ads_moder_domain_search').value
-    }, {
-      onDone: function (html) {
-        ge('ads_moder_domains_table').innerHTML = html;
-        AdsModer.initDomainStatuses();
-      },
-      onFail: function () {
-        showFastBox('Ошибка', 'Ошибка');
-        return true;
-      }
-    });
-  }, 500);*/
 }
 
-AdsModer.saveDomainComment = function (new_status) {
+AdsModer.searchCurrentDomain = function() {
+  var domain = ge('ads_moder_domain_search').value;
+  if (!domain.length) {
+    domain = false;
+  }
+  nav.change({domain: domain, offset: false});
+}
+
+AdsModer.saveDomainComment = function (new_status, reload) {
   if (!Ads.lock('save_domain_comment', onLock, onUnlock)) {
     return;
   }
@@ -384,7 +378,11 @@ AdsModer.saveDomainComment = function (new_status) {
     onDone: function (data) {
       Ads.unlock('save_domain_comment');
       if (ajax_params.status) {
-        AdsModer.onChangedDomainStatus(ajax_params.domain, ajax_params.status);
+        if (reload) {
+          nav.reload();
+        } else {
+          AdsModer.onChangedDomainStatus(ajax_params.domain, ajax_params.status);
+        }
       }
     },
     onFail: function () {
@@ -1312,7 +1310,7 @@ AdsModer.changeDomainStatus = function (domain, new_status, old_status, action_t
     }
   }
   if (edit_comment) {
-    AdsModer.openDomainCommentEditBox(domain, [[new_status, action_text]]);
+    AdsModer.openDomainCommentEditBox(domain, false, [[new_status, action_text]]);
   } else {
     ajax.post('/adsmoder?act=a_change_domain_status', {
       domain: domain,

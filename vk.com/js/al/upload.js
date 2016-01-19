@@ -1093,16 +1093,20 @@ uploadFileChunked: function(uplId, file, url) {
       curUpload.activeRequests.splice(indexOf(curUpload.activeRequests, e.target), 1);
       curUpload.retryCount = 0;
 
-      if (e.target.status == 201 && --curUpload.chunksLeft) {
-        curUpload.state.loaded = e.target.responseText;
-        ls.set(curUpload.storageKey, curUpload.state);
-        _uploadNextChunk();
-      } else if (e.target.status == 201) {
-        // chunksLeft is 0 but server is waiting for next chunks. Reindex file
-        curUpload.state.loaded = e.target.responseText;
-        ls.set(curUpload.storageKey, curUpload.state);
-        _startUpload();
-      } else if (e.target.status == 200 && !--curUpload.chunksLeft) {
+      --curUpload.chunksLeft;
+
+      if (e.target.status == 201) {
+        if (curUpload.chunksLeft) {
+          curUpload.state.loaded = e.target.responseText;
+          ls.set(curUpload.storageKey, curUpload.state);
+          _uploadNextChunk();
+        } else {
+          // chunksLeft is 0 but server is waiting for next chunks. Reindex file
+          curUpload.state.loaded = e.target.responseText;
+          ls.set(curUpload.storageKey, curUpload.state);
+          _startUpload();
+        }
+      } else if (e.target.status == 200 && !curUpload.chunksLeft) {
         ls.remove(curUpload.storageKey);
         _onUploadComplete(e.target.responseText);
       } else {
@@ -1183,7 +1187,9 @@ uploadFileChunked: function(uplId, file, url) {
       url: url,
       error: status + ',' + text,
       range: range,
-      sessionId: curUpload.state.sessionId
+      sessionId: curUpload.state.sessionId,
+      chunksLeft: curUpload.chunksLeft,
+      loaded: curUpload.state.loaded
     });
   }
 },
