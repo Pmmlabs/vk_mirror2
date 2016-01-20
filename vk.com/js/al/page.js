@@ -844,12 +844,12 @@ var Page = {
       if (getSize(el)[0] || getSize(el)[1] || !cur.loadGif) {
         clearInterval(l);
         if (!cur.loadGif) return;
+        statlogsValueEvent('gif_play', 0, canPlay ? 'mp4' : 'gif');
         imgCont.style.background = '';
         imgCont.setAttribute('onclick', "return Page.hideGif(this.firstChild, event);");
         addClass(el, 'page_gif_big');
         addClass(imgCont, 'page_gif_loaded');
       }
-      statlogsValueEvent('gif_play', 0, canPlay ? 'mp4' : 'gif');
     }
     var l = setInterval(loaded, 10);
     el.onload = loaded;

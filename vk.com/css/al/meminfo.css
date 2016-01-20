@@ -111,6 +111,14 @@ table.history .cur_session {
 .mi_payments_table td {
   padding: 0 10px 10px 0;
 }
+.mi_history_table {
+  margin: 10px;
+  width: 100%;
+}
+.mi_history_table th,
+.mi_history_table td {
+  padding: 0 10px 10px 0;
+}
 .mi_more_link {
   padding: 10px;
   display: block;
