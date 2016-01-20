@@ -1349,7 +1349,7 @@ uploadFile: function(uplId, file, url) {
   Upload.options[uplId].xhr = xhr;
 },
 
-terminateUpload: function(i, name) {
+terminateUpload: function(i, name, el) {
   try {
     var vars = Upload.vars[i],
         options = Upload.options[i],
@@ -1369,6 +1369,7 @@ terminateUpload: function(i, name) {
         break;
       }
     }
+    if (el && el.tt) el.tt.destroy();
     re('upload' + ind + '_progress_wrap');
     Upload.onUploadComplete(info, '{"error":"ERR_UPLOAD_TERMINATED: upload request was terminated"}');
     if (!inQueue && options.xhr) options.xhr.abort();
