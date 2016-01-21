@@ -450,8 +450,8 @@ Notifier = {
       author_id: msg[11]
     }, push = !cnt ? 1 : 0;
 
-    if (msg[12]) {
-      ev.custom = eval('('+msg[12]+')');
+    if (msg[13]) {
+      ev.custom = eval('('+msg[13]+')');
     }
 
     if (curNotifier.done_events[ev.id]) return;
