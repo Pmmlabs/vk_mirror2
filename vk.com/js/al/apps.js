@@ -3278,15 +3278,19 @@ var Apps = { // can be removed soon
       var imgs = geByClass('apps_i_th_cont');
       var loaded = 0;
       for(var i = 0; i < imgs.length; i++) {
-        var img = new Image();
-
-        img.onload = function () {
+        var src = imgs[i].childNodes[0].src;
+        if (src) {
+          var img = new Image();
+          img.onload = function() {
+            loaded++;
+            if(loaded >= imgs.length) {
+              cur.appSsScrollbar = new Scrollbar('apps_i_th_contr', {prefix: 'app_', horizontal: true});
+            }
+          };
+          img.src = src;
+        } else {
           loaded++;
-          if(loaded >= imgs.length) {
-            cur.appSsScrollbar = new Scrollbar('apps_i_th_contr', {prefix: 'app_', horizontal: true});
-          }
-        };
-        img.src = imgs[i].childNodes[0].src;
+        }
       }
     }
 

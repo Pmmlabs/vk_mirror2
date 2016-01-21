@@ -5733,8 +5733,10 @@ Scrollbar.prototype.wheel = function(event) {
 
   if (event.wheelDeltaY || event.wheelDelta) {
     delta = (event.wheelDeltaY || event.wheelDelta) / 2;
-  } else if (event.detail) {
+  } else if (event.detail && event.axis === (this.isHorizontal ? 1 : 2)) {
     delta = -event.detail * 10
+  } else {
+    return;
   }
 
   stWas = this.obj[this.scrollProp];
