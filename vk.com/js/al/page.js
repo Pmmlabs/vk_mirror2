@@ -823,6 +823,8 @@ var Page = {
       }
     }
 
+    var el_src = obj.href + '&wnd=1&module=' + cur.module;
+
     if (canPlayVideo) {
       el = ce('video', {
         autoplay: true,
@@ -835,11 +837,11 @@ var Page = {
       });
       el.appendChild(ce('source', {
         type: 'video/mp4',
-        src: obj.href + '&wnd=1&mp4=1'
+        src: el_src + '&mp4=1'
       }));
     } else {
       el = ce('img', {
-        src: obj.href + '&wnd=1',
+        src: el_src,
         className: 'pages_gif_img'
       });
     }
