@@ -1557,7 +1557,7 @@ Notifier = {
   },
 
   addKey: function (data, cb, local) {
-    if (curNotifier.flash_transport) {
+    if (curNotifier.flash_transport || !data) {
       return false;
     }
     var queue = (data && data.queue) ? data.queue : data.key;

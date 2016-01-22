@@ -799,87 +799,116 @@ var Page = {
       post_id = ids[1];
       statlogsValueEvent('show_post_gif', 1, oid, post_id);
     }
+
     if (ev.ctrlKey || ev.metaKey) {
       return true;
     }
+
     cur.gifAdded = cur.gifAdded || {};
-    if (cur.loadGif && cur.loadGif.parentNode && cur.loadGif.parentNode.parentNode == obj.parentNode.parentNode) {
-      Page.hideGif(cur.loadGif.firstChild, false);
+    if (cur.activeGif && domPN(domPN(cur.activeGif)) == domPN(domPN(obj)) || hasClass(domPN(cur.activeGif), 'page_gif_autoplay')) {
+      Page.hideGif(cur.activeGif, false);
     }
-    var s = getSize(obj);
-    var previewHref = obj.getAttribute('data-preview');
+
+    var hasPreview = obj.getAttribute('data-preview');
+    var previewWidth = obj.getAttribute('data-width');
+    var previewHeight = obj.getAttribute('data-height');
     var el;
-    var canPlay = previewHref;
-    if (canPlay) {
-      var v = document.createElement('video');
-      if (!v.canPlayType || !v.canPlayType('video/mp4').replace(/no/, '')) {
-        canPlay = false;
+
+    var canPlayVideo = false;
+
+    if (hasPreview) {
+      var v = ce('video');
+      if (v.canPlayType && v.canPlayType('video/mp4').replace('no', '')) {
+        canPlayVideo = true;
       }
     }
-    if (canPlay) {
-      el = document.createElement("video");
-      el.setAttribute('autoplay', true);
-      el.setAttribute('loop', 'loop');
-      var source = document.createElement("source");
-      source.type = "video/mp4";
-      source.src = previewHref+'&wnd=1';
-      el.appendChild(source);
+
+    if (canPlayVideo) {
+      el = ce('video', {
+        autoplay: true,
+        loop: 'loop',
+        poster: obj.getAttribute('data-thumb'),
+        className: 'pages_gif_img page_gif_big'
+      }, {
+        width: previewWidth ? previewWidth + 'px' : null,
+        height: previewHeight ? previewHeight + 'px' : null
+      });
+      el.appendChild(ce('source', {
+        type: 'video/mp4',
+        src: obj.href + '&wnd=1&mp4=1'
+      }));
     } else {
-      el = vkImage();
-      el.src = obj.href+'&wnd=1';
+      el = ce('img', {
+        src: obj.href + '&wnd=1',
+        className: 'pages_gif_img'
+      });
     }
-    el.className = 'pages_gif_img';
-    addHash = addHash || '';
-    var canAdd = (vk.id && parseInt(doc.split('_')[0]) != vk.id && addHash != '');
-    var acts = canAdd ? '<div class="page_gif_add" onmouseover="return Page.overGifAdd(this, \'' + addTxt + '\', \''+doc+'\', event);" onmouseout="Page.outGifAdd(this, event);" onclick="return Page.addGif(this, \''+doc+'\', \''+hash+'\', \''+addHash+'\', event);"><div class="page_gif_add_icon"></div></div>' : '';
-    var background = getStyle(obj.firstChild, 'background');
-    background = background ? background.replace(/"/g, '\'') : '';
-    var imgCont = se('<a href="'+obj.href+'" class="page_gif_preview'+(cur.gifAdded[doc] ? ' page_gif_added' : '')+'" '+(canAdd ? 'onmouseover="animate(geByClass1(\'page_gif_add\', this), {opacity: 0.7}, 200);" onmouseout="animate(geByClass1(\'page_gif_add\', this), {opacity: 0}, 200);"' : '')+' style="background: '+ background +'"><div class="page_gif_loading progress_inv" style="display: block;"></div>'+acts+'</a>');
+
+    var acts = '';
+    if (addHash) {
+      acts += '<div class="page_gif_add" onmouseover="return Page.overGifAdd(this, \'' + addTxt + '\', \''+doc+'\', event);" onclick="return Page.addGif(this, \''+doc+'\', \''+hash+'\', \''+addHash+'\', event);"><div class="page_gif_add_icon"></div></div>';
+    }
+
+    var imgCont = ce('a', {
+      href: obj.href,
+      className: 'page_gif_preview' + (cur.gifAdded[doc] ? ' page_gif_added' : ''),
+      innerHTML: '<div class="page_gif_loading progress_inv" style="display: block;"></div>' + acts + '</a>',
+      onclick: cancelEvent
+    }, {
+      background: canPlayVideo ? '' : (getStyle(domFC(obj), 'background') || '').replace(/"/g, '\''),
+      width: previewWidth ? previewWidth + 'px' : '',
+      height: previewHeight ? previewHeight + 'px' : ''
+    });
+
     imgCont.appendChild(el);
-    cur.loadGif = imgCont;
-    obj.parentNode.insertBefore(imgCont, obj);
+    cur.activeGif = imgCont;
+    domPN(obj).insertBefore(imgCont, obj);
     hide(obj);
+
     var loaded = function() {
-      hide(imgCont.firstChild);
-      if (getSize(el)[0] || getSize(el)[1] || !cur.loadGif) {
-        clearInterval(l);
-        if (!cur.loadGif) return;
-        statlogsValueEvent('gif_play', 0, canPlay ? 'mp4' : 'gif');
+      if (getSize(el)[0] || getSize(el)[1] || !cur.activeGif) {
+        clearInterval(loadingInterval);
+
+        if (!cur.activeGif) return;
+        hide(domFC(imgCont));
         imgCont.style.background = '';
-        imgCont.setAttribute('onclick', "return Page.hideGif(this.firstChild, event);");
+        imgCont.setAttribute('onclick', "return Page.hideGif(this, event);");
         addClass(el, 'page_gif_big');
         addClass(imgCont, 'page_gif_loaded');
+        statlogsValueEvent('gif_play', 0, canPlayVideo ? 'mp4' : 'gif');
       }
+    };
+
+    if (canPlayVideo) {
+      el.onloadeddata = loaded;
+    } else {
+      var loadingInterval = setInterval(loaded, 10);
+      el.onload = loaded;
     }
-    var l = setInterval(loaded, 10);
-    el.onload = loaded;
+
+    domPN(obj).setAttribute('data-playing', 1);
+
     return cancelEvent(ev);
   },
-  hideGif: function(img, ev) {
+  hideGif: function(obj, ev) {
     if (ev.ctrlKey || ev.metaKey) {
       return true;
     }
-    img.parentNode.setAttribute('onclick', "");
-    removeClass(img, 'page_gif_big');
-    removeClass(img.parentNode, 'page_gif_loaded');
-    show(img.parentNode.nextSibling);
-    re(img.parentNode);
+
+    var wrap = domPN(obj);
+    var thumb = domNS(obj);
+
+    wrap.removeAttribute('data-playing');
+    re(obj);
+    show(thumb);
+    delete cur.activeGif;
     return false;
   },
   overGifAdd: function(obj, txt, doc, ev) {
     if (!cur.gifAdded[doc]) {
       showTooltip(obj, {text: txt, black: 1, center: 1, shift: [1, 2, 0]});
     }
-    animate(obj, {opacity: cur.gifAdded[doc] ? 0.7 : 1}, 200)
     return cancelEvent(ev);
-  },
-  outGifAdd: function(obj, ev) {
-    var b = ev.target;
-    while(b) {
-      if (b == obj) return false;
-      b = b.parentNode;
-    }
-    animate(obj, {opacity: 0.7}, 200)
   },
   addGif: function(obj, doc, hash, addHash, ev) {
     if (obj.tt) obj.tt.hide();
