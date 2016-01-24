@@ -5422,6 +5422,9 @@ b.wall_mob_onl {
 .wall_market_album_cover.wall_album_nocover {
   background: #F1F1F1 url('/images/icons/mall_icon.png') 50% 40% no-repeat !important;
 }
+.page_gif_autoplay {
+  margin: 9px 0 4px;
+}
 .page_gif_preview {
   display: block;
   min-width: 130px;
@@ -5460,6 +5463,9 @@ b.wall_mob_onl {
 }
 .wide_wall_module .page_gif_big {
   max-width: 536px;
+}
+.wall_fixed .page_gif_big {
+  max-width: 394px;
 }
 .wide_wall_module .reply_text .page_gif_big {
   max-width: 465px;

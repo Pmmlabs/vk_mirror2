@@ -791,16 +791,8 @@ var Page = {
       }
     }, opts));
   },
-  showGif: function(obj, ev, doc, hash, addTxt, addHash, post_full_id) {
-    if (post_full_id) {
-      var oid, post_id, ids;
-      ids = post_full_id.split('_');
-      oid = ids[0];
-      post_id = ids[1];
-      statlogsValueEvent('show_post_gif', 1, oid, post_id);
-    }
-
-    if (ev.ctrlKey || ev.metaKey) {
+  showGif: function(obj, ev) {
+    if (ev && (ev.ctrlKey || ev.metaKey)) {
       return true;
     }
 
@@ -809,12 +801,24 @@ var Page = {
       Page.hideGif(cur.activeGif, false);
     }
 
+    var doc = obj.getAttribute('data-doc')
+    var hash = obj.getAttribute('data-hash');
+    var addTxt = obj.getAttribute('data-add-txt');
+    var addHash = obj.getAttribute('data-add-hash');
+    var postRaw = obj.getAttribute('data-post');
     var hasPreview = obj.getAttribute('data-preview');
     var previewWidth = obj.getAttribute('data-width');
     var previewHeight = obj.getAttribute('data-height');
+    var canPlayVideo = false;
     var el;
 
-    var canPlayVideo = false;
+    if (postRaw) {
+      var oid, post_id, ids;
+      ids = postRaw.split('_');
+      oid = ids[0];
+      post_id = ids[1];
+      statlogsValueEvent('show_post_gif', 1, oid, post_id);
+    }
 
     if (hasPreview) {
       var v = ce('video');
@@ -893,7 +897,7 @@ var Page = {
     return cancelEvent(ev);
   },
   hideGif: function(obj, ev) {
-    if (ev.ctrlKey || ev.metaKey) {
+    if (ev && (ev.ctrlKey || ev.metaKey)) {
       return true;
     }
 
