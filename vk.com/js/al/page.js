@@ -905,6 +905,9 @@ var Page = {
     var thumb = domNS(obj);
 
     wrap.removeAttribute('data-playing');
+    if (ev) {
+      removeClass(wrap, 'page_gif_autoplay');
+    }
     re(obj);
     show(thumb);
     delete cur.activeGif;

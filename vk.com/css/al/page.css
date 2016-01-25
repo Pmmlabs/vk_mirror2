@@ -5422,7 +5422,7 @@ b.wall_mob_onl {
 .wall_market_album_cover.wall_album_nocover {
   background: #F1F1F1 url('/images/icons/mall_icon.png') 50% 40% no-repeat !important;
 }
-.page_gif_autoplay {
+.page_gif_large {
   margin: 9px 0 4px;
 }
 .page_gif_preview {
@@ -5816,15 +5816,15 @@ b.wall_mob_onl {
   will-change: opacity;
 }
 .page_gif_loaded .page_gif_add,
-.page_gif_autoplay .page_gif_add {
+.page_gif_large .page_gif_add {
   display: block;
 }
 .page_gif_loaded:hover .page_gif_add,
-.page_gif_autoplay:hover .page_gif_add {
+.page_gif_large:hover .page_gif_add {
   opacity: 0.7;
 }
 .page_gif_loaded .page_gif_add:hover,
-.page_gif_autoplay .page_gif_add:hover {
+.page_gif_large .page_gif_add:hover {
   opacity: 1;
 }
 .page_gif_added .page_gif_add:hover {
