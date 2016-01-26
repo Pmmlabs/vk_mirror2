@@ -2058,78 +2058,105 @@ var GroupsEdit = {
     });
   },
   deleteGroupToken: function(el, groupId, groupTokenId, hash) {
-    var progressBar = geByClass('progress_inline', el.parentNode)[0];
-    hide(el);
-    show(progressBar);
-    ajax.post('groupsedit.php', {
-      act: 'delete_token',
-      id: groupId,
-      token_id: groupTokenId,
-      hash: hash
-    }, {
-      onDone: function(response) {
-        var el = ge('group_token' + groupTokenId);
-        el.parentNode.removeChild(el);
-        var summary = ge('gedit_tokens_summary');
-        summary.innerHTML = response[1];
-        hide(progressBar);
+    var box = showFastBox(
+        {title: getLang('groups_tokens_confirm_box_title'), dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'},
+        getLang('groups_tokens_confirm_delete_token_description'),
+        getLang('groups_tokens_confirm_box_btn'),
+        function() {
+          box.hide();
+          var progressBar = geByClass('progress_inline', el.parentNode)[0];
+          hide(el);
+          show(progressBar);
+          ajax.post('groupsedit.php', {
+            act: 'delete_token',
+            id: groupId,
+            token_id: groupTokenId,
+            hash: hash
+          }, {
+            onDone: function(response) {
+              var el = ge('group_token' + groupTokenId);
+              el.parentNode.removeChild(el);
+              var summary = ge('gedit_tokens_summary');
+              summary.innerHTML = response[1];
+              hide(progressBar);
 
-        var wrap = ge('gedit_tokens_wrap');
-        if (wrap.childNodes.length == 1) {
-          show(ge('group_tokens_row_empty'));
-        }
-      }
-    });
+              var wrap = ge('gedit_tokens_wrap');
+              if (wrap.childNodes.length == 1) {
+                show(ge('group_tokens_row_empty'));
+              }
+            }
+          });
+        },
+        getLang('global_cancel')
+    );
   },
   deleteGroupTokenApp: function(el, groupId, appId, hash) {
-    var progressBar = geByClass('progress_inline', el.parentNode)[0];
-    hide(el);
-    show(progressBar);
-    ajax.post('groupsedit.php', {
-      act: 'delete_token_app',
-      id: groupId,
-      app_id: appId,
-      hash: hash
-    }, {
-      onDone: function(response) {
-        var rows = geByClass('group_token_app' + appId);
-        for (var i = 0; i < rows.length; i++) {
-          var row = rows[i];
-          row.parentNode.removeChild(row);
-        }
-        var summary = ge('gedit_tokens_summary');
-        summary.innerHTML = response[1];
-        hide(progressBar);
+    var box = showFastBox(
+        {title: getLang('groups_tokens_confirm_box_title'), dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'},
+        getLang('groups_tokens_confirm_delete_tokens_by_app_description'),
+        getLang('groups_tokens_confirm_box_btn'),
+        function() {
+          box.hide();
+          var progressBar = geByClass('progress_inline', el.parentNode)[0];
+          hide(el);
+          show(progressBar);
+          ajax.post('groupsedit.php', {
+            act: 'delete_token_app',
+            id: groupId,
+            app_id: appId,
+            hash: hash
+          }, {
+            onDone: function(response) {
+              var rows = geByClass('group_token_app' + appId);
+              for (var i = 0; i < rows.length; i++) {
+                var row = rows[i];
+                row.parentNode.removeChild(row);
+              }
+              var summary = ge('gedit_tokens_summary');
+              summary.innerHTML = response[1];
+              hide(progressBar);
 
-        var wrap = ge('gedit_tokens_wrap');
-        if (wrap.childNodes.length == 1) {
-          show(ge('group_tokens_row_empty'));
-        }
-      }
-    });
+              var wrap = ge('gedit_tokens_wrap');
+              if (wrap.childNodes.length == 1) {
+                show(ge('group_tokens_row_empty'));
+              }
+            }
+          });
+        },
+        getLang('global_cancel')
+    );
   },
   deleteAllGroupTokens: function(el, groupId, hash) {
-    var progressBar = geByClass('progress_inline', el.parentNode)[0];
-    hide(el);
-    show(progressBar);
-    ajax.post('groupsedit.php', {
-      act: 'delete_all_tokens',
-      id: groupId,
-      hash: hash
-    }, {
-      onDone: function(response) {
-        var wrap = ge('gedit_tokens_wrap');
-        while (wrap.childNodes.length > 1) {
-          wrap.removeChild(wrap.lastChild);
-        }
+    var box = showFastBox(
+        {title: getLang('groups_tokens_confirm_box_title'), dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'},
+        getLang('groups_tokens_confirm_delete_all_tokens_description'),
+        getLang('groups_tokens_confirm_box_btn'),
+        function() {
+          box.hide();
+          var progressBar = geByClass('progress_inline', el.parentNode)[0];
+          hide(el);
+          show(progressBar);
+          ajax.post('groupsedit.php', {
+            act: 'delete_all_tokens',
+            id: groupId,
+            hash: hash
+          }, {
+            onDone: function(response) {
+              var wrap = ge('gedit_tokens_wrap');
+              while (wrap.childNodes.length > 1) {
+                wrap.removeChild(wrap.lastChild);
+              }
 
-        var summary = ge('gedit_tokens_summary');
-        summary.innerHTML = response[1];
-        hide(progressBar);
-        show(el);
-        show(ge('group_tokens_row_empty'));
-      }
-    });
+              var summary = ge('gedit_tokens_summary');
+              summary.innerHTML = response[1];
+              hide(progressBar);
+              show(el);
+              show(ge('group_tokens_row_empty'));
+            }
+          });
+        },
+        getLang('global_cancel')
+    );
   },
   showGroupToken: function(groupId, groupTokenId, hash) {
     ajax.post('groupsedit.php', {
