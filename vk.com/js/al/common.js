@@ -8163,7 +8163,7 @@ function statlogsValueEvent(statName, value, key1, key2, key3) {
       statName,
       value
     ].concat(keys));
-    while (stats.length > 20) {
+    while (stats.length > 50) {
       stats.shift();
     }
     var uniqueId = Math.round(rand(0, 1000000000)); // unique id

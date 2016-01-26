@@ -2056,6 +2056,93 @@ var GroupsEdit = {
     each([bodyNode, htmlNode], function(index, el){
       animate(el, {scrollTop: ypos, transition: Fx.Transitions.linear}, 500, onScrollDone);
     });
+  },
+  deleteGroupToken: function(el, groupId, groupTokenId, hash) {
+    var progressBar = geByClass('progress_inline', el.parentNode)[0];
+    hide(el);
+    show(progressBar);
+    ajax.post('groupsedit.php', {
+      act: 'delete_token',
+      id: groupId,
+      token_id: groupTokenId,
+      hash: hash
+    }, {
+      onDone: function(response) {
+        var el = ge('group_token' + groupTokenId);
+        el.parentNode.removeChild(el);
+        var summary = ge('gedit_tokens_summary');
+        summary.innerHTML = response[1];
+        hide(progressBar);
+
+        var wrap = ge('gedit_tokens_wrap');
+        if (wrap.childNodes.length == 1) {
+          show(ge('group_tokens_row_empty'));
+        }
+      }
+    });
+  },
+  deleteGroupTokenApp: function(el, groupId, appId, hash) {
+    var progressBar = geByClass('progress_inline', el.parentNode)[0];
+    hide(el);
+    show(progressBar);
+    ajax.post('groupsedit.php', {
+      act: 'delete_token_app',
+      id: groupId,
+      app_id: appId,
+      hash: hash
+    }, {
+      onDone: function(response) {
+        var rows = geByClass('group_token_app' + appId);
+        for (var i = 0; i < rows.length; i++) {
+          var row = rows[i];
+          row.parentNode.removeChild(row);
+        }
+        var summary = ge('gedit_tokens_summary');
+        summary.innerHTML = response[1];
+        hide(progressBar);
+
+        var wrap = ge('gedit_tokens_wrap');
+        if (wrap.childNodes.length == 1) {
+          show(ge('group_tokens_row_empty'));
+        }
+      }
+    });
+  },
+  deleteAllGroupTokens: function(el, groupId, hash) {
+    var progressBar = geByClass('progress_inline', el.parentNode)[0];
+    hide(el);
+    show(progressBar);
+    ajax.post('groupsedit.php', {
+      act: 'delete_all_tokens',
+      id: groupId,
+      hash: hash
+    }, {
+      onDone: function(response) {
+        var wrap = ge('gedit_tokens_wrap');
+        while (wrap.childNodes.length > 1) {
+          wrap.removeChild(wrap.lastChild);
+        }
+
+        var summary = ge('gedit_tokens_summary');
+        summary.innerHTML = response[1];
+        hide(progressBar);
+        show(el);
+        show(ge('group_tokens_row_empty'));
+      }
+    });
+  },
+  showGroupToken: function(groupId, groupTokenId, hash) {
+    ajax.post('groupsedit.php', {
+      act: 'show_token',
+      id: groupId,
+      token_id: groupTokenId,
+      hash: hash
+    }, {
+      onDone: function(response) {
+        var el = ge('group_token' + groupTokenId);
+        geByClass('group_tokens_content_token', el)[0].innerHTML = response;
+      }
+    });
   }
 }
 
