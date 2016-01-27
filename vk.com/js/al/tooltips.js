@@ -46,6 +46,7 @@ var tooltips = {
           elsize = opts.forcesize ? opts.forcesize : getSize(el),
           toup = opts.toup,
           asrtl = vk.rtl && !opts.asrtl || opts.asrtl && !vk.rtl;
+
       if (!elsize[0] && !elsize[1]) {
         hide(el.tt.container);
         return;

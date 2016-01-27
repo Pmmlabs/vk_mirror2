@@ -454,6 +454,12 @@ parentChange: function(dd, v, objId) {
   });
 },
 
+changeConsoleCheckBox: function(el) {
+  checkbox(el);
+  var v = hasClass(el, 'on') ? 1 : 0;
+  val(geByClass1('dev_param_checkbox_val', el), v);
+},
+
 methodRun: function(hash, btn, paramsAdd) {
   var params = {hash: hash};
   var paramsFields = geByClass('dev_param_field', ge('dev_params_wrap'));
@@ -463,7 +469,11 @@ methodRun: function(hash, btn, paramsAdd) {
   var params = {act: 'a_run_method', method: cur.page, hash: hash};
   for (var i in paramsFields) {
     var el = paramsFields[i];
-    var v = val(el);
+    if (hasClass(el, 'dev_param_checkbox')) {
+      var v = hasClass(el, 'on') ? 1 : 0;
+    } else {
+      var v = val(el);
+    }
     if (v !== '') {
       params['param_'+el.id.substr(10)] = v;
     }
@@ -483,7 +493,7 @@ methodRun: function(hash, btn, paramsAdd) {
   var url_params = [];
   for(var i in params) {
     if(i.substr(0, 6) == 'param_') {
-      url_params.push('params[' + i.substr(6) + ']='+encodeURIComponent(params[i]));
+      url_params.push('params[' + i.substr(6) + ']=' + encodeURIComponent(params[i]));
     }
   }
   history.pushState({}, '', location.pathname + '?' + url_params.join('&'));

@@ -2173,8 +2173,10 @@ var GroupsEdit = {
       hash: hash
     }, {
       onDone: function(response) {
-        var el = ge('group_token' + groupTokenId);
-        geByClass('group_tokens_content_token', el)[0].innerHTML = response;
+        if (response) {
+          var el = ge('group_token' + groupTokenId);
+          geByClass('group_tokens_content_token', el)[0].innerHTML = '<b>' + response + '</b>';
+        }
       }
     });
   }

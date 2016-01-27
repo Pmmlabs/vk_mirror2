@@ -1263,6 +1263,7 @@ input.dev_input_simular {
   width: 125px;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-top: 4px;
 }
 .dev_const_param_name.nodoc {
   color: #7c7f82;
@@ -1953,6 +1954,17 @@ textarea.dev_param_field {
 input.dev_wrong_val {
   background: #FFEFE8;
   border: 1px solid #E89B88;
+}
+.dev_param_checkbox {
+  padding: 6px 4px;
+  position: relative;
+  background: #D8DEE6;
+}
+.dev_param_checkbox_val {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: #777;
 }
 .dev_show_hidden {
   padding-left: 115px;
