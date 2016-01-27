@@ -1736,21 +1736,28 @@ var GroupsEdit = {
       return;
     }
     cur.adOtherSettingInit = true;
-    cur.subjectDD = new Dropdown(ge('group_ad_subject'), cur.selData.subjects, {
-      width: 246,
-      multiselect: false,
-      autocomplete: true,
-      introText: getLang('groups_start_typing_subject'),
-      noResult: '',
-      placeholder: getLang('groups_choose_subject')
-    });
-    if (cur.selData.subject && cur.selData.subject != '0') {
-      cur.subjectDD.val(cur.selData.subject);
-    }
-    cur.destroy.push(function(c) {
-      c.subjectDD.destroy();
-    });
+    if (ge('group_ad_subject')) {
+      cur.subjectDD = new Dropdown(ge('group_ad_subject'), cur.selData.subjects, {
+        width: 246,
+        multiselect: false,
+        autocomplete: true,
+        introText: getLang('groups_start_typing_subject'),
+        noResult: '',
+        placeholder: getLang('groups_choose_subject')
+      });
 
+      if (cur.selData.subject && cur.selData.subject != '0') {
+        cur.subjectDD.val(cur.selData.subject);
+      }
+      cur.destroy.push(function(c) {
+        c.subjectDD.destroy();
+      });
+    }
+    new Checkbox(ge('ads_post_allow_editor_access'), {
+      label: getLang('groups_adspost_editor_access_allowed'),
+      checked: !!cur.selData.editor_access,
+      width: 71
+    });
     for (var k in cur.selData.events) {
       var ev = cur.selData.events[k];
       if (ev[1] >= 0) {

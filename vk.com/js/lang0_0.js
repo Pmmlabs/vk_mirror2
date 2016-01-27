@@ -379,6 +379,8 @@ gifts_X_votes=['','%s голос','%s голоса','%s голосов'];
 
 groups_admins='Администраторы';
 groups_admins_of_group='Администраторы группы';
+groups_adspost_editor_access_allowed='Разрешён';
+groups_adspost_editor_access_denied='Запрещён';
 groups_adspost_notify_pm='Личные сообщения';
 groups_appl_rejected='Заявка отклонена.';
 groups_assign='Назначить';

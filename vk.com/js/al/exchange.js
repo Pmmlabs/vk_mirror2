@@ -325,7 +325,6 @@ var Exchange = {
         var box = showFastBox({title: getLang('ads_posts_request_sent_title'), dark: true, width: 430, bodyStyle: 'line-height: 160%; padding: 16px 20px;'}, data.message);
         setTimeout(function () {
           box.hide();
-          elfocus('exchange_search_input');
         }, 3000);
         return true;
       },

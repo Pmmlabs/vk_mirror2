@@ -375,6 +375,9 @@ th.exchange_table_col_no_sorted {
 .exchange_post_info_row .value {
   max-width: 165px;
 }
+.exchange_info .exchange_post_info_row .value {
+  max-width: 230px;
+}
 #exchange_post_wrap .exchange_post_info_row .label {
   width: 125px;
 }

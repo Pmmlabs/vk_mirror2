@@ -1308,6 +1308,7 @@ b.gedit_mob_onl {
   text-align: right;
 }
 #group_ad_status_selector,
+#group_ad_editor_access_selector,
 #group_ad_cost_text {
   border-bottom: 1px dashed #2B587A;
   text-decoration: none;

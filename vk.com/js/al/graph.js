@@ -1191,7 +1191,7 @@ Graph.prototype = {
     ctx.globalAlpha = 1;
   },
   showTT: function(dotX, dotY, text) {
-    var xy = getXY(this.zinLayout);
+    var xy = getXY(this.zinLayout, true);
     xy[0] += dotX - 9 + (this.params.bar_chart ? this.barsWidth / 2 : 0);
     xy[1] += dotY;
     xy[0] = Math.floor(xy[0]); xy[1] = Math.floor(xy[1]);
