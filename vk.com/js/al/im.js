@@ -1171,7 +1171,7 @@ var IM = {
     addClass(tabEl, 'muted');
     var row = ge('im_dialog' + peer);
     var onlineDiv = geByClass1('dialogs_online', row);
-    if (onlineDiv) {
+    if (onlineDiv && !geByClass1('dialogs_push_muted', onlineDiv)) {
       var mutedDiv = ce('b', {className: 'dialogs_push_muted'});
       onlineDiv.appendChild(mutedDiv);
     }
