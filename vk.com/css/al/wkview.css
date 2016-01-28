@@ -1357,6 +1357,13 @@ div#wk_history_more_progress {
   height: 30px;
   margin-top: 8px;
 }
+.wl_postreach_stat_smalltext {
+  color: #0e0f11;
+  font-size: 1.2em;
+  font-weight: bold;
+  height: 10px;
+  margin-top: 8px;
+}
 .wl_postreach_stat_comment {
   color: #666666;
   font-size: 1.0em;
@@ -1395,29 +1402,34 @@ div#wk_history_more_progress {
 }
 .wl_postreach_stat_like_icon,
 .wl_postreach_stat_share_icon,
-.wl_postreach_stat_comment_icon {
+.wl_postreach_stat_comment_icon,
+.wl_postreach_stat_reach_icon {
   background: url(/images/icons/post_icons_big.png) no-repeat 0px 0px;
   height: 10px;
   margin: 4px 6px 0 0;
   padding-right: 1px;
   opacity: 0.8;
   filter: alpha(opacity=80);
-  width: 16px;
+  width: 18px;
   height: 16px;
   display: inline-block;
   vertical-align: top;
 }
 .is_2x .wl_postreach_stat_share_icon {
   background-image: url(/images/icons/post_icons_big_2x.png);
-  background-size: 16px 55px;
+  background-size: 18px 67px;
 }
 .is_2x .wl_postreach_stat_like_icon {
   background-image: url(/images/icons/post_icons_big_2x.png);
-  background-size: 16px 55px;
+  background-size: 18px 67px;
 }
 .is_2x .wl_postreach_stat_comment_icon {
   background-image: url(/images/icons/post_icons_big_2x.png);
-  background-size: 16px 55px;
+  background-size: 18px 67px;
+}
+.is_2x .wl_postreach_stat_reach_icon {
+  background-image: url(/images/icons/post_icons_big_2x.png);
+  background-size: 18px 67px;
 }
 .wl_postreach_stat_share_icon {
   background-position: 0 -19px;
@@ -1427,6 +1439,9 @@ div#wk_history_more_progress {
 }
 .wl_postreach_stat_comment_icon {
   background-position: 0 -37px;
+}
+.wl_postreach_stat_reach_icon {
+  background-position: 0 -55px;
 }
 .wl_postreach_stat_icon_item {
   padding-right: 18px;
@@ -1476,4 +1491,25 @@ div#wl_post_body_wrap.wl_postreach_wall_module .post_actions_wrap {
 }
 .wk_product_box .wk_wiki_content {
   padding: 0;
+}
+span#wk_posts_reach_tooltip_link {
+  color: #b0bfcc;
+  font-weight: bold;
+  padding-left: 5px;
+  cursor: pointer;
+}
+.wk_reach_tooltip {
+  width: 320px;
+  padding: 4px 8px 8px 8px;
+}
+.wk_reach_tooltip .wk_reach_tooltip_text {
+  color: #2e2e2e;
+  float: left;
+  font-weight: normal;
+  font-size: 0.9em;
+  padding: 5px 5px 8px 5px;
+  line-height: 1.4em;
+}
+.wk_reach_tooltip .wk_reach_tooltip_text .wk_reach_tooltip_text_header {
+  padding-bottom: 10px;
 }

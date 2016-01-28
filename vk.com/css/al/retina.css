@@ -670,6 +670,10 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
   background-image: url(/images/icons/video_play_2x.png);
   background-size: 14px 18px;
 }
+.is_2x .page_gif_progress_icon:before {
+  background-image: url(/images/gif_spin_2x.png);
+  background-size: 18px 18px;
+}
 .is_2x .apps_i_run_box,
 .is_2x .wall_module .video div.page_video_play_live {
   background-image: url(/images/inline_video_small_play_2x.png);

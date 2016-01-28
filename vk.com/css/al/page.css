@@ -5462,7 +5462,7 @@ b.wall_mob_onl {
   max-width: 298px;
 }
 .wide_wall_module .page_gif_big {
-  max-width: 536px;
+  max-width: 532px;
 }
 .wall_fixed .page_gif_big {
   max-width: 394px;
@@ -5769,35 +5769,64 @@ b.wall_mob_onl {
   margin: 0 auto;
   display: block !important;
 }
+.page_gif_large {
+  position: relative;
+}
 .page_gif_label {
   position: absolute;
   left: 4px;
   bottom: 4px;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
   padding: 4px 7px;
   color: #fff;
   font-weight: bold;
   text-transform: uppercase;
   pointer-events: none;
+  transition: opacity .2s;
 }
-.page_gif_play_icon {
-  background-image: url(/images/icons/video_play.png);
+.page_gif_loaded .page_gif_label {
+  opacity: 0;
+}
+.page_gif_preview:hover .page_gif_label {
+  opacity: 1;
+}
+.page_gif_play_icon,
+.page_gif_progress_icon {
+  background: rgba(0, 0, 0, 0.45) url(/images/icons/video_play.png) no-repeat 14px 11px;
   width: 10px;
-  height: 15px;
+  height: 16px;
   position: absolute;
   top: 50%;
   left: 50%;
   margin-left: -20px;
   margin-top: -20px;
-  background-color: rgba(0, 0, 0, 0.45);
   padding: 12px 15px;
-  background-repeat: no-repeat;
-  background-position: 14px 11px;
   border-radius: 4px;
   opacity: 0.9;
   cursor: pointer;
   pointer-events: none;
+  will-change: opacity;
+}
+.page_gif_progress_icon {
+  background-image: none;
+  width: 18px;
+  height: 18px;
+  padding: 11px;
+}
+.page_gif_progress_icon:before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 18px;
+  background: url(/images/gif_spin.png);
+  animation: gif_spin 1s linear 0s infinite;
+  will-change: transform;
+}
+@keyframes gif_spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 .page_gif_add {
   width: 15px;
