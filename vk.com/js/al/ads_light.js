@@ -743,10 +743,24 @@ AdsLight.setNewBlock = function(adsHtml, adsSection, adsCanShow, adsShowed, adsP
     }, vk.ads_rotate_interval);
   }
 
+  if (!isVisible(containerElem) && vk.id % 17 == 0) {
+    setTimeout(function () {
+      AdsLight.forceLeftAdVisibility();
+    }, 200);
+  }
+
   setTimeout(function() {
     vk__adsLight.updateProgress = 3;
     AdsLight.onAdsShowed(0);
   }, 100);
+}
+
+AdsLight.forceLeftAdVisibility = function() {
+  var elem = ge('left_ads');
+  if (elem) {
+    elem.style.setProperty('visibility', 'visible', 'important');
+    elem.style.setProperty('display', 'block', 'important');
+  }
 }
 
 AdsLight.showNewBlock = function(containerElem, adsHtml, isContainerVisible) {

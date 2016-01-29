@@ -1562,6 +1562,11 @@ var Market = {
       hideProgress: unlockButton.pbind('market_reply_button')
     });
   },
+  reportComment: function(obj, ev, commentRaw) {
+    stManager.add(['privacy.js', 'privacy.css'], function() {
+      return Privacy.show(obj, ev, 'report_'+commentRaw);
+    });
+  },
 
   emojiShowTT: function(obj, ev) {
     if (cur.mkEmoji === undefined) {
