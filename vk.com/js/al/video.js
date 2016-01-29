@@ -215,7 +215,7 @@ var Video = {
       size = [201, 164];
     }
 
-    if (cur.cansort) {
+    if (Video.canSort()) {
       setTimeout(function() {
         cur.qsorterNoOperaStyle = true;
         cur.qsorterRowClass = 'video_row clear_fix  ';
@@ -1059,14 +1059,13 @@ var Video = {
       if (cur.canEditAlbums && cur.albumsSorter && !(trim(cur.vStr) && cur.vStr != '""')) {
         //qsorter.update(cur.albumsCont);
       }
-      if (cur.cansort) {
+      if (Video.canSort()) {
         qsorter.update(cur.vRows, {dragEls: geByClass('video_album_candrop', cur.albumsCont)});
       }
     }, true);
   },
   searchVideos: function(str, force) {
     cur.orderByViews = false;
-    cur.cansort = !cur.orderByViews;
     toggleClass(cur.btnHot, 'active', cur.orderByViews); // orderByViews can be changed in another thread
     if (str == false) {
       show(cur.btnHot);
@@ -1128,7 +1127,7 @@ var Video = {
       if (len) {
         this.clearOutput();
         this.showMore();
-        if (cur.cansort) {
+        if (Video.canSort()) {
           //qsorter.update(cur.vRows, {dragEls: geByClass('video_album_candrop', cur.albumsCont)});
         }
         this.changeSummary();
@@ -1460,7 +1459,7 @@ var Video = {
           if (cur.canEditAlbums && cur.albumsSorter && !(trim(str) && str != '""')) {
             //qsorter.update(cur.albumsCont);
           }
-          if (cur.cansort) {
+          if (Video.canSort()) {
             //qsorter.update(cur.vRows, {dragEls: geByClass('video_album_candrop', cur.albumsCont)});
             Video.initSorter();
           }
@@ -1550,16 +1549,6 @@ var Video = {
 
     if (cur.orderByViews) {
       list.sort(function (x, y) { return y[16] - x[16];});
-      var unique = [];
-      var unique_ids = [];
-      each(list, function(i, e) {
-        var key = e[0] + '_' + e[1];
-        if (unique_ids.indexOf(key) == -1) {
-          unique_ids.push(key);
-          unique.push(e);
-        }
-      });
-      list = unique;
     }
 
     var usersLen = list.length;
@@ -1583,7 +1572,7 @@ var Video = {
       cur.vRows.appendChild(se(this.drawVideo(list[i], linkAddr)));
       cur.shown++;
     }
-    if (cur.cansort && !Video.isCurrentChannel()) {
+    if (Video.canSort() && !Video.isCurrentChannel()) {
       Video.initSorter();
     }
 
@@ -1755,7 +1744,7 @@ var Video = {
         if (cur.canEditAlbums && cur.albumsSorter && !(trim(cur.vStr) && cur.vStr != '""')) {
           //qsorter.update(cur.albumsCont);
         }
-        if (cur.cansort) {
+        if (Video.canSort()) {
           Video.initSorter();
           //qsorter.update(cur.vRows, {dragEls: geByClass('video_album_candrop', cur.albumsCont)});
         }
@@ -1838,7 +1827,6 @@ var Video = {
   section: function(section, force) {
     if (cur.vSection != section) {
       cur.orderByViews = false;
-      cur.cansort = !cur.orderByViews;
       toggleClass(cur.btnHot, 'active', cur.orderByViews); // orderByViews can be changed in another thread
     }
 
@@ -1921,7 +1909,7 @@ var Video = {
 
     this.clearOutput();
     this.showMore();
-    if (cur.cansort) {
+    if (Video.canSort()) {
       //qsorter.update(cur.vRows, {dragEls: geByClass('video_album_candrop', cur.albumsCont)});
     }
     this.changeSummary();
@@ -2306,7 +2294,7 @@ var Video = {
     if (cur.canEditAlbums && cur.albumsSorter && !(trim(cur.vStr) && cur.vStr != '""')) {
       qsorter.added(cur.albumsCont);
     }
-    if (cur.cansort) {
+    if (Video.canSort()) {
       qsorter.update(cur.vRows, {dragEls: geByClass('video_album_candrop', cur.albumsCont)});
     }
   },
@@ -2496,6 +2484,11 @@ var Video = {
 
     Video.initSorter();
   },
+
+  canSort: function() {
+    return cur.cansort && !cur.orderByViews;
+  },
+
   showPlaylistsBox: function(event, vid, oid) {
     showBox('/al_video.php', { act: 'video_playlists_box', target_id: cur.oid, oid: oid, vid: vid }, {dark: 1});
     cancelEvent(event);
@@ -2503,7 +2496,6 @@ var Video = {
 
   toggleOrderByViews: function() {
     cur.orderByViews = !cur.orderByViews;
-    cur.cansort = !cur.orderByViews;
     toggleClass(cur.btnHot, 'active', cur.orderByViews);
     Video.clearOutput();
     Video.showMore();

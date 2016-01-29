@@ -2791,12 +2791,6 @@ span#im_important_count {
 }
 .im_sticker_bl_promo.im_sticker_bl_sale {
   padding: 1px 4px 2px 6px;
-  top: 8px;
-  color: #422d08;
-  background: #ffc12b;
-  -webkit-box-shadow: 0 0 1px #f9a825;
-  -moz-box-shadow: 0 0 1px #f9a825;
-  box-shadow: 0 0 1px #f9a825;
 }
 .im_sticker_bl_btn {
   padding-top: 5px;

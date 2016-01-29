@@ -1101,7 +1101,7 @@ var GroupsEdit = {
         progressBar: ge('group_market_country_progress'),
         placeholder: getLang('groups_market_select_city'),
         placeholderColor: '#999',
-        city: selData.marketCity,
+        city: selData.marketCityVal,
         country: selData.marketCountry,
         maxItemsShown: function(query_length) {
           return (query_length > 6) ? 500 : 350;

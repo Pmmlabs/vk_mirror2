@@ -2638,6 +2638,11 @@ var IM = {
       }
     }
 
+    if (cur.dropDoc) {
+      boxQueue.hideLast();
+      delete cur.dropDoc;
+    }
+
     var contIndex = 0, cont, cls;
     switch (type) {
       case 'photo':
@@ -2769,6 +2774,7 @@ var IM = {
 
       if ((!cur.fileApiUploadStarted || data.upload_ind === undefined) && !noboxhide && !cur.preventBoxHide) {
         boxQueue.hideLast();
+        delete cur.dropDoc;
       }
       if (data.upload_ind !== undefined) {
         delete data.upload_ind;
@@ -7732,10 +7738,35 @@ ImUpload = {
           Upload.embed(i);
         }
       },
-      onDragEnter: function () {
-        var dropEl = ge('im_upload_dropbox').firstChild,
-            h = ge('im_write_form').offsetHeight - (browser.webkit || browser.chrome ? 2 : 0);
-        setStyle(dropEl, {height: h});
+      onDragEnter: function (e) {
+        var h = ge('im_write_form').offsetHeight - (browser.webkit || browser.chrome ? 2 : 0),
+          dropEl = ge('im_upload_dropbox').firstChild;
+          setStyle(dropEl, {height: h});
+
+        var type = e.dataTransfer.items[0].type.split('/');
+
+        if (!type[1].match(/^(jpg|jpeg|png)$/i) && !ge('docs_choose_upload_area_wrap')) {
+          var dcparams = cur.gid ? {
+            imhash: cur.im_doc_hash,
+            from: 'from_gim'
+          } : {};
+
+          cur.dropDoc = true;
+
+          cur.chooseMedia = cur.imMedia.chooseMedia;
+          cur.showMediaProgress = cur.imMedia.showMediaProgress;
+          cur.attachCount = cur.imMedia.attachCount;
+
+          showBox('docs.php', extend({
+            act: 'a_choose_doc_box',
+            toId: cur.gid ? -cur.gid : undefined,
+            scrollbar_width: sbWidth(),
+            blockPersonal: cur.gid ? 1 : 0,
+            mail_add : 1
+          }, dcparams)
+          , {stat: ['docs.css']});
+          setTimeout(ImUpload.hide);
+        }
       },
 
       noFlash: 1,

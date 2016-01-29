@@ -1448,7 +1448,7 @@ dragEnter: function(i, e) {
     delete Upload.dragTimer[i];
   }, 0);
   if (Upload.options[i].onDragEnter) {
-    Upload.options[i].onDragEnter();
+    Upload.options[i].onDragEnter(e);
   }
   show(Upload.dropbox[i]);
   cancelEvent(e);
