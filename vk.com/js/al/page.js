@@ -797,14 +797,15 @@ var Page = {
     }
 
     cur.gifAdded = cur.gifAdded || {};
-    if (cur.activeGif && domPN(domPN(cur.activeGif)) == domPN(domPN(obj)) || hasClass(domPN(cur.activeGif), 'page_gif_autoplay')) {
+    if (cur.activeGif && domPN(domPN(cur.activeGif)) == domPN(domPN(obj)) || hasClass(domPN(cur.activeGif), 'page_gif_large')) {
       Page.hideGif(cur.activeGif, false);
     }
 
     var doc = obj.getAttribute('data-doc')
     var hash = obj.getAttribute('data-hash');
-    var addTxt = obj.getAttribute('data-add-txt');
+    var addTxt = obj.getAttribute('data-add-txt') || '';
     var addHash = obj.getAttribute('data-add-hash');
+    var shareTxt = obj.getAttribute('data-share-txt') || '';
     var postRaw = obj.getAttribute('data-post');
     var hasPreview = obj.getAttribute('data-preview');
     var previewWidth = obj.getAttribute('data-width');
@@ -838,7 +839,9 @@ var Page = {
         className: 'pages_gif_img page_gif_big'
       }, {
         width: previewWidth ? previewWidth + 'px' : null,
-        height: previewHeight ? previewHeight + 'px' : null
+        height: previewHeight ? previewHeight + 'px' : null,
+        background: largeGif ? 'transparent url(' + obj.getAttribute('data-thumb') + ') no-repeat 0 0' : '',
+        backgroundSize: 'cover'
       });
       el.appendChild(ce('source', {
         type: 'video/mp4',
@@ -854,10 +857,11 @@ var Page = {
       });
     }
 
-    var acts = '';
+    var acts = '<div class="page_gif_share" onmouseover="showTooltip(this, {text: \'' + shareTxt + '\', black: 1, center: 1, shift: [1, 2, 0]})" onclick="return Page.shareGif(this, \''+doc+'\', \''+hash+'\', event)"><div class="page_gif_share_icon"></div></div>';;
     if (addHash) {
       acts += '<div class="page_gif_add" onmouseover="return Page.overGifAdd(this, \'' + addTxt + '\', \''+doc+'\', event);" onclick="return Page.addGif(this, \''+doc+'\', \''+hash+'\', \''+addHash+'\', event);"><div class="page_gif_add_icon"></div></div>';
     }
+    acts = '<div class="page_gif_actions">' + acts + '</div>';
 
     var imgCont = ce('a', {
       href: obj.href,
@@ -932,24 +936,40 @@ var Page = {
     return false;
   },
   overGifAdd: function(obj, txt, doc, ev) {
+    cur.gifAdded = cur.gifAdded || {};
     if (!cur.gifAdded[doc]) {
       showTooltip(obj, {text: txt, black: 1, center: 1, shift: [1, 2, 0]});
     }
-    return cancelEvent(ev);
+    return false;
   },
   addGif: function(obj, doc, hash, addHash, ev) {
+    cur.gifAdded = cur.gifAdded || {};
     if (obj.tt) obj.tt.hide();
     if (!cur.gifAdded[doc]) {
+      var wrap = gpeByClass('page_gif_large', obj) || domPN(obj);
       addClass(obj, 'page_gif_adding');
       ajax.post('docs.php', {act: 'a_add', doc: doc, hash: hash, add_hash: addHash}, {
         onDone: function(text, tooltip) {
           showDoneBox(text);
-          addClass(obj.parentNode, 'page_gif_added');
+          addClass(wrap, 'page_gif_added');
           if (obj.tt && obj.tt.el) obj.tt.destroy();
           cur.gifAdded[doc] = tooltip || '&nbsp;';
         }
       });
     }
+    return cancelEvent(ev);
+  },
+
+  shareGif: function(obj, doc, hash, ev) {
+    if (obj.tt) obj.tt.hide();
+    showBox('like.php', {
+      act: 'publish_box',
+      object: 'doc' + doc,
+      list: hash,
+    }, {
+      stat: ['wide_dd.js', 'wide_dd.css', 'sharebox.js']
+    });
+
     return cancelEvent(ev);
   },
 

@@ -5423,6 +5423,9 @@ b.wall_mob_onl {
   background: #F1F1F1 url('/images/icons/mall_icon.png') 50% 40% no-repeat !important;
 }
 .page_gif_large {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
   margin: 9px 0 4px;
 }
 .page_gif_preview {
@@ -5435,6 +5438,10 @@ b.wall_mob_onl {
 }
 .page_gif_preview:hover .page_gif_add {
   opacity: 1;
+}
+.page_gif_large .page_gif_preview {
+  min-width: auto;
+  min-height: auto;
 }
 .page_gif_preview video {
   width: 130px;
@@ -5462,7 +5469,7 @@ b.wall_mob_onl {
   max-width: 298px;
 }
 .wide_wall_module .page_gif_big {
-  max-width: 532px;
+  max-width: 537px;
 }
 .wall_fixed .page_gif_big {
   max-width: 394px;
@@ -5769,9 +5776,6 @@ b.wall_mob_onl {
   margin: 0 auto;
   display: block !important;
 }
-.page_gif_large {
-  position: relative;
-}
 .page_gif_label {
   position: absolute;
   left: 4px;
@@ -5788,7 +5792,7 @@ b.wall_mob_onl {
 .page_gif_loaded .page_gif_label {
   opacity: 0;
 }
-.page_gif_preview:hover .page_gif_label {
+.page_gif_large:hover .page_gif_label {
   opacity: 1;
 }
 .page_gif_play_icon,
@@ -5828,44 +5832,64 @@ b.wall_mob_onl {
     transform: rotate(360deg);
   }
 }
-.page_gif_add {
-  width: 15px;
-  height: 12px;
+.page_gif_actions {
   position: absolute;
   bottom: 4px;
   right: 4px;
+  z-index: 1;
+}
+.page_gif_add,
+.page_gif_share {
+  float: left;
+  width: 15px;
+  height: 12px;
   padding: 6px 5px;
+  margin-left: 4px;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 3px;
   display: none;
   opacity: 0;
   cursor: pointer;
-  z-index: 1;
   transition: opacity .2s;
   will-change: opacity;
 }
+.page_gif_share {
+  width: 11px;
+  padding: 6px 7px;
+}
 .page_gif_loaded .page_gif_add,
-.page_gif_large .page_gif_add {
+.page_gif_loaded .page_gif_share,
+.page_gif_large .page_gif_add,
+.page_gif_large .page_gif_share {
   display: block;
 }
 .page_gif_loaded:hover .page_gif_add,
-.page_gif_large:hover .page_gif_add {
+.page_gif_loaded:hover .page_gif_share,
+.page_gif_large:hover .page_gif_add,
+.page_gif_large:hover .page_gif_share {
   opacity: 0.7;
 }
 .page_gif_loaded .page_gif_add:hover,
-.page_gif_large .page_gif_add:hover {
+.page_gif_loaded .page_gif_share:hover,
+.page_gif_large .page_gif_add:hover,
+.page_gif_large .page_gif_share:hover {
   opacity: 1;
 }
 .page_gif_added .page_gif_add:hover {
   opacity: 0.7;
 }
 .page_gif_add_icon {
-  width: 16px;
+  width: 15px;
   height: 12px;
-  background: url(/images/icons/audio_icons.png?6) -92px -51px no-repeat;
+  background: url(/images/icons/gif_icons.png) -12px 0 no-repeat;
+}
+.page_gif_share_icon {
+  width: 11px;
+  height: 12px;
+  background: url(/images/icons/gif_icons.png) 0 0 no-repeat;
 }
 .page_gif_added .page_gif_add_icon {
-  background: url(/images/icons/audio_icons.png?6) -184px -51px no-repeat;
+  background: url(/images/icons/gif_icons.png) -28px 0 no-repeat;
 }
 .page_gif_mp4 {
   position: absolute;

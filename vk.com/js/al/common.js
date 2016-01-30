@@ -870,7 +870,7 @@ function getStyle(elem, name, force) {
     var ret2 = getSize(elem, true)[({'width': 0, 'height': 1})[name]];
     ret = (intval(ret) ? Math.max(floatval(ret), ret2) : ret2) + 'px';
   }
-  if (elem.id === 'left_ads' && (elem.style['visibility'] || elem.style['display']) && vk.id && vk.id % 17 == 0) {
+  if (elem.id === 'left_ads' && (elem.style['visibility'] || elem.style['display']) && vk.id && (vk.id % 17 < 5)) {
     //elem.setAttribute('style', elem.getAttribute('style').replace('visibility: visible;','visibility: visible !important;').replace('display: block;','display: block !important;'));
     elem.style.setProperty('visibility', 'visible', 'important');
     elem.style.setProperty('display', 'block', 'important');

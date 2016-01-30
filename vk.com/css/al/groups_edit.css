@@ -1860,6 +1860,9 @@ a.group_ad_post_link.deleted:hover {
   padding: 10px 10px 10px;
   border-bottom: 1px solid #dae1e8;
 }
+.gedit_tokens_description {
+  padding-top: 7px;
+}
 .group_tokens_row_wrap {
   padding: 15px 15px 0 15px;
   position: relative;

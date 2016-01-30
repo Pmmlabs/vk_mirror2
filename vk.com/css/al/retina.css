@@ -147,7 +147,6 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x #pd .ctrl,
 .is_2x #head_play_btn,
 .is_2x #gp_play,
-.is_2x .page_gif_add_icon,
 .is_2x .current_audio .label,
 .is_2x .current_audio_cnt .label,
 .is_2x .video_row_icon_add .video_row_icon,
@@ -155,6 +154,12 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x .medadd_aud_play {
   background-image: url(/images/icons/audio_icons_2x.png?6);
   background-size: 257px 63px;
+}
+.is_2x .page_gif_add_icon,
+.is_2x .page_gif_added .page_gif_add_icon,
+.is_2x .page_gif_share_icon {
+  background-image: url(/images/icons/gif_icons_2x.png);
+  background-size: 43px 12px;
 }
 .is_2x .medadd_c_linkimg_loader {
   background-image: url(/images/upload_2x.gif);
