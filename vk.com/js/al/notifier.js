@@ -621,6 +621,9 @@ Notifier = {
         }
         push = 0;
         break;
+      case 'notify_tt':
+        push = 0;
+        break;
     }
 
     if(ev.type === 'mail') {

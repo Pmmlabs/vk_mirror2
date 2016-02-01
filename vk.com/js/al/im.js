@@ -998,7 +998,7 @@ var IM = {
     hash = hash || cur.tabs[peer].hash;
     var box = false, succ = function () {
       cur.flushing_peer = peer;
-      ajax.post('/al_mail.php', {act: 'a_flush_history', hash: hash, id: peer, from: 'im', gid: cur.gid}, {
+      ajax.post('/al_im.php', {act: 'a_flush_history', hash: hash, id: peer, from: 'im', gid: cur.gid}, {
         onDone: function (res, text) {
           cur.flushing_peer = false;
           if (cur.tabs[peer]) {
@@ -7743,7 +7743,7 @@ ImUpload = {
           dropEl = ge('im_upload_dropbox').firstChild;
           setStyle(dropEl, {height: h});
 
-        if (browser.safari) {
+        if (!browser.chrome || !e.dataTransfer || !e.dataTransfer.items) {
           return;
         }
 
