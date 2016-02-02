@@ -622,13 +622,7 @@ Notifier = {
         push = 0;
         break;
       case 'notify_tt':
-      case 'login_attempt':
-        if (ev.add && window.TopNotifier) {
-          TopNotifier.showTooltip(ev.add);
-        }
-        if (ev.type == 'notify_tt') {
-          push = 0;
-        }
+        push = 0;
         break;
     }
 
