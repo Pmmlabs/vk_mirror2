@@ -1140,6 +1140,24 @@ input.dev_input_simular {
 .dev_param_opts {
   color: #7c7f82;
 }
+.dev_param_disabled {
+  position: relative;
+}
+.dev_param_disabled_helper {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+.dev_param_disabled .dev_param_disabled_helper {
+  display: block;
+}
+.dev_param_disabled .dev_const_param_name {
+  color: #7c7f82;
+}
 .dev_parts_list {
   width: 598px;
   padding: 16px;
