@@ -461,11 +461,11 @@ ul.vk_com_only_good {
 }
 .push_activation_box .validation_row,
 .push_activation_box .validation_submit_row {
-  width: 154px;
+  width: 164px;
 }
 .font_medium .push_activation_box .validation_row,
 .font_medium .push_activation_box .validation_submit_row {
-  width: 164px;
+  width: 174px;
 }
 #push_validation_no_push {
   text-align: center;
