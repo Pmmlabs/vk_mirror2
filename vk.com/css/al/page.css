@@ -3524,6 +3524,9 @@ a.choose:hover {
   width: 129px;
   vertical-align: top;
 }
+.page_post_sized_thumbs .page_market_item:first-child {
+  margin-left: 0;
+}
 .page_market_item_img {
   width: 129px;
   height: 129px;

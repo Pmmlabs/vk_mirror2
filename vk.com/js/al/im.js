@@ -3280,6 +3280,20 @@ var IM = {
     IM.markPeer(cur.peer);
   },
   init: function(options) {
+    var loc = nav.objLoc;
+    if (options.fail_try) {
+      nav.setLoc(extend({ fail_try: options.fail_try}, loc));
+      nav.reload();
+      return;
+    } else {
+      loc = extend({}, loc);
+      if (loc.fail_try) {
+        delete loc.fail_try;
+      }
+      nav.setLoc(loc);
+
+    }
+
     setFavIcon('/images/fav_chat' + _iconAdd + '.ico');
 
     ge('content').appendChild(ce('iframe', {id: 'transport_frame', src: options.transport_frame}));
@@ -3302,6 +3316,7 @@ var IM = {
       deletedRows: {},
       imPhLists: {},
       module: 'im',
+      fail_try: 0,
       unreadMsgs: 0,
       lastOperation: 0,
       errorTimeout: 1,
@@ -5471,10 +5486,17 @@ var IM = {
   },
   updateDialogs: function (force) {
     var tabEl = geByClass1('tab_word', ge('tab_dialogs'), 'b');
-    ajax.post('al_im.php', {act: 'a_get_dialogs', offset: 0, unread: cur.unr, gid: cur.gid, type: cur.gfilter}, {
+    ajax.post('al_im.php', {act: 'a_get_dialogs', offset: 0, unread: cur.unr, gid: cur.gid, type: cur.gfilter, fail_try: cur.fail_try}, {
       onDone: function (options, rows, next_rows) {
         setStyle('im_progress', { display: 'none' });
         show('im_dialogs_summary');
+        if (options.fail_try) {
+          cur.fail_try++;
+          return IM.updateDialogs(true);
+        } else {
+          cur.fail_try = 0;
+        }
+
         if (options.summary) {
           val('im_dialogs_summary', options.summary);
           if (cur.gid) {

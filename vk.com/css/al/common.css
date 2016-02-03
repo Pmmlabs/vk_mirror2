@@ -516,6 +516,15 @@ h4,
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.h2_add {
+  font-weight: normal;
+  font-size: 11px;
+  padding-top: 0.185em;
+}
+.font_medium .h2_add {
+  font-size: 12px;
+  padding-top: 0.14em;
+}
 /* Layout */
 div#utils {
   top: -30px;
