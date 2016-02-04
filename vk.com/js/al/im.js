@@ -5344,22 +5344,26 @@ var IM = {
     IM.updateTyping(true);
   },
 
-  markAnswered: function() {
+  markAnswered: function(ev) {
+    lockFlatButton(ev.target);
     var peer = cur.peer;
     ajax.post('al_im.php', {
       act: 'a_mark_answered',
       peer: peer,
       gid: cur.gid
-    });
+    }, {
+      onDone: function() {
+        if (cur.tabs[peer]) {
+          cur.tabs[peer].folders |= IM.FOLDER_UNRESPOND;
+        }
 
-    if (cur.tabs[peer]) {
-      cur.tabs[peer].folders |= IM.FOLDER_UNRESPOND;
-    }
-
-    showDoneBox(getLang('mail_marked_as_answered'), {
-      out: 1000
+        showDoneBox(getLang('mail_marked_as_answered'), {
+          out: 1000
+        });
+        unlockFlatButton(ev.target);
+        IM.activateTab(-1);
+      }
     });
-    IM.activateTab(-1);
   },
 
   rewriteGroupTab: function(mid, pname, photo, href) {

@@ -706,6 +706,9 @@ hide: function(noLoc, force, ev) {
     var colorClass = wkcur.layerLight ? 'wk_light' : 'wk_dark';
     removeClass(wkLayerWrap, colorClass);
     removeClass(layerBG, colorClass);
+    if (wkcur.layerGlance) {
+      removeClass(wkLayerWrap, 'wk_glance');
+    }
 
     wkcur.shown = false;
     removeEvent(wkLayerWrap, 'click', WkView.onClick);

@@ -464,7 +464,7 @@ h2.payments_getvotes_title {
   display: inline !important;
 }
 #payments_iframe_container {
-  height: 359px;
+  height: 424px;
   overflow-y: auto;
   overflow-x: hidden;
 }

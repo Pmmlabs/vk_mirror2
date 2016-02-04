@@ -175,13 +175,28 @@ Notifier = {
   },
 
   initCommunityQueues: function(fails) {
-    if (ls.get('im_m_comms_key')) {
-      return Notifier.proccessCommunityQueues(ls.get('im_m_comms_key'), fails || 0);
+
+    var key = ls.get('im_m_comms_key');
+
+    var check = key && key.split ? key.split(';') : [];
+    if (check[0] === 'empty' && check[1] && Date.now() - check[1] < 60 * 1 * 1000) {
+      key = 'empty';
+    } else if (check[0] === 'empty') {
+      key = false;
     }
+
+    if (key) {
+      return Notifier.proccessCommunityQueues(key, fails || 0);
+    }
+
     ajax.post('al_im.php', { act: 'a_get_comms_key' }, {
       onDone: function(queue) {
+        if (queue === 'empty') {
+          queue += ";" + Date.now();
+        } else {
+          Notifier.proccessCommunityQueues(queue, fails || 0);
+        }
         ls.set('im_m_comms_key', queue);
-        Notifier.proccessCommunityQueues(queue, fails || 0);
       },
       onFail: function() {
         return true;
