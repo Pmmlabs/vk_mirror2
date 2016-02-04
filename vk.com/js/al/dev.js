@@ -42,7 +42,7 @@ init: function(opts) {
   Dev.initPage(opts);
   Dev.initSuggestions();
   Dev.onResize();
-  Dev.checkMethodParams();
+  cur.verDD && Dev.checkMethodParams();
 },
 
 initPage: function(opts) {

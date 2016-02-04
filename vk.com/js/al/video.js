@@ -558,6 +558,14 @@ var Video = {
       }
     } else if (cur.module == 'video' && cur.vSection == 'search') {
       options.module = Video.getSearchModule(videoId);
+
+      // Necessary for video search relevance stats
+      var parentContainer = domCA(obj, '.video_row');
+      if (parentContainer.hasAttribute('data-search-pos')) {
+        options.addParams = extend(options.addParams || {}, {
+          search_pos: parseInt(parentContainer.getAttribute('data-search-pos'))
+        });
+      }
     }
 
     return showVideo(videoId, listId, options, e);
@@ -1602,7 +1610,9 @@ var Video = {
         var startPos = cur.shown - usersLen;
         //if (startPos < searchLen) {
           for (var i = startPos; i < searchLen; i++) {
-            cur.vSearchRows.appendChild(se(this.drawVideo(searchData.list[i], linkAddr, true)));
+            var videoEl = se(this.drawVideo(searchData.list[i], linkAddr, true));
+            videoEl.setAttribute("data-search-pos", i);
+            cur.vSearchRows.appendChild(videoEl);
             cur.shown++;
             added = true;
           }
