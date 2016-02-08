@@ -2477,6 +2477,15 @@ div.med_no_attach {
 .wall_module .media_desc .lnk:hover .a {
   text-decoration: underline;
 }
+.wall_module .media_desc .lnk.no_interact {
+  cursor: default;
+}
+.wall_module .media_desc .lnk.no_interact .a {
+  color: inherit;
+}
+.wall_module .media_desc .lnk.no_interact:hover .a {
+  text-decoration: none;
+}
 .wall_module .media_desc .lnk.lnk_mail {
   border-left: 2px solid #C3D1E0;
   padding-left: 10px;
@@ -6536,6 +6545,11 @@ button.wall_block_app_btn {
   line-height: 17px;
   margin: 4px 0px;
 }
+.page_media_place.no_interact .page_media_place_label_wrap:hover {
+  cursor: default;
+  background-color: initial;
+  color: #888888;
+}
 .page_media_place.page_media_place__no_img {
   margin-top: 0;
 }
@@ -6558,6 +6572,9 @@ button.wall_block_app_btn {
 }
 .page_media_place:hover .checkin_big {
   background-color: #E7EAEE;
+}
+.page_media_place.no_interact:hover .checkin_big {
+  background-color: #E9EDF1;
 }
 .page_media_place_img {
   position: relative;

@@ -743,7 +743,7 @@ AdsLight.setNewBlock = function(adsHtml, adsSection, adsCanShow, adsShowed, adsP
     }, vk.ads_rotate_interval);
   }
 
-  if (!isVisible(containerElem) && vk.id % 17 < 5) {
+  if (!isVisible(containerElem)) {
     setTimeout(function () {
       AdsLight.forceLeftAdVisibility();
     }, 200);

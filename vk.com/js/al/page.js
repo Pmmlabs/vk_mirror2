@@ -791,13 +791,13 @@ var Page = {
       }
     }, opts));
   },
-  showGif: function(obj, ev) {
+  showGif: function(obj, ev, dontHideActive) {
     if (ev && (ev.ctrlKey || ev.metaKey)) {
       return true;
     }
 
     cur.gifAdded = cur.gifAdded || {};
-    if (cur.activeGif && domPN(domPN(cur.activeGif)) == domPN(domPN(obj)) || hasClass(domPN(cur.activeGif), 'page_gif_large')) {
+    if (cur.activeGif && domPN(domPN(cur.activeGif)) == domPN(domPN(obj)) || hasClass(domPN(cur.activeGif), 'page_gif_large') && !dontHideActive) {
       Page.hideGif(cur.activeGif, false);
     }
 
@@ -882,12 +882,12 @@ var Page = {
     var isLoaded = false;
 
     var onLoaded = function() {
-      if (getSize(el)[0] || getSize(el)[1] || !cur.activeGif) {
+      if (getSize(el)[0] || getSize(el)[1]) {
         clearInterval(loadingInterval);
         el.onload = el.onloadeddata = null;
         isLoaded = true;
 
-        if (!cur.activeGif) return;
+        // if (!cur.activeGif) return;
         hide(domFC(imgCont));
         imgCont.style.background = '';
         imgCont.setAttribute('onclick', "return Page.hideGif(this, event);");

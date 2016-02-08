@@ -830,7 +830,14 @@ vkApp.prototype.checkMethod = function(method, params, callback) {
     showBox('apps', {
       act: 'wall_post_box',
       aid: this.options.aid,
+      post_id: params['post_id'],
       owner_id: params['owner_id'],
+      lat: params['lat'],
+      'long': params['long'],
+      place_id: params['place_id'],
+      from_group: params['from_group'],
+      publish_date: params['publish_date'],
+      signed: params['signed'],
       attachments: params['attachments'] || params['attachment'],
       text: text,
       method: m

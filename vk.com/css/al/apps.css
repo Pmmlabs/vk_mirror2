@@ -965,6 +965,14 @@ a.app_decline:hover {
 #apps_wall_post_box {
   padding: 14px;
 }
+#apps_wall_post_box .post {
+  margin: -5px 0 0;
+  padding: 0;
+  border-top: 0;
+}
+#apps_wall_post_box .replies {
+  display: none;
+}
 #apps_wall_post_box .apps_wall_post_name {
   width: 300px;
   padding: 0px 15px;
