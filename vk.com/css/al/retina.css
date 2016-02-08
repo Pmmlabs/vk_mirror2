@@ -2012,3 +2012,19 @@ body.dev.is_2x .priv_h_arrow,
   background: url(/images/icons/feed_subsection_top_tt_close_2x.png);
   background-size: 10px 10px;
 }
+.is_2x .im_chronicle_invite_img {
+  background: url(/images/chronicle/snapster_invite_web_2x.png);
+  background-size: 350px 220px;
+}
+.is_2x .im_chronicle_invite_logo {
+  background: url(/images/chronicle/snapster_invite_logo_2x.png);
+  background-size: 50px 50px;
+}
+.is_2x .im_chronicle_invite_android {
+  background-image: url(/images/chronicle/install_android_2x.png);
+  background-size: 11px 13px;
+}
+.is_2x .im_chronicle_invite_iphone {
+  background-image: url(/images/chronicle/install_ios_2x.png);
+  background-size: 10px 13px;
+}

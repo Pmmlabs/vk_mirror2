@@ -271,7 +271,7 @@ playerCallback: {
     if (!prev || !prevSegments || segments != prevSegments) {
       cur.segmentsSaveProcess = true;
 
-      ajax.post('/al_video.php', {
+      var params = {
         act: 'a_view_segments',
         module: Videoview.getVideoModule(oid + '_' + vid),
         vid: vid, oid: oid,
@@ -279,7 +279,13 @@ playerCallback: {
         prev_s: prev ? prev.segments : '',
         prev_sig: prev ? prev.segmentsSig : '',
         hash: hash
-      }, {
+      };
+
+      if (typeof(cur.vSearchPos) !== 'undefined' && cur.vSearchPos !== null) {
+        params.search_pos = cur.vSearchPos;
+      }
+
+      ajax.post('/al_video.php', params, {
         onDone: function(prevSegments, prevSegmentsSig) {
           if (prevSegments < 0) {
             return;
@@ -1131,6 +1137,10 @@ hide: function(noLoc, force, ev, closeButtonClick) {
     if (backOnClick) return history.back();
   }
 
+  if (cur.vSearchPos) {
+    delete cur.vSearchPos;
+  }
+
   if (!force && mvcur.minimized) {
     if (!mvcur.noLocChange && noLoc !== true) {
       if (noLoc === 2) {
@@ -1284,10 +1294,10 @@ hide: function(noLoc, force, ev, closeButtonClick) {
   }
   __adsUpdate();
 
-  mvcur.bodyScrollTop = bodyNode.scrollTop;
+  mvcur.bodyScrollTop = scrollNode.scrollTop;
   setTimeout(function() {
     if (mvcur.bodyScrollTop !== undefined) {
-      bodyNode.scrollTop = mvcur.bodyScrollTop;
+      scrollNode.scrollTop = mvcur.bodyScrollTop;
       delete mvcur.bodyScrollTop;
     }
   }, 0);

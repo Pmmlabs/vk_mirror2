@@ -2307,6 +2307,45 @@ b.im_friend_mob_onl {
 .im_chronicle_sp {
   width: 8px;
 }
+/* chronicle invite */
+.im_chronicle_invite_img {
+  background: url(/images/chronicle/snapster_invite_web.png);
+  width: 350px;
+  height: 220px;
+  margin-top: 7px;
+}
+.im_chronicle_invite_about {
+  margin: 10px 0px;
+}
+.im_chronicle_invite_logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  background: url(/images/chronicle/snapster_invite_logo.png);
+  border-radius: 25px;
+}
+.im_chronicle_invite_descr {
+  line-height: 16px;
+}
+.im_chronicle_invite_android {
+  background: #689f38 url(/images/chronicle/install_android.png) no-repeat 16px 6px;
+}
+.im_chronicle_invite_android:hover,
+.im_chronicle_invite_android:active {
+  background-color: #6EAB39;
+}
+.im_chronicle_invite_iphone {
+  margin-left: 10px;
+  background: #6383a8 url(/images/chronicle/install_ios.png) no-repeat 16px 6px;
+}
+.im_chronicle_invite_android,
+.im_chronicle_invite_iphone {
+  padding-left: 35px;
+}
+.im_chronicle_invite_android:active,
+.im_chronicle_invite_iphone:active {
+  background-position-y: 7px;
+}
 /* New upload form */
 .im_upload_wrap {
   position: absolute;

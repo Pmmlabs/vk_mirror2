@@ -562,9 +562,7 @@ var Video = {
       // Necessary for video search relevance stats
       var parentContainer = domCA(obj, '.video_row');
       if (parentContainer.hasAttribute('data-search-pos')) {
-        options.addParams = extend(options.addParams || {}, {
-          search_pos: parseInt(parentContainer.getAttribute('data-search-pos'))
-        });
+        cur.vSearchPos = parseInt(parentContainer.getAttribute('data-search-pos'));
       }
     }
 
