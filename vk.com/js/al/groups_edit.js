@@ -1097,7 +1097,7 @@ var GroupsEdit = {
       cur.marketCityDD = new CitySelect(ge('group_market_city'), ge('group_market_city_wrap'), {
         width: 186,
         multiselect: true,
-        maxItems: 10,
+        maxItems: 30,
         progressBar: ge('group_market_country_progress'),
         placeholder: getLang('groups_market_select_city'),
         placeholderColor: '#999',
