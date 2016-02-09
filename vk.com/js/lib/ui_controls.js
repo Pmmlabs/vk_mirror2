@@ -179,6 +179,7 @@ createChildClass('Selector', UiControl, {
     customField: undefined,
     enableCustom: false,
     multiCustom: false,
+    valueIsCustom: false,
     valueForCustom: -1,
     width: 300,
     height: 250,
@@ -802,9 +803,13 @@ createChildClass('Selector', UiControl, {
         if (valid) {
           self.resultField.value = parseInt(!self.options.valueForCustom);
           self.customField.value = custom_val;
-          self._selectItem([self.options.valueForCustom, custom_val], true, true);
-          if (self.options.multiCustom) {
-            this.options.valueForCustom--;
+          if (self.options.valueIsCustom) {
+            self._selectItem([custom_val, custom_val], true, true);
+          } else {
+            self._selectItem([self.options.valueForCustom, custom_val], true, true);
+            if (self.options.multiCustom) {
+              this.options.valueForCustom--;
+            }
           }
         }
         if (multiValue) self.updateCustom(multiValue);

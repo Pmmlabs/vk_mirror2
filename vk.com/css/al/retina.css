@@ -298,6 +298,7 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x .im_attach_link,
 .is_2x .im_attach_sticker,
 .is_2x .im_attach_market,
+.is_2x .im_attach_chronicle_invite,
 .is_2x .docs_add_new span,
 .is_2x b.feed_gr_icon,
 .is_2x b.feed_ev_icon,
@@ -324,8 +325,8 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x .friends_tt_add,
 .is_2x .friends_tt_gift,
 .is_2x .jobs_apply_doc_icon {
-  background-image: url(/images/icons/mono_iconset_2x.png?5);
-  background-size: 12px 389px;
+  background-image: url(/images/icons/mono_iconset_2x.png?6);
+  background-size: 12px 405px;
 }
 .is_2x .public_contacts_list .extra_info span {
   background-image: url(/images/icons/info_icons_2x.png);

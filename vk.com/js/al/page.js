@@ -1318,10 +1318,17 @@ var Wall = {
     var pr = ge('wall_more_progress');
     var tmp = cur.wallLoading = cur.oid;
     ajax.post('al_wall.php', {act: 'get_wall', owner_id: cur.oid, offset: offset, type: type, fixed: cur.options.fixed_post_id || ''}, {
-      onDone: function (rows, names) {
+      onDone: function (rows, names, videos) {
         if (tmp !== cur.oid) return;
         delete(cur.wallLoading);
-        setTimeout(Wall.receive.pbind(rows, names), 0)
+        setTimeout(Wall.receive.pbind(rows, names), 0);
+        if (cur.wallVideos) {
+          each(videos, function(playlistId, playlist) {
+            if (cur.wallVideos[playlistId]) {
+              cur.wallVideos[playlistId].list = cur.wallVideos[playlistId].list.concat(playlist.list);
+            }
+          });
+        }
       },
       showProgress: function() {
         show(pr);
@@ -3679,6 +3686,9 @@ var Wall = {
       morelnk.onclick = Wall.showMore.pbind(count);
     }
     shortCurrency();
+    if (window.mvcur && mvcur.mvShown) {
+      Videoview.updatePlaylistBoxPosition();
+    }
   },
   getAbsDate: function(ts, cur) {
     cur = cur || window.cur;

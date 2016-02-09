@@ -387,6 +387,10 @@ saveDoc: function(hash, btn) {
     }
   }
   params['parents'] = parents.join(',');
+  var settings_page_hidden = ge('settings_page_hidden');
+  if (settings_page_hidden) {
+    params['page_settings_hidden'] = settings_page_hidden.checked ? 1 : 0;
+  }
   ajax.post('dev', params, {
     onDone: function(msg) {
       showDoneBox(msg);

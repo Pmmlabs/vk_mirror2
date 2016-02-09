@@ -863,9 +863,10 @@ img.im_photo_thumb {
 .im_attach_gift,
 .im_attach_link,
 .im_attach_sticker,
-.im_attach_market {
+.im_attach_market,
+.im_attach_chronicle_invite {
   float: left;
-  background: url(/images/icons/mono_iconset.png?2) no-repeat 0 0;
+  background: url(/images/icons/mono_iconset.png?3) no-repeat 0 0;
   width: 12px;
   height: 12px;
   margin: 3px 4px 2px 0;
@@ -909,6 +910,9 @@ img.im_photo_thumb {
 }
 .im_attach_market {
   background-position: 0px -378px;
+}
+.im_attach_chronicle_invite {
+  background-position: 0px -393px;
 }
 /* Im fwd log */
 .im_media_mail_title {

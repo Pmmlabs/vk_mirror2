@@ -6653,11 +6653,27 @@ function showVideo(videoId, listId, options, ev) {
 
   var stat = ['videoview.js', 'videoview.css', 'page.js', 'page.css'];
 
+  var fromWallPost = options.addParams && /^-?\d+_\d+$/.test(options.addParams.post_id) && options.addParams.post_id;
+  if (!options.playlistId && fromWallPost) {
+    if (/^public|groups|profile$/.test(cur.module) && hasClass('post'+fromWallPost, 'own')) {
+      options.playlistId = 'wall_' + cur.oid;
+    } else {
+      options.playlistId = 'post_' + options.addParams.post_id;
+    }
+  }
+
   if (options.playlistId) {
     stat.push('videocat.js', 'videocat.css');
     options.addParams = extend({}, options.addParams, {playlist_id: options.playlistId});
+
     if (!window.Videocat || !Videocat.initFullPlaylist(options.playlistId, videoId)) {
-      options.addParams = extend({}, options.addParams, {load_playlist: 1});
+      if (/^wall_/.test(options.playlistId)) {
+        var wallVideosList = cur.wallVideos && cur.wallVideos[options.playlistId];
+        options.addParams.load_playlist = wallVideosList && wallVideosList.list.length >= 50 ? 0 : 1;
+        options.addParams.load_playlist_tpl = 1;
+      } else {
+        options.addParams.load_playlist = 1;
+      }
     }
   }
 
@@ -8184,7 +8200,7 @@ function statlogsValueEvent(statName, value, key1, key2, key3) {
       statName,
       value
     ].concat(keys));
-    while (stats.length > 50) {
+    while (stats.length > 100) {
       stats.shift();
     }
     var uniqueId = Math.round(rand(0, 1000000000)); // unique id

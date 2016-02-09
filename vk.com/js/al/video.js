@@ -37,7 +37,9 @@ var Video = {
       btnHot: geByClass1('video_playlist_hot'),
       module: 'video',
       vDateAdded: '',
-      vOrder: 2
+      vOrder: 2,
+      vViewsPerSearch: null,
+      vSearchFieldHasLostFocus: false
     });
 
     cur.ownerPlaylistsHtml = cur.albumsSummaryEl ? cur.albumsSummaryEl.innerHTML : '';
@@ -95,6 +97,16 @@ var Video = {
     cur.nav.push((function(changed, old, n, opts) {
       if (typeof(changed.act) != 'undefined') {
         return;
+      }
+
+      if (old.section === 'search' && typeof old.q != 'undefined') {
+        Video.logViewsPerSearch();
+      }
+
+      if (n.section !== 'search') {
+        cur.vViewsPerSearch = null;
+      } else {
+        cur.vViewsPerSearch = 0;
       }
 
       if (window.mvcur) {
@@ -1239,6 +1251,10 @@ var Video = {
     }
   },
   doChangeUrl: function() {
+    // Publish stats of previous search
+    if (typeof nav.objLoc['q'] !== 'undefined') {
+      Video.logViewsPerSearch();
+    }
     if (trim(cur.vStr) && cur.vStr != '""') {
       nav.objLoc['q'] = cur.vStr;
     } else {
@@ -2855,6 +2871,26 @@ var Video = {
           }
         );
       }, getLang('box_no'));
+  },
+
+  logViewsPerSearch: function() {
+    if (cur.vSearchFieldHasLostFocus) {
+      if (typeof(cur.vViewsPerSearch) !== 'undefined' && cur.vViewsPerSearch !== null) {
+        console.log('register views per search: ', cur.vViewsPerSearch);
+        ajax.post('al_video.php', {
+          act: 'a_views_per_search_stat',
+          count: cur.vViewsPerSearch
+        });
+      }
+      cur.vViewsPerSearch = 0;
+      cur.vSearchFieldHasLostFocus = false;
+    }
+  },
+
+  searchBlur: function(input) {
+    if (input.value) {
+      cur.vSearchFieldHasLostFocus = true;
+    }
   }
 }
 
