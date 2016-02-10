@@ -2543,6 +2543,7 @@ showVideo: function(title, html, js, desc, info, controlsLine, opt) {
   mvcur.mvMediaShare = opt.share;
   mvcur.mvReplyNames = opt.names || {};
 
+  var playlistId = mvcur.options.playlistId;
   var plNeedExtend = false;
   if (opt.pl_list && Object.keys) {
     var plList = JSON.parse(opt.pl_list);
@@ -2571,8 +2572,9 @@ showVideo: function(title, html, js, desc, info, controlsLine, opt) {
     } else {
       mvcur.needPlaylistRebuildId = plFullId;
     }
-  } else if (mvcur.options.playlistId && !Videocat.lists[mvcur.options.playlistId] && cur.wallVideos) {
+  } else if (playlistId && !Videocat.lists[playlistId] && cur.wallVideos) {
     Videocat.addList(cur.wallVideos);
+    Videocat.lists[playlistId].list = Videocat.mergeLists(Videocat.lists[playlistId].list, []); // removes duplicates
     mvcur.needPlaylistRebuildId = mvcur.options.playlistId;
   }
 

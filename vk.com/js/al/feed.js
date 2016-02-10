@@ -221,6 +221,9 @@ var Feed = {
       scrollToY(endST + updH, 0);
     }
     feed.updateTitle();
+    if (window.mvcur && mvcur.mvShown) {
+      Videoview.updatePlaylistBoxPosition();
+    }
   },
   pushEvent: function (ev, st) {
     var ev_ver = ev[0],
