@@ -19,12 +19,21 @@ playerCallback: {
     if (!player) {
       player = 'flash';
     }
+
     var module = Videoview.getVideoModule(oid + '_' + vid);
-    ajax.post('al_video.php', {act: 'inc_view_counter', oid: oid, vid: vid, hash: hash, curr_res: currRes, max_res: maxRes, player: player, type: type, module: module}, {
+    var params = {act: 'inc_view_counter', oid: oid, vid: vid, hash: hash, curr_res: currRes, max_res: maxRes, player: player, type: type, module: module};
+    // clear porn searchers from stats
+    if (!cur.adult) {
+      if (typeof(cur.vSearchPos) !== 'undefined' && cur.vSearchPos !== null) {
+        params.search_pos = cur.vSearchPos;
+      }
+      cur.vViewsPerSearch++;
+    }
+
+    ajax.post('al_video.php', params, {
       onDone: function(t) {
     }});
 
-    cur.vViewsPerSearch++;
   },
   rotateVideo: function(oid, vid, angle, hash) {
     ajax.post('al_video.php', {act: 'rotate_video', oid: oid, vid: vid, angle: angle, hash: hash});
@@ -283,8 +292,11 @@ playerCallback: {
         hash: hash
       };
 
-      if (typeof(cur.vSearchPos) !== 'undefined' && cur.vSearchPos !== null) {
-        params.search_pos = cur.vSearchPos;
+      // clear porn searchers from stats
+      if (!cur.adult) {
+        if (typeof(cur.vSearchPos) !== 'undefined' && cur.vSearchPos !== null) {
+          params.search_pos = cur.vSearchPos;
+        }
       }
 
       ajax.post('/al_video.php', params, {
