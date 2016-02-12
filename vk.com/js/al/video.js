@@ -2891,13 +2891,16 @@ var Video = {
           }
         }
         ajax.post('al_video.php', {
-          act: 'a_views_per_search_stat',
+          act: 'a_search_query_stat',
           count: cur.vViewsPerSearch,
           position_counts: cur.vSearchPositionViews
         });
       }
       cur.vViewsPerSearch = 0;
       cur.vSearchFieldHasLostFocus = false;
+      for (var i = 0; i < cur.vSearchPositionViews.length; i++) {
+        cur.vSearchPositionViews[i] = 0;
+      }
     }
   },
 

@@ -3131,6 +3131,10 @@ button#apps_sms_send_btn {
 #apps_collection73_wrap {
   background-image: url(/images/apps/apps_newyear2015_bkg.png?1);
 }
+#apps_collection76_wrap,
+#apps_collection77_wrap {
+  background-image: url(/images/apps/apps_valentine2016_bkg.png);
+}
 .apps_genres_tt {
   padding: 10px;
   white-space: nowrap;

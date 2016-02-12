@@ -712,16 +712,21 @@ table.ads_logs_info th {
 .ads_note_object {
   font-weight: bold;
 }
+.ads_note_text {
+  border-left: 2px solid #c3d1e0;
+  margin: 2px 0px;
+  padding: 2px 5px;
+}
 .ads_note_info {
-  color: #999999;
+  color: #777;
   font-size: 0.91em;
 }
 .ads_note_info_user,
-.ads_note_info_edit_link {
-  color: #999999;
+.ads_note_info .ads_note_info_edit_link {
+  color: #777;
 }
-.ads_note_edit_link {
-  display: block;
+.ads_note_separator {
+  height: 5px;
 }
 .ads_note_edit_wrap {
   margin-right: 8px;
@@ -750,6 +755,9 @@ table.ads_logs_info th {
 }
 .ads_moder_all_notes_domains {
   margin-top: 10px;
+}
+.ads_moder_all_notes_object_info {
+  color: #777;
 }
 .ads_moder_ban,
 .ads_moder_stop,
