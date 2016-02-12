@@ -5489,6 +5489,9 @@ b.wall_mob_onl {
 .wide_wall_module .reply_text .page_gif_big {
   max-width: 465px;
 }
+#wk_content .page_gif_big {
+  max-width: 607px;
+}
 #dark_box_topic_wrap {
   background: #597BA5;
   padding: 10px 10px 11px;

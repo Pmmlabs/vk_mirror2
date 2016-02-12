@@ -3,6 +3,7 @@ var Video = {
 
   CHANNEL_PREFIX: 'channel',
   CATEGORY_PREFIX: 'cat_',
+  SIGNIFICANT_POSITIONS: 50,
 
   init: function(obj) {
     extend(cur, obj);
@@ -39,7 +40,8 @@ var Video = {
       vDateAdded: '',
       vOrder: 2,
       vViewsPerSearch: null,
-      vSearchFieldHasLostFocus: false
+      vSearchFieldHasLostFocus: false,
+      vSearchPositionViews: Array(Video.SIGNIFICANT_POSITIONS)
     });
 
     cur.ownerPlaylistsHtml = cur.albumsSummaryEl ? cur.albumsSummaryEl.innerHTML : '';
@@ -2880,9 +2882,18 @@ var Video = {
     if (cur.vSearchFieldHasLostFocus && !cur.vSearchHadAdult) {
       if (typeof(cur.vViewsPerSearch) !== 'undefined' && cur.vViewsPerSearch !== null) {
         console.log('register views per search: ', cur.vViewsPerSearch);
+
+        // We need to count views for every position separately in order
+        // to count weighted CTR of first 50 search positions
+        for (var i = 0; i < cur.vSearchPositionViews.length; i++) {
+          if (typeof(cur.vSearchPositionViews[i]) == 'undefined') {
+            cur.vSearchPositionViews[i] = 0;
+          }
+        }
         ajax.post('al_video.php', {
           act: 'a_views_per_search_stat',
-          count: cur.vViewsPerSearch
+          count: cur.vViewsPerSearch,
+          position_counts: cur.vSearchPositionViews
         });
       }
       cur.vViewsPerSearch = 0;

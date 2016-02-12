@@ -26,6 +26,12 @@ playerCallback: {
     if (!cur.adult) {
       if (typeof(cur.vSearchPos) !== 'undefined' && cur.vSearchPos !== null) {
         params.search_pos = cur.vSearchPos;
+        if (cur.vSearchPos < Video.SIGNIFICANT_POSITIONS) {
+          if (typeof(cur.vSearchPositionViews[cur.vSearchPos]) == 'undefined') {
+            cur.vSearchPositionViews[cur.vSearchPos] = 0;
+          }
+          cur.vSearchPositionViews[cur.vSearchPos]++;
+        }
       }
       cur.vViewsPerSearch++;
     }
@@ -33,7 +39,6 @@ playerCallback: {
     ajax.post('al_video.php', params, {
       onDone: function(t) {
     }});
-
   },
   rotateVideo: function(oid, vid, angle, hash) {
     ajax.post('al_video.php', {act: 'rotate_video', oid: oid, vid: vid, angle: angle, hash: hash});
