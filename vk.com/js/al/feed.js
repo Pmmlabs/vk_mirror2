@@ -224,6 +224,9 @@ var Feed = {
     if (window.mvcur && mvcur.mvShown) {
       Videoview.updatePlaylistBoxPosition();
     }
+    if (cur.gifAutoplayScrollHandler) {
+      cur.gifAutoplayScrollHandler();
+    }
   },
   pushEvent: function (ev, st) {
     var ev_ver = ev[0],
@@ -1080,6 +1083,10 @@ var Feed = {
 
     if (inArray(newSection, ['search', 'photos_search']) && !cur.searchSortMenu) {
       stManager.add(['ui_controls.js', 'ui_controls.css'], feed.initUi);
+    }
+
+    if (cur.gifAutoplayScrollHandler) {
+      cur.gifAutoplayScrollHandler();
     }
   },
   // from: 3 - init, 2 - navigation, undefined - other

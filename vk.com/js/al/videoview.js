@@ -1170,6 +1170,10 @@ hide: function(noLoc, force, ev, closeButtonClick) {
     delete cur.vSearchPos;
   }
 
+  if (cur.vSearchLastActionTime) {
+    cur.vSearchLastActionTime = new Date().getTime();
+  }
+
   if (!force && mvcur.minimized) {
     if (!mvcur.noLocChange && noLoc !== true) {
       if (noLoc === 2) {

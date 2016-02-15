@@ -41,7 +41,9 @@ var Video = {
       vOrder: 2,
       vViewsPerSearch: null,
       vSearchFieldHasLostFocus: false,
-      vSearchPositionViews: Array(Video.SIGNIFICANT_POSITIONS)
+      vSearchPositionViews: Array(Video.SIGNIFICANT_POSITIONS),
+      vSearchClickNum: 0,
+      vSearchLastActionTime: new Date().getTime()
     });
 
     cur.ownerPlaylistsHtml = cur.albumsSummaryEl ? cur.albumsSummaryEl.innerHTML : '';
@@ -112,6 +114,7 @@ var Video = {
         cur.vViewsPerSearch = 0;
         cur.vSearchHadAdult = cur.adult;
       }
+      cur.vSearchClickNum = 0;
 
       if (window.mvcur) {
         var m = (changed[0] || '').match(/^video(-?\d+_\d+)/), owner;
@@ -580,6 +583,9 @@ var Video = {
       if (parentContainer.hasAttribute('data-search-pos')) {
         cur.vSearchPos = parseInt(parentContainer.getAttribute('data-search-pos'));
       }
+      var clickNum = ++cur.vSearchClickNum;
+      var clickTime = new Date().getTime() - cur.vSearchLastActionTime;
+      options.addParams = extend(options.addParams || {}, { click_num: clickNum, click_time: clickTime });
     }
 
     return showVideo(videoId, listId, options, e);
@@ -1259,6 +1265,8 @@ var Video = {
     if (typeof nav.objLoc['q'] !== 'undefined') {
       Video.logViewsPerSearch();
       cur.vSearchHadAdult = cur.adult;
+      cur.vSearchClickNum = 0;
+      cur.vSearchLastActionTime = new Date().getTime();
     }
     if (trim(cur.vStr) && cur.vStr != '""') {
       nav.objLoc['q'] = cur.vStr;
