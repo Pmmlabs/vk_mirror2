@@ -386,8 +386,8 @@ AdsModer.saveDomainComment = function (new_status, reload) {
       }
     },
     onFail: function () {
-      showFastBox('Ошибка', 'Ошибка');
       Ads.unlock('save_domain_comment');
+      showFastBox('Ошибка', 'Ошибка');
       return true;
     }
   });

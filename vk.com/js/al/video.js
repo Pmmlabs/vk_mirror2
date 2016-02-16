@@ -104,7 +104,7 @@ var Video = {
       }
 
       if (old.section === 'search' && typeof old.q != 'undefined') {
-        Video.logViewsPerSearch();
+        Video.logSearchStats();
       }
 
       if (n.section !== 'search') {
@@ -191,6 +191,13 @@ var Video = {
       if (row = gpeByClass('video_row', event.target)) {
         Video.updateTitle(row);
       }
+    });
+
+    addEvent(window, 'beforeunload', function(event) {
+      if (cur.module === 'video' && cur.vSection === 'search') {
+        Video.logSearchStats();
+      }
+      return true;
     });
 
     Video.startEvents();
@@ -1263,10 +1270,8 @@ var Video = {
   doChangeUrl: function() {
     // Publish stats of previous search
     if (typeof nav.objLoc['q'] !== 'undefined') {
-      Video.logViewsPerSearch();
+      Video.logSearchStats();
       cur.vSearchHadAdult = cur.adult;
-      cur.vSearchClickNum = 0;
-      cur.vSearchLastActionTime = new Date().getTime();
     }
     if (trim(cur.vStr) && cur.vStr != '""') {
       nav.objLoc['q'] = cur.vStr;
@@ -1455,6 +1460,11 @@ var Video = {
         data = eval('('+data+')');
         data = data.list || [];
         cur._videoSearchDataIndex = index;
+
+        // Search results are being shown to user, start counting
+        // his (or her) reaction time.
+        cur.vSearchClickNum = 0;
+        cur.vSearchLastActionTime = new Date().getTime();
 
         if (data.length > 0) {
           var duplicateOffset = 0;
@@ -2886,8 +2896,8 @@ var Video = {
       }, getLang('box_no'));
   },
 
-  logViewsPerSearch: function() {
-    if (cur.vSearchFieldHasLostFocus && !cur.vSearchHadAdult) {
+  logSearchStats: function() {
+    if (cur.vSearchFieldHasLostFocus /* && !cur.vSearchHadAdult */) {
       if (typeof(cur.vViewsPerSearch) !== 'undefined' && cur.vViewsPerSearch !== null) {
         console.log('register views per search: ', cur.vViewsPerSearch);
 
