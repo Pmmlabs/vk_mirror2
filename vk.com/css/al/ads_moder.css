@@ -871,3 +871,10 @@ table.ads_logs_info th {
   width: 300px;
   margin-bottom: 10px;
 }
+#ads_moder_domains_table a.lnk {
+  background: url(/images/icons/mono_iconset.png?1) no-repeat left -237px;
+  width: 15px;
+  height: 11px;
+  margin-top: 3px;
+  display: block;
+}

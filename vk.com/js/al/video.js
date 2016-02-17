@@ -43,7 +43,8 @@ var Video = {
       vSearchFieldHasLostFocus: false,
       vSearchPositionViews: Array(Video.SIGNIFICANT_POSITIONS),
       vSearchClickNum: 0,
-      vSearchLastActionTime: new Date().getTime()
+      vSearchLastActionTime: new Date().getTime(),
+      vSearchLastSeenEl: null
     });
 
     cur.ownerPlaylistsHtml = cur.albumsSummaryEl ? cur.albumsSummaryEl.innerHTML : '';
@@ -589,10 +590,10 @@ var Video = {
       var parentContainer = domCA(obj, '.video_row');
       if (parentContainer.hasAttribute('data-search-pos')) {
         cur.vSearchPos = parseInt(parentContainer.getAttribute('data-search-pos'));
+        var clickNum = ++cur.vSearchClickNum;
+        var clickTime = new Date().getTime() - cur.vSearchLastActionTime;
+        options.addParams = extend(options.addParams || {}, { click_num: clickNum, click_time: clickTime });
       }
-      var clickNum = ++cur.vSearchClickNum;
-      var clickTime = new Date().getTime() - cur.vSearchLastActionTime;
-      options.addParams = extend(options.addParams || {}, { click_num: clickNum, click_time: clickTime });
     }
 
     return showVideo(videoId, listId, options, e);
@@ -1156,6 +1157,9 @@ var Video = {
         cur.loading = true;
         cur.searchTimout = setTimeout((function() {
           this.loadFromSearch(str);
+
+          // Publish stats of previous search
+          Video.logSearchStats();
         }).bind(this), (force ? 0 : 500));
         addClass(cur.videoSearch, 'v_loading');
       }
@@ -1268,11 +1272,6 @@ var Video = {
     }
   },
   doChangeUrl: function() {
-    // Publish stats of previous search
-    if (typeof nav.objLoc['q'] !== 'undefined') {
-      Video.logSearchStats();
-      cur.vSearchHadAdult = cur.adult;
-    }
     if (trim(cur.vStr) && cur.vStr != '""') {
       nav.objLoc['q'] = cur.vStr;
     } else {
@@ -1550,6 +1549,8 @@ var Video = {
       }, 0);
     }
 
+    Video.updateLastSeenElement();
+
     cur.initialVideoContentTabTop = cur.initialVideoContentTabTop || getXY(cur.videoContentTab)[1];
 
     var channelHeaderEl = geByClass1('video_channel_header');
@@ -1662,6 +1663,9 @@ var Video = {
       }
 
       Video.searchAlbums(cur.vStr);
+
+      // Some new videos emerged, need to know how much of them are visible
+      Video.updateLastSeenElement();
 
       toggle(cur.vRows, usersLen);
     } else {
@@ -2529,6 +2533,10 @@ var Video = {
       ajax.post('/al_video.php', { act: 'a_save_list_view_mode', mode: cur.listViewMode, hash: cur.listViewModeHash });
     }
 
+    if (cur.vSection == 'search') {
+      Video.updateLastSeenElement();
+    }
+
     Video.initSorter();
   },
 
@@ -2902,20 +2910,24 @@ var Video = {
         console.log('register views per search: ', cur.vViewsPerSearch);
 
         // We need to count views for every position separately in order
-        // to count weighted CTR of first 50 search positions
+        // to count weighted CTR of all positions, seen by user (but no more than 50)
         for (var i = 0; i < cur.vSearchPositionViews.length; i++) {
           if (typeof(cur.vSearchPositionViews[i]) == 'undefined') {
             cur.vSearchPositionViews[i] = 0;
           }
         }
+
+        var lastSeen = parseInt(cur.vSearchLastSeenEl.getAttribute('data-search-pos')) + 1 || 0;
         ajax.post('al_video.php', {
           act: 'a_search_query_stat',
           count: cur.vViewsPerSearch,
-          position_counts: cur.vSearchPositionViews
+          scrolled_until: lastSeen,
+          position_counts: cur.vSearchPositionViews.slice(0, lastSeen)
         });
       }
       cur.vViewsPerSearch = 0;
       cur.vSearchFieldHasLostFocus = false;
+      cur.vSearchLastSeenEl = null;
       for (var i = 0; i < cur.vSearchPositionViews.length; i++) {
         cur.vSearchPositionViews[i] = 0;
       }
@@ -2925,6 +2937,22 @@ var Video = {
   searchBlur: function(input) {
     if (input.value) {
       cur.vSearchFieldHasLostFocus = true;
+    }
+  },
+
+  updateLastSeenElement: function() {
+    if (cur.vSearchLastSeenEl === null || !cur.vSearchRows.contains(cur.vSearchLastSeenEl)) {
+      cur.vSearchLastSeenEl = domFC(cur.vSearchRows);
+    }
+
+    var windowHeight = window.innerHeight || docEl.clientHeight || bodyNode.clientHeight;
+    var ns = domNS(cur.vSearchLastSeenEl);
+    var nsRect = ns.getBoundingClientRect();
+
+    while (ns !== null && (nsRect.top + ns.clientHeight / 2 < windowHeight)) {
+      cur.vSearchLastSeenEl = ns;
+      ns = domNS(cur.vSearchLastSeenEl);
+      nsRect = ns.getBoundingClientRect();
     }
   }
 }
