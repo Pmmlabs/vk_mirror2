@@ -1549,8 +1549,6 @@ var Video = {
       }, 0);
     }
 
-    Video.updateLastSeenElement();
-
     cur.initialVideoContentTabTop = cur.initialVideoContentTabTop || getXY(cur.videoContentTab)[1];
 
     var channelHeaderEl = geByClass1('video_channel_header');
@@ -1563,6 +1561,8 @@ var Video = {
     }
 
     Videoview && Videoview.updatePlaylistBoxPosition();
+
+    Video.updateLastSeenElement();
   },
   showMore: function() {
     var sec = cur.vSection;
@@ -2943,16 +2943,24 @@ var Video = {
   updateLastSeenElement: function() {
     if (cur.vSearchLastSeenEl === null || !cur.vSearchRows.contains(cur.vSearchLastSeenEl)) {
       cur.vSearchLastSeenEl = domFC(cur.vSearchRows);
+      if (!cur.vSearchLastSeenEl) {
+        return;
+      }
     }
 
     var windowHeight = window.innerHeight || docEl.clientHeight || bodyNode.clientHeight;
     var ns = domNS(cur.vSearchLastSeenEl);
+    if (!ns) {
+      return;
+    }
     var nsRect = ns.getBoundingClientRect();
 
     while (ns !== null && (nsRect.top + ns.clientHeight / 2 < windowHeight)) {
       cur.vSearchLastSeenEl = ns;
       ns = domNS(cur.vSearchLastSeenEl);
-      nsRect = ns.getBoundingClientRect();
+      if (!ns) {
+        return;
+      }
     }
   }
 }

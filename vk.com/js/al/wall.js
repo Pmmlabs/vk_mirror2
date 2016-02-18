@@ -105,7 +105,7 @@ var FullWall = {
       fullPostView: true
     });
     wall.init(opts);
-    if (!opts.wall_type || opts.wall_type != 'cards' && opts.wall_type != 'supp' && opts.wall_type != 'phone_info') {
+    if (!opts.wall_type || opts.wall_type != 'cards' && opts.wall_type != 'supp' && opts.wall_type != 'restore' && opts.wall_type != 'phone_info') {
       Pagination.init();
     }
     cur.destroy.push(Pagination.deinit);
@@ -127,7 +127,7 @@ var FullWall = {
     }
 
     wall.initUpdates(opts.add_queue_key);
-    if (opts.wall_type && (opts.wall_type == 'cards' || opts.wall_type == 'supp' || opts.wall_type == 'phone_info')) return;
+    if (opts.wall_type && (opts.wall_type == 'cards' || opts.wall_type == 'supp' || opts.wall_type == 'restore' || opts.wall_type == 'phone_info')) return;
     cur.nav.push(function(changed, current, next) {
       var own = changed.own;
       delete(changed.own);
