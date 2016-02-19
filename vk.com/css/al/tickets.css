@@ -2904,3 +2904,11 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   color: #476586;
   font-weight: bold;
 }
+.tickets_member_info_tt:before,
+.tickets_member_info_tt:after {
+  left: 100px;
+}
+.tickets_group_info_tt:before,
+.tickets_group_info_tt:after {
+  right: 200px;
+}

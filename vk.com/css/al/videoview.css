@@ -1013,8 +1013,6 @@ body.mobfixed #mv_layer_wrap {
   padding: 0px 0px 0px 0px;
   background-color: #1E1E1E;
 }
-/*656px;*/
-/*369px;*/
 .mv_wpl #mv_loader {
   width: 720px;
   height: 405px;
@@ -1304,7 +1302,6 @@ embed#video_player {
 .mv_top_button:hover .mv_minimize_icon,
 .mv_top_button:hover .mv_pl_toggle_icon {
   opacity: 1;
-  filter: alpha(opacity=100);
 }
 .mv_top_button.mv_top_minimize {
   margin-top: 6px;
@@ -1313,8 +1310,10 @@ embed#video_player {
   margin-top: 11px;
   margin-left: -20px;
   opacity: 0;
+  visibility: hidden;
 }
 .mv_plb_collapsed .mv_top_button.mv_top_pl_toggle {
+  visibility: visible;
   opacity: 1;
   margin-left: -5px;
 }
@@ -1332,7 +1331,6 @@ embed#video_player {
   width: 15px;
   height: 15px;
   opacity: 0.55;
-  filter: alpha(opacity=55);
   -webkit-transition: opacity 0.15s ease-in-out;
   -moz-transition: opacity 0.15s ease-in-out;
   -ms-transition: opacity 0.15s ease-in-out;

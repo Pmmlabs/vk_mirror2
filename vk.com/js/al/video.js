@@ -3,7 +3,6 @@ var Video = {
 
   CHANNEL_PREFIX: 'channel',
   CATEGORY_PREFIX: 'cat_',
-  SIGNIFICANT_POSITIONS: 50,
 
   init: function(obj) {
     extend(cur, obj);
@@ -41,10 +40,11 @@ var Video = {
       vOrder: 2,
       vViewsPerSearch: null,
       vSearchFieldHasLostFocus: false,
-      vSearchPositionViews: Array(Video.SIGNIFICANT_POSITIONS),
+      vSearchPositionStats: [],
       vSearchClickNum: 0,
       vSearchLastActionTime: new Date().getTime(),
-      vSearchLastSeenEl: null
+      vSearchLastSeenEl: null,
+      vSearchLastSeenIdx: -1
     });
 
     cur.ownerPlaylistsHtml = cur.albumsSummaryEl ? cur.albumsSummaryEl.innerHTML : '';
@@ -590,6 +590,14 @@ var Video = {
       var parentContainer = domCA(obj, '.video_row');
       if (parentContainer.hasAttribute('data-search-pos')) {
         cur.vSearchPos = parseInt(parentContainer.getAttribute('data-search-pos'));
+
+        // A user could click the video whose thumbnail is barely seen on the screen.
+        // But we need to take this video into account, as long as user noticed it.
+        if (cur.vSearchPos > cur.vSearchLastSeenIdx) {
+          cur.vSearchLastSeenEl = parentContainer;
+          cur.vSearchLastSeenIdx = cur.vSearchPos;
+        }
+
         var clickNum = ++cur.vSearchClickNum;
         var clickTime = new Date().getTime() - cur.vSearchLastActionTime;
         options.addParams = extend(options.addParams || {}, { click_num: clickNum, click_time: clickTime });
@@ -1109,9 +1117,9 @@ var Video = {
     else {
       hide(cur.btnHot);
     }
-    var hd = cur.vHD ? cur.vHD : 0;
+
     cur.searchData = cur.searchData || {};
-    cur.searchData[str + hd.toString() + (cur.vOrder || '').toString() + cur.vDateAdded] = {
+    cur.searchData[Video.searchDataIndex(str)] = {
       count: 0,
       list: [],
       offset: 0
@@ -1156,10 +1164,9 @@ var Video = {
         }
         cur.loading = true;
         cur.searchTimout = setTimeout((function() {
-          this.loadFromSearch(str);
-
           // Publish stats of previous search
           Video.logSearchStats();
+          this.loadFromSearch(str);
         }).bind(this), (force ? 0 : 500));
         addClass(cur.videoSearch, 'v_loading');
       }
@@ -1327,8 +1334,7 @@ var Video = {
       return true;
     }
     if (cur.vSection == 'search' && cur.vStr) {
-      var hd = cur.vHD ? cur.vHD : 0;
-      var searchData = cur.searchData[cur.vStr + hd.toString() + cur.vOrder.toString() + cur.vDateAdded];
+      var searchData = cur.searchData[Video.searchDataIndex(cur.vStr)];
       var len = (searchData) ? searchData.count : 0;
       if (len/* || !cur.loading*/) {
         searchStr = langNumeric(len, cur.lang['video_num_found_files'], true);
@@ -1431,7 +1437,7 @@ var Video = {
   },
   loadFromSearch: function(str) {
     var hd = cur.vHD ? cur.vHD : 0;
-    var index = str+hd.toString()+cur.vOrder.toString()+cur.vDateAdded;
+    var index = Video.searchDataIndex(str);
     var overwritePlaylist = index != cur._videoSearchDataIndex;
 
     if (!cur.searchData[index]) {
@@ -1588,7 +1594,6 @@ var Video = {
     var sectionObject = cur.videoList[sec] || {};
     var list = (sectionObject.list) ? sectionObject.list.slice() : [];
 
-
     if (!list) {
       return;
     }
@@ -1632,11 +1637,10 @@ var Video = {
     }
 
     if (cur.vSection == 'search' && cur.vStr) { // search
-      var hd = cur.vHD ? cur.vHD : 0;
-      var searchData = cur.searchData[cur.vStr+hd.toString()+cur.vOrder.toString() + cur.vDateAdded];
-
+      var searchData = cur.searchData[Video.searchDataIndex(cur.vStr)];
       var searchCount = (searchData) ? searchData.count : 0;
       var searchLen = (searchData) ? searchData.list.length : 0;
+
       if (!cur.loading && cur.vStr && searchLen < searchCount && cur.shown + cur.perPage/* + 20*/ > searchLen) {
         cur.loading = true;
         this.loadFromSearch(cur.vStr);
@@ -2272,8 +2276,7 @@ var Video = {
       langPrefix = 'video_album_update_';
     } else {
       if (cur.vSection == 'search') {
-        var hd = cur.vHD ? cur.vHD : 0;
-        var searchData = cur.searchData[cur.vStr + hd.toString() + (cur.vOrder || '').toString() + cur.vDateAdded];
+        var searchData = cur.searchData[Video.searchDataIndex(cur.vStr)];
         if (searchData && searchData.list) {
           list = searchData.list;
         }
@@ -2907,37 +2910,73 @@ var Video = {
   logSearchStats: function() {
     if (cur.vSearchFieldHasLostFocus /* && !cur.vSearchHadAdult */) {
       if (typeof(cur.vViewsPerSearch) !== 'undefined' && cur.vViewsPerSearch !== null) {
-        console.log('register views per search: ', cur.vViewsPerSearch);
 
-        // We need to count views for every position separately in order
-        // to count weighted CTR of all positions, seen by user (but no more than 50)
-        for (var i = 0; i < cur.vSearchPositionViews.length; i++) {
-          if (typeof(cur.vSearchPositionViews[i]) == 'undefined') {
-            cur.vSearchPositionViews[i] = 0;
-          }
+        var query = cur._videoSearchDataIndex;
+        var searchList = cur.searchData[query].list;
+        var lastSeen = cur.vSearchLastSeenIdx + 1;
+
+        // Here we prepare some statistics for search quality metrics
+        // and collecting data for search formula learning
+        var positionStats = [];
+        for (var i = 0; i < lastSeen; i++) {
+          var stats = extend(cur.vSearchPositionStats[i] || {}, Video.extractSearchStat(searchList[i]));
+          positionStats.push(Video.serializeSearchStat(stats));
         }
 
-        var lastSeen = parseInt(cur.vSearchLastSeenEl.getAttribute('data-search-pos')) + 1 || 0;
         ajax.post('al_video.php', {
           act: 'a_search_query_stat',
+          query: query,
           count: cur.vViewsPerSearch,
           scrolled_until: lastSeen,
-          position_counts: cur.vSearchPositionViews.slice(0, lastSeen)
+          position_stats: positionStats
         });
       }
       cur.vViewsPerSearch = 0;
       cur.vSearchFieldHasLostFocus = false;
       cur.vSearchLastSeenEl = null;
-      for (var i = 0; i < cur.vSearchPositionViews.length; i++) {
-        cur.vSearchPositionViews[i] = 0;
+      cur.vSearchLastSeenIdx = -1;
+      for (var i = 0; i < cur.vSearchPositionStats.length; i++) {
+        if (cur.vSearchPositionStats[i]) {
+          cur.vSearchPositionStats[i].viewStarted = 0;
+        }
       }
     }
+  },
+
+  extractSearchStat: function(v) {
+    if (!v) return {};
+    return {
+      'oid': v[0],
+      'vid': v[1]
+    };
+  },
+
+  serializeSearchStat: function(stat) {
+    stat = stat || {};
+
+    var fields = ['oid', 'vid', 'viewStarted'];
+    var res = '';
+
+    for (var i = 0; i < fields.length; i++) {
+      var param = stat[fields[i]];
+      if (param === null || typeof(param) === 'undefined') {
+        param = '';
+      }
+      res += res ? ',' + param : param;
+    }
+
+    return res;
   },
 
   searchBlur: function(input) {
     if (input.value) {
       cur.vSearchFieldHasLostFocus = true;
     }
+  },
+
+  searchDataIndex: function(str) {
+    var hd = cur.vHD ? cur.vHD : 0;
+    return [hd.toString(), (cur.vOrder || '').toString(), cur.vDateAdded, str].join('#');
   },
 
   updateLastSeenElement: function() {
@@ -2959,9 +2998,13 @@ var Video = {
       cur.vSearchLastSeenEl = ns;
       ns = domNS(cur.vSearchLastSeenEl);
       if (!ns) {
+        cur.vSearchLastSeenIdx = parseInt(cur.vSearchLastSeenEl.getAttribute('data-search-pos')) || 0;
         return;
       }
+      nsRect = ns.getBoundingClientRect();
     }
+
+    cur.vSearchLastSeenIdx = parseInt(cur.vSearchLastSeenEl.getAttribute('data-search-pos')) || 0;
   }
 }
 

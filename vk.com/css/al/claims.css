@@ -535,9 +535,9 @@
   vertical-align: top;
 }
 .claim_hashes_buttons_wrap {
-  float: right;
   margin-right: 30px;
   margin-top: 10px;
+  width: 95%;
 }
 .claim_hashes_buttons_wrap button {
   margin-left: 5px;

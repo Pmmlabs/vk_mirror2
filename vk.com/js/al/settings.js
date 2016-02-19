@@ -689,7 +689,7 @@ var Settings = {
       width: lastWindowWidth,
       height: lastWindowHeight
     };
-    each(['font_size', 'gif_autoplay'], function (k, v) {
+    each(['font_size', 'gif_autoplay', 'video_autoplay'], function (k, v) {
       params[v] = isChecked(ge('settings_' + v));
     });
     ajax.post('al_settings.php', params);

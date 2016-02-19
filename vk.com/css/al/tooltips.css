@@ -936,3 +936,47 @@ button.mention_tt_half_btn {
   -moz-border-radius: 3px 3px 0px 0px;
   border-radius: 3px 3px 0px 0px;
 }
+.member_info_tt {
+  background: #fff;
+  border: 1px solid #888;
+  box-shadow: 0 2px 10px 2px rgba(127, 127, 127, 0.75);
+}
+.member_info_tt:before {
+  content: "";
+  position: absolute;
+  border-bottom: 7px solid #fff;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  top: -6px;
+  z-index: 3;
+}
+.member_info_tt:after {
+  content: "";
+  position: absolute;
+  border-bottom: 7px solid #888;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  top: -7px;
+  z-index: 2;
+}
+.member_info_tt .side_sh,
+.member_info_tt .bottom_sh {
+  display: none;
+}
+.member_info_tt .big_wall_post {
+  display: none;
+}
+.member_info_tt .wide_wall_module {
+  padding: 10px 15px;
+}
+.member_info_tt .wide_wall_module .post_info,
+.member_info_tt .wide_wall_module .wall_text,
+.member_info_tt .wide_wall_module .wall_post_text {
+  width: 337px;
+}
+.member_info_tt .wide_wall_module .post {
+  margin-bottom: 10px;
+}
+.member_info_tt .wide_wall_module .post:last-child {
+  margin-bottom: 0;
+}

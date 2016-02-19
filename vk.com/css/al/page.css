@@ -6503,24 +6503,45 @@ button.wall_block_app_btn {
   padding: 2px 0px 2px;
 }
 .page_no_flash_wrap {
-  padding: 10px;
-  background: rgba(255, 255, 255, 0.8);
   position: absolute;
-  margin: -160px 0px 0px -140px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  width: 264px;
   left: 50%;
+  top: 50%;
+  width: 264px;
+  padding: 10px;
+  margin: -27px 0px 0px -142px;
+  border-radius: 5px;
+  background: #fff;
+  background: rgba(255, 255, 255, 0.8);
   line-height: 160%;
 }
 .wide_wall_module .page_no_flash_wrap {
-  margin: -220px 0px 0px -55px;
   width: 300px;
+  margin: -18px 0px 0px -160px;
 }
 #mv_box .page_no_flash_wrap {
-  margin: -200px 0px 0px -160px;
   width: 300px;
+  margin: -18px 0px 0px -160px;
+}
+.mv_minimized #mv_box .page_no_flash_wrap {
+  width: 180px;
+  margin: -27px 0px 0px -100px;
+}
+.video_box_wrap {
+  position: relative;
+  overflow: hidden;
+}
+.video_box_background {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  bottom: -10px;
+  left: -10px;
+  background: no-repeat center;
+  background-size: cover;
+  filter: blur(10px);
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -ms-filter: blur(10px);
 }
 .wall_browse_images {
   padding-top: 4px;
