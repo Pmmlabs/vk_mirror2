@@ -22,17 +22,13 @@ playerCallback: {
 
     var module = Videoview.getVideoModule(oid + '_' + vid);
     var params = {act: 'inc_view_counter', oid: oid, vid: vid, hash: hash, curr_res: currRes, max_res: maxRes, player: player, type: type, module: module};
-    // clear porn searchers from stats
-    // if (!cur.adult) {
+
     if (typeof(cur.vSearchPos) !== 'undefined' && cur.vSearchPos !== null) {
       params.search_pos = cur.vSearchPos;
-      if (typeof(cur.vSearchPositionStats[cur.vSearchPos]) == 'undefined') {
-        cur.vSearchPositionStats[cur.vSearchPos] = {'viewStarted': 0};
-      }
+      cur.vSearchPositionStats[cur.vSearchPos] = extend({'viewStarted': 0}, cur.vSearchPositionStats[cur.vSearchPos]);
       cur.vSearchPositionStats[cur.vSearchPos].viewStarted++;
     }
     cur.vViewsPerSearch++;
-    // }
 
     ajax.post('al_video.php', params, {
       onDone: function(t) {
@@ -331,7 +327,7 @@ playerCallback: {
       // }
 
       ajax.post('/al_video.php', params, {
-        onDone: function(prevSegments, prevSegmentsSig) {
+        onDone: function(prevSegments, prevSegmentsSig, callbackRes) {
           if (prevSegments < 0) {
             return;
           }
@@ -345,6 +341,15 @@ playerCallback: {
           }
 
           cur.segmentsSaveProcess = false;
+
+          callbackRes = parseInt(callbackRes) || 0;
+          if (callbackRes > 0 &&
+              typeof(cur.vSearchPos) !== 'undefined' && cur.vSearchPos !== null &&
+              typeof(cur.vSearchPositionStats) !== 'undefined' && cur.vSearchPositionStats !== null)
+          {
+            cur.vSearchPositionStats[cur.vSearchPos] = extend({'viewedParts': 0}, cur.vSearchPositionStats[cur.vSearchPos]);
+            cur.vSearchPositionStats[cur.vSearchPos].viewedParts++;
+          }
         }
       });
     }

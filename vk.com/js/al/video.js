@@ -598,6 +598,9 @@ var Video = {
           cur.vSearchLastSeenIdx = cur.vSearchPos;
         }
 
+        cur.vSearchPositionStats[cur.vSearchPos] = extend({'clicked': 0}, cur.vSearchPositionStats[cur.vSearchPos]);
+        cur.vSearchPositionStats[cur.vSearchPos].clicked++;
+
         var clickNum = ++cur.vSearchClickNum;
         var clickTime = new Date().getTime() - cur.vSearchLastActionTime;
         options.addParams = extend(options.addParams || {}, { click_num: clickNum, click_time: clickTime });
@@ -2937,7 +2940,9 @@ var Video = {
       cur.vSearchLastSeenIdx = -1;
       for (var i = 0; i < cur.vSearchPositionStats.length; i++) {
         if (cur.vSearchPositionStats[i]) {
+          cur.vSearchPositionStats[i].clicked = 0;
           cur.vSearchPositionStats[i].viewStarted = 0;
+          cur.vSearchPositionStats[i].viewedParts = 0;
         }
       }
     }
@@ -2954,7 +2959,7 @@ var Video = {
   serializeSearchStat: function(stat) {
     stat = stat || {};
 
-    var fields = ['oid', 'vid', 'viewStarted'];
+    var fields = ['oid', 'vid', 'clicked', 'viewStarted', 'viewedParts'];
     var res = '';
 
     for (var i = 0; i < fields.length; i++) {
@@ -2976,7 +2981,8 @@ var Video = {
 
   searchDataIndex: function(str) {
     var hd = cur.vHD ? cur.vHD : 0;
-    return [hd.toString(), (cur.vOrder || '').toString(), cur.vDateAdded, str].join('#');
+    var adult = cur.adult ? 1 : 0;
+    return [hd.toString(), adult.toString(), (cur.vOrder || '').toString(), cur.vDateAdded, str].join('#');
   },
 
   updateLastSeenElement: function() {

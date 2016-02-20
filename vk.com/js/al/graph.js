@@ -128,8 +128,9 @@ function formatDate(time, format) {
     if (m.length == 1) m = '0' + m;
     var d = date.getDate().toString(),
     mmmm = getLang('Month' + (date.getMonth() + 1) + '_of'), mmmm2 = getLang('Month' + (date.getMonth() + 1)),
-    mmm = mmmm.substr(0, 3).toLowerCase(), mmm2 = mmmm2.substr(0, 3).toLowerCase(),
     yyyy = date.getFullYear().toString(), yy = yyyy.substr(2);
+    mmm = se('<textarea>' + mmmm + '</textarea>').value.substr(0, 3).toLowerCase();
+    mmm2 = se('<textarea>' + mmmm2 + '</textarea>').value.substr(0, 3).toLowerCase();
   }
   var fmt = dateFormats[format];
   return fmt.split('{month}').join(mmmm2).
