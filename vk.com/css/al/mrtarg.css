@@ -1,0 +1,80 @@
+#mrtarg_css {
+  display: none;
+}
+.trg-b-banner-block {
+  font-family: Tahoma, Arial, Verdana, Lucida Sans, sans-serif !important;
+  font-size: 11px;
+}
+.trg-b-banner-block .trg-b-list_vk-left {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.trg-b-banner-block .trg-b-banner {
+  display: block;
+  position: relative;
+  white-space: normal;
+  width: 118px;
+}
+.trg-b-banner-block .trg-b-all-in-link {
+  width: 112px;
+  padding-left: 3px;
+  padding-right: 3px;
+  display: block;
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 11px;
+  overflow: hidden;
+  word-wrap: break-word;
+  position: relative;
+  z-index: 2;
+  color: #2B587A;
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 1px solid #DCE3E9!important;
+}
+.trg-b-banner-block .trg-b-banner:first-child .trg-b-all-in-link {
+  border-top: 1px solid #DCE3E9!important;
+}
+.trg-b-banner-block .trg-b-all-in-link:hover {
+  text-decoration: none;
+}
+.trg-b-banner-block .trg-b-header {
+  color: #36638E;
+  font-weight: bold;
+}
+.trg-b-banner-block .trg-b-age-limit {
+  color: #777;
+  font-size: 9px;
+  padding: 2px 3px;
+  border-radius: 30px;
+  display: inline-block;
+  margin-top: 5px;
+  line-height: 10px;
+}
+.trg-b-banner-block .trg-b-text {
+  color: #000000;
+  padding-top: 10px;
+  display: block;
+}
+.trg-b-banner-block .trg-b-domen {
+  color: #777777;
+  font-size: 0.91em;
+  padding-top: 3px;
+}
+.trg-b-banner-block .trg-b-img-wrap {
+  padding-top: 9px;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+.trg-b-banner-block .trg-b-img {
+  margin: 0 auto;
+  display: block;
+  max-width: 90px;
+}
+.trg-b-banner-block .trg-b-disclaimer {
+  color: #777777;
+  font-size: 0.87em;
+  padding-top: 10px;
+}

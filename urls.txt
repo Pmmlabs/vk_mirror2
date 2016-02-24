@@ -436,3 +436,5 @@ http://vk.com/js/wiki.js
 http://vk.com/js/wysiwyg.js
 http://vk.com/js/al/market.js
 http://vk.com/js/al/video_youtube.js
+http://vk.com/js/al/mrtarg.js
+http://vk.com/css/al/mrtarg.css
