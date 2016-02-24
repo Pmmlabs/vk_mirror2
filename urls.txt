@@ -438,3 +438,5 @@ http://vk.com/js/al/market.js
 http://vk.com/js/al/video_youtube.js
 http://vk.com/js/al/mrtarg.js
 http://vk.com/css/al/mrtarg.css
+http://vk.com/js/al/videocat.js
+http://vk.com/css/al/videocat.css
