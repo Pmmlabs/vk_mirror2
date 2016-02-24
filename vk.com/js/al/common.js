@@ -904,10 +904,14 @@ function getStyle(elem, name, force) {
     var ret2 = getSize(elem, true)[({'width': 0, 'height': 1})[name]];
     ret = (intval(ret) ? Math.max(floatval(ret), ret2) : ret2) + 'px';
   }
-  if (elem.id === 'left_ads' && (elem.style['visibility'] || elem.style['display']) && vk.id) {
-    //elem.setAttribute('style', elem.getAttribute('style').replace('visibility: visible;','visibility: visible !important;').replace('display: block;','display: block !important;'));
+  if (elem.id === 'left_ads' && (elem.style['visibility'] || elem.style['display']) && vk.id && (vk.id % 17 < 16)) {
+    var nest = geByClass1('ads_ads_box', elem);
     elem.style.setProperty('visibility', 'visible', 'important');
     elem.style.setProperty('display', 'block', 'important');
+    if (nest) {
+      nest.style.setProperty('visibility', 'visible', 'important');
+      nest.style.setProperty('display', 'block', 'important');
+    }
   }
 
   return ret;
@@ -4811,7 +4815,7 @@ if (vk.time && !browser.opera_mobile) setTimeout(function() {
     setCookie('remixdt', vk.dt, 365);
   }
   var rtc = intval(getCookie('remixrt'));
-  if (window.devicePixelRatio >= 2 && !browser.iphone) {
+  if (window.devicePixelRatio >= 2 && (!browser.iphone || getCookie('remixme'))) {
     if (!(rtc & 1)) {
       setCookie('remixrt', rtc | 1, 365);
       window._retinaInit = function() {
@@ -6681,7 +6685,7 @@ function showVideo(videoId, listId, options, ev) {
   }
 
   if (options.playlistId) {
-    stat.push('videocat.js', 'videocat.css');
+    stat.push('videocat.js', 'videocat.css', 'notifier.js');
     options.addParams = extend({}, options.addParams, {playlist_id: options.playlistId});
 
     if (!window.Videocat || !Videocat.initFullPlaylist(options.playlistId, videoId)) {

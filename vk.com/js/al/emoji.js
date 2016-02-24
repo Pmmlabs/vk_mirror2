@@ -910,7 +910,7 @@ emojiLoadMore: function(optId) {
   } else {
     var params = {act: 'get_emoji_list'};
     if (Emoji.hasNewStickers < 0) params.new_shown = 1;
-    ajax.post('im', params, {
+    ajax.post('al_im.php', params, {
       onDone: function(codes, stickers) {
         Emoji.stickers = stickers;
         if (Emoji.stickers[-1]) {

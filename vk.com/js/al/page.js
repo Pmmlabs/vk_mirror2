@@ -944,23 +944,40 @@ var Page = {
   },
   overGifAdd: function(obj, txt, doc, ev) {
     cur.gifAdded = cur.gifAdded || {};
-    if (!cur.gifAdded[doc]) {
-      showTooltip(obj, {text: txt, black: 1, center: 1, shift: [1, 2, 0]});
+    if (cur.gifAdded[doc]) {
+      txt = cur.gifAdded[doc].tooltip;
+      if (!txt) return false;
     }
+
+    showTooltip(obj, {text: txt, black: 1, center: 1, shift: [1, 2, 0]});
     return false;
   },
   addGif: function(obj, doc, hash, addHash, ev) {
     cur.gifAdded = cur.gifAdded || {};
     if (obj.tt) obj.tt.hide();
+
+    var wrap = gpeByClass('page_gif_large', obj) || domPN(obj);
+
     if (!cur.gifAdded[doc]) {
-      var wrap = gpeByClass('page_gif_large', obj) || domPN(obj);
       addClass(obj, 'page_gif_adding');
       ajax.post('docs.php', {act: 'a_add', doc: doc, hash: hash, add_hash: addHash}, {
-        onDone: function(text, tooltip) {
+        onDone: function(text, tooltip, docObj, hash) {
           showDoneBox(text);
           addClass(wrap, 'page_gif_added');
           if (obj.tt && obj.tt.el) obj.tt.destroy();
-          cur.gifAdded[doc] = tooltip || '&nbsp;';
+          cur.gifAdded[doc] = {
+            tooltip: tooltip,
+            did: docObj[0],
+            hash: hash
+          };
+        }
+      });
+    } else {
+      ajax.post('docs.php', {act: 'a_delete', oid: vk.id, did: cur.gifAdded[doc].did, hash: cur.gifAdded[doc].hash}, {
+        onDone: function() {
+          removeClass(wrap, 'page_gif_added');
+          if (obj.tt && obj.tt.el) obj.tt.destroy();
+          delete cur.gifAdded[doc];
         }
       });
     }

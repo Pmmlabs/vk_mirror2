@@ -1864,6 +1864,10 @@ body.dev.is_2x .priv_h_arrow,
   background-image: url(/images/apps/apps_valentine2016_bkg_2x.png);
   background-size: 627px 235px;
 }
+.is_2x #apps_collection78_wrap {
+  background-image: url(/images/apps/apps_23february2016_bkg_2x.png);
+  background-size: 627px 235px;
+}
 .is_2x .gift_icon {
   background-image: url(/images/gift_magic_2x.png?1);
   background-size: 24px 24px;

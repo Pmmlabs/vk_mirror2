@@ -1429,6 +1429,9 @@ body.dev a.dev_platform_info {
   padding: 6px 11px 8px;
   line-height: 140%;
 }
+.dev_section_dd .dd_menu_rows a.nodoc {
+  color: #888;
+}
 .dev_section_dd .dd_menu_shad_l,
 .dev_section_dd .dd_menu_shad_r,
 .dev_section_dd .dd_menu_shad_b,

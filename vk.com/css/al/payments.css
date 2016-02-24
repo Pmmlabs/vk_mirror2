@@ -901,9 +901,9 @@ h2.payments_getvotes_title {
   height: 40px;
 }
 .payments_logo_yandexmoney {
-  background: url(/images/ps/yandexmoney.png) 50% 50% no-repeat;
-  width: 106px;
-  height: 45px;
+  background: url(/images/ps/yandexmoney.png?1) 50% 50% no-repeat;
+  width: 120px;
+  height: 50px;
 }
 .payments_logo_checkout {
   background: url(/images/ps/googlewallet.png) 50% 50% no-repeat;

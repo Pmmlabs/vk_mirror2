@@ -319,8 +319,8 @@ switchSection: function(sect, openSect, onlyIfSect) {
   var curSel = geByClass1('nav_selected', ge('dev_mlist_list'));
   removeClass(curSel, 'nav_selected');
 
-  var rows = cur.sections[sect]['list'];
-  var name = cur.sections[sect]['name'];
+  var rows = cur.sections[sect].list;
+  var name = cur.sections[sect].name;
   ge('dev_section_menu').innerHTML = name;
   if (cur.methodsDD && cur.methodsDD.header && cur.methodsDD.header.firstChild) {
     cur.methodsDD.header.firstChild.innerHTML = name;
@@ -328,11 +328,12 @@ switchSection: function(sect, openSect, onlyIfSect) {
   var html = '';
   var firstMethod = false;
   for (var i in rows) {
-    var name = rows[i];
+    var name      = rows[i][0];
+    var className = rows[i][1];
     if (!firstMethod) {
       firstMethod = name;
     }
-    html += '<a id="dev_mlist_'+(name.replace(/\./g, '_'))+'" class="dev_mlist_item'+(cur.page == name ? ' nav_selected' : '')+'" href="/dev/'+name+'">'+name+'</a>';
+    html += '<a id="dev_mlist_'+(name.replace(/\./g, '_'))+'" class="dev_mlist_item'+(cur.page == name ? ' nav_selected' : '')+(className ? ' '+className : '')+'" href="/dev/'+name+'">'+name+'</a>';
   }
   var mlist = ge('dev_mlist_list');
   mlist.innerHTML = html;
@@ -834,7 +835,7 @@ onSearchChange: function(el, ev) {
       for(var i in cur.sections) {
         var list = cur.sections[i].list;
         for (var k in list) {
-          var method = list[k];
+          var method = list[k][0];
           var m = method.match(regExPrior);
           if (m) {
             found.push([method, method.length]);
