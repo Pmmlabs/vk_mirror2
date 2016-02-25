@@ -527,6 +527,11 @@ input#pin {
 #settings_phone_request {
   margin-bottom: 8px!important;
 }
+#settings_phone_request .listing {
+  margin-top: 4px;
+  margin-bottom: 12px;
+  padding-left: 25px;
+}
 #activity_history_box .info_msg {
   border: 0;
   padding: 16px 20px;
