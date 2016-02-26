@@ -1,4 +1,11 @@
 window.translation = window.translation || {
+  recalcCounters: function() {
+    ajax.post('al_translation.php', { act: 'a_recalc_counters' }, {
+      onDone: function() {
+        nav.reload();
+      }
+    });
+  },
   menu: function(ev, sections, admin_href, admin_name, hash) {
     if (checkEvent(ev)) return true;
 

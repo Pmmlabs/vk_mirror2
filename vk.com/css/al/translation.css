@@ -1145,6 +1145,10 @@ blockquote {
 .translator_history_wrap .history_item .history_item_phrase {
   padding: 10px;
 }
+.tran_recalc_btn {
+  margin: 14px 10px 0;
+  display: inline-block;
+}
 .is_2x .translation_stats .indicator {
   background-image: url(/images/lang_indicators_2x.png) !important;
   background-size: 16px 54px;

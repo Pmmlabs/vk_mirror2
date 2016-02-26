@@ -910,7 +910,7 @@ function getStyle(elem, name, force) {
     elem.style.setProperty('display', 'block', 'important');
     if (nest) {
       nest.style.setProperty('visibility', 'visible', 'important');
-      nest.style.setProperty('display', 'block', 'important');
+      nest.style.setProperty('display', 'table', 'important');
     }
   }
 
