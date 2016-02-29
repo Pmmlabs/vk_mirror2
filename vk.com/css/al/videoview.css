@@ -92,10 +92,6 @@ body.mobfixed #mv_layer_wrap {
   -webkit-transition: none !important;
   transition: none !important;
 }
-.mv_minimized .video_layer_message {
-  width: auto;
-  padding: 40px 0;
-}
 .video_layer_message a {
   color: #6B98BA;
 }

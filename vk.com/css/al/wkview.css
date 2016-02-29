@@ -49,12 +49,6 @@ body.mobfixed #wk_layer_wrap {
   overflow: auto;
   z-index: 610;
 }
-.video_layer_message {
-  color: #AAAAAA;
-  width: 640px;
-  padding: 150px 30px;
-  text-align: center;
-}
 .wk_cont {
   position: relative;
   margin: 0px auto;
