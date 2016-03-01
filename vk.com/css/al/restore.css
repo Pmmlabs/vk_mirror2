@@ -82,6 +82,9 @@
   text-align: left;
   line-height: 160%;
 }
+.request_info.info_msg {
+  margin-top: 20px;
+}
 .request_section_wrap input,
 .request_section_wrap textarea {
   width: 202px;
