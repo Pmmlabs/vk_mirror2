@@ -3010,6 +3010,7 @@ var Feed = {
       phCache: {},
       phShown: {},
       subsections: {},
+      feed_session_id: options.feed_session_id || 'na',
       module: 'feed',
       isFeedLoading: false,
       wallPostCb: function () {

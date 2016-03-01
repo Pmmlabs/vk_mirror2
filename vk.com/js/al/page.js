@@ -277,6 +277,7 @@ var Page = {
         if (sa == -1 || se == -1 || p == 1 && (sa || se)) continue;
         ch = _postsSeen[j] = p;
         _postsExtras[j] = {start: now, diff: -1, index: index, q: query};
+        _postsExtras[j]['session_id'] = cur.feed_session_id ? cur.feed_session_id : 'na'
       }
     }
     if (ch) {
@@ -304,7 +305,9 @@ var Page = {
     for (i in _postsSeen) {
       sn = _postsSeen[i];
       if (_postsExtras[i]) {
-        extras[i] = {diff: _postsExtras[i].diff, index: _postsExtras[i].index, q: _postsExtras[i].q};
+        extras[i] = {
+            diff: _postsExtras[i].diff, index: _postsExtras[i].index,
+            q: _postsExtras[i].q, session_id: _postsExtras[i].session_id ? _postsExtras[i].session_id : 'na'};
         delete _postsExtras[i];
       }
       p = i.split('_');
@@ -384,7 +387,8 @@ var Page = {
         if (query_str) {
           query_str = ':' + query_str;
         }
-        var extra_str = (extra && i != 'ad' && i != 'posthashtag') ? (':' + extra.diff + ':' + extra.index + query_str) : '';
+        var session_id_str = extra && extra.session_id ? extra.session_id : 'na';
+        var extra_str = (extra && i != 'ad' && i != 'posthashtag') ? (':' + extra.diff + ':' + extra.index + ':' + session_id_str + query_str) : '';
         r.push(m + ((seen[i][j] > 0) ? j : -j) + extra_str);
       }
       if (r.length) {
