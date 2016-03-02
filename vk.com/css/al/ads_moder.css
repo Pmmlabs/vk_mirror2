@@ -878,3 +878,9 @@ table.ads_logs_info th {
   margin-top: 3px;
   display: block;
 }
+.ads_premoderation_request_ad_choosen {
+  background-color: #E3E9EE;
+}
+.ads_overflow_hidden_wrap1 .checkbox_container table {
+  margin: 0px;
+}

@@ -2,6 +2,7 @@ var AdsModer = {};
 
 AdsModer.init = function() {
   AdsModer.initDelayedImages();
+  AdsModer.initMultipleRequests();
 }
 
 AdsModer.initDelayedImages = function() {
@@ -634,31 +635,43 @@ AdsModer.premoderationProcessRequest = function(action, requestKey, requestKeyMo
 
 AdsModer.premoderationProcessRequestsMassCheck = function(action, requestKey) {
 
-  var requestParams = cur.requestsParams[requestKey];
-
-  var requestsKeys = [];
-
-  if (action === 'approve') {
-    if (requestParams.categories_changed) {
-      if (cur.requestsChecksumsApproveWithoutCategories[requestParams.checksum_approve_without_categories].length < 2) {
-        return false;
-      }
-      requestsKeys = cur.requestsChecksumsApproveWithoutCategories[requestParams.checksum_approve_without_categories];
-    } else {
-      if (cur.requestsChecksumsApproveWithCategories[requestParams.checksum_approve_with_categories].length < 2) {
-        return false;
-      }
-      requestsKeys = cur.requestsChecksumsApproveWithCategories[requestParams.checksum_approve_with_categories];
+  var requestsKeys = [], allRequestsKeys;
+  if (cur.multipleRequestsIds.length) {
+    requestsKeys = cur.multipleRequestsIds;
+    if(cur.multipleRequestsIds.indexOf(requestKey) == -1) {
+      requestsKeys = requestsKeys.concat(requestKey);
     }
-  } else if (action === 'disapprove') {
-    if (cur.requestsChecksumsDisapprove[requestParams.checksum_disapprove].length < 2) {
-      return false;
+  } else {
+    requestsKeys = requestsKeys.concat(requestKey);
+  }
+
+  allRequestsKeys = requestsKeys.slice();
+
+  each(requestsKeys, function(i, requestKey) {
+    var requestParams = cur.requestsParams[requestKey];
+    if (action === 'approve') {
+      if (requestParams.categories_changed) {
+        if (cur.requestsChecksumsApproveWithoutCategories[requestParams.checksum_approve_without_categories].length > 1) {
+          allRequestsKeys = allRequestsKeys.concat(cur.requestsChecksumsApproveWithoutCategories[requestParams.checksum_approve_without_categories]);
+        }
+      } else {
+        if (cur.requestsChecksumsApproveWithCategories[requestParams.checksum_approve_with_categories].length > 1) {
+          allRequestsKeys = allRequestsKeys.concat(cur.requestsChecksumsApproveWithCategories[requestParams.checksum_approve_with_categories]);
+        }
+      }
+    } else if (action === 'disapprove') {
+      if (cur.requestsChecksumsDisapprove[requestParams.checksum_disapprove].length > 1) {
+        allRequestsKeys = allRequestsKeys.concat(cur.requestsChecksumsDisapprove[requestParams.checksum_disapprove]);
+      }
     }
-    requestsKeys = cur.requestsChecksumsDisapprove[requestParams.checksum_disapprove];
+  });
+
+  if (allRequestsKeys.length == 1) {
+    return false;
   }
 
   var confirmTitle   = ((action === 'approve') ? 'Массовое одобрение' : 'Массовое отклонение');
-  var confirmText    = 'Похожих объявлений на текущей странице: '+requestsKeys.length;
+  var confirmText    = 'Похожих объявлений на текущей странице: '+allRequestsKeys.length;
   var processAllText = ((action === 'approve') ? 'Одобрить все' : 'Отклонить все');
   var processOneText = ((action === 'approve') ? 'Одобрить одно' : 'Отклонить одно');
 
@@ -670,8 +683,9 @@ AdsModer.premoderationProcessRequestsMassCheck = function(action, requestKey) {
   return true;
 
   function processAll() {
+    cleanMultipleChoices();
     cleanChecksums();
-    AdsModer.premoderationProcessRequestsMass(action, requestKey, requestsKeys, box);
+    AdsModer.premoderationProcessRequestsMass(action, requestKey, allRequestsKeys, box);
   }
   function processOne() {
     cleanChecksums();
@@ -679,9 +693,17 @@ AdsModer.premoderationProcessRequestsMassCheck = function(action, requestKey) {
     AdsModer.premoderationProcessRequest(action, requestKey, requestKey);
   }
   function cleanChecksums() {
-    cur.requestsChecksumsApproveWithCategories[requestParams.checksum_approve_with_categories] = [];
-    cur.requestsChecksumsApproveWithoutCategories[requestParams.checksum_approve_without_categories] = [];
-    cur.requestsChecksumsDisapprove[requestParams.checksum_disapprove] = [];
+    each(allRequestsKeys, function(i, requestKey) {
+      var requestParams = cur.requestsParams[requestKey];
+      cur.requestsChecksumsApproveWithCategories[requestParams.checksum_approve_with_categories] = [];
+      cur.requestsChecksumsApproveWithoutCategories[requestParams.checksum_approve_without_categories] = [];
+      cur.requestsChecksumsDisapprove[requestParams.checksum_disapprove] = [];
+    });
+  }
+  function cleanMultipleChoices() {
+    for(var idx = cur.multipleRequestsIds.length - 1; idx >= 0; idx--) {
+      AdsModer.multipleRequestsRemoveRequest(cur.multipleRequestsIds[idx]);
+    }
   }
 }
 
@@ -1408,6 +1430,57 @@ AdsModer.initTemplateActions = function () {
       width: 200
     });
   });
+}
+
+AdsModer.initMultipleRequests = function() {
+  var checkBoxElements = geByClass('multiple_requests_cb');
+
+  for (var i in checkBoxElements) {
+    var requestCb = checkBoxElements[i];
+    var requestId = requestCb.getAttribute('data-request-id');
+    var clientUnionId = requestCb.getAttribute('data-client-union-id');
+    cur.uiMultipleRequestsCbs[requestId] = new Checkbox(requestCb, {
+      label: "",
+      width: "20px",
+      onChange: (function(clientUnionId, requestId, value) {
+        if (value) {
+          AdsModer.multipleRequestsAddRequest(clientUnionId, requestId);
+        } else {
+          AdsModer.multipleRequestsRemoveRequest(requestId);
+        }
+      }).pbind(clientUnionId, requestId)
+    });
+  }
+}
+
+AdsModer.multipleRequestsAddRequest = function(clientUnionId, requestId, cb) {
+  if(cur.multipleRequestsClientUnionId && cur.multipleRequestsClientUnionId != clientUnionId) {
+    var requests = cur.multipleRequestsIds;
+    for(var idx = cur.multipleRequestsIds.length - 1; idx >= 0; idx--) {
+      this.multipleRequestsRemoveRequest(cur.multipleRequestsIds[idx]);
+    }
+    cur.multipleRequestsIds = [];
+  } else if (!cur.multipleRequestsClientUnionId) {
+    cur.multipleRequestsIds = [];
+  }
+
+  cur.multipleRequestsClientUnionId = clientUnionId;
+  cur.multipleRequestsIds.push(requestId);
+
+  var requestElem = ge("req"+requestId);
+  addClass(requestElem, 'ads_premoderation_request_ad_choosen');
+  //requestElem.style.setProperty("background-color", "#E3E9EE");
+}
+
+AdsModer.multipleRequestsRemoveRequest = function(requestId) {
+  var requestElem = ge("req"+requestId);
+  var index = cur.multipleRequestsIds.indexOf(requestId);
+  if (index > -1) {
+    cur.multipleRequestsIds.splice(index, 1);
+    removeClass(requestElem, 'ads_premoderation_request_ad_choosen');
+    //requestElem.style.setProperty("background-color", "white");
+    cur.uiMultipleRequestsCbs[requestId].checked(0);
+  }
 }
 
 try{stManager.done('ads_moder.js');}catch(e){}
