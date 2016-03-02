@@ -3333,9 +3333,9 @@ minimize: function(ev) {
   var plBlockEl = Videoview.getPlaylistBlockEl();
   if (plBlockEl) {
     hide(plBlockEl);
+    removeClass(ge('mv_box'), 'mv_plb_collapsed');
     removeClass(geByClass1('mv_data'), 'mv_wpl');
   }
-  removeClass(ge('mv_box'), 'mv_plb_collapsed');
 
   Videoview.updateExternalVideoFinishBlock();
 
@@ -3675,9 +3675,9 @@ isPlaylistBlockCollapsed: function() {
 togglePlaylistsBlock: function(doShow, noAnim, userAction) {
   doShow = !!doShow;
 
-  toggleClass(ge('mv_box'), 'mv_plb_collapsed', !doShow);
-
   if (mvcur.minimized && doShow) return;
+
+  toggleClass(ge('mv_box'), 'mv_plb_collapsed', !doShow && !mvcur.minimized);
 
   var playerEl = Videoview.getPlayerObjectEl();
   var playlistBlockEl = Videoview.getPlaylistBlockEl();

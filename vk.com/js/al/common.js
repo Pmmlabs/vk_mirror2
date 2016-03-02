@@ -6554,8 +6554,9 @@ function handleScroll(scroll) {
     }
   }
 
+  var head = ge('page_header_wrap') || ge('dev_top_nav_wrap');
   setTimeout(function() {
-    scrollEl && scrollToY(getXY(scrollEl)[1], 0);
+    scrollEl && scrollToY(getXY(scrollEl)[1] - (head ? getSize(head)[1] : 0), 0);
     focusEl && elfocus(focusEl);
   }, 300);
 }

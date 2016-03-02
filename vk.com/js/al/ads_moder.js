@@ -670,6 +670,10 @@ AdsModer.premoderationProcessRequestsMassCheck = function(action, requestKey) {
     return false;
   }
 
+  allRequestsKeys = allRequestsKeys.filter(function(elem, pos,arr) {
+    return arr.indexOf(elem) == pos;
+  });
+
   var confirmTitle   = ((action === 'approve') ? 'Массовое одобрение' : 'Массовое отклонение');
   var confirmText    = 'Похожих объявлений на текущей странице: '+allRequestsKeys.length;
   var processAllText = ((action === 'approve') ? 'Одобрить все' : 'Отклонить все');
