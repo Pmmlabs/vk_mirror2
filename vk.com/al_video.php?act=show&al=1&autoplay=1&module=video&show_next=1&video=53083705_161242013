@@ -74,12 +74,11 @@ cur.incViews = function() {
 if (1) {
   stManager.add(['video_youtube.js', 'video_youtube.css']);
 }
-if (window.youtubeApi) {
+if (window.YT) {
   onYouTubeIframeAPIReady();
 } else {
   (function(d){
     var js, ref = geByTag1('script');
-    window.youtubeApi = true;
     js = ce('script', {async: true, src: 'https://www.youtube.com/iframe_api'})
     ref.parentNode.insertBefore(js, ref);
   }(document));

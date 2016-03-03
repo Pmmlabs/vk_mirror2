@@ -3156,6 +3156,7 @@ var Feed = {
     // Scroll check routine for auto preload next news
     addEvent(feed.scrollNode, 'scroll', feed.scrollCheck);
     addEvent(window, 'resize', feed.scrollCheck);
+    addEvent(window, 'onload', feed.scrollCheck);
   },
   initUi: function () {
     cur.searchSortMenu = new DropdownMenu(cur.options.search_sorts, {

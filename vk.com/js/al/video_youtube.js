@@ -16,7 +16,9 @@ var VideoYoutube = {
   init: function(player, vars) {
     VideoYoutube.destroy();
 
-    if (!player) return;
+    var container = ge('video_yt');
+
+    if (!player || !container) return;
 
     VideoYoutube.cur = {
       player: player,
@@ -38,7 +40,6 @@ var VideoYoutube = {
       VideoYoutube.qualityValues.auto = vars.lang_quality_auto;
     }
 
-    var container = ge('video_yt');
     container.appendChild(se(VideoYoutube.getUIHtml()));
 
     player.addEventListener('onReady', VideoYoutube.onPlayerReady);
