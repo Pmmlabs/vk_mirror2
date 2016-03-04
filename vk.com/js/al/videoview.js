@@ -80,7 +80,11 @@ playerCallback: {
   onSuggestionsShown: function(qid) {
     Videoview.sendPlayerStats(qid ? 14 : 12, 0);
     if (qid) {
-      vkImage().src = '//go.imgsmail.ru/vk?pxn=vs&qid=' + qid;
+      var vids = '';
+      each(mvcur.mvData.playerSuggestions, function(i, video) {
+        vids += '&vid=' + video.vid;
+      });
+      vkImage().src = '//go.imgsmail.ru/vk?pxn=vs&qid=' + qid + vids;
     }
   },
   onSuggestionClick: function(videoRaw, qid, pos, t) {
