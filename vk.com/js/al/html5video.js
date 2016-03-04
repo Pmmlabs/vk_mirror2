@@ -202,7 +202,9 @@ var html5video = {
       html5video.playVideo(true, true);
     }
 
-    Videoview.updatePlaylistBoxPosition();
+    if (window.Videoview) {
+      Videoview.updatePlaylistBoxPosition();
+    }
 
     if (window.videoCallback) {
       videoCallback(['onInitialized']);
@@ -1497,7 +1499,7 @@ var html5video = {
 
     if (vars.min_controls || vars.nolikes) {
       // show('popup1');
-    } else if (vars.show_next && playerSize[0] > 400 && playerSize[1] > 300 && (html5video.nextVideosData = videoview.getNextVideosData())) {
+    } else if (vars.show_next && playerSize[0] > 400 && playerSize[1] > 300 && (html5video.nextVideosData = Videoview.getNextVideosData())) {
       html5video.showNextVideoLayer();
     } else if (playerSize[0] > 250 && playerSize[1] > 200) {
       html5video.showFinishExtendedLayer();
