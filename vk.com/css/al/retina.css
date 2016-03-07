@@ -1375,6 +1375,10 @@ body.dev.is_2x #page_wrap .big.disabled.selector_container td.selector_dropdown 
   background-image: url(/images/pics/newunread_2x.png);
   background-size: 110px 110px;
 }
+.is_2x .im_community_message_info_pic {
+  background-image: url(/images/pics/msg_banner_icon_2x.png);
+  background-size: 18px 14px;
+}
 .is_2x div#wl_post_actions_wrap i.wl_post_like_icon,
 .is_2x .wk_view_footer i.wl_post_like_icon,
 .is_2x .mv_liked_icon {
@@ -1940,7 +1944,8 @@ body.dev.is_2x .priv_h_arrow,
   background-image: url('/images/video_dog_2x.png');
   background-size: 62px 62px;
 }
-.is_2x .feed_hint_close {
+.is_2x .feed_hint_close,
+.is_2x .im_community_message_info_close {
   background-image: url('/images/icons/video_hide_channel_2x.png');
   background-size: 11px 11px;
 }

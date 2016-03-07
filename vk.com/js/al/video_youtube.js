@@ -805,11 +805,15 @@ var VideoYoutube = {
     var duration = player.getDuration();
 
     var progressbar = ge('video_yt_progressbar');
-    var progressbarWidth = getSize(progressbar)[0];
-    var progressbarX = getXY(progressbar)[0];
-    if (VideoYoutube.cur.isFS) {
-      progressbarX -= getXY('video_yt')[0];
+    if (browser.msie8) {
+      var progressbarWidth = getSize(progressbar)[0];
+      var progressbarX = getXY(progressbar)[0] - (VideoYoutube.cur.isFS ? getXY('video_yt')[0] : 0);
+    } else {
+      var boundingRect = progressbar.getBoundingClientRect();
+      var progressbarWidth = boundingRect.width;
+      var progressbarX = boundingRect.left;
     }
+
     var pos = (event.pageX - progressbarX) / progressbarWidth;
     pos = Math.max(0, Math.min(1, pos));
 
@@ -850,15 +854,23 @@ var VideoYoutube = {
 
     var isVertical = VideoYoutube.cur.minSize;
 
-    var volumebarSize = getSize('video_yt_volumebar');
-    var volumebarPos = getXY('video_yt_volumebar');
-    var containerPos = getXY('video_yt');
-    var offset = VideoYoutube.cur.isFS ? containerPos : [0, 0];
-    var pos;
-    if (isVertical) {
-      pos = (volumebarSize[1] - (event.pageY - volumebarPos[1] + offset[1])) / volumebarSize[1];
+    if (browser.msie8) {
+      var volumebarSize = getSize('video_yt_volumebar');
+      var volumebarPos = getXY('video_yt_volumebar');
+      var volumeRect = {
+        left: volumebarPos[0] - scrollGetX(),
+        top: volumebarPos[1] - scrollGetY(),
+        width: volumebarSize[0],
+        height: volumebarSize[1],
+      };
     } else {
-      pos = (event.pageX - volumebarPos[0] + offset[0]) / volumebarSize[0];
+      var volumeRect = ge('video_yt_volumebar').getBoundingClientRect();
+    }
+
+    if (isVertical) {
+      var pos = (volumeRect.height - (event.pageY - scrollGetY() - volumeRect.top)) / volumeRect.height;
+    } else {
+      var pos = (event.pageX - scrollGetX() - volumeRect.left) / volumeRect.width;
     }
     pos = Math.max(0, Math.min(1, pos));
 
@@ -867,8 +879,9 @@ var VideoYoutube = {
     VideoYoutube.updateVolume(pos * 100);
 
     if (!VideoYoutube.cur.minSize) {
-      var tipX = volumebarPos[0] - containerPos[0] + volumebarSize[0] * pos;
-      var tipY = volumebarPos[1] - containerPos[1];
+      var containerRect = ge('video_yt').getBoundingClientRect();
+      var tipX = volumeRect.left - containerRect.left + volumeRect.width * pos;
+      var tipY = volumeRect.top - containerRect.top;
       VideoYoutube.showTip(Math.round(pos * 100) + '%', tipX, tipY);
     }
   },
