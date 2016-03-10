@@ -1375,6 +1375,10 @@ body.dev.is_2x #page_wrap .big.disabled.selector_container td.selector_dropdown 
   background-image: url(/images/pics/newunread_2x.png);
   background-size: 110px 110px;
 }
+.is_2x .im_unread_info_pic_community_message {
+  background-image: url(/images/pics/comm_messages_2x.png);
+  background-size: 120px 120px;
+}
 .is_2x .im_community_message_info_pic {
   background-image: url(/images/pics/msg_banner_icon_2x.png);
   background-size: 18px 14px;

@@ -2538,38 +2538,6 @@ span#im_important_count {
   height: 110px;
   margin-bottom: 3px;
 }
-#im_community_message_info_msg {
-  height: auto;
-  position: relative;
-  padding: 16px 11px 16px 39px;
-}
-.im_community_message_info_pic {
-  position: absolute;
-  top: 16px;
-  left: 11px;
-  width: 18px;
-  height: 14px;
-  background: url(/images/pics/msg_banner_icon.png) no-repeat 0px 0px;
-}
-.im_community_message_info_close {
-  height: 45px;
-  width: 45px;
-  background: url(/images/icons/video_hide_channel.png) no-repeat center;
-  margin: -16px -11px -16px 0px;
-  opacity: 0.4;
-  -o-transition: opacity 100ms linear;
-  -ms-transition: opacity 100ms linear;
-  -moz-transition: opacity 100ms linear;
-  -webkit-transition: opacity 100ms linear;
-  transition: opacity 100ms linear;
-  cursor: pointer;
-}
-.im_community_message_info_close:hover {
-  opacity: 1;
-}
-.im_community_message_info_more {
-  margin: -7px 0px;
-}
 .im_unread_info_pic {
   width: 110px;
   height: 110px;
@@ -3169,4 +3137,62 @@ span#im_important_count {
 .im_group_average_summary {
   color: #AAAAAA;
   font-weight: normal;
+}
+#im_community_message_info_msg {
+  height: auto;
+  position: relative;
+  padding: 16px 11px 16px 39px;
+}
+.im_community_message_info_msg_large {
+  padding: 16px 11px !important;
+}
+.im_unread_info_pic_community_message {
+  background: url(/images/pics/comm_messages.png ) no-repeat 0px 0px;
+  width: 120px;
+  height: 120px;
+}
+.im_unread_info_data_community_message {
+  width: 465px;
+}
+.im_community_message_info_pic {
+  position: absolute;
+  top: 16px;
+  left: 11px;
+  width: 18px;
+  height: 14px;
+  background: url(/images/pics/msg_banner_icon.png) no-repeat 0px 0px;
+}
+.im_community_message_info_close {
+  height: 45px;
+  width: 45px;
+  background: url(/images/icons/video_hide_channel.png) no-repeat center;
+  margin: -16px -11px -16px 0px;
+  opacity: 0.4;
+  -o-transition: opacity 100ms linear;
+  -ms-transition: opacity 100ms linear;
+  -moz-transition: opacity 100ms linear;
+  -webkit-transition: opacity 100ms linear;
+  transition: opacity 100ms linear;
+  cursor: pointer;
+}
+.im_community_message_info_close:hover {
+  opacity: 1;
+}
+.im_community_message_info_more {
+  margin: -7px 0px;
+}
+.im_community_message_info_header {
+  font-size: 13px;
+  font-weight: bold;
+  padding-top: 7px;
+}
+.im_community_message_info_text {
+  font-size: 12px;
+  line-height: 18px;
+}
+.im_community_message_info_cancel {
+  margin-left: 10px;
+}
+.im_community_message_info_actions {
+  margin-top: 17px;
 }
