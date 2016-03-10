@@ -3191,7 +3191,10 @@ span#im_important_count {
   line-height: 18px;
 }
 .im_community_message_info_cancel {
-  margin-left: 10px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  margin: 0px;
 }
 .im_community_message_info_actions {
   margin-top: 17px;

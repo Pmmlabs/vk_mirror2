@@ -1849,7 +1849,8 @@ body.dev.is_2x .priv_h_arrow,
 .is_2x #apps_collection59_wrap,
 .is_2x #apps_collection60_wrap,
 .is_2x #apps_collection61_wrap,
-.is_2x #apps_collection62_wrap {
+.is_2x #apps_collection62_wrap,
+.is_2x #apps_collection79_wrap {
   background-image: url(/images/apps/apps_growth2015_bkg_2x.png);
   background-size: 627px 235px;
 }

@@ -915,11 +915,17 @@ h2.payments_getvotes_title {
   width: 124px;
   height: 40px;
 }
+.payments_logo_paypal_ipn {
+  background: url(/images/ps/paypal.gif) 50% 50% no-repeat;
+  width: 124px;
+  height: 40px;
+}
 .payments_box_wide .payments_logo_webmoney,
 .payments_box_wide .payments_logo_kiwipurse,
 .payments_box_wide .payments_logo_yandexmoney,
 .payments_box_wide .payments_logo_checkout,
-.payments_box_wide .payments_logo_mailmoney {
+.payments_box_wide .payments_logo_mailmoney,
+.payments_box_wide .payments_logo_paypal_ipn {
   width: 100%;
 }
 /* Old payments - begin */
