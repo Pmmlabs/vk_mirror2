@@ -245,7 +245,7 @@ saveTicket: function(hash, checkPermissions) {
   if (nav.objLoc.act == 'new_pay') query.section = 16;
   if (nav.objLoc.act == 'new_name') query.section = 20;
   if (nav.objLoc.act == 'new_api') query.section = 12;
-  if (nav.objLoc.act == 'new_mobile') query.section = 24;
+  if (nav.objLoc.act == 'new_mobile' || nav.objLoc.act == 'new_snapster') query.section = 24;
   if (nav.objLoc.act == 'new_app') query.section = 9;
   if (cur.fromFaqId) {
     query.faq = cur.fromFaqId;
