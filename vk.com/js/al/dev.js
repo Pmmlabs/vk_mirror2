@@ -503,7 +503,7 @@ checkParamVersion: function(ver, a, b, dep){
   if (verA == 0) return false;
 
   if (dep) {
-    if (a > verA || (verA == a && b > verB)) {
+    if (a > verA || (verA == a && b >= verB)) {
       return true;
     }
   } else {

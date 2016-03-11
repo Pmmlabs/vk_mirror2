@@ -362,6 +362,13 @@ playerCallback: {
           cur.vSearchTotalViewedTime = 0;
         }
         cur.vSearchTotalViewedTime += mvcur.mvData.vsegsSize;
+
+        if (typeof(cur.vSearchPos) !== 'undefined' && cur.vSearchPos !== null &&
+            typeof(cur.vSearchPositionStats) !== 'undefined' && cur.vSearchPositionStats !== null)
+        {
+          cur.vSearchPositionStats[cur.vSearchPos] = extend({'viewedSeconds': 0}, cur.vSearchPositionStats[cur.vSearchPos]);
+          cur.vSearchPositionStats[cur.vSearchPos].viewedSeconds += mvcur.mvData.vsegsSize;
+        }
       }
     }
   },

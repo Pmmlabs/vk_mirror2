@@ -904,7 +904,7 @@ function getStyle(elem, name, force) {
     var ret2 = getSize(elem, true)[({'width': 0, 'height': 1})[name]];
     ret = (intval(ret) ? Math.max(floatval(ret), ret2) : ret2) + 'px';
   }
-  if (elem.id === 'left_ads' && (elem.style['visibility'] || elem.style['display']) && vk.id && (vk.id % 17 < 16)) {
+  if (elem.id === 'ads_left' && (elem.style['visibility'] || elem.style['display']) && vk.id && (vk.id % 17 < 16)) {
     var nest = geByClass1('ads_ads_box', elem);
     elem.style.setProperty('visibility', 'visible', 'important');
     elem.style.setProperty('display', 'block', 'important');
@@ -1920,11 +1920,11 @@ var layers = {
 
 window.__seenAds = intval(getCookie('remixseenads'));
 function updSeenAdsInfo() {
-  var top = (getXY('left_ads', true) || {})[1];
+  var top = (getXY('ads_left', true) || {})[1];
   if (!top || !vk.id) return;
 
   var friendsHeight = (isVisible('left_friends') ? getSize(ge('left_friends'))[1] : 0);
-  var adsY = getXY('left_ads', true)[1];
+  var adsY = getXY('ads_left', true)[1];
   var ads = Math.floor((lastWindowHeight - adsY + friendsHeight) / 230);
   if (__seenAds !== ads) {
     __seenAds = ads;

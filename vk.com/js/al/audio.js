@@ -2833,6 +2833,9 @@ var Audio = {
     if (reason == 'crap') {
       claimText = getLang(claim_id >= 0 ? 'audio_crap_warning_text' : 'audio_crap_warning') || getLang(claim_id > 0 ? 'audio_claim_warning_objection' : (claim_id == 0 ? 'audio_claim_warning_text' : 'audio_claim_warning'));
       claimTitle = getLang('audio_crap_warning_title') || getLang('audio_claim_warning_title');
+    } else if (reason == 'geo') {
+      claimText = getLang(claim_id >= 0 ? 'audio_claimed_geo' : 'audio_claimed_text_geo');
+      claimTitle = getLang('audio_claim_warning_title');
     } else {
       claimText = (claim_id > 0) ? getLang('audio_claim_warning_objection') : (claim_id == 0 ? getLang('audio_claim_warning_text') : getLang('audio_claim_warning'));
       claimTitle = getLang('audio_claim_warning_title');

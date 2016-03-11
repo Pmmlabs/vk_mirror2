@@ -487,7 +487,7 @@ AdsLight.publish = function(delayBigPublish, publishEventName) {
 
 AdsLight.canUpdate = function(forAjax) {
 
-  var containerElem = ge('left_ads');
+  var containerElem = ge('ads_left');
 
   var initialAjax = (forAjax && __adsLoaded === false);
 
@@ -776,7 +776,7 @@ AdsLight.setNewBlock = function(adsHtml, adsSection, adsCanShow, adsShowed, adsP
 
   __adsLoaded = vkNow();
 
-  var containerElem = ge('left_ads');
+  var containerElem = ge('ads_left');
   var isContainerVisible = (containerElem && isVisible(containerElem) || vk.ad_preview);
   if (!containerElem) {
     var sideBarElem = ge('side_bar');
@@ -784,7 +784,7 @@ AdsLight.setNewBlock = function(adsHtml, adsSection, adsCanShow, adsShowed, adsP
       AdsLight.resizeBlockWrap([0,0], false, false, true);
       return;
     }
-    containerElem = sideBarElem.appendChild(ce('div', {id: 'left_ads'}, {display: isContainerVisible ? 'block' : 'none'}));
+    containerElem = sideBarElem.appendChild(ce('div', {id: 'ads_left'}, {display: isContainerVisible ? 'block' : 'none'}));
   }
 
   AdsLight.showNewBlock(containerElem, adsHtml, isContainerVisible);
@@ -812,7 +812,7 @@ AdsLight.setNewBlock = function(adsHtml, adsSection, adsCanShow, adsShowed, adsP
 }
 
   AdsLight.forceLeftAdVisibility = function() {
-    var elem = ge('left_ads');
+    var elem = ge('ads_left');
     if (elem) {
       var nest = geByClass1('ads_ads_box', elem);
       elem.style.setProperty('visibility', 'visible', 'important');
@@ -1055,7 +1055,7 @@ AdsLight.applyAds = function(delayed) {
 }
 
 AdsLight.isVisibleBlockWrap = function(forceLocal) {
-  var containerElem = ge('left_ads');
+  var containerElem = ge('ads_left');
   var containerRect = containerElem.getBoundingClientRect();
   var coords = [];
   if (containerRect.right && containerRect.bottom) {
@@ -1515,7 +1515,7 @@ AdsLight.tryRenderYaDirect = function (blockId, statsCodeBase, nextLineup) {
   var yaContainer;
   if (!ge(yaContainerId)) {
     yaContainer = ce('div', {id: yaContainerId});
-    var leftAdsContainer = ge('left_ads');
+    var leftAdsContainer = ge('ads_left');
     leftAdsContainer.appendChild(yaContainer);
   } else {
     animate(ge(yaContainerId), {
@@ -1550,7 +1550,7 @@ AdsLight.onYaDirectRenderSuccessful = function (adsContainer) {
     wrapper.appendChild(adsContainer);
     adsContainer = wrapper;
   }
-  AdsLight.showNewBlock(ge('left_ads'), adsContainer, true);
+  AdsLight.showNewBlock(ge('ads_left'), adsContainer, true);
   vk__adsLight.yaDirectAdActive = true;
 }
 
@@ -1600,7 +1600,7 @@ AdsLight.tryRenderCriteo = function (statsCodeBase, nextLineup) {
     }
   };
   iframe.src = '/ads_light.php?act=criteo';
-  ge('left_ads').appendChild(iframe);
+  ge('ads_left').appendChild(iframe);
 }
 
 AdsLight.getRBAds = function (container_id, onsuccess, onfail, params) {
@@ -1630,7 +1630,7 @@ AdsLight.getRBAds = function (container_id, onsuccess, onfail, params) {
               AdsLight.resizeBlockWrap([0,0], false, false, true);
               return;
             }
-            containerElem = sideBarElem.appendChild(ce('div', {id: 'left_ads'}, {display: isContainerVisible ? 'block' : 'none'}));
+            containerElem = sideBarElem.appendChild(ce('div', {id: 'ads_left'}, {display: isContainerVisible ? 'block' : 'none'}));
           }
 
           AdsLight.showNewBlock(containerElem, e[0].html, isContainerVisible);
@@ -1685,7 +1685,7 @@ AdsLight.tryRenderTarget = function (test_group_id, statsCodeBase, nextLineup) {
     AdsLight.sendExperimentStat(statsCodeBase, 'noresult');
   }, 5000);
   stManager.add(['mrtarg.js', 'mrtarg.css'], function() {
-    AdsLight.getRBAds('left_ads', function () { // ok
+    AdsLight.getRBAds('ads_left', function () { // ok
       clearTimeout(targetNoResultTimeout);
       AdsLight.sendExperimentStat(statsCodeBase, 'success');
       if (window.RB && window.RB.doCheck) {
