@@ -256,3 +256,24 @@
   line-height: 160%;
   width: 400px;
 }
+.restore_section_doc {
+  height: 220px;
+  width: 220px;
+  background: url('/images/restore/doc.png') no-repeat top left;
+  float: right;
+}
+.restore_section_faces {
+  text-align: center;
+}
+.restore_section_face__tablet,
+.restore_section_face__monitor {
+  height: 220px;
+  width: 220px;
+  display: inline-block;
+}
+.restore_section_face__tablet {
+  background: url('/images/restore/w.png') no-repeat top center;
+}
+.restore_section_face__monitor {
+  background: url('/images/restore/m.png') no-repeat top center;
+}
