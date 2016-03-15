@@ -277,3 +277,13 @@
 .restore_section_face__monitor {
   background: url('/images/restore/m.png') no-repeat top center;
 }
+.restore_response_images {
+  margin-top: 8px;
+  text-align: center;
+}
+.restore_response_image {
+  width: 38%;
+}
+.restore_response_image.restore_response_image_landscape {
+  width: 75%;
+}
