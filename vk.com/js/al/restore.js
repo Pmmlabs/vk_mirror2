@@ -228,7 +228,7 @@ var Restore = {
   submitRequest: function() {
     var btn = ge('submitBtn');
     var request_type = cur.options.request_type;
-    var login, email, old_phone, phone, reg_country, reg_year, password;
+    var login, email, old_phone, phone, password;
 
     if (request_type == 4) {
       login = ge('login').value;
@@ -292,16 +292,6 @@ var Restore = {
         return Restore.showResult('request_old_password_res', getLang('restore_need_old_password') + '<br>' + val('request_old_password_need'), 'old_password');
       }
     } else {
-      reg_country = ge('reg_country').value;
-      if (reg_country == 0) {
-        cur.uiCountry.showDefaultList();
-        return Restore.showResult('request_country_res', getLang('restore_reg_country_error'));
-      }
-      var reg_year = ge('reg_year').value;
-      if (reg_year < 2006 || reg_year > cur.options.max_reg_year) {
-        cur.uiYear.showDefaultList();
-        return Restore.showResult('request_country_res', getLang('restore_reg_year_error'));
-      }
       if (cur.images_count[0] < 1) {
         return Restore.showResult('request_doc_res', getLang('restore_doc_error') + '<br>' + getLang('restore_attention'));
       }
@@ -315,7 +305,7 @@ var Restore = {
     if (request_type == 4) {
       extend(params, {hash: cur.options.fhash, login: login, email: email, phone: phone, old_phone: old_phone, password: password});
     } else {
-      extend(params, {reg_country: reg_country, reg_city: ge('reg_city').value, reg_year: reg_year, comment: ge('comment').value, images: []});
+      extend(params, {comment: ge('comment').value, images: []});
       if (!request_type) {
         extend(params, {hash: cur.options.fhash, login: login, email: email, phone: phone, old_phone: old_phone});
       } else if (request_type == 1) {
@@ -411,38 +401,11 @@ var Restore = {
     ajax.post('al_restore.php', {act: 'to_full'}, {onDone: function(text) {
       val('restore_fields', text);
       hide('email_wrap');
-      Restore.initDropdowns();
       cur.options.request_type = 0;
     }});
   },
 
-  initDropdowns: function() {
-    var reg_years = [
-      [0, getLang('select_year_not_selected')]
-    ];
-    for (var year = 2006; year <= cur.options.max_reg_year; year++) {
-      reg_years.push([year, ''+year]);
-    }
-
-    cur.uiCity = new CitySelect(ge('reg_city'), ge('reg_city_row'), {width: 210, show: function(container) {
-      show(container);
-      ge('request_reg_info').style.bottom = ge('reg_year_row').clientHeight + 'px';
-    }, hide: function(container) {
-      hide(container);
-      ge('request_reg_info').style.bottom = '';
-    }});
-    cur.uiCountry = new CountrySelect(ge('reg_country'), ge('reg_country_row'), {width: 210, citySelect: cur.uiCity});
-    cur.uiYear = new Dropdown(ge('reg_year'), reg_years, {width: 210});
-    cur.destroy.push(function(c) {
-      if (c.uiCountry) c.uiCountry.destroy();
-      if (c.uiCity) c.uiCity.destroy();
-      if (c.uiYear) c.uiYear.destroy();
-    })
-  },
   initRequest: function() {
-    if (cur.options.request_type != 4) {
-      Restore.initDropdowns();
-    }
     extend(cur, {
       images: [],
       images_count: [0, 0],
