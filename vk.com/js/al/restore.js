@@ -118,12 +118,12 @@ var Restore = {
     show(prefix + 'photos');
     var imageNode = null;
     if (newOne) {
-      imageNode = ce('div', { id: 'photo' + index });
+      imageNode = ce('div', { id: 'photo' + index, className: 'restore_uploaded_image' });
       ge(prefix + 'photos').appendChild(imageNode);
     } else {
       imageNode = ge('photo' + index);
     }
-    imageNode.innerHTML = '<img id="photo_img' + index + '" src="' + photo + '" /><span onmouseover="this.className=\'over\';" onmouseout="this.className=\'\';" onclick="Restore.deleteImage(' + type + ', ' + index + ')" id="del_link' + index + '">' + getLang('global_delete') + '</span>';
+    imageNode.innerHTML = '<img id="photo_img' + index + '" src="' + photo + '" class="restore_uploaded_image__img" /><span  class="restore_uploaded_image__delete" onclick="Restore.deleteImage(' + type + ', ' + index + ')" id="del_link' + index + '">' + getLang('global_delete') + '</span>';
   },
   deleteImage: function(type, index) {
     var prefix = type ? 'photo_' : 'doc_';
@@ -131,7 +131,7 @@ var Restore = {
       if (cur.images_count[type] >= 2) return;
 
       cur.images[index].deleted = false;
-      setStyle(ge('photo_img' + index), 'opacity', 1);
+      removeClass('photo_img' + index, 'restore_uploaded_image__img_removed');
 
       if (++cur.images_count[type] >= 2) {
         ge(prefix + 'input').disabled = true;
@@ -140,7 +140,7 @@ var Restore = {
       ge('del_link' + index).innerHTML = getLang('global_delete');
     } else {
       cur.images[index].deleted = true;
-      setStyle(ge('photo_img' + index), 'opacity', 0.3);
+      addClass('photo_img' + index, 'restore_uploaded_image__img_removed');
 
       --cur.images_count[type];
       ge(prefix + 'input').disabled = false;
@@ -431,6 +431,86 @@ var Restore = {
       request_id: false,
       request_hash: false
     });
+  },
+
+  returnToFormStep: function(step) {
+    var currentRoll = geByClass1('_restore_roll_active', 'restore');
+    addClass(currentRoll, 'restore_roll_hidden');
+    removeClass(currentRoll, '_restore_roll_active');
+    Restore.fillRollShort(currentRoll.id.replace('restore_roll_', ''));
+
+    var newRoll = ge('restore_roll_'+step);
+    removeClass(newRoll, 'restore_roll_hidden');
+    addClass(newRoll, '_restore_roll_active');
+  },
+
+  changeFormStep: function(oldStep, newStep) {
+    if (!Restore.checkRoll(oldStep)) {
+      return;
+    }
+    Restore.fillRollShort(oldStep);
+    var oldRoll = ge('restore_roll_'+oldStep);
+    addClass(oldRoll, 'restore_roll_used');
+    addClass(oldRoll, 'restore_roll_hidden');
+    removeClass(oldRoll, '_restore_roll_active');
+    /*hide('restore_roll_button_'+oldStep);*/
+
+    var newRoll = ge('restore_roll_'+newStep);
+    show(newRoll);
+    removeClass(newRoll, 'restore_roll_colored');
+    scrollToY(getXY(newRoll)[1], 400);
+    removeClass('restore_roll_'+newStep, 'restore_roll_hidden');
+    addClass(newRoll, '_restore_roll_active');
+  },
+
+  checkRoll: function(step) {
+    if (step == 'phones') {
+      var oldPhone = val('old_phone'), curPhone = val('phone');
+      if (!curPhone) {
+        return notaBene('phone');
+      }
+    } else if (step == 'doc') {
+      if (cur.images_count[0] < 1) {
+        Restore.showResult('request_doc_res', getLang('restore_doc_error') + '<br>' + getLang('restore_attention'));
+        return false;
+      }
+    } else if (step == 'photo') {
+      if (cur.images_count[1] < 1) {
+        Restore.showResult('request_photo_res', getLang('restore_photo_error') + '<br>' + getLang('restore_attention'));
+        return false;
+      }
+    }
+    return true;
+  },
+
+  fillRollShort: function(step) {
+    var roll = ge('restore_roll_'+step), rollShort = geByClass1('_restore_roll_short', roll);
+    if (step == 'phones') {
+      var oldPhone = val('old_phone'),
+          curPhone = val('phone'),
+          oldPhoneSpan = geByClass1('_restore_roll_short_old_phone', rollShort),
+          curPhoneSpan = geByClass1('_restore_roll_short_new_phone', rollShort);
+
+      oldPhoneSpan.innerHTML = oldPhone ? oldPhone : 'не указан';
+      curPhoneSpan.innerHTML = curPhone ? curPhone : 'не указан';
+    } else if (step == 'doc' || step == 'photo') {
+      var imagesCont = geByClass1('_restore_roll_short_images', rollShort),
+          emptyMsg = geByClass1('_restore_roll_short_message', rollShort);
+      imagesCont.innerHTML = '';
+      hide(emptyMsg);
+      each(geByClass('restore_uploaded_image__img', step+'_photos'), function(i, el) {
+        if (!hasClass(el, 'restore_uploaded_image__img_removed')) {
+          var clonedImg = el.cloneNode(true);
+          clonedImg.id = '';
+          imagesCont.appendChild(clonedImg);
+        }
+      });
+      if (!imagesCont.innerHTML) {
+        show(emptyMsg);
+      }
+    }
+
+    return true;
   }
 };
 

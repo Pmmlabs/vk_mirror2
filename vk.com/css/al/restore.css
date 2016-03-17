@@ -104,8 +104,12 @@
 .request_section .button_blue {
   margin-top: 10px;
 }
-.restore_section {
+.restore_section,
+.restore_button_row {
   padding: 10px 0;
+}
+.restore_submit_row {
+  padding-bottom: 10px;
 }
 .restore_section_wrap {
   width: 228px;
@@ -156,25 +160,88 @@
   display: none;
   text-align: center;
 }
-#doc_photos div,
-#photo_photos div {
+.restore_uploaded_image {
   margin: 0 5px;
   display: inline-block;
   text-align: center;
 }
-#doc_photos div img,
-#photo_photos div img {
+.restore_uploaded_image__img {
   display: block;
 }
-#doc_photos div span,
-#photo_photos div span {
+.restore_uploaded_image__img_removed {
+  opacity: 0.3;
+}
+.restore_uploaded_image__delete {
   color: #2B587A;
   cursor: pointer;
   line-height: 200%;
 }
-#doc_photos div span.over,
-#photo_photos div span.over {
+.restore_uploaded_image__delete:hover {
   text-decoration: underline;
+}
+.restore_roll {
+  margin: 0 -10px;
+  padding: 0 10px;
+  -o-transition: background 1000ms linear;
+  -ms-transition: background 1000ms linear;
+  -moz-transition: background 1000ms linear;
+  -webkit-transition: background 1000ms linear;
+  transition: background 1000ms linear;
+}
+.restore_roll.restore_roll_colored {
+  background: #DBE0EA;
+}
+.restore_roll_short {
+  /*background: #F6F7F9;
+  border-bottom: 1px solid #DBE0EA;*/
+  color: #45688E;
+  cursor: pointer;
+  padding: 20px 10px;
+  margin: 0 -10px;
+  font-weight: bold;
+  line-height: 100%;
+}
+.restore_roll_short_message {
+  font-weight: normal;
+}
+.restore_roll_short_col {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 50%;
+}
+.restore_roll_short_cell {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  margin-right: 5px;
+}
+.restore_roll_short_opposite_cell {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: right;
+}
+.restore_roll_short_opposite_cell .restore_uploaded_image__img {
+  display: inline-block;
+  margin: 0 0 0 2px;
+}
+.restore_roll_short:hover {
+  background: #F6F7F9;
+}
+.restore_roll .restore_roll_short {
+  display: none;
+}
+.restore_roll.restore_roll_hidden .restore_roll_short {
+  display: block;
+}
+.restore_roll.restore_roll_hidden .restore_roll_full {
+  display: none;
+}
+.restore_roll_used {
+  border-bottom: 1px solid #DBE0EA;
 }
 #phone_confirm_box .msg {
   display: none;
