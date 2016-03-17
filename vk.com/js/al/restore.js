@@ -98,15 +98,32 @@ var Restore = {
     var btn = ge(prefix + 'file_button');
     unlockButton(btn);
 
-    var index = cur.images.length;
-    cur.images[index] = {id: photo_id, hash: photo_hash};
+    var index = cur.images.length, newOne = true;
+    each(cur.images, function(ind, img) {
+      if (img.type == type && img.deleted) {
+        index = ind;
+        newOne = false;
+        return false;
+      }
+    });
 
+    cur.images[index] = {id: photo_id, hash: photo_hash, type: type};
     ++cur.images_count[type];
 
     ge(prefix + 'input').disabled = cur.images_count[type] >= 2 ? true : false;
+    if (ge(prefix + 'input').disabled) {
+      hide(prefix + 'upload');
+    }
 
     show(prefix + 'photos');
-    ge(prefix + 'photos').innerHTML += '<div id="photo' + index + '"><img id="photo_img' + index + '" src="' + photo + '" /><span onmouseover="this.className=\'over\';" onmouseout="this.className=\'\';" onclick="Restore.deleteImage(' + type + ', ' + index + ')" id="del_link' + index + '">' + getLang('global_delete') + '</span></div>';
+    var imageNode = null;
+    if (newOne) {
+      imageNode = ce('div', { id: 'photo' + index });
+      ge(prefix + 'photos').appendChild(imageNode);
+    } else {
+      imageNode = ge('photo' + index);
+    }
+    imageNode.innerHTML = '<img id="photo_img' + index + '" src="' + photo + '" /><span onmouseover="this.className=\'over\';" onmouseout="this.className=\'\';" onclick="Restore.deleteImage(' + type + ', ' + index + ')" id="del_link' + index + '">' + getLang('global_delete') + '</span>';
   },
   deleteImage: function(type, index) {
     var prefix = type ? 'photo_' : 'doc_';
@@ -118,6 +135,7 @@ var Restore = {
 
       if (++cur.images_count[type] >= 2) {
         ge(prefix + 'input').disabled = true;
+        hide(prefix + 'upload');
       }
       ge('del_link' + index).innerHTML = getLang('global_delete');
     } else {
@@ -126,6 +144,7 @@ var Restore = {
 
       --cur.images_count[type];
       ge(prefix + 'input').disabled = false;
+      show(prefix + 'upload');
       ge('del_link' + index).innerHTML = getLang('global_dont_delete');
     }
   },
