@@ -421,16 +421,18 @@ var Restore = {
     elfocus('phone_confirm_code');
   },
 
-  toFullRequest: function() {
+  toFullRequest: function(mid) {
     hide(cur.wasShown);
-    ajax.post('al_restore.php', {act: 'to_full'}, {onDone: function(text) {
+    ajax.post('al_restore.php', {act: 'to_full', mid: mid}, {onDone: function(text) {
       var fieldsDiv = ge('restore_fields');
       val(fieldsDiv, text);
       hide('email_wrap');
       cur.options.request_type = 0;
       var firstRoll = geByClass1('restore_roll_colored', fieldsDiv);
-      show(firstRoll);
-      removeClass(firstRoll, 'restore_roll_colored');
+      if (firstRoll) {
+        show(firstRoll);
+        removeClass(firstRoll, 'restore_roll_colored');
+      }
     }});
   },
 
@@ -502,10 +504,34 @@ var Restore = {
 
   checkRoll: function(step) {
     if (step == 'phones') {
-      var oldPhone = val('old_phone'), curPhone = val('phone');
+      var oldPhone = val('old_phone'), curPhone = val('phone'), request_type = cur.options.request_type;
       if (!curPhone) {
-        return notaBene('phone');
+        notaBene('phone');
+        return false;
       }
+
+      if (!request_type || request_type == 4) {
+        var old_phone = ge('old_phone').value.replace(/[^0-9]/g, '');
+        if (!(/^\s*$/.test(old_phone))) {
+          if (!(/^[1-9][0-9]{6,14}$/.test(old_phone))) {
+            Restore.showResult('request_phone_res', getLang('restore_old_phone_error'), 'old_phone');
+            return false;
+          }
+        }
+      }
+
+      if (request_type != 2) {
+        var phone_inp = isVisible('new_phone_wrap') ? 'new_phone' : 'phone', phone = ge(phone_inp).value.replace(/[^0-9]/g, '');
+        if (isVisible(phone_inp) && !(/^[1-9][0-9]{6,14}$/.test(phone))) {
+          Restore.showResult('request_phone_res', getLang('restore_phone_error'), phone_inp);
+          return false;
+        }
+        if (cur.checkedPhones && cur.checkedPhones[phone] && cur.checkedPhones[phone][0] == 2) {
+          Restore.showResult('request_email_res', cur.checkedPhones[phone][1], phone_inp, true);
+          return false;
+        }
+      }
+
     } else if (step == 'doc') {
       if (cur.images_count[0] < 1) {
         Restore.showResult('request_doc_res', getLang('restore_doc_error') + '<br>' + getLang('restore_attention'));
