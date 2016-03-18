@@ -45,7 +45,7 @@ var VideoYoutube = {
     player.addEventListener('onReady', VideoYoutube.onPlayerReady);
     player.addEventListener('onStateChange', VideoYoutube.onStateChange);
     player.addEventListener('onPlaybackQualityChange', VideoYoutube.onPlaybackQualityChange);
-    player.addEventListener('onError', VideoYoutube.onError)
+    player.addEventListener('onError', VideoYoutube.onError);
     addEvent(container, 'mouseenter', VideoYoutube.onMouseEnter);
     addEvent(container, 'mouseleave', VideoYoutube.onMouseLeave);
     addEvent(container, 'mousemove', VideoYoutube.onMouseMove);
@@ -54,6 +54,47 @@ var VideoYoutube = {
     addEvent(window, 'resize', VideoYoutube.onResize);
 
     VideoYoutube.onResize();
+
+    if (vars.autoplay) {
+      // workaround for situation when playback started before YT API initialization and onStateChange event hasn't triggered
+      (function checkState () {
+        var player = VideoYoutube.cur.player;
+        if (!player) return;
+        if (player.getPlayerState && player.getPlayerState() != YT.PlayerState.UNSTARTED && !VideoYoutube.cur.started) {
+          var fakeEvent = {data: player.getPlayerState()};
+          VideoYoutube.onStateChange(fakeEvent);
+        } else {
+          setTimeout(checkState, 100);
+        }
+      })();
+    }
+  },
+
+  // todo: почистить эту копипасту
+  initStatOnly: function (player, vars) {
+    VideoYoutube.destroy();
+
+    var container = ge('video_yt');
+
+    if (!player || !container) return;
+
+    VideoYoutube.cur = {
+      player: player,
+      vars: vars || {},
+      quality: 'auto',
+      started: false,
+      playing: false,
+      buffering: false,
+      mouseInside: true,
+      lastMouseMove: null,
+      reverseTime: window.localStorage ? localStorage.video_reverse_time == 'true' : false,
+      isFS: false,
+      minSize: false,
+      liked: vars.liked,
+      added: vars.added
+    };
+
+    player.addEventListener('onStateChange', VideoYoutube.onStateChangeStatOnly);
 
     if (vars.autoplay) {
       // workaround for situation when playback started before YT API initialization and onStateChange event hasn't triggered
@@ -367,6 +408,38 @@ var VideoYoutube = {
 
     if (cur && cur.incViews) cur.incViews();
   },
+
+  onStateChangeStatOnly: function (event) {
+    if (event.data == YT.PlayerState.BUFFERING) {
+      VideoYoutube.cur.buffering = true;
+    } else {
+      VideoYoutube.cur.state = event.data;
+      VideoYoutube.cur.buffering = false;
+      VideoYoutube.cur.playing = false;
+    }
+
+    switch (event.data) {
+      case YT.PlayerState.ENDED:
+        VideoYoutube.onVideoEndedStatOnly();
+        break;
+      case YT.PlayerState.PLAYING:
+        if (!VideoYoutube.cur.started) {
+          VideoYoutube.onVideoStartedStatOnly();
+        }
+        break;
+    }
+  },
+
+  onVideoStartedStatOnly: function() {
+    VideoYoutube.cur.started = true;
+    if (cur && cur.incViews) cur.incViews();
+  },
+
+
+  onVideoEndedStatOnly: function() {
+    VideoYoutube.cur.started = false;
+  },
+
 
   onVideoPlaying: function() {
     addClass('video_yt_play_btn', 'playing');

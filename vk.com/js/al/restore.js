@@ -94,7 +94,7 @@ var Restore = {
     unlockButton(btn);
   },
   uploadComplete: function(photo, photo_id, photo_hash, type) {
-    var prefix = type ? 'photo_' : 'doc_';
+    var step = type ? 'photo' : 'doc', prefix = step + '_';
     var btn = ge(prefix + 'file_button');
     unlockButton(btn);
 
@@ -124,9 +124,11 @@ var Restore = {
       imageNode = ge('photo' + index);
     }
     imageNode.innerHTML = '<img id="photo_img' + index + '" src="' + photo + '" class="restore_uploaded_image__img" /><span  class="restore_uploaded_image__delete" onclick="Restore.deleteImage(' + type + ', ' + index + ')" id="del_link' + index + '">' + getLang('global_delete') + '</span>';
+
+    show('restore_roll_button_' + step);
   },
   deleteImage: function(type, index) {
-    var prefix = type ? 'photo_' : 'doc_';
+    var step = type ? 'photo' : 'doc', prefix = step + '_';
     if (cur.images[index].deleted) {
       if (cur.images_count[type] >= 2) return;
 
@@ -138,6 +140,7 @@ var Restore = {
         hide(prefix + 'upload');
       }
       ge('del_link' + index).innerHTML = getLang('global_delete');
+      show('restore_roll_button_' + step);
     } else {
       cur.images[index].deleted = true;
       addClass('photo_img' + index, 'restore_uploaded_image__img_removed');
@@ -146,6 +149,9 @@ var Restore = {
       ge(prefix + 'input').disabled = false;
       show(prefix + 'upload');
       ge('del_link' + index).innerHTML = getLang('global_dont_delete');
+      if (!cur.images_count[type]) {
+        hide('restore_roll_button_' + step);
+      }
     }
   },
 
@@ -418,9 +424,13 @@ var Restore = {
   toFullRequest: function() {
     hide(cur.wasShown);
     ajax.post('al_restore.php', {act: 'to_full'}, {onDone: function(text) {
-      val('restore_fields', text);
+      var fieldsDiv = ge('restore_fields');
+      val(fieldsDiv, text);
       hide('email_wrap');
       cur.options.request_type = 0;
+      var firstRoll = geByClass1('restore_roll_colored', fieldsDiv);
+      show(firstRoll);
+      removeClass(firstRoll, 'restore_roll_colored');
     }});
   },
 
@@ -431,11 +441,38 @@ var Restore = {
       request_id: false,
       request_hash: false
     });
+
+    var cmt = ge('comment'), phoneField = ge('phone'), oldPhoneField = ge('old_phone');
+    placeholderSetup(cmt, {back: true});
+    Restore.initFormTT(cmt, 'restore_lost_phone_your_comment_short');
+    if (isVisible(phoneField)) {
+      Restore.initFormTT(phoneField, 'restore_form_available_phone_tooltip');
+    }
+    if (isVisible(oldPhoneField)) {
+      Restore.initFormTT(oldPhoneField, 'restore_form_old_phone_tooltip');
+    }
+  },
+
+  initFormTT: function(el, langKey) {
+    addEvent(el, 'focus', showTooltip.pbind(el, {
+      text: getLang(langKey),
+      className: 'restore_request_tt restore_request_tt_phone',
+      no_shadow: true,
+      shift: function() {
+        var h = Math.round((getSize(el.tt.container)[1] + getSize(el)[1]) / 2);
+        return [210, -h, 0];
+      },
+      slideX: -15,
+      hasover: 1,
+      forcetoup: true,
+      nohide: true
+    }));
+    addEvent(el, 'blur', function() { if (el.tthide) el.tthide(); });
   },
 
   returnToFormStep: function(step) {
     var currentRoll = geByClass1('_restore_roll_active', 'restore');
-    addClass(currentRoll, 'restore_roll_hidden');
+    //addClass(currentRoll, 'restore_roll_hidden');
     removeClass(currentRoll, '_restore_roll_active');
     Restore.fillRollShort(currentRoll.id.replace('restore_roll_', ''));
 
@@ -450,10 +487,10 @@ var Restore = {
     }
     Restore.fillRollShort(oldStep);
     var oldRoll = ge('restore_roll_'+oldStep);
-    addClass(oldRoll, 'restore_roll_used');
-    addClass(oldRoll, 'restore_roll_hidden');
+    /*addClass(oldRoll, 'restore_roll_used');
+    addClass(oldRoll, 'restore_roll_hidden');*/
     removeClass(oldRoll, '_restore_roll_active');
-    /*hide('restore_roll_button_'+oldStep);*/
+    re('restore_roll_button_'+oldStep);/**/
 
     var newRoll = ge('restore_roll_'+newStep);
     show(newRoll);
@@ -491,8 +528,8 @@ var Restore = {
           oldPhoneSpan = geByClass1('_restore_roll_short_old_phone', rollShort),
           curPhoneSpan = geByClass1('_restore_roll_short_new_phone', rollShort);
 
-      oldPhoneSpan.innerHTML = oldPhone ? oldPhone : 'не указан';
-      curPhoneSpan.innerHTML = curPhone ? curPhone : 'не указан';
+      oldPhoneSpan.innerHTML = oldPhone ? oldPhone : getLang('restore_phone_not_set');
+      curPhoneSpan.innerHTML = curPhone ? curPhone : getLang('restore_phone_not_set');
     } else if (step == 'doc' || step == 'photo') {
       var imagesCont = geByClass1('_restore_roll_short_images', rollShort),
           emptyMsg = geByClass1('_restore_roll_short_message', rollShort);

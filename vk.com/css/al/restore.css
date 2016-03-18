@@ -17,8 +17,13 @@
 #request_result_msg {
   display: none;
 }
-#comment {
-  height: 80px;
+.restore_form_comment {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 55px;
+  resize: vertical;
+  width: 100%;
 }
 .request_thumb {
   width: 60px;
@@ -182,18 +187,16 @@
 .restore_roll {
   margin: 0 -10px;
   padding: 0 10px;
-  -o-transition: background 1000ms linear;
-  -ms-transition: background 1000ms linear;
-  -moz-transition: background 1000ms linear;
-  -webkit-transition: background 1000ms linear;
-  transition: background 1000ms linear;
+  -o-transition: background 1500ms linear;
+  -ms-transition: background 1500ms linear;
+  -moz-transition: background 1500ms linear;
+  -webkit-transition: background 1500ms linear;
+  transition: background 1500ms linear;
 }
 .restore_roll.restore_roll_colored {
   background: #DBE0EA;
 }
 .restore_roll_short {
-  /*background: #F6F7F9;
-  border-bottom: 1px solid #DBE0EA;*/
   color: #45688E;
   cursor: pointer;
   padding: 20px 10px;
@@ -242,6 +245,49 @@
 }
 .restore_roll_used {
   border-bottom: 1px solid #DBE0EA;
+}
+.tt.restore_request_tt {
+  -webkit-box-shadow: 1px 1px 7px -2px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 1px 1px 7px -2px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 7px -2px rgba(0, 0, 0, 0.5);
+}
+.tt.restore_request_tt:after {
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid #fff;
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  top: 50%;
+  margin-top: -7px;
+  right: -5px;
+}
+.tt.restore_request_tt:before {
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 7px solid #96AABE;
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  top: 50%;
+  margin-top: -7px;
+  right: -6px;
+}
+.tt.restore_request_tt .tt_text {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #000;
+  line-height: 160%;
+  padding: 10px;
+  width: 200px;
+}
+.tt.restore_request_tt .bottom_sh {
+  display: none;
 }
 #phone_confirm_box .msg {
   display: none;
