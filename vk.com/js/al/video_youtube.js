@@ -95,6 +95,9 @@ var VideoYoutube = {
     };
 
     player.addEventListener('onStateChange', VideoYoutube.onStateChangeStatOnly);
+    addEvent(document, fullscreenApi.fullscreenEventName, VideoYoutube.onFullscreenChange);
+    VideoYoutube.onResize();
+    addEvent(window, 'resize', VideoYoutube.onResize);
 
     if (vars.autoplay) {
       // workaround for situation when playback started before YT API initialization and onStateChange event hasn't triggered
@@ -109,6 +112,8 @@ var VideoYoutube = {
         }
       })();
     }
+
+
   },
 
   getUIHtml: function () {
@@ -636,13 +641,14 @@ var VideoYoutube = {
     VideoYoutube.cur.minSize = playerSize[0] < 400;
     toggleClass(container, 'video_yt_min', VideoYoutube.cur.minSize);
 
-    if (VideoYoutube.cur.minSize) {
+    // disabled due to default gui
+/*    if (VideoYoutube.cur.minSize) {
       ge('video_yt_volumebar_dropdown').appendChild(ge('video_yt_volumebar'));
       hide('video_yt_volumebar_td');
     } else {
       ge('video_yt_volumebar_td').appendChild(ge('video_yt_volumebar'));
       show('video_yt_volumebar_td');
-    }
+    }*/
 
     var controlsToHide = [ge('video_yt_quality_td'), ge('video_yt_time_td')];
     var controlsContainer = ge('video_yt_controls');
@@ -659,10 +665,10 @@ var VideoYoutube = {
       }
     });
 
-    VideoYoutube.resizeTimeLabel();
-
-    VideoYoutube.updateProgress();
-    VideoYoutube.updateVolume();
+    // disabled due to default gui
+    //VideoYoutube.resizeTimeLabel();
+    //VideoYoutube.updateProgress();
+    //VideoYoutube.updateVolume();
   },
 
   resizeTimeLabel: function() {

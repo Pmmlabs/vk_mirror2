@@ -271,7 +271,7 @@ saveFAQ: function(hash) {
 
   if (cur.sectionSelector) {
     query.section = intval(cur.sectionSelector.val());
-    if (query.section == 0) {
+    if (query.section == 0 || query.section == 39) {
       var categories = cur.desktopCategorySelector.val();
       query.categories = categories;
       query.spec_section = cur.specSectionSelector.val();
@@ -310,7 +310,7 @@ saveFAQ: function(hash) {
       }
     }
   }
-  if (ge('faq_optional_extra_field_add') && (!cur.sectionSelector || cur.sectionSelector.val() == 0)) {
+  if (ge('faq_optional_extra_field_add') && (!cur.sectionSelector || cur.sectionSelector.val() == 0 || cur.sectionSelector.val() == 39)) {
     var d = {}, blocks = ge('faq_optional_extra_fields_list').children;
     for (var i = 0; i < blocks.length; i++) {
       var b = blocks[i];
