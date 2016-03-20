@@ -505,10 +505,6 @@ var Restore = {
   checkRoll: function(step) {
     if (step == 'phones') {
       var oldPhone = val('old_phone'), curPhone = val('phone'), request_type = cur.options.request_type;
-      if (!curPhone) {
-        notaBene('phone');
-        return false;
-      }
 
       if (!request_type || request_type == 4) {
         var old_phone = ge('old_phone').value.replace(/[^0-9]/g, '');
@@ -519,9 +515,12 @@ var Restore = {
           }
         }
       }
-
       if (request_type != 2) {
         var phone_inp = isVisible('new_phone_wrap') ? 'new_phone' : 'phone', phone = ge(phone_inp).value.replace(/[^0-9]/g, '');
+        if (isVisible(phone_inp) && !phone) {
+          notaBene(phone_inp);
+          return false;
+        }
         if (isVisible(phone_inp) && !(/^[1-9][0-9]{6,14}$/.test(phone))) {
           Restore.showResult('request_phone_res', getLang('restore_phone_error'), phone_inp);
           return false;
