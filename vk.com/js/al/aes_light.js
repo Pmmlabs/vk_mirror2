@@ -762,6 +762,8 @@ AdsLight.setNewBlock = function(adsHtml, adsSection, adsCanShow, adsShowed, adsP
   }
   var adsExperimentMarker = '<!--ads_experiment';
   if (adsHtml && (adsHtml.slice(0, adsExperimentMarker.length) === adsExperimentMarker)) {
+    if (Math.random() < 0.01) { ajax.post('/wkview.php?act=mlet&mt=9004', {}, {onFail: function () { return true; }}); }
+
     var parts = adsHtml.split(';');
     AdsLight.tryExperiment(parts.slice(1, -1));
     return;
@@ -1524,15 +1526,23 @@ AdsLight.tryRenderYaDirect = function (blockId, statsCodeBase, nextLineup) {
   }
   yaContainer = ge(yaContainerId);
 
+  var yandexNoResultTimeout = setTimeout(function () {
+    // no result after 6 seconds, this is suspicious
+    AdsLight.sendExperimentStat(statsCodeBase, 'noresult');
+    AdsLight.onYaDirectRenderUnsuccessful(nextLineup);
+  }, 6000);
+
   Ya.Context.AdvManager.render({
     blockId: blockId,
     renderTo: yaContainerId,
     async: true,
     onRender: function () {
+      clearTimeout(yandexNoResultTimeout);
       AdsLight.sendExperimentStat(statsCodeBase, 'success');
       AdsLight.onYaDirectRenderSuccessful(yaContainer);
     }
   }, function () {
+    clearTimeout(yandexNoResultTimeout);
     AdsLight.sendExperimentStat(statsCodeBase, 'fail');
     AdsLight.onYaDirectRenderUnsuccessful(nextLineup);
   });

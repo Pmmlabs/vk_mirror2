@@ -21,6 +21,7 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  display: block;
   height: 55px;
   resize: vertical;
   width: 100%;
@@ -112,6 +113,9 @@
 .restore_section,
 .restore_button_row {
   padding: 10px 0;
+}
+.restore_section.restore_section_secondary {
+  padding-top: 0;
 }
 .restore_submit_row {
   padding-bottom: 10px;
