@@ -2916,7 +2916,10 @@ var Video = {
       if (typeof(cur.vViewsPerSearch) !== 'undefined' && cur.vViewsPerSearch !== null) {
 
         var query = cur._videoSearchDataIndex;
-        var searchList = cur.searchData[query].list;
+        if (!cur.searchData || !cur.searchData[query]) {
+          return;
+        }
+        var searchList = cur.searchData[query].list || [];
         var lastSeen = cur.vSearchLastSeenIdx + 1;
 
         // Here we prepare some statistics for search quality metrics
