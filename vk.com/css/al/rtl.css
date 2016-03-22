@@ -2363,6 +2363,7 @@ body.dev.is_rtl1 .app_edit_block_header .app_edit_dev_header {
   padding-right: 25px;
 }
 .is_rtl1 .restore_section_doc {
+  background-position: top left;
   float: left;
 }
 .is_rtl1 .restore_section .file_button_gray {

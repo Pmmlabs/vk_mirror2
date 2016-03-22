@@ -373,26 +373,32 @@
   line-height: 160%;
   width: 400px;
 }
+.info_msg.info_msg_doc {
+  padding-top: 12px;
+}
 .restore_section_doc {
-  height: 220px;
-  width: 220px;
-  background: url('/images/restore/doc.png') no-repeat top left;
+  height: 180px;
+  width: 190px;
+  background: url('/images/restore/doc.png') no-repeat top right;
+  background-size: 180px;
   float: right;
+  margin: -12px 0 -10px 0;
 }
 .restore_section_faces {
   text-align: center;
-}
-.restore_section_face__tablet,
-.restore_section_face__monitor {
-  height: 220px;
-  width: 220px;
-  display: inline-block;
 }
 .restore_section_face__tablet {
   background: url('/images/restore/w.png') no-repeat top center;
 }
 .restore_section_face__monitor {
   background: url('/images/restore/m.png') no-repeat top center;
+}
+.restore_section_face__tablet,
+.restore_section_face__monitor {
+  height: 180px;
+  width: 190px;
+  background-size: 180px;
+  display: inline-block;
 }
 .restore_response_images {
   margin-top: 8px;

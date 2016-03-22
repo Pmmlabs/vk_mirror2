@@ -2050,13 +2050,10 @@ body.dev.is_2x .priv_h_arrow,
 }
 .is_2x .restore_section_doc {
   background-image: url('/images/restore/doc_2x.png');
-  background-size: 220px;
 }
 .is_2x .restore_section_face__tablet {
   background-image: url('/images/restore/w_2x.png');
-  background-size: 220px;
 }
 .is_2x .restore_section_face__monitor {
   background-image: url('/images/restore/m_2x.png');
-  background-size: 220px;
 }
