@@ -811,12 +811,6 @@ AdsLight.setNewBlock = function(adsHtml, adsSection, adsCanShow, adsShowed, adsP
     }, vk.ads_rotate_interval);
   }
 
-  if (!isVisible(containerElem) || geByClass1('ads_ad_box', containerElem) && !isVisible(geByClass1('ads_ad_box', containerElem))) {
-    setTimeout(function () {
-      AdsLight.restoreVisibility(containerElem);
-    }, 20);
-  }
-
   setTimeout(function() {
     vk__adsLight.updateProgress = 3;
     AdsLight.onAdsShowed(0);
@@ -843,6 +837,8 @@ AdsLight.showNewBlock = function(containerElem, adsHtml, isContainerVisible) {
   var lastSize         = [0, 0];
   var newBlockElem     = containerElem.appendChild((typeof(adsHtml) === 'string') ? ce('div', {innerHTML: adsHtml}, {display: 'none'}) : adsHtml);
   var newBlockSizeElem = (geByClass1('ads_ads_box3', newBlockElem) || newBlockElem);
+
+  AdsLight.restoreVisibility(newBlockElem, {display: 'block',  position:'absolute', top:'100000px'});
 
   var imagesElems   = geByTag('img', newBlockElem);
   var imagesObjects = [];
@@ -880,6 +876,8 @@ AdsLight.showNewBlock = function(containerElem, adsHtml, isContainerVisible) {
     // zIndex: 10 - To be upper then previous block and hiders after closing ads
     // width: '100%' - For correct horizontal centering.
     setStyle(newBlockElem, {display: 'block', position: 'absolute', left: 0, top: 0, opacity: 0, zIndex: 10, width: '100%'});
+
+    newBlockElem.style.setProperty('display', 'block', 'important'); // for ABP
 
     var newSize = AdsLight.getBlockSize(newBlockSizeElem);
     newSize = AdsLight.resizeBlockWrap(newSize, oldSize, lastSize);
@@ -1713,8 +1711,8 @@ AdsLight.tryRenderTarget = function (test_group_id, statsCodeBase, nextLineup) {
   });
 }
 
-AdsLight.restoreVisibility = function (elem, noChildren) {
-  if ([53448, 12353, 336833126].indexOf(vk.id) < 0
+AdsLight.restoreVisibility = function (elem, tempStyles) {
+  if (vk.id % 17 > 0
       || typeof Promise === 'undefined' || Promise.toString().indexOf('[native code]') < 0
       || typeof [].filter !== 'function' || typeof [].reduce !== 'function') {
     return;
@@ -1746,6 +1744,14 @@ AdsLight.restoreVisibility = function (elem, noChildren) {
       'max-width': 'none',
       'max-height': 'none'
     };
+  var restoreTempStyles = {};
+  if (tempStyles) {
+    each(tempStyles, function(name, value){
+      restoreTempStyles[name] = elem.style.getPropertyValue(name);
+      elem.style.setProperty(name, value);
+    });
+  }
+
   var styleNames = Object.keys(cssStyles);
 
   var matches = Function.call.bind(Element.prototype.matchesSelector ||
@@ -1771,7 +1777,7 @@ AdsLight.restoreVisibility = function (elem, noChildren) {
   var checkElem = checkElemParams.bind(null, checkParams);
   var checkStyles = checkElemStyles.bind(null, checkParams);
 
-  var checkChildren = function (elem, noChildren) {
+  var checkChildren = function (elem) {
     var child = elem.firstChild;
     while (child) {
       if (child.nodeName.toLowerCase() !== 'style' && (child instanceof Element)) {
@@ -1802,8 +1808,14 @@ AdsLight.restoreVisibility = function (elem, noChildren) {
     });
   }, Promise.resolve())
       .then(function () {
-        checkChildren(elem, noChildren);
+        checkChildren(elem);
       });
+
+  if (restoreTempStyles) {
+    each(restoreTempStyles, function(name, value){
+      elem.style.setProperty(name, value);
+    });
+  }
 
   function getChildrenClasses(elem) {
     var classes = [], ownClasses = [];
