@@ -573,6 +573,16 @@ var Restore = {
     }
 
     return true;
+  },
+  activate: function(btn, id, hash) {
+    if (isButtonLocked(btn)) {
+      return;
+    }
+
+    ajax.post('restore', { act: 'a_activate', id: id, hash: hash }, {
+      showProgress: lockButton.pbind(btn),
+      hideProgress: unlockButton.pbind(btn)
+    });
   }
 };
 
