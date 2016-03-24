@@ -774,6 +774,12 @@ AdsEdit.showCropPhotoBox = function(photoData) {
   if (photoWidth && photoWidth <= 700 && viewParams.format_type != AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE) {
     var adWidth = 118;
     switch (viewParams.format_type) {
+      case AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE:  adWidth = 306; break; // Redesign ad preview
+      case AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE:
+        if (viewParams.link_type != AdsEdit.ADS_AD_LINK_TYPE_VIDEO) {
+          adWidth = 306; // Redesign ad preview
+        }
+        break;
       case AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS: adWidth = 175; break;
       case AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY:   adWidth = 128; break;
       case AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY: adWidth = 128; break;
@@ -789,10 +795,40 @@ AdsEdit.showCropPhotoBox = function(photoData) {
   showBox('/adsedit?act=crop_photo_box', ajaxParams, showOptions);
 }
 
-AdsEdit.initCropPhotoBox = function(cropBox, resultPhotoWidth, resultPhotoHeight, resultPhotoWidthSmall, resultPhotoHeightSmall, cropOptions) {
+AdsEdit.initCropPhotoBox = function(cropBox, resultPhotoWidth, resultPhotoHeight, resultPhotoWidthSmall, resultPhotoHeightSmall, cropOptions, newSizeWidth, newSizeHeight) {
   cropBox.removeButtons();
   cropBox.addButton(getLang('box_cancel'), false, 'no');
   cropBox.addButton(getLang('box_save'), AdsEdit.saveCropPhoto.pbind(cropBox), 'yes');
+
+  var newHintEl = ge('ads_edit_crop_photo_new_hint');
+  var showHintTt = showTooltip.pbind(newHintEl, {text: getLang('ads_edit_ad_crop_future_tooltip'), className: 'ads_edit_crop_photo_new_hint_tt', shift: [130, 0, 0], slide: 15});
+  var destroyHintTt = function() {
+    removeEvent(newHintEl, 'mouseover', showHintTt);
+    tooltips.destroy(newHintEl);
+  }
+  if (newHintEl) {
+    addEvent(newHintEl, 'mouseover', showHintTt);
+    cur.destroy.push(destroyHintTt);
+  }
+
+  var icons = [{width: resultPhotoWidthSmall, height: resultPhotoHeightSmall, box: 'ads_edit_crop_photo_small'}];
+  var safeZones = {};
+  if (newSizeWidth && newSizeHeight) {
+    var ratio = newSizeWidth / newSizeHeight,
+        boxw = Math.min(resultPhotoWidth,  intval(resultPhotoHeight * ratio)),
+        boxh = Math.min(resultPhotoHeight, intval(boxw / ratio));
+    if (boxw != resultPhotoWidth) {
+      safeZones.left  = Math.floor((resultPhotoWidth - boxw) / 2);
+      safeZones.right = Math.ceil((resultPhotoWidth - boxw) / 2);
+    }
+    if (boxh != resultPhotoHeight) {
+      safeZones.top    = Math.floor((resultPhotoHeight - boxh) / 2);
+      safeZones.bottom = Math.ceil((resultPhotoHeight - boxh) / 2);
+    }
+    icons.push({width:  newSizeWidth,
+                height: newSizeHeight,
+                box:   'ads_edit_crop_photo_redesign'});
+  }
 
   cur.photoTagger = adsPhotoTagger('ads_edit_crop_photo_big', {
     minw: resultPhotoWidth,
@@ -803,11 +839,10 @@ AdsEdit.initCropPhotoBox = function(cropBox, resultPhotoWidth, resultPhotoHeight
     minr: resultPhotoWidth / resultPhotoHeight,
     defw: resultPhotoWidth,
     defh: resultPhotoHeight,
-    icons: [
-      {width: resultPhotoWidthSmall, height: resultPhotoHeightSmall, box: 'ads_edit_crop_photo_small'}
-    ],
+    icons: icons,
     zstart: 1000,
     crop: cropOptions,
+    safeZones: safeZones,
     onInit: initPlayImage
   });
 
@@ -841,6 +876,7 @@ AdsEdit.initCropPhotoBox = function(cropBox, resultPhotoWidth, resultPhotoHeight
 
   var boxOptions = {};
   boxOptions.onClean = function() {
+    destroyHintTt();
     cur.photoTaggerDestroy();
     Ads.unlock('saveCropPhoto');
     delete cur.cropBox;

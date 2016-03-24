@@ -2446,7 +2446,7 @@ var Feed = {
   },
 
   // scrollTop check
-  scrollCheck: function() {
+  scrollCheck: function(params) {
     if (!cur.idleManager || cur.isFeedLoading || cur.idleManager.isIdle || cur.disableAutoMore) return;
     var el = ge('show_more_link');
     if (!isVisible(el)) return;
@@ -2470,7 +2470,7 @@ var Feed = {
       !cur.topRow ||
       cur.topRow.id == 'feed_rows_next' ||
       cur.section != 'news' && cur.section != 'recommended' && cur.section != 'search' ||
-      ((window.curNotifier || {}).idle_manager || {}).is_idle
+      (((window.curNotifier || {}).idle_manager || {}).is_idle && (params || {}).type != 'init')
     ) {
       return;
     }
@@ -3144,7 +3144,7 @@ var Feed = {
       show('feed_rate_mobile');
     }
 
-    setTimeout(feed.scrollCheck, 200);
+    setTimeout(function () {feed.scrollCheck({type: 'init'});}, 200);
   },
   startEvents: function () {
     // IDLE manager
@@ -3156,7 +3156,6 @@ var Feed = {
     // Scroll check routine for auto preload next news
     addEvent(feed.scrollNode, 'scroll', feed.scrollCheck);
     addEvent(window, 'resize', feed.scrollCheck);
-    addEvent(window, 'onload', feed.scrollCheck);
   },
   initUi: function () {
     cur.searchSortMenu = new DropdownMenu(cur.options.search_sorts, {

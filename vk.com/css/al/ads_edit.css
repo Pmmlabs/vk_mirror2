@@ -662,6 +662,105 @@ a.ads_edit_link_go:hover {
 #ads_edit_crop_photo_small_wrap {
   margin: 0 auto;
 }
+/* ------------------- */
+/* Redesign ad preview */
+/* ------------------- */
+#ads_edit_crop_photo_old_preview {
+  float: left;
+}
+#ads_edit_crop_photo_old_preview > p {
+  text-align: center;
+}
+#ads_edit_crop_photo_new_preview {
+  float: left;
+  padding-left: 15px;
+}
+#ads_edit_crop_photo_new_preview > p {
+  text-align: center;
+}
+#ads_edit_crop_photo_new_preview .ads_ad_box {
+  font-size: 12px;
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif, Geneva, arial, Tahoma, verdana;
+}
+#ads_edit_crop_photo_new_preview .ads_ad_box.ver.repeat_ver.size_site {
+  width: 145px;
+  padding: 0 14px;
+}
+#ads_edit_crop_photo_new_preview .ads_ad_box_border.repeat_ver.first {
+  border-top-width: 0;
+}
+#ads_edit_crop_photo_new_preview .ads_ad_box_border.repeat_ver {
+  border-bottom-width: 0;
+}
+#ads_edit_crop_photo_new_preview .ads_ad_box2.ver.repeat_ver.size_site {
+  width: 145px;
+}
+#ads_edit_crop_photo_new_preview .ads_ad_box2.ver {
+  display: block;
+  text-align: left;
+  padding: 0;
+}
+#ads_edit_crop_photo_new_preview .ads_ad_photo_box {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+#ads_edit_crop_photo_new_preview .ads_ad_photo_box.ver {
+  padding-top: inherit;
+}
+#ads_edit_crop_photo_new_preview #ads_edit_crop_photo_small_wrap {
+  margin-left: -1px;
+  margin-top: -1px;
+}
+#ads_edit_crop_photo_new_preview .ads_ad_title_box {
+  padding: 7px 0 1px 0;
+  line-height: 15px;
+  color: #42648B;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#ads_edit_crop_photo_new_preview .ads_ad_description {
+  color: #1D1D1E;
+  line-height: 15px;
+  padding-top: 3px;
+}
+#ads_edit_crop_photo_new_preview .ads_ad_domain {
+  color: #42648B;
+  font-size: 12px;
+  line-height: 15px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#ads_edit_crop_photo_new_preview .ads_ad_disclaimers {
+  color: #7C7F82;
+  font-size: 11px;
+  line-height: 13px;
+}
+#ads_edit_crop_photo_new_preview .ads_ad_disclaimer.ver {
+  padding-top: 4px;
+}
+#ads_edit_crop_new_preview_error_wrapper {
+  width: 145px;
+  padding: 0 14px;
+}
+#ads_edit_crop_photo_new_hint {
+  color: #9cabb8;
+  font-size: 0.91em;
+  cursor: pointer;
+}
+.ads_edit_crop_photo_new_hint_tt table .tt_text {
+  color: #000;
+  line-height: 150%;
+  padding: 10px;
+  width: 250px;
+}
+.ads_edit_crop_photo_new_hint_tt table .bottom_pointer {
+  margin-right: 0px;
+  margin-left: 130px;
+  display: block;
+  background: url(/images/tooltip_arrow_white.gif) no-repeat;
+}
 /* -------------- */
 /* Upload - video */
 /* -------------- */

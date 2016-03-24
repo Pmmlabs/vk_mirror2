@@ -26,6 +26,14 @@
   display: none;
   overflow: hidden;
 }
+.tag_frame_zone {
+  cursor: move;
+  position: absolute;
+  background: #000;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  display: none;
+}
 .tag_bg {
   z-index: 2000;
   left: 0px;
