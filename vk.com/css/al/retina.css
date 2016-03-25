@@ -1146,6 +1146,10 @@ body.dev.is_2x .paginated_table_header th.paginated_table_cell.sort_desc span.ta
   background-image: url(/images/ps/mailmoney_2x.png);
   background-size: 124px 40px;
 }
+.is_2x .payments_logo_paypal_ipn {
+  background-image: url(/images/ps/paypal_ipn_2x.png);
+  background-size: 150px 38px;
+}
 .is_2x #stats_good_browsers a {
   background-size: 80px 80px;
 }
