@@ -3194,6 +3194,21 @@ Ads.sendContactsForm = function(button) {
   }
 }
 
+Ads.removeAdminSelf = function(union_id, hash) {
+  var box = showFastBox(getLang('ads_admin_remove_self_confirm_title'), getLang('ads_admin_remove_self_confirm_message'), getLang('box_yes'), function() {
+    ajax.post('/ads?act=a_remove_admin', {union_id: union_id,  hash: hash}, {
+      onDone: function(html) {
+        curBox().hide();
+        nav.go('/ads?act=office&last=1');
+      },
+      showProgress: box.showProgress,
+      hideProgress: box.hideProgress
+    });
+  }, getLang('box_no'));
+
+  return false;
+}
+
 Ads.getNamespace = function (namespace) {
   if (!cur.namespaces) {
     cur.namespaces = {};

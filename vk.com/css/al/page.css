@@ -2405,6 +2405,12 @@ div.med_no_attach {
   height: 11px;
   margin-top: 2px;
 }
+.wall_module .media_desc .im_chronicle_invite_descr b {
+  background: none !important;
+}
+.im_msg_media_chronicle_invite {
+  width: 315px;
+}
 .wall_module .media_preview b.postpone {
   background-position: 0 -334px;
   margin-top: 2px;
