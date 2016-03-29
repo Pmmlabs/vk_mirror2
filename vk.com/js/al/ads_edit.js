@@ -776,7 +776,6 @@ AdsEdit.showCropPhotoBox = function(photoData) {
     switch (viewParams.format_type) {
       case AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE:
       case AdsEdit.ADS_AD_FORMAT_TYPE_BIG_IMAGE:
-      case AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE:
         if (viewParams.link_type != AdsEdit.ADS_AD_LINK_TYPE_VIDEO) {
           adWidth = 306; // Redesign ad preview
         }
@@ -801,16 +800,8 @@ AdsEdit.initCropPhotoBox = function(cropBox, resultPhotoWidth, resultPhotoHeight
   cropBox.addButton(getLang('box_cancel'), false, 'no');
   cropBox.addButton(getLang('box_save'), AdsEdit.saveCropPhoto.pbind(cropBox), 'yes');
 
-  var newHintEl = ge('ads_edit_crop_photo_new_hint');
-  var showHintTt = showTooltip.pbind(newHintEl, {text: getLang('ads_edit_ad_crop_future_tooltip'), className: 'ads_edit_crop_photo_new_hint_tt', shift: [130, 0, 0], slide: 15});
-  var destroyHintTt = function() {
-    removeEvent(newHintEl, 'mouseover', showHintTt);
-    tooltips.destroy(newHintEl);
-  }
-  if (newHintEl) {
-    addEvent(newHintEl, 'mouseover', showHintTt);
-    cur.destroy.push(destroyHintTt);
-  }
+  var destroyHintTt = Ads.initRedesignHintTooltip();
+  cur.destroy.push(destroyHintTt);
 
   var icons = [{width: resultPhotoWidthSmall, height: resultPhotoHeightSmall, box: 'ads_edit_crop_photo_small'}];
   var safeZones = {};

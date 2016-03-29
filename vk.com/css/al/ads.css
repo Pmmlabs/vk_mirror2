@@ -723,6 +723,7 @@ td.paginated_table_cell.column_status_view {
 #ads_unions_content .table_label.mobile {
   max-width: 150px;
 }
+#ads_unions_content .table_label.with_redesign,
 #ads_unions_content .table_label.promoted_post,
 #ads_unions_content .table_label.big_app {
   min-width: 130px;
@@ -1200,6 +1201,10 @@ table.ads_inline_edit_table td {
 .ads_general_info .table_large_text.big_app {
   width: 130px;
   max-width: 130px;
+}
+.ads_general_info .table_large_text.with_redesign {
+  width: 215px;
+  max-width: 215px;
 }
 #ads_unions_content h4 span {
   font-weight: bold;
@@ -1690,6 +1695,196 @@ td.ads_settings_notifacations_label {
 #ad_preview_top .ads_ad_box_border.promoted_post {
   left: auto;
   width: 328px;
+}
+/* ------------------- */
+/* Redesign ad preview */
+/* ------------------- */
+.ads_ad_current_preview {
+  float: left;
+}
+.ads_ad_current_preview > p {
+  text-align: center;
+}
+.ads_ad_current_preview .ads_ad_box_border.repeat_ver {
+  border-bottom-width: 0;
+}
+.ads_ad_redesign_preview {
+  float: left;
+  padding-left: 15px;
+}
+.ads_ad_redesign_preview > p {
+  text-align: center;
+}
+.ads_ad_redesign_hint {
+  color: #9cabb8;
+  font-size: 0.91em;
+  cursor: pointer;
+}
+.ads_ad_redesign_hint_tt table .tt_text {
+  color: #000;
+  line-height: 150%;
+  padding: 10px;
+  width: 250px;
+}
+.ads_ad_redesign_hint_tt table .bottom_pointer {
+  margin-right: 0px;
+  margin-left: 130px;
+  display: block;
+  background: url(/images/tooltip_arrow_white.gif) no-repeat;
+}
+.ads_ad_no_redesign_preview_error_wrapper {
+  width: 145px;
+  padding: 0 14px;
+  text-align: left;
+}
+.ads_ad_box.redesign {
+  font-size: 12px;
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif, Geneva, arial, Tahoma, verdana;
+}
+.ads_ad_box.redesign.ver.repeat_ver.size_site {
+  width: 151px;
+}
+.ads_ad_box.redesign .ads_ad_box_border.repeat_ver.first {
+  border-top-width: 0;
+}
+.ads_ad_box.redesign .ads_ad_box_border.repeat_ver {
+  border-bottom-width: 0;
+}
+.ads_ad_box.redesign .ads_ad_box2.ver.repeat_ver.size_site {
+  width: 145px;
+}
+.ads_ad_box.redesign .ads_ad_box2.ver {
+  display: block;
+  text-align: left;
+  padding-top: 0;
+}
+.ads_ad_box.redesign .ads_ad_photo_box {
+  border-radius: 2px;
+  height: 85px;
+}
+.ads_ad_box.redesign .ads_ad_photo_box.ver {
+  padding-top: inherit;
+}
+.ads_ad_box.redesign .ads_ad_photo_box.big_image {
+  height: 165px;
+  max-height: 165px;
+}
+.ads_ad_box.redesign .ads_ad_photo_box.promotion {
+  height: 145px;
+  max-height: 145px;
+}
+.ads_ad_box.redesign .ads_ad_photo_box .ads_ad_photo {
+  width: 145px;
+  max-width: 145px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.ads_ad_box.redesign .ads_ad_photo_box .ads_ad_age_restriction {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  width: 24px;
+  height: 15px;
+  padding: 0;
+  margin: 0;
+  background: #333;
+  border-radius: 40px;
+  text-align: center;
+  line-height: 15px;
+  font-size: 9px;
+  color: #FFF;
+}
+.ads_ad_box.redesign .ads_ad_photo_box_borders {
+  pointer-events: none;
+  background: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border: 1px solid black;
+  border-radius: 2px;
+  opacity: 0.04;
+  -moz-opacity: 0.04;
+  filter: alpha(opacity=4);
+}
+.ads_ad_box.redesign .ads_ad_community_join {
+  position: absolute;
+  left: 17px;
+  top: 57px;
+  height: 30px;
+  width: 117px;
+  padding: 0;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #FFF;
+  text-align: center;
+  line-height: 30px;
+  font-size: 12px;
+  opacity: 0;
+  -moz-opacity: 0;
+  filter: alpha(opacity=0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ads_ad_box.redesign .ads_ad_community_join:hover {
+  text-decoration: none;
+}
+.ads_ad_box.redesign .ads_ad_community_join .ads_ad_community_join_icon {
+  width: 17px;
+  height: 16px;
+  display: inline-block;
+  padding-right: 6px;
+  margin-bottom: -3px;
+  background: url(/images/icons/ad_actions.png) no-repeat 4px 16px;
+}
+.ads_ad_box.redesign .ads_ad_community_join .ads_ad_community_join_icon.join_group,
+.ads_ad_box.redesign .ads_ad_community_join .ads_ad_community_join_icon.join_event,
+.ads_ad_box.redesign .ads_ad_community_join .ads_ad_community_join_icon.join_public {
+  background-position: 6px -13px;
+}
+.ads_ad_box.redesign .ads_ad_community_join .ads_ad_community_join_icon.join_game {
+  background-position: 0 -29px;
+}
+.ads_ad_box.redesign .ads_ad_community_join .ads_ad_community_join_icon.join_app {
+  background-position: 6px 2px;
+}
+.ads_ad_box.redesign:hover .ads_ad_community_join {
+  opacity: 0.8;
+  -moz-opacity: 0.8;
+  filter: alpha(opacity=80);
+  transition: opacity 100ms ease-out;
+}
+.ads_ad_box.redesign .ads_ad_title_box {
+  padding: 7px 0 0 0;
+  line-height: 15px;
+  color: #42648B;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ads_ad_box.redesign .ads_ad_description {
+  color: #1D1D1E;
+  line-height: 15px;
+  padding-top: 3px;
+}
+.ads_ad_box.redesign .ads_ad_domain {
+  color: #939699;
+  font-size: 12px;
+  line-height: 15px;
+  padding-top: 1px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.ads_ad_box.redesign .ads_ad_disclaimers {
+  color: #7C7F82;
+  font-size: 11px;
+  line-height: 13px;
+}
+.ads_ad_box.redesign .ads_ad_disclaimer.ver {
+  padding-top: 3px;
 }
 #ad_preview_top.promoted_post .ad_preview_top_buttons {
   display: inline-block;

@@ -3239,4 +3239,16 @@ Ads.createDropdown = function (element, namespace, name, values, options) {
   namespace[name] = new DropdownMenu(values, params);
 }
 
+Ads.initRedesignHintTooltip = function() {
+  var el = geByClass1('ads_ad_redesign_hint', document, 'span');
+  if (!el) {
+    return function(){};
+  }
+  var show = showTooltip.pbind(el, {text: getLang('ads_ad_redesign_tooltip'), className: 'ads_ad_redesign_hint_tt', shift: [130, 0, 0], slide: 15});
+  addEvent(el, 'mouseover', show);
+  return function() {
+    removeEvent(el, 'mouseover', show);
+    tooltips.destroy(el);
+  }
+}
 try{stManager.done('ads.js');}catch(e){}
