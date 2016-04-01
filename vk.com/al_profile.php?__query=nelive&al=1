@@ -1,9 +1,9 @@
 setTimeout(function() {
-  document.title = replaceEntities(stripHTML('Не LIVE | ВКонтакте'));
+  document.title = replaceEntities(stripHTML('Не LIVE | VK'));
 }, browser.chrome ? 50 : 100);
 updateMoney(0);
 gSearch.init();
-if (window.qArr && qArr[5]) qArr[5] = [5, "по товарам", "", "goods", 0x00000100];
+if (window.qArr && qArr[5]) qArr[5] = [5, "by item", "", "goods", 0x00000100];
 if (browser.iphone || browser.ipad || browser.ipod) {
   setStyle(bodyNode, {webkitTextSizeAdjust: 'none'});
 }window.changeQuickRegButton = function(noShow) {
@@ -37,25 +37,25 @@ if (browser.msie8 || browser.msie7) {
   }
   setStyle(ge('ts_cont_wrap'), st);
 }
-window.tsHintsEnabled = 1;;shortCurrency();public.init({"only_official":true,"public_id":34371983,"public_link":"\/nelive","reply_names":[],"max_post_len":280,"post_hash":"01c7b02dd192571054","media_types":false,"wall_type":"own","wall_no":"Нет записей","wall_counts":["","%s запись","%s записи","%s записей"],"wall_suggest_post":"предложить новость","wall_return_to_posts":"вернуться к записям","wall_no_suggests_label":"Вы не предложили ни одной новости","wall_suggests_label":["","Вы предложили %s новость","Вы предложили %s новости","Вы предложили %s новостей"],"all_link":"к опубликованным записям","own_link":"есть предлагаемые новости","rmedia_types":[["photo","Фотографию"],["video","Видеозапись"],["audio","Аудиозапись"],["graffiti","Граффити"],["note","Заметку"],["doc","Документ"],["map","Карту"],["postpone","Таймер",{"lang":{"profile_choose_timer":"Время публикации","profile_wall_postpone_at":"в","profile_wall_postpone_btn":"В очередь","export_to_twitter":"экспорт в Twitter","export_to_facebook":"экспорт в Facebook","friends_only":"только для друзей"},"date":1459512913}]],"share":{"url":"","hash":"","rhash":"","timehash":"1459498513_177e49b73997a8bed1"},"feedLists":0,"feedListsHash":"dabb281ed711949bfb","photo_hash":null,"liked":false,"enterHash":"eccb9972e597dbd9fe","info_headers":{"info_module_tab":"<h4 class=\"simple page_top\">\n  <div class=\"top_header page_name\">Не LIVE<\/div>\n  \n<\/h4>"},"tab_actions":"","otherCount":"Подписались 4 человека","back":"Не LIVE","ciAudioTip":"Композиция, которая играет в сообществе Не LIVE","ciAudioHash":"bde111e56038100605","fixed_post_id":6});
+window.tsHintsEnabled = 1;;shortCurrency();public.init({"only_official":true,"public_id":34371983,"public_link":"\/nelive","reply_names":[],"max_post_len":280,"post_hash":"01c7b02dd192571054","media_types":false,"wall_type":"own","wall_no":"No posts yet","wall_counts":["","%s post","%s posts"],"wall_suggest_post":"suggest a post","wall_return_to_posts":"back to posts","wall_no_suggests_label":"You haven&#39;t suggested any posts yet","wall_suggests_label":["","You have suggested %s post","You have suggested %s posts"],"all_link":"go to published posts","own_link":"you have post suggestions","rmedia_types":[["photo","Photo"],["video","Video"],["audio","Audio file"],["graffiti","Graffiti"],["note","Note"],["doc","Document"],["map","Map"],["postpone","Timer",{"lang":{"profile_choose_timer":"Timer","profile_wall_postpone_at":"at","profile_wall_postpone_btn":"Enqueue","export_to_twitter":"Export to Twitter","export_to_facebook":"Export to Facebook","friends_only":"Friends only"},"date":1459547524}]],"share":{"url":"","hash":"","rhash":"","timehash":"1459533124_61efa8d646a58910a0"},"feedLists":0,"feedListsHash":"dabb281ed711949bfb","photo_hash":null,"liked":false,"enterHash":"eccb9972e597dbd9fe","info_headers":{"info_module_tab":"<h4 class=\"simple page_top\">\n  <div class=\"top_header page_name\">Не LIVE<\/div>\n  \n<\/h4>"},"tab_actions":"","otherCount":"4 followers","back":"Не LIVE","ciAudioTip":"Now playing in Не LIVE","ciAudioHash":"bde111e56038100605","fixed_post_id":6});
 cur.lang = extend(cur.lang || {}, {
-  show_full: 'Показать подробную информацию',
+  show_full: 'Show full information',
   groups_user_about_messages: '',
-  hide_full: 'Скрыть подробную информацию',
-  sure_delete_photo: 'Вы уверены, что хотите удалить фотографию?',
-  change_current_info: 'изменить статус',
-  share_current_info: 'Рассказать подписчикам сообщества',
-  wall_link_label: 'Ссылка',
-  create_poll: 'Опрос',
-  dont_attach: 'Не прикреплять',
-  attachments_limit: ["","Одна запись не может содержать более %s вложения.","Одна запись не может содержать более %s вложений.","Одна запись не может содержать более %s вложений."],
-  publish_postponed_title: 'Подтверждение действия',
-  publish_postponed_confirm: 'Вы действительно хотите опубликовать отложенную запись прямо сейчас?',
-  publish_postponed_btn: 'Опубликовать',
-  global_store_stickers: 'Магазин стикеров',
-  global_store_stickers_new_available: 'Доступны новые стикеры',
-  global_link_choose_own_photo: 'Выбрать свою иллюстрацию',
-  global_link_remove_photo: 'Убрать иллюстрацию',
+  hide_full: 'Hide full information',
+  sure_delete_photo: 'Are you sure you want to delete this photo?',
+  change_current_info: 'edit status message',
+  share_current_info: 'Post to community wall',
+  wall_link_label: 'Link',
+  create_poll: 'Poll',
+  dont_attach: 'Remove attachment',
+  attachments_limit: ["","A post can only have %s attachment.","A post can only have %s attachments."],
+  publish_postponed_title: 'Confirmation required',
+  publish_postponed_confirm: 'Are you sure you want to publish your post now?',
+  publish_postponed_btn: 'Publish',
+  global_store_stickers: 'Stickers store',
+  global_store_stickers_new_available: 'New stickers available',
+  global_link_choose_own_photo: 'Choose your own image',
+  global_link_remove_photo: 'Delete image',
 });
 extend(cur, {
   boxForMap:null,
@@ -64,7 +64,7 @@ extend(cur, {
   onPlaceAdd: function() {
     Public.showPlaces(1);
   }
-});;cur.wallVideos={"wall_-34371983":{"title":"Видео на стене Не LIVE","list":[{"vid":"-460389_160321403","title":"Rick Astley - Never Gonna Give You Up","thumb":"http:\/\/cs12672.vk.me\/u30803973\/video\/l_c7720048.jpg","duration":"3:32","views":"87<span class=\"num_delim\"> <\/span>256 просмотров","hash":"9f205571d389be88bb"}],"id":"wall_-34371983"}};cur.pinnedVideo = '-460389_160321403';
+});;cur.wallVideos={"wall_-34371983":{"title":"Video on Не LIVE&#39;s wall","list":[{"vid":"-460389_160321403","title":"Rick Astley - Never Gonna Give You Up","thumb":"http:\/\/cs12672.vk.me\/u30803973\/video\/l_c7720048.jpg","duration":"3:32","views":"87,385 views","hash":"9f205571d389be88bb"}],"id":"wall_-34371983"}};cur.pinnedVideo = '-460389_160321403';
 cur.pinnedVideoInitHandlers = function() {
   var post = ge('post-34371983_6');
   var playerEl = ge('video_player') || ge('html5_player');

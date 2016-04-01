@@ -752,6 +752,22 @@ ul.vk_com_only_good {
   background-image: url(/images/vkfest_2x.png);
   background-size: 22px 28px;
 }
+.testredesign_bar_img {
+  width: 26px;
+  height: 26px;
+  background: url(/images/redesign_banner.png) no-repeat center center;
+  margin-right: 4px;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  vertical-align: top;
+  position: relative;
+  top: -5px;
+}
+.is_2x .testredesign_bar_img {
+  background-image: url(/images/redesign_banner_2x.png);
+  background-size: 22px 28px;
+}
 #save_fv_bar_content .button_blue,
 #save_fv_bar_content .button_gray {
   margin-left: 10px;
