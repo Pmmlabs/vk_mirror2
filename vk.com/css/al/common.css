@@ -3901,3 +3901,11 @@ a.ts_search_link.active {
 .left_fixer > span {
   display: block;
 }
+.harold-main,
+.harold-tt {
+  -o-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
