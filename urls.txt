@@ -440,3 +440,5 @@ http://vk.com/js/al/mrtarg.js
 http://vk.com/css/al/mrtarg.css
 http://vk.com/js/al/videocat.js
 http://vk.com/css/al/videocat.css
+http://new.vk.com/js/al/box.js
+http://new.vk.com/js/al/settings.js
