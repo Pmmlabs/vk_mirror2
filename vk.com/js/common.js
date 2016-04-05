@@ -400,6 +400,9 @@ function replaceEntities(str) {
 function clean(str) {
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 }
+function unclean(str) {
+  return replaceEntities(str.replace(/\t/g, "\n"));
+}
 
 /**
  *  Arrays, objects
