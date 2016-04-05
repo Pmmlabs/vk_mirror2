@@ -3994,7 +3994,7 @@ onExternalVideoEnded: function(container) {
   var isMinimized = window.mvcur && mvcur.minimized;
 
   var finishBlock = se('\
-<div class="mv_external_finish" id="mv_external_finish">\
+<div class="mv_external_finish" id="mv_external_finish" onclick="Videoview.onExternalVideoBgClick(this, event)">\
   <div class="mv_finish_header">\
     <div id="mv_finish_subscribe" class="fl_r mv_finish_subscribe ' + (isSubscribed ? 'mv_finish_subscribed' : '') + '">\
       <button id="mv_finish_subscribe_btn" class="mv_finish_subscribe_btn fl_l" onclick="Videoview.onExternalVideoSubscribe()">' + (isSubscribed ? getLang('video_view_subscribed_msg') : getLang('video_view_subscribe_to_author')) + '</button>\
@@ -4089,6 +4089,11 @@ onExternalVideoNextCancel: function(event) {
     re('mv_finish_next');
     removeClass('mv_finish_suggestions', 'hidden');
   } else {
+    re('mv_external_finish');
+  }
+},
+onExternalVideoBgClick: function(el, evt) {
+  if (evt.target === el) {
     re('mv_external_finish');
   }
 },
