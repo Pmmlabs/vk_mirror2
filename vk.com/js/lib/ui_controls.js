@@ -1071,7 +1071,7 @@ createChildClass('Selector', UiControl, {
     var maxTokenWidth = Math.max(this.selector.clientWidth, getSize(token)[0]);
     var self = this;
 
-    token.innerHTML = '<span class="l">' + data[1] + '</span><span class="x" />';
+    token.innerHTML = '<span class="l">' + clean(unclean(data[1])) + '</span><span class="x" />';
 
     addEvent(token, 'click', function() {
       self.selectToken(data[0]);

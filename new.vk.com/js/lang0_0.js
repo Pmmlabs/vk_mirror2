@@ -57,6 +57,7 @@ global_rating_box_header='Рейтинг';
 global_recommended_exceeded=['','Рекомендуемый объем превышен на %s знак.','Рекомендуемый объем превышен на %s знака.','Рекомендуемый объем превышен на %s знаков.'];
 global_recommended_lines=['','Рекомендуемый объем превышен на %s строку.','Рекомендуемый объем превышен на %s строки.','Рекомендуемый объем превышен на %s строк.'];
 global_reply_to='ответ {user}';
+global_report_sent='Жалоба отправлена';
 global_save='Сохранить';
 global_search_not_found='По запросу {search} ничего не найдено.';
 global_to_top='Наверх';
@@ -216,7 +217,7 @@ videofile_num=['','видеозапись','видеозаписи','видеозаписей'];
 votes_flex=['','голос','голоса','голосов'];
 Work_place='Место работы:';
 yesterday='вчера';
-// section = 0; version = 424;
+// section = 0; version = 426;
 
 friends_no_user_selected='Вы не выбрали ни одного пользователя.';
 // section = 2; version = 207;
