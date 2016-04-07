@@ -133,9 +133,9 @@ var html5video = {
     ge('the_video').removeAttribute('controls', '');
     show('menu_bk', 'menu_controls')
     html5video.updVol();
-    ge('video_title').innerHTML = decodeURIComponent(html5video.vars.md_title || '').replace(/\+/g, ' ');
-    ge('video_author').innerHTML = decodeURIComponent(html5video.vars.md_author || '').replace(/\+/g, ' ');
-    ge('video_author').href = decodeURIComponent(html5video.vars.author_href || '')
+    ge('video_title').innerHTML = clean(html5video.vars.md_title || '');
+    ge('video_author').innerHTML = clean(html5video.vars.md_author || '');
+    ge('video_author').href = html5video.vars.author_href;
 
     html5video.initVideoLinks();
     html5video.addVideoListeners();
