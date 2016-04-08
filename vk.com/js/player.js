@@ -612,9 +612,9 @@ function showVideoBox(vars, elem, description, to_comments_text, add_text, add_h
     showVideoBox.apply(t, a);
   })) return false;
 
-  var title   = decodeURIComponent(vars['md_title']).replace(/\+/g, ' ');
-  var author  = decodeURIComponent(vars['md_author']).replace(/\+/g, ' ');
-  description = decodeURIComponent(description).replace(/\+/g, ' ');
+  var title   = vars['md_title'];
+  var author  = vars['md_author'];
+  description = description;
 
   if (!window.videoBox) {
     window.videoBox = new MessageBox({width: ww + 22, bodyStyle: 'padding: 10px', closeButton: true, onHideAttempt: function() {

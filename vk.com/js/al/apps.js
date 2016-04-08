@@ -916,7 +916,8 @@ vkApp.prototype.api = function(method, inputParams, callback, captcha) {
 
   if (inputParams) {
     for (var i in inputParams) {
-      if (i != 'rnd' && i != 'format' && i != 'api_id' && i != 'method' && i != 'callback' && i != 'access_token') {
+      i = trim(i);
+      if (!/^(rnd|format|api_id|method|callback|access_token)(\[.*?\])?$/.test(i)) {
         params[i] = inputParams[i];
       }
     }
