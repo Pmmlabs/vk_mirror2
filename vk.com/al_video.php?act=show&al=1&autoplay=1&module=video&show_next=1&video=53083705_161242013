@@ -45,7 +45,15 @@ cur.incViews = function() {
 };window.onYouTubeIframeAPIReady = function() {
   var player = new YT.Player('video_yt_player', {
     events: {
-      onError: function() {
+      onError: function(event) {
+        var youTubeVideoUnavaiableErrors = [100, 101, 150];
+        if (event.data && youTubeVideoUnavaiableErrors.indexOf(event.data) != -1) {
+          ajax.post('/al_video.php', {
+            act: 'reparseDeletedYoutube',
+            vid: VideoYoutube.cur.vars.vid,
+            oid: VideoYoutube.cur.vars.oid
+          });
+        }
         debugLog('YT player error', arguments);
         ajax.post('al_video.php', {act: 'external_error', oid: '53083705', vid: '161242013', hash: '1f0509a109dba0d069'});
       },

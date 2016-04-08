@@ -380,14 +380,6 @@ var VideoYoutube = {
   },
 
   onError: function(event) {
-    var videoUnavaiableErrors = [100, 101, 150];
-    if (videoUnavaiableErrors.indexOf(event.data) != -1) {
-      ajax.post('/al_video.php', {
-        act: 'reparseDeletedYoutube',
-        vid: VideoYoutube.cur.vars.vid,
-        oid: VideoYoutube.cur.vars.oid
-      });
-    }
   },
 
 
