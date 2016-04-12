@@ -1761,7 +1761,6 @@ td.ads_settings_notifacations_label {
 .ads_ad_box.redesign .ads_ad_photo_box {
   border-radius: 2px;
   height: 85px;
-  position: relative;
 }
 .ads_ad_box.redesign .ads_ad_photo_box.ver {
   padding-top: inherit;
@@ -1770,22 +1769,20 @@ td.ads_settings_notifacations_label {
   height: 165px;
   max-height: 165px;
 }
+.ads_ad_box.redesign .ads_ad_photo_box.big_image .ads_ad_photo {
+  margin-top: -14px;
+}
 .ads_ad_box.redesign .ads_ad_photo_box.promotion {
   height: 145px;
   max-height: 145px;
 }
-.ads_ad_box.redesign .ads_ad_photo_box > img {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+.ads_ad_box.redesign .ads_ad_photo_box.promotion .ads_ad_photo {
+  margin-top: 0;
 }
 .ads_ad_box.redesign .ads_ad_photo_box .ads_ad_photo {
   width: 145px;
   max-width: 145px;
+  margin-top: -10px;
 }
 .ads_ad_box.redesign .ads_ad_photo_box .ads_ad_age_restriction {
   position: absolute;

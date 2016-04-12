@@ -1511,12 +1511,12 @@ stickerOver: function(stickerNum, el) {
     url: 'al_im.php',
     params: params,
     index: tt_index,
-    className: 'subscribe_post_tt sticker_extra_tt sticker_extra_tt' + tt_index,
+    className: 'subscribe_post_tt sticker_extra_tt tt_text_only sticker_extra_tt' + tt_index,
     shift: function() {
       if (browser.mozilla || browser.opera && browser.version.match(/(\d+)/)[0] <= 12) {
-        return [-138, 0, -190];
+        return [-138, 0, -170];
       }
-      return [-138, 0, -70];
+      return [-138, 0, -50];
     },
     hasover: 1,
     slideX: 15,

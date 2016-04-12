@@ -907,6 +907,37 @@ button.mention_tt_half_btn {
   border-right: 6px solid #fff;
   left: -5px;
 }
+.sticker_extra_tt.tt_text_only .stickers_extra_image_wrap {
+  display: none;
+}
+.sticker_extra_tt.tt_text_only .toup:before {
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  top: 50%;
+  margin-top: -6px;
+  margin-left: -6px;
+  border-right: 6px solid #BCCAD7;
+  left: -6px;
+}
+.sticker_extra_tt.tt_text_only .toup:after {
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  top: 50%;
+  margin-top: -6px;
+  margin-left: -6px;
+  border-right: 6px solid #fff;
+  left: -5px;
+}
 .sticker_extra_tt .tt_text {
   padding: 10px 16px 12px;
   width: 222px;
