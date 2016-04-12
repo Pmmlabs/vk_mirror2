@@ -605,7 +605,7 @@ btShow: function(obj) {
 
 
 checkUploadUrl: function(url) {
-  if (url && url.match(/^((https?:\/\/)?)(?:[a-z0-9\.]+\.)?(vkontakte\.ru|vk\.com)\//ig)) {
+  if (url && url.match(/^((https?:\/\/)?)(?:[a-z0-9\.]+\.)?(vkontakte\.ru|vk\.com|vk\.me)\//ig)) {
     return true;
   }
 
