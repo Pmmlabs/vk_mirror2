@@ -1,2 +1,1617 @@
-function Fletcher32(){function e(e){for(var o=e.length,i=0;o;){var l=o>359?359:o;o-=l;do a+=t+=e[i++];while(--l);t=((65535&t)>>>0)+(t>>>16),a=((65535&a)>>>0)+(a>>>16)}}function o(){return t=((65535&t)>>>0)+(t>>>16),a=((65535&a)>>>0)+(a>>>16),(a<<16>>>0|t)>>>0}var t=65535,a=65535;return{append:e,result:o}}if(window.jsonpManager||(window.jsonpManager=window.__jsp={c:1,h:{},reg:function(e){return __jsp.h[__jsp.c]=isFunction(e)?e:function(){},__jsp.c++}}),!window.Upload)var Upload={init:function(e,o,t,a){window.uploadInterface=void 0!=window.uploadInterface?uploadInterface+1:0;var i=uploadInterface;return each(["obj","dropbox","options","vars","types","uploadUrls","callbacks","checks","dragTimer"],function(e,o){Upload[o]||(Upload[o]={})}),this.obj[i]=ge(e),a.dropbox&&(this.dropbox[i]=ge(a.dropbox)),this.vars[i]=t,a.file_input=ge(a.file_input),this.options[i]=a,a.clear&&cur.destroy.push(Upload.deinit.pbind(i)),this.uploadUrls[i]=o,!a.flash_lite||browser.flash||this.checkFileApi()?a.customShowProgress?a.customShowProgress():"INPUT"!=this.obj[i].tagName||this.checkFileApi()?a.flash_lite||(this.obj[i].innerHTML='<div class="upload_check loading"><img width="32" height="8" src="/images/upload'+(hasClass(bodyNode,"is_2x")?"_2x":"")+'.gif" /></div>'):this.obj[i]=ge(a.fieldEl)||this.obj[i].parentNode.firstChild:this.obj[i]=ge(a.fieldEl)||this.obj[i].parentNode.firstChild,a.noCheck?this.embed(i):this.check(i),i},deinit:function(e){if(Upload.obj[e]){var o=Upload.options[e]||{},t=o.dragEvObj;if(t&&(removeEvent(t,"dragenter"),removeEvent(t,"dragover"),removeEvent(t,"dragleave")),each(["obj","dropbox","options","vars","types","uploadUrls","callbacks"],function(o,t){Upload[t]&&delete Upload[t][e]}),Upload.callbacks){var a=["oncheck","ondone","onfail"];each(Upload.flashCallbacks(),function(e,o){a.push(e)}),each(a,function(o,t){delete Upload.callbacks[t+e]})}clearTimeout(Upload.checks["timer"+e]),clearTimeout(Upload.dragTimer[e]),delete Upload.dragTimer[e]}},check:function(e){var o=this.obj[e],t=this.vars[e],a=this.options[e],i=a.check_url?a.check_url:this.uploadUrls[e],l={};if(a.signed){if(!i)return Upload.onCheckComplete(e);extend(l,{_jsonp:jsonpManager.reg(function(o){Upload.onCheckComplete(e,o)})})}else{if(!a.check_hash&&!a.server)return Upload.onCheckComplete(e);this.callbacks["oncheck"+e]=Upload.onCheckComplete.pbind(e);var n=["mid","aid","gid","hash","rhash"];for(var s in n)l[n[s]]=t[n[s]];a.check_hash&&(l.hash=a.check_hash),a.check_rhash&&(l.rhash=a.check_rhash),t.https_resp&&(l.https_resp=t.https_resp),t.http_resp&&(l.http_resp=t.http_resp),extend(l,{al:1,act:"check_upload",type:a.type,ondone:"Upload.callbacks.oncheck"+e})}var d='<form action="'+i+'" enctype="multipart/form-data" method="post" id="check_upload_form'+e+'" target="check_iframe'+e+'">';for(var s in l)d+='<input type="hidden" name="'+s+'" value="'+l[s]+'" />';d+='</form><iframe style="visibility: hidden; width: 1px; height: 1px;" id="check_iframe'+e+'" name="check_iframe'+e+'"></iframe>';var r=ce("div",{id:"check_upload_"+e,innerHTML:d,className:a.checkClass||""},{display:"none"});ge("check_upload_"+e)&&re("check_upload_"+e),o.appendChild(r);var p=ge("check_upload_form"+e);try{p&&p.submit(),clearTimeout(Upload.checks["timer"+e]),this.checks["timer"+e]=setTimeout(Upload.serverFail.pbind(e),1e4)}catch(u){debugLog(u)}},onCheckComplete:function(e,o){clearTimeout(Upload.checks["timer"+e]),delete Upload.checks["timer"+e];var t={},a=Upload.options[e],i=o;if(a.signed)t=parseJSON(o||"{}");else{o=o||"",o=o.split("&");for(var l in o){var n=o[l].split("=");t[n[0]]=n[1]}i=t}a.customHideProgress&&a.customHideProgress(),t.error||t.fail?Upload.serverFail(e,i):(a.noCheck=1,a.onCheckComplete?a.onCheckComplete(e):a.flash_lite&&browser.flash?Upload.initFlash(e,Upload.obj[e]):Upload.embed(e),Upload.serverSuccess(e,i))},serverFail:function(i,err_obj){var obj=Upload.obj[i],options=Upload.options[i],vars=Upload.vars[i];if(obj&&(options.signed||options.server)){if(Upload.fails||(Upload.fails={}),Upload.fails[i]=Upload.fails[i]?Upload.fails[i]+1:1,options.signed){var parts=Upload.uploadUrls[i].split("?"),tmp=q2ajx(parts[1]),q=extend({act:"check_result",_resign:tmp._query||parts[1]},err_obj?{_query:err_obj}:{_check:options.check_url.split("?")[1]});return void ajax.post("upload_fails.php",q,{onDone:function(e,o,t,a){Upload.fails[i]<options.max_attempts?(Upload.uploadUrls[i]=e,extend(Upload.options[i],{check_url:o,base_url:t,static_url:a}),Upload.check(i)):(obj.innerHTML="",options.lang&&options.lang.cannot_upload_title&&options.lang.cannot_upload_text&&showFastBox({title:options.lang.cannot_upload_title,width:430,dark:1,bodyStyle:"padding: 20px; line-height: 160%;"},options.lang.cannot_upload_text))}})}var query=extend({act:"fail",role:options.type,mid:vars.mid,oid:vars.oid,gid:vars.gid,aid:vars.aid,server:options.server,error:options.error,hash:options.error_hash},err_obj);if(options.custom_hash&&extend(query,{custom_hash:options.custom_hash,photo_hash:vars.photo_hash,size:vars.size,fid:vars.fid,vid:vars.vid,tag:vars.tag}),window.ajax)ajax.post("upload_fails.php",query,{onDone:function(e,o,t){Upload.fails[i]<options.max_attempts?(Upload.uploadUrls[i]=e,extend(Upload.options[i],t),extend(Upload.vars[i],o),Upload.check(i)):(obj.innerHTML="",options.lang&&options.lang.cannot_upload_title&&options.lang.cannot_upload_text&&showFastBox({title:options.lang.cannot_upload_title,width:430,dark:1,bodyStyle:"padding: 20px; line-height: 160%;"},options.lang.cannot_upload_text))}});else{if(1e5!=options.server)return;Ajax.Send("/upload_fails.php",query,function(ajaxObj,response){try{response=eval("("+response+")")}catch(e){response=null}var opts=response.options,new_vars=response.vars,url=response.upload_url;Upload.fails[i]<options.max_attempts?(Upload.uploadUrls[i]=url,extend(Upload.options[i],opts),extend(Upload.vars[i],new_vars),Upload.check(i)):(obj.innerHTML="",options.lang&&options.lang.cannot_upload_title&&options.lang.cannot_upload_text&&showFastBox({title:options.lang.cannot_upload_title,width:430,dark:1,bodyStyle:"padding: 20px; line-height: 160%;"},options.lang.cannot_upload_text),options.onCheckServerFailed&&options.onCheckServerFailed())})}}},serverSuccess:function(e,o){var t=Upload.options[e],a=Upload.vars[e];if(Upload.checked=Upload.checked||{},Upload.checked[e]=1,t.signed)return void ajax.post("upload_fails.php",{act:"check_result",_query:o});if(t.server||t.error_hash){var i=extend({act:"success",mid:a.mid,oid:a.oid,gid:a.gid,aid:a.aid,server:t.server,error:t.error,hash:t.error_hash},o);window.ajax?ajax.post("upload_fails.php",i):Ajax.Send("/upload_fails.php",i)}},embed:function(e){var o=void 0!=e.num?e.num:e,t=this.obj[o],a=this.dropbox[o],i=this.options[o];return i.noEmbed?void re("check_upload_"+e):void(i.noCheck&&(browser.flash>9&&i.forceFlash?this.initFlash(o,t):this.checkFileApi()&&!i.flash_lite?this.initFileApi(o,t,a):browser.flash>9&&!i.noFlash?this.initFlash(o,t):i.noForm||this.initForm(o,t)))},checkFileApi:function(){return(window.XMLHttpRequest||window.XDomainRequest)&&(window.FormData||window.FileReader&&(window.XMLHttpRequest&&XMLHttpRequest.sendAsBinary||window.ArrayBuffer&&window.Uint8Array&&(window.MozBlobBuilder||window.WebKitBlobBuilder||window.BlobBuilder)))},initFlash:function(e,o){var t=[],a=Upload.vars[e],i=Upload.options[e],l={url:i.flashPath||"/swf/uploader_lite.swf",id:"uploader_lite"+e,preventhide:!0,width:"100%",height:browser.safari||browser.msie||browser.chrome&&intval(browser.version)<17?i.flashHeight?i.flashHeight+"px":cur.flash_lite&&!isVisible("photos_flash_add_button")?"67px":"25px":"100%"},n={swliveconnect:"true",allowscriptaccess:"always",wmode:browser.msie?"opaque":"transparent"};Upload.types[e]="flash";for(var s in a)t.push(s+"="+a[s]);i.signed||a.ajx||t.push("ajx=1");var d=this.flashCallbacks(),r={};this.callbacks=this.callbacks||{},each(d,function(o,t){Upload.callbacks[o+e]=t.pbind(e),r[o]="Upload.callbacks."+o+e});var p=clone(a);if(extend(p,r,{upload_url:Upload.uploadUrls[e],file_size_limit:i.file_size_limit,file_types_description:i.file_types_description,file_types:i.file_types,file_name:i.file_name,post_data:escape(t.join("&"))}),i.flash_lite?o.innerHTML='<div class="lite_upload" id="lite_upload'+e+'" style="z-index:10000; width: 100%; height: 100%; cursor: pointer;"></div>':(i.lang.button_browse||(i.lang.button_browse="пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ"),i.flat_button?o.innerHTML='<div id="uploader'+e+'" style="position: relative;"><div id="lite_upload'+e+'" style="position: absolute; height: 100%; width: 100%; z-index: 10000; cursor: pointer;"></div><button class="flat_button button_big button_big_width">'+i.lang.button_browse+"</button></div>":o.innerHTML='<button id="uploader'+e+'" class="flat_button upload_btn '+(i.buttonClass||"")+'" style="position: relative;"><div id="lite_upload'+e+'" style="position: absolute; height: 100%; width: 100%; z-index: 10000; cursor: pointer;"></div>'+i.lang.button_browse+"</button>"),renderFlash(ge("lite_upload"+e),l,n,p),browser.msie&&setStyle(ge("lite_upload"+e),{opacity:0,cursor:"pointer"}),i.lang.switch_mode){var u=i.lang.switch_mode.replace("{link}",'<a onclick="Upload.switchMode('+e+');">');u=u.replace("{/link}","</a>"),o.appendChild(ce("div",{innerHTML:u,align:"left",className:"upload_switch_mode"},{marginTop:"15px"}))}},initForm:function(e,o){var t=e,a=this.vars[t],i=this.options[t];this.types[t]="form";var l='<form action="'+this.uploadUrls[t]+'" enctype="multipart/form-data" method="post" id="file_uploader_form'+t+'" target="upload_iframe'+t+'" style="text-align: center; width: 100%;">';if(i.signed)extend(a,{_jsonp:jsonpManager.reg(function(e){Upload.onUploadComplete(t,e)})});else{var n=Upload.onUploadComplete.pbind(t),s=Upload.onUploadError.pbind(t);this.callbacks["ondone"+t]=function(){var e=n.pbind.apply(n,arguments);setTimeout(function(){e()},1)},this.callbacks["onfail"+t]=function(){var e=s.pbind.apply(s,arguments);setTimeout(function(){e()},1)},extend(a,{al:1,ondone:"Upload.callbacks.ondone"+t,onfail:"Upload.callbacks.onfail"+t})}for(var d in a)l+='<input type="hidden" name="'+d+'" value="'+a[d]+'" />';var r=i.uploadButton?"Upload.onUploadFileSelected("+t+")":"Upload.onUploadStart("+t+");",p='<input type="file" class="file" size="28" onchange="'+r+'" name="'+i.file_name+'" style="cursor: pointer;"'+(i.accept?' accept="'+i.accept+'"':"")+'/>    </form><iframe style="position: absolute; visibility: hidden; width: 1px; height: 1px;" id="upload_iframe'+t+'" name="upload_iframe'+t+'"></iframe>';l+=i.label?i.label.split("{file}").join(p):p,o.innerHTML=l;var u=i.file_input,c=geByClass1("file",o,"input");delete i.file_input,u&&c&&(c.parentNode.replaceChild(u,c),u.onchange=function(){Upload.onUploadStart(t)},data(u,"changed")&&(data(u,"changed",!1),u.onchange())),i.uploadButton&&i.setUploadAction?i.setUploadAction(e,function(){Upload.onUploadStart(t)}):i.uploadButton&&(ge(i.uploadButton).onclick=function(){Upload.onUploadStart(t)})},buttonOver:function(e){var o=Upload.options[e];o.flash_lite?o.hoverEl?addClass(o.hoverEl,"hover"):isVisible("photos_flash_add_button")?addClass(ge("photos_flash_add_button"),"hover"):addClass(ge("photos_upload_area"),"hover"):addClass(ge("lite_upload"+e).nextSibling,"hover")},buttonOut:function(e){var o=Upload.options[e];o.flash_lite?o.hoverEl?removeClass(o.hoverEl,"hover"):isVisible("photos_flash_add_button")?(removeClass(ge("photos_flash_add_button"),"hover"),removeClass(ge("photos_flash_add_button"),"active")):removeClass(ge("photos_upload_area"),"hover"):(removeClass(ge("lite_upload"+e).nextSibling,"hover"),removeClass(ge("lite_upload"+e).nextSibling,"active"))},buttonDown:function(e){Upload.options[e].flash_lite?isVisible("photos_flash_add_button")&&addClass(ge("photos_flash_add_button"),"active"):addClass(ge("lite_upload"+e).nextSibling,"active")},buttonUp:function(e){Upload.options[e].flash_lite?isVisible("photos_flash_add_button")&&removeClass(ge("photos_flash_add_button"),"active"):removeClass(ge("lite_upload"+e).nextSibling,"active")},initFileApi:function(e,o,t){var a,i=this.options[e],l=i&&i.dragEl||window.boxLayerWrap;t&&l&&(Upload.addedDocEvent||(addEvent(document,"drop",Upload.drop),Upload.addedDocEvent=!0),i.dragEvObj=l,addEvent(l,"dragenter",Upload.dragEnter.pbind(e)),addEvent(l,"dragover",Upload.dragOver.pbind(e)),addEvent(l,"dragleave",Upload.dragOut.pbind(e))),this.types[e]="fileApi",i.chooseBox?a='<input class="file" type="file" size="28" onchange="Upload.onFileApiSend('+e+', this.files);"'+(i.multiple?' multiple="true"':"")+(i.accept?' accept="'+i.accept+'"':"")+' name="'+i.file_name+'" style="cursor: pointer;"/>':i.uploadButton?(i.lang.button_browse||(i.lang.button_browse="пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ"),a='<button class="flat_button upload_btn fl_l '+(i.buttonClass||"")+'" onclick="this.nextSibling.nextSibling.click()">'+i.lang.button_browse+'</button><div class="upload_selected fl_l" style="padding: 4px 0 0 10px;"></div><input class="file" type="file" size="28" onchange="geByClass1(\'upload_selected\', this.parentNode).innerHTML = Upload.getFilesNames('+e+", this.files); Upload.onUploadFileSelected("+e+')"'+(i.multiple?' multiple="true"':"")+(i.accept?' accept="'+i.accept+'"':"")+' name="'+i.file_name+'" style="visibility: hidden; position: absolute;"/><br class="clear" />'):(i.lang.button_browse||(i.lang.button_browse="пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ"),a=i.flat_button?'<button class="upload_btn flat_button button_big_width button_big '+(i.buttonClass||"")+'" onclick="this.nextSibling.click()">'+i.lang.button_browse+'</button><input class="file" type="file" size="28" onchange="Upload.onFileApiSend('+e+', this.files);"'+(i.multiple?' multiple="true"':"")+(i.accept?' accept="'+i.accept+'"':"")+' name="'+i.file_name+'" style="visibility: hidden; position: absolute;"/>':'<button class="flat_button upload_btn '+(i.buttonClass||"")+'" onclick="this.nextSibling.click()">'+i.lang.button_browse+'</button><input class="file" type="file" size="28" onchange="Upload.onFileApiSend('+e+', this.files);"'+(i.multiple?' multiple="true"':"")+(i.accept?' accept="'+i.accept+'"':"")+' name="'+i.file_name+'" style="visibility: hidden; position: absolute;"/>'),i.label?o.innerHTML=i.label.split("{file}").join(a):o.innerHTML=a;var n=i.file_input,s=geByClass1("file",o,"input");n&&s&&(s.parentNode.replaceChild(n,s),n.onchange=function(){Upload.onFileApiSend(e,this.files)},data(n,"changed")&&(data(n,"changed",!1),setTimeout(n.onchange.bind(n),0))),i.uploadButton&&i.setUploadAction?i.setUploadAction(e,function(){Upload.onFileApiSend(e,geByTag1("input",o).files)}):i.uploadButton&&(ge(i.uploadButton).onclick=function(){Upload.onFileApiSend(e,geByTag1("input",o).files)})},switchMode:function(e){Upload.options[e].noFlash=Upload.options[e].noCheck=1,Upload.embed(e)},onUploadFileSelected:function(e){Upload.options[e].onUploadFileSelected&&Upload.options[e].onUploadFileSelected()},onUploadStart:function(e,o){cur.fileApiUploadStarted=!0;var t=void 0!==e.ind?e.ind:e;if("form"==Upload.types[t]){var a=ge("file_uploader_form"+t);a.submit();var i=geByClass1("file",Upload.obj[t]);i.disabled=!0}var l=Upload.options[t];l.onUploadStart&&l.onUploadStart(e,o)},getErrorAdditional:function(e){return e.error&&void 0!==e.server&&void 0!==e.bwact?(-1!==e.error.indexOf(":")?",":":")+" from upl_"+intval(e.server)+"?act="+e.bwact.replace(/[^a-zA-Z_0-9]/g,""):""},onUploadComplete:function(e,o,t){var a,i=void 0!==e.ind?e.ind:e,l=Upload.options[i];if(void 0!==t&&i===e&&(e=t),e.ind=i,"form"==Upload.types[i]){var n=geByClass1("file",Upload.obj[i]);n.disabled=!1}if(l.onUploadComplete){var s="";if(l.signed){var a=o?parseJSON(o):"";a?s=Upload.getErrorAdditional(a):o='{"error":"ERR_CLIENT_UPLOAD_FAIL: upload request bad result, url \\"'+Upload.uploadUrls[i]+'\\""}'}l.onUploadComplete(e,o,s)}"form"==Upload.types[i]&&Upload.onUploadCompleteAll(e,o)},onUploadCompleteAll:function(e,o,t){var a=void 0!==e.ind?e.ind:e,i=Upload.options[a];if(void 0!==t&&a===e&&(e=t),"fileApi"==Upload.types[a]){var l=geByClass1("file",Upload.obj[a],"input");l&&(l.value="")}i.onUploadCompleteAll&&i.onUploadCompleteAll(e,o)},onUploadError:function(e,o){var t=void 0!==e.ind?e.ind:e,a=Upload.options[t];if("form"==Upload.types[t]){var i=geByClass1("file",Upload.obj[t]);i.disabled=!1}a.signed?a.onUploadComplete&&a.onUploadComplete(e,'{"error":"ERR_CLIENT_UPLOAD_FAIL: upload request fail, code \\"'+o.replace(/([\\\"])/g,"\\$1").replace(/\n/g,"\\n")+'\\", url \\"'+Upload.uploadUrls[t]+'\\""}'):a.onUploadError&&a.onUploadError(e,o)},onConnectionLost:function(e){var o=void 0!==e.ind?e.ind:e,t=Upload.options[o];t.onConnectionLost&&t.onConnectionLost(e)},onUploadProgress:function(e,o,t){var a=void 0!==e.ind?e.ind:e,i=Upload.options[a];i.onUploadProgress&&i.onUploadProgress(e,o,t)},onDebug:function(e,o){var t=void 0!==e.ind?e.ind:e,a=Upload.options[t];a.onDebug&&a.onDebug(e,o)},onSelectClick:function(e,o){var t=void 0!==e.ind?e.ind:e,a=Upload.options[t];a.onSelectClick&&a.onSelectClick(e,o)},getFilesNames:function(e,o){if(o&&o.length){var t=this.options[e];return t.multiple?(t.lang.selected_num_files||(t.lang.selected_num_files=["","%s пїЅпїЅпїЅпїЅ","%s пїЅпїЅпїЅпїЅпїЅ","%s пїЅпїЅпїЅпїЅпїЅпїЅ"]),langNumeric(o.length,t.lang.selected_num_files)):o[0].name.replace(/[&<>"']/g,"")}},checkFileType:function(e,o){var t=!1;return each(o.split(";"),function(o,a){return a=a.substr(1).toLowerCase(),e.substr(-a.length).toLowerCase()==a||".*"==a?(t=!0,!1):void 0}),t},onFileApiSend:function(e,o,t){if(o&&o.length){var a=this.options[e];if(a.file_types){var i=[];if(each(o,function(e,o){Upload.checkFileType(o.name,a.file_types)&&i.push(o)}),o=i,!o.length)return}if(a.reverse_files&&(o=Array.prototype.slice.call(o).reverse()),!a.multiple&&o.length>1&&(o=[o[0]]),a.file_size_limit)for(var l in o){var n=o[l];if(n.size&&n.size>a.file_size_limit)return void(a.lang.filesize_error&&showFastBox({title:getLang("global_error"),width:430,dark:1,bodyStyle:"padding: 20px; line-height: 160%;",onHide:function(){Upload.embed(e),delete cur.notStarted}},a.lang.filesize_error,getLang("global_continue"),function(){Upload.uploadFiles(e,o,s),a.filesize_hide_last?curBox().hide():boxQueue.hideAll()},getLang("global_cancel")))}if(a.photoBox&&!t)return Upload.onPhotoAdd(e,o);a.beforeUpload&&a.beforeUpload(e),cur.notStarted=cur.fileApiUploadStarted=!0,a.multi_progress||this.onUploadStart({ind:e,fileName:(o[0].fileName||o[0].name||"").replace(/[&<>"']/g,"")});var s=o.length;if(a.max_files){var d=cur.attachCount;if(!d&&cur.addMedia){var r=-1;for(var p in cur.addMedia)p>r&&(r=p);r>=0&&cur.addMedia[r]&&cur.addMedia[r].attachCount&&(d=cur.addMedia[r].attachCount)}var u=d?d():0;a.max_files-u<o.length&&a.lang&&a.lang.max_files_warning?(s=a.max_files-u,showFastBox({title:getLang("global_error"),width:430,dark:1,bodyStyle:"padding: 20px; line-height: 160%;",onHide:function(){Upload.embed(e),delete cur.notStarted}},a.lang.max_files_warning,getLang("global_continue"),function(){Upload.uploadFiles(e,o,s),a.max_files_hide_last?curBox().hide():boxQueue.hideAll()},getLang("global_cancel"))):(a.force_max_files&&(s=Math.min(s,a.max_files-(cur.savedPhotos||[]).length)),this.uploadFiles(e,o,s))}else this.uploadFiles(e,o,s)}},onPhotoAdd:function(e,o){var t=0,a=0;Upload.fileList=Upload.fileList||{},Upload.fileList[e]||(Upload.fileList[e]=[],Upload.options[e].onPhotoBox&&(t=!0)),each(o,function(o,t){a++;var i=Upload.options[e].photoBox,l=new RegExp("image.*");!t.type.match(l),cur.uploaderPhotoId=(cur.uploaderPhotoId||0)+1;var n=cur.uploaderPhotoId;Upload.fileList[e][n]=t;var s=ce("img"),d=ce("div",{id:"photos_add_item"+n,className:"photos_add_item",innerHTML:'<span class="photos_add_img photos_add_wait" id="photos_add_cont'+n+'" onmouseover="PhotosAdd.thumbOver('+n+', this);" onmouseout="PhotosAdd.thumbOut('+n+');"><span class="photos_add_s" id="photos_add_s'+n+'">&nbsp;</span></span><span class="bg">&nbsp;</span>'});i.appendChild(d);var r=new FileReader;r.onload=function(e){s.src=e.target.result,s.onload=function(){s.onload=!1;var e,o,t={w:s.width,h:s.height};t.w>130&&(e=130/t.w,t.w=130,t.h=parseInt(t.h*e)),t.h>130&&(o=130/t.h,t.h=130,t.w=parseInt(t.w*o));var a=ce("canvas",{width:t.w,height:t.h}),i=a.getContext("2d");i.drawImage(s,0,0,t.w,t.h),delete s;var l=a.toDataURL("image/jpeg");s.src=l;var d=ge("photos_add_s"+n),r=Math.max(t.w,80),p=Math.min(t.h,98);setStyle(d,{width:r,height:p,marginLeft:Math.ceil((130-r)/2)}),d.innerHTML="",d.appendChild(s),s.onload=function(){setTimeout(function(){d.parentNode.className="photos_add_img"},0),s.onload=!1},Upload.finishTask()}},Upload.taskToQ(function(){r.readAsDataURL(t)})}),t&&a&&Upload.options[e].onPhotoBox(),Upload.options[e].onPhotoAdd&&a&&Upload.options[e].onPhotoAdd()},uploadPhotos:function(e){var o=[],t=Upload.fileList[e];for(var a in t)t[a]&&o.push(extend(t[a],{fileRef:a}));return Upload.options[e].onUploadStart&&Upload.options[e].onUploadStart(),o.length?(cur.uploadCount=Math.min(500,o.length),Upload.uploadFiles(e,o,cur.uploadCount),!0):!1},taskToQ:function(e){if(Upload.previewFileQ||(Upload.previewFileQ=[]),e&&Upload.previewFileQ.push(e),!Upload.doingQ){var o=Upload.previewFileQ.shift();o&&(Upload.doingQ=!0,o())}},finishTask:function(){setTimeout(function(){Upload.doingQ=!1,Upload.taskToQ()},100)},uploadFiles:function(e,o,t){if(!(0>=t)){var a,i=this.options[e],l=i.signed?this.vars[e]:extend(this.vars[e],{ajx:1}),n=[],s=0,d=0,r=0,p=0,u=[];i.uploading&&(s=i.filesTotalSize||0,d=i.filesTotalCount||0,p=i.filesLoadedCount||0,r=i.filesLoadedSize||0,u=i.filesQueue),i.file_match&&(a=new RegExp(i.file_match,"i"));for(var c in l)n.push(c+"="+l[c]);for(var h,f=this.uploadUrls[e]+(this.uploadUrls[e].match(/\?/)?"&":"?")+n.join("&"),g=!1,c=0;t>c;c++)h=(o[c].fileName||o[c].name||"").replace(/[&<>"']/g,""),!i.file_match||h.match(a)?(i.multi_progress&&!i.multi_sequence&&this.onUploadStart({ind:e,fileName:h}),s+=o[c].size,d+=1,u.push(o[c])):g=!0;u.reverse(),extend(i,{filesQueue:u,filesTotalSize:s,filesLoadedSize:r,filesLoadedCount:p,filesTotalCount:d}),u.length>0?void 0!==cur.multiProgressIndex?(cur.nextQueues||(cur.nextQueues=[]),cur.nextQueues.push(e)):(this.uploadFile(e,u.pop(),f),i.multi_progress&&(cur.multiProgressIndex=e)):g&&Upload.onUploadError(e,"file type not supported")}},getFileInfo:function(e,o,t){return o.multi_progress?{ind:e,fileName:t?(t.fileName||t.name||"").replace(/[&<>"']/g,""):"",num:o.filesLoadedCount,totalSize:o.filesTotalSize,loadedSize:o.filesLoadedSize,totalCount:o.filesTotalCount,file:t}:e},supportsChunkedUpload:function(){return!!Blob&&!!(Blob.prototype.webkitSlice||Blob.prototype.mozSlice||Blob.prototype.slice)&&!!FileReader},uploadFileChunked:function(e,o,t){function a(e,o){var t=1048576,a=Math.floor(e.size/2)-t/2,i=[e.slice(0,t),e.slice(a,a+t),e.slice(e.size-t,e.size)];!function l(e){var t=i.shift();if(!t)return void o(e);var a=new FileReader;a.addEventListener("loadend",function(o){var t=new Uint8Array(o.target.result),a=Fletcher32();a.append(t),e+=a.result().toString(16),l(e)}),a.readAsArrayBuffer(t)}("")}function i(){for(m.pointer=0,m.chunksLeft=m.chunksNum;m.activeRequests.length<f&&m.pointer<m.fileSize;)l()}function l(){var e=m.pointer,o=Math.min(e+m.state.chunkSize,m.fileSize)-1;if(!(e>=m.fileSize)){if(m.state.loaded){var t=!1;each(m.state.loaded.split(","),function(a,i){var l=i.match(/^(\d+)-(\d+)\/\d+$/),n=parseInt(l[1]),s=parseInt(l[2]);return e>=n&&s>=o?(t=!0,m.chunksLeft-=Math.ceil((s+1-e)/m.state.chunkSize),m.pointer=s+1,!1):void 0})}t?(s(),l()):(n(e,o),m.pointer+=m.state.chunkSize)}}function n(e,a){var r=(o.slice||o.webkitSlice||o.mozSlice).call(o,e,a+1),u=new XMLHttpRequest;u.open("POST",t,!0),u.upload.onprogress=function(o){o.lengthComputable&&(m.requestsProgress[e]=o.loaded),s()},u.onload=function(o){m.activeRequests.splice(indexOf(m.activeRequests,o.target),1),m.retryCount=0,--m.chunksLeft,201==o.target.status?m.chunksLeft?(m.state.loaded=o.target.responseText,ls.set(m.storageKey,m.state),l()):(m.state.loaded=o.target.responseText,ls.set(m.storageKey,m.state),i()):200!=o.target.status||m.chunksLeft?(p(o.target.status,o.target.responseText,e+"-"+a),Upload.onUploadError(c)):(ls.remove(m.storageKey),d(o.target.responseText)),delete m.requestsProgress[e],s()},u.onerror=function(o){if(m.activeRequests.splice(indexOf(m.activeRequests,o.target),1),++m.retryCount<=g){var t=setTimeout(n.bind(null,e,a),300*m.retryCount);m.timeouts.push(t)}else m.abort(),Upload.onConnectionLost(c);s(),p(o.target.status,o.target.responseText,e+"-"+a)},u.setRequestHeader("Content-Disposition",'attachment, filename="'+encodeURI(m.fileName)+'"'),u.setRequestHeader("Content-Type",m.fileMime||"application/octet-stream"),u.setRequestHeader("Content-Range","bytes "+e+"-"+a+"/"+m.fileSize),u.setRequestHeader("Session-ID",m.state.sessionId),u.send(r),r=null,m.activeRequests.push(u)}function s(){var t=m.fileSize,a=(m.chunksNum-m.chunksLeft)*m.state.chunkSize;each(m.requestsProgress,function(e,o){a+=o}),extend(c,Upload.getFileInfo(e,u,o)),u.multi_progress?Upload.onUploadProgress(c,a,t):Upload.onUploadProgress(e,Math.min(a+u.filesLoadedSize,u.filesTotalSize),u.filesTotalSize)}function d(a){extend(c,Upload.getFileInfo(e,u,o)),Upload.options[e].filesLoadedSize+=m.fileSize,Upload.options[e].filesLoadedCount+=1,Upload.onUploadComplete(c,a),Upload.options[e].filesQueue&&Upload.options[e].filesQueue.length>0?Upload.uploadFile(e,Upload.options[e].filesQueue.pop(),t):(Upload.startNextQueue(e),Upload.onUploadCompleteAll(c,a),u.uploading=!1)}function r(e){each(e.timeouts,function(e,o){clearTimeout(o)}),each(e.activeRequests,function(e,o){o.abort()}),e.timeouts=[],e.activeRequests=[]}function p(e,o,a){ajax.post("al_video.php",{act:"uploadVideoFailStat",url:t,error:e+","+o,range:a,sessionId:m.state.sessionId,chunksLeft:m.chunksLeft,loaded:m.state.loaded})}var u=this.options[e],c=Upload.getFileInfo(e,u,o);u.multi_sequence&&this.onUploadStart(c);var h=4194304,f=4,g=50,U=864e5,m={file:o,fileName:(o.name||o.fileName).replace(/[&<>"']/g,""),fileSize:o.size,fileMime:o.type,retryCount:0,timeouts:[],activeRequests:[],requestsProgress:{},pointer:0,state:{url:t,started:Date.now(),loaded:null,chunkSize:u.chunkSize||h,sessionId:(1e17*Math.random()).toString(16)}};m.abort=r.bind(null,m),m.chunksNum=Math.ceil(m.fileSize/m.state.chunkSize),m.chunksLeft=m.chunksNum,a(o,function(e){m.storageKey=["upload",vk.id,e,m.fileSize].join("_"),u.uploading=!0,u.chunkedUpload=m;var o=ls.get(m.storageKey);o&&(Date.now()-o.started<U?(m.state=o,t=o.url):ls.remove(m.storageKey));try{console.log("%c Warning: if devtools is logging network requests it may cause high memory usage during file upload","font-size:16px;color:orange;")}catch(a){}i()})},resumeUpload:function(e){var o=this.options[e].chunkedUpload;Upload.uploadFileChunked(e,o.file,o.state.url)},uploadFile:function(e,o,t){var a=this.options[e];if(a.chunked&&Upload.supportsChunkedUpload()&&o.size>4194304)return void Upload.uploadFileChunked.apply(Upload,arguments);var i=browser.msie&&intval(browser.version)<10?window.XDomainRequest:window.XMLHttpRequest,l=Upload.getFileInfo(e,a,o);if(a.multi_sequence&&this.onUploadStart(l),a.uploading=!0,window.FormData){var n=new FormData;o instanceof File?n.append(a.file_name,o):n.append(a.file_name,o,o.filename.replace(/[&<>"']/g,""));var s=new i,d=!0;s.open("POST",t,!0),s.onload=function(i){extend(l,Upload.getFileInfo(e,a,o)),Upload.options[e].filesLoadedSize+=o.size,Upload.options[e].filesLoadedCount+=1,Upload.onUploadComplete(l,i.target.responseText),Upload.options[e].filesQueue&&Upload.options[e].filesQueue.length>0?Upload.uploadFile(e,Upload.options[e].filesQueue.pop(),t):(Upload.startNextQueue(e),Upload.onUploadCompleteAll(l,i.target.responseText),a.uploading=!1)},s.onerror=function(i){extend(l,Upload.getFileInfo(e,a,o)),Upload.options[e].filesTotalSize-=o.size,Upload.options[e].filesTotalCount-=1,Upload.onUploadError(l,i.target.responseText),Upload.options[e].filesQueue.length>0?Upload.uploadFile(e,Upload.options[e].filesQueue.pop(),t):(Upload.startNextQueue(e),Upload.onUploadCompleteAll(l,i.target.responseText),a.uploading=!1)},s.upload.onprogress=function(t){4!==s.readyState&&(d=!1,extend(l,Upload.getFileInfo(e,a,o)),t.lengthComputable&&(a.multi_progress?Upload.onUploadProgress(l,t.loaded,t.total):Upload.onUploadProgress(e,Math.min(t.loaded+a.filesLoadedSize,a.filesTotalSize),a.filesTotalSize)))},s.send(n)}else try{if(i&&!i.prototype.sendAsBinary&&window.ArrayBuffer&&window.Uint8Array){var r=window.MozBlobBuilder||window.WebKitBlobBuilder||window.BlobBuilder;r&&(i.prototype.sendAsBinary=function(e){for(var o=new ArrayBuffer(e.length),t=new Uint8Array(o,0),a=0;a<e.length;a++)t[a]=255&e.charCodeAt(a);var i=new r;i.append(o);var l=i.getBlob();this.send(l)})}var p=new FileReader;p.onload=function(){var n=new i,s=!0;n.onload=function(i){extend(l,Upload.getFileInfo(e,a,o)),Upload.options[e].filesLoadedSize+=o.size,Upload.options[e].filesLoadedCount+=1,Upload.onUploadComplete(l,i.target.responseText),Upload.options[e].filesQueue.length>0?Upload.uploadFile(e,Upload.options[e].filesQueue.pop(),t):(Upload.startNextQueue(e),Upload.onUploadCompleteAll(l,i.target.responseText))},n.onerror=function(i){extend(l,Upload.getFileInfo(e,a,o)),Upload.options[e].filesTotalSize-=o.size,Upload.options[e].filesTotalCount-=1,Upload.onUploadError(l,i.target.responseText),Upload.options[e].filesQueue.length>0?Upload.uploadFile(e,Upload.options[e].filesQueue.pop(),t):(Upload.startNextQueue(e),Upload.onUploadCompleteAll(l,i.target.responseText),a.uploading=!1)},n.upload.onprogress=function(t){s=!1,extend(l,Upload.getFileInfo(e,a,o)),t.lengthComputable&&(a.multi_progress?(Upload.onUploadProgress(l,t.loaded,t.total),a.uploading=!1):Upload.onUploadProgress(e,Math.min(t.loaded+a.filesLoadedSize,a.filesTotalSize),a.filesTotalSize))},n.open("POST",t,!0);var d="---------"+irand(1111111111,9999999999);n.setRequestHeader("Content-Type","multipart/form-data, boundary="+d);var r="--"+d+"\r\n";r+="Content-Disposition: form-data; name='"+a.file_name+"'; filename='"+o.name.replace(/[&<>"']/g,"")+"'\r\n",r+="Content-Type: application/octet-stream\r\n\r\n",r+=p.result+"\r\n",r+="--"+d+"--",n.sendAsBinary(r)},p.readAsBinaryString(o)}catch(u){try{console.error(u)}catch(c){}}Upload.options[e].xhr=s},terminateUpload:function(e,o,t){try{var a=Upload.vars[e],i=Upload.options[e],l=[],n=i.filesQueue;inQueue=!1,info=i.multi_progress?{ind:e,fileName:o.replace(/[&<>"']/g,"")}:e,ind=o?e+"_"+o:e;for(var s in a)l.push(s+"="+a[s]);for(var s in n)if(o==(n[s].fileName||n[s].name||"").replace(/[&<>"']/g,"")){n.splice(s,1),inQueue=!0;break}t&&t.tt&&t.tt.destroy(),re("upload"+ind+"_progress_wrap"),Upload.onUploadComplete(info,'{"error":"ERR_UPLOAD_TERMINATED: upload request was terminated"}'),!inQueue&&i.xhr&&i.xhr.abort(),!inQueue&&i.chunkedUpload&&i.chunkedUpload.abort();var d=this.uploadUrls[e]+(this.uploadUrls[e].match(/\?/)?"&":"?")+l.join("&");inQueue||(n.length>0?Upload.uploadFile(e,n.pop(),d):(Upload.startNextQueue(e),Upload.onUploadCompleteAll(info,"")))}catch(r){try{console.error(r)}catch(p){}}},startNextQueue:function(e){if(void 0===cur.multiProgressIndex&&setTimeout(function(){delete cur.fileApiUploadStarted},1e3),e==cur.multiProgressIndex){var o=this.options[e];if(o.multi_progress&&cur.nextQueues&&cur.nextQueues.length){var t=cur.nextQueues[0],a=Upload.options[t].filesQueue;for(cur.nextQueues.splice(0,1);0==a.length&&cur.nextQueues.length>0;)t=cur.nextQueues[0],cur.nextQueues.splice(0,1),a=Upload.options[t].filesQueue;if(a.length>0){var i=Upload.vars[t],l=[];for(var n in i)l.push(n+"="+i[n]);var s=Upload.uploadUrls[t]+(Upload.uploadUrls[t].match(/\?/)?"&":"?")+l.join("&");Upload.uploadFile(t,a.pop(),s),cur.multiProgressIndex=t}else delete cur.multiProgressIndex,setTimeout(function(){delete cur.fileApiUploadStarted},1e3)}else delete cur.multiProgressIndex,setTimeout(function(){delete cur.fileApiUploadStarted},1e3)}},isFileDrag:function(e){if(!e||e.target&&("IMG"==e.target.tagName||"A"==e.target.tagName))return!1;if(!e.dataTransfer.types)return!0;for(var o=0;o<e.dataTransfer.types.length;o++)if("Files"==e.dataTransfer.types[o])return!0;
-return!1},dragEnter:function(e,o){return cur.uploadDragStarted&&1!=cur.uploadDragStarted||(cur.uploadDragStarted=Upload.isFileDrag(o)?2:1),1!=cur.uploadDragStarted&&Upload.dropbox[e]?(setTimeout(function(){clearTimeout(Upload.dragTimer[e]),delete Upload.dragTimer[e]},0),Upload.options[e].onDragEnter&&Upload.options[e].onDragEnter(o),show(Upload.dropbox[e]),void cancelEvent(o)):void cancelEvent(o)},dragOut:function(e,o){return 1!=cur.uploadDragStarted&&Upload.dropbox[e]?(Upload.dragTimer[e]&&(clearTimeout(Upload.dragTimer[e]),delete Upload.dragTimer[e]),Upload.dragTimer[e]=setTimeout(function(){Upload.options[e].visibleDropbox||hide(Upload.dropbox[e]),Upload.options[e].onDragOut&&Upload.options[e].onDragOut(),removeClass(Upload.dropbox[e],"dropbox_over")},100),void cancelEvent(o)):void cancelEvent(o)},dragOver:function(e,o){if(1==cur.uploadDragStarted||!Upload.dropbox[e])return void cancelEvent(o);browser.mozilla&&intval(browser.version)>3&&!Upload.options[e].visibleDropbox&&(cur.dragOverTimer&&(clearTimeout(cur.dragOverTimer),delete cur.dragOverTimer),cur.dragOverTimer=setTimeout(function(){hide(Upload.dropbox[e])},100));var t=Upload.insideDropbox(e,o);o.dataTransfer&&(o.dataTransfer.dropEffect=t?"copy":"none"),toggleClass(Upload.dropbox[e],"dropbox_over",t),cancelEvent(o)},drop:function(e){return each(Upload.dropbox,function(o,t){t&&(Upload.insideDropbox(o,e)&&Upload.onFileApiSend(o,e.dataTransfer.files),Upload.options[o].visibleDropbox||hide(t),Upload.options[o].onDrop&&Upload.options[o].onDrop(),removeClass(t,"dropbox_over"))}),delete cur.uploadDragStarted,cancelEvent(e),!1},insideDropbox:function(e,o){for(var t=o.target;t.parentNode;){if(t==Upload.dropbox[e])return!0;t=t.parentNode}return!1},flashCallbacks:function(){return{onUploadStart:Upload.onUploadStart,onUploadProgress:Upload.onUploadProgress,onUploadSuccess:Upload.onUploadComplete,onUploadComplete:Upload.onUploadCompleteAll,onUploadError:Upload.onUploadError,onDebug:Upload.onDebug,onMouseDown:Upload.buttonDown,onMouseUp:Upload.buttonUp,onMouseOver:Upload.buttonOver,onMouseOut:Upload.buttonOut,onSelectClick:Upload.onSelectClick}},_eof:1};try{stManager.done("upload.js")}catch(e){}
+if (!window.jsonpManager) {
+  window.jsonpManager = window.__jsp = {
+    c: 1,
+    h: {},
+    reg: function(h) {
+      __jsp.h[__jsp.c] = isFunction(h) ? h : function(){};
+      return __jsp.c++;
+    }
+  }
+}
+
+if (!window.Upload) {
+var Upload = {
+
+init: function(obj, uploadUrl, vars, options) {
+  window.uploadInterface = (window.uploadInterface != undefined) ? uploadInterface + 1 : 0;
+  var iUpload = uploadInterface;
+
+  each(['obj', 'dropbox', 'options', 'vars', 'types', 'uploadUrls', 'callbacks', 'checks', 'dragTimer'], function(i, v) {
+    if (!Upload[v]) Upload[v] = {};
+  });
+
+  this.obj[iUpload] = ge(obj);
+  if (options.dropbox) {
+    this.dropbox[iUpload] = ge(options.dropbox);
+  }
+  this.vars[iUpload] = vars;
+  options.file_input = ge(options.file_input);
+  this.options[iUpload] = options;
+  if (options.clear) {
+    cur.destroy.push(Upload.deinit.pbind(iUpload));
+  }
+
+  this.uploadUrls[iUpload] = uploadUrl;
+  if (options.flash_lite && !browser.flash && !this.checkFileApi()) {
+    this.obj[iUpload] = ge(options.fieldEl) || this.obj[iUpload].parentNode.firstChild;
+  } else {
+    if (options.customShowProgress) {
+      options.customShowProgress();
+    } else {
+      if (this.obj[iUpload].tagName == 'INPUT' && !this.checkFileApi()) {
+        this.obj[iUpload] = ge(options.fieldEl) || this.obj[iUpload].parentNode.firstChild;
+      } else if (!options.flash_lite) {
+        this.obj[iUpload].innerHTML = '<div class="upload_check loading"><img width="32" height="8" src="/images/upload' + (hasClass(bodyNode, 'is_2x') ? '_2x' : '') + '.gif" /></div>';
+      }
+    }
+  }
+  if (options.noCheck) {
+    this.embed(iUpload);
+  } else {
+    this.check(iUpload);
+  }
+
+  return iUpload;
+},
+deinit: function(iUpload) {
+  if (!Upload.obj[iUpload]) return;
+
+  var options = Upload.options[iUpload] || {}, dragEl = options.dragEvObj;
+  if (dragEl) {
+    removeEvent(dragEl, 'dragenter');
+    removeEvent(dragEl, 'dragover');
+    removeEvent(dragEl, 'dragleave');
+  }
+  each(['obj', 'dropbox', 'options', 'vars', 'types', 'uploadUrls', 'callbacks'], function(i, v) {
+    if (Upload[v]) {
+      delete Upload[v][iUpload];
+    }
+  });
+  if (Upload.callbacks) {
+    var clbks = ['oncheck', 'ondone', 'onfail'];
+    each(Upload.flashCallbacks(), function(i, v) {
+      clbks.push(i);
+    });
+    each(clbks, function(i, v) {
+      delete Upload.callbacks[v + iUpload];
+    });
+  }
+  clearTimeout(Upload.checks['timer'+iUpload]);
+  clearTimeout(Upload.dragTimer[iUpload]);
+  delete Upload.dragTimer[iUpload];
+},
+
+check: function(iUpload) {
+  var obj = this.obj[iUpload], vars = this.vars[iUpload], options = this.options[iUpload];
+  var check_url = options.check_url ? options.check_url : this.uploadUrls[iUpload], check_vars = {};
+  if (options.signed) {
+    if (!check_url) return Upload.onCheckComplete(iUpload);
+    extend(check_vars, {_jsonp: jsonpManager.reg(function(r) { Upload.onCheckComplete(iUpload, r); })});
+  } else {
+    if (!options.check_hash && !options.server) {
+      return Upload.onCheckComplete(iUpload);
+    }
+
+    this.callbacks['oncheck'+iUpload] = Upload.onCheckComplete.pbind(iUpload);
+    var t = ['mid', 'aid', 'gid', 'hash', 'rhash'];
+    for (var i in t) {
+      check_vars[t[i]] = vars[t[i]];
+    }
+    if (options.check_hash) {
+      check_vars.hash = options.check_hash;
+    }
+    if (options.check_rhash) {
+      check_vars.rhash = options.check_rhash;
+    }
+    if (vars.https_resp) {
+      check_vars.https_resp = vars.https_resp;
+    }
+    if (vars.http_resp) {
+      check_vars.http_resp = vars.http_resp;
+    }
+    extend(check_vars, {al: 1, act: 'check_upload', type: options.type, ondone: "Upload.callbacks.oncheck"+iUpload});
+  }
+  var html = '<form action="' + check_url + '" enctype="multipart/form-data" method="post" id="check_upload_form' + iUpload + '" target="check_iframe' + iUpload + '">';
+  for (var i in check_vars) {
+    html += '<input type="hidden" name="' + i + '" value="' + check_vars[i] + '" />';
+  }
+  html += '</form><iframe style="visibility: hidden; width: 1px; height: 1px;" id="check_iframe' + iUpload + '" name="check_iframe' + iUpload + '"></iframe>';
+  var check = ce('div', {id: 'check_upload_'+iUpload, innerHTML: html, className: options.checkClass || ''}, {display: 'none'});
+  if (ge('check_upload_'+iUpload)) re('check_upload_'+iUpload);
+  obj.appendChild(check);
+  var form = ge('check_upload_form' + iUpload);
+  try {
+    form && form.submit();
+    clearTimeout(Upload.checks['timer'+iUpload]);
+    this.checks['timer'+iUpload] = setTimeout(Upload.serverFail.pbind(iUpload), 10000);
+  } catch(e) {
+    debugLog(e);
+  }
+},
+
+onCheckComplete: function(i, res) {
+  clearTimeout(Upload.checks['timer' + i]);
+  delete Upload.checks['timer' + i];
+
+  var obj = {}, options = Upload.options[i], data = res;
+  if (options.signed) {
+    obj = parseJSON(res || '{}');
+  } else {
+    res = res || '';
+    res = res.split('&');
+    for (var j in res) {
+      var t = res[j].split('=');
+      obj[t[0]] = t[1];
+    }
+    data = obj;
+  }
+  if (options.customHideProgress) {
+    options.customHideProgress();
+  }
+  if (!obj.error && !obj.fail) {
+    options.noCheck = 1;
+    if (options.onCheckComplete) {
+      options.onCheckComplete(i);
+    } else if (options.flash_lite && browser.flash) {
+      Upload.initFlash(i, Upload.obj[i]);
+    } else {
+      Upload.embed(i);
+    }
+    Upload.serverSuccess(i, data);
+  } else {
+    Upload.serverFail(i, data);
+  }
+},
+
+serverFail: function(i, err_obj) {
+  var obj = Upload.obj[i], options = Upload.options[i], vars = Upload.vars[i];
+  if (!obj) return;
+  if (!options.signed && !options.server) return;
+
+  if (!Upload.fails) Upload.fails = {};
+  Upload.fails[i] = Upload.fails[i] ? Upload.fails[i] + 1 : 1;
+  if (options.signed) {
+    var parts = Upload.uploadUrls[i].split('?'), tmp = q2ajx(parts[1]), q = extend({
+      act: 'check_result',
+      _resign: tmp._query || parts[1]
+    }, err_obj ? {_query: err_obj} : {_check: options.check_url.split('?')[1]});
+    ajax.post('upload_fails.php', q, {
+      onDone: function(url, check_url, base_url, static_url) {
+        if (Upload.fails[i] < options.max_attempts) {
+          Upload.uploadUrls[i] = url;
+          extend(Upload.options[i], {
+            check_url: check_url,
+            base_url: base_url,
+            static_url: static_url
+          });
+          Upload.check(i);
+        } else {
+          obj.innerHTML = '';
+          if (options.lang && options.lang.cannot_upload_title && options.lang.cannot_upload_text) {
+            showFastBox({title: options.lang.cannot_upload_title, width: 430, dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'}, options.lang.cannot_upload_text);
+          }
+        }
+      }
+    });
+    return;
+  }
+  var query = extend({
+    act: 'fail',
+    role: options.type,
+    mid: vars.mid,
+    oid: vars.oid,
+    gid: vars.gid,
+    aid: vars.aid,
+    server: options.server,
+    error: options.error,
+    hash: options.error_hash
+  }, err_obj);
+  if (options.custom_hash) {
+    extend(query, {custom_hash: options.custom_hash, photo_hash: vars.photo_hash, size: vars.size, fid: vars.fid, vid: vars.vid, tag: vars.tag});
+  }
+  if (window.ajax) {
+    ajax.post('upload_fails.php', query, {
+      onDone: function(url, new_vars, opts) {
+        if (Upload.fails[i] < options.max_attempts) {
+          Upload.uploadUrls[i] = url;
+          extend(Upload.options[i], opts);
+          extend(Upload.vars[i], new_vars);
+          Upload.check(i);
+        } else {
+          obj.innerHTML = '';
+          if (options.lang && options.lang.cannot_upload_title && options.lang.cannot_upload_text) {
+            showFastBox({title: options.lang.cannot_upload_title, width: 430, dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'}, options.lang.cannot_upload_text);
+          }
+        }
+      }
+    });
+  } else {
+    if (options.server != 100000) return;
+    Ajax.Send('/upload_fails.php', query, function(ajaxObj, response) {
+      try {
+        response = eval('(' + response + ')');
+      } catch (e) {
+        response = null;
+      }
+      var opts = response.options, new_vars = response.vars, url = response.upload_url;
+      if (Upload.fails[i] < options.max_attempts) {
+        Upload.uploadUrls[i] = url;
+        extend(Upload.options[i], opts);
+        extend(Upload.vars[i], new_vars);
+        Upload.check(i);
+      } else {
+        obj.innerHTML = '';
+        if (options.lang && options.lang.cannot_upload_title && options.lang.cannot_upload_text) {
+          showFastBox({title: options.lang.cannot_upload_title, width: 430, dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'}, options.lang.cannot_upload_text);
+        }
+        options.onCheckServerFailed && options.onCheckServerFailed();
+      }
+    });
+  }
+},
+
+serverSuccess: function(i, err_obj) {
+  var options = Upload.options[i], vars = Upload.vars[i];
+  Upload.checked = Upload.checked || {};
+  Upload.checked[i] = 1;
+  if (options.signed) {
+    ajax.post('upload_fails.php', {act: 'check_result', _query: err_obj});
+    return;
+  }
+  if (!options.server && !options.error_hash) return;
+  var query = extend({
+    act: 'success',
+    mid: vars.mid,
+    oid: vars.oid,
+    gid: vars.gid,
+    aid: vars.aid,
+    server: options.server,
+    error: options.error,
+    hash: options.error_hash
+  }, err_obj);
+  if (window.ajax) {
+    ajax.post('upload_fails.php', query);
+  } else {
+    Ajax.Send('/upload_fails.php', query);
+  }
+},
+
+embed: function(iUpload) {
+  var i = iUpload.num != undefined ? iUpload.num : iUpload, obj = this.obj[i], dropbox = this.dropbox[i], options = this.options[i];
+  if (options.noEmbed) {
+    re('check_upload_'+iUpload);
+    return;
+  }
+  if (!options.noCheck) return;
+
+  if (browser.flash > 9 && options.forceFlash) {
+    this.initFlash(i, obj);
+  } else if (this.checkFileApi() && !options.flash_lite) {
+    this.initFileApi(i, obj, dropbox);
+  } else if (browser.flash > 9 && !options.noFlash) {
+    this.initFlash(i, obj);
+  } else if (!options.noForm) {
+    this.initForm(i, obj);
+  }
+},
+
+checkFileApi: function() {
+  return (window.XMLHttpRequest || window.XDomainRequest) && (window.FormData || window.FileReader && (window.XMLHttpRequest && XMLHttpRequest.sendAsBinary ||  window.ArrayBuffer && window.Uint8Array && (window.MozBlobBuilder || window.WebKitBlobBuilder || window.BlobBuilder)));
+},
+
+initFlash: function(iUpload, obj) {
+  var postData = [], vars = Upload.vars[iUpload], options = Upload.options[iUpload];
+  var opts = {
+    url: options.flashPath || '/swf/uploader_lite.swf',
+    id: 'uploader_lite'+iUpload,
+    preventhide: true,
+    width: '100%',
+    height: browser.safari || browser.msie || browser.chrome && intval(browser.version) < 17 ? (options.flashHeight ? options.flashHeight + 'px' : (cur.flash_lite && !isVisible('photos_flash_add_button') ? '67px' : '25px')) : '100%'
+  };
+  var params = {
+    swliveconnect: 'true',
+    allowscriptaccess: 'always',
+    wmode: browser.msie ? 'opaque' : 'transparent'
+  }
+  Upload.types[iUpload]  = 'flash';
+  for (var i in vars) {
+    postData.push(i+'='+vars[i]);
+  }
+  if (!options.signed && !vars['ajx']) {
+    postData.push('ajx=1');
+  }
+  var clbksRaw = this.flashCallbacks(), clbks = {};
+  this.callbacks = this.callbacks || {};
+  each(clbksRaw, function(i, v) {
+    Upload.callbacks[i + iUpload] = v.pbind(iUpload);
+    clbks[i] = 'Upload.callbacks.' + i + iUpload;
+  });
+
+  var flashVars = clone(vars);
+  extend(flashVars, clbks, {
+    'upload_url': Upload.uploadUrls[iUpload],
+    'file_size_limit': options.file_size_limit,
+    'file_types_description': options.file_types_description,
+    'file_types': options.file_types,
+    'file_name': options.file_name,
+    'post_data': escape(postData.join('&'))
+  });
+
+  if (!options.flash_lite) {
+    if (!options.lang['button_browse']) {
+      options.lang['button_browse'] = 'Выбрать файл';
+    }
+    if (options.flat_button) {
+      obj.innerHTML = '<div id="uploader'+iUpload+'" style="position: relative;"><div id="lite_upload' + iUpload + '" style="position: absolute; height: 100%; width: 100%; z-index: 10000; cursor: pointer;"></div><button class="flat_button button_big button_big_width">' + options.lang['button_browse'] + '</button></div>';
+    } else {
+      obj.innerHTML = '<button id="uploader'+iUpload+'" class="flat_button upload_btn ' + (options.buttonClass || '') + '" style="position: relative;"><div id="lite_upload' + iUpload + '" style="position: absolute; height: 100%; width: 100%; z-index: 10000; cursor: pointer;"></div>' + options.lang['button_browse'] + '</button>';
+    }
+  } else {
+    obj.innerHTML = '<div class="lite_upload" id="lite_upload' + iUpload + '" style="z-index:10000; width: 100%; height: 100%; cursor: pointer;"></div>';
+  }
+  renderFlash(ge('lite_upload'+iUpload), opts, params, flashVars);
+  if (browser.msie) setStyle(ge('lite_upload'+iUpload), {opacity: 0, cursor: 'pointer'});
+
+  if (options.lang.switch_mode) {
+    var text = options.lang.switch_mode.replace('{link}', '<a onclick="Upload.switchMode('+iUpload+');">');
+    text = text.replace('{/link}', '</a>');
+    obj.appendChild(ce('div', {
+      innerHTML: text,
+      align: 'left',
+      className: 'upload_switch_mode'
+    }, {
+      marginTop: '15px'
+    }));
+  }
+},
+
+initForm: function(iUpload, obj) {
+  var _iu = iUpload, vars = this.vars[_iu], options = this.options[_iu];
+  this.types[_iu] = 'form';
+
+  // setTimeout is needed at least for Opera to allow to do ajax requests in this callbacks. Otherwise it hangs up on XHR.open() call.
+
+  var html = '<form action="' + this.uploadUrls[_iu] + '" enctype="multipart/form-data" method="post" id="file_uploader_form' + _iu + '" target="upload_iframe' + _iu + '" style="text-align: center; width: 100%;">';
+  if (options.signed) {
+    extend(vars, {_jsonp: jsonpManager.reg(function(r) { Upload.onUploadComplete(_iu, r); })});
+  } else {
+    var onDoneCallback = Upload.onUploadComplete.pbind(_iu);
+    var onFailCallback = Upload.onUploadError.pbind(_iu);
+    this.callbacks['ondone'+_iu] = function() { var callback = onDoneCallback.pbind.apply(onDoneCallback, arguments); setTimeout(function(){ callback(); }, 1); };
+    this.callbacks['onfail'+_iu] = function() { var callback = onFailCallback.pbind.apply(onFailCallback, arguments); setTimeout(function(){ callback(); }, 1); };
+    extend(vars, {al: 1, ondone: "Upload.callbacks.ondone"+_iu, onfail: "Upload.callbacks.onfail"+_iu});
+  }
+  for (var i in vars) {
+    html += '<input type="hidden" name="' + i + '" value="' + vars[i] + '" />';
+  }
+  var onInpChange = !options.uploadButton ? 'Upload.onUploadStart(' + _iu + ');' : 'Upload.onUploadFileSelected(' + _iu + ')';
+  var input = '<input type="file" class="file" size="28" onchange="' + onInpChange + '" name="' + options['file_name'] + '" style="cursor: pointer;"' + (options.accept ? ' accept="' + options.accept + '"' : '') + '/>\
+  \
+  </form><iframe style="position: absolute; visibility: hidden; width: 1px; height: 1px;" id="upload_iframe' + _iu + '" name="upload_iframe' + _iu + '"></iframe>';
+  if (options.label) {
+    html += options.label.split('{file}').join(input);
+  } else {
+    html += input;
+  }
+  obj.innerHTML = html;
+  var nfile = options.file_input,
+      cfile = geByClass1('file', obj, 'input');
+
+  delete options.file_input;
+  if (nfile && cfile) {
+    cfile.parentNode.replaceChild(nfile, cfile);
+    nfile.onchange = function () {Upload.onUploadStart(_iu)};
+    if (data(nfile, 'changed')) {
+      data(nfile, 'changed', false);
+      nfile.onchange();
+    }
+  }
+  if (options.uploadButton && options.setUploadAction) {
+    options.setUploadAction(iUpload, function () {Upload.onUploadStart(_iu);});
+  } else if (options.uploadButton) {
+    ge(options.uploadButton).onclick = function () {Upload.onUploadStart(_iu);};
+  }
+},
+
+buttonOver: function(iUpload) {
+  var options = Upload.options[iUpload];
+  if (options.flash_lite) {
+    if (options.hoverEl) {
+      addClass(options.hoverEl, 'hover');
+    } else if (isVisible('photos_flash_add_button')) {
+      addClass(ge('photos_flash_add_button'), 'hover');
+    } else {
+      addClass(ge('photos_upload_area'), 'hover');
+    }
+  } else {
+    addClass(ge('lite_upload'+iUpload).nextSibling, 'hover');
+  }
+},
+buttonOut: function(iUpload) {
+  var options = Upload.options[iUpload];
+  if (options.flash_lite) {
+    if (options.hoverEl) {
+      removeClass(options.hoverEl, 'hover');
+    } else if (isVisible('photos_flash_add_button')) {
+      removeClass(ge('photos_flash_add_button'), 'hover');
+      removeClass(ge('photos_flash_add_button'), 'active');
+    } else {
+      removeClass(ge('photos_upload_area'), 'hover');
+    }
+  } else {
+    removeClass(ge('lite_upload'+iUpload).nextSibling, 'hover');
+    removeClass(ge('lite_upload'+iUpload).nextSibling, 'active');
+  }
+},
+buttonDown: function(iUpload) {
+  if (Upload.options[iUpload].flash_lite) {
+    if (isVisible('photos_flash_add_button')) {
+      addClass(ge('photos_flash_add_button'), 'active');
+    }
+  } else {
+    addClass(ge('lite_upload'+iUpload).nextSibling, 'active');
+  }
+},
+buttonUp: function(iUpload) {
+  if (Upload.options[iUpload].flash_lite) {
+    if (isVisible('photos_flash_add_button')) {
+      removeClass(ge('photos_flash_add_button'), 'active');
+    }
+  } else {
+    removeClass(ge('lite_upload'+iUpload).nextSibling, 'active');
+  }
+},
+
+initFileApi: function(iUpload, obj, dropbox) {
+  var options = this.options[iUpload], input,
+      dragEl = options && options.dragEl || window.boxLayerWrap;
+  if (dropbox && dragEl) {
+    if (!Upload.addedDocEvent) {
+      addEvent(document, 'drop', Upload.drop);
+      Upload.addedDocEvent = true;
+    }
+    options.dragEvObj = dragEl;
+    addEvent(dragEl, 'dragenter', Upload.dragEnter.pbind(iUpload));
+    addEvent(dragEl, 'dragover', Upload.dragOver.pbind(iUpload));
+    addEvent(dragEl, 'dragleave', Upload.dragOut.pbind(iUpload));
+  }
+  this.types[iUpload] = 'fileApi';
+  if (options.chooseBox) {
+    input = '<input class="file" type="file" size="28" onchange="Upload.onFileApiSend('+iUpload+', this.files);"' + (options.multiple ? ' multiple="true"' : '') + (options.accept ? ' accept="' + options.accept + '"' : '') + ' name="' + options['file_name'] + '" style="cursor: pointer;"/>';
+  } else if (options.uploadButton) {
+    if (!options.lang['button_browse']) {
+      options.lang['button_browse'] = 'Выбрать файл';
+    }
+    input = '<button class="flat_button upload_btn fl_l ' + (options.buttonClass || '') + '" onclick="this.nextSibling.nextSibling.click()">' + options.lang['button_browse'] + '</button><div class="upload_selected fl_l" style="padding: 4px 0 0 10px;"></div><input class="file" type="file" size="28" onchange="geByClass1(\'upload_selected\', this.parentNode).innerHTML = Upload.getFilesNames('+iUpload+', this.files); Upload.onUploadFileSelected('+iUpload+')"' + (options.multiple ? ' multiple="true"' : '') + (options.accept ? ' accept="' + options.accept + '"' : '') + ' name="' + options['file_name'] + '" style="visibility: hidden; position: absolute;"/><br class="clear" />';
+  } else {
+    if (!options.lang['button_browse']) {
+      options.lang['button_browse'] = 'Выбрать файл';
+    }
+    if (options.flat_button) {
+      input = '<button class="upload_btn flat_button button_big_width button_big ' + (options.buttonClass || '') + '" onclick="this.nextSibling.click()">' + options.lang['button_browse'] + '</button><input class="file" type="file" size="28" onchange="Upload.onFileApiSend('+iUpload+', this.files);"' + (options.multiple ? ' multiple="true"' : '') + (options.accept ? ' accept="' + options.accept + '"' : '') + ' name="' + options['file_name'] + '" style="visibility: hidden; position: absolute;"/>';
+    } else {
+      input = '<button class="flat_button upload_btn ' + (options.buttonClass || '') + '" onclick="this.nextSibling.click()">' + options.lang['button_browse'] + '</button><input class="file" type="file" size="28" onchange="Upload.onFileApiSend('+iUpload+', this.files);"' + (options.multiple ? ' multiple="true"' : '') + (options.accept ? ' accept="' + options.accept + '"' : '') + ' name="' + options['file_name'] + '" style="visibility: hidden; position: absolute;"/>';
+    }
+  }
+  if (options.label) {
+    obj.innerHTML = options.label.split('{file}').join(input);
+  } else {
+    obj.innerHTML = input;
+  }
+  var nfile = options.file_input,
+      cfile = geByClass1('file', obj, 'input');
+  if (nfile && cfile) {
+    cfile.parentNode.replaceChild(nfile, cfile);
+    nfile.onchange = function () {Upload.onFileApiSend(iUpload, this.files);};
+    if (data(nfile, 'changed')) {
+      data(nfile, 'changed', false);
+      setTimeout(nfile.onchange.bind(nfile), 0);
+    }
+  }
+  if (options.uploadButton && options.setUploadAction) {
+    options.setUploadAction(iUpload, function () {Upload.onFileApiSend(iUpload, geByTag1('input', obj).files);} );
+  } else if (options.uploadButton) {
+    ge(options.uploadButton).onclick = function () {Upload.onFileApiSend(iUpload, geByTag1('input', obj).files);}
+  }
+},
+
+switchMode: function(i) {
+  Upload.options[i].noFlash = Upload.options[i].noCheck = 1;
+  Upload.embed(i);
+},
+
+onUploadFileSelected: function(i) {
+  if (Upload.options[i].onUploadFileSelected) {
+    Upload.options[i].onUploadFileSelected();
+  }
+},
+
+onUploadStart: function(info, result) {
+  cur.fileApiUploadStarted = true;
+  var i = info.ind !== undefined ? info.ind : info;
+  if (Upload.types[i] == 'form') {
+    var form = ge('file_uploader_form' + i);
+    form.submit();
+    var file = geByClass1('file', Upload.obj[i]);
+    file.disabled = true;
+  }
+
+  var options = Upload.options[i];
+  if (options.onUploadStart) {
+    options.onUploadStart(info, result);
+  };
+},
+
+getErrorAdditional: function(obj) {
+  if (obj.error && obj.server !== undefined && obj.bwact !== undefined) {
+    return ((obj.error.indexOf(':') !== -1) ? ',' : ':') + ' from upl_' + intval(obj.server) + '?act=' + obj.bwact.replace(/[^a-zA-Z_0-9]/g, '');
+  }
+  return '';
+},
+onUploadComplete: function(info, result, extra_info) {
+  var i = info.ind !== undefined ? info.ind : info, options = Upload.options[i], obj;
+  if (extra_info !== undefined && i === info) {
+    info = extra_info;
+  }
+  info.ind = i;
+  if (Upload.types[i] == 'form') {
+    var file = geByClass1('file', Upload.obj[i]);
+    file.disabled = false;
+  }
+  if (options.onUploadComplete) {
+    var errorAdd = '';
+    if (options.signed) {
+      var obj = result ? parseJSON(result) : '';
+      if (!obj) {
+        result = '{"error":"ERR_CLIENT_UPLOAD_FAIL: upload request bad result, url \\"' + Upload.uploadUrls[i] + '\\""}';
+      } else {
+        errorAdd = Upload.getErrorAdditional(obj);
+      }
+    }
+    options.onUploadComplete(info, result, errorAdd);
+  }
+  if (Upload.types[i] == 'form') {
+    Upload.onUploadCompleteAll(info, result);
+  }
+},
+
+onUploadCompleteAll: function(info, result, extra_info) {
+  var i = info.ind !== undefined ? info.ind : info, options = Upload.options[i];
+  if (extra_info !== undefined && i === info) {
+    info = extra_info;
+  }
+  if (Upload.types[i] == 'fileApi') {
+    var cfile = geByClass1('file', Upload.obj[i], 'input');
+    if (cfile) {
+      cfile.value = '';
+    }
+  }
+
+  if (options.onUploadCompleteAll) {
+    options.onUploadCompleteAll(info, result);
+  }
+},
+
+onUploadError: function(info, result) {
+  var i = info.ind !== undefined ? info.ind : info, options = Upload.options[i];
+  if (Upload.types[i] == 'form') {
+    var file = geByClass1('file', Upload.obj[i]);
+    file.disabled = false;
+  }
+  if (options.signed) {
+    if (options.onUploadComplete) {
+      options.onUploadComplete(info, '{"error":"ERR_CLIENT_UPLOAD_FAIL: upload request fail, code \\"' + result.replace(/([\\\"])/g, '\\$1').replace(/\n/g, '\\n') + '\\", url \\"' + Upload.uploadUrls[i] + '\\""}');
+    }
+  } else if (options.onUploadError) {
+    options.onUploadError(info, result);
+  };
+},
+
+onConnectionLost: function(info) {
+  var i = info.ind !== undefined ? info.ind : info, options = Upload.options[i];
+  if (options.onConnectionLost) {
+    options.onConnectionLost(info);
+  }
+},
+
+onUploadProgress: function(info, bytesLoaded, bytesTotal) {
+  var i = info.ind !== undefined ? info.ind : info, options = Upload.options[i];
+  if (options.onUploadProgress) {
+    options.onUploadProgress(info, bytesLoaded, bytesTotal);
+  };
+},
+
+onDebug: function(info, result) {
+  var i = info.ind !== undefined ? info.ind : info, options = Upload.options[i];
+  if (options.onDebug) {
+    options.onDebug(info, result);
+  }
+},
+
+onSelectClick: function(info, result) {
+  var i = info.ind !== undefined ? info.ind : info, options = Upload.options[i];
+  if (options.onSelectClick) {
+    options.onSelectClick(info, result);
+  }
+},
+
+getFilesNames: function(i, files) {
+  if (!files || !files.length) return;
+
+  var options = this.options[i];
+  if (!options.multiple) {
+    return files[0].name.replace(/[&<>"']/g, '');
+  } else {
+    if (!options.lang['selected_num_files']) {
+      options.lang['selected_num_files'] = ['', '%s файл', '%s файла', '%s файлов'];
+    }
+    return langNumeric(files.length, options.lang['selected_num_files']);
+  }
+},
+
+checkFileType: function(filename, fileTypes) {
+  var valid = false;
+  each(fileTypes.split(';'), function(i, type) {
+    type = type.substr(1).toLowerCase();
+    if (filename.substr(-type.length).toLowerCase() == type || type == '.*') {
+      valid = true;
+      return false;
+    }
+  });
+  return valid;
+},
+
+onFileApiSend: function(i, files, force) {
+  if (!files || !files.length) return;
+
+  var options = this.options[i];
+
+  if (options.file_types) {
+    var filteredFiles = [];
+    each(files, function(i, file) {
+      if (Upload.checkFileType(file.name, options.file_types)) {
+        filteredFiles.push(file);
+      }
+    });
+    files = filteredFiles;
+    if (!files.length) return;
+  }
+
+  if (options.reverse_files) {
+    files = Array.prototype.slice.call(files).reverse();
+  }
+
+  if (!options.multiple && files.length > 1) {
+    files = [files[0]]
+  }
+
+  if (options['file_size_limit']) {
+    for (var index in files) {
+      var file = files[index];
+      if (file.size && file.size > options['file_size_limit']) {
+        if (options.lang.filesize_error) {
+          showFastBox({
+            title: getLang('global_error'),
+            width: 430,
+            dark: 1,
+            bodyStyle: 'padding: 20px; line-height: 160%;',
+            onHide: function() {
+              Upload.embed(i);
+              delete cur.notStarted;
+            }
+          }, options.lang.filesize_error, getLang('global_continue'), function() {
+            Upload.uploadFiles(i, files, max_files);
+            if (options.filesize_hide_last) {
+              curBox().hide();
+            } else {
+              boxQueue.hideAll();
+            }
+          }, getLang('global_cancel'));
+        }
+        return;
+      }
+    }
+  }
+
+  if (options.photoBox && !force) {
+    return Upload.onPhotoAdd(i, files);
+  }
+
+  if (options.beforeUpload) options.beforeUpload(i);
+
+  cur.notStarted = cur.fileApiUploadStarted = true;
+  if (!options.multi_progress) this.onUploadStart({ ind: i, fileName: (files[0].fileName || files[0].name || '').replace(/[&<>"']/g, '') });
+  var max_files = files.length;
+  if (options.max_files) {
+    var attachCount = cur.attachCount;
+    if (!attachCount && cur.addMedia) {
+      var maxIndex = -1;
+      for (var j in cur.addMedia) {
+        if (j > maxIndex) maxIndex = j;
+      }
+      if (maxIndex >= 0 && cur.addMedia[maxIndex] && cur.addMedia[maxIndex].attachCount) {
+        attachCount = cur.addMedia[maxIndex].attachCount;
+      }
+    }
+    var curCount = attachCount ? attachCount() : 0;
+    if (options.max_files - curCount < files.length && options.lang && options.lang.max_files_warning) {
+      max_files = options.max_files - curCount;
+      showFastBox({
+        title: getLang('global_error'),
+        width: 430,
+        dark: 1,
+        bodyStyle: 'padding: 20px; line-height: 160%;',
+        onHide: function() {
+          Upload.embed(i);
+          delete cur.notStarted;
+        }
+      }, options.lang.max_files_warning, getLang('global_continue'), function() {
+        Upload.uploadFiles(i, files, max_files);
+        if (options.max_files_hide_last) {
+          curBox().hide();
+        } else {
+          boxQueue.hideAll();
+        }
+      }, getLang('global_cancel'));
+    } else {
+      if (options.force_max_files) {
+        max_files = Math.min(max_files, options.max_files - (cur.savedPhotos || []).length);
+      }
+      this.uploadFiles(i, files, max_files);
+    }
+  } else {
+    this.uploadFiles(i, files, max_files);
+  }
+},
+
+onPhotoAdd: function(i, files) {
+  var needFire = 0, count = 0;
+  Upload.fileList = Upload.fileList || {};
+  if (!Upload.fileList[i]) {
+    Upload.fileList[i] = [];
+    if (Upload.options[i].onPhotoBox) {
+      needFire = true;
+    }
+  }
+  each(files, function(n, file) {
+    count++;
+    var preview = Upload.options[i].photoBox;
+    var imageType = new RegExp('image.*')
+    if (!file.type.match(imageType)) {
+      //return false;
+    }
+    cur.uploaderPhotoId = (cur.uploaderPhotoId || 0) + 1;
+    var photoId = cur.uploaderPhotoId;
+    Upload.fileList[i][photoId] = file;
+
+    var img = ce('img');
+    var photo = ce('div', {
+      id: 'photos_add_item'+photoId,
+      className: 'photos_add_item',
+      innerHTML: '<span class="photos_add_img photos_add_wait" id="photos_add_cont'+photoId+'" onmouseover="PhotosAdd.thumbOver('+photoId+', this);" onmouseout="PhotosAdd.thumbOut('+photoId+');"><span class="photos_add_s" id="photos_add_s'+photoId+'">&nbsp;</span></span><span class="bg">&nbsp;</span>'
+    });
+    preview.appendChild(photo);
+
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      img.src = e.target.result;
+      img.onload = function() {
+        img.onload = false;
+        var size = {w: img.width, h: img.height}, dx, dy;
+        if (size.w > 130) {
+          dx = 130 / size.w;
+          size.w = 130;
+          size.h = parseInt(size.h * dx);
+        }
+
+
+        if (size.h > 130) {
+          dy = 130 / size.h;
+          size.h = 130;
+          size.w = parseInt(size.w * dy);
+        }
+
+        var cnv = ce('canvas', {
+          width: size.w,
+          height: size.h
+        });
+        var ctx = cnv.getContext('2d');
+        ctx.drawImage(img, 0, 0, size.w, size.h);
+        delete img;
+        var dataURL = cnv.toDataURL("image/jpeg");
+        img.src = dataURL;
+        var thumbCont = ge('photos_add_s'+photoId);
+        var tw = Math.max(size.w, 80);
+        var th = Math.min(size.h, 98);
+        setStyle(thumbCont, {
+          width: tw,
+          height: th,
+          //marginTop: Math.ceil((98 - th) / 2),
+          marginLeft: Math.ceil((130 - tw) / 2)
+        });
+        thumbCont.innerHTML = '';
+        thumbCont.appendChild(img);
+        img.onload = function() {
+          setTimeout(function() {
+            thumbCont.parentNode.className = 'photos_add_img';
+          }, 0);
+          img.onload = false;
+        }
+        Upload.finishTask();
+      }
+    }
+    Upload.taskToQ(function() {
+      reader.readAsDataURL(file);
+    });
+  });
+  if (needFire && count) {
+    Upload.options[i].onPhotoBox();
+  }
+  if (Upload.options[i].onPhotoAdd && count) {
+    Upload.options[i].onPhotoAdd();
+  }
+},
+
+uploadPhotos: function(uplId) {
+  var files = [], flist = Upload.fileList[uplId];
+  for (var i in flist) {
+    if (flist[i]) {
+      files.push(extend(flist[i], {
+        fileRef: i
+      }));
+    }
+  }
+  if (Upload.options[uplId].onUploadStart) Upload.options[uplId].onUploadStart();
+  if (files.length) {
+    cur.uploadCount = Math.min(500, files.length);
+    Upload.uploadFiles(uplId, files, cur.uploadCount);
+    return true;
+  } else {
+    return false;
+  }
+},
+
+taskToQ: function(task) {
+  if (!Upload.previewFileQ) {
+    Upload.previewFileQ = [];
+  }
+  if (task) {
+    Upload.previewFileQ.push(task);
+  }
+
+  if (Upload.doingQ) {
+    return;
+  }
+  var newTask = Upload.previewFileQ.shift();
+  if (newTask) {
+    Upload.doingQ = true;
+    newTask();
+  }
+},
+
+finishTask: function() {
+  setTimeout(function() {
+    Upload.doingQ = false;
+    Upload.taskToQ();
+
+  }, 100);
+},
+
+uploadFiles: function(i, files, max_files) {
+  if (max_files <= 0) return;
+  var options = this.options[i],
+      vars = options.signed ? this.vars[i] : extend(this.vars[i], {ajx: 1}),
+      params = [],
+      totalSize = 0,
+      totalCount = 0,
+      loadedSize = 0,
+      loadedCount = 0,
+      filesQueue = [],
+      re;
+
+  if (options.uploading) {
+    totalSize = options.filesTotalSize || 0;
+    totalCount = options.filesTotalCount || 0;
+    loadedCount = options.filesLoadedCount || 0;
+    loadedSize = options.filesLoadedSize || 0;
+    filesQueue = options.filesQueue;
+  }
+
+  if (options.file_match) re = new RegExp(options.file_match, "i");
+  for (var j in vars) {
+    params.push(j + "=" + vars[j]);
+  }
+  var uploadUrl = this.uploadUrls[i] + (this.uploadUrls[i].match(/\?/) ? '&' : '?') + params.join('&'),
+      fileName;
+
+  var errors = false;
+  for (var j = 0; j < max_files; j++) {
+    fileName = (files[j].fileName || files[j].name || '').replace(/[&<>"']/g, '');
+    if (options.file_match) {
+      if (!fileName.match(re)) {
+        errors = true;
+        continue;
+      }
+    }
+    if (options.multi_progress && !options.multi_sequence) {
+      this.onUploadStart({ind: i, fileName: fileName});
+    }
+    totalSize += files[j].size;
+    totalCount += 1;
+    filesQueue.push(files[j]);
+  }
+  filesQueue.reverse();
+
+  extend(options, {
+    filesQueue: filesQueue,
+    filesTotalSize: totalSize,
+    filesLoadedSize: loadedSize,
+    filesLoadedCount: loadedCount,
+    filesTotalCount: totalCount
+  });
+
+  // if (options.multi_sequence && options.onUploadProgress) {
+  //   options.onUploadProgress(Upload.getFileInfo(i, options, false));
+  // }
+
+  if (filesQueue.length > 0) {
+    if (cur.multiProgressIndex !== undefined) {
+      if (!cur.nextQueues) cur.nextQueues = [];
+      cur.nextQueues.push(i);
+    } else {
+      this.uploadFile(i, filesQueue.pop(), uploadUrl);
+      if (options.multi_progress) cur.multiProgressIndex = i;
+    }
+  } else if (errors) {
+    Upload.onUploadError(i, 'file type not supported');
+  }
+},
+
+getFileInfo: function(i, options, file) {
+  return options.multi_progress ? {
+    ind: i,
+    fileName: (file) ? (file.fileName || file.name || '').replace(/[&<>"']/g, '') : '',
+    num: options.filesLoadedCount,
+    totalSize: options.filesTotalSize,
+    loadedSize: options.filesLoadedSize,
+    totalCount: options.filesTotalCount,
+    file: file
+  } : i;
+},
+
+supportsChunkedUpload: function() {
+  return !!Blob && !!(Blob.prototype.webkitSlice || Blob.prototype.mozSlice || Blob.prototype.slice) && !!FileReader;
+},
+
+uploadFileChunked: function(uplId, file, url) {
+  var options = this.options[uplId];
+  var info = Upload.getFileInfo(uplId, options, file);
+  if (options.multi_sequence) {
+    this.onUploadStart(info);
+  }
+
+  var DEFAULT_CHUNK_SIZE = 4 * 1024 * 1024; // 4 MB
+  var MAX_THREADS_NUM = 4;
+  var MAX_RETRIES_NUM = 50;
+  var CHUNKS_EXPIRE_TIME = 24 * 60 * 60 * 1000; // one day
+
+  var curUpload = {
+    file: file,
+    fileName: (file.name || file.fileName).replace(/[&<>"']/g, ''),
+    fileSize: file.size,
+    fileMime: file.type,
+    retryCount: 0,
+    timeouts: [],
+    activeRequests: [],
+    requestsProgress: {},
+    pointer: 0,
+    state: {
+      url: url,
+      started: Date.now(),
+      loaded: null,
+      chunkSize: options.chunkSize || DEFAULT_CHUNK_SIZE,
+      sessionId: (Math.random() * 10e16).toString(16)
+    },
+  };
+  curUpload.abort = _abortAllChunks.bind(null, curUpload);
+
+  curUpload.chunksNum = Math.ceil(curUpload.fileSize / curUpload.state.chunkSize);
+  curUpload.chunksLeft = curUpload.chunksNum;
+
+  _computeFilePartsChecksum(file, function(hash) {
+    curUpload.storageKey = ['upload', vk.id, hash, curUpload.fileSize].join('_');
+    options.uploading = true;
+    options.chunkedUpload = curUpload;
+
+    var savedState = ls.get(curUpload.storageKey);
+    if (savedState) {
+      if (Date.now() - savedState.started < CHUNKS_EXPIRE_TIME) {
+        curUpload.state = savedState;
+        url = savedState.url;
+      } else {
+        ls.remove(curUpload.storageKey);
+      }
+    }
+
+    try {
+      console.log('%c Warning: if devtools is logging network requests it may cause high memory usage during file upload', 'font-size:16px;color:orange;');
+    } catch(e) {}
+
+    _startUpload();
+  });
+
+  function _computeFilePartsChecksum(file, callback) {
+    var chunkSize = 1024 * 1024;
+    var middleChunkPointer = Math.floor(file.size/2) - chunkSize/2;
+
+    var chunks = [
+      file.slice(0, chunkSize),
+      file.slice(middleChunkPointer, middleChunkPointer + chunkSize),
+      file.slice(file.size - chunkSize, file.size)
+    ];
+
+    (function tick(hash) {
+      var chunk = chunks.shift();
+      if (!chunk) {
+        callback(hash);
+        return;
+      }
+
+      var reader = new FileReader();
+      reader.addEventListener('loadend', function(e) {
+        var data = new Uint8Array(e.target.result);
+        var cs = Fletcher32();
+        cs.append(data);
+        hash += cs.result().toString(16);
+        tick(hash);
+      });
+      reader.readAsArrayBuffer(chunk);
+    })('');
+  }
+
+  function _startUpload() {
+    curUpload.pointer = 0;
+    curUpload.chunksLeft = curUpload.chunksNum;
+    while (curUpload.activeRequests.length < MAX_THREADS_NUM && curUpload.pointer < curUpload.fileSize) {
+      _uploadNextChunk();
+    }
+  }
+
+  function _uploadNextChunk() {
+    var pointerStart = curUpload.pointer;
+    var pointerEnd = Math.min(pointerStart + curUpload.state.chunkSize, curUpload.fileSize) - 1;
+    if (pointerStart >= curUpload.fileSize) return;
+
+    if (curUpload.state.loaded) {
+      var isChunkLoaded = false;
+      each(curUpload.state.loaded.split(','), function(i, range) {
+        var matches = range.match(/^(\d+)-(\d+)\/\d+$/);
+        var loadedStart = parseInt(matches[1]);
+        var loadedEnd = parseInt(matches[2]);
+        if (pointerStart >= loadedStart && pointerEnd <= loadedEnd) {
+          isChunkLoaded = true;
+          curUpload.chunksLeft -= Math.ceil((loadedEnd + 1 - pointerStart) / curUpload.state.chunkSize); // ceil to avoid fractional number when current range is at the end of file
+          curUpload.pointer = loadedEnd + 1;
+          return false;
+        }
+      });
+    }
+
+    if (isChunkLoaded) {
+      _onProgress();
+      _uploadNextChunk();
+    } else {
+      _uploadChunk(pointerStart, pointerEnd);
+      curUpload.pointer += curUpload.state.chunkSize;
+    }
+  }
+
+  function _uploadChunk(pointerStart, pointerEnd) {
+    var chunk = (file.slice || file.webkitSlice || file.mozSlice).call(file, pointerStart, pointerEnd + 1);
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('POST', url, true);
+
+    xhr.upload.onprogress = function(e) {
+      if (e.lengthComputable) {
+        curUpload.requestsProgress[pointerStart] = e.loaded;
+      }
+      _onProgress();
+    };
+
+    xhr.onload = function(e) {
+      curUpload.activeRequests.splice(indexOf(curUpload.activeRequests, e.target), 1);
+      curUpload.retryCount = 0;
+
+      --curUpload.chunksLeft;
+
+      if (e.target.status == 201) {
+        if (curUpload.chunksLeft) {
+          curUpload.state.loaded = e.target.responseText;
+          ls.set(curUpload.storageKey, curUpload.state);
+          _uploadNextChunk();
+        } else {
+          // chunksLeft is 0 but server is waiting for next chunks. Reindex file
+          curUpload.state.loaded = e.target.responseText;
+          ls.set(curUpload.storageKey, curUpload.state);
+          _startUpload();
+        }
+      } else if (e.target.status == 200 && !curUpload.chunksLeft) {
+        ls.remove(curUpload.storageKey);
+        _onUploadComplete(e.target.responseText);
+      } else {
+        _logChunkError(e.target.status, e.target.responseText, pointerStart + '-' + pointerEnd);
+        Upload.onUploadError(info);
+      }
+      delete curUpload.requestsProgress[pointerStart];
+      _onProgress();
+    };
+
+    xhr.onerror = function(e) {
+      curUpload.activeRequests.splice(indexOf(curUpload.activeRequests, e.target), 1);
+      if (++curUpload.retryCount <= MAX_RETRIES_NUM) {
+        var timeoutId = setTimeout(_uploadChunk.bind(null, pointerStart, pointerEnd), 300 * curUpload.retryCount);
+        curUpload.timeouts.push(timeoutId);
+      } else {
+        curUpload.abort();
+        Upload.onConnectionLost(info);
+      }
+      // delete curUpload.requestsProgress[pointerStart];
+      _onProgress();
+      _logChunkError(e.target.status, e.target.responseText, pointerStart + '-' + pointerEnd);
+    };
+
+    xhr.setRequestHeader('Content-Disposition', 'attachment, filename="' + encodeURI(curUpload.fileName) + '"');
+    xhr.setRequestHeader('Content-Type', curUpload.fileMime || 'application/octet-stream');
+    xhr.setRequestHeader('Content-Range', 'bytes ' + pointerStart + '-' + pointerEnd + '/' + curUpload.fileSize);
+    xhr.setRequestHeader('Session-ID', curUpload.state.sessionId);
+
+    xhr.send(chunk);
+    chunk = null;
+    curUpload.activeRequests.push(xhr);
+  }
+
+  function _onProgress() {
+    var total = curUpload.fileSize;
+    var loaded = (curUpload.chunksNum - curUpload.chunksLeft) * curUpload.state.chunkSize;
+    each(curUpload.requestsProgress, function(key, value) {
+      loaded += value;
+    });
+
+    extend(info, Upload.getFileInfo(uplId, options, file));
+    if (!options.multi_progress) {
+      Upload.onUploadProgress(uplId, Math.min(loaded + options.filesLoadedSize, options.filesTotalSize), options.filesTotalSize);
+    } else {
+      Upload.onUploadProgress(info, loaded, total);
+    }
+  }
+
+  function _onUploadComplete(responseText) {
+    extend(info, Upload.getFileInfo(uplId, options, file)); // can be extended
+    Upload.options[uplId].filesLoadedSize += curUpload.fileSize;
+    Upload.options[uplId].filesLoadedCount += 1;
+    Upload.onUploadComplete(info, responseText);
+    if (Upload.options[uplId].filesQueue && Upload.options[uplId].filesQueue.length > 0) {
+      Upload.uploadFile(uplId, Upload.options[uplId].filesQueue.pop(), url);
+    } else {
+      Upload.startNextQueue(uplId);
+      Upload.onUploadCompleteAll(info, responseText);
+      options.uploading = false;
+    }
+  }
+
+  function _abortAllChunks(curUpload) {
+    each(curUpload.timeouts, function(i, timeout) {
+      clearTimeout(timeout);
+    });
+    each(curUpload.activeRequests, function(i, xhr) {
+      xhr.abort();
+    });
+    curUpload.timeouts = [];
+    curUpload.activeRequests = [];
+  }
+
+  function _logChunkError(status, text, range) {
+    ajax.post('al_video.php', {
+      act: 'uploadVideoFailStat',
+      url: url,
+      error: status + ',' + text,
+      range: range,
+      sessionId: curUpload.state.sessionId,
+      chunksLeft: curUpload.chunksLeft,
+      loaded: curUpload.state.loaded
+    });
+  }
+},
+
+resumeUpload: function(uplId) {
+  var curUpload = this.options[uplId].chunkedUpload;
+  Upload.uploadFileChunked(uplId, curUpload.file, curUpload.state.url);
+},
+
+uploadFile: function(uplId, file, url) {
+  var options = this.options[uplId];
+
+  if (options.chunked && Upload.supportsChunkedUpload() && file.size > 4 * 1024 * 1024) {
+    Upload.uploadFileChunked.apply(Upload, arguments);
+    return;
+  }
+
+  var XHR = (browser.msie && intval(browser.version) < 10) ? window.XDomainRequest : window.XMLHttpRequest;
+
+  var info = Upload.getFileInfo(uplId, options, file);
+
+  if (options.multi_sequence) {
+    this.onUploadStart(info);
+  }
+
+  options.uploading = true;
+
+  if (window.FormData) {
+    var formData = new FormData();
+
+    if (file instanceof File) {
+      formData.append(options.file_name, file);
+    } else { // blob
+      formData.append(options.file_name, file, file.filename.replace(/[&<>"']/g, ''));
+    }
+
+    var xhr = new XHR(), fastFail = true;
+    xhr.open('POST', url, true);
+    xhr.onload = function(e) {
+      extend(info, Upload.getFileInfo(uplId, options, file)); // can be extended
+      Upload.options[uplId].filesLoadedSize += file.size;
+      Upload.options[uplId].filesLoadedCount += 1;
+      Upload.onUploadComplete(info, e.target.responseText);
+      if (Upload.options[uplId].filesQueue && Upload.options[uplId].filesQueue.length > 0) {
+        Upload.uploadFile(uplId, Upload.options[uplId].filesQueue.pop(), url);
+      } else {
+        Upload.startNextQueue(uplId);
+        Upload.onUploadCompleteAll(info, e.target.responseText);
+        options.uploading = false;
+      }
+    };
+    xhr.onerror = function(e) {
+      if (false && !e.target.responseText && fastFail) { // Disabled. Replace it by layer to prevent losing unsaved changes on the page.
+        return nav.go('/login?act=upload_fail', false, {nocur: true, params: {context: 0, name: (file.fileName || file.name || '').replace(/[&<>"']/g, '')}});
+      }
+      extend(info, Upload.getFileInfo(uplId, options, file));
+      Upload.options[uplId].filesTotalSize -= file.size;
+      Upload.options[uplId].filesTotalCount -= 1;
+      Upload.onUploadError(info, e.target.responseText);
+      if (Upload.options[uplId].filesQueue.length > 0) {
+        Upload.uploadFile(uplId, Upload.options[uplId].filesQueue.pop(), url);
+      } else {
+        Upload.startNextQueue(uplId);
+        Upload.onUploadCompleteAll(info, e.target.responseText);
+        options.uploading = false;
+      }
+    };
+    xhr.upload.onprogress = function(e) {
+
+      if (xhr.readyState === 4) {
+        return;
+      }
+
+      fastFail = false;
+      extend(info, Upload.getFileInfo(uplId, options, file));
+      if (e.lengthComputable) {
+        if (!options.multi_progress) {
+          Upload.onUploadProgress(uplId, Math.min(e.loaded + options.filesLoadedSize, options.filesTotalSize), options.filesTotalSize);
+        } else {
+          Upload.onUploadProgress(info, e.loaded, e.total);
+        }
+      }
+    };
+    xhr.send(formData);
+  } else try {
+    if (XHR && !XHR.prototype.sendAsBinary && window.ArrayBuffer && window.Uint8Array) {
+      var BlobBuilder = window.MozBlobBuilder || window.WebKitBlobBuilder || window.BlobBuilder;
+      if (BlobBuilder) {
+        XHR.prototype.sendAsBinary = function(text){
+          var data = new ArrayBuffer(text.length);
+          var ui8a = new Uint8Array(data, 0);
+          for (var i = 0; i < text.length; i++) ui8a[i] = (text.charCodeAt(i) & 0xff);
+          var bb = new BlobBuilder();
+          bb.append(data);
+          var blob = bb.getBlob();
+          this.send(blob);
+        }
+      }
+    }
+
+    var reader = new FileReader();
+
+    reader.onload = function() {
+      var xhr = new XHR(), fastFail = true;
+
+      xhr.onload = function(e) {
+        extend(info, Upload.getFileInfo(uplId, options, file));
+        Upload.options[uplId].filesLoadedSize += file.size;
+        Upload.options[uplId].filesLoadedCount += 1;
+        Upload.onUploadComplete(info, e.target.responseText);
+        if (Upload.options[uplId].filesQueue.length > 0) {
+          Upload.uploadFile(uplId, Upload.options[uplId].filesQueue.pop(), url);
+        } else {
+          Upload.startNextQueue(uplId);
+          Upload.onUploadCompleteAll(info, e.target.responseText);
+        }
+      };
+      xhr.onerror = function(e) {
+        if (false && !e.target.responseText && fastFail) { // Disabled. Replace it by layer to prevent losing unsaved changes on the page.
+          return nav.go('/login?act=upload_fail', false, {nocur: true, params: {context: 1, name: (file.fileName || file.name || '').replace(/[&<>"']/g, '')}});
+        }
+        extend(info, Upload.getFileInfo(uplId, options, file));
+        Upload.options[uplId].filesTotalSize -= file.size;
+        Upload.options[uplId].filesTotalCount -= 1;
+        Upload.onUploadError(info, e.target.responseText);
+        if (Upload.options[uplId].filesQueue.length > 0) {
+          Upload.uploadFile(uplId, Upload.options[uplId].filesQueue.pop(), url);
+        } else {
+          Upload.startNextQueue(uplId);
+          Upload.onUploadCompleteAll(info, e.target.responseText);
+          options.uploading = false;
+        }
+      };
+      xhr.upload.onprogress = function(e) {
+        fastFail = false;
+        extend(info, Upload.getFileInfo(uplId, options, file));
+        if (e.lengthComputable) {
+          if (!options.multi_progress) {
+            Upload.onUploadProgress(uplId, Math.min(e.loaded + options.filesLoadedSize, options.filesTotalSize), options.filesTotalSize);
+          } else {
+            Upload.onUploadProgress(info, e.loaded, e.total);
+            options.uploading = false;
+          }
+        }
+      };
+
+      xhr.open('POST', url, true);
+      var boundary = '---------' + irand(1111111111, 9999999999);
+      xhr.setRequestHeader("Content-Type", "multipart/form-data, boundary=" + boundary);
+      var body = '--' + boundary + "\r\n";
+      body += "Content-Disposition: form-data; name='" + options.file_name + "'; filename='" + file.name.replace(/[&<>"']/g, '') + "'\r\n";
+      body += "Content-Type: application/octet-stream\r\n\r\n";
+      body += reader.result + "\r\n";
+      body += '--' + boundary + '--';
+
+      xhr.sendAsBinary(body);
+    };
+    reader.readAsBinaryString(file);
+  } catch (e) {
+    try { console.error(e); } catch (e2) {}
+  }
+  Upload.options[uplId].xhr = xhr;
+},
+
+terminateUpload: function(i, name, el) {
+  try {
+    var vars = Upload.vars[i],
+        options = Upload.options[i],
+        params = [],
+        queue = options.filesQueue;
+        inQueue = false,
+        info = options.multi_progress ? {ind: i, fileName: name.replace(/[&<>"']/g, '')} : i,
+        ind = name ? i + '_' + name : i;
+
+    for (var j in vars) {
+      params.push(j + "=" + vars[j]);
+    }
+    for (var j in queue) {
+      if (name == (queue[j].fileName || queue[j].name || '').replace(/[&<>"']/g, '')) {
+        queue.splice(j, 1);
+        inQueue = true;
+        break;
+      }
+    }
+    if (el && el.tt) el.tt.destroy();
+    re('upload' + ind + '_progress_wrap');
+    Upload.onUploadComplete(info, '{"error":"ERR_UPLOAD_TERMINATED: upload request was terminated"}');
+    if (!inQueue && options.xhr) options.xhr.abort();
+    if (!inQueue && options.chunkedUpload) options.chunkedUpload.abort();
+    var url = this.uploadUrls[i] + (this.uploadUrls[i].match(/\?/) ? '&' : '?') + params.join('&');
+    if (!inQueue) {
+      if (queue.length > 0) {
+        Upload.uploadFile(i, queue.pop(), url);
+      } else {
+        Upload.startNextQueue(i);
+        Upload.onUploadCompleteAll(info, '');
+      }
+    }
+  } catch (e) {
+    try { console.error(e); } catch (e2) {}
+  }
+},
+
+startNextQueue: function(i) {
+  if (cur.multiProgressIndex === undefined) {
+    setTimeout(function() {delete cur.fileApiUploadStarted;}, 1000);
+  }
+  if (i != cur.multiProgressIndex) return;
+  var options = this.options[i];
+  if (options.multi_progress && cur.nextQueues && cur.nextQueues.length) {
+    var next = cur.nextQueues[0],
+        queue = Upload.options[next].filesQueue;
+    cur.nextQueues.splice(0, 1);
+    while (queue.length == 0 && cur.nextQueues.length > 0) {
+      next = cur.nextQueues[0];
+      cur.nextQueues.splice(0, 1);
+      queue = Upload.options[next].filesQueue;
+    }
+    if (queue.length > 0) {
+      var vars = Upload.vars[next], params = [];
+      for (var j in vars) {
+        params.push(j + "=" + vars[j]);
+      }
+      var url = Upload.uploadUrls[next] + (Upload.uploadUrls[next].match(/\?/) ? '&' : '?') + params.join('&');
+      Upload.uploadFile(next, queue.pop(), url);
+      cur.multiProgressIndex = next;
+    } else {
+      delete cur.multiProgressIndex;
+      setTimeout(function() {delete cur.fileApiUploadStarted;}, 1000);
+    }
+  } else {
+    delete cur.multiProgressIndex;
+    setTimeout(function() {delete cur.fileApiUploadStarted;}, 1000);
+  }
+},
+
+isFileDrag: function(e) {
+  if (!e || e.target && (e.target.tagName == 'IMG' || e.target.tagName == 'A')) return false;
+  if (e.dataTransfer.types) {
+    for (var i = 0; i < e.dataTransfer.types.length; i++) {
+      if (e.dataTransfer.types[i] == "Files") {
+        return true;
+      }
+    }
+  } else {
+    return true;
+  }
+  return false;
+},
+
+dragEnter: function(i, e) {
+  if (!cur.uploadDragStarted || cur.uploadDragStarted == 1) {
+    cur.uploadDragStarted = Upload.isFileDrag(e) ? 2 : 1;
+  }
+  if (cur.uploadDragStarted == 1 || !Upload.dropbox[i]) {
+    cancelEvent(e);
+    return;
+  }
+  setTimeout(function() {
+    clearTimeout(Upload.dragTimer[i]);
+    delete Upload.dragTimer[i];
+  }, 0);
+  if (Upload.options[i].onDragEnter) {
+    Upload.options[i].onDragEnter(e);
+  }
+  show(Upload.dropbox[i]);
+  cancelEvent(e);
+},
+
+dragOut: function(i, e) {
+  if (cur.uploadDragStarted == 1 || !Upload.dropbox[i]) {
+    cancelEvent(e);
+    return;
+  }
+  if (Upload.dragTimer[i]) {
+    clearTimeout(Upload.dragTimer[i]);
+    delete Upload.dragTimer[i];
+  }
+  Upload.dragTimer[i] = setTimeout(function() {
+    if (!Upload.options[i].visibleDropbox) {
+      hide(Upload.dropbox[i]);
+    }
+    if (Upload.options[i].onDragOut) {
+      Upload.options[i].onDragOut();
+    }
+    removeClass(Upload.dropbox[i], 'dropbox_over');
+  }, 100);
+  cancelEvent(e);
+},
+
+dragOver: function(i, e) {
+  if (cur.uploadDragStarted == 1 || !Upload.dropbox[i]) {
+    cancelEvent(e);
+    return;
+  }
+  if (browser.mozilla && intval(browser.version) > 3 && !Upload.options[i].visibleDropbox) {
+    if (cur.dragOverTimer) {
+      clearTimeout(cur.dragOverTimer);
+      delete cur.dragOverTimer;
+    }
+    cur.dragOverTimer = setTimeout(function() {
+      hide(Upload.dropbox[i]);
+    }, 100);
+  }
+  var inside = Upload.insideDropbox(i, e);
+  if (e.dataTransfer) {
+    e.dataTransfer.dropEffect = inside ? 'copy' : 'none';
+  }
+  toggleClass(Upload.dropbox[i], 'dropbox_over', inside);
+  cancelEvent(e);
+},
+
+drop: function(e) {
+  each (Upload.dropbox, function (i, dropbox) {
+    if (!dropbox) {return;}
+    if (Upload.insideDropbox(i, e)) {
+      Upload.onFileApiSend(i, e.dataTransfer.files);
+    }
+    if (!Upload.options[i].visibleDropbox) {
+      hide(dropbox);
+    }
+    if (Upload.options[i].onDrop) {
+      Upload.options[i].onDrop();
+    }
+    removeClass(dropbox, 'dropbox_over');
+  });
+  delete cur.uploadDragStarted;
+  cancelEvent(e);
+  return false;
+},
+
+insideDropbox: function(i, e) {
+  var el = e.target;
+  while (el.parentNode) {
+    if (el == Upload.dropbox[i]) return true;
+    el = el.parentNode;
+  }
+  return false;
+},
+
+flashCallbacks: function() {
+  return {
+    'onUploadStart': Upload.onUploadStart,
+    'onUploadProgress': Upload.onUploadProgress,
+    'onUploadSuccess': Upload.onUploadComplete,
+    'onUploadComplete': Upload.onUploadCompleteAll,
+    'onUploadError': Upload.onUploadError,
+    'onDebug': Upload.onDebug,
+    'onMouseDown': Upload.buttonDown,
+    'onMouseUp': Upload.buttonUp,
+    'onMouseOver': Upload.buttonOver,
+    'onMouseOut': Upload.buttonOut,
+    'onSelectClick': Upload.onSelectClick
+  }
+},
+
+_eof: 1};
+
+}
+
+function Fletcher32() {
+  // Optimized algorithm taken from https://en.wikipedia.org/wiki/Fletcher%27s_checksum#Optimizations
+  var _sum1 = 0xffff;
+  var _sum2 = 0xffff;
+
+  return {
+    append: append,
+    result: result
+  };
+
+  function append(data) {
+    // data should be an array of 16-bit numbers
+    var words = data.length;
+    var dataIndex = 0;
+    while (words) {
+      var tlen = words > 359 ? 359 : words;
+      words -= tlen;
+      do {
+        _sum2 += _sum1 += data[dataIndex++];
+      } while (--tlen);
+
+      _sum1 = ((_sum1 & 0xffff) >>> 0) + (_sum1 >>> 16);
+      _sum2 = ((_sum2 & 0xffff) >>> 0) + (_sum2 >>> 16);
+    }
+  }
+
+  function result() {
+    _sum1 = ((_sum1 & 0xffff) >>> 0) + (_sum1 >>> 16);
+    _sum2 = ((_sum2 & 0xffff) >>> 0) + (_sum2 >>> 16);
+    return ((_sum2 << 16) >>> 0 | _sum1) >>> 0;
+  }
+}
+
+try{stManager.done('upload.js');}catch(e){}

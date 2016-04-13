@@ -1,4 +1,5715 @@
-function IdleManager(t){this.started=!1,this.is_idle=!0,this.is_activated=!1,this.cbActiveB=this.cbActive.bind(this),this.cbInactiveB=this.cbInactive.bind(this),this.cbInactiveB=this.cbInactive.bind(this),this.opts=extend({triggerEvents:"mousemove keydown",onIdleCb:function(){},onUnIdleCb:function(){},focusElement:t.element,element:null,idleTimeout:3e4},t)}function Sound(t,e){var i,a=!1,s=this;if(!t)throw"Undefined filename";e=e||{};try{var o=ce("audio");a=!!o.canPlayType,"no"!=o.canPlayType("audio/mpeg")&&""!=o.canPlayType("audio/mpeg")?i=".mp3?1":"no"==o.canPlayType('audio/ogg; codecs="vorbis"')||""==o.canPlayType('audio/ogg; codecs="vorbis"')||e.forceMp3?a=!1:i=".ogg?1"}catch(r){}var n=e.forcePath||"/"+t+i;if(a){o.src=n;var c=!1;o.addEventListener("ended",function(){c=!0},!0),o.load(),this.playSound=function(){c&&o.load(),o.play(),c=!1},this.pauseSound=function(){o.pause()}}else{cur.__sound_guid=cur.__sound_guid||0;var l=ge("flash_sounds_wrap")||utilsNode.appendChild(ce("span",{id:"flash_sounds_wrap"})),u="flash_sound_"+cur.__sound_guid++,e={url:"/swf/audio_lite.swf?4",id:u},d={swliveconnect:"true",allowscriptaccess:"always",wmode:"opaque"};if(renderFlash(l,e,d,{})){var h=browser.msie?window[u]:document[u],f=!1,p=setInterval(function(){if(h&&h.paused)try{h.setVolume(1),h.loadAudio(n),h.pauseAudio()}catch(t){debugLog(t)}f=!0,clearInterval(p)},300);s.playSound=function(){f&&h.playAudio(0)},s.pauseSound=function(){f&&h.pauseAudio()}}}}function getWndInner(){var t=lastWindowWidth,e=lastWindowHeight,i=sbWidth();return(lastWndScroll[0]!==!1?lastWndScroll[0]:browser.msie6?pageNode.scrollHeight>pageNode.clientHeight:!browser.msie6&&htmlNode.scrollHeight>htmlNode.clientHeight)&&(t-=i+(i?1:0)),[e,t]}function updateWndVScroll(){var t=window,e=(getWndInner(),!1);e=t.boxLayerWrap&&isVisible(boxLayerWrap)?boxLayerWrap.scrollHeight>boxLayerWrap.clientHeight?1:0:t.layerWrap&&isVisible(layerWrap)?layerWrap.scrollHeight>layerWrap.clientHeight?1:0:t.mvLayerWrap&&isVisible(mvLayerWrap)?mvLayerWrap.scrollHeight>mvLayerWrap.clientHeight?1:0:!1,each(curRBox.tabs,function(t){this.options.marginFixedToLayer&&setStyle(this.wrap,{marginRight:hasClass(document.body,"layers_shown")?sbWidth():0})}),e!==lastWndScroll[0]&&(lastWndScroll[0]=e,each(curRBox.tabs,function(t){this.toRight&&!this.options.marginFixedToLayer&&setStyle(this.wrap,{marginRight:e?sbWidth():0})}))}function defBox(t,e){var i='<div class="'+(t.subClass||"")+'"><div class="fc_tab_head"><a class="fc_tab_close_wrap fl_r"><div class="chats_sp fc_tab_close"></div></a><div class="fc_tab_title noselect">%title%</div></div><div id="fc_ctabs_cont"><div class="fc_ctab fc_ctab_active">%content%</div></div></div></div>';if(t.content)var a='<div class="fc_content_wrap"><div class="fc_content">'+t.content+"</div></div>";else var a=t.innerHTML;var s=se(rs(i,{title:t.title,content:a})),a=geByClass1("fc_content",s,"div"),o={movable:geByClass1("fc_tab_head",s),hider:geByClass1("fc_tab_close_wrap",s,"a"),startLeft:t.x,startTop:t.y,startHeight:t.height,startWidth:t.width,resizeableH:a,resize:!1,minH:t.minH,onBeforeHide:t.onBeforeHide||function(){},onHide:t.onHide||function(){},onDragEnd:function(t,e){},onResize:function(t,e){}},r=new RBox(s,extend(o,t));if(t.content)var n=new Scrollbar(a,{prefix:"fc_",more:debugLog,nomargin:!0,global:!0,nokeys:!0,right:vk.rtl?"auto":0,left:vk.rtl?0:"auto",onHold:t.onHold});return e({id:r.id,cont:a,update:function(){n&&n.update()}}),r}function RBox(t,e){var i=this,a={minH:50,minW:50};i.options=e=extend(a,e),i.content=t;var s=i.id="rb_box_"+(e.id||curRBox.guid++);i.wrap=ce("div",{id:s,className:"rb_box_wrap fixed"+(e.fixed?" fc_fixed":"")});var o={};i.toBottom=i.toRight=!1,e.fixed?(o.bottom=0,o.right=72):(void 0!==e.startTop?o.top=e.startTop:void 0!==e.startBottom&&(o.bottom=e.startBottom),void 0!==e.startLeft?o.left=e.startLeft:void 0!==e.startRight&&(o.right=e.startRight)),setStyle(i.wrap,o),e.movable&&addEvent(e.movable,"mousedown",i._head_mdown.bind(i)),i.resizeableH=e.resizeableH||t,e.startHeight&&setStyle(i.resizeableH,"height",e.startHeight),i.resizeableW=e.resizeableW||t,e.startWidth&&setStyle(i.resizeableW,"width",e.startWidth),addEvent(t,"mousedown",i._cont_mdown.bind(i)),e.closer&&(addEvent(e.closer,"mousedown",i._close_mdown.bind(i)),addEvent(e.closer,"click",i._close_click.bind(i))),e.hider&&(addEvent(e.hider,"mousedown",i._close_mdown.bind(i)),addEvent(e.hider,"click",i._hide_click.bind(i))),e.minimizer&&e.minimizer!==!0&&(addEvent(e.minimizer,"mousedown",i._close_mdown.bind(i)),addEvent(e.minimizer,"click",i._min_toggle.bind(i))),i.wrap.appendChild(t),e.resize!==!1&&(i.resizeWrap=ce("div",{className:"rb_resize_wrap",innerHTML:'<div class="chats_sp rb_resize"></div>'}),i.wrap.appendChild(i.resizeWrap),addEvent(i.resizeWrap,"mousedown",i._resize_mdown.bind(i))),e.minimized&&(addClass(i.wrap,"rb_minimized"),i.minimized=!0),bodyNode.insertBefore(i.wrap,ge("page_wrap"));var r=getStyle(i.wrap,"top"),n=getStyle(i.wrap,"bottom"),c=getStyle(i.wrap,"left"),l=getStyle(i.wrap,"right");this.toBottom=("auto"===r||""===r||browser.msie&&0===r)&&"auto"!=n&&""!==n&&!(browser.msie&&0===n),this.toRight=("auto"===c||""===c||browser.msie&&0===c)&&"auto"!=l&&""!==l&&!(browser.msie&&0===l),this.toRight&&setStyle(i.wrap,{marginRight:lastWndScroll[0]?sbWidth():0}),(e.nofocus||e.noshow)&&addClass(i.wrap,"rb_inactive"),this.toBottom&&(setStyle(i.wrap,{marginRight:lastWndScroll[0]?sbWidth():0}),addClass(i.wrap,"fc_tobottom")),this.options.marginFixedToLayer&&setStyle(i.wrap,{marginRight:hasClass(document.body,"layers_shown")?sbWidth():0}),curRBox.tabs[s]=i,i.pos=!1,e.noshow?(setStyle(i.wrap,{visibility:"hidden",display:"block"}),i._update_pos(),setStyle(i.wrap,{visibility:"",display:""})):i.show(!1,e.nofocus)}window.curNotifier||(curNotifier={addQueues:{},recvClbks:{},recvData:{},onConnectionId:[]});var BASIC_CHAT_ZINDEX=1010;extend(IdleManager.prototype,EventEmitter.prototype),extend(IdleManager.prototype,{stop:function(){this.started=!1,removeEvent(this.opts.element,this.opts.triggerEvents,this.cbActiveB),removeEvent(this.opts.focusElement,"focus",this.cbActiveB),removeEvent(this.opts.focusElement,"blur",this.cbInactiveB),clearTimeout(this.setIdleTo),clearTimeout(this.checkIdleCbTo),clearTimeout(this.sendCbTO),this.is_idle=!0,this.opts.parentManager&&this.opts.parentManager.off("idle",this.cbInactiveB)},idle:function(t){this.is_idle=!0,t||this.opts.onIdleCb(),this.emit("idle")},unidle:function(t){this.is_idle=!1,t||this.opts.onUnIdleCb(),this.emit("unidle")},activate:function(){this.is_idle=!1,this.is_activated=!0},start:function(){this.started=!0,browser.mobile||(this.opts.parentManager&&this.opts.parentManager.on("idle",this.cbInactiveB),addEvent(this.opts.focusElement,"focus",this.cbActiveB),addEvent(this.opts.focusElement,"blur",this.cbInactiveB),clearTimeout(this.checkIdleCbTo),this.checkIdleCb(),this.checkIdleCbTo=setTimeout(this.checkIdleCb.bind(this),this.opts.idleTimeout))},checkIdleCb:function(){this.started&&(addEvent(this.opts.element,this.opts.triggerEvents,this.cbActiveB),clearTimeout(this.setIdleTo),this.setIdleTo=setTimeout(this.cbInactiveB,this.opts.idleTimeout))},cbActive:function(){this.started&&(clearTimeout(this.setIdleTo),this.is_idle&&(this.is_idle=!1,clearTimeout(this.sendCbTO),this.sendCbTO=setTimeout(function(){this.emit("unidle"),this.opts.onUnIdleCb&&this.opts.onUnIdleCb()}.bind(this),100)),removeEvent(this.opts.element,this.opts.triggerEvents,this.cbActiveB),clearTimeout(this.checkIdleCbTo),this.checkIdleCbTo=setTimeout(this.checkIdleCb.bind(this),this.opts.idleTimeout))},cbInactive:function(){this.started&&(this.is_idle||(this.is_idle=!0,clearTimeout(this.sendCbTO),this.sendCbTO=setTimeout(function(){this.emit("idle"),this.opts.onIdleCb&&this.opts.onIdleCb()}.bind(this),100)),clearTimeout(this.checkIdleCbTo),removeEvent(this.opts.element,this.opts.triggerEvents,this.cbActiveB),addEvent(this.opts.element,this.opts.triggerEvents,this.cbActiveB),this.checkIdleCbTo=setTimeout(this.checkIdleCb,this.opts.idleTimeout))}}),Notifier={debug:!1,init:function(t){if(!window.curNotifier||!curNotifier.connection_id){if(Notifier.notificationsGc(),curNotifier=extend({q_events:[],q_shown:[],q_closed:[],negotiations:{},currentIm:{},q_max:3,uiNotifications:[],q_idle_max:5,browser_shown:{},done_events:{},addQueues:curNotifier.addQueues||{},recvClbks:curNotifier.recvClbks||{},recvData:curNotifier.recvData||{},error_timeout:1,sound:new Sound("mp3/bb1"),sound_im:new Sound("mp3/bb2"),onConnectionId:[]},t),!this.initFrameTransport())return!1;this.initIdleMan(),this.initCommunityQueues(),(curNotifier.cont=ge("notifiers_wrap"))||bodyNode.insertBefore(curNotifier.cont=ce("div",{id:"notifiers_wrap",className:"fixed"}),ge("page_wrap"))}},initCommunityQueues:function(t){return!1},notificationsGc:function(){curNotifier.uiGcTo=setTimeout(function(){for(var t=curNotifier.uiNotifications,e=[],i=0;i<t.length;i++){var a=t[i];vkNow()-a[1]>1e4?a[0].close():e.push(a)}curNotifier.uiNotifications=e,Notifier.notificationsGc()},5e3)},resetCommConnection:function(t){var e=ls.get("im_m_comms_key");e&&delete curNotifier.addQueues[e.queue],ls.set("im_m_comms_key",!1),Notifier.initCommunityQueues(t||0)},proccessCommunityQueues:function(t,e){return"empty"!==t&&t?void Notifier.addKey(t,function(t,i){if(i.failed)return e++,void(50>e&&setTimeout(Notifier.resetCommConnection.pbind(e),100));var t=ls.get("im_m_comms_key");t&&(t.ts=i.ts,ls.set("im_m_comms_key",t));var a=i.events;a&&a.map(function(t){return t.split("<!>")}).forEach(function(t){if("update_cnt"===t[1]){var e=t[5],i=t[4];handlePageCount("mgid"+e,i)}})}):!1},destroy:function(){Notifier.hideAllEvents(),curNotifier.idle_manager.stop(),curNotifier.uiGcTo&&clearTimeout(curNotifier.uiGcTo),curNotifier={},re("notifiers_wrap"),re("queue_transport_wrap")},reinit:function(){ajax.post("notifier.php?act=a_get_params",{},{onDone:function(t){t?(curNotifier.error_timeout=1,this.init(t)):(curNotifier.error_timeout=curNotifier.error_timeout||1,setTimeout(this.reinit.bind(this),1e3*curNotifier.error_timeout),curNotifier.error_timeout<256&&(curNotifier.error_timeout*=2))}.bind(this),onFail:function(){return curNotifier.error_timeout=curNotifier.error_timeout||1,setTimeout(this.reinit.bind(this),1e3*curNotifier.error_timeout),curNotifier.error_timeout<256&&(curNotifier.error_timeout*=2),!0}.bind(this)})},standby:function(t){this.destroy(),curNotifier.error_timeout=t||1,setTimeout(this.reinit.bind(this),1e3*curNotifier.error_timeout)},freezeEvents:function(){curNotifier.frozen=!0,each(curNotifier.q_shown,function(){clearTimeout(this.fadeTO),getStyle(this.baloonEl,"opacity")<1&&animate(this.baloonEl,{opacity:1},100)})},unfreezeEvents:function(){curNotifier.frozen=!1,each(curNotifier.q_shown,function(){this.fadeTO=setTimeout(this.startFading,5e3)})},getTransportWrap:function(){return ge("queue_transport_wrap")||utilsNode.appendChild(ce("div",{id:"queue_transport_wrap"}))},setFocus:function(t){var e=(t?"1":"0")+curNotifier.instance_id;"flash"==curNotifier.transport&&curNotifier.flash_transport?curNotifier.flash_transport.setInstanceFocused(e):"frame"==curNotifier.transport&&(Notifier.lcSend("focus",{instance_id:e}),this.onInstanceFocus(e))},initIdleMan:function(){curNotifier.idle_manager&&curNotifier.idle_manager.started||(curNotifier.idle_manager=new IdleManager({onIdleCb:function(){Notifier.freezeEvents(),Notifier.setFocus(0),cur.onIdle&&each(cur.onIdle,function(t,e){e()})},onUnIdleCb:function(){Notifier.unfreezeEvents(),Notifier.setFocus(1),cur.onUnidle&&each(cur.onUnidle,function(t,e){e()}),FastChat&&FastChat.onUnidle(),vk.spentLastSendTS=vkNow()},id:"window",element:document,focusElement:window}),curNotifier.idle_manager.start())},initFrameTransport:function(){if(!ls.checkVersion()||browser.msie8||!("onmessage"in window||"postMessage"in window))return!1;curNotifier.connection_id="queue_connection_"+curNotifier.queue_id,curNotifier.lc_prev_value="",curNotifier.is_server=!1,curNotifier.lp_connected=!1,curNotifier.error_timeout=1;var t=browser.version.split("."),e=intval(t[0]),i=intval(t[1]);curNotifier.post_message=Notifier.debug||!(browser.opera&&intval(browser.version)<15||browser.msie||browser.mozilla&&e>=31||browser.safari&&(e>7||7==e&&i>=1)),curNotifier.transport="frame",this.lcInit();for(var a in curNotifier.onConnectionId)curNotifier.onConnectionId[a]();return curNotifier.onConnectionId=[],!0},onActivated:function(){curNotifier.idle_manager&&!curNotifier.idle_manager.is_activated?curNotifier.idle_manager.activate():curNotifier.idle_manager&&curNotifier.idle_manager.is_idle||Notifier.setFocus(1),removeEvent(document,"mousemove keydown touchstart",Notifier.onActivated)},onConnectionInit:function(){addEvent(document,"mousemove keydown touchstart",Notifier.onActivated)},onConnectionFailed:function(){},onRelogin:function(){setTimeout(function(){Notifier.standby()},0)},onMessage:function(msg){if(!curNotifier.focus_instance||curNotifier.focus_instance==curNotifier.instance_id)try{var events=eval("("+msg+")"),pushed=!1;Notifier.pushEvents(events)}catch(e){debugLog(e.message)}},onInstanceFocus:function(t){var e=t.charAt(0);return t=t.substr(1),"1"!=e?void(curNotifier.focus_instance==t&&(curNotifier.focus_instance="")):(curNotifier.focus_instance=t,void(t!=curNotifier.instance_id&&(curNotifier.idle_manager.is_idle||curNotifier.idle_manager.idle(),Notifier.hideAllEvents())))},onInstanceServer:function(t){curNotifier.is_server=!!intval(t)},pushEvents:function(t,e){var i=0;each(t,function(t,a){i|=Notifier.pushEvent(a,e)}),i&&!ls.get("sound_notify_off")&&curNotifier.is_server&&(2&i?curNotifier.sound_im.play():curNotifier.sound.play())},pushEvent:function(msg,cnt){if("nop"!=msg){if(msg=msg.split("<!>"),msg[0]!=curNotifier.version)return debugLog("Notifier old version"),!1;if("update_cnt"==msg[1])return"nws"===msg[3]?(handlePageCount("ntf",msg[9]),0):(handlePageCount(msg[3],msg[4],msg[5],msg[6]),0);var ev={type:msg[1],title:msg[2],author_photo:psr(msg[3]||""),author_link:msg[4]||"",text:psr(msg[5]),add_photo:psr(msg[6])||"",link:msg[7],onclick:msg[8],add:msg[9],id:msg[10],author_id:msg[11],top_count:msg[12]},push=cnt?0:1;if(msg[13]&&(ev.custom=eval("("+msg[13]+")")),!curNotifier.done_events[ev.id]){switch(curNotifier.done_events[ev.id]=1,void 0!==ev.top_count&&-1!=ev.top_count&&handlePageCount("ntf",ev.top_count),ev.type){case"video_process_ready":if(ev.add&&window.Video&&Video.isVideoPlayerOpen(ev.add))return;break;case"mail":handlePageCount("msg",ev.add),window.Call&&Call.params.call_id&&intval(ev.author_id)==intval(Call.params.far_uid)&&Call.showChat(),"im"!=cur.module&&FastChat.prepareTabIcon(intval(ev.author_id),{fixedLoad:1});break;case"mail_failed":var peer=intval(ev.author_id);if("im"==nav.objLoc[0]&&cur.tabs[peer]){var msg=ge("mess"+ev.add);if(msg&&hasClass(msg,"im_new_msg")){removeClass(msg,"im_new_msg"),addClass(msg,"im_failed");var n=geByClass1("im_log_author_chat_name",msg);n&&(n.innerHTML+=" &nbsp;<span>"+cur.lang.mail_send_failed+"</span>"),push=2}}break;case"friend_request":handlePageCount("fr",ev.add);break;case"mail_cnt":handlePageCount("msg",ev.add),push=0;break;case"clear_notify":Notifier.hideAllEvents(),push=0;break;case"support_reply":handlePageCount("spr",ev.add,"support",ev.author_id?"act=show&id="+ev.author_id:"act=show"),toggle("l_spr",ev.add>0);break;case"support_cnt":handlePageCount("spr",ev.add,"support",ev.author_id?"act=show&id="+ev.author_id:"act=show"),toggle("l_spr",ev.add>0),push=0;break;case"balance_changed":updateMoney(ev.add),ev.custom&&"app"==ev.custom[0]&&cur.app&&cur.app.params.api_id==ev.custom[1]&&cur.app.balanceUpdated(ev.custom[2]);break;case"gift_sent":re("left_block10_0");var left_block=ev.add;if(left_block){var leftBlocksElem=ge("left_blocks"),left_unpaid_gifts=se(left_block);leftBlocksElem&&(leftBlocksElem.firstChild?leftBlocksElem.insertBefore(left_unpaid_gifts,leftBlocksElem.firstChild):leftBlocksElem.appendChild(left_unpaid_gifts))}break;case"call_start":window.Call?Call.incomingReceive(ev):stManager.add(["call.js","call.css","notifier.css"],function(){Call.incomingReceive(ev)}),push=0;break;case"call":window.Call?Call.processNotify(ev):debugLog("wnd Call event without call obj"),push=0;break;case"call_app":var callId=ev.custom.call_id,onScriptCame=function(script){clearTimeout(curNotifier.appCallTimeout),script=script&&script[0]==callId?script[1]:!1,script&&-1!=script&&stManager.add(["call.js","call.css","apps.js","apps.css"],function(){eval(script)})};curNotifier.appCallTimeout=setTimeout(function(){var t=curNotifier.recvData.apps_call_receive;t=t&&t[0]==callId?t[1]:!1,t||(ajax.post("/al_apps.php",{act:"call_receive"},{onDone:function(t){debugLog("script came"),t=[callId,t],Notifier.lcSend("apps_call_receive",t),onScriptCame(t)},stat:["call.js","call.css","apps.js","apps.css"]}),Notifier.lcSend("apps_call_receive",[callId,-1]))},0),Notifier.setRecvClbk("apps_call_receive",onScriptCame),push=0;break;case"call_app_reject":"app"==cur.module&&cur.aid==ev.custom.aid&&cur.app.runCallback("onCallReject",ev.custom.key),push=0;break;case"call_app_accept":"app"==cur.module&&cur.aid==ev.custom.aid&&cur.app.runCallback("onCallAccept",ev.custom.key),push=0;break;case"notify_tt":case"login_attempt":ev.add&&(ev.add=eval("("+ev.add+")"),TopNotifier.showTooltip(ev.add.text,ev.add.key)),push=0}return"mail"===ev.type&&(push=this.sendMailNotification(ev)),1&push&&(curNotifier.q_events.push(ev),curNotifier.q_events.length>30&&curNotifier.q_events.splice(0,curNotifier.q_events.length-30),this.checkEvents()),push}}},isActive:function(){return window.curNotifier&&curNotifier.idle_manager&&!curNotifier.idle_manager.is_idle},sendImProxy:function(t){t.text=winToUtf(t.text),curNotifier.browser_shown[t.id]||(curNotifier.browser_shown[t.id]=!0,Notifier.trySendBrowserNotification(t,!0),setTimeout(function(){curNotifier.browser_shown[t.id]=void 0},2e3))},shouldShowNotification:function(t){return"im"!==cur.module&&!FastChat.isChatOpen(t.author_id)},sendSimpleNotification:function(t){return Notifier.playSound(t),Notifier.shouldShowNotification(t)?3:0},sendBrowserNotification:function(t){"im"!==cur.module?Notifier.negotiate({message:"send_im_notification",onSuccess:function(e){Notifier.lcSend("negotiate_back",{token:e.msg,ev:t})},onFail:function(){Notifier.showBrowserNotification(t)}}):(t.onclick="IM.activateTab("+t.author_id+");",Notifier.showBrowserNotification(t))},shouldPlaySound:function(t){return!ls.get("sound_notify_off")&&cur.focused!=t.author_id&&!inArray(t.author_id,cur.mutedPeers)},playSound:function(t){curNotifier.sound_im&&curNotifier.sound_im.play&&Notifier.shouldPlaySound(t)&&curNotifier.sound_im.play()},trySendBrowserNotification:function(t,e){Notifier.negotiate({message:"who_is_active",msg:t.author_id,onFail:function(){!Notifier.canNotifyUi()||cur.peer==t.author_id&&Notifier.isActive()?e?Notifier.playSound(t):(Notifier.lcSend("show_notification",t),Notifier.shouldShowNotification(t)&&Notifier.showEvent(t,!0),Notifier.playSound(t)):Notifier.sendBrowserNotification(t)}})},showBrowserNotification:function(t){Notifier.showEventUi(t),Notifier.playSound(t)},proxyIm:function(t){return this.isActive()&&(this.playSound(t),Notifier.canNotifyUi()&&cur.peer!=t.author_id&&Notifier.shouldPlaySound(t))?void Notifier.showEventUi(t):void(curNotifier.is_server?(t.onclick="IM.activateTab("+t.author_id+");",this.sendImProxy(t)):curNotifier.is_server||this.lcSend("message_from_im",t))},sendMailNotification:function(t){if("im"==cur.module?t.onclick="IM.activateTab('"+t.author_id+"');":t.onclick="FastChat.selectPeer('"+t.author_id+"');",this.isActive()&&Notifier.canNotifyUi())this.playSound(t),this.shouldPlaySound(t)&&cur.peer!=t.author_id&&this.showEventUi(t);else{if(this.isActive())return this.sendSimpleNotification(t);curNotifier.is_server&&this.trySendBrowserNotification(t)}return 0},checkEvents:function(){if(!(!curNotifier.q_events.length||curNotifier.q_shown.length>=(curNotifier.idle_manager.is_idle?curNotifier.q_idle_max:curNotifier.q_max)||!curNotifier.idle_manager.is_idle&&curNotifier.frozen)){var t=curNotifier.q_events.shift();this.showEvent(t)}},showEvent:function(ev,force){curNotifier.q_shown.push(ev);var thumbEl="";thumbEl="video_process_ready"==ev.type?'<div class="notifier_video_thumb" style="background-image: url('+Notifier.fixPhoto(ev.author_photo)+')"></div>':'<img src="'+Notifier.fixPhoto(ev.author_photo)+'" class="notifier_image" />';var typeClassName="notifier_type_"+ev.type;ev.baloonWrapEl=ce("div",{className:"notifier_baloon_wrap",innerHTML:'<div class="notifier_baloon '+typeClassName+'"><div class="notifier_baloon_head clear_fix"><div class="notifier_close_wrap"><a class="notifier_close" title="'+getLang("global_close")+'" href=""></a></div><div class="notifier_baloon_title">'+ev.title+'</div></div><div class="notifier_baloon_body clear_fix">'+(ev.author_photo&&'<div class="notifier_image_wrap">'+(ev.author_link&&'<a href="'+ev.author_link+'">')+thumbEl+(ev.author_link&&"</a>")+"</div>")+(ev.add_photo&&'<div class="notifier_add_image_wrap"><img src="'+ev.add_photo+'" class="notifier_add_image" /></div>')+'<div class="notifier_baloon_msg wrapped">'+ev.text+"</div></div></div>"}),ev.baloonEl=ev.baloonWrapEl.firstChild,ev.closeEl=geByClass1("notifier_close_wrap",ev.baloonEl),addEvent(ev.baloonEl,"mouseover mouseout",function(t){ev.over="mouseover"==t.type,ev.over?Notifier.freezeEvents():Notifier.unfreezeEvents()}),addEvent(ev.baloonEl,"mousedown",function(e){e=e.originalEvent||e||window.event;var btn=e.which,nohide=!1;if(browser.msie&&(btn=1==e.button?1:2==e.button?3:2),1==btn&&(e.ctrlKey||browser.mac&&e.metaKey)&&(btn=2,browser.mac&&(nohide=!0)),"A"!=(e.target||e.srcElement).tagName){switch(btn){case 1:eval(ev.onclick),Notifier.hideEvent(ev);break;case 2:var wnd=window.open(ev.link,"_blank");try{wnd.blur(),window.focus()}catch(e){}nohide||Notifier.hideEvent(ev);break;case 3:if(browser.mozilla)return}return cancelEvent(e)}switch(btn){case 1:break;case 3:}}),addEvent(ev.baloonEl,"contextmenu",function(t){return setTimeout(function(){Notifier.hideEvent(ev,!1,!1,!0)},10),cancelEvent(t)}),addEvent(ev.closeEl,"mousedown",function(t){return Notifier.hideEvent(ev,!1,!1,!0),cancelEvent(t)}),ev.startFading=function(){ev.fading=animate(ev.baloonEl,{opacity:0},1e3,Notifier.hideEvent.bind(Notifier).pbind(ev,!1)),ev.over&&ev.fading.stop()},curNotifier.cont.insertBefore(ev.baloonWrapEl,curNotifier.cont.firstChild);var h=ev.baloonWrapEl.offsetHeight;re(ev.baloonWrapEl),curNotifier.cont.appendChild(ev.baloonWrapEl),setStyle(curNotifier.cont,{bottom:-h}),setStyle(ev.baloonWrapEl,{visibility:"visible"}),animate(curNotifier.cont,{bottom:0},200),(!curNotifier.idle_manager.is_idle||force)&&(ev.fadeTO=setTimeout(ev.startFading,7e3))},canNotifyUi:function(){return!ls.get("im_ui_notify_off")&&DesktopNotifications.supported()&&DesktopNotifications.checkPermission()<=0},showEventUi:function(ev){if(!this.canNotifyUi())return!1;var title,text;if("mail"===ev.type){var div=ce("div");div.innerHTML=ev.text,title=div.firstChild.textContent.trim(),text=stripHTML(replaceEntities(ev.text.replace(/<br\/?>/g,"\n")).replace(/<span class='notifier_author_quote'.*<\/span>(.*?)/,"$1").replace(/<img.*?alt="(.*?)".*?>/gi,"$1")).replace(/&laquo;|&raquo;/gi,'"').trim()}else title=ev.title,text=ev.text;var notification=ev.uiNotification=DesktopNotifications.createNotification(ev.author_photo,title,text);return curNotifier.uiNotifications.push([notification,vkNow()]),notification.onclick=function(e){window.focus(),eval(ev.onclick),Notifier.hideEvent(ev)},notification.onclose=function(){Notifier.hideEvent(ev,!0)},notification.show(),ev.closeTO=setTimeout(Notifier.hideEvent.bind(Notifier).pbind(ev),5e3),!0},hideEvent:function(t,e,i,a){clearTimeout(t.closeTO),clearTimeout(t.fadeTO),t.fading&&t.fading.stop();var s,o=indexOf(curNotifier.q_shown,t);-1!=o&&curNotifier.q_shown.splice(o,1),Notifier.unfreezeEvents(),e||(t.baloonWrapEl?(cleanElems(t.closeEl,t.baloonEl),re(t.baloonWrapEl)):t.uiNotification&&t.uiNotification.cancel()),a===!0&&isArray(curNotifier.q_closed)&&(curNotifier.q_closed.unshift(vkNow()),(s=curNotifier.q_closed.length)>3&&(curNotifier.q_closed.splice(3,s-3),s=3),3==s&&curNotifier.q_closed[0]-curNotifier.q_closed[2]<700&&Notifier.hideAllEvents()),-1!=a&&this.checkEvents(),"frame"!=curNotifier.transport||i||this.lcSend("hide",{event_id:t.id}),a!==!0&&curNotifier.idle_manager.is_idle||curNotifier.q_events.length||curNotifier.q_shown.length||ajax.post("notifier.php",{act:"a_clear_notifier"})},hideAllEvents:function(){curNotifier.q_events=[],each(clone(curNotifier.q_shown),function(){Notifier.hideEvent(this,!1,!0,-1)}),curNotifier.q_shown=[],curNotifier.q_closed=[]},onEventHide:function(t){t&&(each(curNotifier.q_shown,function(){return this.id==t?(Notifier.hideEvent(this,!1,!0),!1):void 0}),each(curNotifier.q_events,function(e){return this.id==t?(curNotifier.q_events.splice(e,1),!1):void 0}))},lcInit:function(){if(curNotifier.post_message){addEvent(window,"message",this.lcOnMessage.bind(this));var t=curNotifier.storage_el=ce("iframe",{id:"queue_storage_frame",name:"queue_storage_frame",src:"/notifier.php?act=storage_frame&from="+location.host+(Notifier.debug?"&debug="+vkNow():"&4")+"#"+curNotifier.connection_id});Notifier.getTransportWrap().appendChild(t),curNotifier.storage_frame=t.contentWindow,curNotifier.storage_frame_origin=location.protocol+"//"+locHost}else browser.msie&&intval(browser.version)<9?addEvent(document,"storage",this.lcOnStorage.bind(this)):addEvent(window,"storage",this.lcOnStorage.bind(this)),this.lcStart()},lcStart:function(){Notifier.lcCheckServer()?this.lcServer():(this.lcSend("check"),clearTimeout(curNotifier.becomeServerTO),curNotifier.becomeServerTO=setTimeout(this.lcServer.bind(this).pbind(!0),500)),curNotifier.checkServerInt=setInterval(function(){curNotifier.is_server||vkNow()-curNotifier.last_succ>8e3&&Notifier.lcCheckServer()&&(debugLog("timeout"),this.lcServer(!0))}.bind(this),1e3+intval(rand(-100,100))),curNotifier.isServerBroadcastInt=setInterval(function(){curNotifier.is_server&&(Notifier.lcCheckServer()?this.lcSend("check_ok"):(debugLog("no server from server broadcast"),this.lcNoServer()))}.bind(this),5e3+intval(rand(-100,100))),void 0!==curNotifier.fc&&stManager.add(["emoji.js"],function(){FastChat.init(curNotifier.fc)})},lcStop:function(){clearInterval(curNotifier.isServerBroadcastInt),clearInterval(curNotifier.checkServerInt),clearTimeout(curNotifier.becomeServerTO)},lcSend:function(t,e){if(!curNotifier.connection_id)return curNotifier.onConnectionId.push(Notifier.lcSend.pbind(t,e)),!1;Notifier.debug&&debugLog(curNotifier.instance_id+": sending",t,e||"");var i=extend({__client:curNotifier.instance_id,__act:t,__rnd:Math.random()},e||{});if(curNotifier.post_message)try{curNotifier.storage_frame.postMessage(curNotifier.connection_id+":"+JSON.stringify(i),curNotifier.storage_frame_origin)}catch(a){debugLog(a,a.message,a.stack)}else ls.set(curNotifier.connection_id,i)},lcRecv:function(t){if(!isEmpty(t)&&t.__client!=curNotifier.instance_id){var e=t.__act;switch(delete t.__client,delete t.__act,delete t.__rnd,Notifier.debug&&debugLog(curNotifier.instance_id+": recv",e,t),e){case"new_server":curNotifier.last_succ=vkNow()+1e3;break;case"feed":curNotifier.timestamp=t.ts,curNotifier.key=t.key,Notifier.pushEvents(t.events,!t.full);break;case"addfeed":Notifier.addFeed(t[0],t[1]);break;case"new_key":debugLog("new key",t),curNotifier.timestamp=t.ts,curNotifier.key=t.key;break;case"new_addkey":var i=t.queue||t.key,a=curNotifier.addQueues[i],s=!a&&curNotifier.is_server;a?a[0]=vkNow():curNotifier.addQueues[i]=[vkNow(),t.ts,t.key],s&&Notifier.lpReset();break;case"clear_addkeys":curNotifier.addQueues={};break;case"check_ok":curNotifier.last_succ=vkNow(),curNotifier.becomeServerTO&&(clearTimeout(curNotifier.becomeServerTO),curNotifier.becomeServerTO=!1),curNotifier.lp_connected||(curNotifier.lp_connected=!0,Notifier.onConnectionInit());break;case"focus":Notifier.onInstanceFocus(t.instance_id);break;case"hide":Notifier.onEventHide(t.event_id);break;case"check_playlist":var o=ls.get("pad_playlist");o&&o.instance==curNotifier.instance_id&&ls.set("pad_pltime",vkNow());break;case"who_is_active":Notifier.isActive()&&(intval(t.msg)>2e9&&"im"===cur.module||intval(t.msg)<2e9)&&this.lcSend("negotiate_back",t);break;case"show_notification":Notifier.shouldShowNotification(t)&&Notifier.showEvent(t,!0);break;case"send_im_notification":if("im"===cur.module){var r=Notifier.createNegotiationSlot({onSuccess:function(t){t.ev.onclick="IM.activateTab("+t.ev.author_id+");",Notifier.showBrowserNotification(t.ev)}});Notifier.lcSend("negotiate_back",{msg:r.token,token:t.token})}break;case"negotiate_back":Notifier.endNegotiation(t);break;default:if(curNotifier.recvClbks&&curNotifier.recvClbks[e])for(var n in curNotifier.recvClbks[e])curNotifier.recvClbks[e][n](t);else curNotifier.recvData[e]=t}if(curNotifier.is_server)switch(e){case"new_server":case"new_key":case"check_ok":debugLog("no server from lcRecv",e),Notifier.lcNoServer();break;case"check":this.lcSend("check_ok");break;case"message_from_im":Notifier.sendImProxy(t)}}},negotiate:function(t){t=this.createNegotiationSlot(t),this.lcSend(t.message,{token:t.token,msg:t.msg})},createNegotiationSlot:function(t){var e="negotiations_"+Date.now()+Math.round(rand(0,1e4));return t=extend({timeout:600,token:e,msg:""},t),curNotifier.negotiations[t.token]={},curNotifier.negotiations[t.token].timer=setTimeout(function(){t.onFail&&t.onFail(),curNotifier.negotiations[t.token]&&(curNotifier.negotiations[t.token]=void 0)},t.timeout),curNotifier.negotiations[t.token].success=t.onSuccess,t},endNegotiation:function(t){var e=t.token,i=curNotifier.negotiations[e];i&&(clearTimeout(i.timer),curNotifier.negotiations[e].success&&curNotifier.negotiations[e].success(t),curNotifier.negotiations[e]=void 0)},lcOnStorage:function(t){t=t||window.event,Notifier.debug&&debugLog("onstorage",t.key,t.newValue,t);var e=t.key,i=t.newValue;if(i){if(e){if(t.key!=curNotifier.connection_id)return}else{if(e=curNotifier.connection_id,i=localStorage.getItem(e),i==curNotifier.lc_prev_value)return;curNotifier.lc_prev_value=i}this.lcRecv(JSON.parse(i)||{})}},lcOnMessage:function(t){if(t=t||window.event,Notifier.debug&&debugLog("onmessage",t.data,t.origin,t),!(t.origin&&t.origin!=curNotifier.storage_frame_origin||"string"!=typeof t.data||t.data.indexOf("q_st"))){var e,i,a=t.data.substr(4);if("ready"==a)curNotifier.storage_frame=t.source,this.lcStart();else{if(-1==(e=a.indexOf(":"))||(i=a.substr(0,e))!=curNotifier.connection_id||!a.substr(e+1))return;this.lcRecv(JSON.parse(a.substr(e+1)))}}},lcServer:function(t){debugLog("becoming server"),this.lpInit(),this.lcSend("new_server"),Notifier.lcCheckServer(!0),curNotifier.is_server=!0,Notifier.onInstanceServer(1),curNotifier.lp_connected||(curNotifier.lp_connected=!0,Notifier.onConnectionInit()),window.curFastChat&&curFastChat.inited&&FastChat.becameServer(),this.lpStop(),t?this.lpReset(this.lpStart.bind(this)):this.lpStart()},lcNoServer:function(){this.lpStop(),curNotifier.is_server&&(debugLog("not server now"),this.onInstanceServer(0),curNotifier.is_server=!1)},lcCheckServer:function(t){var e,i="server_"+curNotifier.connection_id,a=vkNow();return!t&&isArray(e=ls.get(i))&&e[0]!=curNotifier.instance_id&&a-e[1]<8e3?!1:(ls.set(i,[curNotifier.instance_id,a]),!0)},lpInit:function(){curNotifier.lpMakeRequest||(delete curNotifier.lpMakeRequest,re("queue_transport_frame"),Notifier.getTransportWrap().appendChild(ce("iframe",{id:"queue_transport_frame",name:"queue_transport_frame",src:curNotifier.frame_path})))},lpStart:function(){curNotifier.lp_started=!0,Notifier.lpCheck()},lpStop:function(){curNotifier.lp_started=!1,clearTimeout(curNotifier.lp_check_to),clearTimeout(curNotifier.lp_error_to),clearTimeout(curNotifier.lp_req_check_to)},lpCheck:function(){if(curNotifier.lp_started&&!curNotifier.lpActive&&!curNotifier.lpInvalid){if(!curNotifier.lpMakeRequest)return clearTimeout(curNotifier.lp_check_to),void(curNotifier.lp_check_to=setTimeout(this.lpCheck.bind(this),1e3));
-if(!Notifier.lcCheckServer())return debugLog("no server from check"),void this.lcNoServer();var now=vkNow(),add_queues=[],completed=!1,params={act:"a_check",ts:curNotifier.timestamp,key:curNotifier.key,id:curNotifier.uid,wait:25};each(curNotifier.addQueues,function(t,e){return now-e[0]>3e4&&!t.match(/nccts/)?(debugLog("drop key",t,now-e[0]),void delete curNotifier.addQueues[t]):(add_queues.push(t),params.ts+="_"+e[1],void(params.key+=e[2]))});var onFail=function(t){completed||(completed=!0,curNotifier.lpActive=!1,clearTimeout(curNotifier.lp_req_check_to),curNotifier.error_timeout=curNotifier.error_timeout||1,clearTimeout(curNotifier.lp_error_to),curNotifier.lp_error_to=setTimeout(this.lpCheck.bind(this),1e3*curNotifier.error_timeout+irand(1e3,1e4)),curNotifier.error_timeout<64&&(curNotifier.error_timeout*=2))}.bind(this);curNotifier.lpActive=!0,clearTimeout(curNotifier.lp_req_check_to),curNotifier.lp_req_check_to=setTimeout(onFail,1e3*(params.wait+5)),curNotifier.lpMakeRequest(curNotifier.frame_url,params,function(text){if(!completed&&(completed=!0,curNotifier.lpActive=!1,curNotifier.lp_started)){this.lcSend("check_ok");try{var response=eval("("+text+")"),main_response=response,add_response,add_queue,busy=0;if(isArray(response))for(main_response=response.shift();(add_response=response.shift())&&(add_queue=add_queues.shift());)2!=add_response.failed||4!=add_response.err?(this.lcSend("addfeed",[add_queue,add_response]),this.addFeed(add_queue,add_response),add_response.failed&&delete curNotifier.addQueues[add_queue]):(debugLog("!!notifier key busy!! "+curNotifier.instance_id),busy|=1);else if(response.failed){for(;add_queue=add_queues.shift();)this.lcSend("addfeed",[add_queue,response]),this.addFeed(add_queue,response),delete curNotifier.addQueues[add_queue];this.lcSend("clear_addkeys")}switch(this.lpChecked(main_response)){case 0:break;case 1:return;case 2:busy|=2;break;default:return}busy?this.lcNoServer():(this.lpCheck(),curNotifier.error_timeout=Math.max(1,(curNotifier.error_timeout||1)/1.5))}catch(e){text&&-1==text.indexOf("Ad Muncher")&&(topError("Notifier error: "+e.message,{dt:-1,type:5,stack:e.stack,answer:text+"\n\nbusy:"+busy+"\nserver:"+curNotifier.is_server+"\ninstance:"+curNotifier.instance_id,url:curNotifier.frame_url,query:params&&ajx2q(params)}),debugLog(e.message,e.stack,e)),curNotifier.error_timeout=curNotifier.error_timeout||1,clearTimeout(curNotifier.lp_error_to),curNotifier.lp_error_to=setTimeout(this.lpCheck.bind(this),1e3*curNotifier.error_timeout),curNotifier.error_timeout<64&&(curNotifier.error_timeout*=2)}}}.bind(this),onFail)}},lpChecked:function(t){var e=t.failed;if(2==e)return 4==t.err?2:(curNotifier.lpInvalid=!0,clearTimeout(curNotifier.lp_error_to),curNotifier.lp_error_to=setTimeout(this.lpGetKey.bind(this),1e3*curNotifier.error_timeout),curNotifier.error_timeout<64&&(curNotifier.error_timeout*=2),1==t.err?1:3);if(e)throw getLang("global_unknown_error");return this.lcSend("feed",extend({full:curNotifier.idle_manager&&curNotifier.idle_manager.is_idle&&!this.canNotifyUi(),key:curNotifier.key},t)),curNotifier.timestamp=t.ts,Notifier.pushEvents(t.events),0},lpOnReset:function(){curNotifier.lpOnReset&&curNotifier.lpOnReset()},lpReset:function(t){t&&(curNotifier.lpOnReset=t),clearTimeout(curNotifier.resetTO),curNotifier.resetTO=setTimeout(function(){if(curNotifier.is_server&&!curNotifier.lp_started)return void Notifier.lpStart();if(curNotifier.lpMakeRequest&&!curNotifier.lpInvalid){var t=curNotifier.key,e=curNotifier.timestamp;each(curNotifier.addQueues,function(i,a){t+=a[2],e+="_"+a[1]}),curNotifier.lpMakeRequest(curNotifier.frame_url,{act:"a_release",key:t,ts:e,id:curNotifier.uid,wait:25},Notifier.lpOnReset,Notifier.lpOnReset)}else ajax.post("notifier.php?act=a_reset",!1,{onDone:Notifier.lpOnReset,onFail:function(){return Notifier.lpOnReset(),!0}})},100)},lpGetKey:function(){vkNow();ajax.post("notifier.php?act=a_get_key",{id:curNotifier.uid},{onDone:function(t,e){curNotifier.timestamp=e,curNotifier.key=t,curNotifier.lpInvalid=!1,this.lcSend("new_key",{ts:e,key:t}),this.lpCheck()}.bind(this),onFail:function(t){switch(t){case 1:case 3:return void Notifier.standby();case 4:return void Notifier.standby(300);case 2:return void Notifier.onRelogin()}return curNotifier.error_timeout=64,clearTimeout(this.lp_error_to),this.lp_error_to=setTimeout(this.lpGetKey.bind(this),1e3*curNotifier.error_timeout),!0}.bind(this)})},addKey:function(t,e,i){if(curNotifier.flash_transport||!t)return!1;var a=t.queue||t.key,s=curNotifier.addQueues[a],o=!s&&curNotifier.is_server;return s?(s[0]=vkNow(),s[3]=e,s[4]=i):curNotifier.addQueues[a]=[vkNow(),t.ts,t.key,e,i],i||Notifier.lcSend("new_addkey",t),o&&Notifier.lpReset(),!0},addFeed:function(t,e){var i=curNotifier.addQueues[t];isArray(i)&&i.length&&(i[1]=e.ts,isFunction(i[3])&&i[3](t,e))},addRecvClbk:function(t,e,i,a){curNotifier.recvClbks||(curNotifier.recvClbks={}),curNotifier.recvClbks[t]||(curNotifier.recvClbks[t]={}),(!curNotifier.recvClbks[t][e]||a)&&(curNotifier.recvClbks[t][e]=i)},setRecvClbk:function(t,e){curNotifier.recvClbks||(curNotifier.recvClbks={}),curNotifier.recvClbks[t]=[e]},fixPhoto:function(t,e){return t=clean(t),-1==t.indexOf("question_c.gif")?t:e?"/images/question_inv_xc.png":"/images/question_inv_c.png"}},Sound.prototype={play:function(){try{this.playSound()}catch(t){}},pause:function(){try{this.pauseSound()}catch(t){}}},window.lastWndScroll=[!1,!1],window.curRBox||(curRBox={guid:0,active:!1,focused:[],tabs:{}}),extend(RBox.prototype,{show:function(t,e){var i=this;void 0===t&&(t=0),t?(setStyle(i.wrap,{opacity:0,display:"block"}),i.visible=!0,!e&&i.focus(),animate(i.wrap,{opacity:1},t,function(){setStyle(i.wrap,browser.msie?{filter:"none"}:{opacity:""}),i._update_pos()})):(show(i.wrap),i.visible=!0,!e&&i.focus(),i._update_pos()),i.options.onShow&&i.options.onShow()},hide:function(t,e,i){var a=this;return!e&&a.options.onBeforeHide&&a.options.onBeforeHide()?!0:(void 0===t&&(t=0),t?(setStyle(a.wrap,{opacity:1,display:"block"}),animate(a.wrap,{opacity:0},t,function(){hide(a.wrap),setStyle(a.wrap,browser.msie?{filter:"none"}:{opacity:""})})):hide(a.wrap),a.visible=!1,void(!e&&a.options.onHide&&a.options.onHide(i||{})))},_head_mdown:function(t){if(!checkEvent(t)){(t.originalEvent||t).cancelBubble=!0;var e,i,a=this,s=t.target,o=getWndInner(),r=curRBox.active==a.id,n=t.pageY,c=t.pageX,l=a.wrap.offsetHeight,u=a.wrap.offsetWidth,d=0,h=0,f=o[0]-l,p=o[1]-u,_=browser.msie?"selectstart":"mousedown";a.options.fixed&&FastChat.pinTab(a.options.peer||-1,t,!0),r||a.focus(t),a.toBottom?(a.toBottom=!1,e=o[0]-intval(getStyle(a.wrap,"bottom"))-l,setStyle(a.wrap,{top:e,bottom:"auto"}),removeClass(a.wrap,"fc_tobottom")):e=intval(getStyle(a.wrap,"top")),a.toRight?(a.toRight=!1,i=o[1]-intval(getStyle(a.wrap,"right"))-u,setStyle(a.wrap,{left:i,right:"auto"})):i=intval(getStyle(a.wrap,"left")),d=e,h=i,cur._fcdrag=1;var v=function(t){return d=Math.max(0,Math.min(f,e+t.pageY-n)),10>f-d?d=f:10>d&&(d=0),a.wrap.style.top=d+"px",h=Math.max(0,Math.min(p,i+t.pageX-c)),10>p-h?h=p:10>h&&(h=0),a.wrap.style.left=h+"px",cancelEvent(t)},m=function(t){cur._fcdrag=0,removeEvent(document,"mousemove",v),removeEvent(document,"mouseup",m),removeEvent(document,_,cancelEvent),setStyle(bodyNode,"cursor",""),setStyle(s,"cursor",""),(a.toBottom=d>=f-5)&&(setStyle(a.wrap,{top:"auto",bottom:0}),addClass(a.wrap,"fc_tobottom")),(a.toRight=h>=p-5)&&setStyle(a.wrap,{left:"auto",right:0,marginRight:lastWndScroll[0]?sbWidth():0}),a._update_pos();var e=Math.abs(t.pageY-n)<3&&Math.abs(t.pageX-c)<3;cur._fcpromo>0?cur._fcpromo=e?0:-1:a.options.minimizer&&e?!a.minimized&&r?a.minimize(!0):a.minimized&&a.unminimize(!0):a.options.onDragEnd&&a.options.onDragEnd(a.toBottom?-1:d/o[0],a.toRight?-1:h/o[1])};return addEvent(document,"mousemove",v),addEvent(document,"mouseup",m),addEvent(document,_,cancelEvent),setStyle(bodyNode,"cursor","move"),setStyle(s,"cursor","move"),!1}},_resize_mdown:function(t){if(!checkEvent(t)){this.focus(t);var e,i,a=this,s=t.target,o=getWndInner(),r=t.pageY,n=t.pageX,c=a.wrap.offsetHeight,l=a.wrap.offsetWidth,u=0,d=0,h=a.resizeableH.clientHeight-intval(getStyle(a.resizeableH,"paddingBottom"))-intval(getStyle(a.resizeableH,"paddingTop")),f=a.resizeableW.clientWidth-intval(getStyle(a.resizeableW,"paddingRight"))-intval(getStyle(a.resizeableW,"paddingLeft")),p=browser.msie?"selectstart":"mousedown",_=!browser.msie&&a.options.onResize||!1;a.toBottom?(a.toBottom=!1,e=o[0]-intval(getStyle(a.wrap,"bottom"))-c,setStyle(a.wrap,{top:e,bottom:"auto"}),removeClass(a.wrap,"fc_tobottom")):e=intval(getStyle(a.wrap,"top")),a.toRight?(a.toRight=!1,i=o[1]-intval(getStyle(a.wrap,"right"))-l,setStyle(a.wrap,{left:i,right:"auto"})):i=intval(getStyle(a.wrap,"left")),a.options.onResizeStart&&a.options.onResizeStart(h,f);var v=h+o[0]-e-c,m=f+o[1]-i-l,g=function(t){return u=Math.max(a.options.minH,Math.min(v,h+t.pageY-r)),10>v-u&&(u=v),a.resizeableH.style.height=u+"px",d=Math.max(a.options.minW,Math.min(m,f+t.pageX-n)),10>m-d&&(d=m),a.resizeableW.style.width=d+"px",_&&_(u,d),cancelEvent(t)},C=function(t){removeEvent(document,"mousemove",g),removeEvent(document,"mouseup",C),removeEvent(document,p,cancelEvent),setStyle(bodyNode,"cursor",""),setStyle(s,"cursor",""),(a.toBottom=u==v)&&(setStyle(a.wrap,{top:"auto",bottom:0}),addClass(a.wrap,"fc_tobottom")),(a.toRight=d==m)&&setStyle(a.wrap,{left:"auto",right:0,marginRight:lastWndScroll[0]?sbWidth():0}),a._update_pos(),a.options.onResizeEnd&&a.options.onResizeEnd(u,d,o[0],o[1],a.toBottom,a.toRight)};return addEvent(document,"mousemove",g),addEvent(document,"mouseup",C),addEvent(document,p,cancelEvent),setStyle(bodyNode,"cursor","move"),setStyle(s,"cursor","move"),!1}},_update_pos:function(){var t=this;t.wrap;t.pos=[t.wrap.offsetTop,t.wrap.offsetLeft,t.wrap.offsetHeight,t.wrap.offsetWidth]},_wnd_resize:function(t,e,i){var a=this;a.toBottom&&(a.pos[0]=a.wrap.offsetTop),a.toRight&&(a.pos[1]=a.wrap.offsetLeft);var s={},o=!1,r=!1,n=a.pos[0]+a.pos[2]-t,c=a.pos[0],l=a.resizeableH.clientHeight-a.options.minH,u=a.pos[1]+a.pos[3]-e,d=a.pos[1],h=a.options.resize!==!1?a.resizeableW.clientWidth-a.options.minW:0;i&&(0>h&&setStyle(a.resizeableW,a.options.minW),0>l&&setStyle(a.resizeableH,a.options.minH)),(0>=n||0>=c&&0>=l)&&(0>=u||0>=d&&0>=h)||(n>0&&c>0&&(c=Math.min(n,c),n-=c,s.top=a.pos[0]-c,s.bottom=""),n>0&&l>0&&(l=Math.min(n,l),o=a.resizeableH.clientHeight-l),u>0&&d>0&&(d=Math.min(u,d),u-=d,s.left=a.pos[1]-d,s.right=""),u>0&&h>0&&(h=Math.min(u,h),r=a.resizeableW.clientWidth-h),r!==!1&&setStyle(a.resizeableW,"width",r),o!==!1&&setStyle(a.resizeableH,"height",o),setStyle(a.wrap,s),a._update_pos(),a.options.onResize&&a.options.onResize(a.resizeableH.clientHeight,a.resizeableW.clientWidth))},_cont_mdown:function(t){var e=curRBox.active!=this.id;return e&&(this.focus(t),!hasClass(t.target,"fc_editable"))?cancelEvent(t):void 0},_focus:function(){var t=this,e=indexOf(curRBox.focused,t.id),i=curRBox.active,a=i&&curRBox.tabs[i];if(i!=t.id){a&&isFunction(a.options.onBlur)&&a.options.onBlur(),-1!=e&&curRBox.focused.splice(e,1),curRBox.focused.unshift(t.id);var s=BASIC_CHAT_ZINDEX+curRBox.focused.length,o=!0;each(curRBox.focused,function(t,e){var i=curRBox.tabs[e].wrap;o?(addClass(i,"rb_active"),removeClass(i,"rb_inactive"),curRBox.active=e,o=!1):(removeClass(i,"rb_active"),addClass(i,"rb_inactive")),setStyle(i,"zIndex",s),s--})}},_hide_click:function(){this.hide()},minimize:function(t){var e=this,i=e.wrap;return e.options.fixed?!1:(addClass(i,"rb_minimized"),e.minimized=!0,e._update_pos(),void(t&&e.options.onMinimize&&e.options.onMinimize(0)))},unminimize:function(t){var e=this,i=e.wrap,a=getWndInner();removeClass(i,"rb_minimized"),e.minimized=!1,e._update_pos(),e._wnd_resize(a[0],a[1],!0),curRBox.active=!1,e.focus(),t&&e.options.onMinimize&&e.options.onMinimize(1)},_min_toggle:function(t){var e=this;setTimeout(function(){e.minimized?e.unminimize(!0):e.minimize(!0)},50)},destroy:function(){var t=this,e=indexOf(curRBox.focused,t.id);-1!=e&&curRBox.focused.splice(e,1),cleanElems(t.wrap,t.resizeWrap,t.content,t.options.movable,t.options.closer,t.options.hider),re(t.wrap),delete curRBox.tabs[t.id],delete t},_close_mdown:function(t){(t.originalEvent||t).cancelBubble=!0},_close_click:function(t){this.close()},_close:function(t){this.destroy(),curRBox.focused[0]&&t!==!0&&curRBox.tabs[curRBox.focused[0]].focus()},focus:function(t){var e=this,i=curRBox.active!=e.id||!0;return e._focus(),i&&isFunction(e.options.onFocus)&&e.options.onFocus(t),i},close:function(){var t=this,e=t.pos;t._close(),isFunction(t.options.onClose)&&t.options.onClose(e)}}),window.curFastChat||(curFastChat={}),FastChat={init:function(t){extend(curFastChat,{tabs:{},needPeers:{},gotPeers:{},needMedia:{},gotMedia:{},myTypingEvents:{},typingEvents:{},inited:!0,options:t,posSeq:0,error_timeout:1}),delete curFastChat.standby,delete curFastChat.standbyTO,Notifier.addRecvClbk("fastchat",0,FastChat.lcRecv,!0),Notifier.addRecvClbk("logged_off",0,FastChat.standby,!0),FastChat.lcSend("needSettings",{version:t.version,lang_id:langConfig.id}),clearTimeout(curFastChat.getSettingsTO),curFastChat.getSettingsTO=setTimeout(FastChat.getSettings,300)},getSettings:function(){var t=ls.get("fcFriends"+vk.id);ajax.post("al_im.php",{act:"a_get_fast_chat",friends:t&&t.version},{onDone:function(e){-1==e.friends?(e.friends_version=t.version,e.friends=t.list):ls.set("fcFriends"+vk.id,{version:e.friends_version,list:e.friends}),FastChat.gotSettings(e),FastChat.sendSettings()},onFail:function(){return!0}})},gotSettings:function(t){t.emoji_stickers&&(window.emojiStickers=t.emoji_stickers),window.Emoji&&Emoji.updateTabs(),clearTimeout(curFastChat.getSettingsTO),window.lang=extend(window.lang||{},t.lang),extend(curFastChat,t,{lang_id:langConfig.id}),curNotifier.is_server&&(t.im_queue?curFastChat.lpInited||FastChat.initLp():(clearTimeout(curFastChat.lp_error_to),curFastChat.lp_error_to=setTimeout(FastChat.updateQueueKeys.bind(FastChat),1e3*(curNotifier.error_timeout||1)))),curFastChat.friendsCnt=0;for(var e in curFastChat.friends||{})curFastChat.friendsCnt++;setTimeout(FastChat.clistCache.pbind(!1),10),FastChat.initUI()},sendSettings:function(){clearTimeout(curFastChat.sendSettingsTO);var t,e={},i=["friends","friends_version","onlines","tpl","lang","me","version","im_queue","cl_queue"];for(t in i){if("cl_queue"!=i[t]&&void 0===curFastChat[i[t]])return;e[i[t]]=curFastChat[i[t]]}clearTimeout(curFastChat.sendSettingsTO),curFastChat.sendSettingsTO=setTimeout(function(){FastChat.lcSend("settings",{settings:e})},curNotifier.is_server?0:irand(50,100))},becameServer:function(){!curFastChat.lpInited&&curFastChat.version&&(delete curNotifier.addQueues["fastchat"+vk.id],delete curNotifier.addQueues["contacts"+vk.id],curFastChat.im_queue?curFastChat.lpInited||FastChat.initLp():(clearTimeout(curFastChat.lp_error_to),curFastChat.lp_error_to=setTimeout(FastChat.updateQueueKeys.bind(FastChat),1e3*(curNotifier.error_timeout||1))))},destroy:function(){if(!curFastChat.inited)return!1;return FastChat.stopLp(),each(curFastChat.tabs||{},function(t,e){e.box.destroy()}),curFastChat.clistBox&&curFastChat.clistBox.destroy(),each(curFastChat.el||{},function(){cleanElems(this)}),clearInterval(curFastChat.updateFriendsInt),clearInterval(curFastChat.updateTypingsInt),clearTimeout(curFastChat.correspondentsTO),clearTimeout(curFastChat.lp_error_to),curFastChat={inited:!1},!0},isChatOpen:function(t){return window.curFastChat&&curFastChat.inited&&t&&(curFastChat.tabs&&curFastChat.tabs[t]&&curFastChat.tabs[t].box.visible||curFastChat.clistBox&&curFastChat.clistBox.visible)?!0:!1},standby:function(t){FastChat.destroy(),curFastChat.standby=!0;var e=1,i=function(){return curNotifier.is_server?void ajax.post("notifier.php?act=a_get_reload",{version:t},{onDone:function(t,e){FastChat.lcSend("gotConfig",{navVersion:t,config:e}),FastChat.gotConfig(t,e)},onFail:function(){return e*=2,clearTimeout(curFastChat.standbyTO),curFastChat.standbyTO=setTimeout(i,1e3*e),!0}}):(clearTimeout(curFastChat.standbyTO),void(curFastChat.standbyTO=setTimeout(i,1e3*e)))};i()},gotConfig:function(t,e){clearTimeout(curFastChat.standbyTO),curFastChat.standby&&setTimeout(function(){t>stVersions.nav&&(debugLog("appending al loader"),headNode.appendChild(ce("script",{type:"text/javascript",src:"/js/loader_nav"+t+"_"+vk.lang+".js"}))),setTimeout(function(){return t<=stVersions.nav?void stManager.add(["notifier.js","notifier.css","emoji.js"],function(){FastChat.init(e)}):void setTimeout(arguments.callee,100)},0)},curNotifier.is_server?0:irand(1e3,2e3))},updateVersion:function(t){FastChat.lcSend("standby",{version:t}),FastChat.standby(t)},lcSend:function(t,e){Notifier.lcSend("fastchat",extend({act:t,__id:curFastChat.me&&curFastChat.me.id||vk.id},e))},lcRecv:function(t){if(!isEmpty(t)){var e=t.act;t.__id==(curFastChat.me&&curFastChat.me.id||vk.id)&&(delete t.act,delete t.__id,FastChat.lcFeed(e,t))}},lcFeed:function(t,e){switch(t){case"needSettings":curFastChat.version<e.version||e.lang_id==curFastChat.lang_id&&FastChat.sendSettings();break;case"settings":!curFastChat.version&&curFastChat.options&&e.settings.version==curFastChat.options.version&&FastChat.gotSettings(e.settings),clearTimeout(curFastChat.sendSettingsTO);break;case"standby":if(!curFastChat.version)break;FastChat.standby(e.version);break;case"gotConfig":FastChat.gotConfig(e.navVersion,e.config);break;case"clFeed":if(!curFastChat.version)break;FastChat.clFeed(e.events);break;case"clistOnlines":if(!curFastChat.version)break;FastChat.clistGotOnlines(e);break;case"imFeeds":if(!curFastChat.version)break;FastChat.imFeeds(e);break;case"needPeer":if(!curFastChat.version)break;var i,a,s=e.id,o=curFastChat.tabs[s],r=!1;if(void 0!==o){r={name:o.name,photo:o.photo,fname:o.fname,hash:o.hash,sex:o.sex,data:o.data,online:o.online};for(i in o.msgs){r.history=[o.log.innerHTML,o.msgs];break}}else(a=curFastChat.friends[s+"_"])&&(r={name:a[0],photo:a[1],fname:a[2],hash:a[3],data:a[4],online:curFastChat.onlines[s]});if(r===!1)break;curFastChat.gotPeers[s]=setTimeout(function(){var t={};t[s]=r,FastChat.lcSend("gotPeers",t)},curNotifier.is_server?0:irand(50,100));break;case"fetchingPeers":if(!curFastChat.version)break;each(e,function(t,e){var i=curFastChat.needPeers[t];i&&(e&i[0])==i[0]&&clearTimeout(i[2])});break;case"gotPeers":if(!curFastChat.version)break;FastChat.gotPeers(e);break;case"stateChange":if(!curFastChat.version)break;FastChat.onStateChanged(e);break;case"queueSet":extend(curFastChat,e);break;case"queueClean":curNotifier.is_server||(delete curFastChat.im_queue,delete curFastChat.cl_queue);break;case"needMedia":var n=e.msgId,c=curFastChat.gotMedia[n];if(void 0===c||0===c)break;curFastChat.gotMedia[n][3]=setTimeout(function(){FastChat.lcSend("gotMedia",{msgId:n,peer:c[0],text:c[1],msgOpts:c[2]})},curNotifier.is_server?0:irand(50,100));break;case"fetchingMedia":var n=e.msgId,l=curFastChat.needMedia[n];if(void 0===l||0===curFastChat.gotMedia[n])break;clearTimeout(l[1]),l[1]=setTimeout(FastChat.loadMsgMedia.pbind(l[0],n),1e3);break;case"gotMedia":var n=e.msgId,c=curFastChat.gotMedia[n];isArray(c)&&clearTimeout(c[3]),FastChat.gotMsgMedia(e.peer,n,e.text,e.msgOpts)}},initLp:function(){curFastChat.lpInited=!0,FastChat.checkLp(),curFastChat.checkLpInt=setInterval(FastChat.checkLp,2e4)},stopLp:function(){curFastChat.lpInited=!1,clearInterval(curFastChat.checkLpInt),delete curFastChat.im_queue,delete curFastChat.cl_queue},checkLp:function(){curNotifier.is_server&&curFastChat.im_queue&&(Notifier.addKey({queue:curFastChat.im_queue.id,key:curFastChat.im_queue.key,ts:curFastChat.im_queue.ts},FastChat.imChecked,!0),curFastChat.cl_queue&&Notifier.addKey({queue:curFastChat.cl_queue.id,key:curFastChat.cl_queue.key,ts:curFastChat.cl_queue.ts},FastChat.clChecked,!0),FastChat.lcSend("queueSet",{im_queue:curFastChat.im_queue,cl_queue:curFastChat.cl_queue}))},updateQueueKeys:function(){curFastChat.updatingQueues||(curFastChat.updatingQueues=1,FastChat.lcSend("queueClean"),FastChat.stopLp(),ajax.post("al_im.php",{act:"a_get_fc_queue"},{onDone:function(t){return t.version>curFastChat.version?void FastChat.updateVersion(t.version):(delete curFastChat.updatingQueues,extend(curFastChat,t),FastChat.lcSend("queueSet",t),void(curNotifier.is_server&&(FastChat.initLp(),FastChat.clistUpdate())))},onFail:function(){return delete curFastChat.updatingQueues,FastChat.destroy(),!0}}))},clChecked:function(t,e){if(curFastChat.inited&&curFastChat.ready&&curFastChat.cl_queue){if(e.failed)return clearTimeout(curFastChat.lp_error_to),void(curFastChat.lp_error_to=setTimeout(FastChat.updateQueueKeys.bind(FastChat),1e3*(curNotifier.error_timeout||1)));e.ts&&(e.key&&(curFastChat.cl_queue.key=e.key),curFastChat.cl_queue.ts=e.ts,FastChat.lcSend("queueSet",{cl_queue:curFastChat.cl_queue})),isArray(e.events)&&e.events.length&&(FastChat.clFeed(e.events),FastChat.lcSend("clFeed",{events:e.events}))}},clFeed:function(t){if(curFastChat.inited&&curFastChat.ready&&curFastChat.tabs){var e=!1,i=!1;each(t,function(){var t=this.split("<!>"),a=t[0],s=t[1],o=t[2],r=t[3]?t[3]:1,n=curFastChat.tabs[o],c=curFastChat.onlines[o];if(a!=curFastChat.version)return FastChat.updateVersion(a),i=!0,!1;if(curFastChat.friends[o+"_"]||n)switch(s){case"online":if(c==r)break;curFastChat.onlines[o]=r,FastChat.tabNotify(o,"online",r),e=!0;break;case"offline":if(!c)break;delete curFastChat.onlines[o],re("fc_contact"+o)&&curFastChat.clistBox.visible&&FastChat.clistShowMore(),FastChat.tabNotify(o,"offline")}}),i||(e&&curFastChat.clistBox.visible&&curNotifier.idle_manager&&!curNotifier.idle_manager.is_idle&&(curFastChat.el.clist.scrollTop<100||curRBox.active!=curFastChat.clistBox.id)?FastChat.clistRender():FastChat.clistUpdateTitle())}},imChecked:function(t,e){if(curFastChat.inited&&curFastChat.ready&&curFastChat.im_queue){if(e.failed)return clearTimeout(curFastChat.lp_error_to),void(curFastChat.lp_error_to=setTimeout(FastChat.updateQueueKeys.bind(FastChat),1e3*(curNotifier.error_timeout||1)));if(e.ts&&curFastChat.im_queue&&(e.key&&(curFastChat.im_queue.key=e.key),curFastChat.im_queue.ts=e.ts,FastChat.lcSend("queueSet",{im_queue:curFastChat.im_queue})),isArray(e.events)&&e.events.length){var i={},a=!1;each(e.events,function(){var t=this.split("<!>"),e=t[0],s=t[1],o=t[2],r=0;curFastChat.tabs[o];if(e!=curFastChat.version)return FastChat.updateVersion(e),a=!0,!1;switch(s){case"read":break;case"typing":r=1;break;case"new":r=2&t[4]?0:2;break;default:return}i[o]||(i[o]=[0]),i[o][0]|=r,i[o].push(t)}),a||isEmpty(i)||(FastChat.lcSend("imFeeds",i),FastChat.imFeeds(i))}}},imFeeds:function(t){curFastChat.inited&&curFastChat.ready&&each(t,function(t,e){e.shift();FastChat.imFeed(t,e)})},blinkEl:function(t,e,i){return e>10?(i(),!1):void(e%2==0?animate(t,{opacity:0},400,function(){FastChat.blinkEl(t,e+1,i)}):animate(t,{opacity:1},400,function(){setTimeout(function(){FastChat.blinkEl(t,e+1,i)},400)}))},blinkTyping:function(t){var e=ge("chat_tab_icon_"+t);if(e){var i=geByClass1("chat_tab_typing_wrap",e);fadeIn(i,150,function(){FastChat.blinkEl(i.firstChild,0,function(){fadeOut(i,150)})})}},imFeed:function(t,e){var i=curFastChat.tabs[t],a=vkNow();return each(e,function(e,i){switch(i[1]){case"new":1===(3&i[4])&&FastChat.changePeerCounter(t,1);break;case"read":var a=1;each(i[3].split(","),function(t,e){a+=1}),FastChat.changePeerCounter(t,-a);break;case"typing":Chat.tabs[t]&&FastChat.blinkTyping(t)}}),i?(each(e,function(e,s){switch(s[1]){case"new":stManager.add(["imn.js"],function(){each(i.sentmsgs,function(t,e){var i=ge("fc_msg"+e),a=i&&i.parentNode;re(i)&&a&&!geByClass("fc_msg",a).length&&re(domClosest("fc_msgs_wrap",a))}),ge("fc_msg"+s[3])||(FastChat.addMsg(FastChat.prepareMsgData(s.slice(2))),i.msgs[s[3]]=[2&s[4]?1:0,1&s[4]],1===(3&s[4])&&i.unread++,FastChat.scroll(t)),FastChat.blinkTab(t)});break;case"read":var o=[],r=intval(s[3]);each(i.msgs,function(t){intval(t)<=r&&i.msgs[t][1]&&o.push(intval(t))}),each(o,function(t,e){var a,s=ge("fc_msg"+e);s&&(a=i.msgs[e]&&i.msgs[e][0]?s.parentNode.parentNode:s.parentNode,i.msgs[e]&&i.msgs[e][1]&&(i.msgs[e][1]=0,i.msgs[e][0]||i.unread--),removeClass(s,"fc_msg_unread"),hasClass(a.parentNode,"fc_msgs_unread")&&each(a.childNodes,function(){return hasClass(this,"fc_msg_unread")?void 0:(removeClass(a.parentNode,"fc_msgs_unread"),!1)}))});break;case"typing":t>2e9?(curFastChat.typingEvents[t]||(curFastChat.typingEvents[t]={}),curFastChat.typingEvents[t][s[3]]=a):curFastChat.typingEvents[t]=a,FastChat.updateTyping(t)}}),i.unread>0&&(i.unread=0,each(i.msgs,function(){!this[0]&&this[1]&&i.unread++})),i.auto&&!i.unread&&(i.box._close(!0),delete curFastChat.tabs[t]),void FastChat.updateUnreadTab(t)):!1},tabNotify:function(t,e,i){var a=curFastChat.tabs[t];if(t>0&&2e9>t&&isFunction(cur.onPeerStatusChanged)&&cur.onPeerStatusChanged(t,e,i),!(0>=t)&&a&&a.box&&!a.box.minimized){switch(clearTimeout(a.hideNotifyTO),e){case"online":text=getLang("mail_im_user_became_online",3-a.sex),FastChat.blinkTab(t);break;case"offline":text=getLang("mail_im_user_became_offline",3-a.sex),FastChat.blinkTab(t);break;case"unavail":text=getLang("mail_im_not_online",3-a.sex).replace(/\.$/,"")}text=text.replace("{user}",a.fname),val(a.notify,'<div class="fc_tab_notify fc_tab_notify_'+e+'">'+text+"</div>");var s=a.notify.firstChild;clearTimeout(a.hideNotifyTO),a.hideNotifyTO=setTimeout(function(){fadeOut(s,200,function(){val(a.notify,"")})},5e3)}},hideChatCtrl:function(){removeClass(Chat.wrap,"chat_active"),removeEvent(document,"mousedown",FastChat.onDocClick)},showChatCtrl:function(){addClass(Chat.wrap,"chat_active"),setTimeout(function(){addEvent(document,"mousedown",FastChat.onDocClick)},0)},initUI:function(){var t=curFastChat.el={},e=getWndInner();re("rb_box_fc_clist"),t.clistWrap=se(curFastChat.tpl.clist),t.clist=geByClass1("fc_contacts",t.clistWrap,"div"),t.clistTitle=geByClass1("fc_tab_title",t.clistWrap,"div"),t.clistOnline=geByClass1("fc_clist_online",t.clistWrap,"div");var i=curFastChat.options.state||!1,a=!curFastChat.friendsCnt||(i&&void 0!==i.clist.min?i.clist.min:e[1]<1200||curFastChat.friendsCnt<5);curFastChat.clistW=270,curFastChat.clistH=299;var s={id:"fc_clist",movable:geByClass1("fc_tab_head",t.clistWrap),hider:geByClass1("fc_tab_close_wrap",t.clistWrap,"a"),startHeight:curFastChat.clistH,startWidth:curFastChat.clistW,resizeableH:t.clist,resize:!1,minH:150,fixed:a,onHide:function(e){val("fc_clist_filter",curFastChat.q=""),addClass(curFastChat.clistBox.wrap,"fc_fixed"),curFastChat.clistBox.fixed=!0,FastChat.stateChange({op:"clist_toggled",val:0}),setStyle(curFastChat.clistBox.wrap,{top:"auto",bottom:0,right:72,left:"auto"}),show(t.topLink),FastChat.hideChatCtrl()},onShow:function(){FastChat.showChatCtrl()},onDragEnd:function(t,e){FastChat.stateChange({op:"clist_moved",y:t,x:e})},onResize:function(t,e){curFastChat.clistBoxScroll&&curFastChat.clistBoxScroll.update(!1,!0)}};i&&!a&&(i.clist.x!==!1&&(-1==i.clist.x?s.startRight=0:s.startLeft=e[1]*i.clist.x),i.clist.y!==!1&&(-1==i.clist.y?s.startBottom=0:s.startTop=e[0]*i.clist.y)),a&&(s.noshow=!0),void 0===s.startTop&&void 0===s.startBottom&&(s.startTop=e[0]<800?0:.1*e[0]),void 0===s.startLeft&&void 0===s.startRight&&(s.startRight=0),curFastChat.clistBox=new RBox(t.clistWrap,s),s.noshow||void 0===s.startLeft&&void 0===s.startTop||curFastChat.clistBox._wnd_resize(e[0],e[1],!0),curFastChat.clistBoxScroll=new Scrollbar(t.clist,{prefix:"fc_",scrollChange:FastChat.clistShowMore,nomargin:!0,global:!0,nokeys:!0,right:vk.rtl?"auto":1,left:vk.rtl?1:"auto"}),curFastChat.updateFriendsInt=setInterval(FastChat.clistUpdate,18e4),curFastChat.updateTypingsInt=setInterval(FastChat.updateTypings,5e3);var o=ge("fc_clist_filter");if(placeholderInit(o,{global:!0}),curFastChat.q="",addEvent(o,"keyup "+(browser.opera?"keypress":"keydown"),function(t){if(t.keyCode==KEY.ESC)return FastChat.clistHide(),cancelEvent(t);var e=FastChat.clistFilterKey(t);return void 0!==e?e:(curFastChat.q=trim(val(this)),void FastChat.clistRender())}),t.clistOnline){var r,n;bodyNode.appendChild(n=ce("nobr",{className:"fl_l",innerHTML:getLang("mail_im_clist_onlines")},{visibility:"hidden",position:"absolute"})),r=(n.offsetWidth||179)-7,re(n),addEvent(t.clistOnline,"mouseover",function(e){showTooltip(this,{text:getLang("mail_im_clist_onlines"),forcetoup:1,shift:[12,4,3],className:"tt_fc_onlines",init:function(){browser.msie&&(t.clistOnline.tt.isFixed=!1)},black:1})}),addEvent(t.clistOnline,"click",function(t){(t.originalEvent||t).cancelBubble=!0,FastChat.clistToggleOnlines(),FastChat.clistRender()}),i&&i.clist&&i.clist.onlines&&FastChat.clistToggleOnlines(!0)}a?FastChat.clistUpdateTitle():FastChat.clistRender(),curFastChat.ready=!0,i&&i.tabs&&each(i.tabs,function(t,i){t=intval(t);var a={nofocus:1};this.min&&(a.minimized=!0),this.h&&(a.startHeight=this.h*e[0]),this.w&&(a.startWidth=this.w*e[1]),void 0!==this.x&&this.x<=1&&(this.x<0?a.startRight=0:a.startLeft=e[1]*this.x),void 0!==this.y&&this.y<=1&&(this.y<0?a.startBottom=0:a.startTop=e[0]*this.y),i.fx?(a.fixedLoad=!0,FastChat.prepareTabIcon(t,a,!0)):(a.noAnim=!0,FastChat.addPeer(t,!1,!1,a))}),addEvent(Chat.itemsCont,"mousemove mouseover",FastChat.itemsTT),addEvent(Chat.itemsCont,"mouseout",FastChat.itemsOut)},itemsOffset:12,itemsTT:function(t){for(var e=t.target,i=!1;e&&e!=Chat.itemsCont;){if(hasClass(e,"chat_tab_wrap")){i=e;break}e=e.parentNode}if(!i)return clearTimeout(Chat.ttOutTimeout),Chat.ttOutTimeout=!1,!1;var a=i.id.split("_")[3],s=Chat.tabs[a];return s?curFastChat.activeBox&&curFastChat.activeBox.visible&&curFastChat.activeBox.options.peer==a?(FastChat.itemsOut(),!1):(clearTimeout(Chat.ttOutTimeout),Chat.ttOutTimeout=!1,showTooltip(i,{text:s.name,slideX:15,black:1,asrtl:1,appendEl:Chat.ttNode,className:"tt_black_side",shift:[-58,-37,0]}),void(Chat.ttPeer=i)):!1},itemsOut:function(){return Chat.ttOutTimeout?!1:void(Chat.ttOutTimeout=setTimeout(function(){return Chat.ttOutTimeout=!1,Chat.ttPeer?(triggerEvent(Chat.ttPeer,"mouseout"),void(Chat.ttPeer=!1)):!1},0))},stateChange:function(t){ajax.post("al_im.php",extend({act:"a_state_fc",hash:curFastChat.options.state_hash||""},t),{onFail:function(){return!0}}),FastChat.lcSend("stateChange",t)},onStateChanged:function(t){var e=t.peer?curFastChat.tabs[t.peer]:!1,i=t.peer?e&&e.box:curFastChat.clistBox,a=getWndInner();switch(t.op){case"added":if(e){delete e.auto;break}t.fixed?FastChat.prepareTabIcon(t.peer,{fixedLoad:!0}):FastChat.addPeer(t.peer);break;case"unfixed":var s={startHeight:intval(a[0]*t.h),startWidth:intval(a[1]*t.w)};-1==t.y?s.startBottom=0:s.startTop=intval(a[0]*t.y),-1==t.x?s.startRight=0:s.startLeft=intval(a[1]*t.x),FastChat.addPeer(t.peer,!1,!1,s);break;case"closed":if(Chat.tabs[t.peer]&&FastChat.closeTabIcon(t.peer),!e||!i)break;i.close();break;case"hidden":if(!e||!i)break;i.close();break;case"minimized":if(!e||!i)break;t.val?i.unminimize():i.minimize();break;case"moved":setStyle(i.wrap,{bottom:-1==t.y?0:"auto",top:-1!=t.y?intval(a[0]*t.y):"auto",right:-1==t.x?0:"auto",left:-1!=t.x?intval(a[1]*t.x):"auto"}),i.toBottom=-1==t.y,i.toRight=-1==t.x;break;case"resized":setStyle(i.wrap,{bottom:-1==t.y?0:"auto",top:-1!=t.y?intval(a[0]*t.y):"auto",right:-1==t.x?0:"auto",left:-1!=t.x?intval(a[1]*t.x):"auto"}),i.toBottom=-1==t.y,i.toRight=-1==t.x;var o=intval(a[1]*t.w);setStyle(i.resizeableH,"height",intval(a[0]*t.h)),setStyle(i.resizeableW,"width",o),FastChat.fixResized(e,o);break;case"clist_toggled":t.val?i.show(0,!0):i.hide(0,!0),toggle(curFastChat.el.topLink,!t.val);break;case"clist_moved":setStyle(i.wrap,{bottom:-1==t.y?0:"auto",top:-1!=t.y?intval(a[0]*t.y):"auto",right:-1==t.x?0:"auto",left:-1!=t.x?intval(a[1]*t.x):"auto"}),i.toBottom=-1==t.y,i.toRight=-1==t.x;break;case"onlines_toggled":FastChat.clistToggleOnlines(t.val),FastChat.clistRender()}},onUnidle:function(){curNotifier.version&&curFastChat.clistBox&&(curFastChat.clistBox.visible&&(curFastChat.el.clist.scrollTop<100||curRBox.active!=curFastChat.clistBox.id)?FastChat.clistRender():FastChat.clistUpdateTitle(),each(curFastChat.tabs,function(t){FastChat.restoreDraft(t)}))},clistUpdate:function(){
-var t=vkNow();if(curNotifier.is_server&&!(curFastChat.clistUpdatedTs&&t-curFastChat.clistUpdatedTs<6e4)){curFastChat.clistUpdatedTs=t;var e,i=[];for(e in curFastChat.tabs)i.push(e);for(e in Chat.tabs)i.push(e);ajax.post("al_im.php",{act:"a_onlines",peer:i.join(",")},{onDone:function(t){FastChat.clistGotOnlines(t),FastChat.lcSend("clistOnlines",t)}})}},clistGotOnlines:function(t){var e=curFastChat.onlines,i=[];curFastChat.onlines=t,curNotifier.idle_manager&&curNotifier.idle_manager.is_idle||!curFastChat.tabs&&Chat.tabs||(each(curFastChat.tabs,function(a){curFastChat.onlines[a]!=e[a]&&(FastChat.tabNotify(a,t[a]?"online":"offline",t[a]),t[a]||(i[a]=1))}),each(Chat.tabs,function(i){curFastChat.onlines[i]!=e[i]&&(t[i]?addClass(ge("chat_tab_icon_"+i),"chat_tab_online"):removeClass(ge("chat_tab_icon_"+i),"chat_tab_online"))}),i=arrayKeyDiff(e,t,i),each(i,function(t){FastChat.tabNotify(t,"offline")}),FastChat.clistRender())},clistShow:function(){var t=hasClass(Chat.wrap,"chat_active");FastChat.clistRender(),curFastChat.clistBox.visible?curFastChat.clistBox.focus():(curFastChat.activeBox&&curFastChat.activeBox!=curFastChat.clistBox&&curFastChat.activeBox.hide(),curFastChat.clistBox.show(),FastChat.setActive(curFastChat.clistBox),curFastChat.clistBoxScroll&&curFastChat.clistBoxScroll.update(!1,!0),curFastChat.el.topLink&&hide(curFastChat.el.topLink)),elfocus("fc_clist_filter"),FastChat.movePointer(!1,t)},clistHide:function(){curFastChat.clistBox.hide(),curFastChat.activeBox==curFastChat.clistBox&&FastChat.setActive(!1)},clistRender:function(t){var e=[],i=!t,a=1+(t?40:20),s=curFastChat.q,o=!1,r=!1,n=!1;if(s?(n=[],each(FastChat.clistCache(s),function(){n.push(escapeRE(this))}),n=new RegExp("([ -]|^|s|&nbsp;|\b)("+n.join("|")+")","gi"),o=curFastChat.clistCache[s]||{}):curFastChat.clOnlines&&(o=curFastChat.onlines),curFastChat.clHasMore=!1,each(curFastChat.friends,function(t){var s=intval(t),c=!o||o[s];curFastChat.tabs[s]?curFastChat.tabs[s].unread:0;if(!i)return void(s==curFastChat.clOffset&&(i=!0));if(c){if(!--a)return curFastChat.clHasMore=!0,!1;e.push(FastChat.clistWrapPeer(s,this,n)),r=s}}),r!==!1||t||s?s&&!curFastChat.clHasMore&&e.push(FastChat.getCorrespondents(s,n,r===!1)):e.push('<div class="fc_clist_empty">'+getLang(s?"mail_im_clist_notfound":"mail_im_clist_empty")+"</div>"),curFastChat.clOffset=r,t){for(var c=ce("div",{innerHTML:e.join("")}),l=document.createDocumentFragment();c.firstChild;)l.appendChild(c.firstChild);curFastChat.el.clist.appendChild(l),curFastChat.clHasMore||FastChat.clistUpdateTitle(!0)}else val(curFastChat.el.clist,e.join("")),FastChat.clistUpdateTitle(!0),(browser.chrome||browser.safari)&&setTimeout(function(){setStyle(curFastChat.el.clist.firstChild,{width:curFastChat.el.clist.firstChild.clientWidth}),setTimeout(function(){setStyle(curFastChat.el.clist.firstChild,{width:""})},0)},0);if(curFastChat.clSel){var u=ge("fc_contact"+curFastChat.clSel);u?FastChat.clistPeerOver(u,1):curFastChat.clSel=!1}else{var u=geByClass1("fc_contact",curFastChat.el.clist);FastChat.clistPeerOver(u,1)}curFastChat.clistBoxScroll&&curFastChat.clistBoxScroll.update()},clistWrapPeer:function(t,e,i){var a,s,o=curFastChat.tabs[t]?curFastChat.tabs[t].unread:0,r=curFastChat.onlines[t],n=r?r>0&&6>r?" fc_contact_mobile":" fc_contact_online":"",c=(e[0]||"").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");if(i&&(c=c.replace(i,'$1<em class="fc_clist_hl">$2</em>')),t>0&&2e9>t?(a="/id"+t,s='onmousemove="FastChat.clistPeerOver(this.parentNode, 2);"  onmouseout="FastChat.clistPeerOver(this.parentNode, 1);"'):(a="/im?sel="+t,s=""),t>2e9&&e[3])var l=e[3];else var l='<img src="'+Notifier.fixPhoto(e[1])+'" class="fc_contact_photo"/>';return'<a href="'+a+'" class="fc_contact clear_fix'+n+'" id="fc_contact'+t+'" onclick="return FastChat.selectPeer('+t+', event);" onmousedown="event.cancelBubble = true;" onmouseover="FastChat.clistPeerOver(this, 1, event);"  onmouseout="FastChat.clistPeerOver(this, 0, event);"><span class="fc_contact_photo" '+s+">"+l+'</span><span class="fc_contact_status"></span><span class="fc_contact_name">'+c+'<span id="fc_contact_unread'+t+'" class="fc_contact_unread">'+(o?" <b>+"+o+"</b>":"")+"</span></span></a>"},clistPeerOver:function(t,e,i){if(t&&checkOver(i,t)){var a=t.id.substr(10);curFastChat.clSel&&e&&curFastChat.clSel!=a&&FastChat.clistPeerOver(ge("fc_contact"+curFastChat.clSel),0),toggleClass(t,"fc_contact_over",e),e?curFastChat.clSel=a:curFastChat.clSel==a&&(curFastChat.clSel=!1)}},authorOver:function(t,e){var i=t.getAttribute("data-title"),a=gpeByClass("fc_tab_log",t),s=!1,o=t.getBoundingClientRect().top,r=a.getBoundingClientRect().top;if(10>o-r&&(s=!0),i){var n=t.getAttribute("data-date");n&&(i+="<br>"+n),showTooltip(t,{text:'<div class="fc_author_tt">'+i+"</div>",black:1,center:1,forcetodown:s,shift:[1,8,0]})}},getCorrespondents:function(t,e,i){return clearTimeout(curFastChat.correspondentsTO),curFastChat.correspondents&&void 0!==curFastChat.correspondents[t]?FastChat.wrapCorrespondents(curFastChat.correspondents[t])||i&&'<div class="fc_clist_empty">'+getLang("mail_im_clist_notfound")+"</div>"||"":(curFastChat.correspondentsTO=setTimeout(FastChat.loadCorrespondents.pbind(t,e),100),'<div id="fc_correspondents"></div>')},loadCorrespondents:function(t,e){t==curFastChat.q&&ajax.post("hints.php",{act:"a_json_friends",str:t,from:"fc",allow_multi:1},{onDone:function(i){curFastChat.correspondents||(curFastChat.correspondents={});var a,s={};if(each(i,function(){a=this[3]+"_",curFastChat.friends[a]||(s[a]=[this[1],this[2],this[3],this[4]||""])}),curFastChat.correspondents[t]=s,t==curFastChat.q){var o=ge("fc_correspondents");if(o){var r=o.parentNode,n=ce("div",{innerHTML:FastChat.wrapCorrespondents(s,e)}),c=document.createDocumentFragment();if(n.firstChild)for(;n.firstChild;)c.appendChild(n.firstChild);else r.firstChild==o&&c.appendChild(ce("div",{className:"fc_clist_empty",innerHTML:getLang("mail_im_clist_notfound")}));r.replaceChild(c,o),FastChat.clistUpdateTitle(!0),curFastChat.clistBoxScroll&&curFastChat.clistBoxScroll.update()}}}})},wrapCorrespondents:function(t,e){var i=[];return each(t,function(t){i.push(FastChat.clistWrapPeer(intval(t),this,e))}),i.join("")},updateFriends:function(t){if(window.Chat&&Chat.inited){var e=Chat.onl;e&&(t>0?(val(e,t),show(Chat.wrap)):hide(Chat.wrap))}},onDocClick:function(t){if(curFastChat.activeBox){var e=t.target;if(curBox())return!0;for(;e;){if("fc_tab_wrap"==e.className||"chat_onl_wrap"==e.id||"custom_menu_cont"==e.id||"layer_wrap"==e.id||"box_layer_wrap"==e.id||"wk_layer_wrap"==e.id)return!0;e=e.parentNode}var i=curFastChat.tabs[curFastChat.activeBox.options.peer];return i&&(trim(Emoji.editableVal(i.txt))||i.imMedia&&i.imMedia.getMedias().length)?!0:void curFastChat.activeBox.hide()}},clistCache:function(t){if(t){var e,i,a,s,o,r,n,c,l,u=[t];if((i=parseLatin(t))&&u.push(i),(i=parseLatKeys(t))&&u.push(i),(i=parseCyr(t))&&u.push(i),void 0!==curFastChat.clistCache[t])return u;l=curFastChat.clistCache[t]={};for(a in u)if(e=u[a],o=curFastChat.clistCache[" "+e.charAt(0).toLowerCase()]){n=new RegExp("(^|\\s|\\()"+escapeRE(e),"gi");for(s in o)c=curFastChat.friends[s+"_"],isArray(c)&&null!==c[0].match(n)&&(l[s]=1)}s=0;for(a in l)s++;return l._num=s,u}var r,d,h;curFastChat.clistCache={};for(a in curFastChat.friends)for(r=curFastChat.friends[a][0],a=intval(a),d=0;;){if(h=" "+r.charAt(d).toLowerCase(),curFastChat.clistCache[h]||(curFastChat.clistCache[h]={}),curFastChat.clistCache[h][a]=1,d=r.indexOf(" ",d+1),-1==d)break;++d}},clistShowMore:function(){if(curFastChat.clHasMore){var t=curFastChat.el.clist,e=t.scrollTop,i=t.clientHeight,a=t.scrollHeight;e+3*i>a&&FastChat.clistRender(!0)}},clistUpdateTitle:function(t){var e,i=0,a=0;for(e in curFastChat.friends)curFastChat.onlines[intval(e)]?(a++,i++):curFastChat.clOnlines||i++;newVal=(a?getLang("mail_im_X_onlines_title",a):getLang("mail_im_onlines_title")).toString(),FastChat.updateFriends(a),val(curFastChat.el.clistTitle,newVal),val(curFastChat.el.topLink,newVal.toLowerCase()),curFastChat.clistBoxScroll&&(!curFastChat.clHasMore&&t?i=curFastChat.el.clist.childNodes.length:curFastChat.q&&(i=intval((curFastChat.clistCache[curFastChat.q]||{})._num)),curFastChat.clistBoxScroll.options.contHeight=50*i)},clistToggleOnlines:function(t){void 0===t&&(t=!curFastChat.clOnlines,FastChat.stateChange({op:"onlines_toggled",val:t?1:0})),toggleClass(curFastChat.el.clistOnline,"fc_clist_online_active",t),curFastChat.clOnlines=t},clistFilterKey:function(t){var e;switch(t.keyCode){case KEY.DOWN:case KEY.UP:if("keyup"!=t.type){if(e=curFastChat.clSel&&ge("fc_contact"+curFastChat.clSel)){var i=t.keyCode==KEY.DOWN?"nextSibling":"previousSibling",a=e;do a=a[i];while(a&&(1!=a.nodeType||!hasClass(a,"fc_contact")))}else curFastChat.clSel||t.keyCode!=KEY.DOWN||(a=geByClass1("fc_contact",curFastChat.el.clist,"a"));if(a&&a!=e){FastChat.clistPeerOver(a,1);var s=curFastChat.el.clist;a.offsetTop+16>s.clientHeight+s.scrollTop?(s.scrollTop=a.offsetTop+16-s.clientHeight,curFastChat.clistBoxScroll.update()):a.offsetTop-36<s.scrollTop&&(s.scrollTop=a.offsetTop-36,curFastChat.clistBoxScroll.update())}}break;case KEY.LEFT:case KEY.RIGHT:return!0;case KEY.ENTER:if("keyup"==t.type||!(e=curFastChat.clSel&&ge("fc_contact"+curFastChat.clSel)))break;t.ctrlKey||t.metaKey&&browser.mac?nav.go(e.href.match(/\b(vkontakte\.ru|vk\.com)(\/[^\/]+?)$/)[2]):FastChat.selectPeer(curFastChat.clSel);case KEY.ESC:if("keyup"!=t.type){var o=ge("fc_clist_filter"),r=val(o)||curFastChat.clSel;o.blur(),val(o,curFastChat.q=""),curFastChat.clSel=!1,r&&FastChat.clistRender()}break;default:return}return cancelEvent(t)},changePeerCounter:function(t,e,i){if(!Chat.tabs[t])return!1;var a=ge("chat_tab_icon_"+t),s=geByClass1("chat_tab_counter",a);s||(s=ce("div",{className:"chat_tab_counter"}),a.insertBefore(s,a.firstChild)),void 0===i?Chat.counters[t]=positive((Chat.counters[t]||0)+e):Chat.counters[t]=i,Chat.counters[t]?s.innerHTML=Chat.counters[t]:re(s)},prepareTabIcon:function(t,e,i){var a=curFastChat.friends&&curFastChat.friends[t+"_"];if(a){var s={name:a[0],photo:a[1],online:curFastChat.onlines[t]};FastChat.addTabIcon(t,s,i)}else{var o=3;curFastChat.needPeers[t]=[o,!1,setTimeout(FastChat.getPeers,irand(150,200)),e],FastChat.lcSend("needPeer",{id:t,mask:o})}},addTabIcon:function(t,e,i){if(!Chat.tabs[t]){if(t>2e9)var a=e.data.members_grid_fc||"";else var a='<img class="chat_tab_img" src="'+e.photo+'"/>';if(t>2e9)var s="im?sel=c"+(t-2e9);else var s=e.alink||"/id"+t;var o=se('<a class="chat_tab_wrap'+(i?"":" chat_tab_beforeanim")+(e.online?" chat_tab_online":"")+'" id="chat_tab_icon_'+t+'" href="'+s+'" onclick="FastChat.itemsOut();return FastChat.togglePeer('+t+', event);"><div class="chat_tab_imgcont"><div class="chat_tab_online_icon"></div><div class="chat_tab_typing_wrap"><div class="chats_sp chat_tab_typing_icon"></div></div><div class="chat_tab_close" onclick="return FastChat.closeTabIcon('+t+', event)"></div>'+a+"</div></a>");Chat.itemsCont.insertBefore(o,Chat.itemsCont.firstChild),Chat.tabs[t]={el:o,name:e.name},addClass(Chat.wrap,"chat_expand"),i||removeClass(o,"chat_tab_beforeanim"),FastChat.checkChatHeight(),Chat.scrollNode.scrollTop=0}},checkChatHeight:function(){var t=getSize(Chat.itemsCont)[1];Chat.lastHeight=t,t>Chat.maxHeight?(Chat.fixH||(Chat.fixH=!0,addClass(Chat.scrollNode,"chat_fix_height"),setStyle(Chat.scrollNode,{height:Chat.maxHeight}),addEvent(Chat.scrollNode,"mousewheel",FastChat.scrollWrap),addEvent(Chat.scrollNode,"DOMMouseScroll",FastChat.scrollWrap),FastChat.checkShadow()),Chat.scrollNode.scrollTop=t-Chat.maxHeight):Chat.fixH&&(Chat.fixH=!1,removeClass(Chat.scrollNode,"chat_fix_height"),setStyle(Chat.scrollNode,{height:"auto"}),removeEvent(Chat.scrollNode,"mousewheel",FastChat.scrollWrap),removeEvent(Chat.scrollNode,"DOMMouseScroll",FastChat.scrollWrap),FastChat.checkShadow())},checkShadow:function(){var t=intval(Chat.scrollNode.scrollTop);t&&Chat.fixH?Chat.shadowTop||(addClass(Chat.wrap,"chat_scroll_top"),fadeIn(geByClass1("chat_cont_sh_top",Chat.wrap),200),Chat.shadowTop=!0):Chat.shadowTop&&(fadeOut(geByClass1("chat_cont_sh_top",Chat.wrap),200),Chat.shadowTop=!1),Chat.lastHeight-t>Chat.maxHeight&&Chat.fixH?Chat.shadowBottom||(fadeIn(geByClass1("chat_cont_sh_bottom",Chat.wrap),200),Chat.shadowBottom=!0):Chat.shadowBottom&&(fadeOut(geByClass1("chat_cont_sh_bottom",Chat.wrap),200),Chat.shadowBottom=!1)},scrollWrap:function(t){t||(t=window.event);var e=0;return t.wheelDeltaY||t.wheelDelta?e=(t.wheelDeltaY||t.wheelDelta)/2:t.detail&&(e=10*-t.detail),Chat.scrollNode.scrollTop-=e,curFastChat.activeBox==curFastChat.clistBox?(curFastChat.pointerMargin=0,FastChat.setPointer(!1,curFastChat.pointerMargin,curFastChat.prevPointer)):(curFastChat.pointerMargin=-Chat.scrollNode.scrollTop,FastChat.setPointer(!0,curFastChat.pointerMargin,curFastChat.prevPointer)),FastChat.checkShadow(),setStyle(Chat.ttNode,{top:-Chat.scrollNode.scrollTop}),cancelEvent(t)},togglePeer:function(t,e){return curFastChat.activeBox&&curFastChat.activeBox.options.peer==t?(curFastChat.activeBox.hide(),FastChat.setActive(!1),!1):FastChat.selectPeer(t,e)},selectPeer:function(t,e,i){if(checkEvent(e))return!0;var a=hasClass(Chat.wrap,"chat_active");curFastChat.friends&&curFastChat.friends[t+"_"];if(curFastChat.tabs&&curFastChat.tabs[t]){var s=curFastChat.tabs[t].box;s.minimized&&s.unminimize(!0),FastChat.activateTab(t),FastChat.movePointer(t,a)}else i||(i={}),i.fixed=!0,i.onPeerAdded=function(){FastChat.movePointer(t,a)},i.onHistoryLoaded=FastChat.readLastMsgs.pbind(t),FastChat.addPeer(t,!1,!0,i);return curFastChat.tabs[t]&&curFastChat.tabs[t].iman&&curFastChat.tabs[t].iman.unidle(),!1},closeTabIcon:function(t,e,i){curFastChat.activeBox&&curFastChat.activeBox.options.peer==t&&!i&&(curFastChat.activeBox.hide(),FastChat.setActive(!1));var a=ge("chat_tab_icon_"+t);addClass(a,"chat_tab_hiding"),delete Chat.tabs[t],curFastChat.tabs[t]&&curFastChat.tabs[t].box.options.fixed&&(curFastChat.tabs[t].iman.stop(),delete curFastChat.tabs[t]);var s=function(){re(a),a&&(a=!1,curFastChat.activeBox&&FastChat.movePointer(curFastChat.activeBox.options.peer,!0)),FastChat.checkChatHeight()};animate(a,{height:0,opacity:0},{duration:100,onComplete:s}),i||FastChat.stateChange({op:"closed",peer:t});var o=0;for(var r in Chat.tabs)o+=1;return o||removeClass(Chat.wrap,"chat_expand"),FastChat.itemsOut(),cancelEvent(e)},getPointerShift:function(t,e,i){var a=i-e,s=Chat.maxHeight+32;return t&&62>a?a-62:t&&a>s?a-s:0},setPointer:function(t,e,i){if(!curFastChat.activeBox)return!1;var a=FastChat.getPointerShift(t,e,i),s=geByClass1("fc_tab_pointer",curFastChat.activeBox.wrap);return setStyle(s,{marginTop:e+a}),a},movePointer:function(t,e){if(!curFastChat.activeBox)return!1;var i=geByClass1("fc_pointer_offset",curFastChat.activeBox.wrap);if(t){var a=ge("chat_tab_icon_"+t);if(!a)return!1;if(!Chat.fixH&&a.nextSibling)var s=getXY(a.nextSibling)[1]-50;else if(a.nextSibling||Chat.fixH)var s=getXY(a)[1]+Chat.scrollNode.scrollTop;else var s=getXY(ge("chat_tab_wrap"))[1]-50;var o=23+getXY(Chat.cont)[1]-s,r=-Chat.scrollNode.scrollTop}else var o=28,r=0;var n=FastChat.setPointer(t,r,o);if(e){if(curFastChat.prevPointer){var c=(curFastChat.prevPointer-r+n,FastChat.getPointerShift(!0,r+n,curFastChat.prevPointer));setStyle(i,{bottom:curFastChat.prevPointer-c+n})}animate(i,{bottom:o},{duration:100})}else setStyle(i,{bottom:o});curFastChat.prevPointer=o},setActive:function(t){curFastChat.activeBox=t,t&&FastChat.moveBoxesLeft(t.pos[1])},moveBoxesLeft:function(e,i){var e=e-8,a=!1,s=0;for(var o in curFastChat.tabs)if(t=curFastChat.tabs[o],i||(t.box.movedLeft=!1),t&&!t.box.options.fixed&&t.box.toBottom&&!t.box.movedLeft&&!t.box.noMove){var r=t.box.pos;r[1]+r[3]>=e&&r[1]>s&&(a=t,s=r[1])}if(a){var n=e-a.box.pos[3],c=a.box.pos[0];0>n&&(n=0),a.box.movedLeft=!0,animate(a.box.wrap,{left:n},200),a.box.pos=[c,n,a.box.pos[2],a.box.pos[3]];var l=getWndInner();FastChat.stateChange({op:"moved",peer:a.box.options.peer,y:c/l[0],x:n/l[1]}),n&&FastChat.moveBoxesLeft(n,!0)}else FastChat.moveLeftY=0},moveBoxAway:function(t,e){for(var i=e-t.pos[3]-20,a=t.pos[3],s=t.pos[0],o=(t.pos[2],!1);i>0&&!o;){o=!0;for(var r in curFastChat.tabs){var n=curFastChat.tabs[r].box.pos;n[0]+n[2]/2>s&&n[1]+n[3]>i&&n[1]<i+a&&(i-=n[3],o=!1)}}0>i&&(i=positive(Math.random()*e)),animate(t.wrap,{left:i},300);var c=getWndInner();FastChat.stateChange({op:"moved",peer:t.options.peer,y:s/c[0],x:i/c[1]})},pinTab:function(t,e,i){if(-1==t)var a=curFastChat.clistBox;else var a=curFastChat.tabs[t].box;a.options.fixed=!1,removeClass(a.wrap,"fc_fixed"),FastChat.hideChatCtrl(),FastChat.setActive(!1);var s=a.wrap.offsetTop,o=a.wrap.offsetLeft-10;setStyle(a.wrap,{left:a.wrap.offsetLeft,top:a.wrap.offsetTop,right:"auto",bottom:"auto"}),i||animate(a.wrap,{left:o,top:s},300),a.pos=[s,o,a.pos[2],a.pos[3]],a.toRight=!1,a.toBottom=!0,addClass(a.wrap,"fc_tobottom");var r=a.resizeableW.clientWidth-intval(getStyle(a.resizeableW,"paddingRight"))-intval(getStyle(a.resizeableW,"paddingLeft")),n=a.resizeableH.clientHeight-intval(getStyle(a.resizeableH,"paddingBottom"))-intval(getStyle(a.resizeableH,"paddingTop")),c=getWndInner();-1==t?FastChat.stateChange({op:"clist_toggled",val:1,y:a.toBottom?-1:a.pos[0]/c[0],x:a.toRight?-1:a.pos[1]/c[1]}):FastChat.stateChange({op:"unfixed",peer:t,y:a.toBottom?-1:a.pos[0]/c[0],x:a.toRight?-1:a.pos[1]/c[1],h:n/c[0],w:r/c[1]}),a.noMove=!0,FastChat.moveBoxesLeft(o),a.noMove=!1},addPeer:function(t,e,i,a){a||(a={});var s=curFastChat.friends&&curFastChat.friends[t+"_"],o=0;if(i?FastChat.stateChange({op:"added",peer:t,fixed:a.fixed}):curNotifier.idle_manager&&!curNotifier.idle_manager.is_idle&&e&&(i=!0),s){var r={name:s[0],photo:s[1],fname:s[2],hash:s[3],online:curFastChat.onlines[t],sex:s[4]};FastChat.addTabIcon(t,r,a.noAnim),FastChat.addBox(t,r,a),e?(curFastChat.tabs[t].auto=1,FastChat.imFeed(t,e)):(a&&a.nofocus||FastChat.activateTab(t),curFastChat.onlines[t]||FastChat.tabNotify(t,"unavail"),o|=2)}else o=3;o&&(i?(curFastChat.needPeers[t]=[o,e,!1,a],FastChat.getPeers()):(curFastChat.needPeers[t]=[o,e,setTimeout(FastChat.getPeers,irand(150,200)),a],FastChat.lcSend("needPeer",{id:t,mask:o})))},getPeers:function(){var t=[],e={};each(curFastChat.needPeers,function(i){t.push(i),t.push(this[0]),clearTimeout(this[2]),e[i]=this[0]}),t.length&&(FastChat.lcSend("fetchingPeers",e),ajax.post("al_im.php",{act:"a_get_fc_peers",peers:t.join(",")},{onDone:function(t){FastChat.gotPeers(t),FastChat.lcSend("gotPeers",t)}}))},gotPeers:function(t){each(curFastChat.needPeers,function(e){if(t[e]){t[e]<2e9&&(curFastChat.friends[e+"_"]=[t[e].name,t[e].photo,t[e].fname,t[e].hash,intval(t[e].sex)]);var i=this[1],a=this[3];2&this[0]&&void 0===t[e].history||(clearTimeout(this[2]),delete curFastChat.needPeers[e]),curFastChat.tabs[e]?FastChat.gotHistory(e,t[e].history):a.fixedLoad?FastChat.addTabIcon(e,t[e]):(FastChat.addTabIcon(e,t[e]),FastChat.addBox(e,t[e],a),i?(curFastChat.tabs[e].auto=1,FastChat.imFeed(e,i)):(2&this[0]&&FastChat.gotHistory(e,t[e].history),a&&a.nofocus||FastChat.activateTab(e))),a.onHistoryLoaded&&a.onHistoryLoaded()}})},gotHistory:function(t,e){if(isArray(e)&&e.length&&e[0]){var i=curFastChat.tabs[t],a=e[0],s=e[1];i.offset=e[2],extend(i.msgs,s),each(s,function(t,e){!e[0]&&e[1]&&i.unread++}),val(i.log,a),i.logWrap.scrollTop=i.logWrap.scrollHeight,setTimeout(function(){i.logWrap.scrollTop=i.logWrap.scrollHeight,i.scroll&&i.scroll.update(!1,!0)},10)}},decHashCb:function(t){!function(t){curFastChat.decodedHashes[t]=function(t){var e=ge?"":"___";for(____=0;____<t.length;++____)e+=t.charAt(t.length-____-1);return geByClass?e:"___"}(t.substr(t.length-5)+t.substr(4,t.length-12))}(t)},decodehash:function(t){return curFastChat.decodedHashes||(curFastChat.decodedHashes={}),curFastChat.decodedHashes[t]||FastChat.decHashCb(t),curFastChat.decodedHashes[t]},onMyTyping:function(t){t=intval(t);var e=curFastChat.tabs[t];if(!(-2e9>=t)&&e){var i=vkNow();curFastChat.myTypingEvents[t]&&i-curFastChat.myTypingEvents[t]<5e3||(curFastChat.myTypingEvents[t]=i,ajax.post("al_im.php",{act:"a_typing",peer:t,hash:e.sendhash,from:"fc"}))}},updateTypings:function(){each(curFastChat.tabs||{},function(t,e){FastChat.updateTyping(t)})},updateTyping:function(t,e){var i,a=curFastChat.tabs[t],s=[],o=curFastChat.typingEvents[t],r=vkNow(),n=ge("fc_tab_typing"+t),c=geByClass1("_fc_tab_typing_name",n);if(2e9>t)o&&6e3>r-o&&(s.push(a.fname||a.name||""),i=a.sex);else{var l=a.data.members;each(o||{},function(t,e){e&&6e3>r-e&&l[t]&&l[t].first_name&&(s.push(l[t].first_name||""),i=l[t].sex)})}if(!s.length)return e?setStyle(n,"opacity",0):fadeTo(n,1e3,0);if(1==s.length)val(c,langSex(i,lang.mail_im_typing).replace("{user}",s[0]));else{var u=s.pop();val(c,getLang("mail_im_multi_typing").replace("{users}",s.join(", ")).replace("{last_user}",u))}return e?setStyle(n,"opacity",1):fadeTo(n,200,1)},readLastMsgs:function(t){var e=curFastChat.tabs[t];if(t&&e){if(!e.markingRead&&e.unread){var i=[];for(var a in e.msgs)!e.msgs[a][0]&&e.msgs[a][1]&&i.push(a);FastChat.markRead(t,i)}FastChat.changePeerCounter(t,0,0)}},markRead:function(t,e){if(e.length){var i=curFastChat.tabs[t];i.markingRead=!0,ajax.post("al_im.php",{act:"a_mark_read",peer:t,ids:e,hash:i.sendhash},{onDone:function(a,s){i.markingRead=!1;for(var o in e){var r=e[o],n=ge("fc_msg"+r),c=n&&n.parentNode;n&&(i.msgs[r]&&i.msgs[r][1]&&(i.msgs[r][1]=0,i.msgs[r][0]||i.unread--),removeClass(n,"fc_msg_unread"),hasClass(c.parentNode,"fc_msgs_unread")&&each(c.childNodes,function(){return hasClass(this,"fc_msg_unread")?void 0:(removeClass(c.parentNode,"fc_msgs_unread"),!1)}))}i.unread>0&&(i.unread=0,each(i.msgs,function(){!this[0]&&this[1]&&i.unread++})),FastChat.updateUnreadTab(t)},onFail:function(){i.markingRead=!1}})}},mkMsg:function(t){var e=clean(t).replace(/\n/g,"<br>"),i=!1;return e=e.replace(/([a-zA-Z\-_\.0-9]+@[a-zA-Z\-_0-9]+\.[a-zA-Z\-_\.0-9]+[a-zA-Z\-_0-9]+)/g,function(t){return'<a href="/write?email='+t+'" target="_blank">'+t+"</a>"}),e=e.replace(/(^|[^A-Za-z0-9ï¿½-ï¿½ï¿½-ï¿½ï¿½ï¿½\-\_])(https?:\/\/)?((?:[A-Za-z\$0-9ï¿½-ï¿½ï¿½-ï¿½ï¿½ï¿½](?:[A-Za-z\$0-9\-\_ï¿½-ï¿½ï¿½-ï¿½ï¿½ï¿½]*[A-Za-z\$0-9ï¿½-ï¿½ï¿½-ï¿½ï¿½ï¿½])?\.){1,5}[A-Za-z\$ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\-\d]{2,22}(?::\d{2,5})?)((?:\/(?:(?:\&amp;|\&#33;|,[_%]|[A-Za-z0-9ï¿½-ï¿½ï¿½-ï¿½ï¿½ï¿½\-\_#%?+\/\$.~=;:]+|\[[A-Za-z0-9ï¿½-ï¿½ï¿½-ï¿½ï¿½ï¿½\-\_#%?+\/\$.,~=;:]*\]|\([A-Za-z0-9ï¿½-ï¿½ï¿½-ï¿½ï¿½ï¿½\-\_#%?+\/\$.,~=;:]*\))*(?:,[_%]|[A-Za-z0-9ï¿½-ï¿½ï¿½-ï¿½ï¿½ï¿½\-\_#%?+\/\$.~=;:]*[A-Za-z0-9ï¿½-ï¿½ï¿½-ï¿½ï¿½ï¿½\_#%?+\/\$~=]|\[[A-Za-z0-9ï¿½-ï¿½ï¿½-ï¿½ï¿½ï¿½\-\_#%?+\/\$.,~=;:]*\]|\([A-Za-z0-9ï¿½-ï¿½ï¿½-ï¿½ï¿½ï¿½\-\_#%?+\/\$.,~=;:]*\)))?)?)/gi,function(){var t=Array.prototype.slice.apply(arguments),e=t[1]||"",a=t[2]||"http://",s=t[3]||"",o=s+(t[4]||""),r=(t[2]||"")+t[3]+t[4];if(-1==s.indexOf(".")||-1!=s.indexOf(".."))return t[0];var n=s.split(".").pop();if(n.length>7||-1==indexOf("info,name,academy,aero,arpa,coop,media,museum,mobi,travel,xxx,asia,biz,com,net,org,gov,mil,edu,int,tel,ac,ad,ae,af,ag,ai,al,am,an,ao,aq,ar,as,at,au,aw,ax,az,ba,bb,bd,be,bf,bg,bh,bi,bj,bm,bn,bo,br,bs,bt,bv,bw,by,bz,ca,cc,cd,cf,cg,ch,ci,ck,cl,cm,cn,co,cr,cu,cv,cx,cy,cz,de,dj,dk,dm,do,dz,ec,ee,eg,eh,er,es,et,eu,fi,fj,fk,fm,fo,fr,ga,gd,ge,gf,gg,gh,gi,gl,gm,gn,gp,gq,gr,gs,gt,gu,gw,gy,hk,hm,hn,hr,ht,hu,id,ie,il,im,in,io,iq,ir,is,it,je,jm,jo,jp,ke,kg,kh,ki,km,kn,kp,kr,kw,ky,kz,la,lb,lc,li,lk,lr,ls,lt,lu,lv,ly,ma,mc,md,me,mg,mh,mk,ml,mm,mn,mo,mp,mq,mr,ms,mt,mu,mv,mw,mx,my,mz,na,nc,ne,nf,ng,ni,nl,no,np,nr,nu,nz,om,pa,pe,pf,pg,ph,pk,pl,pm,pn,pr,ps,pt,pw,py,qa,re,ro,ru,rs,rw,sa,sb,sc,sd,se,sg,sh,si,sj,sk,sl,sm,sn,so,sr,ss,st,su,sv,sx,sy,sz,tc,td,tf,tg,th,tj,tk,tl,tm,tn,to,tp,tr,tt,tv,tw,tz,ua,ug,uk,um,us,uy,uz,va,vc,ve,vg,vi,vn,vu,wf,ws,ye,yt,yu,za,zm,zw,ï¿½ï¿½,ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½,cat,pro,local".split(","),n))return t[0];if(-1!=t[0].indexOf("@"))return t[0];try{r=decodeURIComponent(r)}catch(c){}if(r.length>55&&(r=r.substr(0,53)+".."),r=clean(r).replace(/&amp;/g,"&"),!i&&s.match(/^([a-zA-Z0-9\.\_\-]+\.)?(vkontakte\.ru|vk\.com|vkadre\.ru|vshtate\.ru|userapi\.com|vk\.me)$/)){o=replaceEntities(o).replace(/([^a-zA-Z0-9#%;_\-.\/?&=\[\]])/g,encodeURIComponent);var l,u=o,d=o.indexOf("#/"),h="";return d>=0?u=o.substr(d+1):(d=o.indexOf("#!"),d>=0&&(u="/"+o.substr(d+2).replace(/^\//,""))),l=u.match(/^(?:https?:\/\/)?(?:vk\.com|vkontakte\.ru)?\/([a-zA-Z0-9\._]+)\??$/),l&&l[1].length<32&&(h=' mention_id="'+l[1]+'" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'),e+'<a href="'+(a+o).replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;")+'" target="_blank"'+h+">"+r+"</a>"}return e+'<a href="away.php?utf=1&to='+encodeURIComponent(a+replaceEntities(o))+'" target="_blank" onclick="return goAway(\''+clean(a+o)+"', {}, event);\">"+r+"</a>"}),e=Emoji.emojiToHTML(e,1)},getEditCont:function(t){return stManager.add(["emoji.js"]),'<div class="emoji_cont _emoji_field_wrap">'+Emoji.tplSmile(getLang("mail_emoji_hint"))+'<div class="fc_editable dark" tabindex="0" contenteditable="true" placeholder="'+getLang("mail_chat_placeholder")+'"></div></div>'},getVal:function(t){return Emoji?Emoji.editableVal(t):""},onTxtResize:function(t){var e=curFastChat.tabs[t],i=geByClass1("fc_tab_txt",e.wrap),a=getSize(i)[1];if(a>40){var s=positive(a-40),o=intval(getSize(e.box.resizeableH)[1]);o+e.hDiff-s<40&&(s=o+e.hDiff-40),setStyle(e.box.resizeableH,{height:o+(e.hDiff||0)-s}),e.hDiff=s,FastChat.fixResized(e,e.wrap.clientWidth,!0)}else if(e.hDiff){var o=intval(getSize(e.box.resizeableH)[1]);setStyle(e.box.resizeableH,{height:o+e.hDiff}),e.hDiff=0,FastChat.fixResized(e,e.wrap.clientWidth,!0)}},initTab:function(t,e,i){var a=geByClass1("fc_editable",i),s=curFastChat.tabs[t]={name:e.name,fname:e.fname,photo:e.photo,link:e.alink||"/id"+t,hash:e.hash,sendhash:FastChat.decodehash(e.hash),sex:e.sex||0,data:e.data||{},online:e.online,msgs:{},msgscount:0,unread:0,sent:0,sentmsgs:[],box:!1,wrap:i,editable:1,txt:a,txtWrap:a.parentNode.parentNode,logWrap:geByClass1("fc_tab_log",i),log:geByClass1("fc_tab_log_msgs",i),notify:geByClass1("fc_tab_notify_wrap",i),title:geByClass1("fc_tab_title",i)},o=30;if(s.addMediaBtn=geByClass1("fc_tab_attach",i),s.editable)cur.t=s,s.emojiId=Emoji.init(s.txt,{controlsCont:geByClass1("fc_tab_txt_wrap",i),ttDiff:-46,ttShift:0,rPointer:!0,global:!0,noRce:!0,peer:t,isChat:!0,noCtrlSend:!0,onSend:FastChat.send.pbind(t),checkEditable:FastChat.checkEditable,onResize:function(){FastChat.onTxtResize(t)},addMediaBtn:s.addMediaBtn,onShow:function(){cssAnim(s.scroll.scrollbar,{opacity:0},{duration:400}),enterWorks=!1},onHide:function(){cssAnim(s.scroll.scrollbar,{opacity:1},{duration:400}),setTimeout(function(){enterWorks=!0},0)},onEsc:function(t){return s.box.hide(),cancelEvent(t)},onStickerSend:function(e){--s.sent;FastChat.send(t,e)}});else{var r=15;autosizeSetup(s.txt,{minHeight:r,maxHeight:42}),s.txt.autosize.options.onResize=function(t){if(!s.box.minimized){var e=42==t?42:r;e!=t&&setStyle(s.txt,"height",e),e!=o&&(setStyle(s.logWrap,"height",s.logWrap.clientHeight-e+o),o=e,s.scroll&&s.scroll.update(!1,!0))}}}return s.imPeerMedias={},s.imSortedMedias={},s.previewEl=geByClass1("fc_tab_preview",i),stManager.add(["page.js","page.css","ui_media_selector.js","ui_media_selector.css"],function(){s.imMedia=new MediaSelector(s.addMediaBtn,s.previewEl,[["photo",getLang("profile_wall_photo")],["video",getLang("profile_wall_video")],["audio",getLang("profile_wall_audio")],["doc",getLang("profile_wall_doc")],["map",getLang("profile_wall_map")]],{limit:10,hideAfterCount:0,maxShown:0,mail:1,tooltip:1,topOffset:0,forceUp:1,global:1,toId:vk.id}),s.imMedia.onChange=setTimeout.pbind(function(){curFastChat.sendOnUpload&&(FastChat.send(curFastChat.sendOnUpload),curFastChat.sendOnUpload=void 0),FastChat.onTxtResize(t)},0)}),s},addBox:function(t,e,i){if(void 0===curFastChat.tabs[t]){var a=FastChat.getEditCont(Emoji.last);i=i||{},curFastChat.tabs[t]={};var s=se(rs(FastChat.tplBox,{id:t,name:e.name,myphoto:Notifier.fixPhoto(curFastChat.me.photo,!0),cont:a}));i.fixed&&curFastChat.activeBox&&curFastChat.activeBox.hide(0,!1,{noState:!0});var o=FastChat.initTab(t,e,s);if(wndInner=getWndInner(),opts={id:"fc_peer"+t,marginFixedToLayer:!0,peer:t,movable:geByClass1("fc_tab_head",s),closer:geByClass1("fc_tab_close_wrap",s,"a"),resizeableH:o.logWrap,startHeight:250,startWidth:270,fixed:i.fixed,minH:150,minW:270,nofocus:!0,onFocus:function(e){o.auto&&(FastChat.stateChange({op:"added",peer:t}),delete o.auto),FastChat.restoreDraft(t),o.editable?Emoji.editableFocus(o.txt,!1,!0):elfocus(o.txt),o.wrap.clientWidth&&setStyle(o.title,{maxWidth:o.wrap.clientWidth-71}),o.editable||setStyle(o.txt.autosize.helper,{width:getStyle(o.txt,"width",!1)}),o.scroll&&o.scroll.update(!1,!0),setTimeout(elfocus.pbind(o.txt),10)},onHide:function(){i.fixed&&FastChat.hideChatCtrl(),curFastChat.activeBox&&t==curFastChat.activeBox.options.peer&&FastChat.setActive(!1)},onClose:function(e){this.onHide(),i&&i.beforeClose&&i.beforeClose();var a=curFastChat.tabs,s=a[t].posSeq;if(delete a[t],curNotifier.isIdle||FastChat.stateChange({op:"hidden",peer:t}),s){var o,r,n,c,l,u={},d=[];for(each(a,function(){this.posSeq>s&&(u[this.posSeq]=this,d.push(this.posSeq))}),d.unshift(s),d.sort(),l=!browser.msie&&d.length<10,o=1;o<d.length;o++)r=d[o],n=u[r].box,c=o>1?u[d[o-1]].box.pos:e,l?animate(n.wrap,{left:c[1]},100,function(t){t._update_pos()}.pbind(n)):setStyle(n.wrap,{left:c[1]});if(!l)for(o=1;o<d.length;o++)n=u[d[o]].box,n._update_pos()}},onMinimize:function(e){FastChat.stateChange({op:"minimized",peer:t,val:e}),FastChat.fixResized(o,o.wrap.clientWidth,!0),e||(o.txt.blur(),FastChat.restoreDraft(t))},onResizeEnd:function(e,i){var a=getWndInner(),s=o.box.pos;o.scroll&&o.scroll.show(),FastChat.fixResized(o,i,!0),FastChat.stateChange({op:"resized",peer:t,h:e/a[0],w:i/a[1],y:o.box.toBottom?-1:s[0]/a[0],x:o.box.toRight?-1:s[1]/a[1]})},onResize:function(t,e){FastChat.fixResized(o,e);var i=geByClass1("fc_tab_title",o.box.content);setStyle(i,{width:e-78})},onResizeStart:function(){delete o.posSeq,o.scroll&&o.scroll.hide(),val(o.notify,""),clearTimeout(o.hideNotifyTO)},onDragEnd:function(e,i){delete o.posSeq,FastChat.stateChange({op:"moved",peer:t,y:e,x:i})}},i&&extend(opts,i),void 0===opts.startLeft&&void 0===opts.startRight){var r=[],n=wndInner[0]-350,c=curFastChat.clistBox.pos,l=!1;if(window.Call&&(Call.box||Call.invitation)){var u=Call.calcBoxPos();r.push([u.x,u.x+u.w]),l=!0}c[0]+c[2]>n&&(curFastChat.clistBox.visible||!l)&&r.push([c[1],c[1]+c[3]]),each(curFastChat.tabs,function(e){(c=this.box&&this.box.pos)&&e!=t&&c[0]+c[2]>n&&r.push([c[1],c[1]+c[3]])});var d,h,f,p=lastWindowWidth-262-sbWidth(),_=0,v=!1,m=!1,g=_>p?1:-1;for(d=p;g*_>g*d;d+=135*g){for(h=0,f=0;f<r.length;f++)d>r[f][0]-260&&d<r[f][1]&&h++,d>r[f][0]-10&&d<r[f][0]+10&&(h+=1.1);(v===!1||m>h)&&(v=d,m=h)}l&&m&&(v=p),extend(opts,{startBottom:0,startLeft:v})}var C,b=!0;for(C in i||{})if("nofocus"!=C){b=!1;break}b&&(o.posSeq=++curFastChat.posSeq),opts.fixed&&(opts.startHeight=curFastChat.clistH,opts.startWidth=curFastChat.clistW,opts.onShow=FastChat.showChatCtrl),o.box=new RBox(s,opts),o.iman=new IdleManager({id:"tab"+t,element:o.box.content,onUnIdleCb:function(){FastChat.readLastMsgs(t)},parentManager:curNotifier.idle_manager,idleTimeout:1e4}),curFastChat.tabs[t].iman.start(),opts.fixed&&FastChat.setActive(o.box),o.scroll=new Scrollbar(o.logWrap,{prefix:"fc_",nomargin:!0,nokeys:!0,global:!0,right:vk.rtl?"auto":1,left:vk.rtl?1:"auto",onScroll:FastChat.onScroll.pbind(o)}),opts.minimized||!i||void 0===i.startLeft&&void 0===i.startTop&&void 0===i.startWidth&&void 0===i.startHeight||o.box._wnd_resize(wndInner[0],wndInner[1],!0);o.wrap.clientWidth&&setStyle(o.title,{maxWidth:o.wrap.clientWidth-71}),addEvent(o.txt,"keydown focus mousedown keyup",function(e){if("mousedown"==e.type)return void(curRBox.active==o.box.id&&((e.originalEvent||e).cancelBubble=!0));if("keydown"==e.type&&e.ctrlKey&&e.keyCode==KEY.RETURN){var i=this.value;if("number"==typeof this.selectionStart&&"number"==typeof this.selectionEnd){var a=this.selectionStart;this.value=i.slice(0,a)+"\n"+i.slice(this.selectionEnd),this.selectionStart=this.selectionEnd=a+1}else if(document.selection&&document.selection.createRange){
-this.focus(e);var s=document.selection.createRange();s.text="\r\n",s.collapse(!1),browser.opera&&(s.moveEnd("character",0),s.moveStart("character",0)),s.select()}return o.editable?FastChat.checkEditable(o.emojiId,o.txt):(o.txt.autosize.update(),setTimeout(function(){o.txt.autosize.update()},0)),!1}if("focus"==e.type)curFastChat.peer=t;else if("keyup"==e.type){var r=o.lastVal||"",n=FastChat.getVal(this);(n.length!=r.length||n!=r)&&(n&&FastChat.onMyTyping(t),o.lastVal=n),clearTimeout(o.saveDraftTO),o.saveDraftTO=setTimeout(FastChat.saveDraft.pbind(t),n.length?300:0),FastChat.checkEditable(o.emojiId,o.txt)}}),FastChat.restoreDraft(t),opts.onPeerAdded&&opts.onPeerAdded()}},onScroll:function(t){var e=t.scroll.obj.scrollTop,i=geByClass1("_fc_msgs_more",t.logWrap);200>e&&isVisible(i)&&i.click()},loadMore:function(t,e){var i=curFastChat.tabs[t];return offset=i.offset,i.moreLoading?!1:(i.moreLoading=!0,void ajax.post("al_im.php",{act:"a_history",peer:t,offset:offset,from:"fc"},{onDone:function(t){t[3]||hide(e);var a=e.parentNode,s=a.clientHeight;a.insertBefore(cf(t[0]),e.nextSibling);var o=a.clientHeight-s;o&&(i.logWrap.scrollTop+=o),i.scroll.update(),i.offset=t[2],i.moreLoading=!1,FastChat.onScroll(i)},onFail:function(){i.moreLoading=!1},showProgress:lockButton.pbind(e),hideProgress:unlockButton.pbind(e)}))},sendOnResponse:function(t,e,i){if(t.version&&intval(t.version)>curFastChat.version)return void FastChat.updateVersion(t.version);var a=ge("fc_msg"+e),s=t.msg_id,o=indexOf(e,i.newmsgs);if(a){if(t.media){var r={sticker:intval(t.sticker)};FastChat.lcSend("gotMedia",{msgId:e,peer:i.box.options.peer,text:t.media,msgOpts:r}),FastChat.gotMsgMedia(i.box.options.peer,e,t.media,r)}++i.msgscount,-1!=o&&i.newmsgs.splice(o,1),a.id="fc_msg"+s,i.msgs[s]=[1,1]}},checkEditable:function(t,e){Emoji.checkEditable(t,e,{height:52})},fixResized:function(t,e,i){t&&(t.logWrap.scrollTop=t.logWrap.scrollHeight,e>0&&setStyle(t.title,{maxWidth:e-71}),i&&(t.editable||setStyle(t.txt.autosize.helper,{width:getStyle(t.txt,"width",!1)}),t.scroll&&t.scroll.update(!1,!0)))},activateTab:function(t){var e=curFastChat.tabs[t].box;curFastChat.activeBox&&curFastChat.activeBox!=e&&curFastChat.activeBox.hide(0,!1,{noState:!0}),e.show(),e.options.fixed&&FastChat.setActive(e)},updateUnreadTab:function(t){var e=curFastChat.tabs[t];e&&(val(e.title,e.name+(e.unread?' <span class="fc_tab_count">('+e.unread+")</span>":"")),val("fc_contact_unread"+t,e.unread?" <b>+"+e.unread+"</b>":""),FastChat.changePeerCounter(t,!1,e.unread))},blinkTab:function(t){var e=curFastChat.tabs[t];if(!e.blinking&&curFastChat.peer!=t){e.blinking=!0,clearTimeout(e.blinkingTO);var i=e.box.wrap,a=i.className,s=Math.min(BASIC_CHAT_ZINDEX,intval(getStyle(i,"zIndex")));setStyle(i,{zIndex:BASIC_CHAT_ZINDEX}),removeClass(i,"rb_inactive"),e.blinkingTO=setTimeout(function(){delete e.blinking,delete e.blinkingTO,getStyle(i,"zIndex")==BASIC_CHAT_ZINDEX&&(setStyle(i,{zIndex:s}),i.className=a)},2e3)}},createProgress:function(t,e,i){var a=ce("span",{innerHTML:rs(vk.pr_tpl,{id:"",cls:""}),className:"fc_msg_progress",id:"fc_msg_progress"+e});return t.insertBefore(a,i),a},removeProgress:function(t){re("fc_msg_progress"+t)},send:function(t,e){var i=curFastChat.tabs[t],a=trim(i.editable?Emoji.editableVal(i.txt):val(i.txt));if(e){var s=[["sticker",e]];a=""}else var s=i.imMedia?i.imMedia.getMedias():[];var o=ge("fc_tab_typing"+t),r=geByClass1("page_progress_preview",i.wrap);if(r&&r.childNodes.length>0){curFastChat.sendOnUpload=t;var n=geByClass("fc_tab_log",i.wrap)[0];return FastChat.createProgress(n,t,n.lastChild),void(o.style.visibility="hidden")}if(curFastChat.sendOnUpload=!1,FastChat.removeProgress(t),o.style.visibility="visible",!a&&!s.length)return void(i.editable?Emoji.editableFocus(i.txt,!1,!0):elfocus(i.txt));for(var c,l=--i.sent,u={act:"a_send",to:t,hash:i.sendhash,msg:a,from:"fc",media:[]},d=0,h=s.length;h>d;++d)(c=s[d])&&u.media.push(c[0]+":"+c[1]);u.media=u.media.join(","),i.sending=!0,Emoji.ttHide(i.emojiId),ajax.post("al_im.php",u,{onDone:function(e){clearTimeout(i.saveDraftTO),FastChat.saveDraft(t),FastChat.sendOnResponse(e,l,i)},onFail:function(e){FastChat.error(t,e||getLang("global_unknown_error")),elfocus(i.txt),val(i.txt,a),i.editable?FastChat.checkEditable(i.emojiId,i.txt):i.txt.autosize.update();var s=ge("fc_msg"+l);return s?(s.appendChild(ce("span",{className:"fc_msg_error",innerHTML:getLang("global_error")})),FastChat.scroll(t),!0):void 0},showProgress:function(){i.sending=!0,i.sendProgressTO=setTimeout(function(){var t=ge("fc_msg"+l);t&&FastChat.createProgress(t,l,t.firstChild)},2e3)},hideProgress:function(){i.sending=!1,clearTimeout(i.sendProgressTO),FastChat.removeProgress(l)}}),re("fc_error"+t),i.sentmsgs.push(l),e||(val(i.txt,""),i.imMedia&&i.imMedia.unchooseMedia());var f=u.media?1:0;e&&(f+=8),FastChat.addMsg(FastChat.prepareMsgData([t,l,3,FastChat.mkMsg(a),f])),delete curFastChat.myTypingEvents[t],i.editable?FastChat.checkEditable(i.emojiId,i.txt):i.txt.autosize.update(!1,!0),elfocus(i.txt),FastChat.scroll(t)},saveDraft:function(t){var e=curFastChat.tabs[t],i=(e||{}).txt;if(i&&e){var a=Emoji.editableVal(i),s={txt:trim(a)||"",medias:[]};s.txt.length||(s=!1),s?ls.set("im_draft"+vk.id+"_"+t,s):ls.remove("im_draft"+vk.id+"_"+t)}},restoreDraft:function(t){var e=curFastChat.tabs[t],i=e.txt,a=ls.get("im_draft"+vk.id+"_"+t);return!i||!e||!a||val(i).length>a.txt.length?!1:(a.txt=clean(a.txt),e.editable?i.innerHTML=Emoji.emojiToHTML(a.txt,1):val(i,a.txt||""),FastChat.checkEditable(e.emojiId,i),setTimeout(function(){i.scrollTop=i.scrollHeight},10),!0)},error:function(t,e){t=t||curFastChat.peer;var i=curFastChat.tabs[t];re("fc_error"+t),i.log.appendChild(ce("div",{id:"fc_error"+t,className:"fc_msgs_error",innerHTML:e||getLang("global_error")})),FastChat.scroll(t)},scroll:function(t){t=t||curFastChat.peer;var e=curFastChat.tabs[t];e&&(e.logWrap.scrollTop=e.logWrap.scrollHeight,e.scroll&&e.scroll.update(!1,!0))},mkdate:function(t){var e=new Date(1e3*t),i=new Date,a=function(t){return(t+"").length<2?"0"+t:t};if(e.getDay()==i.getDay())return a(e.getHours())+":"+a(e.getMinutes());var s=a(e.getDate())+"."+a(e.getMonth()+1);return e.getFullYear()!=i.getFullYear()&&(s+="."+(e.getFullYear()+"").substr(2)),s},prepareMsgData:function(t){var e,i=t[0],a=intval(t[2]),s=2&a?curFastChat.me.id:i>2e9?t[5]:i,o=intval(vkNow()/1e3),r={id:t[1],peer:i,from_id:s,text:t[3],out:2&a?!0:!1,unread:1&a?!0:!1,date:o,date_str:FastChat.mkdate(o)},n=t[4],c="";if(n&&(1&n&&(c+=rs(vk.pr_tpl,{id:"",cls:""}),t[1]>0&&setTimeout(FastChat.needMsgMedia.pbind(i,t[1]),5)),6&n&&(c+=rs(curFastChat.tpl.msg_fwd,{msg_id:t[1],peer_nice:FastChat.nicePeer(i),label:getLang(2&n?"mail_im_fwd_msg":"mail_im_fwd_msgs")})),8&n&&(r.sticker=!0),c&&(r.text+='<div class="fc_msg_attachments" id="fc_msg_attachments'+r.id+'">'+c+"</div>")),e=2&a?curFastChat.me:i>2e9?curFastChat.tabs[i].data.members[s]:curFastChat.tabs[i],extend(r,{from_id:s,link:e.link,photo:e.photo,name:e.name,fname:i>2e9?e.fname||e.first_name:""}),t[5]){t[5].split(",")}return r},needMsgMedia:function(t,e){0>=e||(FastChat.lcSend("needMedia",{msgId:e}),curFastChat.needMedia[e]=[t,setTimeout(FastChat.loadMsgMedia.pbind(t,e),curNotifier.is_server?0:irand(150,250))])},loadMsgMedia:function(t,e){0>=e||void 0!==curFastChat.gotMedia[e]&&0!==curFastChat.gotMedia[e]||(FastChat.lcSend("fetchingMedia",{msgId:e}),curFastChat.gotMedia[e]=0,ajax.post("al_im.php",{act:"a_get_media",id:e,from:"fc"},{onDone:function(i,a,s){FastChat.lcSend("gotMedia",{msgId:e,peer:t,text:i,msgOpts:s}),FastChat.gotMsgMedia(t,e,i,s)}}))},gotMsgMedia:function(t,e,i,a){if(val("fc_msg_attachments"+e,i),a&&a.sticker){var s=ge("fc_msg"+e),o=s.parentNode;addClass(o.parentNode,"fc_msg_sticker")}FastChat.scroll(t),curFastChat.gotMedia[e]=[t,i,a],a.stickers&&window.Emoji&&Emoji.updateTabs(a.stickers),void 0!==curFastChat.needMedia[e]&&(clearTimeout(curFastChat.needMedia[e][1]),delete curFastChat.needMedia[e])},addMsg:function(t){var e=t.peer,i=curFastChat.tabs[e],a=i.log,s=a.lastChild;if(s&&"fc_msgs_error"==s.className&&(s=s.previousSibling),!i||t.out||!i.box.visible||i.iman.is_idle||curNotifier.idle_manager.is_idle||(t.unread=!1,FastChat.markRead(t.peer,[t.id])),!s||!hasClass(s,"fc_msgs_wrap")||!hasClass(s,"fc_msgs_unread")&&t.unread===!0||s.getAttribute("data-from")!=t.from_id||t.date-intval(s.getAttribute("data-date"))>=300||t.sticker||hasClass(s,"fc_msg_sticker")){re("fc_log_empty"+e);var o=(t.out?"fc_msgs_out ":"")+(t.unread?"fc_msgs_unread":"");t.sticker&&(o+=" fc_msg_sticker");var r=t.out?curFastChat.tpl.msgs_out:curFastChat.tpl.msgs;s=se(rs(r,{from_id:t.from_id,link:t.link,photo:Notifier.fixPhoto(t.photo),name:t.from_id==curFastChat.me.id?getLang("mail_im_thats_u"):stripHTML(t.name),classname:o,date:t.date,date_str:t.date_str,msgs:""})),a.appendChild(s)}else t.unread||removeClass(s,"fc_msgs_unread");var n=geByClass1("fc_msgs",s,"div"),c=geByClass1("fc_msgs_date",n),l=geByClass1("fc_msg_last",n);l&&removeClass(l,"fc_msg_last");var u=se(rs(curFastChat.tpl.msg,{msg_id:t.id,classname:(t.unread?"fc_msg_unread":"")+" fc_msg_last",text:t.text}));domFC(n)&&"BR"==domFC(n).tagName&&re(domFC(n)),c?n.insertBefore(u,c):n.appendChild(u),vk.id!=t.from_id&&(delete curFastChat.typingEvents[e],FastChat.updateTyping(e,1)),i.scroll&&i.scroll.update()},showMsgFwd:function(t){return!showBox("al_im.php",{act:"a_show_forward_box",id:vk.id+"_"+t,from:"mail"},{stat:["im.css"],dark:1})},closeTab:function(t){var e=curFastChat.tabs[t].box;e.close()},openSnapsterLayer:function(t){return checkEvent(t)?void 0:(showBox("/snapster.php",{act:"show"},{containerClass:"chronicle_layer",dark:1}),cancelEvent(t))},nicePeer:function(t){return t>2e9?"c"+intval(t-2e9):-2e9>t?"e"+intval(-t-2e9):t},tplBox:'<div class="fc_tab_wrap"><div class="fc_tab_head clear_fix"><a class="fc_tab_close_wrap"><div class="chats_sp fc_tab_close"></div></a><a class="fc_tab_max_wrap" href="/im?sel=%id%" onmousedown="event.cancelBubble = true;" onclick="return nav.go(this, event);"><div class="chats_sp fc_tab_max"></div></a><a class="fc_tab_pin_wrap" onmousedown="event.cancelBubble = true;" onclick="return FastChat.pinTab(%id%, event);"><div class="chats_sp fc_tab_pin"></div></a><div class="fc_tab_title noselect">%name%</div></div><div class="fc_tab"><div class="fc_tab_log_wrap"><div class="fc_tab_notify_wrap"></div><div class="fc_tab_log"><div class="fc_tab_log_msgs"></div><div class="fc_tab_typing" id="fc_tab_typing%id%"><div class="fc_tab_typing_icon"></div><div class="fc_tab_typing_name _fc_tab_typing_name"></div></div></div></div><div class="fc_tab_txt_wrap"><a class="fc_tab_attach"></a><div class="fc_tab_txt">%cont%<div class="fc_tab_preview"></div></div></div></div><div class="fc_pointer_offset"><div class="fc_tab_pointer fc_tab_pointer_peer"></div></div></div>',tplTab:'<div class="fc_tab_log_wrap"><div class="fc_tab_notify_wrap"></div><div class="fc_tab_log"><div class="fc_tab_log_msgs"></div><div class="fc_tab_typing" id="fc_tab_typing%id%"><div class="fc_tab_typing_icon"></div><div class="fc_tab_typing_name _fc_tab_typing_name"></div></div></div></div><div class="fc_tab_txt_wrap"><div class="fc_tab_txt">%cont%</div></div>'};var DesktopNotifications={supported:function(){return!(!window.webkitNotifications&&!window.Notification)},checkPermission:function(){return window.webkitNotifications?webkitNotifications.checkPermission():"granted"==Notification.permission?0:1},requestPermission:function(t){(window.webkitNotifications||window.Notification).requestPermission(t)},createNotification:function(t,e,i){var a;return window.webkitNotifications?a=webkitNotifications.createNotification(t,e,i):(a=new Notification(e,{icon:t,body:i}),a.cancel=function(){this.close()},a.show=function(){}),vk.id%100<10&&statlogsValueEvent("browser_notification",0),a}},TopNotifier={tnLink:"top_notify_btn",tnCount:"top_notify_count",_qParams:{section:"notifications",_tb:1},loaded:!1,onLoad:function(rows,js){val("top_notify_cont",rows),eval("(function(){"+js+";})()"),TopNotifier.cleanCount(),TopNotifier.refresh()},preload:function(){this.shown()||vk.isBanned||ajax.post("/al_feed.php",extend(this._qParams,{_preload:1}),{cache:1,onDone:function(t,e){TopNotifier.shown()&&geByClass1("pr","top_notify_cont")&&TopNotifier.onLoad(t,e)},stat:["feed.css","page.css","post.css"]})},show:function(t){if(checkEvent(t)!==!0&&!vk.isBanned){if(this.shown()&&t!==!0)return gpeByClass("top_notify_wrap",t.target,ge("top_nav"))||this.hide(),cancelEvent(t);vk.counts.ntf=0,this.setCount(0,!0);var e=ge(TopNotifier.tnLink),i=ge("top_notify_cont");if(e.tt&&e.tt.hide&&e.tt.hide(),!i){var a=ce("div",{innerHTML:'<div class="top_notify_header"><a href="/settings?act=notify" class="top_notify_prefs_lnk">'+getLang("global_notifications_settings")+"</a>"+getLang("global_last_notifitications")+'</div><div id="top_notify_cont" class="top_notify_cont wall_module"  ontouchstart="event.cancelBubble = true;" onmousedown="event.cancelBubble = true;"></div><a href="/feed?section=notifications" class="top_notify_show_all" onmousedown="event.cancelBubble = true;" onclick="TopNotifier.hide(); return nav.go(this, event);">'+getLang("global_notify_show_all")+"</a>",id:"top_notify_wrap",className:"scroll_fix_wrap top_notify_wrap"});e.appendChild(a),i=ge("top_notify_cont")}cur.tnScrollbar||(cur.tnScrollbar=new Scrollbar("top_notify_cont",{nomargin:!0,right:vk.rtl?"auto":0,left:vk.rtl?0:"auto",forceCancelEvent:!0,nokeys:!0}),cur.destroy.push(function(){cur.tnScrollbar&&cur.tnScrollbar.destroy()})),TopNotifier.loaded||(ajax.post("/al_feed.php",this._qParams,{onDone:TopNotifier.onLoad,showProgress:TopNotifier.showProgress,stat:["feed.css"]}),TopNotifier.loaded=!0),addClass(this.tnLink,"active");var s=window.innerHeight||document.documentElement.clientHeight;return setStyle(i,{maxHeight:Math.max(s-200,300)}),TopNotifier.refresh(),t!==!0&&topHeaderClose(TopNotifier.hide.bind(this)),t?cancelEvent(t):!1}},hide:function(){removeClass(this.tnLink,"active"),topHeaderClearClose()},shown:function(){return hasClass(this.tnLink,"active")},showProgress:function(){var t=ge("top_notify_cont");geByClass1("pr",t)||(val(t,""),showProgress(t),TopNotifier.refresh())},showTooltip:function(t,e){function i(t){if(!t&&cur.topNotifyTTKey&&(t=cur.topNotifyTTKey,delete cur.topNotifyTTKey),t){var e=t.split(":"),i=ls.get("ntfseen")||{};2==e.length&&(i[0]=parseInt((new Date).getTime()/1e3),i[e[0]]=e[1],ls.set("ntfseen",i))}}if(!TopNotifier.shown()){var a=ge(TopNotifier.tnLink),s={};if("shownow"==a.tt&&removeAttr(a,"tt"),t)s.text=function(){return t},e&&(s.onHide=i.pbind(e));else{a.tt&&a.tt.destroy&&a.tt.destroy();var o=ls.get("ntfseen")||{},r=[];each(o,function(t,e){r.push(t+":"+e)}),s=extend(s,{url:"al_feed.php",params:{act:"a_last_notify",seen:r.join(";")},ajaxdt:2e3,noload:1,onHide:i})}var n=function(t){setTimeout(function(){return window.curNotifier&&curNotifier.idle_manager&&curNotifier.idle_manager.is_idle?void n(t):void(t&&t.hide())},6e3)};showTooltip(a,extend(s,{typeClass:"top_notify_tt",dir:"up",width:250,shift:[0,1],nohideover:1,nohide:1,onShowStart:function(t){TopNotifier.shown()&&(t.opts.onHide=!1,t.hide()),addEvent(t.container,"mousedown",function(t){return t&&inArray(t.target.tagName,["A","IMG"])?void 0:(TopNotifier.show(t),cancelEvent(t))}),n(t)}}))}},invalidate:function(){TopNotifier.loaded=!1},setCount:function(t,e){isString(t)&&(t=trim(t)),hasClass(this.tnLink,"has_notify")&&t?animateCount(this.tnCount,t,{str:"auto"}):val(this.tnCount,t),toggleClass(this.tnLink,"has_notify",!!t),e||this.invalidate()},cleanCount:function(){cur.topNotifyHash&&ajax.post("/al_feed.php",{act:"a_clean_notify",hash:cur.topNotifyHash})},refresh:function(){cur.tnScrollbar&&cur.tnScrollbar.update(!1,!0)},postTooltip:function(t,e,i){return!1},hideRow:function(t,e,i){var a=gpeByClass("feed_row",t);ajax.post("/al_feed.php",{act:"a_hide_notify",item:e,hash:i}),t.tt&&t.tt.hide&&t.tt.hide(),slideUp(a,200,function(){re(a),geByClass("feed_row","top_notify_cont").length||val("top_notify_cont",'<div class="top_notify_empty no_rows">'+getLang("news_no_new_notifications")+"</div>"),TopNotifier.refresh()})},checkClick:function(t,e){if(e=e||window.event,!t||!e)return!0;var i=e.target||e.srcElement,a=8,s=!1,o=/(feedback_sticky_text|feedback_sticky_icon|feedback_row)/;do if(!i||i==t||i.onclick||i.onmousedown||inArray(i.tagName,["A","IMG","TEXTAREA","EMBED","OBJECT"])||(s=i.className.match(o)))break;while(a--&&(i=i.parentNode));return s?i||!0:!1},showActionsMenu:function(t){var e=!1;row=domClosest("_feed_row",t),rowPN=domPN(row),rowPN.lastChild!=row||hasClass(rowPN,"feedback_sticky_rows")&&domPN(rowPN).lastChild!=rowPN||(e={appendParentCls:"top_notify_wrap",processHoverCls:"feedback_sticky_row"}),uiActionsMenu.show(t,!1,e)},hideActionsMenu:function(t){uiActionsMenu.hide(t)},showGiftBox:function(t,e){return!showBox("al_gifts.php",{act:"get_gift_box",fids:t,fr:1},{stat:["gifts.css","wide_dd.js","wide_dd.css"],cache:1,dark:1},e)}};try{stManager.done("notifier.js")}catch(e){}
+if (!window.curNotifier) {
+  curNotifier = {
+    addQueues: {},
+    recvClbks: {},
+    recvData: {},
+    onConnectionId: []
+  };
+}
+
+var BASIC_CHAT_ZINDEX = 1010;
+
+function IdleManager(opts) {
+  this.started = false;
+  this.is_idle = true;
+  this.is_activated = false;
+  this.cbActiveB = this.cbActive.bind(this);
+  this.cbInactiveB = this.cbInactive.bind(this);
+  this.cbInactiveB = this.cbInactive.bind(this);
+
+  this.opts = extend({
+    triggerEvents: 'mousemove keydown',
+    onIdleCb: function() {},
+    onUnIdleCb: function() {},
+    focusElement: opts.element,
+    element: null,
+    idleTimeout: 30000
+  }, opts);
+}
+
+extend(IdleManager.prototype, EventEmitter.prototype);
+
+extend(IdleManager.prototype, {
+  stop: function() {
+    this.started = false;
+    removeEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB);
+    removeEvent(this.opts.focusElement, 'focus', this.cbActiveB);
+    removeEvent(this.opts.focusElement, 'blur', this.cbInactiveB);
+    clearTimeout(this.setIdleTo);
+    clearTimeout(this.checkIdleCbTo);
+    clearTimeout(this.sendCbTO);
+    this.is_idle = true;
+    if(this.opts.parentManager) {
+      this.opts.parentManager.off('idle', this.cbInactiveB);
+    }
+  },
+
+  idle: function(quite) {
+    this.is_idle = true;
+    if(!quite) {
+      this.opts.onIdleCb();
+    }
+    this.emit('idle');
+  },
+
+  unidle: function(quite) {
+    this.is_idle = false;
+    if(!quite) {
+      this.opts.onUnIdleCb();
+    }
+    this.emit('unidle');
+  },
+
+  activate: function() {
+    this.is_idle = false;
+    this.is_activated = true;
+  },
+
+  start: function() {
+    this.started = true;
+    if (browser.mobile) {
+      return;
+    }
+    if(this.opts.parentManager) {
+      this.opts.parentManager.on('idle', this.cbInactiveB);
+    }
+    addEvent(this.opts.focusElement, 'focus', this.cbActiveB);
+    addEvent(this.opts.focusElement, 'blur', this.cbInactiveB);
+    clearTimeout(this.checkIdleCbTo);
+    this.checkIdleCb();
+    this.checkIdleCbTo = setTimeout(this.checkIdleCb.bind(this),
+      this.opts.idleTimeout);
+  },
+
+  checkIdleCb: function() {
+    if (!this.started) {
+      return;
+    }
+    addEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB);
+    clearTimeout(this.setIdleTo);
+    this.setIdleTo = setTimeout(this.cbInactiveB,
+      this.opts.idleTimeout); // tab becomes idle in 30 secs without moving mouse or typing
+  },
+
+  cbActive: function() {
+    if (!this.started) {
+      return;
+    }
+    clearTimeout(this.setIdleTo);
+    if (this.is_idle) {
+      this.is_idle = false;
+      clearTimeout(this.sendCbTO);
+      this.sendCbTO = setTimeout(function () {
+        this.emit('unidle');
+        if (this.opts.onUnIdleCb) {
+          this.opts.onUnIdleCb();
+        }
+      }.bind(this), 100);
+    }
+    removeEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB);
+    clearTimeout(this.checkIdleCbTo);
+    this.checkIdleCbTo = setTimeout(this.checkIdleCb.bind(this),
+      this.opts.idleTimeout);
+  },
+
+  cbInactive: function() {
+    if (!this.started) {
+      return;
+    }
+    if (!this.is_idle) {
+      this.is_idle = true;
+      clearTimeout(this.sendCbTO);
+      this.sendCbTO = setTimeout(function () {
+        this.emit('idle');
+        if (this.opts.onIdleCb) {
+          this.opts.onIdleCb();
+        }
+      }.bind(this), 100);
+    }
+    clearTimeout(this.checkIdleCbTo);
+    removeEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB);
+    addEvent(this.opts.element, this.opts.triggerEvents, this.cbActiveB);
+    this.checkIdleCbTo = setTimeout(this.checkIdleCb, this.opts.idleTimeout);
+  }
+
+});
+
+Notifier = {
+  debug: false,
+  init: function (options) {
+    if(window.curNotifier && curNotifier.connection_id) {
+      return;
+    }
+    Notifier.notificationsGc();
+    curNotifier = extend({
+      q_events: [],
+      q_shown: [],
+      q_closed: [],
+      negotiations: {},
+      currentIm: {},
+      q_max: 3,
+      uiNotifications: [],
+      q_idle_max: 5,
+      browser_shown: {},
+      done_events: {},
+      addQueues: curNotifier.addQueues || {},
+      recvClbks: curNotifier.recvClbks || {},
+      recvData: curNotifier.recvData || {},
+      error_timeout: 1,
+      sound: new Sound('mp3/bb1'),
+      sound_im: new Sound('mp3/bb2'),
+      onConnectionId: []
+    }, options);
+
+    if (!this.initFrameTransport()) {
+      return false;
+    }
+    this.initIdleMan();
+    this.initCommunityQueues();
+    if (!(curNotifier.cont = ge('notifiers_wrap'))) {
+      bodyNode.insertBefore(curNotifier.cont = ce('div', {id: 'notifiers_wrap', className: 'fixed'}), ge('page_wrap'));
+    }
+  },
+
+  initCommunityQueues: function(fails) {
+    return false;
+
+    var key = ls.get('im_m_comms_key');
+
+    var check = key && key.split ? key.split(';') : [];
+    if (check[0] === 'empty' && check[1] && Date.now() - check[1] < 60 * 1 * 1000) {
+      key = 'empty';
+    } else if (check[0] === 'empty') {
+      key = false;
+    }
+
+    if (key) {
+      return Notifier.proccessCommunityQueues(key, fails || 0);
+    }
+
+    ajax.post('al_im.php', { act: 'a_get_comms_key' }, {
+      onDone: function(queue) {
+        if (queue === 'empty') {
+          queue += ";" + Date.now();
+        } else {
+          Notifier.proccessCommunityQueues(queue, fails || 0);
+        }
+        ls.set('im_m_comms_key', queue);
+      },
+      onFail: function() {
+        return true;
+      }
+    })
+  },
+
+  notificationsGc: function() {
+    curNotifier.uiGcTo = setTimeout(function() {
+      var notes = curNotifier.uiNotifications;
+      var newNotes = [];
+      for (var i = 0; i < notes.length; i++) {
+        var note = notes[i];
+        if (vkNow() - note[1] > 10000) {
+          note[0].close();
+        } else {
+          newNotes.push(note);
+        }
+      }
+
+      curNotifier.uiNotifications = newNotes;
+      Notifier.notificationsGc();
+    }, 5000);
+  },
+
+  resetCommConnection: function(fails) {
+    var key = ls.get('im_m_comms_key');
+    if (key) {
+      delete curNotifier.addQueues[key.queue];
+    }
+    ls.set('im_m_comms_key', false);
+    Notifier.initCommunityQueues(fails || 0);
+  },
+
+  proccessCommunityQueues: function(queue, fails) {
+    if (queue === 'empty' || !queue) {
+      return false;
+    }
+    Notifier.addKey(queue, function(key, ev) {
+      if (ev.failed) {
+        fails++;
+        if (fails < 50) {
+          setTimeout(Notifier.resetCommConnection.pbind(fails), 100);
+        }
+        return;
+      }
+
+      var key = ls.get('im_m_comms_key');
+      if (key) {
+        key.ts = ev.ts;
+        ls.set('im_m_comms_key', key);
+      }
+
+
+      var evs = ev.events;
+      if (!evs) {
+        return;
+      }
+      evs.map(function(ev) {
+        return ev.split('<!>');
+      }).forEach(function(ev) {
+        if (ev[1] === 'update_cnt') {
+          var gid = ev[5];
+          var ct = ev[4];
+          handlePageCount('mgid' + gid, ct);
+        }
+      })
+    });
+  },
+
+  destroy: function () {
+    Notifier.hideAllEvents();
+    curNotifier.idle_manager.stop();
+    if (curNotifier.uiGcTo) {
+      clearTimeout(curNotifier.uiGcTo);
+    }
+    curNotifier = {};
+    re('notifiers_wrap');
+    re('queue_transport_wrap');
+  },
+  reinit: function () {
+    ajax.post('notifier.php?act=a_get_params', {}, {
+      onDone: function (options) {
+        if (options) {
+          curNotifier.error_timeout = 1;
+          this.init(options);
+        } else {
+          curNotifier.error_timeout = curNotifier.error_timeout || 1;
+          setTimeout(this.reinit.bind(this), curNotifier.error_timeout * 1000);
+          if (curNotifier.error_timeout < 256) {
+            curNotifier.error_timeout *= 2;
+          }
+        }
+      }.bind(this),
+      onFail: function () {
+        curNotifier.error_timeout = curNotifier.error_timeout || 1;
+        setTimeout(this.reinit.bind(this), curNotifier.error_timeout * 1000);
+        if (curNotifier.error_timeout < 256) {
+          curNotifier.error_timeout *= 2;
+        }
+        return true;
+      }.bind(this)
+    });
+  },
+  standby: function (nextTO) {
+    this.destroy();
+    curNotifier.error_timeout = nextTO || 1;
+    setTimeout(this.reinit.bind(this), curNotifier.error_timeout * 1000);
+  },
+  freezeEvents: function () {
+    curNotifier.frozen = true;
+    each (curNotifier.q_shown, function () {
+      clearTimeout(this.fadeTO);
+      if (getStyle(this.baloonEl, 'opacity') < 1) {
+        animate(this.baloonEl, {opacity: 1}, 100);
+      }
+    });
+  },
+  unfreezeEvents: function () {
+    curNotifier.frozen = false;
+    each (curNotifier.q_shown, function () {
+      this.fadeTO = setTimeout(this.startFading, 5000);
+    });
+  },
+  getTransportWrap: function () {
+    return ge('queue_transport_wrap') || utilsNode.appendChild(ce('div', {id: 'queue_transport_wrap'}));
+  },
+  setFocus: function (val) {
+    var instance = (val ? '1' : '0') + curNotifier.instance_id;
+    if (curNotifier.transport == 'flash' && curNotifier.flash_transport) {
+      curNotifier.flash_transport.setInstanceFocused(instance);
+    } else if (curNotifier.transport == 'frame') {
+      Notifier.lcSend('focus', {instance_id: instance});
+      this.onInstanceFocus(instance);
+    }
+  },
+  initIdleMan: function () {
+    if (curNotifier.idle_manager && curNotifier.idle_manager.started) return;
+
+    curNotifier.idle_manager = new IdleManager({
+      onIdleCb: function () { // on IDLE
+        Notifier.freezeEvents();
+        Notifier.setFocus(0);
+        cur.onIdle && each(cur.onIdle, function (k, cb) {cb();});
+      },
+      onUnIdleCb: function () { // on ACTIVE
+        Notifier.unfreezeEvents();
+        Notifier.setFocus(1);
+        cur.onUnidle && each(cur.onUnidle, function (k, cb) {cb()});
+        FastChat && FastChat.onUnidle();
+        vk.spentLastSendTS = vkNow();
+      },
+      id: 'window',
+      element: document,
+      focusElement: window
+    });
+    curNotifier.idle_manager.start();
+  },
+  initFrameTransport: function () {
+    if (!ls.checkVersion() || browser.msie8 || !('onmessage' in window || 'postMessage' in window)) return false;
+
+    curNotifier.connection_id = 'queue_connection_' + curNotifier.queue_id;
+    curNotifier.lc_prev_value = '';
+    curNotifier.is_server = false;
+    curNotifier.lp_connected = false;
+    curNotifier.error_timeout = 1;
+    var versions = browser.version.split('.'),
+        majorVersion = intval(versions[0]),
+        minorVersion = intval(versions[1]);
+    curNotifier.post_message = Notifier.debug || !(browser.opera && intval(browser.version) < 15 || browser.msie || browser.mozilla && majorVersion >= 31 || browser.safari && (majorVersion > 7 || majorVersion == 7 && minorVersion >= 1));
+    curNotifier.transport = 'frame';
+
+    this.lcInit();
+
+    for (var i in curNotifier.onConnectionId) {
+      curNotifier.onConnectionId[i]();
+    }
+    curNotifier.onConnectionId = [];
+
+    return true;
+  },
+  onActivated: function() {
+    if (curNotifier.idle_manager && !curNotifier.idle_manager.is_activated) {
+      curNotifier.idle_manager.activate();
+    } else {
+      if (!curNotifier.idle_manager || !curNotifier.idle_manager.is_idle) {
+        Notifier.setFocus(1);
+      }
+    }
+    removeEvent(document, 'mousemove keydown touchstart', Notifier.onActivated);
+  },
+  onConnectionInit: function() {
+    addEvent(document, 'mousemove keydown touchstart', Notifier.onActivated);
+  },
+  onConnectionFailed: function () { },
+  onRelogin: function () {
+    setTimeout(function () {
+      Notifier.standby();
+    }, 0);
+  },
+  onMessage: function (msg) {
+    if (curNotifier.focus_instance && curNotifier.focus_instance != curNotifier.instance_id) { // Process only events, when no active tab or current window is focused
+      return;
+    }
+    try {
+      var events = eval('(' + msg + ')'), pushed = false;
+      Notifier.pushEvents(events);
+    } catch (e) {debugLog(e.message);}
+  },
+  onInstanceFocus: function (instance) {
+    var focused = instance.charAt(0);
+    instance = instance.substr(1);
+    if (focused == '1') {
+      curNotifier.focus_instance = instance;
+    } else {
+      if (curNotifier.focus_instance == instance) {
+        curNotifier.focus_instance = '';
+      }
+      return;
+    }
+    if (instance != curNotifier.instance_id) {
+      if (!curNotifier.idle_manager.is_idle) {
+        curNotifier.idle_manager.idle();
+      }
+      Notifier.hideAllEvents();
+    }
+  },
+  onInstanceServer: function (isServer) {
+    curNotifier.is_server = !!intval(isServer);
+  },
+  pushEvents: function (evs, cnt) {
+    var pushed = 0;
+    each (evs, function (k, v) {
+      pushed |= Notifier.pushEvent(v, cnt);
+    });
+    if (pushed && !ls.get('sound_notify_off') && curNotifier.is_server) {
+      if (pushed & 2) {
+        curNotifier.sound_im.play();
+      } else {
+        curNotifier.sound.play();
+      }
+    }
+  },
+  pushEvent: function (msg, cnt) {
+    if (msg == 'nop') {
+      return;
+    }
+    msg = msg.split('<!>');
+    if (msg[0] != curNotifier.version) {
+      debugLog('Notifier old version');
+      return false;
+    }
+    if (msg[1] == 'update_cnt') { // msg[2] - section
+      if (msg[3] === 'nws') { // TODO: delete this after redesign
+        handlePageCount('ntf', msg[9]);
+        return 0;
+      }
+      handlePageCount(msg[3], msg[4], msg[5], msg[6]);
+      return 0;
+    }
+    var ev = {
+      type: msg[1],
+      title: msg[2],
+      author_photo: psr(msg[3] || ''),
+      author_link: msg[4] || '',
+      text: psr(msg[5]),
+      add_photo: psr(msg[6]) || '',
+      link: msg[7],
+      onclick: msg[8],
+      add: msg[9],
+      id: msg[10],
+      author_id: msg[11],
+      top_count: msg[12]
+    }, push = !cnt ? 1 : 0;
+
+    if (msg[13]) {
+      ev.custom = eval('('+msg[13]+')');
+    }
+
+    if (curNotifier.done_events[ev.id]) return;
+    curNotifier.done_events[ev.id] = 1;
+    // debugLog(ev.type, ev.add, !!cnt);
+    if (ev.top_count !== undefined && ev.top_count != -1) {
+      handlePageCount('ntf', ev.top_count);
+    }
+    switch (ev.type) {
+      case 'video_process_ready':
+        if (ev.add && window.Video && Video.isVideoPlayerOpen(ev.add)) {
+          return;
+        }
+
+        break;
+      case 'mail':
+        handlePageCount('msg', ev.add);
+        if (window.Call && Call.params.call_id && intval(ev['author_id']) == intval(Call.params['far_uid'])) {
+          Call.showChat();
+        }
+        if (cur.module != 'im') {
+          FastChat.prepareTabIcon(intval(ev['author_id']), {fixedLoad: 1});
+        }
+        break;
+
+      case 'mail_failed':
+        var peer = intval(ev.author_id);
+        if (nav.objLoc[0] == 'im' && cur.tabs[peer]) {
+          var msg = ge('mess'+ev.add);
+          if (msg && hasClass(msg, 'im_new_msg')) {
+            removeClass(msg, 'im_new_msg');
+            addClass(msg, 'im_failed');
+            var n = geByClass1('im_log_author_chat_name', msg);
+            if (n) {
+              n.innerHTML += ' &nbsp;<span>'+cur.lang['mail_send_failed']+'</span>';
+            }
+            push = 2; // only sound
+          }
+        }
+        break;
+
+      case 'friend_request':
+        handlePageCount('fr', ev.add);
+        break;
+
+      case 'mail_cnt':
+        handlePageCount('msg', ev.add);
+        push = 0;
+        break;
+
+      case 'clear_notify':
+        Notifier.hideAllEvents();
+        push = 0;
+        break;
+
+      case 'support_reply':
+        handlePageCount ('spr', ev.add, 'support', (ev.author_id ? 'act=show&id=' + ev.author_id : 'act=show'));
+        toggle('l_spr', ev.add > 0);
+        break;
+
+      case 'support_cnt':
+        handlePageCount ('spr', ev.add, 'support', (ev.author_id ? 'act=show&id=' + ev.author_id : 'act=show'));
+        toggle('l_spr', ev.add > 0);
+        push = 0;
+        break;
+
+      case 'balance_changed':
+        updateMoney(ev.add);
+        if (ev.custom && ev.custom[0] == 'app' && cur.app) {
+          if (cur.app.params.api_id == ev.custom[1]) {
+            cur.app.balanceUpdated(ev.custom[2]);
+          }
+        }
+        break;
+
+      case 'gift_sent':
+        re('left_block10_0');
+        var left_block = ev.add;
+        if (left_block) {
+          var leftBlocksElem = ge('left_blocks'),
+              left_unpaid_gifts = se(left_block);
+          if (leftBlocksElem) {
+            if (leftBlocksElem.firstChild) {
+              leftBlocksElem.insertBefore(left_unpaid_gifts, leftBlocksElem.firstChild);
+            } else {
+              leftBlocksElem.appendChild(left_unpaid_gifts);
+            }
+          }
+        }
+        break;
+
+      case 'call_start':
+        if (window.Call) {
+          Call.incomingReceive(ev);
+        } else {
+          stManager.add(['call.js', 'call.css', 'notifier.css'], function() {
+            Call.incomingReceive(ev);
+          });
+        }
+        push = 0;
+        break;
+
+      case 'call':
+        if (window.Call) {
+          Call.processNotify(ev);
+        } else {
+          debugLog('wnd Call event without call obj');
+        }
+        push = 0;
+        break;
+      case 'call_app':
+        var callId = ev.custom.call_id;
+
+        var onScriptCame = function(script) {
+          clearTimeout(curNotifier.appCallTimeout);
+          script = (script && script[0] == callId) ? script[1] : false;
+          if (script && script != -1) {
+            stManager.add(['call.js', 'call.css', 'apps.js', 'apps.css'], function() {
+              eval(script);
+            });
+          }
+        }
+
+        curNotifier.appCallTimeout = setTimeout(function() {
+          var script = curNotifier.recvData['apps_call_receive'];
+          script = (script && script[0] == callId) ? script[1] : false;
+          if (!script) {
+            ajax.post('/al_apps.php', {act: 'call_receive'}, {
+              onDone: function(script) {
+                debugLog('script came');
+                script = [callId, script];
+                Notifier.lcSend('apps_call_receive', script)
+                onScriptCame(script);
+              },
+              stat: ['call.js', 'call.css', 'apps.js', 'apps.css']
+            });
+            Notifier.lcSend('apps_call_receive', [callId, -1])
+          }
+        }, 0);
+        Notifier.setRecvClbk('apps_call_receive', onScriptCame);
+
+        push = 0;
+        break;
+      case 'call_app_reject':
+        if (cur.module == 'app' && cur.aid == ev.custom.aid) {
+          cur.app.runCallback('onCallReject', ev.custom.key);
+        }
+        push = 0;
+        break;
+      case 'call_app_accept':
+        if (cur.module == 'app' && cur.aid == ev.custom.aid) {
+          cur.app.runCallback('onCallAccept', ev.custom.key);
+        }
+        push = 0;
+        break;
+      case 'notify_tt':
+      case 'login_attempt':
+        if (ev.add) {
+          ev.add = eval('('+ev.add+')');
+          TopNotifier.showTooltip(ev.add.text, ev.add.key);
+        }
+        push = 0;
+        break;
+    }
+
+    if(ev.type === 'mail') {
+      push = this.sendMailNotification(ev);
+    }
+
+    if (push & 1) {
+      curNotifier.q_events.push(ev);
+      if (curNotifier.q_events.length > 30) {
+        curNotifier.q_events.splice(0, curNotifier.q_events.length - 30);
+      }
+      this.checkEvents();
+    }
+    return push;
+  },
+
+  isActive: function() {
+    return window.curNotifier
+    && curNotifier.idle_manager
+    && !curNotifier.idle_manager.is_idle;
+  },
+
+  sendImProxy: function(data) {
+    data.text = winToUtf(data.text);
+    if(!curNotifier.browser_shown[data.id]) {
+      curNotifier.browser_shown[data.id] = true;
+      Notifier.trySendBrowserNotification(data, true);
+      setTimeout(function() {
+        curNotifier.browser_shown[data.id] = undefined;
+      }, 2000);
+    }
+  },
+
+  shouldShowNotification: function(ev) {
+    return cur.module !== 'im' && !FastChat.isChatOpen(ev.author_id);
+  },
+
+  sendSimpleNotification: function(ev) {
+    Notifier.playSound(ev);
+    if (!Notifier.shouldShowNotification(ev)) {
+      return 0;
+    }
+    return 1 | 2;
+  },
+
+  sendBrowserNotification: function(ev) {
+    if(cur.module !== 'im') {
+      Notifier.negotiate({
+        message: 'send_im_notification',
+        onSuccess: function(data) {
+          Notifier.lcSend('negotiate_back', {
+            token: data.msg,
+            ev: ev
+          });
+        },
+        onFail: function() {
+          Notifier.showBrowserNotification(ev);
+        }
+      });
+    } else {
+      ev.onclick = 'IM.activateTab(' + ev.author_id + ');';
+      Notifier.showBrowserNotification(ev);
+    }
+  },
+
+  shouldPlaySound: function(ev) {
+    return !ls.get('sound_notify_off')
+      && cur.focused != ev.author_id
+      && !inArray(ev.author_id, cur.mutedPeers);
+  },
+
+  playSound: function(ev) {
+    if (curNotifier.sound_im && curNotifier.sound_im.play && Notifier.shouldPlaySound(ev)) {
+      curNotifier.sound_im.play();
+    }
+  },
+
+  trySendBrowserNotification: function(ev, onlyBrowser) {
+    Notifier.negotiate({
+      message: 'who_is_active',
+      msg: ev.author_id,
+      onFail: function() {
+        if(Notifier.canNotifyUi() && (cur.peer != ev.author_id || !Notifier.isActive())) {
+          Notifier.sendBrowserNotification(ev);
+        } else if (!onlyBrowser) {
+          Notifier.lcSend('show_notification', ev);
+          if (Notifier.shouldShowNotification(ev)) {
+            Notifier.showEvent(ev, true);
+          }
+          Notifier.playSound(ev);
+        } else {
+          Notifier.playSound(ev);
+        }
+      }
+    });
+  },
+
+  showBrowserNotification: function(ev) {
+    Notifier.showEventUi(ev);
+    Notifier.playSound(ev);
+  },
+
+  proxyIm: function(ev) {
+    if(this.isActive()) {
+      this.playSound(ev);
+      if (Notifier.canNotifyUi()
+        && cur.peer != ev.author_id
+        && Notifier.shouldPlaySound(ev)) {
+          Notifier.showEventUi(ev);
+          return;
+      }
+    }
+    if(curNotifier.is_server) {
+      ev.onclick = 'IM.activateTab(' + ev.author_id + ');';
+      this.sendImProxy(ev);
+    } else if(!curNotifier.is_server) {
+      this.lcSend('message_from_im', ev);
+    }
+  },
+
+  sendMailNotification: function(ev) {
+    if (cur.module == 'im') {
+      ev.onclick = 'IM.activateTab(\'' + ev.author_id + '\');';
+    } else {
+      ev.onclick = 'FastChat.selectPeer(\'' + ev.author_id + '\');';
+    }
+    if (this.isActive() && Notifier.canNotifyUi()) {
+      this.playSound(ev);
+      if (this.shouldPlaySound(ev) && cur.peer != ev.author_id) {
+        this.showEventUi(ev);
+      }
+    } else if (this.isActive()) {
+      return this.sendSimpleNotification(ev);
+    } else if (curNotifier.is_server) {
+      this.trySendBrowserNotification(ev);
+    }
+    return 0; // No notification if not active and not server
+  },
+
+  checkEvents: function () {
+    if (!curNotifier.q_events.length ||
+        curNotifier.q_shown.length >= (curNotifier.idle_manager.is_idle ? curNotifier.q_idle_max : curNotifier.q_max) ||
+        !curNotifier.idle_manager.is_idle && curNotifier.frozen
+    ) {
+      return;
+    }
+    var ev = curNotifier.q_events.shift();
+    this.showEvent(ev);
+  },
+
+  showEvent: function (ev, force) {
+    curNotifier.q_shown.push(ev);
+    var thumbEl = '';
+    if (ev.type == 'video_process_ready') {
+      thumbEl = '<div class="notifier_video_thumb" style="background-image: url(' + Notifier.fixPhoto(ev.author_photo) +')"></div>';
+    } else {
+      thumbEl = '<img src="' + Notifier.fixPhoto(ev.author_photo) + '" class="notifier_image" />';
+    }
+    var typeClassName = 'notifier_type_' + ev.type;
+    ev.baloonWrapEl = ce('div', {
+      className: 'notifier_baloon_wrap',
+      innerHTML: '<div class="notifier_baloon ' + typeClassName + '"><div class="notifier_baloon_head clear_fix"><div class="notifier_close_wrap"><a class="notifier_close" title="' + getLang('global_close') + '" href=""></a></div><div class="notifier_baloon_title">' + ev.title + '</div></div><div class="notifier_baloon_body clear_fix">' + (ev.author_photo && ('<div class="notifier_image_wrap">' + (ev.author_link && ('<a href="' + ev.author_link + '">')) + thumbEl + (ev.author_link && '</a>') + '</div>')) + (ev.add_photo && ('<div class="notifier_add_image_wrap"><img src="' + ev.add_photo + '" class="notifier_add_image" /></div>')) + '<div class="notifier_baloon_msg wrapped">' + ev.text + '</div></div></div>'
+    });
+    ev.baloonEl = ev.baloonWrapEl.firstChild;
+    ev.closeEl = geByClass1('notifier_close_wrap', ev.baloonEl);
+
+    addEvent(ev.baloonEl, 'mouseover mouseout', function (e) {
+      ev.over = (e.type == 'mouseover');
+      if (ev.over) {
+        Notifier.freezeEvents();
+      } else {
+        Notifier.unfreezeEvents();
+      }
+    });
+    addEvent(ev.baloonEl, 'mousedown', function (e) {
+      e = (e.originalEvent || e) || window.event;
+      var btn = e.which, nohide = false;
+      if (browser.msie) {
+        btn = e.button == 1 ? 1 : (e.button == 2 ? 3 : 2)
+      }
+      if (btn == 1 && (e.ctrlKey || browser.mac && e.metaKey)) {
+        btn = 2;
+        if (browser.mac) nohide = true;
+      }
+      if ((e.target || e.srcElement).tagName == 'A') {
+        switch (btn) {
+          case 1: // left button
+            // setTimeout(function () {Notifier.hideEvent(ev);}, 100);
+            break;
+
+          case 3: // right
+            break;
+        }
+        return;
+      }
+      switch (btn) {
+        case 1: //left button
+          eval(ev.onclick);
+          Notifier.hideEvent(ev);
+          break;
+        case 2: // middle
+          var wnd = window.open(ev.link, '_blank');
+          try {wnd.blur(); window.focus();} catch (e) {}
+          if (!nohide) Notifier.hideEvent(ev); // else it will be  hidden by context menu
+          break;
+        case 3: // right
+          if (browser.mozilla) {
+            return;
+          }
+      }
+      return cancelEvent(e);
+    });
+    addEvent(ev.baloonEl, 'contextmenu', function (e) {
+      setTimeout(function () {
+        Notifier.hideEvent(ev, false, false, true);
+      }, 10);
+      return cancelEvent(e);
+    });
+    addEvent(ev.closeEl, 'mousedown', function (e) {
+      Notifier.hideEvent(ev, false, false, true);
+      return cancelEvent(e);
+    });
+    ev.startFading = function () {
+      ev.fading = animate(ev.baloonEl, {opacity: 0}, 1000, Notifier.hideEvent.bind(Notifier).pbind(ev, false));
+      if (ev.over) {
+        ev.fading.stop();
+      }
+    }
+    curNotifier.cont.insertBefore(ev.baloonWrapEl, curNotifier.cont.firstChild);
+    var h = ev.baloonWrapEl.offsetHeight;
+    re(ev.baloonWrapEl);
+    curNotifier.cont.appendChild(ev.baloonWrapEl);
+    setStyle(curNotifier.cont, {bottom: -h});
+    setStyle(ev.baloonWrapEl, {visibility: 'visible'});
+    animate(curNotifier.cont, {bottom: 0}, 200);
+    if (!curNotifier.idle_manager.is_idle || force) {
+      ev.fadeTO = setTimeout(ev.startFading, 7000);
+    }
+  },
+
+  canNotifyUi: function () {
+    return !ls.get('im_ui_notify_off')
+      && DesktopNotifications.supported()
+      && DesktopNotifications.checkPermission() <= 0;
+  },
+
+  showEventUi: function (ev) {
+    if (!this.canNotifyUi()) return false;
+    var title, text;
+    if(ev.type === 'mail') {
+      var div = ce('div');
+      div.innerHTML = ev.text;
+      title = div.firstChild.textContent.trim();
+      text = stripHTML(replaceEntities(ev.text.replace(/<br\/?>/g, "\n"))
+        .replace(/<span class='notifier_author_quote'.*<\/span>(.*?)/, '$1')
+        .replace(/<img.*?alt="(.*?)".*?>/ig, '$1'))
+        .replace(/&laquo;|&raquo;/gi, '"').trim();
+    } else {
+      title = ev.title;
+      text = ev.text;
+    }
+
+    var notification = ev.uiNotification = DesktopNotifications.createNotification(ev.author_photo, title, text);
+    curNotifier.uiNotifications.push([notification, vkNow()]);
+    notification.onclick = function (e) {
+      window.focus();
+      eval(ev.onclick);
+      Notifier.hideEvent(ev);
+    };
+    notification.onclose = function () {
+      Notifier.hideEvent(ev, true);
+    };
+    notification.show();
+    ev.closeTO = setTimeout(Notifier.hideEvent.bind(Notifier).pbind(ev), 5000);
+    return true;
+  },
+
+  hideEvent: function (ev, already, broadcasted, forced) {
+    clearTimeout(ev.closeTO);
+    clearTimeout(ev.fadeTO);
+    ev.fading && ev.fading.stop();
+    var pos = indexOf(curNotifier.q_shown, ev), closedLen;
+    if (pos != -1) {
+      curNotifier.q_shown.splice(pos, 1);
+    }
+    Notifier.unfreezeEvents();
+    if (!already) {
+      if (ev.baloonWrapEl) {
+        cleanElems(ev.closeEl, ev.baloonEl);
+        re(ev.baloonWrapEl);
+      } else if (ev.uiNotification) {
+        ev.uiNotification.cancel();
+      }
+    }
+    if (forced === true && isArray(curNotifier.q_closed)) {
+      curNotifier.q_closed.unshift(vkNow());
+      if ((closedLen = curNotifier.q_closed.length) > 3) {
+        curNotifier.q_closed.splice(3, closedLen - 3);
+        closedLen = 3;
+      }
+      if (closedLen == 3 && curNotifier.q_closed[0] - curNotifier.q_closed[2] < 700) {
+        Notifier.hideAllEvents();
+      }
+    }
+    if (forced != -1) {
+      this.checkEvents();
+    }
+    if (curNotifier.transport == 'frame' && !broadcasted) {
+      this.lcSend('hide', {event_id: ev.id});
+    }
+    if ((forced === true || !curNotifier.idle_manager.is_idle) && !curNotifier.q_events.length && !curNotifier.q_shown.length) {
+      ajax.post('notifier.php', {act: 'a_clear_notifier'});
+    }
+  },
+  hideAllEvents: function () {
+    curNotifier.q_events = [];
+    each (clone(curNotifier.q_shown), function () {
+      Notifier.hideEvent(this, false, true, -1);
+    });
+    curNotifier.q_shown = [];
+    curNotifier.q_closed = [];
+  },
+  onEventHide: function (event_id) {
+    if (!event_id) return;
+    each(curNotifier.q_shown, function () {
+      if (this.id == event_id) {
+        Notifier.hideEvent(this, false, true);
+        return false;
+      }
+    });
+    each(curNotifier.q_events, function (k) {
+      if (this.id == event_id) {
+        curNotifier.q_events.splice(k, 1);
+        return false;
+      }
+    });
+  },
+
+  /* Fake localConnection methods (based on localStorage and onstorage events) */
+  lcInit: function () {
+    if (!curNotifier.post_message) {
+      if (browser.msie && (intval(browser.version) < 9)) {
+        // document.onstorage = this.lcOnStorage.bind(this);
+        addEvent(document, 'storage', this.lcOnStorage.bind(this));
+      } else {
+        addEvent(window, 'storage', this.lcOnStorage.bind(this));
+      }
+      this.lcStart();
+    } else { // localStorage through extra-iframe, because of vk document.domain problems
+      addEvent(window, 'message', this.lcOnMessage.bind(this));
+      var el = curNotifier.storage_el = ce('iframe', {
+        id: 'queue_storage_frame',
+        name: 'queue_storage_frame',
+        src: '/notifier.php?act=storage_frame&from=' + location.host + (Notifier.debug ? '&debug=' + vkNow() : '&4') + '#' + curNotifier.connection_id
+      });
+      Notifier.getTransportWrap().appendChild(el);
+      curNotifier.storage_frame = el.contentWindow;
+      curNotifier.storage_frame_origin = location.protocol + '//' + locHost;
+    }
+  },
+  lcStart: function () {
+    if (Notifier.lcCheckServer()) {
+      this.lcServer();
+    } else {
+      this.lcSend('check');
+      clearTimeout(curNotifier.becomeServerTO);
+      curNotifier.becomeServerTO = setTimeout(this.lcServer.bind(this).pbind(true), 500);
+    }
+
+    curNotifier.checkServerInt = setInterval(function () {
+      if (curNotifier.is_server) return;
+      if (vkNow() - curNotifier.last_succ > 8000 && Notifier.lcCheckServer()) {
+        debugLog('timeout');
+        this.lcServer(true);
+      }
+    }.bind(this), 1000 + intval(rand(-100, 100)));
+
+    curNotifier.isServerBroadcastInt = setInterval(function () {
+      if (!curNotifier.is_server) return;
+      if (Notifier.lcCheckServer()) {
+        this.lcSend('check_ok');
+      } else {
+        debugLog('no server from server broadcast');
+        this.lcNoServer();
+      }
+    }.bind(this), 5000 + intval(rand(-100, 100)));
+
+    if (curNotifier.fc !== undefined) {
+      stManager.add(['emoji.js'], function() {
+        FastChat.init(curNotifier.fc);
+      });
+    }
+  },
+  lcStop: function () {
+    clearInterval(curNotifier.isServerBroadcastInt);
+    clearInterval(curNotifier.checkServerInt);
+    clearTimeout(curNotifier.becomeServerTO);
+  },
+  lcSend: function (act, data) {
+    if (!curNotifier.connection_id) {
+      curNotifier.onConnectionId.push(Notifier.lcSend.pbind(act, data));
+      return false;
+    }
+    Notifier.debug && debugLog(curNotifier.instance_id + ': sending', act, data || '');
+
+    var sendObj = extend({__client: curNotifier.instance_id, __act: act, __rnd: Math.random()}, data || {});
+    if (!curNotifier.post_message) {
+      ls.set(curNotifier.connection_id, sendObj);
+    } else {
+      try {
+        curNotifier.storage_frame.postMessage(curNotifier.connection_id + ':' + JSON.stringify(sendObj), curNotifier.storage_frame_origin);
+      } catch (e) {debugLog(e, e.message, e.stack);}
+    }
+  },
+
+  lcRecv: function (data) {
+    if (isEmpty(data) || data.__client == curNotifier.instance_id) return;
+    var act = data.__act;
+    delete data.__client;
+    delete data.__act;
+    delete data.__rnd;
+
+    Notifier.debug && debugLog(curNotifier.instance_id + ': recv', act, data);
+    switch (act) {
+      case 'new_server':
+        curNotifier.last_succ = vkNow() + 1000; // extra 1 sec for iframe init
+        break;
+
+      case 'feed':
+        curNotifier.timestamp = data.ts;
+        curNotifier.key = data.key;
+        Notifier.pushEvents(data.events, !data.full);
+        break;
+
+      case 'addfeed':
+        Notifier.addFeed(data[0], data[1]);
+        break;
+
+      case 'new_key':
+        debugLog('new key', data);
+        curNotifier.timestamp = data.ts;
+        curNotifier.key = data.key;
+        break;
+
+      case 'new_addkey':
+        // debugLog('add key', data);
+        var queue = data.queue || data.key, addq = curNotifier.addQueues[queue], to_reset = !addq && curNotifier.is_server;
+        if (addq) {
+          addq[0] = vkNow();
+        } else {
+          curNotifier.addQueues[queue] = [vkNow(), data.ts, data.key];
+        }
+        if (to_reset) {
+          Notifier.lpReset();
+        }
+        break;
+
+      case 'clear_addkeys':
+        curNotifier.addQueues = {};
+        break;
+
+      case 'check_ok':
+        curNotifier.last_succ = vkNow();
+        if (curNotifier.becomeServerTO) {
+          clearTimeout(curNotifier.becomeServerTO);
+          curNotifier.becomeServerTO = false;
+        }
+        if (!curNotifier.lp_connected) {
+          curNotifier.lp_connected = true;
+          Notifier.onConnectionInit();
+        }
+        break;
+
+      case 'focus':
+        // debugLog('focus from lc');
+        Notifier.onInstanceFocus(data.instance_id);
+        break;
+
+      case 'hide':
+        // debugLog('hide from lc');
+        Notifier.onEventHide(data.event_id);
+        break;
+
+      case 'check_playlist':
+        var pl = ls.get('pad_playlist');
+        if (pl && pl.instance == curNotifier.instance_id) {
+          ls.set('pad_pltime', vkNow());
+        }
+        break;
+      case 'who_is_active':
+        if(Notifier.isActive()
+          && ((intval(data.msg) > 2000000000 && cur.module === 'im')
+          || intval(data.msg) < 2000000000)) {
+            this.lcSend('negotiate_back', data);
+        }
+        break;
+
+      case 'show_notification':
+        if (Notifier.shouldShowNotification(data)) {
+          Notifier.showEvent(data, true);
+        }
+        break;
+
+      case 'send_im_notification':
+        if (cur.module === 'im') {
+          var slot = Notifier.createNegotiationSlot({
+            onSuccess: function(data) {
+              data.ev.onclick = 'IM.activateTab(' + data.ev.author_id + ');';
+              Notifier.showBrowserNotification(data.ev);
+            }
+          });
+
+          Notifier.lcSend('negotiate_back', {
+            msg: slot.token,
+            token: data.token
+          });
+        }
+        break;
+
+      case 'negotiate_back':
+        Notifier.endNegotiation(data)
+        break;
+
+      default:
+        if (curNotifier.recvClbks && curNotifier.recvClbks[act]) {
+          for (var i in curNotifier.recvClbks[act]) curNotifier.recvClbks[act][i](data);
+        } else {
+          curNotifier.recvData[act] = data;
+        }
+        break;
+    }
+    if (!curNotifier.is_server) return;
+
+    // acts, processed only while instance is server
+    switch (act) {
+      case 'new_server':
+      case 'new_key':
+      case 'check_ok':
+        debugLog('no server from lcRecv', act);
+        Notifier.lcNoServer();
+        break;
+
+      case 'check':
+        this.lcSend('check_ok');
+        break;
+
+      case 'message_from_im':
+        Notifier.sendImProxy(data);
+        break;
+    }
+  },
+
+  negotiate: function(opts) {
+    opts = this.createNegotiationSlot(opts);
+    this.lcSend(opts.message, {token: opts.token, msg: opts.msg});
+  },
+
+  createNegotiationSlot: function(opts) {
+    var token = "negotiations_" + Date.now() + Math.round(rand(0, 10000));
+    opts = extend({
+      timeout: 600,
+      token: token,
+      msg: ''
+    }, opts);
+    curNotifier.negotiations[opts.token] = {};
+    curNotifier.negotiations[opts.token].timer = setTimeout(function() {
+      opts.onFail && opts.onFail();
+      if (curNotifier.negotiations[opts.token]) {
+        curNotifier.negotiations[opts.token] = undefined;
+      }
+    }, opts.timeout);
+    curNotifier.negotiations[opts.token].success = opts.onSuccess;
+    return opts;
+  },
+
+  endNegotiation: function(data) {
+    var token = data.token;
+    var negotiation = curNotifier.negotiations[token];
+    if(negotiation) {
+      clearTimeout(negotiation.timer);
+      if(curNotifier.negotiations[token].success) {
+        curNotifier.negotiations[token].success(data);
+      }
+      curNotifier.negotiations[token] = undefined;
+    }
+  },
+
+  lcOnStorage: function (e) { // receiving messages from native onstorage event
+    e = e || window.event;
+    Notifier.debug && debugLog('onstorage', e.key, e.newValue, e);
+    var key = e.key, val = e.newValue;
+    if (!val) {
+      return;
+    }
+    if (!key) {
+      key = curNotifier.connection_id;
+      val = localStorage.getItem(key);
+      if (val == curNotifier.lc_prev_value) return;
+      curNotifier.lc_prev_value = val;
+    } else {
+      if (e.key != curNotifier.connection_id) return;
+    }
+    this.lcRecv(JSON.parse(val) || {});
+  },
+  lcOnMessage: function (e) { // receiving messages from storage iframe via postMessage
+    e = e || window.event;
+    Notifier.debug && debugLog('onmessage', e.data, e.origin, e);
+    if (e.origin && e.origin != curNotifier.storage_frame_origin) {
+      // vk.id == 13033 && debugLog('wrong origin', e.origin);
+      return;
+    }
+    if (typeof e.data != 'string' || e.data.indexOf('q_st')) return;
+    var msg = e.data.substr(4), pos, key;
+    if (msg == 'ready') {
+      curNotifier.storage_frame = e.source;
+      this.lcStart();
+    } else {
+      if ((pos = msg.indexOf(':')) == -1 || (key = msg.substr(0, pos)) != curNotifier.connection_id || !msg.substr(pos + 1)) return;
+      this.lcRecv(JSON.parse(msg.substr(pos + 1)));
+    }
+  },
+  lcServer: function (changed) {
+    debugLog('becoming server');
+    this.lpInit();
+    this.lcSend('new_server');
+    Notifier.lcCheckServer(true);
+    curNotifier.is_server = true;
+    Notifier.onInstanceServer(1);
+    if (!curNotifier.lp_connected) {
+      curNotifier.lp_connected = true;
+      Notifier.onConnectionInit();
+    }
+    if (window.curFastChat && curFastChat.inited) {
+      FastChat.becameServer();
+    }
+    this.lpStop();
+    if (!changed) {
+      this.lpStart();
+    } else {
+      this.lpReset(this.lpStart.bind(this));
+    }
+  },
+  lcNoServer: function () {
+    this.lpStop();
+    if (!curNotifier.is_server) {
+      return;
+    }
+    debugLog('not server now');
+    this.onInstanceServer(0);
+    curNotifier.is_server = false;
+  },
+  lcCheckServer: function (nocheck) {
+    var key = 'server_' + curNotifier.connection_id,
+        prev, ts = vkNow();
+
+    if (!nocheck && isArray(prev = ls.get(key)) && prev[0] != curNotifier.instance_id && ts - prev[1] < 8000) {
+      return false;
+    }
+    ls.set(key, [curNotifier.instance_id, ts]);
+    return true;
+  },
+
+  /* Long-poll methods */
+  lpInit: function () {
+    if (curNotifier.lpMakeRequest) return;
+    delete curNotifier.lpMakeRequest;
+    re('queue_transport_frame');
+    Notifier.getTransportWrap().appendChild(
+      ce('iframe', {
+        id: 'queue_transport_frame',
+        name: 'queue_transport_frame',
+        src: curNotifier.frame_path
+      })
+    );
+  },
+  lpStart: function () {
+    curNotifier.lp_started = true;
+    Notifier.lpCheck();
+  },
+  lpStop: function () {
+    curNotifier.lp_started = false;
+    clearTimeout(curNotifier.lp_check_to);
+    clearTimeout(curNotifier.lp_error_to);
+    clearTimeout(curNotifier.lp_req_check_to);
+  },
+  lpCheck: function () {
+    if (!curNotifier.lp_started || curNotifier.lpActive || curNotifier.lpInvalid) return;
+    if (!curNotifier.lpMakeRequest) {
+      clearTimeout(curNotifier.lp_check_to);
+      curNotifier.lp_check_to = setTimeout(this.lpCheck.bind(this), 1000);
+      return;
+    }
+    if (!Notifier.lcCheckServer()) {
+      debugLog('no server from check');
+      this.lcNoServer();
+      return;
+    }
+
+    var now = vkNow(),
+        add_queues = [],
+        completed = false,
+        params = {
+      act: 'a_check',
+      ts: curNotifier.timestamp,
+      key: curNotifier.key,
+      id: curNotifier.uid,
+      wait: 25
+    };
+
+    each (curNotifier.addQueues, function (queue, data) {
+      if (now - data[0] > 30000 && !queue.match(/nccts/)) {
+        // old queue
+        debugLog('drop key', queue, now - data[0]);
+        delete curNotifier.addQueues[queue];
+        return;
+      }
+      add_queues.push(queue);
+      params.ts += '_' + data[1];
+      params.key += data[2];
+    });
+
+    var onFail = function (msg) {
+      if (completed) return;
+      completed = true;
+      curNotifier.lpActive = false;
+      clearTimeout(curNotifier.lp_req_check_to);
+      // topError('Notify error: ' + msg);
+
+      curNotifier.error_timeout = curNotifier.error_timeout || 1;
+      clearTimeout(curNotifier.lp_error_to);
+      curNotifier.lp_error_to = setTimeout(this.lpCheck.bind(this), curNotifier.error_timeout * 1000 + irand(1000, 10000));
+      if (curNotifier.error_timeout < 64) {
+        curNotifier.error_timeout *= 2;
+      }
+    }.bind(this);
+
+    // debugLog('query', params.ts, params.key);
+    curNotifier.lpActive = true;
+    clearTimeout(curNotifier.lp_req_check_to);
+    curNotifier.lp_req_check_to = setTimeout(onFail, (params.wait + 5) * 1000);
+    curNotifier.lpMakeRequest(curNotifier.frame_url, params, function (text) {
+      if (completed) return;
+      completed = true;
+      curNotifier.lpActive = false;
+      if (!curNotifier.lp_started) return;
+      this.lcSend('check_ok');
+      try {
+        var response = eval('(' + text + ')'), main_response = response, add_response, add_queue, busy = 0;
+        // debugLog('response', clone(response), clone(add_queues));
+        if (isArray(response)) {
+          main_response = response.shift();
+          while (add_response = response.shift()) {
+            add_queue = add_queues.shift();
+            if (!add_queue) break;
+            if (add_response.failed == 2 && add_response.err == 4) {
+              debugLog('!!notifier key busy!! ' + curNotifier.instance_id);
+              busy |= 1;
+              continue;
+            }
+            this.lcSend('addfeed', [add_queue, add_response]);
+            this.addFeed(add_queue, add_response);
+            if (add_response.failed) {
+              delete curNotifier.addQueues[add_queue];
+            }
+          }
+        } else if (response.failed) {
+          while (add_queue = add_queues.shift()) {
+            this.lcSend('addfeed', [add_queue, response]);
+            this.addFeed(add_queue, response);
+            delete curNotifier.addQueues[add_queue];
+          }
+          this.lcSend('clear_addkeys');
+        }
+        switch (this.lpChecked(main_response)) {
+          case 0: break; // ok
+
+          case 1:
+            // topError('Notifier key real error', {dt: -1, type: 5, answer: text + '\n\nbusy:' + busy + '\nserver:' + curNotifier.is_server + '\ninstance:' + curNotifier.instance_id, url: curNotifier.frame_url, query: params && ajx2q(params)});
+            return;
+
+          case 2:
+            busy |= 2; break;
+
+          default: return;
+        }
+        if (!busy) {
+          this.lpCheck();
+          curNotifier.error_timeout = Math.max(1, (curNotifier.error_timeout || 1) / 1.5);
+        } else {
+          // topError('Notifier key busy', {dt: -1, type: 5, answer: text + '\n\nbusy:' + busy + '\nserver:' + curNotifier.is_server + '\ninstance:' + curNotifier.instance_id, url: curNotifier.frame_url, query: params && ajx2q(params)});
+          this.lcNoServer();
+        }
+      } catch (e) {
+        if (text && text.indexOf('Ad Muncher') == -1) {
+          topError('Notifier error: ' + e.message, {dt: -1, type: 5, stack: e.stack, answer: text + '\n\nbusy:' + busy + '\nserver:' + curNotifier.is_server + '\ninstance:' + curNotifier.instance_id, url: curNotifier.frame_url, query: params && ajx2q(params)});
+          debugLog(e.message, e.stack, e);
+        }
+
+        curNotifier.error_timeout = curNotifier.error_timeout || 1;
+        clearTimeout(curNotifier.lp_error_to);
+        curNotifier.lp_error_to = setTimeout(this.lpCheck.bind(this), curNotifier.error_timeout * 1000);
+        if (curNotifier.error_timeout < 64) {
+          curNotifier.error_timeout *= 2;
+        }
+      }
+    }.bind(this), onFail);
+  },
+  lpChecked: function(response) {
+    // debugLog('response', response);
+    var failed = response.failed;
+    if (failed == 2) {
+      if (response.err == 4) {
+        return 2;
+      }
+      curNotifier.lpInvalid = true;
+      clearTimeout(curNotifier.lp_error_to);
+      curNotifier.lp_error_to = setTimeout(this.lpGetKey.bind(this), curNotifier.error_timeout * 1000);
+      if (curNotifier.error_timeout < 64) {
+        curNotifier.error_timeout *= 2;
+      }
+      return (response.err == 1) ? 1 : 3;
+    } else if (failed) {
+      throw getLang('global_unknown_error');
+    }
+    this.lcSend('feed', extend({full: curNotifier.idle_manager && curNotifier.idle_manager.is_idle && !this.canNotifyUi(), key: curNotifier.key}, response));
+
+    curNotifier.timestamp = response.ts;
+    Notifier.pushEvents(response.events);
+    return 0;
+  },
+  lpOnReset: function () {
+    curNotifier.lpOnReset && curNotifier.lpOnReset();
+  },
+  lpReset: function (cb) {
+    if (cb) {
+      curNotifier.lpOnReset = cb;
+    }
+    clearTimeout(curNotifier.resetTO);
+    curNotifier.resetTO = setTimeout(function () {
+      if (curNotifier.is_server && !curNotifier.lp_started) {
+        Notifier.lpStart();
+        return
+      }
+      if (curNotifier.lpMakeRequest && !curNotifier.lpInvalid) {
+        var key = curNotifier.key, ts = curNotifier.timestamp;
+        each (curNotifier.addQueues, function (queue, data) {
+          key += data[2];
+          ts += '_' + data[1];
+        });
+        curNotifier.lpMakeRequest(curNotifier.frame_url, {
+          act: 'a_release',
+          key: key,
+          ts: ts,
+          id: curNotifier.uid,
+          wait: 25
+        }, Notifier.lpOnReset, Notifier.lpOnReset);
+      } else {
+        ajax.post('notifier.php?act=a_reset', false, {
+          onDone: Notifier.lpOnReset,
+          onFail: function () {Notifier.lpOnReset(); return true;}
+        });
+      }
+    }, 100);
+  },
+  lpGetKey: function () {
+    var stNow = vkNow();
+    ajax.post('notifier.php?act=a_get_key', {id: curNotifier.uid}, {
+      onDone: function (key, ts) {
+        curNotifier.timestamp = ts;
+        curNotifier.key = key;
+        curNotifier.lpInvalid = false;
+        this.lcSend('new_key', {ts: ts, key: key});
+        this.lpCheck();
+      }.bind(this),
+      onFail: function (code) {
+        switch (code) {
+          case 1: // non auth
+          case 3: // disabled
+            Notifier.standby();
+            return;
+            break
+
+          case 4: // dynamic IP address
+            Notifier.standby(300);
+            return;
+            break;
+
+          case 2: // wrong auth
+            Notifier.onRelogin();
+            return;
+            break
+        }
+        curNotifier.error_timeout = 64;
+        clearTimeout(this.lp_error_to);
+        this.lp_error_to = setTimeout(this.lpGetKey.bind(this), curNotifier.error_timeout * 1000);
+        // if (curNotifier.error_timeout < 64) {
+        //   curNotifier.error_timeout *= 2;
+        // }
+        return true;
+      }.bind(this)
+    });
+  },
+
+  addKey: function (data, cb, local) {
+    if (curNotifier.flash_transport || !data) {
+      return false;
+    }
+    var queue = data.queue || data.key;
+    var addq = curNotifier.addQueues[queue];
+    var to_reset = !addq && curNotifier.is_server;
+    if (addq) {
+      addq[0] = vkNow();
+      addq[3] = cb;
+      addq[4] = local;
+    } else {
+      curNotifier.addQueues[queue] = [vkNow(), data.ts, data.key, cb, local];
+    }
+    if (!local) {
+      Notifier.lcSend('new_addkey', data);
+    }
+    if (to_reset) {
+      Notifier.lpReset();
+    }
+    return true;
+  },
+  addFeed: function (queue, data) {
+    var addq = curNotifier.addQueues[queue];
+    if (!isArray(addq) || !addq.length) return;
+
+    addq[1] = data.ts;
+    if (isFunction(addq[3])) {
+      addq[3](queue, data);
+    }
+  },
+  addRecvClbk: function(act, type, clbk, force) {
+    if (!curNotifier.recvClbks) curNotifier.recvClbks = {};
+    if (!curNotifier.recvClbks[act]) curNotifier.recvClbks[act] = {};
+    if (!curNotifier.recvClbks[act][type] || force) {
+      curNotifier.recvClbks[act][type] = clbk;
+    }
+  },
+  setRecvClbk: function(act, clbk) {
+    if (!curNotifier.recvClbks) curNotifier.recvClbks = {};
+    curNotifier.recvClbks[act] = [clbk];
+  },
+
+  fixPhoto: function (src, smaller) {
+    src = clean(src);
+    if (src.indexOf('question_c.gif') == -1) {
+      return src;
+    }
+    return smaller ? '/images/question_inv_xc.png' : '/images/question_inv_c.png';
+  }
+}
+
+function Sound(filename, opts) {
+  var audioObjSupport = false, audioTagSupport = false, self = this, ext;
+  if (!filename) throw 'Undefined filename';
+  opts = opts || {};
+
+  try {
+    var audioObj = ce('audio');
+    audioObjSupport = !!(audioObj.canPlayType);
+
+    if (('no' != audioObj.canPlayType('audio/mpeg')) && ('' != audioObj.canPlayType('audio/mpeg')))
+      ext = '.mp3?1';
+    else if (('no' != audioObj.canPlayType('audio/ogg; codecs="vorbis"')) && ('' != audioObj.canPlayType('audio/ogg; codecs="vorbis"')) && !opts.forceMp3)
+      ext = '.ogg?1';
+    else
+      audioObjSupport = false;
+  } catch (e) {}
+  // audioObjSupport = false;
+
+  var src = opts.forcePath || '/' + filename + ext;
+  if (audioObjSupport) {
+    audioObj.src = src;
+    var ended = false;
+    audioObj.addEventListener('ended', function(){ended = true;}, true);
+    audioObj.load();
+    this.playSound = function() {
+      if (ended) {
+        audioObj.load();
+      }
+      audioObj.play();
+      ended = false;
+    };
+    this.pauseSound = function() {
+      audioObj.pause();
+    };
+  } else {
+    cur.__sound_guid = cur.__sound_guid || 0;
+    var wrap = ge('flash_sounds_wrap') || utilsNode.appendChild(ce('span', {id: 'flash_sounds_wrap'})),
+        guid = 'flash_sound_' + (cur.__sound_guid++);
+
+    var opts = {
+      url: '/swf/audio_lite.swf?4',
+      id: guid
+    }
+    var params = {
+      swliveconnect: 'true',
+      allowscriptaccess: 'always',
+      wmode: 'opaque'
+    }
+    if (renderFlash(wrap, opts, params, {})) {
+      var swfObj = browser.msie ? window[guid] : document[guid],
+          inited = false,
+          checkLoadInt = setInterval(function () {
+        if (swfObj && swfObj.paused) {
+          try {
+            swfObj.setVolume(1);
+            swfObj.loadAudio(src);
+            swfObj.pauseAudio();
+          } catch (e) {debugLog(e);}
+        }
+        inited = true;
+        clearInterval(checkLoadInt);
+      }, 300);
+      self.playSound = function() {
+        if (!inited) return;
+        swfObj.playAudio(0);
+      };
+      self.pauseSound = function() {
+        if (!inited) return;
+        swfObj.pauseAudio();
+      };
+    }
+  }
+}
+Sound.prototype = {
+  play: function() {
+    try {this.playSound();} catch(e){}
+  },
+  pause: function() {
+    try {this.pauseSound();} catch(e){}
+  }
+};
+
+
+function getWndInner() {
+  var w = lastWindowWidth, h = lastWindowHeight, sb = sbWidth();
+  if (lastWndScroll[0] !== false ? lastWndScroll[0] :
+      (browser.msie6 ? pageNode.scrollHeight > pageNode.clientHeight : !browser.msie6 && htmlNode.scrollHeight > htmlNode.clientHeight)) {
+    w -= sb + (sb ? 1 : 0);
+  }
+  return [h, w];
+}
+
+window.lastWndScroll = [false, false];
+function updateWndVScroll() {
+  var w = window, wndInner = getWndInner(), vScroll = false;
+  if (w.boxLayerWrap && isVisible(boxLayerWrap)) {
+    vScroll = (boxLayerWrap.scrollHeight > boxLayerWrap.clientHeight) ? 1 : 0;
+  } else if (w.layerWrap && isVisible(layerWrap)) {
+    vScroll = (layerWrap.scrollHeight > layerWrap.clientHeight) ? 1 : 0;
+  } else if (w.mvLayerWrap && isVisible(mvLayerWrap)) {
+    vScroll = (mvLayerWrap.scrollHeight > mvLayerWrap.clientHeight) ? 1 : 0;
+  } else {
+    vScroll = false;
+  }
+  each (curRBox.tabs, function (id) {
+    if (this.options.marginFixedToLayer) {
+      setStyle(this.wrap, {marginRight: hasClass(document.body, 'layers_shown') ? sbWidth() : 0})
+    }
+  });
+  if (vScroll === lastWndScroll[0]) {
+    return;
+  }
+  lastWndScroll[0] = vScroll;
+
+  each (curRBox.tabs, function (id) {
+    if (this.toRight && !this.options.marginFixedToLayer) {
+      setStyle(this.wrap, {marginRight: vScroll ? sbWidth() : 0});
+    }
+  });
+}
+
+function defBox(options, callback) {
+  var boxC = '<div class="'+(options.subClass || '')+'"><div class="fc_tab_head"><a class="fc_tab_close_wrap fl_r"><div class="chats_sp fc_tab_close"></div></a><div class="fc_tab_title noselect">%title%</div></div><div id="fc_ctabs_cont"><div class="fc_ctab fc_ctab_active">%content%</div></div></div></div>';
+
+  if (options.content) {
+    var cont = '<div class="fc_content_wrap"><div class="fc_content">'+options.content+'</div></div>';
+  } else {
+    var cont = options.innerHTML;
+  }
+  var wrap = se(rs(boxC, {
+    title: options.title,
+    content: cont
+  }));
+  var cont = geByClass1('fc_content', wrap, 'div');
+  var opts = {
+    movable: geByClass1('fc_tab_head', wrap),
+    hider: geByClass1('fc_tab_close_wrap', wrap, 'a'),
+    startLeft: options.x,
+    startTop: options.y,
+    startHeight: options.height,
+    startWidth: options.width,
+    resizeableH: cont,
+    resize: false,
+    minH: options.minH,
+    onBeforeHide: options.onBeforeHide || function() {},
+    onHide: options.onHide || function () {},
+    onDragEnd: function (y, x) {},
+    onResize: function (h, w) {}
+  },
+  box = new RBox(wrap, extend(opts, options));
+
+  if (options.content) {
+    var scroll = new Scrollbar(cont, {
+      prefix: 'fc_',
+      more: debugLog,
+      nomargin: true,
+      global: true,
+      nokeys: true,
+      right: vk.rtl ? 'auto' : 0,
+      left: !vk.rtl ? 'auto' : 0,
+      onHold: options.onHold
+    });
+  }
+
+  callback({
+    id: box.id,
+    cont: cont,
+    update: function() {
+      scroll && scroll.update();
+    }
+  });
+  return box;
+}
+
+if (!window.curRBox) {
+  curRBox = {
+    guid: 0,
+    active: false,
+    focused: [],
+    tabs: {}
+  };
+}
+function RBox(content, options) {
+  var t = this, defaultOptions = {
+    minH: 50,
+    minW: 50
+  };
+  t.options = options = extend(defaultOptions, options);
+  t.content = content;
+  var id = t.id = 'rb_box_' + (options.id || curRBox.guid++);
+
+  t.wrap = ce('div', {id: id, className: 'rb_box_wrap fixed'+(options.fixed ? ' fc_fixed' : '')});
+  var pos = {};
+  t.toBottom = t.toRight = false;
+  if (options.fixed) {
+    pos.bottom = 0;
+    pos.right = 72;
+  } else {
+    if (options.startTop !== undefined) {
+      pos.top = options.startTop;
+    } else if (options.startBottom !== undefined) {
+      pos.bottom = options.startBottom;
+    }
+    if (options.startLeft !== undefined) {
+      pos.left = options.startLeft;
+    } else if (options.startRight !== undefined) {
+      pos.right = options.startRight;
+    }
+  }
+  setStyle(t.wrap, pos);
+
+  if (options.movable) {
+    addEvent(options.movable, 'mousedown', t._head_mdown.bind(t));
+  }
+  t.resizeableH = options.resizeableH || content;
+  if (options.startHeight) {
+    setStyle(t.resizeableH, 'height', options.startHeight);
+  }
+  t.resizeableW = options.resizeableW || content;
+  if (options.startWidth) {
+    setStyle(t.resizeableW, 'width', options.startWidth);
+  }
+  addEvent(content, 'mousedown', t._cont_mdown.bind(t));
+  if (options.closer) {
+    addEvent(options.closer, 'mousedown', t._close_mdown.bind(t));
+    addEvent(options.closer, 'click', t._close_click.bind(t));
+  }
+  if (options.hider) {
+    addEvent(options.hider, 'mousedown', t._close_mdown.bind(t));
+    addEvent(options.hider, 'click', t._hide_click.bind(t));
+  }
+  if (options.minimizer && options.minimizer !== true) {
+    addEvent(options.minimizer, 'mousedown', t._close_mdown.bind(t));
+    addEvent(options.minimizer, 'click', t._min_toggle.bind(t));
+  }
+
+  t.wrap.appendChild(content);
+
+  if (options.resize !== false) {
+    t.resizeWrap = ce('div', {className: 'rb_resize_wrap', innerHTML: '<div class="chats_sp rb_resize"></div>'});
+    t.wrap.appendChild(t.resizeWrap);
+    addEvent(t.resizeWrap, 'mousedown', t._resize_mdown.bind(t));
+  }
+  if (options.minimized) {
+    addClass(t.wrap, 'rb_minimized');
+    t.minimized = true;
+  }
+  bodyNode.insertBefore(t.wrap, ge('page_wrap'));
+
+  var st = getStyle(t.wrap, 'top'),
+      sb = getStyle(t.wrap, 'bottom'),
+      sl = getStyle(t.wrap, 'left'),
+      sr = getStyle(t.wrap, 'right');
+  this.toBottom = (st === 'auto' || st === '' || browser.msie && st === 0) && sb != 'auto' && sb !== '' && !(browser.msie && sb === 0);
+  this.toRight = (sl === 'auto' || sl === '' || browser.msie && sl === 0) && sr != 'auto' && sr !== '' && !(browser.msie && sr === 0);
+
+  if (this.toRight) {
+    setStyle(t.wrap, {marginRight: lastWndScroll[0] ? sbWidth() : 0});
+  }
+  if (options.nofocus || options.noshow) {
+    addClass(t.wrap, 'rb_inactive');
+  }
+  if (this.toBottom) {
+    setStyle(t.wrap, {marginRight: lastWndScroll[0] ? sbWidth() : 0});
+    addClass(t.wrap, 'fc_tobottom');
+  }
+  if (this.options.marginFixedToLayer) {
+    setStyle(t.wrap, {marginRight: hasClass(document.body, 'layers_shown') ? sbWidth() : 0});
+  }
+
+  // console.log(['s', st,st === '0',st === 0, sb, sl,sl==='0',sl===0, sr, this.toBottom, this.toRight]);
+  curRBox.tabs[id] = t;
+  t.pos = false;
+  if (!options.noshow) {
+    t.show(false, options.nofocus);
+  } else {
+    setStyle(t.wrap, {visibility: 'hidden', display: 'block'});
+    t._update_pos();
+    setStyle(t.wrap, {visibility: '', display: ''});
+  }
+};
+extend(RBox.prototype, {
+  show: function (ts, nofocus) {
+    var t = this;
+    if (ts === undefined) ts = 0;
+    if (ts) {
+      setStyle(t.wrap, {opacity: 0, display: 'block'});
+      t.visible = true;
+      !nofocus && t.focus();
+      animate(t.wrap, {opacity: 1}, ts, function () {
+        setStyle(t.wrap, browser.msie ? {filter: 'none'} : {opacity: ''});
+        t._update_pos();
+      });
+    } else {
+      show(t.wrap);
+      t.visible = true;
+      !nofocus && t.focus();
+      t._update_pos();
+    }
+    if (t.options.onShow) {
+      t.options.onShow();
+    }
+  },
+  hide: function (ts, nofire, hideOpts) {
+    var t = this;
+    if (!nofire && t.options.onBeforeHide && t.options.onBeforeHide()) {
+      return true;
+    }
+    if (ts === undefined) ts = 0;
+    if (ts) {
+      setStyle(t.wrap, {opacity: 1, display: 'block'});
+      animate(t.wrap, {opacity: 0}, ts, function () {
+        hide(t.wrap);
+        setStyle(t.wrap, browser.msie ? {filter: 'none'} : {opacity: ''});
+      });
+    } else {
+      hide(t.wrap);
+    }
+    t.visible = false;
+    if (!nofire && t.options.onHide) t.options.onHide(hideOpts || {});
+  },
+  _head_mdown: function (e) {
+    if (checkEvent(e)) return;
+    (e.originalEvent || e).cancelBubble = true;
+
+    var t = this, handler = e.target,
+        wndInner = getWndInner(),
+        focused = curRBox.active == t.id,
+        startY = e.pageY,
+        startX = e.pageX,
+        wrapH = t.wrap.offsetHeight,
+        wrapW = t.wrap.offsetWidth,
+        startTop, startLeft, lastTop = 0, lastLeft = 0,
+        maxTop = wndInner[0] - wrapH,
+        maxLeft = wndInner[1] - wrapW,
+        selectEvent = browser.msie ? 'selectstart' : 'mousedown';
+
+    if (t.options.fixed) {
+      FastChat.pinTab(t.options.peer || -1, e, true);
+    }
+    if (!focused) {
+      t.focus(e);
+    }
+
+    if (t.toBottom) {
+      t.toBottom = false;
+      startTop = wndInner[0] - intval(getStyle(t.wrap, 'bottom')) - wrapH;
+      setStyle(t.wrap, {top: startTop, bottom: 'auto'});
+      removeClass(t.wrap, 'fc_tobottom');
+    } else startTop = intval(getStyle(t.wrap, 'top'));
+    if (t.toRight) {
+      t.toRight = false;
+      // console.log(['to r',startLeft, getStyle(t.wrap, 'right'), intval(getStyle(t.wrap, 'right')), wrapW]);
+      startLeft = wndInner[1] - intval(getStyle(t.wrap, 'right')) - wrapW;
+      setStyle(t.wrap, {left: startLeft, right: 'auto'});
+    } else startLeft = intval(getStyle(t.wrap, 'left'));
+
+    lastTop = startTop;
+    lastLeft = startLeft;
+
+    cur._fcdrag = 1;
+    var _temp = function (e) {
+      lastTop = Math.max(0, Math.min(maxTop, startTop + e.pageY - startY));
+      if (maxTop - lastTop < 10) lastTop = maxTop;
+      else if (lastTop < 10) lastTop = 0;
+      t.wrap.style.top = lastTop + 'px';
+
+      lastLeft = Math.max(0, Math.min(maxLeft, startLeft + e.pageX - startX));
+      if (maxLeft - lastLeft < 10) lastLeft = maxLeft;
+      else if (lastLeft < 10) lastLeft = 0;
+      t.wrap.style.left = lastLeft + 'px';
+      return cancelEvent(e);
+    }, _temp2 = function (e) {
+      cur._fcdrag = 0;
+      removeEvent(document, 'mousemove', _temp);
+      removeEvent(document, 'mouseup', _temp2);
+      removeEvent(document, selectEvent, cancelEvent);
+      setStyle(bodyNode, 'cursor', '');
+      setStyle(handler, 'cursor', '');
+      if (t.toBottom = (lastTop >= maxTop - 5)) {
+        setStyle(t.wrap, {top: 'auto', bottom: 0});
+        addClass(t.wrap, 'fc_tobottom');
+      }
+      if (t.toRight = (lastLeft >= maxLeft - 5)) {
+        setStyle(t.wrap, {left: 'auto', right: 0, marginRight: lastWndScroll[0] ? sbWidth() : 0});
+      }
+      t._update_pos();
+      var dlittle = Math.abs(e.pageY - startY) < 3 && Math.abs(e.pageX - startX) < 3;
+      if (cur._fcpromo > 0) {
+        cur._fcpromo = dlittle ? 0 : -1;
+      } else if (t.options.minimizer && dlittle) {
+        if (!t.minimized && focused) {
+          t.minimize(true);
+        } else if (t.minimized) {
+          t.unminimize(true);
+        }
+      } else {
+        t.options.onDragEnd && t.options.onDragEnd(t.toBottom ? -1 : lastTop / wndInner[0], t.toRight ? -1 : lastLeft / wndInner[1]);
+      }
+    };
+
+    addEvent(document, 'mousemove', _temp);
+    addEvent(document, 'mouseup', _temp2);
+    addEvent(document, selectEvent, cancelEvent);
+    setStyle(bodyNode, 'cursor', 'move');
+    setStyle(handler, 'cursor', 'move');
+    return false;
+  },
+  _resize_mdown: function (e) {
+    if (checkEvent(e)) return;
+    this.focus(e);
+
+    var t = this, handler = e.target,
+        wndInner = getWndInner(),
+        startY = e.pageY,
+        startX = e.pageX,
+        wrapH = t.wrap.offsetHeight,
+        wrapW = t.wrap.offsetWidth,
+        startTop, startLeft, lastH = 0, lastW = 0,
+        startH = t.resizeableH.clientHeight - intval(getStyle(t.resizeableH, 'paddingBottom')) - intval(getStyle(t.resizeableH, 'paddingTop')),
+        startW = t.resizeableW.clientWidth - intval(getStyle(t.resizeableW, 'paddingRight')) - intval(getStyle(t.resizeableW, 'paddingLeft')),
+        selectEvent = browser.msie ? 'selectstart' : 'mousedown',
+        onresize = !browser.msie && t.options.onResize || false;
+
+    if (t.toBottom) {
+      t.toBottom = false;
+      startTop = wndInner[0] - intval(getStyle(t.wrap, 'bottom')) - wrapH;
+      setStyle(t.wrap, {top: startTop, bottom: 'auto'});
+      removeClass(t.wrap, 'fc_tobottom');
+    } else startTop = intval(getStyle(t.wrap, 'top'));
+    if (t.toRight) {
+      t.toRight = false;
+      startLeft = wndInner[1] - intval(getStyle(t.wrap, 'right')) - wrapW;
+      setStyle(t.wrap, {left: startLeft, right: 'auto'});
+    } else startLeft = intval(getStyle(t.wrap, 'left'));
+
+    t.options.onResizeStart && t.options.onResizeStart(startH, startW);
+
+    var maxH = startH + wndInner[0] - startTop - wrapH,
+        maxW = startW + wndInner[1] - startLeft - wrapW;
+
+    var _temp = function (e) {
+      lastH = Math.max(t.options.minH, Math.min(maxH, startH + e.pageY - startY));
+      if (maxH - lastH < 10) lastH = maxH;
+      t.resizeableH.style.height = lastH + 'px';
+
+      lastW = Math.max(t.options.minW, Math.min(maxW, startW + e.pageX - startX));
+      if (maxW - lastW < 10) lastW = maxW;
+      t.resizeableW.style.width = lastW + 'px';
+      onresize && onresize(lastH, lastW)
+
+      return cancelEvent(e);
+    }, _temp2 = function (e) {
+      removeEvent(document, 'mousemove', _temp);
+      removeEvent(document, 'mouseup', _temp2);
+      removeEvent(document, selectEvent, cancelEvent);
+      setStyle(bodyNode, 'cursor', '');
+      setStyle(handler, 'cursor', '');
+      if (t.toBottom = (lastH == maxH)) {
+        setStyle(t.wrap, {top: 'auto', bottom: 0});
+        addClass(t.wrap, 'fc_tobottom');
+      }
+      if (t.toRight = (lastW == maxW)) {
+        setStyle(t.wrap, {left: 'auto', right: 0, marginRight: lastWndScroll[0] ? sbWidth() : 0});
+      }
+      t._update_pos();
+      t.options.onResizeEnd && t.options.onResizeEnd(lastH, lastW, wndInner[0], wndInner[1], t.toBottom, t.toRight);
+    };
+
+    addEvent(document, 'mousemove', _temp);
+    addEvent(document, 'mouseup', _temp2);
+    addEvent(document, selectEvent, cancelEvent);
+    setStyle(bodyNode, 'cursor', 'move');
+    setStyle(handler, 'cursor', 'move');
+    return false;
+  },
+  _update_pos: function() {
+    var t = this, wrap = t.wrap
+    t.pos = [t.wrap.offsetTop, t.wrap.offsetLeft, t.wrap.offsetHeight, t.wrap.offsetWidth];
+  },
+  _wnd_resize: function (wndH, wndW, check) {
+    var t = this;
+    if (t.toBottom) {
+      t.pos[0] = t.wrap.offsetTop;
+    }
+    if (t.toRight) {
+      t.pos[1] = t.wrap.offsetLeft;
+    }
+    var s = {}, sh = false, sw = false,
+        needH = t.pos[0] + t.pos[2] - wndH,
+        diffT = t.pos[0],
+        // diffH = t.options.resize !== false ? t.resizeableH.clientHeight - t.options.minH : 0,
+        diffH = t.resizeableH.clientHeight - t.options.minH,
+        needW = t.pos[1] + t.pos[3] - wndW,
+        diffL = t.pos[1],
+        diffW = t.options.resize !== false ? t.resizeableW.clientWidth - t.options.minW : 0;
+
+    if (check) {
+      if (diffW < 0) {
+        setStyle(t.resizeableW, t.options.minW);
+      }
+      if (diffH < 0) {
+        setStyle(t.resizeableH, t.options.minH);
+      }
+    }
+
+    if ((needH <= 0 || diffT <= 0  && diffH <= 0) &&
+        (needW <= 0 || diffL <= 0  && diffW <= 0)) return;
+
+    if (needH > 0 && diffT > 0) {
+      diffT = Math.min(needH, diffT);
+      needH -= diffT;
+      s.top = t.pos[0] - diffT;
+      s.bottom = '';
+    }
+    if (needH > 0 && diffH > 0) {
+      diffH = Math.min(needH, diffH);
+      sh = t.resizeableH.clientHeight - diffH;
+    }
+    if (needW > 0 && diffL > 0) {
+      diffL = Math.min(needW, diffL);
+      needW -= diffL;
+      s.left = t.pos[1] - diffL;
+      s.right = '';
+    }
+    if (needW > 0 && diffW > 0) {
+      diffW = Math.min(needW, diffW);
+      sw = t.resizeableW.clientWidth - diffW;
+    }
+    if (sw !== false) {
+      setStyle(t.resizeableW, 'width', sw);
+    }
+    if (sh !== false) {
+      setStyle(t.resizeableH, 'height', sh);
+    }
+    setStyle(t.wrap, s);
+    t._update_pos();
+    t.options.onResize && t.options.onResize(t.resizeableH.clientHeight, t.resizeableW.clientWidth);
+  },
+  _cont_mdown: function (e) {
+    var stop = (curRBox.active != this.id);
+    if (stop) {
+      this.focus(e);
+      if (!hasClass(e.target, 'fc_editable')) {
+        return cancelEvent(e);
+      }
+    }
+  },
+
+  _focus: function () {
+    var t = this, pos = indexOf(curRBox.focused, t.id), prev = curRBox.active, prevBox = prev && curRBox.tabs[prev];
+    if (prev == t.id) {
+      return;
+    }
+    if (prevBox && isFunction(prevBox.options.onBlur)) {
+      prevBox.options.onBlur();
+    }
+    if (pos != -1) {
+      curRBox.focused.splice(pos, 1);
+    }
+    curRBox.focused.unshift(t.id);
+
+    var zIndex = BASIC_CHAT_ZINDEX + curRBox.focused.length, first = true;
+    each(curRBox.focused, function (k, id) {
+      var wrap = curRBox.tabs[id].wrap;
+      if (first) {
+        addClass(wrap, 'rb_active');
+        removeClass(wrap, 'rb_inactive');
+        curRBox.active = id;
+        first = false;
+      } else {
+        removeClass(wrap, 'rb_active');
+        addClass(wrap, 'rb_inactive');
+      }
+      setStyle(wrap, 'zIndex', zIndex);
+      zIndex--;
+    });
+  },
+  _hide_click: function () {
+    this.hide();
+  },
+  minimize: function (fire) {
+    var t = this, wrap = t.wrap;
+    if (t.options.fixed) {
+      return false;
+    }
+    addClass(wrap, 'rb_minimized');
+    t.minimized = true;
+    t._update_pos();
+    if (fire && t.options.onMinimize) {
+      t.options.onMinimize(0);
+    }
+  },
+  unminimize: function (fire) {
+    var t = this, wrap = t.wrap, wndInner = getWndInner();
+    removeClass(wrap, 'rb_minimized');
+    t.minimized = false;
+    t._update_pos();
+    t._wnd_resize(wndInner[0], wndInner[1], true);
+    curRBox.active = false;
+    t.focus();
+    if (fire && t.options.onMinimize) {
+      t.options.onMinimize(1);
+    }
+  },
+  _min_toggle: function (e) {
+    var t = this;
+    setTimeout(function () {
+      if (!t.minimized) {
+        t.minimize(true);
+      } else {
+        t.unminimize(true);
+      }
+    }, 50);
+  },
+  destroy: function () {
+    var t = this,
+        pos = indexOf(curRBox.focused, t.id);
+    if (pos != -1) {
+      curRBox.focused.splice(pos, 1);
+    }
+    cleanElems(t.wrap, t.resizeWrap, t.content, t.options.movable, t.options.closer, t.options.hider);
+    re(t.wrap);
+    delete curRBox.tabs[t.id];
+    delete t;
+  },
+  _close_mdown: function (e) {
+    (e.originalEvent || e).cancelBubble = true;
+  },
+  _close_click: function (e) {
+    this.close();
+  },
+  _close: function (nofocus) {
+    var t = this;
+    this.destroy();
+    if (curRBox.focused[0] && nofocus !== true) {
+      curRBox.tabs[curRBox.focused[0]].focus();
+    }
+  },
+  focus: function (e) {
+    var t = this, cb = (curRBox.active != t.id) || true;
+    t._focus();
+    if (cb && isFunction(t.options.onFocus)) {
+      t.options.onFocus(e);
+    }
+    return cb;
+  },
+  close: function () {
+    var t = this, pos = t.pos;
+    t._close();
+    if (isFunction(t.options.onClose)) {
+      t.options.onClose(pos);
+    }
+  }
+});
+
+if (!window.curFastChat) {
+  curFastChat = {};
+}
+FastChat = {
+  init: function (options) {
+    extend(curFastChat, {
+      tabs: {},
+      needPeers: {},
+      gotPeers: {},
+      needMedia: {},
+      gotMedia: {},
+      myTypingEvents: {},
+      typingEvents: {},
+      inited: true,
+      options: options,
+      posSeq: 0,
+      error_timeout: 1
+    });
+    delete curFastChat.standby;
+    delete curFastChat.standbyTO;
+    Notifier.addRecvClbk('fastchat', 0, FastChat.lcRecv, true);
+    Notifier.addRecvClbk('logged_off', 0, FastChat.standby, true);
+    FastChat.lcSend('needSettings', {version: options.version, lang_id: langConfig.id});
+    clearTimeout(curFastChat.getSettingsTO);
+    curFastChat.getSettingsTO = setTimeout(FastChat.getSettings, 300);
+  },
+  getSettings: function () {
+    var friends = ls.get('fcFriends' + vk.id);
+    ajax.post('al_im.php', {
+      act: 'a_get_fast_chat',
+      friends: friends && friends.version
+    }, {
+      onDone: function (data) {
+        if (data.friends == -1) {
+          data.friends_version = friends.version;
+          data.friends = friends.list;
+        } else {
+          ls.set('fcFriends' + vk.id, {version: data.friends_version, list: data.friends});
+        }
+        FastChat.gotSettings(data);
+        FastChat.sendSettings();
+      },
+      onFail: function () {
+        return true;
+      }
+    });
+  },
+  gotSettings: function(data) {
+    if (data['emoji_stickers']) {
+      window.emojiStickers = data['emoji_stickers'];
+    }
+    if (window.Emoji) {
+      Emoji.updateTabs();
+    }
+    clearTimeout(curFastChat.getSettingsTO);
+    window.lang = extend(window.lang || {}, data.lang);
+    extend(curFastChat, data, {lang_id: langConfig.id});
+    if (curNotifier.is_server) {
+      if (!data.im_queue) {
+        clearTimeout(curFastChat.lp_error_to);
+        curFastChat.lp_error_to = setTimeout(FastChat.updateQueueKeys.bind(FastChat), (curNotifier.error_timeout || 1) * 1000);
+      } else if (!curFastChat.lpInited) {
+        FastChat.initLp();
+      }
+    }
+    curFastChat.friendsCnt = 0;
+    for (var i in (curFastChat.friends || {})) {
+      curFastChat.friendsCnt++;
+    }
+    setTimeout(FastChat.clistCache.pbind(false), 10);
+    FastChat.initUI();
+  },
+  sendSettings: function () {
+    clearTimeout(curFastChat.sendSettingsTO);
+    var settings = {}, k = ['friends', 'friends_version', 'onlines', 'tpl', 'lang', 'me', 'version', 'im_queue', 'cl_queue'], i;
+    for (i in k) {
+      if (k[i] != 'cl_queue' && curFastChat[k[i]] === undefined) {
+        return;
+      }
+      settings[k[i]] = curFastChat[k[i]];
+    }
+    clearTimeout(curFastChat.sendSettingsTO);
+    curFastChat.sendSettingsTO = setTimeout(function () {
+      FastChat.lcSend('settings', {settings: settings})
+    }, curNotifier.is_server ? 0 : irand(50, 100));
+  },
+  becameServer: function () {
+    if (curFastChat.lpInited || !curFastChat.version) {
+      return;
+    }
+    delete curNotifier.addQueues['fastchat' + vk.id];
+    delete curNotifier.addQueues['contacts' + vk.id];
+    if (!curFastChat.im_queue) {
+      clearTimeout(curFastChat.lp_error_to);
+      curFastChat.lp_error_to = setTimeout(FastChat.updateQueueKeys.bind(FastChat), (curNotifier.error_timeout || 1) * 1000);
+    } else if (!curFastChat.lpInited) {
+      FastChat.initLp();
+    }
+  },
+  destroy: function () {
+    if (!curFastChat.inited) {
+      return false;
+    }
+    var topLink;
+    FastChat.stopLp();
+    each(curFastChat.tabs || {}, function (peer, tab) {
+      tab.box.destroy();
+    });
+    curFastChat.clistBox && curFastChat.clistBox.destroy();
+    each (curFastChat.el || {}, function () {
+      cleanElems(this);
+    });
+    clearInterval(curFastChat.updateFriendsInt);
+    clearInterval(curFastChat.updateTypingsInt);
+    clearTimeout(curFastChat.correspondentsTO);
+    clearTimeout(curFastChat.lp_error_to);
+    curFastChat = {inited: false};
+    return true;
+  },
+
+  isChatOpen: function(id) {
+    if (window.curFastChat && curFastChat.inited && id) {
+      if (curFastChat.tabs && curFastChat.tabs[id] && curFastChat.tabs[id].box.visible ||
+        curFastChat.clistBox && curFastChat.clistBox.visible) {
+          return true;
+      }
+    }
+    return false;
+  },
+
+  standby: function (version) {
+    FastChat.destroy();
+    curFastChat.standby = true;
+    var to = 1, cb = function () {
+      if (!curNotifier.is_server) {
+        clearTimeout(curFastChat.standbyTO);
+        curFastChat.standbyTO = setTimeout(cb, to * 1000);
+        return;
+      }
+      ajax.post('notifier.php?act=a_get_reload', {version: version}, {
+        onDone: function (navVersion, config) {
+          FastChat.lcSend('gotConfig', {navVersion: navVersion, config: config});
+          FastChat.gotConfig(navVersion, config);
+        },
+        onFail: function () {
+          to *= 2;
+          clearTimeout(curFastChat.standbyTO);
+          curFastChat.standbyTO = setTimeout(cb, to * 1000);
+          return true;
+        }
+      });
+    };
+    cb();
+  },
+  gotConfig: function (navVersion, config) {
+    clearTimeout(curFastChat.standbyTO);
+    if (!curFastChat.standby) {
+      return;
+    }
+    setTimeout(function () {
+      if (navVersion > stVersions['nav']) {
+        debugLog('appending al loader');
+        headNode.appendChild(ce('script', {
+          type: 'text/javascript',
+          src: '/js/loader_nav' + navVersion + '_' + vk.lang + '.js'
+        }));
+      }
+      setTimeout(function() {
+        if (navVersion <= stVersions['nav']) {
+          stManager.add(['notifier.js', 'notifier.css', 'emoji.js'], function () {
+            FastChat.init(config);
+          })
+          return;
+        }
+        setTimeout(arguments.callee, 100);
+      }, 0);
+    }, curNotifier.is_server ? 0 : irand(1000, 2000));
+  },
+  updateVersion: function (version) {
+    FastChat.lcSend('standby', {version: version});
+    FastChat.standby(version);
+  },
+
+  // Local connection: communication between tabs in one browser instanse
+  lcSend: function (act, data) {
+    Notifier.lcSend('fastchat', extend({act: act, __id: curFastChat.me && curFastChat.me.id || vk.id}, data));
+  },
+  lcRecv: function (data) {
+    if (isEmpty(data)) return;
+    var act = data.act;
+    if (data.__id != (curFastChat.me && curFastChat.me.id || vk.id)) {
+      return;
+    }
+    delete data.act;
+    delete data.__id;
+    FastChat.lcFeed(act, data);
+  },
+  lcFeed: function (act, data) {
+    switch (act) {
+      case 'needSettings':
+        if (curFastChat.version < data.version) {
+          // May be update version here
+        } else if (data.lang_id == curFastChat.lang_id) {
+          FastChat.sendSettings();
+        }
+        break;
+
+      case 'settings':
+        if (!curFastChat.version && curFastChat.options && data.settings.version == curFastChat.options.version) {
+          FastChat.gotSettings(data.settings);
+        }
+        clearTimeout(curFastChat.sendSettingsTO);
+        break;
+
+      case 'standby':
+        if (!curFastChat.version) break;
+        FastChat.standby(data.version);
+        break;
+
+      case 'gotConfig':
+        FastChat.gotConfig(data.navVersion, data.config);
+        break;
+
+      case 'clFeed':
+        if (!curFastChat.version) break;
+        FastChat.clFeed(data.events);
+        break;
+
+      case 'clistOnlines':
+        if (!curFastChat.version) break;
+        FastChat.clistGotOnlines(data);
+        break;
+
+      case 'imFeeds':
+        if (!curFastChat.version) break;
+        FastChat.imFeeds(data);
+        break;
+
+      case 'needPeer':
+        if (!curFastChat.version) break;
+        var peer = data.id, tab = curFastChat.tabs[peer], i, peerData = false, mem;
+        if (tab !== undefined) {
+          peerData = {
+            name: tab.name,
+            photo: tab.photo,
+            fname: tab.fname,
+            hash: tab.hash,
+            sex: tab.sex,
+            data: tab.data,
+            online: tab.online
+          };
+          for (i in tab.msgs) {
+            peerData.history = [tab.log.innerHTML, tab.msgs];
+            break;
+          }
+        } else if (mem = curFastChat.friends[peer + '_']) {
+          peerData = {name: mem[0], photo: mem[1], fname: mem[2], hash: mem[3], data: mem[4], online: curFastChat.onlines[peer]};
+        }
+        if (peerData === false) {
+          break;
+        }
+        curFastChat.gotPeers[peer] = setTimeout(function () {
+          var response = {};
+          response[peer] = peerData;
+          FastChat.lcSend('gotPeers', response);
+        }, curNotifier.is_server ? 0 : irand(50, 100));
+
+        break;
+
+      case 'fetchingPeers':
+        if (!curFastChat.version) break;
+        each (data, function (peer, flags) {
+          var needPeer = curFastChat.needPeers[peer];
+          if (needPeer && (flags & needPeer[0]) == needPeer[0]) {
+            clearTimeout(needPeer[2]);
+          }
+        });
+        break;
+
+      case 'gotPeers':
+        if (!curFastChat.version) break;
+        FastChat.gotPeers(data);
+        break;
+
+      case 'stateChange':
+        if (!curFastChat.version) break;
+        FastChat.onStateChanged(data);
+        break;
+
+      case 'queueSet':
+        extend(curFastChat, data);
+        break;
+
+      case 'queueClean':
+        if (!curNotifier.is_server) {
+          delete curFastChat.im_queue;
+          delete curFastChat.cl_queue;
+        }
+        break;
+
+      case 'needMedia':
+        var msgId = data.msgId, msgMedia = curFastChat.gotMedia[msgId];
+        if (msgMedia === undefined || msgMedia === 0) {
+          break;
+        }
+        curFastChat.gotMedia[msgId][3] = setTimeout(function () {
+          FastChat.lcSend('gotMedia', {msgId: msgId, peer: msgMedia[0], text: msgMedia[1], msgOpts: msgMedia[2]});
+        }, curNotifier.is_server ? 0 : irand(50, 100));
+        break;
+
+      case 'fetchingMedia':
+        // if (!curFastChat.version) break;
+        var msgId = data.msgId, msgNeed = curFastChat.needMedia[msgId];
+        if (msgNeed === undefined || curFastChat.gotMedia[msgId] === 0) {
+          break;
+        }
+        clearTimeout(msgNeed[1]);
+        msgNeed[1] = setTimeout(FastChat.loadMsgMedia.pbind(msgNeed[0], msgId), 1000);
+        break;
+
+      case 'gotMedia':
+        var msgId = data.msgId, msgMedia = curFastChat.gotMedia[msgId];
+        if (isArray(msgMedia)) {
+          clearTimeout(msgMedia[3]);
+        }
+        FastChat.gotMsgMedia(data.peer, msgId, data.text, data.msgOpts);
+        break;
+    }
+  },
+
+  // Long poll
+  initLp: function () {
+    curFastChat.lpInited = true;
+    FastChat.checkLp();
+    curFastChat.checkLpInt = setInterval(FastChat.checkLp, 20000);
+  },
+  stopLp: function () {
+    curFastChat.lpInited = false;
+    clearInterval(curFastChat.checkLpInt);
+    delete curFastChat.im_queue;
+    delete curFastChat.cl_queue;
+  },
+  checkLp: function () {
+    if (!curNotifier.is_server || !curFastChat.im_queue/* || !curFastChat.cl_queue*/) {
+      return;
+    }
+    Notifier.addKey({
+      queue: curFastChat.im_queue.id,
+      key: curFastChat.im_queue.key,
+      ts: curFastChat.im_queue.ts
+    }, FastChat.imChecked, true);
+
+    if (curFastChat.cl_queue) {
+      Notifier.addKey({
+        queue: curFastChat.cl_queue.id,
+        key: curFastChat.cl_queue.key,
+        ts: curFastChat.cl_queue.ts
+      }, FastChat.clChecked, true);
+    }
+    FastChat.lcSend('queueSet', {
+      im_queue: curFastChat.im_queue,
+      cl_queue: curFastChat.cl_queue
+    });
+  },
+  updateQueueKeys: function () {
+    if (curFastChat.updatingQueues) {
+      return;
+    }
+    curFastChat.updatingQueues = 1;
+    FastChat.lcSend('queueClean');
+    FastChat.stopLp();
+    ajax.post('al_im.php', {act: 'a_get_fc_queue'}, {
+      onDone: function (data) {
+        if (data.version > curFastChat.version) {
+          FastChat.updateVersion(data.version);
+          return;
+        }
+        delete curFastChat.updatingQueues;
+        extend(curFastChat, data);
+        FastChat.lcSend('queueSet', data);
+        if (curNotifier.is_server) {
+          FastChat.initLp();
+          FastChat.clistUpdate();
+        }
+      },
+      onFail: function () {
+        delete curFastChat.updatingQueues;
+        FastChat.destroy();
+        return true;
+      }
+    });
+  },
+
+  // Checked function (recv long-poll response)
+  clChecked: function (queue, response) {
+    if (!curFastChat.inited || !curFastChat.ready || !curFastChat.cl_queue) return;
+    if (response.failed) {
+      clearTimeout(curFastChat.lp_error_to);
+      curFastChat.lp_error_to = setTimeout(FastChat.updateQueueKeys.bind(FastChat), (curNotifier.error_timeout || 1) * 1000);
+      return;
+    }
+    if (response.ts) {
+      if (response.key) {
+        curFastChat.cl_queue.key = response.key;
+      }
+      curFastChat.cl_queue.ts = response.ts;
+      FastChat.lcSend('queueSet', {cl_queue: curFastChat.cl_queue});
+    }
+    if (!isArray(response.events) || !response.events.length) {
+      return;
+    }
+    FastChat.clFeed(response.events);
+    FastChat.lcSend('clFeed', {events: response.events});
+  },
+  clFeed: function (events) {
+    if (!curFastChat.inited || !curFastChat.ready || !curFastChat.tabs) return;
+    var clistUpdated = false, failed = false;
+    each (events, function () {
+      var ev = this.split('<!>'), evVer = ev[0], evType = ev[1], peer = ev[2], onltype = ev[3] ? ev[3] : 1, tab = curFastChat.tabs[peer], wasOnline = curFastChat.onlines[peer];
+      if (evVer != curFastChat.version) {
+        FastChat.updateVersion(evVer);
+        failed = true;
+        return false;
+      }
+      if (!curFastChat.friends[peer + '_'] && !tab) {
+        return;
+      }
+
+      switch (evType) {
+        case 'online':
+          if (wasOnline == onltype) break;
+          curFastChat.onlines[peer] = onltype;
+          FastChat.tabNotify(peer, 'online', onltype);
+          clistUpdated = true;
+          break;
+
+        case 'offline':
+          if (!wasOnline) break;
+          delete curFastChat.onlines[peer];
+          if (re('fc_contact' + peer) && curFastChat.clistBox.visible) {
+            FastChat.clistShowMore();
+          }
+          FastChat.tabNotify(peer, 'offline');
+          break;
+      }
+    });
+    if (failed) {
+      return;
+    }
+    if (clistUpdated &&
+        curFastChat.clistBox.visible &&
+        curNotifier.idle_manager && !curNotifier.idle_manager.is_idle &&
+        (curFastChat.el.clist.scrollTop < 100 || curRBox.active != curFastChat.clistBox.id)) {
+      FastChat.clistRender(); // Title is also updated here
+    } else {
+      FastChat.clistUpdateTitle();
+    }
+  },
+  imChecked: function (queue, response) {
+    if (!curFastChat.inited || !curFastChat.ready || !curFastChat.im_queue) return;
+    if (response.failed) {
+      clearTimeout(curFastChat.lp_error_to);
+      curFastChat.lp_error_to = setTimeout(FastChat.updateQueueKeys.bind(FastChat), (curNotifier.error_timeout || 1) * 1000);
+      return;
+    }
+    if (response.ts && curFastChat.im_queue) {
+      if (response.key) {
+        curFastChat.im_queue.key = response.key;
+      }
+      curFastChat.im_queue.ts = response.ts;
+      FastChat.lcSend('queueSet', {im_queue: curFastChat.im_queue});
+    }
+    if (!isArray(response.events) || !response.events.length) {
+      return;
+    }
+    var feeds = {}, failed = false;
+    each (response.events, function () {
+      var ev = this.split('<!>'),
+          evVer = ev[0],
+          evType = ev[1],
+          peer = ev[2],
+          flags = 0,
+          tab = curFastChat.tabs[peer];
+
+      if (evVer != curFastChat.version) {
+        FastChat.updateVersion(evVer);
+        failed = true;
+        return false;
+      }
+
+      switch (evType) {
+        case 'read':
+          break;
+
+        case 'typing':
+          flags = 1;
+          break;
+
+        case 'new':
+          flags = (ev[4] & 2) ? 0 : 2;
+          break;
+
+        default: return;
+      }
+
+      if (!feeds[peer]) {
+        feeds[peer] = [0];
+      }
+      feeds[peer][0] |= flags;
+      feeds[peer].push(ev);
+    });
+    if (failed || isEmpty(feeds)) {
+      return;
+    }
+    FastChat.lcSend('imFeeds', feeds);
+    FastChat.imFeeds(feeds);
+  },
+  imFeeds: function (feeds) {
+    if (!curFastChat.inited || !curFastChat.ready) return;
+    each (feeds, function (peer, events) {
+      var flags = events.shift();
+      FastChat.imFeed(peer, events);
+    });
+  },
+
+  blinkEl: function(el, num, cb) {
+    if (num > 10) {
+      cb();
+      return false;
+    }
+    if (num % 2 == 0) {
+      animate(el, {opacity: 0}, 400, function() {
+        FastChat.blinkEl(el, num + 1, cb);
+      });
+    } else {
+      animate(el, {opacity: 1}, 400, function() {
+        setTimeout(function() {
+          FastChat.blinkEl(el, num + 1, cb);
+        }, 400);
+      });
+    }
+
+  },
+
+  blinkTyping: function(peer) {
+    var el = ge('chat_tab_icon_'+peer);
+    if (!el) {
+      return;
+    }
+    var tIcon = geByClass1('chat_tab_typing_wrap', el);
+    fadeIn(tIcon, 150, function() {
+      FastChat.blinkEl(tIcon.firstChild, 0, function() {
+        fadeOut(tIcon, 150);
+      });
+    });
+  },
+
+  imFeed: function (peer, events) {
+    var tab = curFastChat.tabs[peer],
+        ts = vkNow();
+
+    each (events, function (k, ev) {
+      switch(ev[1]) {
+        case 'new':
+          if ((ev[4] & 3) === 1) { // unreed
+            FastChat.changePeerCounter(peer, 1);
+          }
+          break;
+        case 'read':
+          var cnt = 1;
+          each(ev[3].split(','), function (k, msgId) {
+            cnt += 1;
+          });
+          FastChat.changePeerCounter(peer, -cnt);
+          break;
+        case 'typing':
+          if (Chat.tabs[peer]) {
+            FastChat.blinkTyping(peer);
+          }
+          break;
+      }
+    });
+
+    if (!tab) return false;
+    each (events, function (k, ev) {
+      switch (ev[1]) {
+        case 'new':
+          stManager.add(['imn.js'], function() {
+            each (tab.sentmsgs, function (k, msgId) {
+              var row = ge('fc_msg' + msgId), parent = row && row.parentNode;
+              if (re(row) && parent && !geByClass('fc_msg', parent).length) {
+                re(domClosest('fc_msgs_wrap', parent));
+              }
+            });
+            if (!ge('fc_msg' + ev[3])) {
+              FastChat.addMsg(FastChat.prepareMsgData(ev.slice(2)));
+              tab.msgs[ev[3]] = [ev[4] & 2 ? 1 : 0, ev[4] & 1];
+              if ((ev[4] & 3) === 1) tab.unread++;
+              FastChat.scroll(peer);
+            }
+            FastChat.blinkTab(peer);
+          });
+          break;
+
+        case 'read':
+          var needUnreadMsgs = [];
+          var lastRead = intval(ev[3]);
+          each(tab.msgs, function(k) {
+            if (intval(k) <= lastRead && tab.msgs[k][1]) {
+              needUnreadMsgs.push(intval(k));
+            }
+          });
+
+          each(needUnreadMsgs, function (k, msgId) {
+            var parent;
+            var row = ge('fc_msg' + msgId);
+            if (!row) return;
+
+            if (tab.msgs[msgId] && tab.msgs[msgId][0]) {
+              parent = row.parentNode.parentNode;
+            } else {
+              parent = row.parentNode;
+            }
+
+            if (tab.msgs[msgId] && tab.msgs[msgId][1]) {
+              tab.msgs[msgId][1] = 0;
+              if (!tab.msgs[msgId][0]) {
+                tab.unread--;
+              }
+            }
+            removeClass(row, 'fc_msg_unread');
+            if (hasClass(parent.parentNode, 'fc_msgs_unread')) {
+              each (parent.childNodes, function () {
+                if (!hasClass(this, 'fc_msg_unread')) {
+                  removeClass(parent.parentNode, 'fc_msgs_unread');
+                  return false;
+                }
+              });
+            }
+          });
+          break;
+
+        case 'typing':
+          if (peer > 2e9) {
+            if (!curFastChat.typingEvents[peer]) {
+              curFastChat.typingEvents[peer] = {};
+            }
+            curFastChat.typingEvents[peer][ev[3]] = ts;
+          } else {
+            curFastChat.typingEvents[peer] = ts;
+          }
+          FastChat.updateTyping(peer);
+          break;
+      }
+    });
+    if (tab.unread > 0) {
+      tab.unread = 0;
+      each (tab.msgs, function () {
+        if (!this[0] && this[1]) tab.unread++;
+      });
+    }
+    if (tab.auto && !tab.unread) {
+      tab.box._close(true);
+      delete curFastChat.tabs[peer];
+    }
+    FastChat.updateUnreadTab(peer);
+  },
+  tabNotify: function(peer, evType, evData) {
+    var tab = curFastChat.tabs[peer];
+    if (peer > 0 && peer < 2e9 && isFunction(cur.onPeerStatusChanged)) {
+      cur.onPeerStatusChanged(peer, evType, evData);
+    }
+    if (peer <= 0 || !tab || !tab.box || tab.box.minimized) return;
+
+    clearTimeout(tab.hideNotifyTO);
+    switch (evType) {
+      case 'online':
+        text = getLang('mail_im_user_became_online', 3 - tab.sex);
+        FastChat.blinkTab(peer);
+        break;
+
+      case 'offline':
+        text = getLang('mail_im_user_became_offline', 3 - tab.sex);
+        FastChat.blinkTab(peer);
+        break;
+
+      case 'unavail':
+        text = getLang('mail_im_not_online', 3 - tab.sex).replace(/\.$/, "");;
+        break;
+    }
+    text = text.replace('{user}', tab.fname);
+    val(tab.notify, '<div class="fc_tab_notify fc_tab_notify_' + evType + '">' + text + '</div>');
+    var notify = tab.notify.firstChild;
+    clearTimeout(tab.hideNotifyTO);
+    tab.hideNotifyTO = setTimeout(function () {
+      fadeOut(notify, 200, function () {
+        val(tab.notify, '');
+      });
+    }, 5000);
+  },
+
+  hideChatCtrl: function() {
+    removeClass(Chat.wrap, 'chat_active');
+    removeEvent(document, 'mousedown', FastChat.onDocClick);
+  },
+
+  showChatCtrl: function() {
+    addClass(Chat.wrap, 'chat_active');
+    setTimeout(function() {
+      addEvent(document, 'mousedown', FastChat.onDocClick);
+    }, 0);
+  },
+
+  initUI: function () {
+    var el = curFastChat.el = {},
+        wndInner = getWndInner();
+    re('rb_box_fc_clist');
+    el.clistWrap = se(curFastChat.tpl.clist);
+    el.clist = geByClass1('fc_contacts', el.clistWrap, 'div');
+    el.clistTitle = geByClass1('fc_tab_title', el.clistWrap, 'div');
+    el.clistOnline = geByClass1('fc_clist_online', el.clistWrap, 'div');
+
+    var state = curFastChat.options.state || false,
+        clistMin = !curFastChat.friendsCnt || (!(state && state.clist.min !== undefined) ? wndInner[1] < 1200 || curFastChat.friendsCnt < 5 : state.clist.min);
+    curFastChat.clistW = 270;
+    //curFastChat.clistH = Math.max(290, Math.min(2000, wndInner[0] * 0.5));
+    curFastChat.clistH = 299;
+    var opts = {
+      id: 'fc_clist',
+      movable: geByClass1('fc_tab_head', el.clistWrap),
+      hider: geByClass1('fc_tab_close_wrap', el.clistWrap, 'a'),
+      startHeight: curFastChat.clistH,
+      startWidth: curFastChat.clistW,
+      resizeableH: el.clist,
+      resize: false,
+      minH: 150,
+      fixed: clistMin,
+      onHide: function (hideOpts) {
+        val('fc_clist_filter', curFastChat.q = '');
+        //FastChat.clistRender();
+        addClass(curFastChat.clistBox.wrap, 'fc_fixed');
+        curFastChat.clistBox.fixed = true;
+        FastChat.stateChange({op: 'clist_toggled', val: 0});
+        setStyle(curFastChat.clistBox.wrap, {top: 'auto', bottom: 0, right: 72, left: 'auto'});
+        show(el.topLink);
+        FastChat.hideChatCtrl();
+      },
+      onShow: function() {
+        FastChat.showChatCtrl();
+      },
+      onDragEnd: function (y, x) {
+        FastChat.stateChange({op: 'clist_moved', y: y, x: x});
+      },
+      onResize: function (h, w) {
+        curFastChat.clistBoxScroll && curFastChat.clistBoxScroll.update(false, true);
+      }
+    };
+    if (state && !clistMin) {
+      if (state.clist.x !== false) {
+        if (state.clist.x == -1) {
+          opts.startRight = 0;
+        } else {
+          opts.startLeft = wndInner[1] * state.clist.x;
+        }
+      }
+      if (state.clist.y !== false) {
+        if (state.clist.y == -1) {
+          opts.startBottom = 0;
+        } else {
+          opts.startTop = wndInner[0] * state.clist.y;
+        }
+      }
+    }
+    if (clistMin) {
+      opts.noshow = true;
+    }
+    if (opts.startTop === undefined && opts.startBottom === undefined) {
+      opts.startTop = wndInner[0] < 800 ? 0 : wndInner[0] * 0.10;
+    }
+    if (opts.startLeft === undefined && opts.startRight === undefined) {
+      opts.startRight = 0;
+    }
+    curFastChat.clistBox = new RBox(el.clistWrap, opts);
+    if (!opts.noshow && (opts.startLeft !== undefined || opts.startTop !== undefined)) {
+      curFastChat.clistBox._wnd_resize(wndInner[0], wndInner[1], true);
+    }
+
+    // Friends list
+    curFastChat.clistBoxScroll = new Scrollbar(el.clist, {
+      prefix: 'fc_',
+      scrollChange: FastChat.clistShowMore,
+      nomargin: true,
+      global: true,
+      nokeys: true,
+      right: vk.rtl ? 'auto' : 1,
+      left: !vk.rtl ? 'auto' : 1
+    });
+    curFastChat.updateFriendsInt = setInterval(FastChat.clistUpdate, 3 * 60000);
+    curFastChat.updateTypingsInt = setInterval(FastChat.updateTypings, 5000);
+
+    var filter = ge('fc_clist_filter');
+    placeholderInit(filter, { global: true });
+    curFastChat.q = '';
+    addEvent(filter, 'keyup ' + (browser.opera ? 'keypress' : 'keydown'), function (e) {
+      if (e.keyCode == KEY.ESC) {
+        FastChat.clistHide();
+        return cancelEvent(e);
+      }
+      var control = FastChat.clistFilterKey(e);
+      if (control !== undefined) {
+        return control;
+      }
+      curFastChat.q = trim(val(this));
+      FastChat.clistRender();
+    });
+
+    if (el.clistOnline) {
+      var lShift, probe;
+      bodyNode.appendChild(probe = ce('nobr', {className: 'fl_l', innerHTML: getLang('mail_im_clist_onlines')}, {visibility: 'hidden', position: 'absolute'}));
+      lShift = (probe.offsetWidth || 179) - 7;
+      re(probe);
+      addEvent(el.clistOnline, 'mouseover', function (e) {
+        showTooltip(this, {text: getLang('mail_im_clist_onlines'), forcetoup: 1, shift: [12, 4, 3], className: 'tt_fc_onlines', init: function () {
+          if (browser.msie) el.clistOnline.tt.isFixed = false;
+        }, black: 1});
+      });
+      addEvent(el.clistOnline, 'click', function (e) {
+        (e.originalEvent || e).cancelBubble = true;
+        FastChat.clistToggleOnlines();
+        FastChat.clistRender();
+      });
+      if (state && state.clist && state.clist.onlines) {
+        FastChat.clistToggleOnlines(true);
+      }
+    }
+
+    if (!clistMin) {
+      FastChat.clistRender();
+    } else {
+      FastChat.clistUpdateTitle();
+    }
+    curFastChat.ready = true;
+
+    // Add tabs
+    if (state && state.tabs) {
+      each (state.tabs, function (peer, peerOpts) {
+        peer = intval(peer);
+        var opts = {nofocus: 1};
+        if (this.min) {
+          opts.minimized = true;
+        }
+        if (this.h) {
+          opts.startHeight = this.h * wndInner[0];
+        }
+        if (this.w) {
+          opts.startWidth = this.w * wndInner[1];
+        }
+        if (this.x !== undefined && this.x <= 1) {
+          if (this.x < 0) {
+            opts.startRight = 0;
+          } else {
+            opts.startLeft = wndInner[1] * this.x;
+          }
+        }
+        if (this.y !== undefined && this.y <= 1) {
+          if (this.y < 0) {
+            opts.startBottom = 0;
+          } else {
+            opts.startTop = wndInner[0] * this.y;
+          }
+        }
+        if (peerOpts.fx) {
+          opts.fixedLoad = true;
+          FastChat.prepareTabIcon(peer, opts, true);
+        } else {
+          opts.noAnim = true;
+          FastChat.addPeer(peer, false, false, opts);
+        }
+      });
+    }
+
+    addEvent(Chat.itemsCont, 'mousemove mouseover', FastChat.itemsTT)
+    addEvent(Chat.itemsCont, 'mouseout', FastChat.itemsOut)
+  },
+
+  itemsOffset: 12,
+
+  itemsTT: function(ev) {
+    var el = ev.target;
+    var item = false;
+    while(el && el != Chat.itemsCont) {
+      if (hasClass(el, 'chat_tab_wrap')) {
+        item = el;
+        break;
+      }
+      el = el.parentNode;
+    }
+    if (!item) {
+      clearTimeout(Chat.ttOutTimeout);
+      Chat.ttOutTimeout = false;
+      return false;
+    }
+    var peer = item.id.split('_')[3];
+    var tab = Chat.tabs[peer];
+    if (!tab) {
+      return false;
+    }
+    if (curFastChat.activeBox && curFastChat.activeBox.visible && curFastChat.activeBox.options.peer == peer) {
+      FastChat.itemsOut();
+      return false;
+    }
+
+    clearTimeout(Chat.ttOutTimeout);
+    Chat.ttOutTimeout = false;
+
+    showTooltip(item, {
+      text: tab.name,
+      slideX: 15,
+      black: 1,
+      asrtl: 1,
+      appendEl: Chat.ttNode,
+      className: 'tt_black_side',
+      shift: [-58, -37, 0]
+    });
+    Chat.ttPeer = item;
+  },
+
+  itemsOut: function() {
+    if (Chat.ttOutTimeout) return false;
+    Chat.ttOutTimeout = setTimeout(function() {
+      Chat.ttOutTimeout = false;
+      if (!Chat.ttPeer) return false;
+      triggerEvent(Chat.ttPeer, 'mouseout');
+      Chat.ttPeer = false;
+    }, 0);
+  },
+
+  stateChange: function(data) {
+    ajax.post('al_im.php', extend({act: 'a_state_fc', hash: curFastChat.options.state_hash || ''}, data), {
+      onFail: function () {return true;}
+    });
+    FastChat.lcSend('stateChange', data);
+  },
+  onStateChanged: function (data) {
+    var tab = data.peer ? curFastChat.tabs[data.peer] : false,
+        box = data.peer ? (tab && tab.box) : curFastChat.clistBox,
+        wndInner = getWndInner();
+    switch (data.op) {
+      case 'added':
+        if (tab) {
+          delete tab.auto
+          break;
+        }
+        if (data.fixed) {
+          FastChat.prepareTabIcon(data.peer, {fixedLoad: true})
+        } else {
+          FastChat.addPeer(data.peer);
+        }
+        break;
+      case 'unfixed':
+        var unfixOpts = {
+           startHeight: intval(wndInner[0] * data.h),
+           startWidth: intval(wndInner[1] * data.w),
+        }
+        if (data.y == -1) {
+          unfixOpts.startBottom = 0;
+        } else {
+          unfixOpts.startTop = intval(wndInner[0] * data.y);
+        }
+        if (data.x == -1) {
+          unfixOpts.startRight = 0;
+        } else {
+          unfixOpts.startLeft = intval(wndInner[1] * data.x);
+        }
+        FastChat.addPeer(data.peer, false, false, unfixOpts);
+        break;
+
+      case 'closed':
+        if (Chat.tabs[data.peer]) {
+          FastChat.closeTabIcon(data.peer);
+        }
+        if (!tab || !box) break;
+        box.close();
+        break;
+
+      case 'hidden':
+        if (!tab || !box) break;
+        box.close();
+        break;
+
+      case 'minimized':
+        if (!tab || !box) break;
+        if (data.val) {
+          box.unminimize();
+        } else {
+          box.minimize();
+        }
+        break;
+
+      case 'moved':
+        setStyle(box.wrap, {
+          bottom: data.y == -1 ? 0 : 'auto',
+          top: data.y != -1 ? intval(wndInner[0]  * data.y) : 'auto',
+          right: data.x == -1 ? 0 : 'auto',
+          left: data.x != -1 ? intval(wndInner[1] * data.x) : 'auto'
+        });
+        box.toBottom = data.y == -1;
+        box.toRight = data.x == -1;
+        break;
+
+      case 'resized':
+        setStyle(box.wrap, {
+          bottom: data.y == -1 ? 0 : 'auto',
+          top: data.y != -1 ? intval(wndInner[0]  * data.y) : 'auto',
+          right: data.x == -1 ? 0 : 'auto',
+          left: data.x != -1 ? intval(wndInner[1] * data.x) : 'auto'
+        });
+        box.toBottom = data.y == -1;
+        box.toRight = data.x == -1;
+
+        var w = intval(wndInner[1]  * data.w);
+        setStyle(box.resizeableH, 'height', intval(wndInner[0]  * data.h));
+        setStyle(box.resizeableW, 'width', w);
+        FastChat.fixResized(tab, w);
+        break;
+
+      case 'clist_toggled':
+        if (data.val) {
+          box.show(0, true);
+        } else {
+          box.hide(0, true);
+        }
+        toggle(curFastChat.el.topLink, !data.val);
+        break;
+
+      case 'clist_moved':
+        setStyle(box.wrap, {
+          bottom: data.y == -1 ? 0 : 'auto',
+          top: data.y != -1 ? intval(wndInner[0]  * data.y) : 'auto',
+          right: data.x == -1 ? 0 : 'auto',
+          left: data.x != -1 ? intval(wndInner[1] * data.x) : 'auto'
+        });
+        box.toBottom = data.y == -1;
+        box.toRight = data.x == -1;
+        break;
+
+      case 'onlines_toggled':
+        FastChat.clistToggleOnlines(data.val);
+        FastChat.clistRender();
+    }
+  },
+
+  onUnidle: function () {
+    if (!curNotifier.version || !curFastChat.clistBox) {
+      return;
+    }
+    if (curFastChat.clistBox.visible &&
+        (curFastChat.el.clist.scrollTop < 100 || curRBox.active != curFastChat.clistBox.id)) {
+      FastChat.clistRender(); // Title is also updated here
+    } else {
+      FastChat.clistUpdateTitle();
+    }
+    each (curFastChat.tabs, function (peer) {
+      FastChat.restoreDraft(peer);
+    });
+  },
+  clistUpdate: function () {
+    var ts = vkNow();
+    if (!curNotifier.is_server || (curFastChat.clistUpdatedTs && ts - curFastChat.clistUpdatedTs < 60000)) {
+      return;
+    }
+    curFastChat.clistUpdatedTs = ts;
+    var tabs = [], mid;
+    for (mid in curFastChat.tabs) {
+      tabs.push(mid);
+    }
+    for (mid in Chat.tabs) {
+      tabs.push(mid);
+    }
+    ajax.post('al_im.php', {act: 'a_onlines', peer: tabs.join(',')}, {
+      onDone: function (onlines) {
+        FastChat.clistGotOnlines(onlines);
+        FastChat.lcSend('clistOnlines', onlines);
+      }
+    });
+  },
+  clistGotOnlines: function (onlines) {
+    var prev = curFastChat.onlines, offlines = [];
+    curFastChat.onlines = onlines;
+    if (curNotifier.idle_manager && curNotifier.idle_manager.is_idle || (!curFastChat.tabs && Chat.tabs)) {
+      return;
+    }
+    each (curFastChat.tabs, function (peer) {
+      if (curFastChat.onlines[peer] != prev[peer]) {
+        FastChat.tabNotify(peer, onlines[peer] ? 'online' : 'offline', onlines[peer]);
+        if (!onlines[peer]) offlines[peer] = 1;
+      }
+    });
+    each(Chat.tabs, function(peer) {
+      if (curFastChat.onlines[peer] != prev[peer]) {
+        if (onlines[peer]) {
+          addClass(ge('chat_tab_icon_'+peer), 'chat_tab_online');
+        } else {
+          removeClass(ge('chat_tab_icon_'+peer), 'chat_tab_online');
+        }
+      }
+    })
+    offlines = arrayKeyDiff(prev, onlines, offlines);
+    each(offlines, function (peer) {
+      FastChat.tabNotify(peer, 'offline');
+    });
+    FastChat.clistRender();
+  },
+
+  clistShow: function () {
+    var animatePointer = hasClass(Chat.wrap, 'chat_active');
+    FastChat.clistRender();
+    if (!curFastChat.clistBox.visible) {
+      if (curFastChat.activeBox && curFastChat.activeBox != curFastChat.clistBox) {
+        curFastChat.activeBox.hide();
+      }
+      curFastChat.clistBox.show();
+      FastChat.setActive(curFastChat.clistBox);
+      curFastChat.clistBoxScroll && curFastChat.clistBoxScroll.update(false, true);
+      curFastChat.el.topLink && hide(curFastChat.el.topLink);
+    } else {
+      curFastChat.clistBox.focus();
+    }
+    elfocus('fc_clist_filter');
+    //FastChat.stateChange({op: 'clist_toggled', val: 1});
+    FastChat.movePointer(false, animatePointer);
+  },
+  clistHide: function () {
+    curFastChat.clistBox.hide();
+    if (curFastChat.activeBox == curFastChat.clistBox) {
+      FastChat.setActive(false);
+    }
+  },
+
+  clistRender: function (more) {
+    var html = [], offsetReached = !more,
+        limit = 1 + (more ? 40 : 20),
+        q = curFastChat.q,
+        queries,
+        filterList = false,
+        lastMid = false,
+        re = false,
+        offline = false;
+
+    if (q) {
+      re = [];
+      each(FastChat.clistCache(q), function () {
+        re.push(escapeRE(this));
+      });
+      re = new RegExp("([ \-]|^|\s|&nbsp;|\b)(" + re.join('|') + ")", "gi"); // no lookbhind in JS
+      filterList = curFastChat.clistCache[q] || {};
+    } else if (curFastChat.clOnlines) {
+      filterList = curFastChat.onlines;
+    }
+    curFastChat.clHasMore = false;
+    each (curFastChat.friends, function (k) {
+      var mid = intval(k), matches = !filterList || filterList[mid],
+          unread = curFastChat.tabs[mid] ? curFastChat.tabs[mid].unread : 0;
+
+      if (!offsetReached) {
+        if (mid == curFastChat.clOffset) {
+          offsetReached = true;
+        }
+        return;
+      }
+      if (!matches) {
+        return;
+      }
+      if (!(--limit)) {
+        curFastChat.clHasMore = true;
+        return false
+      }
+      html.push(FastChat.clistWrapPeer(mid, this, re));
+      lastMid = mid;
+    });
+    if (lastMid === false && !more && !q) { // Nobody is online
+      html.push('<div class="fc_clist_empty">' + getLang(q ? 'mail_im_clist_notfound' : 'mail_im_clist_empty') + '</div>');
+    } else if (q && !curFastChat.clHasMore) {
+      html.push(FastChat.getCorrespondents(q, re, lastMid === false));
+    }
+    curFastChat.clOffset = lastMid;
+    if (more) {
+      var div = ce('div', {innerHTML: html.join('')}), frag = document.createDocumentFragment();
+      while (div.firstChild) {
+        frag.appendChild(div.firstChild);
+      }
+      curFastChat.el.clist.appendChild(frag);
+      if (!curFastChat.clHasMore) {
+        FastChat.clistUpdateTitle(true);
+      }
+    } else {
+      val(curFastChat.el.clist, html.join(''));
+      FastChat.clistUpdateTitle(true);
+      if (browser.chrome || browser.safari) { // Webkit bug fix
+        setTimeout(function () {
+          setStyle(curFastChat.el.clist.firstChild, {width: curFastChat.el.clist.firstChild.clientWidth});
+          setTimeout(function () {
+            setStyle(curFastChat.el.clist.firstChild, {width: ''});
+          }, 0);
+        }, 0);
+      }
+    }
+    if (curFastChat.clSel) {
+      var el = ge('fc_contact' + curFastChat.clSel);
+      if (el) {
+        FastChat.clistPeerOver(el, 1);
+      } else {
+        curFastChat.clSel = false;
+      }
+    } else {
+      var el = geByClass1('fc_contact', curFastChat.el.clist)
+      FastChat.clistPeerOver(el, 1);
+    }
+    if (curFastChat.clistBoxScroll) {
+      curFastChat.clistBoxScroll.update();
+    }
+  },
+  clistWrapPeer: function (id, data, re) {
+    var unread = curFastChat.tabs[id] ? curFastChat.tabs[id].unread : 0,
+        online = curFastChat.onlines[id],
+        href, photoEvents, cls = online ? (online > 0 && online < 6 ? ' fc_contact_mobile' : ' fc_contact_online') : '';
+    var name = (data[0] || '').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+    if (re) {
+      name = name.replace(re, '$1<em class="fc_clist_hl">$2</em>');
+    }
+    if (id > 0 && id < 2e9) {
+      href = '/id' + id;
+      photoEvents = 'onmousemove="FastChat.clistPeerOver(this.parentNode, 2);"  onmouseout="FastChat.clistPeerOver(this.parentNode, 1);"';
+    } else {
+      href = '/im?sel=' + id;
+      photoEvents = '';
+    }
+    if (id > 2e9 && data[3]) {
+      var photoStr = data[3]
+    } else {
+      var photoStr = '<img src="' + Notifier.fixPhoto(data[1]) + '" class="fc_contact_photo"/>';
+    }
+    return '<a href="' + href + '" class="fc_contact clear_fix' + cls + '" id="fc_contact' + id + '" onclick="return FastChat.selectPeer(' + id + ', event);" onmousedown="event.cancelBubble = true;" onmouseover="FastChat.clistPeerOver(this, 1, event);"  onmouseout="FastChat.clistPeerOver(this, 0, event);"><span class="fc_contact_photo" ' + photoEvents + '>'+photoStr+'</span><span class="fc_contact_status"></span><span class="fc_contact_name">' + name + '<span id="fc_contact_unread' + id + '" class="fc_contact_unread">' + (unread ?' <b>+' + unread + '</b>' : '') + '</span></span></a>';
+  },
+  clistPeerOver: function (el, state, e) {
+    if (!el || !checkOver(e, el)) return;
+    var id = el.id.substr(10);
+    if (curFastChat.clSel && state && curFastChat.clSel != id) {
+      FastChat.clistPeerOver(ge('fc_contact' + curFastChat.clSel), 0);
+    }
+    toggleClass(el, 'fc_contact_over', state);
+    if (state) {
+      curFastChat.clSel = id;
+    } else if (curFastChat.clSel == id) {
+      curFastChat.clSel = false;
+    }
+  },
+
+  authorOver: function(obj, ev) {
+    var text = obj.getAttribute('data-title');
+    var container = gpeByClass('fc_tab_log', obj);
+    var forcetodown = false;
+    var offsetAuthor = obj.getBoundingClientRect().top;
+    var offsetContainer = container.getBoundingClientRect().top;
+    if(offsetAuthor - offsetContainer < 10) {
+      forcetodown = true;
+    }
+    if (text) {
+      var date = obj.getAttribute('data-date');
+      if (date) {
+        text += '<br>' + date;
+      }
+      showTooltip(obj, {
+        text: '<div class="fc_author_tt">' + text + '</div>',
+        black: 1,
+        center: 1,
+        forcetodown: forcetodown,
+        shift: [1, 8, 0]
+      });
+    }
+  },
+
+  getCorrespondents: function(q, re, empty) {
+    clearTimeout(curFastChat.correspondentsTO);
+    if (curFastChat.correspondents && curFastChat.correspondents[q] !== undefined) {
+      return FastChat.wrapCorrespondents(curFastChat.correspondents[q]) || (empty && '<div class="fc_clist_empty">' + getLang('mail_im_clist_notfound') + '</div>') || '';
+    }
+    curFastChat.correspondentsTO = setTimeout(FastChat.loadCorrespondents.pbind(q, re), 100);
+    return '<div id="fc_correspondents"></div>';
+  },
+  loadCorrespondents: function (q, re) {
+    if (q != curFastChat.q) {return;}
+    ajax.post('hints.php', {act: 'a_json_friends', str: q, from: 'fc', allow_multi: 1}, {
+      onDone: function (peers) {
+        if (!curFastChat.correspondents) curFastChat.correspondents = {};
+        var correspondents = {}, k;
+        each (peers, function () {
+          k = this[3] + '_';
+          if (curFastChat.friends[k]) return;
+          correspondents[k] = [this[1], this[2], this[3], this[4] || ''];
+        });
+        curFastChat.correspondents[q] = correspondents;
+        if (q != curFastChat.q) {return;}
+
+        var el = ge('fc_correspondents');
+        if (!el) {return;}
+        var wrap = el.parentNode,
+            div = ce('div', {innerHTML: FastChat.wrapCorrespondents(correspondents, re)}),
+            frag = document.createDocumentFragment();
+        if (div.firstChild) {
+          while (div.firstChild) {
+            frag.appendChild(div.firstChild);
+          }
+        } else if (wrap.firstChild == el) {
+          frag.appendChild(ce('div', {className: 'fc_clist_empty', innerHTML: getLang('mail_im_clist_notfound')}));
+        }
+        wrap.replaceChild(frag, el);
+        FastChat.clistUpdateTitle(true);
+        if (curFastChat.clistBoxScroll) {
+          curFastChat.clistBoxScroll.update();
+        }
+      }
+    })
+  },
+  wrapCorrespondents: function (correspondents, re) {
+    var html = [], mid;
+    each(correspondents, function (id) {
+      html.push(FastChat.clistWrapPeer(intval(id), this, re));
+    });
+    return html.join('');
+  },
+
+  updateFriends: function(onlineCount) {
+    if (!window.Chat || !Chat.inited) return;
+    var el = Chat.onl;
+    if (!el) return;
+    if (onlineCount > 0) {
+      val(el, onlineCount);
+      show(Chat.wrap);
+    } else {
+      hide(Chat.wrap);
+    }
+  },
+
+  onDocClick: function(e) {
+    if (!curFastChat.activeBox) {
+      return;
+    }
+    var el = e.target;
+    if (curBox()) {
+      return true;
+    }
+    while(el) {
+      if (el.className == 'fc_tab_wrap' || el.id == 'chat_onl_wrap' || el.id == 'custom_menu_cont' || el.id == 'layer_wrap' || el.id == 'box_layer_wrap' || el.id == 'wk_layer_wrap') {
+        return true;
+      }
+      el = el.parentNode;
+    }
+    var tab = curFastChat.tabs[curFastChat.activeBox.options.peer];
+    if (tab) {
+      if (trim(Emoji.editableVal(tab.txt)) || (tab.imMedia && tab.imMedia.getMedias().length)) {
+        return true;
+      }
+    }
+    curFastChat.activeBox.hide();
+  },
+
+  clistCache: function(q) {
+    if (q) {
+      var queries = [q], query, t, i, j, cached, name, re, fr, cache;
+      if (t = parseLatin(q)) {
+        queries.push(t);
+      }
+      if (t = parseLatKeys(q)) {
+        queries.push(t);
+      }
+      if (t = parseCyr(q)) {
+        queries.push(t);
+      }
+      if (curFastChat.clistCache[q] !== undefined) {
+        return queries;
+      }
+      cache = curFastChat.clistCache[q] = {};
+      for (i in queries) {
+        query = queries[i];
+        if (cached = curFastChat.clistCache[' ' + query.charAt(0).toLowerCase()]) {
+          re = new RegExp('(^|\\s|\\()' + escapeRE(query), 'gi');
+          for (j in cached) {
+            fr = curFastChat.friends[j + '_'];
+            if (!isArray(fr)) {
+              continue;
+            }
+            if (fr[0].match(re) !== null) {
+              cache[j] = 1;
+            }
+          }
+        }
+      }
+      j = 0;
+      for (i in cache) {
+        j++;
+      }
+      cache._num = j;
+      return queries;
+    }
+
+    var name, cursor, letter;
+    curFastChat.clistCache = {};
+    for (i in curFastChat.friends) {
+      name = curFastChat.friends[i][0];
+      i = intval(i);
+      cursor = 0;
+      while (1) {
+        letter = ' ' + name.charAt(cursor).toLowerCase();
+        if (!curFastChat.clistCache[letter]) {
+          curFastChat.clistCache[letter] = {};
+        }
+        curFastChat.clistCache[letter][i] = 1;
+        cursor = name.indexOf(' ', cursor + 1);
+        if (cursor == -1) break;
+        ++cursor;
+      }
+    }
+  },
+
+  clistShowMore: function () {
+    if (!curFastChat.clHasMore) {
+      return;
+    }
+    var clist = curFastChat.el.clist,
+        st = clist.scrollTop,
+        h = clist.clientHeight,
+        sh = clist.scrollHeight;
+
+    if (st + h * 3 > sh) {
+      FastChat.clistRender(true);
+    }
+  },
+
+  clistUpdateTitle: function (rendered) {
+    var cnt = 0, cnt1 = 0, i;
+    for (i in curFastChat.friends) {
+      if (curFastChat.onlines[intval(i)]) {
+        cnt1++;
+        cnt++
+      } else if (!curFastChat.clOnlines) {
+        cnt++;
+      }
+    }
+    newVal = (cnt1 ? getLang('mail_im_X_onlines_title', cnt1) : getLang('mail_im_onlines_title')).toString();
+
+    FastChat.updateFriends(cnt1);
+
+    val(curFastChat.el.clistTitle, newVal);
+    val(curFastChat.el.topLink, newVal.toLowerCase());
+
+    if (curFastChat.clistBoxScroll) {
+      if (!curFastChat.clHasMore && rendered) {
+        cnt = curFastChat.el.clist.childNodes.length;
+      } else if (curFastChat.q) {
+        cnt = intval((curFastChat.clistCache[curFastChat.q] || {})._num);
+      }
+      curFastChat.clistBoxScroll.options.contHeight = cnt * 50;
+    }
+  },
+
+  clistToggleOnlines: function (online) {
+    if (online === undefined) {
+      online = !curFastChat.clOnlines;
+      FastChat.stateChange({op: 'onlines_toggled', val: online ? 1 : 0});
+    }
+    toggleClass(curFastChat.el.clistOnline, 'fc_clist_online_active', online);
+    curFastChat.clOnlines = online;
+  },
+
+  clistFilterKey: function (e) {
+    var el;
+    switch (e.keyCode) {
+      case KEY.DOWN:
+      case KEY.UP:
+        if (e.type != 'keyup') {
+          if (el = curFastChat.clSel && ge('fc_contact' + curFastChat.clSel)) {
+            var nextKey = e.keyCode == KEY.DOWN ? 'nextSibling' : 'previousSibling', nextEl = el;
+            do {
+              nextEl = nextEl[nextKey];
+            } while (nextEl && (nextEl.nodeType != 1 || !hasClass(nextEl, 'fc_contact')));
+          } else if (!curFastChat.clSel && e.keyCode == KEY.DOWN) {
+            nextEl = geByClass1('fc_contact', curFastChat.el.clist, 'a');
+          }
+          if (nextEl && nextEl != el) {
+            FastChat.clistPeerOver(nextEl, 1);
+            var lCont = curFastChat.el.clist;
+            if (nextEl.offsetTop + 16 > lCont.clientHeight + lCont.scrollTop) {
+              lCont.scrollTop = nextEl.offsetTop + 16 - lCont.clientHeight;
+              curFastChat.clistBoxScroll.update()
+            } else if (nextEl.offsetTop - 36 < lCont.scrollTop) {
+              lCont.scrollTop = nextEl.offsetTop - 36;
+              curFastChat.clistBoxScroll.update()
+            }
+          }
+        }
+        break;
+
+      case KEY.LEFT:
+      case KEY.RIGHT:
+        return true;
+
+      case KEY.ENTER:
+        if (e.type != 'keyup' && (el = curFastChat.clSel && ge('fc_contact' + curFastChat.clSel))) {
+          if (e.ctrlKey || e.metaKey && browser.mac) {
+            nav.go(el.href.match(/\b(vkontakte\.ru|vk\.com)(\/[^\/]+?)$/)[2]);
+          } else {
+            FastChat.selectPeer(curFastChat.clSel);
+          }
+          // fall through
+        } else {
+          break;
+        }
+
+      case KEY.ESC:
+        if (e.type != 'keyup') {
+          var filter = ge('fc_clist_filter'), prevVal = val(filter) || curFastChat.clSel;
+          filter.blur();
+          val(filter, curFastChat.q = '');
+          curFastChat.clSel = false;
+          if (prevVal) {
+            FastChat.clistRender();
+          }
+        }
+        break;
+
+      default: return;
+    }
+    return cancelEvent(e);
+  },
+
+  changePeerCounter: function(peer, add, setVal) {
+    if (!Chat.tabs[peer]) {
+      return false;
+    }
+    var iconObj = ge('chat_tab_icon_'+peer);
+    var counter = geByClass1('chat_tab_counter', iconObj)
+    if (!counter) {
+      counter = ce('div', {className: 'chat_tab_counter'});
+      iconObj.insertBefore(counter, iconObj.firstChild);
+    }
+    if (setVal === undefined) {
+      Chat.counters[peer] = positive((Chat.counters[peer] || 0) + add);
+    } else {
+      Chat.counters[peer] = setVal;
+    }
+    if (Chat.counters[peer]) {
+      counter.innerHTML = Chat.counters[peer];
+    } else {
+      re(counter);
+    }
+  },
+
+  prepareTabIcon: function(peer, opts, noAnim) {
+    var mem = curFastChat.friends && curFastChat.friends[peer+'_'];
+    if (!mem) {
+      var need = 3;
+      curFastChat.needPeers[peer] = [need, false, setTimeout(FastChat.getPeers, irand(150, 200)), opts];
+      FastChat.lcSend('needPeer', {id: peer, mask: need});
+    } else {
+      var data = {name: mem[0], photo: mem[1], online: curFastChat.onlines[peer]};
+      FastChat.addTabIcon(peer, data, noAnim);
+    }
+  },
+
+  addTabIcon: function(peer, data, noAnim) {
+    if (Chat.tabs[peer]) {
+      return;
+    }
+    if (peer > 2e9) {
+      var imgRow = data.data.members_grid_fc || '';
+    } else {
+      var imgRow = '<img class="chat_tab_img" src="'+data.photo+'"/>';
+    }
+    if (peer > 2e9) {
+      var peerHref = 'im?sel=c'+(peer - 2e9);
+    } else {
+      var peerHref = data.alink || '/id'+peer;
+    }
+    var t = se('<a class="chat_tab_wrap'+(noAnim ? '' : ' chat_tab_beforeanim')+(data.online ? ' chat_tab_online' : '')+'" id="chat_tab_icon_'+peer+'" href="'+peerHref+'" onclick="FastChat.itemsOut();return FastChat.togglePeer('+peer+', event);"><div class="chat_tab_imgcont"><div class="chat_tab_online_icon"></div><div class="chat_tab_typing_wrap"><div class="chats_sp chat_tab_typing_icon"></div></div><div class="chat_tab_close" onclick="return FastChat.closeTabIcon('+peer+', event)"></div>'+imgRow+'</div></a>');
+    Chat.itemsCont.insertBefore(t, Chat.itemsCont.firstChild);
+    Chat.tabs[peer] = {el: t, name: data['name']};
+    addClass(Chat.wrap, 'chat_expand');
+    if (!noAnim) {
+      removeClass(t, 'chat_tab_beforeanim');
+    }
+    FastChat.checkChatHeight();
+    Chat.scrollNode.scrollTop = 0;
+  },
+
+  checkChatHeight: function() {
+    var height = getSize(Chat.itemsCont)[1];
+    Chat.lastHeight = height;
+
+    if (height > Chat.maxHeight) {
+      if (!Chat.fixH) {
+        Chat.fixH = true;
+        addClass(Chat.scrollNode, 'chat_fix_height');
+        setStyle(Chat.scrollNode, {height: Chat.maxHeight});
+        addEvent(Chat.scrollNode, 'mousewheel', FastChat.scrollWrap);
+        addEvent(Chat.scrollNode, 'DOMMouseScroll', FastChat.scrollWrap);
+        FastChat.checkShadow();
+      }
+      Chat.scrollNode.scrollTop = height - Chat.maxHeight;
+    } else if (Chat.fixH) {
+      Chat.fixH = false;
+      removeClass(Chat.scrollNode, 'chat_fix_height');
+      setStyle(Chat.scrollNode, {height: 'auto'});
+      removeEvent(Chat.scrollNode, 'mousewheel', FastChat.scrollWrap);
+      removeEvent(Chat.scrollNode, 'DOMMouseScroll', FastChat.scrollWrap);
+      FastChat.checkShadow();
+    }
+
+  },
+
+  checkShadow: function() {
+    var sc = intval(Chat.scrollNode.scrollTop);
+    if (sc && Chat.fixH) {
+      if (!Chat.shadowTop) {
+        addClass(Chat.wrap, 'chat_scroll_top');
+        fadeIn(geByClass1('chat_cont_sh_top', Chat.wrap), 200);
+        Chat.shadowTop = true;
+      }
+    } else {
+      if (Chat.shadowTop) {
+        fadeOut(geByClass1('chat_cont_sh_top', Chat.wrap), 200);
+        Chat.shadowTop = false;
+      }
+    }
+
+    if ((Chat.lastHeight - sc > Chat.maxHeight) && Chat.fixH) {
+      if (!Chat.shadowBottom) {
+        fadeIn(geByClass1('chat_cont_sh_bottom', Chat.wrap), 200);
+        Chat.shadowBottom = true;
+      }
+    } else {
+      if (Chat.shadowBottom) {
+        fadeOut(geByClass1('chat_cont_sh_bottom', Chat.wrap), 200);
+        Chat.shadowBottom = false;
+      }
+    }
+  },
+
+  scrollWrap: function(event) {
+    if (!event) event = window.event;
+    var delta = 0;
+    if (event.wheelDeltaY || event.wheelDelta) {
+      delta = (event.wheelDeltaY || event.wheelDelta) / 2;
+    } else if (event.detail) {
+      delta = -event.detail * 10
+    }
+    Chat.scrollNode.scrollTop -= delta;
+
+    if (curFastChat.activeBox == curFastChat.clistBox) {
+      curFastChat.pointerMargin = 0;
+      FastChat.setPointer(false, curFastChat.pointerMargin, curFastChat.prevPointer);
+    } else {
+      curFastChat.pointerMargin = -Chat.scrollNode.scrollTop;
+      FastChat.setPointer(true, curFastChat.pointerMargin, curFastChat.prevPointer);
+    }
+
+    FastChat.checkShadow();
+    setStyle(Chat.ttNode, {top: -Chat.scrollNode.scrollTop});
+
+    return cancelEvent(event)
+  },
+
+  togglePeer: function(peer, event) {
+    if (curFastChat.activeBox && curFastChat.activeBox.options.peer == peer) {
+      curFastChat.activeBox.hide();
+      FastChat.setActive(false);
+      return false;
+    } else {
+      return FastChat.selectPeer(peer, event);
+    }
+  },
+
+  selectPeer: function(peer, event, opts) {
+    if (checkEvent(event)) {
+      return true;
+    }
+    var animatePointer = hasClass(Chat.wrap, 'chat_active');
+    var mem = curFastChat.friends && curFastChat.friends[peer+'_'], need = 0;
+    if (curFastChat.tabs && curFastChat.tabs[peer]) {
+      var box = curFastChat.tabs[peer].box;
+      if (box.minimized) {
+        box.unminimize(true);
+      }
+      FastChat.activateTab(peer);
+      FastChat.movePointer(peer, animatePointer);
+    } else {
+      if (!opts) {
+        opts = {};
+      }
+      opts.fixed = true;
+      opts.onPeerAdded = function() {
+        FastChat.movePointer(peer, animatePointer);
+      }
+      opts.onHistoryLoaded = FastChat.readLastMsgs.pbind(peer);
+      FastChat.addPeer(peer, false, true, opts);
+    }
+    if(curFastChat.tabs[peer] && curFastChat.tabs[peer].iman) {
+      curFastChat.tabs[peer].iman.unidle();
+    }
+
+    return false;
+  },
+
+  closeTabIcon: function(peer, ev, nohide) {
+    if (curFastChat.activeBox && curFastChat.activeBox.options.peer == peer && !nohide) {
+      curFastChat.activeBox.hide();
+      FastChat.setActive(false);
+    }
+    var tabEl = ge('chat_tab_icon_'+peer);
+    addClass(tabEl, 'chat_tab_hiding');
+    delete Chat.tabs[peer];
+    if (curFastChat.tabs[peer] && curFastChat.tabs[peer].box.options.fixed) {
+      curFastChat.tabs[peer].iman.stop();
+      delete curFastChat.tabs[peer];
+    }
+    var onAmin = function() {
+      re(tabEl);
+      if (tabEl) {
+        tabEl = false;
+        if (curFastChat.activeBox) {
+          FastChat.movePointer(curFastChat.activeBox.options.peer, true);
+        }
+      }
+      FastChat.checkChatHeight();
+    };
+    animate(tabEl, {height: 0, opacity: 0}, {duration: 100, onComplete: onAmin});
+    if (!nohide) {
+      FastChat.stateChange({op: 'closed', peer: peer});
+    }
+    var cnt = 0;
+    for(var i in Chat.tabs) {
+      cnt += 1;
+    }
+    if (!cnt) {
+      removeClass(Chat.wrap, 'chat_expand');
+    }
+    FastChat.itemsOut();
+    return cancelEvent(ev);
+  },
+
+  getPointerShift: function(isPeer, pm, tabDiff) {
+    var bottomPointer = tabDiff - pm;
+
+    var mh = Chat.maxHeight + 32;
+    if (isPeer && bottomPointer < 62) {
+      return bottomPointer - 62;
+    } else if (isPeer && bottomPointer > mh) {
+      return bottomPointer - mh;
+    }
+    return 0;
+  },
+
+  setPointer: function(isPeer, pm, tabDiff) {
+    if (!curFastChat.activeBox) {
+      return false;
+    }
+
+    var shift = FastChat.getPointerShift(isPeer, pm, tabDiff);
+    var pointer = geByClass1('fc_tab_pointer', curFastChat.activeBox.wrap);
+    setStyle(pointer, {marginTop: pm + shift});
+    return shift;
+  },
+
+  movePointer: function(peer, anim) {
+    if (!curFastChat.activeBox) {
+      return false;
+    }
+    var pOffset = geByClass1('fc_pointer_offset', curFastChat.activeBox.wrap);
+    if (peer) {
+      var selTab = ge('chat_tab_icon_'+peer);
+      if (!selTab) {
+        return false;
+      }
+      if (!Chat.fixH && selTab.nextSibling) {
+        var topDiff = getXY(selTab.nextSibling)[1] - 50;
+      } else if (selTab.nextSibling || Chat.fixH) {
+        var topDiff = getXY(selTab)[1] + Chat.scrollNode.scrollTop;
+      } else {
+        var topDiff = getXY(ge('chat_tab_wrap'))[1] - 50;
+      }
+      var tabDiff = 23 + getXY(Chat.cont)[1] - topDiff;
+      var pm = -Chat.scrollNode.scrollTop;
+    } else {
+      var tabDiff = 28;
+      var pm = 0;
+    }
+    var shift = FastChat.setPointer(peer, pm, tabDiff);
+
+    if (anim) {
+      if (curFastChat.prevPointer) {
+        var shiftPos = curFastChat.prevPointer - pm + shift;
+        var tdiff = FastChat.getPointerShift(true, pm + shift, curFastChat.prevPointer);
+        setStyle(pOffset, {bottom: curFastChat.prevPointer - tdiff + shift});
+      }
+      animate(pOffset, {bottom: tabDiff}, {duration: 100});
+    } else {
+      setStyle(pOffset, {bottom: tabDiff});
+    }
+    curFastChat.prevPointer = tabDiff;
+  },
+
+  setActive: function(box) {
+    curFastChat.activeBox = box;
+    if (box) {
+      FastChat.moveBoxesLeft(box.pos[1]);
+    }
+  },
+
+  moveBoxesLeft: function(x, rec) {
+    var x  = x - 8;
+
+    var mostRight = false;
+    var mostRightX = 0;
+    for (var i in curFastChat.tabs) {
+      t = curFastChat.tabs[i];
+      if (!rec) {
+        t.box.movedLeft = false;
+      }
+      if (!t || t.box.options.fixed || !t.box.toBottom || t.box.movedLeft || t.box.noMove) {
+        continue;
+      }
+      var pos = t.box.pos;
+      if (pos[1] + pos[3] >= x) {
+        if (pos[1] > mostRightX) {
+          mostRight = t;
+          mostRightX = pos[1];
+        }
+      }
+    }
+    if (mostRight) {
+      var newX = x - mostRight.box.pos[3];
+      var newY = mostRight.box.pos[0];
+      if (newX < 0) {
+        newX = 0;
+      }
+      mostRight.box.movedLeft = true;
+      animate(mostRight.box.wrap, {left: newX}, 200);
+      mostRight.box.pos = [newY, newX, mostRight.box.pos[2], mostRight.box.pos[3]];
+      var wndInner = getWndInner();
+      FastChat.stateChange({op: 'moved', peer: mostRight.box.options.peer, y: newY / wndInner[0], x: newX / wndInner[1]});
+      if (newX) {
+        FastChat.moveBoxesLeft(newX, true);
+      }
+    } else {
+      FastChat.moveLeftY = 0;
+    }
+  },
+
+  moveBoxAway: function(box, minLeft) {
+    var x = minLeft - box.pos[3] - 20;
+    var w = box.pos[3];
+    var y = box.pos[0];
+    var h = box.pos[2];
+    var pass = false;
+    while(x > 0 && !pass) {
+      pass = true;
+      for (var i in curFastChat.tabs) {
+        var p = curFastChat.tabs[i].box.pos;
+        if ((p[0]+(p[2] / 2) > y) && (p[1]+p[3] > x && p[1] < x + w)) {
+          x -= p[3]
+          pass = false;
+        }
+      }
+    }
+    if (x < 0) {
+      x = positive(Math.random() * minLeft);
+    }
+    animate(box.wrap, {left: x}, 300);
+    var wndInner = getWndInner();
+    FastChat.stateChange({op: 'moved', peer: box.options.peer, y: y / wndInner[0], x: x / wndInner[1]});
+  },
+
+  pinTab: function(peer, ev, fast) {
+    if (peer == -1) {
+      var t = curFastChat.clistBox;
+    } else {
+      var t = curFastChat.tabs[peer].box;
+    }
+    t.options.fixed = false;
+    removeClass(t.wrap, 'fc_fixed');
+    //FastChat.closeTabIcon(peer, ev, true);
+    FastChat.hideChatCtrl();
+    FastChat.setActive(false);
+
+    var newT = t.wrap.offsetTop;// - 8;
+    var newL = t.wrap.offsetLeft - 10;
+      setStyle(t.wrap, {left: t.wrap.offsetLeft, top: t.wrap.offsetTop, right: 'auto', bottom: 'auto'});
+    if (!fast) {
+      animate(t.wrap, {left: newL, top: newT}, 300);
+    }
+    t.pos = [newT, newL, t.pos[2], t.pos[3]];
+
+    t.toRight = false;
+    t.toBottom = true;
+    addClass(t.wrap, 'fc_tobottom');
+
+    var startW = t.resizeableW.clientWidth - intval(getStyle(t.resizeableW, 'paddingRight')) - intval(getStyle(t.resizeableW, 'paddingLeft'));
+    var startH = t.resizeableH.clientHeight - intval(getStyle(t.resizeableH, 'paddingBottom')) - intval(getStyle(t.resizeableH, 'paddingTop'));
+
+    var wndInner = getWndInner();
+    if (peer == -1) {
+      FastChat.stateChange({op: 'clist_toggled', val: 1, y: t.toBottom ? -1 : t.pos[0] / wndInner[0], x: t.toRight ? -1 : t.pos[1] / wndInner[1]});
+    } else {
+      FastChat.stateChange({op: 'unfixed', peer: peer, y: t.toBottom ? -1 : t.pos[0] / wndInner[0], x: t.toRight ? -1 : t.pos[1] / wndInner[1], h: startH / wndInner[0], w: startW / wndInner[1]});
+    }
+    t.noMove = true;
+    FastChat.moveBoxesLeft(newL);
+    t.noMove = false;
+  },
+
+  addPeer: function (peer, events, force, opts) {
+    if (!opts) {
+      opts = {};
+    }
+    var mem = curFastChat.friends && curFastChat.friends[peer+'_'], need = 0;
+    if (force) {
+      FastChat.stateChange({op: 'added', peer: peer, fixed: opts.fixed});
+    } else if (curNotifier.idle_manager && !curNotifier.idle_manager.is_idle && events) {
+      force = true;
+    }
+    if (mem) {
+      var data = {name: mem[0], photo: mem[1], fname: mem[2], hash: mem[3], online: curFastChat.onlines[peer], sex: mem[4]};
+      //if (opts.fixed) {
+      FastChat.addTabIcon(peer, data, opts.noAnim)
+      //}
+      FastChat.addBox(peer, data, opts);
+      if (events) {
+        curFastChat.tabs[peer].auto = 1;
+        FastChat.imFeed(peer, events);
+      } else {
+        if (!opts || !opts.nofocus) {
+          FastChat.activateTab(peer);
+        }
+        if (!curFastChat.onlines[peer]) {
+          FastChat.tabNotify(peer, 'unavail');
+        }
+        need |= 2;
+      }
+    } else {
+      need = 3;
+    }
+    if (need) {
+      if (force) {
+        curFastChat.needPeers[peer] = [need, events, false, opts];
+        FastChat.getPeers();
+      } else {
+        curFastChat.needPeers[peer] = [need, events, setTimeout(FastChat.getPeers, irand(150, 200)), opts];
+        FastChat.lcSend('needPeer', {id: peer, mask: need});
+      }
+    }
+  },
+  getPeers: function () {
+    var q = [], peers = {};
+    each (curFastChat.needPeers, function (peer) {
+      q.push(peer);
+      q.push(this[0]);
+      clearTimeout(this[2]);
+      peers[peer] = this[0];
+    });
+    if (!q.length) {
+      return;
+    }
+    FastChat.lcSend('fetchingPeers', peers);
+    ajax.post('al_im.php', {act: 'a_get_fc_peers', peers: q.join(',')}, {
+      onDone: function (data) {
+        FastChat.gotPeers(data);
+        FastChat.lcSend('gotPeers', data);
+      }
+    });
+  },
+  gotPeers: function (data) {
+    each (curFastChat.needPeers, function (peer) {
+      if (data[peer]) {
+        if (data[peer] < 2e9) {
+          curFastChat.friends[peer + '_'] = [
+            data[peer].name,
+            data[peer].photo,
+            data[peer].fname,
+            data[peer].hash,
+            intval(data[peer].sex)
+          ];
+        }
+        var events = this[1], opts = this[3];
+        if (!(this[0] & 2) || data[peer].history !== undefined) {
+          clearTimeout(this[2]);
+          delete curFastChat.needPeers[peer];
+        }
+
+        if (!curFastChat.tabs[peer]) {
+          if (opts.fixedLoad) {
+            FastChat.addTabIcon(peer, data[peer]);
+          } else {
+            FastChat.addTabIcon(peer, data[peer]);
+            FastChat.addBox(peer, data[peer], opts);
+            if (events) {
+              curFastChat.tabs[peer].auto = 1;
+              FastChat.imFeed(peer, events);
+            } else {
+              if (this[0] & 2) {
+                FastChat.gotHistory(peer, data[peer].history);
+              }
+              if (!opts || !opts.nofocus) {
+                FastChat.activateTab(peer);
+              }
+            }
+          }
+          //}
+        } else {
+          FastChat.gotHistory(peer, data[peer].history);
+        }
+
+        if (opts.onHistoryLoaded) {
+          opts.onHistoryLoaded();
+        }
+      }
+    });
+  },
+  gotHistory: function (peer, hist) {
+    if (!isArray(hist) || !hist.length || !hist[0]) {
+      return;
+    }
+    var tab = curFastChat.tabs[peer], log = hist[0], msgs = hist[1];
+    tab.offset = hist[2];
+    extend(tab.msgs, msgs);
+    each(msgs, function (k, v) {
+      if (!v[0] && v[1]) {
+        tab.unread++;
+      }
+    });
+    val(tab.log, log);
+    tab.logWrap.scrollTop = tab.logWrap.scrollHeight;
+    setTimeout(function () {
+      tab.logWrap.scrollTop = tab.logWrap.scrollHeight;
+      tab.scroll && tab.scroll.update(false, true);
+    }, 10);
+  },
+  decHashCb: function(hash) {
+    (function(_){curFastChat.decodedHashes[_]=(function(__){var ___=ge?'':'___';for(____=0;____<__.length;++____)___+=__.charAt(__.length-____-1);return geByClass?___:'___';})(_.substr(_.length-5)+_.substr(4,_.length-12));})(hash);
+  },
+  decodehash: function(hash) {
+    if (!curFastChat.decodedHashes)
+      curFastChat.decodedHashes = {};
+    if (!curFastChat.decodedHashes[hash]) {
+      FastChat.decHashCb(hash);
+    }
+    return curFastChat.decodedHashes[hash];
+  },
+  onMyTyping: function (peer) {
+    peer = intval(peer);
+    var tab = curFastChat.tabs[peer];
+    if (peer <= -2e9 || !tab) return;
+    var ts = vkNow();
+    if (curFastChat.myTypingEvents[peer] && ts - curFastChat.myTypingEvents[peer] < 5000) {
+      return;
+    }
+    curFastChat.myTypingEvents[peer] = ts;
+    ajax.post('al_im.php', {act: 'a_typing', peer: peer, hash: tab.sendhash, from: 'fc'});
+  },
+  updateTypings: function () {
+    each(curFastChat.tabs || {}, function (peer, v) {
+      FastChat.updateTyping(peer);
+    });
+  },
+  updateTyping: function (peer, force) {
+    var tab = curFastChat.tabs[peer],
+        typings = [],
+        lastEv = curFastChat.typingEvents[peer],
+        sex,
+        ts = vkNow(),
+        el = ge('fc_tab_typing' + peer),
+        txtEl = geByClass1('_fc_tab_typing_name', el);
+
+    if (peer < 2e9) {
+      if (lastEv && ts - lastEv < 6000) {
+        typings.push(tab.fname || tab.name || '');
+        sex = tab.sex;
+      }
+    } else {
+      var mems = tab.data.members;
+      each (lastEv || {}, function (k, v) {
+        if (v && ts - v < 6000 && mems[k] && mems[k].first_name) {
+          typings.push(mems[k].first_name || '');
+          sex = mems[k].sex;
+        }
+      });
+    }
+    if (!typings.length) {
+      return force ? setStyle(el, 'opacity', 0) : fadeTo(el, 1000, 0);
+    }
+    if (typings.length == 1) {
+      val(txtEl, langSex(sex, lang.mail_im_typing).replace('{user}', typings[0]));
+    } else {
+      var lastUser = typings.pop();
+      val(txtEl, getLang('mail_im_multi_typing').replace('{users}', typings.join(', ')).replace('{last_user}', lastUser));
+    }
+    return force ? setStyle(el, 'opacity', 1) : fadeTo(el, 200, 1);
+  },
+  readLastMsgs: function (peer) {
+    var t = this, tab = curFastChat.tabs[peer];
+    if (!peer || !tab) return;
+
+    if (!tab.markingRead && tab.unread) {
+      var unread = [];
+      for (var i in tab.msgs) {
+        if (!tab.msgs[i][0] && tab.msgs[i][1]) {
+          unread.push(i);
+        }
+      }
+      FastChat.markRead(peer, unread);
+    }
+    FastChat.changePeerCounter(peer, 0, 0);
+  },
+  markRead: function(peer, unread) {
+    if (!unread.length) return;
+    var t = this, tab = curFastChat.tabs[peer];
+    tab.markingRead = true;
+
+    ajax.post('al_im.php', {act: 'a_mark_read', peer: peer, ids: unread, hash: tab.sendhash}, {
+      onDone: function (res, newmsg) {
+        tab.markingRead = false;
+
+        for (var i in unread) {
+          var msgId = unread[i], row = ge('fc_msg' + msgId), parent = row && row.parentNode;
+          if (!row) continue;
+          if (tab.msgs[msgId] && tab.msgs[msgId][1]) {
+            tab.msgs[msgId][1] = 0;
+            if (!tab.msgs[msgId][0]) {
+              tab.unread--;
+            }
+          }
+          removeClass(row, 'fc_msg_unread');
+          if (hasClass(parent.parentNode, 'fc_msgs_unread')) {
+            each (parent.childNodes, function () {
+              if (!hasClass(this, 'fc_msg_unread')) {
+                removeClass(parent.parentNode, 'fc_msgs_unread');
+                return false;
+              }
+            });
+          }
+        }
+        if (tab.unread > 0) {
+          tab.unread = 0;
+          each (tab.msgs, function () {
+            if (!this[0] && this[1]) tab.unread++;
+          });
+        }
+        FastChat.updateUnreadTab(peer);
+      },
+      onFail: function () {
+        tab.markingRead = false;
+      }
+    });
+  },
+  mkMsg: function (msg) {
+    var message = clean(msg).replace(/\n/g, '<br>'),
+        susp = false;
+
+    message = message.replace(/([a-zA-Z\-_\.0-9]+@[a-zA-Z\-_0-9]+\.[a-zA-Z\-_\.0-9]+[a-zA-Z\-_0-9]+)/g, function(url) {
+      return '<a href="/write?email='+url+'" target="_blank">'+url+'</a>'
+    });
+
+    message = message.replace(/(^|[^A-Za-z0-9À-ßà-ÿ¸¨\-\_])(https?:\/\/)?((?:[A-Za-z\$0-9À-ßà-ÿ¸¨](?:[A-Za-z\$0-9\-\_À-ßà-ÿ¸¨]*[A-Za-z\$0-9À-ßà-ÿ¸¨])?\.){1,5}[A-Za-z\$ðôóêîíëàéíñòÐÔÓÊÎÍËÀÉÍÑÒ\-\d]{2,22}(?::\d{2,5})?)((?:\/(?:(?:\&amp;|\&#33;|,[_%]|[A-Za-z0-9À-ßà-ÿ¸¨\-\_#%?+\/\$.~=;:]+|\[[A-Za-z0-9À-ßà-ÿ¸¨\-\_#%?+\/\$.,~=;:]*\]|\([A-Za-z0-9À-ßà-ÿ¸¨\-\_#%?+\/\$.,~=;:]*\))*(?:,[_%]|[A-Za-z0-9À-ßà-ÿ¸¨\-\_#%?+\/\$.~=;:]*[A-Za-z0-9À-ßà-ÿ¸¨\_#%?+\/\$~=]|\[[A-Za-z0-9À-ßà-ÿ¸¨\-\_#%?+\/\$.,~=;:]*\]|\([A-Za-z0-9À-ßà-ÿ¸¨\-\_#%?+\/\$.,~=;:]*\)))?)?)/ig, function () { // copied to notifier.js:3401
+      var matches = Array.prototype.slice.apply(arguments),
+          prefix = matches[1] || '',
+          protocol = matches[2] || 'http://',
+          domain = matches[3] || '',
+          url = domain + (matches[4] || ''),
+          full = (matches[2] || '') + matches[3] + matches[4];
+
+      if (domain.indexOf('.') == -1 || domain.indexOf('..') != -1) return matches[0];
+      var topDomain = domain.split('.').pop();
+      if (topDomain.length > 7 || indexOf('info,name,academy,aero,arpa,coop,media,museum,mobi,travel,xxx,asia,biz,com,net,org,gov,mil,edu,int,tel,ac,ad,ae,af,ag,ai,al,am,an,ao,aq,ar,as,at,au,aw,ax,az,ba,bb,bd,be,bf,bg,bh,bi,bj,bm,bn,bo,br,bs,bt,bv,bw,by,bz,ca,cc,cd,cf,cg,ch,ci,ck,cl,cm,cn,co,cr,cu,cv,cx,cy,cz,de,dj,dk,dm,do,dz,ec,ee,eg,eh,er,es,et,eu,fi,fj,fk,fm,fo,fr,ga,gd,ge,gf,gg,gh,gi,gl,gm,gn,gp,gq,gr,gs,gt,gu,gw,gy,hk,hm,hn,hr,ht,hu,id,ie,il,im,in,io,iq,ir,is,it,je,jm,jo,jp,ke,kg,kh,ki,km,kn,kp,kr,kw,ky,kz,la,lb,lc,li,lk,lr,ls,lt,lu,lv,ly,ma,mc,md,me,mg,mh,mk,ml,mm,mn,mo,mp,mq,mr,ms,mt,mu,mv,mw,mx,my,mz,na,nc,ne,nf,ng,ni,nl,no,np,nr,nu,nz,om,pa,pe,pf,pg,ph,pk,pl,pm,pn,pr,ps,pt,pw,py,qa,re,ro,ru,rs,rw,sa,sb,sc,sd,se,sg,sh,si,sj,sk,sl,sm,sn,so,sr,ss,st,su,sv,sx,sy,sz,tc,td,tf,tg,th,tj,tk,tl,tm,tn,to,tp,tr,tt,tv,tw,tz,ua,ug,uk,um,us,uy,uz,va,vc,ve,vg,vi,vn,vu,wf,ws,ye,yt,yu,za,zm,zw,ðô,óêð,ñàéò,îíëàéí,ñðá,cat,pro,local'.split(','), topDomain) == -1) return matches[0];
+
+      if (matches[0].indexOf('@') != -1) {
+        return matches[0];
+      }
+      try {
+        full = decodeURIComponent(full);
+      } catch (e){}
+
+      if (full.length > 55) {
+        full = full.substr(0, 53) + '..';
+      }
+      full = clean(full).replace(/&amp;/g, '&');
+
+      if (!susp && domain.match(/^([a-zA-Z0-9\.\_\-]+\.)?(vkontakte\.ru|vk\.com|vkadre\.ru|vshtate\.ru|userapi\.com|vk\.me)$/)) {
+        url = replaceEntities(url).replace(/([^a-zA-Z0-9#%;_\-.\/?&=\[\]])/g, encodeURIComponent);
+        var tryUrl = url, hashPos = url.indexOf('#/'), mtch, oncl = '';
+        if (hashPos >= 0) {
+          tryUrl = url.substr(hashPos + 1);
+        } else {
+          hashPos = url.indexOf('#!');
+          if (hashPos >= 0) {
+            tryUrl = '/' + url.substr(hashPos + 2).replace(/^\//, '');
+          }
+        }
+        mtch = tryUrl.match(/^(?:https?:\/\/)?(?:vk\.com|vkontakte\.ru)?\/([a-zA-Z0-9\._]+)\??$/);
+        if (mtch) {
+          if (mtch[1].length < 32) {
+            oncl = ' mention_id="' + mtch[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"';
+          }
+        }
+        return prefix + '<a href="'+ (protocol + url).replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '" target="_blank"' + oncl + '>' + full + '</a>';
+      }
+      return prefix + '<a href="away.php?utf=1&to=' + encodeURIComponent(protocol + replaceEntities(url)) + '" target="_blank" onclick="return goAway(\''+ clean(protocol + url) + '\', {}, event);">' + full + '</a>';
+    });
+
+    message = Emoji.emojiToHTML(message, 1);
+
+    return message;
+  },
+  getEditCont: function(emojiId) {
+    stManager.add(['emoji.js']);
+    return '<div class="emoji_cont _emoji_field_wrap">' + Emoji.tplSmile(getLang('mail_emoji_hint')) + '<div class="fc_editable dark" tabindex="0" contenteditable="true" placeholder="' + getLang('mail_chat_placeholder') + '"></div></div>';
+  },
+  getVal: function(obj) {
+    //return obj.value;
+    return Emoji ? Emoji.editableVal(obj) : '';
+  },
+
+  onTxtResize: function(peer) {
+    var tab = curFastChat.tabs[peer];
+    var txt = geByClass1('fc_tab_txt', tab.wrap);
+    var h = getSize(txt)[1];
+    if (h > 40) {
+      var hDiff = positive(h - 40);
+      var resH = intval(getSize(tab.box.resizeableH)[1]);
+      if (resH + tab.hDiff - hDiff < 40) {
+        hDiff = resH + tab.hDiff - 40;
+      }
+      setStyle(tab.box.resizeableH, {height: resH + (tab.hDiff || 0) - hDiff});
+      tab.hDiff = hDiff;
+      FastChat.fixResized(tab, tab.wrap.clientWidth, true);
+    } else if (tab.hDiff) {
+      var resH = intval(getSize(tab.box.resizeableH)[1]);
+      setStyle(tab.box.resizeableH, {height: resH + tab.hDiff});
+      tab.hDiff = 0;
+      FastChat.fixResized(tab, tab.wrap.clientWidth, true);
+    }
+  },
+
+  initTab: function (peer, data, wrap) {
+    var txt = geByClass1('fc_editable', wrap);
+    var tab = curFastChat.tabs[peer] = {
+      name: data.name,
+      fname: data.fname,
+      photo: data.photo,
+      link: data.alink || '/id' + peer,
+      hash: data.hash,
+      sendhash: FastChat.decodehash(data.hash),
+      sex: data.sex || 0,
+      data: data.data || {},
+      online: data.online,
+      msgs: {},
+      msgscount: 0,
+      unread: 0,
+      sent: 0,
+      sentmsgs: [],
+      box: false,
+      wrap: wrap,
+      editable: 1,
+      txt: txt,
+      txtWrap: txt.parentNode.parentNode,
+      logWrap: geByClass1('fc_tab_log', wrap),
+      log: geByClass1('fc_tab_log_msgs', wrap),
+      notify: geByClass1('fc_tab_notify_wrap', wrap),
+      title: geByClass1('fc_tab_title', wrap)
+    }
+
+    var lastTxtH = 30;
+    tab.addMediaBtn = geByClass1('fc_tab_attach', wrap);
+    if (tab.editable) {
+      cur.t = tab;
+
+      tab.emojiId = Emoji.init(tab.txt, {
+        controlsCont: geByClass1('fc_tab_txt_wrap', wrap),
+        ttDiff: -46,
+        ttShift: 0,
+        rPointer: true,
+        global: true,
+        noRce: true,
+        peer: peer,
+        isChat: true,
+        noCtrlSend: true,
+        onSend: FastChat.send.pbind(peer),
+        checkEditable: FastChat.checkEditable,
+        onResize: function() {
+          FastChat.onTxtResize(peer);
+        },
+        addMediaBtn: tab.addMediaBtn,
+        onShow: function() {
+          cssAnim(tab.scroll.scrollbar, {opacity: 0}, {duration: 400});
+          enterWorks = false;
+        },
+        onHide: function() {
+          cssAnim(tab.scroll.scrollbar, {opacity: 1}, {duration: 400});
+          setTimeout(function() {
+            enterWorks = true;
+          }, 0);
+        },
+        onEsc: function(e) {
+          tab.box.hide();
+          return cancelEvent(e);
+        },
+        onStickerSend: function(stNum) {
+          var msgId = --tab.sent;
+          FastChat.send(peer, stNum);
+        }
+      });
+    } else {
+      var minH = 15;
+      autosizeSetup(tab.txt, {minHeight: minH, maxHeight: 42});
+      tab.txt.autosize.options.onResize = function (h) {
+        if (tab.box.minimized) {
+          return;
+        }
+        var txtH = h == 42 ? 42 : minH;
+        if (txtH != h) {
+          setStyle(tab.txt, 'height', txtH);
+        }
+        if (txtH != lastTxtH) {
+          setStyle(tab.logWrap, 'height', tab.logWrap.clientHeight - txtH + lastTxtH); // bottom padding
+          lastTxtH = txtH;
+          tab.scroll && tab.scroll.update(false, true);
+        }
+      };
+    }
+
+    tab.imPeerMedias = {};
+    tab.imSortedMedias = {};
+    tab.previewEl = geByClass1('fc_tab_preview', wrap);
+    stManager.add(['page.js', 'page.css', 'ui_media_selector.js', 'ui_media_selector.css'], function() {
+      tab.imMedia = new MediaSelector(tab.addMediaBtn, tab.previewEl, [['photo', getLang('profile_wall_photo')], ['video', getLang('profile_wall_video')], ['audio', getLang('profile_wall_audio')], ['doc', getLang('profile_wall_doc')], ['map', getLang('profile_wall_map')]], {
+        limit: 10,
+        hideAfterCount: 0,
+        maxShown: 0,
+        mail: 1,
+        tooltip: 1,
+        topOffset: 0,
+        forceUp: 1,
+        global: 1,
+        toId: vk.id
+      });
+      //val(tab.previewEl, '');
+      tab.imMedia.onChange = setTimeout.pbind(function() {
+        if (curFastChat.sendOnUpload) {
+          FastChat.send(curFastChat.sendOnUpload);
+          curFastChat.sendOnUpload = undefined;
+        }
+        FastChat.onTxtResize(peer);
+      }, 0);
+    });
+    return tab;
+  },
+  addBox: function (peer, data, options) {
+    if (curFastChat.tabs[peer] !== undefined) {
+      return;
+    }
+    var editCont = FastChat.getEditCont(Emoji.last);
+    options = options || {};
+    curFastChat.tabs[peer] = {};
+
+    var wrap = se(rs(FastChat.tplBox, {id: peer, name: data.name, myphoto: Notifier.fixPhoto(curFastChat.me.photo, true), cont: editCont}));
+
+    if (options.fixed && curFastChat.activeBox) {
+      curFastChat.activeBox.hide(0, false, {noState: true});
+    }
+    var tab = FastChat.initTab(peer, data, wrap);
+    wndInner = getWndInner(),
+    opts = {
+      id: 'fc_peer' + peer,
+      marginFixedToLayer: true,
+      peer: peer,
+      movable: geByClass1('fc_tab_head', wrap),
+      closer: geByClass1('fc_tab_close_wrap', wrap, 'a'),
+      resizeableH: tab.logWrap,
+      startHeight: 250,
+      startWidth: 270,
+      fixed: options.fixed,
+      minH: 150,
+      minW: 270,
+      nofocus: true,
+      onFocus: function (e) {
+        if (tab.auto) {
+          FastChat.stateChange({op: 'added', peer: peer});
+          delete tab.auto;
+        }
+
+        FastChat.restoreDraft(peer);
+        if (tab.editable) {
+          Emoji.editableFocus(tab.txt, false, true);
+        } else {
+          elfocus(tab.txt);
+        }
+        if (tab.wrap.clientWidth) setStyle(tab.title, {maxWidth: tab.wrap.clientWidth - 71});
+        if (!tab.editable) {
+          setStyle(tab.txt.autosize.helper, {width: getStyle(tab.txt, 'width', false)});
+        }
+        tab.scroll && tab.scroll.update(false, true);
+        setTimeout(elfocus.pbind(tab.txt), 10);
+      },
+      onHide: function() {
+        if (options.fixed) {
+          FastChat.hideChatCtrl();
+        }
+
+        if (curFastChat.activeBox) {
+          if (peer == curFastChat.activeBox.options.peer) {
+            FastChat.setActive(false);
+          }
+        }
+      },
+      onClose: function (pos) {
+        this.onHide();
+        if (options && options.beforeClose) {
+          options.beforeClose();
+        }
+        var tabs = curFastChat.tabs, posSeq = tabs[peer].posSeq;
+        delete tabs[peer];
+        if (!curNotifier.isIdle) {
+          FastChat.stateChange({op: 'hidden', peer: peer});
+        }
+        if (!posSeq) return;
+
+        var i, seqsTabs = {}, seqs = [], seq, box, prevPos, anim;
+        each (tabs, function () {
+          if (this.posSeq > posSeq) {
+            seqsTabs[this.posSeq] = this;
+            seqs.push(this.posSeq);
+          }
+        });
+        seqs.unshift(posSeq);
+        seqs.sort();
+        anim = (!browser.msie && seqs.length < 10);
+        for (i = 1; i < seqs.length; i++) {
+          seq = seqs[i];
+          box = seqsTabs[seq].box;
+          prevPos = i > 1 ? seqsTabs[seqs[i - 1]].box.pos : pos;
+          if (anim) {
+            animate(box.wrap, {left: prevPos[1]}, 100, function (box) {
+              box._update_pos();
+            }.pbind(box));
+          } else {
+            setStyle(box.wrap, {left: prevPos[1]});
+          }
+        }
+        if (!anim) {
+          for (i = 1; i < seqs.length; i++) {
+            box = seqsTabs[seqs[i]].box;
+            box._update_pos();
+          }
+        }
+      },
+      onMinimize: function (val) {
+        FastChat.stateChange({op: 'minimized', peer: peer, val: val});
+        FastChat.fixResized(tab, tab.wrap.clientWidth, true);
+        if (!val) {
+          tab.txt.blur();
+          FastChat.restoreDraft(peer);
+        }
+      },
+      onResizeEnd: function (h, w) {
+        var wndInner = getWndInner(), pos = tab.box.pos;
+        tab.scroll && tab.scroll.show();
+        FastChat.fixResized(tab, w, true);
+        FastChat.stateChange({op: 'resized', peer: peer, h: h / wndInner[0], w: w / wndInner[1], y: tab.box.toBottom ? -1 : pos[0] / wndInner[0], x: tab.box.toRight ? -1 : pos[1] / wndInner[1]});
+
+      },
+      onResize: function (h, w) {
+        FastChat.fixResized(tab, w);
+        var el = geByClass1('fc_tab_title', tab.box.content);
+        setStyle(el, {width: w - 78});
+      },
+      onResizeStart: function () {
+        delete tab.posSeq;
+        tab.scroll && tab.scroll.hide();
+        val(tab.notify, '');
+        clearTimeout(tab.hideNotifyTO);
+      },
+      onDragEnd: function (y, x) {
+        delete tab.posSeq;
+        FastChat.stateChange({op: 'moved', peer: peer, y: y, x: x});
+      }
+    };
+
+    if (options) {
+      extend(opts, options);
+    }
+
+    if (opts.startLeft === undefined && opts.startRight === undefined) {
+      var xs = [], minTop = wndInner[0] - 350, pos = curFastChat.clistBox.pos;
+      var snapRight = false;
+      if (window.Call && (Call.box || Call.invitation)) {
+        var size = Call.calcBoxPos();
+        xs.push([size.x, size.x + size.w]);
+        snapRight = true;
+      }
+      if (pos[0] + pos[2] > minTop && (curFastChat.clistBox.visible || !snapRight)) {
+        xs.push([pos[1], pos[1] + pos[3]]);
+      }
+      each (curFastChat.tabs, function (k) {
+        if (!(pos = this.box && this.box.pos) || k == peer) {
+          return;
+        }
+        if (pos[0] + pos[2] > minTop) {
+          xs.push([pos[1], pos[1] + pos[3]]);
+        }
+      });
+      // var startX = 15, endX = wndInner[1] - 260 - sbWidth(),
+      // var w = ge('page_layout').offsetWidth, startX = (lastWindowWidth + w) / 2 - 240, endX = 0,
+      var startX = lastWindowWidth - 262 - sbWidth(), endX = 0,
+          minLayersX = false, minLayersCnt = false, curX, curCnt, j, sign = endX > startX ? 1 : -1;
+
+      for (curX = startX; sign * curX < sign * endX; curX += sign * 135) {
+        curCnt = 0;
+        for (j = 0; j < xs.length; j++) {
+          if (curX > xs[j][0] - 260 && curX < xs[j][1]) {
+            curCnt++;
+          }
+          if (curX > xs[j][0] - 10 && curX < xs[j][0] + 10) {
+            curCnt += 1.1;
+          }
+        }
+        if (minLayersX === false || curCnt < minLayersCnt) {
+          minLayersX = curX;
+          minLayersCnt = curCnt;
+        }
+      }
+
+      if (snapRight && minLayersCnt) {
+        minLayersX = startX;
+      }
+
+      extend(opts, {
+        startBottom: 0,
+        startLeft: minLayersX
+      });
+    }
+    var emp = true, i;
+    for (i in (options || {})) {
+      if (i != 'nofocus') {
+        emp = false;
+        break;
+      }
+    }
+    if (emp) {
+      tab.posSeq = ++curFastChat.posSeq;
+    }
+    /*if (!opts.minimized && !opts.fixed && options !== undefined && nav.objLoc[0] == 'im' &&
+        nav.objLoc.sel == FastChat.nicePeer(peer)
+      ) {
+      opts.minimized = true;
+      cur.hiddenChats[peer] = 1;
+    }*/
+
+    // fixed
+    if (opts.fixed) {
+      //var clistSize = getSize(curFastChat.clistBox.content);
+      opts.startHeight = curFastChat.clistH;
+      opts.startWidth = curFastChat.clistW;
+      opts.onShow =  FastChat.showChatCtrl;
+    }
+    tab.box = new RBox(wrap, opts);
+    tab.iman = new IdleManager({
+      id: 'tab' + peer,
+      element: tab.box.content,
+      onUnIdleCb: function() {
+        FastChat.readLastMsgs(peer);
+      },
+      parentManager: curNotifier.idle_manager,
+      idleTimeout: 10000
+    });
+    curFastChat.tabs[peer].iman.start();
+
+    if (opts.fixed) {
+      FastChat.setActive(tab.box);
+    }
+
+    tab.scroll = new Scrollbar(tab.logWrap, {
+      prefix: 'fc_',
+      nomargin: true,
+      nokeys: true,
+      global: true,
+      right: vk.rtl ? 'auto' : 1,
+      left: !vk.rtl ? 'auto' : 1,
+      onScroll: FastChat.onScroll.pbind(tab)
+    });
+
+    if (!opts.minimized && options &&
+        (options.startLeft !== undefined ||
+        options.startTop !== undefined ||
+        options.startWidth !== undefined ||
+        options.startHeight !== undefined)) {
+      tab.box._wnd_resize(wndInner[0], wndInner[1], true);
+    }
+    var enterWorks = true;
+
+    if (tab.wrap.clientWidth) setStyle(tab.title, {maxWidth: tab.wrap.clientWidth - 71});
+    addEvent(tab.txt, 'keydown focus mousedown keyup', function (e) {
+      if (e.type == 'mousedown') {
+        if (curRBox.active == tab.box.id) {
+          (e.originalEvent || e).cancelBubble = true;
+        }
+        return;
+      }
+
+      if (e.type == 'keydown' && e.ctrlKey && e.keyCode == KEY.RETURN) {
+        var val = this.value;
+        if (typeof this.selectionStart == "number" && typeof this.selectionEnd == "number") {
+          var start = this.selectionStart;
+          this.value = val.slice(0, start) + "\n" + val.slice(this.selectionEnd);
+          this.selectionStart = this.selectionEnd = start + 1;
+        } else if (document.selection && document.selection.createRange) {
+          this.focus(e);
+          var range = document.selection.createRange();
+          range.text = "\r\n";
+          range.collapse(false);
+          if (browser.opera) {
+            range.moveEnd('character', 0);
+            range.moveStart('character', 0);
+          }
+          range.select();
+        }
+        if (tab.editable) {
+          FastChat.checkEditable(tab.emojiId, tab.txt);
+        } else {
+          tab.txt.autosize.update();
+          setTimeout(function () {
+            tab.txt.autosize.update();
+          }, 0);
+        }
+        return false;
+      }
+      if (e.type == 'focus') {
+        curFastChat.peer = peer;
+      } else if (e.type == 'keyup') {
+        var lastVal = tab.lastVal || '',
+            curVal = FastChat.getVal(this);
+        if (curVal.length != lastVal.length ||
+            curVal != lastVal) {
+          if (curVal) {
+            FastChat.onMyTyping(peer);
+          }
+          tab.lastVal = curVal;
+        }
+        clearTimeout(tab.saveDraftTO);
+        tab.saveDraftTO = setTimeout(FastChat.saveDraft.pbind(peer), curVal.length ? 300 : 0);
+        FastChat.checkEditable(tab.emojiId, tab.txt);
+      }
+    });
+    FastChat.restoreDraft(peer);
+    if (opts.onPeerAdded) {
+      opts.onPeerAdded();
+    }
+  },
+
+  onScroll: function(tab) {
+    var sc = tab.scroll.obj.scrollTop
+    var moreCont = geByClass1('_fc_msgs_more', tab.logWrap);
+    if (sc < 200 && isVisible(moreCont)) {
+      moreCont.click();
+    }
+  },
+
+  loadMore: function(peer, obj) {
+    var tab = curFastChat.tabs[peer];
+    offset = tab.offset;
+    if (tab.moreLoading) {
+      return false;
+    }
+    tab.moreLoading = true;
+    ajax.post('al_im.php', {act: 'a_history', peer: peer, offset: offset, from: 'fc'}, {
+      onDone: function(hist) {
+        if (!hist[3]) {
+          hide(obj);
+        }
+        var cont = obj.parentNode;
+        var prevHeight = cont.clientHeight;
+        cont.insertBefore(cf(hist[0]), obj.nextSibling)
+        var heightDiff = cont.clientHeight - prevHeight;
+        if (heightDiff) {
+          tab.logWrap.scrollTop += heightDiff;
+        }
+        tab.scroll.update();
+        tab.offset = hist[2];
+        tab.moreLoading = false;
+        FastChat.onScroll(tab);
+      },
+      onFail: function() {
+        tab.moreLoading = false;
+      },
+      showProgress: lockButton.pbind(obj),
+      hideProgress: unlockButton.pbind(obj)
+    });
+  },
+
+  sendOnResponse: function(response, msgId, tab) {
+    if (response.version && intval(response.version) > curFastChat.version) {
+       FastChat.updateVersion(response.version);
+       return;
+    }
+
+    var row = ge('fc_msg' + msgId), realMsgId = response.msg_id, pos = indexOf(msgId, tab.newmsgs);
+    if (!row) return;
+
+    if (response.media) {
+      var msgOpts = {sticker: intval(response.sticker)};
+      FastChat.lcSend('gotMedia', {msgId: msgId, peer: tab.box.options.peer, text: response.media, msgOpts: msgOpts});
+      FastChat.gotMsgMedia(tab.box.options.peer, msgId, response.media, msgOpts);
+    }
+    ++tab.msgscount;
+    if (pos != -1) {
+      tab.newmsgs.splice(pos, 1);
+    }
+    row.id = 'fc_msg' + realMsgId;
+
+    tab.msgs[realMsgId] = [1, 1];
+  },
+
+  checkEditable: function(optId, obj) {
+    Emoji.checkEditable(optId, obj, {height: 52});
+  },
+
+  fixResized: function (tab, w, stopped) {
+    if (!tab) return;
+    tab.logWrap.scrollTop = tab.logWrap.scrollHeight;
+    if (w > 0) {
+      setStyle(tab.title, {maxWidth: w - 71});
+    }
+    if (stopped) {
+      if (!tab.editable) {
+        setStyle(tab.txt.autosize.helper, {width: getStyle(tab.txt, 'width', false)});
+      }
+      tab.scroll && tab.scroll.update(false, true);
+    }
+  },
+
+  activateTab: function (peer) {
+    var box = curFastChat.tabs[peer].box;
+    if (curFastChat.activeBox && curFastChat.activeBox != box) {
+      curFastChat.activeBox.hide(0, false, {noState: true});
+    }
+    box.show();
+    if (box.options.fixed) {
+      FastChat.setActive(box);
+    }
+  },
+
+  updateUnreadTab: function (peer) {
+    var tab = curFastChat.tabs[peer];
+    if (!tab) return;
+    val(tab.title, tab.name + (tab.unread ? ' <span class="fc_tab_count">(' + tab.unread + ')</span>' : ''));
+    val('fc_contact_unread' + peer, tab.unread ? ' <b>+' + tab.unread + '</b>' : '');
+    FastChat.changePeerCounter(peer, false, tab.unread);
+  },
+  blinkTab: function (peer) {
+    var tab = curFastChat.tabs[peer];
+    if (tab.blinking || curFastChat.peer == peer) return;
+    tab.blinking = true;
+    clearTimeout(tab.blinkingTO);
+    var wrap = tab.box.wrap, className = wrap.className, zIndex = Math.min(BASIC_CHAT_ZINDEX, intval(getStyle(wrap, 'zIndex')));
+    setStyle(wrap, {zIndex: BASIC_CHAT_ZINDEX});
+    removeClass(wrap, 'rb_inactive');
+    tab.blinkingTO = setTimeout(function () {
+      delete tab.blinking;
+      delete tab.blinkingTO;
+
+      if (getStyle(wrap, 'zIndex') != BASIC_CHAT_ZINDEX) {
+        return;
+      }
+      setStyle(wrap, {zIndex: zIndex});
+      wrap.className = className;
+    }, 2000);
+  },
+
+  createProgress: function(row, id, after) {
+    var el = ce('span', {innerHTML: rs(vk.pr_tpl, {id: '', cls: ''}), className: 'fc_msg_progress', id: 'fc_msg_progress' + id});
+    row.insertBefore(el, after);
+    return el;
+  },
+
+  removeProgress: function(id) {
+    re('fc_msg_progress' + id);
+  },
+
+  send: function (peer, stickerId) {
+    var t = this, tab = curFastChat.tabs[peer], msg = trim(tab.editable ? Emoji.editableVal(tab.txt) : val(tab.txt));
+    if (stickerId) {
+      var media = [['sticker', stickerId]];
+      msg = '';
+    } else {
+      var media = tab.imMedia ? tab.imMedia.getMedias() : []
+    }
+    var typer = ge('fc_tab_typing' + peer);
+    var progressBars = geByClass1('page_progress_preview', tab.wrap);
+    if (progressBars && progressBars.childNodes.length > 0) {
+      curFastChat.sendOnUpload = peer;
+      var row = geByClass('fc_tab_log', tab.wrap)[0];
+      FastChat.createProgress(row, peer, row.lastChild);
+      typer.style.visibility = 'hidden';
+      return;
+    } else {
+      curFastChat.sendOnUpload = false;
+      FastChat.removeProgress(peer);
+      typer.style.visibility = 'visible';
+    }
+    if ((!msg && !media.length)/* || tab.sending*/) {
+      if (tab.editable) {
+        Emoji.editableFocus(tab.txt, false, true);
+      } else {
+        elfocus(tab.txt);
+      }
+      return;
+    }
+    var msgId = --tab.sent;
+    var params = {
+      act: 'a_send',
+      to: peer,
+      hash: tab.sendhash,
+      msg: msg,
+      from: 'fc',
+      media: [],
+    };
+    for (var i = 0, l = media.length, v; i < l; ++i) {
+      if (v = media[i]) {
+        params.media.push(v[0] + ':' + v[1]);
+      }
+    }
+    params.media = params.media.join(',');
+    tab.sending = true;
+    Emoji.ttHide(tab.emojiId);
+    ajax.post('al_im.php', params, {
+      onDone: function(response) {
+        clearTimeout(tab.saveDraftTO);
+        FastChat.saveDraft(peer);
+        FastChat.sendOnResponse(response, msgId, tab);
+      },
+      onFail: function(error) {
+        FastChat.error(peer, error || getLang('global_unknown_error'));
+
+        elfocus(tab.txt);
+        val(tab.txt, msg);
+        if (tab.editable) {
+          FastChat.checkEditable(tab.emojiId, tab.txt);
+        } else {
+          tab.txt.autosize.update();
+        }
+
+        var row = ge('fc_msg' + msgId);
+        if (!row) return;
+        row.appendChild(ce('span', {className: 'fc_msg_error', innerHTML: getLang('global_error')}));
+        FastChat.scroll(peer);
+        return true;
+      },
+      showProgress: function () {
+        tab.sending = true;
+        tab.sendProgressTO = setTimeout(function () {
+          var row = ge('fc_msg' + msgId);
+          if (!row) return;
+          FastChat.createProgress(row, msgId, row.firstChild);
+        }, 2000);
+      },
+      hideProgress: function () {
+        tab.sending = false;
+        clearTimeout(tab.sendProgressTO);
+        FastChat.removeProgress(msgId);
+      }
+    });
+    re('fc_error' + peer);
+    tab.sentmsgs.push(msgId);
+
+    if (!stickerId) {
+      val(tab.txt, '');
+      if (tab.imMedia) {
+        tab.imMedia.unchooseMedia();
+      }
+    }
+
+    var mediaBit = params.media ? 1 : 0;
+    if (stickerId) {
+      mediaBit += 8;
+    }
+    FastChat.addMsg(FastChat.prepareMsgData([peer, msgId, 1 | 2, FastChat.mkMsg(msg), mediaBit]));
+    delete curFastChat.myTypingEvents[peer];
+    if (tab.editable) {
+      FastChat.checkEditable(tab.emojiId, tab.txt);
+    } else {
+      tab.txt.autosize.update(false, true);
+    }
+    elfocus(tab.txt);
+    FastChat.scroll(peer);
+  },
+  saveDraft: function (peer) {
+    var tab = curFastChat.tabs[peer],
+        txt = (tab || {}).txt;
+    if (!txt || !tab) return;
+    var message = Emoji.editableVal(txt);
+    var data = {
+      txt: trim(message) || '',
+      medias: []
+    };
+    if (!data.txt.length) {
+      data = false;
+    }
+    if (data) {
+      ls.set('im_draft' + vk.id + '_' + peer, data);
+    } else {
+      ls.remove('im_draft' + vk.id + '_' + peer);
+    }
+  },
+  restoreDraft: function (peer) {
+    var tab = curFastChat.tabs[peer],
+        txt = tab.txt,
+        draft = ls.get('im_draft' + vk.id + '_' + peer);
+
+    if (!txt || !tab || !draft ||
+        val(txt).length > draft.txt.length) {
+      return false;
+    }
+    draft.txt = clean(draft.txt);
+    if (tab.editable) {
+      txt.innerHTML = Emoji.emojiToHTML(draft.txt, 1);
+    } else {
+      val(txt, draft.txt || '');
+    }
+    FastChat.checkEditable(tab.emojiId, txt);
+    setTimeout(function() {
+      txt.scrollTop = txt.scrollHeight;
+    }, 10);
+    return true;
+  },
+  error: function (peer, msg) {
+    peer = peer || curFastChat.peer;
+    var tab = curFastChat.tabs[peer];
+    re('fc_error' + peer);
+    tab.log.appendChild(ce('div', {id: 'fc_error' + peer, className: 'fc_msgs_error', innerHTML: msg || getLang('global_error')}));
+    FastChat.scroll(peer);
+  },
+  scroll: function(peer) {
+    peer = peer || curFastChat.peer;
+    var tab = curFastChat.tabs[peer];
+    if (!tab) return;
+    tab.logWrap.scrollTop = tab.logWrap.scrollHeight;
+    tab.scroll && tab.scroll.update(false, true);
+  },
+  mkdate: function(raw) {
+    var result = new Date(raw * 1000),
+        now_time = new Date(),
+        pad = function(num) {return ((num + '').length < 2) ? ('0' + num) : num;};
+
+    if (result.getDay() == now_time.getDay()) {
+      //return pad(result.getHours()) + ':' + pad(result.getMinutes()) + ':' + pad(result.getSeconds());
+      return pad(result.getHours()) + ':' + pad(result.getMinutes());
+    }
+    var date_str = pad(result.getDate()) + '.' + pad(result.getMonth()+1);
+    if (result.getFullYear() != now_time.getFullYear()) {
+      date_str += '.' + (result.getFullYear() + '').substr(2);
+    }
+    return date_str;
+  },
+  prepareMsgData: function (arr) {
+    var peer = arr[0], flags = intval(arr[2]), from_id = flags & 2 ? curFastChat.me.id : (peer > 2e9 ? arr[5] : peer), date = intval(vkNow() / 1000), data = {
+      id: arr[1],
+      peer: peer,
+      from_id: from_id,
+      text: arr[3],
+      out: flags & 2 ? true : false,
+      unread: flags & 1 ? true : false,
+      date: date,
+      date_str: FastChat.mkdate(date)
+    }, author, attFlags = arr[4], attText = '';
+
+    if (attFlags) { // Media
+      if (attFlags & 1) {
+        attText += rs(vk.pr_tpl, {id: '', cls: ''});
+        if (arr[1] > 0) {
+          setTimeout(FastChat.needMsgMedia.pbind(peer, arr[1]), 5);
+        }
+      }
+      if (attFlags & 6) {
+        attText += rs(curFastChat.tpl.msg_fwd, {msg_id: arr[1], peer_nice: FastChat.nicePeer(peer), label: getLang(attFlags & 2 ? 'mail_im_fwd_msg' : 'mail_im_fwd_msgs')});
+      }
+      if (attFlags & 8) {
+        data.sticker = true;
+      }
+      if (attText) {
+        data.text += '<div class="fc_msg_attachments" id="fc_msg_attachments' + data.id + '">' + attText + '</div>';
+      }
+    }
+    if (flags & 2) {
+      author = curFastChat.me;
+    } else if (peer > 2e9) {
+      author = curFastChat.tabs[peer].data.members[from_id];
+    } else {
+      author = curFastChat.tabs[peer];
+    }
+    extend(data, {
+      from_id: from_id,
+      link: author.link,
+      photo: author.photo,
+      name: author.name,
+      fname: peer > 2e9 ? author.fname || author.first_name : ''
+    });
+    if (arr[5]) {
+      var att = arr[5].split(',');
+    }
+    return data;
+  },
+  needMsgMedia: function (peer, msgId) {
+    if (msgId <= 0) return;
+
+    FastChat.lcSend('needMedia', {msgId: msgId});
+    curFastChat.needMedia[msgId] = [peer, setTimeout(FastChat.loadMsgMedia.pbind(peer, msgId), curNotifier.is_server ? 0 : irand(150, 250))];
+  },
+  loadMsgMedia: function (peer, msgId) {
+    if (msgId <= 0 || curFastChat.gotMedia[msgId] !== undefined && curFastChat.gotMedia[msgId] !== 0) {
+      return;
+    }
+    FastChat.lcSend('fetchingMedia', {msgId: msgId});
+    curFastChat.gotMedia[msgId] = 0;
+
+    ajax.post('al_im.php', {act: 'a_get_media', id: msgId, from: 'fc'}, {
+      onDone: function (text, msgInfo, msgOpts) {
+        FastChat.lcSend('gotMedia', {msgId: msgId, peer: peer, text: text, msgOpts: msgOpts});
+        FastChat.gotMsgMedia(peer, msgId, text, msgOpts);
+      }
+    })
+  },
+  gotMsgMedia: function(peer, msgId, text, msgOpts) {
+    val('fc_msg_attachments' + msgId, text);
+    if (msgOpts && msgOpts.sticker) {
+      var msg = ge('fc_msg'+msgId);
+      var msgCont = msg.parentNode;
+
+      addClass(msgCont.parentNode, 'fc_msg_sticker');
+    }
+
+    FastChat.scroll(peer);
+    curFastChat.gotMedia[msgId] = [peer, text, msgOpts];
+
+    if (msgOpts.stickers && window.Emoji) {
+      Emoji.updateTabs(msgOpts.stickers);
+    }
+
+    if (curFastChat.needMedia[msgId] === undefined) return;
+    clearTimeout(curFastChat.needMedia[msgId][1]);
+    delete curFastChat.needMedia[msgId];
+  },
+  addMsg: function (data) {
+    var t = this, peer = data.peer, tab = curFastChat.tabs[peer], log = tab.log, last = log.lastChild;
+    if (last && last.className == 'fc_msgs_error') {
+      last = last.previousSibling;
+    }
+
+    if(tab
+      && !data.out
+      && tab.box.visible
+      && !tab.iman.is_idle
+      && !curNotifier.idle_manager.is_idle) {
+        data.unread = false;
+        FastChat.markRead(data.peer, [data.id]);
+    }
+
+    if (!last
+      || !hasClass(last, 'fc_msgs_wrap')
+      || (!hasClass(last, 'fc_msgs_unread') && data.unread === true)
+      || last.getAttribute('data-from') != data.from_id
+      || data.date - intval(last.getAttribute('data-date')) >= 300
+      || data.sticker
+      || hasClass(last, 'fc_msg_sticker')) {
+        re('fc_log_empty' + peer);
+        var classname = (data.out ? 'fc_msgs_out ' : '') + (data.unread ? 'fc_msgs_unread' : '');
+        if (data.sticker) {
+          classname += ' fc_msg_sticker';
+        }
+        var tpl = data.out ? curFastChat.tpl.msgs_out : curFastChat.tpl.msgs;
+        last = se(rs(tpl, {
+          from_id: data.from_id,
+          link: data.link,
+          photo: Notifier.fixPhoto(data.photo),
+          name: data.from_id == curFastChat.me.id ? getLang('mail_im_thats_u') : stripHTML(data.name),
+          classname: classname,
+          date: data.date,
+          date_str: data.date_str,
+          msgs: ''
+        }))
+        log.appendChild(last);
+    } else if (!data.unread) {
+      removeClass(last, 'fc_msgs_unread');
+    }
+    var msgs = geByClass1('fc_msgs', last, 'div');
+    var msgDate = geByClass1('fc_msgs_date', msgs);
+    var msgLast = geByClass1('fc_msg_last', msgs);
+    if (msgLast) {
+      removeClass(msgLast, 'fc_msg_last');
+    }
+    var msgRow = se(rs(curFastChat.tpl.msg, {
+      msg_id: data.id,
+      classname: (data.unread ? 'fc_msg_unread' : '') + ' fc_msg_last',
+      text: data.text
+    }));
+    if (domFC(msgs) && domFC(msgs).tagName == 'BR') {
+      re(domFC(msgs));
+    }
+    if (msgDate) {
+      msgs.insertBefore(msgRow, msgDate);
+    } else {
+      msgs.appendChild(msgRow);
+    }
+    if (vk.id != data.from_id) {
+      delete curFastChat.typingEvents[peer];
+      FastChat.updateTyping(peer, 1);
+    }
+    tab.scroll && tab.scroll.update();
+  },
+  showMsgFwd: function (msgId) {
+    return !showBox('al_im.php', {act: 'a_show_forward_box', id: vk.id + '_' + msgId, from: 'mail'}, {stat: ['im.css'], dark: 1});
+  },
+  closeTab: function (peer) {
+    var box = curFastChat.tabs[peer].box;
+    box.close();
+  },
+
+  openSnapsterLayer: function(e) {
+    if (checkEvent(e)) {
+      return;
+    }
+    showBox('/snapster.php', {act: 'show'}, {containerClass: 'chronicle_layer', dark: 1});
+    return cancelEvent(e);
+  },
+
+  nicePeer: function(peer) {
+    if (peer > 2e9) {
+      return 'c' + intval(peer - 2e9);
+    } else if (peer < -2e9) {
+      return 'e' + intval(-peer - 2e9);
+    }
+    return peer;
+  },
+
+  tplBox: '<div class="fc_tab_wrap"><div class="fc_tab_head clear_fix"><a class="fc_tab_close_wrap"><div class="chats_sp fc_tab_close"></div></a><a class="fc_tab_max_wrap" href="/im?sel=%id%" onmousedown="event.cancelBubble = true;" onclick="return nav.go(this, event);"><div class="chats_sp fc_tab_max"></div></a><a class="fc_tab_pin_wrap" onmousedown="event.cancelBubble = true;" onclick="return FastChat.pinTab(%id%, event);"><div class="chats_sp fc_tab_pin"></div></a><div class="fc_tab_title noselect">%name%</div></div><div class="fc_tab"><div class="fc_tab_log_wrap"><div class="fc_tab_notify_wrap"></div><div class="fc_tab_log"><div class="fc_tab_log_msgs"></div><div class="fc_tab_typing" id="fc_tab_typing%id%"><div class="fc_tab_typing_icon"></div><div class="fc_tab_typing_name _fc_tab_typing_name"></div></div></div></div><div class="fc_tab_txt_wrap"><a class="fc_tab_attach"></a><div class="fc_tab_txt">%cont%<div class="fc_tab_preview"></div></div></div></div><div class="fc_pointer_offset"><div class="fc_tab_pointer fc_tab_pointer_peer"></div></div></div>',
+
+  tplTab: '<div class="fc_tab_log_wrap"><div class="fc_tab_notify_wrap"></div><div class="fc_tab_log"><div class="fc_tab_log_msgs"></div><div class="fc_tab_typing" id="fc_tab_typing%id%"><div class="fc_tab_typing_icon"></div><div class="fc_tab_typing_name _fc_tab_typing_name"></div></div></div></div><div class="fc_tab_txt_wrap"><div class="fc_tab_txt">%cont%</div></div>'
+
+}
+
+var DesktopNotifications = {
+  supported: function() {
+    return !!(window.webkitNotifications || window.Notification);
+  },
+  checkPermission: function() {
+    if (window.webkitNotifications) {
+      return webkitNotifications.checkPermission();
+    } else {
+      return (Notification.permission == "granted") ? 0 : 1;
+    }
+  },
+  requestPermission: function(f) {
+    (window.webkitNotifications || window.Notification).requestPermission(f);
+  },
+  createNotification: function(photo, title, text) {
+    var notification;
+    if (window.webkitNotifications) {
+      notification = webkitNotifications.createNotification(photo, title, text);
+    } else {
+      notification = new Notification(title, {
+        icon: photo,
+        body: text
+      });
+      notification.cancel = function() {
+        this.close();
+      };
+      notification.show = function() {};
+    }
+    if(vk.id % 100 < 10) {
+      statlogsValueEvent('browser_notification', 0);
+    }
+    return notification;
+  }
+};
+
+var TopNotifier = {
+  tnLink: 'top_notify_btn',
+  tnCount: 'top_notify_count',
+  _qParams: {section: 'notifications', _tb: 1},
+  loaded: false,
+
+  onLoad: function(rows, js) {
+    val('top_notify_cont', rows);
+    eval('(function(){' + js + ';})()');
+    TopNotifier.cleanCount();
+    TopNotifier.refresh();
+  },
+  preload: function() {
+    if (this.shown() || vk.isBanned) return;
+    ajax.post('/al_feed.php', extend(this._qParams, {_preload: 1}), {
+      cache: 1,
+      onDone: function(rows, js) {
+        if (TopNotifier.shown() && geByClass1('pr', 'top_notify_cont')) {
+          TopNotifier.onLoad(rows, js);
+        }
+      },
+      stat: ['feed.css', 'page.css', 'post.css']
+    });
+  },
+  show: function(ev) {
+    if (checkEvent(ev) === true || vk.isBanned) return;
+    if (this.shown() && ev !== true) {
+      if (!gpeByClass('top_notify_wrap', ev.target, ge('top_nav'))) {
+        this.hide();
+      }
+      return cancelEvent(ev);
+    }
+
+    vk.counts['ntf'] = 0;
+    this.setCount(0, true);
+
+    var link = ge(TopNotifier.tnLink),
+        cont = ge('top_notify_cont');
+    if (link.tt && link.tt.hide) {
+      link.tt.hide();
+    }
+    if (!cont) {
+      var c = ce('div', {
+        innerHTML: '<div class="top_notify_header"><a href="/settings?act=notify" class="top_notify_prefs_lnk">' + getLang('global_notifications_settings') + '</a>' + getLang('global_last_notifitications') + '</div><div id="top_notify_cont" class="top_notify_cont wall_module"  ontouchstart="event.cancelBubble = true;" onmousedown="event.cancelBubble = true;"></div><a href="/feed?section=notifications" class="top_notify_show_all" onmousedown="event.cancelBubble = true;" onclick="TopNotifier.hide(); return nav.go(this, event);">' + getLang('global_notify_show_all') + '</a>',
+        id: 'top_notify_wrap',
+        className: 'scroll_fix_wrap top_notify_wrap'
+      });
+      link.appendChild(c);
+      cont = ge('top_notify_cont');
+    }
+    if (!cur.tnScrollbar) {
+      cur.tnScrollbar = new Scrollbar('top_notify_cont', {
+        nomargin: true,
+        right: vk.rtl ? 'auto' : 0,
+        left: !vk.rtl ? 'auto' : 0,
+        forceCancelEvent: true,
+        nokeys: true
+      });
+      cur.destroy.push(function () {
+        cur.tnScrollbar && cur.tnScrollbar.destroy();
+      });
+    }
+
+    if (!TopNotifier.loaded) {
+      ajax.post('/al_feed.php', this._qParams, {
+        onDone: TopNotifier.onLoad,
+        showProgress: TopNotifier.showProgress,
+        stat: ['feed.css']
+      });
+      TopNotifier.loaded = true;
+    }
+
+    addClass(this.tnLink, 'active');
+    var wHeight = window.innerHeight || document.documentElement.clientHeight;
+    setStyle(cont, {'maxHeight': Math.max(wHeight - 200, 300)});
+    TopNotifier.refresh();
+
+    if (ev !== true) {
+      topHeaderClose(TopNotifier.hide.bind(this));
+    }
+
+    return ev ? cancelEvent(ev) : false;
+  },
+  hide: function() {
+    removeClass(this.tnLink, 'active');
+    topHeaderClearClose();
+  },
+  shown: function() {
+    return hasClass(this.tnLink, 'active');
+  },
+  showProgress: function() {
+    var cont = ge('top_notify_cont');
+    if (!geByClass1('pr', cont)) {
+      val(cont, '');
+      showProgress(cont);
+      TopNotifier.refresh();
+    }
+  },
+  showTooltip: function(text, key) {
+    if (TopNotifier.shown()) return;
+    function _onHide(key) {
+      if (!key && cur.topNotifyTTKey) {
+        key = cur.topNotifyTTKey;
+        delete cur.topNotifyTTKey;
+      }
+      if (!key) return;
+      var k = key.split(':'),
+          seen = ls.get('ntfseen') || {};
+      if (k.length == 2) {
+        seen[0] = parseInt((new Date().getTime()) / 1000);
+        seen[k[0]] = k[1];
+        ls.set('ntfseen', seen);
+      }
+    }
+
+    var el = ge(TopNotifier.tnLink),
+        options = {};
+    if (el.tt == 'shownow') {
+      removeAttr(el, 'tt');
+    }
+    if (text) {
+      options.text = function() { return text; };
+      if (key) {
+        options.onHide = _onHide.pbind(key);
+      }
+    } else {
+      if (el.tt && el.tt.destroy) {
+        el.tt.destroy();
+      }
+      var seen = ls.get('ntfseen') || {},
+          _s = [];
+      each(seen, function(i,v) { _s.push(i+':'+v); });
+      options = extend(options, {
+        url: 'al_feed.php',
+        params: {act: 'a_last_notify', seen: _s.join(';')},
+        ajaxdt: 2000,
+        noload: 1,
+        onHide: _onHide
+      })
+    }
+    var _ttHide = function(tt) {
+      setTimeout(function() {
+        if (window.curNotifier && curNotifier.idle_manager && curNotifier.idle_manager.is_idle) {
+          _ttHide(tt);
+          return;
+        }
+        if (tt) tt.hide();
+      }, 6000);
+    }
+    showTooltip(el, extend(options, {
+      typeClass: 'top_notify_tt',
+      dir: 'up',
+      width: 250,
+      shift: [0, 1],
+      nohideover: 1,
+      nohide: 1,
+      onShowStart: function(tt) {
+        if (TopNotifier.shown()) {
+          tt.opts.onHide = false;
+          tt.hide();
+        }
+        addEvent(tt.container, 'mousedown', function(ev) {
+          if (ev && inArray(ev.target.tagName, ['A', 'IMG'])) return;
+          TopNotifier.show(ev);
+          return cancelEvent(ev);
+        });
+        _ttHide(tt);
+      }
+    }));
+  },
+  invalidate: function() {
+    TopNotifier.loaded = false;
+  },
+  setCount: function(value, noInvalidate) {
+    if (isString(value)) value = trim(value);
+    if (hasClass(this.tnLink, 'has_notify') && value) {
+      animateCount(this.tnCount, value, {str: 'auto'});
+    } else {
+      val(this.tnCount, value);
+    }
+    toggleClass(this.tnLink, 'has_notify', !!value);
+    if (!noInvalidate) {
+      this.invalidate();
+    }
+  },
+  cleanCount: function() {
+    if (!cur.topNotifyHash) return;
+    ajax.post('/al_feed.php', {act: 'a_clean_notify', hash: cur.topNotifyHash});
+  },
+  refresh: function() {
+    cur.tnScrollbar && cur.tnScrollbar.update(false, true);
+  },
+  postTooltip: function(el, post, opts) {
+    return false;
+
+    var reply = (opts || {}).reply, url = 'al_wall.php';
+
+    if (!post.indexOf('topic_comment')) {
+      url = 'al_board.php';
+      post = post.replace('topic_comment', '');
+    } else {
+      post = post.replace('wall_reply', '').replace('wall', '');
+    }
+
+    showTooltip(el, {
+      url: url,
+      params: extend({act: 'post_tt', post: post, self: 1, from: 'feedback'}, opts || {}),
+      slide: 15,
+      shift: [(reply && !(reply % 2)) ? 329 : 27, 6],
+      ajaxdt: 100,
+      showdt: 400,
+      hidedt: 200,
+      dir: 'auto',
+      className: 'rich wall_tt',
+      appendParentCls: 'page_header_wrap'
+    });
+  },
+  hideRow: function(el, item, hash) {
+    var row = gpeByClass('feed_row', el);
+    ajax.post('/al_feed.php', {act: 'a_hide_notify', item: item, hash: hash});
+    if (el.tt && el.tt.hide) {
+      el.tt.hide();
+    }
+    slideUp(row, 200, function() {
+      re(row);
+      if (!geByClass('feed_row', 'top_notify_cont').length) {
+        val('top_notify_cont', '<div class="top_notify_empty no_rows">' + getLang('news_no_new_notifications') + '</div>');
+      }
+      TopNotifier.refresh();
+    });
+  },
+  checkClick: function (el, event) {
+    event = event || window.event;
+    if (!el || !event) return true;
+    var target = event.target || event.srcElement,
+        i = 8,
+        foundGood = false,
+        classRE = /(feedback_sticky_text|feedback_sticky_icon|feedback_row)/;
+    do {
+      if (!target ||
+          target == el ||
+          target.onclick ||
+          target.onmousedown ||
+          inArray(target.tagName, ['A', 'IMG', 'TEXTAREA', 'EMBED', 'OBJECT']) ||
+          (foundGood = target.className.match(classRE))
+      ) {
+        break;
+      }
+    } while (i-- && (target = target.parentNode));
+    if (!foundGood) {
+      return false;
+    }
+    return target || true;
+  },
+  showActionsMenu: function(el) {
+    var options = false;
+        row = domClosest('_feed_row', el),
+        rowPN = domPN(row);
+    if (rowPN.lastChild == row && (!hasClass(rowPN, 'feedback_sticky_rows') || domPN(rowPN).lastChild == rowPN)) {
+      options = {
+        appendParentCls: 'top_notify_wrap',
+        processHoverCls: 'feedback_sticky_row'
+      }
+    }
+    uiActionsMenu.show(el, false, options);
+  },
+  hideActionsMenu: function(el) {
+    uiActionsMenu.hide(el);
+  },
+  showGiftBox: function(fids, ev) {
+    return !showBox('al_gifts.php', {act: 'get_gift_box', fids: fids, fr: 1}, {stat: ['gifts.css', 'wide_dd.js', 'wide_dd.css'], cache: 1, dark: 1}, ev);
+  }
+};
+
+try{stManager.done('notifier.js');}catch(e){}
+
