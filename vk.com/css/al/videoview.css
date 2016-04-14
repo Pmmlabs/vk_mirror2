@@ -507,7 +507,8 @@ body.mobfixed #mv_layer_wrap {
 #mv_box .video {
   position: relative;
 }
-#mv_box .video_box_wrap {
+#mv_box .video_box_wrap,
+#mv_box .video_box_wrap_external {
   background: #000000;
   overflow: hidden;
   margin: 0 auto;

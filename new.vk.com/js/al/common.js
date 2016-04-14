@@ -544,33 +544,22 @@ function domData(el, name, value) {
 // Closest ansector matching given selector
 function domCA(el, selector) {
   var matches = selector ?
-                (el.matches ||
-                el.matchesSelector ||
-                el.msMatchesSelector ||
-                el.mozMatchesSelector ||
-                el.webkitMatchesSelector ||
-                el.oMatchesSelector) :
+                matchesSelector :
                 function() { return true; };
   do {
     el = domPN(el);
-  } while(el && !matches.call(el, selector));
+  } while(el && !matchesSelector(el, selector));
   return el;
 }
 
-// Closest ansector matching given selector
-function domCA(el, selector) {
-  var matches = selector ?
-                (el.matches ||
-                el.matchesSelector ||
-                el.msMatchesSelector ||
-                el.mozMatchesSelector ||
-                el.webkitMatchesSelector ||
-                el.oMatchesSelector) :
-                function() { return true; };
-  do {
-    el = domPN(el);
-  } while(el && !matches.call(el, selector));
-  return el;
+function matchesSelector(el, selector) {
+  var matches = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector || function(selector) {
+    var nodes = (this.parentNode || this.document || this.ownerDocument).querySelectorAll(selector);
+    for (var i = nodes.length; --i >= 0 && nodes[i] !== this; ) ;
+    return i > -1;
+  };
+
+  return matches.call(el, selector);
 }
 
 function isAncestor(el, ancestor) {
@@ -7822,6 +7811,7 @@ TopSearch = {
     this.inited = true;
   },
   clear: function() {
+    window.tooltips && tooltips.destroyAll(ge('ts_cont_wrap'));
     var tsInput = ge('ts_input');
     tsInput.setValue('');
     tsInput.blur();
@@ -7962,6 +7952,9 @@ TopSearch = {
               if (i != 'onlines') _t.updateCache(i);
             });
             _t.friendsLoaded = true;
+            if (!val('ts_input')) {
+              _t.prepareRows('');
+            }
           }
         },
         onFail: function() {
@@ -8044,14 +8037,15 @@ TopSearch = {
     });
     return results;
   },
-  row: function(mid, href, photo, name, online, re, hintType, info) {
+  row: function(mid, href, photo, name, online, re, hintType, info, verified) {
     var peer = 0, typeAttr = '';
     if (re) name = name.replace(re, '$1<em class="ts_clist_hl">$2</em>');
     if (inArray(hintType, ['h_friends', 'h_correspondents', 'h_chats'])) {
       peer = mid;
     }
     if (!info) info = '';
-    return '<a href="' + href + '" class="ts_contact ' + (online ? (mobPlatforms[online] ? 'ts_contact_mobile' : 'ts_contact_online') : '') +' clear_fix" id="ts_contact' + mid + '" onclick="return TopSearch.select(this, event, '+peer+');" onmousedown="event.cancelBubble = true;" onmouseover="TopSearch.itemOver(this, 1, event);"  onmouseout="TopSearch.itemOver(this, 0, event);" hinttype="'+hintType+'"><span class="ts_contact_photo fl_l"><img class="ts_contact_img" src="' + photo + '"/></span><span class="ts_contact_name fl_l"><span class="ts_contact_title">' + name + '</span><div class="ts_contact_info">'+info+'</div></span><div class="ts_contact_status"></div></a>';
+    verified = verified ? '<div class="page_verified" onmouseover="pageVerifiedTip(this, {' + (mid > 0 ? ('mid:' + mid) : ('gid:' + Math.abs(mid))) + '})"></div>' : '';
+    return '<a href="' + href + '" class="ts_contact ' + (online ? (mobPlatforms[online] ? 'ts_contact_mobile' : 'ts_contact_online') : '') +' clear_fix" id="ts_contact' + mid + '" onclick="return TopSearch.select(this, event, '+peer+');" onmousedown="event.cancelBubble = true;" onmouseover="TopSearch.itemOver(this, 1, event);"  onmouseout="TopSearch.itemOver(this, 0, event);" hinttype="'+hintType+'"><span class="ts_contact_photo fl_l"><img class="ts_contact_img" src="' + photo + '"/></span><span class="ts_contact_name fl_l"><div class="ts_contact_title_wrap' + (verified ? ' is_verified' : '') + '"><span class="ts_contact_title">' + name + '</span></div>' + verified + '<div class="ts_contact_info">'+info+'</div></span><div class="ts_contact_status"></div></a>';
   },
   searchLists: function(q) {
     var _t = TopSearch,
@@ -8147,10 +8141,10 @@ TopSearch = {
             mid = intval(items[j][0]),
             online = mid > 0 ? _t.onlines()[mid] : false,
             name = item[0], href = item[2],
-            info = item[4],
+            info = item[4], verified = item[5],
             type = (i == 'search') ? item[3] : 'h_'+i, row;
 
-        row = _t.row(mid, href, item[1], name, online, re, type, info);
+        row = _t.row(mid, href, item[1], name, online, re, type, info, verified);
         _t.addToListsHtml(i, row, q);
         excludeIds[mid] = 1;
       }
@@ -8181,6 +8175,7 @@ TopSearch = {
         var limit = _t.maxItems - geByClass('ts_contact', tsWrap).length - 1, groupedPages = {};
         each (pages, function(k) {
           var mid = intval(k), name = this[0], href = this[2], hintType = this[3], info = this[4],
+              verified = this[5],
               lists = _t.searchLists(q),
               realType = hintType.replace('h_', ''),
               type = (lists[realType] || {}).parent || realType;
@@ -8193,7 +8188,7 @@ TopSearch = {
           _t.lists[type][k] = this;
           if (ge('ts_contact'+mid)) return true;
           if (!(limit--)) return false;
-          var row = _t.row(mid, href, this[1], name, false, re, hintType, info);
+          var row = _t.row(mid, href, this[1], name, false, re, hintType, info, verified);
           _t.addToListsHtml(type, row, q);
           needsUpdate = true
           return true;

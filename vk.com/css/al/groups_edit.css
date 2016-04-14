@@ -1214,6 +1214,102 @@ b.gedit_mob_onl {
 .group_ad_table .red {
   color: #aa3333;
 }
+.gedit_api_tabs {
+  background: #F7F7F7;
+  padding: 6px 10px 6px;
+  border-bottom: 1px solid #dae1e8;
+}
+.gedit_api_subtabs {
+  padding: 10px 0;
+  margin: 0 -5px;
+}
+.group_api_doc {
+  margin: 15px 15px 10px;
+  padding: 10px 11px;
+}
+#gedit_tokens_bar_add_btn {
+  margin-top: 5px;
+}
+.group_api_container {
+  padding: 0 15px;
+}
+.group_api_url_label {
+  font-weight: 600;
+}
+.group_api_url_row {
+  padding: 13px 0 0;
+  margin-bottom: 20px;
+}
+.group_api_url_input_wrapper {
+  overflow: hidden;
+}
+.group_api_url_input {
+  width: 100%;
+  box-sizing: border-box;
+}
+.group_api_url_button {
+  margin-left: 10px;
+  padding: 8px 18px 9px 18px;
+}
+.group_api_url_button:active {
+  padding-top: 9px;
+  padding-bottom: 8px;
+}
+.group_api_error,
+.group_api_ok {
+  display: none;
+  margin: 0 0 20px;
+}
+.group_api_blockquote {
+  padding: 12px 10px;
+  background-color: #f0f2f5;
+  border-left: 3px solid #93adc8;
+  margin: 12px 0 20px;
+}
+.group_api_settings_saved {
+  margin-top: -34px;
+  position: absolute;
+  right: 40px;
+  opacity: 0;
+  transition: opacity 200ms linear;
+  color: #777;
+}
+.groups_api_divider {
+  border-bottom: 1px solid #e0e0e0;
+  margin: 8px 0 15px;
+}
+.group_api_settings {
+  padding-bottom: 8px;
+}
+.group_api_requests_table_wrapper {
+  padding: 0 0 15px;
+}
+.group_api_error_info {
+  display: none;
+  margin-top: -17px;
+}
+.groups_edit_request_type_dd_wrap {
+  margin-top: -34px;
+  position: absolute;
+  right: 40px;
+}
+.groups_edit_request_type_dd_wrap .groups_edit_request_type_dd {
+  color: #2B587A;
+  text-decoration: none;
+  cursor: pointer;
+}
+.groups_edit_request_type_dd_wrap .groups_edit_request_type_dd:hover {
+  text-decoration: underline;
+}
+.group_api_result {
+  overflow: auto;
+  font-family: monospace, sans-serif;
+}
+.group_api_result_pre {
+  padding: 20px 25px;
+  margin: 0;
+}
+/* tokens */
 .group_ad_request_title {
   max-width: 300px;
   overflow: hidden;

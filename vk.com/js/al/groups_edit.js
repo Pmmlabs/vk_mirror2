@@ -2179,6 +2179,129 @@ var GroupsEdit = {
         }
       }
     });
+  },
+  callbackCheckUrl: function(button, groupId, hash) {
+    var urlInput = ge('callback_url');
+    var url = val(urlInput);
+
+    if (!url) {
+      notaBene(urlInput);
+      return;
+    }
+
+    lockButton(button);
+
+    ajax.post('groupsedit.php', {
+      act: 'callback_check_url',
+      id: groupId,
+      url: url,
+      hash: hash
+    }, {
+      onDone: function(response) {
+        if (response === 'error') {
+          unlockButton(button);
+          GroupsEdit.callbackShowError(getLang('groups_api_error_failed'));
+        } else {
+          GroupsEdit.callbackGetUrlCheckResult(groupId, hash, response, button, 0);
+        }
+      },
+      onFail: function() {
+        unlockButton(button);
+      }
+    });
+  },
+  callbackGetUrlCheckResult: function(groupId, hash, key, button, attempt) {
+    if (attempt > 20) {
+      GroupsEdit.callbackShowError(getLang('groups_api_error_failed'));
+      unlockButton(button);
+      return;
+    }
+    ajax.post('groupsedit.php', {
+      act: 'callback_get_check_url_result',
+      id: groupId,
+      key: key,
+      hash: hash
+    }, {
+      onDone: function(response, out, error) {
+        switch (response) {
+          case 'wait':
+            setTimeout(GroupsEdit.callbackGetUrlCheckResult.pbind(groupId, hash, key, button, attempt + 1), 500);
+            return;
+          case 'ok':
+            GroupsEdit.callbackShowOk();
+            unlockButton(button);
+            return;
+          case 'incorrect':
+            GroupsEdit.callbackShowError(getLang('groups_api_error_incorrect'), out);
+            unlockButton(button);
+            return;
+          case 'failed':
+            if (error) {
+              GroupsEdit.callbackShowError(getLang('groups_api_error') + ' ' + error);
+            } else {
+              GroupsEdit.callbackShowError(getLang('groups_api_error_failed'), out);
+            }
+            unlockButton(button);
+            return;
+        }
+      },
+      onFail: function() {
+        unlockButton(button);
+      }
+    });
+  },
+  callbackShowCurlResult: function(curlId, response) {
+    var result = cur.curlResult[curlId];
+    if (!result) return;
+    showFastBox({title: response ? getLang('groups_api_request_result') : getLang('groups_api_request_body'), dark: 1, width: 900, bodyStyle: 'padding: 0;'}, '<div class="group_api_result"><pre class="group_api_result_pre"">' + result + '</pre></div>');
+  },
+  callbackShowError: function(text, out) {
+    if (out) {
+      show('group_api_error_info');
+      cur.curlResult = cur.curlResult || {};
+      cur.curlResult['error'] = out;
+    } else {
+      hide('group_api_error_info');
+    }
+    val('group_api_error_msg', text);
+    hide('group_api_ok');
+    show('group_api_error');
+  },
+  callbackShowOk: function() {
+    hide('group_api_error');
+    show('group_api_ok');
+    show('group_api_settings');
+  },
+  callbackSaveSetting: function(groupId, name, hash) {
+    var infoEl = ge('group_api_settings_saved');
+
+    setStyle(infoEl, 'opacity', 1);
+
+    clearTimeout(cur.groupeditTimeout);
+    cur.groupeditTimeout = setTimeout(setStyle.pbind(infoEl, 'opacity', 0), 1000);
+
+    ajax.post('groupsedit.php', {
+      act: 'callback_save_event_setting',
+      id: groupId,
+      name: name,
+      value: isChecked(name),
+      hash: hash
+    });
+  },
+  callbackInitRequestPage: function(type) {
+    var sortDD = ge('groups_edit_request_type_dd');
+
+    if (sortDD) {
+      cur.callbackRequestTypeDD = new InlineDropdown(sortDD, {
+        items: [['sent', getLang('groups_api_requests_sent')], ['failed', getLang('groups_api_requests_failed')]],
+        withArrow: true,
+        selected: type,
+        onSelect: GroupsEdit._onSelectCallback
+      });
+    }
+  },
+  _onSelectCallback: function(type) {
+    nav.change({errors: type == 'sent' ? false : 1});
   }
 }
 
