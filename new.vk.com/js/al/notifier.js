@@ -5655,11 +5655,14 @@ var TopNotifier = {
     });
   },
   hideRow: function(el, item, hash) {
-    var row = gpeByClass('feed_row', el);
-    ajax.post('/al_feed.php', {act: 'a_hide_notify', item: item, hash: hash});
-    if (el.tt && el.tt.hide) {
-      el.tt.hide();
+    var row = gpeByClass('_feed_row', el);
+    if (!row) {
+      var wrap = gpeByClass('top_notify_wrap', el);
+      row = geByClass('_feed_row', wrap);
+      row = row[row.length - 1];
     }
+    ajax.post('/al_feed.php', {act: 'a_hide_notify', item: item, hash: hash});
+    TopNotifier.hideActionsMenu(gpeByClass('_ui_menu_wrap', el));
     slideUp(row, 200, function() {
       re(row);
       if (!geByClass('feed_row', 'top_notify_cont').length) {
