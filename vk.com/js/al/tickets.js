@@ -71,15 +71,6 @@ switchTab: function(name, evt) {
   }
 },
 
-switchSubTab: function(el, link, evt) {
-  if (checkEvent(evt) || hasClass(el, 'active')) return false;
-  each(geByClass('tickets_subtab1', ge('tickets_subtabs')), function(i, v) {
-    removeClass(v, 'active');
-  });
-  addClass(el, 'active');
-  return nav.go(link, evt);
-},
-
 gotoTicket: function(el, evt) {
   Tickets.switchTab('show', evt);
   return nav.go(el, evt);
@@ -756,35 +747,6 @@ checkTextLength: function(el, maxLen, warn, maxLines) {
     hide(warn);
   }
 },
-
-getNewTicket: function(hash) {
-  ajax.post(nav.objLoc[0], {act: 'get_ticket', hash: hash}, {
-    onDone: function(content, script) {
-      if (content) ge('tickets_content').innerHTML = content;
-      if (script) eval(script);
-    },
-    showProgress: lockButton.pbind(ge('tickets_send')),
-    hideProgress: unlockButton.pbind(ge('tickets_send'))
-  });
-},
-
-getNextTicket: function() {
-  ajax.post(nav.objLoc[0], {act: 'get_next', ticket_id: cur.ticket_id, hash: cur.hashes.next_hash});
-  return false;
-},
-
-delegateAllTickets: function(hash) {
-  ajax.post(nav.objLoc[0], {act: 'stop_working', hash: hash}, {
-    onDone: function(content, script) {
-      if (content) ge('tickets_content').innerHTML = content;
-      if (script) eval(script);
-    },
-    showProgress: show.pbind('tickets_progress'),
-    hideProgress: hide.pbind('tickets_progress')
-  });
-  return false;
-},
-
 editComment: function(cid, hash, ticket_id) {
   if (cur.editStarted) return false;
   if (cur.editing) {
@@ -1124,182 +1086,6 @@ showAllReplies: function() {
   });
   return false;
 },
-
-addBug: function(hash) {
-  return !showBox(nav.objLoc[0], {act: 'add_bug', hash: hash, ticket_id: cur.ticket_id}, { params: {width: '520px', bodyStyle: 'padding: 0px'}});
-},
-
-addTemplate: function() {
-  return !showBox(nav.objLoc[0], {act: 'add_template'}, { params: {width: '430px'} });
-},
-
-saveTemplate: function(tid) {
-  if (!ge('add_template_title') || !ge('add_template_text')) return false;
-
-  var title = trim(ge('add_template_title').value),
-      text = trim(ge('add_template_text').value);
-  if (!title) {
-    notaBene('add_template_title');
-    return false;
-  }
-  if (!text) {
-    notaBene('add_template_text');
-    return false;
-  }
-  var attachs = [], chosen = cur.ticketsTemplateMedia.chosenMedias;
-  if (chosen) {
-    for (var i in chosen) {
-      var att = chosen[i], type = att[0], value = att[1];
-      if (type == 'photo' || type == 'doc') {
-        attachs.push(type+','+value);
-      }
-    }
-  }
-  var query = {
-    act: 'save_template',
-    title: title,
-    text: text,
-    attachs: attachs,
-    personal: cur.ownTemplate.val(),
-    mobile: isChecked('mobile_template'),
-    desktop: isChecked('desktop_template'),
-    by_default: isChecked('default_template'),
-    hash: cur.hashes.template_hash
-  };
-  if (tid) query.template_id = tid;
-  ajax.post(nav.objLoc[0], query, {
-    onDone: function(content, script) {
-      ge('template_links').innerHTML = content;
-      if (script) eval(script);
-      curBox().hide();
-    },
-    onFail: function() {
-      curBox().hide();
-    }
-  });
-  return false;
-},
-
-switchTemplates: function (section) {
-
-  var query = {
-    act: 'get_templates',
-    section: section,
-    hash: cur.hashes.template_hash
-  };
-  ajax.post(nav.objLoc[0], query, {
-    onDone: function(content, script) {
-      ge('template_links').innerHTML = content;
-      if (script) eval(script);
-    },
-    onFail: function() {
-    }
-  });
-  return false;
-
-},
-
-editTemplate: function() {
-  var tid = cur.selectedTemplate;
-  return !showBox(nav.objLoc[0], {act: 'edit_template', template_id: tid}, { params: {width: '430px'} });
-},
-
-deleteTemplate: function() {
-  if (!cur.selectedTemplate) return false;
-  var box = showFastBox({title: cur.lang['delete_template_title'], width: 430}, cur.lang['delete_template_confirm'], cur.lang['delete'], function() {
-    var tid = cur.selectedTemplate;
-    Tickets.deselectTemplate(tid);
-    ajax.post(nav.objLoc[0], {act: 'delete_template', template_id: tid, hash: cur.hashes.template_hash}, {
-      progress: box.progress,
-      onDone: function(content, script) {
-        ge('template_links').innerHTML = content;
-        if (script) eval(script);
-        box.hide();
-      },
-      onFail: function() {
-        box.hide();
-      }
-    });
-  }, getLang('global_cancel'));
-  return false;
-},
-
-selectTemplate: function(tid) {
-  var template = cur.templates[tid];
-  if (!template) return false;
-
-  var txtarea = cur.editing ? ge('reply'+cur.editing+'edit') : ge('tickets_reply'),
-      scrollPos = txtarea.scrollTop,
-      strPos = 0,
-      br = ((txtarea.selectionStart || txtarea.selectionStart == '0') ?
-    "ff" : (document.selection ? "ie" : false ) ),
-      text = replaceEntities(template.text.replace(/<br>/g, "\n")) + "\n";
-  if (br == "ie") {
-    txtarea.focus();
-    var range = document.selection.createRange();
-    range.collapse(true);
-    range.moveStart ('character', -txtarea.value.length);
-    strPos = range.text.length;
-  } else if (br == "ff") strPos = txtarea.selectionStart;
-
-  strPos = strPos + text.length;
-  if (br == "ie") {
-    txtarea.focus();
-    var range = document.selection.createRange();
-    range.moveStart ('character', -txtarea.value.length);
-    range.moveStart ('character', strPos);
-    range.moveEnd ('character', 0);
-    range.select();
-  } else if (br == "ff") {
-    txtarea.selectionStart = strPos;
-    txtarea.selectionEnd = strPos;
-    txtarea.focus();
-  }
-  var front = (txtarea.value).substring(0,strPos-text.length);
-  var back = (txtarea.value).substring(strPos-text.length,txtarea.value.length);
-  txtarea.value=front+text+back;
-  txtarea.scrollTop = scrollPos;
-
-  if (!txtarea.autosize) autosizeSetup(txtarea, {minHeight: 42, maxHeight: 100});
-  txtarea.autosize.update();
-
-  if (br == "ie") {
-    var range = txtarea.createTextRange();
-    range.move("character", strPos);
-    range.select();
-  } else if (br == "ff") {
-    txtarea.focus();
-    txtarea.setSelectionRange(strPos, strPos);
-  }
-
-  ge('template_title').innerHTML = '<a href="#" onclick="return Tickets.deselectTemplate('+tid+')">' + template.title + '</a>';
-  setStyle('edit_template', {display: (vk.id == intval(template.author_id) || cur.canEditTemplates) ? 'inline-block' : 'none'});
-  cur.selectedTemplate = tid;
-  if (template.attachs) {
-    var media = cur.editing ? cur.ticketsEditMedia : cur.ticketsNewMedia;
-    for (var i in template.attachs) {
-      media.chooseMedia(template.attachs[i][0], template.attachs[i][1], template.attachs[i][2]);
-    }
-  }
-  if (cur.canUseDrafts) {
-    clearTimeout(cur.saveDraftTO);
-    Tickets.saveDraft(cur.ticket_id);
-  }
-  return false;
-},
-
-deselectTemplate: function(tid) {
-  if (cur.templates[tid] && ge('tickets_reply').value == replaceEntities(cur.templates[tid]['text'].replace(/<br>/g, "\n"))) {
-    ge('tickets_reply').setValue('');
-    if (!ge('tickets_reply').autosize) autosizeSetup('tickets_reply', {minHeight: 42, maxHeight: 100});
-    ge('tickets_reply').autosize.update();
-  }
-  ge('template_title').innerHTML = cur.lang.template_title;
-  hide('edit_template');
-  delete cur.selectedTemplate;
-  return false;
-},
-
 doPass: function(section, text, box) {
   if (!box) {
     var info = ge('tickets_info_title'), pr = se('<div class="fl_l"><img src="/images/upload.gif"/></div>');
@@ -1342,50 +1128,6 @@ doPass: function(section, text, box) {
     }
   });
   return false;
-},
-
-passTo: function(el, id, no_autoanswer) {
-  var msg = cur.lang.pass_warnings && cur.lang.pass_warnings[id] || cur.lang.pass_warnings[0];
-  var text = '<div class="msg" style="margin-bottom: 15px;">' + msg + '</div><div style="line-height: 160%">' + getLang('support_sure_pass').replace('{section}', val(el)) + '<br>';
-  if (cur.cat_average_times) {
-    if (intval(cur.cat_average_times[id]) > 0) {
-      text += getLang('cat_median_waiting') + '<b>' + cur.cat_average_times[id] + '</b>.<br>';
-    }
-  }
-  text += '</div>';
-  text += '\
-<div class="tickets_add_comm">' + getLang('support_comment') + '</div>\
-<textarea id="tickets_pass_comm" onkeypress="if (curBox()) curBox().changed = 1; onCtrlEnter(event, Tickets.doPass.pbind('+id+', val(\'tickets_pass_comm\'), curBox()))"></textarea>';
-  text += getLang('support_pass_comment');
-  if ((id == 16 || id == 17 || id == 18) && !cur.isMobileTicket) {
-    text += '<input type="hidden" id="support_send_payform" value="' + (cur.sendPayFormDefault ? 1 : '') + '" />';
-  }
-  var box = showFastBox({title:getLang('pass_title'), width: 500}, text, getLang('support_do_pass'), function() {
-    Tickets.doPass(id, val('tickets_pass_comm'), box);
-  }, getLang('global_cancel'));
-  cur.dontSendAutoanswer = new Checkbox(ge('support_pass_autoanswer'), {label: cur.lang.no_autoanswer_single, width: 400, onChange: function() {
-    toggle(ge('support_pass_answer_wrap'), this.val);
-  }});
-  //cur.dontSendAutoanswer.setState(true);
-
-  if (no_autoanswer == 1) {
-    cur.dontSendAutoanswer.setState(true, true);
-  }
-  if (!cur.isMobileTicket) {
-    if (id == 16 || id == 17 || id == 18) {
-      cur.sendPayFormCheck = new Checkbox(ge('support_send_payform'), {label: cur.lang.send_pay_form, width: 400});
-    }
-  }
-  if (id == 16 || id == 17 || id == 18 || id == 20 || id == 23 || id == 25) {
-    cur.dontSendAutoanswer.setState(true, true);
-  }
-  hide('tis_add_lnk_auto');
-  autosizeSetup('tickets_pass_comm', {minHeight: 40, maxHeight: 200});
-  elfocus('tickets_pass_comm');
-},
-
-showPassBox: function() {
-  return !showBox(nav.objLoc[0], {act: 'show_pass_box'}, { params: {width: '520px', bodyStyle: 'padding: 0px'}});
 },
 
 onSubmitSettingsChanged: function(val) {
@@ -2433,32 +2175,6 @@ showSpecAgentStats: function(id, hash) {
   }
   return false;
 },
-
-sortModerStats: function(el, field) {
-  if (cur.section != 'stats' && cur.section != 'spec_stats' && cur.section != 'ento_stats') return false;
-
-  if (field == 'rate') {
-    switch (cur.sort) {
-      case 'sum_rate':
-        field = 'plus_rate';
-        break;
-      case 'plus_rate':
-        field = 'minus_rate';
-        break;
-      default:
-        field = 'sum_rate';
-        break;
-    }
-  }
-  if (field != cur.sort) {
-    each(geByClass('table_header_upper_span', el.parentNode), function(i, v) {removeClass(v, 'sorted');});
-    addClass(geByClass1('table_header_upper_span', el), 'sorted');
-    nav.go('/helpdesk?act='+nav.objLoc.act+'&sort='+field);
-  }
-
-  return false;
-},
-
 toggleFAQRow: function(id, hash, el, evt) {
   if (!evt.target) {
     evt.target = evt.srcElement || document;
@@ -2477,7 +2193,6 @@ toggleFAQRow: function(id, hash, el, evt) {
   }
   return false;
 },
-
 setFAQclicked: function(id, hash, fromNew, now) {
   if (now) {
     clearTimeout(cur.faqViewTimeouts[id]);
@@ -3248,11 +2963,6 @@ switchModersSubTab: function(el, id, hash, type, evt, is_spec) {
   });
   addClass(el, 'active');
   return this.updateModerStats(id, hash, type, 0, is_spec);
-},
-
-showCommentReplies: function(reply_id) {
-  showBox(nav.objLoc[0], {act: 'replies_box', reply_id: reply_id}, { params: {width: '627px', hideButtons: true, bodyStyle: 'padding: 0px; border: 0px;'}});
-  return false;
 },
 
 updateModerStats: function(id, hash, type, offset, is_spec) {

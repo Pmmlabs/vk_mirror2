@@ -1592,7 +1592,7 @@ var Settings = {
     });
     return false;
   },
-  toggleAdminGroup: function(gid, el) {
+  toggleAdminGroup: function(el, gid, hash) {
     var ct = Settings.getAdminSelectShowCt(cur.admin_groups);
     cur.adminGroupsDirty = true;
     var value = cur.admin_groups[gid];
@@ -1615,7 +1615,8 @@ var Settings = {
 
     ajax.post('al_settings.php', {
       act: 'a_toggle_admin_fast',
-      gid: gid
+      gid: gid,
+      hash: hash
     });
 
     cur.adminCt.innerHTML = getLang('settings_admin_groups_left')

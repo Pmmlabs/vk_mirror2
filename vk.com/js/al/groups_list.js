@@ -1128,14 +1128,14 @@ var GroupsList = {
     showTabbedBox('places.php', {act: 'a_get_place_box', id: place}, {stat: ['places.css', 'map.css', 'maps.js', 'ui_controls.css', 'ui_controls.js']});
   },
 
-  toggleFastAccess: function(gid, el) {
+  toggleFastAccess: function(el, gid) {
     function updateBtn(val) {
       var text = val ? getLang('groups_fast_menu_access_invert') : getLang('groups_fast_menu_access');
       el.textContent = text;
       el.setAttribute('data-value', val);
     }
     var value = intval(el.getAttribute('data-value')) ^ 1;
-    ajax.post('al_settings.php', {act: 'a_toggle_admin_fast', gid: gid, update_menu: 1 }, {
+    ajax.post('al_settings.php', {act: 'a_toggle_admin_fast', gid: gid, hash: cur.menu_hash, update_menu: 1 }, {
       onDone: function(value, nav) {
         geByTag1('ol', ge('side_bar')).innerHTML = nav;
         if (window.Notifier) {
@@ -1143,8 +1143,11 @@ var GroupsList = {
         }
 
       },
-      onFail: function() {
+      onFail: function(error) {
         updateBtn(0);
+        if (error !== 'too_much_groups') {
+          return false;
+        }
         showFastBox(getLang('global_error'), getLang('groups_too_much_comms').replace('{amt}', 5));
         return true;
       }.bind()

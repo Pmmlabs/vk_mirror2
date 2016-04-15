@@ -201,7 +201,7 @@ correctCaret: function(txt) {
 
 insertWithBr: function (range, text) {
   if (text) {
-    var cleanText = clean(stripHTML(text)).replace(/\n/g, '<br/>');
+    var cleanText = clean(text).replace(/\n/g, '<br/>');
     var div = ce('div', { innerHTML: cleanText });
     Emoji.cleanCont(div);
     Emoji.insertHTML(div.innerHTML);

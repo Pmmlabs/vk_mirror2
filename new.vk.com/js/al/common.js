@@ -1771,7 +1771,6 @@ function addEvent(elem, types, handler, custom, context, useCapture) {
   elem = null;
 }
 function removeEvent(elem, types, handler, useCapture) {
-
   if (typeof useCapture === 'undefined') {
     useCapture = false;
   }
@@ -4592,7 +4591,7 @@ var nav = {
     statDurationsLoadImage();
     statNavigationTiming();
 
-    window.AudioUtils && AudioUtils.updateCurrentPlaying(true);
+    window.AudioUtils && AudioUtils.updateCurrentPlaying();
 
     if (!opts.nocur) {
       changed = clone(objLoc);
@@ -4691,7 +4690,7 @@ var nav = {
               _a.showCurrentTrack();
             }
             */
-            window.AudioUtils && AudioUtils.updateCurrentPlaying(true);
+            window.AudioUtils && AudioUtils.updateCurrentPlaying();
           }, 10);
           return false;
         }
@@ -4863,7 +4862,7 @@ var nav = {
         tNode.innerHTML = title;
         (title ? show : hide)(tNode.parentNode);
 
-        window.AudioUtils && AudioUtils.updateCurrentPlaying(true);
+        window.AudioUtils && AudioUtils.updateCurrentPlaying();
       }
       checkPageBlocks();
       updateSTL();
@@ -4895,7 +4894,7 @@ var nav = {
       lTimeout(function() {
         //nav.setLoc(params.loc || ''); // moved out of this scope (see above)
 
-        window.AudioUtils && AudioUtils.updateCurrentPlaying(true);
+        window.AudioUtils && AudioUtils.updateCurrentPlaying();
 
         if (TopSearch && TopSearch.tsNeedsClear) {
           TopSearch.clear();
@@ -5559,11 +5558,10 @@ __bq.hideLastCheck = __bq.hideLast.pbind(true);
 function curBox() { var b = _message_boxes[__bq.curBox]; return (b && b.isVisible()) ? b : null; }
 
 if (!browser.mobile) {
-  addEvent(document, 'keydown', function(e) {
+  addEvent(document, 'keydown', function globalEsc(e) {
     _wf = 1;
-    if (e.keyCode == KEY.ESC && window.headerDestroy) {
-      window.headerDestroy();
-      topHeaderClearClose();
+    if (e.keyCode == KEY.ESC) {
+      topHeaderClose();
       return cancelEvent(e);
     }
     if (e.keyCode == KEY.ESC && __bq.count() && !cur._noEscHide) {

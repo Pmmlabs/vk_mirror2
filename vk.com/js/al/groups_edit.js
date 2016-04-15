@@ -28,17 +28,21 @@ var GroupsEdit = {
     GroupsEdit.uStart();
   },
 
-  addToLeftMenu: function(ev, el) {
+  addToLeftMenu: function(el, hash, ev) {
     ajax.post('al_settings.php', {
       act: 'a_toggle_admin_fast',
       gid: cur.gid,
+      hash: hash,
       update_menu: true
     }, {
       onDone: function(res, lm) {
         geByTag1('ol', ge('side_bar')).innerHTML = lm;
       },
-      onFail: function() {
+      onFail: function(error) {
         checkbox(el);
+        if (error !== 'too_much_groups') {
+          return false;
+        }
         showFastBox(getLang('global_error'), getLang('groups_too_much_comms').replace('{amt}', 5));
         return true;
       }

@@ -151,22 +151,7 @@ var Page = {
 
   playLive: function(liveInfo, ajaxOpts) {
     getAudioPlayer(function(ap) {
-      var data = liveInfo.split(',');
-
-      ajax.post('al_audio.php', {act: 'a_play_audio_status', audio_id: data[1], host_id: data[0], hash: data[2]}, extend(ajaxOpts, {
-        onDone: function(audio, texts) {
-          var statusPlaylist = ap.getPlaylist( AudioUtils.makePlaylistId( AudioUtils.AUDIO_PLAYLIST_TYPE_CURRENT, data[1] ) );
-
-          statusPlaylist.has_more = false;
-          statusPlaylist.live = liveInfo;
-          statusPlaylist.title = texts.title;
-
-          ap.pushAudiosToPlaylist(statusPlaylist, audio);
-
-          ap.play(audio, statusPlaylist);
-        }
-      }));
-
+      ap.playLive(liveInfo, ajaxOpts);
     });
   },
 
@@ -2159,7 +2144,7 @@ var Wall = {
     Wall.updateMentionsIndex();
     setTimeout(function() {
       getAudioPlayer(function(ap) {
-        ap.updateCurrentPlaying(true);
+        ap.updateCurrentPlaying();
       });
     }, 10);
   },
@@ -4216,7 +4201,7 @@ var Wall = {
               highlight = false,
               startH = layerpost ? repliesEl.offsetHeight : el.offsetHeight;
 
-          if (!isVisible(repliesEl) || !isVisible(repliesWrap) || isVisible('reply_link' + post_id)) {
+          if ((!isVisible(repliesEl) || !isVisible(repliesWrap) || isVisible('reply_link' + post_id)) && !domClosest('wall_fixed', repliesWrap)) {
             re('reply_link' + post_id);
             show(repliesWrap, repliesEl);
             highlight = true;
