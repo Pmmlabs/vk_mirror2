@@ -1711,6 +1711,8 @@ AdsLight.tryRenderTarget = function (test_group_id, statsCodeBase, nextLineup) {
   });
 }
 
+AdsLight.restoreVisibility = function() {} // Remove after a while
+
 AdsLight.init();
 
 })();

@@ -471,6 +471,9 @@ body.dev #tickets_name .info {
   -moz-border-radius: 2px;
   border-radius: 2px;
   background: #e1e7ed;
+}
+#tickets_templates .template_links_wrap .template:hover,
+#tickets_templates .template_links_wrap .template:active {
   text-decoration: none;
 }
 #tickets_templates .templates_export_wrap {

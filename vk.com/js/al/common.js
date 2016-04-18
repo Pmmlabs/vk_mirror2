@@ -3824,7 +3824,7 @@ function leftAdBlockClose(blockIdSuffix, closeLink) {
 
     setStyle(elemInfo, {opacity: 0});
     elemInfo.style.setProperty('display', 'block', 'important'); // for ABP
-    AdsLight.restoreVisibility(elemInfo);
+    //adsRestoreVisibility(elemInfo);
     setTimeout(onClose, 0);
   }
   function onClose() {
