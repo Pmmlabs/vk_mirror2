@@ -5480,7 +5480,7 @@ var TopNotifier = {
     }
     if (!cont) {
       var c = ce('div', {
-        innerHTML: '<div class="top_notify_header"><a href="/settings?act=notify" class="top_notify_prefs_lnk">' + getLang('global_notifications_settings') + '</a>' + getLang('global_last_notifitications') + '</div><div id="top_notify_cont" class="top_notify_cont wall_module"  ontouchstart="event.cancelBubble = true;" onmousedown="event.cancelBubble = true;"></div><a href="/feed?section=notifications" class="top_notify_show_all" onmousedown="event.cancelBubble = true;" onclick="TopNotifier.hide(); return nav.go(this, event);">' + getLang('global_notify_show_all') + '</a>',
+        innerHTML: '<div class="top_notify_header"><a href="/settings?act=notify" class="top_notify_prefs_lnk" onclick="return nav.go(this, event);" onmousedown="event.cancelBubble = true;" ontouchstart="event.cancelBubble = true;">' + getLang('global_notifications_settings') + '</a>' + getLang('global_last_notifitications') + '</div><div id="top_notify_cont" class="top_notify_cont wall_module"  ontouchstart="event.cancelBubble = true;" onmousedown="event.cancelBubble = true;"></div><a href="/feed?section=notifications" class="top_notify_show_all" onmousedown="event.cancelBubble = true;" onclick="TopNotifier.hide(); return nav.go(this, event);">' + getLang('global_notify_show_all') + '</a>',
         id: 'top_notify_wrap',
         className: 'scroll_fix_wrap top_notify_wrap'
       });

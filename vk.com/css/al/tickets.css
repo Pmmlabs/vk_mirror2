@@ -417,28 +417,78 @@ body.dev #tickets_name .info {
   padding: 20px 0 10px;
   width: 524px;
 }
-#tickets_pass_to {
-  padding: 10px 0;
+#tickets_templates .template_wrap {
+  display: table-cell;
 }
-#tickets_templates .template_actions,
-#tickets_templates .template_actions a {
-  color: #777777;
+#tickets_templates .template_wrap .template_title_wrap {
+  display: inline-block;
+  line-height: 16px;
 }
-.tickets_got_answer {
-  color: #777777;
+#tickets_templates .template_wrap .template_title_wrap .template_title {
+  max-width: 270px;
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: top;
 }
-#tickets_templates .template {
-  margin-top: 10px;
+#tickets_templates .template_wrap .templates_actions a {
+  color: #777;
 }
-#tickets_templates .template > a {
+#tickets_templates .template_wrap .templates_actions.templates_actions_edit {
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 8px;
+}
+#tickets_templates .template_wrap .templates_actions .template_add {
+  margin-left: -2px;
+  white-space: nowrap;
+}
+#tickets_templates .template_wrap .templates_actions.templates_actions_switch {
+  display: block;
+  margin: 10px 0 5px;
+}
+#tickets_templates .template_wrap .templates_actions .templates_switch {
   padding: 4px 6px;
 }
-#tickets_templates .template > a:hover {
+#tickets_templates .template_wrap .templates_actions .templates_switch.templates_switch_selected {
+  background: #ededed;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
-  background: #E1E7ED;
+}
+#tickets_templates .template_links_wrap {
+  margin-top: 10px;
+}
+#tickets_templates .template_links_wrap .template {
+  padding: 2px 6px;
+  margin-top: 1px;
+  line-height: 17px;
+  float: left;
+}
+#tickets_templates .template_links_wrap .template:hover {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  background: #e1e7ed;
   text-decoration: none;
+}
+#tickets_templates .templates_export_wrap {
+  padding: 15px 0 6px;
+  text-align: center;
+}
+#tickets_templates .templates_empty_wrap {
+  text-align: center;
+  padding: 20px 0 14px;
+}
+#tickets_templates .templates_empty_wrap .templates_empty_text {
+  color: #777;
+}
+#tickets_pass_to {
+  padding: 10px 0;
+}
+.tickets_got_answer {
+  color: #777777;
 }
 #tickets_pt_links {
   width: 532px;
@@ -460,14 +510,7 @@ body.dev #tickets_name .info {
   background: #E1E7ED;
   text-decoration: none;
 }
-.template_wrap {
-  display: table-cell;
-}
-.template_wrap div {
-  display: inline-block;
-  vertical-align: baseline;
-}
-#template_title,
+.template_wrap #template_title,
 #template_title a,
 #tickets_pt_title {
   font-weight: bold;
@@ -482,15 +525,37 @@ body.dev #tickets_name .info {
 #edit_template {
   display: none;
 }
-#add_template_title {
-  width: 391px;
-  margin-top: 3px;
-  margin-bottom: 20px;
+.template_edit_wrap .add_template_title_wrap {
+  background: #FFF;
+  border: 1px solid #C0CAD5;
+  margin-bottom: 12px;
+  width: 397px;
+  position: relative;
 }
-#add_template_text {
-  width: 391px;
+.template_edit_wrap .add_template_title_wrap .emoji_smile {
+  right: 3px;
+  top: 1px;
+}
+.template_edit_wrap .add_template_title_wrap .add_template_title_field {
+  padding: 7px 0 8px 10px;
+  margin-right: 30px;
+  border: 0;
+  outline: 0;
+  resize: none;
+  height: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.template_edit_wrap .add_template_text {
+  width: 377px;
   height: 94px;
   margin-bottom: 5px;
+  outline: 0;
+}
+.template_edit_wrap .tickets_delete_template {
+  position: absolute;
+  bottom: 22px;
+  left: 20px;
 }
 .tu_last {
   width: 195px;
@@ -902,6 +967,9 @@ body.dev #tis_add_lnk_edit {
 #tis_preview_auto {
   position: relative;
 }
+.tis_add_lnk_template {
+  margin: 4px 5px 0px;
+}
 #tis_prg_preview_edit.template {
   margin-top: 0px;
   margin-left: 0px;
@@ -968,6 +1036,9 @@ body.dev #tis_add_lnk_edit {
   background: #597DA3 url(/images/progress_grad.gif) repeat;
   border: 1px solid #45688E;
   margin: -1px;
+}
+.tickets_tab_progress {
+  margin-top: -4px;
 }
 #tickets_hidden {
   margin: 6px 10px 0px;
@@ -2149,11 +2220,11 @@ body.dev .tickets_dmca_data_row.links .value {
   overflow: hidden;
   white-space: nowrap;
 }
-.tickets_mobile_chkbx {
+.tickets_edit_template {
   padding: 5px 5px 2px 0px;
   color: #777;
 }
-.tickets_mobile_chkbx .checkbox {
+.tickets_edit_template .checkbox {
   text-overflow: ellipsis;
   max-width: 180px;
   overflow: hidden;

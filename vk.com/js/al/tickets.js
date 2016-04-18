@@ -1035,29 +1035,17 @@ closeTicket: function(hash) {
   return false;
 },
 closeTicketByAuthor: function(hash) {
-  ajax.post(nav.objLoc[0], {act: 'close_ticket_by_author', ticket_id: cur.ticket_id, hash: hash}, {
-    onDone: function() {
-      addClass('tickets_thank_you_form', 'you_re_welcome');
-    },
-    showProgress: function() {
-      addClass('tickets_thank_you_form', 'processing');
-    },
-    hideProgress: function() {
-      removeClass('tickets_thank_you_form', 'processing');
-    }
+  ajax.post('support', {act: 'close_ticket_by_author', ticket_id: cur.ticket_id, hash: hash}, {
+    onDone: addClass.pbind('tickets_thank_you_form', 'you_re_welcome'),
+    showProgress: addClass.pbind('tickets_thank_you_form', 'processing'),
+    hideProgress: removeClass.pbind('tickets_thank_you_form', 'processing')
   });
 },
 reopenTicketByAuthor: function(hash) {
-  ajax.post(nav.objLoc[0], {act: 'reopen_ticket_by_author', ticket_id: cur.ticket_id, hash: hash}, {
-    onDone: function() {
-      removeClass('tickets_thank_you_form', 'you_re_welcome');
-    },
-    showProgress: function() {
-      addClass('tickets_thank_you_form', 'processing');
-    },
-    hideProgress: function() {
-      removeClass('tickets_thank_you_form', 'processing');
-    }
+  ajax.post('support', {act: 'reopen_ticket_by_author', ticket_id: cur.ticket_id, hash: hash}, {
+    onDone: removeClass.pbind('tickets_thank_you_form', 'you_re_welcome'),
+    showProgress: addClass.pbind('tickets_thank_you_form', 'processing'),
+    hideProgress: removeClass.pbind('tickets_thank_you_form', 'processing')
   });
   return false;
 },
@@ -1086,101 +1074,9 @@ showAllReplies: function() {
   });
   return false;
 },
-doPass: function(section, text, box) {
-  if (!box) {
-    var info = ge('tickets_info_title'), pr = se('<div class="fl_l"><img src="/images/upload.gif"/></div>');
-  }
-  var act = box ? 'pass' : 'pass_back',
-      query = {act: act, ticket_id: cur.ticket_id, to: section, comm: text, hash: cur.hashes.next_hash};
-  if (cur.sendPayFormCheck) {
-    query.send_pay_form = cur.sendPayFormCheck.val();
-  }
-  if (box && cur.dontSendAutoanswer && !cur.dontSendAutoanswer.val()) {
-    query.autoanswer = val('tickets_send_autoanswer');
-  }
-  if (nav.objLoc.act == 'all' && cur.checkedTickets) {
-    var tickets = [];
-    each(cur.checkedTickets, function(i, v) {tickets.push(i)});
-    query.tickets = tickets;
-    query.act = 'pass';
-  }
-  ajax.post(nav.objLoc[0], query, {
-    showProgress: function () {
-      if (box) {
-        show(box.progress);
-      } else {
-        info.parentNode.insertBefore(pr, info);
-        hide(info);
-      }
-    },
-    hideProgress: function () {
-      if (box) {
-        hide(box.progress);
-      } else {
-        re(pr);
-        show(info);
-      }
-    },
-    onDone: function(content, script) {
-      if (box) boxQueue.hideAll();
-      if (content) ge('tickets_content').innerHTML = content;
-      if (script) eval(script);
-    }
-  });
-  return false;
-},
-
 onSubmitSettingsChanged: function(val) {
   ajax.post(nav.objLoc[0], {act: 'save_submit', value: val ? 1 : 0, hash: cur.hashes.submit_hash});
   cur.next_manual = !!val;
-},
-
-onFavoriteChanged: function(val) {
-  var fav = ge('favorite'), v, bg,
-      l = val ? cur.lang.delete_favorite : cur.lang.add_favorite;
-  if (fav) {
-    v = val ? 0 : 1;
-    var text = '<a href="#" onclick="return Tickets.onFavoriteChanged(' + v + ');">' + l + '</a>';
-    fav.innerHTML = text;
-  } else {
-    v = val ? 'delfav' : 'addfav';
-    bg = val ? '3px -19px' : '3px 3px';
-    for (var i in cur.ticketsActions) {
-      if (cur.ticketsActions[i][0] == 'addfav' || cur.ticketsActions[i][0] == 'delfav') {
-        cur.ticketsActions[i] = [v, l, bg, cur.onPrivacyChanged.pbind('tickets_actions', v)];
-      }
-    }
-    cur.ticketsMenu.setItems(cur.ticketsActions);
-/*
-    var old_data = cur.privacy.tickets_actions_types, new_data = {};
-    delete old_data.addfav;
-    delete old_data.delfav;
-    new_data[v] = l;
-    cur.privacy.tickets_actions_types = extend(new_data, old_data);
-/**/
-  }
-  ajax.post(nav.objLoc[0], {act: 'favorite', ticket_id: cur.ticket_id, add: val ? 1 : 0, hash: cur.hashes.favorite_hash});
-  return false;
-},
-onThanksChanged: function(disable) {
-  var fav = ge('thanks'), v, bg,
-      l = disable ? cur.lang.enable_thanks : cur.lang.disable_thanks;
-  if (fav) {
-    v = disable ? 0 : 1;
-    var text = '<a href="#" onclick="return Tickets.onThanksChanged(' + v + ');">' + l + '</a>';
-    fav.innerHTML = text;
-  } else {
-    v = disable ? 'enable_thanks' : 'disable_thanks';
-    bg = disable ? '3px -500px' : '3px -500px';
-    for (var i in cur.ticketsActions) {
-      if (cur.ticketsActions[i][0] == 'enable_thanks' || cur.ticketsActions[i][0] == 'disable_thanks') {
-        cur.ticketsActions[i] = [v, l, bg, cur.onPrivacyChanged.pbind('tickets_actions', v)];
-      }
-    }
-    cur.ticketsMenu.setItems(cur.ticketsActions);
-  }
-  ajax.post(nav.objLoc[0], {act: 'thanks_mod', ticket_id: cur.ticket_id, disable: disable ? 1 : 0, hash: cur.hashes.thanks_hash});
-  return false;
 },
 showPhoto: function(photoRaw, listId, opts) {
   var cbox = curBox();
@@ -2127,54 +2023,6 @@ initAddMedia: function(lnk, previewId, mediaTypes, opts) {
   cur.addMedia[lnkId] = addMedia;
   return addMedia;
 },
-
-showModerStats: function(id, hash) {
-  var cont = ge('support_moders_stats'+id),
-      row = ge('support_moder_stats_row'+id),
-      data = ge('support_moder_stats_data'+id);
-  if (!cont) {
-    addClass(row, 'detailed');
-    slideToggle(data, 200);
-    ajax.post(nav.objLoc[0], {act: 'moder_stats', mid: id, hash: hash}, {
-      onDone: function(res, script) {
-        data.innerHTML = res;
-        if (script) eval(script);
-      }
-    });
-  } else {
-    if (isVisible(data)) {
-      removeClass(row, 'detailed');
-    } else {
-      addClass(row, 'detailed');
-    }
-    slideToggle(data, 200)
-  }
-  return false;
-},
-
-showSpecAgentStats: function(id, hash) {
-  var cont = ge('support_moders_stats'+id),
-      row = ge('support_moder_stats_row'+id),
-      data = ge('support_moder_stats_data'+id);
-  if (!cont) {
-    addClass(row, 'detailed');
-    slideToggle(data, 200);
-    ajax.post(nav.objLoc[0], {act: 'spec_agent_stats', mid: id, hash: hash}, {
-      onDone: function(res, script) {
-        data.innerHTML = res;
-        if (script) eval(script);
-      }
-    });
-  } else {
-    if (isVisible(data)) {
-      removeClass(row, 'detailed');
-    } else {
-      addClass(row, 'detailed');
-    }
-    slideToggle(data, 200)
-  }
-  return false;
-},
 toggleFAQRow: function(id, hash, el, evt) {
   if (!evt.target) {
     evt.target = evt.srcElement || document;
@@ -2211,7 +2059,6 @@ cancelFAQclicked: function(id) {
     delete cur.faqViewTimeouts[id];
   }
 },
-
 rateFAQ: function(id, val, hash, fromNew, quiet) {
   if (!vk.id) return false;
   ajax.post(nav.objLoc[0], {act: 'faq_rate', faq_id: id, val: val, hash: hash, from_new: fromNew });
@@ -2529,20 +2376,6 @@ uncheckTickets: function() {
   show('tickets_all_search');
   hide('tickets_all_selected');
 },
-statsRowOver: function(el, notNext) {
-  addClass(el, 'over');
-  var next = notNext ? el.nextSibling && el.nextSibling.nextSibling : el.nextSibling;
-  if (next) {
-    addClass(next, 'after_over');
-  }
-},
-statsRowOut: function(el, notNext) {
-  removeClass(el, 'over');
-  var next = notNext ? el.nextSibling && el.nextSibling.nextSibling : el.nextSibling;
-  if (next) {
-    removeClass(next, 'after_over');
-  }
-},
 
 getSearchParams: function(obj) {
   var params = {q: trim(val(obj))};
@@ -2755,189 +2588,6 @@ clearAddSearch: function(el, event) {
   field.focus();
   this.updateAddSearch(event, field);
 },
-
-toggleAddBugRow: function(id, el, evt) {
-  if (!evt.target) {
-    evt.target = evt.srcElement || document;
-  }
-  if (evt.target.tagName.toLowerCase() == 'a') return true;
-  toggle('tickets_add_bug_short_text'+id, !isVisible('tickets_add_bug_short_text'+id));
-  toggle('tickets_add_bug_full_text'+id, !isVisible('tickets_add_bug_full_text'+id));
-  if (isVisible('tickets_add_bug_full_text'+id)) {
-    addClass(el, 'detailed');
-  } else {
-    removeClass(el, 'detailed');
-  }
-  return false;
-},
-
-toggleAddBugForm: function() {
-  toggle('add_bug_search');
-  toggle('add_bug_form');
-  var cbox = curBox();
-  if (isVisible(ge('add_bug_form'))) {
-    ge('title').value = ge('tickets_add_title').value;
-    cur.sectionEditFilter.updateInput()
-    cbox.removeButtons();
-    cbox.addButton(getLang('global_close'), cbox.hide, 'no');
-    cbox.addButton(getLang('global_save'), Tickets.saveBug, 'yes');
-    cbox.setControlsText('<a href="" onclick="return Tickets.toggleAddBugForm();">' + getLang('global_cancel') + '</a>');
-  } else {
-    cbox.removeButtons();
-    cbox.addButton(getLang('global_close'), cbox.hide, 'yes');
-    cbox.setControlsText('');
-  }
-  return false;
-},
-
-saveBug: function() {
-  if(!ge('title').value){
-    notaBene('title');
-    return false;
-  }
-  if(!cur.sectionEditFilter.val()){
-    notaBene(cur.sectionEditFilter.selector);
-    notaBene(cur.sectionEditFilter.input);
-    return false;
-  }
-  if(!ge('desc').value){
-    notaBene('desc');
-    return false;
-  }
-  var doSave = function() {
-    var query = {
-      act: 'save_bug',
-      hash: cur.hashes.save_bug_hash,
-      ticket_id: cur.ticket_id,
-      title: ge('title').value,
-      desc: ge('desc').value,
-      browser: ge('browser').value,
-      sections: cur.sectionEditFilter.val()
-    };
-    if (nav.objLoc.act == 'all' && cur.checkedTickets) {
-      var tickets = [];
-      each(cur.checkedTickets, function(i, v) {tickets.push(i)});
-      query.tickets = tickets;
-    }
-    if (ge('tickets_closed_autoanswer_addressing_m')) {
-      query.addressing_m = ge('tickets_closed_autoanswer_addressing_m').value;
-    }
-    if (ge('tickets_closed_autoanswer_addressing_f')) {
-      query.addressing_f = ge('tickets_closed_autoanswer_addressing_f').value;
-    }
-    query.no_autoanswer = cur.hideAutoanswer.val();
-    query.answer_text = ge('tickets_send_autoanswer').value;
-    var attachs = [], chosen = cur.ticketsAutoMedia.chosenMedias;
-    if (chosen) {
-      for (var i in chosen) {
-        var att = chosen[i], type = att[0], value = att[1];
-        if (type == 'photo' || type == 'doc') {
-          attachs.push(type+','+value);
-        }
-      }
-    }
-    if (attachs.length) query.attachs = attachs;
-    ajax.post(nav.objLoc[0], query, {
-      cache: 1,
-      onDone: function(content, script) {
-        if (content) ge('tickets_content').innerHTML = content;
-        if (script) eval(script);
-      },
-      onFail: function() {
-        boxQueue.hideAll();
-      }
-    });
-    return true;
-  }
-  var box = showFastBox({title: cur.lang['bind_title'], width: 430, bodyStyle: "line-height: 160%;"}, cur.lang['sure_bind'], cur.lang['do_bind'], function() {
-      if (doSave() && curBox()) {
-        curBox().content('<div style="height:100px; background: url(/images/progress7.gif) 50% 50% no-repeat;"></div>');
-        curBox().setOptions({bodyStyle: 'padding: 0px;'});
-      }
-    }, getLang('global_cancel'));
-  cur.ticketsAutoMedia = Tickets.initAddMedia(ge('tis_add_lnk_auto').firstChild, 'tis_preview_auto', cur.mediaTypes, {limit: 5, oneClick: cur.oneClickUpload, photoCallback: cur.addAutoReply, target: 'auto'});
-  cur.hideAutoanswer = new Checkbox(ge('support_ignore_autoanswer'), {label: cur.lang.no_autoanswer, onChange: function() {
-      toggle(ge('support_sure_bind'), this.val);
-    }});
-  return false;
-},
-
-bindTicket: function(bid, hash) {
-  var doBind = function(bid, hash) {
-    var query = {act: 'bind_ticket', bug_id: bid, ticket_id: cur.ticket_id, hash: hash};
-    var attachs = [], chosen = cur.ticketsAutoMedia.chosenMedias;
-    if (chosen) {
-      for (var i in chosen) {
-        var att = chosen[i], type = att[0], value = att[1];
-        if (type == 'photo' || type == 'doc') {
-          attachs.push(type+','+value);
-        }
-      }
-    }
-    if (attachs) query.attachs = attachs;
-    if (nav.objLoc.act == 'all' && cur.checkedTickets) {
-      var tickets = [];
-      each(cur.checkedTickets, function(i, v) {tickets.push(i)});
-      query.tickets = tickets;
-    }
-    if (cur.hideAutoanswer && ge('tickets_send_autoanswer')) {
-      query.no_autoanswer = cur.hideAutoanswer.val();
-      query.answer_text = ge('tickets_send_autoanswer').value;
-    }
-    if (ge('tickets_closed_autoanswer_addressing_m')) {
-      query.addressing_m = ge('tickets_closed_autoanswer_addressing_m').value;
-    }
-    if (ge('tickets_closed_autoanswer_addressing_f')) {
-      query.addressing_f = ge('tickets_closed_autoanswer_addressing_f').value;
-    }
-    ajax.post(nav.objLoc[0], query, {
-      cache: 1,
-      onDone: function(content, script) {
-        if (content) ge('tickets_content').innerHTML = content;
-        if (script) eval(script);
-      },
-      onFail: function() {
-        boxQueue.hideAll();
-      }
-    });
-  }
-  var box = showFastBox({title: cur.lang['bind_title'], width: 430, bodyStyle: "line-height: 160%;"}, cur.lang['sure_bind'], cur.lang['do_bind'], function() {
-      doBind(bid, hash);
-      box.hide();
-      if (curBox()) curBox().content('<div style="height:100px; background: url(/images/progress7.gif) 50% 50% no-repeat;"></div>');
-    }, getLang('global_cancel'));
-  cur.ticketsAutoMedia = Tickets.initAddMedia(ge('tis_add_lnk_auto').firstChild, 'tis_preview_auto', cur.mediaTypes, {limit: 5, oneClick: cur.oneClickUpload, photoCallback: cur.addAutoReply, target: 'auto'});
-  cur.hideAutoanswer = new Checkbox(ge('support_ignore_autoanswer'), {label: cur.lang.no_autoanswer, onChange: toggle.pbind(ge('support_sure_bind'), this.val)});
-  return false;
-},
-
-unbindTicket: function(bid, hash, el) {
-  var doUnbind = function() {
-    var box = cur.unbindBox;
-    ajax.post(nav.objLoc[0], {act: 'unbind_ticket', ticket_id: cur.ticket_id, bug_id: bid, hash: hash}, {
-      cache: 1,
-      onDone: function() {
-        slideUp(el, 200, re.pbind(el));
-        box.hide();
-      },
-      showProgress: box.showProgress,
-      hideProgress: box.hideProgress
-    });
-  }
-  var enterUnbind = function(e) {
-    if (e.keyCode == KEY.ENTER && __bq.count()) {
-      doUnbind();
-      return false;
-    }
-  }
-  if (!browser.mobile) {
-    addEvent(document, 'keydown', enterUnbind);
-  }
-  cur.unbindBox = showFastBox({title: getLang('support_delete_bind'), width: 430, onHide: function() {
-    removeEvent(document, 'keydown', enterUnbind);
-  }}, getLang('support_delete_text').replace('{title}', cur.bug_link || ''), getLang('support_delete'), doUnbind, getLang('global_cancel'));
-},
-
 _animDelX: function(el, opacity, set_active) {
   if (!el) return;
   if (set_active !== undefined) {
@@ -2947,40 +2597,6 @@ _animDelX: function(el, opacity, set_active) {
   }
   animate(el, {opacity: opacity}, 200);
 },
-
-rowActive: function(el, tt) {
-  this._animDelX(el, 1, 1);
-  if (tt) showTooltip(el, {text: tt, showdt: 200});
-},
-rowInactive: function(el) {
-  this._animDelX(el, 0.5, 0);
-},
-
-switchModersSubTab: function(el, id, hash, type, evt, is_spec) {
-  if (hasClass(el, 'active')) return false;
-  each(geByClass('tickets_subtab1', el.parentNode), function(i, v) {
-    removeClass(v, 'active');
-  });
-  addClass(el, 'active');
-  return this.updateModerStats(id, hash, type, 0, is_spec);
-},
-
-updateModerStats: function(id, hash, type, offset, is_spec) {
-  if (offset < 0) return false;
-  ge('support_moders_period_stats'+id).innerHTML = '<div class="tickets_detailed_loading"><div>';
-  ajax.post(nav.objLoc[0], {act: 'detailed_stats', mid: id, type: type, offset: offset, hash: hash, is_spec: is_spec}, {
-    cache: 1,
-    onDone: function(rows, header) {
-      ge('support_moders_period_stats'+id).innerHTML = rows;
-      ge('moder_subtabs'+id).innerHTML = header;
-    },
-    onFail: function() {
-      ge('support_moders_period_stats'+id).innerHTML = '';
-    }
-  });
-  return false;
-},
-
 saveDraft: function (ticket_id, evType) {
   var txt = ge('tickets_reply');
   if (browser.mobile || !txt || txt.disabled || !cur.canUseDrafts) return;
@@ -3046,7 +2662,7 @@ listUpdateSearch: function(e, obj) {
     if (str.length > 70 && cur.askQuestion.permission > 0) {
       cur.faqSearchBlocked = true;
       addClass(ge('faq_search_form'), 'loading');
-      nav.go(nav.objLoc[0]+'?act=new&from=t&title=' + encodeURIComponent(str));
+      nav.go('support?act=new&from=t&title=' + encodeURIComponent(str));
       return;
     }
 
@@ -3073,7 +2689,7 @@ listSearch: function(v) {
   var query = {act: 'load_faq_list', q: v };
 
   clearTimeout(cur.searchFAQStatTimeout);
-  ajax.post(nav.objLoc[0], query, {
+  ajax.post('support', query, {
     cache: 1,
     onDone: function(content, showButton, altButtonId, saveSearchHash, clickedData, showNote) {
       var qlist = ge('help_table_questions_l'), updateLoc = true;
@@ -3114,7 +2730,7 @@ listSearch: function(v) {
           Tickets.listDiselectCategory();
         }
         var obj = {act: 'faqs'};
-        obj[0] = nav.objLoc[0];
+        obj[0] = 'support';
         if (v) {
           obj['q'] = v;
         }
@@ -3127,9 +2743,8 @@ listSearch: function(v) {
       }
 
       if (saveSearchHash) {
-        var objLoc0 = nav.objLoc[0];
         cur.searchFAQStatTimeout = setTimeout(function () {
-          ajax.post(objLoc0, {act: 'save_last_search', hash: saveSearchHash});
+          ajax.post('support', {act: 'save_last_search', hash: saveSearchHash});
         }, 3000);
       }
 
@@ -3189,7 +2804,7 @@ goToForm: function(from_faq_id, from) {
   if (from) {
     urlParams += '&from='+from;
   }
-  nav.go(nav.objLoc[0]+'?act=new'+urlParams);
+  nav.go('support?act=new'+urlParams);
   return false;
 },
 goToList: function(categoryId, questionId, evt) {
@@ -3203,7 +2818,7 @@ goToList: function(categoryId, questionId, evt) {
     query['c'] = categoryId;
   }
 
-  ajax.post(nav.objLoc[0], query, {
+  ajax.post('support', query, {
     cache: 1,
     onDone: function(content, showButton, altButtonId, saveSearchHash, clickedData, showNote) {
       hide('help_table_not_found_replaced', 'help_table_too_simple_query');
@@ -3217,7 +2832,7 @@ goToList: function(categoryId, questionId, evt) {
       Tickets.listShowAltButton(altButtonId);
 
       var obj = {act:'faqs'};
-      obj[0] = nav.objLoc[0];
+      obj[0] = 'support';
       if (categoryId != 'top') {
         obj['c'] = categoryId;
       }
@@ -3354,27 +2969,11 @@ listShowNotFound: function(query) {
 },
 closeMobileNotice: function(hash) {
   slideUp('tickets_mobile_notice', 200);
-  ajax.post(nav.objLoc[0], {act: 'hide_mobile_notice', hash: hash });
+  ajax.post('support', {act: 'hide_mobile_notice', hash: hash });
 },
 listClearCache: function() {
   var obj = nav.objLoc;
   obj['cc'] = 1;
   nav.go(obj);
-},
-subscribeToTag: function(tag, hash) {
-  ajax.post(nav.objLoc[0], {act: 'subscribe_to_tag', tag: tag, hash: hash}, {
-    cache: 1,
-    onDone: function(text) {
-      ge('agent_tag' + tag + '_subscribe').innerHTML = text;
-    }
-  })
-},
-unsubscribeFromTag: function(tag, hash) {
-  ajax.post(nav.objLoc[0], {act: 'unsubscribe_from_tag', tag: tag, hash: hash}, {
-    cache: 1,
-    onDone: function(text) {
-      ge('agent_tag' + tag + '_subscribe').innerHTML = text;
-    }
-  })
 },
 _eof: 1};try{stManager.done('tickets.js');}catch(e){}

@@ -477,6 +477,17 @@ var audioPlayer = {
       if (url) {
         try {
           _a.player.loadAudio(url);
+
+          if ((irand(0, 9) == 1) && window.AdmanHTML) {
+            var adman = new AdmanHTML();
+            adman.init({
+              slot: 3514,
+              wrapper: ce('div'),
+              browser: {
+                adBlock: false
+              }
+            });
+          }
         } catch(e){}
       } else {
         _a.reloadAudio(id);
