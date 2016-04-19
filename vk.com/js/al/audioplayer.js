@@ -481,6 +481,10 @@ var audioPlayer = {
           if ((irand(0, 9) == 1) && window.AdmanHTML) {
             var adman = new AdmanHTML();
             adman.init({
+              vk_id: vk.id,
+              duration: _a.duration,
+              _SITEID: 276,
+              content_id: _a.lastSong[0] + '_' + _a.lastSong[1],
               slot: 3514,
               wrapper: ce('div'),
               browser: {
