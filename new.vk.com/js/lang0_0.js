@@ -552,12 +552,13 @@ mobile_act_not_activated_header='Привязка номера телефона';
 mobile_apps_catalog_app_members=['','%s участник','%s участника','%s участников'];
 mobile_edit_country_null='Не выбрана';
 mobile_mail_im_joined_chat_from_invitation=['','{from} присоединился к беседе','{from} присоединилась к беседе'];
+mobile_mail_messages_selected=['','Выбрано {count} сообщение','Выбрано {count} сообщения','Выбрано {count} сообщений'];
 mobile_photos_albums_edit_album_btn='Сохранить';
 mobile_photos_edit_save_btn='Сохранить';
 mobile_profile_work_label='Место работы:';
 mobile_wall_publish_postponed='Опубликовать сейчас';
 mobile_zphoto_save_btn='Сохранить';
-// section = 61; version = 36;
+// section = 61; version = 37;
 
 adslight_age_restriction_none='Не указывать';
 // section = 67; version = 2;

@@ -2311,6 +2311,25 @@ b.im_friend_mob_onl {
 .im_chronicle_sp {
   width: 8px;
 }
+.im_chronicle_invite_room_info {
+  margin-left: 60px;
+}
+.im_chronicle_invite_room_title {
+  font-weight: bold;
+}
+.im_chronicle_invite_room_followers {
+  color: #777;
+}
+.im_chronicle_invite_room_descr {
+  line-height: 160%;
+}
+.im_chronicle_invite_room_descr:empty {
+  display: none;
+}
+.im_chronicle_invite_install_descr {
+  color: #777;
+  margin-bottom: 10px;
+}
 /* chronicle invite */
 .im_chronicle_invite_img {
   background: url(/images/chronicle/snapster_invite_web.png);

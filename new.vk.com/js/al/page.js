@@ -3747,7 +3747,10 @@ var Wall = {
       nameStr += '<span class="page_fronly inl_bl" onmouseover="Wall.foTT(this, false, {oid: \'' + oid + '\', pid: \'' + ev[2] + '\'})"></span>';
     }
 
-    if ((adminLevel > (ev[9] == oid ? 1 : 0) || oid == vk.id || ev[9] == vk.id)) {
+    if (cur.wallTpl.custom_del && (adminLevel > (ev[9] == oid ? 1 : 0) || oid == vk.id || ev[9] == vk.id || ev[2].split('_')[0] != ev[4])) {
+      acts.push(cur.wallTpl.custom_del);
+    }
+    if (adminLevel > (ev[9] == oid ? 1 : 0) || oid == vk.id || ev[9] == vk.id) {
       acts.push(cur.wallTpl.del);
     } else if (ev[2].split('_')[0] != ev[4]) {
       acts.push(cur.wallTpl.spam);

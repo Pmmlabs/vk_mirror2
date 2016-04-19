@@ -477,12 +477,12 @@ body.dev #tickets_name .info {
   text-decoration: none;
 }
 #tickets_templates .templates_export_wrap {
-  padding: 15px 0 6px;
+  padding: 7px 0 6px;
   text-align: center;
 }
 #tickets_templates .templates_empty_wrap {
   text-align: center;
-  padding: 20px 0 14px;
+  padding: 12px 0 14px;
 }
 #tickets_templates .templates_empty_wrap .templates_empty_text {
   color: #777;

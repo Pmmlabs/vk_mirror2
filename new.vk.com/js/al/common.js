@@ -2425,30 +2425,6 @@ function checkPageBlocks() {
   if (!cont) return;
 
   toggleClass(cont, 'page_block', !geByClass1('page_block', cont));
-  if (ajax.framedata) {
-    cur.onFrameBlocksDone = function() {lTimeout(checkPageBlocks, 0);}
-    return;
-  }
-
-  var wide = geByClass1('wide_column'),
-      narrow = geByClass1('narrow_column');
-  if (wide && narrow) {
-    var blocks = geByClass('page_block', wide),
-        last = blocks && blocks.pop();
-    each(blocks, function() {
-      setStyle(this, {minHeight: ''});
-    })
-    while (last && (!isVisible(last) || !getSize(last)[1])) {
-      last = blocks.pop();
-    }
-    if (last) {
-      var wH = getSize(wide)[1],
-          nH = getSize(narrow)[1] + (getStyle(narrow, 'position') == 'fixed' ? 0 : narrow.offsetTop);
-      if (wH < nH) {
-        setStyle(last, {minHeight: getSize(last, true)[1] + nH - wH});
-      }
-    }
-  }
 }
 
 function onBodyResize(force) {
@@ -5560,13 +5536,12 @@ function curBox() { var b = _message_boxes[__bq.curBox]; return (b && b.isVisibl
 if (!browser.mobile && !vk.host.match(/snapster\.io/)) {
   addEvent(document, 'keydown', function globalEsc(e) {
     _wf = 1;
-    if (e.keyCode == KEY.ESC) {
-      topHeaderClose();
-      return cancelEvent(e);
-    }
     if (e.keyCode == KEY.ESC && __bq.count() && !cur._noEscHide) {
       __bq.hideLast();
       return -1;
+    }
+    if (e.keyCode == KEY.ESC) {
+      return cancelEvent(e);
     }
     var mediaKeys = [176, 177, 178, 179], isMedia = false;
     if (window.audioPlayer) {
