@@ -266,6 +266,15 @@ saveTicket: function(hash, checkPermissions) {
     return false;
   }
   Tickets.trySaveTicket(function() {
+    if (query.section == 0) {
+      var outdatedLeft = ls.get('support_outdated_left');
+      if (outdatedLeft) {
+        if (outdatedLeft.ts && Math.floor((new Date()).getTime() / 1000) - outdatedLeft.ts < 3600) {
+          query.outdated_ticket_id = outdatedLeft.id;
+        }
+      }
+      ls.remove('support_outdated_left');
+    }
     ajax.post(nav.objLoc[0], query, {
       onDone: function(message) { showDoneBox(message); },
       showProgress: lockButton.pbind(ge('tickets_send')),
@@ -2975,5 +2984,9 @@ listClearCache: function() {
   var obj = nav.objLoc;
   obj['cc'] = 1;
   nav.go(obj);
+},
+storeOutdatedLeft: function(ticket_id) {
+  ls.set('support_outdated_left', { id: ticket_id, ts: Math.floor((new Date()).getTime() / 1000) });
+  console.log('Win');
 },
 _eof: 1};try{stManager.done('tickets.js');}catch(e){}

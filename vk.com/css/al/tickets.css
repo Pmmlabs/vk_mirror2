@@ -2837,6 +2837,9 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 .tickets_thank_you_form__inner {
   height: 91px;
 }
+.tickets_thank_you_form_outdated .tickets_thank_you_form__inner {
+  height: auto;
+}
 .tickets_thank_you_form__title {
   line-height: 18px;
   margin-bottom: 17px;
@@ -2844,6 +2847,10 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 }
 .tickets_thank_you_form_undo .tickets_thank_you_form__title {
   margin-bottom: 15px;
+  padding-top: 5px;
+}
+.tickets_thank_you_form_outdated .tickets_thank_you_form__title {
+  margin-bottom: 10px;
   padding-top: 5px;
 }
 .tickets_thank_you_form__you_re_welcome {
