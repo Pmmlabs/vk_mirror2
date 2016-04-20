@@ -3601,7 +3601,7 @@ var Wall = {
     el = ge('wall_more_link');
     if (!isVisible(el)) return;
 
-    if (st + lastWindowHeight + 1000 > getXY(el)[1]) {
+    if (st + lastWindowHeight + 1500 > getXY(el)[1]) {
       el.onclick();
     }
   },
@@ -4044,7 +4044,8 @@ var Wall = {
           post_id = ev[2],
           updH = 0,
           updY = 0,
-          el = layer && window.cur.wallLayer == post_id && ge('wl_post_body');
+          el = layer && window.cur.wallLayer == post_id && ge('wl_post_body'),
+          mt = 15;
 
       if (!el || ev_type == 'del_reply') {
         el = ge('post' + post_id);
@@ -4098,7 +4099,7 @@ var Wall = {
           if (ge('post_poll_id' + post_id)) {
             Wall.updatePoll(post_id);
           }
-          updH = newEl.offsetHeight;
+          updH = newEl.offsetHeight + mt;
           updY = getXY(newEl, fixed)[1];
           nodeUpdated(newEl);
           Wall.updateMentionsIndex();
@@ -4162,7 +4163,7 @@ var Wall = {
           if (!isVisible(el)) break;
 
           if (!cur.wallMyDeleted[post_id] && !onepost) {
-            updH = -el.offsetHeight;
+            updH -= el.offsetHeight + mt;
             updY = getXY(el, fixed)[1];
             revertLastInlineVideo(el);
             addClass(el, 'unshown');
@@ -4267,7 +4268,7 @@ var Wall = {
         }
         case 'del_reply': {
           if (cur.wallMyDeleted[post_id] || !el) break;
-          updH = -el.offsetHeight;
+          updH -= el.offsetHeight;
           updY = getXY(el, fixed)[1];
           revertLastInlineVideo(el);
           if (cur.layerpost) {
@@ -4376,7 +4377,7 @@ var Wall = {
           break;
         }
       }
-      if (updH && (layer ? (updY < 0) : (curST > updY))) {
+      if (updH && (layer ? (updY < 0) : (curST + getSize('page_header_cont')[1] > updY))) {
         curST += updH;
       }
     });
@@ -4385,7 +4386,7 @@ var Wall = {
       if (layer) {
         wkLayerWrap.scrollTop = curST;
       } else {
-        scrollToY(curST, 0);
+        scrollToY(curST, 0, false, true);
       }
     }
     Wall.update();

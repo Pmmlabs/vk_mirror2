@@ -720,19 +720,19 @@ div.profile_grad {
   z-index: -1;
 }
 #profile .rate_line.stage1 .rate_text {
-  /* color: #AAA26C; */
+  color: #AAA26C;
 }
 #profile .rate_line.stage1 .rate_left {
-  /* background-color: #E0D7A3; */
-  /* border-color: #CCC490; */
-  background-color: #99adc2;
-  border-color: #7A9CC1;
+  background-color: #E0D7A3;
+  border-color: #CCC490;
+  /*background-color: #99adc2;
+  border-color: #7A9CC1;*/
 }
 #profile .rate_line.stage1 .rate_right {
-  /* background-color: #F5EBBB; */
-  /* border-color: #E2DAA6; */
-  background-color: #DAE2E8;
-  border-color: #C0CCD9;
+  background-color: #F5EBBB;
+  border-color: #E2DAA6;
+  /*background-color: #DAE2E8;
+  border-color: #C0CCD9;*/
 }
 #profile .rate_empty_line {
   height: 10px;
