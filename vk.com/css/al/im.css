@@ -2346,6 +2346,7 @@ b.im_friend_mob_onl {
   margin-right: 10px;
   background: url(/images/chronicle/snapster_invite_logo.png);
   border-radius: 25px;
+  background-size: cover;
 }
 .im_chronicle_invite_descr {
   line-height: 16px;
