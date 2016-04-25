@@ -1327,11 +1327,13 @@ AdsModer.submitExportStatsForm = function (button) {
 
 AdsModer.onChangedDomainStatus = function (domain, new_status) {
   each(geByClass('ads_premoderation_request_link_domain_'+domain), function (i, v) {
-    removeClass(v, cur.domain_statuses[domain]);
+    removeClass(v, v.getAttribute('data-value'));
     addClass(v, new_status);
+    if (v.idd) {
+      v.idd.select(new_status, true);
+    }
     v.setAttribute('data-value', new_status);
   });
-  cur.domain_statuses[domain] = new_status;
 }
 
 AdsModer.changeDomainStatus = function (domain, new_status, old_status, action_text) {
@@ -1364,22 +1366,34 @@ AdsModer.changeDomainStatus = function (domain, new_status, old_status, action_t
   }
 }
 
-AdsModer.initDomainStatuses = function () {
-  cur.domain_statuses = {};
+AdsModer.initDomainStatus = function (v) {
+  v.removeAttribute('onmouseover');
+
+  var domain = v.getAttribute('data-domain');
+  var idd = new InlineDropdown(v, {
+    title: domain,
+    items: [['approved',         'Одобрить'],
+            ['declined',         'Отклонить'],
+            ['unknown',          'Отменить решение'],
+            ['approved:comment', 'Одобрить с комментарием'],
+            ['declined:comment', 'Отклонить с комментарием'],
+            [':comment',         'Редактировать комментарий']],
+    keepTitle: true,
+    keepSelected: true,
+    withArrow: hasClass(v, 'show_arrow'),
+    onSelect: function (id, item) {
+      AdsModer.changeDomainStatus(domain, id, v.getAttribute('data-value'), item[1]);
+    },
+    width: 200
+  });
+  idd.getElement().idd = idd;
+}
+
+AdsModer.initDomainNotes = function () {
   cur.linked_domain_notes = {};
   each(geByClass('ads_premoderation_request_link_domain'), function (i, v) {
     var domain = v.getAttribute('data-domain');
-    cur.domain_statuses[domain] = v.getAttribute('data-value');
     cur.linked_domain_notes[domain] = v.getAttribute('data-linked-note');
-    new InlineDropdown(v, {
-      keepTitle: true,
-      keepSelected: true,
-      withArrow: hasClass(v, 'show_arrow'),
-      onSelect: function (id, item) {
-        AdsModer.changeDomainStatus(domain, id, cur.domain_statuses[domain], item[1]);
-      },
-      width: 200
-    });
   });
 }
 

@@ -2290,8 +2290,9 @@ var Wall = {
       Wall.highlightReply(el);
     }
   },
-  showReply: function(post, reply) {
+  showReply: function(el, post, reply, ev) {
     if (cur.viewAsBox) return false;
+    if (ev && checkEvent(ev)) return true;
     if (window.mvcur && mvcur.post == post) {
       Videoview.showComment(reply);
       return false;
@@ -2305,6 +2306,7 @@ var Wall = {
       } else if (post.match(/market/)) {
         Market.comments(post);
       } else {
+        el.tt && el.tt.hide && el.tt.hide();
         Wall.showReplies(post, false, reply);
       }
     }
@@ -2655,7 +2657,7 @@ var Wall = {
     var re = Wall.replyNamesRE();
 
     var replyNameFirst = isArray(replyName) ? replyName[0] : replyName;
-    replyNameFirst = '<a class="reply_to_mem" onclick="return wall.showReply(\'' + post + '\', \'' + replyOid + replyType + '_' + toMsgId + replyAt + '\');">' + replyNameFirst + '</a>';
+    replyNameFirst = '<a class="reply_to_mem" onclick="return wall.showReply(this, \'' + post + '\', \'' + replyOid + replyType + '_' + toMsgId + replyAt + '\', event);">' + replyNameFirst + '</a>';
     var value = '<span class="reply_to_cancel" onclick="return Wall.cancelReplyTo(\'' + post + '\', event);"></span><div class="reply_to_label">' + langStr(getLang('global_reply_to'), 'user', replyNameFirst) + '</div>';
     val('reply_to_title' + post, value);
 
@@ -2961,18 +2963,20 @@ var Wall = {
   postTooltip: function(el, post, opts) {
     if (cur.viewAsBox) return;
     var reply = (opts || {}).reply,
-        extraClass = opts.className || '';
+        extraClass = (opts || {}).className || '',
+        toRight = (reply && !(reply % 2));
 
     showTooltip(el, {
       url: 'al_wall.php',
       params: extend({act: 'post_tt', post: post}, opts || {}),
       slide: 15,
-      shift: [(reply && !(reply % 2)) ? 329 : 27, 6, 6],
+      shift: [toRight ? 417 : 27, 6, 6],
       ajaxdt: 100,
       showdt: 400,
       hidedt: 200,
       dir: 'auto',
-      className: 'rich wall_tt' + extraClass
+      className: 'rich wall_tt' + extraClass,
+      typeClass: (toRight ? 'tt_default_right' : 'tt_default')
     });
   },
 
@@ -3155,7 +3159,7 @@ var Wall = {
           target.onmousedown ||
           inArray(target.tagName, ['A', 'IMG', 'TEXTAREA', 'EMBED', 'OBJECT']) ||
           inArray(target.className, ['play_new', 'page_video_inline_wrap']) ||
-          (foundGood = target.className.match(classRE))
+          (foundGood = target.className.match && target.className.match(classRE))
       ) {
         break;
       }

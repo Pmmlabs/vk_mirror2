@@ -747,6 +747,7 @@ table.ads_logs_info th {
   background-color: #fff;
   padding-left: 0;
   padding-top: 0;
+  border: none;
 }
 .ads_moder_all_notes_top_pagination {
   position: absolute;

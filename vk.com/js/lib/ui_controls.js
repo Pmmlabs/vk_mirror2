@@ -3305,7 +3305,7 @@ function InlineDropdown(el, opts) {
     throw new Error('No items provided');
   }
 
-  this._title = opts.keepTitle ? el.innerHTML : '';
+  this._title = opts.keepTitle ? (opts.title || el.innerHTML) : '';
   this._selectable = opts.keepTitle ? opts.keepSelected : true;
 
   // build
@@ -3938,6 +3938,10 @@ InlineDropdown.prototype.setItems = function(items) {
   this._items = clone(items);
   this.select(items[0][0], true);
   this._rebuildDropdown();
+}
+
+InlineDropdown.prototype.getElement = function() {
+  return this._iddEl;
 }
 
 InlineDropdown.prototype.getSelected = function() {
