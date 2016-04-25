@@ -1453,6 +1453,174 @@ AdsModer.initTemplateActions = function () {
   });
 }
 
+AdsModer.highchartsLangOptions = {
+  lang: {
+    loading: 'Загрузка...',
+    exportButtonTitle: "Экспорт",
+    printButtonTitle: "Печать",
+    downloadPNG: 'Скачать PNG',
+    downloadJPEG: 'Скачать JPEG',
+    downloadPDF: 'Скачать PDF',
+    downloadSVG: 'Скачать SVG',
+    printChart: 'Напечатать график',
+    resetZoom: 'Показать все',
+    resetZoomTitle: 'Масштаб 1:1'
+  }
+};
+AdsModer.highchartsDefaultOptions = {
+  colors: ["#597da3", "#b05c91", "#4d9fab", "#569567", "#ac4c4c", "#c9c255", "#cd9f4d", "#876db3",
+          "#6f9fc4", "#c77bb1", "#70c5c8", "#80bb88", "#ce5e5e", "#e8e282", "#edb24a", "#ae97d3",
+          "#6391bc", "#c77bb1", "#62b1bc", "#80bb88", "#b75454", "#c9c255", "#dca94f", "#997fc4",
+          "#85afd0", "#c77bb1", "#8ecfce", "#80bb88", "#e47070", "#c9c255", "#f7be5a", "#beaadf"],
+  chart: {
+    backgroundColor: null,
+    style: {
+      fontFamily: "tahoma, arial, verdana, sans-serif, Lucida Sans;"
+    },
+    plotBackgroundColor: '#FAFAFA',
+    zoomType: 'x',
+    type: 'area',
+    resetZoomButton: {
+      position: {
+        align: 'left',
+        verticalAlign: 'top',
+        x: 30
+      },
+      theme: {
+        fill: '#6383a8',
+        r: 2,
+        'stroke-width': 0,
+        width: 90,
+        paddingLeft: 20,
+        style: { color: '#FFFFFF' },
+        states: {
+          hover: {
+            fill: '#6d8cb0',
+            style: { color: 'white' }
+          }
+        }
+      }
+    }
+  },
+  credits: {
+    enabled: false
+  },
+  title: {
+    style: {
+      fontSize: '14px',
+      fontWeight: 'bold'
+    },
+    text: ''
+  },
+  tooltip: {
+    borderWidth: 0,
+    backgroundColor: '#E6EAF0',
+    shadow: false,
+  },
+  legend: {
+    itemStyle: {
+      fontWeight: 'normal',
+      fontSize: '12px',
+      fontFamily: 'Tahoma, arial, verdana, sans-serif, Lucida Sans'
+    },
+    itemWidth: 150
+  },
+  xAxis: {
+    gridLineWidth: 1,
+    labels: {
+      style: {
+        fontSize: '12px',
+        fontFamily: 'Tahoma, arial, verdana, sans-serif, Lucida Sans'
+      }
+    },
+    tickColor: '#E6EAF0',
+    minorTickColor: '#E6EAF0',
+    gridLineColor: '#E6EAF0',
+    minorGridLineColor: '#E6EAF0'
+  },
+  yAxis: {
+    labels: {
+      style: {
+        fontSize: '12px',
+        fontFamily: 'Tahoma, arial, verdana, sans-serif, Lucida Sans'
+      }
+    },
+    tickColor: '#E6EAF0',
+    minorTickColor: '#E6EAF0',
+    gridLineColor: '#E6EAF0',
+    minorGridLineColor: '#E6EAF0'
+  },
+  plotOptions: {
+    series: {
+      fillOpacity: 0.2,
+      animation: false
+    },
+    area: {
+      lineWidth: 1,
+    }
+  }
+};
+
+AdsModer.initChart = function(elem, data, options, xTitle, yTitle, plotLines) {
+  Highcharts.setOptions(AdsModer.highchartsLangOptions);
+  var chartOptions = extend(true, {}, AdsModer.highchartsDefaultOptions, options, {
+    chart: { renderTo: elem },
+    series: data
+  });
+  if (xTitle) {
+    chartOptions.xAxis.title = {text: xTitle};
+  }
+  if (yTitle) {
+    chartOptions.yAxis.title = {text: yTitle};
+  }
+  if (plotLines) {
+    each(['x', 'y'], function() {
+      if (!plotLines[this]) {
+        return;
+      }
+      var ax = this+'Axis';
+      if (!chartOptions[ax].plotLines) {
+        chartOptions[ax].plotLines = [];
+      }
+      each(plotLines[this], function() {
+        chartOptions[ax].plotLines.push({
+          color: this.color,
+          width: 1,
+          zIndex: 1,
+          label: {text: this.text},
+          value: this.value});
+      });
+    });
+  }
+  new Highcharts.Chart(chartOptions);
+};
+
+AdsModer.initReachChart = function(data, lines, is_cpc, ratio, ratio_index) {
+  var options = {
+    tooltip: {
+      crosshairs: true,
+      useHTML: true,
+      shared: true,
+      formatter: function() {
+        var s = 'Прогноз охвата: ' + getLang('ads_target_audience_edit', this.x, true) + "<br>";
+        var count = this.x / ratio;
+        s += (is_cpc ? 'Прогноз переходов' : 'Прогноз показов') + ': ';
+        s += langNumeric(Number(count * (is_cpc ? 1 : 1000)).toFixed(0), "<b>%s</b>", true) + "<br>";
+        if (ratio_index < this.points.length) {
+          s += "Прогноз бюджета: " + getLang('ads_moder_bold_money_amount_rub_short', Number(count * this.points[ratio_index].y).toFixed(2).replace('.00',''), true) + "<br>";
+        }
+        for (var i = 0; i < this.points.length; i++) {
+          var point = this.points[i];
+          s += '<br><span style="color:' + point.series.color + '">\u25CF</span> ' + point.series.name + ': ' + getLang('ads_moder_bold_money_amount_rub_short', Number(point.y).toFixed(2).replace('.00',''), true);
+        }
+        return s;
+      }
+    }
+  };
+  AdsModer.initChart('highcharts_container', data, options, 'Охват',
+                     (is_cpc ? 'Цена за клик, руб.' : 'Цена за 1000 показов, руб.'),  lines);
+};
+
 AdsModer.initMultipleRequests = function() {
   var checkBoxElements = geByClass('multiple_requests_cb');
 

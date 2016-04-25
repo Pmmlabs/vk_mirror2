@@ -9336,11 +9336,12 @@ if (!Object.keys) {
   }
 }
 
-function fixImHeight() {
+function fixImHeight(isGroup) {
   var page = document.getElementById('im--page');
   if (page) {
-    var height = window.innerHeight - 80;
-    page.style.height = height + "px";
+    var height = window.innerHeight - 78;
+    var prop = isGroup ? "minHeight" : "height"
+    page.style[prop] = height + "px";
   }
 }
 
