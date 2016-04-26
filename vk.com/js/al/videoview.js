@@ -367,7 +367,9 @@ playerCallback: {
             typeof(cur.vSearchPositionStats) !== 'undefined' && cur.vSearchPositionStats !== null)
         {
           cur.vSearchPositionStats[cur.vSearchPos] = extend({'viewedSeconds': 0}, cur.vSearchPositionStats[cur.vSearchPos]);
-          cur.vSearchPositionStats[cur.vSearchPos].viewedSeconds += mvcur.mvData.vsegsSize;
+          var vsecs = cur.vSearchPositionStats[cur.vSearchPos].viewedSeconds;
+          vsecs = Math.min(mvcur.mvData.duration, vsecs + mvcur.mvData.vsegsSize);
+          cur.vSearchPositionStats[cur.vSearchPos].viewedSeconds = vsecs;
         }
       }
     }
@@ -3934,7 +3936,6 @@ onExternalVideoEnded: function(container) {
   var isAdded = mv.added;
   var canAdd = mv.can_add;
   var isSubscribed = mv.subscribed;
-
 
   var nextBlockHtml = '';
   if (nextVideo && containerSize[0] >= 400 && containerSize[1] >= 300) {

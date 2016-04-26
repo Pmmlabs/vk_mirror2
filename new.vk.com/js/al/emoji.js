@@ -233,47 +233,12 @@ finalizeInsert: function(txt) {
 
 getClipboard: function(e) {
   if (e.clipboardData) {
-    if (/text\/html/.test(e.clipboardData.types)) {
-      return e.clipboardData.getData('text/html');
-    } else {
-      return clean(e.clipboardData.getData('text'));
-    }
+    return clean(e.clipboardData.getData('text'));
   } else if (window.clipboardData) {
     return clean(window.clipboardData.getData("Text"));
   } else {
     return false;
   }
-},
-
-imgToEmoji: function(text) {
-  var div = ce('div');
-  div.innerHTML = text
-    .replace(/\<br(.*?)\>/ig  , "<span>\n</span>")
-    .replace(/\<div(.*?)\>(.*?)\<\/div(.*?)\>/ig, '$2<span>\n</span>');
-  var emojis = geByClass('emoji_css', div).concat(geByClass('emoji', div));
-  for (var i = 0; i < emojis.length; i++) {
-    var emoji = emojis[i];
-    var code = this.codeToChr(this.getCode(emoji));
-    if (code) {
-      var span = ce('span');
-      span.innerHTML = code;
-      emoji.parentNode.insertBefore(span, emoji);
-      re(emoji);
-    }
-  }
-  var l = div.children.length;
-  var rem = [];
-  for (var i = 0; i < l; i++) {
-    if (div.children[i].tagName === 'STYLE') {
-      rem.push(div.children[i]);
-    }
-  }
-
-  for(i = 0; i < rem.length; i++) {
-    re(rem[i]);
-  }
-
-  return clean(trim(div.textContent));
 },
 
 onEditablePaste: function(txt, opts, optId, e, onlyFocus) {
@@ -282,10 +247,7 @@ onEditablePaste: function(txt, opts, optId, e, onlyFocus) {
   if (txt.getAttribute('contenteditable') === 'true') {
     range = Emoji.getRange();
   }
-  var ctext = this.getClipboard(e);
-
-  var text = this.imgToEmoji(ctext);
-
+  var text = this.getClipboard(e);
 
   if (text && range && !onlyFocus) {
     this.insertWithBr(range, text);
@@ -605,7 +567,7 @@ addEmoji: function(optId, code, obj) {
   }
   var opts = Emoji.opts[optId];
   if (opts.editable) {
-    var img = Emoji.getEmojiHTML(code);
+    var img = Emoji.getEmojiHTML(code, Emoji.codeToChr(code), true);
     var editable = opts.txt;
     var sel = window.getSelection ? window.getSelection() : false;
     if (sel && sel.rangeCount) {

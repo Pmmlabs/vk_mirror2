@@ -2574,7 +2574,7 @@ var Wall = {
     }
 
     if (window.mvcur && mvcur.post == post) {
-      Videoview.updateReplyFormPos();
+      Videoview.onShowEditReply();
     }
 
     if (cur.onReplyFormSizeUpdate && isFunction(cur.onReplyFormSizeUpdate)) {
@@ -2629,6 +2629,10 @@ var Wall = {
 
     var point = cur.replySubmitSettings;
     point && point.tt && point.tt.el && point.tt.destroy();
+
+    if (window.mvcur && mvcur.post == post) {
+      Videoview.onHideEditReply();
+    }
   },
   replyNamesRE: function() {
     var names = ((cur.wallLayer ? wkcur : cur).options || {}).reply_names;

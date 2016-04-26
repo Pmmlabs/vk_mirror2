@@ -589,7 +589,7 @@ var Video = {
 
       // Necessary for video search relevance stats
       var parentContainer = domCA(obj, '.video_row');
-      if (parentContainer.hasAttribute('data-search-pos')) {
+      if (parentContainer && parentContainer.hasAttribute('data-search-pos')) {
         cur.vSearchPos = parseInt(parentContainer.getAttribute('data-search-pos'));
 
         // A user could click the video whose thumbnail is barely seen on the screen.
