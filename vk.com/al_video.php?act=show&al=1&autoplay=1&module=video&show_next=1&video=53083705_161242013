@@ -31,6 +31,7 @@ cur.incViews = function() {
 
     var oid = 53083705;
     if (oid) {
+      mvcur.viewStartedTimestamp = new Date().getTime();
       ajax.post("al_video.php", {act:'video_view_started', oid:oid, vid:161242013, hash:'910caaf1caf0ace56a3b21608252d608', module: m, videocat: videocat});
     }
   }, 0);

@@ -1309,6 +1309,74 @@ b.gedit_mob_onl {
   padding: 20px 25px;
   margin: 0;
 }
+.groups_edit_cert_label {
+  width: 130px;
+}
+#groups_edit_cert_upload_error {
+  border: 1px solid #E89B88;
+  background-color: #FFEFE8;
+  padding: 8px 11px;
+  margin: 0px 0px 10px 0px;
+  display: none;
+}
+#groups_edit_cert_error {
+  border: 1px solid #E89B88;
+  background-color: #FFEFE8;
+  padding: 8px 11px;
+  line-height: 160%;
+}
+#groups_edit_cert_box {
+  padding: 20px;
+}
+.groups_edit_cert_box .groups_edit_cert_restrictions {
+  color: #36638E;
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+#groups_edit_cert_upload_cont {
+  margin: 12px 0 0;
+  text-align: center;
+}
+.groups_edit_cert {
+  padding: 0 0 20px;
+}
+.groups_edit_secret_hint_tt .tail_wrap {
+  position: absolute;
+  top: auto;
+  bottom: -5px;
+  left: 17px;
+  z-index: 2001;
+}
+.groups_edit_secret_hint_tt .tail {
+  background: url(/images/ddtooltip.png) -3px -5px no-repeat;
+  width: 11px;
+  height: 8px;
+}
+.groups_edit_secret_hint_tt .toup .tail_wrap {
+  top: -7px;
+  bottom: auto;
+}
+.groups_edit_secret_hint_tt .toup .tail {
+  background-position: -3px 2px;
+}
+.groups_edit_secret_hint_tt .hint_wrap {
+  width: 255px;
+  padding: 8px 5px;
+  line-height: 160%;
+  color: #000000;
+}
+.groups_edit_secret_hint {
+  color: #9CABB8;
+  font-weight: bold;
+  cursor: pointer;
+}
+#groups_edit_cert_uploaded {
+  margin-top: 12px;
+}
+#groups_edit_cert_not_uploaded {
+  margin-top: 12px;
+}
 /* tokens */
 .group_ad_request_title {
   max-width: 300px;

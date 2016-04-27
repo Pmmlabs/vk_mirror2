@@ -1943,7 +1943,7 @@ var GroupsEdit = {
     var params = {
       gid : cur.gid,
       act : 'save',
-      obscene_words : words,
+      Obscene_words : words,
       hash: cur.hash,
     }
     var onDone = function(code, word) {
@@ -2214,6 +2214,72 @@ var GroupsEdit = {
       }
     });
   },
+  callbackDeleteUrl: function(button, groupId, hash) {
+    var box = showFastBox(
+      {title: getLang('groups_api_confirm_box_title'), dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'},
+      getLang('groups_api_delete_url_description'),
+      getLang('groups_api_delete_url'),
+      function() {
+        box.showProgress();
+        ajax.post('groupsedit.php', {
+          act: 'callback_delete_url',
+          id: groupId,
+          hash: hash
+        }, {
+          onDone: function(response) {
+            box.hide();
+            hide('groups_edit_delete_url');
+            val('callback_url', '');
+          }
+        });
+      },
+      getLang('global_cancel')
+    );
+  },
+  callbackDeleteSecret: function(button, groupId, hash) {
+    var box = showFastBox(
+      {title: getLang('groups_api_confirm_box_title'), dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'},
+      getLang('groups_api_delete_secret_description'),
+      getLang('groups_api_delete_url'),
+      function() {
+        box.showProgress();
+        ajax.post('groupsedit.php', {
+          act: 'callback_delete_secret',
+          id: groupId,
+          hash: hash
+        }, {
+          onDone: function(response) {
+            box.hide();
+            hide('groups_edit_delete_secret');
+            val('callback_secret', '');
+          }
+        });
+      },
+      getLang('global_cancel')
+    );
+  },
+  callbackDeleteCert: function(button, groupId, hash) {
+    var box = showFastBox(
+      {title: getLang('groups_api_confirm_box_title'), dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'},
+      getLang('groups_api_delete_cert_description'),
+      getLang('groups_api_delete_url'),
+      function() {
+        box.showProgress();
+        ajax.post('groupsedit.php', {
+          act: 'callback_delete_cert',
+          id: groupId,
+          hash: hash
+        }, {
+          onDone: function(response) {
+            box.hide();
+            show('groups_edit_cert_not_uploaded');
+            hide('groups_edit_cert_uploaded');
+          }
+        });
+      },
+      getLang('global_cancel')
+    );
+  },
   callbackGetUrlCheckResult: function(groupId, hash, key, button, attempt) {
     if (attempt > 20) {
       GroupsEdit.callbackShowError(getLang('groups_api_error_failed'));
@@ -2260,6 +2326,7 @@ var GroupsEdit = {
     showFastBox({title: response ? getLang('groups_api_request_result') : getLang('groups_api_request_body'), dark: 1, width: 900, bodyStyle: 'padding: 0;'}, '<div class="group_api_result"><pre class="group_api_result_pre"">' + result + '</pre></div>');
   },
   callbackShowError: function(text, out) {
+    hide('group_api_secret_error');
     if (out) {
       show('group_api_error_info');
       cur.curlResult = cur.curlResult || {};
@@ -2270,11 +2337,14 @@ var GroupsEdit = {
     val('group_api_error_msg', text);
     hide('group_api_ok');
     show('group_api_error');
+    hide('group_api_secret_ok');
   },
   callbackShowOk: function() {
     hide('group_api_error');
     show('group_api_ok');
     show('group_api_settings');
+    show('groups_edit_delete_url');
+    hide('group_api_secret_ok');
   },
   callbackSaveSetting: function(groupId, name, hash) {
     var infoEl = ge('group_api_settings_saved');
@@ -2292,6 +2362,48 @@ var GroupsEdit = {
       hash: hash
     });
   },
+  callbackSaveSecret: function(button, groupId, hash) {
+    var secretInput = ge('callback_secret');
+    var secret = val(secretInput);
+
+    if (!secret) return;
+
+    hide('group_api_ok');
+    hide('group_api_error');
+
+    lockButton(button);
+
+    ajax.post('groupsedit.php', {
+      act: 'callback_save_secret',
+      id: groupId,
+      secret: secret,
+      hash: hash
+    }, {
+      onDone: function(response) {
+        unlockButton(button);
+        var errorText = null;
+        if (response == 'length') {
+          errorText = getLang('groups_api_secret_too_long');
+        } else if (response == 'pattern') {
+          errorText = getLang('groups_api_secret_wrong_pattern');
+        } else if (response == 'ok') {
+          show('groups_edit_delete_secret');
+          show('group_api_secret_ok');
+        }
+
+        if (errorText) {
+          show('group_api_secret_error');
+          val('group_api_secret_error_msg', errorText);
+          hide('group_api_secret_ok');
+        } else {
+          hide('group_api_secret_error');
+        }
+      },
+      onFail: function() {
+        unlockButton(button);
+      }
+    });
+  },
   callbackInitRequestPage: function(type) {
     var sortDD = ge('groups_edit_request_type_dd');
 
@@ -2306,6 +2418,41 @@ var GroupsEdit = {
   },
   _onSelectCallback: function(type) {
     nav.change({errors: type == 'sent' ? false : 1});
+  },
+  certUploadBox: function(obj, group_id, hash) {
+    showBox('groupsedit.php', {act: 'select_cert', id: group_id, hash: hash}, {params: {dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'}});
+  },
+  showCallbackTooltip: function(el, key) {
+    showTooltip(el, {
+      text: '<div class=\'tail_wrap\'><div class=\'tail\'></div></div><div class=\'hint_wrap\'>' + getLang(key) + '</div>',
+      showdt: 0,
+      hidedt: 100,
+      shift: [14, 5, 10],
+      slide: 15,
+      className: 'groups_edit_secret_hint_tt',
+      hasover: 1
+    });
+  },
+  callbackUpdateCertResult: function(key, attempt, groupId) {
+    if (attempt > 30) {
+      return;
+    }
+    ajax.post('groupsedit.php', {
+      act: 'callback_cert_get_status',
+      id: groupId,
+      key: key
+    }, {
+      onDone: function(response) {
+        if (response == 'false') {
+          setTimeout(GroupsEdit.callbackUpdateCertResult.pbind(key, attempt + 1, groupId), 1000);
+        } else {
+          hide('groups_edit_cert_updating');
+          show('groups_edit_cert_ready');
+        }
+      },
+      onFail: function() {
+      }
+    });
   }
 }
 
