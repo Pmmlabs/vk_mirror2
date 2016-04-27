@@ -86,7 +86,7 @@ getPage: function(offset) {
   if (_n.act == 'all' && cur.checkedTickets) {
     window.checkedTickets = cur.checkedTickets;
   }
-  ajax.post(nav.objLoc[0], query, {
+  ajax.post(cur.objLoc, query, {
     cache: 1,
     onDone: function(content, script) {
       if (nav.objLoc.act == 'history') {
@@ -275,7 +275,7 @@ saveTicket: function(hash, checkPermissions) {
       }
       ls.remove('support_outdated_left');
     }
-    ajax.post(nav.objLoc[0], query, {
+    ajax.post(cur.objLoc, query, {
       onDone: function(message) { showDoneBox(message); },
       showProgress: lockButton.pbind(ge('tickets_send')),
       hideProgress: unlockButton.pbind(ge('tickets_send'))
@@ -320,7 +320,7 @@ savePayTicket: function(hash) {
   }
   if (nav.objLoc.act == 'new_ads') query.section = 1;
   if (nav.objLoc.act == 'new_pay') query.section = 16;
-  ajax.post(nav.objLoc[0], query, {
+  ajax.post('support', query, {
     onDone: function(message) { showDoneBox(message); },
     showProgress: lockButton.pbind(ge('tickets_send')),
     hideProgress: unlockButton.pbind(ge('tickets_send'))
@@ -485,7 +485,7 @@ showMsgBox: function(text, title, input) {
 },
 
 checkPhone: function(phone) {
-  ajax.post(nav.objLoc[0], {act: 'check_phone', phone: phone}, {
+  ajax.post('support', {act: 'check_phone', phone: phone}, {
     cache: 1,
     onDone: function(real_phone) {
       cur.phone = real_phone;
@@ -613,7 +613,6 @@ getPayFields: function() {
   return res;
 
 },
-
 addTicketReply: function(hash, isCtrlEnter) {
   if (ge('tickets_reply') && ge('tickets_reply').disabled) {
     return false;
@@ -628,8 +627,8 @@ addTicketReply: function(hash, isCtrlEnter) {
     }
   }
   if (!text && !attachs.length) {
-    if (isCtrlEnter) {
-      Tickets.closeTicket(hash);
+    if (isCtrlEnter && Helpdesk) {
+      Helpdesk.closeTicket(hash);
     }
     return elfocus('tickets_reply');
   }
@@ -666,7 +665,7 @@ addTicketReply: function(hash, isCtrlEnter) {
     ls.set(draftKey, false);
     ls.remove(draftKey);
   }
-  ajax.post(nav.objLoc[0], query, {
+  ajax.post(cur.objLoc, query, {
     onDone: function(content, script) {
       cur.sendingAnswer = false;
       if (content) ge('tickets_content').innerHTML = content;
@@ -720,7 +719,7 @@ addPayData: function(hash) {
     ls.set(draftKey, false);
     ls.remove(draftKey);
   }
-  ajax.post(nav.objLoc[0], query, {
+  ajax.post(cur.objLoc, query, {
     onDone: function(content, script) {
       cur.sendingAnswer = false;
       if (content) ge('tickets_content').innerHTML = content;
@@ -774,7 +773,7 @@ editComment: function(cid, hash, ticket_id) {
   }
 
   cur.editStarted = true;
-  ajax.post(nav.objLoc[0], {act: 'get_comment', ticket_id: cur.ticket_id || ticket_id, cid: cid, hash: hash}, {
+  ajax.post(cur.objLoc, {act: 'get_comment', ticket_id: cur.ticket_id || ticket_id, cid: cid, hash: hash}, {
     onDone: function(t, attachs, cur_data) {
       var canAttach = true;
       if (cur_data) {
@@ -868,7 +867,7 @@ doSaveComment: function(cid, hash, ticket_id) {
     notaBene('reply'+cid+'edit');
     return;
   }
-  ajax.post(nav.objLoc[0], {act: 'edit_comment', ticket_id: ticket_id, cid: cid, text: v, attachs: attachs, hash: hash}, {
+  ajax.post(cur.objLoc, {act: 'edit_comment', ticket_id: ticket_id, cid: cid, text: v, attachs: attachs, hash: hash}, {
     onDone: function(text, attachs) {
       var cont = geByClass1('tickets_reply_text', ge('reply'+cid)), acts = geByClass1('tickets_reply_actions', ge('reply'+cid));
       cont.innerHTML = text;
@@ -897,9 +896,8 @@ doSaveComment: function(cid, hash, ticket_id) {
     hideProgress: unlockButton.pbind(ge('save_butn'+cid))
   });
 },
-
 deleteComment: function(cid, hash, ticket_id) {
-  ajax.post(nav.objLoc[0], {act: 'delete_comment', ticket_id: cur.ticket_id || ticket_id, cid: cid, hash: hash}, {
+  ajax.post(cur.objLoc, {act: 'delete_comment', ticket_id: cur.ticket_id || ticket_id, cid: cid, hash: hash}, {
     onDone: function(res) {
       var cont = ge('reply'+cid).firstChild;
       if (cont) {
@@ -915,9 +913,8 @@ deleteComment: function(cid, hash, ticket_id) {
   });
   return false;
 },
-
 restoreComment: function(cid, hash, ticket_id) {
-  ajax.post(nav.objLoc[0], {act: 'restore_comment', ticket_id: cur.ticket_id || ticket_id, cid: cid, hash: hash}, {
+  ajax.post(cur.objLoc, {act: 'restore_comment', ticket_id: cur.ticket_id || ticket_id, cid: cid, hash: hash}, {
     onDone: function(res) {
       var cont = ge('reply'+cid).firstChild;
       if (cont) cont.innerHTML = cur.deletedComments[cid];
@@ -929,11 +926,10 @@ restoreComment: function(cid, hash, ticket_id) {
   });
   return false;
 },
-
 rateComment: function(reply_id, rate, hash) {
   if (cur.replyRating) return false;
   cur.replyRating = true;
-  ajax.post(nav.objLoc[0], {act: 'rate_comment', ticket_id: cur.ticket_id, reply_id: reply_id, rate: rate, hash: hash}, {
+  ajax.post('support', {act: 'rate_comment', ticket_id: cur.ticket_id, reply_id: reply_id, rate: rate, hash: hash}, {
     onDone: function(text) {
       delete cur.replyRating;
       ge('reply_actions'+reply_id).innerHTML = text;
@@ -944,10 +940,9 @@ rateComment: function(reply_id, rate, hash) {
   });
   return false;
 },
-
 deleteTicket: function(ticket_id, hash) {
   var box = showFastBox({title: cur.lang['delete_title'], dark: true, bodyStyle: 'padding: 20px; line-height: 160%;', width: 430}, cur.lang['delete_confirm'], cur.lang['delete'], function() {
-    ajax.post(nav.objLoc[0], {act: 'delete', ticket_id: ticket_id, hash: hash}, {
+    ajax.post(cur.objLoc, {act: 'delete', ticket_id: ticket_id, hash: hash}, {
       progress: box.progress,
       onFail: function(text) {
         box.hide();
@@ -956,7 +951,6 @@ deleteTicket: function(ticket_id, hash) {
   }, getLang('global_cancel'));
   return false;
 },
-
 showMsg: function(text) {
   var msg = ge('tickets_msg');
   if (!msg) {
@@ -981,7 +975,6 @@ showMsg: function(text) {
   animate(msg, {backgroundColor: '#F9F6E7'}, 2000);
   return true;
 },
-
 showError: function(error) {
   var err = ge('tickets_error');
   if (!err) {
@@ -1007,41 +1000,6 @@ showError: function(error) {
   animate(err, {backgroundColor: '#FFEFE8'}, 2000);
   scrollToTop(200);
   return true;
-},
-
-delayTicket: function(delay, hash) {
-  var info = ge('tickets_info_title');
-  var pr = ce('div', {innerHTML: '<img src="/images/upload.gif"/>', className: 'fl_l'});
-  info.parentNode.insertBefore(pr, info);
-  hide(info);
-  ajax.post(nav.objLoc[0], {act: 'delay_ticket', ticket_id: cur.ticket_id, delay: delay, hash: hash}, {
-    onDone: function(text) {
-      info.innerHTML = text;
-      show(info);
-      re(pr);
-    },
-    onFail: function() {
-      show(info);
-      re(pr);
-    }
-  });
-},
-
-closeTicket: function(hash) {
-  var link = ge('close_ticket_link'), pr = geByClass1('progress', link), label = geByClass1('label', link);
-  hide(label);
-  show(pr);
-  ajax.post(nav.objLoc[0], {act: 'close_ticket', ticket_id: cur.ticket_id, hash: hash}, {
-    onDone: function(content, script) {
-      if (content) ge('tickets_content').innerHTML = content;
-      if (script) eval(script);
-    },
-    onFail: function() {
-      show(label);
-      hide(pr);
-    }
-  });
-  return false;
 },
 closeTicketByAuthor: function(hash) {
   ajax.post('support', {act: 'close_ticket_by_author', ticket_id: cur.ticket_id, hash: hash}, {
@@ -1071,7 +1029,7 @@ showAllReplies: function() {
   var link = ge('show_all_replies_link'), pr = geByClass1('progress', link), label = geByClass1('label', link);
   hide(label);
   show(pr);
-  ajax.post(nav.objLoc[0], {act: 'show', id: cur.ticket_id, all: 1}, {
+  ajax.post(cur.objLoc, {act: 'show', id: cur.ticket_id, all: 1}, {
     onDone: function(content, script) {
       if (content) ge('tickets_reply_rows').innerHTML = content;
       if (script) eval(script);
@@ -1082,10 +1040,6 @@ showAllReplies: function() {
     }
   });
   return false;
-},
-onSubmitSettingsChanged: function(val) {
-  ajax.post(nav.objLoc[0], {act: 'save_submit', value: val ? 1 : 0, hash: cur.hashes.submit_hash});
-  cur.next_manual = !!val;
 },
 showPhoto: function(photoRaw, listId, opts) {
   var cbox = curBox();
@@ -1131,8 +1085,6 @@ showPhoto: function(photoRaw, listId, opts) {
   }
   return showPhoto(photoRaw, listId, opts);
 },
-
-// screenshot attachment
 showAddScreenBox: function(onShow) {
   var opts = {title: getLang('support_adding_screen'), width: 460, bodyStyle: 'padding: 0px', dark: 1};
   if (onShow) {
@@ -2054,10 +2006,10 @@ setFAQclicked: function(id, hash, fromNew, now) {
   if (now) {
     clearTimeout(cur.faqViewTimeouts[id]);
     cur.faqViewTimeouts[id] = null;
-    ajax.post(nav.objLoc[0], {act: 'faq_clicked', faq_id: id, hash: hash, from_new: fromNew }, {cache: 1});
+    ajax.post('support', {act: 'faq_clicked', faq_id: id, hash: hash, from_new: fromNew }, {cache: 1});
   } else if (!cur.faqViewTimeouts.hasOwnProperty(id)) {
     cur.faqViewTimeouts[id] = setTimeout(function() {
-      ajax.post(nav.objLoc[0], {act: 'faq_clicked', faq_id: id, hash: hash, from_new: fromNew }, {cache: 1});
+      ajax.post('support', {act: 'faq_clicked', faq_id: id, hash: hash, from_new: fromNew }, {cache: 1});
     }, 1500);
   }
 },
@@ -2070,7 +2022,7 @@ cancelFAQclicked: function(id) {
 },
 rateFAQ: function(id, val, hash, fromNew, quiet) {
   if (!vk.id) return false;
-  ajax.post(nav.objLoc[0], {act: 'faq_rate', faq_id: id, val: val, hash: hash, from_new: fromNew });
+  ajax.post('support', {act: 'faq_rate', faq_id: id, val: val, hash: hash, from_new: fromNew });
   Tickets.setFAQclicked(id, hash, fromNew, true);
 
   if (!quiet) {
@@ -2089,7 +2041,7 @@ rateFAQ: function(id, val, hash, fromNew, quiet) {
 rateFAQAdditional: function(id, additional_id, hash, evt) {
   if (!vk.id) return false;
   var b = ge('tickets_faq_unuseful'+id);
-  ajax.post(nav.objLoc[0], {act: 'faq_rate_additional', faq_id: id, additional_id: additional_id, hash: hash});
+  ajax.post('support', {act: 'faq_rate_additional', faq_id: id, additional_id: additional_id, hash: hash});
   hide(geByClass1('help_table_question_rated_additional', b));
   show(geByClass1('help_table_question__rated_final', b));
   if (additional_id == 2) {
@@ -2104,7 +2056,7 @@ rateFAQAdditional: function(id, additional_id, hash, evt) {
 },
 cancelRateFAQ: function(id, val, hash, evt) {
   if (!vk.id) return false;
-  ajax.post(nav.objLoc[0], {act: 'faq_rate', faq_id: id, val: val, cancel: 1, hash: hash});
+  ajax.post('support', {act: 'faq_rate', faq_id: id, val: val, cancel: 1, hash: hash});
   hide('tickets_faq_useful'+id, 'tickets_faq_unuseful'+id);
   show('tickets_faq_links'+id);
   if (evt) {
@@ -2114,7 +2066,7 @@ cancelRateFAQ: function(id, val, hash, evt) {
 },
 rateFAQUrgent: function(id, val, hash) {
   if (!vk.id) return false;
-  ajax.post(nav.objLoc[0], {act: 'faq_rate', faq_id: id, val: val, hash: hash, from_new: 1 });
+  ajax.post('support', {act: 'faq_rate', faq_id: id, val: val, hash: hash, from_new: 1 });
   Tickets.setFAQclicked(id, hash, 1, true);
   hide('tickets_faq_urgent_links'+id);
   if (val > 0) {
@@ -2127,7 +2079,7 @@ rateFAQUrgent: function(id, val, hash) {
 },
 cancelRateFAQUrgent: function(id, val, hash) {
   if (!vk.id) return false;
-  ajax.post(nav.objLoc[0], {act: 'faq_rate', faq_id: id, val: val, cancel: 1, hash: hash});
+  ajax.post('support', {act: 'faq_rate', faq_id: id, val: val, cancel: 1, hash: hash});
   hide('tickets_faq_useful'+id, 'tickets_faq_unuseful'+id);
   show('tickets_faq_urgent_links'+id);
   var form = ge('tickets_new_wrap');
@@ -2148,7 +2100,6 @@ showAverageTime: function(time, confirmCallback) {
       confirmCallback();
     }, getLang('support_back_to_faq'));
 },
-
 toggleDetailedForm: function(force) {
   var title = ge('tickets_title');
   toggleClass(ge('tickets_content'), 'detailed');
@@ -2164,7 +2115,7 @@ toggleDetailedForm: function(force) {
     }
     cur.toggleCanceled = true;
     delete cur.toggled;
-    this.searchFAQ(str);
+    Tickets.searchFAQ(str);
     title.focus();
   }
   placeholderSetup(ge('tickets_title'), {back: true, reload: true});
@@ -2176,7 +2127,7 @@ getSearchQuery: function() {
 },
 
 getFormQuery: function(act, ask) {
-  var q = {0: nav.objLoc[0], act: act, title: Tickets.getSearchQuery() };
+  var q = {0: 'support', act: act, title: Tickets.getSearchQuery() };
   if (ask) q['ask'] = 1;
   return q;
 },
@@ -2256,7 +2207,7 @@ searchFAQ: function(val) {
       query.from = 'ads';
     }
   }
-  ajax.post(nav.objLoc[0], query, {
+  ajax.post('support', query, {
     cache: 1,
     hideProgress: removeClass.pbind('tickets_search', 'loading'),
     onDone: function(cont, button) {
@@ -2301,49 +2252,7 @@ clearSearch: function(el, event) {
   setStyle(el, {opacity: .6});
   field.value = '';
   ge('tickets_title').focus();
-  this.updateFAQ(event, field);
-},
-
-toggleSimilar: function(needScroll) {
-  toggle('tickets_similar', !isVisible('tickets_similar'));
-  var a = ge('toggle_similar_link');
-  toggleClass(a, 'opened', isVisible('tickets_similar'));
-  if (isVisible('tickets_similar')) {
-    a.innerHTML = getLang('support_hide_similar');
-    if (ge('similar_search')) {
-      cur.searchDD.updateInput();
-    }
-    if (cur.similarCount < 10) {
-      hide('tickets_toup');
-    } else {
-      if (isVisible('tickets_toup')) {
-        setStyle(ge('tickets_toup'), {height: '0px'});
-        setStyle(ge('tickets_toup'), {height: getSize(ge('tickets_similar'))[1]});
-      }
-    }
-  } else {
-    a.innerHTML = cur.similarCount ?  getLang('support_show_similar', cur.similarCount) : getLang('support_search_similar');
-  }
-  if (needScroll) scrollToTop(0);
-  return false;
-},
-toggleSimilarRow: function(id, el, evt) {
-  if (!evt.target) {
-    evt.target = evt.srcElement || document;
-  }
-  if (evt.target.tagName.toLowerCase() == 'a') return true;
-  toggle('tickets_similar_short_text'+id, !isVisible('tickets_similar_short_text'+id));
-  toggle('tickets_similar_full_text'+id, !isVisible('tickets_similar_full_text'+id));
-  if (isVisible('tickets_similar_full_text'+id)) {
-    addClass(el, 'detailed');
-  } else {
-    removeClass(el, 'detailed');
-  }
-  if (isVisible('tickets_toup')) {
-    setStyle(ge('tickets_toup'), {height: '0px'});
-    setStyle(ge('tickets_toup'), {height: getSize(ge('tickets_similar'))[1]});
-  }
-  return false;
+  Tickets.updateFAQ(event, field);
 },
 checkOver: function(el, mid) {
   el.firstChild.className = cur.checkedTickets[mid] ? 'over_checked' : 'over';
@@ -2377,235 +2286,6 @@ checkChange: function(el, mid) {
   }
   this.updateChecked();
 },
-uncheckTickets: function() {
-  each(cur.checkedTickets, function(i, v) { delete cur.checkedTickets[i];});
-  each(geByClass('tickets_check', ge('tickets_checked')), function(i, v) {
-    v.firstChild.className = '';
-  });
-  show('tickets_all_search');
-  hide('tickets_all_selected');
-},
-
-getSearchParams: function(obj) {
-  var params = {q: trim(val(obj))};
-  switch (nav.objLoc.act) {
-    case 'show':
-      params.act = 'get_similar';
-      params.ticket_id = cur.ticket_id;
-      break;
-    case 'all':
-      params.act = 'all';
-      if (nav.objLoc['faq_id']) {
-        params.faq_id = nav.objLoc['faq_id'];
-      }
-      var filtersVal = (window.radioBtns.filters || {}).val;
-      params.good = filtersVal == 1 ? 1 : '';
-      params.opened = filtersVal == 2 ? 1 : '';
-      params.from_support = filtersVal == 3 ? 1 : '';
-      params.search = 1;
-      if (ge('tickets_extra_options') && params.opened) {
-        params.download = cur.searchDownload.val();
-        params.no_category = cur.searchNoCategory.val();
-        params.photo_server = ge('tickets_photo').value;
-        params.id100 = ge('tickets_id').value;
-        params.id1000 = ge('tickets_id1000').value;
-        params.nospam_pid = ge('tickets_nospam_pid').value;
-        params.cdn = ge('tickets_cdn').value;
-        var mobVal = intval(cur.searchMobile.val());
-        if (mobVal) {
-          params.mobile = mobVal;
-        }
-        var httpsVal = intval(cur.searchHttps.val());
-        if (httpsVal) {
-          params.https = httpsVal;
-        }
-        var brVal = cur.searchBrowser.val();
-        if (brVal && brVal != '0') {
-          params.browser = (brVal == -1) ? cur.searchBrowser.curTerm : brVal;
-        }
-        if (cur.searchTime.val()) {
-          params.time_from = val('search_start_date');
-          params.time_to = val('search_end_date');
-        }
-      }
-      break;
-    case 'history':
-      params.act = 'get_answers';
-      params.mid = nav.objLoc.mid;
-      break;
-  }
-  return params;
-},
-sameParams: function(params) {
-  if (!cur.params) return false;
-  for (var i in params) {
-    if (params[i] != cur.params[i]) return false;
-  }
-  for (var i in cur.params) {
-    if (params[i] != cur.params[i]) return false;
-  }
-  return true;
-},
-
-updateAllSearch: function(e, obj) {
-  var force = (e === false) || e && (e.keyCode == 10 || e.keyCode == 13);
-  clearTimeout(cur.faqTimeout);
-  cur.faqTimeout = setTimeout((function() {
-    var params = Tickets.getSearchParams(obj);
-    toggleClass(ge('tickets_all_reset'), 'shown', !!params.q);
-    if (force && (!Tickets.sameParams(params) || cur.ignoreEqual)) {
-      delete cur.ignoreEqual;
-      cur.params = params;
-      cur.searchStr = params.q;
-      Tickets.searchAll(cur.searchStr);
-    }
-    if (nav.objLoc.act != 'show') scrollToTop();
-  }).bind(this), 10);
-},
-
-searchAll: function() {
-  var query = cur.params || Tickets.getSearchParams(ge('all_search'));
-  addClass(ge('tickets_all_search'), 'loading');
-  setStyle(ge('tickets_all_reset'), {opacity: .6});
-  switch (nav.objLoc.act) {
-    case 'show':
-      addClass(ge('similar_search_bar'), 'similar_loading');
-      break;
-    case 'all':
-      cur.checkedTickets = {};
-      break;
-    case 'history':
-      if (query.q) {
-        if (ge('search_subtab')) {
-          each(geByClass('tickets_subtab1', ge('tickets_search_options')), function(i, v) {
-            removeClass(v, 'active');
-          });
-          ge('search_subtab').className = 'tickets_subtab1 active';
-        }
-      } else {
-        if (hasClass('search_subtab', 'active')) {
-          ge('search_subtab').className = 'tickets_subtab1 hidden';
-          addClass('all_subtab', 'active');
-        }
-      }
-      break;
-  }
-  ajax.post(nav.objLoc[0], query, {
-    cache: 1,
-    onDone: function(cont, script) {
-      switch (nav.objLoc.act) {
-        case 'show':
-          ge('similar_rows').innerHTML = cont;
-          removeClass(ge('similar_search_bar'), 'similar_loading');
-          if (script) eval(script);
-          toggle('tickets_toup', cur.similarCount > 10);
-          each(cur.checkedTickets, function(i, v) {if (ge('tickets_similar_row'+i)) {
-            geByClass1('tickets_check', ge('tickets_similar_row'+i)).firstChild.className = 'checked';
-          }});
-          if (isVisible('tickets_toup')) {
-            setStyle(ge('tickets_toup'), {height: '0px'});
-            setStyle(ge('tickets_toup'), {height: getSize(ge('tickets_similar'))[1]});
-          }
-          break;
-        case 'all':
-          ge('tickets_all').innerHTML = cont;
-          if (script) eval(script);
-          delete nav.objLoc.offset;
-          each(['q', 'good', 'opened', 'download', 'from_support', 'photo_server', 'id100', 'nospam_pid', 'time_from', 'time_to', 'mobile', 'browser', 'id1000', 'https', 'cdn', 'no_category'], function(i, v) {
-            if (query[v]) {
-              nav.objLoc[v] = query[v];
-            } else {
-              delete nav.objLoc[v];
-            }
-          });
-          nav.setLoc(nav.objLoc);
-          break;
-        case 'history':
-          delete nav.objLoc.offset;
-          delete nav.objLoc.section;
-          ge('tickets_replies').innerHTML = cont;
-          if (query.q) {
-            nav.objLoc.q = query.q;
-          } else {
-            delete nav.objLoc.q;
-          }
-          nav.setLoc(nav.objLoc);
-          break;
-      }
-      removeClass(ge('tickets_all_search'), 'loading');
-    },
-    onFail: function() {
-      removeClass(ge('tickets_all_search'), 'loading');
-    }
-  });
-},
-
-clearAllSearch: function(el, event) {
-  var field = ge('all_search');
-  setStyle(el, {opacity: .6});
-  field.value = '';
-  field.focus();
-  this.updateAllSearch(false, field);
-},
-
-updateAddSearch: function(e, obj) {
-  clearTimeout(cur.addTimeout);
-  cur.addTimeout = setTimeout((function() {
-    var str = trim(obj.value),
-        textInput = ge('tickets_add_title');
-    if (str == cur.searchStr) return;
-    if (str) {
-      addClass(ge('tickets_search_reset'), 'shown');
-    } else {
-      removeClass(ge('tickets_search_reset'), 'shown');
-    }
-    cur.searchStr = str;
-    clearTimeout(cur.searchAddTimeout);
-    cur.searchAddTimeout = setTimeout((function() {
-      Tickets.searchAdd(cur.searchStr);
-    }).bind(this), 300);
-
-    scrollToTop();
-  }).bind(this), 10);
-},
-
-searchAdd: function(val) {
-  if (val[val.length - 1] == ' ') {
-    val[val.length - 1] = '_';
-  }
-  addClass(ge('tickets_add_search'), 'loading');
-  setStyle(ge('tickets_search_reset'), {opacity: .6});
-  ajax.post(nav.objLoc[0], {act: 'get_bugs', q: val}, {
-    cache: 1,
-    onDone: function(cont, button) {
-      if (cont) {
-        ge('tickets_add_list').innerHTML = ce('div', {innerHTML: cont}).innerHTML;
-      }
-      ge('tickets_add_button').innerHTML = button;
-      removeClass(ge('tickets_add_search'), 'loading');
-    },
-    onFail: function() {
-      removeClass(ge('tickets_add_search'), 'loading');
-    }
-  });
-},
-
-clearAddSearch: function(el, event) {
-  var field = ge('tickets_add_title');
-  setStyle(el, {opacity: .6});
-  field.value = '';
-  field.focus();
-  this.updateAddSearch(event, field);
-},
-_animDelX: function(el, opacity, set_active) {
-  if (!el) return;
-  if (set_active !== undefined) {
-    el.active = set_active;
-  } else if (el.active) {
-    return;
-  }
-  animate(el, {opacity: opacity}, 200);
-},
 saveDraft: function (ticket_id, evType) {
   var txt = ge('tickets_reply');
   if (browser.mobile || !txt || txt.disabled || !cur.canUseDrafts) return;
@@ -2626,32 +2306,6 @@ saveDraft: function (ticket_id, evType) {
     cur.ticketsNewMedia.checkMessageURLs(message, evType != 'keyup');
   }
 },
-
-restoreDraft: function(ticket_id) {
-  var txt = ge('tickets_reply'),
-      draft = ls.get('helpdesk_draft' + vk.id + '_' + ticket_id) || {},
-      draftv = draft.txt || '';
-  if (browser.mobile || !txt || txt.disabled || !cur.canUseDrafts || !draftv && !draft.medias || cur.ticket_id != ticket_id) return;
-
-  if (val(txt).length < draftv.length) {
-    val(txt, draftv);
-    txt.autosize.update();
-  }
-  if ((draft.medias || []).length && !((cur.ticketsNewMedia || {}).chosenMedias || []).length) {
-    var m = [];
-    for (var i in draft.medias) {
-      if (!draft.medias[i]) continue;
-      m.push(draft.medias[i].slice(0, 2).join(','));
-    }
-    ajax.post(nav.objLoc[0], {act: 'draft_medias', attachs: m}, {onDone: function(resp) {
-      if (!(resp || []).length) return;
-      each(resp, function() {
-        cur.ticketsNewMedia.chooseMedia.apply(cur.ticketsNewMedia, this);
-      });
-    }});
-  }
-},
-
 listUpdateSearch: function(e, obj) {
   clearTimeout(cur.faqTimeout);
   if (cur.faqSearchBlocked) {
@@ -2738,8 +2392,7 @@ listSearch: function(v) {
         if (v) {
           Tickets.listDiselectCategory();
         }
-        var obj = {act: 'faqs'};
-        obj[0] = 'support';
+        var obj = {act: 'faqs', 0: 'support'};
         if (v) {
           obj['q'] = v;
         }
@@ -2936,10 +2589,7 @@ listOpenTiles: function() {
   hide(ge('help_faqs'));
   addClass(ge('help_tab'), 'active_link');
   removeClass(ge('faqs_tab'), 'active_link');
-
-  var obj = {act:'home'};
-  obj[0] = nav.objLoc[0];
-  nav.setLoc(obj);
+  nav.setLoc({ 0: 'support', act:'home'});
 
   Tickets.listClearSearchInput();
   return false;

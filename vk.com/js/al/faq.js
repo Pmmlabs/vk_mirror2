@@ -776,4 +776,119 @@ saveDictionary: function(btn, lang, hash) {
 showHistory: function(id, faq_id, hash) {
   return !showBox(nav.objLoc[0], {act: 'show_history', id: id, faq_id: faq_id, hash: hash}, {params: {bodyStyle: 'padding: 0px', width: 590}});
 },
+updateFAQ: function(e, obj) {
+  clearTimeout(cur.faqTimeout);
+  cur.faqTimeout = setTimeout((function() {
+    var origStr = obj.value,
+        str = trim(origStr),
+        words = str.split(' '),
+        textInput = ge('tickets_text');
+
+    if (origStr.length >= 70 && textInput && !textInput.value && !cur.flood) {
+      if (!isVisible('tickets_detailed_form')) FAQ.toggleDetailedForm();
+      obj.value = '';
+      textInput.focus();
+      textInput.value = origStr;
+    }
+    if (isVisible('tickets_detailed_form')) return;
+    if (str == cur.searchStr && (words.length < 4 || words.length == 4 && origStr[origStr.length - 1] != ' ')) {
+      return;
+    }
+    if (str) {
+      addClass(ge('tickets_search_reset'), 'shown');
+    } else {
+      removeClass(ge('tickets_search_reset'), 'shown');
+    }
+    cur.searchStr = str;
+    clearTimeout(cur.searchFAQTimeout);
+    cur.searchFAQTimeout = setTimeout((function() {
+      FAQ.searchFAQ(cur.searchStr);
+    }).bind(this), 300);
+
+    if (!browser.mobile) scrollToTop();
+  }).bind(this), 10);
+},
+
+searchFAQ: function(val) {
+  if (val[val.length - 1] == ' ') {
+    val[val.length - 1] = '_';
+  }
+  addClass(ge('tickets_search'), 'loading');
+  setStyle(ge('tickets_search_reset'), {opacity: .6});
+  var query = {act: 'get_faq', q: val, from: nav.objLoc.act};
+  if (nav.objLoc.gid) query.gid = nav.objLoc.gid;
+  if (nav.objLoc.app_id) query.app_id = nav.objLoc.app_id;
+  if (nav.objLoc.union_id) query.union_id = nav.objLoc.union_id;
+  if (cur.tlmd && cur.showAll) {
+    delete cur.showAll;
+    query.show_all = 1;
+    if (cur.from_ads) {
+      query.from = 'ads';
+    }
+  }
+  ajax.post('tlmd', query, {
+    cache: 1,
+    hideProgress: removeClass.pbind('tickets_search', 'loading'),
+    onDone: function(cont, button) {
+      var origStr = ge('tickets_title').value,
+          words = trim(origStr).split(' '),
+          needToggle = (words.length > 4 || words.length == 4 && origStr[origStr.length - 1] == ' ');
+      if (cont) {
+        ge('tickets_faq_list').innerHTML = ce('div', {innerHTML: cont}).firstChild.innerHTML;
+      } else {
+        if (button) ge('tickets_faq_button').innerHTML = button;
+        if (needToggle) {
+          cur.toggled = true;
+          FAQ.toggleDetailedForm();
+        }
+      }
+      if (cur.tlmd) {
+        if (val) {
+          extend(nav.objLoc, {q: val});
+        } else {
+          delete nav.objLoc.q;
+        }
+        if (nav.objLoc.act == 'faq') {
+          var title = val ? val : getLang('support_page_title');
+          if (!vk.id) {
+            title += ' | ' + getLang('global_vkontakte');
+          }
+          document.title = title;
+        }
+        if (cont) {
+          cur.faqRowsOpened = false;
+          removeClass(ge('faq_toggle_all'), 'shown');
+        }
+        nav.setLoc(nav.objLoc);
+      }
+    }
+  });
+},
+toggleDetailedForm: function(force) {
+  var title = ge('tickets_title');
+  toggleClass(ge('tickets_content'), 'detailed');
+  if (isVisible('tickets_detailed_form')) {
+    title.setAttribute('placeholder', cur.lang.placeholder_title);
+    removeClass(ge('tickets_search_reset'), 'shown');
+    if (force) ge('tickets_text').focus();
+  } else {
+    title.setAttribute('placeholder', cur.lang.placeholder_default);
+    var str = trim(ge('tickets_title').value);
+    if (str) {
+      addClass(ge('tickets_search_reset'), 'shown');
+    }
+    cur.toggleCanceled = true;
+    delete cur.toggled;
+    FAQ.searchFAQ(str);
+    title.focus();
+  }
+  placeholderSetup(ge('tickets_title'), {back: true, reload: true});
+},
+clearSearch: function(el, event) {
+  var field = ge('tickets_title');
+  setStyle(el, {opacity: .6});
+  field.value = '';
+  ge('tickets_title').focus();
+  FAQ.updateFAQ(event, field);
+},
 _eof: 1};try{stManager.done('faq.js');}catch(e){}
