@@ -2339,7 +2339,11 @@ Ads.onStatusHover = function(elem, callback, rown, coln) {
         if (!isObject(response) || response.error) {
           debugLog('onFail change status');
           var errorMessage = (isObject(response) ? response.error : getLang('ads_error_unexpected_error_try_later'));
-          showFastBox(getLang('ads_cant_start_ad_box_title'), errorMessage);
+          if (response.error_low_budget_link) {
+            showFastBox(getLang('ads_cant_start_ad_box_title'), errorMessage, getLang('ads_budget_box_make_payment'), function() {nav.go(response.error_low_budget_link)} );
+          } else {
+            showFastBox(getLang('ads_cant_start_ad_box_title'), errorMessage);
+          }
           return true;
         }
 

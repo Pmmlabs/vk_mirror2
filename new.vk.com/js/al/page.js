@@ -958,6 +958,59 @@ var Page = {
     return cancelEvent(ev);
   },
 
+  autoplayPinnedVideo: function(postId, videoRaw, videoHash) {
+    var thumb = domByClass(ge('post'+postId), 'page_post_thumb_video');
+    if (!thumb || browser.mobile || window.mvcur && mvcur.mvShown) return;
+
+    showInlineVideo(videoRaw, videoHash, {autoplay: 1, addParams: { post_id: postId, mute: 1 }}, null, thumb);
+
+    cur.pinnedVideo = videoRaw;
+    cur.pinnedVideoInitHandlers = function() {
+      var post = ge('post'+postId);
+      var playerEl = ge('video_player') || ge('html5_player');
+      if (post && playerEl && isAncestor(playerEl, post)) {
+        addEvent(window, 'scroll', cur.pinnedVideoScrollHandler);
+        cur.destroy.push(cur.pinnedVideoDestroyHandlers);
+        cur.pinnedVideoScrollHandler();
+      }
+      delete cur.pinnedVideoInitHandlers;
+    };
+
+    cur.pinnedVideoScrollHandler = (function pinnedVideoScrollHandler(evt) {
+      var post = ge('post'+postId);
+      var playerEl = ge('video_player') || ge('html5_player');
+      var playerObj = ge('video_player') || window.html5video;
+      if (!post || !playerEl || !isAncestor(playerEl, post) || (playerObj.isTouchedByUser && playerObj.isTouchedByUser())) {
+        if (cur.pinnedVideoDestroyHandlers) {
+          cur.pinnedVideoDestroyHandlers();
+        } else { // for some reason cur.destroy functions hadn't been called but cur had been rewritten
+          removeEvent(window, 'scroll', pinnedVideoScrollHandler);
+        }
+        return;
+      }
+
+      var playerY = getXY(playerEl)[1];
+      var playerHeight = getSize(playerEl)[1];
+      var scrollY = scrollGetY();
+      var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+      var inViewport = (playerY + playerHeight/2 > scrollY) && (playerY + playerHeight/2 < scrollY + viewportHeight);
+
+      if (inViewport != cur.pinnedVideoPrevInViewport) {
+        window.Videoview && Videoview.togglePlay(inViewport);
+        cur.pinnedVideoPrevInViewport = inViewport;
+      }
+    });
+
+    cur.pinnedVideoDestroyHandlers = function() {
+      removeEvent(window, 'scroll', cur.pinnedVideoScrollHandler);
+      delete cur.pinnedVideo;
+      delete cur.pinnedVideoScrollHandler;
+      delete cur.pinnedVideoDestroyHandlers;
+      delete cur.pinnedVideoPrevInViewport;
+    };
+  },
+
   actionsDropdown: function(el, preloadClbk) {
     if (!el && preloadClbk) {
       preloadClbk();
@@ -1986,6 +2039,7 @@ var Wall = {
               description: replaceEntities(share.description),
               extra: share.extra,
               extra_data: share.extraData,
+              mode: share.mode,
               photo_url: share.noPhoto ? '' : replaceEntities(share.photo_url),
               open_graph_data: (share.openGraph || {}).data,
               open_graph_hash: (share.openGraph || {}).hash
@@ -2667,7 +2721,7 @@ var Wall = {
 
     if (isArray(replyName) && window.Emoji) {
       var rf = ge('reply_field' + post);
-      var v = trim(Emoji.val(rf));
+      var v = clean(trim(Emoji.val(rf)));
       v = v.replace(/&nbsp;/g, ' ');
       if (!v || replyNameOld && isArray(replyNameOld) && !winToUtf(replyNameOld[1]).indexOf(v)) {
         Emoji.val(rf, replyName[1]);
@@ -3327,7 +3381,6 @@ var Wall = {
     var oid_pid = post.split('_');
     var oid = intval(oid_pid[0]), pid_type = oid_pid[1].replace(/-?\d+$/, ''),
         el = ge('post' + oid + pid_type + '_' + reply);
-
     if (!cur.stickerClicked && Wall.checkReplyClick(el, event)) return;
     (event || {}).cancelBubble = true;
 
