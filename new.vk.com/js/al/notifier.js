@@ -3346,11 +3346,9 @@ FastChat = {
     });
     each(Chat.tabs, function(peer) {
       if (curFastChat.onlines[peer] != prev[peer]) {
-        if (onlines[peer]) {
-          addClass(ge('chat_tab_icon_'+peer), 'chat_tab_online');
-        } else {
-          removeClass(ge('chat_tab_icon_'+peer), 'chat_tab_online');
-        }
+        var imgWrap = geByClass1('_chat_tab_image', ge('chat_tab_icon_'+peer));
+        toggleClass(imgWrap, 'online', onlines[peer]);
+        toggleClass(imgWrap, 'mobile', onlines[peer] && mobPlatforms[onlines[peer]]);
       }
     })
     offlines = arrayKeyDiff(prev, onlines, offlines);
@@ -3471,7 +3469,7 @@ FastChat = {
   clistWrapPeer: function (id, data, re) {
     var unread = curFastChat.tabs[id] ? curFastChat.tabs[id].unread : 0,
         online = curFastChat.onlines[id],
-        href, photoEvents, cls = online ? (online > 0 && online < 6 ? ' fc_contact_mobile' : ' fc_contact_online') : '';
+        href, photoEvents, cls = online ? ' online' + (mobPlatforms[online] ? ' mobile' : '') : '';
     var name = (data[0] || '').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
     if (re) {
       name = name.replace(re, '$1<em class="fc_clist_hl">$2</em>');
@@ -3488,7 +3486,7 @@ FastChat = {
     } else {
       var photoStr = '<img src="' + Notifier.fixPhoto(data[1]) + '" class="fc_contact_photo"/>';
     }
-    return '<a href="' + href + '" class="fc_contact clear_fix' + cls + '" id="fc_contact' + id + '" onclick="return FastChat.selectPeer(' + id + ', event);" onmousedown="event.cancelBubble = true;" onmouseover="FastChat.clistPeerOver(this, 1, event);"  onmouseout="FastChat.clistPeerOver(this, 0, event);"><span class="fc_contact_photo" ' + photoEvents + '>'+photoStr+'</span><span class="fc_contact_status"></span><span class="fc_contact_name">' + name + '<span id="fc_contact_unread' + id + '" class="fc_contact_unread">' + (unread ?' <b>+' + unread + '</b>' : '') + '</span></span></a>';
+    return '<a href="' + href + '" class="fc_contact clear_fix" id="fc_contact' + id + '" onclick="return FastChat.selectPeer(' + id + ', event);" onmousedown="event.cancelBubble = true;" onmouseover="FastChat.clistPeerOver(this, 1, event);"  onmouseout="FastChat.clistPeerOver(this, 0, event);"><span class="fc_contact_photo' + cls + '" ' + photoEvents + '>'+photoStr+'</span><span class="fc_contact_status"></span><span class="fc_contact_name">' + name + '<span id="fc_contact_unread' + id + '" class="fc_contact_unread">' + (unread ?' <b>+' + unread + '</b>' : '') + '</span></span></a>';
   },
   clistPeerOver: function (el, state, e) {
     if (!el || !checkOver(e, el)) return;
@@ -3790,7 +3788,7 @@ FastChat = {
     var counter = geByClass1('chat_tab_counter', iconObj)
     if (!counter) {
       counter = ce('div', {className: 'chat_tab_counter'});
-      iconObj.insertBefore(counter, iconObj.firstChild);
+      iconObj.appendChild(counter);
     }
     if (setVal === undefined) {
       Chat.counters[peer] = positive((Chat.counters[peer] || 0) + add);
@@ -3830,7 +3828,8 @@ FastChat = {
     } else {
       var peerHref = data.alink || '/id'+peer;
     }
-    var t = se('<a class="chat_tab_wrap'+(noAnim ? '' : ' chat_tab_beforeanim')+(data.online ? ' chat_tab_online' : '')+'" id="chat_tab_icon_'+peer+'" href="'+peerHref+'" onclick="FastChat.itemsOut();return FastChat.togglePeer('+peer+', event);"><div class="chat_tab_imgcont"><div class="chat_tab_online_icon"></div><div class="chat_tab_typing_wrap"><div class="chats_sp chat_tab_typing_icon"></div></div><div class="chat_tab_close" onclick="return FastChat.closeTabIcon('+peer+', event)"></div>'+imgRow+'</div></a>');
+    var cls = data.online ? ' online' + (mobPlatforms[data.online] ? ' mobile' : '') : '';
+    var t = se('<a class="chat_tab_wrap' + (noAnim ? '' : ' chat_tab_beforeanim') + '" id="chat_tab_icon_' + peer + '" href="' + peerHref + '" onclick="FastChat.itemsOut();return FastChat.togglePeer(' + peer + ', event);"><div class="chat_tab_imgcont _chat_tab_image' + cls + '"><div class="chat_tab_close" onclick="return FastChat.closeTabIcon(' + peer + ', event)"></div>' + imgRow + '</div><div class="chat_tab_typing_wrap"><div class="chats_sp chat_tab_typing_icon"></div></div></a>');
     Chat.itemsCont.insertBefore(t, Chat.itemsCont.firstChild);
     Chat.tabs[peer] = {el: t, name: data['name']};
     addClass(Chat.wrap, 'chat_expand');
@@ -5172,7 +5171,7 @@ FastChat = {
         draft = ls.get('im_draft' + vk.id + '_' + peer);
 
     if (!txt || !tab || !draft ||
-        val(txt).length > draft.txt.length) {
+        draft.txt && val(txt).length > draft.txt.length) {
       return false;
     }
     draft.txt = clean(draft.txt);
