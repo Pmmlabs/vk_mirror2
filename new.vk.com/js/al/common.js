@@ -485,6 +485,13 @@ function psr(html) {
   return html;
 }
 
+function domReplaceEl(oldEl, newEl) {
+  if (isString(newEl)) {
+    newEl = se(newEl);
+  }
+  return domPN(oldEl).replaceChild(newEl, oldEl);
+}
+
 function domEL(el, p) {
   p = p ? 'previousSibling' : 'nextSibling';
   while (el && !el.tagName) el = el[p];
@@ -6493,20 +6500,6 @@ function renderFlash(cont, opts, params, vars) {
   }
   ge(cont).innerHTML = browser.flashwrap(opts, params);
   return true;
-}
-
-function playAudioNew() {
-  var args = arguments;
-  if (args[args.length - 1] !== false) args = Array.prototype.slice.apply(arguments).concat([true]);
-  stManager.add(['audioplayer.js', 'audioplayer.css'], function() {
-    audioPlayer.operate.apply(null, args);
-  });
-}
-
-function _addAudio(opts) {
-  stManager.add(['audio.js'], function() {
-    Audio.addShareAudio(opts);
-  });
 }
 
 function showAudioClaimWarning(owner_id, id, delete_hash, claim_id, title, reason) {

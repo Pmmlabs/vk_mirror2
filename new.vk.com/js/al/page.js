@@ -1130,7 +1130,7 @@ var Page = {
       var aid = media.split('_');
       var info = data.info.split(',');
       data = [
-        media,
+        aid[1],
         aid[0],
         info[0],
         data.title,
