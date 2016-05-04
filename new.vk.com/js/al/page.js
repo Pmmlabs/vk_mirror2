@@ -4764,7 +4764,7 @@ var Wall = {
       url: '/like.php',
       params: extend({act: 'a_get_stats', 'object': like_obj, has_share: hasShare ? 1 : ''}, opts.share ? {published: 1} : {}),
       slide: 15,
-      shift: [-left_offset, 6],
+      shift: [-left_offset, like_type == 'wall_reply' ? -3 : 6],
       ajaxdt: 100,
       showdt: 400,
       hidedt: 200,
