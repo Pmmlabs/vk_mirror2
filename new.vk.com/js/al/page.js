@@ -158,7 +158,7 @@ var Page = {
   audioStatusUpdate: function(hash) {
     var exp = isChecked('currinfo_audio');
 
-    var currAudio = window.ap ? AudioUtils.audioObject(window.ap.getCurrentAudio()) : false;
+    var currAudio = window.ap ? AudioUtils.asObject(window.ap.getCurrentAudio()) : false;
     if (currAudio && !window.ap.isPlaying()) {
       currAudio = '';
     }

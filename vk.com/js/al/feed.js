@@ -3199,27 +3199,36 @@ var Feed = {
     return nav.go(el, ev);
   },
 
-  hideMay9Bar: function(el, hash) {
+  hideCustomFeedBar: function(el, section, hash) {
     slideUp(el, 200, re.pbind(el));
-    ajax.post('al_feed.php', {act: 'hide_may9_bar', hash: hash});
+    ajax.post('al_feed.php', {act: 'hide_custom_feed_bar', section: section, hash: hash});
     return false;
   },
 
-  toggleMay9Tab: function(el, hash) {
+  toggleCustomFeedTab: function(el, section, hash, htitle) {
     var hidden = hasClass(el, 'feed_tab_link_hidden'),
-        tab = domPN(ge('feed_may9_tab'));
+        tab = domPN(ge('feed_' + section + '_tab'));
 
     if (!hidden) {
       addClass(tab, 'feed_tab_hidden');
-      var box = showFastBox({title: getLang('news_hide_list_confirm_title'), dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'}, getLang('news_hide_named_list').replace('{title}', getLang('news_list_may9')), getLang('news_hide'), function() {
-        feed.checkTabsFilter('may9', 't_may9');
+
+      var box_confirm = getLang('news_hide_named_list').replace('{title}', getLang(htitle));
+      var onYes = function () {
+        feed.checkTabsFilter(section, 't_' + section);
         box.hide();
-      });
+      }
+      var box = showFastBox({
+        title: getLang('news_hide_list_confirm_title'),
+        dark: 1,
+        bodyStyle: 'padding: 20px; line-height: 160%;'
+      }, box_confirm, getLang('news_hide'), onYes);
+
     } else {
       removeClass(tab, 'feed_tab_hidden');
       removeClass(el, 'feed_tab_link_hidden');
-      feed.checkTabsFilter('may9', 't_may9');
+      feed.checkTabsFilter(section, 't_' + section);
     }
+
     return false;
   },
   recomPreload: function() {

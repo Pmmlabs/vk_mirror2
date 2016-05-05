@@ -369,7 +369,7 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x .feed_filter_tabs_check,
 .is_2x .apps_edit_add_version {
   background-image: url(/images/icons/news_iconset_2x.png?6);
-  background-size: 16px 224px;
+  background-size: 16px 240px;
 }
 .is_2x .feed_filter_lists_row .feed_filter_tabs_icon,
 .is_2x .feed_icon_newlist {
@@ -1648,7 +1648,8 @@ body.dev.is_2x #page_wrap .big.disabled.selector_container td.selector_dropdown 
   background-size: 40px 30px;
 }
 .is_2x .gifts_box_title_back,
-.is_2x .video_upload_title_back {
+.is_2x .video_upload_title_back,
+.is_2x .payments_box_title_back {
   background-image: url(/images/icons/box_back_2x.png);
   background-size: 9px 14px;
 }
@@ -2060,4 +2061,8 @@ body.dev.is_2x .priv_h_arrow,
 }
 .is_2x .restore_section_face__monitor {
   background-image: url('/images/restore/m_2x.png');
+}
+.is_2x .payments_box_promo_descr {
+  background-image: url('/images/icons/payments_promo_2x.png');
+  background-size: 13px 15px;
 }

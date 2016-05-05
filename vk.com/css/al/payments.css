@@ -39,11 +39,17 @@
   margin: 0 -3px 15px;
 }
 .payments_box_unpaid_gifts_info,
-.payments_box_unpaid_gifts_descr {
+.payments_box_unpaid_gifts_descr,
+.payments_box_promo_descr {
   background: #F6F7F9;
   border: 1px solid #DBE0EA;
   line-height: 160%;
   padding: 8px 11px;
+}
+.payments_box_promo_descr {
+  margin: 0 -3px 15px;
+  padding-left: 33px;
+  background: #f6f7f9 url(/images/icons/payments_promo.png?1) no-repeat 12px 9px;
 }
 #payments_box_error {
   margin: 18px 15px 0 15px;
@@ -1189,4 +1195,38 @@ h2.payments_getvotes_title {
   text-align: left;
   width: 154px;
   padding-left: 146px;
+}
+.payments_box_title_back {
+  display: block;
+  margin: -17px 0 -18px -20px;
+  padding: 17px 20px 18px 30px;
+  color: #FFF;
+  background: url(/images/icons/box_back.png) no-repeat 13px 18px;
+  float: left;
+}
+.payments_box_title_back:hover {
+  text-decoration: none;
+  background-color: rgba(0, 31, 64, 0.15);
+}
+.payments_getvotes_promo_wrap .error {
+  margin: 20px 0 15px;
+  display: none;
+}
+.payments_getvotes_promo_controls {
+  margin: 20px 0;
+  text-align: center;
+}
+.payments_getvotes_promo_rules {
+  color: #777;
+  height: auto;
+  font-size: 0.9em;
+  line-height: 160%;
+  text-align: center;
+}
+#payments_promo_iframe_container {
+  display: none;
+  margin: -20px -25px;
+  height: 424px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

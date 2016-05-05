@@ -1034,6 +1034,7 @@ function toggleClass(obj, name, v) {
   (v ? addClass : removeClass)(obj, name);
   return v;
 }
+
 function toggleClassDelayed(obj, name, v) {
   if (v === undefined) {
     v = !hasClass(obj, name);
@@ -2383,7 +2384,7 @@ function updateLeftMenu() {
       pl = ge('page_layout'), head = ge('page_header_wrap'), headH = getSize(head)[1],
       menuH = intval(getSize(menu)[1]), menuPos = getXY(menu)[1],
       pageH = intval(getSize(pageBody)[1]), pagePos = getXY(pageBody)[1], tooBig = menuH >= pageH,
-      lastSt = cur.menuLastSt || 0, lastStyles = cur.menuLastStyles || {}, styles;
+      lastSt = window.menuLastSt || 0, lastStyles = window.menuLastStyles || {}, styles;
 
   if (st <= 0 || tooBig) {
     styles = {
@@ -2418,9 +2419,9 @@ function updateLeftMenu() {
       bottom: null
     };
     setStyle(menu, extend(defaultStyles, styles));
-    cur.menuLastStyles = styles;
+    window.menuLastStyles = styles;
   }
-  cur.menuLastSt = st;
+  window.menuLastSt = st;
 }
 
 function updateSTL() {
@@ -9338,6 +9339,25 @@ window.VideoConstants = {
   VIDEO_ITEM_FLAG_NEED_SIGN_IN:    1 << 13,
   VIDEO_ITEM_FLAG_HD:              1 << 14,
 };
+
+function onlinePlatformClass(platform) {
+  var cls = '';
+  if (platform) {
+    cls += 'online ';
+  }
+
+  if (mobPlatforms[platform]) {
+    cls += 'mobile';
+  }
+
+  return cls;
+}
+
+function toggleOnline(obj, platform) {
+  removeClass(obj, 'online');
+  removeClass(obj, 'mobile');
+  addClass(obj, onlinePlatformClass(platform));
+}
 
 var inherit2 = function(child, parent) {
   var hasProp = {}.hasOwnProperty;
