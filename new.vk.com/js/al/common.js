@@ -7103,16 +7103,7 @@ function showVideo(videoId, listId, options, ev) {
   var claim = nav.objLoc.claim,
       stat = ['videoview.js', 'videoview.css', 'page.js', 'page.css'];
 
-  var fromWallPost = options.addParams && /^-?\d+_\d+$/.test(options.addParams.post_id) && options.addParams.post_id;
-  if (!options.playlistId && fromWallPost) {
-    if (/^public|groups|profile$/.test(cur.module) && hasClass('post'+fromWallPost, 'own')) {
-      options.playlistId = 'wall_' + cur.oid;
-    } else {
-      options.playlistId = 'post_' + options.addParams.post_id;
-    }
-  }
-
-  var fromWallPost = options.addParams && /^-?\d+_\d+$/.test(options.addParams.post_id) && options.addParams.post_id;
+  var fromWallPost = options.addParams && options.addParams.post_id && /^-?\d+_\d+$/.test(options.addParams.post_id);
   if (!options.playlistId && fromWallPost) {
     if (/^public|groups|profile$/.test(cur.module) && hasClass('post'+fromWallPost, 'own')) {
       options.playlistId = 'wall_' + cur.oid;
@@ -7128,7 +7119,7 @@ function showVideo(videoId, listId, options, ev) {
         var wallVideosList = cur.wallVideos && cur.wallVideos[options.playlistId];
         options.addParams.load_playlist = wallVideosList && wallVideosList.list.length >= 50 ? 0 : 1;
       } else {
-        options.addParams.load_playlist = intval(/^(?:post_)?-?\d+_-?\d+$/.test(options.playlistId));
+        options.addParams.load_playlist = /^(?:post_)?-?\d+_-?\d+$/.test(options.playlistId) && !(cur.pageVideosList && cur.pageVideosList[options.playlistId]) ? 1 : 0;
       }
     }
   }
@@ -8021,7 +8012,7 @@ TopSearch = {
     }
     if (!info) info = '';
     verified = verified ? '<div class="page_verified" onmouseover="pageVerifiedTip(this, {' + (mid > 0 ? ('mid:' + mid) : ('gid:' + Math.abs(mid))) + '})"></div>' : '';
-    return '<a href="' + href + '" class="ts_contact clear_fix" id="ts_contact' + mid + '" onclick="return TopSearch.select(this, event, '+peer+');" onmousedown="event.cancelBubble = true;" onmouseover="TopSearch.itemOver(this, 1, event);"  onmouseout="TopSearch.itemOver(this, 0, event);" hinttype="'+hintType+'"><span class="ts_contact_photo' + (online ? ' online' + (mobPlatforms[online] ? ' mobile' : '') : '') +'"><img class="ts_contact_img" src="' + photo + '"/></span><span class="ts_contact_name fl_l"><div class="ts_contact_title_wrap' + (verified ? ' is_verified' : '') + '"><span class="ts_contact_title">' + name + '</span></div>' + verified + '<div class="ts_contact_info">'+info+'</div></span><div class="ts_contact_status"></div></a>';
+    return '<a href="' + href + '" class="ts_contact clear_fix" id="ts_contact' + mid + '" onclick="return TopSearch.select(this, event, '+peer+');" onmousedown="event.cancelBubble = true;" onmouseover="TopSearch.itemOver(this, 1, event);"  onmouseout="TopSearch.itemOver(this, 0, event);" hinttype="'+hintType+'"><span class="ts_contact_photo ' + onlinePlatformClass(online) +'"><img class="ts_contact_img" src="' + photo + '"/></span><span class="ts_contact_name fl_l"><div class="ts_contact_title_wrap' + (verified ? ' is_verified' : '') + '"><span class="ts_contact_title">' + name + '</span></div>' + verified + '<div class="ts_contact_info">'+info+'</div></span><div class="ts_contact_status"></div></a>';
   },
   searchLists: function(q) {
     var _t = TopSearch,
@@ -9243,11 +9234,36 @@ function getDateText(time, offset) {
     var hours = intval(diff / 3600);
     timeText = langWordNumeric(hours, getLang('global_word_hours_ago', 'raw'), getLang('global_hours_ago', 'raw'));
   } else {
-    timeText = getSmDate(time);
+    timeText = getBigDateNew(time, 0, true, '_l');
   }
 
   return timeText;
 }
+
+function getBigDateNew(rawDate, offset, nice, langAddr) {
+  if (typeof nice === 'undefined') {
+    nice = true;
+  }
+
+  if (typeof offset === 'undefined') {
+    offset = 0;
+  }
+
+  if (typeof langAddr === 'undefined') {
+    langAddr = '';
+  }
+
+  var d = new Date(rawDate * 1000);
+  var now = new Date();
+
+  if (d.getFullYear() != now.getFullYear() && d.getTime() < now.getTime() - 86400 * 2 * 1000
+    || Math.abs(d.getTime() - now.getTime()) > 86400 * 182 * 1000) {
+      return langDate(rawDate * 1000, getLang('global_date_year_time', 'raw'), offset, getLang('months_of'), !nice);
+  } else {
+    return langDate(rawDate * 1000, getLang('global_short_date_time' + langAddr, 'raw'), offset, getLang('months_of'), !nice);
+  }
+}
+
 
 function getSmDate(rawDate, offset, nice) {
   if (typeof nice === 'undefined') {

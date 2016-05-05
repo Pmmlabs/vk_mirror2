@@ -960,7 +960,7 @@ var Page = {
 
   autoplayPinnedVideo: function(postId, videoRaw, videoHash) {
     var thumb = domByClass(ge('post'+postId), 'page_post_thumb_video');
-    if (!thumb || browser.mobile || window.mvcur && mvcur.mvShown) return;
+    if (!thumb || browser.mobile || nav.objLoc.z || window.mvcur && mvcur.mvShown) return;
 
     showInlineVideo(videoRaw, videoHash, {autoplay: 1, addParams: { post_id: postId, mute: 1 }}, null, thumb);
 

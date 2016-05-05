@@ -1142,3 +1142,17 @@ img.gift_duck_tease#gift_item_733,
   width: 256px;
   height: 256px;
 }
+.gifts_promo_descr_wrap {
+  padding: 20px 20px 5px;
+}
+.gifts_promo_descr_wrap:empty {
+  display: none;
+}
+.gifts_promo_descr {
+  background: #F6F7F9;
+  border: 1px solid #DBE0EA;
+  line-height: 160%;
+  padding: 8px 11px;
+  padding-left: 33px;
+  background: #f6f7f9 url(/images/icons/payments_promo.png?1) no-repeat 12px 9px;
+}

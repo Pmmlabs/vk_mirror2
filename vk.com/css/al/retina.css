@@ -2062,7 +2062,8 @@ body.dev.is_2x .priv_h_arrow,
 .is_2x .restore_section_face__monitor {
   background-image: url('/images/restore/m_2x.png');
 }
-.is_2x .payments_box_promo_descr {
+.is_2x .payments_box_promo_descr,
+.is_2x .gifts_promo_descr {
   background-image: url('/images/icons/payments_promo_2x.png');
   background-size: 13px 15px;
 }
