@@ -31,7 +31,7 @@ var Page = {
             setInvited(0);
             hide(actions);
             var error = geByClass1('error', row),
-                newErr = se('<div class="page_members_box_error error"><div class="msg_text">' + message + '</div></div>');
+                newErr = se('<div class="page_members_box_error msg"><div class="msg_text">' + message + '</div></div>');
             if (!error) {
               row.insertBefore(newErr, row.firstChild);
             } else {
@@ -150,23 +150,23 @@ var Page = {
   },
 
   playLive: function(liveInfo, ajaxOpts) {
-    getAudioPlayer(function(ap) {
-      ap.playLive(liveInfo, ajaxOpts);
-    });
+    getAudioPlayer().playLive(liveInfo, ajaxOpts);
   },
 
   audioStatusUpdate: function(hash) {
     var exp = isChecked('currinfo_audio');
+    var ap = getAudioPlayer();
 
-    var currAudio = window.ap ? AudioUtils.asObject(window.ap.getCurrentAudio()) : false;
-    if (currAudio && !window.ap.isPlaying()) {
+    var currAudio = AudioUtils.asObject(ap.getCurrentAudio());
+    if (currAudio && !ap.isPlaying()) {
       currAudio = '';
     }
 
-    var currPlaylist = currAudio ? window.ap.getCurrentPlaylist() : false;
+    var currPlaylist = currAudio ? ap.getCurrentPlaylist() : false;
+    var playbackParams = currPlaylist ? currPlaylist.getPlaybackParams() : false;
     var isTop = 0;
-    if (currPlaylist) {
-      isTop = intval(currPlaylist.playbackParams.top_audio || currPlaylist.playbackParams.top);
+    if (currPlaylist && playbackParams) {
+      isTop = intval(playbackParams.top_audio || playbackParams.top);
     }
 
     ajax.post('al_audio.php', {
@@ -1192,7 +1192,7 @@ var Wall = {
     showBox('groupsedit.php', {act: 'bl_edit', name: 'id' + mid, gid: gid, auto: 1}, {stat: ['page.css', 'ui_controls.js', 'ui_controls.css'], dark: 1});
   },
   withMentions: !(browser.mozilla && browser.version.match(/^2\./) || browser.mobile),
-  editPost: function(post, options, onFail, onDone) {
+  editPost: function(el, post, options, onFail, onDone) {
     if (cur.editingPost && ge('wpe_text')) {
       var posts = gpeByClass('wall_posts', ge('wpe_text'));
       if (posts && !isVisible(posts)) {
@@ -1220,14 +1220,22 @@ var Wall = {
         onFail && onFail();
       },
       showProgress: function() {
-        lockButton('wpe_edit' + post);
-        lockButton('post_publish' + post);
-        addClass(geByClass1('post_actions', 'post' + post), 'post_actions_progress');
+        if (hasClass(el, 'ui_actions_menu_item')) {
+          lockActionsMenuItem(el);
+        } else if (hasClass(el, 'flat_button')) {
+          lockButton(el);
+        } else {
+          addClass(geByClass1('post_actions', 'post' + post), 'post_actions_progress');
+        }
       },
       hideProgress: function() {
-        unlockButton('wpe_edit' + post);
-        unlockButton('post_publish' + post);
-        removeClass(geByClass1('post_actions', 'post' + post), 'post_actions_progress');
+        if (hasClass(el, 'ui_actions_menu_item')) {
+          unlockActionsMenuItem(el);
+        } else if (hasClass(el, 'flat_button')) {
+          unlockButton(el);
+        } else {
+          removeClass(geByClass1('post_actions', 'post' + post), 'post_actions_progress');
+        }
       }
     });
   },
@@ -1253,8 +1261,20 @@ var Wall = {
           delete cur.onWKFix;
         }
       },
-      showProgress: lockButton.pbind('wpe_fix' + post),
-      hideProgress: unlockButton.pbind('wpe_fix' + post)
+      showProgress: function() {
+        if (hasClass(link, 'ui_actions_menu_item')) {
+          lockActionsMenuItem(link);
+        } else {
+          lockButton.pbind('wpe_fix' + post);
+        }
+      },
+      hideProgress: function() {
+        if (hasClass(link, 'ui_actions_menu_item')) {
+          unlockActionsMenuItem(link);
+        } else {
+          unlockButton.pbind('wpe_fix' + post);
+        }
+      }
     });
     return false;
   },
@@ -3054,7 +3074,7 @@ var Wall = {
       }
     }
   },
-  deletePost: function(post, hash, root, force) {
+  deletePost: function(el, post, hash, root, force) {
     (cur.wallLayer ? wkcur : cur).wallMyDeleted[post] = 1;
     var r = ge('post' + post),
         actionsWrap = geByClass1('post_actions', r);
@@ -3068,7 +3088,7 @@ var Wall = {
     }, {
       onDone: function(msg, res, need_confirm) {
         if (need_confirm) {
-          var box = showFastBox(msg, need_confirm, getLang('global_delete'), function() { box.hide(); wall.deletePost(post, hash, root, 1); }, getLang('box_cancel'));
+          var box = showFastBox(msg, need_confirm, getLang('global_delete'), function() { box.hide(); wall.deletePost(el, post, hash, root, 1); }, getLang('box_cancel'));
           return;
         }
         var t = geByClass1('_post_content', r) || geByClass1('feedback_row_t', r);
@@ -3103,12 +3123,22 @@ var Wall = {
         }
       },
       showProgress: function() {
-        lockButton('post_nopublish' + post);
-        addClass(actionsWrap, 'post_actions_progress');
+        if (hasClass(el, 'ui_actions_menu_item')) {
+          lockActionsMenuItem(el);
+        } else if (hasClass(el, 'flat_button')) {
+          lockButton(el);
+        } else {
+          addClass(actionsWrap, 'post_actions_progress');
+        }
       },
       hideProgress: function() {
-        unlockButton('post_nopublish' + post);
-        removeClass(actionsWrap, 'post_actions_progress');
+        if (hasClass(el, 'ui_actions_menu_item')) {
+          unlockActionsMenuItem(el);
+        } else if (hasClass(el, 'flat_button')) {
+          unlockButton(el);
+        } else {
+          removeClass(actionsWrap, 'post_actions_progress');
+        }
       }
     });
     var btn = ge('delete_post' + post), myReply;
@@ -3116,15 +3146,15 @@ var Wall = {
       btn.tt.destroy();
     }
   },
-  markAsSpam: function(post, hash, el) {
+  markAsSpam: function(el, post, hash, inline) {
     ajax.post('al_wall.php', {
       act: 'spam',
       post: post,
       hash: hash,
-      from: el ? 'inline' : ''
+      from: inline ? 'inline' : ''
     }, {
       onDone: function(msg, js) {
-        if (el) {
+        if (inline) {
           domPN(el).replaceChild(ce('div', {innerHTML: msg}), el);
         } else {
           var r = ge('post' + post), t = geByClass1('_post_content', r) || geByClass1('feedback_row_t', r);
@@ -3141,13 +3171,23 @@ var Wall = {
         if (js) {
           eval(js);
         }
-      }, showProgress: el ? function() {
-        hide(el);
-        show(domNS(el) || domPN(el).appendChild(ce('span', {className: 'progress_inline'})));
-      } : false, hideProgress: el ? function() {
-        show(el);
-        re(domNS(el));
-      } : false,
+      },
+      showProgress: function() {
+        if (el && hasClass(el, 'ui_actions_menu_item')) {
+          lockActionsMenuItem(el);
+        } else if (inline) {
+          hide(el);
+          show(domNS(el) || domPN(el).appendChild(ce('span', {className: 'progress_inline'})));
+        }
+      },
+      hideProgress: function() {
+        if (el && hasClass(el, 'ui_actions_menu_item')) {
+          unlockActionsMenuItem(el);
+        } else if (inline) {
+          show(el);
+          re(domNS(el));
+        }
+      } ,
       stat: ['privacy.js', 'privacy.css']
     });
     var btn = ge('delete_post' + post);
@@ -3357,7 +3397,7 @@ var Wall = {
           target.onclick ||
           target.onmousedown ||
           target.tagName == 'A' && !hasClass(target, '_reply_lnk') ||
-          inArray(target.tagName, ['IMG', 'TEXTAREA', 'EMBED', 'OBJECT']) ||
+          inArray(target.tagName, ['IMG', 'TEXTAREA', 'EMBED', 'OBJECT']) && !hasClass(target, 'emoji') ||
           target.id == 'wpe_cont' ||
           (foundGood = hasClass(target, '_reply_content'))
       ) {
