@@ -275,7 +275,7 @@ audio_need_flash_title='Необходим Flash-проигрыватель';
 audio_new_album_title='Новый альбом';
 audio_not_found='Аудиозапись не найдена';
 audio_no_audios_found='По запросу {query} не найдено ни одной аудиозаписи';
-audio_no_rec_load_msg='Здесь Вы можете хранить Ваши аудиозаписи.<br>Для того, чтобы загрузить Вашу первую аудиозапись, {link}нажмите здесь{/link}.';
+audio_no_rec_load_msg='Здесь Вы можете хранить Ваши аудиозаписи.<br>Для того, чтобы загрузить первую аудиозапись, {link}нажмите здесь{/link}.';
 audio_no_your_recs='У Вас ещё нет аудиозаписей';
 audio_only_foreign_music='Только зарубежные';
 audio_popular_audios='Популярные аудиозаписи';
@@ -293,7 +293,7 @@ audio_title_search='Поиск по запросу {q}';
 audio_uploading_over='Загрузка завершена';
 audio_upl_not_enabled_ingroup='В данной группе отключены аудиозаписи, поэтому загрузка аудиофайлов недоступна.';
 audio_user_no_recs='У пользователя ещё нет аудиозаписей.';
-// section = 3; version = 113;
+// section = 3; version = 114;
 
 apps_addapp='Добавить приложение';
 apps_addedtogroup='Приложение добавлено в группу';

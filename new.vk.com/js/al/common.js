@@ -6602,8 +6602,8 @@ function onLoginFailed(code, opts) {
   __qlClear();
   switch (code) {
     case -1: location.href = location.href.replace(/^http:/, 'https:'); break;
-    case 4: location.href = '/login.php?m=1&email=' + opts.email; break;
-    default: location.href = '/login.php'; break;
+    case 4: location.href = '/login?m=1' + (opts.expire ? '&s=0' : '') + '&email=' + opts.email; break;
+    default: location.href = '/login'; break;
   }
 }
 function onLoginCaptcha(sid, dif) {
