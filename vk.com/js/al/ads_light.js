@@ -816,7 +816,7 @@ AdsLight.setNewBlock = function(adsHtml, adsSection, adsCanShow, adsShowed, adsP
     AdsLight.onAdsShowed(0);
   }, 100);
 
-  if (abp) {
+  if (abp !== undefined && abp) {
     setCookie('remixab', 1, 30);
   }
 }
