@@ -258,7 +258,7 @@
   height: 12px;
   display: inline-block;
   vertical-align: top;
-  background-image: url('/images/icons/video_catalog.png?4');
+  background-image: url('/images/icons/video_catalog.png?8');
   background-position: -30px -32px;
   position: relative;
   top: 2px;
@@ -314,7 +314,7 @@
   color: #777;
 }
 #videocat_page .videocat_header_icon {
-  background-image: url('/images/icons/video_catalog.png?7');
+  background-image: url('/images/icons/video_catalog.png?8');
   width: 28px;
   height: 28px;
   display: inline-block;
@@ -400,6 +400,9 @@
 }
 #videocat_page .videocat_header_icon.videocat_header_63 {
   background-position: 0px -448px;
+}
+#videocat_page .videocat_header_icon.videocat_header_21 {
+  background-position: 0px -560px;
 }
 #videocat_page .videocat_header_title {
   font-size: 1.1em;
