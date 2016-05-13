@@ -1738,6 +1738,17 @@ a.feed_article_thumb {
   border-radius: 1px;
   line-height: 180%;
 }
+.feed_info_bar .feed_info_bar_buttons {
+  margin-top: 8px;
+}
+.feed_info_bar .feed_info_bar_buttons .feed_info_bar_add_list {
+  margin: 0 10px 0 -5px;
+}
+.feed_info_bar .feed_info_bar_buttons .feed_info_bar_hide {
+  margin-top: 3px;
+  display: inline-block;
+  vertical-align: top;
+}
 #feed_top_info_msg {
   background: #EDF1F5;
   padding: 16px 11px;

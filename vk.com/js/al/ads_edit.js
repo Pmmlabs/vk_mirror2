@@ -3813,6 +3813,12 @@ AdsViewEditor.prototype.completeLink = function() {
 
   delete this.params_old;
 
+  var ajaxParams = {};
+  ajaxParams.hash = cur.collectClickStatHash;
+  ajaxParams.action = 'select_ad_object';
+  ajaxParams.format_type = this.params.format_type.value;
+  ajax.post('/adsedit?act=collect_click_stat', ajaxParams);
+
   Ads.initFixed('ads_edit_audience_wrap');
 
   var scrollElem = ge('ads_param_link_type_wrap');
