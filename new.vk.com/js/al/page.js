@@ -1824,6 +1824,9 @@ var Wall = {
       }, 0);
 
     });
+    if (data[2]) {
+      wall.focusOnEnd();
+    }
   },
   initPostEditable: function(draft) {
     var txt = cur.postField;
@@ -1990,6 +1993,17 @@ var Wall = {
     newParams.Message = params.message;
     delete newParams.message;
     return newParams;
+  },
+  focusOnEnd: function() {
+    var el = ge('post_field'),l=el.lastChild, len = l.innerHTML ? l.innerHTML.length : l.length;
+    el.focus();
+    if (document.selection) {
+      var sel = document.selection.createRange();
+      sel.moveStart('character', len);
+      sel.select();
+    } else {
+      window.getSelection().collapse(l, len);
+    }
   },
   sendPost: function() {
     var addmedia = cur.wallAddMedia || {},
