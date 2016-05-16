@@ -54,6 +54,7 @@ global_online=['','Online','Online'];
 global_online_sm=['','online','online'];
 global_privacy_except='кроме:';
 global_rating_box_header='Рейтинг';
+global_recaptcha_title='Подтверждение действия';
 global_recommended_exceeded=['','Рекомендуемый объем превышен на %s знак.','Рекомендуемый объем превышен на %s знака.','Рекомендуемый объем превышен на %s знаков.'];
 global_recommended_lines=['','Рекомендуемый объем превышен на %s строку.','Рекомендуемый объем превышен на %s строки.','Рекомендуемый объем превышен на %s строк.'];
 global_reply_to='ответ {user}';

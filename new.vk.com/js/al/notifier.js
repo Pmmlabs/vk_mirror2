@@ -173,7 +173,7 @@ Notifier = {
 
   initCommunityQueues: function(fails) {
     return false;
-
+    /*
     var key = ls.get('im_m_comms_key');
 
     var check = key && key.split ? key.split(';') : [];
@@ -200,6 +200,7 @@ Notifier = {
         return true;
       }
     })
+    */
   },
 
   notificationsGc: function() {
@@ -5632,6 +5633,7 @@ var TopNotifier = {
   },
   postTooltip: function(el, post, opts) {
     return false;
+    /*
 
     var reply = (opts || {}).reply, url = 'al_wall.php';
 
@@ -5654,6 +5656,7 @@ var TopNotifier = {
       className: 'rich wall_tt',
       appendParentCls: 'page_header_wrap'
     });
+    */
   },
   hideRow: function(el, item, hash) {
     var row = gpeByClass('_feed_row', el);
