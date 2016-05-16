@@ -3539,23 +3539,38 @@ var ajax = {
         }
         break;
       case 2: // captcha
-        var resend = function(sid, key) {
-          var nq = extend(q, {captcha_sid: sid, captcha_key: key});
-          var no = o.cache ? extend(o, {cache: -1}) : o;
-          ajax._post(url, nq, no);
-        }
         var addText = '';
         // if (vk.nophone == 1 && !vk.nomail) {
         //   addText = getLang('global_try_to_activate').replace('{link}', '<a class="phone_validation_link">').replace('{/link}', '</a>');
         //   addText = '<div class="phone_validation_suggest">' + addText + '</div>';
         // }
-        o._captcha = showCaptchaBox(answer[0], intval(answer[1]), o._captcha, {
-          onSubmit: resend,
-          addText: addText,
-          onDestroy: function() {
-            if (o.onFail) o.onFail();
+        if (intval(answer[1]) === 2) {
+          var resend = function(response) {
+            var nq = extend(q, {recaptcha: response});
+            var no = o.cache ? extend(o, {cache: -1}) : o;
+            ajax._post(url, nq, no);
           }
-        });
+          o._captcha = showReCaptchaBox(answer[0], answer[2], o._captcha, {
+            onSubmit: resend,
+            addText: addText,
+            onDestroy: function() {
+              if (o.onFail) o.onFail();
+            }
+          });
+        } else {
+          var resend = function(sid, key) {
+            var nq = extend(q, {captcha_sid: sid, captcha_key: key});
+            var no = o.cache ? extend(o, {cache: -1}) : o;
+            ajax._post(url, nq, no);
+          }
+          o._captcha = showCaptchaBox(answer[0], intval(answer[1]), o._captcha, {
+            onSubmit: resend,
+            addText: addText,
+            onDestroy: function() {
+              if (o.onFail) o.onFail();
+            }
+          });
+        }
         o._suggest = geByClass1('phone_validation_link', o._captcha.bodyNode);
         if (o._suggest) {
           addEvent(o._suggest, 'click', function() {
@@ -6068,6 +6083,47 @@ function showCaptchaBox(sid, dif, box, o) {
     this.src = '/captcha.php?sid=' + sid + difficulty + '&v=' + irand(1000000, 2000000);
   });
   elfocus(key);
+  return box;
+}
+
+function showReCaptchaBox(key, lang, box, o) {
+  window.recaptchaResponse = function(response) {
+    o.onSubmit(response);
+  };
+  var was_box = box ? true : false,
+      loaded = !!window.grecaptcha;
+  if (!was_box) {
+    if (!loaded) {
+      window.recaptchaCallback = function() {
+        val('recaptcha', '');
+        grecaptcha.render('recaptcha', {
+          sitekey: key,
+          callback: recaptchaResponse
+        });
+      }
+      headNode.appendChild(ce('script', {
+        type: 'text/javascript',
+        src: 'https://www.google.com/recaptcha/api.js?onload=recaptchaCallback&render=explicit&hl=' + lang
+      }));
+    }
+
+    var content = '\
+<div id="recaptcha" class="recaptcha"></div>' + (o.addText || '');
+    box = showFastBox({
+      title: getLang('global_recaptcha_title'),
+      width: 354,
+      onHide: o.onHide,
+      onDestroy: o.onDestroy || false
+    }, content, getLang('captcha_cancel'), box.hide);
+    showProgress('recaptcha');
+  }
+  if (was_box || loaded) {
+    grecaptcha.reset();
+  }
+  if (loaded) {
+    recaptchaCallback();
+  }
+  box.changed = true;
   return box;
 }
 
