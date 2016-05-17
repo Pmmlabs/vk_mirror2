@@ -177,9 +177,11 @@ var Page = {
       oid: vk.id,
       top: isTop
     }, {
-      onDone: function(text) {
+      onDone: function(text, expStatus) {
         if (vk.id != cur.oid || !text) return;
         val('current_info', text);
+
+        ap.setStatusExportInfo(expStatus);
       }
     });
   },
@@ -4774,8 +4776,17 @@ var Wall = {
         wrapEl = domByClass(postEl, '_like_wrap'),
         iconEl = domByClass(wrapEl, '_icon'),
         countEl = domByClass(wrapEl, '_count'),
-        my = hasClass(wrapEl, 'my_like'),
-        ref = cur.wallType ? (cur.wallType == 'feed' ? 'feed_' + cur.section : ('wall_' + (cur.onepost ? 'one' : (!(cur.wallType || '').indexOf('full_') ? 'full' : 'page')))) : cur.module;
+        my = hasClass(wrapEl, 'my_like'), ref;
+
+    if (cur.wallType) {
+      if (cur.wallType == 'feed') {
+        ref = 'feed_' + ((cur.section == 'news' && cur.subsection) ? cur.subsection : cur.section)
+      } else {
+        ref = 'wall_' + (cur.onepost ? 'one' : (!(cur.wallType || '').indexOf('full_') ? 'full' : 'page'))
+      }
+    } else {
+      ref = cur.module;
+    }
 
     ajax.post('like.php', {
       act: my ? 'a_do_unlike' : 'a_do_like',
