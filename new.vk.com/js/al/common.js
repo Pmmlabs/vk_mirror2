@@ -603,6 +603,21 @@ function domClosestPositioned(el) {
   return parent;
 }
 
+function domClosestOverflowHidden(el) {
+  var parent = domPN(el);
+  while (parent && parent != bodyNode) {
+    var overflow = getStyle(parent, 'overflow');
+
+    if (overflow == 'hidden') {
+      break;
+    }
+
+    parent = domPN(parent);
+  }
+
+  return parent;
+}
+
 function show(elem) {
   var l = arguments.length;
   if (l > 1) {
@@ -5582,6 +5597,16 @@ if (!browser.mobile && !vk.host.match(/snapster\.io/)) {
       if (e.keyCode == 191 && (e.ctrlKey || (e.metaKey && browser.mac))) {
         Chat.showFriends();
       }
+    }
+
+    if (e.ctrlKey) {
+      addClass(document.body, 'ctrl_key_pressed');
+    }
+  });
+
+  addEvent(document, 'keyup', function globalKeyUp(e) {
+    if (!e.ctrlKey) {
+      removeClass(document.body, 'ctrl_key_pressed');
     }
   });
 }

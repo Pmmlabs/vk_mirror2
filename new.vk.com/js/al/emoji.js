@@ -1037,9 +1037,15 @@ ttCalcHeight: function(optId, obj, tt) {
     headSpace = 0;
   }
   setStyle(list, {height: rowsCnt * smileH + listPadding});
-  var ttH = getSize(tt)[1], toUp, space,
-      upSpace = objY - offsetH - headSpace - scrollY,
-      downSpace = wh + scrollY - objY - objH - offsetH;
+
+  var closestOverflowHiddenEl = domClosestOverflowHidden(obj);
+  var closestOverflowHiddenY = getXY(closestOverflowHiddenEl)[1];
+
+  var ttH = getSize(tt)[1];
+  var toUp, space;
+  var upSpace = objY - offsetH - headSpace - scrollY - closestOverflowHiddenY;
+  var downSpace = wh + scrollY - objY - objH - offsetH;
+
   if (upSpace < ttH && downSpace < ttH) {
     toUp = (upSpace >= downSpace);
   } else {
