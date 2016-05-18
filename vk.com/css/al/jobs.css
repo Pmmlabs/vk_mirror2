@@ -154,6 +154,9 @@
 .jobs_apply_form h2 {
   margin-top: 20px;
 }
+.jobs_apply_resume_url {
+  display: none;
+}
 .jobs_form_header {
   color: #36638E;
   font-size: 12px;
