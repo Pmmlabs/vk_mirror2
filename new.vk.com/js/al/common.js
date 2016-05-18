@@ -5577,6 +5577,7 @@ if (!browser.mobile && !vk.host.match(/snapster\.io/)) {
       return -1;
     }
     if (e.keyCode == KEY.ESC) {
+      topHeaderClose();
       return cancelEvent(e);
     }
     var mediaKeys = [176, 177, 178, 179], isMedia = false;

@@ -4853,6 +4853,7 @@ var Wall = {
       cur.viewAsBox();
       return cancelEvent(ev);
     }
+    if (!vk.id) return;
 
     stopEvent(ev);
     var p = wall.parsePostId(post_id),
