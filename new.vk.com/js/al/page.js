@@ -2007,6 +2007,17 @@ var Wall = {
       window.getSelection().collapse(l, len);
     }
   },
+  saveExport: function(el, service, hash) {
+    if (!isChecked('friends_only')) {
+      checkbox(el);
+    }
+
+    cur.saveExportTO = cur.saveExportTO || {};
+    clearTimeout(cur.saveExportTO[service]);
+    cur.saveExportTO[service] = setTimeout(function() {
+      ajax.post('/al_settings.php', {act: 'a_save_export', service: service, disabled: (isChecked(el) ? 0 : 1), hash: hash});
+    }, 300);
+  },
   sendPost: function() {
     var addmedia = cur.wallAddMedia || {},
         media = addmedia.chosenMedia || {},

@@ -3909,3 +3909,13 @@ a.ts_search_link.active {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
+.return_to_redesign_lnk {
+  font-size: 0.91em;
+  text-align: center;
+  width: 118px;
+  border-top: 1px solid #DCE3E9;
+  padding: 3px 0 4px 0;
+}
+.return_to_redesign_lnk a {
+  color: #777;
+}
