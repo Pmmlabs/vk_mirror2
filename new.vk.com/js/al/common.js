@@ -6131,13 +6131,12 @@ function showReCaptchaBox(key, lang, box, o) {
       width: 354,
       onHide: o.onHide,
       onDestroy: o.onDestroy || false
-    }, content, getLang('captcha_cancel'), box.hide);
+    }, content, getLang('captcha_cancel'));
     showProgress('recaptcha');
   }
-  if (was_box || loaded) {
+  if (was_box && loaded) {
     grecaptcha.reset();
-  }
-  if (loaded) {
+  } else if (loaded) {
     recaptchaCallback();
   }
   box.changed = true;

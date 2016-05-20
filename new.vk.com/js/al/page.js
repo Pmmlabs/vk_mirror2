@@ -964,7 +964,7 @@ var Page = {
     var thumb = domByClass(ge('post'+postId), 'page_post_thumb_video');
     if (!thumb || browser.mobile || nav.objLoc.z || window.mvcur && mvcur.mvShown) return;
 
-    showInlineVideo(videoRaw, videoHash, {autoplay: 1, addParams: { post_id: postId, mute: 1 }}, null, thumb);
+    showInlineVideo(videoRaw, videoHash, {autoplay: 1, addParams: { post_id: postId, from_autoplay: 1 }}, null, thumb);
 
     cur.pinnedVideo = videoRaw;
     cur.pinnedVideoInitHandlers = function() {
