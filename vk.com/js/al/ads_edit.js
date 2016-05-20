@@ -1299,7 +1299,7 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
     link_owner_id:          {value: '',           video_value: ''},
     link_url:               {value: '', video_value: '', video_preview_hash: '', is_ok: false, event_final_time: 1},
     link_url_vk:            {value: 0,  link_type_value: 0, link_id_value: 0},
-    link_domain:            {value: '', value_p: '', value_a: '', value_k: '', value_d: '', link_url: '', delayed_error: '', needed: false, is_ok: false},
+    link_domain:            {value: '', value_escaped: '', value_p: '', value_a: '', value_k: '', value_d: '', link_url: '', delayed_error: '', needed: false, is_ok: false},
     link_domain_confirm:    {value: 0},
     title:                  {value: '', value_escaped: '', value_default: '', max_length: 0, max_new_lines: 0, value_p: '', value_a: '', value_k: '', value_d: '', value_e: '', value_max: '', update_value_max: true},
     description:            {value: '', value_escaped: '', value_default: '', max_length: 0, max_new_lines: 0, max_length_normal: 0, max_length_mobile: 0},
@@ -3991,7 +3991,7 @@ AdsViewEditor.prototype.getPreviewDomain = function() {
       }
       var linkDomain = linkUrlInfo.domain;
       if (!linkDomain.match(/(^|\.)(vkontakte\.ru|vk\.com)$/)) {
-        var linkDomainInfo = this.getLinkInfo(this.params.link_domain.value);
+        var linkDomainInfo = this.getLinkInfo(this.params.link_domain.value_escaped);
         if (!linkDomainInfo) {
           return '';
         }

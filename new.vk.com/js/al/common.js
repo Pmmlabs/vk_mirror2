@@ -2175,7 +2175,11 @@ function updSeenAdsInfo() {
 
   var friendsHeight = (isVisible('left_friends') ? getSize(ge('left_friends'))[1] : 0);
   var adsY = getXY('ads_left', true)[1];
-  var ads = Math.floor(((window.lastWindowHeight || 0) - adsY + friendsHeight) / 230);
+  var ads = Math.floor(((window.lastWindowHeight || 0) - adsY + friendsHeight) / 260);
+
+  // update actual value. Sometimes __seenAds not the same as in cookie
+  __seenAds = intval(getCookie('remixseenads'));
+
   if (__seenAds !== ads) {
     __seenAds = ads;
     setCookie('remixseenads', ads, 30);
