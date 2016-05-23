@@ -9033,6 +9033,20 @@ function toggleAudioLyrics(event, ref, audioId, lyricsId) {
   return false;
 }
 
+function audioSearchPerformer(ref, ev) {
+  cur.cancelClick = true;
+
+  var audioEl = gpeByClass('_audio_row', ref);
+  var isInAudioPage = window.AudioPage && AudioPage(audioEl);
+  var audio = AudioUtils.getAudioFromEl(audioEl, true);
+
+  if (isInAudioPage) {
+    return nav.change({ q: audio.performer, performer: 1 }, event, { search: true });
+  } else {
+    return nav.go(ref, event);
+  }
+}
+
 function getAudioPlayer() {
   window.ap = window.ap || new AudioPlayer();
   return window.ap;
