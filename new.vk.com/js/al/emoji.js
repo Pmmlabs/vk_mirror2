@@ -1537,29 +1537,62 @@ stickerClick: function(optId, stickerNum, width, obj) {
 
 stickerOver: function(stickerNum, el) {
   var params = {act: 'a_stickers_hover', sticker_id: stickerNum, from: cur.module};
-  var tt_index = (cur.tooltips || []).length;
 
   if (isObject(el.tt) && el.firstChild.nodeName === 'IMG') {
     return el.tt.show();
   }
 
-  var opt = {
-    url: 'al_im.php',
-    params: params,
-    index: tt_index,
-    className: 'subscribe_post_tt sticker_extra_tt tt_text_only sticker_extra_tt' + tt_index,
-    shift: function() {
-      return [-138, 0, -170];
-    },
-    hasover: 1,
-    slideX: 15,
-    showsp: 150,
-    cache: 1,
-    forcetodown: true,
-    no_shadow: true
-  };
+  var onDone = function (tooltip, content) {
+    var tt_index = (cur.tooltips || []).length;
+    var tt_classname = [
+      'subscribe_post_tt',
+      'sticker_extra_tt',
+      'sticker_extra_tt' + tt_index,
+      !tooltip.image ? 'tt_text_only' : ''
+    ];
 
-  return showTooltip(el, opt);
+    tt_classname = tt_classname.join(' ');
+
+    if (!tooltip.show) {
+      return;
+    }
+
+    var opt = {
+      index: tt_index,
+      className: tt_classname,
+      content: content,
+      shift: function() {
+        return [-138, 0, -200];
+      },
+      hasover: 1,
+      slideX: 15,
+      showsp: 150,
+      cache: 1,
+      forcetodown: true,
+      no_shadow: true,
+      dir: 'left',
+      onShowStart: function (tt) {
+        var el = tt.container,
+            size = getSize(tt.container),
+            el_height = size[1],
+            el_height_default = 225,
+            el_height_fault = 10;
+
+        if (el_height >= el_height_default) {
+          return;
+        }
+
+        el_diff = intval((el_height_default - el_height) / 2) + el_height_fault;
+        el_cur_top = intval(getStyle(el, 'top', true));
+        el_top = el_cur_top + el_diff;
+        setStyle(el, 'top', el_top);
+      }
+    }
+
+    showTooltip(el, opt);
+  }
+
+  ajax.post('al_im.php', params, {onDone: onDone});
 },
 
 selectPeer: function(optId) {
