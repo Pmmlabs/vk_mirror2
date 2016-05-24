@@ -172,8 +172,6 @@ Notifier = {
   },
 
   initCommunityQueues: function(fails) {
-    return false;
-    /*
     var key = ls.get('im_m_comms_key');
 
     var check = key && key.split ? key.split(';') : [];
@@ -200,7 +198,6 @@ Notifier = {
         return true;
       }
     })
-    */
   },
 
   notificationsGc: function() {

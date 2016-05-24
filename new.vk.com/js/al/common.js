@@ -1642,8 +1642,8 @@ function scrollToY(y, speed, anim, noCorrect) {
     if (browser.msie6) {
       animate(pageNode, {scrollTop: y}, speed, updT);
     } else {
-      animate(htmlNode, {scrollTop: y}, {duration: speed, transition: Fx.Transitions.easeInCirc, onComplete: updT});
-      animate(bodyNode, {scrollTop: y}, {duration: speed, transition: Fx.Transitions.easeInCirc, onComplete: updT});
+      animate(htmlNode, {scrollTop: y}, {duration: speed, transition: Fx.Transitions.sineInOut, onComplete: updT});
+      animate(bodyNode, {scrollTop: y}, {duration: speed, transition: Fx.Transitions.sineInOut, onComplete: updT});
     }
   } else {
     if (anim && anim !== 2) {
@@ -5685,6 +5685,8 @@ function MessageBox(options, dark) {
   refreshBox();
   boxRefreshCoords(boxContainer);
 
+  var emitter = new EventEmitter();
+
   // Refresh box properties
   function refreshBox() {
     // Set title
@@ -5717,12 +5719,18 @@ function MessageBox(options, dark) {
     } else {
       type = 'ok';
     }
+
+    var handler = function() {
+      emitter.emit(type, retBox);
+      onclick.apply(null, arguments);
+    }
+
     var buttonWrap = ce('button', {
       className: btnClass,
       innerHTML: label
     }), row = boxButtons.rows[0], cell = row.insertCell(0);
     cell.appendChild(buttonWrap);
-    createButton(buttonWrap, onclick);
+    createButton(buttonWrap, handler);
     btns[type].push(buttonWrap);
 
     return buttonWrap;
@@ -5886,6 +5894,10 @@ function MessageBox(options, dark) {
       return this;
     },
 
+    emit: function(ev, arg) {
+      emitter.emit(ev, arg);
+    },
+
     // Add button
     addButton: function(label, onclick, type, returnBtn) {
       var btn = addButton(label, onclick ? onclick : this.hide, type);
@@ -5913,6 +5925,14 @@ function MessageBox(options, dark) {
 
     getOptions: function() {
       return options;
+    },
+
+    on: function(ev, handler) {
+      emitter.on(ev, handler);
+    },
+
+    once: function(ev, handler) {
+      emitter.once(ev, handler);
     },
 
     // Update box options
@@ -9041,7 +9061,7 @@ function audioSearchPerformer(ref, ev) {
   var audio = AudioUtils.getAudioFromEl(audioEl, true);
 
   if (isInAudioPage) {
-    return nav.change({ q: audio.performer, performer: 1 }, event, { search: true });
+    return nav.change({ q: unclean(audio.performer), performer: 1 }, event, { searchPerformer: true });
   } else {
     return nav.go(ref, event);
   }
@@ -9348,9 +9368,9 @@ function getBigDateNew(rawDate, offset, nice, langAddr) {
 
   if (d.getFullYear() != now.getFullYear() && d.getTime() < now.getTime() - 86400 * 2 * 1000
     || Math.abs(d.getTime() - now.getTime()) > 86400 * 182 * 1000) {
-      return langDate(rawDate * 1000, getLang('global_date_year_time', 'raw'), offset, getLang('months_of'), !nice);
+      return langDate(rawDate * 1000, getLang('global_date', 'raw'), offset, getLang('months_sm_of'), !nice);
   } else {
-    return langDate(rawDate * 1000, getLang('global_short_date_time' + langAddr, 'raw'), offset, getLang('months_of'), !nice);
+    return langDate(rawDate * 1000, getLang('global_short_date_time' + langAddr, 'raw'), offset, getLang('months_sm_of'), !nice);
   }
 }
 
@@ -9465,24 +9485,5 @@ function toggleOnline(obj, platform) {
   addClass(obj, onlinePlatformClass(platform));
 }
 
-var inherit2 = function(child, parent) {
-  var hasProp = {}.hasOwnProperty;
-
-  for (var key in parent) {
-    if (hasProp.call(parent, key)) {
-      child[key] = parent[key];
-    }
-  }
-
-  function ctor() {
-    this.constructor = child;
-  }
-
-  ctor.prototype = parent.prototype;
-  child.prototype = new ctor();
-  child.__super__ = parent.prototype;
-
-  return child;
-}
 
 try{stManager.done('common.js');}catch(e){}
