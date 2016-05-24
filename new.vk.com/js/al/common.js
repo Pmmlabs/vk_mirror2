@@ -2084,7 +2084,7 @@ var layers = {
   push: function(onShow) {
     var clayer, last = __lq.count() ? __lq._layers[__lq._layers.length - 1] : false;
     if (cur.pvShown && cur.pvListId != 'temp') {
-      clayer = ['photo', cur.pvData[cur.pvListId][cur.pvIndex].id, cur.pvListId, {onHide: cur.pvOptions.onHide, scroll: layerWrap.scrollTop, onShow: onShow, noHistory: !!cur.pvNoHistory, histLen: cur.pvHistoryLength}];
+      clayer = ['photo', cur.pvData[cur.pvListId][cur.pvIndex].id, cur.pvListId, {onHide: cur.pvOptions.onHide, scroll: cur.pvNarrowScrollbar ? cur.pvNarrowScrollbar.scrollTop() : 0, onShow: onShow, noHistory: !!cur.pvNoHistory, histLen: cur.pvHistoryLength}];
     } else if (window.mvcur && mvcur.mvShown && !mvcur.minimized) {
       var opts = {scroll: mvLayerWrap.scrollTop, noHistory: !!mvcur.noHistory, nomin: true, prevLoc: mvcur.mvPrevLoc };
       if (VideoPlaylist.getCurListId()) {
@@ -9061,7 +9061,8 @@ function audioSearchPerformer(ref, ev) {
   var audio = AudioUtils.getAudioFromEl(audioEl, true);
 
   if (isInAudioPage) {
-    return nav.change({ q: unclean(audio.performer), performer: 1 }, event, { searchPerformer: true });
+    var performer = unclean(audio.performer).replace(/<em>|<\/em>/g, '');
+    return nav.change({ q: performer, performer: 1 }, event, { searchPerformer: true });
   } else {
     return nav.go(ref, event);
   }
