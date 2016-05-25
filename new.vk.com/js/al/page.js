@@ -1968,23 +1968,7 @@ var Wall = {
     }
 
     if (cur.editing === 0) return;
-
-    setTimeout(function() {
-      if (cur.withUpload) {
-        if (!cur.uploadAdded) {
-          cur.uploadAdded = true;
-          if (!window.Upload) {
-            stManager.add(['upload.js'], function() {
-              WallUpload.init();
-            });
-          } else {
-            WallUpload.init();
-          }
-        } else {
-          WallUpload.show();
-        }
-      }
-    }, 0);
+    setTimeout(WallUpload.init, 0);
 
     Wall.initComposer(input, {
       lang: {
@@ -4830,7 +4814,7 @@ var Wall = {
               if (!started) {
                 started = (e.target && (e.target.tagName == 'IMG' || e.target.tagName == 'A')) ? 1 : 2;
                 if (started == 2) {
-                  setTimeout(Wall.showEditPost, 0);
+                  setTimeout(WallUpload.initCallback, 0);
                 }
               }
               if (started == 2) {
@@ -5045,9 +5029,13 @@ WallUpload = {
   addMedia: function() {
     return cur.dropboxAddMedia || cur.wallAddMedia;
   },
+  attachEl: function() {
+    return WallUpload.dropboxAttachEl || ge('submit_post_box');
+  },
   attachToEl: function(el) {
     el = ge(el);
     var dropbox = ge('post_upload_dropbox');
+    WallUpload.dropboxAttachEl = el;
     if (!el || !dropbox) {
       return false;
     }
@@ -5062,7 +5050,30 @@ WallUpload = {
     return (window.XMLHttpRequest || window.XDomainRequest) &&
            (window.FormData || window.FileReader && (window.XMLHttpRequest && XMLHttpRequest.sendAsBinary ||  window.ArrayBuffer && window.Uint8Array && (window.MozBlobBuilder || window.WebKitBlobBuilder || window.BlobBuilder)));
   },
-  init: function () {
+  initCallback: function() {
+    if (cur.editingPost) {
+      WallUpload.init();
+    } else {
+      Wall.showEditPost();
+    }
+  },
+  init: function() {
+    if (!cur.withUpload) return;
+
+    if (!cur.uploadAdded) {
+      cur.uploadAdded = true;
+      if (!window.Upload) {
+        stManager.add(['upload.js'], function() {
+          WallUpload.initLoader();
+        });
+      } else {
+        WallUpload.initLoader();
+      }
+    } else {
+      WallUpload.show();
+    }
+  },
+  initLoader: function () {
     removeEvent(bodyNode, 'dragover dragenter');
     var data = cur.wallUploadOpts,
         field = ge('post_field');
@@ -5073,7 +5084,7 @@ WallUpload = {
       className: 'post_upload_wrap fl_r',
       innerHTML: '<div id="post_field_upload" class="post_upload"></div>'
     }), field);
-    var submitBox = ge('submit_post_box');
+    var submitBox = WallUpload.attachEl();
     submitBox.insertBefore(ce('div', {
       id: 'post_upload_dropbox',
       className: 'post_upload_dropbox',
@@ -5140,9 +5151,7 @@ WallUpload = {
           Upload.embed(i);
         }
       },
-      onDragEnter: function () {
-        Wall.showEditPost();
-      },
+      onDragEnter: WallUpload.initCallback,
 
       noFlash: 1,
       multiple: 1,

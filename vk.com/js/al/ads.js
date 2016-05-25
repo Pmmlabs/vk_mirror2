@@ -2917,6 +2917,15 @@ Ads.deleteRetargetingGroup = function() {
         ge('ads_retargeting_groups_table').innerHTML = html;
         curBox().hide();
       },
+      onFail: function(err) {
+        curBox().hide();
+        if (err) {
+          showFastBox(getLang('ads_error_box_title'), err);
+        } else {
+          showFastBox(getLang('ads_error_box_title'), getLang('ads_error_box_title'));
+        }
+        return true;
+      },
       showProgress: box.showProgress,
       hideProgress: box.hideProgress
     });

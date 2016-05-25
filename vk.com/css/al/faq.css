@@ -83,8 +83,8 @@
   position: absolute;
   cursor: pointer;
   display: none;
-  right: 6px;
-  top: 6px;
+  right: 2px;
+  top: 4px;
   opacity: 0.5;
 }
 .faq_optional_extra_field__close:hover {
@@ -103,10 +103,7 @@
 }
 .faq_optional_extra_field_required {
   display: inline-block;
-  line-height: 2.8em;
-  padding-left: 10px;
-  vertical-align: top;
-  width: 166px;
+  padding-left: 5px;
 }
 .faq_optional_extra_field_type {
   display: inline-block;

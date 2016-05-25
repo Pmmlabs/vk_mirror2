@@ -151,6 +151,9 @@ getBrowser: function() {
 initExtraFields: function() {
   for (var i in cur.extraFields) {
     var f = cur.extraFields[i], inp = ge('tickets_new_extra_field_'+i+'_inp'), shift = clone(cur.textShift);
+    if (f.required == 3 && cur.verifiedPage) {
+      continue;
+    }
     if (!inp) {
       data(ge('tickets_new_extra_field_'+i), 'value', '');
       continue;
@@ -248,15 +251,18 @@ saveTicket: function(hash, checkPermissions) {
   }
   for (var i in cur.extraFields) {
     var f = cur.extraFields[i], inp = ge('tickets_new_extra_field_'+i+'_inp'), v = '', t = inp;
-
+    if (f.required == 3 && cur.verifiedPage) {
+      continue;
+    }
     if (inp) {
       v = inp.value.trim();
     } else {
       t = ge('tickets_new_extra_field_'+i);
       v = data(t, 'value');
     }
-    if ((!v && f.required) ||
-        (f.type == 4 && f.required && v.indexOf('vk.com') == -1)) {
+    var needToFill = (f.required == 1 || (f.required == 2 || f.required == 3) && !cur.verifiedPage);
+    console.log(needToFill);
+    if ((!v && needToFill) || (f.type == 4 && needToFill && v.indexOf('vk.com') == -1)) {
       notaBene(t, false, !fieldsValid);
       fieldsValid = false;
     }
