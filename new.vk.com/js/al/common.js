@@ -7913,7 +7913,7 @@ TopSearch = {
     if (state == 1) TopSearch.deselect();
     var canWrite = inArray(el.getAttribute('hintType'), ['h_friends', 'h_correspondents', 'h_chats']);
     toggleClass(el, 'write', canWrite);
-    if (state) addClass(el, 'active');
+    toggleClass(el, 'active', state);
   },
   moveSelection: function(key) {
     var tsWrap = ge('ts_cont_wrap'), curLink = geByClass1('active', tsWrap), newLink;
@@ -8154,7 +8154,7 @@ TopSearch = {
       var show_q = (q.length > 27) ? q.substr(0, 25) + '..' : q,
           section = (q[0] == '#') ? 'statuses' : 'auto',
           label = (q[0] == '#') ? getLang('global_news_search_results') : getLang('global_show_all_results');
-      html += '<a href="/search?c[section]='+section+'&c[q]='+encodeURIComponent(q)+'" class="ts_search_link clear_fix active" id="ts_search_link" onclick="return TopSearch.select(this, event);" onmousedown="event.cancelBubble = true;" onmouseover="TopSearch.itemOver(this, 1, event);"><span class="ts_contact_name fl_l">'+label+'</span><div class="ts_contact_status "></div></a>';
+      html += '<a href="/search?c[section]='+section+'&c[q]='+encodeURIComponent(q)+'" class="ts_search_link clear_fix active" id="ts_search_link" onclick="return TopSearch.select(this, event);" onmousedown="event.cancelBubble = true;" onmouseover="TopSearch.itemOver(this, 1, event);"  onmouseout="TopSearch.itemOver(this, 0, event);" ><span class="ts_contact_name fl_l">'+label+'</span><div class="ts_contact_status "></div></a>';
     }
 
     return html + res.join('');
@@ -8164,8 +8164,7 @@ TopSearch = {
         html = '';
         limit = _t.maxItems,
         tsWrap = ge('ts_cont_wrap'),
-        curLink = geByClass1('active', tsWrap),
-        activeId = curLink ? curLink.id  : '';
+        curLink = geByClass1('active', tsWrap);
     if (!tsWrap || !vk.id) return false;
     if (cur.tsStr && cur.tsStr == q && !_t.forceUpdate) return false;
     delete _t.forceUpdate;
@@ -8218,7 +8217,6 @@ TopSearch = {
       this.hintsSearch(q, cur.lastRe || false);
     }
     if (html || q) cur.tsStr = q;
-    if (activeId && ge(activeId)) addClass(ge(activeId), 'active');
   },
   hintsSearch: function(q, re) {
     var _t = TopSearch,

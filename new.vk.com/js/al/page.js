@@ -1711,14 +1711,117 @@ var Wall = {
   },
   postChanged: function(force) {
     if (!isVisible('submit_post') || !hasClass(ge('submit_post_box'), 'shown')) Wall.showEditPost();
-    if (vk.id && intval(cur.oid) == vk.id) {
+    if (vk.id) {
       clearTimeout(cur.postAutosave);
+      var saveCallback = (intval(cur.oid) == vk.id) ? Wall.saveDraft : Wall.saveOwnerDraftText.pbind(cur.oid);
       if (force === true) {
-        Wall.saveDraft();
+        saveCallback();
       } else {
-        cur.postAutosave = setTimeout(Wall.saveDraft, (force === 10) ? 10 : 1000);
+        cur.postAutosave = setTimeout(saveCallback, (force === 10) ? 10 : 1000);
       }
     }
+  },
+  ownerDraftKey: function(ownerId) {
+    return 'wall_draft' + vk.id + '_' + ownerId;
+  },
+  ownerDraftData: function() {
+    if (!cur.wallDraftData) {
+      cur.wallDraftData = {};
+    }
+    return cur.wallDraftData;
+  },
+  addOwnerDraftMedia: function(ownerId, info) {
+    var data = Wall.ownerDraftData(),
+        type = info[0],
+        id = info[1],
+        object = info[2];
+
+    data._attach_cache = data._attach_cache || {};
+    if (object) {
+      data._attach_cache[type + id] = object;
+    } else {
+      object = data._attach_cache[type + id];
+    }
+
+    data.attaches = data.attaches || [];
+    var lsAttaches = ls.get(Wall.ownerDraftKey(ownerId)) || {};
+    if (type !== false) {
+      data.attaches.push([type, id, object, data.attaches.length]);
+    } else if (type === false && typeof(id) !== 'undefined') {
+      data.attaches = data.attaches.filter(function (el) {
+        return el[3] !== id;
+      });
+    }
+    ls.set(Wall.ownerDraftKey(ownerId), extend(lsAttaches, {
+      txt: clean(Wall.getDraftData().message || ''),
+      medias: data.attaches
+    }));
+  },
+  cleanOwnerDraftMedia: function(ownerId) {
+    var data = Wall.ownerDraftData(),
+        lsAttaches = ls.get(Wall.ownerDraftKey(ownerId)) || {};
+
+    data.attaches = [];
+    ls.set(Wall.ownerDraftKey(ownerId), extend({ txt: '' }, lsAttaches, { medias: [] }));
+  },
+  saveOwnerDraftText: function(ownerId) {
+    var data = Wall.ownerDraftData(),
+        lsText = ls.get(Wall.ownerDraftKey(ownerId)) || {},
+        draftData = Wall.getDraftData(),
+        content = clean(draftData.message || '');
+
+    data.txt = content;
+    each (lsText.medias || {}, function(i, v) {
+      switch (v[0]) {
+        case 'postpone':
+          if (draftData.postpone) {
+            lsText.medias[i][2].date = draftData.postpone;
+            lsText.medias[i][2].draft = 1;
+          }
+        break;
+        case 'poll':
+        var pollData = (cur.wallAddMedia || {}).pollData(true);
+        if (pollData) {
+          var pollDraft = {edit: false, question: pollData.media, answers: []}, k = 0;
+          if (pollData.anonymous) {
+            pollDraft.anon = true;
+          }
+          while (pollData['answers[' + k + ']'] !== undefined) {
+            pollDraft.answers.push([0, pollData['answers[' + k + ']']]);
+            k++;
+          }
+          extend(lsText.medias[i][2], pollDraft);
+        }
+        break;
+      }
+    });
+    extend(lsText, { txt: content });
+    ls.set(Wall.ownerDraftKey(ownerId), lsText);
+  },
+  getOwnerDraft: function(ownerId) {
+    var draft = ls.get(Wall.ownerDraftKey(ownerId)) || {}, res = [];
+    return [draft.txt, draft.medias, true];
+  },
+  saveOwnerDraftMedia: function(ownerId, type, id, object) {
+    Wall.cleanOwnerDraftMedia(ownerId);
+    var addmedia = cur.wallAddMedia || {},
+        media = addmedia.chosenMedia || {},
+        medias = cur.wallAddMedia ? addmedia.getMedias() : [],
+        current = [],
+        allmedia = medias.slice().map(function (el) {
+      return el.slice(0, 2);
+    });
+
+    if (typeof id !== 'undefined' && type) {
+      current = [[type, id, object]];
+    } else if (!type && typeof id !== 'undefined') {
+      allmedia.splice(id, 1);
+    }
+
+    allmedia = allmedia.concat(current);
+    each (allmedia, function() {
+      Wall.addOwnerDraftMedia(ownerId, this);
+    });
   },
   saveDraft: function() {
     if (cur.noDraftSave) {
@@ -1727,16 +1830,24 @@ var Wall = {
     }
     if (cur.postSent || vk.id != intval(cur.oid)) return;
 
+    var params = Wall.getDraftData();
+    if (params.delayed) {
+      return;
+    }
+    ajax.post('al_wall.php', Wall.fixPostParams(extend({
+      act: 'save_draft',
+      hash: cur.options.post_hash
+    }, params)), {onFail: function() {
+      return true;
+    }});
+  },
+  getDraftData: function() {
     var addmedia = cur.wallAddMedia || {},
         media = addmedia.chosenMedia || {},
         medias = cur.wallAddMedia ? addmedia.getMedias() : [],
         share = (addmedia.shareData || {})
         msg = trim((window.Emoji ? Emoji.editableVal : val)(ge('post_field'))), attachI = 0,
-        params = {
-      act: 'save_draft',
-      message: msg,
-      hash: cur.options.post_hash
-    };
+        params = {message: msg};
 
     if (isArray(media) && media.length) {
       medias.push(clone(media));
@@ -1752,7 +1863,7 @@ var Wall = {
           case 'poll':
             var poll = addmedia.pollData(true);
             if (!poll) {
-              ret = true;
+              params.delayed = true;
               return false;
             }
             attachVal = poll.media;
@@ -1763,7 +1874,7 @@ var Wall = {
             if (share.failed || !share.url ||
                 !share.title && (!share.images || !share.images.length) && !share.photo_url) {
               if (cur.shareLastParseSubmitted && vkNow() - cur.shareLastParseSubmitted < 2000) {
-                ret = true;
+                params.delayed = true;
                 return false;
               } else {
                 return;
@@ -1801,16 +1912,12 @@ var Wall = {
         params['attach' + (attachI + 1)] = attachVal;
         attachI++;
       });
-      if (ret) {
-        return;
-      }
     }
-    ajax.post('al_wall.php', Wall.fixPostParams(params), {onFail: function() {
-      return true;
-    }});
+
+    return params;
   },
   setDraft: function(data) {
-    if (!data[0] && !data[1]) return;
+    if (!data[0] && (!data[1] || !data[1].length)) return;
     var field = ge('post_field');
     if (!field) return;
 
@@ -1997,7 +2104,7 @@ var Wall = {
     return newParams;
   },
   focusOnEnd: function() {
-    var el = ge('post_field'),l=el.lastChild, len = l.innerHTML ? l.innerHTML.length : l.length;
+    var el = ge('post_field'),l = el.lastChild || el, len = l.innerHTML ? l.innerHTML.length : l.length;
     el.focus();
     if (document.selection) {
       var sel = document.selection.createRange();
@@ -4666,7 +4773,7 @@ var Wall = {
     });
     cur.wallAutoMore = opts.automore;
 
-    Wall.initPostEditable(opts.draft);
+    Wall.initPostEditable(opts.draft || cur.oid != vk.id && Wall.getOwnerDraft(cur.oid));
     if (cur.wallSearch) {
       placeholderInit(cur.wallSearch);
     }
@@ -4677,13 +4784,15 @@ var Wall = {
     if (opts.media_types) {
       cur.wallAddMedia = new MediaSelector(ge('page_add_media'), 'media_preview', opts.media_types, extend({
         onAddMediaChange: function() {
-          // if (cur.module == 'profile' || cur.module == 'feed' || cur.module == 'wall') {
-            Wall.postChanged(10);
-          // }
+          Wall.postChanged(10);
+
+          if (cur.oid != vk.id) {
+            var args = Array.prototype.slice.call(arguments);
+            args.unshift(cur.oid);
+            Wall.saveOwnerDraftMedia.apply(window, args);
+          }
         }, onMediaChange: function() {
-          // if (cur.module == 'profile' || cur.module == 'feed' || cur.module == 'wall') {
-            Wall.postChanged();
-          // }
+          Wall.postChanged();
         }, editable: 1, sortable: 1}, opts.media_opts || {})
       );
     }
@@ -4891,7 +5000,7 @@ WallUpload = {
     prg && hide(geByClass1('progress_x', prg));
     ajax.post('al_photos.php', extend({act: 'choose_uploaded'}, params), {
       onDone: function(media, data) {
-        cur.wallAddMedia.chooseMedia('photo', media, extend(data, {upload_ind: i + '_' + fileName}));
+        WallUpload.addMedia().chooseMedia('photo', media, extend(data, {upload_ind: i + '_' + fileName}));
       },
       onFail: WallUpload.uploadFailed.pbind(info)
     });
@@ -4932,6 +5041,18 @@ WallUpload = {
       hide(cur.uploadWrap);
     }
     hide('post_upload_dropbox');
+  },
+  addMedia: function() {
+    return cur.dropboxAddMedia || cur.wallAddMedia;
+  },
+  attachToEl: function(el) {
+    el = ge(el);
+    var dropbox = ge('post_upload_dropbox');
+    if (!el || !dropbox) {
+      return false;
+    }
+
+    el.insertBefore(dropbox, domFC(el));
   },
   checkDragDrop: function() {
     var b = browser, bv = floatval(browser.version);
@@ -5005,7 +5126,7 @@ WallUpload = {
           if (lnkId === undefined || lnkId && cur.addMedia[lnkId].chosenMedia || cur.imMedia) {
             var data = {loaded: bytesLoaded, total: bytesTotal};
             if (info.fileName) data.fileName = info.fileName.replace(/[&<>"']/g, '');
-            cur.wallAddMedia.showMediaProgress('photo', i, data);
+            WallUpload.addMedia().showMediaProgress('photo', i, data);
           }
         }
       },
