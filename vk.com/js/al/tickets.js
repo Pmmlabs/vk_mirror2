@@ -261,7 +261,6 @@ saveTicket: function(hash, checkPermissions) {
       v = data(t, 'value');
     }
     var needToFill = (f.required == 1 || (f.required == 2 || f.required == 3) && !cur.verifiedPage);
-    console.log(needToFill);
     if ((!v && needToFill) || (f.type == 4 && needToFill && v.indexOf('vk.com') == -1)) {
       notaBene(t, false, !fieldsValid);
       fieldsValid = false;
