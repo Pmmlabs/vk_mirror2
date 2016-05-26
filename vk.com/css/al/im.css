@@ -440,7 +440,7 @@ img.dialogs_inline_chatter_half {
 }
 .dialogs_star {
   cursor: pointer;
-  background: url(/images/icons/im_actions_iconset2.png?10) -3px -242px no-repeat;
+  background: url(/images/icons/im_actions_iconset2.png?11) -3px -242px no-repeat;
   height: 14px;
   width: 14px;
 }
@@ -2479,7 +2479,7 @@ b.im_friend_mob_onl {
 }
 /* Favorites */
 #im_log_fav_btn i {
-  background: url(/images/icons/im_actions_iconset2.png?10) 0 -281px no-repeat;
+  background: url(/images/icons/im_actions_iconset2.png?11) 0 -281px no-repeat;
   display: block;
   width: 20px;
   height: 20px;
@@ -2493,7 +2493,7 @@ b.im_friend_mob_onl {
   visibility: hidden;
 }
 .im_important_toggler {
-  background: url(/images/icons/im_actions_iconset2.png?10) 0 -258px no-repeat;
+  background: url(/images/icons/im_actions_iconset2.png?11) 0 -258px no-repeat;
   background-color: rgba(255, 255, 255, 0.5);
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
@@ -2535,7 +2535,7 @@ b.im_friend_mob_onl {
   padding: 5px 10px 6px;
 }
 i.im_important_icon {
-  background: url(/images/icons/im_actions_iconset2.png?10) -2px -281px no-repeat;
+  background: url(/images/icons/im_actions_iconset2.png?11) -2px -281px no-repeat;
   width: 15px;
   height: 15px;
   cursor: pointer;
