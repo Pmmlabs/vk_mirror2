@@ -2688,6 +2688,7 @@ var Wall = {
       return cancelEvent(ev);
     }
     Wall.hideEditPostReply();
+    console.log(1)
     addClass(postEl, 'reply_box_open');
     setStyle('replies_wrap' + post, {display: ''});
 
@@ -2699,12 +2700,15 @@ var Wall = {
     if (!data(rf, 'composer')) {
       var mediaTypes = [];
       var rawTypes;
+      var maxShown, hideAfterCount;
       if (window.mvcur && mvcur.mvShown) {
         rawTypes = mvcur.mvMediaTypes;
       } else if (cur.wallLayer == post) {
         rawTypes = wkcur.options.rmedia_types;
       } else if (window.pvcur && cur.pvShown) {
         rawTypes = pvcur.rmedia_types;
+        maxShown = 0;
+        hideAfterCount = 0;
       } else {
         rawTypes = cur.options.rmedia_types;
       }
@@ -2719,7 +2723,13 @@ var Wall = {
           lnk: ge('reply_add_media_' + post),
           preview: ge('reply_media_preview' + post),
           types: mediaTypes,
-          options: {limit: 2, disabledTypes: ['album'], toggleLnk: true}
+          options: {
+            limit: 2,
+            disabledTypes: ['album'],
+            toggleLnk: true,
+            maxShown: maxShown !== undefined ? maxShown : undefined,
+            hideAfterCount: hideAfterCount !== undefined ? hideAfterCount : undefined
+          }
         };
         if (post.match(/^-?\d+_topic/)) {
           extend(media.options, {
@@ -2869,7 +2879,12 @@ var Wall = {
     }
     show('reply_to_title' + post);
 
-    toggleClass(replyAs, 'on', (replyAs && isVisible(replyAs.parentNode) && replyOid < 0 && replyTo && replyTo.getAttribute('rid') === replyOid) ? true : false);
+    var onBehalfGroup = replyAs && isVisible(replyAs.parentNode) && replyOid < 0 && replyTo && replyTo.getAttribute('rid') === replyOid;
+    toggleClass(replyAs, 'on', onBehalfGroup);
+    var ttChooser = data(replyAs, 'tt');
+    if (ttChooser) {
+      radiobtn(ttChooser.rdBtns[intval(onBehalfGroup)], intval(onBehalfGroup), ttChooser.rdBtnsGroup)
+    }
 
     cur.onReplyFormSizeUpdate && cur.onReplyFormSizeUpdate();
 
@@ -4836,19 +4851,60 @@ var Wall = {
     cur.options.params.owners_only = cur.options.params.owners_only ? null : 1;
     nav.change({owners_only: cur.options.params.owners_only, offset: null});
   },
-  replyAsGroup: function(obj) {
-    if (!hasClass(obj, 'checkbox_official')) return false;
-    checkbox(obj);
-    obj.tt && obj.tt.show && obj.tt.show();
-    if (hasClass(obj, 'addpost_opt')) {
-      toggleClass('signed', 'shown', isChecked(obj));
+  REPLY_RADIO_BTNS_GROUP: 'page_post_as',
+  REPLY_RADIO_BTNS_GROUP_INDEX: 0,
+  replyAsGroup: function(obj, btn, rdName) {
+    if (!btn) {
+      // direct click
+      var on = hasClass(obj, 'on');
+      var tt = data(obj, 'tt');
+      if (tt && tt.rdBtns) {
+        btn = tt.rdBtns[on ? 0 : 1];
+        rdName = tt.rdBtnsGroup;
+      }
     }
+
+    var as = domData(btn, 'as');
+    radiobtn(btn, as, rdName);
+
+    toggleClass(obj, 'on', as == 'group');
+    toggleClass('signed', 'shown', as == 'group');
   },
   replyAsGroupOver: function(obj, tt_user, tt_group) {
     if (!hasClass(obj, 'checkbox_official')) return false;
-    var tt_func = function() { return hasClass(obj, 'on') ? tt_group : tt_user; },
-        shift = hasClass(obj, 'addpost_opt') ? [8, 7] : [0, 8];
-    showTooltip(obj, {text: tt_func, black: 1, shift: shift});
+
+    var ttChooser = data(obj, 'tt');
+
+    if (!ttChooser) {
+      var rdGroup = wall.REPLY_RADIO_BTNS_GROUP + (wall.REPLY_RADIO_BTNS_GROUP_INDEX ++);
+
+      ttChooser = new ElementTooltip(obj, {
+        content:
+          '<div class="post_reply_tt_choose"> \
+            <h3>' + getLang('global_on_behalf_title') + '</h3> \
+            <div class="radiobtn on" data-as="me">' + getLang('global_on_behalf_me') + '</div> \
+            <div class="radiobtn" data-as="group">' + getLang('global_on_behalf_group') + '</div> \
+          </div>',
+        appendToParent: true,
+        offset: [-9, -5],
+        onFirstTimeShow: function(ttel) {
+          var btns = geByClass('radiobtn', ttel);
+
+          window.radioBtns[rdGroup] = {
+            els: btns
+          };
+
+          addEvent(btns[0], 'click', wall.replyAsGroup.pbind(obj, btns[0], rdGroup));
+          addEvent(btns[1], 'click', wall.replyAsGroup.pbind(obj, btns[1], rdGroup));
+
+          this.rdBtns = btns;
+          this.rdBtnsGroup = rdGroup;
+        }
+      });
+      data(obj, 'tt', ttChooser);
+    }
+
+    ttChooser.show();
   },
   reportPost: function(obj, ev, postRaw) {
     stManager.add(['privacy.js', 'privacy.css'], function() {

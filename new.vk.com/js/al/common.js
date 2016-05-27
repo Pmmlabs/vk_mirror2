@@ -9072,7 +9072,7 @@ function getAudioPlayer() {
 }
 
 function prepareAudioLayer(cb) {
-  stManager.add(['audio.js', 'audioplayer.js', 'ui_controls.js', 'ui_controls.css', 'audio.css', 'suggester.js', 'auto_list.js', 'indexer.js'], function() {
+  stManager.add(['audio.js', 'audioplayer.js', 'audio.css', 'suggester.js', 'auto_list.js', 'indexer.js'], function() {
     cb && cb();
   });
 }
@@ -9484,5 +9484,266 @@ function toggleOnline(obj, platform) {
   addClass(obj, onlinePlatformClass(platform));
 }
 
+
+function ElementTooltip(el, opts) {
+  if (this.constructor != ElementTooltip) {
+    throw new Error('ElementTooltip was called without \'new\' operator');
+  }
+
+  el = ge(el);
+  if (!el || !el.nodeType) {
+    throw new Error('First argument not a DOM element');
+  }
+
+  if (data(el, 'ett')) { return; }
+
+  this._opts = extend({
+    delay: 100,
+    offset: [0, 0],
+    type: ElementTooltip.TYPE_VERTICAL,
+    id: '',
+    cls: '',
+    width: null,
+    appendToParent: false,
+    autoShow: true
+  }, opts);
+
+  if (this._opts.setPos && !this._opts.forceSide) {
+    throw new Error('forceSide parameter should be set if you use setPos');
+  }
+
+  if (this._opts.forceSide) {
+    this._opts.type = inArray(this._opts.forceSide, ['top', 'down']) ? ElementTooltip.TYPE_VERTICAL : ElementTooltip.TYPE_HORIZONTAL;
+  }
+
+  this._appendToEl = this._opts.appendTo ? this._opts.appendTo : (this._opts.appendToParent ? domClosestPositioned(el) : el);
+
+  this._el = el;
+  data(this._el, 'ett', this);
+
+  this._initEvents(el);
+
+  this._clearTimeouts();
+
+  this._isShown = false;
+}
+
+ElementTooltip.TYPE_VERTICAL = 0;
+ElementTooltip.TYPE_HORIZONTAL = 1;
+ElementTooltip.FADE_SPEED = 100; // keep in sync with @eltt_fade_speed
+
+ElementTooltip.prototype._initEvents = function(el) {
+  if (this._opts.autoShow) {
+    addEvent(el, 'mouseenter', this._onMouseEnter.bind(this));
+    addEvent(el, 'mouseleave', this._onMouseLeave.bind(this));
+  }
+}
+
+ElementTooltip.prototype._onMouseEnter = function(event) {
+  clearTimeout(this._hto); this._hto = false; // prevent hide
+
+  if (!this._isShown && this._opts.autoShow) {
+    clearTimeout(this._reTimeout); this._reTimeout = false;
+
+    clearTimeout(this._sto);
+    this._sto = setTimeout(this.show.bind(this), this._opts.delay);
+  }
+}
+
+ElementTooltip.prototype._onMouseLeave = function(event) {
+  this._clearTimeouts();
+  this._hto = setTimeout(this._hide.bind(this), 200);
+}
+
+ElementTooltip.prototype._onMouseWindowClick = function(event) {
+  var node = event.target;
+  while(node && node != this._ttel && node != document.body && node != this._el) {
+    node = domPN(node);
+  }
+
+  if (!node || node == document.body) {
+    this.hide(true);
+    return cancelEvent(event);
+  }
+}
+
+ElementTooltip.prototype.destroy = function() {
+  this._clearTimeouts();
+  data(this._el, 'ett', null);
+  re(this._ttel);
+  this._ev_wclick && removeEvent(document, 'mousedown', this._ev_wclick);
+}
+
+ElementTooltip.prototype.hide = function(byElClick) {
+  this._hide(byElClick);
+}
+
+ElementTooltip.prototype._onTooltipMouseEnter = function(ev) {
+  this._clearTimeouts();
+}
+
+ElementTooltip.prototype._onTooltipMouseLeave = function(ev) {
+  this._onMouseLeave();
+}
+
+ElementTooltip.prototype.show = function() {
+  this._clearTimeouts();
+
+  if (!this._ttel) {
+    // create tooltip element
+    this._ttel = se('<div class="eltt ' + (this._opts.cls || '') + '" id="' + this._opts.id + '"></div>');
+
+    if (this._opts.content) {
+      if (isString(this._opts.content)) {
+        this._ttel.appendChild(se('<div>' + trim(this._opts.content) + '</div>'));
+      } else {
+        this._ttel.appendChild(this._opts.content);
+      }
+    }
+
+    this._appendToEl.appendChild(this._ttel);
+
+    this._opts.onFirstTimeShow && this._opts.onFirstTimeShow.call(this, this._ttel);
+
+    if (this._opts.autoShow) {
+      addEvent(this._ttel, 'mouseenter', this._ev_ttenter = this._onTooltipMouseEnter.bind(this));
+      addEvent(this._ttel, 'mouseleave', this._ev_ttleave = this._onTooltipMouseLeave.bind(this));
+    }
+  }
+
+  if (this._opts.width) {
+    var width = isFunction(this._opts.width) ? this._opts.width.call(this) : this._opts.width;
+    setStyle(this._ttel, 'width', width);
+  }
+
+  this._opts.onShow && this._opts.onShow(this._ttel);
+
+  this._isShown = true;
+
+  this.updatePosition();
+
+  show(this._ttel);
+
+  setTimeout(addClass.pbind(this._ttel, 'eltt_vis'), 10);
+
+  this._opts.elClassWhenTooltip && addClass(this._el, this._opts.elClassWhenTooltip);
+
+  if (this._ev_wclick) {
+    removeEvent(document, 'mousedown', this._ev_wclick);
+  }
+  addEvent(document, 'mousedown', this._ev_wclick = this._onMouseWindowClick.bind(this));
+}
+
+ElementTooltip.prototype.updatePosition = function() {
+  var side = this._opts.forceSide;
+
+  var elPos = getXY(this._el);
+  var elSize = getSize(this._el);
+  var ttelSize = getSize(this._ttel);
+
+  var style;
+
+  if (this._opts.setPos) {
+    style = this._opts.setPos.call(this);
+    side = this._opts.forceSide;
+
+  } else {
+    if (!side) {
+      var boundingEl = domClosestOverflowHidden(this._el);
+      var boundingElPos = getXY(boundingEl);
+      boundingElPos[1] += boundingEl.scrollTop + 30;
+
+      if (this._opts.type == ElementTooltip.TYPE_VERTICAL) {
+        if (elPos[1] - boundingElPos[1] < ttelSize[1] || cur.a) {
+          side = 'bottom';
+        } else {
+          side = 'top';
+        }
+      } else {
+        if (elPos[0] - boundingElPos[0] < ttelSize[0]) {
+          side = 'right';
+        } else {
+          side = 'left';
+        }
+      }
+    }
+
+    var arrowSize = 5;
+
+    var parentPos = getXY(this._appendToEl);
+    parentOffset = [
+      elPos[0] - parentPos[0],
+      elPos[1] - parentPos[1]
+    ];
+
+    switch (side) {
+      case 'bottom':
+        style = {
+          left: -ttelSize[0]/2 + elSize[0]/2 + this._opts.offset[0] + parentOffset[0],
+          top: elSize[1] + arrowSize - this._opts.offset[1] + parentOffset[1]
+        };
+        break;
+
+      case 'top':
+        style = {
+          left: -ttelSize[0]/2 + elSize[0]/2 + this._opts.offset[0] + parentOffset[0],
+          top: -ttelSize[1] - arrowSize + this._opts.offset[1] + parentOffset[1]
+        };
+        break;
+
+      case 'right':
+        style = {
+          left: elSize[0] + arrowSize + parentOffset[0],
+          top: elSize[1]/2 - ttelSize[1]/2 + this._opts.offset[1] + parentOffset[1]
+        };
+        break;
+
+      case 'left':
+        style = {
+          left: -ttelSize[0] - arrowSize + this._opts.offset[0] + parentOffset[0],
+          top: elSize[1]/2 - ttelSize[1]/2 + this._opts.offset[1] + parentOffset[1]
+        };
+        break;
+    }
+  }
+
+  var _this = this;
+  each(['top', 'bottom', 'left', 'right'], function(i, side) {
+    removeClass(_this._ttel, 'eltt_' + side);
+  });
+
+  addClass(this._ttel, 'eltt_' + side);
+  setStyle(this._ttel, style);
+}
+
+ElementTooltip.prototype._hide = function(byElClick) {
+  this._clearTimeouts();
+
+  this._reTimeout = setTimeout((function() {
+    hide(this._ttel);
+
+    this._opts.elClassWhenTooltip && removeClass(this._el, this._opts.elClassWhenTooltip);
+    this._opts.onHide && this._opts.onHide(this._ttel, !!byElClick);
+  }).bind(this), ElementTooltip.FADE_SPEED);
+
+  this._isShown = false;
+
+  removeClass(this._ttel, 'eltt_vis');
+  this._ev_wclick && removeEvent(document, 'mousedown', this._ev_wclick);
+}
+
+ElementTooltip.prototype.isShown = function() {
+  return this._isShown;
+}
+
+ElementTooltip.prototype._clearTimeouts = function() {
+  this._sto && clearTimeout(this._sto); this._sto = false;
+  this._hto && clearTimeout(this._hto); this._hto = false;
+  this._reTimeout && clearTimeout(this._reTimeout); this._reTimeout = false;
+}
+
+ElementTooltip.prototype.getContent = function() {
+  return this._ttel;
+}
 
 try{stManager.done('common.js');}catch(e){}
