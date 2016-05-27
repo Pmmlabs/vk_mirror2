@@ -9051,7 +9051,7 @@ function toggleAudioLyrics(event, ref, audioId, lyricsId) {
   return false;
 }
 
-function audioSearchPerformer(ref, ev) {
+function audioSearchPerformer(ref, event) {
   cur.cancelClick = true;
 
   var audioEl = gpeByClass('_audio_row', ref);
