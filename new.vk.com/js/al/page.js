@@ -2688,7 +2688,6 @@ var Wall = {
       return cancelEvent(ev);
     }
     Wall.hideEditPostReply();
-    console.log(1)
     addClass(postEl, 'reply_box_open');
     setStyle('replies_wrap' + post, {display: ''});
 

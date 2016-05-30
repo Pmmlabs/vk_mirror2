@@ -3002,3 +3002,8 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 .tickets_group_info_tt:after {
   right: 200px;
 }
+.tickets_outdated_msg {
+  margin-top: 4px;
+  padding: 8px 0;
+  text-align: center;
+}

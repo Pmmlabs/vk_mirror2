@@ -9618,11 +9618,10 @@ ElementTooltip.prototype.show = function() {
 
   this._opts.onShow && this._opts.onShow(this._ttel);
 
-  this._isShown = true;
-
   this.updatePosition();
 
   show(this._ttel);
+  this._isShown = true;
 
   setTimeout(addClass.pbind(this._ttel, 'eltt_vis'), 10);
 
@@ -9644,17 +9643,17 @@ ElementTooltip.prototype.updatePosition = function() {
   var style;
 
   if (this._opts.setPos) {
-    style = this._opts.setPos.call(this);
+    style = this._currentPosition = this._opts.setPos.call(this, this._currentPosition || {}) || {};
     side = this._opts.forceSide;
 
   } else {
     if (!side) {
       var boundingEl = domClosestOverflowHidden(this._el);
       var boundingElPos = getXY(boundingEl);
-      boundingElPos[1] += boundingEl.scrollTop + 30;
+      boundingElPos[1] += scrollGetY() + 30;
 
       if (this._opts.type == ElementTooltip.TYPE_VERTICAL) {
-        if (elPos[1] - boundingElPos[1] < ttelSize[1] || cur.a) {
+        if (elPos[1] - boundingElPos[1] < ttelSize[1]) {
           side = 'bottom';
         } else {
           side = 'top';
