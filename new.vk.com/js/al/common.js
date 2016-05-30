@@ -9745,4 +9745,13 @@ ElementTooltip.prototype.getContent = function() {
   return this._ttel;
 }
 
+function isFullScreen() {
+  return !!(document.fullscreenElement
+    || document.fullScreenElement
+    || document.msFullscreenElement
+    || document.mozFullScreen
+    || document.webkitIsFullScreen
+    || cur.pvPartScreen);
+}
+
 try{stManager.done('common.js');}catch(e){}

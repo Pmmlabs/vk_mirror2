@@ -2946,6 +2946,10 @@ var Wall = {
       return;
     }
 
+    if (!place) {
+      return;
+    }
+
     if (point.parentNode == place && point.tt && point.tt.show) {
       point.tt.show();
       return;
@@ -4552,8 +4556,7 @@ var Wall = {
         case 'upd_ci': {
           var info = ev[2],
               edit = ge('current_info'),
-              el = edit || ge('page_current_info'),
-              dataAudio = ' data-audio="' + ev[4] + '"';
+              el = edit || ge('page_current_info');
 
           if (!el) {
             break;
@@ -4562,13 +4565,15 @@ var Wall = {
             case 'audio':
               var curCntEl = geByClass1('current_audio_cnt');
               if (curCntEl && curCntEl.tt) curCntEl.tt.hide();
+
               var ci_cnt = intval(ev[5] || ''),
                   ci_cnt_class = ci_cnt ? '' : ' hidden',
-                  attr = dataAudio;
-              if (!edit) {
-                attr += ' onmouseover="showTooltip(this, {forcetoup: true, text: \'' + cur.options.ciAudioTip + '\', black: 1, shift: [14, 5, 5]})" onclick="Page.playCurrent(this, this.getAttribute(\'data-audio\'), \'' + cur.options.ciAudioHash + '\')"';
+                  attr = '';
 
+              if (!edit) {
+                attr += ' onmouseover="showTooltip(this, {forcetoup: true, text: \'' + cur.options.ciAudioTip + '\', black: 1, shift: [14, 5, 5]})" onclick="Page.playCurrent(this, \'' + ev[4] + '\')"';
               }
+
               info = rs(cur.options.ciAudioTpl, {
                 text: info,
                 attrs: attr,
