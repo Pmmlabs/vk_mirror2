@@ -7241,7 +7241,9 @@ function showVideo(videoId, listId, options, ev) {
   });
 
   extend(options, {onDone: function() {
-    hub.data = arguments;
+    var args = Array.prototype.slice.call(arguments);
+    args.unshift(videoId);
+    hub.data = args;
     hub.done();
   }, cache: (listId != 'status')});
 
