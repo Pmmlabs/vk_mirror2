@@ -2879,7 +2879,7 @@ var Wall = {
     show('reply_to_title' + post);
 
     var onBehalfGroup = replyAs && isVisible(replyAs.parentNode) && replyOid < 0 && replyTo && replyTo.getAttribute('rid') === replyOid;
-    toggleClass(replyAs, 'on', onBehalfGroup);
+    toggleClass(replyAs, 'on', !!onBehalfGroup);
     var ttChooser = data(replyAs, 'tt');
     if (ttChooser) {
       radiobtn(ttChooser.rdBtns[intval(onBehalfGroup)], intval(onBehalfGroup), ttChooser.rdBtnsGroup)
