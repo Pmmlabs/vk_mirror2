@@ -2868,7 +2868,7 @@ var Wall = {
       var rf = ge('reply_field' + post);
       var v = clean(trim(Emoji.val(rf)));
       v = v.replace(/&nbsp;/g, ' ');
-      if (!v || replyNameOld && isArray(replyNameOld) && !winToUtf(replyNameOld[1]).indexOf(v)) {
+      if (!v || replyNameOld && isArray(replyNameOld) && !winToUtf(replyNameOld[1]).indexOf(winToUtf(v))) {
         Emoji.val(rf, replyName[1]);
       } else if (re) {
         v = v.replace(re, replyName[1]);
