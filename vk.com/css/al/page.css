@@ -1860,6 +1860,11 @@ a.reply_parent_link,
   background-size: 56px 24px;
   width: 35px;
 }
+.page_microdata_logo_wildberries {
+  background-image: url(/images/logo_wildberries.png);
+  background-size: 55px 24px;
+  width: 35px;
+}
 .wide_wall_module td.page_media_link_thumb {
   background-size: 130px auto;
 }

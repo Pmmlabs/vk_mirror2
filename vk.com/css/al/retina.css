@@ -187,6 +187,9 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x .page_microdata_logo_asos {
   background-image: url(/images/logo_asos_2x.png);
 }
+.is_2x .page_microdata_logo_wildberries {
+  background-image: url(/images/logo_wildberries_2x.png);
+}
 .is_2x #head_play_btn {
   background-image: url(/images/icons/audio_iconsf_2x.png);
 }
