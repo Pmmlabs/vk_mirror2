@@ -1124,6 +1124,19 @@ function getStyle(elem, name, force) {
   return ret;
 }
 
+var cssTransformProp = (function(){
+  var testEl = document.createElement('div');
+  if(testEl.style.transform == null) {
+    var vendors = ['Webkit', 'Moz', 'ms'];
+    for(var vendor in vendors) {
+      if(testEl.style[ vendors[vendor] + 'Transform' ] !== undefined) {
+        return vendors[vendor] + 'Transform';
+      }
+    }
+  }
+  return 'transform';
+})();
+
 function setStyle(elem, name, value){
   elem = ge(elem);
   if (!elem) return;
@@ -2043,6 +2056,7 @@ var layers = {
     }
     layers.visible = true;
     addClass(bodyNode, 'layers_shown');
+    addClass(bodyNode, 'layers_showing');
     if (con.visibilityHide) {
       removeClass(con, 'box_layer_hidden');
     } else {
@@ -2065,6 +2079,7 @@ var layers = {
         && !isVisible(window.wkLayerWrap)) {
         layers.visible = false;
         removeClass(bodyNode, 'layers_shown');
+        removeClass(bodyNode, 'layers_showing');
         toggleFlash(true);
         if (browser.mozilla) {
           pageNode.style.height = 'auto';
@@ -2577,10 +2592,6 @@ function redraw(el, fixedClass) {
 }
 
 function onBodyScroll() {
-
-  if (cur.module === 'im') {
-    return;
-  }
 
   if (!window.pageNode) return;
 
@@ -5843,8 +5854,6 @@ function MessageBox(options, dark) {
     }
 
     _message_box_shown = true;
-
-    addClass(boxLayerBG, 'bg_dark');
   }
 
   addEvent(boxCloseButton, 'click', __bq.hideLast);
@@ -5878,7 +5887,6 @@ function MessageBox(options, dark) {
     // Hide box
     hide: function(attemptParam) {
       if (isFunction(options.onHideAttempt) && !options.onHideAttempt(attemptParam)) return false;
-      removeClass(boxLayerBG, 'bg_dark');
       __bq._hide(guid);
       return true;
     },
@@ -5987,11 +5995,14 @@ function MessageBox(options, dark) {
 function showBox(url, params, options, e) {
   if (checkEvent(e)) return false;
 
+
   var opts = options || {};
   var boxParams = opts.params || {};
   if (opts.containerClass) {
     boxParams.containerClass = opts.containerClass;
   }
+
+  addClass(bodyNode, 'layers_showing');
   var box = new MessageBox(boxParams);
   var p = {
     onDone: function(title, html, js, data) {
@@ -6058,7 +6069,6 @@ function showBox(url, params, options, e) {
     p.hideProgress = hide.pbind(boxLoader);
   }
   box.removeButtons().addButton(getLang('global_close'));
-
   ajax.post(url, params, p);
   return box;
 }
