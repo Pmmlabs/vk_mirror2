@@ -2021,3 +2021,42 @@ a.feed_article_thumb {
   background: url(/images/icons/feed_subsection_top_tt_close.png);
   cursor: pointer;
 }
+.smartfeed_notification {
+  background-color: #edf0f6;
+}
+.smartfeed_notification .block_content {
+  padding: 8px 15px;
+  border-bottom: 1px solid #DAE1E8;
+  border-top: 1px solid #DAE1E8;
+}
+.smartfeed_notification .block_content .notification_hide {
+  background: url(/images/pics/statusx_op.gif) 0 0 no-repeat;
+  cursor: pointer;
+  height: 11px;
+  width: 11px;
+  margin-left: 5px;
+  opacity: 0.6;
+}
+.smartfeed_notification .block_content .notification_hide:hover {
+  opacity: 1;
+}
+.smartfeed_notification .block_content .notification_image {
+  float: left;
+}
+.smartfeed_notification .block_content .notification_info {
+  margin-top: 4px;
+  margin-left: 60px;
+  line-height: 1.5;
+}
+.smartfeed_notification .block_content .notification_info .notification_title {
+  color: #45688E;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+.smartfeed_notification .block_content .notification_info .notification_body .notification_controls {
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+.smartfeed_notification .block_content .notification_info .notification_body .notification_controls button {
+  margin-right: 10px;
+}

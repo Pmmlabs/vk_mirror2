@@ -2436,6 +2436,21 @@ var Feed = {
       hideProgress: box.hideProgress
     });
   },
+  infoTopFeedNotification: function (hash) {
+    Feed.hideTopFeedNotification(hash, false);
+    nav.go('/feed?w=smartfeed');
+    setTimeout(function() {Feed.hideTopFeedNotification(hash, true);}, 2500);
+  },
+  hideTopFeedNotification: function (hash, now) {
+    ajax.post('al_feed.php', {
+      act: 'hide_top_feed_notification',
+      hash: hash,
+      hide: (now ? 1 : 0)
+    });
+    if (now) {
+      hide('top_feed_notification');
+    }
+  },
 
   saveTabs: function () {
     ajax.post('al_feed.php', {act: 'a_save_tabs', hash: cur.tabs_hash, tabs: cur.my_feed_types.tabs.join(',')});
