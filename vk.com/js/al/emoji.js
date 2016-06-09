@@ -1771,7 +1771,7 @@ buyStickers: function(packId, ev, obj, hash, fromBtn) {
         }
       }
 
-      var optId = cur.emojiId[cur.peer];
+      var optId = cur.emojiId && cur.emojiId[cur.peer];
       if (optId) {
         var tabEl = geByClass1('emoji_tab_'+packId, Emoji.opts[optId].tt);
         if (tabEl) {
@@ -1902,7 +1902,7 @@ updateTabs: function(newStickers, update) {
   for (var i in Emoji.opts) {
     var opts = Emoji.opts[i];
     if (opts.noStickers) {
-      return false;
+      continue;
     }
     var html = '';
     html += Emoji.getTabsCode(window.emojiStickers, i);

@@ -2363,7 +2363,7 @@ function updateHeaderStyles(styles) {
 function updateNarrow() {
   var bar = ge('narrow_column'), barBlock = bar && geByClass1('page_block', bar),
       wideCol = ge('wide_column');
-  if (!bar || !barBlock || !wideCol || isVisible(boxLoader) || isVisible(boxLayerBG) || isVisible(layerBG)) return;
+  if (browser.mobile || !bar || !barBlock || !wideCol || isVisible(boxLoader) || isVisible(boxLayerBG) || isVisible(layerBG)) return;
 
   var wh = window.lastWindowHeight || 0, st = Math.min(scrollGetY(), bodyNode.clientHeight - wh),
       pl = ge('page_layout'), head = ge('page_header_wrap'), headH = getSize(head)[1],
@@ -2411,7 +2411,7 @@ function updateNarrow() {
 
 function updateLeftMenu() {
   var menu = ge('side_bar_inner'), pageBody = ge('page_body');
-  if (!menu || !pageBody) return;
+  if (browser.mobile || !menu || !pageBody) return;
 
   var wh = window.lastWindowHeight || 0, st = Math.min(scrollGetY(), bodyNode.clientHeight - wh), pos = 0,
       pl = ge('page_layout'), head = ge('page_header_wrap'), headH = getSize(head)[1],
@@ -2594,7 +2594,9 @@ function onBodyScroll() {
   if (!window.pageNode) return;
 
   var ml = Math.min(0, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(ge('page_layout'))[0]));
-  updateHeaderStyles({marginLeft: ml});
+  if (!browser.mobile) {
+    updateHeaderStyles({marginLeft: ml});
+  }
   updateLeftMenu();
   updateNarrow();
   updSideTopLink();
