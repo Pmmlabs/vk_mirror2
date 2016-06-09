@@ -1118,6 +1118,9 @@ a.app_decline:hover {
 .apps_access_stats {
   background-position: 0px -296px;
 }
+.apps_access_market {
+  background-position: 0px -629px;
+}
 .apps_sett_access_list {
   padding: 5px 0px 15px;
 }

@@ -2811,7 +2811,6 @@ var Wall = {
         val(rf, '');
       }
       v = '';
-      debugLog(geByClass1('reply_warn', postEl));
       hide(geByClass1('reply_warn', postEl));
     }
     if (browser.opera_mobile || browser.safari_mobile || v) return;

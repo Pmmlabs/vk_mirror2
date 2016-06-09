@@ -257,6 +257,11 @@ playerCallback: {
           vkImage().src = locProtocol + '//vk.com/rtrg?r=lD4OYmfC8ehvdc/8TL9AsAjM956qNaHyj20XV5mCNiTgYKQ6X*IXgwE8VbgqOf7rdbLJq7uCRBrdnFPTcUU2NjMgy8x4y6NWrYVwQMteNWh62XnLoNVZqobnsMMGm1OyTW09rhEkmiX5jqk3CI3JIIYbIbd8K7EC0ytQ4Kp4Kro-';
           break;
       }
+
+      var rtrgPixel = cur.mvOpts.rtrg_pixel || mvcur.mvData.rtrg_pixel;
+      if (rtrgPixel) {
+        vkImage().src = locProtocol + rtrgPixel;
+      }
     }
   },
   onVideoPlayFinished: function() {
