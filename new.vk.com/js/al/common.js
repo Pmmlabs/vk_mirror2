@@ -7325,7 +7325,7 @@ function showInlineVideo(videoId, listId, options, ev, thumb) {
     } catch (e) {
     }
 
-    if (!options.params.mute) {
+    if (!options.params.from_autoplay) {
       var _n = window.Notifier, _a = window.audioPlayer;
       if (_n) setTimeout(function() { _n.lcSend('video_start'); }, 0);
 

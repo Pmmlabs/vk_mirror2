@@ -2631,8 +2631,8 @@ var Wall = {
         },
         //sharedTT: cur.sharedIm,
         checkEditable: Wall.checkTextLen.pbind(txt, 'reply_warn' + post),
-        onStickerSend: function(stNum) {
-          Wall.sendReply(post, false, {stickerId: stNum});
+        onStickerSend: function(stNum, sticker_referrer) {
+          Wall.sendReply(post, false, {stickerId: stNum, sticker_referrer: sticker_referrer});
         }
       });
       Wall.emojiOpts[post] = optId;
@@ -2685,7 +2685,7 @@ var Wall = {
     }
     if (cur.editing === post) {
       Emoji.editableFocus(rf, false, true);
-      return cancelEvent(ev);
+      return false;
     }
     Wall.hideEditPostReply();
     addClass(postEl, 'reply_box_open');
@@ -2780,7 +2780,7 @@ var Wall = {
       cur.onReplyFormSizeUpdate(rf);
     }
 
-    return cancelEvent(ev);
+    return false;
   },
   hideEditReply: function(post, force) {
     cur.editing = false;
@@ -3043,7 +3043,7 @@ var Wall = {
     }
 
     if (options.stickerId) {
-      var params = {message: '', attach1_type: "sticker", attach1: options.stickerId};
+      var params = {message: '', attach1_type: "sticker", attach1: options.stickerId, sticker_referrer: options.sticker_referrer};
     } else {
       var params = composer ? Composer.getSendParams(composer, Wall.sendReply.pbind(post)) : {message: trim(Emoji.editableVal(rf))};
       if (params.delayed) {
