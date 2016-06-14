@@ -37,7 +37,7 @@ if (browser.msie8 || browser.msie7) {
   }
   setStyle(ge('ts_cont_wrap'), st);
 }
-window.tsHintsEnabled = 1;;shortCurrency();public.init({"only_official":true,"public_id":34371983,"public_link":"\/nelive","reply_names":[],"max_post_len":280,"post_hash":"01c7b02dd192571054","media_types":false,"wall_type":"own","wall_no":"Нет записей","wall_counts":["","%s запись","%s записи","%s записей"],"wall_suggest_post":"предложить новость","wall_return_to_posts":"вернуться к записям","wall_no_suggests_label":"Вы не предложили ни одной новости","wall_suggests_label":["","Вы предложили %s новость","Вы предложили %s новости","Вы предложили %s новостей"],"all_link":"к опубликованным записям","own_link":"есть предлагаемые новости","rmedia_types":[["photo","Фотографию"],["video","Видеозапись"],["audio","Аудиозапись"],["graffiti","Граффити"],["note","Заметку"],["doc","Документ"],["map","Карту"],["postpone","Таймер",{"lang":{"profile_choose_timer":"Время публикации","profile_wall_postpone_at":"в","profile_wall_postpone_btn":"В очередь","export_to_twitter":"экспорт в Twitter","export_to_facebook":"экспорт в Facebook","friends_only":"только для друзей"},"date":1465579074}]],"share":{"url":"","hash":"","rhash":"","timehash":"1465564674_dd42a9ac03a891495f"},"feedLists":0,"feedListsHash":"dabb281ed711949bfb","photo_hash":null,"liked":false,"enterHash":"eccb9972e597dbd9fe","info_headers":{"info_module_tab":"<h4 class=\"simple page_top\">\n  <div class=\"top_header page_name\">Не LIVE<\/div>\n  \n<\/h4>"},"tab_actions":"","otherCount":"Подписались 5 человек","back":"Не LIVE","ciAudioTip":"Композиция, которая играет в сообществе Не LIVE","ciAudioHash":"bde111e56038100605","fixed_post_id":6});
+window.tsHintsEnabled = 1;;shortCurrency();public.init({"only_official":true,"public_id":34371983,"public_link":"\/nelive","reply_names":[],"max_post_len":280,"post_hash":"01c7b02dd192571054","media_types":false,"wall_type":"own","wall_no":"Нет записей","wall_counts":["","%s запись","%s записи","%s записей"],"wall_suggest_post":"предложить новость","wall_return_to_posts":"вернуться к записям","wall_no_suggests_label":"Вы не предложили ни одной новости","wall_suggests_label":["","Вы предложили %s новость","Вы предложили %s новости","Вы предложили %s новостей"],"all_link":"к опубликованным записям","own_link":"есть предлагаемые новости","rmedia_types":[["photo","Фотографию"],["video","Видеозапись"],["audio","Аудиозапись"],["graffiti","Граффити"],["note","Заметку"],["doc","Документ"],["map","Карту"],["postpone","Таймер",{"lang":{"profile_choose_timer":"Время публикации","profile_wall_postpone_at":"в","profile_wall_postpone_btn":"В очередь","export_to_twitter":"экспорт в Twitter","export_to_facebook":"экспорт в Facebook","friends_only":"только для друзей"},"date":1465906868}]],"share":{"url":"","hash":"","rhash":"","timehash":"1465892468_ed16823c099764bab5"},"feedLists":0,"feedListsHash":"dabb281ed711949bfb","photo_hash":null,"liked":false,"enterHash":"eccb9972e597dbd9fe","info_headers":{"info_module_tab":"<h4 class=\"simple page_top\">\n  <div class=\"top_header page_name\">Не LIVE<\/div>\n  \n<\/h4>"},"tab_actions":"","otherCount":"Подписались 5 человек","back":"Не LIVE","ciAudioTip":"Композиция, которая играет в сообществе Не LIVE","ciAudioHash":"bde111e56038100605","fixed_post_id":6});
 cur.lang = extend(cur.lang || {}, {
   show_full: 'Показать подробную информацию',
   groups_user_about_messages: '',
@@ -64,127 +64,7 @@ extend(cur, {
   onPlaceAdd: function() {
     Public.showPlaces(1);
   }
-});;cur.wallVideos={"wall_-34371983":{"title":"Видео на стене Не LIVE","list":[{"vid":"-460389_160321403","title":"Rick Astley - Never Gonna Give You Up","thumb":"http:\/\/cs12672.vk.me\/u30803973\/video\/l_c7720048.jpg","duration":"3:32","views":"101<span class=\"num_delim\"> <\/span>830 просмотров","hash":"9f205571d389be88bb"}],"id":"wall_-34371983"}};;(function(){
-  var mp4Support = (function() {
-    var v = ce('video');
-    return v.canPlayType && !!v.canPlayType('video/mp4').replace('no', '');
-  })();
-
-  if (!cur.gifAutoplayScrollHandler && mp4Support && !browser.mobile) {
-    function debounce(func, wait, immediate) {
-      var timeout;
-      return function() {
-        var context = this, args = arguments;
-        var later = function() {
-          timeout = null;
-          if (!immediate) func.apply(context, args);
-        };
-        var callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
-      };
-    }
-
-    cur.gifAutoplayScrollHandler = debounce(function () {
-      var autoplayGifs;
-      if (cur.wallPage) {
-        var selector = '.page_post_queue_' + (cur.wallPageWide ? 'wide' : 'narrow') + ' .page_gif_autoplay';
-        autoplayGifs = cur.wallPage.querySelectorAll(selector);
-      } else {
-        autoplayGifs = geByClass('page_gif_autoplay');
-      }
-      if (!autoplayGifs.length) return;
-
-      var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-      var viewportMiddle = viewportHeight / 2;
-      var activeSpace = Math.min(viewportHeight, 800);
-      var activeTop = viewportMiddle - activeSpace/2;
-      var activeBottom = viewportMiddle + activeSpace/2;
-
-      var index = autoplayGifs.length - 1;
-      var direction = -1;
-      var candidateGif;
-      var tmpGif;
-
-      if (cur.activeGif) {
-        var rect = cur.activeGif.getBoundingClientRect();
-        var inViewport = rect.top > activeTop && rect.bottom < activeBottom;
-
-        if (inViewport) {
-          var inTheMiddle = rect.top < viewportMiddle && rect.bottom > viewportMiddle;
-          if (inTheMiddle) {
-            return;
-          }
-
-          var activeGifIndex = indexOf(autoplayGifs, domPN(cur.activeGif));
-          var distanceToMiddle = Math.min(Math.abs(viewportHeight/2 - rect.top), Math.abs(viewportHeight/2 - rect.bottom));
-
-          candidateGif = {el: domPN(cur.activeGif), distanceToMiddle: distanceToMiddle};
-
-          if (activeGifIndex > -1) {
-            index = activeGifIndex;
-            direction = Math.abs(viewportHeight/2 - rect.top) < Math.abs(viewportHeight/2 - rect.bottom) ? -1 : 1;
-          }
-        } else if (indexOf(autoplayGifs, domPN(cur.activeGif)) > -1) {
-          // hide active if it is autoplayable gif
-          Page.hideGif(cur.activeGif);
-        }
-      }
-
-      while (tmpGif = autoplayGifs[index]) {
-        var rect = tmpGif.getBoundingClientRect();
-        var inViewport = rect.width && rect.height && rect.top > activeTop && rect.bottom < activeBottom;
-
-        if (inViewport && index == 0 && scrollGetY() < 300) {
-          candidateGif = {el: tmpGif, distanceToMiddle: distanceToMiddle};
-          break;
-        }
-
-        if (inViewport) {
-          var distanceToMiddle = Math.min(Math.abs(viewportHeight/2 - rect.top), Math.abs(viewportHeight/2 - rect.bottom));
-
-          if (candidateGif && distanceToMiddle > candidateGif.distanceToMiddle) {
-            break;
-          } else {
-            candidateGif = {el: tmpGif, distanceToMiddle: distanceToMiddle};
-          }
-        }
-
-        index += direction;
-      }
-
-      if (candidateGif && domFC(candidateGif.el) !== cur.activeGif) {
-        Page.showGif(domFC(candidateGif.el));
-
-        var nextGifIndex = indexOf(autoplayGifs, candidateGif.el) + 1;
-        var nextGif;
-        while (nextGif = autoplayGifs[nextGifIndex++]) {
-          var rect = nextGif.getBoundingClientRect();
-          if (rect.width && rect.height) { // if visible then preload
-            ce('video', {
-              src: domFC(nextGif).href + '&wnd=1&mp4=1',
-              preload: 'auto'
-            });
-            break;
-          }
-        }
-      }
-
-    }, 50);
-
-    addEvent(window, 'scroll', cur.gifAutoplayScrollHandler);
-    addEvent(window, 'resize', cur.gifAutoplayScrollHandler);
-
-    cur.gifAutoplayScrollHandler();
-
-    cur.destroy.push(function() {
-      removeEvent(window, 'scroll', cur.gifAutoplayScrollHandler);
-      removeEvent(window, 'resize', cur.gifAutoplayScrollHandler);
-      delete cur.gifAutoplayScrollHandler;
-    });
-  }
-})();cur.pinnedVideo = '-460389_160321403';
+});;cur.wallVideos={"wall_-34371983":{"title":"Видео на стене Не LIVE","list":[{"vid":"-460389_160321403","title":"Rick Astley - Never Gonna Give You Up","thumb":"http:\/\/cs12672.vk.me\/u30803973\/video\/l_c7720048.jpg","duration":"3:32","views":"102<span class=\"num_delim\"> <\/span>967 просмотров","hash":"9f205571d389be88bb"}],"id":"wall_-34371983"}};;Page.initGifAutoplay();cur.pinnedVideo = '-460389_160321403';
 cur.pinnedVideoInitHandlers = function() {
   var post = ge('post-34371983_6');
   var playerEl = ge('video_player') || ge('html5_player');

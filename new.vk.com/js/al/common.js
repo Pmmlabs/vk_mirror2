@@ -7149,6 +7149,9 @@ function showPhoto(photoId, listId, options, ev) {
   }
   extend(options, {onDone: function(lst) {
     Photoview.list(photoId, listId, lst);
+    if (options.blog_text && arguments[3] && arguments[3][0]) {
+      arguments[3][0].album = options.blog_text;
+    }
     Photoview.loaded.apply(window, arguments);
     if (!doShow) return;
     if (lst == 'deleted') {

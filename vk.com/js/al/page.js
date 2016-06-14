@@ -1001,6 +1001,129 @@ var Page = {
     return cancelEvent(ev);
   },
 
+  initGifAutoplay: function() {
+    if (cur.gifAutoplayScrollHandler || !mp4Support() || browser.mobile) return;
+
+    var scrollHandler = debounce(function () {
+      var autoplayGifs;
+      if (cur.wallPage) {
+        var selector = '.page_post_queue_' + (cur.wallPageWide ? 'wide' : 'narrow') + ' .page_gif_autoplay';
+        autoplayGifs = cur.wallPage.querySelectorAll(selector);
+      } else {
+        autoplayGifs = geByClass('page_gif_autoplay');
+      }
+      if (!autoplayGifs.length) return;
+
+      var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      var viewportMiddle = viewportHeight / 2;
+      var activeSpace = Math.min(viewportHeight, 800);
+      var activeTop = viewportMiddle - activeSpace/2;
+      var activeBottom = viewportMiddle + activeSpace/2;
+
+      var index = autoplayGifs.length - 1;
+      var direction = -1;
+      var candidateGif;
+      var tmpGif;
+
+      if (cur.activeGif) {
+        var rect = cur.activeGif.getBoundingClientRect();
+        var inViewport = rect.top > activeTop && rect.bottom < activeBottom;
+
+        if (inViewport) {
+          var inTheMiddle = rect.top < viewportMiddle && rect.bottom > viewportMiddle;
+          if (inTheMiddle) {
+            return;
+          }
+
+          var activeGifIndex = indexOf(autoplayGifs, domPN(cur.activeGif));
+          var distanceToMiddle = Math.min(Math.abs(viewportHeight/2 - rect.top), Math.abs(viewportHeight/2 - rect.bottom));
+
+          candidateGif = {el: domPN(cur.activeGif), distanceToMiddle: distanceToMiddle};
+
+          if (activeGifIndex > -1) {
+            index = activeGifIndex;
+            direction = Math.abs(viewportHeight/2 - rect.top) < Math.abs(viewportHeight/2 - rect.bottom) ? -1 : 1;
+          }
+        } else if (inArray(domPN(cur.activeGif), autoplayGifs)) { // hide active gif if it is autoplayable
+          Page.hideGif(cur.activeGif);
+        }
+      }
+
+      while (tmpGif = autoplayGifs[index]) {
+        var rect = tmpGif.getBoundingClientRect();
+        var inViewport = rect.width && rect.height && rect.top > activeTop && rect.bottom < activeBottom;
+
+        if (inViewport && index == 0 && scrollGetY() < 300) {
+          candidateGif = {el: tmpGif, distanceToMiddle: distanceToMiddle};
+          break;
+        }
+
+        if (inViewport) {
+          var distanceToMiddle = Math.min(Math.abs(viewportHeight/2 - rect.top), Math.abs(viewportHeight/2 - rect.bottom));
+
+          if (candidateGif && distanceToMiddle > candidateGif.distanceToMiddle) {
+            break;
+          } else {
+            candidateGif = {el: tmpGif, distanceToMiddle: distanceToMiddle};
+          }
+        }
+
+        index += direction;
+      }
+
+      if (candidateGif && domFC(candidateGif.el) !== cur.activeGif) {
+        Page.showGif(domFC(candidateGif.el));
+
+        var nextGifIndex = indexOf(autoplayGifs, candidateGif.el) + 1;
+        var nextGif;
+        while (nextGif = autoplayGifs[nextGifIndex++]) {
+          var rect = nextGif.getBoundingClientRect();
+          if (rect.width && rect.height) { // if visible then preload
+            ce('video', {
+              src: domFC(nextGif).href + '&wnd=1&mp4=1',
+              preload: 'auto'
+            });
+            break;
+          }
+        }
+      }
+    }, 50);
+
+    cur.gifAutoplayScrollHandler = scrollHandler;
+
+    addEvent(window, 'scroll', scrollHandler);
+    addEvent(window, 'resize', scrollHandler);
+
+    scrollHandler();
+
+    cur.destroy.push(function() {
+      removeEvent(window, 'scroll', scrollHandler);
+      removeEvent(window, 'resize', scrollHandler);
+      delete cur.gifAutoplayScrollHandler;
+      scrollHandler = null;
+    });
+
+    function mp4Support() {
+      var v = ce('video');
+      return v.canPlayType && !!v.canPlayType('video/mp4').replace('no', '');
+    }
+
+    function debounce(func, wait, immediate) {
+      var timeout;
+      return function() {
+        var context = this, args = arguments;
+        var later = function() {
+          timeout = null;
+          if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+      };
+    }
+  },
+
   albumOver: function(obj, id) {
     if (cur.hideAlbumTO && cur.hideAlbumTO[id]) {
       clearTimeout(cur.hideAlbumTO[id]);
@@ -6187,7 +6310,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
         }
         var valid = true;
         if (domain.match(/(^|\.|\/\/)(vkontakte\.ru|vk\.com)/)) {
-          valid = query.match(/(#photo|^\/(photo|video|album|page|audio|doc)|z=(album|photo|video)|w=(page|product))(-?\d+_)?\d+|\.(jpg|png|gif)$|market-?\d+\?section=album_\d+|^\/stickers\/.+$|^\/vk2016+$|^http:\/\/instagram\.com\/p\/.+/) ? true : false;
+          valid = query.match(/(#photo|^\/(photo|video|album|page|audio|doc)|z=(album|photo|video)|w=(page|product))(-?\d+_)?\d+|\.(jpg|png|gif)$|market-?\d+\?section=album_\d+|^\/stickers\/.+$|^\/vk2016+$|^\/blog\/.+$|^http:\/\/instagram\.com\/p\/.+/) ? true : false;
         }
         if (valid) {
           addMedia.checkURL(initialUrl);

@@ -4119,7 +4119,7 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
           photoLinkSuffix = '_group';
         }
         var specialValue = ((this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO) ? 'value_empty_' : 'value_default_') + photoSize + photoLinkSuffix;
-        this.preview[previewParamName].src = this.params.photo_link[specialValue];
+        this.preview[previewParamName].src = this.params.photo_link[specialValue] || '';
       }
       toggleClass(this.preview.photo_box, 'promotion', !!(this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY));
       break;

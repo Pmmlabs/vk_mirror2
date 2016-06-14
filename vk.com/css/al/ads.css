@@ -1807,11 +1807,11 @@ td.ads_settings_notifacations_label {
   right: 0;
   top: 0;
   bottom: 0;
-  border: 1px solid black;
+  border: 1px solid #001134;
   border-radius: 2px;
-  opacity: 0.04;
-  -moz-opacity: 0.04;
-  filter: alpha(opacity=4);
+  opacity: 0.1;
+  -moz-opacity: 0.1;
+  filter: alpha(opacity=10);
 }
 .ads_ad_box.redesign .ads_ad_community_join {
   position: absolute;

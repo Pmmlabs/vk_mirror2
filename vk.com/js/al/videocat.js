@@ -113,6 +113,7 @@ window.Videocat = window.Videocat || {
         });
       }
     });
+    statlogsValueEvent('videocat_popular', '', 'show');
   },
 
   removePlaylistBlock: function() {
@@ -143,14 +144,25 @@ window.Videocat = window.Videocat || {
         loadPlaylistOnShow = false;
       }
 
+      var params = {
+        force_no_repeat: 1,
+        show_next: playlistId ? 1 : 0,
+        playlist_id: playlistId,
+        load_playlist: intval(loadPlaylistOnShow)
+      };
+
+      if (playlistId == 'ugc_popular') {
+        if (cur.popular_qid) {
+          params.suggestions_qid = cur.popular_qid;
+          var pos = getElemIndex(domPN(ref)) + 1;
+          vkImage().src = '//go.imgsmail.ru/vk?pxn=vic&qid='+cur.popular_qid+'&vid='+videoId+'&p='+pos+'&t=0';
+        }
+        statlogsValueEvent('videocat_popular', '', 'play');
+      }
+
       Video.show(event, videoId, {
         autoplay: 1,
-        addParams: {
-          force_no_repeat: 1,
-          show_next: playlistId ? 1 : 0,
-          playlist_id: playlistId,
-          load_playlist: intval(loadPlaylistOnShow)
-        },
+        addParams: params,
         module: ['feed_block', 'feed_recoms_block'].indexOf(playlistId) >= 0 ? playlistId : Videoview.getVideoModule(videoId),
         playlistId: playlistId,
         listId: videoHash
@@ -158,6 +170,13 @@ window.Videocat = window.Videocat || {
     });
 
     return false;
+
+    function getElemIndex(elem) {
+      var curElem = elem;
+      var index = 0;
+      while (curElem = domPS(curElem)) ++index;
+      return index;
+    }
   },
 
   buildPlaylistBlock: function(playlistId, force) {
