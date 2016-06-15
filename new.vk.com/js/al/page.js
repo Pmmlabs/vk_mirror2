@@ -750,8 +750,6 @@ var Page = {
       }
     }, showProgress: lockButton.pbind('currinfo_save'), hideProgress: unlockButton.pbind('currinfo_save'), stat: ['tooltips.js', 'tooltips.css', 'emoji.js']});
   },
-  mentionInit: function (el) {
-  },
   showGif: function(obj, ev, dontHideActive) {
     if (ev && (ev.ctrlKey || ev.metaKey)) {
       return true;
@@ -7250,6 +7248,8 @@ Composer = {
       if (composer.wdd && inArray(event.keyCode, [KEY.SPACE, KEY.HOME, 190, 191, 78, 55, 49])) {
         Composer.hideSelectList(composer);
       }
+    }
+    if (event.type == 'keyup' && (!controlEvent || event.keyCode == KEY.RETURN)) {
       Composer.updateAutoComplete(composer, event);
     }
   },
@@ -7274,7 +7274,7 @@ Composer = {
     //prefValue = value.substr(0, curPos),
     var prefValue = value;
     var pos = Math.max(prefValue.lastIndexOf('@'), prefValue.lastIndexOf('*')),
-        term = pos > -1 ? prefValue.substr(pos + 1) : false;
+        term = pos > -1 ? prefValue.substr(pos + 1).replace(/\n$/, '') : false;
 
     if (term && term.match(/&nbsp;|[,\.\(\)\?\!\s\n \u00A0]|\#/)) {
       term = false;

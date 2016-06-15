@@ -1510,6 +1510,27 @@ if (!VK.Widgets) {
     });
   };
 
+  VK.Widgets.ContactUs = function(objId, options, oid) {
+    oid = parseInt(oid, 10);
+
+    if (!options) options = {};
+    if (!oid) throw Error('No group or user id passed');
+
+    var RPC,
+      params = {
+        oid: oid,
+        height: ({22: 22, 24: 24, 30: 30})[parseInt(options.height, 10) || 24],
+        text: (options.text || '').substr(0, 140)
+      };
+
+    return VK.Widgets._constructor('widget_contactus.php', objId, options, params, {}, {
+      startHeight: params.height,
+      height: params.height
+    }, function(o, i, r) {
+      RPC = r;
+    });
+  };
+
   VK.Widgets.Ads = function(objId, options, paramsExtra) {
     options = options || {};
     paramsExtra = paramsExtra || {};
