@@ -4992,12 +4992,19 @@ var Wall = {
     if (!ttChooser) {
       var rdGroup = wall.REPLY_RADIO_BTNS_GROUP + (wall.REPLY_RADIO_BTNS_GROUP_INDEX ++);
 
+      var onCls = [];
+      if (hasClass(obj, 'on')) {
+        onCls = ['', 'on'];
+      } else {
+        onCls = ['on', ''];
+      }
+
       ttChooser = new ElementTooltip(obj, {
         content:
           '<div class="post_reply_tt_choose"> \
             <h3>' + getLang('global_on_behalf_title') + '</h3> \
-            <div class="radiobtn on" data-as="me">' + getLang('global_on_behalf_me') + '</div> \
-            <div class="radiobtn" data-as="group">' + getLang('global_on_behalf_group') + '</div> \
+            <div class="radiobtn ' + onCls[0] + '" data-as="me">' + getLang('global_on_behalf_me') + '</div> \
+            <div class="radiobtn ' + onCls[1] + '" data-as="group">' + getLang('global_on_behalf_group') + '</div> \
           </div>',
         appendToParent: true,
         offset: [-9, -5],
