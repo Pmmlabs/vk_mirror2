@@ -77,7 +77,6 @@ initPage: function(opts) {
     this.onmouseover = showTooltip.pbind(this, {
       text: getLang('developers_group_access_method_tip'),
       black: 1,
-      shift: [10, 3, 3]
     });
   });
 },
