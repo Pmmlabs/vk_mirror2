@@ -3275,17 +3275,6 @@ var ajax = {
         return;
       }
     } catch(e) {}
-    each(['Msxml2.XMLHTTP', 'Microsoft.XMLHTTP'], function() {
-      try {
-        var t = '' + this;
-        if (r = new ActiveXObject(t)) {
-          (function(n) {
-            ajax._req = function() { return new ActiveXObject(n); }
-          })(t);
-          return false;
-        }
-      } catch(e) {}
-    });
     if (!ajax._req && !browser.search_bot) {
       location.replace('/badbrowser.php');
     }
