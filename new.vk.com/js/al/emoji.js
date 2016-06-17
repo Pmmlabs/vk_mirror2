@@ -1918,7 +1918,11 @@ hintsStickerItem: function() {
 },
 
 tabSwitch: function(obj, selId, optId) {
-  if (!Emoji.stickers || isEmpty(Emoji.stickers)) {
+  var stickers = Emoji.stickers && clone(Emoji.stickers);
+  if (stickers) {
+    delete stickers[-1];
+  }
+  if (!stickers || isEmpty(stickers)) {
     Emoji.onStickersLoad = Emoji.tabSwitch.pbind(obj, selId, optId);
     return false;
   }
@@ -2208,12 +2212,16 @@ clickSticker: function(packId, obj, ev) {
         opts.scrollLeft = mPos;
         tab_cont.scrollLeft = mPos;
 
-        if (!Emoji.stickers || isEmpty(Emoji.stickers)) {
+        var stickers = Emoji.stickers && clone(Emoji.stickers);
+        if (stickers) {
+          delete stickers[-1];
+        }
+        if (!stickers || isEmpty(stickers)) {
           Emoji.onStickersLoad = Emoji.tabSwitch.pbind(tab, packId, txt.emojiId);
 
           removeClass(geByClass1('emoji_tab_sel', tab_cont), 'emoji_tab_sel');
           addClass(tab, 'emoji_tab_sel');
-          geByClass1('emoji_scroll', opts.tt).innerHTML = '<div class="emojo_scroll_progress"></div>';
+          geByClass1('emoji_scroll', opts.tt).innerHTML = '<div class="emoji_scroll_progress">' + rs(vk.pr_tpl, {id: '', cls: 'pr_big'}) + '</div>';
         } else {
           Emoji.tabSwitch(tab, packId, txt.emojiId);
         }
