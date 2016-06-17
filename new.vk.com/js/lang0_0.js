@@ -18,6 +18,7 @@ datepicker_month_format='{month} {year}';
 functions_sure_delete='Вы действительно хотите удалить эту запись?';
 global_add='Добавить';
 global_add_media_more='Другое..';
+global_audio_flash_required='Для прослушивания музыки необходим Flash плеер. <br>Вы можете установить его {link}здесь{/link}.';
 global_back='Назад';
 global_Complain_video='Пожаловаться';
 global_cancel='Отмена';
@@ -221,7 +222,7 @@ videofile_num=['','видеозапись','видеозаписи','видеозаписей'];
 votes_flex=['','голос','голоса','голосов'];
 Work_place='Место работы:';
 yesterday='вчера';
-// section = 0; version = 430;
+// section = 0; version = 431;
 
 friends_no_user_selected='Вы не выбрали ни одного пользователя.';
 // section = 2; version = 207;
