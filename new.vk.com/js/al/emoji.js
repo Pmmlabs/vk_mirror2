@@ -730,7 +730,7 @@ getStickersHintsQuery: function(el) {
       return (pre || '') + Emoji.codeToChr(code)+(space || '');
     });
   });
-  str = str.replace(/^[\s\uFEFF\xA0]+|[\.!\?\)\n]+$/g, '').toLowerCase().replace('¸', 'å');
+  str = str.replace(/^[\s\uFEFF\xA0]+|[\.!\?\n]+$/g, '').toLowerCase().replace('¸', 'å');
 
   return str;
 },
@@ -742,10 +742,10 @@ checkStickersKeywords: function(optId, opts, force) {
   }
 
   var delay = force ? 0 : 100,
+      text = opts.txt,
+      stCont = geByClass1('_sticker_hints', domPN(text)),
       showHints = function() {
-    var text = opts.txt,
-        str = Emoji.getStickersHintsQuery(text),
-        stCont = geByClass1('_sticker_hints', domPN(text));
+    var str = Emoji.getStickersHintsQuery(text);
     if (!stCont) {
       stCont = Emoji.initStickersHints(text);
       if (!stCont) {
@@ -776,7 +776,7 @@ checkStickersKeywords: function(optId, opts, force) {
     showHints();
   } else {
     clearTimeout(opts.stickerHintTT);
-    opts.stickerHintTT = setTimeout(showHints, 200);
+    opts.stickerHintTT = setTimeout(showHints, stCont && isVisible(stCont) ? 0 : 200);
   }
 },
 
