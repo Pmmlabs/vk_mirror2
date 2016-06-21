@@ -551,15 +551,15 @@ table.login_blocked_reason_thumbs {
 .login_mobile_logo1 {
   width: 124px;
   height: 34px;
-  background: url(//m.vk.com/images/s_logo.png) no-repeat 0 center;
+  background: url(//m.vk.com/images/mobile/s_logo.png) no-repeat 0 center;
 }
 .login_mobile_logo1 {
   width: 39px;
   margin-left: -4px;
-  background-image: url(//m.vk.com/images/s_vkn_logo.png);
+  background-image: url(//m.vk.com/images/mobile/s_vkn_logo.png);
 }
 .login_mobile_top {
-  background: url(//m.vk.com/images/s_notify.png) no-repeat center;
+  background: url(//m.vk.com/images/mobile/s_notify.png) no-repeat center;
   padding: 5px 9px;
 }
 .login_mobile_top_new {
@@ -593,10 +593,10 @@ table.login_blocked_reason_thumbs {
 }
 .login_mobile_lvi {
   padding: 0 2px 1px;
-  background: url(//m.vk.com/images/online.png) no-repeat 1px center;
+  background: url(//m.vk.com/images/mobile/online.png) no-repeat 1px center;
 }
 .login_mobile_arr {
-  background: url(//m.vk.com/images/profile_arrow.png) no-repeat center;
+  background: url(//m.vk.com/images/mobile/profile_arrow.png) no-repeat center;
   position: absolute;
   right: 0;
   width: 10px;
