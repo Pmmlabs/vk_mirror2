@@ -5122,6 +5122,7 @@ var Wall = {
       dir: 'auto',
       checkLeft: true,
       reverseOffset: 80,
+      noZIndex: true,
       tip: {
         over: function() {
           Wall.likesShow(el, post_id, opts);

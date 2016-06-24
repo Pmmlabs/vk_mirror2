@@ -2374,13 +2374,14 @@ function updateNarrow() {
       pageH = intval(getSize(wideCol)[1]), pagePos = wideCol.offsetTop, tooBig = barH >= pageH - barMT, barMB = barMT,
       barPB = Math.max(0, st + wh - pageH - pagePos - barMB), barPT = pagePos - headH,
       barPos = intval(getXY(bar)[1]) + (isFixed ? barMT : 0),
-      lastSt = cur.lastSt || 0, lastStyles = cur.lastStyles || {}, styles, needFix = false;
+      lastSt = cur.lastSt || 0, lastStyles = cur.lastStyles || {}, styles, needFix = false,
+      smallEnough = headH + barMB + barH + barMT + barPB <= wh;
 
-  if (st <= barPT || tooBig) {
+  if (st <= barPT && !smallEnough || tooBig) {
     styles = {
       marginTop: 0
     }
-  } else if (st <= Math.min(lastSt, barPos - headH - barMT) || headH + barMB + barH + barMT + barPB <= wh) {
+  } else if (st <= Math.min(lastSt, barPos - headH - barMT) || smallEnough) {
     styles = {
       top: headH,
       marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
