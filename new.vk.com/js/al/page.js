@@ -3557,7 +3557,7 @@ var Wall = {
     if (!matches) return;
 
     if (hasClass(el, 'suggest') || cur.onepost) return;
-    var url = 'wall' + matches[1] + '_' + matches[3];
+    var url = '/wall' + matches[1] + '_' + matches[3];
     if (browser.mobile && event) {
       nav.go(url);
     } else if (checkEvent(event)) {
