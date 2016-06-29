@@ -258,7 +258,7 @@ playerCallback: {
           break;
       }
 
-      var rtrgPixel = cur.mvOpts.rtrg_pixel || mvcur.mvData.rtrg_pixel;
+      var rtrgPixel = (cur.mvOpts ? cur.mvOpts.rtrg_pixel : false) || (window.mvcur && mvcur.mvData ? mvcur.mvData.rtrg_pixel : false);
       if (rtrgPixel) {
         vkImage().src = locProtocol + rtrgPixel;
       }

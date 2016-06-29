@@ -5680,6 +5680,30 @@ var TopNotifier = {
       TopNotifier.refresh();
     });
   },
+  deleteRow: function (item, del_item, types, hash, el, canDel) {
+    var r = ge('top_feedback_row' + item),
+            actionsWrap = geByClass1('post_actions', r);
+    TopNotifier.hideActionsMenu(geByClass1('_ui_menu_wrap', r));
+    ajax.post('al_feed.php', {act: 'a_feedback_delete', item: del_item, hash: hash, types: types, candel: canDel, from: 'top_notifier'}, {
+      onDone: function (html) {
+        var t = geByClass1('_post_content', r),
+            fd = geByClass1('_feedback_deleted', r);
+        if (fd) {
+          fd.innerHTML = '<span class="dld_inner">' + html + '</span>';
+          show(fd);
+        } else {
+          r.appendChild(ce('div', {className: 'feedback_row dld _feedback_deleted _top_feedback_deleted', innerHTML: '<span class="dld_inner">' + html + '</span>'}));
+        }
+        hide(t);
+        if (hasClass(r, 'feedback_row_clickable')) {
+          addClass(r, 'feedback_row_touched');
+        }
+        TopNotifier.refresh();
+      },
+      showProgress: addClass.pbind(actionsWrap, 'post_actions_progress'),
+      hideProgress: removeClass.pbind(actionsWrap, 'post_actions_progress')
+    })
+  },
   checkClick: function (el, event) {
     event = event || window.event;
     if (!el || !event) return true;
@@ -5707,7 +5731,7 @@ var TopNotifier = {
     var options = false;
         row = domClosest('_feed_row', el),
         rowPN = domPN(row);
-    if (rowPN.lastChild == row && (!hasClass(rowPN, 'feedback_sticky_rows') || domPN(rowPN).lastChild == rowPN)) {
+    if (rowPN.lastChild == row && !hasClass(domPN(el), 'post_actions') && (!hasClass(rowPN, 'feedback_sticky_rows') || domPN(rowPN).lastChild == rowPN)) {
       options = {
         appendParentCls: 'top_notify_wrap',
         processHoverCls: 'feedback_sticky_row'

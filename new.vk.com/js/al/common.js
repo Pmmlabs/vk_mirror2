@@ -5712,7 +5712,7 @@ function MessageBox(options, dark) {
   }
 
   // Add button
-  function addButton(label, onclick, type) {
+  function addButton(label, onclick, type, id) {
     ++buttonsCount;
     var btnClass = 'flat_button', type;
     if (type == 'no' || type == 'gray') {
@@ -5729,7 +5729,8 @@ function MessageBox(options, dark) {
 
     var buttonWrap = ce('button', {
       className: btnClass,
-      innerHTML: label
+      innerHTML: label,
+      id: id
     }), row = boxButtons.rows[0], cell = row.insertCell(0);
     cell.appendChild(buttonWrap);
     createButton(buttonWrap, handler);
@@ -5898,8 +5899,8 @@ function MessageBox(options, dark) {
     },
 
     // Add button
-    addButton: function(label, onclick, type, returnBtn) {
-      var btn = addButton(label, onclick ? onclick : this.hide, type);
+    addButton: function(label, onclick, type, returnBtn, id) {
+      var btn = addButton(label, onclick ? onclick : this.hide, type, id);
       return (returnBtn) ? btn : this;
     },
 
@@ -6732,6 +6733,11 @@ function showWriteMessageBox(e, id) {
   var box = showBox('al_mail.php', {act: 'write_box', to: id}, {stat: ['writebox.js', 'writebox.css', 'wide_dd.css', 'page.css', 'emoji.js', 'notifier.css'], cache: 1}, e);
   if (box) cancelEvent(e);
   return !box;
+}
+
+function giftsBox(mid, ev, tab) {
+  if (cur.viewAsBox) return cur.viewAsBox();
+  return !showBox('al_gifts.php', {act: 'box', tab: tab || 'received', mid: mid}, {cache: 1, stat: ['gifts.css', 'gifts.js']}, ev);
 }
 
 function startVideocall(e, id, with_video) {
