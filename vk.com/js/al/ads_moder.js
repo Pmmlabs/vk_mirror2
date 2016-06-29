@@ -1672,4 +1672,24 @@ AdsModer.multipleRequestsRemoveRequest = function(requestId) {
   }
 }
 
+AdsModer.onSearchAdsTextKeyUp = function (event) {
+  if (event.keyCode == 13) {
+    AdsModer.searchAdsText();
+  }
+}
+
+AdsModer.searchAdsText = function() {
+  var text = ge('ads_moder_search_ads_text').value;
+  var enabled_ads = hasClass(ge('ads_moder_search_ads_enabled_ads'), 'on');
+  if (!text.length) {
+    text = false;
+  }
+  nav.change({text: text, offset: false, enabled_ads: enabled_ads});
+}
+
+AdsModer.onToggleSearchAdsEnabledAds = function(elem) {
+  toggleClass(elem, 'on');
+  AdsModer.searchAdsText();
+}
+
 try{stManager.done('ads_moder.js');}catch(e){}

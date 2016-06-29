@@ -7208,7 +7208,7 @@ function showVideo(videoId, listId, options, ev) {
   var claim = nav.objLoc.claim,
       stat = ['videoview.js', 'videoview.css', 'page.js', 'page.css'];
 
-  var fromWallPost = options.addParams && options.addParams.post_id && /^-?\d+_\d+$/.test(options.addParams.post_id);
+  var fromWallPost = options.addParams && /^-?\d+_\d+$/.test(options.addParams.post_id) ? options.addParams.post_id : false;
   if (!options.playlistId && fromWallPost) {
     if (/^public|groups|profile$/.test(cur.module) && hasClass('post'+fromWallPost, 'own')) {
       options.playlistId = 'wall_' + cur.oid;

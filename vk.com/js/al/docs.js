@@ -606,7 +606,6 @@ restoreItem: function(oid, did, hash) {//here
 },
 
 openItem: function (oid, did, hash) {
-  showBox('docs.php', {act: 'open_box', oid: oid, did: did, hash: hash}, {params: {dark: 1}});
 },
 
 initMenu: function() {

@@ -885,3 +885,15 @@ table.ads_logs_info th {
 .ads_overflow_hidden_wrap1 .checkbox_container table {
   margin: 0px;
 }
+#ads_moder_search_ads_text {
+  padding: 6px 6px 5px 6px;
+  width: 300px;
+  margin-bottom: 10px;
+}
+#ads_moder_search_ads_table a.lnk {
+  background: url(/images/icons/mono_iconset.png?1) no-repeat left -237px;
+  width: 15px;
+  height: 11px;
+  margin-top: 3px;
+  display: block;
+}
