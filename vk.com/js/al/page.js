@@ -313,7 +313,9 @@ var Page = {
       p = i.split('_');
       if (p[0] !== 'ad' && p[0] !== 'posthashtag') {
         p[0] = intval(p[0]);
-        p[1] = intval(p[1]);
+        if (p[1].substr(0, 1) != 'p') {
+          p[1] = intval(p[1]);
+        }
       }
       snt = (sent[p[0]] || {})[p[1]];
       if (p[0] != vk.id && (!snt || sn == -1 && snt > 0)) {
@@ -346,7 +348,7 @@ var Page = {
       case 'feed_news': return 'r';
       case 'feed_news_top': return 't';
       case 'feed_other': return 'o';
-      default: return '';
+      default: return 'u';
     }
   },
   postsSend: function() {

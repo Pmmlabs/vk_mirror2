@@ -222,7 +222,7 @@ videofile_num=['','видеозапись','видеозаписи','видеозаписей'];
 votes_flex=['','голос','голоса','голосов'];
 Work_place='ћесто работы:';
 yesterday='вчера';
-// section = 0; version = 431;
+// section = 0; version = 435;
 
 friends_no_user_selected='¬ы не выбрали ни одного пользовател€.';
 // section = 2; version = 207;
