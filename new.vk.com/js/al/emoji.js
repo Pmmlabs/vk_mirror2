@@ -389,6 +389,10 @@ onEditablePaste: function(txt, opts, optId, e, onlyFocus) {
   var text = this.getClipboard(e);
   var textRangeAndNoFocus = text && range && !onlyFocus;
 
+  if (inArray('text/html', e.clipboardData.types) && inArray('Files', e.clipboardData.types)) {
+    cancelEvent(e);
+  }
+
   this.processImagePaste(e, txt, opts, (function(isImagePaste) {
     if (isImagePaste) {
       return;
