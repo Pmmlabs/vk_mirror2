@@ -267,20 +267,143 @@ getClipboard: function(e) {
   }
 },
 
+processImagePaste: function(e, txt, opts, onDone) {
+  if (e.clipboardData != null) {
+    var clipboardData = e.clipboardData;
+
+    function _onImageBlobReady(blob) {
+      var addMedia, composer;
+
+      blob.name = blob.filename = 'upload_' + new Date().toISOString() + '_' + irand(0, 100) +  '.png';
+
+      if (hasClass(txt, '_im_text')) {
+        if (opts.uploadActions) {
+          opts.uploadActions.paste([ blob ]);
+          return;
+        }
+      } else if (txt.id == 'post_field') { // field for post submit
+        addMedia = cur.wallAddMedia;
+      } else { // replies inputs
+        composer = data(txt, 'composer');
+        addMedia = composer && composer.addMedia;
+      }
+
+      if (!addMedia) {
+        return;
+      }
+
+      if (isFunction(opts.initUploadForImagePasteCallback)) {
+        opts.initUploadForImagePasteCallback(txt, addMedia, blob);
+      }
+    }
+
+    function _checkImagesEls(cb) {
+      var timespan = Math.floor(1000 * Math.random());
+
+      var imgs = geByTag('img', txt);
+      for (var j = 0, len = imgs.length; j < len; j++) {
+        var img = imgs[j];
+        img['_before_paste_' + timespan] = true;
+      }
+
+      return setTimeout(function() {
+        var imgs = geByTag('img', txt);
+        var pastedImage = false;
+
+        for (var k = 0, len1 = imgs.length; k < len1; k++) {
+          var img = imgs[k];
+          if (!img['_before_paste_' + timespan]) {
+            cb(img.src);
+            re(img);
+            pastedImage = true;
+          }
+        }
+
+        if (!pastedImage) {
+          onDone();
+        }
+      }, 1);
+    }
+
+    function _handleImage(src) {
+      if (src.match(/^webkit\-fake\-url\:\/\//)) {
+        return;
+      }
+
+      var loader = new Image();
+      loader.crossOrigin = 'anonymous';
+      loader.onload = function() {
+        var canvas = document.createElement('canvas');
+        canvas.width = loader.width;
+        canvas.height = loader.height;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(loader, 0, 0, canvas.width, canvas.height);
+
+        canvas.toBlob(function(blob) {
+          _onImageBlobReady(blob);
+        }, 'image/png');
+
+        onDone(true);
+      };
+
+      return loader.src = src;
+    }
+
+    if (clipboardData.items) { // best way
+      for (var j = 0, len = clipboardData.items.length; j < len; j++) {
+        var item = clipboardData.items[j];
+
+        if (item.type.match(/^image\//)) {
+          var reader = new FileReader();
+          reader.onload = function(event) {
+            return _handleImage(event.target.result);
+          };
+          reader.readAsDataURL(item.getAsFile());
+        } else if (item.type === 'text/plain') {
+          return onDone();
+        }
+      }
+
+    } else { // no images or FF
+      if (-1 !== Array.prototype.indexOf.call(clipboardData.types, 'text/plain')) {
+        return onDone();
+      }
+
+      _checkImagesEls(function(src) {
+        return _handleImage(src);
+      });
+    }
+
+  } else {
+    onDone();
+  }
+},
+
 onEditablePaste: function(txt, opts, optId, e, onlyFocus) {
   var range = false;
 
   if (txt.getAttribute('contenteditable') === 'true') {
     range = Emoji.getRange();
   }
-  var text = this.getClipboard(e);
 
-  if (text && range && !onlyFocus) {
-    this.insertWithBr(range, text);
-    setTimeout(this.finalizeInsert.bind(this, txt), 0);
-    return cancelEvent(e);
-  } else if (range) {
-    this.focusTrick(txt, this.insertWithBr.pbind(range), this.finalizeInsert.bind(this, txt), range);
+  var text = this.getClipboard(e);
+  var textRangeAndNoFocus = text && range && !onlyFocus;
+
+  this.processImagePaste(e, txt, opts, (function(isImagePaste) {
+    if (isImagePaste) {
+      return;
+    }
+
+    if (textRangeAndNoFocus) {
+      this.insertWithBr(range, text);
+      setTimeout(this.finalizeInsert.bind(this, txt), 0);
+    } else if (range) {
+      this.focusTrick(txt, this.insertWithBr.pbind(range), this.finalizeInsert.bind(this, txt), range);
+    }
+  }).bind(this));
+
+  if (textRangeAndNoFocus) {
+    cancelEvent(e);
   }
 },
 

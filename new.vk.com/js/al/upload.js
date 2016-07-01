@@ -739,7 +739,8 @@ onFileApiSend: function(i, files, force) {
       }
     }
     var curCount = attachCount ? attachCount() : 0;
-    if (options.max_files - curCount < files.length && options.lang && options.lang.max_files_warning) {
+    var warnText = getLang('global_attach_max_n_files').replace('{count}', options.max_files);
+    if (options.max_files - curCount < files.length) {
       max_files = options.max_files - curCount;
       showFastBox({
         title: getLang('global_error'),
@@ -750,7 +751,7 @@ onFileApiSend: function(i, files, force) {
           Upload.embed(i);
           delete cur.notStarted;
         }
-      }, options.lang.max_files_warning, getLang('global_continue'), function() {
+      }, warnText, getLang('global_continue'), function() {
         Upload.uploadFiles(i, files, max_files);
         if (options.max_files_hide_last) {
           curBox().hide();

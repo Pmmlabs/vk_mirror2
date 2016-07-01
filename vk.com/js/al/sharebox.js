@@ -60,7 +60,8 @@ var ShareBox = {
             to: to,
             hash: cur.sbShareHash,
             object: cur.sbObj,
-            list: cur.sbList
+            list: cur.sbList,
+            ref: cur.section
           })), ShareBox.options());
           cur.shareAction = 'publish';
         break;

@@ -2577,7 +2577,17 @@ var Feed = {
           res[m[1]] = 1;
         }
       } else {
-        res[f.id] = 1;
+        var post_id = f.id;
+        if (hasClass(f, 'post_photos')) {
+          p = geByClass1('post_image', f, 'a');
+          if (p) {
+            p = domFC(p);
+            if (p && (m = p.getAttribute('data-post-id').match(/^(-?\d+_p?\d+)$/))) {
+              post_id = m[1];
+            }
+          }
+        }
+        res[post_id] = 1;
       }
     }
     return res;
