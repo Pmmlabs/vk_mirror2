@@ -696,7 +696,7 @@ function getClientRectOffsetY(elem, part, offset) {
       hh = getSize(fixed_head)[1],
       st = (de.scrollTop || bodyNode.scrollTop || window.scrollY || 0);
   if (!part) {
-    if (ey < st + hh + offset) return (ey - st + hh - offset);
+    if (ey < st + hh + offset) return (ey - st - hh - offset);
     if (ey + eh > st + ch - offset) return (ey + eh - st - ch + offset);
   } else {
     if (ey + eh < st + hh + offset) return (ey + eh - st - hh - offset);

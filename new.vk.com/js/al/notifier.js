@@ -5735,10 +5735,10 @@ var TopNotifier = {
     var options = false;
         row = domClosest('_feed_row', el),
         rowPN = domPN(row);
-    if (rowPN.lastChild == row && !hasClass(domPN(el), 'post_actions') && (!hasClass(rowPN, 'feedback_sticky_rows') || domPN(rowPN).lastChild == rowPN)) {
+    if (rowPN.lastChild == row && (!hasClass(rowPN, 'feedback_sticky_rows') || domPN(rowPN).lastChild == rowPN)) {
       options = {
         appendParentCls: 'top_notify_wrap',
-        processHoverCls: 'feedback_sticky_row'
+        processHoverCls: hasClass(domPN(el), 'post_actions') ? 'feedback_row' : 'feedback_sticky_row'
       }
     }
     uiActionsMenu.show(el, false, options);
