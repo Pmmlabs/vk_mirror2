@@ -8310,6 +8310,8 @@ function mentionOver(el, opts) {
     hidedt: 500,
     showdt: 500,
     slide: 15,
+    checkLeft: true,
+    reverseOffset: opts.reverseOffset || 39,
     dir: 'auto',
     appendEl: domClosest('_im_mess_stack', el) || domClosest('rb_box_wrap', el)
       || domClosest('wk_cont', el) || domClosest('scroll_fix_wrap', el)
