@@ -2365,6 +2365,22 @@ function updateHeaderStyles(styles) {
   });
 }
 
+function compareScrollStyles(st, newSt) {
+  var obj1 = clone(st),
+      obj2 = clone(newSt)
+  each(obj1, function(i, k) {
+    if (i !== 'position') {
+      obj1[i] = Math.round(k);
+    }
+  });
+  each(obj2, function(i, k) {
+    if (i !== 'position') {
+      obj2[i] = Math.round(k);
+    }
+  });
+  return JSON.stringify(obj1) === JSON.stringify(obj2);
+}
+
 function updateNarrow() {
   var bar = ge('narrow_column'), barBlock = bar && geByClass1('page_block', bar),
       wideCol = ge('wide_column');
@@ -2373,24 +2389,24 @@ function updateNarrow() {
   var wh = window.lastWindowHeight || 0, st = Math.min(scrollGetY(), bodyNode.clientHeight - wh),
       pl = ge('page_layout'), head = ge('page_header_wrap'), headH = getSize(head)[1],
       isFixed = getStyle(bar, 'position') == 'fixed',
-      barMT = intval(getStyle(barBlock, 'marginTop')), barH = intval(getSize(bar)[1]) - (isFixed ? barMT : 0),
-      pageH = intval(getSize(wideCol)[1]), pagePos = wideCol.offsetTop, tooBig = barH >= pageH - barMT, barMB = barMT,
+      barMT = floatval(getStyle(barBlock, 'marginTop')), barH = getSize(bar)[1] - (isFixed ? barMT : 0),
+      pageH = getSize(wideCol)[1], pagePos = getXY(wideCol)[1], tooBig = barH >= pageH - barMT, barMB = barMT,
       barPB = Math.max(0, st + wh - pageH - pagePos - barMB), barPT = pagePos - headH,
-      barPos = intval(getXY(bar)[1]) + (isFixed ? barMT : 0),
+      barPos = getXY(bar)[1] + (isFixed ? barMT : 0),
       lastSt = cur.lastSt || 0, lastStyles = cur.lastStyles || {}, styles, needFix = false,
-      smallEnough = headH + barMB + barH + barMT + barPB <= wh;
+      smallEnough = headH + barMB + barH + barMT + barPB <= wh, delta = 1;
 
-  if (st <= barPT && !(smallEnough && browser.msie) || tooBig) {
+  if (st - delta < barPT && !(smallEnough && browser.msie) || tooBig) {
     styles = {
       marginTop: 0
     }
-  } else if (st <= Math.min(lastSt, barPos - headH - barMT) || smallEnough) {
+  } else if (st - delta < Math.min(lastSt, barPos - headH - barMT) || smallEnough) {
     styles = {
       top: headH,
       marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
     }
     needFix = true;
-  } else if (st >= Math.max(lastSt, barPos + barH + barMB - wh) && !barPB) {
+  } else if (st + delta > Math.max(lastSt, barPos + barH + barMB - wh) && !barPB) {
     styles = {
       bottom: barMB,
       marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
@@ -2402,7 +2418,7 @@ function updateNarrow() {
     }
   }
 
-  if (JSON.stringify(styles) !== JSON.stringify(lastStyles)) {
+  if (!compareScrollStyles(styles, lastStyles)) {
     each (lastStyles, function(i, k) {
       lastStyles[i] = null;
     });
@@ -2421,22 +2437,23 @@ function updateLeftMenu() {
 
   var wh = window.lastWindowHeight || 0, st = Math.min(scrollGetY(), bodyNode.clientHeight - wh), pos = 0,
       pl = ge('page_layout'), head = ge('page_header_wrap'), headH = getSize(head)[1],
-      menuH = intval(getSize(menu)[1]), menuPos = getXY(menu)[1],
-      pageH = intval(getSize(pageBody)[1]), pagePos = getXY(pageBody)[1], tooBig = menuH >= pageH,
-      lastSt = window.menuLastSt || 0, lastStyles = window.menuLastStyles || {}, styles;
+      isFixed = getStyle(menu, 'position') == 'fixed',
+      menuH = getSize(menu)[1], menuPos = isFixed ? getXY(menu)[1] : floatval(getStyle(menu, 'marginTop')),
+      pageH = getSize(pageBody)[1], pagePos = pageBody.offsetTop, tooBig = menuH >= pageH,
+      lastSt = window.menuLastSt || 0, lastStyles = window.menuLastStyles || {}, styles, delta = 1;
 
-  if (st <= 0 || tooBig || hasClass(bodyNode, 'body_im')) {
+  if (st - delta < 0 || tooBig || hasClass(bodyNode, 'body_im')) {
     styles = {
       position: 'relative',
       marginTop: headH
     }
-  } else if (st <= Math.min(lastSt, menuPos - headH)) {
+  } else if (st - delta < Math.min(lastSt, menuPos - headH)) {
     styles = {
       position: 'fixed',
       top: 0,
       marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
     }
-  } else if (st >= Math.max(lastSt, menuPos + menuH - headH)) {
+  } else if (st + delta > Math.max(lastSt, menuPos + menuH - headH)) {
     styles = {
       position: 'fixed',
       bottom: wh - headH,
@@ -2449,7 +2466,7 @@ function updateLeftMenu() {
     }
   }
 
-  if (JSON.stringify(styles) !== JSON.stringify(lastStyles)) {
+  if (!compareScrollStyles(styles, lastStyles)) {
     var defaultStyles = {
       position: 'relative',
       marginTop: null,
@@ -9053,7 +9070,14 @@ function toggleAudioLyrics(event, ref, audioId, lyricsId) {
     addClass(audioRowEl, 'audio_loading');
     showProgress(audioRowEl);
 
-    ajax.post('al_audio.php', { act: 'get_lyrics', aid: audioId, lid: lyricsId }, {
+    var isTop = false, topGenre = 0;
+
+    if (cur.audioPage) {
+      isTop = cur.audioPage.getCurrentPlaylist().getType() == AudioPlaylist.TYPE_POPULAR;
+      topGenre = cur.audioPage.getCurrentPlaylist().getAlbumId();
+    }
+
+    ajax.post('al_audio.php', { act: 'get_lyrics', aid: audioId, lid: lyricsId, top: intval(isTop), genre: intval(topGenre) }, {
       onDone: function(lyrics) {
         hideProgress(audioRowEl);
         removeClass(audioRowEl, 'audio_loading');
