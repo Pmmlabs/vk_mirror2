@@ -127,7 +127,7 @@ var Index = {
       if (!sex && fname.length && lname.length) return cur.uiSex.showDefaultList();
     }
 
-    ajax.post('join.php', {act: 'start', fname: fname, lname: lname, sex: sex}, {onDone: function(result, data) {
+    ajax.post('join.php', {act: 'start', fname: fname, lname: lname, sex: sex, frm: 1}, {onDone: function(result, data) {
       if (result == 1 || result == 2) {
         if (data) {
           val('ij_msg', data);
