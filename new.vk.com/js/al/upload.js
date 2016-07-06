@@ -694,7 +694,12 @@ onFileApiSend: function(i, files, force) {
     for (var index in files) {
       var file = files[index];
       if (file.size && file.size > options['file_size_limit']) {
-        if (options.lang.filesize_error) {
+        var fileSizeErrorText = options.lang.filesize_error;
+        if (fileSizeErrorText && fileSizeErrorText.indexOf('{count}') >= 0) {
+          fileSizeErrorText = fileSizeErrorText.replace('{count}', intval(options['file_size_limit'] / (1024 * 1024)));
+        }
+
+        if (fileSizeErrorText) {
           showFastBox({
             title: getLang('global_error'),
             width: 430,
@@ -704,7 +709,9 @@ onFileApiSend: function(i, files, force) {
               Upload.embed(i);
               delete cur.notStarted;
             }
-          }, options.lang.filesize_error, getLang('global_continue'), function() {
+          },
+          fileSizeErrorText,
+          getLang('global_continue'), function() {
             Upload.uploadFiles(i, files, max_files);
             if (options.filesize_hide_last) {
               curBox().hide();
