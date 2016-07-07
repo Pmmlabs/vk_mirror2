@@ -1622,6 +1622,9 @@ var Wall = {
             var ts = val('postpone_date' + addmedia.lnkId);
             params = extend(params, {postpone: ts});
             return;
+          case 'mark_as_ads':
+            params = extend(params, {mark_as_ads: 1});
+            return;
         }
         if (this[3] && trim(msg) == this[3]) {
           params.message = '';
@@ -1891,6 +1894,9 @@ var Wall = {
             params = extend(params, {postpone: ts});
             cur.postponedLastDate = ts;
             postponePost = true;
+            return;
+          case 'mark_as_ads':
+            params = extend(params, {mark_as_ads: 1});
             return;
         }
         if (this[3] && trim(msg) == this[3]) {
@@ -2717,6 +2723,16 @@ var Wall = {
     });
   },
 
+  adsMarkTooltip: function(el) {
+    if (cur.viewAsBox) return;
+
+    showTooltip(el, {
+      black: 1,
+      shift: [13, 0, 0],
+      text: el.getAttribute('data-tooltip')
+    });
+  },
+
   hideEditPostReply: function(e) {
     if (cur.fixedWide) {
       removeClass(ge('wall_fixed_comments'), 'wall_fixed_reply_to');
@@ -2819,6 +2835,28 @@ var Wall = {
       stat: ['privacy.js', 'privacy.css']
     });
     var btn = ge('delete_post' + post);
+    if (btn && btn.tt && btn.tt.el) {
+      btn.tt.destroy();
+    }
+  },
+  markAsAds: function(post, hash, el, fullPost) {
+    ajax.post('al_wall.php', {
+      act: 'mark_as_ads',
+      post: post,
+      hash: hash,
+      full: intval(fullPost)
+    }, {
+      onDone: function(msg) {
+        if (el) {
+          domPN(el).replaceChild(ce('div', {innerHTML: msg}).childNodes[0], el);
+        }
+        if (hasClass(ge('post'+post), 'wall_post_over')) {
+          wall.showDeletePost(post);
+        }
+      },
+      progress: ge('wpe_prg' + post)
+    });
+    var btn = ge('post_mark_as_ads' + post);
     if (btn && btn.tt && btn.tt.el) {
       btn.tt.destroy();
     }
@@ -5024,7 +5062,7 @@ function initCustomMedia(lnk, types, opts) {
     var icons = opts.bgsprite;
   } else if (window.devicePixelRatio >= 2) {
     var icons = '/images/icons/attach_icons_2x.png?6';
-    opts.bgSize = '20px 220px';
+    opts.bgSize = '20px 243px';
   } else {
     var icons = '/images/icons/attach_icons.png?6';
   }
@@ -5371,7 +5409,7 @@ function extractUrls(text, inactive) {
 }
 
 function initAddMedia(lnk, previewId, mediaTypes, opts) {
-  var types = [], bgposes = {graffiti: -152, video: -20, photo: 3, audio: -42, poll: -108, doc: -64, map: -86, note: -130, postpone: -173, gift: -196}, addMedia;
+  var types = [], bgposes = {graffiti: -152, video: -20, photo: 3, audio: -42, poll: -108, doc: -64, map: -86, note: -130, postpone: -173, gift: -196, mark_as_ads: -218}, addMedia;
   opts = opts || {};
   each (mediaTypes || [], function (i, v) {
     if (!v[1]) return;
@@ -5408,6 +5446,9 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
         break;
       case 'postpone':
         handler = function () {addMedia.chooseMedia('postpone', v[1], v[2])};
+        break;
+      case 'mark_as_ads':
+        handler = function () {addMedia.chooseMedia('mark_as_ads', v[1], v[2])};
         break;
       case 'gift':
         handler = function() {
@@ -5770,6 +5811,11 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
           hide(geByClass1('add_media_type_' + lnkId + '_postpone', menu.menuNode, 'a'));
           toEl = ppdocsEl;
         break;
+
+        case 'mark_as_ads':
+          preview = '<div class="medadd_h medadd_h_mark_as_ads inl_bl">' + data.lang.global_ads_wall_post_mark_as_ads_action + '</div>';
+          hide(geByClass1('add_media_type_' + lnkId + '_mark_as_ads', menu.menuNode, 'a'));
+        break;
       }
 
       if (multi) {
@@ -5968,6 +6014,10 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
                 geByTag1('button', geByClass1('button_blue', ge('post'+cur.editingPost[0]))).innerHTML = getLang('wall_publish_now');
               }
               show(geByClass1('add_media_type_' + lnkId + '_postpone', menu.menuNode, 'a'));
+              break;
+
+            case 'mark_as_ads':
+              show(geByClass1('add_media_type_' + lnkId + '_mark_as_ads', menu.menuNode, 'a'));
               break;
           }
           medias[ind] = false;
@@ -7159,6 +7209,9 @@ Composer = {
             break;
           case 'postpone':
             params.postpone = cur.postponedLastDate = val('postpone_date' + addMedia.lnkId);
+            return;
+          case 'mark_as_ads':
+            params.mark_as_ads = 1;
             return;
         }
         if (this[3] && trim(message) == this[3]) {

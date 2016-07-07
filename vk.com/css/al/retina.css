@@ -331,6 +331,10 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
   background-image: url(/images/icons/mono_iconset_2x.png?6);
   background-size: 12px 405px;
 }
+.is_2x .medadd_h_mark_as_ads {
+  background-image: url(/images/icons/post_ad_tag_2x.png);
+  background-size: 11px 11px;
+}
 .is_2x .public_contacts_list .extra_info span {
   background-image: url(/images/icons/info_icons_2x.png);
   background-size: 9px 34px;
@@ -391,6 +395,10 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x .page_media_place_label_inline:before {
   background-image: url(/images/profile_icons_2x.png?14);
   background-size: 13px 288px;
+}
+.is_2x .wall_post_source_ads_mark {
+  background-image: url(/images/icons/post_ad_tag_gray_2x.png);
+  background-size: 10px 10px;
 }
 .is_2x #pv_actions .left,
 .is_2x #pv_actions .right {

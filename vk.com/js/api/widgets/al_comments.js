@@ -1978,7 +1978,7 @@ function initCustomMedia(lnk, types, opts) {
     var icons = opts.bgsprite;
   } else if (window.devicePixelRatio >= 2) {
     var icons = '/images/icons/attach_icons_2x.png?6';
-    opts.bgSize = '20px 220px';
+    opts.bgSize = '20px 243px';
   } else {
     var icons = '/images/icons/attach_icons.png?6';
   }

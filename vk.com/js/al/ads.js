@@ -1,6 +1,7 @@
 var Ads = {};
 
 Ads.init = function() {
+  cur.module = 'ads';
   showBackLink();
   Ads.processNotices();
 }
