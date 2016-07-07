@@ -32,6 +32,7 @@ global_continue='Продолжить';
 global_date=['','{day} {month} {year}','вчера','сегодня','завтра'];
 global_day_label='День:';
 global_delete='Удалить';
+global_delete_audio='Удалить аудиозапись';
 global_done='Готово';
 global_dont_delete='Не удалять';
 global_edit='Редактировать';
@@ -223,7 +224,7 @@ videofile_num=['','видеозапись','видеозаписи','видеозаписей'];
 votes_flex=['','голос','голоса','голосов'];
 Work_place='Место работы:';
 yesterday='вчера';
-// section = 0; version = 437;
+// section = 0; version = 439;
 
 friends_no_user_selected='Вы не выбрали ни одного пользователя.';
 // section = 2; version = 207;

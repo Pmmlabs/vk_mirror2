@@ -1357,7 +1357,7 @@ var Page = {
         0, 0, '', 0, 0, 0, 0
       ];
     }
-    return AudioUtils.drawAudio(data, true);
+    return AudioUtils.drawAudio(data, 'inlined');
   }
 }, page = Page;
 
@@ -1431,6 +1431,18 @@ var Wall = {
       onDone: function() {
         var args = Array.prototype.slice.call(arguments);
         args.unshift(post);
+        if (args[5] !== void 0 && cur.options.media_types !== void 0) {
+          var mediaTypes = [];
+          each (args[5] || [], function(i, arr1) {
+            each (cur.options.media_types || [], function(i, arr2) {
+              if (arr1[0] === arr2[0]) {
+                mediaTypes.push(arr2);
+                return false;
+              }
+            });
+          });
+          args[5] = mediaTypes;
+        }
         WallEdit.editPost.apply(window, args);
         onDone && onDone();
       },
@@ -2872,6 +2884,7 @@ var Wall = {
         },
         initUploadForImagePasteCallback: Page.initUploadForImagePaste
       });
+      vk.widget && !window.emojiStickers && Emoji.updateTabs();
       Wall.emojiOpts[post] = optId;
       if (cur.afterEmojiInit && cur.afterEmojiInit[post]) {
         var sm = geByClass1('emoji_smile', Emoji.opts[optId].controlsCont);
