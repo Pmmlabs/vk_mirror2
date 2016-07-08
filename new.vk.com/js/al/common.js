@@ -3581,15 +3581,11 @@ var ajax = {
       }
       switch (code) {
       case 1: // email not confirmed
-        if (ge('confirm_mail')) {
-          showFastBox({
-            width: 430,
-            title: ge('confirm_mail_title').value,
-            onDestroy: o.onFail
-          }, '<div class="confirm_mail">' + ge('confirm_mail').innerHTML + '</div>');
-        } else {
-          topMsg('<b>Error!</b> Email is not confirmed!');
-        }
+        showFastBox({
+          width: 520,
+          title: answer[0],
+          onDestroy: o.onFail
+        }, answer[1]);
         break;
       case 2: // captcha
         var addText = '';
@@ -9150,14 +9146,14 @@ function audioShowActionTooltip(btn) {
 
   var audioFullId = domData(audioRow, 'full-id');
 
-  cur._audioAddRestoreInfo = cur._audioAddRestoreInfo || {};
+  var audioAddRestoreInfo = AudioUtils.getAddRestoreInfo();
 
   switch(text) {
     case 'delete':
       if (hasClass(audioRow, 'recoms')) {
         text = getLang('audio_dont_show');
       } else {
-        var restores = cur._audioAddRestoreInfo && cur._audioAddRestoreInfo[audioFullId];
+        var restores = audioAddRestoreInfo[audioFullId];
         if (restores && restores.deleteAll) {
           text = restores.deleteAll.text;
         } else {
@@ -9172,12 +9168,12 @@ function audioShowActionTooltip(btn) {
 
       } else {
 
-        var info = cur._audioAddRestoreInfo[audioFullId];
+        var info = audioAddRestoreInfo[audioFullId];
 
         if (info && info.state == 'deleted') {
           text = getLang('audio_restore_audio');
 
-        } else if (info && info.state == AudioUtils.AUDIO_STATE_ADDED) {
+        } else if (info && info.state == 'added') {
           text = getLang('global_delete_audio');
 
         } else {
