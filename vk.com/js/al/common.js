@@ -8126,9 +8126,15 @@ function aquireLock(name, fn, noretry) {
 
 function statNavigationTiming () {
   if (window.clientStatsInitedNT) return false;
-  if (Math.random() < 0.001 && window.performance && performance.timing) {
+  if (window.performance && performance.timing) {
+
+    if (Math.random() > 0.001 && !__dev) {
+      return false;
+    }
 
     var perTiming = {};
+    var curModule = window.cur && window.cur.module;
+
     if (performance.timing.redirectStart && performance.timing.redirectEnd) {
       perTiming['redirect'] = performance.timing.redirectEnd - performance.timing.redirectStart;
     }
@@ -8160,9 +8166,10 @@ function statNavigationTiming () {
       perTiming['loadEvent'] = performance.timing.loadEventEnd - performance.timing.loadEventStart;
     }
     for (var key in perTiming) {
-      statlogsValueEvent('navigation_timing', perTiming[key], key);
+      statlogsValueEvent('navigation_timing', perTiming[key], key, curModule);
     }
     window.clientStatsInitedNT = true;
+    debugLog(curModule, perTiming['response']);
   }
 }
 

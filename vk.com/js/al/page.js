@@ -5136,7 +5136,7 @@ function initCustomMedia(lnk, types, opts) {
           setStyle(el, {height: 26, overflow: 'hidden'});
           fadeIn(menuNode, 200);
           if (mediaMenu.reverse) {
-            setStyle(el, {position: 'absolute', bottom: -reverseMargin, width: getSize(el.firstChild)[0]});
+            setStyle(el, {position: 'absolute', bottom: -reverseMargin, minWidth: getSize(el.firstChild)[0]});
             setStyle(el.firstChild, {position: 'absolute', bottom: '0px'});
           }
           animate(el, {height: h - 2}, 200, function() {

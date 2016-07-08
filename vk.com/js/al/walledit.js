@@ -130,7 +130,7 @@ var WallEdit = {
         dis = ['album'];
       } else if (opts.copy) {
         each (types, function () {
-          if (inArray(this[0], ['photo', 'video', 'audio', 'doc', 'postpone'])) {
+          if (inArray(this[0], ['photo', 'video', 'audio', 'doc', 'postpone', 'mark_as_ads'])) {
             mediaTypes.push(this);
           }
         });

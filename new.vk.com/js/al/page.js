@@ -1429,12 +1429,13 @@ var Wall = {
     }
     ajax.post('al_wall.php', extend({act: 'edit', post: post, mention: Wall.withMentions ? 1 : ''}, options), {
       onDone: function() {
-        var args = Array.prototype.slice.call(arguments);
+        var args = Array.prototype.slice.call(arguments),
+            media_types = window.wkcur && wkcur.shown ? wkcur.options.rmedia_types : cur.options.media_types;
         args.unshift(post);
-        if (args[5] !== void 0 && cur.options.media_types !== void 0) {
+        if (args[5] !== void 0 && media_types !== void 0) {
           var mediaTypes = [];
           each (args[5] || [], function(i, arr1) {
-            each (cur.options.media_types || [], function(i, arr2) {
+            each (media_types || [], function(i, arr2) {
               if (arr1[0] === arr2[0]) {
                 mediaTypes.push(arr2);
                 return false;
@@ -3026,8 +3027,12 @@ var Wall = {
       Videoview.onShowEditReply();
     }
 
-    if (cur.onReplyFormSizeUpdate && isFunction(cur.onReplyFormSizeUpdate)) {
+    if (isFunction(cur.onReplyFormSizeUpdate)) {
       cur.onReplyFormSizeUpdate(rf);
+    }
+
+    if (isFunction(cur.onReplyFormFocus)) {
+      cur.onReplyFormFocus(rf);
     }
 
     return false;
@@ -3425,13 +3430,12 @@ var Wall = {
       }
     }
   },
-  postTooltip: function(el, post, opts) {
+  postTooltip: function(el, post, opts, tooltipOpts) {
     if (cur.viewAsBox) return;
     var reply = (opts || {}).reply,
         extraClass = (opts || {}).className || '',
         toRight = (reply && !(reply % 2)) && getXY(el)[0] > 420;
-
-    showTooltip(el, {
+    showTooltip(el, extend({
       url: 'al_wall.php',
       params: extend({act: 'post_tt', post: post}, opts || {}),
       slide: 15,
@@ -3442,7 +3446,7 @@ var Wall = {
       dir: 'auto',
       className: 'rich wall_tt' + extraClass,
       typeClass: (toRight ? 'tt_default_right' : 'tt_default')
-    });
+    }, tooltipOpts || {}));
   },
 
   hideEditPostReply: function(e) {
