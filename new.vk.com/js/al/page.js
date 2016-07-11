@@ -1953,7 +1953,7 @@ var Wall = {
   },
   postChanged: function(force) {
     if (!isVisible('submit_post') || !hasClass(ge('submit_post_box'), 'shown')) Wall.showEditPost();
-    if (vk.id) {
+    if (vk.id && !vk.widget) {
       clearTimeout(cur.postAutosave);
       var saveCallback = (intval(cur.oid) == vk.id) ? Wall.saveDraft : Wall.saveOwnerDraftText.pbind(cur.oid);
       if (force === true) {
@@ -3142,11 +3142,11 @@ var Wall = {
     }
     show('reply_to_title' + post);
 
-    var onBehalfGroup = replyAs && isVisible(replyAs.parentNode) && replyOid < 0 && replyTo && replyTo.getAttribute('rid') === replyOid;
-    toggleClass(replyAs, 'on', !!onBehalfGroup);
-    var ttChooser = data(replyAs, 'tt');
-    if (ttChooser) {
-      radiobtn(ttChooser.rdBtns[intval(onBehalfGroup)], intval(onBehalfGroup), ttChooser.rdBtnsGroup)
+    if (replyAs) {
+      var onBehalfGroup = isVisible(replyAs.parentNode) && replyOid < 0 && replyTo && replyTo.getAttribute('rid') === replyOid;
+      toggleClass(replyAs, 'on', !!onBehalfGroup);
+      var ttChooser = data(replyAs, 'tt');
+      ttChooser && radiobtn(ttChooser.rdBtns[intval(onBehalfGroup)], intval(onBehalfGroup), ttChooser.rdBtnsGroup);
     }
 
     cur.onReplyFormSizeUpdate && cur.onReplyFormSizeUpdate();
