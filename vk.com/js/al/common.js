@@ -8165,6 +8165,9 @@ function statNavigationTiming () {
     if (performance.timing.loadEventStart && performance.timing.loadEventEnd) {
       perTiming['loadEvent'] = performance.timing.loadEventEnd - performance.timing.loadEventStart;
     }
+    if (performance.timing.loadEventEnd && performance.timing.responseEnd) {
+      perTiming['resource'] = performance.timing.loadEventEnd - performance.timing.responseEnd;
+    }
     for (var key in perTiming) {
       statlogsValueEvent('navigation_timing', perTiming[key], key, curModule);
     }
