@@ -9350,6 +9350,7 @@ function getShortDate(rawDate, shift, nice, months) {
     nice = true;
   }
 
+
   if (typeof months === 'undefined') {
     months = getLang('months_of', 'raw');
   }
@@ -9417,6 +9418,8 @@ function getBigDateNew(rawDate, offset, nice, langAddr) {
   if (typeof langAddr === 'undefined') {
     langAddr = '';
   }
+
+  offset *= 1000;
 
   var d = new Date(rawDate * 1000);
   var now = new Date();

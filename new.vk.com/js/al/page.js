@@ -2377,7 +2377,7 @@ var Wall = {
       friends_only: isChecked('friends_only'),
       status_export: isChecked('status_export'),
       facebook_export: ge('facebook_export') ? (isChecked('facebook_export') ? 1 : 0) : '',
-      official: isChecked('official'),
+      official: hasClass(domClosest('_submit_post_box', ge('official')), 'as_group') ? 1 : '',
       signed: isChecked('signed'),
       hash: cur.options.post_hash,
       from: cur.from ? cur.from : '',
@@ -2923,11 +2923,16 @@ var Wall = {
     if (fakeBox) {
       var postHash = ge('post_hash' + post),
           canReplyAsGroup = intval(postHash && postHash.getAttribute('can_reply_as_group')) > 0,
-          ownerPhoto = fakeBox.getAttribute('data-owner-photo') || (geByClass1('post_img', postEl) || {}).src || '';
+          ownerPhoto = fakeBox.getAttribute('data-owner-photo') || (geByClass1('post_img', postEl) || {}).src || '',
+          ownerHref = fakeBox.getAttribute('data-owner-href') || (geByClass1('post_image', postEl) || {}).href || '';
 
       realBox = se(rs(cur.wallTpl.reply_form, {
         add_buttons: canReplyAsGroup ? rs(cur.wallTpl.reply_form_official, {
           post_id: post,
+          owner_photo: ownerPhoto
+        }) : '',
+        user_image: canReplyAsGroup ? rs(cur.wallTpl.reply_form_group_image, {
+          owner_href: ownerHref,
           owner_photo: ownerPhoto
         }) : '',
         post_id: post,
@@ -3142,13 +3147,6 @@ var Wall = {
     }
     show('reply_to_title' + post);
 
-    if (replyAs) {
-      var onBehalfGroup = isVisible(replyAs.parentNode) && replyOid < 0 && replyTo && replyTo.getAttribute('rid') === replyOid;
-      toggleClass(replyAs, 'on', !!onBehalfGroup);
-      var ttChooser = data(replyAs, 'tt');
-      ttChooser && radiobtn(ttChooser.rdBtns[intval(onBehalfGroup)], intval(onBehalfGroup), ttChooser.rdBtnsGroup);
-    }
-
     cur.onReplyFormSizeUpdate && cur.onReplyFormSizeUpdate();
 
     stopEvent(event);
@@ -3351,7 +3349,7 @@ var Wall = {
       params.rev = 1;
     }
     if (fromGroupEl && isVisible(fromGroupEl.parentNode)) {
-      params.from_group = isChecked(fromGroupEl); // else autodetect
+      params.from_group = hasClass(domClosest('_submit_post_box', fromGroupEl), 'as_group') ? 1 : ''; // else autodetect
     }
 
     if (browser.mobile) {
@@ -4297,8 +4295,10 @@ var Wall = {
       poll_hash: cur.wallTpl.poll_hash,
       date_postfix: '',
       can_reply_as_group: (oid < 0 && adminLevel > 1) ? 1 : 0,
+      user_image: '',
       post_url: '/wall' + post_id.replace('_wall_reply', '_'),
       owner_photo: psr(thumbs[1] || thumbs[0]),
+      owner_href: ev[5],
       online_class: (oid > 0) ? ' online' : ''
     };
     extendCb && extend(repls, extendCb(repls, ev));
@@ -5147,9 +5147,10 @@ var Wall = {
   REPLY_RADIO_BTNS_GROUP: 'page_post_as',
   REPLY_RADIO_BTNS_GROUP_INDEX: 0,
   replyAsGroup: function(obj, btn, rdName) {
+    var wrap = domClosest('_submit_post_box', obj);
     if (!btn) {
       // direct click
-      var on = hasClass(obj, 'on');
+      var on = hasClass(wrap, 'as_group');
       var tt = data(obj, 'tt');
       if (tt && tt.rdBtns) {
         btn = tt.rdBtns[on ? 0 : 1];
@@ -5160,7 +5161,7 @@ var Wall = {
     var as = domData(btn, 'as');
     radiobtn(btn, as, rdName);
 
-    toggleClass(obj, 'on', as == 'group');
+    toggleClass(wrap, 'as_group', as == 'group');
     toggleClass('signed', 'shown', as == 'group');
   },
   replyAsGroupOver: function(obj, tt_user, tt_group) {
