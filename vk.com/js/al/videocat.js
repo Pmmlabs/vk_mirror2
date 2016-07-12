@@ -116,6 +116,31 @@ window.Videocat = window.Videocat || {
     statlogsValueEvent('videocat_popular', '', 'show');
   },
 
+  getPopularShownVids: function() {
+    var blockPopular;
+    each(geByClass('videocat_row'), function(i, block) {
+      if (block.getAttribute('data-block-id') == 'ugc_popular') {
+        blockPopular = block;
+        return false;
+      }
+    });
+
+    cur.popular_shown = cur.popular_shown || [];
+    var from = cur.popular_shown.length;
+    var items = geByClass('videocat_row_item', blockPopular);
+    var vids = [];
+
+    for (var i = from; ; ++i) {
+      var item = items[i];
+      if (!item || !isVisible(item)) break;
+      var vid = (item.getAttribute('id') || '').replace(/^videocat_video_item_/, '');
+      vids.push(vid);
+    }
+
+    cur.popular_shown = cur.popular_shown.concat(vids);
+    return vids;
+  },
+
   removePlaylistBlock: function() {
     var block = Videocat.getPlaylistBlockEl();
     var sb = data(block, 'sb');
@@ -703,6 +728,14 @@ window.Videocat = window.Videocat || {
         }
       }
     });
+
+    if (type == 'ugc_popular' && cur.popular_qid) {
+      var vids = '';
+      each(Videocat.getPopularShownVids(), function(i, vid) {
+        vids += '&vid=' + vid;
+      });
+      vkImage().src = '//go.imgsmail.ru/vk?pxn=vs&qid=' + cur.popular_qid + vids;
+    }
 
     if (type == 'recom') {
       toggle(btn, Videocat.currRecomParams.more);

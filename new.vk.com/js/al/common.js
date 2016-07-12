@@ -8862,7 +8862,6 @@ function statNavigationTiming () {
       statlogsValueEvent('navigation_timing', perTiming[key], key, curModule);
     }
     window.clientStatsInitedNT = true;
-    debugLog(curModule, perTiming['response']);
   }
 }
 
