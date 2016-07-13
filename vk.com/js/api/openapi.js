@@ -1122,7 +1122,7 @@ if (!VK.Widgets) {
 
     return VK.Widgets._constructor('widget_comments.php', objId, options, params, {
       showBox: function(url, props) {
-        var box = VK.Util.Box((options.base_domain || VK._protocol + '//vk.com') + '/' + url, [], {
+        var box = VK.Util.Box((options.redesign && props.base_domain || options.base_domain || VK._protocol + '//vk.com') + '/' + url, [], {
           proxy: function() {
             rpc.callMethod.apply(rpc, arguments);
           }
@@ -1186,7 +1186,7 @@ if (!VK.Widgets) {
     }
     return VK.Widgets._constructor('widget_post.php', objId, options, params, {
       showBox: function(url, props) {
-        var box = VK.Util.Box((options.base_domain || VK._protocol + '//vk.com') + '/' + url, [], {
+        var box = VK.Util.Box((options.redesign && props.base_domain || options.base_domain || VK._protocol + '//vk.com') + '/' + url, [], {
           proxy: function() {
             rpc.callMethod.apply(rpc, arguments);
           }
@@ -1212,11 +1212,18 @@ if (!VK.Widgets) {
     if (!VK._apiId) throw Error('VK not initialized. Please use VK.init');
     options = VK.extend(options || {}, {allowTransparency: true});
     if (options.type == 'button' || options.type == 'vertical' || options.type == 'mini') delete options.width;
-    var
-        type = (options.type == 'full' || options.type == 'button' || options.type == 'vertical' || options.type == 'mini') ? options.type : 'full',
-        width = type == 'full' ? Math.max(200, options.width || 350) : (type == 'button' ? 180 : (type == 'mini' ? 100 : 41)),
+    var verticalBtnHeightWidth = {
+          18: 43,
+          20: 47,
+          22: 51,
+          24: 55,
+          30: 67,
+        },
         btnHeight = parseInt(options.height, 10) || 22,
-        height = type == 'vertical' ? (2 * btnHeight + 7) : (type == 'full' ? btnHeight + 1 : btnHeight),
+        size = btnHeight && verticalBtnHeightWidth[btnHeight] ? btnHeight : 22,
+        type = (options.type == 'full' || options.type == 'button' || options.type == 'vertical' || options.type == 'mini') ? options.type : 'full',
+        width = type == 'full' ? Math.max(200, options.width || 350) : (type == 'button' ? 180 : (options.redesign ? (type == 'mini' ? 115 : verticalBtnHeightWidth[size]) : (type == 'mini' ? 100 : 41))),
+        height = type == 'vertical' ? (2 * btnHeight + 7) : (options.redesign ? btnHeight : (type == 'full' ? btnHeight + 1 : btnHeight)),
         params = {
           page: page || 0,
           url: options.pageUrl || pData.url,
@@ -1231,22 +1238,27 @@ if (!VK.Widgets) {
         },
         ttHere = options.ttHere || false,
         isOver = false,
+        hideTimeout = null,
         obj, buttonIfr, buttonRpc, tooltipIfr, tooltipRpc, checkTO, statsBox;
 
     function showTooltip(force) {
       if ((!isOver && !force) || !tooltipRpc) return;
       if (!tooltipIfr || !tooltipRpc || tooltipIfr.style.display != 'none' && tooltipIfr.getAttribute('vkhidden') != 'yes') return;
+      if (options.redesign) {
+        hideTimeout && clearTimeout(hideTimeout);
+        checkTO && clearTimeout(checkTO);
+      }
       var scrollTop = options.getScrollTop ? options.getScrollTop() : (document.body.scrollTop || document.documentElement.scrollTop || 0);
       var objPos = VK.Util.getXY(obj, options.fixed);
       var startY = ttHere ? 0 : objPos[1];
       if (scrollTop > objPos[1] - 120 && options.tooltipPos != 'top' || type == 'vertical' || options.tooltipPos == 'bottom') {
         tooltipIfr.style.top = (startY + height + 2) + 'px';
-        tooltipRpc.callMethod('show', false);
+        options.redesign ? tooltipRpc.callMethod('show', false, type+'_'+size) : tooltipRpc.callMethod('show', false);
       } else {
-        tooltipIfr.style.top = (startY - 125) + 'px';
-        tooltipRpc.callMethod('show', true);
+        tooltipIfr.style.top = (startY - (options.redesign ? 128 : 125)) + 'px';
+        options.redesign ? tooltipRpc.callMethod('show', true, type+'_'+size) : tooltipRpc.callMethod('show', true);
       }
-      VK.Util.ss(tooltipIfr, {left: ((ttHere ? 0 : objPos[0]) - (type == 'vertical' || type == 'mini' ? 36 : 2)) + 'px', display: 'block', opacity: 1, filter: 'none'});
+      VK.Util.ss(tooltipIfr, {left: ((ttHere ? 0 : objPos[0]) - (options.redesign ? (type == 'full' || type == 'button' ? 32 : 2) : (type == 'vertical' || type == 'mini' ? 36 : 2))) + 'px', display: 'block', opacity: 1, filter: 'none'});
       tooltipIfr.setAttribute('vkhidden', 'no');
       isOver = true;
     }
@@ -1255,7 +1267,7 @@ if (!VK.Widgets) {
       if ((isOver && !force) || !tooltipRpc) return;
       tooltipRpc.callMethod('hide');
       buttonRpc.callMethod('hide');
-      setTimeout(function() {
+      hideTimeout = setTimeout(function() {
         tooltipIfr.style.display = 'none'
       }, 400);
     }
@@ -1269,12 +1281,12 @@ if (!VK.Widgets) {
     return VK.Widgets._constructor('widget_like.php', objId, options, params, {
       initTooltip: function(counter) {
         tooltipRpc = new fastXDM.Server({
-          onInit: counter ? function() {showTooltip(true)} : function() {},
+          onInit: counter ? function() {showTooltip(!options.redesign)} : function() {},
           proxy: function() {
             buttonRpc.callMethod.apply(buttonRpc, arguments);
           },
           showBox: function(url, props) {
-            var box = VK.Util.Box((options.base_domain || VK._protocol + '//vk.com/') + url, [props.width, props.height], {
+            var box = VK.Util.Box((options.redesign && props.base_domain || options.base_domain || VK._protocol + '//vk.com/') + url, [props.width, props.height], {
               proxy: function() {
                 tooltipRpc.callMethod.apply(tooltipRpc, arguments);
               }
@@ -1288,7 +1300,7 @@ if (!VK.Widgets) {
           scrolling: 'no',
           allowTransparency: true,
           id: buttonIfr.id + '_tt',
-          style: {position: 'absolute', padding: 0, display: 'block', opacity: 0.01, filter: 'alpha(opacity=1)', border: '0', width: '238px', height: '124px', zIndex: 5000, overflow: 'hidden'}
+          style: {position: 'absolute', padding: 0, display: 'block', opacity: 0.01, filter: 'alpha(opacity=1)', border: '0', width: (options.redesign ? '274px' : '238px'), height: (options.redesign ? '130px' : '124px'), zIndex: 5000, overflow: 'hidden'}
         });
         tooltipIfr.setAttribute('vkhidden', 'yes');
 
@@ -1306,7 +1318,7 @@ if (!VK.Widgets) {
       showTooltip: showTooltip,
       hideTooltip: hideTooltip,
       showBox: function(url, props) {
-        var box = VK.Util.Box((options.base_domain || VK._protocol + '//vk.com/') + url, [], {
+        var box = VK.Util.Box((options.redesign && props.base_domain || options.base_domain || VK._protocol + '//vk.com/') + url, [], {
           proxy: function() {
             buttonRpc.callMethod.apply(buttonRpc, arguments);
           }
@@ -1321,6 +1333,17 @@ if (!VK.Widgets) {
       buttonRpc = r;
       VK.Util.ss(obj = o, {height: height + 'px', width: width + 'px', position: 'relative', clear: 'both'});
       VK.Util.ss(buttonIfr = i, {height: height + 'px', width: width + 'px', overflow: 'hidden', zIndex: 150});
+      if (options.redesign) {
+        obj.onmouseover = function() {
+          clearTimeout(checkTO);
+          isOver = true;
+        };
+        obj.onmouseout = function() {
+          clearTimeout(checkTO);
+          isOver = false;
+          checkTO = setTimeout(function() {hideTooltip(); }, 200);
+        };
+      }
     });
   };
 
@@ -1401,7 +1424,7 @@ if (!VK.Widgets) {
 
     return VK.Widgets._constructor('widget_community.php', objId, options, params, {
       showBox: function(url, props) {
-        var box = VK.Util.Box((options.base_domain || VK._protocol + '//vk.com/') + url, [], {
+        var box = VK.Util.Box((options.redesign && props.base_domain || options.base_domain || VK._protocol + '//vk.com/') + url, [], {
           proxy: function() {
             rpc.callMethod.apply(rpc, arguments);
           }
@@ -1491,7 +1514,7 @@ if (!VK.Widgets) {
 
     return VK.Widgets._constructor('widget_subscribe.php', objId, options, params, {
       showBox: function(url, props) {
-        var box = VK.Util.Box((options.base_domain || VK._protocol + '//vk.com/') + url, [], {
+        var box = VK.Util.Box((options.redesign && props.base_domain || options.base_domain || VK._protocol + '//vk.com/') + url, [], {
           proxy: function() {
             rpc.callMethod.apply(rpc, arguments);
           }
@@ -1603,7 +1626,7 @@ if (!VK.Widgets) {
         window.vk__adsLight = false;
         adsScriptVersion = parseInt(adsScriptVersion);
         var attachScriptFunc = (VK.Api && VK.Api.attachScript || VK.addScript);
-        var base_domain = (options.base_domain || VK._protocol + '//vk.com');
+        var base_domain = (options.redesign && props.base_domain || options.base_domain || VK._protocol + '//vk.com');
         attachScriptFunc(base_domain + '/js/al/aes_light.js?' + adsScriptVersion);
       } else if (window.vk__adsLight && vk__adsLight.userHandlers && vk__adsLight.userHandlers.onInit) {
         vk__adsLight.userHandlers.onInit(false); // false - do not publish initial onInit
@@ -1809,11 +1832,15 @@ if (!VK.Widgets) {
       urlQueryString += '&' + i + '=' + encodedParam;
     }
     urlQueryString += '&' + (+new Date()).toString(16);
+    if (options.redesign) {
+      urlQueryString += '&redesign=1';
+    }
     url += '?' + urlQueryString.substr(1);
 
     obj.style.width = width;
     VK.Widgets.loading(obj, true);
 
+    funcs.showLoader = function() {};
     funcs.publish = function() {
       var args = Array.prototype.slice.call(arguments);
       args.push(widgetId);
