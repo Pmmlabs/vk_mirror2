@@ -23,7 +23,7 @@ global_audio_flash_required='Для прослушивания музыки необходим Flash плеер. <br
 global_back='Назад';
 global_Complain_video='Пожаловаться';
 global_cancel='Отмена';
-global_captcha_input_here='Введите код сюда';
+global_captcha_input_here='Введите код';
 global_changes_saved='Изменения сохранены';
 global_charged_zone_continue='Продолжить';
 global_charged_zone_title='Предупреждение';
@@ -224,7 +224,7 @@ videofile_num=['','видеозапись','видеозаписи','видеозаписей'];
 votes_flex=['','голос','голоса','голосов'];
 Work_place='Место работы:';
 yesterday='вчера';
-// section = 0; version = 439;
+// section = 0; version = 440;
 
 friends_no_user_selected='Вы не выбрали ни одного пользователя.';
 // section = 2; version = 207;

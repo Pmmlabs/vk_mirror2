@@ -9355,10 +9355,12 @@ function getShortDate(rawDate, shift, nice, months) {
     months = getLang('months_of', 'raw');
   }
 
+  shift *= 1000;
+
 
   curTime = Date.now();
   curDate = new Date(curTime);
-  date = new Date(rawDate);
+  date = new Date(rawDate + shift);
   if (rawDate > curTime && rawDate - curTime < 86400 * 1000 &&  curDate.getDate() == date.getDate()) {
     return langDate(rawDate, '{hour}:{minute} {am_pm}', shift, [], !nice);
   } else if (date.getYear() != curDate.getYear() || rawDate < curTime - 86400 * 182 * 1000) {
@@ -9369,10 +9371,10 @@ function getShortDate(rawDate, shift, nice, months) {
 }
 
 function getShortDateOrTime(rawDate, shift, nice, months) {
-  if (isToday(new Date(rawDate * 1000))) {
+  if (isToday(new Date(rawDate * 1000 + shift * 1000))) {
     return langDate(rawDate * 1000, '{hour}:{minute} {am_pm}', shift * 1000, [], !nice);
   } else {
-    return getShortDate(rawDate, shift * 1000, nice, months);
+    return getShortDate(rawDate, shift, nice, months);
   }
 }
 
