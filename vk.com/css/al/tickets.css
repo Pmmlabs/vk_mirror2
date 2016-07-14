@@ -3009,3 +3009,16 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
   padding: 8px 0;
   text-align: center;
 }
+.tickets_redesign_block {
+  margin-top: 15px;
+}
+.tickets_redesign_block_text {
+  margin-bottom: 15px;
+}
+.tickets_redesign_block .secondary {
+  margin-left: 8px;
+}
+.is_rtl1 .tickets_redesign_block .secondary {
+  margin-left: 0;
+  margin-right: 8px;
+}

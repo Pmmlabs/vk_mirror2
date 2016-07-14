@@ -2167,6 +2167,7 @@ updateFAQ: function(e, obj) {
   cur.faqTimeout = setTimeout((function() {
     var origStr = obj.value,
         str = trim(origStr),
+        strLow = str.toLowerCase(),
         words = str.split(' '),
         textInput = ge('tickets_text');
 
@@ -2176,7 +2177,14 @@ updateFAQ: function(e, obj) {
       textInput.focus();
       textInput.value = origStr;
     }
-    if (isVisible('tickets_detailed_form')) return;
+    if (isVisible('tickets_detailed_form')) {
+      var bl = ge('tickets_redesign_block');
+      if (!cur.ignoreNewDesign && bl && !isVisible(bl) && strLow.indexOf('редизайн') != -1 || (strLow.indexOf('дизайн') != -1 && (strLow.indexOf('новый') != -1 || strLow.indexOf('включить') != -1 || strLow.indexOf('подключить') != -1))) {
+        slideDown(bl, 200);
+        //hide('tickets_detailed_form');
+      }
+      return;
+    }
     if (str == cur.searchStr && (words.length < 4 || words.length == 4 && origStr[origStr.length - 1] != ' ')) {
       return;
     }
@@ -2194,7 +2202,12 @@ updateFAQ: function(e, obj) {
     if (!browser.mobile) scrollToTop();
   }).bind(this), 10);
 },
-
+setNewDesign: function(btn, hash) {
+  ajax.post('support', {act: 'set_new_design', hash: hash}, {
+    showProgress: lockButton.pbind(btn),
+    hideProgress: unlockButton.pbind(btn)
+  });
+},
 searchFAQ: function(val) {
   if (val[val.length - 1] == ' ') {
     val[val.length - 1] = '_';
