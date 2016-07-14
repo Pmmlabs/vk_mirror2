@@ -3147,6 +3147,13 @@ var Wall = {
     }
     show('reply_to_title' + post);
 
+    if (replyAs) {
+      var onBehalfGroup = isVisible(replyAs.parentNode) && replyOid < 0 && replyTo && replyTo.getAttribute('rid') === replyOid;
+      toggleClass(domClosest('_submit_post_box', replyAs), 'as_group', !!onBehalfGroup);
+      var ttChooser = data(replyAs, 'tt');
+      ttChooser && radiobtn(ttChooser.rdBtns[intval(onBehalfGroup)], intval(onBehalfGroup), ttChooser.rdBtnsGroup);
+    }
+
     cur.onReplyFormSizeUpdate && cur.onReplyFormSizeUpdate();
 
     stopEvent(event);
