@@ -5977,7 +5977,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
       cur.lastAddMedia = addMedia;
     },
     onItemClick: function(type) {
-      if (multi && addMedia.attachCount() >= limit && type !== 'postpone') {
+      if (multi && addMedia.attachCount() >= limit && type !== 'postpone' && type !== 'mark_as_ads') {
         showFastBox(getLang('global_error'), getLang('attachments_limit', limit));
         return false;
       }
@@ -6281,6 +6281,10 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
           hide(geByClass1('add_media_type_' + lnkId + '_postpone', menu.menuNode, 'a'));
           toEl = ppdocsEl;
         break;
+
+        case 'mark_as_ads':
+          toEl = ppdocsEl;
+        break;
       }
 
       if (multi) {
@@ -6349,7 +6353,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
         var ind = (type === 'postpone' ? 1 : 0);
         var mediaEl = se('<div class="' + (toPics === false ? 'page_docs_preview' : 'page_pics_preview') + '"><div class="page_preview_' + type + '_wrap"' + (opts.nocl ? ' style="cursor: default"' : '') + attrs + '>' + preview + '<div nosorthandle="1" class="page_media_x_wrap inl_bl" '+ (browser.msie && browser.version < 9 ? 'title' : 'tootltip') + '="'+getLang('dont_attach')+'" onmouseover="if (browser.msie && browser.version < 9) return; showTooltip(this, {text: this.getAttribute(\'tootltip\'), shift: [14, 3, 3], black: 1})" onclick="cur.addMedia['+addMedia.lnkId+'].unchooseMedia(' + ind + '); return cancelEvent(event);"><div class="page_media_x" nosorthandle="1"></div></div>' + postview + '</div></div>');
         if (data.upload_ind !== undefined) re('upload' + data.upload_ind + '_progress_wrap');
-        if (type !== 'postpone') {
+        if (type !== 'postpone' && type !== 'mark_as_ads') {
           addMedia.chosenMedia = [type, media];
           addMedia.chosenMediaData = data;
         }
@@ -6374,6 +6378,8 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
         addMedia.createPoll(data);
       } else if (type == 'postpone') {
         addMedia.setupPostpone(data, exp);
+      } else if (type == 'mark_as_ads') {
+        addMedia.markAsAds = 1;
       }
 
       var ev = window.event;
@@ -6479,6 +6485,10 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
                 ge('wpe_save').innerHTML = getLang('wall_publish_now');
               }
               show(geByClass1('add_media_type_' + lnkId + '_postpone', menu.menuNode, 'a'));
+              break;
+
+            case 'mark_as_ads':
+              addMedia.markAsAds = false;
               break;
           }
           medias[ind] = false;
@@ -6676,7 +6686,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
         return 0;
       }
       if (!multi) {
-        return previewEl.childNodes.length - (addMedia.postponePreview ? 1 : 0);
+        return previewEl.childNodes.length - (addMedia.postponePreview ? 1 : 0) - (addMedia.markAsAds ? 1 : 0);
       }
       var num = (editable && window.ThumbsEdit ? ((ThumbsEdit.cache()['thumbs_edit' + lnkId] || {}).previews || []) : picsEl.childNodes).length + dpicsEl.childNodes.length + mpicsEl.childNodes.length + docsEl.childNodes.length / (docsEl.sorter ? 2 : 1) + progressEl.childNodes.length;
       if (addMedia.sharePreview) {
@@ -7689,6 +7699,9 @@ Composer = {
     }
     if (!addMedia.multi && !params.postpone && addMedia.postponePreview) {
       params.postpone = cur.postponedLastDate = val('postpone_date' + addMedia.lnkId);
+    }
+    if (!addMedia.multi && !params.mark_as_ads && addMedia.markAsAds) {
+      params.mark_as_ads = 1;
     }
 
     return params;

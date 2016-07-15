@@ -2379,7 +2379,8 @@ div.med_no_attach {
 .page_preview_share_wrap,
 .page_preview_page_wrap,
 .page_preview_poll_wrap,
-.page_preview_postpone_wrap {
+.page_preview_postpone_wrap,
+.page_preview_mark_as_ads_wrap {
   padding: 5px 0px;
 }
 .media_audio_icon {
