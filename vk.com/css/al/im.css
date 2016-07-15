@@ -29,6 +29,9 @@
   line-height: 1.36em;
   height: 24px;
 }
+.im_msg_media .im-graffiti {
+  margin: 15px 0;
+}
 .im_add_to_fav {
   margin-right: 5px;
 }

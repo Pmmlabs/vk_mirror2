@@ -769,7 +769,10 @@ var IM = {
     } else {
       return;
     }
-    if (msg[5].attach1_type) {
+
+    if (msg[5].attach1_type === 'doc' && msg[5].attach1_kind === 'graffiti') {
+      message += "\n[" + getLang('mail_added_graffiti') + "]";
+    } else if (msg[5].attach1_type) {
       message += "\n[" + getLang('mail_added_' + msg[5].attach1_type) + "]";
     } else if (msg[5].fwd) {
       message += "\n[" + getLang('mail_added_msgs') + "]";
@@ -1800,7 +1803,8 @@ var IM = {
       body = title + body;
       // Attachment
       if (kludges.attach1_type) {
-        body += '<div class="im_row_attach"><div class="im_attach_' + kludges.attach1_type + '"></div>' + getLang('mail_added_' + kludges.attach1_type) + '</div>';
+        var attach_type = kludges.attach1_type === 'doc' && kludges.attach1_kind === 'graffiti' ? 'graffiti' : kludges.attach1_type;
+        body += '<div class="im_row_attach"><div class="im_attach_' + kludges.attach1_type + '"></div>' + getLang('mail_added_' + attach_type) + '</div>';
       } else if (kludges.fwd) { // Forwarded mail
         body += '<div class="im_row_attach"><div class="im_attach_mail"></div>' + (kludges.fwd.match(/,\(/) ? getLang('mail_added_msgs') : getLang('mail_added_msg')) + '</div>';
       } else if (kludges.source_act && !body) {
@@ -6681,7 +6685,7 @@ var IM = {
     var target = event.target || event.srcElement,
         i = 4,
         foundGood = false,
-        checkeRE = /wrapped|im_log_act|im_log_ract|im_log_author|im_log_body|im_log_date|im_log_rspacer|page_media_link_desc/;
+        checkeRE = /wrapped|im_log_act|im_log_ract|im_log_author|im_log_body|im_log_date|im_log_rspacer|page_media_link_desc|_im_graffiti_w/;
     do {
       // debugLog(target, debugEl(target));
       if (!target ||
@@ -6689,7 +6693,7 @@ var IM = {
           target.onclick ||
           target.onmousedown ||
           target.tagName == 'A' ||
-          target.tagName == 'IMG' && !hasClass(target, 'emoji') && !hasClass(target, 'emoji_css') && !hasClass(target, 'im_gift') ||
+          target.tagName == 'IMG' && !hasClass(target, '_im_graffiti') && !hasClass(target, 'emoji') && !hasClass(target, 'emoji_css') && !hasClass(target, 'im_gift') ||
           target.tagName == 'TEXTAREA' ||
           hasClass(target, 'play_new') ||
           (foundGood = checkeRE.test(target.className))
