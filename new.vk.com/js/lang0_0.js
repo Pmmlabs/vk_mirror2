@@ -58,6 +58,7 @@ global_online_sm=['','online','online'];
 global_on_behalf_group='От имени сообщества';
 global_on_behalf_me='От своего имени';
 global_on_behalf_title='Настройки отправки';
+global_pe_edit='Фоторедактор';
 global_privacy_except='кроме:';
 global_rating_box_header='Рейтинг';
 global_recaptcha_title='Подтверждение действия';
@@ -224,7 +225,7 @@ videofile_num=['','видеозапись','видеозаписи','видеозаписей'];
 votes_flex=['','голос','голоса','голосов'];
 Work_place='Место работы:';
 yesterday='вчера';
-// section = 0; version = 440;
+// section = 0; version = 442;
 
 friends_no_user_selected='Вы не выбрали ни одного пользователя.';
 // section = 2; version = 207;
