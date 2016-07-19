@@ -911,6 +911,9 @@ function positive(value) {
   value = intval(value);
   return value < 0 ? 0 : value;
 }
+function isNumeric(value) {
+  return !isNaN(value);
+}
 
 function winToUtf(text) {
   return text.replace(/&#(\d\d+);/g, function(s, c) {
@@ -4735,6 +4738,7 @@ var nav = {
               }
               updateSTL();
               updateLeftMenu();
+              TopSearch.clear();
             }, 10);
 
             getAudioPlayer().updateCurrentPlaying();
@@ -4914,6 +4918,7 @@ var nav = {
       checkPageBlocks();
       updateSTL();
       updateLeftMenu();
+      TopSearch.clear();
 
       handlePageParams(params);
 
