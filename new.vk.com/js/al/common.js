@@ -7925,9 +7925,9 @@ TopSearch = {
   clear: function() {
     window.tooltips && tooltips.destroyAll(ge('ts_cont_wrap'));
     var tsInput = ge('ts_input');
-    if (!tsInput) return;
+    if (!tsInput || !tsInput.phonblur) return;
 
-    tsInput.setValue('');
+    val(tsInput, '');
     tsInput.blur();
     tsInput.phonblur();
     this.prepareRows();

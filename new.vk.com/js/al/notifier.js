@@ -3818,7 +3818,7 @@ FastChat = {
   },
 
   addTabIcon: function(peer, data, noAnim) {
-    if (Chat.tabs[peer]) {
+    if (!Chat.itemsCont || Chat.tabs[peer]) {
       return;
     }
     if (peer > 2e9) {

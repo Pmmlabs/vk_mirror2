@@ -5157,6 +5157,10 @@ var Wall = {
   REPLY_RADIO_BTNS_GROUP: 'page_post_as',
   REPLY_RADIO_BTNS_GROUP_INDEX: 0,
   replyAsGroup: function(obj, btn, rdName) {
+    if (hasClass(obj, 'disabled')) {
+      return;
+    }
+
     var wrap = domClosest('_submit_post_box', obj);
     if (!btn) {
       // direct click
@@ -5171,19 +5175,22 @@ var Wall = {
     var as = domData(btn, 'as');
     radiobtn(btn, as, rdName);
 
+    checkbox(obj);
+
     toggleClass(wrap, 'as_group', as == 'group');
     toggleClass('signed', 'shown', as == 'group');
   },
   replyAsGroupOver: function(obj, tt_user, tt_group) {
-    if (!hasClass(obj, 'checkbox_official')) return false;
+    if (!hasClass(obj, 'checkbox_official') || hasClass(obj, 'disabled')) return false;
 
     var ttChooser = data(obj, 'tt');
 
     if (!ttChooser) {
       var rdGroup = wall.REPLY_RADIO_BTNS_GROUP + (wall.REPLY_RADIO_BTNS_GROUP_INDEX ++);
 
+      var postBox = gpeByClass('_submit_post_box', obj);
       var onCls = [];
-      if (hasClass(obj, 'on')) {
+      if (hasClass(postBox, 'as_group')) {
         onCls = ['', 'on'];
       } else {
         onCls = ['on', ''];
