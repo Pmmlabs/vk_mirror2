@@ -389,7 +389,7 @@ function geByClass(searchClass, node, tag) {
   tag = tag || '*';
   var classElements = [];
 
-  if (!browser.msie8 && node.querySelectorAll && tag != '*') {
+  if (node.querySelectorAll && tag != '*') {
     return node.querySelectorAll(tag + '.' + searchClass);
   }
   if (node.getElementsByClassName) {
@@ -419,7 +419,7 @@ function geByClass(searchClass, node, tag) {
 function geByClass1(searchClass, node, tag) {
   node = ge(node) || document;
   tag = tag || '*';
-  return !browser.msie8 && node.querySelector && node.querySelector(tag + '.' + searchClass) || geByClass(searchClass, node, tag)[0];
+  return node.querySelector && node.querySelector(tag + '.' + searchClass) || geByClass(searchClass, node, tag)[0];
 }
 function gpeByClass(className, elem, stopElement) {
   elem = ge(elem);
@@ -892,7 +892,7 @@ function isUndefined(obj) { return typeof obj === 'undefined' };
 function isFunction(obj) {return obj && Object.prototype.toString.call(obj) === '[object Function]'; }
 function isArray(obj) { return Object.prototype.toString.call(obj) === '[object Array]'; }
 function isString(obj) { return typeof obj === 'string'; }
-function isObject(obj) { return Object.prototype.toString.call(obj) === '[object Object]' && !(browser.msie8 && obj && obj.item !== 'undefined' && obj.namedItem !== 'undefined'); }
+function isObject(obj) { return Object.prototype.toString.call(obj) === '[object Object]'; }
 function isEmpty(o) { if(Object.prototype.toString.call(o) !== '[object Object]') {return false;} for(var i in o){ if(o.hasOwnProperty(i)){return false;} } return true; }
 function vkNow() { return +new Date; }
 function vkImage() { return window.Image ? (new Image()) : ce('img'); } // IE8 workaround
@@ -2515,10 +2515,6 @@ function onBodyResize(force) {
     if (htmlNode.scrollHeight > htmlNode.offsetHeight && !layers.visible) {
       dwidth += sbw + 1;
     }
-  } else if (browser.msie8) {
-    if (htmlNode.scrollHeight + 3 > htmlNode.offsetHeight && !layers.visible) {
-      dwidth += sbw + 1;
-    }
   }
   if (w.lastWindowWidth != dwidth || force === true) {
     changed = true;
@@ -4051,6 +4047,9 @@ window.hab = new HistoryAndBookmarks({onLocChange: function(loc) {
 
 function checkEvent(e) {
   return ((e = (e || window.event)) && (e.type == 'click' || e.type == 'mousedown' || e.type == 'mouseup') && (e.which > 1 || e.button > 1 || e.ctrlKey || e.shiftKey || browser.mac && e.metaKey)) || false;
+}
+function checkKeyboardEvent(e) {
+  return ((e = (e || window.event)) && !e.clientX && !e.screenX && !e.offsetX) || false;
 }
 function checkOver(e, target) {
   if (!e) return true;
@@ -5684,7 +5683,7 @@ function MessageBox(options, dark) {
     className: 'popup_box_container'+(options.containerClass ? ' '+options.containerClass : ''),
     innerHTML: '\
 <div class="box_layout" onclick="__bq.skip=true;">\
-<div class="box_title_wrap"><div class="box_x_button"></div><div class="box_title_controls"></div><div class="box_title"></div></div>\
+<div class="box_title_wrap"><div class="box_x_button" aria-label="' + getLang('global_close') + '" tabindex="0" role="button"></div><div class="box_title_controls"></div><div class="box_title"></div></div>\
 <div class="box_body" style="' + options.bodyStyle + '"></div>\
 <div class="box_controls_wrap"' + controlsStyle + '><div class="box_controls">\
 <table cellspacing="0" cellpadding="0" class="fl_r"><tr></tr></table>\
@@ -7191,7 +7190,7 @@ function showPhoto(photoId, listId, options, ev) {
     return false;
   }
 
-  ajax.post('al_photos.php', extend({act: 'show', gid: cur.gid, photo: photoId, list: listId, module: cur.module || ''}, options.additional), options);
+  ajax.post('al_photos.php', extend({act: 'show', gid: cur.gid, photo: photoId, list: listId, module: cur.module || '', list_info: options.list_info || null}, options.additional), options);
 
   return false;
 }
@@ -7750,16 +7749,14 @@ TopMenu = {
     }
 
     addEvent(tpLink, 'mousedown', TopMenu.clicked);
-    // addEvent(tpLink, 'mouseout', TopMenu.hide);
-    // addEvent(tpMenu, 'mouseover', TopMenu.show);
-    // addEvent(tpMenu, 'mouseout', TopMenu.hide);
     this.inited = true;
   },
   clicked: function(event) {
-    if (checkEvent(event)) {
+    if (checkEvent(event) || event.type == 'mousedown' && checkKeyboardEvent(event)) {
       return false;
     }
     TopMenu.toggle();
+    return false;
   },
   toggle: function(s) {
     var tpLink = ge('top_profile_link'),
@@ -7776,11 +7773,6 @@ TopMenu = {
 
     toggleClass(tpLink, 'active', s);
     toggleClass(tpMenu, 'shown', s);
-
-    if (browser.msie8) { // redraw hack
-      setStyle(tpMenu, {display: 'table'});
-      setTimeout(setStyle.pbind(tpMenu, {display: ''}), 0);
-    }
 
     if (s) {
       topHeaderClose(TopMenu.toggle.bind(this, false));
@@ -7915,7 +7907,7 @@ TopSearch = {
       //TopSearch.toggleInput(false);
       //TopMenu.toggle(false);
 
-      if (!domClosest('_audio_layer', e.target) && !domClosest('layer_wrap', e.target)) {
+      if (!checkKeyboardEvent(e) && !domClosest('_audio_layer', e.target) && !domClosest('layer_wrap', e.target)) {
         topHeaderClose();
       }
     });

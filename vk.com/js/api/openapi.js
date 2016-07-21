@@ -1626,7 +1626,7 @@ if (!VK.Widgets) {
         window.vk__adsLight = false;
         adsScriptVersion = parseInt(adsScriptVersion);
         var attachScriptFunc = (VK.Api && VK.Api.attachScript || VK.addScript);
-        var base_domain = (options.redesign && props.base_domain || options.base_domain || VK._protocol + '//vk.com');
+        var base_domain = (options.base_domain || VK._protocol + '//vk.com');
         attachScriptFunc(base_domain + '/js/al/aes_light.js?' + adsScriptVersion);
       } else if (window.vk__adsLight && vk__adsLight.userHandlers && vk__adsLight.userHandlers.onInit) {
         vk__adsLight.userHandlers.onInit(false); // false - do not publish initial onInit
