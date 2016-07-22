@@ -4049,7 +4049,7 @@ function checkEvent(e) {
   return ((e = (e || window.event)) && (e.type == 'click' || e.type == 'mousedown' || e.type == 'mouseup') && (e.which > 1 || e.button > 1 || e.ctrlKey || e.shiftKey || browser.mac && e.metaKey)) || false;
 }
 function checkKeyboardEvent(e) {
-  return ((e = (e || window.event)) && !e.clientX && !e.screenX && !e.offsetX) || false;
+  return ((e = (e || window.event)) && !e.clientX && !e.screenX) || false;
 }
 function checkOver(e, target) {
   if (!e) return true;
