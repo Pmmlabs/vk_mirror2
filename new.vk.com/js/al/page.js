@@ -1282,7 +1282,7 @@ var Page = {
         if (!sh) return;
 
         if (!ge('page_actions_wrap'))  {
-          domPN(el).insertBefore(se(html), el);
+          domPN(el).appendChild(se(html), el);
           eval(js);
         }
       },
