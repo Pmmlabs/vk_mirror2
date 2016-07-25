@@ -1463,7 +1463,7 @@ function showCaptcha(sid, img, onClick, onShow, onHide) {
                   if (href.match(/&hash=[a-z0-9]+/)) {
                     Ajax.Post(p);
                   } else {
-                    location.href= base_domain + 'login.php?op=logout'; return false;
+                    location.href= base_domain + 'login.php?op=logout&validation=1'; return false;
                   }
                   clearInterval(t);
                 }

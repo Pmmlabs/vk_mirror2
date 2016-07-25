@@ -1083,7 +1083,7 @@ var Page = {
       autoplayGifs = geByClass('page_gif_autoplay');
       if (!autoplayGifs.length || window.wkcur && wkcur.shown) return;
 
-      var fixedHeaderHeight = 46;
+      var fixedHeaderHeight = getSize('page_header')[1];
       var viewportHeight = (window.innerHeight || document.documentElement.clientHeight) - fixedHeaderHeight;
       var viewportMiddle = fixedHeaderHeight + viewportHeight / 2;
       var activeSpace = Math.min(viewportHeight, 800);
@@ -1168,6 +1168,7 @@ var Page = {
     cur.destroy.push(function() {
       removeEvent(window, 'scroll', scrollHandler);
       removeEvent(window, 'resize', scrollHandler);
+      scrollHandler = null;
       delete cur.gifAutoplayScrollHandler;
     });
 
@@ -1188,23 +1189,19 @@ var Page = {
       var post = ge('post'+postId);
       var playerEl = ge('video_player') || ge('html5_player');
       if (post && playerEl && isAncestor(playerEl, post)) {
-        addEvent(window, 'scroll', cur.pinnedVideoScrollHandler);
-        cur.destroy.push(cur.pinnedVideoDestroyHandlers);
+        addEvent(window, 'scroll', scrollHandler);
+        cur.destroy.push(destroyHandlers);
         cur.pinnedVideoScrollHandler();
       }
       delete cur.pinnedVideoInitHandlers;
     };
 
-    cur.pinnedVideoScrollHandler = (function pinnedVideoScrollHandler(evt) {
+    function scrollHandler(evt) {
       var post = ge('post'+postId);
       var playerEl = cur.videoInlinePlayer && cur.videoInlinePlayer.el || ge('video_player') || ge('html5_player');
       var playerObj = cur.videoInlinePlayer || ge('video_player') || window.html5video;
       if (!post || !playerEl || !isAncestor(playerEl, post) || (playerObj.isTouchedByUser && playerObj.isTouchedByUser())) {
-        if (cur.pinnedVideoDestroyHandlers) {
-          cur.pinnedVideoDestroyHandlers();
-        } else { // for some reason cur.destroy functions hadn't been called but cur had been rewritten
-          removeEvent(window, 'scroll', pinnedVideoScrollHandler);
-        }
+        destroyHandlers();
         return;
       }
 
@@ -1219,15 +1216,20 @@ var Page = {
         window.Videoview && Videoview.togglePlay(inViewport);
         cur.pinnedVideoPrevInViewport = inViewport;
       }
-    });
+    };
+    cur.pinnedVideoScrollHandler = scrollHandler;
 
-    cur.pinnedVideoDestroyHandlers = function() {
-      removeEvent(window, 'scroll', cur.pinnedVideoScrollHandler);
+    function destroyHandlers() {
+      if (!scrollHandler) return;
+      removeEvent(window, 'scroll', scrollHandler);
+      scrollHandler = null;
+      destroyHandlers = null;
       delete cur.pinnedVideo;
       delete cur.pinnedVideoScrollHandler;
       delete cur.pinnedVideoDestroyHandlers;
       delete cur.pinnedVideoPrevInViewport;
     };
+    cur.pinnedVideoDestroyHandlers = destroyHandlers;
   },
 
   actionsDropdown: function(el, preloadClbk) {

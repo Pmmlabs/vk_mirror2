@@ -759,7 +759,7 @@ var Settings = {
         cur.onReLoginDoneCallback = function() {
           ge('settings_reset_sessions_link').parentNode.innerHTML = '<div class="settings_labeled_notice">' + getLang('setting_all_sessions_reset') + '</div>';
         }
-        Settings.resetAllSessions(link, '<input name="otp_reset_hash" value="' + cur.options.otp_reset_hash + '" type="hidden" />', link.getAttribute('complete'));
+        Settings.resetAllSessions(link, '<input name="otp_reset_hash" value="' + cur.options.otp_reset_hash + '" type="hidden" />', link.getAttribute('complete'),  cur.options.logout_hash);
         if (box) box.hide();
         return;
       }
@@ -1126,7 +1126,7 @@ var Settings = {
   },
 
   reset_sessions: false,
-  resetAllSessions: function(not_history_box_lnk, addParams, doneMsg) {
+  resetAllSessions: function(not_history_box_lnk, addParams, doneMsg, logoutHash) {
     if (Settings.reset_sessions) return false;
     Settings.reset_sessions = true;
 
@@ -1144,7 +1144,7 @@ var Settings = {
         var href = iframe.contentWindow.location.href;
         if (href.match(/&hash=/)) {
           if (!href.match(/&hash=[a-z0-9]+/)) {
-            location.href = base_domain + 'login.php?op=logout';
+            location.href = base_domain + 'login.php?op=logout&hash=' + logoutHash;
             return false;
           }
         }
