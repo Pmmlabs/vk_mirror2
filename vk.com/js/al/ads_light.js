@@ -734,7 +734,7 @@ AdsLight.tryExperiment = function (lineup) {
       case 'rb': {
         AdsLight.sendExperimentStat(statsCodeBase, 'lineup');
 
-        AdsLight.tryRenderTarget(experimentParams[0], statsCodeBase, lineup.slice(experimentIndex+1));
+        AdsLight.tryRenderTarget(experimentParams[0], experimentParams[1], statsCodeBase, lineup.slice(experimentIndex+1));
         return true;
       } break;
 
@@ -1613,7 +1613,7 @@ AdsLight.tryRenderCriteo = function (statsCodeBase, nextLineup) {
 
 AdsLight.getRBAds = function (container_id, onsuccess, onfail, params) {
   var callback = "__rb" + new Date().getTime(),
-    SLOT = "13270",
+    SLOT = params.slot_id,
     url = "https://ad.mail.ru/adq/?callback=" +callback+ "&q%5B%5D=" + SLOT + "%3Fn%3D" + encodeURIComponent(container_id),
     prms = {}, // {bdate: '12.09.1989', sex: 1}
     errorTimeout,
@@ -1681,8 +1681,10 @@ AdsLight.getRBAds = function (container_id, onsuccess, onfail, params) {
   return callback;
 }
 
-AdsLight.tryRenderTarget = function (test_group_id, statsCodeBase, nextLineup) {
-  var params = {};
+AdsLight.tryRenderTarget = function (test_group_id, slot_id, statsCodeBase, nextLineup) {
+  var params = {
+    slot_id: slot_id
+  };
   if (test_group_id) {
     params.test_id = test_group_id;
   }
