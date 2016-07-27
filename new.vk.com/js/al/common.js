@@ -3989,6 +3989,7 @@ function checkKeyboardEvent(e) {
   var size = getSize(e.target), xy = getXY(e.target);
   return (Math.abs(e.pageX - xy[0] - size[0] / 2) < 1 && Math.abs(e.pageY - xy[1] - size[1] / 2) < 1);
 }
+
 function checkOver(e, target) {
   if (!e) return true;
   e = e.originalEvent || e;
