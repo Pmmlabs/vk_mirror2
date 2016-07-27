@@ -6766,6 +6766,7 @@ button.wall_block_app_btn {
   background: url(/images/tooltip_arrow_up.gif) no-repeat;
 }
 .wall_text_name_explain_promoted_post {
+  color: #777;
   padding-left: 5px;
 }
 .wall_text_name_explain_promoted_post_age_restriction {

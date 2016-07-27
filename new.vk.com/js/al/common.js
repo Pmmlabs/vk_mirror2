@@ -3984,9 +3984,10 @@ function checkEvent(e) {
 function checkKeyboardEvent(e) {
   e = normEvent(e);
   if (!e || !e.target) return false;
-  if (intval(e.pageX) <= 0 && !e.screenX) return true;
+  if (!e.screenX) return true;
 
   var size = getSize(e.target), xy = getXY(e.target);
+  if (e.offsetX < 0 || e.offsetX > size[0] || e.offsetY < 0 || e.offsetY > size[1]) return true;
   return (Math.abs(e.pageX - xy[0] - size[0] / 2) < 1 && Math.abs(e.pageY - xy[1] - size[1] / 2) < 1);
 }
 

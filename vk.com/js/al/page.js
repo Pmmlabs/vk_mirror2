@@ -1832,6 +1832,9 @@ var Wall = {
     if (inputType == 'fixed') {
       params['fixed'] = 1;
     }
+    if (cur.options.additional_save_params) {
+      params = extend(params, cur.options.additional_save_params);
+    }
 
     if (isArray(media) && media.length) {
       medias.push(clone(media));

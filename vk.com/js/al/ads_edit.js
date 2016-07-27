@@ -21,9 +21,11 @@ AdsEdit.ADS_AD_LINK_TYPE_VIDEO              = 7;
 AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID = 8;
 AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE  = 9;
 AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE  = 10;
-AdsEdit.ADS_AD_LINK_TYPE_POST               = 11;
+AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW   = 11;
+AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH       = 12;
 AdsEdit.ADS_AD_LINK_TYPES_ALL_GROUP         = [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC];
 AdsEdit.ADS_AD_LINK_TYPES_ALL_MOBILE_APP    = [AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE];
+AdsEdit.ADS_AD_LINK_TYPES_ALL_POST          = [AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW, AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH];
 
 AdsEdit.ADS_AD_COST_TYPE_CLICK = 0;
 AdsEdit.ADS_AD_COST_TYPE_VIEWS = 1;
@@ -1504,7 +1506,7 @@ AdsViewEditor.prototype.initHelpParam = function(paramNameHelp) {
       break;
     case 'platform':
       targetElem = ge(this.options.targetIdPrefix + paramNameHelp).parentNode;
-      helpText = function() { return (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_POST) ? cur.adParamsHelp['platform_post'] : cur.adParamsHelp['platform']; }.bind(this);
+      helpText = function() { return inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) ? cur.adParamsHelp['platform_post'] : cur.adParamsHelp['platform']; }.bind(this);
       var showTooltip = function() { AdsEdit.showHelpCriterionTooltip(paramNameHelp, targetElem, handler, this.help[paramNameHelp], helpText, shiftLeft, shiftTop, this.cur); }.bind(this);
       var hideTooltip = function() { AdsEdit.hideHelpTooltip(this.help[paramNameHelp].tt); }.bind(this);
       handler = function(event){ AdsEdit.onHelpTooltipEvent(event, paramNameHelp, context, showTooltip, hideTooltip); }.bind(this);
@@ -1905,6 +1907,9 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
       if (inArray(paramValue, AdsEdit.ADS_AD_LINK_TYPES_ALL_MOBILE_APP)) {
         paramValue = AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID;
       }
+      if (inArray(paramValue, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)) {
+        paramValue = AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW;
+      }
       var elems = geByClass('ads_edit_link_type_item', 'ads_param_link_type_wrap');
       for (var i = 0, elem; elem = elems[i]; i++) {
         toggleClass(elem, 'selected', !!(intval(elem.getAttribute('value')) == paramValue));
@@ -1957,7 +1962,7 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
         || inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_MARKET, AdsEdit.ADS_AD_LINK_TYPE_APP]) && this.params.link_id.value
         || inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_URL, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE]) && linkUrlOk
         || this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO && this.params.link_id.value && this.params.link_owner_id.value && (linkUrlOk || !this.params.link_url.value)
-        || this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_POST && this.params.link_id.value && this.params.link_owner_id.value
+        || inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params.link_id.value && this.params.link_owner_id.value
       );
       toggleClass('ads_param_link_object_complete', 'button_disabled', !(this.params.link_type.complete));
       break;
@@ -2100,12 +2105,17 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
     case 'platform':
       var isDisclaimers                    = (this.params.disclaimer_medical.value || this.params.disclaimer_specialist.value || this.params.disclaimer_supplements.value);
       this.params[paramName].disabled_web  = (this.params.campaign_type.value == AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_APPS_WITH_BUDGET || this.params.campaign_type.value == AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_OLD && this.params.campaign_id.value_app && this.params.campaign_id.value == this.params.campaign_id.value_app || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE || this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_CLICK || isDisclaimers);
-      this.params[paramName].disabled      = (this.params.link_type.value != AdsEdit.ADS_AD_LINK_TYPE_POST && this.params[paramName].disabled_web);
+      this.params[paramName].disabled      = (!inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params[paramName].disabled_web);
+
+      var linkTypeForPlatform = this.params.link_type.value;
+      if (inArray(linkTypeForPlatform, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)) {
+        linkTypeForPlatform = AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW;
+      }
 
       if (this.params.platform.disabled) {
-        this.params[paramName].value = (this.params.platform.values_disabled[this.params.link_type.value] ? this.params.platform.values_disabled[this.params.link_type.value] : this.params.platform.values_disabled[0]);
+        this.params[paramName].value = (this.params.platform.values_disabled[linkTypeForPlatform] ? this.params.platform.values_disabled[linkTypeForPlatform] : this.params.platform.values_disabled[0]);
       } else {
-        this.params[paramName].value = (this.params.platform.values_normal[this.params.link_type.value] ? this.params.platform.values_normal[this.params.link_type.value] : this.params.platform.values_normal[0]);
+        this.params[paramName].value = (this.params.platform.values_normal[linkTypeForPlatform] ? this.params.platform.values_normal[linkTypeForPlatform] : this.params.platform.values_normal[0]);
       }
 
       this.initUiParam(paramName);
@@ -2174,7 +2184,11 @@ AdsViewEditor.prototype.getUiParamData = function(paramName) {
     case 'subcategory2_id':
       return this.params.category1_id.data_subcategories[this.params.category2_id.value] || [];
     case 'platform':
-      return this.params[paramName].data_all[this.params.link_type.value] || this.params[paramName].data_all[0] || [];
+      var linkTypeForPlatform = this.params.link_type.value;
+      if (inArray(linkTypeForPlatform, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)) {
+        linkTypeForPlatform = AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW;
+      }
+      return this.params[paramName].data_all[linkTypeForPlatform] || this.params[paramName].data_all[0] || [];
     case 'views_limit_exact':
       return this.params[paramName].data_ranges[this.params.format_type.value] || [];
     default:
@@ -2290,7 +2304,7 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
       toggleClass(this.options.targetIdPrefix + paramName + '_groups_only_wrap',         'unshown', elemsHidden[AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY]         = !(inArray(linkTypeValue, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC]) && this.params.format_type.allow_groups_only));
       toggleClass(this.options.targetIdPrefix + paramName + '_big_app_wrap',             'unshown', elemsHidden[AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP]             = !(inArray(linkTypeValue, [AdsEdit.ADS_AD_LINK_TYPE_APP]) && this.params.link_id.app_trusted_links_ids[this.params.link_id.value] && this.params.format_type.allow_big_app));
       toggleClass(this.options.targetIdPrefix + paramName + '_mobile_wrap',              'unshown', elemsHidden[AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]              = !(inArray(linkTypeValue, [AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE])));
-      toggleClass(this.options.targetIdPrefix + paramName + '_promoted_post_wrap',       'unshown', elemsHidden[AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST]       = !(inArray(linkTypeValue, [AdsEdit.ADS_AD_LINK_TYPE_POST])));
+      toggleClass(this.options.targetIdPrefix + paramName + '_promoted_post_wrap',       'unshown', elemsHidden[AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST]       = !(inArray(linkTypeValue, [AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW, AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH])));
 
       this.params.format_type.unreachable = false;
       for (var i in elemsHidden) {
@@ -2334,7 +2348,7 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
     case '_link_url':
       var linkResult = this.getLink();
       var elemVisible = !!(linkResult.link_url && inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_URL, AdsEdit.ADS_AD_LINK_TYPE_VIDEO, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE])
-        || this.params.link_id.value && this.params.link_owner_id.value && this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_POST
+        || this.params.link_id.value && this.params.link_owner_id.value && inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)
       );
       toggleClass(this.options.targetIdPrefix + 'link_url_go_wrap', 'unshown', !elemVisible);
       break;
@@ -2547,9 +2561,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         this.params.disclaimer_supplements.hidden = (!this.params.disclaimer_medical.may_be_any || !this.params.disclaimer_supplements.allow);
         this.params.stats_url.hidden              = !(this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.stats_url.allow_exclusive || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.stats_url.allow_promoted_post);
         this.params.views_limit_flag.hidden       = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.views_limit_exact.allow || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST);
-        this.params.views_limit_exact.hidden      = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS
-          || ((this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE || !this.params.views_limit_exact.allow)
-              &&  this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST));
+        this.params.views_limit_exact.hidden      = (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE || !this.params.views_limit_exact.allow));
 
         if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY) {
           this.setTitle(this.params.title.value_p);
@@ -2632,7 +2644,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         break;
       case 'cost_type':
         this.params.views_limit_flag.hidden  = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.views_limit_exact.allow || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST);
-        this.params.views_limit_exact.hidden = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST || !this.params.views_limit_exact.allow);
+        this.params.views_limit_exact.hidden = (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE || !this.params.views_limit_exact.allow));
 
         this.updateUiParam('cost_per_click');
         this.updateUiParam('platform');
@@ -2647,7 +2659,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         this.params.link_owner_id.value = '';
         this.params.link_id.data = [];
         this.params.link_id.hidden     = !inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_MARKET, AdsEdit.ADS_AD_LINK_TYPE_APP]);
-        this.params.link_url.hidden    = !inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_URL, AdsEdit.ADS_AD_LINK_TYPE_VIDEO, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE, AdsEdit.ADS_AD_LINK_TYPE_POST]);
+        this.params.link_url.hidden    = !inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_URL, AdsEdit.ADS_AD_LINK_TYPE_VIDEO, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE, AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW, AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH]);
         this.params.link_domain.hidden = !inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_URL, AdsEdit.ADS_AD_LINK_TYPE_VIDEO]);
         if (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO) {
           this.params.link_id.value       = this.params.link_id.video_value;
@@ -2663,7 +2675,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
           this.params.link_domain.is_ok           = false;
           this.params.link_domain_confirm.value   = 0;
         }
-        this.params.platform.hidden = !!(this.params.link_type.value != AdsEdit.ADS_AD_LINK_TYPE_POST && (!this.params.platform.allow_web || !inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_APP, AdsEdit.ADS_AD_LINK_TYPE_URL])));
+        this.params.platform.hidden = !!(!inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && (!this.params.platform.allow_web || !inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_APP, AdsEdit.ADS_AD_LINK_TYPE_URL])));
 
         this.updateUiParam('link_id');
         this.updateUiParam('link_url');
@@ -2694,7 +2706,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
           this.updateNeeded.need_links = true;
           isUpdateNeeded = true;
         }
-        if (!this.params.link_type.cancelling && this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_POST) {
+        if (!this.params.link_type.cancelling && inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)) {
           this.updateNeeded.need_link_post = true;
           isUpdateNeeded = true;
         }
@@ -2729,6 +2741,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
             }
           }
         }
+
         this.updateUiParam('link_domain');
         this.updateUiParam('_link_type');
         this.updateUiParam('_link_id');
@@ -2743,7 +2756,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         this.params.link_url_vk.link_type_value = 0;
         this.params.link_url_vk.link_id_value   = 0;
         // </???>
-        if (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_POST) {
+        if (inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)) {
           this.params.link_id.value             = 0;
           this.params.link_owner_id.value       = 0;
         }
@@ -2763,7 +2776,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         if (!this.params.link_type.cancelling) {
           this.updateLinkDomain();
         }
-        if (!this.params.link_type.cancelling && this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_POST) {
+        if (!this.params.link_type.cancelling && inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)) {
           this.updateNeeded.need_link_post = true;
           isUpdateNeeded = true;
         }
@@ -2899,8 +2912,12 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         this.updateUiParam('cost_per_click');
         break;
       case 'platform':
-        var linkTypeNormal = (this.params.platform.values_normal[this.params.link_type.value] ? this.params.link_type.value : 0);
-        this.params.platform.values_normal[linkTypeNormal] = this.params.platform.value;
+        var linkTypeForPlatform = this.params.link_type.value;
+        if (inArray(linkTypeForPlatform, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)) {
+          linkTypeForPlatform = AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW;
+        }
+        var linkTypeForPlatformNormal = (this.params.platform.values_normal[linkTypeForPlatform] ? linkTypeForPlatform : 0);
+        this.params.platform.values_normal[linkTypeForPlatformNormal] = this.params.platform.value;
 
         isUpdateNeeded = true;
         break;
@@ -3173,7 +3190,8 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
   }
 
   if (isObject(result) && 'post_link_id' in result) {
-    if (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_POST && data.link_type == this.params.link_type.value && data.link_url == this.params.link_url.value) {
+    if (inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && data.link_type == this.params.link_type.value && data.link_url == this.params.link_url.value) {
+      this.params.link_type.value            = result['post_link_type'];
       this.params.link_id.value              = result['post_link_id'];
       this.params.link_owner_id.value        = result['post_link_owner_id'];
       this.params.link_id.promoted_post_text = result['post_text'];
@@ -3678,7 +3696,7 @@ AdsViewEditor.prototype.completeLink = function() {
     || isChangedLinkType
     || this.params.link_id.value       != this.params_old.link_id.value && inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_MARKET, AdsEdit.ADS_AD_LINK_TYPE_APP])
     || this.params.link_url.value      != this.params_old.link_url.value && inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_MOBILE_APP)
-    || (this.params.link_id.value      != this.params_old.link_id.value || this.params.link_owner_id.value != this.params_old.link_owner_id.value) && this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_POST
+    || (this.params.link_id.value      != this.params_old.link_id.value || this.params.link_owner_id.value != this.params_old.link_owner_id.value) && inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)
   );
 
   this.params.link_type.editing = false;
@@ -3704,7 +3722,7 @@ AdsViewEditor.prototype.completeLink = function() {
     this.setPhotoData('k');
     this.setPhotoData('i');
 
-    this.params.format_type.hidden = !!(inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE, AdsEdit.ADS_AD_LINK_TYPE_POST]));
+    this.params.format_type.hidden = !!(inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE, AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW, AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH]));
     this.updateUiParamVisibility('format_type');
     if (this.params.format_type.unreachable) {
       var formatTypeDefault = AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE;
@@ -3715,7 +3733,8 @@ AdsViewEditor.prototype.completeLink = function() {
         case AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE:
         case AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE:
           formatTypeDefault = AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE; break;
-        case AdsEdit.ADS_AD_LINK_TYPE_POST:
+        case AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW:
+        case AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH:
           formatTypeDefault = AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST; break;
       }
       this.setFormatType(formatTypeDefault);
@@ -3747,16 +3766,16 @@ AdsViewEditor.prototype.completeLink = function() {
     }
 
     var oldGroupId = false;
-    if (this.params_old && inArray(this.params_old.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC])) {
+    if (this.params_old && inArray(this.params_old.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_GROUP)) {
       oldGroupId = this.params_old.link_id.value;
-    } else if (this.params_old && this.params_old.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_POST) {
+    } else if (this.params_old && inArray(this.params_old.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)) {
       oldGroupId = -this.params_old.link_owner_id.value;
     }
     if (!this.targetingEditor.criteria.groups_not.value || oldGroupId == this.targetingEditor.criteria.groups_not.value) {
       var selectedValue = false;
-      if (inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC])) {
+      if (inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_GROUP)) {
         selectedValue = this.params.link_id.value;
-      } else if (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_POST) {
+      } else if (inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)) {
         selectedValue = -this.params.link_owner_id.value;
       }
 
@@ -3899,12 +3918,13 @@ AdsViewEditor.prototype.getLink = function() {
 
   if (this.params.link_id.value) {
     switch (this.params.link_type.value) {
-      case AdsEdit.ADS_AD_LINK_TYPE_GROUP:  linkUrl = '/club' + this.params.link_id.value + '?ad_id={ad_id}'; break;
-      case AdsEdit.ADS_AD_LINK_TYPE_EVENT:  linkUrl = '/event' + this.params.link_id.value + '?ad_id={ad_id}'; break;
-      case AdsEdit.ADS_AD_LINK_TYPE_PUBLIC: linkUrl = '/public' + this.params.link_id.value + '?ad_id={ad_id}'; break;
-      case AdsEdit.ADS_AD_LINK_TYPE_MARKET: linkUrl = '/market.php?act=view&id=' + this.params.link_id.value; break;
-      case AdsEdit.ADS_AD_LINK_TYPE_APP:    linkUrl = '/app' + this.params.link_id.value + '?ad_id={ad_id}'; break;
-      case AdsEdit.ADS_AD_LINK_TYPE_POST:   linkUrl = '/wall' + this.params.link_owner_id.value + '_' + this.params.link_id.value; break;
+      case AdsEdit.ADS_AD_LINK_TYPE_GROUP:            linkUrl = '/club' + this.params.link_id.value + '?ad_id={ad_id}'; break;
+      case AdsEdit.ADS_AD_LINK_TYPE_EVENT:            linkUrl = '/event' + this.params.link_id.value + '?ad_id={ad_id}'; break;
+      case AdsEdit.ADS_AD_LINK_TYPE_PUBLIC:           linkUrl = '/public' + this.params.link_id.value + '?ad_id={ad_id}'; break;
+      case AdsEdit.ADS_AD_LINK_TYPE_MARKET:           linkUrl = '/market.php?act=view&id=' + this.params.link_id.value; break;
+      case AdsEdit.ADS_AD_LINK_TYPE_APP:              linkUrl = '/app' + this.params.link_id.value + '?ad_id={ad_id}'; break;
+      case AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW:
+      case AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH:     linkUrl = '/wall' + this.params.link_owner_id.value + '_' + this.params.link_id.value; break;
     }
   }
   if (inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_URL, AdsEdit.ADS_AD_LINK_TYPE_VIDEO, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE]) && this.getLinkInfo(this.params.link_url.value)) {

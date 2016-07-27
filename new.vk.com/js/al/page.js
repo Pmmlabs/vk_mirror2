@@ -2343,14 +2343,14 @@ var Wall = {
     return newParams;
   },
   focusOnEnd: function() {
-    var el = ge('post_field'),l = el.lastChild || el, len = l.innerHTML ? l.innerHTML.length : l.length;
+    var el = ge('post_field'),l = el.lastChild || el, len = l.innerHTML ? l.innerHTML.length : (l.length ? l.length : el.childNodes.length);
     el.focus();
     if (document.selection) {
       var sel = document.selection.createRange();
       sel.moveStart('character', len);
       sel.select();
     } else {
-      window.getSelection().collapse(l, len);
+      window.getSelection().collapse(el, len);
     }
   },
   saveExport: function(el, service, hash) {
@@ -5180,7 +5180,7 @@ var Wall = {
 
     toggleClass(wrap, 'as_group', as == 'group');
     toggleClass('signed', 'shown', as == 'group');
-    obj.setAttribute('aria-label', getLang((as == 'group') ? 'wall_reply_as_group' : 'wall_reply_as_user'))
+    obj.setAttribute('aria-label', getLang((as == 'group') ? 'wall_reply_as_group' : 'wall_reply_as_user'));
   },
   replyAsGroupOver: function(obj, tt_user, tt_group) {
     if (!hasClass(obj, 'checkbox_official') || hasClass(obj, 'disabled')) return false;
