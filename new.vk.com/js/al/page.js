@@ -2350,7 +2350,11 @@ var Wall = {
       sel.moveStart('character', len);
       sel.select();
     } else {
-      window.getSelection().collapse(el, len);
+      try {
+        window.getSelection().collapse(l, len);
+      } catch (e) {
+        // do nothing
+      }
     }
   },
   saveExport: function(el, service, hash) {

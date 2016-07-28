@@ -803,7 +803,7 @@ Notifier = {
     var typeClassName = 'notifier_type_' + ev.type;
     ev.baloonWrapEl = ce('div', {
       className: 'notifier_baloon_wrap',
-      innerHTML: '<div class="notifier_baloon ' + typeClassName + '"><div class="notifier_baloon_head clear_fix"><div class="notifier_close_wrap"><a class="notifier_close" title="' + getLang('global_close') + '" href=""></a></div><div class="notifier_baloon_title">' + ev.title + '</div></div><div class="notifier_baloon_body clear_fix">' + (ev.author_photo && ('<div class="notifier_image_wrap">' + (ev.author_link && ('<a href="' + ev.author_link + '">')) + thumbEl + (ev.author_link && '</a>') + '</div>')) + (ev.add_photo && ('<div class="notifier_add_image_wrap"><img src="' + ev.add_photo + '" class="notifier_add_image" /></div>')) + '<div class="notifier_baloon_msg wrapped">' + ev.text + '</div></div></div>'
+      innerHTML: '<div class="notifier_baloon ' + typeClassName + '"><div class="notifier_baloon_head clear_fix"><div class="notifier_close_wrap"><a class="notifier_close" title="' + getLang('global_close') + '" href=""></a></div><h4 class="notifier_baloon_title">' + ev.title + '</h4></div><div class="notifier_baloon_body clear_fix">' + (ev.author_photo && ('<div class="notifier_image_wrap">' + (ev.author_link && ('<a href="' + ev.author_link + '">')) + thumbEl + (ev.author_link && '</a>') + '</div>')) + (ev.add_photo && ('<div class="notifier_add_image_wrap"><img src="' + ev.add_photo + '" class="notifier_add_image" /></div>')) + '<div class="notifier_baloon_msg wrapped">' + ev.text + '</div></div></div>'
     });
     ev.baloonEl = ev.baloonWrapEl.firstChild;
     ev.closeEl = geByClass1('notifier_close_wrap', ev.baloonEl);
