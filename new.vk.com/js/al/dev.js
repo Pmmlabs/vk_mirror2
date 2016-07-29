@@ -330,7 +330,7 @@ switchSection: function(sect, openSect, onlyIfSect) {
     if (!firstMethod) {
       firstMethod = name;
     }
-    html += '<a id="dev_mlist_'+(name.replace(/\./g, '_'))+'" class="dev_mlist_item'+(cur.page == name ? ' nav_selected' : '')+(className ? ' '+className : '')+'" href="/dev/'+name+'">'+name+'</a>';
+    html += '<a id="dev_mlist_'+(name.replace(/\./g, '_'))+'" class="dev_mlist_item'+(cur.page == name ? ' nav_selected' : '')+(className ? ' '+className : '')+'" href="/dev/'+name+'" role="listitem">'+name+'</a>';
   }
   var mlist = ge('dev_mlist_list');
   mlist.innerHTML = html;
