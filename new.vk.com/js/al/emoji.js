@@ -822,12 +822,18 @@ stickerHintMove: function(e) {
   return true;
 },
 
-checkStickersHintsSize: function(el, opts) {
+checkStickersHintsSize: function(el, opts, animated) {
+  if (animated) {
+    addClass(el, '_margin_transition');
+    removeClassDelayed(el, '_margin_transition');
+  }
+
   setStyle(el, {marginLeft: 0});
   var gap = 10,
       hintXY = getXY(el),
       hintSize = getSize(el),
       emojiXY = opts.tt && getXY(opts.tt);
+
   if (opts.tt && emojiXY &&
       emojiXY[0] && hintXY[0] + hintSize[0] + gap > emojiXY[0] &&
       hintXY[1] + hintSize[1] > emojiXY[1]) {
@@ -1379,6 +1385,10 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
       animate(tt, toParams, 200, function() {
         removeClass(tt, 'emoji_animated');
         hide(tt);
+        var stCont = geByClass1('_sticker_hints', domPN(opts.txt));
+        if (stCont && isVisible(stCont)) {
+          Emoji.checkStickersHintsSize(stCont, opts, true);
+        }
       });
     }, 10);
     Emoji.shown = false;
@@ -1396,6 +1406,11 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
     show(tt);
     var toParams = {opacity: 1};
     Emoji.repositionEmoji(optId, obj, tt);
+
+    var stCont = geByClass1('_sticker_hints', domPN(opts.txt));
+    if (stCont && isVisible(stCont)) {
+      Emoji.checkStickersHintsSize(stCont, opts, true);
+    }
 
     setTimeout(function() {
       show(tt);

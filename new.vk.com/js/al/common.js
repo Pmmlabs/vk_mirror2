@@ -2027,6 +2027,8 @@ var layers = {
   },
   visible: false,
   _show: function(el, con, opacity, color) {
+    // that's a dirty hack, unless we migrate to cancelStackPush behaviour for esc
+    cancelStackPush('layers', function() {});
     setStyle(el, {opacity: opacity || '', backgroundColor: color || ''});
     if (!layers.visible) {
       toggleFlash();
@@ -2051,6 +2053,7 @@ var layers = {
   },
   _hide: function(el, con) {
     var done = function() {
+      cancelStackFilter('layers');
       if (con && con.visibilityHide) {
         addClass(con, 'box_layer_hidden');
       } else {
@@ -2926,6 +2929,7 @@ function domReady() {
   setTimeout(onBodyResize.pbind(false), 0);
 
   if (_pads.shown) Pads.updateHeight();
+  updateOnlineText();
 
   addEvent(window, 'scroll', onBodyScroll);
 
@@ -3987,7 +3991,10 @@ function checkKeyboardEvent(e) {
   if (!e.screenX) return true;
 
   var size = getSize(e.target), xy = getXY(e.target);
-  if (e.offsetX < 0 || e.offsetX > size[0] || e.offsetY < 0 || e.offsetY > size[1]) return true;
+  var offsetX = e.pageX - xy[0];
+  var offsetY = e.pageY - xy[1];
+
+  if (offsetX < 0 || offsetX > size[0] || offsetY < 0 || offsetY > size[1]) return true;
   return (Math.abs(e.pageX - xy[0] - size[0] / 2) < 1 && Math.abs(e.pageY - xy[1] - size[1] / 2) < 1);
 }
 
@@ -4623,7 +4630,7 @@ var nav = {
     }
 
     // TopMenu && TopMenu.toggle(false);
-    topHeaderClose();
+    _topHeaderClose();
 
     if (opts.back) {
       if (cur._back && cur._back.onBack) {
@@ -5555,7 +5562,7 @@ if (!browser.mobile && !vk.host.match(/snapster\.io/)) {
       return -1;
     }
     if (e.keyCode == KEY.ESC) {
-      topHeaderClose();
+      cancelStackPop();
       return cancelEvent(e);
     }
     var mediaKeys = [176, 177, 178, 179], isMedia = false;
@@ -7719,11 +7726,10 @@ TopMenu = {
 
     toggleClass(tpLink, 'active', s);
     toggleClass(tpMenu, 'shown', s);
-
     if (s) {
-      topHeaderClose(TopMenu.toggle.bind(this, false));
+      cancelStackPush('top_menu', TopMenu.toggle.bind(this, false), true);
     } else {
-      topHeaderClearClose();
+      cancelStackFilter('top_menu', true);
     }
   },
   show: function() {
@@ -7808,18 +7814,16 @@ TopSearch = {
             if (q) {
               tsInput.blur();
               TopSearch.clear();
-              topHeaderClose();
+              TopSearch.toggle(false);
               nav.go('/search?c[section]=auto&c[q]='+encodeURIComponent(q));
             }
           }
           cancelEvent(e);
           break;
         case KEY.TAB:
-        case KEY.ESC:
           TopSearch.clear();
           TopSearch.toggleInput(false);
-
-          topHeaderClearClose();
+          cancelStackFilter('top_search', true);
 
           break;
       }
@@ -7848,13 +7852,11 @@ TopSearch = {
     });
 
     addEvent(document, 'mousedown', function(e) { // removed touchstart because of feed lags @izhukov
-      tsInput.blur();
       // todo: seems that these call are not necessary because of topHeaderClose function was added
       //TopSearch.toggleInput(false);
       //TopMenu.toggle(false);
-
       if (!checkKeyboardEvent(e) && !domClosest('_audio_layer', e.target) && !domClosest('layer_wrap', e.target)) {
-        topHeaderClose();
+        _topHeaderClose();
       }
     });
 
@@ -7877,7 +7879,7 @@ TopSearch = {
         tsInputLength = trim(val(tsInput)).length,
         hintType = el.getAttribute('hinttype');
     this.clear();
-    topHeaderClose();
+    _topHeaderClose();
     if (!tsInputLength) {
       tsInput.blur();
     }
@@ -7939,7 +7941,11 @@ TopSearch = {
       toggle('ts_cont_wrap', s);
 
       if (s) {
-        topHeaderClose(TopSearch.toggleInput.pbind(false));
+        cancelStackPush('top_search', function() {
+          var tsInput = ge('ts_input');
+          TopSearch.toggleInput(false);
+          tsInput.blur();
+        }, true);
       }
     }
   },
@@ -8260,11 +8266,14 @@ TopSearch = {
   }
 }
 
-function topHeaderClose(func) {
+//do not use it directly, use cancelStackPush
+function _topHeaderClose(func) {
   window.headerDestroy && window.headerDestroy();
   window.headerDestroy = func;
 }
-function topHeaderClearClose() {
+
+//do not use it directly, use cancelStackFilter
+function _topHeaderClearClose() {
   delete window.headerDestroy;
 }
 
@@ -9472,14 +9481,15 @@ window.VideoConstants = {
 };
 
 function onlinePlatformClass(platform) {
-  var cls = '';
+  var cls = ' _online';
   if (platform) {
-    cls += 'online ';
+    cls += ' online';
   }
 
   if (mobPlatforms[platform]) {
-    cls += 'mobile';
+    cls += ' mobile';
   }
+  updateOnlineText();
 
   return cls;
 }
@@ -9488,6 +9498,22 @@ function toggleOnline(obj, platform) {
   removeClass(obj, 'online');
   removeClass(obj, 'mobile');
   addClass(obj, onlinePlatformClass(platform));
+}
+
+function updateOnlineText() {
+  clearTimeout(cur.updateOnlineTO);
+  cur.updateOnlineTO = setTimeout(function() {
+    each(geByClass('_online'), function() {
+
+      var prefered_el = geByClass1('_online_reader', this) || this;
+
+      if (hasClass(this, 'online')) {
+        prefered_el.setAttribute('aria-describedby', 'user_online');
+      } else {
+        prefered_el.removeAttribute('aria-describedby');
+      }
+    });
+  }, 100);
 }
 
 
@@ -9813,6 +9839,42 @@ function isRetina() {
 
 function isPhotoeditor3Available() {
   return (browser.msie ? parseInt(browser.version) > 10 : true);
+}
+
+function cancelStackFilter(name, dclick) {
+  var stack = window.cancelStack || [];
+
+  if (dclick) {
+    _topHeaderClearClose();
+  }
+
+  window.cancelStack = stack.filter(function(el) { return el.name !== name });
+  return window.cancelStack;
+}
+
+function cancelStackPush(name, func, dclick) {
+
+  if (dclick) {
+    _topHeaderClose(function() {
+      func();
+      cancelStackFilter(name);
+    });
+  }
+
+  var stack = window.cancelStack || [];
+  window.cancelStack = cancelStackFilter(name)
+    .concat([{func: func, name: name}]);
+  return window.cancelStack;
+}
+
+function cancelStackPop() {
+  var stack = window.cancelStack || [];
+  _topHeaderClearClose();
+  if (stack.length > 0) {
+    stack.pop().func();
+  }
+  window.cancelStack = stack;
+  return window.cancelStack;
 }
 
 try{stManager.done('common.js');}catch(e){}
