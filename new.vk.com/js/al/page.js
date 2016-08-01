@@ -2343,18 +2343,19 @@ var Wall = {
     return newParams;
   },
   focusOnEnd: function() {
-    var el = ge('post_field'),l = el.lastChild || el, len = l.innerHTML ? l.innerHTML.length : (l.length ? l.length : el.childNodes.length);
+    var el = ge('post_field');
+    if (el.tagName == 'TEXTAREA') {
+      elfocus(el);
+      return;
+    }
+    var len = el.innerHTML ? el.innerHTML.length : (el.length ? el.length : el.childNodes.length - 1);
     el.focus();
     if (document.selection) {
       var sel = document.selection.createRange();
       sel.moveStart('character', len);
       sel.select();
     } else {
-      try {
-        window.getSelection().collapse(l, len);
-      } catch (e) {
-        // do nothing
-      }
+      window.getSelection().collapse(el, el.childNodes.length);
     }
   },
   saveExport: function(el, service, hash) {
@@ -2759,7 +2760,13 @@ var Wall = {
         Market.comments(post);
       } else {
         el.tt && el.tt.hide && el.tt.hide();
-        Wall.showReplies(post, false, reply);
+        if (cur.wallType == 'full') {
+          var replyId = reply.split('_');
+          delete nav.objLoc.offset;
+          return nav.go(extend(nav.objLoc, {reply: replyId[1]}));
+        } else {
+          Wall.showReplies(post, false, reply);
+        }
       }
     }
     return false;

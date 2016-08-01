@@ -1353,7 +1353,7 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
     var tt = ce('div', {
       id: 'emoji_block_'+optId,
       className: 'emoji_tt_wrap tt_down' + classAddr,
-      innerHTML: '<div class="emoji_block_cont"><div class="emoji_block_rel"><div class="emoji_sprite emoji_expand_shadow"></div><div class="emoji_sprite emoji_expand_shadow_top"></div><div class="emoji_list_cont"><div class="emoji_list"><div class="emoji_scroll">'+tabContent+'</div></div></div></div><div class="emoji_tabs clear_fix">'+tabs+'</div></div>',
+      innerHTML: '<div class="emoji_block_cont"><div class="emoji_block_rel"><div class="emoji_list_cont"><div class="emoji_list"><div class="emoji_scroll">'+tabContent+'</div></div></div></div><div class="emoji_tabs clear_fix">'+tabs+'</div></div>',
       onmouseover: function(e) {
         if (!hasClass(tt, 'emoji_animated')) Emoji.ttShow(optId, false, e);
       },
@@ -1369,7 +1369,6 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
       opts.sharedTT.emojiTT = tt;
     }
     Emoji.checkEmojiSlider(opts);
-    opts.imagesLoader = imagesLoader(geByClass1('emoji_list', tt), {use_iframe: true, need_load_class: 'emoji_need_load'});
   }
   clearTimeout(opts.ttEmojiHide);
 
@@ -1442,7 +1441,7 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
     }, 0);
     addClass(obj, 'emoji_smile_on');
     if (opts.emojiScroll && opts.emojiExpanded) {
-      opts.emojiScroll.update(false, true);
+      opts.emojiScroll.update();
       if (browser.msie && opts.curTab === 0 && opts.emojiOvered) {
         Emoji.scrollToListEl(optId, opts.emojiOvered);
       }
@@ -1494,10 +1493,7 @@ emojiShowMore: function(optId) {
         break;
       }
     }
-    if (str) {
-      cont.appendChild(cf(str));
-      opts.emojiScroll.update(false, true)
-    }
+    str && cont.appendChild(cf(str));
   } else {
     cur.onEmojiLoad = Emoji.emojiShowMore.pbind(optId);
   }
@@ -1682,62 +1678,37 @@ emojiOver: function(optId, obj, withMouse) {
 },
 emojiExpand: function(optId, block) {
   var opts = Emoji.opts[optId];
-  var list = geByClass1('emoji_list', block);
   addClass(block, 'emoji_expanded');
-
   Emoji.emojiLoadMore(optId);
 
   if (opts.emojiScroll) {
-    opts.emojiScroll.enable()
+    opts.emojiScroll.update();
   } else {
-    var topShown = false;
-    var bottomShown = false;
-    opts.emojiScroll = new Scrollbar(list, {
-      prefix: 'emoji_',
-      nomargin: true,
-      padding: 7,
+    opts.emojiScroll = new uiScroll(geByClass1('emoji_list', block), {
+      theme: 'default emoji no_transition',
+      shadows: true,
       global: true,
-      nokeys: true,
-      right: vk.rtl ? 'auto' : 4,
-      left: !vk.rtl ? 'auto' : 4,
-      startDrag: function() {
+      ondragstart: function() {
         opts.scrolling = true;
       },
-      stopDrag: function() {
+      ondragstop: function() {
         opts.scrolling = false;
-        if (opts.afterScrollFn) {
-          opts.afterScrollFn();
-        }
+        isFunction(opts.afterScrollFn) && opts.afterScrollFn();
       },
-      scrollChange: function(top) {
-        if (window.tooltips) {
-          tooltips.destroyAll();
-          cur.ttScrollTime = new Date().getTime();
-        }
-        if (Emoji.showShadow()) {
-          if (top && !topShown) {
-            show(geByClass1('emoji_expand_shadow_top', opts.tt));
-            topShown = true;
-          } else if (!top && topShown) {
-            topShown = false;
-            hide(geByClass1('emoji_expand_shadow_top', opts.tt));
-          }
-        }
-        /*if (top > 10 && !opts.emojiMoreSt) {
-          Emoji.emojiLoadMore(optId);
-        }*/
-        if (opts.imagesLoader) {
-          opts.imagesLoader.processLoad();
-        }
+      onscrollstart: function() {
+        window.tooltips && tooltips.destroyAll();
       },
-
-      more: Emoji.emojiShowMore.pbind(optId)
+      onupdate: function() {
+        opts.imagesLoader && opts.imagesLoader.processLoad();
+      },
+      onmore: Emoji.emojiShowMore.pbind(optId)
     });
-
+    opts.imagesLoader = imagesLoader(opts.emojiScroll.scroller, {use_iframe: true, need_load_class: 'emoji_need_load'});
     if (opts.sharedTT) {
       opts.sharedTT.emojiScroll = opts.emojiScroll;
     }
   }
+
   opts.emojiExpanded = true;
 },
 
@@ -1797,18 +1768,7 @@ emojiMove: function(e) {
 },
 
 scrollToListEl: function(optId, el) {
-  if (!cur.emojiList.contains(el)) return;
-  var opts = Emoji.opts[optId],
-    diff = el.offsetTop - cur.emojiList.scrollTop;
-  if (diff >= opts.emojiSmileHeigh * opts.emojiRowsCount) {
-    animate(cur.emojiList, {scrollTop: cur.emojiList.scrollTop + (diff - opts.emojiSmileHeigh * (opts.emojiRowsCount - 1))}, 80, function() {
-      opts.emojiScroll.update(true, true)
-    });
-  } else if (diff < 0) {
-    animate(cur.emojiList, {scrollTop: cur.emojiList.scrollTop + diff}, 80, function() {
-      opts.emojiScroll.update(true, true)
-    });
-  }
+  Emoji.opts[optId] && Emoji.opts[optId].emojiScroll && Emoji.opts[optId].emojiScroll.scrollIntoView(el, 80);
 },
 
 anim: function(el, to) {
@@ -2103,7 +2063,6 @@ tabSwitch: function(obj, selId, optId) {
     Emoji.emojiOver(optId, geByClass1('emoji_scroll', tt).firstChild);
   }
   opts.emojiScroll.scrollTop();
-  opts.emojiScroll.update();
 },
 
 stickerClick: function(optId, stickerNum, width, obj, sticker_referrer) {
