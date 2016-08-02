@@ -678,6 +678,9 @@ a.wl_owner_head_date {
 div.wl_owner_head_date span.explain {
   color: #777;
 }
+.wl_owner_head_date .wall_post_source_ads_mark {
+  margin-bottom: 0;
+}
 div#wl_post_body_wrap {
   padding: 10px 23px 10px;
 }

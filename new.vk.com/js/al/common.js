@@ -9504,13 +9504,17 @@ function updateOnlineText() {
   clearTimeout(cur.updateOnlineTO);
   cur.updateOnlineTO = setTimeout(function() {
     each(geByClass('_online'), function() {
-
-      var prefered_el = geByClass1('_online_reader', this) || this;
+      var labelEl = geByClass1('_online_reader', this) || this;
 
       if (hasClass(this, 'online')) {
-        prefered_el.setAttribute('aria-describedby', 'user_online');
+        var imgs = geByTag('img', labelEl), label = '';
+        each(imgs, function() {
+          label = trim(label + ' ' + attr(this, 'alt'));
+        });
+        label = trim(label + ' ' + getLang('global_user_is_online'));
+        labelEl.setAttribute('aria-label', label);
       } else {
-        prefered_el.removeAttribute('aria-describedby');
+        labelEl.removeAttribute('aria-label');
       }
     });
   }, 100);
