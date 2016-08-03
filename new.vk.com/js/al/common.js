@@ -2475,6 +2475,7 @@ function checkPageBlocks() {
   if (!cont) return;
 
   toggleClass(cont, 'page_block', !geByClass1('page_block', cont));
+  updateOnlineText();
 }
 
 function onBodyResize(force) {
@@ -4684,6 +4685,7 @@ var nav = {
               }
               updateSTL();
               updateLeftMenu();
+              updateOnlineText();
               TopSearch.clear();
             }, 10);
 
@@ -4864,6 +4866,7 @@ var nav = {
       checkPageBlocks();
       updateSTL();
       updateLeftMenu();
+      updateOnlineText();
       TopSearch.clear();
 
       handlePageParams(params);
@@ -9504,16 +9507,34 @@ function updateOnlineText() {
   clearTimeout(cur.updateOnlineTO);
   cur.updateOnlineTO = setTimeout(function() {
     each(geByClass('_online'), function() {
-      var labelEl = geByClass1('_online_reader', this) || this;
+      var labelEl = geByClass1('_online_reader', this) || this,
+          isOnline = hasClass(this, 'online'),
+          imgs = geByTag('img', labelEl), label = '', alt,
+          domAlt = function(el) {
+            var post = domClosest('_post', el),
+                author = post && domByClass(post, 'author');
+            return author ? (author.innerText || author.textContent) : '';
+          };
 
-      if (hasClass(this, 'online')) {
-        var imgs = geByTag('img', labelEl), label = '';
+      if (isOnline) {
         each(imgs, function() {
-          label = trim(label + ' ' + attr(this, 'alt'));
+          alt = attr(this, 'alt') || attr(this, 'data-alt') || domAlt(this);
+          if (alt) {
+            label = trim(label + ' ' + alt);
+            this.setAttribute('data-alt', alt);
+            this.removeAttribute('alt');
+          }
         });
         label = trim(label + ' ' + getLang('global_user_is_online'));
         labelEl.setAttribute('aria-label', label);
       } else {
+        each(imgs, function() {
+          alt = attr(this, 'data-alt') || domAlt(this);
+          if (alt) {
+            this.setAttribute('alt', alt);
+            this.removeAttribute('data-alt');
+          }
+        });
         labelEl.removeAttribute('aria-label');
       }
     });
