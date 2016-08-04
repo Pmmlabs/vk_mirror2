@@ -29,6 +29,7 @@ global_audio_seek_forward='Промотать вперёд';
 global_audio_volume_down='Тише';
 global_audio_volume_up='Громче';
 global_back='Назад';
+global_box_title_back='Вернуться назад';
 global_Complain_video='Пожаловаться';
 global_cancel='Отмена';
 global_captcha_input_here='Введите код';
