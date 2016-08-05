@@ -375,8 +375,8 @@ body.dev.is_2x #page_wrap .selector_container td.selector .token span.x_hover {
 .is_2x .feed_filter_tabs_icon,
 .is_2x .feed_filter_tabs_check,
 .is_2x .apps_edit_add_version {
-  background-image: url(/images/icons/news_iconset_2x.png?7);
-  background-size: 16px 240px;
+  background-image: url(/images/icons/news_iconset_2x.png?8);
+  background-size: 16px 256px;
 }
 .is_2x .feed_filter_lists_row .feed_filter_tabs_icon,
 .is_2x .feed_icon_newlist {

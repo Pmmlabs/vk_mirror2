@@ -113,6 +113,18 @@ window.Videocat = window.Videocat || {
         });
       }
     });
+
+    var videocat_inline_autoplay = ge('videocat_inline_autoplay_id');
+    if (videocat_inline_autoplay) {
+      var video_id = videocat_inline_autoplay.dataset.video_id;
+      if (video_id) {
+        showInlineVideo(video_id, '', {
+          'autoplay': true,
+          addParams: {mute: 1}
+        }, false, videocat_inline_autoplay);
+      }
+    }
+
     statlogsValueEvent('videocat_popular', '', 'show');
   },
 

@@ -3251,6 +3251,7 @@ var Feed = {
     } else {
       removeClass(tab, 'feed_tab_hidden');
       removeClass(el, 'feed_tab_link_hidden');
+      setCookie('remixcustom_feed_added', section);
       feed.checkTabsFilter(section, 't_' + section);
     }
 

@@ -789,6 +789,8 @@ var Page = {
     addEvent(window, 'keydown', Page.infoKeydown);
     addEvent(document, 'mousedown', Page.infoMousedown);
     ge('currinfo_save').onclick = Page.infoSave;
+
+    return false;
   },
   infoCancel: function() {
     hide('currinfo_editor', 'currinfo_fake');
