@@ -192,7 +192,7 @@ var Index = {
     cur.fbContext = context;
     setCookie('remixfbstate', cur.fbState, 30);
     var redirectUri = location.protocol+'//'+location.host+'/join?act=fb_sign';
-    var oauthUrl = 'https://graph.facebook.com/oauth/authorize?client_id='+cur.fbApp+'&redirect_uri='+encodeURIComponent(redirectUri)+'&scope=email,user_birthday&display=popup&state='+cur.fbState;
+    var oauthUrl = 'https://graph.facebook.com/v2.7/oauth/authorize?client_id='+cur.fbApp+'&redirect_uri='+encodeURIComponent(redirectUri)+'&scope=email,user_birthday&display=popup&state='+cur.fbState;
     var screenX = typeof window.screenX != 'undefined' ? window.screenX : window.screenLeft,
         screenY = typeof window.screenY != 'undefined' ? window.screenY : window.screenTop,
         outerWidth = typeof window.outerWidth != 'undefined' ? window.outerWidth : document.body.clientWidth,

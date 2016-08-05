@@ -1651,6 +1651,7 @@ var Wall = {
     Wall.suggestUpdate(-1);
     showDoneBox(text);
     cur.wallMyDeleted[post] = 1;
+    Wall.deinitComposer(ge('wpe_text'));
 
     if (cur.wallType == 'full_own' || cur.wallType == 'full_all') {
       Pagination.recache(-1);
@@ -2393,6 +2394,9 @@ var Wall = {
       from: cur.from ? cur.from : '',
       fixed: cur.options.fixed_post_id || ''
     }, ownmsg = (cur.postTo == vk.id || params.official || cur.options.only_official), attachI = 0;
+    if (cur.options.additional_save_params) {
+      params = extend(params, cur.options.additional_save_params);
+    }
 
     if (isArray(media) && media.length) {
       medias.push(clone(media));
@@ -2543,7 +2547,7 @@ var Wall = {
           if (!msg) {
             return true;
           }
-          ge('submit_post_error').innerHTML = msg;
+          ge('submit_post_error').innerHTML = (msg.length > 60 ? '<div class="msg_text">' + msg + '</div>' : msg);
           if (!isVisible('submit_post_error')) {
             slideDown('submit_post_error', 100);
           }
