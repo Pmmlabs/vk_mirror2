@@ -3148,6 +3148,9 @@ button#apps_sms_send_btn {
 #apps_collection90_wrap {
   background-image: url(/images/apps/apps_football2016_bkg.png);
 }
+#apps_collection95_wrap {
+  background-image: url(/images/apps/apps_olympics2016_bkg.png);
+}
 .apps_genres_tt {
   padding: 10px;
   white-space: nowrap;
