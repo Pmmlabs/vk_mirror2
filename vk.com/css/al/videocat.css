@@ -65,7 +65,6 @@
 }
 #videocat_page .videocat_showcase {
   margin: 0 0 25px 0;
-  width: 627px;
 }
 #videocat_page .videocat_showcase .videocat_header {
   margin-bottom: 10px;
@@ -247,6 +246,9 @@
   vertical-align: top;
   display: inline-block;
   margin: 3px 4px 0 2px;
+}
+#videocat_page .videocat_showcase:hover .videocat_block_close {
+  opacity: 0.4;
 }
 #videocat_page .videocat_playlist_count {
   color: white;
@@ -444,6 +446,9 @@
 #videocat_page .videocat_divider {
   border-top: 1px solid #D9E0E7;
   margin: 0px -15px 18px;
+}
+.videocat_international .videocat_header_icon {
+  background-position: 0px -363px !important;
 }
 .videocat_row {
   margin-top: 10px;
@@ -735,6 +740,30 @@
 }
 .videocat_row .videocat_playlists_slider .videocat_row_slider_btn_icon {
   margin-top: 60px;
+}
+.videocat_showcase .videocat_bock_right_panel {
+  float: right;
+}
+.videocat_showcase .videocat_bock_right_panel .videocat_block_subscribe,
+.videocat_showcase .videocat_bock_right_panel .videocat_block_unsubscribe {
+  margin-top: 2px;
+  margin-right: 14px;
+}
+.videocat_showcase .videocat_bock_right_panel .videocat_block_close {
+  float: left;
+  width: 11px;
+  height: 11px;
+  background-image: url('/images/icons/video_hide_channel.png?3');
+  cursor: pointer;
+  opacity: 0.0;
+  -o-transition: opacity 100ms linear;
+  -ms-transition: opacity 100ms linear;
+  -moz-transition: opacity 100ms linear;
+  -webkit-transition: opacity 100ms linear;
+  transition: opacity 100ms linear;
+  position: static;
+  margin-top: 8px;
+  margin-right: 9px;
 }
 .videocat_duration {
   position: absolute;

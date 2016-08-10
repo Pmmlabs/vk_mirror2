@@ -1180,6 +1180,59 @@ var Page = {
     }
   },
 
+  initVideoAutoplay: function() {
+    if (!window.MediaSource || typeof MediaSource.isTypeSupported != 'function' || !MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E,mp4a.40.2"') || browser.safari) {
+      return;
+    }
+
+    var fixedHeaderHeight = getSize('page_header')[1];
+
+    var scrollHandler = debounce(function() {
+      var thumbs = geByClass('page_video_autoplayable');
+      var thumbsNum = thumbs.length;
+      if (!thumbsNum) return;
+
+      var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+      for (var i = thumbsNum; i--; ) {
+        var thumb = thumbs[i];
+        var isLoading = !!attr(thumb, 'data-loading');
+        var isPlaying = !!attr(thumb, 'data-playing');
+        var rect = (isPlaying ? domNS(thumb) : thumb).getBoundingClientRect();
+
+        if (!rect.width || !rect.height) continue;
+
+        var inViewport = rect.top > fixedHeaderHeight && rect.bottom < viewportHeight;
+
+        if (inViewport && !isPlaying && !isLoading) {
+          var videoId = attr(thumb, 'data-video-id');
+          var listId = attr(thumb, 'data-list-id');
+          var postId = attr(domClosest('post', thumb), 'data-post-id');
+          showInlineVideo(videoId, listId, {
+            autoplay: 1,
+            no_progress: 1,
+            cache: 1,
+            addParams: {post_id: postId, from_autoplay: 1}
+          }, false, thumb);
+          break;
+        } else if (!inViewport && isPlaying) {
+          revertLastInlineVideo();
+        }
+      }
+    }, 50);
+
+    addEvent(window, 'scroll', scrollHandler);
+    addEvent(window, 'resize', scrollHandler);
+
+    scrollHandler();
+
+    cur.destroy.push(function() {
+      removeEvent(window, 'scroll', scrollHandler);
+      removeEvent(window, 'resize', scrollHandler);
+      scrollHandler = null;
+    });
+  },
+
   autoplayPinnedVideo: function(postId, videoRaw, videoHash) {
     var thumb = domByClass(ge('post'+postId), 'page_post_thumb_video');
     if (!thumb || browser.mobile || nav.objLoc.z || window.mvcur && mvcur.mvShown) return;
