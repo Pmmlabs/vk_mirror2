@@ -1080,12 +1080,13 @@ var Page = {
   initGifAutoplay: function() {
     if (cur.gifAutoplayScrollHandler || !mp4Support() || browser.mobile) return;
 
+    var fixedHeaderHeight = getSize('page_header')[1];
+
     var scrollHandler = debounce(function() {
       var autoplayGifs;
       autoplayGifs = geByClass('page_gif_autoplay');
       if (!autoplayGifs.length || window.wkcur && wkcur.shown) return;
 
-      var fixedHeaderHeight = getSize('page_header')[1];
       var viewportHeight = (window.innerHeight || document.documentElement.clientHeight) - fixedHeaderHeight;
       var viewportMiddle = fixedHeaderHeight + viewportHeight / 2;
       var activeSpace = Math.min(viewportHeight, 800);
@@ -1181,7 +1182,7 @@ var Page = {
   },
 
   initVideoAutoplay: function() {
-    if (!window.MediaSource || typeof MediaSource.isTypeSupported != 'function' || !MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E,mp4a.40.2"') || browser.safari) {
+    if (!window.MediaSource || typeof MediaSource.isTypeSupported != 'function' || !MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E,mp4a.40.2"') || browser.mobile || browser.safari) {
       return;
     }
 
@@ -1192,7 +1193,11 @@ var Page = {
       var thumbsNum = thumbs.length;
       if (!thumbsNum) return;
 
-      var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      var viewportHeight = (window.innerHeight || document.documentElement.clientHeight) - fixedHeaderHeight;
+      var viewportMiddle = fixedHeaderHeight + viewportHeight / 2;
+      var activeSpace = Math.min(viewportHeight, 800);
+      var activeTop = viewportMiddle - activeSpace/2;
+      var activeBottom = viewportMiddle + activeSpace/2;
 
       for (var i = thumbsNum; i--; ) {
         var thumb = thumbs[i];
@@ -1202,7 +1207,7 @@ var Page = {
 
         if (!rect.width || !rect.height) continue;
 
-        var inViewport = rect.top > fixedHeaderHeight && rect.bottom < viewportHeight;
+        var inViewport = rect.top > activeTop && rect.bottom < activeBottom;
 
         if (inViewport && !isPlaying && !isLoading) {
           var videoId = attr(thumb, 'data-video-id');
@@ -3554,7 +3559,7 @@ var Wall = {
 
     showTooltip(el, {
       black: 1,
-      shift: [13, 6, 0],
+      shift: [15, 7, 0],
       text: el.getAttribute('data-tooltip')
     });
   },

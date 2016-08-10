@@ -5625,6 +5625,7 @@ function MessageBox(options, dark) {
   var boxTitleWrap, boxTitle, boxTitleControls, boxCloseButton, boxBody;
   var boxControlsWrap, boxControls, boxButtons, boxProgress, boxControlsText;
   var guid = _message_box_guid++, visible = false, btns = {'ok' : [], 'cancel' : []};
+  var boxTitleBck;
 
   if (!options.progress) options.progress = 'box_progress' + guid;
 
@@ -5675,13 +5676,15 @@ function MessageBox(options, dark) {
   // Refresh box properties
   function refreshBox() {
     // Set title
-    if (options.title) {
-      boxTitle.innerHTML = options.title;
-      removeClass(boxBody, 'box_no_title');
-      show(boxTitleWrap);
-    } else {
-      addClass(boxBody, 'box_no_title');
-      hide(boxTitleWrap);
+    if (!boxTitleBck) {
+      if (options.title) {
+        boxTitle.innerHTML = options.title;
+        removeClass(boxBody, 'box_no_title');
+        show(boxTitleWrap);
+      } else {
+        addClass(boxBody, 'box_no_title');
+        hide(boxTitleWrap);
+      }
     }
     if (options.titleControls) {
       boxTitleControls.innerHTML = options.titleControls;
@@ -5903,6 +5906,19 @@ function MessageBox(options, dark) {
     removeButtons: function() {
       removeButtons();
       return this;
+    },
+
+    // Set back button in title
+    setBackTitle: function(onclick) {
+      if (onclick) {
+        boxTitle.innerHTML = '<div class="back">' + getLang('global_box_title_back') + '</div>';
+        geByClass1('back', boxTitle).onclick = onclick;
+        boxTitleBck = options.title;
+        options.title = boxTitle.innerHTML;
+      } else {
+        boxTitle.innerHTML = options.title = boxTitleBck;
+        boxTitleBck = false;
+      }
     },
 
     destroy: destroyMe,
@@ -6722,6 +6738,17 @@ function showWriteMessageBox(e, id) {
 function giftsBox(mid, ev, tab) {
   if (cur.viewAsBox) return cur.viewAsBox();
   return !showBox('al_gifts.php', {act: 'box', tab: tab || 'received', mid: mid}, {cache: 1, stat: ['gifts.css', 'gifts.js']}, ev);
+}
+
+function moneyTransferBox(txId, hash, ev) {
+  if (cur.viewAsBox) return cur.viewAsBox();
+  return !showBox('al_payments.php', {act: 'accept_money_transfer_box', tx_id: txId, hash: hash}, {
+    stat: ['payments.css', 'payments.js'],
+    onFail: function(text) {
+      setTimeout(showFastBox({title: getLang('global_error')}, text).hide, 2000);
+      return true;
+    }
+  }, ev);
 }
 
 function startVideocall(e, id, with_video) {
@@ -9943,6 +9970,10 @@ function cancelStackPop() {
   }
   window.cancelStack = stack;
   return window.cancelStack;
+}
+
+function hasAccessibilityMode() {
+  return !!vk.a11y;
 }
 
 try{stManager.done('common.js');}catch(e){}

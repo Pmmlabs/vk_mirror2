@@ -120,7 +120,8 @@ window.Videocat = window.Videocat || {
       if (video_id) {
         showInlineVideo(video_id, '', {
           'autoplay': true,
-          addParams: {mute: 1}
+          addParams: {mute: 1},
+          module: 'videocat'
         }, false, videocat_inline_autoplay);
       }
     }
