@@ -366,6 +366,7 @@ video_delete_from_public='Изъять из доступа';
 video_delete_tag='Удалить отметку';
 video_flash_needed='Для просмотра необходим {flash_player} последней версии.';
 video_playback_err_code='Код ошибки: {code}';
+video_player_pause='Приостановить';
 // section = 5; version = 152;
 
 notes_cancel='Отмена';

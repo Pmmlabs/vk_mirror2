@@ -1189,6 +1189,7 @@ var Page = {
     var fixedHeaderHeight = getSize('page_header')[1];
 
     var scrollHandler = debounce(function() {
+      if (layers.visible) return;
       var thumbs = geByClass('page_video_autoplayable');
       var thumbsNum = thumbs.length;
       if (!thumbsNum) return;
@@ -1220,8 +1221,6 @@ var Page = {
             addParams: {post_id: postId, from_autoplay: 1}
           }, false, thumb);
           break;
-        } else if (!inViewport && isPlaying) {
-          revertLastInlineVideo();
         }
       }
     }, 50);
