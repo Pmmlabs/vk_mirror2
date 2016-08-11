@@ -7787,6 +7787,10 @@ TopMenu = {
     toggleClass(tpMenu, 'shown', s);
     if (s) {
       cancelStackPush('top_menu', TopMenu.toggle.bind(this, false), true);
+      if (cur.introExitTooltipHide) {
+        cur.introExitTooltipHide();
+        delete cur.introExitTooltipHide;
+      }
     } else {
       cancelStackFilter('top_menu', true);
     }

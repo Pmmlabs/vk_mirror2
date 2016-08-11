@@ -5491,6 +5491,10 @@ var TopNotifier = {
 
     var link = ge(TopNotifier.tnLink),
         cont = ge('top_notify_cont');
+    if (cur.introNotifyTooltipHide) {
+      cur.introNotifyTooltipHide();
+      delete cur.introNotifyTooltipHide;
+    }
     if (link.tt && link.tt.hide) {
       link.tt.hide();
     }
