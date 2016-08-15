@@ -83,6 +83,7 @@ global_to_top='Наверх';
 global_try_to_activate='Устали вводить коды? Пройдите бесплатную<br>{link}валидацию через мобильный телефон &#187;{/link}';
 global_unknown_error='Неизвестная ошибка';
 global_user_is_online='онлайн';
+global_user_is_online_mobile='онлайн с телефона';
 global_vkontakte='ВКонтакте';
 global_warning='Предупреждениe';
 global_write_msg='Написать сообщение';
@@ -237,7 +238,7 @@ videofile_num=['','видеозапись','видеозаписи','видеозаписей'];
 votes_flex=['','голос','голоса','голосов'];
 Work_place='Место работы:';
 yesterday='вчера';
-// section = 0; version = 455;
+// section = 0; version = 457;
 
 friends_no_user_selected='Вы не выбрали ни одного пользователя.';
 // section = 2; version = 207;

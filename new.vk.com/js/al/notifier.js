@@ -158,6 +158,7 @@ Notifier = {
       error_timeout: 1,
       sound: new Sound('mp3/bb1'),
       sound_im: new Sound('mp3/bb2'),
+      sound_im_current: new Sound('mp3/bb3'),
       onConnectionId: []
     }, options);
 
@@ -314,7 +315,7 @@ Notifier = {
   unfreezeEvents: function () {
     curNotifier.frozen = false;
     each (curNotifier.q_shown, function () {
-      this.fadeTO = setTimeout(this.startFading, 5000);
+      this.fadeTO = setTimeout(this.startFading, hasAccessibilityMode() ? 30000 : 5000);
     });
   },
   getTransportWrap: function () {
@@ -524,6 +525,17 @@ Notifier = {
         push = 0;
         break;
 
+      case 'push_settings':
+        push = 0;
+        var muted = JSON.parse(ev.add);
+        curNotifier.mutedPeers = curNotifier.mutedPeers.filter(function(peerId) {
+          return peerId !== muted.peer_id;
+        });
+        if (muted.disabled_until !== 0) {
+          curNotifier.mutedPeers.push(muted.peer_id);
+        }
+        break;
+
       case 'mail_cnt':
         handlePageCount('msg', ev.add);
         push = 0;
@@ -710,12 +722,26 @@ Notifier = {
   shouldPlaySound: function(ev) {
     return !ls.get('sound_notify_off')
       && cur.focused != ev.author_id
+      && !inArray(ev.author_id, cur.mutedPeers)
+      && !inArray(ev.author_id, curNotifier.mutedPeers);
+  },
+
+  shouldPlayCurrentSound: function(ev) {
+    return !ls.get('sound_notify_off')
+      && cur.focused == ev.author_id
+      && hasAccessibilityMode()
       && !inArray(ev.author_id, cur.mutedPeers);
   },
 
   playSound: function(ev) {
     if (curNotifier.sound_im && curNotifier.sound_im.play && Notifier.shouldPlaySound(ev)) {
-      curNotifier.sound_im.play();
+      if (ev.author_id == cur.peer && hasAccessibilityMode()) {
+        curNotifier.sound_im_current.play();
+      } else {
+        curNotifier.sound_im.play();
+      }
+    } else if (Notifier.shouldPlayCurrentSound(ev) && curNotifier.sound_im_current) {
+      curNotifier.sound_im_current.play();
     }
   },
 
@@ -773,9 +799,9 @@ Notifier = {
       if (this.shouldPlaySound(ev) && cur.peer != ev.author_id) {
         this.showEventUi(ev);
       }
-    } else if (this.isActive()) {
+    } else if (this.isActive() && this.shouldPlaySound(ev)) {
       return this.sendSimpleNotification(ev);
-    } else if (curNotifier.is_server) {
+    } else if (curNotifier.is_server && this.shouldPlaySound(ev)) {
       this.trySendBrowserNotification(ev);
     }
     return 0; // No notification if not active and not server
@@ -878,7 +904,7 @@ Notifier = {
     setStyle(ev.baloonWrapEl, {visibility: 'visible'});
     animate(curNotifier.cont, {bottom: 0}, 200);
     if (!curNotifier.idle_manager.is_idle || force) {
-      ev.fadeTO = setTimeout(ev.startFading, 7000);
+      ev.fadeTO = setTimeout(ev.startFading, hasAccessibilityMode() ? 35000 : 7000);
     }
   },
 

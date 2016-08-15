@@ -2028,7 +2028,8 @@ var layers = {
   visible: false,
   _show: function(el, con, opacity, color) {
     // that's a dirty hack, unless we migrate to cancelStackPush behaviour for esc
-    cancelStackPush('layers', function() {});
+    var key = layers.visible ? 'layers' + (__bq.count() + 1) : 'layers';
+    cancelStackPush(key, function() {});
     setStyle(el, {opacity: opacity || '', backgroundColor: color || ''});
     if (!layers.visible) {
       toggleFlash();
@@ -2053,7 +2054,8 @@ var layers = {
   },
   _hide: function(el, con) {
     var done = function() {
-      cancelStackFilter('layers');
+      var key = layers.visible ? 'layers' + (__bq.count() + 1) : 'layers';
+      cancelStackFilter(key);
       if (con && con.visibilityHide) {
         addClass(con, 'box_layer_hidden');
       } else {
@@ -8971,7 +8973,7 @@ function currentModule() {
   return cur.currentModule ? cur.currentModule() : cur.module;
 }
 
-function formatTime(t) {
+function formatTime(t, forceHours) {
   var res, sec, min, hour;
 
   t = Math.max(t, 0);
@@ -8982,7 +8984,7 @@ function formatTime(t) {
   res = min+':'+res;
   t = Math.floor(t / 60);
 
-  if (t > 0) {
+  if (t > 0 || forceHours) {
     if (min < 10) res = '0' + res;
     res = t+':'+res;
   }
@@ -9583,6 +9585,7 @@ function updateOnlineText() {
     each(geByClass('_online'), function() {
       var labelEl = geByClass1('_online_reader', this) || this,
           isOnline = hasClass(this, 'online'),
+          fromMobile = hasClass(this, 'mobile'),
           imgs = geByTag('img', labelEl), label = '', alt,
           domAlt = function(el) {
             var post = domClosest('_post', el),
@@ -9599,7 +9602,7 @@ function updateOnlineText() {
             this.removeAttribute('alt');
           }
         });
-        label = trim(label + ' ' + getLang('global_user_is_online'));
+        label = trim(label + ' ' + (fromMobile ? getLang('global_user_is_online_mobile') : getLang('global_user_is_online')));
         labelEl.setAttribute('aria-label', label);
       } else {
         each(imgs, function() {
@@ -9977,7 +9980,7 @@ function cancelStackPop() {
 }
 
 function hasAccessibilityMode() {
-  return !!vk.a11y;
+  return !!(window.vk && vk.a11y);
 }
 
 try{stManager.done('common.js');}catch(e){}
