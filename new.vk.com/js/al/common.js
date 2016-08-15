@@ -3997,7 +3997,7 @@ function checkKeyboardEvent(e) {
   var offsetX = e.pageX - xy[0];
   var offsetY = e.pageY - xy[1];
 
-  if (offsetX < 0 || offsetX > size[0] || offsetY < 0 || offsetY > size[1]) return true;
+  if (offsetX < -1 || offsetX > size[0] + 1 || offsetY < -1 || offsetY > size[1] + 1) return true;
   return (Math.abs(e.pageX - xy[0] - size[0] / 2) < 1 && Math.abs(e.pageY - xy[1] - size[1] / 2) < 1);
 }
 
