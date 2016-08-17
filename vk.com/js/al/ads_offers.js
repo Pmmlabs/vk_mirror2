@@ -507,9 +507,7 @@ var Offers = {
     if (!hasClass(elem, 'unavailable')) {
       show('offers_edit_link_object_complete');
     }
-    if (!hasClass('offers_edit_link_object_complete', 'button_disabled')) {
-      disableButton('offers_edit_link_object_complete_btn', true);
-    }
+    disableButton('offers_edit_link_object_complete_btn', true);
   },
   editMetricTitle: function (id) {
     hide('offer_metric_title_link_'+id);
@@ -958,14 +956,10 @@ var Offers = {
           cur.linkId = paramValue;
           geByClass1('offers_edit_link_go', 'offers_edit_link_id_go_wrap').href = link + paramValue;
           show('offers_edit_link_id_go_wrap');
-          if (hasClass('offers_edit_link_object_complete', 'button_disabled')) {
-            disableButton('offers_edit_link_object_complete_btn', false);
-          }
+          disableButton('offers_edit_link_object_complete_btn', false);
         } else {
           hide('offers_edit_link_id_go_wrap');
-          if (!hasClass('offers_edit_link_object_complete', 'button_disabled')) {
-            disableButton('offers_edit_link_object_complete_btn', true);
-          }
+          disableButton('offers_edit_link_object_complete_btn', true);
         }
         break;
       case 'link_url':
@@ -973,14 +967,10 @@ var Offers = {
         if (linkUrlInfo) {
           geByClass1('offers_edit_link_go', 'offers_edit_link_url_go_wrap').href = paramValue;
           show('offers_edit_link_url_go_wrap');
-          if (hasClass('offers_edit_link_object_complete', 'button_disabled')) {
-            disableButton('offers_edit_link_object_complete_btn', false);
-          }
+          disableButton('offers_edit_link_object_complete_btn', false);
         } else {
           hide('offers_edit_link_url_go_wrap');
-          if (!hasClass('offers_edit_link_object_complete', 'button_disabled')) {
-            disableButton('offers_edit_link_object_complete_btn', true);
-          }
+          disableButton('offers_edit_link_object_complete_btn', true);
         }
         break;
       case 'title':
@@ -1206,7 +1196,7 @@ var Offers = {
       metrics: metrics,
       country: cur.uiCountry.val(),
       city: cur.uiCity.val(),
-      sex: radioval('ads_offers_target_gender'),
+      sex: cur.rbGender,
       age_from: cur.uiAgeFrom.val(),
       age_to: cur.uiAgeTo.val(),
       browser: cur.uiBrowser.val(),

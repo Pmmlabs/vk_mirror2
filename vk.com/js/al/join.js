@@ -18,16 +18,16 @@ var Join = {
       cur.nextButtonTop = getXY(cur.nextButtonWrap)[1];
       if (browser.msie6) cur.nextButtonTop += st;
     }
-    var needDock = cur.resultShown && (st + lastWindowHeight < cur.nextButtonTop + cur.nextButtonHeight);
+    var needDock = cur.resultShown && (st + lastWindowHeight < cur.nextButtonTop + cur.nextButtonHeight + intval(getStyle('content', 'marginTop')) + ge('page_header_cont').offsetHeight - 8);
     if (needDock && !cur.docked) {
-      cur.nextButton.className = 'fixed';
+      addClass(cur.nextButton, 'fixed');
       if (browser.msie6) {
         bodyNode.appendChild(cur.nextButton);
         e = {type: 'resize'};
       }
       cur.docked = true;
     } else if (!needDock && cur.docked) {
-      cur.nextButton.className = '';
+      removeClass(cur.nextButton, 'fixed');
       if (browser.msie6) {
         cur.nextButtonWrap.appendChild(cur.nextButton);
       }
@@ -41,13 +41,6 @@ var Join = {
         setTimeout(Join.nextResetStyle, 0);
       }
     }
-
-    var ch = window.innerHeight || de.clientHeight || bodyNode.clientHeight;
-
-    if (!cur.resultShown || !cur.moreLink || !isVisible(cur.moreLink)) return;
-    if (st + ch > cur.moreLink.offsetTop) {
-      Join.showMore();
-    }
   },
   nextResetStyle: function() {
     cur.nextButton.style.left = '';
@@ -56,11 +49,6 @@ var Join = {
     extend(cur, {
       nextButton: ge('join_' + cur.section + '_next'),
       nextButtonWrap: ge('join_' + cur.section + '_next_wrap'),
-      imgEl: ge('join_' + cur.section + '_img'),
-      rowsEl: ge('join_' + cur.section + '_rows'),
-      moreLink: ge('join_' + cur.section + '_more'),
-      noneWrap: ge('join_' + cur.section + '_none_wrap'),
-      noneEl: ge('join_' + cur.section + '_none'),
       resultEl: ge('join_' + cur.section + '_result')
     });
     cur.nextButtonHeight = getSize(cur.nextButton)[1];
@@ -75,284 +63,6 @@ var Join = {
       removeEvent(window, 'resize', Join.scrollResize);
       if (browser.msie6) c.nextButtonWrap.appendChild(c.nextButton);
     });
-  },
-
-  showMore: function() {
-    if (!isVisible('join_' + cur.section + '_rows')) return;
-    var params = extend(cur.params, {from: cur.from});
-    ajax.post('join.php', params, {
-      showProgress: Join.showMoreProgress,
-      hideProgress: Join.hideMoreProgress,
-      onDone: Join.showRows.pbind(false),
-      cache: 1
-    });
-  },
-  showRows: function(fromStart, rows, from, preload, noClassmates) {
-    cur.from = from;
-    var params;
-    if (fromStart) {
-      if (!rows) {
-        show('join_' + cur.section + '_result_msg');
-        return Join.showNone(getLang('join_no_found_' + cur.section), true);
-      }
-      if (noClassmates) show('join_' + cur.section + '_result_msg');
-      else hide('join_' + cur.section + '_result_msg');
-      val(cur.rowsEl, rows);
-      if (preload && preload[0]) {
-        params = extend(cur.params, {from: cur.from});
-        ajax.preload('join.php', params, preload);
-        show(cur.moreLink);
-      } else {
-        hide(cur.moreLink);
-      }
-    } else {
-      val(cur.rowsEl, val(cur.rowsEl) + rows);
-      hide(cur.moreLink);
-      params = extend(cur.params, {from: cur.from});
-      ajax.post('join.php', params, {
-        cache: 1,
-        onDone: function(rows) {
-          (rows ? show : hide)(cur.moreLink);
-        }
-      });
-    }
-    show(cur.resultEl);
-    hide(cur.imgEl);
-    cur.noneEl.style.visibility = '';
-    hide('join_' + cur.section + '_none_prg');
-    cur.resultShown = true;
-    val('join_next_step', getLang('join_next_step'));
-    //show(cur.nextButtonWrap);
-    Join.scrollResize(false, true);
-  },
-  showNone: function(text, noSkipLabel) {
-    show(cur.noneWrap, cur.imgEl);
-    cur.noneEl.style.visibility = '';
-    hide('join_' + cur.section + '_none_prg');
-    hide(cur.resultEl);
-    cur.resultShown = false;
-    val('join_next_step', getLang((noSkipLabel === true) ? 'join_next_step' : 'join_skip_' + cur.section));
-    //hide(cur.nextButtonWrap);
-    Join.scrollResize(false, true);
-  },
-
-  init: function(section, selData) {
-    selectsData.setCountries(selData.countries_list);
-    var i;
-    for (i in selData.countries) {
-      selectsData.setCountryInfo(i, selData.countries[i]);
-    }
-    for (i in selData.cities) {
-      selectsData.setCityInfo(i, selData.cities[i]);
-    }
-    if (selData.universities) {
-      for (i in selData.universities) {
-        selectsData.setUniversityInfo(i, selData.universities[i]);
-      }
-    }
-    if (selData.faculties) {
-      for (i in selData.faculties) {
-        selectsData.setFacultyInfo(i, selData.faculties[i]);
-      }
-    }
-    cur.section = section;
-    var upd = (section == 'school') ? Join.updateSchool : Join.updateUniversity;
-    cur.cityUpdated = selData.city;
-
-    cur.uiYear = new Dropdown(ge(section + '_year'), selData.years, {
-      big: 1,
-      width: 180,
-      placeholder: getLang('year_ph'),
-      zeroPlaceholder: true,
-      placeholderColor: '#777',
-      selectedItems: [selData.year],
-      onChange: function(value) {
-        if (intval(value)) {
-          Join.tipHide(cur.section + '_year_tip');
-        }
-        upd();
-      }
-    });
-    if (section == 'school') {
-      cur.uiClass = new ClassSelect(ge('school_class'), ge('school_class_row'), {
-        show: Join.show,
-        hide: Join.hide,
-        big: 1,
-        width: 180,
-        placeholder: getLang('class_ph'),
-        zeroPlaceholder: true,
-        placeholderColor: '#777',
-        country: selData.country,
-        school: selData.school,
-        school_class: selData.cur_class,
-        onChange: upd
-      });
-      cur.uiSchool = new SchoolHintSelect(ge('school_school'), ge('school_school_row'), {
-        show: function(el) {
-          Join.show(el);
-          if (cur.cityUpdated) {
-            cur.cityUpdated = false;
-            setTimeout(Join.focusWithoutDropdown, 0);
-          }
-        },
-        hide: function(el) {
-          Join.hide(el);
-          Join.tipHide('school_school_tip');
-        },
-        big: 1,
-        width: 180,
-        school: selData.school_val,
-        city: selData.city,
-        placeholder: getLang('school_ph'),
-        zeroPlaceholder: true,
-        placeholderColor: '#777',
-        forceEnableCustom: -1,
-        classSelect: cur.uiClass,
-        onChange: function(value) {
-          if (intval(value)) {
-            Join.show('school_year_row');
-            Join.yearTip();
-            Join.tipHide('school_school_tip');
-          } else {
-            Join.hide('school_year_row');
-            Join.tipHide('school_year_tip');
-          }
-          upd();
-        }
-      });
-    } else {
-      cur.uiChair = new ChairSelect(ge('university_chair'), ge('university_chair_row'), {
-        show: Join.show,
-        hide: Join.hide,
-        big: 1,
-        width: 180,
-        placeholder: getLang('chair_ph'),
-        zeroPlaceholder: true,
-        placeholderColor: '#777',
-        chair: selData.chair,
-        faculty: selData.faculty,
-        onChange: upd
-      });
-      cur.uiFaculty = new FacultySelect(ge('university_faculty'), ge('university_faculty_row'), {
-        show: Join.show,
-        hide: Join.hide,
-        big: 1,
-        width: 180,
-        placeholder: getLang('faculty_ph'),
-        zeroPlaceholder: true,
-        placeholderColor: '#777',
-        faculty: selData.faculty,
-        university: selData.university,
-        chairSelect: cur.uiChair,
-        onChange: upd
-      });
-      cur.uiUniversity = new UniversitySelect(ge('university_university'), ge('university_university_row'), {
-        show: function(el) {
-          Join.show(el);
-          if (cur.cityUpdated) {
-            cur.cityUpdated = false;
-            setTimeout(Join.focusWithoutDropdown, 0);
-          }
-        },
-        hide: function(el) {
-          Join.hide(el);
-          Join.tipHide('university_university_tip');
-        },
-        big: 1,
-        width: 180,
-        placeholder: getLang('university_ph'),
-        zeroPlaceholder: true,
-        placeholderColor: '#777',
-        university: selData.university,
-        city: selData.city,
-        facultySelect: cur.uiFaculty,
-        onChange: function(value) {
-          if (intval(value)) {
-            Join.show('university_year_row');
-            Join.yearTip();
-            Join.tipHide('university_university_tip');
-          } else {
-            Join.hide('university_year_row');
-            Join.tipHide('university_year_tip');
-          }
-          upd();
-        }
-      });
-    }
-    cur.uiCity = new CitySelect(ge(section + '_city'), ge(section + '_city_row'), {
-      show: function(el) {
-        setTimeout(function() {
-          if (!intval(cur.uiCity.val())) {
-            Join.tipShow(cur.section + '_city_tip', 'join_' + cur.section + '_city_tip', [-35, -52, 3], 'join_phone_tt');
-          }
-        }, 0);
-        Join.show(el);
-      },
-      hide: function(el) {
-        Join.tipHide(cur.section + '_city_tip');
-        Join.hide(el);
-      },
-      big: 1,
-      width: 180,
-      placeholder: getLang('city_ph'),
-      zeroPlaceholder: true,
-      placeholderColor: '#777',
-      city: selData.city_val,
-      country: selData.country,
-      schoolSelect: (section == 'school') ? cur.uiSchool : false,
-      universitySelect: (section == 'university') ? cur.uiUniversity : false,
-      onChange: function(value) {
-        if (intval(value)) {
-          Join.tipHide(cur.section + '_city_tip');
-        } else if (intval(cur.uiCountry.val())) {
-          Join.tipShow(cur.section + '_city_tip', 'join_' + cur.section + '_city_tip', [-35, -52, 3], 'join_phone_tt');
-        }
-        cur.cityUpdated = true;
-        upd();
-      }
-    });
-    cur.uiCountry = new CountrySelect(ge(section + '_country'), ge(section + '_country_row'), {
-      show: Join.show,
-      hide: Join.hide,
-      big: 1,
-      width: 180,
-      placeholder: getLang('country_ph'),
-      zeroPlaceholder: true,
-      placeholderColor: '#777',
-      country: selData.country_val,
-      citySelect: cur.uiCity,
-      classSelect: (section == 'school') ? cur.uiClass : false,
-      onChange: upd
-    });
-    if (isVisible(cur.section + '_year_row')) {
-      setTimeout(Join.yearTip, 0);
-    }
-
-    cur.params = {act: section + '_load', year: selData.year};
-    if (section == 'school') {
-      extend(cur.params, {school: selData.school, cls: selData.cur_class});
-    } else {
-      extend(cur.params, {university: selData.university, faculty: selData.faculty, chair: selData.chair});
-    }
-    if (cur.preload[0]) {
-      ajax.preload('join.php', extend(cur.params, {from: cur.from}), cur.preload);
-    }
-    Join.initScroll();
-  },
-  focusWithoutDropdown: function() {
-    var dd = (cur.section == 'school') ? cur.uiSchool : cur.uiUniversity;
-    if (!intval(cur.uiCity.val()) || intval(dd.val())) return;
-    dd.focusSelf = true;
-    dd.focus();
-    dd.select.hide();
-    Join.tipShow(cur.section + '_' + cur.section + '_tip', 'join_' + cur.section + '_tip', [-35, (cur.section == 'school') ? -52 : -40, 3], 'join_' + cur.section + '_tt');
-  },
-  yearTip: function() {
-    if (intval(cur.uiYear.val())) {
-      Join.tipHide(cur.section + '_year_tip');
-    } else {
-      Join.tipShow(cur.section + '_year_tip', 'join_' + cur.section + '_year_tip', [-35, -40, 3], 'join_year_tt');
-    }
   },
 
   showProgress: function() {
@@ -378,136 +88,6 @@ var Join = {
     }
   },
 
-  updateSchool: function() {
-    if (!intval(cur.uiCountry.val())) {
-      return Join.showNone(getLang('join_select_school_city'));
-    } else if (!intval(cur.uiCity.val())) {
-      ajax.post('join.php', {act: 'city_last', country: cur.uiCountry.val(), city: cur.uiCity.val()});
-      return Join.showNone(getLang('join_select_school_city'));
-    } else if (!intval(cur.uiSchool.val())) {
-      ajax.post('join.php', {act: 'city_last', country: cur.uiCountry.val(), city: cur.uiCity.val()});
-      return Join.showNone(getLang('join_select_school'));
-    } else if (!intval(cur.uiYear.val())) {
-      ajax.post('join.php', {act: 'school_last', school: cur.uiSchool.val(), cls: cur.uiClass.val()});
-      return Join.showNone(getLang('join_select_school_year'));
-    }
-    cur.params = {act: 'school_load', school: cur.uiSchool.val(), year: cur.uiYear.val(), cls: cur.uiClass.val()};
-    ajax.post('join.php', cur.params, {
-      showProgress: Join.showProgress,
-      hideProgress: Join.hideProgress,
-      onDone: Join.showRows.pbind(true),
-      cache: 1
-    });
-  },
-  updateUniversity: function() {
-    if (!intval(cur.uiCountry.val())) {
-      return Join.showNone(getLang('join_select_university_city'));
-    } else if (!intval(cur.uiCity.val())) {
-      ajax.post('join.php', {act: 'city_last', country: cur.uiCountry.val(), city: cur.uiCity.val()});
-      return Join.showNone(getLang('join_select_university_city'));
-    } else if (!intval(cur.uiUniversity.val())) {
-      ajax.post('join.php', {act: 'city_last', country: cur.uiCountry.val(), city: cur.uiCity.val()});
-      return Join.showNone(getLang('join_select_university'));
-    } else if (!intval(cur.uiYear.val())) {
-      ajax.post('join.php', {act: 'university_last', university: cur.uiUniversity.val(), faculty: cur.uiFaculty.val(), chair: cur.uiChair.val()});
-      return Join.showNone(getLang('join_select_university_year'));
-    }
-    cur.params = {act: 'university_load', university: cur.uiUniversity.val(), faculty: cur.uiFaculty.val(), chair: cur.uiChair.val(), year: cur.uiYear.val()};
-    ajax.post('join.php', cur.params, {
-      showProgress: Join.showProgress,
-      hideProgress: Join.hideProgress,
-      onDone: Join.showRows.pbind(true),
-      cache: 1
-    });
-  },
-
-  clearAjaxCache: function() {
-    for (var i in ajaxCache) {
-      if (/^\/join\.php\#/.test(i)) {
-        delete(ajaxCache[i]);
-      }
-    }
-  },
-  go: function(el, section) {
-    return nav.go('/join?act=' + section, false, {showProgress: lockButton.pbind(el), hideProgress: unlockButton.pbind(el)});
-  },
-  skip: function(el, ev) {
-    var prg = ce('div', {className: 'progress fl_r join_skip_prg'}), prnt = el.parentNode;
-    return nav.go(el, ev, {
-      showProgress: function() {
-        if (el.parentNode == prnt) prnt.replaceChild(prg, el);
-      },
-      hideProgress: function() {
-        if (prg.parentNode == prnt) prnt.replaceChild(el, prg);
-      }
-    });
-  },
-  importComplete: function(el) {
-    ajax.post('join.php', {act: 'import_complete', hash: cur.hash}, {
-      showProgress: lockButton.pbind(el),
-      hideProgress: unlockButton.pbind(el),
-      onDone: function() {
-      },
-      onFail: function(text) {
-        if (!text) return;
-
-        showFastBox(getLang('global_error'), text);
-        return true;
-      }
-    });
-  },
-
-  addFriend: function(el, mid) {
-    var params = (cur.section == 'school') ? {school: cur.uiSchool.val(), cls: cur.uiClass.val()} : {university: cur.uiUniversity.val(), faculty: cur.uiFaculty.val(), chair: cur.uiChair.val};
-    ajax.post('join.php', extend(params, {act: 'add_friend', mid: mid, year: cur.uiYear.val(), hash: cur.hash}), {
-      showProgress: lockButton.pbind(el),
-      hideProgress: unlockButton.pbind(el),
-      onDone: function() {
-        show(geByClass1('join_request', el.parentNode));//'join_request' + mid
-        hide(el);//'join_add' + mid
-        Join.clearAjaxCache();
-      },
-      onFail: function(text) {
-        if (!text) return;
-
-        showFastBox({title: getLang('global_error'), dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'}, text);
-        return true;
-      }
-    });
-  },
-  removeFriend: function(el, mid) {
-    var prg = ce('span', {className: 'progress_inline'}), prnt = el.parentNode;
-    ajax.post('join.php', {act: 'remove_friend', mid: mid, hash: cur.hash}, {
-      showProgress: function() {
-        if (el.parentNode == prnt) prnt.replaceChild(prg, el);
-      },
-      hideProgress: function() {
-        if (prg.parentNode == prnt) prnt.replaceChild(el, prg);
-      },
-      onDone: function() {
-        show(geByClass1('flat_button', el.parentNode.parentNode));//'join_add' + mid
-        hide(el.parentNode);//'join_request' + mid
-        Join.clearAjaxCache();
-      }
-    })
-  },
-  addImportedFriend: function(el, mid) {
-    ajax.post('join.php', {act: 'add_friend', mid: mid, hash: cur.hash}, {
-      showProgress: lockButton.pbind(el),
-      hideProgress: unlockButton.pbind(el),
-      onDone: function(text) {
-        var cont = el.parentNode;
-        cont.innerHTML = '<div class="friends_imp_status" style="display: none;">'+text+'</div>';
-        fadeIn(cont.firstChild, 200);
-      },
-      onFail: function(text) {
-        if (!text) return;
-        showFastBox({title: getLang('global_error'), dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'}, text);
-        return true;
-      }
-    });
-  },
-
   addFriendLogged: function(btn, mid, hash) {
     ajax.post('al_friends.php', {act: 'add', mid: mid, hash: hash, from: 'fb_sign'}, {
       onDone: function() {
@@ -518,20 +98,14 @@ var Join = {
       hideProgress: unlockButton.pbind(btn)
     });
   },
-
-  removeFriendLogged: function(el, mid, hash) {
-    var prg = ce('span', {className: 'progress_inline'}), prnt = el.parentNode;
+  removeFriendLogged: function(btn, mid, hash) {
     ajax.post('al_friends.php', {act: 'remove', mid: mid, hash: hash, from: 'fb_sign'}, {
       onDone: function() {
         show('join_add'+mid);
         hide('join_request'+mid);
       },
-      showProgress: function() {
-        if (el.parentNode == prnt) prnt.replaceChild(prg, el);
-      },
-      hideProgress: function() {
-        if (prg.parentNode == prnt) prnt.replaceChild(el, prg);
-      }
+      showProgress: lockButton.pbind(btn),
+      hideProgress: unlockButton.pbind(btn)
     });
   },
 
@@ -544,7 +118,7 @@ var Join = {
     phoneEl.readOnly = true;
     if (cur.uiPhoneCountry) {
       cur.uiPhoneCountry.disable(true);
-      addClass('join_phone_table', 'join_readonly_wrap');
+      addClass('join_phone_prefixed', 'join_readonly_wrap');
     }
     if (cur.resendInt) {
       clearInterval(cur.resendInt);
@@ -554,7 +128,8 @@ var Join = {
     show('join_code_submit', 'join_other_phone', 'join_resend');
     hide('join_phone_submit');
     slideDown('join_code_row', 150, elfocus.pbind('join_code'));
-    if (isVisible('join_submit_result')) slideUp('join_submit_result', 150);
+    val('join_submit_result', '');
+    val('join_code', '');
     Join.initPhoneCode();
   },
   checkStatus: function(phone, cntr) {
@@ -612,7 +187,7 @@ var Join = {
           return;
         }
         if (cur.strongCode !== strong) {
-          var tip = ge('join_code_wrap').tt;
+          var tip = ge('join_code').tt;
           if (tip) tip.destroy();
           cur.strongCode = strong;
         }
@@ -621,7 +196,10 @@ var Join = {
       },
       onFail: function(text) {
         if (!text) return;
-
+        var el = ge('join_phone');
+        if (el && el.tt && el.tt.hide) {
+          el.tt.hide({fasthide: true});
+        }
         Join.showMsg('join_submit_result', text, elfocus.pbind('join_phone'));
         return true;
       }
@@ -666,7 +244,7 @@ var Join = {
       if (level && level < 3 && pwd.length > 13) ++level;
     }
     ge('join_about_pass').className = 'join_pwd_level' + level;
-    ge('join_pass_strength').innerHTML = pwd ? getLang('join_pwd_level' + level) : '&nbsp;';
+    ge('join_pass_strength').innerHTML = pwd ? getLang('join_pwd_level' + level) : getLang('join_pwd_min_length');
     setQuickLoginData((cur.fbSign && cur.fbValid) ? cur.fbEmail : Join.getPhone(), pwd, {params: cur.joinParams});
   },
   initPhoneCode: function() {
@@ -676,8 +254,7 @@ var Join = {
 <form method="POST" action="' + vk.loginscheme + '://login.vk.com/?act=check_code&_origin=' + locProtocol + '//' + locHost + '" id="join_code_form" name="join_code_form" target="join_code_frame">\
   <input type="hidden" name="email" id="join_code_phone" />\
   <input type="hidden" name="code" id="join_code_code" />\
-  <input type="hidden" name="captcha_sid" id="join_code_sid" />\
-  <input type="hidden" name="captcha_key" id="join_code_key" />\
+  <input type="hidden" name="recaptcha" id="join_code_sid" />\
 </form>\
 <iframe id="join_code_frame" name="join_code_frame"></iframe>\
 '}));
@@ -689,12 +266,11 @@ var Join = {
     cur.defCountry = country;
     cur.uiPhoneCountry = new Dropdown(ge('join_phone_country'), cur.countries, {
       selectedItems: country,
+      big_text: true,
       autocomplete: true,
-      width: 134,
       multiselect: false,
       onChange: function(v) {
         var ph = ge('join_phone'), pref = ge('join_phone_prefix').firstChild, code = cur.uiPhoneCountry.val_full()[3];
-        debugLog(v);
         if (ph.readOnly || v === 0 || v === '0' || v === '' || v === false || v === undefined) {
           var c = val(pref);
           if (code == c) return;
@@ -722,10 +298,10 @@ var Join = {
     if (!cur.codeForm || buttonLocked('join_send_code')) return;
 
     var code = trim(val('join_code')).replace(/[^a-z0-9]/g, '');
-    if (code.length < 4) {
+    if (code.length < 5) {
       return notaBene('join_code');
     }
-    if (code == '0593') {
+    if (code == '05937') {
       return Join.showMsg('join_submit_result', getLang('join_sorry_code'), elfocus.pbind('join_code', false, false));
     }
     val('join_code_phone', Join.getPhone());
@@ -748,19 +324,18 @@ var Join = {
     show('join_pass_submit', 'join_accept_terms');
     hide('join_other_phone', 'join_code_submit', 'join_resend');
     slideDown('join_pass_row', 150, elfocus.pbind('join_pass'));
-    if (isVisible('join_submit_result')) slideUp('join_submit_result', 150);
+    val('join_submit_result', '');
   },
-  askCaptcha: function(sid, dif) {
+  askCaptcha: function(sid, lang) {
     if (!cur.codeForm) return;
     unlockButton('join_send_code');
-    window.badCodeBox = showCaptchaBox(sid, dif, window.badCodeBox, {onSubmit: function(sid, key) {
+    window.badCodeBox = showReCaptchaBox(sid, lang, window.badCodeBox, {onSubmit: function(sid, key) {
       val('join_code_sid', sid);
-      val('join_code_key', key);
       cur.codeForm.submit();
     }, onHide: function() { window.badCodeBox = false; }});
   },
   submitPasswordSure: function() {
-    showFastBox(getLang('join_new_page_sure_title'), '<div class="join_sure_new_page">' + getLang('join_new_page_sure') + '</div>', getLang('join_new_page_sure_submit'), Join.submitPassword.pbind(-1), getLang('global_cancel'));
+    showFastBox(getLang('join_new_page_sure_title'), getLang('join_new_page_sure'), getLang('join_new_page_sure_submit'), Join.submitPassword.pbind(-1), getLang('global_cancel'));
   },
   submitPassword: function(toAlready, fbLoginTo) {
     if (buttonLocked('join_send_pass') && !cur.submitOnSign) return;
@@ -773,8 +348,7 @@ var Join = {
     }
 
     if (cur.sureBoxText && toAlready !== 1 && toAlready !== -1) {
-      showFastBox({title: getLang('join_sure_detach'), hideButtons: true, width: 430, noCloseButton: true, bodyStyle: 'padding: 16px 14px 5px'}, cur.sureBoxText).changed = true;
-      ge('join_submit_old').style.position = ge('join_submit_new').style.position = 'relative';
+      showFastBox({title: getLang('join_sure_detach'), hideButtons: true, width: 560, noCloseButton: true}, cur.sureBoxText).changed = true;
       return;
     }
     cur.joinParams.join_to_already = intval(toAlready);
@@ -797,7 +371,7 @@ var Join = {
       if (code === -1) {
         location.href = location.href.replace(/^http:/, 'https:');
       } else if (code === 4) {
-        location.href = '/login.php?m=1&email=' + opts.email;
+        location.href = '/login?m=1&email=' + opts.email;
       } else {
         nav.reload();
       }
@@ -812,15 +386,10 @@ var Join = {
     submitQuickLoginForm(login, pass, {prg: 'join_send_pass', params: cur.joinParams});
   },
 
-  showMsg: function(id, text, handler) {
+  showMsg: function(id, text, handler, type) {
     var el = ge(id);
-    val(el, text);
-    if (isVisible(el)) {
-      animate(el, {backgroundColor: '#F4EBBD'}, 100, animate.pbind(el, {backgroundColor: '#F9F6E7'}, 2000));
-      handler();
-    } else {
-      slideDown(el, 100, handler);
-    }
+    showMsg(el, text, type ? type : 'error', true);
+    if (isFunction(handler)) handler();
   },
   codeFailed: function(triesLeft) {
     if (curBox()) curBox().hide();
@@ -877,11 +446,11 @@ var Join = {
       },
       onDone: function(text, html, btn, cancel) {
         if (html && btn) {
-          hide('join_submit_result');
-          showFastBox({title: text, width: 430, noCloseButton: true}, html, btn, Join.call, cancel).changed = true;
+          val('join_submit_result', '');
+          showFastBox({title: text, width: 450, noCloseButton: true}, html, btn, Join.call, cancel).changed = true;
         } else if (html) {
-          hide('join_submit_result');
-          showFastBox({title: text, width: 430}, html);
+          val('join_submit_result', '');
+          showFastBox({title: text, width: 450}, html);
         } else {
           Join.showMsg('join_submit_result', text);
         }
@@ -896,7 +465,7 @@ var Join = {
     if (cur.uiPhoneCountry) {
       cur.uiPhoneCountry.disable(false);
       cur.uiPhoneCountry.val(cur.uiPhoneCountry.val(), true);
-      removeClass('join_phone_table', 'join_readonly_wrap');
+      removeClass('join_phone_prefixed', 'join_readonly_wrap');
     }
     show('join_phone_submit');
     hide('join_code_submit', 'join_other_phone', 'join_resend');
@@ -907,32 +476,19 @@ var Join = {
     ajax.post('join.php', {act: 'call', hash: cur.hash}, {progress: curBox().progress, onDone: function(text) {
       curBox().hide();
       Join.showMsg('join_submit_result', text);
+      elfocus('join_code');
     }});
-  },
-
-  activeTab: function(el) {
-    var p = el.parentNode.parentNode;
-    for (var i = p.firstChild; i; i = i.nextSibling) {
-      if (i.className == 'active_link') {
-        i.className = '';
-      }
-    }
-    el.parentNode.className = 'active_link';
   },
 
   tipShow: function(el, key, shift, addClass) {
     el = ge(el);
-    var text = getLang(key);
-    if (shift[1] == -52 && text.split('<br>')[0].length < 41) {
-      shift[1] += 5;
-    }
     var showTT = function() {
       showTooltip(el, {
-        text: '<div class="join_finish_tt_pointer"></div>' + text,
+        text: getLang(key),
+        dir: 'left',
         slideX: 15,
         className: 'join_finish_tt' + (addClass ? (' ' + addClass) : ''),
         shift: shift,
-        forcetoup: true,
         onCreate: removeEvent.pbind(el, 'mouseout')
       });
     }
@@ -942,25 +498,35 @@ var Join = {
       addEvent(window, 'load', showTT);
     }
   },
-  tipHide: function(el) {
-    el = ge(el);
-    if (el && el.tt && el.tt.hide) el.tt.hide();
+  tipHide: function() {
+    var els = ['join_phone', 'join_code', 'join_pass'];
+    for (var i = 0; i < els.length; ++i) {
+      el = ge(els[i]);
+      if (el && el.tt && el.tt.hide) el.tt.hide();
+    }
   },
-  phoneTip: function(fb) {
-    if (ge('join_phone').readOnly) return;
-    return Join.tipShow('join_phone_wrap', 'join_phone_tip', [-147, fb ? -89 : -95, 3], 'join_phone_tt');
+  phoneTip: function() {
+    var field = ge('join_phone'),
+        size = getSize(field);
+    if (field.readOnly) return;
+    Join.tipShow(field, 'join_phone_tip', [-(size[0] + 10), -Math.floor(size[1] / 2)], 'join_phone_tt');
   },
   codeTip: function() {
-    if (ge('join_code').readOnly || cur.strongCode > 0) return;
-    return Join.tipShow('join_code_wrap', cur.strongCode ? 'join_code_voice_tip' : 'join_code_tip', [-147, -82, 3]);
+    var field = ge('join_code'),
+        size = getSize(field);
+    if (field.readOnly) return;
+    Join.tipShow(field, cur.strongCode ? 'join_code_voice_tip' : 'join_code_tip', [-(size[0] + 10), -Math.floor(size[1] / 2)]);
   },
   passTip: function() {
-    return Join.tipShow('join_pass_wrap', 'join_pass_tip', [-147, -82, 3]);
+    var field = ge('join_pass'),
+        size = getSize(field);
+    return Join.tipShow(field, 'join_pass_tip', [-(size[0] + 10), -Math.floor(size[1] / 2)]);
   },
+
   switchToDefSign: function(hash, obj) {
     ajax.post('join.php', {act: 'logout', hash: hash, noredir: 1},{
       onDone: function() {
-        showBox('join.php', {act: 'box', from: nav.strLoc}, {}, event);
+        showBox('join.php', {act: 'box', from: nav.strLoc, nofb: 1});
       },
       showProgress: lockButton.pbind(obj),
       hideProgress: unlockButton.pbind(obj)

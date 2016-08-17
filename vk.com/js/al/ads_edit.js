@@ -345,7 +345,7 @@ AdsEdit.toggleTargetingGroup = function(groupId, groupElemId) {
 
 AdsEdit.updateTargetingGroups = function() {
   var hiderInfoElem = ge('ads_edit_targeting_group_additional_hider_info');
-  hiderInfoElem.innerHTML = (cur.targetingEditor.isUserDevicesHidden() ? getLang('ads_criteria_section_additional_info_retargeting') : getLang('ads_criteria_section_additional_info'));
+  hiderInfoElem.innerHTML = (cur.targetingEditor.isUserDevicesHidden() ? getLang('ads_criteria_section_additional_info_retargeting_new') : getLang('ads_criteria_section_additional_info_new'));
 }
 
 AdsEdit.saveTargetingPrefs = function(delayed) {
@@ -770,7 +770,7 @@ AdsEdit.showCropPhotoBox = function(photoData) {
   showOptions.stat = ['tagger.css', 'ads_tagger.js'];
   showOptions.dark = true;
 
-  var boxPadding = 15 * 2;
+  var boxPadding = 25 * 2;
 
   var photoWidth = intval(photoData.photo.match(/width:(\d+)/)[1]);
   if (photoWidth && photoWidth <= 700 && viewParams.format_type != AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE) {
@@ -836,8 +836,7 @@ AdsEdit.initCropPhotoBox = function(cropBox, resultPhotoWidth, resultPhotoHeight
     icons: icons,
     zstart: 1000,
     crop: cropOptions,
-    safeZones: safeZones,
-    onInit: initPlayImage
+    safeZones: safeZones
   });
 
   if (!cur.photoTaggerDestroy) {
@@ -848,24 +847,6 @@ AdsEdit.initCropPhotoBox = function(cropBox, resultPhotoWidth, resultPhotoHeight
       }
     }
     cur.destroy.push(function() { cur.photoTaggerDestroy(); });
-  }
-
-  function initPlayImage() {
-    var wrapElem = ge('ads_edit_crop_photo_wrap');
-    var playElem =  geByClass1('ads_ad_play', wrapElem);
-    if (!isVisible(playElem)) {
-      return;
-    }
-    var photoSmallElem    = ge('ads_edit_crop_photo_small')
-    var photoSmallDivElem = ge('ads_edit_crop_photo_small')
-    var photoSmallImgElem = geByTag1('img', photoSmallDivElem);
-    addEvent(playElem, 'mousedown', function(event){
-      var newEvent = {};
-      newEvent.pageX = event.pageX;
-      newEvent.pageY = event.pageY;
-      triggerEvent(photoSmallImgElem, event.type, newEvent, true);
-      return cancelEvent(event);
-    });
   }
 
   var boxOptions = {};
@@ -1415,7 +1396,6 @@ AdsViewEditor.prototype.initPreview = function(paramName) {
   this.preview.photo_box_ver          = geByClass1('ads_ad_photo_box_ver', this.preview.layout);
   this.preview.photo                  = geByClass1('ads_ad_photo', this.preview.layout);
   this.preview.photo_icon             = geByClass1('ads_ad_photo_icon', this.preview.layout);
-  this.preview.play                   = geByClass1('ads_ad_play', this.preview.layout);
   this.preview.promoted_post          = geByClass1('ads_ad_promoted_post', this.preview.layout);
   this.preview.big_app_info_box       = geByClass1('ads_ad_big_app_info_box', this.preview.layout);
 
@@ -2226,8 +2206,6 @@ AdsViewEditor.prototype.updateUiParamData = function(paramName) {
 
 AdsViewEditor.prototype.getUiParamDefaultData = function(paramName) {
   switch (paramName) {
-    case 'views_limit_exact':
-      this.params[paramName].value = this.params[paramName].default_values[this.params.format_type.value] || 0;
     default:
       var data = this.getUiParamData(paramName);
       if (typeof(data) === 'string') {
@@ -2601,7 +2579,8 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         }
 
         if (inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST])) {
-          this.setViewsLimitExact(this.params.views_limit_exact.default_values[this.params.format_type.value]);
+          this.params['views_limit_exact'].value = this.params['views_limit_exact'].default_values[this.params.format_type.value];
+          this.setViewsLimitExact();
         }
 
         this.updateUiParam('title');
@@ -3444,8 +3423,8 @@ AdsViewEditor.prototype.setCostType = function(costType) {
   }
 }
 
-AdsViewEditor.prototype.setViewsLimitExact = function(viewsLimitExact) {
-  this.onParamUpdate('views_limit_exact', viewsLimitExact, false, true);
+AdsViewEditor.prototype.setViewsLimitExact = function() {
+  this.onParamUpdate('views_limit_exact', this.params.views_limit_exact.value, false, true);
   if (this.params.views_limit_exact.uiInited) {
     this.params.views_limit_exact.ui.selectedItems(this.params.views_limit_exact.value);
   }
@@ -4036,10 +4015,12 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
       var isGroupsOnly   = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY);
       var isBigApp       = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP);
       var isMobile       = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE);
+      var isBigImage     = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_IMAGE);
       var isAndroid      = (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID);
       var isIphone       = (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE);
       var isWphone       = (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE);
       var isPromotedPost = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST);
+      var isRedesign     = !(isAppInNews || isAppsOnly || isGroupsOnly || isBigApp || isMobile || isAndroid || isIphone || isWphone || isPromotedPost);
       var elems = geByClass('format_edit', this.preview[previewParamName]);
       elems.push(this.preview[previewParamName]);
       for (var i in elems) {
@@ -4048,13 +4029,16 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
         toggleClass(elems[i], 'groups_only',   !!isGroupsOnly);
         toggleClass(elems[i], 'big_app',       !!isBigApp);
         toggleClass(elems[i], 'mobile',        !!isMobile);
+        toggleClass(elems[i], 'big_image',     !!isBigImage);
         toggleClass(elems[i], 'android',       !!isAndroid);
         toggleClass(elems[i], 'iphone',        !!(isIphone || isWphone)); // isWphone - temporary
         toggleClass(elems[i], 'promoted_post', !!isPromotedPost);
+        toggleClass(elems[i], 'redesign',      !!isRedesign);
       }
       var titlePlaceElem       = (isBigApp ? this.preview.title_big_app : this.preview.title_regular);
       var descriptionPlaceElem = ((isMobile) ? this.preview.description_up : (isBigApp ? this.preview.description_big_app : this.preview.description_down));
-      var photoBoxPlaceElem    = ((isAppInNews || isAppsOnly || isGroupsOnly) ? this.preview.photo_box_hor : this.preview.photo_box_ver);
+      //var photoBoxPlaceElem    = ((isAppInNews || isAppsOnly || isGroupsOnly) ? this.preview.photo_box_hor : this.preview.photo_box_ver);
+      var photoBoxPlaceElem    = this.preview.photo_box_hor; // Redesign styles
       var domainPlaceElem      = ((isAppInNews || isAppsOnly || isGroupsOnly) ? this.preview.domain_out    : this.preview.domain_ver);
       var disclaimersPlaceElem = (isGroupsOnly ? this.preview.disclaimers_photo : this.preview.disclaimers_bottom);
       titlePlaceElem.parentNode.insertBefore(this.preview.title_box, titlePlaceElem);
@@ -5063,8 +5047,8 @@ AdsTargetingEditor.prototype.getUiCriterionIntroText = function(criterionName) {
     case 'user_devices':           return getLang('ads_select_user_device');
     case 'user_operating_systems': return getLang('ads_select_user_operating_system');
     case 'user_browsers':          return getLang('ads_select_user_browser');
-    case 'retargeting_groups':     return getLang('ads_select_retargeting_group');
-    case 'retargeting_groups_not': return getLang('ads_select_retargeting_group');
+    case 'retargeting_groups':     return getLang('ads_select_retargeting_group_new');
+    case 'retargeting_groups_not': return getLang('ads_select_retargeting_group_new');
     default:                       return '';
   }
 }
@@ -5107,8 +5091,8 @@ AdsTargetingEditor.prototype.getUiCriterionPlaceholderText = function(criterionN
     case 'user_devices':           return getLang('ads_select_user_device');
     case 'user_operating_systems': return getLang('ads_select_user_operating_system');
     case 'user_browsers':          return getLang('ads_select_user_browser');
-    case 'retargeting_groups':     return getLang('ads_select_retargeting_group');
-    case 'retargeting_groups_not': return getLang('ads_select_retargeting_group');
+    case 'retargeting_groups':     return getLang('ads_select_retargeting_group_new');
+    case 'retargeting_groups_not': return getLang('ads_select_retargeting_group_new');
     default:                       return '';
   }
 }

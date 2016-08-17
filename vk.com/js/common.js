@@ -231,6 +231,7 @@ function toggle(elem, val) {
   } else {
     hide(elem);
   }
+  return val;
 }
 window.shide = toggle;
 
@@ -503,6 +504,7 @@ function toggleClass(obj, name, val) {
     val = !hasClass(obj, name);
   }
   (val ? addClass : removeClass)(obj, name);
+  return val;
 }
 //shortcuts
 function btnOut(o){removeClass(geByClass('box_button', o)[0], 'button_hover');}

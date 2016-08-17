@@ -41,7 +41,7 @@ init: function(obj, uploadUrl, vars, options) {
       if (this.obj[iUpload].tagName == 'INPUT' && !this.checkFileApi()) {
         this.obj[iUpload] = ge(options.fieldEl) || this.obj[iUpload].parentNode.firstChild;
       } else if (!options.flash_lite) {
-        this.obj[iUpload].innerHTML = '<div class="upload_check loading"><img width="32" height="9" src="/images/upload' + (hasClass(bodyNode, 'is_2x') ? '_2x' : '') + '.gif" /></div>';
+        this.obj[iUpload].innerHTML = '<div class="upload_check loading"><img width="32" height="8" src="/images/upload' + (hasClass(bodyNode, 'is_2x') ? '_2x' : '') + '.gif" /></div>';
       }
     }
   }
@@ -677,6 +677,11 @@ onFileApiSend: function(i, files, force) {
     if (!files.length) return;
   }
 
+  if (options.filterCallback) {
+    files = options.filterCallback(i, files);
+    if (!files.length) return;
+  }
+
   if (options.reverse_files) {
     files = Array.prototype.slice.call(files).reverse();
   }
@@ -689,7 +694,12 @@ onFileApiSend: function(i, files, force) {
     for (var index in files) {
       var file = files[index];
       if (file.size && file.size > options['file_size_limit']) {
-        if (options.lang.filesize_error) {
+        var fileSizeErrorText = options.lang.filesize_error;
+        if (fileSizeErrorText && fileSizeErrorText.indexOf('{count}') >= 0) {
+          fileSizeErrorText = fileSizeErrorText.replace('{count}', intval(options['file_size_limit'] / (1024 * 1024)));
+        }
+
+        if (fileSizeErrorText) {
           showFastBox({
             title: getLang('global_error'),
             width: 430,
@@ -699,7 +709,9 @@ onFileApiSend: function(i, files, force) {
               Upload.embed(i);
               delete cur.notStarted;
             }
-          }, options.lang.filesize_error, getLang('global_continue'), function() {
+          },
+          fileSizeErrorText,
+          getLang('global_continue'), function() {
             Upload.uploadFiles(i, files, max_files);
             if (options.filesize_hide_last) {
               curBox().hide();
@@ -734,7 +746,8 @@ onFileApiSend: function(i, files, force) {
       }
     }
     var curCount = attachCount ? attachCount() : 0;
-    if (options.max_files - curCount < files.length && options.lang && options.lang.max_files_warning) {
+    var warnText = getLang('global_attach_max_n_files').replace('{count}', options.max_files);
+    if (options.max_files - curCount < files.length) {
       max_files = options.max_files - curCount;
       showFastBox({
         title: getLang('global_error'),
@@ -745,7 +758,7 @@ onFileApiSend: function(i, files, force) {
           Upload.embed(i);
           delete cur.notStarted;
         }
-      }, options.lang.max_files_warning, getLang('global_continue'), function() {
+      }, warnText, getLang('global_continue'), function() {
         Upload.uploadFiles(i, files, max_files);
         if (options.max_files_hide_last) {
           curBox().hide();
@@ -1289,6 +1302,11 @@ uploadFile: function(uplId, file, url) {
       }
     };
     xhr.upload.onprogress = function(e) {
+
+      if (xhr.readyState === 4) {
+        return;
+      }
+
       fastFail = false;
       extend(info, Upload.getFileInfo(uplId, options, file));
       if (e.lengthComputable) {

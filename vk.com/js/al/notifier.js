@@ -1,6 +1,3 @@
-// https://github.com/Olical/EventEmitter
-(function(){"use strict";function t(){}function i(t,n){for(var e=t.length;e--;)if(t[e].listener===n)return e;return-1}function n(e){return function(){return this[e].apply(this,arguments)}}var e=t.prototype,r=this,s=r.EventEmitter;e.getListeners=function(n){var r,e,t=this._getEvents();if(n instanceof RegExp){r={};for(e in t)t.hasOwnProperty(e)&&n.test(e)&&(r[e]=t[e])}else r=t[n]||(t[n]=[]);return r},e.flattenListeners=function(t){var e,n=[];for(e=0;e<t.length;e+=1)n.push(t[e].listener);return n},e.getListenersAsObject=function(n){var e,t=this.getListeners(n);return t instanceof Array&&(e={},e[n]=t),e||t},e.addListener=function(r,e){var t,n=this.getListenersAsObject(r),s="object"==typeof e;for(t in n)n.hasOwnProperty(t)&&-1===i(n[t],e)&&n[t].push(s?e:{listener:e,once:!1});return this},e.on=n("addListener"),e.addOnceListener=function(e,t){return this.addListener(e,{listener:t,once:!0})},e.once=n("addOnceListener"),e.defineEvent=function(e){return this.getListeners(e),this},e.defineEvents=function(t){for(var e=0;e<t.length;e+=1)this.defineEvent(t[e]);return this},e.removeListener=function(r,s){var n,e,t=this.getListenersAsObject(r);for(e in t)t.hasOwnProperty(e)&&(n=i(t[e],s),-1!==n&&t[e].splice(n,1));return this},e.off=n("removeListener"),e.addListeners=function(e,t){return this.manipulateListeners(!1,e,t)},e.removeListeners=function(e,t){return this.manipulateListeners(!0,e,t)},e.manipulateListeners=function(r,t,i){var e,n,s=r?this.removeListener:this.addListener,o=r?this.removeListeners:this.addListeners;if("object"!=typeof t||t instanceof RegExp)for(e=i.length;e--;)s.call(this,t,i[e]);else for(e in t)t.hasOwnProperty(e)&&(n=t[e])&&("function"==typeof n?s.call(this,e,n):o.call(this,e,n));return this},e.removeEvent=function(e){var t,r=typeof e,n=this._getEvents();if("string"===r)delete n[e];else if(e instanceof RegExp)for(t in n)n.hasOwnProperty(t)&&e.test(t)&&delete n[t];else delete this._events;return this},e.removeAllListeners=n("removeEvent"),e.emitEvent=function(r,o){var e,i,t,s,n=this.getListenersAsObject(r);for(t in n)if(n.hasOwnProperty(t))for(i=n[t].length;i--;)e=n[t][i],e.once===!0&&this.removeListener(r,e.listener),s=e.listener.apply(this,o||[]),s===this._getOnceReturnValue()&&this.removeListener(r,e.listener);return this},e.trigger=n("emitEvent"),e.emit=function(e){var t=Array.prototype.slice.call(arguments,1);return this.emitEvent(e,t)},e.setOnceReturnValue=function(e){return this._onceReturnValue=e,this},e._getOnceReturnValue=function(){return this.hasOwnProperty("_onceReturnValue")?this._onceReturnValue:!0},e._getEvents=function(){return this._events||(this._events={})},t.noConflict=function(){return r.EventEmitter=s,t},"function"==typeof define&&define.amd?define(function(){return t}):"object"==typeof module&&module.exports?module.exports=t:r.EventEmitter=t}).call(this);
-
 if (!window.curNotifier) {
   curNotifier = {
     addQueues: {},
@@ -161,6 +158,7 @@ Notifier = {
       error_timeout: 1,
       sound: new Sound('mp3/bb1'),
       sound_im: new Sound('mp3/bb2'),
+      sound_im_current: new Sound('mp3/bb3'),
       onConnectionId: []
     }, options);
 
@@ -175,7 +173,6 @@ Notifier = {
   },
 
   initCommunityQueues: function(fails) {
-
     var key = ls.get('im_m_comms_key');
 
     var check = key && key.split ? key.split(';') : [];
@@ -224,7 +221,9 @@ Notifier = {
 
   resetCommConnection: function(fails) {
     var key = ls.get('im_m_comms_key');
-    delete curNotifier.addQueues[key.queue];
+    if (key) {
+      delete curNotifier.addQueues[key.queue];
+    }
     ls.set('im_m_comms_key', false);
     Notifier.initCommunityQueues(fails || 0);
   },
@@ -316,7 +315,7 @@ Notifier = {
   unfreezeEvents: function () {
     curNotifier.frozen = false;
     each (curNotifier.q_shown, function () {
-      this.fadeTO = setTimeout(this.startFading, 5000);
+      this.fadeTO = setTimeout(this.startFading, hasAccessibilityMode() ? 30000 : 5000);
     });
   },
   getTransportWrap: function () {
@@ -448,6 +447,10 @@ Notifier = {
       return false;
     }
     if (msg[1] == 'update_cnt') { // msg[2] - section
+      if (msg[3] === 'nws') { // TODO: delete this after redesign
+        handlePageCount('ntf', msg[9]);
+        return 0;
+      }
       handlePageCount(msg[3], msg[4], msg[5], msg[6]);
       return 0;
     }
@@ -462,7 +465,8 @@ Notifier = {
       onclick: msg[8],
       add: msg[9],
       id: msg[10],
-      author_id: msg[11]
+      author_id: msg[11],
+      top_count: msg[12]
     }, push = !cnt ? 1 : 0;
 
     if (msg[13]) {
@@ -472,6 +476,9 @@ Notifier = {
     if (curNotifier.done_events[ev.id]) return;
     curNotifier.done_events[ev.id] = 1;
     // debugLog(ev.type, ev.add, !!cnt);
+    if (ev.top_count !== undefined && ev.top_count != -1) {
+      handlePageCount('ntf', ev.top_count);
+    }
     switch (ev.type) {
       case 'video_process_ready':
         if (ev.add && window.Video && Video.isVideoPlayerOpen(ev.add)) {
@@ -487,23 +494,6 @@ Notifier = {
         if (cur.module != 'im') {
           FastChat.prepareTabIcon(intval(ev['author_id']), {fixedLoad: 1});
         }
-        break;
-
-      case 'post_reply':
-      case 'reply_reply':
-      case 'post_mention':
-      case 'reply_mention':
-      case 'wall_post':
-      case 'comment_photo':
-      case 'comment_photo_reply':
-      case 'comment_photo_mention':
-      case 'comment_video':
-      case 'comment_video_reply':
-      case 'comment_video_mention':
-      case 'comment_market_reply':
-      case 'comment_market_mention':
-      case 'board_mention':
-        handlePageCount('nws', ev.add, 'feed' + (ge('l_nwsf') ? '?section=notifications' : ''), ge('l_nwsf') ? '' : 'section=notifications');
         break;
 
       case 'mail_failed':
@@ -524,6 +514,26 @@ Notifier = {
 
       case 'friend_request':
         handlePageCount('fr', ev.add);
+        break;
+
+      case 'ach_achieved':
+        handlePageCount('ach', ev.add);
+        break;
+
+      case 'ach_achieved_upd':
+        handlePageCount('ach', ev.add);
+        push = 0;
+        break;
+
+      case 'push_settings':
+        push = 0;
+        var muted = JSON.parse(ev.add);
+        curNotifier.mutedPeers = curNotifier.mutedPeers.filter(function(peerId) {
+          return peerId !== muted.peer_id;
+        });
+        if (muted.disabled_until !== 0) {
+          curNotifier.mutedPeers.push(muted.peer_id);
+        }
         break;
 
       case 'mail_cnt':
@@ -637,7 +647,11 @@ Notifier = {
         push = 0;
         break;
       case 'notify_tt':
-      case 'new_post':
+      case 'login_attempt':
+        if (ev.add) {
+          ev.add = eval('('+ev.add+')');
+          TopNotifier.showTooltip(ev.add.text, ev.add.key);
+        }
         push = 0;
         break;
     }
@@ -708,12 +722,26 @@ Notifier = {
   shouldPlaySound: function(ev) {
     return !ls.get('sound_notify_off')
       && cur.focused != ev.author_id
+      && !inArray(ev.author_id, cur.mutedPeers)
+      && !inArray(ev.author_id, curNotifier.mutedPeers);
+  },
+
+  shouldPlayCurrentSound: function(ev) {
+    return !ls.get('sound_notify_off')
+      && cur.focused == ev.author_id
+      && hasAccessibilityMode()
       && !inArray(ev.author_id, cur.mutedPeers);
   },
 
   playSound: function(ev) {
     if (curNotifier.sound_im && curNotifier.sound_im.play && Notifier.shouldPlaySound(ev)) {
-      curNotifier.sound_im.play();
+      if (ev.author_id == cur.peer && hasAccessibilityMode()) {
+        curNotifier.sound_im_current.play();
+      } else {
+        curNotifier.sound_im.play();
+      }
+    } else if (Notifier.shouldPlayCurrentSound(ev) && curNotifier.sound_im_current) {
+      curNotifier.sound_im_current.play();
     }
   },
 
@@ -722,7 +750,7 @@ Notifier = {
       message: 'who_is_active',
       msg: ev.author_id,
       onFail: function() {
-        if(Notifier.canNotifyUi() && cur.peer != ev.author_id) {
+        if(Notifier.canNotifyUi() && (cur.peer != ev.author_id || !Notifier.isActive())) {
           Notifier.sendBrowserNotification(ev);
         } else if (!onlyBrowser) {
           Notifier.lcSend('show_notification', ev);
@@ -761,15 +789,19 @@ Notifier = {
   },
 
   sendMailNotification: function(ev) {
-    ev.onclick = 'FastChat.selectPeer(\'' + ev.author_id + '\');';
+    if (cur.module == 'im') {
+      ev.onclick = 'IM.activateTab(\'' + ev.author_id + '\');';
+    } else {
+      ev.onclick = 'FastChat.selectPeer(\'' + ev.author_id + '\');';
+    }
     if (this.isActive() && Notifier.canNotifyUi()) {
       this.playSound(ev);
       if (this.shouldPlaySound(ev) && cur.peer != ev.author_id) {
         this.showEventUi(ev);
       }
-    } else if (this.isActive()) {
+    } else if (this.isActive() && this.shouldPlaySound(ev)) {
       return this.sendSimpleNotification(ev);
-    } else if (curNotifier.is_server) {
+    } else if (curNotifier.is_server && this.shouldPlaySound(ev)) {
       this.trySendBrowserNotification(ev);
     }
     return 0; // No notification if not active and not server
@@ -788,42 +820,26 @@ Notifier = {
 
   showEvent: function (ev, force) {
     curNotifier.q_shown.push(ev);
-    var imgClass = '';
-    if (ev.type == 'gift') {
-      imgClass = ' notifier_image_gift';
-    }
     var thumbEl = '';
     if (ev.type == 'video_process_ready') {
       thumbEl = '<div class="notifier_video_thumb" style="background-image: url(' + Notifier.fixPhoto(ev.author_photo) +')"></div>';
     } else {
       thumbEl = '<img src="' + Notifier.fixPhoto(ev.author_photo) + '" class="notifier_image" />';
     }
+    var typeClassName = 'notifier_type_' + ev.type;
     ev.baloonWrapEl = ce('div', {
       className: 'notifier_baloon_wrap',
-      innerHTML: '<div class="notifier_baloon clear_fix"><div class="notifier_baloon_head clear_fix"><div class="notifier_baloon_title fl_l">' + ev.title + '</div><div class="notifier_close_wrap fl_r"><a class="notifier_close" title="' + getLang('global_close') + '" href=""></a></div></div><div class="notifier_baloon_body"><table cellpadding="0" cellspacing="0" width="100%"><tr>' + (ev.author_photo && ('<td class="notifier_image_wrap"><div class="notifier_image_wrap">' + (ev.author_link && ('<a href="' + ev.author_link + '" onclick="return nav.go(this, event);">')) + thumbEl + (ev.author_link && '</a>') + '</div></td>')) + '<td class="notifier_baloon_msg"><div class="notifier_baloon_msg wrapped" style="width: ' + (300 - 60 * ((ev.author_photo && ev.add_photo) ? 2 : ((ev.add_photo || ev.author_photo) ? 1 : 0))) + 'px;">' + ev.text + '</div></td>' + (ev.add_photo && ('<td class="notifier_add_image_wrap"><div class="notifier_image_wrap'+imgClass+'"><img src="' + ev.add_photo + '" class="notifier_image" /></div></td>')) + '</tr></table></div></div>'
+      innerHTML: '<div class="notifier_baloon ' + typeClassName + '"><div class="notifier_baloon_head clear_fix"><div class="notifier_close_wrap"><a class="notifier_close" title="' + getLang('global_close') + '" href=""></a></div><h4 class="notifier_baloon_title">' + ev.title + '</h4></div><div class="notifier_baloon_body clear_fix">' + (ev.author_photo && ('<div class="notifier_image_wrap">' + (ev.author_link && ('<a href="' + ev.author_link + '">')) + thumbEl + (ev.author_link && '</a>') + '</div>')) + (ev.add_photo && ('<div class="notifier_add_image_wrap"><img src="' + ev.add_photo + '" class="notifier_add_image" /></div>')) + '<div class="notifier_baloon_msg wrapped">' + ev.text + '</div></div></div>'
     });
     ev.baloonEl = ev.baloonWrapEl.firstChild;
     ev.closeEl = geByClass1('notifier_close_wrap', ev.baloonEl);
-    addEvent(ev.closeEl, 'mouseover mouseout', function (e) {
-      e = (e.originalEvent || e) || window.event;
-      if ((e.target || e.srcElement) != ev.closeEl) {
-        return;
-      }
-      if (e.type == 'mouseover') {
-        addClass(ev.closeEl, 'notifier_close_over');
-      } else {
-        removeClass(ev.closeEl, 'notifier_close_over');
-      }
-    });
 
     addEvent(ev.baloonEl, 'mouseover mouseout', function (e) {
       ev.over = (e.type == 'mouseover');
       if (ev.over) {
         Notifier.freezeEvents();
-        addClass(ev.baloonEl, 'notifier_baloon_over');
       } else {
         Notifier.unfreezeEvents();
-        removeClass(ev.baloonEl, 'notifier_baloon_over');
       }
     });
     addEvent(ev.baloonEl, 'mousedown', function (e) {
@@ -888,7 +904,7 @@ Notifier = {
     setStyle(ev.baloonWrapEl, {visibility: 'visible'});
     animate(curNotifier.cont, {bottom: 0}, 200);
     if (!curNotifier.idle_manager.is_idle || force) {
-      ev.fadeTO = setTimeout(ev.startFading, 7000);
+      ev.fadeTO = setTimeout(ev.startFading, hasAccessibilityMode() ? 35000 : 7000);
     }
   },
 
@@ -1028,6 +1044,7 @@ Notifier = {
         this.lcServer(true);
       }
     }.bind(this), 1000 + intval(rand(-100, 100)));
+
     curNotifier.isServerBroadcastInt = setInterval(function () {
       if (!curNotifier.is_server) return;
       if (Notifier.lcCheckServer()) {
@@ -1037,28 +1054,7 @@ Notifier = {
         this.lcNoServer();
       }
     }.bind(this), 5000 + intval(rand(-100, 100)));
-    curNotifier.playlistTimeInt = setInterval(function () {
-      if (!curNotifier.is_server) return;
-      var plData = ls.get('pad_pldata');
-      // if (!plData)  {
-      //   var aid = ls.get('audio_id');
-      //   if (aid) ls.remove('audio_id');
-      //   return;
-      // }
-      if (plData && plData.instance == curNotifier.instance_id) {
-        ls.set('pad_pltime', vkNow());
-      } else {
-        this.lcSend('check_playlist');
-      }
-      var plTime = ls.get('pad_pltime') || 0;
-      if (vkNow() - plTime > 3000 && !(window._pads && _pads.shown == 'mus')) {
-        ls.remove('pad_pltime');
-        ls.remove('pad_pldata');
-        ls.remove('pad_playlist');
-        ls.remove('pad_lastsong');
-        ls.remove('audio_id');
-      }
-    }.bind(this), 1000 + intval(rand(-100, 100)));
+
     if (curNotifier.fc !== undefined) {
       stManager.add(['emoji.js'], function() {
         FastChat.init(curNotifier.fc);
@@ -1579,7 +1575,7 @@ Notifier = {
     if (curNotifier.flash_transport || !data) {
       return false;
     }
-    var queue = (data && data.queue) ? data.queue : data.key;
+    var queue = data.queue || data.key;
     var addq = curNotifier.addQueues[queue];
     var to_reset = !addq && curNotifier.is_server;
     if (addq) {
@@ -1733,7 +1729,7 @@ function updateWndVScroll() {
   }
   each (curRBox.tabs, function (id) {
     if (this.options.marginFixedToLayer) {
-      setStyle(this.wrap, {marginRight: hasClass(document.body, 'layers_shown') ? sbWidth() + 1 : 0})
+      setStyle(this.wrap, {marginRight: hasClass(document.body, 'layers_shown') ? sbWidth() : 0})
     }
   });
   if (vScroll === lastWndScroll[0]) {
@@ -1743,7 +1739,7 @@ function updateWndVScroll() {
 
   each (curRBox.tabs, function (id) {
     if (this.toRight && !this.options.marginFixedToLayer) {
-      setStyle(this.wrap, {marginRight: vScroll ? sbWidth() + 1 : 0});
+      setStyle(this.wrap, {marginRight: vScroll ? sbWidth() : 0});
     }
   });
 }
@@ -1785,8 +1781,8 @@ function defBox(options, callback) {
       nomargin: true,
       global: true,
       nokeys: true,
-      right: vk.rtl ? 'auto' : 1,
-      left: !vk.rtl ? 'auto' : 1,
+      right: vk.rtl ? 'auto' : 0,
+      left: !vk.rtl ? 'auto' : 0,
       onHold: options.onHold
     });
   }
@@ -1823,7 +1819,7 @@ function RBox(content, options) {
   t.toBottom = t.toRight = false;
   if (options.fixed) {
     pos.bottom = 0;
-    pos.right = 68;
+    pos.right = 72;
   } else {
     if (options.startTop !== undefined) {
       pos.top = options.startTop;
@@ -1884,17 +1880,17 @@ function RBox(content, options) {
   this.toRight = (sl === 'auto' || sl === '' || browser.msie && sl === 0) && sr != 'auto' && sr !== '' && !(browser.msie && sr === 0);
 
   if (this.toRight) {
-    setStyle(t.wrap, {marginRight: lastWndScroll[0] ? sbWidth() + 1 : 0});
+    setStyle(t.wrap, {marginRight: lastWndScroll[0] ? sbWidth() : 0});
   }
   if (options.nofocus || options.noshow) {
     addClass(t.wrap, 'rb_inactive');
   }
   if (this.toBottom) {
-    setStyle(t.wrap, {marginRight: lastWndScroll[0] ? sbWidth() + 1 : 0});
+    setStyle(t.wrap, {marginRight: lastWndScroll[0] ? sbWidth() : 0});
     addClass(t.wrap, 'fc_tobottom');
   }
   if (this.options.marginFixedToLayer) {
-    setStyle(t.wrap, {marginRight: hasClass(document.body, 'layers_shown') ? sbWidth() + 1 : 0});
+    setStyle(t.wrap, {marginRight: hasClass(document.body, 'layers_shown') ? sbWidth() : 0});
   }
 
   // console.log(['s', st,st === '0',st === 0, sb, sl,sl==='0',sl===0, sr, this.toBottom, this.toRight]);
@@ -1965,7 +1961,7 @@ extend(RBox.prototype, {
         selectEvent = browser.msie ? 'selectstart' : 'mousedown';
 
     if (t.options.fixed) {
-      FastChat.pinTab(t.options.peer, e, true);
+      FastChat.pinTab(t.options.peer || -1, e, true);
     }
     if (!focused) {
       t.focus(e);
@@ -2011,7 +2007,7 @@ extend(RBox.prototype, {
         addClass(t.wrap, 'fc_tobottom');
       }
       if (t.toRight = (lastLeft >= maxLeft - 5)) {
-        setStyle(t.wrap, {left: 'auto', right: 0, marginRight: lastWndScroll[0] ? sbWidth() + 1 : 0});
+        setStyle(t.wrap, {left: 'auto', right: 0, marginRight: lastWndScroll[0] ? sbWidth() : 0});
       }
       t._update_pos();
       var dlittle = Math.abs(e.pageY - startY) < 3 && Math.abs(e.pageX - startX) < 3;
@@ -2090,7 +2086,7 @@ extend(RBox.prototype, {
         addClass(t.wrap, 'fc_tobottom');
       }
       if (t.toRight = (lastW == maxW)) {
-        setStyle(t.wrap, {left: 'auto', right: 0, marginRight: lastWndScroll[0] ? sbWidth() + 1 : 0});
+        setStyle(t.wrap, {left: 'auto', right: 0, marginRight: lastWndScroll[0] ? sbWidth() : 0});
       }
       t._update_pos();
       t.options.onResizeEnd && t.options.onResizeEnd(lastH, lastW, wndInner[0], wndInner[1], t.toBottom, t.toRight);
@@ -2313,7 +2309,8 @@ FastChat = {
     var friends = ls.get('fcFriends' + vk.id);
     ajax.post('al_im.php', {
       act: 'a_get_fast_chat',
-      friends: friends && friends.version
+      friends: friends && friends.version,
+      cache_time: FastChat.cachedStickersKeywordsTime()
     }, {
       onDone: function (data) {
         if (data.friends == -1) {
@@ -2329,6 +2326,10 @@ FastChat = {
         return true;
       }
     });
+  },
+  cachedStickersKeywordsTime: function() {
+    var data = ls.get('stickers_keywords');
+    return data && data.time ? Math.floor(data.time / 1000) : 0;
   },
   gotSettings: function(data) {
     if (data['emoji_stickers']) {
@@ -2870,11 +2871,11 @@ FastChat = {
     each (events, function (k, ev) {
       switch (ev[1]) {
         case 'new':
-          stManager.add(['im.js'], function() {
+          stManager.add(['imn.js'], function() {
             each (tab.sentmsgs, function (k, msgId) {
               var row = ge('fc_msg' + msgId), parent = row && row.parentNode;
               if (re(row) && parent && !geByClass('fc_msg', parent).length) {
-                re(parent.parentNode);
+                re(domClosest('fc_msgs_wrap', parent));
               }
             });
             if (!ge('fc_msg' + ev[3])) {
@@ -2888,9 +2889,25 @@ FastChat = {
           break;
 
         case 'read':
-          each(ev[3].split(','), function (k, msgId) {
-            var row = ge('fc_msg' + msgId), parent = row && row.parentNode;
+          var needUnreadMsgs = [];
+          var lastRead = intval(ev[3]);
+          each(tab.msgs, function(k) {
+            if (intval(k) <= lastRead && tab.msgs[k][1]) {
+              needUnreadMsgs.push(intval(k));
+            }
+          });
+
+          each(needUnreadMsgs, function (k, msgId) {
+            var parent;
+            var row = ge('fc_msg' + msgId);
             if (!row) return;
+
+            if (tab.msgs[msgId] && tab.msgs[msgId][0]) {
+              parent = row.parentNode.parentNode;
+            } else {
+              parent = row.parentNode;
+            }
+
             if (tab.msgs[msgId] && tab.msgs[msgId][1]) {
               tab.msgs[msgId][1] = 0;
               if (!tab.msgs[msgId][0]) {
@@ -2940,35 +2957,26 @@ FastChat = {
       cur.onPeerStatusChanged(peer, evType, evData);
     }
     if (peer <= 0 || !tab || !tab.box || tab.box.minimized) return;
-    var addClassTo = geByClass1('fc_tab', tab.wrap, 'div'), mob = (evData > 0 && evData < 6), cls = mob ? 'fc_tab_mobile' : 'fc_tab_online';
-    if (evType == 'online') {
-      addClassTo.className = addClassTo.className.replace(mob ? 'fc_tab_online' : 'fc_tab_mobile', cls);
-      if (hasClass(addClassTo, cls)) return;
-    }
 
     clearTimeout(tab.hideNotifyTO);
     switch (evType) {
       case 'online':
-        text = langSex(tab.sex, lang.mail_im_user_became_online);
+        text = getLang('mail_im_user_became_online', 3 - tab.sex);
         FastChat.blinkTab(peer);
-        addClass(addClassTo, cls);
         break;
 
       case 'offline':
-        text = langSex(tab.sex, lang.mail_im_user_became_offline);
+        text = getLang('mail_im_user_became_offline', 3 - tab.sex);
         FastChat.blinkTab(peer);
-        removeClass(addClassTo, 'fc_tab_online');
-        removeClass(addClassTo, 'fc_tab_mobile');
         break;
 
       case 'unavail':
-        text = langSex(tab.sex, lang.mail_im_user_unavail);
+        text = getLang('mail_im_not_online', 3 - tab.sex).replace(/\.$/, "");;
         break;
     }
     text = text.replace('{user}', tab.fname);
     val(tab.notify, '<div class="fc_tab_notify fc_tab_notify_' + evType + '">' + text + '</div>');
     var notify = tab.notify.firstChild;
-    setStyle(notify, {width: tab.logWrap.clientWidth - 8/*, zIndex: 400*/});
     clearTimeout(tab.hideNotifyTO);
     tab.hideNotifyTO = setTimeout(function () {
       fadeOut(notify, 200, function () {
@@ -3000,9 +3008,9 @@ FastChat = {
 
     var state = curFastChat.options.state || false,
         clistMin = !curFastChat.friendsCnt || (!(state && state.clist.min !== undefined) ? wndInner[1] < 1200 || curFastChat.friendsCnt < 5 : state.clist.min);
-    curFastChat.clistW = 252;
+    curFastChat.clistW = 270;
     //curFastChat.clistH = Math.max(290, Math.min(2000, wndInner[0] * 0.5));
-    curFastChat.clistH = 316;
+    curFastChat.clistH = 299;
     var opts = {
       id: 'fc_clist',
       movable: geByClass1('fc_tab_head', el.clistWrap),
@@ -3019,7 +3027,7 @@ FastChat = {
         addClass(curFastChat.clistBox.wrap, 'fc_fixed');
         curFastChat.clistBox.fixed = true;
         FastChat.stateChange({op: 'clist_toggled', val: 0});
-        setStyle(curFastChat.clistBox.wrap, {top: 'auto', bottom: 0, right: 68, left: 'auto'});
+        setStyle(curFastChat.clistBox.wrap, {top: 'auto', bottom: 0, right: 72, left: 'auto'});
         show(el.topLink);
         FastChat.hideChatCtrl();
       },
@@ -3066,7 +3074,7 @@ FastChat = {
     // Friends list
     curFastChat.clistBoxScroll = new Scrollbar(el.clist, {
       prefix: 'fc_',
-      more: FastChat.clistShowMore,
+      scrollChange: FastChat.clistShowMore,
       nomargin: true,
       global: true,
       nokeys: true,
@@ -3077,7 +3085,7 @@ FastChat = {
     curFastChat.updateTypingsInt = setInterval(FastChat.updateTypings, 5000);
 
     var filter = ge('fc_clist_filter');
-    placeholderSetup(filter, {global: true, back: 1});
+    placeholderInit(filter, { global: true });
     curFastChat.q = '';
     addEvent(filter, 'keyup ' + (browser.opera ? 'keypress' : 'keydown'), function (e) {
       if (e.keyCode == KEY.ESC) {
@@ -3191,36 +3199,24 @@ FastChat = {
     clearTimeout(Chat.ttOutTimeout);
     Chat.ttOutTimeout = false;
 
-    var newTop = getXY(el)[1] - getXY(Chat.itemsCont)[1];
-    var tt = Chat.userNameTT;
-    if (!tt) {
-      Chat.userNameTT = ce('div', {className: 'chat_tab_info_wrap', innerHTML: '<div class="chat_tab_info_tt"><div class="chat_tab_info_p"></div><div id="chat_tab_info_text"></div></div>'}, {top: newTop - Chat.scrollNode.scrollTop + FastChat.itemsOffset, right: 70, opacity: 0});
-      Chat.wrap.insertBefore(Chat.userNameTT, Chat.wrap.firstChild);
-    }
-    if (!Chat.ttPeer) {
-      show(Chat.userNameTT);
-      animate(Chat.userNameTT, {opacity: 1, right: 60}, 100);
-    }
-    val('chat_tab_info_text', tab.name);
-    if (Chat.ttPeer != peer || Chat.ttTop != newTop) {
-      Chat.ttPeer = peer;
-      Chat.ttTop = newTop;
-      setStyle(Chat.userNameTT, {top: newTop - Chat.scrollNode.scrollTop + FastChat.itemsOffset});
-    }
+    showTooltip(item, {
+      text: tab.name,
+      slideX: 15,
+      black: 1,
+      asrtl: 1,
+      appendEl: Chat.ttNode,
+      className: 'tt_black_side',
+      shift: [-58, -37, 0]
+    });
+    Chat.ttPeer = item;
   },
 
   itemsOut: function() {
-    if (Chat.ttOutTimeout) {
-      return false;
-    }
+    if (Chat.ttOutTimeout) return false;
     Chat.ttOutTimeout = setTimeout(function() {
       Chat.ttOutTimeout = false;
-      if (!Chat.ttPeer) {
-        return false;
-      }
-      animate(Chat.userNameTT, {opacity: 0, right: 70}, 100, function() {
-        hide(Chat.userNameTT);
-      });
+      if (!Chat.ttPeer) return false;
+      triggerEvent(Chat.ttPeer, 'mouseout');
       Chat.ttPeer = false;
     }, 0);
   },
@@ -3388,11 +3384,9 @@ FastChat = {
     });
     each(Chat.tabs, function(peer) {
       if (curFastChat.onlines[peer] != prev[peer]) {
-        if (onlines[peer]) {
-          addClass(ge('chat_tab_icon_'+peer), 'chat_tab_online');
-        } else {
-          removeClass(ge('chat_tab_icon_'+peer), 'chat_tab_online');
-        }
+        var imgWrap = geByClass1('_chat_tab_image', ge('chat_tab_icon_'+peer));
+        toggleClass(imgWrap, 'online', onlines[peer]);
+        toggleClass(imgWrap, 'mobile', onlines[peer] && mobPlatforms[onlines[peer]]);
       }
     })
     offlines = arrayKeyDiff(prev, onlines, offlines);
@@ -3513,14 +3507,14 @@ FastChat = {
   clistWrapPeer: function (id, data, re) {
     var unread = curFastChat.tabs[id] ? curFastChat.tabs[id].unread : 0,
         online = curFastChat.onlines[id],
-        href, photoEvents, cls = online ? (online > 0 && online < 6 ? ' fc_contact_mobile' : ' fc_contact_online') : '';
+        href, photoEvents, cls = onlinePlatformClass(online);
     var name = (data[0] || '').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
     if (re) {
       name = name.replace(re, '$1<em class="fc_clist_hl">$2</em>');
     }
     if (id > 0 && id < 2e9) {
       href = '/id' + id;
-      photoEvents = 'onmousemove="FastChat.clistPeerOver(this.parentNode, 2);"  onmouseout="FastChat.clistPeerOver(this.parentNode, 1);" onclick="event.cancelBubble = true; return nav.go(this.parentNode, event);"';
+      photoEvents = 'onmousemove="FastChat.clistPeerOver(this.parentNode, 2);"  onmouseout="FastChat.clistPeerOver(this.parentNode, 1);"';
     } else {
       href = '/im?sel=' + id;
       photoEvents = '';
@@ -3530,7 +3524,7 @@ FastChat = {
     } else {
       var photoStr = '<img src="' + Notifier.fixPhoto(data[1]) + '" class="fc_contact_photo"/>';
     }
-    return '<a href="' + href + '" class="fc_contact clear_fix' + cls + '" id="fc_contact' + id + '" onclick="return FastChat.selectPeer(' + id + ', event);" onmousedown="event.cancelBubble = true;" onmouseover="FastChat.clistPeerOver(this, 1, event);"  onmouseout="FastChat.clistPeerOver(this, 0, event);"><span class="fc_contact_photo fl_l" ' + photoEvents + '>'+photoStr+'</span><span class="fc_contact_name fl_l">' + name + '<span id="fc_contact_unread' + id + '" class="fc_contact_unread">' + (unread ?' <b>+' + unread + '</b>' : '') + '</span></span><span class="fc_contact_status fl_l"></span></a>';
+    return '<a href="' + href + '" class="fc_contact clear_fix" id="fc_contact' + id + '" onclick="return FastChat.selectPeer(' + id + ', event);" onmousedown="event.cancelBubble = true;" onmouseover="FastChat.clistPeerOver(this, 1, event);"  onmouseout="FastChat.clistPeerOver(this, 0, event);"><span class="fc_contact_photo' + cls + '" ' + photoEvents + '>'+photoStr+'</span><span class="fc_contact_status"></span><span class="fc_contact_name">' + name + '<span id="fc_contact_unread' + id + '" class="fc_contact_unread">' + (unread ?' <b>+' + unread + '</b>' : '') + '</span></span></a>';
   },
   clistPeerOver: function (el, state, e) {
     if (!el || !checkOver(e, el)) return;
@@ -3539,7 +3533,6 @@ FastChat = {
       FastChat.clistPeerOver(ge('fc_contact' + curFastChat.clSel), 0);
     }
     toggleClass(el, 'fc_contact_over', state);
-    toggleClass(el, 'fc_contact_profile', state == 2 && id < 2e9 && id > 0);
     if (state) {
       curFastChat.clSel = id;
     } else if (curFastChat.clSel == id) {
@@ -3557,8 +3550,12 @@ FastChat = {
       forcetodown = true;
     }
     if (text) {
+      var date = obj.getAttribute('data-date');
+      if (date) {
+        text += '<br>' + date;
+      }
       showTooltip(obj, {
-        text: text,
+        text: '<div class="fc_author_tt">' + text + '</div>',
         black: 1,
         center: 1,
         forcetodown: forcetodown,
@@ -3747,7 +3744,7 @@ FastChat = {
       } else if (curFastChat.q) {
         cnt = intval((curFastChat.clistCache[curFastChat.q] || {})._num);
       }
-      curFastChat.clistBoxScroll.options.contHeight = cnt * 46 + (cnt > 0 ? 8 : 0);
+      curFastChat.clistBoxScroll.options.contHeight = cnt * 50;
     }
   },
 
@@ -3828,8 +3825,8 @@ FastChat = {
     var iconObj = ge('chat_tab_icon_'+peer);
     var counter = geByClass1('chat_tab_counter', iconObj)
     if (!counter) {
-      counter = ce('dev', {className: 'chat_tab_counter'});
-      iconObj.insertBefore(counter, iconObj.firstChild);
+      counter = ce('div', {className: 'chat_tab_counter'});
+      iconObj.appendChild(counter);
     }
     if (setVal === undefined) {
       Chat.counters[peer] = positive((Chat.counters[peer] || 0) + add);
@@ -3856,25 +3853,26 @@ FastChat = {
   },
 
   addTabIcon: function(peer, data, noAnim) {
-    if (Chat.tabs[peer]) {
+    if (!Chat.itemsCont || Chat.tabs[peer]) {
       return;
     }
     if (peer > 2e9) {
       var imgRow = data.data.members_grid_fc || '';
     } else {
-      var imgRow = '<img class="chat_tab_img" src="'+data.photo+'" width="38" height="38"/>';
+      var imgRow = '<img class="chat_tab_img" src="'+data.photo+'"/>';
     }
     if (peer > 2e9) {
       var peerHref = 'im?sel=c'+(peer - 2e9);
     } else {
       var peerHref = data.alink || '/id'+peer;
     }
-    var t = se('<a class="chat_tab_wrap'+(noAnim ? '' : ' chat_tab_beforeanim')+(data.online ? ' chat_tab_online' : '')+'" id="chat_tab_icon_'+peer+'" href="'+peerHref+'" onclick="FastChat.itemsOut();return FastChat.togglePeer('+peer+', event);"><div class="chat_tab_imgcont"><div class="chats_sp chat_tab_online_icon"></div><div class="chat_tab_typing_wrap"><div class="chats_sp chat_tab_typing_icon"></div></div><div class="chat_tab_close" onclick="return FastChat.closeTabIcon('+peer+', event)"></div>'+imgRow+'</div></a>');
+    var cls = onlinePlatformClass(data.online);
+    var t = se('<a class="chat_tab_wrap' + (noAnim ? '' : ' chat_tab_beforeanim') + '" id="chat_tab_icon_' + peer + '" href="' + peerHref + '" onclick="FastChat.itemsOut();return FastChat.togglePeer(' + peer + ', event);"><div class="chat_tab_imgcont _chat_tab_image' + cls + '"><div class="chat_tab_close" onclick="return FastChat.closeTabIcon(' + peer + ', event)"></div>' + imgRow + '</div><div class="chat_tab_typing_wrap"><div class="chats_sp chat_tab_typing_icon"></div></div></a>');
     Chat.itemsCont.insertBefore(t, Chat.itemsCont.firstChild);
     Chat.tabs[peer] = {el: t, name: data['name']};
     addClass(Chat.wrap, 'chat_expand');
     if (!noAnim) {
-      animate(t, {height: 50, opacity: 1}, {duration: 100});
+      removeClass(t, 'chat_tab_beforeanim');
     }
     FastChat.checkChatHeight();
     Chat.scrollNode.scrollTop = 0;
@@ -3920,7 +3918,7 @@ FastChat = {
       }
     }
 
-    if ((Chat.lastHeight - sc > Chat.maxHeight - 48) && Chat.fixH) {
+    if ((Chat.lastHeight - sc > Chat.maxHeight) && Chat.fixH) {
       if (!Chat.shadowBottom) {
         fadeIn(geByClass1('chat_cont_sh_bottom', Chat.wrap), 200);
         Chat.shadowBottom = true;
@@ -3952,10 +3950,7 @@ FastChat = {
     }
 
     FastChat.checkShadow();
-
-    if (Chat.ttPeer) {
-      setStyle(Chat.userNameTT, {top: Chat.ttTop - Chat.scrollNode.scrollTop + FastChat.itemsOffset});
-    }
+    setStyle(Chat.ttNode, {top: -Chat.scrollNode.scrollTop});
 
     return cancelEvent(event)
   },
@@ -4021,7 +4016,9 @@ FastChat = {
           FastChat.movePointer(curFastChat.activeBox.options.peer, true);
         }
       }
+      var oldTop = Chat.scrollNode.scrollTop;
       FastChat.checkChatHeight();
+      Chat.scrollNode.scrollTop = oldTop;
     };
     animate(tabEl, {height: 0, opacity: 0}, {duration: 100, onComplete: onAmin});
     if (!nohide) {
@@ -4042,8 +4039,8 @@ FastChat = {
     var bottomPointer = tabDiff - pm;
 
     var mh = Chat.maxHeight + 32;
-    if (isPeer && bottomPointer < 56) {
-      return bottomPointer - 56;
+    if (isPeer && bottomPointer < 62) {
+      return bottomPointer - 62;
     } else if (isPeer && bottomPointer > mh) {
       return bottomPointer - mh;
     }
@@ -4061,7 +4058,7 @@ FastChat = {
     return shift;
   },
 
-  movePointer: function(peer, aminate) {
+  movePointer: function(peer, anim) {
     if (!curFastChat.activeBox) {
       return false;
     }
@@ -4074,7 +4071,7 @@ FastChat = {
       if (!Chat.fixH && selTab.nextSibling) {
         var topDiff = getXY(selTab.nextSibling)[1] - 50;
       } else if (selTab.nextSibling || Chat.fixH) {
-        var topDiff = getXY(selTab)[1];
+        var topDiff = getXY(selTab)[1] + Chat.scrollNode.scrollTop;
       } else {
         var topDiff = getXY(ge('chat_tab_wrap'))[1] - 50;
       }
@@ -4086,7 +4083,7 @@ FastChat = {
     }
     var shift = FastChat.setPointer(peer, pm, tabDiff);
 
-    if (aminate) {
+    if (anim) {
       if (curFastChat.prevPointer) {
         var shiftPos = curFastChat.prevPointer - pm + shift;
         var tdiff = FastChat.getPointerShift(true, pm + shift, curFastChat.prevPointer);
@@ -4367,7 +4364,8 @@ FastChat = {
         lastEv = curFastChat.typingEvents[peer],
         sex,
         ts = vkNow(),
-        el = ge('fc_tab_typing' + peer);
+        el = ge('fc_tab_typing' + peer),
+        txtEl = geByClass1('_fc_tab_typing_name', el);
 
     if (peer < 2e9) {
       if (lastEv && ts - lastEv < 6000) {
@@ -4387,10 +4385,10 @@ FastChat = {
       return force ? setStyle(el, 'opacity', 0) : fadeTo(el, 1000, 0);
     }
     if (typings.length == 1) {
-      val(el, langSex(sex, lang.mail_im_typing).replace('{user}', typings[0]));
+      val(txtEl, langSex(sex, lang.mail_im_typing).replace('{user}', typings[0]));
     } else {
       var lastUser = typings.pop();
-      val(el, getLang('mail_im_multi_typing').replace('{users}', typings.join(', ')).replace('{last_user}', lastUser));
+      val(txtEl, getLang('mail_im_multi_typing').replace('{users}', typings.join(', ')).replace('{last_user}', lastUser));
     }
     return force ? setStyle(el, 'opacity', 1) : fadeTo(el, 200, 1);
   },
@@ -4509,9 +4507,8 @@ FastChat = {
     return message;
   },
   getEditCont: function(emojiId) {
-    //return '<textarea class="fc_tab_txt text"></textarea>';
     stManager.add(['emoji.js']);
-    return '<div class="emoji_cont">'+Emoji.tplSmile(emojiId, getLang('mail_emoji_hint'), ' fc_emoji')+'<div class="fc_editable" tabindex="0" contenteditable="true"></div></div>';
+    return '<div class="emoji_cont _emoji_field_wrap">' + Emoji.tplSmile(getLang('mail_emoji_hint')) + '<div class="fc_editable dark" tabindex="0" contenteditable="true" placeholder="' + getLang('mail_chat_placeholder') + '"></div></div>';
   },
   getVal: function(obj) {
     //return obj.value;
@@ -4558,15 +4555,13 @@ FastChat = {
       sentmsgs: [],
       box: false,
       wrap: wrap,
-      //txt: geByClass1('fc_tab_txt', wrap, 'textarea'),
       editable: 1,
       txt: txt,
       txtWrap: txt.parentNode.parentNode,
       logWrap: geByClass1('fc_tab_log', wrap),
       log: geByClass1('fc_tab_log_msgs', wrap),
       notify: geByClass1('fc_tab_notify_wrap', wrap),
-      title: geByClass1('fc_tab_title', wrap),
-      btn: geByClass1('fc_tab_button', wrap)
+      title: geByClass1('fc_tab_title', wrap)
     }
 
     var lastTxtH = 30;
@@ -4577,9 +4572,9 @@ FastChat = {
       tab.emojiId = Emoji.init(tab.txt, {
         controlsCont: geByClass1('fc_tab_txt_wrap', wrap),
         ttDiff: -46,
-        topShift: 281,
         ttShift: 0,
         rPointer: true,
+        global: true,
         noRce: true,
         peer: peer,
         isChat: true,
@@ -4604,9 +4599,9 @@ FastChat = {
           tab.box.hide();
           return cancelEvent(e);
         },
-        onStickerSend: function(stNum) {
+        onStickerSend: function(stNum, sticker_referrer) {
           var msgId = --tab.sent;
-          FastChat.send(peer, stNum);
+          FastChat.send(peer, stNum, sticker_referrer);
         }
       });
     } else {
@@ -4631,8 +4626,11 @@ FastChat = {
     tab.imPeerMedias = {};
     tab.imSortedMedias = {};
     tab.previewEl = geByClass1('fc_tab_preview', wrap);
-    stManager.add(['page.js', 'page.css'], function() {
-      tab.imMedia = initAddMedia(tab.addMediaBtn, tab.previewEl, [['photo', getLang('profile_wall_photo')], ['video', getLang('profile_wall_video')], ['audio', getLang('profile_wall_audio')], ['doc', getLang('profile_wall_doc')], ['map', getLang('profile_wall_map')]], {
+    stManager.add(['page.js', 'page.css', 'ui_media_selector.js', 'ui_media_selector.css'], function() {
+      tab.imMedia = new MediaSelector(tab.addMediaBtn, tab.previewEl, [['photo', getLang('profile_wall_photo')], ['video', getLang('profile_wall_video')], ['audio', getLang('profile_wall_audio')], ['doc', getLang('profile_wall_doc')], ['map', getLang('profile_wall_map')]], {
+        limit: 10,
+        hideAfterCount: 0,
+        maxShown: 0,
         mail: 1,
         tooltip: 1,
         topOffset: 0,
@@ -4659,7 +4657,7 @@ FastChat = {
     options = options || {};
     curFastChat.tabs[peer] = {};
 
-    var wrap = se(rs(FastChat.tplBox, {id: peer, name: data.name, myphoto: Notifier.fixPhoto(curFastChat.me.photo, true), classname: data.online ? (data.online > 0 && data.online < 6 ? ' fc_tab_mobile' : ' fc_tab_online') : '', cont: editCont}));
+    var wrap = se(rs(FastChat.tplBox, {id: peer, name: data.name, myphoto: Notifier.fixPhoto(curFastChat.me.photo, true), cont: editCont}));
 
     if (options.fixed && curFastChat.activeBox) {
       curFastChat.activeBox.hide(0, false, {noState: true});
@@ -4672,13 +4670,12 @@ FastChat = {
       peer: peer,
       movable: geByClass1('fc_tab_head', wrap),
       closer: geByClass1('fc_tab_close_wrap', wrap, 'a'),
-      //minimizer: true, //geByClass1('fc_tab_min_wrap', wrap),
       resizeableH: tab.logWrap,
       startHeight: 250,
-      startWidth: 252,
+      startWidth: 270,
       fixed: options.fixed,
       minH: 150,
-      minW: 252,
+      minW: 270,
       nofocus: true,
       onFocus: function (e) {
         if (tab.auto) {
@@ -4856,7 +4853,7 @@ FastChat = {
     // fixed
     if (opts.fixed) {
       //var clistSize = getSize(curFastChat.clistBox.content);
-      opts.startHeight = curFastChat.clistH - 1;
+      opts.startHeight = curFastChat.clistH;
       opts.startWidth = curFastChat.clistW;
       opts.onShow =  FastChat.showChatCtrl;
     }
@@ -4956,7 +4953,7 @@ FastChat = {
 
   onScroll: function(tab) {
     var sc = tab.scroll.obj.scrollTop
-    var moreCont = geByClass1('fc_msgs_more', tab.logWrap);
+    var moreCont = geByClass1('_fc_msgs_more', tab.logWrap);
     if (sc < 200 && isVisible(moreCont)) {
       moreCont.click();
     }
@@ -4968,7 +4965,6 @@ FastChat = {
     if (tab.moreLoading) {
       return false;
     }
-    var back = obj.innerHTML;
     tab.moreLoading = true;
     ajax.post('al_im.php', {act: 'a_history', peer: peer, offset: offset, from: 'fc'}, {
       onDone: function(hist) {
@@ -4990,14 +4986,8 @@ FastChat = {
       onFail: function() {
         tab.moreLoading = false;
       },
-      showProgress: function() {
-        obj.innerHTML = '<div class="progress_inline"></div>';
-        addClass(obj, 'fc_more_loading');
-      },
-      hideProgress: function() {
-        obj.innerHTML = back;
-        removeClass(obj, 'fc_more_loading');
-      }
+      showProgress: lockButton.pbind(obj),
+      hideProgress: unlockButton.pbind(obj)
     });
   },
 
@@ -5025,7 +5015,7 @@ FastChat = {
   },
 
   checkEditable: function(optId, obj) {
-    Emoji.checkEditable(optId, obj, {height: 34});
+    Emoji.checkEditable(optId, obj, {height: 52});
   },
 
   fixResized: function (tab, w, stopped) {
@@ -5080,8 +5070,8 @@ FastChat = {
     }, 2000);
   },
 
-  createProgress: function(row, id, after, cls) {
-    var el = ce('span', {className: 'fc_msg_progress progress ' + cls, id: 'fc_msg_progress' + id});
+  createProgress: function(row, id, after) {
+    var el = ce('span', {innerHTML: rs(vk.pr_tpl, {id: '', cls: ''}), className: 'fc_msg_progress', id: 'fc_msg_progress' + id});
     row.insertBefore(el, after);
     return el;
   },
@@ -5090,7 +5080,7 @@ FastChat = {
     re('fc_msg_progress' + id);
   },
 
-  send: function (peer, stickerId) {
+  send: function (peer, stickerId, sticker_referrer) {
     var t = this, tab = curFastChat.tabs[peer], msg = trim(tab.editable ? Emoji.editableVal(tab.txt) : val(tab.txt));
     if (stickerId) {
       var media = [['sticker', stickerId]];
@@ -5103,7 +5093,7 @@ FastChat = {
     if (progressBars && progressBars.childNodes.length > 0) {
       curFastChat.sendOnUpload = peer;
       var row = geByClass('fc_tab_log', tab.wrap)[0];
-      FastChat.createProgress(row, peer, row.lastChild, 'fc_msg_progress_transparent_right');
+      FastChat.createProgress(row, peer, row.lastChild);
       typer.style.visibility = 'hidden';
       return;
     } else {
@@ -5128,6 +5118,9 @@ FastChat = {
       from: 'fc',
       media: [],
     };
+    if (sticker_referrer) {
+      params.sticker_referrer = sticker_referrer;
+    }
     for (var i = 0, l = media.length, v; i < l; ++i) {
       if (v = media[i]) {
         params.media.push(v[0] + ':' + v[1]);
@@ -5221,7 +5214,7 @@ FastChat = {
         draft = ls.get('im_draft' + vk.id + '_' + peer);
 
     if (!txt || !tab || !draft ||
-        val(txt).length > draft.txt.length) {
+        draft.txt && val(txt).length > draft.txt.length) {
       return false;
     }
     draft.txt = clean(draft.txt);
@@ -5279,7 +5272,7 @@ FastChat = {
 
     if (attFlags) { // Media
       if (attFlags & 1) {
-        attText += '<div class="fc_msg_attachments_loading"></div>';
+        attText += rs(vk.pr_tpl, {id: '', cls: ''});
         if (arr[1] > 0) {
           setTimeout(FastChat.needMsgMedia.pbind(peer, arr[1]), 5);
         }
@@ -5339,7 +5332,6 @@ FastChat = {
       var msg = ge('fc_msg'+msgId);
       var msgCont = msg.parentNode;
 
-      addClass(msgCont, 'fc_sticker_cont');
       addClass(msgCont.parentNode, 'fc_msg_sticker');
     }
 
@@ -5347,7 +5339,7 @@ FastChat = {
     curFastChat.gotMedia[msgId] = [peer, text, msgOpts];
 
     if (msgOpts.stickers && window.Emoji) {
-      Emoji.updateTabs(msgOpts.stickers);
+      Emoji.updateTabs(msgOpts.stickers, msgOpts.keywords);
     }
 
     if (curFastChat.needMedia[msgId] === undefined) return;
@@ -5401,15 +5393,14 @@ FastChat = {
     var msgLast = geByClass1('fc_msg_last', msgs);
     if (msgLast) {
       removeClass(msgLast, 'fc_msg_last');
-      removeClass(msgLast, 'fl_l');
     }
     var msgRow = se(rs(curFastChat.tpl.msg, {
       msg_id: data.id,
-      classname: (data.unread ? 'fc_msg_unread' : '') + ' fc_msg_last fl_l',
+      classname: (data.unread ? 'fc_msg_unread' : '') + ' fc_msg_last',
       text: data.text
     }));
-    if (msgs.firstChild.tagName == 'BR') {
-      re(msgs.firstChild);
+    if (domFC(msgs) && domFC(msgs).tagName == 'BR') {
+      re(domFC(msgs));
     }
     if (msgDate) {
       msgs.insertBefore(msgRow, msgDate);
@@ -5447,499 +5438,11 @@ FastChat = {
     return peer;
   },
 
-  // mobile online
-  tip: function(el, p) {
-    if (hasClass(el.parentNode.parentNode, 'fc_tab_mobile') && (!cur._fcpromo || cur._fcpromo < 0) && !cur._fcdrag) {
-      mobileOnlineTip(el, p);
-    }
-  },
-  promo: function(el, ev) {
-    if (hasClass(el.parentNode.parentNode, 'fc_tab_mobile') && cur._fcpromo >= 0) {
-      mobilePromo();
-      return cancelEvent(ev || window.event);
-    }
-  },
-  promost: function(el) {
-    cur._fcpromo = 1;
-    if (el.tt && el.tt.hide) {
-      el.tt.hide();
-    }
-  },
+  tplBox: '<div class="fc_tab_wrap"><div class="fc_tab_head clear_fix"><a class="fc_tab_close_wrap"><div class="chats_sp fc_tab_close"></div></a><a class="fc_tab_max_wrap" href="/im?sel=%id%" onmousedown="event.cancelBubble = true;" onclick="return nav.go(this, event);"><div class="chats_sp fc_tab_max"></div></a><a class="fc_tab_pin_wrap" onmousedown="event.cancelBubble = true;" onclick="return FastChat.pinTab(%id%, event);"><div class="chats_sp fc_tab_pin"></div></a><div class="fc_tab_title noselect">%name%</div></div><div class="fc_tab"><div class="fc_tab_log_wrap"><div class="fc_tab_notify_wrap"></div><div class="fc_tab_log"><div class="fc_tab_log_msgs"></div><div class="fc_tab_typing" id="fc_tab_typing%id%"><div class="fc_tab_typing_icon"></div><div class="fc_tab_typing_name _fc_tab_typing_name"></div></div></div></div><div class="fc_tab_txt_wrap"><a class="fc_tab_attach"></a><div class="fc_tab_txt">%cont%<div class="fc_tab_preview"></div></div></div></div><div class="fc_pointer_offset"><div class="fc_tab_pointer fc_tab_pointer_peer"></div></div></div>',
 
-  tplBox: '<div class="fc_tab_wrap"><div class="fc_tab_head clear_fix"><a class="fc_tab_close_wrap fl_r"><div class="chats_sp fc_tab_close"></div></a><a class="fc_tab_max_wrap fl_r" href="/im?sel=%id%" onmousedown="event.cancelBubble = true;" onclick="return nav.go(this, event);"><div class="chats_sp fc_tab_max"></div></a><a class="fc_tab_pin_wrap fl_r" onmousedown="event.cancelBubble = true;" onclick="return FastChat.pinTab(%id%, event);"><div class="chats_sp fc_tab_pin"></div></a><div class="fc_tab_title noselect fl_l">%name%</div><div class="fl_l fc_tab_online_icon" onmouseover="FastChat.tip(this, {mid: %id%})" onmousedown="FastChat.promost(this)" onclick="return FastChat.promo(this, event)"></div></div><div class="fc_tab %classname%"><div class="fc_tab_log_wrap"><div class="fc_tab_notify_wrap"></div><div class="fc_tab_log"><div class="fc_tab_log_msgs"></div><div class="fc_tab_typing" id="fc_tab_typing%id%"></div></div></div><div class="fc_tab_txt_wrap"><a class="fc_tab_attach"><div class="chats_sp fc_tab_attach_icon"></div></a><div class="fc_tab_txt">%cont%<div class="fc_tab_preview"></div></div></div></div><div class="fc_pointer_offset"><div class="chats_sp fc_tab_pointer fc_tab_pointer_peer"></div></div></div>',
-
-  tplTab: '<div class="fc_tab_log_wrap"><div class="fc_tab_notify_wrap"></div><div class="fc_tab_log"><div class="fc_tab_log_msgs"></div><div class="fc_tab_typing" id="fc_tab_typing%id%"></div></div></div><div class="fc_tab_txt_wrap"><div class="fc_tab_txt">%cont%</div></div>'
+  tplTab: '<div class="fc_tab_log_wrap"><div class="fc_tab_notify_wrap"></div><div class="fc_tab_log"><div class="fc_tab_log_msgs"></div><div class="fc_tab_typing" id="fc_tab_typing%id%"><div class="fc_tab_typing_icon"></div><div class="fc_tab_typing_name _fc_tab_typing_name"></div></div></div></div><div class="fc_tab_txt_wrap"><div class="fc_tab_txt">%cont%</div></div>'
 
 }
-
-// Tiny Scrollbars start
-function Scrollbar(obj, options) {
-  this.obj = obj = ge(obj);
-  this.options = options || {};
-  this.clPref = options.prefix || '';
-  this.isHorizontal = options.horizontal;
-  this.scrollProp = this.isHorizontal ? 'scrollLeft' : 'scrollTop';
-  this.scrollDimensionProp = this.isHorizontal ? 'scrollWidth' : 'scrollHeight';
-
-  setTimeout((function() {
-    setStyle(obj, {
-      overflow: 'hidden'
-    });
-
-    var size = getSize(obj), s;
-
-    if (this.isHorizontal) {
-      s = {
-        marginTop: (size[1] + 2)+'px',
-        width: size[0] + 'px'
-      };
-    } else {
-      s = {
-        marginLeft: (size[0] - (options.mlDiff || 7))+'px',
-        height: size[1] + 'px'
-      }
-    }
-
-    if (options.nomargin) {
-      delete s.marginLeft;
-      s.right = options.right || 0;
-      s.left = options.left || 0;
-    }
-    this.scrollWidth = size[0];
-    this.scrollHeight = size[1];
-
-    this.scrollbar = ce('div', {
-      className: this.clPref + 'scrollbar_cont'
-    });
-    setStyle(this.scrollbar, s);
-
-    this.inner = ce('div', {
-      className: this.clPref + 'scrollbar_inner'
-    });
-    this.scrollbar.appendChild(this.inner);
-
-    if (options.shadows) {
-      obj.parentNode.insertBefore(this.topShadowDiv = ce('div', {
-        className: this.clPref + 'scrollbar_top'
-      }, {width: size[0]}), obj);
-      obj.parentNode.insertBefore(this.bottomShadowDiv = ce('div', {
-        className: this.clPref + 'scrollbar_bottom'
-      }, {width: size[0]}), obj.nextSibling);
-    }
-
-    obj.parentNode.insertBefore(this.scrollbar, obj);
-
-    this.destroyList = [];
-
-    this.mouseMove = this._mouseMove.bind(this);
-    this.mouseUp = this._mouseUp.bind(this);
-    var self = this;
-    function down(event) {
-      if (self.moveY || checkEvent(event)) return;
-      addEvent(window.document, 'mousemove', self.mouseMove);
-      addEvent(window.document, 'mouseup', self.mouseUp);
-      if (self.isHorizontal) {
-        self.moveX = event.pageX - (self.inner.offsetLeft || 0);
-      } else {
-        self.moveY = event.pageY - (self.inner.offsetTop || 0);
-      }
-
-      window.document.body.style.cursor = 'pointer';
-      addClass(self.inner, self.clPref + 'scrollbar_hovered');
-      if (options.startDrag) {
-        options.startDrag();
-      }
-      if (options.onHold) {
-        options.onHold(true);
-      }
-      self.isDown = true;
-      return cancelEvent(event);
-    }
-    this.mouseDown = down;
-    function keydown(event) {
-      switch ((event || window.event).keyCode) {
-        case 40:  self.obj[self.scrollProp] += 40; break;
-        case 38:  self.obj[self.scrollProp] -= 40; break;
-        case 34:  self.obj[self.scrollProp] += self[self.scrollDimensionProp]; break;
-        case 33:  self.obj[self.scrollProp] -= self[self.scrollDimensionProp]; break;
-        default: return true;
-      }
-      self.update(true);
-      return cancelEvent(event);
-    }
-    var wheel = this.wheel.bind(this);
-    addEvent(obj, 'mousewheel', wheel);
-    addEvent(obj, 'DOMMouseScroll', wheel);
-    if (options.scrollElements) {
-      for (var i in options.scrollElements) {
-        addEvent(options.scrollElements[i], 'mousewheel', wheel);
-        addEvent(options.scrollElements[i], 'DOMMouseScroll', wheel);
-      }
-    }
-    addEvent(this.scrollbar, 'mousewheel', wheel);
-    addEvent(this.scrollbar, 'DOMMouseScroll', wheel);
-
-    addEvent(this.scrollbar, 'mouseover', this.contOver.bind(this));
-    addEvent(this.scrollbar, 'mouseout', this.contOut.bind(this));
-    addEvent(this.scrollbar, 'mousedown', this.contDown.bind(this));
-
-    if (browser.safari_mobile) {
-      var touchstart = function(event) {
-        if (self.isHorizontal) {
-          cur.touchX = event.touches[0].pageX;
-        } else {
-          cur.touchY = event.touches[0].pageY;
-        }
-      };
-      var touchmove = function(event) {
-        if (self.isHorizontal) {
-          var touchX = event.touches[0].pageX;
-          cur.touchDiff = cur.touchX - touchX;
-          obj.scrollLeft += cur.touchDiff;
-          cur.touchX = touchX;
-          if (obj.scrollLeft > 0 && self.shown !== false) {
-            self.update(true);
-          }
-        } else {
-          var touchY = event.touches[0].pageY;
-          cur.touchDiff = cur.touchY - touchY;
-          obj.scrollTop += cur.touchDiff;
-          cur.touchY = touchY;
-          if (obj.scrollTop > 0 && self.shown !== false) {
-            self.update(true);
-          }
-
-          return cancelEvent(event);
-        }
-      };
-      var touchend = function() {
-        cur.animateInt = setInterval(function() {
-          cur.touchDiff = cur.touchDiff * 0.9;
-          if (cur.touchDiff < 1 && cur.touchDiff > -1) {
-            clearInterval(cur.animateInt);
-          } else {
-            obj[self.scrollProp] += cur.touchDiff;
-            self.update(true);
-          }
-        }, 0);
-      };
-      addEvent(obj, 'touchstart', touchstart);
-      addEvent(obj, 'touchmove', touchmove);
-      addEvent(obj, 'touchend', touchend);
-
-      this.destroyList.push(function() {
-        removeEvent(obj, 'touchstart', touchstart);
-        removeEvent(obj, 'touchmove', touchmove);
-        removeEvent(obj, 'touchend', touchend);
-      });
-
-      options.onInit && options.onInit();
-    }
-
-    addEvent(this.inner, 'mousedown', down);
-    if (!options.nokeys) {
-      addEvent(window, 'keydown', keydown);
-    } else {
-      this.onkeydown = keydown;
-    }
-
-
-    this.destroyList.push(function() {
-      removeEvent(obj, 'mousewheel', wheel);
-      removeEvent(obj, 'DOMMouseScroll', wheel);
-      if (options.scrollElements) {
-        for (var i in options.scrollElements) {
-          removeEvent(options.scrollElements[i], 'mousewheel', wheel);
-          removeEvent(options.scrollElements[i], 'DOMMouseScroll', wheel);
-        }
-      }
-      removeEvent(self.inner, 'mousedown', down);
-      removeEvent(window, 'keydown', keydown);
-    });
-
-    if (!this.isHorizontal) {
-      if (this.contHeight() <= this.scrollHeight) {
-        hide(this.bottomShadowDiv);
-      } else {
-        this.bottomShadow = true;
-      }
-    }
-    this.inited = true;
-    this.update(true);
-
-    if (!options.global) {
-      cur.destroy.push(this.destroy.bind(this));
-    }
-  }).bind(this), 0);
-}
-
-Scrollbar.prototype.contOver = function() {
-  this.isOut = false;
-  if (this.shown) {
-    addClass(this.scrollbar, 'scrollbar_c_overed');
-  }
-}
-Scrollbar.prototype.contOut = function() {
-  this.isOut = true;
-  if (this.isDown) return;
-  removeClass(this.scrollbar, 'scrollbar_c_overed');
-}
-Scrollbar.prototype.contDown = function(ev) {
-  var v, srcH, newScroll;
-  if (this.isHorizontal) {
-    v = ev.offsetX - this.innerWidth / 2 + 5;
-    scrH = this.scrollWidth - this.innerWidth;
-
-    newScroll = Math.floor((this.contWidth() - this.scrollWidth) * Math.min(1, v / scrH));
-    this.obj.scrollLeft = newScroll;
-  } else {
-    v = ev.offsetY - this.innerHeight / 2 + 5;// - this.innerHeight;
-    scrH = this.scrollHeight - this.innerHeight;
-
-    newScroll = Math.floor((this.contHeight() - this.scrollHeight) * Math.min(1, v / scrH));
-    this.obj.scrollTop = newScroll;
-  }
-
-  this.update(true);
-  this.mouseDown(ev);
-}
-
-Scrollbar.prototype._mouseMove = function(event) {
-  var newScroll;
-  if (this.isHorizontal) {
-    newScroll = Math.floor((this.contWidth() - this.scrollWidth) * Math.min(1, (event.pageX - this.moveX) / (this.scrollWidth - this.innerWidth - 6)));
-    if (this.options.onScroll) {
-      this.options.onScroll(this.obj.scrollLeft - newScroll);
-    }
-    this.obj.scrollLeft = newScroll;
-  } else {
-    newScroll = Math.floor((this.contHeight() - this.scrollHeight) * Math.min(1, (event.pageY - this.moveY) / (this.scrollHeight - this.innerHeight - 6)));
-    if (this.options.onScroll) {
-      this.options.onScroll(this.obj.scrollTop - newScroll);
-    }
-    this.obj.scrollTop = newScroll;
-  }
-  this.update(true);
-  return false;
-}
-
-Scrollbar.prototype._mouseUp = function(event) {
-  this.moveY = false;
-  this.moveX = false;
-  this.isDown = false;
-  if (this.isOut) {
-    this.contOut();
-  }
-  removeEvent(window.document, 'mousemove', this.mouseMove);
-  removeEvent(window.document, 'mouseup', this.mouseUp);
-  window.document.body.style.cursor = 'default';
-  removeClass(this.inner, this.clPref + 'scrollbar_hovered');
-  if (this.options.stopDrag) {
-    this.options.stopDrag();
-  }
-  if (this.options.onHold) {
-    this.options.onHold(false);
-  }
-  return false;
-}
-
-Scrollbar.prototype.wheel = function(event) {
-  if (this.disabled) {
-    return;
-  }
-  if (!event) event = window.event;
-  var delta = 0, stWas;
-
-  if (event.wheelDeltaY || event.wheelDelta) {
-    delta = (event.wheelDeltaY || event.wheelDelta) / 2;
-  } else if (event.detail && event.axis === (this.isHorizontal ? 1 : 2)) {
-    delta = -event.detail * 10
-  } else {
-    return;
-  }
-
-  stWas = this.obj[this.scrollProp];
-  this.obj[this.scrollProp] -= delta;
-
-  if (this.options.onScroll) {
-    this.options.onScroll(delta);
-  }
-
-  if (stWas != this.obj[this.scrollProp] && this.shown !== false) {
-    this.update(true);
-    addClass(this.inner, this.clPref + 'scrollbar_hovered');
-    clearTimeout(this.moveTimeout);
-    this.moveTimeout = setTimeout((function() {
-      removeClass(this.inner, this.clPref + 'scrollbar_hovered');
-    }).bind(this), 300);
-  }
-  if (this.shown || this.options.forceCancelEvent) {
-    if (this.isHorizontal && stWas == this.obj[this.scrollProp]) {
-      // no op
-    } else {
-      return false;
-    }
-  }
-}
-
-Scrollbar.prototype.hide = function(anim) {
-  hide(this.topShadowDiv, this.bottomShadowDiv, this.scrollbar)
-  this.hidden = true;
-}
-Scrollbar.prototype.show = function(anim) {
-  show(this.topShadowDiv, this.bottomShadowDiv, this.scrollbar)
-  this.hidden = false;
-}
-Scrollbar.prototype.disable = function() {
-  this.hide();
-  this[this.scrollProp](0);
-  this.disabled = true;
-}
-Scrollbar.prototype.enable = function() {
-  this.show();
-  this.update();
-  this.disabled = false;
-}
-
-Scrollbar.prototype.scrollTop = function(top) {
-  this.obj.scrollTop = parseInt(top);
-  this.update(false, true);
-}
-
-Scrollbar.prototype.scrollLeft = function(left) {
-  this.obj.scrollLeft = parseInt(left);
-  this.update(false, true);
-}
-
-Scrollbar.prototype.destroy = function(top) {
-  each(this.destroyList, function (k, f) {f();});
-}
-
-Scrollbar.prototype.contHeight = function() {
-  if (this.options.contHeight) {
-    return this.options.contHeight;
-  }
-  if (this.contHashCash) {
-    return this.contHashCash;
-  }
-  var nodes = this.obj.childNodes;
-  var height = 0;
-  var i = nodes.length;
-  while (i--) {
-    height += nodes[i].offsetHeight || 0;
-  }
-  this.contHashCash = height;
-  return height;
-}
-
-Scrollbar.prototype.contWidth = function() {
-  if (this.options.contWidth) {
-    return this.options.contWidth;
-  }
-  if (this.contHashWidthCash) {
-    return this.contHashWidthCash;
-  }
-  var nodes = this.obj.childNodes;
-  var width = 0;
-  var i = nodes.length;
-  while (i--) {
-    width += nodes[i].offsetWidth || 0;
-  }
-  this.contHashWidthCash = width;
-  return width;
-}
-
-Scrollbar.prototype.val = function(value) {
-  if (value) {
-    this.obj[this.scrollProp] = value;
-    this.update(true, true);
-  }
-  return this.obj[this.scrollProp];
-}
-
-Scrollbar.prototype.update = function(noChange, updateScroll) {
-  if (!this.inited || this.hidden) {
-    return;
-  }
-  if (!noChange) {
-    this.contHashCash = false;
-    this.contHashWidthCash = false;
-    if (this.moveY && !this.isHorizontal) {
-      return true;
-    } else if (this.moveX) {
-      return true;
-    }
-  }
-  if (updateScroll) {
-    var size = getSize(this.obj);
-    if (this.isHorizontal) {
-      this.scrollWidth = size[0];
-      setStyle(this.scrollbar, 'width', size[0]);
-    } else {
-      this.scrollHeight = size[1];
-      setStyle(this.scrollbar, 'height', size[1]);
-    }
-  }
-  var height = this.contHeight();
-  var width = this.contWidth();
-  if (!this.isHorizontal && height <= this.scrollHeight) {
-    hide(this.inner, this.bottomShadowDiv, this.topShadowDiv);
-    setStyle(this.scrollbar, {pointerEvents: 'none'});
-    this.topShadow = this.bottomShadow = false;
-    this.shown = false;
-    return;
-  } else if (this.isHorizontal && width <= this.scrollWidth) {
-    hide(this.inner, this.bottomShadowDiv, this.topShadowDiv);
-    setStyle(this.scrollbar, {pointerEvents: 'none'});
-    this.topShadow = this.bottomShadow = false;
-    this.shown = false;
-    return;
-  } else if (!this.shown) {
-    show(this.inner);
-    setStyle(this.scrollbar, {pointerEvents: 'auto'});
-    this.shown = true;
-  }
-
-  var progress;
-
-  if (this.isHorizontal) {
-    var leftScroll = this.val();
-    if (this.options.scrollChange) {
-      this.options.scrollChange(leftScroll);
-    }
-    progress = this.lastProgress = Math.min(1, leftScroll / (width - this.scrollWidth));
-  } else {
-    var topScroll = this.val();
-    if (this.options.scrollChange) {
-      this.options.scrollChange(topScroll);
-    }
-    progress = this.lastProgress = Math.min(1, topScroll / (height - this.scrollHeight));
-  }
-
-  if (progress > 0 != (this.topShadow ? true : false)) {
-    (this.topShadow ? hide : show)(this.topShadowDiv);
-    this.topShadow = !this.topShadow;
-  }
-  if (progress < 1 != (this.bottomShadow ? true : false)) {
-    (this.bottomShadow ? hide : show)(this.bottomShadowDiv);
-    this.bottomShadow = !this.bottomShadow;
-  }
-
-  if (this.isHorizontal) {
-    this.innerWidth = Math.max(40, Math.floor(this.scrollWidth * this.scrollWidth / width));
-    this.inner.style.width = this.innerWidth + 'px';
-    this.inner.style.marginLeft = Math.floor((this.scrollWidth - this.innerWidth - 4) * progress + 2) + 'px';
-  } else {
-    this.innerHeight = Math.max(40, Math.floor(this.scrollHeight * this.scrollHeight / height));
-    this.inner.style.height = this.innerHeight + 'px';
-    this.inner.style.marginTop = Math.floor((this.scrollHeight - this.innerHeight - 4) * progress + 2) + 'px';
-  }
-
-  if (this.options.more && isFunction(this.options.more) && (this.options.contHeight || (height - this.obj[this.scrollProp] < this[this.scrollDimensionProp] * 2))) {
-    this.options.more();
-  }
-}
-// Tiny Scrollbars end
 
 var DesktopNotifications = {
   supported: function() {
@@ -5976,4 +5479,316 @@ var DesktopNotifications = {
   }
 };
 
+var TopNotifier = {
+  tnLink: 'top_notify_btn',
+  tnCount: 'top_notify_count',
+  _qParams: {section: 'notifications', _tb: 1},
+  loaded: false,
+
+  onLoad: function(rows, js) {
+    val('top_notify_cont', rows);
+    eval('(function(){' + js + ';})()');
+    TopNotifier.cleanCount();
+    TopNotifier.refresh();
+  },
+  preload: function() {
+    if (this.shown() || vk.isBanned) return;
+    ajax.post('/al_feed.php', extend(this._qParams, {_preload: 1}), {
+      cache: 1,
+      onDone: function(rows, js) {
+        if (TopNotifier.shown() && geByClass1('pr', 'top_notify_cont')) {
+          TopNotifier.onLoad(rows, js);
+        }
+      },
+      stat: ['feed.css', 'page.css', 'post.css']
+    });
+  },
+  show: function(ev) {
+    if (checkEvent(ev) === true || vk.isBanned) return;
+    if (this.shown() && ev !== true) {
+      if (!gpeByClass('top_notify_wrap', ev.target, ge('top_nav'))) {
+        this.hide();
+      }
+      return cancelEvent(ev);
+    }
+
+    vk.counts['ntf'] = 0;
+    this.setCount(0, true);
+
+    var link = ge(TopNotifier.tnLink),
+        cont = ge('top_notify_cont');
+    if (cur.introNotifyTooltipHide) {
+      cur.introNotifyTooltipHide();
+      delete cur.introNotifyTooltipHide;
+    }
+    if (link.tt && link.tt.hide) {
+      link.tt.hide();
+    }
+    if (!cont) {
+      var c = ce('div', {
+        innerHTML: '<div class="top_notify_header"><a href="/settings?act=notify" class="top_notify_prefs_lnk" onclick="return nav.go(this, event);" onmousedown="event.cancelBubble = true;" ontouchstart="event.cancelBubble = true;">' + getLang('global_notifications_settings') + '</a>' + getLang('global_last_notifitications') + '</div><div id="top_notify_cont" class="top_notify_cont wall_module"  ontouchstart="event.cancelBubble = true;" onmousedown="event.cancelBubble = true;"></div><a href="/feed?section=notifications" class="top_notify_show_all" onmousedown="event.cancelBubble = true;" onclick="TopNotifier.hide(); return nav.go(this, event);">' + getLang('global_notify_show_all') + '</a>',
+        id: 'top_notify_wrap',
+        className: 'scroll_fix_wrap top_notify_wrap'
+      });
+      link.appendChild(c);
+      cont = ge('top_notify_cont');
+    }
+    if (!cur.tnScrollbar) {
+      cur.tnScrollbar = new Scrollbar('top_notify_cont', {
+        nomargin: true,
+        right: vk.rtl ? 'auto' : 0,
+        left: !vk.rtl ? 'auto' : 0,
+        forceCancelEvent: true,
+        nokeys: true
+      });
+      cur.destroy.push(function () {
+        cur.tnScrollbar && cur.tnScrollbar.destroy();
+      });
+    }
+
+    if (!TopNotifier.loaded) {
+      ajax.post('/al_feed.php', this._qParams, {
+        onDone: TopNotifier.onLoad,
+        showProgress: TopNotifier.showProgress,
+        stat: ['feed.css']
+      });
+      TopNotifier.loaded = true;
+    }
+
+    addClass(this.tnLink, 'active');
+    var wHeight = window.innerHeight || document.documentElement.clientHeight;
+    setStyle(cont, {'maxHeight': Math.max(wHeight - 200, 300)});
+    TopNotifier.refresh();
+
+    if (ev !== true) {
+      cancelStackPush('top_notifier', TopNotifier.hide.bind(this), true);
+    }
+
+    return ev ? cancelEvent(ev) : false;
+  },
+  hide: function() {
+    removeClass(this.tnLink, 'active');
+    cancelStackFilter('top_notifier', true);
+  },
+  shown: function() {
+    return hasClass(this.tnLink, 'active');
+  },
+  showProgress: function() {
+    var cont = ge('top_notify_cont');
+    if (!geByClass1('pr', cont)) {
+      val(cont, '');
+      showProgress(cont);
+      TopNotifier.refresh();
+    }
+  },
+  showTooltip: function(text, key) {
+    if (TopNotifier.shown() || isVisible('dev_top_nav')) return;
+    function _onHide(key) {
+      if (!key && cur.topNotifyTTKey) {
+        key = cur.topNotifyTTKey;
+        delete cur.topNotifyTTKey;
+      }
+      if (!key) return;
+      var k = key.split(':'),
+          seen = ls.get('ntfseen') || {};
+      if (k.length == 2) {
+        seen[0] = parseInt((new Date().getTime()) / 1000);
+        seen[k[0]] = k[1];
+        ls.set('ntfseen', seen);
+      }
+    }
+
+    var el = ge(TopNotifier.tnLink),
+        options = {};
+    if (el.tt == 'shownow') {
+      removeAttr(el, 'tt');
+    }
+    if (text) {
+      options.text = function() { return text; };
+      if (key) {
+        options.onHide = _onHide.pbind(key);
+      }
+    } else {
+      if (el.tt && el.tt.destroy) {
+        el.tt.destroy();
+      }
+      var seen = ls.get('ntfseen') || {},
+          _s = [];
+      each(seen, function(i,v) { _s.push(i+':'+v); });
+      options = extend(options, {
+        url: 'al_feed.php',
+        params: {act: 'a_last_notify', seen: _s.join(';')},
+        ajaxdt: 2000,
+        noload: 1,
+        onHide: _onHide
+      })
+    }
+    var _ttHide = function(tt) {
+      setTimeout(function() {
+        if (window.curNotifier && curNotifier.idle_manager && curNotifier.idle_manager.is_idle) {
+          _ttHide(tt);
+          return;
+        }
+        if (tt) tt.hide();
+        Notifier.lcSend('hide_notify_tt');
+      }, 6000);
+    }
+    showTooltip(el, extend(options, {
+      typeClass: 'top_notify_tt',
+      dir: 'up',
+      width: 250,
+      shift: [0, 1],
+      nohideover: 1,
+      nohide: 1,
+      onShowStart: function(tt) {
+        if (TopNotifier.shown()) {
+          tt.opts.onHide = false;
+          tt.hide();
+        }
+        addEvent(tt.container, 'mousedown', function(ev) {
+          if (ev && inArray(ev.target.tagName, ['A', 'IMG'])) return;
+          TopNotifier.show(ev);
+          return cancelEvent(ev);
+        });
+        _ttHide(tt);
+        Notifier.setRecvClbk('hide_notify_tt', tt.hide);
+      }
+    }));
+  },
+  invalidate: function() {
+    TopNotifier.loaded = false;
+  },
+  setCount: function(value, noInvalidate) {
+    if (isString(value)) value = trim(value);
+    if (parseInt(value) >= 100) value = '+99';
+
+    if (hasClass(this.tnLink, 'has_notify') && value) {
+      animateCount(this.tnCount, value, {str: 'auto'});
+    } else {
+      val(this.tnCount, value);
+    }
+    toggleClass(this.tnLink, 'has_notify', !!value);
+    if (!noInvalidate) {
+      this.invalidate();
+    }
+  },
+  cleanCount: function() {
+    if (!cur.topNotifyHash) return;
+    ajax.post('/al_feed.php', {act: 'a_clean_notify', hash: cur.topNotifyHash});
+  },
+  refresh: function() {
+    cur.tnScrollbar && cur.tnScrollbar.update(false, true);
+  },
+  postTooltip: function(el, post, opts) {
+    return false;
+    /*
+
+    var reply = (opts || {}).reply, url = 'al_wall.php';
+
+    if (!post.indexOf('topic_comment')) {
+      url = 'al_board.php';
+      post = post.replace('topic_comment', '');
+    } else {
+      post = post.replace('wall_reply', '').replace('wall', '');
+    }
+
+    showTooltip(el, {
+      url: url,
+      params: extend({act: 'post_tt', post: post, self: 1, from: 'feedback'}, opts || {}),
+      slide: 15,
+      shift: [(reply && !(reply % 2)) ? 329 : 27, 6],
+      ajaxdt: 100,
+      showdt: 400,
+      hidedt: 200,
+      dir: 'auto',
+      className: 'rich wall_tt',
+      appendParentCls: 'page_header_wrap'
+    });
+    */
+  },
+  hideRow: function(el, item, hash) {
+    var row = gpeByClass('_feed_row', el);
+    if (!row) {
+      var wrap = gpeByClass('top_notify_wrap', el);
+      row = geByClass('_feed_row', wrap);
+      row = row[row.length - 1];
+    }
+    ajax.post('/al_feed.php', {act: 'a_hide_notify', item: item, hash: hash});
+    TopNotifier.hideActionsMenu(gpeByClass('_ui_menu_wrap', el));
+    slideUp(row, 200, function() {
+      re(row);
+      if (!geByClass('feed_row', 'top_notify_cont').length) {
+        val('top_notify_cont', '<div class="top_notify_empty no_rows">' + getLang('news_no_new_notifications') + '</div>');
+      }
+      TopNotifier.refresh();
+    });
+  },
+  deleteRow: function (item, del_item, types, hash, el, canDel) {
+    var r = ge('top_feedback_row' + item),
+            actionsWrap = geByClass1('post_actions', r);
+    TopNotifier.hideActionsMenu(geByClass1('_ui_menu_wrap', r));
+    ajax.post('al_feed.php', {act: 'a_feedback_delete', item: del_item, hash: hash, types: types, candel: canDel, from: 'top_notifier'}, {
+      onDone: function (html) {
+        var t = geByClass1('_post_content', r),
+            fd = geByClass1('_feedback_deleted', r);
+        if (fd) {
+          fd.innerHTML = '<span class="dld_inner">' + html + '</span>';
+          show(fd);
+        } else {
+          r.appendChild(ce('div', {className: 'feedback_row dld _feedback_deleted _top_feedback_deleted', innerHTML: '<span class="dld_inner">' + html + '</span>'}));
+        }
+        hide(t);
+        if (hasClass(r, 'feedback_row_clickable')) {
+          addClass(r, 'feedback_row_touched');
+        }
+        TopNotifier.refresh();
+      },
+      showProgress: addClass.pbind(actionsWrap, 'post_actions_progress'),
+      hideProgress: removeClass.pbind(actionsWrap, 'post_actions_progress')
+    })
+  },
+  checkClick: function (el, event) {
+    event = event || window.event;
+    if (!el || !event) return true;
+    var target = event.target || event.srcElement,
+        i = 8,
+        foundGood = false,
+        classRE = /(feedback_sticky_text|feedback_sticky_icon|feedback_row)/;
+    do {
+      if (!target ||
+          target == el ||
+          target.onclick ||
+          target.onmousedown ||
+          inArray(target.tagName, ['A', 'IMG', 'TEXTAREA', 'EMBED', 'OBJECT']) ||
+          (foundGood = target.className.match(classRE))
+      ) {
+        break;
+      }
+    } while (i-- && (target = target.parentNode));
+    if (!foundGood) {
+      return false;
+    }
+    return target || true;
+  },
+  showActionsMenu: function(el) {
+    var options = false;
+        row = domClosest('_feed_row', el),
+        rowPN = domPN(row);
+    if (rowPN.lastChild == row && (!hasClass(rowPN, 'feedback_sticky_rows') || domPN(rowPN).lastChild == rowPN)) {
+      options = {
+        appendParentCls: 'top_notify_wrap',
+        processHoverCls: hasClass(domPN(el), 'post_actions') ? 'feedback_row' : 'feedback_sticky_row'
+      }
+    }
+    uiActionsMenu.show(el, false, options);
+  },
+  hideActionsMenu: function(el) {
+    uiActionsMenu.hide(el);
+  },
+  showGiftBox: function(fids, ev) {
+    return !showBox('al_gifts.php', {act: 'get_gift_box', fids: fids, fr: 1}, {stat: ['gifts.css', 'wide_dd.js', 'wide_dd.css'], cache: 1, dark: 1}, ev);
+  }
+};
+
 try{stManager.done('notifier.js');}catch(e){}
+

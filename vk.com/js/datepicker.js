@@ -1,20 +1,20 @@
 (function(){
-  
+
   var ebrowse_mn = [];
   var ebrowse_days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
   var ebrowse_dayname_length = getLang('events_mon').length;
-  
+
   var date_format = getLang('datepicker_date_format');
   if(date_format == 'datepicker date format') date_format = '{day} {month} {year}';
   var month_format = getLang('datepicker_month_format');
   if(month_format == 'datepicker month format') month_format = '{month} {year}';
-  
+
   var larr = getLang('larr');
   if(larr == 'larr')larr = '&larr;';
   var rarr = getLang('rarr');
   if(rarr == 'rarr')rarr = '&rarr;';
-  
-  
+
+
   for(var i=1;i<13;i++){
     ebrowse_mn.push(getLang('Month'+i));
   }
@@ -22,7 +22,7 @@
     var wd = getLang('events_'+ebrowse_days[i]);
     if(wd.substr(0,6)!='events')ebrowse_days[i] = wd;
   }
-  
+
 window.Calendar = function(params){
   var place = params.container;
   var rnd = Math.round(Math.random()*1000000);
@@ -39,14 +39,14 @@ window.Calendar = function(params){
     day = day.toString();
     return { y:parseInt(day.substr(0, 4), 10), m:parseInt(day.substr(4, 2), 10), d:parseInt(day.substr(6, 2), 10) };
   }
-  
+
   var day = params.day || {d:-1, m:-1, y:-1};
   if(!day.d){
     day = parseDay(day);
   }
   var getDay = params.getDay || function(d, m, y){};
   var _t = this;
-  
+
   _t.setDay = function(d, m, y){
     day = m ? {d:d, m:m, y:y} : parseDay(d);
     getMonth(day.m, day.y);
@@ -56,11 +56,11 @@ window.Calendar = function(params){
     mode = (modes[m] || m || "d").replace(/(this|next|prev)/, "");
     getMonth(day.m, day.y, true);
   };
-  
+
   var cleanDay = function(){
     getDay(-1, -1, -1);
   };
-  
+
   var setDayColor = function(x, type) {
     var lim = (mode == "w") ? 7:1;
     for(var i=0;i<lim;i++){
@@ -68,7 +68,7 @@ window.Calendar = function(params){
       if(xday)xday.style.backgroundColor = colorTypes[dayColors[x+i][type]];
     }
   };
-  
+
   var getChild = function(el, inds){
     for(var i=0;i<inds.length;i++){
       var el = el.childNodes[inds[i]];
@@ -76,7 +76,7 @@ window.Calendar = function(params){
     }
     return el;
   };
-  
+
   var getMonth = function(m, y, noheight) {
     var mn = ebrowse_mn;
     var dim = [31,0,31,30,31,30,31,31,30,31,30,31];
@@ -86,13 +86,13 @@ window.Calendar = function(params){
     if (oD.od == 0) {
       oD.od = 7;
     }
-    
+
     var disabled = (mode == '-1');
 
     var dontDoLine = false;
     var leftStyle = '';
     var todayDate = !disabled ? new Date() : new Date(3000, 1, 1);
-    
+
     var d_y = oD.getFullYear();
     dim[1] = ( ((d_y % 100 != 0) && (d_y %4 == 0)) || (d_y % 400 == 0) ) ? 29 : 28;
 
@@ -119,12 +119,12 @@ window.Calendar = function(params){
         if(i!=selDay && curDate < todayDate)clDay += " pastDay";
         t.push('<td class="'+clDay+leftStyle+'" style="width:50%" id="day'+i+'_'+rnd+'">'+mn[i-1]+'</td>');
       }
-      
+
       t.push('</tr></tbody></table>');
       if(!noheight)place.style.height = place.offsetHeight+"px";
 
       place.innerHTML = t.join('');
-      
+
       lArrow = getChild(place, [0, 0, 0, 0]);
       rArrow = getChild(place, [0, 0, 0, 2]);
       addEvent(lArrow, 'click', function(){getMonth(1, lastYear);return false;});
@@ -160,7 +160,7 @@ window.Calendar = function(params){
         t.push('<td class="daysofweek">'+ ebrowse_days[s]+'</td>');
       }
       t.push('</tr><tr>');
-      
+
       var dayPos = [];
 
       for(var i=1;i<=42;i++) {
@@ -184,7 +184,7 @@ window.Calendar = function(params){
           clDay = 'day'+leftStyle;
           if(curDate - todayDate + 86400000 < 0) clDay += " pastDay";
         }
-        
+
         if (x > 0) {
           dayPos[i] = x1;
           t.push('<td id="day'+x+'_'+rnd+'" class="'+clDay+'">'+x+'</td>');
@@ -223,7 +223,7 @@ window.Calendar = function(params){
       break;
     }
   }
-  
+
   getMonth(day.m, day.y);
 };
 
@@ -249,7 +249,7 @@ window.DatePicker = function(params){
   var el = params.container;
   var dateInput, dateImg;
   var _t = this;
-  
+
   var fixIE = function(){
     if(!browser.msie)return;
     calendarDiv = ge(calendarDiv.id);
@@ -258,7 +258,7 @@ window.DatePicker = function(params){
     dateInput = ge(dateInput.id);
     dateImg = ge(dateImg.id);
   }
-  
+
   var onClick = function(e){
     if (mode == 'h') return;
     fixIE();
@@ -270,7 +270,7 @@ window.DatePicker = function(params){
     }
     cancelEvent(e);
   };
-  
+
   var onDocClick = function(e){
     if(e.target.id == inputId || e.target.id == imgId){
       onClick(e);
@@ -285,7 +285,7 @@ window.DatePicker = function(params){
     fixIE();
     _t.hide();
   };
-  
+
   var show = function(){
     calendarBox.style.display = "";
     new Calendar({
@@ -305,7 +305,7 @@ window.DatePicker = function(params){
     while (p = p.parentNode){
       if(p.style && getStyle(p, 'position') == 'absolute'){
         var xy1 = getXY(p);
-        xy[0] -= xy1[0]; 
+        xy[0] -= xy1[0];
         xy[1] -= xy1[1];
       }
     }
@@ -317,7 +317,7 @@ window.DatePicker = function(params){
     }
     dateInput.focus();
   };
-  
+
   var update = function(date, mode, init){
     if(useForm){
       if(mode != "m"){
@@ -342,7 +342,7 @@ window.DatePicker = function(params){
     _t.hide();
     if(!init)onUpdate(date, mode);
   };
-  
+
   this.hide = function(){
     calendarBox.style.display = "none";
     pickerShown = false;
@@ -358,7 +358,7 @@ window.DatePicker = function(params){
 
   var html = [];
   if(!useForm){
-    if(params.date){  
+    if(params.date){
       var d = new Date(params.date * 1000);
       params.year = d.getFullYear();
       params.month = d.getMonth()+1;
@@ -370,7 +370,7 @@ window.DatePicker = function(params){
   }else{
     var types = {m:"month", y:"year"};
     if(mode!="m")types.d = "day";
-    
+
     for(var i in types){
       var id = pref+"time_"+types[i];
       dates[i] = parseInt(ge(id).value, 10);
@@ -400,7 +400,7 @@ window.DatePicker = function(params){
   calendarDiv = ge('calendarDiv'+rnd);
   calendarFrame = ge('calendarFrame'+rnd);
   if(browser.mozilla){calendarFrame.style.display = 'none';}
-  
+
 };
 
 })();

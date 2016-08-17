@@ -582,33 +582,6 @@ cur.lang.notes_livejournal_delete + '</div></div>' : '';
     }
   },
 
-  wysiwygInit: function() {
-    if (browser.ipod || browser.ipad || browser.iphone) return;
-    this.getScrollWidth();
-    var simpleToolBar = 'bold,h1,strike,marker_list,image,video,audio,link';
-    var extendedToolBar = 'bold,italic,gray,underline,strike,sub,sup,left,center,right,marker_list,numeric_list,outdent,indent,h1,h2,h3,break,';
-    extendedToolBar += 'table,table_delete,insert_row_before,insert_row_after,insert_col_before,insert_col_after,delete_row,delete_col,col_width,link,unlink,citate,character,image,video,audio,doc';
-    var editorParams = {
-      editorName: 'noteWysiwyg',
-      replaceElemID: 'post',
-      contentCSS: 'css/al/wysiwyg.css',
-      html: ge('post').value,
-      wiki: ge('post_wiki') ? ge('post_wiki').value : '',
-      height: 300,
-      simpleToolBar: simpleToolBar,
-      extendedToolBar: extendedToolBar,
-      defaultMode: 'simple',
-      skinFile: 'notes',
-      cutHtml: { maxHeight: 200, offset: 100 },
-      photoMinSize: { w: 50, h: 50 },
-      photoMaxSize: { w: 607, h: 500 },
-      debug: false,
-      note: 1
-    };
-    window.editorName = editorParams.editorName;
-    window[editorParams.editorName] = new Wysiwyg(editorParams);
-  },
-
   saveNote: function(mid) {
     var editor = window[window.editorName];
     if (editor) {
@@ -833,13 +806,6 @@ cur.lang.notes_livejournal_delete + '</div></div>' : '';
 
     cur.delMb = false;
     cur.editing = 0;
-
-    if ((options.act == 'new' || options.act == 'edit') && options.noteType != 'share') {
-      this.wysiwygInit();
-      if (options.publishStatus) {
-        checkbox(ge('status_export'), 0);
-      }
-    }
 
     cur.photoBox = null;
     cur.pic = null;

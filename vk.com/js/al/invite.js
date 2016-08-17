@@ -58,8 +58,8 @@ var inviter = {
 
     var selData = opts.selData;
 
-    placeholderSetup('inv_mobile');
-    selectsData.setCountries(selData.countries_list);
+    placeholderInit('inv_mobile');
+    /*selectsData.setCountries(selData.countries_list);
     for (var i in selData.countries) {
       selectsData.setCountryInfo(i, selData.countries[i]);
     }
@@ -71,7 +71,7 @@ var inviter = {
     }
     for (var i in selData.faculties) {
       selectsData.setFacultyInfo(i, selData.faculties[i]);
-    }
+    }*/
 
     var uiBDay, uiBMonth, uiBYear, uiCountry, uiCity;
 
@@ -85,14 +85,12 @@ var inviter = {
 
     var uiLang = new Dropdown(ge('inv_lang'), [[0, 'Русский'], [3, 'English'], [73, 'Portugues']], {
       big: 1,
-      width: 222,
       multiselect: false,
       selectedItems: (vk.lang < 3) ? 0 : vk.lang
     });
 
     cur.uiSex = new Dropdown(ge('inv_sex'), selData.sexes, {
       big: 1,
-      width: 222,
       multiselect: false,
       onChange: function(val) {
         var label = ge('birth_date_label')
@@ -103,7 +101,7 @@ var inviter = {
       }
     });
 
-    var updDays = function(year, month) {
+    /*var updDays = function(year, month) {
       if (uiBDay.val() > inviter.getLastDay(year, month)) {
         uiBDay.clear();
       }
@@ -374,7 +372,7 @@ var inviter = {
           uiSchoolGradYear.clear();
         }
       }
-    });
+    });*/
 
   },
 
@@ -451,9 +449,7 @@ var inviter = {
         });
       }
     }
-    if (isVisible('inv_error')) {
-      slideUp('inv_error', 200);
-    }
+    val('inv_error', '');
     ajax.post('invite.php', params, {
       onDone: function(res, html) {
         if (res) {
@@ -465,7 +461,7 @@ var inviter = {
           var newEl = se(html);
           newEl.style.display = 'none';
           container.insertBefore(newEl, container.firstChild);
-          show('invited_invites_sent_wrap');
+          show('invited_popup_box', 'invited_invites_sent_wrap');
           slideDown(newEl, 200);
 
           each(['inv_fname', 'inv_lname', 'inv_mobile'], function(i, el) { val(el, '') });
@@ -476,11 +472,7 @@ var inviter = {
       },
       onFail: function(text) {
         if (!text) return;
-
-        ge('inv_error').innerHTML = text;
-        if (!isVisible('inv_error')) {
-          slideDown('inv_error', 200);
-        }
+        showMsg('inv_error', text, 'error');
         return true;
       },
       showProgress: lockButton.pbind('invite_send_btn'),

@@ -87,7 +87,7 @@
         if (!data[1]) data[1] = [];
         var i = data[1].length;
         while (i--) {
-          if (data[1][i]._func) {
+          if (data[1][i] && data[1][i]._func) {
             var funcNum = data[1][i]._func;
             data[1][i] = function() {
               var args = Array.prototype.slice.call(arguments);
@@ -228,7 +228,7 @@
   }
 
   w.fastXDM.Server.prototype.destroy = function() {
-    handlers.splice(handlers.indexOf(this.key), 1);
+    delete handlers[this.key];
   }
 
   function extend(obj1, obj2){
@@ -293,7 +293,13 @@
     env.protocol = 'p';
     env.send = function(xdm, strData) {
       var win = (xdm.frame ? xdm.frame.contentWindow : xdm.caller);
-      win.postMessage(xdm.key+':'+strData, "*");
+      if (win) {
+        try {
+          win.postMessage(xdm.key+':'+strData, "*");
+        } catch(e) {
+          window.postMessage.call(win, xdm.key+':'+strData, "*");
+        }
+      }
     }
     if (w.addEventListener) {
       w.addEventListener("message", w.fastXDM.onMessage, false);
@@ -568,7 +574,7 @@ if (!VK.xdConnectionCallbacks) {
           if (!text) {
             text = '';
           }
-          var query =  VK._protocol + '//vk.com/al_apps.php?act=wall_post_box&widget=1&method='+m+'&aid=' + parseInt(VK._apiId, 10) + '&text=' + encodeURIComponent(text);
+          var query =  VK._protocol + '//vk.com/al_apps.php?act=wall_post_box&widget=4&method='+m+'&aid=' + parseInt(VK._apiId, 10) + '&text=' + encodeURIComponent(text);
           if (m == 'wall.post') {
             query += '&owner_id=' + parseInt(params.owner_id || 0, 10) + '&attachments=' + (params.attachments || params.attachment || '') + '&publish_date=' + (params.publish_date || '');
           }
@@ -576,8 +582,8 @@ if (!VK.xdConnectionCallbacks) {
           query += '&method_access='+method_access;
           var popup = VK.UI.popup({
             url: query,
-            width: 460,
-            height: 249
+            width: 560,
+            height: 304
           });
           var timer = setInterval(function() {
             if (VK.UI.active.closed) {
@@ -1077,6 +1083,12 @@ if (!VK.Widgets) {
   VK.Widgets.count = 0;
   VK.Widgets.RPC = {};
 
+  VK.Widgets.showBoxUrl = function(domain, url) {
+    domain = (domain || VK._protocol + '//vk.com').replace(/\/?\s*$/, '');
+    url = url.replace(/^\s*\/?/, '');
+    return domain + '/' + url;
+  };
+
   VK.Widgets.loading = function(obj, enabled) {
     obj.style.background = enabled ? 'url("' + VK._protocol + '//vk.com/images/upload.gif") center center no-repeat transparent' : 'none';
   };
@@ -1122,7 +1134,7 @@ if (!VK.Widgets) {
 
     return VK.Widgets._constructor('widget_comments.php', objId, options, params, {
       showBox: function(url, props) {
-        var box = VK.Util.Box((options.redesign && props.base_domain || options.base_domain || VK._protocol + '//vk.com') + '/' + url, [], {
+        var box = VK.Util.Box(VK.Widgets.showBoxUrl(options.base_domain, url), [], {
           proxy: function() {
             rpc.callMethod.apply(rpc, arguments);
           }
@@ -1166,7 +1178,7 @@ if (!VK.Widgets) {
       target: options.target || 'parent'
     };
     return VK.Widgets._constructor('widget_recommended.php', objId, options, params, {}, {
-      startHeight: (90 + params.limit * 30),
+      startHeight: (116 + params.limit * 47 - 15),
       minWidth: 150,
       width: '100%'
     });
@@ -1174,19 +1186,20 @@ if (!VK.Widgets) {
 
   VK.Widgets.Post = function(objId, ownerId, postId, hash, options) {
     options = options || {};
-    var params = {
-      owner_id: ownerId,
-      post_id: postId,
-      hash: hash || '',
-      width: options.width || 500
-    }, iframe, rpc, cursorBack;
+    var obj = document.getElementById(objId),
+      params = {
+        owner_id: ownerId,
+        post_id: postId,
+        hash: hash || '',
+        width: options.width || (obj && obj.offsetWidth > 0 ? obj.offsetWidth : 500)
+      }, iframe, rpc, cursorBack;
     if (options.preview) {
       params.preview = 1;
       delete options['preview'];
     }
     return VK.Widgets._constructor('widget_post.php', objId, options, params, {
       showBox: function(url, props) {
-        var box = VK.Util.Box((options.redesign && props.base_domain || options.base_domain || VK._protocol + '//vk.com') + '/' + url, [], {
+        var box = VK.Util.Box(VK.Widgets.showBoxUrl(options.base_domain, url), [], {
           proxy: function() {
             rpc.callMethod.apply(rpc, arguments);
           }
@@ -1207,135 +1220,155 @@ if (!VK.Widgets) {
     }, function(o, i, r) {iframe = i; rpc = r;});
   };
 
-  VK.Widgets.Like = function(objId, options, page) {
-    var pData = VK.Util.getPageData();
-    if (!VK._apiId) throw Error('VK not initialized. Please use VK.init');
-    options = VK.extend(options || {}, {allowTransparency: true});
+  VK.Widgets.Like = (function(Like) {
+    if (Like) return Like;
 
-    var verticalBtnHeightWidth = {
-          18: 43,
-          20: 47,
-          22: 51,
-          24: 55,
-          30: 67,
-        },
-        btnHeight = parseInt(options.height, 10) || 22,
-        size = btnHeight && verticalBtnHeightWidth[btnHeight] ? btnHeight : 22,
-        type = (options.type == 'full' || options.type == 'button' || options.type == 'vertical' || options.type == 'mini') ? options.type : 'full',
-        autoWidth = options.width === 'auto' && options.redesign && (type == 'button' || type == 'mini'),
-        width = autoWidth ? 153 : (type == 'full' ? Math.max(200, options.width || 350) : (type == 'button' ? 180 : (options.redesign ? (type == 'mini' ? 115 : verticalBtnHeightWidth[size]) : (type == 'mini' ? 100 : 41)))),
-        height = type == 'vertical' ? (2 * btnHeight + 7) : (options.redesign ? btnHeight : (type == 'full' ? btnHeight + 1 : btnHeight)),
-        params = {
-          page: page || 0,
-          url: options.pageUrl || pData.url,
-          type: type,
-          verb: options.verb == 1 ? 1 : 0,
-          color: options.color || '',
-          title: options.pageTitle || pData.title,
-          description: options.pageDescription || pData.description,
-          image: options.pageImage || pData.image,
-          text: (options.text || '').substr(0, 140),
-          h: btnHeight
-        },
-        ttHere = options.ttHere || false,
-        isOver = false,
-        hideTimeout = null,
-        obj, buttonIfr, buttonRpc, tooltipIfr, tooltipRpc, checkTO, statsBox;
-    if (options.type == 'button' || options.type == 'vertical' || options.type == 'mini') delete options.width;
-    if (autoWidth) params.auto_width = 1;
-    function showTooltip(force) {
-      if ((!isOver && !force) || !tooltipRpc) return;
-      if (!tooltipIfr || !tooltipRpc || tooltipIfr.style.display != 'none' && tooltipIfr.getAttribute('vkhidden') != 'yes') return;
-      if (options.redesign) {
+    var instances = [];
+
+    Like = function(objId, options, page) {
+      var pData = VK.Util.getPageData();
+      if (!VK._apiId) throw Error('VK not initialized. Please use VK.init');
+      options = VK.extend(options || {}, {allowTransparency: true});
+      var verticalBtnHeightWidth = {
+            18: 43,
+            20: 47,
+            22: 51,
+            24: 55,
+            30: 67,
+          },
+          type = (options.type == 'full' || options.type == 'button' || options.type == 'vertical' || options.type == 'mini') ? options.type : 'full',
+          autoWidth = options.width === 'auto' && (type == 'button' || type == 'mini'),
+          btnHeight = parseInt(options.height, 10) || 22,
+          size = btnHeight && verticalBtnHeightWidth[btnHeight] ? btnHeight : 22,
+          width = autoWidth ? 153 : (type == 'full' ? Math.max(200, options.width || 350) : (type == 'button' ? 180 : (type == 'mini' ? 115 : verticalBtnHeightWidth[size]))),
+          height = type == 'vertical' ? (2 * btnHeight + 7) : btnHeight,
+          params = {
+            page: page || 0,
+            url: options.pageUrl || pData.url,
+            type: type,
+            verb: options.verb == 1 ? 1 : 0,
+            color: options.color || '',
+            title: options.pageTitle || pData.title,
+            description: options.pageDescription || pData.description,
+            image: options.pageImage || pData.image,
+            text: (options.text || '').substr(0, 140),
+            h: btnHeight
+          },
+          ttHere = options.ttHere || false,
+          isOver = false,
+          hideTimeout = null,
+          obj, buttonIfr, buttonRpc, tooltipIfr, tooltipRpc, checkTO, statsBox;
+      if (type == 'vertical' || type == 'button' || type == 'mini') delete options.width;
+      if (autoWidth) params.auto_width = 1;
+      function showTooltip(force) {
+        if ((!isOver && !force) || !tooltipRpc) return;
+        if (!tooltipIfr || !tooltipRpc || tooltipIfr.style.display != 'none' && tooltipIfr.getAttribute('vkhidden') != 'yes') return;
         hideTimeout && clearTimeout(hideTimeout);
         checkTO && clearTimeout(checkTO);
+        var scrollTop = options.getScrollTop ? options.getScrollTop() : (document.body.scrollTop || document.documentElement.scrollTop || 0);
+        var objPos = VK.Util.getXY(obj, options.fixed);
+        var startY = ttHere ? 0 : objPos[1];
+        if (scrollTop > objPos[1] - 120 && options.tooltipPos != 'top' || type == 'vertical' || options.tooltipPos == 'bottom') {
+          tooltipIfr.style.top = (startY + height + 2) + 'px';
+          tooltipRpc.callMethod('show', false, type+'_'+size);
+        } else {
+          tooltipIfr.style.top = (startY - 128) + 'px';
+          tooltipRpc.callMethod('show', true, type+'_'+size);
+        }
+        VK.Util.ss(tooltipIfr, {left: (ttHere ? 0 : objPos[0]) - (type == 'full' || type == 'button' ? 32 : 2) + 'px', display: 'block', opacity: 1, filter: 'none'});
+        tooltipIfr.setAttribute('vkhidden', 'no');
+        isOver = true;
       }
-      var scrollTop = options.getScrollTop ? options.getScrollTop() : (document.body.scrollTop || document.documentElement.scrollTop || 0);
-      var objPos = VK.Util.getXY(obj, options.fixed);
-      var startY = ttHere ? 0 : objPos[1];
-      if (scrollTop > objPos[1] - 120 && options.tooltipPos != 'top' || type == 'vertical' || options.tooltipPos == 'bottom') {
-        tooltipIfr.style.top = (startY + height + 2) + 'px';
-        options.redesign ? tooltipRpc.callMethod('show', false, type+'_'+size) : tooltipRpc.callMethod('show', false);
-      } else {
-        tooltipIfr.style.top = (startY - (options.redesign ? 128 : 125)) + 'px';
-        options.redesign ? tooltipRpc.callMethod('show', true, type+'_'+size) : tooltipRpc.callMethod('show', true);
+
+      function hideTooltip(force) {
+        if ((isOver && !force) || !tooltipRpc) return;
+        tooltipRpc.callMethod('hide');
+        buttonRpc.callMethod('hide');
+        hideTimeout = setTimeout(function() {
+          tooltipIfr.style.display = 'none'
+        }, 400);
       }
-      VK.Util.ss(tooltipIfr, {left: ((ttHere ? 0 : objPos[0]) - (options.redesign ? (type == 'full' || type == 'button' ? 32 : 2) : (type == 'vertical' || type == 'mini' ? 36 : 2))) + 'px', display: 'block', opacity: 1, filter: 'none'});
-      tooltipIfr.setAttribute('vkhidden', 'no');
-      isOver = true;
-    }
 
-    function hideTooltip(force) {
-      if ((isOver && !force) || !tooltipRpc) return;
-      tooltipRpc.callMethod('hide');
-      buttonRpc.callMethod('hide');
-      hideTimeout = setTimeout(function() {
-        tooltipIfr.style.display = 'none'
-      }, 400);
-    }
+      function handleStatsBox(act) {
+        hideTooltip(true);
+        statsBox = VK.Util.Box(buttonIfr.src + '&act=a_stats_box&widget_width=638');
+        statsBox.show();
+      }
 
-    function handleStatsBox(act) {
-      hideTooltip(true);
-      statsBox = VK.Util.Box(buttonIfr.src + '&act=a_stats_box&widget_width=620');
-      statsBox.show();
-    }
+      var widgetId = VK.Widgets._constructor('widget_like.php', objId, options, params, {
+        initTooltip: function(counter) {
+          tooltipRpc = new fastXDM.Server({
+            onInit: counter ? function() {
+                showTooltip();
+              } : function() {},
+            proxy: function() {
+              buttonRpc.callMethod.apply(buttonRpc, arguments);
+            },
+            showBox: function(url, props) {
+              var box = VK.Util.Box(VK.Widgets.showBoxUrl(options.base_domain, url), [props.width, props.height], {
+                proxy: function() {
+                  tooltipRpc.callMethod.apply(tooltipRpc, arguments);
+                }
+              });
+              box.show();
+            },
+            statsBox: handleStatsBox
+          }, false, {safe: true});
+          tooltipIfr = tooltipRpc.append(ttHere ? obj : document.body, {
+            src: buttonIfr.src + '&act=a_like_tooltip',
+            scrolling: 'no',
+            allowTransparency: true,
+            id: buttonIfr.id + '_tt',
+            style: {position: 'absolute', padding: 0, display: 'block', opacity: 0.01, filter: 'alpha(opacity=1)', border: '0', width: '274px', height: '130px', zIndex: 5000, overflow: 'hidden'}
+          });
+          tooltipIfr.setAttribute('vkhidden', 'yes');
 
-    return VK.Widgets._constructor('widget_like.php', objId, options, params, {
-      initTooltip: function(counter) {
-        tooltipRpc = new fastXDM.Server({
-          onInit: counter ? function() {showTooltip(!options.redesign)} : function() {},
-          proxy: function() {
-            buttonRpc.callMethod.apply(buttonRpc, arguments);
-          },
-          showBox: function(url, props) {
-            var box = VK.Util.Box((options.redesign && props.base_domain || options.base_domain || VK._protocol + '//vk.com/') + url, [props.width, props.height], {
-              proxy: function() {
-                tooltipRpc.callMethod.apply(tooltipRpc, arguments);
-              }
-            });
-            box.show();
-          },
-          statsBox: handleStatsBox
-        }, false, {safe: true});
-        tooltipIfr = tooltipRpc.append(ttHere ? obj : document.body, {
-          src: buttonIfr.src + '&act=a_like_tooltip',
-          scrolling: 'no',
-          allowTransparency: true,
-          id: buttonIfr.id + '_tt',
-          style: {position: 'absolute', padding: 0, display: 'block', opacity: 0.01, filter: 'alpha(opacity=1)', border: '0', width: (options.redesign ? '274px' : '238px'), height: (options.redesign ? '130px' : '124px'), zIndex: 5000, overflow: 'hidden'}
-        });
-        tooltipIfr.setAttribute('vkhidden', 'yes');
-
-        obj.onmouseover = tooltipIfr.onmouseover = function() {
-          clearTimeout(checkTO);
-          isOver = true;
-        };
-        obj.onmouseout = tooltipIfr.onmouseout = function() {
-          clearTimeout(checkTO);
-          isOver = false;
-          checkTO = setTimeout(function() {hideTooltip(); }, 200);
-        };
-      },
-      statsBox: handleStatsBox,
-      showTooltip: showTooltip,
-      hideTooltip: hideTooltip,
-      showBox: function(url, props) {
-        var box = VK.Util.Box((options.redesign && props.base_domain || options.base_domain || VK._protocol + '//vk.com/') + url, [], {
-          proxy: function() {
-            buttonRpc.callMethod.apply(buttonRpc, arguments);
+          tooltipIfr.onmouseover = function() {
+            clearTimeout(checkTO);
+            isOver = true;
+          };
+          tooltipIfr.onmouseout = function() {
+            clearTimeout(checkTO);
+            isOver = false;
+            checkTO = setTimeout(function() {hideTooltip(); }, 200);
+          };
+        },
+        statsBox: handleStatsBox,
+        showTooltip: showTooltip,
+        hideTooltip: hideTooltip,
+        destroy: function() {
+          buttonRpc.destroy();
+          try {buttonIfr.src = 'about: blank;';} catch (e) {}
+          buttonIfr.parentNode.removeChild(buttonIfr);
+          if (tooltipIfr) {
+            try {tooltipIfr.src = 'about: blank;';} catch (e) {}
+            tooltipIfr.parentNode.removeChild(tooltipIfr);
           }
-        });
-        box.show();
-      },
-      proxy: function() {if (tooltipRpc) tooltipRpc.callMethod.apply(tooltipRpc, arguments);}
-    }, {
-      startHeight: height,
-      minWidth: width
-    }, function(o, i, r) {
-      buttonRpc = r;
-      VK.Util.ss(obj = o, {height: height + 'px', width: width + 'px', position: 'relative', clear: 'both'});
-      VK.Util.ss(buttonIfr = i, {height: height + 'px', width: width + 'px', overflow: 'hidden', zIndex: 150});
-      if (options.redesign) {
+          tooltipRpc && tooltipRpc.destroy();
+          if (statsBox) {
+            if (statsBox.iframe) {
+              try {statsBox.iframe.src = 'about: blank;';} catch (e) {}
+              statsBox.iframe.parentNode.removeChild(statsBox.iframe);
+            }
+            statsBox.rpc && statsBox.rpc.destroy();
+          }
+        },
+        showBox: function(url, props) {
+          var box = VK.Util.Box(VK.Widgets.showBoxUrl(options.base_domain, url), [], {
+            proxy: function() {
+              buttonRpc.callMethod.apply(buttonRpc, arguments);
+            }
+          });
+          box.show();
+        },
+        proxy: function() {if (tooltipRpc) tooltipRpc.callMethod.apply(tooltipRpc, arguments);}
+      }, {
+        startHeight: height,
+        minWidth: width
+      }, function(o, i, r) {
+        buttonRpc = r;
+        VK.Util.ss(obj = o, {height: height + 'px', width: width + 'px', position: 'relative', clear: 'both'});
+        VK.Util.ss(buttonIfr = i, {height: height + 'px', width: width + 'px', overflow: 'hidden', zIndex: 150});
         obj.onmouseover = function() {
           clearTimeout(checkTO);
           isOver = true;
@@ -1345,13 +1378,25 @@ if (!VK.Widgets) {
           isOver = false;
           checkTO = setTimeout(function() {hideTooltip(); }, 200);
         };
+      });
+
+      instances.push(widgetId);
+      return widgetId;
+    };
+
+    Like.destroyAll = function() {
+      var xdm = null;
+      while (instances[0]) {
+        xdm = VK.Widgets.RPC[instances.pop()];
+        xdm && xdm.methods.destroy();
       }
-    });
-  };
+    }
+
+    return Like;
+  })(VK.Widgets.Like);
 
   VK.Widgets.Poll = function(objId, options, pollId) {
     var pData = VK.Util.getPageData();
-    // if (!VK._apiId) throw Error('VK not initialized. Please use VK.init');
     if (!pollId) throw Error('No poll id passed');
     options = options || {};
     var params = {
@@ -1360,8 +1405,8 @@ if (!VK.Widgets) {
       title: options.pageTitle || pData.title,
       description: options.pageDescription || pData.description
     };
-    return VK.Widgets._constructor('widget_poll.php', objId, options, params, {}, {
-      startHeight: 133,
+    return VK.Widgets._constructor('al_widget_poll.php', objId, options, params, {}, {
+      startHeight: 144,
       minWidth: 300,
       width: '100%'
     });
@@ -1369,7 +1414,6 @@ if (!VK.Widgets) {
 
   VK.Widgets.PagePoll = function(objId, options, page) {
     var pData = VK.Util.getPageData();
-    // if (!VK._apiId) throw Error('VK not initialized. Please use VK.init');
     options = options || {};
     var params = {
       page: page || 0,
@@ -1380,7 +1424,7 @@ if (!VK.Widgets) {
       description: options.pageDescription || pData.description
     };
     return VK.Widgets._constructor('al_widget_poll.php', objId, options, params, {}, {
-      startHeight: 133,
+      startHeight: 144,
       minWidth: 300,
       width: '100%'
     });
@@ -1388,29 +1432,29 @@ if (!VK.Widgets) {
 
   VK.Widgets.Community = VK.Widgets.Group = function(objId, options, gid) {
     gid = parseInt(gid, 10);
-    var rpc;
     if (!gid) {
       throw Error('No group_id passed');
     }
     options.mode = parseInt(options.mode, 10).toString();
     var params = {
-      gid: gid,
-      mode: (options.mode) ? options.mode : '0'
-    };
-    if (!options.width) options.width = 200;
+        gid: gid,
+        mode: (options.mode) ? options.mode : '0'
+      },
+      startHeight = options.mode == 3 ? 182 : (options.mode == 1 ? 138 : options.height|0 || 290),
+      rpc;
     if (options.wall) params.wall = options.wall;
     params.color1 = options.color1 || '';
     params.color2 = options.color2 || '';
     params.color3 = options.color3 || '';
     params.class_name = options.class_name || '';
     if (options.no_head) params.no_head = 1;
-    if (!options.height) options.height = 290;
     if (options.wide) {
       params.wide = 1;
-      if (options.width < 300) {
+      if (!options.width || options.width < 300) {
         options.width = 300;
       }
     }
+    if (!options.width|0) options.width = 200;
 
     var cursorBack;
 
@@ -1426,7 +1470,7 @@ if (!VK.Widgets) {
 
     return VK.Widgets._constructor('widget_community.php', objId, options, params, {
       showBox: function(url, props) {
-        var box = VK.Util.Box((options.redesign && props.base_domain || options.base_domain || VK._protocol + '//vk.com/') + url, [], {
+        var box = VK.Util.Box(VK.Widgets.showBoxUrl(options.base_domain, url), [], {
           proxy: function() {
             rpc.callMethod.apply(rpc, arguments);
           }
@@ -1449,9 +1493,7 @@ if (!VK.Widgets) {
       }
     }, {
       minWidth: 120,
-      width: '200',
-      height: '290',
-      startHeight: 200
+      startHeight: startHeight
     }, function(o, i, r) {
       rpc = r;
     });
@@ -1495,18 +1537,17 @@ if (!VK.Widgets) {
         }
         window.location.href = href + vars.join('&');
       }
-    }}, {startHeight: 80});
+    }}, {startHeight: 134});
   };
 
   VK.Widgets.Subscribe = function(objId, options, oid) {
     oid = parseInt(oid, 10);
-    var rpc;
     if (!oid) {
       throw Error('No owner_id passed');
     }
     var params = {
       oid: oid
-    };
+    }, rpc;
     if (options.mode) {
       params.mode = options.mode;
     }
@@ -1516,7 +1557,7 @@ if (!VK.Widgets) {
 
     return VK.Widgets._constructor('widget_subscribe.php', objId, options, params, {
       showBox: function(url, props) {
-        var box = VK.Util.Box((options.redesign && props.base_domain || options.base_domain || VK._protocol + '//vk.com/') + url, [], {
+        var box = VK.Util.Box(VK.Widgets.showBoxUrl(options.base_domain, url), [], {
           proxy: function() {
             rpc.callMethod.apply(rpc, arguments);
           }
@@ -1541,12 +1582,11 @@ if (!VK.Widgets) {
     if (!options) options = {};
     if (!oid) throw Error('No group or user id passed');
 
-    var rpc,
-      params = {
+    var params = {
         oid: oid,
         height: ({22: 22, 24: 24, 30: 30})[parseInt(options.height, 10) || 24],
         text: (options.text || '').substr(0, 140)
-      };
+      }, rpc;
 
     return VK.Widgets._constructor('widget_contactus.php', objId, options, params, {}, {
       startHeight: params.height,
@@ -1790,7 +1830,6 @@ if (!VK.Widgets) {
     options = options || {};
     defaults = defaults || {};
     funcs = funcs || {};
-
     base_domain = options.base_domain || VK._protocol + '//vk.com';
     width = (options.width == 'auto') ? obj.clientWidth || '100%' : parseInt(options.width, 10);
 
@@ -1834,15 +1873,15 @@ if (!VK.Widgets) {
       urlQueryString += '&' + i + '=' + encodedParam;
     }
     urlQueryString += '&' + (+new Date()).toString(16);
-    if (options.redesign) {
-      urlQueryString += '&redesign=1';
-    }
     url += '?' + urlQueryString.substr(1);
 
     obj.style.width = width;
+    funcs.onStartLoading && funcs.onStartLoading();
     VK.Widgets.loading(obj, true);
 
-    funcs.showLoader = function() {};
+    funcs.showLoader = function(enable) {
+      VK.Util.Loader(enable);
+    };
     funcs.publish = function() {
       var args = Array.prototype.slice.call(arguments);
       args.push(widgetId);
@@ -1902,6 +1941,115 @@ if (!VK.Widgets) {
     onDone && setTimeout(function() {onDone(obj, iframe || obj.firstChild, rpc);}, 10);
     return widgetId;
   };
+
+  VK.Widgets.CommunityMessages = (function(CommunityMessages) {
+    if (CommunityMessages) return CommunityMessages;
+
+    var instances = {};
+
+    CommunityMessages = function(objId, gid, options) {
+      options = options || {};
+
+      options.width = 300;
+      options.height = 399;
+
+      if (!options.base_domain) {
+        options.base_domain = options.base_domain || VK._protocol + '//new.vk.com';
+      }
+
+      var rpcSrv = null;
+      var params = {
+        gid: gid,
+      };
+      if (options.shown) {
+        params.shown = 1;
+      }
+
+      if (instances[objId]) {
+        CommunityMessages.destroy(objId);
+      }
+
+      var chatRpc, chatIfr;
+      instances[objId] = VK.Widgets._constructor('/widget_community_messages.php', objId, options, params, {
+        onStartLoading: function() {
+          var obj = document.getElementById(objId);
+          obj.style.position = 'fixed';
+          obj.style['z-index'] = 1000;
+          obj.style.right = '20px';
+          obj.style.bottom = '0px';
+          minimize(objId);
+        },
+        showBox: function(url, props) {
+          var box = VK.Util.Box(VK.Widgets.showBoxUrl(options.base_domain, url), [], {
+            proxy: function() {
+              rpc.callMethod.apply(rpc, arguments);
+            }
+          });
+          box.show();
+        },
+        expand: function() {
+          expand(objId);
+        },
+        minimize: function() {
+          setTimeout(function() {
+            minimize(objId);
+          }, 120);
+        },
+        canNotWrite: function() {
+          options.onCanNotWrite && options.onCanNotWrite();
+        },
+        destroy: function() {
+          chatRpc.destroy();
+          try {chatIfr.src = 'about: blank;';} catch (e) {}
+          try {
+            chatIfr.parentNode.removeChild(chatIfr);
+          } catch(e) { }
+        }
+      }, {}, function(o, i, r) {
+        chatRpc = r;
+        chatIfr = i;
+        if (!options.shown) {
+          minimize(objId);
+        } else {
+          expand(objId);
+        }
+      });
+      return instances[objId];
+    };
+
+    function expand(objId) {
+      var obj = document.getElementById(objId), frame = obj.getElementsByTagName('iframe')[0];
+
+      var size = 50;
+      obj.style.width = frame.width = '300px';
+      obj.style.height = frame.height = '399px';
+    }
+
+    function minimize(objId) {
+      var obj = document.getElementById(objId), frame = obj.getElementsByTagName('iframe')[0];
+
+      obj.style.width = '60px';
+      obj.style.height = '80px';
+
+      if (frame) {
+        frame.width = 60;
+        frame.height = 80;
+      }
+    }
+
+    CommunityMessages.destroy = function(objId) {
+      if (!instances[objId]) {
+        return;
+      }
+
+      var xdm = VK.Widgets.RPC[instances[objId]];
+      xdm && xdm.methods.destroy();
+
+      delete instances[objId];
+    };
+
+    return CommunityMessages;
+  })(VK.Widgets.CommunityMessages);
 }
 
 if (!VK.Util) {
@@ -1984,16 +2132,31 @@ if (!VK.Util) {
       return [left, top];
     },
 
+    Loader: function self(enable) {
+      if (!self.loader) {
+        self.loader = document.createElement('DIV');
+        self.loader.innerHTML = '<style type="text/css">\
+        @-webkit-keyframes VKWidgetsLoaderKeyframes {0%{opacity: 0.2;}30%{opacity: 1;}100%{opacity: 0.2;}}\
+        @keyframes VKWidgetsLoaderKeyframes {0%{opacity: 0.2;}30%{opacity: 1;}100%{opacity: 0.2;}}\
+        .VKWidgetsLoader div {width: 7px;height: 7px;-webkit-border-radius: 50%;-khtml-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;background: #fff;top: 21px;position: absolute;z-index: 2;-o-transition: opacity 350ms linear; transition: opacity 350ms linear;opacity: 0.2;-webkit-animation-duration: 750ms;-o-animation-duration: 750ms;animation-duration: 750ms;-webkit-animation-name: VKWidgetsLoaderKeyframes;-o-animation-name: VKWidgetsLoaderKeyframes;animation-name: VKWidgetsLoaderKeyframes;-webkit-animation-iteration-count: infinite;-o-animation-iteration-count: infinite;animation-iteration-count: infinite;-webkit-transform: translateZ(0);transform: translateZ(0);}</style><div class="VKWidgetsLoader" style="position: fixed;left: 50%;top: 50%;margin: -25px -50px;z-index: 1002;height: 50px;width: 100px;"><div style="left: 36px;-webkit-animation-delay: 0ms;-o-animation-delay: 0ms;animation-delay: 0ms;"></div><div style="left: 47px;-webkit-animation-delay: 180ms;-o-animation-delay: 180ms;animation-delay: 180ms;"></div><div style="left: 58px;-webkit-animation-delay: 360ms;-o-animation-delay: 360ms;animation-delay: 360ms;"></div><span style="display: block;background-color: #000;-webkit-border-radius: 4px;-khtml-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;-webkit-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);-moz-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);position: absolute;left: 0;top: 0;bottom: 0; right: 0;z-index: 1;opacity: 0.7;"></span></div>';
+        document.body.insertBefore(self.loader, document.body.firstChild);
+      }
+      self.loader.style.display = enable ? 'block' : 'none';
+    },
+
     Box: function(src, sizes, fnc, options) {
       fnc = fnc || {};
       var overflowB = document.body.style.overflow;
-      var loader = document.createElement('DIV');
+      VK.Util.Loader(true);
+      var is_vk = /(^|\.)(vk\.com|vkontakte\.ru)$/.test(location.hostname);
       var rpc = new fastXDM.Server(VK.extend(fnc, {
             onInit: function() {
               iframe.style.background = 'transparent';
               iframe.style.visibility = 'visible';
               document.body.style.overflow = 'hidden';
-              document.body.removeChild(loader);
+              iframe.setAttribute('allowfullscreen', 1);
+              if (is_vk) document.body.className += ' layers_shown';
+              VK.Util.Loader();
             },
             hide: function() {
               iframe.style.display = 'none';
@@ -2003,6 +2166,7 @@ if (!VK.Util) {
               iframe.style.top = '-10000px';
               iframe.style.width = '10px';
               iframe.style.height = '10px';
+              if (is_vk) document.body.className = document.body.className.replace(/\b\s*?layers_shown\s*\b/, ' ');
               document.body.style.overflow = overflowB;
             },
             destroy: function() {
@@ -2010,6 +2174,7 @@ if (!VK.Util) {
                 iframe.src = 'about: blank;';
               } catch (e) {}
               iframe.parentNode.removeChild(iframe);
+              if (is_vk) document.body.className = document.body.className.replace(/\b\s*?layers_shown\s*\b/, ' ');
               document.body.style.overflow = overflowB;
             },
             resize: function(w, h) {
@@ -2021,8 +2186,6 @@ if (!VK.Util) {
             allowTransparency: true,
             style: {position: 'fixed', left: 0, top: 0, zIndex: 1002, background: VK._protocol + '//vk.com/images/upload.gif center center no-repeat transparent', padding: '0', border: '0', width: '100%', height: '100%', overflow: 'hidden', visibility: 'hidden'}
           });
-      loader.innerHTML = '<div style="position: fixed;left: 50%;top: 50%;margin: 0px auto 0px -60px;z-index: 1002;width: 100px;"><div style="background: url(//vk.com/images/upload_inv_mono'+(window.devicePixelRatio >= 2 ? '_2x' : '')+'.gif) no-repeat 50% 50%;background-size: 64px 16px;height: 50px;position: absolute;width: 100%;z-index: 100;"></div><div style="background-color: #000;opacity: 0.7;filter: alpha(opacity=70);height: 50px;-webkit-border-radius: 5px;-khtml-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;-webkit-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);-moz-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);"></div></div>';
-      document.body.insertBefore(loader, document.body.firstChild);
       return {
         show: function(scrollTop, height) {
           iframe.style.display = 'block';

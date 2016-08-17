@@ -683,7 +683,7 @@ AdsModer.premoderationProcessRequestsMassCheck = function(action, requestKey) {
   //var box = showFastBox(confirmTitle, cur.massBoxHtml, processAllText, processAll, processOneText, processOne);
   //geByClass1('ads_premoderation_mass_confirm_text', box.bodyNode).innerHTML = confirmText;
 
-  var box = showFastBox({title: confirmTitle, hideButtons: true}, cur.massBoxHtml);
+  //var box = showFastBox({title: confirmTitle, hideButtons: true}, cur.massBoxHtml);
   processAll(needMultipleClearence);
   return true;
 
@@ -692,7 +692,7 @@ AdsModer.premoderationProcessRequestsMassCheck = function(action, requestKey) {
       cleanMultipleChoices();
     }
     cleanChecksums();
-    AdsModer.premoderationProcessRequestsMass(action, requestKey, allRequestsKeys, box);
+    AdsModer.premoderationProcessRequestsMass(action, requestKey, allRequestsKeys, confirmTitle);
   }
   function processOne() {
     cleanChecksums();
@@ -714,7 +714,7 @@ AdsModer.premoderationProcessRequestsMassCheck = function(action, requestKey) {
   }
 }
 
-AdsModer.premoderationProcessRequestsMass = function(action, requestKeyModer, requestsKeys, box) {
+AdsModer.premoderationProcessRequestsMass = function(action, requestKeyModer, requestsKeys, confirmTitle) {
   var requestParams = cur.requestsParams[requestKeyModer];
 
   var totalCount       = requestsKeys.length;
@@ -727,16 +727,16 @@ AdsModer.premoderationProcessRequestsMass = function(action, requestKeyModer, re
   //box.removeButtons();
   //box.addButton(getLang('box_close'), false, 'yes');
 
-  var progressWrapElem = geByClass1('ads_premoderation_mass_progress_wrap2', box.bodyNode);
-  var progressElem     = geByClass1('ads_gradient_progress', box.bodyNode);
-  var resultElem       = geByClass1('ads_premoderation_mass_result', box.bodyNode);
-  var resultTextElem   = geByClass1('ads_premoderation_mass_result_text', box.bodyNode);
-  var resultMoreElem   = geByClass1('ads_premoderation_mass_result_more', box.bodyNode);
-  drawProgress();
-  show(progressWrapElem);
+  //var progressWrapElem = geByClass1('ads_premoderation_mass_progress_wrap2', box.bodyNode);
+  //var progressElem     = geByClass1('ads_gradient_progress', box.bodyNode);
+  // var resultElem       = geByClass1('ads_premoderation_mass_result', box.bodyNode);
+  // var resultTextElem   = geByClass1('ads_premoderation_mass_result_text', box.bodyNode);
+  // var resultMoreElem   = geByClass1('ads_premoderation_mass_result_more', box.bodyNode);
+  //drawProgress();
+  //show(progressWrapElem);
 
   for (var i = 0; requestKey = requestsKeys[i]; i++) {
-    setTimeout(AdsModer.premoderationProcessRequest.pbind(action, requestKey, requestKeyModer, onComplete), 200 * i);
+    setTimeout(AdsModer.premoderationProcessRequest.pbind(action, requestKey, requestKeyModer, onComplete), 100 * i);
   }
 
   function onComplete(response, responseRequestKey, responseText) {
@@ -756,8 +756,8 @@ AdsModer.premoderationProcessRequestsMass = function(action, requestKeyModer, re
     }
     completeCount++;
 
-    drawProgress();
-    if (completeCount == totalCount) {
+    //drawProgress();
+    if (completeCount == totalCount && errorCount) {
       setTimeout(drawResults, 1000);
     }
   }
@@ -766,7 +766,11 @@ AdsModer.premoderationProcessRequestsMass = function(action, requestKeyModer, re
     setStyle(progressElem, {width: percent + '%'});
   }
   function drawResults() {
-    hide(progressWrapElem);
+    var box = showFastBox({title: confirmTitle, hideButtons: true}, cur.massBoxHtml);
+    var resultElem       = geByClass1('ads_premoderation_mass_result', box.bodyNode);
+    var resultTextElem   = geByClass1('ads_premoderation_mass_result_text', box.bodyNode);
+    var resultMoreElem   = geByClass1('ads_premoderation_mass_result_more', box.bodyNode);
+    //hide(progressWrapElem);
 
     box.setOptions({'hideButtons' : false});
 
@@ -1627,33 +1631,33 @@ AdsModer.initMultipleRequests = function() {
   for (var i in checkBoxElements) {
     var requestCb = checkBoxElements[i];
     var requestId = requestCb.getAttribute('data-request-id');
-    var clientUnionId = requestCb.getAttribute('data-client-union-id');
+    var toptUnionId = requestCb.getAttribute('data-top-union-id');
     cur.uiMultipleRequestsCbs[requestId] = new Checkbox(requestCb, {
       label: "",
       width: "20px",
-      onChange: (function(clientUnionId, requestId, value) {
+      onChange: (function(toptUnionId, requestId, value) {
         if (value) {
-          AdsModer.multipleRequestsAddRequest(clientUnionId, requestId);
+          AdsModer.multipleRequestsAddRequest(toptUnionId, requestId);
         } else {
           AdsModer.multipleRequestsRemoveRequest(requestId);
         }
-      }).pbind(clientUnionId, requestId)
+      }).pbind(toptUnionId, requestId)
     });
   }
 }
 
-AdsModer.multipleRequestsAddRequest = function(clientUnionId, requestId, cb) {
-  if(cur.multipleRequestsClientUnionId && cur.multipleRequestsClientUnionId != clientUnionId) {
+AdsModer.multipleRequestsAddRequest = function(topUnionId, requestId, cb) {
+  if(cur.multipleRequestsTopUnionId && cur.multipleRequestsTopUnionId != topUnionId) {
     var requests = cur.multipleRequestsIds;
     for(var idx = cur.multipleRequestsIds.length - 1; idx >= 0; idx--) {
       this.multipleRequestsRemoveRequest(cur.multipleRequestsIds[idx]);
     }
     cur.multipleRequestsIds = [];
-  } else if (!cur.multipleRequestsClientUnionId) {
+  } else if (!cur.multipleRequestsTopUnionId) {
     cur.multipleRequestsIds = [];
   }
 
-  cur.multipleRequestsClientUnionId = clientUnionId;
+  cur.multipleRequestsTopUnionId = topUnionId;
   cur.multipleRequestsIds.push(requestId);
 
   var requestElem = ge("req"+requestId);
@@ -1690,6 +1694,61 @@ AdsModer.searchAdsText = function() {
 AdsModer.onToggleSearchAdsEnabledAds = function(elem) {
   toggleClass(elem, 'on');
   AdsModer.searchAdsText();
+}
+
+AdsModer.uiFastReasonsInit = function(requestId, reasons) {
+  var fast_reasons_holder = ge('ads_moder_reasons_fast_holder_'+requestId);
+  if (!fast_reasons_holder)
+    return;
+
+  if (!cur.moderReasonsDict) {
+    cur.moderReasonsDict = {};
+    each(cur.moderReasons, function (i, reason){
+      cur.moderReasonsDict[reason.i] = reason.t;
+    });
+  }
+
+  var controls = {};
+  reasonsEls = geByClass('ads_moder_reasons_fast', fast_reasons_holder);
+
+  each(reasonsEls, function (i, reasonEl){
+    var reasonIdx = reasonEl.getAttribute('data-key');
+    reasonEl.onclick = function(el, requestId, reasonId) {
+      cur.uiReasonsControls[requestId].items[reasonId].click();
+      var selectedReasonIds = cur.uiReasonsControls[requestId].getSelectedItems();
+      if (inArray(reasonId, selectedReasonIds)) {
+        addClass(el, 'fast_reason_selected');
+      } else {
+        removeClass(el, 'fast_reason_selected');
+      }
+      AdsModer.premoderationSetResultReasonsText(requestId);
+    }.pbind(reasonEl, requestId, reasonIdx);
+
+    controls[reasonIdx] = reasonEl;
+  });
+
+  controls.dropDownClicked = function(e) {
+    if (e.data.item.i && e.isTrusted || e.x !== 0 && e.y !== 0) {
+      var selectedItems = cur.uiReasonsControls[requestId].getSelectedItems();
+
+      each(cur.uiReasonsFastControls[requestId], function(i, el){
+        if (inArray(i, selectedItems)) {
+          addClass(el, 'fast_reason_selected');
+        } else {
+          removeClass(el, 'fast_reason_selected');
+        }
+      });
+      AdsModer.premoderationSetResultReasonsText(requestId);
+    }
+  };
+
+  return controls;
+}
+
+AdsModer.premoderationSetResultReasonsText = function(requestId) {
+  var selectedReasonIds = cur.uiReasonsControls[requestId].getSelectedItems();
+  var resultHolderEl = ge('ads_moder_reasons_selected_holder_' + requestId);
+  resultHolderEl.innerHTML = selectedReasonIds.map(function(reasonId) {return cur.moderReasonsDict[reasonId];}).join(', ');
 }
 
 try{stManager.done('ads_moder.js');}catch(e){}

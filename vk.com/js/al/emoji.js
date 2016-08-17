@@ -15,14 +15,20 @@ init: function(txt, opts) {
   var optId = Emoji.last;
   opts.txt = txt;
   opts.id = optId;
+  opts.fieldWrap = gpeByClass('_emoji_field_wrap', txt);
+  opts.emojiWrap = domByClass(opts.fieldWrap, '_emoji_wrap');
+  opts.emojiBtn = domByClass(opts.emojiWrap, '_emoji_btn');
+  opts.emojiWrap && data(opts.emojiWrap, 'optId', optId);
   txt.emojiId = optId;
   if (opts.forceTxt) {
     opts.editable = 0;
-    placeholderSetup(txt);
+    // placeholderSetup(txt);
+    placeholderInit(txt);
   } else {
     opts.editable = 1;
     setTimeout(function() {
-      placeholderSetup(txt, {editable: 1, editableFocus: Emoji.editableFocus});
+      // placeholderSetup(txt, {editable: 1, editableFocus: Emoji.editableFocus});
+      placeholderInit(txt, {editable: 1, editableFocus: Emoji.editableFocus, global: opts.global});
       if (opts.shouldFocus) {
         Emoji.editableFocus(txt, false, true);
       }
@@ -58,10 +64,14 @@ init: function(txt, opts) {
       if (e.type == 'keydown') {
         var noEnter = opts.ctrlSend ? opts.ctrlSend() : opts.noEnterSend;
         if (e.keyCode == KEY.RETURN || e.keyCode == 10) {
+          if (opts.forceEnterSend && opts.onSend) {
+            opts.onSend();
+            return cancelEvent(e);
+          }
           var ctrlSubm = (cur.ctrl_submit && !opts.noCtrlSend);
           if ((ctrlSubm || noEnter) && (e.ctrlKey || browser.mac && e.metaKey) ||
               !ctrlSubm && !e.shiftKey && !(e.ctrlKey || browser.mac && e.metaKey)) {
-            if (!Emoji.emojiEnter(optId, e)) {
+            if (!Emoji.emojiEnter(optId, e) || !Emoji.stickerHintMove(e)) {
               return false;
             }
             if (!noEnter || (e.ctrlKey || browser.mac && e.metaKey)) {
@@ -69,6 +79,9 @@ init: function(txt, opts) {
               opts.onSend();
               return cancelEvent(e);
             }
+          }
+          if (opts.noLineBreaks) {
+            return cancelEvent(e);
           }
         }
         if (e.ctrlKey && e.keyCode == KEY.RETURN) {
@@ -99,6 +112,19 @@ init: function(txt, opts) {
           return false;
         }
         if (e.keyCode == KEY.TAB && !(e.ctrlKey || browser.mac && e.metaKey)) {
+          var stCont = geByClass1('_sticker_hints', domPN(opts.txt));
+          if (stCont && isVisible(stCont)) {
+            var selected = geByClass1('over', stCont);
+            if (selected) {
+              Emoji.stickerHintKeyOut(optId, selected);
+            } else {
+              Emoji.stickerHintKeyOver(optId, geByClass1('emoji_sticker_item', stCont));
+            }
+
+            if (!Emoji.shown) {
+              return cancelEvent(e);
+            }
+          }
           if (Emoji.shown) {
             Emoji.editableFocus(txt, false, true, void(0), true);
             Emoji.ttClick(optId, geByClass1('emoji_smile', opts.controlsCont), true);
@@ -108,9 +134,18 @@ init: function(txt, opts) {
           return cancelEvent(e);
         }
         if (e.keyCode == KEY.ESC) {
+          var stCont = geByClass1('_sticker_hints', domPN(opts.txt)), needCancel = false;
+          if (stCont && isVisible(stCont)) {
+            Emoji.stickerHintKeyOut(optId, geByClass1('emoji_sticker_item', stCont));
+            Emoji.stickersHintsHide(stCont, opts, 100);
+            needCancel = true;
+          }
           if (Emoji.shown) {
             Emoji.editableFocus(txt, false, true, void(0), true);
             Emoji.ttClick(optId, geByClass1('emoji_smile', opts.controlsCont), true);
+            needCancel = true;
+          }
+          if (needCancel) {
             return cancelEvent(e);
           }
           if (opts.onEsc) {
@@ -124,18 +159,27 @@ init: function(txt, opts) {
         if (opts.checkEditable) {
           setTimeout(opts.checkEditable.pbind(optId, txt), 0);
         }
+        Emoji.checkStickersKeywords(optId, opts);
       } else if (e.type == 'keyup') {
         if (opts.checkEditable) {
           opts.checkEditable(optId, txt);
         }
+        Emoji.checkStickersKeywords(optId, opts);
       } else if (e.type == 'keydown') {
         if (opts.checkEditable) {
           setTimeout(opts.checkEditable.pbind(optId, txt), 0);
         }
+        Emoji.checkStickersKeywords(optId, opts);
       }
+
       if (opts.onKeyAction) {
         opts.onKeyAction(e);
       }
+
+      if (cur.onReplyFormSizeUpdate) {
+        cur.onReplyFormSizeUpdate(e);
+      }
+
       return true;
     });
   }
@@ -163,6 +207,7 @@ init: function(txt, opts) {
 
 
   window.Notifier && Notifier.addRecvClbk('emoji', 0, Emoji.lcRecv, true);
+  Emoji.initStickersKeywords();
 
   Emoji.opts[Emoji.last] = opts;
   return Emoji.last++;
@@ -171,7 +216,7 @@ init: function(txt, opts) {
 lcRecv: function(data) {
   switch(data.act) {
     case 'updateTabs':
-      Emoji.updateTabs(data.newStickers);
+      Emoji.updateTabs(data.newStickers, data.keywords);
       break;
   }
 },
@@ -185,7 +230,10 @@ correctCaret: function(txt) {
 
 insertWithBr: function (range, text) {
   if (text) {
-    Emoji.insertHTML(clean(text).replace(/\n/g, '<br/>'));
+    var cleanText = text.replace(/\n/g, '<br/>');
+    var div = ce('div', { innerHTML: cleanText });
+    Emoji.cleanCont(div);
+    Emoji.insertHTML(div.innerHTML);
   }
 },
 
@@ -202,7 +250,7 @@ focusTrick: function (txt, insert, finalize, range, cont) {
     txt.focus();
     cont.scrollTop = scroll;
     Emoji.setRange(range);
-    insert(val(textarea));
+    insert(clean(val(textarea)));
     finalize(txt);
   }, 0);
 },
@@ -214,11 +262,123 @@ finalizeInsert: function(txt) {
 
 getClipboard: function(e) {
   if (e.clipboardData) {
-    return e.clipboardData.getData("text");
+    return clean(e.clipboardData.getData('text'));
   } else if (window.clipboardData) {
-    return window.clipboardData.getData("Text")
+    return clean(window.clipboardData.getData("Text"));
   } else {
     return false;
+  }
+},
+
+processImagePaste: function(e, txt, opts, onDone) {
+  if (e.clipboardData != null) {
+    var clipboardData = e.clipboardData;
+
+    function _onImageBlobReady(blob) {
+      var addMedia, composer;
+
+      blob.name = blob.filename = 'upload_' + new Date().toISOString() + '_' + irand(0, 100) +  '.png';
+
+      if (hasClass(txt, '_im_text')) {
+        if (opts.uploadActions) {
+          opts.uploadActions.paste([ blob ]);
+          return;
+        }
+      } else if (txt.id == 'post_field') { // field for post submit
+        addMedia = cur.wallAddMedia;
+      } else { // replies inputs
+        composer = data(txt, 'composer');
+        addMedia = composer && composer.addMedia;
+      }
+
+      if (!addMedia) {
+        return;
+      }
+
+      if (isFunction(opts.initUploadForImagePasteCallback)) {
+        opts.initUploadForImagePasteCallback(txt, addMedia, blob);
+      }
+    }
+
+    function _checkImagesEls(cb) {
+      var timespan = Math.floor(1000 * Math.random());
+
+      var imgs = geByTag('img', txt);
+      for (var j = 0, len = imgs.length; j < len; j++) {
+        var img = imgs[j];
+        img['_before_paste_' + timespan] = true;
+      }
+
+      return setTimeout(function() {
+        var imgs = geByTag('img', txt);
+        var pastedImage = false;
+
+        for (var k = 0, len1 = imgs.length; k < len1; k++) {
+          var img = imgs[k];
+          if (!img['_before_paste_' + timespan]) {
+            cb(img.src);
+            re(img);
+            pastedImage = true;
+          }
+        }
+
+        if (!pastedImage) {
+          onDone();
+        }
+      }, 1);
+    }
+
+    function _handleImage(src) {
+      if (src.match(/^webkit\-fake\-url\:\/\//)) {
+        return;
+      }
+
+      var loader = new Image();
+      loader.crossOrigin = 'anonymous';
+      loader.onload = function() {
+        var canvas = document.createElement('canvas');
+        canvas.width = loader.width;
+        canvas.height = loader.height;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(loader, 0, 0, canvas.width, canvas.height);
+
+        canvas.toBlob(function(blob) {
+          _onImageBlobReady(blob);
+        }, 'image/png');
+
+        onDone(true);
+      };
+
+      return loader.src = src;
+    }
+
+    if (clipboardData.items) { // best way
+      for (var j = 0, len = clipboardData.items.length; j < len; j++) {
+        var item = clipboardData.items[j];
+
+        if (item.type.match(/^image\//)) {
+          var reader = new FileReader();
+          reader.onload = function(event) {
+            return _handleImage(event.target.result);
+          };
+          reader.readAsDataURL(item.getAsFile());
+        } else if (item.type === 'text/plain') {
+          return onDone();
+        }
+      }
+
+    } else { // no images or FF
+      if (-1 !== Array.prototype.indexOf.call(clipboardData.types, 'text/plain')) {
+        return onDone();
+      }
+
+      _checkImagesEls(function(src) {
+        return _handleImage(src);
+      });
+    }
+
+  } else {
+    onDone();
   }
 },
 
@@ -230,12 +390,27 @@ onEditablePaste: function(txt, opts, optId, e, onlyFocus) {
   }
 
   var text = this.getClipboard(e);
-  if (text && range && !onlyFocus) {
-    this.insertWithBr(range, text);
-    setTimeout(this.finalizeInsert.bind(this, txt), 0);
-    return cancelEvent(e);
-  } else if (range) {
-    this.focusTrick(txt, this.insertWithBr.pbind(range), this.finalizeInsert.bind(this, txt), range);
+  var textRangeAndNoFocus = text && range && !onlyFocus;
+
+  if (inArray('text/html', e.clipboardData.types) && inArray('Files', e.clipboardData.types)) {
+    cancelEvent(e);
+  }
+
+  this.processImagePaste(e, txt, opts, (function(isImagePaste) {
+    if (isImagePaste) {
+      return;
+    }
+
+    if (textRangeAndNoFocus) {
+      this.insertWithBr(range, text);
+      setTimeout(this.finalizeInsert.bind(this, txt), 0);
+    } else if (range) {
+      this.focusTrick(txt, this.insertWithBr.pbind(range), this.finalizeInsert.bind(this, txt), range);
+    }
+  }).bind(this));
+
+  if (textRangeAndNoFocus) {
+    cancelEvent(e);
   }
 },
 
@@ -323,6 +498,11 @@ editableFocus: function(editable, obj, after, noCollapse, noForce) {
       } else {
         range.selectNodeContents(editable);
       }
+
+      if (browser.mozilla && editable.innerHTML === '<br>') {
+        editable.innerHTML = ''; // fix strange ff behaviour, inserting empty brs in contenteidtable
+      }
+
       if (!noCollapse) {
         range.collapse(after ? false : true);
       }
@@ -372,6 +552,7 @@ val: function(cont, value) {
     } else {
       cont.innerHTML = value;
     }
+    Emoji.updateStickersHints();
     return true;
   }
 },
@@ -503,6 +684,413 @@ checkEditable: function(optId, obj, options) {
   }
 },
 
+stickersHintsShow: function(el, opts, delay) {
+  if (!isVisible(el)) {
+    fadeIn(el, delay);
+  }
+  if (!opts.stickerEventsInited) {
+    var inner = el && geByClass1('_sticker_hints_inner', el);
+    opts.onHintsWheel = Emoji.onWheelStickersHints.pbind(inner);
+    addEvent(inner, 'DOMMouseScroll wheel', opts.onHintsWheel);
+    addEvent(document, 'keydown', Emoji.stickerHintMove);
+    opts.onHintsMouseDown = function() {
+      opts.hintsClicked = true;
+      setTimeout(function() {
+        delete opts.hintsClicked;
+      }, 0);
+    }
+    addEvent(el, 'mousedown', opts.onHintsMouseDown);
+    if (opts.txt) {
+      if (opts.onTxtFocus) {
+        removeEvent(opts.txt, 'focus', opts.onTxtFocus);
+        delete opts.onTxtFocus;
+      }
+      opts.onTxtBlur = function(ev) {
+        if (opts.hintsClicked) {
+          cancelEvent(ev);
+          return true;
+        }
+        Emoji.stickersHintsHide(el, opts, delay);
+      }
+      addEvent(opts.txt, 'blur', opts.onTxtBlur);
+    }
+    opts.stickerEventsInited = true;
+  }
+  Emoji.checkStickersHintsSize(el, opts);
+},
+
+stickersHintsHide: function(el, opts, delay) {
+  fadeOut(el, delay);
+  removeEvent(document, 'keydown', Emoji.stickerHintMove);
+  if (opts.onHintsMouseDown) {
+    removeEvent(el, 'mousedown', Emoji.onHintsMouseDown);
+  }
+  if (opts.onHintsWheel) {
+    var inner = el && geByClass1('_sticker_hints_inner', el);
+    removeEvent(inner, 'DOMMouseScroll wheel', Emoji.onHintsWheel);
+  }
+  if (opts.txt) {
+    if (opts.onTxtBlur) {
+      removeEvent(opts.txt, 'blur', opts.onTxtBlur);
+      delete opts.onTxtBlur;
+    }
+    opts.onTxtFocus = function() {
+      var stCont = opts.txt && geByClass1('_sticker_hints', domPN(opts.txt));
+      if (stCont && !isVisible(stCont)) {
+        delete opts.stickerHintsString;
+        Emoji.checkStickersKeywords(opts.id, opts, false);
+      }
+    }
+    addEvent(opts.txt, 'focus', opts.onTxtFocus);
+  }
+  delete opts.stickerEventsInited;
+  delete Emoji.shownHintId;
+},
+
+stickerHintOver: function(el) {
+  Emoji.stickerHintOut(el);
+  addClass(el, 'over');
+},
+
+stickerHintOut: function(el) {
+  each(geByClass('over', domPN(el)), function() {
+    removeClass(this, 'over');
+  });
+},
+
+stickerHintClick: function(optId, stickerId, el) {
+  var opts = Emoji.opts[optId] || {},
+      text = opts.txt,
+      stCont = text && geByClass1('_sticker_hints', domPN(text)),
+      sticker_referrer = 'suggestion_' + Emoji.getStickersHintsQuery(text);
+
+  if (stickerId < 0) {
+    Emoji.previewSticker(false, el, {stickerId: -stickerId, sticker_referrer: sticker_referrer});
+  } else {
+    val(text, '');
+    Emoji.stickerClick(optId, stickerId, 256, el, sticker_referrer);
+    if (opts.checkEditable) {
+      opts.checkEditable(optId, text);
+    }
+  }
+  Emoji.stickersHintsHide(stCont, opts, 0);
+
+  return false;
+},
+
+stickerHintKeyOver: function(optId, el) {
+  Emoji.stickerHintOver(el);
+  Emoji.shownHintId = optId;
+},
+
+stickerHintKeyOut: function(optId, el) {
+  Emoji.stickerHintOut(el);
+  delete Emoji.shownHintId;
+},
+
+stickerHintMove: function(e) {
+  var optId = Emoji.shownHintId;
+  if (optId === undefined) {
+    return true;
+  }
+
+  var opts = Emoji.opts[optId],
+      stCont = opts && geByClass1('_sticker_hints', domPN(opts.txt));
+  if (stCont && isVisible(stCont)) {
+    var el = geByClass1('over', stCont) || geByClass1('emoji_sticker_item', stCont);
+    switch (e.keyCode) {
+      case KEY.LEFT:
+        el = domPS(el);
+        if (el) {
+          Emoji.stickerHintOver(el);
+          Emoji.checkStickersHintsScroll(el);
+        }
+        cancelEvent(e);
+        return false;
+        break;
+      case KEY.RIGHT:
+        el = domNS(el);
+        if (el) {
+          Emoji.stickerHintOver(el);
+          Emoji.checkStickersHintsScroll(el);
+        }
+        cancelEvent(e);
+        return false;
+        break;
+      case KEY.ENTER:
+        el.click();
+        cancelEvent(e);
+        return false;
+        break;
+    }
+  }
+  return true;
+},
+
+checkStickersHintsSize: function(el, opts, animated) {
+  if (animated) {
+    addClass(el, '_margin_transition');
+    removeClassDelayed(el, '_margin_transition');
+  }
+
+  setStyle(el, {marginLeft: 0});
+  var gap = 10,
+      hintXY = getXY(el),
+      hintSize = getSize(el),
+      emojiXY = opts.tt && getXY(opts.tt);
+
+  if (opts.tt && emojiXY &&
+      emojiXY[0] && hintXY[0] + hintSize[0] + gap > emojiXY[0] &&
+      hintXY[1] + hintSize[1] > emojiXY[1]) {
+    setStyle(el, {marginLeft: emojiXY[0] - hintXY[0] - hintSize[0] - gap});
+  }
+
+  while (getXY(el)[0] < 0 && domFC(el)) {
+    re(domFC(el));
+  }
+  if (!domFC(el)) {
+    Emoji.stickersHintsHide(el, opts, 0);
+  }
+},
+
+getStickersHintsQuery: function(el) {
+  var str = Emoji.val(el);
+  if (str.length > 30) {
+    return '';
+  }
+
+  var cur = window.cur.wallLayer ? wkcur : window.cur,
+      replyName = cur.reply_to && window.Wall && Wall.getReplyName(cur.reply_to[0]);
+  if (replyName && replyName[1]) {
+    str = str.replace(new RegExp('^(' + escapeRE(replyName[1]) + ')'), '');
+  }
+
+  each(Emoji.cssEmoji, function(code, data) {
+    var re = new RegExp('(\\s|^)(' + escapeRE(data[1]) + (data[1][data[1].length - 1] == ')' ? '+' : '') + ')([\\s\\.,]|$)', 'g');
+    str = str.replace(re, function(match, pre, smile, space) {
+      return (pre || '') + Emoji.codeToChr(code)+(space || '');
+    });
+  });
+  str = str.replace(/^[\s\uFEFF\xA0]+|[\.!\?\n]+$/g, '').toLowerCase().replace('¸', 'å');
+
+  return str;
+},
+
+checkStickersKeywords: function(optId, opts, force) {
+  if (opts.noStickers || !window.stickersKeywords ||
+    !window.stickersKeywordsData || !window.stickersKeywordsData.length) {
+    return false;
+  }
+
+  var delay = force ? 0 : 100,
+      text = opts.txt,
+      stCont = geByClass1('_sticker_hints', domPN(text)),
+      showHints = function() {
+    var str = Emoji.getStickersHintsQuery(text);
+    if (!stCont) {
+      stCont = Emoji.initStickersHints(text);
+      if (!stCont) {
+        return false;
+      }
+    }
+    if (str == opts.stickerHintsString) return;
+    if (str && stickersKeywords[str] && stickersKeywords[str].length) {
+      var stickers = Emoji.sortStickersHints(text, stickersKeywords[str]),
+          stickerSize = (window.devicePixelRatio >= 2) ? '128' : '64', html = '';
+      each(stickers, function() {
+        html += rs(Emoji.hintsStickerItem(), {
+          optId: optId,
+          selId: -1,
+          stickerId: Math.abs(this),
+          class: (this < 0 ? 'promo' : ''),
+          onclick: 'Emoji.stickerHintClick(' + optId + ', ' + this + ', this)',
+          stickerSize: stickerSize
+        });
+      });
+      Emoji.showStickersHints(stCont, opts, html);
+    } else {
+      Emoji.stickersHintsHide(stCont, opts, delay);
+    }
+    opts.stickerHintsString = str;
+  }
+  if (force) {
+    showHints();
+  } else {
+    clearTimeout(opts.stickerHintTT);
+    opts.stickerHintTT = setTimeout(showHints, stCont && isVisible(stCont) ? 0 : 200);
+  }
+},
+
+showStickersHints: function(stCont, opts, html) {
+  var inner = stCont && geByClass1('_sticker_hints_inner', stCont);
+  if (!inner) {
+    return false;
+  }
+
+  val(inner, html);
+  Emoji.stickersHintsShow(stCont, opts, 100);
+  inner.scrollLeft = 0;
+  Emoji.checkStickersHintsScroll(stCont, inner.scrollLeft);
+},
+
+checkStickersHintsScroll: function(el, newLeft) {
+  var stCont = domClosest('_sticker_hints', el),
+      inner = stCont && geByClass1('_sticker_hints_inner', stCont),
+      arrowLeft = stCont && geByClass1('_sticker_left', stCont),
+      arrowRight = stCont && geByClass1('_sticker_right', stCont);
+  if (!inner) {
+    return false;
+  }
+
+  if (hasClass(el, 'emoji_sticker_item')) {
+    var maxLeft = el.offsetLeft - 8 - getSize(arrowLeft)[0],
+        minLeft = el.offsetLeft + getSize(el)[1] + 2 + getSize(arrowRight)[0] - inner.clientWidth;
+    if (inner.scrollLeft > maxLeft) {
+      inner.scrollLeft = maxLeft;
+    }
+    if (inner.scrollLeft < minLeft) {
+      inner.scrollLeft = minLeft;
+    }
+    newLeft = inner.scrollLeft;
+  }
+
+  toggle(arrowLeft, newLeft > 0);
+  toggle(arrowRight, newLeft + inner.clientWidth < inner.scrollWidth);
+},
+
+scrollStickersHints: function(el, dir, ev) {
+  var stCont = domClosest('_sticker_hints', el),
+      inner = stCont && geByClass1('_sticker_hints_inner', stCont),
+      arrowLeft = stCont && geByClass1('_sticker_left', stCont),
+      arrowRight = stCont && geByClass1('_sticker_right', stCont);;
+  if (!inner) {
+    return false;
+  }
+
+  var newLeft = inner.scrollLeft + dir * (inner.clientWidth - 2 * getSize(el)[0]),
+      hints = geByClass('emoji_sticker_item', inner);
+  each(hints, function(i, el) {
+    if (dir > 0 && el.offsetLeft - 8 - getSize(arrowLeft)[0] > newLeft) {
+      newLeft = hints[i - 1] && hints[i - 1].offsetLeft - 8 - getSize(arrowLeft)[0] || newLeft;
+      return false;
+    } else if (dir < 0 && el.offsetLeft + getSize(el)[1] + 2 + getSize(arrowRight)[0] - inner.clientWidth > newLeft) {
+      newLeft = el.offsetLeft + getSize(el)[1] + 2 + getSize(arrowRight)[0] - inner.clientWidth || newLeft;
+      return false;
+    }
+  });
+  newLeft = Math.max(0, Math.min(inner.scrollWidth - inner.clientWidth, newLeft));
+  animate(inner, {scrollLeft: newLeft}, {duration: Math.abs(inner.scrollLeft - newLeft) + 50, transition: Fx.Transitions.easeOutCubic});
+  Emoji.checkStickersHintsScroll(inner, newLeft);
+},
+
+onWheelStickersHints: function(inner, ev) {
+  var delta;
+  if (ev.type == 'wheel') { // gecko >= 17, webkit
+    delta = -ev.deltaY;
+  } else if (ev.wheelDeltaY !== void(0)) { // presto, old webkit
+    delta = ev.wheelDeltaY;
+  } else if (ev.wheelDelta !== void(0)) { // ie 8 - 11
+    delta = ev.wheelDelta;
+  } else if (ev.detail && ev.axis === 2) { // gecko < 17
+    delta = -ev.detail;
+  }
+  if (Math.abs(delta) >= 120) {
+    delta = 74 * Math.max(-1, Math.min(1, delta));
+  }
+  inner.scrollLeft -= delta;
+  Emoji.checkStickersHintsScroll(inner, inner.scrollLeft);
+  cancelEvent(ev);
+},
+
+sortStickersHints: function(el, stickers) {
+  var recent = (Emoji.stickers[-1] || {}).stickers || [],
+      result = [], added = {};
+
+  each(recent, function() {
+    if (inArray(this[0], stickers)) {
+      result.push(this[0]);
+      added[this[0]] = 1;
+    }
+  });
+
+  each(stickers, function() {
+    if (!added[this]) {
+      result.push(this);
+    }
+  });
+
+  return result;
+},
+
+initStickersHints: function(el) {
+  if (!el) {
+    return false;
+  }
+
+  return domPN(el).insertBefore(se('<div class="_sticker_hints sticker_hints_tt"><div class="sticker_hints_arrow sticker_left _sticker_left" onclick="Emoji.scrollStickersHints(this, -1, event)"></div><div class="_sticker_hints_inner sticker_hints_inner"></div><div class="sticker_hints_arrow sticker_right _sticker_right" onclick="Emoji.scrollStickersHints(this, 1, event)"></div></div>'), el);
+},
+
+updateStickersHints: function(force) {
+  if (Emoji.opts) {
+    each(Emoji.opts, function(optId, opts) {
+      if (force) {
+        delete opts.stickerHintsString;
+      }
+      Emoji.checkStickersKeywords(optId, opts, true);
+    });
+  }
+},
+
+initStickersKeywords: function() {
+  if (!window.stickersKeywordsData) {
+    var data = ls.get('stickers_keywords');
+    if (data && data.time && data.time > vkNow() - 86400000 * (2 + Math.random())) {
+      window.stickersKeywordsData = data.keywords;
+    }
+  }
+  if (window.stickersKeywordsData) {
+    Emoji.setStickersKeywords(window.stickersKeywordsData);
+  }
+},
+
+cachedStickersKeywordsTime: function() {
+  var data = ls.get('stickers_keywords');
+  return data && data.time ? Math.floor(data.time / 1000) : 0;
+},
+
+setStickersKeywords: function(keywords, update) {
+  if (!keywords) {
+    return false;
+  }
+
+  window.stickersKeywords = {};
+  var el = ce('div');
+  each(keywords, function() {
+    var words = this.words || [],
+        user = this.user_stickers || [],
+        promo = this.promoted_stickers || [];
+    each(words, function(i, word) {
+      val(el, word);
+      word = el.innerText || el.textContent;
+      stickersKeywords[word] = user.concat(promo.map(function(id) {
+        return -id;
+      }));
+    });
+  });
+
+  if (!Emoji.stickers[-1]) {
+    var recent = ls.get('recent_stickers');
+    if (recent) {
+      Emoji.stickers[-1] = recent;
+    }
+  }
+
+  if (update) {
+    ls.set('stickers_keywords', {time: vkNow(), keywords: keywords});
+    Emoji.updateStickersHints(true);
+  }
+},
+
 emojiEnter: function(optId, e) {
   var opts = Emoji.opts[optId],
     ctrlSend = (opts.ctrlSend ? opts.ctrlSend() : opts.noEnterSend) || (cur.ctrl_submit && !opts.noCtrlSend);
@@ -548,7 +1136,7 @@ addEmoji: function(optId, code, obj) {
   }
   var opts = Emoji.opts[optId];
   if (opts.editable) {
-    var img = Emoji.getEmojiHTML(code);
+    var img = Emoji.getEmojiHTML(code, Emoji.codeToChr(code), true);
     var editable = opts.txt;
     var sel = window.getSelection ? window.getSelection() : false;
     if (sel && sel.rangeCount) {
@@ -606,6 +1194,10 @@ addEmoji: function(optId, code, obj) {
       range.select();
     }
   }
+  if (opts.checkEditable) {
+    opts.checkEditable(optId, opts.txt);
+  }
+  Emoji.checkStickersKeywords(optId, opts);
   if (opts.saveDraft) {
     opts.saveDraft();
   }
@@ -656,12 +1248,20 @@ scrollTabs: function(optId, right) {
       Emoji.scrollToggleArrow(true, 'r', opts);
     }
   }
-  //addClass(opts.tt, 'emoji_tabs_anim');
   opts.scrollLeft = mPos;
-  animate(cont, {scrollLeft: mPos}, 300, function() {
-    //removeClass(opts.tt, 'emoji_tabs_anim');
-    // dfasdfasdf
-  });
+  animate(cont, {scrollLeft: mPos}, 300);
+},
+
+show: function(obj, ev) {
+  var optId = data(domPN(obj), 'optId');
+  if (isUndefined(optId)) return;
+  Emoji.ttShow(optId, obj, ev);
+},
+
+hide: function(obj, ev, force) {
+  var optId = data(domPN(obj), 'optId');
+  if (isUndefined(optId)) return;
+  Emoji.ttHide(optId, obj, ev, force);
 },
 
 ttShow: function(optId, obj, ev) {
@@ -694,6 +1294,7 @@ ttHide: function(optId, obj, ev, force) {
   if (force || vkNow() - showT < 200) {
     hideTT();
   } else {
+    clearTimeout(opts.ctt);
     opts.ctt = setTimeout(hideTT, 300);
   }
 },
@@ -720,10 +1321,6 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
   }
   var tt = opts.tt;
   if (!tt) {
-    var pointerClass = '';
-    if (opts.rPointer) {
-      pointerClass = ' emoji_rpointer';
-    }
     var prevTab = ls.get('stickers_tab');
     opts.curTab = cur.stickersTab = 0;
     if (prevTab === -1 && !opts.noStickers) {
@@ -741,7 +1338,7 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
     }
     var classAddr = '';
     var shopEvents = 'onclick="Emoji.showStickersStore('+optId+');"';
-    var shopHint = 'showTooltip(this, {text: \''+getLang('global_store_stickers')+'\', shift: [2,2,4], showdt: 0, black: 1});';
+    var shopHint = 'showTooltip(this, {text: \''+getLang('global_store_stickers')+'\', shift: [4,6,6], showdt: 0, black: 1});';
     if (opts.rPointer) {
       shopEvents += ' onmouseover="addClass(this.parentNode.parentNode.parentNode, \'emoji_shop_over\');'+shopHint+'"  onmouseout="removeClass(this.parentNode.parentNode.parentNode, \'emoji_shop_over\');"';
     } else {
@@ -751,11 +1348,17 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
     if (!opts.noStickers) {
       tabs += '<a class="fl_r emoji_shop" '+shopEvents+'><div class="emoji_sprite emoji_shop_icon">'+(Emoji.hasNewStickers ? '<div class="emoji_shop_icon_badge">'+Math.abs(Emoji.hasNewStickers)+'</div>' : '')+'</div></a>';
     }
+    if (!Emoji.showShadow()) {
+      classAddr += ' emoji_no_opacity';
+    }
+    if (opts.noStickers) {
+      classAddr += ' emoji_no_tabs';
+    }
     var tabContent = Emoji.getTabCont(optId, cur.stickersTab);
     var tt = ce('div', {
       id: 'emoji_block_'+optId,
-      className: 'emoji_tt_wrap'+(!Emoji.showShadow() ? ' emoji_no_opacity' : '')+classAddr,
-      innerHTML: '<div class="emoji_sprite emoji_pointer'+pointerClass+'"></div><div class="emoji_block_cont"><div class="emoji_block_rel"><div class="emoji_sprite emoji_expand_shadow"></div><div class="emoji_sprite emoji_expand_shadow_top"></div><div class="emoji_list_cont"><div class="emoji_list"><div class="emoji_scroll">'+tabContent+'</div></div></div></div><div class="emoji_tabs clear_fix">'+tabs+'</div></div>',
+      className: 'emoji_tt_wrap tt_down' + classAddr,
+      innerHTML: '<div class="emoji_block_cont"><div class="emoji_block_rel"><div class="emoji_list_cont"><div class="emoji_list"><div class="emoji_scroll">'+tabContent+'</div></div></div></div><div class="emoji_tabs clear_fix">'+tabs+'</div></div>',
       onmouseover: function(e) {
         if (!hasClass(tt, 'emoji_animated')) Emoji.ttShow(optId, false, e);
       },
@@ -771,7 +1374,6 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
       opts.sharedTT.emojiTT = tt;
     }
     Emoji.checkEmojiSlider(opts);
-    opts.imagesLoader = imagesLoader(geByClass1('emoji_list', tt), {use_iframe: true, need_load_class: 'emoji_need_load'});
   }
   clearTimeout(opts.ttEmojiHide);
 
@@ -787,6 +1389,10 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
       animate(tt, toParams, 200, function() {
         removeClass(tt, 'emoji_animated');
         hide(tt);
+        var stCont = geByClass1('_sticker_hints', domPN(opts.txt));
+        if (stCont && isVisible(stCont)) {
+          Emoji.checkStickersHintsSize(stCont, opts, true);
+        }
       });
     }, 10);
     Emoji.shown = false;
@@ -804,6 +1410,11 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
     show(tt);
     var toParams = {opacity: 1};
     Emoji.repositionEmoji(optId, obj, tt);
+
+    var stCont = geByClass1('_sticker_hints', domPN(opts.txt));
+    if (stCont && isVisible(stCont)) {
+      Emoji.checkStickersHintsSize(stCont, opts, true);
+    }
 
     setTimeout(function() {
       show(tt);
@@ -835,7 +1446,7 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
     }, 0);
     addClass(obj, 'emoji_smile_on');
     if (opts.emojiScroll && opts.emojiExpanded) {
-      opts.emojiScroll.update(false, true);
+      opts.emojiScroll.update();
       if (browser.msie && opts.curTab === 0 && opts.emojiOvered) {
         Emoji.scrollToListEl(optId, opts.emojiOvered);
       }
@@ -864,7 +1475,7 @@ curEmojiSet: ['D83DDE0A', 'D83DDE03', 'D83DDE09', 'D83DDE06', 'D83DDE1C', 'D83DD
 curEmojiKeys: {},
 emojiShowMore: function(optId) {
   var opts = Emoji.opts[optId];
-  if (opts.curTab) {
+  if (!opts || opts.curTab) {
     return;
   }
   if (Emoji.allEmojiCodes) {
@@ -887,10 +1498,7 @@ emojiShowMore: function(optId) {
         break;
       }
     }
-    if (str) {
-      cont.appendChild(cf(str));
-      opts.emojiScroll.update(false, true)
-    }
+    str && cont.appendChild(cf(str));
   } else {
     cur.onEmojiLoad = Emoji.emojiShowMore.pbind(optId);
   }
@@ -979,16 +1587,20 @@ reappendEmoji: function(optId, tt) {
   }
   if (!tt) return;
   var controls = opts.controlsCont;
-  var diff = opts.isSized ? sbWidth() : 0;
+  // var diff = opts.isSized ? sbWidth() : 0;
 
-  controls.insertBefore(tt, domFC(controls));
-  diff += opts.ttDiff + Emoji.ttShift;
-  setStyle(tt, vk.rtl ? {left: diff} : {right: diff});
+  if (opts.emojiWrap) { // new way
+    opts.emojiWrap.appendChild(tt);
+  } else {
+    opts.obj.appendChild(tt);
+  }
+  // diff += opts.ttDiff + Emoji.ttShift;
+  // setStyle(tt, vk.rtl ? {left: diff} : {right: diff});
   clearTimeout(cur.ttEmojiHide);
   hide(tt);
 },
-ttMarginTop: function(optId, obj, tt) {
-  window.headH = window.headH || ge('page_header') && getSize(ge('page_header'))[1] || 50;
+ttCalcHeight: function(optId, obj, tt) {
+  window.headH = window.headH || ge('page_header') && getSize(ge('page_header'))[1] || 0;
   var wh = (window.pageNode && window.browser.mozilla ? Math.min(getSize(pageNode)[1], window.lastWindowHeight) : window.lastWindowHeight) || getScroll()[3],
       scrollY = window.scrollGetY ? scrollGetY() : getScroll()[1],
       objY = getXY(obj)[1], objH = getSize(obj)[1],
@@ -996,34 +1608,36 @@ ttMarginTop: function(optId, obj, tt) {
       smileH = Emoji.opts[optId].emojiSmileHeigh,
       headSpace = headH, rowsCnt = Emoji.opts[optId].emojiRowsCount, offsetH = 9, listPadding = 8;
 
-  if (ge('page_header') && getStyle(ge('page_header'), 'position') != 'fixed') {
-    headSpace = Math.max(0, headH - scrollY);
+  if (!isAncestor(obj, pageNode)) {
+    headSpace = 0;
   }
   setStyle(list, {height: rowsCnt * smileH + listPadding});
-  var ttH = getSize(tt)[1], mTop, toUp, space,
-      upSpace = objY - offsetH - headSpace - scrollY,
-      downSpace = wh + scrollY - objY - objH - offsetH;
+
+  var overflowHiddenWrapY = 0, el = obj;
+  while (el !== bodyNode && (el = domClosestOverflowHidden(el))) {
+    overflowHiddenWrapY = Math.max(overflowHiddenWrapY, getXY(el)[1]);
+  }
+
+  var ttH = getSize(tt)[1];
+  var toUp, space;
+  var upSpace = objY - offsetH - headSpace - scrollY - overflowHiddenWrapY;
+  var downSpace = wh + scrollY - objY - objH - offsetH;
+
   if (upSpace < ttH && downSpace < ttH) {
     toUp = (upSpace >= downSpace);
   } else {
     toUp = (upSpace >= ttH);
   }
   space = (toUp ? upSpace : downSpace);
-  while (space < ttH && rowsCnt > 4) {
+  while (space < ttH && rowsCnt > 3) {
     rowsCnt--;
     ttH -= smileH;
   }
   Emoji.opts[optId].emojiRowsCount = rowsCnt;
   Emoji.opts[optId].emojiSmileHeigh = smileH;
   setStyle(list, {height: rowsCnt * smileH + listPadding});
-  toggleClass(tt, 'pointer_up', !toUp);
-
-  if (toUp) {
-    mTop = -ttH - offsetH;
-  } else {
-    mTop = objH + offsetH;
-  }
-  return mTop;
+  toggleClass(tt, 'tt_down', toUp);
+  toggleClass(tt, 'tt_up', !toUp);
 },
 repositionEmoji: function(optId, obj, tt) {
   var opts = Emoji.opts[optId], arrow;
@@ -1049,12 +1663,12 @@ repositionEmoji: function(optId, obj, tt) {
   } else {
     setStyle(tt, 'left', '');
   }
+
   var list = geByClass1('emoji_list', tt),
-    firstSmile = geByClass1('emoji_smile_cont', list);
+      firstSmile = geByClass1('emoji_smile_cont', list);
   Emoji.opts[optId].emojiSmileHeigh = firstSmile && getSize(firstSmile)[1] || 26;
   Emoji.opts[optId].emojiRowsCount = 9;
-  var topShift = (opts.topShift || -Emoji.ttMarginTop(optId, obj, tt));
-  setStyle(tt, {marginTop: -topShift});
+  Emoji.ttCalcHeight(optId, obj, tt);
 },
 emojiOver: function(optId, obj, withMouse) {
   if (browser.mobile || withMouse && Emoji.preventMouseOver) {
@@ -1069,60 +1683,37 @@ emojiOver: function(optId, obj, withMouse) {
 },
 emojiExpand: function(optId, block) {
   var opts = Emoji.opts[optId];
-  var list = geByClass1('emoji_list', block);
   addClass(block, 'emoji_expanded');
-
   Emoji.emojiLoadMore(optId);
 
   if (opts.emojiScroll) {
-    opts.emojiScroll.enable()
+    opts.emojiScroll.update();
   } else {
-    var topShown = false;
-    var bottomShown = false;
-    opts.emojiScroll = new Scrollbar(list, {
-      prefix: 'emoji_',
-      nomargin: true,
+    opts.emojiScroll = new uiScroll(geByClass1('emoji_list', block), {
+      theme: 'default emoji no_transition',
+      shadows: true,
       global: true,
-      nokeys: true,
-      right: vk.rtl ? 'auto' : 9,
-      left: !vk.rtl ? 'auto' : 9,
-      startDrag: function() {
+      ondragstart: function() {
         opts.scrolling = true;
       },
-      stopDrag: function() {
+      ondragstop: function() {
         opts.scrolling = false;
-        if (opts.afterScrollFn) {
-          opts.afterScrollFn();
-        }
+        isFunction(opts.afterScrollFn) && opts.afterScrollFn();
       },
-      scrollChange: function(top) {
-        if (window.tooltips) {
-          tooltips.destroyAll();
-          cur.ttScrollTime = new Date().getTime();
-        }
-        if (Emoji.showShadow()) {
-          if (top && !topShown) {
-            show(geByClass1('emoji_expand_shadow_top', opts.tt));
-            topShown = true;
-          } else if (!top && topShown) {
-            topShown = false;
-            hide(geByClass1('emoji_expand_shadow_top', opts.tt));
-          }
-        }
-        /*if (top > 10 && !opts.emojiMoreSt) {
-          Emoji.emojiLoadMore(optId);
-        }*/
-        if (opts.imagesLoader) {
-          opts.imagesLoader.processLoad();
-        }
+      onscrollstart: function() {
+        window.tooltips && tooltips.destroyAll();
       },
-      more: Emoji.emojiShowMore.pbind(optId)
+      onupdate: function() {
+        opts.imagesLoader && opts.imagesLoader.processLoad();
+      },
+      onmore: Emoji.emojiShowMore.pbind(optId)
     });
-
+    opts.imagesLoader = imagesLoader(opts.emojiScroll.scroller, {use_iframe: true, need_load_class: 'emoji_need_load'});
     if (opts.sharedTT) {
       opts.sharedTT.emojiScroll = opts.emojiScroll;
     }
   }
+
   opts.emojiExpanded = true;
 },
 
@@ -1182,18 +1773,7 @@ emojiMove: function(e) {
 },
 
 scrollToListEl: function(optId, el) {
-  if (!cur.emojiList.contains(el)) return;
-  var opts = Emoji.opts[optId],
-    diff = el.offsetTop - cur.emojiList.scrollTop;
-  if (diff >= opts.emojiSmileHeigh * opts.emojiRowsCount) {
-    animate(cur.emojiList, {scrollTop: cur.emojiList.scrollTop + (diff - opts.emojiSmileHeigh * (opts.emojiRowsCount - 1))}, 80, function() {
-      opts.emojiScroll.update(true, true)
-    });
-  } else if (diff < 0) {
-    animate(cur.emojiList, {scrollTop: cur.emojiList.scrollTop + diff}, 80, function() {
-      opts.emojiScroll.update(true, true)
-    });
-  }
+  Emoji.opts[optId] && Emoji.opts[optId].emojiScroll && Emoji.opts[optId].emojiScroll.scrollIntoView(el, 80);
 },
 
 anim: function(el, to) {
@@ -1216,14 +1796,12 @@ anim: function(el, to) {
     }
   }, 13);
 },
-ttOver: function(obj) {
-  animate(obj, {opacity: 1}, 200);
-},
-ttOut: function(obj) {
-  animate(obj, {opacity: 0.7}, 200);
-},
-tplSmile: function(optId, placeholder, classAddr) {
-  return '<div title="'+placeholder+'" class="fl_l emoji_smile'+classAddr+'" onmouseover="Emoji.ttShow('+optId+', this);" onmouseout="Emoji.ttHide('+optId+', this);" onclick="return cancelEvent(event);"><div class="emoji_smile_icon_on"></div><div class="emoji_smile_icon"></div></div>'
+tplSmile: function(placeholder) {
+  return '<div class="emoji_smile_wrap _emoji_wrap">\
+  <div class="emoji_smile _emoji_btn" title="' + placeholder + '" onmouseover="return Emoji.show(this, event);" onmouseout="return Emoji.hide(this, event);" onclick="return cancelEvent(event);">\
+    <div class="emoji_smile_icon"></div>\
+  </div>\
+</div>';
 },
 
 emojiToHTML: function(str, replaceSymbols, noBr) {
@@ -1430,10 +2008,14 @@ getTabCont: function(optId, selId) {
       return '';
     }
     var list = pack.stickers;
-    var size = 64;
-    var sizeDiv = 256 / size;
     for (var i in list) {
-      html += '<a id="emoji_sticker_item'+optId+'_'+selId+'_'+list[i][0]+'" class="emoji_sticker_item" onclick="Emoji.stickerClick('+optId+', '+list[i][0]+', '+list[i][1]+', this);"><img class="emoji_need_load" width="'+parseInt(list[i][1] / sizeDiv)+'" height="'+size+'" src="/images/blank.gif" data-src="/images/stickers/'+list[i][0]+'/'+stickerSize+'.png" /></a>';
+      html += rs(Emoji.stickerItem(), {
+        optId: optId,
+        selId: selId,
+        stickerId: list[i][0],
+        size: list[i][1],
+        stickerSize: stickerSize
+      });
     }
   } else {
     var html = Emoji.ttEmojiList(optId);
@@ -1441,8 +2023,19 @@ getTabCont: function(optId, selId) {
   return html;
 },
 
+stickerItem: function() {
+  return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" class="emoji_sticker_item" onclick="Emoji.stickerClick(%optId%, %stickerId%, %size%, this, \'keyboard\');"><img class="emoji_sticker_image emoji_need_load" src="/images/blank.gif" data-src="/images/stickers/%stickerId%/%stickerSize%.png" /></a>';
+},
+hintsStickerItem: function() {
+  return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" class="emoji_sticker_item %class%" onclick="%onclick%" onmouseover="Emoji.stickerHintOver(this)" onmouseout="Emoji.stickerHintOut(this)"><img class="emoji_sticker_image" src="/images/stickers/%stickerId%/%stickerSize%.png" /></a>';
+},
+
 tabSwitch: function(obj, selId, optId) {
-  if (!Emoji.stickers || isEmpty(Emoji.stickers)) {
+  var stickers = Emoji.stickers && clone(Emoji.stickers);
+  if (stickers) {
+    delete stickers[-1];
+  }
+  if (!stickers || isEmpty(stickers)) {
     Emoji.onStickersLoad = Emoji.tabSwitch.pbind(obj, selId, optId);
     return false;
   }
@@ -1475,10 +2068,9 @@ tabSwitch: function(obj, selId, optId) {
     Emoji.emojiOver(optId, geByClass1('emoji_scroll', tt).firstChild);
   }
   opts.emojiScroll.scrollTop();
-  opts.emojiScroll.update();
 },
 
-stickerClick: function(optId, stickerNum, width, obj) {
+stickerClick: function(optId, stickerNum, width, obj, sticker_referrer) {
   var opts = Emoji.opts[optId];
   if (!Emoji.stickers[-1]) {
     Emoji.stickers[-1] = {stickers:[]};
@@ -1492,7 +2084,7 @@ stickerClick: function(optId, stickerNum, width, obj) {
   ls.set('recent_stickers', Emoji.stickers[-1]);
 
   if (opts.onStickerSend) {
-    opts.onStickerSend(stickerNum);
+    opts.onStickerSend(stickerNum, sticker_referrer);
   }
   Emoji.ttHide(optId, false, false, true);
 
@@ -1521,15 +2113,13 @@ stickerOver: function(stickerNum, el) {
       return;
     }
 
+
     var opt = {
       index: tt_index,
       className: tt_classname,
       content: content,
       shift: function() {
-        if (browser.mozilla || browser.opera && browser.version.match(/(\d+)/)[0] <= 12) {
-          return [-138, 0, -200];
-        }
-        return [-138, 0, -80];
+        return [-138, 0, -200];
       },
       hasover: 1,
       slideX: 15,
@@ -1537,6 +2127,7 @@ stickerOver: function(stickerNum, el) {
       cache: 1,
       forcetodown: true,
       no_shadow: true,
+      dir: 'left',
       onShowStart: function (tt) {
         var el = tt.container,
             size = getSize(tt.container),
@@ -1553,6 +2144,10 @@ stickerOver: function(stickerNum, el) {
         el_top = el_cur_top + el_diff;
         setStyle(el, 'top', el_top);
       }
+    }
+
+    if (gpeByClass('_im_mess_stack', el)) {
+      opt.appendParentCls = '_im_mess_stack';
     }
 
     showTooltip(el, opt);
@@ -1585,12 +2180,12 @@ selectPeer: function(optId) {
 },
 
 showMyStickers: function() {
-  cur.boxMyStickers = showBox('al_im.php', {act: 'stickers_my'}, {dark: 1, stat: ['im.css', 'im.js', 'sorter.js']});
+  cur.boxMyStickers = showBox('al_im.php', {act: 'stickers_my'}, {dark: 1, stat: ['im.css', 'imn.js', 'sorter.js']});
 },
 
 showStickersStore: function(optId) {
   var peer = Emoji.selectPeer(optId);
-  cur.boxStickersStore = showBox('al_im.php', {act: 'stickers_store', peer: peer, box: 1}, {dark: 1, stat: ['im.css', 'im.js', 'page_help.css', 'sorter.js']});
+  cur.boxStickersStore = showBox('al_im.php', {act: 'stickers_store', peer: peer, box: 1}, {dark: 1, stat: ['im.css', 'imn.js', 'page_help.css', 'sorter.js']});
   each(geByClass('emoji_smile_icon_promo'), function(i, el) { geByClass1('emoji_smile_icon', el.parentNode); re(el); });
   each(geByClass('emoji_shop_icon_badge'), function(i, el) { re(el); });
   Emoji.hasNewStickers = false;
@@ -1609,15 +2204,23 @@ previewSticker: function(packId, obj, opts, ev) {
   if (opts.preview) {
     params.preview = 1;
   }
+  if (opts.stickerId) {
+    params.sticker_id = opts.stickerId;
+  }
+  params.sticker_referrer = opts.sticker_referrer || 'store';
   if (opts.name) {
     var query = nav.objLoc[0].split('/');
     if (query[0] == 'stickers' && query[1] != opts.name) {
       nav.setLoc({0: 'stickers/' + opts.name});
     }
   }
-  cur.boxStickersPreview = showBox('al_im.php', params, {dark: 1, stat: ['im.css', 'im.js'], onFail: function(e) {
-    if (!window.emojiStickersDisabled) window.emojiStickersDisabled = {};
-    window.emojiStickersDisabled[packId] = true;
+  cur.boxStickersPreview = showBox('al_im.php', params, {dark: 1, stat: ['im.css', 'imn.js'], onFail: function(e) {
+    if (!window.emojiStickersDisabled) {
+      window.emojiStickersDisabled = {};
+    }
+    if (packId) {
+      window.emojiStickersDisabled[packId] = true;
+    }
     if (e) return true;
   }});
   cancelEvent(ev);
@@ -1666,19 +2269,23 @@ clickSticker: function(packId, obj, ev) {
         var el = obj.parentNode;
         var mini = false;
         while (el = el.parentNode) {
-          if (hasClass(el, 'im_rows')) {
+          if (hasClass(el, 'js-im-page')) {
             break;
           }
           if (hasClass(el, 'fc_tab')) {
             mini = true;
             break;
           }
+          if (hasClass(el, 'mv_chat')) {
+            break;
+          }
         }
         if (!el) return false;
         if (!mini) {
-          var m = el.id.match(/im_rows(\d+)/);
-          if (m[1]) {
-            txt = ge('im_editable'+m[1]);
+          if (hasClass(el, 'js-im-page')) {
+            txt = geByClass1('_im_text');
+          } else if (hasClass(el, 'mv_chat')) {
+            txt = domByClass(el, 'mv_chat_reply_input');
           }
         } else {
           txt = geByClass1('fc_editable', el);
@@ -1688,7 +2295,7 @@ clickSticker: function(packId, obj, ev) {
       if (txt) {
         var opts = Emoji.opts[txt.emojiId];
 
-        Emoji.ttClick(txt.emojiId, geByClass1('emoji_smile', txt.parentNode.parentNode), false, true);
+        Emoji.ttClick(txt.emojiId, geByClass1('_emoji_btn', txt.parentNode.parentNode), false, true);
 
         var tab_cont = geByClass1('emoji_tabs_wrap', opts.tt),
             tab = geByClass1('emoji_tab_'+packId, tab_cont),
@@ -1722,12 +2329,16 @@ clickSticker: function(packId, obj, ev) {
         opts.scrollLeft = mPos;
         tab_cont.scrollLeft = mPos;
 
-        if (!Emoji.stickers || isEmpty(Emoji.stickers)) {
+        var stickers = Emoji.stickers && clone(Emoji.stickers);
+        if (stickers) {
+          delete stickers[-1];
+        }
+        if (!stickers || isEmpty(stickers)) {
           Emoji.onStickersLoad = Emoji.tabSwitch.pbind(tab, packId, txt.emojiId);
 
           removeClass(geByClass1('emoji_tab_sel', tab_cont), 'emoji_tab_sel');
           addClass(tab, 'emoji_tab_sel');
-          geByClass1('emoji_scroll', opts.tt).innerHTML = '<div class="emojo_scroll_progress"></div>';
+          geByClass1('emoji_scroll', opts.tt).innerHTML = '<div class="emoji_scroll_progress">' + rs(vk.pr_tpl, {id: '', cls: 'pr_big'}) + '</div>';
         } else {
           Emoji.tabSwitch(tab, packId, txt.emojiId);
         }
@@ -1735,34 +2346,35 @@ clickSticker: function(packId, obj, ev) {
     }
   }
   if (!obj || !en) {
-    Emoji.previewSticker(packId);
+    Emoji.previewSticker(packId, false, {sticker_referrer: 'message'});
   }
   ev && cancelEvent(ev);
   return false;
 },
 
-buyStickers: function(packId, ev, obj, hash, fromBtn) {
+buyStickers: function(packId, ev, obj, hash, sticker_referrer) {
   if (obj) {
     var back = obj.innerHTML;
-    if (hasClass(obj, 'im_stickers_act_done')) {
+    if (hasClass(obj, 'secondary')) {
       return true;
     }
   }
   var peer = Emoji.selectPeer();
-  ajax.post('/al_im.php', {act: 'a_stickers_buy', pack_id: packId, hash: hash, peer: peer}, {
-    onDone: function(text, newStickers, btnText) {
+  ajax.post('/al_im.php', {act: 'a_stickers_buy', pack_id: packId, hash: hash, peer: peer, sticker_referrer: unclean(sticker_referrer)}, {
+    onDone: function(text, newStickers, keywords, btnText) {
       each(geByClass('_sticker_btn_' + packId), function() {
         this.innerHTML = btnText;
         this.onmouseover = '';
         this.onclick = '';
-        addClass(this, 'im_stickers_act_done');
+        addClass(this, 'secondary');
       });
       if (cur.boxStickersPreview) {
         cur.boxStickersPreview.hide();
       }
       showDoneBox(text);
       if (newStickers) {
-        Emoji.updateTabs(newStickers, true);
+        Emoji.updateTabs(newStickers, keywords, true);
+        try {vk.widget && Rpc.callMethod('proxy', 'updateStickers');} catch(e) {} // for widget_comments.js
       }
       var box = cur.tabbedStickersBox;
       if (box && box.tbUpdate) {
@@ -1792,11 +2404,11 @@ buyStickers: function(packId, ev, obj, hash, fromBtn) {
 },
 
 stickerAct: function(obj, packId, hash, ev, fromBtn) {
-  if (fromBtn && hasClass(obj, 'im_stickers_act_done')) {
+  if (fromBtn && hasClass(obj, 'secondary')) {
     return true;
   }
   var back = obj.innerHTML;
-  var act = fromBtn ? hasClass(obj, 'im_stickers_act_done') : hasClass(obj, 'im_sticker_activated');
+  var act = fromBtn ? hasClass(obj, 'secondary') : hasClass(obj, '_im_sticker_activated');
   if (act) {
     state = 1;
   } else {
@@ -1809,19 +2421,19 @@ stickerAct: function(obj, packId, hash, ev, fromBtn) {
     }
   }
   ajax.post('/al_im.php', {act: 'a_stickers_switch', pack_id: packId, hash: hash, state: state, from_btn: fromBtn ? 1 : 0}, {
-    onDone: function(text, newStickers, btnText) {
+    onDone: function(text, newStickers, keywords, btnText) {
       if (!fromBtn) {
         obj.innerHTML = text;
         obj.onmouseover = '';
         setStyle(obj, {width: 'auto'});
-        toggleClass(obj, 'im_sticker_activated', !state);
+        toggleClass(obj, '_im_sticker_activated', !state);
       }
       each(geByClass('_sticker_btn_' + packId), function() {
         this.innerHTML = btnText;
         this.onmouseover = '';
-        toggleClass(this, 'im_stickers_act_done', !state);
+        toggleClass(this, 'secondary', !state);
       });
-      Emoji.updateTabs(newStickers, true);
+      Emoji.updateTabs(newStickers, keywords, true);
       var el = obj.parentNode.parentNode;
       if (fromBtn) {
         return;
@@ -1844,8 +2456,6 @@ stickerAct: function(obj, packId, hash, ev, fromBtn) {
           hide('im_stickers_deact');
         }
       }
-      Emoji.fixFirstEl(ge('im_stickers_deact_wrap'));
-      Emoji.fixFirstEl(ge('im_stickers_my_wrap'));
       cur.stickersSorterInit();
     },
     showProgress: lockButton.pbind(obj),
@@ -1870,7 +2480,7 @@ getTabsCode: function(newStickers, optId) {
     if (isActive) {
       var act = 'return Emoji.tabSwitch(this, '+stNum+', '+optId+');';
     } else {
-      var act = 'return Emoji.previewSticker('+stNum+');';
+      var act = 'return Emoji.previewSticker('+stNum+', false, {sticker_referrer: \'keyboard\'});';
     }
     if (stickers[i][2]) {
       Emoji.hasNewStickers = stickers[i][2];
@@ -1886,13 +2496,25 @@ getTabsCode: function(newStickers, optId) {
   return html;
 },
 
-updateTabs: function(newStickers, update) {
+updateTabs: function(newStickers, keywords, update) {
   if (newStickers && update && window.Notifier) {
-    Notifier.lcSend('emoji', {act: 'updateTabs', newStickers: newStickers});
+    Notifier.lcSend('emoji', {act: 'updateTabs', newStickers: newStickers, keywords: keywords});
   }
+
+  var needKeywords = 0;
+  if (keywords === undefined) {
+    Emoji.initStickersKeywords();
+    if (!window.stickersKeywordsData) {
+      needKeywords = 1;
+    }
+  } else {
+    window.stickersKeywordsData = keywords;
+    Emoji.setStickersKeywords(window.stickersKeywordsData, update);
+  }
+
   if (newStickers === undefined) {
-    if (!window.emojiStickers) {
-      ajax.post('al_im.php', {act: 'a_stickers_list'}, {
+    if (!window.emojiStickers || !window.stickersKeywordsData) {
+      ajax.post('al_im.php', {act: 'a_stickers_list', need_keywords: needKeywords, cache_time: Emoji.cachedStickersKeywordsTime()}, {
         onDone: Emoji.updateTabs
       })
     }
@@ -1941,15 +2563,6 @@ checkEmojiSlider: function(opts) {
   }
 },
 
-fixFirstEl: function(cont) {
-  var firstClassEls = geByClass('im_stickers_my_first', cont);
-  for (var i in firstClassEls) {
-    removeClass(firstClassEls[i], 'im_stickers_my_first');
-  }
-  var newFirstEl = geByClass1('im_stickers_my_row', cont);
-  addClass(newFirstEl, 'im_stickers_my_first');
-},
-
 giftSticker: function(packId, peersIds, ev, opts) {
   opts = opts || {};
   var params = {
@@ -1960,6 +2573,7 @@ giftSticker: function(packId, peersIds, ev, opts) {
   if (opts.from) {
     params.from = opts.from;
   }
+  params.sticker_referrer = opts.sticker_referrer || 'store';
   boxLayerWrap.scrollTop = 0;
   showBox('/al_im.php', params, {
     stat: ['wide_dd.js', 'wide_dd.css', 'notifier.css', 'notifier.js'],

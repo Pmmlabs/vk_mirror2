@@ -1,4 +1,116 @@
 var Page = {
+
+  // mainly used in image paste from clipboard (see Emoji)
+  initUploadForImagePaste: function(txtEl, addMedia, blob) {
+    stManager.add(['upload.js'], function() {
+      addMedia.menu && addMedia.menu.activate();
+
+      var uploadEl;
+
+      domInsertBefore(uploadEl = ce('div', {
+        className: 'post_upload_wrap fl_r',
+        innerHTML: '<div id="page_field_upload" class="post_upload"></div>'
+      }), txtEl);
+
+      // get upload params from already existed data on page
+      var uploadData = cur.wallUploadOpts;
+
+      if (addMedia.clipboardImageUploadIndex !== undefined) {
+        Upload.onFileApiSend(addMedia.clipboardImageUploadIndex, [ blob ]);
+
+      } else {
+        addMedia.clipboardImageUploadIndex = Upload.init(domFC(uploadEl), uploadData.url, uploadData.params, {
+          file_name: 'photo',
+          file_size_limit: 1024 * 1024 * 5, // 5Mb
+          file_types_description: 'Image files (*.jpg, *.jpeg, *.png, *.gif)',
+          file_types: '*.jpg;*.JPG;*.jpeg;*.JPEG;*.png;*.PNG;*.gif;*.GIF',
+          file_input: null,
+          accept: 'image/jpeg,image/png',
+          file_match:  uploadData.opts.ext_re,
+          lang: uploadData.opts.lang,
+          wiki_editor: 0,
+
+          onUploadStart: function(info, res) {
+            var i = info.ind !== undefined ? info.ind : info, options = Upload.options[i];
+            if (Upload.types[i] == 'form') {
+              geByClass1('file', ge('choose_photo_upload')).disabled = true;
+            }
+            if (Upload.types[i] == 'fileApi') {
+              if (cur.notStarted) {
+                boxQueue.hideLast();
+                delete cur.notStarted;
+              }
+              if (options.multi_progress) this.onUploadProgress(info, 0, 0);
+            }
+          },
+          onUploadComplete: function(info, res) {
+            var params, i = info.ind !== undefined ? info.ind : info,
+                fileName = (info.fileName ? info.fileName : info).replace(/[&<>"']/g, '');
+
+            try {
+              params = eval('(' + res + ')');
+            } catch(e) {
+              params = q2ajx(res);
+            }
+            if (!params.photos) {
+              Upload.onUploadError(info);
+              return;
+            }
+
+            ajax.post('al_photos.php', extend({act: 'choose_uploaded'}, params), {
+              onDone: function(media, data) {
+                data.uploadNum = i;
+                addMedia.chooseMedia('photo', media, extend(data, {upload_ind: i + '_' + fileName}));
+              },
+              onFail: function() {},
+              progress: (Upload.types[i] == 'form') ? box.progress : null
+            });
+          },
+          onUploadProgress: function(info, bytesLoaded, bytesTotal) {
+            var i = info.ind !== undefined ? info.ind : info;
+            if (Upload.types[i] == 'fileApi') {
+              var lnkId = (cur.attachMediaIndexes || {})[i];
+              if (lnkId === undefined || lnkId && cur.addMedia[lnkId].chosenMedia || cur.imMedia) {
+                var loadData = {loaded: bytesLoaded, total: bytesTotal};
+                if (info.fileName) loadData.fileName = info.fileName.replace(/[&<>"']/g, '');
+                addMedia.showMediaProgress('photo', i, loadData);
+              }
+            }
+          },
+          onUploadError: WallUpload.uploadFailed,
+          onCheckServerFailed: function () {
+            delete cur.uploadInited;
+            WallUpload.hide();
+          },
+          onUploadCompleteAll: function (i) {
+            if (Upload.types[i] == 'form') {
+              Upload.embed(i);
+            }
+          },
+          onCheckComplete: function(ind) {
+            Upload.types[ind] = 'fileApi';
+            Upload.onFileApiSend(ind, [ blob ]);
+          },
+          customShowProgress: function() {
+          },
+
+          noFlash: 1,
+          multiple: 1,
+          multi_progress: 1,
+          max_files: 2,
+          chooseBox: 1,
+          clear: 1,
+          type: 'photo',
+          max_attempts: 3,
+          server: uploadData.opts.server,
+          error: uploadData.opts.default_error,
+          error_hash: uploadData.opts.error_hash
+        });
+      }
+    });
+
+  },
+
   buildMediaLinkEl: function(url) {
     return '<div class="page_media_link_url"><div class="page_media_link_icon"></div><div class="page_media_link_text">' + url + '</div></div>';
   },
@@ -13,29 +125,71 @@ var Page = {
     opts.additional = {draft_photos: allPhotos.join(';')};
     return showPhoto(photoId, listId, extend(opts, {queue: 1}));
   },
-  inviteToGroup: function(gid, mid, invited, hash) {
+  inviteToGroup: function(el, gid, mid, invited, hash) {
+    var actions = domPN(el),
+        row = domPN(domPN(el))
     var setInvited = function(invited) {
-      var row = ge('member_row'+mid);
-      geByClass('actions', row)[0].innerHTML = invited ? '<a href="" onclick="return page.inviteToGroup('+gid+', '+mid+', 1, \''+hash+'\')">'+getLang('friends_cancel_event_invite')+'</a>' : '<a href="" onclick="return page.inviteToGroup('+gid+', '+mid+', 0, \''+hash+'\')">'+getLang('friends_send_event_invite')+'</a>';
+      var newInv = invited ? 1 : 0,
+          label = invited ? getLang('friends_cancel_event_invite') : getLang('friends_send_event_invite');
+      actions.innerHTML = '<a onclick="return page.inviteToGroup(this, ' + gid + ', ' + mid + ', ' + newInv + ', \'' + hash + '\')">' + label + '</a>';
     }
     if (invited) {
-      ajax.post('/al_page.php', {act: 'a_cancel_invite', mid: mid, gid: gid, hash: hash}, {onDone: function(res){ }});
+      ajax.post('/al_page.php', {act: 'a_cancel_invite', mid: mid, gid: gid, hash: hash});
       setInvited(0);
     } else {
-      ajax.post('/al_page.php', {act: 'a_invite', mid: mid, gid:gid, hash: hash}, {onDone: function(res, message) {
-        if (!res) {
-          setInvited(0);
-          ge('res'+mid).innerHTML = '<div class="res">' + message + '</div>';
-          var row = ge('member_row' + mid);
-          hide(geByClass('actions', row)[0]);
+      ajax.post('/al_page.php', {act: 'a_invite', mid: mid, gid: gid, hash: hash}, {
+        onDone: function(res, message) {
+          if (!res) {
+            setInvited(0);
+            hide(actions);
+            var error = geByClass1('error', row),
+                newErr = se('<div class="page_members_box_error msg"><div class="msg_text">' + message + '</div></div>');
+            if (!error) {
+              row.insertBefore(newErr, row.firstChild);
+            } else {
+              row.replaceChild(newErr, error);
+            }
+          }
         }
-      }});
+      });
       setInvited(1);
     }
     return false;
   },
+  toggleSubscription: function(btn, hash, act, ev) {
+    if (cur.toggleSubscriptionAct != undefined) {
+      act = cur.toggleSubscriptionAct;
+    }
+    ajax.post('al_wall.php', {act: 'a_toggle_posts_subscription', subscribe: act ? 1 : 0, oid: cur.oid, hash: hash}, {
+      onDone: function(text) {
+        val(btn, text);
+        cur.toggleSubscriptionAct = !act;
+      },
+      showProgress: Page.actionsDropdownLock.pbind(btn),
+      hideProgress: Page.actionsDropdownUnlock.pbind(btn)
+    });
+    cancelEvent(ev);
+  },
   showPageMembers: function(ev, oid, tab) {
+    if (cur.viewAsBox) {
+      cur.viewAsBox();
+      return cancelEvent(ev);
+    }
     return !showTabbedBox('al_page.php', {act: 'box', oid: oid, tab: tab}, {cache: 1}, ev);
+  },
+  showPageVideos: function(ev, oid) {
+    if (cur.viewAsBox) {
+      cur.viewAsBox();
+      return cancelEvent(ev);
+    }
+    return !showBox('al_video.php', {act: 'a_choose_video_box', review: 1, to_id: oid}, {cache: 1, grey: 1});
+  },
+  showPageAudios: function(ev, oid) {
+    if (cur.viewAsBox) {
+      cur.viewAsBox();
+      return cancelEvent(ev);
+    }
+    return !showBox('/al_audio.php', {act: 'audios_box', oid: oid}, {cache: 1, params: {width: 638}}, ev);
   },
   ownerPhotoFast: function() {
     var inp = ge('owner_photo_bubble_input');
@@ -93,87 +247,70 @@ var Page = {
 
     return !showBox('like.php', {act: 'publish_box', object: 'audio' + curAudio[0] + '_' + curAudio[1], list: curAudio[2] + ((curAudio[3] && curAudio[3].charAt(0) == 'h') ? '_' + curAudio[3] : '')}, {stat: ['page.js', 'page.css', 'wide_dd.js', 'wide_dd.css', 'sharebox.js']});
   },
-  playCurrent: function(el, audioId, hash) {
-    var prg = geByClass1('current_audio_prg', el.parentNode) || el.parentNode.appendChild(ce('span', {className: 'progress_inline current_audio_prg'}));
-    return Page.playLive(audioId, hash, {
+
+  playCurrent: function(el, liveInfo) {
+    var parent = el.parentNode;
+
+    return Page.playLive(liveInfo, {
       showProgress: function() {
-        show(prg);
-        addClass(el, 'prg');
+        showProgress(parent);
       },
       hideProgress: function() {
-        hide(prg);
-        removeClass(el, 'prg');
+        hideProgress(parent);
       }
     });
   },
-  playLive: function(audioId, hash, ajaxOpts) {
-    var _a = window.audioPlayer, aid = currentAudioId();
-    if (_a) _a.gpDisabled = false;
-    if (aid == audioId) {
-      return playAudioNew(audioId);
-    }
 
-    stManager.add(['audioplayer.css', 'audioplayer.js'], ajax.post.pbind('audio', {act: 'play_audio_status', id: audioId, hash: hash}, extend({
-      onDone: function(info, data, uid) {
-        if (uid != vk.id) {
-          if (data && uid) {
-            audioPlayer.statusData = audioPlayer.statusData || {};
-            audioPlayer.statusData[uid] = data;
-          }
-          if (!info) return;
-
-          if (!window.audioPlaylist) {
-            window.audioPlaylist = {};
-          }
-          audioPlaylist[audioId] = info;
-          audioPlaylist.start = audioId;
-          if (data && uid) {
-            audioPlaylist.statusData = data;
-          } else {
-            delete audioPlaylist.statusData;
-          }
-          audioPlayer.setPadPlaylist(audioPlaylist);
-        }
-        playAudioNew(audioId);
-      }
-    }, ajaxOpts || {})));
+  playLive: function(liveInfo, ajaxOpts) {
+    getAudioPlayer().playLive(liveInfo, ajaxOpts);
   },
+
   audioStatusUpdate: function(hash) {
-    var exp = isChecked('currinfo_audio'), _a = window.audioPlayer, aid = currentAudioId();
-    if (_a) {
-      _a.statusExport = _a.statusExport || {};
-      if (exp) {
-        _a.statusExport[vk.id] = 1;
-      } else {
-        delete _a.statusExport[vk.id];
-      }
-    }
-    var audioId = (_a && _a.player && _a.player.paused && !_a.player.paused()) ? aid : '', top = (_a && (_a.playbackParams.top_audio || _a.playbackParams.top)) ? 1 : '';
-    ajax.post('al_audio.php', {act: 'toggle_status', hash: hash, exp: exp, id: audioId, oid: vk.id, top: top}, {onDone: function(text) {
-      if (vk.id != cur.oid || !text) return;
-      val('current_info', text);
-    }});
-  },
-  audioListenersOver: function(el, oid) {
-    var valueEl = geByClass1('value', el), pointerShift = 92,
-        valueW = valueEl && (valueEl.clientWidth || valueEl.offsetWidth) || 7;
+    var exp = isChecked('currinfo_audio');
+    var ap = getAudioPlayer();
 
+    var currAudio = AudioUtils.asObject(ap.getCurrentAudio());
+    if (currAudio && !ap.isPlaying()) {
+      currAudio = '';
+    }
+
+    var currPlaylist = currAudio ? ap.getCurrentPlaylist() : false;
+    var playbackParams = currPlaylist ? currPlaylist.getPlaybackParams() : false;
+    var isTop = 0;
+    if (currPlaylist && playbackParams) {
+      isTop = intval(playbackParams.top_audio || playbackParams.top);
+    }
+
+    ajax.post('al_audio.php', {
+      act: 'toggle_status',
+      hash: hash,
+      exp: exp,
+      id: (currAudio ? currAudio.fullId : ''),
+      oid: vk.id,
+      top: isTop
+    }, {
+      onDone: function(text, expStatus) {
+        if (vk.id != cur.oid || !text) return;
+        val('current_info', text);
+
+        ap.setStatusExportInfo(expStatus);
+      }
+    });
+  },
+
+  audioListenersOver: function(el, oid) {
     showTooltip(el, {
       url: 'al_audio.php',
       params: {act: 'listeners_tt', 'oid': oid},
       slide: 15,
-      shift: [88 - valueW, 10, 10],
+      shift: [24, 10, 10],
       ajaxdt: 100,
       showdt: 400,
       hidedt: 200,
-      className: 'rich like_tt ',
-      onShowStart: function (tt) {
-        if (!tt.container || pointerShift === false) return;
-        var bp = geByClass1('bottom_pointer', tt.container, 'div');
-        var tp = geByClass1('top_pointer', tt.container, 'div');
-        setStyle(bp, {marginLeft: pointerShift});
-        setStyle(tp, {marginLeft: pointerShift});
-      }
+      asrtl: 1,
+      dir: 'auto',
+      typeClass: 'audio_tt',
+      appendParentCls: 'scroll_fix_wrap'
     });
   },
   showAudioListeners: function(oid, ev) {
@@ -187,13 +324,13 @@ var Page = {
     }
 
     ev.cancelBubble = true;
-    return !showBox('/al_audio.php', {act: 'listeners_box', oid: oid}, { cache: 1,
+
+    cur.audioListenersOnDone = {
       onHide:  function() {
         removeEvent(window.boxLayerWrap, 'scroll', onBoxScroll);
       },
       onDone: function(box, needMore) {
         window.audioListenersOffset = 0;
-        hide(ge('audio_listeners_progress'));
 
         if (!needMore) {
           re('listeners_more_link');
@@ -202,17 +339,17 @@ var Page = {
           addEvent(window.boxLayerWrap, 'scroll', onBoxScroll);
         }
       }
-    });
+    };
+
+    return !showBox('/al_audio.php', {act: 'listeners_box', oid: oid}, extend(cur.audioListenersOnDone, { cache: 1 }));
   },
   moreAudioListeners: function(oid) {
     window.audioListenersOffset += 50;
-    var content = geByClass1('audio_listeners');
-    var progress = ge('audio_listeners_progress');
+    var content = geByClass1('fans_rows'),
+        moreBtn = ge('listeners_more_link');
 
     ajax.post("/al_audio.php", {act: 'listeners_box', oid: oid, offset: window.audioListenersOffset}, {
       onDone: function(rows, needMore) {
-        hide(progress);
-        show(ge('more_link_text'));
 
         var newRows = ce('div', { innerHTML: rows });
 
@@ -221,17 +358,16 @@ var Page = {
         }
 
         if (!needMore) {
-          re('listeners_more_link');
+          re(moreBtn);
           re('listeners_more_link_trigger');
         } else {
           var moreLink = ge('listeners_more_link_trigger');
           show(moreLink);
         }
-      }
+      },
+      showProgress: lockButton.pbind(moreBtn),
+      hideProgress: unlockButton.pbind(moreBtn)
     });
-
-    hide(ge('more_link_text'));
-    show(progress);
   },
   postsUnseen: function(posts) {
     if (!window._postsExtras) {
@@ -465,7 +601,7 @@ var Page = {
     ls.set('posts_sent', _postsSaved = _postsSeen = _postsSeenModules = _postsExtras = {});
   },
   showContacts: function(oid, edit, callback) {
-    var b = showBox('/al_page.php', {act: 'a_get_contacts', oid: oid, edit: edit}, {params:{width:467, dark: 1}});
+    var b = showBox('/al_page.php', {act: 'a_get_contacts', oid: oid, edit: edit});
     b.setOptions({onHideAttempt: function() {
       if (cur.reloadAfterClose) {
         if (callback) {
@@ -478,50 +614,74 @@ var Page = {
       return true;
     }});
   },
+  showContactTT: function(el, text) {
+    showTooltip(el, {
+      text: function() {return text;},
+      slideX: 15,
+      className: 'pedit_tt',
+      hasover: 1,
+      shift: [-getSize(el)[0] - 10, -15, -15],
+      dir: 'left',
+      appendParentCls: 'scroll_fix_wrap',
+      onCreate: function () {
+        if (el.tt) {
+          setTimeout(el.tt.hide, 3000);
+        }
+      }
+    });
+  },
   editContact: function(oid, mid, hash, callback) {
-    var b = showBox('al_page.php', {act: 'a_edit_contact_box', mid: mid, oid: oid}, {params: {bodyStyle: 'padding: 20px', width: 430, dark: 1}}).setButtons(getLang('global_save'), function() {
+    var b = showBox('al_page.php', {act: 'a_edit_contact_box', mid: mid, oid: oid}).setButtons(getLang('global_save'), function(btn) {
       cur.reloadAfterClose = true;
       function onSearch() {
         var params = {act: 'a_add_contact', mid: mid, oid: oid};
         params.hash = hash;
-        if (!hash) params.hash = ge('public_contact_hash').value;
-        if (ge('public_contact_memlink')) params.page = ge('public_contact_memlink').value;
-        params.title = ge('public_contact_position').value;
-        params.phone = ge('public_contact_phone').value;
-        params.email = ge('public_contact_email').value;
-        if (ge('public_contact_memlink') && !params.page && !params.phone && !params.email) {
-          b.hide();
-          return;
+        if (!hash) params.hash = ge('group_contact_hash').value;
+        params.title = val('group_contact_position');
+        params.phone = val('group_contact_phone');
+        params.email = val('group_contact_email');
+        if (!mid && ge('group_contact_memlink')) {
+          params.page = val('group_contact_memlink');
+          if (!params.page && !params.phone && !params.email) {
+            b.hide();
+            return;
+          }
         }
-        ajax.post('al_page.php', params, {onDone: function(res, script) {
-          b.hide();
-          var box = curBox();
-          if (box) {
-            box.content(res);
-            if (ge('public_contacts_list') && ge('public_contacts_list').sorter) {
-              ge('public_contacts_list').sorter.destroy();
+        ajax.post('al_page.php', params, {
+          onDone: function(res, script) {
+            b.hide();
+            var box = curBox();
+            if (box) {
+              box.content(res);
+              if (ge('public_contacts_list') && ge('public_contacts_list').sorter) {
+                ge('public_contacts_list').sorter.destroy();
+              }
+              if (script) {
+                eval(script);
+              }
+              toggle('group_add_contact', ge('public_contacts_list').childNodes.length < 30);
+            } else {
+              page.showContacts(oid, 1, callback);
             }
-            if (script) {
-              eval(script);
+          },
+          onFail: function(error) {
+            if (ge('group_contact_error')) {
+              ge('group_contact_error').innerHTML = error;
+              show('group_contact_error_wrap');
+              return true;
             }
-            toggle('public_add_contact', ge('public_contacts_list').childNodes.length < 30);
-          } else {
-            page.showContacts(oid, 1, callback);
-          }
-        }, onFail: function(error) {
-          if (ge('public_contact_error')) {
-            ge('public_contact_error').innerHTML = error;
-            show('public_contact_error');
-            return true;
-          }
-        }});
+          },
+          showProgress: lockButton.pbind(btn),
+          hideProgress: unlockButton.pbind(btn)
+        });
       }
-      if (!mid && cur.lastContact != ge('public_contact_memlink').value) {
-        page.searchContact(oid, ge('public_contact_memlink').value, onSearch);
+      if (!mid && cur.lastContact != val('group_contact_memlink')) {
+        page.searchContact(oid, val('group_contact_memlink'), onSearch);
       } else {
         onSearch();
       }
     }, getLang('global_cancel'));
+    return false;
   },
   searchContact: function(oid, page, onSearch) {
     if (!trim(page)) {
@@ -532,24 +692,24 @@ var Page = {
     if (page == cur.lastContact) return;
     ajax.post('al_page.php', {act: 'a_search_contact', oid: oid, page: page}, {onDone: function(uid, img, name, hash) {
       cur.lastContact = page;
-      ge('public_contact_name').innerHTML = name;
-      ge('public_contact_image').innerHTML = img;
-      ge('public_contact_hash').value = hash;
+      ge('group_contact_name').innerHTML = name;
+      ge('group_contact_image').innerHTML = img;
+      ge('group_contact_hash').value = hash;
       if (!uid) {
-        notaBene('public_contact_memlink', '', true);
-        hide('public_contact_error');
+        notaBene('group_contact_memlink', '', true);
+        hide('group_contact_error_wrap');
       } else {
         if (onSearch) {
           onSearch();
         } else {
-          hide('public_contact_error');
+          hide('group_contact_error_wrap');
         }
       }
     }});
   },
   deleteContact: function(oid, mid, hash) {
     cur.reloadAfterClose = true;
-    ajax.post('al_page.php', {act:'a_delete_contact', oid: oid, mid: mid, hash:hash}, {onDone: function(res, script){
+    ajax.post('al_page.php', {act: 'a_delete_contact', oid: oid, mid: mid, hash:hash}, {onDone: function(res, script){
       var box = curBox();
       box.content(res);
       if (ge('public_contacts_list') && ge('public_contacts_list').sorter) {
@@ -558,28 +718,41 @@ var Page = {
       if (script) {
         eval(script);
       }
-      toggle('public_add_contact', ge('public_contacts_list').childNodes.length < 30);
+      toggle('group_add_contact', ge('public_contacts_list').childNodes.length < 30);
     }});
+    return false;
   },
   reorderContacts: function(oid, hash, user, before, after) {
-    var mid = user.id.replace('public_contact_cell', '');
-    var before_id = (before && before.id || '').replace('public_contact_cell', '');
-    var after_id = (after && after.id || '').replace('public_contact_cell', '');
+    var mid = user.id.replace('group_contact_cell', '');
+    var before_id = (before && before.id || '').replace('group_contact_cell', '');
+    var after_id = (after && after.id || '').replace('group_contact_cell', '');
     cur.reloadAfterClose = true;
     ajax.post('/al_page.php', {act: 'a_reorder_contacts', oid: oid, mid: mid, before: before_id, after: after_id, hash: hash});
   },
-  showInput: function(el) {
-    el = el.parentNode;
-    addClass(el, 'unshown');
 
-    var input_wrap = geByClass('input_wrap', el.parentNode)[0];
-    removeClass(input_wrap, 'unshown');
-    geByClass('text', input_wrap)[0].focus();
+  initStatusEditable: function(txt) {
+    if (txt.emojiInited) {
+      return false;
+    }
+    txt.emojiInited = true;
+    stManager.add(['emoji.js', 'notifier.css'], function() {
+      var optId = Emoji.init(txt, {
+        ttDiff: -48,
+        rPointer: true,
+        controlsCont: domPN(txt),
+        noStickers: true,
+        forceEnterSend: true,
+        onSend: Page.infoSave,
+        checkEditable: function() {
+          var msg = Emoji.editableVal(txt), maxLen = 140;
+          if (msg.length > maxLen) {
+            Emoji.val(txt, clean(msg.substr(0, maxLen)));
+            Emoji.editableFocus(txt, false, true);
+          }
+        }
+      });
+    });
   },
-  hideInput: function(el, val) {
-    return;
-  },
-
   infoEdit: function(audio) {
     if (cur.viewAsBox) return cur.viewAsBox();
 
@@ -587,15 +760,8 @@ var Page = {
     if (tt && tt.hide) {
       tt.hide({fasthide: true});
     }
-    var ed = ge('currinfo_editor');
-    if (browser.msie8 || browser.opera) {
-      ed.style.marginLeft = '-13px';
-    } else if (browser.msie) {
-      ed.style.marginTop = '-28px';
-      ed.style.marginLeft = '-13px';
-    }
-    show(ed, ge('page_current_info').firstChild.nextSibling);
-    hide(ge('page_current_info').firstChild);
+    show('currinfo_editor', 'currinfo_fake');
+    hide('currinfo_wrap');
     if (isVisible('currinfo_app') && !cur.ciApp) {
       show('currinfo_audio');
       hide('currinfo_app');
@@ -604,23 +770,31 @@ var Page = {
       show('currinfo_app');
     }
     var info = ge('current_info').firstChild, input = ge('currinfo_input'), link = geByTag1('a', info);
+    Page.initStatusEditable(input, cur.infoOld);
     cur.infoEditing = (info.className == 'my_current_info');
     if (cur.infoEditing) {
       var infoHtml = link ? link.innerHTML : info.innerHTML;
       infoHtml = infoHtml.replace(/<img[^>]+alt="([^"]+)"[^>]*>/g, '$1');
-      cur.infoOld = stripHTML(infoHtml);
+      cur.infoOld = trim(clean(stripHTML(infoHtml)));
     } else {
       cur.infoOld = '';
     }
-    input.value = winToUtf(cur.infoOld);
-    elfocus(input, 0, cur.infoOld.length);
+    if (window.Emoji) {
+      Emoji.val(input, winToUtf(cur.infoOld));
+      Emoji.editableFocus(input, false, true, true);
+    } else {
+      val(input, winToUtf(cur.infoOld));
+      elfocus(input);
+    }
     addEvent(window, 'keydown', Page.infoKeydown);
     addEvent(document, 'mousedown', Page.infoMousedown);
-    ge('currinfo_save').onclick = Page.infoCheckSave;
+    ge('currinfo_save').onclick = Page.infoSave;
+
+    return false;
   },
   infoCancel: function() {
-    hide('currinfo_editor', ge('page_current_info').firstChild.nextSibling);
-    show(ge('page_current_info').firstChild);
+    hide('currinfo_editor', 'currinfo_fake');
+    show('currinfo_wrap');
     cleanElems('currinfo_save', 'currinfo_cancel');
     removeEvent(window, 'keydown', Page.infoKeydown);
     removeEvent(document, 'mousedown', Page.infoMousedown);
@@ -631,7 +805,7 @@ var Page = {
 
     var el = ge('current_info'), label = getLang('share_current_info');
     showTooltip(el, {
-      content: '<div class="content"><div class="checkbox"><div></div>' + label + '</div></div>',
+      content: '<div class="content"><div class="checkbox">' + label + '</div></div>',
       className: 'share_tt',
       init: function() {
         addEvent(geByClass1('checkbox', el.tt.container), 'click', function() {
@@ -642,6 +816,8 @@ var Page = {
       toup: false,
       showdt: 0,
       slide: 10,
+      shift: [6, 8, 8],
+      dir: 'auto',
       hidedt: 200,
       onClean: function() {
         cleanElems(geByClass1('checkbox', el.tt.container));
@@ -663,17 +839,19 @@ var Page = {
     }
     Page.infoCancel();
   },
-  infoCheck: function(el) {
-  },
-  infoSave: function(txt) {
+  infoSave: function() {
     if (cur.viewAsBox) return cur.viewAsBox();
+
+    var input = ge('currinfo_input'),
+        txt = trim((window.Emoji ? Emoji.editableVal : val)(input)).replace(/\n/g, ' ');
+
     if (txt == cur.infoOld || txt == winToUtf(cur.infoOld)) {
       return Page.infoCancel();
     }
     txt = trim(txt).substr(0, 140);
     ajax.post('al_page.php', {act: 'current_info', oid: cur.oid, info: txt, hash: cur.options.info_hash}, {onDone: function() {
       var c = txt ? 'my' : 'no', t = txt ? ('<span class="current_text">' + Emoji.emojiToHTML(txt.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'), true) + '</span>') : getLang('change_current_info');
-      ge('current_info').innerHTML = ge('page_current_info').firstChild.nextSibling.innerHTML = '<span class="' + c + '_current_info">' + t + '</span>';
+      ge('current_info').innerHTML = ge('currinfo_fake').innerHTML = '<span class="' + c + '_current_info">' + t + '</span>';
       Page.infoCancel();
       var el = ge('current_info'), tt = el.tt;
       if (tt && tt.el) {
@@ -686,118 +864,9 @@ var Page = {
       }
     }, onFail: function(t) {
       if (!t) {
-        Page.infoCheck('currinfo_input');
         return true;
       }
     }, showProgress: lockButton.pbind('currinfo_save'), hideProgress: unlockButton.pbind('currinfo_save'), stat: ['tooltips.js', 'tooltips.css', 'emoji.js']});
-  },
-  infoCheckSave: function(e) {
-    e = e || window.event;
-    if (e && e.type == 'keydown' && e.keyCode != 10 && e.keyCode != 13) {
-      return;
-    }
-    Page.infoSave(ge('currinfo_input').value);
-  },
-  mentionInit: function (el) {
-  },
-  toggleFixedPost: function(postRaw, e) {
-    if (checkEvent(e)) {
-      return true;
-    }
-    cur.fixedWide = !cur.fixedWide;
-    toggleClass(cur.wallPage, 'page_fixed_wide', cur.fixedWide);
-    toggleClass(cur.wallPage, 'page_wide_no_narrow', cur.fixedWide);
-    var fixedCont = ge('wall_fixed');
-    var wallCont = ge('profile_wall') || ge('group_wall') || ge('public_wall');
-    toggleClass(wallCont, 'wide_wall_module', cur.fixedWide);
-    var fixedWallCont = geByClass1('wall_module', fixedCont);
-    toggleClass(fixedWallCont, 'wide_wall_module', cur.fixedWide);
-    toggleClass(ge('info_module_cont'), 'fixed_module_cont', cur.fixedWide);
-    var topHeader = geByClass1('top_header', ge('info_module_header'));
-    if (cur.fixedWide) {
-      if (!cur.topHeaderBack) {
-        cur.topHeaderBack = topHeader.innerHTML;
-      }
-      topHeader.innerHTML = '<a onclick="nav.change({fixed: false})">'+topHeader.innerHTML+'</a>';
-      hide('page_fixed_more_text');
-      show('page_fixed_back_text');
-      cur.wallTypeBack = cur.wallType;
-      cur.wallType = ge('page_wall_posts').className = 'all';
-    } else {
-      if (cur.topHeaderBack) {
-        topHeader.innerHTML = cur.topHeaderBack;
-      }
-      show('page_fixed_more_text');
-      hide('page_fixed_back_text');
-      cur.wallType = ge('page_wall_posts').className = cur.wallTypeBack || 'own';
-    }
-    if (window._tbLink && cur._back) {
-      if (cur.fixedWide) {
-        showBackLink(nav.objLoc[0], cur._back.text, 1);
-        cur._back.onBack = nav.change.pbind({fixed: false})
-      } else {
-        showBackLink();
-        delete cur._back.onBack;
-      }
-      updSideTopLink();
-    }
-
-    Wall.update();
-    var wallHeader = geByClass1('wall_header', wallCont);
-    toggle(wallCont, !cur.fixedWide);
-    toggle(ge('wall_fixed_comments'), cur.fixedWide);
-    Page.initFixed(postRaw);
-    cur.wallMyOpened[postRaw] = cur.fixedWide;
-    var videos = geByClass('page_video_inline_wrap', fixedCont);
-    for (var i in videos) {
-      var el = videos[i];
-      w = el.parentNode.clientWidth;
-      h = el.parentNode.clientHeight;
-
-      setStyle(el, {width: w, height: h});
-      var player = geByTag1('embed', el);
-      if (player) {
-        setStyle(player, {width: w, height: h});
-      }
-    }
-    Wall.showEditReply(postRaw, false, true);
-    return cancelEvent(e);
-  },
-  initFixed: function(postRaw) {
-    if (cur.fixedInited) return;
-    cur.fixedPostRaw = postRaw;
-    cur.fixedInited = 1;
-    var text = ge('reply_field' + postRaw);
-    //placeholderSetup(text);
-    Page.showFixedMore(postRaw, {clear: 1});
-    var canReplyAsGroup = false;
-    var fakeBox = ge('reply_fakebox'+postRaw);
-    debugLog('init reply form 1');
-    realBox = se(rs(cur.wallTpl.reply_form, {
-      reply_as_group_class: canReplyAsGroup ? 'reply_as_group_active' : '',
-      post_id: postRaw
-    }));
-    fakeBox.parentNode.replaceChild(realBox, fakeBox);
-  },
-  showFixedMore: function(postRaw, opts) {
-    if (cur.fixedLoading) return;
-    cur.fixedLoading = true;
-    cur.fixedOffset = cur.fixedOffset || 0;
-    var pr = ge('wall_fixed_more_progress');
-    show(pr);
-    hide(pr.nextSibling);
-    Wall.moreReplies(postRaw, -cur.fixedOffset, 20, extend({
-      rev: 1,
-      onDone: function(replies, names, data) {
-        cur.fixedLoading = false;
-        show(pr.nextSibling);
-        hide(pr);
-        cur.fixedOffset += data.num;
-        if (cur.fixedOffset >= data.count) {
-          hide('wall_fixed_more_link');
-        }
-      }
-    }, opts));
   },
   showGif: function(obj, ev, dontHideActive) {
     if (ev && (ev.ctrlKey || ev.metaKey)) {
@@ -846,6 +915,7 @@ var Page = {
         autoplay: true,
         loop: 'loop',
         poster: obj.getAttribute('data-thumb'),
+        src: el_src + '&mp4=1',
         className: 'pages_gif_img page_gif_big'
       }, {
         width: previewWidth ? previewWidth + 'px' : null,
@@ -853,10 +923,10 @@ var Page = {
         background: largeGif ? 'transparent url(' + obj.getAttribute('data-thumb') + ') no-repeat 0 0' : '',
         backgroundSize: 'cover'
       });
-      el.appendChild(ce('source', {
-        type: 'video/mp4',
-        src: el_src + '&mp4=1'
-      }));
+      attr(el, 'webkit-playsinline', '');
+      if (browser.ipad) {
+        attr(el, 'controls', '');
+      }
     } else {
       el = ce('img', {
         src: el_src,
@@ -867,16 +937,18 @@ var Page = {
       });
     }
 
-    var acts = '<div class="page_gif_share" onmouseover="showTooltip(this, {text: \'' + shareTxt + '\', black: 1, center: 1, shift: [1, 2, 0]})" onclick="return Page.shareGif(this, \''+doc+'\', \''+hash+'\', event)"><div class="page_gif_share_icon"></div></div>';;
+    var acts = '<div class="page_gif_share" onmouseover="showTooltip(this, {text: \'' + shareTxt + '\', black: 1, shift: [7, 6, 6], toup: 0, needLeft: 1})" onclick="return Page.shareGif(this, \''+doc+'\', \''+hash+'\', event)"><div class="page_gif_share_icon"></div></div>';;
     if (addHash) {
       acts += '<div class="page_gif_add" onmouseover="return Page.overGifAdd(this, \'' + addTxt + '\', \''+doc+'\', event);" onclick="return Page.addGif(this, \''+doc+'\', \''+hash+'\', \''+addHash+'\', event);"><div class="page_gif_add_icon"></div></div>';
     }
     acts = '<div class="page_gif_actions">' + acts + '</div>';
 
+    var progressIcon = '<div class="page_gif_progress_icon" style="display:none;">' + rs(vk.pr_tpl, {id: '', cls: ''}) + '</div>';
+
     var imgCont = ce('a', {
       href: obj.href,
       className: 'page_gif_preview' + (cur.gifAdded[doc] ? ' page_gif_added' : ''),
-      innerHTML: '<div class="page_gif_progress_icon" style="display:none;"></div>' + (largeGif ? '<div class="page_gif_label">gif</div>' : '') + acts,
+      innerHTML: progressIcon + (largeGif ? '<div class="page_gif_label">gif</div>' : '') + acts,
       onclick: cancelEvent
     }, {
       background: canPlayVideo ? '' : (getStyle(domFC(obj), 'background') || '').replace(/"/g, '\''),
@@ -957,12 +1029,12 @@ var Page = {
       if (!txt) return false;
     }
 
-    showTooltip(obj, {text: txt, black: 1, center: 1, shift: [1, 2, 0]});
+    showTooltip(obj, {text: txt, black: 1, shift: [7, 6, 6], toup: 0, needLeft: 1});
     return false;
   },
   addGif: function(obj, doc, hash, addHash, ev) {
     cur.gifAdded = cur.gifAdded || {};
-    if (obj.tt) obj.tt.hide();
+    if (isObject(obj.tt)) obj.tt.hide();
 
     var wrap = gpeByClass('page_gif_large', obj) || domPN(obj);
 
@@ -993,7 +1065,7 @@ var Page = {
   },
 
   shareGif: function(obj, doc, hash, ev) {
-    if (obj.tt) obj.tt.hide();
+    if (isObject(obj.tt)) obj.tt.hide();
     showBox('like.php', {
       act: 'publish_box',
       object: 'doc' + doc,
@@ -1008,18 +1080,15 @@ var Page = {
   initGifAutoplay: function() {
     if (cur.gifAutoplayScrollHandler || !mp4Support() || browser.mobile) return;
 
-    var scrollHandler = debounce(function () {
-      var autoplayGifs;
-      if (cur.wallPage) {
-        var selector = '.page_post_queue_' + (cur.wallPageWide ? 'wide' : 'narrow') + ' .page_gif_autoplay';
-        autoplayGifs = cur.wallPage.querySelectorAll(selector);
-      } else {
-        autoplayGifs = geByClass('page_gif_autoplay');
-      }
-      if (!autoplayGifs.length) return;
+    var fixedHeaderHeight = getSize('page_header')[1];
 
-      var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-      var viewportMiddle = viewportHeight / 2;
+    var scrollHandler = debounce(function() {
+      var autoplayGifs;
+      autoplayGifs = geByClass('page_gif_autoplay');
+      if (!autoplayGifs.length || window.wkcur && wkcur.shown) return;
+
+      var viewportHeight = (window.innerHeight || document.documentElement.clientHeight) - fixedHeaderHeight;
+      var viewportMiddle = fixedHeaderHeight + viewportHeight / 2;
       var activeSpace = Math.min(viewportHeight, 800);
       var activeTop = viewportMiddle - activeSpace/2;
       var activeBottom = viewportMiddle + activeSpace/2;
@@ -1048,7 +1117,7 @@ var Page = {
             index = activeGifIndex;
             direction = Math.abs(viewportHeight/2 - rect.top) < Math.abs(viewportHeight/2 - rect.bottom) ? -1 : 1;
           }
-        } else if (inArray(domPN(cur.activeGif), autoplayGifs)) { // hide active gif if it is autoplayable
+        } else if (inArray(domPN(cur.activeGif), autoplayGifs)) { // hide active if it is autoplayable gif
           Page.hideGif(cur.activeGif);
         }
       }
@@ -1064,7 +1133,6 @@ var Page = {
 
         if (inViewport) {
           var distanceToMiddle = Math.min(Math.abs(viewportHeight/2 - rect.top), Math.abs(viewportHeight/2 - rect.bottom));
-
           if (candidateGif && distanceToMiddle > candidateGif.distanceToMiddle) {
             break;
           } else {
@@ -1103,85 +1171,258 @@ var Page = {
     cur.destroy.push(function() {
       removeEvent(window, 'scroll', scrollHandler);
       removeEvent(window, 'resize', scrollHandler);
-      delete cur.gifAutoplayScrollHandler;
       scrollHandler = null;
+      delete cur.gifAutoplayScrollHandler;
     });
 
     function mp4Support() {
       var v = ce('video');
       return v.canPlayType && !!v.canPlayType('video/mp4').replace('no', '');
     }
-
-    function debounce(func, wait, immediate) {
-      var timeout;
-      return function() {
-        var context = this, args = arguments;
-        var later = function() {
-          timeout = null;
-          if (!immediate) func.apply(context, args);
-        };
-        var callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
-      };
-    }
   },
 
-  albumOver: function(obj, id) {
-    if (cur.hideAlbumTO && cur.hideAlbumTO[id]) {
-      clearTimeout(cur.hideAlbumTO[id]);
+  initVideoAutoplay: function() {
+    if (!window.MediaSource || typeof MediaSource.isTypeSupported != 'function' || !MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E,mp4a.40.2"') || browser.mobile || browser.safari) {
+      return;
     }
-    var desc = geByClass1('page_album_description', obj), title = geByClass1('page_album_title_wrap', obj), descY = getSize(desc)[1];
-    animate(title, {marginTop: 98 - (descY ? descY + 5 : 0)}, {duration: 200, transition: Fx.Transitions.easeOutCirc});
+
+    var fixedHeaderHeight = getSize('page_header')[1];
+
+    var scrollHandler = debounce(function() {
+      if (layers.visible) return;
+      var thumbs = geByClass('page_video_autoplayable');
+      var thumbsNum = thumbs.length;
+      if (!thumbsNum) return;
+
+      var viewportHeight = (window.innerHeight || document.documentElement.clientHeight) - fixedHeaderHeight;
+      var viewportMiddle = fixedHeaderHeight + viewportHeight / 2;
+      var activeSpace = Math.min(viewportHeight, 800);
+      var activeTop = viewportMiddle - activeSpace/2;
+      var activeBottom = viewportMiddle + activeSpace/2;
+
+      for (var i = thumbsNum; i--; ) {
+        var thumb = thumbs[i];
+        var isLoading = !!attr(thumb, 'data-loading');
+        var isPlaying = !!attr(thumb, 'data-playing');
+        var rect = (isPlaying ? domNS(thumb) : thumb).getBoundingClientRect();
+
+        if (!rect.width || !rect.height) continue;
+
+        var inViewport = rect.top > activeTop && rect.bottom < activeBottom;
+
+        if (inViewport && !isPlaying && !isLoading) {
+          var videoId = attr(thumb, 'data-video-id');
+          var listId = attr(thumb, 'data-list-id');
+          var postId = attr(domClosest('post', thumb), 'data-post-id');
+          showInlineVideo(videoId, listId, {
+            autoplay: 1,
+            no_progress: 1,
+            cache: 1,
+            addParams: {post_id: postId, from_autoplay: 1}
+          }, false, thumb);
+          break;
+        }
+      }
+    }, 50);
+
+    addEvent(window, 'scroll', scrollHandler);
+    addEvent(window, 'resize', scrollHandler);
+
+    scrollHandler();
+
+    cur.destroy.push(function() {
+      removeEvent(window, 'scroll', scrollHandler);
+      removeEvent(window, 'resize', scrollHandler);
+      scrollHandler = null;
+    });
   },
 
-  albumOut: function(obj, id) {
-    var doHide = function() {
-      var desc = geByClass1('page_album_description', obj), title = geByClass1('page_album_title_wrap', obj);
-      animate(title, {marginTop: 98}, 200);
+  autoplayPinnedVideo: function(postId, videoRaw, videoHash) {
+    var thumb = domByClass(ge('post'+postId), 'page_post_thumb_video');
+    if (!thumb || browser.mobile || nav.objLoc.z || window.mvcur && mvcur.mvShown) return;
+
+    showInlineVideo(videoRaw, videoHash, {autoplay: 1, addParams: { post_id: postId, from_autoplay: 1 }}, null, thumb);
+
+    cur.pinnedVideo = videoRaw;
+    cur.pinnedVideoInitHandlers = function() {
+      var post = ge('post'+postId);
+      var playerEl = ge('video_player') || ge('html5_player');
+      if (post && playerEl && isAncestor(playerEl, post)) {
+        addEvent(window, 'scroll', scrollHandler);
+        cur.destroy.push(destroyHandlers);
+        cur.pinnedVideoScrollHandler();
+      }
+      delete cur.pinnedVideoInitHandlers;
+    };
+
+    function scrollHandler(evt) {
+      var post = ge('post'+postId);
+      var playerEl = cur.videoInlinePlayer && cur.videoInlinePlayer.el || ge('video_player') || ge('html5_player');
+      var playerObj = cur.videoInlinePlayer || ge('video_player') || window.html5video;
+      if (!post || !playerEl || !isAncestor(playerEl, post) || (playerObj.isTouchedByUser && playerObj.isTouchedByUser())) {
+        destroyHandlers();
+        return;
+      }
+
+      var playerY = getXY(playerEl)[1];
+      var playerHeight = getSize(playerEl)[1];
+      var scrollY = scrollGetY();
+      var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+      var inViewport = (playerY + playerHeight/2 > scrollY) && (playerY + playerHeight/2 < scrollY + viewportHeight);
+
+      if (inViewport != cur.pinnedVideoPrevInViewport) {
+        window.Videoview && Videoview.togglePlay(inViewport);
+        cur.pinnedVideoPrevInViewport = inViewport;
+      }
+    };
+    cur.pinnedVideoScrollHandler = scrollHandler;
+
+    function destroyHandlers() {
+      if (!scrollHandler) return;
+      removeEvent(window, 'scroll', scrollHandler);
+      scrollHandler = null;
+      destroyHandlers = null;
+      delete cur.pinnedVideo;
+      delete cur.pinnedVideoScrollHandler;
+      delete cur.pinnedVideoDestroyHandlers;
+      delete cur.pinnedVideoPrevInViewport;
+    };
+    cur.pinnedVideoDestroyHandlers = destroyHandlers;
+  },
+
+  actionsDropdown: function(el, preloadClbk) {
+    if (!el && preloadClbk) {
+      preloadClbk();
+      return;
     }
-    cur.hideAlbumTO = cur.hideAlbumTO || {};
-    cur.hideAlbumTO[id] = setTimeout(doHide, 150);
+
+    show(el);
+  },
+  actionsDropdownHide: function(el, force) {
+    if (force === 1) return hide(el);
+    clearTimeout(cur.actDdHide);
+    cur.actDdHide = setTimeout(function() {
+      fadeOut(el, 200, hide.pbind('page_actions_sublist'));
+    }, 150);
+  },
+  actionsDropdownUnhide: function() {
+    clearTimeout(cur.actDdHide);
+  },
+  actionsDropdownLocked: function(el) {
+    if (!(el = ge(el))) return;
+    return hasClass(el, 'page_actions_item_lock');
+  },
+  actionsDropdownLock: function(el) {
+    if (
+      (el = ge(el)) &&
+      hasClass(el, 'page_actions_item') &&
+      !hasClass(el, 'page_actions_item_lock')
+    ) {
+      data(el, 'inner', el.innerHTML);
+      addClass(el, 'page_actions_item_lock');
+      var lockText = ce('div', {className: 'page_actions_item_lock_text'});
+      val(lockText, el.innerHTML);
+      el.appendChild(lockText);
+      showProgress(el);
+    }
+  },
+  actionsDropdownUnlock: function(el) {
+    if (
+      (el = ge(el)) &&
+      hasClass(el, 'page_actions_item') &&
+      hasClass(el, 'page_actions_item_lock')
+    ) {
+      removeClass(el, 'page_actions_item_lock');
+      el.innerHTML = data(el, 'inner');
+    }
+  },
+  actionsPreloadFeedLists: function(el, sh) {
+    ajax.post('al_feed.php', {act: 'a_get_lists_by_item', item_id: cur.oid}, {
+      onDone: function(html, js) {
+        if (!sh) return;
+
+        if (!ge('page_actions_wrap'))  {
+          domPN(el).appendChild(se(html), el);
+          eval(js);
+        }
+      },
+      cache: 1
+    });
+  },
+  feedListsDDShow: function() {
+    var obj = ge('page_actions_item_lists');
+    addClass(obj, 'page_actions_item_unfolded');
+    if (ge('page_actions_sublist')) {
+      clearTimeout(cur.feedListsDDHide);
+      show('page_actions_sublist');
+      return;
+    }
+
+    var elems = [];
+    for (var i in cur.options.feedLists) {
+      var lname = cur.options.feedLists[i];
+      if (lname.length > 20) {
+        lname = trim(lname.substr(0, 18))+'...';
+      }
+      elems.push('<a id="page_feed_item'+i+'" class="page_actions_item page_actions_subitem'+(cur.options.feedListsSet && cur.options.feedListsSet[i] ? ' checked' : '')+'" onclick="Page.feedListsCheck(this, '+i+');">'+lname+'</a>');
+    }
+    elems = se('<div id="page_actions_sublist" onmouseover="Page.feedListsDDShow();">'+elems.join('')+'</div>');
+    domPN(obj).appendChild(elems);
+  },
+  feedListsDDHide: function() {
+    clearTimeout(cur.feedListsDDHide);
+    cur.feedListsDDHide = setTimeout(function() {
+      hide('page_actions_sublist');
+      removeClass('page_actions_item_lists', 'page_actions_item_unfolded');
+    }, 150);
+  },
+  feedListsCheck: function(obj, listId) {
+    var checked = hasClass(obj, 'checked');
+    if (checked) {
+      cur.options.feedListsSet[listId] = 0;
+      cur.options.feedListsChanges[listId] = -1;
+    } else {
+      cur.options.feedListsSet[listId] = 1;
+      cur.options.feedListsChanges[listId] = 1;
+    }
+
+    toggleClass(obj, 'checked', !checked);
+    if (cur.feedListsTO) {
+      clearTimeout(cur.feedListsTO);
+    }
+    var ids = [];
+    for (var i in cur.options.feedListsChanges) {
+      ids.push(cur.options.feedListsChanges[i] * i);
+    }
+    if (!ids.length) return;
+    cur.feedListsTO = setTimeout(function() {
+      ajax.post('al_feed.php', {act: 'a_toggle_lists', item_id: cur.oid, lists_ids: ids.join(','), hash: cur.options.feedListsHash}, {onDone: function() {
+        cur.options.feedListsChanges = {};
+      }});
+    });
   },
 
   addAudioPreview: function(media, data) {
-    stManager.add(['audioplayer.css']);
-    var rnd = Math.floor((1 + Math.random()) * 1000000000), aid = media + '_' + rnd, nfo = data.info;
-    return '\
-<div class="medadd_aud inl_bl" id="audio' + aid + '"><table cellspacing="0" cellpadding="0" width="100%"><tr>\
-  <td rowspan="2"><div class="medadd_aud_playwrap" onclick="playAudioNew(\'' + aid + '\') + data">\
-    <div class="medadd_aud_play" id="play' + aid + '"></div>\
-    <input type="hidden" id="audio_info' + aid + '" value="' + nfo + '"/>\
-  </div></td>\
-  <td class="info medadd_aud_td medadd_aud_wid"><div class="title_wrap fl_l" onmouseover="setTitle(this)">\
-    <b class="medadd_aud_perf">' + data.performer + '</b> &ndash; <span class="title" id="title' + aid + '">' + data.title + ' </span>\
-  </div><div class="duration fl_r" onmousedown="if (window.audioPlayer) audioPlayer.switchTimeFormat(\'' + aid + '\', event)">' + data.duration + '</div></td></tr><tr>\
-  <td class="medadd_aud_td"><div class="audio_back_line medadd_aud_ph"></div><div id="player' + aid + '" class="player" ondragstart="return false;" onselectstart="return false;">\
-    <table cellspacing="0" cellpadding="0" border="0" width="100%"><tr>\
-      <td class="medadd_aud_td medadd_aud_wid">\
-        <div id="audio_pr' + aid + '" class="audio_pr" onmouseover="addClass(this, \'over\'); if (cur.hideTipTO) clearTimeout(cur.hideTipTO);" onmouseout="removeClass(this, \'over\'); removeClass(this, \'down\'); cur.hideTipTO = setTimeout(hide.pbind(\'audio_tip_wrap\'), 100);" onmousedown="addClass(this, \'down\'); audioPlayer.prClick(event);" onmouseup="removeClass(this, \'down\')">\
-          <div id="audio_white_line' + aid + '" class="audio_white_line" onmousedown="audioPlayer.prClick(event);"></div>\
-          <div id="audio_back_line' + aid + '" class="audio_back_line" onmousedown="audioPlayer.prClick(event);"><!-- --></div>\
-          <div id="audio_load_line' + aid + '" class="audio_load_line" onmousedown="audioPlayer.prClick(event);"><!-- --></div>\
-          <div id="audio_pr_line' + aid + '" class="audio_progress_line" onmousedown="audioPlayer.prClick(event);">\
-            <div id="audio_pr_slider' + aid + '" class="audio_slider"><!-- --></div>\
-          </div>\
-        </div>\
-      </td><td class="medadd_aud_td">\
-        <div id="audio_vol' + aid + '" class="audio_vol" onmouseover="addClass(this, \'over\')" onmouseout="removeClass(this, \'over\'); removeClass(this, \'down\')" onmousedown="addClass(this, \'down\'); audioPlayer.volClick(event)" onmouseup="removeClass(this, \'down\')">\
-          <div id="audio_vol_white_line' + aid + '" class="audio_vol_white_line" onmousedown="audioPlayer.volClick(event);"><!-- --></div>\
-          <div id="audio_vol_back_line' + aid + '" class="audio_load_line" onmousedown="audioPlayer.volClick(event);"><!-- --></div>\
-          <div id="audio_vol_line' + aid + '" class="audio_progress_line" onmousedown="audioPlayer.volClick(event);">\
-            <div id="audio_vol_slider' + aid + '" class="audio_slider" onmousedown="audioPlayer.volClick(event);"><!-- --></div>\
-          </div>\
-        </div>\
-      </td>\
-    </tr></table>\
-  </div></td>\
-</tr></table></div>';
+    stManager.add(['audioplayer.css', 'audioplayer.js']);
+
+    if (isObject(data)) {
+      var aid = media.split('_');
+      var info = data.info.split(',');
+      data = [
+        aid[1],
+        aid[0],
+        info[0],
+        data.title,
+        data.performer,
+        intval(info.length > 1 ? info[1] : data.duration),
+        0, 0, '', 0, 0, 0, 0
+      ];
+    }
+    return AudioUtils.drawAudio(data, 'inlined');
   }
 }, page = Page;
+
 
 var Wall = {
   deleteAll: function(el, post, hash) {
@@ -1229,13 +1470,18 @@ var Wall = {
     }});
   },
   blockEx: function(gid, mid) {
-    showBox('al_groups.php', {act: 'bl_edit', name: 'id' + mid, gid: gid, auto: 1}, {stat: ['page.css', 'ui_controls.js', 'ui_controls.css'], dark: 1});
+    showBox('groupsedit.php', {act: 'bl_edit', name: 'id' + mid, gid: gid, auto: 1}, {stat: ['page.css', 'ui_controls.js', 'ui_controls.css'], dark: 1});
   },
   withMentions: !(browser.mozilla && browser.version.match(/^2\./) || browser.mobile),
-  editPost: function(post, options, onFail, onDone) {
+  editPost: function(el, post, options, onFail, onDone) {
     if (cur.editingPost && ge('wpe_text')) {
-      onFail && onFail();
-      return elfocus('wpe_text');
+      var posts = gpeByClass('wall_posts', ge('wpe_text'));
+      if (posts && !isVisible(posts)) {
+        Wall.cancelEdit();
+      } else {
+        onFail && onFail();
+        return notaBene('wpe_text');
+      }
     }
     cur.editingPost = [post];
     if (Wall.withMentions) {
@@ -1243,15 +1489,95 @@ var Wall = {
     } else {
       stManager.add(['walledit.js']);
     }
-    ajax.post('al_wall.php', extend({act: 'edit', post: post, mention: Wall.withMentions ? 1 : ''}, options), {onDone: function() {
-      var args = Array.prototype.slice.call(arguments);
-      args.unshift(post);
-      WallEdit.editPost.apply(window, args);
-      onDone && onDone();
-    }, onFail: function() {
-      cur.editingPost = false;
-      onFail && onFail();
-    }, progress: 'wpe_prg' + post});
+    ajax.post('al_wall.php', extend({act: 'edit', post: post, mention: Wall.withMentions ? 1 : ''}, options), {
+      onDone: function() {
+        var args = Array.prototype.slice.call(arguments);
+        var media_types;
+        if (window.wkcur && wkcur.shown) {
+          media_types = wkcur.options.rmedia_types;
+        } else if (window.mvcur && mvcur.mvShown && !mvcur.minimized) {
+          media_types = mvcur.rmedia_types
+        } else {
+          media_types = cur.options.media_types;
+        }
+        args.unshift(post);
+        if (args[5] !== void 0 && media_types !== void 0) {
+          var mediaTypes = [];
+          each (args[5] || [], function(i, arr1) {
+            each (media_types || [], function(i, arr2) {
+              if (arr1[0] === arr2[0]) {
+                mediaTypes.push(arr2);
+                return false;
+              }
+            });
+          });
+          args[5] = mediaTypes;
+        }
+        WallEdit.editPost.apply(window, args);
+        onDone && onDone();
+      },
+      onFail: function() {
+        cur.editingPost = false;
+        onFail && onFail();
+      },
+      showProgress: function() {
+        if (hasClass(el, 'ui_actions_menu_item')) {
+          lockActionsMenuItem(el);
+        } else if (hasClass(el, 'flat_button')) {
+          lockButton(el);
+        } else {
+          addClass(geByClass1('post_actions', 'post' + post), 'post_actions_progress');
+        }
+      },
+      hideProgress: function() {
+        if (hasClass(el, 'ui_actions_menu_item')) {
+          unlockActionsMenuItem(el);
+        } else if (hasClass(el, 'flat_button')) {
+          unlockButton(el);
+        } else {
+          removeClass(geByClass1('post_actions', 'post' + post), 'post_actions_progress');
+        }
+      }
+    });
+  },
+  fixPost: function (link, post, hash, value) {
+    ajax.post('al_wall.php', {act: 'a_fix_post', post: post, hash: hash, value: value}, {
+      onDone: function (js) {
+        if (js) {
+          eval(js);
+        }
+        var postEl = (cur.wallLayer == post) ? ge('wl_post') : ge('post' + post);
+        each(geByClass('post_fixed'), function() {
+          removeClass(this, 'post_fixed');
+        });
+        toggleClass(postEl, 'post_fixed', value);
+        if (link) {
+          val(link, getLang(value ? 'wall_unfix_post' : 'wall_fix_post'));
+          link.onclick = function () {
+            return Wall.fixPost(link, post, hash, value ? 0 : 1);
+          }
+        }
+        if (cur.onWKFix) {
+          cur.onWKFix(value);
+          delete cur.onWKFix;
+        }
+      },
+      showProgress: function() {
+        if (hasClass(link, 'ui_actions_menu_item')) {
+          lockActionsMenuItem(link);
+        } else {
+          lockButton.pbind('wpe_fix' + post);
+        }
+      },
+      hideProgress: function() {
+        if (hasClass(link, 'ui_actions_menu_item')) {
+          unlockActionsMenuItem(link);
+        } else {
+          unlockButton.pbind('wpe_fix' + post);
+        }
+      }
+    });
+    return false;
   },
 
   cancelEdit: function(layerOnly) {
@@ -1265,45 +1591,96 @@ var Wall = {
     }
   },
 
-  switchWall: function(ev) {
+  searchWall: function() {
+    // nav.change({q: false, search: nav.objLoc.day ? false : 1});
+
+  },
+  switchTabContent: function(tab) {
+    hide('page_wall_posts', 'page_postponed_posts', 'page_suggested_posts', 'page_search_posts');
+    switch (tab) {
+      case 'own':
+      case 'all':
+        show('page_wall_posts');
+        break;
+      case 'postponed':
+        show('page_postponed_posts');
+        hide('wall_more_link');
+        break;
+      case 'suggested':
+        show('page_suggested_posts');
+        break;
+      case 'search':
+        show('page_search_posts');
+        break;
+    }
+    // checkPageBlocks();
+  },
+  switchWall: function(el, ev, type) {
+    if (ev && checkEvent(ev)) return true;
     var cnts = {all: 0, own: 0}, sw = ge('page_wall_switch');
     if (ge('page_wall_count_all')) cnts.all = intval(ge('page_wall_count_all').value);
     if (ge('page_wall_count_own')) cnts.own = intval(ge('page_wall_count_own').value);
-    if (!cnts.own || cnts.own >= cnts.all) {
+    if (!type) {
+      type = (cur.wallType == 'own') ? 'all' : 'own';
+    }
+    if (ev && ev.type == 'click' && ev.clientX && ev.offsetX && cur.wallTab == type && cur.wallType == type) {
+      return nav.go(el, ev);
+    }
+    if ((!cnts.own/* || cnts.own >= cnts.all*/) && inArray(cur.wallTab, ['all', 'own'])) {
       return cancelEvent(ev);
     }
-    cur.wallType = ge('page_wall_posts').className = (cur.wallType == 'own') ? 'all' : 'own';
+    if (cur.wallTab == 'postponed') {
+      wall.checkPostponedCount();
+    }
+    replaceClass('page_wall_posts', cur.wallType, type);
+    cur.wallType = type;
     Wall.update();
+    uiTabs.switchTab(el);
+    uiTabs.hideProgress(el);
+    wall.switchTabContent(type);
+    cur.wallTab = type;
     return cancelEvent(ev);
   },
-  suggest: function(ev) {
-    if (!cur.oid) return cancelEvent(ev);
-    var cont = ge('page_suggest_post'), posts = domPN(ge('page_wall_posts')), vis = isVisible(cont);
-    toggle(posts, vis);
-    toggle(cont, !vis);
-    val('page_wall_suggest', cur.options[vis ? 'wall_suggest_post' : 'wall_return_to_posts']);
-    cur.suggestsView = !vis;
-    if (vis) {
-      Wall.update();
+  showSuggested: function(el, ev, rows, notAll) {
+    if (ev && checkEvent(ev)) return true;
+    if (!cur.oid) return false;
+
+    uiTabs.switchTab(el);
+    cur.wallTab = 'suggested';
+
+    if (rows !== undefined) {
+      wall.suggestLoaded(rows, notAll);
     } else {
-      Wall.loadSuggests();
-      Wall.suggestUpdate();
-      if (cur.suggesting = (domPN(ge('submit_post_box')) == ge('page_suggest_post'))) {
-        elfocus('post_field');
-      }
+      if (cur.suggestedLoading) return false;
+      var cur_oid = cur.suggestedLoading = cur.oid
+      uiTabs.showProgress(el);
+      ajax.post('al_wall.php', {act: 'get_suggests', owner_id: cur.oid}, {
+        onDone: function(rows, notAll) {
+          cur.suggestedLoading = false;
+          uiTabs.hideProgress(el);
+          if (cur_oid !== cur.oid) return;
+          if (cur.wallTab != 'suggested') return;
+          wall.suggestLoaded.apply(window, arguments);
+        }
+      });
     }
-    return cancelEvent(ev);
+    return false;
+  },
+  suggestLoaded: function(rows, notAll) {
+    val('page_suggested_posts', rows);
+    toggle('wall_more_link', notAll);
+    wall.switchTabContent('suggested');
   },
   suggestMore: function() {
-    var cont = ge('page_suggestions'), pr = ge('page_suggest_prg');
-    if (isVisible(pr)) return;
+    var cont = ge('page_suggested_posts'), more = ge('wall_more_link');
+    if (buttonLocked(more)) return;
+
     ajax.post('al_wall.php', {
       act: 'get_suggests',
       owner_id: cur.oid,
-      offset: cont.childNodes.length - geByClass('dld', cont).length - 1
+      offset: geByClass('post', cont).length - geByClass('dld', cont).length
     }, {
       onDone: function(rows, notAll) {
-        removeClass(cont, 'page_sugg_loading');
         var el = ce('div', {innerHTML: rows}), fc = domFC(el);
         while (fc) {
           if (ge(fc.id) || !hasClass(fc, 'post')) {
@@ -1313,99 +1690,210 @@ var Wall = {
           }
           fc = domFC(el);
         }
-        toggle('page_suggest_more', notAll);
+        toggle(more, notAll);
       },
-      showProgress: function() {
-        show(pr);
-        hide(domNS(pr));
-      },
-      hideProgress: function() {
-        show(domNS(pr));
-        hide(pr);
-      }
+      showProgress: lockButton.pbind(more),
+      hideProgress: unlockButton.pbind(more)
     });
   },
   suggestUpdate: function(delta) {
     var c = ge('page_suggests_count'), v = intval(val(c));
-    if (delta === -1 || delta === 1 && c) val(c, v += delta);
-    val('page_wall_posts_count', v ? langNumeric(v, cur.options.wall_suggests_label) : cur.options.wall_no_suggests_label);
+    if (c) {
+      if (delta === -1 || delta === 1) {
+        val(c, v += delta);
+      }
+      if (ge('page_wall_suggested_cnt')) {
+        val('page_wall_suggested_cnt', v ? langNumeric(v, '%s', true) : '');
+      }
+    }
   },
-  loadSuggests: function() {
-    if (cur.suggLoading || !cur.oid) return;
-    cur.suggLoading = true;
-    var cont = ge('page_suggestions');
-    ajax.post('al_wall.php', {act: 'get_suggests', owner_id: cur.oid}, {onDone: function(rows, notAll) {
-      removeClass(cont, 'page_sugg_loading');
-      val(cont, rows);
-      if (cur.suggestsView) Wall.suggestUpdate();
-      toggle('page_suggest_more', notAll);
-    }});
+  suggestPublished: function(post, text, postponed) {
+    if (cur.onepost) {
+      return nav.go('/wall' + cur.oid);
+    }
+
+    Wall.suggestUpdate(-1);
+    showDoneBox(text);
+    cur.wallMyDeleted[post] = 1;
+    Wall.deinitComposer(ge('wpe_text'));
+
+    if (cur.wallType == 'full_own' || cur.wallType == 'full_all') {
+      Pagination.recache(-1);
+      FullWall.updateSummary(cur.pgCount);
+    }
+
+    if (postponed) {
+      val('page_postponed_posts', postponed);
+      wall.postponeUpdateCount();
+    }
+
+    if (!intval(val('page_suggests_count'))) {
+      var wallMenu = ge('wall_rmenu');
+      if (wallMenu) {
+        geByClass1('ui_rmenu_item', wallMenu).click();
+        hide(geByClass1('_wall_menu_suggested', wallMenu));
+      } else if (ge('wall_tabs')) {
+        geByClass1('ui_tab', ge('wall_tabs')).click();
+        hide('page_wall_suggest');
+      }
+    } else {
+      re('post' + post);
+    }
   },
-  showPostponed: function() {
-    if (cur.postponedLoading || !cur.oid) return;
-    var tmp = cur.postponedLoading = cur.oid;
-    var pr = ge('wall_postponed_progress');
-    ajax.post('al_wall.php', {act: 'get_postponed', owner_id: cur.oid}, {
-      onDone: function (rows) {
-        if (tmp !== cur.oid) return;
-        delete(cur.postponedLoading);
-        val(ge('wall_postponed'), rows);
-      },
-      showProgress: function() {
-        show(pr);
-        hide(domNS(pr));
-      },
-      hideProgress: function() {
-        show(domNS(pr));
-        hide(pr);
+  showPostponedFull: function(rows) {
+    var menu = ge('ui_rmenu_postponed'),
+        cont = ge('page_wall_posts');
+    if (!menu || !hasClass(menu, 'ui_rmenu_item_sel') || !cont) {
+      var nloc = {
+        0: nav.objLoc[0],
+        postponed: 1
+      };
+      return nav.go(nloc);
+    }
+
+    val(cont, rows);
+    FullWall.updateSummary(geByClass('post', cont).length);
+  },
+  showPostponed: function(el, ev, rows) {
+    if (ev && checkEvent(ev)) return true;
+    if (!cur.oid) return false;
+
+    uiTabs.switchTab(el);
+    cur.wallTab = 'postponed';
+
+    if (rows !== undefined) {
+      Wall.postponedLoaded(rows);
+    } else {
+      if (cur.postponedLoading) return false;
+      var cur_oid = cur.postponedLoading = cur.oid;
+      uiTabs.showProgress(el);
+      ajax.post('al_wall.php', {act: 'get_postponed', owner_id: cur.oid}, {
+        onDone: function (rows) {
+          cur.postponedLoading = false;
+          uiTabs.hideProgress(el);
+          if (cur_oid !== cur.oid) return;
+          if (cur.wallTab != 'postponed') return;
+          Wall.postponedLoaded(rows);
+        }
+      });
+    }
+    return false;
+  },
+  postponedLoaded: function(rows) {
+    val('page_postponed_posts', rows);
+    wall.postponeUpdateCount();
+    wall.switchTabContent('postponed');
+  },
+  postponeUpdateCount: function() {
+    var wrapEl = ge('page_postponed_posts'),
+        countEl = ge('page_wall_postponed_cnt'),
+        count = wrapEl && (geByClass('post', wrapEl).length - geByClass('dld', wrapEl).length) || 0;
+    if (!wrapEl || !countEl) return;
+
+    val(countEl, count ? langNumeric(count, '%s', true) : '');
+  },
+  checkPostponedCount: function() {
+    var posts = geByClass('post', 'page_postponed_posts'), postponedCnt = 0;
+    each(posts, function() {
+      var postId = this.id.replace('post', '');
+      if (!cur.wallMyDeleted[postId]) {
+        postponedCnt++;
       }
     });
-  },
-  hidePostponed: function() {
-    var lnk = ge('wall_postponed_link');
-    if (lnk) {
-      lnk.onclick = Wall.showPostponed;
-      hide('wall_postponed_posts', 'wall_postponed_msg_hide');
-      show('wall_postponed_msg_show');
+    if (!postponedCnt) {
+      hide('page_wall_postponed');
     }
+  },
+  postponedPublished: function(post, text) {
+    if (cur.onepost) {
+      return nav.go('/wall' + cur.oid);
+    }
+
+    if (cur.wallType == 'full_own' || cur.wallType == 'full_all') {
+      Pagination.recache(-1);
+      FullWall.updateSummary(cur.pgCount);
+    }
+
+    text && showDoneBox(text);
+    cur.wallMyDeleted[post] = 1;
+    var posts = geByClass('post', ge('page_postponed_posts')),
+        curPost = ge('post' + post);
+    if (posts.length <= 1 && inArray(curPost, posts)) {
+      var wallMenu = ge('wall_rmenu');
+      if (wallMenu) {
+        geByClass1('ui_rmenu_item', wallMenu).click();
+        hide(geByClass1('_wall_menu_postponed', wallMenu));
+      } else if (ge('wall_tabs')) {
+        geByClass1('ui_tab', ge('wall_tabs')).click();
+        hide('page_wall_postponed');
+      }
+    } else {
+      re(curPost);
+      wall.postponeUpdateCount();
+    }
+  },
+  onWallSearchSend: function(el, value) {
+    if (value) {
+      Wall.showSearch(value, 0);
+    } else {
+      Wall.hideSearch();
+    }
+  },
+  showSearch: function(query, offset) {
+    if (cur.searchLoading && cur.searchLoading == query || !cur.oid) return false;
+    var cur_oid = cur.oid;
+    cur.wallQuery = cur.searchLoading = query;
+    if (cur.wallTab != 'search') {
+      cur.prevWallTab = cur.wallTab;
+      cur.wallTab = 'search';
+    }
+
+    var more = ge('wall_more_link');
+    ajax.post('al_wall.php', {act: 's', search: 1, q: query, owner_id: cur.oid, offset: offset, inline: 1}, {
+      onDone: function (rows, newOffset, count) {
+        if (cur_oid !== cur.oid) return;
+        if (cur.wallTab != 'search') return;
+
+        var postsEl = ge('page_search_posts');
+        if (!offset) {
+          val(postsEl, '');
+        }
+        postsEl.appendChild(cf(rows));
+        wall.switchTabContent('search');
+
+        toggle(more, newOffset < count);
+        more.onclick = Wall.showSearch.pbind(query, newOffset);
+      },
+      showProgress: function() {
+        uiSearch.showProgress('wall_search');
+        offset && lockButton(more);
+      },
+      hideProgress: function() {
+        cur.searchLoading = false;
+        uiSearch.hideProgress('wall_search');
+        offset && unlockButton(more);
+      }
+    });
+    return false;
+  },
+  hideSearch: function() {
+    delete cur.wallQuery;
+    if (!cur.prevWallTab) return;
+
+    cur.wallTab = cur.prevWallTab;
+    cur.prevWallTab = false;
+    wall.switchTabContent(cur.wallTab);
+    wall.update();
   },
   publishPostponedPost: function(post, hash, from) {
     showFastBox(getLang('publish_postponed_title'), getLang('publish_postponed_confirm'), getLang('publish_postponed_btn'), function() {
       curBox().hide();
       ajax.post('al_wall.php', {act: 'publish_postponed', post: post, from: from, hash: hash}, {
-        onDone: function (html) {
-          if (from == 'one') {
-            var p = ge('fw_post');
-            if (!p) return;
-            hide('fwr_wrap', 'fw_one_replies_wrap');
-            if (p.firstChild.nextSibling) {
-              p.firstChild.nextSibling.innerHTML = html;
-            } else {
-              p.appendChild(ce('div', {id: 'post_del' + post, innerHTML: html, className: 'fw_deleted'}));
-              hide(p.firstChild);
-            }
-          } else {
-            val('wall_postponed', html);
-            if (!html) {
-              addClass('wall_postponed', 'wall_postponed_empty');
-            }
-          }
-        },
-        progress: 'wpe_prg' + post
+        onDone: Wall.postponedPublished.pbind(post),
+        showProgress: lockButton.pbind('wpe_publish' + post),
+        hideProgress: unlockButton.pbind('wpe_publish' + post)
       });
     }, getLang('global_cancel'));
-  },
-  postponedUpdate: function(delta) {
-    var c = ge('wall_postponed_cnt'), v = intval(val(c));
-    if (delta === -1 || delta === 1 && c) val(c, v += delta);
-
-    if (v == 0) {
-      hide('wall_postponed_link');
-      addClass('wall_postponed', 'wall_postponed_empty');
-    } else {
-      show('wall_postponed_link');
-      removeClass('wall_postponed', 'wall_postponed_empty');
-    }
   },
   cmp: function(id1, id2) {
     var l1 = id1.length, l2 = id2.length;
@@ -1468,10 +1956,11 @@ var Wall = {
   showMore: function(offset) {
     if (cur.viewAsBox) return cur.viewAsBox();
     if (cur.wallLayer) return;
+    if (cur.wallTab == 'suggested') return Wall.suggestMore();
 
-    var type = cur.wallType;
-    var pr = ge('wall_more_progress');
-    var tmp = cur.wallLoading = cur.oid;
+    var type = cur.wallType,
+        more = ge('wall_more_link'),
+        tmp = cur.wallLoading = cur.oid;
     ajax.post('al_wall.php', {act: 'get_wall', owner_id: cur.oid, offset: offset, type: type, fixed: cur.options.fixed_post_id || ''}, {
       onDone: function (rows, names, videos) {
         if (tmp !== cur.oid) return;
@@ -1485,24 +1974,18 @@ var Wall = {
           });
         }
       },
-      showProgress: function() {
-        show(pr);
-        hide(domNS(pr));
-      },
-      hideProgress: function() {
-        show(domNS(pr));
-        hide(pr);
-      }
+      showProgress: lockButton.pbind(more),
+      hideProgress: unlockButton.pbind(more)
     });
   },
   checkTextLen: function(inp, warn, force) {
-    if (cur.fixedWide) return;
     var val =  trim(Emoji.editableVal(inp).replace(/\n\n\n+/g, '\n\n'));
     //var val = trim(inp.value).replace(/\n\n\n+/g, '\n\n');
     if (inp.lastLen === val.length && !force) return;
 
-    var realLen = inp.lastLen = val.length, maxLen = cur.options.max_post_len;
-    var brCount = realLen - val.replace(/\n/g, '').length;
+    var realLen = inp.lastLen = val.length,
+        maxLen = (cur.options || {}).max_post_len || (window.mvcur || {}).maxReplyLength,
+        brCount = realLen - val.replace(/\n/g, '').length;
 
     warn = ge(warn);
     if (realLen > maxLen - 100 || brCount > 4) {
@@ -1539,15 +2022,118 @@ var Wall = {
     }
   },
   postChanged: function(force) {
-    if (!isVisible('submit_post')) Wall.showEditPost();
-    if (vk.id && intval(cur.oid) == vk.id) {
+    if (!isVisible('submit_post') || !hasClass(ge('submit_post_box'), 'shown')) Wall.showEditPost();
+    if (vk.id && !vk.widget) {
       clearTimeout(cur.postAutosave);
+      var saveCallback = (intval(cur.oid) == vk.id) ? Wall.saveDraft : Wall.saveOwnerDraftText.pbind(cur.oid);
       if (force === true) {
-        Wall.saveDraft();
+        saveCallback();
       } else {
-        cur.postAutosave = setTimeout(Wall.saveDraft, (force === 10) ? 10 : 1000);
+        cur.postAutosave = setTimeout(saveCallback, (force === 10) ? 10 : 1000);
       }
     }
+  },
+  ownerDraftKey: function(ownerId) {
+    return 'wall_draft' + vk.id + '_' + ownerId;
+  },
+  ownerDraftData: function() {
+    if (!cur.wallDraftData) {
+      cur.wallDraftData = {};
+    }
+    return cur.wallDraftData;
+  },
+  addOwnerDraftMedia: function(ownerId, info) {
+    var data = Wall.ownerDraftData(),
+        type = info[0],
+        id = info[1],
+        object = info[2];
+
+    data._attach_cache = data._attach_cache || {};
+    if (object) {
+      data._attach_cache[type + id] = object;
+    } else {
+      object = data._attach_cache[type + id];
+    }
+
+    data.attaches = data.attaches || [];
+    var lsAttaches = ls.get(Wall.ownerDraftKey(ownerId)) || {};
+    if (type !== false) {
+      data.attaches.push([type, id, object, data.attaches.length]);
+    } else if (type === false && typeof(id) !== 'undefined') {
+      data.attaches = data.attaches.filter(function (el) {
+        return el[3] !== id;
+      });
+    }
+    ls.set(Wall.ownerDraftKey(ownerId), extend(lsAttaches, {
+      txt: clean(Wall.getDraftData().message || ''),
+      medias: data.attaches
+    }));
+  },
+  cleanOwnerDraftMedia: function(ownerId) {
+    var data = Wall.ownerDraftData(),
+        lsAttaches = ls.get(Wall.ownerDraftKey(ownerId)) || {};
+
+    data.attaches = [];
+    ls.set(Wall.ownerDraftKey(ownerId), extend({ txt: '' }, lsAttaches, { medias: [] }));
+  },
+  saveOwnerDraftText: function(ownerId) {
+    var data = Wall.ownerDraftData(),
+        lsText = ls.get(Wall.ownerDraftKey(ownerId)) || {},
+        draftData = Wall.getDraftData(),
+        content = clean(draftData.message || '');
+
+    data.txt = content;
+    each (lsText.medias || {}, function(i, v) {
+      switch (v[0]) {
+        case 'postpone':
+          if (draftData.postpone) {
+            lsText.medias[i][2].date = draftData.postpone;
+            lsText.medias[i][2].draft = 1;
+          }
+        break;
+        case 'poll':
+        var pollData = (cur.wallAddMedia || {}).pollData(true);
+        if (pollData) {
+          var pollDraft = {edit: false, question: pollData.media, answers: []}, k = 0;
+          if (pollData.anonymous) {
+            pollDraft.anon = true;
+          }
+          while (pollData['answers[' + k + ']'] !== undefined) {
+            pollDraft.answers.push([0, pollData['answers[' + k + ']']]);
+            k++;
+          }
+          extend(lsText.medias[i][2], pollDraft);
+        }
+        break;
+      }
+    });
+    extend(lsText, { txt: content });
+    ls.set(Wall.ownerDraftKey(ownerId), lsText);
+  },
+  getOwnerDraft: function(ownerId) {
+    var draft = ls.get(Wall.ownerDraftKey(ownerId)) || {}, res = [];
+    return [draft.txt, draft.medias, true];
+  },
+  saveOwnerDraftMedia: function(ownerId, type, id, object) {
+    Wall.cleanOwnerDraftMedia(ownerId);
+    var addmedia = cur.wallAddMedia || {},
+        media = addmedia.chosenMedia || {},
+        medias = cur.wallAddMedia ? addmedia.getMedias() : [],
+        current = [],
+        allmedia = medias.slice().map(function (el) {
+      return el.slice(0, 2);
+    });
+
+    if (typeof id !== 'undefined' && type) {
+      current = [[type, id, object]];
+    } else if (!type && typeof id !== 'undefined') {
+      allmedia.splice(id, 1);
+    }
+
+    allmedia = allmedia.concat(current);
+    each (allmedia, function() {
+      Wall.addOwnerDraftMedia(ownerId, this);
+    });
   },
   saveDraft: function() {
     if (cur.noDraftSave) {
@@ -1556,16 +2142,24 @@ var Wall = {
     }
     if (cur.postSent || vk.id != intval(cur.oid)) return;
 
+    var params = Wall.getDraftData();
+    if (params.delayed) {
+      return;
+    }
+    ajax.post('al_wall.php', Wall.fixPostParams(extend({
+      act: 'save_draft',
+      hash: cur.options.post_hash
+    }, params)), {onFail: function() {
+      return true;
+    }});
+  },
+  getDraftData: function() {
     var addmedia = cur.wallAddMedia || {},
         media = addmedia.chosenMedia || {},
         medias = cur.wallAddMedia ? addmedia.getMedias() : [],
         share = (addmedia.shareData || {})
-        msg = val(ge('post_field')), attachI = 0,
-        params = {
-      act: 'save_draft',
-      message: msg,
-      hash: cur.options.post_hash
-    };
+        msg = trim((window.Emoji ? Emoji.editableVal : val)(ge('post_field'))), attachI = 0,
+        params = {message: msg};
 
     if (isArray(media) && media.length) {
       medias.push(clone(media));
@@ -1581,7 +2175,7 @@ var Wall = {
           case 'poll':
             var poll = addmedia.pollData(true);
             if (!poll) {
-              ret = true;
+              params.delayed = true;
               return false;
             }
             attachVal = poll.media;
@@ -1592,7 +2186,7 @@ var Wall = {
             if (share.failed || !share.url ||
                 !share.title && (!share.images || !share.images.length) && !share.photo_url) {
               if (cur.shareLastParseSubmitted && vkNow() - cur.shareLastParseSubmitted < 2000) {
-                ret = true;
+                params.delayed = true;
                 return false;
               } else {
                 return;
@@ -1633,21 +2227,16 @@ var Wall = {
         params['attach' + (attachI + 1)] = attachVal;
         attachI++;
       });
-      if (ret) {
-        return;
-      }
     }
-    ajax.post('al_wall.php', Wall.fixPostParams(params), {onFail: function() {
-      return true;
-    }});
+
+    return params;
   },
   setDraft: function(data) {
-    if (!data[0] && !data[1]) return;
+    if (!data[0] && (!data[1] || !data[1].length)) return;
     var field = ge('post_field');
     if (!field) return;
 
-    var draftUncleaned = replaceEntities(data[0] || '');
-    val(field, draftUncleaned);
+    Emoji.val(field, clean(replaceEntities(data[0] || '')).replace(/\n/g, '<br/>'));
     Wall.showEditPost(function() {
       setTimeout(function() {
         if (data[1] && cur.wallAddMedia) {
@@ -1659,33 +2248,51 @@ var Wall = {
       }, 0);
 
     });
+    if (data[2]) {
+      wall.focusOnEnd();
+    }
+  },
+  initPostEditable: function(draft) {
+    var txt = cur.postField;
+    if (!txt || txt.emojiInited) {
+      return false;
+    }
+
+    txt.emojiInited = true;
+
+    stManager.add(['emoji.js', 'notifier.css'], function() {
+      Emoji.init(txt, {
+        ttDiff: -42,
+        rPointer: true,
+        controlsCont: domPN(txt),
+        noStickers: true,
+        onSend: Wall.sendPost,
+        noEnterSend: true,
+        checkEditable: Wall.postChanged,
+        initUploadForImagePasteCallback: function(txt, addMedia, blob) {
+          if (window.Upload) {
+            Upload.onFileApiSend(cur.wallUploadInd, [ blob ]);
+          }
+        }
+      });
+      addClass(txt, 'submit_post_inited')
+
+      if (draft) {
+        setTimeout(Wall.setDraft.pbind(draft), 0);
+      }
+    });
   },
   showEditPost: function(callback) {
+    var input = ge('post_field');
     if (cur.viewAsBox) {
-      setTimeout(function() { ge('post_field').blur() }, 0);
+      setTimeout(function() { input.blur() }, 0);
       return cur.viewAsBox();
     }
 
     if (cur.editing === 0) return;
+    setTimeout(WallUpload.init, 0);
 
-    setTimeout(function() {
-      if (cur.withUpload) {
-        if (!cur.uploadAdded) {
-          cur.uploadAdded = true;
-          if (!window.Upload) {
-            stManager.add(['upload.js'], function() {
-              WallUpload.init();
-            });
-          } else {
-            WallUpload.init();
-          }
-        } else {
-          WallUpload.show();
-        }
-      }
-    }, 0);
-
-    Wall.initComposer(ge('post_field'), {
+    Wall.initComposer(input, {
       lang: {
         introText: getLang('profile_mention_start_typing'),
         noResult: getLang('profile_mention_not_found')
@@ -1695,12 +2302,7 @@ var Wall = {
     }, callback);
 
     Wall.hideEditPostReply();
-    show('submit_post');
-    autosizeSetup('post_field', {minHeight: cur.fullPostHeight || (cur.fullPostView ? 50 : 32), onResize: function() {
-      if (cur.wallType == 'full_own' || cur.wallType == 'full_all') {
-        Pagination.pageTopUpdated();
-      }
-    }});
+    addClass('submit_post_box', 'shown');
     cur.editing = 0;
   },
 
@@ -1738,6 +2340,20 @@ var Wall = {
     }
     return composer.addMedia.attachCount() > 0;
   },
+  composerListShown: function(input) {
+    var composer = input && data(input, 'composer');
+    if (!composer) return false;
+
+    var controlEvent = composer.wdd, cnt = 0;
+    for (var i in controlEvent.shown) {
+      cnt += 1;
+    }
+    if (controlEvent && isVisible(controlEvent.listWrap) && cnt) {
+      return true;
+    }
+
+    return false;
+  },
 
   onPostValChange: function() {
     if (cur.wallAddMedia) {
@@ -1751,21 +2367,16 @@ var Wall = {
     cur.editing = false;
     var rf = ge('post_field'),
         addmedia = cur.wallAddMedia || {},
+        v = trim((window.Emoji ? Emoji.editableVal : val)(rf)),
         empty = true;
-    if (browser.opera_mobile || !rf || cur.fullPostView) return;
-    each (addmedia.chosenMedias || [], function (k, v) {
-      if (v) {
-        empty = false;
-        return false;
-      }
-    });
-    if (!force && (val(rf) || addmedia.chosenMedia || !empty)) return;
-    hide('submit_post');
-    if (rf && !rf.value) {
+
+    if (browser.opera_mobile || !rf) return;
+    if (!force && (v || addmedia.chosenMedia || (addmedia.getMedias && addmedia.getMedias().length > 0) || (addmedia.attachCount && addmedia.attachCount() > 0))) return;
+    removeClass('submit_post_box', 'shown');
+    if (rf && !v) {
       if (cur.postMention) {
         cur.postMention.options.minHeight = cur.emptyPostheight || 14;
       }
-      setStyle(rf, {height: cur.emptyPostheight || 11});
     }
     cur.onWallSendCancel && cur.onWallSendCancel();
     window.WallUpload && WallUpload.hide();
@@ -1773,14 +2384,10 @@ var Wall = {
       cur.wallAddMedia._hideAddMedia(true);
     }
   },
-  clearInput: function(type) {
+  clearInput: function() {
     show('page_add_media');
 
-    if (type == 'fixed') {
-      var rf = ge('post_fixed_field');
-    } else {
-      var rf = ge('post_field');
-    }
+    var rf = ge('post_field');
     if (Wall.withMentions) {
       var mention = data(rf, 'mention');
       if (mention) {
@@ -1789,13 +2396,12 @@ var Wall = {
         show(rf);
       }
     }
-    rf.value = '';
+    val(rf, '');
     rf.blur();
     rf.phonblur();
     Wall.hideEditPost(true);
     if (cur.wallAddMedia) cur.wallAddMedia.unchooseMedia();
     checkbox('export_status', false);
-    hide('post_warn');
   },
   fixPostParams: function (params) {
     var newParams = clone(params);
@@ -1803,19 +2409,42 @@ var Wall = {
     delete newParams.message;
     return newParams;
   },
-  sendPost: function(inputType) {
-    if (inputType == 'fixed') {
-      var addmedia = {}, media = {}, medias = [], share = {}, msg = val(ge('post_fixed_field')), edited = [], added = {};
-    } else {
-      var addmedia = cur.wallAddMedia || {},
-          media = addmedia.chosenMedia || {},
-          medias = cur.wallAddMedia ? addmedia.getMedias() : [],
-          share = (addmedia.shareData || {})
-          msg = val(ge('post_field'));
+  focusOnEnd: function() {
+    var el = ge('post_field');
+    if (el.tagName == 'TEXTAREA') {
+      elfocus(el);
+      return;
     }
-    var postponePost = false;
+    var len = el.innerHTML ? el.innerHTML.length : (el.length ? el.length : el.childNodes.length - 1);
+    el.focus();
+    if (document.selection) {
+      var sel = document.selection.createRange();
+      sel.moveStart('character', len);
+      sel.select();
+    } else {
+      window.getSelection().collapse(el, el.childNodes.length);
+    }
+  },
+  saveExport: function(el, service, hash) {
+    if (!isChecked('friends_only')) {
+      checkbox(el);
+    }
 
-    var pType = cur.suggesting ? 'suggest' : cur.wallType, params = {
+    cur.saveExportTO = cur.saveExportTO || {};
+    clearTimeout(cur.saveExportTO[service]);
+    cur.saveExportTO[service] = setTimeout(function() {
+      ajax.post('/al_settings.php', {act: 'a_save_export', service: service, disabled: (isChecked(el) ? 0 : 1), hash: hash});
+    }, 300);
+  },
+  sendPost: function() {
+    var addmedia = cur.wallAddMedia || {},
+        media = addmedia.chosenMedia || {},
+        medias = cur.wallAddMedia ? addmedia.getMedias() : [],
+        share = (addmedia.shareData || {})
+        msg = trim((window.Emoji ? Emoji.editableVal : val)(ge('post_field'))),
+        postponePost = false;
+
+    var pType = cur.options.suggesting ? 'suggest' : cur.wallType, params = {
       act: 'post',
       message: msg,
       to_id: cur.postTo,
@@ -1823,15 +2452,12 @@ var Wall = {
       friends_only: isChecked('friends_only'),
       status_export: isChecked('status_export'),
       facebook_export: ge('facebook_export') ? (isChecked('facebook_export') ? 1 : 0) : '',
-      official: isChecked('official'),
+      official: hasClass(domClosest('_submit_post_box', ge('official')), 'as_group') ? 1 : '',
       signed: isChecked('signed'),
       hash: cur.options.post_hash,
       from: cur.from ? cur.from : '',
       fixed: cur.options.fixed_post_id || ''
     }, ownmsg = (cur.postTo == vk.id || params.official || cur.options.only_official), attachI = 0;
-    if (inputType == 'fixed') {
-      params['fixed'] = 1;
-    }
     if (cur.options.additional_save_params) {
       params = extend(params, cur.options.additional_save_params);
     }
@@ -1932,21 +2558,31 @@ var Wall = {
     setTimeout(function() {
       ajax.post('al_wall.php', Wall.fixPostParams(params), {
         onDone: function(rows, names) {
-          Wall.clearInput(inputType);
+          Wall.clearInput();
           cur.postSent = false;
+
+          if (isObject(rows) && rows.redirect) {
+            nav.go(rows.redirect);
+            return
+          }
+
           if (postponePost) {
             if (pType == 'feed') {
               showDoneBox(rows, {out: 3000});
+            } else if (pType == 'full_own' || pType == 'full_all') {
+              return Wall.showPostponedFull(rows);
             }
-            val(ge('wall_postponed'), rows);
-            removeClass('wall_postponed', 'wall_postponed_empty');
-            show('wall_postponed');
+            show('page_wall_postponed');
+            Wall.showPostponed(geByClass1('ui_tab', 'page_wall_postponed'), false, rows);
+            if (ge('wall_tabs')) {
+              removeClass(ge('wall_tabs'), 'page_tabs_hidden');
+            }
             return;
           }
-          Wall.hidePostponed();
-          if ((pType == 'full_own' || pType == 'full_all') && cur.pgStart) {
+          if ((pType == 'full_own' || pType == 'full_all') && (cur.pgStart || nav.objLoc.postponed)) {
             var nloc = clone(nav.objLoc);
             delete(nloc.offset);
+            delete(nloc.postponed);
             if (vk.id != cur.oid) {
               delete(nloc.own);
             }
@@ -1961,16 +2597,16 @@ var Wall = {
             return cur.wallPostCb();
           }
           if (pType == 'suggest') {
-            val('page_suggestions', rows);
-            toggle('page_suggest_more', names);
+            show('page_wall_suggest');
+            Wall.showSuggested(geByClass1('ui_tab', 'page_wall_suggest'), false, rows, names);
             return Wall.suggestUpdate();
-          } else if (cur.suggestsView) {
-            Wall.suggest();
+          } else if (cur.wallTab == 'suggested') {
+            Wall.showSuggested(geByClass1('ui_tab', ge('page_wall_suggest')));
+          } else if (ge('wall_tabs')) {
+            removeClass(ge('wall_tabs'), 'page_tabs_hidden');
+            geByClass1('ui_tab', ge('wall_tabs')).click();
           }
           Wall.receive(rows, names);
-          if (!ownmsg && cur.wallType == 'own') {
-            Wall.switchWall();
-          }
 
           if (cur.onWallSendPost) {
             cur.onWallSendPost();
@@ -1981,7 +2617,7 @@ var Wall = {
           if (!msg) {
             return true;
           }
-          ge('submit_post_error').innerHTML = msg;
+          ge('submit_post_error').innerHTML = (msg.length > 60 ? '<div class="msg_text">' + msg + '</div>' : msg);
           if (!isVisible('submit_post_error')) {
             slideDown('submit_post_error', 100);
           }
@@ -1998,14 +2634,17 @@ var Wall = {
   },
 
   _repliesLoaded: function(post, hl, replies, names, data) {
-    var r = ge('replies' + post), openEl = r.nextSibling;
+    var r = ge('replies' + post);
+
+    if (!r) return; // fixme: shortcut solution that prevents js error when clicking on name of replied person in comments
+
+    var openEl = r.nextSibling;
     var a = vkNow();
     if (hl) {
       var h = r.offsetHeight;
       r.innerHTML = replies;
-      var scrollEl = (browser.msie6 ? pageNode : ((browser.chrome || browser.safari) ? bodyNode : htmlNode));
-      scrollEl.scrollTop = intval(scrollEl.scrollTop) + (r.offsetHeight - h);
-      setTimeout(Wall.highlightReply.pbind('post' + hl), 0);
+      scrollToY(scrollGetY() + (r.offsetHeight - h), 0, undefined, true);
+      setTimeout(Wall.scrollHighlightReply.pbind('post' + hl), 0);
     } else {
       r.innerHTML = replies;
     }
@@ -2035,10 +2674,7 @@ var Wall = {
     }
     Wall.updateMentionsIndex();
     setTimeout(function() {
-      var _a = window.audioPlayer, aid = currentAudioId();
-      if (_a && aid && _a.showCurrentTrack) {
-        _a.showCurrentTrack();
-      }
+      getAudioPlayer().updateCurrentPlaying();
     }, 10);
   },
   repliesSideSetup: function (post) {
@@ -2046,7 +2682,6 @@ var Wall = {
       WkView.wallUpdateReplies();
       return;
     }
-    if (browser.msie6 || browser.msie7) return;
     var postEl = ge('post' + post),
         r = ge('replies' + post),
         header = r && geByClass1('wr_header', r, 'a'),
@@ -2056,17 +2691,21 @@ var Wall = {
 
     if (cur.wallMyOpened[post] && header) {
       if (!side) {
-        var sideWrap = se('<div class="replies_side_wrap"><div id="replies_side' + post + '" class="replies_side"><div class="replies_side_icon" id="replies_side_icon' + post + '"></div></div></div>')
+        var sideWrap = se('<div class="replies_side_wrap"><div id="replies_side' + post + '" class="replies_side"></div></div>')
         r.parentNode.insertBefore(sideWrap, r);
         side = sideWrap.firstChild;
         side.onclick = Wall.repliesSideClick.pbind(post);
         side.onmouseover = Wall.repliesSideOver.pbind(post);
         side.onmouseout = Wall.repliesSideOut.pbind(post);
       }
-      setStyle(side, {height: r.clientHeight - 31});
       show(side);
+      r.onmouseover = Wall.repliesSideOver.pbind(post);
+      r.onmouseout = Wall.repliesSideOut.pbind(post);
+      Wall.repliesSideOver(post);
     } else {
       hide(side);
+      r.onmouseover = null;
+      r.onmouseout = null;
     }
   },
   repliesSideClick: function (post) {
@@ -2083,35 +2722,29 @@ var Wall = {
     return Wall.showReplies(post, 3, false);
   },
   repliesSideOver: function (post) {
-    var side = ge('replies_side' + post);
+    var r = ge('replies' + post),
+        side = ge('replies_side' + post);
 
-    addClass(side, 'replies_side_over');
-    setStyle(side, {height: ge('replies' + post).clientHeight - 51});
-
-    var icon = ge('replies_side_icon' + post),
-        top = getXY(side)[1],
-        h = side.clientHeight;
+    var sideTop = getXY(domPN(side))[1],
+        sideH = getSize(side)[1],
+        repliesTop = getXY(r)[1],
+        repliesH = r.offsetHeight,
+        wh = window.lastWindowHeight || 0;
 
     var minOffset = 16,
-        maxOffset = h - 23,
-        minSt = top + minOffset - 16,
-        maxSt = top + maxOffset - 16;
+        minSt = sideTop + sideH - wh + 15,
+        maxSt = repliesTop + repliesH - wh;
 
 
     cur.wallRepliesSideOver = [
       post,
-      icon,
-      false,
+      side,
       minSt,
-      maxSt,
-      getXY(side)[0] + 18,
-      maxOffset,
-      false
+      maxSt
     ];
     Wall.repliesSideUpdate();
   },
   repliesSideOut: function (post) {
-    removeClass(ge('replies_side' + post), 'replies_side_over');
     if (cur.wallRepliesSideOver && cur.wallRepliesSideOver[0] == post) {
       delete cur.wallRepliesSideOver;
     }
@@ -2121,65 +2754,95 @@ var Wall = {
     var postData = cur.wallRepliesSideOver;
     if (!postData) return;
 
-    var curState = postData[7], newState;
+    var side = postData[1],
+        curStyle = postData[4] || {}, newStyle,
+        curClass = postData[5] || '', newClass = 'replies_side';
     if (st === undefined) {
       st = scrollGetY();
     }
-    if (st < postData[3]) {
-      if (curState != 1) {
-        setStyle(postData[1], {position: 'absolute', top: '16px', bottom: 'auto', left: '18px'})
-        postData[7] = 1;
-      }
-    } else if (st < postData[4]) {
-      if (curState != 2) {
-        setStyle(postData[1], {position: 'fixed', top: '16px', bottom: 'auto', left: postData[5]})
-        postData[7] = 2;
-      }
+    if (st < postData[2]) {
+      newStyle = {marginTop: 0, opacity: 1};
+    } else if (st < postData[3]) {
+      newClass += ' replies_side_fixed';
+      newStyle = {opacity: Math.max(0, Math.min(1, (postData[3] - st) / 200))};
     } else {
-      if (curState != 3) {
-        setStyle(postData[1], {position: 'absolute', bottom: '16px', top: 'auto', left: '18px'})
-        postData[7] = 3;
-      }
+      newClass += ' replies_side_hidden';
+      newStyle = {marginTop: postData[3] - postData[2], opacity: 0};
+    }
+    if (JSON.stringify(curStyle) !== JSON.stringify(newStyle)) {
+      each (curStyle, function(i, k) {
+        curStyle[i] = null;
+      });
+      setStyle(side, extend(curStyle, newStyle));
+      postData[4] = newStyle;
+    }
+    if (curClass != newClass) {
+      side.className = newClass;
+      postData[5] = newClass;
     }
   },
   highlightReply: function(el) {
     el = ge(el);
     if (!el) return;
 
-    var hlfunc = animate.pbind(el, {backgroundColor: '#ECEFF3'}, 200, function() {
-      setTimeout(function() {
-        animate(el, {backgroundColor: '#FFF'}, 200);
-      }, 1000);
-    });
+    addClass(el, 'reply_highlighted');
+    setTimeout(function() {
+      removeClass(el, 'reply_highlighted');
+    }, 1500);
+  },
+  scrollHighlightReply: function(el) {
+    el = ge(el);
+    if (!el) return;
 
-    if (cur.wallLayer) {
+    var hlfunc = function() {
+      addClass(el, 'reply_highlighted');
+      setTimeout(function() {
+        removeClass(el, 'reply_highlighted');
+      }, 1500);
+    };
+
+    if (cur.wallLayer || el.id.match(/^post-?\d+(photo|video|market)?_\d+$/) && (window.wkcur && wkcur.shown || window.mvcur && mvcur.mvShown || cur.pvShown)) {
       var top = getXY(el, true)[1];
       if (top < 0 || top > lastWindowHeight - 200) {
-        animate(wkLayerWrap, {scrollTop: wkLayerWrap.scrollTop + top - 50}, 300, hlfunc);
+        animate(wkLayerWrap, {scrollTop: wkLayerWrap.scrollTop + top - 50}, 300, Wall.highlightReply.pbind(el));
       } else {
-        hlfunc();
+        Wall.highlightReply(el);
       }
       return;
     }
 
-    var xy = getXY(el), top = xy[1] - (bodyNode.scrollTop || htmlNode.scrollTop || 0);
-    if (top < 0) {
-      var cont = browser.msie6 ? pageNode : ((browser.chrome || browser.safari) ? bodyNode : htmlNode);
-      animate(cont, {scrollTop: cont.scrollTop + top - 50}, 300, hlfunc);
+    var xy = getXY(el), top = xy[1], st = scrollGetY() + getSize('page_header')[1];
+    if (top < st) {
+      scrollToY(top, 300);
+      setTimeout(Wall.highlightReply.pbind(el), 300);
     } else {
-      hlfunc();
+      Wall.highlightReply(el);
     }
   },
-  showReply: function(post, reply) {
+  showReply: function(el, post, reply, ev) {
     if (cur.viewAsBox) return false;
+    if (ev && checkEvent(ev)) return true;
+    if (window.mvcur && mvcur.post == post) {
+      Videoview.showComment(reply);
+      return false;
+    }
     var p = ge('post' + reply);
     if (p) {
-      Wall.highlightReply(p);
+      Wall.scrollHighlightReply(p);
     } else {
       if (cur.wallLayer == post) {
         WkView.wallShowPreviousReplies(reply);
+      } else if (post.match(/market/)) {
+        Market.comments(post);
       } else {
-        Wall.showReplies(post, false, reply);
+        el.tt && el.tt.hide && el.tt.hide();
+        if (cur.wallType == 'full') {
+          var replyId = reply.split('_');
+          delete nav.objLoc.offset;
+          return nav.go(extend(nav.objLoc, {reply: replyId[1]}));
+        } else {
+          Wall.showReplies(post, false, reply);
+        }
       }
     }
     return false;
@@ -2187,10 +2850,9 @@ var Wall = {
   showReplies: function(post, count, hl, ev) {
     if (checkEvent(ev || window.event)) { return true; }
     if (cur.viewAsBox) return cur.viewAsBox();
-    if (cur.fixedWide || cur.wallLayer == post && wkcur.reverse) {
+    if (cur.wallLayer == post && wkcur.reverse) {
       return;
     }
-    hide('wrh_text' + post);
     cur.wallMyOpened[post] = (count != 3);
     var params = {
       act: 'get_replies',
@@ -2198,18 +2860,16 @@ var Wall = {
       count: count
     }, opts = {
       onDone: Wall._repliesLoaded.pbind(post, hl),
-      onFail: show.pbind('wrh_text' + post),
-      progress: 'wrh_prg' + post,
+      showProgress: lockButton.pbind('wrh' + post),
+      hideProgress: unlockButton.pbind('wrh' + post),
       local: 1
     };
     if (!hl && (!count || count > 20)) {
       extend(params, {cont: 'replies' + post});
       extend(opts, {frame: 1});
-      if (!browser.msie6 && !browser.msie7)  {
-        cur.onFrameBlocksDone = /*vkLocal(*/function () {
-          setTimeout(Wall.repliesSideSetup.pbind(post), browser.msie ? 100 : 10);
-        }/*)*/
-      }
+      cur.onFrameBlocksDone = /*vkLocal(*/function () {
+        setTimeout(Wall.repliesSideSetup.pbind(post), browser.msie ? 100 : 10);
+      }/*)*/
     }
     ajax.post('al_wall.php', params, opts);
 
@@ -2225,19 +2885,16 @@ var Wall = {
         var total = geByClass('reply', cont, 'div').length;
         val(cont, '<a class="wr_header wrh_all"></a>');
         Wall.updateRepliesHeader(post, cont.firstChild, count, total);
+        hide('replies_side' + post);
         while (slice.length) {
           cont.appendChild(slice.pop());
         }
-        hide('wrh_text' + post);
-        show('wrh_prg' + post);
+        lockButton('wrh' + post);
       }
     }
     return false;
   },
   moreReplies: function(post, offset, count, opts) {
-    if (!opts.append) {
-      hide('wrh_text' + post);
-    }
     var params = {act: 'get_replies', offset: offset, post: post, count: count};
     extend(params, {rev: opts.rev, from: opts.from});
 
@@ -2250,7 +2907,7 @@ var Wall = {
         } else if (opts.rev || opts.append) {
           r.appendChild(cf(replies))
         } else {
-          r.removeChild(r.firstChild); // remove header
+          // r.removeChild(r.firstChild); // remove header
           r.innerHTML = replies + r.innerHTML;
         }
         extend((post == cur.wallLayer ? wkcur : cur).options.reply_names, names);
@@ -2259,16 +2916,33 @@ var Wall = {
         }
         Wall.updateMentionsIndex();
       },
-      onFail: !opts.append && show.pbind('wrh_text' + post),
       showProgress: opts.showProgress,
-      hideProgress: opts.hideProgress,
-      progress: opts.progress || 'wrh_prg' + post
+      hideProgress: opts.hideProgress
     });
     return false;
   },
   emojiOpts: {},
   getReplyName: function (id) {
-    return (((cur.wallLayer ? wkcur : cur).options || {}).reply_names || {})[id] || [];
+    if (cur.pvShown && cur.pvReplyNames) {
+      return cur.pvReplyNames[id] || [];
+    }
+
+    if (window.mvcur && mvcur.mvShown && !mvcur.minimized) {
+      return mvcur.mvReplyNames[id] || [];
+    }
+
+    var data = {}, options, replyNames;
+
+    if (cur.wallLayer) {
+      data = wkcur;
+    } else {
+      data = cur;
+    }
+
+    replyNames = (data.options || {}).reply_names;
+    replyNames = replyNames || {};
+
+    return replyNames[id] || [];
   },
   emojiShowTT: function(post, obj, ev) {
     if (Wall.emojiOpts[post] === undefined) {
@@ -2281,12 +2955,6 @@ var Wall = {
       return false;
     }
     return Emoji.ttHide(Wall.emojiOpts[post], obj, ev);
-  },
-  showEmojiTT: function(post, obj, ev) {
-    if (Wall.emojiOpts[post] === undefined) {
-      return false;
-    }
-    return Emoji.ttClick(Wall.emojiOpts[post], obj, false, false, ev);
   },
   initReplyEditable: function(txt, cont, post, fixed) {
     if (txt.emojiInited) {
@@ -2304,14 +2972,16 @@ var Wall = {
           txt.blur();
         },
         ctrlSend: function() {
-          return cur.wallTpl.reply_multiline;
+          return Wall.customCur().wallTpl.reply_multiline || Wall.composerListShown(txt);
         },
         //sharedTT: cur.sharedIm,
         checkEditable: Wall.checkTextLen.pbind(txt, 'reply_warn' + post),
-        onStickerSend: function(stNum) {
-          Wall.sendReply(post, false, stNum);
-        }
+        onStickerSend: function(stNum, sticker_referrer) {
+          Wall.sendReply(post, false, {stickerId: stNum, sticker_referrer: sticker_referrer});
+        },
+        initUploadForImagePasteCallback: Page.initUploadForImagePaste
       });
+      vk.widget && !window.emojiStickers && Emoji.updateTabs();
       Wall.emojiOpts[post] = optId;
       if (cur.afterEmojiInit && cur.afterEmojiInit[post]) {
         var sm = geByClass1('emoji_smile', Emoji.opts[optId].controlsCont);
@@ -2327,30 +2997,47 @@ var Wall = {
       setTimeout(function() { ge('reply_field' + post).blur() }, 0);
       return cur.viewAsBox();
     }
-    var rf = ge('reply_field' + post),
-        postEl = cur.wallLayer ? ge('wl_reply_form_inner') : ge('post' + post),
-        fakeBox = ge('reply_fakebox' + post),
-        realBox = ge('reply_box' + post),
-        replyLink;
+
+    var rf = ge('reply_field' + post);
+    var postEl = cur.wallLayer ? ge('wl_reply_form_inner') : ge('post' + post);
+    var fakeBox = ge('reply_fakebox' + post);
+    var realBox = ge('reply_box' + post);
+    var replyLink;
+
+    if (!postEl && fakeBox) {
+      postEl = gpeByClass('_post_wrap', fakeBox);
+    } else if (!postEl && realBox) {
+      postEl = gpeByClass('_post_wrap', realBox);
+    }
 
     if (fakeBox) {
       var postHash = ge('post_hash' + post),
-          canReplyAsGroup = intval(postHash && postHash.getAttribute('can_reply_as_group')) > 0;
+          canReplyAsGroup = intval(postHash && postHash.getAttribute('can_reply_as_group')) > 0,
+          ownerPhoto = fakeBox.getAttribute('data-owner-photo') || (geByClass1('post_img', postEl) || {}).src || '',
+          ownerHref = fakeBox.getAttribute('data-owner-href') || (geByClass1('post_image', postEl) || {}).href || '';
 
       realBox = se(rs(cur.wallTpl.reply_form, {
-        reply_as_group_class: canReplyAsGroup ? 'reply_as_group_active' : '',
-        post_id: post
+        add_buttons: canReplyAsGroup ? rs(cur.wallTpl.reply_form_official, {
+          post_id: post,
+          owner_photo: ownerPhoto
+        }) : '',
+        user_image: canReplyAsGroup ? rs(cur.wallTpl.reply_form_group_image, {
+          owner_href: ownerHref,
+          owner_photo: ownerPhoto
+        }) : '',
+        post_id: post,
+        owner_photo: ownerPhoto
       }));
       fakeBox.parentNode.replaceChild(realBox, fakeBox);
       rf = ge('reply_field' + post);
-      Wall.initReplyEditable(rf, realBox, post, fixed);
-      //!browser.msie6 && placeholderSetup(rf, {pad: {margin: 0, padding: 0}});
-    } else {
-      Wall.initReplyEditable(rf, realBox, post, fixed);
+    }
+    Wall.initReplyEditable(rf, realBox, post, fixed);
+    if (cur.wallMyOpened) {
+      cur.wallMyOpened[post] = false;
     }
     if (cur.editing === post) {
       Emoji.editableFocus(rf, false, true);
-      return cancelEvent(ev);
+      return false;
     }
     Wall.hideEditPostReply();
     addClass(postEl, 'reply_box_open');
@@ -2361,20 +3048,39 @@ var Wall = {
       setTimeout(Emoji.editableFocus.pbind(rf, false, true), 0);
     }
 
-    if (!data(rf, 'composer') && (fakeBox || cur.fixedWide || cur.wallLayer)) {
+    if (!data(rf, 'composer')) {
       var mediaTypes = [];
-      each ((cur.wallLayer == post ? wkcur : cur).options.rmedia_types || cur.options.media_types || [], function () {
+      var rawTypes;
+      var maxShown, hideAfterCount;
+      if (window.mvcur && mvcur.mvShown) {
+        rawTypes = mvcur.mvMediaTypes;
+      } else if (cur.wallLayer == post) {
+        rawTypes = wkcur.options.rmedia_types;
+      } else if (window.pvcur && cur.pvShown) {
+        rawTypes = pvcur.rmedia_types;
+        maxShown = 0;
+        hideAfterCount = 0;
+      } else {
+        rawTypes = cur.options.rmedia_types;
+      }
+      each (rawTypes || cur.options.media_types || [], function () {
         if (inArray(this[0], ['photo', 'video', 'audio', 'doc', 'link', 'page'])) {
           mediaTypes.push(this);
         }
       });
       var media;
-      if (mediaTypes.length > 0 && post.match(/^-?\d+_(photo|video|topic)?\d+$/)) {
+      if (mediaTypes.length > 0 && post.match(/^-?\d+_(photo|video|topic|market)?\d+(mv)?$/)) {
         media = {
-          lnk: ge('reply_media_lnk' + post).firstChild,
+          lnk: ge('reply_add_media_' + post),
           preview: ge('reply_media_preview' + post),
           types: mediaTypes,
-          options: {limit: 2, disabledTypes: ['album'], toggleLnk: true}
+          options: {
+            limit: 2,
+            disabledTypes: ['album'],
+            toggleLnk: true,
+            maxShown: maxShown !== undefined ? maxShown : undefined,
+            hideAfterCount: hideAfterCount !== undefined ? hideAfterCount : undefined
+          }
         };
         if (post.match(/^-?\d+_topic/)) {
           extend(media.options, {
@@ -2387,7 +3093,7 @@ var Wall = {
           });
         }
       } else {
-        re('reply_media_lnk' + post);
+        re('reply_add_media_' + post);
       }
       Wall.initComposer(rf, {
         lang: {
@@ -2399,12 +3105,13 @@ var Wall = {
         media: media
       });
     }
+    triggerEvent(window, 'scroll');
     if (rf.emojiId !== undefined && cur.afterEmojiInit && cur.afterEmojiInit[post]) {
       cur.afterEmojiInit[post]();
       delete cur.afterEmojiInit[post];
     }
 
-    if (cur.wallTpl && cur.wallTpl.reply_multiline_intro && !cur.fixedWide) {
+    if (cur.wallTpl && cur.wallTpl.reply_multiline_intro) {
       ajax.post('al_wall.php', {act: 'a_ctrl_submit_intro', hash: cur.wallTpl.poll_hash}, {
         onDone: function (perform) {
           if (perform && cur.editing === post) {
@@ -2416,80 +3123,166 @@ var Wall = {
         }
       })
     }
-    return cancelEvent(ev);
+
+    if (window.mvcur && mvcur.post == post) {
+      Videoview.onShowEditReply();
+    }
+
+    if (isFunction(cur.onReplyFormSizeUpdate)) {
+      cur.onReplyFormSizeUpdate(rf);
+    }
+
+    if (isFunction(cur.onReplyFormFocus)) {
+      cur.onReplyFormFocus(rf);
+    }
+
+    return false;
   },
-  hideEditReply: function(post) {
+  hideEditReply: function(post, force) {
     cur.editing = false;
 
     var rf = ge('reply_field' + post),
         postEl = cur.wallLayer ? ge('wl_reply_form_inner') : ge('post' + post),
+        realBox = ge('reply_box' + post),
         replyName = cur.reply_to && Wall.getReplyName(cur.reply_to[0]),
         v = trim(window.Emoji ? Emoji.editableVal(rf) : ''),
         hasMedia = Wall.hasComposerMedia(rf),
         replyLink;
+    if (!postEl && realBox) {
+      postEl = gpeByClass('_post_wrap', realBox);
+    }
 
-    if (!rf || hasMedia) return;
+    if (!rf || hasMedia && !force) return;
     if (replyName && isArray(replyName)) {
       if (!v || !replyName[1].indexOf(v)) {
         val(rf, '');
         v = '';
       }
     }
+    if (force && (v || hasMedia)) {
+      var composer = rf && data(rf, 'composer');
+      if (composer) {
+        Composer.reset(composer);
+      } else {
+        val(rf, '');
+      }
+      v = '';
+      hide(geByClass1('reply_warn', postEl));
+    }
     if (browser.opera_mobile || browser.safari_mobile || v) return;
+
     removeClass(postEl, 'reply_box_open');
     if (replyLink = ge('reply_link' + post)) {
       hide('replies_wrap' + post);
     }
     rf.blur();
-    if (cur.fixedWide) {
-      hide('submit_reply' + post);
-    }
-    if (!rf.active && !cur.fixedWide) {
-      setStyle(rf, {height: 14});
-    }
-    rf.phonblur && rf.phonblur();
+    triggerEvent(window, 'scroll');
     val('reply_to' + post, '');
     hide('reply_to_title' + post);
     cur.reply_to = false;
 
+    cur.onReplyFormSizeUpdate && cur.onReplyFormSizeUpdate();
+
     var point = cur.replySubmitSettings;
     point && point.tt && point.tt.el && point.tt.destroy();
+
+    if (window.mvcur && mvcur.post == post) {
+      Videoview.onHideEditReply();
+    }
+  },
+  replyNamesRE: function() {
+    var names = ((cur.wallLayer ? wkcur : cur).options || {}).reply_names;
+    if (!names) return false;
+    var greetings = [];
+    each(names, function() {
+      if (this[1]) {
+        greetings.push(escapeRE(this[1]));
+      }
+    });
+    return new RegExp('^(' + greetings.join('|') + ')');
   },
   replyTo: function(post, toMsgId, toId, event) {
     var cur = window.cur.wallLayer == post ? wkcur : window.cur;
-    Wall.showEditReply(post);
+    Wall.showEditReply(post, event);
     val('reply_to' + post, toMsgId);
     var replyNameOld = cur.reply_to && Wall.getReplyName(cur.reply_to[0]);
     cur.reply_to = [toId, toMsgId];
     var replyName = Wall.getReplyName(toId);
+
+    var replyAs = ge('reply_as_group' + post);
+    var replyParts = post.match(/^(-?\d+)_([a-z]+)?(\d+)([a-z]+)?$/);
+    var replyOid = replyParts[1];
+    var replyType = replyParts[2] || '';
+    var replyAt = replyParts[4] || '';
+    var reply = ge('post' + replyOid + replyType + '_' + toMsgId);
+    var replyTo = reply && geByClass1('reply_to', reply, 'a');
+    var re = Wall.replyNamesRE();
+
+    var replyNameFirst = isArray(replyName) ? replyName[0] : replyName;
+    replyNameFirst = '<a class="reply_to_mem" onclick="return wall.showReply(this, \'' + post + '\', \'' + replyOid + replyType + '_' + toMsgId + replyAt + '\', event);">' + replyNameFirst + '</a>';
+    var value = '<span class="reply_to_cancel" onclick="return Wall.cancelReplyTo(\'' + post + '\', event);"></span><div class="reply_to_label">' + langStr(getLang('global_reply_to'), 'user', replyNameFirst) + '</div>';
+    val('reply_to_title' + post, value);
+
     if (isArray(replyName) && window.Emoji) {
-      val('reply_to_title' + post, replyName[0]);
       var rf = ge('reply_field' + post);
-      var v = trim(Emoji.val(rf));
+      var v = clean(trim(Emoji.val(rf)));
       v = v.replace(/&nbsp;/g, ' ');
-      if (!v || replyNameOld && isArray(replyNameOld) && !winToUtf(replyNameOld[1]).indexOf(v)) {
-        Emoji.val(rf, !checkEvent(event) ? replyName[1] : '');
-        Emoji.focus(rf, true);
+      if (!v || replyNameOld && isArray(replyNameOld) && !winToUtf(replyNameOld[1]).indexOf(winToUtf(v))) {
+        Emoji.val(rf, replyName[1]);
+      } else if (re) {
+        v = v.replace(re, replyName[1]);
+        Emoji.val(rf, v);
       }
-    } else {
-      val('reply_to_title' + post, replyName);
+      Emoji.focus(rf, true);
     }
     show('reply_to_title' + post);
 
-    var replyAs = ge('reply_as_group' + post),
-        replyParts = post.match(/^(-?\d+)_([a-z]+)?(\d+)$/),
-        replyOid = replyParts[1],
-        replyType = replyParts[2] || '',
-        reply = ge('post' + replyOid + replyType + '_' + toMsgId),
-        replyTo = reply && geByClass1('reply_to', reply, 'a');
+    if (replyAs) {
+      var onBehalfGroup = isVisible(replyAs.parentNode) && replyOid < 0 && replyTo && replyTo.getAttribute('rid') === replyOid;
+      toggleClass(domClosest('_submit_post_box', replyAs), 'as_group', !!onBehalfGroup);
+      var ttChooser = data(replyAs, 'tt');
+      ttChooser && radiobtn(ttChooser.rdBtns[intval(onBehalfGroup)], intval(onBehalfGroup), ttChooser.rdBtnsGroup);
+    }
 
-    toggleClass(replyAs, 'on', (replyAs && isVisible(replyAs.parentNode) && replyOid < 0 && replyTo && replyTo.getAttribute('rid') === replyOid) ? true : false);
-    (event || {}).cancelBubble = true;
+    cur.onReplyFormSizeUpdate && cur.onReplyFormSizeUpdate();
+
+    stopEvent(event);
+    return false;
+  },
+  cancelReplyTo: function(post, event) {
+    var cur = window.cur.wallLayer == post ? wkcur : window.cur,
+        rf = ge('reply_field' + post),
+        replyName = cur.reply_to && Wall.getReplyName(cur.reply_to[0]),
+        v = trim(window.Emoji ? Emoji.editableVal(rf) : ''),
+        re = Wall.replyNamesRE();
+    if (isArray(replyName) && window.Emoji) {
+      if (!v || !replyName[1].indexOf(v)) {
+        v = '';
+        Emoji.val(rf, v);
+      } else if (re) {
+        v = v.replace(re, '');
+        Emoji.val(rf, v);
+      }
+      Emoji.focus(rf, true);
+    }
+    val('reply_to' + post, '');
+    hide('reply_to_title' + post);
+    if (window.mvcur && mvcur.post == post) {
+      mvcur.mvReplyTo = false;
+    } else {
+      cur.reply_to = false;
+    }
+
+    if (cur.onReplyFormSizeUpdate && isFunction(cur.onReplyFormSizeUpdate)) {
+      cur.onReplyFormSizeUpdate(rf);
+    }
+
+    stopEvent(event);
     return false;
   },
   replySubmitTooltip: function (post, over, place) {
-    var cur = window.cur.wallLayer == post ? wkcur : window.cur;
-    var box = ge('reply_box' + post),
+    var cur = post && window.cur.wallLayer == post ? wkcur : window.cur,
+        box = post && ge('reply_box' + post),
         hintPlace = box && geByClass1('button_blue', box, 'div'),
         point = cur.replySubmitSettings;
 
@@ -2503,12 +3296,16 @@ var Wall = {
 
 
     if (!point) {
-      point = cur.replySubmitSettings = ce('div', {className: 'reply_multiline_tt_point'});
+      point = cur.replySubmitSettings = ce('div', {className: 'reply_submit_hint_tt_point'});
     }
     if (!over) {
       if (point && point.tt && point.tt.hide) {
         point.tt.hide();
       }
+      return;
+    }
+
+    if (!place) {
       return;
     }
 
@@ -2519,21 +3316,24 @@ var Wall = {
 
     point.tt && point.tt.el && point.tt.destroy();
     place.insertBefore(point, place.firstChild);
-    var ctrlSubmit = cur.wallTpl.reply_multiline ? 1 : 0,
-        hint = rs(cur.wallTpl.reply_multiline_hint, {
+    var ctrlSubmit = Wall.customCur().wallTpl.reply_multiline ? 1 : 0,
+        hint = rs(Wall.customCur().wallTpl.reply_multiline_hint, {
       enabled: ctrlSubmit ? 'on' : '',
       disabled: !ctrlSubmit ? 'on' : ''
     });
 
     showTooltip(point, {
       text: hint,
-      className: 'reply_multiline_tt rich',
-      slideX: -15,
-      shift: [244, -31, -123],
+      typeClass: 'tt_default_right',
+      slide: 15,
+      shift: [0, 8],
+      asrtl: 1,
       hasover: 1,
-      toup: 1,
+      toup: false,
       showdt: 700,
       hidedt: 700,
+      dir: 'auto',
+      noZIndex: true,
       onCreate: function () {
         radioBtns.reply_submit = {
           els: Array.prototype.slice.apply(geByClass('radiobtn', ge('reply_submit_hint_opts'))),
@@ -2544,11 +3344,14 @@ var Wall = {
   },
   onReplySubmitChanged: function (value, from) {
     cur.wallTpl.reply_multiline = value;
+    if (Wall.customCur().wallTpl) {
+      Wall.customCur().wallTpl.reply_multiline = value;
+    }
     if (from) {
       var point = cur.replySubmitSettings;
       point && point.tt && point.tt.el && point.tt.destroy();
     } else {
-      ajax.post('al_wall.php', {act: 'a_save_ctrl_submit', value: value, hash: cur.wallTpl.poll_hash})
+      ajax.post('al_wall.php', {act: 'a_save_ctrl_submit', value: value, hash: Wall.customCur().wallTpl.poll_hash});
       window.Notifier && Notifier.lcSend('wall_reply_multiline', {value: value});
     }
   },
@@ -2559,9 +3362,8 @@ var Wall = {
       var composer = data(rf, 'composer'),
           isListVisible = composer && composer.wdd && composer.wdd.listWrap && isVisible(composer.wdd.listWrap);
 
-      if (cur.wallTpl.reply_multiline && (e.ctrlKey || browser.mac && e.metaKey) ||
-          !cur.wallTpl.reply_multiline && !e.shiftKey && !(e.ctrlKey || browser.mac && e.metaKey) && !isListVisible ||
-          cur.fixedWide) {
+      if (Wall.customCur().wallTpl.reply_multiline && (e.ctrlKey || browser.mac && e.metaKey) ||
+          !Wall.customCur().wallTpl.reply_multiline && !e.shiftKey && !(e.ctrlKey || browser.mac && e.metaKey) && !isListVisible) {
         Wall.sendReply(post);
         return cancelEvent(e);
       }
@@ -2580,15 +3382,27 @@ var Wall = {
       return cancelEvent(e);
     }
   },
-  sendReply: function(post, ev, stickerNum) {
-    var cur = window.cur.wallLayer == post ? wkcur : window.cur;
-    var rf = ge('reply_field' + post),
+  sendReply: function(post, ev, options) {
+    options = extend({}, options);
+
+    if (window.mvcur && mvcur.post == post) {
+      return Videoview.sendComment(post, ev, options.stickerId);
+    }
+
+    var wallLayer = (window.cur.wallLayer == post),
+        cur = wallLayer ? wkcur : window.cur,
+        rf = ge('reply_field' + post),
         composer = rf && data(rf, 'composer'),
         replyName = cur.reply_to && Wall.getReplyName(cur.reply_to[0]),
         state;
 
-    if (stickerNum) {
-      var params = {message: '', attach1_type: "sticker", attach1: stickerNum};
+    var _send = rf && data(rf, 'send');
+    if (_send && isFunction(_send)) {
+      return _send(post, ev, options);
+    }
+
+    if (options.stickerId) {
+      var params = {message: '', attach1_type: "sticker", attach1: options.stickerId, sticker_referrer: options.sticker_referrer};
     } else {
       var params = composer ? Composer.getSendParams(composer, Wall.sendReply.pbind(post)) : {message: trim(Emoji.editableVal(rf))};
       if (params.delayed) {
@@ -2613,11 +3427,7 @@ var Wall = {
       }
     }
 
-    if (browser.mobile) {
-      Wall.hideEditReply(post);
-    } else {
-      Emoji.editableFocus(rf, false, true);
-    }
+    cur.wallMyOpened = cur.wallMyOpened || {};
 
     cur.wallMyReplied[post] = 1;
     cur.wallMyOpened[post] = 1;
@@ -2632,19 +3442,28 @@ var Wall = {
       reply_to_msg: val('reply_to' + post),
       reply_to_user: cur.reply_to && cur.reply_to[0] || 0,
       start_id: val('start_reply' + post),
-      from: window.cur.wallLayer == post && 'wkview' || '',
+      from: wallLayer && 'wkview' || '',
       hash: post_hash
     });
-
-    if (cur.fixedWide || cur.reverse) {
+    if (cur.reverse) {
       params.rev = 1;
     }
     if (fromGroupEl && isVisible(fromGroupEl.parentNode)) {
-      params.from_group = isChecked(fromGroupEl); // else autodetect
+      params.from_group = hasClass(domClosest('_submit_post_box', fromGroupEl), 'as_group') ? 1 : ''; // else autodetect
+    }
+
+    if (browser.mobile) {
+      Wall.hideEditReply(post);
+    } else {
+      Emoji.editableFocus(rf, false, true);
+      Wall.cancelReplyTo(post, ev);
     }
 
     ajax.post('al_wall.php', Wall.fixPostParams(params), {
       onDone: function(reply, replies, names, data) {
+        if (cur.wallType == 'full') {
+          return FullWall.onReplySent.apply(window, arguments);
+        }
         cur.wallMyReplied[post] = 0;
         re('reply_link' + post);
         hide('reply_warn' + post);
@@ -2668,41 +3487,46 @@ var Wall = {
     var repliesEl = ge('replies' + post),
         replyId = -(++cur.wallMyRepliesCnt);
 
-    var message = Emoji.emojiToHTML(clean(params.message), true)
+    var message = Emoji.emojiToHTML(clean(params.message), true),
+        toName = params.reply_to_user < 0 ? getLang('wall_replied_to_group') : cur.options.reply_names[params.reply_to_user] && cur.options.reply_names[params.reply_to_user][0],
+        toLnk = toName ? rs(cur.wallTpl.reply_link_to, {to_user: toName}) : '';
     newEl = se(rs(cur.wallTpl.reply_fast, {
       reply_id: '0_' + replyId,
       message: message.replace(/\n/g, '<br/>'),
+      to_link: toLnk,
       date: Wall.getNowRelTime(cur)
     }));
 
     if (repliesEl && !isVisible(repliesEl) || ge('reply_link' + post)) {
       re('reply_link' + post);
       show('replies_wrap' + post);
-    } else {
+    } else if (!cur.onepost) {
       var openEl = repliesEl.nextSibling;
       if (openEl && openEl.className == 'replies_open') {
         Wall.openNewComments(post);
       }
-      var headerEl = geByClass1('wr_header', repliesEl, 'a'),
-          shown = geByClass('reply', repliesEl, 'div').length + 1,
-          total = shown;
-      if (headerEl) {
-        total = intval(headerEl.getAttribute('offs').split('/')[1]) + 1;
-      }
-      if ((total > 5 || shown < total) && !cur.fixedWide) {
-        if (!headerEl) {
-          repliesEl.insertBefore(headerEl = ce('a', {className: 'wr_header'}), repliesEl.firstChild);
+      if (!wallLayer) {
+        var headerEl = geByClass1('wr_header', repliesEl, 'a'),
+            shown = geByClass('reply', repliesEl, 'div').length + 1,
+            total = shown;
+        if (headerEl) {
+          total = intval(headerEl.getAttribute('offs').split('/')[1]) + 1;
         }
-        Wall.updateRepliesHeader(post, headerEl, shown, total);
+        if (total > 5 || shown < total) {
+          if (!headerEl) {
+            repliesEl.insertBefore(headerEl = ce('a', {className: 'wr_header'}), repliesEl.firstChild);
+          }
+          Wall.updateRepliesHeader(post, headerEl, shown, total);
+        }
       }
     }
-    if (cur.fixedWide || cur.reverse) {
+    if (cur.reverse) {
       repliesEl.insertBefore(newEl, repliesEl.firstChild);
     } else {
       repliesEl.appendChild(newEl);
     }
 
-    if (window.cur.wallLayer == post) {
+    if (wallLayer) {
       WkView.wallUpdateReplies();
       if (!cur.reverse) {
         wkLayerWrap.scrollTop = wkLayerWrap.scrollHeight;
@@ -2710,20 +3534,23 @@ var Wall = {
       }
     }
   },
-  postTooltip: function(el, post, opts) {
+  postTooltip: function(el, post, opts, tooltipOpts) {
     if (cur.viewAsBox) return;
-    var reply = (opts || {}).reply;
-
-    showTooltip(el, {
+    var reply = (opts || {}).reply,
+        extraClass = (opts || {}).className || '',
+        toRight = (reply && !(reply % 2)) && getXY(el)[0] > 420;
+    showTooltip(el, extend({
       url: 'al_wall.php',
       params: extend({act: 'post_tt', post: post}, opts || {}),
       slide: 15,
-      shift: [(reply && !(reply % 2)) ? 329 : 64, 0, 0],
+      shift: [toRight ? 417 : 27, 6, 6],
       ajaxdt: 100,
       showdt: 400,
       hidedt: 200,
-      className: 'rich wall_tt'
-    });
+      dir: 'auto',
+      className: 'rich wall_tt' + extraClass,
+      typeClass: (toRight ? 'tt_default_right' : 'tt_default')
+    }, tooltipOpts || {}));
   },
 
   adsMarkTooltip: function(el) {
@@ -2731,17 +3558,12 @@ var Wall = {
 
     showTooltip(el, {
       black: 1,
-      shift: [13, 0, 0],
+      shift: [15, 7, 0],
       text: el.getAttribute('data-tooltip')
     });
   },
 
   hideEditPostReply: function(e) {
-    if (cur.fixedWide) {
-      removeClass(ge('wall_fixed_comments'), 'wall_fixed_reply_to');
-      hide('submit_reply'+cur.fixedPostRaw)
-      return true;
-    }
     if (cur.editing === false || isVisible(boxLayerBG) || isVisible(layerBG)) return;
     var el = (e && e.target) ? e.target : {};
     var id = el.id;
@@ -2757,9 +3579,10 @@ var Wall = {
       }
     }
   },
-  deletePost: function(post, hash, root, force) {
+  deletePost: function(el, post, hash, root, force) {
     (cur.wallLayer ? wkcur : cur).wallMyDeleted[post] = 1;
-    var r = ge('post' + post);
+    var r = ge('post' + post),
+        actionsWrap = geByClass1('post_actions', r);
     ajax.post('al_wall.php', {
       act: 'delete',
       post: post,
@@ -2770,31 +3593,57 @@ var Wall = {
     }, {
       onDone: function(msg, res, need_confirm) {
         if (need_confirm) {
-          var box = showFastBox(msg, need_confirm, getLang('global_delete'), function() { box.hide(); wall.deletePost(post, hash, root, 1); }, getLang('box_cancel'));
+          var box = showFastBox(msg, need_confirm, getLang('global_delete'), function() { box.hide(); wall.deletePost(el, post, hash, root, 1); }, getLang('box_cancel'));
           return;
         }
-        var t = geByClass1('post_table', r) || geByClass1('reply_table', r) || geByClass1('feedback_row_t', r);
+        var t = geByClass1('_post_content', r) || geByClass1('feedback_row_t', r);
         revertLastInlineVideo(t);
         var pd = ge('post_del' + post);
         if (pd) {
-          pd.innerHTML = msg;
+          pd.innerHTML = '<span class="dld_inner">' + msg + '</span>';
           show(pd);
         } else {
-          r.appendChild(ce('div', {id: 'post_del' + post, className: 'dld', innerHTML: msg}));
+          r.appendChild(ce('div', {id: 'post_del' + post, className: 'dld', innerHTML: '<span class="dld_inner">' + msg + '</span>'}));
         }
         hide(t);
         if (domNS(t).className == 'post_publish') hide(domNS(t));
+        if (cur.wallType == 'full_own' || cur.wallType == 'full_all') {
+          Pagination.recache(-1);
+          FullWall.updateSummary(cur.pgCount);
+        } else if (cur.wallType == 'full') {
+          if (hasClass(r, 'reply')) {
+            cur.pgOffset--;
+            cur.pgCount--;
+            FullWall.repliesSummary(cur.pgCount);
+          }
+        }
+
         if (hasClass(r, 'suggest')) {
           Wall.suggestUpdate(-1);
         } else if (hasClass(r, 'postponed')) {
-          Wall.postponedUpdate(-1);
-        } else if (cur.wallType == 'full_own' || cur.wallType == 'full_all') {
-          Pagination.recache(-1);
-          FullWall.updateSummary(cur.pgCount);
+          wall.postponeUpdateCount();
         } else if (cur.wallType == 'own' || cur.wallType == 'all') {
           if (hasClass(r, 'own')) ++cur.deletedCnts.own;
           if (hasClass(r, 'all')) ++cur.deletedCnts.all;
           Wall.update();
+        }
+      },
+      showProgress: function() {
+        if (hasClass(el, 'ui_actions_menu_item')) {
+          lockActionsMenuItem(el);
+        } else if (hasClass(el, 'flat_button')) {
+          lockButton(el);
+        } else {
+          addClass(actionsWrap, 'post_actions_progress');
+        }
+      },
+      hideProgress: function() {
+        if (hasClass(el, 'ui_actions_menu_item')) {
+          unlockActionsMenuItem(el);
+        } else if (hasClass(el, 'flat_button')) {
+          unlockButton(el);
+        } else {
+          removeClass(actionsWrap, 'post_actions_progress');
         }
       }
     });
@@ -2803,38 +3652,48 @@ var Wall = {
       btn.tt.destroy();
     }
   },
-  markAsSpam: function(post, hash, el) {
+  markAsSpam: function(el, post, hash, inline) {
     ajax.post('al_wall.php', {
       act: 'spam',
       post: post,
       hash: hash,
-      from: el ? 'inline' : ''
+      from: inline ? 'inline' : ''
     }, {
       onDone: function(msg, js) {
-        if (el) {
+        if (inline) {
           domPN(el).replaceChild(ce('div', {innerHTML: msg}), el);
         } else {
-          var r = ge('post' + post), t = geByClass1('post_table', r) || geByClass1('reply_table', r) || geByClass1('feedback_row_t', r);
+          var r = ge('post' + post), t = geByClass1('_post_content', r) || geByClass1('feedback_row_t', r);
           revertLastInlineVideo(r);
           var pd = ge('post_del' + post);
           if (pd) {
-            pd.innerHTML = msg;
+            pd.innerHTML = '<span class="dld_inner">' + msg + '</span>';
             show(pd);
           } else {
-            r.appendChild(ce('div', {id: 'post_del' + post, className: 'dld', innerHTML: msg}));
+            r.appendChild(ce('div', {id: 'post_del' + post, className: 'dld', innerHTML: '<span class="dld_inner">' + msg + '</span>'}));
           }
           hide(t);
         }
         if (js) {
           eval(js);
         }
-      }, showProgress: el ? function() {
-        hide(el);
-        show(domNS(el) || domPN(el).appendChild(ce('span', {className: 'progress_inline'})));
-      } : false, hideProgress: el ? function() {
-        show(el);
-        re(domNS(el));
-      } : false,
+      },
+      showProgress: function() {
+        if (el && hasClass(el, 'ui_actions_menu_item')) {
+          lockActionsMenuItem(el);
+        } else if (inline) {
+          hide(el);
+          show(domNS(el) || domPN(el).appendChild(ce('span', {className: 'progress_inline'})));
+        }
+      },
+      hideProgress: function() {
+        if (el && hasClass(el, 'ui_actions_menu_item')) {
+          unlockActionsMenuItem(el);
+        } else if (inline) {
+          show(el);
+          re(domNS(el));
+        }
+      } ,
       stat: ['privacy.js', 'privacy.css']
     });
     var btn = ge('delete_post' + post);
@@ -2850,19 +3709,9 @@ var Wall = {
       full: intval(fullPost)
     }, {
       onDone: function(msg) {
-        if (el) {
-          domPN(el).replaceChild(ce('div', {innerHTML: msg}).childNodes[0], el);
-        }
-        if (hasClass(ge('post'+post), 'wall_post_over')) {
-          wall.showDeletePost(post);
-        }
-      },
-      progress: ge('wpe_prg' + post)
+        ge('ui_actions_menu_item_mark_as_ads'+post).innerHTML = msg;
+      }
     });
-    var btn = ge('post_mark_as_ads' + post);
-    if (btn && btn.tt && btn.tt.el) {
-      btn.tt.destroy();
-    }
   },
   restorePost: function(post, hash, root) {
     (cur.wallLayer ? wkcur : cur).wallMyDeleted[post] = 0;
@@ -2875,17 +3724,26 @@ var Wall = {
       onDone: function(msg) {
         var pd = ge('post_del' + post);
         if (!pd) return;
-        var r = ge('post' + post), t = geByClass1('post_table', r) || geByClass1('reply_table', r) || geByClass1('feedback_row_t', r);
+        var r = ge('post' + post), t = geByClass1('_post_content', r) || geByClass1('feedback_row_t', r);
         show(t);
         if (domNS(t).className == 'post_publish') show(domNS(t));
-        hide(pd);
+        re(pd);
+
+        if (cur.wallType == 'full_own' || cur.wallType == 'full_all') {
+          Pagination.recache(1);
+          FullWall.updateSummary(cur.pgCount);
+        } else if (cur.wallType == 'full') {
+          if (hasClass(r, 'reply')) {
+            cur.pgOffset++;
+            cur.pgCount++;
+            FullWall.repliesSummary(cur.pgCount);
+          }
+        }
+
         if (hasClass(r, 'suggest')) {
           Wall.suggestUpdate(1);
         } else if (hasClass(r, 'postponed')) {
-          Wall.postponedUpdate(1);
-        } else if (cur.wallType == 'full_own' || cur.wallType == 'full_all') {
-          Pagination.recache(1);
-          FullWall.updateSummary(cur.pgCount);
+          wall.postponeUpdateCount();
         } else if (cur.wallType == 'own' || cur.wallType == 'all') {
           if (hasClass(r, 'own')) --cur.deletedCnts.own;
           if (hasClass(r, 'all')) --cur.deletedCnts.all;
@@ -2893,6 +3751,7 @@ var Wall = {
         }
       }
     });
+    return false;
   },
   blockPostApp: function(aid, from, hash, obj) {
     ajax.post('al_wall.php', {act: 'block_post_app', aid: aid, from: from, hash: hash}, {
@@ -2904,13 +3763,13 @@ var Wall = {
     });
   },
 
-  checkPostClick: function (el, event) {
+  checkPostClick: function (el, event, allowDblclick) {
     event = event || window.event;
     if (!el || !event) return true;
     var target = event.target || event.srcElement,
         i = 8,
         foundGood = false,
-        classRE = /wall_post_text|published_comment|reply_link_wrap|post_media|event_share|public_share|group_share|feed_friends|feed_gifts|feed_videos|feed_explain_list|explain|feed_photos|feedback_row/;
+        classRE = /wall_post_text|published_comment|post_media|page_event_share|page_public_share|page_group_share|feed_friends|feed_videos|feed_explain_list|explain|feed_photos|feedback_row/;
     do {
       if (!target ||
           target == el ||
@@ -2918,7 +3777,7 @@ var Wall = {
           target.onmousedown ||
           inArray(target.tagName, ['A', 'IMG', 'TEXTAREA', 'EMBED', 'OBJECT']) ||
           inArray(target.className, ['play_new', 'page_video_inline_wrap']) ||
-          (foundGood = target.className.match(classRE))
+          (foundGood = target.className.match && target.className.match(classRE))
       ) {
         break;
       }
@@ -2926,13 +3785,22 @@ var Wall = {
     if (!foundGood) {
       return false;
     }
-    var sel = trim((
-      window.getSelection && window.getSelection() ||
-      document.getSelection && document.getSelection() ||
-      document.selection && document.selection.createRange().text || ''
-    ).toString());
-    if (sel) {
-      return false;
+
+    if (!cur.postClicked) cur.postClicked = {};
+    if (!allowDblclick || !cur.postClicked[el]) {
+      var sel = trim((
+        window.getSelection && window.getSelection() ||
+        document.getSelection && document.getSelection() ||
+        document.selection && document.selection.createRange().text || ''
+      ).toString());
+      if (sel) {
+        return false;
+      }
+
+      if (allowDblclick) {
+        cur.postClicked[el] = true;
+        setTimeout(function() {cur.postClicked[el] = false;}, 2000);
+      }
     }
     return target || true;
   },
@@ -2957,8 +3825,8 @@ var Wall = {
 
     if (!matches) return;
 
-    if (hasClass(el, 'suggest') || geByClass1('post_publish', el)) return;
-    var url = 'wall' + matches[1] + '_' + matches[3];
+    if (hasClass(el, 'suggest') || cur.onepost) return;
+    var url = '/wall' + matches[1] + '_' + matches[3];
     if (browser.mobile && event) {
       nav.go(url);
     } else if (checkEvent(event)) {
@@ -3020,7 +3888,7 @@ var Wall = {
     return cancelEvent(ev);
   },
   postFull: function (post, event, opts) {
-    if (post.match(/^wall-?\d+_\d+$/) && !(opts || {}).nolist) {
+    if (post.match(/^wall-?\d+_\d+$/) && !(opts || {}).nolist && !(cur.pgParams && (cur.pgParams.owners_only || cur.pgParams.q))) {
       switch (cur.wallType) {
         case 'all':
         case 'full_all':
@@ -3048,10 +3916,10 @@ var Wall = {
           target == el ||
           target.onclick ||
           target.onmousedown ||
-          target.tagName == 'A' && target.className != '_reply_lnk' ||
-          inArray(target.tagName, ['IMG', 'TEXTAREA', 'EMBED', 'OBJECT']) ||
+          target.tagName == 'A' && !hasClass(target, '_reply_lnk') ||
+          inArray(target.tagName, ['IMG', 'TEXTAREA', 'EMBED', 'OBJECT']) && !hasClass(target, 'emoji') ||
           target.id == 'wpe_cont' ||
-          (foundGood = hasClass(target, 'reply_table'))
+          (foundGood = hasClass(target, '_reply_content'))
       ) {
         break;
       }
@@ -3073,7 +3941,6 @@ var Wall = {
     var oid_pid = post.split('_');
     var oid = intval(oid_pid[0]), pid_type = oid_pid[1].replace(/-?\d+$/, ''),
         el = ge('post' + oid + pid_type + '_' + reply);
-
     if (!cur.stickerClicked && Wall.checkReplyClick(el, event)) return;
     (event || {}).cancelBubble = true;
 
@@ -3118,328 +3985,50 @@ var Wall = {
     } else if (!en) {
       Emoji.clickSticker(packId, false);
     } else {
-      var searchClass = cur.onepost ? 'fw_reply_info' : 'reply',
-          el = obj.parentNode,
+      var el = obj.parentNode,
           i = 8;
       do {
-        if (!el || hasClass(el, searchClass)) {
+        if (!el || hasClass(el, 'reply')) {
           break;
         }
       } while (i-- && (el = el.parentNode));
-      if (cur.onepost && el && (el = geByClass1('reply_to_link', el)) && el.onmouseup) {
-        cur.stickerClicked = packId;
-        el.onmouseup();
-      } else if (!cur.onepost && el && el.onclick) {
+      if (el && el.onclick) {
         cur.stickerClicked = packId;
         el.onclick();
       }
     }
   },
 
-  postOver: function(post) {
-    var el = ge('post' + post);
-    if (!el || hasClass(el, 'one')) return;
-    if (post.match(/^(-?\d+)_(wall)?(\d+)$/) || isVisible(geByClass1('wall_post_more', el, 'a'))) {
-      addClass(el, 'wall_post_over');
-    }
-    if (!vk.id) return;
-
-    Wall.showDeletePost(post);
+  domPost: function(post_id) {
+    return ge('post' + post_id);
   },
-  postOut: function(post) {
-    var el = ge('post' + post);
-    if (!el || hasClass(el, 'one')) return;
-
-    removeClass(el, 'wall_post_over');
-    if (!vk.id) return;
-
-    if (!el || hasClass(el, 'one')) return;
-    Wall.hideDeletePost(post);
-  },
-
-
-  replyOver: function(post) {
-    if (!vk.id) return;
-    var postParts = post.split('_'),
-        reply = postParts.join(postParts[0].match(/(-?\d+)(photo|video|topic|market)/) ? '_comment' : '_wall_reply'),
-        lnk = ge('like_link' + reply),
-        icon = ge('like_icon' + reply);
-
-    if (!lnk) {
-      Wall._animDelX(0.3, undefined, post, 'reply_delete');
-      Wall._animDelX(0.3, undefined, post, 'reply_edit');
-      return;
-    }
-
-    if (lnk.timeout) {
-      clearTimeout(lnk.timeout);
-      removeAttr(lnk, 'timeout');
-    } else {
-      fadeTo(lnk, 200, 1);
-      Wall._animDelX(0.3, undefined, post, 'reply_delete');
-      Wall._animDelX(0.3, undefined, post, 'reply_edit');
-      if (hasClass(icon, 'no_likes')) {
-        setStyle(icon, 'visibility', 'visible');
-        animate(icon, {opacity: 0.4}, 200);
-      }
-    }
-  },
-  replyOut: function(post) {
-    if (!vk.id) return;
-    var postParts = post.split('_'),
-        reply = postParts.join(postParts[0].match(/(-?\d+)(photo|video|topic|market)/) ?  '_comment' : '_wall_reply'),
-        lnk = ge('like_link' + reply),
-        icon = ge('like_icon' + reply);
-
-    if (!lnk) {
-      Wall._animDelX(0, undefined, post, 'reply_delete');
-      Wall._animDelX(0, undefined, post, 'reply_edit');
-      return;
-    }
-
-    lnk.timeout = setTimeout(function() {
-      removeAttr(lnk, 'timeout');
-      if (!hasClass(icon, 'no_like_hide')) fadeTo(lnk, 200, 0);
-      Wall._animDelX(0, undefined, post, 'reply_delete');
-      Wall._animDelX(0, undefined, post, 'reply_edit');
-      if (hasClass(icon, 'no_likes') && !hasClass(icon, 'no_like_hide')) {
-        animate(icon, {opacity: 0}, 200, function () {
-          hasClass(icon, 'no_likes') && (icon.style.visibility = 'hidden');
-        });
-      }
-    }, 1);
-  },
-  likeOver: function(post, opts) {
-    var icon = ge('like_icon' + post),
-        link = ge('like_link' + post),
-        count = ge('like_count' + post);
-    if (!icon) return;
-    opts = opts || {};
-    if (!hasClass(icon, 'my_like') && !hasClass(icon, 'fw_my_like')) {
-      setTimeout(animate.pbind(icon, {opacity: 1}, 200, false), 1);
-    } else {
-      icon.style.visibility = 'visible';
-      setStyle(icon, {opacity: 1});
-    }
-    if (cur.viewAsBox) return;
-    var matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/)
-        like_obj = (matches[3] || 'wall') + matches[1] + '_' + matches[4],
-        linkW = link.clientWidth || link.offsetWidth,
-        leftShift = opts.leftShift || (link.parentNode == icon.parentNode ? 0 : linkW),
-        pointerShift = false,
-        ttW = 230,
-        x = getXY(icon.parentNode)[0], rem = vk.id ? 0 : 10;
-
-    if (x - (link.parentNode == icon.parentNode ? 0 : linkW) - (opts.noLabels ? 50 : 0) + ttW + 5 > lastWindowWidth) {
-      leftShift = ttW - (icon.parentNode.clientWidth || icon.parentNode.offsetWidth) + 4;
-      pointerShift = ttW - (count.clientWidth || count.offsetWidth) - 14;
-      if (opts.noLabels) {
-        leftShift -= 5;
-        pointerShift -= 1;
-      }
-    } else {
-      leftShift = (link.parentNode == icon.parentNode ? 0 : linkW) + rem;
-      pointerShift = linkW + 2 + rem;
-      if (opts.noLabels) {
-        leftShift += 50;
-        pointerShift += 48;
-      }
-    }
-
-    showTooltip(icon.parentNode, {
-      url: 'like.php',
-      params: {act: 'a_get_stats', 'object': like_obj},
-      slide: 15,
-      shift: [leftShift, opts.topShift || 5, 9],
-      ajaxdt: 100,
-      showdt: 400,
-      hidedt: 200,
-      tip: {
-        over: function() {
-          Wall.postOver(post);
-          Wall.likeOver(post);
-        },
-        out: function() {
-          Wall.likeOut(post);
-          Wall.postOut(post);
-        }
-      },
-      className: 'rich like_tt ' + (opts.cl || ''),
-      onShowStart: function (tt) {
-        if (!tt.container || pointerShift === false) return;
-        var bp = geByClass1('bottom_pointer', tt.container, 'div');
-        var tp = geByClass1('top_pointer', tt.container, 'div');
-        setStyle(bp, {marginLeft: pointerShift});
-        setStyle(tp, {marginLeft: pointerShift});
-      }
-    });
-  },
-  likeOut: function(post, opts) {
-    var icon = ge('like_icon' + post);
-    if (!icon) return;
-    opts = opts || {};
-    if (!hasClass(icon, 'my_like') && !hasClass(icon, 'fw_my_like')) {
-      data(icon, 'likeoutTO', setTimeout(animate.pbind(icon, {opacity: opts.opacity || 0.4}, 200, false), 1));
-    }
-    if (opts.tthide) {
-      triggerEvent(icon.parentNode, 'mouseout');
-    }
-  },
-  postLikeOver: function(post, opts) {
-    var icon = ge('like_icon' + post),
-        link = ge('like_link' + post),
-        count = ge('like_count' + post),
-        hasShare = ge('share_icon' + post);
-
-    if (!icon || cur.viewAsBox) return;
-    opts = opts || {};
-    var matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|market|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/)
-        like_obj = (matches[3] || 'wall') + matches[1] + '_' + matches[4],
-        linkW = link.clientWidth || link.offsetWidth,
-        leftShift = opts.leftShift || (link.parentNode == icon.parentNode ? 0 : linkW),
-        pointerShift = false,
-        ttW = 230,
-        x = getXY(icon.parentNode)[0];
-
-    if (opts.leftShift !== undefined) {
-      leftShift = opts.leftShift;
-    } else {
-      if (x + ttW + 20 > lastWindowWidth) {
-        leftShift = ttW - (icon.parentNode.clientWidth || icon.parentNode.offsetWidth) + 7;
-        pointerShift = ttW - (count.clientWidth || count.offsetWidth) - 14;
-      } else {
-        leftShift = (link.parentNode == icon.parentNode ? 0 : linkW);
-        pointerShift = linkW + 8;
-      }
-    }
-
-    showTooltip(icon.parentNode, {
-      url: 'like.php',
-      params: {act: 'a_get_stats', 'object': like_obj, 'has_share': hasShare ? 1 : ''},
-      slide: 15,
-      shift: [leftShift, opts.topShift || 7, 7],
-      ajaxdt: 100,
-      showdt: 400,
-      hidedt: 200,
-      tip: {
-        over: function() {
-          Wall.postOver(post);
-          Wall.postLikeOver(post);
-        },
-        out: function() {
-          Wall.postOut(post);
-          Wall.postLikeOut(post);
-        }
-      },
-      className: 'rich like_tt ' + (opts.cl || ''),
-      onShowStart: function (tt) {
-        if (!tt.container || pointerShift === false) return;
-        var bp = geByClass1('bottom_pointer', tt.container, 'div');
-        var tp = geByClass1('top_pointer', tt.container, 'div');
-        setStyle(bp, {marginLeft: pointerShift});
-        setStyle(tp, {marginLeft: pointerShift});
-      }
-    });
-  },
-  postLikeOut: function () {
-  },
-  postShareOver: function(post, opts) {
-    var icon = ge('share_icon' + post),
-        link = ge('share_link' + post),
-        count = ge('share_count' + post);
-    if (!icon || cur.viewAsBox) return;
-    opts = opts || {};
-    var matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|market|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/)
-        like_obj = (matches[3] || 'wall') + matches[1] + '_' + matches[4],
-        linkW = link.clientWidth || link.offsetWidth,
-        leftShift = opts.leftShift || (link.parentNode == icon.parentNode ? 0 : linkW),
-        pointerShift = false,
-        ttW = 230,
-        x = getXY(icon.parentNode)[0];
-
-    if (opts.leftShift !== undefined) {
-      leftShift = opts.leftShift;
-    } else {
-      if (x + ttW + 20 > lastWindowWidth) {
-        leftShift = ttW - (icon.parentNode.clientWidth || icon.parentNode.offsetWidth) + 7;
-        pointerShift = ttW - (count.clientWidth || count.offsetWidth) - 14;
-      } else {
-        leftShift = (link.parentNode == icon.parentNode ? 0 : linkW);
-        pointerShift = linkW + 8;
-      }
-    }
-
-    if (link.timeout) {
-      clearTimeout(link.timeout);
-      link.timeout = false;
-    } else {
-      addClass(icon.parentNode, 'post_share_over');
-    }
-
-    showTooltip(icon.parentNode, {
-      url: 'like.php',
-      params: {act: 'a_get_stats', 'object': like_obj, published: 1},
-      slide: 15,
-      shift: [leftShift, opts.topShift || 7, 7],
-      ajaxdt: 100,
-      showdt: 400,
-      hidedt: 200,
-      tip: {
-        over: function() {
-          Wall.postOver(post);
-          Wall.postShareOver(post);
-        },
-        out: function() {
-          Wall.postOut(post);
-          Wall.postShareOut(post);
-        }
-      },
-      className: 'rich like_tt ' + (opts.cl || ''),
-      onShowStart: function (tt) {
-        if (!tt.container || pointerShift === false) return;
-        var bp = geByClass1('bottom_pointer', tt.container, 'div');
-        var tp = geByClass1('top_pointer', tt.container, 'div');
-        setStyle(bp, {marginLeft: pointerShift});
-        setStyle(tp, {marginLeft: pointerShift});
-      }
-    });
-  },
-  postShareOut: function (post, event) {
-    var icon = ge('share_icon' + post),
-        link = ge('share_link' + post);
-
-    if (!icon) return;
-
-    if (!link.timeout) {
-      link.timeout = setTimeout(function () {
-        removeClass(icon.parentNode, 'post_share_over');
-        link.timeout = false;
-      }, 10);
-    }
-  },
-  likeFullUpdate: function (like_obj, likeData) {
-    // debugLog(like_obj, likeData);
+  likeFullUpdate: function (el, like_obj, likeData) {
     var matches = like_obj.match(/^(wall|photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(-?\d+_)(\d+)/),
         post = matches ? (matches[2] + (matches[1] == 'wall' ? '' : matches[1]) + matches[3]) : like_obj;
 
-    Wall.likeUpdate(post, likeData.like_my, likeData.like_num, likeData.like_title);
-    Wall.likeShareUpdate(post, likeData.share_my, likeData.share_num, likeData.share_title);
+    Wall.likeUpdate(el, post, likeData.like_my, likeData.like_num, likeData.like_title);
+    Wall.likeShareUpdate(el, post, likeData.share_my, likeData.share_num, likeData.share_title);
   },
-  likeUpdate: function(post, my, count, title) {
-    // console.trace();
-    // debugLog(post, my, count, title);
+  likeUpdate: function(el, post_id, my, count, title, share) {
     count = intval(count);
 
-    var m = post.match(/(-?\d+)(_?)(photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/),
-        like_obj = (m[3] || 'wall') + m[1] + '_' + m[4];
+    var matches = post_id.match(/(-?\d+)(_?)(photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/),
+        like_type = matches[3] || 'wall',
+        post_raw = matches[1] + '_' + matches[4],
+        like_obj = like_type + post_raw;
 
-    var countInput = ge('like_real_count_' + like_obj) || {}, rows = ge('like_table_' + like_obj);
-    var titleNode = ge('like_title_' + like_obj), countNode = ge('like_count' + post);
+    var post = el && gpeByClass('_post_content', el) || wall.domPost(post_raw),
+        wrap = domByClass(post, share ? '_share_wrap' : '_like_wrap'),
+        icon = domByClass(wrap, '_icon'),
+        countNode = domByClass(wrap, '_count');
     if (!countNode) {
       return;
     }
-    var icon = ge('like_icon' + post);
-    var tt = countNode.parentNode.tt || {}, opts = clone(tt.opts || {}), newleft = (my ? 0 : -36);
+    var tt = wrap.tt || {}, opts = clone(tt.opts || {});
+
+    var countInput = domByClass(tt.container, '_value'),
+        content = domByClass(tt.container, '_content'),
+        titleNode = domByClass(tt.container, '_title');
 
     if (title && titleNode) {
       val(titleNode, title);
@@ -3447,86 +4036,38 @@ var Wall = {
     if (tt) {
       tt.likeInvalidated = true;
     }
-    countInput.value = count;
+    if (countInput) {
+      countInput.value = count;
+    }
     animateCount(countNode, count);
 
-    if (my) {
-      addClass(icon, hasClass(icon, 'fw_like_icon') ? 'fw_my_like' : 'my_like');
-    } else {
-      removeClass(icon, hasClass(icon, 'fw_like_icon') ? 'fw_my_like' : 'my_like');
-    }
+    toggleClass(wrap, share ? 'my_share' : 'my_like', my);
+    toggleClass(wrap, share ? 'no_shares' : 'no_likes', !count);
+    toggleClass(content, 'me_hidden', !my);
     if (count) {
-      var styleName = vk.rtl ? 'right' : 'left';
-      if (tt.el && !isVisible(tt.container) && !title) {
-        rows.style[styleName] = newleft + 'px';
-        tooltips.show(tt.el, extend(opts, {showdt: 0}));
-      } else if (rows) {
-        var params = {};
-        params[styleName] = newleft;
-        animate(rows, params, 200);
+      if (tt.el) {
+        if (title === false) {
+          tt.destroy && tt.destroy();
+        } else if (!isVisible(tt.container) && !title && title !== false) {
+          tooltips.show(tt.el, extend(opts, {showdt: 0}));
+        }
       }
-      removeClass(icon, 'no_likes');
     } else {
       if (tt.el) tt.hide();
-      addClass(icon, 'no_likes');
     }
   },
-  likeShareUpdate: function (post, my, count, title) {
-    // console.trace();
-    // debugLog(post, my, count, title);
-    count = intval(count);
-
-    var m = post.match(/(-?\d+)(_?)(photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/),
-        like_obj = (m[3] || 'wall') + m[1] + '_' + m[4];
-
-    var countInput = ge('like_real_countshares_' + like_obj) || {},
-        rows = ge('like_tableshares_' + like_obj),
-        titleNode = ge('like_titleshares_' + like_obj),
-        countNode = ge('share_count' + post),
-        icon = ge('share_icon' + post),
-        classEl = icon && icon.parentNode,
-        tt = (classEl || {}).tt || {},
-        opts = clone(tt.opts || {}),
-        shareCb = ge('like_share_' + like_obj),
-        newleft = (my ? 0 : -36);
-
-    if (!classEl) {
-      return;
-    }
-
-    if (title && titleNode) {
-      val(titleNode, title);
-    }
-    if (tt) {
-      tt.likeInvalidated = true;
-    }
-    countInput.value = count;
-    animateCount(countNode, count);
-    toggleClass(classEl, 'my_share', my);
-    checkbox(shareCb, my);
-
-    if (count) {
-      var styleName = vk.rtl ? 'right' : 'left';
-      if (tt.el && !isVisible(tt.container) && !title) {
-        rows.style[styleName] = newleft + 'px';
-        tooltips.show(tt.el, extend(opts, {showdt: 0}));
-      } else if (rows) {
-        var params = {};
-        params[styleName] = newleft;
-        animate(rows, params, 200);
-      }
-      removeClass(classEl, 'no_shares');
-    } else {
-      if (tt.el) tt.hide();
-      addClass(classEl, 'no_shares');
-    }
+  likeShareUpdate: function (el, post_id, my, count, title) {
+    return Wall.likeUpdate(el, post_id, my, count, title, true);
   },
-  like: function(post, hash) {
+  like: function(post_id, hash) {
     if (!vk.id || cur.viewAsBox) return;
 
-    var icon = ge('like_icon' + post),
-        my = hasClass(icon, hasClass(icon, 'fw_like_icon') ? 'fw_my_like' : 'my_like'),
-        matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|market|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/),
+    var post = wall.domPost(post_id),
+        wrap = domByClass(post, '_like_wrap'),
+        icon = domByClass(wrap, '_icon'),
+        countNode = domByClass(wrap, '_count'),
+        my = hasClass(icon, 'fw_like_icon') ? hasClass(icon, 'fw_my_like') : hasClass(wrap, 'my_like'),
+        matches = post_id.match(/(-?\d+)(_?)(photo|video|note|topic|market|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/),
         like_obj = (matches[3] || 'wall') + matches[1] + '_' + matches[4],
         ref = cur.module;
     if (cur.wallType) {
@@ -3538,28 +4079,31 @@ var Wall = {
     }
 
     ajax.post('like.php', {act: 'a_do_' + (my ? 'un' : '') + 'like', 'object': like_obj, hash: hash, wall: 2, from: ref}, {
-      onDone: Wall.likeFullUpdate.pbind(post)
+      onDone: Wall.likeFullUpdate.pbind(false, post_id)
     });
-    var count = val(ge('like_real_count_wall' + post) || ge('like_count' + post));
-    Wall.likeUpdate(post, !my, intval(count) + (my ? -1 : 1));
+    var count = val(ge('like_real_count_wall' + post_id) || countNode);
+    Wall.likeUpdate(false, post_id, !my, intval(count) + (my ? -1 : 1));
     if (cur.onWallLike) {
       cur.onWallLike();
     }
   },
-  likeShare: function(post, hash) {
+  likeShare: function(post_id, hash) {
     if (!vk.id || cur.viewAsBox) return;
-    var matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|market|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/),
+    var matches = post_id.match(/(-?\d+)(_?)(photo|video|note|topic|market|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/),
         like_obj = (matches[3] || 'wall') + matches[1] + '_' + matches[4],
         el = ge('like_share_' + like_obj), was = isChecked(el),
         ref = cur.wallType ? (cur.wallType == 'feed' ? 'feed_' + cur.section : ('wall_' + (cur.onepost ? 'one' : (!(cur.wallType || '').indexOf('full_') ? 'full' : 'page')))) : cur.module;
 
     checkbox(el);
     ajax.post('like.php', {act: 'a_do_' + (was ? 'un' : '') + 'publish', object: like_obj, hash: hash, wall: 2, ref: ref}, {
-      onDone: Wall.likeFullUpdate.pbind(post)
+      onDone: Wall.likeFullUpdate.pbind(false, post_id)
     });
-    var count = val(ge('like_real_count_wall' + post) || ge('like_count' + post));
-    var icon = ge('like_icon' + post), my = hasClass(icon, hasClass(icon, 'fw_like_icon') ? 'fw_my_like' : 'my_like');
-    Wall.likeUpdate(post, true, intval(count) + (my ? 0 : 1));
+    var post = wall.domPost(post_id),
+        wrap = domByClass(post, '_like_wrap'),
+        icon = domByClass(wrap, '_icon'),
+        count = val(ge('like_real_count_wall' + post_id) || domByClass(post, '_count')),
+        my = hasClass(icon, 'fw_like_icon') ? hasClass(icon, 'fw_my_like') : hasClass(wrap, 'my_like');
+    Wall.likeUpdate(false, post_id, true, intval(count) + (my ? 0 : 1));
   },
   likeShareCustom: function (post, params) {
     var matches = post.match(/(-?\d+)(_?)(photo|video|note|topic|market|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/),
@@ -3603,36 +4147,11 @@ var Wall = {
       }
     }
   },
-  albumCoverOver: function(obj, id, h) {
-    clearTimeout((cur.wallAlbumTO || {})[id]);
-    var title = geByClass1('wall_album_caption', obj),
-        descY = getSize(geByClass1('wall_album_description', obj))[1];
-    if (descY < 5) return;
-
-    animate(title, {marginTop: Math.max(0, getSize(obj)[1] - 22 - (descY + 7))}, {duration: 200, transition: Fx.Transitions.easeOutCirc});
-  },
-  albumCoverOut: function(obj, id) {
-    if (!cur.wallAlbumTO) cur.wallAlbumTO = {};
-    cur.wallAlbumTO[id] = setTimeout(function() {
-      animate(geByClass1('wall_album_caption', obj), {marginTop: getSize(obj)[1] - 22}, 200);
-    }, 150);
-  },
   showPhoto: function(to_id, ph, hash, el, ev) {
     return !showBox('al_photos.php', {act: 'photo_box', to_id: to_id, photo: ph, hash: hash}, {cache: 1}, el.href ? ev : false);
   },
   _animDelX: function(opacity, new_active, post, action) {
-    if (post === undefined) {
-      post = new_active;
-      new_active = undefined;
-    }
-    var el = ge((action || 'delete_post') + post);
-    if (!el) return;
-    if (new_active !== undefined) {
-      el.active = new_active;
-    } else if (el.active) {
-      return;
-    }
-    animate(el, {opacity: opacity}, 200);
+    return; // need to deprecate
   },
   domFC: function(el) {
     for (el = domFC(el); el && el.id.match(/page_wall_count_/);) {
@@ -3652,55 +4171,8 @@ var Wall = {
       return false;
     }
     Wall.repliesSideUpdate(st);
-    if (cur.wallPage && !cur.fixedWide) {
-      var pageNarrowH = cur.wallPageNarrow.offsetHeight || cur.pageNarrowH,
-          offsetTop = cur.wallPage.offsetTop,
-          maxSt = pageNarrowH + offsetTop + 30;
-          pageWide = st > maxSt,
-          rowsCont = cur.suggesting ? ge('page_suggestions') : ge('page_wall_posts'),
-          fsElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
-
-      if (cur.wallPageWide != pageWide && (!pageWide || rowsCont.offsetHeight > 3 * lastWindowHeight || isVisible('wall_more_link')) && !layers.visible && !fsElement) {
-        var lastOffsetParent, lastOffsetTop, lastPost, lastPostY;
-        each(rowsCont.childNodes, function () {
-          if (!this.offsetParent || !this.offsetTop) return;
-          if (lastOffsetParent != this.offsetParent) {
-            lastOffsetTop = getXY(lastOffsetParent = this.offsetParent)[1];
-          }
-          if (lastOffsetTop + this.offsetTop > pageNarrowH + offsetTop) {
-            lastPost = this;
-            return false;
-          }
-        });
-        if (lastPost) {
-          lastPostY = getXY(lastPost)[1];
-        }
-        cur.wallPageWide = pageWide;
-        if (pageWide) {
-          cur.pageNarrowH = pageNarrowH;
-        }
-        if (!cur.fixedWide) {
-          toggleClass(cur.wallPage, 'page_wide_no_narrow', pageWide);
-        }
-        var wallCont = ge('profile_wall') || ge('group_wall') || ge('public_wall');
-        revertLastInlineVideo(wallCont);
-        toggleClass(wallCont, 'wide_wall_module', pageWide);
-        if (cur.wallEditComposer && cur.wallEditComposer.addMedia) {
-          cur.wallEditComposer.addMedia.resized();
-        }
-        if (lastPost) {
-          var diff = getXY(lastPost)[1] - lastPostY;
-          if ((diff > 0) == cur.wallPageWide && !noScrollToY) {
-            scrollToY(scrollGetY() + diff, 0);
-          }
-        }
-
-        var mapWrap = ge('profile_map_cont'), map = cur.placesPhotoMap, mapOpts = cur.placesPhotoOpts;
-        if (mapWrap && map) {
-          setStyle(mapWrap, pageWide ? {width: 585, height: 270} : {width: 390, height: 200});
-          map.invalidateSize && map.invalidateSize();
-        }
-      }
+    if (cur.wallPage) {
+      var rowsCont = (cur.wallTab == 'suggested') ? ge('page_suggested_posts') : ge('page_wall_posts');
 
       if (
         domPN(cur.topRow) != rowsCont ||
@@ -3746,17 +4218,11 @@ var Wall = {
         Page.postsSeen(posts);
       }
     }
-    if (cur.suggestsView) {
-      el = ge('page_suggest_more');
-    } else if (cur.fixedWide) {
-      el = ge('wall_fixed_more_link');
-    } else {
-      if (!cur.wallAutoMore || cur.wallLoading || cur.viewAsBox) return;
-      el = ge('wall_more_link');
-    }
+    if (!cur.wallAutoMore || cur.wallLoading || cur.viewAsBox) return;
+    el = ge('wall_more_link');
     if (!isVisible(el)) return;
 
-    if (st + lastWindowHeight + 1000 > getXY(el)[1]) {
+    if (st + lastWindowHeight + 1500 > getXY(el)[1]) {
       el.onclick();
     }
   },
@@ -3787,8 +4253,7 @@ var Wall = {
     if (cur.viewAsBox) return cur.viewAsBox();
 
     addClass(option, 'on');
-    // var progress = option.nextSibling;
-    var progress = geByClass1('progress', option);
+    var progress = geByClass1('_poll_progress', option);
     ajax.post('widget_poll.php', extend(params, {
       act: 'a_vote',
       no_widget: 1,
@@ -3802,8 +4267,8 @@ var Wall = {
           eval(script);
         }
       },
-      showProgress: addClass.pbind(progress, 'progress_inline'),
-      hideProgress: removeClass.pbind(progress, 'progress_inline')
+      showProgress: showProgress.pbind(progress),
+      hideProgress: hideProgress.pbind(progress)
     });
   },
   pollFull: function(v, post, e, opt) {
@@ -3811,20 +4276,15 @@ var Wall = {
     return showWiki({w: 'poll' + post, opt_id: opt}, false, e, {queue: 1});
   },
   pollOver: function(el, post, opt) {
-    var ttel = (el.cells[0].className == 'page_poll_row') ? domPS(el) : el;
-    if (el != ttel && !el.mo) {
-      el.mo = true;
-      addEvent(el, 'mouseout', function(e) { triggerEvent(ttel, 'mouseout', e, true); });
-    }
-    showTooltip(ttel, {
+    showTooltip(el, {
       url: 'al_wall.php',
       params: {act: 'poll_opt_stats', post_raw: post, opt_id: opt},
       slide: 15,
-      shift: [0, 0, 25],
       ajaxdt: 100,
       showdt: 400,
       hidedt: 200,
-      className: 'rich poll_tt'
+      dir: 'auto',
+      typeClass: 'poll_tt',
     });
   },
   foTT: function(el, text, opts) {
@@ -3835,42 +4295,25 @@ var Wall = {
         text = val('wpfo' + opts.pid);
       }
     }
-    showTooltip(el, {
-      text: text,
-      shift: [15, 1, 1],
-      black: 1
-    });
+    showTitle(el, text);
   },
   update: function() {
     if (cur.wallLayer) {
       WkView.wallUpdateReplies();
       return;
     }
-    if (cur.wallType != 'all' && cur.wallType != 'own') return;
-    var sw = ge('page_wall_switch'), pnw = ge('page_no_wall'),
-        cnts = {
+    if (cur.wallType != 'all' && cur.wallType != 'own' || cur.wallTab != 'all' && cur.wallTab != 'own') return;
+    var cnts = {
       all: intval(val('page_wall_count_all')),
       own: intval(val('page_wall_count_own'))
     };
-    if (cnts.all && pnw) {
-      pnw.parentNode.removeChild(pnw);
-    }
-    if (!cnts.own || cnts.own >= cnts.all) {
-      hide(sw);
-    } else {
-      show(sw);
-      sw.innerHTML = cur.options[cur.wallType + '_link'];
-    }
-    var h = ge('page_wall_header'), cnt = cnts[cur.wallType];
+    var cnt = cnts[cur.wallType];
     if (cur.oid < 0 && cur.options['fixed_post_id']) {
       cnt -= 1;
     }
-    if (!cur.suggestsView) {
+    if (cur.wallTab != 'suggested') {
       val('page_wall_posts_count', cnt ? langNumeric(cnt, cur.options.wall_counts) : cur.options.wall_no);
     }
-    h.style.cursor = cnt ? '' : 'default';
-    h.onclick = function(event) { return cnt ? nav.go(this, event) : false; };
-    ge('page_wall_header').href = '/wall' + cur.oid + ((cur.wallType == 'own') ? '?own=1' : '');
     var morelnk = ge('wall_more_link'), del = intval(cur.deletedCnts[cur.wallType]), count = geByClass(cur.wallType, ge('page_wall_posts')).length - del;
     var checkCount = count;
     if (cur.options['fixed_post_id'] && cur.options['wall_oid'] < 0) {
@@ -3883,9 +4326,6 @@ var Wall = {
       morelnk.onclick = Wall.showMore.pbind(count);
     }
     shortCurrency();
-    if (window.mvcur && mvcur.mvShown) {
-      Videoview.updatePlaylistBoxPosition();
-    }
     if (cur.gifAutoplayScrollHandler) {
       cur.gifAutoplayScrollHandler();
     }
@@ -3915,6 +4355,7 @@ var Wall = {
         post_id = ev[2],
         oid = post_id.split('_')[0],
         reply_link = '',
+        thumbs = ev[4].split('|'),
         repls;
 
     if (ev[8] == 1) {
@@ -3927,7 +4368,10 @@ var Wall = {
       nameStr += '<span class="page_fronly inl_bl" onmouseover="Wall.foTT(this, false, {oid: \'' + oid + '\', pid: \'' + ev[2] + '\'})"></span>';
     }
 
-    if ((adminLevel > (ev[9] == oid ? 1 : 0) || oid == vk.id || ev[9] == vk.id)) {
+    if (cur.wallTpl.custom_del && (adminLevel > (ev[9] == oid ? 1 : 0) || oid == vk.id || ev[9] == vk.id || ev[2].split('_')[0] != ev[4])) {
+      acts.push(cur.wallTpl.custom_del);
+    }
+    if (adminLevel > (ev[9] == oid ? 1 : 0) || oid == vk.id || ev[9] == vk.id) {
       acts.push(cur.wallTpl.del);
     } else if (ev[2].split('_')[0] != ev[4]) {
       acts.push(cur.wallTpl.spam);
@@ -3939,13 +4383,12 @@ var Wall = {
     repls = {
       oid: oid,
       name: nameStr,
-      online: '',
       actions: acts.length ? rs(cur.wallTpl.post_actions, {actions: acts.join('')}) : '',
       replies: '',
       reply_link: reply_link,
       own_reply_link: cur.wallTpl.own_reply_link,
       reply_box: ev[8] == 1 ? cur.wallTpl.reply_box : '',
-      photo: psr(ev[4]),
+      photo: psr(thumbs[0]),
       link: ev[5],
       text: psr(ev[6]),
       date: Wall.getNowRelTime(cur),
@@ -3953,7 +4396,11 @@ var Wall = {
       poll_hash: cur.wallTpl.poll_hash,
       date_postfix: '',
       can_reply_as_group: (oid < 0 && adminLevel > 1) ? 1 : 0,
-      post_url: '/wall' + post_id.replace('_wall_reply', '_')
+      user_image: '',
+      post_url: '/wall' + post_id.replace('_wall_reply', '_'),
+      owner_photo: psr(thumbs[1] || thumbs[0]),
+      owner_href: ev[5],
+      online_class: (oid > 0) ? ' online' : ''
     };
     extendCb && extend(repls, extendCb(repls, ev));
     return rs(rs(cur.wallTpl.post, repls), repls);
@@ -3962,7 +4409,7 @@ var Wall = {
     cur = cur || window.cur;
     var acts = [],
         can_reply = ge('reply_field' + ev[2]) || ge('reply_fakebox' + ev[2]) || ge('fwr_text'),
-        className = '';
+        className = '', answer = '',
         attr = '', toLnk = ev[10] ? (' ' + ev[10]) : '';
 
     if (adminLevel > 0 || !ev[2].indexOf(vk.id + '_') || ev[4] == vk.id) {
@@ -3977,14 +4424,8 @@ var Wall = {
       className += 'reply_moreable';
     }
     if (can_reply) {
-      if (cur.onepost) {
-        acts.push(cur.wallTpl.answer_reply);
-      } else {
-        className += ' reply_replieable';
-        if (vk.id != ev[4]) {
-          toLnk += '<span class="sdivide">|</span><a class="_reply_lnk">' + getLang('wall_reply_post') + '</a>';
-        }
-      }
+      className += ' reply_replieable';
+      answer = cur.wallTpl.reply_link_wrap;
       if (!cur.options.reply_names[ev[4]]) {
         cur.options.reply_names[ev[4]] = [ev[11], ev[12]]; // name link, name greeting
       }
@@ -3992,25 +4433,18 @@ var Wall = {
     if (className) {
       attr = ' onclick="Wall.replyClick(\'%post_id%\', %reply_msg_id%, event, %reply_uid%)"';
     }
-    if (cur.onepost) {
-      acts.push('');
-      acts.unshift('');
-      acts = acts.join('<span class="divide">|</span>');
-    } else {
-      acts = rs(cur.wallTpl.post_actions, {actions: acts.join('')});
-    }
+    acts = rs(cur.wallTpl.reply_actions, {actions: acts.join('')});
     var repls = {
       name: ev[5].replace('mem_link', 'author'),
       photo: psr(ev[6]),
-      online: '',
       link: ev[7],
       text: psr(ev[8]),
-      media: '', // not returned by now
       classname: className,
       actions: acts,
       attr: attr,
       date: Wall.getNowRelTime(cur),
       to_link: toLnk,
+      answer_link: answer,
       post_id: ev[2],
       reply_id: ev[3],
       like_id: ev[3].replace('_', '_wall_reply'),
@@ -4039,7 +4473,7 @@ var Wall = {
     });
   },
   openNewComments: function (post_raw) {
-    var repliesEl = cur.onepost ? ge('fw_replies_rows') : ge('replies' + post_raw),
+    var repliesEl = ge('replies' + post_raw),
         openEl = repliesEl.nextSibling,
         headerEl = geByClass1('wr_header', repliesEl, 'a'),
         newCnt = 0,
@@ -4049,8 +4483,7 @@ var Wall = {
     Wall.loadPostImages(repliesEl);
     each (clone(geByClass('new_reply', repliesEl, 'div')), function () {
       removeClass(this, 'new_reply');
-      this.style.backgroundColor = '#FEFAE4';
-      animate(this, {backgroundColor: '#FFF'}, 6000);
+      nodeUpdated(this);
       newCnt++;
       if (newCnt == 100) return false;
     });
@@ -4076,10 +4509,7 @@ var Wall = {
     Wall.repliesSideSetup(post_raw);
   },
   langWordNumeric: function(num, words, arr) {
-    if (isArray(words) && num < words.length) {
-      return words[num];
-    }
-    return langNumeric(num, arr);
+    return langWordNumeric(num, words, arr);
   },
   updateTimes: function (cont) {
     if (!(cur.lang || {}).wall_X_seconds_ago_words) {
@@ -4142,7 +4572,7 @@ var Wall = {
       cls = 1;
     }
     toggleClass(headerEl, 'wrh_all', cls);
-    headerEl.innerHTML = '<div class="wrh_text" id="wrh_text' + post_raw + '">' + headerText + '</div><div class="progress wrh_prg" id="wrh_prg' + post_raw + '"></div>';
+    headerEl.innerHTML = headerText;
     headerEl.onclick = Wall.showReplies.pbind(post_raw, showCount, false);
     headerEl.setAttribute('offs', shown + '/' + total);
   },
@@ -4191,7 +4621,8 @@ var Wall = {
           css_percent: totalVotes ? Math.round(this[1] * 100 / maxVotes) : 0,
           count: langNumeric(this[1], '%s', true),
           percent: totalVotes ? Math.round(this[1] * 1000 / totalVotes) / 10 : 0,
-          handlers: val('post_poll_open' + post_raw) ? (' onmouseover="Wall.pollOver(this, \'' + post_raw + '\', ' + i + ')"') : ''
+          handlers: val('post_poll_open' + post_raw) ? (' onmouseover="Wall.pollOver(this, \'' + post_raw + '\', ' + i + ')"') : '',
+          row_class: ''
         });
       });
       for (var i = 0; i < pollTable.rows.length; ++i) {
@@ -4200,7 +4631,7 @@ var Wall = {
       }
       val(pollTable, pollStats);
     }
-    var codeLink = geByClass1('page_poll_code', pollWrapEl, 'a'), totalEl = geByClass1('page_poll_total', pollWrapEl, 'span');
+    var codeLink = geByClass1('page_poll_code', pollWrapEl, 'a'), totalEl = geByClass1('page_poll_total', pollWrapEl);
     val(totalEl, langNumeric(totalVotes, cur.lang.wall_X_people_voted || '%', true));
     if (codeLink) totalEl.insertBefore(codeLink, domFC(totalEl));
   },
@@ -4236,8 +4667,8 @@ var Wall = {
           post_id = ev[2],
           updH = 0,
           updY = 0,
-          el = layer && window.cur.wallLayer == post_id && ge('wl_post_body') ||
-               !layer && onepost && ge('fw_post');
+          el = layer && window.cur.wallLayer == post_id && ge('wl_post_body'),
+          mt = 15;
 
       if (!el || ev_type == 'del_reply') {
         el = ge('post' + post_id);
@@ -4247,7 +4678,6 @@ var Wall = {
       }
 
       if (ev_ver != cur.options.qversion) {
-        // location.reload();
         return;
       }
       switch (ev_type) {
@@ -4292,11 +4722,10 @@ var Wall = {
           if (ge('post_poll_id' + post_id)) {
             Wall.updatePoll(post_id);
           }
-          //!browser.msie6 && placeholderSetup(ge('reply_field' + post_id));
-          updH = newEl.offsetHeight;
+          updH = newEl.offsetHeight + mt;
           updY = getXY(newEl, fixed)[1];
-          setStyle(newEl, {backgroundColor: '#FEFAE4'});
-          animate(newEl, {backgroundColor: '#FFF'}, 6000);
+          nodeUpdated(newEl);
+          updateOnlineText();
           Wall.updateMentionsIndex();
           break;
         }
@@ -4321,8 +4750,7 @@ var Wall = {
             Wall.updatePoll(post_id);
           }
           updH += editEl.offsetHeight;
-          setStyle(editEl, {backgroundColor: '#FEFAE4'});
-          animate(editEl, {backgroundColor: '#FFF'}, 6000);
+          nodeUpdated(editEl);
           break;
         }
         case 'edit_reply': {
@@ -4341,8 +4769,7 @@ var Wall = {
             if (wasExpanded) wasExpanded.onclick();
           }
           updH += editEl.offsetHeight;
-          setStyle(editEl, {backgroundColor: '#FEFAE4'});
-          animate(editEl, {backgroundColor: '#FFF'}, 6000, setStyle.pbind(editEl, {color: ''}));
+          nodeUpdated(editEl);
           break;
         }
         case 'post_parsed_link': {
@@ -4360,10 +4787,10 @@ var Wall = {
           if (!isVisible(el)) break;
 
           if (!cur.wallMyDeleted[post_id] && !onepost) {
-            updH = -el.offsetHeight;
+            updH -= el.offsetHeight + mt;
             updY = getXY(el, fixed)[1];
             revertLastInlineVideo(el);
-            hide(el);
+            addClass(el, 'unshown');
             if (!fullWall && !layerpost) {
               val('page_wall_count_all', intval(val('page_wall_count_all')) - 1);
               if (ev[3]) {
@@ -4375,7 +4802,7 @@ var Wall = {
         }
         case 'res_post': {
           if (!el || isVisible(el)) break;
-          if (cur.wallRnd == ev[4]) show(el);
+          if (cur.wallRnd == ev[4]) removeClass(el, 'unshown');
 
           if (fullWall) {
             cur.pgOffset++;
@@ -4394,18 +4821,15 @@ var Wall = {
               (layerpost && (!cur.reverse ? cur.offset + cur.loaded < cur.count : cur.offset))
           ) break;
 
-          var repliesEl = onepost ? ge('fw_replies_rows') : ge('replies' + post_id),
+          var repliesEl = ge('replies' + post_id),
               repliesWrap = ge('replies_wrap' + post_id),
-              extendCb = !onepost ? false : function (repls) {
-                return (repls.acts ? {acts: '<span class="divide">|</span>' + repls.acts} : {})
-              },
               flgs = intval(ev[ev.length - 1]),
               adminLevel = cur.options.is_admin !== undefined ? cur.options.is_admin : (cur.options.wall_oid < 0 ? ((flgs & 8) ? 2 : ((flgs & 2) ? 1 : 0)) : 0),
-              newEl = se(Wall.getNewReplyHTML(ev, adminLevel, extendCb, cur)),
+              newEl = se(Wall.getNewReplyHTML(ev, adminLevel, false, cur)),
               highlight = false,
               startH = layerpost ? repliesEl.offsetHeight : el.offsetHeight;
 
-          if (!isVisible(repliesEl) || !isVisible(repliesWrap) || isVisible('reply_link' + post_id)) {
+          if ((!isVisible(repliesEl) || !isVisible(repliesWrap) || isVisible('reply_link' + post_id)) && !domClosest('wall_fixed', repliesWrap)) {
             re('reply_link' + post_id);
             show(repliesWrap, repliesEl);
             highlight = true;
@@ -4419,7 +4843,7 @@ var Wall = {
               }
               openEl.innerHTML = getLang('wall_x_new_replies_more', Math.min(100, newCnt));
               openEl.newCnt = newCnt;
-            } else {
+            } else if (!onepost) {
               if (openEl && openEl.className == 'replies_open') re(openEl);
               highlight = true;
               var headerEl = geByClass1('wr_header', repliesEl, 'a'),
@@ -4428,7 +4852,7 @@ var Wall = {
               if (headerEl) {
                 total = intval(headerEl.getAttribute('offs').split('/')[1]) + 1;
               }
-              if ((total > 5 || shown < total) && !cur.fixedWide) {
+              if (total > 5 || shown < total) {
                 if (!headerEl) {
                   repliesEl.insertBefore(headerEl = ce('a', {className: 'wr_header'}), repliesEl.firstChild);
                 }
@@ -4436,14 +4860,13 @@ var Wall = {
               }
             }
           }
-          if ((layer ? cur.reverse : cur.fixedWide) && repliesEl.firstChild) {
+          if ((layer ? cur.reverse : false) && repliesEl.firstChild) {
             repliesEl.insertBefore(newEl, repliesEl.firstChild);
           } else {
             repliesEl.appendChild(newEl);
           }
           if (highlight) {
-            setStyle(newEl, {backgroundColor: '#FEFAE4'});
-            animate(newEl, {backgroundColor: '#FFF'}, 6000);
+            nodeUpdated(newEl);
           }
           if (layerpost) {
             cur.count++;
@@ -4451,13 +4874,15 @@ var Wall = {
             WkView.wallUpdateReplies();
             updH = repliesEl.offsetHeight - startH;
             updY = getXY(newEl, fixed)[1];
-          } else if (onepost) {
-            FullWall.repliesSummary(ev[13]);
-            cur.pgOffset++;
-            cur.pgCount++;
-            Pagination.pageReady(false);
-            FullWall.onePostOnScroll(false, false, true);
           } else {
+            if (onepost) {
+              FullWall.repliesSummary(ev[13]);
+              cur.pgOffset++;
+              cur.pgCount++;
+              FullWall.repliesSummary(cur.pgCount);
+              Pagination.pageReady(false);
+              FullWall.onePostOnScroll(false, false, true);
+            }
             updH = el.offsetHeight - startH;
             updY = getXY(highlight ? newEl : openEl)[1];
             Wall.repliesSideSetup(post_id);
@@ -4467,19 +4892,19 @@ var Wall = {
         }
         case 'del_reply': {
           if (cur.wallMyDeleted[post_id] || !el) break;
-          updH = -el.offsetHeight;
+          updH -= el.offsetHeight;
           updY = getXY(el, fixed)[1];
-          // debugLog(ev, post_id, el);
           revertLastInlineVideo(el);
           if (cur.layerpost) {
             hide(el);
             cur.count--;
             cur.loaded--;
-          } else if (cur.onepost) {
-            hide(el);
-            cur.pgOffset--;
-            cur.pgCount--;
           } else {
+            if (onepost) {
+              cur.pgOffset--;
+              cur.pgCount--;
+              FullWall.repliesSummary(cur.pgCount);
+            }
             var post = el.parentNode.id.match(/replies(-?\d+_\d+)/);
             re(el);
             if (post) {
@@ -4490,24 +4915,26 @@ var Wall = {
         }
         case 'like_post':
         case 'like_reply': {
-          var likePost = (ev_type == 'like_reply' ? post_id.replace('_', '_wall_reply') : post_id);
-          var likeLayerPost = (layer && post_id == window.cur.wallLayerLike);
-          var cntEl = (likeLayerPost ? ge('wk_like_count') : ge('like_count' + likePost));
-          var iconEl = (likeLayerPost ? ge('wk_like_icon') : ge('like_icon' + likePost));
-
-          if (!el && !cntEl) break;
-
-          var ttEl = (iconEl && iconEl.parentNode);
-          var cnum = intval(val(cntEl));
-          var num = intval(ev[3]);
-
-          animateCount(cntEl, num);
-          val('like_real_count_wall' + post_id, num);
-          toggleClass(iconEl, 'no_likes', num <= 0);
-          if (ttEl && ttEl.tt && !isVisible(ttEl.tt.container)) {
-            ttEl.tt.destroy && ttEl.tt.destroy();
+          if (layer && post_id == window.cur.wallLayerLike) {
+            if (window.WkView) {
+              WkView.likeUpdate(hasClass(ge('wk_like_wrap'), 'my_like'), ev[3], false);
+            }
+            break;
           }
-          setStyle(iconEl, {opacity: '', visibility: ''});
+
+          if (!el) break;
+          var likePost = (ev_type == 'like_reply' ? post_id.replace('_', '_wall_reply') : post_id),
+              likeWrap = el && domByClass(el, '_like_wrap'),
+              shareWrap = el && domByClass(el, '_share_wrap');
+
+          wall.likeFullUpdate(likeWrap, likePost, {
+            like_my: likeWrap && hasClass(likeWrap, 'my_like'),
+            like_num: ev[3],
+            like_title: false,
+            share_my: shareWrap && hasClass(shareWrap, 'my_share'),
+            share_num: ev[4],
+            share_title: false
+          });
           break;
         }
         case 'vote_poll': {
@@ -4518,8 +4945,7 @@ var Wall = {
         case 'upd_ci': {
           var info = ev[2],
               edit = ge('current_info'),
-              el = edit || ge('page_current_info'),
-              dataAudio = ' data-audio="' + ev[4] + '"';
+              el = edit || ge('page_current_info');
 
           if (!el) {
             break;
@@ -4528,15 +4954,26 @@ var Wall = {
             case 'audio':
               var curCntEl = geByClass1('current_audio_cnt');
               if (curCntEl && curCntEl.tt) curCntEl.tt.hide();
-              var attr = edit ? '' : (' onmouseover="showTooltip(this, {forcetoup: true, text: \'' + cur.options.ciAudioTip + '\', black: 1, shift: [13, 0, 0]})" onclick="Page.playCurrent(this, this.getAttribute(\'data-audio\'), \'' + cur.options.ciAudioHash + '\')"');
-              info = '<a class="current_audio fl_l"' + attr + dataAudio + '><div class="label fl_l"></div>' + info + '</a>';
-              var ci_cnt = intval(ev[5] || ''), ci_cnt_class = ci_cnt ? '' : ' hidden';
-              info += '<div class="current_audio_cnt' + ci_cnt_class + ' fl_r" onmouseover="Page.audioListenersOver(this, cur.oid)" onclick="Page.showAudioListeners(cur.oid, event)"><div class="value fl_l">' + ci_cnt + '</div><div class="label fl_r"></div></div>';
+
+              var ci_cnt = intval(ev[5] || ''),
+                  ci_cnt_class = ci_cnt ? '' : ' hidden',
+                  attr = '';
+
+              if (!edit) {
+                attr += ' onmouseover="showTooltip(this, {forcetoup: true, text: \'' + cur.options.ciAudioTip + '\', black: 1, shift: [14, 5, 5]})" onclick="Page.playCurrent(this, \'' + ev[4] + '\')"';
+              }
+
+              info = rs(cur.options.ciAudioTpl, {
+                text: info,
+                attrs: attr,
+                count: ci_cnt,
+                cnt_class: ci_cnt_class
+              });
               wall.updateOwnerStatus(info, el, ev, edit);
             break;
 
             case 'app':
-              var shift = ev[6] ? '[11, 0, 0]' : '[13, 0, 0]', addCls = ev[6] ? ' current_app_icon' : '';
+              var shift = ev[6] ? '[12, 5, 5]' : '[15, 5, 5]', addCls = ev[6] ? ' current_app_icon' : '';
               var attr = edit ? (' onclick="cur.ciApp = ' + ev[4] + '"') : (' onmouseover="showTooltip(this, {forcetoup: true, text: \'' + cur.options.ciAppTip + '\', black: 1, shift: ' + shift + '})" href="' + ev[5] + '?ref=14" onclick="return showApp(event, ' + ev[4] + ', 1, 14, cur.oid)"');
               if (ev[6]) attr += ' style="background-image: url(\'' + ev[6] + '\')"';
               info = '<a class="current_app' + addCls + '"' + attr + '>' + info + '</a>';
@@ -4560,15 +4997,12 @@ var Wall = {
               cntEl.tt.destroy();
             }
             toggleClass(cntEl, 'hidden', cnt == 0);
-            var valEl = geByClass1('value', cntEl);
-            if (valEl) {
-              animateCount(valEl, cnt)
-            }
+            animateCount(cntEl, cnt);
           }
           break;
         }
       }
-      if (updH && (layer ? (updY < 0) : (curST > updY))) {
+      if (updH && (layer ? (updY < 0) : (curST + getSize('page_header_cont')[1] > updY))) {
         curST += updH;
       }
     });
@@ -4577,7 +5011,7 @@ var Wall = {
       if (layer) {
         wkLayerWrap.scrollTop = curST;
       } else {
-        scrollToY(curST, 0);
+        scrollToY(curST, 0, false, true);
       }
     }
     Wall.update();
@@ -4595,10 +5029,7 @@ var Wall = {
       }
     }
     val(el, info);
-    setStyle(el.firstChild, {backgroundColor: '#FEFAE4'});
-    animate(el.firstChild, {backgroundColor: '#FFF'}, 6000, function () {
-      setStyle(el.firstChild, {backgroundColor: ''});
-    });
+    // nodeUpdated(el.firstChild);
   },
 
   updateMentionsIndex: function (force) {
@@ -4673,7 +5104,8 @@ var Wall = {
       wallMyOpened: {},
       wallMyReplied: {},
       wallMentions: [],
-      wallMyRepliesCnt: 0
+      wallMyRepliesCnt: 0,
+      wallUploadOpts: opts.upload
     });
     if (opts.wall_tpl && opts.wall_tpl.lang) {
       cur.lang = extend(cur.lang || {}, opts.wall_tpl.lang);
@@ -4690,9 +5122,9 @@ var Wall = {
     extend(cur, {
       wallInited: true,
       postField: ge('post_field'),
+      wallSearch: ge('wall_search'),
       wallPage: ge('profile') || ge('group') || ge('public'),
-      wallPageNarrow: ge('profile_narrow') || ge('group_narrow'),
-      wallPageWide: false,
+      wallPageNarrow: ge('narrow_column'),
       wallUploadOpts: opts.upload || false,
       deletedCnts: {own: 0, all: 0}
     });
@@ -4711,8 +5143,11 @@ var Wall = {
     }
     var ownCnt = ge('page_wall_count_own');
     if (cur.wallType == 'own' && !intval(ownCnt && ownCnt.value)) {
-      cur.wallType = ge('page_wall_posts').className = 'all';
+      replaceClass('page_wall_posts', cur.wallType, 'all');
+      cur.wallType = 'all';
+      // checkPageBlocks();
     }
+    cur.wallTab = cur.wallType;
     Wall.update();
     Wall.initUpdates(opts.add_queue_key);
 
@@ -4722,11 +5157,7 @@ var Wall = {
       cur.destroy.push(function () {clearInterval(cur.timeUpdateInt);});
     }
 
-    if (opts.draft) {
-      Wall.setDraft(opts.draft);
-    }
-
-    var scrollNode = browser.msie6 ? pageNode : window;
+    var scrollNode = window;
     addEvent(scrollNode, 'scroll', Wall.scrollCheck);
     addEvent(window, 'resize', Wall.scrollCheck);
     cur.destroy.push(function () {
@@ -4735,25 +5166,31 @@ var Wall = {
     });
     cur.wallAutoMore = opts.automore;
 
-    placeholderSetup(cur.postField, { pad: { paddingTop: 7, paddingBottom: 6, paddingLeft: 6 }});
+    Wall.initPostEditable(opts.draft || cur.oid != vk.id && Wall.getOwnerDraft(cur.oid));
+    if (cur.wallSearch) {
+      placeholderInit(cur.wallSearch);
+    }
 
     removeEvent(document, 'click', Wall.hideEditPostReply);
     addEvent(document, 'click', Wall.hideEditPostReply);
 
     if (opts.media_types) {
-      cur.wallAddMedia = initAddMedia(ge('page_add_media').firstChild, 'media_preview', opts.media_types, extend({
+      cur.wallAddMedia = new MediaSelector(ge('page_add_media'), 'media_preview', opts.media_types, extend({
         onAddMediaChange: function() {
-          if (cur.module == 'profile' || cur.module == 'feed' || cur.module == 'wall') {
-            Wall.postChanged(10);
+          Wall.postChanged(10);
+
+          if (cur.oid != vk.id) {
+            var args = Array.prototype.slice.call(arguments);
+            args.unshift(cur.oid);
+            Wall.saveOwnerDraftMedia.apply(window, args);
           }
         }, onMediaChange: function() {
-          if (cur.module == 'profile' || cur.module == 'feed' || cur.module == 'wall') {
-            Wall.postChanged();
-          }
+          Wall.postChanged();
         }, editable: 1, sortable: 1}, opts.media_opts || {})
       );
     }
-    cur.withUpload = window.WallUpload && !(browser.msie111 || browser.safari_mobile) && (cur.wallType == 'all' || cur.wallType == 'own' || cur.wallType == 'feed') && Wall.withMentions && cur.wallUploadOpts;
+
+    cur.withUpload = window.WallUpload && !browser.safari_mobile && inArray(cur.wallType, ['all', 'own', 'feed', 'full_all']) && Wall.withMentions && cur.wallUploadOpts;
     if (cur.withUpload && WallUpload.checkDragDrop()) {
       var clean = function () {
           removeEvent(document, 'dragover dragenter drop dragleave', cb);
@@ -4787,7 +5224,7 @@ var Wall = {
               if (!started) {
                 started = (e.target && (e.target.tagName == 'IMG' || e.target.tagName == 'A')) ? 1 : 2;
                 if (started == 2) {
-                  setTimeout(Wall.showEditPost, 0);
+                  setTimeout(WallUpload.initCallback, 0);
                 }
               }
               if (started == 2) {
@@ -4801,64 +5238,229 @@ var Wall = {
       addEvent(document, 'dragover dragenter drop dragleave', cb);
       cur.destroy.push(clean);
     }
-    cur.nav.push(function(changed, old, n) {
-      if (!changed[0] && changed.fixed != undefined) {
-        Page.toggleFixedPost(cur.oid+'_'+cur.options['fixed_post_id']);
-        nav.setLoc(n);
-        return false;
-      }
-    });
     Wall.updateMentionsIndex();
   },
-  switchOwner: function(obj, sw) {
-    obj.innerHTML = '<div class="progress_inline"></div>';
-    nav.change({owners_only: sw});
+  switchOwner: function(obj) {
+    toggleClass(geByClass1('_ui_toggler', obj), 'on');
+    uiSearch.showProgress('wall_search');
+    cur.options.params.owners_only = cur.options.params.owners_only ? null : 1;
+    nav.change({owners_only: cur.options.params.owners_only, offset: null});
   },
-  replyAsGroup: function(obj, imgSrc) {
+  REPLY_RADIO_BTNS_GROUP: 'page_post_as',
+  REPLY_RADIO_BTNS_GROUP_INDEX: 0,
+  replyAsGroup: function(obj, btn, rdName) {
+    if (hasClass(obj, 'disabled')) {
+      return;
+    }
+
+    var wrap = domClosest('_submit_post_box', obj);
+    if (!btn) {
+      // direct click
+      var on = hasClass(wrap, 'as_group');
+      var tt = data(obj, 'tt');
+      if (tt && tt.rdBtns) {
+        btn = tt.rdBtns[on ? 0 : 1];
+        rdName = tt.rdBtnsGroup;
+      }
+    }
+
+    var as = domData(btn, 'as');
+    radiobtn(btn, as, rdName);
+
     checkbox(obj);
-    var el = obj.parentNode;
-    while(el && !hasClass(el, 'reply_box')) {
-      el = el.parentNode;
-    }
-    if (!el) return;
-    var photoImg = geByClass1('reply_form_img', el);
-    if (isChecked(obj)) {
-      if (!obj.backImg) {
-        obj.backImg = photoImg.src;
+
+    toggleClass(wrap, 'as_group', as == 'group');
+    toggleClass('signed', 'shown', as == 'group');
+    obj.setAttribute('aria-label', getLang((as == 'group') ? 'wall_reply_as_group' : 'wall_reply_as_user'));
+  },
+  replyAsGroupOver: function(obj, tt_user, tt_group) {
+    if (!hasClass(obj, 'checkbox_official') || hasClass(obj, 'disabled')) return false;
+
+    var ttChooser = data(obj, 'tt');
+
+    if (!ttChooser) {
+      var rdGroup = wall.REPLY_RADIO_BTNS_GROUP + (wall.REPLY_RADIO_BTNS_GROUP_INDEX ++);
+
+      var postBox = gpeByClass('_submit_post_box', obj);
+      var onCls = [];
+      if (hasClass(postBox, 'as_group')) {
+        onCls = ['', 'on'];
+      } else {
+        onCls = ['on', ''];
       }
-      if (imgSrc && imgSrc != '%owner_photo%') {
-        photoImg.src = imgSrc;
-      }
-    } else if (obj.backImg) {
-      photoImg.src = obj.backImg;
+
+      ttChooser = new ElementTooltip(obj, {
+        content:
+          '<div class="post_reply_tt_choose"> \
+            <h3>' + getLang('global_on_behalf_title') + '</h3> \
+            <div class="radiobtn ' + onCls[0] + '" data-as="me">' + getLang('global_on_behalf_me') + '</div> \
+            <div class="radiobtn ' + onCls[1] + '" data-as="group">' + getLang('global_on_behalf_group') + '</div> \
+          </div>',
+        appendToParent: true,
+        offset: [-10, -5],
+        onFirstTimeShow: function(ttel) {
+          var btns = geByClass('radiobtn', ttel);
+
+          window.radioBtns[rdGroup] = {
+            els: btns
+          };
+
+          addEvent(btns[0], 'click', wall.replyAsGroup.pbind(obj, btns[0], rdGroup));
+          addEvent(btns[1], 'click', wall.replyAsGroup.pbind(obj, btns[1], rdGroup));
+
+          this.rdBtns = btns;
+          this.rdBtnsGroup = rdGroup;
+        }
+      });
+      data(obj, 'tt', ttChooser);
     }
+
+    ttChooser.show();
   },
   reportPost: function(obj, ev, postRaw) {
     stManager.add(['privacy.js', 'privacy.css'], function() {
       return Privacy.show(obj, ev, 'report_'+postRaw);
     });
+  },
+
+  parsePostId: function(post_id) {
+    var matches = post_id.match(/(-?\d+)(_?)(photo|video|note|topic|market|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/);
+    return {
+      type: matches[3] || 'wall',
+      id: matches[1] + '_' + matches[4]
+    };
+  },
+  likeIt: function(el, post_id, hash, ev) {
+    stopEvent(ev);
+    if (!vk.id) return false;
+    if (cur.viewAsBox) {
+      cur.viewAsBox();
+      return cancelEvent(ev);
+    }
+
+    var p = wall.parsePostId(post_id),
+        like_type = p.type,
+        post_raw = p.id,
+        postEl = el && gpeByClass('_post_content', el) || wall.domPost(post_raw),
+        wrapEl = domByClass(postEl, '_like_wrap'),
+        iconEl = domByClass(wrapEl, '_icon'),
+        countEl = domByClass(wrapEl, '_count'),
+        my = hasClass(wrapEl, 'my_like'), ref;
+
+    if (cur.wallType) {
+      if (cur.wallType == 'feed') {
+        ref = 'feed_' + ((cur.section == 'news' && cur.subsection) ? cur.subsection : cur.section)
+      } else {
+        ref = 'wall_' + (cur.onepost ? 'one' : (!(cur.wallType || '').indexOf('full_') ? 'full' : 'page'))
+      }
+    } else {
+      ref = cur.module;
+    }
+
+    ajax.post('like.php', {
+      act: my ? 'a_do_unlike' : 'a_do_like',
+      object: like_type + post_raw,
+      hash: hash,
+      wall: 2,
+      from: ref
+    }, {
+      onDone: Wall.likeFullUpdate.pbind(el, post_id),
+      onFail: function() {
+        return true;
+      }
+    });
+    var count = val(ge('like_real_count_wall' + post_id) || countEl);
+    Wall.likeUpdate(el, post_id, !my, intval(count) + (my ? -1 : 1));
+    if (cur.onWallLike) {
+      cur.onWallLike();
+    }
+    return false;
+  },
+  likesShow: function(el, post_id, opts) {
+    opts = opts || {};
+    var p = wall.parsePostId(post_id),
+        like_type = p.type,
+        post_raw = p.id,
+        like_obj = like_type + post_raw,
+        postEl = el && gpeByClass('_post_content', el) || wall.domPost(post_raw),
+        wrapClass = opts.share ? '_share_wrap' : '_like_wrap',
+        wrapEl = domByClass(postEl, wrapClass),
+        iconEl = domByClass(wrapEl, '_icon'),
+        hasShare = postEl && domByClass(postEl, '_share_wrap');
+    if (!iconEl || cur.viewAsBox) return;
+
+    var tt_offset = 41, // @likes-tt-corner-offset + 1
+        wrap_left = getXY(wrapEl)[0],
+        icon_left = getXY(iconEl)[0],
+        icon_width = getSize(iconEl, true)[0],
+        left_offset = icon_left + icon_width / 2 - wrap_left - tt_offset;
+
+    showTooltip(iconEl.parentNode, {
+      url: '/like.php',
+      params: extend({act: 'a_get_stats', 'object': like_obj, has_share: hasShare ? 1 : ''}, opts.share ? {published: 1} : {}),
+      slide: 15,
+      shift: [-left_offset, like_type == 'wall_reply' ? -3 : 6],
+      ajaxdt: 100,
+      showdt: 400,
+      hidedt: 200,
+      dir: 'auto',
+      checkLeft: true,
+      reverseOffset: 80,
+      noZIndex: true,
+      tip: {
+        over: function() {
+          Wall.likesShow(el, post_id, opts);
+        }
+      },
+      typeClass: 'like_tt',
+      className: opts.cl || ''
+    });
+  },
+  likesShowList: function(el, post_id, opts) {
+    opts = opts || {};
+    var p = wall.parsePostId(post_id),
+        like_type = p.type,
+        post_raw = p.id,
+        like_obj = like_type + post_raw,
+        postEl = el && gpeByClass('_post_content', el) || wall.domPost(post_raw),
+        wrapClass = opts.share ? '_share_wrap' : '_like_wrap',
+        wrapEl = domByClass(postEl, wrapClass),
+        iconEl = domByClass(wrapEl, '_icon');
+
+    if (!iconEl || cur.viewAsBox) return;
+
+    showWiki({w: (opts.share ? 'shares' : 'likes') + '\/' + clean(like_obj)}, false, false, {queue: 1});
+  },
+  sharesShow: function (el, post_id, opts) {
+    Wall.likesShow(el, post_id, extend(opts, {share: 1}));
+  },
+  sharesShowList: function (el, post_id, opts) {
+    Wall.likesShowList(el, post_id, extend(opts, {share: 1}));
+  },
+  sharesOpen: function (ev, post_id, params) {
+    if (cur.viewAsBox) {
+      cur.viewAsBox();
+      return cancelEvent(ev);
+    }
+    if (!vk.id) return false;
+
+    stopEvent(ev);
+    var p = wall.parsePostId(post_id),
+        like_type = p.type,
+        post_raw = p.id,
+        like_obj = like_type + post_raw;
+    showBox('/like.php', extend({act: 'publish_box', object: like_obj}, params));
+    return false;
+  },
+  customCur: function() {
+    if (window.wkcur && wkcur.shown) return wkcur;
+    if (window.mvcur && mvcur.mvShown) return mvcur;
+    if (window.pvcur && cur.pvShown) return pvcur;
+    return cur;
   }
 }
 
-var wall = extend(Wall, {
-  showDeletePost: function (post) {
-    Wall._animDelX(0.3, undefined, post, 'post_delete');
-    Wall._animDelX(0.3, undefined, post, 'post_edit');
-    Wall._animDelX(0.3, undefined, post, 'post_promote');
-    Wall._animDelX(0.3, undefined, post, 'post_promoted_stats');
-  },
-  hideDeletePost: function (post) {
-    Wall._animDelX(0, undefined, post, 'post_delete');
-    Wall._animDelX(0, undefined, post, 'post_edit');
-    Wall._animDelX(0, undefined, post, 'post_promote');
-    Wall._animDelX(0, undefined, post, 'post_promoted_stats');
-  },
-  activeDeletePost: function(post, tt, action) {
-    Wall._animDelX(1, 1, post, action);
-    if (tt) showTooltip(ge((action || 'delete_post') + post), {text: tt, showdt: 0, black: 1, shift: [14, 3, 3]});
-  },
-  deactiveDeletePost: Wall._animDelX.pbind(0.3, 0)
-});
+var wall = Wall;
 
 WallUpload = {
   photoUploaded: function(info, params) {
@@ -4870,7 +5472,7 @@ WallUpload = {
     prg && hide(geByClass1('progress_x', prg));
     ajax.post('al_photos.php', extend({act: 'choose_uploaded'}, params), {
       onDone: function(media, data) {
-        cur.wallAddMedia.chooseMedia('photo', media, extend(data, {upload_ind: i + '_' + fileName}));
+        WallUpload.addMedia().chooseMedia('photo', media, extend(data, {upload_ind: i + '_' + fileName}));
       },
       onFail: WallUpload.uploadFailed.pbind(info)
     });
@@ -4899,29 +5501,34 @@ WallUpload = {
     var s = {};
     if (cur.wallType == 'feed') {
       removeClass(cur.uploadWrap, 'post_upload_min_wrap');
-      s.width = 515;
-      s[vk.rtl ? 'paddingLeft' : 'paddingRight'] = 35;
     } else {
       show(cur.uploadWrap);
-      s.width = 337;
-      s[vk.rtl ? 'paddingLeft' : 'paddingRight'] = 35;
     }
-    setStyle('post_field', s);
   },
   hide: function () {
     if (!cur.uploadInited) return;
-    var s = {};
     if (cur.wallType == 'feed') {
       addClass(cur.uploadWrap, 'post_upload_min_wrap');
-      s.width = 515;
-      s[vk.rtl ? 'paddingLeft' : 'paddingRight'] = 35;
     } else {
       hide(cur.uploadWrap);
-      s.width = 369;
-      s[vk.rtl ? 'paddingLeft' : 'paddingRight'] = 3;
     }
-    setStyle('post_field', s);
     hide('post_upload_dropbox');
+  },
+  addMedia: function() {
+    return cur.dropboxAddMedia || cur.wallAddMedia;
+  },
+  attachEl: function() {
+    return WallUpload.dropboxAttachEl || ge('submit_post_box');
+  },
+  attachToEl: function(el) {
+    el = ge(el);
+    var dropbox = ge('post_upload_dropbox');
+    WallUpload.dropboxAttachEl = el;
+    if (!el || !dropbox) {
+      return false;
+    }
+
+    el.insertBefore(dropbox, domFC(el));
   },
   checkDragDrop: function() {
     var b = browser, bv = floatval(browser.version);
@@ -4931,24 +5538,49 @@ WallUpload = {
     return (window.XMLHttpRequest || window.XDomainRequest) &&
            (window.FormData || window.FileReader && (window.XMLHttpRequest && XMLHttpRequest.sendAsBinary ||  window.ArrayBuffer && window.Uint8Array && (window.MozBlobBuilder || window.WebKitBlobBuilder || window.BlobBuilder)));
   },
-  init: function () {
+  initCallback: function() {
+    if (cur.editingPost) {
+      WallUpload.init();
+    } else {
+      Wall.showEditPost();
+    }
+  },
+  init: function() {
+    if (!cur.withUpload) return;
+
+    if (!cur.uploadAdded) {
+      cur.uploadAdded = true;
+      if (!window.Upload) {
+        stManager.add(['upload.js'], function() {
+          WallUpload.initLoader();
+        });
+      } else {
+        WallUpload.initLoader();
+      }
+    } else {
+      WallUpload.show();
+    }
+  },
+
+  initLoader: function () {
     removeEvent(bodyNode, 'dragover dragenter');
     var data = cur.wallUploadOpts,
-        field = ge('post_field'),
-        tt = WallUpload.checkDragDrop() ?  ' onmouseover="showTooltip(this, {text: \'' + (data.opts.lang.wall_photos_drag_hint || 'You can also drop files here') + '\', black: 1, shift: [3, -10, 0]})"' : '';
+        field = ge('post_field');
+
+    if (!WallUpload.checkDragDrop()) return;
 
     field.parentNode.insertBefore(cur.uploadWrap = ce('div', {
       className: 'post_upload_wrap fl_r',
-      innerHTML: '<div id="post_field_upload" class="post_upload"' + tt + '></div>'
+      innerHTML: '<div id="post_field_upload" class="post_upload"></div>'
     }), field);
-    var submitBox = ge('submit_post_box');
+    var submitBox = WallUpload.attachEl();
     submitBox.insertBefore(ce('div', {
       id: 'post_upload_dropbox',
       className: 'post_upload_dropbox',
-      innerHTML: '<div class="post_upload_dropbox_inner noselect"><span class="post_upload_drop_label">' + (data.opts.lang.wall_drop_photos_here || 'Drop files here') + '</span><span class="post_upload_release_label">' + (data.opts.lang.wall_release_photos_here || 'Release button to attach files') + '</span></div>'
+      innerHTML: '<div class="post_upload_dropbox_inner"><div class="post_upload_label drop_label">' + (data.opts.lang.wall_drop_photos_here || 'Drop files here') + '</div><div class="post_upload_label release_label">' + (data.opts.lang.wall_release_photos_here || 'Release button to attach files') + '</div></div>'
     }), submitBox.firstChild);
 
-    Upload.init('post_field_upload', data.url, data.params, {
+    cur.wallUploadInd = Upload.init('post_field_upload', data.url, data.params, {
       file_name: 'photo',
       file_size_limit: 1024 * 1024 * 5, // 5Mb
       file_types_description: 'Image files (*.jpg, *.jpeg, *.png, *.gif)',
@@ -4994,7 +5626,7 @@ WallUpload = {
           if (lnkId === undefined || lnkId && cur.addMedia[lnkId].chosenMedia || cur.imMedia) {
             var data = {loaded: bytesLoaded, total: bytesTotal};
             if (info.fileName) data.fileName = info.fileName.replace(/[&<>"']/g, '');
-            cur.wallAddMedia.showMediaProgress('photo', i, data);
+            WallUpload.addMedia().showMediaProgress('photo', i, data);
           }
         }
       },
@@ -5008,15 +5640,7 @@ WallUpload = {
           Upload.embed(i);
         }
       },
-      onDragEnter: function () {
-        Wall.showEditPost();
-        var dropEl = ge('post_upload_dropbox').firstChild,
-            h = ge('submit_post_box').offsetHeight - (browser.webkit || browser.chrome ? 2 : 0);
-        if (cur.wallType != 'feed') {
-          h -= 16;
-        }
-        setStyle(dropEl, {height: h});
-      },
+      onDragEnter: WallUpload.initCallback,
 
       noFlash: 1,
       multiple: 1,
@@ -5037,15 +5661,7 @@ WallUpload = {
     WallUpload.show();
     if (cur.wallUploadFromDrag) {
       if (cur.wallUploadFromDrag == 1) {
-        setTimeout(function() {
-          var dropEl = ge('post_upload_dropbox'),
-              h = ge('submit_post_box').offsetHeight - (browser.webkit || browser.chrome ? 2 : 0);
-          if (cur.wallType != 'feed') {
-            h -= 16;
-          }
-          setStyle(dropEl.firstChild, {height: h});
-          show(dropEl);
-        }, 0);
+        show('post_upload_dropbox');
       }
       delete cur.wallUploadFromDrag;
     }
@@ -5065,7 +5681,7 @@ function initCustomMedia(lnk, types, opts) {
     var icons = opts.bgsprite;
   } else if (window.devicePixelRatio >= 2) {
     var icons = '/images/icons/attach_icons_2x.png?6';
-    opts.bgSize = '20px 243px';
+    opts.bgSize = '20px 220px';
   } else {
     var icons = '/images/icons/attach_icons.png?6';
   }
@@ -5139,7 +5755,7 @@ function initCustomMedia(lnk, types, opts) {
           setStyle(el, {height: 26, overflow: 'hidden'});
           fadeIn(menuNode, 200);
           if (mediaMenu.reverse) {
-            setStyle(el, {position: 'absolute', bottom: -reverseMargin, minWidth: getSize(el.firstChild)[0]});
+            setStyle(el, {position: 'absolute', bottom: -reverseMargin, width: getSize(el.firstChild)[0]});
             setStyle(el.firstChild, {position: 'absolute', bottom: '0px'});
           }
           animate(el, {height: h - 2}, 200, function() {
@@ -5187,7 +5803,6 @@ function initCustomMedia(lnk, types, opts) {
           + xShift // shift from options
           - getSize(menuNode)[0]/2 // half of media menu width
           + getSize(lnk)[0]/2 // half of lnk
-          + (browser.msie6 ? 1 : 0); // hack for ie6
         if(left < 0) {
           pointerShift = left;
           left = 0;
@@ -5412,7 +6027,7 @@ function extractUrls(text, inactive) {
 }
 
 function initAddMedia(lnk, previewId, mediaTypes, opts) {
-  var types = [], bgposes = {graffiti: -152, video: -20, photo: 3, audio: -42, poll: -108, doc: -64, map: -86, note: -130, postpone: -173, gift: -196, mark_as_ads: -218}, addMedia;
+  var types = [], bgposes = {graffiti: -152, video: -20, photo: 3, audio: -42, poll: -108, doc: -64, map: -86, note: -130, postpone: -173, gift: -196}, addMedia;
   opts = opts || {};
   each (mediaTypes || [], function (i, v) {
     if (!v[1]) return;
@@ -5482,6 +6097,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
       cur.chooseMedia = addMedia.chooseMedia;
       cur.showMediaProgress = addMedia.showMediaProgress;
       cur.attachCount = addMedia.attachCount;
+      cur.lastAddMedia = addMedia;
     },
     onItemClick: function(type) {
       if (multi && addMedia.attachCount() >= limit && type !== 'postpone' && type !== 'mark_as_ads') {
@@ -5541,7 +6157,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
       if (inArray(type, opts.disabledTypes || [])) {
         return false;
       }
-      if (addMedia.attachCount() >= limit && data.upload_ind === undefined && type !== 'postpone' && type !== 'mark_as_ads' || geByClass1('medadd_c_market', docsEl)) {
+      if (addMedia.attachCount() >= limit && data.upload_ind === undefined && type !== 'postpone' || geByClass1('medadd_c_market', docsEl)) {
         if (multi) {
           return false;
         } else {
@@ -5700,32 +6316,6 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
           toEl = ldocsEl;
         break;
 
-        case 'album':
-          if (editable) {
-            if (!data.editable) return false;
-            extend(data.editable, {
-              title: data.title,
-              size: data.count,
-              click: opts.nocl ? false : nav.change.pbind({z: 'album' + media})
-            });
-          }
-
-          vkImage().src = data.thumb;
-          oncl = opts.nocl ? '' : ' href="/album' + media + '" onclick="return nav.change({z: \'album' + media + '\'}, event)"';
-          var cls = 'fl_l page_preview_album wall_album_cover_wrap' + (data.thumb ? '' : ' wall_album_nocover');
-          preview = '<a class="' + cls + '" ' + oncl + '>\
-' + (data.thumb ? '<img class="wall_album_cover" src="' + data.thumb + '"/>' : '') + '\
-  <div class="wall_album_caption">\
-    <div class="wall_album_title_wrap clear_fix">\
-      <div class="wall_album_title fl_l">' + data.title + '</div>\
-      <div class="wall_album_count fl_r">' + data.count + '</div>\
-    </div>\
-  </div>\
-</a>';
-          toPics = 1;
-          toEl = picsEl;
-        break;
-
         case 'note':
           if (!data.lang) return false;
           preview = '<a onclick="showWiki({w: \'note' + data.raw + '\', edit: 1}, true, event, {queue: 1})" class="medadd_h medadd_h_note inl_bl">' + data.lang.profile_choose_note + '</a>';
@@ -5751,7 +6341,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
 
           vkImage().src = data.thumb;
           oncl = opts.nocl ? '' : ' href="/market' + lst[0] + '?section=album_' + lst[1] + '"';
-          var cls = 'fl_l page_preview_album wall_album_cover_wrap wall_market_album_cover' + (data.thumb ? '' : ' wall_album_nocover');
+          var cls = 'fl_l page_preview_album wall_album_cover_wrap wall_market_album_cover' + (data.thumb ? '' : ' page_album_nocover');
           preview = '<a class="' + cls + '" ' + oncl + '>\
 ' + (data.thumb ? '<img class="wall_album_cover" src="' + data.thumb + '"/>' : '') + '\
   <div class="wall_album_caption">\
@@ -5773,15 +6363,15 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
             if (media) {
               data.date = media;
             } else {
-              data.date = intval(cur.editingPost[6]);
+              data.date = intval(cur.editingPost[7]);
             }
-            geByTag1('button', geByClass1('button_blue', ge('post'+cur.editingPost[0]))).innerHTML = getLang('global_save');
+            ge('wpe_save').innerHTML = getLang('global_save');
           } else if (cur.editingPost && domPN(ppdocsEl).id == 'wpe_media_preview') {
             media = intval(media);
             if (media) {
               data.date = media;
             } else {
-              data.date = intval(cur.editingPost[6]);
+              data.date = intval(cur.editingPost[7]);
             }
             var exp = geByClass1('medadd_c_timersett', ppdocsEl);
             if (exp) {
@@ -5791,12 +6381,12 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
             } else {
               exp = '';
             }
-            geByTag1('button', geByClass1('button_blue', ge('post'+cur.editingPost[0]))).innerHTML = getLang('global_save');
+            ge('wpe_save').innerHTML = getLang('global_save');
           } else {
             if (data.draft) {
               data.date = intval(media);
             } else if (cur.postponedLastDate) {
-              data.date = intval(cur.postponedLastDate) + 14400;
+              data.date = intval(cur.postponedLastDate) + 3600;
             }
             var chk = ge('official');
             if (chk) {
@@ -5816,13 +6406,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
         break;
 
         case 'mark_as_ads':
-          preview = '<div class="medadd_h medadd_h_mark_as_ads inl_bl">' + data.lang.global_ads_wall_post_mark_as_ads_action + '</div>';
-          hide(geByClass1('add_media_type_' + lnkId + '_mark_as_ads', menu.menuNode, 'a'));
           toEl = ppdocsEl;
-          if (ppdocsEl) {
-            toEl = ce('div');
-            ppdocsEl.insertBefore(toEl, domFC(ppdocsEl));
-          }
         break;
       }
 
@@ -5831,7 +6415,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
             ind = medias.length,
             mediaEl = (editable && toPics === 1) ? false : ((type == 'photos_list') ?
               se('<div class="page_preview_' + type + '_wrap" style="position: relative">' + preview + '<div class="page_photos_count">' + media.split(',').length + '</div></div>') :
-              se('<div class="page_preview_' + type + '_wrap"' + (opts.nocl ? ' style="cursor: default"' : '') + attrs + '>' + preview + '<div nosorthandle="1" class="page_media_x_wrap inl_bl" '+ (browser.msie && browser.version < 9 ? 'title' : 'tootltip') + '="'+getLang('dont_attach')+'" onmouseover="if (browser.msie && browser.version < 9) return; showTooltip(this, {text: this.getAttribute(\'tootltip\'), shift: [14, 3, 3], black: 1})" onclick="cur.addMedia['+addMedia.lnkId+'].unchooseMedia(' + ind + '); return cancelEvent(event);"><div class="page_media_x" nosorthandle="1"></div></div>' + postview + '</div>'));
+              se('<div class="page_preview_' + type + '_wrap"' + (opts.nocl ? ' style="cursor: default"' : '') + attrs + '>' + preview + '<div nosorthandle="1" class="page_media_x_wrap inl_bl" data-title="'+getLang('dont_attach')+'" aria-label="'+getLang('dont_attach')+'" role="button" onmouseover="showTitle(this, false, [14, 3, 3])" onclick="cur.addMedia['+addMedia.lnkId+'].unchooseMedia(' + ind + '); return cancelEvent(event);"><div class="page_media_x" nosorthandle="1"></div></div>' + postview + '</div>'));
         addClass(mediaEl, toPics ? 'fl_l' : 'clear_fix');
         if (data.upload_ind !== undefined) re('upload' + data.upload_ind + '_progress_wrap');
         if (opts.toggleLnk) toggle(lnk, addMedia.attachCount() + 1 < limit);
@@ -5889,13 +6473,8 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
         }
         medias.push([type, media, mediaEl, url]);
       } else {
-        var ind = 0;
-        if (type === 'postpone') {
-          ind = 1;
-        } else if (type === 'mark_as_ads') {
-          ind = 2;
-        }
-        var mediaEl = se('<div class="' + (toPics === false ? 'page_docs_preview' : 'page_pics_preview') + '"><div class="page_preview_' + type + '_wrap"' + (opts.nocl ? ' style="cursor: default"' : '') + attrs + '>' + preview + '<div nosorthandle="1" class="page_media_x_wrap inl_bl" '+ (browser.msie && browser.version < 9 ? 'title' : 'tootltip') + '="'+getLang('dont_attach')+'" onmouseover="if (browser.msie && browser.version < 9) return; showTooltip(this, {text: this.getAttribute(\'tootltip\'), shift: [14, 3, 3], black: 1})" onclick="cur.addMedia['+addMedia.lnkId+'].unchooseMedia(' + ind + '); return cancelEvent(event);"><div class="page_media_x" nosorthandle="1"></div></div>' + postview + '</div></div>');
+        var ind = (type === 'postpone' ? 1 : 0);
+        var mediaEl = se('<div class="' + (toPics === false ? 'page_docs_preview' : 'page_pics_preview') + '"><div class="page_preview_' + type + '_wrap"' + (opts.nocl ? ' style="cursor: default"' : '') + attrs + '>' + preview + '<div nosorthandle="1" class="page_media_x_wrap inl_bl" data-title="'+getLang('dont_attach')+'" aria-label="'+getLang('dont_attach')+'" role="button" onmouseover="showTitle(this, false, [14, 3, 3])" onclick="cur.addMedia['+addMedia.lnkId+'].unchooseMedia(' + ind + '); return cancelEvent(event);"><div class="page_media_x" nosorthandle="1"></div></div>' + postview + '</div></div>');
         if (data.upload_ind !== undefined) re('upload' + data.upload_ind + '_progress_wrap');
         if (type !== 'postpone' && type !== 'mark_as_ads') {
           addMedia.chosenMedia = [type, media];
@@ -5930,7 +6509,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
       if (ev && ev.type == 'click' && (event.ctrlKey || event.metaKey || event.shiftKey)) {
         noboxhide = true;
       }
-      if ((!cur.fileApiUploadStarted || data.upload_ind === undefined) && !cur.preventBoxHide && noboxhide !== true && !inArray(type, ['poll', 'share', 'page', 'postpone', 'mark_as_ads'])) {
+      if ((!cur.fileApiUploadStarted || data.upload_ind === undefined) && !cur.preventBoxHide && noboxhide !== true && !inArray(type, ['poll', 'share', 'page', 'postpone'])) {
         boxQueue.hideLast();
       }
 
@@ -6026,13 +6605,12 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
               if (!cur.editingPost) {
                 ge('send_post').innerHTML = getLang('wall_send');
               } else {
-                geByTag1('button', geByClass1('button_blue', ge('post'+cur.editingPost[0]))).innerHTML = getLang('wall_publish_now');
+                ge('wpe_save').innerHTML = getLang('wall_publish_now');
               }
               show(geByClass1('add_media_type_' + lnkId + '_postpone', menu.menuNode, 'a'));
               break;
 
             case 'mark_as_ads':
-              show(geByClass1('add_media_type_' + lnkId + '_mark_as_ads', menu.menuNode, 'a'));
               addMedia.markAsAds = false;
               break;
           }
@@ -6055,37 +6633,21 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
         if ((x = geByClass('page_media_x_wrap', previewEl, 'div')[ind]) && x.tt && x.tt.el) {
           x.tt.destroy();
         }
-        if ((ind == 1) && addMedia.postponePreview) {
+        if (ind && addMedia.postponePreview) {
           show(geByClass1('add_media_type_' + lnkId + '_postpone', menu.menuNode, 'a'));
           re(domPN(addMedia.postponePreview));
           addMedia.postponePreview = false;
-        } else if ((ind == 2) && addMedia.markAsAds) {
-          show(geByClass1('add_media_type_' + lnkId + '_mark_as_ads', menu.menuNode, 'a'));
-          var markAsAdsWrap = geByClass1('page_preview_mark_as_ads_wrap', previewEl);
-          re(markAsAdsWrap);
-          addMedia.markAsAds = false;
         } else {
-          if (addMedia.postponePreview || addMedia.markAsAds) {
-            var postponeWrap = addMedia.postponePreview && domPN(addMedia.postponePreview);
-            var markAsAdsWrap = addMedia.markAsAds && domPN(geByClass1('page_preview_mark_as_ads_wrap', previewEl));
-            var nodesToDelete = [];
+          if (addMedia.postponePreview) {
+            var postponeWrap = domPN(addMedia.postponePreview);
             for (var i = 0; i < previewEl.childNodes.length; i++) {
               var v = previewEl.childNodes[i];
-              if (v.nodeName == 'DIV' && v != postponeWrap && v != markAsAdsWrap) {
-                nodesToDelete.push(v);
-              }
-            }
-            each(nodesToDelete, function (i, v) {
-              re(v);
-            });
+              if (v.nodeName == 'DIV' && v != postponeWrap) re(v);
+            };
             each(geByClass('add_media_item', menu.menuNode, 'a'), function(i, v) {
-              if (addMedia.postponePreview && hasClass(v, 'add_media_type_' + lnkId + '_postpone')) {
-                return;
+              if (!hasClass(v, 'add_media_type_' + lnkId + '_postpone')) {
+                show(v);
               }
-              if (addMedia.markAsAds && hasClass(v, 'add_media_type_' + lnkId + '_mark_as_ads')) {
-                return;
-              }
-              show(v);
             });
           } else {
             val(previewEl, '');
@@ -6118,29 +6680,15 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
       if (addMedia.onChange) addMedia.onChange(false);
     },
     singleAdded: function(mediaEl, type) {
-      if (type === 'postpone') {
-        previewEl.appendChild(mediaEl);
-      } else if (type === 'mark_as_ads') {
-        if (addMedia.postponePreview) {
-          previewEl.insertBefore(mediaEl, domLC(previewEl));
-        } else {
-          previewEl.appendChild(mediaEl);
-        }
+      if (addMedia.postponePreview) {
+        previewEl.insertBefore(mediaEl, domFC(previewEl));
       } else {
-        if (domFC(previewEl)) {
-          previewEl.insertBefore(mediaEl, domFC(previewEl));
-        } else {
-          previewEl.appendChild(mediaEl);
-        }
+        previewEl.appendChild(mediaEl);
       }
       removeClass(previewEl, 'med_no_attach');
       var menuItemsVisible = 0;
       each(geByClass('add_media_item', menu.menuNode, 'a'), function(i, v) {
-        if (hasClass(v, 'add_media_type_' + lnkId + '_postpone') && (addMedia.postponePreview || type === 'postpone')) {
-          hide(v);
-        } else if (hasClass(v, 'add_media_type_' + lnkId + '_mark_as_ads') && (addMedia.markAsAds || type === 'mark_as_ads')) {
-          hide(v);
-        } else if (!inArray(type, ['postpone', 'mark_as_ads']) && !hasClass(v, 'add_media_type_' + lnkId + '_postpone') && !hasClass(v, 'add_media_type_' + lnkId + '_mark_as_ads')) {
+        if (type !== 'postpone' && !hasClass(v, 'add_media_type_' + lnkId + '_postpone')) {
           hide(v);
         } else if (isVisible(v)) {
           menuItemsVisible++;
@@ -6275,7 +6823,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
 
     // Inline Polls
     createPoll: function(data) {
-      var h = (browser.msie6 || data.question) ? '' : '1px', html = [], ans;
+      var h = data.question ? '' : '1px', html = [], ans;
       var incCl = data[4 + (10 - 1) * 2] ? 'disabled' : '', decCl = data[4 + 2 * 2] ? '' : 'disabled';
       addMedia.pollPreview = pdocsEl.appendChild(ce('div', {className: 'medadd_c medadd_c_poll', innerHTML: '\
 <input onkeydown="cur.addMedia[' + lnkId + '].keyPoll(this, event)" class="text medadd_c_pollq" id="create_poll_question' + lnkId + '" value="' + (data.question || '') + '" />\
@@ -6283,9 +6831,9 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
 <div class="medadd_c_pollans" id="create_poll_answers' + lnkId + '"></div>\
 <div class="medadd_c_polladd_wr" id="create_poll_add' + lnkId + '">\
   <div class="medadd_c_polladd" onclick="cur.addMedia[' + lnkId + '].incPoll()">' + data.lang.i + '</div>\
-</div>' + (data.edit ? '' : '<div class="checkbox medadd_c_pollcb' + (data.anon ? ' on' : '') + '" id="create_poll_anonymous' + lnkId + '" onclick="checkbox(this);cur.addMedia[' + lnkId + '].changedPoll();"><div></div>' + data.lang.c + '</div>')}));
+</div>' + (data.edit ? '' : '<div class="checkbox medadd_c_pollcb' + (data.anon ? ' on' : '') + '" id="create_poll_anonymous' + lnkId + '" onclick="checkbox(this);cur.addMedia[' + lnkId + '].changedPoll();">' + data.lang.c + '</div>')}));
       if (!data.answers) data.answers = [[0, ''], [0, '']];
-      cur.pollAnswerTemplate = '<input onkeydown="cur.addMedia[%lnkid%].keyPoll(this, event)" class="text medadd_c_polla" %attrs%/><div class="page_media_x_wrap medadd_c_pollrem inl_bl" '+ (browser.msie ? 'title' : 'tootltip') + '="'+data.lang.d+'" onmouseover="if (browser.msie) return; showTooltip(this, {text: this.getAttribute(\'tootltip\'), shift: [14, 3, 3], black: 1})" onclick="cur.addMedia[%lnkid%].decPoll(this)"><div class="page_media_x"></div></div>';
+      cur.pollAnswerTemplate = '<input onkeydown="cur.addMedia[%lnkid%].keyPoll(this, event)" class="text medadd_c_polla" %attrs%/><div class="page_media_x_wrap medadd_c_pollrem inl_bl" data-title="'+getLang('dont_attach')+'" aria-label="'+getLang('dont_attach')+'" role="button" onmouseover="showTitle(this, false, [14, 3, 3])" onclick="cur.addMedia[%lnkid%].decPoll(this)"><div class="page_media_x"></div></div>';
       for (var i = 0, l = data.answers.length; i < l; ++i) {
         ans = data.answers[i];
         html.push('<div class="medadd_c_polla_wr">' + rs(cur.pollAnswerTemplate, {
@@ -6295,7 +6843,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
         if (i == 9) hide('create_poll_add' + lnkId);
       }
       val('create_poll_answers' + lnkId, html.join(''));
-      if (browser.msie6 || data.question) {
+      if (data.question) {
         elfocus('create_poll_question' + lnkId);
         return;
       }
@@ -6355,6 +6903,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
       if (!q) {
         if (silentCheck !== true) {
           notaBene('create_poll_question' + lnkId);
+          elfocus('create_poll_question' + lnkId);
         }
         return false;
       }
@@ -6362,6 +6911,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
         if (!domFC(answers)) cur.addMedia[lnkId].incPoll();
         if (silentCheck !== true) {
           notaBene(domFC(domFC(answers)));
+          elfocus(domFC(domFC(answers)));
         }
         return false;
       }
@@ -6568,7 +7118,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
             microdata = data.microdata_preview_html;
           }
         }
-        var description = (cur.wallPageWide ? data.description_short : data.description_short_narrow ) || data.description;
+        var description = data.description_short || data.description;
         var html =
           imghtml +
           (data.title ? '<h4 class="medadd_c_linkhead">' + data.title + '</h4>' : '') +
@@ -6843,7 +7393,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
       } else {
         toEl = ppdocsEl;
       }
-      var ed = (cur.editingPost && domPN(toEl).id == 'wpe_media_preview'), h = (browser.msie6 || ed || !multi) ? '' : '1px', addedhtml = false;
+      var ed = (cur.editingPost && domPN(toEl).id == 'wpe_media_preview'), h = (ed || !multi) ? '' : '1px', addedhtml = false;
       var html = '<div class="clear_fix">\
 <div class="fl_l"><input type="hidden" id="postpone_date' + lnkId + '" value="' + (data.date || '') + '" /></div>\
 <div class="fl_l medadd_c_timerat">' + data.lang.profile_wall_postpone_at + '</div>\
@@ -6851,12 +7401,12 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
       if (cur.editingPost && data.friends_only != undefined) {
         html += '<div class="medadd_c_timersett">';
         if (data.status_export != undefined) {
-          html += '<div class="checkbox_status_export' + (data.status_export ? ' on' : '') + ' fl_l" id="status_export' + lnkId + '" onclick="checkbox(this)" onmouseover="showTooltip(this, {text: \'' + data.lang.export_to_twitter + '\', black: 1, shift: [12,4,0]});"><div></div></div>';
+          html += '<div class="checkbox_status_export' + (data.status_export ? ' on' : '') + ' fl_l" id="status_export' + lnkId + '" onclick="checkbox(this)" onmouseover="showTooltip(this, {text: \'' + data.lang.export_to_twitter + '\', black: 1, shift: [12,4,0]});"></div>';
         }
         if (data.facebook_export != undefined) {
-          html += '<div class="checkbox_facebook_export' + (data.facebook_export ? ' on' : '') + ' fl_l" id="facebook_export' + lnkId + '" onclick="checkbox(this)" onmouseover="showTooltip(this, {text: \'' + data.lang.export_to_facebook + '\', black: 1, shift: [12,4,0]});"><div></div></div>';
+          html += '<div class="checkbox_facebook_export' + (data.facebook_export ? ' on' : '') + ' fl_l" id="facebook_export' + lnkId + '" onclick="checkbox(this)" onmouseover="showTooltip(this, {text: \'' + data.lang.export_to_facebook + '\', black: 1, shift: [12,4,0]});"></div>';
         }
-        html += '<div class="checkbox' + (data.friends_only ? ' on' : '') + ' fl_l" id="friends_only' + lnkId + '" onclick="checkbox(this);checkbox(\'status_export' + lnkId + '\',!isChecked(this));checkbox(\'facebook_export' + lnkId + '\',!isChecked(this));"><div></div>'+ data.lang.friends_only +'</div></div>';
+        html += '<div class="checkbox' + (data.friends_only ? ' on' : '') + ' fl_l" id="friends_only' + lnkId + '" onclick="checkbox(this);checkbox(\'status_export' + lnkId + '\',!isChecked(this));checkbox(\'facebook_export' + lnkId + '\',!isChecked(this));">'+ data.lang.friends_only +'</div></div>';
         addedhtml = true;
       } else if (cur.editingPost && export_row) {
         html += export_row;
@@ -6865,8 +7415,8 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
       addMedia.postponePreview = toEl.appendChild(ce('div', {className: 'medadd_c medadd_c_timer clear_fix' + (addedhtml ? ' medadd_c_nofixed' : ''), innerHTML: html}));
       addMedia.postponePreview.style.height = h;
       stManager.add(['ui_controls.css', 'ui_controls.js', 'datepicker.css', 'datepicker.js'], function() {
-        new Datepicker('postpone_date' + lnkId, {time: 'postpone_time' + lnkId, width: 120, noPast: true, onUpdate: opts.onMediaChange});
-        if (!browser.msie6 && !ed && multi) {
+        new Datepicker('postpone_date' + lnkId, {time: 'postpone_time' + lnkId, width: 120, noPast: true, minStep: 1, onUpdate: opts.onMediaChange});
+        if (!ed && multi) {
           animate(addMedia.postponePreview, {height: 33}, 200, function() {
             addMedia.postponePreview.style.height = '';
           });
@@ -6956,7 +7506,7 @@ Composer = {
     Composer.initEvents(composer);
 
     if (options.media) {
-      composer.addMedia = initAddMedia(options.media.lnk, options.media.preview, options.media.types, options.media.options);
+      composer.addMedia = new MediaSelector(options.media.lnk, options.media.preview, options.media.types, options.media.options);
     }
 
     setStyle(composer.wddWrap, 'width', '');
@@ -7025,6 +7575,8 @@ Composer = {
       if (composer.wdd && inArray(event.keyCode, [KEY.SPACE, KEY.HOME, 190, 191, 78, 55, 49])) {
         Composer.hideSelectList(composer);
       }
+    }
+    if (event.type == 'keyup' && (!controlEvent || event.keyCode == KEY.RETURN)) {
       Composer.updateAutoComplete(composer, event);
     }
   },
@@ -7049,7 +7601,7 @@ Composer = {
     //prefValue = value.substr(0, curPos),
     var prefValue = value;
     var pos = Math.max(prefValue.lastIndexOf('@'), prefValue.lastIndexOf('*')),
-        term = pos > -1 ? prefValue.substr(pos + 1) : false;
+        term = pos > -1 ? prefValue.substr(pos + 1).replace(/\n$/, '') : false;
 
     if (term && term.match(/&nbsp;|[,\.\(\)\?\!\s\n \u00A0]|\#/)) {
       term = false;
@@ -7168,7 +7720,7 @@ Composer = {
     sel.moveStart('character',-1);
     sel.text  = '';
     if (browser.msie && len == -1) {
-      return node.value.length;
+      return (node.value || '').length;
     }
     return len;
   },

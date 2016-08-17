@@ -360,4 +360,202 @@ Payments.adsConfirmGoPaymentSystem = function(func) {
   var confirmBox = showFastBox('Внимание', confirmMessage, getLang('payments_payment_system_submit'), function() { func(); confirmBox.hide(); }, getLang('box_close'));
 }
 
+var MoneyTransfer = {
+  init: function() {
+    placeholderInit('transfer_amount');
+    placeholderInit('transfer_comment');
+  },
+  send: function() {
+    var box = curBox();
+        btn = box.btns.ok[0];
+    if (isButtonLocked(btn)) return;
+
+    var amount = val('transfer_amount'),
+        error = false;
+    if (!amount || amount <= 0) {
+      notaBene('transfer_amount');
+      return;
+    } else if (cur.paymentsOptions.minAmount && amount < cur.paymentsOptions.minAmount) {
+      error = getLang('payments_money_transfer_error_min_amount').replace('%d', cur.paymentsOptions.minAmount);
+    } else if (cur.paymentsOptions.maxAmount && amount > cur.paymentsOptions.maxAmount) {
+      error = getLang('payments_money_transfer_error_max_amount').replace('%d', cur.paymentsOptions.maxAmount);
+    }
+    if (error != false) {
+      MoneyTransfer.showError(error);
+      return;
+    }
+
+    var frc = ge('payments_iframe_container');
+    var iframe = ce('iframe', {id: 'transfer_iframe', name: 'transfer_iframe'}, {
+      border: 0,
+      height: '415px',
+      width: (frc.parentNode.offsetWidth - sbWidth()) + 'px',
+      overflowX: 'hidden',
+      overflowY: 'hidden'
+    });
+    iframe.frameBorder = 0;
+    frc.innerHTML = '';
+    frc.appendChild(iframe);
+
+    var popupUrl = '';
+    if (browser.msie && browser.version <= 10 || browser.opera) {
+      popupUrl = '/payments?act=go_gate&type=p2p';
+    }
+    if (popupUrl) {
+      var form = ce('form', {target: 'transfer_iframe', method: 'POST', action: popupUrl});
+      frc.appendChild(form);
+      form.submit();
+    }
+
+    var params = {
+      to_id: cur.paymentsOptions.toId,
+      amount: amount,
+      comment: val('transfer_comment'),
+      hash: cur.paymentsOptions.hash
+    };
+    val('payments_box_error', '');
+    ajax.post('al_payments.php?act=a_init_money_transfer', params, {
+      onDone: function(data, html) {
+        cur._popup_text = html;
+        cur._popup_callback = function() {
+          hide('payments_money_transfer_wrap', 'payments_box_error');
+          show('payments_iframe_container');
+          ge('payments_iframe_container').scrollTop = 0;
+
+          box.setOptions({hideButtons: true});
+          box.setBackTitle(function() {
+            hide('payments_iframe_container');
+            show('payments_money_transfer_wrap');
+            box.setOptions({hideButtons: false}).setBackTitle(false);
+          });
+        }
+        if (!popupUrl) {
+          var iframe = ge('transfer_iframe');
+          iframe.contentWindow.document.open('text/html', 'replace');
+          iframe.contentWindow.document.write(html);
+          iframe.contentWindow.document.close();
+          cur._popup_callback();
+        }
+        MoneyTransfer.startCheckStatus(data);
+      },
+      onFail: function(msg) {
+        MoneyTransfer.showError(msg);
+        return true;
+      },
+      showProgress: lockButton.pbind(btn),
+      hideProgress: unlockButton.pbind(btn)
+    });
+  },
+  popupWrite: function(popup) {
+    if (popup.document.innerHTML == cur._popup_text) return;
+    popup.document.write(cur._popup_text);
+    popup.document.close();
+    popup.document.charset = 'windows-1251';
+    popup.blur();
+    popup.focus();
+    if (cur._popup_callback) {
+      cur._popup_callback();
+    }
+  },
+  startCheckStatus: function(data) {
+    cur.isPaymentComplete = cur.isPaymentCanceled = cur.isPaymentFailed = false;
+    if (cur.moneyTranferCheckInt) {
+      clearInterval(cur.moneyTranferCheckInt);
+    }
+    cur.moneyTranferCheckInt = setInterval(function() {
+      MoneyTransfer.checkStatus(data);
+      if (cur.isPaymentCanceled || cur.isPaymentFailed) {
+        clearInterval(cur.moneyTranferCheckInt);
+        if (cur.isPaymentFailed) {
+          MoneyTransfer.showError(getLang('payments_landing_cancelled'));
+        } else {
+          MoneyTransfer.showError(getLang('payments_payment_cancelled'), 'info_msg');
+        }
+      }
+    }, 2000);
+  },
+  checkStatus: function(chkData) {
+    var params = {
+      act: 'a_check_money_transfer',
+      qid: chkData.qid,
+      hash: chkData.hash
+    };
+    if (chkData.accept) {
+      params.accept = chkData.accept;
+    }
+    ajax.post('al_payments.php', params, {
+      onDone: function(result, text) {
+        if (!result) {
+          return;
+        }
+        if (result == 1) { //success
+          while (boxQueue.count()) {
+            boxQueue.hideLast(false);
+          }
+          showDoneBox(text, {out: 6000});
+        } else if (result == 2) { // failed
+          MoneyTransfer.showError(text);
+        }
+        clearInterval(cur.moneyTranferCheckInt);
+      },
+      onFail: function(msg) {
+        clearInterval(cur.moneyTranferCheckInt);
+        MoneyTransfer.showError(msg);
+        return true;
+      }
+    });
+  },
+  initAccept: function(data, html) {
+    var frc = ge('payments_iframe_container');
+    var iframe = ce('iframe', {id: 'transfer_iframe', name: 'transfer_iframe'}, {
+      border: 0,
+      height: '415px',
+      width: (frc.parentNode.offsetWidth - sbWidth()) + 'px',
+      overflowX: 'hidden',
+      overflowY: 'hidden'
+    });
+    iframe.frameBorder = 0;
+    frc.innerHTML = '';
+    frc.appendChild(iframe);
+
+    var popupUrl = '';
+    if (browser.msie && browser.version <= 10 || browser.opera) {
+      popupUrl = '/payments?act=go_gate&type=p2p';
+      cur._popup_text = html;
+      cur._popup_callback = false;
+
+      var form = ce('form', {target: 'transfer_iframe', method: 'POST', action: popupUrl});
+      frc.appendChild(form);
+      form.submit();
+    } else {
+      iframe.contentWindow.document.open('text/html', 'replace');
+      iframe.contentWindow.document.write(html);
+      iframe.contentWindow.document.close();
+    }
+
+    MoneyTransfer.startCheckStatus(data);
+  },
+  cleanAmount: function(o) {
+    var v = o.value.replace(/[^0-9]/g, "");
+    if (o.value != v) o.value = v;
+  },
+  checkUserMessage: function() {
+    checkTextLength(cur.paymentsOptions.maxTextLength, ge('transfer_comment'),  ge('transfer_comment_limit_message'), false, true);
+  },
+  aboutBox: function() {
+    return !showFastBox({title: getLang('payments_money_transfer_about_title'), width: 560}, getLang('payments_money_transfer_about_text'));
+  },
+  showError: function(msg, type) {
+    if (msg) {
+      ge('payments_box_error').innerHTML = '';
+      showMsg('payments_box_error', msg, !type ? 'error' : type);
+      show('payments_box_error');
+    }
+    if (ge('payments_money_transfer_wrap')) {
+      hide('payments_iframe_container');
+      show('payments_money_transfer_wrap');
+    }
+  }
+};
+
 try{stManager.done('payments.js');}catch(e){}

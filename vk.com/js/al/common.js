@@ -1,3 +1,9 @@
+// https://github.com/Olical/EventEmitter
+(function(){"use strict";function t(){}function i(t,n){for(var e=t.length;e--;)if(t[e].listener===n)return e;return-1}function n(e){return function(){return this[e].apply(this,arguments)}}var e=t.prototype,r=this,s=r.EventEmitter;e.getListeners=function(n){var r,e,t=this._getEvents();if(n instanceof RegExp){r={};for(e in t)t.hasOwnProperty(e)&&n.test(e)&&(r[e]=t[e])}else r=t[n]||(t[n]=[]);return r},e.flattenListeners=function(t){var e,n=[];for(e=0;e<t.length;e+=1)n.push(t[e].listener);return n},e.getListenersAsObject=function(n){var e,t=this.getListeners(n);return t instanceof Array&&(e={},e[n]=t),e||t},e.addListener=function(r,e){var t,n=this.getListenersAsObject(r),s="object"==typeof e;for(t in n)n.hasOwnProperty(t)&&-1===i(n[t],e)&&n[t].push(s?e:{listener:e,once:!1});return this},e.on=n("addListener"),e.addOnceListener=function(e,t){return this.addListener(e,{listener:t,once:!0})},e.once=n("addOnceListener"),e.defineEvent=function(e){return this.getListeners(e),this},e.defineEvents=function(t){for(var e=0;e<t.length;e+=1)this.defineEvent(t[e]);return this},e.removeListener=function(r,s){var n,e,t=this.getListenersAsObject(r);for(e in t)t.hasOwnProperty(e)&&(n=i(t[e],s),-1!==n&&t[e].splice(n,1));return this},e.off=n("removeListener"),e.addListeners=function(e,t){return this.manipulateListeners(!1,e,t)},e.removeListeners=function(e,t){return this.manipulateListeners(!0,e,t)},e.manipulateListeners=function(r,t,i){var e,n,s=r?this.removeListener:this.addListener,o=r?this.removeListeners:this.addListeners;if("object"!=typeof t||t instanceof RegExp)for(e=i.length;e--;)s.call(this,t,i[e]);else for(e in t)t.hasOwnProperty(e)&&(n=t[e])&&("function"==typeof n?s.call(this,e,n):o.call(this,e,n));return this},e.removeEvent=function(e){var t,r=typeof e,n=this._getEvents();if("string"===r)delete n[e];else if(e instanceof RegExp)for(t in n)n.hasOwnProperty(t)&&e.test(t)&&delete n[t];else delete this._events;return this},e.removeAllListeners=n("removeEvent"),e.emitEvent=function(r,o){var e,i,t,s,n=this.getListenersAsObject(r);for(t in n)if(n.hasOwnProperty(t))for(i=n[t].length;i--;)e=n[t][i],e.once===!0&&this.removeListener(r,e.listener),s=e.listener.apply(this,o||[]),s===this._getOnceReturnValue()&&this.removeListener(r,e.listener);return this},e.trigger=n("emitEvent"),e.emit=function(e){var t=Array.prototype.slice.call(arguments,1);return this.emitEvent(e,t)},e.setOnceReturnValue=function(e){return this._onceReturnValue=e,this},e._getOnceReturnValue=function(){return this.hasOwnProperty("_onceReturnValue")?this._onceReturnValue:!0},e._getEvents=function(){return this._events||(this._events={})},t.noConflict=function(){return r.EventEmitter=s,t},"function"==typeof define&&define.amd?define(function(){return t}):"object"==typeof module&&module.exports?module.exports=t:r.EventEmitter=t}).call(this);
+
+// https://github.com/blueimp/JavaScript-Canvas-to-Blob
+!function(t){"use strict";var e=t.HTMLCanvasElement&&t.HTMLCanvasElement.prototype,o=t.Blob&&function(){try{return Boolean(new Blob)}catch(t){return!1}}(),n=o&&t.Uint8Array&&function(){try{return 100===new Blob([new Uint8Array(100)]).size}catch(t){return!1}}(),r=t.BlobBuilder||t.WebKitBlobBuilder||t.MozBlobBuilder||t.MSBlobBuilder,a=/^data:((.*?)(;charset=.*?)?)(;base64)?,/,i=(o||r)&&t.atob&&t.ArrayBuffer&&t.Uint8Array&&function(t){var e,i,l,u,b,c,d,B,f;if(e=t.match(a),!e)throw new Error("invalid data URI");for(i=e[2]?e[1]:"text/plain"+(e[3]||";charset=US-ASCII"),l=!!e[4],u=t.slice(e[0].length),b=l?atob(u):decodeURIComponent(u),c=new ArrayBuffer(b.length),d=new Uint8Array(c),B=0;B<b.length;B+=1)d[B]=b.charCodeAt(B);return o?new Blob([n?d:c],{type:i}):(f=new r,f.append(c),f.getBlob(i))};t.HTMLCanvasElement&&!e.toBlob&&(e.mozGetAsFile?e.toBlob=function(t,o,n){t(n&&e.toDataURL&&i?i(this.toDataURL(o,n)):this.mozGetAsFile("blob",o))}:e.toDataURL&&i&&(e.toBlob=function(t,e,o){t(i(this.toDataURL(e,o)))})),"function"==typeof define&&define.amd?define(function(){return i}):"object"==typeof module&&module.exports?module.exports=i:t.dataURLtoBlob=i}(window);
+
 if (vk.al == 1) {
   if (location['search'] || location.pathname != '/') {
     location.replace('/');
@@ -33,16 +39,20 @@ var parseJSON = (window.JSON && JSON.parse) ? function (obj) {
 } : function(obj) {
   return eval('('+obj+')');
 }
+window.vkLastNav = Date.now();
+window.vkTabLoaded = Date.now();
 
 var cur = {destroy: [], nav: []}; // Current page variables and navigation map.
 var browser = {
   version: (_ua.match( /.+(?:me|ox|on|rv|it|era|opr|ie)[\/: ]([\d.]+)/ ) || [0,'0'])[1],
   opera: (/opera/i.test(_ua) || /opr/i.test(_ua)),
+  vivaldi: /vivaldi/i.test(_ua),
   msie: (/msie/i.test(_ua) && !/opera/i.test(_ua) || /trident\//i.test(_ua)) || /edge/i.test(_ua),
   msie6: (/msie 6/i.test(_ua) && !/opera/i.test(_ua)),
   msie7: (/msie 7/i.test(_ua) && !/opera/i.test(_ua)),
   msie8: (/msie 8/i.test(_ua) && !/opera/i.test(_ua)),
   msie9: (/msie 9/i.test(_ua) && !/opera/i.test(_ua)),
+  msie_edge: (/edge/i.test(_ua) && !/opera/i.test(_ua)),
   mozilla: /firefox/i.test(_ua),
   chrome: /chrome/i.test(_ua) && !/edge/i.test(_ua),
   safari: (!(/chrome/i.test(_ua)) && /webkit|safari|khtml/i.test(_ua)),
@@ -223,6 +233,24 @@ function topError(text, opts) {
   }
 }
 
+function showMsg(container, text, type, anim) {
+  var cls = 'msg' + (type !== 'msg' ? ' ' + type : '');
+  if (anim) cls += ' msg_appear';
+  container = ge(container);
+  var el = geByClass1(type, container),
+      fc = el ? el : domFC(container);
+  var new_el = container.insertBefore(ce('div', {className: cls, innerHTML: '<div class="msg_text">'+text+'</div>'}), fc);
+  if (el) re(el);
+  setTimeout(removeClass.pbind(new_el, 'msg_appear'), 0);
+}
+
+function nodeUpdated(elem, delay) {
+  setStyle(elem, {backgroundColor: '#F5F7FA'});
+  animate(elem, {backgroundColor: '#FFF'}, delay || 6000, function(el) {
+    setStyle(el, {backgroundColor: null});
+  });
+}
+
 function langNumeric(count, vars, formatNum) {
   if (!vars || !window.langConfig) { return count; }
   var res;
@@ -263,6 +291,24 @@ function langSex(sex, vars) {
   return res;
 }
 
+function langStr(vars) {
+  var res = vars + '', args = arguments, args_count = args.length;
+  for (var i = 1; i < args_count; i += 2) {
+    var token = args[i][0] == '%' ? args[i] : '{' + args[i] + '}';
+    res = res.replace(token, args[i + 1]);
+  }
+  return res;
+}
+
+function addLangKeys(keys, global) {
+  var obj = global ? window : window.cur;
+  if (!obj.lang) {
+    obj.lang = keys;
+  } else {
+    extend(obj.lang, keys);
+  }
+}
+
 function getLang() {
   try {
     var args = Array.prototype.slice.call(arguments);
@@ -276,7 +322,7 @@ function getLang() {
     }
     if (isFunction(val)) {
       return val.apply(null, args);
-    } else if (args[0] !== undefined || isArray(val)) {
+    } else if ((args[0] !== undefined || isArray(val)) && args[0] !== 'raw') {
       return langNumeric(args[0], val, args[1]);
     } else {
       return val;
@@ -284,6 +330,21 @@ function getLang() {
   } catch(e) {
     debugLog('lang error:' + e.message + '(' + Array.prototype.slice.call(arguments).join(', ') + ')');
   }
+}
+
+function addTemplates(tpls) {
+  window.templates = window.templates || {};
+  extend(window.templates, tpls);
+}
+function getTemplate(tplName, state) {
+  var tpls = window.templates = window.templates || {},
+      tpl = tpls[tplName];
+
+  if (tpl && state) {
+    return rs(tpl, state);
+  }
+
+  return tpl || '';
 }
 
 // Debug Log
@@ -328,7 +389,7 @@ function geByClass(searchClass, node, tag) {
   tag = tag || '*';
   var classElements = [];
 
-  if (!browser.msie8 && node.querySelectorAll && tag != '*') {
+  if (node.querySelectorAll && tag != '*') {
     return node.querySelectorAll(tag + '.' + searchClass);
   }
   if (node.getElementsByClassName) {
@@ -358,15 +419,22 @@ function geByClass(searchClass, node, tag) {
 function geByClass1(searchClass, node, tag) {
   node = ge(node) || document;
   tag = tag || '*';
-  return !browser.msie8 && node.querySelector && node.querySelector(tag + '.' + searchClass) || geByClass(searchClass, node, tag)[0];
+  return node.querySelector && node.querySelector(tag + '.' + searchClass) || geByClass(searchClass, node, tag)[0];
 }
-function gpeByClass(className, elem) {
+function gpeByClass(className, elem, stopElement) {
   elem = ge(elem);
   if (!elem) return null;
-  while (elem = elem.parentNode) {
+  while (stopElement !== elem && (elem = elem.parentNode)) {
     if (hasClass(elem, className)) return elem;
   }
   return null;
+}
+function domQuery(selectors) {
+  return document.querySelectorAll(selectors);
+}
+function domClosest(className, elem) {
+  if (hasClass(elem, className)) return elem;
+  return gpeByClass(className, elem);
 }
 function ce(tagName, attr, style) {
   var el = document.createElement(tagName);
@@ -404,10 +472,12 @@ function re(el) {
   return el;
 }
 
-function se(html) {return ce('div', {innerHTML: html}).firstChild;}
+function se(html) {return domFC(ce('div', {innerHTML: html}));}
+function sech(html) {return domChildren(ce('div', {innerHTML: html}));}
 function rs(html, repl) {
   each (repl, function(k, v) {
-    html = html.replace(new RegExp('%' + k + '%', 'g'), v);
+    html = html.replace(new RegExp('%' + k + '%', 'g'), (typeof v === 'undefined' ? '' : v)
+      .toString().replace(/\$/g, '&#036;')); // fix in case input contains '$' which will be interpreted as control symbold
   });
   return html;
 }
@@ -419,6 +489,14 @@ function psr(html) {
   html = html.replace(/http:\/\/cs(\d+)\.(userapi\.com|vk\.com|vk\.me|vkontakte\.ru)\//gi, 'https://ps.vk.me/c$1/');
   html = html.replace(/http:\/\/video(\d+)\.vkadre\.ru\//gi, 'https://ps.vk.me/v$1/');
   return html;
+}
+
+function domReplaceEl(oldEl, newEl) {
+  if (isString(newEl)) {
+    newEl = se(newEl);
+  }
+  domPN(oldEl).replaceChild(newEl, oldEl);
+  return newEl;
 }
 
 function domEL(el, p) {
@@ -441,29 +519,65 @@ function domLC(el) {
 function domPN(el) {
   return (el || {}).parentNode;
 }
+function domChildren(el) {
+  var chidlren = [];
+  var nodes = el.childNodes;
+  for (var i = 0; i < nodes.length; i++) {
+    if (nodes[i].tagName) {
+      chidlren.push(nodes[i]);
+    }
+  }
+  return chidlren;
+}
+function domInsertBefore(el, before) {
+  var parent = domPN(before);
+  return parent && parent.insertBefore(el, before);
+}
+function domInsertAfter(el, after) {
+  var parent = domPN(after);
+  return parent && parent.insertBefore(el, domNS(after));
+}
+function domByClass(el, searchClass) {
+  if (!el) return el;
+  return geByClass1(searchClass, el);
+}
+
+function domData(el, name, value) {
+  if (!el) {
+    return null;
+  }
+
+  if (typeof value != 'undefined') {
+    el.setAttribute('data-' + name, value);
+    return value;
+  } else {
+    return el.getAttribute('data-' + name);
+  }
+}
 
 // Closest ansector matching given selector
 function domCA(el, selector) {
   var matches = selector ?
-                (el.matches ||
-                el.matchesSelector ||
-                el.msMatchesSelector ||
-                el.mozMatchesSelector ||
-                el.webkitMatchesSelector ||
-                el.oMatchesSelector) :
+                matchesSelector :
                 function() { return true; };
-  var doesMatch = function (e, s) {
-    try {
-      return matches.call(e, s);
-    } catch (err) {
-      return false;
-    }
-  };
-
   do {
     el = domPN(el);
-  } while(el && !doesMatch(el, selector));
+  } while(el && !matchesSelector(el, selector));
   return el;
+}
+
+function matchesSelector(el, selector) {
+  var matches = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector || function(selector) {
+    var nodes = (this.parentNode || this.document || this.ownerDocument).querySelectorAll(selector);
+    for (var i = nodes.length; --i >= 0 && nodes[i] !== this; ) ;
+    return i > -1;
+  };
+
+  return matches.call(el, selector);
+}
+
+function isHover(el) {
+  return matchesSelector(el, ':hover');
 }
 
 function isAncestor(el, ancestor) {
@@ -478,6 +592,37 @@ function isAncestor(el, ancestor) {
     }
   }
   return false;
+}
+
+function domClosestPositioned(el) {
+  var parent = domPN(el);
+  while (parent && parent != bodyNode) {
+    var elPos = getStyle(parent, 'position'),
+        overflow = getStyle(parent, 'overflow');
+
+    if (inArray(elPos, ['relative', 'absolute', 'fixed']) && overflow != 'hidden') {
+      break;
+    }
+
+    parent = domPN(parent);
+  }
+
+  return parent;
+}
+
+function domClosestOverflowHidden(el) {
+  var parent = domPN(el);
+  while (parent && parent != bodyNode) {
+    var overflow = getStyle(parent, 'overflow');
+
+    if (overflow == 'hidden') {
+      break;
+    }
+
+    parent = domPN(parent);
+  }
+
+  return parent;
 }
 
 function show(elem) {
@@ -501,8 +646,10 @@ function show(elem) {
     return;
   }
 
-  if (hasClass(elem, 'inline')) {
+  if (hasClass(elem, 'inline') || hasClass(elem, '_inline')) {
     newStyle = 'inline';
+  } else if (hasClass(elem, '_inline_block')) {
+    newStyle = 'inline-block';
   } else if (tag === 'tr' && !browser.msie) {
     newStyle = 'table-row';
   } else if (tag === 'table' && !browser.msie) {
@@ -534,6 +681,30 @@ function isVisible(elem) {
   elem = ge(elem);
   if (!elem || !elem.style) return false;
   return getStyle(elem, 'display') != 'none';
+}
+
+function clientHeight() {
+  return window.innerHeight || docEl.clientHeight || bodyNode.clientHeight;
+}
+
+function getClientRectOffsetY(elem, part, offset) {
+  elem = ge(elem);
+  offset = offset || 0;
+  var ey = getXY(elem)[1],
+      eh = getSize(elem)[1],
+      w = window, de = document.documentElement,
+      ch = Math.max(intval(w.innerHeight), intval(de.clientHeight)),
+      fixed_head = ge('page_header_cont'),
+      hh = getSize(fixed_head)[1],
+      st = (de.scrollTop || bodyNode.scrollTop || window.scrollY || 0);
+  if (!part) {
+    if (ey < st + hh + offset) return (ey - st - hh - offset);
+    if (ey + eh > st + ch - offset) return (ey + eh - st - ch + offset);
+  } else {
+    if (ey + eh < st + hh + offset) return (ey + eh - st - hh - offset);
+    if (ey > st + ch - offset) return (ey - st - ch + offset);
+  }
+  return 0;
 }
 
 function toggle(elem, v) {
@@ -574,39 +745,56 @@ function toggleFlash(show, timeout) {
   each(geByTag('object'), f);
 }
 
+function boundingRectEnabled(obj) {
+  return (typeof obj.getBoundingClientRect !== 'undefined');
+}
+
+function getXYRect(obj, notBounding) {
+  var rect;
+  if (notBounding && getStyle(obj, 'display') == 'inline') {
+    var rects = obj.getClientRects();
+    rect = rects && rects[0] || obj.getBoundingClientRect();
+  } else {
+    rect = obj.getBoundingClientRect();
+  }
+
+  return rect;
+}
+
 function getXY(obj, forFixed) {
   obj = ge(obj);
   if (!obj) return [0,0];
 
-  var left = 0, top = 0, pos, lastLeft;
-  if (obj.offsetParent) {
-    do {
-      left += (lastLeft = obj.offsetLeft);
-      top += obj.offsetTop;
-      pos = getStyle(obj, 'position');
-      if (pos == 'fixed' || pos == 'absolute' || (pos == 'relative')) {
-        left -= obj.scrollLeft;
-        top -= obj.scrollTop;
-        if (pos == 'fixed' && !forFixed) {
-          left += ((obj.offsetParent || {}).scrollLeft || bodyNode.scrollLeft || htmlNode.scrollLeft);
-          top += ((obj.offsetParent || {}).scrollTop || bodyNode.scrollTop || htmlNode.scrollTop);
-        }
-      }
-    } while (obj = obj.offsetParent);
+  var docElem, win,
+      rect = {top: 0, left: 0},
+      doc = obj.ownerDocument;
+  if (!doc) {
+    return [0, 0];
   }
-  if (forFixed && browser.msie && intval(browser.version) < 9) {
-    if (lastLeft) {
-      left += ge('page_layout').offsetLeft;
-    }
+  docElem = doc.documentElement;
+
+  if (boundingRectEnabled(obj)) {
+    rect = getXYRect(obj, true);
   }
-  return [left,top];
+  win = doc == doc.window ? doc : (doc.nodeType === 9 ? doc.defaultView || doc.parentWindow : false);
+  return [
+    rect.left + (!forFixed ? win.pageXOffset || docElem.scrollLeft : 0) - (docElem.clientLeft || 0),
+    rect.top + (!forFixed ? win.pageYOffset || docElem.scrollTop : 0) - (docElem.clientTop || 0)
+  ];
 }
 
-function getSize(elem, withoutBounds) {
+function isWindow(el) {
+  return el != null && el === el.window;
+}
+
+function getSize(elem, withoutBounds, notBounding) {
   elem = ge(elem);
-  var s = [0, 0], de = document.documentElement;
+  var s = [0, 0], de = document.documentElement, rect;
+  if (withoutBounds && getStyle(elem, 'boxSizing') === 'border-box') {
+    withoutBounds = false;
+  }
   if (elem == document) {
-    s =  [Math.max(
+    s = [Math.max(
         de.clientWidth,
         bodyNode.scrollWidth, de.scrollWidth,
         bodyNode.offsetWidth, de.offsetWidth
@@ -617,7 +805,11 @@ function getSize(elem, withoutBounds) {
       )];
   } else if (elem){
     function getWH() {
-      s = [elem.offsetWidth, elem.offsetHeight];
+      if (boundingRectEnabled(elem) && (rect = getXYRect(elem, notBounding)) && rect.width !== undefined) {
+        s = [rect.width, rect.height];
+      } else {
+        s = [elem.offsetWidth, elem.offsetHeight];
+      }
       if (!withoutBounds) return;
       var padding = 0, border = 0;
       each(s, function(i, v) {
@@ -627,7 +819,6 @@ function getSize(elem, withoutBounds) {
           s[i] -= parseFloat(getStyle(elem, 'border' + this + 'Width')) || 0;
         });
       });
-      s = [Math.round(s[0]), Math.round(s[1])];
     }
     if (!isVisible(elem)) {
       var props = {position: 'absolute', visibility: 'hidden', display: 'block'};
@@ -672,15 +863,6 @@ Function.prototype.rpbind = function() {
   args.unshift(window);
   return this.rbind.apply(this, args);
 }
-Function.prototype.bind = function() {
-  var func = this;
-  var args = Array.prototype.slice.call(arguments);
-  var obj = args.shift();
-  return function() {
-    var curArgs = Array.prototype.slice.call(arguments);
-    return func.apply(obj, args.concat(curArgs));
-  }
-}
 Function.prototype.rbind = function() {
   var func = this;
   var args = Array.prototype.slice.call(arguments);
@@ -693,11 +875,24 @@ Function.prototype.rbind = function() {
   }
 }
 
+if (!Function.prototype.bind) {
+  Function.prototype.bind = function() {
+    var func = this, args = Array.prototype.slice.call(arguments);
+    var obj = args.shift();
+    return function() {
+      var curArgs = Array.prototype.slice.call(arguments);
+      return func.apply(obj, args.concat(curArgs));
+    }
+  }
+}
+
 function rand(mi, ma) { return Math.random() * (ma - mi + 1) + mi; }
 function irand(mi, ma) { return Math.floor(rand(mi, ma)); }
-function isFunction(obj) {return Object.prototype.toString.call(obj) === '[object Function]'; }
+function isUndefined(obj) { return typeof obj === 'undefined' };
+function isFunction(obj) {return obj && Object.prototype.toString.call(obj) === '[object Function]'; }
 function isArray(obj) { return Object.prototype.toString.call(obj) === '[object Array]'; }
-function isObject(obj) { return Object.prototype.toString.call(obj) === '[object Object]' && !(browser.msie8 && obj && obj.item !== 'undefined' && obj.namedItem !== 'undefined'); }
+function isString(obj) { return typeof obj === 'string'; }
+function isObject(obj) { return Object.prototype.toString.call(obj) === '[object Object]'; }
 function isEmpty(o) { if(Object.prototype.toString.call(o) !== '[object Object]') {return false;} for(var i in o){ if(o.hasOwnProperty(i)){return false;} } return true; }
 function vkNow() { return +new Date; }
 function vkImage() { return window.Image ? (new Image()) : ce('img'); } // IE8 workaround
@@ -715,6 +910,9 @@ function floatval(value) {
 function positive(value) {
   value = intval(value);
   return value < 0 ? 0 : value;
+}
+function isNumeric(value) {
+  return !isNaN(value);
 }
 
 function winToUtf(text) {
@@ -766,8 +964,8 @@ function inArray(value, arr) {
 function clone(obj, req) {
   var newObj = !isObject(obj) && typeof obj.length !== 'undefined' ? [] : {};
   for (var i in obj) {
-    if (/webkit/i.test(_ua) && (i == 'layerX' || i == 'layerY')) continue;
-    if (req && typeof(obj[i]) === 'object' && i !== 'prototype') {
+    if (/webkit/i.test(_ua) && (i == 'layerX' || i == 'layerY' || i == 'webkitMovementX' || i == 'webkitMovementY')) continue;
+    if (req && typeof(obj[i]) === 'object' && i !== 'prototype' && obj[i] !== null) {
       newObj[i] = clone(obj[i]);
     } else {
       newObj[i] = obj[i];
@@ -829,7 +1027,7 @@ function extend() {
 // CSS classes
 //
 window.whitespaceRegex = /[\t\r\n\f]/g;
-function hasClass(obj, name ) {
+function hasClass(obj, name) {
   obj = ge(obj);
   if (obj &&
     obj.nodeType === 1 &&
@@ -839,16 +1037,21 @@ function hasClass(obj, name ) {
 
   return false;
 }
+
 function addClass(obj, name) {
   if ((obj = ge(obj)) && !hasClass(obj, name)) {
     obj.className = (obj.className ? obj.className + ' ' : '') + name;
   }
 }
+function addClassDelayed(obj, name) { setTimeout(addClass.pbind(obj, name), 0); }
+
 function removeClass(obj, name) {
   if (obj = ge(obj)) {
     obj.className = trim((obj.className || '').replace((new RegExp('(\\s|^)' + name + '(\\s|$)')), ' '));
   }
 }
+function removeClassDelayed(obj, name) { setTimeout(removeClass.pbind(obj, name), 0); }
+
 function toggleClass(obj, name, v) {
   if (v === undefined) {
     v = !hasClass(obj, name);
@@ -856,6 +1059,15 @@ function toggleClass(obj, name, v) {
   (v ? addClass : removeClass)(obj, name);
   return v;
 }
+
+function toggleClassDelayed(obj, name, v) {
+  if (v === undefined) {
+    v = !hasClass(obj, name);
+  }
+  (v ? addClassDelayed : removeClassDelayed)(obj, name);
+  return v;
+}
+
 function replaceClass(obj, oldName, newName) {
   removeClass(obj, oldName);
   addClass(obj, newName);
@@ -922,6 +1134,19 @@ function getStyle(elem, name, force) {
   return ret;
 }
 
+var cssTransformProp = (function(){
+  var testEl = document.createElement('div');
+  if(testEl.style.transform == null) {
+    var vendors = ['Webkit', 'Moz', 'ms'];
+    for(var vendor in vendors) {
+      if(testEl.style[ vendors[vendor] + 'Transform' ] !== undefined) {
+        return vendors[vendor] + 'Transform';
+      }
+    }
+  }
+  return 'transform';
+})();
+
 function setStyle(elem, name, value){
   elem = ge(elem);
   if (!elem) return;
@@ -948,6 +1173,36 @@ function setStyle(elem, name, value){
     } catch(e){debugLog('setStyle error: ', [name, value], e);}
   }
 }
+function setStyleDelayed(elem, name, value) { setTimeout(setStyle.pbind(elem, name, value), 0); }
+
+function setPseudoStyle(elem, pseudo, style) {
+  var pid = data(elem, 'pseudo-id');
+  if (!pid) {
+    data(elem, 'pseudo-id', pid = irand(100000000, 999999999));
+    addClass(elem, '_pseudo_' + pid);
+  }
+  var sid = pseudo + '-style-' + pid,
+      stel = ge(sid),
+      css = '._pseudo_' + pid + ':' + pseudo + '{';
+  if (!stel) {
+    stel = headNode.appendChild(ce('style', {
+      id: sid,
+      type: 'text/css'
+    }));
+  }
+  each(style, function(k, v) {
+    css += k + ': ' + v + ' !important;';
+  });
+  css += '}';
+  if (stel.sheet) {
+    if (stel.sheet.cssRules.length) {
+      stel.sheet.deleteRule(0);
+    }
+    stel.sheet.insertRule(css, 0);
+  } else if (stel.styleSheet) {
+    stel.styleSheet.cssText = css;
+  }
+}
 
 //
 // Store data connected to element
@@ -971,6 +1226,15 @@ function data(elem, name, data) {
   }
 
   return name ? vkCache[id] && vkCache[id][name] : id;
+}
+function attr(el, attrName, value) {
+  el = ge(el);
+  if (typeof value == 'undefined') {
+    return el.getAttribute(attrName);
+  } else {
+    el.setAttribute(attrName, value);
+    return value;
+  }
 }
 function removeAttr(el) {
   for (var i = 0, l = arguments.length; i < l; ++i) {
@@ -1072,14 +1336,7 @@ function animate(el, params, speed, callback) {
           setStyle(el, p, 0);
         }
 
-        var o;
-        if (p == 'height' && browser.msie6) {
-          o = '0px';
-          el.style.overflow = '';
-        } else {
-          o = options.orig[p];
-        }
-
+        var o = options.orig[p];
         var old = el.style[p];
         el.style[p] = o;
         params[p] = parseFloat(getStyle(el, p, true));
@@ -1117,15 +1374,7 @@ function animate(el, params, speed, callback) {
         }
       }
 
-      if (options.hide && name == 'height' && browser.msie6) {
-        el.style.height = '0px';
-        el.style.overflow = '';
-      }
       from = tween.cur(name, true);
-      if (options.hide && name == 'height' && browser.msie6) {
-        el.style.height = '';
-        el.style.overflow = 'hidden';
-      }
       if (from == 0 && (name == 'width' || name == 'height'))
         from = 1;
 
@@ -1219,6 +1468,7 @@ Fx.Base = function(el, options, name) {
   this.el = ge(el);
   this.name = name;
   this.options = extend({
+    onStep: function(){},
     onComplete: function() {},
     transition: options.transition || Fx.Transitions.sineInOut,
     duration: 500
@@ -1326,6 +1576,7 @@ Fx.Base.prototype = {
   },
 
   update: function(){
+    this.options.onStep(this.now);
     for (var p in this.now) {
       if (isArray(this.now[p])) setStyle(this.el, p, 'rgb(' + this.now[p].join(',') + ')');
       else this.el[p] != undefined ? (this.el[p] = this.now[p]) : setStyle(this.el, p, this.now[p]);
@@ -1367,27 +1618,19 @@ function getColor(elem, attr) {
   return getRGB(color);
 }
 
-function scrollToY(y, speed, anim, topLink) {
+function scrollToY(y, speed, anim, noCorrect) {
   if (speed == undefined) speed = 400;
 
   var isTouchDevice = ('ontouchstart' in document.documentElement);
   if (isTouchDevice) {
     speed = 0;
   }
-
-  // Safari workaround
-  clearTimeout(cur.scrollFinalTO);
-  cur.scrollFinalY = y;
-  cur.scrollFinalTO = setTimeout(function () {
-    delete cur.scrollFinalY;
-  }, speed + 50);
-
-  if (browser.msie6) {
-    if (data(pageNode, 'tween')) data(pageNode, 'tween').stop(false);
-  } else {
-    if (data(bodyNode, 'tween')) data(bodyNode, 'tween').stop(false);
-    if (data(htmlNode, 'tween')) data(htmlNode, 'tween').stop(false);
+  if (!noCorrect) {
+    y = Math.max(0, y - getSize('page_header_cont')[1]);
   }
+
+  if (data(bodyNode, 'tween')) data(bodyNode, 'tween').stop(false);
+  if (data(htmlNode, 'tween')) data(htmlNode, 'tween').stop(false);
   window.scrollAnimation = false;
   if (speed) {
     var updT = function() {
@@ -1400,12 +1643,8 @@ function scrollToY(y, speed, anim, topLink) {
       }
     }
     window.scrollAnimation = true;
-    if (browser.msie6) {
-      animate(pageNode, {scrollTop: y}, speed, updT);
-    } else {
-      animate(htmlNode, {scrollTop: y, transition: Fx.Transitions.easeInCirc}, speed, updT);
-      animate(bodyNode, {scrollTop: y, transition: Fx.Transitions.easeInCirc}, speed, updT);
-    }
+    animate(htmlNode, {scrollTop: y}, {duration: speed, transition: Fx.Transitions.sineInOut, onComplete: updT});
+    animate(bodyNode, {scrollTop: y}, {duration: speed, transition: Fx.Transitions.sineInOut, onComplete: updT});
   } else {
     if (anim && anim !== 2) {
       if ((cur.module == 'profile' || cur.module == 'public' || cur.module == 'group' || cur.module == 'event') && window.Wall) {
@@ -1413,17 +1652,14 @@ function scrollToY(y, speed, anim, topLink) {
       }
       var diff = scrollGetY() - y;
       if (Math.abs(diff) > 6) {
-        scrollToY(y+(diff > 0 ? 6 : -6), 0, 2);
+        scrollToY(y+(diff > 0 ? 6 : -6), 0, 2, true);
       }
       updSideTopLink();
       clearTimeout(window.scrlToTO);
-      window.scrlToTO = setTimeout(scrollToY.pbind(y, 100, 2), 0);
+      window.scrlToTO = setTimeout(scrollToY.pbind(y, 100, 2, true), 0);
       return;
     }
     window.scroll(scrollGetX(), y);
-    if (browser.msie6) {
-      pageNode.scrollTop = y;
-    }
     if (!anim) {
       updSideTopLink();
     }
@@ -1438,11 +1674,7 @@ function scrollGetX() {
   return window.pageXOffset || scrollNode.scrollLeft || document.documentElement.scrollLeft;
 }
 
-function scrollGetY(withFinal) {
-  // withFinal - use last value from scrollToY, when available
-  if ((withFinal || (browser.safari && withFinal === undefined)) && cur.scrollFinalY !== undefined) {
-    return cur.scrollFinalY;
-  }
+function scrollGetY() {
   return window.pageYOffset || scrollNode.scrollTop || document.documentElement.scrollTop;
 }
 
@@ -1517,7 +1749,9 @@ var KEY = window.KEY = {
   ESC: 27,
   PAGEUP: 33,
   PAGEDOWN: 34,
-  SPACE: 32
+  SPACE: 32,
+  CTRL: 17,
+  ALT: 18
 };
 
 function addEvent(elem, types, handler, custom, context, useCapture) {
@@ -1562,7 +1796,11 @@ function addEvent(elem, types, handler, custom, context, useCapture) {
 
   elem = null;
 }
-function removeEvent(elem, types, handler) {
+function removeEvent(elem, types, handler, useCapture) {
+  if (typeof useCapture === 'undefined') {
+    useCapture = false;
+  }
+
   elem = ge(elem);
   if (!elem) return;
   var events = data(elem, 'events');
@@ -1593,7 +1831,7 @@ function removeEvent(elem, types, handler) {
     }
     if (!l) {
       if (elem.removeEventListener) {
-        elem.removeEventListener(type, data(elem, 'handle'), false);
+        elem.removeEventListener(type, data(elem, 'handle'), useCapture);
       } else if (elem.detachEvent) {
         elem.detachEvent('on' + type, data(elem, 'handle'));
       }
@@ -1623,8 +1861,19 @@ function cancelEvent(event) {
   }
   if (event.preventDefault) event.preventDefault();
   if (event.stopPropagation) event.stopPropagation();
+  if (event.stopImmediatePropagation) event.stopImmediatePropagation();
   event.cancelBubble = true;
   event.returnValue = false;
+  return false;
+}
+function stopEvent(event) {
+  event = (event || window.event);
+  if (!event) return false;
+  while (event.originalEvent) {
+    event = event.originalEvent;
+  }
+  if (event.stopPropagation) event.stopPropagation();
+  event.cancelBubble = true;
   return false;
 }
 function _eventHandle(event) {
@@ -1640,8 +1889,7 @@ function _eventHandle(event) {
     if (event.type == 'mouseover' || event.type == 'mouseout') {
       var parent = event.relatedElement;
       while (parent && parent != this) {
-        try { parent = parent.parentNode; }
-        catch(e) { parent = this; }
+        parent = parent.parentNode;
       }
       if (parent == this) {
         continue
@@ -1714,6 +1962,7 @@ addEvent(window, 'DOMContentLoaded load', function() {
     vk.loaded = true;
     updSideTopLink();
   }
+  checkPageBlocks();
 });
 function tnActive(el) {
   window.tnAct = el;
@@ -1778,19 +2027,22 @@ var layers = {
   },
   visible: false,
   _show: function(el, con, opacity, color) {
+    // that's a dirty hack, unless we migrate to cancelStackPush behaviour for esc
+    var key = layers.visible ? 'layers' + (__bq.count() + 1) : 'layers';
+    cancelStackPush(key, function() {});
     setStyle(el, {opacity: opacity || '', backgroundColor: color || ''});
     if (!layers.visible) {
       toggleFlash();
       if (browser.mozilla) {
         window._oldScroll = htmlNode.scrollTop;
-        pageNode.style.height = (_oldScroll + lastWindowHeight) + 'px';
+        pageNode.style.height = (_oldScroll + (window.lastWindowHeight || 0)) + 'px';
         pageNode.style.marginTop = -_oldScroll + 'px';
-      } else if (!browser.msie6) {
-        (browser.msie7 ? htmlNode : bodyNode).style.overflow = 'hidden';
+      } else {
+        bodyNode.style.overflow = 'hidden';
       }
     }
     layers.visible = true;
-    addClass(document.body, 'layers_shown');
+    addClass(bodyNode, 'layers_shown');
     if (con.visibilityHide) {
       removeClass(con, 'box_layer_hidden');
     } else {
@@ -1802,6 +2054,8 @@ var layers = {
   },
   _hide: function(el, con) {
     var done = function() {
+      var key = layers.visible ? 'layers' + (__bq.count() + 1) : 'layers';
+      cancelStackFilter(key);
       if (con && con.visibilityHide) {
         addClass(con, 'box_layer_hidden');
       } else {
@@ -1812,7 +2066,7 @@ var layers = {
           || !isVisible(window.mvLayerWrap))
         && !isVisible(window.wkLayerWrap)) {
         layers.visible = false;
-        removeClass(document.body, 'layers_shown');
+        removeClass(bodyNode, 'layers_shown');
         toggleFlash(true);
         if (browser.mozilla) {
           pageNode.style.height = 'auto';
@@ -1820,8 +2074,8 @@ var layers = {
           if (window._oldScroll) {
             htmlNode.scrollTop = _oldScroll;
           }
-        } else if (!browser.msie6) {
-          (browser.msie7 ? htmlNode : bodyNode).style.overflow = 'auto';
+        } else {
+          bodyNode.style.overflow = 'auto';
         }
       }
       window.updateWndVScroll && updateWndVScroll();
@@ -1832,13 +2086,13 @@ var layers = {
   push: function(onShow) {
     var clayer, last = __lq.count() ? __lq._layers[__lq._layers.length - 1] : false;
     if (cur.pvShown && cur.pvListId != 'temp') {
-      clayer = ['photo', cur.pvData[cur.pvListId][cur.pvIndex].id, cur.pvListId, {onHide: cur.pvOptions.onHide, scroll: layerWrap.scrollTop, onShow: onShow, noHistory: !!cur.pvNoHistory, histLen: cur.pvHistoryLength}];
+      clayer = ['photo', cur.pvData[cur.pvListId][cur.pvIndex].id, cur.pvListId, {onHide: cur.pvOptions.onHide, scroll: cur.pvNarrowScrollbar ? cur.pvNarrowScrollbar.data.scrollTop : 0, onShow: onShow, noHistory: !!cur.pvNoHistory, histLen: cur.pvHistoryLength}];
     } else if (window.mvcur && mvcur.mvShown && !mvcur.minimized) {
       var opts = {scroll: mvLayerWrap.scrollTop, noHistory: !!mvcur.noHistory, nomin: true, prevLoc: mvcur.mvPrevLoc };
-      if (window.Videocat && Videocat.getCurrentPlaylistId()) {
+      if (VideoPlaylist.getCurListId()) {
         opts = extend(opts, {
-          playlistId: Videocat.getCurrentPlaylistId(),
-          module: Videocat.VIDEO_MODULE,
+          playlistId: VideoPlaylist.getCurListId(),
+          module: Videoview.getVideoModule(),
           addParams: { force_no_repeat: 1, show_next: 1 },
         });
       }
@@ -1866,11 +2120,9 @@ var layers = {
   hide: function() {
     __lq._bl = true;
     if (window.WkView && layers.fullhide == WkView.hide) {
-      debugLog('hiding only wkLayerWrap');
       hide(wkLayerWrap);
       clearTimeout(wkcur.showT);
     } else {
-      debugLog('hiding full in layerQueue.hide');
       if (layers.fullhide) layers.fullhide(true, true);
     }
     setTimeout(layerQueue.unblock, 5);
@@ -1880,12 +2132,10 @@ var layers = {
   },
   pop: function() {
     if (!__lq.count() || __lq._bl) return;
-    debugLog('popping..');
     var last = __lq._layers.pop();
     if (__lq.skipVideo) {
       __lq.skipVideo = false;
       if (last[0] == 'video') {
-        debugLog('no video pop');
         __lq._layers.push(last);
         __lq.skipVideo = false;
         return;
@@ -1902,7 +2152,6 @@ var layers = {
     }
   },
   back: function(type, id, type2, id2) {
-    debugLog('pop from back');
     for (var a = __lq._layers, i = a.length; i > 0; --i) {
       if ((a[i - 1][0] == type && a[i - 1][1] == id) || (a[i - 1][0] == type2 && a[i - 1][1] == id2)) {
         __lq._layers = a.slice(0, i);
@@ -1910,14 +2159,12 @@ var layers = {
         return true;
       }
     }
-    debugLog('not found: ' + type + ' ' + id + ' ' + type2 + ' ' + id2);
     return false;
   },
   count: function() {
     return __lq._layers.length;
   },
   clear: function() {
-    debugLog('clearing..');
     __lq._layers = [];
   },
   _layers: []
@@ -1930,7 +2177,7 @@ function updSeenAdsInfo() {
 
   var friendsHeight = (isVisible('left_friends') ? getSize(ge('left_friends'))[1] : 0);
   var adsY = getXY('ads_left', true)[1];
-  var ads = Math.floor((lastWindowHeight - adsY + friendsHeight) / 230);
+  var ads = Math.floor(((window.lastWindowHeight || 0) - adsY + friendsHeight) / 260);
 
   // update actual value. Sometimes __seenAds not the same as in cookie
   __seenAds = intval(getCookie('remixseenads'));
@@ -1951,17 +2198,15 @@ function updSideTopLink(resized) {
       scl = bodyNode.scrollLeft,
       sb = ge('side_bar'),
       is = isVisible(sb);
-  window._stlSideTop = Math.max(xy[1] - (browser.mozilla ? getXY(pageNode)[1] : 0) + (is ? getSize(sb)[1] : 0) + (_fixedNav ? 40 : -st), 0);
+  window._stlSideTop = Math.max((is ? getSize(sb)[1] : 0) - st - (browser.mozilla ? getXY(pageNode)[1] : 0), xy[1]);
 
   if (resized || scl != __scrLeft) {
     var pl = ge('page_layout'),
         l = vk.rtl ? pl.offsetLeft + pl.offsetWidth : 0,
-        w = vk.rtl ? (lastWindowWidth - l) : pl.offsetLeft;
+        w = vk.rtl ? ((window.lastWindowWidth || 0) - l) : pl.offsetLeft;
 
     setStyle(_stlLeft, {
-      left: l,
-      width: Math.max(w, 0),
-      height: lastWindowHeight
+      width: Math.max(w - 1, 0)
     });
     var sl = vk.rtl ? (xy[0] + pb.offsetWidth + 5) : w, sw = vk.rtl ? (l - sl) : (xy[0] - 5 - sl);
     setStyle(_stlSide, {
@@ -1973,14 +2218,9 @@ function updSideTopLink(resized) {
 
   setStyle(_stlSide, {
     top: _stlSideTop,
-    height: Math.max(lastWindowHeight - _stlSideTop, 0)
+    height: Math.max((window.lastWindowHeight || 0) - _stlSideTop, 0)
   });
   __adsUpdate();
-  if (is) {
-    updateFixedMenu(st);
-  } else {
-    hide(_fMenu);
-  }
 
   var mx = 200, vis = _tbLink.loc || _stlWas || (st > mx), o = 0, f = false, regBar = (st > 250) && cur._regBar;
   if (!vis) {
@@ -2069,21 +2309,23 @@ function __adsUpdate(force) {
   stManager.add(['aes_light.js'], __adsUpdate.pbind(force));
 }
 function __adsSet(adsHtml, adsSection, adsCanShow, adsShowed, adsParams) {
-  var adsExperimentMarker = '<!--ads_experiment';
-  if (adsHtml && (adsHtml.slice(0, adsExperimentMarker.length) === adsExperimentMarker)) {
-    if (Math.random() < 0.01) { ajax.post('/wkview.php?act=mlet&mt=9003', {}, {onFail: function () { return true; }}); }
-  }
-  if (Math.random() < 0.01) { ajax.post('/wkview.php?act=mlet&mt=9000', {}, {onFail: function () { return true; }}); }
-
-  if (window.noAdsAtAll) {
-    return false;
-  }
-
+  if (window.noAdsAtAll) return false;
   __adsSet = function() {
-    if (Math.random() < 0.01) { ajax.post('/wkview.php?act=mlet&mt=9002', {}, {onFail: function () { return true; }}); }
+    var argumentAdsHtml = '';
+    if (arguments && arguments[0]) {
+      argumentAdsHtml = arguments[0];
+    }
+    if (argumentAdsHtml.slice(0, '<!--criteo'.length) === '<!--criteo') {
+      if (Math.random() < 0.05) {
+        if (window.AdsLight && AdsLight.setNewBlock) {
+          ajax.post('/wkview.php?act=mlet&mt=750', {}, {onFail: function () { return true; }});
+        } else {
+          ajax.post('/wkview.php?act=mlet&mt=751', {}, {onFail: function () { return true; }});
+        }
+      }
+    }
     window.AdsLight && AdsLight.setNewBlock.apply(AdsLight.setNewBlock, arguments);
   };
-
   stManager.add(['aes_light.js'], __adsSet.pbind(adsHtml, adsSection, adsCanShow, adsShowed, adsParams));
 }
 function __adsUpdateExternalStats(elem) {
@@ -2095,83 +2337,147 @@ function __adsUpdateExternalStats(elem) {
 }
 
 function updGlobalPlayer() {
-  var w = window, de = document.documentElement;
-  if (!w.pageNode) return;
-  var _gp = ge('gp'), _gb = ge('gp_back'), _a = window.audioPlayer;
-  if (_a && _a.gpHidden || cur.gpHidden) {
-    if (isVisible(_gp)) toggleGlobalPlayer(false);
-    return;
-  }
-  if (!_gp || !_gb) return;
-  var pb = ge('page_body'), pbxy = getXY(pb), pbsz = getSize(pb);
-  var sbw = sbWidth();
-  var dwidth = Math.max(intval(w.innerWidth), intval(de.clientWidth)) - sbw * (browser.msie && (intval(browser.version) < 9) ? 0 : 1) - 1;
-  var isDev = hasClass(bodyNode, 'dev'), topMargin = isDev ? 11 : 9, leftMargin = isDev ? 4 : 6;
-  var gpW = 154, gpL = vk.rtl ? pbxy[0] - gpW + leftMargin : pbxy[0] + pbsz[0] - leftMargin;
-  var barHeight = getXY('page_layout')[1], menuHeight = getSize(ge('page_header'))[1] || 0;
-  if (vk.id && (gpL + gpW <= dwidth && !vk.rtl || vk.rtl && gpL >= 0)) {
-    removeClass(_gp, 'reverse');
-    setStyle(_gb, { width: gpW + 'px' });
-    setStyle(_gp, {
-      width: gpW + 'px',
-      bottom: 'auto',
-      left: gpL + 'px'
-    });
-    var headFixed = ge('head_play_btn') && getStyle(ge('page_header'), 'position') == 'fixed',
-    gpAbs = !headFixed && scrollGetY() < 29 + barHeight;
-    if (browser.mac) {
-      var gpTop = (gpAbs || headFixed ? menuHeight + topMargin + barHeight : 20);
-      setStyle(_gp, {top: gpTop});
-      toggleClass(_gp, 'abs', gpAbs);
-    } else {
-      var gpTop = headFixed ? menuHeight + topMargin + barHeight : Math.max(Math.min(menuHeight + 9 - scrollGetY(), menuHeight + topMargin) + barHeight, 20),
-          oldStyle = getStyle(_gp, 'top'), oldTop = parseInt(oldStyle);
-      if ((oldTop || oldStyle == 'auto') && gpTop != oldTop) {
-        cssAnim(_gp, {top: gpTop}, {duration: oldStyle == 'auto' ? 0 : 100, func: 'ease-in-out'}, function() {});
-      }
-    }
-    show(_gp);
-  } else {
-    addClass(_gp, 'reverse');
-    gpL = vk.rtl ? pbxy[0] + pbsz[0] + topMargin : pbxy[0] - gpW - topMargin;
-    if (gpL + gpW <= dwidth && vk.rtl || !vk.rtl && gpL >= 0) {
-      setStyle(_gb, { width: gpW + 'px' });
-      setStyle(_gp, {
-        width: gpW + 'px',
-        top: 'auto',
-        bottom: '20px',
-        left: gpL + 'px'
-      });
-      show(_gp);
-    } else {
-      hide(_gp);
-    }
-  }
-  toggleClass(pageNode, 'gp_right', isVisible(_gp) && !hasClass(_gp, 'reverse'));
 }
 
 function toggleGlobalPlayer(open) {
-  var _gp = ge('gp'), _a = window.audioPlayer;
-  if (!_gp) return;
-  if (open) {
-    if (cur.gpHidden || cur.gpShowing || _a && _a.gpHidden || ge('head_play_btn') && scrollGetY() < 33) return;
-    // updGlobalPlayer();
-    cur.gpShowing = true;
-    cur.gpHiding = false;
-    fadeIn(_gp, 300, function() {
-      cur.gpShowing = false;
-      toggleClass(pageNode, 'gp_right', !hasClass(_gp, 'reverse'));
-    });
+}
+
+function updateHeaderStyles(styles) {
+  var elems = [ge('dev_top_nav_wrap'), ge('page_header_wrap')];
+  each(elems, function(i, el) {
+    el && setStyle(el, styles);
+  });
+}
+
+function compareScrollStyles(st, newSt) {
+  var obj1 = clone(st),
+      obj2 = clone(newSt)
+  each(obj1, function(i, k) {
+    if (i !== 'position') {
+      obj1[i] = Math.round(k);
+    }
+  });
+  each(obj2, function(i, k) {
+    if (i !== 'position') {
+      obj2[i] = Math.round(k);
+    }
+  });
+  return JSON.stringify(obj1) === JSON.stringify(obj2);
+}
+
+function updateNarrow() {
+  var bar = ge('narrow_column'), barBlock = bar && geByClass1('page_block', bar),
+      wideCol = ge('wide_column');
+  if (browser.mobile || !bar || !barBlock || !wideCol || isVisible(boxLoader) || isVisible(boxLayerBG) || isVisible(layerBG)) return;
+
+  var wh = window.lastWindowHeight || 0, st = Math.min(scrollGetY(), bodyNode.clientHeight - wh),
+      pl = ge('page_layout'), head = ge('page_header_wrap'), headH = getSize(head)[1],
+      isFixed = getStyle(bar, 'position') == 'fixed',
+      barMT = floatval(getStyle(barBlock, 'marginTop')), barH = getSize(bar)[1] - (isFixed ? barMT : 0),
+      pageH = getSize(wideCol)[1], pagePos = getXY(wideCol)[1], tooBig = barH >= pageH - barMT, barMB = barMT,
+      barPB = Math.max(0, st + wh - pageH - pagePos - barMB), barPT = pagePos - headH,
+      barPos = getXY(bar)[1] + (isFixed ? barMT : 0),
+      lastSt = cur.lastSt || 0, lastStyles = cur.lastStyles || {}, styles, needFix = false,
+      smallEnough = headH + barMB + barH + barMT + barPB <= wh, delta = 1;
+
+  if (st - delta < barPT && !(smallEnough && browser.msie) || tooBig) {
+    styles = {
+      marginTop: 0
+    }
+  } else if (st - delta < Math.min(lastSt, barPos - headH - barMT) || smallEnough) {
+    styles = {
+      top: headH,
+      marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
+    }
+    needFix = true;
+  } else if (st + delta > Math.max(lastSt, barPos + barH + barMB - wh) && !barPB) {
+    styles = {
+      bottom: barMB,
+      marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
+    }
+    needFix = true;
   } else {
-    if (cur.gpHiding) return;
-    // updGlobalPlayer();
-    cur.gpHiding = true;
-    cur.gpShowing = false;
-    fadeOut(_gp, 300, function() {
-      cur.gpHiding = false;
-      removeClass(pageNode, 'gp_right');
-    });
+    styles = {
+      marginTop: barPB ? pageH - barH : Math.min(barPos - pagePos, pageH - barH + barPT)
+    }
   }
+
+  if (!compareScrollStyles(styles, lastStyles)) {
+    each (lastStyles, function(i, k) {
+      lastStyles[i] = null;
+    });
+    setStyle(bar, extend(lastStyles, styles));
+    cur.lastStyles = styles;
+  }
+  if (needFix !== isFixed) {
+    toggleClass(bar, 'fixed', needFix);
+  }
+  cur.lastSt = st;
+}
+
+function updateLeftMenu() {
+  var menu = ge('side_bar_inner'), pageBody = ge('page_body');
+  if (browser.mobile || !menu || !pageBody) return;
+
+  var wh = window.lastWindowHeight || 0, st = Math.min(scrollGetY(), bodyNode.clientHeight - wh), pos = 0,
+      pl = ge('page_layout'), head = ge('page_header_wrap'), headH = getSize(head)[1],
+      isFixed = getStyle(menu, 'position') == 'fixed',
+      menuH = getSize(menu)[1], menuPos = isFixed ? getXY(menu)[1] : floatval(getStyle(menu, 'marginTop')),
+      pageH = getSize(pageBody)[1], pagePos = pageBody.offsetTop, tooBig = menuH >= pageH,
+      lastSt = window.menuLastSt || 0, lastStyles = window.menuLastStyles || {}, styles, delta = 1;
+
+  if (st - delta < 0 || tooBig || hasClass(bodyNode, 'body_im')) {
+    styles = {
+      position: 'relative',
+      marginTop: headH
+    }
+  } else if (st - delta < Math.min(lastSt, menuPos - headH)) {
+    styles = {
+      position: 'fixed',
+      top: 0,
+      marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
+    }
+  } else if (st + delta > Math.max(lastSt, menuPos + menuH - headH)) {
+    styles = {
+      position: 'fixed',
+      bottom: wh - headH,
+      marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
+    }
+  } else {
+    styles = {
+      position: 'relative',
+      marginTop: Math.min(menuPos, pageH + pagePos - menuH)
+    }
+  }
+
+  if (!compareScrollStyles(styles, lastStyles)) {
+    var defaultStyles = {
+      position: 'relative',
+      marginTop: null,
+      marginLeft: null,
+      top: null,
+      bottom: null
+    };
+    setStyle(menu, extend(defaultStyles, styles));
+    window.menuLastStyles = styles;
+  }
+  window.menuLastSt = st;
+}
+
+function updateSTL() {
+  var w = window, de = document.documentElement,
+      dwidth = Math.max(intval(w.innerWidth), intval(de.clientWidth));
+
+  toggleClass(bodyNode, 'no_stl', dwidth < vk.width + 280);
+  toggleClass(bodyNode, 'no_sett', dwidth < vk.width + 62);
+}
+
+function checkPageBlocks() {
+  var cont = ge('content');
+  if (!cont) return;
+
+  toggleClass(cont, 'page_block', !geByClass1('page_block', cont));
+  updateOnlineText();
 }
 
 function onBodyResize(force) {
@@ -2185,19 +2491,12 @@ function onBodyResize(force) {
   if (browser.mobile) {
     dwidth = Math.max(dwidth, intval(bodyNode.scrollWidth));
     dheight = Math.max(dheight, intval(bodyNode.scrollHeight));
-  } else if (browser.msie7) {
-    if (htmlNode.scrollHeight > htmlNode.offsetHeight && !layers.visible) {
-      dwidth += sbw + 1;
-    }
-  } else if (browser.msie8) {
-    if (htmlNode.scrollHeight + 3 > htmlNode.offsetHeight && !layers.visible) {
-      dwidth += sbw + 1;
-    }
   }
   if (w.lastWindowWidth != dwidth || force === true) {
     changed = true;
     w.lastInnerWidth = w.lastWindowWidth = dwidth;
     layerWrap.style.width = boxLayerWrap.style.width = dwidth + 'px';
+
     var layerWidth = layer.style.width = boxLayer.style.width = (dwidth - sbw - 2) + 'px';
     if (window.mvLayerWrap && !mvcur.minimized) {
       mvLayerWrap.style.width = dwidth + 'px';
@@ -2214,15 +2513,13 @@ function onBodyResize(force) {
     if (dwidth) {
       for (var el = pageNode.firstChild; el; el = el.nextSibling) {
         if (!el.tagName) continue;
-        var sfWidth = ((w.lastInnerWidth = (dwidth - sbw * (browser.msie7 ? 2 : 1) - 1)) - 1);
+        var sfWidth = ((w.lastInnerWidth = (dwidth - sbw - 1)) - 1);
         for (var e = el.firstChild; e; e = e.nextSibling) {
           if (e.className == 'scroll_fix') {
             e.style.width = sfWidth + 'px';
           }
         }
-        if (ge('dev_top_nav_wrap')) {
-          ge('dev_top_nav_wrap').style.width = sfWidth + 'px';
-        }
+        updateHeaderStyles({width: sfWidth});
       }
     }
     if (_pads.shown) Pads.reposition();
@@ -2241,8 +2538,6 @@ function onBodyResize(force) {
     if (_pads.layerBG) _pads.layerBG.style.height = dheight + 'px';
     if (browser.mozilla && layers.visible) {
       pageNode.style.height = (_oldScroll + dheight) + 'px';
-    } else if (browser.msie6) {
-      pageNode.style.height = dheight + 'px';
     }
   }
   if (!vk.noSideTop) {
@@ -2253,10 +2548,16 @@ function onBodyResize(force) {
     each (curRBox.boxes, function() {this._wnd_resize(wndInner[0], wndInner[1])});
   }
   setTimeout(updSeenAdsInfo, 0);
-  updGlobalPlayer();
-  if (window.Pads && Pads.setPos && window._pads && (_pads.shown == 'mus' || _pads.shown == 'game')) {
-    Pads.setPos(_pads.shown);
+
+  var ap = getAudioPlayer();
+  if (ap.audioLayer && ap.audioLayer.isShown()) {
+    ap.audioLayer.updatePosition();
   }
+
+  if (cur.pvShown && window.Photoview) {
+    setTimeout(Photoview.updatePhotoDimensions);
+  }
+
   if (window.tooltips) {
     tooltips.rePositionAll();
   }
@@ -2265,38 +2566,43 @@ function onBodyResize(force) {
   }
   if (ge('dev_top_nav')) {
     setStyle(ge('dev_top_nav', 'left', null));
-    toggleClass(bodyNode, 'no_stl', dwidth < 1190);
+  }
+  var fixedEls = geByClass('ui_search_fixed'),
+      rbar = ge('narrow_column');
+  each(fixedEls, function() {
+    redraw(this, 'ui_search_fixed');
+    setTimeout(redraw.pbind(this, 'ui_search_fixed'), 0);
+  });
+  if (rbar) {
+    redraw(rbar, 'fixed');
+    setTimeout(redraw.pbind(rbar, 'fixed'), 0);
+  }
+  updateLeftMenu();
+  updateNarrow();
+  updateSTL();
+}
+
+function redraw(el, fixedClass) {
+  if (el && getStyle(el, 'position') == 'fixed') {
+    fixedClass ? removeClass(el, fixedClass) : setStyle(el, {position: 'relative'});
+    el.offsetLeft;
+    fixedClass ? addClass(el, fixedClass) : setStyle(el, {position: 'fixed'});
   }
 }
 
 function onBodyScroll() {
+
   if (!window.pageNode) return;
 
+  var ml = Math.min(0, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(ge('page_layout'))[0]));
+  if (!browser.mobile) {
+    updateHeaderStyles({marginLeft: ml});
+  }
+  updateLeftMenu();
+  updateNarrow();
   updSideTopLink();
   updGlobalPlayer();
   if (_pads.shown) Pads.onScroll();
-  if (ge('dev_top_nav_wrap')) {
-    var ml = Math.min(0, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(ge('page_layout'))[0]));
-    setStyle(ge('dev_top_nav_wrap'), {marginLeft: ml});
-  }
-
-  if (vk.id && vk.id % 1000 == 1) {
-    var scrolledPixels = window.pageYOffset || document.documentElement.scrollTop;
-
-    window.scrollmarked = window.scrollmarked || {};
-    var scrollPart = '-';
-    if (scrolledPixels > 100 && scrolledPixels < 500) {
-      scrollPart = '100';
-    } else if (scrolledPixels > 500 && scrolledPixels < 1000) {
-      scrollPart = '500';
-    } else if (scrolledPixels > 1000) {
-      scrollPart = '1000';
-    }
-    if (!window.scrollmarked[scrollPart]) {
-      window.scrollmarked[scrollPart] = true;
-      statlogsValueEvent('page_scroll', 0, cur.module, scrollPart);
-    }
-  }
 }
 
 if (!window._pads) _pads = {cache: {}};
@@ -2359,7 +2665,7 @@ function onDocumentClick(e) {
   if (!href.indexOf(location.hostname)) {
     href = href.replace(location.hostname, '');
   }
-  if (vk.dev && location.hostname == 'vk.com') {
+  if (vk.dev && location.hostname == 'vk.com' || location.hostname == 'new.vk.com') {
     href = href.replace(/^(vkontakte\.ru\/|vk\.com\/)/, '/');
   }
   var opts = {};
@@ -2396,8 +2702,9 @@ function onCtrlEnter(ev, handler) {
 
 function setFavIcon(href, force) {
   if (!window.icoNode) return;
-  if (icoNode.href == href && !force) return;
-  var ico = ce('link', {rel: 'shortcut icon', type: 'image/gif', href: href + '?' + ((stVersions || {}).favicon || '')});
+  href = href + '?' + ((stVersions || {}).favicon || '');
+  if (icoNode.getAttribute('href') == href && !force) return;
+  var ico = ce('link', {rel: 'shortcut icon', type: 'image/gif', href: href});
   headNode.replaceChild(ico, icoNode);
   icoNode = ico;
 }
@@ -2455,26 +2762,27 @@ function _stlMousedown(e) {
     if (_stlWasSet && _stlWas) {
       var to = _stlWas;
       _stlWas = 0;
-      scrollToY(to, 0, true);
+      scrollToY(to, 0, true, true);
     } else if (_stlBack === 1) {
       _tbLink.onclick();
     } else {
       _stlWas = scrollGetY();
-      scrollToY(0, 0, true);
+      scrollToY(0, 0, true, true);
     }
   }
-  return cancelEvent(e);
+  // temporaly comment this code, because it prevents hiding header popups
+  //return cancelEvent(e);
 }
 function _stlMouseover(e) {
   var ev = (e ? e.originalEvent || e : window.event || {}),
-      over = (ev.type == 'mouseover') && (ev.pageX > 0 || ev.clientX > 0) && !hasClass(_fMenu, 'over');
+      over = (ev.type == 'mouseover') && (ev.pageX > 0 || ev.clientX > 0);
 
   toggleClass(_stlLeft, 'over', over);
   toggleClass(_stlLeft, 'over_fast', over && (_stlBack === 0 || _tbLink.fast) && _stlWasSet === 0);
   toggleClass(_stlSide, 'over', over);
 }
 
-vk.width = 791;
+vk.width = 960;
 function domStarted() {
   window.headNode = geByTag1('head');
   extend(window, {
@@ -2485,17 +2793,20 @@ function domStarted() {
     _fixedNav: false,
     _tbLink: {}
   });
-  bodyNode.onresize = onBodyResize.pbind(false);
-  debugLog('dom started');
+  addEvent(bodyNode, 'resize', onBodyResize.pbind(false));
   if (!utilsNode) return;
 
   if (browser.mozilla) {
     addClass(bodyNode, 'firefox');
-  } else if (browser.msie6) {
-    addClass(bodyNode, 'nofixed');
   } else if (browser.mobile) {
     addClass(bodyNode, 'mobfixed');
   }
+  var uaStr = [];
+  each(browser, function(k, v) {
+    if (v && !inArray(k, ['version', 'mac', 'search_bot']) && k.substr(0, 5) !== 'flash') uaStr.push(k);
+  });
+  uaStr = uaStr.join(' ');
+  bodyNode.setAttribute('data-useragent', uaStr);
 
   for (var i in StaticFiles) {
     var f = StaticFiles[i];
@@ -2531,7 +2842,6 @@ function domStarted() {
   _reopen();
   if (!browser.mobile) {
     var s = {
-      className: 'fixed',
       onclick: _stlClick,
       onmousedown: _stlMousedown,
       onmouseover: _stlMouseover,
@@ -2586,72 +2896,11 @@ function domStarted() {
   }
 }
 
-window._fMenu = window._fMenuShown = false;
-window._fMenuHidden = true;
-window._fMenuLnks = {};
-function initFixedMenu() {
-  var lnks = {fr: '/friends?section=requests', ph: '/albums?act=added', vid: '/video?section=tagged', msg: '/im', gr: '/groups', nws: '/feed?section=notifications', ap: '/apps'}, text = [], i, el;
-  for (i in lnks) {
-    text.push('<a class="fmenu_item fl_r" onmouseover="Pads.preload(\'' + i + '\')" onmousedown="return Pads.show(\'' + i + '\', event)" href="' + lnks[i] + '"><span class="fmenu_text inl_bl"></span><span id="fmenu_' + i + '" class="fmenu_icon inl_bl"></span></a>');
-  }
-  re(_fMenu);
-  extend(window, {
-    _fMenu: _stlSide.appendChild(ce('div', {id: 'fmenu', innerHTML: text.join(''), onmousedown: function(e) {
-      e = e || window.event;
-      return (checkEvent(e) || browser.msie6) ? true : cancelEvent(e);
-    }})),
-    _fMenuLnks: {}
-  });
-  _fMenu.onmouseover = addClass.pbind(_fMenu, 'over');
-  _fMenu.onmouseout = removeClass.pbind(_fMenu, 'over');
-  el = domFC(_fMenu);
-  for (i in lnks) {
-    _fMenuLnks[i] = el;
-    el = domNS(el);
-  }
-  updateFixedMenu(false, true);
-}
-function updateFixedMenu(st, refr) {
-  if (!window._fMenu) return;
-
-  var os = _fMenuShown, oh = _fMenuHidden;
-  if (refr) {
-    if (!(_fMenuShown = !!(vk.id > 0 && isVisible('side_bar')))) {
-      _fMenuHidden = true;
-      hide(_fMenu);
-      if (_pads.shown) Pads.setPos(_pads.shown);
-    }
-  }
-  if (!_fMenuShown) return;
-
-  if (refr) {
-    for (var i in _fMenuLnks) {
-      var c = intval(vk.counts[i]), el = _fMenuLnks[i];
-      toggle(el, (c > 0) || !c && (i == 'msg' || i == 'nws'));
-      val(domFC(el), c > 1000 ? ('..' + (c % 1000) + '&nbsp;') : (c > 0 ? ('+' + c + '&nbsp;') : ''));
-    }
-    if (!os) {
-      show(_fMenu);
-      setStyle(_fMenu, {visibility: 'hidden', opacity: 0});
-      if (_pads.shown) Pads.setPos(_pads.shown);
-    }
-  }
-  if (st === false) st = scrollGetY();
-  if ((_fMenuHidden = (_stlSideTop > 10)) != oh) {
-    if (oh) {
-      setStyle(_fMenu, {visibility: ''});
-      animate(_fMenu, {opacity: 1}, 100);
-    } else {
-      if (st < 30) setStyle(_fMenu, {visibility: 'hidden'});
-      animate(_fMenu, {opacity: 0}, 100, function() { setStyle(_fMenu, {visibility: 'hidden'}); });
-    }
-  }
-}
-
 vk.started = vkNow();
 function domReady() {
   if (!utilsNode) return;
 
+  updateSTL();
   var sb = ge('side_bar');
   extend(window, {
     pageNode: ge('page_wrap'),
@@ -2659,7 +2908,7 @@ function domReady() {
     _tbLink: ge('top_back_link')
   });
 
-  window.scrollNode = browser.msie6 ? pageNode : ((browser.chrome || browser.safari) ? bodyNode : htmlNode);
+  window.scrollNode = (browser.chrome || browser.safari) ? bodyNode : htmlNode;
 
   if (vk.al == 1) {
     showTitleProgress();
@@ -2681,16 +2930,11 @@ function domReady() {
 
   onBodyResize();
   setTimeout(onBodyResize.pbind(false), 0);
-  setInterval(function() { // some strange chrome bug..
-    if (!bodyNode.onresize) {
-      bodyNode.onresize = onBodyResize.pbind(false);
-    }
-  }, 1000);
 
   if (_pads.shown) Pads.updateHeight();
+  updateOnlineText();
 
-  var scrolledNode = browser.msie6 ? pageNode : window;
-  addEvent(scrolledNode, 'scroll', onBodyScroll);
+  addEvent(window, 'scroll', onBodyScroll);
 
   window.debuglogInit && debuglogInit();
   if (!vk.id && ls.checkVersion() && ls.get('last_reloaded')) {
@@ -2708,8 +2952,6 @@ function domReady() {
       })
     } catch (e) {}
   }
-
-  setTimeout(initFixedMenu, 0);
 
   if (Math.random() < 0.0001 && window.performance && performance.timing && performance.timing.navigationStart) {
     var page_load_time = (new Date().getTime()) - performance.timing.navigationStart;
@@ -2734,6 +2976,10 @@ function serializeForm(form) {
     if (!e.name) return;
     if (e.type == 'text' || !e.type) {
       result[e.name] = val(e);
+    } else if (e.getAttribute('bool')) {
+      var v = val(e);
+      if (!v || v === '0') return;
+      result[e.name] = 1;
     } else {
       result[e.name] = (browser.msie && !e.value && form[e.name]) ? form[e.name].value : e.value;
     }
@@ -2895,7 +3141,6 @@ var stManager = {
     for (i = 0; i < n; i++) {
       src += f.charCodeAt(i);
     }
-    // debugLog(f, src, vk.stDomains);
     return 'http://st' + ((src % vk.stDomains) + 1) + '.vk.me';
   },
   _add: function(f, old) {
@@ -2928,7 +3173,7 @@ var stManager = {
         }));
       }
     } else if (f.indexOf('.css') != -1) {
-      var p = '/css/' + ((stTypes.fromRoot[f] || f.indexOf('/') != -1) ? '' : 'al/');
+      var p = '/css/' + (vk.css_dir || '') + (stTypes.fromRoot[f] || f.indexOf('/') != -1 ? '' : 'al/');
       headNode.appendChild(ce('link', {
         type: 'text/css',
         rel: 'stylesheet',
@@ -2995,7 +3240,7 @@ function activateMobileBox(opts) {
   return requestBox(showBox('activation.php', {
     act: 'activate_mobile_box',
     hash: opts.hash
-  }, {params: {dark: 1, bodyStyle: 'padding: 20px'}}), function() {
+  }), function() {
     vk.nophone = 0;
     opts.onDone();
   }, opts.onFail);
@@ -3006,13 +3251,13 @@ function validateMobileBox(opts) {
     captcha: opts.acceptCaptcha ? 1 : '',
     skip_push: opts.skip_push ? opts.skip_push : '',
     hash: opts.hash
-  }, {stat: ['uncommon.css'], params: {dark: 1, bodyStyle: 'padding: 20px'}}), opts.onDone, opts.onFail);
+  }, {stat: ['uncommon.css']}), opts.onDone, opts.onFail);
 }
 function validatePassBox(opts) {
   return requestBox(showBox('activation.php', {
     act: 'pass_validate_box',
     hash: opts.hash
-  }, {stat: ['uncommon.css'], params: {dark: 1, bodyStyle: 'padding: 20px'}}), opts.onDone, opts.onFail);
+  }, {stat: ['uncommon.css']}), opts.onDone, opts.onFail);
 }
 function photoCaptchaBox(opts) {
   return requestBox(showBox('pcaptcha.php', {
@@ -3032,17 +3277,6 @@ var ajax = {
         return;
       }
     } catch(e) {}
-    each(['Msxml2.XMLHTTP', 'Microsoft.XMLHTTP'], function() {
-      try {
-        var t = '' + this;
-        if (r = new ActiveXObject(t)) {
-          (function(n) {
-            ajax._req = function() { return new ActiveXObject(n); }
-          })(t);
-          return false;
-        }
-      } catch(e) {}
-    });
     if (!ajax._req && !browser.search_bot) {
       location.replace('/badbrowser.php');
     }
@@ -3100,6 +3334,9 @@ var ajax = {
       ajax._framenext();
     } else if (d === false) {
       ajax.framedata = false;
+      if (cur.onFrameBlocksDone) {
+        cur.onFrameBlocksDone();
+      }
     } else {
       iframeTO = lTimeout(ajax._receive.pbind(d[0], d[1], d[2], true, d[3]), 0);
     }
@@ -3159,10 +3396,22 @@ var ajax = {
     }
     if (o.progress) {
       if (!o.showProgress) {
-        o.showProgress = show.pbind(o.progress);
+        o.showProgress = function() {
+          var pr = ge(o.progress);
+          if (hasClass(pr, 'pr')) {
+            setStyle(pr, 'opacity', 1);
+          }
+          show(pr);
+        }
       }
       if (!o.hideProgress) {
-        o.hideProgress = hide.pbind(o.progress);
+        o.hideProgress = function() {
+          var pr = ge(o.progress);
+          if (hasClass(pr, 'pr')) {
+            setStyle(pr, 'opacity', 0);
+          }
+          hide(pr);
+        }
       }
     }
     if (o.loader) {
@@ -3181,6 +3430,25 @@ var ajax = {
   preload: function(url, query, data) {
     if (url.substr(0, 1) != '/') url = '/' + url;
     ajaxCache[url + '#' + ajx2q(query)] = data;
+  },
+  invalidate: function(url, query) {
+    if (url === undefined) {
+      ajaxCache = {}
+    } else {
+      delete ajaxCache[ajax._getCacheKey(url, query)];
+    }
+  },
+  _getCacheKey: function(url, query) {
+    var boldq = clone(query);
+    delete boldq.al;
+    delete boldq.al_ad;
+    delete boldq.ads_section;
+    delete boldq.ads_showed;
+    delete boldq.captcha_sid;
+    delete boldq.captcha_key;
+    delete boldq._smt;
+    delete boldq._preload;
+    return url + '#' + ajx2q(boldq);
   },
   _debugLog: function(text, _reqid) {
     window.debuglogGot && debuglogGot(_reqid, text);
@@ -3217,15 +3485,7 @@ var ajax = {
     var cacheKey = false;
     extend(q, __adsGetAjaxParams(q, o));
     if (o.cache) {
-      var boldq = clone(q);
-      delete boldq.al;
-      delete boldq.al_ad;
-      delete boldq.ads_section;
-      delete boldq.ads_showed;
-      delete boldq.captcha_sid;
-      delete boldq.captcha_key;
-      delete boldq._smt;
-      cacheKey = url + '#' + ajx2q(boldq);
+      cacheKey = ajax._getCacheKey(url, q);
     }
     var hideBoxes = function() {
       for (var i = 0, l = arguments.length; i < l; ++i) {
@@ -3242,7 +3502,7 @@ var ajax = {
       if (o._suggest) cleanElems(o._suggest);
       o._suggest = o._captcha = o._box = hideBoxes(o._captcha, o._box);
 
-      if (text.indexOf('The page is temporarily unavailable') != -1 && __dev) {
+      if (text.indexOf('The page is temporarily unavailable') != -1 && __dev && !inArray(vk.id, [529834, 257385015])) {
         ajax._post(url, q, o);
         return false;
       }
@@ -3295,36 +3555,45 @@ var ajax = {
       }
       switch (code) {
       case 1: // email not confirmed
-        if (ge('confirm_mail')) {
-          showFastBox({
-            width: 430,
-            title: ge('confirm_mail_title').value,
-            dark: 1,
-            bodyStyle: 'padding: 20px;',
-            onDestroy: o.onFail
-          }, '<div class="confirm_mail">' + ge('confirm_mail').innerHTML + '</div>');
-        } else {
-          topMsg('<b>Error!</b> Email is not confirmed!');
-        }
+        showFastBox({
+          width: 520,
+          title: answer[0],
+          onDestroy: o.onFail
+        }, answer[1]);
         break;
       case 2: // captcha
-        var resend = function(sid, key) {
-          var nq = extend(q, {captcha_sid: sid, captcha_key: key});
-          var no = o.cache ? extend(o, {cache: -1}) : o;
-          ajax._post(url, nq, no);
-        }
         var addText = '';
         // if (vk.nophone == 1 && !vk.nomail) {
         //   addText = getLang('global_try_to_activate').replace('{link}', '<a class="phone_validation_link">').replace('{/link}', '</a>');
         //   addText = '<div class="phone_validation_suggest">' + addText + '</div>';
         // }
-        o._captcha = showCaptchaBox(answer[0], intval(answer[1]), o._captcha, {
-          onSubmit: resend,
-          addText: addText,
-          onDestroy: function() {
-            if (o.onFail) o.onFail();
+        if (intval(answer[1]) === 2) {
+          var resend = function(response) {
+            var nq = extend(q, {recaptcha: response});
+            var no = o.cache ? extend(o, {cache: -1}) : o;
+            ajax._post(url, nq, no);
           }
-        });
+          o._captcha = showReCaptchaBox(answer[0], answer[2], o._captcha, {
+            onSubmit: resend,
+            addText: addText,
+            onDestroy: function() {
+              if (o.onFail) o.onFail();
+            }
+          });
+        } else {
+          var resend = function(sid, key) {
+            var nq = extend(q, {captcha_sid: sid, captcha_key: key});
+            var no = o.cache ? extend(o, {cache: -1}) : o;
+            ajax._post(url, nq, no);
+          }
+          o._captcha = showCaptchaBox(answer[0], intval(answer[1]), o._captcha, {
+            onSubmit: resend,
+            addText: addText,
+            onDestroy: function() {
+              if (o.onFail) o.onFail();
+            }
+          });
+        }
         o._suggest = geByClass1('phone_validation_link', o._captcha.bodyNode);
         if (o._suggest) {
           addEvent(o._suggest, 'click', function() {
@@ -3400,7 +3669,7 @@ var ajax = {
             break;
           }
         }
-        o._box = showFastBox({title: trim(answer[0]), dark: (answer[0].substr(0, 1) == ' ' ? 1 : 0)}, answer[1]);
+        o._box = showFastBox({title: trim(answer[0])}, answer[1]);
         var no = extend(clone(o), {showProgress: o._box.showProgress, hideProgress: o._box.hideProgress});
         if (o.cache) {
           no.cache = -1;
@@ -3417,8 +3686,6 @@ var ajax = {
       case 10: //zero zone
         o._box = showFastBox({
           title: answer[0] || getLang('global_charged_zone_title'),
-          dark: 1,
-          bodyStyle: 'padding: 20px;',
           onHide: o.onFail
         }, answer[1], getLang('global_charged_zone_continue'), function() {
           var nq = extend(q, {charged_confirm: answer[3]});
@@ -3490,11 +3757,6 @@ var ajax = {
       // Wait for attached static files
       var waitResponseStatic = function() {
         var st = ['common.css'];
-        if (browser.msie6) {
-          st.push('ie6.css');
-        } else if (browser.msie7) {
-          st.push('ie7.css');
-        }
         if (newStatic) {
           newStatic = newStatic.split(',');
           for (var i = 0, l = newStatic.length; i < l; ++i) {
@@ -3521,7 +3783,7 @@ var ajax = {
       }
 
       // Static managing function
-      if (navVersion <= stVersions['nav']) {
+      if (navVersion == stVersions['nav']) {
         return waitResponseStatic();
       }
       headNode.appendChild(ce('script', {
@@ -3529,7 +3791,7 @@ var ajax = {
         src: '/js/loader_nav' + navVersion + '_' + vk.lang + '.js'
       }));
       setTimeout(function() {
-        if (navVersion <= stVersions['nav']) {
+        if (navVersion == stVersions['nav']) {
           return waitResponseStatic();
         }
         setTimeout(arguments.callee, 100);
@@ -3566,6 +3828,7 @@ var ajax = {
     } else {
       o._reqid = 0;
     }
+
     return o.frame ? ajax.framepost(url, q, done) : ajax.plainpost(url, q, done, fail);
   },
   tGetParam: function() {
@@ -3592,29 +3855,21 @@ function HistoryAndBookmarks(params) {
     return l[0] + (l[1] ? ('?' + ajx2q(q2ajx(l[1]))) : '') + (h[1] ? ('#' + h[1]) : '');
   }
 
-  var frame = null, withFrame = browser.msie6 || browser.msie7;
+  var frame = null;
   var frameDoc = function() {
     return frame.contentDocument || (frame.contentWindow ? frame.contentWindow.document : frame.document);
   }
 
   var options = extend({onLocChange: function() {}}, params);
 
-  var getLoc = function(skipFrame) {
+  var getLoc = function() {
     var loc = '';
     if (vk.al == 3) {
       loc = (location.pathname || '') + (location.search || '') + (location.hash || '');
     } else {
-      if (withFrame && !skipFrame) {
-        try {
-          loc = frameDoc().getElementById('loc').innerHTML.replace(/&lt;/ig, '<').replace(/&gt;/ig, '>').replace(/&quot;/ig, '"').replace(/&amp;/ig, '&');
-        } catch(e) {
-          loc = curLoc;
-        }
-      } else {
-        loc = (location.toString().match(/#(.*)/) || {})[1] || '';
-        if (loc.substr(0, 1) != vk.navPrefix) {
-          loc = (location.pathname || '') + (location.search || '') + (location.hash || '');
-        }
+      loc = (location.toString().match(/#(.*)/) || {})[1] || '';
+      if (loc.substr(0, 1) != vk.navPrefix) {
+        loc = (location.pathname || '') + (location.search || '') + (location.hash || '');
       }
     }
     if (!loc && vk.al > 1) {
@@ -3657,21 +3912,13 @@ function HistoryAndBookmarks(params) {
       }
       window.chHashFlag = true;
       location.hash = '#' + vk.navPrefix + curLoc;
-      if (withFrame && getLoc() != curLoc) {
-        setFrameContent(curLoc);
-      }
     }
   }
 
   var locChecker = function() {
     var loc = getLoc(true);
     if (loc != curLoc) {
-      if (browser.msie6) {
-        if (reloadCheckFlood({force: true, from: 6})) return;
-        location.reload(true);
-      } else {
-        setFrameContent(loc);
-      }
+      setFrameContent(loc);
     }
   }
 
@@ -3683,9 +3930,6 @@ function HistoryAndBookmarks(params) {
     options.onLocChange(l);
 
     curLoc = l;
-    if (withFrame && location.hash.replace('#' + vk.navPrefix, '') != l) {
-      location.hash = '#' + vk.navPrefix + l;
-    }
   }
   var checkTimer;
   var frameChecker = function() {
@@ -3707,14 +3951,6 @@ function HistoryAndBookmarks(params) {
       if (browser.safari) {
         addEvent(window, 'hashchange', checker);
       }
-    } else if (withFrame) {
-      frame = ce('iframe', {id: 'hab_frame'});
-      frame.attachEvent('onreadystatechange', frameChecker);
-      frame.src = '/al_loader.php?act=hab_frame&loc=' + encodeURIComponent(curLoc);
-
-      utilsNode.appendChild(frame);
-
-      checkTimer = setInterval(locChecker, 200);
     } else if ('onhashchange' in window) {
       addEvent(window, 'hashchange', function() {
         if (window.chHashFlag) {
@@ -3738,9 +3974,6 @@ function HistoryAndBookmarks(params) {
     stop: function() {
       if (vk.al < 3) {
         clearInterval(checkTimer);
-        if (withFrame) {
-          frame.detachEvent('onreadystatechange', frameChecker);
-        }
       } else if (vk.al == 3) {
         removeEvent(window, 'popstate', checker);
       }
@@ -3755,6 +3988,19 @@ window.hab = new HistoryAndBookmarks({onLocChange: function(loc) {
 function checkEvent(e) {
   return ((e = (e || window.event)) && (e.type == 'click' || e.type == 'mousedown' || e.type == 'mouseup') && (e.which > 1 || e.button > 1 || e.ctrlKey || e.shiftKey || browser.mac && e.metaKey)) || false;
 }
+function checkKeyboardEvent(e) {
+  e = normEvent(e);
+  if (!e || !e.target) return false;
+  if (!e.screenX) return true;
+
+  var size = getSize(e.target), xy = getXY(e.target);
+  var offsetX = e.pageX - xy[0];
+  var offsetY = e.pageY - xy[1];
+
+  if (offsetX < -1 || offsetX > size[0] + 1 || offsetY < -1 || offsetY > size[1] + 1) return true;
+  return (Math.abs(e.pageX - xy[0] - size[0] / 2) < 1 && Math.abs(e.pageY - xy[1] - size[1] / 2) < 1);
+}
+
 function checkOver(e, target) {
   if (!e) return true;
   e = e.originalEvent || e;
@@ -3836,7 +4082,6 @@ function leftAdBlockClose(blockIdSuffix, closeLink) {
 
     setStyle(elemInfo, {opacity: 0});
     elemInfo.style.setProperty('display', 'block', 'important'); // for ABP
-    //adsRestoreVisibility(elemInfo);
     setTimeout(onClose, 0);
   }
   function onClose() {
@@ -3913,7 +4158,7 @@ function leftBlockToggleFriend(mid, type, hash, act, ev) {
     onFail: function(text) {
       if (!text) return;
 
-      showFastBox({title: getLang('global_error'), dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'}, text);
+      showFastBox({title: getLang('global_error')}, text);
       return true;
     }
   });
@@ -3932,7 +4177,7 @@ function leftBlockFriendTooltip() {
 }
 
 function leftBlockUnpaidGiftsHide(blockId, hash) {
-  return showFastBox({title: getLang('left_delete_unpaid_gifts_title'), dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'}, getLang('left_delete_unpaid_gifts_text'), getLang('global_delete'), function() { leftBlockHide(blockId, hash); re('payments_box_unpaid_gifts_info'); curBox().hide(); }, getLang('global_cancel'));
+  return showFastBox({title: getLang('left_delete_unpaid_gifts_title')}, getLang('left_delete_unpaid_gifts_text'), getLang('global_delete'), function() { leftBlockHide(blockId, hash); re('payments_box_unpaid_gifts_info'); curBox().hide(); }, getLang('global_cancel'));
 }
 
 function comScoreUDM(url, referrer) {
@@ -3984,15 +4229,13 @@ function handlePageView(params) {
       }
     }
     if (params.noleftmenu && params.nobottommenu) {
-      ge('page_body').className = 'simple';
       if (footer) {
-        footer.className = 'simple';
+        addClass(footer, 'simple');
         footer.style.width = 'auto';
       }
     } else {
-      ge('page_body').className = 'fl_r';
       if (footer) {
-        footer.className = 'fl_r';
+        removeClass(footer, 'simple');
         footer.style.width = (width - widthDecFooter) + 'px';
       }
     }
@@ -4008,9 +4251,11 @@ function handlePageView(params) {
 
   if (width != vk.width || widthDec != vk.width_dec) {
     ge('page_layout').style.width = width + 'px';
+    ge('page_header').style.width = width + 'px';
     ge('page_body').style.width = (width - widthDec) + 'px';
     if (ge('ts_wrap') && hasClass(ge('ts_wrap'), 'vk')) ge('ts_wrap').style.width = (width - 191) + 'px';
     setTimeout(updSideTopLink.pbind(true), 0);
+    setTimeout(updateSTL, 0);
 
     try {
       _tbLink.style.maxWidth = (_tbLink.parentNode.offsetWidth - 35) + 'px';
@@ -4034,9 +4279,8 @@ function handlePageView(params) {
 }
 
 function handleSetCount(e, v, id) {
-  var newCnt = '+', attr = '', maxCntLen = (id == 'spr') ? 5 : ((vk.fs > 11) ? 2 : 3),
-      plus = '+',
-      newCntWrap = '<span class="inl_bl left_count">+</span>',
+  var newCnt = '', attr = '', maxCntLen = (id == 'spr') ? 5 : 3,
+      newCntWrap = '<span class="inl_bl left_count_sign"></span>',
       curCntWp = geByClass1('left_count_wrap', e, 'span'),
       curOver = hasClass(geByClass1('left_row', e, 'a'), 'left_nav_over'),
       curCntEl = geByClass1('left_count', e, 'span'), curCntV = val(curCntEl);
@@ -4045,46 +4289,34 @@ function handleSetCount(e, v, id) {
     if (newCnt.length > maxCntLen) {
       attr = ' title="' + stripHTML(langNumeric(v, '%s', true)) + '"';
       newCnt = '..' + newCnt.substr(newCnt.length - maxCntLen);
-      plus = '';
-    } else if (v <= 0) {
-      plus = '';
     }
-    newCnt = plus + newCnt;
+    newCnt = newCnt;
     newCntWrap = '<span class="inl_bl left_count" ' + attr + '>' + newCnt + '</span>';
   }
   var onDone = function () {
     val(curCntWp, newCntWrap);
     (!v ? addClass : removeClass)(curCntWp, 'left_void');
     setStyle(curCntWp, {opacity: ''});
-  }, el = domFC(_fMenuLnks[id]);
+  };
   if (id && newCnt != val(curCntEl) && (newCnt || curCntEl)) {
     Pads.invalidate(id);
   }
-  if (curCntV && (curCntV != '+' || curOver)) {
-    if (newCnt && newCnt != '+') {
+  if (curCntV || curOver) {
+    if (newCnt) {
       animateCount(curCntEl, newCnt, {str: 'auto', onDone: onDone});
-      if (el) animateCount(el, newCnt + '&nbsp;', {str: 'auto'});
     } else if (curOver) {
-      var fakeEl = bodyNode.appendChild(se('<span class="left_count_wrap"><span class="inl_bl left_count">+</span></span>'));
+      var fakeEl = bodyNode.appendChild(se('<span class="left_count_wrap"><span class="inl_bl left_count_sign"></span></span>'));
       plusWidth = getSize(domFC(fakeEl))[0];
       re(fakeEl);
-      if (curCntV.charAt(0) != '+') val(curCntEl, curCntV.replace('..', '+'));
+      if (curCntV && curCntV.charAt(0) == '.') val(curCntEl, curCntV.replace('..', ''));
       animate(curCntEl, {width: plusWidth}, 100, onDone);
-      if (el) animate(el, {width: 0, discrete: 1}, 100, function() { val(el, el.style.width = ''); });
     } else {
       animate(curCntWp, {opacity: 0}, 100, onDone);
-      if (el) animate(el, {width: 0, discrete: 1}, 100, function() { val(el, el.style.width = ''); });
     }
   } else {
     onDone();
     setStyle(curCntWp, {opacity: 0});
     animate(curCntWp, {opacity: 1}, 100);
-    if (el && newCnt && newCnt != '+') {
-      val(el, newCnt + '&nbsp');
-      var to = el.offsetWidth;
-      el.style.width = '1px';
-      animate(el, {width: to, discrete: 1}, 100, function() { el.style.width = ''; });
-    }
   }
 }
 
@@ -4094,6 +4326,8 @@ function handlePageParams(params) {
   if (params.body_class !== bodyNode.className) {
     bodyNode.className = params.body_class || '';
   }
+  updateSTL();
+  updateLeftMenu();
   if (params.pvbig !== undefined) vk.pvbig = params.pvbig;
   if (params.pvdark !== undefined) vk.pvdark = params.pvdark;
   cur._level = params.level;
@@ -4107,28 +4341,9 @@ function handlePageParams(params) {
 
   handlePageView(params);
 
-  var confMail = ge('confirm_mail_wrap'), chPhone = ge('change_phone_wrap'), mv = ge('mvk_footer_lnk');
+  var mv = ge('mvk_footer_lnk');
   if (mv) {
     mv.firstChild.href = params.mvklnk || 'http://m.vk.com/';
-  }
-  if (confMail) {
-    if (!params.nomail) {
-      confMail.parentNode.removeChild(confMail);
-    } else if (params.notopbars) {
-      hide(confMail);
-    } else {
-      show(confMail);
-    }
-  }
-  vk.nomail = params.nomail;
-  if (chPhone) {
-    if (!params.chphone) {
-      re(chPhone);
-    } else if (params.notopbars) {
-      hide(chPhone);
-    } else {
-      show(chPhone);
-    }
   }
 
   vk.nophone = intval(params.nophone);
@@ -4171,7 +4386,7 @@ function handlePageParams(params) {
     ads_menu_link = 'ads?act=office&last=1';
   }
 
-  var i = 0, setEl = ge('l_set'), sep = setEl && setEl.nextSibling || false, sh = false, ids = ['fr', 'ph', 'vid', 'msg', 'nts', 'gr', 'ev', 'wsh', 'ap', 'ads', 'nws', 'wk', 'docs'];
+  var i = 0, setEl = ge('l_set'), sep = setEl && setEl.nextSibling || false, sh = false, ids = ['fr', 'ph', 'vid', 'msg', 'nts', 'gr', 'ev', 'wsh', 'ap', 'ads', 'ntf', 'wk', 'docs'];
   var lnks = ['friends', 'albums' + vk.id, 'video', '', 'notes', 'groups', 'events', 'gifts.php?act=wishlist', 'apps', ads_menu_link, 'feed' + (ge('l_nwsf') ? '?section=notifications' : ''), 'pages', 'docs'];
   var adds = ['', 'act=added', 'section=tagged', '', 'act=comments', '', 'tab=invitations', '', '', ads_menu_add, ge('l_nwsf') ? '' : 'section=notifications'];
 
@@ -4209,6 +4424,11 @@ function handlePageCount(id, value, lnk, add) {
   if (vk.counts[id] === v) return;
   vk.counts[id] = v;
 
+  if (id == 'ntf') {
+    TopNotifier.setCount((v > 0) ? v : 0);
+    return;
+  }
+
   var e = ge('l_' + id), toAdd, hc = hasClass(domFC(e), 'left_nav_over');
   if (e) {
     handleSetCount(e, (v > 0) ? v : 0, id);
@@ -4220,7 +4440,6 @@ function handlePageCount(id, value, lnk, add) {
   }
   if (v >= 0 || !hc) {
     toggle(e, v >= 0);
-    toggle(_fMenuLnks[id], !!((v > 0) || (v == 0) && geByClass1('left_count_persist', e) || hc));
   }
 }
 
@@ -4280,7 +4499,6 @@ function showBackLink(loc, text, fast) {
   } else {
     hide(_tbLink);
   }
-  if (!hasClass(ge('ts_wrap'), 'vk')) TopSearch.toggleTsWrap(!l);
   updSideTopLink(1);
 }
 
@@ -4299,7 +4517,6 @@ function reloadCheckFlood(opts) {
   ls.set('last_reloaded', reloaded);
   reloadStop = (reloadedLen == reloadLimit && reloaded[0] - reloaded[reloadLimit - 1] < 20000);
 
-  debugLog('reload check flood', reloadStop, reloaded, reloadedLen, reloadLimit, reloaded[0] - reloaded[reloadLimit - 1]);
   if (reloadStop) {
     topError(
       '<b>Reloading error</b>, please check internet connection, <b><a href="/page-777107_43991681">clear your cache</a></b> and restart your browser.<br>If problem remains, please <a href="/support?act=new">report it here</a>.',
@@ -4378,16 +4595,9 @@ var nav = {
     }
     statDurationsLoadImage();
     statNavigationTiming();
-    var _a = window.audioPlayer, aid = currentAudioId();
-    if (_a && aid && (_a.gpDisabled || !ge('gp')) && !opts.back) _a.stop();
-    if (_a && (_a.player && _a.player.paused() || !_a.player)) {
-      _a.gpHidden = true;
-      if (!opts.back && window.audioPlaylist && ls.get('pad_pltime')) {
-        delete window.audioPlaylist;
-        if (_a.id) _a.id = null;
-      }
-      updGlobalPlayer();
-    }
+
+    getAudioPlayer().updateCurrentPlaying();
+
     if (!opts.nocur) {
       changed = clone(objLoc);
       for (var i in nav.objLoc) {
@@ -4397,15 +4607,17 @@ var nav = {
           changed[i] = false;
         }
       }
-      if (zNav(clone(changed), {hist: opts.hist}, objLoc) === false) {
+      if (zNav(clone(changed), {hist: opts.hist, asBox: opts.asBox}, objLoc) === false) {
         nav.setLoc(strLoc);
         return false;
       }
     }
+
     if (!opts.nocur && (vk.loaded || !changed['0'])) {
-      for (var i in (cur.nav || {})) {
+      var curnav = cur.nav || [];
+      for (var i = curnav.length - 1; i >= 0; i--) {
         var oldUrl = document.URL;
-        if (cur.nav[i](clone(changed), nav.objLoc, objLoc, opts) === false) {
+        if (curnav[i](clone(changed), nav.objLoc, objLoc, opts) === false) {
           var currentURL = locProtocol+'//'+location.host+'/'+strLoc,
               referrer = (oldUrl == currentURL) ? '' : oldUrl;
           setTimeout(updateOtherCounters.pbind(currentURL, referrer), 10);
@@ -4419,6 +4631,9 @@ var nav = {
       }, 0);
       return false;
     }
+
+    // TopMenu && TopMenu.toggle(false);
+    _topHeaderClose();
 
     if (opts.back) {
       if (cur._back && cur._back.onBack) {
@@ -4436,16 +4651,13 @@ var nav = {
           radioBtns = h.radioBtns;
           ajaxCache = h.ajaxCache;
           PageID = h.pid;
-          boxQueue.hideAll();
+          boxQueue.hideAll(false, true);
           layerQueue.clear();
           if (layers.fullhide) layers.fullhide(true);
 
           showBackLink();
 
-          if (!hasClass(ge('ts_wrap'), 'vk')) TopSearch.toggleTsWrap(true);
-
           cur = h.cur;
-          if (gSearch.on) gSearch.hide();
           setTimeout(function() {
             wNode.innerHTML = '';
             wNode.parentNode.replaceChild(h.content, wNode);
@@ -4460,7 +4672,9 @@ var nav = {
               vk.body_class = h.bodyClass || '';
             }
             setStyle(tNode.parentNode, 'display', h.hideHeader ? 'none' : 'block');
-            for (var i = 0, l = cur._back.show.length; i < l; ++i) cur._back.show[i]();
+            if (cur._back.show) {
+              for (var i = 0, l = cur._back.show.length; i < l; ++i) cur._back.show[i]();
+            }
             if (onback) {
               for (var i = 0, l = onback.length; i < l; ++i) onback[i]();
             }
@@ -4471,12 +4685,13 @@ var nav = {
               if (nav.objLoc.z || nav.objLoc.w) {
                 zNav({z: nav.objLoc.z, w: nav.objLoc.w}, {});
               }
+              updateSTL();
+              updateLeftMenu();
+              updateOnlineText();
+              TopSearch.clear();
             }, 10);
-            var _a = window.audioPlayer, aid = currentAudioId();
-            if (_a && aid && _a.hideCurrentTrack && _a.showCurrentTrack) {
-              _a.hideCurrentTrack();
-              _a.showCurrentTrack();
-            }
+
+            getAudioPlayer().updateCurrentPlaying();
           }, 10);
           return false;
         }
@@ -4517,6 +4732,7 @@ var nav = {
     if (opts.permanent) {
       where.params._permanent = opts.permanent;
     }
+
     var curNavVersion = ++NextPageID;
     var done = function(title, html, js, params) {
       if (curNavVersion !== NextPageID) {
@@ -4550,8 +4766,10 @@ var nav = {
         }
       }
       if (window.tooltips) tooltips.destroyAll();
+      each (geByClass('page_actions_wrap'), function() {
+        hide(this);
+      });
       hide('audio_tip_wrap');
-      if (gSearch.on) gSearch.hide();
       if (_back) {
         revertLastInlineVideo();
         hist = {
@@ -4580,16 +4798,28 @@ var nav = {
           processDestroy(h.cur);
           h.content.innerHTML = '';
         }
-        for (var i = 0, l = cur._back.hide.length; i < l; ++i) cur._back.hide[i]();
-        showBackLink(hist.loc, _back.text, 1);
+
+        if (cur._back.hide) {
+          for (var i = 0, l = cur._back.hide.length; i < l; ++i) cur._back.hide[i]();
+        }
+
+        if (_back.text) {
+          showBackLink(hist.loc, _back.text, 1);
+        }
       } else {
         _tbLink.fast = 0;
         processDestroy(cur);
       }
       PageID = NextPageID;
-      radioBtns = {};
+
+      each(radioBtns, function(rid, rd) {
+        if (!rd.keep) {
+          delete radioBtns[rid];
+        }
+      });
+
       ajaxCache = {};
-      boxQueue.hideAll();
+      boxQueue.hideAll(false, true);
       layerQueue.clear();
       if (layers.fullhide) layers.fullhide(true);
 
@@ -4602,10 +4832,10 @@ var nav = {
           processDestroy(h.cur);
           h.content.innerHTML = '';
         }
-        var oldTopW = ge('dev_top_nav_wrap') && getSize('dev_top_nav_wrap')[0] || 0;
+        var oldTopW = ge('dev_top_nav_wrap') && getSize('dev_top_nav_wrap')[0] || ge('page_header_wrap') && getSize('page_header_wrap')[0] || 0;
         pageNode.innerHTML = html;
-        if (ge('dev_top_nav_wrap') && oldTopW) {
-          setStyle(ge('dev_top_nav_wrap'), 'width', oldTopW);
+        if (oldTopW) {
+          updateHeaderStyles({width: oldTopW});
         }
         _tbLink = ge('top_back_link');
         try {
@@ -4622,19 +4852,26 @@ var nav = {
           globalHistory.push(hist);
           wNode = newW;
         }
-        var oldTopW = ge('dev_top_nav_wrap') && getSize('dev_top_nav_wrap')[0] || 0;
+        var oldTopW = ge('dev_top_nav_wrap') && getSize('dev_top_nav_wrap')[0] || ge('page_header_wrap') && getSize('page_header_wrap')[0] || 0;
         wNode.innerHTML = html;
-        if (ge('dev_top_nav_wrap') && oldTopW) {
-          setStyle(ge('dev_top_nav_wrap'), 'width', oldTopW);
+        if (where.params && where.params.__query === 'im') {
+          fixImHeight();
+        }
+        if (oldTopW) {
+          updateHeaderStyles({width: oldTopW});
         }
         tNode.innerHTML = title;
         (title ? show : hide)(tNode.parentNode);
+
+        getAudioPlayer().updateCurrentPlaying();
       }
+      checkPageBlocks();
+      updateSTL();
+      updateLeftMenu();
+      updateOnlineText();
+      TopSearch.clear();
 
       handlePageParams(params);
-      if (newPage) {
-        initFixedMenu();
-      }
 
       if (!opts.noscroll && !params.noscroll) scrollToTop(0);
 
@@ -4656,16 +4893,17 @@ var nav = {
         handleScroll(changed.f);
       }
 
+      nav.setLoc(params.loc || '');
+
+      if (changed[0]) {
+        window.vkLastNav = Date.now();
+      }
+
       lTimeout(function() {
-        nav.setLoc(params.loc || '');
-        var _a = window.audioPlayer, aid = currentAudioId();
-        if (_a && aid && _a.showCurrentTrack) _a.showCurrentTrack();
-        if (!isVisible('ts_wrap') && hasClass(ge('ts_wrap'), 'vk')) TopSearch.toggleSettings();
-        if (TopSearch && TopSearch.tsNeedsClear) {
-          TopSearch.clear();
-          TopSearch.toggleInput(false);
-          delete TopSearch.tsNeedsClear;
-        }
+        //nav.setLoc(params.loc || ''); // moved out of this scope (see above)
+
+        getAudioPlayer().updateCurrentPlaying();
+        TopMenu.toggle(false);
       }, browser.chrome ? 100 : 50);
     }
 
@@ -4678,6 +4916,10 @@ var nav = {
     updSeenAdsInfo();
     __adsUpdate('already');
     if (_pads.shown) Pads.hide();
+
+    if (nav.objLoc[0] === 'im' || changed[0] === 'im') {
+      where.params = extend({}, where.params, { _full_page: true });
+    }
     ajax.post(where.url, where.params, {onDone: function() {
       var a = arguments;
       if (__debugMode) {
@@ -4690,7 +4932,7 @@ var nav = {
     }, onFail: opts.onFail || function(text) {
       if (!text) return;
 
-      setTimeout(showFastBox({title: getLang('global_error'), dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'}, text).hide, __debugMode ? 30000 : 3000);
+      setTimeout(showFastBox({title: getLang('global_error')}, text).hide, __debugMode ? 30000 : 3000);
       return true;
     }, frame: opts.noframe ? 0 : 1, canReload: true, showProgress: opts.showProgress || showTitleProgress, hideProgress: opts.hideProgress || hideTitleProgress, cache: opts.search ? 1 : '', bench: opts.bench});
     //setTimeout(nav.showPreload.pbind(ev, where), 0);
@@ -4817,7 +5059,6 @@ if (vk.time && !browser.opera_mobile) setTimeout(function() {
       finalDt = dt;
     }
   }
-  debugLog('Real time offset: ' + (realDt / 3600) + ', minDt: ' + minDt + ', final time offset: ' + (finalDt / 3600));
   vk.dt = finalDt;
   if (getCookie('remixdt') != vk.dt) {
     setCookie('remixdt', vk.dt, 365);
@@ -4893,7 +5134,10 @@ function __phCheck(el, opts, focus, blur) {
   var shown = el.phshown, ph = el.phcont,
       back = opts.back, editable = opts.editable,
       phColor = opts.phColor || '#8C8E91',
-      activeColor = opts.activeColor || '#C0C8D0';
+      activeColor = opts.activeColor || '#C0C8D0',
+      hideBackAfter = opts.hideBackAfter,
+      animateTimout = (opts.timeout || opts.timeout === 0) ? opts.timeout : 100,
+      animatePeriod = opts.period || 200;
   if (editable) {
     var v = (el.textContent !== undefined ? el.textContent : el.innerText) || geByTag('img', el).length;
   } else {
@@ -4911,16 +5155,20 @@ function __phCheck(el, opts, focus, blur) {
   }
   if (back && !v) {
     if (focus && !focus.type) {
+      var cb = hideBackAfter ? hide.pbind(ph.firstChild.firstChild) : null;
       clearTimeout(el.phanim);
       el.phanim = setTimeout(function() {
-        animate(ph.firstChild.firstChild, {color: activeColor}, 200);
-      }, 100);
+        animate(ph.firstChild.firstChild, {color: activeColor}, animatePeriod, cb);
+      }, animateTimout);
     }
     if (blur) {
       clearTimeout(el.phanim);
+      if (hideBackAfter) {
+        show(ph.firstChild.firstChild);
+      }
       el.phanim = setTimeout(function() {
-        animate(ph.firstChild.firstChild, {color: phColor}, 200);
-      }, 100);
+        animate(ph.firstChild.firstChild, {color: phColor}, animatePeriod);
+      }, animateTimout);
     }
   }
 }
@@ -4945,6 +5193,7 @@ function placeholderSetup(id, opts) {
       for (var i = 0; i < 4; ++i) {
         pad['padding' + dirs[i]] = 3;
         pad['margin' + dirs[i]] = 0;
+        pad['border' + dirs[i] + 'Width'] = 1;
       }
       extend(pad, o.styles || {});
     } else {
@@ -4952,12 +5201,15 @@ function placeholderSetup(id, opts) {
       for (var i = 0; i < 4; ++i) {
         prop.push('margin' + dirs[i]);
         prop.push('padding' + dirs[i]);
+        prop.push('border' + dirs[i] + 'Width');
       }
       pad = getStyle(el, prop);
     }
-    for (var i = 0; i < 4; ++i) { // add border 1px
-      var key = 'margin' + dirs[i];
-      pad[key] = (intval(pad[key]) + 1) + 'px';
+    for (var i = 0; i < 4; ++i) { // add border if needed
+      var mKey = 'margin' + dirs[i],
+          bKey = 'border' + dirs[i] + 'Width';
+      pad[mKey] = (intval(pad[mKey]) + intval(pad[bKey])) + 'px';
+      delete(pad[bKey]);
     }
   }
 
@@ -5063,6 +5315,136 @@ function placeholderSetup(id, opts) {
   }
 }
 
+function isInputActive() {
+  return document.activeElement && (attr(document.activeElement, 'contenteditable')
+      || document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'textarea');
+}
+
+// placeholder fallback for IE and old opera
+function placeholderInit(id, opts) {
+  var el = ge(id);
+  var ph;
+  var o = opts ? clone(opts) : {};
+  var custom = typeof(ce("input").placeholder) === 'undefined' || el && el.getAttribute && el.getAttribute('contenteditable');
+  if (!el || (el.phevents && !o.reload) || !(ph = (el.getAttribute ? el.getAttribute('placeholder') : el.placeholder))) {
+    return;
+  }
+  el.getValue = function() {
+    return o.editable ? el.innerHTML : el.value;
+  }
+  el.setValue = function(v) {
+    if (o.editable) {
+      el.innerHTML = v;
+    } else {
+      el.value = v;
+    }
+    if (custom) {
+      _phCheck(el, o);
+    }
+  }
+  el.phonfocus = function() {}
+  el.phonblur = function() {}
+  if (!custom) return;
+
+  function _phCheck(el, opts, focus, blur) {
+    opts = opts || {};
+    var shown = el.phshown,
+        ph = el.phcont,
+        editable = opts.editable;
+    if (editable) {
+      var v = (el.textContent !== undefined ? el.textContent : el.innerText);
+      if (v && browser.opera && v.match(/^[ ]+$/)) {
+        v = '';
+      }
+      if (!v) {
+        v = geByTag('img', el).length > 0;
+      }
+      if (!v) {
+        v = geByTag('br', el).length > 1;
+      }
+    } else {
+      var v = el.value;
+    }
+    if (shown && v) {
+      hide(ph);
+      el.phshown = false;
+    } else if (!shown && !v) {
+      show(ph);
+      el.phshown = true;
+      if (browser.opera && blur) {
+        el.setAttribute('placeholder', ''); el.removeAttribute('placeholder', '');
+      }
+    }
+  }
+
+
+  el.removeAttribute('placeholder');
+
+  if (o.reload) {
+    var prel = domNS(el);
+    if (prel && hasClass(prel, 'placeholder')) re(prel);
+  }
+  var b1 = el.phcont = domInsertAfter(ce('div', {
+    className: 'placeholder',
+    innerHTML: '<div class="ph_input"><div class="ph_content">' + ph + '</div></div>'
+  }), el);
+  var b = domFC(b1);
+  var c = domFC(b);
+
+  var cv = _phCheck.pbind(el, o), checkValue = browser.mobile ? cv : function(f, b) {
+    setTimeout(cv.pbind(f, b), 0);
+  }
+
+  el.phonfocus = function(hid) {
+    el.focused = true;
+    cur.__focused = el;
+    checkValue(true, false);
+  }
+  el.phonblur = function() {
+    cur.__focused = el.focused = false;
+    checkValue(false, true);
+  }
+  el.phshown = true;
+
+  if (el.value || (o.editable && ((el.textContent !== undefined ? el.textContent : el.innerText) || geByTag('img', el).length))) {
+    el.phshown = false;
+    hide(b1);
+  }
+
+  if (!browser.opera_mobile) {
+    addEvent(b1, 'focus click', function(ev) {
+      if (o.editableFocus) {
+        setTimeout(o.editableFocus.pbind(el), 0);
+        el.phonfocus();
+      } else {
+        el.blur(); el.focus();
+      }
+    });
+    addEvent(el, 'focus' + (o.editable ? ' click' : ''), el.phonfocus);
+    addEvent(el, 'keydown paste cut input', checkValue);
+  }
+  addEvent(el, 'blur', el.phonblur);
+  el.check = checkValue;
+
+  el.phevents = true;
+  el.phonsize = function() {};
+
+  if (o.global) return;
+
+  if (!o.reload) {
+    if (!cur.__phinputs) {
+      cur.__phinputs = [];
+      cur.destroy.push(function() {
+        if (!cur.__phinputs) return;
+        for (var i = 0, l = cur.__phinputs.length; i < l; ++i) {
+          removeData(cur.__phinputs[i]);
+        }
+      });
+    }
+    cur.__phinputs.push(el);
+  }
+}
+
 function val(input, value, nofire) {
   input = ge(input);
   if (!input) return;
@@ -5072,13 +5454,16 @@ function val(input, value, nofire) {
       input.setValue(value);
       !nofire && input.phonblur && input.phonblur();
     } else if (input.tagName == 'INPUT' || input.tagName == 'TEXTAREA') {
-      input.value = value
+      input.value = value;
     } else if (input.emojiId !== undefined && window.Emoji) {
       Emoji.val(input, value);
     } else {
-      input.innerHTML = value
+      input.innerHTML = value;
     }
+
+    triggerEvent(input, 'valueChanged');
   }
+
   return input.getValue ? input.getValue() :
          (((input.tagName == 'INPUT' || input.tagName == 'TEXTAREA') ? input.value : input.innerHTML) || '');
 }
@@ -5105,11 +5490,17 @@ function elfocus(el, from, to) {
 var _message_box_guid = 0, _message_boxes = [], _show_flash_timeout = 0;
 
 var __bq = boxQueue = {
-  hideAll: function() {
+  hideAll: function(force, noLoc) {
+    if (force) {
+      while (__bq.count()) {
+        __bq.hideLast();
+      }
+      return;
+    }
     if (__bq.count()) {
       var box = _message_boxes[__bq._boxes.pop()];
       box._in_queue = false;
-      box._hide();
+      box._hide(false, false, noLoc);
     }
     while (__bq.count()) {
       var box = _message_boxes[__bq._boxes.pop()];
@@ -5168,12 +5559,16 @@ var __bq = boxQueue = {
 __bq.hideLastCheck = __bq.hideLast.pbind(true);
 function curBox() { var b = _message_boxes[__bq.curBox]; return (b && b.isVisible()) ? b : null; }
 
-if (!browser.mobile) {
-  addEvent(document, 'keydown', function(e) {
+if (!browser.mobile && !vk.host.match(/snapster\.io/)) {
+  addEvent(document, 'keydown', function globalEsc(e) {
     _wf = 1;
     if (e.keyCode == KEY.ESC && __bq.count() && !cur._noEscHide) {
       __bq.hideLast();
       return -1;
+    }
+    if (e.keyCode == KEY.ESC) {
+      cancelStackPop();
+      return cancelEvent(e);
     }
     var mediaKeys = [176, 177, 178, 179], isMedia = false;
     if (window.audioPlayer) {
@@ -5187,13 +5582,7 @@ if (!browser.mobile) {
       }
     });
     if (isMedia) {
-      if (window.audioPlayer) {
-        audioPlayer.keyPressed(false, e);
-      } else {
-        stManager.add(['audioplayer.js'], function() {
-          audioPlayer.keyPressed(false, e);
-        });
-      }
+      getAudioPlayer().onMediaKeyPressedEvent(e);
     }
     if (Chat.inited) {
       if (e.keyCode == 191 && (e.ctrlKey || (e.metaKey && browser.mac))) {
@@ -5204,7 +5593,7 @@ if (!browser.mobile) {
 }
 
 function boxRefreshCoords(cont) {
-  var height = window.innerHeight ? window.innerHeight : (document.documentElement.clientHeight ? document.documentElement.clientHeight : boxLayerBG.offsetHeight);
+  var height = window.innerHeight || document.documentElement.clientHeight || boxLayerBG.offsetHeight;
   var top = browser.mobile ? intval(window.pageYOffset) : 0;
   containerSize = getSize(cont);
   cont.style.marginTop = Math.max(10, top + (height - containerSize[1]) / 3) + 'px';
@@ -5213,11 +5602,12 @@ function boxRefreshCoords(cont) {
 function MessageBox(options, dark) {
   var defaults = {
     title: false,
-    width: 410,
+    titleControls: '',
+    width: 450,
     height: 'auto',
     animSpeed: 0,
     bodyStyle: '',
-    dark: false,
+    grey: false,
     selfDestruct: true,
     progress: false,
     hideOnBGClick: false,
@@ -5231,24 +5621,22 @@ function MessageBox(options, dark) {
   };
 
   options = extend(defaults, options);
-  if (dark) {
-    options.dark = 1;
-  }
 
   var buttonsCount = 0,
       boxContainer, boxBG, boxLayout;
-  var boxTitleWrap, boxTitle, boxCloseButton, boxBody;
+  var boxTitleWrap, boxTitle, boxTitleControls, boxCloseButton, boxBody;
   var boxControlsWrap, boxControls, boxButtons, boxProgress, boxControlsText;
-  var guid = _message_box_guid++, visible = false;
+  var guid = _message_box_guid++, visible = false, btns = {'ok' : [], 'cancel' : []};
+  var boxTitleBck;
 
   if (!options.progress) options.progress = 'box_progress' + guid;
 
   var controlsStyle = options.hideButtons ? ' style="display: none"' : '';
   boxContainer = ce('div', {
-    className: 'popup_box_container'+(options.dark ? ' box_dark' : '')+(options.containerClass ? ' '+options.containerClass : ''),
+    className: 'popup_box_container'+(options.containerClass ? ' '+options.containerClass : ''),
     innerHTML: '\
 <div class="box_layout" onclick="__bq.skip=true;">\
-<div class="box_title_wrap"><div class="box_x_button">'+(options.dark ? getLang('global_close') : '')+'</div><div class="box_title"></div></div>\
+<div class="box_title_wrap"><div class="box_x_button" aria-label="' + getLang('global_close') + '" tabindex="0" role="button"></div><div class="box_title_controls"></div><div class="box_title"></div></div>\
 <div class="box_body" style="' + options.bodyStyle + '"></div>\
 <div class="box_controls_wrap"' + controlsStyle + '><div class="box_controls">\
 <table cellspacing="0" cellpadding="0" class="fl_r"><tr></tr></table>\
@@ -5265,7 +5653,8 @@ function MessageBox(options, dark) {
 
   boxTitleWrap = domFC(boxLayout);
   boxCloseButton = domFC(boxTitleWrap);
-  boxTitle = domNS(boxCloseButton);
+  boxTitle = domLC(boxTitleWrap);
+  boxTitleControls = domNS(boxCloseButton);
 
   if (options.noCloseButton) hide(boxCloseButton);
 
@@ -5278,21 +5667,32 @@ function MessageBox(options, dark) {
   boxControlsText = domNS(boxProgress);
 
   boxLayer.appendChild(boxContainer);
+  boxContainer.setAttribute('tabindex', 0);
+  boxContainer.focus();
 
   refreshBox();
   boxRefreshCoords(boxContainer);
 
+  var emitter = new EventEmitter();
+
   // Refresh box properties
   function refreshBox() {
     // Set title
-    if (options.title) {
-      boxTitle.innerHTML = options.title;
-      removeClass(boxBody, 'box_no_title');
-      show(boxTitleWrap);
-    } else {
-      addClass(boxBody, 'box_no_title');
-      hide(boxTitleWrap);
+    if (!boxTitleBck) {
+      if (options.title) {
+        boxTitle.innerHTML = options.title;
+        removeClass(boxBody, 'box_no_title');
+        show(boxTitleWrap);
+      } else {
+        addClass(boxBody, 'box_no_title');
+        hide(boxTitleWrap);
+      }
     }
+    if (options.titleControls) {
+      boxTitleControls.innerHTML = options.titleControls;
+    }
+    toggleClass(boxBody, 'box_no_buttons', options.hideButtons);
+    toggleClass(boxTitleWrap, 'box_grey', options.grey);
 
     // Set box dimensions
     boxContainer.style.width = typeof(options.width) == 'string' ? options.width : options.width + 'px';
@@ -5300,21 +5700,30 @@ function MessageBox(options, dark) {
   }
 
   // Add button
-  function addButton(label, onclick, type) {
-    if (options.dark && type == 'no' && !options.forceNoBtn) {
-      return false;
-    }
+  function addButton(label, onclick, type, id) {
     ++buttonsCount;
-    var btnClass = 'flat_button';
+    var btnClass = 'flat_button', type;
     if (type == 'no' || type == 'gray') {
       btnClass += ' secondary';
+      type = 'cancel';
+    } else {
+      type = 'ok';
     }
+
+    var handler = function() {
+      emitter.emit(type, retBox);
+      onclick.apply(null, arguments);
+    }
+
     var buttonWrap = ce('button', {
       className: btnClass,
-      innerHTML: label
+      innerHTML: label,
+      id: id
     }), row = boxButtons.rows[0], cell = row.insertCell(0);
     cell.appendChild(buttonWrap);
-    createButton(buttonWrap, onclick);
+    createButton(buttonWrap, handler);
+    btns[type].push(buttonWrap);
+
     return buttonWrap;
   }
 
@@ -5330,6 +5739,7 @@ function MessageBox(options, dark) {
       cleanElems(row.cells[0]);
       row.deleteCell(0);
     }
+    btns.ok.length = btns.cancel.length = 0;
   }
 
   var destroyMe = function() {
@@ -5342,7 +5752,7 @@ function MessageBox(options, dark) {
   }
 
   // Hide box
-  var hideMe = function(showingOther, tempHiding) {
+  var hideMe = function(showingOther, tempHiding, noLoc) {
     if (!visible) return;
     visible = false;
 
@@ -5373,7 +5783,7 @@ function MessageBox(options, dark) {
         hide(boxContainer);
       }
       if (isFunction(options.onHide)) {
-        options.onHide();
+        options.onHide(noLoc);
       }
     }
     if (speed > 0) {
@@ -5419,21 +5829,8 @@ function MessageBox(options, dark) {
     }
 
     _message_box_shown = true;
-
-    if (options.dark) {
-      addClass(boxLayerBG, 'bg_dark');
-    }
   }
 
-  var fadeToColor = function(color) {
-    return function() {
-      animate(this, {backgroundColor: color}, 200);
-    }
-  }
-  if (!options.dark) {
-    addEvent(boxCloseButton, 'mouseover', fadeToColor('#FFFFFF'));
-    addEvent(boxCloseButton, 'mouseout', fadeToColor('#9DB7D4'));
-  }
   addEvent(boxCloseButton, 'click', __bq.hideLast);
 
   var retBox = _message_boxes[guid] = {
@@ -5442,8 +5839,8 @@ function MessageBox(options, dark) {
     _hide: hideMe,
 
     bodyNode: boxBody,
-
-    dark: options.dark,
+    titleWrap: boxTitleWrap,
+    btns: btns,
 
     // Show box
     show: function() {
@@ -5451,6 +5848,8 @@ function MessageBox(options, dark) {
       return this;
     },
     progress: boxProgress,
+    showCloseProgress: addClass.pbind(boxTitleWrap, 'box_loading'),
+    hideCloseProgress: removeClass.pbind(boxTitleWrap, 'box_loading'),
     showProgress: function() {
       hide(boxControlsText);
       show(boxProgress);
@@ -5463,9 +5862,6 @@ function MessageBox(options, dark) {
     // Hide box
     hide: function(attemptParam) {
       if (isFunction(options.onHideAttempt) && !options.onHideAttempt(attemptParam)) return false;
-      if (options.dark) {
-        removeClass(boxLayerBG, 'bg_dark');
-      }
       __bq._hide(guid);
       return true;
     },
@@ -5482,21 +5878,27 @@ function MessageBox(options, dark) {
       if (options.onClean) options.onClean();
       boxBody.innerHTML = html;
       boxRefreshCoords(boxContainer);
+      boxContainer.focus();
       refreshBox();
       return this;
     },
 
+    emit: function(ev, arg) {
+      emitter.emit(ev, arg);
+    },
+
     // Add button
-    addButton: function(label, onclick, type, returnBtn) {
-      var btn = addButton(label, onclick ? onclick : this.hide, type);
+    addButton: function(label, onclick, type, returnBtn, id) {
+      var btn = addButton(label, onclick ? onclick : this.hide, type, id);
       return (returnBtn) ? btn : this;
     },
 
     setButtons: function(yes, onYes, no, onNo) {
       var b = this.removeButtons();
       if (!yes) return b.addButton(box_close);
+      b.addButton(yes, onYes)
       if (no) b.addButton(no, onNo, 'no');
-      return b.addButton(yes, onYes);
+      return b;
     },
 
     // Set controls text
@@ -5508,7 +5910,32 @@ function MessageBox(options, dark) {
       return this;
     },
 
+    // Set back button in title
+    setBackTitle: function(onclick) {
+      if (onclick) {
+        boxTitle.innerHTML = '<div class="back">' + getLang('global_box_title_back') + '</div>';
+        geByClass1('back', boxTitle).onclick = onclick;
+        boxTitleBck = options.title;
+        options.title = boxTitle.innerHTML;
+      } else {
+        boxTitle.innerHTML = options.title = boxTitleBck;
+        boxTitleBck = false;
+      }
+    },
+
     destroy: destroyMe,
+
+    getOptions: function() {
+      return options;
+    },
+
+    on: function(ev, handler) {
+      emitter.on(ev, handler);
+    },
+
+    once: function(ev, handler) {
+      emitter.once(ev, handler);
+    },
 
     // Update box options
     setOptions: function(newOptions) {
@@ -5533,7 +5960,9 @@ function MessageBox(options, dark) {
       }
       toggle(boxControlsWrap, !options.hideButtons);
       refreshBox();
-      boxRefreshCoords(boxContainer);
+      if (!options.noRefreshCoords) {
+        boxRefreshCoords(boxContainer);
+      }
       return this;
     },
     evalBox: function(js, url, params) {
@@ -5555,23 +5984,28 @@ function MessageBox(options, dark) {
 function showBox(url, params, options, e) {
   if (checkEvent(e)) return false;
 
+
   var opts = options || {};
   var boxParams = opts.params || {};
-  if (opts.dark) {
-    boxParams.dark = opts.dark;
-  }
   if (opts.containerClass) {
     boxParams.containerClass = opts.containerClass;
   }
+
   var box = new MessageBox(boxParams);
   var p = {
     onDone: function(title, html, js, data) {
-      if (opts.onDone) {
+      if (opts.preOnDone && opts.onDone) { // hack for friends contact import
         opts.onDone(box);
       }
-      if (!box.isVisible()) return;
-      try {
+
+      if (!box.isVisible()) {
+        if (opts.onDone) opts.onDone(box, data);
+        return;
+      }
+
+      function processResponse() {
         show(boxLayerBG);
+        addClass(bodyNode, 'layers_shown');
         box.setOptions({title: title, hideButtons: boxParams.hideButtons || false});
         if (opts.showProgress) {
           box.show();
@@ -5581,9 +6015,17 @@ function showBox(url, params, options, e) {
         box.content(html);
         box.evalBox(js, url, params);
         if (opts.onDone) opts.onDone(box, data);
-      } catch(e) {
-        topError(e, {dt: 15, type: 103, url: url, query: ajx2q(params), answer: Array.prototype.slice.call(arguments).join('<!>')});
-        if (box.isVisible()) box.hide();
+      }
+
+      if (__debugMode) {
+          processResponse();
+      } else {
+        try {
+          processResponse();
+        } catch(e) {
+          topError(e, {dt: 15, type: 103, url: url, query: ajx2q(params), answer: Array.prototype.slice.call(arguments).join('<!>')});
+          if (box.isVisible()) box.hide();
+        }
       }
     },
     onFail: function(error) {
@@ -5609,6 +6051,7 @@ function showBox(url, params, options, e) {
     box.setOptions({title: false, hideButtons: true}).show();
     if (__bq.count() < 2) {
       hide(boxLayerBG);
+      removeClass(bodyNode, 'layers_shown');
     }
     hide(box.bodyNode);
     p.showProgress = function() {
@@ -5618,7 +6061,6 @@ function showBox(url, params, options, e) {
     p.hideProgress = hide.pbind(boxLoader);
   }
   box.removeButtons().addButton(getLang('global_close'));
-
   ajax.post(url, params, p);
   return box;
 }
@@ -5661,7 +6103,6 @@ function showCaptchaBox(sid, dif, box, o) {
 </div>' + (o.addText || '');
     box = showFastBox({
       title: getLang('captcha_enter_code'),
-      dark: 1,
       width: 305,
       onHide: o.onHide,
       onDestroy: o.onDestroy || false
@@ -5690,6 +6131,46 @@ function showCaptchaBox(sid, dif, box, o) {
     this.src = '/captcha.php?sid=' + sid + difficulty + '&v=' + irand(1000000, 2000000);
   });
   elfocus(key);
+  return box;
+}
+
+function showReCaptchaBox(key, lang, box, o) {
+  window.recaptchaResponse = function(response) {
+    o.onSubmit(response);
+  };
+  var was_box = box ? true : false,
+      loaded = !!window.grecaptcha;
+  if (!was_box) {
+    if (!loaded) {
+      window.recaptchaCallback = function() {
+        val('recaptcha', '');
+        grecaptcha.render('recaptcha', {
+          sitekey: key,
+          callback: recaptchaResponse
+        });
+      }
+      headNode.appendChild(ce('script', {
+        type: 'text/javascript',
+        src: 'https://www.google.com/recaptcha/api.js?onload=recaptchaCallback&render=explicit&hl=' + lang
+      }));
+    }
+
+    var content = '\
+<div id="recaptcha" class="recaptcha"></div>' + (o.addText || '');
+    box = showFastBox({
+      title: getLang('global_recaptcha_title'),
+      width: 354,
+      onHide: o.onHide,
+      onDestroy: o.onDestroy || false
+    }, content, getLang('captcha_cancel'));
+    showProgress('recaptcha');
+  }
+  if (was_box && loaded) {
+    grecaptcha.reset();
+  } else if (loaded) {
+    recaptchaCallback();
+  }
+  box.changed = true;
   return box;
 }
 
@@ -5737,75 +6218,91 @@ function createButton(el, onClick) {
   el.btnevents = true;
 }
 
+function actionsMenuItemLocked(el) {
+  if (!(el = ge(el))) return;
+  return hasClass(el, 'ui_actions_menu_item_lock');
+}
+
+function lockActionsMenuItem(el) {
+  if (
+    (el = ge(el)) &&
+    hasClass(el, 'ui_actions_menu_item') &&
+    !hasClass(el, 'ui_actions_menu_item_lock')
+  ) {
+    data(el, 'inner', el.innerHTML);
+    addClass(el, 'ui_actions_menu_item_lock');
+    var lockText = ce('div', {className: 'ui_actions_menu_item_lock_text'});
+    val(lockText, el.innerHTML);
+    el.appendChild(lockText);
+    showProgress(el);
+  }
+}
+
+function unlockActionsMenuItem(el) {
+  if (
+    (el = ge(el)) &&
+    hasClass(el, 'ui_actions_menu_item') &&
+    hasClass(el, 'ui_actions_menu_item_lock')
+  ) {
+    removeClass(el, 'ui_actions_menu_item_lock');
+    el.innerHTML = data(el, 'inner');
+  }
+}
+
+function linkLocked(el) {
+  if (!(el = ge(el))) return;
+  return hasClass(el, 'link_lock');
+}
+
+function lockLink(el) {
+  if (
+    !(el = ge(el)) ||
+    el.tagName.toLowerCase() != 'a' ||
+    linkLocked(el)
+  ) return;
+  addClass(el, 'link_lock');
+}
+
+function unlockLink(el) {
+  if (
+    !(el = ge(el)) ||
+    !linkLocked(el)
+  ) return;
+  removeClass(el, 'link_lock');
+}
+
 function lockButton(el) {
   if (!(el = ge(el))) return;
-  if (hasClass(el, 'flat_button')) {
-    lockFlatButton(el);
-    return;
-  }
-  var btn = (el.tagName.toLowerCase() === 'button');
-  if (!btn && !hasClass(el, 'file_button')) {
-    var elButton = geByTag1('button', el);
-    if (!elButton || elButton.parentNode != el) return;
-    el = elButton;
-    btn = true;
-  }
-  if (buttonLocked(el)) return;
-  var d = btn ? 0 : ((browser.msie6 || browser.msie7) ? 2 : 4);
-  var tEl = btn ? el : geByClass1('file_button_text', el);
-  var lock = ce('span', {className: 'button_lock'});
-  el.parentNode.insertBefore(lock, el);
-  el['old_width'] = el.style.width;
-  el['old_height'] = el.style.height;
-  var s = getSize(el.parentNode);
-  setStyle(el, {width: s[0] - d, height: s[1] - d});
-  if (browser.msie6 || browser.msie7) {
-    tEl['old_html'] = tEl.innerHTML;
-    tEl.innerHTML = '';
-  } else {
-    tEl.style.textIndent = '-9999px';
-  }
+
+  if (el.tagName.toLowerCase() != 'button' && !hasClass(el, 'flat_button') && !hasClass(el, 'wr_header') || isButtonLocked(el)) return;
+
+  var elSize = getSize(el);
+
+  addClass(el, 'flat_btn_lock');
+  data(el, 'inner', el.innerHTML);
+
+  setStyle(el, { width: elSize[0], height: elSize[1] });
+
+  el.innerHTML = '';
+
+  showProgress(el, 'btn_lock');
 }
 function unlockButton(el) {
   if (!(el = ge(el))) return;
-  if (hasClass(el, 'flat_button')) {
-    unlockFlatButton(el);
-    return;
-  }
-  var btn = (el.tagName.toLowerCase() === 'button');
-  if (!btn && !hasClass(el, 'file_button')) {
-    var elButton = geByTag1('button', el);
-    if (!elButton || elButton.parentNode != el) return;
-    el = elButton;
-    btn = true;
-  }
-  var lock = geByClass1('button_lock', el.parentNode, 'span');
-  var tEl = btn ? el : geByClass1('file_button_text', el);
-  if (!lock) return;
-  el.parentNode.removeChild(lock);
-  el.style.width = el['old_width'];
-  el.style.height = el['old_height'];
-  if (browser.msie6 || browser.msie7) tEl.innerHTML = tEl['old_html'];
-  tEl.style.textIndent = '';
-}
-function buttonLocked(el) {
-  if (!(el = ge(el))) return;
-  if (hasClass(el, 'flat_button')) {
-    return isButtonLocked(el);
-  }
-  return geByClass1('button_lock', el.parentNode, 'span') ? true : false;
+
+  if (!isButtonLocked(el)) return;
+
+  hideProgress(el);
+  el.innerHTML = data(el, 'inner');
+  removeClass(el, 'flat_btn_lock');
+
+  setStyle(el, { width: null, height: null });
 }
 
-function lockFlatButton(el) {
-  if (!el || el.tagName.toLowerCase() != 'button' || isButtonLocked(el)) return;
-  addClass(el, 'flat_btn_lock');
-  el.innerHTML = '<span class="flat_btn_h">'+el.innerHTML+'</span>';
+function buttonLocked(el) {
+  return isButtonLocked(el);
 }
-function unlockFlatButton(el) {
-  if (!isButtonLocked(el)) return;
-  el.innerHTML = el.firstChild.innerHTML;
-  removeClass(el, 'flat_btn_lock');
-}
+
 function isButtonLocked(el) {
   if (!(el = ge(el))) return;
   return hasClass(el, 'flat_btn_lock');
@@ -5813,25 +6310,11 @@ function isButtonLocked(el) {
 
 function disableButton(el, disable) {
   if (!(el = ge(el)) || el.tagName.toLowerCase() !== 'button') return;
-  if (hasClass(el, 'flat_button')) {
-    return disableFlatButton(el, disable);
-  }
-
-  toggleClass(el.parentNode, 'button_disabled', !!disable);
-  if (disable) {
-    el.parentNode.insertBefore(ce('button', {innerHTML: el.innerHTML, className: 'disabled'}), el);
-    hide(el);
-  } else {
-    var disabledEl = geByClass1('disabled', el.parentNode);
-    if (disabledEl) re(disabledEl);
-    show(el);
-  }
-}
-
-function disableFlatButton(el, disable) {
-  if (!(el = ge(el)) || el.tagName.toLowerCase() !== 'button') return;
 
   if (disable) {
+    if (!isVisible(el)) {
+      return
+    }
     el.parentNode.insertBefore(ce('button', {innerHTML: el.innerHTML, className: el.className + ' button_disabled'}), el);
     hide(el);
   } else {
@@ -5926,9 +6409,10 @@ function autosizeSetup(el, options) {
   options.minHeight = intval(options.minHeight) || intval(getStyle(el, 'height'));
   options.maxHeight = intval(options.maxHeight);
 
-  var elwidth = intval(getStyle(el, 'width')),
+  var elwidth = getSize(el)[0] || intval(getStyle(el, 'width')),
       fs = getStyle(el, 'fontSize'),
       lh;
+
   if (elwidth < 1) {
     elwidth = intval(getStyle(el, 'width', false));
   }
@@ -5936,15 +6420,20 @@ function autosizeSetup(el, options) {
     fs = floatval(fs) * vk.fs;
   }
   fs = intval(fs);
+  var styles = {
+    width: elwidth,
+    height: 10,
+    fontFamily: getStyle(el, 'fontFamily'),
+    fontSize: fs + 'px',
+    lineHeight: (lh = getStyle(el, 'lineHeight')),
+    boxSizing: getStyle(el, 'boxSizing')
+  }, dirs = ['Top', 'Bottom', 'Left', 'Right'];
+  each(dirs, function() {
+    styles['padding' + this] = options.ignorePadding ? '0' : getStyle(el, 'padding' + this);
+  });
   el.autosize = {
     options: options,
-    helper: ce('textarea', {className: 'ashelper'}, {
-      width: elwidth,
-      height: 10,
-      fontFamily: getStyle(el, 'fontFamily'),
-      fontSize: fs + 'px',
-      lineHeight: (lh = getStyle(el, 'lineHeight'))
-    }),
+    helper: ce('textarea', {className: 'ashelper'}, styles),
     handleEvent: function(v, e) {
       var ch = e.charCode ? String.fromCharCode(e.charCode) : e.charCode;
       if (ch === undefined) {
@@ -5980,10 +6469,9 @@ function autosizeSetup(el, options) {
       if (el.autosize.helper.value != value) {
         el.autosize.helper.value = value;
       }
-      var opts = el.autosize.options;
-
-      var oldHeight = getSize(el, true)[1];
-      var newHeight = el.autosize.helper.scrollHeight, df;
+      var opts = el.autosize.options,
+          oldHeight = getSize(el, true)[1],
+          newHeight = el.autosize.helper.scrollHeight, df;
       if (opts.exact && (df = newHeight % lh) > 2) {
         newHeight -= (df - 2);
       }
@@ -6040,7 +6528,7 @@ function goAway(lnk, prms, e) {
     }
   }
   var params = extend({act: 'a_go', to: lnk}, prms || {});
-  return !showBox('away.php', params, {dark: true}, e);
+  return !showBox('away.php', params, {}, e);
 }
 
 function isChecked(el) {
@@ -6118,20 +6606,6 @@ function renderFlash(cont, opts, params, vars) {
   return true;
 }
 
-function playAudioNew() {
-  var args = arguments;
-  if (args[args.length - 1] !== false) args = Array.prototype.slice.apply(arguments).concat([true]);
-  stManager.add(['audioplayer.js', 'audioplayer.css'], function() {
-    audioPlayer.operate.apply(null, args);
-  });
-}
-
-function addAudio(opts) {
-  stManager.add(['audio.js'], function() {
-    Audio.addShareAudio(opts);
-  });
-}
-
 function showAudioClaimWarning(owner_id, id, delete_hash, claim_id, title, reason) {
   var claimText, claimTitle;
   if (reason == 'crap') {
@@ -6144,7 +6618,7 @@ function showAudioClaimWarning(owner_id, id, delete_hash, claim_id, title, reaso
   claimText = claimText.split('{audio}').join('<b>' + title + '</b>');
   claimText = claimText.split('{objection_link}').join('<a href="/help?act=cc_objection&claim=' + claim_id + '&content=audio' + owner_id + '_' + id + '">' + getLang('audio_claim_objection') + '</a>');
   claimText = claimText.split('{delete_link}').join('<a href="#" onclick="deleteAudioOnClaim(' + owner_id + ',' + id + ',\'' + delete_hash + '\'); return false;">' + getLang('audio_claim_delete') + '</a>');
-  cur.claimWarning = showFastBox({title: claimTitle, dark: 1, bodyStyle: 'padding: 20px;'}, claimText);
+  cur.claimWarning = showFastBox({title: claimTitle, width: 470}, claimText);
 }
 
 function deleteAudioOnClaim(owner_id, id, delete_hash) {
@@ -6188,6 +6662,22 @@ function deleteAudioOnClaim(owner_id, id, delete_hash) {
   return false;
 }
 
+function sureDeleteAll(title, text, where, objectId, toId, fromId, hash, event) {
+  if (checkEvent(event)) return;
+
+  var box = showFastBox({title: title}, text, getLang('global_delete'), function(btn) {
+    ajax.post('/delete_all.php', {act: where, object_id: objectId, to_id: toId, from_id: fromId, hash: hash, loc: nav.objLoc[0]}, {
+      onDone: function(res) {
+        eval(res);
+        box.hide();
+      },
+      showProgress: lockButton.pbind(btn),
+      hideProgress: unlockButton.pbind(btn)
+    });
+  }, getLang('global_cancel'));
+  return false;
+}
+
 window.__qlTimer = null;
 window.__qlClear = function() { clearTimeout(__qlTimer); setTimeout(function() { clearTimeout(__qlTimer); }, 2000); }
 window.onLoginDone = function () {
@@ -6215,8 +6705,8 @@ function onLoginFailed(code, opts) {
   __qlClear();
   switch (code) {
     case -1: location.href = location.href.replace(/^http:/, 'https:'); break;
-    case 4: location.href = '/login.php?m=1&email=' + opts.email; break;
-    default: location.href = '/login.php'; break;
+    case 4: location.href = '/login?m=1' + (opts.expire ? '&s=0' : '') + '&email=' + opts.email; break;
+    default: location.href = '/login'; break;
   }
 }
 function onLoginCaptcha(sid, dif) {
@@ -6240,17 +6730,31 @@ function callHub(func, count) {
 }
 
 function showWriteMessageBox(e, id) {
-  gSearch.hide(e, true);
-  if (cur.onFreindMessage) cur.onFreindMessage();
+  if (cur.onFriendMessage) cur.onFriendMessage();
   stManager.add(['page.js', 'wide_dd.js']);
   var box = showBox('al_mail.php', {act: 'write_box', to: id}, {stat: ['writebox.js', 'writebox.css', 'wide_dd.css', 'page.css', 'emoji.js', 'notifier.css'], cache: 1}, e);
   if (box) cancelEvent(e);
   return !box;
 }
 
+function giftsBox(mid, ev, tab) {
+  if (cur.viewAsBox) return cur.viewAsBox();
+  return !showBox('al_gifts.php', {act: 'box', tab: tab || 'received', mid: mid}, {cache: 1, stat: ['gifts.css', 'gifts.js']}, ev);
+}
+
+function moneyTransferBox(txId, hash, ev) {
+  if (cur.viewAsBox) return cur.viewAsBox();
+  return !showBox('al_payments.php', {act: 'accept_money_transfer_box', tx_id: txId, hash: hash}, {
+    stat: ['payments.css', 'payments.js'],
+    onFail: function(text) {
+      setTimeout(showFastBox({title: getLang('global_error')}, text).hide, 2000);
+      return true;
+    }
+  }, ev);
+}
+
 function startVideocall(e, id, with_video) {
   if (checkEvent(e)) return true;
-  gSearch.hide(e, true);
   var tt = (ge('videocall_btn') || {}).tt;
   if (tt && tt.hide && tt.destroy) {
     tt.hide({fasthide: 1});
@@ -6385,6 +6889,9 @@ function showTooltip(el, opts) {
   if (!el.tt) {
     el.tt = 'loadingstat';
   }
+  if (domClosest('fc_tab', el)) {
+    opts.appendEl = bodyNode;
+  }
 
   cur.cancelTooltip = false;
 
@@ -6402,8 +6909,35 @@ function showTooltip(el, opts) {
     tooltips.show(el, opts);
   });
 }
+function showTitle(el, text, shift, options) {
+  el = ge(el);
+  var tf = function() {
+    return text || el.getAttribute('data-title');
+  };
+  if (browser.msie && browser.version < 9) {
+    el.setAttribute('title', tf());
+  } else {
+    if (!shift) {
+      var sx = Math.round(20 - getSize(el)[0] / 2);
+      shift = [sx, 8];
+    }
+    showTooltip(el, extend({text: tf, shift: shift, black: 1}, options || {}));
+  }
+}
+function showHint(el, opts) {
+  el = ge(el);
+  opts = opts || {};
+  var tf = function() {
+    return el.getAttribute('data-title');
+  };
+  if (browser.msie && browser.version < 9) {
+    el.setAttribute('title', tf().replace('<br>', "\n"));
+  } else {
+    showTooltip(el, extend({text: tf, dir: 'auto', width: 300, shift: [22, 8]}, opts));
+  }
+}
 function reportAd(ad_id) {
-  showBox('/reports.php?act=a_report_ad_box', {ad_id: ad_id}, {params: {width: 370, dark: 1, bodyStyle: 'padding: 20px;'}, stat: ['ui_controls.js', 'ui_controls.css']});
+  showBox('/reports.php?act=a_report_ad_box', {ad_id: ad_id}, {params: {width: 370}, stat: ['ui_controls.js', 'ui_controls.css']});
 }
 
 function updateMoney(balance) {
@@ -6459,7 +6993,7 @@ function zNav(changed, opts, fin) {
     showWiki({w: w}, w == 'note_new', false, {onLoaded: z && zNav.pbind({z: z}, extend(opts, {queue: 1}))});
     return false;
   } else if (z == 'giftbox') {
-    return !showBox('/al_gifts.php', {act: 'get_gift_box', mid: opts.id || 0, fr: (opts.is && opts.id != vk.id ? 0 : 1), link: nav.objLoc[0]}, {stat: ['gifts.css', 'ui_controls.js', 'ui_controls.css'], cache: 1, dark: 1}, window.event);
+    return !showBox('/al_gifts.php', {act: 'get_gift_box', mid: opts.id || 0, fr: (opts.is && opts.id != vk.id ? 0 : 1), link: nav.objLoc[0]}, {stat: ['gifts.css', 'ui_controls.js', 'ui_controls.css'], cache: 1}, window.event);
   } else if (z == 'validatebox') {
     return !validateMobileBox({closeLink: 1, onDone:function(){ge('change_phone_wrap').parentNode.removeChild(ge('change_phone_wrap'));}})
   } else if (z == 'upload_video') {
@@ -6467,12 +7001,15 @@ function zNav(changed, opts, fin) {
   }
   if (z === false || w === false) {
     var wkHide = (!window.wkcur || !wkcur.shown || layers.fullhide != WkView.hide);
-    if (layers.fullhide && (wkHide || w === false)) {
+    if (layers.fullhide && (wkHide || w === false) && !opts.asBox) {
       if (opts.hist && !fin.z && !fin.w && fin[0].indexOf('/') === -1 && !fin[0].match(/^(photo|video)(-?\d+_\d+)$/)) {
-        debugLog('clearing: no z or w in location by history');
         layerQueue.clear();
       }
       layers.fullhide(opts.hist ? 2 : false);
+    }
+    var box = curBox();
+    if (box && box.wkRaw) {
+      box.hide();
     }
     return false;
   }
@@ -6497,16 +7034,19 @@ function zNav(changed, opts, fin) {
         showAlbum(zt[2], extend(opts, {onFail: onFail, noHistory: true}));
         return false;
         break;
+      case 'tag':
       case 'photo_tag':
         showPhotoTags(zt[2], extend(opts, {onFail: onFail, noHistory: true}));
         return false;
         break;
+      /* no video tags in redesign
       case 'video_tag':
         showVideoTags(zt[2], extend(opts, {onFail: onFail, noHistory: true}));
         return false;
         break;
+      */
       case 'video':
-        var listId = zt[3], options = extend(opts, {onFail: onFail, noLocChange: 1});
+        var listId = zt[3], options = extend(opts, {onFail: onFail, noLocChange: 1, focusPlay: 1});
         if (listId) {
           var parts = [], playlistId = '';
           each(listId.split('/'), function(i, part) {
@@ -6518,23 +7058,14 @@ function zNav(changed, opts, fin) {
           });
           listId = parts.join('/');
 
-          if (playlistId && window.Videocat) {
+          if (playlistId) {
             playlistId = playlistId.substr('pl_'.length);
 
-            if (Videocat.initFullPlaylist(playlistId, zt[2]) || Videocat.isTop3Playlist(playlistId)) {
-              var autoplay = intval(nav.objLoc.autoplay);
-              var needLoad = intval(playlistId.indexOf('_') > 0);
-              var module = window.Video && Video.isInCatalogue() ? Videocat.VIDEO_MODULE : cur.module;
-              var focusPlay = autoplay ? 0 : 1;
-              options = extend(options, {playlistId: playlistId, module: module, focusPlay: focusPlay, addParams: { force_no_repeat: 1, show_next: 1, playlist_id: playlistId, autoplay: autoplay, load_playlist: needLoad }});
-            }
+            var module = cur.currentModule ? cur.currentModule() : cur.module;
+            options = extend(options, {playlistId: playlistId, module: module, addParams: { force_no_repeat: 1, show_next: 1, playlist_id: playlistId}});
           }
         }
         showVideo(zt[2], listId, options);
-        return false;
-        break;
-      case 'screen':
-        stManager.add(['index.js'], function() { setTimeout(JoinPhotoview.show.pbind(intval(zt[2])), 0); });
         return false;
         break;
       case 'single':
@@ -6573,10 +7104,11 @@ function showGlobalPrg(img, opts) {
   var xy = getXY(img), sz = getSize(img), o = opts || {}, w = o.w || 32, h = o.h || 13, el = ge('global_prg');
   el.className = o.cls || 'progress';
   setStyle(el, {
-    left: xy[0] + Math.floor((sz[0] - w) / 2),
-    top: xy[1] + Math.floor((sz[1] - h) / 2),
+    left: xy[0] + Math.floor((sz[0] - w) / 2) + intval(o.shift ? o.shift[0] : 0),
+    top: xy[1] + Math.floor((sz[1] - h) / 2) + intval(o.shift ? o.shift[1] : 0),
     width: w, height: h,
-    display: 'block'
+    display: 'block',
+    'z-index': (o.zIndex ? o.zIndex : null)
   });
   if (o.hide) {
     img.style.visibility = 'hidden';
@@ -6589,13 +7121,22 @@ function showPhoto(photoId, listId, options, ev) {
   if (cur.viewAsBox) return cur.viewAsBox();
   if (checkEvent(ev) || (cur._editMode && cur._editMode(ev))) return;
   var stat = ['photoview.js', 'photoview.css', 'page.js', 'page.css'], phv = window.Photoview;
+
   if (options.img) {
-    options.showProgress = showGlobalPrg.pbind(options.img, {cls: 'progress_inv_img', w: 46, h: 16});
-    options.hideProgress = hide.pbind('global_prg');
+    options.showProgress = function() {
+      showProgress(options.img);
+    };
+    options.hideProgress = function() {
+      hideProgress(options.img);
+    };
   }
+
+  if (!photoId) return false;
+
   if (phv && (phv.showPhoto(photoId, listId, options) === false)) {
     return false;
   }
+
   var doShow = true;
   if (options.temp && !(cur.pvNoTemp || {})[photoId]) {
     stManager.add(stat, function() {
@@ -6613,8 +7154,17 @@ function showPhoto(photoId, listId, options, ev) {
       Photoview.show('temp', 0);
     });
   }
+
+  var useCache = 1;
+  if (options && options.additional && options.additional.open_pe) {
+    useCache = 0;
+  }
+
   extend(options, {onDone: function(lst) {
     Photoview.list(photoId, listId, lst);
+    if (options.blog_text && arguments[3] && arguments[3][0]) {
+      arguments[3][0].album = options.blog_text;
+    }
     Photoview.loaded.apply(window, arguments);
     if (!doShow) return;
     if (lst == 'deleted') {
@@ -6622,13 +7172,13 @@ function showPhoto(photoId, listId, options, ev) {
     } else {
       Photoview.showPhoto(photoId, listId, options, true);
     }
-  }, stat: stat, cache: 1});
+  }, stat: stat, cache: useCache});
 
   if (options.temp_final) {
     return false;
   }
 
-  ajax.post('al_photos.php', extend({act: 'show', gid: cur.gid, photo: photoId, list: listId, module: cur.module || ''}, options.additional), options);
+  ajax.post('al_photos.php', extend({act: 'show', gid: cur.gid, photo: photoId, list: listId, module: cur.module || '', list_info: options.list_info || null}, options.additional), options);
 
   return false;
 }
@@ -6669,10 +7219,10 @@ function showVideoTags(ownerId, options, ev) {
 window._videoLastInlined = false;
 function showVideo(videoId, listId, options, ev) {
   if (cur.viewAsBox) return cur.viewAsBox();
-  if (checkEvent(ev)) return true;
+  if (checkEvent(ev)) return;
 
   if (window.mvcur && mvcur.mvShown && mvcur.minimized && mvcur.videoRaw == videoId) {
-    videoview.unminimize();
+    Videoview.unminimize();
     return false;
   }
 
@@ -6680,11 +7230,10 @@ function showVideo(videoId, listId, options, ev) {
     options = {};
   }
 
-  var claim = nav.objLoc.claim;
+  var claim = nav.objLoc.claim,
+      stat = ['videoview.js', 'videoview.css', 'page.js', 'page.css'];
 
-  var stat = ['videoview.js', 'videoview.css', 'page.js', 'page.css'];
-
-  var fromWallPost = options.addParams && /^-?\d+_\d+$/.test(options.addParams.post_id) && options.addParams.post_id;
+  var fromWallPost = options.addParams && /^-?\d+_\d+$/.test(options.addParams.post_id) ? options.addParams.post_id : false;
   if (!options.playlistId && fromWallPost) {
     if (/^public|groups|profile$/.test(cur.module) && hasClass('post'+fromWallPost, 'own')) {
       options.playlistId = 'wall_' + cur.oid;
@@ -6694,24 +7243,25 @@ function showVideo(videoId, listId, options, ev) {
   }
 
   if (options.playlistId) {
-    stat.push('videocat.js', 'videocat.css', 'notifier.js');
-    options.addParams = extend({}, options.addParams, {playlist_id: options.playlistId});
-
-    if (!window.Videocat || !Videocat.initFullPlaylist(options.playlistId, videoId)) {
+    options.addParams = extend(options.addParams, {playlist_id: options.playlistId});
+    if (!window.VideoPlaylist || !VideoPlaylist.getList(options.playlistId)) {
       if (/^wall_/.test(options.playlistId)) {
         var wallVideosList = cur.wallVideos && cur.wallVideos[options.playlistId];
         options.addParams.load_playlist = wallVideosList && wallVideosList.list.length >= 50 ? 0 : 1;
-        options.addParams.load_playlist_tpl = 1;
       } else {
-        options.addParams.load_playlist = 1;
+        options.addParams.load_playlist = /^(?:post_)?-?\d+_-?\d+$/.test(options.playlistId) && !(cur.pageVideosList && cur.pageVideosList[options.playlistId]) ? 1 : 0;
       }
     }
   }
 
+  if (options.expandPlayer) {
+    options.addParams = extend(options.addParams, {expand_player: 1});
+    delete cur.videoInlinePlayer;
+  }
+
   var hub = new callHub(function() {
     if (!options.hidden) {
-      revertLastInlineVideo();
-      videoview.showVideo.apply(videoview, hub.data);
+      Videoview.showVideo.apply(Videoview, hub.data);
     } else {
       options.hidden(hub.data, options, listId, videoId);
     }
@@ -6719,16 +7269,18 @@ function showVideo(videoId, listId, options, ev) {
 
   stManager.add(stat, function() {
     if (!options.hidden) {
-      videoview.show(ev, videoId, listId, options);
+      revertLastInlineVideo();
+      Videoview.show(ev, videoId, listId, options);
     }
     hub.done();
   });
 
   extend(options, {onDone: function() {
-    hub.data = arguments;
+    var args = Array.prototype.slice.call(arguments);
+    args.unshift(videoId);
+    hub.data = args;
     hub.done();
   }, cache: (listId != 'status')});
-  //}, cache: false});
 
   var actParams = options.params;
 
@@ -6739,7 +7291,7 @@ function showVideo(videoId, listId, options, ev) {
       list: listId,
       autoplay: (options.autoplay) ? 1 : 0,
       ad_video: options.ad_video,
-      module: options.module || cur.module || '',
+      module: options.module || currentModule() || '',
       svids: options.svids,
     };
   }
@@ -6766,6 +7318,8 @@ function showInlineVideo(videoId, listId, options, ev, thumb) {
     return showVideo(videoId, listId, options, ev);
   }
 
+  if (attr(thumb, 'data-loading')) return;
+
   options = options || {};
   options.params = options.params || {act: 'show_inline', video: videoId, list: listId, autoplay: (options.autoplay) ? 1 : 0, module: options.module || cur.module || ''};
   if (!trim(options.params.module)) {
@@ -6773,7 +7327,7 @@ function showInlineVideo(videoId, listId, options, ev, thumb) {
   }
   var h = thumb.clientHeight,
       w = thumb.clientWidth,
-      btn = geByClass1('video_play_inline', thumb, 'div');
+      btn = domByClass(thumb, 'page_post_video_play_inline');
 
   extend(options.params, {width: w, height: h});
   extend(options.params, options.addParams);
@@ -6781,41 +7335,54 @@ function showInlineVideo(videoId, listId, options, ev, thumb) {
   options.onDone = function (title, html, js, opts) {
     revertLastInlineVideo();
     hide(thumb);
-    var videoWrap = ce('div', {id: 'page_video_inline_wrap' + videoId, className: 'page_video_inline_wrap', innerHTML: html}, {width: w, height: h}),
-        videoBg = ge('video_background' + videoId);
-    _videoLastInlined = [videoWrap, thumb]
+    var videoWrap = ce('div', {id: 'page_video_inline_wrap' + videoId, className: 'page_video_inline_wrap', innerHTML: html}, {width: w, height: h});
+    _videoLastInlined = [videoWrap, thumb];
     thumb.parentNode.appendChild(videoWrap);
-    videoBg && setStyle(geByTag1('img', videoBg), {width: w, height: h});
     cur.mvOpts = opts && opts.mvData ? opts.mvData : false;
     try {
       eval('(function () {' + js + '})();');
     } catch (e) {
-      debugLog('video inline error', e.message, e.stack, e, js);
     }
 
-    if (!options.params.mute) {
+    if (!options.params.from_autoplay) {
       var _n = window.Notifier, _a = window.audioPlayer;
       if (_n) setTimeout(function() { _n.lcSend('video_start'); }, 0);
-      if (_a && _a.player && !_a.player.paused()) {
-        _a.pauseTrack();
-        _a.pausedByVideo = 1;
+
+      var ap = window.ap;
+      if (ap && ap.isPlaying()) {
+        ap.pause();
+        ap.pausedByVideo = 1;
       }
     }
+
+    thumb.setAttribute('data-playing', 1);
   };
   options.onFail = function(text) {
-    setTimeout(showFastBox({title: getLang('global_error'), dark: 1, bodyStyle: 'padding: 20px; line-height: 160%;'}, text).hide, 2000);
+    setTimeout(showFastBox({title: getLang('global_error')}, text).hide, 2000);
     return true;
   }
   options.showProgress = function () {
-    addClass(btn, 'video_play_inline_loading');
+    thumb.setAttribute('data-loading', 1);
+    if (!options.no_progress) {
+      addClass(btn, 'page_post_video_play_inline_loading');
+      val(btn, getProgressHtml());
+    }
   };
   options.hideProgress = function () {
-    removeClass(btn, 'video_play_inline_loading');
+    thumb.removeAttribute('data-loading');
+    if (!options.no_progress) {
+      removeClass(btn, 'page_post_video_play_inline_loading');
+      val(btn, '');
+    }
   };
   stManager.add('videoview.js', function() {
     ajax.post('al_video.php', options.params, options);
     vkImage().src = locProtocol + '//vk.com/rtrg?r=w*Z1Flwi3QdbWaoLMc7zOA*7Cr4Nrtojr9otHjsjIhsb2CVqRWalgbvxZw3MzxZa6be3Siu2XY3gvK5fysYtWLWgNwHMpjRTupSGZrcGRNlj7fduqq9*t7ij6CX4aMcBTD5be8mIXJsbTsvP8Zl2RZEd76a4FTuCOFqzMxqGtFc-';
   });
+  if (!cur.videoInlinePlayerDestroyerSet) {
+    cur.destroy.push(destroyInlineVideoPlayer);
+    cur.videoInlinePlayerDestroyerSet = 1;
+  }
   return false;
 }
 
@@ -6838,17 +7405,30 @@ function revertLastInlineVideo(ancestor) {
   }
   re(_videoLastInlined[0]);
   show(_videoLastInlined[1]);
+  _videoLastInlined[1].removeAttribute('data-playing');
   _videoLastInlined = false;
+  destroyInlineVideoPlayer();
   delete cur.mvOpts;
+}
+
+function destroyInlineVideoPlayer() {
+  if (cur.videoInlinePlayer) {
+    cur.videoInlinePlayer.destroy();
+    delete cur.videoInlinePlayer;
+  }
 }
 
 function pauseLastInlineVideo() {
   if (!_videoLastInlined) {
     return;
   }
-  var player = ge('video_player') || window.html5video || null;
-  if (player && player.playVideo) {
-    player.playVideo(false);
+  var player = cur.videoInlinePlayer || ge('video_player') || (ge('video_yt') && window.VideoYoutube);
+  if (player) {
+    if (player.togglePlay) {
+      player.togglePlay(false);
+    } else if (player.playVideo) {
+      player.playVideo(false);
+    }
   }
 }
 
@@ -6868,7 +7448,7 @@ function showWiki(page, edit, e, opts) {
     opts.hide_title = page.hide_title = 1;
   }
   var stat = opts.stat || ['wkview.js' ,'wkview.css', 'wk.css', 'wk.js'];
-  edit && stat.push('wysiwyg.js', 'wysiwyg.css');
+  edit && stat.push('wk_editor.js', 'wk_editor.css');
   var params = {
     stat: stat,
     loader: !opts.noloader,
@@ -6898,8 +7478,8 @@ function showWiki(page, edit, e, opts) {
 
 function videoCallback(params) {
   var method = params.shift();
-  if (window.videoview && videoview.playerCallback[method]) {
-    videoview.playerCallback[method].apply(videoview, params);
+  if (window.Videoview && Videoview.playerCallback[method]) {
+    Videoview.playerCallback[method].apply(Videoview, params);
   } else {
     throw Error('Unregistered player callback: ' + method);
   }
@@ -6972,7 +7552,7 @@ function animateCount(el, newCount, opts) {
     newCount = positive(newCount);
   }
   if (!el) return;
-  if (browser.msie6 || browser.mobile && !browser.safari_mobile && !browser.android) {
+  if (browser.mobile && !browser.safari_mobile && !browser.android) {
     val(el, newCount || '');
     return;
   }
@@ -7070,19 +7650,19 @@ function animateCount(el, newCount, opts) {
     className: 'counter_anim ' + (incr ? 'counter_anim_inc' : 'counter_anim_dec'),
     innerHTML: '<div class="counter_anim_big"><span class="counter_anim_big_c">' + bigPart + '</span></div>' +
                (vert ? '<div class="counter_anim_small"><span class="counter_anim_small_c">' + smallPart + '</span></div>' : '')
-  }, vert ? {marginTop: incr ? -h : 0} : {right: 'auto', left: 0}));
+  }, vert ? {marginTop: incr ? -h : 0} : {right: 0}));
   if (opts.str) {
-    setStyle(animEl, {textAlign: 'left', right: 'auto', left: 0});
+    setStyle(animEl, {textAlign: 'right', right: 0});
   }
 
-  var bigW = geByClass1('counter_anim_big_c', animEl, 'span').offsetWidth,
-      smallW = vert ? (smallPart == '&nbsp;' ? bigW : geByClass1('counter_anim_small_c', animEl, 'span').offsetWidth) : 0;
+  var bigW = getSize(geByClass1('counter_anim_big_c', animEl, 'span'))[0],
+      smallW = vert ? (smallPart == '&nbsp;' ? bigW : getSize(geByClass1('counter_anim_small_c', animEl, 'span'))[0]) : 0;
 
   if (constEndPart.length) {
     wrapEl.appendChild(constEl2 = ce('div', {className: 'counter_const inl_bl', innerHTML: constEndPart}));
   }
 
-  setStyle(wrapEl, {width: (constEl1 && constEl1.offsetWidth || 0) + (constEl2 && constEl2.offsetWidth || 0) + bigW + 0})
+  setStyle(wrapEl, {width: (constEl1 && getSize(constEl1)[0] || 0) + (constEl2 && getSize(constEl2)[0] || 0) + bigW + 0})
 
   if (browser.csstransitions === undefined) {
     var b = browser, bv = floatval(b.version);
@@ -7097,7 +7677,6 @@ function animateCount(el, newCount, opts) {
   var css3 = browser.csstransitions;
   setStyle(animwrapEl, {width: incr ? smallW : bigW});
 
-  // return debugLog(css3, incr, curCount, newCount, animwrapEl, animEl, geByClass1('counter_anim_big_c', animEl, 'span'), geByClass1('counter_anim_small_c', animEl, 'span'), h, bigW, smallW);
   var onDone = function () {
     val(el, newCount || ' ');
     var next = data(el, 'nextCount');
@@ -7157,9 +7736,10 @@ var Chat = {
       }
   },
   init: function() {
-    Chat.wrap = ce('div', {id: 'chat_onl_wrap', className: 'chat_onl_wrap', innerHTML: '<div class="chats_sp chat_cont_sh_top"></div><div class="chat_cont_scrolling"><div class="chat_onl_height"></div></div><div class="chats_sp chat_cont_sh_bottom"></div><a class="chat_tab_wrap" id="chat_tab_wrap" onclick="Chat.showFriends()" onmouseover="Chat.showTT();"><div class="chat_onl_cont"><div class="chat_onl" id="chat_onl"></div><div class="chats_sp chat_onl_icon"></div></div></a>'});
+    Chat.wrap = ce('div', {id: 'chat_onl_wrap', className: 'chat_onl_wrap', innerHTML: '<div class="chat_tt_wrap"></div><div class="chat_onl_inner"><div class="chat_cont_scrolling"><div class="chat_onl_height"></div></div><div class="chat_cont_sh_top"></div><div class="chat_cont_sh_bottom"></div><a class="chat_tab_wrap" id="chat_tab_wrap" onclick="Chat.showFriends()" onmouseover="Chat.showTT();"><div class="chat_onl_cont"><div class="chat_onl" id="chat_onl"></div></div></a></div>'});
     utilsNode.appendChild(Chat.wrap);
     Chat.scrollNode = geByClass1('chat_cont_scrolling', Chat.wrap);
+    Chat.ttNode = geByClass1('chat_tt_wrap', Chat.wrap);
     Chat.itemsCont = Chat.scrollNode.firstChild;
     Chat.onl = ge('chat_onl');
     Chat.cont = Chat.onl.parentNode.parentNode;
@@ -7170,24 +7750,120 @@ var Chat = {
   }
 }
 
+TopMenu = {
+  init: function() {
+    if (this.inited) {
+      return false;
+    }
+
+    var tpLink = ge('top_profile_link'),
+        tpMenu = ge('top_profile_menu');
+    if (!tpLink || !tpMenu) {
+      return false;
+    }
+
+    addEvent(tpLink, 'mousedown', TopMenu.clicked);
+    this.inited = true;
+  },
+  clicked: function(event) {
+    if (checkEvent(event) || event.type == 'mousedown' && checkKeyboardEvent(event)) {
+      return false;
+    }
+    TopMenu.toggle();
+    return false;
+  },
+  toggle: function(s) {
+    var tpLink = ge('top_profile_link'),
+        tpMenu = ge('top_profile_menu'),
+        alredyShown = hasClass(tpMenu, 'shown');
+
+    if (s !== undefined && alredyShown == s) {
+      return;
+    }
+
+    if (s === undefined) {
+      s = !alredyShown;
+    }
+
+    toggleClass(tpLink, 'active', s);
+    toggleClass(tpMenu, 'shown', s);
+    if (s) {
+      cancelStackPush('top_menu', TopMenu.toggle.bind(this, false), true);
+      if (cur.introExitTooltipHide) {
+        cur.introExitTooltipHide();
+        delete cur.introExitTooltipHide;
+      }
+    } else {
+      cancelStackFilter('top_menu', true);
+    }
+  },
+  show: function() {
+    if (TopMenu.hidetimer) {
+      clearTimeout(TopMenu.hidetimer);
+      TopMenu.hidetimer = 0;
+    }
+    TopMenu.toggle(true);
+  },
+  hide: function() {
+    if (TopMenu.hidetimer) {
+      return;
+    }
+    TopMenu.hidetimer = setTimeout(function() {
+      TopMenu.toggle(false);
+      TopMenu.hidetimer = 0;
+    }, 200);
+  },
+  select: function(el, event) {
+    if (checkEvent(event)) {
+      return true;
+    }
+
+    TopMenu.toggle(false);
+    return nav.go(el, event, {noback: true});
+  }
+}
+
+var TopNotifier = {
+  preload: function() {
+    var st = ['notifier.js', 'notifier.css'];
+    stManager.add(st, function() { TopNotifier.preload(); });
+  },
+  show: function(ev) {
+    if (checkEvent(ev) === true) return;
+    var st = ['notifier.js', 'notifier.css'];
+    stManager.add(st, function() { TopNotifier.show(id); });
+    return cancelEvent(ev);
+  },
+  showTooltip: function(text) {
+    var st = ['notifier.js', 'notifier.css'];
+    stManager.add(st, function() { TopNotifier.showTooltip(text); });
+  },
+  invalidate: __bf,
+  setCount: __bf
+};
+
 TopSearch = {
   cache: {},
   lists: {},
+  maxItems: 8,
   init: function(){
     if (this.inited) return false;
     var tsInput = ge('ts_input'),
-        tsInputWrap = ge('ts_input_wrap'),
         tsWrap = ge('ts_wrap'),
         tsCont = ge('ts_cont_wrap');
 
-    Chat.init();
+    if (vk.id) {
+      Chat.init();
+    }
 
     if (!tsInput) return false;
+
     addEvent(tsInput, 'focus', function() {
       TopSearch.deselect();
       if (trim(val(this))) addClass(tsCont.firstChild, 'active');
       TopSearch.toggleInput(true);
     });
+
     addEvent(tsInput, 'keydown', function(e) {
       switch (e.keyCode) {
         case KEY.DOWN:
@@ -7202,19 +7878,24 @@ TopSearch = {
             var q = trim(val(this));
             if (q) {
               tsInput.blur();
-              hide(tsWrap);
-              TopSearch.tsNeedsClear = true;
+              TopSearch.clear();
+              TopSearch.toggle(false);
               nav.go('/search?c[section]=auto&c[q]='+encodeURIComponent(q));
             }
           }
           cancelEvent(e);
           break;
-        case KEY.ESC:
+        case KEY.TAB:
           TopSearch.clear();
           TopSearch.toggleInput(false);
+          cancelStackFilter('top_search', true);
+
           break;
       }
     });
+
+    if (!vk.id) return;
+
     addEvent(tsInput, 'keyup', function(e) {
       switch (e.keyCode) {
         case KEY.DOWN:
@@ -7228,21 +7909,30 @@ TopSearch = {
           break;
       }
     });
+
     addEvent(tsInput, 'paste', function() {
       setTimeout(function() {
         TopSearch.prepareRows(trim(val(tsInput)));
       }, 10);
     });
+
     addEvent(document, 'mousedown', function(e) { // removed touchstart because of feed lags @izhukov
-      if (!isVisible('ts_wrap') && hasClass(ge('ts_wrap'), 'vk')) TopSearch.toggleSettings();
-      tsInput.blur();
-      TopSearch.toggleInput(false);
+      // todo: seems that these call are not necessary because of topHeaderClose function was added
+      //TopSearch.toggleInput(false);
+      //TopMenu.toggle(false);
+      if (!checkKeyboardEvent(e) && !domClosest('_audio_layer', e.target) && !domClosest('layer_wrap', e.target)) {
+        _topHeaderClose();
+      }
     });
+
     this.inited = true;
   },
   clear: function() {
+    window.tooltips && tooltips.destroyAll(ge('ts_cont_wrap'));
     var tsInput = ge('ts_input');
-    tsInput.setValue('');
+    if (!tsInput || !tsInput.phonblur) return;
+
+    val(tsInput, '');
     tsInput.blur();
     tsInput.phonblur();
     this.prepareRows();
@@ -7251,22 +7941,18 @@ TopSearch = {
     if (checkEvent(event)) return true;
     var tsWrap = ge('ts_cont_wrap'),
         tsInput = ge('ts_input'),
-        tsInputWrap = ge('ts_input_wrap'),
         tsInputLength = trim(val(tsInput)).length,
         hintType = el.getAttribute('hinttype');
+    this.clear();
+    _topHeaderClose();
     if (!tsInputLength) {
       tsInput.blur();
-      this.toggleInput(false);
     }
     if (peer && hasClass(event.target, 'ts_contact_status')) {
       ajax.post('al_search.php', {act: 'save_metrics', ql: tsInputLength, mk: 'chat_box'});
       this.writeBox(peer);
-      this.clear();
-      this.toggleInput(false);
       return false;
     }
-    hide(tsWrap);
-    this.tsNeedsClear = true;
 
     var res = nav.go(el, event);
     ajax.post('al_search.php', {act: 'save_metrics', ql: tsInputLength, mk: hintType});
@@ -7280,7 +7966,7 @@ TopSearch = {
     if (state == 1) TopSearch.deselect();
     var canWrite = inArray(el.getAttribute('hintType'), ['h_friends', 'h_correspondents', 'h_chats']);
     toggleClass(el, 'write', canWrite);
-    if (state) addClass(el, 'active');
+    toggleClass(el, 'active', state);
   },
   moveSelection: function(key) {
     var tsWrap = ge('ts_cont_wrap'), curLink = geByClass1('active', tsWrap), newLink;
@@ -7301,9 +7987,9 @@ TopSearch = {
   getNextNode: function(node, dir, tag) {
     var curNode = node, par = domPN(node);
     while (1) {
-      curNode = dir > 0 ? curNode.nextSibling : curNode.previousSibling;
+      curNode = dir > 0 ? domNS(curNode) : domPS(curNode);
       if (!curNode) {
-        curNode = dir > 0 ? par.firstChild : par.lastChild;
+        curNode = dir > 0 ? domFC(par) : domLC(par);
       }
       if (tag && curNode.tagName && curNode.tagName.toLowerCase() == tag || !tag && curNode) {
         return curNode;
@@ -7312,117 +7998,31 @@ TopSearch = {
       }
     }
   },
-  highlightInput: function(s) {
-    if (true || !hasClass(ge('ts_wrap'), 'vk')) return false;
-    var tsCont = ge('ts_cont_wrap'),
-        tsInput = ge('ts_input'),
-        tsInputWrap = ge('ts_input_wrap');
-    if (!isVisible(tsCont) && !trim(val(tsInput)) && !TopSearch.animationStarted) {
-      if (s) {
-        animate(tsInputWrap, {opacity: 0.65}, {duration: 300, transition: Fx.Transitions.easeOutCubic});
-      } else {
-        animate(tsInputWrap, {opacity: 0.5}, {duration: 300, transition: Fx.Transitions.easeOutCubic});
-      }
-    }
-  },
-  toggleInput: function(s, noAnimation) {
-    if (!hasClass(ge('ts_wrap'), 'vk')) {
+  toggleInput: function(s) {
+    s = !!s;
+    var tsContWrapEl = ge('ts_cont_wrap');
+
+    if (isVisible(tsContWrapEl) != s) {
       toggle('ts_cont_wrap', s);
-      // toggleClass(geByClass1('ts', ge('ts_input_wrap')), 'dark', !s);
-      return;
-    }
-    var tsCont = ge('ts_cont_wrap'),
-        tsInput = ge('ts_input'),
-        tsInputWrap = ge('ts_input_wrap'),
-        duration = noAnimation ? 0 : 150;
-    TopSearch.animationStarted = 1;
-    if (s) {
-      animate(tsInputWrap, {opacity: 1, width: '170px'}, {duration: duration, transition: Fx.Transitions.easeOutCubic, onComplete: function() {
-        show(tsCont);
-        delete TopSearch.animationStarted;
-      }});
-      if (vk.rtl) {
-        var newBG = browser.msie8 || browser.msie7 ? {backgroundPositionX: '152px'} : {backgroundPosition: '152px 5px'};
-        animate(tsInput, newBG, {duration: duration, transition: Fx.Transitions.easeOutCubic});
+
+      if (s) {
+        cancelStackPush('top_search', function() {
+          var tsInput = ge('ts_input');
+          TopSearch.toggleInput(false);
+          tsInput.blur();
+        }, true);
       }
-      if (cur.onTsShow) {
-        cur.onTsShow();
-      }
-    } else {
-      hide(tsCont);
-      if (!trim(val(tsInput))) {
-        animate(tsInputWrap, {width: '130px'}, {duration: duration, transition: Fx.Transitions.easeOutCubic, onComplete: function() {
-          delete TopSearch.animationStarted;
-        }});
-        if (vk.rtl) {
-          var newBG = browser.msie8 || browser.msie7 ? {backgroundPositionX: '112px'} : {backgroundPosition: '112px 5px'};
-          animate(tsInput, newBG, {duration: duration, transition: Fx.Transitions.easeOutCubic});
-        }
-        if (cur.onTsHide) {
-          cur.onTsHide();
-        }
-      }
-    }
-  },
-  toggleSettings: function() {
-    var tsSet = ge('ts_settings'),
-        tsWrap = ge('ts_wrap'),
-        tsInput = ge('ts_input'),
-        s = isVisible(tsWrap),
-        oldIE = browser.msie && (intval(browser.version) < 9);
-    if (s) {
-      addClass(tsSet, 'active');
-      if (oldIE) {
-        setStyle(tsSet, {opacity: 1});
-        hide(tsWrap);
-        cur.tsUpdated && cur.tsUpdated();
-      } else {
-        animate(tsSet, {opacity: 1}, 200);
-        fadeOut(tsWrap, 200, cur.tsUpdated);
-      }
-      tsInput.blur();
-      this.toggleInput(false);
-    } else {
-      removeClass(tsSet, 'active');
-      if (oldIE) {
-        setStyle(tsSet, {opacity: 0.7});
-        show(tsWrap);
-        cur.tsUpdated && cur.tsUpdated();
-      } else {
-        animate(tsSet, {opacity: 0.7}, 200);
-        fadeIn(tsWrap, 200, cur.tsUpdated);
-      }
-    }
-  },
-  toggleTsWrap: function(s) {
-    var tsWrap = ge('ts_wrap'), isVis = isVisible(tsWrap);
-    clearTimeout(window.toggleTsWrapTO);
-    if (s && !isVis) {
-      window.toggleTsWrapTO = setTimeout(fadeIn.pbind(tsWrap, 100), 150);
-    } else if (!s && isVis) {
-      window.toggleTsWrapTO = setTimeout(fadeOut.pbind(tsWrap, 100), 150);
-    }
-  },
-  settingsOver: function() {
-    var tsSet = ge('ts_settings');
-    if (!hasClass(tsSet, 'active')) {
-      animate(tsSet, {opacity: 1}, 200);
-    }
-  },
-  settingsOut: function() {
-    var tsSet = ge('ts_settings');
-    if (!hasClass(tsSet, 'active')) {
-      animate(tsSet, {opacity: 0.7}, 200);
     }
   },
   getList: function(type) {
     switch (type) {
       case 'friends':
-        return (this.lists['friends'] || /*window.curFastChat && curFastChat.friends||*/ this.topFriends || {});
+        return (this.lists['friends'] || this.topFriends || {});
       case 'publics':
       case 'events':
       case 'groups':
       case 'apps':
+      case 'chats':
       case 'search':
         return this.lists[type] || {};
     }
@@ -7432,8 +8032,9 @@ TopSearch = {
     return (window.curFastChat && curFastChat.onlines || this.lists['onlines'] || {});
   },
   initFriendsList: function() {
-    if (this.friendsLoaded) return false;
-    if (cur.initingFL || vk.isBanned) return false;
+    var _t = this;
+    if (_t.friendsLoaded) return false;
+    if (cur.initingFL || vk.isBanned || !vk.id) return false;
     var isEmpty = function(obj){
       for(var i in obj){return false;}
       return true;
@@ -7444,9 +8045,10 @@ TopSearch = {
         cache: 1,
         onDone: function(friends) {
           delete cur.initingFL;
-          TopSearch.topFriends = friends;
-          TopSearch.updateCache('friends');
-          if (!cur.tsStr) TopSearch.prepareRows();
+          _t.topFriends = friends;
+          _t.updateCache('friends');
+          _t.forceUpdate = true;
+          _t.prepareRows(cur.tsStr || '');
           getAllPages();
         },
         onFail: function() {
@@ -7455,18 +8057,21 @@ TopSearch = {
       });
     }
     var getAllPages = function() {
-      if (TopSearch.friendsLoaded) return false;
+      if (_t.friendsLoaded) return false;
       cur.initingFL = true;
       ajax.post('al_search.php', {act: 'get_pages'}, {
         cache: 1,
         onDone: function(res) {
           delete cur.initingFL;
-          if (!TopSearch.friendsLoaded) {
+          if (!_t.friendsLoaded) {
             each(res, function(i, v) {
-              TopSearch.lists[i] = v;
-              if (i != 'onlines') TopSearch.updateCache(i);
+              _t.lists[i] = v;
+              if (i != 'onlines') _t.updateCache(i);
             });
-            TopSearch.friendsLoaded = true;
+            _t.friendsLoaded = true;
+            if (!val('ts_input')) {
+              _t.prepareRows('');
+            }
           }
         },
         onFail: function() {
@@ -7474,11 +8079,12 @@ TopSearch = {
         }
       });
     }
-    var fr = this.getList('friends');
+    var fr = _t.getList('friends');
     if (isEmpty(fr)) getTopFriends();
     else {
-      TopSearch.updateCache('friends');
-      if (!cur.tsStr) TopSearch.prepareRows();
+      _t.updateCache('friends');
+      _t.forceUpdate = true;
+      _t.prepareRows(cur.tsStr || '');
       getAllPages();
     }
   },
@@ -7497,10 +8103,10 @@ TopSearch = {
     var queries = this.getSimilarQueries(q), query, t, i, j, cached, name, re, fr, cache;
     if (this.cache[listName][q] !== undefined) return queries;
     cache = this.cache[listName][q] = {};
-    for (i in queries) {
+    for (var i in queries) {
       query = queries[i];
       if (cached = this.cache[listName][' ' + query.charAt(0).toLowerCase()]) {
-        re = new RegExp('(^|\\s|\\()' + escapeRE(query), 'gi');
+        re = new RegExp('(^|[\\s\\-\\(\\)\\.,;|:]+)' + escapeRE(query), 'gi');
         for (j in cached) {
           fr = list[j + '_'];
           if (!isArray(fr)) continue;
@@ -7509,40 +8115,37 @@ TopSearch = {
       }
     }
     j = 0;
-    for (i in cache) j++;
+    for (var i in cache) j++;
     cache._num = j;
     return queries;
   },
-  updateCache: function(listName, items) {
+  updateCache: function(listName, items, append) {
     var list = items || this.getList(listName);
-    var name, cursor, letter;
-    this.cache[listName] = this.cache[listName] || {};
-    for (i in list) {
+    var name, cursor, letter, words;
+    this.cache[listName] = append && this.cache[listName] || {};
+    for (var i in list) {
       name = list[i][0];
       i = intval(i);
-      cursor = 0;
-      while (1) {
-        letter = ' ' + name.charAt(cursor).toLowerCase();
+      words = name.split(/[\s\-\(\)\.,;|:]+/);
+      for (var j in words) {
+        letter = ' ' + words[j].charAt(0).toLowerCase();
         this.cache[listName][letter] = this.cache[listName][letter] || {};
         this.cache[listName][letter][i] = 1;
-        cursor = name.indexOf(' ', cursor + 1);
-        if (cursor == -1) break;
-        ++cursor;
       }
     }
   },
   listSearch: function(listName, q, limit, excludeIds) {
-    var results = [], re = false, filterList = {}, listCache = listName + 'Cache';
+    var _t = TopSearch,
+        results = [], filterList = {};
     if (q) {
-      TopSearch.searchCache(listName, q);
-      filterList = this.cache[listName] && this.cache[listName][q] || {};
+      _t.searchCache(listName, q);
+      filterList = _t.cache[listName] && _t.cache[listName][q] || {};
     } else {
-      each (this.getList(listName), function(k) {
+      each (_t.getList(listName), function(k) {
         var mid = intval(k); filterList[mid] = 1;
       });
     }
-    // Why should we walk through the whole list?
-    each (this.getList(listName), function(k) {
+    each (_t.getList(listName), function(k) {
       var mid = intval(k), matches = filterList[mid];
       if (excludeIds && excludeIds[mid]) return;
       if (!matches) return;
@@ -7551,29 +8154,77 @@ TopSearch = {
     });
     return results;
   },
-  row: function(mid, href, photo, name, online, re, hintType, info) {
+  row: function(mid, href, photo, name, online, re, hintType, info, verified) {
     var peer = 0, typeAttr = '';
     if (re) name = name.replace(re, '$1<em class="ts_clist_hl">$2</em>');
     if (inArray(hintType, ['h_friends', 'h_correspondents', 'h_chats'])) {
       peer = mid;
     }
     if (!info) info = '';
-    return '<a href="' + href + '" class="ts_contact ' + (online ? (mobPlatforms[online] ? 'ts_contact_mobile' : 'ts_contact_online') : '') +' clear_fix" id="ts_contact' + mid + '" onclick="return TopSearch.select(this, event, '+peer+');" onmousedown="event.cancelBubble = true;" onmouseover="TopSearch.itemOver(this, 1, event);"  onmouseout="TopSearch.itemOver(this, 0, event);" hinttype="'+hintType+'"><span class="ts_contact_photo fl_l"><img src="' + photo + '"/></span><span class="ts_contact_name fl_l">' + name + '<div class="ts_contact_info">'+info+'</div></span><div class="ts_contact_status"></div></a>';
+    verified = verified ? '<div class="page_verified" onmouseover="pageVerifiedTip(this, {' + (mid > 0 ? ('mid:' + mid) : ('gid:' + Math.abs(mid))) + '})"></div>' : '';
+    return '<a href="' + href + '" class="ts_contact clear_fix" id="ts_contact' + mid + '" onclick="return TopSearch.select(this, event, '+peer+');" onmousedown="event.cancelBubble = true;" onmouseover="TopSearch.itemOver(this, 1, event);"  onmouseout="TopSearch.itemOver(this, 0, event);" hinttype="'+hintType+'"><span class="ts_contact_photo ' + onlinePlatformClass(online) +'"><img class="ts_contact_img" src="' + photo + '"/></span><span class="ts_contact_name fl_l"><div class="ts_contact_title_wrap' + (verified ? ' is_verified' : '') + '"><span class="ts_contact_title">' + name + '</span></div>' + verified + '<div class="ts_contact_info">'+info+'</div></span><div class="ts_contact_status"></div></a>';
   },
-  rowSearchSep: function() {
-    return '<div id="ts_search_sep">'+getLang('head_search_results')+'</div>';
+  searchLists: function(q) {
+    var _t = TopSearch,
+        lists = {};
+    if (q) {
+      lists = {
+        friends: {order: 0, count: _t.maxItems - 1, label: getLang('global_friends')},
+        groups: {order: 1, count: 4, label: getLang('global_communities')},
+        publics: {count: 2, parent: 'groups'},
+        events: {count: 1, parent: 'groups'},
+        apps: {order: 2, count: 1, label: getLang('global_apps')},
+        chats: {order: 3, count: _t.maxItems - 1, label: getLang('global_chats')},
+        search: {order: 4, count: _t.maxItems - 1, label: getLang('head_search_results')}
+      };
+    } else {
+      lists = {friends: {order: 0, count: _t.maxItems, label: getLang('global_friends')}};
+    }
+
+    return lists;
+  },
+  initListsHtml: function() {
+    TopSearch.listsHtml = [];
+  },
+  addToListsHtml: function(listId, row, q) {
+    var _t = TopSearch,
+        lists = _t.searchLists(q),
+        type = (lists[listId] || {}).parent || listId,
+        list = lists[type] || {},
+        order = list.order || 0,
+        label = list.label || '';
+
+    _t.listsHtml[order] = _t.listsHtml[order] || (q && label ? ['<div class="ts_search_sep">'+label+'</div>'] : []);
+    _t.listsHtml[order].push(row);
+  },
+  htmlRows: function(q) {
+    var _t = TopSearch,
+        res = [], html = '';
+    for (var i in _t.listsHtml) {
+      res.push(_t.listsHtml[i].join(''));
+    }
+
+    if (q) {
+      var show_q = (q.length > 27) ? q.substr(0, 25) + '..' : q,
+          section = (q[0] == '#') ? 'statuses' : 'auto',
+          label = (q[0] == '#') ? getLang('global_news_search_results') : getLang('global_show_all_results');
+      html += '<a href="/search?c[section]='+section+'&c[q]='+encodeURIComponent(q)+'" class="ts_search_link clear_fix active" id="ts_search_link" onclick="return TopSearch.select(this, event);" onmousedown="event.cancelBubble = true;" onmouseover="TopSearch.itemOver(this, 1, event);"  onmouseout="TopSearch.itemOver(this, 0, event);" ><span class="ts_contact_name fl_l">'+label+'</span><div class="ts_contact_status "></div></a>';
+    }
+
+    return html + res.join('');
   },
   prepareRows: function(q) {
-    var html = [],
-        limit = total = 8,
-        filterList = {},
+    var _t = TopSearch,
+        html = '';
+        limit = _t.maxItems,
         tsWrap = ge('ts_cont_wrap'),
-        curLink = geByClass1('active', tsWrap),
-        activeId = curLink ? curLink.id  : '', searchLists = {}, noSep = false;
-    if (!tsWrap) return false;
-    if (cur.tsStr && cur.tsStr == q) return false;
+        curLink = geByClass1('active', tsWrap);
+    if (!tsWrap || !vk.id) return false;
+    if (cur.tsStr && cur.tsStr == q && !_t.forceUpdate) return false;
+    delete _t.forceUpdate;
 
-    var rowsNum = 0, excludeIds = {}, re;
+    _t.initListsHtml();
+    var excludeIds = {}, re;
     if (q) {
       re = [];
       each(this.getSimilarQueries(q), function() {
@@ -7582,67 +8233,50 @@ TopSearch = {
       re = new RegExp("([ \-]|^|\s|&nbsp;|\b)(" + re.join('|') + ")", "gi");
       cur.lastRe = re;
       limit--;
-      searchLists = {apps: 1, events: 1, publics: 2, groups: 4, friends: 10, search: 10};
-    } else {
-      searchLists = {friends: 10};
     }
 
-    each(searchLists, function(i, v) {
-      if (!TopSearch.cache[i]) {
+    each(_t.searchLists(q), function(i, data) {
+      if (!_t.cache[i]) {
         return;
       }
-      var results = TopSearch.listSearch(i, q, v, excludeIds), items = [], row;
+      var cnt = data.count,
+          results = _t.listSearch(i, q, cnt, excludeIds),
+          items = [],
+          added = 0;
       if (isEmpty(results)) return;
       for (var j in results) {
-        if (!limit || limit < total - v) break;
+        if (!limit || added >= cnt) break;
         items.push(results[j]);
         limit--;
-        rowsNum++;
+        added++;
       }
       if (!items.length) return;
-      if (i != 'search') items.reverse();
 
       for (var j in items) {
-        var item = items[j][1], mid = intval(items[j][0]);
-        if (i == 'search' && !noSep && (item[3].substr(0, 2) == 's_' || item[3] == 'h_mutual_friends') && html.length > 0) {
-          html.push(TopSearch.rowSearchSep());
-          noSep = true;
-        } else if (i == 'search' && !html.length) {
-          noSep = true;
-        }
+        var item = items[j][1],
+            mid = intval(items[j][0]),
+            online = mid > 0 ? _t.onlines()[mid] : false,
+            name = item[0], href = item[2],
+            info = item[4], verified = item[5],
+            type = (i == 'search') ? item[3] : 'h_'+i, row;
 
-        var online = mid > 0 ? TopSearch.onlines()[mid] : false,
-          name = item[0], href = item[2],
-          info = item[4],
-          type = (i == 'search') ? item[3] : 'h_'+i;
-          excludeIds[mid] = 1;
-
-        row = TopSearch.row(mid, href, item[1], name, online, re, type, info);
-
-        (i == 'search') ? html.push(row) : html.unshift(row);
+        row = _t.row(mid, href, item[1], name, online, re, type, info, verified);
+        _t.addToListsHtml(i, row, q);
+        excludeIds[mid] = 1;
       }
-
     });
-    if (q) {
-      if (!html.length) {
-        noSep = true;
-      }
-      var show_q = (q.length > 27) ? q.substr(0, 25) + '..' : q,
-          langKey = (q[0] == '#') ? getLang('top_search_news') : getLang('top_search');
-      html.unshift('<a href="/search?c[section]=auto&c[q]='+encodeURIComponent(q)+'" class="ts_search_link clear_fix active" id="ts_search_link" onclick="return TopSearch.select(this, event);" onmousedown="event.cancelBubble = true;" onmouseover="TopSearch.itemOver(this, 1, event);"><span class="ts_contact_name fl_l">'+langKey.replace('{query}', '<span class="ts_query">'+clean(show_q)+'</span>')+'</span><div class="ts_contact_status "></div></a>');
-    }
 
-    TopSearch.friendsRows = tsWrap.innerHTML = html.join('');
-    if (window.tsHintsEnabled) {
-      if (limit && q && q[0] != '#') {
-        this.hintsSearch(q, cur.lastRe || false, limit, noSep);
-      }
+    tsWrap.innerHTML = _t.htmlRows(q);
+    if (limit && q && q[0] != '#') {
+      this.hintsSearch(q, cur.lastRe || false);
     }
     if (html || q) cur.tsStr = q;
-    if (activeId && ge(activeId)) addClass(ge(activeId), 'active');
   },
-  hintsSearch: function(q, re, limit, noSep) {
-    var tsInput = ge('ts_input'), tsWrap = ge('ts_cont_wrap'), curLink, activeId;
+  hintsSearch: function(q, re) {
+    var _t = TopSearch,
+        tsInput = ge('ts_input'),
+        tsWrap = ge('ts_cont_wrap'),
+        curLink, activeId, needsUpdate;
     ajax.post('al_search.php', {act: 'get_pages_hints', q: q}, {
       cache: 1,
       onDone: function(pages) {
@@ -7652,26 +8286,35 @@ TopSearch = {
         if (!pages) {
           return false;
         }
-        var rows = [], hasSep = ge('ts_search_sep') ? true : false;
 
-        TopSearch.lists['search'] = TopSearch.lists['search'] || {};
+        var limit = _t.maxItems - geByClass('ts_contact', tsWrap).length - 1, groupedPages = {};
         each (pages, function(k) {
-          TopSearch.lists['search'][k] = this;
-          var mid = intval(k), name = this[0], href = this[2], hintType = this[3], info = this[4];
+          var mid = intval(k), name = this[0], href = this[2], hintType = this[3], info = this[4],
+              verified = this[5],
+              lists = _t.searchLists(q),
+              realType = hintType.replace('h_', ''),
+              type = (lists[realType] || {}).parent || realType;
+          if (lists[type] === undefined) {
+            type = 'search';
+          }
+          groupedPages[type] = groupedPages[type] || {};
+          groupedPages[type][k] = this;
+          _t.lists[type] = _t.lists[type] || {};
+          _t.lists[type][k] = this;
           if (ge('ts_contact'+mid)) return true;
           if (!(limit--)) return false;
-          if (!noSep && (hintType.substr(0, 2) == 's_' || hintType == 'h_mutual_friends')) {
-            rows.push(TopSearch.rowSearchSep());
-            noSep = true;
-          }
-          rows.push(TopSearch.row(mid, href, this[1], name, false, re, hintType, info));
+          var row = _t.row(mid, href, this[1], name, false, re, hintType, info, verified);
+          _t.addToListsHtml(type, row, q);
+          needsUpdate = true
           return true;
         });
-        TopSearch.updateCache('search', pages);
-        if (rows.length) {
+        for (var i in groupedPages) {
+          _t.updateCache(i, groupedPages[i], true);
+        }
+        if (needsUpdate) {
           curLink = geByClass1('active', tsWrap);
           activeId = curLink ? curLink.id  : '';
-          tsWrap.innerHTML += rows.join('');
+          tsWrap.innerHTML = _t.htmlRows(q);
           if (activeId && ge(activeId)) addClass(ge(activeId), 'active');
         }
       }
@@ -7688,15 +8331,31 @@ TopSearch = {
   }
 }
 
+//do not use it directly, use cancelStackPush
+function _topHeaderClose(func) {
+  window.headerDestroy && window.headerDestroy();
+  window.headerDestroy = func;
+}
+
+//do not use it directly, use cancelStackFilter
+function _topHeaderClearClose() {
+  delete window.headerDestroy;
+}
+
 function mentionOver(el, opts) {
   opts = opts || {};
   showTooltip(el, {
     url: 'al_wall.php',
     params: {act: 'mention_tt', mention: el.getAttribute('mention_id'), from: 'wall'},
-    shift: opts.shift || [65, 7, 7],
+    shift: opts.shift || [52, 7, 7],
     hidedt: 500,
     showdt: 500,
-    slide: 15
+    slide: 15,
+    checkLeft: true,
+    reverseOffset: opts.reverseOffset || 39,
+    dir: 'auto',
+    appendEl: domClosest('_im_mess_stack', el) || domClosest('rb_box_wrap', el)
+      || domClosest('wk_cont', el) || domClosest('scroll_fix_wrap', el)
   });
 }
 
@@ -7766,6 +8425,10 @@ function padAudioPlaylist() {
   return window.audioPlaylist || ls.get('pad_playlist');
 }
 
+function menuSettings(type) {
+  return showTabbedBox('al_settings.php', {act: 'menu_box', type: type});
+}
+
 var _postsSeen = {}, _postsSaved = {}, _postsSaveTimer, _postsSendTimer, _postsCleanTimer, _postsSeenModules = {}, _postsExtras = {};
 var ls = {
   checkVersion: function() {
@@ -7796,7 +8459,7 @@ var ls = {
 
 var mobilePromo = showBox.pbind('al_login.php', {act: 'mobile', box: 1});
 function mobileOnlineTip(el, opts) {
-  var sh = (opts.right ? 278 : 35) + (browser.opera ? 1 : 0);
+  var sh = (opts.right ? 289 : 35) + (browser.opera ? 1 : 0);
   return showTooltip(el, {
     url: 'al_login.php',
     params: {act: 'mobile_tt', mid: opts.mid, was: opts.was},
@@ -7804,14 +8467,16 @@ function mobileOnlineTip(el, opts) {
     ajxdt: 200,
     showdt: 200,
     hidedt: 200,
+    forcetoup: opts.forcetoup,
     toup: false,
-    shift: [sh, 0, 0],
+    dir: 'auto',
+    appendParentCls: opts.appendParentCls,
+    shift: [sh, 8, 8],
     className: 'mobile_tt' + (opts.right ? ' mobile_tt_right' : '')
   });
 }
 
 function pageVerifiedTip(el, opts) {
-  var sh = 94 + (browser.opera || opts.s ? 1 : 0);
   return showTooltip(el, {
     url: opts.gid ? 'al_groups.php' : 'al_profile.php',
     params: {act: 'verified_tt', mid: opts.mid || 0, gid: opts.gid || 0},
@@ -7819,9 +8484,9 @@ function pageVerifiedTip(el, opts) {
     ajxdt: 200,
     showdt: 200,
     hidedt: 200,
-    toup: false,
-    shift: [sh, 1, 1],
-    className: 'verified_tt' + (opts.gid ? ' verified_group_tt' : '')
+    dir: 'auto',
+    shift: [94, 7, 7],
+    className: 'verified_tt'
   });
 }
 
@@ -7832,7 +8497,7 @@ var Pads = {
     stManager.add(st, function() { Pads.preload(id); });
   },
   show: function(id, ev) {
-    if (checkEvent(ev) === true || browser.msie6) return;
+    if (checkEvent(ev) === true) return;
     var st = ['pads.css', 'pads.js', 'notifier.js'];
     if (id == 'msg') st.push('pads_im.css', 'pads_im.js', 'page.css', 'page.js');
     stManager.add(st, function() { Pads.show(id); });
@@ -8079,7 +8744,7 @@ function getCaretBoundingRect(node) {
     if (rectNode.top === rectNode.bottom) return {left: 0, top: 0, bottom: 0};
     if (document.selection) { // using textRange
       range = document.selection.createRange();
-      rectCaret = range.getClientRects();
+      rectCaret = range.getClientRects() || [];
       if (!rectCaret.length) { // fix empty range
         range.text = '_';
         range.moveStart('character', -1);
@@ -8104,6 +8769,16 @@ function getCaretBoundingRect(node) {
       bottom: rectCaret.bottom - rectNode.top
     };
 };
+
+function getSelectionText() {
+  var text = "";
+  if (window.getSelection) {
+      text = window.getSelection().toString();
+  } else if (document.selection && document.selection.type != "Control") {
+      text = document.selection.createRange().text;
+  }
+  return text;
+}
 
 function aquireLock(name, fn, noretry) {
   var lockKey = 'lockkk_' + name;
@@ -8172,7 +8847,6 @@ function statNavigationTiming () {
       statlogsValueEvent('navigation_timing', perTiming[key], key, curModule);
     }
     window.clientStatsInitedNT = true;
-    debugLog(curModule, perTiming['response']);
   }
 }
 
@@ -8249,6 +8923,10 @@ function statlogsValueEvent(statName, value, key1, key2, key3) {
   });
 }
 
+function getProgressBarEl(parentRef) {
+  return geByClass1('ui_progress_bar', parentRef);
+}
+
 function onLoaded(fn) {
   if (vk.loaded) {
     fn();
@@ -8257,220 +8935,1018 @@ function onLoaded(fn) {
   }
 }
 
-function adsRestoreVisibility(elem, tempStyles) {
-  if (vk.id % 17 > 9
-    || typeof Promise === 'undefined' || Promise.toString().indexOf('[native code]') < 0
-    || typeof [].filter !== 'function' || typeof [].reduce !== 'function') {
-    return;
+function currentModule() {
+  return cur.currentModule ? cur.currentModule() : cur.module;
+}
+
+function formatTime(t, forceHours) {
+  var res, sec, min, hour;
+
+  t = Math.max(t, 0);
+  sec = Math.floor(t % 60);
+  res = (sec < 10) ? '0'+sec : sec;
+  t = Math.floor(t / 60);
+  min = t % 60;
+  res = min+':'+res;
+  t = Math.floor(t / 60);
+
+  if (t > 0 || forceHours) {
+    if (min < 10) res = '0' + res;
+    res = t+':'+res;
   }
 
-  var cssStyles = {
-    display: function(element) {
-      var displayVal = 'block';
-      if (/^(:?textarea|acronym|strong|select|object|button|small|label|input|time|span|samp|code|cite|abbr|var|sup|sub|map|kbd|img|dfn|big|bdo|tt|em|br|q|i|b|a)$/i.test(element.tagName)) {
-        displayVal = 'inline';
+  return res;
+}
+
+function debounce(func, wait, immediate) {
+  var timeout;
+  return function() {
+    var context = this, args = arguments;
+    var later = function() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  }
+}
+
+function throttle(fn, time) {
+  var timeout;
+
+  return function() {
+    if (!timeout) {
+      fn.apply(this, arguments);
+      timeout = setTimeout(function() {
+        timeout = false;
+      }, time)
+    }
+  };
+}
+
+function shuffle(arr) {
+  var counter = arr.length,
+      temp,
+      index;
+
+  while (counter > 0) {
+    index = Math.floor(Math.random() * counter);
+
+    counter--;
+
+    temp = arr[counter];
+    arr[counter] = arr[index];
+    arr[index] = temp;
+  }
+
+  return arr;
+}
+
+function getProgressHtml(id, cls) {
+  return rs(vk.pr_tpl, {id: id || '', cls: cls || ''});
+}
+
+function showProgress(el, id, cls, doInsertBefore) {
+  el = ge(el);
+  if (!el) return;
+
+  var prel;
+
+  if (hasClass(el, 'pr')) {
+    prel = el;
+  } else {
+    prel = se(rs(vk.pr_tpl, {id: id || '', cls: cls || ''}));
+
+    if (doInsertBefore) {
+      domInsertBefore(prel, el);
+    } else {
+      el.appendChild(prel);
+    }
+  }
+
+  setTimeout(function(){
+    setStyle(prel, {opacity: 1});
+  });
+
+  return prel;
+}
+function hideProgress(el) {
+  if (el) {
+    if (hasClass(el, 'pr')) {
+      setStyle(el, {opacity: 0});
+    } else {
+      re(geByClass1('pr', el));
+    }
+  }
+}
+
+// audio functions
+function initTopAudioPlayer() {
+  stManager.add(['audioplayer.js'], function() {
+    TopAudioPlayer.init();
+  });
+}
+
+function toggleAudioLyrics(event, ref, audioId, lyricsId) {
+  if (!lyricsId) {
+    return false;
+  }
+
+  var audioRowEl = gpeByClass('_audio_row', ref);
+  var lyricsEl = geByClass1('_audio_lyrics_wrap', audioRowEl);
+
+  if (lyricsEl.innerHTML) {
+    toggle(lyricsEl);
+    cancelEvent(event);
+    return false;
+  }
+
+  lyricsId = intval(lyricsId);
+
+  if (lyricsId) {
+    addClass(audioRowEl, 'audio_loading');
+    showProgress(audioRowEl);
+
+    var isTop = false, topGenre = 0;
+
+    if (cur.audioPage) {
+      isTop = cur.audioPage.getCurrentPlaylist().getType() == AudioPlaylist.TYPE_POPULAR;
+      topGenre = cur.audioPage.getCurrentPlaylist().getAlbumId();
+    }
+
+    ajax.post('al_audio.php', { act: 'get_lyrics', aid: audioId, lid: lyricsId, top: intval(isTop), genre: intval(topGenre) }, {
+      onDone: function(lyrics) {
+        hideProgress(audioRowEl);
+        removeClass(audioRowEl, 'audio_loading');
+
+        lyricsEl.innerHTML = lyrics;
+        show(lyricsEl);
+      }
+    });
+
+    cancelEvent(event);
+  }
+
+  return false;
+}
+
+function audioSearchPerformer(ref, event) {
+  cur.cancelClick = true;
+
+  var audioEl = gpeByClass('_audio_row', ref);
+  var isInAudioPage = window.AudioPage && AudioPage(audioEl);
+  var audio = AudioUtils.getAudioFromEl(audioEl, true);
+
+  if (isInAudioPage) {
+    var performer = unclean(audio.performer).replace(/<em>|<\/em>/g, '');
+    return nav.change({ q: performer, performer: 1 }, event, { searchPerformer: true });
+  } else {
+    return nav.go(ref, event);
+  }
+}
+
+function getAudioPlayer() {
+  window.ap = window.ap || new AudioPlayer();
+  return window.ap;
+}
+
+function prepareAudioLayer(cb) {
+  stManager.add(['audio.js', 'audioplayer.js', 'audio.css', 'suggester.js', 'auto_list.js', 'indexer.js'], function() {
+    cb && cb();
+  });
+}
+
+function showAudioLayer(event, btn) {
+  prepareAudioLayer(function() {
+    AudioUtils.showAudioLayer(btn);
+  });
+  return cancelEvent(event);
+}
+
+function audioShowActionTooltip(btn) {
+  if (cur._addRestoreInProgress) return;
+
+  var audioRow = gpeByClass('_audio_row', btn);
+  var text = btn.id;
+
+  var audioFullId = domData(audioRow, 'full-id');
+
+  var audioAddRestoreInfo = AudioUtils.getAddRestoreInfo();
+
+  switch(text) {
+    case 'delete':
+      if (hasClass(audioRow, 'recoms')) {
+        text = getLang('audio_dont_show');
       } else {
-        switch (element.tagName.toLowerCase()) {
-          case 'table':
-            displayVal = 'table';
-            break;
-          case 'td':
-            displayVal = 'table-cell';
-            break;
-          case 'tr':
-            displayVal = 'table-row';
-            break;
+        var restores = audioAddRestoreInfo[audioFullId];
+        if (restores && restores.deleteAll) {
+          text = restores.deleteAll.text;
+        } else {
+          text = getLang('global_delete_audio');
         }
       }
-      return displayVal;
-    },
-    visibility: 'visible',
-    width: 'auto',
-    height: 'auto',
-    'max-width': 'none',
-    'max-height': 'none'
-  };
-  var restoreTempStyles = {};
-  if (tempStyles) {
-    each(tempStyles, function(name, value){
-      restoreTempStyles[name] = elem.style.getPropertyValue(name);
-      elem.style.setProperty(name, value);
-    });
-  }
+      break;
 
-  var styleNames = Object.keys(cssStyles);
+    case 'add':
+      if (hasClass(audioRow, 'recoms') && hasClass(audioRow, 'audio_deleted')) {
+        text = getLang('audio_restore_audio');
 
-  var matches = Function.call.bind(Element.prototype.matchesSelector ||
-  Element.prototype.mozMatchesSelector || Element.prototype.webkitMatchesSelector ||
-  Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector);
+      } else {
 
-  var childrenClassesUniq= arrUnique(getChildrenClasses(elem));
-  var childrenClassesRexExp = '';
+        var info = audioAddRestoreInfo[audioFullId];
 
-  for (var i in childrenClassesUniq) {
-    childrenClassesRexExp += '\\.' + childrenClassesUniq[i] + (i == childrenClassesUniq.length - 1 ? '|ads_ad' : '|');
-  }
+        if (info && info.state == 'deleted') {
+          text = getLang('audio_restore_audio');
 
-  var cssRulesAll = getCssRules();
-  var cssRules    = cssRulesAll.filter(function(cssRule) {
-    return !!cssRule.selectorText.match(childrenClassesRexExp);
-  });
-  var checkParams = {
-    target: elem,
-    rules: cssRules
-  };
+        } else if (info && info.state == 'added') {
+          text = getLang('global_delete_audio');
 
-  var checkElem = checkElemParams.bind(null, checkParams);
-  var checkStyles = checkElemStyles.bind(null, checkParams);
-
-  var checkChildren = function(elem) {
-    var child = elem.firstChild;
-    while (child) {
-      if (child.nodeName.toLowerCase() !== 'style' && (child instanceof Element)) {
-        var shown = true;
-        if (window.getComputedStyle(child).display === 'none') {
-          shown = checkStyles(child);
-        }
-        if (shown) {
-          checkChildren(child);
-        }
-      }
-      child = child.nextSibling;
-    }
-  }
-
-  var parents = [elem];
-  //var el = elem;
-  //while (el) {
-  //  //if (el instanceof Element) {
-  //parents.unshift(el);
-  //  //}
-  //  el = el.parentNode;
-  //}
-  parents = parents.reverse();
-  parents.reduce(function(promise, el) {
-    return promise.then(function() {
-      return checkElem(el);
-    });
-  }, Promise.resolve())
-  .then(function() {
-    checkChildren(elem);
-  });
-
-  if (restoreTempStyles) {
-    each(restoreTempStyles, function(name, value) {
-      elem.style.setProperty(name, value);
-    });
-  }
-
-  function getChildrenClasses(elem) {
-    var classes = [], ownClasses = [];
-    for (var i = 0; i < elem.childNodes.length; i++) {
-      if (elem instanceof Element) {
-        var child = elem.childNodes[i];
-        if (child.className) {
-          ownClasses = child.className.split(' ').filter(function(className) {
-            return className && (className.indexOf('ads_ad') < 0)
-          });
-        }
-        classes = classes.concat(ownClasses);
-        classes = classes.concat(getChildrenClasses(child));
-      }
-    }
-    return classes;
-  }
-
-  function getStyleSheetsRules(styleSheet) {
-    var rules = [];
-    if (!(styleSheet.media && styleSheet.media.length && styleSheet.media[0] === 'print') && styleSheet.cssRules) {
-      Array.prototype.slice.call(styleSheet.cssRules).reduce(function(rules, rule) {
-        if (rule.styleSheet) {
-          Array.prototype.push.apply(rules, getStyleSheetsRules(rule.styleSheet));
-        } else if (rule.selectorText) {
-          rules.push(rule);
-        }
-        return rules;
-      }, rules);
-    }
-    return rules;
-  }
-
-  function getCssRules() {
-    return Array.prototype.slice.call(document.styleSheets).reduce(function(rules, styleSheet) {
-      Array.prototype.push.apply(rules, getStyleSheetsRules(styleSheet));
-      return rules;
-    }, []);
-  }
-
-  function getElementStyles(elem, cssRules) {
-    var styles = {};
-    var inlineStyles = elem.style.cssText.split(';');
-
-    var elemRules = cssRules.filter(function(cssRule) {
-      AdsLight.cntr += 1;
-      return matches(elem, cssRule.selectorText);
-    });
-    if (elemRules.length) {
-      each(elemRules, function(idx, cssRule) {
-        styleNames.reduce(function(styles, prop) {
-          if (prop in cssRule.style && cssRule.style[prop] !== '') {
-            styles[prop] = cssRule.style[prop];
+        } else {
+          var audioPage = window.AudioPage ? AudioPage(btn) : false;
+          if (audioPage && audioPage.options.oid < 0 && audioPage.options.canAudioAddToGroup) {
+            text = getLang('audio_add_to_group');
+          } else {
+            text = getLang('audio_add_to_audio');
           }
-          return styles;
-        }, styles);
-      });
-    }
-    for (var i in inlineStyles) {
-      var inlineStyle = inlineStyles[i].split(":");
-      styles[inlineStyle[0]] = inlineStyle[1];
-    }
-    return styles;
-  }
-
-  function checkElemStyles(params, elem) {
-    var computedStyles;
-    var shown = true;
-
-    if (window.getComputedStyle(elem).display === 'none') {
-      if ('getComputedStyle' in window) {
-        computedStyles = window.getComputedStyle(elem);
-      }
-      var elemStyles = getElementStyles(elem, params.rules);
-      each(styleNames, function(idx, styleName) {
-        var styleValue = elemStyles[styleName];
-        if (!styleValue) {
-          styleValue = typeof cssStyles[styleName] === 'function' ?
-          cssStyles[styleName](elem) :
-          cssStyles[styleName];
         }
-        if (!computedStyles || styleValue !== computedStyles[styleName]) {
-          elem.style.setProperty(styleName, styleValue, 'important');
-        }
-      });
-      if (window.getComputedStyle(elem).display === 'none') {
-        shown = false;
       }
+      break;
+
+    case 'edit':
+      text = getLang('audio_edit_audio');
+      break;
+
+    case 'next':
+      text = (cur.lang && cur.lang.global_audio_set_next_audio) || getLang('audio_set_next_audio');
+      break;
+
+    case 'recom':
+      text = getLang('audio_show_recommendations');
+      break;
+  }
+
+  var options = {text: function() { return text; }, black: 1, shift: [7, 5, 0], needLeft: true};
+
+  if (gpeByClass('_im_mess_stack', btn)) {
+    options.appendParentCls = '_im_mess_stack';
+    options.shift = [13, 10, 0];
+    options.noZIndex = true;
+
+  } else if (gpeByClass('top_notify_wrap', btn)) {
+    options.appendParentCls = 'top_notify_wrap';
+  }
+
+  showTooltip(btn, options);
+}
+
+function addAudio(btn, event) {
+  stManager.add(['audioplayer.js'], function() {
+    AudioUtils.addAudio(btn);
+  });
+
+  return cancelEvent(event);
+}
+
+function isToday(date) {
+  var now = new Date();
+  return date.getFullYear() === now.getFullYear()
+    && date.getMonth() === now.getMonth()
+    && date.getDate() === now.getDate();
+}
+
+function isYesterday(date) {
+  var yesterday = new Date(date.getTime() + 86400 * 1000);
+  return isToday(yesterday);
+}
+
+function isTomorrow(date) {
+  var tomorrow = new Date(date.getTime() - 86400 * 1000);
+  return isToday(tomorrow);
+}
+
+function leadingZero(num) {
+  if (num >= 10) {
+    return num;
+  } else {
+    return '0' + num;
+  }
+}
+
+function langDate(rawDate, langKey, offset, months, onlyDate, addPrep) {
+  var date;
+  if (!addPrep) {
+    addPrep = '';
+  }
+
+  if (!isArray(langKey)) {
+    langKey = ['', langKey, langKey, langKey, langKey];
+  }
+
+  if (typeof rawDate === 'number' || typeof rawDate === 'string') {
+    if (rawDate > 2147483646 * 1000) { // some guys have this in _bday_year_ field!
+      rawDate = 0;
     }
-    return shown;
+    rawDate= rawDate + offset;
+
+    date = new Date(rawDate);
+  } else {
+    date = rawDate;
   }
 
-  function checkElemParams(params, elem) {
-    checkElemStyles(params, elem);
-    return Promise.resolve();
+  if (onlyDate) {
+    langKey = langKey[1];
+  } else {
+    tmp = '';
+    if (isToday(date)){
+      tmp = langKey[3];
+    } else if (isYesterday(date)) {
+      tmp = langKey[2];
+    } else if (isTomorrow(date)) {
+      tmp = langKey[4];
+    } else {
+      tmp = langKey[1];
+    }
+    if(!tmp && langKey[1]) {
+      tmp = langKey[1];
+    }
+    langKey = tmp;
   }
 
-  function arrUnique(arr) {
-    var u = {};
+  amPm = '';
+  var dateRep = {
+    hours: date.getHours(),
+    minutes: date.getMinutes(),
+    seconds: date.getSeconds(),
+    day: date.getDate(),
+    month: date.getMonth() + 1,
+    year: date.getFullYear()
+  };
+
+  if (vk.lang === 3) {
+    amPm = (date.getHours() > 11) ? 'pm' : 'am';
+    dateRep.hours = (date.getHours() % 12 == 0) ? 12 : date.getHours() % 12;
+  }
+
+  switch (vk.lang) {
+    case 1:
+      switch(date.getHours()) {
+        case 11:
+          langKey = langKey.replace('о', 'об');
+          break;
+        case 0:
+          langKey = langKey.replace('о', 'в');
+          break;
+      }
+      break;
+
+    case 3:
+      if (isToday(date) && !isYesterday(date) && !isTomorrow(date)) {
+        langKey = addPrep + langKey; // ON some date, AT some date etc
+      }
+      break;
+    case 12: // Portugues
+    case 73: // Portugues brasileiro
+      if (date.getHours() == 1) {
+        langKey = langKey.repalce(' &#224;s ', ' &#224; ');
+      }
+      break;
+  }
+  if (vk.lang === 68) {
+    dateRep.year = dateRep.year + 543;
+  }
+
+  return langKey.replace('{hour}', dateRep.hours)
+    .replace('{num_hour}', leadingZero(dateRep.hours))
+    .replace('{minute}', leadingZero(dateRep.minutes))
+    .replace('{day}', dateRep.day)
+    .replace('{num_day}', leadingZero(dateRep.day))
+    .replace('{month}', months[dateRep.month])
+    .replace('{year}', dateRep.year)
+    .replace('{short_year}', dateRep.year % 100)
+    .replace('{second}', leadingZero(dateRep.seconds))
+    .replace('{am_pm}', amPm);
+}
+
+function getShortDate(rawDate, shift, nice, months) {
+  rawDate *= 1000;
+  if (typeof nice === 'undefined') {
+    nice = true;
+  }
+
+
+  if (typeof months === 'undefined') {
+    months = getLang('months_of', 'raw');
+  }
+
+  shift *= 1000;
+
+
+  curTime = Date.now();
+  curDate = new Date(curTime);
+  date = new Date(rawDate + shift);
+  if (rawDate > curTime && rawDate - curTime < 86400 * 1000 &&  curDate.getDate() == date.getDate()) {
+    return langDate(rawDate, '{hour}:{minute} {am_pm}', shift, [], !nice);
+  } else if (date.getYear() != curDate.getYear() || rawDate < curTime - 86400 * 182 * 1000) {
+    return langDate(rawDate, getLang('global_date', 'raw'), shift, months, !nice);
+  } else {
+    return langDate(rawDate, getLang('global_short_date', 'raw'), shift, months, !nice);
+  }
+}
+
+function getShortDateOrTime(rawDate, shift, nice, months) {
+  if (isToday(new Date(rawDate * 1000 + shift * 1000))) {
+    return langDate(rawDate * 1000, '{hour}:{minute} {am_pm}', shift * 1000, [], !nice);
+  } else {
+    return getShortDate(rawDate, shift, nice, months);
+  }
+}
+
+function langWordNumeric(num, words, arr) {
+  if (isArray(words) && num < words.length) {
+    return words[num];
+  }
+  return langNumeric(num, arr);
+}
+
+function getDateText(time, offset) {
+  var timeText = '';
+  time = time + offset;
+  var diff = parseInt(Date.now()/1000) - time;
+
+  if (diff < 5) {
+    timeText = getLang('global_just_now');
+  } else if (diff < 60) {
+    var secs = diff;
+    timeText = langWordNumeric(secs, getLang('global_word_secs_ago', 'raw'), getLang('global_secs_ago', 'raw'));
+  } else if (diff < 3600) {
+    var mins = intval(diff / 60);
+    timeText = langWordNumeric(mins, getLang('global_word_mins_ago', 'raw'), getLang('global_mins_ago', 'raw'));
+  } else if (diff < 4 * 3600) {
+    var hours = intval(diff / 3600);
+    timeText = langWordNumeric(hours, getLang('global_word_hours_ago', 'raw'), getLang('global_hours_ago', 'raw'));
+  } else {
+    timeText = getBigDateNew(time, 0, true, '_l');
+  }
+
+  return timeText;
+}
+
+function getBigDateNew(rawDate, offset, nice, langAddr) {
+  if (typeof nice === 'undefined') {
+    nice = true;
+  }
+
+  if (typeof offset === 'undefined') {
+    offset = 0;
+  }
+
+  if (typeof langAddr === 'undefined') {
+    langAddr = '';
+  }
+
+  offset *= 1000;
+
+  var d = new Date(rawDate * 1000);
+  var now = new Date();
+
+  if (d.getFullYear() != now.getFullYear() && d.getTime() < now.getTime() - 86400 * 2 * 1000
+    || Math.abs(d.getTime() - now.getTime()) > 86400 * 182 * 1000) {
+      return langDate(rawDate * 1000, getLang('global_date', 'raw'), offset, getLang('months_sm_of'), !nice);
+  } else {
+    return langDate(rawDate * 1000, getLang('global_short_date_time' + langAddr, 'raw'), offset, getLang('months_sm_of'), !nice);
+  }
+}
+
+
+function getSmDate(rawDate, offset, nice) {
+  if (typeof nice === 'undefined') {
+    nice = true;
+  }
+
+  if (typeof offset === 'undefined') {
+    offset = 0;
+  }
+
+  var date = new Date();
+  var curYear = date.getFullYear();
+  var curMonth = date.getMonth();
+
+  var d = new Date(rawDate * 1000);
+  var year = d.getFullYear();
+  var month = d.getMonth();
+
+  if (year < curYear && (curMonth > 1 || month < 9 || curYear - year >= 2)) { // current after january or viewing before september
+    return langDate(rawDate * 1000, getLang('global_date', 'raw'), offset,getLang('months_sm_of', 'raw'), !nice);
+  } else {
+    return langDate(rawDate * 1000, getLang('global_short_date_time', 'raw'), offset, getLang('months_sm_of', 'raw'), !nice);
+  }
+}
+
+function hashCode(str) {
+  var hash = 0;
+
+  if (str.length === 0) {
+    return hash;
+  }
+
+  for (var i = 0, len = str.length; i < len; i++) {
+    var chr = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + chr;
+    hash |= 0;
+  }
+
+  return hash;
+}
+
+if (!Object.keys) {
+  Object.keys = function(o) {
     var a = [];
-    for (var i = 0, l = arr.length; i < l; ++i) {
-      if (u.hasOwnProperty(arr[i])) {
-        continue;
+    for (var i in o) {
+      if (o.hasOwnProperty(i)) {
+        a.push(i);
       }
-      a.push(arr[i]);
-      u[arr[i]] = 1;
     }
     return a;
   }
+}
+
+function fixImHeight(isGroup) {
+  var page = document.getElementById('im--page');
+  if (page) {
+    var height = (window.innerHeight || document.documentElement.clientHeight) - 78;
+    var prop = isGroup ? "minHeight" : "height"
+    page.style.height = "auto";
+    page.style[prop] = height + "px";
+  }
+}
+
+window.VideoConstants = {
+  VIDEO_ITEM_INDEX_OWNER_ID: 0,
+  VIDEO_ITEM_INDEX_ID:       1,
+  VIDEO_ITEM_INDEX_THUMB:    2,
+  VIDEO_ITEM_INDEX_TITLE:    3,
+  VIDEO_ITEM_INDEX_FLAGS:    4,
+  VIDEO_ITEM_INDEX_DURATION: 5,
+  VIDEO_ITEM_INDEX_HASH:     6,
+  VIDEO_ITEM_INDEX_MODER_ACTS: 7,
+  VIDEO_ITEM_INDEX_OWNER:    8,
+  VIDEO_ITEM_INDEX_DATE:     9,
+  VIDEO_ITEM_INDEX_VIEWS:    10,
+
+  VIDEO_ITEM_FLAG_EXTERNAL:        1 << 0,
+  VIDEO_ITEM_FLAG_DOMAIN_YT:       1 << 1,
+  VIDEO_ITEM_FLAG_DOMAIN_COUB:     1 << 2,
+  VIDEO_ITEM_FLAG_DOMAIN_RT:       1 << 3,
+  VIDEO_ITEM_FLAG_DOMAIN_PLADFORM: 1 << 4,
+  VIDEO_ITEM_FLAG_DOMAIN_VIMEO:    1 << 5,
+  VIDEO_ITEM_FLAG_CAN_EDIT:        1 << 6,
+  VIDEO_ITEM_FLAG_CAN_DELETE:      1 << 7,
+  VIDEO_ITEM_FLAG_CAN_ADD:         1 << 8,
+  VIDEO_ITEM_FLAG_PRIVATE:         1 << 9,
+  VIDEO_ITEM_FLAG_NO_AUTOPLAY:     1 << 10,
+  VIDEO_ITEM_FLAG_ADDED:           1 << 11,
+  VIDEO_ITEM_FLAG_SKIP_THUMB_LOAD: 1 << 12,
+  VIDEO_ITEM_FLAG_NEED_SIGN_IN:    1 << 13,
+  VIDEO_ITEM_FLAG_HD:              1 << 14,
+};
+
+function onlinePlatformClass(platform) {
+  var cls = ' _online';
+  if (platform) {
+    cls += ' online';
+  }
+
+  if (mobPlatforms[platform]) {
+    cls += ' mobile';
+  }
+  updateOnlineText();
+
+  return cls;
+}
+
+function toggleOnline(obj, platform) {
+  var allCls = ['online', 'mobile', '_online'];
+  var onlineCls = onlinePlatformClass(platform).split(' ');
+
+  var toAdd = [];
+
+  allCls.forEach(function(cls) {
+    if (inArray(cls, onlineCls) && !hasClass(obj, cls)) {
+      toAdd.push(cls);
+    } else if (!inArray(cls, onlineCls) && hasClass(obj, cls)) {
+      removeClass(obj, cls);
+    }
+  });
+
+  if (toAdd.length > 0) {
+    addClass(obj, toAdd.join(' '));
+  }
+}
+
+function updateOnlineText() {
+  clearTimeout(cur.updateOnlineTO);
+  cur.updateOnlineTO = setTimeout(function() {
+    each(geByClass('_online'), function() {
+      var labelEl = geByClass1('_online_reader', this) || this,
+          isOnline = hasClass(this, 'online'),
+          fromMobile = hasClass(this, 'mobile'),
+          imgs = geByTag('img', labelEl), label = '', alt,
+          domAlt = function(el) {
+            var post = domClosest('_post', el),
+                author = post && domByClass(post, 'author');
+            return author ? (author.innerText || author.textContent) : '';
+          };
+
+      if (isOnline) {
+        each(imgs, function() {
+          alt = attr(this, 'alt') || attr(this, 'data-alt') || domAlt(this);
+          if (alt) {
+            label = trim(label + ' ' + alt);
+            this.setAttribute('data-alt', alt);
+            this.removeAttribute('alt');
+          }
+        });
+        label = trim(label + ' ' + (fromMobile ? getLang('global_user_is_online_mobile') : getLang('global_user_is_online')));
+        labelEl.setAttribute('aria-label', label);
+      } else {
+        each(imgs, function() {
+          alt = attr(this, 'data-alt') || domAlt(this);
+          if (alt) {
+            this.setAttribute('alt', alt);
+            this.removeAttribute('data-alt');
+          }
+        });
+        labelEl.removeAttribute('aria-label');
+      }
+    });
+  }, 100);
+}
+
+
+function ElementTooltip(el, opts) {
+  if (this.constructor != ElementTooltip) {
+    throw new Error('ElementTooltip was called without \'new\' operator');
+  }
+
+  el = ge(el);
+  if (!el || !el.nodeType) {
+    throw new Error('First argument not a DOM element');
+  }
+
+  if (data(el, 'ett')) { return; }
+
+  this._opts = extend({
+    delay: 100,
+    offset: [0, 0],
+    type: ElementTooltip.TYPE_VERTICAL,
+    id: '',
+    cls: '',
+    width: null,
+    appendToParent: false,
+    autoShow: true
+  }, opts);
+
+  if (this._opts.setPos && !this._opts.forceSide) {
+    throw new Error('forceSide parameter should be set if you use setPos');
+  }
+
+  if (this._opts.forceSide) {
+    this._opts.type = inArray(this._opts.forceSide, ['top', 'down']) ? ElementTooltip.TYPE_VERTICAL : ElementTooltip.TYPE_HORIZONTAL;
+  }
+
+  this._appendToEl = this._opts.appendTo ? this._opts.appendTo : (this._opts.appendToParent ? domClosestPositioned(el) : el);
+
+  this._el = el;
+  data(this._el, 'ett', this);
+
+  this._initEvents(el);
+
+  this._clearTimeouts();
+
+  this._isShown = false;
+}
+
+ElementTooltip.TYPE_VERTICAL = 0;
+ElementTooltip.TYPE_HORIZONTAL = 1;
+ElementTooltip.FADE_SPEED = 100; // keep in sync with @eltt_fade_speed
+
+ElementTooltip.prototype._initEvents = function(el) {
+  if (this._opts.autoShow) {
+    addEvent(el, 'mouseenter', this._onMouseEnter.bind(this));
+    addEvent(el, 'mouseleave', this._onMouseLeave.bind(this));
+  }
+}
+
+ElementTooltip.prototype._onMouseEnter = function(event) {
+  clearTimeout(this._hto); this._hto = false; // prevent hide
+
+  if (!this._isShown && this._opts.autoShow) {
+    clearTimeout(this._reTimeout); this._reTimeout = false;
+
+    clearTimeout(this._sto);
+    this._sto = setTimeout(this.show.bind(this), this._opts.delay);
+  }
+}
+
+ElementTooltip.prototype._onMouseLeave = function(event) {
+  this._clearTimeouts();
+  this._hto = setTimeout(this._hide.bind(this), 200);
+}
+
+ElementTooltip.prototype._onMouseWindowClick = function(event) {
+  var node = event.target;
+  while(node && node != this._ttel && node != document.body && node != this._el) {
+    node = domPN(node);
+  }
+
+  if (!node || node == document.body) {
+    this.hide(true);
+    return cancelEvent(event);
+  }
+}
+
+ElementTooltip.prototype.destroy = function() {
+  this._clearTimeouts();
+  data(this._el, 'ett', null);
+  re(this._ttel);
+  this._ev_wclick && removeEvent(document, 'mousedown', this._ev_wclick);
+}
+
+ElementTooltip.prototype.hide = function(byElClick) {
+  this._hide(byElClick);
+}
+
+ElementTooltip.prototype._onTooltipMouseEnter = function(ev) {
+  this._clearTimeouts();
+}
+
+ElementTooltip.prototype._onTooltipMouseLeave = function(ev) {
+  this._onMouseLeave();
+}
+
+ElementTooltip.prototype.show = function() {
+  this._clearTimeouts();
+
+  if (!this._ttel) {
+    // create tooltip element
+    this._ttel = se('<div class="eltt ' + (this._opts.cls || '') + '" id="' + this._opts.id + '"></div>');
+
+    if (this._opts.content) {
+      if (isString(this._opts.content)) {
+        this._ttel.appendChild(se('<div>' + trim(this._opts.content) + '</div>'));
+      } else {
+        this._ttel.appendChild(this._opts.content);
+      }
+    }
+
+    this._appendToEl.appendChild(this._ttel);
+
+    this._opts.onFirstTimeShow && this._opts.onFirstTimeShow.call(this, this._ttel);
+
+    if (this._opts.autoShow) {
+      addEvent(this._ttel, 'mouseenter', this._ev_ttenter = this._onTooltipMouseEnter.bind(this));
+      addEvent(this._ttel, 'mouseleave', this._ev_ttleave = this._onTooltipMouseLeave.bind(this));
+    }
+  }
+
+  if (this._opts.width) {
+    var width = isFunction(this._opts.width) ? this._opts.width.call(this) : this._opts.width;
+    setStyle(this._ttel, 'width', width);
+  }
+
+  this._opts.onShow && this._opts.onShow(this._ttel);
+
+  this.updatePosition();
+
+  show(this._ttel);
+  this._isShown = true;
+
+  setTimeout(addClass.pbind(this._ttel, 'eltt_vis'), 10);
+
+  this._opts.elClassWhenTooltip && addClass(this._el, this._opts.elClassWhenTooltip);
+
+  if (this._ev_wclick) {
+    removeEvent(document, 'mousedown', this._ev_wclick);
+  }
+  addEvent(document, 'mousedown', this._ev_wclick = this._onMouseWindowClick.bind(this));
+}
+
+ElementTooltip.prototype.updatePosition = function() {
+  var side = this._opts.forceSide;
+
+  var elPos = getXY(this._el);
+  var elSize = getSize(this._el);
+  var ttelSize = getSize(this._ttel);
+
+  var style;
+
+  if (this._opts.setPos) {
+    style = this._currentPosition = this._opts.setPos.call(this, this._currentPosition || {}) || {};
+    side = this._opts.forceSide;
+
+  } else {
+    if (!side) {
+      var boundingEl = domClosestOverflowHidden(this._el);
+      var boundingElPos = getXY(boundingEl);
+      boundingElPos[1] += scrollGetY() + 30;
+
+      if (this._opts.type == ElementTooltip.TYPE_VERTICAL) {
+        if (elPos[1] - boundingElPos[1] < ttelSize[1]) {
+          side = 'bottom';
+        } else {
+          side = 'top';
+        }
+      } else {
+        if (elPos[0] - boundingElPos[0] < ttelSize[0]) {
+          side = 'right';
+        } else {
+          side = 'left';
+        }
+      }
+    }
+
+    var arrowSize = 5;
+
+    var parentPos = getXY(this._appendToEl);
+    parentOffset = [
+      elPos[0] - parentPos[0],
+      elPos[1] - parentPos[1]
+    ];
+
+    switch (side) {
+      case 'bottom':
+        style = {
+          left: -ttelSize[0]/2 + elSize[0]/2 + this._opts.offset[0] + parentOffset[0],
+          top: elSize[1] + arrowSize - this._opts.offset[1] + parentOffset[1]
+        };
+        break;
+
+      case 'top':
+        style = {
+          left: -ttelSize[0]/2 + elSize[0]/2 + this._opts.offset[0] + parentOffset[0],
+          top: -ttelSize[1] - arrowSize + this._opts.offset[1] + parentOffset[1]
+        };
+        break;
+
+      case 'right':
+        style = {
+          left: elSize[0] + arrowSize + parentOffset[0],
+          top: elSize[1]/2 - ttelSize[1]/2 + this._opts.offset[1] + parentOffset[1]
+        };
+        break;
+
+      case 'left':
+        style = {
+          left: -ttelSize[0] - arrowSize + this._opts.offset[0] + parentOffset[0],
+          top: elSize[1]/2 - ttelSize[1]/2 + this._opts.offset[1] + parentOffset[1]
+        };
+        break;
+    }
+  }
+
+  var _this = this;
+  each(['top', 'bottom', 'left', 'right'], function(i, side) {
+    removeClass(_this._ttel, 'eltt_' + side);
+  });
+
+  addClass(this._ttel, 'eltt_' + side);
+  setStyle(this._ttel, style);
+}
+
+ElementTooltip.prototype._hide = function(byElClick) {
+  this._clearTimeouts();
+
+  this._reTimeout = setTimeout((function() {
+    hide(this._ttel);
+
+    this._opts.elClassWhenTooltip && removeClass(this._el, this._opts.elClassWhenTooltip);
+    this._opts.onHide && this._opts.onHide(this._ttel, !!byElClick);
+  }).bind(this), ElementTooltip.FADE_SPEED);
+
+  this._isShown = false;
+
+  removeClass(this._ttel, 'eltt_vis');
+  this._ev_wclick && removeEvent(document, 'mousedown', this._ev_wclick);
+}
+
+ElementTooltip.prototype.isShown = function() {
+  return this._isShown;
+}
+
+ElementTooltip.prototype._clearTimeouts = function() {
+  this._sto && clearTimeout(this._sto); this._sto = false;
+  this._hto && clearTimeout(this._hto); this._hto = false;
+  this._reTimeout && clearTimeout(this._reTimeout); this._reTimeout = false;
+}
+
+ElementTooltip.prototype.getContent = function() {
+  return this._ttel;
+}
+
+function isFullScreen() {
+  return !!(document.fullscreenElement
+    || document.fullScreenElement
+    || document.msFullscreenElement
+    || document.mozFullScreen
+    || document.webkitIsFullScreen
+    || cur.pvPartScreen);
+}
+
+function extractPercentile(value, percentiles) {
+  for (var i = 0; i < percentiles.length; i++) {
+    var percnt = percentiles[i];
+    if (percnt === '>') {
+      percnt = '>' + percentiles[i - 1];
+    } else if (percnt * 1000 > value) {
+      percnt = '<' + percnt;
+      break;
+    } else {
+      percnt = false;
+    }
+  }
+  return percnt;
+}
+
+function collectMemtoryStats() {
+  var collectedPeriods = {};
+  var percentiles = [15, 60, 300, 1500, 5000, 10000, 15000, 20000, 25000, 30000];
+  var uptimePercentiles = [300, 1500, 5000, 30000, 60000, 120000, '>'];
+  var prevModule = false;
+
+  setInterval(function() {
+    var curModule = window.cur && window.cur.module;
+
+    if (curModule !== prevModule) {
+      collectedPeriods = {};
+      prevModule = curModule;
+    }
+
+    var lastNav = window.vkLastNav;
+    if (curModule && lastNav) {
+      var ellapsed = Date.now() - lastNav;
+      var percnt = extractPercentile(Date.now() - lastNav, percentiles);
+      if (percnt && !collectedPeriods[percnt]) {
+        var uptime = extractPercentile(Date.now() - window.vkTabLoaded, uptimePercentiles);
+        collectedPeriods[percnt] = true;
+        var perf = performance.memory.usedJSHeapSize;
+        statlogsValueEvent('js_memory_stats_modules', perf, curModule, percnt, uptime);
+      }
+    }
+  }, 5000);
+}
+
+if (window.performance && window.performance.memory && rand(0, 100) < 5) {
+  collectMemtoryStats();
+}
+
+function isRetina() {
+  return window.devicePixelRatio >= 2;
+}
+
+function isPhotoeditor3Available() {
+  return (browser.msie ? parseInt(browser.version) > 10 : true);
+}
+
+function cancelStackFilter(name, dclick) {
+  var stack = window.cancelStack || [];
+
+  if (dclick) {
+    _topHeaderClearClose();
+  }
+
+  window.cancelStack = stack.filter(function(el) { return el.name !== name });
+  return window.cancelStack;
+}
+
+function cancelStackPush(name, func, dclick) {
+
+  if (dclick) {
+    _topHeaderClose(function() {
+      func();
+      cancelStackFilter(name);
+    });
+  }
+
+  var stack = window.cancelStack || [];
+  window.cancelStack = cancelStackFilter(name)
+    .concat([{func: func, name: name}]);
+  return window.cancelStack;
+}
+
+function cancelStackPop() {
+  var stack = window.cancelStack || [];
+  _topHeaderClearClose();
+  if (stack.length > 0) {
+    stack.pop().func();
+  }
+  window.cancelStack = stack;
+  return window.cancelStack;
+}
+
+function hasAccessibilityMode() {
+  return !!(window.vk && vk.a11y);
 }
 
 try{stManager.done('common.js');}catch(e){}

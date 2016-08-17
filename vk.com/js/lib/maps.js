@@ -833,7 +833,8 @@ VKMap: {
       position.apply(div);
       ymap.getContainer().appendChild(div).appendChild(input);
       new Dropdown(ge('yandex_type_dd'), vkMaps.VKMap.TYPES_LIST, {
-        width: 80,
+        width: 120,
+        dark: 1,
         onChange: onChange.bind(me)
       });
     },
@@ -1240,7 +1241,8 @@ VKMap: {
     this.controls.unshift(typeDD);
 
     new Dropdown(ge('yandex_type_dd'), vkMaps.VKMap.TYPES_LIST, {
-      width: 80,
+      width: 120,
+      dark: 1,
       onChange: onChange.bind(me)
     });
   },
@@ -1618,7 +1620,8 @@ VKMap: {
     input = ce('input', {id: 'google_type_dd'}, {padding: 0, margin: 0});
     div.appendChild(input);
     new Dropdown(input, vkMaps.VKMap.TYPES_LIST, {
-      width: 80,
+      width: 120,
+      dark: 1,
       onChange: onChange.bind(this)
     });
     this.controls.unshift(div);
@@ -2041,7 +2044,8 @@ VKMap: {
         input = ce('input', {padding: 0, margin: 0});
         div.appendChild(input);
         new Dropdown(input, vkMaps.VKMap.TYPES_LIST, {
-          width: 80,
+          width: 120,
+          dark: 1,
           onChange: onChange.bind(me)
         });
         return div;

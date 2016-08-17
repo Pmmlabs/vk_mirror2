@@ -1,62 +1,82 @@
 WPoll = {
-  resetPollVote: function (option_id) {
-    hide('wpoll_revote_link_wrap');
-    WPoll.go('form', {
-      act: 'a_unvote',
-      option_id: option_id,
-      hash: cur.options.vote_hash
-    }, function (res) {
-      toggle('wpoll_revote_link_wrap', !res);
+
+  init: function (options) {
+    extend(cur, {
+      options: options,
+      section: options.section,
+      heightEl: geByClass1('_wpoll_page'),
+      wrapEl: geByClass1('_wpoll_wrap'),
+      contentEl: geByClass1('_wpoll_content'),
+      footerEl: geByClass1('_wpoll_footer'),
+      optionsEl: geByClass1('_wpoll_options'),
+      maxAnswers: 5,
+      num_answers: 2
     });
-    return false;
-  },
-  doVote: function (option_id) {
-    WPoll.go('results', {
-      act: 'a_vote',
-      option_id: option_id,
-      hash: cur.options.vote_hash
-    }, function (res) {
-      if (res) {
-        show('wpoll_revote_link_wrap');
-        if (window.curNotifier && !curNotifier.lp_started) {
-          WPoll.lpStart();
-        }
-      }
-    });
-    return false;
-  },
-  submitShare: function () {
-    var msg = trim(val('wpoll_sharetxt'));
-    if (!msg) {
-      notaBene('wpoll_sharetxt');
-      return;
+
+    this.override('lite.js');
+    stManager.emitter.addListener('update', this.override.bind(this));
+
+    if (options.qtransport) {
+      this.initQTransport(options.qtransport);
     }
-    ajax.post('al_widget_poll.php', {
-      act: 'a_share',
-      poll_id: cur.options.poll_id,
-      page_query: cur.options.page_query,
-      url: cur.options.poll_url,
-      app: cur.options.app,
-      hash: cur.options.vote_hash,
-      part: 1
-    }, {
-      onDone: function (footer) {
-        val('wpoll_footer', footer);
-        WPoll.resizeWidget();
-      },
-      showProgress: lockButton.pbind(ge('wpoll_share_btn')),
-      hideProgress: unlockButton.pbind(ge('wpoll_share_btn'))
-    });
-  },
-  switchToAdmin: function () {
-    WPoll.go(cur.section == 'admin' ? 'results' : 'admin', {}, function (res) {
-      if (res) {
-        cur.num_answers = 2;
+
+    if (cur.optionsEl) {
+      if (vk.id) {
+        radioBtns.wpoll = {
+          els: [].slice.apply(geByClass('radiobtn', cur.optionsEl)),
+          val: 0
+        };
+      } else {
+        each(geByClass('radiobtn', cur.optionsEl), function (k, v) {
+          v.onclick = this.auth.bind(this);
+        }.bind(this));
       }
-    });
-    return false;
+    }
+
+    cur.RpcMethods = {
+      onInit: function() {
+        var resizeWidget = this.resizeWidget.bind(this);
+        setTimeout(resizeWidget, 0);
+        setTimeout(resizeWidget, 500);
+      }.bind(this),
+    };
+
+    try {
+      cur.Rpc = new fastXDM.Client(cur.RpcMethods, {safe: true});
+      cur.resizeInt = setInterval(this.resizeWidget.bind(this), 1000);
+    } catch (e) {
+      debugLog(e);
+    }
   },
-  go: function (section, params, cb) {
+
+  progress: function(param) {
+    toggleClass(cur.wrapEl, 'wpoll_content_loading', param);
+    cur.progress = param;
+  },
+
+  resizeWidget: function self() {
+    if (!cur.heightEl || !cur.Rpc) return;
+    var size = getSize(cur.heightEl)[1];
+    if (browser.msie && !browser.msie8 || browser.opera) size += 15;
+    window.onBodyResize && onBodyResize();
+    cur.Rpc.callMethod('resize', size);
+  },
+
+  auth: function () {
+    openWidgetsPopupBox(location.protocol + '//oauth.vk.com/authorize', {
+      client_id: -1,
+      redirect_uri: 'close.html',
+      display: 'widget'
+    }, 'vk_openapi', {
+      width: 655,
+      height: 479,
+      onClose: window.gotSession.pbind(true)
+    });
+  },
+
+  switchSection: function (section, params, callback) {
+    if (cur.progress) return;
+
     ajax.post('al_widget_poll.php', extend({
       poll_id: cur.options.poll_id,
       page_query: cur.options.page_query,
@@ -67,52 +87,76 @@ WPoll = {
     }, params || {}), {
       onDone: function (content, footer, options) {
         cur.section = options.section;
-        val('wpoll_content', content);
-        val('wpoll_footer_wrap', footer);
-        toggle('wpoll_footer_wrap', footer);
+        replaceClass(bodyNode, 'wpoll_section_admin wpoll_section_results wpoll_section_empty wpoll_section_form', 'wpoll_section_' + cur.section);
+        val(cur.contentEl, content || '');
+        val(cur.footerEl, footer || '');
         cur.num_answers = 2;
-        WPoll.resizeWidget();
-        cb && cb(true);
-      },
-      onError: cb && cb.pbind(false),
-      showProgress: show.pbind('wpoll_head_progress'),
-      hideProgress: hide.pbind('wpoll_head_progress')
+        callback && callback(true);
+        this.resizeWidget();
+      }.bind(this),
+      onError: callback && callback.pbind(false),
+      showProgress: this.progress.bind(this, true),
+      hideProgress: this.progress.bind(this)
     });
-    return false;
   },
-  admIncAnswers: function () {
-    if (cur.num_answers >= 20) return false;
-    cur.num_answers++;
-    show('wpoll_answer' + cur.num_answers);
-    ge('wpoll_adm_inc').className = cur.num_answers >= 20 ? 'wpoll_adm_inc_disabled' : '';
-    ge('wpoll_adm_dec').className = cur.num_answers <= 2 ? 'wpoll_adm_inc_disabled' : '';
-    WPoll.resizeWidget();
-    return false;
+
+  admDisablePoll: function() {
+    if (cur.progress) return;
+
+    ajax.post('al_widget_poll.php', {
+      act: 'a_disable_poll',
+      page_query: cur.options.page_query,
+      url: cur.options.poll_url,
+      app: cur.options.app,
+      hash: cur.options.admin_hash
+    }, {
+      onDone: location.reload.bind(location),
+      showProgress: this.progress.bind(this, true),
+      hideProgress: this.progress.bind(this)
+    });
   },
-  admDecAnswers: function () {
-    if (cur.num_answers <= 2) return false;
-    hide('wpoll_answer' + cur.num_answers);
-    cur.num_answers--;
-    ge('wpoll_adm_inc').className = cur.num_answers >= 20 ? 'wpoll_adm_inc_disabled' : '';
-    ge('wpoll_adm_dec').className = cur.num_answers <= 2 ? 'wpoll_adm_inc_disabled' : '';
-    return false;
+
+  admAddAnswer: function() {
+    var addEl = geByClass1('_wpoll_add'),
+      answersEl = geByClass1('_wpoll_answers'),
+      inputEl = null;
+    if (cur.num_answers < cur.maxAnswers) {
+      cur.num_answers++;
+      inputEl = domFC(cf(cur.options.answerTpl));
+      domInsertBefore(inputEl, addEl);
+      inputEl = geByTag1('input', inputEl);
+      inputEl.focus();
+      this.resizeWidget();
+    }
+    cur.num_answers >= cur.maxAnswers ? hide(addEl) : show(addEl);
+    return inputEl;
   },
-  admSubmitNewPoll: function () {
-    var question = trim(val('wpoll_question_txt')),
-        answer, answers = [], i;
-    if (!question) {
-      notaBene('wpoll_question_txt');
-      return;
-    }
-    for (i = 1; i <= cur.num_answers; i++) {
-      if (answer = trim(val('wpoll_answer' + i))) {
-        answers.push(answer);
-      }
-    }
-    if (!answers.length) {
-      notaBene('wpoll_answer1');
-      return;
-    }
+
+  admRemoveAnswer: function(crossEl) {
+    var addEl = geByClass1('_wpoll_add');
+    re(domPN(crossEl));
+    --cur.num_answers >= 20 ? hide(addEl) : show(addEl);
+  },
+
+  admSubmitNewPoll: function (btn) {
+    if (cur.progress || buttonLocked(btn)) return;
+
+    var questionEl = geByClass1('_wpoll_question'),
+      answersEl = geByClass1('_wpoll_answers'),
+      question = val(questionEl),
+      answers = [],
+      answer = null,
+      i = null;
+
+    if (!question) return notaBene(questionEl);
+    if (!cur.num_answers) return notaBene(this.admAddAnswer());
+
+    each(geByTag('input', answersEl), function(k, v) {
+      if (answer = trim(val(v))) answers.push(answer);
+    });
+
+    if (!answers.length) return notaBene(geByTag1('input', answersEl));
+
     ajax.post('al_widget_poll.php', {
       act: 'a_create_poll',
       page_query: cur.options.page_query,
@@ -123,14 +167,81 @@ WPoll = {
       hash: cur.options.admin_hash,
       part: 1
     }, {
-      onDone: function () {
-        location.reload();
-      },
-      showProgress: lockButton.pbind(ge('wpoll_submit_new_poll')),
-      hideProgress: unlockButton.pbind(ge('wpoll_submit_new_poll'))
+      onDone: location.reload.bind(location),
+      showProgress: lockButton.pbind(btn),
+      hideProgress: unlockButton.pbind(btn)
     });
-    return false;
   },
+
+  resetPollVote: function (option_id) {
+    this.switchSection('form', {
+      act: 'a_unvote',
+      option_id: option_id,
+      hash: cur.options.vote_hash
+    }, function (success) {
+      toggleClass(bodyNode, 'wpoll_my_vote', !success);
+      cur.my_vote = !success;
+    });
+  },
+
+  doVote: function (option_id) {
+    this.switchSection('results', {
+      act: 'a_vote',
+      option_id: option_id,
+      hash: cur.options.vote_hash
+    }, function (success) {
+      toggleClass(bodyNode, 'wpoll_my_vote', success);
+      cur.my_vote = success;
+      success && cur.options.qtransport && window.curNotifier && !curNotifier.lp_started && this.lpStart();
+    }.bind(this));
+  },
+
+  override: function(file) {
+    if (!StaticFiles[file] || file !== 'lite.js') return;
+    extend(window, {
+
+      showTooltip: (function(showTooltip) {
+        return function() {
+          var args = [].slice.call(arguments);
+          args[1] = extend(args[1] || {}, {
+            showIfFit: true
+          });
+          return showTooltip.apply(this, args);
+        }
+      })(window.showTooltip),
+
+      gotSession: function() {
+        location.reload();
+      }
+
+    });
+  },
+
+  submitShare: function (btn) {
+    if (cur.progress || buttonLocked(btn)) return;
+
+    var txtEl = geByClass1('_wpoll_share'),
+      msg = trim(val(txtEl));
+    if (!msg) return notaBene(txtEl);
+
+    ajax.post('al_widget_poll.php', {
+      act: 'a_share',
+      poll_id: cur.options.poll_id,
+      page_query: cur.options.page_query,
+      url: cur.options.poll_url,
+      app: cur.options.app,
+      hash: cur.options.vote_hash,
+      part: 1
+    }, {
+      onDone: function (footer) {
+        val(cur.footerEl, footer);
+        this.resizeWidget();
+      }.bind(this),
+      showProgress: lockButton.pbind(btn),
+      hideProgress: unlockButton.pbind(btn)
+    });
+  },
+
   admSelectPreviousPoll: function (poll_id) {
     ajax.post('al_widget_poll.php', {
       act: 'a_set_poll',
@@ -141,53 +252,14 @@ WPoll = {
       hash: cur.options.admin_hash,
       part: 1
     }, {
-      onDone: function () {
-        location.reload();
-      },
-      showProgress: show.pbind('wpoll_head_progress')
+      onDone: location.reload.bind(location),
+      showProgress: this.progress.bind(this, true)
     });
     return false;
   },
-  initVotingForm: function () {
-    if (!ge('wpoll_options_wrap')) {
-      return;
-    }
-    if (!vk.id) {
-      each (geByClass('radiobtn', ge('wpoll_options_wrap')), function () {
-        this.onclick = function () {WPoll.auth();};
-      });
-      return;
-    }
-    radioBtns.wpoll = {
-      els: Array.prototype.slice.apply(geByClass('radiobtn', ge('wpoll_options_wrap'))),
-      val: 0
-    };
-  },
-  resizeWidget: function () {
-    if (!cur.heightEl || !cur.Rpc) return;
-    var size = getSize(cur.heightEl)[1];
-    if (browser.msie && !browser.msie8 || browser.opera) size += 15;
-    cur.Rpc.callMethod('resize', size);
-  },
-  auth: function () {
-    var
-      screenX = typeof window.screenX != 'undefined' ? window.screenX : window.screenLeft,
-      screenY = typeof window.screenY != 'undefined' ? window.screenY : window.screenTop,
-      outerWidth = typeof window.outerWidth != 'undefined' ? window.outerWidth : document.body.clientWidth,
-      outerHeight = typeof window.outerHeight != 'undefined' ? window.outerHeight : (document.body.clientHeight - 22),
-      features = 'width=655,height=479,left=' + parseInt(screenX + ((outerWidth - 655) / 2), 10) + ',top=' + parseInt(screenY + ((outerHeight - 479) / 2.5), 10);
-      var active = this.active = window.open(location.protocol + '//oauth.vk.com/authorize?client_id=-1&redirect_uri=close.html&display=widget', 'vk_openapi', features);
-      function checkWnd() {
-        if (active.closed) {
-         window.gotSession(true);
-        } else {
-         setTimeout(checkWnd, 1000);
-        }
-      }
-      checkWnd();
-  },
 
   /* Long-poll methods */
+
   initQTransport: function (options) {
     window.curNotifier = extend(options, {
       lp_connected: false,
@@ -199,6 +271,7 @@ WPoll = {
       WPoll.lpStart();
     }
   },
+
   lpGetTransportWrap: function () {
     var queueCont = ge('queue_transport_wrap');
     if (!queueCont) {
@@ -207,6 +280,7 @@ WPoll = {
     }
     return queueCont;
   },
+
   lpInit: function () {
     if (curNotifier.lpMakeRequest) return;
     delete curNotifier.lpMakeRequest;
@@ -219,15 +293,18 @@ WPoll = {
       })
     );
   },
+
   lpStart: function () {
     curNotifier.lp_started = true;
     WPoll.lpCheck();
   },
+
   lpStop: function () {
     curNotifier.lp_started = false;
     clearTimeout(curNotifier.lp_check_to);
     clearTimeout(curNotifier.lp_error_to);
   },
+
   lpCheck: function () {
     if (!curNotifier.lp_started) return;
     if (!curNotifier.lpMakeRequest) {
@@ -257,16 +334,14 @@ WPoll = {
         }
       }
     }.bind(this), function (msg) {
-//        topError('Notify error: ' + msg);
-
-        curNotifier.lp_error_to = setTimeout(this.lpCheck.bind(this), curNotifier.error_timeout * 1000);
-        if (curNotifier.error_timeout < 64) {
-          curNotifier.error_timeout *= 2;
-        }
+      curNotifier.lp_error_to = setTimeout(this.lpCheck.bind(this), curNotifier.error_timeout * 1000);
+      if (curNotifier.error_timeout < 64) {
+        curNotifier.error_timeout *= 2;
+      }
     }.bind(this));
   },
+
   lpChecked: function(response) {
-    // debugLog('response', response);
     var failed = response.failed;
     if (failed == 2) {
       curNotifier.lp_error_to = setTimeout(this.lpGetKey.bind(this), curNotifier.error_timeout * 1000);
@@ -279,27 +354,13 @@ WPoll = {
     }
 
     curNotifier.timestamp = response.ts;
-    if (!cur.section.indexOf('admin')) {
-      return true;
-    }
-    if (cur.options.fixed_height) {
-      var scrollCont = ge('WPoll_posts_wrap'),
-          postsCont = ge('WPoll_posts'),
-          st = scrollCont.scrollTop, sh = postsCont.offsetHeight;
-    }
+
     each (response.events, function (k, v) {
       WPoll.pushEvent(v);
     });
-    if (cur.options.fixed_height) {
-      if (st > 100) {
-        scrollCont.scrollTop = st + (postsCont.offsetHeight - sh);
-      } else {
-        scrollCont.scrollTop = 0;
-      }
-      cur.scrollbar && cur.scrollbar.update(false, true);
-    }
     return true;
   },
+
   lpGetKey: function () {
     var stNow = vkNow();
     ajax.post('al_widget_poll.php', {act: 'a_get_key', id: curNotifier.uid, app: cur.options.app, poll_id: cur.options.poll_id}, {
@@ -322,6 +383,7 @@ WPoll = {
       }.bind(this)
     });
   },
+
   pushEvent: function (ev_text) {
     var ev = ev_text.split('<!>'), ev_ver = ev[0], ev_type = ev[1];
     if (ev_ver != cur.options.qversion) {
@@ -331,51 +393,21 @@ WPoll = {
     switch (ev_type) {
       case 'stats_update':
         if (cur.section == 'results') {
-          val('wpoll_content', ev[2]);
+          val(cur.contentEl, ev[2]);
         }
-        break;
+      break;
 
       case 'poll_update':
         cur.options.poll_id = ev[2];
-        val('wpoll_content', ev[3]);
-        val('wpoll_footer_wrap', '');
-        hide('wpoll_footer_wrap');
-        break;
-    }
-  },
-  init: function (options) {
-    cur.options = options;
-    cur.section = cur.options.section;
-    cur.heightEl = ge('wpoll_page');
-    if (options.qtransport) {
-      WPoll.initQTransport(options.qtransport);
-    }
-    WPoll.initVotingForm();
-
-    cur.RpcMethods = {
-      onInit: function() {
-        setTimeout(function () {
-          WPoll.resizeWidget();
-        }, 0);
-        setTimeout(function () {
-          WPoll.resizeWidget();
-        }, 500);
-      }
-    };
-    try {
-      cur.Rpc = new fastXDM.Client(cur.RpcMethods, {safe: true});
-      cur.resizeInt = setInterval(WPoll.resizeWidget, 1000);
-    } catch (e) {
-      debugLog(e);
-      // Return scroll
+        val(cur.contentEl, ev[3]);
+        toggleClass(bodyNode, 'wpoll_my_vote', false);
+        cur.my_vote = false;
+        val(cur.footerEl, '');
+        hide(cur.footerEl);
+      break;
     }
   }
-}
 
-function goAway(url) { return true; }
-function gotSession (session_data) {
-  location.reload();
-}
+};
 
 try{stManager.done('api/widgets/al_poll.js');}catch(e){}
-
