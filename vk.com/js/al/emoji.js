@@ -1613,15 +1613,23 @@ ttCalcHeight: function(optId, obj, tt) {
   }
   setStyle(list, {height: rowsCnt * smileH + listPadding});
 
-  var overflowHiddenWrapY = 0, el = obj;
+  var upEdgeY = scrollY + headSpace,
+    downEdgeY = scrollY + wh,
+    el = obj,
+    ttH = getSize(tt)[1],
+    toUp,
+    upSpace = 0,
+    downSpace = 0,
+    space = 0;
+
   while (el !== bodyNode && (el = domClosestOverflowHidden(el))) {
-    overflowHiddenWrapY = Math.max(overflowHiddenWrapY, getXY(el)[1]);
+    var y = getXY(el)[1];
+    upEdgeY = Math.max(upEdgeY, y);
+    downEdgeY = Math.min(downEdgeY, y + getSize(el)[1]);
   }
 
-  var ttH = getSize(tt)[1];
-  var toUp, space;
-  var upSpace = objY - offsetH - headSpace - scrollY - overflowHiddenWrapY;
-  var downSpace = wh + scrollY - objY - objH - offsetH;
+  upSpace = objY - offsetH - upEdgeY;
+  downSpace = downEdgeY - objY - objH - offsetH;
 
   if (upSpace < ttH && downSpace < ttH) {
     toUp = (upSpace >= downSpace);

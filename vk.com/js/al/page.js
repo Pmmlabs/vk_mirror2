@@ -5007,7 +5007,7 @@ var Wall = {
       }
     });
     var endST = scrollGetY();
-    if (curST != startST && startST > 100/* && Math.abs(startST - endST) > 100*/) {
+    if (curST != startST && startST > 100 && !cur.onepost/* && Math.abs(startST - endST) > 100*/) {
       if (layer) {
         wkLayerWrap.scrollTop = curST;
       } else {
