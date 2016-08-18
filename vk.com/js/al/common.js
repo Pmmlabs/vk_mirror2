@@ -2375,7 +2375,8 @@ function updateNarrow() {
       isFixed = getStyle(bar, 'position') == 'fixed',
       barMT = floatval(getStyle(barBlock, 'marginTop')), barH = getSize(bar)[1] - (isFixed ? barMT : 0),
       pageH = getSize(wideCol)[1], pagePos = getXY(wideCol)[1], tooBig = barH >= pageH - barMT, barMB = barMT,
-      barPB = Math.max(0, st + wh - pageH - pagePos - barMB), barPT = pagePos - headH,
+      barBottom = st + wh - pageH - pagePos - barMB,
+      barPB = Math.max(0, barBottom), barPT = pagePos - headH,
       barPos = getXY(bar)[1] + (isFixed ? barMT : 0),
       lastSt = cur.lastSt || 0, lastStyles = cur.lastStyles || {}, styles, needFix = false,
       smallEnough = headH + barMB + barH + barMT + barPB <= wh, delta = 1;
@@ -2390,7 +2391,7 @@ function updateNarrow() {
       marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
     }
     needFix = true;
-  } else if (st + delta > Math.max(lastSt, barPos + barH + barMB - wh) && !barPB) {
+  } else if (st + delta > Math.max(lastSt, barPos + barH + barMB - wh) && barBottom < 0) {
     styles = {
       bottom: barMB,
       marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
@@ -2398,7 +2399,7 @@ function updateNarrow() {
     needFix = true;
   } else {
     styles = {
-      marginTop: barPB ? pageH - barH : Math.min(barPos - pagePos, pageH - barH + barPT)
+      marginTop: (barBottom >= 0) ? pageH - barH : Math.min(barPos - pagePos, pageH - barH + barPT)
     }
   }
 
@@ -6143,8 +6144,12 @@ function showReCaptchaBox(key, lang, box, o) {
   if (!was_box) {
     if (!loaded) {
       window.recaptchaCallback = function() {
-        val('recaptcha', '');
-        grecaptcha.render('recaptcha', {
+        var _box = curBox();
+        if (!_box) return;
+        var wrapId = geByClass1('recaptcha', _box.bodyNode);
+        if (!wrapId) return;
+        val(wrapId, '');
+        grecaptcha.render(wrapId, {
           sitekey: key,
           callback: recaptchaResponse
         });
@@ -6156,14 +6161,16 @@ function showReCaptchaBox(key, lang, box, o) {
     }
 
     var content = '\
-<div id="recaptcha" class="recaptcha"></div>' + (o.addText || '');
+<div class="recaptcha"></div>' + (o.addText || '');
     box = showFastBox({
       title: getLang('global_recaptcha_title'),
       width: 354,
       onHide: o.onHide,
       onDestroy: o.onDestroy || false
     }, content, getLang('captcha_cancel'));
-    showProgress('recaptcha');
+    var wrap = geByClass1('recaptcha', box.bodyNode);
+    wrap.id = 'recaptcha' + (box.guid ? box.guid : '0');
+    showProgress(wrap);
   }
   if (was_box && loaded) {
     grecaptcha.reset();
