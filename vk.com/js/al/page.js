@@ -2682,10 +2682,11 @@ var Wall = {
       WkView.wallUpdateReplies();
       return;
     }
-    var postEl = ge('post' + post),
-        r = ge('replies' + post),
-        header = r && geByClass1('wr_header', r, 'a'),
-        h = r && r.offsetHeight || 0,
+    var r = ge('replies' + post);
+    if (!r) return;
+
+    var header = geByClass1('wr_header', r, 'a'),
+        h = r.offsetHeight || 0,
         ch = window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight,
         side = ge('replies_side' + post);
 
