@@ -4263,7 +4263,11 @@ var Wall = {
       i: attachI
     }), {
       onDone: function(html, script) {
-        val('post_poll' + post, html);
+        each(geByClass('page_media_poll'), function() {
+          if (this.id == 'post_poll' + post) {
+            val(this, html);
+          }
+        })
         if (script) {
           eval(script);
         }
