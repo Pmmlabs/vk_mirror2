@@ -6624,49 +6624,16 @@ function showAudioClaimWarning(owner_id, id, delete_hash, claim_id, title, reaso
   }
   claimText = claimText.split('{audio}').join('<b>' + title + '</b>');
   claimText = claimText.split('{objection_link}').join('<a href="/help?act=cc_objection&claim=' + claim_id + '&content=audio' + owner_id + '_' + id + '">' + getLang('audio_claim_objection') + '</a>');
-  claimText = claimText.split('{delete_link}').join('<a href="#" onclick="deleteAudioOnClaim(' + owner_id + ',' + id + ',\'' + delete_hash + '\'); return false;">' + getLang('audio_claim_delete') + '</a>');
+  claimText = claimText.split('{delete_link}').join('<a onclick="deleteAudioOnClaim(' + owner_id + ',' + id + '); return false;">' + getLang('audio_claim_delete') + '</a>');
   cur.claimWarning = showFastBox({title: claimTitle, width: 470}, claimText);
 }
 
-function deleteAudioOnClaim(owner_id, id, delete_hash) {
-  if (cur.silent) {
-    cur.onSilentLoad = function() {
-      deleteAudioOnClaim(owner_id, id, delete_hash);
-    };
-    return;
-  }
-  if (cur.deleting) {
-    return false;
-  }
-  cur.deleting = true;
-  var el = ge('audio' + id);
-  var h = getSize(geByClass1('play_btn', el))[1];
-  ajax.post('/audio', {act: 'delete_audio', oid: owner_id, aid: id, hash: delete_hash, restore: 1}, {
-    onDone: function(text, delete_all) {
-      if (cur.claimWarning) {
-        cur.claimWarning.hide();
-      }
-      cur.deleting = false;
-      if (!cur.deletedAudios) cur.deletedAudios = [];
-      cur.deletedAudios[id] = ge('audio'+id).innerHTML;
-      el.innerHTML = text;
-      setStyle(geByClass1('dld', el), {height: h+'px'});
-      el.style.cursor = 'auto';
-      el.setAttribute('nosorthandle', '1');
-      if (delete_all) {
-        cur.summaryLang.delete_all = delete_all;
-      }
-      if (cur.audios && cur.audiosIndex) {
-        cur.audiosIndex.remove(cur.audios[id]);
-        cur.audios[id].deleted = true;
-      }
-      cur.sectionCount--;
-      if (Audio) {
-        Audio.changeSummary();
-      }
-    }
-  });
-  return false;
+function deleteAudioOnClaim(owner_id, id) {
+  var audioId = owner_id + '_' + id;
+  var audioEl = ge('audio_' + audioId);
+  AudioPage(audioEl).deleteAudio(audioEl, audioId, event, true);
+
+  cur.claimWarning && cur.claimWarning.hide();
 }
 
 function sureDeleteAll(title, text, where, objectId, toId, fromId, hash, event) {
@@ -9316,7 +9283,7 @@ function langDate(rawDate, langKey, offset, months, onlyDate, addPrep) {
     case 12: // Portugues
     case 73: // Portugues brasileiro
       if (date.getHours() == 1) {
-        langKey = langKey.repalce(' &#224;s ', ' &#224; ');
+        langKey = langKey.replace(' &#224;s ', ' &#224; ');
       }
       break;
   }
