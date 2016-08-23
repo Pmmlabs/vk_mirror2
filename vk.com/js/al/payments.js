@@ -379,9 +379,9 @@ var MoneyTransfer = {
       notaBene('transfer_amount');
       return;
     } else if (cur.paymentsOptions.minAmount && amount < cur.paymentsOptions.minAmount) {
-      error = getLang('payments_money_transfer_error_min_amount').replace('%d', cur.paymentsOptions.minAmount);
+      error = getLang('payments_money_transfer_error_min_amount', cur.paymentsOptions.minAmount);
     } else if (cur.paymentsOptions.maxAmount && amount > cur.paymentsOptions.maxAmount) {
-      error = getLang('payments_money_transfer_error_max_amount').replace('%d', cur.paymentsOptions.maxAmount);
+      error = getLang('payments_money_transfer_error_max_amount', cur.paymentsOptions.maxAmount);
     }
     if (error != false) {
       MoneyTransfer.showError(error);
