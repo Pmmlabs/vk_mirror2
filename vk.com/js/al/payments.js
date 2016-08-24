@@ -558,6 +558,37 @@ var MoneyTransfer = {
       hide('payments_iframe_container');
       show('payments_money_transfer_wrap');
     }
+  },
+
+  initHistoryBox() {
+    var btn = ge('ui_money_transfer_load_more');
+    if (btn) {
+      var tbl = ge('settings_transfer_history').tBodies[0];
+      cur.userAutoScroll = new AutoList(tbl, {
+        scrollNode: 'payments_money_transfer_history_box',
+        contentNode: 'settings_transfer_history',
+        onNoMore: re.pbind(btn),
+        onNeedRows: function(cb, offset) {
+          ajax.post('al_payments.php', { act: 'money_transfer_history_box', offset: offset }, {
+            onDone: cb
+          });
+        },
+        drawRows: function(containerEl, rows) {
+          if (!browser.msie) {
+            containerEl.insertAdjacentHTML('beforeEnd', rows);
+          } else {
+            var t = se('<table>'+rows+'</table>');
+            var rows = geByTag('tr', t);
+            for (i in rows) {
+              if (rows[i].nodeType == 1) containerEl.appendChild(rows[i]);
+            }
+          }
+        },
+        showProgress: lockButton.pbind(btn),
+        hideProgress: unlockButton.pbind(btn),
+        rowClass: 'settings_history_row'
+      });
+    }
   }
 };
 
