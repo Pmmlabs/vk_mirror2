@@ -273,10 +273,10 @@ var ExchangeModer = {
         return true;
       },
       showProgress: function () {
-        lockFlatButton(ge('exchange_moder_check_money_button'));
+        lockButton(ge('exchange_moder_check_money_button'));
       },
       hideProgress: function () {
-        unlockFlatButton(ge('exchange_moder_check_money_button'));
+        unlockButton(ge('exchange_moder_check_money_button'));
       }
     });
   },

@@ -709,11 +709,11 @@ var Offers = {
         },
         showProgress: function () {
           cur.confirmRemoveMetricBox.showProgress();
-          lockFlatButton(ge('offer_metric_edit_box_remove'));
+          lockButton(ge('offer_metric_edit_box_remove'));
         },
         hideProgress: function () {
           cur.confirmRemoveMetricBox.hideProgress();
-          unlockFlatButton(ge('offer_metric_edit_box_remove'));
+          unlockButton(ge('offer_metric_edit_box_remove'));
         }
       });
     } else {
@@ -737,10 +737,10 @@ var Offers = {
         return true;
       },
       showProgress: function () {
-        lockFlatButton(ge('offer_metric_edit_box_save'));
+        lockButton(ge('offer_metric_edit_box_save'));
       },
       hideProgress: function () {
-        unlockFlatButton(ge('offer_metric_edit_box_save'));
+        unlockButton(ge('offer_metric_edit_box_save'));
       }
     });
   },

@@ -6716,12 +6716,42 @@ function giftsBox(mid, ev, tab) {
   return !showBox('al_gifts.php', {act: 'box', tab: tab || 'received', mid: mid}, {cache: 1, stat: ['gifts.css', 'gifts.js']}, ev);
 }
 
-function moneyTransferBox(txId, hash, ev) {
+function moneyTransferBox(txId, hash, ev, btn, decline) {
   if (cur.viewAsBox) return cur.viewAsBox();
+  if (decline) {
+    debugLog(decline);
+    if (decline === true) {
+      cur.confirmBox = showFastBox(getLang('global_action_confirmation'), getLang('news_fb_money_transfer_decline_confirm'), getLang('news_fb_money_transfer_decline_btn'), moneyTransferBox.pbind(txId, hash, ev, btn, 1), getLang('global_cancel'));
+      return;
+    }
+    var accept_btn = geByClass1('flat_button', domPN(btn));
+    if (decline !== 2) {
+      disableButton(accept_btn, true);
+      lockButton(btn);
+      if (cur.confirmBox) cur.confirmBox.hide();
+    }
+    ajax.post('al_payments.php?act=a_cancel_money_transfer', {tx_id: txId, hash: hash}, {
+      onDone: function(result, text) {
+        if (result === 0) {
+          setTimeout(moneyTransferBox.pbind(txId, hash, ev, btn, 2), 2000);
+          return;
+        }
+        re(domPN(btn));
+        showDoneBox(text);
+      },
+      onFail: function(msg) {
+        disableButton(accept_btn, false);
+        unlockButton(btn);
+        setTimeout(showFastBox(getLang('global_error'), msg).hide, 2000);
+        return true;
+      }
+    });
+    return;
+  }
   return !showBox('al_payments.php', {act: 'accept_money_transfer_box', tx_id: txId, hash: hash}, {
     stat: ['payments.css', 'payments.js'],
     onFail: function(text) {
-      setTimeout(showFastBox({title: getLang('global_error')}, text).hide, 2000);
+      setTimeout(showFastBox(getLang('global_error'), text).hide, 2000);
       return true;
     }
   }, ev);

@@ -1970,7 +1970,7 @@ if (!VK.Widgets) {
       }
 
       var chatRpc, chatIfr;
-      instances[objId] = VK.Widgets._constructor('/widget_community_messages.php', objId, options, params, {
+      instances[objId] = VK.Widgets._constructor('widget_community_messages.php', objId, options, params, {
         onStartLoading: function() {
           var obj = document.getElementById(objId);
           obj.style.position = 'fixed';
@@ -2004,7 +2004,28 @@ if (!VK.Widgets) {
           try {
             chatIfr.parentNode.removeChild(chatIfr);
           } catch(e) { }
-        }
+        },
+        fatalError: function(error_code, public_id) {
+
+          var query = {
+            code: error_code,
+            widget: 2,
+            public_id: public_id,
+          };
+
+          if (error_code == 1903) {
+            query.referrer_domain = document.domain;
+          }
+
+          var query_str = [];
+          for(var i in query) {
+            query_str.push(i+'='+query[i]);
+          }
+
+          CommunityMessages.destroy(objId);
+          var box = VK.Util.Box(VK.Widgets.showBoxUrl(options.base_domain, 'blank.php?'+query_str.join('&')));
+          box.show();
+        },
       }, {}, function(o, i, r) {
         chatRpc = r;
         chatIfr = i;
