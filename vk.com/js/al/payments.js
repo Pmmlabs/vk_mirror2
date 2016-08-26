@@ -487,15 +487,24 @@ var MoneyTransfer = {
       params.accept = chkData.accept;
     }
     ajax.post('al_payments.php', params, {
-      onDone: function(result, text) {
+      onDone: function(result, text, html) {
         if (!result) {
           return;
         }
-        if (result == 1) { //success
+        if (result == 1 || result == 3) { // success
           while (boxQueue.count()) {
             boxQueue.hideLast(false);
           }
           showDoneBox(text, {out: 6000});
+
+          if (result == 3) {
+            TopNotifier.invalidate();
+            if (cur.acceptMoneyBtn) {
+              re(geByClass1('_decline_btn', domPN(cur.acceptMoneyBtn)));
+              domReplaceEl(cur.acceptMoneyBtn, html);
+              cur.acceptMoneyBtn = false;
+            }
+          }
         } else if (result == 2) { // failed
           MoneyTransfer.showError(text);
         }
