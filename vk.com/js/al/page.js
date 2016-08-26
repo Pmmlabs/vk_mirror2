@@ -1451,8 +1451,8 @@ var Wall = {
       re(domNS(el));
     }});
   },
-  block: function(el, post, hash, bl) {
-    ajax.post('al_wall.php', {act: 'block', post: post, hash: hash, bl: bl}, {onDone: function(text) {
+  block: function(el, post, hash, bl, from) {
+    ajax.post('al_wall.php', {act: 'block', post: post, hash: hash, bl: bl, from: from}, {onDone: function(text) {
       if (bl) {
         domPN(el).insertBefore(ce('div', {innerHTML: text}), el);
         hide(el);
@@ -1461,12 +1461,12 @@ var Wall = {
         re(domPN(el));
       }
     }, showProgress: function() {
-      var prg = bl ? ce('div', {className: 'progress'}) : ce('span', {className: 'progress_inline'});
       hide(el);
-      show(domNS(el) || domPN(el).appendChild(prg));
+      var prg = showProgress(domPN(el));
+      if (!bl) setStyle(prg, {display: 'inline-block'});
     }, hideProgress: function() {
       show(el);
-      re(domNS(el));
+      hideProgress(domPN(el));
     }});
   },
   blockEx: function(gid, mid) {

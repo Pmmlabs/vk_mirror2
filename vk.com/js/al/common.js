@@ -2176,7 +2176,7 @@ function updSeenAdsInfo() {
   if (!top || !vk.id) return;
 
   var friendsHeight = (isVisible('left_friends') ? getSize(ge('left_friends'))[1] : 0);
-  var adsY = getXY('ads_left', true)[1];
+  var adsY = getXY('ads_left', false)[1];
   var ads = Math.floor(((window.lastWindowHeight || 0) - adsY + friendsHeight) / 260);
 
   // update actual value. Sometimes __seenAds not the same as in cookie
