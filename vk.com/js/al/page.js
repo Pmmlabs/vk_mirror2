@@ -1501,18 +1501,6 @@ var Wall = {
           media_types = cur.options.media_types;
         }
         args.unshift(post);
-        if (args[5] !== void 0 && media_types !== void 0) {
-          var mediaTypes = [];
-          each (args[5] || [], function(i, arr1) {
-            each (media_types || [], function(i, arr2) {
-              if (arr1[0] === arr2[0]) {
-                mediaTypes.push(arr2);
-                return false;
-              }
-            });
-          });
-          args[5] = mediaTypes;
-        }
         WallEdit.editPost.apply(window, args);
         onDone && onDone();
       },
@@ -7798,6 +7786,7 @@ Composer = {
             }
             extend(params, {
               url: share.url,
+              mode: share.mode,
               title: replaceEntities(share.title),
               description: replaceEntities(share.description),
               extra: share.extra,
