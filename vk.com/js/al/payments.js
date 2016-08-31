@@ -578,9 +578,18 @@ var MoneyTransfer = {
   },
   autosizeAmount: function() {
     var el = ge('transfer_amount'),
-        len = el.value.length || 1;
-    if (browser.chrome) len += 1;
-    el.setAttribute('size', len);
+        div = ce('span', {innerHTML: el.value || '0'}, {fontFamily: getStyle(el, 'fontFamily'), fontSize: getStyle(el, 'fontSize'), fontWeight: getStyle(el, 'fontWeight')});
+    ge('utils').appendChild(div);
+    var w = Math.floor(getSize(div)[0]) + 50;
+    re(div);
+
+    if (!cur.amountMinSize) {
+      cur.amountMinSize = 80;
+    }
+    if (w < cur.amountMinSize) {
+      w = cur.amountMinSize;
+    }
+    setStyle(el, {width: w});
   },
   checkUserMessage: function() {
     checkTextLength(cur.paymentsOptions.maxTextLength, ge('transfer_comment'),  ge('transfer_comment_limit_message'), false, true);
