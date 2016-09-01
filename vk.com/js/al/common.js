@@ -548,7 +548,12 @@ function domData(el, name, value) {
   }
 
   if (typeof value != 'undefined') {
-    el.setAttribute('data-' + name, value);
+    if (value === null) {
+      el.removeAttribute('data-' + name);
+    } else {
+      el.setAttribute('data-' + name, value);
+    }
+
     return value;
   } else {
     return el.getAttribute('data-' + name);

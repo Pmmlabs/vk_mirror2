@@ -5249,7 +5249,8 @@ var Wall = {
       return;
     }
 
-    var wrap = domClosest('_submit_post_box', obj);
+    var wrap = domClosest('_submit_post_box', obj),
+        signed = wrap && domByClass(wrap, '_signed_checkbox');
     if (!btn) {
       // direct click
       var on = hasClass(wrap, 'as_group');
@@ -5266,7 +5267,7 @@ var Wall = {
     checkbox(obj);
 
     toggleClass(wrap, 'as_group', as == 'group');
-    toggleClass('signed', 'shown', as == 'group');
+    signed && toggleClass(signed, 'shown', as == 'group');
     obj.setAttribute('aria-label', getLang((as == 'group') ? 'wall_reply_as_group' : 'wall_reply_as_user'));
   },
   replyAsGroupOver: function(obj, tt_user, tt_group) {
