@@ -6506,7 +6506,7 @@ function initAddMedia(lnk, previewId, mediaTypes, opts) {
       if (ev && ev.type == 'click' && (event.ctrlKey || event.metaKey || event.shiftKey)) {
         noboxhide = true;
       }
-      if ((!cur.fileApiUploadStarted || data.upload_ind === undefined) && !cur.preventBoxHide && noboxhide !== true && !inArray(type, ['poll', 'share', 'page', 'postpone'])) {
+      if ((!cur.fileApiUploadStarted || data.upload_ind === undefined) && !cur.preventBoxHide && noboxhide !== true && !inArray(type, ['poll', 'share', 'page', 'postpone', 'mark_as_ads'])) {
         boxQueue.hideLast();
       }
 

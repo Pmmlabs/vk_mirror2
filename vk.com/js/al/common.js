@@ -572,6 +572,9 @@ function domCA(el, selector) {
 }
 
 function matchesSelector(el, selector) {
+  el = ge(el);
+  if (!el || el == document) return false;
+
   var matches = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector || function(selector) {
     var nodes = (this.parentNode || this.document || this.ownerDocument).querySelectorAll(selector);
     for (var i = nodes.length; --i >= 0 && nodes[i] !== this; ) ;
@@ -1697,7 +1700,7 @@ function shortCurrency() {
       }
       var div = ce('div', {innerHTML: '<b>' + _short + '</b><b>' + _test + '</b>'},{fontFamily: ff, fontSize: '24px'});
       ge('utils').appendChild(div);
-      rubEnabled[ff] = Math.abs(div.firstChild.offsetWidth - div.lastChild.offsetWidth) >= 2 * _short_len;
+      rubEnabled[ff] = Math.abs(div.firstChild.offsetWidth - div.lastChild.offsetWidth) >= 3 * _short_len;
       re(div);
     }
     if (rubEnabled[ff]) {
@@ -2180,9 +2183,19 @@ function updSeenAdsInfo() {
   var top = (getXY('ads_left', true) || {})[1];
   if (!top || !vk.id) return;
 
-  var friendsHeight = (isVisible('left_friends') ? getSize(ge('left_friends'))[1] : 0);
-  var adsY = getXY('ads_left', false)[1];
-  var ads = Math.floor(((window.lastWindowHeight || 0) - adsY + friendsHeight) / 260);
+  var leftMenuRect = getXYRect(geByTag1('ol', ge('side_bar_inner')), true);
+  var leftMenuHeight = leftMenuRect ? leftMenuRect['height'] : 0;
+
+  var leftBlocksRect = getXYRect(ge('left_blocks'), true);
+  var leftBlocksRectHeight = leftBlocksRect ? leftBlocksRect['height'] : 0;
+
+  var ads = Math.max(Math.floor((
+      (window.lastWindowHeight || 0)
+      - leftMenuHeight
+      - leftBlocksRectHeight
+      - 42 /* fixed top header height */
+      - 10 /* left nav top padding */
+      ) / 260), 0);
 
   // update actual value. Sometimes __seenAds not the same as in cookie
   __seenAds = intval(getCookie('remixseenads'));
@@ -2384,7 +2397,7 @@ function updateNarrow() {
       barPB = Math.max(0, barBottom), barPT = pagePos - headH,
       barPos = getXY(bar)[1] + (isFixed ? barMT : 0),
       lastSt = cur.lastSt || 0, lastStyles = cur.lastStyles || {}, styles, needFix = false,
-      smallEnough = headH + barMB + barH + barMT + barPB <= wh && !cur.narrowHide, delta = 1;
+      smallEnough = headH + barMB + barH + barMT + barPB <= wh, delta = 1;
 
   if (st - delta < barPT && !(smallEnough && browser.msie) || tooBig) {
     styles = {
@@ -2396,9 +2409,9 @@ function updateNarrow() {
       marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
     }
     needFix = true;
-  } else if (st + delta > Math.max(lastSt, barPos + barH + barMB - wh) && barBottom < 0 && !cur.narrowHide || cur.narrowHide && st + delta > Math.max(lastSt, barPos + barH - headH)) {
+  } else if (st + delta > Math.max(lastSt, barPos + barH + barMB - wh) && barBottom < 0) {
     styles = {
-      bottom: (cur.narrowHide ? wh - headH : barMB),
+      bottom: barMB,
       marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
     }
     needFix = true;
@@ -6618,15 +6631,17 @@ function renderFlash(cont, opts, params, vars) {
   return true;
 }
 
-function showAudioClaimWarning(owner_id, id, delete_hash, claim_id, title, reason) {
+function showAudioClaimWarning(owner_id, id, claim_id, title, reason) {
   var claimText, claimTitle;
-  if (reason == 'crap') {
-    claimText = getLang(claim_id >= 0 ? 'audio_crap_warning_text' : 'audio_crap_warning') || getLang(claim_id > 0 ? 'audio_claim_warning_objection' : (claim_id == 0 ? 'audio_claim_warning_text' : 'audio_claim_warning'));
-    claimTitle = getLang('audio_crap_warning_title') || getLang('audio_claim_warning_title');
+
+  if (reason == 'geo') {
+    claimText = getLang('audio_claimed_geo'); //getLang(claim_id >= 0 ? 'audio_claimed_geo' : 'audio_claimed_text_geo');
+    claimTitle = getLang('audio_claim_warning_title');
   } else {
-    claimText = getLang(claim_id > 0 ? 'audio_claim_warning_objection' : (claim_id == 0 ? 'audio_claim_warning_text' : 'audio_claim_warning'));
+    claimText = getLang('audio_claim_warning'); //getLang(claim_id > 0 ? 'audio_claim_warning_objection' : (claim_id == 0 ? 'audio_claim_warning_text' : 'audio_claim_warning'));
     claimTitle = getLang('audio_claim_warning_title');
   }
+
   claimText = claimText.split('{audio}').join('<b>' + title + '</b>');
   claimText = claimText.split('{objection_link}').join('<a href="/help?act=cc_objection&claim=' + claim_id + '&content=audio' + owner_id + '_' + id + '">' + getLang('audio_claim_objection') + '</a>');
   claimText = claimText.split('{delete_link}').join('<a onclick="deleteAudioOnClaim(' + owner_id + ',' + id + '); return false;">' + getLang('audio_claim_delete') + '</a>');
@@ -6724,60 +6739,35 @@ function giftsBox(mid, ev, tab) {
 function moneyTransferBox(txId, hash, ev, btn, decline) {
   if (cur.viewAsBox) return cur.viewAsBox();
   if (decline) {
+    debugLog(decline);
     if (decline === true) {
       cur.confirmBox = showFastBox(getLang('global_action_confirmation'), getLang('news_fb_money_transfer_decline_confirm'), getLang('news_fb_money_transfer_decline_btn'), moneyTransferBox.pbind(txId, hash, ev, btn, 1), getLang('global_cancel'));
       return;
     }
-    var isSnippet = hasClass(domPN(btn), 'wall_postlink_preview_btn');
-        accept_btn = geByClass1('flat_button', domPN(btn));
-    function _lockButton() {
-      if (isSnippet) {
-        addClass(btn.firstChild, 'round_spinner');
-        removeClass(btn.firstChild, 'button');
-      } else {
-        lockButton(btn);
-      }
-    }
-    function _unlockButton() {
-      if (isSnippet) {
-        addClass(btn.firstChild, 'button');
-        removeClass(btn.firstChild, 'round_spinner');
-      } else {
-        unlockButton(btn);
-      }
-    }
+    var accept_btn = geByClass1('flat_button', domPN(btn));
     if (decline !== 2) {
       disableButton(accept_btn, true);
-      _lockButton();
+      lockButton(btn);
       if (cur.confirmBox) cur.confirmBox.hide();
     }
-    ajax.post('al_payments.php?act=a_cancel_money_transfer', {tx_id: txId, hash: hash, from: isSnippet ? 'snippet' : ''}, {
-      onDone: function(result, text, html) {
+    ajax.post('al_payments.php?act=a_cancel_money_transfer', {tx_id: txId, hash: hash}, {
+      onDone: function(result, text) {
         if (result === 0) {
           setTimeout(moneyTransferBox.pbind(txId, hash, ev, btn, 2), 2000);
           return;
         }
-        if (isSnippet) {
-          re(btn);
-          if (!hasClass(accept_btn, 'secondary')) {
-            domReplaceEl(accept_btn, html);
-          }
-        } else {
-          re(domPN(btn));
-        }
+        re(domPN(btn));
         showDoneBox(text);
-        TopNotifier.invalidate();
       },
       onFail: function(msg) {
         disableButton(accept_btn, false);
-        _unlockButton();
+        unlockButton(btn);
         setTimeout(showFastBox(getLang('global_error'), msg).hide, 2000);
         return true;
       }
     });
     return;
   }
-  cur.acceptMoneyBtn = btn;
   return !showBox('al_payments.php', {act: 'accept_money_transfer_box', tx_id: txId, hash: hash}, {
     stat: ['payments.css', 'payments.js'],
     onFail: function(text) {
@@ -9142,7 +9132,11 @@ function audioSearchPerformer(ref, event) {
 }
 
 function getAudioPlayer() {
-  window.ap = window.ap || new AudioPlayer();
+  if (window.AudioPlayer)
+    window.ap = window.ap || new AudioPlayer();
+  else {
+    return {};
+  }
   return window.ap;
 }
 

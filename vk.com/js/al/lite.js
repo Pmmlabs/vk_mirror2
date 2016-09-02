@@ -2370,6 +2370,9 @@ function domData(el, name, value) {
 }
 
 function matchesSelector(el, selector) {
+  el = ge(el);
+  if (!el || el == document) return false;
+
   var matches = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector || function(selector) {
     var nodes = (this.parentNode || this.document || this.ownerDocument).querySelectorAll(selector);
     for (var i = nodes.length; --i >= 0 && nodes[i] !== this; ) ;
