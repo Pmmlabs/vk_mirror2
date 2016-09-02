@@ -1700,7 +1700,7 @@ function shortCurrency() {
       }
       var div = ce('div', {innerHTML: '<b>' + _short + '</b><b>' + _test + '</b>'},{fontFamily: ff, fontSize: '24px'});
       ge('utils').appendChild(div);
-      rubEnabled[ff] = Math.abs(div.firstChild.offsetWidth - div.lastChild.offsetWidth) >= 3 * _short_len;
+      rubEnabled[ff] = Math.abs(div.firstChild.offsetWidth - div.lastChild.offsetWidth) >= 2 * _short_len;
       re(div);
     }
     if (rubEnabled[ff]) {
@@ -2397,7 +2397,7 @@ function updateNarrow() {
       barPB = Math.max(0, barBottom), barPT = pagePos - headH,
       barPos = getXY(bar)[1] + (isFixed ? barMT : 0),
       lastSt = cur.lastSt || 0, lastStyles = cur.lastStyles || {}, styles, needFix = false,
-      smallEnough = headH + barMB + barH + barMT + barPB <= wh, delta = 1;
+      smallEnough = headH + barMB + barH + barMT + barPB <= wh && !cur.narrowHide, delta = 1;
 
   if (st - delta < barPT && !(smallEnough && browser.msie) || tooBig) {
     styles = {
@@ -2409,9 +2409,9 @@ function updateNarrow() {
       marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
     }
     needFix = true;
-  } else if (st + delta > Math.max(lastSt, barPos + barH + barMB - wh) && barBottom < 0) {
+  } else if (st + delta > Math.max(lastSt, barPos + barH + barMB - wh) && barBottom < 0 && !cur.narrowHide || cur.narrowHide && st + delta > Math.max(lastSt, barPos + barH - headH)) {
     styles = {
-      bottom: barMB,
+      bottom: (cur.narrowHide ? wh - headH : barMB),
       marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
     }
     needFix = true;
@@ -6739,35 +6739,62 @@ function giftsBox(mid, ev, tab) {
 function moneyTransferBox(txId, hash, ev, btn, decline) {
   if (cur.viewAsBox) return cur.viewAsBox();
   if (decline) {
-    debugLog(decline);
     if (decline === true) {
       cur.confirmBox = showFastBox(getLang('global_action_confirmation'), getLang('news_fb_money_transfer_decline_confirm'), getLang('news_fb_money_transfer_decline_btn'), moneyTransferBox.pbind(txId, hash, ev, btn, 1), getLang('global_cancel'));
       return;
     }
-    var accept_btn = geByClass1('flat_button', domPN(btn));
+    var isSnippet = hasClass(domPN(btn), 'wall_postlink_preview_btn');
+    accept_btn = geByClass1('flat_button', domPN(btn));
+    function _lockButton() {
+      if (isSnippet) {
+        addClass(btn.firstChild, 'round_spinner');
+        removeClass(btn.firstChild, 'button');
+      } else {
+        lockButton(btn);
+      }
+    }
+
+    function _unlockButton() {
+      if (isSnippet) {
+        addClass(btn.firstChild, 'button');
+        removeClass(btn.firstChild, 'round_spinner');
+      } else {
+        unlockButton(btn);
+      }
+    }
     if (decline !== 2) {
       disableButton(accept_btn, true);
-      lockButton(btn);
+      _lockButton(btn);
       if (cur.confirmBox) cur.confirmBox.hide();
     }
-    ajax.post('al_payments.php?act=a_cancel_money_transfer', {tx_id: txId, hash: hash}, {
-      onDone: function(result, text) {
+    ajax.post('al_payments.php?act=a_cancel_money_transfer', {tx_id: txId, hash: hash, from: isSnippet ? 'snippet' : ''}, {
+      onDone: function(result, text, html) {
+
         if (result === 0) {
           setTimeout(moneyTransferBox.pbind(txId, hash, ev, btn, 2), 2000);
           return;
         }
-        re(domPN(btn));
+        if (isSnippet) {
+          re(btn);
+          if (!hasClass(accept_btn, 'secondary')) {
+            domReplaceEl(accept_btn, html);
+          }
+        } else {
+          re(domPN(btn));
+        }
         showDoneBox(text);
+        TopNotifier.invalidate();
       },
       onFail: function(msg) {
         disableButton(accept_btn, false);
-        unlockButton(btn);
+        _unlockButton(btn);
         setTimeout(showFastBox(getLang('global_error'), msg).hide, 2000);
         return true;
       }
     });
     return;
   }
+  cur.acceptMoneyBtn = btn;
   return !showBox('al_payments.php', {act: 'accept_money_transfer_box', tx_id: txId, hash: hash}, {
     stat: ['payments.css', 'payments.js'],
     onFail: function(text) {

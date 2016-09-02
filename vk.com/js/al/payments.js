@@ -419,12 +419,12 @@ var MoneyTransfer = {
         cur._popup_text = html;
         cur._popup_callback = function() {
           hide('payments_money_transfer_wrap', 'payments_money_transfer_buttons', 'payments_box_error');
-          show('payments_iframe_container');
+          show('payments_money_transfer_iframe');
           ge('payments_iframe_container').scrollTop = 0;
 
           box.setOptions({width: 560});
           box.setBackTitle(function() {
-            hide('payments_iframe_container');
+            hide('payments_money_transfer_iframe');
             show('payments_money_transfer_wrap', 'payments_money_transfer_buttons');
             box.setOptions({width: 450});
             box.setBackTitle(false);
@@ -593,7 +593,7 @@ var MoneyTransfer = {
   },
   checkUserMessage: function() {
     checkTextLength(cur.paymentsOptions.maxTextLength, ge('transfer_comment'),  ge('transfer_comment_limit_message'), false, true);
-    (val('transfer_comment_limit_message') && isVisible('transfer_comment_limit_message') ? hide : show)('payments_money_transfer_about_fee');
+    (val('transfer_comment_limit_message') && isVisible('transfer_comment_limit_message') ? hide : show)('payments_money_transfer_fee_link');
   },
   aboutBox: function() {
     return !showFastBox({title: getLang('payments_money_transfer_about_title'), width: 560}, getLang('payments_money_transfer_about_text'));
@@ -605,7 +605,7 @@ var MoneyTransfer = {
       show('payments_box_error');
     }
     if (ge('payments_money_transfer_wrap')) {
-      hide('payments_iframe_container');
+      hide('payments_money_transfer_iframe');
       show('payments_money_transfer_wrap');
       box.setOptions({width: 450});
       box.setBackTitle(false);
