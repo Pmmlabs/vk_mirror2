@@ -1974,7 +1974,7 @@ if (!VK.Widgets) {
         onStartLoading: function() {
           var obj = document.getElementById(objId);
           obj.style.position = 'fixed';
-          obj.style['z-index'] = 1000;
+          obj.style['z-index'] = 10000;
           obj.style.right = '20px';
           obj.style.bottom = '0px';
           minimize(objId);
