@@ -1291,7 +1291,7 @@ if (!VK.Widgets) {
 
       function handleStatsBox(act) {
         hideTooltip(true);
-        statsBox = VK.Util.Box(buttonIfr.src + '&act=a_stats_box&widget_width=638');
+        statsBox = VK.Util.Box(buttonIfr.src + '&act=a_stats_box&widget_width=638&from=wlike');
         statsBox.show();
       }
 

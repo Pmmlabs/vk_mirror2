@@ -3077,6 +3077,16 @@ function debounce(func, wait, immediate) {
   }
 }
 
+function domCA(el, selector) {
+  var matches = selector ?
+                matchesSelector :
+                function() { return true; };
+  do {
+    el = domPN(el);
+  } while(el && !matchesSelector(el, selector));
+  return el;
+}
+
 function matchesSelector(el, selector) {
   var matches = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector || function(selector) {
     var nodes = (this.parentNode || this.document || this.ownerDocument).querySelectorAll(selector);

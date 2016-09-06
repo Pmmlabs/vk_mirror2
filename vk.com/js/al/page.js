@@ -1492,14 +1492,20 @@ var Wall = {
     ajax.post('al_wall.php', extend({act: 'edit', post: post, mention: Wall.withMentions ? 1 : ''}, options), {
       onDone: function() {
         var args = Array.prototype.slice.call(arguments);
-        var media_types;
-        if (window.wkcur && wkcur.shown) {
-          media_types = wkcur.options.rmedia_types;
-        } else if (window.mvcur && mvcur.mvShown && !mvcur.minimized) {
-          media_types = mvcur.rmedia_types
-        } else {
-          media_types = cur.options.media_types;
+
+        if (isArray(args[4]) && cur.options && isArray(cur.options.filter_media_types)) {
+          var mediaTypes = [];
+          each(args[4], function(i, arr1) {
+            each(cur.options.filter_media_types, function(i, arr2) {
+              if (arr1[0] === arr2[0]) {
+                mediaTypes.push(arr2);
+                return false;
+              }
+            });
+          });
+          args[4] = mediaTypes;
         }
+
         args.unshift(post);
         WallEdit.editPost.apply(window, args);
         onDone && onDone();
