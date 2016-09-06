@@ -1,3 +1,697 @@
+
+(function (exports) {
+
+  var TR_ADDRESS = 'al_translations.php';
+
+  var _caseDropdown, _caseTokenDropdown, _functionTypeDropdown;
+  var _keysLangSelectorDropdown;
+
+  function _box_initAutosizeTexts() {
+    each(geByClass('_tr_text_value'), function() {
+      autosizeSetup(this, {minHeight: 50, maxHeight: 450});
+    });
+  }
+
+  function _box_initValuesChangeEvents() {
+    var rusValues = geByClass('_tr_text_value', geByClass('_tr_key_edit_wrap')[0]);
+    var engValues = geByClass('_tr_text_value', geByClass('_tr_key_edit_wrap')[1]);
+
+    var engWasChanged = false;
+    var prevValue = '';
+
+    each(rusValues, function(i) {
+      addEvent(this, 'input change', function(e) {
+        var v = val(this);
+        if (!engWasChanged) {
+          val(engValues[i], v);
+        }
+
+        if (prevValue != val(rusValues[0])) {
+          prevValue = val(rusValues[0]);
+
+          var tokens = prevValue.match(/(\{[a-zA-Z_]+\})/g) || [];
+          var tokensItems = [];
+          each(tokens, function(i, token) {
+            tokensItems.push([ i, token ]);
+          });
+
+          setTimeout(function() {
+            _caseTokenDropdown.setData(tokensItems);
+          }, 100);
+        }
+      });
+    });
+
+    each(engValues, function() {
+      addEvent(this, 'input change', function() {
+        engWasChanged = true;
+      });
+      addEvent(this, 'focus', function() {
+        if (!engWasChanged) {
+          this.select();
+        }
+      });
+    });
+  }
+
+  function _box_changeKeyFunctionType(functionType) {
+    ajax.post(TR_ADDRESS, {
+      act: 'function_type',
+      function_type: functionType
+    }, {
+      onDone: function(rusEditor, engEditor) {
+        var editorsEls = geByClass('_tr_key_edit_wrap');
+
+        // save previous values
+        var rusValue = [], engValue = [];
+        each(geByClass('_tr_text_value', editorsEls[0]), function() {
+          rusValue.push(val(this));
+        });
+        each(geByClass('_tr_text_value', editorsEls[1]), function() {
+          engValue.push(val(this));
+        });
+
+        rusEditor = se(rusEditor);
+        engEditor = se(engEditor);
+
+        // restore previous values
+        each(geByClass('_tr_text_value', rusEditor), function(i) {
+          val(this, i < rusValue.length ? rusValue[i] : '');
+        });
+        each(geByClass('_tr_text_value', engEditor), function(i) {
+          val(this, i < engValue.length ? engValue[i] : '');
+        });
+
+        domReplaceEl(editorsEls[0], rusEditor);
+        domReplaceEl(editorsEls[1], engEditor);
+
+        _box_initAutosizeTexts();
+      }
+    });
+  }
+
+  function saveKey(btn, hash, onDone) {
+    var query = { act: 'save_key', hash: hash };
+
+    query.lang_id = intval(nav.objLoc.lang_id !== undefined ? nav.objLoc.lang_id : cur.langId);
+
+    // key name
+    query.key = val('tr_new_key') || val('tr_key_input');
+    if (_functionTypeDropdown) {
+      query.function_type = _functionTypeDropdown.getSelected()[0];
+    }
+
+    query.lang_ids = [];
+
+    each(geByClass('_tr_key_edit_wrap'), function() {
+      var langId = domData(this, 'lang-id');
+      var values = [];
+
+      each(geByClass('_tr_text_value', this), function() {
+        values.push(val(this));
+      });
+
+      if (values.length > 1) {
+        values = '@@' + values.join('@');
+      } else {
+        values = values[0];
+      }
+
+      query['Value_' + langId] = values;
+      query.lang_ids.push(langId);
+    });
+
+    query.lang_ids = query.lang_ids.join(',');
+
+    // description
+    query.description = val('tr_description_edit');
+
+    // params
+    query.extended_wiki = intval(hasClass('tr_extra_wiki', 'on'));
+    query.disable_inline = intval(hasClass('tr_extra_disable_inline', 'on'));
+    query.export = intval(hasClass('tr_extra_export_to_js', 'on'));
+    query.has_case = intval(hasClass('tr_extra_case', 'on'));
+    query.mark_untranslated = intval(hasClass('tr_extra_mark_as_untranslated', 'on'));
+
+    // case
+    if (query.has_case) {
+      query.case = _caseDropdown.selectedItems()[0][0];
+      query.case_token = _caseTokenDropdown.selectedItems()[0][1];
+    }
+
+    ajax.post(TR_ADDRESS, query, {
+      showProgress: lockButton.pbind(btn),
+      hideProgress: unlockButton.pbind(btn),
+      onDone: function(keyValueHtml) {
+        if (keyValueHtml && query.key) {
+          var rowEl = document.querySelector('.tr_key[data-key=' + query.key + ']');
+          if (rowEl) {
+            removeClass(rowEl, 'tr_untranslated');
+            geByClass1('_tr_key_inner', rowEl).innerHTML = keyValueHtml;
+          }
+        } else {
+          nav.reload();
+        }
+
+        boxQueue.hideAll();
+
+        if (onDone) {
+          onDone();
+        }
+      }
+    })
+  }
+
+  function _box_hasCaseChanged(hasCase) {
+    toggle(geByClass1('_tr_case_controls'), hasCase);
+  }
+
+  function newKey() {
+    openKey('');
+  }
+
+  function openNextKey(key) {
+    var rowEl = document.querySelector('.tr_key[data-key=' + key + ']');
+    rowEl = rowEl ? domNS(rowEl) : false;
+
+    if (rowEl) {
+      key = domData(rowEl, 'key');
+      openKey(key);
+    }
+  }
+
+  function openKey(key) {
+    var box = showBox(TR_ADDRESS, {
+      act: 'open_key',
+      key: key,
+      lang_id: intval(nav.objLoc.lang_id),
+      section_id: intval(nav.objLoc.section),
+    }, {
+      params: {
+        bodyStyle: 'padding: 20px 0 0; overflow: hidden;',
+        width: 550,
+        onHide: function() {
+          nav.setLoc(extend({}, nav.objLoc, { key: null }));
+
+          if (cur.onBoxKeyDownEvent) {
+            removeEvent(window, 'keydown', cur.onBoxKeyDownEvent);
+          }
+        },
+      },
+      onDone: function(box, data) {
+        _box_initAutosizeTexts();
+
+        if (!key) {
+          _box_initValuesChangeEvents();
+        }
+
+        if (key) {
+          var resizeContainerEl = geByClass1('_tr_history_rows');
+          var resizerEl = geByClass1('_tr_history_resizer');
+          if (getSize(resizeContainerEl)[1] >= resizeContainerEl.scrollHeight) {
+            re(resizerEl);
+            setStyle(geByClass1('_tr_history_rows'), 'height', 'inherit');
+          } else {
+            var resizerEl = geByClass1('_tr_history_resizer');
+            var resizeMouseMove;
+            addEvent(resizerEl, 'mousedown', function(e) {
+              var resizeContainerPos = getXY(resizeContainerEl);
+              resizeMouseMove && removeEvent(window, 'mousemove', resizeMouseMove);
+              addEvent(window, 'mousemove', resizeMouseMove = function(e) {
+                setStyle(resizeContainerEl, {
+                  height: Math.min(resizeContainerEl.scrollHeight, Math.max(50, e.pageY - resizeContainerPos[1]))
+                })
+              });
+
+              addEvent(window, 'mouseup', function(e) {
+                removeEvent(window, 'mousemove', resizeMouseMove);
+              });
+
+              return cancelEvent(e);
+            });
+          }
+        }
+
+        _functionTypeDropdown = false;
+        if (ge('tr_function_chooser')) {
+          _functionTypeDropdown = new InlineDropdown('tr_function_chooser', {
+            withArrow: true,
+            onSelect: _box_changeKeyFunctionType
+          });
+        }
+
+        var newKeySectionInput = ge('tr_section_chooser');
+        if (newKeySectionInput) {
+          new Dropdown(newKeySectionInput, data.sections, {
+            big: true,
+            selectedItems: intval(nav.objLoc.section),
+            onChange: function(id, item) {
+              var keyInputEl = ge('tr_new_key');
+              var key = val(keyInputEl).split('_').slice(1).join('_');
+              val(keyInputEl, item[3] + '_' + key);
+            }
+          });
+        }
+
+        { // cases
+          _caseDropdown = _caseTokenDropdown = false;
+          var caseInput = ge('tr_case');
+          if (caseInput) {
+            _caseDropdown = new Dropdown(caseInput, JSON.parse(domData(caseInput, 'cases')), {
+              big: true,
+              width: 200,
+              onChange: function(id, item) {
+              }
+            });
+          }
+
+          var caseTokenInput = ge('tr_case_token');
+          if (caseTokenInput) {
+            _caseTokenDropdown = new Dropdown(caseTokenInput, [], {
+              big: true,
+              width: 200,
+              onChange: function(id, item) {
+              }
+            });
+          }
+        }
+
+        var newKeyInputEl = ge('tr_new_key');
+        var errorEl = ge('tr_new_key_error');
+
+        if (newKeyInputEl) {
+          var lastCheckedKey = '';
+
+          addEvent(newKeyInputEl, 'change input', debounce(function() {
+            var key = val(newKeyInputEl);
+            if (lastCheckedKey == key) {
+              return;
+            }
+            lastCheckedKey = key;
+
+            ajax.post(TR_ADDRESS, { act: 'check_new_key', key: key }, {
+              onDone: function(isExists) {
+                toggle(errorEl, !!isExists);
+              }
+            });
+          }, 200));
+        }
+
+        if (newKeyInputEl) {
+          elfocus(newKeyInputEl);
+        } else {
+          var inputEl = geByClass1('_tr_text_value');
+          inputEl.select();
+          elfocus(inputEl);
+        }
+
+        if (data.isDeleted) {
+          box.addButton(getLang('box_restore'), function(btn) {
+            restoreKey(btn, key, data.editHash);
+          }, 'yes');
+
+        } else {
+          var saveButton = box.addButton(key ? getLang('global_save') : getLang('tran_create_key'), function(btn) {
+            saveKey(btn, data.editHash);
+          }, 'yes', true);
+
+          if (key && cur.isSuperTranslator) {
+            cur.sections = data.sections;
+            var boxControls =
+              '<a onclick="TR.deleteKey(\'' + key + '\', \'' + data.editHash + '\')">' + getLang('tran_delete_key') + '</a>' +
+              '<span class="divider">|</span>' +
+              '<a onclick="TR.cloneKey(\'' + key + '\', \'' + data.editHash + '\')">' + getLang('tran_copy_key') + '</a>';
+
+            box.setControlsText(boxControls);
+          }
+
+          addEvent(window, 'keydown', cur.onBoxKeyDownEvent = function(event) {
+            if (event.ctrlKey && event.keyCode == KEY.ENTER) {
+              saveKey(saveButton, data.editHash, function() {
+                boxQueue.hideAll();
+                openNextKey(key);
+              });
+            }
+          })
+        }
+
+        box.addButton(getLang('global_cancel'), box.hide, 'no');
+      }
+    });
+
+    box.removeButtons();
+
+    if (key) {
+      nav.setLoc(extend({}, nav.objLoc, { key: key }));
+    }
+  }
+
+  function initTranslationsPage() {
+    var keysLangSelectorEl = ge('tr_keys_lang_selector');
+    var availableLangs = JSON.parse(domData(keysLangSelectorEl, 'langs'));
+    _keysLangSelectorDropdown = new Dropdown(keysLangSelectorEl, availableLangs, {
+      big: true,
+      width: 190,
+      placeholder: availableLangs[0][1],
+      autocomplete: true,
+      selectedItems: nav.objLoc.lang_id || cur.langId,
+      onChange: function(langId) {
+        langId = langId || 0;
+        nav.change({ lang_id: langId });
+      }
+    });
+
+    if (nav.objLoc.key) {
+      openKey(nav.objLoc.key);
+    }
+  }
+
+  function restoreKey(btn, key, hash) {
+    lockButton(btn);
+    ajax.post(TR_ADDRESS, { act: 'restore_key', hash: hash, key: key }, {
+      onDone: function() {
+        boxQueue.hideAll();
+        openKey(key);
+      }
+    })
+  }
+
+  function deleteKey(key) {
+    var box = showFastBox(
+      {
+        title: getLang('tran_delete_box_title'),
+        bodyStyle: 'padding: 20px; line-height: 160%;',
+        dark: 1,
+        forceNoBtn: 1
+      },
+      getLang('tran_delete_key_text').replace(/{key}/, key),
+      getLang('box_yes'),
+      function(btn) {
+        lockButton(btn);
+        ajax.post(TR_ADDRESS, { act: 'delete_key', hash: hash, key: key }, {
+          onDone: function() {
+            boxQueue.hideAll();
+          }
+        })
+      },
+      getLang('box_no')
+    );
+  }
+
+  function cloneKey(key, hash) {
+    var content =
+    '<div class="tr_clone_box">' +
+      '<h4 class="subheader">' + getLang('tran_clone_box_new_key_label') + '</h4>' +
+      '<input id="tr_clone_box_section_sel" />' +
+      '<input class="tr_clone_box_key dark text" id="tr_clone_box_key" type="text" />' +
+      '<div id="tr_clone_box_move_checkbox" class="checkbox" onclick="checkbox(this)">' + getLang('tran_move_key_checkbox') + '</div>' +
+      '<div id="tr_clone_box_save_log_checkbox" class="checkbox" onclick="checkbox(this)">' + getLang('tran_save_log_key_checkbox') + '</div>' +
+    '</div>';
+
+    var box = showFastBox(
+      {
+        title: getLang('tran_clone_key_box_title'),
+        bodyStyle: 'padding: 20px; line-height: 160%;',
+        dark: 1,
+        forceNoBtn: 1,
+        width: 450,
+        onShow: function() {
+          new Dropdown(ge('tr_clone_box_section_sel'), cur.sections, {
+            big: true,
+            autocomplete: true,
+            onChange: function(id, item) {
+              var keyInputEl = ge('tr_clone_box_key');
+              var key = val(keyInputEl).split('_').slice(1).join('_');
+              val(keyInputEl, item[3] + '_' + key);
+            }
+          });
+        }
+      },
+      content,
+      getLang('box_save'),
+      function(btn) {
+        var newKey = val('tr_clone_box_key');
+        if (!trim(newKey)) {
+          return;
+        }
+
+        lockButton(btn);
+        ajax.post(TR_ADDRESS, { act: 'clone_key', hash: hash, key: key, new_key: newKey, move: intval(hasClass(ge('tr_clone_box_move_checkbox'), 'on')), with_log: intval(hasClass(ge('tr_clone_box_save_log_checkbox'), 'on')) }, {
+          onDone: function() {
+            boxQueue.hideAll();
+
+            openKey(newKey);
+          }
+        })
+      },
+      getLang('box_cancel')
+    );
+  }
+
+  function searchKey(searchInputEl, searchText) {
+    var changes = {
+      search: searchText ? searchText : null
+    }
+
+    if (searchText) {
+      changes.section = false;
+    }
+
+    nav.change(changes);
+  }
+
+  function editTranslator(translatorId) {
+    var box = showBox(TR_ADDRESS, {
+      act: 'edit_translator_box',
+      translator_id: translatorId,
+    }, {
+      params: {
+        bodyStyle: 'padding: 25px; overflow: hidden;',
+        width: 430
+      },
+      onDone: function(box, data) {
+        var fromLangSelector = ge('tr_from_lang_selector');
+        var fromLangs = JSON.parse(domData(fromLangSelector, 'langs'));
+        var fromLangSelected = domData(fromLangSelector, 'selected');
+
+        var toLangSelector = ge('tr_to_lang_selector');
+        var toLangs = JSON.parse(domData(toLangSelector, 'langs'));
+        var toLangSelected = domData(toLangSelector, 'selected');
+
+        fromLangSelector = new Dropdown(fromLangSelector, fromLangs, {
+          big: true,
+          width: 130,
+          autocomplete: true,
+          selectedItems: fromLangSelected,
+          disabled: !!translatorId,
+          onChange: function(langId) {
+          }
+        });
+
+        toLangSelector = new Dropdown(toLangSelector, toLangs, {
+          big: true,
+          width: 180,
+          autocomplete: true,
+          selectedItems: toLangSelected,
+          disabled: !!translatorId,
+          onChange: function(langId) {
+          }
+        });
+
+        var linkInput = geByClass1('tr_translator_link');
+        if (linkInput) {
+          function checkLink(link) {
+            ajax.post(TR_ADDRESS, { act: 'check_mem_link', link: link }, {
+              onDone: function(userId, photo, href) {
+                re(geByClass1('tr_mem_ava'));
+
+                if (userId) {
+                  domPN(linkInput).appendChild(se('<a href="' + href + '" class="tr_mem_ava ow_ava ow_ava_small" style="background-image: url(\'' + photo + '\')"></a>'));
+                  domData(linkInput, 'user-id', userId);
+                } else {
+                  domData(linkInput, 'user-id', null);
+                }
+              }
+            })
+          }
+          checkLink = debounce(checkLink, 200);
+
+          var prevVal = '';
+          addEvent(linkInput, 'change input', function() {
+            var link = val(linkInput);
+            if (link != prevVal) {
+              prevVal = link;
+
+              checkLink(link);
+            }
+          });
+        }
+
+        var saveButton = box.addButton(getLang('global_save'), function(btn) {
+          var query = { act: 'save_translator', hash: data.hash };
+
+          if (linkInput) {
+            query.translator_id = domData(linkInput, 'user-id');
+            query.is_add = 1;
+          } else {
+            query.translator_id = translatorId;
+          }
+
+          if (!query.translator_id) {
+            return;
+          }
+
+          query.lang_id = toLangSelector.selectedItems()[0][0];
+          query.paren_lang_id = fromLangSelector.selectedItems()[0][0];
+
+          query.is_coordinator = intval(hasClass(geByClass1('tr_translator_is_coordinator'), 'on'));
+
+          ajax.post(TR_ADDRESS, query, {
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn),
+            onDone: function() {
+              var box = curBox();
+              box && box.hide();
+
+              nav.reload();
+            }
+          });
+
+        }, 'yes', true);
+
+        box.addButton(getLang('global_cancel'), box.hide, 'no');
+
+        if (translatorId) {
+          box.setControlsText('<a onclick="TR.deleteTranslator(this, ' + translatorId + ', \'' + data.hash + '\')">' + getLang('global_delete') + '</a>');
+        }
+      }
+    });
+
+    box.removeButtons();
+  }
+
+  function deleteTranslator(btn, translatorId, hash) {
+    showProgress(domPN(btn), '', 'tr_translator_bottom_progress');
+    hide(btn);
+
+    ajax.post(TR_ADDRESS, { act: 'delete_translator', translator_id: translatorId, hash: hash }, {
+      onDone: function() {
+        var box = curBox();
+        box && box.hide();
+
+        nav.reload();
+      }
+    })
+  }
+
+  function addTranslator() {
+    editTranslator();
+  }
+
+  function initTranslatorsPage(translators) {
+    cur.translatorsList = translators;
+    cur.translatorsIndex = new vkIndexer(translators, function(item) {
+      return item.raw_name;
+    });
+
+    var dateSelector = ge('tr_translators_stat_date_selector');
+    var dates = JSON.parse(domData(dateSelector, 'dates'));
+    var dateSelected = domData(dateSelector, 'selected');
+
+    var langSelector = ge('tr_translators_language_selector');
+    var langs = JSON.parse(domData(langSelector, 'langs'));
+    var langSelected = domData(langSelector, 'selected');
+
+    dateSelector = new Dropdown(dateSelector, dates, {
+      big: true,
+      width: 200,
+      selectedItems: dateSelected,
+      onChange: function(date) {
+        nav.change({ stat_date: date });
+      }
+    });
+
+    langSelector = new Dropdown(langSelector, langs, {
+      big: true,
+      width: 200,
+      autocomplete: true,
+      placeholder: langs[0][1],
+      selectedItems: langSelected,
+      onChange: function(lang) {
+        if (lang === '') return;
+        nav.change({ lang_id: lang == -1 ? null : lang });
+      }
+    });
+  }
+
+  function toggleCoordinatorsOnly(toggle) {
+    var onlyCoordinators = toggleClass(domFC(toggle), 'on');
+    setTimeout(function() {
+      nav.change({ coordinators: onlyCoordinators ? 1 : null });
+    });
+  }
+
+  function searchTranslators(searchStr) {
+    searchStr = trim(searchStr);
+
+    var res = cur.translatorsList;
+
+    if (searchStr) {
+      res = cur.translatorsIndex.search(searchStr);
+    }
+
+    var html = '';
+    each(res, function(i, obj) {
+      html += getTemplate('translator_row', obj);
+    });
+
+    geByClass1('tr_translators').innerHTML = html;
+  }
+
+  function initLanguagesPage(languages) {
+    cur.languages = languages;
+
+    cur.languagesIndex = new vkIndexer(languages, function(item) {
+      return item.name_rus + ' ' + item.name_eng + ' ' + item.name_native;
+    });
+  }
+
+  function searchLang(searchStr) {
+    var res = cur.languages;
+
+    if (searchStr) {
+      res = cur.languagesIndex.search(searchStr);
+    }
+
+    var html = '';
+    each(res, function(i, obj) {
+      html += getTemplate('lang_row', obj);
+    });
+
+    geByClass1('tr_languages_list').innerHTML = html;
+  }
+
+  exports.TR = {
+    openKey: openKey,
+    newKey: newKey,
+    hasCaseChanged: _box_hasCaseChanged,
+    initTranslationsPage: initTranslationsPage,
+    initTranslatorsPage: initTranslatorsPage,
+    searchKey: searchKey,
+    deleteKey: deleteKey,
+    cloneKey: cloneKey,
+    editTranslator: editTranslator,
+    deleteTranslator: deleteTranslator,
+    addTranslator: addTranslator,
+    toggleCoordinatorsOnly: toggleCoordinatorsOnly,
+    searchTranslators: debounce(searchTranslators, 50),
+    initLanguagesPage: initLanguagesPage,
+    searchLang: debounce(searchLang, 50),
+  };
+
+})(window);
+
+
 window.translation = window.translation || {
   recalcCounters: function() {
     ajax.post('al_translation.php', { act: 'a_recalc_counters' }, {
@@ -51,7 +745,7 @@ window.translation = window.translation || {
         <a class="button_link" href="/translation">\
           <div class="flat_button secondary" id="translation_to_page">Go to translation page</div>\
         </a>\
-        <a id="show_untranslated" class="button_link" href="/translation?section_id=untranslated">\
+        <a id="show_untranslated" class="button_link" href="/al_translations.php">\
           <div class="flat_button secondary" id="">Show untranslated phrases</div>\
         </a>\
         <div class="help">\
@@ -1679,3 +2373,6 @@ function _debounce(func, wait) {
   })();
 
 }).call(this);
+
+
+try{stManager.done('translation.js');}catch(e){}
