@@ -640,10 +640,15 @@ var MoneyTransfer = {
       show('payments_box_error');
     }
     if (ge('payments_money_transfer_wrap')) {
+      var box = curBox();
       hide('payments_money_transfer_iframe');
-      show('payments_money_transfer_wrap');
+      show('payments_money_transfer_wrap', 'payments_money_transfer_buttons');
       box.setOptions({width: 450});
       box.setBackTitle(false);
+      if (cur.moneyTranferCheckInt) {
+        clearInterval(cur.moneyTranferCheckInt);
+        cur.moneyTranferCheckInt = false;
+      }
     }
   },
 
