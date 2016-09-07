@@ -1643,7 +1643,12 @@ WComments = {
               count: count,
               from: 'widget'
             }, {
-              onDone: Wall._repliesLoaded.pbind(post, hl),
+              onDone: function() {
+                var args = [].slice.call(arguments);
+                args.unshift(post, hl);
+                Wall._repliesLoaded.apply(Wall, args);
+                WComments.resizeWidget();
+              },
               showProgress: lockButton.pbind('wrh' + post),
               hideProgress: unlockButton.pbind('wrh' + post)
             });
