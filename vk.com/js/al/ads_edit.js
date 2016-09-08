@@ -135,7 +135,6 @@ AdsEdit.showTargetingCriterionHelp = function(event, helpKey) {
   var boxOptions = {};
   boxOptions.title = getLang('ads_tip');
   boxOptions.width = 350;
-  boxOptions.dark = true;
   showFastBox(boxOptions, helpValue);
 
   cancelEvent(event);
@@ -410,7 +409,7 @@ AdsEdit.saveAd = function() {
 
     if (result && result.link_domain_continue) {
       var confirmBox = showFastBox(
-        {title: getLang('ads_error_url_unreachable_title'), dark: true},
+        {title: getLang('ads_error_url_unreachable_title')},
         getLang('ads_save_ad_confirm_unreachable_url'),
         getLang('ads_save'),
         function() {
@@ -427,7 +426,7 @@ AdsEdit.saveAd = function() {
     }
     if (result && result.promoted_post_confirmed) {
       var confirmBox = showFastBox(
-          {title: getLang('ads_save_ad_promoted_post_confirmation_box_title'), dark: true},
+          {title: getLang('ads_save_ad_promoted_post_confirmation_box_title')},
           result.promoted_post_confirmation_body,
           getLang('ads_save'),
           function() {
@@ -478,7 +477,6 @@ AdsEdit.showLastAdsBox = function(parentId) {
   var showOptions = {params: {}};
   showOptions.cache = 1;
   showOptions.stat = ['indexer.js'];
-  showOptions.dark = true;
   showOptions.params.width = 600;
   showOptions.params.bodyStyle = 'padding: 0;';
 
@@ -638,7 +636,6 @@ AdsEdit.showUploadPhotoBox = function() {
 
   var showOptions = {params: {}};
   showOptions.stat = ['upload.js'];
-  showOptions.dark = true;
   showOptions.params.width = 470;
 
   showBox('/adsedit?act=upload_photo_box', ajaxParams, showOptions);
@@ -768,7 +765,6 @@ AdsEdit.showCropPhotoBox = function(photoData) {
 
   var showOptions = {params: {}};
   showOptions.stat = ['tagger.css', 'ads_tagger.js'];
-  showOptions.dark = true;
 
   var boxPadding = 25 * 2;
 
@@ -906,7 +902,6 @@ AdsEdit.showUploadVideoBox = function(buttonElem, hash) {
 
   var showOptions = {params: {}};
   showOptions.stat = ['upload.js'];
-  showOptions.dark = true;
 
   var uploadVideoBox = showTabbedBox('/adsedit?act=upload_video_box', ajaxParams, showOptions);
 }
@@ -1147,7 +1142,7 @@ AdsEdit.updateUploadedVideo = function(uploadVideoBox, updateAfterUploadHash, vi
   function onDone(ajaxResult, videoHash, videoPreviewHash) {
     if (ajaxResult === 'ok' && videoHash && videoPreviewHash) {
       uploadVideoBox.hide();
-      showFastBox({title: getLang('ads_edit_ad_upload_done_title'), dark: true}, getLang('ads_video_upload_done'));
+      showFastBox({title: getLang('ads_edit_ad_upload_done_title')}, getLang('ads_video_upload_done'));
       cur.viewEditor.setVideoData(videoId, videoOwnerId, videoHash, videoPreviewHash);
     } else {
       onFail();
@@ -1155,9 +1150,239 @@ AdsEdit.updateUploadedVideo = function(uploadVideoBox, updateAfterUploadHash, vi
   }
   function onFail() {
     uploadVideoBox.hide();
-    showFastBox({title: getLang('global_error'), dark: true}, getLang('ads_error_unexpected_error_try_later'));
+    showFastBox({title: getLang('global_error')}, getLang('ads_error_unexpected_error_try_later'));
     return true;
   }
+}
+
+AdsEdit.showCreatingPostBox = function(buttonElem) {
+  if (hasClass(buttonElem.parentNode, 'button_disabled')) {
+    return;
+  }
+
+  var ajaxParams = {};
+
+  var boxOptions = {};
+  boxOptions.width = 400;
+  boxOptions.onShow = function() {
+    cur.preventBoxHide = true;
+  }
+  boxOptions.onHide = function() {
+    setTimeout(function() {
+      if (boxQueue.count() > 1) {
+        cur.preventBoxHide = false;
+      }
+    }, 1);
+  }
+  boxOptions.onDestroy = function() {
+    cur.preventBoxHide = false;
+  }
+
+  var showOptions = {};
+  showOptions.params = boxOptions;
+
+  var creatingPostBox = showBox('/adsedit?act=creating_post_box', ajaxParams, showOptions);
+  if (!creatingPostBox.cur) {
+    creatingPostBox.cur = {};
+  }
+}
+
+AdsEdit.initCreatingPostBox = function(creatingPostBox, groupsDefaultItems) {
+
+  creatingPostBox.removeButtons();
+  var buttonElem = creatingPostBox.addButton(getLang('ads_edit_ad_creating_post_continue'), AdsEdit.showCreatingPostForm.pbind(creatingPostBox), 'yes', true);
+  addClass(buttonElem, 'button_disabled');
+  creatingPostBox.cur.buttonLockElem = buttonElem;
+  creatingPostBox.addButton(getLang('box_cancel'), false, 'no');
+
+  var targetElem = ge('ads_edit_ad_creating_post_group_id');
+  targetElem.removeAttribute('autocomplete');
+  creatingPostBox.cur.uiGroupId = new Autocomplete(targetElem, '/adsedit?act=search_user_objects&section=groups&events_future=1&create_promoted_stealth=1', {
+    defaultItems: groupsDefaultItems,
+
+    introText:    getLang('ads_type_community'),
+    placeholder:  getLang('ads_type_community'),
+    noResult:     getLang('ads_notfound_link_object'),
+
+    dropdown:     true,
+    multiselect:  false,
+    big:          true,
+    withIcons:    true,
+    width:        350,
+
+    onChange:     onChangePostOwnerId
+  });
+
+  function onChangePostOwnerId(value) {
+    toggleClass(buttonElem, 'button_disabled', !value);
+  }
+}
+
+AdsEdit.showCreatingPostForm = function(creatingPostBox, postOwnerId) {
+  var groupId = creatingPostBox.cur.uiGroupId.val();
+  if (!groupId) {
+    return;
+  }
+
+  var lockHash = 'creating_post_form';
+  if (!Ads.lock(lockHash, onLock, onUnlock)) {
+    return;
+  }
+
+  var ajaxParams = {};
+  ajaxParams.group_id = groupId;
+  ajax.post('/adsedit?act=creating_post_form', ajaxParams, {onDone: onComplete.pbind(true), onFail: onComplete.pbind(false)});
+
+  function onComplete(isDone) {
+    Ads.unlock(lockHash);
+
+    if (!isDone) {
+      return;
+    }
+
+    var args = Array.prototype.slice.call(arguments);
+    args.shift();
+    args.unshift(creatingPostBox);
+    AdsEdit.initCreatingPostForm.apply(window, args);
+  }
+  function onLock() {
+    lockButton(creatingPostBox.cur.buttonLockElem);
+  }
+  function onUnlock() {
+    unlockButton(creatingPostBox.cur.buttonLockElem);
+  }
+}
+
+AdsEdit.initCreatingPostForm = function(creatingPostBox, html, js, postOwnerId, wallOptions) {
+  creatingPostBox.removeButtons();
+  creatingPostBox.addButton(getLang('ads_edit_ad_creating_post_create'), AdsEdit.createPost.pbind(creatingPostBox), 'yes', false, 'send_post');
+  creatingPostBox.addButton(getLang('box_cancel'), false, 'no');
+  creatingPostBox.setOptions({width: 600});
+
+  addClass('ads_edit_ad_creating_post_group_wrap', 'unshown');
+  removeClass('ads_edit_ad_creating_post_form_wrap', 'unshown');
+  ge('ads_edit_ad_creating_post_form').innerHTML = html;
+
+  eval(js);
+
+  // Hacks for ugly page.js
+  cur.oid     = postOwnerId;
+  cur.postTo  = postOwnerId;
+  cur.options = wallOptions;
+
+  Wall.init(wallOptions);
+  Wall.showEditPost();
+}
+
+AdsEdit.createPost = function(creatingPostBox) {
+
+  cur.options.onSendPostDone = onComplete;
+  //cur.options.onSendPostFail = onComplete;
+
+  debugLog('call Wall.sendPost');
+  Wall.sendPost();
+
+  function onComplete(response) {
+    if (response && response.post_url) {
+      cur.viewEditor.setLinkUrl(response.post_url);
+      creatingPostBox.hide();
+    }
+  }
+}
+
+AdsEdit.showEditingPostBox = function(buttonElem) {
+  if (hasClass(buttonElem.parentNode, 'button_disabled')) {
+    return;
+  }
+
+  var lockHash = 'editing_post_form';
+  if (!Ads.lock(lockHash, onLock, onUnlock)) {
+    return;
+  }
+
+  var viewParams = cur.viewEditor.getParams();
+
+  var ajaxParams = {};
+  ajaxParams.post_owner_id = viewParams.link_owner_id;
+  ajaxParams.post_id       = viewParams.link_id;
+
+  ajax.post('/adsedit?act=editing_post_box', ajaxParams, {onDone: onDone, onFail: onFail})
+
+  function onDone() {
+    var args = Array.prototype.slice.call(arguments);
+    args.unshift(lockHash);
+    AdsEdit.initEditingPostBox.apply(window, args);
+  }
+  function onFail(message) {
+    Ads.unlock(lockHash);
+    if (message) {
+      AdsEdit.showError(message);
+      return true;
+    }
+  }
+  function onLock() {
+    boxRefreshCoords(boxLoader);
+    show(boxLoader);
+    show(boxLayerWrap);
+  }
+  function onUnlock() {
+    hide(boxLoader);
+    hide(boxLayerWrap);
+  }
+}
+
+AdsEdit.initEditingPostBox = function(lockHash, html, js, postOwnerId, postId, wallOptions) {
+
+  var boxOptions = {};
+  boxOptions.title = getLang('ads_edit_ad_editing_post_title');
+  boxOptions.width = 600;
+  boxOptions.onShow = function() {
+    cur.preventBoxHide = true;
+  }
+  boxOptions.onHide = function() {
+    setTimeout(function() {
+      if (boxQueue.count() > 1) {
+        cur.preventBoxHide = false;
+      }
+    }, 1);
+  }
+  boxOptions.onDestroy = function() {
+    cur.preventBoxHide = false;
+  }
+
+  var editingPostBox = new MessageBox(boxOptions);
+  editingPostBox.content(html);
+
+  eval(js);
+
+  // Hacks for ugly page.js
+  cur.oid     = postOwnerId;
+  cur.postTo  = postOwnerId;
+  cur.options = wallOptions;
+
+  var editOptions = {};
+  editOptions.save_result_type = 'simple';
+
+  Wall.init(wallOptions);
+  Wall.editPost(null, postOwnerId+'_'+postId, editOptions, onFail, onDone);
+
+  function onDone() {
+    Ads.unlock(lockHash);
+
+    re('wpe_save');
+
+    editingPostBox.addButton(getLang('ads_edit_ad_editing_post_save'), WallEdit.savePost.pbind(AdsEdit.completeEditingPost.pbind(editingPostBox)), 'yes', false, 'wpe_save');
+    editingPostBox.addButton(getLang('box_cancel'), false, 'no');
+    editingPostBox.show();
+  }
+  function onFail() {
+    Ads.unlock(lockHash);
+  }
+}
+
+AdsEdit.completeEditingPost = function(editingPostBox) {
+  editingPostBox.hide();
+  cur.viewEditor.updatePostText();
 }
 
 //
@@ -1945,6 +2170,9 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
       );
       toggleClass('ads_param_link_object_complete', 'button_disabled', !(this.params.link_type.complete));
       break;
+    case '_link_type_editing':
+      toggleClass(this.options.targetIdPrefix + 'upload_video', 'button_disabled', !(this.params.link_type.editing));
+      break;
     case '_link_id':
       var linkResult = this.getLink();
       targetElem = geByClass1('ads_edit_link_go', this.options.targetIdPrefix + 'link_id_go_wrap');
@@ -1954,6 +2182,10 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
       var linkResult = this.getLink();
       targetElem = geByClass1('ads_edit_link_go', this.options.targetIdPrefix + 'link_url_go_wrap');
       this.updateLink(targetElem, linkResult.link_url, '', '', '_blank');
+      break;
+    case '_link_post':
+      var disabledButton = !!(!this.params.link_type.editing || this.params.link_url.value != '' && !this.params.link_type.complete);
+      toggleClass(this.options.targetIdPrefix + 'post_create_post', 'button_disabled', disabledButton);
       break;
     case '_link_video':
       var linkResult = this.getLink();
@@ -2265,6 +2497,60 @@ AdsViewEditor.prototype.updateUiParamEnabled = function(paramName) {
 
 AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
   switch (paramName) {
+    case 'link_id':
+      this.initUiParam(paramName);
+      toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
+      break;
+    case 'link_url':
+      this.initUiParam(paramName);
+      toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
+      break;
+    case 'link_domain':
+      var wrapElem = ge('ads_edit_ad_row_' + paramName);
+      if (this.params[paramName].hidden) {
+        addClass(wrapElem, 'unshown');
+      } else {
+        this.initUiParam(paramName);
+        removeClass(wrapElem, 'unshown');
+        if (this.params[paramName].delayed_error) {
+          AdsEdit.showError(this.params[paramName].delayed_error);
+          this.params[paramName].delayed_error = '';
+        }
+      }
+      break;
+    case '_link_type':
+      toggleClass('ads_edit_ad_row_link_upload_video', 'unshown', !(this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO));
+      break;
+    case '_link_type_editing':
+      toggleClass(this.options.targetIdPrefix + 'link_object_complete', 'unshown', !(this.params.link_type.editing));
+      toggleClass(this.options.targetIdPrefix + 'link_object_edit', 'unshown', !!(this.params.link_type.editing));
+      toggleClass('ads_edit_panels_not_link', 'unshown', !!(this.params.link_type.editing));
+      break;
+    case '_link_id':
+      var linkResult = this.getLink();
+      var elemVisible = !!(linkResult.link_url && inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_MARKET, AdsEdit.ADS_AD_LINK_TYPE_APP]));
+      toggleClass(this.options.targetIdPrefix + 'link_id_go_wrap', 'unshown', !elemVisible);
+      break;
+    case '_link_url':
+      var linkResult = this.getLink();
+      var elemVisible = !!(linkResult.link_url && inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_URL, AdsEdit.ADS_AD_LINK_TYPE_VIDEO, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE])
+        || this.params.link_id.value && this.params.link_owner_id.value && inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)
+      );
+      toggleClass(this.options.targetIdPrefix + 'link_url_go_wrap', 'unshown', !elemVisible);
+      break;
+    case '_link_post':
+      var visibleCreatePostButton = !!((this.params.link_type.value != AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH || !this.params.link_type.complete) && this.params.link_type.allow_edit_all && this.params.link_type.allow_create_post);
+      var visibleEditPostButton   = !!(this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH && this.params.link_type.complete && this.params.link_type.allow_edit_post);
+      toggleClass(this.options.targetIdPrefix + 'post_create_post',    'unshown', !visibleCreatePostButton);
+      toggleClass(this.options.targetIdPrefix + 'post_or_choose_post', 'unshown', !visibleCreatePostButton);
+      toggleClass(this.options.targetIdPrefix + 'post_edit_post',      'unshown', !visibleEditPostButton);
+      toggleClass('ads_edit_ad_row_link_editing_post', 'unshown', !(inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && (visibleCreatePostButton || visibleEditPostButton)));
+      break;
+    case '_link_video':
+      var linkResult = this.getLink();
+      var elemVisible = !!(linkResult.onclick && this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO);
+      toggleClass(this.options.targetIdPrefix + 'link_video_go_wrap', 'unshown', !elemVisible);
+      break;
     case 'format_type':
       this.initUiParam(paramName);
       toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
@@ -2302,51 +2588,6 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
       ge('ads_edit_value_header_view').innerHTML = headerTitle
       toggleClass('ads_edit_ad_row_upload_photo', 'unshown', !!(this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST));
       break;
-    case 'cost_type':
-      this.initUiParam(paramName);
-      toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
-      break;
-    case '_link_type':
-      toggleClass(this.options.targetIdPrefix + 'upload_video_wrap', 'unshown', !(this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO));
-      break;
-    case 'link_id':
-      this.initUiParam(paramName);
-      toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
-      break;
-    case 'link_url':
-      this.initUiParam(paramName);
-      toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
-      break;
-    case '_link_id':
-      var linkResult = this.getLink();
-      var elemVisible = !!(linkResult.link_url && inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_MARKET, AdsEdit.ADS_AD_LINK_TYPE_APP]));
-      toggleClass(this.options.targetIdPrefix + 'link_id_go_wrap', 'unshown', !elemVisible);
-      break;
-    case '_link_url':
-      var linkResult = this.getLink();
-      var elemVisible = !!(linkResult.link_url && inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_URL, AdsEdit.ADS_AD_LINK_TYPE_VIDEO, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE])
-        || this.params.link_id.value && this.params.link_owner_id.value && inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)
-      );
-      toggleClass(this.options.targetIdPrefix + 'link_url_go_wrap', 'unshown', !elemVisible);
-      break;
-    case '_link_video':
-      var linkResult = this.getLink();
-      var elemVisible = !!(linkResult.onclick && this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO);
-      toggleClass(this.options.targetIdPrefix + 'link_video_go_wrap', 'unshown', !elemVisible);
-      break;
-    case 'link_domain':
-      var wrapElem = ge('ads_edit_ad_row_' + paramName);
-      if (this.params[paramName].hidden) {
-        addClass(wrapElem, 'unshown');
-      } else {
-        this.initUiParam(paramName);
-        removeClass(wrapElem, 'unshown');
-        if (this.params[paramName].delayed_error) {
-          AdsEdit.showError(this.params[paramName].delayed_error);
-          this.params[paramName].delayed_error = '';
-        }
-      }
-      break;
     case 'title':
       this.initUiParam(paramName);
       toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
@@ -2376,6 +2617,10 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
       toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
       break;
     case 'stats_url':
+      this.initUiParam(paramName);
+      toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
+      break;
+    case 'cost_type':
       this.initUiParam(paramName);
       toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
       break;
@@ -2667,6 +2912,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         this.updateUiParamVisibility('_link_type');
         this.updateUiParamVisibility('_link_id');
         this.updateUiParamVisibility('_link_url');
+        this.updateUiParamVisibility('_link_post');
         this.updateUiParamVisibility('_link_video');
         this.updateUiParamVisibility('link_id');
         this.updateUiParamVisibility('link_url');
@@ -2749,8 +2995,10 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         this.updateUiParam('link_domain');
         this.updateUiParam('_link_type');
         this.updateUiParam('_link_url');
+        this.updateUiParam('_link_post');
         this.updateUiParam('_link_video');
         this.updateUiParamVisibility('_link_url');
+        this.updateUiParamVisibility('_link_post');
         if (!this.params.link_type.cancelling) {
           this.updateLinkDomain();
         }
@@ -3177,6 +3425,14 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
       this.updateUiParam('_link_type');
       this.updateUiParam('_link_url');
       this.updateUiParamVisibility('_link_url');
+      this.updateUiParamVisibility('_link_post');
+    }
+  }
+
+  if (isObject(result) && 'post_text_new' in result) {
+    if (inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && data.link_type == this.params.link_type.value && data.link_url == this.params.link_url.value) {
+      this.params.link_id.promoted_post_text = result['post_text_new'];
+      this.updatePreview('promoted_post');
     }
   }
 
@@ -3394,6 +3650,11 @@ AdsViewEditor.prototype.updatePhotoLink = function(photoSize) {
   }
 }
 
+AdsViewEditor.prototype.updatePostText = function() {
+  this.updateNeeded.need_link_post_text_new = true;
+  this.needDataUpdate();
+}
+
 AdsViewEditor.prototype.setVideoData = function(linkId, linkOwnerId, videoHash, videoPreviewHash) {
   this.params.video_hash.value            = videoHash;
   this.params.link_id.video_value         = linkId;
@@ -3443,6 +3704,12 @@ AdsViewEditor.prototype.setLinkId = function(linkId, data) {
   }
   this.onParamUpdate('link_id', linkId, false, true);
   this.updateUiParam('link_id');
+}
+
+AdsViewEditor.prototype.setLinkUrl = function(linkUrl) {
+  var targetElem = ge(this.options.targetIdPrefix + 'link_url');
+  targetElem.value = linkUrl;
+  triggerEvent(targetElem, 'blur', {}, true);
 }
 
 AdsViewEditor.prototype.setTitle = function(title, noUpdateValueMax, titleValues) {
@@ -3650,13 +3917,6 @@ AdsViewEditor.prototype.completeLink = function() {
     return;
   }
 
-  addClass(this.options.targetIdPrefix + 'link_object_complete', 'unshown');
-  removeClass(this.options.targetIdPrefix + 'link_object_edit', 'unshown');
-  //hide(this.options.targetIdPrefix + 'link_object_cancel');
-  addClass(this.options.targetIdPrefix + 'link_object_cancel_link', 'unshown');
-  addClass(this.options.targetIdPrefix + 'upload_video', 'button_disabled');
-  removeClass('ads_edit_panels_not_link', 'unshown');
-
   var isChangedLinkType = (!this.params_old
     || !(this.params.link_type.value == this.params_old.link_type.value
       || inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_GROUP)      && inArray(this.params_old.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_GROUP)
@@ -3678,6 +3938,11 @@ AdsViewEditor.prototype.completeLink = function() {
   );
 
   this.params.link_type.editing = false;
+
+  //hide(this.options.targetIdPrefix + 'link_object_cancel');
+  this.updateUiParam('_link_type_post');
+  this.updateUiParam('_link_type_editing');
+  this.updateUiParamVisibility('_link_type_editing');
 
   if (this.params.link_type.allow_edit_all) {
     this.updateUiParam('link_type');
@@ -3831,13 +4096,6 @@ AdsViewEditor.prototype.editLink = function() {
     return;
   }
 
-  removeClass(this.options.targetIdPrefix + 'link_object_complete', 'unshown');
-  addClass(this.options.targetIdPrefix + 'link_object_edit', 'unshown');
-  //removeClass(this.options.targetIdPrefix + 'link_object_cancel', 'unshown');
-  removeClass(this.options.targetIdPrefix + 'upload_video', 'button_disabled');
-  addClass('ads_edit_panels_not_link', 'unshown');
-  AdsEdit.hideErrors(true);
-
   this.params_old = {};
   this.params_old.link_type     = clone(this.params.link_type, true);
   this.params_old.link_id       = clone(this.params.link_id, true);
@@ -3847,6 +4105,11 @@ AdsViewEditor.prototype.editLink = function() {
   this.params_old.video_hash    = clone(this.params.video_hash, true);
 
   this.params.link_type.editing = true;
+
+  AdsEdit.hideErrors(true);
+  this.updateUiParam('_link_type_post');
+  this.updateUiParam('_link_type_editing');
+  this.updateUiParamVisibility('_link_type_editing');
 
   if (this.params.link_type.allow_edit_all) {
     this.updateUiParam('link_type');
@@ -3864,12 +4127,6 @@ AdsViewEditor.prototype.cancelLink = function() {
     return;
   }
 
-  addClass(this.options.targetIdPrefix + 'link_object_complete', 'unshown');
-  removeClass(this.options.targetIdPrefix + 'link_object_edit', 'unshown');
-  //hide(this.options.targetIdPrefix + 'link_object_cancel');
-  addClass(this.options.targetIdPrefix + 'upload_video', 'button_disabled');
-  removeClass('ads_edit_panels_not_link', 'unshown');
-
   this.params.link_type.editing = false;
   this.params.link_type.cancelling = true;
 
@@ -3883,6 +4140,10 @@ AdsViewEditor.prototype.cancelLink = function() {
   this.params.link_domain.link_url = this.params_old.link_domain.link_url;
   this.onParamUpdate('link_domain', this.params_old.link_domain.value, false, true);
   this.updateUiParam('link_domain');
+
+  this.updateUiParam('_link_type_post');
+  this.updateUiParam('_link_type_editing');
+  this.updateUiParamVisibility('_link_type_editing');
 
   this.params.link_type.cancelling = false;
 }

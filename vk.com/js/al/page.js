@@ -37,7 +37,9 @@ var Page = {
             }
             if (Upload.types[i] == 'fileApi') {
               if (cur.notStarted) {
-                boxQueue.hideLast();
+                if (!cur.preventBoxHide) {
+                  boxQueue.hideLast();
+                }
                 delete cur.notStarted;
               }
               if (options.multi_progress) this.onUploadProgress(info, 0, 0);
@@ -2017,7 +2019,7 @@ var Wall = {
   },
   postChanged: function(force) {
     if (!isVisible('submit_post') || !hasClass(ge('submit_post_box'), 'shown')) Wall.showEditPost();
-    if (vk.id && !vk.widget) {
+    if (vk.id && !vk.widget && !cur.options.no_draft) {
       clearTimeout(cur.postAutosave);
       var saveCallback = (intval(cur.oid) == vk.id) ? Wall.saveDraft : Wall.saveOwnerDraftText.pbind(cur.oid);
       if (force === true) {
@@ -2037,6 +2039,10 @@ var Wall = {
     return cur.wallDraftData;
   },
   addOwnerDraftMedia: function(ownerId, info) {
+    if (cur.options.no_draft) {
+      return;
+    }
+
     var data = Wall.ownerDraftData(),
         type = info[0],
         id = info[1],
@@ -2064,6 +2070,10 @@ var Wall = {
     }));
   },
   cleanOwnerDraftMedia: function(ownerId) {
+    if (cur.options.no_draft) {
+      return;
+    }
+
     var data = Wall.ownerDraftData(),
         lsAttaches = ls.get(Wall.ownerDraftKey(ownerId)) || {};
 
@@ -2071,6 +2081,10 @@ var Wall = {
     ls.set(Wall.ownerDraftKey(ownerId), extend({ txt: '' }, lsAttaches, { medias: [] }));
   },
   saveOwnerDraftText: function(ownerId) {
+    if (cur.options.no_draft) {
+      return;
+    }
+
     var data = Wall.ownerDraftData(),
         lsText = ls.get(Wall.ownerDraftKey(ownerId)) || {},
         draftData = Wall.getDraftData(),
@@ -2105,10 +2119,18 @@ var Wall = {
     ls.set(Wall.ownerDraftKey(ownerId), lsText);
   },
   getOwnerDraft: function(ownerId) {
-    var draft = ls.get(Wall.ownerDraftKey(ownerId)) || {}, res = [];
+    if (cur.options.no_draft) {
+      return [];
+    }
+
+    var draft = ls.get(Wall.ownerDraftKey(ownerId)) || [];
     return [draft.txt, draft.medias, true];
   },
   saveOwnerDraftMedia: function(ownerId, type, id, object) {
+    if (cur.options.no_draft) {
+      return;
+    }
+
     Wall.cleanOwnerDraftMedia(ownerId);
     var addmedia = cur.wallAddMedia || {},
         media = addmedia.chosenMedia || {},
@@ -2130,11 +2152,16 @@ var Wall = {
     });
   },
   saveDraft: function() {
+    if (cur.options.no_draft) {
+      return;
+    }
     if (cur.noDraftSave) {
       cur.noDraftSave = false;
       return;
     }
-    if (cur.postSent || vk.id != intval(cur.oid)) return;
+    if (cur.postSent || vk.id != intval(cur.oid)) {
+      return;
+    }
 
     var params = Wall.getDraftData();
     if (params.delayed) {
@@ -2148,6 +2175,10 @@ var Wall = {
     }});
   },
   getDraftData: function() {
+    if (cur.options.no_draft) {
+      return {};
+    }
+
     var addmedia = cur.wallAddMedia || {},
         media = addmedia.chosenMedia || {},
         medias = cur.wallAddMedia ? addmedia.getMedias() : [],
@@ -2192,6 +2223,7 @@ var Wall = {
             }
             params = extend(params, {
               url: share.url,
+              mode: share.mode,
               title: replaceEntities(share.title),
               description: replaceEntities(share.description),
               extra: share.extra,
@@ -2226,9 +2258,17 @@ var Wall = {
     return params;
   },
   setDraft: function(data) {
-    if (!data[0] && (!data[1] || !data[1].length)) return;
+    if (cur.options.no_draft) {
+      return;
+    }
+    if (!data[0] && (!data[1] || !data[1].length)) {
+      return;
+    }
+
     var field = ge('post_field');
-    if (!field) return;
+    if (!field) {
+      return;
+    }
 
     Emoji.val(field, clean(replaceEntities(data[0] || '')).replace(/\n/g, '<br/>'));
     Wall.showEditPost(function() {
@@ -2497,11 +2537,11 @@ var Wall = {
             }
             params = extend(params, {
               url: share.url,
+              mode: share.mode,
               title: replaceEntities(share.title),
               description: replaceEntities(share.description),
               extra: share.extra,
               extra_data: share.extraData,
-              mode: share.mode,
               photo_url: share.noPhoto ? '' : replaceEntities(share.photo_url),
               open_graph_data: (share.openGraph || {}).data,
               open_graph_hash: (share.openGraph || {}).hash
@@ -2554,6 +2594,11 @@ var Wall = {
         onDone: function(rows, names) {
           Wall.clearInput();
           cur.postSent = false;
+
+          if (cur.options.onSendPostDone) {
+            cur.options.onSendPostDone.apply(window, arguments);
+            return;
+          }
 
           if (isObject(rows) && rows.redirect) {
             nav.go(rows.redirect);
@@ -2608,6 +2653,10 @@ var Wall = {
         },
         onFail: function(msg) {
           cur.postSent = false;
+          if (cur.options.onSendPostFail) {
+            cur.options.onSendPostFail.apply(window, arguments);
+            return;
+          }
           if (!msg) {
             return true;
           }
@@ -5165,7 +5214,11 @@ var Wall = {
     });
     cur.wallAutoMore = opts.automore;
 
-    Wall.initPostEditable(opts.draft || cur.oid != vk.id && Wall.getOwnerDraft(cur.oid));
+    var draft = false;
+    if (!cur.options.no_draft) {
+      draft = (opts.draft || cur.oid != vk.id && Wall.getOwnerDraft(cur.oid));
+    }
+    Wall.initPostEditable(draft);
     if (cur.wallSearch) {
       placeholderInit(cur.wallSearch);
     }
@@ -5191,7 +5244,7 @@ var Wall = {
       );
     }
 
-    cur.withUpload = window.WallUpload && !browser.safari_mobile && inArray(cur.wallType, ['all', 'own', 'feed', 'full_all']) && Wall.withMentions && cur.wallUploadOpts;
+    cur.withUpload = window.WallUpload && !browser.safari_mobile && inArray(cur.wallType, ['all', 'own', 'feed', 'full_all', 'ads_promoted_stealth']) && Wall.withMentions && cur.wallUploadOpts;
     if (cur.withUpload && WallUpload.checkDragDrop()) {
       var clean = function () {
           removeEvent(document, 'dragover dragenter drop dragleave', cb);
@@ -5601,7 +5654,9 @@ WallUpload = {
         }
         if (Upload.types[i] == 'fileApi') {
           if (cur.notStarted) {
-            boxQueue.hideLast();
+            if (!cur.preventBoxHide) {
+              boxQueue.hideLast();
+            }
             delete cur.notStarted;
           }
           if (options.multi_progress) this.onUploadProgress(info, 0, 0);
