@@ -6736,11 +6736,19 @@ function giftsBox(mid, ev, tab) {
   return !showBox('al_gifts.php', {act: 'box', tab: tab || 'received', mid: mid}, {cache: 1, stat: ['gifts.css', 'gifts.js']}, ev);
 }
 
-function moneyTransferBox(txId, hash, ev, btn, decline) {
+function moneyTransferBox(txId, hash, ev, btn, decline, force) {
   if (cur.viewAsBox) return cur.viewAsBox();
   if (decline) {
-    if (decline === true) {
-      cur.confirmBox = showFastBox(getLang('global_action_confirmation'), (cur.lang && cur.lang.mail_money_transfer_decline_confirm) || getLang('news_fb_money_transfer_decline_confirm'), (cur.lang && cur.lang.mail_money_transfer_decline_btn) || getLang('news_fb_money_transfer_decline_btn'), moneyTransferBox.pbind(txId, hash, ev, btn, 1), getLang('global_cancel'));
+    if (!force) {
+      var confirmText, confirmBtn;
+      if (decline == 2) {
+        confirmText = (cur.lang && cur.lang.mail_money_transfer_cancel_confirm) || getLang('mail_money_transfer_cancel_confirm');
+        confirmBtn = (cur.lang && cur.lang.mail_money_transfer_cancel_btn) || getLang('mail_money_transfer_cancel_btn');
+      } else  {
+        confirmText = (cur.lang && cur.lang.mail_money_transfer_decline_confirm) || getLang('news_fb_money_transfer_decline_confirm');
+        confirmBtn = (cur.lang && cur.lang.mail_money_transfer_decline_btn) || getLang('news_fb_money_transfer_decline_btn');
+      }
+      cur.confirmBox = showFastBox(getLang('global_action_confirmation'), confirmText, confirmBtn, moneyTransferBox.pbind(txId, hash, ev, btn, decline, 1), getLang('global_cancel'));
       return;
     }
     var isSnippet = hasClass(domPN(btn), 'wall_postlink_preview_btn');
@@ -6762,7 +6770,7 @@ function moneyTransferBox(txId, hash, ev, btn, decline) {
         unlockButton(btn);
       }
     }
-    if (decline !== 2) {
+    if (force !== 2) {
       disableButton(accept_btn, true);
       _lockButton(btn);
       if (cur.confirmBox) cur.confirmBox.hide();
@@ -6771,7 +6779,7 @@ function moneyTransferBox(txId, hash, ev, btn, decline) {
       onDone: function(result, text, html) {
 
         if (result === 0) {
-          setTimeout(moneyTransferBox.pbind(txId, hash, ev, btn, 2), 2000);
+          setTimeout(moneyTransferBox.pbind(txId, hash, ev, btn, decline, 2), 2000);
           return;
         }
         if (isSnippet) {
@@ -7123,6 +7131,10 @@ function zNav(changed, opts, fin) {
         if (w === undefined) {
           stManager.add(['single_pv.css', 'single_pv.js'], ge(z).onclick);
         }
+        return false;
+        break;
+      case 'accept_money':
+        moneyTransferBox(zt[2], zt[3]);
         return false;
         break;
     }
