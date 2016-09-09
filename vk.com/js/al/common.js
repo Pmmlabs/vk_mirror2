@@ -6405,7 +6405,7 @@ function checkTextLength(maxLen, inp, warn, nobr, cut, force, utf) {
   }
   var realLen = countRealLen(value, nobr);
   warn = ge(warn);
-  if (realLen > maxLen - 100) {
+  if (realLen > Math.max(maxLen - 100, 0.75 * maxLen)) {
     show(warn);
     if (realLen > maxLen) {
       if (cut) {
