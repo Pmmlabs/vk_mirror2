@@ -1969,6 +1969,8 @@ if (!VK.Widgets) {
         CommunityMessages.destroy(objId);
       }
 
+      var curBox = false;
+
       var chatRpc, chatIfr;
       instances[objId] = VK.Widgets._constructor('widget_community_messages.php', objId, options, params, {
         onStartLoading: function() {
@@ -1980,12 +1982,21 @@ if (!VK.Widgets) {
           minimize(objId);
         },
         showBox: function(url, props) {
-          var box = VK.Util.Box(VK.Widgets.showBoxUrl(options.base_domain, url), [], {
+          if (curBox) {
+            try {
+              curBox.hide();
+              try {
+                curBox.iframe.src = 'about: blank;';
+              } catch (e) {}
+              curBox.iframe.parentNode.removeChild(curBox.iframe);
+            } catch(e) { }
+          }
+          curBox = VK.Util.Box(VK.Widgets.showBoxUrl(options.base_domain, url), [], {
             proxy: function() {
               rpc.callMethod.apply(rpc, arguments);
             }
           });
-          box.show();
+          curBox.show();
         },
         expand: function() {
           expand(objId);
