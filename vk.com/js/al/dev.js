@@ -1355,7 +1355,7 @@ checkWallURL: function(message) {
   }
 },
 
-mainPageSliderTime: 9000,
+mainPageSliderTime: 5000,
 mainPageSliderInit: function (items) {
   if (!geByClass1('dev_main_featured_banners')) {
     return;
@@ -1404,27 +1404,20 @@ mainPageSliderChange: function (pos, nav) {
       cur.mainSliderBlocked = 0;
 
       Dev.mainPageSliderStartRotation();
-    }, 400);
+    }, 500);
   });
 
 },
 
-mainPageSliderStartRotation: function (force) {
-  if (cur.mainSliderBlocked || (cur.mainSliderRotationStopped && !force)) {
+mainPageSliderStartRotation: function () {
+  if (cur.mainSliderBlocked) {
     return;
   }
-  if (force) {
-    cur.mainSliderRotationStopped = 0;
-  }
   Dev.mainPageSliderStopRotation();
-  console.log('start rotation');
   cur.devMainPageSliderTimer = setTimeout(Dev.mainPageSliderNext, Dev.mainPageSliderTime);
 },
 
-mainPageSliderStopRotation: function (disable) {
-  if (disable) {
-    cur.mainSliderRotationStopped = 1;
-  }
+mainPageSliderStopRotation: function () {
   clearTimeout(cur.devMainPageSliderTimer);
 },
 

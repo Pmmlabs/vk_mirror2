@@ -548,9 +548,11 @@ var MoneyTransfer = {
       message = parseJSON(e.data);
       if (message.type != 'billing') return;
     }
-    if (e.data == 'submit' || message.action == '3dsPage') {
+    if (message.action == '3dsPage') {
       setTimeout(MoneyTransfer.frameHeight.pbind(600), 1000);
       addClass('payments_iframe_container', 'payments_threeds_frame');
+    } else if (message.action == '3dsFinish') {
+      MoneyTransfer.frameHeight();
     }
   },
   initAccept: function(data, html) {
