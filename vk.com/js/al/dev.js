@@ -44,6 +44,8 @@ init: function(opts) {
   Dev.onResize();
   placeholderSetup('dev_top_input');
   cur.verDD && Dev.checkMethodParams();
+
+  Dev.mainPageSliderInit(opts.main_slider_items);
 },
 
 initPage: function(opts) {
@@ -1351,6 +1353,100 @@ checkWallURL: function(message) {
     }
     return post_raw;
   }
+},
+
+mainPageSliderTime: 9000,
+mainPageSliderInit: function (items) {
+  if (!geByClass1('dev_main_featured_banners')) {
+    return;
+  }
+  cur.devMainSliderItems = items;
+  cur.devMainSliderPos = 0;
+  cur.devMainSliderEl = geByClass1('dev_main_featured_banner');
+
+  Dev.mainPageSliderStartRotation();
+},
+
+mainPageSliderChange: function (pos, nav) {
+  if (cur.mainSliderBlocked) {
+    return;
+  }
+  cur.mainSliderBlocked = 1;
+
+  var curEl = cur.devMainSliderEl;
+
+  var newItem = cur.devMainSliderItems[pos];
+  var newEl = ce('div', {
+    className: 'dev_main_featured_banner dev_main_featured_banner_'+newItem,
+  });
+
+  var wrap = geByClass1('dev_main_featured_banners_anim_helper');
+  if (nav == 'next') {
+    wrap.appendChild(newEl);
+  } else {
+    wrap.insertBefore(newEl, curEl);
+    addClass(wrap, 'dev_main_featured_banners_prev');
+  }
+
+  Dev.mainPageSliderStopRotation();
+
+  setTimeout(function () {
+    addClass(wrap, 'dev_main_featured_banners_anim dev_main_featured_banners_anim_' + nav);
+
+    setTimeout(function () {
+      removeClass(wrap, 'dev_main_featured_banners_anim dev_main_featured_banners_anim_' + nav);
+      removeClass(wrap, 'dev_main_featured_banners_prev');
+
+      re(curEl);
+      cur.devMainSliderEl = newEl;
+      cur.devMainSliderPos = pos;
+
+      cur.mainSliderBlocked = 0;
+
+      Dev.mainPageSliderStartRotation();
+    }, 400);
+  });
+
+},
+
+mainPageSliderStartRotation: function (force) {
+  if (cur.mainSliderBlocked || (cur.mainSliderRotationStopped && !force)) {
+    return;
+  }
+  if (force) {
+    cur.mainSliderRotationStopped = 0;
+  }
+  Dev.mainPageSliderStopRotation();
+  console.log('start rotation');
+  cur.devMainPageSliderTimer = setTimeout(Dev.mainPageSliderNext, Dev.mainPageSliderTime);
+},
+
+mainPageSliderStopRotation: function (disable) {
+  if (disable) {
+    cur.mainSliderRotationStopped = 1;
+  }
+  clearTimeout(cur.devMainPageSliderTimer);
+},
+
+
+mainPageSliderNext: function() {
+  var newPos = cur.devMainSliderPos + 1;
+
+  if (newPos > cur.devMainSliderItems.length - 1) {
+    newPos = 0;
+  }
+
+  Dev.mainPageSliderChange(newPos, 'next');
+},
+
+mainPageSliderPrev: function() {
+  var newPos = cur.devMainSliderPos - 1;
+
+  if (newPos < 0) {
+    newPos = cur.devMainSliderItems.length - 1;
+  }
+
+  Dev.mainPageSliderChange(newPos, 'prev');
 },
 
 _eof:1};
