@@ -2373,9 +2373,11 @@ showMyStickers: function() {
   cur.boxMyStickers = showBox('al_im.php', {act: 'stickers_my'}, {dark: 1, stat: ['im.css', 'imn.js', 'sorter.js']});
 },
 
-showStickersStore: function(optId) {
-  var peer = Emoji.selectPeer(optId);
-  cur.boxStickersStore = showBox('al_im.php', {act: 'stickers_store', peer: peer, box: 1}, {dark: 1, stat: ['im.css', 'imn.js', 'page_help.css', 'sorter.js']});
+showStickersStore: function(optId, from) {
+  var peer = Emoji.selectPeer(optId),
+      params = {act: 'stickers_store', peer: peer, box: 1};
+  if (from) params.from = from;
+  cur.boxStickersStore = showBox('al_im.php', params, {dark: 1, stat: ['im.css', 'imn.js', 'page_help.css', 'sorter.js']});
   each(geByClass('emoji_smile_icon_promo'), function(i, el) { geByClass1('emoji_smile_icon', el.parentNode); re(el); });
   each(geByClass('emoji_shop_icon_badge'), function(i, el) { re(el); });
   Emoji.hasNewStickers = false;

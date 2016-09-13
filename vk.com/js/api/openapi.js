@@ -1811,6 +1811,28 @@ if (!VK.Widgets) {
     }
   };
 
+  VK.Widgets.AllowMessagesFromCommunity = function (objId, options, groupId) {
+    groupId = parseInt(groupId, 10);
+    var height = ({22: 22, 24: 24, 30: 30})[parseInt(options.height, 10) || 24];
+
+    if (!options) {
+      options = {};
+    }
+
+    if (!groupId || groupId < 0) {
+      throw Error('No group id passed');
+    }
+
+    var params = {
+      height: height,
+      group_id: groupId
+    };
+
+    return VK.Widgets._constructor('widget_allow_messages_from_community.php', objId, options, params, {}, {
+      width: '100%'
+    });
+  };
+
   VK.Widgets._constructor = function(widgetUrl, objId, options, params, funcs, defaults, onDone, widgetId, iter) {
     var obj = document.getElementById(objId);
     widgetId = widgetId || (++VK.Widgets.count);

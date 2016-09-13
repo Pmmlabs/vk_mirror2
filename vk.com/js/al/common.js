@@ -571,6 +571,17 @@ function domCA(el, selector) {
   return el;
 }
 
+function domClosestSibling(start, selector, dir) {
+  var found = null;
+  while (found === null && start) {
+    start = dir === -1 ? domPS(start) : domNS(start);
+    if (start && matchesSelector(start, selector)) {
+      found = start;
+    }
+  }
+  return found;
+}
+
 function matchesSelector(el, selector) {
   el = ge(el);
   if (!el || el == document) return false;
@@ -9291,6 +9302,16 @@ function isYesterday(date) {
 function isTomorrow(date) {
   var tomorrow = new Date(date.getTime() - 86400 * 1000);
   return isToday(tomorrow);
+}
+
+function isSameDate(time1, time2) {
+  var date1 = new Date(time1);
+  var date2 = new Date(time2);
+  return (
+    date1.getFullYear() === date2.getFullYear() &&
+    date1.getMonth() === date2.getMonth() &&
+    date1.getDate() === date2.getDate()
+  );
 }
 
 function leadingZero(num) {
