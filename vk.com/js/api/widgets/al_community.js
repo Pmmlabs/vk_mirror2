@@ -226,6 +226,17 @@ window.Community = {
     });
   },
 
+  subscribersBox: function(ev, tab) {
+    if (!vk.id || ev && ev.metaKey) return true;
+    showBox('al_page.php', {
+      act: 'box',
+      oid: cur.oid,
+      tab: tab === 'friends' ? tab : 'members',
+      widget_width: 638
+    });
+    return false;
+  },
+
   subscribeBox: function(state, callback, isEvent) {
     window.subscribedCallback = callback ? callback : function() {};
     openWidgetsPopupBox('widget_community.php', {
@@ -316,6 +327,7 @@ window.Community = {
                 'al_photos.php': {'photo_box': {}},
                 'al_video.php': {'video_box': {}},
                 'al_places.php': {'show_photo_place': {}},
+                'al_page.php': {'box': {}},
                 'like.php': {'publish_box': {}},
                 'widget_like.php': {'a_stats_box': {}},
                 'widget_post.php': {'subscribed_box': {}, 'audio_claim_warning': {}}

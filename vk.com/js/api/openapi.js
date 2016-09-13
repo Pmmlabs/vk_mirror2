@@ -1584,7 +1584,7 @@ if (!VK.Widgets) {
 
     var params = {
         oid: oid,
-        height: ({22: 22, 24: 24, 30: 30})[parseInt(options.height, 10) || 24],
+        height: ({18: 18, 20: 20, 22: 22, 24: 24, 30: 30})[parseInt(options.height, 10) || 24],
         text: (options.text || '').substr(0, 140)
       }, rpc;
 
