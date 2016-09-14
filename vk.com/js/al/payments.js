@@ -473,6 +473,9 @@ var MoneyTransfer = {
       MoneyTransfer.checkStatus(data);
       if (cur.isPaymentCanceled || cur.isPaymentFailed) {
         clearInterval(cur.moneyTranferCheckInt);
+        if (data.accept) {
+          curBox().hide();
+        }
         if (cur.isPaymentFailed) {
           MoneyTransfer.showError(getLang('payments_landing_cancelled'));
         } else {
