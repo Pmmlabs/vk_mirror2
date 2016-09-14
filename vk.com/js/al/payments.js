@@ -425,13 +425,7 @@ var MoneyTransfer = {
 
           box.changed = true;
           box.setOptions({width: 560});
-          box.setBackTitle(function() {
-            hide('payments_money_transfer_iframe');
-            show('payments_money_transfer_wrap', 'payments_money_transfer_buttons');
-            box.changed = false;
-            box.setOptions({width: 450});
-            box.setBackTitle(false);
-          });
+          box.setBackTitle(MoneyTransfer.resetSendBox);
           setStyle(iframe, {width: (frc.parentNode.offsetWidth - sbWidth()) + 'px'});
         }
         if (!popupUrl) {
@@ -461,6 +455,14 @@ var MoneyTransfer = {
     if (cur._popup_callback) {
       cur._popup_callback();
     }
+  },
+  resetSendBox: function() {
+    var box = curBox();
+    hide('payments_money_transfer_iframe');
+    show('payments_money_transfer_wrap', 'payments_money_transfer_buttons');
+    box.changed = false;
+    box.setOptions({width: 450});
+    box.setBackTitle(false);
   },
   startCheckStatus: function(data) {
     cur.isPaymentCanceled = cur.isPaymentFailed = false;
@@ -644,17 +646,21 @@ var MoneyTransfer = {
       show('payments_box_error');
     }
     if (ge('payments_money_transfer_wrap')) {
-      var box = curBox();
-      hide('payments_money_transfer_iframe');
-      show('payments_money_transfer_wrap', 'payments_money_transfer_buttons');
-      box.changed = false;
-      box.setOptions({width: 450});
-      box.setBackTitle(false);
+      MoneyTransfer.resetSendBox();
       if (cur.moneyTranferCheckInt) {
         clearInterval(cur.moneyTranferCheckInt);
         cur.moneyTranferCheckInt = false;
       }
     }
+  },
+  updateImHistory: function(html, txId, newBtn) {
+    var snippet = geByClass1('_money_transfer' + txId, html);
+    if (!snippet) return;
+    var btn = geByClass1('_accept_btn', snippet);
+    if (!btn) return;
+
+    re(geByClass1('_decline_btn', domPN(btn)));
+    domReplaceEl(btn, newBtn);
   },
 
   initHistoryBox: function() {
