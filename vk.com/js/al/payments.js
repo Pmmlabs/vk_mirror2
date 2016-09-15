@@ -506,7 +506,10 @@ var MoneyTransfer = {
 
           if (result == 3) {
             TopNotifier.invalidate();
-            if (cur.acceptMoneyBtn) {
+            if (cur.acceptMoneyBtn && hasClass(domPN(cur.acceptMoneyBtn), 'feedback_buttons')) {
+              re(domPN(cur.acceptMoneyBtn));
+              cur.acceptMoneyBtn = false;
+            } else if (cur.acceptMoneyBtn) {
               re(geByClass1('_decline_btn', domPN(cur.acceptMoneyBtn)));
               domReplaceEl(cur.acceptMoneyBtn, html);
               cur.acceptMoneyBtn = false;
