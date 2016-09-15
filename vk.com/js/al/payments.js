@@ -389,7 +389,7 @@ var MoneyTransfer = {
     var iframe = ce('iframe', {id: 'transfer_iframe', name: 'transfer_iframe'}, {
       border: 0,
       height: '445px',
-      width: (frc.parentNode.offsetWidth - sbWidth()) + 'px',
+      width: (560 - sbWidth()) + 'px',
       overflowX: 'hidden',
       overflowY: 'hidden'
     });
@@ -565,7 +565,7 @@ var MoneyTransfer = {
     var iframe = ce('iframe', {id: 'transfer_iframe', name: 'transfer_iframe'}, {
       border: 0,
       height: '445px',
-      width: (frc.parentNode.offsetWidth - sbWidth()) + 'px',
+      width: (560 - sbWidth()) + 'px',
       overflowX: 'hidden',
       overflowY: 'hidden'
     });

@@ -30,6 +30,17 @@ AdsEdit.ADS_AD_LINK_TYPES_ALL_POST          = [AdsEdit.ADS_AD_LINK_TYPE_POST_WIT
 AdsEdit.ADS_AD_COST_TYPE_CLICK = 0;
 AdsEdit.ADS_AD_COST_TYPE_VIEWS = 1;
 
+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_UNKNOWN             = '';
+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_SMALL               = 's';
+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MEDIUM              = 'm';
+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_BIG                 = 'b';
+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY = 'p';
+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL      = 'a';
+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE    = 'k';
+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG             = 'e';
+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE              = 'd';
+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON                = 'i';
+
 AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_OLD              = 0;
 AdsEdit.ADS_CAMPAIGN_TYPE_UI_CREATE_NEW           = 1;
 AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_APPS_WITH_BUDGET = 2;
@@ -581,8 +592,8 @@ AdsEdit.applyLastAd = function(newAd) {
   }
   cur.viewEditor.setTitle(AdsEdit.unescapeValueInit(newAd[cur.lastAdsKeyMap.title]));
   cur.viewEditor.setDescription(AdsEdit.unescapeValueInit(newAd[cur.lastAdsKeyMap.description]));
-  if (newAd[cur.lastAdsKeyMap.photo_size]) {
-    cur.viewEditor.setPhotoData(newAd[cur.lastAdsKeyMap.photo_size], newAd[cur.lastAdsKeyMap.photo]);
+  if (newAd[cur.lastAdsKeyMap.format_photo_size]) {
+    cur.viewEditor.setPhotoData(newAd[cur.lastAdsKeyMap.format_photo_size], newAd[cur.lastAdsKeyMap.photo]);
   }
   if (newAd[cur.lastAdsKeyMap.format_type] == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY) {
     cur.viewEditor.setLinkId(newAd[cur.lastAdsKeyMap.link_id]);
@@ -632,7 +643,7 @@ AdsEdit.hideUploadGradientProgress = function(uploadBox) {
 AdsEdit.showUploadPhotoBox = function() {
 
   var ajaxParams = {};
-  ajaxParams.photo_size = cur.viewEditor.getPhotoSize();
+  ajaxParams.format_photo_size = cur.viewEditor.getFormatPhotoSize();
 
   var showOptions = {params: {}};
   showOptions.stat = ['upload.js'];
@@ -885,9 +896,9 @@ AdsEdit.onSaveCropPhotoComplete = function(result) {
     return;
   }
 
-  var photoSize = ge('ads_edit_crop_photo_size').value;
+  var formatPhotoSize = ge('ads_edit_crop_format_photo_size').value;
 
-  cur.viewEditor.setPhotoData(photoSize, photoData.photo);
+  cur.viewEditor.setPhotoData(formatPhotoSize, photoData.photo);
 
   cur.cropBox.hide();
 }
@@ -1502,13 +1513,13 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
     format_type:            {value: 0, unreachable: false},
     cost_type:              {value: AdsEdit.ADS_AD_COST_TYPE_CLICK, cpm_only: false},
     link_type:              {value: 0, complete: false, allow_edit_all: false, allow_edit_link: false, editing: false, cancelling: false},
-    link_id:                {value: '', data: [], video_value: '', app_rates_k: '', mobile_app_bottom_d: '', promoted_post_text: '', app_game_links_ids: {}, app_admin_links_ids: {}, app_in_news_links_ids: {}, app_trusted_links_ids: {}},
+    link_id:                {value: '', data: [], video_value: '', promoted_post_text: '', app_game_links_ids: {}, app_admin_links_ids: {}, app_in_news_links_ids: {}, app_trusted_links_ids: {}},
     link_owner_id:          {value: '',           video_value: ''},
     link_url:               {value: '', video_value: '', video_preview_hash: '', is_ok: false, event_final_time: 1},
     link_url_vk:            {value: 0,  link_type_value: 0, link_id_value: 0},
-    link_domain:            {value: '', value_escaped: '', value_p: '', value_a: '', value_k: '', value_d: '', link_url: '', delayed_error: '', needed: false, is_ok: false},
+    link_domain:            {value: '', value_escaped: '', link_url: '', delayed_error: '', needed: false, is_ok: false},
     link_domain_confirm:    {value: 0},
-    title:                  {value: '', value_escaped: '', value_default: '', max_length: 0, max_new_lines: 0, value_p: '', value_a: '', value_k: '', value_d: '', value_e: '', value_max: '', update_value_max: true},
+    title:                  {value: '', value_escaped: '', value_default: '', max_length: 0, max_new_lines: 0, value_max: '', update_value_max: true},
     description:            {value: '', value_escaped: '', value_default: '', max_length: 0, max_new_lines: 0, max_length_normal: 0, max_length_mobile: 0},
     category1_id:           {value: 0, data: []},
     subcategory1_id:        {value: 0, data: []},
@@ -1519,8 +1530,8 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
     disclaimer_specialist:  {value: 0},
     disclaimer_supplements: {value: 0},
     age_restriction:        {value: 0, data: []},
-    photo:                  {value: '', value_s: '', value_m: '', value_b: '', value_p: '', value_a: '', value_k: '', value_d: '', value_i: '', value_e: ''},
-    photo_link:             {value: '', value_s: '', value_m: '', value_b: '', value_p: '', value_a: '', value_k: '', value_d: '', value_i: '', value_e: '', value_default_s: '', value_default_m: '', value_empty_m: '', value_default_b: '', value_empty_b: '', value_default_p: '', value_default_p_app: '', value_default_a: '', value_default_k: '', value_default_k_group: '', value_default_d: '', value_default_i: '', value_default_e: ''},
+    photo:                  {value: ''},
+    photo_link:             {value: ''},
     video_hash:             {value: '', value_old: ''},
     cost_per_click:         {value: '', edited: false, last_value: ''},
     platform:               {value: 0, data: [], data_all: [], values_normal: 0, values_disabled: 0},
@@ -1531,6 +1542,33 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
     campaign_id:            {value: 0, data: [], value_normal: 0, value_app: 0},
     campaign_name:          {value: '',          value_normal: ''},
     promoted_post_need_confirmation:  {value: 0}
+  }
+
+  // Init "format photo size"-specific keys
+  {
+    this.params.link_id['app_rates_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE] = '';
+    this.params.link_id['mobile_app_bottom_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE] = '';
+
+    var formatPhotoSizes = [AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE];
+    for (var i in formatPhotoSizes) {
+      this.params.link_domain['value_'+formatPhotoSizes[i]] = '';
+    }
+
+    var formatPhotoSizes = [AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE];
+    for (var i in formatPhotoSizes) {
+      this.params.title['value_'+formatPhotoSizes[i]] = '';
+    }
+
+    var formatPhotoSizes = [AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_SMALL, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MEDIUM, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_BIG, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON];
+    for (var i in formatPhotoSizes) {
+      this.params.photo['value_'+formatPhotoSizes[i]] = '';
+      this.params.photo_link['value_'+formatPhotoSizes[i]] = '';
+      this.params.photo_link['value_default_'+formatPhotoSizes[i]] = '';
+    }
+    this.params.photo_link['value_default_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY+'_app'] = '';
+    this.params.photo_link['value_default_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE+'_group'] = '';
+    this.params.photo_link['value_empty_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MEDIUM] = '';
+    this.params.photo_link['value_empty_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_BIG] = '';
   }
 
   this.updateNeeded = {};
@@ -2765,7 +2803,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
 
     switch (paramName) {
       case 'format_type':
-        var photoSize = this.getPhotoSize();
+        var formatPhotoSize = this.getFormatPhotoSize();
         this.params.cost_type.cpm_only            = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST]);
         this.params.cost_type.hidden              = this.params.cost_type.cpm_only;
 
@@ -2786,38 +2824,38 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         this.params.views_limit_exact.hidden      = (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE || !this.params.views_limit_exact.allow));
 
         if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY) {
-          this.setTitle(this.params.title.value_p);
-          if ((!this.params.title.value_p) || (!this.params.photo_link.value_p)) {
+          this.setTitle(this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY]);
+          if ((!this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY]) || (!this.params.photo_link['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY])) {
             this.updateNeeded.need_format_promotion_community = true;
           }
         }
         if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS) {
-          this.setTitle(this.params.title.value_a);
-          if (!this.params.title.value_a) {
+          this.setTitle(this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL]);
+          if (!this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL]) {
             this.updateNeeded.need_format_app_in_news = true;
           }
         }
         if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY) {
-          this.setTitle(this.params.title.value_k);
-          if (!this.params.title.value_k) {
+          this.setTitle(this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE]);
+          if (!this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE]) {
             this.updateNeeded.need_format_apps_only = true;
           }
         }
         if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY) {
-          this.setTitle(this.params.title.value_p);
-          if (!this.params.photo.value_k) {
+          this.setTitle(this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY]);
+          if (!this.params.photo['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE]) {
             this.updateNeeded.need_format_promotion_community = true;
           }
         }
         if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP) {
-          this.setTitle(this.params.title.value_e);
-          if (!this.params.title.value_e) {
+          this.setTitle(this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG]);
+          if (!this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG]) {
             this.updateNeeded.need_format_big_app = true;
           }
         }
         if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE) {
-          this.setTitle(this.params.title.value_d);
-          if (!this.params.title.value_d) {
+          this.setTitle(this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE]);
+          if (!this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE]) {
             this.updateNeeded.need_format_mobile = true;
           }
         }
@@ -2859,7 +2897,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         this.updatePreview('big_app_info_box');
         this.updatePreview('disclaimers');
         this.updatePhotoData();
-        this.updatePhotoData('i');
+        this.updatePhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON);
 
         this.updateTips();
 
@@ -3436,17 +3474,20 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
     }
   }
 
-  if (isObject(result) && 'p_title' in result) {
+  if (isObject(result) && AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY+'_title' in result) {
     var vkLinkType = ((this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_URL && this.params.link_url_vk.link_type_value) ? this.params.link_url_vk.link_type_value : this.params.link_type.value);
     if (inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY]) && data.link_type == this.params.link_type.value && data.link_id == this.params.link_id.value && data.link_url == this.params.link_url.value && inArray(vkLinkType, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_APP])) {
-      var titleUnescaped = AdsEdit.unescapeValueInit(result['p_title']);
-      if (result['p_photo'] && (this.params.format_type.value === AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY)) {
-        this.setPhotoData('p', result['p_photo']);
-      } else if (result['k_photo'] && (this.params.format_type.value === AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY)) {
-        this.setPhotoData('k', result['k_photo']);
+      var titleUnescaped = AdsEdit.unescapeValueInit(result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY+'_title']);
+      if (result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY+'_photo'] && (this.params.format_type.value === AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY)) {
+        this.setPhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY, result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY+'_photo']);
+      } else if (result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE+'_photo'] && (this.params.format_type.value === AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY)) {
+        this.setPhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE, result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE+'_photo']);
       }
-      this.setTitle(titleUnescaped, false, {value_p: titleUnescaped});
-      this.params.link_domain.value_p = result['p_link_domain'];
+      var titleValues = {};
+      titleValues['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY] = titleUnescaped;
+
+      this.setTitle(titleUnescaped, false, titleValues);
+      this.params.link_domain['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY] = result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY+'_link_domain'];
       this.updateUiParam('link_domain');
       this.updatePreview('domain');
     }
@@ -3455,49 +3496,61 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
   if (isObject(result) && 'a_title' in result) {
     var vkLinkType = ((this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_URL && this.params.link_url_vk.link_type_value) ? this.params.link_url_vk.link_type_value : this.params.link_type.value);
     if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS && data.link_type == this.params.link_type.value && data.link_id == this.params.link_id.value && data.link_url == this.params.link_url.value && vkLinkType == AdsEdit.ADS_AD_LINK_TYPE_APP) {
-      var titleUnescaped = AdsEdit.unescapeValueInit(result['a_title']);
-      this.setPhotoData('a', result['a_photo']);
-      this.setTitle(titleUnescaped, false, {value_a: titleUnescaped});
-      this.params.link_domain.value_a = result['a_link_domain'];
+      var titleUnescaped = AdsEdit.unescapeValueInit(result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL+'_title']);
+      var titleValues = {};
+      titleValues['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL] = titleUnescaped;
+
+      this.setPhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL, result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL+'_photo']);
+      this.setTitle(titleUnescaped, false, titleValues);
+      this.params.link_domain['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL] = result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL+'_link_domain'];
       this.updateUiParam('link_domain');
       this.updatePreview('domain');
     }
   }
 
-  if (isObject(result) && 'k_title' in result) {
+  if (isObject(result) && AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE+'_title' in result) {
     var vkLinkType = ((this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_URL && this.params.link_url_vk.link_type_value) ? this.params.link_url_vk.link_type_value : this.params.link_type.value);
     if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY && data.link_type == this.params.link_type.value && data.link_id == this.params.link_id.value && data.link_url == this.params.link_url.value && vkLinkType == AdsEdit.ADS_AD_LINK_TYPE_APP) {
-      var titleUnescaped = AdsEdit.unescapeValueInit(result['k_title']);
-      this.setPhotoData('k', result['k_photo']);
-      this.setTitle(titleUnescaped, false, {value_k: titleUnescaped});
-      this.params.link_domain.value_k = result['k_link_domain'];
-      this.params.link_id.app_rates_k = result['k_app_rates'];
+      var titleUnescaped = AdsEdit.unescapeValueInit(result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE+'_title']);
+      var titleValues = {};
+      titleValues['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE] = titleUnescaped;
+
+      this.setPhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE, result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE+'_photo']);
+      this.setTitle(titleUnescaped, false, titleValues);
+      this.params.link_domain['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE] = result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE+'_link_domain'];
+      this.params.link_id['app_rates_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE] = result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE+'_app_rates'];
       this.updateUiParam('link_domain');
       this.updatePreview('domain');
       this.updatePreview('app_rating');
     }
   }
 
-  if (isObject(result) && 'e_title' in result) {
+  if (isObject(result) && AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG+'_title' in result) {
     var vkLinkType = ((this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_URL && this.params.link_url_vk.link_type_value) ? this.params.link_url_vk.link_type_value : this.params.link_type.value);
     if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP && data.link_type == this.params.link_type.value && data.link_id == this.params.link_id.value && data.link_url == this.params.link_url.value && vkLinkType == AdsEdit.ADS_AD_LINK_TYPE_APP) {
-      var titleUnescaped = AdsEdit.unescapeValueInit(result['e_title']);
-      var descriptionUnescaped = AdsEdit.unescapeValueInit(result['e_description']);
-      this.setPhotoData('e', result['e_photo']);
-      this.setTitle(titleUnescaped, false, {value_e: titleUnescaped});
+      var titleUnescaped = AdsEdit.unescapeValueInit(result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG+'_title']);
+      var titleValues = {};
+      titleValues['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG] = titleUnescaped;
+
+      var descriptionUnescaped = AdsEdit.unescapeValueInit(result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG+'_description']);
+      this.setPhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG, result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG+'_photo']);
+      this.setTitle(titleUnescaped, false, titleValues);
       this.setDescription(descriptionUnescaped);
     }
   }
 
-  if (isObject(result) && 'd_title' in result) {
+  if (isObject(result) && AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE+'_title' in result) {
     if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE && inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_MOBILE_APP) && data.link_type == this.params.link_type.value && data.link_url == this.params.link_url.value) {
-      var titleUnescaped = AdsEdit.unescapeValueInit(result['d_title']);
+      var titleUnescaped = AdsEdit.unescapeValueInit(result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE+'_title']);
+      var titleValues = {};
+      titleValues['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE] = titleUnescaped;
+
       this.params.link_type.value = result['mobile_app_link_type'];
       this.params.link_owner_id.value = result['mobile_app_link_owner_id'];
-      this.setPhotoData('i', result['i_photo']);
-      this.setTitle(titleUnescaped, false, {value_d: titleUnescaped});
-      this.params.link_domain.value_d = result['d_link_domain'];
-      this.params.link_id.mobile_app_bottom_d = result['d_mobile_app_bottom'];
+      this.setPhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON, result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON+'_photo']);
+      this.setTitle(titleUnescaped, false, titleValues);
+      this.params.link_domain['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE] = result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE+'_link_domain'];
+      this.params.link_id['mobile_app_bottom_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE] = result[AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE+'_mobile_app_bottom'];
       this.updateUiParam('link_domain');
       this.updatePreview('layout');
       this.updatePreview('domain');
@@ -3575,56 +3628,56 @@ AdsViewEditor.prototype.getParams = function() {
   for (var paramName in this.params) {
     params[paramName] = this.params[paramName].value;
   }
-  params.photo_icon = this.params.photo.value_i;
+  params.photo_icon = this.params.photo['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON];
   return params;
 }
 
-AdsViewEditor.prototype.getPhotoSize = function() {
+AdsViewEditor.prototype.getFormatPhotoSize = function() {
   switch (this.params.format_type.value) {
-    case AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE:          return 's';
-    case AdsEdit.ADS_AD_FORMAT_TYPE_BIG_IMAGE:           return 'm';
-    case AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE:           return 'b';
-    case AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY: return 'p';
-    case AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS:         return 'a';
-    case AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY:           return 'k';
-    case AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY:         return 'k';
-    case AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP:             return 'e';
-    case AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE:              return 'd';
-    case AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST:       return ''; // No photo needed for promoted post
-    default:                                             return '';
+    case AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE:          return AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_SMALL;
+    case AdsEdit.ADS_AD_FORMAT_TYPE_BIG_IMAGE:           return AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MEDIUM;
+    case AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE:           return AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_BIG;
+    case AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY: return AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY;
+    case AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS:         return AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL;
+    case AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY:           return AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE;
+    case AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY:         return AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE;
+    case AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP:             return AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG;
+    case AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE:              return AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE;
+    case AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST:       return AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_UNKNOWN; // No photo needed for promoted post
+    default:                                             return AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_UNKNOWN;
   }
 }
 
-AdsViewEditor.prototype.setPhotoData = function(photoSize, photo) {
-  var valueBySize = 'value_' + photoSize;
+AdsViewEditor.prototype.setPhotoData = function(formatPhotoSize, photo) {
+  var valueBySize = 'value_' + formatPhotoSize;
 
   this.params.photo[valueBySize]      = photo || '';
   this.params.photo_link[valueBySize] = '';
 
-  this.updatePhotoData(photoSize);
+  this.updatePhotoData(formatPhotoSize);
 }
 
-AdsViewEditor.prototype.updatePhotoData = function(photoSize) {
-  var photoSizeCur = this.getPhotoSize();
-  photoSize = photoSize || photoSizeCur;
-  var valueBySize = 'value_' + photoSize;
+AdsViewEditor.prototype.updatePhotoData = function(formatPhotoSize) {
+  var formatPhotoSizeCur = this.getFormatPhotoSize();
+  formatPhotoSize = formatPhotoSize || formatPhotoSizeCur;
+  var valueBySize = 'value_' + formatPhotoSize;
 
-  if (photoSize === photoSizeCur && photoSize !== 'i') {
+  if (formatPhotoSize === formatPhotoSizeCur && formatPhotoSize !== AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON) {
     this.params.photo.value      = this.params.photo[valueBySize];
     this.params.photo_link.value = this.params.photo_link[valueBySize];
   }
 
-  this.updatePhotoLink(photoSize);
+  this.updatePhotoLink(formatPhotoSize);
 }
 
-AdsViewEditor.prototype.updatePhotoLink = function(photoSize) {
-  var valueBySize = 'value_' + photoSize;
+AdsViewEditor.prototype.updatePhotoLink = function(formatPhotoSize) {
+  var valueBySize = 'value_' + formatPhotoSize;
 
   if (this.params.photo_link[valueBySize] || this.params.photo_link[valueBySize] === null || !this.params.photo[valueBySize]) {
-    this.updatePreview((photoSize === 'i') ? 'photo_icon' : 'photo');
+    this.updatePreview((formatPhotoSize === AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON) ? 'photo_icon' : 'photo');
     return;
   }
-  var lockHash = 'update_photo_link_' + photoSize + '_' + this.params.photo[valueBySize];
+  var lockHash = 'update_photo_link_' + formatPhotoSize + '_' + this.params.photo[valueBySize];
   if (!Ads.lock(lockHash)) {
     return;
   }
@@ -3642,7 +3695,7 @@ AdsViewEditor.prototype.updatePhotoLink = function(photoSize) {
     Ads.unlock(lockHash);
     if (this.params.photo[valueBySize] == ajaxParams.photo) {
       this.params.photo_link[valueBySize] = (photoLink || null);
-      this.updatePhotoData(photoSize);
+      this.updatePhotoData(formatPhotoSize);
     }
   }
   function onFail() {
@@ -3718,7 +3771,7 @@ AdsViewEditor.prototype.setTitle = function(title, noUpdateValueMax, titleValues
   targetElem.value = title;
   var clearTitleValues = (titleValues === '');
   if (clearTitleValues || isObject(titleValues)) {
-    var valuesKeys = ['value_p', 'value_a', 'value_k', 'value_d', 'value_e'];
+    var valuesKeys = ['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY, 'value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL, 'value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE, 'value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE, 'value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG];
     for (var i in valuesKeys) {
       var valueKey = valuesKeys[i];
       if (clearTitleValues || valueKey in titleValues) {
@@ -3952,18 +4005,18 @@ AdsViewEditor.prototype.completeLink = function() {
   this.updateUiParam('link_domain');
 
   if (isChangedImportant) {
-    this.params.link_id.app_rates_k = '';
-    this.params.link_id.mobile_app_bottom_d = '';
-    this.params.link_domain.value_p = '';
-    this.params.link_domain.value_a = '';
-    this.params.link_domain.value_k = '';
-    this.params.link_domain.value_d = '';
+    this.params.link_id['app_rates_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE]    = '';
+    this.params.link_id['mobile_app_bottom_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE]      = '';
+    this.params.link_domain['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY] = '';
+    this.params.link_domain['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL]      = '';
+    this.params.link_domain['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE]    = '';
+    this.params.link_domain['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE]              = '';
     this.setTitle(this.params.title.value, false, '');
 
-    this.setPhotoData('p');
-    this.setPhotoData('a');
-    this.setPhotoData('k');
-    this.setPhotoData('i');
+    this.setPhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY);
+    this.setPhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL);
+    this.setPhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE);
+    this.setPhotoData(AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON);
 
     this.params.format_type.hidden = !!(inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE, AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW, AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH]));
     this.updateUiParamVisibility('format_type');
@@ -3983,27 +4036,27 @@ AdsViewEditor.prototype.completeLink = function() {
       this.setFormatType(formatTypeDefault);
     } else {
       if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY) {
-        this.setTitle(this.params.title.value_p);
+        this.setTitle(this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY]);
         this.updateNeeded.need_format_promotion_community = true;
       }
       if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY) {
-        this.setTitle(this.params.title.value_p);
+        this.setTitle(this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY]);
         this.updateNeeded.need_format_promotion_community = true;
       }
       if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS) {
-        this.setTitle(this.params.title.value_a);
+        this.setTitle(this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL]);
         this.updateNeeded.need_format_app_in_news = true;
       }
       if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY) {
-        this.setTitle(this.params.title.value_k);
+        this.setTitle(this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE]);
         this.updateNeeded.need_format_apps_only = true;
       }
       if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP) {
-        this.setTitle(this.params.title.value_e);
+        this.setTitle(this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG]);
         this.updateNeeded.need_format_big_app = true;
       }
       if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE) {
-        this.setTitle(this.params.title.value_d);
+        this.setTitle(this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE]);
         this.updateNeeded.need_format_mobile = true;
       }
     }
@@ -4229,11 +4282,11 @@ AdsViewEditor.prototype.updateLink = function(linkElem, link, link_packed, oncli
 
 AdsViewEditor.prototype.getPreviewDomain = function() {
   switch (this.params.format_type.value) {
-    case AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY: return this.params.link_domain.value_p;
-    case AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY:         return this.params.link_domain.value_p;
-    case AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS:         return this.params.link_domain.value_a;
-    case AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY:           return this.params.link_domain.value_k;
-    case AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE:              return this.params.link_domain.value_d;
+    case AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY: return this.params.link_domain['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY];
+    case AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY:         return this.params.link_domain['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY];
+    case AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS:         return this.params.link_domain['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL];
+    case AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY:           return this.params.link_domain['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE];
+    case AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE:              return this.params.link_domain['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE];
   }
 
   switch (this.params.link_type.value) {
@@ -4334,10 +4387,10 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
       }
       break;
     case 'app_rating':
-      this.preview[previewParamName].innerHTML = this.params.link_id.app_rates_k;
+      this.preview[previewParamName].innerHTML = this.params.link_id['app_rates_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE];
       break;
     case 'mobile_app_bottom':
-      this.preview[previewParamName].innerHTML = this.params.link_id.mobile_app_bottom_d;
+      this.preview[previewParamName].innerHTML = this.params.link_id['mobile_app_bottom_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE];
       break;
     case 'disclaimer_medical':
       toggle(this.preview[previewParamName], !!(this.params.disclaimer_medical.value));
@@ -4375,20 +4428,20 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
       if (this.params.photo.value && this.params.photo_link.value) {
         this.preview[previewParamName].src = this.params.photo_link.value;
       } else {
-        var photoSize = this.getPhotoSize();
+        var formatPhotoSize = this.getFormatPhotoSize();
         var photoLinkSuffix = '';
-        if (photoSize === 'p' && this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_APP) {
+        if (formatPhotoSize === AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY && this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_APP) {
           photoLinkSuffix = '_app';
-        } else if (photoSize === 'k' && inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_GROUP)) {
+        } else if (formatPhotoSize === AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE && inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_GROUP)) {
           photoLinkSuffix = '_group';
         }
-        var specialValue = ((this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO) ? 'value_empty_' : 'value_default_') + photoSize + photoLinkSuffix;
+        var specialValue = ((this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO) ? 'value_empty_' : 'value_default_') + formatPhotoSize + photoLinkSuffix;
         this.preview[previewParamName].src = this.params.photo_link[specialValue] || '';
       }
       toggleClass(this.preview.photo_box, 'promotion', !!(this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY));
       break;
     case 'photo_icon':
-      this.preview[previewParamName].src = (this.params.photo.value_i ? this.params.photo_link.value_i : this.params.photo_link.value_default_i);
+      this.preview[previewParamName].src = (this.params.photo['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON] ? this.params.photo_link['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON] : this.params.photo_link['value_default_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON]);
       break;
     case 'play':
       toggleClass(this.preview[previewParamName], 'unshown', !(this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO));

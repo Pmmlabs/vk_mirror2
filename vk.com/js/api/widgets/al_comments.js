@@ -18,7 +18,7 @@ WComments = {
       onEditFormSizeUpdate: WComments.contentUpdated.bind(WComments, false)
     });
 
-    cur.options.filter_media_types = cur.options.media_types;
+    cur.options.filter_media_types = cur.options.media_types || [];
 
     this.override('lite.js');
     this.override('page.js');
