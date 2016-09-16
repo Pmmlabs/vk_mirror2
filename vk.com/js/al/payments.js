@@ -380,6 +380,7 @@ var MoneyTransfer = {
     if (!amount || amount <= 0) {
       addClass('payments_money_transfer_amount_wrap', 'money_error');
       setTimeout(removeClass.pbind('payments_money_transfer_amount_wrap', 'money_error'), 500);
+      elfocus('transfer_amount');
       return;
     } else if (!MoneyTransfer.checkAmount(amount, true)) {
       return;

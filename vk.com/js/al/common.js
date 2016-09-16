@@ -7506,6 +7506,46 @@ function pauseLastInlineVideo() {
   }
 }
 
+function checkMp4(callback) {
+  if (ls.get('video_can_play_mp4')) {
+    callback(true);
+    return;
+  }
+
+  var sessionValue = window.sessionStorage && sessionStorage.getItem('video_can_play_mp4');
+  if (sessionValue != null) {
+    callback(!!intval(sessionValue));
+    return;
+  }
+
+  var v = ce('video');
+  if (v.canPlayType && v.canPlayType('video/mp4')) {
+    v.onloadedmetadata = function() {_resolve(true)};
+    v.onerror = function() {_resolve(false)};
+    v.src = '/images/blank.mp4';
+    v.load();
+    setTimeout(function() {
+      _resolve(false);
+    }, 1000);
+  } else {
+    _resolve(false);
+  }
+
+  var _resolved;
+
+  function _resolve(canPlay) {
+    if (_resolved) return;
+    _resolved = true;
+    if (canPlay) {
+      ls.set('video_can_play_mp4', 1);
+    } else {
+      // sessionStorage instead of localStorage because browser may begin support mp4 playback later
+      sessionStorage.setItem('video_can_play_mp4', intval(canPlay));
+    }
+    callback(canPlay);
+  }
+}
+
 function showWiki(page, edit, e, opts) {
   if (checkEvent(e)) return true;
   var opts = opts || {};
@@ -8426,7 +8466,7 @@ function mentionOver(el, opts) {
     showdt: 500,
     slide: 15,
     checkLeft: true,
-    reverseOffset: opts.reverseOffset || 39,
+    reverseOffset: opts.reverseOffset || 112,
     dir: 'auto',
     appendEl: domClosest('_im_mess_stack', el) || domClosest('rb_box_wrap', el)
       || domClosest('wk_cont', el) || domClosest('scroll_fix_wrap', el)

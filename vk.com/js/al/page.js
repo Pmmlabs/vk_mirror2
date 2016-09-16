@@ -870,9 +870,16 @@ var Page = {
       }
     }, showProgress: lockButton.pbind('currinfo_save'), hideProgress: unlockButton.pbind('currinfo_save'), stat: ['tooltips.js', 'tooltips.css', 'emoji.js']});
   },
-  showGif: function(obj, ev, dontHideActive) {
+  showGif: function(obj, ev, dontHideActive, canPlayMp4) {
     if (ev && (ev.ctrlKey || ev.metaKey)) {
       return true;
+    }
+
+    if (isUndefined(canPlayMp4)) {
+      checkMp4(function(canPlay) {
+        Page.showGif(obj, ev, dontHideActive, canPlay);
+      });
+      return;
     }
 
     cur.gifAdded = cur.gifAdded || {};
@@ -890,7 +897,6 @@ var Page = {
     var hasPreview = obj.getAttribute('data-preview');
     var previewWidth = obj.getAttribute('data-width');
     var previewHeight = obj.getAttribute('data-height');
-    var canPlayVideo = false;
     var largeGif = hasClass(domPN(obj), 'page_gif_large');
     var isAutoplay = !ev;
     var el;
@@ -903,16 +909,13 @@ var Page = {
       statlogsValueEvent('show_post_gif', 1, oid, post_id);
     }
 
-    if (hasPreview) {
-      var v = ce('video');
-      if (v.canPlayType && v.canPlayType('video/mp4').replace('no', '')) {
-        canPlayVideo = true;
-      }
+    if (!hasPreview) {
+      canPlayMp4 = false;
     }
 
     var el_src = obj.href + '&wnd=1&module=' + cur.module;
 
-    if (canPlayVideo) {
+    if (canPlayMp4) {
       el = ce('video', {
         autoplay: true,
         loop: 'loop',
@@ -953,7 +956,7 @@ var Page = {
       innerHTML: progressIcon + (largeGif ? '<div class="page_gif_label">gif</div>' : '') + acts,
       onclick: cancelEvent
     }, {
-      background: canPlayVideo ? '' : (getStyle(domFC(obj), 'background') || '').replace(/"/g, '\''),
+      background: canPlayMp4 ? '' : (getStyle(domFC(obj), 'background') || '').replace(/"/g, '\''),
       width: previewWidth ? previewWidth + 'px' : '',
       height: previewHeight ? previewHeight + 'px' : ''
     });
@@ -977,7 +980,7 @@ var Page = {
         imgCont.setAttribute('onclick', "return Page.hideGif(this, event);");
         addClass(el, 'page_gif_big');
         addClass(imgCont, 'page_gif_loaded');
-        statlogsValueEvent('gif_play', 0, canPlayVideo ? 'mp4' : 'gif');
+        statlogsValueEvent('gif_play', 0, canPlayMp4 ? 'mp4' : 'gif');
       }
     };
 
@@ -991,7 +994,7 @@ var Page = {
       }, 300);
     }
 
-    if (canPlayVideo) {
+    if (canPlayMp4) {
       el.onloadeddata = onLoaded;
     } else {
       var loadingInterval = setInterval(onLoaded, 10);
@@ -1079,8 +1082,15 @@ var Page = {
     return cancelEvent(ev);
   },
 
-  initGifAutoplay: function() {
-    if (cur.gifAutoplayScrollHandler || !mp4Support() || browser.mobile) return;
+  initGifAutoplay: function(canPlayMp4) {
+    if (cur.gifAutoplayScrollHandler || browser.mobile || canPlayMp4 === false) return;
+
+    if (isUndefined(canPlayMp4)) {
+      checkMp4(function(canPlay) {
+        Page.initGifAutoplay(canPlay);
+      });
+      return;
+    }
 
     var fixedHeaderHeight = getSize('page_header')[1];
 
@@ -1176,15 +1186,10 @@ var Page = {
       scrollHandler = null;
       delete cur.gifAutoplayScrollHandler;
     });
-
-    function mp4Support() {
-      var v = ce('video');
-      return v.canPlayType && !!v.canPlayType('video/mp4').replace('no', '');
-    }
   },
 
   initVideoAutoplay: function() {
-    if (!window.MediaSource || typeof MediaSource.isTypeSupported != 'function' || !MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E,mp4a.40.2"') || browser.mobile || browser.safari) {
+    if (!window.MediaSource || typeof MediaSource.isTypeSupported != 'function' || !MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E,mp4a.40.2"') || browser.mobile || browser.safari || browser.vivaldi) {
       return;
     }
 
