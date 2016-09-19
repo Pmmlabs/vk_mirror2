@@ -1730,7 +1730,9 @@ function CitySelect(input, container, options) {
           new_options.autocomplete = false;
         } else {
           new_options.autocomplete = true;
-          new_options.defaultItems.push([-1, options.otherCity]);
+          if (options.otherCity !== false) {
+            new_options.defaultItems.push([-1, options.otherCity]);
+          }
         }
         selector.old_setOptions(new_options);
 

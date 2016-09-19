@@ -5626,13 +5626,11 @@ function checkMp4(callback) {
 
   var v = ce('video');
   if (v.canPlayType && v.canPlayType('video/mp4')) {
-    v.onloadedmetadata = function() {_resolve(true)};
-    v.onerror = function() {_resolve(false)};
+    v.onloadedmetadata = _resolve.pbind(true);
+    v.onerror = _resolve.pbind(false);
     v.src = '/images/blank.mp4';
     v.load();
-    setTimeout(function() {
-      _resolve(false);
-    }, 1000);
+    setTimeout(_resolve.pbind(false), 10000);
   } else {
     _resolve(false);
   }

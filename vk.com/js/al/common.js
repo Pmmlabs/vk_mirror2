@@ -7520,13 +7520,11 @@ function checkMp4(callback) {
 
   var v = ce('video');
   if (v.canPlayType && v.canPlayType('video/mp4')) {
-    v.onloadedmetadata = function() {_resolve(true)};
-    v.onerror = function() {_resolve(false)};
+    v.onloadedmetadata = _resolve.pbind(true);
+    v.onerror = _resolve.pbind(false);
     v.src = '/images/blank.mp4';
     v.load();
-    setTimeout(function() {
-      _resolve(false);
-    }, 1000);
+    setTimeout(_resolve.pbind(false), 10000);
   } else {
     _resolve(false);
   }
@@ -8275,7 +8273,7 @@ TopSearch = {
       peer = mid;
     }
     if (!info) info = '';
-    verified = verified ? '<div class="page_verified" onmouseover="pageVerifiedTip(this, {' + (mid > 0 ? ('mid:' + mid) : ('gid:' + Math.abs(mid))) + '})"></div>' : '';
+    verified = verified ? '<div class="page_verified' + ((mid == -128932034) ? ' ph_verified' : '') + '" onmouseover="pageVerifiedTip(this, {' + (mid > 0 ? ('mid:' + mid) : ('gid:' + Math.abs(mid))) + '})"></div>' : '';
     return '<a href="' + href + '" class="ts_contact clear_fix" id="ts_contact' + mid + '" onclick="return TopSearch.select(this, event, '+peer+');" onmousedown="event.cancelBubble = true;" onmouseover="TopSearch.itemOver(this, 1, event);"  onmouseout="TopSearch.itemOver(this, 0, event);" hinttype="'+hintType+'"><span class="ts_contact_photo ' + onlinePlatformClass(online) +'"><img class="ts_contact_img" src="' + photo + '"/></span><span class="ts_contact_name fl_l"><div class="ts_contact_title_wrap' + (verified ? ' is_verified' : '') + '"><span class="ts_contact_title">' + name + '</span></div>' + verified + '<div class="ts_contact_info">'+info+'</div></span><div class="ts_contact_status"></div></a>';
   },
   searchLists: function(q) {
