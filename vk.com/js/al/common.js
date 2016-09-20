@@ -10075,4 +10075,20 @@ function hasAccessibilityMode() {
   return !!(window.vk && vk.a11y);
 }
 
+window.AudioMessagePlayer = {
+  loaded : false,
+
+  togglePlay: function(el, event) {
+    stManager.add('voice_message_player.js',function(){
+      window.AudioMessagePlayer.togglePlay(el, event);
+    });
+  },
+
+  detachPlayer: function(onlyDetached) {
+    stManager.add('voice_message_player.js',function() {
+      window.AudioMessagePlayer.detachPlayer(onlyDetached);
+    });
+  }
+};
+
 try{stManager.done('common.js');}catch(e){}
