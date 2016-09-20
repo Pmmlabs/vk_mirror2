@@ -526,6 +526,18 @@ Notifier = {
         push = 0;
         break;
 
+      case 'bt_upd':
+      case 'bt_upd_upd':
+        handlePageCount('bt', ev.add, ev.custom[0], ev.custom[1]);
+        if (ev.type == 'bt_upd_upd') {
+          push = 0;
+        }
+        var bt = ge('bt_tab_updates');
+        if (bt) {
+          val(geByClass1('ui_tab_count', bt), ev.add > 0 ? ev.add : '');
+        }
+        break;
+
       case 'push_settings':
         push = 0;
         var muted = JSON.parse(ev.add);
