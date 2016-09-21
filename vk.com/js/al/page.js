@@ -402,8 +402,6 @@ var Page = {
     var now = vkNow();
     for (i in posts) {
       module = Page.getPostModuleCode(posts[i].module ? posts[i].module : '');
-      console.log(posts[i].module)
-      console.log(module)
 
       index = posts[i].index;
       query = posts[i].q;
@@ -3506,6 +3504,23 @@ var Wall = {
       params.from_group = hasClass(domClosest('_submit_post_box', fromGroupEl), 'as_group') ? 1 : ''; // else autodetect
     }
 
+    if (cur.wallType) {
+      if (cur.wallType == 'feed') {
+        if (cur.section == 'news') {
+          ref = 'feed_' + (cur.subsection ? cur.subsection : cur.section)
+        } else if (cur.section == 'recommended') {
+          ref = 'feed_recommended' + (cur.subsection != 'recent' ? ('_' + cur.subsection) : '')
+        } else {
+          ref = 'feed_' + cur.section
+        }
+      } else {
+        ref = 'wall_' + (cur.onepost ? 'one' : (!(cur.wallType || '').indexOf('full_') ? 'full' : 'page'))
+      }
+    } else {
+      ref = cur.module;
+    }
+    extend(params, {ref: ref});
+
     if (browser.mobile) {
       Wall.hideEditReply(post);
     } else {
@@ -5415,12 +5430,19 @@ var Wall = {
 
     if (cur.wallType) {
       if (cur.wallType == 'feed') {
-        ref = 'feed_' + ((cur.section == 'news' && cur.subsection) ? cur.subsection : cur.section)
+        if (cur.section == 'news') {
+          ref = 'feed_' + (cur.subsection ? cur.subsection : cur.section)
+        } else if (cur.section == 'recommended') {
+          ref = 'feed_recommended' + (cur.subsection != 'recent' ? ('_' + cur.subsection) : '')
+        } else {
+          ref = 'feed_' + cur.section
+        }
       } else {
         ref = 'wall_' + (cur.onepost ? 'one' : (!(cur.wallType || '').indexOf('full_') ? 'full' : 'page'))
       }
     } else {
       ref = cur.module;
+
     }
 
     ajax.post('like.php', {

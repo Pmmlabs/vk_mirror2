@@ -6,10 +6,12 @@ AdsModer.init = function() {
 }
 
 AdsModer.initDelayedImages = function() {
+
   var imagesIndex;
   var indexStep = 500;
   var lastImage;
   var lastImageY;
+  var checkImagesTimeout;
 
   buildIndex();
   if (isEmpty(imagesIndex)) {
@@ -26,24 +28,26 @@ AdsModer.initDelayedImages = function() {
   handler();
 
   function buildIndex() {
-    if (lastImage && lastImage.hasAttribute('src_') && lastImageY == getXY(lastImage)[1]) {
+    if (lastImage && (lastImage.hasAttribute('src_') || lastImage.hasAttribute('background_image_')) && lastImageY == getXY(lastImage)[1]) {
       return;
     }
 
-    var imagesAll = geByTag('img');
+    var imagesAll = geByTag('*');
+
     var image;
     var indexKey;
 
     imagesIndex = {};
 
-    if (!imagesAll.length) {
-      return;
-    }
-
     for (var i = 0, image; image = imagesAll[i]; i++) {
-      if (!image.hasAttribute('src_')) {
+      if (image.hasAttribute('src_') && image.tagName.toLowerCase() === 'img') {
+        // Ok
+      } else if (image.hasAttribute('background_image_')) {
+        // Ok
+      } else {
         continue;
       }
+
       indexKey = intval(getXY(image)[1] / indexStep);
       if (!(indexKey in imagesIndex)) {
         imagesIndex[indexKey] = [];
@@ -63,22 +67,37 @@ AdsModer.initDelayedImages = function() {
   }
 
   function checkImages(delayed) {
-    var yTop        = scrollGetY()
-    var yBottom     = yTop + lastWindowHeight;
-    var indexTop    = intval(yTop / indexStep);
-    var indexBottom = intval(yBottom / indexStep);
+    if (!delayed) {
+      clearTimeout(checkImagesTimeout);
+      checkImagesTimeout = setTimeout(checkImages.pbind(true), 100);
+      return;
+    }
+
+    var yTop      = scrollGetY()
+    var yBottom   = yTop + lastWindowHeight;
+    var yFrom     = Math.max(yTop - lastWindowHeight / 2, 0);
+    var yTo       = yBottom + lastWindowHeight / 2;
+    var indexFrom = intval(yFrom / indexStep);
+    var indexTo   = intval(yTo / indexStep);
     var image;
-    for (var i = indexTop; i <= indexBottom; i++) {
+
+    for (var i = indexFrom; i <= indexTo; i++) {
       if (!(i in imagesIndex)) {
         continue;
       }
       for (var j = 0, len = imagesIndex[i].length; j < len; j++) {
         image = imagesIndex[i][j];
-        image.src = image.getAttribute('src_');
-        image.removeAttribute('src_')
+        if (image.hasAttribute('src_')) {
+          image.src = image.getAttribute('src_');
+          image.removeAttribute('src_');
+        } else if (image.hasAttribute('background_image_')) {
+          image.style.backgroundImage = image.getAttribute('background_image_');
+          image.removeAttribute('background_image_');
+        }
       }
       delete imagesIndex[i];
     }
+
     checkIndex();
     setTimeout(checkIndex, 1000);
   }

@@ -714,8 +714,8 @@ function getClientRectOffsetY(elem, part, offset) {
       w = window, de = document.documentElement,
       ch = Math.max(intval(w.innerHeight), intval(de.clientHeight)),
       fixed_head = ge('page_header_cont'),
-      hh = getSize(fixed_head)[1],
-      st = (de.scrollTop || bodyNode.scrollTop || window.scrollY || 0);
+      st = (de.scrollTop || bodyNode.scrollTop || window.scrollY || 0),
+      hh = vk.staticheader ? Math.max(0, getSize(fixed_head)[1] - st) : getSize(fixed_head)[1];
   if (!part) {
     if (ey < st + hh + offset) return (ey - st - hh - offset);
     if (ey + eh > st + ch - offset) return (ey + eh - st - ch + offset);
@@ -1645,7 +1645,7 @@ function scrollToY(y, speed, anim, noCorrect) {
     speed = 0;
   }
   if (!noCorrect) {
-    y = Math.max(0, y - getSize('page_header_cont')[1]);
+    y = Math.max(0, y - (vk.staticheader ? 0 : getSize('page_header_cont')[1]));
   }
 
   if (data(bodyNode, 'tween')) data(bodyNode, 'tween').stop(false);
@@ -2303,9 +2303,11 @@ function updSideTopLink(resized) {
       }
     }
     if (f !== false) toggleClass(_stlLeft, 'over_fast', hasClass(_stlLeft, 'over') && f);
-    setStyle(_stlLeft, {
+    var _stlStyle = {
       opacity: Math.min(Math.max(o, 0), 1)
-    });
+    };
+    if (vk.staticheader) _stlStyle.top = -Math.min(getSize('page_header_cont')[1], st);
+    setStyle(_stlLeft, _stlStyle);
   }
   if (!vk.id) {
     if (!_regBar && regBar) {
@@ -2400,7 +2402,7 @@ function updateNarrow() {
   if (browser.mobile || !bar || !barBlock || !wideCol || isVisible(boxLoader) || isVisible(boxLayerBG) || isVisible(layerBG)) return;
 
   var wh = window.lastWindowHeight || 0, st = Math.min(scrollGetY(), bodyNode.clientHeight - wh),
-      pl = ge('page_layout'), head = ge('page_header_wrap'), headH = getSize(head)[1],
+      pl = ge('page_layout'), head = ge('page_header_wrap'), headH = vk.staticheader ? Math.max(0, getSize(head)[1] - st) : getSize(head)[1],
       isFixed = getStyle(bar, 'position') == 'fixed',
       barMT = floatval(getStyle(barBlock, 'marginTop')), barH = getSize(bar)[1] - (isFixed ? barMT : 0),
       pageH = getSize(wideCol)[1], pagePos = getXY(wideCol)[1], tooBig = barH >= pageH - barMT, barMB = barMT,
@@ -2451,26 +2453,27 @@ function updateLeftMenu() {
 
   var wh = window.lastWindowHeight || 0, st = Math.min(scrollGetY(), bodyNode.clientHeight - wh), pos = 0,
       pl = ge('page_layout'), head = ge('page_header_wrap'), headH = getSize(head)[1],
+      headCalcH = Math.min(Math.max(0, headH - st), headH),
       isFixed = getStyle(menu, 'position') == 'fixed',
       menuH = getSize(menu)[1], menuPos = isFixed ? getXY(menu)[1] : floatval(getStyle(menu, 'marginTop')),
       pageH = getSize(pageBody)[1], pagePos = pageBody.offsetTop, tooBig = menuH >= pageH,
       lastSt = window.menuLastSt || 0, lastStyles = window.menuLastStyles || {}, styles, delta = 1;
 
-  if (st - delta < 0 || tooBig || hasClass(bodyNode, 'body_im')) {
+  if (st - delta < (vk.staticheader ? headH : 0) || tooBig || hasClass(bodyNode, 'body_im')) {
     styles = {
       position: 'relative',
       marginTop: headH
     }
-  } else if (st - delta < Math.min(lastSt, menuPos - headH)) {
+  } else if (st - delta < Math.min(lastSt, menuPos - (vk.staticheader ? 0 : headH))) {
     styles = {
       position: 'fixed',
-      top: 0,
+      top: (vk.staticheader ? -headH + headCalcH : 0),
       marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
     }
-  } else if (st + delta > Math.max(lastSt, menuPos + menuH - headH)) {
+  } else if (st + delta > Math.max(lastSt, menuPos + menuH - (vk.staticheader ? headCalcH : headH))) {
     styles = {
       position: 'fixed',
-      bottom: wh - headH,
+      bottom: wh - (vk.staticheader ? headCalcH : headH),
       marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
     }
   } else {
@@ -2536,7 +2539,6 @@ function onBodyResize(force) {
       wkLayerWrap.style.width = dwidth + 'px';
       wkLayer.style.width = layerWidth;
     }
-
     if (bodyNode.offsetWidth < vk.width + sbw + 2) {
       dwidth = vk.width + sbw + 2;
     }
@@ -2549,7 +2551,7 @@ function onBodyResize(force) {
             e.style.width = sfWidth + 'px';
           }
         }
-        updateHeaderStyles({width: sfWidth});
+        vk.staticheader || updateHeaderStyles({width: sfWidth});
       }
     }
     if (_pads.shown) Pads.reposition();
@@ -2625,7 +2627,7 @@ function onBodyScroll() {
   if (!window.pageNode) return;
 
   var ml = Math.min(0, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(ge('page_layout'))[0]));
-  if (!browser.mobile) {
+  if (!browser.mobile && !vk.staticheader) {
     updateHeaderStyles({marginLeft: ml});
   }
   updateLeftMenu();
@@ -4303,6 +4305,7 @@ function handlePageView(params) {
   vk.width_dec        = widthDec;
   vk.width_dec_footer = widthDecFooter;
   vk.body_class       = params.body_class;
+  vk.staticheader     = intval(params.staticheader);
 
   vk.no_ads           = params.no_ads;
   vk.ad_preview       = params.ad_preview;
@@ -4377,6 +4380,7 @@ function handlePageParams(params) {
   }
 
   vk.nophone = intval(params.nophone);
+  vk.staticheader = intval(params.staticheader);
 
   if (vk.id) {
     var leftBlocksElem = ge('left_blocks');
@@ -4864,7 +4868,7 @@ var nav = {
         }
         var oldTopW = ge('dev_top_nav_wrap') && getSize('dev_top_nav_wrap')[0] || ge('page_header_wrap') && getSize('page_header_wrap')[0] || 0;
         pageNode.innerHTML = html;
-        if (oldTopW) {
+        if (oldTopW && !vk.staticheader) {
           updateHeaderStyles({width: oldTopW});
         }
         _tbLink = ge('top_back_link');
@@ -4887,7 +4891,7 @@ var nav = {
         if (where.params && where.params.__query === 'im') {
           fixImHeight();
         }
-        if (oldTopW) {
+        if (oldTopW && !vk.staticheader) {
           updateHeaderStyles({width: oldTopW});
         }
         tNode.innerHTML = title;
@@ -5947,7 +5951,7 @@ function MessageBox(options, dark) {
         geByClass1('back', boxTitle).onclick = onclick;
         boxTitleBck = options.title;
         options.title = boxTitle.innerHTML;
-      } else {
+      } else if (boxTitleBck) {
         boxTitle.innerHTML = options.title = boxTitleBck;
         boxTitleBck = false;
       }
