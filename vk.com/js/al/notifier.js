@@ -5433,7 +5433,14 @@ FastChat = {
     tab.scroll && tab.scroll.update();
   },
   showMsgFwd: function (msgId) {
-    return !showBox('al_im.php', {act: 'a_show_forward_box', id: vk.id + '_' + msgId, from: 'mail'}, {stat: ['im.css'], dark: 1});
+    return !showBox('al_im.php', {act: 'a_show_forward_box', id: vk.id + '_' + msgId, from: 'mail'}, {stat: ['im.css'], dark: 1, params: {
+        onHide: function() {
+          if (AudioMessagePlayer.loaded) {
+            AudioMessagePlayer.detachPlayer(true);
+          }
+        }
+      }
+    });
   },
   closeTab: function (peer) {
     var box = curFastChat.tabs[peer].box;
