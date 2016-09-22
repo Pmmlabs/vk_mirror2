@@ -1569,7 +1569,7 @@ WComments = {
             if (openEl && openEl.className == 'replies_open') {
               re(openEl);
             }
-            extend(cur.options.reply_names, names);
+            extend(cur.options.reply_names || {}, names);
             Wall.updateMentionsIndex();
           },
 

@@ -2525,7 +2525,7 @@ buyStickers: function(packId, ev, obj, hash, sticker_referrer) {
   }
   var peer = Emoji.selectPeer();
   ajax.post('/al_im.php', {act: 'a_stickers_buy', pack_id: packId, hash: hash, peer: peer, sticker_referrer: unclean(sticker_referrer)}, {
-    onDone: function(text, newStickers, keywords, btnText) {
+    onDone: function(text, newStickers, keywords, btnText, hideBox) {
       each(geByClass('_sticker_btn_' + packId), function() {
         this.innerHTML = btnText;
         this.onmouseover = '';
@@ -2534,6 +2534,9 @@ buyStickers: function(packId, ev, obj, hash, sticker_referrer) {
       });
       if (cur.boxStickersPreview) {
         cur.boxStickersPreview.hide();
+      }
+      if (hideBox && cur.boxStickersStore) {
+        cur.boxStickersStore.hide();
       }
       showDoneBox(text);
       if (newStickers) {
