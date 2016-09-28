@@ -10095,4 +10095,42 @@ window.AudioMessagePlayer = {
   }
 };
 
+function setWorkerTimeout(cb, delay) {
+  if (window.Worker && window.Blob) {
+    var scriptBlob = new Blob([" \
+      var timeout; \
+      onmessage = function(e) { \
+        clearTimeout(timeout); \
+        if (e.data == 'start') { \
+          timeout = setTimeout(function() { postMessage({}); }, " + delay + "); \
+        } \
+      } \
+    "]);
+
+    try {
+      var worker = new Worker(window.URL.createObjectURL(scriptBlob));
+
+      worker.onmessage = function() {
+        cb();
+        worker.terminate();
+      }
+      worker.postMessage('start');
+    } catch (e) {
+      worker = false;
+    }
+
+    return worker;
+  } else {
+    return setTimeout(cb, delay)
+  }
+}
+
+function clearWorkerTimeout(worker) {
+  if (isNumeric(worker)) {
+    clearTimeout(worker);
+  } else {
+    worker.terminate();
+  }
+}
+
 try{stManager.done('common.js');}catch(e){}
