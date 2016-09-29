@@ -462,7 +462,7 @@ var MoneyTransfer = {
     hide('payments_money_transfer_iframe');
     show('payments_money_transfer_wrap', 'payments_money_transfer_buttons');
     box.changed = false;
-    box.setOptions({width: 450});
+    box.setOptions({width: 480});
     box.setBackTitle(false);
   },
   startCheckStatus: function(data) {

@@ -10111,8 +10111,8 @@ function setWorkerTimeout(cb, delay) {
       var worker = new Worker(window.URL.createObjectURL(scriptBlob));
 
       worker.onmessage = function() {
-        cb();
         worker.terminate();
+        cb();
       }
       worker.postMessage('start');
     } catch (e) {
