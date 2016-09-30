@@ -496,7 +496,7 @@ var MoneyTransfer = {
       params.accept = chkData.accept;
     }
     ajax.post('al_payments.php', params, {
-      onDone: function(result, text, html) {
+      onDone: function(result, text, html, options) {
         if (!result) {
           return;
         }
@@ -504,9 +504,15 @@ var MoneyTransfer = {
           while (boxQueue.count()) {
             boxQueue.hideLast(false);
           }
-          showDoneBox(text, {out: 6000});
+          if (!options) {
+            showDoneBox(text, {out: 6000});
+          }
 
           if (result == 3) {
+            if (options && options.title) {
+              showFastBox({title: options.title}, text, getLang('payments_remember_card_btn'), MoneyTransfer.rememberAcceptCard.pbind(options), getLang('payments_dont_remember_card_btn'));
+            }
+
             TopNotifier.invalidate();
             if (cur.acceptMoneyBtn && hasClass(domPN(cur.acceptMoneyBtn), 'feedback_buttons')) {
               re(domPN(cur.acceptMoneyBtn));
@@ -595,6 +601,15 @@ var MoneyTransfer = {
     }
 
     MoneyTransfer.startCheckStatus(data);
+  },
+  rememberAcceptCard: function(options) {
+    var box = curBox() || {},
+        btn = box.btns['ok'][0];
+    ajax.post('al_payments.php?act=a_remember_money_transfer_accept_card', {card_id: options.card_id, hash: options.hash}, {
+      onDone: box.hide,
+      showProgress: lockButton.pbind(btn),
+      hideProgress: unlockButton.pbind(btn)
+    });
   },
   cleanAmount: function(o, event) {
     if (event.keyCode == 13) {
