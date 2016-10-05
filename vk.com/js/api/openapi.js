@@ -594,6 +594,28 @@ if (!VK.xdConnectionCallbacks) {
           }, 500);
           return false;
         }
+
+        if (m == 'messages.allowmessagesfromgroup') {
+          var method_access = '_' + (Math.random()).toString(16).substr(2);
+          var query = VK._protocol + '//vk.com/widget_allow_messages_from_community.php?act=allow_box&group_id=' + parseInt(params.group_id, 10) + '&app_id=' + parseInt(VK._apiId, 10) + '&method_access=' + method_access;
+
+          VK.UI.popup({
+            url: query,
+            width: 560,
+            height: 304
+          });
+
+          var timer = setInterval(function () {
+            if (VK.UI.active.closed) {
+              clearInterval(timer);
+              params.method_access = method_access;
+              VK.Api.call(method, params, cb, queryTry);
+            }
+          }, 500);
+
+          return false;
+        }
+
         return true;
       },
 
