@@ -1976,7 +1976,7 @@ if (!VK.Widgets) {
       options.height = 399;
 
       if (!options.base_domain) {
-        options.base_domain = options.base_domain || VK._protocol + '//new.vk.com';
+        options.base_domain = options.base_domain || VK._protocol + '//vk.com';
       }
 
       var rpcSrv = null;

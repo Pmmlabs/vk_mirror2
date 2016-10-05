@@ -2697,7 +2697,7 @@ function onDocumentClick(e) {
   if (!href.indexOf(location.hostname)) {
     href = href.replace(location.hostname, '');
   }
-  if (vk.dev && location.hostname == 'vk.com' || location.hostname == 'new.vk.com') {
+  if (vk.dev && location.hostname == 'vk.com') {
     href = href.replace(/^(vkontakte\.ru\/|vk\.com\/)/, '/');
   }
   var opts = {};
@@ -7538,11 +7538,9 @@ function checkMp4(callback) {
   function _resolve(canPlay) {
     if (_resolved) return;
     _resolved = true;
-    if (canPlay) {
-      ls.set('video_can_play_mp4', 1);
-    } else {
-      // sessionStorage instead of localStorage because browser may begin support mp4 playback later
-      sessionStorage.setItem('video_can_play_mp4', intval(canPlay));
+    var storage = canPlay ? window.localStorage : window.sessionStorage;
+    if (storage) {
+      storage.setItem('video_can_play_mp4', intval(canPlay));
     }
     callback(canPlay);
   }

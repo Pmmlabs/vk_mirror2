@@ -5613,7 +5613,7 @@ function videoCallback(params) {
 }
 
 function checkMp4(callback) {
-  if (ls.get('video_can_play_mp4')) {
+  if (window.localStorage && localStorage.getItem('video_can_play_mp4')) {
     callback(true);
     return;
   }
@@ -5640,11 +5640,9 @@ function checkMp4(callback) {
   function _resolve(canPlay) {
     if (_resolved) return;
     _resolved = true;
-    if (canPlay) {
-      ls.set('video_can_play_mp4', 1);
-    } else {
-      // sessionStorage instead of localStorage because browser may begin support mp4 playback later
-      sessionStorage.setItem('video_can_play_mp4', intval(canPlay));
+    var storage = canPlay ? window.localStorage : window.sessionStorage;
+    if (storage) {
+      storage.setItem('video_can_play_mp4', intval(canPlay));
     }
     callback(canPlay);
   }
