@@ -9457,7 +9457,7 @@ function langDate(rawDate, langKey, offset, months, onlyDate, addPrep) {
     .replace('{am_pm}', amPm);
 }
 
-function getShortDate(rawDate, shift, nice, months) {
+function getShortDate(rawDate, shift, nice, months, notime) {
   rawDate *= 1000;
   if (typeof nice === 'undefined') {
     nice = true;
@@ -9474,7 +9474,7 @@ function getShortDate(rawDate, shift, nice, months) {
   curTime = Date.now();
   curDate = new Date(curTime);
   date = new Date(rawDate + shift);
-  if (rawDate > curTime && rawDate - curTime < 86400 * 1000 &&  curDate.getDate() == date.getDate()) {
+  if (!notime && rawDate > curTime && rawDate - curTime < 86400 * 1000 &&  curDate.getDate() == date.getDate()) {
     return langDate(rawDate, '{hour}:{minute} {am_pm}', shift, [], !nice);
   } else if (date.getYear() != curDate.getYear() || rawDate < curTime - 86400 * 182 * 1000) {
     return langDate(rawDate, getLang('global_date', 'raw'), shift, months, !nice);
@@ -10092,6 +10092,24 @@ window.AudioMessagePlayer = {
     });
   }
 };
+
+
+function repaintFixedElements(fixed) {
+  var CLASS = 'safari-repaint';
+
+  fixed.forEach(function(el) {
+    if (hasClass(el, CLASS)) {
+      removeClass(el, CLASS);
+    }
+    addClass(el, CLASS);
+  });
+
+  setTimeout(function() {
+    fixed.forEach(function(el) {
+      removeClass(el, CLASS);
+    });
+  }, 100);
+}
 
 function setWorkerTimeout(cb, delay) {
   if (window.Worker && window.Blob) {

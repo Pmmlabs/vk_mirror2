@@ -44,9 +44,7 @@ init: function(txt, opts) {
 
     }
 
-    addEvent(window, 'mousemove', function(e) {
-      Emoji.preventMouseOver = false;
-    });
+    addEvent(window, 'mousemove', Emoji.preventMouseOverHandle);
 
     addEvent(txt, browser.opera ? 'click' : 'mousedown', function(e) {
       if (e.target && e.target.tagName == 'IMG') {
@@ -211,6 +209,10 @@ init: function(txt, opts) {
 
   Emoji.opts[Emoji.last] = opts;
   return Emoji.last++;
+},
+
+preventMouseOverHandle: function() {
+  Emoji.preventMouseOver = false;
 },
 
 lcRecv: function(data) {

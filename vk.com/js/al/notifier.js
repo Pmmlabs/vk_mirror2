@@ -947,7 +947,11 @@ Notifier = {
     curNotifier.uiNotifications.push([notification, vkNow()]);
     notification.onclick = function (e) {
       window.focus();
-      eval(ev.onclick);
+      if (ev.onclick.substr(0, 2) === "IM" && cur.module !== "im") {
+        FastChat.selectPeer(intval(ev.author_id));
+      } else {
+        eval(ev.onclick);
+      }
       Notifier.hideEvent(ev);
     };
     notification.onclose = function () {
