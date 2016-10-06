@@ -59,7 +59,7 @@
       var radius = '-webkit-border-radius: {v};-moz-border-radius: {v};border-radius: {v};',
         strs = {
           domain: this._base_domain,
-          table: '<table cellspacing="0" cellpadding="0" style="position: relative; cursor: pointer; width: auto; line-height: normal; border: 0;" ',
+          table: '<table cellspacing="0" cellpadding="0" style="position: relative; cursor: pointer; width: auto; line-height: normal; border: 0; direction: ltr;" ',
           is2x: window.devicePixelRatio >= 2 ? '_2x' : '',
           i: index,
           a2: '</a>',

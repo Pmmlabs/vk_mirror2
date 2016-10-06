@@ -786,7 +786,6 @@ function onLoaded(fn) {
   }
 }
 
-
 /* Ajax */
 
 function serializeForm(form) {
