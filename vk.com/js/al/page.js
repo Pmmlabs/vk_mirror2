@@ -3247,7 +3247,7 @@ var Wall = {
     if (!names) return false;
     var greetings = [];
     each(names, function() {
-      if (this[1]) {
+      if (this[1] && typeof this[1] == 'string') {
         greetings.push(escapeRE(this[1]));
       }
     });
