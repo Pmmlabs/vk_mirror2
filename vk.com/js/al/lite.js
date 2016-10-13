@@ -5675,27 +5675,32 @@ function checkMp4(callback) {
     return;
   }
 
+  var _timeout;
+  var _resolved;
+
   var v = ce('video');
   if (v.canPlayType && v.canPlayType('video/mp4')) {
     v.onloadedmetadata = _resolve.pbind(true);
     v.onerror = _resolve.pbind(false);
     v.src = '/images/blank.mp4';
     v.load();
-    setTimeout(_resolve.pbind(false), 10000);
+    _timeout = setTimeout(_resolve.pbind(false), 10000);
   } else {
     _resolve(false);
   }
-
-  var _resolved;
 
   function _resolve(canPlay) {
     if (_resolved) return;
     _resolved = true;
     var storage = canPlay ? window.localStorage : window.sessionStorage;
-    if (storage) {
+    try {
       storage.setItem('video_can_play_mp4', intval(canPlay));
-    }
+    } catch(e) {}
     callback(canPlay);
+    clearTimeout(_timeout);
+    v.src = '';
+    v.load();
+    v = v.onloadedmetadata = v.onerror = null;
   }
 }
 

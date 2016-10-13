@@ -44,7 +44,7 @@ window.vkTabLoaded = Date.now();
 
 var cur = {destroy: [], nav: []}; // Current page variables and navigation map.
 var browser = {
-  version: (_ua.match( /.+(?:me|ox|on|rv|it|era|opr|ie)[\/: ]([\d.]+)/ ) || [0,'0'])[1],
+  version: (_ua.match( /.+(?:me|ox|on|rv|it|era|opr|ie|edge)[\/: ]([\d.]+)/ ) || [0,'0'])[1],
   opera: (/opera/i.test(_ua) || /opr/i.test(_ua)),
   vivaldi: /vivaldi/i.test(_ua),
   msie: (/msie/i.test(_ua) && !/opera/i.test(_ua) || /trident\//i.test(_ua)) || /edge/i.test(_ua),
@@ -4221,6 +4221,14 @@ function comScoreUDM(url, referrer) {
 function updateOtherCounters(url, referrer) {
   if (vk.zero) return;
   referrer = referrer || document.referrer;
+  var ignoreRe = [
+    new RegExp('(\\/login)(\\?).*$')
+  ];
+  for (var i=0; i<ignoreRe.length; ++i) {
+    if (url.match(ignoreRe[i])) {
+      return ;
+    }
+  }
   var cleanRe = [
     [new RegExp('(\\/(?:write|mail|im|al_im.php))(\\?[a-z0-9&=\\-_]*)?$'), '$1'],
     [new RegExp('(\\/write)(\\d*)(\\?[a-zA-Z0-9&=\\-_]*)?$'), '$1']
@@ -7367,7 +7375,7 @@ function showVideo(videoId, listId, options, ev) {
       act: 'show',
       video: videoId,
       list: listId,
-      autoplay: (options.autoplay) ? 1 : 0,
+      autoplay: options.autoplay ? 1 : 0,
       ad_video: options.ad_video,
       module: options.module || currentModule() || '',
       svids: options.svids,
@@ -7399,30 +7407,51 @@ function showInlineVideo(videoId, listId, options, ev, thumb) {
   if (attr(thumb, 'data-loading')) return;
 
   options = options || {};
-  options.params = options.params || {act: 'show_inline', video: videoId, list: listId, autoplay: (options.autoplay) ? 1 : 0, module: options.module || cur.module || ''};
-  if (!trim(options.params.module)) {
-    extend(options.params, { _nol: JSON.stringify(nav.objLoc) });
-  }
+
   var h = thumb.clientHeight,
       w = thumb.clientWidth,
       btn = domByClass(thumb, 'page_post_video_play_inline');
 
-  extend(options.params, {width: w, height: h});
-  extend(options.params, options.addParams);
+  var params = {
+    video: videoId,
+    list: listId,
+    autoplay: options.autoplay,
+    module: options.module
+  };
+  extend(params, options.addParams);
 
-  options.onDone = function (title, html, js, opts) {
+  showProgress();
+
+  preloadInlineVideo(params, function(success, data) {
+    hideProgress();
+    if (success) {
+      onDone.apply(null, data);
+    } else {
+      onFail.apply(null, data);
+    }
+  }, options.cache);
+
+  if (!cur.videoInlinePlayerDestroyerSet) {
+    cur.destroy.push(destroyInlineVideoPlayer);
+    cur.videoInlinePlayerDestroyerSet = 1;
+  }
+
+  vkImage().src = '//vk.com/rtrg?r=w*Z1Flwi3QdbWaoLMc7zOA*7Cr4Nrtojr9otHjsjIhsb2CVqRWalgbvxZw3MzxZa6be3Siu2XY3gvK5fysYtWLWgNwHMpjRTupSGZrcGRNlj7fduqq9*t7ij6CX4aMcBTD5be8mIXJsbTsvP8Zl2RZEd76a4FTuCOFqzMxqGtFc-';
+
+  return false;
+
+  function onDone(title, html, js, opts) {
     revertLastInlineVideo();
     hide(thumb);
-    var videoWrap = ce('div', {id: 'page_video_inline_wrap' + videoId, className: 'page_video_inline_wrap', innerHTML: html}, {width: w, height: h});
+    var videoWrap = ce('div', {innerHTML: html}, {width: w, height: h});
     _videoLastInlined = [videoWrap, thumb];
     thumb.parentNode.appendChild(videoWrap);
     cur.mvOpts = opts && opts.mvData ? opts.mvData : false;
     try {
       eval('(function () {' + js + '})();');
-    } catch (e) {
-    }
+    } catch (e) {}
 
-    if (!options.params.from_autoplay) {
+    if (!params.from_autoplay) {
       var _n = window.Notifier, _a = window.audioPlayer;
       if (_n) setTimeout(function() { _n.lcSend('video_start'); }, 0);
 
@@ -7434,34 +7463,70 @@ function showInlineVideo(videoId, listId, options, ev, thumb) {
     }
 
     thumb.setAttribute('data-playing', 1);
-  };
-  options.onFail = function(text) {
-    setTimeout(showFastBox({title: getLang('global_error')}, text).hide, 2000);
-    return true;
   }
-  options.showProgress = function () {
+  function onFail(text) {
+    if (params.from_autoplay) return;
+    setTimeout(showFastBox(getLang('global_error'), text).hide, 2000);
+  }
+  function showProgress() {
     thumb.setAttribute('data-loading', 1);
     if (!options.no_progress) {
       addClass(btn, 'page_post_video_play_inline_loading');
       val(btn, getProgressHtml());
     }
-  };
-  options.hideProgress = function () {
+  }
+  function hideProgress() {
     thumb.removeAttribute('data-loading');
     if (!options.no_progress) {
       removeClass(btn, 'page_post_video_play_inline_loading');
       val(btn, '');
     }
-  };
-  stManager.add('videoview.js', function() {
-    ajax.post('al_video.php', options.params, options);
-    vkImage().src = locProtocol + '//vk.com/rtrg?r=w*Z1Flwi3QdbWaoLMc7zOA*7Cr4Nrtojr9otHjsjIhsb2CVqRWalgbvxZw3MzxZa6be3Siu2XY3gvK5fysYtWLWgNwHMpjRTupSGZrcGRNlj7fduqq9*t7ij6CX4aMcBTD5be8mIXJsbTsvP8Zl2RZEd76a4FTuCOFqzMxqGtFc-';
-  });
-  if (!cur.videoInlinePlayerDestroyerSet) {
-    cur.destroy.push(destroyInlineVideoPlayer);
-    cur.videoInlinePlayerDestroyerSet = 1;
   }
-  return false;
+}
+
+function preloadInlineVideo(params, callback, useCache) {
+  cur.videoInlineCallbacks = cur.videoInlineCallbacks  || {};
+
+  var params = extend({
+    autoplay: 0,
+    module: cur.module
+  }, params);
+  if (!trim(params.module)) {
+    params._nol = JSON.stringify(nav.objLoc);
+  }
+  var videoKey = ajx2q(params);
+  var inProgress = !!cur.videoInlineCallbacks[videoKey];
+
+  if (!inProgress) {
+    cur.videoInlineCallbacks[videoKey] = [];
+  }
+  if (callback) {
+    cur.videoInlineCallbacks[videoKey].push(callback);
+  }
+  if (inProgress) return;
+
+  ajax.post('al_video.php?act=show_inline', params, {
+    onDone: function() {
+      var data = [].slice.call(arguments);
+      _resolve(true, data);
+    },
+    onFail: function() {
+      var data = [].slice.call(arguments);
+      _resolve(false, data);
+      return true;
+    },
+    stat: ['videoview.js'],
+    local: 1,
+    cache: useCache
+  });
+
+  function _resolve(success, data) {
+    var callbacks = cur.videoInlineCallbacks[videoKey];
+    delete cur.videoInlineCallbacks[videoKey];
+    each(callbacks, function(i, callback) {
+      callback(success, data);
+    });
+  }
 }
 
 function revertLastInlineVideo(ancestor) {
@@ -7522,27 +7587,32 @@ function checkMp4(callback) {
     return;
   }
 
+  var _timeout;
+  var _resolved;
+
   var v = ce('video');
   if (v.canPlayType && v.canPlayType('video/mp4')) {
     v.onloadedmetadata = _resolve.pbind(true);
     v.onerror = _resolve.pbind(false);
     v.src = '/images/blank.mp4';
     v.load();
-    setTimeout(_resolve.pbind(false), 10000);
+    _timeout = setTimeout(_resolve.pbind(false), 10000);
   } else {
     _resolve(false);
   }
-
-  var _resolved;
 
   function _resolve(canPlay) {
     if (_resolved) return;
     _resolved = true;
     var storage = canPlay ? window.localStorage : window.sessionStorage;
-    if (storage) {
+    try {
       storage.setItem('video_can_play_mp4', intval(canPlay));
-    }
+    } catch(e) {}
     callback(canPlay);
+    clearTimeout(_timeout);
+    v.src = '';
+    v.load();
+    v = v.onloadedmetadata = v.onerror = null;
   }
 }
 
@@ -10132,7 +10202,7 @@ function setWorkerTimeout(cb, delay) {
       }
       worker.postMessage('start');
     } catch (e) {
-      worker = false;
+      return setTimeout(cb, delay)
     }
 
     return worker;
@@ -10147,6 +10217,48 @@ function clearWorkerTimeout(worker) {
   } else {
     worker.terminate();
   }
+}
+
+function loadScript(scriptSrc, options) {
+  var timeout = options.timeout;
+  var onLoad = options.onLoad;
+  var onError = options.onError;
+
+  var script = document.createElement('script');
+  script.addEventListener('load', success);
+  script.addEventListener('readystatechange', success);
+  script.addEventListener('error', fail);
+  script.src = scriptSrc;
+  document.head.appendChild(script);
+
+  if (timeout) {
+    var failTimeout = setTimeout(fail, timeout);
+  }
+
+  function success(evt) {
+    if (script.readyState && script.readyState != 'loaded' && script.readyState != 'complete') return;
+
+    removeListeners();
+    onLoad && onLoad();
+  }
+
+  function fail(evt) {
+    removeListeners();
+    onError && onError();
+  }
+
+  function removeListeners() {
+    clearTimeout(failTimeout);
+    script.removeEventListener('load', success);
+    script.removeEventListener('readystatechange', success);
+    script.removeEventListener('error', fail);
+  }
+
+  return {
+    destroy: function destroy() {
+      removeListeners();
+    }
+  };
 }
 
 try{stManager.done('common.js');}catch(e){}

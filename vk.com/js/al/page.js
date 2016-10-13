@@ -1193,14 +1193,19 @@ var Page = {
   },
 
   initVideoAutoplay: function() {
-    if (!window.MediaSource || typeof MediaSource.isTypeSupported != 'function' || !MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E,mp4a.40.2"') || browser.mobile || browser.safari || browser.vivaldi) {
+    var canPlayHls = window.MediaSource && MediaSource.isTypeSupported && MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E,mp4a.40.2"') && !browser.safari && !browser.vivaldi;
+    if (!canPlayHls || browser.mobile || cur.videoAutoplayScrollHandler || !window.preloadInlineVideo) {
       return;
     }
 
     var fixedHeaderHeight = getSize('page_header')[1];
 
     var scrollHandler = debounce(function() {
-      if (layers.visible) return;
+      if (layers.visible || window.mvcur && mvcur.mvShown) return;
+
+      var curPlayer = cur.videoInlinePlayer;
+      if (curPlayer && curPlayer.isFullscreen()) return;
+
       var thumbs = geByClass('page_video_autoplayable');
       var thumbsNum = thumbs.length;
       if (!thumbsNum) return;
@@ -1210,9 +1215,26 @@ var Page = {
       var activeSpace = Math.min(viewportHeight, 800);
       var activeTop = viewportMiddle - activeSpace/2;
       var activeBottom = viewportMiddle + activeSpace/2;
+      var scrollY = scrollGetY();
 
-      for (var i = thumbsNum; i--; ) {
-        var thumb = thumbs[i];
+      if (curPlayer && curPlayer.isFromAutoplay() && !curPlayer.isTouchedByUser()) {
+        var rect = curPlayer.el.getBoundingClientRect();
+        var inViewport = rect.top > activeTop && rect.bottom < activeBottom;
+        if (inViewport) {
+          if (curPlayer.getState() == 'paused') {
+            Videoview.togglePlay(true);
+          }
+          return;
+        } else {
+          Videoview.togglePlay(false);
+        }
+      }
+
+      var index = thumbsNum;
+      var preloadIndex = -1;
+
+      while (index--) {
+        var thumb = thumbs[index];
         var isLoading = !!attr(thumb, 'data-loading');
         var isPlaying = !!attr(thumb, 'data-playing');
         var rect = (isPlaying ? domNS(thumb) : thumb).getBoundingClientRect();
@@ -1221,20 +1243,35 @@ var Page = {
 
         var inViewport = rect.top > activeTop && rect.bottom < activeBottom;
 
-        if (inViewport && !isPlaying && !isLoading) {
-          var videoId = attr(thumb, 'data-video-id');
-          var listId = attr(thumb, 'data-list-id');
-          var postId = attr(domClosest('post', thumb), 'data-post-id');
-          showInlineVideo(videoId, listId, {
-            autoplay: 1,
-            no_progress: 1,
-            cache: 1,
-            addParams: {post_id: postId, from_autoplay: 1}
-          }, false, thumb);
+        if (inViewport) {
+          if (!isPlaying && !isLoading) {
+            var params = _getVideoParams(thumb);
+            showInlineVideo(params.video, params.list, {
+              autoplay: 1,
+              no_progress: 1,
+              cache: 1,
+              addParams: params
+            }, false, thumb);
+            cur.videoAutoplayStat = {video: params.video, launched: vkNow(), preloaded: _isPreloaded(params.video)};
+          }
+          preloadIndex = index + 1;
+          break;
+        } else if (rect.top < 0) {
           break;
         }
       }
+
+      if (index < 0 && preloadIndex < 0) { // all videos are below viewport, preload first one
+        preloadIndex = 0;
+      }
+
+      if (preloadIndex > -1 && preloadIndex < thumbsNum) {
+        var nextThumb = thumbs[preloadIndex];
+        preloadInlineVideo(_getVideoParams(nextThumb), false, true);
+      }
     }, 50);
+
+    cur.videoAutoplayScrollHandler = scrollHandler;
 
     addEvent(window, 'scroll', scrollHandler);
     addEvent(window, 'resize', scrollHandler);
@@ -1245,7 +1282,31 @@ var Page = {
       removeEvent(window, 'scroll', scrollHandler);
       removeEvent(window, 'resize', scrollHandler);
       scrollHandler = null;
+      delete cur.videoAutoplayScrollHandler;
     });
+
+    stManager.add(['videoplayer.js', 'videoplayer.css']);
+
+    function _getVideoParams(thumb) {
+      return {
+        video: attr(thumb, 'data-video'),
+        list: attr(thumb, 'data-list'),
+        post_id: attr(domClosest('post', thumb), 'data-post-id'),
+        autoplay: 1,
+        from_autoplay: 1
+      };
+    }
+
+    function _isPreloaded(videoId) {
+      var preloaded = false;
+      each(ajaxCache, function(key, value) {
+        if (key.indexOf('/al_video.php?act=show_inline') == 0 && key.indexOf('video='+videoId) > 0) {
+          preloaded = true;
+          return false;
+        }
+      });
+      return preloaded;
+    }
   },
 
   autoplayPinnedVideo: function(postId, videoRaw, videoHash) {
