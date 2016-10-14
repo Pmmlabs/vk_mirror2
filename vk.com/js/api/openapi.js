@@ -1833,10 +1833,16 @@ if (!VK.Widgets) {
 
   VK.Widgets.AllowMessagesFromCommunity = function (objId, options, groupId) {
     groupId = parseInt(groupId, 10);
-    var height = ({22: 22, 24: 24, 30: 30})[parseInt(options.height, 10) || 24];
 
     if (!options) {
       options = {};
+    }
+
+    var height = ({22: 22, 24: 24, 30: 30})[parseInt(options.height, 10) || 24];
+
+    var key = '';
+    if (options.key) {
+      key = options.key.substr(0, 256);
     }
 
     if (!groupId || groupId < 0) {
@@ -1845,6 +1851,7 @@ if (!VK.Widgets) {
 
     var params = {
       height: height,
+      key: key,
       group_id: groupId
     };
 
