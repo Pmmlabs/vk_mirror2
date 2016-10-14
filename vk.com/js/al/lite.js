@@ -710,6 +710,46 @@ function addLangKeys(keys, global) {
   }
 }
 
+function parseLatin(text){
+  var outtext = text;
+  var lat1 = ['yo','zh','kh','ts','ch','sch','shch','sh','eh','yu','ya','YO','ZH','KH','TS','CH','SCH','SHCH','SH','EH','YU','YA',"'"];
+  var rus1 = ['¸', 'æ', 'õ', 'ö', '÷', 'ù',  'ù',   'ø', 'ý', 'þ', 'ÿ', '¨', 'Æ', 'Õ', 'Ö', '×', 'Ù',  'Ù',   'Ø', 'Ý', 'Þ', 'ß', 'ü'];
+  for (var i = 0, l = lat1.length; i < l; i++) {
+    outtext = outtext.split(lat1[i]).join(rus1[i]);
+  }
+  var lat2 = 'abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCY¸¨';
+  var rus2 = 'àáâãäåçèéêëìíîïðñòóôõöûÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖÛåÅ';
+  for (var i = 0, l = lat2.length; i < l; i++) {
+    outtext = outtext.split(lat2.charAt(i)).join(rus2.charAt(i));
+  }
+  return (outtext == text) ? null : outtext;
+}
+
+function parseCyr(text) {
+  var outtext = text, i,
+      lat1 = ['yo','zh','kh','ts','ch','sch','shch','sh','eh','yu','ya','YO','ZH','KH','TS','CH','SCH','SHCH','SH','EH','YU','YA',"'"],
+      rus1 = ['¸', 'æ', 'õ', 'ö', '÷', 'ù',  'ù',   'ø', 'ý', 'þ', 'ÿ', '¨', 'Æ', 'Õ', 'Ö', '×', 'Ù',  'Ù',   'Ø', 'Ý', 'Þ', 'ß', 'ü'],
+      lat2 = 'abvgdezijklmnoprstufhcyABVGDEZIJKLMNOPRSTUFHCY¸¨',
+      rus2 = 'àáâãäåçèéêëìíîïðñòóôõöûÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖÛåÅ';
+  for (i = 0; i < rus1.length; i++) {
+    outtext = outtext.split(rus1[i]).join(lat1[i]);
+  }
+  for (i = 0; i < rus2.length; i++) {
+    outtext = outtext.split(rus2.charAt(i)).join(lat2.charAt(i));
+  }
+  return (outtext == text) ? null : outtext;
+}
+
+function parseLatKeys(text) {
+  var outtext = text, i;
+      lat = "qwertyuiop[]asdfghjkl;'zxcvbnm,./`",
+      rus = "éöóêåíãøùçõúôûâàïðîëäæýÿ÷ñìèòüáþ.¸";
+  for (i = 0; i < lat.length; i++) {
+    outtext = outtext.split(lat.charAt(i)).join(rus.charAt(i));
+  }
+  return (outtext == text) ? null : outtext;
+}
+
 /* Misc */
 
 window._postsSeen = {};
@@ -2409,7 +2449,12 @@ function domData(el, name, value) {
   }
 
   if (typeof value != 'undefined') {
-    el.setAttribute('data-' + name, value);
+    if (value === null) {
+      el.removeAttribute('data-' + name);
+    } else {
+      el.setAttribute('data-' + name, value);
+    }
+
     return value;
   } else {
     return el.getAttribute('data-' + name);
