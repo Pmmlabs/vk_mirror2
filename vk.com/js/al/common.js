@@ -3392,7 +3392,7 @@ var ajax = {
     url += (url.charAt(url.length - 1) != '?' ? '&' : '') + '_rndVer=' + irand(0, 99999);
     ajax._frameurl = iframeTransport.src = url;
   },
-  plainpost: function(url, query, done, fail, urlonly) {
+  plainpost: function(url, query, done, fail, urlonly, options) {
     var r = ajax._getreq();
     var q = (typeof(query) != 'string') ? ajx2q(query) : query;
     r.onreadystatechange = function() {
@@ -3409,6 +3409,13 @@ var ajax = {
     } catch(e) {
       return false;
     }
+
+    if (options) {
+      each(options, function(key, value) {
+        r[key] = value;
+      });
+    }
+
     if (!urlonly) {
       r.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       r.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
@@ -3861,7 +3868,12 @@ var ajax = {
       o._reqid = 0;
     }
 
-    return o.frame ? ajax.framepost(url, q, done) : ajax.plainpost(url, q, done, fail);
+    var xhrOptions = {};
+    if (o.timeout) {
+      xhrOptions.timeout = o.timeout;
+    }
+
+    return o.frame ? ajax.framepost(url, q, done) : ajax.plainpost(url, q, done, fail, false, xhrOptions);
   },
   tGetParam: function() {
     if (!ajax.tStart || !ajax.tModule) return;
