@@ -7497,8 +7497,6 @@ function showInlineVideo(videoId, listId, options, ev, thumb) {
 }
 
 function preloadInlineVideo(params, callback, useCache) {
-  cur.videoInlineCallbacks = cur.videoInlineCallbacks  || {};
-
   var params = extend({
     autoplay: 0,
     module: cur.module
@@ -7506,16 +7504,6 @@ function preloadInlineVideo(params, callback, useCache) {
   if (!trim(params.module)) {
     params._nol = JSON.stringify(nav.objLoc);
   }
-  var videoKey = ajx2q(params);
-  var inProgress = !!cur.videoInlineCallbacks[videoKey];
-
-  if (!inProgress) {
-    cur.videoInlineCallbacks[videoKey] = [];
-  }
-  if (callback) {
-    cur.videoInlineCallbacks[videoKey].push(callback);
-  }
-  if (inProgress) return;
 
   ajax.post('al_video.php?act=show_inline', params, {
     onDone: function() {
@@ -7533,11 +7521,9 @@ function preloadInlineVideo(params, callback, useCache) {
   });
 
   function _resolve(success, data) {
-    var callbacks = cur.videoInlineCallbacks[videoKey];
-    delete cur.videoInlineCallbacks[videoKey];
-    each(callbacks, function(i, callback) {
+    if (isFunction(callback)) {
       callback(success, data);
-    });
+    }
   }
 }
 
