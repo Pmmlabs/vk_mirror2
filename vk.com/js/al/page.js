@@ -1387,7 +1387,7 @@ var Page = {
     cur.videoAutoplayTooltip = new ElementTooltip(el, {
       autoShow: false,
       content: '<div class="page_video_autoplay_tt_hide" onclick="cur.closeVideoAutoplayTooltip();"></div>' + getLang('global_video_autoplay_hint'),
-      forceSide: 'right',
+      forceSide: cur.module == 'profile' ? 'left' : 'right',
       cls: 'page_video_autoplay_tt',
       offset: [10, 0, 0],
       onHide: function() {
