@@ -4101,6 +4101,12 @@ function leftBlockHide(block, hash, blockData) {
   hide('left_block' + block);
 }
 
+function hideNewsAnnounce(block, hash) {
+  var query = {act: 'hide_block', block: block, hash: hash};
+  ajax.post('al_index.php', query);
+  hide('news_announce_' + block);
+}
+
 function leftAdBlockClose(blockIdSuffix, closeLink) {
 
   setStyle('left_hide' + blockIdSuffix, {visibility: 'hidden'});
@@ -9988,7 +9994,7 @@ ElementTooltip.prototype.updatePosition = function() {
 
       case 'right':
         style = {
-          left: elSize[0] + arrowSize + parentOffset[0],
+          left: elSize[0] + arrowSize + this._opts.offset[0] + parentOffset[0],
           top: elSize[1]/2 - ttelSize[1]/2 + this._opts.offset[1] + parentOffset[1]
         };
         break;

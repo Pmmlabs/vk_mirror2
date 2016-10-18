@@ -231,6 +231,7 @@ WPoll = {
       url: cur.options.poll_url,
       app: cur.options.app,
       hash: cur.options.vote_hash,
+      message: msg,
       part: 1
     }, {
       onDone: function (footer) {

@@ -2138,7 +2138,7 @@ getTabCont: function(optId, selId) {
       var packId = window.emojiStickers[j][0];
       var isActive = window.emojiStickers[j][1];
       var isPromoted = window.emojiStickers[j][3];
-      var isForced = window.emojiStickers[j][4] || forceStickerPack == packId;
+      var isForced = window.emojiStickers[j][4] && forceStickerPack == packId;
       if (!isActive && !isForced) {
         continue;
       }

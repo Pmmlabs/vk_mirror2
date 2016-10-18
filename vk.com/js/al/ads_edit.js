@@ -780,7 +780,8 @@ AdsEdit.showCropPhotoBox = function(photoData) {
   var boxPadding = 25 * 2;
 
   var photoWidth = intval(photoData.photo.match(/width:(\d+)/)[1]);
-  if (photoWidth && photoWidth <= 700 && viewParams.format_type != AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE) {
+  // 725 = 145*5 (*5 -- max photo size after upload)
+  if (photoWidth && photoWidth <= 725 && viewParams.format_type != AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE) {
     var adWidth = 118;
     switch (viewParams.format_type) {
       case AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE:
@@ -792,13 +793,14 @@ AdsEdit.showCropPhotoBox = function(photoData) {
       case AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS: adWidth = 175; break;
       case AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY:   adWidth = 128; break;
       case AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY: adWidth = 128; break;
-      case AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP:     adWidth = 448; break;
+      case AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP:     adWidth = 560; break;
     }
     showOptions.params.width = Math.max(photoWidth + boxPadding + 15 + adWidth, 490);
-  } else if (photoWidth && photoWidth <= 860) {
+  // 1150 - to fit retina for ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG (560*2)
+  } else if (photoWidth && photoWidth <= 1150) {
     showOptions.params.width = photoWidth + boxPadding;
   } else {
-    showOptions.params.width = 900 + boxPadding;
+    showOptions.params.width = 1150 + boxPadding;
   }
 
   showBox('/adsedit?act=crop_photo_box', ajaxParams, showOptions);
@@ -1530,7 +1532,7 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
     disclaimer_specialist:  {value: 0},
     disclaimer_supplements: {value: 0},
     age_restriction:        {value: 0, data: []},
-    photo:                  {value: ''},
+    photo:                  {value: '', box_classes: ''},
     photo_link:             {value: ''},
     video_hash:             {value: '', value_old: ''},
     cost_per_click:         {value: '', edited: false, last_value: ''},
@@ -1562,6 +1564,7 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
     var formatPhotoSizes = [AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_SMALL, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MEDIUM, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_BIG, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_HORIZONTAL, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_COMMUNITY_SQUARE, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE, AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON];
     for (var i in formatPhotoSizes) {
       this.params.photo['value_'+formatPhotoSizes[i]] = '';
+      this.params.photo['box_classes_'+formatPhotoSizes[i]] = '';
       this.params.photo_link['value_'+formatPhotoSizes[i]] = '';
       this.params.photo_link['value_default_'+formatPhotoSizes[i]] = '';
     }
@@ -2765,7 +2768,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         if (((paramValue == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP) || (paramValueOld == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP)) && (paramValueOld != paramValue)) {
           animate(this.preview.layout, {height: 0}, 200, function () {
             setTimeout(function () {
-              animate(this.preview.layout, {height: 291}, 200);
+              animate(this.preview.layout, {height: 315+15}, 200); // ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG height + 15px padding
             }.bind(this), 400);
           }.bind(this));
           delayMs = 200;
@@ -3661,10 +3664,12 @@ AdsViewEditor.prototype.updatePhotoData = function(formatPhotoSize) {
   var formatPhotoSizeCur = this.getFormatPhotoSize();
   formatPhotoSize = formatPhotoSize || formatPhotoSizeCur;
   var valueBySize = 'value_' + formatPhotoSize;
+  var boxClassesBySize = 'box_classes_' + formatPhotoSize;
 
   if (formatPhotoSize === formatPhotoSizeCur && formatPhotoSize !== AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON) {
-    this.params.photo.value      = this.params.photo[valueBySize];
-    this.params.photo_link.value = this.params.photo_link[valueBySize];
+    this.params.photo.value       = this.params.photo[valueBySize];
+    this.params.photo.box_classes = this.params.photo[boxClassesBySize];
+    this.params.photo_link.value  = this.params.photo_link[valueBySize];
   }
 
   this.updatePhotoLink(formatPhotoSize);
@@ -3672,9 +3677,10 @@ AdsViewEditor.prototype.updatePhotoData = function(formatPhotoSize) {
 
 AdsViewEditor.prototype.updatePhotoLink = function(formatPhotoSize) {
   var valueBySize = 'value_' + formatPhotoSize;
+  var boxClassesBySize = 'box_classes_' + formatPhotoSize;
 
   if (this.params.photo_link[valueBySize] || this.params.photo_link[valueBySize] === null || !this.params.photo[valueBySize]) {
-    this.updatePreview((formatPhotoSize === AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON) ? 'photo_icon' : 'photo');
+    this.loadPhotoLink(formatPhotoSize);
     return;
   }
   var lockHash = 'update_photo_link_' + formatPhotoSize + '_' + this.params.photo[valueBySize];
@@ -3691,15 +3697,29 @@ AdsViewEditor.prototype.updatePhotoLink = function(formatPhotoSize) {
 
   ajax.post('/adsedit?act=get_photo_link', ajaxParams, {onDone: onDone.bind(this), onFail: onFail.bind(this)})
 
-  function onDone(photoLink) {
+  function onDone(result) {
     Ads.unlock(lockHash);
     if (this.params.photo[valueBySize] == ajaxParams.photo) {
-      this.params.photo_link[valueBySize] = (photoLink || null);
+      this.params.photo[boxClassesBySize] = (result.photo_box_classes || '');
+      this.params.photo_link[valueBySize] = (result.photo_link || null);
+
       this.updatePhotoData(formatPhotoSize);
     }
   }
   function onFail() {
     Ads.unlock(lockHash);
+  }
+}
+
+AdsViewEditor.prototype.loadPhotoLink = function(formatPhotoSize, delayed) {
+  if (!delayed && this.params.photo_link.value) {
+    var imageObject    = vkImage();
+    imageObject.onload = imageObject.onerror = this.loadPhotoLink.bind(this, formatPhotoSize, true);
+    imageObject.src    = this.params.photo_link.value;
+    return;
+  }
+  if (formatPhotoSize === this.getFormatPhotoSize()) {
+    this.updatePreview((formatPhotoSize === AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON) ? 'photo_icon' : 'photo');
   }
 }
 
@@ -4328,7 +4348,6 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
       var isGroupsOnly   = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY);
       var isBigApp       = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP);
       var isMobile       = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE);
-      var isBigImage     = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_BIG_IMAGE);
       var isAndroid      = (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID);
       var isIphone       = (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE);
       var isWphone       = (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE);
@@ -4342,7 +4361,6 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
         toggleClass(elems[i], 'groups_only',   !!isGroupsOnly);
         toggleClass(elems[i], 'big_app',       !!isBigApp);
         toggleClass(elems[i], 'mobile',        !!isMobile);
-        toggleClass(elems[i], 'big_image',     !!isBigImage);
         toggleClass(elems[i], 'android',       !!isAndroid);
         toggleClass(elems[i], 'iphone',        !!(isIphone || isWphone)); // isWphone - temporary
         toggleClass(elems[i], 'promoted_post', !!isPromotedPost);
@@ -4438,7 +4456,11 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
         var specialValue = ((this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO) ? 'value_empty_' : 'value_default_') + formatPhotoSize + photoLinkSuffix;
         this.preview[previewParamName].src = this.params.photo_link[specialValue] || '';
       }
-      toggleClass(this.preview.photo_box, 'promotion', !!(this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY));
+      var photoBoxClasses = ['promotion', 'big_image', 'legacy'];
+      for (var i in photoBoxClasses) {
+        var className = photoBoxClasses[i];
+        toggleClass(this.preview.photo_box, className, !!(this.params.photo.box_classes && this.params.photo.box_classes.indexOf(className) != -1));
+      }
       break;
     case 'photo_icon':
       this.preview[previewParamName].src = (this.params.photo['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON] ? this.params.photo_link['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON] : this.params.photo_link['value_default_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON]);

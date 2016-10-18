@@ -189,13 +189,10 @@
       this._gens[index].count = count;
       var elem = this._ge('vkshare'+index);
       if (elem) {
-        var row = elem.rows[0];
-        if (count) {
-          var c = this._ge('vkshare_cnt'+index);
-          c.innerHTML = count;
-          row.cells[2].firstChild.style.display = 'block';
-        } else {
-          row.cells[2].firstChild.style.display = 'none';
+        var counter = this._ge('vkshare_cnt'+index);
+        if (counter) {
+          if (count) counter.innerHTML = count;
+          elem.rows[0].cells[2].firstChild.style.display = count ? 'block' : 'none';
         }
       }
     }
