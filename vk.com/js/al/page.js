@@ -172,6 +172,20 @@ var Page = {
     });
     cancelEvent(ev);
   },
+  toggleMessagesFromCommunity: function(btn, hash, act, ev) {
+    if (cur.toggleMessagesFromCommunityAct != undefined) {
+      act = cur.toggleMessagesFromCommunityAct;
+    }
+    ajax.post('al_groups.php', {act: 'a_toggle_messages_from_community', allow: act ? 1 : 0, oid: cur.oid, hash: hash}, {
+      onDone: function(text) {
+        val(btn, text);
+        cur.toggleMessagesFromCommunityAct = !act;
+      },
+      showProgress: Page.actionsDropdownLock.pbind(btn),
+      hideProgress: Page.actionsDropdownUnlock.pbind(btn)
+    });
+    cancelEvent(ev);
+  },
   showPageMembers: function(ev, oid, tab) {
     if (cur.viewAsBox) {
       cur.viewAsBox();
@@ -1192,14 +1206,14 @@ var Page = {
     });
   },
 
-  initVideoAutoplay: function(canPlayMp4) {
-    if (browser.mobile || (browser.safari && vk.id != 19220683) || canPlayMp4 === false || cur.videoAutoplayScrollHandler || !window.preloadInlineVideo) {
+  initVideoAutoplay: function(noHlsMaxDuration, canPlayMp4) {
+    if (browser.mobile || canPlayMp4 === false || cur.videoAutoplayScrollHandler) {
       return;
     }
 
     if (isUndefined(canPlayMp4)) {
       checkMp4(function(canPlay) {
-        Page.initVideoAutoplay(canPlay);
+        Page.initVideoAutoplay(noHlsMaxDuration, canPlay);
       });
       return;
     }
@@ -1224,32 +1238,39 @@ var Page = {
       var activeBottom = viewportMiddle + activeSpace/2;
       var scrollY = scrollGetY();
 
-      if (curPlayer && curPlayer.isFromAutoplay() && !curPlayer.isTouchedByUser()) {
+      if (curPlayer) {
+        var isAutoplaying = curPlayer.isFromAutoplay() && !curPlayer.isTouchedByUser();
+        var isPromoPost = domData(domClosest('post', thumb), 'ad-view');
         var rect = curPlayer.el.getBoundingClientRect();
         var inViewport = rect.top > activeTop && rect.bottom < activeBottom;
+        if (isPromoPost) {
+          inViewport = rect.bottom > activeTop && rect.bottom < activeBottom || rect.top > activeTop && rect.top < activeBottom;
+        }
         if (inViewport) {
-          if (curPlayer.getState() == 'paused') {
-            Videoview.togglePlay(true);
+          if (isAutoplaying && curPlayer.getState() == 'paused') {
+            curPlayer.play();
           }
           return;
-        } else if (!curPlayer.isActiveLive()) {
-          Videoview.togglePlay(false);
+        } else if (isAutoplaying && !curPlayer.isActiveLive()) {
+          curPlayer.pause();
         }
       }
 
       var index = thumbsNum;
-      var preloadIndex = -1;
-
       while (index--) {
         var thumb = thumbs[index];
-        if (!canPlayHls && domData(thumb, 'duration') > 5*60) continue;
-        var isLoading = domData(thumb, 'data-loading');
-        var isPlaying = domData(thumb, 'data-playing');
+        if (!canPlayHls && intval(domData(thumb, 'duration')) > noHlsMaxDuration) continue;
+        var isLoading = domData(thumb, 'loading');
+        var isPlaying = domData(thumb, 'playing');
+        var isPromoPost = domData(domClosest('post', thumb), 'ad-view');
         var rect = (isPlaying ? domNS(thumb) : thumb).getBoundingClientRect();
 
         if (!rect.width || !rect.height) continue;
 
         var inViewport = rect.top > activeTop && rect.bottom < activeBottom;
+        if (isPromoPost && !curPlayer) {
+          inViewport = rect.bottom > activeTop && rect.bottom < activeBottom || rect.top > activeTop && rect.top < activeBottom;
+        }
 
         if (inViewport) {
           if (!isPlaying && !isLoading) {
@@ -1263,21 +1284,23 @@ var Page = {
             cur.videoAutoplayStat = {video: params.video, launched: vkNow(), preloaded: _isPreloaded(params.video)};
             Page.showVideoAutoplayTooltip(domPN(thumb));
           }
-          preloadIndex = index + 1;
           break;
-        } else if (rect.top < 0) {
+        } else if (rect.top <= activeTop) {
           break;
         }
       }
 
-      if (index < 0 && preloadIndex < 0) { // all videos are below viewport, preload first one
-        preloadIndex = 0;
-      }
-
-      if (preloadIndex > -1 && preloadIndex < thumbsNum) {
+      var preloadIndex = index + 1;
+      do {
         var nextThumb = thumbs[preloadIndex];
-        preloadInlineVideo(_getVideoParams(nextThumb), false, true);
-      }
+        if (nextThumb && (canPlayHls || intval(domData(nextThumb, 'duration')) <= noHlsMaxDuration)) {
+          var params = _getVideoParams(nextThumb);
+          if (!_isPreloaded(params['video'])) {
+            preloadInlineVideo(params, false, true);
+          }
+          break;
+        }
+      } while (++preloadIndex < thumbsNum);
     }, 50);
 
     cur.videoAutoplayScrollHandler = scrollHandler;
@@ -1309,7 +1332,7 @@ var Page = {
     function _isPreloaded(videoId) {
       var preloaded = false;
       each(ajaxCache, function(key, value) {
-        if (key.indexOf('/al_video.php?act=show_inline') == 0 && key.indexOf('video='+videoId) > 0) {
+        if (key.indexOf('/al_video.php?act=show_inline') == 0 && key.indexOf('&video='+videoId) > 0) {
           preloaded = true;
           return false;
         }
