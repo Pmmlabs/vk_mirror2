@@ -172,6 +172,11 @@ var Page = {
     });
     cancelEvent(ev);
   },
+  showMessagesFromCommunityTooltip: function (btn, baseState, text) {
+    if (cur.toggleMessagesFromCommunityAct == undefined && baseState == 0) {
+      showTooltip(btn, {text: text, dir: 'auto'});
+    }
+  },
   toggleMessagesFromCommunity: function(btn, hash, act, ev) {
     if (cur.toggleMessagesFromCommunityAct != undefined) {
       act = cur.toggleMessagesFromCommunityAct;
@@ -1240,7 +1245,7 @@ var Page = {
 
       if (curPlayer) {
         var isAutoplaying = curPlayer.isFromAutoplay() && !curPlayer.isTouchedByUser();
-        var isPromoPost = domData(domClosest('post', thumb), 'ad-view');
+        var isPromoPost = domData(domClosest('post', curPlayer.el), 'ad-view');
         var rect = curPlayer.el.getBoundingClientRect();
         var inViewport = rect.top > activeTop && rect.bottom < activeBottom;
         if (isPromoPost) {

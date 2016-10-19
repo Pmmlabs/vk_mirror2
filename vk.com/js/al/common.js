@@ -7511,6 +7511,11 @@ function preloadInlineVideo(params, callback, useCache) {
     params._nol = JSON.stringify(nav.objLoc);
   }
 
+  var stat = ['videoview.js'];
+  if (params.from_autoplay) {
+    stat.push('videoplayer.js', 'videoplayer.css', 'hls.min.js');
+  }
+
   ajax.post('al_video.php?act=show_inline', params, {
     onDone: function() {
       var data = [].slice.call(arguments);
@@ -7521,7 +7526,7 @@ function preloadInlineVideo(params, callback, useCache) {
       _resolve(false, data);
       return true;
     },
-    stat: ['videoview.js'],
+    stat: stat,
     local: 1,
     cache: useCache
   });
