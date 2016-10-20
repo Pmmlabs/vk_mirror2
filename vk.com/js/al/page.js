@@ -1286,6 +1286,7 @@ var Page = {
               cache: 1,
               addParams: params
             }, false, thumb);
+            _sendLoadEvent(params);
             cur.videoAutoplayStat = {video: params.video, launched: vkNow(), preloaded: _isPreloaded(params.video)};
             Page.showVideoAutoplayTooltip(domPN(thumb));
           }
@@ -1306,7 +1307,7 @@ var Page = {
           break;
         }
       } while (++preloadIndex < thumbsNum);
-    }, 50);
+    }, vk.id % 2 ? 25 : 50);
 
     cur.videoAutoplayScrollHandler = scrollHandler;
 
@@ -1343,6 +1344,15 @@ var Page = {
         }
       });
       return preloaded;
+    }
+
+    function _sendLoadEvent(params) {
+      ajax.post('al_video.php?act=autoplay_stat', {
+        event: 'load',
+        video: params.video,
+        post_id: params.post_id,
+        module: cur.module || ''
+      }, {});
     }
   },
 

@@ -1,271 +1,362 @@
 (function(w) {
-if (w.fastXDM) return;
+  if (w.fastXDM) return;
 
-var handlers = {};
-var onEnvLoad = [];
-var env = {};
+  var handlers  = {};
+  var onEnvLoad = [];
+  var env       = {};
 
-// Key generation
-function genKey() {
-  var key = '';
-  for (i=0;i<5;i++) key += Math.ceil(Math.random()*15).toString(16);
-  return key;
-}
-function waitFor(obj, prop, func, self,  count) {
-  if (obj[prop]) {
-     func.apply(self);
-  } else {
-    count = count || 0;
-    if (count < 1000) setTimeout(function() {
-      waitFor(obj, prop, func, self, count + 1)
+  // Key generation
+  function genKey() {
+    var key = '';
+    for (var i = 0; i < 5; i++) {
+      key += Math.ceil(Math.random() * 15).toString(16);
+    }
+    return key;
+  }
+
+  function waitFor(obj, prop, func, self,  count) {
+    if (obj[prop]) {
+      func.apply(self);
+    } else {
+      count = count || 0;
+      if (count < 1000) {
+        setTimeout(function() {
+          waitFor(obj, prop, func, self, count + 1);
+        }, 0);
+      }
+    }
+  }
+
+  function attachScript(url) {
+    setTimeout(function() {
+      var newScript  = document.createElement('script');
+      newScript.type = 'text/javascript';
+      newScript.src  = url || w.fastXDM.helperUrl;
+      waitFor(document, 'body', function() {
+        document.getElementsByTagName('HEAD')[0].appendChild(newScript);
+      });
     }, 0);
   }
-}
-function attachScript(url) {
-  setTimeout(function() {
-    var newScript = document.createElement('script');
-    newScript.type = 'text/javascript';
-    newScript.src = url || w.fastXDM.helperUrl;
-    waitFor(document, 'body', function() {
-      document.getElementsByTagName('HEAD')[0].appendChild(newScript);
-    });
-  }, 0);
-}
 
-// Env functions
-function getEnv(callback, self) {
-  if (env.loaded) {
-    callback.apply(self, [env]);
-  } else {
-    onEnvLoad.push([self, callback]);
-  }
-}
+  function walkVar(value, clean) {
+    var newValue;
 
-function envLoaded() {
-  env.loaded = true;
-  var i = onEnvLoad.length;
-  while (i--) {
-    onEnvLoad[i][1].apply(onEnvLoad[i][0], [env]);
-  }
-}
-
-function applyMethod(strData, self) {
-  getEnv(function(env) {
-    var data = env.json.parse(strData);
-    if (data[0]) {
-      if (!data[1]) data[1] = [];
-      var i = data[1].length;
-      while (i--) {
-        if (data[1][i]._func) {
-          var funcNum = data[1][i]._func;
-          data[1][i] = function() {
-            var args = Array.prototype.slice.call(arguments);
-            args.unshift('_func'+funcNum);
-            self.callMethod.apply(self, args);
+    switch (typeof value) {
+      case 'string':
+        if (clean) {
+          newValue = value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+        } else {
+          newValue = value.replace(/&#039;/g, '\'').replace(/&quot;/g, '"').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
+        }
+        break;
+      case 'object':
+        if (Object.prototype.toString.apply(value) === '[object Array]') {
+          newValue = [];
+          for (var i = 0, len = value.length; i < len; i++) {
+            newValue[i] = walkVar(value[i], clean);
+          }
+        } else {
+          newValue = {};
+          for (var k in value) {
+            if (Object.hasOwnProperty.call(value, k)) {
+              newValue[k] = walkVar(value[k], clean);
+            }
           }
         }
-      }
-      setTimeout(function() {
-        if (!self.methods[data[0]]) throw Error('fastXDM: Method ' + data[0] + ' is undefined');
-        self.methods[data[0]].apply(self, data[1]);
-      }, 0);
+        break;
+      default:
+        newValue = value;
+        break;
     }
-  });
-}
-// XDM object
-w.fastXDM = {
-  _id: 0,
-  helperUrl: 'https://vk.com/js/api/xdmHelper.js',
 
-  Server: function(methods, filter) {
-    this.methods = methods || {};
-    this.id = w.fastXDM._id++;
-    this.filter = filter;
-    this.key = genKey();
-    this.methods['%init%'] = this.methods['__fxdm_i'] = function() {
-      w.fastXDM.run(this.id);
-      if (this.methods['onInit']) this.methods['onInit']();
-    };
-    this.frameName = 'fXD'+this.key;
-    this.server = true;
-    handlers[this.key] = [applyMethod, this];
-  },
+    return newValue;
+  }
 
-  Client: function(methods) {
-    this.methods = methods || {};
-    this.id = w.fastXDM._id++;
-    w.fastXDM.run(this.id);
-    if (window.name.indexOf('fXD') == 0) {
-      this.key = window.name.substr(3);
+  // Env functions
+  function getEnv(callback, self) {
+    if (env.loaded) {
+      callback.apply(self, [env]);
     } else {
-      throw Error('Wrong window.name property.');
+      onEnvLoad.push([self, callback]);
     }
-    this.caller = window.parent;
-    handlers[this.key] = [applyMethod, this];
-    this.client = true;
+  }
 
-    w.fastXDM.on('helper', function() {
-      w.fastXDM.onClientStart(this);
-    }, this);
+  function envLoaded() {
+    env.loaded = true;
 
+    for (var i = 0, len = onEnvLoad.length; i < len; i++) {
+      onEnvLoad[i][1].apply(onEnvLoad[i][0], [env]);
+    }
+  }
+
+  function applyMethod(strData, self) {
     getEnv(function(env) {
-      env.send(this, env.json.stringify(['%init%']));
-      var methods = this.methods;
-      setTimeout(function() {
-        if (methods['onInit']) methods['onInit']();
-      }, 0);
-    }, this);
-  },
+      var data = env.json.parse(strData);
+      if (data[0]) {
+        if (!data[1]) data[1] = [];
 
-  onMessage: function(e) {
-    if (!e.data) return false;
-    var key = e.data.substr(0, 5);
-    if (handlers[key]) {
-      var self = handlers[key][1];
-      if (self && (!self.filter || self.filter(e.origin))) {
-        handlers[key][0](e.data.substr(6), self);
+        for (var i = 0, len = data[1].length; i < len; i++) {
+          if (data[1][i] && data[1][i]._func) {
+            var funcNum = data[1][i]._func;
+            data[1][i] = function() {
+              var args = Array.prototype.slice.call(arguments);
+              args.unshift('_func' + funcNum);
+              self.callMethod.apply(self, args);
+            }
+          } else if (self.options.safe) {
+            data[1][i] = walkVar(data[1][i], true);
+          }
+        }
+
+        setTimeout(function() {
+          if (!self.methods[data[0]]) {
+            throw Error('fastXDM: Method ' + data[0] + ' is undefined');
+          }
+          self.methods[data[0]].apply(self, data[1]);
+        }, 0);
       }
-    }
-  },
-
-  setJSON: function(json) {
-    env.json = json;
-  },
-
-  getJSON: function(callback) {
-    if (!callback) return env.json;
-    getEnv(function(env) {
-      callback(env.json);
     });
-  },
-
-  setEnv: function(exEnv) {
-    for (i in exEnv) {
-      env[i] = exEnv[i];
-    }
-    envLoaded();
-  },
-
-  _q: {},
-
-  on: function(key, act, self) {
-    if (!this._q[key]) this._q[key] = [];
-    if (this._q[key] == -1) {
-      act.apply(self);
-    } else {
-      this._q[key].push([act, self]);
-    }
-  },
-
-  run: function(key) {
-    var len = (this._q[key] || []).length;
-    if (this._q[key] && len > 0) {
-      for (var i = 0; i < len; i++) this._q[key][i][0].apply(this._q[key][i][1]);
-    }
-    this._q[key] = -1;
-  },
-
-  waitFor: waitFor
-}
-
-w.fastXDM.Server.prototype.start = function(obj, count) {
-  if (obj.contentWindow) {
-    this.caller = obj.contentWindow;
-    this.frame = obj;
-
-    w.fastXDM.on('helper', function() {
-      w.fastXDM.onServerStart(this);
-    }, this);
-
-  } else { // Opera old versions
-    var self = this;
-    count = count || 0;
-    if (count < 50) setTimeout(function() {
-      self.start.apply(self, [obj, count+1]);
-    }, 100);
   }
-}
 
-function extend(obj1, obj2){
-  for (var i in obj2) {
-    if (obj1[i] && typeof(obj1[i]) == 'object') {
-      extend(obj1[i], obj2[i])
-    } else {
-      obj1[i] = obj2[i];
-    }
-  }
-}
-
-w.fastXDM.Server.prototype.append = function(obj, options) {
-  var div = document.createElement('DIV');
-  div.innerHTML = '<iframe name="'+this.frameName+'" />';
-  var frame = div.firstChild;
-  var self = this;
-  setTimeout(function() {
-    frame.frameBorder = '0';
-    if (options) extend(frame, options);
-    obj.insertBefore(frame, obj.firstChild);
-    self.start(frame);
-  }, 0);
-  return frame;
-}
-
-w.fastXDM.Client.prototype.callMethod = w.fastXDM.Server.prototype.callMethod = function() {
-  var args = Array.prototype.slice.call(arguments);
-  var method = args.shift();
-  var i = args.length;
-  while (i--) {
-    if (typeof(args[i]) == 'function') {
-      this.funcsCount = (this.funcsCount || 0) + 1;
-      var func = args[i];
-      var funcName = '_func' + this.funcsCount;
-      this.methods[funcName] = function() {
-        func.apply(this, arguments);
-        delete this.methods[funcName];
+  function extend(obj1, obj2) {
+    for (var i in obj2) {
+      if (obj1[i] && typeof(obj1[i]) === 'object') {
+        extend(obj1[i], obj2[i])
+      } else {
+        obj1[i] = obj2[i];
       }
-      args[i] = {_func: this.funcsCount};
     }
   }
-  waitFor(this, 'caller', function() {
-    w.fastXDM.on(this.id, function() {
+
+  // XDM object
+  w.fastXDM = {
+    _id: 0,
+    helperUrl: 'https://vk.com/js/api/xdmHelper.js',
+
+    Server: function(methods, filter, options) {
+      this.methods   = methods || {};
+      this.filter    = filter;
+      this.options   = options || {};
+      this.id        = w.fastXDM._id++;
+      this.key       = genKey();
+      this.frameName = 'fXD' + this.key;
+      this.server    = true;
+
+      this.methods['%init%'] = this.methods.__fxdm_i = function() {
+        w.fastXDM.run(this.id);
+        if (this.methods.onInit) {
+          this.methods.onInit();
+        }
+      };
+
+      handlers[this.key] = [applyMethod, this];
+    },
+
+    Client: function(methods, options) {
+      this.methods = methods || {};
+      this.options = options || {};
+      this.id      = w.fastXDM._id++;
+      this.client  = true;
+
+      w.fastXDM.run(this.id);
+
+      if (window.name.indexOf('fXD') === 0) {
+        this.key = window.name.substr(3);
+      } else {
+        throw Error('Wrong window.name property.');
+      }
+
+      this.caller = window.parent;
+
+      handlers[this.key] = [applyMethod, this];
+
+      w.fastXDM.on('helper', function() {
+        w.fastXDM.onClientStart(this);
+      }, this);
+
       getEnv(function(env) {
-        env.send(this, env.json.stringify([method, args]));
+        env.send(this, env.json.stringify(['%init%']));
+
+        var methods = this.methods;
+        setTimeout(function() {
+          if (methods.onInit) {
+            methods.onInit();
+          }
+        }, 0);
+      }, this);
+    },
+
+    onMessage: function(e) {
+      var data = e.data;
+      if (!data) {
+        return false;
+      }
+      if (typeof data !== 'string' && !(data instanceof String)) {
+        return false;
+      }
+
+      var key = data.substr(0, 5);
+      if (handlers[key]) {
+        var self = handlers[key][1];
+        if (self && (!self.filter || self.filter(e.origin))) {
+          handlers[key][0](data.substr(6), self);
+        }
+      }
+    },
+
+    setJSON: function(json) {
+      env.json = json;
+    },
+
+    getJSON: function(callback) {
+      if (!callback) {
+        return env.json;
+      }
+
+      getEnv(function(env) {
+        callback(env.json);
+      });
+    },
+
+    setEnv: function(exEnv) {
+      for (var i in exEnv) {
+        env[i] = exEnv[i];
+      }
+
+      envLoaded();
+    },
+
+    _q: {},
+
+    on: function(key, act, self) {
+      if (!this._q[key]) this._q[key] = [];
+
+      if (this._q[key] == -1) {
+        act.apply(self);
+      } else {
+        this._q[key].push([act, self]);
+      }
+    },
+
+    run: function(key) {
+      var len = (this._q[key] || []).length;
+      for (var i = 0; i < len; i++) {
+        this._q[key][i][0].apply(this._q[key][i][1]);
+      }
+
+      this._q[key] = -1;
+    },
+
+    waitFor: waitFor
+  }
+
+  w.fastXDM.Server.prototype.start = function(obj, count) {
+    if (obj.contentWindow) {
+      this.caller = obj.contentWindow;
+      this.frame  = obj;
+
+      w.fastXDM.on('helper', function() {
+        w.fastXDM.onServerStart(this);
+      }, this);
+    } else { // Opera old versions
+      var self = this;
+      count = count || 0;
+      if (count < 50) {
+        setTimeout(function() {
+          self.start.apply(self, [obj, count + 1]);
+        }, 100);
+      }
+    }
+  }
+
+  w.fastXDM.Server.prototype.destroy = function() {
+    delete handlers[this.key];
+  }
+
+  w.fastXDM.Server.prototype.append = function(obj, options, attrs) {
+    var div       = document.createElement('DIV');
+    div.innerHTML = '<iframe name="' + this.frameName + '" ' + (attrs || '') + '></iframe>';
+    var frame     = div.firstChild;
+    var self      = this;
+
+    setTimeout(function() {
+      frame.frameBorder = '0';
+      if (options) extend(frame, options);
+      obj.insertBefore(frame, obj.firstChild);
+      self.start(frame);
+    }, 0);
+
+    return frame;
+  }
+
+  w.fastXDM.Client.prototype.callMethod = w.fastXDM.Server.prototype.callMethod = function() {
+    var args   = Array.prototype.slice.call(arguments);
+    var method = args.shift();
+
+    for (var i = 0, len = args.length; i < len; i++) {
+      if (typeof(args[i]) === 'function') {
+        this.funcsCount = (this.funcsCount || 0) + 1;
+        var func        = args[i];
+        var funcName    = '_func' + this.funcsCount;
+
+        this.methods[funcName] = function() {
+          func.apply(this, arguments);
+          delete this.methods[funcName];
+        }
+
+        args[i] = {_func: this.funcsCount};
+      } else if (this.options.safe) {
+        args[i] = walkVar(args[i], false);
+      }
+    }
+
+    waitFor(this, 'caller', function() {
+      w.fastXDM.on(this.id, function() {
+        getEnv(function(env) {
+          env.send(this, env.json.stringify([method, args]));
+        }, this);
       }, this);
     }, this);
-  }, this);
-}
-
-if (w.JSON && typeof(w.JSON) == 'object' && w.JSON.parse && w.JSON.stringify && w.JSON.stringify({a:[1,2,3]}).replace(/ /g, '') == '{"a":[1,2,3]}') {
-  env.json = {parse: w.JSON.parse, stringify: w.JSON.stringify};
-} else {
-  w.fastXDM._needJSON = true;
-}
-
-// PostMessage cover
-if (w.postMessage) {
-  env.protocol = 'p';
-  env.send = function(xdm, strData) {
-    // alert(key+':'+strData);
-    xdm.caller.postMessage(xdm.key+':'+strData, "*");
   }
-  if (w.addEventListener) {
-    w.addEventListener("message", w.fastXDM.onMessage, false);
+
+  if (w.JSON && typeof(w.JSON) === 'object' && w.JSON.parse && w.JSON.stringify && w.JSON.stringify({a:[1,2,3]}).replace(/ /g, '') === '{"a":[1,2,3]}') {
+    env.json = {parse: w.JSON.parse, stringify: w.JSON.stringify};
   } else {
-    w.attachEvent("onmessage", w.fastXDM.onMessage);
+    w.fastXDM._needJSON = true;
   }
 
-  if (w.fastXDM._needJSON) {
-    w.fastXDM._onlyJSON = true;
+  // PostMessage cover
+  if (w.postMessage) {
+    env.protocol = 'p';
+    env.send = function(xdm, strData) {
+      var win = (xdm.frame ? xdm.frame.contentWindow : xdm.caller);
+      if (win) {
+        try {
+          win.postMessage(xdm.key + ':' + strData, "*");
+        } catch(e) {
+          window.postMessage.call(win, xdm.key + ':' + strData, "*");
+        }
+      }
+    }
+
+    if (w.addEventListener) {
+      w.addEventListener("message", w.fastXDM.onMessage, false);
+    } else {
+      w.attachEvent("onmessage", w.fastXDM.onMessage);
+    }
+
+    if (w.fastXDM._needJSON) {
+      w.fastXDM._onlyJSON = true;
+      attachScript();
+    } else {
+      envLoaded();
+    }
+  } else {
     attachScript();
-  } else {
-    envLoaded();
   }
-} else {
-  attachScript();
-}
 })(window);
 
-if (typeof(VK) == 'undefined') VK = {};
+if (!window.VK) window.VK = {};
 
 VK._Rpc = null;
 VK._v = false;
@@ -290,84 +381,55 @@ VK.init = function(success, failure, ver) {
 };
 
 VK.initXDConn = function() {
+  VK.fxdm = true;
 
-  if (window.name.length > 10) {
-
-    VK._Rpc = new easyXDM.Rpc({
-      local: '/xd_receiver.html',
-      onReady: function() {
-        //try {
-          while (VK._initQueue.length > 0) {
-            var func = VK._initQueue.pop();
-            if (VK.isFunc(func)) func();
-          }
-        //} catch(e) {}
-        window.vk_onConnectionInit();
-      }
-    },{
-      remote: {
-         callMethod: {},
-         ApiCall: {}
-      },
-      local: {
-        runCallback: function(args) {
-          var eventName;
-          eventName = args.shift();
-          if (VK.isFunc(VK._callbacks[eventName])) VK._callbacks[eventName].apply(VK,args);
+  VK._Rpc = new fastXDM.Client({
+    onInit: function() {
+        while (VK._initQueue.length > 0) {
+          var func = VK._initQueue.pop();
+          if (VK.isFunc(func)) func();
         }
-      }
-    });
-
-  } else {
-    VK.fxdm = true;
-    VK._Rpc = new fastXDM.Client({
-      onInit: function() {
-          while (VK._initQueue.length > 0) {
-            var func = VK._initQueue.pop();
-            if (VK.isFunc(func)) func();
-          }
-        window.vk_onConnectionInit();
-      },
-      runCallback: function(args) {
-        var eventName;
-        eventName = args.shift();
-        if (VK.isFunc(VK._callbacks[eventName])) VK._callbacks[eventName].apply(VK,args);
-      },
-      getHeight: function(callback) {
-        var calcHeight = function() {
-          var height = document.body.offsetHeight;
-          if (height) {
-            if (window.getComputedStyle !== undefined) {
-              var st = window.getComputedStyle(document.body, null);
-              height += parseInt(st.getPropertyValue('margin-top').replace('px', ''));
-              height += parseInt(st.getPropertyValue('margin-bottom').replace('px', ''));
-            } else {
-              height += parseInt(document.body.currentStyle['marginTop'].replace('px', ''));
-              height += parseInt(document.body.currentStyle['marginBottom'].replace('px', ''));
-            }
-            return height;
+      window.vk_onConnectionInit();
+    },
+    runCallback: function(args) {
+      var eventName;
+      eventName = args.shift();
+      if (VK.isFunc(VK._callbacks[eventName])) VK._callbacks[eventName].apply(VK,args);
+    },
+    getHeight: function(callback) {
+      var calcHeight = function() {
+        var height = document.body.offsetHeight;
+        if (height) {
+          if (window.getComputedStyle !== undefined) {
+            var st = window.getComputedStyle(document.body, null);
+            height += parseInt(st.getPropertyValue('margin-top').replace('px', ''));
+            height += parseInt(st.getPropertyValue('margin-bottom').replace('px', ''));
           } else {
-            return document.body.scrollHeight;
+            height += parseInt(document.body.currentStyle['marginTop'].replace('px', ''));
+            height += parseInt(document.body.currentStyle['marginBottom'].replace('px', ''));
           }
+          return height;
+        } else {
+          return document.body.scrollHeight;
         }
-        var resize = function() {
-          VK._Rpc.callMethod('setHeight', calcHeight());
-        }
-
-        setInterval(resize, 1000);
-        document.addEventListener("click", function() {
-          setTimeout(resize, 0);
-        }, false);
-        document.addEventListener("DOMSubtreeModified", function() {
-          setTimeout(resize, 0);
-        });
-        return callback(calcHeight());
       }
-    });
+      var resize = function() {
+        VK._Rpc.callMethod('setHeight', calcHeight());
+      }
 
-    VK._Rpc.ApiCall = function(args, callback) {
-      VK._Rpc.callMethod('ApiCall', args, callback);
+      setInterval(resize, 1000);
+      document.addEventListener("click", function() {
+        setTimeout(resize, 0);
+      }, false);
+      document.addEventListener("DOMSubtreeModified", function() {
+        setTimeout(resize, 0);
+      });
+      return callback(calcHeight());
     }
+  });
+
+  VK._Rpc.ApiCall = function(args, callback) {
+    VK._Rpc.callMethod('ApiCall', args, callback);
   }
 };
 
@@ -478,7 +540,7 @@ VK._protocol = 'https:';
 if (!VK.Widgets) {
   VK.Widgets = (function() {
     var obj = {};
-    var widgetlist = ['Comments', 'CommentsBrowse', 'Auth', 'Group', 'Post', 'Donate', 'Like', 'Poll', 'Recommended', 'Subscribe', 'Ads'];
+    var widgetlist = ['Comments', 'CommentsBrowse', 'Recommended', 'Post', 'Like', 'Poll', 'Group', 'Auth', 'Subscribe', 'ContactUs', 'Ads', 'AllowMessagesFromCommunity', 'CommunityMessages'];
     VK.xdConnectionCallbacks = [];
     var i = widgetlist.length;
     while (i--) (function(f) {
@@ -495,7 +557,7 @@ if (!VK.Widgets) {
             var baseDomain = ((VK._base_domain && VK._base_domain.match(/^(\w+\.)*vk.com$/)) ? VK._base_domain : 'vk.com');
             VK._apiId = data[0];
             VK._browserHash = data[1];
-            VK.addScript(VK._protocol + '//' + baseDomain + '/js/api/openapi.js?133');
+            VK.addScript(VK._protocol + '//' + baseDomain + '/js/api/openapi.js?134');
           });
           VK._openApiAttached = true;
         }
@@ -506,6 +568,17 @@ if (!VK.Widgets) {
   })();
 }
 
-
 /* Obsolete methods */
-VK.External={showPaymentBox:function(a){VK.callMethod("showPaymentBox",a)},showSettingsBox:function(a){VK.callMethod("showSettingsBox",a)},showInstallBox:function(){VK.callMethod("showInstallBox")},showInviteBox:function(){VK.callMethod("showInviteBox")},resizeWindow:function(b,a){VK.callMethod("resizeWindow",b,a)},scrollWindow:function(b,a){VK.callMethod("scrollWindow",b,a)},setLocation:function(a,b){VK.callMethod("setLocation",a,b)},setTitle:function(a){VK.callMethod("setTitle",a)},saveWallPost:function(a){VK.callMethod("saveWallPost",a)},showProfilePhotoBox:function(a){VK.callMethod("showProfilePhotoBox",a)},showMerchantPaymentBox:function(a){VK.callMethod("showMerchantPaymentBox",a)}};
+VK.External = {
+  showPaymentBox: function(a){VK.callMethod("showPaymentBox",a)},
+  showSettingsBox: function(a){VK.callMethod("showSettingsBox",a)},
+  showInstallBox: function(){VK.callMethod("showInstallBox")},
+  showInviteBox: function(){VK.callMethod("showInviteBox")},
+  resizeWindow: function(b,a){VK.callMethod("resizeWindow",b,a)},
+  scrollWindow: function(b,a){VK.callMethod("scrollWindow",b,a)},
+  setLocation: function(a,b){VK.callMethod("setLocation",a,b)},
+  setTitle: function(a){VK.callMethod("setTitle",a)},
+  saveWallPost: function(a){VK.callMethod("saveWallPost",a)},
+  showProfilePhotoBox: function(a){VK.callMethod("showProfilePhotoBox",a)},
+  showMerchantPaymentBox: function(a){VK.callMethod("showMerchantPaymentBox",a)}
+};

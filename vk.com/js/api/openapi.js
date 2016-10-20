@@ -1,14 +1,16 @@
 (function(w) {
   if (w.fastXDM) return;
 
-  var handlers = {};
+  var handlers  = {};
   var onEnvLoad = [];
-  var env = {};
+  var env       = {};
 
-// Key generation
+  // Key generation
   function genKey() {
     var key = '';
-    for (i=0;i<5;i++) key += Math.ceil(Math.random()*15).toString(16);
+    for (var i = 0; i < 5; i++) {
+      key += Math.ceil(Math.random() * 15).toString(16);
+    }
     return key;
   }
 
@@ -17,17 +19,19 @@
       func.apply(self);
     } else {
       count = count || 0;
-      if (count < 1000) setTimeout(function() {
-        waitFor(obj, prop, func, self, count + 1)
-      }, 0);
+      if (count < 1000) {
+        setTimeout(function() {
+          waitFor(obj, prop, func, self, count + 1);
+        }, 0);
+      }
     }
   }
 
   function attachScript(url) {
     setTimeout(function() {
-      var newScript = document.createElement('script');
+      var newScript  = document.createElement('script');
       newScript.type = 'text/javascript';
-      newScript.src = url || w.fastXDM.helperUrl;
+      newScript.src  = url || w.fastXDM.helperUrl;
       waitFor(document, 'body', function() {
         document.getElementsByTagName('HEAD')[0].appendChild(newScript);
       });
@@ -35,35 +39,40 @@
   }
 
   function walkVar(value, clean) {
+    var newValue;
+
     switch (typeof value) {
       case 'string':
         if (clean) {
-          return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+          newValue = value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+        } else {
+          newValue = value.replace(/&#039;/g, '\'').replace(/&quot;/g, '"').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
         }
-        return value.replace(/&#039;/g, '\'').replace(/&quot;/g, '"').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
-
+        break;
       case 'object':
         if (Object.prototype.toString.apply(value) === '[object Array]') {
           newValue = [];
-          for (var i = 0; i < value.length; i++) {
+          for (var i = 0, len = value.length; i < len; i++) {
             newValue[i] = walkVar(value[i], clean);
           }
         } else {
+          newValue = {};
           for (var k in value) {
-            newValue = {};
             if (Object.hasOwnProperty.call(value, k)) {
               newValue[k] = walkVar(value[k], clean);
             }
           }
         }
+        break;
       default:
         newValue = value;
+        break;
     }
 
     return newValue;
   }
 
-// Env functions
+  // Env functions
   function getEnv(callback, self) {
     if (env.loaded) {
       callback.apply(self, [env]);
@@ -74,8 +83,8 @@
 
   function envLoaded() {
     env.loaded = true;
-    var i = onEnvLoad.length;
-    while (i--) {
+
+    for (var i = 0, len = onEnvLoad.length; i < len; i++) {
       onEnvLoad[i][1].apply(onEnvLoad[i][0], [env]);
     }
   }
@@ -85,19 +94,20 @@
       var data = env.json.parse(strData);
       if (data[0]) {
         if (!data[1]) data[1] = [];
-        var i = data[1].length;
-        while (i--) {
+
+        for (var i = 0, len = data[1].length; i < len; i++) {
           if (data[1][i] && data[1][i]._func) {
             var funcNum = data[1][i]._func;
             data[1][i] = function() {
               var args = Array.prototype.slice.call(arguments);
-              args.unshift('_func'+funcNum);
+              args.unshift('_func' + funcNum);
               self.callMethod.apply(self, args);
             }
           } else if (self.options.safe) {
             data[1][i] = walkVar(data[1][i], true);
           }
         }
+
         setTimeout(function() {
           if (!self.methods[data[0]]) {
             throw Error('fastXDM: Method ' + data[0] + ' is undefined');
@@ -108,39 +118,57 @@
     });
   }
 
-// XDM object
+  function extend(obj1, obj2) {
+    for (var i in obj2) {
+      if (obj1[i] && typeof(obj1[i]) === 'object') {
+        extend(obj1[i], obj2[i])
+      } else {
+        obj1[i] = obj2[i];
+      }
+    }
+  }
+
+  // XDM object
   w.fastXDM = {
     _id: 0,
     helperUrl: 'https://vk.com/js/api/xdmHelper.js',
 
     Server: function(methods, filter, options) {
-      this.methods = methods || {};
-      this.id = w.fastXDM._id++;
-      this.options = options || {};
-      this.filter = filter;
-      this.key = genKey();
+      this.methods   = methods || {};
+      this.filter    = filter;
+      this.options   = options || {};
+      this.id        = w.fastXDM._id++;
+      this.key       = genKey();
+      this.frameName = 'fXD' + this.key;
+      this.server    = true;
+
       this.methods['%init%'] = this.methods.__fxdm_i = function() {
         w.fastXDM.run(this.id);
-        if (this.methods.onInit) this.methods.onInit();
+        if (this.methods.onInit) {
+          this.methods.onInit();
+        }
       };
-      this.frameName = 'fXD'+this.key;
-      this.server = true;
+
       handlers[this.key] = [applyMethod, this];
     },
 
     Client: function(methods, options) {
       this.methods = methods || {};
-      this.id = w.fastXDM._id++;
       this.options = options || {};
+      this.id      = w.fastXDM._id++;
+      this.client  = true;
+
       w.fastXDM.run(this.id);
+
       if (window.name.indexOf('fXD') === 0) {
         this.key = window.name.substr(3);
       } else {
         throw Error('Wrong window.name property.');
       }
+
       this.caller = window.parent;
+
       handlers[this.key] = [applyMethod, this];
-      this.client = true;
 
       w.fastXDM.on('helper', function() {
         w.fastXDM.onClientStart(this);
@@ -148,22 +176,30 @@
 
       getEnv(function(env) {
         env.send(this, env.json.stringify(['%init%']));
+
         var methods = this.methods;
         setTimeout(function() {
-          if (methods.onInit) methods.onInit();
+          if (methods.onInit) {
+            methods.onInit();
+          }
         }, 0);
       }, this);
     },
 
     onMessage: function(e) {
-      if (!e.data) return false;
       var data = e.data;
-      if (typeof data != 'string' && !(data instanceof String)) return false;
+      if (!data) {
+        return false;
+      }
+      if (typeof data !== 'string' && !(data instanceof String)) {
+        return false;
+      }
+
       var key = data.substr(0, 5);
       if (handlers[key]) {
         var self = handlers[key][1];
         if (self && (!self.filter || self.filter(e.origin))) {
-          handlers[key][0](e.data.substr(6), self);
+          handlers[key][0](data.substr(6), self);
         }
       }
     },
@@ -173,17 +209,20 @@
     },
 
     getJSON: function(callback) {
-      if (!callback) return env.json;
+      if (!callback) {
+        return env.json;
+      }
+
       getEnv(function(env) {
         callback(env.json);
       });
     },
 
     setEnv: function(exEnv) {
-      var i;
-      for (i in exEnv) {
+      for (var i in exEnv) {
         env[i] = exEnv[i];
       }
+
       envLoaded();
     },
 
@@ -191,6 +230,7 @@
 
     on: function(key, act, self) {
       if (!this._q[key]) this._q[key] = [];
+
       if (this._q[key] == -1) {
         act.apply(self);
       } else {
@@ -200,9 +240,10 @@
 
     run: function(key) {
       var len = (this._q[key] || []).length;
-      if (this._q[key] && len > 0) {
-        for (var i = 0; i < len; i++) this._q[key][i][0].apply(this._q[key][i][1]);
+      for (var i = 0; i < len; i++) {
+        this._q[key][i][0].apply(this._q[key][i][1]);
       }
+
       this._q[key] = -1;
     },
 
@@ -212,18 +253,19 @@
   w.fastXDM.Server.prototype.start = function(obj, count) {
     if (obj.contentWindow) {
       this.caller = obj.contentWindow;
-      this.frame = obj;
+      this.frame  = obj;
 
       w.fastXDM.on('helper', function() {
         w.fastXDM.onServerStart(this);
       }, this);
-
     } else { // Opera old versions
       var self = this;
       count = count || 0;
-      if (count < 50) setTimeout(function() {
-        self.start.apply(self, [obj, count+1]);
-      }, 100);
+      if (count < 50) {
+        setTimeout(function() {
+          self.start.apply(self, [obj, count + 1]);
+        }, 100);
+      }
     }
   }
 
@@ -231,48 +273,43 @@
     delete handlers[this.key];
   }
 
-  function extend(obj1, obj2){
-    for (var i in obj2) {
-      if (obj1[i] && typeof(obj1[i]) == 'object') {
-        extend(obj1[i], obj2[i])
-      } else {
-        obj1[i] = obj2[i];
-      }
-    }
-  }
+  w.fastXDM.Server.prototype.append = function(obj, options, attrs) {
+    var div       = document.createElement('DIV');
+    div.innerHTML = '<iframe name="' + this.frameName + '" ' + (attrs || '') + '></iframe>';
+    var frame     = div.firstChild;
+    var self      = this;
 
-  w.fastXDM.Server.prototype.append = function(obj, options) {
-    var div = document.createElement('DIV');
-    div.innerHTML = '<iframe name="'+this.frameName+'" ></iframe>';
-    var frame = div.firstChild;
-    var self = this;
     setTimeout(function() {
       frame.frameBorder = '0';
       if (options) extend(frame, options);
       obj.insertBefore(frame, obj.firstChild);
       self.start(frame);
     }, 0);
+
     return frame;
   }
 
   w.fastXDM.Client.prototype.callMethod = w.fastXDM.Server.prototype.callMethod = function() {
-    var args = Array.prototype.slice.call(arguments);
+    var args   = Array.prototype.slice.call(arguments);
     var method = args.shift();
-    var i = args.length;
-    while (i--) {
-      if (typeof(args[i]) == 'function') {
+
+    for (var i = 0, len = args.length; i < len; i++) {
+      if (typeof(args[i]) === 'function') {
         this.funcsCount = (this.funcsCount || 0) + 1;
-        var func = args[i];
-        var funcName = '_func' + this.funcsCount;
+        var func        = args[i];
+        var funcName    = '_func' + this.funcsCount;
+
         this.methods[funcName] = function() {
           func.apply(this, arguments);
           delete this.methods[funcName];
         }
+
         args[i] = {_func: this.funcsCount};
       } else if (this.options.safe) {
         args[i] = walkVar(args[i], false);
       }
     }
+
     waitFor(this, 'caller', function() {
       w.fastXDM.on(this.id, function() {
         getEnv(function(env) {
@@ -282,25 +319,26 @@
     }, this);
   }
 
-  if (w.JSON && typeof(w.JSON) == 'object' && w.JSON.parse && w.JSON.stringify && w.JSON.stringify({a:[1,2,3]}).replace(/ /g, '') == '{"a":[1,2,3]}') {
+  if (w.JSON && typeof(w.JSON) === 'object' && w.JSON.parse && w.JSON.stringify && w.JSON.stringify({a:[1,2,3]}).replace(/ /g, '') === '{"a":[1,2,3]}') {
     env.json = {parse: w.JSON.parse, stringify: w.JSON.stringify};
   } else {
     w.fastXDM._needJSON = true;
   }
 
-// PostMessage cover
+  // PostMessage cover
   if (w.postMessage) {
     env.protocol = 'p';
     env.send = function(xdm, strData) {
       var win = (xdm.frame ? xdm.frame.contentWindow : xdm.caller);
       if (win) {
         try {
-          win.postMessage(xdm.key+':'+strData, "*");
+          win.postMessage(xdm.key + ':' + strData, "*");
         } catch(e) {
-          window.postMessage.call(win, xdm.key+':'+strData, "*");
+          window.postMessage.call(win, xdm.key + ':' + strData, "*");
         }
       }
     }
+
     if (w.addEventListener) {
       w.addEventListener("message", w.fastXDM.onMessage, false);
     } else {
@@ -316,12 +354,9 @@
   } else {
     attachScript();
   }
-
 })(window);
 
-
 if (!window.VK) window.VK = {};
-
 
 /*
  * Based on JavaScript implementation of the RSA Data Security, Inc. MD5 Message
@@ -412,9 +447,8 @@ if (!VK.xdConnectionCallbacks) {
     VK.Cookie = {
       _domain: null,
       load: function() {
-        var
-            cookie = document.cookie.match('\\bvk_app_' + VK._apiId + '=([^;]*)\\b'),
-            session;
+        var cookie = document.cookie.match('\\bvk_app_' + VK._apiId + '=([^;]*)\\b')
+        var session;
 
         if (cookie) {
           session = this.decode(cookie[1]);
@@ -1432,24 +1466,6 @@ if (!VK.Widgets) {
     });
   };
 
-  VK.Widgets.PagePoll = function(objId, options, page) {
-    var pData = VK.Util.getPageData();
-    options = options || {};
-    var params = {
-      page: page || 0,
-      norealtime: options.norealtime ? 1 : 0,
-      poll_id: options.pollId || '',
-      url: options.pageUrl || pData.url || location.href,
-      title: options.pageTitle || pData.title,
-      description: options.pageDescription || pData.description
-    };
-    return VK.Widgets._constructor('al_widget_poll.php', objId, options, params, {}, {
-      startHeight: 144,
-      minWidth: 300,
-      width: '100%'
-    });
-  };
-
   VK.Widgets.Community = VK.Widgets.Group = function(objId, options, gid) {
     gid = parseInt(gid, 10);
     if (!gid) {
@@ -1860,137 +1876,6 @@ if (!VK.Widgets) {
     });
   };
 
-  VK.Widgets._constructor = function(widgetUrl, objId, options, params, funcs, defaults, onDone, widgetId, iter) {
-    var obj = document.getElementById(objId);
-    widgetId = widgetId || (++VK.Widgets.count);
-
-    if (!obj) {
-      iter = iter || 0;
-      if (iter > 10) {
-        throw Error('VK.Widgets: object #' + objId + ' not found.');
-      }
-      setTimeout(function() {
-        VK.Widgets._constructor(widgetUrl, objId, options, params, funcs, defaults, onDone, widgetId, iter + 1);
-      }, 500);
-      return widgetId;
-    }
-
-    var ifr, base_domain, width, url, urlQueryString, encodedParam, rpc, iframe, i;
-    options = options || {};
-    defaults = defaults || {};
-    funcs = funcs || {};
-    base_domain = options.base_domain || VK._protocol + '//vk.com';
-    width = (options.width == 'auto') ? obj.clientWidth || '100%' : parseInt(options.width, 10);
-
-    if (options.height) {
-      params.height = options.height;
-      obj.style.height = options.height + 'px';
-    } else {
-      obj.style.height = (defaults.startHeight || 200) + 'px';
-    }
-
-    width = width ? (Math.max(defaults.minWidth || 200, Math.min(10000, width)) + 'px') : '100%';
-
-    if (!params.url) {
-      params.url = options.pageUrl || location.href.replace(/#.*$/, '');
-    }
-    url = base_domain + '/' + widgetUrl;
-    urlQueryString = '';
-    if (!options.noDefaultParams) {
-      urlQueryString += '&app=' + (VK._apiId || '0') + '&width=' + width
-    }
-    urlQueryString += '&_ver=' + VK.version
-    if (VK._iframeAppWidget) {
-      params.iframe_app = 1;
-    }
-    var pData = VK.Util.getPageData();
-    params.url      = params.url     || pData.url || "";
-    params.referrer = params.referrer || document.referrer || "";
-    params.title    = params.title   || pData.title  || document.title || "";
-    for (i in params) {
-      if (i == 'title' && params[i].length > 80) params[i] = params[i].substr(0, 80)+'...';
-      if (i == 'description' && params[i].length > 160) params[i] = params[i].substr(0, 160)+'...';
-      if (typeof(params[i]) == 'number') {
-        encodedParam = params[i];
-      } else {
-        try {
-          encodedParam = encodeURIComponent(params[i]);
-        } catch (e) {
-          encodedParam = '';
-        }
-      }
-      urlQueryString += '&' + i + '=' + encodedParam;
-    }
-    urlQueryString += '&' + (+new Date()).toString(16);
-    url += '?' + urlQueryString.substr(1);
-
-    obj.style.width = width;
-    funcs.onStartLoading && funcs.onStartLoading();
-    VK.Widgets.loading(obj, true);
-
-    funcs.showLoader = function(enable) {
-      VK.Util.Loader(enable);
-    };
-    funcs.publish = function() {
-      var args = Array.prototype.slice.call(arguments);
-      args.push(widgetId);
-      VK.Observer.publish.apply(VK.Observer, args);
-    };
-    funcs.onInit = function() {
-      VK.Widgets.loading(obj, false);
-      if (funcs.onReady) funcs.onReady();
-      if (options.onReady) options.onReady();
-    };
-    funcs.resize = function(e, cb) {
-      obj.style.height = e + 'px';
-      var el = document.getElementById('vkwidget' + widgetId);
-      if (el) {
-        el.style.height = e + 'px';
-      }
-    };
-    funcs.resizeWidget = function(newWidth, newHeight) {
-      newWidth  = parseInt(newWidth);
-      newHeight = parseInt(newHeight);
-      var widgetElem = document.getElementById('vkwidget' + widgetId);
-      if (isFinite(newWidth)) {
-        obj.style.width = newWidth + 'px';
-        if (widgetElem) {
-          widgetElem.style.width = newWidth + 'px';
-        }
-      }
-      if (isFinite(newHeight)) {
-        obj.style.height = newHeight + 'px';
-        if (widgetElem) {
-          widgetElem.style.height = newHeight + 'px';
-        }
-      }
-      if (options.onResizeWidget) options.onResizeWidget();
-    };
-    funcs.updateVersion = function(ver) {
-      if (ver > 1) {
-        VK.Api.attachScript('//vk.com/js/api/openapi_update.js?'+parseInt(ver));
-      }
-    };
-    rpc = VK.Widgets.RPC[widgetId] = new fastXDM.Server(funcs, function(origin) {
-      if (!origin) return true;
-      origin = origin.toLowerCase();
-      return (origin.match(/(\.|\/)vk\.com($|\/|\?)/));
-    }, {safe: true});
-    iframe = VK.Widgets.RPC[widgetId].append(obj, {
-      src: url,
-      width: (width.indexOf('%') != -1) ? width : (parseInt(width) || width),
-      height: defaults.startHeight || '100%',
-      scrolling: 'no',
-      id: 'vkwidget' + widgetId,
-      allowTransparency: options.allowTransparency || false,
-      style: {
-        overflow: 'hidden'
-      }
-    });
-    onDone && setTimeout(function() {onDone(obj, iframe || obj.firstChild, rpc);}, 10);
-    return widgetId;
-  };
-
   VK.Widgets.CommunityMessages = (function(CommunityMessages) {
     if (CommunityMessages) return CommunityMessages;
 
@@ -2131,6 +2016,137 @@ if (!VK.Widgets) {
 
     return CommunityMessages;
   })(VK.Widgets.CommunityMessages);
+
+  VK.Widgets._constructor = function(widgetUrl, objId, options, params, funcs, defaults, onDone, widgetId, iter) {
+    var obj = document.getElementById(objId);
+    widgetId = widgetId || (++VK.Widgets.count);
+
+    if (!obj) {
+      iter = iter || 0;
+      if (iter > 10) {
+        throw Error('VK.Widgets: object #' + objId + ' not found.');
+      }
+      setTimeout(function() {
+        VK.Widgets._constructor(widgetUrl, objId, options, params, funcs, defaults, onDone, widgetId, iter + 1);
+      }, 500);
+      return widgetId;
+    }
+
+    var ifr, base_domain, width, url, urlQueryString, encodedParam, rpc, iframe, i;
+    options = options || {};
+    defaults = defaults || {};
+    funcs = funcs || {};
+    base_domain = options.base_domain || VK._protocol + '//vk.com';
+    width = (options.width == 'auto') ? obj.clientWidth || '100%' : parseInt(options.width, 10);
+
+    if (options.height) {
+      params.height = options.height;
+      obj.style.height = options.height + 'px';
+    } else {
+      obj.style.height = (defaults.startHeight || 200) + 'px';
+    }
+
+    width = width ? (Math.max(defaults.minWidth || 200, Math.min(10000, width)) + 'px') : '100%';
+
+    if (!params.url) {
+      params.url = options.pageUrl || location.href.replace(/#.*$/, '');
+    }
+    url = base_domain + '/' + widgetUrl;
+    urlQueryString = '';
+    if (!options.noDefaultParams) {
+      urlQueryString += '&app=' + (VK._apiId || '0') + '&width=' + width
+    }
+    urlQueryString += '&_ver=' + VK.version
+    if (VK._iframeAppWidget) {
+      params.iframe_app = 1;
+    }
+    var pData = VK.Util.getPageData();
+    params.url      = params.url     || pData.url || "";
+    params.referrer = params.referrer || document.referrer || "";
+    params.title    = params.title   || pData.title  || document.title || "";
+    for (i in params) {
+      if (i == 'title' && params[i].length > 80) params[i] = params[i].substr(0, 80)+'...';
+      if (i == 'description' && params[i].length > 160) params[i] = params[i].substr(0, 160)+'...';
+      if (typeof(params[i]) == 'number') {
+        encodedParam = params[i];
+      } else {
+        try {
+          encodedParam = encodeURIComponent(params[i]);
+        } catch (e) {
+          encodedParam = '';
+        }
+      }
+      urlQueryString += '&' + i + '=' + encodedParam;
+    }
+    urlQueryString += '&' + (+new Date()).toString(16);
+    url += '?' + urlQueryString.substr(1);
+
+    obj.style.width = width;
+    funcs.onStartLoading && funcs.onStartLoading();
+    VK.Widgets.loading(obj, true);
+
+    funcs.showLoader = function(enable) {
+      VK.Util.Loader(enable);
+    };
+    funcs.publish = function() {
+      var args = Array.prototype.slice.call(arguments);
+      args.push(widgetId);
+      VK.Observer.publish.apply(VK.Observer, args);
+    };
+    funcs.onInit = function() {
+      VK.Widgets.loading(obj, false);
+      if (funcs.onReady) funcs.onReady();
+      if (options.onReady) options.onReady();
+    };
+    funcs.resize = function(e, cb) {
+      obj.style.height = e + 'px';
+      var el = document.getElementById('vkwidget' + widgetId);
+      if (el) {
+        el.style.height = e + 'px';
+      }
+    };
+    funcs.resizeWidget = function(newWidth, newHeight) {
+      newWidth  = parseInt(newWidth);
+      newHeight = parseInt(newHeight);
+      var widgetElem = document.getElementById('vkwidget' + widgetId);
+      if (isFinite(newWidth)) {
+        obj.style.width = newWidth + 'px';
+        if (widgetElem) {
+          widgetElem.style.width = newWidth + 'px';
+        }
+      }
+      if (isFinite(newHeight)) {
+        obj.style.height = newHeight + 'px';
+        if (widgetElem) {
+          widgetElem.style.height = newHeight + 'px';
+        }
+      }
+      if (options.onResizeWidget) options.onResizeWidget();
+    };
+    funcs.updateVersion = function(ver) {
+      if (ver > 1) {
+        VK.Api.attachScript('//vk.com/js/api/openapi_update.js?'+parseInt(ver));
+      }
+    };
+    rpc = VK.Widgets.RPC[widgetId] = new fastXDM.Server(funcs, function(origin) {
+      if (!origin) return true;
+      origin = origin.toLowerCase();
+      return (origin.match(/(\.|\/)vk\.com($|\/|\?)/));
+    }, {safe: true});
+    iframe = VK.Widgets.RPC[widgetId].append(obj, {
+      src: url,
+      width: (width.indexOf('%') != -1) ? width : (parseInt(width) || width),
+      height: defaults.startHeight || '100%',
+      scrolling: 'no',
+      id: 'vkwidget' + widgetId,
+      allowTransparency: options.allowTransparency || false,
+      style: {
+        overflow: 'hidden'
+      }
+    });
+    onDone && setTimeout(function() {onDone(obj, iframe || obj.firstChild, rpc);}, 10);
+    return widgetId;
+  };
 }
 
 if (!VK.Util) {
