@@ -1,4 +1,4 @@
-WComments = {
+var WComments = {
 
   init: function (options) {
     extend(cur, {
@@ -100,8 +100,8 @@ WComments = {
     }
 
     if (!options.user_id) {
-      addEvent('send_post', 'click', this.auth.bind(this));
-      addEvent('post_field', 'click focus', this.auth.bind(this));
+      addEvent('send_post', 'click', Widgets.auth.bind(Widgets));
+      addEvent('post_field', 'click focus', Widgets.auth.bind(Widgets));
     }
   },
 
@@ -341,18 +341,6 @@ WComments = {
       check_hash: cur.likeCheckHash,
       widget_width: 638
     }, params || {}));
-  },
-
-  auth: function () {
-    openWidgetsPopupBox(location.protocol + '//oauth.vk.com/authorize', {
-      client_id: -1,
-      redirect_uri: 'close.html',
-      display: 'widget'
-    }, 'vk_openapi', {
-      width: 655,
-      height: 479,
-      onClose: window.gotSession.pbind(true)
-    });
   },
 
   deleteAllAndBan: function (post_id, mid, hash, btn) {
@@ -808,97 +796,31 @@ WComments = {
       case 'lite.js':
         extend(window, {
 
-          showTooltip: (function(showTooltip) {
-            return function() {
-              var args = [].slice.call(arguments);
-              args[1] = extend(args[1] || {}, {
-                showIfFit: true
-              });
-              return showTooltip.apply(this, args);
-            }
-          })(window.showTooltip),
+          showTooltip: Widgets.showTooltip,
 
-          showBox: (function(showBox) {
-            return function(url, params, options, e) {
-              var allowed = {
-                'blank.php': true,
-                'al_apps.php': {'show_captcha_box': {}},
-                'al_photos.php': {'photo_box': {}, 'choose_photo': {}},
-                'al_video.php': {'video_box': {}, 'a_choose_video_box': {}},
-                'al_places.php': {'show_photo_place': {}},
-                'like.php': {'publish_box': {}},
-                'widget_like.php': {'a_stats_box': {}},
-                'widget_post.php': {'subscribed_box': {}, 'audio_claim_warning': {}},
-                'al_wall.php': {'canvas_draw_box': {}},
-                'al_im.php': {'stickers_store': {}, 'sticker_preview': {}},
-                'al_audio.php': {'a_choose_audio_box': {stat: ['audioplayer.css', 'audioplayer.js']}}
-              };
+          showBox: Widgets.showBox({
+            'al_photos.php': {'photo_box': true, 'choose_photo': true},
+            'al_video.php': {'video_box': true, 'a_choose_video_box': true},
+            'al_places.php': {'show_photo_place': true},
+            'like.php': {'publish_box': true},
+            'widget_like.php': {'a_stats_box': true},
+            'widget_post.php': {'subscribed_box': true, 'audio_claim_warning': true},
+            'al_wall.php': {'canvas_draw_box': true},
+            'al_im.php': {'stickers_store': true, 'sticker_preview': true},
+            'al_audio.php': {'a_choose_audio_box': {stat: ['audioplayer.css', 'audioplayer.js']}}
+          }),
 
-              if (allowed[url] && (!isObject(allowed[url]) || allowed[url][params.act])) {
-                var stat = params.act && isObject(allowed[url]) && allowed[url][params.act].stat;
-                stat && cur.Rpc.callMethod('showLoader', true);
-                stManager.add(stat || [], function() {
-                  params.widget_hash = cur.widgetHash;
-                  params = extend({
-                    widget_hash: cur.widgetHash,
-                    widget: 2,
-                    scrollbar_width: window.sbWidth(),
-                    widget_width: options && options.params && intval(options.params.width) || void(0)
-                  }, params);
-                  cur.Rpc.callMethod('showBox', url+'?' + ajx2q(params), {
-                    height: window.outerHeight || screen.availHeight || 768,
-                    width: window.outerWidth || screen.availWidth || 1028,
-                    base_domain: '//' + location.hostname
-                  });
-                });
-              } else {
-                debugLog('Forbidden request: '+params.act+' in '+url);
-                return showBox.apply(null, [].slice.call(arguments));
-              }
-            }
-          })(window.showBox),
+          showCaptchaBox: Widgets.showCaptchaBox,
 
-          showCaptchaBox: function(sid, dif, box, o) {
-            var difficulty = intval(dif) ? '' : '&s=1';
-            var imgSrc = o.imgSrc || '/captcha.php?sid=' + sid + difficulty;
-            showBox('al_apps.php', {
-              act: 'show_captcha_box',
-              sid: sid,
-              src: imgSrc,
-              need_mobile: intval(window.need_mobile_act == 1),
-              widget_width: 322
-            });
-            cur.RpcMethods.captcha = o.onSubmit;
-            cur.RpcMethods.captchaHide = o.onHide;
-          },
+          showReCaptchaBox: Widgets.showReCaptchaBox,
 
           gotSession: function(session_data) {
             location.reload();
           },
 
-          showPhoto: function(photo, list) {
-            showBox('al_photos.php', {
-              act: 'photo_box',
-              photo: photo,
-              wall_owner: photo.split('_')[0],
-              list: list,
-              widget_width: 654
-            });
-            return false;
-          },
+          showPhoto: Widgets.showPhoto,
 
-          showVideo: function(video, list) {
-            revertLastInlineVideo();
-            showBox('al_video.php', {
-              act: 'video_box',
-              video: video,
-              list: list,
-              wall_owner: video.split('_')[0],
-              widget_width: 780,
-              module: cur.module || '_alpost'
-            });
-            return false;
-          },
+          showVideo: Widgets.showVideo,
 
           showWiki: function(likeInfo) {
             likeInfo = (likeInfo && likeInfo['w'] || '').split('/');
@@ -919,99 +841,11 @@ WComments = {
             return true;
           },
 
-          _videoLastInlined: false,
+          showInlineVideo: Widgets.showInlineVideo,
 
-          showInlineVideo: function(videoId, listId, options, ev, thumb) {
-            if (checkEvent(ev)) return true;
+          revertLastInlineVideo: Widgets.revertLastInlineVideo,
 
-            if (window.mvcur && mvcur.mvShown) {
-              return showVideo(videoId, listId, options, ev);
-            }
-
-            options = options || {};
-            options.params = options.params || {act: 'show_inline', video: videoId, list: listId, autoplay: (options.autoplay) ? 1 : 0, module: options.module || cur.module || ''};
-            if (!trim(options.params.module)) {
-              extend(options.params, { _nol: JSON.stringify(nav.objLoc) });
-            }
-            var h = thumb.clientHeight,
-                w = thumb.clientWidth,
-                btn = geByClass1('video_play_inline', thumb, 'div');
-
-            extend(options.params, {width: w, height: h});
-            extend(options.params, options.addParams);
-
-            options.onDone = function (title, html, js, opts) {
-              revertLastInlineVideo();
-              hide(thumb);
-              var videoWrap = ce('div', {id: 'page_video_inline_wrap' + videoId, className: 'page_video_inline_wrap', innerHTML: html}, {width: w, height: h}),
-                  videoBg = ge('video_background' + videoId);
-              _videoLastInlined = [videoWrap, thumb]
-              thumb.parentNode.appendChild(videoWrap);
-              videoBg && setStyle(geByTag1('img', videoBg), {width: w, height: h});
-              cur.mvOpts = opts && opts.mvData ? opts.mvData : false;
-              try {
-                eval('(function () {' + js + '})();');
-              } catch (e) {
-              }
-
-              if (!options.params.mute) {
-                var _n = window.Notifier, _a = window.audioPlayer;
-                if (_n) setTimeout(function() { _n.lcSend('video_start'); }, 0);
-                if (_a && _a.player && !_a.player.paused()) {
-                  _a.pauseTrack();
-                  _a.pausedByVideo = 1;
-                }
-              }
-            };
-            options.onFail = function(text) {
-              showBox('blank.php', {code: 1901});
-              return true;
-            }
-            options.showProgress = function () {
-              addClass(btn, 'video_play_inline_loading');
-            };
-            options.hideProgress = function () {
-              removeClass(btn, 'video_play_inline_loading');
-            };
-            stManager.add('videoview.js', function() {
-              ajax.post('al_video.php', options.params, options);
-              vkImage().src = locProtocol + '//vk.com/rtrg?r=w*Z1Flwi3QdbWaoLMc7zOA*7Cr4Nrtojr9otHjsjIhsb2CVqRWalgbvxZw3MzxZa6be3Siu2XY3gvK5fysYtWLWgNwHMpjRTupSGZrcGRNlj7fduqq9*t7ij6CX4aMcBTD5be8mIXJsbTsvP8Zl2RZEd76a4FTuCOFqzMxqGtFc-';
-            });
-            return false;
-          },
-
-          revertLastInlineVideo: function(ancestor) {
-            if (!_videoLastInlined) {
-              return;
-            }
-            var current, found = false;
-            if ((ancestor = ge(ancestor)) &&
-                (current = _videoLastInlined[0])) {
-              while (current = current.parentNode) {
-                if (current == ancestor) {
-                  found = true;
-                  break;
-                }
-              }
-              if (!found) {
-                return;
-              }
-            }
-            re(_videoLastInlined[0]);
-            show(_videoLastInlined[1]);
-            _videoLastInlined = false;
-            delete cur.mvOpts;
-          },
-
-          pauseLastInlineVideo: function() {
-            if (!_videoLastInlined) {
-              return;
-            }
-            var player = ge('video_player') || window.html5video || null;
-            if (player && player.playVideo) {
-              player.playVideo(false);
-            }
-          }
+          pauseLastInlineVideo: Widgets.pauseLastInlineVideo
 
         });
       break;
@@ -1662,7 +1496,7 @@ WComments = {
           Wall[v] = (function(func) {
             return function() {
               if (!vk.id) {
-                WComments.auth();
+                Widgets.auth();
               } else {
                 return func.apply(Wall, [].slice.call(arguments));
               }

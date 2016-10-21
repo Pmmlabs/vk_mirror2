@@ -3205,6 +3205,12 @@ function isAncestor(el, ancestor) {
   return false;
 }
 
+function getScroll() {
+  var b = (browser.msie6) ? ge('PageContainer') : document.body, de = document.documentElement;
+  return [b.scrollLeft || de.scrollLeft || window.pageXOffset || 0, b.scrollTop || de.scrollTop  || window.pageYOffset || 0,
+  de.clientWidth || b.clientWidth || 0, de.clientHeight || b.clientHeight || 0];
+}
+
 /* CSS */
 
 window.whitespaceRegex = /[\t\r\n\f]/g;
@@ -5324,9 +5330,12 @@ function showReCaptchaBox(key, lang, box, o) {
   if (!was_box) {
     if (!loaded) {
       window.recaptchaCallback = function() {
-        var c = ge('recaptcha');
-        if (c) c.innerHTML = '';
-        grecaptcha.render('recaptcha', {
+        var _box = curBox();
+        if (!_box) return;
+        var wrapId = geByClass1('recaptcha', _box.bodyNode);
+        if (!wrapId) return;
+        val(wrapId, '');
+        grecaptcha.render(wrapId, {
           sitekey: key,
           callback: recaptchaResponse
         });
@@ -5337,15 +5346,16 @@ function showReCaptchaBox(key, lang, box, o) {
       }));
     }
 
-    var content = '\
-<div id="recaptcha" class="recaptcha"></div>' + (o.addText || '');
+    var content = '<div class="recaptcha"></div>' + (o.addText || '');
     box = showFastBox({
       title: getLang('global_recaptcha_title'),
       width: 354,
       onHide: o.onHide,
       onDestroy: o.onDestroy || false
     }, content, getLang('captcha_cancel'));
-    showProgress('recaptcha');
+    var wrap = geByClass1('recaptcha', box.bodyNode);
+    wrap.id = 'recaptcha' + (box.guid ? box.guid : '0');
+    showProgress(wrap);
   }
   if (was_box && loaded) {
     grecaptcha.reset();
@@ -5593,7 +5603,7 @@ function __adsSet(adsHtml, adsSection, adsCanShow, adsShowed, adsParams) {
   stManager.add(['aes_light.js'], __adsSet.pbind(adsHtml, adsSection, adsCanShow, adsShowed, adsParams));
 }
 
-/* Pos video */
+/* Post video */
 
 window._videoLastInlined = false;
 function showVideo(videoId, listId, options, ev) {
@@ -5936,227 +5946,380 @@ function addAudio(btn, event) {
   return cancelEvent(event);
 }
 
-/* Popup boxes */
-
-var _widgetsPopupBoxWidth = 450,
-  _widgetsPopupBoxHeight = 300;
-
-function initWidgetsPopupBox(opts) {
-  opts = extend({
-    onAccept: window.close,
-    onCancel: window.close,
-    width: _widgetsPopupBoxWidth,
-    height: _widgetsPopupBoxHeight,
-    nokeys: true
-  }, opts);
-
-  window.doAccept = opts.onAccept;
-  window.doCancel = opts.onCancel;
-  opts.nokeys || addEvent(window, 'keydown', function(ev) {
-    ev.keyCode == KEY.RETURN ? doAccept() : ev.keyCode == KEY.ESC && doCancel();
-  });
-
-  if (window.parent && parent != window) {
-    val(bodyNode, '');
-    window.close();
-  }
-
-  return adjustWidgetsPopupBox(opts.width, opts.height, opts);
-}
-
-function openWidgetsPopupBox(url, params, name, opts) {
-  opts = extend({
-    width: _widgetsPopupBoxWidth,
-    height: _widgetsPopupBoxHeight,
-    onClose: null
-  }, opts);
-
-  params = extend({
-    widget: 4
-  }, params);
-
-  var left = Math.max(0, (screen.width - opts.width) / 2),
-    top = Math.max(0, (screen.height - opts.height) / 2);
-  if (!/^https?:\/\//i.test(url)) {
-    url = location.protocol + '//' + location.host + '/' + url.replace(/^\/+/, '');
-  }
-  window.activePopup = window.open(url + '?' + ajx2q(params), name, 'width='+opts.width+',height='+opts.height+',left='+left+',top='+top+',menubar=0,toolbar=0,location=0,status=0');
-  if (activePopup) {
-    activePopup.focus();
-    opts.onClose && (function check() {
-      !activePopup || activePopup.closed ? opts.onClose() : setTimeout(check, 1000);
-    })();
-  }
-}
-
-function adjustWidgetsPopupBox(startWidth, startHeight, opts) {
-  opts = extend({
-    nocenter: false,
-    container: false,
-    forceWidth: false,
-    forceHeight: false,
-    minWidth: 0,
-    minHeight: 0,
-    attempts: 5,
-    interval: 500
-  }, opts);
-
-  if (window.panelsHeight == void 0) window.panelsHeight = null;
-  if (window.panelsWidth == void 0) window.panelsWidth = null;
-  window.popupWidth = null;
-  window.popupHeight = null;
-  var interruptedCentering = opts.nocenter,
-    interruptedResize = false,
-    inter = 0,
-    lastLeft = null,
-    lastTop = null,
-    loaded = false,
-    resized = false,
-    container = opts.container || geByClass1('widgets_popup_box') || ge('page_wrap');
-
-  if (!container) return;
-  if (!startWidth) startWidth = _widgetsPopupBoxWidth;
-  if (!startHeight) startHeight = _widgetsPopupBoxHeight;
-
-  function sL() {return window.screenX !== void 0 ? screenX : window.screenLeft;}
-  function sT() {return window.screenY !== void 0 ? screenY : window.screenTop;}
-
-  function adjust() {
-    if ((interruptedCentering || opts.nocenter) && interruptedResize) {return;}
-    if (!interruptedCentering && lastLeft !== null && lastTop !== null && (lastLeft !== sL() || lastTop !== sT())) {
-      interruptedCentering = true;
-    }
-
-    var size = getSize(container, true),
-      width = Math.max(opts.minWidth, (opts.forceWidth ? startWidth : size[0])) + panelsWidth,
-      height = Math.max(opts.minHeight, (opts.forceHeight ? startHeight : size[1])) + panelsHeight;
-    if ((interruptedCentering || opts.nocenter) && screen.availWidth && screen.availHeight) {
-      width = Math.min(screen.availWidth - sL() + (screen.availLeft || 0), width);
-      height = Math.min(screen.availHeight - sT() + (screen.availTop || 0), height);
-    }
-    if (width != popupWidth || height != popupHeight) {
-      popupWidth = width + (innerWidth - bodyNode.scrollWidth);
-      popupHeight = height;
-      resized = +new Date();
-      window.resizeTo(popupWidth, popupHeight);
-      interruptedCentering || opts.nocenter || window.moveTo(Math.floor((screen.width - popupWidth) / 2), Math.floor((screen.height - popupHeight + panelsHeight) / 2));
-    }
-
-    setTimeout(function() {
-      if (!interruptedCentering) {
-        lastLeft = sL();
-        lastTop = sT();
-      }
-    }, 0);
-  }
-
-  function startAdjustment(newOpts) {
-    if (interruptedCentering && interruptedResize) return;
-    clearInterval(inter);
-    newOpts && extend(opts, newOpts);
-
-    if (panelsHeight === null) {
-      if (window.innerWidth == void 0 || window.outerWidth == void 0) {
-        resized = +new Date();
-        window.resizeTo(startWidth, startHeight);
-        panelsWidth = startWidth - (document.documentElement.clientWidth || document.body.clientWidth);
-        panelsHeight = startHeight - (document.documentElement.clientHeight || document.body.clientHeight);
-      } else {
-        panelsWidth = outerWidth - innerWidth;
-        panelsHeight = outerHeight - innerHeight;
-      }
-    }
-
-    adjust();
-
-    var i = 0;
-    inter = setInterval(function() {
-      adjust();
-      if (++i >= opts.attempts) {
-        clearInterval(inter);
-      }
-    }, opts.interval);
-  }
-
-  addEvent(window, 'load', function() {
-    loaded = true;
-  });
-
-  addEvent(window, 'resize', function self() {
-    if (!loaded) return;
-    if (resized && +new Date() - resized < 500) {
-      resized = false;
-      return;
-    }
-    interruptedCentering = interruptedResize = true;
-    clearInterval(inter);
-    removeEvent(window, 'resize', self);
-  });
-
-  setTimeout(startAdjustment, 1);
-  return startAdjustment;
-}
-
-function domClosestOverflowHidden(el) {
-  var parent = domPN(el);
-  while (parent && parent != bodyNode) {
-    var overflow = getStyle(parent, 'overflow');
-
-    if (overflow == 'hidden') {
-      break;
-    }
-
-    parent = domPN(parent);
-  }
-
-  return parent;
-}
-
-function getCaretBoundingRect(node) {
-    var rectNode = node.getBoundingClientRect(),
-      rectCaret = null,
-      range = null;
-    if (rectNode.top === rectNode.bottom) return {left: 0, top: 0, bottom: 0};
-    if (document.selection) { // using textRange
-      range = document.selection.createRange();
-      rectCaret = range.getClientRects() || [];
-      if (!rectCaret.length) { // fix empty range
-        range.text = '_';
-        range.moveStart('character', -1);
-        rectCaret = range.getClientRects();
-        range.text = '';
-      }
-      rectCaret = rectCaret[rectCaret.length - 1];
-    } else if (window.getSelection) { // using Range
-      var sel = getSelection();
-      range = sel.getRangeAt(0);
-      if (range.collapsed) { // fix empty range
-        var offset = range.startOffset;
-        range.setStart(range.startContainer, 0);
-        rectCaret = range.getClientRects();
-        range.setStart(range.startContainer, offset);
-      }
-      rectCaret = rectCaret.length ? rectCaret[rectCaret.length - 1] : {right: rectNode.left, top: rectNode.top, bottom: rectNode.top};
-    }
-    return {
-      left: rectCaret.right - rectNode.left,
-      top: rectCaret.top - rectNode.top,
-      bottom: rectCaret.bottom - rectNode.top
-    };
-};
-
-function getScroll() {
-  var b = (browser.msie6) ? ge('PageContainer') : document.body, de = document.documentElement;
-  return [b.scrollLeft || de.scrollLeft || window.pageXOffset || 0, b.scrollTop || de.scrollTop  || window.pageYOffset || 0,
-  de.clientWidth || b.clientWidth || 0, de.clientHeight || b.clientHeight || 0];
-}
-
-addEvent(window, 'DOMContentLoaded load', function() {
-  vk.loaded = true;
-});
+/* Post photo */
 
 function isPhotoeditor3Available() {
   return (browser.msie ? parseInt(browser.version) > 10 : true);
 }
+
+/* Widgets */
+
+window.Widgets = {
+
+  popupBoxWidth: 450,
+  popupBoxHeight: 300,
+
+  popupBoxOpen: function(url, params, name, opts) {
+    opts = extend({
+      width: this.popupBoxWidth,
+      height: this.popupBoxHeight,
+      onClose: null
+    }, opts);
+
+    params = extend({
+      widget: 4
+    }, params);
+
+    var left = Math.max(0, (screen.width - opts.width) / 2),
+      top = Math.max(0, (screen.height - opts.height) / 2);
+    if (!/^https?:\/\//i.test(url)) {
+      url = location.protocol + '//' + location.host + '/' + url.replace(/^\/+/, '');
+    }
+    window.activePopup = window.open(url + '?' + ajx2q(params), name, 'width='+opts.width+',height='+opts.height+',left='+left+',top='+top+',menubar=0,toolbar=0,location=0,status=0');
+    if (activePopup) {
+      activePopup.focus();
+      opts.onClose && (function check() {
+        !activePopup || activePopup.closed ? opts.onClose() : setTimeout(check, 1000);
+      })();
+    }
+  },
+
+  popupBoxAdjust: function(startWidth, startHeight, opts) {
+    opts = extend({
+      nocenter: false,
+      container: false,
+      forceWidth: false,
+      forceHeight: false,
+      minWidth: 0,
+      minHeight: 0,
+      attempts: 5,
+      interval: 500
+    }, opts);
+
+    if (window.panelsHeight == void 0) window.panelsHeight = null;
+    if (window.panelsWidth == void 0) window.panelsWidth = null;
+    window.popupWidth = null;
+    window.popupHeight = null;
+    var interruptedCentering = opts.nocenter,
+      interruptedResize = false,
+      inter = 0,
+      lastLeft = null,
+      lastTop = null,
+      loaded = false,
+      resized = false,
+      container = opts.container || geByClass1('widgets_popup_box') || ge('page_wrap');
+
+    if (!container) return;
+    if (!startWidth) startWidth = this.popupBoxWidth;
+    if (!startHeight) startHeight = this.popupBoxHeight;
+
+    function sL() {return window.screenX !== void 0 ? screenX : window.screenLeft;}
+    function sT() {return window.screenY !== void 0 ? screenY : window.screenTop;}
+
+    function adjust() {
+      if ((interruptedCentering || opts.nocenter) && interruptedResize) {return;}
+      if (!interruptedCentering && lastLeft !== null && lastTop !== null && (lastLeft !== sL() || lastTop !== sT())) {
+        interruptedCentering = true;
+      }
+
+      var size = getSize(container, true),
+        width = Math.max(opts.minWidth, (opts.forceWidth ? startWidth : size[0])) + panelsWidth,
+        height = Math.max(opts.minHeight, (opts.forceHeight ? startHeight : size[1])) + panelsHeight;
+      if ((interruptedCentering || opts.nocenter) && screen.availWidth && screen.availHeight) {
+        width = Math.min(screen.availWidth - sL() + (screen.availLeft || 0), width);
+        height = Math.min(screen.availHeight - sT() + (screen.availTop || 0), height);
+      }
+      if (width != popupWidth || height != popupHeight) {
+        popupWidth = width + (innerWidth - bodyNode.scrollWidth);
+        popupHeight = height;
+        resized = +new Date();
+
+        interruptedCentering || opts.nocenter || window.moveTo(Math.floor((screen.width - popupWidth - panelsWidth) / 2), Math.floor((screen.height - popupHeight + panelsHeight) / 2));
+        window.resizeTo(popupWidth, popupHeight);
+      }
+
+      setTimeout(function() {
+        if (!interruptedCentering) {
+          lastLeft = sL();
+          lastTop = sT();
+        }
+      }, 0);
+    }
+
+    function startAdjustment(newOpts) {
+      if (interruptedCentering && interruptedResize) return;
+      clearInterval(inter);
+      newOpts && extend(opts, newOpts);
+
+      if (panelsHeight === null) {
+        if (window.innerWidth == void 0 || window.outerWidth == void 0) {
+          resized = +new Date();
+          window.resizeTo(startWidth, startHeight);
+          panelsWidth = startWidth - (document.documentElement.clientWidth || document.body.clientWidth);
+          panelsHeight = startHeight - (document.documentElement.clientHeight || document.body.clientHeight);
+        } else {
+          panelsWidth = outerWidth - innerWidth;
+          panelsHeight = outerHeight - innerHeight;
+        }
+      }
+
+      adjust();
+
+      var i = 0;
+      inter = setInterval(function() {
+        adjust();
+        if (++i >= opts.attempts) {
+          clearInterval(inter);
+        }
+      }, opts.interval);
+    }
+
+    addEvent(window, 'load', function() {
+      loaded = true;
+    });
+
+    addEvent(window, 'resize', function self() {
+      if (!loaded) return;
+      if (resized && +new Date() - resized < 500) {
+        resized = false;
+        return;
+      }
+      interruptedCentering = interruptedResize = true;
+      clearInterval(inter);
+      removeEvent(window, 'resize', self);
+    });
+
+    setTimeout(startAdjustment, 1);
+    return startAdjustment;
+  },
+
+  auth: function(callback) {
+    Widgets.popupBoxOpen(location.protocol + '//oauth.vk.com/authorize', {
+      client_id: -1,
+      redirect_uri: 'close.html',
+      display: 'widget'
+    }, 'vk_openapi', {
+      width: 655,
+      height: 430,
+      onClose: window.gotSession.pbind(true, callback)
+    });
+  },
+
+  showTooltip: (function(showTooltip) {
+    return function() {
+      var args = [].slice.call(arguments);
+      args[1] = extend(args[1] || {}, {
+        showIfFit: true
+      });
+      return showTooltip.apply(this, args);
+    }
+  })(window.showTooltip),
+
+  showCaptchaBox: function(sid, dif, box, o) {
+    var difficulty = intval(dif) ? '' : '&s=1';
+    var imgSrc = o.imgSrc || '/captcha.php?sid=' + sid + difficulty;
+    showBox('al_apps.php', {
+      act: 'show_captcha_box',
+      sid: sid,
+      src: imgSrc,
+      need_mobile: intval(window.need_mobile_act == 1),
+      widget_width: 322
+    });
+    cur.Rpc.methods.captcha = o.onSubmit || function () {};
+    cur.Rpc.methods.captchaHide = function() {
+      isFunction(cur.captchaHide) && cur.captchaHide();
+      isFunction(o.onHide) && o.onHide();
+    }
+  },
+
+  showReCaptchaBox: function(key, lang, box, o) {
+    showBox('al_apps.php', {
+      act: 'show_recaptcha_box',
+      box_msg: o.addText,
+      widget_width: 352
+    });
+    cur.Rpc.methods.recaptcha = o.onSubmit || function() {};
+    cur.Rpc.methods.recaptchaHide = function() {
+      isFunction(cur.recaptchaHide) && cur.recaptchaHide();
+      isFunction(o.onHide) && o.onHide();
+    }
+  },
+
+  showPhoto: function(photo, list) {
+    showBox('al_photos.php', {
+      act: 'photo_box',
+      photo: photo,
+      wall_owner: photo.split('_')[0],
+      list: list,
+      widget_width: 654
+    });
+    return false;
+  },
+
+  showVideo: function(video, list) {
+    window.revertLastInlineVideo && revertLastInlineVideo();
+    showBox('al_video.php', {
+      act: 'video_box',
+      video: video,
+      list: list,
+      wall_owner: video.split('_')[0],
+      widget_width: 780,
+      module: cur.module || '_alpost'
+    });
+    return false;
+  },
+
+  showSubscribeBox: function(oid, callback, state, isEvent) {
+    window.subscribedCallback = callback ? callback : function() {};
+    Widgets.popupBoxOpen('widget_community.php', {
+      act: 'a_subscribe_box',
+      oid: oid,
+      state: state !== void 0 ? state : 1,
+      is_event: isEvent ? 1 : void 0
+    }, 'vk_subscribe', {
+      height: 290
+    });
+  },
+
+  showUnsubscribeBox: function(oid, callback) {
+    window.unsubscribedCallback = callback ? callback : function() {};
+    Widgets.popupBoxOpen('widget_community.php', {
+      act: 'a_unsubscribe_box',
+      oid: oid
+    }, 'vk_unsubscribe', {
+      height: 290
+    });
+  },
+
+  showBox: function(allowed, onbefore) {
+    var originalShowBox = window.showBox;
+
+    allowed = extend(allowed || {}, {
+      'blank.php': true,
+      'al_apps.php': {'show_captcha_box': true, 'show_recaptcha_box': true}
+    });
+
+    return function(url, params, options, e) {
+      if (allowed[url] && (!isObject(allowed[url]) || allowed[url][params.act])) {
+        var stat = params.act && isObject(allowed[url]) && allowed[url][params.act].stat;
+        onbefore && onbefore();
+        stat && cur.Rpc.callMethod('showLoader', true);
+        stManager.add(stat || [], function() {
+          params = extend({
+            widget_hash: cur.widgetHash,
+            widget: 2,
+            scrollbar_width: window.sbWidth(),
+            widget_width: options && options.params && intval(options.params.width) || void(0)
+          }, params);
+          cur.Rpc.callMethod('showBox', url+'?' + ajx2q(params), {
+            height: window.outerHeight || screen.availHeight || 768,
+            width: window.outerWidth || screen.availWidth || 1028,
+            base_domain: '//' + location.hostname + '/'
+          });
+        });
+      } else {
+        debugLog('Forbidden request: '+params.act+' in '+url);
+        return originalShowBox.apply(null, [].slice.call(arguments));
+      }
+    }
+  },
+
+  showInlineVideo: function(videoId, listId, options, ev, thumb) {
+    if (checkEvent(ev)) return true;
+
+    if (window.mvcur && mvcur.mvShown) {
+      return showVideo(videoId, listId, options, ev);
+    }
+
+    options = options || {};
+    options.params = options.params || {act: 'show_inline', video: videoId, list: listId, autoplay: (options.autoplay) ? 1 : 0, module: options.module || cur.module || ''};
+    if (!trim(options.params.module)) {
+      extend(options.params, { _nol: JSON.stringify(nav.objLoc) });
+    }
+    var h = thumb.clientHeight,
+        w = thumb.clientWidth,
+        btn = geByClass1('video_play_inline', thumb, 'div');
+
+    extend(options.params, {width: w, height: h});
+    extend(options.params, options.addParams);
+
+    options.onDone = function (title, html, js, opts) {
+      revertLastInlineVideo();
+      hide(thumb);
+      var videoWrap = ce('div', {id: 'page_video_inline_wrap' + videoId, className: 'page_video_inline_wrap', innerHTML: html}, {width: w, height: h}),
+          videoBg = ge('video_background' + videoId);
+      _videoLastInlined = [videoWrap, thumb]
+      thumb.parentNode.appendChild(videoWrap);
+      videoBg && setStyle(geByTag1('img', videoBg), {width: w, height: h});
+      cur.mvOpts = opts && opts.mvData ? opts.mvData : false;
+      try {
+        eval('(function () {' + js + '})();');
+      } catch (e) {
+      }
+
+      if (!options.params.mute) {
+        var _n = window.Notifier, _a = window.audioPlayer;
+        if (_n) setTimeout(function() { _n.lcSend('video_start'); }, 0);
+        if (_a && _a.player && !_a.player.paused()) {
+          _a.pauseTrack();
+          _a.pausedByVideo = 1;
+        }
+      }
+    };
+    options.onFail = function(text) {
+      showBox('blank.php', {code: 1901});
+      return true;
+    }
+    options.showProgress = function () {
+      addClass(btn, 'video_play_inline_loading');
+    };
+    options.hideProgress = function () {
+      removeClass(btn, 'video_play_inline_loading');
+    };
+    stManager.add('videoview.js', function() {
+      ajax.post('al_video.php', options.params, options);
+      vkImage().src = locProtocol + '//vk.com/rtrg?r=w*Z1Flwi3QdbWaoLMc7zOA*7Cr4Nrtojr9otHjsjIhsb2CVqRWalgbvxZw3MzxZa6be3Siu2XY3gvK5fysYtWLWgNwHMpjRTupSGZrcGRNlj7fduqq9*t7ij6CX4aMcBTD5be8mIXJsbTsvP8Zl2RZEd76a4FTuCOFqzMxqGtFc-';
+    });
+    return false;
+  },
+
+  revertLastInlineVideo: function(ancestor) {
+    if (!_videoLastInlined) {
+      return;
+    }
+    var current, found = false;
+    if ((ancestor = ge(ancestor)) &&
+        (current = _videoLastInlined[0])) {
+      while (current = current.parentNode) {
+        if (current == ancestor) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        return;
+      }
+    }
+    re(_videoLastInlined[0]);
+    show(_videoLastInlined[1]);
+    _videoLastInlined = false;
+    delete cur.mvOpts;
+  },
+
+  pauseLastInlineVideo: function() {
+    if (!_videoLastInlined) {
+      return;
+    }
+    var player = ge('video_player') || window.html5video || null;
+    if (player && player.playVideo) {
+      player.playVideo(false);
+    }
+  }
+
+};
+
+addEvent(window, 'DOMContentLoaded load', function() {
+  vk.loaded = true;
+});
 
 try{stManager.done('lite.js');}catch(e){}

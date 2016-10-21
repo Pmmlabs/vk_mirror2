@@ -1,4 +1,4 @@
-window.Community = {
+var Community = {
 
   init: function() {
     this.override('lite.js');
@@ -120,7 +120,7 @@ window.Community = {
       cur.changinGroupState = true;
       lockButton(btn);
       if (cur.noAuth) {
-        Community.auth();
+        Widgets.auth();
         window.gotSession = function(autorzied) {
           if (autorzied == -1) {
             setTimeout(location.reload.bind(location), 1000);
@@ -143,10 +143,10 @@ window.Community = {
       } else if (state && !cur.justAuth) {
         unlockButton(btn);
         cur.changinGroupState = false;
-        Community.subscribeBox(state, function() {
+        Widgets.showSubscribeBox(cur.oid, function() {
           Community.sendStateEvent(state);
           participate(true);
-        });
+        }, state);
       } else if (!cur.justAuth) {
         Community.sendChangeState(state, cur.oid, function() {
           unlockButton(btn);
@@ -159,7 +159,7 @@ window.Community = {
       }
     }.bind(this);
 
-    cur.confirmUnsubscribe && !state ? this.unsubscribeBox(doChangeState) : doChangeState();
+    cur.confirmUnsubscribe && !state ? Widgets.showUnsubscribeBox(cur.oid, doChangeState) : doChangeState();
   },
 
   changeEventState: function(state, btn) {
@@ -176,7 +176,7 @@ window.Community = {
     cur.changinEventState = true;
     lockButton(btn);
     if (cur.noAuth) {
-      Community.auth();
+      Widgets.auth();
       window.gotSession = function(autorzied) {
         cur.noAuth = false;
         ajax.post('/widget_community.php', {
@@ -195,12 +195,12 @@ window.Community = {
     } else if (state > 0 && !cur.justAuth) {
       unlockButton(btn);
       cur.changinEventState = false;
-      Community.subscribeBox(state, function(html) {
+      Widgets.showSubscribeBox(cur.oid, function(html) {
         html !== void(0) && val('community_footer', html);
         Community.sendStateEvent(state);
         participate(true);
         Community.resizeWidget();
-      }, true);
+      }, state, true);
     } else if (!cur.justAuth) {
       Community.sendChangeState(state, cur.oid, function(html) {
         html !== void(0) && val('community_footer', html);
@@ -214,18 +214,6 @@ window.Community = {
     }
   },
 
-  auth: function() {
-    openWidgetsPopupBox(location.protocol + '//oauth.vk.com/authorize', {
-      client_id: -1,
-      redirect_uri: 'close.html',
-      display: 'widget'
-    }, 'vk_openapi', {
-      width: 655,
-      height: 479,
-      onClose: window.gotSession.pbind(true)
-    });
-  },
-
   subscribersBox: function(ev, tab) {
     if (!vk.id || ev && ev.metaKey) return true;
     showBox('al_page.php', {
@@ -235,28 +223,6 @@ window.Community = {
       widget_width: 638
     });
     return false;
-  },
-
-  subscribeBox: function(state, callback, isEvent) {
-    window.subscribedCallback = callback ? callback : function() {};
-    openWidgetsPopupBox('widget_community.php', {
-      act: 'a_subscribe_box',
-      oid: cur.oid,
-      state: state,
-      is_event: isEvent ? 1 : void 0
-    }, 'vk_subscribe', {
-      height: 291
-    });
-  },
-
-  unsubscribeBox: function(callback) {
-    window.unsubscribedCallback = callback ? callback : function() {};
-    openWidgetsPopupBox('widget_community.php', {
-      act: 'a_unsubscribe_box',
-      oid: cur.oid
-    }, 'vk_unsubscribe', {
-      height: 291
-    });
   },
 
   subscribeGroupState: function(state, oid) {
@@ -309,95 +275,29 @@ window.Community = {
       case 'lite.js':
         extend(window, {
 
-          showTooltip: (function(showTooltip) {
-            return function() {
-              var args = [].slice.call(arguments);
-              args[1] = extend(args[1] || {}, {
-                showIfFit: true
-              });
-              return showTooltip.apply(this, args);
-            }
-          })(window.showTooltip),
+          showTooltip: Widgets.showTooltip,
 
-          showBox: (function(showBox) {
-            return function(url, params, options, e) {
-              var allowed = {
-                'blank.php': true,
-                'al_apps.php': {'show_captcha_box': {}},
-                'al_photos.php': {'photo_box': {}},
-                'al_video.php': {'video_box': {}},
-                'al_places.php': {'show_photo_place': {}},
-                'al_page.php': {'box': {}},
-                'like.php': {'publish_box': {}},
-                'widget_like.php': {'a_stats_box': {}},
-                'widget_post.php': {'subscribed_box': {}, 'audio_claim_warning': {}}
-              };
+          showBox: Widgets.showBox({
+            'al_photos.php': {'photo_box': true},
+            'al_video.php': {'video_box': true},
+            'al_places.php': {'show_photo_place': true},
+            'al_page.php': {'box': true},
+            'like.php': {'publish_box': true},
+            'widget_like.php': {'a_stats_box': true},
+            'widget_post.php': {'subscribed_box': true, 'audio_claim_warning': true}
+          }),
 
-              if (allowed[url] && (!isObject(allowed[url]) || allowed[url][params.act])) {
-                var stat = params.act && isObject(allowed[url]) && allowed[url][params.act].stat;
-                stat && cur.Rpc.callMethod('showLoader', true);
-                stManager.add(stat || [], function() {
-                  params.widget_hash = cur.widgetHash;
-                  params = extend({
-                    widget_hash: cur.widgetHash,
-                    widget: 2,
-                    scrollbar_width: window.sbWidth(),
-                    widget_width: options && options.params && intval(options.params.width) || void(0)
-                  }, params);
-                  cur.Rpc.callMethod('showBox', url+'?' + ajx2q(params), {
-                    height: window.outerHeight || screen.availHeight || 768,
-                    width: window.outerWidth || screen.availWidth || 1028,
-                    base_domain: '//' + location.hostname + '/'
-                  });
-                });
-              } else {
-                debugLog('Forbidden request: '+params.act+' in '+url);
-                return showBox.apply(null, [].slice.call(arguments));
-              }
-            }
-          })(window.showBox),
+          showCaptchaBox: Widgets.showCaptchaBox,
 
-          showCaptchaBox: function(sid, dif, box, o) {
-            var difficulty = intval(dif) ? '' : '&s=1';
-            var imgSrc = o.imgSrc || '/captcha.php?sid=' + sid + difficulty;
-            showBox('al_apps.php', {
-              act: 'show_captcha_box',
-              sid: sid,
-              src: imgSrc,
-              need_mobile: intval(window.need_mobile_act == 1),
-              widget_width: 322
-            });
-            cur.RpcMethods.captcha = o.onSubmit;
-            cur.RpcMethods.captchaHide = o.onHide;
-          },
+          showReCaptchaBox: Widgets.showReCaptchaBox,
 
           gotSession: function(session_data) {
             location.reload();
           },
 
-          showPhoto: function(photo, list) {
-            showBox('al_photos.php', {
-              act: 'photo_box',
-              photo: photo,
-              wall_owner: photo.split('_')[0],
-              list: list,
-              widget_width: 654
-            });
-            return false;
-          },
+          showPhoto: Widgets.showPhoto,
 
-          showVideo: function(video, list) {
-            revertLastInlineVideo();
-            showBox('al_video.php', {
-              act: 'video_box',
-              video: video,
-              list: list,
-              wall_owner: video.split('_')[0],
-              widget_width: 780,
-              module: cur.module || '_alpost'
-            });
-            return false;
-          },
+          showVideo: Widgets.showVideo,
 
           showWiki: function(likeInfo) {
             likeInfo = (likeInfo && likeInfo['w'] || '').split('/');
@@ -418,99 +318,11 @@ window.Community = {
             return true;
           },
 
-          _videoLastInlined: false,
+          showInlineVideo: Widgets.showInlineVideo,
 
-          showInlineVideo: function(videoId, listId, options, ev, thumb) {
-            if (checkEvent(ev)) return true;
+          revertLastInlineVideo: Widgets.revertLastInlineVideo,
 
-            if (window.mvcur && mvcur.mvShown) {
-              return showVideo(videoId, listId, options, ev);
-            }
-
-            options = options || {};
-            options.params = options.params || {act: 'show_inline', video: videoId, list: listId, autoplay: (options.autoplay) ? 1 : 0, module: options.module || cur.module || ''};
-            if (!trim(options.params.module)) {
-              extend(options.params, { _nol: JSON.stringify(nav.objLoc) });
-            }
-            var h = thumb.clientHeight,
-                w = thumb.clientWidth,
-                btn = geByClass1('video_play_inline', thumb, 'div');
-
-            extend(options.params, {width: w, height: h});
-            extend(options.params, options.addParams);
-
-            options.onDone = function (title, html, js, opts) {
-              revertLastInlineVideo();
-              hide(thumb);
-              var videoWrap = ce('div', {id: 'page_video_inline_wrap' + videoId, className: 'page_video_inline_wrap', innerHTML: html}, {width: w, height: h}),
-                  videoBg = ge('video_background' + videoId);
-              _videoLastInlined = [videoWrap, thumb]
-              thumb.parentNode.appendChild(videoWrap);
-              videoBg && setStyle(geByTag1('img', videoBg), {width: w, height: h});
-              cur.mvOpts = opts && opts.mvData ? opts.mvData : false;
-              try {
-                eval('(function () {' + js + '})();');
-              } catch (e) {
-              }
-
-              if (!options.params.mute) {
-                var _n = window.Notifier, _a = window.audioPlayer;
-                if (_n) setTimeout(function() { _n.lcSend('video_start'); }, 0);
-                if (_a && _a.player && !_a.player.paused()) {
-                  _a.pauseTrack();
-                  _a.pausedByVideo = 1;
-                }
-              }
-            };
-            options.onFail = function(text) {
-              showBox('blank.php', {code: 1901});
-              return true;
-            }
-            options.showProgress = function () {
-              addClass(btn, 'video_play_inline_loading');
-            };
-            options.hideProgress = function () {
-              removeClass(btn, 'video_play_inline_loading');
-            };
-            stManager.add('videoview.js', function() {
-              ajax.post('al_video.php', options.params, options);
-              vkImage().src = locProtocol + '//vk.com/rtrg?r=w*Z1Flwi3QdbWaoLMc7zOA*7Cr4Nrtojr9otHjsjIhsb2CVqRWalgbvxZw3MzxZa6be3Siu2XY3gvK5fysYtWLWgNwHMpjRTupSGZrcGRNlj7fduqq9*t7ij6CX4aMcBTD5be8mIXJsbTsvP8Zl2RZEd76a4FTuCOFqzMxqGtFc-';
-            });
-            return false;
-          },
-
-          revertLastInlineVideo: function(ancestor) {
-            if (!_videoLastInlined) {
-              return;
-            }
-            var current, found = false;
-            if ((ancestor = ge(ancestor)) &&
-                (current = _videoLastInlined[0])) {
-              while (current = current.parentNode) {
-                if (current == ancestor) {
-                  found = true;
-                  break;
-                }
-              }
-              if (!found) {
-                return;
-              }
-            }
-            re(_videoLastInlined[0]);
-            show(_videoLastInlined[1]);
-            _videoLastInlined = false;
-            delete cur.mvOpts;
-          },
-
-          pauseLastInlineVideo: function() {
-            if (!_videoLastInlined) {
-              return;
-            }
-            var player = ge('video_player') || window.html5video || null;
-            if (player && player.playVideo) {
-              player.playVideo(false);
-            }
-          }
+          pauseLastInlineVideo: Widgets.pauseLastInlineVideo
 
         });
       break;
@@ -587,7 +399,7 @@ window.Community = {
           Wall[v] = (function(func) {
             return function() {
               if (!vk.id) {
-                Community.auth();
+                Widgets.auth();
               } else {
                 return func.apply(Wall, [].slice.call(arguments));
               }

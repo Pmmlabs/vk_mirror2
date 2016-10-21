@@ -41,43 +41,10 @@ var Subscribe = {
     param ? showProgress(cur.doEl, 'btn_lock') : hideProgress(cur.doEl, 'btn_lock');
   },
 
-  auth: function(callback) {
-    openWidgetsPopupBox(location.protocol + '//oauth.vk.com/authorize', {
-      client_id: -1,
-      redirect_uri: 'close.html',
-      display: 'widget'
-    }, 'vk_openapi', {
-      width: 655,
-      height: 479,
-      onClose: window.gotSession.pbind(true, callback)
-    });
-  },
-
-  subscribeBox: function(callback) {
-    window.subscribedCallback = isFunction(callback) ? callback : function() {};
-    openWidgetsPopupBox('widget_community.php', {
-      act: 'a_subscribe_box',
-      oid: cur.oid,
-      state: 1
-    }, 'vk_subscribe', {
-      height: 291
-    });
-  },
-
-  unsubscribeBox: function(callback) {
-    window.unsubscribedCallback = isFunction(callback) ? callback : function() {};
-    openWidgetsPopupBox('widget_community.php', {
-      act: 'a_unsubscribe_box',
-      oid: cur.oid
-    }, 'vk_unsubscribe', {
-      height: 291
-    });
-  },
-
   subscribe: function(oid) {
     if (cur.progress) return false;
     if (!cur.hash) {
-      this.auth(this.subscribe.bind(this, oid));
+      Widgets.auth(this.subscribe.bind(this, oid));
       return false;
     }
     if (cur.justAuthed) {
@@ -103,7 +70,7 @@ var Subscribe = {
         hideProgress: this.doElProgress.bind(this)
       });
     } else {
-      this.subscribeBox(function() {
+      Widgets.showSubscribeBox(cur.oid, function() {
         hide(cur.doEl);
         show(cur.doneEl);
         cur.Rpc.callMethod('publish', 'widgets.subscribed');
@@ -133,7 +100,7 @@ var Subscribe = {
       });
     }.bind(this);
 
-    cur.confirmUnsubscribe ? Subscribe.unsubscribeBox(doUnsubscribe) : doUnsubscribe();
+    cur.confirmUnsubscribe ? Widgets.showUnsubscribeBox(cur.oid, doUnsubscribe) : doUnsubscribe();
   },
 
   override: function(file, force) {
@@ -142,50 +109,13 @@ var Subscribe = {
       case 'lite.js':
         extend(window, {
 
-          showBox: (function(showBox) {
-            return function(url, params, options, e) {
-              var allowed = {
-                'blank.php': true,
-                'al_apps.php': {'show_captcha_box': {}}
-              };
+          showTooltip: Widgets.showTooltip,
 
-              if (allowed[url] && (!isObject(allowed[url]) || allowed[url][params.act])) {
-                var stat = params.act && isObject(allowed[url]) && allowed[url][params.act].stat;
-                stat && cur.Rpc.callMethod('showLoader', true);
-                stManager.add(stat || [], function() {
-                  params.widget_hash = cur.widgetHash;
-                  params = extend({
-                    widget_hash: cur.widgetHash,
-                    widget: 2,
-                    scrollbar_width: window.sbWidth(),
-                    widget_width: options && options.params && intval(options.params.width) || void(0)
-                  }, params);
-                  cur.Rpc.callMethod('showBox', url+'?' + ajx2q(params), {
-                    height: window.outerHeight || screen.availHeight || 768,
-                    width: window.outerWidth || screen.availWidth || 1028,
-                    base_domain: '//' + location.hostname + '/'
-                  });
-                });
-              } else {
-                debugLog('Forbidden request: '+params.act+' in '+url);
-                return showBox.apply(null, [].slice.call(arguments));
-              }
-            }
-          })(window.showBox),
+          showBox: Widgets.showBox(),
 
-          showCaptchaBox: function(sid, dif, box, o) {
-            var difficulty = intval(dif) ? '' : '&s=1';
-            var imgSrc = o.imgSrc || '/captcha.php?sid=' + sid + difficulty;
-            showBox('al_apps.php', {
-              act: 'show_captcha_box',
-              sid: sid,
-              src: imgSrc,
-              need_mobile: intval(window.need_mobile_act == 1),
-              widget_width: 322
-            });
-            cur.RpcMethods.captcha = o.onSubmit;
-            cur.RpcMethods.captchaHide = o.onHide;
-          },
+          showCaptchaBox: Widgets.showCaptchaBox,
+
+          showReCaptchaBox: Widgets.showReCaptchaBox,
 
           gotSession: function(autorzied, callback) {
             if (autorzied == -1) {

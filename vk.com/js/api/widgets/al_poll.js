@@ -1,4 +1,4 @@
-WPoll = {
+var WPoll = {
 
   init: function (options) {
     extend(cur, {
@@ -28,7 +28,7 @@ WPoll = {
         };
       } else {
         each(geByClass('radiobtn', cur.optionsEl), function (k, v) {
-          v.onclick = this.auth.bind(this);
+          v.onclick = Widgets.auth.bind(Widgets);
         }.bind(this));
       }
     }
@@ -60,18 +60,6 @@ WPoll = {
     if (browser.msie && !browser.msie8 || browser.opera) size += 15;
     window.onBodyResize && onBodyResize();
     cur.Rpc.callMethod('resize', size);
-  },
-
-  auth: function () {
-    openWidgetsPopupBox(location.protocol + '//oauth.vk.com/authorize', {
-      client_id: -1,
-      redirect_uri: 'close.html',
-      display: 'widget'
-    }, 'vk_openapi', {
-      width: 655,
-      height: 479,
-      onClose: window.gotSession.pbind(true)
-    });
   },
 
   switchSection: function (section, params, callback) {
@@ -200,17 +188,15 @@ WPoll = {
     if (!StaticFiles[file] || file !== 'lite.js') return;
     extend(window, {
 
-      showTooltip: (function(showTooltip) {
-        return function() {
-          var args = [].slice.call(arguments);
-          args[1] = extend(args[1] || {}, {
-            showIfFit: true
-          });
-          return showTooltip.apply(this, args);
-        }
-      })(window.showTooltip),
+      showTooltip: Widgets.showTooltip,
 
-      gotSession: function() {
+      showBox: Widgets.showBox(),
+
+      showCaptchaBox: Widgets.showCaptchaBox,
+
+      showReCaptchaBox: Widgets.showReCaptchaBox,
+
+      gotSession: function(session_data) {
         location.reload();
       }
 
