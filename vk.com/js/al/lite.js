@@ -6201,9 +6201,13 @@ window.Widgets = {
 
     return function(url, params, options, e) {
       if (allowed[url] && (!isObject(allowed[url]) || allowed[url][params.act])) {
-        var stat = params.act && isObject(allowed[url]) && allowed[url][params.act].stat;
+
+        window.tooltips && tooltips.hideAll();
         onbefore && onbefore();
+
+        var stat = params.act && isObject(allowed[url]) && allowed[url][params.act].stat;
         stat && cur.Rpc.callMethod('showLoader', true);
+
         stManager.add(stat || [], function() {
           params = extend({
             widget_hash: cur.widgetHash,
