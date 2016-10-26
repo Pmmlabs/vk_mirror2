@@ -1242,8 +1242,13 @@ AdsEdit.showCreatingPostForm = function(creatingPostBox, postOwnerId) {
     return;
   }
 
+  var viewParams = cur.viewEditor.getParams();
+
   var ajaxParams = {};
   ajaxParams.group_id = groupId;
+  ajaxParams.client_id     = viewParams.client_id;
+  ajaxParams.campaign_id   = viewParams.campaign_id;
+
   ajax.post('/adsedit?act=creating_post_form', ajaxParams, {onDone: onComplete.pbind(true), onFail: onComplete.pbind(false)});
 
   function onComplete(isDone) {

@@ -7440,7 +7440,7 @@ function showInlineVideo(videoId, listId, options, ev, thumb) {
 
   showProgress();
 
-  preloadInlineVideo(params, function(success, data) {
+  loadInlineVideo(params, function(success, data) {
     hideProgress();
     if (success) {
       onDone.apply(null, data);
@@ -7465,6 +7465,12 @@ function showInlineVideo(videoId, listId, options, ev, thumb) {
     _videoLastInlined = [videoWrap, thumb];
     thumb.parentNode.appendChild(videoWrap);
     cur.mvOpts = opts && opts.mvData ? opts.mvData : false;
+
+    if (opts.player) {
+      var container = domByClass(videoWrap, 'video_box_wrap');
+      VideoInitializer.initPlayer(container, opts.player.type, opts.player.params);
+    }
+
     try {
       eval('(function () {' + js + '})();');
     } catch (e) {}
@@ -7502,7 +7508,7 @@ function showInlineVideo(videoId, listId, options, ev, thumb) {
   }
 }
 
-function preloadInlineVideo(params, callback, useCache) {
+function loadInlineVideo(params, callback, useCache) {
   var params = extend({
     autoplay: 0,
     module: cur.module

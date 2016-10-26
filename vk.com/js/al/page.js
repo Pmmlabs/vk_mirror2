@@ -113,8 +113,8 @@ var Page = {
 
   },
 
-  buildMediaLinkEl: function(url) {
-    return '<div class="page_media_link_url"><div class="page_media_link_icon"></div><div class="page_media_link_text">' + url + '</div></div>';
+  buildMediaLinkEl: function(url, noIcon) {
+    return '<div class="page_media_link_url '+(noIcon ? 'page_market_owner_link' : '') + '">' + (noIcon ? '' : '<div class="page_media_link_icon"></div>') + '<div class="page_media_link_text">' + url + '</div></div>';
   },
   showManyPhoto: function(el, photoId, listId, opts) {
     var m = allPhotos = [];
@@ -1213,8 +1213,8 @@ var Page = {
 
   initVideoAutoplay: function(noHlsMaxDuration, canPlayMp4) {
     if (browser.mobile || canPlayMp4 === false || cur.videoAutoplayScrollHandler) {
-      if (cur.module == 'feed' && !cur.videoAutoplayScrollHandler) {
-        statlogsValueEvent('feed_init_video_autoplay', 'bad_browser');
+      if (cur.module == 'feed') {
+        statlogsValueEvent('feed_init_video_autoplay', cur.videoAutoplayScrollHandler ? 'already_init' : 'bad_browser');
       }
       return;
     }
@@ -1246,7 +1246,7 @@ var Page = {
       var viewportHeight = (window.innerHeight || document.documentElement.clientHeight) - fixedHeaderHeight;
       var viewportMiddle = fixedHeaderHeight + viewportHeight / 2;
       var activeSpace = Math.min(viewportHeight, 800);
-      var activeTop = viewportMiddle - activeSpace/2;
+      var activeTop = scrollGetY() < 300 ? fixedHeaderHeight : (viewportMiddle - activeSpace/2);
       var activeBottom = viewportMiddle + activeSpace/2;
 
       if (curPlayer) {
@@ -1254,7 +1254,7 @@ var Page = {
         var isPromoPost = domData(domClosest('post', curPlayer.el), 'ad-view');
         var rect = curPlayer.el.getBoundingClientRect();
         var inViewport = rect.top > activeTop && rect.bottom < activeBottom;
-        if (isPromoPost) {
+        if (isPromoPost || !isAutoplaying) {
           inViewport = rect.bottom > activeTop && rect.bottom < activeBottom || rect.top > activeTop && rect.top < activeBottom;
         }
         if (inViewport) {
@@ -1294,7 +1294,6 @@ var Page = {
             }, false, thumb);
             _sendLoadEvent(params);
             cur.videoAutoplayStat = {video: params.video, launched: vkNow(), preloaded: _isPreloaded(params.video)};
-            Page.showVideoAutoplayTooltip(domPN(thumb));
           }
           break;
         } else if (rect.top <= activeTop) {
@@ -1308,7 +1307,7 @@ var Page = {
         if (nextThumb && (canPlayHls || intval(domData(nextThumb, 'duration')) <= noHlsMaxDuration)) {
           var params = _getVideoParams(nextThumb);
           if (!_isPreloaded(params['video'])) {
-            preloadInlineVideo(params, false, true);
+            loadInlineVideo(params, _onVideoDataLoaded, true);
           }
           break;
         }
@@ -1358,60 +1357,13 @@ var Page = {
         module: cur.module || ''
       }, {});
     }
-  },
 
-  autoplayPinnedVideo: function(postId, videoRaw, videoHash) {
-    var thumb = domByClass(ge('post'+postId), 'page_post_thumb_video');
-    if (!thumb || browser.mobile || nav.objLoc.z || window.mvcur && mvcur.mvShown) return;
-
-    showInlineVideo(videoRaw, videoHash, {autoplay: 1, addParams: { post_id: postId, from_autoplay: 1 }}, null, thumb);
-
-    cur.pinnedVideo = videoRaw;
-    cur.pinnedVideoInitHandlers = function() {
-      var post = ge('post'+postId);
-      var playerEl = ge('video_player') || ge('html5_player');
-      if (post && playerEl && isAncestor(playerEl, post)) {
-        addEvent(window, 'scroll', scrollHandler);
-        cur.destroy.push(destroyHandlers);
-        cur.pinnedVideoScrollHandler();
-      }
-      delete cur.pinnedVideoInitHandlers;
-    };
-
-    function scrollHandler(evt) {
-      var post = ge('post'+postId);
-      var playerEl = cur.videoInlinePlayer && cur.videoInlinePlayer.el || ge('video_player') || ge('html5_player');
-      var playerObj = cur.videoInlinePlayer || ge('video_player') || window.html5video;
-      if (!post || !playerEl || !isAncestor(playerEl, post) || (playerObj.isTouchedByUser && playerObj.isTouchedByUser())) {
-        destroyHandlers();
-        return;
-      }
-
-      var playerY = getXY(playerEl)[1];
-      var playerHeight = getSize(playerEl)[1];
-      var scrollY = scrollGetY();
-      var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-
-      var inViewport = (playerY + playerHeight/2 > scrollY) && (playerY + playerHeight/2 < scrollY + viewportHeight);
-
-      if (inViewport != cur.pinnedVideoPrevInViewport) {
-        window.Videoview && Videoview.togglePlay(inViewport);
-        cur.pinnedVideoPrevInViewport = inViewport;
-      }
-    };
-    cur.pinnedVideoScrollHandler = scrollHandler;
-
-    function destroyHandlers() {
-      if (!scrollHandler) return;
-      removeEvent(window, 'scroll', scrollHandler);
-      scrollHandler = null;
-      destroyHandlers = null;
-      delete cur.pinnedVideo;
-      delete cur.pinnedVideoScrollHandler;
-      delete cur.pinnedVideoDestroyHandlers;
-      delete cur.pinnedVideoPrevInViewport;
-    };
-    cur.pinnedVideoDestroyHandlers = destroyHandlers;
+    function _onVideoDataLoaded(sucess, data) {
+      if (!sucess) return;
+      var playerParams = data[3].player.params;
+      var playerVars = playerParams[0];
+      VideoPlayer.preload(playerVars);
+    }
   },
 
   showVideoAutoplayTooltip: function(el) {
@@ -2267,6 +2219,9 @@ var Wall = {
       }
     });
     extend(lsText, { txt: content });
+    if (cur.shareShowImg) {
+      extend(lsText, { shareShowImg: cur.shareShowImg });
+    }
     if (ownerId < 0) {
       extend(lsText, {
         fromGroup: (hasClass(domClosest('_submit_post_box', ge('official')), 'as_group') ? 1 : 0),
@@ -2281,7 +2236,7 @@ var Wall = {
     }
 
     var draft = ls.get(Wall.ownerDraftKey(ownerId)) || [];
-    return [draft.txt, draft.medias, true, {fromGroup: intval(draft.fromGroup), signed: intval(draft.signed)}];
+    return [draft.txt, draft.medias, true, {fromGroup: intval(draft.fromGroup), signed: intval(draft.signed), shareShowImg: intval(draft.shareShowImg)}];
   },
   saveOwnerDraftMedia: function(ownerId, type, id, object) {
     if (cur.options.no_draft) {
@@ -2374,7 +2329,7 @@ var Wall = {
                 return;
               }
             }
-            attachVal = (share.user_id && share.photo_id) ? share.user_id + '_' + share.photo_id : '';
+            attachVal = (share.user_id && share.photo_id && !share.noPhoto) ? share.user_id + '_' + share.photo_id : '';
             if (share.initialPattern && (trim(msg) == share.initialPattern)) {
               params.message = '';
             }
@@ -2383,6 +2338,8 @@ var Wall = {
               mode: share.mode,
               title: replaceEntities(share.title),
               description: replaceEntities(share.description),
+              button_text: replaceEntities(share.button_text),
+              button_action: share.button_action,
               extra: share.extra,
               extra_data: share.extraData,
               photo_url: replaceEntities(share.photo_url),
@@ -2444,6 +2401,9 @@ var Wall = {
     }
     if (data[3] !== undefined) {
       wall.setReplyAsGroup(ge('official'), data[3]);
+      if (data[3].shareShowImg) {
+        cur.shareShowImgRestored = data[3].shareShowImg;
+      }
     }
   },
   initPostEditable: function(draft) {
@@ -2686,9 +2646,22 @@ var Wall = {
                 return;
               }
             }
-            attachVal = (!share.noPhoto && share.user_id && share.photo_id) ? share.user_id + '_' + share.photo_id : '';
-            if (share.images && share.images.length && !share.share_own_image) {
+            attachVal = (share.user_id && share.photo_id && !share.noPhoto) ? share.user_id + '_' + share.photo_id : '';
+            if (share.share_upload_failed && !attachVal) {
+              share.share_upload_failed = 0;
+              return false;
+            }
+            var needUploadShare = share.images && share.images.length
+                                  && !isArray(share.images[cur.shareShowImg])
+                                  && !attachVal
+                                  && !share.noPhoto
+                                  && !share.share_own_image;
+            if (needUploadShare) {
               addmedia.uploadShare(Wall.sendPost);
+              ret = true;
+              return false;
+            }
+            if ((cur.options.share || {}).require_image && (!attachVal || !share.title)) {
               ret = true;
               return false;
             }
@@ -2700,6 +2673,8 @@ var Wall = {
               mode: share.mode,
               title: replaceEntities(share.title),
               description: replaceEntities(share.description),
+              button_text: replaceEntities(share.button_text),
+              button_action: share.button_action,
               extra: share.extra,
               extra_data: share.extraData,
               photo_url: share.noPhoto ? '' : replaceEntities(share.photo_url),
@@ -6268,9 +6243,23 @@ Composer = {
                 return;
               }
             }
-            attachVal = share.user_id + '_' + share.photo_id;
-            if (share.images && share.images.length && !silentCheck) {
+            attachVal = (share.user_id && share.photo_id && !share.noPhoto) ? (share.user_id + '_' + share.photo_id) : '';
+            if (share.share_upload_failed && !attachVal) {
+              share.share_upload_failed = 0;
+              params.delayed = true;
+              return false;
+            }
+            var needUploadShare = share.images && share.images.length
+                                  && !isArray(share.images[cur.shareShowImg])
+                                  && !silentCheck
+                                  && !attachVal
+                                  && !share.noPhoto;
+            if (needUploadShare) {
               addMedia.uploadShare(delayedCallback);
+              params.delayed = true;
+              return false;
+            }
+            if ((cur.options.share || {}).require_image && (!attachVal || !share.title)) {
               params.delayed = true;
               return false;
             }
@@ -6282,9 +6271,12 @@ Composer = {
               mode: share.mode,
               title: replaceEntities(share.title),
               description: replaceEntities(share.description),
+              button_text: replaceEntities(share.button_text),
+              button_action: share.button_action,
               extra: share.extra,
               extra_data: share.extraData,
               photo_url: replaceEntities(share.photo_url),
+              placeholder_inserted: share.placeholder_inserted,
               open_graph_data: (share.openGraph || {}).data,
               open_graph_hash: (share.openGraph || {}).hash
             });

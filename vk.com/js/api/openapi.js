@@ -1476,7 +1476,7 @@ if (!VK.Widgets) {
         gid: gid,
         mode: (options.mode) ? options.mode : '0'
       },
-      startHeight = options.mode == 3 ? 182 : (options.mode == 1 ? 138 : options.height|0 || 290),
+      startHeight = options.mode == 3 ? 185 : (options.mode == 1 ? 141 : options.height|0 || 290),
       rpc;
     if (options.wall) params.wall = options.wall;
     params.color1 = options.color1 || '';
