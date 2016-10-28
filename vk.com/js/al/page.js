@@ -3429,7 +3429,7 @@ var Wall = {
     var cur = window.cur.wallLayer == post ? wkcur : window.cur,
         rf = ge('reply_field' + post),
         replyName = cur.reply_to && Wall.getReplyName(cur.reply_to[0]),
-        v = trim(window.Emoji ? Emoji.editableVal(rf) : ''),
+        v = clean(trim(window.Emoji ? Emoji.editableVal(rf) : '')),
         re = Wall.replyNamesRE();
     if (isArray(replyName) && window.Emoji) {
       if (!v || !replyName[1].indexOf(v)) {
