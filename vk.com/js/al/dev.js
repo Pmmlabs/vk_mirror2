@@ -1365,13 +1365,14 @@ mainPageSliderInit: function (items) {
   cur.devMainSliderEl = geByClass1('dev_main_featured_banner');
 
   Dev.mainPageSliderStartRotation();
+  Dev.mainPageSliderChange(0, '', 1);
 
   cur.destroy.push(function () {
     Dev.mainPageSliderStopRotation();
   });
 },
 
-mainPageSliderChange: function (pos, nav) {
+mainPageSliderChange: function (pos, nav, fast) {
   if (cur.mainSliderBlocked) {
     return;
   }
@@ -1380,9 +1381,18 @@ mainPageSliderChange: function (pos, nav) {
   var curEl = cur.devMainSliderEl;
 
   var newItem = cur.devMainSliderItems[pos];
+
+  var item_opts = isObject(newItem) ? newItem : {className: newItem};
+
   var newEl = ce('div', {
-    className: 'dev_main_featured_banner dev_main_featured_banner_'+newItem,
+    className: 'dev_main_featured_banner dev_main_featured_banner_' + item_opts.className,
   });
+  if (item_opts.title && item_opts.caption) {
+    val(newEl, '<div class="dev_main_featured_banner_slide_cont">' +
+      '<div class="dev_main_featured_banner_slide_title">' + item_opts.title + '</div>' +
+      '<div class="dev_main_featured_banner_slide_caption">' + item_opts.caption + '</div>' +
+      '</div>');
+  }
 
   var wrap = geByClass1('dev_main_featured_banners_anim_helper');
   if (nav == 'next') {
@@ -1408,7 +1418,11 @@ mainPageSliderChange: function (pos, nav) {
       cur.mainSliderBlocked = 0;
 
       Dev.mainPageSliderStartRotation();
-    }, 500);
+
+      if (fast) {
+        addClass(geByClass1('dev_main_featured_banners'), 'dev_main_featured_banners_inited');
+      }
+    }, fast ? 0 : 500);
   });
 
 },
