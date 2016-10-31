@@ -182,30 +182,9 @@ init: function(txt, opts) {
     });
   }
 
-  if (!opts.noStickers && !opts.noStickersStore && window.emojiStickers && (hasClass(txt, 'im_editable') || hasClass(txt, 'fc_editable'))) {
-    for (var i in window.emojiStickers) {
-      if (window.emojiStickers[i][2]) {
-        Emoji.hasNewStickers = window.emojiStickers[i][2];
-        break;
-      }
-    }
-    if (Emoji.hasNewStickers < 0 && !Emoji.noNewStickers) {
-      setTimeout(function() {
-        each(geByClass('emoji_smile_icon'), function(i, el) {
-          if (!geByClass1('emoji_smile_icon_promo', el.parentNode.parentNode)) {
-            el.parentNode.parentNode.appendChild(ce('div', {className: 'emoji_smile_icon_promo'}));
-            addEvent(el, 'mouseover', function() {
-              showTooltip(this, {text: getLang('global_store_stickers_new_available'), shift: [7,1,4], showdt: 0, black: 1});
-            });
-          }
-        });
-      }, hasClass(txt, 'fc_editable') ? 200 : 0);
-    }
-  }
-
-
   window.Notifier && Notifier.addRecvClbk('emoji', 0, Emoji.lcRecv, true);
   Emoji.initStickersKeywords();
+  Emoji.checkNewStickers(opts);
 
   Emoji.opts[Emoji.last] = opts;
   return Emoji.last++;
@@ -2732,6 +2711,34 @@ updateTabs: function(newStickers, keywords, update) {
       tabsCont.innerHTML = html;
     }
     Emoji.checkEmojiSlider(opts);
+    Emoji.checkNewStickers(opts);
+  }
+},
+
+checkNewStickers: function(opts)  {
+  var txt = opts.txt;
+  if (!opts.noStickers && !opts.noStickersStore && window.emojiStickers && txt.getAttribute('contenteditable')) {
+
+    for (var i in window.emojiStickers) {
+      if (window.emojiStickers[i][2]) {
+        Emoji.hasNewStickers = window.emojiStickers[i][2];
+        break;
+      }
+    }
+    if (Emoji.hasNewStickers < 0 && !Emoji.noNewStickers) {
+      setTimeout(function() {
+        each(geByClass('emoji_smile_icon'), function(i, el) {
+
+          var promoNode = el.parentNode.parentNode;
+          if (!geByClass1('emoji_smile_icon_promo', promoNode)) {
+            promoNode.appendChild(ce('div', {className: 'emoji_smile_icon_promo'}));
+            addEvent(el, 'mouseover', function() {
+              showTooltip(this, {text: getLang('global_store_stickers_new_available'), shift: [7,1,4], showdt: 0, black: 1});
+            });
+          }
+        });
+      }, hasClass(txt, 'fc_editable') ? 200 : 0);
+    }
   }
 },
 
