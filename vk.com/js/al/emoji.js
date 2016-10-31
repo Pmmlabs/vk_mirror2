@@ -2729,7 +2729,7 @@ checkNewStickers: function(opts)  {
       setTimeout(function() {
         each(geByClass('emoji_smile_icon'), function(i, el) {
 
-          var promoNode = el.parentNode.parentNode;
+          var promoNode = el.parentNode;
           if (!geByClass1('emoji_smile_icon_promo', promoNode)) {
             promoNode.appendChild(ce('div', {className: 'emoji_smile_icon_promo'}));
             addEvent(el, 'mouseover', function() {

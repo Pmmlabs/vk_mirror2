@@ -236,6 +236,28 @@ var Page = {
       oid: oid || cur.oid
     }, {stat: ['owner_photo.css', 'owner_photo.js']});
   },
+  uploadOwnerCover: function(oid) {
+    return !showBox('al_page.php', {
+      act: 'owner_photo_box',
+      oid: oid || cur.oid,
+      cover: 1
+    }, {stat: ['owner_photo.css', 'owner_photo.js']});
+  },
+  editOwnerCover: function(oid) {
+    showBox('al_page.php', {
+      act: 'owner_cover_crop',
+      oid: oid || cur.oid
+    }, {stat: ['owner_photo.css', 'owner_photo.js']});
+  },
+  deleteOwnerCover: function(oid, hash) {
+    showFastBox({title: getLang('groups_delete_cover_title')}, getLang('groups_delete_cover_confirm'), getLang('global_delete'), function(btn) {
+      ajax.post('al_page.php', {act: 'owner_cover_remove', oid: oid, hash: hash, from: cur.module}, {
+        showProgress: lockButton.pbind(btn),
+        hideProgress: unlockButton.pbind(btn),
+        onDone: cur.shareSetOwnPhoto
+      });
+    }, getLang('global_cancel'));
+  },
   editPhoto: function(newph) {
     cur.hideOther();
     showBox('al_page.php', extend(newph || {}, {act: 'a_edit_photo'}), {

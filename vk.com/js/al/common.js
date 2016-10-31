@@ -613,13 +613,14 @@ function isAncestor(el, ancestor) {
   return false;
 }
 
-function domClosestPositioned(el) {
-  var parent = domPN(el);
+function domClosestPositioned(el, opts) {
+  opts = opts || {};
+  var parent = opts.fromEl || domPN(el),
+      positions = opts.positions || ['relative', 'absolute', 'fixed'];
   while (parent && parent != bodyNode) {
-    var elPos = getStyle(parent, 'position'),
-        overflow = getStyle(parent, 'overflow');
+    var elPos = getStyle(parent, 'position');
 
-    if (inArray(elPos, ['relative', 'absolute', 'fixed']) && overflow != 'hidden') {
+    if (inArray(elPos, positions) && (!opts.noOverflow || getStyle(parent, 'overflow') != 'hidden')) {
       break;
     }
 
@@ -629,12 +630,39 @@ function domClosestPositioned(el) {
   return parent;
 }
 
+function domOverflows(overflowEl, el) {
+  var overflow = getStyle(overflowEl, 'overflow');
+  if (overflow != 'hidden' || !isAncestor(el, overflowEl)) {
+    return false;
+  }
+
+  var fixEl = domClosestPositioned(el, {positions: ['fixed'], fromEl: el}),
+      overflowPos = getStyle(overflowEl, 'position'),
+      absEl = false, curAbsEl = el;
+
+  while (curAbsEl && curAbsEl != overflowEl) {
+    if (getStyle(curAbsEl, 'position') == 'absolute') {
+      absEl = curAbsEl;
+    }
+    curAbsEl = domPN(curAbsEl);
+  }
+
+  if (fixEl && isAncestor(fixEl, overflowEl)) {
+    return false;
+  } else if (overflowPos == 'static' && absEl && isAncestor(absEl, overflowEl)) {
+    var relEl = domClosestPositioned(absEl);
+    if (isAncestor(overflowEl, relEl)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 function domClosestOverflowHidden(el) {
   var parent = domPN(el);
   while (parent && parent != bodyNode) {
-    var overflow = getStyle(parent, 'overflow');
-
-    if (overflow == 'hidden') {
+    if (domOverflows(parent, el)) {
       break;
     }
 
@@ -2412,7 +2440,7 @@ function updateNarrow() {
       lastSt = cur.lastSt || 0, lastStyles = cur.lastStyles || {}, styles, needFix = false,
       smallEnough = headH + barMB + barH + barMT + barPB <= wh && !cur.narrowHide, delta = 1;
 
-  if (st - delta < barPT && !(smallEnough && browser.msie) || tooBig) {
+  if (st - delta < barPT && !(smallEnough && browser.msie && barPos < headH + barMT) || tooBig) {
     styles = {
       marginTop: 0
     }
@@ -9829,7 +9857,7 @@ function ElementTooltip(el, opts) {
     this._opts.type = inArray(this._opts.forceSide, ['top', 'down']) ? ElementTooltip.TYPE_VERTICAL : ElementTooltip.TYPE_HORIZONTAL;
   }
 
-  this._appendToEl = this._opts.appendTo ? this._opts.appendTo : (this._opts.appendToParent ? domClosestPositioned(el) : el);
+  this._appendToEl = this._opts.appendTo ? this._opts.appendTo : (this._opts.appendToParent ? domClosestPositioned(el, {noOverflow: true}) : el);
 
   this._el = el;
   data(this._el, 'ett', this);

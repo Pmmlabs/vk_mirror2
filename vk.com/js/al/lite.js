@@ -2492,13 +2492,14 @@ function isAncestor(el, ancestor) {
   return false;
 }
 
-function domClosestPositioned(el) {
-  var parent = domPN(el);
+function domClosestPositioned(el, opts) {
+  opts = opts || {};
+  var parent = opts.fromEl || domPN(el),
+      positions = opts.positions || ['relative', 'absolute', 'fixed'];
   while (parent && parent != bodyNode) {
-    var elPos = getStyle(parent, 'position'),
-        overflow = getStyle(parent, 'overflow');
+    var elPos = getStyle(parent, 'position');
 
-    if (inArray(elPos, ['relative', 'absolute', 'fixed']) && overflow != 'hidden') {
+    if (inArray(elPos, positions) && (!opts.noOverflow || getStyle(parent, 'overflow') != 'hidden')) {
       break;
     }
 
