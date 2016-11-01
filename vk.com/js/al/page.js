@@ -2691,6 +2691,32 @@ var Wall = {
                 errorMessage = getLang('global_share_too_long_message');
               }
 
+              var messageUrls = extractUrls(" " + msg + " ");
+              var shareUrl = extractUrls(" " + share.url + " ")[0];
+              if (shareUrl && messageUrls.length) {
+                if (shareUrl.query === '/') {
+                  shareUrl.query = '';
+                }
+                if (shareUrl.domain.substr(0, 4) === 'www.') {
+                  shareUrl.domain = shareUrl.domain.substr(4);
+                }
+
+                for (var i = 0; i < messageUrls.length; ++i) {
+                  var url = messageUrls[i];
+                  if (url.query === '/') {
+                    url.query = '';
+                  }
+                  if (url.domain.substr(0, 4) === 'www.') {
+                    url.domain = url.domain.substr(4);
+                  }
+
+                  if (shareUrl.domain != url.domain || shareUrl.query != url.query) {
+                    errorMessage = getLang('global_share_too_many_links');
+                    break;
+                  }
+                }
+              }
+
               if (errorMessage) {
                 showError(errorMessage);
                 ret = true;
@@ -6322,6 +6348,32 @@ Composer = {
               }
               if (params.message.length > (cur.options.share || {}).button_exclusive_max_message_len) {
                 errorMessage = getLang('global_share_too_long_message');
+              }
+
+              var messageUrls = extractUrls(" " + params.message + " ");
+              var shareUrl = extractUrls(" " + share.url + " ")[0];
+              if (shareUrl && messageUrls.length) {
+                if (shareUrl.query === '/') {
+                  shareUrl.query = '';
+                }
+                if (shareUrl.domain.substr(0, 4) === 'www.') {
+                  shareUrl.domain = shareUrl.domain.substr(4);
+                }
+
+                for (var i = 0; i < messageUrls.length; ++i) {
+                  var url = messageUrls[i];
+                  if (url.query === '/') {
+                    url.query = '';
+                  }
+                  if (url.domain.substr(0, 4) === 'www.') {
+                    url.domain = url.domain.substr(4);
+                  }
+
+                  if (shareUrl.domain != url.domain || shareUrl.query != url.query) {
+                    errorMessage = getLang('global_share_too_many_links');
+                    break;
+                  }
+                }
               }
 
               if (errorMessage) {
