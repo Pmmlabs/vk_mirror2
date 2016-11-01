@@ -2643,6 +2643,16 @@ var Wall = {
       medias.push(clone(media));
     }
 
+    hide('submit_post_error');
+
+    function showError(errorMessage) {
+      ge('submit_post_error').innerHTML = (errorMessage.length > 60 ? ('<div class="msg_text">' + errorMessage + '</div>') : errorMessage);
+      if (!isVisible('submit_post_error')) {
+        slideDown('submit_post_error', 100);
+        animate(ge('box_layer_wrap'), {scrollTop: 0});
+      }
+    }
+
     if (medias.length) {
       var ret = false;
       each (medias, function (k, v) {
@@ -2669,6 +2679,24 @@ var Wall = {
                 return;
               }
             }
+            if ((cur.options.share || {}).button_exclusive && share.button_text && share.button_action) {
+              var errorMessage;
+              if (medias.length > 1) {
+                errorMessage = getLang('global_share_too_many_attachments');
+              }
+              if ((msg.split("\n").length - 1) > (cur.options.share || {}).button_exclusive_max_message_newlines) {
+                errorMessage = getLang('global_share_too_many_newlines');
+              }
+              if (msg.length > (cur.options.share || {}).button_exclusive_max_message_len) {
+                errorMessage = getLang('global_share_too_long_message');
+              }
+
+              if (errorMessage) {
+                showError(errorMessage);
+                ret = true;
+                return false;
+              }
+            }
             attachVal = (share.user_id && share.photo_id && !share.noPhoto) ? share.user_id + '_' + share.photo_id : '';
             if (share.share_upload_failed && !attachVal) {
               share.share_upload_failed = 0;
@@ -2685,6 +2713,7 @@ var Wall = {
               return false;
             }
             if ((cur.options.share || {}).require_image && (!attachVal || !share.title)) {
+              showError(!attachVal ? getLang('global_share_image_required') : getLang('global_share_title_required'));
               ret = true;
               return false;
             }
@@ -3993,7 +4022,7 @@ var Wall = {
           target.onclick ||
           target.onmousedown ||
           inArray(target.tagName, ['A', 'IMG', 'TEXTAREA', 'EMBED', 'OBJECT']) ||
-          inArray(target.className, ['play_new', 'page_video_inline_wrap']) ||
+          inArray(target.className, ['play_new', 'video_box_wrap']) ||
           (foundGood = target.className.match && target.className.match(classRE))
       ) {
         break;
@@ -6228,6 +6257,23 @@ Composer = {
     }
 
     setStyle(bodyNode, {cursor: 'default'});
+    var editCont = ge('wpe_cont'),
+        errEl = geByClass1('wpe_error', editCont);
+    errEl && hide(errEl);
+
+    function showError(errorMessage) {
+      if (!errEl) {
+        errEl = se('<div class="wpe_error error"><div>');
+        editCont.insertBefore(errEl, domFC(editCont));
+      }
+
+      errEl.innerHTML = (errorMessage.length > 60 ? ('<div class="msg_text">' + errorMessage + '</div>') : errorMessage);
+      if (!isVisible(errEl)) {
+        slideDown(errEl, 100);
+        scrollToY(getXY(errEl)[1] - 15);
+        animate(ge('box_layer_wrap'), {scrollTop: 0});
+      }
+    }
 
     if (medias.length) {
       var delayed = false;
@@ -6266,6 +6312,24 @@ Composer = {
                 return;
               }
             }
+            if ((cur.options.share || {}).button_exclusive && share.button_text && share.button_action) {
+              var errorMessage;
+              if (medias.length > 1) {
+                errorMessage = getLang('global_share_too_many_attachments');
+              }
+              if ((params.message.split("\n").length - 1) > (cur.options.share || {}).button_exclusive_max_message_newlines) {
+                errorMessage = getLang('global_share_too_many_newlines');
+              }
+              if (params.message.length > (cur.options.share || {}).button_exclusive_max_message_len) {
+                errorMessage = getLang('global_share_too_long_message');
+              }
+
+              if (errorMessage) {
+                showError(errorMessage);
+                params.delayed = true;
+                return false;
+              }
+            }
             attachVal = (share.user_id && share.photo_id && !share.noPhoto) ? (share.user_id + '_' + share.photo_id) : '';
             if (share.share_upload_failed && !attachVal) {
               share.share_upload_failed = 0;
@@ -6283,6 +6347,7 @@ Composer = {
               return false;
             }
             if ((cur.options.share || {}).require_image && (!attachVal || !share.title)) {
+              showError(!attachVal ? getLang('global_share_image_required') : getLang('global_share_title_required'));
               params.delayed = true;
               return false;
             }

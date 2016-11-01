@@ -4265,7 +4265,7 @@ function comScoreUDM(url, referrer) {
 }
 
 function updateOtherCounters(url, referrer) {
-  if (vk.zero) return;
+  if (vk.zero || __dev) return;
   referrer = referrer || document.referrer;
   var ignoreRe = [
     new RegExp('(\\/login)(\\?).*$')
@@ -6647,6 +6647,13 @@ function disable(el, v) {
     v = !hasClass(el, 'disabled');
   }
   toggleClass(el, 'disabled', v);
+  if (el.tagName == 'INPUT') {
+    if (v) {
+      el.setAttribute('readonly', 'readonly');
+    } else {
+      el.removeAttribute('readonly');
+    }
+  }
   return false;
 }
 
@@ -7384,6 +7391,10 @@ function showVideo(videoId, listId, options, ev) {
         options.addParams.load_playlist = /^(?:post_)?-?\d+_-?\d+$/.test(options.playlistId) && !(cur.pageVideosList && cur.pageVideosList[options.playlistId]) ? 1 : 0;
       }
     }
+  }
+
+  if (!options.expandPlayer && cur.videoInlinePlayer && cur.videoInlinePlayer.getVideoId() == videoId) {
+    options.expandPlayer = cur.videoInlinePlayer;
   }
 
   if (options.expandPlayer) {
@@ -9368,8 +9379,12 @@ function audioShowActionTooltip(btn) {
 
   switch(text) {
     case 'delete':
-      if (hasClass(audioRow, 'recoms')) {
+      if (window.AudioPage && AudioPage.isInRecentPlayed(audioRow)) { // todo: little bit hacky
+        text = getLang('audio_remove_from_list');
+
+      } else if (hasClass(audioRow, 'recoms')) {
         text = getLang('audio_dont_show');
+
       } else {
         var restores = audioAddRestoreInfo[audioFullId];
         if (restores && restores.deleteAll) {
