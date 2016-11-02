@@ -2075,7 +2075,7 @@ var layers = {
   visible: false,
   _show: function(el, con, opacity, color) {
     // that's a dirty hack, unless we migrate to cancelStackPush behaviour for esc
-    var key = layers.visible ? 'layers' + (__bq.count() + 1) : 'layers';
+    var key = 'layers' + (__bq.count() + 1);
     cancelStackPush(key, function() {});
     setStyle(el, {opacity: opacity || '', backgroundColor: color || ''});
     if (!layers.visible) {
@@ -2101,7 +2101,7 @@ var layers = {
   },
   _hide: function(el, con) {
     var done = function() {
-      var key = layers.visible ? 'layers' + (__bq.count() + 1) : 'layers';
+      var key = 'layers' + (__bq.count() + 1);
       cancelStackFilter(key);
       if (con && con.visibilityHide) {
         addClass(con, 'box_layer_hidden');
