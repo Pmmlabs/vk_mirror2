@@ -457,7 +457,8 @@ var Page = {
         if (sa == -1 || se == -1 || p == 1 && (sa || se)) continue;
         ch = _postsSeen[j] = p;
         _postsExtras[j] = {start: now, diff: -1, index: index, q: query};
-        _postsExtras[j]['session_id'] = cur.feed_session_id ? cur.feed_session_id : 'na'
+        _postsExtras[j]['session_id'] = cur.feed_session_id ? cur.feed_session_id : 'na';
+        Wall.triggerAdPostStat(j, 'impression');
       }
     }
     if (ch) {
@@ -4110,12 +4111,31 @@ var Wall = {
   },
   postClickStat: function(event) {
     event = normEvent(event);
-    var elem = event.currentTarget;
+    var postEl = event.currentTarget;
     var posts = [];
-    if (elem.getAttribute('data-ad-view')) {
-      posts.push(Wall.postsGetRaws(elem));
+    if (postEl.getAttribute('data-ad-view')) {
+      posts.push(Wall.postsGetRaws(postEl));
       Page.postsSeen(posts);
-      __adsUpdateExternalStats(elem);
+      __adsUpdateExternalStats(postEl);
+    }
+
+    if (hasClass(event.target, 'author') || hasClass(event.target, 'post_image') || hasClass(event.target, 'post_img')) {
+      Wall.triggerAdPostStat(postEl, 'click_post_owner');
+    } else if (
+        event.target.nodeName == 'A' && gpeByClass('wall_post_text', event.target, postEl)
+        || gpeByClass('page_media_thumbed_link', event.target, postEl)
+        || hasClass(event.target, 'lnk')
+        || gpeByClass('lnk', event.target, postEl)
+    ) {
+      Wall.triggerAdPostStat(postEl, 'click_post_link');
+    }
+  },
+  triggerAdPostStat: function(post, event) {
+    var postEl = typeof post == 'string' ? Wall.domPost(post) : post;
+    var pxl = domData(postEl, 'ad-stat-' + event);
+    if (pxl) {
+      vkImage().src = pxl;
+      domData(postEl, 'ad-stat-' + event, null);
     }
   },
   copyHistory: function(ev, el, post, offset) {
@@ -5686,6 +5706,9 @@ var Wall = {
     if (cur.onWallLike) {
       cur.onWallLike();
     }
+    if (like_type == 'wall') {
+      Wall.triggerAdPostStat(post_raw, 'like_post');
+    }
     return false;
   },
   likesShow: function(el, post_id, opts) {
@@ -5762,6 +5785,9 @@ var Wall = {
         post_raw = p.id,
         like_obj = like_type + post_raw;
     showBox('/like.php', extend({act: 'publish_box', object: like_obj}, params));
+    if (like_type == 'wall') {
+      Wall.triggerAdPostStat(post_raw, 'share_post');
+    }
     return false;
   },
   customCur: function() {
