@@ -1355,7 +1355,7 @@ checkWallURL: function(message) {
   }
 },
 
-mainPageSliderTime: 5000,
+mainPageSliderTime: 8000,
 mainPageSliderInit: function (items) {
   if (!geByClass1('dev_main_featured_banners')) {
     return;
@@ -1363,6 +1363,12 @@ mainPageSliderInit: function (items) {
   cur.devMainSliderItems = items;
   cur.devMainSliderPos = 0;
   cur.devMainSliderEl = geByClass1('dev_main_featured_banner');
+
+  var backgrounds = '';
+  for(var i in items) {
+    backgrounds += '<div class="dev_main_featured_banners_bg_item dev_main_featured_banners_bg_' + items[i].className + '" id="dev_main_featured_banners_bg_' + i + '"></div>';
+  }
+  val(geByClass1('dev_main_featured_banners_bg'), backgrounds);
 
   Dev.mainPageSliderStartRotation();
   Dev.mainPageSliderChange(0, '', 1);
@@ -1385,12 +1391,13 @@ mainPageSliderChange: function (pos, nav, fast) {
   var item_opts = isObject(newItem) ? newItem : {className: newItem};
 
   var newEl = ce('div', {
-    className: 'dev_main_featured_banner dev_main_featured_banner_' + item_opts.className,
+    className: 'dev_main_featured_banner',
   });
   if (item_opts.title && item_opts.caption) {
     val(newEl, '<div class="dev_main_featured_banner_slide_cont">' +
       '<div class="dev_main_featured_banner_slide_title">' + item_opts.title + '</div>' +
       '<div class="dev_main_featured_banner_slide_caption">' + item_opts.caption + '</div>' +
+      '<a href="' + item_opts.button.link + '"><button class="dev_main_featured_banner_slide_btn">' + item_opts.button.text + '</button></a>' +
       '</div>');
   }
 
@@ -1404,25 +1411,33 @@ mainPageSliderChange: function (pos, nav, fast) {
 
   Dev.mainPageSliderStopRotation();
 
+  removeClass('dev_main_featured_banners_bg_' + cur.devMainSliderPos, 'dev_main_featured_banners_bg_active');
+  addClass('dev_main_featured_banners_bg_' + pos, 'dev_main_featured_banners_bg_active');
+
   setTimeout(function () {
     addClass(wrap, 'dev_main_featured_banners_anim dev_main_featured_banners_anim_' + nav);
+    removeClass(curEl, 'dev_main_featured_banner_active');
 
     setTimeout(function () {
-      removeClass(wrap, 'dev_main_featured_banners_anim dev_main_featured_banners_anim_' + nav);
-      removeClass(wrap, 'dev_main_featured_banners_prev');
+      addClass(newEl, 'dev_main_featured_banner_active');
 
-      re(curEl);
-      cur.devMainSliderEl = newEl;
-      cur.devMainSliderPos = pos;
+      setTimeout(function () {
+        removeClass(wrap, 'dev_main_featured_banners_anim dev_main_featured_banners_anim_' + nav);
+        removeClass(wrap, 'dev_main_featured_banners_prev');
 
-      cur.mainSliderBlocked = 0;
+        re(curEl);
+        cur.devMainSliderEl = newEl;
+        cur.devMainSliderPos = pos;
 
-      Dev.mainPageSliderStartRotation();
+        cur.mainSliderBlocked = 0;
 
-      if (fast) {
-        addClass(geByClass1('dev_main_featured_banners'), 'dev_main_featured_banners_inited');
-      }
-    }, fast ? 0 : 500);
+        Dev.mainPageSliderStartRotation();
+
+        if (fast) {
+          addClass(geByClass1('dev_main_featured_banners'), 'dev_main_featured_banners_inited');
+        }
+      }, fast ? 0 : 220);
+    }, fast ? 0 : 280);
   });
 
 },
