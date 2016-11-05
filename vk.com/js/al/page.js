@@ -1749,9 +1749,6 @@ var Wall = {
     if (ev && ev.type == 'click' && ev.clientX && ev.offsetX && cur.wallTab == type && cur.wallType == type) {
       return nav.go(el, ev);
     }
-    if ((!cnts.own/* || cnts.own >= cnts.all*/) && inArray(cur.wallTab, ['all', 'own'])) {
-      return cancelEvent(ev);
-    }
     if (cur.wallTab == 'postponed') {
       wall.checkPostponedCount();
     }
@@ -4132,9 +4129,11 @@ var Wall = {
   },
   triggerAdPostStat: function(post, event) {
     var postEl = typeof post == 'string' ? Wall.domPost(post) : post;
-    var pxl = domData(postEl, 'ad-stat-' + event);
-    if (pxl) {
-      vkImage().src = pxl;
+    var pixels = domData(postEl, 'ad-stat-' + event);
+    if (pixels) {
+      each(pixels.split('$$$'), function(i, pxl) {
+        vkImage().src = pxl;
+      });
       domData(postEl, 'ad-stat-' + event, null);
     }
   },
@@ -5439,12 +5438,6 @@ var Wall = {
       cur._back.show.push(addEvent.pbind(document, 'click', Wall.hideEditPostReply));
     } else {
       cur.destroy.push(rem);
-    }
-    var ownCnt = ge('page_wall_count_own');
-    if (cur.wallType == 'own' && !intval(ownCnt && ownCnt.value)) {
-      replaceClass('page_wall_posts', cur.wallType, 'all');
-      cur.wallType = 'all';
-      // checkPageBlocks();
     }
     cur.wallTab = cur.wallType;
     Wall.update();

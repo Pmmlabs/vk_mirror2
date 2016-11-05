@@ -881,7 +881,7 @@ checkStickersKeywords: function(optId, opts, force) {
       each(stickers, function() {
         html += rs(Emoji.hintsStickerItem(), {
           optId: optId,
-          selId: -1,
+          selId: 0,
           stickerId: Math.abs(this),
           class: (this < 0 ? 'promo' : ''),
           onclick: 'Emoji.stickerHintClick(' + optId + ', ' + this + ', this)',
@@ -2185,7 +2185,7 @@ stickerItem: function() {
   return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" data-pack-id="%selId%" data-src="/images/stickers/%stickerId%/%stickerSize%.png" class="emoji_sticker_item" onclick="Emoji.stickerClick(%optId%, %stickerId%, %size%, this, \'keyboard\');"></a>';
 },
 hintsStickerItem: function() {
-  return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" class="emoji_sticker_item %class%" onclick="%onclick%" onmouseover="Emoji.stickerHintOver(this)" onmouseout="Emoji.stickerHintOut(this)"><img class="emoji_sticker_image" src="/images/stickers/%stickerId%/%stickerSize%.png" /></a>';
+  return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" data-pack-id="%selId%" class="emoji_sticker_item %class%" onclick="%onclick%" onmouseover="Emoji.stickerHintOver(this)" onmouseout="Emoji.stickerHintOut(this)"><img class="emoji_sticker_image" src="/images/stickers/%stickerId%/%stickerSize%.png" /></a>';
 },
 
 tabSwitch: function(obj, selId, optId, noScrollUpdate) {
