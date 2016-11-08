@@ -6804,6 +6804,7 @@ function showWriteMessageBox(e, id) {
   stManager.add(['page.js', 'wide_dd.js']);
   var box = showBox('al_mail.php', {act: 'write_box', to: id}, {stat: ['writebox.js', 'writebox.css', 'wide_dd.css', 'page.css', 'emoji.js', 'notifier.css'], cache: 1}, e);
   if (box) cancelEvent(e);
+  window.WriteBox && WriteBox.extractEmoji();
   return !box;
 }
 
@@ -8930,6 +8931,7 @@ function IframeLoader() {
       delete sources[i];
       body.removeChild(getImg(i).parentNode);
     }
+    return img;
   }
   function abort() {
     re(iframe);

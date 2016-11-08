@@ -1208,6 +1208,10 @@ Notifier = {
         Notifier.endNegotiation(data)
         break;
 
+      case 'recent_emoji_set':
+        window.Emoji && Emoji.setRecentEmojiList(data);
+        break;
+
       default:
         if (curNotifier.recvClbks && curNotifier.recvClbks[act]) {
           for (var i in curNotifier.recvClbks[act]) curNotifier.recvClbks[act][i](data);
