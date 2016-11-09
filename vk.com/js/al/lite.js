@@ -4901,6 +4901,7 @@ function MessageBox(options, dark) {
     toggleClass(boxTitleWrap, 'box_grey', options.grey);
 
     // Set box dimensions
+    boxContainer.style.minWidth = typeof(options.width) == 'string' ? options.width : options.width + 'px';
     boxContainer.style.width = typeof(options.width) == 'string' ? options.width : options.width + 'px';
     boxContainer.style.height = typeof(options.height) == 'string' ? options.height : options.height + 'px';
   }
@@ -5971,8 +5972,10 @@ window.Widgets = {
       widget: 4
     }, params);
 
-    var left = Math.max(0, (screen.width - opts.width) / 2),
-      top = Math.max(0, (screen.height - opts.height) / 2);
+    if (browser.safari) opts.height += 45; /* safari popup window panel height, hardcoded to avoid popup jump */
+
+    var left = Math.max(0, (screen.width - opts.width) / 2) + (screen.availLeft | 0),
+      top = Math.max(0, (screen.height - opts.height) / 2) + (screen.availTop | 0);
     if (!/^https?:\/\//i.test(url)) {
       url = location.protocol + '//' + location.host + '/' + url.replace(/^\/+/, '');
     }
@@ -6008,34 +6011,41 @@ window.Widgets = {
       lastTop = null,
       loaded = false,
       resized = false,
-      container = opts.container || geByClass1('widgets_popup_box') || ge('page_wrap');
+      container = opts.container || geByClass1('box_layout') || ge('page_wrap'),
+      scrollable = ge('box_layer_wrap') || bodyNode;
 
-    if (!container) return;
+    if (!container || !scrollable) return;
     if (!startWidth) startWidth = this.popupBoxWidth;
     if (!startHeight) startHeight = this.popupBoxHeight;
+    fixScrolls(true);
 
     function sL() {return window.screenX !== void 0 ? screenX : window.screenLeft;}
     function sT() {return window.screenY !== void 0 ? screenY : window.screenTop;}
 
     function adjust() {
-      if ((interruptedCentering || opts.nocenter) && interruptedResize) {return;}
-      if (!interruptedCentering && lastLeft !== null && lastTop !== null && (lastLeft !== sL() || lastTop !== sT())) {
-        interruptedCentering = true;
+      if ((interruptedCentering || opts.nocenter) && interruptedResize) return;
+      if (!interruptedCentering && lastLeft !== null && lastTop !== null && (lastLeft !== sL() || lastTop !== sT())) interruptedCentering = true;
+
+      var containerWidth = container.scrollWidth,
+        containerHeight = container.scrollHeight,
+        width = Math.max(opts.minWidth, (opts.forceWidth ? startWidth : containerWidth)) + panelsWidth,
+        height = Math.max(opts.minHeight, (opts.forceHeight ? startHeight : containerHeight)) + panelsHeight;
+
+      if (screen.availWidth && screen.availHeight) {
+        width = Math.min(screen.availWidth, width);
+        height = Math.min(screen.availHeight, height);
       }
 
-      var size = getSize(container, true),
-        width = Math.max(opts.minWidth, (opts.forceWidth ? startWidth : size[0])) + panelsWidth,
-        height = Math.max(opts.minHeight, (opts.forceHeight ? startHeight : size[1])) + panelsHeight;
-      if ((interruptedCentering || opts.nocenter) && screen.availWidth && screen.availHeight) {
-        width = Math.min(screen.availWidth - sL() + (screen.availLeft || 0), width);
-        height = Math.min(screen.availHeight - sT() + (screen.availTop || 0), height);
-      }
       if (width != popupWidth || height != popupHeight) {
-        popupWidth = width + (innerWidth - bodyNode.scrollWidth);
+        popupWidth = width + (containerHeight + panelsHeight > height ? sbWidth() + 1 : 0);
         popupHeight = height;
         resized = +new Date();
 
-        interruptedCentering || opts.nocenter || window.moveTo(Math.floor((screen.width - popupWidth - panelsWidth) / 2), Math.floor((screen.height - popupHeight + panelsHeight) / 2));
+        interruptedCentering || opts.nocenter || window.moveTo(
+          Math.floor((screen.width - popupWidth+ (browser.safari ? -panelsWidth : panelsWidth)) / 2) + (screen.availLeft | 0),
+          Math.floor((screen.height - popupHeight + (browser.safari ? -panelsHeight : panelsHeight)) / 2) + (screen.availTop | 0)
+        );
+
         window.resizeTo(popupWidth, popupHeight);
       }
 
@@ -6044,6 +6054,13 @@ window.Widgets = {
           lastLeft = sL();
           lastTop = sT();
         }
+      }, 0);
+    }
+
+    function fixScrolls(partly) {
+      scrollable.style.overflow = 'hidden';
+      !partly && setTimeout(function() {
+        scrollable.style.overflow = '';
       }, 0);
     }
 
@@ -6075,14 +6092,20 @@ window.Widgets = {
       }, opts.interval);
     }
 
+    if (document.readyState === "complete") {
+      loaded = true;
+      fixScrolls();
+    }
     addEvent(window, 'load', function() {
       loaded = true;
+      fixScrolls();
     });
 
     addEvent(window, 'resize', function self() {
       if (!loaded) return;
-      if (resized && +new Date() - resized < 500) {
+      if (resized && (+new Date() - resized < 1000)) {
         resized = false;
+        fixScrolls();
         return;
       }
       interruptedCentering = interruptedResize = true;
@@ -6178,7 +6201,7 @@ window.Widgets = {
       state: state !== void 0 ? state : 1,
       is_event: isEvent ? 1 : void 0
     }, 'vk_subscribe', {
-      height: 290
+      height: 291
     });
   },
 
@@ -6188,7 +6211,7 @@ window.Widgets = {
       act: 'a_unsubscribe_box',
       oid: oid
     }, 'vk_unsubscribe', {
-      height: 290
+      height: 291
     });
   },
 
