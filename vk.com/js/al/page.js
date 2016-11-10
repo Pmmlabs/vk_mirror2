@@ -3613,33 +3613,6 @@ var Wall = {
       window.Notifier && Notifier.lcSend('wall_reply_multiline', {value: value});
     }
   },
-  onReplySubmit: function (post, e) {
-    var cur = window.cur.wallLayer == post ? wkcur : window.cur;
-    var rf = ge('reply_field' + post);
-    if (e.keyCode == KEY.RETURN || e.keyCode == 10) {
-      var composer = data(rf, 'composer'),
-          isListVisible = composer && composer.wdd && composer.wdd.listWrap && isVisible(composer.wdd.listWrap);
-
-      if (Wall.customCur().wallTpl.reply_multiline && (e.ctrlKey || browser.mac && e.metaKey) ||
-          !Wall.customCur().wallTpl.reply_multiline && !e.shiftKey && !(e.ctrlKey || browser.mac && e.metaKey) && !isListVisible) {
-        Wall.sendReply(post);
-        return cancelEvent(e);
-      }
-    }
-    if (e.ctrlKey && e.keyCode == KEY.RETURN) {
-      var v = val(rf),
-          pos = Composer.getCursorPosition(rf);
-
-      val(rf, v.substr(0, pos) + "\n" + v.substr(pos));
-      elfocus(rf, pos + 1, pos + 1);
-
-      rf.autosize.update();
-      setTimeout(function () {
-        rf.autosize.update();
-      }, 0);
-      return cancelEvent(e);
-    }
-  },
   sendReply: function(post, ev, options) {
     options = extend({}, options);
 
@@ -6160,18 +6133,20 @@ Composer = {
   },
   updateAutoComplete: function (composer, event) {
     var input = composer.input,
-        value = window.Emoji ? Emoji.editableVal(input) : val(input);
+        value = (window.Emoji ? Emoji.editableVal : val)(input),
+        pos = Math.max(value.lastIndexOf('@'), value.lastIndexOf('*')),
+        term = false;
 
-
-    //curPos = Composer.getCursorPosition(input),
-    //prefValue = value.substr(0, curPos),
-    var prefValue = value;
-    var pos = Math.max(prefValue.lastIndexOf('@'), prefValue.lastIndexOf('*')),
-        term = pos > -1 ? prefValue.substr(pos + 1).replace(/\n$/, '') : false;
-
-    if (term && term.match(/&nbsp;|[,\.\(\)\?\!\s\n \u00A0]|\#/)) {
-      term = false;
+    if (pos > -1) {
+      var curPos = Composer.getCursorPosition(input),
+          prefValue = value.substr(0, curPos),
+          pos = Math.max(prefValue.lastIndexOf('@'), prefValue.lastIndexOf('*')),
+          matches = prefValue.match(/[@\*]([^,@\*\.\(\)\?\!\s\n\r \u00A0]*)$/);
+      if (matches) {
+        term = matches[1];
+      }
     }
+
     composer.curValue = value;
     composer.curTerm = term;
     composer.curPos = pos;
@@ -6180,10 +6155,10 @@ Composer = {
 
     if (event.type == 'keyup' || event.type == 'paste') {
       if (composer.options.onValueChange) {
-        composer.options.onValueChange(prefValue, event.type != 'keyup');
+        composer.options.onValueChange(value, event.type != 'keyup');
       }
       if (composer.addMedia) {
-        composer.addMedia.checkMessageURLs(prefValue, event.type != 'keyup');
+        composer.addMedia.checkMessageURLs(value, event.type != 'keyup');
       }
       if (composer.options.checkLen) {
         composer.options.checkLen(value);
@@ -6234,7 +6209,8 @@ Composer = {
     }
 
     cur.selNum = (cur.selNum || 0) + 1;
-    suffValue = suffValue.replace(/^(@|\*)[^\s]*(?:\s+\((?:(.*?)\))?\s*)?/, function (whole, asterisk, prevAlias) {
+    var re = new RegExp('^(@|\\*)' + escapeRE(composer.curTerm) + '(?:\\s+\\((?:(.*?)\\))?\\s*)?', '');
+    suffValue = suffValue.replace(re, function (whole, asterisk, prevAlias) {
       var replacement = asterisk + mention + ' ';
       if (noAlias) {
         aliasStartPos = aliasEndPos = replacement.length;
@@ -6249,8 +6225,9 @@ Composer = {
       return replacement;
     });
 
-    aliasStartPos += composer.curPos;
-    aliasEndPos += composer.curPos;
+    if (prefValue && !prefValue.match(/[\.\(\)\?\!\s\n\r \u00A0]$/)) {
+      suffValue = ' ' + suffValue;
+    }
 
     Composer.hideSelectList(composer);
     if (isEmoji) {
@@ -6258,37 +6235,33 @@ Composer = {
       Emoji.focus(composer.input);
       Emoji.editableFocus(composer.input, ge('tmp_sel_'+cur.selNum), false, true)
     } else {
+      aliasStartPos += composer.curPos;
+      aliasEndPos += composer.curPos;
       val(composer.input, prefValue + suffValue);
       elfocus(composer.input, aliasStartPos, aliasEndPos);
     }
     return false;
   },
   getCursorPosition: function (node) {
-    if (node.selectionStart) {
+    if (node.selectionStart !== undefined) {
       return node.selectionStart;
-    } else if (!document.selection) {
-      return 0;
+    } else if (typeof window.getSelection != "undefined") {
+      var sel = window.getSelection();
+      if (!sel || !sel.rangeCount) {
+        return 0;
+      }
+
+      var range = sel.getRangeAt(0),
+          preRange = range.cloneRange(),
+          fakeNode = ce('div');
+
+      preRange.selectNodeContents(node);
+      preRange.setEnd(range.startContainer, range.startOffset);
+      fakeNode.appendChild(preRange.cloneContents());
+      return (window.Emoji ? Emoji.editableVal : val)(fakeNode).replace(/\n$/, '').length;
     }
 
-    var c = "\001",
-        sel = document.selection.createRange(),
-        txt = sel.text,
-        dup = sel.duplicate(),
-        len = 0;
-
-    try {
-      dup.moveToElementText(node);
-    } catch(e) {
-      return 0;
-    }
-    sel.text  = txt + c;
-    len = (dup.text.indexOf(c));
-    sel.moveStart('character',-1);
-    sel.text  = '';
-    if (browser.msie && len == -1) {
-      return (node.value || '').length;
-    }
-    return len;
+    return 0;
   },
   getSendParams: function(composer, delayedCallback, silentCheck) {
     var addMedia = composer.addMedia || {},

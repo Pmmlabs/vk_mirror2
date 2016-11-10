@@ -3292,7 +3292,7 @@ var stManager = {
 function requestBox(box, onDone, onFail) {
   box.setOptions({onDestroy: onFail});
   box.onDone = function() {
-    onDone.apply(null, arguments);
+    if (onDone) onDone.apply(null, arguments);
   }
   return box;
 }
@@ -3310,6 +3310,7 @@ function validateMobileBox(opts) {
     act: 'validate_box',
     captcha: opts.acceptCaptcha ? 1 : '',
     skip_push: opts.skip_push ? opts.skip_push : '',
+    from: opts.from || '',
     hash: opts.hash
   }, {stat: ['uncommon.css']}), opts.onDone, opts.onFail);
 }
@@ -5449,6 +5450,9 @@ function placeholderInit(id, opts) {
       }
       if (!v) {
         v = geByTag('br', el).length > 1;
+      }
+      if (!v) {
+        v = geByTag('p', el).length > 1;
       }
     } else {
       var v = el.value;
