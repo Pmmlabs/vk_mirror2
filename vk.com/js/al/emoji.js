@@ -1,6 +1,8 @@
 if (!window.Emoji) {
 var Emoji = {
 
+EMOJI_SPRITES_NUM: 3,
+
 opts: {},
 last: 0,
 shownId: false,
@@ -599,7 +601,9 @@ getEmojiHTML: function(code, symbol, enabled, is_tab) {
     if (!Emoji.imgEmoji[code] && symbol && !enabled) {
       return symbol;
     } else if (is_tab) {
-      return '<img class="emoji emoji_need_load" '+(symbol ? 'alt="'+symbol+'"' : '')+' src="/images/blank.gif" data-src="/images/emoji/'+code+(window.devicePixelRatio >= 2 ? '_2x' : '')+'.png" />';
+      var code_lower_case = code.toLowerCase();
+      var spriteId = parseInt(code_lower_case, 16) % Emoji.EMOJI_SPRITES_NUM;
+      return '<i class="emoji emoji_sprite_' + spriteId + ' emoji_' + code_lower_case + '" '+(symbol ? 'alt="'+symbol+'"' : '')+'></i>';
     } else {
       return '<img class="emoji" '+(symbol ? 'alt="'+symbol+'"' : '')+' src="/images/emoji/'+code+(window.devicePixelRatio >= 2 ? '_2x' : '')+'.png" />';
     }
@@ -1420,6 +1424,9 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
       var tt_cont = geByClass1('emoji_block_cont', tt);
       addClass(tt, 'emoji_animated');
       animate(tt, toParams, 200, function() {
+        if (opts.ttShown) {
+          return;
+        }
         removeClass(tt, 'emoji_animated');
         hide(tt);
         var stCont = geByClass1('_sticker_hints', domPN(opts.txt));
@@ -1705,7 +1712,7 @@ updateEmojiCatTitle: function (optId) {
 
   var rowH = getSize(els[0])[1], curRow, rowI;
   for(var i = els.length - 1; i >= 0; i--) {
-    if (st >= els[i].offsetTop - rowH) {
+    if (st > els[i].offsetTop - rowH) {
       curRow = els[i];
       rowI = i;
       break;
@@ -1725,7 +1732,7 @@ updateEmojiCatTitle: function (optId) {
     var prevRow = els[rowI - 1];
     if (prevRow) {
       addClass(prevRow, 'emoji_cat_title_fix');
-      setStyle(prevRow.firstChild, 'top', (curRow.offsetTop - prevRow.offsetTop - rowH) + 'px');
+      setStyle(prevRow.firstChild, 'transform', 'translateY(' + (curRow.offsetTop - prevRow.offsetTop - rowH) + 'px)');
     }
 
     var el = curRow.nextSibling;
@@ -1738,7 +1745,7 @@ updateEmojiCatTitle: function (optId) {
 
     for(var i in need_reset) {
       removeClass(need_reset[i], 'emoji_cat_title_fix');
-      setStyle(need_reset[i].firstChild, 'top', '0px');
+      setStyle(need_reset[i].firstChild, 'transform', 'translateY(0px)');
     }
 
     val(helper, '');
@@ -1907,7 +1914,7 @@ emojiExpand: function(optId, block) {
       onupdate: function() {
         if (opts.curTab == 0) {
           Emoji.updateEmojiCatTitle(optId);
-          opts.imagesLoader && opts.imagesLoader.processLoad();
+          //opts.imagesLoader && opts.imagesLoader.processLoad();
         } else {
           Emoji.updateShownStickers(optId);
         }

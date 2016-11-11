@@ -372,7 +372,6 @@ function debugEl(el) {
 function __bf() {}
 
 // DOM
-
 function ge(el) {
   return (typeof el == 'string' || typeof el == 'number') ? document.getElementById(el) : el;
 }
@@ -558,6 +557,14 @@ function domData(el, name, value) {
   } else {
     return el.getAttribute('data-' + name);
   }
+}
+
+function domChildIndex(child) {
+  var i = 0;
+  while((child = domPS(child)) != null) {
+    i++;
+  }
+  return i;
 }
 
 // Closest ansector matching given selector
@@ -1090,14 +1097,14 @@ function addClass(obj, name) {
     obj.className = (obj.className ? obj.className + ' ' : '') + name;
   }
 }
-function addClassDelayed(obj, name) { setTimeout(addClass.pbind(obj, name), 0); }
+function addClassDelayed(obj, name) { return setTimeout(addClass.pbind(obj, name), 0); }
 
 function removeClass(obj, name) {
   if (obj = ge(obj)) {
     obj.className = trim((obj.className || '').replace((new RegExp('(\\s|^)' + name + '(\\s|$)')), ' '));
   }
 }
-function removeClassDelayed(obj, name) { setTimeout(removeClass.pbind(obj, name), 0); }
+function removeClassDelayed(obj, name) { return setTimeout(removeClass.pbind(obj, name), 0); }
 
 function toggleClass(obj, name, v) {
   if (v === undefined) {
@@ -1798,7 +1805,8 @@ var KEY = window.KEY = {
   PAGEDOWN: 34,
   SPACE: 32,
   CTRL: 17,
-  ALT: 18
+  ALT: 18,
+  SHIFT: 16,
 };
 
 function addEvent(elem, types, handler, custom, context, useCapture) {
@@ -5553,7 +5561,7 @@ function val(input, value, nofire) {
       input.innerHTML = value;
     }
 
-    triggerEvent(input, 'valueChanged');
+    !nofire && triggerEvent(input, 'valueChanged');
   }
 
   return input.getValue ? input.getValue() :
@@ -9948,11 +9956,8 @@ ElementTooltip.prototype._onTooltipMouseLeave = function(ev) {
   this._onMouseLeave();
 }
 
-ElementTooltip.prototype.show = function() {
-  this._clearTimeouts();
-
+ElementTooltip.prototype.build = function() {
   if (!this._ttel) {
-    // create tooltip element
     this._ttel = se('<div class="eltt ' + (this._opts.cls || '') + '" id="' + this._opts.id + '"></div>');
 
     if (this._opts.content) {
@@ -9964,6 +9969,14 @@ ElementTooltip.prototype.show = function() {
     }
 
     this._appendToEl.appendChild(this._ttel);
+  }
+}
+
+ElementTooltip.prototype.show = function() {
+  this._clearTimeouts();
+
+  if (!this._ttel) {
+    this.build();
 
     this._opts.onFirstTimeShow && this._opts.onFirstTimeShow.call(this, this._ttel);
 
@@ -10095,6 +10108,14 @@ ElementTooltip.prototype._hide = function(byElClick) {
 
 ElementTooltip.prototype.isShown = function() {
   return this._isShown;
+}
+
+ElementTooltip.prototype.toggle = function() {
+  if (this.isShown()) {
+    this.hide();
+  } else {
+    this.show();
+  }
 }
 
 ElementTooltip.prototype._clearTimeouts = function() {
