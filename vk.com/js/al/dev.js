@@ -1361,14 +1361,16 @@ mainPageSliderInit: function (items) {
     return;
   }
   cur.devMainSliderItems = items;
-  cur.devMainSliderPos = 0;
+  cur.devMainSliderPos = null;
   cur.devMainSliderEl = geByClass1('dev_main_featured_banner');
 
-  var backgrounds = '';
+  var backgrounds = '', buttons = '';
   for(var i in items) {
     backgrounds += '<div class="dev_main_featured_banners_bg_item dev_main_featured_banners_bg_' + items[i].className + '" id="dev_main_featured_banners_bg_' + i + '"></div>';
+    buttons += '<div class="dev_main_featured_banners_change_button" id="dev_main_featured_banners_button_' + i + '" onclick="Dev.mainPageSliderChange(' + i + ', \'auto\')">' + items[i].title + '</div>';
   }
   val(geByClass1('dev_main_featured_banners_bg'), backgrounds);
+  val(geByClass1('dev_main_featured_banners_buttons'), buttons);
 
   Dev.mainPageSliderStartRotation();
   Dev.mainPageSliderChange(0, '', 1);
@@ -1379,10 +1381,14 @@ mainPageSliderInit: function (items) {
 },
 
 mainPageSliderChange: function (pos, nav, fast) {
-  if (cur.mainSliderBlocked) {
+  if (cur.mainSliderBlocked || pos == cur.devMainSliderPos) {
     return;
   }
   cur.mainSliderBlocked = 1;
+
+  if (nav == 'auto') {
+    nav = pos > cur.devMainSliderPos ? 'next' : 'prev';
+  }
 
   var curEl = cur.devMainSliderEl;
 
@@ -1395,9 +1401,8 @@ mainPageSliderChange: function (pos, nav, fast) {
   });
   if (item_opts.title && item_opts.caption) {
     val(newEl, '<div class="dev_main_featured_banner_slide_cont_wrap"><div class="dev_main_featured_banner_slide_cont">' +
-      '<div class="dev_main_featured_banner_slide_title">' + item_opts.title + '</div>' +
+      '<a class="dev_main_featured_banner_slide_title" href="' + item_opts.link + '">' + item_opts.title + '</a>' +
       '<div class="dev_main_featured_banner_slide_caption">' + item_opts.caption + '</div>' +
-      '<a href="' + item_opts.button.link + '"><button class="dev_main_featured_banner_slide_btn">' + item_opts.button.text + '</button></a>' +
       '</div></div>');
   }
 
@@ -1413,6 +1418,9 @@ mainPageSliderChange: function (pos, nav, fast) {
 
   removeClass('dev_main_featured_banners_bg_' + cur.devMainSliderPos, 'dev_main_featured_banners_bg_active');
   addClass('dev_main_featured_banners_bg_' + pos, 'dev_main_featured_banners_bg_active');
+
+  removeClass('dev_main_featured_banners_button_' + cur.devMainSliderPos, 'active_slide');
+  addClass('dev_main_featured_banners_button_' + pos, 'active_slide');
 
   setTimeout(function () {
     addClass(wrap, 'dev_main_featured_banners_anim dev_main_featured_banners_anim_' + nav);
