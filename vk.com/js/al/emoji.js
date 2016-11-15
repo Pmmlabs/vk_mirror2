@@ -603,7 +603,7 @@ getEmojiHTML: function(code, symbol, enabled, is_tab) {
     } else if (is_tab) {
       var code_lower_case = code.toLowerCase();
       var spriteId = parseInt(code_lower_case, 16) % Emoji.EMOJI_SPRITES_NUM;
-      return '<i class="emoji emoji_sprite_' + spriteId + ' emoji_' + code_lower_case + '" '+(symbol ? 'alt="'+symbol+'"' : '')+'></i>';
+      return '<i class="emoji emoji_sprite_' + spriteId + ' emoji_' + code_lower_case + '" emoji="' + code + '" '+(symbol ? 'alt="'+symbol+'"' : '')+'></i>';
     } else {
       return '<img class="emoji" '+(symbol ? 'alt="'+symbol+'"' : '')+' src="/images/emoji/'+code+(window.devicePixelRatio >= 2 ? '_2x' : '')+'.png" />';
     }
@@ -1086,7 +1086,7 @@ emojiEnter: function(optId, e) {
     (ctrlSend ? !(e.ctrlKey || browser.mac && e.metaKey) : !e.shiftKey)
   ) {
     if (opts.curTab === 0) {
-      var img = geByTag1('img', opts.emojiOvered);
+      var img = geByTag1('img', opts.emojiOvered) || geByTag1('i', opts.emojiOvered);
       Emoji.addEmoji(optId, Emoji.getCode(img), opts.emojiOvered);
     }
     return cancelEvent(e);
@@ -2348,13 +2348,15 @@ emojiFlagRegEx: /\uD83C\uDDE8\uD83C\uDDF3|\uD83C\uDDE9\uD83C\uDDEA|\uD83C\uDDEA\
 
 getCode: function(obj) {
   var code = false;
-  if (obj.className == 'emoji') {
-    var m = obj.src.match(/\/([a-zA-Z0-9]+)(_2x)?.png/);
+  if (obj.className == 'emoji_css') {
+    code = obj.getAttribute('emoji');
+  } else if (obj.className.indexOf('emoji') != -1) {
+    var m = obj.src && obj.src.match(/\/([a-zA-Z0-9]+)(_2x)?.png/);
     if (m) {
-      var code = m[1];
+      code = m[1];
+    } else {
+      code = obj.getAttribute('emoji');
     }
-  } else if (obj.className == 'emoji_css') {
-    var code = obj.getAttribute('emoji');
   }
   return code;
 },
