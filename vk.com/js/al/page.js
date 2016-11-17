@@ -5703,9 +5703,13 @@ var Wall = {
         icon_width = getSize(iconEl, true)[0],
         left_offset = icon_left + icon_width / 2 - wrap_left - tt_offset;
 
+    var extra = opts.share ? {published: 1} : {};
+    if (opts.listId) {
+      extra.list = opts.listId;
+    }
     showTooltip(iconEl.parentNode, {
       url: '/like.php',
-      params: extend({act: 'a_get_stats', 'object': like_obj, has_share: hasShare ? 1 : ''}, opts.share ? {published: 1} : {}),
+      params: extend({act: 'a_get_stats', 'object': like_obj, has_share: hasShare ? 1 : ''}, extra),
       slide: 15,
       shift: [-left_offset, like_type == 'wall_reply' ? -3 : 6],
       ajaxdt: 100,

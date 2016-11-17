@@ -10346,4 +10346,8 @@ function loadScript(scriptSrc, options) {
   };
 }
 
+function getStatusExportHash() {
+  return vk.statusExportHash;
+}
+
 try{stManager.done('common.js');}catch(e){}

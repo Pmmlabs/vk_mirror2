@@ -6350,6 +6350,52 @@ window.Widgets = {
 
 };
 
+function loadScript(scriptSrc, options) {
+  var timeout = options.timeout;
+  var onLoad = options.onLoad;
+  var onError = options.onError;
+
+  var script = document.createElement('script');
+  script.addEventListener('load', success);
+  script.addEventListener('readystatechange', success);
+  script.addEventListener('error', fail);
+  script.src = scriptSrc;
+  document.head.appendChild(script);
+
+  if (timeout) {
+    var failTimeout = setTimeout(fail, timeout);
+  }
+
+  function success(evt) {
+    if (script.readyState && script.readyState != 'loaded' && script.readyState != 'complete') return;
+
+    removeListeners();
+    onLoad && onLoad();
+  }
+
+  function fail(evt) {
+    removeListeners();
+    onError && onError();
+  }
+
+  function removeListeners() {
+    clearTimeout(failTimeout);
+    script.removeEventListener('load', success);
+    script.removeEventListener('readystatechange', success);
+    script.removeEventListener('error', fail);
+  }
+
+  return {
+    destroy: function destroy() {
+      removeListeners();
+    }
+  };
+}
+
+function getStatusExportHash() {
+  return vk.statusExportHash;
+}
+
 addEvent(window, 'DOMContentLoaded load', function() {
   vk.loaded = true;
 });

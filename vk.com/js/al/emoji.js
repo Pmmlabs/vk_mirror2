@@ -2309,10 +2309,10 @@ emojiReplace: function(symbolstr) {
     if (code == '200C' || code == '200D') { // joiners
       if (buffer) {
         joiner = true;
-        continue;
       } else {
         out += symbol;
       }
+      continue;
     }
     if (symbol.match(/\uD83C[\uDDE6-\uDDFF]/)) { // flags
       if (isFlag) {

@@ -4613,6 +4613,7 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
     pays_money:             {value: 0,  data: []},
     retargeting_groups:     {value: '', data: []},
     retargeting_groups_not: {value: '', data: []},
+    geo_near:               {value: ''}, // TODO
     tags:                   {value: ''}
   };
 
@@ -4996,6 +4997,7 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
       this.cur.destroy.push(function(){ this.criteria[criterionName].ui.destroy(); }.bind(this));
       break;
     // Inputs
+    case 'geo_near':     // TODO: Proper control
     case 'tags':
       targetElem = ge(this.options.targetIdPrefix + criterionName);
       addEvent(targetElem, this.interestingEvents, function(event) { return this.onUiEvent(criterionName, event); }.bind(this));
@@ -5805,6 +5807,7 @@ AdsTargetingEditor.prototype.onUiEvent = function(criterionName, event) {
       this.hideGroupMore('interests');
       return false;
       break;
+    case 'geo_near':     // TODO: Proper control
     case 'tags':
       var targetElem = ge(this.options.targetIdPrefix + criterionName);
       var criterionValueOriginal = targetElem.value;
