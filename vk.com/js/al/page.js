@@ -1428,11 +1428,15 @@ var Page = {
 
     show(el);
   },
-  actionsDropdownHide: function(el, force) {
-    if (force === 1) return hide(el);
+  actionsDropdownHide: function(el, force, callback) {
+    if (force === 1) {
+      callback && callback();
+      return hide(el);
+    }
     clearTimeout(cur.actDdHide);
     cur.actDdHide = setTimeout(function() {
       fadeOut(el, 200, hide.pbind('page_actions_sublist'));
+      callback && callback();
     }, 150);
   },
   actionsDropdownUnhide: function() {
