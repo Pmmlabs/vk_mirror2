@@ -3816,8 +3816,8 @@ var Wall = {
     });
   },
 
-  hideEditPostReply: function(e) {
-    if (cur.editing === false || isVisible(boxLayerBG) || isVisible(layerBG)) return;
+  hideEditPostReply: function(e, noLayerCheck) {
+    if (cur.editing === false || !noLayerCheck && (isVisible(boxLayerBG) || isVisible(layerBG))) return;
     var el = (e && e.target) ? e.target : {};
     var id = el.id;
     if (cur.editing) {
