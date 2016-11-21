@@ -4651,6 +4651,7 @@ var nav = {
       hab.stop();
       location.href = '/' + nav.strLoc;
     } else {
+      TopNotifier.invalidate();
       nav.go('/' + nav.strLoc, undefined, extend({nocur: true}, opts));
     }
   },
