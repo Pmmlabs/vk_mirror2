@@ -336,6 +336,8 @@ processImagePaste: function(e, txt, opts, onDone) {
     }
 
     if (clipboardData.items) { // best way
+      var imagePaste = false;
+
       for (var j = 0, len = clipboardData.items.length; j < len; j++) {
         var item = clipboardData.items[j];
 
@@ -345,10 +347,14 @@ processImagePaste: function(e, txt, opts, onDone) {
             return _handleImage(event.target.result);
           };
           reader.readAsDataURL(item.getAsFile());
+
+          imagePaste = true;
         } else if (item.type === 'text/plain') {
           return onDone();
         }
       }
+
+      return imagePaste;
 
     } else { // no images or FF
       if (-1 !== Array.prototype.indexOf.call(clipboardData.types, 'text/plain')) {
@@ -379,7 +385,7 @@ onEditablePaste: function(txt, opts, optId, e, onlyFocus) {
     cancelEvent(e);
   }
 
-  this.processImagePaste(e, txt, opts, (function(isImagePaste) {
+  var isImagePaste = this.processImagePaste(e, txt, opts, (function(isImagePaste) {
     if (isImagePaste) {
       return;
     }
@@ -392,7 +398,7 @@ onEditablePaste: function(txt, opts, optId, e, onlyFocus) {
     }
   }).bind(this));
 
-  if (textRangeAndNoFocus) {
+  if (isImagePaste || textRangeAndNoFocus) {
     cancelEvent(e);
   }
 },
@@ -1559,7 +1565,7 @@ emojiLoadMore: function(optId) {
           Emoji.emojiOldRecentPrepare(recent_emoji, optId);
           Emoji.updateEmojiCont(optId);
         } else {
-          Emoji.curEmojiRecent = emojiList;
+          Emoji.curEmojiRecent = Emoji.filterEmoji(emojiList);
         }
         opts.onRecentEmojiUpdate && opts.onRecentEmojiUpdate();
       }
@@ -1568,6 +1574,36 @@ emojiLoadMore: function(optId) {
   if (Emoji.curEmojiRecent) {
     opts.onRecentEmojiUpdate && opts.onRecentEmojiUpdate();
   }
+},
+
+filterEmoji: function (emoji_list) {
+  var noChecked = Object.keys(emoji_list);
+
+  checking:
+  for(var i in Emoji.curEmojiCats) {
+    for(var j in Emoji.curEmojiCats[i]) {
+      var code = Emoji.curEmojiCats[i][j], pos = noChecked.indexOf(code);
+      if (pos != -1) {
+        noChecked.splice(pos, 1);
+        if (noChecked.length == 0) {
+          break checking;
+        }
+      }
+    }
+  }
+
+  var result = {};
+  for(var i in emoji_list) {
+    if (noChecked.indexOf(i) == -1) {
+      result[i] = emoji_list[i];
+    }
+  }
+
+  if (noChecked.length > 0) {
+    Emoji.setRecentEmojiList(result);
+  }
+
+  return result;
 },
 
 emojiGetRecentFromStorage: function () {
@@ -1589,7 +1625,7 @@ emojiOldRecentPrepare: function (recent_emoji) {
     }
     emoji_list[code] = rate;
   }
-  Emoji.setRecentEmojiList(emoji_list);
+  Emoji.setRecentEmojiList(Emoji.filterEmoji(emoji_list));
 },
 
 getRecentEmojiSorted: function () {
@@ -2156,6 +2192,7 @@ anim: function(el, to) {
     }
   }, 13);
 },
+
 tplSmile: function(placeholder) {
   return '<div class="emoji_smile_wrap _emoji_wrap">\
   <div class="emoji_smile _emoji_btn" title="' + placeholder + '" onmouseover="return Emoji.show(this, event);" onmouseout="return Emoji.hide(this, event);" onclick="return cancelEvent(event);">\
