@@ -428,8 +428,8 @@ function gpeByClass(className, elem, stopElement) {
   }
   return null;
 }
-function domQuery(selectors) {
-  return document.querySelectorAll(selectors);
+function domQuery(selectors, parent) {
+  return (parent || document).querySelectorAll(selectors);
 }
 function domClosest(className, elem) {
   if (hasClass(elem, className)) return elem;

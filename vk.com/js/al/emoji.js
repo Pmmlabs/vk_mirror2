@@ -206,7 +206,7 @@ lcRecv: function(data) {
 
 correctCaret: function(txt) {
   var bottom = getCaretBoundingRect(txt).bottom;
-  if(bottom < 0 || bottom > txt.offsetHeight) {
+  if (bottom < 0 || bottom > txt.offsetHeight) {
     txt.scrollTop += bottom - txt.offsetHeight;
   }
 },
@@ -493,7 +493,7 @@ editableFocus: function(editable, obj, after, noCollapse, noForce) {
       }
 
       if (!noCollapse) {
-        range.collapse(after ? false : true);
+        range.collapse(!after);
       }
       var sel = window.getSelection();
       sel.removeAllRanges();
@@ -502,7 +502,7 @@ editableFocus: function(editable, obj, after, noCollapse, noForce) {
   } else if (typeof document.body.createTextRange != 'undefined') {
     var textRange = document.body.createTextRange();
     textRange.moveToElementText(obj || editable);
-    textRange.collapse(after ? false : true);
+    textRange.collapse(!after);
     textRange.select();
   }
 },
