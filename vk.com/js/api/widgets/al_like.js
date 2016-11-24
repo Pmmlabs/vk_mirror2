@@ -36,7 +36,7 @@ var WLike = {
         if (!isOver) removeClass(this.checkboxEl, 'checkbox_pressed');
         return;
       }
-      if (window.noAuthVal) return Widgets.auth();
+      if (window.noAuthVal) return Widgets.oauth();
       var val = !hasClass(this.checkboxEl, 'checked');
       if (!WLike.saveLike(val)) return;
       val ? addClass(this.checkboxEl, 'checked') : removeClass(this.checkboxEl, 'checked');

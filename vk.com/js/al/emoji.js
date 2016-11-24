@@ -1425,22 +1425,12 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
   }
   Emoji.preventMouseOver = false;
   if (Emoji.shown) {
-    var toParams = {opacity: 0};
-    setTimeout(function() {
-      var tt_cont = geByClass1('emoji_block_cont', tt);
-      addClass(tt, 'emoji_animated');
-      animate(tt, toParams, 200, function() {
-        if (opts.ttShown) {
-          return;
-        }
-        removeClass(tt, 'emoji_animated');
-        hide(tt);
-        var stCont = geByClass1('_sticker_hints', domPN(opts.txt));
-        if (stCont && isVisible(stCont)) {
-          Emoji.checkStickersHintsSize(stCont, opts, true);
-        }
-      });
-    }, 10);
+    hide(tt);
+    setStyle(tt, 'opacity', 0);
+    var stCont = geByClass1('_sticker_hints', domPN(opts.txt));
+    if (stCont && isVisible(stCont)) {
+      Emoji.checkStickersHintsSize(stCont, opts, true);
+    }
     Emoji.shown = false;
     Emoji.shownId = false;
     opts.ttShown = false;
@@ -1454,21 +1444,13 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
   } else {
     opts.openedByTabKey = !!tabKey;
     show(tt);
-    var toParams = {opacity: 1};
+    setStyle(tt, 'opacity', 1);
     Emoji.repositionEmoji(optId, obj, tt);
 
     var stCont = geByClass1('_sticker_hints', domPN(opts.txt));
     if (stCont && isVisible(stCont)) {
       Emoji.checkStickersHintsSize(stCont, opts, true);
     }
-
-    setTimeout(function() {
-      show(tt);
-      addClass(tt, 'emoji_animated');
-      animate(tt, toParams, 200, function() {
-        removeClass(tt, 'emoji_animated');
-      });
-    }, 10);
     Emoji.shownId = optId;
     Emoji.shown = obj;
     cur.emojiList = geByClass1('emoji_list', tt);

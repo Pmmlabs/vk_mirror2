@@ -28,7 +28,7 @@ var WPoll = {
         };
       } else {
         each(geByClass('radiobtn', cur.optionsEl), function (k, v) {
-          v.onclick = Widgets.auth.bind(Widgets);
+          v.onclick = Widgets.oauth.bind(Widgets);
         }.bind(this));
       }
     }

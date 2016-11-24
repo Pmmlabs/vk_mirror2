@@ -44,7 +44,9 @@ var Subscribe = {
   subscribe: function(oid) {
     if (cur.progress) return false;
     if (!cur.hash) {
-      Widgets.auth(this.subscribe.bind(this, oid));
+      Widgets.oauth({
+        onClose: window.gotSession.pbind(true, this.subscribe.bind(this, oid))
+      });
       return false;
     }
     if (cur.justAuthed) {

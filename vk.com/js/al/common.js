@@ -3068,7 +3068,7 @@ function ajx2q(qa) {
     }
     try {
       return encodeURIComponent(str);
-    } catch (e) { return str; }
+    } catch (e) { return ''; }
   };
 
   for (var key in qa) {

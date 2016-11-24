@@ -6392,16 +6392,16 @@ window.Widgets = {
     return startAdjustment;
   },
 
-  auth: function(callback) {
-    Widgets.popupBoxOpen(location.protocol + '//oauth.vk.com/authorize', {
+  oauth: function(options, params) {
+    Widgets.popupBoxOpen(location.protocol + '//oauth.vk.com/authorize', extend({
       client_id: -1,
       redirect_uri: 'close.html',
       display: 'widget'
-    }, 'vk_openapi', {
+    }, isObject(params) ? params : {}), 'vk_openapi', extend({
       width: 655,
       height: 430,
-      onClose: window.gotSession.pbind(true, callback)
-    });
+      onClose: window.gotSession.pbind(true)
+    }, isObject(options) ? options : {}));
   },
 
   showTooltip: (function(showTooltip) {

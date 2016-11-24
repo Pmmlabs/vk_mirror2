@@ -100,8 +100,8 @@ var WComments = {
     }
 
     if (!options.user_id) {
-      addEvent('send_post', 'click', Widgets.auth.bind(Widgets));
-      addEvent('post_field', 'click focus', Widgets.auth.bind(Widgets));
+      addEvent('send_post', 'click', Widgets.oauth.bind(Widgets));
+      addEvent('post_field', 'click focus', Widgets.oauth.bind(Widgets));
     }
   },
 
@@ -1496,7 +1496,7 @@ var WComments = {
           Wall[v] = (function(func) {
             return function() {
               if (!vk.id) {
-                Widgets.auth();
+                Widgets.oauth();
               } else {
                 return func.apply(Wall, [].slice.call(arguments));
               }

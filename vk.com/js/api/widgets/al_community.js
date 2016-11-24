@@ -120,7 +120,7 @@ var Community = {
       cur.changinGroupState = true;
       lockButton(btn);
       if (cur.noAuth) {
-        Widgets.auth();
+        Widgets.oauth();
         window.gotSession = function(autorzied) {
           if (autorzied == -1) {
             setTimeout(location.reload.bind(location), 1000);
@@ -176,7 +176,7 @@ var Community = {
     cur.changinEventState = true;
     lockButton(btn);
     if (cur.noAuth) {
-      Widgets.auth();
+      Widgets.oauth();
       window.gotSession = function(autorzied) {
         cur.noAuth = false;
         ajax.post('/widget_community.php', {
@@ -399,7 +399,7 @@ var Community = {
           Wall[v] = (function(func) {
             return function() {
               if (!vk.id) {
-                Widgets.auth();
+                Widgets.oauth();
               } else {
                 return func.apply(Wall, [].slice.call(arguments));
               }
