@@ -445,6 +445,18 @@ function cleanObj(data) {
   return dataCleaned;
 }
 
+if (!Object.keys) {
+  Object.keys = function(o) {
+    var a = [];
+    for (var i in o) {
+      if (o.hasOwnProperty(i)) {
+        a.push(i);
+      }
+    }
+    return a;
+  }
+}
+
 /* Store data connected to element */
 
 window.vkExpand = 'VK' + vkNow();
