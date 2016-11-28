@@ -2219,19 +2219,31 @@ function setCookie(name, value, days) {
 
 /* DOM */
 
-function domClosestOverflowHidden(el) {
-  var parent = domPN(el);
-  while (parent && parent != bodyNode) {
-    var overflow = getStyle(parent, 'overflow');
+function domClosestOverflowHidden(startEl) {
+  startEl = ge(startEl);
+  var el = startEl, position, overflow, transform, lastPosition;
 
-    if (overflow == 'hidden') {
-      break;
+  while (el && el.tagName && el !== bodyNode) {
+    position = getStyle(el, 'position');
+    overflow = getStyle(el, 'overflow');
+    transform = getStyle(el, 'transform');
+
+    if (
+      el !== startEl &&
+      overflow !== 'visible' &&
+      (position === 'static' ? !lastPosition || lastPosition === 'relative' : lastPosition !== 'fixed')
+    ) break;
+
+    if (transform !== 'none') {
+      lastPosition = void 0;
+    } else if (position !== 'static' && lastPosition !== 'fixed') {
+      lastPosition = position;
     }
 
-    parent = domPN(parent);
+    el = domPN(el);
   }
 
-  return parent;
+  return el;
 }
 
 function nodeUpdated(elem, delay) {

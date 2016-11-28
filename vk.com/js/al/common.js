@@ -637,46 +637,31 @@ function domClosestPositioned(el, opts) {
   return parent;
 }
 
-function domOverflows(overflowEl, el) {
-  var overflow = getStyle(overflowEl, 'overflow');
-  if (overflow != 'hidden' || !isAncestor(el, overflowEl)) {
-    return false;
-  }
+function domClosestOverflowHidden(startEl) {
+  startEl = ge(startEl);
+  var el = startEl, position, overflow, transform, lastPosition;
 
-  var fixEl = domClosestPositioned(el, {positions: ['fixed'], fromEl: el}),
-      overflowPos = getStyle(overflowEl, 'position'),
-      absEl = false, curAbsEl = el;
+  while (el && el.tagName && el !== bodyNode) {
+    position = getStyle(el, 'position');
+    overflow = getStyle(el, 'overflow');
+    transform = getStyle(el, 'transform');
 
-  while (curAbsEl && curAbsEl != overflowEl) {
-    if (getStyle(curAbsEl, 'position') == 'absolute') {
-      absEl = curAbsEl;
-    }
-    curAbsEl = domPN(curAbsEl);
-  }
+    if (
+      el !== startEl &&
+      overflow !== 'visible' &&
+      (position === 'static' ? !lastPosition || lastPosition === 'relative' : lastPosition !== 'fixed')
+    ) break;
 
-  if (fixEl && isAncestor(fixEl, overflowEl)) {
-    return false;
-  } else if (overflowPos == 'static' && absEl && isAncestor(absEl, overflowEl)) {
-    var relEl = domClosestPositioned(absEl);
-    if (isAncestor(overflowEl, relEl)) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-function domClosestOverflowHidden(el) {
-  var parent = domPN(el);
-  while (parent && parent != bodyNode) {
-    if (domOverflows(parent, el)) {
-      break;
+    if (transform !== 'none') {
+      lastPosition = void 0;
+    } else if (position !== 'static' && lastPosition !== 'fixed') {
+      lastPosition = position;
     }
 
-    parent = domPN(parent);
+    el = domPN(el);
   }
 
-  return parent;
+  return el;
 }
 
 function show(elem) {
