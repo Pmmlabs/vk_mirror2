@@ -4566,7 +4566,7 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
     uiHeight: 250,
     uiWidthRange: 151 + 8,
     uiHeightRange: 190,
-    uiMaxSelected: 25
+    uiMaxSelected: 100
   };
 
   this.options = extend({}, this.options, options);
