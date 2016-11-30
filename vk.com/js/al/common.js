@@ -7007,6 +7007,50 @@ var _cleanHide = function(el) {
   }
 }
 
+/**
+ *
+ * ƒопишите доку, кто знает о эффекте опций, дл€ которых не дано описание
+ *
+ * @param el
+ * @param opts
+       text string - текст дл€ отображени€
+       url - адрес дл€ запрашивани€ текста дл€ отображени€. работает вместо text
+       params - параметры дл€ url?
+       center: bool
+       shift - массив, содержащий смещени€ x, y(, y при выкидывании вниз(, x при выкидывании влево)) или функци€, возвращающа€ такой массив
+       showdt int - (dt - delay time) задержка перед по€влением в мс
+       hidedt int - задержка перед исчезновением в мс
+       forcetodown
+       forcetoup
+       ajaxdt
+       hasover
+       nohide
+       nohideover
+       slide
+       slideX
+       className
+       dir - 'auto', 'top', 'right', 'bottom', 'left' - направление, в котором показываетс€ торчащий уголок тултипа
+       needLeft: bool - заставл€ет тултип "развеватьс€" в левом направлении от точки прикреплени€
+       reverseOffset
+       checkLeft
+       appendEl
+       tip
+       typeClass
+       className
+       appendParentCls
+       showIfFit
+       onCreate - function
+       onShowStart - function
+       onHide - function
+       asrtl
+       noZIndex
+       toup
+       force
+       zIndex
+
+       расположение уголка задавать через css. по-умолчанию это .tt_default.tt_*:before (тень) и .tt_default.tt_*:after (сам уголок), где вместо * может сто€ть класс направлени€ уголка, например down
+
+ */
 function showTooltip(el, opts) {
   if (!vk.loaded && !opts.noload) return;
 
