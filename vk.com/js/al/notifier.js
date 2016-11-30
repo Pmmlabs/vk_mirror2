@@ -5522,22 +5522,47 @@ var TopNotifier = {
   _qParams: {section: 'notifications', _tb: 1},
   loaded: false,
 
-  onLoad: function(rows, js) {
-    val('top_notify_cont', rows);
+  onLoad: function(rows, js, offset) {
+    if (TopNotifier.tnOffset == offset) return;
+    val(TopNotifier.scrollbar.content, rows);
     eval('(function(){' + js + ';})()');
+    TopNotifier.tnOffset = offset;
     TopNotifier.cleanCount();
     TopNotifier.refresh();
   },
   preload: function() {
-    if (this.shown() || vk.isBanned) return;
-    ajax.post('/al_feed.php', extend(this._qParams, {_preload: 1}), {
+    if (this.shown() || vk.isBanned || TopNotifier.loaded) return;
+    ajax.post('/al_feed.php', extend(clone(TopNotifier._qParams), {_preload: 1}), {
       cache: 1,
-      onDone: function(rows, js) {
+      onDone: function(rows, js, offset) {
         if (TopNotifier.shown() && geByClass1('pr', 'top_notify_cont')) {
-          TopNotifier.onLoad(rows, js);
+          TopNotifier.onLoad(rows, js, offset);
         }
       },
       stat: ['feed.css', 'page.css', 'post.css']
+    });
+  },
+  loadMore: function() {
+    var btn = ge('ui_top_notify_load_more');
+    if (!btn || isButtonLocked(btn)) return;
+
+    ajax.post('/al_feed.php', extend(clone(TopNotifier._qParams), {offset: TopNotifier.tnOffset, more: 1}), {
+      onDone: function(rows, newOffset) {
+        if (!rows) return;
+
+        var au = ce('div'), row;
+        au.innerHTML = rows;
+        while (row = au.firstChild) {
+          TopNotifier.scrollbar.content.insertBefore(row, btn);
+        }
+        if (!newOffset) {
+          re(btn);
+          return;
+        }
+        TopNotifier.tnOffset = newOffset;
+      },
+      showProgress: function() { show(btn); lockButton(btn); },
+      hideProgress: function() { hide(btn); unlockButton(btn); }
     });
   },
   show: function(ev) {
@@ -5563,28 +5588,30 @@ var TopNotifier = {
     }
     if (!cont) {
       var c = ce('div', {
-        innerHTML: '<div class="top_notify_header"><a href="/settings?act=notify" class="top_notify_prefs_lnk" onclick="return nav.go(this, event);" onmousedown="event.cancelBubble = true;" ontouchstart="event.cancelBubble = true;">' + getLang('global_notifications_settings') + '</a>' + getLang('global_last_notifitications') + '</div><div id="top_notify_cont" class="top_notify_cont wall_module"  ontouchstart="event.cancelBubble = true;" onmousedown="event.cancelBubble = true;"></div><a href="/feed?section=notifications" class="top_notify_show_all" onmousedown="event.cancelBubble = true;" onclick="TopNotifier.hide(); return nav.go(this, event);">' + getLang('global_notify_show_all') + '</a>',
+        innerHTML: '<div class="top_notify_header" onclick="nav.go(\'/feed?section=notifications\', event);"><a href="/settings?act=notify" class="top_notify_prefs_lnk" onclick="cancelEvent(event); return nav.go(this, event);" onmousedown="event.cancelBubble = true;" ontouchstart="event.cancelBubble = true;">' + getLang('global_notifications_settings') + '</a>' + getLang('global_notifitications') + '</div><div id="top_notify_cont" class="top_notify_cont wall_module" ontouchstart="event.cancelBubble = true;" onmousedown="event.cancelBubble = true;"></div><a href="/feed?section=notifications" class="top_notify_show_all" onmousedown="event.cancelBubble = true;" onclick="TopNotifier.hide(); return nav.go(this, event);">' + getLang('global_notify_show_all') + '</a>',
         id: 'top_notify_wrap',
         className: 'scroll_fix_wrap top_notify_wrap'
       });
       link.appendChild(c);
       cont = ge('top_notify_cont');
     }
-    if (!cur.tnScrollbar) {
-      cur.tnScrollbar = new Scrollbar('top_notify_cont', {
-        nomargin: true,
-        right: vk.rtl ? 'auto' : 0,
-        left: !vk.rtl ? 'auto' : 0,
-        forceCancelEvent: true,
-        nokeys: true
+    var wHeight = window.innerHeight || document.documentElement.clientHeight;
+    setStyle(cont, {'maxHeight': Math.min(Math.max(wHeight - 200, 300), 600)});
+
+    if (!TopNotifier.scrollbar) {
+      TopNotifier.scrollbar = new uiScroll(cont, {
+        global: true,
+        onmore: TopNotifier.loadMore
       });
-      cur.destroy.push(function () {
-        cur.tnScrollbar && cur.tnScrollbar.destroy();
-      });
+    }
+    if (!cur.tnScollReinit) {
+      cur.tnScollReinit = true;
+      cur.destroy.push(TopNotifier.scrollbar.scrollTop);
     }
 
     if (!TopNotifier.loaded) {
-      ajax.post('/al_feed.php', this._qParams, {
+      ajax.post('/al_feed.php', TopNotifier._qParams, {
+        cache: 1,
         onDone: TopNotifier.onLoad,
         showProgress: TopNotifier.showProgress,
         stat: ['feed.css']
@@ -5593,8 +5620,6 @@ var TopNotifier = {
     }
 
     addClass(this.tnLink, 'active');
-    var wHeight = window.innerHeight || document.documentElement.clientHeight;
-    setStyle(cont, {'maxHeight': Math.max(wHeight - 200, 300)});
     TopNotifier.refresh();
 
     if (ev !== true) {
@@ -5611,7 +5636,7 @@ var TopNotifier = {
     return hasClass(this.tnLink, 'active');
   },
   showProgress: function() {
-    var cont = ge('top_notify_cont');
+    var cont = TopNotifier.scrollbar.content;
     if (!geByClass1('pr', cont)) {
       val(cont, '');
       showProgress(cont);
@@ -5694,6 +5719,8 @@ var TopNotifier = {
   },
   invalidate: function() {
     TopNotifier.loaded = false;
+    TopNotifier.tnOffset = 0;
+    ajax.invalidate('/al_feed.php', TopNotifier._qParams);
   },
   setCount: function(value, noInvalidate) {
     if (isString(value)) value = trim(value);
@@ -5714,7 +5741,6 @@ var TopNotifier = {
     ajax.post('/al_feed.php', {act: 'a_clean_notify', hash: cur.topNotifyHash});
   },
   refresh: function() {
-    cur.tnScrollbar && cur.tnScrollbar.update(false, true);
   },
   postTooltip: function(el, post, opts) {
     return false;
@@ -5754,8 +5780,8 @@ var TopNotifier = {
     TopNotifier.hideActionsMenu(gpeByClass('_ui_menu_wrap', el));
     slideUp(row, 200, function() {
       re(row);
-      if (!geByClass('feed_row', 'top_notify_cont').length) {
-        val('top_notify_cont', '<div class="top_notify_empty no_rows">' + getLang('news_no_new_notifications') + '</div>');
+      if (!geByClass('feed_row', TopNotifier.scrollbar.content).length) {
+        val(TopNotifier.scrollbar.content, '<div class="top_notify_empty no_rows">' + getLang('news_no_new_notifications') + '</div>');
       }
       TopNotifier.refresh();
     });
@@ -5807,6 +5833,20 @@ var TopNotifier = {
     }
     return target || true;
   },
+  ungroup: function(item, event) {
+    var el = ge('top_feedback_row' + item);
+    event = event || window.event;
+    if (!el || hasClass(el, 'feedback_row_expanded') || checkEvent(event) || !TopNotifier.checkClick(el, event)) return;
+
+    var hid = domNS(domPN(el)),
+        names = geByClass1('_header', el),
+        text = domData(names, 'text');
+    show(hid);
+    removeClass(el, 'feedback_row_grouped');
+    addClass(el, 'feedback_row_expanded');
+    val(names, text);
+    el.onclick = eval('(function(){ if (!TopNotifier.checkClick(this, event)) return; ' + unclean(domData(names, 'click')) + ';})');
+  },
   showActionsMenu: function(el) {
     var options = false;
         row = domClosest('_feed_row', el),
@@ -5821,6 +5861,69 @@ var TopNotifier = {
   },
   hideActionsMenu: function(el) {
     uiActionsMenu.hide(el);
+  },
+
+  frProcess: function(mid, hash, btn, accept) {
+    if (isButtonLocked(btn)) return;
+
+    var params;
+    if (accept) {
+      params = {act: 'add', mid: mid, hash: hash, request: 1, from: 'top_notifier'};
+    } else {
+      params = {act: 'remove', mid: mid, hash: hash, report_spam: 1, from: 'top_notifier'};
+    }
+    ajax.post('/al_friends.php', params, {
+      onDone: function(text) {
+        var cont = domPN(btn);
+        val(cont, text);
+        addClass(cont, 'feedback_buttons_response');
+        if (cur.module == 'friends' && Friends) {
+          val('request_controls_' + mid, text);
+          Friends.processRequest(mid, accept);
+        }
+      },
+      onFail: function(text) {
+        if (!text) return;
+        setTimeout(showFastBox(getLang('global_error'), text).hide, 3000);
+        return true;
+      },
+      showProgress: lockButton.pbind(btn), hideProgress: unlockButton.pbind(btn)
+    });
+  },
+  grProcess: function(gid, hash, el, action) {
+    if (hasClass(el, 'flat_button') && isButtonLocked(el)) return;
+    else if (domFC(el) && domFC(el) == 'progress_inline') return;
+
+    var act = (action == -2) ? 'spam' : (action ? 'enter' : 'leave'), context = (action == -1) ? '_decline' : '';
+    ajax.post('/al_groups.php', {act: act, gid: gid, hash: hash, from: 'top_notifier', context: context}, {
+      onDone: function(text) {
+        var cont = domPN(el);
+        val(cont, text);
+        addClass(cont, 'feedback_buttons_response');
+      },
+      onFail: function(text) {
+        if (!text) return;
+        setTimeout(showFastBox(getLang('global_error'), text).hide, 3000);
+        return true;
+      },
+      showProgress: function() {
+        if (action == -2) {
+          el.oldhtml = el.innerHTML;
+          var w = getSize(el)[0];
+          el.innerHTML = '<span class="progress_inline"></span>';
+          setStyle(domFC(el), {width: w});
+        } else {
+          lockButton(el);
+        }
+      },
+      hideProgress: function() {
+        if (action == -2) {
+          el.innerHTML = el.oldhtml;
+        } else {
+          unlockButton(el);
+        }
+      }
+    });
   },
   showGiftBox: function(fids, ev) {
     return !showBox('al_gifts.php', {act: 'get_gift_box', fids: fids, fr: 1}, {stat: ['gifts.css', 'wide_dd.js', 'wide_dd.css'], cache: 1, dark: 1}, ev);
