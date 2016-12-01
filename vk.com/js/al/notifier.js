@@ -5523,7 +5523,8 @@ var TopNotifier = {
   loaded: false,
 
   onLoad: function(rows, js, offset) {
-    if (TopNotifier.tnOffset == offset) return;
+
+    if (offset && TopNotifier.tnOffset == offset) return;
     val(TopNotifier.scrollbar.content, rows);
     eval('(function(){' + js + ';})()');
     TopNotifier.tnOffset = offset;
