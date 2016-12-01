@@ -7436,7 +7436,7 @@ function showVideo(videoId, listId, options, ev) {
     }
   }
 
-  if (!options.expandPlayer && cur.videoInlinePlayer && cur.videoInlinePlayer.getVideoId() == videoId) {
+  if (!options.expandPlayer && cur.videoInlinePlayer && cur.videoInlinePlayer.getVideoId() == videoId && cur.videoInlinePlayer.canExpand()) {
     options.expandPlayer = cur.videoInlinePlayer;
   }
 
