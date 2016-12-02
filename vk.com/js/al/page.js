@@ -5009,6 +5009,9 @@ var Wall = {
           nodeUpdated(newEl);
           updateOnlineText();
           Wall.updateMentionsIndex();
+
+          AudioUtils.updateQueueReceivedPost(newEl);
+
           break;
         }
         case 'edit_post': {
