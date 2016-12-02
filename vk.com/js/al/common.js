@@ -4632,12 +4632,13 @@ var nav = {
   reload: function(opts) {
     if (reloadCheckFlood(opts)) return;
     opts = opts || {};
+    var loc = nav.strLoc.replace(/^\/+/g, '');
     if (opts.force) {
       hab.stop();
-      location.href = '/' + nav.strLoc;
+      location.href = '/' + loc;
     } else {
       TopNotifier.invalidate();
-      nav.go('/' + nav.strLoc, undefined, extend({nocur: true}, opts));
+      nav.go('/' + loc, undefined, extend({nocur: true}, opts));
     }
   },
 
