@@ -101,7 +101,7 @@ var WComments = {
 
     if (!options.user_id) {
       addEvent('send_post', 'click', Widgets.oauth.bind(Widgets));
-      addEvent('post_field', 'click focus', Widgets.oauth.bind(Widgets));
+      addEvent('post_field', 'click', Widgets.oauth.bind(Widgets));
     }
   },
 

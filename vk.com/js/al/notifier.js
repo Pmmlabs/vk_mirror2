@@ -5525,7 +5525,7 @@ var TopNotifier = {
   onLoad: function(rows, js, offset) {
 
     if (offset && TopNotifier.tnOffset == offset) return;
-    val(TopNotifier.scrollbar.content, rows);
+    TopNotifier.scrollbar.content.innerHTML = rows;
     eval('(function(){' + js + ';})()');
     TopNotifier.tnOffset = offset;
     TopNotifier.cleanCount();
@@ -5551,8 +5551,7 @@ var TopNotifier = {
       onDone: function(rows, newOffset) {
         if (!rows) return;
 
-        var au = ce('div'), row;
-        au.innerHTML = rows;
+        var au = cf(rows);
         while (row = au.firstChild) {
           TopNotifier.scrollbar.content.insertBefore(row, btn);
         }
@@ -5599,7 +5598,7 @@ var TopNotifier = {
     var wHeight = window.innerHeight || document.documentElement.clientHeight;
     setStyle(cont, {'maxHeight': Math.min(Math.max(wHeight - 200, 300), 600)});
 
-    if (!TopNotifier.scrollbar) {
+    if (!TopNotifier.scrollbar || !TopNotifier.scrollbar.container.__uiScroll__) {
       TopNotifier.scrollbar = new uiScroll(cont, {
         global: true,
         onmore: TopNotifier.loadMore
@@ -5607,7 +5606,7 @@ var TopNotifier = {
     }
     if (!cur.tnScollReinit) {
       cur.tnScollReinit = true;
-      cur.destroy.push(TopNotifier.scrollbar.scrollTop);
+      cur.destroy.push(TopNotifier.scrollbar.destroy);
     }
 
     if (!TopNotifier.loaded) {

@@ -6424,7 +6424,7 @@ window.Widgets = {
     }, isObject(params) ? params : {}), 'vk_openapi', extend({
       width: 655,
       height: 430,
-      onClose: window.gotSession.pbind(true)
+      onClose: window.gotSession ? window.gotSession.pbind(true) : void 0
     }, isObject(options) ? options : {}));
   },
 
