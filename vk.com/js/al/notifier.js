@@ -5566,7 +5566,7 @@ var TopNotifier = {
 
     ajax.post('/al_feed.php', extend(clone(TopNotifier._qParams), {offset: TopNotifier.tnOffset, more: 1}), {
       onDone: function(rows, newOffset) {
-        if (!rows) return;
+        if (!rows || !TopNotifier.scrollbar.container.__uiScroll__) return;
 
         var au = cf(rows);
         while (row = au.firstChild) {
@@ -5621,10 +5621,10 @@ var TopNotifier = {
         onmore: TopNotifier.loadMore
       });
     }
-    if (!cur.tnScollReinit) {
+    /*if (!cur.tnScollReinit) {
       cur.tnScollReinit = true;
       cur.destroy.push(TopNotifier.scrollbar.destroy);
-    }
+    }*/
 
     if (!TopNotifier.loaded) {
       ajax.post('/al_feed.php', TopNotifier._qParams, {

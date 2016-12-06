@@ -6159,9 +6159,9 @@ Composer = {
       var curPos = Composer.getCursorPosition(input),
           prefValue = value.substr(0, curPos),
           pos = Math.max(prefValue.lastIndexOf('@'), prefValue.lastIndexOf('*')),
-          matches = prefValue.match(/[@\*]([^,@\*\.\(\)\?\!\s\n\r \u00A0]*)$/);
+          matches = prefValue.match(/(^|[\s.,:\'\";>\)\(])[@\*]([^,@\*\.\(\)\?\!\s\n\r \u00A0]*)$/);
       if (matches) {
-        term = matches[1];
+        term = matches[2];
       }
     }
 
