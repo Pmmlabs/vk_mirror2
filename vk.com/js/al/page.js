@@ -6045,12 +6045,17 @@ Composer = {
     composer.wdd = WideDropdown.initSelect(composer.wddWrap, extend({
       text: composer.wddInput,
       input: el,
-      url: 'hints.php',
-      params: {act: 'a_json_friends', from: 'composer'},
       noResult: options.lang.noResult || '',
       introText: options.lang.introText || '',
+      toup: options.toup,
+      wddOpts: options.wddOpts,
+      searchKeys: options.searchKeys,
+      width: 'auto',
       onItemSelect: Composer.onItemSelect.bind(Composer).pbind(composer)
-    }, options.wddOpts || {}));
+    }, options.wddOpts || {
+      url: 'hints.php',
+      params: {act: 'a_json_friends', from: 'composer'}
+    }));
 
     el.dd = composer.wddWrap.id;
 
@@ -6063,6 +6068,7 @@ Composer = {
     setStyle(composer.wddWrap, 'width', '');
 
     composer.inited = true;
+    Composer.updateAutoComplete(composer);
 
     return composer;
   },
@@ -6145,7 +6151,7 @@ Composer = {
   },
   updateAutoComplete: function (composer, event) {
     var input = composer.input,
-        value = (window.Emoji ? Emoji.editableVal : val)(input),
+        value = (composer.options && composer.options.getValue || window.Emoji && Emoji.editableVal || val)(input),
         pos = Math.max(value.lastIndexOf('@'), value.lastIndexOf('*')),
         term = false;
 
@@ -6165,7 +6171,7 @@ Composer = {
     val(composer.wddInput, term);
     Composer.toggleSelectList(composer);
 
-    if (event.type == 'keyup' || event.type == 'paste') {
+    if (event && (event.type == 'keyup' || event.type == 'paste')) {
       if (composer.options.onValueChange) {
         composer.options.onValueChange(value, event.type != 'keyup');
       }
@@ -6188,11 +6194,21 @@ Composer = {
   hideSelectList: function (composer) {
     composer.wddInput.focused = false;
     WideDropdown._hideList(composer.wdd);
+
+    var options = composer.options || {};
+    if (options.onHide) {
+      options.onHide();
+    }
   },
   showSelectList: function (composer, term) {
     composer.wddInput.focused = true;
     WideDropdown.items(composer.wdd.id, cur.wallMentions || []);
     WideDropdown._updateList(composer.wdd, false, term);
+
+    var options = composer.options || {};
+    if (options.onShow) {
+      options.onShow();
+    }
   },
   onItemSelect: function (composer, item) {
     if (!item) {
@@ -6200,7 +6216,7 @@ Composer = {
     }
 
     var mention = item[2].replace('@', ''),
-        alias = item[1],
+        alias = item[8] || item[1],
         prefValue = composer.curValue.substr(0, composer.curPos),
         suffValue = composer.curValue.substr(composer.curPos),
         aliasStartPos, aliasEndPos;

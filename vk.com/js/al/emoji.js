@@ -61,6 +61,7 @@ init: function(txt, opts) {
     });
 
     addEvent(txt, 'keypress keydown keyup paste', function(e) {
+      if (e.canceled) return false;
       if (e.type == 'keydown') {
         var noEnter = opts.ctrlSend ? opts.ctrlSend() : opts.noEnterSend;
         if (e.keyCode == KEY.RETURN || e.keyCode == 10) {
@@ -71,7 +72,8 @@ init: function(txt, opts) {
           var ctrlSubm = (cur.ctrl_submit && !opts.noCtrlSend);
           if ((ctrlSubm || noEnter) && (e.ctrlKey || browser.mac && e.metaKey) ||
               !ctrlSubm && !e.shiftKey && !(e.ctrlKey || browser.mac && e.metaKey)) {
-            if (!Emoji.emojiEnter(optId, e) || !Emoji.stickerHintMove(e)) {
+            var composer = data(txt, 'composer');
+            if (!Emoji.emojiEnter(optId, e) || !Emoji.stickerHintMove(e) || composer && composer.wdd && isVisible(composer.wdd.listWrap)) {
               return false;
             }
             if (!noEnter || (e.ctrlKey || browser.mac && e.metaKey)) {
@@ -542,6 +544,10 @@ val: function(cont, value) {
       cont.innerHTML = value;
     }
     Emoji.updateStickersHints();
+    var composer = data(cont, 'composer');
+    if (composer && window.Composer) {
+      setTimeout(Composer.updateAutoComplete.pbind(composer));
+    }
     return true;
   }
 },

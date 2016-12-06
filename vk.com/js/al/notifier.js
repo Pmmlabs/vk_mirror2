@@ -2899,11 +2899,20 @@ FastChat = {
                 re(domClosest('fc_msgs_wrap', parent));
               }
             });
-            if (!ge('fc_msg' + ev[3])) {
+            var evRow = ge('fc_msg' + ev[3]);
+            if (!evRow) {
               FastChat.addMsg(FastChat.prepareMsgData(ev.slice(2)));
               tab.msgs[ev[3]] = [ev[4] & 2 ? 1 : 0, ev[4] & 1];
               if ((ev[4] & 3) === 1) tab.unread++;
               FastChat.scroll(peer);
+            } else {
+              var data = FastChat.prepareMsgData(ev.slice(2))
+                  msgRow = se(rs(curFastChat.tpl.msg, {
+                    msg_id: data.id,
+                    classname: (data.unread ? 'fc_msg_unread' : '') + ' fc_msg_last',
+                    text: data.text
+                  }));
+              domPN(evRow).replaceChild(msgRow, evRow);
             }
             FastChat.blinkTab(peer);
           });
@@ -5376,6 +5385,14 @@ FastChat = {
     clearTimeout(curFastChat.needMedia[msgId][1]);
     delete curFastChat.needMedia[msgId];
   },
+  replaceSpecialSymbols: function(text) {
+    return text
+      .replace(/&lt;&lt;/g, '&laquo;')
+      .replace(/&gt;&gt;/g, '&raquo;')
+      .replace(/ \-\-/g, ' &mdash;')
+      .replace(/\-\- /g, '&mdash; ')
+      .replace(/(^|[\s.,:\'\";>\)\(])(\*|@)([A-Za-z0-9_\.]{2,32})\s*\((.+?)\)/g, '$1$4');
+  },
   addMsg: function (data) {
     var t = this, peer = data.peer, tab = curFastChat.tabs[peer], log = tab.log, last = log.lastChild;
     if (last && last.className == 'fc_msgs_error') {
@@ -5427,7 +5444,7 @@ FastChat = {
     var msgRow = se(rs(curFastChat.tpl.msg, {
       msg_id: data.id,
       classname: (data.unread ? 'fc_msg_unread' : '') + ' fc_msg_last',
-      text: data.text
+      text: FastChat.replaceSpecialSymbols(data.text)
     }));
     if (domFC(msgs) && domFC(msgs).tagName == 'BR') {
       re(domFC(msgs));
@@ -5629,6 +5646,9 @@ var TopNotifier = {
     return ev ? cancelEvent(ev) : false;
   },
   hide: function() {
+    if (!this.shown()) {
+      return;
+    }
     removeClass(this.tnLink, 'active');
     cancelStackFilter('top_notifier', true);
   },
