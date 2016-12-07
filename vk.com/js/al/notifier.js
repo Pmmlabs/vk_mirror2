@@ -5542,7 +5542,7 @@ var TopNotifier = {
   onLoad: function(rows, js, offset) {
 
     if (offset && TopNotifier.tnOffset == offset) return;
-    TopNotifier.scrollbar.content.innerHTML = rows;
+    TopNotifier.getContentNode().innerHTML = rows;
     eval('(function(){' + js + ';})()');
     TopNotifier.tnOffset = offset;
     TopNotifier.cleanCount();
@@ -5568,9 +5568,10 @@ var TopNotifier = {
       onDone: function(rows, newOffset) {
         if (!rows || !TopNotifier.scrollbar.container.__uiScroll__) return;
 
-        var au = cf(rows);
+        var cont = TopNotifier.getContentNode(),
+            au = cf(rows);
         while (row = au.firstChild) {
-          TopNotifier.scrollbar.content.insertBefore(row, btn);
+          cont.insertBefore(row, btn);
         }
         if (!newOffset) {
           re(btn);
@@ -5621,10 +5622,6 @@ var TopNotifier = {
         onmore: TopNotifier.loadMore
       });
     }
-    /*if (!cur.tnScollReinit) {
-      cur.tnScollReinit = true;
-      cur.destroy.push(TopNotifier.scrollbar.destroy);
-    }*/
 
     if (!TopNotifier.loaded) {
       ajax.post('/al_feed.php', TopNotifier._qParams, {
@@ -5655,8 +5652,14 @@ var TopNotifier = {
   shown: function() {
     return hasClass(this.tnLink, 'active');
   },
+  getContentNode: function() {
+    if (TopNotifier.scrollbar && TopNotifier.scrollbar.content && TopNotifier.scrollbar.container.__uiScroll__) {
+      return TopNotifier.scrollbar.content;
+    }
+    return ge('top_notify_cont');
+  },
   showProgress: function() {
-    var cont = TopNotifier.scrollbar.content;
+    var cont = TopNotifier.getContentNode();
     if (!geByClass1('pr', cont)) {
       val(cont, '');
       showProgress(cont);
@@ -5800,8 +5803,9 @@ var TopNotifier = {
     TopNotifier.hideActionsMenu(gpeByClass('_ui_menu_wrap', el));
     slideUp(row, 200, function() {
       re(row);
-      if (!geByClass('feed_row', TopNotifier.scrollbar.content).length) {
-        val(TopNotifier.scrollbar.content, '<div class="top_notify_empty no_rows">' + getLang('news_no_new_notifications') + '</div>');
+      var cont = TopNotifier.getContentNode();
+      if (!geByClass('feed_row', cont).length) {
+        val(cont, '<div class="top_notify_empty no_rows">' + getLang('news_no_new_notifications') + '</div>');
       }
       TopNotifier.refresh();
     });

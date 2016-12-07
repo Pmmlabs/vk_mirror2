@@ -87,16 +87,16 @@ getPage: function(offset) {
 claimContent: function(cid, type, owner_id, id, hash) {
   ge('claim' + cid + type + owner_id + '_' + id).innerHTML = '';
   ajax.post('/claims', {act: 'a_claim', claim_id: cid, type: type, id: id, owner_id: owner_id, hash: hash}, {
-    onDone: function(response) {
-      ge('claim' + cid + type + owner_id + '_' + id).innerHTML = '<a href="#" onclick="Claims.unclaimContent(' + cid + ',\'' + type + '\',' + owner_id + ',' + id + ',\'' + hash + '\');">вернуть</a>';
+    onDone: function(txt) {
+      val('claim' + cid + type + owner_id + '_' + id, '<a href="#" onclick="Claims.unclaimContent(' + cid + ',\'' + type + '\',' + owner_id + ',' + id + ',\'' + hash + '\');">' + txt + '</a>');
     }
   });
 },
 unclaimContent: function(cid, type, owner_id, id, hash) {
   ge('claim' + cid + type + owner_id + '_' + id).innerHTML = '';
   ajax.post('/claims', {act: 'a_unclaim', claim_id: cid, type: type, id: id, owner_id: owner_id, hash: hash}, {
-    onDone: function(response) {
-      ge('claim' + cid + type + owner_id + '_' + id).innerHTML = '<a href="#" onclick="Claims.claimContent(' + cid + ',\'' + type + '\',' + owner_id + ',' + id + ',\'' + hash + '\');">изъ€ть</a>';
+    onDone: function(txt) {
+      val('claim' + cid + type + owner_id + '_' + id, '<a href="#" onclick="Claims.claimContent(' + cid + ',\'' + type + '\',' + owner_id + ',' + id + ',\'' + hash + '\');">' + txt + '</a>');
     }
   });
 },

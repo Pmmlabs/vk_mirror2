@@ -6118,7 +6118,7 @@ Composer = {
         cnt += 1;
       }
       if (controlEvent && isVisible(composer.wdd.listWrap) && cnt) {
-        if (event.type == (browser.opera ? 'keypress' : 'keydown')) {
+        if (event.type == (browser.opera && !browser.chrome ? 'keypress' : 'keydown')) {
           WideDropdown._textEvent(event);
         }
         return cancelEvent(event);
@@ -6163,6 +6163,13 @@ Composer = {
       if (matches) {
         term = matches[2];
       }
+    }
+
+    if (term === false) {
+      delete composer.ignoredTerm;
+    }
+    if (composer.ignoredTerm !== undefined && term == composer.ignoredTerm) {
+      term = false;
     }
 
     composer.curValue = value;
