@@ -2325,12 +2325,12 @@ emojiReplace: function(symbolstr) {
       altBuffer += symbol;
       continue;
     }
-    if (joiner) {
+    /*if (joiner) {
       buffer += code;
       altBuffer += symbol;
       joiner = false;
       continue;
-    }
+    }*/
     if (code == '200C' || code == '200D') { // joiners
       if (buffer) {
         joiner = true;
