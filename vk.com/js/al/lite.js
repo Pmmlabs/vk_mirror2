@@ -869,7 +869,7 @@ function ajx2q(qa) {
   var query = [], enc = function (str) {
     try {
       return encodeURIComponent(str);
-    } catch (e) { return str;}
+    } catch (e) { return '';}
   };
 
   for (var key in qa) {

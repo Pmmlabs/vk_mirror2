@@ -1193,16 +1193,20 @@ Graph.prototype = {
   },
   showTT: function(dotX, dotY, text) {
     var xy = getXY(this.zinLayout, true);
-    xy[0] += dotX - 9 + (this.params.bar_chart ? this.barsWidth / 2 : 0);
-    xy[1] += dotY;
-    xy[0] = Math.floor(xy[0]); xy[1] = Math.floor(xy[1]);
-    if (this.mainLayout.tt && this.mainLayout.tt.container && (!isVisible(this.mainLayout.tt.container) || !this.dotLabelXY || this.dotLabelXY[0] != xy[0])) {
+
+    xy[0] = Math.floor(xy[0] + dotX + (bodyNode.scrollLeft || window.scrollX || 0) + (this.params.bar_chart ? this.barsWidth / 2 : 0) - 9);
+    xy[1] = Math.floor(xy[1] + dotY + (bodyNode.scrollTop || window.scrollY || 0));
+
+    if (
+      this.mainLayout.tt &&
+      this.mainLayout.tt.container &&
+      (!isVisible(this.mainLayout.tt.container) || this.dotLabelXY !== (this.dotLabelXY = xy.join(' ')))
+    ) {
       geByClass1('tt_text', this.mainLayout.tt.container).innerHTML = text;
       if (window.tooltips) {
         tooltips.hide(this.mainLayout, {fasthide: 1});
         tooltips.show(this.mainLayout, {forcexy: xy});
       }
-      this.dotLabelXY = xy;
     }
   },
   onClickMenu: function(ev) {
@@ -1252,6 +1256,10 @@ Graph.prototype = {
     else
       drawLines(ctx, 0, 4, this.viewWidth, 36, this.lines, this.minTime, this.maxTime, this.xfactorOut, this.yfactorOut, 0, true, null, false);
   },
+
+  // used to fix font rendering over transparent background
+  redrawVScaleViewScale: window.browser && window.browser.mozilla ? 1 : 2,
+
   // window borders were moved
   redrawWindow: function() {
     // move window
@@ -1331,12 +1339,12 @@ Graph.prototype = {
     clearRect(ctx, 0, 0, this.viewWidth, this.viewHeight);
     ctx.fillStyle = '#fafafa';
     fillRect(ctx, 0, 9, this.viewWidth, this.viewHeight - 9);
-    clearRect(ctxS, 0, 0, this.scaleWidth, this.viewHeight);
+    clearRect(ctxS, 0, 0, this.scaleWidth * this.redrawVScaleViewScale, this.viewHeight * this.redrawVScaleViewScale);
 
     // y scale
     lineWidth(ctx, 1);
     ctx.strokeStyle = '#e6eaf0';
-    ctxS.font = getFont(11);
+    ctxS.font = getFont(11 * this.redrawVScaleViewScale);
     ctxS.fillStyle = '#36638e';
     ctxS.textAlign = 'right';
     ctxS.textBaseline = 'middle';
@@ -1349,7 +1357,7 @@ Graph.prototype = {
         lineTo(ctx, this.viewWidth, cy);
         ctx.stroke();
       }
-      fillText(ctxS, formatValue(gridY), this.scaleWidth - 6, cy);
+      fillText(ctxS, formatValue(gridY), (this.scaleWidth - 6) * this.redrawVScaleViewScale, cy * this.redrawVScaleViewScale);
     }
 
     // x scale
@@ -1723,8 +1731,10 @@ Graph.prototype = {
     this.scaleWidth = Math.floor(this.scaleWidth);
     this.vScale.style.width = this.scaleWidth + "px";
     this.vScale.style.height = this.height + "px";
-    cWidth(this.vScaleView, this.scaleWidth);
-    cHeight(this.vScaleView, this.height);
+    cWidth(this.vScaleView, this.scaleWidth * this.redrawVScaleViewScale);
+    cHeight(this.vScaleView, this.height * this.redrawVScaleViewScale);
+    this.vScaleView.style.width = this.scaleWidth + "px";
+    this.vScaleView.style.height = this.height + "px";
     this.viewWidth = (this.width - this.scaleWidth);
 
     this.mainLayout.style.width = this.viewWidth + "px";
@@ -1870,8 +1880,10 @@ Graph.prototype = {
     this.scaleWidth = Math.floor(this.scaleWidth);
     this.vScale.style.width = this.scaleWidth + "px";
     this.vScale.style.height = this.height + "px";
-    cWidth(this.vScaleView, this.scaleWidth);
-    cHeight(this.vScaleView, this.height);
+    cWidth(this.vScaleView, this.scaleWidth * this.redrawVScaleViewScale);
+    cHeight(this.vScaleView, this.height * this.redrawVScaleViewScale);
+    this.vScaleView.style.width = this.scaleWidth + "px";
+    this.vScaleView.style.height = this.height + "px";
     this.viewWidth = (this.width - this.scaleWidth);
 
     this.mainLayout.style.width = this.viewWidth + "px";
@@ -1905,12 +1917,12 @@ Graph.prototype = {
     clearRect(ctx, 0, 0, this.viewWidth, this.viewHeight);
     ctx.fillStyle = '#fafafa';
     fillRect(ctx, 0, 9, this.viewWidth, this.viewHeight - 9);
-    clearRect(ctxS, 0, 0, this.scaleWidth, this.viewHeight);
+    clearRect(ctxS, 0, 0, this.scaleWidth * this.redrawVScaleViewScale, this.viewHeight * this.redrawVScaleViewScale);
 
     // y scale
     lineWidth(ctx, 1);
     ctx.strokeStyle = '#e6eaf0';
-    ctxS.font = getFont(11);
+    ctxS.font = getFont(11 * this.redrawVScaleViewScale);
     ctxS.fillStyle = '#36638e';
     ctxS.textAlign = 'right';
     ctxS.textBaseline = 'middle';
@@ -1923,7 +1935,7 @@ Graph.prototype = {
         lineTo(ctx, this.viewWidth, cy);
         ctx.stroke();
       }
-      fillText(ctxS, formatValue(gridY) + yUnits, this.scaleWidth - 6, cy);
+      fillText(ctxS, formatValue(gridY) + yUnits, (this.scaleWidth - 6) * this.redrawVScaleViewScale, cy * this.redrawVScaleViewScale);
     }
 
     // x scale
