@@ -3333,7 +3333,7 @@ var Wall = {
           mediaTypes.push(this);
         }
       });
-      var media;
+      var media, toup = false;
       if (mediaTypes.length > 0 && post.match(/^-?\d+_(photo|video|topic|market)?\d+(mv)?$/)) {
         media = {
           lnk: ge('reply_add_media_' + post),
@@ -3356,6 +3356,7 @@ var Wall = {
             teWidth: 280,
             teHeight: 200
           });
+          toup = true;
         }
       } else {
         re('reply_add_media_' + post);
@@ -3365,6 +3366,7 @@ var Wall = {
           introText: getLang('profile_mention_start_typing'),
           noResult: getLang('profile_mention_not_found')
         },
+        toup: toup,
         wddClass: 'reply_composer_dd',
         width: getSize(rf.parentNode)[0],
         media: media
