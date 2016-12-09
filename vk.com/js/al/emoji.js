@@ -48,7 +48,7 @@ init: function(txt, opts) {
 
     addEvent(window, 'mousemove', Emoji.preventMouseOverHandle);
 
-    addEvent(txt, browser.opera ? 'click' : 'mousedown', function(e) {
+    addEvent(txt, browser.opera && !browser.chrome ? 'click' : 'mousedown', function(e) {
       if (e.target && e.target.tagName == 'IMG') {
         if (Emoji.getCode(e.target)) {
           Emoji.editableFocus(txt, e.target, e.offsetX > 8);
@@ -100,7 +100,7 @@ init: function(txt, opts) {
               var range = document.selection.createRange();
               range.text = "\r\n";
               range.collapse(false);
-              if (browser.opera) {
+              if (browser.opera && !browser.chrome) {
                 range.moveEnd('character', 0);
                 range.moveStart('character', 0);
               }
@@ -480,7 +480,7 @@ editableFocus: function(editable, obj, after, noCollapse, noForce) {
   }
   if (typeof window.getSelection != 'undefined' && typeof document.createRange != 'undefined') {
     var sel = window.getSelection();
-    if (browser.opera && !after) {
+    if (browser.opera && !browser.chrome && !after) {
       sel.collapse(obj || editable, 0);
     } else {
       var range = document.createRange();

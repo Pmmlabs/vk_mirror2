@@ -3782,6 +3782,10 @@ var ajax = {
       }
       var answer = text.split('<!>');
 
+      var _answer = clone(answer);
+      each(_answer, function(i,v) { _answer[i] = v.substr(0, 100); });
+      ajax.lastResp = _answer.join('<!>'); // tmp
+
       var navVersion = intval(answer.shift());
       if (!navVersion) {
         return fail('<pre>' + text + '</pre>', {status: -1});
@@ -4285,6 +4289,13 @@ function updateOtherCounters(url, referrer) {
   url = toClean.url;
   vkImage().src = locProtocol + '//counter.yadro.ru/hit?r' + escape(referrer) + (window.screen === undefined ? '' : ';s' + screen.width + '*' + screen.height + '*' + (screen.colorDepth ? screen.colorDepth : screen.pixelDepth)) + ';u' + escape(url) + ';' + Math.random() + '';
   vkImage().src = locProtocol + '//www.tns-counter.ru/V13a***R>' + referrer.replace(/\*/g,'%2a') + '*vk_com/ru/UTF-8/tmsec=vksite_total/' + Math.round(Math.random()*1E9);
+  if (vk.tnsPixelType == 'unauth') {
+    vkImage().src = locProtocol + '//www.tns-counter.ru/V13a****vk_ad/ru/UTF-8/tmsec=vkad_cid1015708-posid1184674/' + Math.round(Math.random()*1E9);
+  } else if (vk.tnsPixelType == 'has_rough') {
+    vkImage().src = locProtocol + '//www.tns-counter.ru/V13a****vk_ad/ru/UTF-8/tmsec=vkad_cid1015708-posid1184675/' + Math.round(Math.random()*1E9);
+  } else if (vk.tnsPixelType == 'not_has_rough') {
+    vkImage().src = locProtocol + '//www.tns-counter.ru/V13a****vk_ad/ru/UTF-8/tmsec=vkad_cid1015708-posid1184677/' + Math.round(Math.random()*1E9);
+  }
   comScoreUDM(url, referrer);
   window._tmr = window._tmr || [];
   window._tmr.push({id: "2579437", url: url, referrer: referrer, type: "pageView", start: (new Date()).getTime(), pid: vk.id ? vk.id : 0});

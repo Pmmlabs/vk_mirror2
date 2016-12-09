@@ -85,16 +85,19 @@ initPage: function(opts) {
 },
 
 checkBlockHeight: function() {
-  var left = ge('dev_left_nav'), wrap = ge('dev_page_wrap1'),
+  var left = geByClass1('dev_left_nav_wrap'), wrap = ge('dev_page_wrap1'),
       block = wrap && geByClass1('dev_page_block', wrap) || wrap;
 
-  if (!left || !block || geByClass1('no_min_height', block) || hasClass(block.nextSibling, 'dev_page_block')) return;
+  if (!left || !block || geByClass1('no_min_height', block)) return;
 
   var leftSZ = getSize(left), wrapSZ = getSize(wrap),
       paddTop = intval(getStyle(block, 'paddingTop')),
       paddBottom = intval(getStyle(block, 'paddingBottom'));
   if (wrapSZ[1] < leftSZ[1]) {
     setStyle(block, {minHeight: leftSZ[1] - paddTop - paddBottom});
+  } else {
+    setStyle(wrap, {minHeight: 0});
+    setStyle(block, {minHeight: 0});
   }
   onBodyResize(true);
 },
@@ -116,6 +119,11 @@ setLeftNav: function(sel) {
     Dev.diselectLeftNav();
     return;
   }
+
+  if (!Dev.checkExpandMethodList(sel)) {
+    return;
+  }
+
   var p = ge('dev_mlist_'+sel);
   if (p) {
     var submenu = ge('dev_mlist_submenu_'+sel);
@@ -127,7 +135,16 @@ setLeftNav: function(sel) {
     }
   }
 },
-animLeftNav: function(oldSel, newSel) {
+
+checkExpandMethodList: function (sel) {
+  var pageRaw = String(sel).split('.');
+  if (cur.sections && cur.sections[pageRaw[0]]) {
+    return false;
+  }
+  return true;
+},
+
+animLeftNav: function(oldSel, newSel, page) {
   var leftNav = ge('dev_left_nav');
   if (!leftNav || !newSel) return;
 
@@ -135,10 +152,16 @@ animLeftNav: function(oldSel, newSel) {
       fromY = oldSel && oldSel.offsetTop || 0, toY, duration,
       oldSubMenu = oldSel ? (hasClass(oldSel, 'submenu') ? domPN(oldSel) : domNS(oldSel)) : false,
       newSubMenu = newSel ? (hasClass(newSel, 'submenu') ? domPN(newSel) : domNS(newSel)) : false;
-  if (oldSubMenu !== newSubMenu) {
+
+  if (!Dev.checkExpandMethodList(page)) {
+    newSubMenu = false;
+    Dev.diselectLeftNav();
+  }
+
+  //f (oldSubMenu !== newSubMenu) {
     hide(oldSubMenu);
     show(newSubMenu);
-  }
+  //}
   if (oldSel) {
     toY = newSel.offsetTop || 0;
     duration = (toY != fromY) ? intval(30 * Math.log(Math.abs(toY - fromY) / 5)) : 0;
@@ -188,7 +211,7 @@ scrollCheck: function() {
       head = ge('dev_top_nav_wrap'), headH = getSize(head)[1], position, ml,
       bottom = ge('dev_footer_wrap'), bottomH = isVisible(bottom) ? getSize(bottom)[1] : 0,
       navPos = getXY(nav)[1], navH = getSize(nav)[1], navMT = intval(getStyle(nav, 'marginTop')),
-      page = ge('dev_page_wrap'), pageH = getSize(page)[1], navMB = navMT - 5,
+      page = ge('dev_page_wrap'), pageH = getSize(page)[1], navMB = navMT + 25,
       tooBig = navH > pageH, navPB = Math.max(0, bottomH + st + wh - bodyNode.clientHeight - navMB),
       lastPos = (cur.filterLastPos === undefined) ? headH : cur.filterLastPos, lastSt = cur.lastSt || 0;
   if ((st > 0 || browser.msie) && !tooBig) {
@@ -212,20 +235,22 @@ scrollToAnchor: function() {
 switchPage: function(page, edit, opts) {
   cur.page = page;
   var pageRaw = page.split('.');
-  Dev.switchSection(pageRaw[0], false, true);
 
   var mlist = ge('dev_mlist_list'),
       curSel = geByClass1('nav_selected', ge('dev_left_nav')),
       isMethod = !!pageRaw[1] || page == 'execute', newSel;
+
+  Dev.switchSection(pageRaw[0], false, true);
+
   if (isMethod) {
     newSel = ge('dev_mlist_' + pageRaw[0]);
     if (!newSel || hasClass(newSel, 'dev_mlist_item'))  {
-      newSel = pageRaw[0] == 'orders' && ge('dev_mlist_payments') || ge('dev_mlist_methods');
+      newSel = pageRaw[0] == 'orders' && ge('dev_mlist_payments')/* || ge('dev_mlist_methods')*/;
     }
   } else {
     newSel = ge('dev_mlist_'+page.replace('.', '_'));
     if (!newSel && cur.sections && cur.sections[page]) {
-      newSel = ge('dev_mlist_' + page) || page == 'orders' && ge('dev_mlist_payments') || ge('dev_mlist_methods');
+      newSel = ge('dev_mlist_' + page) || page == 'orders' && ge('dev_mlist_payments')/* || ge('dev_mlist_methods')*/;
     }
   }
 
@@ -235,7 +260,7 @@ switchPage: function(page, edit, opts) {
   } else {
     cur.noSelFound = true;
   }
-  Dev.animLeftNav(curSel, newSel);
+  Dev.animLeftNav(curSel, newSel, page);
 
   if (isMethod && mlist) {
     var curMSel = geByClass1('nav_selected', mlist),
@@ -262,13 +287,19 @@ switchPage: function(page, edit, opts) {
   if (opts && opts.ver) {
     pageOpts.ver = opts.ver;
   }
+
+  if (Dev.checkExpandMethodList(page)) {
+    ge('dev_section_methods').innerHTML = '';
+  }
+
   ajax.post('/dev/'+page, pageOpts, {
-    onDone: function(title, text, acts, top_section, edit_sections, isPage, isSection, opts, js, bodyClass, parent_section) {
+    onDone: function(title, text, acts, top_section, edit_sections, isPage, isSection, opts, js, bodyClass, parent_section, section_methods) {
       window.tooltips && tooltips.hideAll();
       ge('dev_header_name').innerHTML = title;
       ge('dev_page_cont').innerHTML = text;
       ge('dev_page_acts').innerHTML = acts;
       ge('dev_page_sections').innerHTML = edit_sections;
+      ge('dev_section_methods').innerHTML = section_methods;
       if (top_section && ge('dev_top_' + top_section)) {
         each(geByClass('dev_top_link', ge('dev_top_nav')), function() {
           removeClass(this, 'sel');
@@ -287,6 +318,12 @@ switchPage: function(page, edit, opts) {
       if (js) {
         eval('(function(){' + js + ';})()');
       }
+
+      if (cur.seactionSearchScroll) {
+        cur.seactionSearchScroll.destroy();
+        delete cur.seactionSearchScroll;
+      }
+
       scrollToTop(0);
     },
     showProgress: function() {
@@ -319,7 +356,7 @@ switchSection: function(sect, openSect, onlyIfSect) {
   var curSel = geByClass1('nav_selected', ge('dev_mlist_list'));
   removeClass(curSel, 'nav_selected');
 
-  var rows = cur.sections[sect].list;
+  /*var rows = cur.sections[sect].list;
   var name = cur.sections[sect].name;
   ge('dev_section_menu').innerHTML = name;
   if (cur.methodsDD && cur.methodsDD.header && cur.methodsDD.header.firstChild) {
@@ -337,6 +374,8 @@ switchSection: function(sect, openSect, onlyIfSect) {
   }
   var mlist = ge('dev_mlist_list');
   mlist.innerHTML = html;
+  */
+
   cur.sect = sect;
   if (openSect) {
     nav.go('/dev/'+sect);
@@ -630,7 +669,7 @@ wrapObject: function(obj, rootNode, objName, parentContext) {
         html += '<span class="dev_result_block"><span class="dev_result_lbracket" onclick="Dev.btHide(this);">[</span>'+items.join(', ')+'<span class="dev_result_lbracket" onclick="Dev.btHide(this);">]</span></span>';
       } else {
         for (var i in obj) {
-          items.push('<span class="dev_result_key">'+clean(i)+':</span> '+Dev.wrapObject(obj[i], null, i, obj));
+          items.push('<span class="dev_result_key">"'+clean(i)+'":</span> '+Dev.wrapObject(obj[i], null, i, obj));
         }
         var res = '<div class="dev_result_obj">'+items.join(',<br/>')+'</div>';
         if (rootNode) {
@@ -658,7 +697,7 @@ wrapObject: function(obj, rootNode, objName, parentContext) {
         str = '<a href="' + str + '" target="_blank" ' + onmouseover + '>' + displayUrl + '</a>';
       }
       str = str.replace(/\n/g, '<br />');
-      html += '<span class="dev_result_str">\''+str+'\'</span>';
+      html += '<span class="dev_result_str">"'+str+'"</span>';
       break;
     case 'number':
       var el = '<span class="dev_result_num">'+obj+'</span>', id;
@@ -768,7 +807,7 @@ requestResult: function(res) {
       hide(nextBtn);
     }
   }
-  var html = Dev.wrapObject(res, true), res = ge('dev_result');
+  var html = Dev.wrapObject(res, false), res = ge('dev_result');
   if (res) {
     res.innerHTML = html;
     addClass(domPN(res), 'has_res');
@@ -1481,6 +1520,166 @@ mainPageSliderPrev: function() {
   }
 
   Dev.mainPageSliderChange(newPos, 'prev');
+},
+
+focusSectionsSearch: function (el) {
+  if (!cur.seactionSearchScroll) {
+    cur.seactionSearchScroll = new uiScroll(geByClass1('dev_section_search_result_wrap'), {
+      theme: 'default emoji no_transition',
+      //global: true
+    });
+  }
+  Dev.updateSectionsResult('');
+  cur.seactionSearchScroll.scrollTop(0);
+},
+
+updateSectionsResult: function () {
+  var el = ge('dev_section_search_query');
+  var query = clean(trim(val(el)));
+
+  if (query.toLowerCase() == String(attr(el, 'data-section')).toLowerCase()) {
+    query = '';
+  }
+
+  if (query) {
+    var reStr = '';
+    for (var i = 0; i < query.length; i++) {
+      reStr += query.substr(i, 1)+'.*?';
+    }
+    var regEx = new RegExp('.*?('+reStr+')', 'i');
+    var regExPrior = new RegExp('^('+reStr+')', 'i');
+  }
+
+  var found = [], found2 = [];
+  for(var i in cur.sections) {
+    var name = cur.sections[i].name;
+
+    if (!query) {
+      found.push(i);
+      continue;
+    }
+    if (name.match(regExPrior) || i != name && i.match(regExPrior)) {
+      found.push(i);
+    } else if (name.match(regEx) || i != name && i.match(regEx)) {
+      found2.push([i, name.length])
+    }
+  }
+  found2 = found2.sort(function (a, b) {
+    if (a[1] < b[1]) {
+      return -1;
+    } else if (a[1] > b[1]) {
+      return 1
+    } else {
+      return 0;
+    }
+  });
+
+  for(var i in found2) {
+    found.push(found2[i][0]);
+  }
+
+  var result = '';
+  var reg = query ? new RegExp(reStr, 'i') : '';
+  for(var i in found) {
+    var name = cur.sections[found[i]].name;
+    if (query) {
+      name = name.replace(reg, function(m) {
+        return '<span>' + m + '</span>';
+      });
+    }
+    result += '<div class="dev_section_search_result_item" data-href="/dev/' + found[i] + '" onmousedown="nav.go(attr(this, \'data-href\'))" onmouseover="Dev.overSectionsSearchItem(this)">' + name + '</div>';
+  }
+
+  var resEl = ge('dev_section_search_result');
+  val(resEl, result);
+
+  if (!result) {
+    addClass(geByClass1('dev_section_search_result_wrap'), 'dev_section_no_result');
+  } else {
+    removeClass(geByClass1('dev_section_search_result_wrap'), 'dev_section_no_result');
+    addClass(resEl.firstChild, 'over');
+  }
+},
+
+keyUpSectionsSearch: function (e) {
+  if ([KEY.DOWN, KEY.UP, KEY.ENTER].indexOf(e.keyCode) != -1) {
+    return;
+  }
+  Dev.updateSectionsResult();
+  cur.seactionSearchScroll && cur.seactionSearchScroll.scrollTop(0);
+},
+
+blurSectionsSearch: function (el) {
+  val(el, attr(el, 'data-section'));
+},
+
+keyDownSectionsSearch: function (e) {
+  e = e || window.event;
+
+  if (e.keyCode == KEY.ESC) {
+    var el = ge('dev_section_search_query');
+    val(el, attr(el, 'data-section'));
+  }
+
+  if ([KEY.DOWN, KEY.UP, KEY.ENTER].indexOf(e.keyCode) != -1) {
+    var resEl = ge('dev_section_search_result');
+    var item = geByClass1('over', resEl);
+    if (!item) {
+      item = resEl.firstChild;
+    }
+    if (!item) {
+      return;
+    }
+    var newItem;
+    switch (e.keyCode) {
+      case KEY.DOWN:
+        newItem = item.nextSibling;
+        if (!newItem) {
+          newItem = resEl.firstChild;
+        }
+        break;
+      case KEY.UP:
+        newItem = item.previousSibling;
+        if (!newItem) {
+          newItem = resEl.lastChild;
+        }
+        break;
+      case KEY.ENTER:
+        nav.go(attr(item, 'data-href'));
+        break;
+    }
+    if (newItem) {
+      removeClass(item, 'over');
+      addClass(newItem, 'over');
+      cur.seactionSearchScroll && cur.seactionSearchScroll.scrollIntoView(newItem);
+    }
+    return cancelEvent(e);
+  }
+},
+
+overSectionsSearchItem: function (el) {
+  removeClass(geByClass1('over', 'dev_section_search_result'), 'over');
+  addClass(el, 'over');
+},
+
+clickSpoiler: function(el, block_id, hash) {
+  var parent = el.parentNode, cont = geByClass1('dev_method_block_content', parent), act = 'hide'
+  if (hasClass(parent, 'dev_block_spoiler_minimized')) {
+    removeClass(parent, 'dev_block_spoiler_minimized');
+    act = 'show';
+    slideDown(cont, 200)
+  } else {
+    addClass(parent, 'dev_block_spoiler_minimized')
+    slideUp(cont, 200)
+  }
+  if (!hash) {
+    return;
+  }
+  ajax.post('dev.php', {
+    act: 'a_' + act + '_spoiler',
+    block_id: block_id,
+    hash: hash
+  });
 },
 
 _eof:1};

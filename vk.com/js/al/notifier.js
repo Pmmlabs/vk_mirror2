@@ -5540,8 +5540,12 @@ var TopNotifier = {
   loaded: false,
 
   onLoad: function(rows, js, offset) {
-
     if (offset && TopNotifier.tnOffset == offset) return;
+
+    if (rows === undefined || rows === 'undefined') {
+      ajax.plainpost('/errors.php', {msg: ajax.lastResp || 'TopNotifier load undefinded response', module: 'top_notify', id: vk.id, host: locHost, lang: vk.lang, loc: (window.nav || {}).strLoc, realloc: location.toString()});
+    }
+
     TopNotifier.getContentNode().innerHTML = rows;
     eval('(function(){' + js + ';})()');
     TopNotifier.tnOffset = offset;
