@@ -3563,7 +3563,7 @@ var ajax = {
       if (o._suggest) cleanElems(o._suggest);
       o._suggest = o._captcha = o._box = hideBoxes(o._captcha, o._box);
 
-      if (text.indexOf('The page is temporarily unavailable') != -1 && __dev && !inArray(vk.id, [529834, 257385015])) {
+      if (text.indexOf('The page is temporarily unavailable') != -1 && __dev && !inArray(vk.id, [529834, 257385015, 5125142])) {
         ajax._post(url, q, o);
         return false;
       }
