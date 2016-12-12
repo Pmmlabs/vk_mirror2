@@ -672,12 +672,8 @@ wrapObject: function(obj, rootNode, objName, parentContext) {
           items.push('<span class="dev_result_key">"'+clean(i)+'":</span> '+Dev.wrapObject(obj[i], null, i, obj));
         }
         var res = '<div class="dev_result_obj">'+items.join(',<br/>')+'</div>';
-        if (rootNode) {
-          html += res;
-        } else {
-          html += '<span class="dev_result_block"><span id="dev_wrap_open_'+cur.wrapNum+'" class="dev_result_bracket" onclick="Dev.btHide(this);">{</span><br/>'+res+'<span id="dev_wrap_close_'+cur.wrapNum+'" class="dev_result_bracket" onclick="Dev.btHide(this);">}</span></span>';
-          cur.wrapNum += 1;
-        }
+        html += '<span class="dev_result_block"><span id="dev_wrap_open_'+cur.wrapNum+'" class="dev_result_bracket" onclick="Dev.btHide(this);">{</span><br/>'+res+'<span id="dev_wrap_close_'+cur.wrapNum+'" class="dev_result_bracket" onclick="Dev.btHide(this);">}</span></span>';
+        cur.wrapNum += 1;
       }
       break;
     case 'string':
@@ -807,7 +803,7 @@ requestResult: function(res) {
       hide(nextBtn);
     }
   }
-  var html = Dev.wrapObject(res, false), res = ge('dev_result');
+  var html = Dev.wrapObject(res, true), res = ge('dev_result');
   if (res) {
     res.innerHTML = html;
     addClass(domPN(res), 'has_res');
