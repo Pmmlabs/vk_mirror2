@@ -6161,7 +6161,7 @@ Composer = {
       var curPos = Composer.getCursorPosition(input),
           prefValue = value.substr(0, curPos),
           pos = Math.max(prefValue.lastIndexOf('@'), prefValue.lastIndexOf('*')),
-          matches = prefValue.match(/(^|[\s.,:\'\";>\)\(])[@\*]([^,@\*\.\(\)\?\!\s\n\r \u00A0]*)$/);
+          matches = prefValue.match(/(^|[\s.,:\'\";>\)\(]|\#[\w_\.\u0400-\u04FF]+)[@\*]([^,@\*\.\(\)\?\!\s\n\r \u00A0]*)$/);
       if (matches) {
         term = matches[2];
       }
@@ -6227,8 +6227,7 @@ Composer = {
     var mention = item[2].replace('@', ''),
         alias = item[8] || item[1],
         prefValue = composer.curValue.substr(0, composer.curPos),
-        suffValue = composer.curValue.substr(composer.curPos),
-        aliasStartPos, aliasEndPos;
+        suffValue = composer.curValue.substr(composer.curPos);
 
     if (!mention) {
       if (itemId > 0) {
@@ -6250,13 +6249,11 @@ Composer = {
     suffValue = suffValue.replace(re, function (whole, asterisk, prevAlias) {
       var replacement = asterisk + mention + ' ';
       if (noAlias) {
-        aliasStartPos = aliasEndPos = replacement.length;
+        replacement += isEmoji ? '<span id="tmp_sel_'+cur.selNum+'"></span>' : '';
       } else {
-        replacement += '('+(isEmoji ? '<span id="tmp_sel_'+cur.selNum+'">' : '');
-        aliasStartPos = replacement.length;
+        replacement += (isEmoji ? '<span id="tmp_sel_'+cur.selNum+'">' : '') + '(';
         replacement += alias.replace(/[\(\)\]\[]/g, '');
-        aliasEndPos = replacement.length;
-        replacement += (isEmoji ? '</span>' : '')+') ';
+        replacement += ')' + (isEmoji ? '</span>' : '') + ' ';
       }
 
       return replacement;
@@ -6270,12 +6267,10 @@ Composer = {
     if (isEmoji) {
       Emoji.val(composer.input, clean(prefValue) + suffValue);
       Emoji.focus(composer.input);
-      Emoji.editableFocus(composer.input, ge('tmp_sel_'+cur.selNum), false, true)
+      Emoji.editableFocus(composer.input, ge('tmp_sel_'+cur.selNum), true);
     } else {
-      aliasStartPos += composer.curPos;
-      aliasEndPos += composer.curPos;
       val(composer.input, prefValue + suffValue);
-      elfocus(composer.input, aliasStartPos, aliasEndPos);
+      elfocus(composer.input);
     }
     return false;
   },
