@@ -3267,7 +3267,6 @@ var Wall = {
     var postEl = cur.wallLayer ? ge('wl_reply_form_inner') : ge('post' + post);
     var fakeBox = ge('reply_fakebox' + post);
     var realBox = ge('reply_box' + post);
-    var replyLink;
 
     if (!postEl && fakeBox) {
       postEl = gpeByClass('_post_wrap', fakeBox);
@@ -3310,7 +3309,10 @@ var Wall = {
 
     cur.editing = post;
     if (window.Emoji) {
-      setTimeout(Emoji.editableFocus.pbind(rf, false, true), 0);
+      setTimeout(function() {
+        Emoji.editableFocus(rf, false, true);
+        Wall.repliesSideOver(post);
+      }, 0);
     }
 
     if (!data(rf, 'composer')) {
@@ -3825,7 +3827,7 @@ var Wall = {
     if (cur.editing) {
       if (cur.editingHide) {
         cur.editingHide(cur.editing, el);
-      } else if (!e || !hasClass(el, 'reply_link') && id != 'reply_field' + cur.editing && el.className != 'reply_to_link') {
+      } else if (!e || !domClosest('_reply_wrap', el) && !hasClass(el, 'reply_link') && id != 'reply_field' + cur.editing && el.className != 'reply_to_link') {
         Wall.hideEditReply(cur.editing);
       }
     } else if (!(cur.wallAddMedia || {}).chosenMedia) {
@@ -4638,12 +4640,13 @@ var Wall = {
     var acts = [],
         post_id = ev[2],
         oid = post_id.split('_')[0],
-        reply_link = '',
+        reply_link = reply_button = '',
         thumbs = ev[4].split('|'),
         repls;
 
     if (ev[8] == 1) {
       reply_link += cur.wallTpl.reply_link;
+      reply_button += cur.wallTpl.reply_button;
     } else if (oid != vk.id) {
       reply_link += cur.wallTpl.own_reply_link;
     }
@@ -4670,6 +4673,7 @@ var Wall = {
       actions: acts.length ? rs(cur.wallTpl.post_actions, {actions: acts.join('')}) : '',
       replies: '',
       reply_link: reply_link,
+      reply_button: reply_button,
       own_reply_link: cur.wallTpl.own_reply_link,
       reply_box: ev[8] == 1 ? cur.wallTpl.reply_box : '',
       photo: psr(thumbs[0]),
