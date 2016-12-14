@@ -9605,10 +9605,10 @@ function langDate(rawDate, langKey, offset, months, onlyDate, addPrep) {
     case 1:
       switch(date.getHours()) {
         case 11:
-          langKey = langKey.replace('о', 'об');
+          langKey = langKey.replace(' о ', ' об ');
           break;
         case 0:
-          langKey = langKey.replace('о', 'в');
+          langKey = langKey.replace(' о ', ' в ');
           break;
       }
       break;
@@ -9647,13 +9647,11 @@ function getShortDate(rawDate, shift, nice, months, notime) {
     nice = true;
   }
 
-
   if (typeof months === 'undefined') {
     months = getLang('months_of', 'raw');
   }
 
   shift *= 1000;
-
 
   curTime = Date.now();
   curDate = new Date(curTime);
