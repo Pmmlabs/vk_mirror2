@@ -4637,9 +4637,8 @@ var nav = {
       return {url: navMap['<other>'][0], files: navMap['<other>'][1]};
     }
     return {url: navMap['<void>'][0], files: navMap['<void>'][1]};
-
-
   },
+
   reload: function(opts) {
     if (reloadCheckFlood(opts)) return;
     opts = opts || {};
