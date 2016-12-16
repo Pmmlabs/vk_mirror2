@@ -4948,9 +4948,6 @@ var nav = {
         }
         var oldTopW = ge('dev_top_nav_wrap') && getSize('dev_top_nav_wrap')[0] || ge('page_header_wrap') && getSize('page_header_wrap')[0] || 0;
         wNode.innerHTML = html;
-        if (where.params && where.params.__query === 'im') {
-          fixImHeight();
-        }
         if (oldTopW && !vk.staticheader) {
           updateHeaderStyles({width: oldTopW});
         }
@@ -9778,16 +9775,6 @@ if (!Object.keys) {
       }
     }
     return a;
-  }
-}
-
-function fixImHeight(isGroup) {
-  var page = document.getElementById('im--page');
-  if (page) {
-    var height = (window.innerHeight || document.documentElement.clientHeight) - 78;
-    var prop = isGroup ? "minHeight" : "height"
-    page.style.height = "auto";
-    page.style[prop] = height + "px";
   }
 }
 

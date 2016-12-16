@@ -303,6 +303,10 @@ function isEmpty(o) {
   if(Object.prototype.toString.call(o) !== '[object Object]') {return false;} for(var i in o){ if(o.hasOwnProperty(i)){return false;} } return true;
 }
 
+function isNumeric(value) {
+  return !isNaN(value);
+}
+
 function vkImage() {
   return window.Image ? (new Image()) : ce('img'); // IE8 workaround
 }
@@ -455,6 +459,22 @@ if (!Object.keys) {
     }
     return a;
   }
+}
+
+function hashCode(str) {
+  var hash = 0;
+
+  if (str.length === 0) {
+    return hash;
+  }
+
+  for (var i = 0, len = str.length; i < len; i++) {
+    var chr = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + chr;
+    hash |= 0;
+  }
+
+  return hash;
 }
 
 /* Store data connected to element */
@@ -6118,6 +6138,10 @@ function getAudioPlayer() {
     },
     wrapper: {
       toggleAudio: function() {
+        if (vk && vk.widget && !vk.id) {
+          Widgets.oauth();
+          return false;
+        }
         getAudioPlayer.queue.push({
           name: 'toggleAudio',
           args: [].slice.call(arguments)

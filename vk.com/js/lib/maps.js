@@ -510,7 +510,7 @@ var Marker = vkMaps.Marker = function(point) {
   this.invoker = new vkMaps.Invoker(this, 'Marker', function(){
     return this.api;
   });
-  vkMaps.addEvents(this, ['openInfoBubble', 'closeInfoBubble', 'click', 'mousedown', 'dragend']);
+  vkMaps.addEvents(this, ['openInfoBubble', 'closeInfoBubble', 'clickInfoBubble', 'click', 'mousedown', 'dragend']);
 };
 
 vkMaps.addProxyMethods(Marker, ['fromProprietary', 'hide', 'openBubble', 'closeBubble', 'show', 'toProprietary', 'update']);
@@ -574,6 +574,9 @@ Marker.prototype.addData = function(options) {
         case 'clickable':
           this.clickable = options.clickable;
         break;
+        case 'circle':
+          this.circle = options.circle;
+          break;
         default:
           this.setAttribute(sOptKey, options[sOptKey]);
         break;
@@ -1169,6 +1172,30 @@ VKMap: {
       this.addControlsArgs.overview = true;
       map.addControl(this.controls[0]);
     }
+    if (args.buttons) {
+      each(args.buttons, function (_, button) {
+        console.log(map);
+        var btn = new ymaps.control.Button({
+          data: {
+            content: button.content,
+            image: button.image
+          },
+          options: {
+            selectOnClick: !!button.selectOnClick,
+            maxWidth: button.maxWidth,
+            position: {
+              left: button.left,
+              top: button.top,
+              right: button.right,
+              bottom: button.bottom
+            }
+          }
+        });
+        btn.events.add('click', button.onClick);
+        this.controls.unshift(btn);
+        map.controls.add(this.controls[0]);
+      }.bind(this));
+    }
   },
   getMap: function() {
     return this.maps[this.api];
@@ -1177,7 +1204,11 @@ VKMap: {
     var map = this.maps[this.api];
     var zoomControl = new ymaps.control.ZoomControl({
       options: {
-        size: "small"
+        size: "small",
+        position: {
+          left: 10,
+          top: 10
+        }
       }
     });
     this.controls.unshift(zoomControl);
@@ -1255,11 +1286,27 @@ VKMap: {
     var map = this.maps[this.api],
     pin = marker.toProprietary(this.api);
     map.geoObjects.add(pin);
+
+    if (marker.circle) {
+      var circle = new ymaps.Circle([
+        marker.location.toProprietary(this.api),
+        marker.circle.radius
+      ], {}, {
+        fillColor: marker.circle.fillColor,
+        strokeColor: marker.circle.strokeColor,
+        strokeWidth: marker.circle.strokeWidth
+      });
+      map.geoObjects.add(circle);
+      marker.proprietary_circle = circle;
+    }
     return pin;
   },
   removeMarker: function(marker) {
     var map = this.maps[this.api];
     map.geoObjects.remove(marker.proprietary_marker);
+    if (marker.proprietary_circle) {
+      map.geoObjects.remove(marker.proprietary_circle);
+    }
   },
   getCenter: function() {
     var map = this.maps[this.api],
@@ -1269,7 +1316,11 @@ VKMap: {
   },
   setCenter: function(point, options) {
     var map = this.maps[this.api];
-    map.setCenter(point.toProprietary(this.api));
+    if (options && options.pan) {
+      map.panTo(point.toProprietary(this.api));
+    } else {
+      map.setCenter(point.toProprietary(this.api));
+    }
   },
   setZoom: function(zoom) {
     var map = this.maps[this.api];
@@ -1382,8 +1433,13 @@ Marker: {
     }
     var properties = {};
     if (this.infoBubble) {
+      var vkBalloonContentLayout = ymaps.templateLayoutFactory.createClass(
+        '<div class="map_balloon_title">$[properties.balloonContent]</div>'
+      );
+
       options.hasBalloon = true;
       options.hideIcon = true;
+      options.balloonContentLayout = vkBalloonContentLayout;
       properties.balloonContent = this.infoBubble;
     }
 
@@ -1407,6 +1463,26 @@ Marker: {
         ymarker.VKMap_marker.dragend.fire(latLon);
       }
     });
+    ymarker.events.add('drag', function(e) {
+      if (ymarker.VKMap_marker.proprietary_circle) {
+        var latLon = new vkMaps.LatLonPoint().fromProprietary('yandex2', ymarker.geometry);
+        ymarker.VKMap_marker.proprietary_circle.geometry.setCoordinates([latLon.lat, latLon.lon]);
+      }
+    });
+    ymarker.events.add('click', function(e) {
+      ymarker.VKMap_marker.click.fire(e);
+    });
+    if (this.infoBubble) {
+      ymarker.events.add('balloonopen', function(e) {
+        ymarker.VKMap_marker.openInfoBubble.fire(e);
+      });
+      ymarker.events.add('balloonclose', function(e) {
+        ymarker.VKMap_marker.closeInfoBubble.fire(e);
+      });
+      ymarker.balloon.events.add('click', function(e) {
+        ymarker.VKMap_marker.clickInfoBubble.fire(e);
+      });
+    }
     return ymarker;
   },
   openBubble: function() {
@@ -1439,9 +1515,9 @@ Geocoder: {
     }
     var q = null, s = 1;
     if (address.lat && address.lon) {
-      s = 0;
-      address.address = new YMaps.GeoPoint(address.lon, address.lat);
-      q = { act: 'ya_get_geocoder_coords', lat: address.lat, lon: address.lon };
+      // s = 0;
+      // address.address = new YMaps.GeoPoint(address.lon, address.lat);
+      q = { act: 'ya_get_geocoder_coords', lat: address.lat, lon: address.lon, request_id: address.lat+','+address.lon};
       if (cur.countryCode && cur.countryCode == 'UA') {
         q['country'] = cur.countryCode;
       }
@@ -1455,11 +1531,11 @@ Geocoder: {
     }
 
     ajax.post('al_places.php', q, {
-      onDone: function(found, resp) {
+      onDone: function(found, resp, request_id) {
         if (isObject(resp)) {
-          VKMap_geocoder.callback(YGeocoderResponseFromJson(resp));
+          VKMap_geocoder.callback(YGeocoderResponseFromJson(resp), request_id);
         } else {
-          VKMap_geocoder.error_callback('');
+          VKMap_geocoder.error_callback('', request_id);
         }
       },
       onFail: function(error) {

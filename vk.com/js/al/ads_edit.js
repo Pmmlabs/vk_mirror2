@@ -4573,6 +4573,7 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
 
   // defaultData exists if data may be not equal defaultData
   this.criteria = {
+    geo_type:               {value: 0},
     country:                {value: 0,  data: []},
     cities:                 {value: '', data: [], defaultData: [], selectedData: []},
     cities_not:             {value: '', data: [],                  selectedData: []},
@@ -4613,7 +4614,7 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
     pays_money:             {value: 0,  data: []},
     retargeting_groups:     {value: '', data: []},
     retargeting_groups_not: {value: '', data: []},
-    geo_near:               {value: ''}, // TODO
+    geo_near:               {value: '', data: [], defaultData: [], radius_selector: '', radius_selector_full: '', data_radius: [], allowed_radiuses: [], default_radius: 1000, default_center: [59.92688, 30.32913]},
     tags:                   {value: ''}
   };
 
@@ -4715,11 +4716,16 @@ AdsTargetingEditor.prototype.initHelpCriterion = function(criterionName) {
     case 'pays_money':
     case 'retargeting_groups':
     case 'tags':
+    case 'geo_type':
       targetElem = ge(this.options.targetIdPrefix + criterionName).parentNode;
       var showTooltip = function() { AdsEdit.showHelpCriterionTooltip(criterionName, targetElem, handler, this.criteria[criterionName], helpText, false, shiftTop, this.cur); }.bind(this);
       var hideTooltip = function() { AdsEdit.hideHelpTooltip(this.criteria[criterionName].tt); }.bind(this);
       handler = function(event){ AdsEdit.onHelpTooltipEvent(event, criterionName, context, showTooltip, hideTooltip); }.bind(this);
       AdsEdit.initHelpTooltipTarget(targetElem, handler, this.cur);
+
+      // if (criterionName === 'geo_type') {
+      //   setTimeout(showTooltip, 1000);
+      // }
       break;
   }
 }
@@ -4790,7 +4796,7 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
   // Init UI control
   switch (criterionName) {
     // Dropdowns
-    case 'country':
+    case 'country': {
       targetElem = ge(this.options.targetIdPrefix + criterionName);
       targetElem.removeAttribute('autocomplete');
       this.criteria[criterionName].ui = new Dropdown(targetElem, this.getUiCriterionData(criterionName), {
@@ -4804,7 +4810,9 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
       this.updateUiCriterionEnabled(criterionName);
       this.cur.destroy.push(function(){ this.criteria[criterionName].ui.destroy(); }.bind(this));
       break;
-    case 'pays_money':
+    }
+
+    case 'pays_money': {
       targetElem = ge(this.options.targetIdPrefix + criterionName);
       targetElem.removeAttribute('autocomplete');
       this.criteria[criterionName].ui = new Dropdown(targetElem, this.getUiCriterionData(criterionName), {
@@ -4816,12 +4824,14 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
       this.updateUiCriterionEnabled(criterionName);
       this.cur.destroy.push(function(){ this.criteria[criterionName].ui.destroy(); }.bind(this));
       break;
+    }
+
     case 'age_from':
     case 'age_to':
     case 'school_from':
     case 'school_to':
     case 'uni_from':
-    case 'uni_to':
+    case 'uni_to': {
       targetElem = ge(this.options.targetIdPrefix + criterionName);
       targetElem.removeAttribute('autocomplete');
       this.criteria[criterionName].ui = new Dropdown(targetElem, this.getUiCriterionData(criterionName), {
@@ -4835,6 +4845,8 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
       this.updateUiCriterionEnabled(criterionName);
       this.cur.destroy.push(function(){ this.criteria[criterionName].ui.destroy(); }.bind(this));
       break;
+    }
+
     case 'cities':
     case 'cities_not':
     case 'statuses':
@@ -4849,6 +4861,7 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
     case 'districts':
     case 'stations':
     case 'streets':
+    case 'geo_near':
     case 'schools':
     case 'positions':
     case 'operators':
@@ -4857,33 +4870,72 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
     case 'user_operating_systems':
     case 'user_browsers':
     case 'retargeting_groups':
-    case 'retargeting_groups_not':
+    case 'retargeting_groups_not': {
       targetElem = ge(this.options.targetIdPrefix + criterionName);
       targetElem.removeAttribute('autocomplete');
       this.criteria[criterionName].ui = new Autocomplete(targetElem, this.getUiCriterionData(criterionName), {
-        defaultItems:  this.getUiCriterionDefaultData(criterionName),
-        selectedItems: this.getUiCriterionSelectedData(criterionName),
+        defaultItems:               this.getUiCriterionDefaultData(criterionName),
+        selectedItems:              inArray(criterionName, ['geo_near']) ? '' : this.getUiCriterionSelectedData(criterionName),
 
-        introText:     this.getUiCriterionIntroText(criterionName),
-        placeholder:   this.getUiCriterionPlaceholderText(criterionName),
-        noResult:      this.getUiCriterionNoResultText(criterionName),
-        disabledText:  this.getUiCriterionDisabledText(criterionName),
+        introText:                  this.getUiCriterionIntroText(criterionName),
+        placeholder:                this.getUiCriterionPlaceholderText(criterionName),
+        nativePlaceholder:          inArray(criterionName, ['geo_near']),
+        hidePlaceholderOnSelected:  !inArray(criterionName, ['geo_near']),
+        noResult:                   this.getUiCriterionNoResultText(criterionName),
+        disabledText:               this.getUiCriterionDisabledText(criterionName),
 
-        dropdown:      true,
-        big:           true,
-        withIcons:     inArray(criterionName, ['groups', 'groups_not', 'apps', 'apps_not']),
-        maxItems:      this.options.uiMaxSelected,
-        width:         this.options.uiWidth,
-        height:        this.options.uiHeight,
+        dropdown:                   !inArray(criterionName, ['geo_near']),
+        listStyle:                  inArray(criterionName, ['geo_near']),
+        selectable:                 !inArray(criterionName, ['geo_near']),
+        big:                        true,
+        withIcons:                  inArray(criterionName, ['groups', 'groups_not', 'apps', 'apps_not']),
+        maxItems:                   this.options.uiMaxSelected,
+        width:                      inArray(criterionName, ['geo_near']) ? 400 : this.options.uiWidth,
+        height:                     this.options.uiHeight,
+        selectedItemsDelimiter:     inArray(criterionName, ['geo_near']) ? ';' : ',',
 
-        onTagAdd:      function(tag, value) { this.onUiTagAdd(criterionName, value, tag); }.bind(this),
-        onTagRemove:   function(tag, value) { this.onUiTagRemove(criterionName, value, tag); }.bind(this)
+        onTagAdd:                   function(tag, value) { this.onUiTagAdd(criterionName, value, tag); }.bind(this),
+        onTagRemove:                function(tag, value) { this.onUiTagRemove(criterionName, value, tag); }.bind(this),
+        onTokenClick:               function(value, event) { this.onUiTagClick(criterionName, value, event); }.bind(this)
       });
       this.updateUiCriterionEnabled(criterionName);
       this.cur.destroy.push(function(){ this.criteria[criterionName].ui.destroy(); }.bind(this));
+
+      if (criterionName === 'geo_near') {
+        var mapContainer = ge(this.options.targetIdPrefix + criterionName + '_box');
+        this.initGeoEditor(criterionName, mapContainer);
+      }
       break;
+    }
+
     // Radiobuttons
-    case 'sex':
+    case 'geo_type': {
+      var widthRegions = AdsEdit.getTextWidth(getLang('ads_geo_type_regions'));
+      var widthPoints  = AdsEdit.getTextWidth(getLang('ads_geo_type_points'));
+      var widthMore     = Math.floor((this.options.uiWidth - (widthRegions + widthPoints)) / 2);
+      widthRegions += widthMore;
+      widthPoints  += widthMore;
+
+      targetElem = ge(this.options.targetIdPrefix + criterionName + '_regions');
+      this.criteria[criterionName].ui_geo_type_regions = new Radiobutton(targetElem, {
+        width:    widthRegions,
+        label:    getLang('ads_geo_type_regions'),
+        onSelect: function(value) { this.onUiSelect(criterionName, value) }.bind(this)
+      });
+      this.cur.destroy.push(function(){ this.criteria[criterionName].ui_geo_type_regions.destroy(); }.bind(this));
+
+      targetElem = ge(this.options.targetIdPrefix + criterionName + '_points');
+      this.criteria[criterionName].ui_geo_type_points = new Radiobutton(targetElem, {
+        width:    widthPoints,
+        label:    getLang('ads_geo_type_points'),
+        onSelect: function(value) { this.onUiSelect(criterionName, value) }.bind(this)
+      });
+      this.cur.destroy.push(function(){ this.criteria[criterionName].ui_geo_type_points.destroy(); }.bind(this));
+
+      Radiobutton.select(this.options.targetIdPrefix + criterionName, this.criteria[criterionName].value);
+      break;
+    }
+    case 'sex': {
       targetElem = ge(this.options.targetIdPrefix + criterionName + '_any');
       this.criteria[criterionName].ui_any = new Radiobutton(targetElem, {
         width:    this.options.uiWidth,
@@ -4910,7 +4962,8 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
 
       Radiobutton.select(this.options.targetIdPrefix + criterionName, this.criteria[criterionName].value);
       break;
-    case 'schools_type':
+    }
+    case 'schools_type': {
       targetElem = ge(this.options.targetIdPrefix + criterionName + '_any');
       this.criteria[criterionName].ui_any = new Radiobutton(targetElem, {
         width:    this.options.uiWidth,
@@ -4937,8 +4990,10 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
 
       Radiobutton.select(this.options.targetIdPrefix + criterionName, this.criteria[criterionName].value);
       break;
+    }
+
     // Checkboxes
-    case 'birthday':
+    case 'birthday': {
       var labelToday    = this.criteria.birthday.label_checkbox_today;
       var labelTomorrow = this.criteria.birthday.label_checkbox_tomorrow;
       var labelWeek     = this.criteria.birthday.label_checkbox_week;
@@ -4985,8 +5040,10 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
         this.criteria[criterionName].ui_today.disable(true);
         this.criteria[criterionName].ui_tomorrow.disable(true);
       }
+
       break;
-    case 'travellers':
+    }
+    case 'travellers': {
       targetElem = ge(this.options.targetIdPrefix + criterionName);
       this.criteria[criterionName].ui = new Checkbox(targetElem, {
         label:    this.criteria.travellers.label_checkbox,
@@ -4996,13 +5053,15 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
       });
       this.cur.destroy.push(function(){ this.criteria[criterionName].ui.destroy(); }.bind(this));
       break;
+    }
+
     // Inputs
-    case 'geo_near':     // TODO: Proper control
-    case 'tags':
+    case 'tags': {
       targetElem = ge(this.options.targetIdPrefix + criterionName);
       addEvent(targetElem, this.interestingEvents, function(event) { return this.onUiEvent(criterionName, event); }.bind(this));
       this.cur.destroy.push(function(targetElem){ cleanElems(targetElem); }.pbind(targetElem));
       break;
+    }
   }
 
   this.criteria[criterionName].uiInited = true;
@@ -5033,6 +5092,9 @@ AdsTargetingEditor.prototype.getUiCriterionData = function(criterionName) {
       } else {
         return [];
       }
+    case 'geo_near': {
+      return '/adsedit?act=search_geo&country=' + this.criteria.country.value;
+    }
     case 'schools':
       var citiesOnlyIds = this.getCitiesOnly();
       if (citiesOnlyIds) {
@@ -5281,13 +5343,26 @@ AdsTargetingEditor.prototype.getUiCriterionVisibility = function(criterionName, 
     visible = !!(!this.criteria[criterionName].hidden_more);
   }
 
+  var tabbedControl = inArray(criterionName, ['geo_near', 'cities', 'cities_not', 'streets', 'districts', 'stations']);
+
   if (visible !== false) {
     switch (criterionName) {
       case 'districts':
       case 'stations':
         var citiesOnlyIds = this.getCitiesOnly();
-        visible = !!(!citiesOnlyIds || this.criteria[criterionName].data.length);
+        visible = !!(!citiesOnlyIds || this.criteria[criterionName].data.length) && (this.criteria.geo_type.value == 0);
         break;
+      case 'cities':
+      case 'cities_not':
+      case 'streets': {
+        visible = (this.criteria.geo_type.value == 0);
+        break;
+      }
+      case 'geo_near': {
+        visible = (this.criteria.geo_type.value == 1);
+        break;
+      }
+
       case 'schools':
         visible = !!(this.criteria.schools_type.value);
         break;
@@ -5312,7 +5387,7 @@ AdsTargetingEditor.prototype.getUiCriterionVisibility = function(criterionName, 
     }
   }
 
-  if (visible === false && checkCriterionValue) {
+  if (visible === false && checkCriterionValue && !tabbedControl) {
     visible = !!(this.criteria[criterionName].value);
   }
 
@@ -5435,6 +5510,7 @@ AdsTargetingEditor.prototype.getUiCriterionPlaceholderText = function(criterionN
     case 'user_browsers':          return getLang('ads_select_user_browser');
     case 'retargeting_groups':     return getLang('ads_select_retargeting_group_new');
     case 'retargeting_groups_not': return getLang('ads_select_retargeting_group_new');
+    case 'geo_near':               return getLang('ads_edit_ad_geo_map_address_placeholder');
     default:                       return '';
   }
 }
@@ -5464,6 +5540,7 @@ AdsTargetingEditor.prototype.getUiCriterionNoResultText = function(criterionName
     case 'user_browsers':          return getLang('ads_notfound_user_browser');
     case 'retargeting_groups':     return getLang('ads_notfound_retargeting_groups');
     case 'retargeting_groups_not': return getLang('ads_notfound_retargeting_groups');
+    case 'geo_near':               return getLang('ads_notfound_geo');
     default:                       return '';
   }
 }
@@ -5582,6 +5659,7 @@ AdsTargetingEditor.prototype.onCriterionUpdate = function(criterionName, criteri
         this.criteria.cities_not.defaultData = [];
         this.updateUiCriterionData('cities');
         this.updateUiCriterionData('cities_not');
+        this.updateUiCriterionData('geo_near');
         this.updateUiCriterionDefaultData('cities');
         this.updateUiCriterionDefaultData('cities_not');
         this.updateUiCriterionEnabled('cities');
@@ -5669,8 +5747,25 @@ AdsTargetingEditor.prototype.onCriterionUpdate = function(criterionName, criteri
           removeClass(this.options.targetIdPrefix + criterionName + '_remain', 'unshown');
         }
         remainElem.innerHTML = remainLength;
-      isUpdateNeeded = false;
+        isUpdateNeeded = false;
         break;
+
+      case 'geo_near': {
+        this.onCriterionUpdateView(criterionName);
+        break;
+      }
+      case 'geo_type': {
+        this.updateUiCriterionVisibility('cities');
+        this.updateUiCriterionVisibility('cities_not');
+        this.updateUiCriterionVisibility('streets');
+        this.updateUiCriterionVisibility('districts');
+        this.updateUiCriterionVisibility('stations');
+        this.updateUiCriterionVisibility('geo_near');
+
+        toggleClass('ads_edit_targeting_group_' + 'geography' + '_more_row', 'ads_edit_row_more_hidden', this.criteria[criterionName].value);
+        toggleClass('ads_edit_targeting_group_' + 'geography' + '_less_row', 'ads_edit_row_more_hidden', this.criteria[criterionName].value);
+        break;
+      }
     }
 
     if (isUpdateNeeded === null) {
@@ -5680,6 +5775,14 @@ AdsTargetingEditor.prototype.onCriterionUpdate = function(criterionName, criteri
 
   if (isUpdateNeeded || forceDataUpdate) {
     this.needDataUpdate();
+  }
+}
+
+AdsTargetingEditor.prototype.onCriterionUpdateView = function(criterionName) {
+  switch (criterionName) {
+    case 'geo_near': {
+      break;
+    }
   }
 }
 
@@ -5780,14 +5883,42 @@ AdsTargetingEditor.prototype.onUiTagAdd = function(criterionName, criterionValue
         this.criteria.retargeting_groups.ui.removeTagData(criterionTag[0]);
       }.bind(this), 1);
       break;
+    case 'geo_near': {
+      var pointInfo = criterionTag[0].split(',');
+      var newPointID = this.criteria[criterionName].geo_editor.addPoint(pointInfo[0], pointInfo[1], pointInfo[2], pointInfo[3], criterionTag[1]);
+      this.criteria[criterionName].geo_editor.updateMap(newPointID);
+      return; // prevent update, it will be called by map
+    }
   }
 
   this.onCriterionUpdate(criterionName, criterionValue);
 }
 
 AdsTargetingEditor.prototype.onUiTagRemove = function(criterionName, criterionValue, criterionTag) {
+  switch (criterionName) {
+    case 'geo_near': {
+      this.criteria[criterionName].geo_editor.removePoint(criterionTag[0]);
+      this.criteria[criterionName].geo_editor.updateMap();
+      return; // prevent update, it will be called by map
+    }
+  }
   this.onCriterionUpdate(criterionName, criterionValue);
 }
+
+AdsTargetingEditor.prototype.onUiTagClick = function(criterionName, criterionValue, event) {
+  switch (criterionName) {
+    case 'geo_near': {
+      if (gpeByClass('ads_edit_geo_place_radius_selector_wrap', event.target)) {
+        // do not handle click inside radius selector
+        return;
+      }
+      var token = gpeByClass('token', event.target);
+      var pointID = token.getAttribute('data-id');
+      this.criteria[criterionName].geo_editor.highlightPoint(pointID);
+    }
+  }
+}
+
 
 AdsTargetingEditor.prototype.onUiEvent = function(criterionName, event) {
   switch (criterionName) {
@@ -5807,7 +5938,6 @@ AdsTargetingEditor.prototype.onUiEvent = function(criterionName, event) {
       this.hideGroupMore('interests');
       return false;
       break;
-    case 'geo_near':     // TODO: Proper control
     case 'tags':
       var targetElem = ge(this.options.targetIdPrefix + criterionName);
       var criterionValueOriginal = targetElem.value;
@@ -5829,6 +5959,8 @@ AdsTargetingEditor.prototype.onUiEvent = function(criterionName, event) {
         }
       }.bind(this), 100);
       break;
+    case 'geo_near': {
+    }
   }
 
   return true;
@@ -5976,6 +6108,15 @@ AdsTargetingEditor.prototype.getCriteria = function() {
   for (var criterionName in this.criteria) {
     criteria[criterionName] = this.criteria[criterionName].value;
   }
+  if (this.criteria.geo_type.value == 1) {
+    criteria.cities = '';
+    criteria.cities_not = '';
+    criteria.districts = '';
+    criteria.stations = '';
+    criteria.streets = '';
+  } else if (this.criteria.geo_type.value == 0) {
+    criteria.geo_near = '';
+  }
   return criteria;
 }
 
@@ -6040,6 +6181,450 @@ AdsTargetingEditor.prototype.hideGroupMore = function(groupName) {
     var criterionName = group['criteria_more'][criterionNameIndex];
     this.updateUiCriterionVisibility(criterionName);
   }
+}
+
+AdsTargetingEditor.prototype.initGeoFileUpload = function (criterionName) {
+  var boxGeoEditor = this.criteria[criterionName].geo_editor.box_geo_editor;
+
+  if (typeof window.FileReader === 'function') {
+    var fileSizeLimit = 1024 * 30; // 30 kb
+    Upload.init(ge('ads_edit_geo_box_file_upload', boxGeoEditor.box), '', {}, {
+      file_name: 'doc',
+      uploadButton: 'ads_edit_geo_box_file_upload_button_dummy',
+      buttonClass: 'secondary',
+
+      file_size_limit: fileSizeLimit,
+      file_types_description: 'CSV file (*.csv, *.txt)',
+      file_types: '*.csv;*.CSV;*.txt;*.TXT',
+
+      onUploadFileSelected: function () {
+        var filesInput = geByTag1('input', ge('ads_edit_geo_box_file_upload', boxGeoEditor.box));
+        if (!filesInput.files || !filesInput.files[0]) {
+          return;
+        }
+        var file = filesInput.files[0];
+        if (file.size > fileSizeLimit) {
+          showFastBox(getLang('global_error'), getLang('ads_geo_file_size_error'));
+          return;
+        }
+        if (!inArray(file.type, ['text/plain', 'text/csv'])) {
+          showFastBox(getLang('global_error'), getLang('ads_geo_file_type_error'));
+          return;
+        }
+        fr = new FileReader();
+        fr.onload = function () {
+          val(boxGeoEditor.batch_input, fr.result);
+          this.updateGeoBoxBatchLinesCounter(criterionName);
+        }.bind(this);
+        fr.readAsText(filesInput.files[0])
+      }.bind(this),
+      lang: {
+        button_browse: getLang('ads_geo_button_browse')
+      },
+
+      noCheck: 1,
+      noFlash: 1,
+      clear: 1,
+      type: 'doc',
+      max_attempts: 3
+    });
+  } else {
+    hide(ge('ads_edit_geo_box_file_wrapper', boxGeoEditor.box));
+  }
+}
+
+AdsTargetingEditor.prototype.getGeoBoxBatchLines = function (criterionName) {
+  var boxGeoEditor = this.criteria[criterionName].geo_editor.box_geo_editor;
+
+  var text = val(boxGeoEditor.batch_input);
+  var lines = text.split("\n");
+  var result = [];
+  for (var i in lines) {
+    var line = lines[i].trim();
+    if (!line.length) {
+      continue;
+    }
+
+    result.push(line);
+  }
+
+  return result;
+}
+
+AdsTargetingEditor.prototype.updateGeoBoxBatchLinesCounter = function (criterionName) {
+  var boxGeoEditor = this.criteria[criterionName].geo_editor.box_geo_editor;
+
+  var counter = this.getGeoBoxBatchLines(criterionName).length;
+  var linesLimit = 100;
+  val(boxGeoEditor.batch_lines_counter, langStr(langNumeric(linesLimit, cur.lang.ads_geo_batch_line_counter), 'lines', counter, 'limit', linesLimit));
+  toggleClass(boxGeoEditor.batch_lines_counter, 'ads_edit_geo_box_batch_line_counter_overflow', counter > linesLimit);
+
+  hide(boxGeoEditor.batch_msg);
+}
+
+AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOptions) {
+  var boxGeoEditor = this.criteria[criterionName].geo_editor.box_geo_editor;
+
+  boxGeoEditor.box = ge('ads_edit_geo_box_wrap');
+  boxGeoEditor.table = ge('ads_edit_geo_box_table', boxGeoEditor.box);
+  boxGeoEditor.table_body = ge('ads_edit_geo_box_table_body', boxGeoEditor.box);
+  boxGeoEditor.batch_input = ge('ads_edit_geo_box_batch_input', boxGeoEditor.box);
+  boxGeoEditor.batch_lines_counter = ge('ads_edit_geo_box_batch_line_counter', boxGeoEditor.box);
+  boxGeoEditor.batch_submit = ge('ads_edit_geo_box_batch_submit', boxGeoEditor.box);
+  boxGeoEditor.batch_msg = ge('ads_edit_geo_box_batch_msg', boxGeoEditor.box);
+  boxGeoEditor.radius_selector_tt_container = geByClass1('ads_edit_geo_radius_tt_container', boxGeoEditor.box);
+
+  this.initGeoFileUpload(criterionName);
+
+  addEvent(boxGeoEditor.batch_input, 'change keyup', this.updateGeoBoxBatchLinesCounter.bind(this, criterionName));
+
+  addEvent(boxGeoEditor.batch_submit, 'click', function () {
+    var lines = this.getGeoBoxBatchLines(criterionName);
+    if (!lines.length) {
+      return;
+    }
+    if (lines.length > 100) {
+      showFastBox(getLang('global_error'), getLang('ads_geo_batch_too_many_lines'));
+      return;
+    }
+    lockButton(boxGeoEditor.batch_submit);
+
+    var validLines = 0;
+    for (var i in lines) {
+      var lineInfo = lines[i].split(',');
+      if (lineInfo[3] && lineInfo.length > 4) {
+        lineInfo[3] = lineInfo.slice(3).join(',');
+        lineInfo.splice(4);
+      }
+      if (lineInfo.length < 3 || lineInfo.length > 4) {
+        continue;
+      }
+      var addResult = boxGeoEditor.addPoint(lineInfo[0].trim(), lineInfo[1].trim(), lineInfo[2].trim(), undefined, lineInfo[3] ? lineInfo[3].trim() : undefined);
+      if (addResult) {
+        validLines++;
+      }
+    }
+    boxGeoEditor.updateMap();
+    unlockButton(boxGeoEditor.batch_submit);
+
+    if (validLines == lines.length) {
+      addClass(boxGeoEditor.batch_msg, 'ok_msg');
+      removeClass(boxGeoEditor.batch_msg, 'error');
+    } else {
+      removeClass(boxGeoEditor.batch_msg, 'ok_msg');
+      addClass(boxGeoEditor.batch_msg, 'error');
+    }
+    val(boxGeoEditor.batch_msg, langStr(langNumeric(lines.length, cur.lang.ads_geo_batch_message), 'lines', validLines, 'total', lines.length));
+    show(boxGeoEditor.batch_msg);
+  }.bind(this));
+
+  addEvent(boxGeoEditor.table_body, 'click', function (event) {
+    var parentNode, pointID;
+
+    if (hasClass(event.target, 'ads_edit_geo_box_table_point_remove_button')) {
+      parentNode = gpeByClass('ads_edit_geo_box_table_point_row', event.target);
+      pointID = parentNode.getAttribute('data-id');
+      boxGeoEditor.removePoint(pointID);
+      boxGeoEditor.updateMap();
+    } else {
+      if (gpeByClass('ads_edit_geo_place_radius_selector_wrap', event.target)) {
+        // do not handle click inside radius selector
+        return;
+      }
+      parentNode = gpeByClass('ads_edit_geo_box_table_point_row', event.target);
+      pointID = parentNode.getAttribute('data-id');
+      boxGeoEditor.highlightPoint(pointID);
+    }
+  }.bind(this));
+
+  addEvent(boxGeoEditor.radius_selector_tt_container, 'click', function (event) {
+    var parentNode, pointID;
+
+    if (hasClass(event.target, 'ui_actions_menu_item')) { // dropdown click
+      var newRadius = event.target.getAttribute('data-radius');
+      parentNode = gpeByClass('ads_edit_geo_box_table_point_row', data(gpeByClass('ui_actions_menu_dummy_wrap', event.target), 'origMenu'));
+      pointID = parentNode.getAttribute('data-id');
+
+      var newID = boxGeoEditor.setPointRadius(pointID, newRadius);
+      boxGeoEditor.updateMap(newID);
+      // boxGeoEditor.options.defaultRadius = newRadius;
+    }
+  }.bind(this));
+
+  each(geByClass('ads_edit_geo_box_tab_switch', boxGeoEditor.box), function (_, v) {
+    addEvent(v, 'click', function (e) {
+      each(geByClass('ads_edit_geo_box_tab', boxGeoEditor.box), function (_, v) {
+        hide(v);
+      });
+      show(geByClass1('ads_edit_geo_box_tab_' + v.getAttribute('data-tab'), boxGeoEditor.box));
+    }.bind(this));
+  });
+
+  var tableWrap = domPN(boxGeoEditor.table);
+  boxGeoEditor.init(ge('ads_edit_geo_box_map'), geoEditorOptions, {
+    onLoaded: function () {
+      boxGeoEditor.setPointsFromString(this.criteria[criterionName].value);
+
+      var targetElem = ge(this.options.targetIdPrefix + criterionName + '_geo_box_address', boxGeoEditor.box);
+      targetElem.removeAttribute('autocomplete');
+      boxGeoEditor.ui = new Autocomplete(targetElem, this.getUiCriterionData(criterionName), {
+        introText:                  this.getUiCriterionIntroText(criterionName),
+        placeholder:                this.getUiCriterionPlaceholderText(criterionName),
+        nativePlaceholder:          true,
+        hidePlaceholderOnSelected:  false,
+        noResult:                   this.getUiCriterionNoResultText(criterionName),
+        disabledText:               this.getUiCriterionDisabledText(criterionName),
+
+        dropdown:                   false,
+        listStyle:                  false,
+        selectable:                 false,
+        multiselect:                false,
+        big:                        true,
+        withIcons:                  false,
+        maxItems:                   this.options.uiMaxSelected,
+        width:                      322,
+        height:                     this.options.uiHeight,
+        selectedItemsDelimiter:     ';',
+
+        onChange:                   function(_, tag) {
+          var pointInfo = tag[0].split(',');
+          var newPointID = boxGeoEditor.addPoint(pointInfo[0], pointInfo[1], undefined, pointInfo[3], tag[1]); // radius is undefined because it is to be chosen from dropdown
+          boxGeoEditor.updateMap(newPointID);
+          boxGeoEditor.ui.clear();
+        }.bind(this),
+        onTagRemove:                function(tag, value) {  }.bind(this),
+        onTokenClick:               function(value, event) {  }.bind(this)
+      });
+      this.cur.destroy.push(function(){ boxGeoEditor.ui.destroy(); });
+
+      targetElem = ge(this.options.targetIdPrefix + criterionName + '_geo_box_radius', boxGeoEditor.box);
+      targetElem.removeAttribute('autocomplete');
+      boxGeoEditor.ui_radius = new Dropdown(targetElem, this.criteria[criterionName].data_radius, {
+        selectedItem: geoEditorOptions.defaultRadius,
+        big:          true,
+        width:        130,
+        onChange:     function(value) {
+          boxGeoEditor.options.defaultRadius = parseInt(value);
+        }.bind(this)
+      });
+      this.cur.destroy.push(function(){ boxGeoEditor.ui_radius.destroy(); });
+
+    }.bind(this),
+    onPointAdded: function (point) {
+      re('ads_edit_geo_box_table_row_span');
+      var row = boxGeoEditor.table_body.insertRow(boxGeoEditor.table_body.rows.length);
+      var cell;
+
+      cell = row.insertCell(0);
+      cell.className = 'ads_edit_geo_box_table_point_remove';
+      cell.innerHTML = '<div class="ads_edit_geo_box_table_point_remove_button"></div>';
+
+      /*cell = row.insertCell(0);
+       cell.className = 'ads_edit_geo_box_table_point_reach';
+       cell.innerHTML = '&mdash;';*/
+
+      cell = row.insertCell(0);
+      cell.className = 'ads_edit_geo_box_table_point_radius';
+      cell.innerHTML = this.criteria[criterionName].radius_selector_full;
+      geByClass1('ads_edit_geo_place_radius_selector_text', cell).innerHTML = this.formatGeoRadius(criterionName, point.radius);
+
+      cell = row.insertCell(0);
+      cell.className = 'ads_edit_geo_box_table_point_caption';
+      cell.innerHTML = point.caption;
+
+      row.setAttribute('id', 'ads_edit_geo_box_table_row_'+point.id);
+      row.setAttribute('data-id', point.id);
+      row.className = 'ads_edit_geo_box_table_point_row';
+
+      animate(tableWrap, {scrollTop: tableWrap.clientHeight});
+    }.bind(this),
+    onPointUpdated: function (oldPointID, newPointID, newText, newRadius) {
+      var row = ge('ads_edit_geo_box_table_row_' + oldPointID, boxGeoEditor.box);
+      row.setAttribute('id', 'ads_edit_geo_box_table_row_'+newPointID);
+      row.setAttribute('data-id', newPointID);
+
+      geByClass1('ads_edit_geo_box_table_point_caption', row).innerHTML = newText;
+      geByClass1('ads_edit_geo_place_radius_selector_text', row).innerHTML = this.formatGeoRadius(criterionName, newRadius);
+    }.bind(this),
+    onPointRemoved: function (pointID) {
+      re('ads_edit_geo_box_table_row_'+pointID);
+
+      if (boxGeoEditor.table_body.rows.length == 0) { // no rows remaining
+        var row = boxGeoEditor.table_body.insertRow(0);
+        var cell;
+
+        cell = row.insertCell(0);
+        cell.className = 'ads_edit_geo_box_table_row_span';
+        cell.innerHTML = getLang('ads_geo_empty_table_span');
+        cell.colSpan = 4;
+
+        row.setAttribute('id', 'ads_edit_geo_box_table_row_span');
+      }
+    }
+  });
+}
+
+AdsTargetingEditor.prototype.showGeoBox = function (criterionName, tab, geoEditorOptions) {
+  var boxGeoEditor = this.criteria[criterionName].geo_editor.box_geo_editor;
+
+  var ajaxParams = {
+    selected: tab
+  };
+
+  var boxOptions = {};
+  boxOptions.width = 1134;
+  boxOptions.hideButtons = true;
+  boxOptions.onShow = function() {
+    cur.preventBoxHide = true;
+  };
+  boxOptions.onHide = function() {
+    setTimeout(function() {
+      if (boxQueue.count() > 1) {
+        cur.preventBoxHide = false;
+      }
+    }, 1);
+
+    this.criteria[criterionName].ui.clear();
+    this.criteria[criterionName].geo_editor.setPointsFromString(boxGeoEditor.savePointsToString());
+  }.bind(this);
+  boxOptions.onDestroy = function() {
+    cur.preventBoxHide = false;
+  };
+
+  var showOptions = {};
+  showOptions.params = boxOptions;
+  showOptions.onDone = this.initGeoBox.bind(this, criterionName, geoEditorOptions);
+
+  showBox('/adsedit?act=geo_box', ajaxParams, showOptions);
+
+  return boxGeoEditor;
+}
+
+AdsTargetingEditor.prototype.initGeoEditor = function (criterionName, mapContainer) {
+  if (!mapContainer) {
+    try { console.error("Can't init geo editor without map container"); } catch (e) {}
+    return;
+  }
+
+  var geoEditor = new AdsGeoEditor();
+  var geoEditorOptions = {
+    defaultRadius: this.criteria[criterionName].default_radius,
+    expandMapButton: true,
+    allowedRadiuses: this.criteria[criterionName].allowed_radiuses,
+
+    // todo
+    defaultMapCenter: {
+      lat: this.criteria[criterionName].default_center[0],
+      lon: this.criteria[criterionName].default_center[1]
+    }
+  };
+  var boxGeoEditorOptions = {
+    defaultRadius: this.criteria[criterionName].default_radius,
+    allowedRadiuses: this.criteria[criterionName].allowed_radiuses,
+    // todo
+    defaultMapCenter: {
+      lat: this.criteria[criterionName].default_center[0],
+      lon: this.criteria[criterionName].default_center[1]
+    }
+  };
+
+  var geoEditorEvents = {};
+  geoEditorEvents.onPointAdded = function (point) {
+    var el = this.criteria[criterionName].ui.addTagData([point.id, point.caption, '', 1, '', this.criteria[criterionName].radius_selector]);
+    geByClass1('ads_edit_geo_place_radius_selector_text', el).innerHTML = this.formatGeoRadius(criterionName, point.radius);
+    this.criteria[criterionName].ui.updateInput();
+
+    this.onCriterionUpdate(criterionName, geoEditor.savePointsToString());
+    this.restoreMapPosition(criterionName);
+  }.bind(this);
+  geoEditorEvents.onPointUpdated = function (oldPointID, newPointID, newText, newRadius) {
+    var tokenEl = this.criteria[criterionName].ui.replaceTagID(oldPointID, newPointID);
+    this.criteria[criterionName].ui.replaceTagText(newPointID, newText);
+
+    geByClass1('ads_edit_geo_place_radius_selector_text', tokenEl).innerHTML = this.formatGeoRadius(criterionName, newRadius);
+
+    this.onCriterionUpdate(criterionName, geoEditor.savePointsToString());
+    this.restoreMapPosition(criterionName);
+  }.bind(this);
+  geoEditorEvents.onPointRemoved = function (pointID) {
+    this.criteria[criterionName].ui.removeTagData(pointID);
+
+    this.onCriterionUpdate(criterionName, geoEditor.savePointsToString());
+    this.restoreMapPosition(criterionName);
+  }.bind(this);
+  geoEditorEvents.onLoaded = function () {
+    geoEditor.setPointsFromString(this.criteria[criterionName].value);
+    this.saveMapPosition(criterionName);
+
+    addEvent(window, 'scroll', this.saveMapPosition.bind(this, criterionName));
+  }.bind(this);
+  geoEditorEvents.onExpandClick = this.showGeoBox.bind(this, criterionName, 'single', boxGeoEditorOptions);
+
+  geoEditor.init(mapContainer, geoEditorOptions, geoEditorEvents);
+
+  this.criteria[criterionName].geo_editor = geoEditor;
+  geoEditor.box_geo_editor = new AdsGeoEditor();
+
+  addEvent(gpeByClass('ads_edit_geo_radius_tt_container', this.criteria[criterionName].ui.container), 'click', function (event) {
+    if (!hasClass(event.target, 'ui_actions_menu_item')) {
+      return;
+    }
+    var newRadius = event.target.getAttribute('data-radius');
+    var newRadiusLabel = event.target.innerHTML;
+    var parentNode = gpeByClass('token', data(gpeByClass('ui_actions_menu_dummy_wrap', event.target), 'origMenu'));
+    var radiusLabel = geByClass1('ads_edit_geo_place_radius_selector', parentNode);
+
+    this.criteria[criterionName].geo_editor.setPointRadius(parentNode.getAttribute('data-id'), newRadius);
+    this.criteria[criterionName].geo_editor.updateMap(parentNode.getAttribute('data-id'));
+    // this.criteria[criterionName].geo_editor.options.defaultRadius = newRadius;
+  }.bind(this));
+
+
+
+  var geoButton = ge(this.options.targetIdPrefix + criterionName + '_button');
+  addEvent(geoButton, 'click', this.showGeoBox.bind(this, criterionName, 'batch', boxGeoEditorOptions));
+}
+
+AdsTargetingEditor.prototype.formatGeoRadius = function (criterionName, radius) {
+  for (var i = 0, row; row = this.criteria[criterionName].data_radius[i]; ++i) {
+    if (radius == row[0]) {
+      return row[1];
+    }
+  }
+  return formatNum(radius) + ' ' + getLang('ads_edit_ad_geo_radius_unit_meters');
+}
+
+AdsTargetingEditor.prototype.saveMapPosition = function (criterionName) {
+  var mapContainer = ge(this.options.targetIdPrefix + criterionName + '_box');
+  if (!mapContainer) {
+    return;
+  }
+
+  var mapRect = mapContainer.getBoundingClientRect();
+  if (!mapRect) {
+    return;
+  }
+
+  this.criteria[criterionName].map_position_top = mapRect.top;
+}
+
+AdsTargetingEditor.prototype.restoreMapPosition = function (criterionName) {
+  if (!this.criteria[criterionName].map_position_top) {
+    return;
+  }
+
+  var mapContainer = ge(this.options.targetIdPrefix + criterionName + '_box');
+  if (!mapContainer) {
+    return;
+  }
+
+  var mapRect = mapContainer.getBoundingClientRect();
+  if (!mapRect) {
+    return;
+  }
+
+  var dy = this.criteria[criterionName].map_position_top - mapRect.top;
+  scrollToY(scrollGetY() - dy, 0, 0, true);
 }
 
 try{stManager.done('ads_edit.js');}catch(e){}

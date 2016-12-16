@@ -3042,7 +3042,9 @@ var Wall = {
       postData[4] = newStyle;
     }
     if (curClass != newClass) {
-      side.className = newClass;
+      if (side) {
+        side.className = newClass;
+      }
       postData[5] = newClass;
     }
   },
