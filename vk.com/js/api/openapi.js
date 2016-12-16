@@ -1870,8 +1870,40 @@ if (!VK.Widgets) {
   VK.Widgets.CommunityMessages = (function(CommunityMessages) {
     if (CommunityMessages) return CommunityMessages;
 
-    var instances = {};
+    var instances = {}, wCur = {};
+    var BUTTONS_CONF = {
+      no_button: {width: 0, height: 0},
+      blue_circle: {
+        width: 50,
+        height: 50,
+        margin: {
+          bottom: 20
+        }
+      }
+    }, DEFAULT_BUTTON_TYPE = 'blue_circle',
+    BUTTON_POSITIONS = {
+      left: {
+        bottom: 0,
+        left: 20
+      },
+      right: {
+        bottom: 0,
+        right: 20
+      }
+    }, DEFAULT_BUTTON_POSITION = 'right';
 
+    /* options
+      - welcomeScreen
+      - expandTimeout
+      - shown || expended
+      - widgetPosition
+      - buttonType
+      - disableButtonTooltip
+      - tooltipButtonText
+      - disableNewMessagesSound
+      - disableExpandChatSound
+      - disableTitleChange
+    */
     CommunityMessages = function(objId, gid, options) {
       options = options || {};
 
@@ -1882,31 +1914,81 @@ if (!VK.Widgets) {
         options.base_domain = options.base_domain || VK._protocol + '//vk.com';
       }
 
-      var rpcSrv = null;
+      options.expandTimeout = parseInt(options.expandTimeout) || 0;
+
       var params = {
-        gid: gid,
+        gid: gid
       };
+
+      options.expanded = parseInt(options.expanded) || 0;
+
+      if (!options.from_dev && lsGet('expanded') != null || options.expanded) {
+        options.shown = 1;
+      }
+
       if (options.shown) {
         params.shown = 1;
+      }
+
+      if (!options.welcomeScreen) {
+        params.disable_welcome_screen = 1;
+      }
+
+      var buttonType = options.buttonType;
+      if (Object.keys(BUTTONS_CONF).indexOf(buttonType) == -1) {
+        buttonType = DEFAULT_BUTTON_TYPE;
+      }
+
+      if (buttonType == 'no_button') {
+        options.disableButtonTooltip = 1;
+      }
+
+      if (options.disableButtonTooltip) {
+        params.disable_tooltip = 1;
+      }
+      if (options.tooltipButtonText) {
+        params.tooltip_text = options.tooltipButtonText;
+      }
+
+      if (options.disableNewMessagesSound) {
+        params.disable_new_messages_sound = 1;
       }
 
       if (instances[objId]) {
         CommunityMessages.destroy(objId);
       }
 
-      var curBox = false;
+      params.domain = document.domain;
+
+      options.no_loading = 1;
+
+      var curBox = false, expanded = 0;
+      var ttSize = [0, 0], widgetPosition;
+
+      changeWidgetPosition(options.widgetPosition);
+      params.button_position = options.widgetPosition;
 
       var chatRpc, chatIfr;
+      var inited = 0, timers = {};
       instances[objId] = VK.Widgets._constructor('widget_community_messages.php', objId, options, params, {
         onStartLoading: function() {
           var obj = document.getElementById(objId);
           obj.style.position = 'fixed';
           obj.style['z-index'] = 10000;
-          obj.style.right = '20px';
-          obj.style.bottom = '0px';
-          minimize(objId);
+          updateWidgetPosition();
         },
-        showBox: function(url, props) {
+        onReady: function () {
+          inited = 1;
+          if (options.expandTimeout > 0 && !options.shown) {
+            timers.showTimer = setTimeout(function () {
+              expandChat({
+                playSong: !options.disableExpandChatSound,
+                noSaveState: 1
+              });
+            }, options.expandTimeout);
+          }
+        },
+        showBox: function(url) {
           if (curBox) {
             try {
               curBox.hide();
@@ -1923,16 +2005,30 @@ if (!VK.Widgets) {
           });
           curBox.show();
         },
-        expand: function() {
-          expand(objId);
+        setTooltipSize: function (size) {
+          ttSize = size;
+          if (!expanded) {
+            minimize();
+          }
+        },
+        expand: function(opts) {
+          opts = opts || {};
+          expanded = 1;
+          expand();
+
+          if (!opts.noSaveState) {
+            lsSet('expanded', 1);
+          }
         },
         minimize: function() {
           setTimeout(function() {
+            expanded = 0;
             minimize(objId);
+            lsRemove('expanded');
           }, 120);
         },
-        canNotWrite: function() {
-          options.onCanNotWrite && options.onCanNotWrite();
+        canNotWrite: function(type) {
+          options.onCanNotWrite && options.onCanNotWrite(type);
         },
         destroy: function() {
           chatRpc.destroy();
@@ -1962,36 +2058,179 @@ if (!VK.Widgets) {
           var box = VK.Util.Box(VK.Widgets.showBoxUrl(options.base_domain, 'blank.php?'+query_str.join('&')));
           box.show();
         },
+        setPageTitle: function (title) {
+          if (options.disableTitleChange) {
+            return;
+          }
+          stopTitleAnimation();
+          wCur.oldTitle = document.title || null;
+          wCur.title = title;
+          wCur.changeTitleMode = 0;
+          startTitleNotify(1);
+        },
+        resetPageTitle: function () {
+          stopTitleAnimation();
+        },
+        newMessage: function () {
+          if (document.hasFocus && !document.hasFocus() && !options.disableNewMessagesSound) {
+            callRpcMethod('playNewMsgSong');
+          }
+        }
       }, {}, function(o, i, r) {
         chatRpc = r;
         chatIfr = i;
         if (!options.shown) {
-          minimize(objId);
+          minimize();
         } else {
-          expand(objId);
+          expand();
         }
       });
-      return instances[objId];
+
+      function startTitleNotify(fast) {
+        clearTimeout(wCur.titleTimer);
+        wCur.titleTimer = setTimeout(function () {
+          if (wCur.changeTitleMode == 1) {
+            document.title = wCur.oldTitle || '';
+          } else {
+            document.title = wCur.title;
+          }
+          wCur.changeTitleMode = wCur.changeTitleMode == 1 ? 0 : 1;
+          startTitleNotify();
+        }, fast ? 0 : 1500);
+      }
+
+      function stopTitleAnimation() {
+        if (options.disableTitleChange) {
+          return;
+        }
+        clearTimeout(wCur.titleTimer);
+        if (wCur.oldTitle) {
+          document.title = wCur.oldTitle;
+        } else if (wCur.oldTitle === null) {
+          document.title = '';
+        }
+        wCur.title = '';
+      }
+
+      function expand() {
+        var obj = document.getElementById(objId), frame = obj.getElementsByTagName('iframe')[0];
+
+        obj.style.width = frame.width = '372px';
+        obj.style.height = frame.height = '399px';
+        obj.style.margin = '0px 0px 0px 0px';
+        //frame.style.boxShadow = '0 0 0 1px rgba(0, 20, 51, .12), 0 20px 40px 0 rgba(0, 0, 0, 0.3)';
+        //frame.style.borderRadius = '6px';
+      }
+
+      function minimize() {
+        var obj = document.getElementById(objId), frame = obj.getElementsByTagName('iframe')[0];
+
+        var btnConf = BUTTONS_CONF[buttonType];
+
+        var w = btnConf.width + ttSize[0];
+        var h = Math.max(btnConf.height, ttSize[1]);
+
+        obj.style.width = w + 'px';
+        obj.style.height = h + 'px';
+        frame.style.boxShadow = 'none';
+
+        var margin = btnConf.margin ? btnConf.margin : {};
+        obj.style.margin = '0px ' + (margin.right || 0) + 'px ' + (margin.bottom || 0) + 'px 0px';
+
+        if (frame) {
+          frame.width = w;
+          frame.height = h;
+        }
+      }
+
+      function changeWidgetPosition(position) {
+        widgetPosition = position;
+        if (Object.keys(BUTTON_POSITIONS).indexOf(widgetPosition) == -1) {
+          widgetPosition = DEFAULT_BUTTON_POSITION;
+        }
+        updateWidgetPosition();
+        callRpcMethod('changeButtonPosition', widgetPosition);
+      }
+
+      function updateWidgetPosition() {
+        var obj = document.getElementById(objId);
+
+        if (!obj) {
+          return;
+        }
+
+        var props = ['left', 'right', 'top', 'bottom'];
+        for(var i in props) {
+          obj.style[props[i]] = '';
+        }
+
+        var conf = BUTTON_POSITIONS[widgetPosition];
+        for(var i in conf) {
+          obj.style[i] = conf[i] + 'px';
+        }
+
+        if (!inited) {
+          return;
+        }
+
+        if (expanded) {
+          expand();
+        } else {
+          minimize();
+        }
+      }
+
+      function callRpcMethod() {
+        chatRpc && chatRpc.callMethod.apply(chatRpc, arguments);
+      }
+
+      /* opts
+        - welcomeScreen
+      */
+      function expandChat(opts) {
+        if (!opts || Object.prototype.toString.call(opts) !== '[object Object]') {
+          opts = {};
+        }
+
+        if (opts.welcomeScreen == undefined) {
+          opts.welcomeScreen = options.welcomeScreen;
+        }
+
+        clearTimeout(timers.showTimer);
+        callRpcMethod('expand', opts);
+      }
+
+      function minimizeChat() {
+        callRpcMethod('minimize');
+      }
+
+      function destroyChat() {
+        stopTitleAnimation();
+        CommunityMessages.destroy(objId);
+      }
+
+      return {
+        expand: expandChat,
+        minimize: minimizeChat,
+        destroy: destroyChat,
+        changeButtonPosition: changeWidgetPosition,
+        stopTitleAnimation: stopTitleAnimation,
+      };
     };
 
-    function expand(objId) {
-      var obj = document.getElementById(objId), frame = obj.getElementsByTagName('iframe')[0];
-
-      var size = 50;
-      obj.style.width = frame.width = '300px';
-      obj.style.height = frame.height = '399px';
+    function lsGet(key) {
+      if (!window.localStorage) {
+        return null;
+      }
+      return localStorage.getItem('vk_community_widget_' + key);
     }
 
-    function minimize(objId) {
-      var obj = document.getElementById(objId), frame = obj.getElementsByTagName('iframe')[0];
+    function lsSet(key, value) {
+      window.localStorage && localStorage.setItem('vk_community_widget_' + key, value);
+    }
 
-      obj.style.width = '60px';
-      obj.style.height = '80px';
-
-      if (frame) {
-        frame.width = 60;
-        frame.height = 80;
-      }
+    function lsRemove(key) {
+      window.localStorage && localStorage.removeItem('vk_community_widget_' + key);
     }
 
     CommunityMessages.destroy = function(objId) {
@@ -2003,6 +2242,10 @@ if (!VK.Widgets) {
       xdm && xdm.methods.destroy();
 
       delete instances[objId];
+    };
+
+    CommunityMessages.expand = function (objId) {
+      console.log(instances[objId]);
     };
 
     return CommunityMessages;
@@ -2074,7 +2317,9 @@ if (!VK.Widgets) {
 
     obj.style.width = width;
     funcs.onStartLoading && funcs.onStartLoading();
-    VK.Widgets.loading(obj, true);
+    if (!options.no_loading) {
+      VK.Widgets.loading(obj, true);
+    }
 
     funcs.showLoader = function(enable) {
       VK.Util.Loader(enable);
