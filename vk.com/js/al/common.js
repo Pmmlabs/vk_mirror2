@@ -2478,9 +2478,16 @@ function updateLeftMenu() {
       isFixed = getStyle(menu, 'position') == 'fixed',
       menuH = getSize(menu)[1], menuPos = isFixed ? getXY(menu)[1] : floatval(getStyle(menu, 'marginTop')),
       pageH = getSize(pageBody)[1], pagePos = pageBody.offsetTop, tooBig = menuH >= pageH,
-      lastSt = window.menuLastSt || 0, lastStyles = window.menuLastStyles || {}, styles, delta = 1;
+      lastSt = window.menuLastSt || 0, lastStyles = window.menuLastStyles || {}, styles, delta = 1,
+      noScrollDelta = cur.leftMenuDelta || 0;
+  delete cur.leftMenuDelta;
 
-  if (st - delta < (vk.staticheader ? headH : 0) || tooBig || hasClass(bodyNode, 'body_im')) {
+  if (noScrollDelta) {
+    styles = clone(lastStyles);
+    if (styles.position !== 'fixed' && styles.marginTop) {
+      styles.marginTop = Math.max(headH, styles.marginTop + noScrollDelta);
+    }
+  } else if (st - delta < (vk.staticheader ? headH : 0) || tooBig || hasClass(bodyNode, 'body_im')) {
     styles = {
       position: 'relative',
       marginTop: headH
