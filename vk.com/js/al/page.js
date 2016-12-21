@@ -1357,6 +1357,7 @@ var Page = {
         video: domData(thumb, 'video'),
         list: domData(thumb, 'list'),
         post_id: domData(domClosest('post', thumb), 'post-id'),
+        expand_on_click: domData(thumb, 'expand_on_click'),
         autoplay: 1,
         from_autoplay: 1
       };
