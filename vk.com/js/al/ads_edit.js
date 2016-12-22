@@ -4614,7 +4614,7 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
     pays_money:             {value: 0,  data: []},
     retargeting_groups:     {value: '', data: []},
     retargeting_groups_not: {value: '', data: []},
-    geo_near:               {value: '', data: [], defaultData: [], radius_selector: '', radius_selector_full: '', data_radius: [], allowed_radiuses: [], default_radius: 1000, default_center: [59.92688, 30.32913]},
+    geo_near:               {value: '', data: [], defaultData: [], radius_selector: '', radius_selector_full: '', data_radius: [], allowed_radiuses: [], default_radius: 1000, default_center: [59.92688, 30.32913], lngcode: 'ru', zoom_radius_map: {}},
     tags:                   {value: ''}
   };
 
@@ -4723,9 +4723,9 @@ AdsTargetingEditor.prototype.initHelpCriterion = function(criterionName) {
       handler = function(event){ AdsEdit.onHelpTooltipEvent(event, criterionName, context, showTooltip, hideTooltip); }.bind(this);
       AdsEdit.initHelpTooltipTarget(targetElem, handler, this.cur);
 
-      // if (criterionName === 'geo_type') {
-      //   setTimeout(showTooltip, 1000);
-      // }
+      if (criterionName === 'geo_type') {
+        setTimeout(showTooltip, 1000);
+      }
       break;
   }
 }
@@ -4886,6 +4886,7 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
 
         dropdown:                   !inArray(criterionName, ['geo_near']),
         listStyle:                  inArray(criterionName, ['geo_near']),
+        limitedListHeight:          inArray(criterionName, ['geo_near']),
         selectable:                 !inArray(criterionName, ['geo_near']),
         big:                        true,
         withIcons:                  inArray(criterionName, ['groups', 'groups_not', 'apps', 'apps_not']),
@@ -4896,7 +4897,9 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
 
         onTagAdd:                   function(tag, value) { this.onUiTagAdd(criterionName, value, tag); }.bind(this),
         onTagRemove:                function(tag, value) { this.onUiTagRemove(criterionName, value, tag); }.bind(this),
-        onTokenClick:               function(value, event) { this.onUiTagClick(criterionName, value, event); }.bind(this)
+        onTokenClick:               function(value, event) { this.onUiTagClick(criterionName, value, event); }.bind(this),
+        onTokenMouseOver:           function(value, event) { this.onUiEvent(criterionName, event); }.bind(this),
+        onTokenMouseOut:            function(value, event) { this.onUiEvent(criterionName, event); }.bind(this)
       });
       this.updateUiCriterionEnabled(criterionName);
       this.cur.destroy.push(function(){ this.criteria[criterionName].ui.destroy(); }.bind(this));
@@ -5068,7 +5071,7 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
   //debugLog('Targeting: ' + criterionName + ' UI inited');
 }
 
-AdsTargetingEditor.prototype.getUiCriterionData = function(criterionName) {
+AdsTargetingEditor.prototype.getUiCriterionData = function(criterionName, options) {
   switch (criterionName) {
     case 'cities':
     case 'cities_not':
@@ -5093,7 +5096,24 @@ AdsTargetingEditor.prototype.getUiCriterionData = function(criterionName) {
         return [];
       }
     case 'geo_near': {
-      return '/adsedit?act=search_geo&country=' + this.criteria.country.value;
+      var suffix = '';
+      var mapCenter;
+      if (options && options.mapCenter) {
+        mapCenter = options.mapCenter;
+      }
+      var geoEditor = this.criteria.geo_near.geo_editor;
+      if (geoEditor && geoEditor.inited) {
+        if (!mapCenter) {
+          mapCenter = geoEditor.map.getCenter();
+        }
+        suffix += '&radius=' + geoEditor.options.defaultRadius;
+      }
+
+      if (mapCenter) {
+        suffix += '&lat=' + mapCenter.lat + '&lon=' + mapCenter.lon;
+      }
+
+      return '/adsedit?act=search_geo' + suffix;
     }
     case 'schools':
       var citiesOnlyIds = this.getCitiesOnly();
@@ -5343,18 +5363,23 @@ AdsTargetingEditor.prototype.getUiCriterionVisibility = function(criterionName, 
     visible = !!(!this.criteria[criterionName].hidden_more);
   }
 
-  var tabbedControl = inArray(criterionName, ['geo_near', 'cities', 'cities_not', 'streets', 'districts', 'stations']);
+  var tabbedControl = inArray(criterionName, ['geo_near', 'country', 'cities', 'cities_not', 'streets', 'districts', 'stations']);
 
   if (visible !== false) {
     switch (criterionName) {
       case 'districts':
       case 'stations':
-        var citiesOnlyIds = this.getCitiesOnly();
-        visible = !!(!citiesOnlyIds || this.criteria[criterionName].data.length) && (this.criteria.geo_type.value == 0);
+      case 'streets':
+        // var citiesOnlyIds = this.getCitiesOnly();
+        // visible = !!(!citiesOnlyIds || this.criteria[criterionName].data.length) && (this.criteria.geo_type.value == 0);
+        visible = false;
+        if (this.criteria.geo_type.value == 0) {
+          tabbedControl = false; // allow to show if this criterion has value
+        }
         break;
+      case 'country':
       case 'cities':
-      case 'cities_not':
-      case 'streets': {
+      case 'cities_not': {
         visible = (this.criteria.geo_type.value == 0);
         break;
       }
@@ -5755,6 +5780,7 @@ AdsTargetingEditor.prototype.onCriterionUpdate = function(criterionName, criteri
         break;
       }
       case 'geo_type': {
+        this.updateUiCriterionVisibility('country');
         this.updateUiCriterionVisibility('cities');
         this.updateUiCriterionVisibility('cities_not');
         this.updateUiCriterionVisibility('streets');
@@ -5914,7 +5940,7 @@ AdsTargetingEditor.prototype.onUiTagClick = function(criterionName, criterionVal
       }
       var token = gpeByClass('token', event.target);
       var pointID = token.getAttribute('data-id');
-      this.criteria[criterionName].geo_editor.highlightPoint(pointID);
+      this.criteria[criterionName].geo_editor.focusOnPoint(pointID);
     }
   }
 }
@@ -5960,6 +5986,20 @@ AdsTargetingEditor.prototype.onUiEvent = function(criterionName, event) {
       }.bind(this), 100);
       break;
     case 'geo_near': {
+      if (event.type === 'mouseover') {
+        var token = gpeByClass('token', event.target);
+        var pointID = token.getAttribute('data-id');
+        this.criteria[criterionName].geo_editor.highlightPoint(pointID, true);
+      }
+      if (event.type === 'mouseout') {
+        var token = gpeByClass('token', event.target);
+        var e = event.toElement || event.relatedTarget;
+        if (e && (e.parentNode == token || e == token)) {
+          return;
+        }
+        var pointID = token.getAttribute('data-id');
+        this.criteria[criterionName].geo_editor.highlightPoint(pointID, false);
+      }
     }
   }
 
@@ -6076,6 +6116,10 @@ AdsTargetingEditor.prototype.setUpdateData = function(data, result) {
     }
   }
 
+  if (isObject(result) && 'audience_count_texts_geo_near' in result) {
+    this.updateGeoPointsAudience('geo_near', result.audience_count_texts_geo_near, result.audience_count_texts_geo_near_only);
+  }
+
   return setResult;
 }
 
@@ -6109,6 +6153,7 @@ AdsTargetingEditor.prototype.getCriteria = function() {
     criteria[criterionName] = this.criteria[criterionName].value;
   }
   if (this.criteria.geo_type.value == 1) {
+    criteria.country = '';
     criteria.cities = '';
     criteria.cities_not = '';
     criteria.districts = '';
@@ -6267,12 +6312,14 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
 
   boxGeoEditor.box = ge('ads_edit_geo_box_wrap');
   boxGeoEditor.table = ge('ads_edit_geo_box_table', boxGeoEditor.box);
+  boxGeoEditor.table_header = ge('ads_edit_geo_box_table_header', boxGeoEditor.box);
+  boxGeoEditor.table_wrap = geByClass1('ads_edit_geo_box_table_wrap', boxGeoEditor.box);
   boxGeoEditor.table_body = ge('ads_edit_geo_box_table_body', boxGeoEditor.box);
   boxGeoEditor.batch_input = ge('ads_edit_geo_box_batch_input', boxGeoEditor.box);
   boxGeoEditor.batch_lines_counter = ge('ads_edit_geo_box_batch_line_counter', boxGeoEditor.box);
   boxGeoEditor.batch_submit = ge('ads_edit_geo_box_batch_submit', boxGeoEditor.box);
   boxGeoEditor.batch_msg = ge('ads_edit_geo_box_batch_msg', boxGeoEditor.box);
-  boxGeoEditor.radius_selector_tt_container = geByClass1('ads_edit_geo_radius_tt_container', boxGeoEditor.box);
+  boxGeoEditor.radius_selector_tt_container = boxGeoEditor.box;//geByClass1('ads_edit_geo_radius_tt_container', boxGeoEditor.box);
 
   this.initGeoFileUpload(criterionName);
 
@@ -6283,14 +6330,15 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
     if (!lines.length) {
       return;
     }
-    if (lines.length > 100) {
-      showFastBox(getLang('global_error'), getLang('ads_geo_batch_too_many_lines'));
-      return;
-    }
     lockButton(boxGeoEditor.batch_submit);
+    var linesLimit = 100;
 
     var validLines = 0;
+    var linesProcessed = 0;
     for (var i in lines) {
+      if (linesProcessed++ >= linesLimit) {
+        break;
+      }
       var lineInfo = lines[i].split(',');
       if (lineInfo[3] && lineInfo.length > 4) {
         lineInfo[3] = lineInfo.slice(3).join(',');
@@ -6314,10 +6362,25 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
       removeClass(boxGeoEditor.batch_msg, 'ok_msg');
       addClass(boxGeoEditor.batch_msg, 'error');
     }
-    val(boxGeoEditor.batch_msg, langStr(langNumeric(lines.length, cur.lang.ads_geo_batch_message), 'lines', validLines, 'total', lines.length));
+    var addMsg = '';
+    if (linesProcessed >= linesLimit) {
+      addMsg = '<br>' + getLang('ads_geo_batch_too_many_lines');
+    }
+    val(boxGeoEditor.batch_msg, langStr(langNumeric(lines.length, cur.lang.ads_geo_batch_message), 'lines', validLines, 'total', lines.length) + addMsg);
     show(boxGeoEditor.batch_msg);
   }.bind(this));
 
+  addEvent(boxGeoEditor.table_wrap, 'wheel', function (event) {
+    var top = boxGeoEditor.table_wrap.scrollTop  <= 0;
+    var bottom = (boxGeoEditor.table_wrap.scrollTop + boxGeoEditor.table_wrap.offsetHeight) >= boxGeoEditor.table_wrap.scrollHeight;
+
+    if (bottom && event.deltaY > 0) {
+      return cancelEvent(event);
+    }
+    if (top && event.deltaY < 0) {
+      return cancelEvent(event);
+    }
+  });
   addEvent(boxGeoEditor.table_body, 'click', function (event) {
     var parentNode, pointID;
 
@@ -6332,8 +6395,11 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
         return;
       }
       parentNode = gpeByClass('ads_edit_geo_box_table_point_row', event.target);
+      if (!parentNode) {
+        return;
+      }
       pointID = parentNode.getAttribute('data-id');
-      boxGeoEditor.highlightPoint(pointID);
+      boxGeoEditor.focusOnPoint(pointID);
     }
   }.bind(this));
 
@@ -6347,7 +6413,7 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
 
       var newID = boxGeoEditor.setPointRadius(pointID, newRadius);
       boxGeoEditor.updateMap(newID);
-      // boxGeoEditor.options.defaultRadius = newRadius;
+      this.updateGeoEditorDefaultRadius(criterionName, newRadius);
     }
   }.bind(this));
 
@@ -6361,9 +6427,10 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
   });
 
   var tableWrap = domPN(boxGeoEditor.table);
+  geoEditorOptions.defaultRadius = this.criteria[criterionName].geo_editor.options.defaultRadius;
   boxGeoEditor.init(ge('ads_edit_geo_box_map'), geoEditorOptions, {
     onLoaded: function () {
-      boxGeoEditor.setPointsFromString(this.criteria[criterionName].value);
+      boxGeoEditor.setPointsFromArray(this.criteria[criterionName].geo_editor.points.slice(0));
 
       var targetElem = ge(this.options.targetIdPrefix + criterionName + '_geo_box_address', boxGeoEditor.box);
       targetElem.removeAttribute('autocomplete');
@@ -6382,7 +6449,7 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
         big:                        true,
         withIcons:                  false,
         maxItems:                   this.options.uiMaxSelected,
-        width:                      322,
+        width:                      322+130+20,
         height:                     this.options.uiHeight,
         selectedItemsDelimiter:     ';',
 
@@ -6397,17 +6464,22 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
       });
       this.cur.destroy.push(function(){ boxGeoEditor.ui.destroy(); });
 
+      // Radius selector
       targetElem = ge(this.options.targetIdPrefix + criterionName + '_geo_box_radius', boxGeoEditor.box);
-      targetElem.removeAttribute('autocomplete');
-      boxGeoEditor.ui_radius = new Dropdown(targetElem, this.criteria[criterionName].data_radius, {
-        selectedItem: geoEditorOptions.defaultRadius,
-        big:          true,
-        width:        130,
-        onChange:     function(value) {
-          boxGeoEditor.options.defaultRadius = parseInt(value);
-        }.bind(this)
-      });
-      this.cur.destroy.push(function(){ boxGeoEditor.ui_radius.destroy(); });
+      if (0) {
+        targetElem.removeAttribute('autocomplete');
+        boxGeoEditor.ui_radius = new Dropdown(targetElem, this.criteria[criterionName].data_radius, {
+          selectedItem: geoEditorOptions.defaultRadius,
+          big:          true,
+          width:        130,
+          onChange:     function(value) {
+            boxGeoEditor.options.defaultRadius = parseInt(value);
+          }.bind(this)
+        });
+        this.cur.destroy.push(function(){ boxGeoEditor.ui_radius.destroy(); });
+      } else {
+        hide(targetElem);
+      }
 
     }.bind(this),
     onPointAdded: function (point) {
@@ -6419,9 +6491,9 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
       cell.className = 'ads_edit_geo_box_table_point_remove';
       cell.innerHTML = '<div class="ads_edit_geo_box_table_point_remove_button"></div>';
 
-      /*cell = row.insertCell(0);
-       cell.className = 'ads_edit_geo_box_table_point_reach';
-       cell.innerHTML = '&mdash;';*/
+      cell = row.insertCell(0);
+      cell.className = 'ads_edit_geo_box_table_point_reach';
+      cell.innerHTML = (point.audience !== undefined) ? boxGeoEditor.formatPointAudience(point.audience, point.audienceGeoNearOnly) : getProgressHtml();
 
       cell = row.insertCell(0);
       cell.className = 'ads_edit_geo_box_table_point_radius';
@@ -6436,15 +6508,56 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
       row.setAttribute('data-id', point.id);
       row.className = 'ads_edit_geo_box_table_point_row';
 
-      animate(tableWrap, {scrollTop: tableWrap.clientHeight});
-    }.bind(this),
-    onPointUpdated: function (oldPointID, newPointID, newText, newRadius) {
-      var row = ge('ads_edit_geo_box_table_row_' + oldPointID, boxGeoEditor.box);
-      row.setAttribute('id', 'ads_edit_geo_box_table_row_'+newPointID);
-      row.setAttribute('data-id', newPointID);
+      addEvent(row, 'mouseover mouseout', function (event) {
+        if (event.type === 'mouseover') {
+          var rowEl = gpeByClass('ads_edit_geo_box_table_point_row', event.target);
+          var pointID = rowEl.getAttribute('data-id');
+          boxGeoEditor.highlightPoint(pointID, true);
+        }
+        if (event.type === 'mouseout') {
+          var rowEl = gpeByClass('ads_edit_geo_box_table_point_row', event.target);
+          var e = event.toElement || event.relatedTarget;
+          if (e && (e.parentNode == rowEl || e == rowEl)) {
+            return;
+          }
+          var pointID = rowEl.getAttribute('data-id');
+          boxGeoEditor.highlightPoint(pointID, false);
+        }
+      }.bind(this));
 
-      geByClass1('ads_edit_geo_box_table_point_caption', row).innerHTML = newText;
-      geByClass1('ads_edit_geo_place_radius_selector_text', row).innerHTML = this.formatGeoRadius(criterionName, newRadius);
+      setTimeout(function () {
+        animate(tableWrap, {scrollTop: tableWrap.scrollHeight});
+      }, 0);
+
+      this.criteria[criterionName].geo_editor.setPointsFromString(boxGeoEditor.savePointsToString());
+      this.needDataUpdate();
+    }.bind(this),
+    onPointUpdated: function (oldPointID, point, changes) {
+      var row = ge('ads_edit_geo_box_table_row_' + oldPointID, boxGeoEditor.box);
+      if (!row) {
+        return;
+      }
+
+      if (changes.id) {
+        row.setAttribute('id', 'ads_edit_geo_box_table_row_'+point.id);
+        row.setAttribute('data-id', point.id);
+      }
+
+      if (changes.caption) {
+        geByClass1('ads_edit_geo_box_table_point_caption', row).innerHTML = point.caption;
+      }
+      if (changes.radius) {
+        geByClass1('ads_edit_geo_place_radius_selector_text', row).innerHTML = this.formatGeoRadius(criterionName, point.radius);
+      }
+      if (changes.audience) {
+        var audienceLabel;
+        geByClass1('ads_edit_geo_box_table_point_reach', row).innerHTML = (point.audience !== undefined) ? boxGeoEditor.formatPointAudience(point.audience, point.audienceGeoNearOnly) : getProgressHtml();
+      }
+
+      if (changes.coords || changes.radius) {
+        this.criteria[criterionName].geo_editor.setPointsFromString(boxGeoEditor.savePointsToString());
+        this.needDataUpdate();
+      }
     }.bind(this),
     onPointRemoved: function (pointID) {
       re('ads_edit_geo_box_table_row_'+pointID);
@@ -6460,7 +6573,33 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
 
         row.setAttribute('id', 'ads_edit_geo_box_table_row_span');
       }
-    }
+    },
+    onMapBoundsChanged: function (options) {
+      if (!boxGeoEditor.ui) {
+        return;
+      }
+      boxGeoEditor.ui.setURL(this.getUiCriterionData(criterionName, {
+        mapCenter: boxGeoEditor.map.getCenter()
+      }));
+
+      if (options.newZoom != options.oldZoom) {
+        this.updateGeoEditorDefaultRadius(criterionName, undefined, options.newZoom);
+      }
+    }.bind(this),
+    onPointMarkerClicked: function (pointID) {
+      var row = ge('ads_edit_geo_box_table_row_'+pointID);
+      if (!row) {
+        return;
+      }
+      animate(boxGeoEditor.table_wrap, {scrollTop: row.offsetTop - boxGeoEditor.table_wrap.clientHeight/2 + boxGeoEditor.table_header.clientHeight});
+      removeClass(row, 'long_transition');
+      addClass(row, 'highlighted');
+      setTimeout(function () {
+        addClass(row, 'long_transition');
+        removeClass(row, 'highlighted');
+        setTimeout(removeClass.pbind(row, 'long_transition'), 2100);
+      }, 1000);
+    }.bind(this)
   });
 }
 
@@ -6511,17 +6650,18 @@ AdsTargetingEditor.prototype.initGeoEditor = function (criterionName, mapContain
     defaultRadius: this.criteria[criterionName].default_radius,
     expandMapButton: true,
     allowedRadiuses: this.criteria[criterionName].allowed_radiuses,
+    locale: this.criteria[criterionName].lngcode,
 
-    // todo
     defaultMapCenter: {
       lat: this.criteria[criterionName].default_center[0],
       lon: this.criteria[criterionName].default_center[1]
     }
   };
   var boxGeoEditorOptions = {
-    defaultRadius: this.criteria[criterionName].default_radius,
+    defaultRadius: this.criteria[criterionName].default_radius, // this will be overriden later by default radius from geo_editor
     allowedRadiuses: this.criteria[criterionName].allowed_radiuses,
-    // todo
+    locale: this.criteria[criterionName].lngcode,
+
     defaultMapCenter: {
       lat: this.criteria[criterionName].default_center[0],
       lon: this.criteria[criterionName].default_center[1]
@@ -6536,15 +6676,26 @@ AdsTargetingEditor.prototype.initGeoEditor = function (criterionName, mapContain
 
     this.onCriterionUpdate(criterionName, geoEditor.savePointsToString());
     this.restoreMapPosition(criterionName);
-  }.bind(this);
-  geoEditorEvents.onPointUpdated = function (oldPointID, newPointID, newText, newRadius) {
-    var tokenEl = this.criteria[criterionName].ui.replaceTagID(oldPointID, newPointID);
-    this.criteria[criterionName].ui.replaceTagText(newPointID, newText);
 
-    geByClass1('ads_edit_geo_place_radius_selector_text', tokenEl).innerHTML = this.formatGeoRadius(criterionName, newRadius);
+    this.needDataUpdate();
+  }.bind(this);
+  geoEditorEvents.onPointUpdated = function (oldPointID, point, changes) {
+    var tokenEl = this.criteria[criterionName].ui.replaceTagID(oldPointID, point.id);
+
+    if (changes.caption) {
+      this.criteria[criterionName].ui.replaceTagText(point.id, point.caption);
+    }
+
+    if (changes.radius) {
+      geByClass1('ads_edit_geo_place_radius_selector_text', tokenEl).innerHTML = this.formatGeoRadius(criterionName, point.radius);
+    }
 
     this.onCriterionUpdate(criterionName, geoEditor.savePointsToString());
     this.restoreMapPosition(criterionName);
+
+    if (changes.coords || changes.radius) {
+      this.needDataUpdate();
+    }
   }.bind(this);
   geoEditorEvents.onPointRemoved = function (pointID) {
     this.criteria[criterionName].ui.removeTagData(pointID);
@@ -6559,6 +6710,15 @@ AdsTargetingEditor.prototype.initGeoEditor = function (criterionName, mapContain
     addEvent(window, 'scroll', this.saveMapPosition.bind(this, criterionName));
   }.bind(this);
   geoEditorEvents.onExpandClick = this.showGeoBox.bind(this, criterionName, 'single', boxGeoEditorOptions);
+  geoEditorEvents.onMapBoundsChanged = function (options) {
+    this.updateUiCriterionData(criterionName);
+    if (options.newZoom != options.oldZoom) {
+      this.updateGeoEditorDefaultRadius(criterionName, undefined, options.newZoom);
+    }
+  }.bind(this);
+  geoEditorEvents.onPointMarkerClicked = function (pointID) {
+    this.criteria[criterionName].ui.highlightTag(pointID);
+  }.bind(this);
 
   geoEditor.init(mapContainer, geoEditorOptions, geoEditorEvents);
 
@@ -6576,10 +6736,9 @@ AdsTargetingEditor.prototype.initGeoEditor = function (criterionName, mapContain
 
     this.criteria[criterionName].geo_editor.setPointRadius(parentNode.getAttribute('data-id'), newRadius);
     this.criteria[criterionName].geo_editor.updateMap(parentNode.getAttribute('data-id'));
-    // this.criteria[criterionName].geo_editor.options.defaultRadius = newRadius;
+
+    this.updateGeoEditorDefaultRadius(criterionName, newRadius);
   }.bind(this));
-
-
 
   var geoButton = ge(this.options.targetIdPrefix + criterionName + '_button');
   addEvent(geoButton, 'click', this.showGeoBox.bind(this, criterionName, 'batch', boxGeoEditorOptions));
@@ -6591,7 +6750,7 @@ AdsTargetingEditor.prototype.formatGeoRadius = function (criterionName, radius) 
       return row[1];
     }
   }
-  return formatNum(radius) + ' ' + getLang('ads_edit_ad_geo_radius_unit_meters');
+  return radius + ' ' + getLang('ads_edit_ad_geo_radius_unit_meters');
 }
 
 AdsTargetingEditor.prototype.saveMapPosition = function (criterionName) {
@@ -6625,6 +6784,61 @@ AdsTargetingEditor.prototype.restoreMapPosition = function (criterionName) {
 
   var dy = this.criteria[criterionName].map_position_top - mapRect.top;
   scrollToY(scrollGetY() - dy, 0, 0, true);
+}
+
+AdsTargetingEditor.prototype.updateGeoPointsAudience = function (criterionName, audiences, audiencesGeoNearOnly) {
+  var criterion = this.criteria[criterionName];
+  if (!criterion.geo_editor) {
+    return;
+  }
+  audiencesGeoNearOnly = audiencesGeoNearOnly || {};
+
+  for (var pointID in audiences) {
+    criterion.geo_editor.setPointAudience(pointID, audiences[pointID], audiencesGeoNearOnly[pointID]);
+    if (criterion.geo_editor.box_geo_editor && criterion.geo_editor.box_geo_editor.inited) {
+      criterion.geo_editor.box_geo_editor.setPointAudience(pointID, audiences[pointID], audiencesGeoNearOnly[pointID]);
+    }
+  }
+}
+
+AdsTargetingEditor.prototype.updateGeoEditorDefaultRadius = function (criterionName, lastSelectedRadius, lastMapZoom) {
+  if (lastSelectedRadius === undefined && lastMapZoom === undefined) {
+    return;
+  }
+  var geoEditor = this.criteria[criterionName].geo_editor;
+  if (!geoEditor || !geoEditor.inited) {
+    return;
+  }
+
+  if (lastMapZoom !== undefined && !geoEditor.manually_changed_radius) {
+    var maxZoom = -1;
+    for (var zoom in this.criteria[criterionName].zoom_radius_map) {
+      zoom = parseInt(zoom);
+      if (lastMapZoom >= zoom && zoom > maxZoom) {
+        lastSelectedRadius = this.criteria[criterionName].zoom_radius_map[zoom];
+        maxZoom = zoom;
+      }
+    }
+  } else {
+    geoEditor.manually_changed_radius = true;
+  }
+
+  if (!lastSelectedRadius) {
+    return;
+  }
+
+  var boxGeoEditor = geoEditor.box_geo_editor;
+  if (boxGeoEditor && boxGeoEditor.inited) {
+    boxGeoEditor.options.defaultRadius = lastSelectedRadius;
+    if (boxGeoEditor.ui) {
+      boxGeoEditor.ui.setURL(this.getUiCriterionData(criterionName, {
+        mapCenter: boxGeoEditor.map.getCenter()
+      }));
+    }
+  }
+
+  geoEditor.options.defaultRadius = lastSelectedRadius;
+  this.updateUiCriterionData(criterionName);
 }
 
 try{stManager.done('ads_edit.js');}catch(e){}

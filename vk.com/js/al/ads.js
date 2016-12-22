@@ -542,6 +542,7 @@ Ads.createExportSubmitButton = function(elem, bindingId, topUnionId) {
   var valueNames = [
     'group_time',
     'group_ads',
+    'group_ads_promoted',
     'method',
     'stats_type',
     'from_day',
@@ -568,7 +569,7 @@ Ads.createExportSubmitButton = function(elem, bindingId, topUnionId) {
 
   var errorBox;
   var action = function() {
-    var postData = {}, elem, day;
+    var postData = {}, elem, day, val;
     elem = geByClass('grouping_time_' + bindingId)[0];
     if (!elem) return;
     valueContainers.group_time.value = elem.getIndex();
@@ -576,6 +577,10 @@ Ads.createExportSubmitButton = function(elem, bindingId, topUnionId) {
     elem = geByClass('grouping_ads_' + bindingId)[0];
     if (!elem) return;
     valueContainers.group_ads.value = elem.getIndex();
+
+    elem = geByClass('grouping_ads_promoted_' + bindingId)[0];
+    if (!elem) return;
+    valueContainers.group_ads_promoted.value = elem.getIndex();
 
     elem = geByClass('client_choose_' + bindingId);
     if (elem.length > 0) {
@@ -610,9 +615,12 @@ Ads.createExportSubmitButton = function(elem, bindingId, topUnionId) {
       valueContainers.offices_list.value = cur.offices_list ? cur.offices_list.replace(/\t/g, ';') : '';
     }
 
+    var isPromotedPosts = false;
     elem = geByClass('ads_types_' + bindingId)[0];
     if (elem) {
-      valueContainers.ads_types.value = elem.getIndex();
+      val = elem.getIndex();
+      isPromotedPosts = val == 1;
+      valueContainers.ads_types.value = val;
     }
 
     if ((new Date(valueContainers.to_year.value,   valueContainers.to_month.value,   valueContainers.to_day.value)) <
@@ -621,12 +629,30 @@ Ads.createExportSubmitButton = function(elem, bindingId, topUnionId) {
       return;
     }
 
+    var ids;
+    if (isPromotedPosts) {
+      ids = getTableSelectedIds_promoted(parseInt(valueContainers.group_ads_promoted.value), curClientId);
+    } else {
+      ids = getTableSelectedIds(parseInt(valueContainers.group_ads.value), curClientId);
+    }
+
+    if (ids.length === 0) {
+      showFastBox(getLang('ads_error_box_title'), getLang('ads_error_export_stat_no_campaigns_selected'));
+      return;
+    }
+
+    valueContainers.Ids.value = '' + ids.join(',');
+
+    postForm.submit();
+  };
+
+  function getTableSelectedIds(groupAdsMode, curClientId) {
     var ids = [];
 
     elem = ge('paginated_table');
     var pt = elem.tableObj;
     var selection = pt.getSelection(0);
-    switch (parseInt(valueContainers.group_ads.value)) {
+    switch (groupAdsMode) {
       case 0:
         ids.push(elem.topId);
         break;
@@ -639,13 +665,6 @@ Ads.createExportSubmitButton = function(elem, bindingId, topUnionId) {
       case 2:
         if (curClientId == 'aca') {
           ids.push('aca');
-          //for (var p in elem.contentDep) {
-          //  if (!isNaN(Number(p))) {
-          //    for (var i in elem.contentDep[p].extra['union_id']) {
-          //      ids.push(elem.contentDep[p].extra['union_id'][i]);
-          //    }
-          //  }
-          //}
         } else {
           for (var i = 0; i < selection.length; i++) {
             ids.push(pt.content.extra['union_id'][selection[i]]);
@@ -657,20 +676,38 @@ Ads.createExportSubmitButton = function(elem, bindingId, topUnionId) {
           ids.push(pt.content.extra['union_id'][selection[i]]);
         }
         break;
-      default:
-        return;
     }
 
-    if (ids.length == 0) {
-      showFastBox(getLang('ads_error_box_title'), getLang('ads_error_export_stat_no_campaigns_selected'));
-      return;
+    return ids;
+  }
 
+  function getTableSelectedIds_promoted(groupAdsPromotedMode, curClientId) {
+    var ids = [];
+
+    elem = ge('paginated_table');
+    var pt = elem.tableObj;
+    var selection = pt.getSelection(0);
+    switch (groupAdsPromotedMode) {
+      case 2:
+      case 3:
+        if (curClientId == 'aca') {
+          ids.push('aca');
+        } else {
+          for (var i = 0; i < selection.length; i++) {
+            ids.push(pt.content.extra['union_id'][selection[i]]);
+          }
+        }
+        break;
+      case 0:
+      case 1:
+        for (var i = 0; i < selection.length; i++) {
+          ids.push(pt.content.extra['union_id'][selection[i]]);
+        }
+        break;
     }
 
-    valueContainers.Ids.value = '' + ids.join(',');
-
-    postForm.submit();
-  };
+    return ids;
+  }
 
   createButton(elem, action);
 }
@@ -740,6 +777,9 @@ Ads.openInnerTable = function(id, bindingId) {
     case 'cam_pp':
       newOptions = tab.optionsDep['cam_pp'];
       break;
+    case 'cam_pp_rs':
+      newOptions = tab.optionsDep['cam_pp_rs'];
+      break;
     default:
       newOptions = tab.optionsDep['cam'];
       break;
@@ -765,8 +805,20 @@ Ads.openInnerTable = function(id, bindingId) {
     };
     var ads_types_elem = geByClass1('ads_types_' + bindingId);
     var ads_types = ads_types_elem ? ads_types_elem.getIndex() : 0;
+    var dataReq = {client_id: id, ads_types: ads_types};
+
+    var grouping_ads_elem = geByClass('grouping_ads_' + bindingId)[0];
+    if (grouping_ads_elem) {
+      dataReq.group_ads = grouping_ads_elem.getIndex();
+    }
+
+    var grouping_ads_promoted_elem = geByClass('grouping_ads_promoted_' + bindingId)[0];
+    if (grouping_ads_promoted_elem) {
+      dataReq.group_ads_promoted = grouping_ads_promoted_elem.getIndex();
+    }
+
     show('getting_campaigns_upload');
-    ajax.post('/ads?act=a_get_client_children', {client_id: id, ads_types: ads_types}, {onDone: onDone, onFail: onFail});
+    ajax.post('/ads?act=a_get_client_children', dataReq, {onDone: onDone, onFail: onFail});
   }
 }
 
@@ -950,8 +1002,20 @@ Ads.createStaticDropdown = function(elem, bindingId, values, params) {
     });
   }
 
-  params.updateHeader = function(i, t, pp) {
+  function getAdsTypeValue() {
+    var elem = geByClass1('ads_types_' + bindingId);
+    if (elem) {
+      return elem.getIndex();
+    }
+    return -1;
+  }
+
+  params.updateHeader = function(i, t) {
     if (!i) i = 0;
+    var label_el;
+    var chser;
+    var dd;
+    var text;
 
     //
     // offices
@@ -959,6 +1023,7 @@ Ads.createStaticDropdown = function(elem, bindingId, values, params) {
     if (elem.className.substring(0, 'offices'.length) == 'offices') {
       if (i == 1) {
         hide(geByClass1('grouping_ads_row_' + bindingId));
+        hide(geByClass1('grouping_ads_promoted_row_' + bindingId));
 
         var bodyStyle = 'line-height: 160%; padding: 16px 20px;';
         var saveOfficesList = function () {
@@ -974,7 +1039,11 @@ Ads.createStaticDropdown = function(elem, bindingId, values, params) {
           '<div>Вставьте ID кабинетов клиентов, по которым надо получить выгрузку, в следующем формате:<br>[ID кабинета]<span style="color: #888; font-size: 0.8em; margin: 0 2px;">таб</span>[Кампания или "-"]<span style="color: #888; font-size: 0.8em; margin: 0 2px;">таб</span>[Клиент или "-"]<span style="color: #888; font-size: 0.8em; margin: 0 2px;">таб</span>[Агентство или "-"]</div><textarea id="offers_offices_list" style="width: 100%; height: 200px; margin-top: 4px;">' + (cur.offices_list ? cur.offices_list : '') + '</textarea>',
           'Сохранить', saveOfficesList);
       } else {
-        show(geByClass1('grouping_ads_row_' + bindingId));
+        if (getAdsTypeValue() == 1) {
+          show(geByClass1('grouping_ads_promoted_row_' + bindingId));
+        } else {
+          show(geByClass1('grouping_ads_row_' + bindingId));
+        }
       }
     } else
     //
@@ -985,13 +1054,19 @@ Ads.createStaticDropdown = function(elem, bindingId, values, params) {
 
       toggle(geByClass1('grouping_time_row_' + bindingId), !promoted_posts_mode);
       toggle(geByClass1('grouping_ads_row_' + bindingId), !promoted_posts_mode);
+      toggle(geByClass1('grouping_ads_promoted_row_' + bindingId), promoted_posts_mode);
       toggle(geByClass1('stats_type_row_' + bindingId), !promoted_posts_mode);
       toggle(geByClass1('client_choose_row_' + bindingId), promoted_posts_mode || (geByClass1('grouping_ads_' + bindingId).uiDropdown.value == 2));
       toggle(geByClass1('start_time_row_' + bindingId), !promoted_posts_mode);
       toggle(geByClass1('stop_time_row_' + bindingId), !promoted_posts_mode);
 
-      var grouping_ads_el = geByClass1('grouping_ads_' + bindingId);
-      grouping_ads_el.uiDropdown.options.updateHeader(promoted_posts_mode ? (grouping_ads_el.uiDropdown.items[3] ? 3 : 2) : grouping_ads_el.uiDropdown.value, undefined, promoted_posts_mode);
+      if (promoted_posts_mode) {
+        var grouping_ads_promoted_el = geByClass1('grouping_ads_promoted_' + bindingId);
+        grouping_ads_promoted_el.uiDropdown.options.updateHeader(grouping_ads_promoted_el.uiDropdown.items[3] ? 3 : 1, undefined);
+      } else {
+        var grouping_ads_el = geByClass1('grouping_ads_' + bindingId);
+        grouping_ads_el.uiDropdown.options.updateHeader(grouping_ads_el.uiDropdown.value, undefined);
+      }
     } else
     //
     // grouping_time
@@ -1009,9 +1084,39 @@ Ads.createStaticDropdown = function(elem, bindingId, values, params) {
       Ads.openInnerTable(i, bindingId);
     } else
     //
+    // grouping_ads_promoted
+    //
+    if (elem.className.substring(0, 'grouping_ads_promoted'.length) == 'grouping_ads_promoted') {
+      switch (i) {
+        case 2:
+        case 3:
+          chser = geByClass('client_choose_' + bindingId)[0];
+          dd = chser.uiDropdown;
+
+          text = dd.options.updateHeader(0, chser.valueList[0][1]);
+          dd.header.innerHTML = '<div>' + text + '</div>';
+          if (dd.options.target) dd.options.target.innerHTML = text;
+
+          show(geByClass('client_choose_row_' + bindingId)[0]);
+          Ads.openInnerTable('aca', bindingId);
+
+          label_el = ge('unions_table_label_' + bindingId);
+          label_el.innerHTML = getLang('ads_export_stat_data_title_campaigns');
+          break;
+        case 0:
+          Ads.openInnerTable('cam_pp_rs', bindingId);
+          break;
+        case 1:
+          Ads.openInnerTable('cam_pp', bindingId);
+          break;
+        default:
+          break;
+      }
+    }
+    //
     // grouping_ads
     //
-    if (elem.className.substring(0, 'grouping_ads'.length) == 'grouping_ads') {
+    else if (elem.className.substring(0, 'grouping_ads'.length) == 'grouping_ads') {
       switch (i) {
         case 0:
           hide(geByClass('client_choose_row_' + bindingId)[0]);
@@ -1028,10 +1133,10 @@ Ads.createStaticDropdown = function(elem, bindingId, values, params) {
           label_el.innerHTML = getLang('ads_export_stat_data_title_clients');
           break;
         case 2:
-          var chser = geByClass('client_choose_' + bindingId)[0];
-          var dd = chser.uiDropdown;
+          chser = geByClass('client_choose_' + bindingId)[0];
+          dd = chser.uiDropdown;
 
-          var text = dd.options.updateHeader(0, chser.valueList[0][1]);
+          text = dd.options.updateHeader(0, chser.valueList[0][1]);
           dd.header.innerHTML = '<div>' + text + '</div>';
           if (dd.options.target) dd.options.target.innerHTML = text;
 
@@ -1042,15 +1147,11 @@ Ads.createStaticDropdown = function(elem, bindingId, values, params) {
           label_el.innerHTML = getLang('ads_export_stat_data_title_campaigns');
           break;
         case 3:
-          if (pp) {
-            Ads.openInnerTable('cam_pp', bindingId);
-          } else {
-            Ads.openInnerTable('cam', bindingId);
-          }
+          Ads.openInnerTable('cam', bindingId);
+          break;
         default:
           break;
       }
-      var label_el;
     }
 
     elem.index = i;
@@ -2847,7 +2948,7 @@ Ads.showEditAdminBox = function(event, unionId, userId, userEmail, isRemove) {
   return false;
 }
 
-Ads.showRetargetingGroupActions = function(el, groupId, hasAttachedPixel) {
+Ads.showRetargetingGroupActions = function(el, groupId, hasAttachedPixel, canRequestLookalike) {
   cur.options.groupId = groupId;
   cur.uiRetargetingActions.setOptions({target: el});
   var editRuleEl = geByClass1('ads_retargeting_menu_edit_rule', cur.uiRetargetingActions.rows);
@@ -2862,6 +2963,14 @@ Ads.showRetargetingGroupActions = function(el, groupId, hasAttachedPixel) {
     hide(addAudienceEl);
     show(editAudienceEl);
   }
+
+  var requestLookalikeEl = geByClass1('ads_retargeting_menu_request_lookalike', cur.uiRetargetingActions.rows);
+  if (canRequestLookalike) {
+    show(requestLookalikeEl);
+  } else {
+    hide(requestLookalikeEl);
+  }
+
   geByClass1('ads_retargeting_menu_header', cur.uiRetargetingActions.rows).innerHTML = el.innerHTML;
   cur.uiRetargetingActions.show();
 }
@@ -2892,6 +3001,32 @@ Ads.showRetargetingGroupBox = function(act, addParams) {
 
   return true;
 }
+
+Ads.showLookalikeExportBox = function(lookalikeRequestId) {
+  if (!lookalikeRequestId || !cur.options.unionId) {
+    return false;
+  }
+
+  var ajaxParams = {
+    union_id: cur.options.unionId,
+    lookalike_request_id: lookalikeRequestId
+  };
+
+  var showOptions = {
+    onFail: Ads.onBoxFail,
+    params: {
+      width: 480,
+      dark: true,
+      bodyStyle: 'padding: 20px;'
+    }
+  };
+
+  showBox('/ads?act=a_lookalike_export_audience_box', ajaxParams, showOptions);
+
+  return true;
+}
+
+
 
 Ads.retargetingCreateRuleArgumentInput = function (id, type, rule) {
   var ruleIndex = false;
@@ -3161,6 +3296,86 @@ Ads.deleteRetargetingGroup = function() {
 
   return false;
 }
+
+Ads.retargetingGroupRequestLookalike = function () {
+  if (!cur.options.unionId || !cur.options.groupId || !cur.options.requestLookalikeHash) {
+    return false;
+  }
+  ajax_params = {
+    union_id: cur.options.unionId,
+    group_id: cur.options.groupId,
+    hash: cur.options.requestLookalikeHash
+  }
+
+  ajax.post('/ads?act=a_lookalike_request', ajax_params, {
+    onDone: function(html) {
+      ge('ads_retargeting_request_lookalike_notice').innerHTML = html
+      hide('ads_retargeting_box_request_lookalike_button')
+      show('ads_retargeting_box_request_lookalike_close_button')
+      return true;
+    },
+    onFail: function(err) {
+      ge('ads_lookalike_box_error').innerHTML = err;
+      show('ads_lookalike_box_error');
+      return true;
+    },
+    showProgress: lockButton.pbind('ads_retargeting_box_request_lookalike_button'),
+    hideProgress: unlockButton.pbind('ads_retargeting_box_request_lookalike_button')
+  })
+
+}
+
+Ads.lookalikeExportAudience = function(lookalikeRequestId, exportAudienceHash) {
+  if (!cur.options.unionId || !lookalikeRequestId || !exportAudienceHash ) {
+    return false;
+  }
+  segment = ge('ads_lookalike_slider_export_audience').value
+  // segment = ge('ads_lookalike_export_segment_selector').querySelector('input[name=lookalikeSegment]:checked').value
+
+  var ajaxParams = {
+    union_id: cur.options.unionId,
+    lookalike_request_id: lookalikeRequestId,
+    segment: segment,
+    hash: exportAudienceHash
+  };
+
+  ajax.post('/ads?act=a_lookalike_export_audience', ajaxParams, {
+    onDone: function(html) {
+      ge('ads_retargeting_groups_table').innerHTML = html;
+      curBox().hide();
+    },
+    onFail: function(err) {
+      ge('ads_lookalike_box_error').innerHTML = err;
+      show('ads_lookalike_box_error');
+      return true;
+    },
+    showProgress: curBox().showProgress,
+    hideProgress: curBox().hideProgress
+  });
+
+  return false;
+}
+
+Ads.lookalikeExportAudienceInitSlider = function () {
+  segmentMin = Math.min.apply(null, Object.keys(cur.lookalikeSegments));
+  segmentMax = Math.max.apply(null, Object.keys(cur.lookalikeSegments));
+
+  slider = ge('ads_lookalike_slider_export_audience');
+  slider.min = segmentMin;
+  slider.max = segmentMax;
+  Ads.lookalikeExportAudienceMoveSlider(slider.min);
+}
+
+Ads.lookalikeExportAudienceMoveSlider = function (segment_number) {
+  segment = cur.lookalikeSegments[segment_number]
+  ge('ads_lookalike_audience_size').innerHTML = segment.audienceCount;
+  var hint = ge('ads_lookalike_audience_hint');
+  if (hint) {
+    hint.setAttribute('data-title', 'Точность: ' + segment.precision +  '%<br> Полнота: ' + segment.recall + "%");
+  }
+}
+
+
 
 Ads.retargetingCheckLink = function () {
   hide('ads_retargeting_box_error');

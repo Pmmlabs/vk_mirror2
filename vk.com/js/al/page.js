@@ -2106,7 +2106,12 @@ var Wall = {
   checkTextLen: function(inp, warn, force) {
     var val =  trim(Emoji.editableVal(inp).replace(/\n\n\n+/g, '\n\n'));
     //var val = trim(inp.value).replace(/\n\n\n+/g, '\n\n');
-    if (inp.lastLen === val.length && !force) return;
+    if (inp.lastLen === val.length && !force) {
+      if (window.FullWall && cur.onepost) {
+        FullWall.onePostOnScroll();
+      }
+      return;
+    }
 
     var realLen = inp.lastLen = val.length,
         maxLen = (cur.options || {}).max_post_len || (window.mvcur || {}).maxReplyLength,
@@ -2124,6 +2129,10 @@ var Wall = {
       }
     } else {
       hide(warn);
+    }
+
+    if (window.FullWall && cur.onepost) {
+      FullWall.onePostOnScroll();
     }
   },
   checkPostLen: function(field, warn, val, force) {

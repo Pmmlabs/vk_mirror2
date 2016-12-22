@@ -223,7 +223,7 @@ var VKMap = vkMaps.VKMap = function(element, opts, debug) {
     return this.api;
   });
   if (element) {
-    vkMaps.addEvents(this, ['load', 'click', 'endPan', 'changeZoom', 'markerAdded', 'markerRemoved']);
+    vkMaps.addEvents(this, ['load', 'click', 'endPan', 'boundschange', 'changeZoom', 'markerAdded', 'markerRemoved']);
   } else {
     vkMaps.addEvents(this, ['load']);
   }
@@ -510,10 +510,10 @@ var Marker = vkMaps.Marker = function(point) {
   this.invoker = new vkMaps.Invoker(this, 'Marker', function(){
     return this.api;
   });
-  vkMaps.addEvents(this, ['openInfoBubble', 'closeInfoBubble', 'clickInfoBubble', 'click', 'mousedown', 'dragend']);
+  vkMaps.addEvents(this, ['openInfoBubble', 'closeInfoBubble', 'clickInfoBubble', 'clickCircle', 'click', 'mousedown', 'mouseenter', 'mouseleave', 'dragend']);
 };
 
-vkMaps.addProxyMethods(Marker, ['fromProprietary', 'hide', 'openBubble', 'closeBubble', 'show', 'toProprietary', 'update']);
+vkMaps.addProxyMethods(Marker, ['fromProprietary', 'hide', 'openBubble', 'closeBubble', 'setInfoBubbleContent', 'setCoordinates', 'show', 'toProprietary', 'update']);
 
 Marker.prototype.setChild = function(some_proprietary_marker) {
   this.proprietary_marker = some_proprietary_marker;
@@ -1114,12 +1114,18 @@ VKMap: {
         var coords = ev.get('coords');
         this.click.fire({'location': new vkMaps.LatLonPoint(coords[0], coords[1])});
       }).bind(this));
+      yandexMap.events.add('boundschange', (function(ev) {
+        var eventOptions = {
+          newCenter: new vkMaps.LatLonPoint(ev.get('newCenter')[0], ev.get('newCenter')[1]),
+          oldZoom: ev.get('oldZoom'),
+          newZoom: ev.get('newZoom')
+        };
+        this.boundschange.fire(eventOptions);
+      }).bind(this));
       yandexMap.events.add('actionend', (function(ev) {
         var act = ev.get('action');
         if (act == 'zoom') {
           this.changeZoom.fire();
-        } else {
-         debugLog('action event end ', act);
         }
       }).bind(this));
 
@@ -1174,11 +1180,11 @@ VKMap: {
     }
     if (args.buttons) {
       each(args.buttons, function (_, button) {
-        console.log(map);
         var btn = new ymaps.control.Button({
           data: {
             content: button.content,
-            image: button.image
+            image: button.image,
+            title: button.title
           },
           options: {
             selectOnClick: !!button.selectOnClick,
@@ -1294,7 +1300,12 @@ VKMap: {
       ], {}, {
         fillColor: marker.circle.fillColor,
         strokeColor: marker.circle.strokeColor,
-        strokeWidth: marker.circle.strokeWidth
+        strokeWidth: marker.circle.strokeWidth,
+        cursor: marker.circle.cursor || 'pointer'
+      });
+      circle.events.add('click', function (e) {
+        var coords = e.get('coords');
+        marker.clickCircle.fire({'location': new vkMaps.LatLonPoint(coords[0], coords[1])});
       });
       map.geoObjects.add(circle);
       marker.proprietary_circle = circle;
@@ -1472,6 +1483,12 @@ Marker: {
     ymarker.events.add('click', function(e) {
       ymarker.VKMap_marker.click.fire(e);
     });
+    ymarker.events.add('mouseenter', function(e) {
+      ymarker.VKMap_marker.mouseenter.fire(e);
+    });
+    ymarker.events.add('mouseleave', function(e) {
+      ymarker.VKMap_marker.mouseleave.fire(e);
+    });
     if (this.infoBubble) {
       ymarker.events.add('balloonopen', function(e) {
         ymarker.VKMap_marker.openInfoBubble.fire(e);
@@ -1490,6 +1507,13 @@ Marker: {
   },
   closeBubble: function() {
     this.proprietary_marker.balloon.close();
+  },
+  setInfoBubbleContent: function (content) {
+    this.setInfoBubble(content);
+    this.proprietary_marker.properties.set('balloonContent', this.infoBubble);
+  },
+  setCoordinates: function (latLon) {
+    this.proprietary_marker.geometry.setCoordinates([latLon.lat, latLon.lon]);
   },
   hide: function() {
     this.proprietary_marker.options.set('visible', false);
