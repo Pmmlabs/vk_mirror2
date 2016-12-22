@@ -3363,6 +3363,11 @@ Ads.lookalikeExportAudienceInitSlider = function () {
   slider = ge('ads_lookalike_slider_export_audience');
   slider.min = segmentMin;
   slider.max = segmentMax;
+  if (slider.max == slider.min) {
+    hide('ads_lookalike_slider_export_audience_block');
+    show(geByClass1('ads_lookalike_no_slider'));
+  }
+
   Ads.lookalikeExportAudienceMoveSlider(slider.min);
 }
 
