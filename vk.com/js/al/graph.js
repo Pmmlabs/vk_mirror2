@@ -1143,7 +1143,7 @@ Graph.prototype = {
   },
   hideLabel: function(ev) {
     var g = ev.currentTarget.graph, line = ev.currentTarget.line, dot = line.dotLabel.dot, pos = line.dotLabel.pos;
-    line.dotLabel.innerHTML = dot.l ? dot.l : formatValue(dot.y);
+    line.dotLabel.innerHTML = dot.l ? dot.l : formatValue(dot.y) + g.params.yunits;
     line.dotLabel.style.left = pos + "px";
   },
   selectLine: function(ev) {
@@ -1172,7 +1172,7 @@ Graph.prototype = {
     if (line.l) {
       text += langNumeric(dot.y, line.l, true);
     } else {
-      text += (dot.l ? dot.l : formatValue(dot.y)) + ' &ndash; ' + line.name;
+      text += (dot.l ? dot.l : formatValue(dot.y)) + this.params.yunits + ' &ndash; ' + line.name;
     }
     text += '<br/><span style="font-weight: normal; font-size: 0.9em;">' + fullDate(dot.x, this.params) + '</span>';
 
@@ -1257,9 +1257,6 @@ Graph.prototype = {
       drawLines(ctx, 0, 4, this.viewWidth, 36, this.lines, this.minTime, this.maxTime, this.xfactorOut, this.yfactorOut, 0, true, null, false);
   },
 
-  // used to fix font rendering over transparent background
-  redrawVScaleViewScale: window.browser && window.browser.mozilla ? 1 : 2,
-
   // window borders were moved
   redrawWindow: function() {
     // move window
@@ -1339,12 +1336,12 @@ Graph.prototype = {
     clearRect(ctx, 0, 0, this.viewWidth, this.viewHeight);
     ctx.fillStyle = '#fafafa';
     fillRect(ctx, 0, 9, this.viewWidth, this.viewHeight - 9);
-    clearRect(ctxS, 0, 0, this.scaleWidth * this.redrawVScaleViewScale, this.viewHeight * this.redrawVScaleViewScale);
+    clearRect(ctxS, 0, 0, this.scaleWidth, this.viewHeight);
 
     // y scale
     lineWidth(ctx, 1);
     ctx.strokeStyle = '#e6eaf0';
-    ctxS.font = getFont(11 * this.redrawVScaleViewScale);
+    ctxS.font = getFont(11);
     ctxS.fillStyle = '#36638e';
     ctxS.textAlign = 'right';
     ctxS.textBaseline = 'middle';
@@ -1357,7 +1354,7 @@ Graph.prototype = {
         lineTo(ctx, this.viewWidth, cy);
         ctx.stroke();
       }
-      fillText(ctxS, formatValue(gridY), (this.scaleWidth - 6) * this.redrawVScaleViewScale, cy * this.redrawVScaleViewScale);
+      fillText(ctxS, formatValue(gridY) + this.params.yunits, (this.scaleWidth - 6), cy);
     }
 
     // x scale
@@ -1723,6 +1720,7 @@ Graph.prototype = {
 
     var ctx = getContext(this.vScaleView);
     ctx.font = getFont(11, true);
+
     var maxWidth = Math.max(
       ctx.measureText(formatValue(this.maxValue + getYStep(this.maxValue, this.params.int_scale))).width,
       Math.max(  ctx.measureText(formatValue(getYStep(this.minAbsValue, this.params.int_scale))).width,
@@ -1731,8 +1729,8 @@ Graph.prototype = {
     this.scaleWidth = Math.floor(this.scaleWidth);
     this.vScale.style.width = this.scaleWidth + "px";
     this.vScale.style.height = this.height + "px";
-    cWidth(this.vScaleView, this.scaleWidth * this.redrawVScaleViewScale);
-    cHeight(this.vScaleView, this.height * this.redrawVScaleViewScale);
+    cWidth(this.vScaleView, this.scaleWidth);
+    cHeight(this.vScaleView, this.height);
     this.vScaleView.style.width = this.scaleWidth + "px";
     this.vScaleView.style.height = this.height + "px";
     this.viewWidth = (this.width - this.scaleWidth);
@@ -1746,7 +1744,8 @@ Graph.prototype = {
 
     this.activeLine = null;
 
-    this.updateLines();
+    clearRect(ctx, 0, 0, 1, 1); // fix for  weird chrome font rendering bug
+    setTimeout(this.updateLines.bind(this), 0);
   },
   setBarChartData: function(data, adjust) {
     // remove old lines
@@ -1880,8 +1879,8 @@ Graph.prototype = {
     this.scaleWidth = Math.floor(this.scaleWidth);
     this.vScale.style.width = this.scaleWidth + "px";
     this.vScale.style.height = this.height + "px";
-    cWidth(this.vScaleView, this.scaleWidth * this.redrawVScaleViewScale);
-    cHeight(this.vScaleView, this.height * this.redrawVScaleViewScale);
+    cWidth(this.vScaleView, this.scaleWidth);
+    cHeight(this.vScaleView, this.height);
     this.vScaleView.style.width = this.scaleWidth + "px";
     this.vScaleView.style.height = this.height + "px";
     this.viewWidth = (this.width - this.scaleWidth);
@@ -1917,12 +1916,12 @@ Graph.prototype = {
     clearRect(ctx, 0, 0, this.viewWidth, this.viewHeight);
     ctx.fillStyle = '#fafafa';
     fillRect(ctx, 0, 9, this.viewWidth, this.viewHeight - 9);
-    clearRect(ctxS, 0, 0, this.scaleWidth * this.redrawVScaleViewScale, this.viewHeight * this.redrawVScaleViewScale);
+    clearRect(ctxS, 0, 0, this.scaleWidth, this.viewHeight);
 
     // y scale
     lineWidth(ctx, 1);
     ctx.strokeStyle = '#e6eaf0';
-    ctxS.font = getFont(11 * this.redrawVScaleViewScale);
+    ctxS.font = getFont(11);
     ctxS.fillStyle = '#36638e';
     ctxS.textAlign = 'right';
     ctxS.textBaseline = 'middle';
@@ -1935,8 +1934,13 @@ Graph.prototype = {
         lineTo(ctx, this.viewWidth, cy);
         ctx.stroke();
       }
-      fillText(ctxS, formatValue(gridY) + yUnits, (this.scaleWidth - 6) * this.redrawVScaleViewScale, cy * this.redrawVScaleViewScale);
     }
+    setTimeout(function() { // fix for  weird chrome font rendering bug
+      for (var gridY = this.localBottom; gridY < this.localTop + this.ystep; gridY += this.ystep) {
+        var cy = this.viewHeight - 24.5 - Math.round((gridY - this.localBottom) * this.yfactorIn) - (this.isNegative ? 9 : 0);
+        fillText(ctxS, formatValue(gridY) + yUnits, (this.scaleWidth - 6), cy);
+      }
+    }.bind(this), 0);
 
     // x scale
     ctx.fillStyle = '#e9ecf0';

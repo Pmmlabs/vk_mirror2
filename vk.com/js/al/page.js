@@ -4679,6 +4679,10 @@ var Wall = {
       acts.push(cur.wallTpl.edit);
     }
 
+    if ((oid == vk.id || ev[9] == vk.id) && ev[6]) {
+      ev[6] = ev[6].replace('vk2017_snippet_show_layer_button', 'vk2017_snippet_show_layer_button_hidden');
+    }
+
     repls = {
       oid: oid,
       name: nameStr,

@@ -1989,6 +1989,131 @@ Ads.createInlineDropdownMenu = function(menuElem, boxElem, progressElem, unionId
   self = new DropdownMenu(items, options);
 }
 
+Ads.createInlineDropdownSelectorMenu = function(menuElem, inputElem, boxElem, progressElem, unionId, valueType, items, initValue, hash, zeroPlaceholder, additionalParams) {
+  menuElem     = ge(menuElem);
+  inputElem    = ge(inputElem);
+  boxElem      = ge(boxElem);
+  progressElem = ge(progressElem);
+  var inputParentElem = inputElem.parentNode;
+  var defaultValue = initValue;
+
+  var self;
+
+  function saveValue(newValue) {
+    if (newValue == defaultValue) {
+      return;
+    }
+
+    var unknownError = getLang('ads_error_unexpected_error_try_later');
+
+    var params = {};
+    params.union_id = unionId;
+    params.hash = hash;
+    extend(params, additionalParams);
+    params[valueType] = newValue;
+
+    function onAjaxComplete(response) {
+      if (isObject(response)) {
+        if (response.error) {
+          showLongError.call(self, response.error);
+        } else if (!response.not_changed) {
+          if (response[valueType + '_value'] !== undefined) {
+            applyNewValue(response[valueType + '_value'], response[valueType + '_text']);
+            if (additionalParams.reload) {
+              nav.reload();
+            }
+          } else {
+            showLongError.call(self, unknownError);
+          }
+        }
+      } else {
+        showLongError.call(self, unknownError);
+      }
+
+      hide(progressElem);
+      show(boxElem);
+
+      return true;
+    }
+    ajax.post('/ads?act=a_unions_general_info_save', params, {onDone: onAjaxComplete, onFail: onAjaxComplete});
+
+    hide(boxElem);
+    show(progressElem);
+  }
+
+  function applyNewValue(newValue, newText) {
+    defaultValue = newValue;
+    self.selectItem(newValue);
+    menuElem.innerHTML = newText;
+  }
+  function showLongError(error) {
+    showFastBox(getLang('ads_error_box_title'), error);
+  }
+
+  function toggleInputVisibility(showInput) {
+    if (showInput) {
+      if (self) {
+        self.selectItem(defaultValue);
+      }
+      addClass(menuElem, 'unshown');
+      removeClass(inputParentElem, 'unshown');
+      addEvent(window, 'click', onOuterClick);
+      self.showDefaultList();
+    } else {
+      addClass(inputParentElem, 'unshown');
+      removeClass(menuElem, 'unshown');
+      removeEvent(window, 'click', onOuterClick);
+    }
+  }
+
+  function onSelect(id, name) {
+    saveValue(id);
+    toggleInputVisibility(false);
+  }
+
+  if (cur.destroy) {
+    cur.destroy.push(function() {
+      removeEvent(window, 'click', onOuterClick);
+      if (self) {
+        self.destroy();
+      }
+    });
+  }
+
+  addEvent(menuElem, 'click', function(e) {
+    toggleInputVisibility(true);
+    return cancelEvent(e);
+  });
+
+  var onOuterClick = function(e) {
+    var node = e.target, needHide = true;
+    while(node && node != document) {
+      if (hasClass(node, 'idd_menu_wrap')) {
+        needHide = false;
+        break;
+      }
+      node = node.parentNode;
+    }
+
+    if (needHide) {
+      toggleInputVisibility(false);
+    }
+  };
+
+  var options = {
+    multiselect:      false,
+    selectedItems:    initValue,
+    defaultItems:     items,
+    zeroPlaceholder:  !!zeroPlaceholder,
+    onChange:         onSelect,
+
+    introText:    '',
+    width:        320 + 8,
+    autocomplete: true
+  };
+  self = new Selector(inputElem, items, options);
+};
+
 Ads.MultiDropdownMenu = function(items, options) {
   var dropdownMenu;
   var selectedItems = {};

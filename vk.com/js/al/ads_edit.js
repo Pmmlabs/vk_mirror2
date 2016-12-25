@@ -1516,38 +1516,39 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
   this.options = extend({}, this.options, options);
 
   this.params = {
-    ad_id:                  {value: 0},
-    format_type:            {value: 0, unreachable: false},
-    cost_type:              {value: AdsEdit.ADS_AD_COST_TYPE_CLICK, cpm_only: false},
-    link_type:              {value: 0, complete: false, allow_edit_all: false, allow_edit_link: false, editing: false, cancelling: false},
-    link_id:                {value: '', data: [], video_value: '', promoted_post_text: '', app_game_links_ids: {}, app_admin_links_ids: {}, app_in_news_links_ids: {}, app_trusted_links_ids: {}},
-    link_owner_id:          {value: '',           video_value: ''},
-    link_url:               {value: '', video_value: '', video_preview_hash: '', is_ok: false, event_final_time: 1},
-    link_url_vk:            {value: 0,  link_type_value: 0, link_id_value: 0},
-    link_domain:            {value: '', value_escaped: '', link_url: '', delayed_error: '', needed: false, is_ok: false},
-    link_domain_confirm:    {value: 0},
-    title:                  {value: '', value_escaped: '', value_default: '', max_length: 0, max_new_lines: 0, value_max: '', update_value_max: true},
-    description:            {value: '', value_escaped: '', value_default: '', max_length: 0, max_new_lines: 0, max_length_normal: 0, max_length_mobile: 0},
-    category1_id:           {value: 0, data: []},
-    subcategory1_id:        {value: 0, data: []},
-    category2_id:           {value: 0, data: []},
-    subcategory2_id:        {value: 0, data: []},
-    stats_url:              {value: ''},
-    disclaimer_medical:     {value: 0, may_be_any: false},
-    disclaimer_specialist:  {value: 0},
-    disclaimer_supplements: {value: 0},
-    age_restriction:        {value: 0, data: []},
-    photo:                  {value: '', box_classes: ''},
-    photo_link:             {value: ''},
-    video_hash:             {value: '', value_old: ''},
-    cost_per_click:         {value: '', edited: false, last_value: ''},
-    platform:               {value: 0, data: [], data_all: [], values_normal: 0, values_disabled: 0},
-    views_limit_flag:       {value: 0},
-    views_limit_exact:      {value: 0, data: [], default_values: [], data_ranges: []},
-    client_id:              {value: 0},
-    campaign_type:          {value: AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_OLD, allow_special_app: false},
-    campaign_id:            {value: 0, data: [], value_normal: 0, value_app: 0},
-    campaign_name:          {value: '',          value_normal: ''},
+    ad_id:                      {value: 0},
+    format_type:                {value: 0, unreachable: false},
+    cost_type:                  {value: AdsEdit.ADS_AD_COST_TYPE_CLICK, cpm_only: false},
+    link_type:                  {value: 0, complete: false, allow_edit_all: false, allow_edit_link: false, editing: false, cancelling: false},
+    link_id:                    {value: '', data: [], video_value: '', promoted_post_text: '', app_game_links_ids: {}, app_admin_links_ids: {}, app_in_news_links_ids: {}, app_trusted_links_ids: {}},
+    link_owner_id:              {value: '',           video_value: ''},
+    link_url:                   {value: '', video_value: '', video_preview_hash: '', is_ok: false, event_final_time: 1},
+    link_url_vk:                {value: 0,  link_type_value: 0, link_id_value: 0},
+    link_domain:                {value: '', value_escaped: '', link_url: '', delayed_error: '', needed: false, is_ok: false},
+    link_domain_confirm:        {value: 0},
+    title:                      {value: '', value_escaped: '', value_default: '', max_length: 0, max_new_lines: 0, value_max: '', update_value_max: true},
+    description:                {value: '', value_escaped: '', value_default: '', max_length: 0, max_new_lines: 0, max_length_normal: 0, max_length_mobile: 0},
+    category1_id:               {value: 0, data: []},
+    subcategory1_id:            {value: 0, data: []},
+    category2_id:               {value: 0, data: []},
+    subcategory2_id:            {value: 0, data: []},
+    stats_url:                  {value: ''},
+    disclaimer_medical:         {value: 0, may_be_any: false},
+    disclaimer_specialist:      {value: 0},
+    disclaimer_supplements:     {value: 0},
+    age_restriction:            {value: 0, data: []},
+    photo:                      {value: '', box_classes: ''},
+    photo_link:                 {value: ''},
+    video_hash:                 {value: '', value_old: ''},
+    cost_per_click:             {value: '', edited: false, last_value: ''},
+    platform:                   {value: 0, data: [], data_all: [], values_normal: 0, values_disabled: 0},
+    view_retargeting_group_id:  {value: 0, data: []},
+    views_limit_flag:           {value: 0},
+    views_limit_exact:          {value: 0, data: [], default_values: [], data_ranges: []},
+    client_id:                  {value: 0},
+    campaign_type:              {value: AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_OLD, allow_special_app: false},
+    campaign_id:                {value: 0, data: [], value_normal: 0, value_app: 0},
+    campaign_name:              {value: '',          value_normal: ''},
     promoted_post_need_confirmation:  {value: 0}
   }
 
@@ -1757,6 +1758,14 @@ AdsViewEditor.prototype.initHelpParam = function(paramNameHelp) {
     case 'platform':
       targetElem = ge(this.options.targetIdPrefix + paramNameHelp).parentNode;
       helpText = function() { return inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) ? cur.adParamsHelp['platform_post'] : cur.adParamsHelp['platform']; }.bind(this);
+      var showTooltip = function() { AdsEdit.showHelpCriterionTooltip(paramNameHelp, targetElem, handler, this.help[paramNameHelp], helpText, shiftLeft, shiftTop, this.cur); }.bind(this);
+      var hideTooltip = function() { AdsEdit.hideHelpTooltip(this.help[paramNameHelp].tt); }.bind(this);
+      handler = function(event){ AdsEdit.onHelpTooltipEvent(event, paramNameHelp, context, showTooltip, hideTooltip); }.bind(this);
+      AdsEdit.initHelpTooltipTarget(targetElem, handler, this.cur);
+      break;
+    case 'view_retargeting_group_id':
+      targetElem = ge(this.options.targetIdPrefix + paramNameHelp).parentNode;
+      helpText = function() { return cur.adParamsHelp['view_retargeting_group_id']; };
       var showTooltip = function() { AdsEdit.showHelpCriterionTooltip(paramNameHelp, targetElem, handler, this.help[paramNameHelp], helpText, shiftLeft, shiftTop, this.cur); }.bind(this);
       var hideTooltip = function() { AdsEdit.hideHelpTooltip(this.help[paramNameHelp].tt); }.bind(this);
       handler = function(event){ AdsEdit.onHelpTooltipEvent(event, paramNameHelp, context, showTooltip, hideTooltip); }.bind(this);
@@ -2046,6 +2055,17 @@ AdsViewEditor.prototype.initUiParam = function(paramName) {
         onChange:     function(value) { this.onUiChange(paramName, value); }.bind(this)
       });
       this.params[paramName].ui.disable(this.params[paramName].disabled);
+      this.cur.destroy.push(function(){ this.params[paramName].ui.destroy(); }.bind(this));
+      break;
+    case 'view_retargeting_group_id':
+      targetElem = ge(this.options.targetIdPrefix + paramName);
+      targetElem.removeAttribute('autocomplete');
+      this.params[paramName].ui = new Dropdown(targetElem, this.getUiParamData(paramName), {
+        selectedItem: this.params[paramName].value,
+        big:          true,
+        width:        this.options.uiWidth,
+        onChange:     function(value) { this.onUiChange(paramName, value); }.bind(this)
+      });
       this.cur.destroy.push(function(){ this.params[paramName].ui.destroy(); }.bind(this));
       break;
     case 'views_limit_flag':
@@ -2674,6 +2694,10 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
       this.initUiParam(paramName);
       toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
       break;
+    case 'view_retargeting_group_id':
+      this.initUiParam(paramName);
+      toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
+      break;
     case 'views_limit_flag':
     case 'views_limit_exact':
       toggleClass('ads_edit_ad_row_views_limit', 'unshown', !!(this.params.views_limit_flag.hidden && this.params.views_limit_exact.hidden));
@@ -2819,17 +2843,18 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
           this.setCostType(AdsEdit.ADS_AD_COST_TYPE_VIEWS);
         }
 
-        this.params.title.hidden                  = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST);
-        this.params.title.disabled                = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS, AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]);
-        this.params.description.hidden            = !inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP]);
-        this.params.description.max_length        = ((this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE) ? this.params.description.max_length_mobile : this.params.description.max_length_normal);
-        this.params.disclaimer_medical.may_be_any = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY]);
-        this.params.disclaimer_medical.hidden     = (!this.params.disclaimer_medical.may_be_any || !this.params.disclaimer_medical.allow);
-        this.params.disclaimer_specialist.hidden  = (!this.params.disclaimer_medical.may_be_any || !this.params.disclaimer_specialist.allow);
-        this.params.disclaimer_supplements.hidden = (!this.params.disclaimer_medical.may_be_any || !this.params.disclaimer_supplements.allow);
-        this.params.stats_url.hidden              = !(this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.stats_url.allow_exclusive || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.stats_url.allow_promoted_post);
-        this.params.views_limit_flag.hidden       = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.views_limit_exact.allow || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST);
-        this.params.views_limit_exact.hidden      = (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE || !this.params.views_limit_exact.allow));
+        this.params.title.hidden                      = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST);
+        this.params.title.disabled                    = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS, AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]);
+        this.params.description.hidden                = !inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP]);
+        this.params.description.max_length            = ((this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE) ? this.params.description.max_length_mobile : this.params.description.max_length_normal);
+        this.params.disclaimer_medical.may_be_any     = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY]);
+        this.params.disclaimer_medical.hidden         = (!this.params.disclaimer_medical.may_be_any || !this.params.disclaimer_medical.allow);
+        this.params.disclaimer_specialist.hidden      = (!this.params.disclaimer_medical.may_be_any || !this.params.disclaimer_specialist.allow);
+        this.params.disclaimer_supplements.hidden     = (!this.params.disclaimer_medical.may_be_any || !this.params.disclaimer_supplements.allow);
+        this.params.stats_url.hidden                  = !(this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.stats_url.allow_exclusive || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.stats_url.allow_promoted_post);
+        this.params.view_retargeting_group_id.hidden  = (!this.params.view_retargeting_group_id.allow || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST);
+        this.params.views_limit_flag.hidden           = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.views_limit_exact.allow || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST);
+        this.params.views_limit_exact.hidden          = (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE || !this.params.views_limit_exact.allow));
 
         if (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY) {
           this.setTitle(this.params.title['value_'+AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY]);
@@ -2878,6 +2903,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         this.updateUiParam('_description');
         this.updateUiParam('cost_per_click');
         this.updateUiParam('platform');
+        this.updateUiParam('view_retargeting_group_id');
         this.updateUiParam('views_limit_flag');
         this.updateUiParamData('views_limit_exact');
         this.updateUiParam('views_limit_exact');
@@ -2892,6 +2918,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         this.updateUiParamVisibility('disclaimer_supplements');
         this.updateUiParamVisibility('age_restriction');
         this.updateUiParamVisibility('stats_url');
+        this.updateUiParamVisibility('view_retargeting_group_id');
         this.updateUiParamVisibility('views_limit_flag');
         this.updateUiParamVisibility('views_limit_exact');
         this.updatePreview('layout');
