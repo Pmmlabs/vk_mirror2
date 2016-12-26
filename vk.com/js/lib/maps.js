@@ -1109,7 +1109,7 @@ vkMaps.register('yandex2', {
 VKMap: {
   init: function(element, api) {
     vkMaps.load(api, (function() {
-      var yandexMap = this.maps[api] = new ymaps.Map(element, {center: [0, 0], controls: [], zoom: 10}, { suppressMapOpenBlock: true, suppressObsoleteBrowserNotifier: true });
+      var yandexMap = this.maps[api] = new ymaps.Map(element, {center: [0, 0], controls: [], zoom: 10}, { suppressMapOpenBlock: true, suppressObsoleteBrowserNotifier: true, hotspotLayerInteractivityModel: 'default#silent' });
       yandexMap.events.add('click', (function(ev) {
         var coords = ev.get('coords');
         this.click.fire({'location': new vkMaps.LatLonPoint(coords[0], coords[1])});

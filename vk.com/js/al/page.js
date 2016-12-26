@@ -1258,10 +1258,7 @@ var Page = {
     var fixedHeaderHeight = getSize('page_header')[1];
 
     var scrollHandler = debounce(function() {
-      if (layers.visible || window.mvcur && mvcur.mvShown || nav.objLoc.z) return;
-
-      var curPlayer = cur.videoInlinePlayer;
-      if (curPlayer && curPlayer.isFullscreen()) return;
+      if (layers.visible || window.mvcur && mvcur.mvShown || nav.objLoc.z || _getFullscreenElement()) return;
 
       var thumbs = geByClass('page_video_autoplayable');
       var thumbsNum = thumbs.length;
@@ -1273,6 +1270,7 @@ var Page = {
       var activeTop = scrollGetY() < 300 ? fixedHeaderHeight : (viewportMiddle - activeSpace/2);
       var activeBottom = viewportMiddle + activeSpace/2;
 
+      var curPlayer = cur.videoInlinePlayer;
       if (curPlayer) {
         var isAutoplaying = curPlayer.isFromAutoplay() && !curPlayer.isTouchedByUser();
         var isPromoPost = domData(domClosest('post', curPlayer.el), 'ad-view');
@@ -1388,6 +1386,10 @@ var Page = {
       var playerParams = data[3].player.params;
       var playerVars = playerParams[0];
       VideoPlayer.preload(playerVars);
+    }
+
+    function _getFullscreenElement() {
+      return document.fullscreenElement || document.mozFullScreenElement || document.msFullscreenElement || document.webkitFullscreenElement;
     }
   },
 

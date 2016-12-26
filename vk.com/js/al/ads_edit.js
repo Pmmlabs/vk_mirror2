@@ -4723,12 +4723,14 @@ AdsTargetingEditor.prototype.initHelpCriterion = function(criterionName) {
   var handler;
   var context = {focus: false, over: 0, out: 2};
   var shiftTop;
+  var shiftLeft = false;
 
   switch (criterionName) {
     case 'travellers': shiftTop = -52; break;
     case 'positions':  shiftTop = -44; break;
     case 'pays_money': shiftTop = -44; break;
     case 'tags':       shiftTop = -96; break;
+    case 'geo_type':   shiftLeft = -320; break;
   }
 
   switch (criterionName) {
@@ -4745,7 +4747,7 @@ AdsTargetingEditor.prototype.initHelpCriterion = function(criterionName) {
     case 'tags':
     case 'geo_type':
       targetElem = ge(this.options.targetIdPrefix + criterionName).parentNode;
-      var showTooltip = function() { AdsEdit.showHelpCriterionTooltip(criterionName, targetElem, handler, this.criteria[criterionName], helpText, false, shiftTop, this.cur); }.bind(this);
+      var showTooltip = function() { AdsEdit.showHelpCriterionTooltip(criterionName, targetElem, handler, this.criteria[criterionName], helpText, shiftLeft, shiftTop, this.cur); }.bind(this);
       var hideTooltip = function() { AdsEdit.hideHelpTooltip(this.criteria[criterionName].tt); }.bind(this);
       handler = function(event){ AdsEdit.onHelpTooltipEvent(event, criterionName, context, showTooltip, hideTooltip); }.bind(this);
       AdsEdit.initHelpTooltipTarget(targetElem, handler, this.cur);
@@ -6275,6 +6277,7 @@ AdsTargetingEditor.prototype.initGeoFileUpload = function (criterionName) {
           return;
         }
         var file = filesInput.files[0];
+        filesInput.value = "";
         if (file.size > fileSizeLimit) {
           showFastBox(getLang('global_error'), getLang('ads_geo_file_size_error'));
           return;
@@ -6288,7 +6291,7 @@ AdsTargetingEditor.prototype.initGeoFileUpload = function (criterionName) {
           val(boxGeoEditor.batch_input, fr.result);
           this.updateGeoBoxBatchLinesCounter(criterionName);
         }.bind(this);
-        fr.readAsText(filesInput.files[0])
+        fr.readAsText(file)
       }.bind(this),
       lang: {
         button_browse: getLang('ads_geo_button_browse')
@@ -6357,7 +6360,7 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
     if (!lines.length) {
       return;
     }
-    lockButton(boxGeoEditor.batch_submit);
+    setTimeout(lockButton.pbind(boxGeoEditor.batch_submit), 0);
     var linesLimit = 100;
 
     var validLines = 0;
@@ -6380,7 +6383,7 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
       }
     }
     boxGeoEditor.updateMap();
-    unlockButton(boxGeoEditor.batch_submit);
+    setTimeout(unlockButton.pbind(boxGeoEditor.batch_submit), 0);
 
     if (validLines == lines.length) {
       addClass(boxGeoEditor.batch_msg, 'ok_msg');
@@ -6556,7 +6559,7 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
         animate(tableWrap, {scrollTop: tableWrap.scrollHeight});
       }, 0);
 
-      this.criteria[criterionName].geo_editor.setPointsFromString(boxGeoEditor.savePointsToString());
+      this.criteria[criterionName].value = boxGeoEditor.savePointsToString();
       this.needDataUpdate();
     }.bind(this),
     onPointUpdated: function (oldPointID, point, changes) {
@@ -6582,7 +6585,7 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
       }
 
       if (changes.coords || changes.radius) {
-        this.criteria[criterionName].geo_editor.setPointsFromString(boxGeoEditor.savePointsToString());
+        this.criteria[criterionName].value = boxGeoEditor.savePointsToString();
         this.needDataUpdate();
       }
     }.bind(this),
@@ -6651,7 +6654,7 @@ AdsTargetingEditor.prototype.showGeoBox = function (criterionName, tab, geoEdito
     }, 1);
 
     this.criteria[criterionName].ui.clear();
-    this.criteria[criterionName].geo_editor.setPointsFromString(boxGeoEditor.savePointsToString());
+    this.criteria[criterionName].geo_editor.setPointsFromArray(boxGeoEditor.points.slice(0));
   }.bind(this);
   boxOptions.onDestroy = function() {
     cur.preventBoxHide = false;
