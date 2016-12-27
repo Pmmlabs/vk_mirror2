@@ -7803,6 +7803,9 @@ function showApp(ev, aid, needInstall, ref, mid, options) {
     params['mid'] = mid;
   }
   var wikiOptions = {stat: ['wkview.js' ,'wkview.css', 'apps.js', 'apps.css']};
+  if (options.queue) {
+    wikiOptions.queue = 1;
+  }
   return showWiki(params, false, ev, wikiOptions);
 }
 

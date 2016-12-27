@@ -1715,6 +1715,81 @@ AdsModer.onToggleSearchAdsEnabledAds = function(elem) {
   AdsModer.searchAdsText();
 }
 
+AdsModer.premoderationValidationUpdateRequestsSelected = function() {
+  var processPremoderationValidationBtn = ge('process_premoderation_validation_btn');
+  var text = 'Всё правильно';
+
+  if (cur.premoderationValidation.selectedRequestsNum > 0) {
+    text += ', кроме ' + langNumeric(cur.premoderationValidation.selectedRequestsNum, ['', '%s объявления', '%s объявлений', '%s объявлений']);
+  }
+  processPremoderationValidationBtn.innerHTML = '<span>' + text + '</span>';
+};
+
+AdsModer.premoderationValidationToggle = function(requestWrap) {
+  var requestId = requestWrap.getAttribute('data-request-id');
+  var newValid  = !cur.premoderationValidation.requestsValid[requestId];
+
+  cur.premoderationValidation.requestsValid[requestId] = newValid;
+  toggleClass(requestWrap, 'ads_premoderation_request_ad_choosen', !newValid);
+  cur.premoderationValidation.selectedRequestsNum += (newValid ? -1 : 1);
+
+  AdsModer.premoderationValidationUpdateRequestsSelected();
+};
+
+AdsModer.initPremoderationValidationRequests = function() {
+  cur.premoderationValidation = cur.premoderationValidation || {};
+
+  var selectableRequestWraps = geByClass('ads_premoderation_validation_request_wrap');
+
+  if (selectableRequestWraps.length > 0) {
+    cur.premoderationValidation.selectedRequestsNum = 0;
+    cur.premoderationValidation.requestsValid = {};
+
+    each(selectableRequestWraps, function(i, requestWrap) {
+      var requestId = requestWrap.getAttribute('data-request-id');
+      cur.premoderationValidation.requestsValid[requestId] = true;
+    });
+
+    AdsModer.premoderationValidationUpdateRequestsSelected();
+  } else {
+    ge('process_premoderation_validation_btn').innerHTML = '<span>Посмотреть другие заявки</span>';
+    ge('process_premoderation_validation_btn').onclick = function() {
+      nav.go('/adsmoder?act=premoderation_validation');
+    };
+  }
+};
+
+AdsModer.premoderationValidationProcessSelectedRequests = function() {
+  var processPremoderationValidationBtn = ge('process_premoderation_validation_btn');
+  var ajaxParams = {hash: cur.premoderationValidation.hash,
+                    valid_requests: '',
+                    invalid_requests: ''};
+  each(cur.premoderationValidation.requestsValid, function(reqId, isValid) {
+    if (isValid) {
+      ajaxParams.valid_requests += reqId + ',';
+    } else {
+      ajaxParams.invalid_requests += reqId + ',';
+    }
+  });
+  ajaxParams.valid_requests = ajaxParams.valid_requests.slice(0, -1);
+  ajaxParams.invalid_requests = ajaxParams.invalid_requests.slice(0, -1);
+
+  function onComplete(response) {
+    if (response && response.ok) {
+      nav.reload();
+    } else {
+      unlockButton(processPremoderationValidationBtn);
+      var msg = ((response && response.msg) ? response.msg : getLang('ads_error_unexpected_error_try_later'));
+
+      showFastBox(getLang('global_error'), msg);
+    }
+    return true;
+  }
+
+  lockButton(processPremoderationValidationBtn);
+  ajax.post('/adsmoder?act=a_premoderation_validation_process', ajaxParams, {onDone: onComplete, onFail: onComplete});
+};
+
 AdsModer.uiFastReasonsInit = function(requestId, reasons) {
   var fast_reasons_holder = ge('ads_moder_reasons_fast_holder_'+requestId);
   if (!fast_reasons_holder)
