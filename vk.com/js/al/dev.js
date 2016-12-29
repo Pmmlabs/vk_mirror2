@@ -440,6 +440,22 @@ saveDoc: function(hash, btn) {
   })
 },
 
+clearMethodRes: function (btn, hash) {
+  lockButton(btn);
+  ajax.post('dev.php', {
+    act: 'a_clear_method_res',
+    page: cur.page,
+    hash: hash,
+  }, {
+    onDone: function () {
+      ge('dev_result').innerHTML = '';
+      unlockButton(btn);
+    },
+    onFail: function () {
+      unlockButton(btn);
+    }
+  })
+},
 
 parentChange: function(dd, v, objId) {
   var cont = ge(objId);

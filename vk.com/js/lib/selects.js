@@ -1668,7 +1668,7 @@ function CitySelect(input, container, options) {
         updateChildren(value);
         selector.old_setOptions({dropdown: false, defaultItems: []});
         selector.clear();
-        setTimeout(selector.focus, 0);
+        selector.focus();
       } else {
         var fields = 0;
         if (options.stationSelect) {
