@@ -5996,7 +5996,7 @@ function MessageBox(options, dark) {
 
     setButtons: function(yes, onYes, no, onNo) {
       var b = this.removeButtons();
-      if (!yes) return b.addButton(box_close);
+      if (!yes) return b.addButton(getLang('box_close'));
       b.addButton(yes, onYes)
       if (no) b.addButton(no, onNo, 'no');
       return b;
