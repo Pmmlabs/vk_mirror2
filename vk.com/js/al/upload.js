@@ -41,7 +41,7 @@ init: function(obj, uploadUrl, vars, options) {
       if (this.obj[iUpload].tagName == 'INPUT' && !this.checkFileApi()) {
         this.obj[iUpload] = ge(options.fieldEl) || this.obj[iUpload].parentNode.firstChild;
       } else if (!options.flash_lite) {
-        this.obj[iUpload].innerHTML = '<div class="upload_check loading"><img width="32" height="8" src="/images/upload' + (hasClass(bodyNode, 'is_2x') ? '_2x' : '') + '.gif" /></div>';
+        this.obj[iUpload].innerHTML = '<div class="upload_check loading">' + getProgressHtml('', 'pr_medium upload_pr') + '</div>';
       }
     }
   }

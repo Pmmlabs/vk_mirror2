@@ -277,10 +277,19 @@ Ads.initFixed = function(elemWrap) {
 }
 
 Ads.initIntroPage = function(widgetParamsMore) {
+  var widgetHeight = 332;
+  var subsectionsEl = ge('ads_intro_subsections');
+  if (subsectionsEl) {
+    var subsectionsElSize = getSize(subsectionsEl);
+    var wrapperHeight = subsectionsElSize[1] - ge('ads_intro_news_widget').offsetTop;
+    widgetHeight = wrapperHeight + 13 + 1; // widget bottom padding = 13, + 1 px safe zone
+    ge('ads_intro_news_widget_wrap').style.height = wrapperHeight + 'px';
+  }
+
   var widgetParams = {}
   widgetParams.mode    = 2;
-  widgetParams.width   = 321;
-  widgetParams.height  = 332;
+  widgetParams.width   = 314;
+  widgetParams.height  = widgetHeight;
   widgetParams.no_head = 1;
   widgetParams.base_domain = '//' + window.location.hostname + '/';
   widgetParams.color1  = '#FFFFFF';

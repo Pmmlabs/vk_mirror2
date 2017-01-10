@@ -6183,8 +6183,8 @@ Composer = {
       var curPos = Composer.getCursorPosition(input),
           prefValue = value.substr(0, curPos),
           pos = Math.max(prefValue.lastIndexOf('@'), prefValue.lastIndexOf('*')),
-          matches = prefValue.match(/(^|[\s.,:\'\";>\)\(]|\#[\w_\.\u0400-\u04FF]+)[@\*]([^,@\*\.\(\)\?\!\s\n\r \u00A0]*)$/);
-      if (matches) {
+          matches = prefValue.match(/(^|[\s.,:\'\";>\)\(]|\#[\w_\.\u0400-\u04FF]+)[@\*]([^,@\*\(\)\?\!\s\n\r \u00A0]*)$/);
+      if (matches && matches[2].substr(-1) !== '.') {
         term = matches[2];
       }
     }
