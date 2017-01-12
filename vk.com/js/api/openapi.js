@@ -1173,7 +1173,7 @@ if (!VK.Widgets) {
       }
       VK.extend(params, {
         page: page || 0,
-        status_publish: options.autoPublish === undefined ? 1 : options.autoPublish,
+        status_publish: options.autoPublish === undefined ? 0 : options.autoPublish,
         attach: options.attach === undefined ? '*' : (options.attach ? options.attach : ''),
         url: url,
         title: options.pageTitle || pData.title,

@@ -557,7 +557,7 @@ if (!VK.Widgets) {
             var baseDomain = ((VK._base_domain && VK._base_domain.match(/^(\w+\.)*vk.com$/)) ? VK._base_domain : 'vk.com');
             VK._apiId = data[0];
             VK._browserHash = data[1];
-            VK.addScript(VK._protocol + '//' + baseDomain + '/js/api/openapi.js?136');
+            VK.addScript(VK._protocol + '//' + baseDomain + '/js/api/openapi.js?137');
           });
           VK._openApiAttached = true;
         }
