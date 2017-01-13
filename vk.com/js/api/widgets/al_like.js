@@ -183,6 +183,8 @@ var WLike = {
       addClass(this.checkboxEl, 'checked');
       counter++;
     }
+    //WLike.updateStats(resp);
+    //cur.Rpc.callMethod('proxy', 'update', resp);
     cur.Rpc.callMethod('publish', (val ? 'widgets.like.shared' : 'widgets.like.unshared'), resp.num);
   },
 
