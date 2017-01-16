@@ -3001,6 +3001,7 @@ var Wall = {
   repliesSideOver: function (post) {
     var r = ge('replies' + post),
         side = ge('replies_side' + post);
+    if (!r) return;
 
     var sideTop = getXY(domPN(side))[1],
         sideH = getSize(side)[1],
