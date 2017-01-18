@@ -7785,6 +7785,7 @@ function showApp(ev, aid, needInstall, ref, mid, options) {
   if (!options) {
     options = {};
   }
+  var layer = false;
   var params = extend({w: 'app'+aid}, options);
   if (ref) {
     if (isObject(ref)) {
@@ -7793,7 +7794,10 @@ function showApp(ev, aid, needInstall, ref, mid, options) {
       params['ref'] = ref;
     }
   }
-  if (cur.apps && cur.apps[aid] || !needInstall) {
+  if (options.layer) {
+    layer = true;
+  }
+  if ((cur.apps && cur.apps[aid] || !needInstall) && !layer) {
     delete params['w'];
     var loc = 'app' + aid + (mid ? '_' + mid : ''),
       nocur = nav.objLoc && !nav.objLoc[1] && nav.objLoc[0] === loc;
