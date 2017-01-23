@@ -3358,7 +3358,7 @@ var Wall = {
           types: mediaTypes,
           options: {
             limit: 2,
-            disabledTypes: ['album'],
+            disabledTypes: ['album', 'market'],
             toggleLnk: true,
             maxShown: maxShown !== undefined ? maxShown : undefined,
             hideAfterCount: hideAfterCount !== undefined ? hideAfterCount : undefined

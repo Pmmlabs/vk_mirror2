@@ -9065,7 +9065,7 @@ function getCaretBoundingRect(node) {
         rectCaret = range.getClientRects();
         range.setStart(range.startContainer, offset);
       }
-      rectCaret = rectCaret.length ? rectCaret[rectCaret.length - 1] : {right: rectNode.left, top: rectNode.top, bottom: rectNode.top};
+      rectCaret = (rectCaret && rectCaret.length) ? rectCaret[rectCaret.length - 1] : {right: rectNode.left, top: rectNode.top, bottom: rectNode.top};
     }
     return {
       left: rectCaret.right - rectNode.left,

@@ -746,7 +746,7 @@ onFileApiSend: function(i, files, force) {
       }
     }
     var curCount = attachCount ? attachCount() : 0;
-    var warnText = getLang('global_attach_max_n_files').replace('{count}', options.max_files);
+    var warnText = (options.max_files_warning || getLang('global_attach_max_n_files')).replace('{count}', options.max_files);
     if (options.max_files - curCount < files.length) {
       max_files = options.max_files - curCount;
       showFastBox({

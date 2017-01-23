@@ -13,6 +13,9 @@ ttShift: 45,
 
 stickers: {},
 
+TAB_EMOJI: 0,
+TAB_RECENT_STICKERS: -1,
+
 init: function(txt, opts) {
   var optId = Emoji.last;
   opts.txt = txt;
@@ -435,7 +438,7 @@ cleanCont: function(cont) {
         var str = clean(el.textContent || el.innerText);
 
         if (str && str.match(Emoji.emojiRegEx)) { // emoji pasted
-          str = str.replace(Emoji.emojiRegEx, Emoji.emojiReplace).replace(/\uFE0F/g, '');
+          str = str.replace(Emoji.emojiRegEx, Emoji.emojiReplace)//.replace(/\uFE0F/g, '');
           el.parentNode.replaceChild(cf(str), el);
         }
         break;
@@ -1255,36 +1258,49 @@ scrollTabs: function(optId, right) {
 },
 
 scrollToTab: function(tabId, optId) {
-  var opts = Emoji.opts[optId];
-  var cont = geByClass1('emoji_tabs_wrap', opts.tt);
-  var tab = geByClass1('emoi_tab_'+tabId, cont);
+  var opts = Emoji.opts[optId], tt = opts.tt;
+  var cont = geByClass1('emoji_tabs_wrap', tt);
+  var tab = geByClass1('emoji_tab_' + tabId, tt);
   if (!tab) {
     return;
   }
-
+  var tween = data(cont, 'tween');
+  if (tween && tween.isTweening && tabId == opts.curTab) {
+    return;
+  }
+  var tabWidth = getSize(tab)[0];
   var tabPos = tab.offsetLeft, contW = getSize(cont)[0];
-  if (tabPos < cont.scrollLeft) {
-    cont.scrollLeft = tabPos - 18;
-  } else if (tabPos - cont.scrollLeft > contW) {
-    cont.scrollLeft = tabPos - contW + getSize(tab)[0] + 18;
+  var centerPos = tabPos - contW / 2 + 10;
+
+  if (tabPos + tabWidth < cont.scrollLeft) {
+    cont.scrollLeft = Math.max(tabPos, cont.scrollLeft - contW / 2);
+  } else if (tabPos + tabWidth - cont.scrollLeft > contW) {
+    cont.scrollLeft = Math.min(tabPos + tabWidth - cont.scrollLeft, cont.scrollLeft + contW / 2);
   }
 
-  var mPos = tab.offsetLeft - contW / 2 + 10;
-  opts.scrollLeft = mPos;
-  animate(cont, {scrollLeft: mPos}, 300, function() {
+  animate(cont, {scrollLeft: centerPos}, 300, function () {
     Emoji.scrollTabs(optId, 2);
   });
+  Emoji.selectTab(optId, tabId, tab);
+},
+
+selectTab: function (optId, selId, obj) {
+  var opts = Emoji.opts[optId], tt = opts.tt;
+  var tabsCont = geByClass1('emoji_tabs', tt);
+  var selEl = geByClass1('emoji_tab_sel', tabsCont);
+
+  removeClass(selEl, 'emoji_tab_sel');
+  addClass(obj, 'emoji_tab_sel');
+  opts.curTab = selId;
+  cur.stickersTab = selId;
+  ls.set('stickers_tab', selId);
 },
 
 tabsWheel: function(e, optId) {
   cancelEvent(e);
 
   var opts = Emoji.opts[optId];
-  if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-    var delta = e.deltaY;
-  } else {
-    var delta = e.deltaX;
-  }
+  var delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
   var cont = geByClass1('emoji_tabs_wrap', opts.tt);
 
   var curScroll = cont.scrollLeft;
@@ -1366,13 +1382,13 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
   var tt = opts.tt;
   if (!tt) {
     var prevTab = ls.get('stickers_tab');
-    opts.curTab = cur.stickersTab = 0;
-    if (prevTab === -1 && !opts.noStickers) {
-      var recent = ls.get('recent_stickers');
-      if (recent) {
-        Emoji.stickers[-1] = recent;
-        opts.curTab = cur.stickersTab = -1;
-      }
+    if (!prevTab) {
+      prevTab = Emoji.TAB_EMOJI;
+    }
+    opts.curTab = cur.stickersTab = Emoji.TAB_EMOJI;
+    if (prevTab != Emoji.TAB_EMOJI && !opts.noStickers) {
+      Emoji.stickers[Emoji.TAB_RECENT_STICKERS] = ls.get('recent_stickers');
+      opts.curTab = cur.stickersTab = prevTab;
     }
     var tabs = '<div class="emoji_tabs_l_s" onclick="Emoji.scrollTabs('+optId+', 0);"><div class="emoji_sprite emoji_tabs_l_sc"></div><div class="emoji_sprite emoji_tabs_l_si"></div></div><div class="emoji_tabs_r_s" onclick="Emoji.scrollTabs('+optId+', 1);"><div class="emoji_sprite emoji_tabs_r_sc"></div><div class="emoji_sprite emoji_tabs_r_si"></div></div>';
     tabs += Emoji.getTabsCode([[0, 1]], optId);
@@ -1401,7 +1417,7 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
     var tt = ce('div', {
       id: 'emoji_block_'+optId,
       className: 'emoji_tt_wrap tt_down' + classAddr,
-      innerHTML: '<div class="emoji_block_cont"><div class="emoji_block_rel"><div class="emoji_list_cont"><div class="emoji_cats_title_helper"></div><div class="emoji_list"><div class="emoji_scroll"></div></div></div></div><div class="emoji_tabs clear_fix">'+tabs+'</div></div>',
+      innerHTML: '<div class="emoji_block_cont"><div class="emoji_block_rel"><div class="emoji_list_cont"><div class="emoji_cats_title_helper"></div><div class="emoji_list"><div class="emoji_scroll emoji_scroll_smiles"></div><div class="emoji_scroll emoji_scroll_stickers"></div></div></div></div><div class="emoji_tabs clear_fix">'+tabs+'</div></div>',
       onmouseover: function(e) {
         if (!hasClass(tt, 'emoji_animated')) Emoji.ttShow(optId, false, e);
       },
@@ -1411,7 +1427,7 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
     });
     opts.tt = tt;
     Emoji.reappendEmoji(optId, tt);
-    Emoji.emojiOver(optId, geByClass1('emoji_scroll', tt).firstChild);
+    Emoji.emojiOver(optId, geByClass1('emoji_scroll_smiles', tt).firstChild);
 
     each(['emoji_tabs_l_s', 'emoji_tabs_r_s', 'emoji_tabs_wrap'], function() {
       addEvent(geByClass1(this, opts.tt), 'DOMMouseScroll wheel', function(e) {
@@ -1430,6 +1446,10 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
     Emoji.ttClick(Emoji.shownId, geByClass1('emoji_smile', Emoji.opts[Emoji.shownId].controlsCont), true);
   }
   Emoji.preventMouseOver = false;
+
+  if (!opts.emojiExpanded) {
+    Emoji.emojiExpand(optId, tt);
+  }
   if (Emoji.shown) {
     hide(tt);
     setStyle(tt, 'opacity', 0);
@@ -1475,7 +1495,6 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
         }
         Emoji.ttClick(optId, false, true);
       }
-
       addEvent(document, 'keydown', Emoji.emojiMove);
     }, 0);
     addClass(obj, 'emoji_smile_on');
@@ -1485,13 +1504,12 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
         Emoji.scrollToListEl(optId, opts.emojiOvered);
       }
     }
+    Emoji.tabSwitch(opts.curTab, opts.curTab, optId);
+    opts.onRecentEmojiUpdate && opts.onRecentEmojiUpdate();
 
     if (opts.onShow) {
       opts.onShow();
     }
-  }
-  if (!opts.emojiExpanded) {
-    Emoji.emojiExpand(optId, tt);
   }
   each(geByClass('emoji_smile_icon_promo'), function(i, el) {
     removeEvent(geByClass1('emoji_smile_icon', el.parentNode), 'mouseover');
@@ -1505,60 +1523,59 @@ ttClick: function(optId, obj, needHide, needShow, ev, tabKey) {
     removeClass(geByClass1('emoji_tabs', 'emoji_block_'+optId), 'emoji_tabs_no_store');
   }
 
-  if (opts.ttShown) {
-    var selId = opts.curTab;
-    Emoji.updateStickersCont(optId);
-    Emoji.tabSwitch(geByClass1('emoji_tab_'+selId, opts.tt), selId, optId);
-    Emoji.scrollToTab(opts.curTab, optId);
-
-    opts.onRecentEmojiUpdate && opts.onRecentEmojiUpdate();
-  }
-
   return cancelEvent(ev);
 },
 curEmojiKeys: {},
-curEmojiCats: {1: ['D83DDE0A', 'D83DDE03', 'D83DDE06', 'D83DDE09', 'D83DDE1C', 'D83DDE0B', 'D83EDD17', 'D83DDE0D', 'D83DDE0E', 'D83DDE12', 'D83DDE0F', 'D83DDE42', 'D83DDE43', 'D83DDE14', 'D83DDE22', 'D83DDE2D', 'D83DDE29', 'D83DDE28', 'D83DDE10', 'D83DDE0C', 'D83DDE04', 'D83DDE07', 'D83DDE30', 'D83DDE32', 'D83DDE33', 'D83DDE37', 'D83DDE02', '2764', 'D83DDC8B', 'D83DDE1A', 'D83DDE15', 'D83DDE2F', 'D83DDE26', 'D83DDE35', 'D83DDE44', 'D83EDD14', 'D83DDE20', 'D83DDE21', 'D83DDE1D', 'D83DDE34', 'D83DDE18', 'D83DDE17', 'D83DDE19', 'D83DDE1F', 'D83DDE41', '2639', 'D83DDE2C', 'D83DDE36', 'D83EDD10', 'D83DDE2B', '263A', 'D83DDE00', 'D83DDE25', 'D83DDE1B', 'D83DDE16', 'D83DDE24', 'D83DDE23', 'D83DDE27', 'D83DDE11', 'D83DDE05', 'D83DDE2E', 'D83DDE1E', 'D83DDE13', 'D83DDE01', 'D83DDE31', 'D83EDD13', 'D83EDD11', 'D83DDE2A', 'D83EDD12', 'D83EDD15', 'D83DDE08', 'D83DDC7F', 'D83DDC7D', 'D83DDC7B', 'D83DDE38', 'D83DDE39', 'D83DDE3C', 'D83DDE3D', 'D83DDE3E', 'D83DDE3F', 'D83DDE3B', 'D83DDE40', 'D83DDE3A', 'D83DDE48', 'D83DDE49', 'D83DDE4A', 'D83DDCA9', 'D83DDC80', 'D83DDC79', 'D83DDC7A', 'D83DDC31'], 2: ['D83CDF31', 'D83CDF32', 'D83CDF33', 'D83CDF34', 'D83CDF37', 'D83CDF38', 'D83CDF45', 'D83CDF46', 'D83CDF47', 'D83CDF48', 'D83CDF49', 'D83CDF4A', 'D83CDF4B', 'D83CDF4C', 'D83CDF4D', 'D83CDF4E', 'D83CDF4F', 'D83CDF50', 'D83CDF51', 'D83DDC00', 'D83DDC01', 'D83DDC02', 'D83DDC03', 'D83DDC04', 'D83DDC05', 'D83DDC06', 'D83DDC07', 'D83DDC08', 'D83DDC09', 'D83DDC0A', 'D83DDC0B', 'D83DDC0C', 'D83DDC0D', 'D83DDC0E', 'D83DDC0F', 'D83DDC10', 'D83DDC11', 'D83DDC12', 'D83DDC13', 'D83DDC14', 'D83DDC15', 'D83DDC16', 'D83DDC17', 'D83DDC18', 'D83DDC19', 'D83DDC1A', 'D83DDC1B', 'D83DDC1C', 'D83DDC1D', 'D83DDC1E', 'D83DDC1F', 'D83DDC20', 'D83DDC21', 'D83DDC22', 'D83DDC23', 'D83DDC24', 'D83DDC25', 'D83DDC26', 'D83DDC27', 'D83DDC28', 'D83DDC2A', 'D83DDC2B', 'D83DDC2C', 'D83DDC2D', 'D83DDC2E', 'D83DDC2F', 'D83DDC30', 'D83DDC32', 'D83DDC33', 'D83DDC34', 'D83DDC35', 'D83DDC36', 'D83DDC37', 'D83DDC38', 'D83DDC39', 'D83DDC3A', 'D83DDC3B', 'D83DDC3C', 'D83DDC3D', 'D83DDC3E', '2600', '2601', '26C4', '26C5', '2728', 'D83CDF0D', 'D83CDF1B', 'D83CDF1D', 'D83CDF1E', 'D83CDF30', 'D83CDF35', 'D83CDF39', 'D83CDF3A', 'D83CDF3B', 'D83CDF3C', 'D83CDF3D', 'D83CDF3E', 'D83CDF3F', 'D83CDF40', 'D83CDF41', 'D83CDF42', 'D83CDF43', 'D83CDF44', 'D83DDCA6', 'D83DDCA7', 'D83DDCA8', 'D83DDD25'], 3: ['D83DDC4D', 'D83DDC4E', '261D', '270C', 'D83DDC4C', 'D83DDD95D83CDFFB', 'D83EDD18D83CDFFB', 'D83DDC4F', 'D83DDC4A', 'D83DDCAA', '270B', 'D83DDD90D83CDFFB', 'D83DDD96D83CDFFB', 'D83DDE4F', 'D83DDE4C', '270A', 'D83DDC46', 'D83DDC47', 'D83DDC48', 'D83DDC49', 'D83DDC4B', 'D83DDC50', 'D83DDC40', 'D83DDC42', 'D83DDC43', '270DD83CDFFB', 'D83DDC45', 'D83DDC6B', 'D83DDC6C', 'D83DDC6D', 'D83DDC8F', 'D83DDC91', 'D83DDC6F', 'D83DDC6A', 'D83DDC70', 'D83DDC66', 'D83DDC67', 'D83DDC68', 'D83DDC69', 'D83DDC71', 'D83DDC6E', 'D83DDC72', 'D83DDC73', 'D83DDC82', 'D83DDC74', 'D83DDC75', 'D83DDC76', 'D83DDC77', 'D83DDC78', 'D83DDC7C', 'D83DDE47', 'D83DDE4B', 'D83DDE4E', 'D83DDE45', 'D83DDE46', 'D83DDC81', 'D83DDC86', 'D83DDC87', 'D83DDC85', 'D83DDC84', 'D83DDC44', 'D83DDC83', 'D83CDF8E', 'D83CDF85', 'D83DDEB6'], 4: ['D83CDF52', 'D83CDF53', 'D83CDF54', 'D83CDF55', 'D83CDF56', 'D83CDF57', 'D83CDF5A', 'D83CDF5B', 'D83CDF5C', 'D83CDF5D', 'D83CDF5E', 'D83CDF5F', 'D83CDF60', 'D83CDF61', 'D83CDF62', 'D83CDF63', 'D83CDF64', 'D83CDF65', 'D83CDF66', 'D83CDF67', 'D83CDF68', 'D83CDF69', 'D83CDF6A', 'D83CDF6B', 'D83CDF6C', 'D83CDF6D', 'D83CDF6E', 'D83CDF6F', 'D83CDF70', 'D83CDF71', 'D83CDF72', 'D83CDF73', 'D83CDF74', 'D83CDF75', 'D83CDF76', 'D83CDF77', 'D83CDF78', 'D83CDF79', 'D83CDF7A', 'D83CDF7B', 'D83CDF7C'], 5: ['26BD', '26BE', 'D83CDFAF', 'D83CDFB1', 'D83CDFBD', 'D83CDFBE', 'D83CDFBF', 'D83CDFC0', 'D83CDFC1', 'D83CDFC2', 'D83CDFC3', 'D83CDFC4', 'D83CDFC6', 'D83CDFC7', 'D83CDFC8', 'D83CDFC9', 'D83CDFCA', 'D83DDC5F', 'D83DDEA3', 'D83DDEB4', 'D83DDEB5', '26F3', '26EA'], 6: ['D83DDE85', 'D83DDE86', 'D83DDE87', 'D83DDE88', 'D83DDE8A', 'D83DDE8C', 'D83DDE8D', 'D83DDE8E', 'D83DDE8F', 'D83DDE90', 'D83DDE91', 'D83DDE92', 'D83DDE93', 'D83DDE94', 'D83DDE95', 'D83DDE96', 'D83DDE97', 'D83DDE98', 'D83DDE99', 'D83DDE9A', 'D83DDE9B', 'D83DDE9C', 'D83DDE9D', 'D83DDE9E', 'D83DDE9F', 'D83DDEA0', 'D83DDEA1', 'D83DDEA4', 'D83DDEA7', 'D83DDEA8', '26F5', 'D83DDE80', 'D83DDE81', 'D83DDE82', 'D83DDE83', 'D83DDE84', '26FD', '2708'], 7: ['23F0', '23F3', '260E', '2615', '267B', '26A1', '2702', '2709', '270F', '2712', 'D83CDC04', 'D83CDCCF', 'D83CDF02', 'D83CDF1F', 'D83CDF80', 'D83CDF81', 'D83CDF82', 'D83CDF83', 'D83CDF84', 'D83CDF88', 'D83CDF89', 'D83CDF8A', 'D83CDF8B', 'D83CDF8C', 'D83CDF8D', 'D83CDF8F', 'D83CDF90', 'D83CDF92', 'D83CDF93', 'D83CDFA3', 'D83CDFA4', 'D83CDFA7', 'D83CDFA8', 'D83CDFA9', 'D83CDFAA', 'D83CDFAB', 'D83CDFAC', 'D83CDFAD', 'D83CDFB0', 'D83CDFB2', 'D83CDFB3', 'D83CDFB4', 'D83CDFB7', 'D83CDFB8', 'D83CDFB9', 'D83CDFBA', 'D83CDFBB', 'D83DDC51', 'D83DDC52', 'D83DDC53', 'D83DDC54', 'D83DDC55', 'D83DDC56', 'D83DDC57', 'D83DDC58', 'D83DDC59', 'D83DDC5A', 'D83DDC5B', 'D83DDC60', 'D83DDC5C', 'D83DDC5D', 'D83DDC5E', 'D83DDC61', 'D83DDC62', 'D83DDC63', 'D83DDC7E', 'D83DDC88', 'D83DDC89', 'D83DDC8A', 'D83DDC8C', 'D83DDC8D', 'D83DDC8E', 'D83DDC90', 'D83DDC92', 'D83DDCA1', 'D83DDCA3', 'D83DDCA5', 'D83DDCB0', 'D83DDCB3', 'D83DDCB4', 'D83DDCB5', 'D83DDCB6', 'D83DDCB7', 'D83DDCB8', 'D83DDCBA', 'D83DDCBB', 'D83DDCBC', 'D83DDCBD', 'D83DDCBE', 'D83DDCBF', 'D83DDCC4', 'D83DDCC5', 'D83DDCC7', 'D83DDCC8', 'D83DDCC9', 'D83DDCCA', 'D83DDCCB', 'D83DDCCC', 'D83DDCCD', 'D83DDCCE', 'D83DDCD0', 'D83DDCD1', 'D83DDCD2', 'D83DDCD3', 'D83DDCD4', 'D83DDCD5', 'D83DDCD6', 'D83DDCD7', 'D83DDCD8', 'D83DDCD9', 'D83DDCDA', 'D83DDCDC', 'D83DDCDD', 'D83DDCDF', 'D83DDCE0', 'D83DDCE1', 'D83DDCE2', 'D83DDCE6', 'D83DDCED', 'D83DDCEE', 'D83DDCEF', 'D83DDCF0', 'D83DDCF1', 'D83DDCF7', 'D83DDCF9', 'D83DDCFA', 'D83DDCFB', 'D83DDCFC', 'D83DDD06', 'D83DDD0E', 'D83DDD11', 'D83DDD14', 'D83DDD16', 'D83DDD26', 'D83DDD27', 'D83DDD28', 'D83DDD29', 'D83DDD2A', 'D83DDD2B', 'D83DDD2C', 'D83DDD2D', 'D83DDD2E', 'D83DDD31', 'D83DDDFF', 'D83DDEAA', 'D83DDEAC', 'D83DDEBD', 'D83DDEBF', 'D83DDEC0'], 8: ['D83DDC93', 'D83DDC94', 'D83DDC95', 'D83DDC96', 'D83DDC97', 'D83DDC98', 'D83DDC99', 'D83DDC9A', 'D83DDC9B', 'D83DDC9C', 'D83DDC9D', 'D83DDC9E', 'D83DDC9F', 'D83DDCAC', 'D83DDCAD', 'D83DDD1E', '26A0', '26D4', 'D83DDC29', 'D83CDD98', 'D83CDF1A'], 9: ['D83CDDE8D83CDDF3', 'D83CDDE9D83CDDEA', 'D83CDDEAD83CDDF8', 'D83CDDEBD83CDDF7', 'D83CDDECD83CDDE7', 'D83CDDEED83CDDF9', 'D83CDDEFD83CDDF5', 'D83CDDF0D83CDDF7', 'D83CDDF7D83CDDFA', 'D83CDDFAD83CDDF8', 'D83CDDFAD83CDDE6', 'D83CDDF0D83CDDFF', 'D83CDDE7D83CDDFE', 'D83CDDE6D83CDDFA', 'D83CDDE6D83CDDF9', 'D83CDDE7D83CDDEA', 'D83CDDE7D83CDDF7', 'D83CDDFBD83CDDF3', 'D83CDDEDD83CDDF0', 'D83CDDE9D83CDDF0', 'D83CDDEED83CDDF1', 'D83CDDEED83CDDF3', 'D83CDDEED83CDDE9', 'D83CDDEED83CDDEA', 'D83CDDE8D83CDDE6', 'D83CDDE8D83CDDF4', 'D83CDDF2D83CDDF4', 'D83CDDF2D83CDDFE', 'D83CDDF2D83CDDFD', 'D83CDDF3D83CDDF1', 'D83CDDF3D83CDDFF', 'D83CDDF3D83CDDF4', 'D83CDDE6D83CDDEA', 'D83CDDF5D83CDDF1', 'D83CDDF5D83CDDF9', 'D83CDDF5D83CDDF7', 'D83CDDF8D83CDDE6', 'D83CDDF8D83CDDEC', 'D83CDDF9D83CDDF7', 'D83CDDF5D83CDDED', 'D83CDDEBD83CDDEE', 'D83CDDE8D83CDDF1', 'D83CDDE8D83CDDED', 'D83CDDF8D83CDDEA', 'D83CDDFFD83CDDE6']},
+curEmojiCats: {1: ['D83DDE0A', 'D83DDE03', 'D83DDE06', 'D83DDE09', 'D83DDE1C', 'D83DDE0B', 'D83EDD17', 'D83DDE0D', 'D83DDE0E', 'D83DDE12', 'D83DDE0F', 'D83DDE42', 'D83DDE43', 'D83DDE14', 'D83DDE22', 'D83DDE2D', 'D83DDE29', 'D83DDE28', 'D83DDE10', 'D83DDE0C', 'D83DDE04', 'D83DDE07', 'D83DDE30', 'D83DDE32', 'D83DDE33', 'D83DDE37', 'D83DDE02', '2764', 'D83DDC8B', 'D83DDE1A', 'D83DDE15', 'D83DDE2F', 'D83DDE26', 'D83DDE35', 'D83DDE44', 'D83EDD14', 'D83DDE20', 'D83DDE21', 'D83DDE1D', 'D83DDE34', 'D83DDE18', 'D83DDE17', 'D83DDE19', 'D83DDE1F', 'D83DDE41', '2639', 'D83DDE2C', 'D83DDE36', 'D83EDD10', 'D83DDE2B', '263A', 'D83DDE00', 'D83DDE25', 'D83DDE1B', 'D83DDE16', 'D83DDE24', 'D83DDE23', 'D83DDE27', 'D83DDE11', 'D83DDE05', 'D83DDE2E', 'D83DDE1E', 'D83DDE13', 'D83DDE01', 'D83DDE31', 'D83EDD13', 'D83EDD11', 'D83DDE2A', 'D83EDD12', 'D83EDD15', 'D83DDE08', 'D83DDC7F', 'D83DDC7D', 'D83DDC7B', 'D83DDE38', 'D83DDE39', 'D83DDE3C', 'D83DDE3D', 'D83DDE3E', 'D83DDE3F', 'D83DDE3B', 'D83DDE40', 'D83DDE3A', 'D83DDE48', 'D83DDE49', 'D83DDE4A', 'D83DDCA9', 'D83DDC80', 'D83DDC79', 'D83DDC7A', 'D83DDC31'], 2: ['D83CDF31', 'D83CDF32', 'D83CDF33', 'D83CDF34', 'D83CDF37', 'D83CDF38', 'D83CDF45', 'D83CDF46', 'D83CDF47', 'D83CDF48', 'D83CDF49', 'D83CDF4A', 'D83CDF4B', 'D83CDF4C', 'D83CDF4D', 'D83CDF4E', 'D83CDF4F', 'D83CDF50', 'D83CDF51', 'D83DDC00', 'D83DDC01', 'D83DDC02', 'D83DDC03', 'D83DDC04', 'D83DDC05', 'D83DDC06', 'D83DDC07', 'D83DDC08', 'D83DDC09', 'D83DDC0A', 'D83DDC0B', 'D83DDC0C', 'D83DDC0D', 'D83DDC0E', 'D83DDC0F', 'D83DDC10', 'D83DDC11', 'D83DDC12', 'D83DDC13', 'D83DDC14', 'D83DDC15', 'D83DDC16', 'D83DDC17', 'D83DDC18', 'D83DDC19', 'D83DDC1A', 'D83DDC1B', 'D83DDC1C', 'D83DDC1D', 'D83DDC1E', 'D83DDC1F', 'D83DDC20', 'D83DDC21', 'D83DDC22', 'D83DDC23', 'D83DDC24', 'D83DDC25', 'D83DDC26', 'D83DDC27', 'D83DDC28', 'D83DDC2A', 'D83DDC2B', 'D83DDC2C', 'D83DDC2D', 'D83DDC2E', 'D83DDC2F', 'D83DDC30', 'D83DDC32', 'D83DDC33', 'D83DDC34', 'D83DDC35', 'D83DDC36', 'D83DDC37', 'D83DDC38', 'D83DDC39', 'D83DDC3A', 'D83DDC3B', 'D83DDC3C', 'D83DDC3D', 'D83DDC3E', '2600', '2601', '26C4', '26C5', '2728', 'D83CDF0D', 'D83CDF1B', 'D83CDF1D', 'D83CDF1E', 'D83CDF30', 'D83CDF35', 'D83CDF39', 'D83CDF3A', 'D83CDF3B', 'D83CDF3C', 'D83CDF3D', 'D83CDF3E', 'D83CDF3F', 'D83CDF40', 'D83CDF41', 'D83CDF42', 'D83CDF43', 'D83CDF44', 'D83DDCA6', 'D83DDCA7', 'D83DDCA8', 'D83DDD25'], 3: ['D83DDC4D', 'D83DDC4E', '261D', '270C', 'D83DDC4C', 'D83DDD95D83CDFFB', 'D83EDD18D83CDFFB', 'D83DDC4F', 'D83DDC4A', 'D83DDCAA', '270B', 'D83DDD90D83CDFFB', 'D83DDD96D83CDFFB', 'D83DDE4F', 'D83DDE4C', '270A', 'D83DDC46', 'D83DDC47', 'D83DDC48', 'D83DDC49', 'D83DDC4B', 'D83DDC50', 'D83DDC40', 'D83DDC42', 'D83DDC43', '270DD83CDFFB', 'D83DDC45', 'D83DDC6B', 'D83DDC6C', 'D83DDC6D', 'D83DDC8F', 'D83DDC91', 'D83DDC6F', 'D83DDC6A', 'D83DDC70', 'D83DDC66', 'D83DDC67', 'D83DDC68', 'D83DDC69', 'D83DDC71', 'D83DDC6E', 'D83DDC72', 'D83DDC73', 'D83DDC82', 'D83DDC74', 'D83DDC75', 'D83DDC76', 'D83DDC77', 'D83DDC78', 'D83DDC7C', 'D83DDE47', 'D83DDE4B', 'D83DDE4E', 'D83DDE45', 'D83DDE46', 'D83DDC81', 'D83DDC86', 'D83DDC87', 'D83DDC85', 'D83DDC84', 'D83DDC44', 'D83DDC83', 'D83CDF8E', 'D83CDF85', 'D83DDEB6', 'D83DDC71200D2640FE0F', 'D83DDC6E200D2640FE0F', 'D83DDC77200D2640FE0F', 'D83DDD75200D2640FE0F', 'D83DDE47200D2640FE0F', 'D83DDE4B200D2642FE0F', 'D83DDC81200D2642FE0F', 'D83DDE45200D2642FE0F', 'D83DDE46200D2642FE0F', 'D83DDE4E200D2642FE0F', 'D83DDE4D200D2642FE0F', 'D83DDC86200D2642FE0F', 'D83DDC87200D2642FE0F', 'D83DDEB6200D2640FE0F', 'D83CDFC3200D2640FE0F', 'D83CDFCB200D2640FE0F', '26F9200D2640FE0F', 'D83CDFC4200D2640FE0F', 'D83CDFCA200D2640FE0F', 'D83DDEB5200D2640FE0F', 'D83DDEB4200D2640FE0F', 'D83DDC6F200D2642FE0F', 'D83CDFCC200D2640FE0F', 'D83DDC73200D2640FE0F', 'D83DDC82200D2640FE0F'], 4: ['D83CDF52', 'D83CDF53', 'D83CDF54', 'D83CDF55', 'D83CDF56', 'D83CDF57', 'D83CDF5A', 'D83CDF5B', 'D83CDF5C', 'D83CDF5D', 'D83CDF5E', 'D83CDF5F', 'D83CDF60', 'D83CDF61', 'D83CDF62', 'D83CDF63', 'D83CDF64', 'D83CDF65', 'D83CDF66', 'D83CDF67', 'D83CDF68', 'D83CDF69', 'D83CDF6A', 'D83CDF6B', 'D83CDF6C', 'D83CDF6D', 'D83CDF6E', 'D83CDF6F', 'D83CDF70', 'D83CDF71', 'D83CDF72', 'D83CDF73', 'D83CDF74', 'D83CDF75', 'D83CDF76', 'D83CDF77', 'D83CDF78', 'D83CDF79', 'D83CDF7A', 'D83CDF7B', 'D83CDF7C'], 5: ['26BD', '26BE', 'D83CDFAF', 'D83CDFB1', 'D83CDFBD', 'D83CDFBE', 'D83CDFBF', 'D83CDFC0', 'D83CDFC1', 'D83CDFC2', 'D83CDFC3', 'D83CDFC4', 'D83CDFC6', 'D83CDFC7', 'D83CDFC8', 'D83CDFC9', 'D83CDFCA', 'D83DDC5F', 'D83DDEA3', 'D83DDEB4', 'D83DDEB5', '26F3', '26EA'], 6: ['D83DDE85', 'D83DDE86', 'D83DDE87', 'D83DDE88', 'D83DDE8A', 'D83DDE8C', 'D83DDE8D', 'D83DDE8E', 'D83DDE8F', 'D83DDE90', 'D83DDE91', 'D83DDE92', 'D83DDE93', 'D83DDE94', 'D83DDE95', 'D83DDE96', 'D83DDE97', 'D83DDE98', 'D83DDE99', 'D83DDE9A', 'D83DDE9B', 'D83DDE9C', 'D83DDE9D', 'D83DDE9E', 'D83DDE9F', 'D83DDEA0', 'D83DDEA1', 'D83DDEA4', 'D83DDEA7', 'D83DDEA8', '26F5', 'D83DDE80', 'D83DDE81', 'D83DDE82', 'D83DDE83', 'D83DDE84', '26FD', '2708'], 7: ['23F0', '23F3', '260E', '2615', '267B', '26A1', '2702', '2709', '270F', '2712', 'D83CDC04', 'D83CDCCF', 'D83CDF02', 'D83CDF1F', 'D83CDF80', 'D83CDF81', 'D83CDF82', 'D83CDF83', 'D83CDF84', 'D83CDF88', 'D83CDF89', 'D83CDF8A', 'D83CDF8B', 'D83CDF8C', 'D83CDF8D', 'D83CDF8F', 'D83CDF90', 'D83CDF92', 'D83CDF93', 'D83CDFA3', 'D83CDFA4', 'D83CDFA7', 'D83CDFA8', 'D83CDFA9', 'D83CDFAA', 'D83CDFAB', 'D83CDFAC', 'D83CDFAD', 'D83CDFB0', 'D83CDFB2', 'D83CDFB3', 'D83CDFB4', 'D83CDFB7', 'D83CDFB8', 'D83CDFB9', 'D83CDFBA', 'D83CDFBB', 'D83DDC51', 'D83DDC52', 'D83DDC53', 'D83DDC54', 'D83DDC55', 'D83DDC56', 'D83DDC57', 'D83DDC58', 'D83DDC59', 'D83DDC5A', 'D83DDC5B', 'D83DDC60', 'D83DDC5C', 'D83DDC5D', 'D83DDC5E', 'D83DDC61', 'D83DDC62', 'D83DDC63', 'D83DDC7E', 'D83DDC88', 'D83DDC89', 'D83DDC8A', 'D83DDC8C', 'D83DDC8D', 'D83DDC8E', 'D83DDC90', 'D83DDC92', 'D83DDCA1', 'D83DDCA3', 'D83DDCA5', 'D83DDCB0', 'D83DDCB3', 'D83DDCB4', 'D83DDCB5', 'D83DDCB6', 'D83DDCB7', 'D83DDCB8', 'D83DDCBA', 'D83DDCBB', 'D83DDCBC', 'D83DDCBD', 'D83DDCBE', 'D83DDCBF', 'D83DDCC4', 'D83DDCC5', 'D83DDCC7', 'D83DDCC8', 'D83DDCC9', 'D83DDCCA', 'D83DDCCB', 'D83DDCCC', 'D83DDCCD', 'D83DDCCE', 'D83DDCD0', 'D83DDCD1', 'D83DDCD2', 'D83DDCD3', 'D83DDCD4', 'D83DDCD5', 'D83DDCD6', 'D83DDCD7', 'D83DDCD8', 'D83DDCD9', 'D83DDCDA', 'D83DDCDC', 'D83DDCDD', 'D83DDCDF', 'D83DDCE0', 'D83DDCE1', 'D83DDCE2', 'D83DDCE6', 'D83DDCED', 'D83DDCEE', 'D83DDCEF', 'D83DDCF0', 'D83DDCF1', 'D83DDCF7', 'D83DDCF9', 'D83DDCFA', 'D83DDCFB', 'D83DDCFC', 'D83DDD06', 'D83DDD0E', 'D83DDD11', 'D83DDD14', 'D83DDD16', 'D83DDD26', 'D83DDD27', 'D83DDD28', 'D83DDD29', 'D83DDD2A', 'D83DDD2B', 'D83DDD2C', 'D83DDD2D', 'D83DDD2E', 'D83DDD31', 'D83DDDFF', 'D83DDEAA', 'D83DDEAC', 'D83DDEBD', 'D83DDEBF', 'D83DDEC0'], 8: ['D83DDC93', 'D83DDC94', 'D83DDC95', 'D83DDC96', 'D83DDC97', 'D83DDC98', 'D83DDC99', 'D83DDC9A', 'D83DDC9B', 'D83DDC9C', 'D83DDC9D', 'D83DDC9E', 'D83DDC9F', 'D83DDCAC', 'D83DDCAD', 'D83DDD1E', '26A0', '26D4', 'D83DDC29', 'D83CDD98', 'D83CDF1A'], 9: ['D83CDDE8D83CDDF3', 'D83CDDE9D83CDDEA', 'D83CDDEAD83CDDF8', 'D83CDDEBD83CDDF7', 'D83CDDECD83CDDE7', 'D83CDDEED83CDDF9', 'D83CDDEFD83CDDF5', 'D83CDDF0D83CDDF7', 'D83CDDF7D83CDDFA', 'D83CDDFAD83CDDF8', 'D83CDDFAD83CDDE6', 'D83CDDF0D83CDDFF', 'D83CDDE7D83CDDFE', 'D83CDDE6D83CDDFA', 'D83CDDE6D83CDDF9', 'D83CDDE7D83CDDEA', 'D83CDDE7D83CDDF7', 'D83CDDFBD83CDDF3', 'D83CDDEDD83CDDF0', 'D83CDDE9D83CDDF0', 'D83CDDEED83CDDF1', 'D83CDDEED83CDDF3', 'D83CDDEED83CDDE9', 'D83CDDEED83CDDEA', 'D83CDDE8D83CDDE6', 'D83CDDE8D83CDDF4', 'D83CDDF2D83CDDF4', 'D83CDDF2D83CDDFE', 'D83CDDF2D83CDDFD', 'D83CDDF3D83CDDF1', 'D83CDDF3D83CDDFF', 'D83CDDF3D83CDDF4', 'D83CDDE6D83CDDEA', 'D83CDDF5D83CDDF1', 'D83CDDF5D83CDDF9', 'D83CDDF5D83CDDF7', 'D83CDDF8D83CDDE6', 'D83CDDF8D83CDDEC', 'D83CDDF9D83CDDF7', 'D83CDDF5D83CDDED', 'D83CDDEBD83CDDEE', 'D83CDDE8D83CDDF1', 'D83CDDE8D83CDDED', 'D83CDDF8D83CDDEA', 'D83CDDFFD83CDDE6', 'D83CDFF3D83CDF08']},
 curEmojiRecent: {},
+emojiWithJoiners: ['D83DDC71200D2640FE0F', 'D83DDC6E200D2640FE0F', 'D83DDC77200D2640FE0F', 'D83DDD75200D2640FE0F', 'D83DDE47200D2640FE0F', 'D83DDC81200D2642FE0F', 'D83DDE45200D2642FE0F', 'D83DDE46200D2642FE0F', 'D83DDE4E200D2642FE0F', 'D83DDE4D200D2642FE0F', 'D83DDC86200D2642FE0F', 'D83DDC87200D2642FE0F', 'D83DDEB6200D2640FE0F', 'D83CDFC3200D2640FE0F', 'D83CDFCB200D2640FE0F', '26F9200D2640FE0F', 'D83CDFC4200D2640FE0F', 'D83CDFCA200D2640FE0F', 'D83DDEB5200D2640FE0F', 'D83DDEB4200D2640FE0F', 'D83DDC6F200D2642FE0F', 'D83CDFCC200D2640FE0F', 'D83DDE4B200D2642FE0F', 'D83DDC73200D2640FE0F', 'D83DDC82200D2640FE0F'],
 emojiLoadMore: function(optId) {
   var opts = Emoji.opts[optId];
-  opts.emojiMoreSt = 1;
-  if (Emoji.allEmojiCodes) {
-    opts.allEmojiId = 0;
-    if (opts.sharedTT) {
-      opts.sharedTT.emojiAllId = 0;
-    }
-  } else {
-    var params = {act: 'get_emoji_list'};
-    if (Emoji.hasNewStickers < 0) params.new_shown = 1;
-    ajax.post('al_im.php', params, {
-      onDone: function(codes, stickers, recent_emoji) {
-        Emoji.stickers = stickers;
-
-        if (Emoji.stickers[-1]) {
-          ls.set('recent_stickers', Emoji.stickers[-1]);
-        }
-        opts.allEmojiId = 0;
-        if (opts.sharedTT) {
-          opts.sharedTT.emojiAllId = 0;
-        }
-        Emoji.allEmojiCodes = codes;
-        if (Emoji.onStickersLoad) {
-          opts.initedStickers = 0;
-          Emoji.onStickersLoad();
-          Emoji.onStickersLoad = false;
-        }
-
-        var emojiList = Emoji.emojiGetRecentFromStorage();
-        if (!emojiList) {
-          Emoji.emojiOldRecentPrepare(recent_emoji, optId);
-          Emoji.updateEmojiCont(optId);
-        } else {
-          Emoji.curEmojiRecent = Emoji.filterEmoji(emojiList);
-        }
-        opts.onRecentEmojiUpdate && opts.onRecentEmojiUpdate();
-      }
-    })
+  if (opts.emojiMoreSt) {
+    return;
   }
+  opts.emojiMoreSt = 1;
+
+  var params = {act: 'get_emoji_list'};
+  if (Emoji.hasNewStickers < 0) params.new_shown = 1;
+  ajax.post('al_im.php', params, {
+    onDone: function(stickers, recent_emoji) {
+      Emoji.stickers = stickers;
+      opts.emojiMoreSt = 0;
+
+      if (Emoji.stickers[-1]) {
+        ls.set('recent_stickers', Emoji.stickers[-1]);
+        Emoji.updateRecentEmoji(optId);
+      }
+      opts.allEmojiId = 0;
+      if (opts.sharedTT) {
+        opts.sharedTT.emojiAllId = 0;
+      }
+
+      if (Emoji.onStickersLoad) {
+        opts.afterLoad = 1;
+      }
+
+      if (Emoji.onStickersLoad && window.emojiStickers) {
+        Emoji.onStickersLoad();
+        Emoji.onStickersLoad = false;
+      }
+
+      var emojiList = Emoji.emojiGetRecentFromStorage();
+      if (!emojiList) {
+        Emoji.emojiOldRecentPrepare(recent_emoji, optId);
+        Emoji.updateEmojiCont(optId);
+      } else {
+        Emoji.curEmojiRecent = Emoji.filterEmoji(emojiList);
+      }
+      Emoji.updateRecentEmoji(optId);
+      opts.onRecentEmojiUpdate && opts.onRecentEmojiUpdate();
+    },
+    onFail: function () {
+      opts.emojiMoreSt = 0;
+    }
+  })
+
   if (Emoji.curEmojiRecent) {
     opts.onRecentEmojiUpdate && opts.onRecentEmojiUpdate();
   }
@@ -1683,7 +1700,7 @@ updateEmojiCont: function (optId) {
   var opts = Emoji.opts[optId];
 
   if (opts.curTab == 0) {
-    val(geByClass1('emoji_scroll', opts.tt), Emoji.ttEmojiList(optId));
+    val(geByClass1('emoji_scroll_smiles', opts.tt), Emoji.ttEmojiList(optId));
     Emoji.updateEmojiCatTitle(optId);
   }
 },
@@ -1708,18 +1725,77 @@ ttEmojiList: function(optId) {
     }
 
     var lng_sub = cat_id == -1 ? 'recent' : cat_id;
-    var cont = '<div class="emoji_cat_title_helper" data-id="' + cat_id + '"><div class="emoji_cat_title">' + getLang('global_emoji_cat_' + lng_sub) + '</div></div>';
-    var row = '', total = cat.length - 1;
-    for(var j = 0; j <= total; j++) {
-      row += Emoji.emojiWrapItem(optId, cat[j], j);
-      if (j > 0 && j % 10 == 9 || j >= total) {
-        cont += '<div class="emoji_smiles_row">' + row + '</div>';
-        row = '';
-      }
-    }
+    var cont = '<div class="emoji_cat_title_helper" data-id="' + cat_id + '" id="emoji_recent_list' + optId + '_' + cat_id + '"><div class="emoji_cat_title">' + getLang('global_emoji_cat_' + lng_sub) + '</div></div>';
+    cont += Emoji.emojiGetCatCont(optId, cat);
     res += cont;
   }
   return res;
+},
+
+emojiGetCatCont: function (optId, cat) {
+  var res = '', row = '', total = cat.length - 1;
+  for(var j = 0; j <= total; j++) {
+    row += Emoji.emojiWrapItem(optId, cat[j], j);
+    if (j > 0 && j % 10 == 9 || j >= total) {
+      res += '<div class="emoji_smiles_row">' + row + '</div>';
+      row = '';
+    }
+  }
+  return res;
+},
+
+updateRecentEmoji: function (optId) {
+  var emojiList = Emoji.getRecentEmojiSorted(),
+    recent_els = Emoji.emojiGetCatCont(optId, emojiList);
+
+  var titleEl = ge('emoji_recent_list' + optId + '_-1');
+  if (!titleEl) {
+    return;
+  }
+
+  var el = titleEl.nextSibling;
+  while(el) {
+    el = el.nextSibling;
+    if (hasClass(el.previousSibling, 'emoji_smiles_row')) {
+      re(el.previousSibling);
+    } else {
+      break;
+    }
+  }
+
+  var rows  = ce('div', {
+    innerHTML: recent_els
+  }), nextTitle = titleEl.nextSibling, parent = titleEl.parentNode;
+  while(el = rows.firstChild) {
+    parent.insertBefore(el, nextTitle);
+  }
+},
+
+updateRecentStickers: function (optId) {
+  var opts = Emoji.opts[optId];
+  if (!Emoji.stickers[-1] || !opts || !opts.emojiExpanded) {
+    return;
+  }
+  var recentWrap = ge('emoji_recent_stickers_cont' + optId);
+  if (!recentWrap) {
+    return;
+  }
+  val(recentWrap, '');
+
+  var stickerSize = (window.devicePixelRatio >= 2) ? '128' : '64';
+  var stickers = Emoji.stickers[-1].stickers;
+  for(var i = 0; i < stickers.length; i++) {
+    var stickerEl = se(rs(Emoji.stickerItem(), {
+      optId: optId,
+      selId: Emoji.TAB_RECENT_STICKERS,
+      stickerId: stickers[i][0],
+      size: stickers[i][1],
+      stickerSize: stickerSize
+    }));
+    recentWrap.appendChild(stickerEl);
+    var top = Math.ceil((i +1) / 4) * 68;
+    Emoji.needLoadStickers.unshift([optId + '_' + Emoji.TAB_RECENT_STICKERS + '_' + stickers[i][0], top]);
+  }
 },
 
 updateEmojiCatTitle: function (optId) {
@@ -1936,13 +2012,12 @@ emojiExpand: function(optId, block) {
         window.tooltips && tooltips.destroyAll();
       },
       onupdate: function() {
-        if (opts.curTab == 0) {
+        if (opts.curTab == Emoji.TAB_EMOJI) {
           Emoji.updateEmojiCatTitle(optId);
-          //opts.imagesLoader && opts.imagesLoader.processLoad();
         } else {
           Emoji.updateShownStickers(optId);
         }
-      },
+      }
     });
     opts.imagesLoader = imagesLoader(opts.emojiScroll.scroller, {use_iframe: true, need_load_class: 'emoji_need_load'});
     if (opts.sharedTT) {
@@ -1956,8 +2031,12 @@ emojiExpand: function(optId, block) {
 updateShownStickers: function(optId, noChangeTab) {
   var opts = Emoji.opts[optId];
 
-  if (!opts.emojiScroll || opts.curTab == 0) {
+  if (!opts.emojiScroll || !opts.stickersSplitersPos) {
     return;
+  }
+
+  if (!Emoji.needLoadStickers) {
+    Emoji.needLoadStickers = [];
   }
 
   var st = opts.emojiScroll.data.scrollTop, vh = opts.emojiScroll.data.viewportHeight;
@@ -1972,6 +2051,9 @@ updateShownStickers: function(optId, noChangeTab) {
 
     if (item[1] + 72 >= startPos && item[1] <= endPos) {
       var el = ge('emoji_sticker_item' + item[0]);
+      if (!el) {
+        continue;
+      }
       var src = attr(el, 'data-src');
       val(el, '<img class="emoji_sticker_image" src="/images/blank.gif" data-src="' + src + '"/>');
       need_load.push([src, item[0]]);
@@ -1984,7 +2066,7 @@ updateShownStickers: function(optId, noChangeTab) {
     Emoji.preloadStickers(optId);
   }
 
-  if (noChangeTab) {
+  if (noChangeTab || opts.scrollAnimation || Emoji.onStickersLoad) {
     return;
   }
 
@@ -2000,7 +2082,6 @@ updateShownStickers: function(optId, noChangeTab) {
   }
 
   if (opts.curTab != packId) {
-    Emoji.tabSwitch(geByClass1('emoi_tab_'+packId, opts.tt), packId, optId, 1);
     Emoji.scrollToTab(packId, optId);
   }
 },
@@ -2029,8 +2110,8 @@ loadStickers: function (optId, need_load) {
       return;
     }
     img.src = '';
-    var parent = img.parentNode;
-    try { parent.parentNode.removeChild(parent); } catch(e) { }
+    //var parent = img.parentNode;
+    //try { parent.parentNode.removeChild(parent); } catch(e) { }
   }
   opts.imagesLoading = loading;
 
@@ -2043,7 +2124,8 @@ loadStickers: function (optId, need_load) {
 preloadStickers: function (optId) {
   var opts = Emoji.opts[optId];
 
-  if (Object.keys(opts.imagesLoading).length > 0) {
+
+  if (opts.imagesLoading && Object.keys(opts.imagesLoading).length > 0) {
     return;
   }
 
@@ -2060,7 +2142,7 @@ preloadStickers: function (optId) {
       bottom: endPos + vh,
     };
 
-    var el = geByClass1('emoji_scroll', opts.tt).firstChild, needLoad = [];
+    var el = geByClass1('emoji_scroll_stickers', opts.tt).firstChild, needLoad = [];
     while(el) {
       if (hasClass(el, 'emoji_sticker_item') && !hasClass(el, '__loaded')) {
         var top = el.offsetTop;
@@ -2147,9 +2229,9 @@ emojiMove: function(e) {
       }
     }
     if (el) {
-      Emoji.scrollToListEl(optId, el);
       Emoji.preventMouseOver = true;
       Emoji.emojiOver(optId, el);
+      Emoji.scrollToListEl(optId, el);
       return false;
     }
   }
@@ -2157,7 +2239,16 @@ emojiMove: function(e) {
 },
 
 scrollToListEl: function(optId, el) {
-  Emoji.opts[optId] && Emoji.opts[optId].emojiScroll && Emoji.opts[optId].emojiScroll.scrollIntoView(el, 80, {offset_top: 30});
+  var opts = Emoji.opts[optId];
+  if (!opts || !opts.emojiScroll) {
+    return;
+  }
+  var catTitleHeight = 30;
+  var offsetTop = el.offsetTop;
+  var newSt = Math.max(offsetTop + catTitleHeight - opts.emojiScroll.data.viewportHeight, Math.min(opts.emojiScroll.data.scrollTop, offsetTop - catTitleHeight));
+  if (opts.emojiScroll.data.scrollTop != newSt) {
+    opts.emojiScroll.scrollTop(newSt);
+  }
 },
 
 anim: function(el, to) {
@@ -2310,36 +2401,45 @@ emojiReplace: function(symbolstr) {
   }
 
   var out = '';
-  var joiner = false;
   var isFlag = false;
 
-  i = 0;
   buffer = '';
   altBuffer = '';
 
-  for (var i in codes) {
+  var skip_codes_list = ['FE0F', '2642', '2640', '200C', '200D'];
+  var joining = false, join_buffer, join_altBuffer, tmp_codes = [];
+  for(var i = 0; i < codes.length; i++) {
     var code = codes[i];
     var symbol = symbols[i];
+
+    if (!code) {
+      continue;
+    }
+
     if (symbol.match(/\uD83C[\uDFFB-\uDFFF]/)) { // colors
       buffer += code;
       altBuffer += symbol;
       continue;
     }
-    /*if (joiner) {
-      buffer += code;
-      altBuffer += symbol;
-      joiner = false;
-      continue;
-    }*/
-    if (code == '200C' || code == '200D') { // joiners
-      if (buffer) {
-        joiner = true;
+
+    if (inArray(code, ['200C', '200D', '2642', '2640'])) { // start joining
+      if (!buffer) {
+        out += '<span>' + symbol + '</span>';
       } else {
-        out += symbol;
+        if (!join_buffer) {
+          join_buffer = buffer;
+          join_altBuffer = altBuffer;
+        }
+        joining = true;
       }
-      continue;
     }
-    if (symbol.match(/\uD83C[\uDDE6-\uDDFF]/)) { // flags
+
+    if (joining) {
+      join_buffer += code;
+      join_altBuffer += symbol;
+    }
+
+    if (symbol.match(/\uD83C[\uDDE6-\uDDFF]/) || Emoji.emojiFlags.indexOf(code) != -1) { // flags
       if (isFlag) {
         buffer += code;
         altBuffer += symbol;
@@ -2351,14 +2451,36 @@ emojiReplace: function(symbolstr) {
       isFlag = false;
     }
 
-    if (buffer) {
-      out += Emoji.getEmojiHTML(buffer, altBuffer, true);
+    if (joining && code == 'FE0F') { // end joining
+      joining = false;
+      if (inArray(join_buffer, Emoji.emojiWithJoiners)) {
+        out += Emoji.getEmojiHTML(join_buffer, join_altBuffer, true);
+      } else {
+        for(var j = 0; j < tmp_codes.length; j++) {
+          var tmp_row = tmp_codes[j];
+          if (inArray(tmp_row[0], skip_codes_list)) {
+            out += '<span>' + symbol + '</span>';
+          } else {
+            out += Emoji.getEmojiHTML(tmp_row[0], tmp_row[1], true);
+          }
+        }
+      }
+
+      join_buffer = join_altBuffer = '';
+      buffer = altBuffer = '';
+      continue;
+    }
+
+    if (joining) {
+      tmp_codes.push([buffer, altBuffer]);
+    } else if (buffer) {
+      out += inArray(buffer, skip_codes_list) ? '<span>' + symbol + '</span>'  : Emoji.getEmojiHTML(buffer, altBuffer, true);
     }
     buffer = code;
     altBuffer = symbol;
   }
 
-  if (buffer) {
+  if (buffer && !inArray(buffer, skip_codes_list)) {
     out += Emoji.getEmojiHTML(buffer, altBuffer, true);
   }
 
@@ -2367,9 +2489,9 @@ emojiReplace: function(symbolstr) {
 
 emojiCharSeq: /[0-9\uD83D\uD83C\uD83E]/,
 
-emojiRegEx: /((?:[\u203C\u2049\u2122\u2328\u2601\u260E\u261d\u2626\u262A\u2638\u2639\u263a\u267B\u267F\u2702\u2708]|[\u2600\u26C4\u26BE\u2705\u2764]|[\u2194-\u2199\u21AA\u21A9]|[\u231A-\u231B]|[\u23E9-\u23EF]|[\u23F0-\u23F4]|[\u23F8-\u23FA]|[\u24C2]|[\u25AA-\u25AB]|[\u25B6\u25C0]|[\u25FB-\u25FE]|[\u2602-\u2618]|[\u2648-\u2653]|[\u2660-\u2668]|[\u26A0-\u26FA]|[\u2692-\u269C]|[\u262E-\u262F]|[\u2622-\u2623]|[\u2709-\u2764]|[\u2795-\u2797]|[\u27A1]|[\u27BF]|[\u2934-\u2935]|[\u2B05-\u2B07]|[\u2B1B]|[\u2B50\u2B55]|[\u303D]|[\u3297\u3299]|[\uE000-\uF8FF]|[\uD83D\uD83C\uD83E][\uDC00-\uDFFF]|[0-9]\u20E3|[\u0023-\u0039\u203C-\u21AA]\uFE0F\u20E3|[\u200C\u200D])+)/g,
+emojiRegEx: /((?:[\u203C\u2049\u2122\u2328\u2601\u260E\u261d\u2626\u262A\u2638\u2639\u263a\u267B\u267F\u2702\u2708]|[\u2600\u26C4\u26BE\u2705\u2764]|[\u2194-\u2199\u21AA\u21A9]|[\u231A-\u231B]|[\u23E9-\u23EF]|[\u23F0-\u23F4]|[\u23F8-\u23FA]|[\u24C2]|[\u25AA-\u25AB]|[\u25B6\u25C0]|[\u25FB-\u25FE]|[\u2602-\u2618]|[\u2648-\u2653]|[\u2660-\u2668]|[\u26A0-\u26FA]|[\u2692-\u269C]|[\u262E-\u262F]|[\u2622-\u2623]|[\u2709-\u2764]|[\u2795-\u2797]|[\u27A1]|[\u27BF]|[\u2934-\u2935]|[\u2B05-\u2B07]|[\u2B1B]|[\u2B50\u2B55]|[\u303D]|[\u3297\u3299]|[\uE000-\uF8FF]|[\uD83D\uD83C\uD83E][\uDC00-\uDFFF]|[0-9]\u20E3|[\u0023-\u0039\u203C-\u21AA\u1F3F3]\uFE0F\u20E3|[\u200C\u200D\u2640\u2642\uFE0F])+)/g,
 
-emojiFlagRegEx: /\uD83C\uDDE8\uD83C\uDDF3|\uD83C\uDDE9\uD83C\uDDEA|\uD83C\uDDEA\uD83C\uDDF8|\uD83C\uDDEB\uD83C\uDDF7|\uD83C\uDDEC\uD83C\uDDE7|\uD83C\uDDEE\uD83C\uDDF9|\uD83C\uDDEF\uD83C\uDDF5|\uD83C\uDDF0\uD83C\uDDF7|\uD83C\uDDF7\uD83C\uDDFA|\uD83C\uDDFA\uD83C\uDDF8/,
+emojiFlags: ['D83CDDE8', 'D83CDDF3', 'D83CDDE9', 'D83CDDEA', 'D83CDDEA', 'D83CDDF8', 'D83CDDEB', 'D83CDDF7', 'D83CDDEC', 'D83CDDE7', 'D83CDDEE', 'D83CDDF9', 'D83CDDEF', 'D83CDDF5', 'D83CDDF0', 'D83CDDF7', 'D83CDDF7', 'D83CDDFA', 'D83CDDFA', 'D83CDDF8', 'D83CDDFA', 'D83CDDE6', 'D83CDDF0', 'D83CDDFF', 'D83CDDE7', 'D83CDDFE', 'D83CDDE6', 'D83CDDFA', 'D83CDDE6', 'D83CDDF9', 'D83CDDE7', 'D83CDDEA', 'D83CDDE7', 'D83CDDF7', 'D83CDDFB', 'D83CDDF3', 'D83CDDED', 'D83CDDF0', 'D83CDDE9', 'D83CDDF0', 'D83CDDEE', 'D83CDDF1', 'D83CDDEE', 'D83CDDF3', 'D83CDDEE', 'D83CDDE9', 'D83CDDEE', 'D83CDDEA', 'D83CDDE8', 'D83CDDE6', 'D83CDDE8', 'D83CDDF4', 'D83CDDF2', 'D83CDDF4', 'D83CDDF2', 'D83CDDFE', 'D83CDDF2', 'D83CDDFD', 'D83CDDF3', 'D83CDDF1', 'D83CDDF3', 'D83CDDFF', 'D83CDDF3', 'D83CDDF4', 'D83CDDE6', 'D83CDDEA', 'D83CDDF5', 'D83CDDF1', 'D83CDDF5', 'D83CDDF9', 'D83CDDF5', 'D83CDDF7', 'D83CDDF8', 'D83CDDE6', 'D83CDDF8', 'D83CDDEC', 'D83CDDF9', 'D83CDDF7', 'D83CDDF5', 'D83CDDED', 'D83CDDEB', 'D83CDDEE', 'D83CDDE8', 'D83CDDF1', 'D83CDDE8', 'D83CDDED', 'D83CDDF8', 'D83CDDEA', 'D83CDDFF', 'D83CDDE6', 'D83CDFF3', 'D83CDF08'],
 
 getCode: function(obj) {
   var code = false;
@@ -2388,13 +2510,9 @@ getCode: function(obj) {
 
 getTabCont: function(optId, selId) {
   var stickerSize = (window.devicePixelRatio >= 2) ? '128' : '64';
-  var opts = Emoji.opts[optId];
 
-  val(geByClass1('emoji_cats_title_helper', opts.tt), '');
-  opts.curEmojiCatId = null;
-
+  var html = '';
   if (selId) {
-    var html = '';
     var recentHtml = '';
     var forceStickerPack = Emoji.opts[optId].forceStickerPack;
     for(var j in window.emojiStickers) {
@@ -2411,6 +2529,9 @@ getTabCont: function(optId, selId) {
         continue;
       }
       var packHtml = '<div class="clear emoji_stickers_spliter" id="emoji_tab_cont_'+packId+'_'+optId+'"></div>';
+      if (packId == Emoji.TAB_RECENT_STICKERS) {
+        packHtml += '<div class="emoji_recent_stickers_cont" id="emoji_recent_stickers_cont' + optId + '">';
+      }
       var list = pack.stickers;
       for (var i in list) {
         packHtml += rs(Emoji.stickerItem(), {
@@ -2421,8 +2542,8 @@ getTabCont: function(optId, selId) {
           stickerSize: stickerSize
         });
       }
-      if (packId < 0) {
-        recentHtml = packHtml;
+      if (packId == Emoji.TAB_RECENT_STICKERS) {
+        recentHtml = packHtml + '</div>';
       } else if (isForced) {
         html = packHtml + html;
       } else {
@@ -2431,25 +2552,28 @@ getTabCont: function(optId, selId) {
     }
     html = recentHtml + html;
   } else {
-    var html = Emoji.ttEmojiList(optId);
+    html = Emoji.ttEmojiList(optId);
   }
   return html;
 },
 
 updateStickersCont: function(optId) {
   var opts = Emoji.opts[optId];
-  var html = Emoji.getTabCont(optId, opts.curTab);
-  var cont = geByClass1('emoji_scroll', opts.tt);
+  var html = Emoji.getTabCont(optId, Emoji.TAB_RECENT_STICKERS);
+  var cont = geByClass1('emoji_scroll_stickers', opts.tt);
   cont.innerHTML = html;
 
-  if (opts.curTab != 0) {
-    opts.initedStickers = 1;
-    opts.imagesLoading = [];
-  }
+  opts.initedStickers = 1;
+  opts.imagesLoading = [];
 
   var posTree = [], splitersPos = [];
   var el = cont.firstChild;
+  var recent = false;
   while(el) {
+    if (!recent && hasClass(el, 'emoji_recent_stickers_cont')) {
+      el = el.firstChild;
+      recent = true;
+    }
     if (hasClass(el, 'emoji_sticker_item')) {
       var id = el.id.replace('emoji_sticker_item', '');
       posTree.push([id, el.offsetTop]);
@@ -2457,12 +2581,13 @@ updateStickersCont: function(optId) {
       var id = el.id.replace('emoji_tab_cont_', '').split('_');
       splitersPos.push([intval(id[0]), el.offsetTop]);
     }
+    if (!el.nextSibling && recent) {
+      el = el.parentNode;
+    }
     el = el.nextSibling;
   }
   Emoji.needLoadStickers = posTree;
   opts.stickersSplitersPos = splitersPos;
-
-  Emoji.updateShownStickers(optId, 1);
 },
 
 stickerItem: function() {
@@ -2474,63 +2599,73 @@ hintsStickerItem: function() {
 },
 
 tabSwitch: function(obj, selId, optId, noScrollUpdate) {
-  if (!obj) {
+  if (obj == undefined) {
     return;
   }
-  var stickers = Emoji.stickers && clone(Emoji.stickers);
-  if (stickers) {
-    delete stickers[-1];
-  }
-  if (!stickers || isEmpty(stickers)) {
-    Emoji.onStickersLoad = Emoji.tabSwitch.pbind(obj, selId, optId, noScrollUpdate);
-    return false;
-  }
-  var opts = Emoji.opts[optId];
-  var tt = opts.tt;
+  var opts = Emoji.opts[optId], tt = opts.tt;
 
-  var tabsCont = geByClass1('emoji_tabs', tt);
-  var selEl = geByClass1('emoji_tab_sel', tabsCont);
-
-  if (opts.imagesLoader && opts.curTab == 0) {
-    opts.imagesLoader.iloader && opts.imagesLoader.iloader.abort();
-    opts.imagesLoader.destroy();
-  }
-  removeClass(selEl, 'emoji_tab_sel');
-  addClass(obj, 'emoji_tab_sel');
-  opts.curTab = selId;
-  cur.stickersTab = selId;
-  ls.set('stickers_tab', selId);
-
-  opts.allEmojiId = 0;
-  if (!opts.initedStickers || selId == 0) {
-    Emoji.updateStickersCont(optId);
+  if (typeof obj === 'number') {
+    obj = geByClass1('emoji_tab_' + obj, tt);
   }
 
-  if (opts.curTab == 0) {
-    opts.initedStickers = 0;
-  }
+  var emojiWrap = geByClass1('emoji_scroll_smiles', tt),
+    stickersWrap = geByClass1('emoji_scroll_stickers', tt);
 
-  Emoji.updateShownStickers(optId, 1);
+  val(geByClass1('emoji_cats_title_helper', tt), '');
+  opts.curEmojiCatId = null;
 
-  if (!noScrollUpdate && opts.curTab != 0) {
-    var stickersStart = ge('emoji_tab_cont_'+selId+'_'+optId);
-    opts.emojiScroll.scrollTop((stickersStart && selId != -1) ? stickersStart.offsetTop + getSize(stickersStart)[1] : 0);
-    Emoji.scrollToTab(selId, optId);
-  }
-  if (opts.curTab == 0) {
+  if (selId == Emoji.TAB_EMOJI) {
+    hide(stickersWrap);
+    show(emojiWrap);
+
+    if (!opts.emojiInited) {
+      val(emojiWrap, Emoji.getTabCont(optId, Emoji.TAB_EMOJI));
+      opts.emojiInited = true;
+    }
     if (opts.imagesLoader) {
       opts.imagesLoader.processLoad();
     }
     if (opts.emojiOvered && opts.curTab === 0) {
       Emoji.emojiOver(optId, Emoji.getFirstEmojiEl(optId));
     }
-    opts.emojiScroll.scrollTop();
+    if (opts.curTab != Emoji.TAB_EMOJI) {
+      opts.emojiScroll && opts.emojiScroll.scrollTop(0);
+    }
+    Emoji.updateRecentEmoji(optId);
+    Emoji.updateEmojiCatTitle(optId);
+  } else {
+    hide(emojiWrap);
+    show(stickersWrap);
+
+    var stickers = Emoji.stickers && clone(Emoji.stickers);
+    if (stickers) {
+      delete stickers[Emoji.TAB_RECENT_STICKERS];
+    }
+    if (!stickers || isEmpty(stickers) || !stickers[selId] && selId != Emoji.TAB_RECENT_STICKERS) {
+      Emoji.onStickersLoad = Emoji.tabSwitch.pbind(selId, selId, optId, noScrollUpdate);
+      Emoji.stickersLoadingProgress(optId, selId, obj);
+      opts.stickersInited = false;
+      opts.curTab = null;
+      Emoji.emojiLoadMore(optId);
+    } else if (!opts.stickersInited) {
+      Emoji.updateStickersCont(optId);
+      opts.stickersInited = true;
+    }
+    if (opts.curTab != selId || opts.afterLoad) {
+      Emoji.scrollToStickerPack(optId, selId, opts.curTab == Emoji.TAB_EMOJI);
+      opts.afterLoad = 0;
+    }
+    Emoji.updateShownStickers(optId, true);
+  }
+
+  if (!Emoji.onStickersLoad || selId == Emoji.TAB_EMOJI) {
+    Emoji.selectTab(optId, selId, obj);
   }
 },
 
 getFirstEmojiEl: function (optId) {
   var opts = Emoji.opts[optId];
-  var el = geByClass1('emoji_scroll', opts.tt).firstChild;
+  var el = geByClass1('emoji_scroll_smiles', opts.tt).firstChild;
 
   while(el) {
     if (hasClass(el, 'emoji_smiles_row')) {
@@ -2639,6 +2774,7 @@ stickerClick: function(optId, stickerNum, width, obj, sticker_referrer) {
     }
     Emoji.stickers[-1].stickers.unshift([stickerNum, width]);
     ls.set('recent_stickers', Emoji.stickers[-1]);
+    Emoji.updateRecentStickers(optId);
   }
 
   if (opts.onStickerSend) {
@@ -2647,7 +2783,6 @@ stickerClick: function(optId, stickerNum, width, obj, sticker_referrer) {
 
   Emoji.ttHide(optId, false, false, true);
   opts.recentSticker = stickerNum;
-  opts.curTab = packId;
 },
 
 stickerOver: function(stickerNum, el) {
@@ -2855,19 +2990,14 @@ clickSticker: function(packId, obj, ev) {
 
         Emoji.ttClick(txt.emojiId, geByClass1('_emoji_btn', txt.parentNode.parentNode), false, true);
 
-        var tab_cont = geByClass1('emoji_tabs_wrap', opts.tt),
-            tab = geByClass1('emoji_tab_'+packId, tab_cont);
-
+        var tab = geByClass1('emoji_tab_'+packId, opts.tt);
         var stickers = Emoji.stickers && clone(Emoji.stickers);
         if (stickers) {
           delete stickers[-1];
         }
         if (!stickers || isEmpty(stickers)) {
-          Emoji.onStickersLoad = Emoji.tabSwitch.pbind(tab, packId, txt.emojiId);
-
-          removeClass(geByClass1('emoji_tab_sel', tab_cont), 'emoji_tab_sel');
-          addClass(tab, 'emoji_tab_sel');
-          geByClass1('emoji_scroll', opts.tt).innerHTML = '<div class="emoji_scroll_progress">' + rs(vk.pr_tpl, {id: '', cls: 'pr_big'}) + '</div>';
+          Emoji.onStickersLoad = Emoji.tabSwitch.pbind(packId, packId, txt.emojiId);
+          Emoji.stickersLoadingProgress(txt.emojiId, packId, tab);
         } else {
           opts.initedStickers = 0;
           Emoji.tabSwitch(tab, packId, txt.emojiId);
@@ -2880,6 +3010,13 @@ clickSticker: function(packId, obj, ev) {
   }
   ev && cancelEvent(ev);
   return false;
+},
+
+stickersLoadingProgress: function (optId, selId, obj) {
+  var opts = Emoji.opts[optId];
+  removeClass(geByClass1('emoji_tab_sel', opts.tt), 'emoji_tab_sel');
+  addClass(obj, 'emoji_tab_sel');
+  geByClass1('emoji_scroll_stickers', opts.tt).innerHTML = '<div class="emoji_scroll_progress">' + rs(vk.pr_tpl, {id: '', cls: 'pr_big'}) + '</div>';
 },
 
 buyStickers: function(packId, ev, obj, hash, sticker_referrer) {
@@ -3029,9 +3166,9 @@ getTabsCode: function(newStickers, optId) {
       Emoji.hasNewStickers = stickers[i][2];
     }
     if (stNum === -1) {
-      systemTabsHtml += '<a class="emoji_tab emoji_tab_img_cont emoji_tab_recent emoi_tab_'+stNum+' emoji_tab_' + stNum + (cur.stickersTab == stNum ? ' emoji_tab_sel' : '')+'" onclick="'+act+'"><span class="emoji_tab_icon emoji_sprite emoji_tab_icon_recent"></span></a>';
+      systemTabsHtml += '<a class="emoji_tab emoji_tab_img_cont emoji_tab_recent emoji_tab_' + stNum + (cur.stickersTab == stNum ? ' emoji_tab_sel' : '')+'" onclick="'+act+'"><span class="emoji_tab_icon emoji_sprite emoji_tab_icon_recent"></span></a>';
     } else if (stNum) {
-      var tabHtml = '<a class="emoji_tab emoji_tab_img_cont emoi_tab_'+stNum+' emoji_tab_' + stNum + (cur.stickersTab == stNum ? ' emoji_tab_sel' : '')+(isActive || isForced ? '' : ' emoji_tab_promo')+'" onclick="'+act+'"><img width="22" height="22" src="/images/store/stickers/'+stNum+'/thumb_'+(window.devicePixelRatio >= 2 ? '44' : '22')+'.png" class="emoji_tab_img"/></a>';
+      var tabHtml = '<a class="emoji_tab emoji_tab_img_cont emoji_tab_' + stNum + (cur.stickersTab == stNum ? ' emoji_tab_sel' : '')+(isActive || isForced ? '' : ' emoji_tab_promo')+'" onclick="'+act+'"><img width="22" height="22" src="/images/store/stickers/'+stNum+'/thumb_'+(window.devicePixelRatio >= 2 ? '44' : '22')+'.png" class="emoji_tab_img"/></a>';
       if (isForced) {
         stickersTabsHtml = tabHtml + stickersTabsHtml;
       } else {
@@ -3082,6 +3219,15 @@ updateTabs: function(newStickers, keywords, update) {
     }
     Emoji.checkEmojiSlider(opts);
     Emoji.checkNewStickers(opts);
+  }
+
+  var stickers = Emoji.stickers && clone(Emoji.stickers);
+  if (stickers) {
+    delete stickers[Emoji.TAB_RECENT_STICKERS];
+  }
+  if (Emoji.onStickersLoad && window.emojiStickers && !isEmpty(stickers)) {
+    Emoji.onStickersLoad();
+    Emoji.onStickersLoad = false;
   }
 },
 
@@ -3168,6 +3314,18 @@ showStickerTT: function(el) {
     className: 'sticker_hint_tt',
     hasover: 1
   });
+},
+
+scrollToStickerPack: function (optId, selId, fast) {
+  var opts = Emoji.opts[optId],
+    stickersStart = ge('emoji_tab_cont_' + selId + '_' + optId),
+    st = (stickersStart && selId != Emoji.TAB_RECENT_STICKERS) ? stickersStart.offsetTop + getSize(stickersStart)[1] : 0;
+
+  opts.scrollAnimation = 1;
+  opts.emojiScroll.scrollTop(st, fast ? 0 : 200, function () {
+    opts.scrollAnimation = 0;
+  });
+  Emoji.scrollToTab(selId, optId);
 },
 
 __eof: 1}}
