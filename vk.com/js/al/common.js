@@ -7775,7 +7775,7 @@ function showWiki(page, edit, e, opts) {
 function videoCallback(params) {
   var method = params.shift();
   if (window.Videoview && Videoview.playerCallback[method]) {
-    Videoview.playerCallback[method].apply(Videoview, params);
+    return Videoview.playerCallback[method].apply(Videoview, params);
   } else {
     throw Error('Unregistered player callback: ' + method);
   }
