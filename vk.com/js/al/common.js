@@ -7829,7 +7829,7 @@ function showDoneBox(msg, opts) {
   resEl.style.top = Math.max(10, top + (height - containerSize[1]) / 3) + 'px';
   var out = opts.out || 2000;
   var _fadeOut = function() {
-    setTimeout(function() {
+    window.doneBoxTO = setTimeout(function() {
       if (opts.permit && !opts.permit()) {
         _fadeOut();
         return;
@@ -7842,6 +7842,10 @@ function showDoneBox(msg, opts) {
       });
     }, out);
   }
+  addEvent(resEl, 'mouseenter', function() {
+    clearTimeout(window.doneBoxTO);
+  });
+  addEvent(resEl, 'mouseleave', _fadeOut);
   _fadeOut();
 }
 
