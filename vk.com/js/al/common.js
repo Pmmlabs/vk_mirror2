@@ -4670,6 +4670,7 @@ var nav = {
 
   go: function(loc, ev, opts) {
     if (checkEvent(ev) || cur.noAjaxNav) return;
+    LongView.onBeforePageChange();
     opts = opts || {};
     if (loc.tagName && loc.tagName.toLowerCase() == 'a') {
       if (loc.target == '_blank' || nav.baseBlank) {
@@ -10393,5 +10394,509 @@ function loadScript(scriptSrc, options) {
 function getStatusExportHash() {
   return vk.statusExportHash;
 }
+
+/**
+ * LongView.
+ *
+ * LongView consists of six phases:
+ *
+ * 0. Send old data
+ * When user opens a page, LongView checks if there is old data (see `OLD_DATA_AGE`)
+ * in local storage that has no been sent yet. Sends all old data, clears local storage.
+ *
+ * 1. Register
+ * Every time user scrolls page, new post elements are registered to be processed via LongView.
+ * These elements live inside `tracking` array.
+ *
+ * 2. Process
+ * Every time user scrolls page, all tracking elements are being processed via LongView.
+ * LongView tracks how much of post is visible and how long user sees the post.
+ *
+ * 3. Save
+ * After `DELAY_SAVE` milliseconds of inactivity (not scrolling),
+ * information about all viewed posts is saved to local storage.
+ *
+ * 4. Send
+ * After `DELAY_SEND` milliseconds of inactivity,
+ * information about all viewed posts is sent to server.
+ *
+ * 5. Idle <=> save
+ * After `DELAY_IDLE` milliseconds of inactivity, information about currently viewing posts
+ * is being periodically saved to local storage every `INTERVAL_IDLE` milliseconds.
+ *
+ * 6. Send all idled data
+ * After `DELAY_IDLE_SEND` milliseconds on inactivity,
+ * idle process stops and all idled data is sent to the server.
+ *
+ */
+(function() {
+  var SECOND = 1000;
+  var MINUTE = 60 * SECOND;
+
+  // Configs
+  var PERCENT_START        = 0.5;
+  var PERCENT_END          = 0.25;
+  var DURATION_REGULAR     = 0.3 * SECOND;
+  var DURATION_AUTOPLAY_AD =   1 * SECOND;
+  var DURATION_MAX         =   5 * MINUTE;
+  var DELAY_SAVE           = 2.5 * SECOND;
+  var DELAY_SEND           =   5 * SECOND;
+  var DELAY_IDLE           =   6 * SECOND;
+  var DELAY_IDLE_SEND      =  20 * SECOND;
+  var INTERVAL_IDLE        =   1 * SECOND;
+  var OLD_DATA_AGE         =   6 * MINUTE;
+
+  // Elements properties
+  var TYPE = '_longViewType';
+  var IDLED = '_longViewIdled';
+  var MODULE = '_longViewModule';
+  var STARTED = '_longViewStarted';
+  var DURATION = '_longViewDuration';
+
+  // Long view types
+  var TYPE_REGULAR = 'REGULAR';
+  var TYPE_AUTOPLAY_AD = 'AUTOPLAY_AD';
+
+  // localStorage keys
+  var LS_VIEWED = 'LongView.viewed';
+  var LS_IDLED = 'LongView.idled';
+
+  // Local vars
+  var tracking = [];
+  var started = [];
+  var viewedData = [];
+  var tabTimestamp = Date.now();
+  var timerSaveViewed = null;
+  var timerSendViewed = null;
+  var timerSaveIdled = null;
+  var timerSendIdled = null;
+
+  function initLongView() {
+    if (vk.isLongViewEnabled) {
+      addEvent(window, 'blur', onWindowBlur);
+      addEvent(window, 'focus', onWindowFocus);
+      onDomReady(function() { setTimeout(onStartup, 500) });
+
+      window.LongView = {
+        onRegister: onRegister,
+        onScroll: onScroll,
+        onBeforePageChange: onBeforePageChange,
+        debug: function() { return { started: started, viewedData: viewedData } }
+      };
+    } else {
+      window.LongView = {
+        onRegister: function() {},
+        onScroll: function() {},
+        onBeforePageChange: function() {}
+      };
+    }
+  }
+
+  function onStartup() {
+    var oldData = lsGetOld();
+
+    if (oldData.length) {
+      ajaxSendData(oldData);
+      lsCleanOld();
+    }
+  }
+
+  function onRegister(elem, module) {
+    if (!elem[TYPE] && isPostValid(elem)) {
+      elem[TYPE] = getPostType(elem);
+      elem[MODULE] = module;
+      tracking.push(elem);
+    }
+  }
+
+  function onScroll(scrollY, winHeight) {
+    processTracking(scrollY, winHeight);
+    stopTimers();
+    startTimers();
+  }
+
+  function onWindowBlur() {
+    stopTimers();
+    justSendAll();
+  }
+
+  function onWindowFocus() {
+    viewedData = [];
+    started.forEach(function(elem) { elem[STARTED] = Date.now() });
+    lsSetViewed(null);
+    lsSetIdled(null);
+    startTimers();
+  }
+
+  function onBeforePageChange() {
+    stopTimers();
+    justSendAll();
+    viewedData = [];
+    started = [];
+    lsSetViewed(null);
+    lsSetIdled(null);
+  }
+
+  function processTracking(scrollY, winHeight) {
+    tracking.forEach(function(elem) {
+      if (!document.body.contains(elem)) {
+        return;
+      }
+
+      if (isViewStarted(elem, scrollY, winHeight)) {
+        elem[STARTED] = Date.now();
+        started.push(elem);
+      } else if (isViewEnded(elem, scrollY, winHeight)) {
+        if (elem[IDLED]) {
+          delete elem[IDLED];
+        } else {
+          removeFromArray(started, elem);
+          viewedData = viewedData.concat(elemToData(elem));
+        }
+
+        delete elem[STARTED];
+      }
+    });
+  }
+
+  function startTimers() {
+    timerSaveViewed = setTimeout(saveViewed, DELAY_SAVE);
+    timerSendViewed = setTimeout(sendViewedClean, DELAY_SEND);
+    timerSaveIdled = setTimeout(saveIdled, DELAY_IDLE);
+    timerSendIdled = setTimeout(sendIdledClean, DELAY_IDLE_SEND);
+  }
+
+  function stopTimers() {
+    clearTimeout(timerSaveViewed);
+    clearTimeout(timerSendViewed);
+    clearTimeout(timerSaveIdled);
+    clearTimeout(timerSendIdled);
+  }
+
+  function isViewStarted(elem, scrollY, winHeight) {
+    return (
+      !elem[STARTED] &&
+      isViewable(elem, PERCENT_START, scrollY, winHeight)
+    );
+  }
+
+  function isViewEnded(elem, scrollY, winHeight) {
+    return (
+      elem[STARTED] &&
+      !isViewable(elem, PERCENT_END, scrollY, winHeight)
+    );
+  }
+
+  function saveViewed() {
+    if (viewedData.length) {
+      lsSetViewed(viewedData);
+    }
+  }
+
+  function sendViewedClean() {
+    ajaxSendData(viewedData);
+    viewedData = [];
+    lsSetViewed(null);
+  }
+
+  function saveIdled() {
+    if (started.length) {
+      lsSetIdled(elemsToData(started));
+      timerSaveIdled = setTimeout(saveIdled, INTERVAL_IDLE);
+    }
+  }
+
+  function sendIdledClean() {
+    clearTimeout(timerSaveIdled);
+    ajaxSendData(elemsToData(started));
+    started.forEach(function(elem) { elem[IDLED] = true });
+    started = [];
+    lsSetIdled(null);
+  }
+
+  function justSendAll() {
+    ajaxSendData(viewedData.concat(elemsToData(started)));
+  }
+
+  function ajaxSendData(data) {
+    if (data && data.length) {
+      ajax.post('/al_page.php', {
+        act: 'seen',
+        data: dataToString(data),
+        long_view: 1
+      });
+    }
+  }
+
+  function getPostBody(elem) {
+    return geByClass1('wall_text', elem);
+  }
+
+  function getPostType(elem) {
+    var child = elem && domFC(elem);
+    return child && child.hasAttribute('data-ad-video-autoplay') ? TYPE_AUTOPLAY_AD : TYPE_REGULAR;
+  }
+
+  function isPostValid(elem) {
+    var child = elem && domFC(elem);
+    return (
+      !child || // empty element
+      child.getAttribute('id') === 'ads_feed_placeholder' || // strange element
+      hasClass(elem, 'no_posts') // strange element
+    ) ? false : true;
+  }
+
+  function lsSetViewed(data) {
+    lsSet(LS_VIEWED, data);
+  }
+
+  function lsSetIdled(data) {
+    lsSet(LS_IDLED, data);
+  }
+
+  function lsSet(key, data) {
+    var allTabs = ls.get(key) || {};
+
+    if (data) {
+      allTabs[tabTimestamp] = data;
+    } else {
+      delete allTabs[tabTimestamp];
+    }
+
+    ls.set(key, allTabs);
+  }
+
+  function lsGetOld() {
+    var self = lsGetOld;
+    var oldData = [];
+    var lsViewed = ls.get(LS_VIEWED) || {};
+    var lsIdled = ls.get(LS_IDLED) || {};
+
+    self.iterator || (self.iterator = function(lsData) {
+      return function(timestamp) {
+        if (isOld(timestamp)) {
+          oldData = oldData.concat(lsData[timestamp])
+        }
+      };
+    });
+
+    Object.keys(lsViewed).forEach(self.iterator(lsViewed));
+    Object.keys(lsIdled).forEach(self.iterator(lsIdled));
+
+    return oldData;
+  }
+
+  function lsCleanOld() {
+    var self = lsCleanOld;
+    var lsViewed = ls.get(LS_VIEWED) || {};
+    var lsIdled = ls.get(LS_IDLED) || {};
+
+    self.iterator || (self.iterator = function(lsData) {
+      return function(timestamp) {
+        if (isOld(timestamp)) {
+          delete lsData[timestamp];
+        }
+      };
+    });
+
+    Object.keys(lsViewed).forEach(self.iterator(lsViewed));
+    Object.keys(lsIdled).forEach(self.iterator(lsIdled));
+
+    ls.set(LS_VIEWED, lsViewed);
+    ls.set(LS_IDLED, lsIdled);
+  }
+
+  function isOld(_timestamp) {
+    timestamp = Number(_timestamp);
+    return timestamp !== tabTimestamp && Date.now() - timestamp >= OLD_DATA_AGE;
+  }
+
+  function isViewable(elem, percent, scrollY, winHeight) {
+    if (!elem) {
+      return false;
+    }
+
+    var self = isViewable;
+    var headerHeight = self.headerHeight || (self.headerHeight = ge('page_header').offsetHeight);
+    var screenHeight = winHeight - headerHeight;
+    var viewTop = scrollY + headerHeight;
+    var viewBottom = scrollY + winHeight;
+    var elemHeight = elem.offsetHeight;
+    var elemRect = elem.getBoundingClientRect();
+    var elemTop = scrollY + elemRect.top;
+    var elemBottom = elemTop + elemHeight;
+    var elemViewHeight = elemBottom > viewTop && elemTop < viewBottom ?
+      Math.min(viewBottom, elemBottom) - Math.max(viewTop, elemTop) :
+      0;
+
+    return elemViewHeight >= Math.min(screenHeight * percent, elemHeight * percent);
+  }
+
+  function dataToString(data) {
+    var dataByOwner = {};
+    var dataStrings = [];
+
+    data.forEach(function(d) {
+      var ownerId = d.ownerId;
+      var params = ownerId === 'ad' ? '' : (':' + d.duration + ':' + d.index);
+      dataByOwner[ownerId] || (dataByOwner[ownerId] = []);
+
+      dataByOwner[ownerId].push(
+        // <module><postId>[:<duration>:<index>]:<sessionId>[:<q>]
+        d.module + d.postId + params +
+        (d.sessionId ? ':' + d.sessionId : '') +
+        (d.q ? ':' + d.q : '')
+      );
+    });
+
+    for (ownerId in dataByOwner) {
+      dataStrings.push(ownerId + '_' + dataByOwner[ownerId].join(','));
+    }
+
+    return dataStrings.join(';');
+  }
+
+  function elemsToData(elems) {
+    var data = [];
+    var elemsCount = elems.length;
+    var i;
+
+    for (i = 0; i < elemsCount; i++) {
+      data = data.concat(elemToData(elems[i]));
+    }
+
+    return data;
+  }
+
+  function elemToData(elem) {
+    if (!document.body.contains(elem)) {
+      return [];
+    }
+
+    var duration = Math.min(DURATION_MAX, elem[DURATION] || (Date.now() - elem[STARTED]));
+
+    // If was viewed long enough
+    if (
+      elem[TYPE] === TYPE_REGULAR && duration < DURATION_REGULAR ||
+      elem[TYPE] === TYPE_AUTOPLAY_AD && duration < DURATION_AUTOPLAY_AD
+    ) {
+      return [];
+    }
+
+    var raws = getPostRaws(elem);
+    var sectionLetter = getSectionLetter(raws.module);
+    var sessionId = cur.feed_session_id || 'na';
+    var data = [];
+    var ownerId;
+    var postId;
+    var keyParts;
+    var key;
+
+    for (key in raws) {
+      if (key === 'index' || key === 'module' || key === 'q') {
+        continue;
+      }
+
+      keyParts = key.split('_');
+      ownerId = keyParts[0];
+      postId = keyParts[1];
+
+      // For "recommended applications" blocks `key` looks like `ads_ads_wrap_1828696736`
+      if (ownerId === 'ads') {
+        postId === keyParts[3];
+      }
+
+      // For blocks in "photos" feed section `key` looks like `post16_1576215_1481616667`
+      if (/^post\d+$/.test(ownerId)) {
+        ownerId = keyParts[1];
+        postId = keyParts[2];
+      }
+
+      data.push(
+        // Regular ad
+        ownerId === 'ad' ? {
+          ownerId: 'ad',
+          postId: postId,
+          module: sectionLetter
+        } :
+
+        // Special block "recommended applications"
+        ownerId === 'ads' ? {
+          ownerId: 'ads',
+          postId: postId,
+          module: sectionLetter,
+          index: raws.index,
+          duration: duration,
+          sessionId: sessionId
+        } :
+
+        // Regular post
+        {
+          ownerId: ownerId,
+          postId: (raws[key] === 1 ? '' : '-') + postId,
+          module: sectionLetter,
+          index: raws.index,
+          duration: duration,
+          sessionId: sessionId,
+          q: raws.q || null
+        }
+      );
+    }
+
+    return data;
+  }
+
+  /**
+   * `raws` looks like {
+   *   -14524722_109973: 1, // can be -1, which means repost
+   *   -14524722_109976: 1,
+   *   ad_d8WtwJK...: 1,
+   *   index: 6, // order
+   *   module: "feed_news_recent",
+   *   q: "query"
+   * }
+   */
+  function getPostRaws(elem) {
+    try {
+      return window[elem[MODULE]].postsGetRaws(elem);
+    } catch (err) {
+      console.error('Unable to extract data from elem', elem);
+      return [];
+    }
+  }
+
+  function getSectionLetter(_section) {
+    var section = _section === 'feed_other' ? 'feed_' + cur.section : _section;
+
+    return {
+      feed: 'f',
+      public: 'c',
+      profile: 'p',
+      feed_search: 's',
+      feed_news_recent: 'r',
+      feed_news: 'r',
+      feed_news_top: 't',
+      feed_recommended: 'd',
+      feed_recommended_recent: 'd',
+      feed_recommended_top: 'e',
+      feed_photos: 'h',
+      feed_videos: 'v',
+      feed_friends: 'n',
+      feed_likes: 'k',
+      feed_list: 'z',
+      feed_other: 'o'
+    }[section] || 'u';
+  }
+
+  function removeFromArray(array, item) {
+    var index = array.indexOf(item);
+
+    if (index >= 0) {
+      array.splice(index, 1);
+    }
+  }
+
+  initLongView();
+})();
 
 try{stManager.done('common.js');}catch(e){}

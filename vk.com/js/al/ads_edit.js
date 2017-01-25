@@ -45,6 +45,8 @@ AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_OLD              = 0;
 AdsEdit.ADS_CAMPAIGN_TYPE_UI_CREATE_NEW           = 1;
 AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_APPS_WITH_BUDGET = 2;
 
+AdsEdit.ADS_GEO_CIRCLE_TYPE_MASK_ONLINE = 1;
+
 AdsEdit.init = function() {
   cur.toClean = {};
   cur.destroy.push(function() { AdsEdit.destroy(); } );
@@ -2936,6 +2938,8 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
 
         this.updateTips();
 
+        this.targetingEditor.updateUiCriterionData('geo_mask');
+
         isUpdateNeeded = true;
         break;
       case 'cost_type':
@@ -4590,6 +4594,7 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
   this.options = {
     targetIdPrefix: 'ads_targeting_criterion_',
     uiWidth: 320 + 8,
+    uiWidthGeo: 400,
     uiHeight: 250,
     uiWidthRange: 151 + 8,
     uiHeightRange: 190,
@@ -4601,6 +4606,7 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
   // defaultData exists if data may be not equal defaultData
   this.criteria = {
     geo_type:               {value: 0},
+    geo_mask:               {value: 0,  data: [], allow_online_geo: false},
     country:                {value: 0,  data: []},
     cities:                 {value: '', data: [], defaultData: [], selectedData: []},
     cities_not:             {value: '', data: [],                  selectedData: []},
@@ -4641,7 +4647,7 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
     pays_money:             {value: 0,  data: []},
     retargeting_groups:     {value: '', data: []},
     retargeting_groups_not: {value: '', data: []},
-    geo_near:               {value: '', data: [], defaultData: [], radius_selector: '', radius_selector_full: '', data_radius: [], allowed_radiuses: [], default_radius: 1000, default_center: [59.92688, 30.32913], lngcode: 'ru', zoom_radius_map: {}},
+    geo_near:               {value: '', data: [], defaultData: [], radius_selector: '', radius_selector_full: '', radius_selector_online: '', data_radius: [], data_radius_online: [], allowed_radiuses: [], allowed_radiuses_online: [], default_radius: 1000, default_center: [59.92688, 30.32913], lngcode: 'ru', zoom_radius_map: {}},
     tags:                   {value: ''}
   };
 
@@ -4841,13 +4847,14 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
       break;
     }
 
+    case 'geo_mask':
     case 'pays_money': {
       targetElem = ge(this.options.targetIdPrefix + criterionName);
       targetElem.removeAttribute('autocomplete');
       this.criteria[criterionName].ui = new Dropdown(targetElem, this.getUiCriterionData(criterionName), {
         selectedItem: this.getUiCriterionSelectedData(criterionName),
         big:          true,
-        width:        this.options.uiWidth,
+        width:        inArray(criterionName, ['geo_mask']) ? this.options.uiWidthGeo : this.options.uiWidth,
         onChange:     function(value) { this.onUiChange(criterionName, value); }.bind(this)
       });
       this.updateUiCriterionEnabled(criterionName);
@@ -4920,7 +4927,7 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
         big:                        true,
         withIcons:                  inArray(criterionName, ['groups', 'groups_not', 'apps', 'apps_not']),
         maxItems:                   this.options.uiMaxSelected,
-        width:                      inArray(criterionName, ['geo_near']) ? 400 : this.options.uiWidth,
+        width:                      inArray(criterionName, ['geo_near']) ? this.options.uiWidthGeo : this.options.uiWidth,
         height:                     this.options.uiHeight,
         selectedItemsDelimiter:     inArray(criterionName, ['geo_near']) ? ';' : ',',
 
@@ -5124,6 +5131,13 @@ AdsTargetingEditor.prototype.getUiCriterionData = function(criterionName, option
       } else {
         return [];
       }
+    case 'geo_mask': {
+      var viewParams = this.viewEditor.getParams();
+      var showOnlineGeo = inArray(viewParams.format_type, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]) && this.criteria.geo_mask.allow_online_geo;
+      return this.criteria[criterionName].data.filter(function (row) {
+        return showOnlineGeo ? true : (row[0] != AdsEdit.ADS_GEO_CIRCLE_TYPE_MASK_ONLINE);
+      }, this);
+    }
     case 'geo_near': {
       var suffix = '';
       var mapCenter;
@@ -5392,7 +5406,7 @@ AdsTargetingEditor.prototype.getUiCriterionVisibility = function(criterionName, 
     visible = !!(!this.criteria[criterionName].hidden_more);
   }
 
-  var tabbedControl = inArray(criterionName, ['geo_near', 'country', 'cities', 'cities_not', 'streets', 'districts', 'stations']);
+  var tabbedControl = inArray(criterionName, ['geo_near', 'geo_mask', 'country', 'cities', 'cities_not', 'streets', 'districts', 'stations']);
 
   if (visible !== false) {
     switch (criterionName) {
@@ -5412,6 +5426,8 @@ AdsTargetingEditor.prototype.getUiCriterionVisibility = function(criterionName, 
         visible = (this.criteria.geo_type.value == 0);
         break;
       }
+
+      case 'geo_mask':
       case 'geo_near': {
         visible = (this.criteria.geo_type.value == 1);
         break;
@@ -5804,10 +5820,41 @@ AdsTargetingEditor.prototype.onCriterionUpdate = function(criterionName, criteri
         isUpdateNeeded = false;
         break;
 
-      case 'geo_near': {
-        this.onCriterionUpdateView(criterionName);
+      case 'geo_mask': {
+        var mask = this.criteria[criterionName].value;
+        var isOnline = (mask == AdsEdit.ADS_GEO_CIRCLE_TYPE_MASK_ONLINE);
+        var allowedRadiuses = isOnline ? this.criteria['geo_near'].allowed_radiuses_online : this.criteria['geo_near'].allowed_radiuses;
+        var radiusSelector = isOnline ? this.criteria['geo_near'].radius_selector_online : this.criteria['geo_near'].radius_selector;
+        var geoEditor = this.criteria['geo_near'].geo_editor;
+
+        //ads_edit_geo_place_radius_selector_wrap
+        if (1) {
+          each(geByClass('ads_edit_geo_place_radius_selector_wrap', this.criteria['geo_near'].ui.container), function (i, el) {
+            var menu = geByClass1('_ui_menu', el);
+            if (!menu) {
+              menu = data(el, 'dummyMenu');
+              data(el, 'dummyMenu', null);
+            }
+
+            re(menu);
+
+            el.appendChild(geByClass1('ui_actions_menu', se(radiusSelector)));
+          });
+        }
+
+        if (geoEditor && geoEditor.inited) {
+          geoEditor.setMask(mask);
+          geoEditor.options.allowedRadiuses = allowedRadiuses;
+          var boxGeoEditor = geoEditor.box_geo_editor;
+          if (boxGeoEditor && boxGeoEditor.inited) {
+            boxGeoEditor.setMask(mask);
+            boxGeoEditor.options.allowedRadiuses = allowedRadiuses;
+          }
+        }
+
         break;
       }
+
       case 'geo_type': {
         this.updateUiCriterionVisibility('country');
         this.updateUiCriterionVisibility('cities');
@@ -5816,6 +5863,7 @@ AdsTargetingEditor.prototype.onCriterionUpdate = function(criterionName, criteri
         this.updateUiCriterionVisibility('districts');
         this.updateUiCriterionVisibility('stations');
         this.updateUiCriterionVisibility('geo_near');
+        this.updateUiCriterionVisibility('geo_mask');
 
         toggleClass('ads_edit_targeting_group_' + 'geography' + '_more_row', 'ads_edit_row_more_hidden', this.criteria[criterionName].value);
         toggleClass('ads_edit_targeting_group_' + 'geography' + '_less_row', 'ads_edit_row_more_hidden', this.criteria[criterionName].value);
@@ -5830,14 +5878,6 @@ AdsTargetingEditor.prototype.onCriterionUpdate = function(criterionName, criteri
 
   if (isUpdateNeeded || forceDataUpdate) {
     this.needDataUpdate();
-  }
-}
-
-AdsTargetingEditor.prototype.onCriterionUpdateView = function(criterionName) {
-  switch (criterionName) {
-    case 'geo_near': {
-      break;
-    }
   }
 }
 
@@ -6190,6 +6230,7 @@ AdsTargetingEditor.prototype.getCriteria = function() {
     criteria.streets = '';
   } else if (this.criteria.geo_type.value == 0) {
     criteria.geo_near = '';
+    criteria.geo_mask = '';
   }
   return criteria;
 }
@@ -6458,6 +6499,7 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
 
   var tableWrap = domPN(boxGeoEditor.table);
   geoEditorOptions.defaultRadius = this.criteria[criterionName].geo_editor.options.defaultRadius;
+  geoEditorOptions.defaultMask = this.criteria['geo_mask'].value;
   boxGeoEditor.init(ge('ads_edit_geo_box_map'), geoEditorOptions, {
     onLoaded: function () {
       boxGeoEditor.setPointsFromArray(this.criteria[criterionName].geo_editor.points.slice(0));
@@ -6525,9 +6567,11 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
       cell.className = 'ads_edit_geo_box_table_point_reach';
       cell.innerHTML = (point.audience !== undefined) ? boxGeoEditor.formatPointAudience(point.audience, point.audienceGeoNearOnly) : getProgressHtml();
 
+      var isGeoOnline = this.criteria.geo_mask.value == AdsEdit.ADS_GEO_CIRCLE_TYPE_MASK_ONLINE;
+      var radiusSelector = isGeoOnline ? this.criteria[criterionName].radius_selector_online : this.criteria[criterionName].radius_selector_full;
       cell = row.insertCell(0);
       cell.className = 'ads_edit_geo_box_table_point_radius';
-      cell.innerHTML = this.criteria[criterionName].radius_selector_full;
+      cell.innerHTML = radiusSelector;
       geByClass1('ads_edit_geo_place_radius_selector_text', cell).innerHTML = this.formatGeoRadius(criterionName, point.radius);
 
       cell = row.insertCell(0);
@@ -6584,7 +6628,7 @@ AdsTargetingEditor.prototype.initGeoBox = function (criterionName, geoEditorOpti
         geByClass1('ads_edit_geo_box_table_point_reach', row).innerHTML = (point.audience !== undefined) ? boxGeoEditor.formatPointAudience(point.audience, point.audienceGeoNearOnly) : getProgressHtml();
       }
 
-      if (changes.coords || changes.radius) {
+      if (changes.coords || changes.radius || changes.mask) {
         this.criteria[criterionName].value = boxGeoEditor.savePointsToString();
         this.needDataUpdate();
       }
@@ -6681,6 +6725,7 @@ AdsTargetingEditor.prototype.initGeoEditor = function (criterionName, mapContain
     expandMapButton: true,
     allowedRadiuses: this.criteria[criterionName].allowed_radiuses,
     locale: this.criteria[criterionName].lngcode,
+    defaultMask: this.criteria['geo_mask'].value,
 
     defaultMapCenter: {
       lat: this.criteria[criterionName].default_center[0],
@@ -6691,6 +6736,7 @@ AdsTargetingEditor.prototype.initGeoEditor = function (criterionName, mapContain
     defaultRadius: this.criteria[criterionName].default_radius, // this will be overriden later by default radius from geo_editor
     allowedRadiuses: this.criteria[criterionName].allowed_radiuses,
     locale: this.criteria[criterionName].lngcode,
+    defaultMask: this.criteria['geo_mask'].value,
 
     defaultMapCenter: {
       lat: this.criteria[criterionName].default_center[0],
@@ -6700,7 +6746,9 @@ AdsTargetingEditor.prototype.initGeoEditor = function (criterionName, mapContain
 
   var geoEditorEvents = {};
   geoEditorEvents.onPointAdded = function (point) {
-    var el = this.criteria[criterionName].ui.addTagData([point.id, point.caption, '', 1, '', this.criteria[criterionName].radius_selector]);
+    var isGeoOnline = this.criteria.geo_mask.value == AdsEdit.ADS_GEO_CIRCLE_TYPE_MASK_ONLINE;
+    var radiusSelector = isGeoOnline ? this.criteria[criterionName].radius_selector_online : this.criteria[criterionName].radius_selector;
+    var el = this.criteria[criterionName].ui.addTagData([point.id, point.caption, '', 1, '', radiusSelector]);
     geByClass1('ads_edit_geo_place_radius_selector_text', el).innerHTML = this.formatGeoRadius(criterionName, point.radius);
     this.criteria[criterionName].ui.updateInput();
 
@@ -6723,7 +6771,7 @@ AdsTargetingEditor.prototype.initGeoEditor = function (criterionName, mapContain
     this.onCriterionUpdate(criterionName, geoEditor.savePointsToString());
     this.restoreMapPosition(criterionName);
 
-    if (changes.coords || changes.radius) {
+    if (changes.coords || changes.radius || changes.mask) {
       this.needDataUpdate();
     }
   }.bind(this);
@@ -6775,12 +6823,14 @@ AdsTargetingEditor.prototype.initGeoEditor = function (criterionName, mapContain
 }
 
 AdsTargetingEditor.prototype.formatGeoRadius = function (criterionName, radius) {
-  for (var i = 0, row; row = this.criteria[criterionName].data_radius[i]; ++i) {
+  var isGeoOnline = this.criteria.geo_mask.value == AdsEdit.ADS_GEO_CIRCLE_TYPE_MASK_ONLINE;
+  var dataRadius = isGeoOnline ? this.criteria[criterionName].data_radius_online : this.criteria[criterionName].data_radius;
+  for (var i = 0, row; row = dataRadius[i]; ++i) {
     if (radius == row[0]) {
       return row[1];
     }
   }
-  return radius + ' ' + getLang('ads_edit_ad_geo_radius_unit_meters');
+  return langNumeric(radius, '%s', true) + ' ' + getLang('ads_edit_ad_geo_radius_unit_meters');
 }
 
 AdsTargetingEditor.prototype.saveMapPosition = function (criterionName) {
@@ -6840,7 +6890,10 @@ AdsTargetingEditor.prototype.updateGeoEditorDefaultRadius = function (criterionN
     return;
   }
 
-  if (lastMapZoom !== undefined && !geoEditor.manually_changed_radius) {
+  var mask = this.criteria['geo_mask'].value;
+  var isOnline = (mask == AdsEdit.ADS_GEO_CIRCLE_TYPE_MASK_ONLINE);
+
+  if (lastMapZoom !== undefined && !geoEditor.manually_changed_radius && !isOnline) {
     var maxZoom = -1;
     for (var zoom in this.criteria[criterionName].zoom_radius_map) {
       zoom = parseInt(zoom);

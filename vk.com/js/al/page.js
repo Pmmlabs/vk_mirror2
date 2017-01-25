@@ -4490,6 +4490,7 @@ var Wall = {
         }
         Page.postsUnseen(postsUnseen);
         for (el = cur.topRow; el; el = nel) {
+          LongView.onRegister(el, 'Wall');
           top = ntop ? ntop : el.offsetTop;
           if (top >= st + ch) break;
 
@@ -4509,6 +4510,7 @@ var Wall = {
             }
           }
         }
+        LongView.onScroll(st, ch);
         Page.postsSeen(posts);
       }
     }
