@@ -182,7 +182,7 @@ AdsEdit.initHelpTooltip = function(targetElem, handler, ttContainer, curLocal) {
   curLocal.destroy.push(function(){ removeEvent(tootltipTextElem, 'mouseover mouseout', handler); });
 }
 
-AdsEdit.showHelpCriterionTooltip = function(helpTooltipName, targetElem, ttHandler, ttContainer, helpText, shiftLeft, shiftTop, curLocal, forceTooltip) {
+AdsEdit.showHelpCriterionTooltip = function(helpTooltipName, targetElem, ttHandler, ttContainer, helpText, shiftLeft, shiftTop, curLocal, forceTooltip, isNarrow) {
   if (isFunction(helpText)) {
     helpText = helpText();
   }
@@ -205,7 +205,7 @@ AdsEdit.showHelpCriterionTooltip = function(helpTooltipName, targetElem, ttHandl
     if (lastTooltip) {
       lastTooltip.hide();
       setTimeout((function () {
-        this.showHelpCriterionTooltip(helpTooltipName, targetElem, ttHandler, ttContainer, helpText, shiftLeft, shiftTop, curLocal, true);
+        this.showHelpCriterionTooltip(helpTooltipName, targetElem, ttHandler, ttContainer, helpText, shiftLeft, shiftTop, curLocal, true, isNarrow);
       }).bind(this), 500);
       return;
     }
@@ -222,10 +222,10 @@ AdsEdit.showHelpCriterionTooltip = function(helpTooltipName, targetElem, ttHandl
   }
 
   showTooltip(targetElem, {
-    text: '<div class="ads_edit_tt_pointer ads_edit_tt_pointer_' + helpTooltipName + '"></div><div class="ads_edit_tt_text">' + helpText + '</div>',
+    text: '<div class="ads_edit_tt_pointer ads_edit_tt_pointer_' + helpTooltipName + '"></div><div class="ads_edit_tt_text ' + (isNarrow ? 'ads_edit_tt_text_narrow' : '') + '">' + helpText + '</div>',
     className: 'ads_edit_tt',
     slideX: 15,
-    shift: [shiftLeft, 0, shiftTop],
+    shift: [shiftLeft, 0, isFunction(shiftTop) ? shiftTop() : shiftTop],
     nohide: true,
     forcetodown: true,
     force: !!forceTooltip,
@@ -4730,13 +4730,16 @@ AdsTargetingEditor.prototype.initHelpCriterion = function(criterionName) {
   var context = {focus: false, over: 0, out: 2};
   var shiftTop;
   var shiftLeft = false;
+  var isNarrow = false;
 
   switch (criterionName) {
     case 'travellers': shiftTop = -52; break;
     case 'positions':  shiftTop = -44; break;
     case 'pays_money': shiftTop = -44; break;
     case 'tags':       shiftTop = -96; break;
-    case 'geo_type':   shiftLeft = -320; break;
+    case 'geo_type':   shiftLeft = -320; isNarrow = true; break;
+    case 'geo_mask':   shiftLeft = -410; isNarrow = true; break;
+    case 'geo_near':   shiftLeft = -410; isNarrow = true; shiftTop = function () { return -(44 + 345 + 28 + (geByClass1('ads_edit_value', ge('ads_edit_criterion_row_geo_near')).clientHeight - 345 - 28) / 2)}; break;
   }
 
   switch (criterionName) {
@@ -4752,14 +4755,23 @@ AdsTargetingEditor.prototype.initHelpCriterion = function(criterionName) {
     case 'retargeting_groups':
     case 'tags':
     case 'geo_type':
+    case 'geo_mask':
+    case 'geo_near':
       targetElem = ge(this.options.targetIdPrefix + criterionName).parentNode;
-      var showTooltip = function() { AdsEdit.showHelpCriterionTooltip(criterionName, targetElem, handler, this.criteria[criterionName], helpText, shiftLeft, shiftTop, this.cur); }.bind(this);
+      var showTooltip = function() { AdsEdit.showHelpCriterionTooltip(criterionName, targetElem, handler, this.criteria[criterionName], helpText, shiftLeft, shiftTop, this.cur, undefined, isNarrow); }.bind(this);
       var hideTooltip = function() { AdsEdit.hideHelpTooltip(this.criteria[criterionName].tt); }.bind(this);
-      handler = function(event){ AdsEdit.onHelpTooltipEvent(event, criterionName, context, showTooltip, hideTooltip); }.bind(this);
-      AdsEdit.initHelpTooltipTarget(targetElem, handler, this.cur);
+      handler = function(event) { AdsEdit.onHelpTooltipEvent(event, criterionName, context, showTooltip, hideTooltip); }.bind(this);
 
-      if (criterionName === 'geo_type') {
+      if (!inArray(criterionName, ['geo_near', 'geo_mask'])) {
+        AdsEdit.initHelpTooltipTarget(targetElem, handler, this.cur);
+      }
+
+      if (criterionName === 'geo_mask') {
         setTimeout(showTooltip, 1000);
+        setTimeout(hideTooltip, 10000);
+      }
+      if (criterionName === 'geo_near') {
+        this.criteria[criterionName].ttHandler = handler;
       }
       break;
   }
@@ -5827,20 +5839,17 @@ AdsTargetingEditor.prototype.onCriterionUpdate = function(criterionName, criteri
         var radiusSelector = isOnline ? this.criteria['geo_near'].radius_selector_online : this.criteria['geo_near'].radius_selector;
         var geoEditor = this.criteria['geo_near'].geo_editor;
 
-        //ads_edit_geo_place_radius_selector_wrap
-        if (1) {
-          each(geByClass('ads_edit_geo_place_radius_selector_wrap', this.criteria['geo_near'].ui.container), function (i, el) {
-            var menu = geByClass1('_ui_menu', el);
-            if (!menu) {
-              menu = data(el, 'dummyMenu');
-              data(el, 'dummyMenu', null);
-            }
+        each(geByClass('ads_edit_geo_place_radius_selector_wrap', this.criteria['geo_near'].ui.container), function (i, el) {
+          var menu = geByClass1('_ui_menu', el);
+          if (!menu) {
+            menu = data(el, 'dummyMenu');
+            data(el, 'dummyMenu', null);
+          }
 
-            re(menu);
+          re(menu);
 
-            el.appendChild(geByClass1('ui_actions_menu', se(radiusSelector)));
-          });
-        }
+          el.appendChild(geByClass1('ui_actions_menu', se(radiusSelector)));
+        });
 
         if (geoEditor && geoEditor.inited) {
           geoEditor.setMask(mask);
@@ -5849,6 +5858,12 @@ AdsTargetingEditor.prototype.onCriterionUpdate = function(criterionName, criteri
           if (boxGeoEditor && boxGeoEditor.inited) {
             boxGeoEditor.setMask(mask);
             boxGeoEditor.options.allowedRadiuses = allowedRadiuses;
+          }
+
+          if (geoEditor.havePointsWithUnallowedRadius()) {
+            // show tooltip
+            this.criteria['geo_near'].ttHandler({type: 'manual_show'});
+            setTimeout(this.criteria['geo_near'].ttHandler.bind(this, {type: 'manual_hide'}), 8000);
           }
         }
 
