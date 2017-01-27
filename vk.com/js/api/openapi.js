@@ -1151,17 +1151,19 @@ if (!VK.Widgets) {
     var pData = VK.Util.getPageData();
     if (!VK._apiId) throw Error('VK not initialized. Please use VK.init');
     options = options || {};
-    var params = {
-      limit: options.limit || 10,
-      height: options.height || 0,
-      mini: options.mini === undefined ? 'auto' : options.mini,
-      norealtime: options.norealtime ? 1 : 0
-    }, mouseup = function() {
-      rpc.callMethod('mouseUp');
-      return false;
-    }, move = function(event) {
-      rpc.callMethod('mouseMove', {screenY: event.screenY});
-    }, iframe, rpc;
+    var obj = document.getElementById(objId),
+      params = {
+        limit: options.limit || 10,
+        height: options.height || 0,
+        startWidth: (obj && obj.offsetWidth) | 0,
+        mini: options.mini === undefined ? 'auto' : options.mini,
+        norealtime: options.norealtime ? 1 : 0
+      }, mouseup = function() {
+        rpc.callMethod('mouseUp');
+        return false;
+      }, move = function(event) {
+        rpc.callMethod('mouseMove', {screenY: event.screenY});
+      }, iframe, rpc;
 
     if (options.browse) { // browse all comments
       params.browse = 1;
@@ -1208,8 +1210,7 @@ if (!VK.Widgets) {
       }
     }, {
       startHeight: 133,
-      minWidth: 300,
-      width: '100%'
+      minWidth: 300
     }, function(o, i, r) {iframe = i; rpc = r;});
   };
 
@@ -1245,7 +1246,7 @@ if (!VK.Widgets) {
         owner_id: ownerId,
         post_id: postId,
         hash: hash || '',
-        width: options.width || (obj && obj.offsetWidth > 0 ? obj.offsetWidth : 500)
+        width: options.width || ((obj && obj.offsetWidth) | 0)
       }, iframe, rpc, cursorBack;
     if (options.preview) {
       params.preview = 1;
@@ -1269,8 +1270,7 @@ if (!VK.Widgets) {
       }
     }, {
       startHeight: 90,
-      minWidth: 250,
-      width: '100%'
+      minWidth: 250
     }, function(o, i, r) {iframe = i; rpc = r;});
   };
 
@@ -1484,6 +1484,7 @@ if (!VK.Widgets) {
     params.color3 = options.color3 || '';
     params.class_name = options.class_name || '';
     if (options.no_head) params.no_head = 1;
+    if (options.no_cover) params.no_cover = 1;
     if (options.wide) {
       params.wide = 1;
       if (!options.width || options.width < 300) {

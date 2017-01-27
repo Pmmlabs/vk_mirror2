@@ -131,6 +131,7 @@ var WComments = {
     var params = {
       app: cur.options.app,
       width: cur.options.width,
+      startWidth: cur.options.startWidth,
       limit: cur.options.limit
     };
     switch (cur.section) {
@@ -216,6 +217,7 @@ var WComments = {
     ajax.post('al_widget_comments.php', extend(WComments.getSectionParams(), {
         offset: cur.options.offset,
         width: cur.options.width,
+        startWidth: cur.options.startWidth,
         part: 1
     }), {
       onDone: function (options, rows) {
@@ -500,7 +502,7 @@ var WComments = {
 
   /* Resize post content for pushed updates */
 
-  resizePostSizedThumbs: function(meshEl, widthTo, marginFrom, heightTo) {
+  resizePostSizedThumbs: function(meshEl, widthTo, marginFrom, heightTo, auto) {
     var tileEls = geByClass('page_post_thumb_wrap', meshEl),
       lines = [],
       widthTaken = 0,
@@ -532,12 +534,17 @@ var WComments = {
 
     // decrease size only
     if (widthTo > widthFrom) widthTo = null;
-    if (heightTo > heightFrom) heightTo = null;
+    if (heightTo > heightFrom || auto && tileEls.length > 1) heightTo = null;
 
     if (!heightTo && widthTo) {
-      heightTo = Math.floor(heightFrom * (widthTo / widthFrom));
-    } else if (!widthTo && heightTo) {
-      widthTo = Math.floor(widthFrom * (heightTo / heightFrom));
+      heightTo = Math.round(heightFrom * (widthTo / widthFrom));
+    } else if (heightTo && !widthTo) {
+      widthTo = Math.round(widthFrom * (heightTo / heightFrom));
+    } else if (widthTo && heightTo) {
+      if (auto) {
+        heightTo = Math.min(heightTo, Math.round(heightFrom * (widthTo / widthFrom)));
+        widthTo = Math.round(widthFrom * (heightTo / heightFrom));
+      }
     } else {
       return;
     }
@@ -584,7 +591,7 @@ var WComments = {
         heightTaken = 0,
         scaleX = (widthTo - (marginFrom * line.x)) / (widthFrom - (marginFrom * line.x)),
         scaleY = (heightTo - (marginFrom * line.y)) / (heightFrom - (marginFrom * line.y)),
-        lineHeightTo = lines.length - 1 == i ? heightTo - heightToTaken : Math.floor(line.height * scaleY),
+        lineHeightTo = lines.length - 1 == i ? heightTo - heightToTaken : Math.round(line.height * scaleY),
         tileWidthTo = 0,
         tileHeightTo = 0;
 
@@ -592,7 +599,7 @@ var WComments = {
 
       each(line.tiles, function(i, tile) {
         if (tile.x < line.x) { // not one tile width line
-          tileWidthTo = Math.floor(tile.width * scaleX);
+          tileWidthTo = Math.round(tile.width * scaleX);
           widthTaken += tileWidthTo + marginFrom;
           if (!tile.y) { // one tile height line
             tileHeightTo = lineHeightTo;
@@ -602,11 +609,10 @@ var WComments = {
           if (tile.y == line.y) { // bottom right corner tile
             tileHeightTo = lineHeightTo - heightTaken;
           } else {
-            tileHeightTo = Math.floor(tile.height * scaleY);
+            tileHeightTo = Math.round(tile.height * scaleY);
             heightTaken += tileHeightTo + marginFrom;
           }
         }
-
         setStyle(tile.el, {
           width: tileWidthTo,
           height: tileHeightTo
@@ -623,6 +629,7 @@ var WComments = {
   },
 
   resizePostAlbumWrap: function(albumEl, widthTo, marginFrom, prefix) {
+    if (!prefix) prefix = '';
     var widthFrom = positive(albumEl.style.width),
       thumbEl = geByClass1('page'+prefix+'_album_thumb_wrap', albumEl, 'div'),
       sideMeshEl = domFC(geByClass1('page'+prefix+'_album_photos', albumEl, 'div')),
@@ -634,7 +641,7 @@ var WComments = {
 
     setStyle(albumEl, {width: widthTo});
     var thumbWidthTo = Math.round(positive(thumbEl.style.width) * scaleX),
-      thumbHeightTo = Math.round(positive(thumbEl.style.height) * scaleX)
+      thumbHeightTo = Math.round(positive(thumbEl.style.height) * scaleX);
     setStyle(thumbEl, {
       width: thumbWidthTo,
       height: thumbHeightTo
@@ -657,7 +664,6 @@ var WComments = {
   resizePost: function(postEl, isReply) {
     var widthTo = isReply ? cur.options.reply_max_w : cur.options.max_w,
       heightTo = Math.max(cur.options.kludges_min_h, widthTo * (isReply ? cur.options.reply_kludges_ratio : cur.options.kludges_ratio));
-
     each(geByClass('page_album_wrap', postEl, 'div'), function(i, albumEl) {
         WComments.resizePostAlbumWrap(albumEl, widthTo, 5);
     });
@@ -665,7 +671,7 @@ var WComments = {
         WComments.resizePostAlbumWrap(albumEl, widthTo - 2, 2, '_market');
     });
     each(geByClass('page_post_sized_thumbs', postEl, 'div'), function(i, meshEl) {
-        WComments.resizePostSizedThumbs(meshEl, widthTo, 5, heightTo);
+        WComments.resizePostSizedThumbs(meshEl, widthTo, 5, heightTo, true);
     });
 
     return postEl;
@@ -1022,6 +1028,7 @@ var WComments = {
                       act: 'a_post',
                       post: post_id,
                       width: cur.options.width,
+                      startWidth: cur.options.startWidth,
                       hash: cur.options.post_hash,
                       app: cur.options.app,
                       limit: cur.options.limit,
@@ -1150,6 +1157,7 @@ var WComments = {
               act: 'post',
               type: 'widget',
               width: cur.options.width,
+              startWidth: cur.options.startWidth,
               reply_to: post,
               reply_to_msg: val('reply_to' + post),
               reply_to_user: cur.reply_to && cur.reply_to[0] || 0,
@@ -1473,6 +1481,7 @@ var WComments = {
             ajax.post('al_wall.php', {
               act: 'get_replies',
               width: cur.options.width,
+              startWidth: cur.options.startWidth,
               post: post,
               count: count,
               from: 'widget'
@@ -1517,18 +1526,20 @@ var WComments = {
             params.mail_add = opts.mail ? 1 : '';
             switch (type) {
               case 'graffiti':
-                  handler = showBox.pbind('al_wall.php', {to_id: cur.postTo, act: 'canvas_draw_box', flash: browser.flash}, {cache: 1, dark: 1});
-                break;
+                handler = showBox.pbind('al_wall.php', {to_id: cur.postTo, act: 'canvas_draw_box', flash: browser.flash}, {cache: 1, dark: 1});
+              break;
               case 'photo':
                 handler = showBox.pbind('al_photos.php', {to_id: cur.postTo, act: 'choose_photo', max_files: opts.limit || 10}, {cache: 1, stat: ['photos.js', 'photos.css', 'upload.js'], dark: 1});
-                break;
+              break;
               case 'video':
                 handler = showBox.pbind('al_video.php', {to_id: cur.postTo, act: 'a_choose_video_box'}, {cache: 1, dark: 1});
-                break;
+              break;
               case 'audio':
                 handler = showBox.pbind('al_audio.php', {to_id: cur.postTo, act: 'a_choose_audio_box'}, {cache: 1, dark: 1});
-                break;
-              default: topError('Unknown type: ' + type);
+              break;
+              default:
+                return;
+              break;
             }
             types.push([type, label, handler]);
           });
@@ -1754,7 +1765,9 @@ var WComments = {
                   toEl = picsEl;
                 break;
 
-                default: topError('Unknown type: ' + type);
+                default:
+                  return;
+                break;
               }
 
               if (multi) {
