@@ -10396,38 +10396,37 @@ function getStatusExportHash() {
 }
 
 /**
- * LongView.
+ * LongView
  *
- * LongView consists of six phases:
+ * LongView consists of seven phases:
  *
- * 0. Send old data
+ * 1. Send old data
  * When user opens a page, LongView checks if there is old data (see `OLD_DATA_AGE`)
  * in local storage that has no been sent yet. Sends all old data, clears local storage.
  *
- * 1. Register
+ * 2. Register
  * Every time user scrolls page, new post elements are registered to be processed via LongView.
  * These elements live inside `tracking` array.
  *
- * 2. Process
+ * 3. Process
  * Every time user scrolls page, all tracking elements are being processed via LongView.
  * LongView tracks how much of post is visible and how long user sees the post.
  *
- * 3. Save
+ * 4. Save
  * After `DELAY_SAVE` milliseconds of inactivity (not scrolling),
  * information about all viewed posts is saved to local storage.
  *
- * 4. Send
+ * 5. Send
  * After `DELAY_SEND` milliseconds of inactivity,
  * information about all viewed posts is sent to server.
  *
- * 5. Idle <=> save
+ * 6. Idle <=> save
  * After `DELAY_IDLE` milliseconds of inactivity, information about currently viewing posts
  * is being periodically saved to local storage every `INTERVAL_IDLE` milliseconds.
  *
- * 6. Send all idled data
+ * 7. Send all idled data
  * After `DELAY_IDLE_SEND` milliseconds on inactivity,
  * idle process stops and all idled data is sent to the server.
- *
  */
 (function() {
   var SECOND = 1000;
@@ -10451,7 +10450,6 @@ function getStatusExportHash() {
   var IDLED = '_longViewIdled';
   var MODULE = '_longViewModule';
   var STARTED = '_longViewStarted';
-  var DURATION = '_longViewDuration';
 
   // Long view types
   var TYPE_REGULAR = 'REGULAR';
@@ -10773,9 +10771,9 @@ function getStatusExportHash() {
       return [];
     }
 
-    var duration = Math.min(DURATION_MAX, elem[DURATION] || (Date.now() - elem[STARTED]));
+    var duration = Math.min(DURATION_MAX, Date.now() - elem[STARTED]);
 
-    // If was viewed long enough
+    // If was not viewed long enough
     if (
       elem[TYPE] === TYPE_REGULAR && duration < DURATION_REGULAR ||
       elem[TYPE] === TYPE_AUTOPLAY_AD && duration < DURATION_AUTOPLAY_AD
