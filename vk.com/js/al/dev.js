@@ -1364,6 +1364,7 @@ addVersion: function(hash) {
     methods: val('dev_edit_methods'),
     text: val('dev_edit_ver_text'),
     text_en: val('dev_edit_ver_text_en'),
+    text_private: val('dev_edit_ver_text_private'),
     is_hidden: isChecked(ge('dev_checkbox_is_hidden')),
     hash: hash
   }
