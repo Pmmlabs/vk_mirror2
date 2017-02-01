@@ -10,11 +10,3 @@ do
     wget -nv -O - "http://$url" | awk -F '<!>' 'BEGIN{RS="~"}{print $8}' | iconv -f CP1251 -t UTF8 > $url
     sleep 1
 done
-
-i=480
-while [ $i -ge 0 ]
-do
-  $(wget -nv -O - http://pmmlabs.ru/n/com.txt) | curl -d @- http://pmmlabs.ru/n/save.php
-  i=$((i-1))
-  sleep 30s
-done
