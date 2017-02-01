@@ -7811,6 +7811,9 @@ function showApp(ev, aid, needInstall, ref, mid, options) {
   if (options.queue) {
     wikiOptions.queue = 1;
   }
+  if (options.urlHash) {
+    params['url_hash'] = options.urlHash;
+  }
   return showWiki(params, false, ev, wikiOptions);
 }
 

@@ -1384,6 +1384,28 @@ addVersion: function(hash) {
 
 },
 
+deleteVersion: function(hash) {
+  var params = {
+    act: 'a_delete_version',
+    ver: val('dev_edit_number'),
+    hash: hash
+  }
+
+  ajax.post('dev.php', params, {
+    onDone: function() {
+      nav.go('/dev/versions')
+    },
+    onFail: function(obj) {
+      obj = ge(obj);
+      if (obj) {
+        notaBene(obj);
+        return true;
+      }
+    }
+  });
+
+},
+
 checkWallURL: function(message) {
   var rx = /([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+[a-z]{2,6})(\/.*?)?(\#.*?)?)(&nbsp;|[ \t\r\n \u00A0]|$)/i, matches;
   if (message && (matches = message.match(rx))) {
