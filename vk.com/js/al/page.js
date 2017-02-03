@@ -172,6 +172,20 @@ var Page = {
     });
     cancelEvent(ev);
   },
+  toggleLiveSubscription: function(btn, hash, act, ev) {
+    if (cur.toggleLiveSubscriptionAct != undefined) {
+      act = cur.toggleLiveSubscriptionAct;
+    }
+    ajax.post('al_video.php?act=a_subscribe_live', {subscribe: act ? 1 : 0, owner_id: cur.oid, hash: hash}, {
+      onDone: function(text) {
+        val(btn, text);
+        cur.toggleLiveSubscriptionAct = !act;
+      },
+      showProgress: Page.actionsDropdownLock.pbind(btn),
+      hideProgress: Page.actionsDropdownUnlock.pbind(btn)
+    });
+    cancelEvent(ev);
+  },
   showMessagesFromCommunityTooltip: function (btn, baseState, text) {
     if (cur.toggleMessagesFromCommunityAct == undefined && baseState == 0) {
       showTooltip(btn, {text: text, dir: 'auto'});
