@@ -37,6 +37,8 @@ init: function(opts) {
     removeEvent(document, 'keydown', onKey);
     removeEvent(Dev.scrollnode, 'scroll', Dev.scrollCheck);
     removeEvent(window, 'resize', Dev.onResize);
+
+    cur.seactionSearchScroll && cur.seactionSearchScroll.destroy && cur.seactionSearchScroll.destroy();
   });
 
   Dev.initPage(opts);
@@ -1558,15 +1560,15 @@ mainPageSliderPrev: function() {
   Dev.mainPageSliderChange(newPos, 'prev');
 },
 
-focusSectionsSearch: function (el) {
+focusSectionsSearch: function () {
   if (!cur.seactionSearchScroll) {
-    cur.seactionSearchScroll = new uiScroll(geByClass1('dev_section_search_result_wrap'), {
-      theme: 'default emoji no_transition',
-      //global: true
-    });
+    cur.seactionSearchScroll = new uiScroll(geByClass1('dev_section_search_result_wrap'));
   }
   Dev.updateSectionsResult('');
   cur.seactionSearchScroll.scrollTop(0);
+  setTimeout(function () {
+    cur.seactionSearchScroll.update();
+  }, 50);
 },
 
 updateSectionsResult: function () {
