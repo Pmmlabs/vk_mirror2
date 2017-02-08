@@ -1,4 +1,11 @@
 var Page = {
+  /**
+   * e.g. {
+   *   '-1231_132': true,
+   *   '-4552_22': false
+   * }
+   */
+  _isAdPost: {},
 
   // mainly used in image paste from clipboard (see Emoji)
   initUploadForImagePaste: function(txtEl, addMedia, blob) {
@@ -455,6 +462,9 @@ var Page = {
       _postsExtras = {};
     }
     var now = vkNow();
+    var isAdPost = Page._isAdPost;
+    var postElem;
+
     for (i in posts) {
       module = Page.getPostModuleCode(posts[i].module ? posts[i].module : '');
 
@@ -464,11 +474,28 @@ var Page = {
         if (j == 'module' || j == 'index' || j == 'q') continue;
 
         _postsSeenModules[j] = module;
-
         p = posts[i][j];
-        se = _postsSeen[j];
-        sa = _postsSaved[j];
-        if (sa == -1 || se == -1 || p == 1 && (sa || se)) continue;
+
+        if (!(j in isAdPost)) {
+          postElem  = ge('post' + j);
+          // TODO: there are rare situations in which `Page._isAdPost` will be calculated wrong.
+          // For example:
+          // 1) Visit ad post page (e.g. `vk.com/wall-18098621_178771`)
+          // 2) There is no `data-ad-view` for such post
+          // 3) `isAdPost` will keep `false` for this post
+          // 4) Then, if user sees this post in his newsfeed, no post data for this post will be sent (only ad data)
+          isAdPost[j] = !!(postElem && attr(postElem, 'data-ad-view'));
+        }
+
+        if (!isAdPost[j]) {
+          se = _postsSeen[j];
+          sa = _postsSaved[j];
+
+          if (sa == -1 || se == -1 || p == 1 && (sa || se)) {
+            continue;
+          }
+        }
+
         ch = _postsSeen[j] = p;
         _postsExtras[j] = {start: now, diff: -1, index: index, q: query};
         _postsExtras[j]['session_id'] = cur.feed_session_id ? cur.feed_session_id : 'na';
@@ -493,6 +520,7 @@ var Page = {
     var modules = ls.get('posts_seen_modules') || {};
     var extras = ls.get('posts_extras') || {};
     var t = Math.floor((vk.ts + Math.floor((vkNow() - vk.started) / 1000)) / 3600);
+    var isAdPost = Page._isAdPost;
     var ch, i, p, snt, sn;
     if (!window._postsExtras) {
       _postsExtras = {};
@@ -513,7 +541,7 @@ var Page = {
         }
       }
       snt = (sent[p[0]] || {})[p[1]];
-      if (p[0] != vk.id && (!snt || sn == -1 && snt > 0)) {
+      if (p[0] != vk.id && (isAdPost[i] || (!snt || sn == -1 && snt > 0))) {
         if (!seen[p[0]]) {
           seen[p[0]] = {};
           delete modules[i];

@@ -1006,7 +1006,7 @@ scrollStickersHints: function(el, dir, ev) {
 onWheelStickersHints: function(inner, ev) {
   var delta;
   if (ev.type == 'wheel') { // gecko >= 17, webkit
-    delta = -ev.deltaY;
+    delta = (Math.abs(ev.deltaY) > Math.abs(ev.deltaX)) ? -ev.deltaY : -ev.deltaX;
   } else if (ev.wheelDeltaY !== void(0)) { // presto, old webkit
     delta = ev.wheelDeltaY;
   } else if (ev.wheelDelta !== void(0)) { // ie 8 - 11
@@ -3043,6 +3043,9 @@ buyStickers: function(packId, ev, obj, hash, sticker_referrer) {
       if (newStickers) {
         Emoji.updateTabs(newStickers, keywords, true);
         try {vk.widget && Rpc.callMethod('proxy', 'updateStickers');} catch(e) {} // for widget_comments.js
+        if (window.Videoview) {
+          Videoview.onStickersPurchased(packId);
+        }
       }
       var box = cur.tabbedStickersBox;
       if (box && box.tbUpdate) {

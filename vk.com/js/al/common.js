@@ -8674,7 +8674,7 @@ function mentionOver(el, opts) {
     checkLeft: true,
     reverseOffset: opts.reverseOffset || 112,
     dir: 'auto',
-    appendEl: domClosest('_im_peer_history', el) || domClosest('rb_box_wrap', el)
+    appendEl: domClosest('im-page-history-w', el) || domClosest('rb_box_wrap', el)
       || domClosest('wk_cont', el) || domClosest('scroll_fix_wrap', el)
   });
 }

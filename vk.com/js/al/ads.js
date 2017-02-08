@@ -3151,10 +3151,15 @@ Ads.showLookalikeExportBox = function(lookalikeRequestId) {
     params: {
       width: 480,
       dark: true,
-      bodyStyle: 'padding: 20px;'
+      bodyStyle: 'padding: 20px;',
+      onHide: function() {
+        var loc = nav.objLoc;
+        delete loc.lookalike_request_id;
+        nav.setLoc(loc);
+        return true;
+      }
     }
   };
-
   showBox('/ads?act=a_lookalike_export_audience_box', ajaxParams, showOptions);
 
   return true;
@@ -3501,7 +3506,6 @@ Ads.lookalikeExportAudienceInitSlider = function () {
     hide('ads_lookalike_slider_export_audience_block');
     show(geByClass1('ads_lookalike_no_slider'));
   }
-
   Ads.lookalikeExportAudienceMoveSlider(slider.min);
 }
 

@@ -1,22 +1,24 @@
 var ExchangeModer = {
   requestsInit: function() {
+    cur.processRequestLock = {};
     each(geByClass('exchange_moder_request'), function(i, el) {
-      var requestId = el.id.replace('exchange_moder_request', '');
-      if (cur.uiReasonsControls[requestId]) {
+      var requestId  = el.getAttribute('data-request-id');
+      var requestKey = el.id.replace('exchange_moder_request', '');
+      if (cur.uiReasonsControls[requestKey]) {
         return;
       }
 
-      placeholderSetup('moder_comment' + requestId);
-      cur.uiReasonsControls[requestId] = function() {
+      placeholderSetup('moder_comment_' + requestKey);
+      cur.uiReasonsControls[requestKey] = function() {
         return new Ads.MultiDropdownMenu(cur.moderReasons, {
-          target: ge('moder_reason_menu_' + requestId),
+          target: ge('moder_reason_menu_' + requestKey),
           columnsCount: 2
         });
       };
-      cur.uiReasonsControlsInit[requestId] = function(elem) {
+      cur.uiReasonsControlsInit[requestKey] = function(elem) {
         elem.removeAttribute('onmouseover');
-        if (isFunction(cur.uiReasonsControls[requestId])) {
-          cur.uiReasonsControls[requestId] = cur.uiReasonsControls[requestId]();
+        if (isFunction(cur.uiReasonsControls[requestKey])) {
+          cur.uiReasonsControls[requestKey] = cur.uiReasonsControls[requestKey]();
         }
       };
 
@@ -31,29 +33,33 @@ var ExchangeModer = {
         }
       }
     });
+    ExchangeModer.initMultipleRequests();
   },
 
-  processRequestWithConfitmation: function(action, requestId) {
-    function executeProcessRequest() {
-      ExchangeModer.processRequest(action, requestId);
-      msgBov.hide();
-    }
-    var msgBov = showFastBox('Подтверждение', 'Вы уверены? Все заявки будут отменены!', 'Да, оклонить и отменить', executeProcessRequest, getLang('box_cancel'));
-
-  },
-  processRequest: function(action, requestId) {
-    var requestParams = cur.requestsParams[requestId];
-    if (!requestId || !requestParams) {
+  processRequest: function(action, requestKey, requestKeyModer, onCompleteExternal) {
+    var requestParams = cur.requestsParams[requestKey];
+    if (!requestKey || !requestKeyModer || !requestParams) {
       return;
     }
-    var resultArea = ge('moder_request_result_area' + requestId);
+    var resultArea = ge('moder_request_result_area' + requestKey);
+
+    var moderComment = (val('moder_comment_' + requestKeyModer) || '').trim();
+    var moderRules   = cur.uiReasonsControls[requestKeyModer].getSelectedItems();
+
+    if (action === 'approve'
+        || (action === 'disapprove' && (moderComment.length || moderRules.length))) {
+      var result = ExchangeModer.premoderationProcessRequestsMassCheck(action, requestKey);
+      if (result) {
+        return;
+      }
+    }
 
     var params = extend(requestParams, {
       action: action,
-      comment: val('moder_comment' + requestId)
+      comment: moderComment
     });
-    if ((action === 'disapprove') || (action === 'force_disapprove')) {
-      params.moder_rules = cur.uiReasonsControls[requestId].getSelectedItems().join(',');
+    if (action === 'disapprove') {
+      params.moder_rules = moderRules.join(',');
     }
 
     ajax.post('/exchangemoder?act=a_process_request', params, {
@@ -64,13 +70,13 @@ var ExchangeModer = {
       }
     });
 
-    if (cur.processRequestLock) {
+    if (cur.processRequestLock[requestKey]) {
       return;
     }
-    cur.processRequestLock = true;
+    cur.processRequestLock[requestKey] = true;
 
     function onComplete(isError, response) {
-      cur.processRequestLock = false;
+      delete cur.processRequestLock[requestKey];
       var msg = response.msg || '';
       if (!msg) {
         isError = true;
@@ -87,7 +93,10 @@ var ExchangeModer = {
         addClass(resultArea, 'exchange_moder_request_result_success');
       }
       if (!response.tmp_error && nav.objLoc.requests) {
-        fadeOut('exchange_moder_request' + requestId, 500);
+        fadeOut('exchange_moder_request' + requestKey, 500);
+      }
+      if (isFunction(onCompleteExternal)) {
+        onCompleteExternal(response, requestKey, msg);
       }
       return true;
     }
@@ -100,11 +109,11 @@ var ExchangeModer = {
     var rq = geByClass('exchange_moder_request', 'exchange_moder_requests_container');
 
     if (!type || type == '') {
-      params['last_id'] = rq[rq.length - 1].id.replace('exchange_moder_request', '');
+      params['last_id'] = rq[rq.length - 1].getAttribute('data-request-id');
     } else {
       params['cur_ids'] = [];
       for (i in rq) {
-        params['cur_ids'].push(rq[i].id.replace('exchange_moder_request', ''));
+        params['cur_ids'].push(rq[i].getAttribute('data-request-id'));
       }
       params['cur_ids'] = params['cur_ids'].join(',');
     }
@@ -315,6 +324,154 @@ var ExchangeModer = {
         animate(more, {height: 0}, 200);
       }
     }
+  }
+};
+
+ExchangeModer.initMultipleRequests = function() {
+  var checkBoxElements = geByClass('multiple_requests_cb');
+
+  for (var i in checkBoxElements) {
+    var requestCb = checkBoxElements[i];
+    var requestKey = requestCb.getAttribute('data-request-key');
+    var toptUnionId = requestCb.getAttribute('data-top-union-id');
+    cur.uiMultipleRequestsCbs[requestKey] = new Checkbox(requestCb, {
+      label: "",
+      width: "20px",
+      onChange: (function(toptUnionId, requestKey, value) {
+        if (value) {
+          ExchangeModer.multipleRequestsAddRequest(toptUnionId, requestKey);
+        } else {
+          ExchangeModer.multipleRequestsRemoveRequest(requestKey);
+        }
+      }).pbind(toptUnionId, requestKey)
+    });
+  }
+};
+
+ExchangeModer.multipleRequestsAddRequest = function(topUnionId, requestKey, cb) {
+  if(cur.multipleRequestsTopUnionId && cur.multipleRequestsTopUnionId != topUnionId) {
+    var requests = cur.multipleRequestsIds;
+    for(var idx = cur.multipleRequestsIds.length - 1; idx >= 0; idx--) {
+      this.multipleRequestsRemoveRequest(cur.multipleRequestsIds[idx]);
+    }
+    cur.multipleRequestsIds = [];
+  } else if (!cur.multipleRequestsTopUnionId) {
+    cur.multipleRequestsIds = [];
+  }
+
+  cur.multipleRequestsTopUnionId = topUnionId;
+  cur.multipleRequestsIds.push(requestKey);
+
+  var requestElem = ge('exchange_moder_request'+requestKey);
+  addClass(requestElem, 'exchange_moder_request_ad_choosen');
+};
+
+ExchangeModer.multipleRequestsRemoveRequest = function(requestKey) {
+  var requestElem = ge('exchange_moder_request'+requestKey);
+  var index = cur.multipleRequestsIds.indexOf(requestKey);
+  if (index > -1) {
+    cur.multipleRequestsIds.splice(index, 1);
+    removeClass(requestElem, 'exchange_moder_request_ad_choosen');
+    cur.uiMultipleRequestsCbs[requestKey].checked(0);
+  }
+};
+
+ExchangeModer.premoderationProcessRequestsMassCheck = function(action, requestKey) {
+  var requestsKeys = [],
+    needMultipleClearence = true,
+    allRequestsKeys;
+
+  if (action !== 'approve' && action !== 'disapprove') {
+    return false;
+  }
+
+  if (cur.multipleRequestsIds.length && (cur.multipleRequestsIds.indexOf(requestKey) != -1)) {
+    requestsKeys = cur.multipleRequestsIds;
+  } else {
+    requestsKeys = requestsKeys.concat(requestKey);
+  }
+
+  allRequestsKeys = requestsKeys.slice();
+  if (allRequestsKeys.length == 1) {
+    return false;
+  }
+
+  allRequestsKeys = allRequestsKeys.filter(function(elem, pos,arr) {
+    return arr.indexOf(elem) == pos;
+  });
+
+  var confirmTitle = ((action === 'approve') ? 'Массовое одобрение' : 'Массовое отклонение');
+
+  processAll(needMultipleClearence);
+  return true;
+
+  function processAll(cleanMultipleRequests) {
+    if (cleanMultipleRequests) {
+      cleanMultipleChoices();
+    }
+    ExchangeModer.premoderationProcessRequestsMass(action, requestKey, allRequestsKeys, confirmTitle);
+  }
+  function cleanMultipleChoices() {
+    for(var idx = cur.multipleRequestsIds.length - 1; idx >= 0; idx--) {
+      ExchangeModer.multipleRequestsRemoveRequest(cur.multipleRequestsIds[idx]);
+    }
+  }
+};
+
+ExchangeModer.premoderationProcessRequestsMass = function(action, requestKeyModer, requestsKeys, confirmTitle) {
+  var totalCount       = requestsKeys.length;
+  var completeCount    = 0;
+  var approvedCount    = 0;
+  var disapprovedCount = 0;
+  var errorCount       = 0;
+  var responseInfos    = [];
+  var requestKey;
+
+  for (var i = 0; requestKey = requestsKeys[i]; i++) {
+    setTimeout(ExchangeModer.processRequest.pbind(action, requestKey, requestKeyModer, onComplete), 100 * i);
+  }
+
+  function onComplete(response, responseRequestKey, responseText) {
+    var responseAdId = cur.requestsParams[responseRequestKey].ad_id;
+    responseInfos.push('<a href="/exchange?act=post&ad_id='+responseAdId+'" target="_blank">'+responseAdId+' - '+responseText+'</a>');
+
+    if (response && (response.approved || response.disapproved)) {
+      if (response.approved) {
+        approvedCount++;
+      }
+      if (response.disapproved) {
+        disapprovedCount++;
+      }
+    } else {
+      errorCount++;
+      removeClass(ge('exchange_moder_request'+responseRequestKey), 'unshown');
+    }
+    completeCount++;
+
+    if (completeCount == totalCount && errorCount) {
+      setTimeout(drawResults, 1000);
+    }
+  }
+  function drawResults() {
+    var box = showFastBox({title: confirmTitle, hideButtons: true}, cur.massBoxHtml);
+    var resultElem       = geByClass1('exchange_moder_mass_result', box.bodyNode);
+    var resultTextElem   = geByClass1('exchange_moder_mass_result_text', box.bodyNode);
+    var resultMoreElem   = geByClass1('exchange_moder_mass_result_more', box.bodyNode);
+
+    box.setOptions({'hideButtons' : false});
+
+    var resultText = '';
+    if (approvedCount) {
+      resultText += 'Одобрено: '+approvedCount+'<br>';
+    }
+    if (disapprovedCount) {
+      resultText += 'Отклонено: '+disapprovedCount+'<br>';
+    }
+    resultText += 'Ошибок: '+errorCount+'<br>';
+
+    resultTextElem.innerHTML = resultText;
+    resultMoreElem.innerHTML = responseInfos.join('<br>');
+    show(resultElem);
   }
 };
 
