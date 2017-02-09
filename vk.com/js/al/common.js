@@ -771,7 +771,7 @@ function toggleFlash(show, timeout) {
   triggerEvent(document, show ? 'unblock' : 'block');
 
   var f = function() {
-    if (this.getAttribute('preventhide')) {
+    if (this.getAttribute('preventhide') || this.getAttribute('type') == 'internal/link') {
       return;
     } else if (this.id == 'flash_app' && browser.msie) {
 

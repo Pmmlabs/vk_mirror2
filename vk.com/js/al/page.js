@@ -574,6 +574,8 @@ var Page = {
       case 'feed_recommended_recent': return 'd';
       case 'feed_recommended_top': return 'e';
       case 'feed_other': return 'o';
+      case 'groups_ads_promoted_post': return 'ag';
+      case 'public_ads_promoted_post': return 'ap';
       default: return 'u';
     }
   },
@@ -2080,7 +2082,17 @@ var Wall = {
   receive: function(rows, names) {
     var n = ce('div', {innerHTML: rows}), posts = ge('page_wall_posts'), revert = !!cur.options.revert;
     var current = (revert ? posts.firstChild : posts.lastChild), added = 0;
-    for (el = (revert ? n.firstChild : n.lastChild); el; el = re(revert ? n.firstChild : n.lastChild)) {
+    var adsPosts = [];
+    var prevPostEl;
+
+    function getPostId(postEl) {
+      if (!postEl || !postEl.tagName || postEl.tagName.toLowerCase() !== 'div' || !postEl.id || postEl.id.substr(0, 4) !== 'post') {
+        return false;
+      }
+      return postEl.id;
+    }
+
+    for (var el = (revert ? n.firstChild : n.lastChild); el; el = re(revert ? n.firstChild : n.lastChild)) {
       if (el.tagName.toLowerCase() == 'input') {
         var old = ge(el.id);
         if (old) {
@@ -2088,10 +2100,27 @@ var Wall = {
         }
         continue;
       }
+
       if (hasClass(el, 'post_fixed')) {
         continue;
       }
-      while (current && current.tagName && current.tagName.toLowerCase() == 'div' && !hasClass(current, 'post_fixed') && Wall.cmp(current.id, el.id) < 0) {
+      if (hasClass(el, '_ads_promoted_post')) {
+        adsPosts.push({
+          el: el,
+          beforePost: getPostId(revert ? prevPostEl : n.lastChild)
+        });
+        continue;
+      }
+
+      // Iterating over div-s with posts, until current post id less than id from response `el`
+      // That way we are searching for a place to insert/replace. Ads posts are skipped.
+      while (
+        current
+        && current.tagName
+        && current.tagName.toLowerCase() == 'div'
+        && !hasClass(current, 'post_fixed') // ???
+        && (hasClass(current, '_ads_promoted_post') || Wall.cmp(current.id, el.id) < 0)
+      ) {
         current = (revert ? current.nextSibling : current.previousSibling);
       }
       ++added;
@@ -2112,8 +2141,36 @@ var Wall = {
           posts.insertBefore(el, current.nextSibling);
         }
       }
+      prevPostEl = el;
       placeholderSetup(geByTag1('textarea', el), {fast: 1});
     }
+
+    var adsPostData, postId, positionFound;
+    if (adsPosts.length) {
+      for (var i = 0, l = adsPosts.length; i < l; ++i) {
+        adsPostData = adsPosts[i];
+        if (!adsPostData.beforePost) {
+          continue;
+        }
+        // не `ge`, а цикл, на случай пересечения id div-ов с постами c другими блоками
+        positionFound = false;
+        for (el = (revert ? posts.firstChild : posts.lastChild); el; el = (revert ? el.nextSibling : el.previousSibling)) {
+          postId = getPostId(el);
+          if (!postId) {
+            continue;
+          }
+          if (adsPostData.beforePost === postId) {
+            posts.insertBefore(adsPostData.el, el);
+            positionFound = true;
+            break;
+          }
+        }
+        if (!positionFound) {
+          statlogsValueEvent('debug_watch', 1, 'js_page_ads_promoted_post_no_position');
+        }
+      }
+    }
+
     if (cur.wallType == 'full_own' || cur.wallType == 'full_all') {
       Pagination.recache(added);
       FullWall.updateSummary(cur.pgCount);
@@ -2129,9 +2186,10 @@ var Wall = {
 
     var type = cur.wallType,
         more = ge('wall_more_link'),
+        wallNextFrom = cur.wallNextFrom || '',
         tmp = cur.wallLoading = cur.oid;
-    ajax.post('al_wall.php', {act: 'get_wall', owner_id: cur.oid, offset: offset, type: type, fixed: cur.options.fixed_post_id || ''}, {
-      onDone: function (rows, names, videos) {
+    ajax.post('al_wall.php', {act: 'get_wall', owner_id: cur.oid, offset: offset, type: type, fixed: cur.options.fixed_post_id || '', wall_start_from: wallNextFrom}, {
+      onDone: function (rows, names, videos, newNextFrom) {
         if (tmp !== cur.oid) return;
         delete(cur.wallLoading);
         setTimeout(Wall.receive.pbind(rows, names), 0);
@@ -2142,6 +2200,7 @@ var Wall = {
             }
           });
         }
+        cur.wallNextFrom = newNextFrom;
       },
       showProgress: lockButton.pbind(more),
       hideProgress: unlockButton.pbind(more)
@@ -4566,18 +4625,24 @@ var Wall = {
   },
   postsGetRaws: function(el) {
     var index = indexOf(domPN(el).children, el);
+    var f = domFC(el);
     var m, res = {};
     if (!el) return res;
 
     res.module = cur.module;
     res.index = index;
 
+    var isAdsPromotedPost = hasClass(el, '_ads_promoted_post');
     var dataAdView = el.getAttribute('data-ad-view');
     if (dataAdView) {
       res['ad_' + dataAdView] = 1;
+      __adsUpdateExternalStats(f);
+      if (isAdsPromotedPost) {
+        res.module += '_ads_promoted_post';
+      }
     }
 
-    if (!hasClass(el, 'own')) return res;
+    if (!hasClass(el, 'own') && !isAdsPromotedPost) return res;
 
     if (m = el.id.match(/^post(-?\d+_\d+)$/)) {
       res[m[1]] = 1;
