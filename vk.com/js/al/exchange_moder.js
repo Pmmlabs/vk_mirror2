@@ -475,4 +475,24 @@ ExchangeModer.premoderationProcessRequestsMass = function(action, requestKeyMode
   }
 };
 
+ExchangeModer.onSearchPostsTextKeyUp = function (event) {
+  if (event.keyCode == 13) {
+    ExchangeModer.searchPostsText();
+  }
+};
+
+ExchangeModer.searchPostsText = function() {
+  var text = ge('ads_posts_moder_search_posts_text').value;
+  var approvedOnly = hasClass(ge('ads_posts_moder_search_posts_approved_only'), 'on');
+  if (!text.length) {
+    text = false;
+  }
+  nav.change({text: text, offset: false, approved_only: approvedOnly});
+};
+
+ExchangeModer.onToggleSearchPostsApprovedOnly = function(elem) {
+  toggleClass(elem, 'on');
+  ExchangeModer.searchPostsText();
+};
+
 try{stManager.done('exchange_moder.js');}catch(e){}
