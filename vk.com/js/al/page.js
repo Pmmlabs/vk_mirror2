@@ -1596,7 +1596,7 @@ var Page = {
         data.title,
         data.performer,
         intval(info.length > 1 ? info[1] : data.duration),
-        0, 0, '', 0, 0, 0, 0
+        0, 0, '', 0, 0, '', 0
       ];
     }
     return AudioUtils.drawAudio(data, 'inlined');
