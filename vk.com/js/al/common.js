@@ -5514,9 +5514,14 @@ function placeholderInit(id, opts) {
   }
 
   if (!browser.opera_mobile) {
-    addEvent(b1, 'focus click', function(ev) {
+    addEvent(b1, 'focus click contextmenu', function(ev) {
       if (o.editableFocus) {
         setTimeout(o.editableFocus.pbind(el), 0);
+
+        // fixed blur on right menu click on placeholder in ie (not showing paste)
+        if (ev.type === 'contextmenu' && browser.msie) {
+          o.editableFocus(el);
+        }
         el.phonfocus();
       } else {
         el.blur(); el.focus();
