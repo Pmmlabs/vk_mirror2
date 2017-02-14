@@ -7484,6 +7484,7 @@ function showVideo(videoId, listId, options, ev) {
   }, 2);
 
   stManager.add(stat, function() {
+    if (hub.failed) return;
     if (!options.hidden) {
       revertLastInlineVideo();
       Videoview.show(ev, videoId, listId, options);
@@ -7491,12 +7492,21 @@ function showVideo(videoId, listId, options, ev) {
     hub.done();
   });
 
-  extend(options, {onDone: function() {
-    var args = Array.prototype.slice.call(arguments);
-    args.unshift(videoId);
-    hub.data = args;
-    hub.done();
-  }, cache: (listId != 'status')});
+  extend(options, {
+    onDone: function() {
+      var args = Array.prototype.slice.call(arguments);
+      args.unshift(videoId);
+      hub.data = args;
+      hub.done();
+    },
+    onFail: function() {
+      hub.failed = 1;
+      if (window.Videoview) {
+        Videoview.hide();
+      }
+    },
+    cache: (listId != 'status')
+  });
 
   var actParams = options.params;
 
