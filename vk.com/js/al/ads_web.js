@@ -1,5 +1,8 @@
 var AdsWeb = {};
 
+AdsWeb.ADS_WEB_SITE_DOMAIN_SPECIAL_STATUS_APPROVED    = 2;
+AdsWeb.ADS_WEB_SITE_DOMAIN_SPECIAL_STATUS_DISAPPROVED = 3;
+
 AdsWeb.init = function() {
 }
 
@@ -534,8 +537,8 @@ AdsWeb.showDomainSpecialEditBox = function(domainSpecialId) {
 }
 
 AdsWeb.initDomainSpecialEdit = function(editBox, actionParams, domainSpecialType) {
-  var saveHandlerApprove    = AdsWeb.saveDomainSpecial.pbind(editBox, actionParams, 2);
-  var saveHandlerDisapprove = AdsWeb.saveDomainSpecial.pbind(editBox, actionParams, 3);
+  var saveHandlerApprove    = AdsWeb.saveDomainSpecial.pbind(editBox, actionParams, AdsWeb.ADS_WEB_SITE_DOMAIN_SPECIAL_STATUS_APPROVED);
+  var saveHandlerDisapprove = AdsWeb.saveDomainSpecial.pbind(editBox, actionParams, AdsWeb.ADS_WEB_SITE_DOMAIN_SPECIAL_STATUS_DISAPPROVED);
   window.ads_web_domain_special_edit_box_approve    = 'Разрешить';
   window.ads_web_domain_special_edit_box_disapprove = 'Запретить';
 

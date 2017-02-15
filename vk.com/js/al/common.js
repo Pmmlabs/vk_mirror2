@@ -2538,7 +2538,7 @@ function checkPageBlocks() {
   if (!cont) return;
 
   toggleClass(cont, 'page_block', !geByClass1('page_block', cont));
-  updateOnlineText();
+  updateAriaElements();
 }
 
 function onBodyResize(force) {
@@ -2992,7 +2992,7 @@ function domReady() {
   setTimeout(onBodyResize.pbind(false), 0);
 
   if (_pads.shown) Pads.updateHeight();
-  updateOnlineText();
+  updateAriaElements();
 
   addEvent(window, 'scroll', onBodyScroll);
 
@@ -4789,7 +4789,7 @@ var nav = {
               }
               updateSTL();
               updateLeftMenu();
-              updateOnlineText();
+              updateAriaElements();
               TopSearch.clear();
             }, 10);
 
@@ -4967,7 +4967,7 @@ var nav = {
       checkPageBlocks();
       updateSTL();
       updateLeftMenu();
-      updateOnlineText();
+      updateAriaElements();
       TopSearch.clear();
 
       handlePageParams(params);
@@ -6122,6 +6122,7 @@ function showBox(url, params, options, e) {
         box.content(html);
         box.evalBox(js, url, params);
         if (opts.onDone) opts.onDone(box, data);
+        updateAriaElements();
       }
 
       if (__debugMode) {
@@ -6656,6 +6657,7 @@ function checkbox(el, v) {
     v = !isChecked(el);
   }
   toggleClass(el, 'on', v);
+  el.setAttribute('aria-checked', v ? 'true' : 'false');
   return false;
 }
 
@@ -7499,11 +7501,22 @@ function showVideo(videoId, listId, options, ev) {
       hub.data = args;
       hub.done();
     },
-    onFail: function() {
+    onFail: function(text) {
       hub.failed = 1;
-      if (window.Videoview) {
+      if (window.mvcur && mvcur.mvShown) {
         Videoview.hide();
+      } else {
+        var loc = clone(nav.objLoc);
+        if (loc.z == 'video' + videoId) {
+          delete loc.z;
+        }
+        if (loc[0] == 'video' + videoId) {
+          loc[0] = 'videos' + videoId.split('_')[0];
+        }
+        nav.setLoc(loc);
       }
+      showFastBox(getLang('global_error'), text || getLang('global_error_occured'));
+      return true;
     },
     cache: (listId != 'status')
   });
@@ -9887,6 +9900,11 @@ function toggleOnline(obj, platform) {
   }
 }
 
+function updateAriaElements() {
+  updateOnlineText();
+  updateAriaCheckboxes();
+}
+
 function updateOnlineText() {
   clearTimeout(cur.updateOnlineTO);
   cur.updateOnlineTO = setTimeout(function() {
@@ -9926,6 +9944,23 @@ function updateOnlineText() {
   }, 100);
 }
 
+function updateAriaCheckboxes() {
+  clearTimeout(cur.updateChkBoxTO);
+  cur.updateChkBoxTO = setTimeout(function() {
+    var classes = ['checkbox', 'checkbox_pic'],
+        els = [];
+    each(classes, function() {
+      els = els.concat(geByClass(this));
+    });
+    each(els, function() {
+      if (this.tagName === 'DIV' && !this.getAttribute('role')) {
+        this.setAttribute('role', 'checkbox');
+        this.setAttribute('aria-checked', isChecked(this) ? 'true' : 'false');
+        this.setAttribute('tabindex', 0);
+      }
+    });
+  }, 100);
+}
 
 function ElementTooltip(el, opts) {
   if (this.constructor != ElementTooltip) {

@@ -2738,7 +2738,7 @@ getEmojiEl: function (el, nav) {
 
     cnt++;
     if (cnt > 20) {
-      console.log('ERR!!');
+      debugLog('ERR!!');
       break;
     }
   }

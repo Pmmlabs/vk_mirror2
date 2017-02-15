@@ -215,6 +215,8 @@ function toggleOnline(obj, platform) {
 }
 
 function updateOnlineText() {}
+function updateAriaElements() {}
+function updateAriaCheckboxes() {}
 
 // Parse strings looking for color tuples [255,255,255]
 function getRGB(color) {
