@@ -5987,6 +5987,7 @@ function MessageBox(options, dark) {
       boxRefreshCoords(boxContainer);
       boxContainer.focus();
       refreshBox();
+      updateAriaElements();
       return this;
     },
 
@@ -6122,7 +6123,6 @@ function showBox(url, params, options, e) {
         box.content(html);
         box.evalBox(js, url, params);
         if (opts.onDone) opts.onDone(box, data);
-        updateAriaElements();
       }
 
       if (__debugMode) {
