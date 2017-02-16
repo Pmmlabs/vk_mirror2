@@ -4817,13 +4817,18 @@ var nav = {
     }
     where.params = extend({__query: dest, al_id: vk.id}, objLoc, opts.params || {});
 
-    var post_id = (ev && ev.target && ev.target.getAttribute) ? ev.target.getAttribute('data-post-id') : '';
+    var hasAttributes = !!(ev && ev.target && ev.target.getAttribute);
+    var post_id = hasAttributes ? ev.target.getAttribute('data-post-id') : '';
     var parent_post_id = post_id ? ev.target.getAttribute('data-parent-post-id') : '';
+    var post_click_type = hasAttributes ? ev.target.getAttribute('data-post-click-type') : '';
     if (!where.params['_post'] && post_id) {
       where.params['_post'] = post_id;
     }
     if (!where.params['_parent_post'] && parent_post_id) {
       where.params['_parent_post'] = parent_post_id;
+    }
+    if (!where.params['_post_click_type'] && post_click_type) {
+      where.params['_post_click_type'] = post_click_type;
     }
     if (opts.cl_id) {
       where.params.fr_click = cur.oid+','+opts.cl_id+','+cur.options.fr_click;
