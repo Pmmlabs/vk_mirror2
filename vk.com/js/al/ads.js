@@ -3436,18 +3436,45 @@ Ads.deleteRetargetingGroup = function() {
   return false;
 }
 
+Ads.prepareLookalikeRequestRetargetingGroupInput = function (inputData) {
+  if (!cur.options.groupId) {
+    cur.selector = new Autocomplete(ge('retargeting_group_selector'), inputData, {
+      placeholder: getLang('ads_lookalike_retargeting_group_selector_placeholder'),
+      width: 408,
+      big: true,
+      multiselect: false
+    })
+  }
+}
+
+
 Ads.retargetingGroupRequestLookalike = function () {
-  if (!cur.options.unionId || !cur.options.groupId || !cur.options.requestLookalikeHash) {
+  if (!cur.options.unionId || !cur.options.requestLookalikeHash) {
     return false;
   }
+
+  groupId = cur.selector ? cur.selector.val() : cur.options.groupId;
+
+  if (!groupId) {
+    return false;
+  }
+
+  var refererTab = nav.objLoc['show'];
   ajax_params = {
     union_id: cur.options.unionId,
-    group_id: cur.options.groupId,
-    hash: cur.options.requestLookalikeHash
+    group_id: groupId,
+    hash: cur.options.requestLookalikeHash,
+    referer_tab: refererTab,
   }
 
   ajax.post('/ads?act=a_lookalike_request', ajax_params, {
     onDone: function(html) {
+      if (refererTab == 'lookalike') {
+        ge('ads_retargeting_groups_table').innerHTML = html
+        curBox().hide()
+        return true;
+      }
+
       ge('ads_retargeting_request_lookalike_notice').innerHTML = html
       hide('ads_retargeting_box_request_lookalike_button')
       show('ads_retargeting_box_request_lookalike_close_button')

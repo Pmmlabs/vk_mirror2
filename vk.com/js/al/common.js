@@ -10311,7 +10311,6 @@ function cancelStackFilter(name, dclick) {
 }
 
 function cancelStackPush(name, func, dclick) {
-
   if (dclick) {
     _topHeaderClose(function() {
       func();
@@ -10321,7 +10320,7 @@ function cancelStackPush(name, func, dclick) {
 
   var stack = window.cancelStack || [];
   window.cancelStack = cancelStackFilter(name)
-    .concat([{func: func, name: name}]);
+    .concat([{func: func, name: name, dclick: dclick}]);
   return window.cancelStack;
 }
 
@@ -10331,6 +10330,14 @@ function cancelStackPop() {
   if (stack.length > 0) {
     stack.pop().func();
   }
+  var nextTop = stack[stack.length - 1];
+  if (nextTop && nextTop.dclick) {
+    _topHeaderClose(function() {
+      nextTop.func();
+      cancelStackFilter(nextTop.name);
+    });
+  }
+
   window.cancelStack = stack;
   return window.cancelStack;
 }
