@@ -10943,6 +10943,7 @@ function getStatusExportHash() {
     return {
       feed: 'f',
       public: 'c',
+      groups: 'c',
       profile: 'p',
       feed_search: 's',
       feed_news_recent: 'r',

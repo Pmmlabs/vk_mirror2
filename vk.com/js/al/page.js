@@ -565,6 +565,7 @@ var Page = {
     switch(module) {
       case 'feed': return 'f';
       case 'public': return 'c';
+      case 'groups': return 'c';
       case 'profile': return 'p';
       case 'feed_search': return 's';
       case 'feed_news_recent': return 'r';
