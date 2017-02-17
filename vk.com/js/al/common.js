@@ -2752,6 +2752,14 @@ function onDocumentClick(e) {
   }
 }
 
+function onEnter(handler, event) {
+  event = event || window.event;
+  if (event.keyCode == KEY.ENTER) {
+    handler();
+    cancelEvent(event);
+  }
+}
+
 function onCtrlEnter(ev, handler) {
   ev = ev || window.event;
   if (ev.keyCode == 10 || ev.keyCode == 13 && (ev.ctrlKey || ev.metaKey && browser.mac)) {
@@ -6689,6 +6697,7 @@ function radioval(name) {
 }
 function radiobtn(el, v, name) {
   if (!radioBtns[name]) return;
+  if (hasClass(el, 'disabled')) return;
   each(radioBtns[name].els, function() {
     if (this == el) {
       addClass(this, 'on');

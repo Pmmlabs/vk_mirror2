@@ -155,6 +155,16 @@ AdsWeb.initSiteEdit = function(editBox, actionParams) {
   editBox.removeButtons();
   editBox.addButton(getLang('box_cancel'), false, 'no');
   editBox.addButton(getLang('ads_web_site_edit_box_add'), saveHandler, 'yes');
+
+  var domainNameElem = ge('ads_web_site_edit_domain_name');
+  addEvent(domainNameElem, 'keydown', onEnter.pbind(saveHandler));
+  elfocus(domainNameElem);
+
+  var boxOptions = {};
+  boxOptions.onClean = function() {
+    cleanElems(domainNameElem);
+  }
+  editBox.setOptions(boxOptions);
 }
 
 AdsWeb.saveSite = function(editBox, actionParams) {
@@ -377,9 +387,9 @@ AdsWeb.changeUnitParams = function(actionParams) {
   }
 }
 
-AdsWeb.showTagEditBox = function(newTagType, tagId, parentTagId) {
+AdsWeb.showTagEditBox = function(tagTypeName, tagId, parentTagId) {
   var ajaxParams = {};
-  ajaxParams.new_tag_type  = newTagType;
+  ajaxParams.tag_type_name = tagTypeName;
   ajaxParams.tag_id        = tagId;
   ajaxParams.parent_tag_id = parentTagId;
 
@@ -389,23 +399,46 @@ AdsWeb.showTagEditBox = function(newTagType, tagId, parentTagId) {
   showBox('/adsweb?act=tag_edit', ajaxParams, showOptions);
 }
 
-AdsWeb.initTagEdit = function(editBox, actionParams) {
-  var saveHandler = AdsWeb.saveTag.pbind(editBox, actionParams);
+AdsWeb.initTagEdit = function(editBox, actionParams, tagRootTypeInitial) {
+  var saveHandler = AdsWeb.saveTag.pbind(editBox, actionParams, tagRootTypeInitial);
   window.ads_web_tag_edit_box_add = 'Добавить';
+  window.ads_web_tag_edit_box_save = 'Сохранить';
 
   editBox.removeButtons();
   editBox.addButton(getLang('box_cancel'), false, 'no');
-  editBox.addButton(getLang('ads_web_tag_edit_box_add'), saveHandler, 'yes');
+  editBox.addButton(getLang(actionParams.tag_id ? 'ads_web_tag_edit_box_save' : 'ads_web_tag_edit_box_add'), saveHandler, 'yes');
+
+  if (tagRootTypeInitial !== false) {
+    window.radioBtns['ads_tag_root_type'] = {val: tagRootTypeInitial, els: Array.prototype.slice.apply(geByClass('radiobtn', ge('ads_web_tag_root_type_wrap')))};
+  }
+
+  var boxOptions = {};
+  boxOptions.onClean = function() {
+    if (tagRootTypeInitial !== false) {
+      delete window.radioBtns['ads_tag_root_type'];
+    }
+  }
+  editBox.setOptions(boxOptions);
 }
 
-AdsWeb.saveTag = function(editBox, actionParams) {
+AdsWeb.saveTag = function(editBox, actionParams, tagRootTypeInitial) {
+
+  if (tagRootTypeInitial !== false) {
+    var tagRootType = radioval('ads_tag_root_type');
+    if (!tagRootType) {
+      showFastBox(getLang('global_error'), 'Укажите тип кабинета.');
+      return;
+    }
+  }
+
   if (!Ads.lock('saveTag', onLock, onUnlock)) {
     return;
   }
 
   var ajaxParams = {};
   ajaxParams = extend({}, ajaxParams, actionParams);
-  ajaxParams.tag_name = ge('ads_web_tag_edit_tag_name').value;
+  ajaxParams.tag_name      = ge('ads_web_tag_edit_tag_name').value;
+  ajaxParams.tag_root_type = tagRootType;
 
   ajax.post('/adsweb?act=tag_save', ajaxParams, {onDone: onComplete, onFail: onComplete});
 
@@ -470,6 +503,16 @@ AdsWeb.initAdminEdit = function(editBox, actionParams) {
   editBox.removeButtons();
   editBox.addButton(getLang('box_cancel'), false, 'no');
   editBox.addButton(getLang('ads_web_admin_edit_box_add'), saveHandler, 'yes');
+
+  var adminLinkElem = ge('ads_web_admin_edit_admin_link');
+  addEvent(adminLinkElem, 'keydown', onEnter.pbind(saveHandler));
+  elfocus(adminLinkElem);
+
+  var boxOptions = {};
+  boxOptions.onClean = function() {
+    cleanElems(adminLinkElem);
+  }
+  editBox.setOptions(boxOptions);
 }
 
 AdsWeb.saveAdmin = function(editBox, actionParams) {
@@ -547,7 +590,7 @@ AdsWeb.initDomainSpecialEdit = function(editBox, actionParams, domainSpecialType
   editBox.addButton(getLang('ads_web_domain_special_edit_box_disapprove'), saveHandlerDisapprove, 'yes');
   editBox.addButton(getLang('ads_web_domain_special_edit_box_approve'), saveHandlerApprove, 'yes');
 
-  window.radioBtns['ads_domain_special_type'] = {val: domainSpecialType, els: Array.prototype.slice.apply(geByClass('radiobtn', ge('ads_web_domain_special_wrap')))};
+  window.radioBtns['ads_domain_special_type'] = {val: domainSpecialType, els: Array.prototype.slice.apply(geByClass('radiobtn', ge('ads_web_domain_special_type_wrap')))};
 
   var boxOptions = {};
   boxOptions.onClean = function() {
