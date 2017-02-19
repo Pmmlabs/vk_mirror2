@@ -1,1 +1,530 @@
-#content{padding:11px 0px 0px}.summaryBar{border-bottom:1px solid #dae2e8;clear:both;padding:11px 10px 0}.summaryBar .summary{color:#45688e;float:left;font-weight:700;padding-bottom:4px;padding-top:3px}.summaryBar .summary a{font-weight:400}#progressBottom,#progressTop{display:none;float:right;margin:3px 3px 0 0}#groupMembers{border-collapse:collapse;width:100%;background-color:#f7f7f7}#membersRows{padding:10px 0px 5px 10px;vertical-align:top}#membersRows .mem_row{background:#fff;border:1px solid #dae2e8;margin:0px 0 3px 0px;padding:8px 8px 6px}#membersRows .mem_row table{border-collapse:collapse;width:100%}#membersRows td{padding:0px;vertical-align:top;line-height:120%}#membersRows td.img{width:25px}#membersRows td.img a{display:block;width:25px;height:25px;overflow:hidden}#membersRows td.img img{width:25px}#membersRows td.info{padding-left:10px}#membersRows td.details{text-align:right;font-size:10px;line-height:130%}#membersRows td.info .actions{font-size:9px;height:14px;display:block;font-weight:700}#membersRows td.info .actions .divide,#membersRows td.info .actions a{font-weight:400}#membersRows .alertmsg{margin:0 0 3px 0px}#membersSections{padding:10px;width:150px;vertical-align:top}#noMembers{background:#fff;border:1px solid #dae2e8;color:#777;font-size:13px;padding:80px 0;text-align:center;margin:0px 0px 3px}.s_row{margin:0px;color:#2b587a}.s_pad,.s_pad_over{border:1px solid #f7f7f7;background-color:#f7f7f7;cursor:pointer;padding:4px 5px 4px 10px}.s_pad_over{background-color:#dae1e8;border:1px solid #dae1e8}.s_pad_sel{background-color:#6d8fb3;border:1px solid #3b6798;color:#fff;padding:4px 5px 4px 10px;cursor:pointer}.s_sep{border-bottom:1px solid #dae2e8;height:1px;margin:5px 0;overflow:hidden}.search_info{padding:4px 1px 8px;font-size:10px}#pagebody.grouplist #content{padding:0px}#nogroups{font-size:12px;text-align:center;margin:10px 20px;padding:50px 10px;color:gray;background:#f7f7f7;border:solid 1px #ddd}.groupslist{padding:10px 0px 0px;background:#f7f7f7}.groupslist .grouprow{background:#fff;border:solid 1px #d9e1e7;width:588px;padding:8px;margin:0px 10px 10px}.groupslist table{background:#fff;border-bottom:none}.groupslist .image{vertical-align:top;text-align:left;width:60px}.groupslist .tunaimage{vertical-align:top;text-align:left;width:110px}.groupslist .info{vertical-align:top;width:358px}.groupslist .label{width:50px}.grouplist .infotable .datawrap,.printcontent{width:300px;overflow:hidden}.infotable .label{color:#777;padding-right:5px}.groupslist .actions{vertical-align:top;width:120px}#content h4{text-align:left;padding:0px;margin:0px;padding-bottom:4px;border-bottom:solid 1px #dae2e8}#content .groupdialog,#content .groupdialog h4{margin:10px}#findagroup{float:left;width:360px;padding:10px 0px 10px 20px;text-align:center}#startagroup{float:left;width:200px;padding:10px 20px;text-align:left}input.queryfield{font-size:12px;width:200px;margin:3px 10px 10px;float:left}input.inputsubmit{margin:0px;height:20px}#search{float:left}input.campaign{margin:0px 10px 10px 0px}#grouptypes{margin:10px 0px}#grouptypes td{padding:2px 16px 2px 0px}.prefsradiotable{margin:0px}.prefsradiotable td{padding:0px 0px 5px;margin:0px}#no_cat_message{background:#fff;border:1px solid silver;margin:0px 10px 10px;padding:20px;width:564px}#no_cat_message h3{color:#45688e;font-weight:700;margin:0px 0px 10px;padding:0px 0px 4px;border-bottom:solid 1px #dae2e8}#no_cat_message p{margin:0px}#groupuser{margin:0 auto 20px;width:440px}#groupuser h4{width:440px;margin:5px 0px;padding:0px 0px 2px;font-size:13px;border-bottom:solid 1px #dae2e8}#groupuser table{margin:0px}#groupuser table tr{vertical-align:top}#groupuser td{padding:5px}#groupeditdialogue h4{border-bottom:solid 1px #dae2e8;margin:5px 10px;padding:0px 0px 2px;font-size:13px}#groupadmin{margin:0 auto 20px;width:440px}#groupadmin h4{width:440px;margin:5px 0px;padding:0px 0px 2px;font-size:13px;border-bottom:solid 1px #dae2e8}#groupadmin table{margin:0px}#groupadmin table tr{vertical-align:top}#groupadmin td{padding:5px}#groupadmin input[type~=text],#groupadmin textarea{width:325px}#groupadmin .groupoption{float:left}#groupadmin .groupoptiondescription{width:300px;margin-top:2px;margin-bottom:10px;float:left}#filterview{background:#f7f7f7;border:solid 1px #ddd;border-top:0px}#filterview table{float:left;display:inline;margin:3px 10px 2px}#noGroups,#noGroupsSubstr{width:567px;font-size:12px;text-align:center;margin:10px 20px;padding:50px 10px;color:gray}.divider{color:gray;padding:0px 4px 0px 3px}.notbold{font-weight:400}.groupsLookupCont{float:right;padding:0 1px 5px 0}.groupsLookupCont span{color:#777}.groupslist .suggest{background:#d8dfea none repeat scroll 0%;color:#000;font-weight:700;text-decoration:inherit}#findagroup #gSearch{float:left;margin:4px 5px 0px 0px;width:154px}.confirmButtons{margin:10px 10px 0px 70px;background-color:#fff}.dayHeadFirst{border-left-width:1px}.dayHeadLast{border-right-width:1px}.groupslist .public_row{background:#fff;border:1px solid #d9e1e7;margin:0 10px 10px;padding:8px;width:588px}.groupslist .public_row .image{vertical-align:top;width:110px;height:100px}.groupslist_search_wrap{padding:0 0 5px}.groupslist .public_row .info{width:334px}.groupslist .public_row .info .name{font-size:12px;font-weight:700;padding-bottom:5px}.groupslist .public_row .info .label{width:60px;padding:3px 5px}.groupslist .public_row .info .labeled{width:290px;padding:3px 0px}.groupslist .public_row .actions,.groupslist .public_row .actions ul{width:140px;margin:0}.groupslist .public_row .actions li{border-bottom:1px solid #fff;font-size:1em}.groupslist .public_row .actions li a{background:#fff;border-top:#fff;border-style:solid none none;border-width:1px 0 0;display:block;padding:3px 6px}.groupslist .public_row .actions li a:hover{background:#dae1e8;color:#36638e;border-top:1px solid #cad1d9;text-decoration:none}.groupslist .public_row .actions ul{list-style:none outside none;margin:0;padding:0}#group_bottom_actions{border-top:1px solid #d9e0e7}#groups_new_public_tip{padding-top:10px;font-size:10px;color:#777}.public_row .info_row{color:#777;padding-bottom:5px}
+#content {
+    padding: 11px 0px 0px
+}
+
+.summaryBar {
+    border-bottom: 1px solid #dae2e8;
+    clear: both;
+    padding: 11px 10px 0
+}
+
+.summaryBar .summary {
+    color: #45688e;
+    float: left;
+    font-weight: 700;
+    padding-bottom: 4px;
+    padding-top: 3px
+}
+
+.summaryBar .summary a {
+    font-weight: 400
+}
+
+#progressBottom,
+#progressTop {
+    display: none;
+    float: right;
+    margin: 3px 3px 0 0
+}
+
+#groupMembers {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #f7f7f7
+}
+
+#membersRows {
+    padding: 10px 0px 5px 10px;
+    vertical-align: top
+}
+
+#membersRows .mem_row {
+    background: #fff;
+    border: 1px solid #dae2e8;
+    margin: 0px 0 3px 0px;
+    padding: 8px 8px 6px
+}
+
+#membersRows .mem_row table {
+    border-collapse: collapse;
+    width: 100%
+}
+
+#membersRows td {
+    padding: 0px;
+    vertical-align: top;
+    line-height: 120%
+}
+
+#membersRows td.img {
+    width: 25px
+}
+
+#membersRows td.img a {
+    display: block;
+    width: 25px;
+    height: 25px;
+    overflow: hidden
+}
+
+#membersRows td.img img {
+    width: 25px
+}
+
+#membersRows td.info {
+    padding-left: 10px
+}
+
+#membersRows td.details {
+    text-align: right;
+    font-size: 10px;
+    line-height: 130%
+}
+
+#membersRows td.info .actions {
+    font-size: 9px;
+    height: 14px;
+    display: block;
+    font-weight: 700
+}
+
+#membersRows td.info .actions .divide,
+#membersRows td.info .actions a {
+    font-weight: 400
+}
+
+#membersRows .alertmsg {
+    margin: 0 0 3px 0px
+}
+
+#membersSections {
+    padding: 10px;
+    width: 150px;
+    vertical-align: top
+}
+
+#noMembers {
+    background: #fff;
+    border: 1px solid #dae2e8;
+    color: #777;
+    font-size: 13px;
+    padding: 80px 0;
+    text-align: center;
+    margin: 0px 0px 3px
+}
+
+.s_row {
+    margin: 0px;
+    color: #2b587a
+}
+
+.s_pad,
+.s_pad_over {
+    border: 1px solid #f7f7f7;
+    background-color: #f7f7f7;
+    cursor: pointer;
+    padding: 4px 5px 4px 10px
+}
+
+.s_pad_over {
+    background-color: #dae1e8;
+    border: 1px solid #dae1e8
+}
+
+.s_pad_sel {
+    background-color: #6d8fb3;
+    border: 1px solid #3b6798;
+    color: #fff;
+    padding: 4px 5px 4px 10px;
+    cursor: pointer
+}
+
+.s_sep {
+    border-bottom: 1px solid #dae2e8;
+    height: 1px;
+    margin: 5px 0;
+    overflow: hidden
+}
+
+.search_info {
+    padding: 4px 1px 8px;
+    font-size: 10px
+}
+
+#pagebody.grouplist #content {
+    padding: 0px
+}
+
+#nogroups {
+    font-size: 12px;
+    text-align: center;
+    margin: 10px 20px;
+    padding: 50px 10px;
+    color: gray;
+    background: #f7f7f7;
+    border: solid 1px #ddd
+}
+
+.groupslist {
+    padding: 10px 0px 0px;
+    background: #f7f7f7
+}
+
+.groupslist .grouprow {
+    background: #fff;
+    border: solid 1px #d9e1e7;
+    width: 588px;
+    padding: 8px;
+    margin: 0px 10px 10px
+}
+
+.groupslist table {
+    background: #fff;
+    border-bottom: none
+}
+
+.groupslist .image {
+    vertical-align: top;
+    text-align: left;
+    width: 60px
+}
+
+.groupslist .tunaimage {
+    vertical-align: top;
+    text-align: left;
+    width: 110px
+}
+
+.groupslist .info {
+    vertical-align: top;
+    width: 358px
+}
+
+.groupslist .label {
+    width: 50px
+}
+
+.grouplist .infotable .datawrap,
+.printcontent {
+    width: 300px;
+    overflow: hidden
+}
+
+.infotable .label {
+    color: #777;
+    padding-right: 5px
+}
+
+.groupslist .actions {
+    vertical-align: top;
+    width: 120px
+}
+
+#content h4 {
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+    padding-bottom: 4px;
+    border-bottom: solid 1px #dae2e8
+}
+
+#content .groupdialog,
+#content .groupdialog h4 {
+    margin: 10px
+}
+
+#findagroup {
+    float: left;
+    width: 360px;
+    padding: 10px 0px 10px 20px;
+    text-align: center
+}
+
+#startagroup {
+    float: left;
+    width: 200px;
+    padding: 10px 20px;
+    text-align: left
+}
+
+input.queryfield {
+    font-size: 12px;
+    width: 200px;
+    margin: 3px 10px 10px;
+    float: left
+}
+
+input.inputsubmit {
+    margin: 0px;
+    height: 20px
+}
+
+#search {
+    float: left
+}
+
+input.campaign {
+    margin: 0px 10px 10px 0px
+}
+
+#grouptypes {
+    margin: 10px 0px
+}
+
+#grouptypes td {
+    padding: 2px 16px 2px 0px
+}
+
+.prefsradiotable {
+    margin: 0px
+}
+
+.prefsradiotable td {
+    padding: 0px 0px 5px;
+    margin: 0px
+}
+
+#no_cat_message {
+    background: #fff;
+    border: 1px solid silver;
+    margin: 0px 10px 10px;
+    padding: 20px;
+    width: 564px
+}
+
+#no_cat_message h3 {
+    color: #45688e;
+    font-weight: 700;
+    margin: 0px 0px 10px;
+    padding: 0px 0px 4px;
+    border-bottom: solid 1px #dae2e8
+}
+
+#no_cat_message p {
+    margin: 0px
+}
+
+#groupuser {
+    margin: 0 auto 20px;
+    width: 440px
+}
+
+#groupuser h4 {
+    width: 440px;
+    margin: 5px 0px;
+    padding: 0px 0px 2px;
+    font-size: 13px;
+    border-bottom: solid 1px #dae2e8
+}
+
+#groupuser table {
+    margin: 0px
+}
+
+#groupuser table tr {
+    vertical-align: top
+}
+
+#groupuser td {
+    padding: 5px
+}
+
+#groupeditdialogue h4 {
+    border-bottom: solid 1px #dae2e8;
+    margin: 5px 10px;
+    padding: 0px 0px 2px;
+    font-size: 13px
+}
+
+#groupadmin {
+    margin: 0 auto 20px;
+    width: 440px
+}
+
+#groupadmin h4 {
+    width: 440px;
+    margin: 5px 0px;
+    padding: 0px 0px 2px;
+    font-size: 13px;
+    border-bottom: solid 1px #dae2e8
+}
+
+#groupadmin table {
+    margin: 0px
+}
+
+#groupadmin table tr {
+    vertical-align: top
+}
+
+#groupadmin td {
+    padding: 5px
+}
+
+#groupadmin input[type~=text],
+#groupadmin textarea {
+    width: 325px
+}
+
+#groupadmin .groupoption {
+    float: left
+}
+
+#groupadmin .groupoptiondescription {
+    width: 300px;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    float: left
+}
+
+#filterview {
+    background: #f7f7f7;
+    border: solid 1px #ddd;
+    border-top: 0px
+}
+
+#filterview table {
+    float: left;
+    display: inline;
+    margin: 3px 10px 2px
+}
+
+#noGroups,
+#noGroupsSubstr {
+    width: 567px;
+    font-size: 12px;
+    text-align: center;
+    margin: 10px 20px;
+    padding: 50px 10px;
+    color: gray
+}
+
+.divider {
+    color: gray;
+    padding: 0px 4px 0px 3px
+}
+
+.notbold {
+    font-weight: 400
+}
+
+.groupsLookupCont {
+    float: right;
+    padding: 0 1px 5px 0
+}
+
+.groupsLookupCont span {
+    color: #777
+}
+
+.groupslist .suggest {
+    background: #d8dfea none repeat scroll 0%;
+    color: #000;
+    font-weight: 700;
+    text-decoration: inherit
+}
+
+#findagroup #gSearch {
+    float: left;
+    margin: 4px 5px 0px 0px;
+    width: 154px
+}
+
+.confirmButtons {
+    margin: 10px 10px 0px 70px;
+    background-color: #fff
+}
+
+.dayHeadFirst {
+    border-left-width: 1px
+}
+
+.dayHeadLast {
+    border-right-width: 1px
+}
+
+.groupslist .public_row {
+    background: #fff;
+    border: 1px solid #d9e1e7;
+    margin: 0 10px 10px;
+    padding: 8px;
+    width: 588px
+}
+
+.groupslist .public_row .image {
+    vertical-align: top;
+    width: 110px;
+    height: 100px
+}
+
+.groupslist_search_wrap {
+    padding: 0 0 5px
+}
+
+.groupslist .public_row .info {
+    width: 334px
+}
+
+.groupslist .public_row .info .name {
+    font-size: 12px;
+    font-weight: 700;
+    padding-bottom: 5px
+}
+
+.groupslist .public_row .info .label {
+    width: 60px;
+    padding: 3px 5px
+}
+
+.groupslist .public_row .info .labeled {
+    width: 290px;
+    padding: 3px 0px
+}
+
+.groupslist .public_row .actions,
+.groupslist .public_row .actions ul {
+    width: 140px;
+    margin: 0
+}
+
+.groupslist .public_row .actions li {
+    border-bottom: 1px solid #fff;
+    font-size: 1em
+}
+
+.groupslist .public_row .actions li a {
+    background: #fff;
+    border-top: #fff;
+    border-style: solid none none;
+    border-width: 1px 0 0;
+    display: block;
+    padding: 3px 6px
+}
+
+.groupslist .public_row .actions li a:hover {
+    background: #dae1e8;
+    color: #36638e;
+    border-top: 1px solid #cad1d9;
+    text-decoration: none
+}
+
+.groupslist .public_row .actions ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0
+}
+
+#group_bottom_actions {
+    border-top: 1px solid #d9e0e7
+}
+
+#groups_new_public_tip {
+    padding-top: 10px;
+    font-size: 10px;
+    color: #777
+}
+
+.public_row .info_row {
+    color: #777;
+    padding-bottom: 5px
+}

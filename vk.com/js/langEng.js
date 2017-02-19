@@ -1,135 +1,148 @@
 var langpack = {
-  getSymbolFlex:function(n) {
-    if (n == 1) {return "";}
-    return "s";
-  },
-  noteExceedsSymbolLimit:function(n){
-    return "The note exceeds the limit by " + n + " character" + this.getSymbolFlex(n);
-  },
-  text_exceeds_symbol_limit:function(n){
-    return "The limit is esceeded by " + n + " character" + this.getSymbolFlex(n);
-  },
-  text_N_symbols_remains:function(n) {
-    return "" + n + " character" + this.getSymbolFlex(n) + " remaining";
-  },
-	
-  notes_deletion: "Delete the note",
-  notes_delete: "Delete",
-  notes_delete_cancel: "Cancel",
-  notes_delete_sure: "Are you sure you want to delete this note?",
-  notes_deleting: "Deleting the note...",
-	
-  notes_privacy_whocansee: 'Who can read this note?',
-  notes_privacy_cansee: 'This <b>note</b> can be read by:',
-  notes_privacy_save: "Save",
-  notes_privacy_cancel: "Cancel",
-  notes_privacy_whocancomment: 'Who can leave comments on this note?',
-  notes_privacy_cancomment: 'Comments on this <b>note</b> can be left by:',
-	
-  pages_hider_show: 'show',
-  pages_hider_hide: 'hide',
+    getSymbolFlex: function(n) {
+        if (n == 1) {
+            return "";
+        }
+        return "s";
+    },
+    noteExceedsSymbolLimit: function(n) {
+        return "The note exceeds the limit by " + n + " character" + this.getSymbolFlex(n);
+    },
+    text_exceeds_symbol_limit: function(n) {
+        return "The limit is esceeded by " + n + " character" + this.getSymbolFlex(n);
+    },
+    text_N_symbols_remains: function(n) {
+        return "" + n + " character" + this.getSymbolFlex(n) + " remaining";
+    },
 
-  video_comments_marked_as_spam:  "Comment marked as spam.",
-  video_marked_as_spam:  "Video marked as spam.",
-  
-  captcha_enter_code: "Enter code:",
-  
-  votes_flex: function(n) {
-    if (n == 1) {return "";}
-    return "s";
-  },
-  
-  apps_balance_plus_X_done: function(n){
-    return "You have increased the balance on your application by  <b>" + n + "</b> vote" + getLang('votes_flex', n) + ".";
-  },
+    notes_deletion: "Delete the note",
+    notes_delete: "Delete",
+    notes_delete_cancel: "Cancel",
+    notes_delete_sure: "Are you sure you want to delete this note?",
+    notes_deleting: "Deleting the note...",
 
-  apps_balance_minus_X_done: function(n){
-    return "You have decreased the balance on your application by <b>" + n + "</b> vote" + getLang('votes_flex', n) + ".";
-  },
-  
-  apps_inv_from_X_deleted: function(name){
-    return "The invitation to "+name+" has been deleted.";
-  },
-  apps_notif_from_X_deleted: function(name){
-    return "The notification from the application "+name+" has been deleted.";
-  },
-  apps_invites_to_X_blocked: function(name){
-    return "You will no longer receive invitations to the application "+name+".";
-  },
-  apps_notifs_from_X_blocked: function(name){
-    return "You will no longer receive notifications from the application "+name+".";
-  },
-  
-  friends_create_list_title: 'Создание списка друзей',
-  friends_continue: 'Продолжить',
-  friends_create_list: 'Создать список',
-  friends_you_can_save_this_list: 'Вы можете сохранить этот список друзей.<br />В дальнейшем Вы сможете использовать его снова.',
-  friends_enter_list_name: 'Введите название списка',
-  friends_no_user_selected: 'Вы не выбрали ни одного пользователя.',
-  friends_nothing_found_by_query: function(query){ return 'По запросу "'+query+'" ничего не найдено.'; },
-  friends_show_more_friends: 'Показать больше друзей',
-  friends_select_all: 'Выделить всех',
-  friends_remove_selection: 'Снять выделение',
-  friends_change_name: 'изменить название',
-  friends_enter_list_name: 'Введите название списка',
-  friends_enter_friend_name: 'Начните вводить имя друга',
-  friends_all: 'Все',
-  friends_selected: 'Выбранные',
-  friends_new_friends_list: 'Новый список друзей',
-  friends_list_name: 'Название списка',
-  friends_edit_list_title: 'Редактирование списка друзей',
-  friends_privacy_title: 'Настройки приватности',
-  friends_save: 'Сохранить',
-  friends_cancel: 'Отмена',
-  friends_flex: function(count) {
-    count %= 100;
-    if (count > 4 && count < 21) {
-      return "зей";
-    }
-    switch (count) {
-      case 1: return 'г'; break;
-      case 2:
-      case 3:
-      case 4: return 'га'; break;
-      default: return 'зей';
-   }
-  },
-  friends_X_users_in_list: function(count){ return 'В списке ' + count + ' дру' + getLang('friends_flex', count); },
+    notes_privacy_whocansee: 'Who can read this note?',
+    notes_privacy_cansee: 'This <b>note</b> can be read by:',
+    notes_privacy_save: "Save",
+    notes_privacy_cancel: "Cancel",
+    notes_privacy_whocancomment: 'Who can leave comments on this note?',
+    notes_privacy_cancomment: 'Comments on this <b>note</b> can be left by:',
 
-  select_place_not_selected: ' - Not selected - ',
-  select_place_select: 'Enter name',
-  select_place_not_found: 'Place not found',
+    pages_hider_show: 'show',
+    pages_hider_hide: 'hide',
 
-  select_house_not_selected: ' - Not selected - ',
-  select_house_select: 'Enter house number',
-  select_house_not_found: 'House not found',
+    video_comments_marked_as_spam: "Comment marked as spam.",
+    video_marked_as_spam: "Video marked as spam.",
 
-  select_street_not_selected: ' - Not selected - ',
-  select_street_select: 'Enter street',
-  select_street_not_found: 'Street not found',
+    captcha_enter_code: "Enter code:",
 
-  select_station_not_selected: ' - Not selected - ',
-  select_district_not_selected: ' - Not selected - ',
+    votes_flex: function(n) {
+        if (n == 1) {
+            return "";
+        }
+        return "s";
+    },
 
-  select_chair_not_selected: ' - Not selected - ',
-  select_chair_select: 'Enter chair',
+    apps_balance_plus_X_done: function(n) {
+        return "You have increased the balance on your application by  <b>" + n + "</b> vote" + getLang('votes_flex', n) + ".";
+    },
 
-  select_fac_not_selected: ' - Not selected - ',
-  select_fac_select: 'Enter department',
+    apps_balance_minus_X_done: function(n) {
+        return "You have decreased the balance on your application by <b>" + n + "</b> vote" + getLang('votes_flex', n) + ".";
+    },
 
-  select_uni_not_selected: ' - Not selected - ',
-  select_uni_select: 'Enter university',
-  select_uni_not_found: 'University not found',
+    apps_inv_from_X_deleted: function(name) {
+        return "The invitation to " + name + " has been deleted.";
+    },
+    apps_notif_from_X_deleted: function(name) {
+        return "The notification from the application " + name + " has been deleted.";
+    },
+    apps_invites_to_X_blocked: function(name) {
+        return "You will no longer receive invitations to the application " + name + ".";
+    },
+    apps_notifs_from_X_blocked: function(name) {
+        return "You will no longer receive notifications from the application " + name + ".";
+    },
 
-  select_school_not_selected: ' - Not selected - ',
-  select_school_select: 'Enter school',
-  select_school_not_found: 'School not found',
+    friends_create_list_title: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ',
+    friends_continue: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
+    friends_create_list: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ',
+    friends_you_can_save_this_list: 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.<br />пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.',
+    friends_enter_list_name: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ',
+    friends_no_user_selected: 'пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.',
+    friends_nothing_found_by_query: function(query) {
+        return 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ "' + query + '" пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.';
+    },
+    friends_show_more_friends: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ',
+    friends_select_all: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ',
+    friends_remove_selection: 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
+    friends_change_name: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
+    friends_enter_list_name: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ',
+    friends_enter_friend_name: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ',
+    friends_all: 'пїЅпїЅпїЅ',
+    friends_selected: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
+    friends_new_friends_list: 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ',
+    friends_list_name: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ',
+    friends_edit_list_title: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ',
+    friends_privacy_title: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
+    friends_save: 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ',
+    friends_cancel: 'пїЅпїЅпїЅпїЅпїЅпїЅ',
+    friends_flex: function(count) {
+        count %= 100;
+        if (count > 4 && count < 21) {
+            return "пїЅпїЅпїЅ";
+        }
+        switch (count) {
+            case 1:
+                return 'пїЅ';
+                break;
+            case 2:
+            case 3:
+            case 4:
+                return 'пїЅпїЅ';
+                break;
+            default:
+                return 'пїЅпїЅпїЅ';
+        }
+    },
+    friends_X_users_in_list: function(count) {
+        return 'пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ' + count + ' пїЅпїЅпїЅ' + getLang('friends_flex', count);
+    },
 
-  select_city_not_selected: ' - Not selected - ',
-  select_city_select: 'Enter city',
-  select_city_not_found: 'City not found',
+    select_place_not_selected: ' - Not selected - ',
+    select_place_select: 'Enter name',
+    select_place_not_found: 'Place not found',
 
-  select_country_not_selected: ' - Not selected - '
+    select_house_not_selected: ' - Not selected - ',
+    select_house_select: 'Enter house number',
+    select_house_not_found: 'House not found',
+
+    select_street_not_selected: ' - Not selected - ',
+    select_street_select: 'Enter street',
+    select_street_not_found: 'Street not found',
+
+    select_station_not_selected: ' - Not selected - ',
+    select_district_not_selected: ' - Not selected - ',
+
+    select_chair_not_selected: ' - Not selected - ',
+    select_chair_select: 'Enter chair',
+
+    select_fac_not_selected: ' - Not selected - ',
+    select_fac_select: 'Enter department',
+
+    select_uni_not_selected: ' - Not selected - ',
+    select_uni_select: 'Enter university',
+    select_uni_not_found: 'University not found',
+
+    select_school_not_selected: ' - Not selected - ',
+    select_school_select: 'Enter school',
+    select_school_not_found: 'School not found',
+
+    select_city_not_selected: ' - Not selected - ',
+    select_city_select: 'Enter city',
+    select_city_not_found: 'City not found',
+
+    select_country_not_selected: ' - Not selected - '
 
 };
 
@@ -299,58 +312,59 @@ var profile_edit_error = "Error";
 var profile_edit_sel_town_to_save = "Please select at least a city if you want to save this place.";
 var profile_edit_close = "Close";
 
-var placeTypes = [["",1],
-["Home", 1],
-["Work", 0],
-["Restaurant", 0],
-["Club", 0],
-["Bar", 0],
-["Pub", 0],
-["Cafe", 0],
-["Internet Cafe", 0],
-["Computer Club", 0],
-["Movie Theater", 0],
-["Bowling", 0],
-["Billiard", 0],
-["Hotel", 0],
-["Summer Camp", 0],
-["Vacation", 1],
-["Spa", 0],
-["Holiday Hotel", 0],
-["Rest House", 0],
-["Hostel", 0],
-["Motel", 0],
-["Driving School", 0],
-["Educational Courses", 0],
-["Society", 0],
-["Circle", 0],
-["Studio", 0],
-["Fitness Center", 0],
-["Sports Club", 0],
-["Stadium", 0],
-["Gym", 0],
-["Swimming Pool", 0],
-["Beauty Salon", 0],
-["Hairdresser's", 0],
-["Theater", 0],
-["Concert Hall", 0],
-["Library", 0],
-["Museum", 0],
-["Gallery", 0],
-["Philharmonic", 0],
-["Exhibition Center", 0],
-["Temple", 0],
-["Hospital", 0],
-["Clinic", 0],
-["Military Hospital", 0],
-["Maternity Hospital", 0],
-["Store", 0],
-["Boutique", 0],
-["Shopping Mall", 0],
-["Salon", 0],
-["Supermarket", 0],
-["Hypermarket", 0],
-["Summer Cottage", 0]
+var placeTypes = [
+    ["", 1],
+    ["Home", 1],
+    ["Work", 0],
+    ["Restaurant", 0],
+    ["Club", 0],
+    ["Bar", 0],
+    ["Pub", 0],
+    ["Cafe", 0],
+    ["Internet Cafe", 0],
+    ["Computer Club", 0],
+    ["Movie Theater", 0],
+    ["Bowling", 0],
+    ["Billiard", 0],
+    ["Hotel", 0],
+    ["Summer Camp", 0],
+    ["Vacation", 1],
+    ["Spa", 0],
+    ["Holiday Hotel", 0],
+    ["Rest House", 0],
+    ["Hostel", 0],
+    ["Motel", 0],
+    ["Driving School", 0],
+    ["Educational Courses", 0],
+    ["Society", 0],
+    ["Circle", 0],
+    ["Studio", 0],
+    ["Fitness Center", 0],
+    ["Sports Club", 0],
+    ["Stadium", 0],
+    ["Gym", 0],
+    ["Swimming Pool", 0],
+    ["Beauty Salon", 0],
+    ["Hairdresser's", 0],
+    ["Theater", 0],
+    ["Concert Hall", 0],
+    ["Library", 0],
+    ["Museum", 0],
+    ["Gallery", 0],
+    ["Philharmonic", 0],
+    ["Exhibition Center", 0],
+    ["Temple", 0],
+    ["Hospital", 0],
+    ["Clinic", 0],
+    ["Military Hospital", 0],
+    ["Maternity Hospital", 0],
+    ["Store", 0],
+    ["Boutique", 0],
+    ["Shopping Mall", 0],
+    ["Salon", 0],
+    ["Supermarket", 0],
+    ["Hypermarket", 0],
+    ["Summer Cottage", 0]
 ];
 
 var select_select = "Select";
@@ -383,17 +397,17 @@ var voting_cant_place_main = "Unfortunately, the poll could not be moved to the 
 var voting_cant_remove_main = "Unfortunately, the poll could not be removed from the main page. Refresh the page and try again.";
 var voting_empty_vars = "Blank responses are not allowed. Enter something or remove them.";
 
-var questions_text = "Текст вопроса:";
-var questions_topic = "Тематика:";
+var questions_text = "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ:";
+var questions_topic = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:";
 var questions_loading = "Loading...";
 var questions_hide_comms = "Hide comments";
 var questions_show_comms = "Show comments";
 
-var ebrowse_mn = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var ebrowse_mn = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 var ebrowse_days = "MonTueWedThuFriSatSun";
 var ebrowse_dayname_length = 3;
- 
-var friends2_catedit = "edit"; 
+
+var friends2_catedit = "edit";
 
 var news_categories = "Friends' categories";
 var news_updatesforcategories = 'Show updates for following categories:';
@@ -477,44 +491,39 @@ forum_must_enter_text = 'You must enter the text of your question.';
 
 forum_new_officer_id = 'New Officer ID';
 
-temp_messages_shown_function = function(first, last)
-{
-	if (!first)
-		first = 1;
-	if (first > last)
-		return 'No answers on this page yet.';
-	return 'Displaying answers #' + first + '-' + last + '.';
+temp_messages_shown_function = function(first, last) {
+    if (!first)
+        first = 1;
+    if (first > last)
+        return 'No answers on this page yet.';
+    return 'Displaying answers #' + first + '-' + last + '.';
 }
 
-temp_answer_count_function = function(count)
-{
-	if (count <= 0)
-		return 'no answers';
-	if (count == 1)
-		return count + ' answer';
-	return count + ' answers';
+temp_answer_count_function = function(count) {
+    if (count <= 0)
+        return 'no answers';
+    if (count == 1)
+        return count + ' answer';
+    return count + ' answers';
 }
 
-temp_msg_count_function = function(count)
-{
-	if (count <= 0)
-		return 'no posts';
-	if (count == 1)
-		return count + ' post';
-	return count + ' posts';
+temp_msg_count_function = function(count) {
+    if (count <= 0)
+        return 'no posts';
+    if (count == 1)
+        return count + ' post';
+    return count + ' posts';
 }
 
-temp_messages_in_topic_function = function(count)
-{
-	return 'There are ' + temp_msg_count_function(count) + ' in the discussion.';
+temp_messages_in_topic_function = function(count) {
+    return 'There are ' + temp_msg_count_function(count) + ' in the discussion.';
 }
 
-temp_post_too_long_function = function(count)
-{
-	var tmp = ' symbols';
-	if (count == 1)
-		tmp = ' symbol';
-	return 'Permissible answer length exceeded by ' + count + tmp;
+temp_post_too_long_function = function(count) {
+    var tmp = ' symbols';
+    if (count == 1)
+        tmp = ' symbol';
+    return 'Permissible answer length exceeded by ' + count + tmp;
 }
 
 board_error = 'Error';
@@ -544,83 +553,83 @@ board_voting_not_deleted = 'Poll could not be created.';
 board_voting_deleted = 'Poll deleted.';
 board_create_topic = 'Create topic';
 
-var market_about_paid_ads = 'О платных объявлениях';
+var market_about_paid_ads = 'пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
 var market_ok = 'OK';
-var market_can_promote = 'Все пользователи могут продвигать свои объявления при поиске.';
-var market_features = 'Особенности:';
-var market_determine_cost = 'Вы сами определяете, сколько готовы платить за каждый уникальный переход на Ваше объявление.';
-var market_pay_for_result = 'Вы платите только за результат - то есть за уникальные клики на Ваше объявление пользователями.';
-var market_more_info = 'Более подробная информация - в настройках Вашего объявления.';
-var market_create_ad = 'Создать объявление';
-var market_available_later = 'Функция будет доступна позже';
-var market_available_after = 'Данная функция станет доступна после создания объявления.';
-var market_ads_search = 'Поиск объявлений';
-var market_save = 'Сохранить';
-var market_cancel = 'Отмена';
-var market_report = 'Жалоба';
-var market_select_ban_reason = 'Пожалуйста, выберите причину для блокировки объявления:';
-var market_reason_spam = 'Спам / Сторонние ссылки';
-var market_reason_porn = 'Порнография';
-var market_reason_cheat = 'Ложная информация / Мошенничество';
-var market_reason_offtop = 'Несоответствие разделу';
-var market_reason_duplicate = 'Многократное дублирование';
-var market_reason_extr = 'Экстремизм';
-var market_reason_nonsense = 'Бессмыслица';
-var market_reason_ortho = 'Орфографическая ошибка';
-var market_defave = 'Удалить из избранного';
-var market_enfave = 'Добавить в избранное';
-var market_all_categs = 'Все категории';
+var market_can_promote = 'пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.';
+var market_features = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:';
+var market_determine_cost = 'пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.';
+var market_pay_for_result = 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.';
+var market_more_info = 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.';
+var market_create_ad = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_available_later = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ';
+var market_available_after = 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.';
+var market_ads_search = 'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_save = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_cancel = 'пїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_report = 'пїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_select_ban_reason = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:';
+var market_reason_spam = 'пїЅпїЅпїЅпїЅ / пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_reason_porn = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_reason_cheat = 'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ / пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_reason_offtop = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_reason_duplicate = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_reason_extr = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_reason_nonsense = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_reason_ortho = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_defave = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_enfave = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_all_categs = 'пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
 
-var market_photo_one_of_photo = 'Фотография';
-var market_photo_one_of_of = 'из';
-var market_photos_for_ad = 'Фотографий для объявления:';
-var market_photos_you_can = 'Вы можете выбрать до 5 фотографий для Вашего объявления.';
-var market_photos_choose_album = 'Выберите альбом с фотографиями для вашего объявления.';
-var market_photos_cancel = 'Отмена';
-var market_photo_delete = 'Удалить';
-var market_photo_no_delete = 'Не удалять';
+var market_photo_one_of_photo = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_photo_one_of_of = 'пїЅпїЅ';
+var market_photos_for_ad = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:';
+var market_photos_you_can = 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 5 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.';
+var market_photos_choose_album = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.';
+var market_photos_cancel = 'пїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_photo_delete = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
+var market_photo_no_delete = 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
 
 var market_currency_count = {
 
-  'RUB': function(count) {
-    if (count == 1) {
-      return 'ruble';
-    } else {
-      return 'rubles';
-    }
-  },
+    'RUB': function(count) {
+        if (count == 1) {
+            return 'ruble';
+        } else {
+            return 'rubles';
+        }
+    },
 
-  'UAH': function(count) {
-    if (count == 1) {
-      return 'hryvnia';
-    } else {
-      return 'hryvnias';
-    }
-  },
+    'UAH': function(count) {
+        if (count == 1) {
+            return 'hryvnia';
+        } else {
+            return 'hryvnias';
+        }
+    },
 
-  'KZT': function(count) {
-    if (count == 1) {
-      return 'tenge';
-    } else {
-      return 'tenges';
-    }
-  },
+    'KZT': function(count) {
+        if (count == 1) {
+            return 'tenge';
+        } else {
+            return 'tenges';
+        }
+    },
 
-  'USD': function(count) {
-    if (count == 1) {
-      return 'dollar';
-    } else {
-      return 'dollars';
-    }
-  },
+    'USD': function(count) {
+        if (count == 1) {
+            return 'dollar';
+        } else {
+            return 'dollars';
+        }
+    },
 
-  'EUR': function(count) {
-    if (count == 1) {
-      return 'euro';
-    } else {
-      return 'euros';
+    'EUR': function(count) {
+        if (count == 1) {
+            return 'euro';
+        } else {
+            return 'euros';
+        }
     }
-  }
 
 };
 
@@ -634,27 +643,29 @@ var payments_close = "Close";
 var captcha_send = "Send";
 var captcha_cancel = "Cancel";
 
-mail_delete_failed = 'Во время выполнения произошла ошибка';
-mail_restore_failed = 'Во время выполнения произошла ошибка';
+mail_delete_failed = 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ';
+mail_restore_failed = 'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ';
 mail_delete = 'Delete';
 mail_cancel = 'Cancel';
-mail_marked_as_spam = 'Сообщение помечено как спам и удалено.';
-mail_show_all_history = 'Показать всю историю сообщений';
+mail_marked_as_spam = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.';
+mail_show_all_history = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
 
-var audio_you_need_flash = "Для того, чтобы воспользоваться аудиосервисом, Вам необходимо установить Flash-проигрыватель.";
-var audio_do_you_want_flash = "Хотите перейти на страницу установки проигрывателя?";
+var audio_you_need_flash = "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Flash-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.";
+var audio_do_you_want_flash = "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?";
 
-var audio_edit_deleting_error = "При удалении файла произошла ошибка: ";
+var audio_edit_deleting_error = "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: ";
 
-var photo_error_occurred = 'Произошла ошибка.';
+var photo_error_occurred = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.';
 
-var qArr = [[0,'By person', '', 'people'],
-[1,'By group', '', 'groups'],
-[2,'By event', '', 'events'],
-[3,'By audiofile', '', 'audio'],
-[4,'By video', '', 'video'],
-[5,'By classified ad', '', 'ads'],
-[6,'By application', '', 'apps'],
-[7,'By question', '', 'questions'],
-[8,'By note', '', 'notes'],
-[9,'By topic', '', 'topics']];
+var qArr = [
+    [0, 'By person', '', 'people'],
+    [1, 'By group', '', 'groups'],
+    [2, 'By event', '', 'events'],
+    [3, 'By audiofile', '', 'audio'],
+    [4, 'By video', '', 'video'],
+    [5, 'By classified ad', '', 'ads'],
+    [6, 'By application', '', 'apps'],
+    [7, 'By question', '', 'questions'],
+    [8, 'By note', '', 'notes'],
+    [9, 'By topic', '', 'topics']
+];

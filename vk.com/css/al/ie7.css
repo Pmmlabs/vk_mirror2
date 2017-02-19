@@ -1,1 +1,80 @@
-#ie7_css{display:none}html{overflow:auto}body{overflow:hidden}#side_bar ol li .left_row{width:109px;height:100%}.pads #side_bar ol li .left_row{width:130px}.clear_fix{overflow:hidden!important;_height:1%!important}.label_fix{padding-top:5px}.tt .bottom_sh{top:0px;margin-top:-1px}.tt .bottom_sh,#photos_albums .album,#photos_albums .sort_helper{position:relative}ul.t0 li a:hover b.tl1{width:expression((this.parentNode.offsetWidth-4)+'px')}ul.t0 li.active_link a:hover b.tl1{width:auto}ul.t0 li.active_link a:hover b.tl1 b,ul.t0 li.active_link a b.tl1 b,ul.t0 li a b.tl1 b,ul.t0 li a:hover b.tl1 b{width:expression((this.parentNode.parentNode.offsetWidth-4)+'px')}ul.t0 li.active_link a:hover b.tl2,ul.t0 li.active_link a b.tl2,ul.t0 li a:hover b.tl2,ul.t0 li a b.tl2{width:expression((this.parentNode.offsetWidth-2)+'px')}#pv_tags .delete{position:relative}body #photos_container .photo_row,body .progress_inline{display:inline;zoom:1}.like_tt .bottom .checkbox div,.like_tt .bottom .on div,.like_tt .like_tt_clubs,.like_tt table.toup1 .bottom_pointer,.like_tt table.toup .top_pointer{background-image:url(/images/icons/like_icons_bl.gif)!important}
+#ie7_css {
+    display: none
+}
+
+html {
+    overflow: auto
+}
+
+body {
+    overflow: hidden
+}
+
+#side_bar ol li .left_row {
+    width: 109px;
+    height: 100%
+}
+
+.pads #side_bar ol li .left_row {
+    width: 130px
+}
+
+.clear_fix {
+    overflow: hidden!important;
+    _height: 1%!important
+}
+
+.label_fix {
+    padding-top: 5px
+}
+
+.tt .bottom_sh {
+    top: 0px;
+    margin-top: -1px
+}
+
+.tt .bottom_sh,
+#photos_albums .album,
+#photos_albums .sort_helper {
+    position: relative
+}
+
+ul.t0 li a:hover b.tl1 {
+    width: expression((this.parentNode.offsetWidth-4)+'px')
+}
+
+ul.t0 li.active_link a:hover b.tl1 {
+    width: auto
+}
+
+ul.t0 li.active_link a:hover b.tl1 b,
+ul.t0 li.active_link a b.tl1 b,
+ul.t0 li a b.tl1 b,
+ul.t0 li a:hover b.tl1 b {
+    width: expression((this.parentNode.parentNode.offsetWidth-4)+'px')
+}
+
+ul.t0 li.active_link a:hover b.tl2,
+ul.t0 li.active_link a b.tl2,
+ul.t0 li a:hover b.tl2,
+ul.t0 li a b.tl2 {
+    width: expression((this.parentNode.offsetWidth-2)+'px')
+}
+
+#pv_tags .delete {
+    position: relative
+}
+
+body #photos_container .photo_row,
+body .progress_inline {
+    display: inline;
+    zoom: 1
+}
+
+.like_tt .bottom .checkbox div,
+.like_tt .bottom .on div,
+.like_tt .like_tt_clubs,
+.like_tt table.toup1 .bottom_pointer,
+.like_tt table.toup .top_pointer {
+    background-image: url(/images/icons/like_icons_bl.gif)!important
+}

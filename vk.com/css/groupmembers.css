@@ -1,1 +1,261 @@
-.editorPanel{padding:0px}.gm_right{border-left:1px solid #ccc}.gm_right,.gm_left{background-color:#f7f7f7}.gm_left{overflow:hidden;width:387px}.gm_right .pad,.gm_left .pad{padding:10px 16px 13px}.iPanel{margin:10px 0px;height:300px;width:200px;overflow:auto}.mPanel{background-color:#f7f7f7;margin:10px 0px}.mPanel .mOff{padding:7px;border:1px solid #d8dfea;margin-bottom:2px;background:#fff}.mPanel .mOff .mNum{float:left;width:20px}.mPanel .mOff .mName{float:left;width:300px}.mPanel .mOff .mNonName{float:left;width:230px}.mPanel .mOff div.mArrow{float:left;margin-left:5px;border:1px solid #d8dfea;font-size:10px;padding:0px 5px 2px;background-color:#e9ecf0;color:#45668e;cursor:pointer;cursor:hand}.mPanel .mOff .mOption{float:right}.mPanel .mOff .oEdit{float:left;width:220px}.mPanel .mRow{padding:8px;margin-bottom:2px;background:#fff;border:1px solid #d8dfea}.mPanel .mRow.hl{background-color:#e7f1f9;border-color:#4c96d4}.mPanel .mRow .mNumber{float:left}.mPanel .mRow .mName{margin-left:4px;float:left}.mPanel .mRow .mOption{float:right}.mPanel .mRow .mName .mOption{float:none;margin-top:1px}.mPanel .mRow b{color:#000}.pad{border-bottom:1px solid #ccc}.pad b{color:gray}.right{width:239px;float:left}.divide{color:gray;padding:0px 4px 0px 3px}.officersHeader{font-size:13px;color:#45668e;font-weight:700;padding:3px 0px 5px 1px}.divide{color:gray;padding:0px 4px 0px 3px}div.scrollList{color:#777}div.scrollList a{border-bottom:1px solid #fff;padding:0px 2px;font-size:10px}div.scrollList a:hover{background:#45668e;border-color:#dae2e8;border-bottom:1px solid #45668e;padding:0px 2px;font-size:10px;color:#fff;text-decoration:none}div.scrollList a.current,div.scrollList a:hover.current{background:transparent;border-color:#45668e;border-bottom:2px solid #45668e;color:#45668e;font-weight:700}#progrWrap,#progrWrapTop{float:left;margin-left:5px;vertical-align:bottom}#progr,#progrMid,#progrTop{display:none}#memberPages .commentsPagesWrap,.scrollList .commentsPagesWrap{height:17px}#memberPages .commentsPages,.scrollList .commentsPages{list-style-type:none;height:10px;padding-left:10px;margin:0px;float:left}#memberPages ul.commentsPages li,.scrollList ul.commentsPages li{float:left}#memberPages ul.commentsPages a,.scrollList ul.commentsPages a{padding:0px 2px;font-size:10px}#memberPages ul.commentsPages a:hover,.scrollList ul.commentsPages a:hover{background:#45668e;border-color:#dae2e8;border-bottom:1px solid #45668e;padding:0px 2px;font-size:10px;color:#fff;text-decoration:none}#memberPages ul.commentsPages li.current a,.scrollList ul.commentsPages li.current a #memberPages ul.commentsPages li.current a:hover,.scrollList ul.commentsPages li.current a:hover{background:transparent;border-color:#45668e;border-bottom:2px solid #45668e;color:#45668e;font-weight:700}.mPanel .mMsg{background-color:#f9f6e7;border:1px solid #d4bc4c}.mPanel .mDld{background-color:#e7f1f9;border:1px solid #4c96d4}.friendRow{background-color:#fff;border:1px solid #dae2e8;color:#36638e;padding:3px 5px;margin:1px;cursor:pointer}.friendRow:hover{background-color:#edf0f3;border:1px solid #c0cad5;color:#36638e;text-decoration:none}#goSearch #gSearch{margin:4px 10px 0px 0px;float:left;width:154px}
+.editorPanel {
+    padding: 0px
+}
+
+.gm_right {
+    border-left: 1px solid #ccc
+}
+
+.gm_right,
+.gm_left {
+    background-color: #f7f7f7
+}
+
+.gm_left {
+    overflow: hidden;
+    width: 387px
+}
+
+.gm_right .pad,
+.gm_left .pad {
+    padding: 10px 16px 13px
+}
+
+.iPanel {
+    margin: 10px 0px;
+    height: 300px;
+    width: 200px;
+    overflow: auto
+}
+
+.mPanel {
+    background-color: #f7f7f7;
+    margin: 10px 0px
+}
+
+.mPanel .mOff {
+    padding: 7px;
+    border: 1px solid #d8dfea;
+    margin-bottom: 2px;
+    background: #fff
+}
+
+.mPanel .mOff .mNum {
+    float: left;
+    width: 20px
+}
+
+.mPanel .mOff .mName {
+    float: left;
+    width: 300px
+}
+
+.mPanel .mOff .mNonName {
+    float: left;
+    width: 230px
+}
+
+.mPanel .mOff div.mArrow {
+    float: left;
+    margin-left: 5px;
+    border: 1px solid #d8dfea;
+    font-size: 10px;
+    padding: 0px 5px 2px;
+    background-color: #e9ecf0;
+    color: #45668e;
+    cursor: pointer;
+    cursor: hand
+}
+
+.mPanel .mOff .mOption {
+    float: right
+}
+
+.mPanel .mOff .oEdit {
+    float: left;
+    width: 220px
+}
+
+.mPanel .mRow {
+    padding: 8px;
+    margin-bottom: 2px;
+    background: #fff;
+    border: 1px solid #d8dfea
+}
+
+.mPanel .mRow.hl {
+    background-color: #e7f1f9;
+    border-color: #4c96d4
+}
+
+.mPanel .mRow .mNumber {
+    float: left
+}
+
+.mPanel .mRow .mName {
+    margin-left: 4px;
+    float: left
+}
+
+.mPanel .mRow .mOption {
+    float: right
+}
+
+.mPanel .mRow .mName .mOption {
+    float: none;
+    margin-top: 1px
+}
+
+.mPanel .mRow b {
+    color: #000
+}
+
+.pad {
+    border-bottom: 1px solid #ccc
+}
+
+.pad b {
+    color: gray
+}
+
+.right {
+    width: 239px;
+    float: left
+}
+
+.divide {
+    color: gray;
+    padding: 0px 4px 0px 3px
+}
+
+.officersHeader {
+    font-size: 13px;
+    color: #45668e;
+    font-weight: 700;
+    padding: 3px 0px 5px 1px
+}
+
+.divide {
+    color: gray;
+    padding: 0px 4px 0px 3px
+}
+
+div.scrollList {
+    color: #777
+}
+
+div.scrollList a {
+    border-bottom: 1px solid #fff;
+    padding: 0px 2px;
+    font-size: 10px
+}
+
+div.scrollList a:hover {
+    background: #45668e;
+    border-color: #dae2e8;
+    border-bottom: 1px solid #45668e;
+    padding: 0px 2px;
+    font-size: 10px;
+    color: #fff;
+    text-decoration: none
+}
+
+div.scrollList a.current,
+div.scrollList a:hover.current {
+    background: transparent;
+    border-color: #45668e;
+    border-bottom: 2px solid #45668e;
+    color: #45668e;
+    font-weight: 700
+}
+
+#progrWrap,
+#progrWrapTop {
+    float: left;
+    margin-left: 5px;
+    vertical-align: bottom
+}
+
+#progr,
+#progrMid,
+#progrTop {
+    display: none
+}
+
+#memberPages .commentsPagesWrap,
+.scrollList .commentsPagesWrap {
+    height: 17px
+}
+
+#memberPages .commentsPages,
+.scrollList .commentsPages {
+    list-style-type: none;
+    height: 10px;
+    padding-left: 10px;
+    margin: 0px;
+    float: left
+}
+
+#memberPages ul.commentsPages li,
+.scrollList ul.commentsPages li {
+    float: left
+}
+
+#memberPages ul.commentsPages a,
+.scrollList ul.commentsPages a {
+    padding: 0px 2px;
+    font-size: 10px
+}
+
+#memberPages ul.commentsPages a:hover,
+.scrollList ul.commentsPages a:hover {
+    background: #45668e;
+    border-color: #dae2e8;
+    border-bottom: 1px solid #45668e;
+    padding: 0px 2px;
+    font-size: 10px;
+    color: #fff;
+    text-decoration: none
+}
+
+#memberPages ul.commentsPages li.current a,
+.scrollList ul.commentsPages li.current a #memberPages ul.commentsPages li.current a:hover,
+.scrollList ul.commentsPages li.current a:hover {
+    background: transparent;
+    border-color: #45668e;
+    border-bottom: 2px solid #45668e;
+    color: #45668e;
+    font-weight: 700
+}
+
+.mPanel .mMsg {
+    background-color: #f9f6e7;
+    border: 1px solid #d4bc4c
+}
+
+.mPanel .mDld {
+    background-color: #e7f1f9;
+    border: 1px solid #4c96d4
+}
+
+.friendRow {
+    background-color: #fff;
+    border: 1px solid #dae2e8;
+    color: #36638e;
+    padding: 3px 5px;
+    margin: 1px;
+    cursor: pointer
+}
+
+.friendRow:hover {
+    background-color: #edf0f3;
+    border: 1px solid #c0cad5;
+    color: #36638e;
+    text-decoration: none
+}
+
+#goSearch #gSearch {
+    margin: 4px 10px 0px 0px;
+    float: left;
+    width: 154px
+}

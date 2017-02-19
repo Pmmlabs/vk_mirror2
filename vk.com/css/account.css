@@ -1,1 +1,412 @@
-#content{padding:11px 0px 0px}#message{border:1px solid #4c96d4;background-color:#e7f1f9;padding:8px 11px}#message,#error{font-size:11px;font-weight:700}#messageWrap{background-image:url('../images/msgback.gif');background-color:#fff;background-repeat:repeat-x;background-position:bottom;padding:10px 10px 0px}.editor{margin:3px 0px 7px 30px;width:580px}.editor_panel{padding:10px 0px;background:#f7f7f7}.editor td{border:none;margin:0px;padding:5px 1px 1px;vertical-align:top}.editor td.label{padding-right:15px}.editor td.label,.editor td.labelHigh{text-align:right;width:150px;color:#555}.editor td.labelHigh{vertical-align:top;padding:10px 15px 0px 0px}.editor td.labelHigh div{font-weight:400;font-size:10px;color:#999}.editor td.labelField{width:350px}.labelFieldInfo{color:#777;position:absolute;margin:4px 0px 0px 275px}.editor td.label small{color:#999}.editor .suboption_group{border-top:1px solid silver;border-bottom:1px solid silver;margin-left:20px}.editor .suboption_group td{padding:0px}.editor tr.tallrow{vertical-align:top}.editor tr.tallrow td.label{padding-top:7px}.editor tr.subrow{vertical-align:top}.editor tr.subrow td{margin-top:0px;padding-top:0px}.editor .buttons{text-align:center;padding:10px 0px 0px}.editor .buttons .inputbutton,.editor .buttons .inputsubmit{margin:2px 4px}.editor label{width:200px;color:#000;font-weight:400}.editor table.option_field td{padding:0px 2px 0px 0px;margin:0px}.editor .option_caption{padding-bottom:2px;width:260px;color:#777;font-weight:400}.editor .inputPassword,.editor .inputtext{margin-left:0px;width:200px}.editor .textarea{margin-left:0px;width:300px}.editor select{margin-right:5px;margin-left:0px}.editor .checkbox_array{padding:5px 0px 0px;margin:0px}.editor .checkbox_array td{margin:0px;padding:0px}.editor .checkbox_array label{padding-right:15px}.editor .relationship .inputtext{width:200px}.editor .highschool input,.editor .school input{margin-right:5px;width:235px}.editor .select xselect{width:200px}.editor .two_level_select select{width:145px}.editor .text_with_privacy input{margin-right:5px;width:105px}.editor .text_with_privacy select{margin-left:5px;width:auto}.editor .text_with_privacy td{color:#777}.editor .date_time span,.editor .inline_text{margin:0px 4px 0px -2px}.editor .note{width:300px}.editor .hiddenrow{display:none}.divider{margin:5px 0px;height:0;overflow:hidden;border-top:solid 1px #e0e0e0;border-bottom:solid 1px #fff}.tarea{width:280px;height:80px}.photo{margin-right:20px}.titolo{margin:5px 20px;margin-left:208px;_margin-left:188px}.photo h4{border-bottom:solid 1px #b9c4da;margin:0px;padding:0px 0px 2px;font-size:13px}.privacy_panel{margin-left:10px;display:block;padding:2px;width:250px;background:#edeff1}.privacy_panel_editor{background:#fff;border:1px solid #adbbca;display:block;width:248px}.privacy_panel_editor h2{border-bottom:1px solid #dae2e8;color:#45688e;padding:5px 0px 3px;margin:0px 0px 10px;font-size:13px}.privacy_panel_border{border:10px solid #dae2e8;padding:10px}.privacy_panel_settings{padding:0px 0px 0px 10px}.privacy_panel_settings h3{color:#000;font-weight:700;margin:0px;padding:0px}.privacy_panel_settings ul{list-style-type:none;padding:5px 10px 10px;margin:0px}.privacy_panel_settings label{color:#000;font-weight:400}.privacy_save{text-decoration:none;color:#fff}a.privacy_save:hover{text-decoration:none;color:#dae1e8}.edit_privacy{margin-left:15px}.ieFrame{position:absolute;z-index:0;border:0px;filter:progid:DXImageTransform.Microsoft.Alpha(style=0, opacity=0)}.back_links{padding:4px 0px 0px;float:left}.narrow td.label{width:130px;vertical-align:top;padding-top:8px}.addrOuterCont{background:#fff url(/images/addr_1.gif) repeat-y scroll 0px 50%}.addrColumn{float:right;width:166px;padding-top:21px;background:#fff}.addrColumnInner{margin:0 0 21px 25px}.addHeader{border-bottom:1px solid #b9c4da;margin:0px 10px 10px 0px;padding:0px 0px 2px;color:#36638e;font-weight:700;font-size:13px}.catHeader{color:#000;font-weight:700}.addrCont{background:#f7f7f7;padding:10px 0;float:left;width:459px;overflow:hidden}.addrprogr{float:right;display:none;margin:5px 5px 0 0}select.addrSince{margin-left:7px;width:195px}select.addrUntil{width:195px}.profileEditAddMargin{margin-left:218px;_margin-left:197px}.profileEditAddPlacesMargin{margin-left:150px;_margin-left:164px}.editor td.servLabel{text-align:right;vertical-align:top;padding-right:15px;width:99px;color:#555}.editor td.servCheck{width:20px;text-align:right;vertical-align:top}.editor td.servDesc{width:274px;text-align:left;vertical-align:top;padding:4px 0px 10px 10px}.editor td.settLabel{text-align:right;padding-right:15px;width:120px;color:#555}.editor td.settValue{width:263px}
+#content {
+    padding: 11px 0px 0px
+}
+
+#message {
+    border: 1px solid #4c96d4;
+    background-color: #e7f1f9;
+    padding: 8px 11px
+}
+
+#message,
+#error {
+    font-size: 11px;
+    font-weight: 700
+}
+
+#messageWrap {
+    background-image: url('../images/msgback.gif');
+    background-color: #fff;
+    background-repeat: repeat-x;
+    background-position: bottom;
+    padding: 10px 10px 0px
+}
+
+.editor {
+    margin: 3px 0px 7px 30px;
+    width: 580px
+}
+
+.editor_panel {
+    padding: 10px 0px;
+    background: #f7f7f7
+}
+
+.editor td {
+    border: none;
+    margin: 0px;
+    padding: 5px 1px 1px;
+    vertical-align: top
+}
+
+.editor td.label {
+    padding-right: 15px
+}
+
+.editor td.label,
+.editor td.labelHigh {
+    text-align: right;
+    width: 150px;
+    color: #555
+}
+
+.editor td.labelHigh {
+    vertical-align: top;
+    padding: 10px 15px 0px 0px
+}
+
+.editor td.labelHigh div {
+    font-weight: 400;
+    font-size: 10px;
+    color: #999
+}
+
+.editor td.labelField {
+    width: 350px
+}
+
+.labelFieldInfo {
+    color: #777;
+    position: absolute;
+    margin: 4px 0px 0px 275px
+}
+
+.editor td.label small {
+    color: #999
+}
+
+.editor .suboption_group {
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+    margin-left: 20px
+}
+
+.editor .suboption_group td {
+    padding: 0px
+}
+
+.editor tr.tallrow {
+    vertical-align: top
+}
+
+.editor tr.tallrow td.label {
+    padding-top: 7px
+}
+
+.editor tr.subrow {
+    vertical-align: top
+}
+
+.editor tr.subrow td {
+    margin-top: 0px;
+    padding-top: 0px
+}
+
+.editor .buttons {
+    text-align: center;
+    padding: 10px 0px 0px
+}
+
+.editor .buttons .inputbutton,
+.editor .buttons .inputsubmit {
+    margin: 2px 4px
+}
+
+.editor label {
+    width: 200px;
+    color: #000;
+    font-weight: 400
+}
+
+.editor table.option_field td {
+    padding: 0px 2px 0px 0px;
+    margin: 0px
+}
+
+.editor .option_caption {
+    padding-bottom: 2px;
+    width: 260px;
+    color: #777;
+    font-weight: 400
+}
+
+.editor .inputPassword,
+.editor .inputtext {
+    margin-left: 0px;
+    width: 200px
+}
+
+.editor .textarea {
+    margin-left: 0px;
+    width: 300px
+}
+
+.editor select {
+    margin-right: 5px;
+    margin-left: 0px
+}
+
+.editor .checkbox_array {
+    padding: 5px 0px 0px;
+    margin: 0px
+}
+
+.editor .checkbox_array td {
+    margin: 0px;
+    padding: 0px
+}
+
+.editor .checkbox_array label {
+    padding-right: 15px
+}
+
+.editor .relationship .inputtext {
+    width: 200px
+}
+
+.editor .highschool input,
+.editor .school input {
+    margin-right: 5px;
+    width: 235px
+}
+
+.editor .select xselect {
+    width: 200px
+}
+
+.editor .two_level_select select {
+    width: 145px
+}
+
+.editor .text_with_privacy input {
+    margin-right: 5px;
+    width: 105px
+}
+
+.editor .text_with_privacy select {
+    margin-left: 5px;
+    width: auto
+}
+
+.editor .text_with_privacy td {
+    color: #777
+}
+
+.editor .date_time span,
+.editor .inline_text {
+    margin: 0px 4px 0px -2px
+}
+
+.editor .note {
+    width: 300px
+}
+
+.editor .hiddenrow {
+    display: none
+}
+
+.divider {
+    margin: 5px 0px;
+    height: 0;
+    overflow: hidden;
+    border-top: solid 1px #e0e0e0;
+    border-bottom: solid 1px #fff
+}
+
+.tarea {
+    width: 280px;
+    height: 80px
+}
+
+.photo {
+    margin-right: 20px
+}
+
+.titolo {
+    margin: 5px 20px;
+    margin-left: 208px;
+    _margin-left: 188px
+}
+
+.photo h4 {
+    border-bottom: solid 1px #b9c4da;
+    margin: 0px;
+    padding: 0px 0px 2px;
+    font-size: 13px
+}
+
+.privacy_panel {
+    margin-left: 10px;
+    display: block;
+    padding: 2px;
+    width: 250px;
+    background: #edeff1
+}
+
+.privacy_panel_editor {
+    background: #fff;
+    border: 1px solid #adbbca;
+    display: block;
+    width: 248px
+}
+
+.privacy_panel_editor h2 {
+    border-bottom: 1px solid #dae2e8;
+    color: #45688e;
+    padding: 5px 0px 3px;
+    margin: 0px 0px 10px;
+    font-size: 13px
+}
+
+.privacy_panel_border {
+    border: 10px solid #dae2e8;
+    padding: 10px
+}
+
+.privacy_panel_settings {
+    padding: 0px 0px 0px 10px
+}
+
+.privacy_panel_settings h3 {
+    color: #000;
+    font-weight: 700;
+    margin: 0px;
+    padding: 0px
+}
+
+.privacy_panel_settings ul {
+    list-style-type: none;
+    padding: 5px 10px 10px;
+    margin: 0px
+}
+
+.privacy_panel_settings label {
+    color: #000;
+    font-weight: 400
+}
+
+.privacy_save {
+    text-decoration: none;
+    color: #fff
+}
+
+a.privacy_save:hover {
+    text-decoration: none;
+    color: #dae1e8
+}
+
+.edit_privacy {
+    margin-left: 15px
+}
+
+.ieFrame {
+    position: absolute;
+    z-index: 0;
+    border: 0px;
+    filter: progid:DXImageTransform.Microsoft.Alpha(style=0, opacity=0)
+}
+
+.back_links {
+    padding: 4px 0px 0px;
+    float: left
+}
+
+.narrow td.label {
+    width: 130px;
+    vertical-align: top;
+    padding-top: 8px
+}
+
+.addrOuterCont {
+    background: #fff url(/images/addr_1.gif) repeat-y scroll 0px 50%
+}
+
+.addrColumn {
+    float: right;
+    width: 166px;
+    padding-top: 21px;
+    background: #fff
+}
+
+.addrColumnInner {
+    margin: 0 0 21px 25px
+}
+
+.addHeader {
+    border-bottom: 1px solid #b9c4da;
+    margin: 0px 10px 10px 0px;
+    padding: 0px 0px 2px;
+    color: #36638e;
+    font-weight: 700;
+    font-size: 13px
+}
+
+.catHeader {
+    color: #000;
+    font-weight: 700
+}
+
+.addrCont {
+    background: #f7f7f7;
+    padding: 10px 0;
+    float: left;
+    width: 459px;
+    overflow: hidden
+}
+
+.addrprogr {
+    float: right;
+    display: none;
+    margin: 5px 5px 0 0
+}
+
+select.addrSince {
+    margin-left: 7px;
+    width: 195px
+}
+
+select.addrUntil {
+    width: 195px
+}
+
+.profileEditAddMargin {
+    margin-left: 218px;
+    _margin-left: 197px
+}
+
+.profileEditAddPlacesMargin {
+    margin-left: 150px;
+    _margin-left: 164px
+}
+
+.editor td.servLabel {
+    text-align: right;
+    vertical-align: top;
+    padding-right: 15px;
+    width: 99px;
+    color: #555
+}
+
+.editor td.servCheck {
+    width: 20px;
+    text-align: right;
+    vertical-align: top
+}
+
+.editor td.servDesc {
+    width: 274px;
+    text-align: left;
+    vertical-align: top;
+    padding: 4px 0px 10px 10px
+}
+
+.editor td.settLabel {
+    text-align: right;
+    padding-right: 15px;
+    width: 120px;
+    color: #555
+}
+
+.editor td.settValue {
+    width: 263px
+}

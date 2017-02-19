@@ -1,1 +1,137 @@
-.main{width:156px;text-align:center}.month{font:normal 11px Tahoma;padding:4px;color:#fff}.month,.monthArr{text-align:center;background-color:#36638e}.monthArr{padding:2px}a.monthArrow{color:#fff}a.monthArrow,a.monthArrow:hover{text-align:center;font:700 13px Tahoma;text-decoration:none}a.monthArrow:hover{color:#dae2e8}.daysofweek{background-color:#6b8cab;font:700 9px Tahoma;text-align:center;height:16px;width:50px;color:#fff;border-bottom:1px solid #36638e}.day,.dayLeft{height:20px;width:10px;font-size:11px;font-family:Tahoma;color:#333;background-color:#fff;text-decoration:none;cursor:pointer;cursor:hand;text-align:center;border-right:1px solid #dae2e8;border-bottom:1px solid #dae2e8}.dayLeft{border-left:1px solid #dae2e8}.dayOn{background-color:#edf0f3;border-right:1px solid #dae2e8;border-bottom:1px solid #dae2e8}.dayOn,.today{height:20px;width:10px;font-size:11px;font-family:Tahoma;color:#36638e;text-decoration:none;cursor:pointer;cursor:hand;text-align:center}.today{background-color:#dae2e8}.pastDay{color:#666}.noMonthDay{color:#ccc;background-color:#f5f8fa}.todayOn{height:20px;width:10px;font-size:11px;font-family:Tahoma;color:#36638e;background-color:#dae2e8;text-decoration:none;cursor:pointer;cursor:hand;text-align:center}.btn{cursor:pointer;margin:0px 7px 3px 0px;padding:4px 10px 5px}.btnTrigger{background-color:#fff;border:1px solid #dae2e8;color:#36638e}.btnTriggerOn{background-color:#dae2e8}.btnTriggerOn,.btnTrigger:hover{border:1px solid #c0cad5;color:#36638e}.btnTrigger:hover{background-color:#edf0f3;text-decoration:none}
+.main {
+    width: 156px;
+    text-align: center
+}
+
+.month {
+    font: normal 11px Tahoma;
+    padding: 4px;
+    color: #fff
+}
+
+.month,
+.monthArr {
+    text-align: center;
+    background-color: #36638e
+}
+
+.monthArr {
+    padding: 2px
+}
+
+a.monthArrow {
+    color: #fff
+}
+
+a.monthArrow,
+a.monthArrow:hover {
+    text-align: center;
+    font: 700 13px Tahoma;
+    text-decoration: none
+}
+
+a.monthArrow:hover {
+    color: #dae2e8
+}
+
+.daysofweek {
+    background-color: #6b8cab;
+    font: 700 9px Tahoma;
+    text-align: center;
+    height: 16px;
+    width: 50px;
+    color: #fff;
+    border-bottom: 1px solid #36638e
+}
+
+.day,
+.dayLeft {
+    height: 20px;
+    width: 10px;
+    font-size: 11px;
+    font-family: Tahoma;
+    color: #333;
+    background-color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    cursor: hand;
+    text-align: center;
+    border-right: 1px solid #dae2e8;
+    border-bottom: 1px solid #dae2e8
+}
+
+.dayLeft {
+    border-left: 1px solid #dae2e8
+}
+
+.dayOn {
+    background-color: #edf0f3;
+    border-right: 1px solid #dae2e8;
+    border-bottom: 1px solid #dae2e8
+}
+
+.dayOn,
+.today {
+    height: 20px;
+    width: 10px;
+    font-size: 11px;
+    font-family: Tahoma;
+    color: #36638e;
+    text-decoration: none;
+    cursor: pointer;
+    cursor: hand;
+    text-align: center
+}
+
+.today {
+    background-color: #dae2e8
+}
+
+.pastDay {
+    color: #666
+}
+
+.noMonthDay {
+    color: #ccc;
+    background-color: #f5f8fa
+}
+
+.todayOn {
+    height: 20px;
+    width: 10px;
+    font-size: 11px;
+    font-family: Tahoma;
+    color: #36638e;
+    background-color: #dae2e8;
+    text-decoration: none;
+    cursor: pointer;
+    cursor: hand;
+    text-align: center
+}
+
+.btn {
+    cursor: pointer;
+    margin: 0px 7px 3px 0px;
+    padding: 4px 10px 5px
+}
+
+.btnTrigger {
+    background-color: #fff;
+    border: 1px solid #dae2e8;
+    color: #36638e
+}
+
+.btnTriggerOn {
+    background-color: #dae2e8
+}
+
+.btnTriggerOn,
+.btnTrigger:hover {
+    border: 1px solid #c0cad5;
+    color: #36638e
+}
+
+.btnTrigger:hover {
+    background-color: #edf0f3;
+    text-decoration: none
+}

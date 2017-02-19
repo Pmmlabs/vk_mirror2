@@ -1,1 +1,143 @@
-.calTable{width:156px;text-align:center}.calTable .month{font:normal 11px Tahoma;padding:4px;color:#fff}.calTable .month,.calTable .monthArr{text-align:center;background-color:#36638e}.calTable .monthArr{padding:2px}.calTable a.monthArrow,.calTable span.monthArrow{color:#fff;text-align:center;font:700 13px Tahoma;text-decoration:none}.calTable a.monthArrow:hover{color:#dae2e8;text-align:center;font:700 13px Tahoma;text-decoration:none}.calTable .daysofweek{background-color:#6b8cab;font:700 9px Tahoma;text-align:center;height:16px;width:14%;color:#fff;border-bottom:1px solid #36638e}.calTable .day,.calTable .dayLeft,.calTable .dayOn{height:20px;width:14%;font-size:11px;font-family:Tahoma;color:#333;background-color:#fff;text-decoration:none;cursor:pointer;cursor:hand;text-align:center;border-right:1px solid #dae2e8;border-bottom:1px solid #dae2e8}.calTable.disabled .day,.calTable.disabled .dayLeft,.calTable.disabled .dayOn,.calTable.disabled .today,.calTable.disabled .todayOn{cursor:auto}.calTable .dayLeft{border-left:1px solid #dae2e8}.calTable .dayOn{color:#36638e;background-color:#edf0f3}.calTable .today{height:20px;width:10px;font-size:11px;font-family:Tahoma;color:#36638e;background-color:#dae2e8;text-decoration:none;cursor:pointer;cursor:hand;text-align:center}.calTable .pastDay{color:#666}.calTable .noMonthDay{color:#ccc;background-color:#f5f8fa}.calTable .todayOn{height:20px;width:10px;font-size:11px;font-family:Tahoma;color:#36638e;background-color:#dae2e8;text-decoration:none;cursor:pointer;cursor:hand;text-align:center}.datepickerDisabled{background-color:#efefef}.datepickerDisabled .calInput{background-color:#efefef;color:#606060;cursor:auto}.datepickerDisabled .calImg img{cursor:auto}.calInput{padding-left:6px;cursor:pointer}.calImg{height:20px;margin-right:-7px}.calImg img{margin:3px 6px 3px -18px;cursor:pointer}
+.calTable {
+    width: 156px;
+    text-align: center
+}
+
+.calTable .month {
+    font: normal 11px Tahoma;
+    padding: 4px;
+    color: #fff
+}
+
+.calTable .month,
+.calTable .monthArr {
+    text-align: center;
+    background-color: #36638e
+}
+
+.calTable .monthArr {
+    padding: 2px
+}
+
+.calTable a.monthArrow,
+.calTable span.monthArrow {
+    color: #fff;
+    text-align: center;
+    font: 700 13px Tahoma;
+    text-decoration: none
+}
+
+.calTable a.monthArrow:hover {
+    color: #dae2e8;
+    text-align: center;
+    font: 700 13px Tahoma;
+    text-decoration: none
+}
+
+.calTable .daysofweek {
+    background-color: #6b8cab;
+    font: 700 9px Tahoma;
+    text-align: center;
+    height: 16px;
+    width: 14%;
+    color: #fff;
+    border-bottom: 1px solid #36638e
+}
+
+.calTable .day,
+.calTable .dayLeft,
+.calTable .dayOn {
+    height: 20px;
+    width: 14%;
+    font-size: 11px;
+    font-family: Tahoma;
+    color: #333;
+    background-color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    cursor: hand;
+    text-align: center;
+    border-right: 1px solid #dae2e8;
+    border-bottom: 1px solid #dae2e8
+}
+
+.calTable.disabled .day,
+.calTable.disabled .dayLeft,
+.calTable.disabled .dayOn,
+.calTable.disabled .today,
+.calTable.disabled .todayOn {
+    cursor: auto
+}
+
+.calTable .dayLeft {
+    border-left: 1px solid #dae2e8
+}
+
+.calTable .dayOn {
+    color: #36638e;
+    background-color: #edf0f3
+}
+
+.calTable .today {
+    height: 20px;
+    width: 10px;
+    font-size: 11px;
+    font-family: Tahoma;
+    color: #36638e;
+    background-color: #dae2e8;
+    text-decoration: none;
+    cursor: pointer;
+    cursor: hand;
+    text-align: center
+}
+
+.calTable .pastDay {
+    color: #666
+}
+
+.calTable .noMonthDay {
+    color: #ccc;
+    background-color: #f5f8fa
+}
+
+.calTable .todayOn {
+    height: 20px;
+    width: 10px;
+    font-size: 11px;
+    font-family: Tahoma;
+    color: #36638e;
+    background-color: #dae2e8;
+    text-decoration: none;
+    cursor: pointer;
+    cursor: hand;
+    text-align: center
+}
+
+.datepickerDisabled {
+    background-color: #efefef
+}
+
+.datepickerDisabled .calInput {
+    background-color: #efefef;
+    color: #606060;
+    cursor: auto
+}
+
+.datepickerDisabled .calImg img {
+    cursor: auto
+}
+
+.calInput {
+    padding-left: 6px;
+    cursor: pointer
+}
+
+.calImg {
+    height: 20px;
+    margin-right: -7px
+}
+
+.calImg img {
+    margin: 3px 6px 3px -18px;
+    cursor: pointer
+}

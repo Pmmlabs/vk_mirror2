@@ -1,1 +1,44 @@
-#email_css{display:none}.mail_spam_message{background:#fafafa;text-align:center;padding:34px 0 36px}.mail_spam_border{border:1px solid #adbbca;width:486px;margin:0px auto}.mail_spam_wrap{border:12px solid #dae2e8;padding:18px 20px;background:#fff}.mail_spam_cont{padding-left:20px;text-align:left;width:300px}.mail_email_time{color:#999;font-size:0.81em;margin:2px 0 15px;font-weight:400}.mail_spam_warning{background-color:#f9f6e7;border:1px solid #d4bc4c;font-size:1em;line-height:160%;padding:8px 11px;margin-bottom:20px;text-align:left}
+#email_css {
+    display: none
+}
+
+.mail_spam_message {
+    background: #fafafa;
+    text-align: center;
+    padding: 34px 0 36px
+}
+
+.mail_spam_border {
+    border: 1px solid #adbbca;
+    width: 486px;
+    margin: 0px auto
+}
+
+.mail_spam_wrap {
+    border: 12px solid #dae2e8;
+    padding: 18px 20px;
+    background: #fff
+}
+
+.mail_spam_cont {
+    padding-left: 20px;
+    text-align: left;
+    width: 300px
+}
+
+.mail_email_time {
+    color: #999;
+    font-size: 0.81em;
+    margin: 2px 0 15px;
+    font-weight: 400
+}
+
+.mail_spam_warning {
+    background-color: #f9f6e7;
+    border: 1px solid #d4bc4c;
+    font-size: 1em;
+    line-height: 160%;
+    padding: 8px 11px;
+    margin-bottom: 20px;
+    text-align: left
+}

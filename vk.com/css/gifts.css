@@ -1,1 +1,853 @@
-#content{padding:0}.summary_bar{border-bottom:1px solid #dae2e8;clear:both;padding:11px 10px 0;line-height:normal}.summary_bar,label{color:#000;font-weight:400}.summary_bar #summary{color:#45688e;float:left;font-weight:700;padding-top:3px;padding-bottom:4px}table.main_table{width:100%}.onewish table td,table.main_table td{vertical-align:top}#main_panel{width:460px}.alertmsg{margin-right:18px}.error{background:#ffddd2;border-color:#d27e6d}.box_body .alertmsg,.box_body .error{margin:0px 0px 10px}.msg,.error{margin-right:18px}.alertmsg ul{font-weight:400;list-style-type:none;margin:8px 15px 0px;padding:0;line-height:16px}#msgNoVotes{margin:0px;padding-left:15px;padding-right:15px;float:left}#selectGiftContainer{position:relative;margin-left:10px;margin-top:10px}#selectGift{margin:0px}#selectGift a{display:block;float:left;width:96px;height:96px;padding:4px}#selectGift img{display:block}#selectGift div{color:#000;visibility:hidden;opacity:0.92;filter:alpha(opacity=92);background:#f2e9ba;text-align:center;width:102px;margin:0px 0px 0px -4px;position:absolute;z-index:999}#selectGift span{margin:2px 0px;display:block}#selectGift div.gifts_left{background:url('../images/gifts_count_bg.gif') 50% no-repeat;visibility:visible;text-align:center;margin-top:-20px;height:15px;font-size:9px;font-weight:700;padding-top:4px;padding-left:1px;color:#696029;opacity:0.85;filter:alpha(opacity=85);position:relative;z-index:2}b.rbottom{display:block;background:#fff}b.rbottom b{display:block;height:1px;overflow:hidden;background:#f2e9ba}b.rbottom b.r{margin:0 1px;height:1px}#selectGift a.gold{background:url('../images/gift_gold_bg.gif') no-repeat}#selectGift a.gold:hover,#selectGift a:hover{background:url('../images/gift_bg.gif') no-repeat;background-color:transparent;text-decoration:none}#selectGift a:hover div{visibility:visible}#selectGift a:hover div.gifts_left{visibility:hidden}#selectGift a.unactive:hover{opacity:1;filter:alpha(opacity=100)}#selectGift a.active{background:url('../images/gift_bg.gif') no-repeat}#giftPreviewContainer{position:absolute;top:0;left:0;width:100%;height:100%}#giftPreviewBox{position:absolute;z-index:999;border:1px solid #adbbca;left:50%;margin-left:-139px;background:url('../images/merger-loader.gif') no-repeat 50% #fff}#giftPreviewBox img{display:block;width:256px;height:256px;border:10px solid #dae2e8}#giftForm{padding:15px 0px 0px 15px}.formButtons{height:26px;margin:20px 0px 0px}.formButtons li{margin-left:0px;margin-right:6px}label.headerLabel{display:block;float:left;margin-top:12px;margin-bottom:7px;color:#36638e;font-size:12px;font-weight:700;width:100%}#giftMessage a{margin-top:33px;margin-right:28px;float:right}#giftMessage label{width:320px}#giftText{height:120px}#giftText,#selectGiftType{width:320px;float:left}#selectGiftType span{color:#888;display:block;margin-left:2.2em}#infoBox{text-align:center;padding-bottom:20px;border-bottom:1px solid #cacaca}#infoBox #linkGetVotes{font-weight:700;display:block;margin-top:3px}#infoBox ul.nNav{float:none;margin:auto;width:12em}#infoBox ul.nNav li{margin:0;border:0;float:none}ul.commentsPages{float:right}#sideMenu{border-top:1px solid #fff}#sideMenu ul{padding:0px;margin:0px;list-style:none}#sideMenu li{padding:5px 0px 5px 15px}#sideMenu li.active{background-color:#eaeaea}#sideMenu li.active a{font-weight:700;color:#000;text-decoration:none}#sideMenu li.sub{margin-top:6px}#welcomeMessage{padding:35px 20px}#welcomeMessage div{padding:0px 10px 10px}#memberGiftsList{padding:15px 10px}.giftRow{padding:0px;margin:0px;float:left;margin-bottom:15px;width:100%}.giftRow td{padding:0px;vertical-align:top}.giftRow td.image{width:55px;text-align:left}.giftRow td.image img{width:50px;margin-right:5px}.giftRow .info{width:100%;border-top:solid 1px #45688e}.giftRow .info .header small,.wallpost .info .header b{font-weight:400;color:#000}.header .privacy{float:right;font-weight:700;color:#999}.giftRow .info .header{background:#f7f7f7}.giftRow .info .header,.giftRow .info .actions{padding:3px 5px;border-bottom:solid 1px #dae2e8}.giftRow .info .actions{border-top:none;clear:right;text-align:right;font-size:10px}.goldRow .info{border-top:solid 1px #45688e}.goldRow .info .header{background:#fffbe7}.goldRow .info .header,.goldRow .info .actions{border-bottom:solid 1px #dae2e8}.giftRow .info .header a.profile_link{font-weight:700}.giftRow .info .actions a:hover{text-decoration:underline}.giftRow .info .text{padding:5px 5px 10px;text-align:center;width:375px;_width:365px;overflow:auto;line-height:140%}.giftRow .info .gifts{padding:15px 5px 10px;text-align:center;overflow:auto}.giftRow .gift_tip{margin:8px 0px;color:#333;border:1px solid #dae2e8;background:#f7f7f7;padding:5px;line-height:140%}.giftRow .gift_msg{margin-top:6px}.gift_loader{width:256px;height:256px;margin:0 auto;background:url('../images/merger-loader.gif') no-repeat 50% #fff}.noGifts{font-size:12px;text-align:center;padding:50px 10px;margin:15px 30px 10px 20px;color:gray;background:#f7f7f7;border:solid 1px #ddd}#settingsForm{padding:6px 0px 10px 20px}#settingsForm div{margin-bottom:4px;margin-left:4px}.maininput{float:left;width:328px}.maininput input{width:320px}.wish{border-bottom:1px solid #cbd2d8}.wish,.wishlast{padding:0px 10px;margin:0px 0px 10px;background-color:#fff}.box_body .wishlast{margin:0px;padding:0px 10px 10px}.wish_image{display:block;width:100px;height:100px;background:#fff no-repeat 50% 50%;padding:4px;border:0px}.wish_name{float:left;padding:0px 0px 4px;font-weight:700;color:#36638e}.wish_name span{color:#777;font-weight:400}.wish_merchant{clear:left;padding:0px 0px 4px;font-size:10px;color:#666}.wish_not_enough{height:18px;border:1px solid #ececec;border-width:1px 0px;background-color:#fafafa}.wish_not_enough_left{position:absolute;height:18px;border:1px solid #d5e2ef;border-width:1px 0px;background-color:#e6eef4}.wish_not_enough_text{position:absolute;height:15px;width:287px;padding:3px 0px 3px 5px;color:#486981}.wish_status{float:right;font-weight:700}.wish_description{clear:left;padding:0px 0px 12px;color:#000}.wish_button .button_blue{margin:0px 10px 0px 0px}.wish_links{float:right;position:relative;top:-5px;clear:both;font-size:10px}.wish_price{padding-top:6px;margin-top:0px}.participate_form{padding-top:15px}#memberWishes{padding:15px 10px 0px}#participate a:hover{text-decoration:underline}.separator{background-color:#fff;clear:left;height:10px;position:relative;z-index:1}#main_panel #comments{margin:10px auto 20px;width:420px}.wish_comm{overflow:hidden;border-top:1px solid #eee;padding-top:9px}.wish_comm.first{border-top:1px solid #dce4e9}.wish_comm a.thumb{display:block;float:left;margin:0px 5px 5px 0px;height:25px;overflow:hidden}.wish_comm a.thumb img{width:25px}.wish_comm .comm{line-height:14px;padding:0px 0px 5px 5px;margin-left:30px}.wish_comm .comm .amount,.wish_comm .comm .old_amount{float:right;background-color:#f9f1c1;border:1px solid #d7cf9e;font-size:11px;color:#88751c;padding:4px}.wish_comm .comm .old_amount{background-color:#f7f7f7;border-color:#ccc;color:#888}.wish_comm .comm small{color:#777}#comment_form{display:none}#comment_form #wish_comment{width:412px;height:70px}.msgs{padding:0px 20px}.send_button{margin:7px 0px;height:25px}.onewish div.alertmsg,.wish div.alertmsg,.wishlast div.alertmsg{float:left;clear:none;font-weight:400;padding:5px 8px;margin:6px 10px 0px 0px}#progress_bottom,#progress_top{display:none;float:right;padding:6px}#gift_error .error{margin:0px}#box_body a:hover{text-decoration:underline}a.mb_tab2,a.mb_tab2:hover{display:block;text-decoration:none}div.mb_tab_selected a.mb_tab2{color:#fff}#page{background-color:#f7f7f7;padding:10px;height:50px;border-bottom:1px solid #dae2e8}.add_wish_row{clear:both;width:400px;margin:0px auto}.box_body #cont_wrapper{background-color:#fff;clear:left;overflow-x:hidden;overflow-y:auto}.box_body .cont{width:500px;margin:0px auto}.box_body .image_cont{padding:3px;width:96px;height:96px;float:left;margin:3px 10px 3px 0px;background:#fff url(/images/upload.gif) no-repeat 50% 50%}.box_body .image_cont img{margin:0px;padding:0px;border:0px}.box_body .item_description{padding:7px 4px 4px;color:#000}.box_body .item_name{padding:7px 4px 4px;font-weight:700;color:#36638e}.box_body .item_details{padding:0px 4px;font-size:10px;color:#666}#participate_not_enough{visibility:hidden;font-weight:400;margin:10px 0px 0px}#demo_button_box table,#demo_button table,#wishlist_button table{margin:0px auto}#demo_button,#demo_button_box{padding:10px 0px}#your_gift{padding:4px 0px}#amount_rub{padding-left:5px}#participate_amount{width:60px}#participate_comment{width:200px;height:50px}.wish_price div{padding:3px 0 4px}#participate_not_enough_text span{padding:2px 0;background-color:#fff}.summary_tabs{padding:5px;border-bottom:1px solid #dae1e8;background:#f7f7f7}.summary_right{padding:8px 5px}.summary_tab,.summary_tab_sel{font-weight:700;padding:8px 5px 7px}.summary_tab2{border-radius:2px;-moz-border-radius:2px;-khtml-border-radius:2px;-webkit-border-radius:2px;padding:3px 5px 4px;display:block}.pageBody .summary_tab2:hover{background:#e1e7ed;text-decoration:none}.summary_tab_sel .summary_tab2,.summary_tab_sel .summary_tab2:hover{background:#597da3}.summary_tab3{max-width:230px;*display:inline;height:13px;overflow:hidden;font-weight:700;color:#45688e;padding:0px 3px;text-overflow:ellipsis}.summary_tab_sel .summary_tab3{color:#fff}.summary_tab_x{width:11px;height:11px;margin:2px 1px 0px;background:url(/images/pics/im_tabx.gif?1) 0 0;opacity:0.12;filter:alpha(opacity=12)}.summary_tab_x:hover{opacity:0.6;filter:alpha(opacity=60)}.summary_tab_sel .summary_tab_x{background-position:0 -13px;opacity:0.2;filter:alpha(opacity=20)}.summary_tab_sel .summary_tab_x:hover{opacity:1;filter:alpha(opacity=100)}
+#content {
+    padding: 0
+}
+
+.summary_bar {
+    border-bottom: 1px solid #dae2e8;
+    clear: both;
+    padding: 11px 10px 0;
+    line-height: normal
+}
+
+.summary_bar,
+label {
+    color: #000;
+    font-weight: 400
+}
+
+.summary_bar #summary {
+    color: #45688e;
+    float: left;
+    font-weight: 700;
+    padding-top: 3px;
+    padding-bottom: 4px
+}
+
+table.main_table {
+    width: 100%
+}
+
+.onewish table td,
+table.main_table td {
+    vertical-align: top
+}
+
+#main_panel {
+    width: 460px
+}
+
+.alertmsg {
+    margin-right: 18px
+}
+
+.error {
+    background: #ffddd2;
+    border-color: #d27e6d
+}
+
+.box_body .alertmsg,
+.box_body .error {
+    margin: 0px 0px 10px
+}
+
+.msg,
+.error {
+    margin-right: 18px
+}
+
+.alertmsg ul {
+    font-weight: 400;
+    list-style-type: none;
+    margin: 8px 15px 0px;
+    padding: 0;
+    line-height: 16px
+}
+
+#msgNoVotes {
+    margin: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left
+}
+
+#selectGiftContainer {
+    position: relative;
+    margin-left: 10px;
+    margin-top: 10px
+}
+
+#selectGift {
+    margin: 0px
+}
+
+#selectGift a {
+    display: block;
+    float: left;
+    width: 96px;
+    height: 96px;
+    padding: 4px
+}
+
+#selectGift img {
+    display: block
+}
+
+#selectGift div {
+    color: #000;
+    visibility: hidden;
+    opacity: 0.92;
+    filter: alpha(opacity=92);
+    background: #f2e9ba;
+    text-align: center;
+    width: 102px;
+    margin: 0px 0px 0px -4px;
+    position: absolute;
+    z-index: 999
+}
+
+#selectGift span {
+    margin: 2px 0px;
+    display: block
+}
+
+#selectGift div.gifts_left {
+    background: url('../images/gifts_count_bg.gif') 50% no-repeat;
+    visibility: visible;
+    text-align: center;
+    margin-top: -20px;
+    height: 15px;
+    font-size: 9px;
+    font-weight: 700;
+    padding-top: 4px;
+    padding-left: 1px;
+    color: #696029;
+    opacity: 0.85;
+    filter: alpha(opacity=85);
+    position: relative;
+    z-index: 2
+}
+
+b.rbottom {
+    display: block;
+    background: #fff
+}
+
+b.rbottom b {
+    display: block;
+    height: 1px;
+    overflow: hidden;
+    background: #f2e9ba
+}
+
+b.rbottom b.r {
+    margin: 0 1px;
+    height: 1px
+}
+
+#selectGift a.gold {
+    background: url('../images/gift_gold_bg.gif') no-repeat
+}
+
+#selectGift a.gold:hover,
+#selectGift a:hover {
+    background: url('../images/gift_bg.gif') no-repeat;
+    background-color: transparent;
+    text-decoration: none
+}
+
+#selectGift a:hover div {
+    visibility: visible
+}
+
+#selectGift a:hover div.gifts_left {
+    visibility: hidden
+}
+
+#selectGift a.unactive:hover {
+    opacity: 1;
+    filter: alpha(opacity=100)
+}
+
+#selectGift a.active {
+    background: url('../images/gift_bg.gif') no-repeat
+}
+
+#giftPreviewContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}
+
+#giftPreviewBox {
+    position: absolute;
+    z-index: 999;
+    border: 1px solid #adbbca;
+    left: 50%;
+    margin-left: -139px;
+    background: url('../images/merger-loader.gif') no-repeat 50% #fff
+}
+
+#giftPreviewBox img {
+    display: block;
+    width: 256px;
+    height: 256px;
+    border: 10px solid #dae2e8
+}
+
+#giftForm {
+    padding: 15px 0px 0px 15px
+}
+
+.formButtons {
+    height: 26px;
+    margin: 20px 0px 0px
+}
+
+.formButtons li {
+    margin-left: 0px;
+    margin-right: 6px
+}
+
+label.headerLabel {
+    display: block;
+    float: left;
+    margin-top: 12px;
+    margin-bottom: 7px;
+    color: #36638e;
+    font-size: 12px;
+    font-weight: 700;
+    width: 100%
+}
+
+#giftMessage a {
+    margin-top: 33px;
+    margin-right: 28px;
+    float: right
+}
+
+#giftMessage label {
+    width: 320px
+}
+
+#giftText {
+    height: 120px
+}
+
+#giftText,
+#selectGiftType {
+    width: 320px;
+    float: left
+}
+
+#selectGiftType span {
+    color: #888;
+    display: block;
+    margin-left: 2.2em
+}
+
+#infoBox {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #cacaca
+}
+
+#infoBox #linkGetVotes {
+    font-weight: 700;
+    display: block;
+    margin-top: 3px
+}
+
+#infoBox ul.nNav {
+    float: none;
+    margin: auto;
+    width: 12em
+}
+
+#infoBox ul.nNav li {
+    margin: 0;
+    border: 0;
+    float: none
+}
+
+ul.commentsPages {
+    float: right
+}
+
+#sideMenu {
+    border-top: 1px solid #fff
+}
+
+#sideMenu ul {
+    padding: 0px;
+    margin: 0px;
+    list-style: none
+}
+
+#sideMenu li {
+    padding: 5px 0px 5px 15px
+}
+
+#sideMenu li.active {
+    background-color: #eaeaea
+}
+
+#sideMenu li.active a {
+    font-weight: 700;
+    color: #000;
+    text-decoration: none
+}
+
+#sideMenu li.sub {
+    margin-top: 6px
+}
+
+#welcomeMessage {
+    padding: 35px 20px
+}
+
+#welcomeMessage div {
+    padding: 0px 10px 10px
+}
+
+#memberGiftsList {
+    padding: 15px 10px
+}
+
+.giftRow {
+    padding: 0px;
+    margin: 0px;
+    float: left;
+    margin-bottom: 15px;
+    width: 100%
+}
+
+.giftRow td {
+    padding: 0px;
+    vertical-align: top
+}
+
+.giftRow td.image {
+    width: 55px;
+    text-align: left
+}
+
+.giftRow td.image img {
+    width: 50px;
+    margin-right: 5px
+}
+
+.giftRow .info {
+    width: 100%;
+    border-top: solid 1px #45688e
+}
+
+.giftRow .info .header small,
+.wallpost .info .header b {
+    font-weight: 400;
+    color: #000
+}
+
+.header .privacy {
+    float: right;
+    font-weight: 700;
+    color: #999
+}
+
+.giftRow .info .header {
+    background: #f7f7f7
+}
+
+.giftRow .info .header,
+.giftRow .info .actions {
+    padding: 3px 5px;
+    border-bottom: solid 1px #dae2e8
+}
+
+.giftRow .info .actions {
+    border-top: none;
+    clear: right;
+    text-align: right;
+    font-size: 10px
+}
+
+.goldRow .info {
+    border-top: solid 1px #45688e
+}
+
+.goldRow .info .header {
+    background: #fffbe7
+}
+
+.goldRow .info .header,
+.goldRow .info .actions {
+    border-bottom: solid 1px #dae2e8
+}
+
+.giftRow .info .header a.profile_link {
+    font-weight: 700
+}
+
+.giftRow .info .actions a:hover {
+    text-decoration: underline
+}
+
+.giftRow .info .text {
+    padding: 5px 5px 10px;
+    text-align: center;
+    width: 375px;
+    _width: 365px;
+    overflow: auto;
+    line-height: 140%
+}
+
+.giftRow .info .gifts {
+    padding: 15px 5px 10px;
+    text-align: center;
+    overflow: auto
+}
+
+.giftRow .gift_tip {
+    margin: 8px 0px;
+    color: #333;
+    border: 1px solid #dae2e8;
+    background: #f7f7f7;
+    padding: 5px;
+    line-height: 140%
+}
+
+.giftRow .gift_msg {
+    margin-top: 6px
+}
+
+.gift_loader {
+    width: 256px;
+    height: 256px;
+    margin: 0 auto;
+    background: url('../images/merger-loader.gif') no-repeat 50% #fff
+}
+
+.noGifts {
+    font-size: 12px;
+    text-align: center;
+    padding: 50px 10px;
+    margin: 15px 30px 10px 20px;
+    color: gray;
+    background: #f7f7f7;
+    border: solid 1px #ddd
+}
+
+#settingsForm {
+    padding: 6px 0px 10px 20px
+}
+
+#settingsForm div {
+    margin-bottom: 4px;
+    margin-left: 4px
+}
+
+.maininput {
+    float: left;
+    width: 328px
+}
+
+.maininput input {
+    width: 320px
+}
+
+.wish {
+    border-bottom: 1px solid #cbd2d8
+}
+
+.wish,
+.wishlast {
+    padding: 0px 10px;
+    margin: 0px 0px 10px;
+    background-color: #fff
+}
+
+.box_body .wishlast {
+    margin: 0px;
+    padding: 0px 10px 10px
+}
+
+.wish_image {
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: #fff no-repeat 50% 50%;
+    padding: 4px;
+    border: 0px
+}
+
+.wish_name {
+    float: left;
+    padding: 0px 0px 4px;
+    font-weight: 700;
+    color: #36638e
+}
+
+.wish_name span {
+    color: #777;
+    font-weight: 400
+}
+
+.wish_merchant {
+    clear: left;
+    padding: 0px 0px 4px;
+    font-size: 10px;
+    color: #666
+}
+
+.wish_not_enough {
+    height: 18px;
+    border: 1px solid #ececec;
+    border-width: 1px 0px;
+    background-color: #fafafa
+}
+
+.wish_not_enough_left {
+    position: absolute;
+    height: 18px;
+    border: 1px solid #d5e2ef;
+    border-width: 1px 0px;
+    background-color: #e6eef4
+}
+
+.wish_not_enough_text {
+    position: absolute;
+    height: 15px;
+    width: 287px;
+    padding: 3px 0px 3px 5px;
+    color: #486981
+}
+
+.wish_status {
+    float: right;
+    font-weight: 700
+}
+
+.wish_description {
+    clear: left;
+    padding: 0px 0px 12px;
+    color: #000
+}
+
+.wish_button .button_blue {
+    margin: 0px 10px 0px 0px
+}
+
+.wish_links {
+    float: right;
+    position: relative;
+    top: -5px;
+    clear: both;
+    font-size: 10px
+}
+
+.wish_price {
+    padding-top: 6px;
+    margin-top: 0px
+}
+
+.participate_form {
+    padding-top: 15px
+}
+
+#memberWishes {
+    padding: 15px 10px 0px
+}
+
+#participate a:hover {
+    text-decoration: underline
+}
+
+.separator {
+    background-color: #fff;
+    clear: left;
+    height: 10px;
+    position: relative;
+    z-index: 1
+}
+
+#main_panel #comments {
+    margin: 10px auto 20px;
+    width: 420px
+}
+
+.wish_comm {
+    overflow: hidden;
+    border-top: 1px solid #eee;
+    padding-top: 9px
+}
+
+.wish_comm.first {
+    border-top: 1px solid #dce4e9
+}
+
+.wish_comm a.thumb {
+    display: block;
+    float: left;
+    margin: 0px 5px 5px 0px;
+    height: 25px;
+    overflow: hidden
+}
+
+.wish_comm a.thumb img {
+    width: 25px
+}
+
+.wish_comm .comm {
+    line-height: 14px;
+    padding: 0px 0px 5px 5px;
+    margin-left: 30px
+}
+
+.wish_comm .comm .amount,
+.wish_comm .comm .old_amount {
+    float: right;
+    background-color: #f9f1c1;
+    border: 1px solid #d7cf9e;
+    font-size: 11px;
+    color: #88751c;
+    padding: 4px
+}
+
+.wish_comm .comm .old_amount {
+    background-color: #f7f7f7;
+    border-color: #ccc;
+    color: #888
+}
+
+.wish_comm .comm small {
+    color: #777
+}
+
+#comment_form {
+    display: none
+}
+
+#comment_form #wish_comment {
+    width: 412px;
+    height: 70px
+}
+
+.msgs {
+    padding: 0px 20px
+}
+
+.send_button {
+    margin: 7px 0px;
+    height: 25px
+}
+
+.onewish div.alertmsg,
+.wish div.alertmsg,
+.wishlast div.alertmsg {
+    float: left;
+    clear: none;
+    font-weight: 400;
+    padding: 5px 8px;
+    margin: 6px 10px 0px 0px
+}
+
+#progress_bottom,
+#progress_top {
+    display: none;
+    float: right;
+    padding: 6px
+}
+
+#gift_error .error {
+    margin: 0px
+}
+
+#box_body a:hover {
+    text-decoration: underline
+}
+
+a.mb_tab2,
+a.mb_tab2:hover {
+    display: block;
+    text-decoration: none
+}
+
+div.mb_tab_selected a.mb_tab2 {
+    color: #fff
+}
+
+#page {
+    background-color: #f7f7f7;
+    padding: 10px;
+    height: 50px;
+    border-bottom: 1px solid #dae2e8
+}
+
+.add_wish_row {
+    clear: both;
+    width: 400px;
+    margin: 0px auto
+}
+
+.box_body #cont_wrapper {
+    background-color: #fff;
+    clear: left;
+    overflow-x: hidden;
+    overflow-y: auto
+}
+
+.box_body .cont {
+    width: 500px;
+    margin: 0px auto
+}
+
+.box_body .image_cont {
+    padding: 3px;
+    width: 96px;
+    height: 96px;
+    float: left;
+    margin: 3px 10px 3px 0px;
+    background: #fff url(/images/upload.gif) no-repeat 50% 50%
+}
+
+.box_body .image_cont img {
+    margin: 0px;
+    padding: 0px;
+    border: 0px
+}
+
+.box_body .item_description {
+    padding: 7px 4px 4px;
+    color: #000
+}
+
+.box_body .item_name {
+    padding: 7px 4px 4px;
+    font-weight: 700;
+    color: #36638e
+}
+
+.box_body .item_details {
+    padding: 0px 4px;
+    font-size: 10px;
+    color: #666
+}
+
+#participate_not_enough {
+    visibility: hidden;
+    font-weight: 400;
+    margin: 10px 0px 0px
+}
+
+#demo_button_box table,
+#demo_button table,
+#wishlist_button table {
+    margin: 0px auto
+}
+
+#demo_button,
+#demo_button_box {
+    padding: 10px 0px
+}
+
+#your_gift {
+    padding: 4px 0px
+}
+
+#amount_rub {
+    padding-left: 5px
+}
+
+#participate_amount {
+    width: 60px
+}
+
+#participate_comment {
+    width: 200px;
+    height: 50px
+}
+
+.wish_price div {
+    padding: 3px 0 4px
+}
+
+#participate_not_enough_text span {
+    padding: 2px 0;
+    background-color: #fff
+}
+
+.summary_tabs {
+    padding: 5px;
+    border-bottom: 1px solid #dae1e8;
+    background: #f7f7f7
+}
+
+.summary_right {
+    padding: 8px 5px
+}
+
+.summary_tab,
+.summary_tab_sel {
+    font-weight: 700;
+    padding: 8px 5px 7px
+}
+
+.summary_tab2 {
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    padding: 3px 5px 4px;
+    display: block
+}
+
+.pageBody .summary_tab2:hover {
+    background: #e1e7ed;
+    text-decoration: none
+}
+
+.summary_tab_sel .summary_tab2,
+.summary_tab_sel .summary_tab2:hover {
+    background: #597da3
+}
+
+.summary_tab3 {
+    max-width: 230px;
+    *display: inline;
+    height: 13px;
+    overflow: hidden;
+    font-weight: 700;
+    color: #45688e;
+    padding: 0px 3px;
+    text-overflow: ellipsis
+}
+
+.summary_tab_sel .summary_tab3 {
+    color: #fff
+}
+
+.summary_tab_x {
+    width: 11px;
+    height: 11px;
+    margin: 2px 1px 0px;
+    background: url(/images/pics/im_tabx.gif?1) 0 0;
+    opacity: 0.12;
+    filter: alpha(opacity=12)
+}
+
+.summary_tab_x:hover {
+    opacity: 0.6;
+    filter: alpha(opacity=60)
+}
+
+.summary_tab_sel .summary_tab_x {
+    background-position: 0 -13px;
+    opacity: 0.2;
+    filter: alpha(opacity=20)
+}
+
+.summary_tab_sel .summary_tab_x:hover {
+    opacity: 1;
+    filter: alpha(opacity=100)
+}

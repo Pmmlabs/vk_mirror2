@@ -1,1 +1,166 @@
-#content{padding:10px}#fave{background:url(../images/narrowrightbg.gif) repeat-y 100% 0}#leftColumn{float:left;width:398px;margin:0px 10px 0px 0px}#leftColumn,#rightColumn{overflow:hidden;padding:0px}#rightColumn{float:right;width:198px;margin:0px}.people_table{margin:0px;padding:0px}.people_table td{width:62px;vertical-align:middle;text-align:center;padding:0px 0px 5px}.people_table table{height:100%}.image50{vertical-align:middle;overflow:hidden;height:55px}.people_table table td.image{overflow:hidden;vertical-align:middle;padding-bottom:0px;font-size:1px;line-height:1px}.people_table table td.name div{width:60px;word-wrap:break-word}.bOpen .flexHeader{border-top:solid 1px #45688e}.bShut .flexHeader{background-color:#eee;border-top:solid 1px #ccc}.flexHeader{padding:3px 8px;border-top:solid 1px #b1bdd6;background:#dae2e8;-khtml-user-select:none}.flexHeader div{float:left}.flexHeader .flexEdit{font-weight:700;float:right}.flexHeader .flexEdit a{color:#a9b8cb}.flexHeader h2{display:inline;color:#45688e}.whenOpen .flexHeader{border-top:solid 1px #45688e}.whenShut .flexHeader{background-color:#eee;border-top:solid 1px #ccc}.whenShut .flexHeader h2{color:#888}.flexBox{padding:10px 8px 15px}.flexBox h4{margin:1px 0px 0px;padding:4px 0px 2px}.fallback{background:#f7f7f7;border-top:solid 1px #ccc;border-bottom:solid 1px #d8dfea;color:gray;padding:15px 0px;text-align:center}.fallbackBig{border:1px solid #ccc;color:#777;line-height:16px;margin:0px 0px 5px;padding:60px 20px}.fallbackBig,.fallbackL{background:#f7f7f7;font-size:12px;text-align:center}.fallbackL{color:gray;padding:15px 0px}.x_event{visibility:hidden;display:block;width:14px;height:14px;cursor:pointer;background:url("/images/hide_left.gif") no-repeat 50%}.over .x_event{visibility:visible;opacity:0.5;filter:alpha(opacity=50)}.over .x_event.active{visibility:visible;opacity:1;filter:alpha(opacity=100)}
+#content {
+    padding: 10px
+}
+
+#fave {
+    background: url(../images/narrowrightbg.gif) repeat-y 100% 0
+}
+
+#leftColumn {
+    float: left;
+    width: 398px;
+    margin: 0px 10px 0px 0px
+}
+
+#leftColumn,
+#rightColumn {
+    overflow: hidden;
+    padding: 0px
+}
+
+#rightColumn {
+    float: right;
+    width: 198px;
+    margin: 0px
+}
+
+.people_table {
+    margin: 0px;
+    padding: 0px
+}
+
+.people_table td {
+    width: 62px;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0px 0px 5px
+}
+
+.people_table table {
+    height: 100%
+}
+
+.image50 {
+    vertical-align: middle;
+    overflow: hidden;
+    height: 55px
+}
+
+.people_table table td.image {
+    overflow: hidden;
+    vertical-align: middle;
+    padding-bottom: 0px;
+    font-size: 1px;
+    line-height: 1px
+}
+
+.people_table table td.name div {
+    width: 60px;
+    word-wrap: break-word
+}
+
+.bOpen .flexHeader {
+    border-top: solid 1px #45688e
+}
+
+.bShut .flexHeader {
+    background-color: #eee;
+    border-top: solid 1px #ccc
+}
+
+.flexHeader {
+    padding: 3px 8px;
+    border-top: solid 1px #b1bdd6;
+    background: #dae2e8;
+    -khtml-user-select: none
+}
+
+.flexHeader div {
+    float: left
+}
+
+.flexHeader .flexEdit {
+    font-weight: 700;
+    float: right
+}
+
+.flexHeader .flexEdit a {
+    color: #a9b8cb
+}
+
+.flexHeader h2 {
+    display: inline;
+    color: #45688e
+}
+
+.whenOpen .flexHeader {
+    border-top: solid 1px #45688e
+}
+
+.whenShut .flexHeader {
+    background-color: #eee;
+    border-top: solid 1px #ccc
+}
+
+.whenShut .flexHeader h2 {
+    color: #888
+}
+
+.flexBox {
+    padding: 10px 8px 15px
+}
+
+.flexBox h4 {
+    margin: 1px 0px 0px;
+    padding: 4px 0px 2px
+}
+
+.fallback {
+    background: #f7f7f7;
+    border-top: solid 1px #ccc;
+    border-bottom: solid 1px #d8dfea;
+    color: gray;
+    padding: 15px 0px;
+    text-align: center
+}
+
+.fallbackBig {
+    border: 1px solid #ccc;
+    color: #777;
+    line-height: 16px;
+    margin: 0px 0px 5px;
+    padding: 60px 20px
+}
+
+.fallbackBig,
+.fallbackL {
+    background: #f7f7f7;
+    font-size: 12px;
+    text-align: center
+}
+
+.fallbackL {
+    color: gray;
+    padding: 15px 0px
+}
+
+.x_event {
+    visibility: hidden;
+    display: block;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    background: url("/images/hide_left.gif") no-repeat 50%
+}
+
+.over .x_event {
+    visibility: visible;
+    opacity: 0.5;
+    filter: alpha(opacity=50)
+}
+
+.over .x_event.active {
+    visibility: visible;
+    opacity: 1;
+    filter: alpha(opacity=100)
+}

@@ -1,1 +1,51 @@
-#content{background-color:#f7f7f7;padding:5px 4px;overflow:hidden!important;_height:1%!important}.welcome{background-color:#fff;padding:20px;padding-right:40px;border:1px solid #ccc}h4{border-bottom:solid 1px #b9c4da;margin:0px;padding:0px 0px 4px;font-size:15px}h6{color:#45668e;font-size:13px;padding-bottom:3px}.correctIt{font-size:11px;color:#777;font-weight:400;float:right}p.wel{padding-left:50px;font-size:11px;background-image:url('http://vkontakte.ru/images/b.gif');background-repeat:no-repeat;background-position:top-left}.wLabel{float:left;width:100px;padding-top:4px;font-weight:700;color:#777;text-align:right;padding-right:16px}
+#content {
+    background-color: #f7f7f7;
+    padding: 5px 4px;
+    overflow: hidden!important;
+    _height: 1%!important
+}
+
+.welcome {
+    background-color: #fff;
+    padding: 20px;
+    padding-right: 40px;
+    border: 1px solid #ccc
+}
+
+h4 {
+    border-bottom: solid 1px #b9c4da;
+    margin: 0px;
+    padding: 0px 0px 4px;
+    font-size: 15px
+}
+
+h6 {
+    color: #45668e;
+    font-size: 13px;
+    padding-bottom: 3px
+}
+
+.correctIt {
+    font-size: 11px;
+    color: #777;
+    font-weight: 400;
+    float: right
+}
+
+p.wel {
+    padding-left: 50px;
+    font-size: 11px;
+    background-image: url('http://vkontakte.ru/images/b.gif');
+    background-repeat: no-repeat;
+    background-position: top-left
+}
+
+.wLabel {
+    float: left;
+    width: 100px;
+    padding-top: 4px;
+    font-weight: 700;
+    color: #777;
+    text-align: right;
+    padding-right: 16px
+}

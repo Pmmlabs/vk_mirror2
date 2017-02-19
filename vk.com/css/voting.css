@@ -1,1 +1,134 @@
-.form_option_div{margin:5px 60px 5px 0px;text-align:right}.form_option_div_new{margin:5px 0px}.form_option_textbox{width:300px}.form_option_headerbox_new,.form_option_textbox_new{width:370px}.form_option_headerbox{width:300px}.form_option_links{margin-top:3px;font-size:10px;text-align:right}.voting_options_div{background-position:0 0;background-repeat:repeat-y;padding-left:20px}.voting_options_table{margin-bottom:2px;margin-top:8px}.voting_option_cell{padding-left:5px}.voting_text{padding-top:5px}.voting_links{padding-top:4px;text-align:right}.voting_result_bg{background:#fafafa}.voting_result_fg{border-top:1px solid #cad1d9;background:#dae2e8;font-size:0px;height:14px;overflow:hidden}.voting_result_text{padding-left:5px}.voting_question{text-align:center}.message1,.message2{background-color:#f4ebbd;border:1px solid #d7cf9e;font-size:11px;font-weight:700;margin:8px;padding:8px 11px;text-align:left}.message2{background-color:#f3f4f6;border:1px solid #cad1d9}#votingButton{margin:1px 0px;padding:4px 6px;background:#dae1e8;border-top:1px solid #cad1d9;width:5.3em;font-size:11px;color:#2b587a;cursor:hand;cursor:pointer}#votingButton,#votingButton a{text-decoration:none}.editVotePanel{margin:10px}.editVotePanel_new{margin:10px 10px 10px 0px}.editVotePanel_new h4,.editVotePanel h4{border-bottom:1px solid #b9c4da;color:#36638e;font-size:12px;font-weight:700;margin:10px 0px;padding-bottom:2px;text-align:left}#votingDiv{padding-right:10px}a.voting_disabled_link,a.voting_disabled_link:hover{color:#adbbca;text-decoration:none;cursor:default}
+.form_option_div {
+    margin: 5px 60px 5px 0px;
+    text-align: right
+}
+
+.form_option_div_new {
+    margin: 5px 0px
+}
+
+.form_option_textbox {
+    width: 300px
+}
+
+.form_option_headerbox_new,
+.form_option_textbox_new {
+    width: 370px
+}
+
+.form_option_headerbox {
+    width: 300px
+}
+
+.form_option_links {
+    margin-top: 3px;
+    font-size: 10px;
+    text-align: right
+}
+
+.voting_options_div {
+    background-position: 0 0;
+    background-repeat: repeat-y;
+    padding-left: 20px
+}
+
+.voting_options_table {
+    margin-bottom: 2px;
+    margin-top: 8px
+}
+
+.voting_option_cell {
+    padding-left: 5px
+}
+
+.voting_text {
+    padding-top: 5px
+}
+
+.voting_links {
+    padding-top: 4px;
+    text-align: right
+}
+
+.voting_result_bg {
+    background: #fafafa
+}
+
+.voting_result_fg {
+    border-top: 1px solid #cad1d9;
+    background: #dae2e8;
+    font-size: 0px;
+    height: 14px;
+    overflow: hidden
+}
+
+.voting_result_text {
+    padding-left: 5px
+}
+
+.voting_question {
+    text-align: center
+}
+
+.message1,
+.message2 {
+    background-color: #f4ebbd;
+    border: 1px solid #d7cf9e;
+    font-size: 11px;
+    font-weight: 700;
+    margin: 8px;
+    padding: 8px 11px;
+    text-align: left
+}
+
+.message2 {
+    background-color: #f3f4f6;
+    border: 1px solid #cad1d9
+}
+
+#votingButton {
+    margin: 1px 0px;
+    padding: 4px 6px;
+    background: #dae1e8;
+    border-top: 1px solid #cad1d9;
+    width: 5.3em;
+    font-size: 11px;
+    color: #2b587a;
+    cursor: hand;
+    cursor: pointer
+}
+
+#votingButton,
+#votingButton a {
+    text-decoration: none
+}
+
+.editVotePanel {
+    margin: 10px
+}
+
+.editVotePanel_new {
+    margin: 10px 10px 10px 0px
+}
+
+.editVotePanel_new h4,
+.editVotePanel h4 {
+    border-bottom: 1px solid #b9c4da;
+    color: #36638e;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 10px 0px;
+    padding-bottom: 2px;
+    text-align: left
+}
+
+#votingDiv {
+    padding-right: 10px
+}
+
+a.voting_disabled_link,
+a.voting_disabled_link:hover {
+    color: #adbbca;
+    text-decoration: none;
+    cursor: default
+}

@@ -1,1 +1,3 @@
-try{stManager.done("mail.js")}catch(e){}
+try {
+    stManager.done("mail.js")
+} catch (e) {}

@@ -1,1 +1,388 @@
-#html5-player{width:607px;height:360px;padding:0;overflow:hidden}#html5-player .bg{width:100%;height:100%;background-color:#000;-webkit-user-select:none}#html5-player .play-button{background-position:0 -50px}#html5-player .play-button,#html5-player .pause-button{width:15px;height:15px;border:0;background-image:url(/images/video/vk1.gif);padding:0;margin:0;cursor:pointer;-webkit-user-select:none}#html5-player .pause-button{background-position:-15px -50px}#html5-player .popup1{position:absolute}#html5-player .popup1,#html5-player .popup-bk{width:320px;height:90px;border:0;padding:0;margin:0;display:none;cursor:pointer;-webkit-user-select:none}#html5-player .popup-bk{background-color:#000;-webkit-border-radius:10px 8px;opacity:0.65;position:relative;left:0;bottom:0}#html5-player .big-play{background-position:0 0;width:50px;height:50px;border:0;background-image:url(/images/video/vk1.gif);padding:0;margin:0;position:relative;left:255px;bottom:81px;display:none;cursor:pointer;-webkit-user-select:none}#html5-player .video_title{font-weight:700;bottom:72px}#html5-player .video_title,#html5-player .video_author{font-family:Tahoma;font-size:11px;width:240px;height:15px;color:#fff;overflow:hidden;display:block;padding:0 5px 0 0;position:relative;left:15px;text-align:left;display:none}#html5-player .video_author{bottom:95px}#html5-player .logo1{background-position:0 -65px}#html5-player .logo1,#html5-player .logo2{width:80px;height:15px;border:0;position:relative;background-image:url(/images/video/vk1.gif);padding:0;margin:0;cursor:pointer}#html5-player .logo2{background-position:0 -80px}#html5-player .center-logo2{background-position:0 -349px;width:100px;height:16px;border:0;background-image:url(/images/video/vk1.gif);padding:0;margin:0;position:absolute;left:257px;top:172px;display:block;z-index:6000}#html5-player .loadingGif2{position:absolute;z-index:6001;top:175px;left:288px;width:30px;height:5px;background-image:url(/images/upload_gray.gif);background-position:50%;display:none}#html5-player .line-bk{position:relative;display:block;height:17px;background-color:#000;opacity:0.01;top:-5px;cursor:pointer;-webkit-user-select:none}#html5-player .gray-line{background-color:#777;top:-15px}#html5-player .gray-line,#html5-player .line{position:relative;display:block;height:1px;cursor:pointer;-webkit-user-select:none}#html5-player .line{background-color:#fff;top:-16px}#html5-player .slider{display:block;position:relative;margin:0px;cursor:pointer}#html5-player .progress-slider{width:15px}#html5-player .progress-slider,#html5-player .volume-slider{border:0;padding:0;margin:-7px 0 0;display:block;height:6px;position:relative;top:-10px;background-image:url(/images/video/vk1.gif);background-position:0 -122px;-webkit-user-select:none;cursor:pointer}#html5-player .volume-slider{width:9px}#html5-player .time1-text{color:#fff}#html5-player .time1-text,#html5-player .time2-text{font-family:Tahoma;font-weight:700;font-size:10px;text-align:left;display:block;padding:0 5px 0 0;-webkit-user-select:none}#html5-player .time2-text{color:#aaa}#html5-player .volume-button{width:30px;height:12px;border:0;background-image:url(/images/video/vk1.gif);padding:0;margin:0;display:block;cursor:pointer;-webkit-user-select:none}#html5-player .volume-button[value=max]{background-position:0 -163px}#html5-player .volume-button[value=ave]{background-position:0 -151px}#html5-player .volume-button[value=min]{background-position:0 -139px}#html5-player .volume-button[value=off]{background-position:0 -139px;width:10px;margin:0 20px 0 0}#html5-player .quality-button{width:32px;height:13px;border:0;background-image:url(/images/video/vk1.gif);padding:0;margin:0;display:block;cursor:pointer}#html5-player .quality-button[data-value="240p"]{background-position:-96px -225px}#html5-player .quality-button[data-value="360p"]{background-position:-96px -212px}#html5-player .quality-button[data-value="480p"]{background-position:-96px -199px}#html5-player .quality-button[data-value="720p"]{background-position:-96px -186px}#html5-player .quality-button:hover[data-value="240p"]{background-position:-64px -225px}#html5-player .quality-button:hover[data-value="360p"]{background-position:-64px -212px}#html5-player .quality-button:hover[data-value="480p"]{background-position:-64px -199px}#html5-player .quality-button:hover[data-value="720p"]{background-position:-64px -186px}#html5-player .quality-button .quality-panel{margin-left:0px;opacity:0.7;position:absolute;z-index:20;display:none;bottom:19px}#html5-player .quality-button:hover .quality-panel{display:block}#html5-player .quality-panel button{height:17px;width:32px;border:0;background-image:url(/images/video/vk1.gif);padding:0;margin:0;display:block;cursor:pointer;-webkit-user-select:none}#html5-player .quality-button .quality-panel button[value="720p"],#html5-player .quality-button[data-value="720p"] .quality-panel button[value="720p"]{background-position:-32px -186px}#html5-player .quality-button .quality-panel button[value="720p"]:hover,#html5-player .quality-button[data-value="720p"] .quality-panel button[value="720p"]:hover{background-position:0 -186px}#html5-player .quality-button .quality-panel button[value="480p"],#html5-player .quality-button[data-value="480p"] .quality-panel button[value="480p"]{background-position:-32px -203px}#html5-player .quality-button .quality-panel button[value="480p"]:hover,#html5-player .quality-button[data-value="480p"] .quality-panel button[value="480p"]:hover{background-position:0 -203px}#html5-player .quality-button .quality-panel button[value="360p"],#html5-player .quality-button[data-value="360p"] .quality-panel button[value="360p"]{background-position:-32px -220px}#html5-player .quality-button .quality-panel button[value="360p"]:hover,#html5-player .quality-button[data-value="360p"] .quality-panel button[value="360p"]:hover{background-position:0 -220px}#html5-player .quality-button .quality-panel button[value="240p"],#html5-player .quality-button[data-value="240p"] .quality-panel button[value="240p"]{background-position:-32px -237px}#html5-player .quality-button .quality-panel button[value="240p"]:hover,#html5-player .quality-button[data-value="240p"] .quality-panel button[value="240p"]:hover{background-position:0 -237px}#menuLayer{height:39px;width:100%;position:relative;bottom:40px}#menuBk{background:#000;border:1px solid #333;opacity:0.5}#menuBk,#menuControls{height:39px;width:100%;position:relative;display:none}#menuControls{bottom:46px}
+#html5-player {
+    width: 607px;
+    height: 360px;
+    padding: 0;
+    overflow: hidden
+}
+
+#html5-player .bg {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    -webkit-user-select: none
+}
+
+#html5-player .play-button {
+    background-position: 0 -50px
+}
+
+#html5-player .play-button,
+#html5-player .pause-button {
+    width: 15px;
+    height: 15px;
+    border: 0;
+    background-image: url(/images/video/vk1.gif);
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    -webkit-user-select: none
+}
+
+#html5-player .pause-button {
+    background-position: -15px -50px
+}
+
+#html5-player .popup1 {
+    position: absolute
+}
+
+#html5-player .popup1,
+#html5-player .popup-bk {
+    width: 320px;
+    height: 90px;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    display: none;
+    cursor: pointer;
+    -webkit-user-select: none
+}
+
+#html5-player .popup-bk {
+    background-color: #000;
+    -webkit-border-radius: 10px 8px;
+    opacity: 0.65;
+    position: relative;
+    left: 0;
+    bottom: 0
+}
+
+#html5-player .big-play {
+    background-position: 0 0;
+    width: 50px;
+    height: 50px;
+    border: 0;
+    background-image: url(/images/video/vk1.gif);
+    padding: 0;
+    margin: 0;
+    position: relative;
+    left: 255px;
+    bottom: 81px;
+    display: none;
+    cursor: pointer;
+    -webkit-user-select: none
+}
+
+#html5-player .video_title {
+    font-weight: 700;
+    bottom: 72px
+}
+
+#html5-player .video_title,
+#html5-player .video_author {
+    font-family: Tahoma;
+    font-size: 11px;
+    width: 240px;
+    height: 15px;
+    color: #fff;
+    overflow: hidden;
+    display: block;
+    padding: 0 5px 0 0;
+    position: relative;
+    left: 15px;
+    text-align: left;
+    display: none
+}
+
+#html5-player .video_author {
+    bottom: 95px
+}
+
+#html5-player .logo1 {
+    background-position: 0 -65px
+}
+
+#html5-player .logo1,
+#html5-player .logo2 {
+    width: 80px;
+    height: 15px;
+    border: 0;
+    position: relative;
+    background-image: url(/images/video/vk1.gif);
+    padding: 0;
+    margin: 0;
+    cursor: pointer
+}
+
+#html5-player .logo2 {
+    background-position: 0 -80px
+}
+
+#html5-player .center-logo2 {
+    background-position: 0 -349px;
+    width: 100px;
+    height: 16px;
+    border: 0;
+    background-image: url(/images/video/vk1.gif);
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    left: 257px;
+    top: 172px;
+    display: block;
+    z-index: 6000
+}
+
+#html5-player .loadingGif2 {
+    position: absolute;
+    z-index: 6001;
+    top: 175px;
+    left: 288px;
+    width: 30px;
+    height: 5px;
+    background-image: url(/images/upload_gray.gif);
+    background-position: 50%;
+    display: none
+}
+
+#html5-player .line-bk {
+    position: relative;
+    display: block;
+    height: 17px;
+    background-color: #000;
+    opacity: 0.01;
+    top: -5px;
+    cursor: pointer;
+    -webkit-user-select: none
+}
+
+#html5-player .gray-line {
+    background-color: #777;
+    top: -15px
+}
+
+#html5-player .gray-line,
+#html5-player .line {
+    position: relative;
+    display: block;
+    height: 1px;
+    cursor: pointer;
+    -webkit-user-select: none
+}
+
+#html5-player .line {
+    background-color: #fff;
+    top: -16px
+}
+
+#html5-player .slider {
+    display: block;
+    position: relative;
+    margin: 0px;
+    cursor: pointer
+}
+
+#html5-player .progress-slider {
+    width: 15px
+}
+
+#html5-player .progress-slider,
+#html5-player .volume-slider {
+    border: 0;
+    padding: 0;
+    margin: -7px 0 0;
+    display: block;
+    height: 6px;
+    position: relative;
+    top: -10px;
+    background-image: url(/images/video/vk1.gif);
+    background-position: 0 -122px;
+    -webkit-user-select: none;
+    cursor: pointer
+}
+
+#html5-player .volume-slider {
+    width: 9px
+}
+
+#html5-player .time1-text {
+    color: #fff
+}
+
+#html5-player .time1-text,
+#html5-player .time2-text {
+    font-family: Tahoma;
+    font-weight: 700;
+    font-size: 10px;
+    text-align: left;
+    display: block;
+    padding: 0 5px 0 0;
+    -webkit-user-select: none
+}
+
+#html5-player .time2-text {
+    color: #aaa
+}
+
+#html5-player .volume-button {
+    width: 30px;
+    height: 12px;
+    border: 0;
+    background-image: url(/images/video/vk1.gif);
+    padding: 0;
+    margin: 0;
+    display: block;
+    cursor: pointer;
+    -webkit-user-select: none
+}
+
+#html5-player .volume-button[value=max] {
+    background-position: 0 -163px
+}
+
+#html5-player .volume-button[value=ave] {
+    background-position: 0 -151px
+}
+
+#html5-player .volume-button[value=min] {
+    background-position: 0 -139px
+}
+
+#html5-player .volume-button[value=off] {
+    background-position: 0 -139px;
+    width: 10px;
+    margin: 0 20px 0 0
+}
+
+#html5-player .quality-button {
+    width: 32px;
+    height: 13px;
+    border: 0;
+    background-image: url(/images/video/vk1.gif);
+    padding: 0;
+    margin: 0;
+    display: block;
+    cursor: pointer
+}
+
+#html5-player .quality-button[data-value="240p"] {
+    background-position: -96px -225px
+}
+
+#html5-player .quality-button[data-value="360p"] {
+    background-position: -96px -212px
+}
+
+#html5-player .quality-button[data-value="480p"] {
+    background-position: -96px -199px
+}
+
+#html5-player .quality-button[data-value="720p"] {
+    background-position: -96px -186px
+}
+
+#html5-player .quality-button:hover[data-value="240p"] {
+    background-position: -64px -225px
+}
+
+#html5-player .quality-button:hover[data-value="360p"] {
+    background-position: -64px -212px
+}
+
+#html5-player .quality-button:hover[data-value="480p"] {
+    background-position: -64px -199px
+}
+
+#html5-player .quality-button:hover[data-value="720p"] {
+    background-position: -64px -186px
+}
+
+#html5-player .quality-button .quality-panel {
+    margin-left: 0px;
+    opacity: 0.7;
+    position: absolute;
+    z-index: 20;
+    display: none;
+    bottom: 19px
+}
+
+#html5-player .quality-button:hover .quality-panel {
+    display: block
+}
+
+#html5-player .quality-panel button {
+    height: 17px;
+    width: 32px;
+    border: 0;
+    background-image: url(/images/video/vk1.gif);
+    padding: 0;
+    margin: 0;
+    display: block;
+    cursor: pointer;
+    -webkit-user-select: none
+}
+
+#html5-player .quality-button .quality-panel button[value="720p"],
+#html5-player .quality-button[data-value="720p"] .quality-panel button[value="720p"] {
+    background-position: -32px -186px
+}
+
+#html5-player .quality-button .quality-panel button[value="720p"]:hover,
+#html5-player .quality-button[data-value="720p"] .quality-panel button[value="720p"]:hover {
+    background-position: 0 -186px
+}
+
+#html5-player .quality-button .quality-panel button[value="480p"],
+#html5-player .quality-button[data-value="480p"] .quality-panel button[value="480p"] {
+    background-position: -32px -203px
+}
+
+#html5-player .quality-button .quality-panel button[value="480p"]:hover,
+#html5-player .quality-button[data-value="480p"] .quality-panel button[value="480p"]:hover {
+    background-position: 0 -203px
+}
+
+#html5-player .quality-button .quality-panel button[value="360p"],
+#html5-player .quality-button[data-value="360p"] .quality-panel button[value="360p"] {
+    background-position: -32px -220px
+}
+
+#html5-player .quality-button .quality-panel button[value="360p"]:hover,
+#html5-player .quality-button[data-value="360p"] .quality-panel button[value="360p"]:hover {
+    background-position: 0 -220px
+}
+
+#html5-player .quality-button .quality-panel button[value="240p"],
+#html5-player .quality-button[data-value="240p"] .quality-panel button[value="240p"] {
+    background-position: -32px -237px
+}
+
+#html5-player .quality-button .quality-panel button[value="240p"]:hover,
+#html5-player .quality-button[data-value="240p"] .quality-panel button[value="240p"]:hover {
+    background-position: 0 -237px
+}
+
+#menuLayer {
+    height: 39px;
+    width: 100%;
+    position: relative;
+    bottom: 40px
+}
+
+#menuBk {
+    background: #000;
+    border: 1px solid #333;
+    opacity: 0.5
+}
+
+#menuBk,
+#menuControls {
+    height: 39px;
+    width: 100%;
+    position: relative;
+    display: none
+}
+
+#menuControls {
+    bottom: 46px
+}

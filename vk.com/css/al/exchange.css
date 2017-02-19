@@ -1,1 +1,1039 @@
-#exchange_css{display:none}#ads_page.exchange_page{padding:20px}.exchange_not_found{margin:20px 20px 15px;padding:20px 0;line-height:200%;text-align:center;color:#777}.exchange_not_found.table{margin:0px;background-color:#f7f7f7}.exchange_table{border-collapse:collapse;width:100%}.exchange_table th{padding:9px 8px 11px 5px;background-color:#e9edf0;color:#587183;font-weight:700;white-space:nowrap}.exchange_table th:first-child{padding-left:10px}.exchange_table tr{border-left:1px solid #e9edf0;border-right:1px solid #e9edf0}#exchange_comm_search_table.exchange_table tr{border-left:none;border-right:none}.exchange_table tr.even{background-color:#f5f7f7}.exchange_table tr:first-child{border-top:1px solid #e9edf0}.exchange_table tr:last-child{border-bottom:1px solid #e9edf0}#exchange_comm_search_table.exchange_table tr:first-child{border-top:none}#exchange_comm_search_table.exchange_table tr:last-child{border-bottom:none}.exchange_table td{padding:10px 5px;text-align:left;vertical-align:top;line-height:160%}#exchange_info_requests_table.exchange_table td,#exchange_requests_list_table.exchange_table td{padding:6px 5px}.exchange_table td:first-child{padding-left:10px!important}.exchange_table td:last-child{padding-right:10px}.exchange_table td.not_found{padding:0px!important}.exchange_table .grey{color:#666;display:inline-block;min-width:85px;margin-right:5px}.exchange_table .green{color:#37702a}.exchange_table .red{color:#a33}th.exchange_table_col_no_sorted{cursor:pointer}.is_2x th.exchange_table_col_sort{background-image:url(/images/wide_dd_2x.png)}.button_blue button.exchange_btn_with_arr{padding-left:8px;padding-right:0}.exchange_btn_with_arr span{padding-right:20px;background:url(/images/backlink.gif) no-repeat 105% -126px}#exchange_box_comment{width:322px;margin-top:10px}.exchange_box_send_wrap{margin-top:10px}#exchange_comm_search_table{margin:15px 10px;width:930px}#exchange_comm_search_table td{line-height:160%}#exchange_comm_search_filters{padding:0 0 15px 20px;background-color:#f7f7f7}#exchange_comm_search_count{color:#9cabb8}.exchange_filter_block{float:left;width:230px}.exchange_comm_thumb{width:50px}.exchange_comm_thumb img{width:50px;height:50px;display:block;border-radius:3px}.exchange_comm_name{float:left;display:block;font-weight:700;width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}.exchange_club_info{background-color:#f7f7f7;padding:20px 30px}.exchange_comm_info{padding-left:10px}.exchange_comm_title{font-weight:700;max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.exchange_comm_info_row{color:#666;padding-top:5px}.exchange_comm_info_row .label{width:80px}.exchange_comm_label{color:#777}.exchange_filter_label{padding:15px 0 7px;font-weight:700;color:#2b587a}#exchange_comm_search_filters input{width:190px}#exchange_comm_search_filters input.text{padding:7px 8px 8px!important;height:13px}#exchange_requests_list,#exchange_tasks_list{padding-top:4px}#exchange_requests_list_table,#exchange_tasks_list_table{margin-top:12px}#exchange_campaigns_list{margin-bottom:20px}#exchange_campaigns_list_table{margin:4px 0px 10px}#exchange_clients_list_table{margin-top:4px}#exchange_campaigns_list_table .title,#exchange_tasks_list_table .title{width:250px;overflow:hidden;text-overflow:ellipsis}#exchange_tasks_list_table .actions{width:160px}.exchange_new_btn{margin-top:2px}.exchange_grey{color:#777}.exchange_table_hint{color:#9cabb8;font-size:0.91em;cursor:pointer}.exchange_comm_info_row .exchange_table_hint{font-size:1em}.exchange_task_label .title{font-weight:700}.exchange_task_actions a,.exchange_task_label a{color:#45688e}.exchange_request_club .size,.exchange_task_label .date{color:#777;padding:7px 0px 0px}.exchange_task_request{color:#555}#exchange_campaigns_list_table .exchange_task_request{width:150px}.exchange_task_actions .view{padding-top:7px}#exchange_post_requests .exchange_tabs{padding-top:3px}.exchange_subtab1{float:left;border-radius:2px;cursor:pointer;margin-right:5px;color:#2b587a}#exchange_stats_period_tabs .exchange_subtab1{margin-right:0px;margin-left:5px}.exchange_subtab1.hidden{display:none}.exchange_subtab1:hover{background-color:#e1e7ed}.exchange_subtab1.active{background-color:#597da3;color:#fff;cursor:default}.exchange_subtab2{padding:3px 6px 4px}.exchange_subtab_cnt{display:inline-block;padding-left:3px;font-weight:700;color:#6e859e}.exchange_subtab1.active .exchange_subtab_cnt{color:#d5dde3}.is_rtl1 .exchange_subtab_cnt{padding-left:0px;padding-right:3px}#exchange_requests_list_table th.club,#exchange_requests_list_table th.title{width:180px}#exchange_requests_list_table th.status{width:90px}.exchange_request_club .title,.exchange_request_task .title{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.exchange_request_task .title{max-width:190px}.exchange_request_club .title{max-width:250px}.exchange_request_club a,.exchange_request_task a{color:#45688e}.exchange_request_status .extra_info{padding-top:3px}#exchange_info_requests_table .exchange_request_price{max-width:400px}.exchange_request_price .extra_info{padding-bottom:3px}.exchange_request_status span{display:inline-block;vertical-align:top}.exchange_request_actions{white-space:nowrap}#exchange_post_msg_wrap{width:440px}#exchange_post_msg{background-color:#edf1f5;padding:6px 10px 10px}#exchange_post_msg_wrap.short #exchange_post_msg{max-height:150px;overflow:hidden}#exchange_post_msg .wall_post_text,#exchange_post_msg .wpe_buttons{width:410px}#exchange_post_msg #wpe_text{width:392px}#exchange_post_msg #wpe_cont{margin-top:4px}#exchange_post_msg .fw_post_author,#exchange_post_msg .wpe_info{display:none}.exchange_title_head{border-bottom:1px solid #e8ebee;padding-bottom:3px;text-align:left;margin-bottom:15px}.exchange_title_head .title{margin-top:0;font-weight:400;font-size:16px}.exchange_title_head div.fl_r{margin-top:3px}#exchange_post_info_wrap{width:290px}.exchange_post_info_row{padding-bottom:7px}.exchange_post_info_row .label{width:150px;color:#666}.exchange_post_info_row .value{max-width:165px}.exchange_info .exchange_post_info_row .value{max-width:230px}#exchange_post_wrap .exchange_post_info_row .label{width:125px}#ads_post_title_text{max-width:165px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;position:relative}#exchange_tasks_info #ads_post_title_text{max-width:240px}.exchange_post_info_empty_row{padding-top:10px}.exchange_info_search{margin:10px 0px}#exchange_post_requests{padding-top:20px}#exchange_info_requests_table{margin-top:12px}#exchange_post_stats{padding-top:20px}#wrapper_ads_post_stats_graph{padding-top:10px}#ads_post_stats_graph .graph_menu_item{margin-top:-4px}#exchange_box_error{margin-bottom:10px}#exchange_request_box_error{margin-bottom:18px;display:none}#exchange_request_box_next_day{margin-left:8px;width:auto}.exchange_request_title{color:#45688e;line-height:1.27em;margin:0px;padding:26px 0px 9px;font-size:1.09em;font-weight:700}.exchange_request_info{padding:0 20px 22px 30px}#exchange_request_time_from_d_datepicker_container,#exchange_request_time_to_d_datepicker_container{display:none}.exchange_date_sep{width:30px;height:20px;line-height:20px;text-align:center}#exchange_request_comment{width:282px}.exchange_comm_title a{color:#45688e}.exchange_comm_thumb_box{width:75px}.exchange_comm_thumb_box img{width:75px;height:75px;display:block;border-radius:3px}#exchange_post_msg_more{margin-top:-3px;display:none;overflow:hidden}#exchange_post_msg_wrap.short #exchange_post_msg_more{display:block}#exchange_post_msg_more a{display:block;text-align:center;color:#45688e;padding:10px 0px 12px;background:#e7ecf1}#exchange_post_msg_more a:hover{text-decoration:none;background:#e0e6ec}#exchange_post_msg_more .more_sh{background:#c1c7ca;height:3px;overflow:hidden;position:relative;z-index:1550;opacity:0.55;filter:alpha(opacity=55)}#exchange_info_archive.loading{background:url(/images/upload.gif) no-repeat 100% 50%}#exchange_info_archive.loading a{visibility:hidden}#exchange_info_in_archive{color:#909090;padding-top:10px}#exchange_tasks_info{padding:2px 0 20px}#exchange_post_info{padding-top:2px}.exchange_ad_post_club_commment,a.exchange_ad_post_link,a.exchange_ad_post_stats{display:inline-block;margin:3px 5px 0 0;padding:0;width:18px;height:18px;background:#ebeff5 url(/images/icons/mono_iconset.png) no-repeat 4px -204px}a.exchange_ad_post_link{background-position:4px -233px}.exchange_ad_post_club_commment{background-position:4px -189px}.exchange_ad_post_waiting_time{padding-top:2px;font-size:0.91em;color:#999;white-space:nowrap}a.exchange_ad_post_link.deleted{opacity:0.5;filter:alpha(opacity=50);cursor:default}.exchange_ad_post_club_commment:hover,a.exchange_ad_post_link:hover,a.exchange_ad_post_stats:hover{background-color:#dde4ed}.even .exchange_ad_post_club_commment:hover,.even a.exchange_ad_post_link:hover,.even a.exchange_ad_post_stats:hover{background-color:#d5e0e5}a.exchange_ad_post_link.deleted:hover{background-color:#ebeff5}#ads_post_title_input,#ads_post_title_link{position:relative}#ads_post_title_text{border-bottom:1px dashed #2b587a;text-decoration:none;display:block;position:absolute}#ads_post_title{width:160px;position:absolute;top:-4px;left:-4px}#exchange_tasks_info #ads_post_title{width:235px}.exchange_post_more{position:relative;top:2px;font-weight:700;color:#91a4b8;-o-transition:color 200ms linear;transition:color 200ms linear}.exchange_post_more:hover{color:#45688e;text-decoration:none}.exchange_info_msg{background-color:#fff;border:1px solid #bcc9d7;font-weight:400;padding:8px 11px;line-height:160%}.dark_box_cont.exchange{padding-top:5px}.dark_box_cont.exchange .dark_box_label{padding-top:20px}.dark_box_cont.exchange #exchange_box_error{margin-top:14px;margin-bottom:0}.wk_postbox_content.exchange #wk_content{width:510px}#exchange_repost_link,.wk_postbox_content.exchange #pb_title{padding:7px 5px 8px!important;width:446px}.wk_postbox_content.exchange #pb_text{width:446px}.wk_postbox_content.exchange #pb_send,.wk_postbox_content.exchange #pb_error{margin-top:20px}.wk_postbox_content.exchange #pb_add_media{padding-top:0px}.wk_postbox_content.exchange #wk_close_link{padding:17px 26px 18px}#exchange_repost_preview .wall_module{margin-top:15px}#exchange_repost_preview .published_by_quote .wall_post_text{width:420px}#exchange_comment_label{display:none}#filter_city_row{padding-top:7px}#exchange_comm_search_filters #exchange_search_input{padding:7px 8px 8px!important;background:url(/images/magglass.png) no-repeat scroll 95% 8px #fff;height:13px;outline:none}#exchange_search_input::-ms-clear{display:none}#exchange_search_progress{background:url("/images/upload.gif") no-repeat scroll 50% transparent;display:none;height:23px;margin-left:-41px;margin-top:2px;position:relative;width:32px;z-index:95}#exchange_search_wrap.loading #exchange_search_input{background-image:none}#exchange_search_wrap.loading #exchange_search_progress{display:block}#exchange_more_results td{padding:0;border-bottom:none}#exchange_more_results a{display:block;padding:10px 0px;margin:0;text-align:center}#exchange_more_results a:hover{background:#e1e7ed;border-color:#dae1e8;text-decoration:none}#exchange_repost_link_wrap{display:none}#exchange_button_send{margin-top:15px}#exchange_requests_terms{width:290px;line-height:160%;padding-top:12px}.exchange_hint_tt .tail_wrap{position:absolute;top:auto;bottom:-5px;left:17px;z-index:2001}.exchange_hint_tt .toup .tail_wrap{top:-7px;bottom:auto}.exchange_hint_tt .tail{background:url(/images/ddtooltip.png) -3px -5px no-repeat;width:11px;height:8px}.exchange_hint_tt .toup .tail{background-position:-3px 2px}.exchange_hint_tt .hint_wrap{width:273px;padding:8px 5px;line-height:160%;color:#000}.exchange_hint_tt .hint_wrap.title{width:170px}.exchange_new_union{padding-top:10px}.exchange_new_union_img{margin:30px 0px;height:160px;background:url(/images/join/ads_union.png) no-repeat 50% 0%}.exchange_create_union{text-align:center}#exchange_new_union_error{margin:10px 0px;display:none}#exchange_campaign_title{padding:6px!important;width:212px}#exchange_choose_campaign{display:inline-block;margin:3px 2px 0px 0px}#exchange_error,#exchange_msg{margin:0 0 20px}.exchange_table_tt table .tt_text{color:#000;line-height:150%;padding:10px;width:285px}.exchange_table_tt table.toup1 .bottom_pointer{margin-right:0px;margin-left:34px;display:block;background:url(/images/tooltip_arrow_white.gif) no-repeat}.exchange_table_tt table.toup .top_pointer{margin-right:0px;margin-left:34px;display:block;bottom:-2px;background:url(/images/tooltip_arrow_up.gif) no-repeat}.exchange_request_comment{padding-top:15px}.exchange_request_comment .exchange_hint_tt{border:1px solid #c0cad5;position:relative;background:#fff}.exchange_request_comment .exchange_hint_tt .tail_wrap{top:-6px;bottom:auto;left:32px}.exchange_request_comment .exchange_hint_tt .tail{background:url(/images/adcomment_arrow.png) no-repeat;width:11px;height:6px}.exchange_union_box table{border-spacing:0px}.exchange_union_box .label{color:#777;padding:7px 10px 7px 0px}.exchange_union_box input{width:200px;padding:7px 5px 8px}.exchange_client_all_limit a{border-bottom:1px dashed #2b587a;text-decoration:none}.exchange_stats_period_wrap{padding:4px 0px 8px}.exchange_stats_period_info .exchange_post_info_row{padding:3px 0px 4px}.exchange_box_notice{padding-bottom:20px}#exchange_review_box .exchange_post_info_row .label{width:100px}#exchange_review_comment{width:278px;height:50px}.exchange_export_stats_table{margin-bottom:20px}.exchange_export_stats_table .table_label,.exchange_export_stats_table .table_value{padding:0 10px 7px 0;min-width:150px}.exchange_export_stats_table .summary td{padding-top:10px}.exchange_export_stats_date_row .table_label{padding-bottom:6px}.exchange_export_stats_table .dropdown_row .table_value{padding-left:4px}#exchange_stats_content .img-icon{display:inline-block;width:14px;height:14px;margin-right:0;background:url(/images/icons/exchange_stats_icons.png) no-repeat 0 0;background-size:cover}#exchange_stats_content .img-icon.img-shares{background-position:0 -14px}#exchange_stats_content .img-icon.img-comments{background-position:0 -28px}#exchange_stats_content .preserve_th_width th.ui_table_cell.sortable.ta_r .ui_table_header_name{padding-left:16px}#exchange_stats_content .preserve_th_width th.ui_table_cell.sortable.ta_l .ui_table_header_name{padding-right:16px}
+#exchange_css {
+    display: none
+}
+
+#ads_page.exchange_page {
+    padding: 20px
+}
+
+.exchange_not_found {
+    margin: 20px 20px 15px;
+    padding: 20px 0;
+    line-height: 200%;
+    text-align: center;
+    color: #777
+}
+
+.exchange_not_found.table {
+    margin: 0px;
+    background-color: #f7f7f7
+}
+
+.exchange_table {
+    border-collapse: collapse;
+    width: 100%
+}
+
+.exchange_table th {
+    padding: 9px 8px 11px 5px;
+    background-color: #e9edf0;
+    color: #587183;
+    font-weight: 700;
+    white-space: nowrap
+}
+
+.exchange_table th:first-child {
+    padding-left: 10px
+}
+
+.exchange_table tr {
+    border-left: 1px solid #e9edf0;
+    border-right: 1px solid #e9edf0
+}
+
+#exchange_comm_search_table.exchange_table tr {
+    border-left: none;
+    border-right: none
+}
+
+.exchange_table tr.even {
+    background-color: #f5f7f7
+}
+
+.exchange_table tr:first-child {
+    border-top: 1px solid #e9edf0
+}
+
+.exchange_table tr:last-child {
+    border-bottom: 1px solid #e9edf0
+}
+
+#exchange_comm_search_table.exchange_table tr:first-child {
+    border-top: none
+}
+
+#exchange_comm_search_table.exchange_table tr:last-child {
+    border-bottom: none
+}
+
+.exchange_table td {
+    padding: 10px 5px;
+    text-align: left;
+    vertical-align: top;
+    line-height: 160%
+}
+
+#exchange_info_requests_table.exchange_table td,
+#exchange_requests_list_table.exchange_table td {
+    padding: 6px 5px
+}
+
+.exchange_table td:first-child {
+    padding-left: 10px!important
+}
+
+.exchange_table td:last-child {
+    padding-right: 10px
+}
+
+.exchange_table td.not_found {
+    padding: 0px!important
+}
+
+.exchange_table .grey {
+    color: #666;
+    display: inline-block;
+    min-width: 85px;
+    margin-right: 5px
+}
+
+.exchange_table .green {
+    color: #37702a
+}
+
+.exchange_table .red {
+    color: #a33
+}
+
+th.exchange_table_col_no_sorted {
+    cursor: pointer
+}
+
+.is_2x th.exchange_table_col_sort {
+    background-image: url(/images/wide_dd_2x.png)
+}
+
+.button_blue button.exchange_btn_with_arr {
+    padding-left: 8px;
+    padding-right: 0
+}
+
+.exchange_btn_with_arr span {
+    padding-right: 20px;
+    background: url(/images/backlink.gif) no-repeat 105% -126px
+}
+
+#exchange_box_comment {
+    width: 322px;
+    margin-top: 10px
+}
+
+.exchange_box_send_wrap {
+    margin-top: 10px
+}
+
+#exchange_comm_search_table {
+    margin: 15px 10px;
+    width: 930px
+}
+
+#exchange_comm_search_table td {
+    line-height: 160%
+}
+
+#exchange_comm_search_filters {
+    padding: 0 0 15px 20px;
+    background-color: #f7f7f7
+}
+
+#exchange_comm_search_count {
+    color: #9cabb8
+}
+
+.exchange_filter_block {
+    float: left;
+    width: 230px
+}
+
+.exchange_comm_thumb {
+    width: 50px
+}
+
+.exchange_comm_thumb img {
+    width: 50px;
+    height: 50px;
+    display: block;
+    border-radius: 3px
+}
+
+.exchange_comm_name {
+    float: left;
+    display: block;
+    font-weight: 700;
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left
+}
+
+.exchange_club_info {
+    background-color: #f7f7f7;
+    padding: 20px 30px
+}
+
+.exchange_comm_info {
+    padding-left: 10px
+}
+
+.exchange_comm_title {
+    font-weight: 700;
+    max-width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.exchange_comm_info_row {
+    color: #666;
+    padding-top: 5px
+}
+
+.exchange_comm_info_row .label {
+    width: 80px
+}
+
+.exchange_comm_label {
+    color: #777
+}
+
+.exchange_filter_label {
+    padding: 15px 0 7px;
+    font-weight: 700;
+    color: #2b587a
+}
+
+#exchange_comm_search_filters input {
+    width: 190px
+}
+
+#exchange_comm_search_filters input.text {
+    padding: 7px 8px 8px!important;
+    height: 13px
+}
+
+#exchange_requests_list,
+#exchange_tasks_list {
+    padding-top: 4px
+}
+
+#exchange_requests_list_table,
+#exchange_tasks_list_table {
+    margin-top: 12px
+}
+
+#exchange_campaigns_list {
+    margin-bottom: 20px
+}
+
+#exchange_campaigns_list_table {
+    margin: 4px 0px 10px
+}
+
+#exchange_clients_list_table {
+    margin-top: 4px
+}
+
+#exchange_campaigns_list_table .title,
+#exchange_tasks_list_table .title {
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+#exchange_tasks_list_table .actions {
+    width: 160px
+}
+
+.exchange_new_btn {
+    margin-top: 2px
+}
+
+.exchange_grey {
+    color: #777
+}
+
+.exchange_table_hint {
+    color: #9cabb8;
+    font-size: 0.91em;
+    cursor: pointer
+}
+
+.exchange_comm_info_row .exchange_table_hint {
+    font-size: 1em
+}
+
+.exchange_task_label .title {
+    font-weight: 700
+}
+
+.exchange_task_actions a,
+.exchange_task_label a {
+    color: #45688e
+}
+
+.exchange_request_club .size,
+.exchange_task_label .date {
+    color: #777;
+    padding: 7px 0px 0px
+}
+
+.exchange_task_request {
+    color: #555
+}
+
+#exchange_campaigns_list_table .exchange_task_request {
+    width: 150px
+}
+
+.exchange_task_actions .view {
+    padding-top: 7px
+}
+
+#exchange_post_requests .exchange_tabs {
+    padding-top: 3px
+}
+
+.exchange_subtab1 {
+    float: left;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-right: 5px;
+    color: #2b587a
+}
+
+#exchange_stats_period_tabs .exchange_subtab1 {
+    margin-right: 0px;
+    margin-left: 5px
+}
+
+.exchange_subtab1.hidden {
+    display: none
+}
+
+.exchange_subtab1:hover {
+    background-color: #e1e7ed
+}
+
+.exchange_subtab1.active {
+    background-color: #597da3;
+    color: #fff;
+    cursor: default
+}
+
+.exchange_subtab2 {
+    padding: 3px 6px 4px
+}
+
+.exchange_subtab_cnt {
+    display: inline-block;
+    padding-left: 3px;
+    font-weight: 700;
+    color: #6e859e
+}
+
+.exchange_subtab1.active .exchange_subtab_cnt {
+    color: #d5dde3
+}
+
+.is_rtl1 .exchange_subtab_cnt {
+    padding-left: 0px;
+    padding-right: 3px
+}
+
+#exchange_requests_list_table th.club,
+#exchange_requests_list_table th.title {
+    width: 180px
+}
+
+#exchange_requests_list_table th.status {
+    width: 90px
+}
+
+.exchange_request_club .title,
+.exchange_request_task .title {
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.exchange_request_task .title {
+    max-width: 190px
+}
+
+.exchange_request_club .title {
+    max-width: 250px
+}
+
+.exchange_request_club a,
+.exchange_request_task a {
+    color: #45688e
+}
+
+.exchange_request_status .extra_info {
+    padding-top: 3px
+}
+
+#exchange_info_requests_table .exchange_request_price {
+    max-width: 400px
+}
+
+.exchange_request_price .extra_info {
+    padding-bottom: 3px
+}
+
+.exchange_request_status span {
+    display: inline-block;
+    vertical-align: top
+}
+
+.exchange_request_actions {
+    white-space: nowrap
+}
+
+#exchange_post_msg_wrap {
+    width: 440px
+}
+
+#exchange_post_msg {
+    background-color: #edf1f5;
+    padding: 6px 10px 10px
+}
+
+#exchange_post_msg_wrap.short #exchange_post_msg {
+    max-height: 150px;
+    overflow: hidden
+}
+
+#exchange_post_msg .wall_post_text,
+#exchange_post_msg .wpe_buttons {
+    width: 410px
+}
+
+#exchange_post_msg #wpe_text {
+    width: 392px
+}
+
+#exchange_post_msg #wpe_cont {
+    margin-top: 4px
+}
+
+#exchange_post_msg .fw_post_author,
+#exchange_post_msg .wpe_info {
+    display: none
+}
+
+.exchange_title_head {
+    border-bottom: 1px solid #e8ebee;
+    padding-bottom: 3px;
+    text-align: left;
+    margin-bottom: 15px
+}
+
+.exchange_title_head .title {
+    margin-top: 0;
+    font-weight: 400;
+    font-size: 16px
+}
+
+.exchange_title_head div.fl_r {
+    margin-top: 3px
+}
+
+#exchange_post_info_wrap {
+    width: 290px
+}
+
+.exchange_post_info_row {
+    padding-bottom: 7px
+}
+
+.exchange_post_info_row .label {
+    width: 150px;
+    color: #666
+}
+
+.exchange_post_info_row .value {
+    max-width: 165px
+}
+
+.exchange_info .exchange_post_info_row .value {
+    max-width: 230px
+}
+
+#exchange_post_wrap .exchange_post_info_row .label {
+    width: 125px
+}
+
+#ads_post_title_text {
+    max-width: 165px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative
+}
+
+#exchange_tasks_info #ads_post_title_text {
+    max-width: 240px
+}
+
+.exchange_post_info_empty_row {
+    padding-top: 10px
+}
+
+.exchange_info_search {
+    margin: 10px 0px
+}
+
+#exchange_post_requests {
+    padding-top: 20px
+}
+
+#exchange_info_requests_table {
+    margin-top: 12px
+}
+
+#exchange_post_stats {
+    padding-top: 20px
+}
+
+#wrapper_ads_post_stats_graph {
+    padding-top: 10px
+}
+
+#ads_post_stats_graph .graph_menu_item {
+    margin-top: -4px
+}
+
+#exchange_box_error {
+    margin-bottom: 10px
+}
+
+#exchange_request_box_error {
+    margin-bottom: 18px;
+    display: none
+}
+
+#exchange_request_box_next_day {
+    margin-left: 8px;
+    width: auto
+}
+
+.exchange_request_title {
+    color: #45688e;
+    line-height: 1.27em;
+    margin: 0px;
+    padding: 26px 0px 9px;
+    font-size: 1.09em;
+    font-weight: 700
+}
+
+.exchange_request_info {
+    padding: 0 20px 22px 30px
+}
+
+#exchange_request_time_from_d_datepicker_container,
+#exchange_request_time_to_d_datepicker_container {
+    display: none
+}
+
+.exchange_date_sep {
+    width: 30px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center
+}
+
+#exchange_request_comment {
+    width: 282px
+}
+
+.exchange_comm_title a {
+    color: #45688e
+}
+
+.exchange_comm_thumb_box {
+    width: 75px
+}
+
+.exchange_comm_thumb_box img {
+    width: 75px;
+    height: 75px;
+    display: block;
+    border-radius: 3px
+}
+
+#exchange_post_msg_more {
+    margin-top: -3px;
+    display: none;
+    overflow: hidden
+}
+
+#exchange_post_msg_wrap.short #exchange_post_msg_more {
+    display: block
+}
+
+#exchange_post_msg_more a {
+    display: block;
+    text-align: center;
+    color: #45688e;
+    padding: 10px 0px 12px;
+    background: #e7ecf1
+}
+
+#exchange_post_msg_more a:hover {
+    text-decoration: none;
+    background: #e0e6ec
+}
+
+#exchange_post_msg_more .more_sh {
+    background: #c1c7ca;
+    height: 3px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1550;
+    opacity: 0.55;
+    filter: alpha(opacity=55)
+}
+
+#exchange_info_archive.loading {
+    background: url(/images/upload.gif) no-repeat 100% 50%
+}
+
+#exchange_info_archive.loading a {
+    visibility: hidden
+}
+
+#exchange_info_in_archive {
+    color: #909090;
+    padding-top: 10px
+}
+
+#exchange_tasks_info {
+    padding: 2px 0 20px
+}
+
+#exchange_post_info {
+    padding-top: 2px
+}
+
+.exchange_ad_post_club_commment,
+a.exchange_ad_post_link,
+a.exchange_ad_post_stats {
+    display: inline-block;
+    margin: 3px 5px 0 0;
+    padding: 0;
+    width: 18px;
+    height: 18px;
+    background: #ebeff5 url(/images/icons/mono_iconset.png) no-repeat 4px -204px
+}
+
+a.exchange_ad_post_link {
+    background-position: 4px -233px
+}
+
+.exchange_ad_post_club_commment {
+    background-position: 4px -189px
+}
+
+.exchange_ad_post_waiting_time {
+    padding-top: 2px;
+    font-size: 0.91em;
+    color: #999;
+    white-space: nowrap
+}
+
+a.exchange_ad_post_link.deleted {
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    cursor: default
+}
+
+.exchange_ad_post_club_commment:hover,
+a.exchange_ad_post_link:hover,
+a.exchange_ad_post_stats:hover {
+    background-color: #dde4ed
+}
+
+.even .exchange_ad_post_club_commment:hover,
+.even a.exchange_ad_post_link:hover,
+.even a.exchange_ad_post_stats:hover {
+    background-color: #d5e0e5
+}
+
+a.exchange_ad_post_link.deleted:hover {
+    background-color: #ebeff5
+}
+
+#ads_post_title_input,
+#ads_post_title_link {
+    position: relative
+}
+
+#ads_post_title_text {
+    border-bottom: 1px dashed #2b587a;
+    text-decoration: none;
+    display: block;
+    position: absolute
+}
+
+#ads_post_title {
+    width: 160px;
+    position: absolute;
+    top: -4px;
+    left: -4px
+}
+
+#exchange_tasks_info #ads_post_title {
+    width: 235px
+}
+
+.exchange_post_more {
+    position: relative;
+    top: 2px;
+    font-weight: 700;
+    color: #91a4b8;
+    -o-transition: color 200ms linear;
+    transition: color 200ms linear
+}
+
+.exchange_post_more:hover {
+    color: #45688e;
+    text-decoration: none
+}
+
+.exchange_info_msg {
+    background-color: #fff;
+    border: 1px solid #bcc9d7;
+    font-weight: 400;
+    padding: 8px 11px;
+    line-height: 160%
+}
+
+.dark_box_cont.exchange {
+    padding-top: 5px
+}
+
+.dark_box_cont.exchange .dark_box_label {
+    padding-top: 20px
+}
+
+.dark_box_cont.exchange #exchange_box_error {
+    margin-top: 14px;
+    margin-bottom: 0
+}
+
+.wk_postbox_content.exchange #wk_content {
+    width: 510px
+}
+
+#exchange_repost_link,
+.wk_postbox_content.exchange #pb_title {
+    padding: 7px 5px 8px!important;
+    width: 446px
+}
+
+.wk_postbox_content.exchange #pb_text {
+    width: 446px
+}
+
+.wk_postbox_content.exchange #pb_send,
+.wk_postbox_content.exchange #pb_error {
+    margin-top: 20px
+}
+
+.wk_postbox_content.exchange #pb_add_media {
+    padding-top: 0px
+}
+
+.wk_postbox_content.exchange #wk_close_link {
+    padding: 17px 26px 18px
+}
+
+#exchange_repost_preview .wall_module {
+    margin-top: 15px
+}
+
+#exchange_repost_preview .published_by_quote .wall_post_text {
+    width: 420px
+}
+
+#exchange_comment_label {
+    display: none
+}
+
+#filter_city_row {
+    padding-top: 7px
+}
+
+#exchange_comm_search_filters #exchange_search_input {
+    padding: 7px 8px 8px!important;
+    background: url(/images/magglass.png) no-repeat scroll 95% 8px #fff;
+    height: 13px;
+    outline: none
+}
+
+#exchange_search_input::-ms-clear {
+    display: none
+}
+
+#exchange_search_progress {
+    background: url("/images/upload.gif") no-repeat scroll 50% transparent;
+    display: none;
+    height: 23px;
+    margin-left: -41px;
+    margin-top: 2px;
+    position: relative;
+    width: 32px;
+    z-index: 95
+}
+
+#exchange_search_wrap.loading #exchange_search_input {
+    background-image: none
+}
+
+#exchange_search_wrap.loading #exchange_search_progress {
+    display: block
+}
+
+#exchange_more_results td {
+    padding: 0;
+    border-bottom: none
+}
+
+#exchange_more_results a {
+    display: block;
+    padding: 10px 0px;
+    margin: 0;
+    text-align: center
+}
+
+#exchange_more_results a:hover {
+    background: #e1e7ed;
+    border-color: #dae1e8;
+    text-decoration: none
+}
+
+#exchange_repost_link_wrap {
+    display: none
+}
+
+#exchange_button_send {
+    margin-top: 15px
+}
+
+#exchange_requests_terms {
+    width: 290px;
+    line-height: 160%;
+    padding-top: 12px
+}
+
+.exchange_hint_tt .tail_wrap {
+    position: absolute;
+    top: auto;
+    bottom: -5px;
+    left: 17px;
+    z-index: 2001
+}
+
+.exchange_hint_tt .toup .tail_wrap {
+    top: -7px;
+    bottom: auto
+}
+
+.exchange_hint_tt .tail {
+    background: url(/images/ddtooltip.png) -3px -5px no-repeat;
+    width: 11px;
+    height: 8px
+}
+
+.exchange_hint_tt .toup .tail {
+    background-position: -3px 2px
+}
+
+.exchange_hint_tt .hint_wrap {
+    width: 273px;
+    padding: 8px 5px;
+    line-height: 160%;
+    color: #000
+}
+
+.exchange_hint_tt .hint_wrap.title {
+    width: 170px
+}
+
+.exchange_new_union {
+    padding-top: 10px
+}
+
+.exchange_new_union_img {
+    margin: 30px 0px;
+    height: 160px;
+    background: url(/images/join/ads_union.png) no-repeat 50% 0%
+}
+
+.exchange_create_union {
+    text-align: center
+}
+
+#exchange_new_union_error {
+    margin: 10px 0px;
+    display: none
+}
+
+#exchange_campaign_title {
+    padding: 6px!important;
+    width: 212px
+}
+
+#exchange_choose_campaign {
+    display: inline-block;
+    margin: 3px 2px 0px 0px
+}
+
+#exchange_error,
+#exchange_msg {
+    margin: 0 0 20px
+}
+
+.exchange_table_tt table .tt_text {
+    color: #000;
+    line-height: 150%;
+    padding: 10px;
+    width: 285px
+}
+
+.exchange_table_tt table.toup1 .bottom_pointer {
+    margin-right: 0px;
+    margin-left: 34px;
+    display: block;
+    background: url(/images/tooltip_arrow_white.gif) no-repeat
+}
+
+.exchange_table_tt table.toup .top_pointer {
+    margin-right: 0px;
+    margin-left: 34px;
+    display: block;
+    bottom: -2px;
+    background: url(/images/tooltip_arrow_up.gif) no-repeat
+}
+
+.exchange_request_comment {
+    padding-top: 15px
+}
+
+.exchange_request_comment .exchange_hint_tt {
+    border: 1px solid #c0cad5;
+    position: relative;
+    background: #fff
+}
+
+.exchange_request_comment .exchange_hint_tt .tail_wrap {
+    top: -6px;
+    bottom: auto;
+    left: 32px
+}
+
+.exchange_request_comment .exchange_hint_tt .tail {
+    background: url(/images/adcomment_arrow.png) no-repeat;
+    width: 11px;
+    height: 6px
+}
+
+.exchange_union_box table {
+    border-spacing: 0px
+}
+
+.exchange_union_box .label {
+    color: #777;
+    padding: 7px 10px 7px 0px
+}
+
+.exchange_union_box input {
+    width: 200px;
+    padding: 7px 5px 8px
+}
+
+.exchange_client_all_limit a {
+    border-bottom: 1px dashed #2b587a;
+    text-decoration: none
+}
+
+.exchange_stats_period_wrap {
+    padding: 4px 0px 8px
+}
+
+.exchange_stats_period_info .exchange_post_info_row {
+    padding: 3px 0px 4px
+}
+
+.exchange_box_notice {
+    padding-bottom: 20px
+}
+
+#exchange_review_box .exchange_post_info_row .label {
+    width: 100px
+}
+
+#exchange_review_comment {
+    width: 278px;
+    height: 50px
+}
+
+.exchange_export_stats_table {
+    margin-bottom: 20px
+}
+
+.exchange_export_stats_table .table_label,
+.exchange_export_stats_table .table_value {
+    padding: 0 10px 7px 0;
+    min-width: 150px
+}
+
+.exchange_export_stats_table .summary td {
+    padding-top: 10px
+}
+
+.exchange_export_stats_date_row .table_label {
+    padding-bottom: 6px
+}
+
+.exchange_export_stats_table .dropdown_row .table_value {
+    padding-left: 4px
+}
+
+#exchange_stats_content .img-icon {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 0;
+    background: url(/images/icons/exchange_stats_icons.png) no-repeat 0 0;
+    background-size: cover
+}
+
+#exchange_stats_content .img-icon.img-shares {
+    background-position: 0 -14px
+}
+
+#exchange_stats_content .img-icon.img-comments {
+    background-position: 0 -28px
+}
+
+#exchange_stats_content .preserve_th_width th.ui_table_cell.sortable.ta_r .ui_table_header_name {
+    padding-left: 16px
+}
+
+#exchange_stats_content .preserve_th_width th.ui_table_cell.sortable.ta_l .ui_table_header_name {
+    padding-right: 16px
+}

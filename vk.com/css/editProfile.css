@@ -1,1 +1,521 @@
-#content{padding:11px 0px 0px}#educationFilter{background-color:#f7f7f7;border-bottom:1px solid #d8dfea;height:22px;padding:10px}.bigRow span.add_item_link{display:none}.bigRow span.add_item_link b{font-weight:400;width:160px;position:absolute;padding-top:3px}.bigRow span.add_item_link b a{float:none;display:inline;margin:0px}.filter,.filter_on,.filter_over{float:left;margin-right:10px;margin-bottom:-1px;cursor:pointer;font-weight:700}.filter{padding:4px 7px 5px;color:#45688e}.filter_on{border-bottom:1px solid #fff}.filter_on div{border:1px solid;border-color:#395676 #3b6798 #4a73a0}.filter_on div div{border:1px solid #5c82ab;background-color:#6d8fb3;color:#fff;padding:2px 5px 3px}.filter_over{border-bottom:1px solid #f7f7f7}.filter_over div{border:1px solid #c6d0d9}.filter_over div div{border:1px solid #dae1e8;background-color:#dae1e8;color:#45688e;padding:2px 5px 3px}.educationEdit{display:none}#summary{padding:14px 10px 4px;color:#45688e;font-weight:700;border-bottom:1px solid #dae2e8}#editor{background-color:#f7f7f7;padding:0px 0px 10px;overflow:hidden}#add_address_link,#add_military_link,#add_school_link,#add_uni_link,#add_work_link,.header{margin:0px 0px 0px 240px;padding:10px 0px 0px;color:#45688e}.header{font-weight:700}#add_address_link{margin-left:270px}#militaries,#primary_uni,#schools,#unis,#works{display:none}.bigRow{margin-top:10px}#adding_to_db img,#placeEditor img,.bigRow img{float:left;position:relative;top:7px;display:none}.bigRow a{margin:3px 10px 0px 0px}.separator{clear:both;height:11px;border-bottom:1px solid #fff}.separator div{height:10px;border-bottom:1px solid #e0e0e0}#contacts,#general,#placeEditor{clear:both;padding-top:10px}.placeCategory #placeEditor .row,.row{padding:0px;height:26px}.row#status_detail{height:20px;font-size:10px;color:#777}.row .label{clear:both;width:230px;padding:4px 10px 0 0;color:#555}.row #bday_vis_detail{float:left;padding-top:4px}#personal .row{height:auto}#personal .row textarea{width:280px;height:80px;line-height:14px}#personal .row .label{width:160px;padding-top:14px}#personal .row .labeled{width:298px;padding-top:10px}#personal .row .details{color:#999;float:left;padding-top:14px;width:150px}#placeEditor .row .label{width:260px}#contacts .row .label{width:220px}#contacts .row .labeled{width:180px}#general .row .label{width:170px}#general .row .labeled{width:230px}#general .row#status_detail .labeled{width:370px}#addresses #placeEditor .row .label{width:120px}#placeEditor .row .labeled,.row .labeled{width:210px}.row input.inputText{width:192px}#contacts .row input.inputText{width:162px}#contacts .row input.inputText#forum{margin:0px;width:122px}#general .row input.inputText{width:212px}#contacts .row{clear:both}#adding_to_db .row .label{width:140px}.nick_at{padding:4px 10px 0px 0px;float:left}.nick_place{text-align:left;padding:0px;margin:0px;float:left}#forums input,#forums a{float:left}#forums a{clear:left;font-size:10px;padding-top:2px}div.row#add_nick_row,div.row#nick_row{height:auto;display:none}div.row#add_nick_row{font-size:10px;padding-top:5px}.row .privacy_control{float:left;width:210px}#buttons{margin-left:240px;margin-top:10px;height:26px}#placeEditor #buttons{margin-left:270px}#addresses #placeEditor #buttons{margin-left:130px}#contacts #buttons{margin-left:230px}#buttons img{float:left;position:relative;top:8px;left:10px;display:none}.school_type_row{width:92px}.deleted{color:#777;display:none;height:23px;margin:3px 0px 0px 10px}.deleted div{float:left;margin:3px 0px 0px}#messageWrap{padding:10px 10px 0px;position:relative}#messageWrap div.error,#messageWrap div.message{background-color:#e7f1f9;border:1px solid #4c96d4;font-size:11px;font-weight:700;margin:0px;padding:8px 11px}#messageWrap div.error{background-color:#ffefe8;border-color:#e89b88}.placeCategory{display:none;padding:10px 0px 0px}.placeCategory .header{margin:0px;padding-left:140px;position:relative}.placeCategory .addresses{padding-left:140px}.placeCategory .row{padding:10px 0px 0px;height:auto;clear:right}.placeCategory .row div.lines{width:260px;float:left;overflow:hidden}.placeCategory .row div.typeName{padding:0px;float:left;width:130px;color:#777}.placeCategory div.actions{padding:0px 10px 0px 0px;text-align:right;float:right}.placeCategory div.actions a{display:block;margin-bottom:5px;position:relative;z-index:1}#placeEditor .labeled{width:200px}.since_until{padding:5px 5px 0px 0px}#no_addresses{display:none;padding:20px 20px 10px}#no_addresses div{padding:8px;text-align:center;background-color:#fff;border:1px solid #c0cbd5}.bday{float:left;width:60px}.bmonth{float:left;width:100px}.byear{float:left;width:60px}#status_detail,#status_partner,#status_prep,#status_row{display:none}#status_partner,#status_prep{float:left}#status_prep{padding:4px 10px 0px 0px}#status_help_wrap{position:absolute;display:none;width:180px;height:126px;background-color:#f7f7f7}#status_help{border:1px solid #adbbca;background-color:#dae2e8;height:104px;padding:10px}#status_help_content{font-size:10px;background-color:#fff;padding:10px;height:84px}#load_friends_progress{float:left;margin:6px 0px 0px;display:none}#general #buttons{margin-left:180px}#general #buttons img{display:none;position:absolute;left:auto;top:auto;margin-left:10px;margin-top:8px}#personal{display:none}.wrap_relation{width:430px}.relation_input,#add_child_link,#add_parent_link,#add_sibling_link{clear:both}.relation_date{clear:both;padding:4px 0 0}
+#content {
+    padding: 11px 0px 0px
+}
+
+#educationFilter {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #d8dfea;
+    height: 22px;
+    padding: 10px
+}
+
+.bigRow span.add_item_link {
+    display: none
+}
+
+.bigRow span.add_item_link b {
+    font-weight: 400;
+    width: 160px;
+    position: absolute;
+    padding-top: 3px
+}
+
+.bigRow span.add_item_link b a {
+    float: none;
+    display: inline;
+    margin: 0px
+}
+
+.filter,
+.filter_on,
+.filter_over {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: -1px;
+    cursor: pointer;
+    font-weight: 700
+}
+
+.filter {
+    padding: 4px 7px 5px;
+    color: #45688e
+}
+
+.filter_on {
+    border-bottom: 1px solid #fff
+}
+
+.filter_on div {
+    border: 1px solid;
+    border-color: #395676 #3b6798 #4a73a0
+}
+
+.filter_on div div {
+    border: 1px solid #5c82ab;
+    background-color: #6d8fb3;
+    color: #fff;
+    padding: 2px 5px 3px
+}
+
+.filter_over {
+    border-bottom: 1px solid #f7f7f7
+}
+
+.filter_over div {
+    border: 1px solid #c6d0d9
+}
+
+.filter_over div div {
+    border: 1px solid #dae1e8;
+    background-color: #dae1e8;
+    color: #45688e;
+    padding: 2px 5px 3px
+}
+
+.educationEdit {
+    display: none
+}
+
+#summary {
+    padding: 14px 10px 4px;
+    color: #45688e;
+    font-weight: 700;
+    border-bottom: 1px solid #dae2e8
+}
+
+#editor {
+    background-color: #f7f7f7;
+    padding: 0px 0px 10px;
+    overflow: hidden
+}
+
+#add_address_link,
+#add_military_link,
+#add_school_link,
+#add_uni_link,
+#add_work_link,
+.header {
+    margin: 0px 0px 0px 240px;
+    padding: 10px 0px 0px;
+    color: #45688e
+}
+
+.header {
+    font-weight: 700
+}
+
+#add_address_link {
+    margin-left: 270px
+}
+
+#militaries,
+#primary_uni,
+#schools,
+#unis,
+#works {
+    display: none
+}
+
+.bigRow {
+    margin-top: 10px
+}
+
+#adding_to_db img,
+#placeEditor img,
+.bigRow img {
+    float: left;
+    position: relative;
+    top: 7px;
+    display: none
+}
+
+.bigRow a {
+    margin: 3px 10px 0px 0px
+}
+
+.separator {
+    clear: both;
+    height: 11px;
+    border-bottom: 1px solid #fff
+}
+
+.separator div {
+    height: 10px;
+    border-bottom: 1px solid #e0e0e0
+}
+
+#contacts,
+#general,
+#placeEditor {
+    clear: both;
+    padding-top: 10px
+}
+
+.placeCategory #placeEditor .row,
+.row {
+    padding: 0px;
+    height: 26px
+}
+
+.row#status_detail {
+    height: 20px;
+    font-size: 10px;
+    color: #777
+}
+
+.row .label {
+    clear: both;
+    width: 230px;
+    padding: 4px 10px 0 0;
+    color: #555
+}
+
+.row #bday_vis_detail {
+    float: left;
+    padding-top: 4px
+}
+
+#personal .row {
+    height: auto
+}
+
+#personal .row textarea {
+    width: 280px;
+    height: 80px;
+    line-height: 14px
+}
+
+#personal .row .label {
+    width: 160px;
+    padding-top: 14px
+}
+
+#personal .row .labeled {
+    width: 298px;
+    padding-top: 10px
+}
+
+#personal .row .details {
+    color: #999;
+    float: left;
+    padding-top: 14px;
+    width: 150px
+}
+
+#placeEditor .row .label {
+    width: 260px
+}
+
+#contacts .row .label {
+    width: 220px
+}
+
+#contacts .row .labeled {
+    width: 180px
+}
+
+#general .row .label {
+    width: 170px
+}
+
+#general .row .labeled {
+    width: 230px
+}
+
+#general .row#status_detail .labeled {
+    width: 370px
+}
+
+#addresses #placeEditor .row .label {
+    width: 120px
+}
+
+#placeEditor .row .labeled,
+.row .labeled {
+    width: 210px
+}
+
+.row input.inputText {
+    width: 192px
+}
+
+#contacts .row input.inputText {
+    width: 162px
+}
+
+#contacts .row input.inputText#forum {
+    margin: 0px;
+    width: 122px
+}
+
+#general .row input.inputText {
+    width: 212px
+}
+
+#contacts .row {
+    clear: both
+}
+
+#adding_to_db .row .label {
+    width: 140px
+}
+
+.nick_at {
+    padding: 4px 10px 0px 0px;
+    float: left
+}
+
+.nick_place {
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+    float: left
+}
+
+#forums input,
+#forums a {
+    float: left
+}
+
+#forums a {
+    clear: left;
+    font-size: 10px;
+    padding-top: 2px
+}
+
+div.row#add_nick_row,
+div.row#nick_row {
+    height: auto;
+    display: none
+}
+
+div.row#add_nick_row {
+    font-size: 10px;
+    padding-top: 5px
+}
+
+.row .privacy_control {
+    float: left;
+    width: 210px
+}
+
+#buttons {
+    margin-left: 240px;
+    margin-top: 10px;
+    height: 26px
+}
+
+#placeEditor #buttons {
+    margin-left: 270px
+}
+
+#addresses #placeEditor #buttons {
+    margin-left: 130px
+}
+
+#contacts #buttons {
+    margin-left: 230px
+}
+
+#buttons img {
+    float: left;
+    position: relative;
+    top: 8px;
+    left: 10px;
+    display: none
+}
+
+.school_type_row {
+    width: 92px
+}
+
+.deleted {
+    color: #777;
+    display: none;
+    height: 23px;
+    margin: 3px 0px 0px 10px
+}
+
+.deleted div {
+    float: left;
+    margin: 3px 0px 0px
+}
+
+#messageWrap {
+    padding: 10px 10px 0px;
+    position: relative
+}
+
+#messageWrap div.error,
+#messageWrap div.message {
+    background-color: #e7f1f9;
+    border: 1px solid #4c96d4;
+    font-size: 11px;
+    font-weight: 700;
+    margin: 0px;
+    padding: 8px 11px
+}
+
+#messageWrap div.error {
+    background-color: #ffefe8;
+    border-color: #e89b88
+}
+
+.placeCategory {
+    display: none;
+    padding: 10px 0px 0px
+}
+
+.placeCategory .header {
+    margin: 0px;
+    padding-left: 140px;
+    position: relative
+}
+
+.placeCategory .addresses {
+    padding-left: 140px
+}
+
+.placeCategory .row {
+    padding: 10px 0px 0px;
+    height: auto;
+    clear: right
+}
+
+.placeCategory .row div.lines {
+    width: 260px;
+    float: left;
+    overflow: hidden
+}
+
+.placeCategory .row div.typeName {
+    padding: 0px;
+    float: left;
+    width: 130px;
+    color: #777
+}
+
+.placeCategory div.actions {
+    padding: 0px 10px 0px 0px;
+    text-align: right;
+    float: right
+}
+
+.placeCategory div.actions a {
+    display: block;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 1
+}
+
+#placeEditor .labeled {
+    width: 200px
+}
+
+.since_until {
+    padding: 5px 5px 0px 0px
+}
+
+#no_addresses {
+    display: none;
+    padding: 20px 20px 10px
+}
+
+#no_addresses div {
+    padding: 8px;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid #c0cbd5
+}
+
+.bday {
+    float: left;
+    width: 60px
+}
+
+.bmonth {
+    float: left;
+    width: 100px
+}
+
+.byear {
+    float: left;
+    width: 60px
+}
+
+#status_detail,
+#status_partner,
+#status_prep,
+#status_row {
+    display: none
+}
+
+#status_partner,
+#status_prep {
+    float: left
+}
+
+#status_prep {
+    padding: 4px 10px 0px 0px
+}
+
+#status_help_wrap {
+    position: absolute;
+    display: none;
+    width: 180px;
+    height: 126px;
+    background-color: #f7f7f7
+}
+
+#status_help {
+    border: 1px solid #adbbca;
+    background-color: #dae2e8;
+    height: 104px;
+    padding: 10px
+}
+
+#status_help_content {
+    font-size: 10px;
+    background-color: #fff;
+    padding: 10px;
+    height: 84px
+}
+
+#load_friends_progress {
+    float: left;
+    margin: 6px 0px 0px;
+    display: none
+}
+
+#general #buttons {
+    margin-left: 180px
+}
+
+#general #buttons img {
+    display: none;
+    position: absolute;
+    left: auto;
+    top: auto;
+    margin-left: 10px;
+    margin-top: 8px
+}
+
+#personal {
+    display: none
+}
+
+.wrap_relation {
+    width: 430px
+}
+
+.relation_input,
+#add_child_link,
+#add_parent_link,
+#add_sibling_link {
+    clear: both
+}
+
+.relation_date {
+    clear: both;
+    padding: 4px 0 0
+}

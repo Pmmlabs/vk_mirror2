@@ -1,1 +1,167 @@
-#tags_dd_css{display:none}.h4-text{color:#000;border-bottom:none;font-size:1em;font-weight:400;-webkit-font-smoothing:subpixel-antialiased;-moz-osx-font-smoothing:auto;margin:0;padding:0}.tdd_control{padding:0px;font-size:1em;border:1px solid #c5c8cf;background:#fff}.tdd_control .input_back_content{padding:2px;line-height:1.18em}.tdd_search .tdd_control{background:#fff url('/images/magglass.png') no-repeat 5px 7px;padding-left:18px}.tdd_input{outline:none;border:none;font-family:Tahoma;font-size:1em;padding:3px 5px;margin:2px 0px;line-height:1.18em;background:transparent;font-family:Tahoma,Verdana,Arial,Sans-Serif,Lucida Sans}.tdd_input::-ms-clear{display:none}.tdd_tag{background:#dae2e8;white-space:nowrap;padding:3px 4px;border-radius:2px;-moz-border-radius:2px;-khtml-border-radius:2px;-webkit-border-radius:2px;margin:2px;height:14px;color:#000}.tdd_x{margin:0px 1px 0px 5px;opacity:0.6;filter:alpha(opacity=60);display:inline-block;*display:inline;zoom:1}.tdd_x,.tdd_x_c{width:11px;height:11px}.tdd_x_c{background:url('/images/pics/im_tabx.gif?1') 0 0;margin-top:1px}.tdd_input_cont{margin-left:1px}.tdd_suggest{clear:both;border:1px solid #c5c8cf;border-top:none;display:none;position:absolute;background:#fff;z-index:100}.tdd_suggest_items{max-height:200px;*height:expression(document.body.clientHeight < 200 ? '200px': 'auto');margin:-1px;padding-top:1px}.tdd_item{padding:4px 7px;display:block;color:#000}.tdd_item:hover{text-decoration:none}.tdd_active{background:#587da1;color:#fff;border:1px solid #2a5883;z-index:1;margin-top:-1px;padding:4px 6px}.tdd_suggest .tdd_scrollbar_cont{width:7px;margin-top:3px;background-color:none;-o-transition:none;transition:none}.tdd_suggest .tdd_scrollbar_cont.scrollbar_c_overed{background:none!important;width:7px!important}.tdd_suggest .tdd_scrollbar_cont.scrollbar_c_overed .scrollbar_inner{width:6px}.tdd_suggest .tdd_scrollbar_cont .scrollbar_inner{background:#000;opacity:0.4;filter:alpha(opacity=40);margin-left:-1px}.tdd_suggest .tdd_scrollbar_cont .scrollbar_inner.scrollbar_hovered,.tdd_suggest .tdd_scrollbar_cont .scrollbar_inner:hover{opacity:0.6;filter:alpha(opacity=60)}.tdd_bottom1,.tdd_bottom2{background:#000;height:1px;overflow:hidden;position:absolute;margin-top:1px;opacity:0.1;filter:alpha(opacity=10)}.tdd_bottom2{margin-top:2px;opacity:0.05;filter:alpha(opacity=5)}
+#tags_dd_css {
+    display: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+.tdd_control {
+    padding: 0px;
+    font-size: 1em;
+    border: 1px solid #c5c8cf;
+    background: #fff
+}
+
+.tdd_control .input_back_content {
+    padding: 2px;
+    line-height: 1.18em
+}
+
+.tdd_search .tdd_control {
+    background: #fff url('/images/magglass.png') no-repeat 5px 7px;
+    padding-left: 18px
+}
+
+.tdd_input {
+    outline: none;
+    border: none;
+    font-family: Tahoma;
+    font-size: 1em;
+    padding: 3px 5px;
+    margin: 2px 0px;
+    line-height: 1.18em;
+    background: transparent;
+    font-family: Tahoma, Verdana, Arial, Sans-Serif, Lucida Sans
+}
+
+.tdd_input::-ms-clear {
+    display: none
+}
+
+.tdd_tag {
+    background: #dae2e8;
+    white-space: nowrap;
+    padding: 3px 4px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    margin: 2px;
+    height: 14px;
+    color: #000
+}
+
+.tdd_x {
+    margin: 0px 1px 0px 5px;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    display: inline-block;
+    *display: inline;
+    zoom: 1
+}
+
+.tdd_x,
+.tdd_x_c {
+    width: 11px;
+    height: 11px
+}
+
+.tdd_x_c {
+    background: url('/images/pics/im_tabx.gif?1') 0 0;
+    margin-top: 1px
+}
+
+.tdd_input_cont {
+    margin-left: 1px
+}
+
+.tdd_suggest {
+    clear: both;
+    border: 1px solid #c5c8cf;
+    border-top: none;
+    display: none;
+    position: absolute;
+    background: #fff;
+    z-index: 100
+}
+
+.tdd_suggest_items {
+    max-height: 200px;
+    *height: expression(document.body.clientHeight < 200 ? '200px': 'auto');
+    margin: -1px;
+    padding-top: 1px
+}
+
+.tdd_item {
+    padding: 4px 7px;
+    display: block;
+    color: #000
+}
+
+.tdd_item:hover {
+    text-decoration: none
+}
+
+.tdd_active {
+    background: #587da1;
+    color: #fff;
+    border: 1px solid #2a5883;
+    z-index: 1;
+    margin-top: -1px;
+    padding: 4px 6px
+}
+
+.tdd_suggest .tdd_scrollbar_cont {
+    width: 7px;
+    margin-top: 3px;
+    background-color: none;
+    -o-transition: none;
+    transition: none
+}
+
+.tdd_suggest .tdd_scrollbar_cont.scrollbar_c_overed {
+    background: none!important;
+    width: 7px!important
+}
+
+.tdd_suggest .tdd_scrollbar_cont.scrollbar_c_overed .scrollbar_inner {
+    width: 6px
+}
+
+.tdd_suggest .tdd_scrollbar_cont .scrollbar_inner {
+    background: #000;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+    margin-left: -1px
+}
+
+.tdd_suggest .tdd_scrollbar_cont .scrollbar_inner.scrollbar_hovered,
+.tdd_suggest .tdd_scrollbar_cont .scrollbar_inner:hover {
+    opacity: 0.6;
+    filter: alpha(opacity=60)
+}
+
+.tdd_bottom1,
+.tdd_bottom2 {
+    background: #000;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    margin-top: 1px;
+    opacity: 0.1;
+    filter: alpha(opacity=10)
+}
+
+.tdd_bottom2 {
+    margin-top: 2px;
+    opacity: 0.05;
+    filter: alpha(opacity=5)
+}

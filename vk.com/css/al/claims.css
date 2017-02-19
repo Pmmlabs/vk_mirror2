@@ -1,1 +1,650 @@
-.h4-text{color:#000;border-bottom:none;font-size:1em;font-weight:400;-webkit-font-smoothing:subpixel-antialiased;-moz-osx-font-smoothing:auto;margin:0;padding:0}#claims_css{display:none}#claims_content .b{font-weight:700}.claim_tabs{border-bottom:1px solid #dae1e8;height:24px;list-style-type:none;margin:0pt;padding:0px 7px;vertical-align:bottom}.claim_tab_active{background-color:#fff;border-color:#c3cad2;border-style:solid solid none;border-width:1px 1px 0px;float:left;height:24px;margin:0px 3px -1px;text-align:center;position:relative}.claim_tab_active a{float:left;height:21px;line-height:1.9em;padding:0 10px;text-decoration:none}.claim_tab{background-color:#f5f7fa;border-color:#c3cad2;border-style:solid solid none;border-width:1px 1px 0px;float:left;height:23px;margin:0px 3px;text-align:center}.claim_tab a{border-bottom:2px solid #e7e8ec;float:left;text-decoration:none;padding:0 10px;height:21px;line-height:1.9em}.claim_tab a:hover{background-color:#fff;text-decoration:none}.claim_tab,.claim_tab_active,.claim_tab a:hover{border-top-right-radius:4px;border-top-left-radius:4px;-moz-border-radius-topright:4px;-moz-border-radius-topleft:4px;-khtml-border-top-right-radius:4px;-khtml-border-top-left-radius:4px;-webkit-border-top-right-radius:4px;-webkit-border-top-left-radius:4px}#claims_wrap{background-color:#fff;padding:0px 10px 10px}#claims_tabs{background-color:#f7f7f7;padding-top:12px}#claims_wrap #summary{border-bottom:1px solid #e7eaed;color:#47688d;padding:29px 0 4px}.claims_summary{font-weight:700}.claims_summary_extra{margin:-3px 0 -4px}.claims_pages_loading{padding:6px 5px 5px}#pages_loading_bottom,#pages_loading_top{display:none}.claims_row{padding:8px 0}.claims_row,.claims_details{border-bottom:1px solid #e7eaed}.claims_details{padding:10px;line-height:1.54em}.claims_middle{display:table-cell;vertical-align:middle}.claims_row.status1,.claims_row.status2{background-color:#f7f7f7}#claims .claims_row:hover{background-color:#e1e7ed}#claims .claims_row{cursor:pointer}.claims_row_company,.claims_row_date,.claims_row_from,.claims_row_id,.claims_row_link_count,.claims_row_status,.claims_row_title{display:table;height:32px}.claims_details_content,.claims_details_links,.claims_details_possessor{display:table}.claims_row_id{width:40px;padding:0 5px;text-align:center}.claims_row_from{width:160px;padding:0 5px;line-height:1.54em}.claims_row_from_sub{color:#777}.claims_row_company{width:160px}.claims_row_title{width:170px}.claims_row_link_count{width:60px;text-align:center}.claims_row_date{width:120px;text-align:center}#claims .claims_row_date{color:#777}.claims_row_status{width:115px;text-align:center}.claims_details_possessor{width:300px}.claims_details_links,.claims_details_content{width:240px}.claims_details,.details_hide,.details_loading{display:none}.details_loading{margin:auto}.content_row_blocked_by,.content_row_claim,.content_row_date,.content_row_owner,.content_row_status,.content_row_title,.content_row_type{display:table;height:16px}.content_row_claim{width:60px;padding:0 5px;text-align:center}.content_row_type{width:70px}.content_row_title{width:180px}.content_row_owner,.content_row_blocked_by{width:120px}.content_row_status{width:50px}.content_row_date{width:120px;text-align:center}#claims_header{font-weight:700}#claims .content_row_date{color:#777}.content_row{padding:8px 0;border-bottom:1px solid #e7eaed}.content_row.deleted{background-color:#f7f7f7}.objections_row_claim,.objections_row_content,.objections_row_date,.objections_row_from,.objections_row_status{display:table;height:32px}.objections_row_claim{width:60px;padding:0 5px;text-align:center}.objections_row_from{width:140px}.objections_row_content{width:160px}.objections_row_date{width:120px;text-align:center}#claims .objections_row_date{color:#777}.objections_row_status{width:120px;text-align:center}.objection_details_objector{width:260px}.objection_details_objections{width:290px}.objection_details_document{width:210px}.objections_row{padding:8px 0;border-bottom:1px solid #e7eaed;cursor:pointer}.objections_row.approved,.objections_row.declined{background-color:#f7f7f7}#claims .objections_row:hover{background-color:#e1e7ed}#claims .objections_row{cursor:pointer}.claim_view{padding:12px 0;background-color:#f7f7f7}.claim_view_row{padding:5px 0}.claim_view_label{color:#555;width:215px;padding:1px 10px 0 0}.claim_view_field{padding:1px 0px 3px;width:390px}.claim_details_row{padding:5px 0}.claim_details_label{color:#777;width:140px;padding:1px 10px 0 0}.claim_details_field{width:420px;padding:1px 0px 9px}#claims_decline_comment{width:375px;height:70px}.claim_section h2{margin:0 80px 10px;font-weight:700;font-size:1.09em;color:#36638e;border-color:#b9c4da}.claim_section{margin-top:20px}.claim_summary .button_blue{margin-right:10px}#claim_updated_msg{display:none;line-height:160%;background:#f4ebbd;margin:0 15px 15px}#claim_search_wrap{background:#f7f7f7;border-bottom:1px solid #dae1e8;padding:10px;position:relative}#claim_search{padding:5px 5px 5px 20px;background:url(/images/magglass.png) no-repeat scroll 5px 6px #fff;height:13px;outline:none;width:448px}#claim_search_wrap button{width:120px}#claim_clear_search{cursor:pointer;display:none;background:transparent url(/images/icons/input_clear.gif) 6px 6px no-repeat;padding:2px;width:19px;height:19px;margin-left:450px;margin-top:1px;opacity:0.6;filter:alpha(opacity=60);position:absolute;z-index:100}#claim_clear_search.shown{display:block}.claim_title_row{border-top:1px solid #dae1e8}.claim_title_row:first-child{border-top:none}.claim_title{width:400px;padding:7px 10px}.claim_title,.claim_title_duration{overflow:hidden;text-overflow:ellipsis}.claim_title_duration{width:150px;padding:2px}.claim_title_dur{margin:2px;zoom:1;padding:4px!important;vertical-align:top;color:#45688e;background:#d5dde5;font-weight:700;font-style:normal!important;font-size:10px;line-height:11px;border-radius:2px;display:inline-block;cursor:pointer}.claim_title_dur.add{width:24px;text-align:center}.claim_title_row .claim_title_remove_wrap{margin:3px;padding:4px;opacity:0;filter:alpha(opacity=0);-o-transition:opacity 200ms linear, color 200ms linear;transition:opacity 200ms linear, color 200ms linear;cursor:pointer}.claim_title_row .claim_title_remove{background:url(/images/icons/audio_icons.png?5) -107px -51px no-repeat;height:13px;width:13px;position:relative;overflow:hidden}.claim_title_row.over .claim_title_remove_wrap{opacity:0.4;filter:alpha(opacity=40)}.claim_title_row.over .claim_title_remove_wrap.over{opacity:1;filter:alpha(opacity=100)}.claim_check_link{display:block;padding:7px 10px}.claim_check_link:hover{text-decoration:none;background-color:#f5f9fc}.claim_check_link.simple:hover{text-decoration:underline;background-color:transparent}.claim_msg{line-height:200%;color:#777;font-size:1.09em;text-align:center;padding:100px}#claim_show_more{display:block;padding:8px 0px;text-align:center;margin:0px;border-top:1px solid #dae1e8}#claim_show_more.loading .claim_more{display:none}#claim_show_more.loading .claim_more_progress{display:block}#claim_show_more:hover{text-decoration:none;background:#e9edf1}#claim_show_more.search{display:none}.claim_titles_list.light div.claim_title span{background-color:#fff8cc;border-bottom:1px solid #ffe222}.claim_add_title{width:80px;color:#555;padding:5px 10px 0}.claim_add_value{width:305px}.claim_add_value input{width:301px;height:13px;padding:5px!important}.claim_add_row{padding:3px}#claim_error{margin:6px 6px 18px;display:none}.claim_choose_added{display:block;height:28px;line-height:28px;margin:0px;padding:0px 6px;color:#777;max-width:118px}.claim_hashes_rows_wrap{padding:20px 30px}.claim_hashes_row{border-bottom:1px solid #e2e2e2;padding-bottom:20px;-o-transition:height 200ms linear, opacity 400ms linear;transition:height 200ms linear, opacity 400ms linear;overflow:hidden}.claim_hashes_thumbwrap{display:inline-block;margin-left:21px;margin-top:12px;width:450px;vertical-align:top}.claim_hashes_buttons_wrap{margin-right:30px;margin-top:10px;width:95%}.claim_hashes_buttons_wrap button{margin-left:5px}.claim_hashes_thumb_privacy{margin-top:4px;color:#777}
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+#claims_css {
+    display: none
+}
+
+#claims_content .b {
+    font-weight: 700
+}
+
+.claim_tabs {
+    border-bottom: 1px solid #dae1e8;
+    height: 24px;
+    list-style-type: none;
+    margin: 0pt;
+    padding: 0px 7px;
+    vertical-align: bottom
+}
+
+.claim_tab_active {
+    background-color: #fff;
+    border-color: #c3cad2;
+    border-style: solid solid none;
+    border-width: 1px 1px 0px;
+    float: left;
+    height: 24px;
+    margin: 0px 3px -1px;
+    text-align: center;
+    position: relative
+}
+
+.claim_tab_active a {
+    float: left;
+    height: 21px;
+    line-height: 1.9em;
+    padding: 0 10px;
+    text-decoration: none
+}
+
+.claim_tab {
+    background-color: #f5f7fa;
+    border-color: #c3cad2;
+    border-style: solid solid none;
+    border-width: 1px 1px 0px;
+    float: left;
+    height: 23px;
+    margin: 0px 3px;
+    text-align: center
+}
+
+.claim_tab a {
+    border-bottom: 2px solid #e7e8ec;
+    float: left;
+    text-decoration: none;
+    padding: 0 10px;
+    height: 21px;
+    line-height: 1.9em
+}
+
+.claim_tab a:hover {
+    background-color: #fff;
+    text-decoration: none
+}
+
+.claim_tab,
+.claim_tab_active,
+.claim_tab a:hover {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    -moz-border-radius-topright: 4px;
+    -moz-border-radius-topleft: 4px;
+    -khtml-border-top-right-radius: 4px;
+    -khtml-border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -webkit-border-top-left-radius: 4px
+}
+
+#claims_wrap {
+    background-color: #fff;
+    padding: 0px 10px 10px
+}
+
+#claims_tabs {
+    background-color: #f7f7f7;
+    padding-top: 12px
+}
+
+#claims_wrap #summary {
+    border-bottom: 1px solid #e7eaed;
+    color: #47688d;
+    padding: 29px 0 4px
+}
+
+.claims_summary {
+    font-weight: 700
+}
+
+.claims_summary_extra {
+    margin: -3px 0 -4px
+}
+
+.claims_pages_loading {
+    padding: 6px 5px 5px
+}
+
+#pages_loading_bottom,
+#pages_loading_top {
+    display: none
+}
+
+.claims_row {
+    padding: 8px 0
+}
+
+.claims_row,
+.claims_details {
+    border-bottom: 1px solid #e7eaed
+}
+
+.claims_details {
+    padding: 10px;
+    line-height: 1.54em
+}
+
+.claims_middle {
+    display: table-cell;
+    vertical-align: middle
+}
+
+.claims_row.status1,
+.claims_row.status2 {
+    background-color: #f7f7f7
+}
+
+#claims .claims_row:hover {
+    background-color: #e1e7ed
+}
+
+#claims .claims_row {
+    cursor: pointer
+}
+
+.claims_row_company,
+.claims_row_date,
+.claims_row_from,
+.claims_row_id,
+.claims_row_link_count,
+.claims_row_status,
+.claims_row_title {
+    display: table;
+    height: 32px
+}
+
+.claims_details_content,
+.claims_details_links,
+.claims_details_possessor {
+    display: table
+}
+
+.claims_row_id {
+    width: 40px;
+    padding: 0 5px;
+    text-align: center
+}
+
+.claims_row_from {
+    width: 160px;
+    padding: 0 5px;
+    line-height: 1.54em
+}
+
+.claims_row_from_sub {
+    color: #777
+}
+
+.claims_row_company {
+    width: 160px
+}
+
+.claims_row_title {
+    width: 170px
+}
+
+.claims_row_link_count {
+    width: 60px;
+    text-align: center
+}
+
+.claims_row_date {
+    width: 120px;
+    text-align: center
+}
+
+#claims .claims_row_date {
+    color: #777
+}
+
+.claims_row_status {
+    width: 115px;
+    text-align: center
+}
+
+.claims_details_possessor {
+    width: 300px
+}
+
+.claims_details_links,
+.claims_details_content {
+    width: 240px
+}
+
+.claims_details,
+.details_hide,
+.details_loading {
+    display: none
+}
+
+.details_loading {
+    margin: auto
+}
+
+.content_row_blocked_by,
+.content_row_claim,
+.content_row_date,
+.content_row_owner,
+.content_row_status,
+.content_row_title,
+.content_row_type {
+    display: table;
+    height: 16px
+}
+
+.content_row_claim {
+    width: 60px;
+    padding: 0 5px;
+    text-align: center
+}
+
+.content_row_type {
+    width: 70px
+}
+
+.content_row_title {
+    width: 180px
+}
+
+.content_row_owner,
+.content_row_blocked_by {
+    width: 120px
+}
+
+.content_row_status {
+    width: 50px
+}
+
+.content_row_date {
+    width: 120px;
+    text-align: center
+}
+
+#claims_header {
+    font-weight: 700
+}
+
+#claims .content_row_date {
+    color: #777
+}
+
+.content_row {
+    padding: 8px 0;
+    border-bottom: 1px solid #e7eaed
+}
+
+.content_row.deleted {
+    background-color: #f7f7f7
+}
+
+.objections_row_claim,
+.objections_row_content,
+.objections_row_date,
+.objections_row_from,
+.objections_row_status {
+    display: table;
+    height: 32px
+}
+
+.objections_row_claim {
+    width: 60px;
+    padding: 0 5px;
+    text-align: center
+}
+
+.objections_row_from {
+    width: 140px
+}
+
+.objections_row_content {
+    width: 160px
+}
+
+.objections_row_date {
+    width: 120px;
+    text-align: center
+}
+
+#claims .objections_row_date {
+    color: #777
+}
+
+.objections_row_status {
+    width: 120px;
+    text-align: center
+}
+
+.objection_details_objector {
+    width: 260px
+}
+
+.objection_details_objections {
+    width: 290px
+}
+
+.objection_details_document {
+    width: 210px
+}
+
+.objections_row {
+    padding: 8px 0;
+    border-bottom: 1px solid #e7eaed;
+    cursor: pointer
+}
+
+.objections_row.approved,
+.objections_row.declined {
+    background-color: #f7f7f7
+}
+
+#claims .objections_row:hover {
+    background-color: #e1e7ed
+}
+
+#claims .objections_row {
+    cursor: pointer
+}
+
+.claim_view {
+    padding: 12px 0;
+    background-color: #f7f7f7
+}
+
+.claim_view_row {
+    padding: 5px 0
+}
+
+.claim_view_label {
+    color: #555;
+    width: 215px;
+    padding: 1px 10px 0 0
+}
+
+.claim_view_field {
+    padding: 1px 0px 3px;
+    width: 390px
+}
+
+.claim_details_row {
+    padding: 5px 0
+}
+
+.claim_details_label {
+    color: #777;
+    width: 140px;
+    padding: 1px 10px 0 0
+}
+
+.claim_details_field {
+    width: 420px;
+    padding: 1px 0px 9px
+}
+
+#claims_decline_comment {
+    width: 375px;
+    height: 70px
+}
+
+.claim_section h2 {
+    margin: 0 80px 10px;
+    font-weight: 700;
+    font-size: 1.09em;
+    color: #36638e;
+    border-color: #b9c4da
+}
+
+.claim_section {
+    margin-top: 20px
+}
+
+.claim_summary .button_blue {
+    margin-right: 10px
+}
+
+#claim_updated_msg {
+    display: none;
+    line-height: 160%;
+    background: #f4ebbd;
+    margin: 0 15px 15px
+}
+
+#claim_search_wrap {
+    background: #f7f7f7;
+    border-bottom: 1px solid #dae1e8;
+    padding: 10px;
+    position: relative
+}
+
+#claim_search {
+    padding: 5px 5px 5px 20px;
+    background: url(/images/magglass.png) no-repeat scroll 5px 6px #fff;
+    height: 13px;
+    outline: none;
+    width: 448px
+}
+
+#claim_search_wrap button {
+    width: 120px
+}
+
+#claim_clear_search {
+    cursor: pointer;
+    display: none;
+    background: transparent url(/images/icons/input_clear.gif) 6px 6px no-repeat;
+    padding: 2px;
+    width: 19px;
+    height: 19px;
+    margin-left: 450px;
+    margin-top: 1px;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    position: absolute;
+    z-index: 100
+}
+
+#claim_clear_search.shown {
+    display: block
+}
+
+.claim_title_row {
+    border-top: 1px solid #dae1e8
+}
+
+.claim_title_row:first-child {
+    border-top: none
+}
+
+.claim_title {
+    width: 400px;
+    padding: 7px 10px
+}
+
+.claim_title,
+.claim_title_duration {
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.claim_title_duration {
+    width: 150px;
+    padding: 2px
+}
+
+.claim_title_dur {
+    margin: 2px;
+    zoom: 1;
+    padding: 4px!important;
+    vertical-align: top;
+    color: #45688e;
+    background: #d5dde5;
+    font-weight: 700;
+    font-style: normal!important;
+    font-size: 10px;
+    line-height: 11px;
+    border-radius: 2px;
+    display: inline-block;
+    cursor: pointer
+}
+
+.claim_title_dur.add {
+    width: 24px;
+    text-align: center
+}
+
+.claim_title_row .claim_title_remove_wrap {
+    margin: 3px;
+    padding: 4px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -o-transition: opacity 200ms linear, color 200ms linear;
+    transition: opacity 200ms linear, color 200ms linear;
+    cursor: pointer
+}
+
+.claim_title_row .claim_title_remove {
+    background: url(/images/icons/audio_icons.png?5) -107px -51px no-repeat;
+    height: 13px;
+    width: 13px;
+    position: relative;
+    overflow: hidden
+}
+
+.claim_title_row.over .claim_title_remove_wrap {
+    opacity: 0.4;
+    filter: alpha(opacity=40)
+}
+
+.claim_title_row.over .claim_title_remove_wrap.over {
+    opacity: 1;
+    filter: alpha(opacity=100)
+}
+
+.claim_check_link {
+    display: block;
+    padding: 7px 10px
+}
+
+.claim_check_link:hover {
+    text-decoration: none;
+    background-color: #f5f9fc
+}
+
+.claim_check_link.simple:hover {
+    text-decoration: underline;
+    background-color: transparent
+}
+
+.claim_msg {
+    line-height: 200%;
+    color: #777;
+    font-size: 1.09em;
+    text-align: center;
+    padding: 100px
+}
+
+#claim_show_more {
+    display: block;
+    padding: 8px 0px;
+    text-align: center;
+    margin: 0px;
+    border-top: 1px solid #dae1e8
+}
+
+#claim_show_more.loading .claim_more {
+    display: none
+}
+
+#claim_show_more.loading .claim_more_progress {
+    display: block
+}
+
+#claim_show_more:hover {
+    text-decoration: none;
+    background: #e9edf1
+}
+
+#claim_show_more.search {
+    display: none
+}
+
+.claim_titles_list.light div.claim_title span {
+    background-color: #fff8cc;
+    border-bottom: 1px solid #ffe222
+}
+
+.claim_add_title {
+    width: 80px;
+    color: #555;
+    padding: 5px 10px 0
+}
+
+.claim_add_value {
+    width: 305px
+}
+
+.claim_add_value input {
+    width: 301px;
+    height: 13px;
+    padding: 5px!important
+}
+
+.claim_add_row {
+    padding: 3px
+}
+
+#claim_error {
+    margin: 6px 6px 18px;
+    display: none
+}
+
+.claim_choose_added {
+    display: block;
+    height: 28px;
+    line-height: 28px;
+    margin: 0px;
+    padding: 0px 6px;
+    color: #777;
+    max-width: 118px
+}
+
+.claim_hashes_rows_wrap {
+    padding: 20px 30px
+}
+
+.claim_hashes_row {
+    border-bottom: 1px solid #e2e2e2;
+    padding-bottom: 20px;
+    -o-transition: height 200ms linear, opacity 400ms linear;
+    transition: height 200ms linear, opacity 400ms linear;
+    overflow: hidden
+}
+
+.claim_hashes_thumbwrap {
+    display: inline-block;
+    margin-left: 21px;
+    margin-top: 12px;
+    width: 450px;
+    vertical-align: top
+}
+
+.claim_hashes_buttons_wrap {
+    margin-right: 30px;
+    margin-top: 10px;
+    width: 95%
+}
+
+.claim_hashes_buttons_wrap button {
+    margin-left: 5px
+}
+
+.claim_hashes_thumb_privacy {
+    margin-top: 4px;
+    color: #777
+}

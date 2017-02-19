@@ -1,1 +1,629 @@
-.vcheck{background-color:#fff;background-image:url(/images/check.gif);background-repeat:no-repeat;background-position:5px 7px}.vcheck,.noncheck{float:left;margin:3px 0px 0px;padding:6px;width:13px;height:10px}.FG{text-align:center;vertical-align:bottom;list-style-type:none;margin:7px 0px 0px;padding:0px;width:607px}.FGBlue,.FGBlueOn,.FGGreen,.FGGreenOn,.FGMarine,.FGMarineOn,.FGOrange,.FGOrangeOn,.FGPurple,.FGPurpleOn,.FGRed,.FGRedOn,.FGTeal,.FGTealOn,.FGWhite,.FGWhiteOn,.FGYellow,.FGYellowOn{height:24px;float:left;margin:3px;text-align:center;white-space:nowrap}.FGBlue a,.FGBlueOn a,.FGGreen a,.FGGreenOn a,.FGMarine a,.FGMarineOn a,.FGOrange a,.FGOrangeOn a,.FGPurple a,.FGPurpleOn a,.FGRed a,.FGRedOn a,.FGTeal a,.FGTealOn a,.FGWhite a,.FGWhiteOn a,.FGYellow a,.FGYellowOn a{float:left;padding:5px 10px 6px;text-decoration:none;white-space:nowrap}.FGBlue a:hover,.FGGreen a:hover,.FGMarine a:hover,.FGOrange a:hover,.FGPurple a:hover,.FGRed a:hover,.FGTeal a:hover,.FGWhite a:hover,.FGYellow a:hover{text-decoration:none}.FGBlueOn a:hover,.FGGreenOn a:hover,.FGMarineOn a:hover,.FGOrangeOn a:hover,.FGPurpleOn a:hover,.FGRedOn a:hover,.FGTealOn a:hover,.FGYellowOn a:hover{text-decoration:none;cursor:text}.FGWhiteOn a:hover{text-decoration:none;cursor:default}a.FGEdit{padding:1px 1px 2px 3px;margin:4px 4px 3px 0px}.FGYellow{border:1px solid #e8e0c3;background-color:#faf3d8}.FGYellowOn{border:1px solid #c4bb98;background-color:#eee3bd}.FGYellow a:hover,.FGYellowOn a,.FGYellowOn a:hover{color:#817945}.FGYellow a{color:#a49e79}.FGGreen{border:1px solid #cfdebf;background-color:#e8f2dc}.FGGreenOn{border:1px solid #8dbf56;background-color:#c8e0ac}.FGGreen a:hover,.FGGreenOn a,.FGGreenOn a:hover{color:#37702a}.FGGreen a{color:#83a67b}.FGRed{border:1px solid #e4d4ca;background-color:#f5e9e2}.FGRedOn{border:1px solid #ca9573;background-color:#e7cbba}.FGRed a:hover,.FGRedOn a,.FGRedOn a:hover{color:#8b4c23}.FGRed a{color:#b79076}.FGOrange{border:1px solid #e8d7c3;background-color:#faead8}.FGOrangeOn{border:1px solid #dbb488;background-color:#f6d1a9}.FGOrange a:hover,.FGOrangeOn a,.FGOrangeOn a:hover{color:#764f14}.FGOrange a{color:#a49379}.FGBlue{border:1px solid #ced8e0;background-color:#e4ebf1}.FGBlueOn{border:1px solid #99b3c9;background-color:#cbe2f1}.FGBlue a:hover,.FGBlueOn a,.FGBlueOn a:hover{color:#0b5588}.FGBlue a{color:#7b99b2}.FGMarine{border:1px solid #cdd1e1;background-color:#e4e7f2}.FGMarineOn{border:1px solid #a2aecc;background-color:#d2dcf3}.FGMarine a:hover,.FGMarineOn a,.FGMarineOn a:hover{color:#2f54aa}.FGMarine a{color:#7681b7}.FGPurple{border:1px solid #dacedd;background-color:#ede5f0}.FGPurpleOn{border:1px solid #bea8c4;background-color:#ecdaf0}.FGPurple a:hover,.FGPurpleOn a,.FGPurpleOn a:hover{color:#80478f}.FGPurple a{color:#a67cb1}.FGTeal{border:1px solid #c6d7d5;background-color:#e0ecea}.FGTealOn{border:1px solid #90b5b5;background-color:#c7e4e4}.FGTeal a:hover,.FGTealOn a,.FGTealOn a:hover{color:#4c7171}.FGTeal a{color:#82999f}.FGWhite{border:1px solid #e0e0e0;background-color:#fcfcfc}.FGWhiteOn{border:1px solid #bebebe;background-color:#fff}.FGWhite a:hover,.FGWhiteOn a,.FGWhiteOn a:hover{color:#343434}.FGWhite a{color:#7f7f7f}.FV{text-align:center;height:24px;vertical-align:bottom;list-style-type:none;margin:7px auto 0px;padding:0px}.FVBlue,.FVBlueOn,.FVGreen,.FVGreenOn,.FVMarine,.FVMarineOn,.FVOrange,.FVOrangeOn,.FVPurple,.FVPurpleOn,.FVRed,.FVRedOn,.FVTeal,.FVTealOn,.FVWhite,.FVWhiteOn,.FVYellow,.FVYellowOn{height:24px;margin:0px;text-align:center;white-space:nowrap;float:left}.FVBlue a,.FVBlueOn a,.FVGreen a,.FVGreenOn a,.FVMarine a,.FVMarineOn a,.FVOrange a,.FVOrangeOn a,.FVPurple a,.FVPurpleOn a,.FVRed a,.FVRedOn a,.FVTeal a,.FVTealOn a,.FVWhite a,.FVWhiteOn a,.FVYellow a,.FVYellowOn a{padding:5px 10px 6px;text-decoration:none;white-space:nowrap;float:left}.FVBlue a:hover,.FVGreen a:hover,.FVMarine a:hover,.FVOrange a:hover,.FVPurple a:hover,.FVRed a:hover,.FVTeal a:hover,.FVWhite a:hover,.FVYellow a:hover,.FVBlueOn a:hover,.FVGreenOn a:hover,.FVMarineOn a:hover,.FVOrangeOn a:hover,.FVPurpleOn a:hover,.FVRedOn a:hover,.FVTealOn a:hover,.FVWhiteOn a:hover,.FVYellowOn a:hover{text-decoration:none}a.FVEdit{padding:1px 1px 2px 3px;margin:4px 4px 3px 0px}.FVYellow{border:1px solid #e8e0c3;background-color:#faf3d8}.FVYellowOn{border:1px solid #c4bb98;background-color:#eee3bd}.FVYellow a:hover,.FVYellowOn a,.FVYellowOn a:hover{color:#817945}.FVYellow a{color:#a49e79}.FVGreen{border:1px solid #cfdebf;background-color:#e8f2dc}.FVGreenOn{border:1px solid #8dbf56;background-color:#c8e0ac}.FVGreen a:hover,.FVGreenOn a,.FVGreenOn a:hover{color:#37702a}.FVGreen a{color:#83a67b}.FVRed{border:1px solid #e4d4ca;background-color:#f5e9e2}.FVRedOn{border:1px solid #ca9573;background-color:#e7cbba}.FVRed a:hover,.FVRedOn a,.FVRedOn a:hover{color:#8b4c23}.FVRed a{color:#b79076}.FVOrange{border:1px solid #e8d7c3;background-color:#faead8}.FVOrangeOn{border:1px solid #dbb488;background-color:#f6d1a9}.FVOrange a:hover,.FVOrangeOn a,.FVOrangeOn a:hover{color:#764f14}.FVOrange a{color:#a49379}.FVBlue{border:1px solid #ced8e0;background-color:#e4ebf1}.FVBlueOn{border:1px solid #99b3c9;background-color:#cbe2f1}.FVBlue a:hover,.FVBlueOn a,.FVBlueOn a:hover{color:#0b5588}.FVBlue a{color:#7b99b2}.FVMarine{border:1px solid #cdd1e1;background-color:#e4e7f2}.FVMarineOn{border:1px solid #a2aecc;background-color:#d2dcf3}.FVMarine a:hover,.FVMarineOn a,.FVMarineOn a:hover{color:#2f54aa}.FVMarine a{color:#7681b7}.FVPurple{border:1px solid #dacedd;background-color:#ede5f0}.FVPurpleOn{border:1px solid #bea8c4;background-color:#ecdaf0}.FVPurple a:hover,.FVPurpleOn a,.FVPurpleOn a:hover{color:#80478f}.FVPurple a{color:#a67cb1}.FVTeal{border:1px solid #c6d7d5;background-color:#e0ecea}.FVTealOn{border:1px solid #90b5b5;background-color:#c7e4e4}.FVTeal a:hover,.FVTealOn a,.FVTealOn a:hover{color:#4c7171}.FVTeal a{color:#82999f}.FVWhite{border:1px solid #e0e0e0;background-color:#fcfcfc}.FVWhiteOn{border:1px solid #bebebe;background-color:#fff}.FVWhite a:hover,.FVWhiteOn a,.FVWhiteOn a:hover{color:#343434}.FVWhite a{color:#7f7f7f}.edGr a{color:#ccc;font-weight:700}.Group1,.Group2,.Group3,.Group4,.Group5,.Group6,.Group7,.Group8{margin:2px 2px 5px 0px;padding:2px 4px;line-height:200%;white-space:nowrap}.Group1{background-color:#f5e9e2;color:#8b4c23}.Group2{background-color:#faead8;color:#764f14}.Group3{background-color:#faf3d8;color:#817945}.Group4{background-color:#e8f2dc;color:#37702a}.Group5{background-color:#e0ecea;color:#4c7171}.Group6{background-color:#e4ebf1;color:#0b5588}.Group7{background-color:#e4e7f2;color:#2f54aa}.Group8{background-color:#ede5f0;color:#80478f}#Hint{display:none;z-index:250;margin:0px;position:absolute;top:175px;left:502px;width:209px;background:#fff;border:1px solid #c0cbd5}#Hint div{z-index:260;line-height:150%;color:#000;padding:7px 18px}
+.vcheck {
+    background-color: #fff;
+    background-image: url(/images/check.gif);
+    background-repeat: no-repeat;
+    background-position: 5px 7px
+}
+
+.vcheck,
+.noncheck {
+    float: left;
+    margin: 3px 0px 0px;
+    padding: 6px;
+    width: 13px;
+    height: 10px
+}
+
+.FG {
+    text-align: center;
+    vertical-align: bottom;
+    list-style-type: none;
+    margin: 7px 0px 0px;
+    padding: 0px;
+    width: 607px
+}
+
+.FGBlue,
+.FGBlueOn,
+.FGGreen,
+.FGGreenOn,
+.FGMarine,
+.FGMarineOn,
+.FGOrange,
+.FGOrangeOn,
+.FGPurple,
+.FGPurpleOn,
+.FGRed,
+.FGRedOn,
+.FGTeal,
+.FGTealOn,
+.FGWhite,
+.FGWhiteOn,
+.FGYellow,
+.FGYellowOn {
+    height: 24px;
+    float: left;
+    margin: 3px;
+    text-align: center;
+    white-space: nowrap
+}
+
+.FGBlue a,
+.FGBlueOn a,
+.FGGreen a,
+.FGGreenOn a,
+.FGMarine a,
+.FGMarineOn a,
+.FGOrange a,
+.FGOrangeOn a,
+.FGPurple a,
+.FGPurpleOn a,
+.FGRed a,
+.FGRedOn a,
+.FGTeal a,
+.FGTealOn a,
+.FGWhite a,
+.FGWhiteOn a,
+.FGYellow a,
+.FGYellowOn a {
+    float: left;
+    padding: 5px 10px 6px;
+    text-decoration: none;
+    white-space: nowrap
+}
+
+.FGBlue a:hover,
+.FGGreen a:hover,
+.FGMarine a:hover,
+.FGOrange a:hover,
+.FGPurple a:hover,
+.FGRed a:hover,
+.FGTeal a:hover,
+.FGWhite a:hover,
+.FGYellow a:hover {
+    text-decoration: none
+}
+
+.FGBlueOn a:hover,
+.FGGreenOn a:hover,
+.FGMarineOn a:hover,
+.FGOrangeOn a:hover,
+.FGPurpleOn a:hover,
+.FGRedOn a:hover,
+.FGTealOn a:hover,
+.FGYellowOn a:hover {
+    text-decoration: none;
+    cursor: text
+}
+
+.FGWhiteOn a:hover {
+    text-decoration: none;
+    cursor: default
+}
+
+a.FGEdit {
+    padding: 1px 1px 2px 3px;
+    margin: 4px 4px 3px 0px
+}
+
+.FGYellow {
+    border: 1px solid #e8e0c3;
+    background-color: #faf3d8
+}
+
+.FGYellowOn {
+    border: 1px solid #c4bb98;
+    background-color: #eee3bd
+}
+
+.FGYellow a:hover,
+.FGYellowOn a,
+.FGYellowOn a:hover {
+    color: #817945
+}
+
+.FGYellow a {
+    color: #a49e79
+}
+
+.FGGreen {
+    border: 1px solid #cfdebf;
+    background-color: #e8f2dc
+}
+
+.FGGreenOn {
+    border: 1px solid #8dbf56;
+    background-color: #c8e0ac
+}
+
+.FGGreen a:hover,
+.FGGreenOn a,
+.FGGreenOn a:hover {
+    color: #37702a
+}
+
+.FGGreen a {
+    color: #83a67b
+}
+
+.FGRed {
+    border: 1px solid #e4d4ca;
+    background-color: #f5e9e2
+}
+
+.FGRedOn {
+    border: 1px solid #ca9573;
+    background-color: #e7cbba
+}
+
+.FGRed a:hover,
+.FGRedOn a,
+.FGRedOn a:hover {
+    color: #8b4c23
+}
+
+.FGRed a {
+    color: #b79076
+}
+
+.FGOrange {
+    border: 1px solid #e8d7c3;
+    background-color: #faead8
+}
+
+.FGOrangeOn {
+    border: 1px solid #dbb488;
+    background-color: #f6d1a9
+}
+
+.FGOrange a:hover,
+.FGOrangeOn a,
+.FGOrangeOn a:hover {
+    color: #764f14
+}
+
+.FGOrange a {
+    color: #a49379
+}
+
+.FGBlue {
+    border: 1px solid #ced8e0;
+    background-color: #e4ebf1
+}
+
+.FGBlueOn {
+    border: 1px solid #99b3c9;
+    background-color: #cbe2f1
+}
+
+.FGBlue a:hover,
+.FGBlueOn a,
+.FGBlueOn a:hover {
+    color: #0b5588
+}
+
+.FGBlue a {
+    color: #7b99b2
+}
+
+.FGMarine {
+    border: 1px solid #cdd1e1;
+    background-color: #e4e7f2
+}
+
+.FGMarineOn {
+    border: 1px solid #a2aecc;
+    background-color: #d2dcf3
+}
+
+.FGMarine a:hover,
+.FGMarineOn a,
+.FGMarineOn a:hover {
+    color: #2f54aa
+}
+
+.FGMarine a {
+    color: #7681b7
+}
+
+.FGPurple {
+    border: 1px solid #dacedd;
+    background-color: #ede5f0
+}
+
+.FGPurpleOn {
+    border: 1px solid #bea8c4;
+    background-color: #ecdaf0
+}
+
+.FGPurple a:hover,
+.FGPurpleOn a,
+.FGPurpleOn a:hover {
+    color: #80478f
+}
+
+.FGPurple a {
+    color: #a67cb1
+}
+
+.FGTeal {
+    border: 1px solid #c6d7d5;
+    background-color: #e0ecea
+}
+
+.FGTealOn {
+    border: 1px solid #90b5b5;
+    background-color: #c7e4e4
+}
+
+.FGTeal a:hover,
+.FGTealOn a,
+.FGTealOn a:hover {
+    color: #4c7171
+}
+
+.FGTeal a {
+    color: #82999f
+}
+
+.FGWhite {
+    border: 1px solid #e0e0e0;
+    background-color: #fcfcfc
+}
+
+.FGWhiteOn {
+    border: 1px solid #bebebe;
+    background-color: #fff
+}
+
+.FGWhite a:hover,
+.FGWhiteOn a,
+.FGWhiteOn a:hover {
+    color: #343434
+}
+
+.FGWhite a {
+    color: #7f7f7f
+}
+
+.FV {
+    text-align: center;
+    height: 24px;
+    vertical-align: bottom;
+    list-style-type: none;
+    margin: 7px auto 0px;
+    padding: 0px
+}
+
+.FVBlue,
+.FVBlueOn,
+.FVGreen,
+.FVGreenOn,
+.FVMarine,
+.FVMarineOn,
+.FVOrange,
+.FVOrangeOn,
+.FVPurple,
+.FVPurpleOn,
+.FVRed,
+.FVRedOn,
+.FVTeal,
+.FVTealOn,
+.FVWhite,
+.FVWhiteOn,
+.FVYellow,
+.FVYellowOn {
+    height: 24px;
+    margin: 0px;
+    text-align: center;
+    white-space: nowrap;
+    float: left
+}
+
+.FVBlue a,
+.FVBlueOn a,
+.FVGreen a,
+.FVGreenOn a,
+.FVMarine a,
+.FVMarineOn a,
+.FVOrange a,
+.FVOrangeOn a,
+.FVPurple a,
+.FVPurpleOn a,
+.FVRed a,
+.FVRedOn a,
+.FVTeal a,
+.FVTealOn a,
+.FVWhite a,
+.FVWhiteOn a,
+.FVYellow a,
+.FVYellowOn a {
+    padding: 5px 10px 6px;
+    text-decoration: none;
+    white-space: nowrap;
+    float: left
+}
+
+.FVBlue a:hover,
+.FVGreen a:hover,
+.FVMarine a:hover,
+.FVOrange a:hover,
+.FVPurple a:hover,
+.FVRed a:hover,
+.FVTeal a:hover,
+.FVWhite a:hover,
+.FVYellow a:hover,
+.FVBlueOn a:hover,
+.FVGreenOn a:hover,
+.FVMarineOn a:hover,
+.FVOrangeOn a:hover,
+.FVPurpleOn a:hover,
+.FVRedOn a:hover,
+.FVTealOn a:hover,
+.FVWhiteOn a:hover,
+.FVYellowOn a:hover {
+    text-decoration: none
+}
+
+a.FVEdit {
+    padding: 1px 1px 2px 3px;
+    margin: 4px 4px 3px 0px
+}
+
+.FVYellow {
+    border: 1px solid #e8e0c3;
+    background-color: #faf3d8
+}
+
+.FVYellowOn {
+    border: 1px solid #c4bb98;
+    background-color: #eee3bd
+}
+
+.FVYellow a:hover,
+.FVYellowOn a,
+.FVYellowOn a:hover {
+    color: #817945
+}
+
+.FVYellow a {
+    color: #a49e79
+}
+
+.FVGreen {
+    border: 1px solid #cfdebf;
+    background-color: #e8f2dc
+}
+
+.FVGreenOn {
+    border: 1px solid #8dbf56;
+    background-color: #c8e0ac
+}
+
+.FVGreen a:hover,
+.FVGreenOn a,
+.FVGreenOn a:hover {
+    color: #37702a
+}
+
+.FVGreen a {
+    color: #83a67b
+}
+
+.FVRed {
+    border: 1px solid #e4d4ca;
+    background-color: #f5e9e2
+}
+
+.FVRedOn {
+    border: 1px solid #ca9573;
+    background-color: #e7cbba
+}
+
+.FVRed a:hover,
+.FVRedOn a,
+.FVRedOn a:hover {
+    color: #8b4c23
+}
+
+.FVRed a {
+    color: #b79076
+}
+
+.FVOrange {
+    border: 1px solid #e8d7c3;
+    background-color: #faead8
+}
+
+.FVOrangeOn {
+    border: 1px solid #dbb488;
+    background-color: #f6d1a9
+}
+
+.FVOrange a:hover,
+.FVOrangeOn a,
+.FVOrangeOn a:hover {
+    color: #764f14
+}
+
+.FVOrange a {
+    color: #a49379
+}
+
+.FVBlue {
+    border: 1px solid #ced8e0;
+    background-color: #e4ebf1
+}
+
+.FVBlueOn {
+    border: 1px solid #99b3c9;
+    background-color: #cbe2f1
+}
+
+.FVBlue a:hover,
+.FVBlueOn a,
+.FVBlueOn a:hover {
+    color: #0b5588
+}
+
+.FVBlue a {
+    color: #7b99b2
+}
+
+.FVMarine {
+    border: 1px solid #cdd1e1;
+    background-color: #e4e7f2
+}
+
+.FVMarineOn {
+    border: 1px solid #a2aecc;
+    background-color: #d2dcf3
+}
+
+.FVMarine a:hover,
+.FVMarineOn a,
+.FVMarineOn a:hover {
+    color: #2f54aa
+}
+
+.FVMarine a {
+    color: #7681b7
+}
+
+.FVPurple {
+    border: 1px solid #dacedd;
+    background-color: #ede5f0
+}
+
+.FVPurpleOn {
+    border: 1px solid #bea8c4;
+    background-color: #ecdaf0
+}
+
+.FVPurple a:hover,
+.FVPurpleOn a,
+.FVPurpleOn a:hover {
+    color: #80478f
+}
+
+.FVPurple a {
+    color: #a67cb1
+}
+
+.FVTeal {
+    border: 1px solid #c6d7d5;
+    background-color: #e0ecea
+}
+
+.FVTealOn {
+    border: 1px solid #90b5b5;
+    background-color: #c7e4e4
+}
+
+.FVTeal a:hover,
+.FVTealOn a,
+.FVTealOn a:hover {
+    color: #4c7171
+}
+
+.FVTeal a {
+    color: #82999f
+}
+
+.FVWhite {
+    border: 1px solid #e0e0e0;
+    background-color: #fcfcfc
+}
+
+.FVWhiteOn {
+    border: 1px solid #bebebe;
+    background-color: #fff
+}
+
+.FVWhite a:hover,
+.FVWhiteOn a,
+.FVWhiteOn a:hover {
+    color: #343434
+}
+
+.FVWhite a {
+    color: #7f7f7f
+}
+
+.edGr a {
+    color: #ccc;
+    font-weight: 700
+}
+
+.Group1,
+.Group2,
+.Group3,
+.Group4,
+.Group5,
+.Group6,
+.Group7,
+.Group8 {
+    margin: 2px 2px 5px 0px;
+    padding: 2px 4px;
+    line-height: 200%;
+    white-space: nowrap
+}
+
+.Group1 {
+    background-color: #f5e9e2;
+    color: #8b4c23
+}
+
+.Group2 {
+    background-color: #faead8;
+    color: #764f14
+}
+
+.Group3 {
+    background-color: #faf3d8;
+    color: #817945
+}
+
+.Group4 {
+    background-color: #e8f2dc;
+    color: #37702a
+}
+
+.Group5 {
+    background-color: #e0ecea;
+    color: #4c7171
+}
+
+.Group6 {
+    background-color: #e4ebf1;
+    color: #0b5588
+}
+
+.Group7 {
+    background-color: #e4e7f2;
+    color: #2f54aa
+}
+
+.Group8 {
+    background-color: #ede5f0;
+    color: #80478f
+}
+
+#Hint {
+    display: none;
+    z-index: 250;
+    margin: 0px;
+    position: absolute;
+    top: 175px;
+    left: 502px;
+    width: 209px;
+    background: #fff;
+    border: 1px solid #c0cbd5
+}
+
+#Hint div {
+    z-index: 260;
+    line-height: 150%;
+    color: #000;
+    padding: 7px 18px
+}

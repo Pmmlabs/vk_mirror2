@@ -1,1 +1,76 @@
-#phototag_css{display:none}.h4-text{color:#000;border-bottom:none;font-size:1em;font-weight:400;-webkit-font-smoothing:subpixel-antialiased;-moz-osx-font-smoothing:auto;margin:0;padding:0}#pv_friends{position:absolute;width:260px;display:none;background:#fff;z-index:700;border-radius:3px;overflow:hidden;border:1px solid #cfd9e1;box-shadow:0 1px 3px 0 rgba(0,0,0,.1)}#pv_friends .name_input input{width:100%;box-sizing:border-box;padding:10px;border:none;border-bottom:1px solid #e7e8ec}#pv_friends .list_wrap{padding:10px}#pv_friends .list_wrap a{display:block;padding:5px}#pv_friends .list_wrap a em{background:#d8dfea;font-weight:700;font-style:normal}#pv_friends .list_wrap a:hover{text-decoration:none;background:#e1e7ed}#pv_friends .box_controls{border-top:0px}#pv_friends .box_controls .progress{margin:7px auto 0px}#pv_friends_list .progress{display:block;margin:10px auto 5px}#pv_friends table{width:100%}#pv_friends .button_blue,#pv_friends .button_gray{margin:3px}
+#phototag_css {
+    display: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+#pv_friends {
+    position: absolute;
+    width: 260px;
+    display: none;
+    background: #fff;
+    z-index: 700;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid #cfd9e1;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1)
+}
+
+#pv_friends .name_input input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #e7e8ec
+}
+
+#pv_friends .list_wrap {
+    padding: 10px
+}
+
+#pv_friends .list_wrap a {
+    display: block;
+    padding: 5px
+}
+
+#pv_friends .list_wrap a em {
+    background: #d8dfea;
+    font-weight: 700;
+    font-style: normal
+}
+
+#pv_friends .list_wrap a:hover {
+    text-decoration: none;
+    background: #e1e7ed
+}
+
+#pv_friends .box_controls {
+    border-top: 0px
+}
+
+#pv_friends .box_controls .progress {
+    margin: 7px auto 0px
+}
+
+#pv_friends_list .progress {
+    display: block;
+    margin: 10px auto 5px
+}
+
+#pv_friends table {
+    width: 100%
+}
+
+#pv_friends .button_blue,
+#pv_friends .button_gray {
+    margin: 3px
+}

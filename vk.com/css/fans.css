@@ -1,1 +1,222 @@
-.err,.ntc,.wrn{padding:8px 11px;font-size:11px;margin:0 0 10px;line-height:150%;clear:both}.ntc{background-color:#f6f7f9;border:1px solid #dbe0ea}.wrn{background-color:#f4ebbd;border:1px solid #d7cf9e}.err{background-color:#ffefe8;border:1px solid #e89b88}#content{padding:0px}.t_filter_area{border-bottom:1px solid #d8dfea;padding:10px;background-color:#f7f7f7;_padding-bottom:18px}:first-child+html .t_filter_area{padding-bottom:18px}.t_filter_selected{float:left;border-bottom:1px solid #fff;margin-right:10px;margin-bottom:-1px;cursor:pointer}.t_filter_selected .t_filter2{border:1px solid #3b6798;border-top:1px solid #395676;border-bottom:1px solid #4a73a0}.t_filter_selected .t_filter3{border:1px solid #5c82ab;padding:2px 5px 3px;background-color:#6d8fb3;color:#fff;font-weight:700}.t_filter_off{cursor:pointer;padding:4px 7px 5px;color:#45688e;font-weight:700;float:left;margin-right:10px;margin-bottom:-1px}.fan_row,.idol_row{background-color:#fff;border:1px solid #dae2e8;padding:5px;margin:0px 10px 5px;width:595px}.summaryBar{border-bottom:1px solid #dae2e8;clear:both;padding:11px 10px 0;color:#000;font-weight:400;line-height:normal}.summaryBar .summary{color:#45688e;float:left;font-weight:700;padding-top:3px;padding-bottom:4px}.summaryBar a{font-weight:400}.info{vertical-align:top;width:370px;padding-left:5px}.fan_name{padding:5px 0px}.idol_link{font-size:12px;font-weight:700;line-height:12px}.fan_image,.fan_actions{vertical-align:top}.fan_actions{padding:6px 5px;width:300px}.actions{vertical-align:top;padding:0px 5px}.actions .dld{padding:8px;margin:8px 4px;text-align:center;font-weight:400}.fan_subimage{height:100px;width:110px;overflow:hidden}.fan_thumb{height:25px;width:30px;overflow:hidden}.fan_thumb img{width:25px}.searchResults{background:#f7f7f7;padding:10px 0px 5px;border-bottom:1px solid #dae2e8}#no_fans{font-size:12px;text-align:center;margin:20px 20px 28px;padding:50px 10px;color:gray;background:#fff;border:solid 1px #ddd}.idol_row em{background:none repeat scroll 0 0 #d8dfea;color:#000;font-style:normal;font-weight:700;text-decoration:inherit}.fan_nav{list-style:none;margin:0 0 10px;padding:0;vertical-align:top}.fan_nav li{border-bottom:1px solid #fff;font-size:1.0em;white-space:nowrap}.fan_nav li a{border:0;border-top:1px solid #fff;background:#eee;background:#fff;display:block;padding:3px 6px}.fan_nav li a:hover{background:#dae1e8;color:#36638e;border-top:1px solid #cad1d9;text-decoration:none}.result{padding-top:10px}#fans_pages_bottom{padding:0 10px}#pages_progress_bottom,#pages_progress_top{padding:3px 5px 0;display:none}
+.err,
+.ntc,
+.wrn {
+    padding: 8px 11px;
+    font-size: 11px;
+    margin: 0 0 10px;
+    line-height: 150%;
+    clear: both
+}
+
+.ntc {
+    background-color: #f6f7f9;
+    border: 1px solid #dbe0ea
+}
+
+.wrn {
+    background-color: #f4ebbd;
+    border: 1px solid #d7cf9e
+}
+
+.err {
+    background-color: #ffefe8;
+    border: 1px solid #e89b88
+}
+
+#content {
+    padding: 0px
+}
+
+.t_filter_area {
+    border-bottom: 1px solid #d8dfea;
+    padding: 10px;
+    background-color: #f7f7f7;
+    _padding-bottom: 18px
+}
+
+:first-child+html .t_filter_area {
+    padding-bottom: 18px
+}
+
+.t_filter_selected {
+    float: left;
+    border-bottom: 1px solid #fff;
+    margin-right: 10px;
+    margin-bottom: -1px;
+    cursor: pointer
+}
+
+.t_filter_selected .t_filter2 {
+    border: 1px solid #3b6798;
+    border-top: 1px solid #395676;
+    border-bottom: 1px solid #4a73a0
+}
+
+.t_filter_selected .t_filter3 {
+    border: 1px solid #5c82ab;
+    padding: 2px 5px 3px;
+    background-color: #6d8fb3;
+    color: #fff;
+    font-weight: 700
+}
+
+.t_filter_off {
+    cursor: pointer;
+    padding: 4px 7px 5px;
+    color: #45688e;
+    font-weight: 700;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: -1px
+}
+
+.fan_row,
+.idol_row {
+    background-color: #fff;
+    border: 1px solid #dae2e8;
+    padding: 5px;
+    margin: 0px 10px 5px;
+    width: 595px
+}
+
+.summaryBar {
+    border-bottom: 1px solid #dae2e8;
+    clear: both;
+    padding: 11px 10px 0;
+    color: #000;
+    font-weight: 400;
+    line-height: normal
+}
+
+.summaryBar .summary {
+    color: #45688e;
+    float: left;
+    font-weight: 700;
+    padding-top: 3px;
+    padding-bottom: 4px
+}
+
+.summaryBar a {
+    font-weight: 400
+}
+
+.info {
+    vertical-align: top;
+    width: 370px;
+    padding-left: 5px
+}
+
+.fan_name {
+    padding: 5px 0px
+}
+
+.idol_link {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 12px
+}
+
+.fan_image,
+.fan_actions {
+    vertical-align: top
+}
+
+.fan_actions {
+    padding: 6px 5px;
+    width: 300px
+}
+
+.actions {
+    vertical-align: top;
+    padding: 0px 5px
+}
+
+.actions .dld {
+    padding: 8px;
+    margin: 8px 4px;
+    text-align: center;
+    font-weight: 400
+}
+
+.fan_subimage {
+    height: 100px;
+    width: 110px;
+    overflow: hidden
+}
+
+.fan_thumb {
+    height: 25px;
+    width: 30px;
+    overflow: hidden
+}
+
+.fan_thumb img {
+    width: 25px
+}
+
+.searchResults {
+    background: #f7f7f7;
+    padding: 10px 0px 5px;
+    border-bottom: 1px solid #dae2e8
+}
+
+#no_fans {
+    font-size: 12px;
+    text-align: center;
+    margin: 20px 20px 28px;
+    padding: 50px 10px;
+    color: gray;
+    background: #fff;
+    border: solid 1px #ddd
+}
+
+.idol_row em {
+    background: none repeat scroll 0 0 #d8dfea;
+    color: #000;
+    font-style: normal;
+    font-weight: 700;
+    text-decoration: inherit
+}
+
+.fan_nav {
+    list-style: none;
+    margin: 0 0 10px;
+    padding: 0;
+    vertical-align: top
+}
+
+.fan_nav li {
+    border-bottom: 1px solid #fff;
+    font-size: 1.0em;
+    white-space: nowrap
+}
+
+.fan_nav li a {
+    border: 0;
+    border-top: 1px solid #fff;
+    background: #eee;
+    background: #fff;
+    display: block;
+    padding: 3px 6px
+}
+
+.fan_nav li a:hover {
+    background: #dae1e8;
+    color: #36638e;
+    border-top: 1px solid #cad1d9;
+    text-decoration: none
+}
+
+.result {
+    padding-top: 10px
+}
+
+#fans_pages_bottom {
+    padding: 0 10px
+}
+
+#pages_progress_bottom,
+#pages_progress_top {
+    padding: 3px 5px 0;
+    display: none
+}

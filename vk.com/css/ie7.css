@@ -1,1 +1,53 @@
-#userProfile,.clearFix{overflow:hidden!important;_height:1%!important}.editor td.servDesc,.editor td.servLabel{padding-top:6px}.radiobtn_container table td.radiobtn{padding-top:2px}ul.t0 li a:hover b.tl1{width:expression((this.parentNode.offsetWidth-4)+'px')}ul.t0 li.activeLink a:hover b.tl1{width:auto}ul.t0 li.activeLink a:hover b.tl1 b,ul.t0 li.activeLink a b.tl1 b,ul.t0 li a b.tl1 b,ul.t0 li a:hover b.tl1 b{width:expression((this.parentNode.parentNode.offsetWidth-4)+'px')}ul.t0 li.activeLink a:hover b.tl2,ul.t0 li.activeLink a b.tl2,ul.t0 li a:hover b.tl2,ul.t0 li a b.tl2{width:expression((this.parentNode.offsetWidth-2)+'px')}#sms_box input#phone{position:relative;top:-1px}form#upload_new_form{padding-top:2px}.mini_editor_cont .selector_container .result_list li{width:expression((this.parentNode.offsetWidth-12)+'px')}.mini_editor_cont .selector_container .result_list li.disabled{width:expression((this.parentNode.offsetWidth-13)+'px')}
+#userProfile,
+.clearFix {
+    overflow: hidden!important;
+    _height: 1%!important
+}
+
+.editor td.servDesc,
+.editor td.servLabel {
+    padding-top: 6px
+}
+
+.radiobtn_container table td.radiobtn {
+    padding-top: 2px
+}
+
+ul.t0 li a:hover b.tl1 {
+    width: expression((this.parentNode.offsetWidth-4)+'px')
+}
+
+ul.t0 li.activeLink a:hover b.tl1 {
+    width: auto
+}
+
+ul.t0 li.activeLink a:hover b.tl1 b,
+ul.t0 li.activeLink a b.tl1 b,
+ul.t0 li a b.tl1 b,
+ul.t0 li a:hover b.tl1 b {
+    width: expression((this.parentNode.parentNode.offsetWidth-4)+'px')
+}
+
+ul.t0 li.activeLink a:hover b.tl2,
+ul.t0 li.activeLink a b.tl2,
+ul.t0 li a:hover b.tl2,
+ul.t0 li a b.tl2 {
+    width: expression((this.parentNode.offsetWidth-2)+'px')
+}
+
+#sms_box input#phone {
+    position: relative;
+    top: -1px
+}
+
+form#upload_new_form {
+    padding-top: 2px
+}
+
+.mini_editor_cont .selector_container .result_list li {
+    width: expression((this.parentNode.offsetWidth-12)+'px')
+}
+
+.mini_editor_cont .selector_container .result_list li.disabled {
+    width: expression((this.parentNode.offsetWidth-13)+'px')
+}

@@ -1,1 +1,1045 @@
-#content{padding:0px}.tBar{padding-top:12px}ul.tabs{width:400px;float:left}ul.tabs a{white-space:nowrap;padding:5px 8px}.message{border:1px solid #d4bc4c;background-color:#f9f6e7;padding:8px 11px;font-size:11px;margin:0px;text-align:left}.summaryBar{margin-top:3px;padding-right:10px}a#addItem{float:right;padding:5px 0px}.searchBar{background:#f7f7f7;border-bottom:1px solid #dbe1d8;padding:11px 10px}#selectCity{font-weight:400;margin-top:4px;margin-right:2px;float:right}a#selectCity{color:#2b587a;text-decoration:none}#selectCity img{vertical-align:top;margin-top:5px}#searchField{padding-left:17px;width:120px}#marketSearch{color:#888;margin-top:12px}#searchControls{float:left;width:460px}#searchField{width:180px;float:left}#marketSearch #category{width:165px;margin-left:4px;float:left}#advancedSearch{margin-left:8px;float:left;margin-top:4px}.inputPrice{width:40px}#editorPanel #selectCity{font-weight:400;margin:2px 0px 0px;float:left}a.buttonSearch{text-align:center;display:block;float:left;border:1px solid #2b587a;background-color:#4b769f;margin-left:10px}a.buttonSearch div{padding:2px 14px 3px;border-top:1px solid #6e97c4;color:#fff}a.buttonSearch:hover{text-decoration:none;background-color:#678bae}ul#sections{text-align:center;vertical-align:bottom;list-style-type:none;margin:0;padding:0;clear:both;float:none;height:26px}ul#sections li{margin-right:8px;text-align:center}ul#sections li,ul#sections a{float:left;white-space:nowrap}ul#sections a{padding:5px 10px 6px 11px;font-stretch:normal;text-decoration:none;background-color:#fff;border:1px solid #dae2e8}ul#sections li a:hover{background-color:#edf0f3;border:1px solid #c0cad5}ul#sections li a.active{background-color:#dae2e8;border:1px solid #c0cad5}ul#categories{text-align:center;vertical-align:bottom;list-style-type:none;margin:0;padding:0;clear:both;float:none;height:26px}ul#categories li{height:24px;float:left;margin-right:8px;text-align:center;white-space:nowrap}ul#categories a{float:left;padding:5px 10px 6px;white-space:nowrap}ul#categories a,ul#categories li a:hover{text-decoration:none}.alertmsg,.msg{margin:10px 10px 0px}.notopmargin{margin-top:0px}.noMargin{margin:0px}.notice{margin:0px 0px 14px;padding:8px 11px;background-color:#fff;border:1px solid #c0cbd5;color:#000}#itemsList{padding:10px 0px}#noItems{background:#f7f7f7 none repeat scroll 0% 0%;border:1px solid #ddd;color:gray;font-size:12px;margin:10px;padding:50px 10px;text-align:center;line-height:18px}#progressBar{height:120px;background:url('../images/progress7.gif') no-repeat 50%}#pageProgressBottom,#pageProgressTop{width:60px;height:15px;background:url('../images/upload.gif') no-repeat bottom;float:right}.itemDate{color:#adadad;font-weight:700;margin:7px 0px 3px}.itemCount{color:#45688e;font-weight:700;margin:7px 0px 3px 10px}.marketItem{border-top:1px solid #dae2e8;padding:10px}.marketItem .thumb{float:left;margin:0px 14px 0px 0px;width:75px;height:75px;overflow:hidden;text-align:center}.marketItem .info{float:left;width:515px;overflow:hidden}.marketItem .info div{margin-bottom:3px}.marketItem .title{font-size:12px;font-weight:700}.marketItem .info a:hover{border-bottom:1px solid #2b587a;text-decoration:none}.marketItem .price{color:#222;font-weight:700}.marketItem .actions{font-size:9px;line-height:11px}.marketItem .description{color:#333;padding:5px 0px;line-height:140%}.marketItem .match{background:#fff8cc;border-bottom:1px solid #ffe222;margin:0px;padding:0px 1px}.category{color:#999;font-size:9px;line-height:11px;padding-top:3px}.category span{padding:0px 2px}#categoriesPanel{background:#f7f7f7;padding:10px}#categoriesList{background:#fff;border:1px solid #ccc;padding:12px 16px}#categoriesList h3{font-size:13px;border-bottom:1px solid #a1b6ca;color:#36638e;font-weight:700;margin:0px 10px 16px 0px;padding:0px 0px 2px}#categoriesList table{width:100%;border:none}#categoriesList table td{vertical-align:top;padding:0px 0px 15px 18px}#categoriesList .catHeader{font-weight:700;color:#000;margin-bottom:2px}#categoriesList ul.listing{padding:0px;margin:0px}#categoriesList a{line-height:14px}#editorPanel{background:#f7f7f7;padding:10px}#editorPanel table.editor{margin:0px}table.editor td.label,table.editor td.labelField{padding-bottom:5px}td.label{vertical-align:top;color:#555;text-align:right;padding:5px 15px 0px 0px;width:160px}td.label.check{padding-top:7px}td.label small{display:block;color:#999}td.labelField{width:430px;padding:1px 0px 5px}td.labelField input.inputText{width:283px}td.labelField input#price{width:100px;float:left}td.labelField textarea{width:283px}td.labelField small{display:block;color:#777;padding-top:5px}td.labelField label{font-weight:400;color:#000}td.labelField ul.nNav{margin-top:10px}td.labelField .note{font-weight:700;color:#777}td.buttons{padding:11px 0px 0px}td.buttons ul.nNav{margin-left:177px}#photosForm input.upload{margin:3px 0px 6px}div.imageThumb{overflow:hidden;float:left;margin:0px 10px 10px 0px;width:130px}div.imageThumb.third{clear:left}#errorMessage{margin:0px 0px 15px}#errorMessage .alertmsg{margin:0}#itemInfo{padding:15px}#itemInfo .photos{float:right;width:152px}#itemInfo .info{float:left;width:440px}#itemInfo .info div{margin-bottom:8px}#itemInfo .title{font-size:13px;color:#45688e;font-weight:700}#itemInfo .price{color:#000;font-weight:700}#itemInfo .description{width:440px;overflow:auto;padding:10px 0px;border-top:1px solid #dae2e8;border-bottom:1px solid #dae2e8;line-height:140%}#itemInfo a.imageLink{display:block;margin:5px;text-align:center}#itemInfo .photos img{border:1px solid #dae2e8}#sendMessage{background:#f7f7f7;border-top:1px solid #dbe1d8;padding:12px 10px}#boxBody .msg{margin:0px}#marketReport{line-height:170%}#marketReport label{font-weight:400;margin-left:5px;color:#000}#marketDropdown{overflow:auto;overflow-x:hidden;max-height:420px;background:transparent;z-index:204;border:1px solid #c0cad5;border-top:none;border-bottom:none;width:200px;padding:0px;display:none;position:absolute}#marketDropdown .downItem,#marketDropdown .downItemSelected{text-align:left;padding:5px;border-bottom:1px solid #dae2e8;background:#fff;font-weight:400;color:#000;cursor:pointer}#marketDropdown .downItemSelected{border-bottom:1px solid #c4d0d7;background:#e1e8ed}#imageProgress{position:absolute;display:none;opacity:0.7;filter:alpha(opacity=70);background:#fff;width:180px;height:112px;z-index:100}#imageProgress img{margin:48px 55px}#imageProgressBig{position:absolute;display:none;opacity:0.7;filter:alpha(opacity=70);background:#fff;z-index:2000;text-align:center;vertical-align:middle}#advancedSearch{vertical-align:top;margin:0px 5px;padding:3px 7px;cursor:pointer;color:#2b587a;abackground-color:#fff;border:1px solid #f7f7f7}#added_msg,#deled_msg{display:none;font-weight:400}.thin{font-weight:400;margin:10px}.stat_info,.stat_info div,.infoTable th{text-align:center}.countTable{width:601px;margin:10px 13px}.countTable th{background-color:#ebeff2;border-bottom:1px solid #c9d8df;font-weight:400;vertical-align:middle;text-align:right;padding:8px 5px;width:75px}#statInfo th{text-align:center}.countTable td{background-color:#fff;font-weight:400;vertical-align:middle;text-align:right;padding:5px;width:75px;border-bottom:1px solid #eee}#statInfo td,#statInfo td div{text-align:center}.countTable td.countDate{aborder-right:1px solid #eee}.countTable td#even{background-color:#f3f5f7}.statHead{color:#45688e;afont-size:12px;font-weight:700;aborder-bottom:1px solid #dae1e8;padding:10px 0px 1px;margin:0px 13px}.monthsHead{float:right;color:#000;font-weight:400;font-size:11px;margin-right:13px;padding-top:10px}.monthsHead a{border-bottom:1px dashed #dae1e8;text-decoration:none}.monthsHead a:hover{border-bottom:1px solid #dae1e8;text-decoration:none}.statsGraph{margin:10px 17px 20px;height:130px}.statsGraph,.statsGraph td{vertical-align:bottom}.statsColumn,.statsColumnEven{awidth:19px;vertical-align:bottom;background-color:#b0c1cf}.statsColumnEven{background-color:#c7d3dd}.graphTable{margin-bottom:10px;border:0px;background-color:#f3f5f7;vertical-align:bottom}.graphDate{text-align:center;height:10px;font-size:9px;padding-top:4px}.graphTable td.underNumEven{background-color:#fff;padding-bottom:3px;height:15px}.graphTable td.underNum{background-color:#eaeef2;padding-bottom:3px;height:15px}#max_label{position:absolute;color:#2b587a;color:#000;background-color:#fff;font-size:9px;display:none;padding:2px 4px;aborder:1px solid #c0cad5;aopacity:0.8;z-index:100}#max_label_out{opacity:0.2;filter:alpha(opacity=20)}#max_label_out,#max_label_out2{position:absolute;background-color:#2b587a;display:none;z-index:90}#max_label_out2{opacity:0.1;filter:alpha(opacity=10)}#max_label_count{position:absolute;color:#000;background-color:#eaeef2;font-size:9px;display:none;padding:2px 4px;border:1px solid #cad1d9;z-index:100}.divider{color:gray;font-weight:400;padding:0px 4px 0px 3px}#photos_select_panel{background:#f7f7f7;padding:10px 10px 5px}.albumsSummaryBar .summary{color:#45688e;font-weight:700;padding-bottom:4px;float:left}.albumsSummaryBar{border-bottom:1px solid #dae2e8;clear:both;color:#000;font-weight:400;line-height:normal;padding:11px 12px 0}.fallBack{background:#fff none repeat scroll 0 0;border:1px solid #ccc;color:#777;font-size:12px;line-height:16px;padding:60px 20px;text-align:center;margin-bottom:5px}.aname{margin-bottom:4px}.aname a{font-size:12px;font-weight:700;text-decoration:none;color:#45668e}.aname a:hover{text-decoration:underline}.ainfo{color:gray}.ainfo,.adesc{font-size:11px;margin-bottom:4px}.adesc{color:#000}.aimage{padding-left:2px;text-align:left}.album{background:#fff none repeat scroll 0 0;border:1px solid #dae2e8;margin-bottom:5px}.album td{padding:5px}.from_albums_controls{padding:8px 11px;background-color:#f9f6e7;border:1px solid #d4bc4c;font-weight:400;color:#000}#album{margin:0px;background:#f7f7f7}#album td{width:150px;padding:3px 2px;text-align:center;vertical-align:middle}#album img{background:#fff;padding:6px;border:solid 1px #ccc;max-width:130px;vertical-align:top}#album img.selected{opacity:0.5;filter:alpha(opacity=50)}img.deleted{opacity:0.3;filter:alpha(opacity=30)}.photo_container{float:left;background-color:#dec860}.footerBar{padding:0px 10px 3px}.footerBar .info{float:left;padding:5px 0px;width:400px}.footerBar .description{float:left;padding:0px 0px 8px;width:400px}.captchaImg{margin-top:3px}.banned{padding:0px 10px}.banned .banned_row{padding:8px;margin-bottom:2px;background:#fff;border:1px solid #d8dfea;clear:left}.banned .banned_row .banned_number{float:left}.banned .banned_row .banned_name{margin-left:4px;float:left}.banned .banned_row .banned_option{float:right}.banned .banned_row .banned_name .banned_option{float:none;margin-top:1px}.banned .banned_row b{color:#000}.banned .banned_row.hl{background-color:#e7f1f9;border-color:#4c96d4}#messageWrap{background-color:#f7f7f7}.sponsored{border-top:1px solid #e2daa6;padding:0px}.sponsored .sponsored_header{background-color:#fefae4;font-size:10px;color:#908851;text-align:right;padding:2px 5px 4px}.nomoney{border-top:1px solid #ccc;padding:0px}.nomoney .sponsored_header{background-color:#eaeaea;font-size:10px;color:#777;text-align:right;padding:2px 5px 4px}.target{border-top:1px solid #cfdebf;padding:0px}.target .sponsored_header{background-color:#e8f2dc;font-size:10px;color:#37702a;text-align:right;padding:2px 5px 4px}.item_checkbox{cursor:pointer;cursor:hand;position:relative;top:10px;border:1px solid #c0c8cc;float:right;width:25px;height:25px;text-align:center;background-color:#f0f8ff}.item_checkbox.selected{background:#f0f8ff url(/images/check.gif) no-repeat scroll 7px 6px}.selector_container td.selector input{color:#000}b.sup{font-weight:400;font-size:7px;position:relative;top:-4px}.labelFieldInfo{color:#777;position:absolute;margin:4px 0px 0px 300px}#selProgress{display:none;float:right;margin-right:160px;position:relative;top:7px}
+#content {
+    padding: 0px
+}
+
+.tBar {
+    padding-top: 12px
+}
+
+ul.tabs {
+    width: 400px;
+    float: left
+}
+
+ul.tabs a {
+    white-space: nowrap;
+    padding: 5px 8px
+}
+
+.message {
+    border: 1px solid #d4bc4c;
+    background-color: #f9f6e7;
+    padding: 8px 11px;
+    font-size: 11px;
+    margin: 0px;
+    text-align: left
+}
+
+.summaryBar {
+    margin-top: 3px;
+    padding-right: 10px
+}
+
+a#addItem {
+    float: right;
+    padding: 5px 0px
+}
+
+.searchBar {
+    background: #f7f7f7;
+    border-bottom: 1px solid #dbe1d8;
+    padding: 11px 10px
+}
+
+#selectCity {
+    font-weight: 400;
+    margin-top: 4px;
+    margin-right: 2px;
+    float: right
+}
+
+a#selectCity {
+    color: #2b587a;
+    text-decoration: none
+}
+
+#selectCity img {
+    vertical-align: top;
+    margin-top: 5px
+}
+
+#searchField {
+    padding-left: 17px;
+    width: 120px
+}
+
+#marketSearch {
+    color: #888;
+    margin-top: 12px
+}
+
+#searchControls {
+    float: left;
+    width: 460px
+}
+
+#searchField {
+    width: 180px;
+    float: left
+}
+
+#marketSearch #category {
+    width: 165px;
+    margin-left: 4px;
+    float: left
+}
+
+#advancedSearch {
+    margin-left: 8px;
+    float: left;
+    margin-top: 4px
+}
+
+.inputPrice {
+    width: 40px
+}
+
+#editorPanel #selectCity {
+    font-weight: 400;
+    margin: 2px 0px 0px;
+    float: left
+}
+
+a.buttonSearch {
+    text-align: center;
+    display: block;
+    float: left;
+    border: 1px solid #2b587a;
+    background-color: #4b769f;
+    margin-left: 10px
+}
+
+a.buttonSearch div {
+    padding: 2px 14px 3px;
+    border-top: 1px solid #6e97c4;
+    color: #fff
+}
+
+a.buttonSearch:hover {
+    text-decoration: none;
+    background-color: #678bae
+}
+
+ul#sections {
+    text-align: center;
+    vertical-align: bottom;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    clear: both;
+    float: none;
+    height: 26px
+}
+
+ul#sections li {
+    margin-right: 8px;
+    text-align: center
+}
+
+ul#sections li,
+ul#sections a {
+    float: left;
+    white-space: nowrap
+}
+
+ul#sections a {
+    padding: 5px 10px 6px 11px;
+    font-stretch: normal;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #dae2e8
+}
+
+ul#sections li a:hover {
+    background-color: #edf0f3;
+    border: 1px solid #c0cad5
+}
+
+ul#sections li a.active {
+    background-color: #dae2e8;
+    border: 1px solid #c0cad5
+}
+
+ul#categories {
+    text-align: center;
+    vertical-align: bottom;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    clear: both;
+    float: none;
+    height: 26px
+}
+
+ul#categories li {
+    height: 24px;
+    float: left;
+    margin-right: 8px;
+    text-align: center;
+    white-space: nowrap
+}
+
+ul#categories a {
+    float: left;
+    padding: 5px 10px 6px;
+    white-space: nowrap
+}
+
+ul#categories a,
+ul#categories li a:hover {
+    text-decoration: none
+}
+
+.alertmsg,
+.msg {
+    margin: 10px 10px 0px
+}
+
+.notopmargin {
+    margin-top: 0px
+}
+
+.noMargin {
+    margin: 0px
+}
+
+.notice {
+    margin: 0px 0px 14px;
+    padding: 8px 11px;
+    background-color: #fff;
+    border: 1px solid #c0cbd5;
+    color: #000
+}
+
+#itemsList {
+    padding: 10px 0px
+}
+
+#noItems {
+    background: #f7f7f7 none repeat scroll 0% 0%;
+    border: 1px solid #ddd;
+    color: gray;
+    font-size: 12px;
+    margin: 10px;
+    padding: 50px 10px;
+    text-align: center;
+    line-height: 18px
+}
+
+#progressBar {
+    height: 120px;
+    background: url('../images/progress7.gif') no-repeat 50%
+}
+
+#pageProgressBottom,
+#pageProgressTop {
+    width: 60px;
+    height: 15px;
+    background: url('../images/upload.gif') no-repeat bottom;
+    float: right
+}
+
+.itemDate {
+    color: #adadad;
+    font-weight: 700;
+    margin: 7px 0px 3px
+}
+
+.itemCount {
+    color: #45688e;
+    font-weight: 700;
+    margin: 7px 0px 3px 10px
+}
+
+.marketItem {
+    border-top: 1px solid #dae2e8;
+    padding: 10px
+}
+
+.marketItem .thumb {
+    float: left;
+    margin: 0px 14px 0px 0px;
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    text-align: center
+}
+
+.marketItem .info {
+    float: left;
+    width: 515px;
+    overflow: hidden
+}
+
+.marketItem .info div {
+    margin-bottom: 3px
+}
+
+.marketItem .title {
+    font-size: 12px;
+    font-weight: 700
+}
+
+.marketItem .info a:hover {
+    border-bottom: 1px solid #2b587a;
+    text-decoration: none
+}
+
+.marketItem .price {
+    color: #222;
+    font-weight: 700
+}
+
+.marketItem .actions {
+    font-size: 9px;
+    line-height: 11px
+}
+
+.marketItem .description {
+    color: #333;
+    padding: 5px 0px;
+    line-height: 140%
+}
+
+.marketItem .match {
+    background: #fff8cc;
+    border-bottom: 1px solid #ffe222;
+    margin: 0px;
+    padding: 0px 1px
+}
+
+.category {
+    color: #999;
+    font-size: 9px;
+    line-height: 11px;
+    padding-top: 3px
+}
+
+.category span {
+    padding: 0px 2px
+}
+
+#categoriesPanel {
+    background: #f7f7f7;
+    padding: 10px
+}
+
+#categoriesList {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 12px 16px
+}
+
+#categoriesList h3 {
+    font-size: 13px;
+    border-bottom: 1px solid #a1b6ca;
+    color: #36638e;
+    font-weight: 700;
+    margin: 0px 10px 16px 0px;
+    padding: 0px 0px 2px
+}
+
+#categoriesList table {
+    width: 100%;
+    border: none
+}
+
+#categoriesList table td {
+    vertical-align: top;
+    padding: 0px 0px 15px 18px
+}
+
+#categoriesList .catHeader {
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 2px
+}
+
+#categoriesList ul.listing {
+    padding: 0px;
+    margin: 0px
+}
+
+#categoriesList a {
+    line-height: 14px
+}
+
+#editorPanel {
+    background: #f7f7f7;
+    padding: 10px
+}
+
+#editorPanel table.editor {
+    margin: 0px
+}
+
+table.editor td.label,
+table.editor td.labelField {
+    padding-bottom: 5px
+}
+
+td.label {
+    vertical-align: top;
+    color: #555;
+    text-align: right;
+    padding: 5px 15px 0px 0px;
+    width: 160px
+}
+
+td.label.check {
+    padding-top: 7px
+}
+
+td.label small {
+    display: block;
+    color: #999
+}
+
+td.labelField {
+    width: 430px;
+    padding: 1px 0px 5px
+}
+
+td.labelField input.inputText {
+    width: 283px
+}
+
+td.labelField input#price {
+    width: 100px;
+    float: left
+}
+
+td.labelField textarea {
+    width: 283px
+}
+
+td.labelField small {
+    display: block;
+    color: #777;
+    padding-top: 5px
+}
+
+td.labelField label {
+    font-weight: 400;
+    color: #000
+}
+
+td.labelField ul.nNav {
+    margin-top: 10px
+}
+
+td.labelField .note {
+    font-weight: 700;
+    color: #777
+}
+
+td.buttons {
+    padding: 11px 0px 0px
+}
+
+td.buttons ul.nNav {
+    margin-left: 177px
+}
+
+#photosForm input.upload {
+    margin: 3px 0px 6px
+}
+
+div.imageThumb {
+    overflow: hidden;
+    float: left;
+    margin: 0px 10px 10px 0px;
+    width: 130px
+}
+
+div.imageThumb.third {
+    clear: left
+}
+
+#errorMessage {
+    margin: 0px 0px 15px
+}
+
+#errorMessage .alertmsg {
+    margin: 0
+}
+
+#itemInfo {
+    padding: 15px
+}
+
+#itemInfo .photos {
+    float: right;
+    width: 152px
+}
+
+#itemInfo .info {
+    float: left;
+    width: 440px
+}
+
+#itemInfo .info div {
+    margin-bottom: 8px
+}
+
+#itemInfo .title {
+    font-size: 13px;
+    color: #45688e;
+    font-weight: 700
+}
+
+#itemInfo .price {
+    color: #000;
+    font-weight: 700
+}
+
+#itemInfo .description {
+    width: 440px;
+    overflow: auto;
+    padding: 10px 0px;
+    border-top: 1px solid #dae2e8;
+    border-bottom: 1px solid #dae2e8;
+    line-height: 140%
+}
+
+#itemInfo a.imageLink {
+    display: block;
+    margin: 5px;
+    text-align: center
+}
+
+#itemInfo .photos img {
+    border: 1px solid #dae2e8
+}
+
+#sendMessage {
+    background: #f7f7f7;
+    border-top: 1px solid #dbe1d8;
+    padding: 12px 10px
+}
+
+#boxBody .msg {
+    margin: 0px
+}
+
+#marketReport {
+    line-height: 170%
+}
+
+#marketReport label {
+    font-weight: 400;
+    margin-left: 5px;
+    color: #000
+}
+
+#marketDropdown {
+    overflow: auto;
+    overflow-x: hidden;
+    max-height: 420px;
+    background: transparent;
+    z-index: 204;
+    border: 1px solid #c0cad5;
+    border-top: none;
+    border-bottom: none;
+    width: 200px;
+    padding: 0px;
+    display: none;
+    position: absolute
+}
+
+#marketDropdown .downItem,
+#marketDropdown .downItemSelected {
+    text-align: left;
+    padding: 5px;
+    border-bottom: 1px solid #dae2e8;
+    background: #fff;
+    font-weight: 400;
+    color: #000;
+    cursor: pointer
+}
+
+#marketDropdown .downItemSelected {
+    border-bottom: 1px solid #c4d0d7;
+    background: #e1e8ed
+}
+
+#imageProgress {
+    position: absolute;
+    display: none;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    background: #fff;
+    width: 180px;
+    height: 112px;
+    z-index: 100
+}
+
+#imageProgress img {
+    margin: 48px 55px
+}
+
+#imageProgressBig {
+    position: absolute;
+    display: none;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    background: #fff;
+    z-index: 2000;
+    text-align: center;
+    vertical-align: middle
+}
+
+#advancedSearch {
+    vertical-align: top;
+    margin: 0px 5px;
+    padding: 3px 7px;
+    cursor: pointer;
+    color: #2b587a;
+    abackground-color: #fff;
+    border: 1px solid #f7f7f7
+}
+
+#added_msg,
+#deled_msg {
+    display: none;
+    font-weight: 400
+}
+
+.thin {
+    font-weight: 400;
+    margin: 10px
+}
+
+.stat_info,
+.stat_info div,
+.infoTable th {
+    text-align: center
+}
+
+.countTable {
+    width: 601px;
+    margin: 10px 13px
+}
+
+.countTable th {
+    background-color: #ebeff2;
+    border-bottom: 1px solid #c9d8df;
+    font-weight: 400;
+    vertical-align: middle;
+    text-align: right;
+    padding: 8px 5px;
+    width: 75px
+}
+
+#statInfo th {
+    text-align: center
+}
+
+.countTable td {
+    background-color: #fff;
+    font-weight: 400;
+    vertical-align: middle;
+    text-align: right;
+    padding: 5px;
+    width: 75px;
+    border-bottom: 1px solid #eee
+}
+
+#statInfo td,
+#statInfo td div {
+    text-align: center
+}
+
+.countTable td.countDate {
+    aborder-right: 1px solid #eee
+}
+
+.countTable td#even {
+    background-color: #f3f5f7
+}
+
+.statHead {
+    color: #45688e;
+    afont-size: 12px;
+    font-weight: 700;
+    aborder-bottom: 1px solid #dae1e8;
+    padding: 10px 0px 1px;
+    margin: 0px 13px
+}
+
+.monthsHead {
+    float: right;
+    color: #000;
+    font-weight: 400;
+    font-size: 11px;
+    margin-right: 13px;
+    padding-top: 10px
+}
+
+.monthsHead a {
+    border-bottom: 1px dashed #dae1e8;
+    text-decoration: none
+}
+
+.monthsHead a:hover {
+    border-bottom: 1px solid #dae1e8;
+    text-decoration: none
+}
+
+.statsGraph {
+    margin: 10px 17px 20px;
+    height: 130px
+}
+
+.statsGraph,
+.statsGraph td {
+    vertical-align: bottom
+}
+
+.statsColumn,
+.statsColumnEven {
+    awidth: 19px;
+    vertical-align: bottom;
+    background-color: #b0c1cf
+}
+
+.statsColumnEven {
+    background-color: #c7d3dd
+}
+
+.graphTable {
+    margin-bottom: 10px;
+    border: 0px;
+    background-color: #f3f5f7;
+    vertical-align: bottom
+}
+
+.graphDate {
+    text-align: center;
+    height: 10px;
+    font-size: 9px;
+    padding-top: 4px
+}
+
+.graphTable td.underNumEven {
+    background-color: #fff;
+    padding-bottom: 3px;
+    height: 15px
+}
+
+.graphTable td.underNum {
+    background-color: #eaeef2;
+    padding-bottom: 3px;
+    height: 15px
+}
+
+#max_label {
+    position: absolute;
+    color: #2b587a;
+    color: #000;
+    background-color: #fff;
+    font-size: 9px;
+    display: none;
+    padding: 2px 4px;
+    aborder: 1px solid #c0cad5;
+    aopacity: 0.8;
+    z-index: 100
+}
+
+#max_label_out {
+    opacity: 0.2;
+    filter: alpha(opacity=20)
+}
+
+#max_label_out,
+#max_label_out2 {
+    position: absolute;
+    background-color: #2b587a;
+    display: none;
+    z-index: 90
+}
+
+#max_label_out2 {
+    opacity: 0.1;
+    filter: alpha(opacity=10)
+}
+
+#max_label_count {
+    position: absolute;
+    color: #000;
+    background-color: #eaeef2;
+    font-size: 9px;
+    display: none;
+    padding: 2px 4px;
+    border: 1px solid #cad1d9;
+    z-index: 100
+}
+
+.divider {
+    color: gray;
+    font-weight: 400;
+    padding: 0px 4px 0px 3px
+}
+
+#photos_select_panel {
+    background: #f7f7f7;
+    padding: 10px 10px 5px
+}
+
+.albumsSummaryBar .summary {
+    color: #45688e;
+    font-weight: 700;
+    padding-bottom: 4px;
+    float: left
+}
+
+.albumsSummaryBar {
+    border-bottom: 1px solid #dae2e8;
+    clear: both;
+    color: #000;
+    font-weight: 400;
+    line-height: normal;
+    padding: 11px 12px 0
+}
+
+.fallBack {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #ccc;
+    color: #777;
+    font-size: 12px;
+    line-height: 16px;
+    padding: 60px 20px;
+    text-align: center;
+    margin-bottom: 5px
+}
+
+.aname {
+    margin-bottom: 4px
+}
+
+.aname a {
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #45668e
+}
+
+.aname a:hover {
+    text-decoration: underline
+}
+
+.ainfo {
+    color: gray
+}
+
+.ainfo,
+.adesc {
+    font-size: 11px;
+    margin-bottom: 4px
+}
+
+.adesc {
+    color: #000
+}
+
+.aimage {
+    padding-left: 2px;
+    text-align: left
+}
+
+.album {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #dae2e8;
+    margin-bottom: 5px
+}
+
+.album td {
+    padding: 5px
+}
+
+.from_albums_controls {
+    padding: 8px 11px;
+    background-color: #f9f6e7;
+    border: 1px solid #d4bc4c;
+    font-weight: 400;
+    color: #000
+}
+
+#album {
+    margin: 0px;
+    background: #f7f7f7
+}
+
+#album td {
+    width: 150px;
+    padding: 3px 2px;
+    text-align: center;
+    vertical-align: middle
+}
+
+#album img {
+    background: #fff;
+    padding: 6px;
+    border: solid 1px #ccc;
+    max-width: 130px;
+    vertical-align: top
+}
+
+#album img.selected {
+    opacity: 0.5;
+    filter: alpha(opacity=50)
+}
+
+img.deleted {
+    opacity: 0.3;
+    filter: alpha(opacity=30)
+}
+
+.photo_container {
+    float: left;
+    background-color: #dec860
+}
+
+.footerBar {
+    padding: 0px 10px 3px
+}
+
+.footerBar .info {
+    float: left;
+    padding: 5px 0px;
+    width: 400px
+}
+
+.footerBar .description {
+    float: left;
+    padding: 0px 0px 8px;
+    width: 400px
+}
+
+.captchaImg {
+    margin-top: 3px
+}
+
+.banned {
+    padding: 0px 10px
+}
+
+.banned .banned_row {
+    padding: 8px;
+    margin-bottom: 2px;
+    background: #fff;
+    border: 1px solid #d8dfea;
+    clear: left
+}
+
+.banned .banned_row .banned_number {
+    float: left
+}
+
+.banned .banned_row .banned_name {
+    margin-left: 4px;
+    float: left
+}
+
+.banned .banned_row .banned_option {
+    float: right
+}
+
+.banned .banned_row .banned_name .banned_option {
+    float: none;
+    margin-top: 1px
+}
+
+.banned .banned_row b {
+    color: #000
+}
+
+.banned .banned_row.hl {
+    background-color: #e7f1f9;
+    border-color: #4c96d4
+}
+
+#messageWrap {
+    background-color: #f7f7f7
+}
+
+.sponsored {
+    border-top: 1px solid #e2daa6;
+    padding: 0px
+}
+
+.sponsored .sponsored_header {
+    background-color: #fefae4;
+    font-size: 10px;
+    color: #908851;
+    text-align: right;
+    padding: 2px 5px 4px
+}
+
+.nomoney {
+    border-top: 1px solid #ccc;
+    padding: 0px
+}
+
+.nomoney .sponsored_header {
+    background-color: #eaeaea;
+    font-size: 10px;
+    color: #777;
+    text-align: right;
+    padding: 2px 5px 4px
+}
+
+.target {
+    border-top: 1px solid #cfdebf;
+    padding: 0px
+}
+
+.target .sponsored_header {
+    background-color: #e8f2dc;
+    font-size: 10px;
+    color: #37702a;
+    text-align: right;
+    padding: 2px 5px 4px
+}
+
+.item_checkbox {
+    cursor: pointer;
+    cursor: hand;
+    position: relative;
+    top: 10px;
+    border: 1px solid #c0c8cc;
+    float: right;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    background-color: #f0f8ff
+}
+
+.item_checkbox.selected {
+    background: #f0f8ff url(/images/check.gif) no-repeat scroll 7px 6px
+}
+
+.selector_container td.selector input {
+    color: #000
+}
+
+b.sup {
+    font-weight: 400;
+    font-size: 7px;
+    position: relative;
+    top: -4px
+}
+
+.labelFieldInfo {
+    color: #777;
+    position: absolute;
+    margin: 4px 0px 0px 300px
+}
+
+#selProgress {
+    display: none;
+    float: right;
+    margin-right: 160px;
+    position: relative;
+    top: 7px
+}

@@ -1,1 +1,47 @@
-#friends_search_css{display:none}.fsearch_fields{padding:20px 0px 0px}.fsearch_row{padding-bottom:10px}.fsearch_label{color:#555;padding:2px 10px 0px;width:150px}.fesarch_hint{color:#555;font-size:0.9em;padding-top:5px}.fsearch_desc{padding-top:4px}#fsearch_inviter{width:1px;height:1px;visibility:hidden;position:absolute}#fsearch_error{border:1px solid #e89b88;background-color:#ffefe8;padding:8px 11px;display:none;margin-bottom:15px;margin-top:-10px}.fsearch_results_cont{padding-top:4px}
+#friends_search_css {
+    display: none
+}
+
+.fsearch_fields {
+    padding: 20px 0px 0px
+}
+
+.fsearch_row {
+    padding-bottom: 10px
+}
+
+.fsearch_label {
+    color: #555;
+    padding: 2px 10px 0px;
+    width: 150px
+}
+
+.fesarch_hint {
+    color: #555;
+    font-size: 0.9em;
+    padding-top: 5px
+}
+
+.fsearch_desc {
+    padding-top: 4px
+}
+
+#fsearch_inviter {
+    width: 1px;
+    height: 1px;
+    visibility: hidden;
+    position: absolute
+}
+
+#fsearch_error {
+    border: 1px solid #e89b88;
+    background-color: #ffefe8;
+    padding: 8px 11px;
+    display: none;
+    margin-bottom: 15px;
+    margin-top: -10px
+}
+
+.fsearch_results_cont {
+    padding-top: 4px
+}

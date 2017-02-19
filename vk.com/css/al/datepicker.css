@@ -1,1 +1,170 @@
-#datepicker_css{display:none}.cal_table .month_arr .arr,.datepicker_text{-ms-high-contrast-adjust:none}.h4-text{color:#000;border-bottom:none;font-size:1em;font-weight:400;-webkit-font-smoothing:subpixel-antialiased;-moz-osx-font-smoothing:auto;margin:0;padding:0}.cal_table{width:212px;color:#000;text-align:center;border:1px solid #c5d0db;border-radius:3px;font-size:12.5px;box-shadow:0 1px 3px rgba(0,0,0,.1);background-color:#fff;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.cal_table_head{width:212px;margin:-1px -1px 0;border-radius:3px 3px 0 0;overflow:hidden}.cal_table .month{height:32px;line-height:32px;font-weight:500;-webkit-font-smoothing:subpixel-antialiased;-moz-osx-font-smoothing:auto;color:#fff;width:100%}.cal_table .month,.cal_table .month_arr{text-align:center;background-color:#6287ae}.cal_table .month_arr .arr{display:block;width:32px;height:32px;background:url(/images/icons/back_fwd.gif?1) no-repeat}.cal_table .month_arr .arr.left{background-position:6px -27px}.cal_table .month_arr .arr.right{background-position:11px -47px}.cal_table .daysofweek{text-align:center;background-color:#ebf0f5;color:#8996a3}.cal_table .day,.cal_table .daysofweek{height:30px;line-height:30px;width:30px;box-sizing:border-box}.cal_table .day{cursor:pointer}.cal_table .day.hover{background-color:#edf0f5}.cal_table .day.sel,.cal_table .day.sel.hover{background-color:#f2f6fa;border:1px solid #98b0cd;line-height:28px}.cal_table.disabled .day{cursor:auto}.cal_table .today{font-weight:700;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.cal_table .past_day{color:#939393}.datepicker_control{border:1px solid #d3d9de;border-radius:1px;cursor:pointer}.datepicker_text{width:100%;border:0;margin:0;padding:5px 30px 7px 9px;background:#fff url(/images/icons/calendar.png?2) no-repeat;padding-right:22px;border-right:8px solid transparent;background-position:right 6px;box-sizing:border-box;cursor:pointer;height:28px}.datepicker_control.disabled,.datepicker_control.disabled .datepicker_text{color:#828282;background-color:#f2f4f7;cursor:auto}.cal_box{padding-top:6px}.cal_box,.cal_frame{display:none;position:absolute}.cal_frame{z-index:1;border:0}.cal_div{z-index:100;position:absolute}.cal_month_sel{color:#fff}.cal_month_sel:hover{text-decoration:none}
+#datepicker_css {
+    display: none
+}
+
+.cal_table .month_arr .arr,
+.datepicker_text {
+    -ms-high-contrast-adjust: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+.cal_table {
+    width: 212px;
+    color: #000;
+    text-align: center;
+    border: 1px solid #c5d0db;
+    border-radius: 3px;
+    font-size: 12.5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    background-color: #fff;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.cal_table_head {
+    width: 212px;
+    margin: -1px -1px 0;
+    border-radius: 3px 3px 0 0;
+    overflow: hidden
+}
+
+.cal_table .month {
+    height: 32px;
+    line-height: 32px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    color: #fff;
+    width: 100%
+}
+
+.cal_table .month,
+.cal_table .month_arr {
+    text-align: center;
+    background-color: #6287ae
+}
+
+.cal_table .month_arr .arr {
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: url(/images/icons/back_fwd.gif?1) no-repeat
+}
+
+.cal_table .month_arr .arr.left {
+    background-position: 6px -27px
+}
+
+.cal_table .month_arr .arr.right {
+    background-position: 11px -47px
+}
+
+.cal_table .daysofweek {
+    text-align: center;
+    background-color: #ebf0f5;
+    color: #8996a3
+}
+
+.cal_table .day,
+.cal_table .daysofweek {
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+    box-sizing: border-box
+}
+
+.cal_table .day {
+    cursor: pointer
+}
+
+.cal_table .day.hover {
+    background-color: #edf0f5
+}
+
+.cal_table .day.sel,
+.cal_table .day.sel.hover {
+    background-color: #f2f6fa;
+    border: 1px solid #98b0cd;
+    line-height: 28px
+}
+
+.cal_table.disabled .day {
+    cursor: auto
+}
+
+.cal_table .today {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.cal_table .past_day {
+    color: #939393
+}
+
+.datepicker_control {
+    border: 1px solid #d3d9de;
+    border-radius: 1px;
+    cursor: pointer
+}
+
+.datepicker_text {
+    width: 100%;
+    border: 0;
+    margin: 0;
+    padding: 5px 30px 7px 9px;
+    background: #fff url(/images/icons/calendar.png?2) no-repeat;
+    padding-right: 22px;
+    border-right: 8px solid transparent;
+    background-position: right 6px;
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 28px
+}
+
+.datepicker_control.disabled,
+.datepicker_control.disabled .datepicker_text {
+    color: #828282;
+    background-color: #f2f4f7;
+    cursor: auto
+}
+
+.cal_box {
+    padding-top: 6px
+}
+
+.cal_box,
+.cal_frame {
+    display: none;
+    position: absolute
+}
+
+.cal_frame {
+    z-index: 1;
+    border: 0
+}
+
+.cal_div {
+    z-index: 100;
+    position: absolute
+}
+
+.cal_month_sel {
+    color: #fff
+}
+
+.cal_month_sel:hover {
+    text-decoration: none
+}

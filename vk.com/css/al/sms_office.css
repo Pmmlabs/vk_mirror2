@@ -1,255 +1,322 @@
 #sms_office_css {
-  display: none;
+    display: none;
 }
+
 #sms_office {
-  padding: 25px;
-  background-color: #F7F7F7;
+    padding: 25px;
+    background-color: #F7F7F7;
 }
+
 #sms_office .row {
-  padding: 5px 0;
+    padding: 5px 0;
 }
+
 #sms_office .label {
-  color: #666;
-  padding: 4px 10px 0;
-  text-align: right;
-  width: 80px;
+    color: #666;
+    padding: 4px 10px 0;
+    text-align: right;
+    width: 80px;
 }
+
 #sms_office .labeled {
-  margin-left: 100px;
+    margin-left: 100px;
 }
+
 #sms_office h2 {
-  margin: 0 0 5px 100px;
-  padding: 0;
-  border-bottom: none;
+    margin: 0 0 5px 100px;
+    padding: 0;
+    border-bottom: none;
 }
+
 #sms_error {
-  margin: 0 0 10px 0;
-  display: none;
+    margin: 0 0 10px 0;
+    display: none;
 }
+
 #sms_phone {
-  width: 200px;
+    width: 200px;
 }
+
 #sms_text {
-  width: 390px;
-  height: 60px;
+    width: 390px;
+    height: 60px;
 }
+
 #sms_gate_opt {
-  padding-top: 4px;
+    padding-top: 4px;
 }
+
 #sms_gate_opt .radiobtn {
-  margin-bottom: 7px;
+    margin-bottom: 7px;
 }
+
 .button_container {
-  margin: 8px 0 0 100px;
+    margin: 8px 0 0 100px;
 }
+
+
 /* Stats */
+
 #sms_office.sms_stats {
-  padding: 10px;
-  background-color: #FFF;
+    padding: 10px;
+    background-color: #FFF;
 }
+
 #sms_office .stats_head {
-  border-bottom: 1px solid #DAE1E8;
-  color: #45688E;
-  font-size: 1.09em;
-  font-weight: bold;
-  margin: 0 10px 20px;
-  padding: 10px 0 2px;
-  text-align: left;
+    border-bottom: 1px solid #DAE1E8;
+    color: #45688E;
+    font-size: 1.09em;
+    font-weight: bold;
+    margin: 0 10px 20px;
+    padding: 10px 0 2px;
+    text-align: left;
 }
+
 #sms_office .stats_menu_items {
-  float: right;
-  margin-right: 14px;
-  margin-top: 10px;
+    float: right;
+    margin-right: 14px;
+    margin-top: 10px;
 }
+
 #sms_office .stats_menu_items .active {
-  font-weight: bold;
+    font-weight: bold;
 }
+
 #sms_office .stat_row {
-  padding-bottom: 10px;
-  margin: 0 -4px 0 10px;
+    padding-bottom: 10px;
+    margin: 0 -4px 0 10px;
 }
+
 #sms_office .stat_details {
-  padding-left: 10px;
+    padding-left: 10px;
 }
+
 #sms_office .stat_info {
-  padding: 5px 0 0 10px;
-  color: #666;
-  display: none;
+    padding: 5px 0 0 10px;
+    color: #666;
+    display: none;
 }
+
 #sms_office #conversion_table .wikiTable {
-  margin: 10px auto;
+    margin: 10px auto;
 }
+
 #sms_office .gs_name {
-  font-weight: bold;
-  color: #333333;
+    font-weight: bold;
+    color: #333333;
 }
+
 #sms_office .gs_work {
-  color: #4A844A;
+    color: #4A844A;
 }
+
 #sms_office .gs_not_work {
-  color: #C15336;
+    color: #C15336;
 }
+
 #sms_office .gs_problems {
-  color: #B9A13F;
+    color: #B9A13F;
 }
+
 #sms_office #conversion_table .gs_work,
 #sms_office #conversion_table .gs_not_work,
 #sms_office #conversion_table .gs_problems,
 #sms_office #conversion_regions_table .gs_work,
 #sms_office #conversion_regions_table .gs_not_work,
 #sms_office #conversion_regions_table .gs_problems {
-  font-weight: bold;
+    font-weight: bold;
 }
+
 #sms_office .gs_disabled,
 #sms_office .gs_disabled .gs_name {
-  color: #999999;
+    color: #999999;
 }
+
 #sms_office .exeptions {
-  color: #999999;
+    color: #999999;
 }
+
 #sms_office .stat_form {
-  margin: -10px -10px 10px -10px;
-  padding: 10px;
-  background-color: #F7F7F7;
-  border-bottom: 1px solid #DAE1E8;
+    margin: -10px -10px 10px -10px;
+    padding: 10px;
+    background-color: #F7F7F7;
+    border-bottom: 1px solid #DAE1E8;
 }
+
 #sms_office .stat_form .stats_head {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
+
 #sms_office .stat_form .label {
-  width: 250px;
+    width: 250px;
 }
+
 #sms_office .stat_form .labeled {
-  margin-left: 270px;
+    margin-left: 270px;
 }
+
 #sms_office .stat_form .labeled_text {
-  padding-top: 4px;
-  margin-left: 271px;
+    padding-top: 4px;
+    margin-left: 271px;
 }
+
 #sms_office .stat_form #sms_phone {
-  width: 140px;
+    width: 140px;
 }
+
 #sms_office #gateways_status_wrap {
-  margin: 0 10px 0 10px;
+    margin: 0 10px 0 10px;
 }
+
 #sms_office #gateways_status_wrap table {
-  width: 100%;
+    width: 100%;
 }
+
 #sms_office #gateways_status_wrap .paginated_table_control,
 #sms_office #conversion_table .show_size_chooser,
 #sms_office #conversion_table .page_summary {
-  display: none!important;
+    display: none!important;
 }
+
 #sms_office #conversion_table .top_control,
 #sms_office #conversion_table .bottom_control,
 #sms_office #conversion_regions_table .top_control {
-  padding: 5px 0;
+    padding: 5px 0;
 }
+
 #sms_office #gateways_status_wrap .paginated_table_header .col_sent_cnt div,
 #sms_office #gateways_status_wrap .paginated_table_header .col_success_cnt div,
 #sms_office #gateways_status_wrap .paginated_table_header .col_exceptions div {
-  height: 24px;
-  padding: 4px 8px;
+    height: 24px;
+    padding: 4px 8px;
 }
+
 #sms_office #gateways_status_wrap .inline_edit_value {
-  cursor: pointer;
-  border-bottom: 1px dashed #2B587A;
-  text-decoration: none;
+    cursor: pointer;
+    border-bottom: 1px dashed #2B587A;
+    text-decoration: none;
 }
+
 #sms_office #gateways_status_wrap .inline_edit_value_empty {
-  border-bottom: none!important;
+    border-bottom: none!important;
 }
+
 #sms_office .graph_horizontal_menu_wrapper .summary_tabs {
-  margin: 10px 15px 0 0;
-  display: none;
-  border-top: 1px solid #DAE1E8;
+    margin: 10px 15px 0 0;
+    display: none;
+    border-top: 1px solid #DAE1E8;
 }
+
+
 /* Search SMS */
+
 #sms_office.sms_search {
-  padding: 0;
+    padding: 0;
 }
+
 #sms_office .first_col {
-  margin-right: 30px;
+    margin-right: 30px;
 }
+
 #sms_search_form {
-  padding: 15px 20px;
+    padding: 15px 20px;
 }
+
 #sms_search_results {
-  padding: 20px;
-  border-top: 1px solid #DAE1E8;
-  background-color: #FFF;
-  display: none;
+    padding: 20px;
+    border-top: 1px solid #DAE1E8;
+    background-color: #FFF;
+    display: none;
 }
+
 #sms_search_results .wikiTable {
-  margin: 0;
-  padding: 0;
-  width: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
+
 #sms_search_results #no_results {
-  padding: 50px 0;
-  text-align: center;
-  font-size: 1.18em;
+    padding: 50px 0;
+    text-align: center;
+    font-size: 1.18em;
 }
+
 #sms_office .wikiTable {
-  border-collapse: collapse;
-  border-right: 1px solid #D3DBE1;
+    border-collapse: collapse;
+    border-right: 1px solid #D3DBE1;
 }
+
 #sms_office .wikiTable,
 #sms_office .wikiTable td {
-  border-color: #d3dbe1;
+    border-color: #d3dbe1;
 }
+
 #sms_office .wikiTable th {
-  border-color: #D3DBE1;
+    border-color: #D3DBE1;
 }
+
 #sms_office .wikiTable th {
-  background-color: #E3E9EE;
-  border-width: 1px 0px 1px 1px;
-  border-style: solid;
-  border-color: #D3DBE1;
-  color: #51677A;
-  padding: 0;
+    background-color: #E3E9EE;
+    border-width: 1px 0px 1px 1px;
+    border-style: solid;
+    border-color: #D3DBE1;
+    color: #51677A;
+    padding: 0;
 }
+
 #sms_office .wikiTable th div {
-  border-left: 1px solid #EFF2F5;
-  padding: 10px 5px;
+    border-left: 1px solid #EFF2F5;
+    padding: 10px 5px;
 }
+
 #sms_office .wikiTable th div.two_line {
-  padding: 4px 5px;
+    padding: 4px 5px;
 }
+
 #sms_office .wikiTable th div.first_column {
-  border-left: none;
+    border-left: none;
 }
+
 #sms_office .wikiTable .first_column {
-  padding-left: 7px;
+    padding-left: 7px;
 }
+
 #sms_office .wikiTable td {
-  padding: 8px 5px;
-  border-top: none;
-  border-right: none;
-  vertical-align: middle;
+    padding: 8px 5px;
+    border-top: none;
+    border-right: none;
+    vertical-align: middle;
 }
+
 #sms_office .wikiTable tr.even_row td {
-  background-color: #F0F2F4;
+    background-color: #F0F2F4;
 }
+
+
 /* SMS Errors */
+
 #sms_errors_form {
-  padding: 15px 20px;
+    padding: 15px 20px;
 }
+
 #sms_errors_content {
-  padding: 20px;
-  border-top: 1px solid #DAE1E8;
-  background-color: #FFF;
+    padding: 20px;
+    border-top: 1px solid #DAE1E8;
+    background-color: #FFF;
 }
+
 #sms_errors_content .wikiTable {
-  margin: 0;
-  padding: 0;
-  width: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
+
 #sms_errors_content #no_results {
-  padding: 50px 0;
-  text-align: center;
-  font-size: 1.18em;
+    padding: 50px 0;
+    text-align: center;
+    font-size: 1.18em;
 }
+
 #sms_office_access_check {
-  padding: 200px;
+    padding: 200px;
 }

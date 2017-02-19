@@ -1,1 +1,174 @@
-.flatTabs{border-bottom:1px solid #dae1e8;height:24px;list-style-type:none;margin:0pt;padding:0px 7px;vertical-align:bottom}.flatTabOn{background-color:#fff;border-color:#c3cad2;border-style:solid solid none;border-width:1px 1px 0px;float:left;height:24px;margin:0px 3px -1px;text-align:center;position:relative}.flatTabOn a{float:left;padding:5px 10px;text-decoration:none}.flatTab{background-color:#f5f7fa;border-color:#c3cad2;border-style:solid solid none;border-width:1px 1px 0px;float:left;height:23px;margin:0px 3px;text-align:center}.flatTab a{border-bottom:2px solid #eef0f3;float:left;padding:5px 10px 3px;text-decoration:none}.flatTab a:hover,.tabOn a:hover,.flatTab a:hover{background-color:#fff;text-decoration:none}.flatTab a:hover{border-bottom:2px solid #f5f9fc}a.flatButtonActive{background:#4b769f url(/images/flatBtnTopActive.gif) repeat-x scroll 0 0;border:1px solid #2b587a;color:#fff;display:block;line-height:100%;padding:5px 10px 6px;text-align:center;text-decoration:none;white-space:nowrap}a.flatButtonActive:hover{background-color:#678bae;text-decoration:none;border:1px solid #3b688a}a.flatButton{background:#f3f3f3 url(/images/flatBtnTop.gif) repeat-x scroll 0 0;border:1px solid #ccc;color:#000;display:block;line-height:100%;padding:5px 10px 6px;text-align:center;text-decoration:none;white-space:nowrap}a.flatButton:hover{background-color:#f9f9f9;text-decoration:none;border:1px solid #d6d6d6}ul.flatButtons{list-style:none;margin:0;padding:0}.flatButtons li{float:left;display:inline;margin-left:5px}.flatTrigger,.flatTriggerActive{cursor:pointer;margin:0 7px 3px 0;padding:4px 10px 5px}.flatTrigger{background-color:#fff;border:1px solid #dae2e8;color:#36638e}.flatTriggerActive{background-color:#dae2e8;border:1px solid #c0cad5;color:#36638e}.cooltabsep.subactive{background:url('/images/cooltab_subactive.gif') 0 0 no-repeat}.cooltabsep.active{background:url('/images/cooltab_active.gif') 0 0 no-repeat}.cooltabsep.first{background:url('/images/cooltab_first.gif') 0 0 no-repeat;margin-left:10px}.cooltabsep.first.active{background:url('/images/cooltab_first_active.gif') 0 0 no-repeat}.cooltabsep.last{background:url('/images/cooltab_last.gif') 0 0 no-repeat;width:8px}.cooltabsep.last.subactive{background:url('/images/cooltab_last_active.gif') 0 0 no-repeat}.cooltabsep{background:url('/images/cooltab.gif') 0 0 no-repeat;height:18px;width:18px}.cooltabsep,.cooltabbody{float:left;cursor:pointer}.cooltabbody{height:14px;background:#efefef;border-top:1px solid #b1bdd6;border-bottom:1px solid #b1bdd6;padding:1px 7px;color:#2b587a}.cooltabbody.active{background:#fff;border-bottom:1px solid #fff}
+.flatTabs {
+    border-bottom: 1px solid #dae1e8;
+    height: 24px;
+    list-style-type: none;
+    margin: 0pt;
+    padding: 0px 7px;
+    vertical-align: bottom
+}
+
+.flatTabOn {
+    background-color: #fff;
+    border-color: #c3cad2;
+    border-style: solid solid none;
+    border-width: 1px 1px 0px;
+    float: left;
+    height: 24px;
+    margin: 0px 3px -1px;
+    text-align: center;
+    position: relative
+}
+
+.flatTabOn a {
+    float: left;
+    padding: 5px 10px;
+    text-decoration: none
+}
+
+.flatTab {
+    background-color: #f5f7fa;
+    border-color: #c3cad2;
+    border-style: solid solid none;
+    border-width: 1px 1px 0px;
+    float: left;
+    height: 23px;
+    margin: 0px 3px;
+    text-align: center
+}
+
+.flatTab a {
+    border-bottom: 2px solid #eef0f3;
+    float: left;
+    padding: 5px 10px 3px;
+    text-decoration: none
+}
+
+.flatTab a:hover,
+.tabOn a:hover,
+.flatTab a:hover {
+    background-color: #fff;
+    text-decoration: none
+}
+
+.flatTab a:hover {
+    border-bottom: 2px solid #f5f9fc
+}
+
+a.flatButtonActive {
+    background: #4b769f url(/images/flatBtnTopActive.gif) repeat-x scroll 0 0;
+    border: 1px solid #2b587a;
+    color: #fff;
+    display: block;
+    line-height: 100%;
+    padding: 5px 10px 6px;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap
+}
+
+a.flatButtonActive:hover {
+    background-color: #678bae;
+    text-decoration: none;
+    border: 1px solid #3b688a
+}
+
+a.flatButton {
+    background: #f3f3f3 url(/images/flatBtnTop.gif) repeat-x scroll 0 0;
+    border: 1px solid #ccc;
+    color: #000;
+    display: block;
+    line-height: 100%;
+    padding: 5px 10px 6px;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap
+}
+
+a.flatButton:hover {
+    background-color: #f9f9f9;
+    text-decoration: none;
+    border: 1px solid #d6d6d6
+}
+
+ul.flatButtons {
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+.flatButtons li {
+    float: left;
+    display: inline;
+    margin-left: 5px
+}
+
+.flatTrigger,
+.flatTriggerActive {
+    cursor: pointer;
+    margin: 0 7px 3px 0;
+    padding: 4px 10px 5px
+}
+
+.flatTrigger {
+    background-color: #fff;
+    border: 1px solid #dae2e8;
+    color: #36638e
+}
+
+.flatTriggerActive {
+    background-color: #dae2e8;
+    border: 1px solid #c0cad5;
+    color: #36638e
+}
+
+.cooltabsep.subactive {
+    background: url('/images/cooltab_subactive.gif') 0 0 no-repeat
+}
+
+.cooltabsep.active {
+    background: url('/images/cooltab_active.gif') 0 0 no-repeat
+}
+
+.cooltabsep.first {
+    background: url('/images/cooltab_first.gif') 0 0 no-repeat;
+    margin-left: 10px
+}
+
+.cooltabsep.first.active {
+    background: url('/images/cooltab_first_active.gif') 0 0 no-repeat
+}
+
+.cooltabsep.last {
+    background: url('/images/cooltab_last.gif') 0 0 no-repeat;
+    width: 8px
+}
+
+.cooltabsep.last.subactive {
+    background: url('/images/cooltab_last_active.gif') 0 0 no-repeat
+}
+
+.cooltabsep {
+    background: url('/images/cooltab.gif') 0 0 no-repeat;
+    height: 18px;
+    width: 18px
+}
+
+.cooltabsep,
+.cooltabbody {
+    float: left;
+    cursor: pointer
+}
+
+.cooltabbody {
+    height: 14px;
+    background: #efefef;
+    border-top: 1px solid #b1bdd6;
+    border-bottom: 1px solid #b1bdd6;
+    padding: 1px 7px;
+    color: #2b587a
+}
+
+.cooltabbody.active {
+    background: #fff;
+    border-bottom: 1px solid #fff
+}

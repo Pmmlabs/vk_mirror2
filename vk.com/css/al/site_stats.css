@@ -1,1 +1,179 @@
-#site_stats_css{display:none}#site_stats_page{padding:20px}#site_stats_page h3{color:#45688e;font-size:1.09em;font-weight:700;margin:0;padding:0 0 8px;text-align:left}.graph_horizontal_menu_wrapper .stats_head{margin:0}.graph_horizontal_menu_wrapper .summary_tabs{margin:0 0 10px!important;padding:2px 5px}.site_stats_round_tabs{padding:10px 10px 5px;background-color:#f7f7f7;border-bottom:1px solid #dae1e8}.site_stats_round_tab{padding:0 5px 5px 0}.site_stats_round_tabs_separate{margin-bottom:15px;border-top:1px solid #dae1e8}#wrapper_sections_chart,#wrapper_sources_chart{padding:0 0 20px}#site_stats_page .stats_head{margin:0 0 10px}#site_stats_page .stats_no_data{margin:0}#site_stats_page #site_stats_table_wrap .top_control{padding-bottom:5px}#site_stats_page #site_stats_table_wrap .bottom_control{padding-top:5px}.site_stats_row{padding:5px 0}.site_stats_label{padding:4px 10px 0;width:100px;color:#777;vertical-align:top;text-align:right}.site_stats_labeled{padding:0;margin-left:120px;vertical-align:top}#referrers_search_form{padding-bottom:20px}#referrers_search{width:150px;background:url("/images/magglass.png") no-repeat scroll 5px 5px #fff;outline:medium none;padding-right:40px;padding-left:20px}.site_stats_navigation{margin:0 0 10px;padding:5px 10px;background-color:#f7f7f7}.site_stats_arrow{padding:2px;height:16px;width:16px;border:1px solid #dae2e8;background-color:#fff}.site_stats_cur_date{padding:4px 10px 0;color:#666}.site_stats_perc{color:#777;font-size:0.9em}.site_stats_tbl_control_row{padding-top:4px}#site_stats_table_wrap .graph_right_menu{padding-bottom:0}.site_stats_tbl_control_active{font-weight:700}#ref_table_progress{padding:2px 0 0 15px}.site_stats_green{color:#4a844a}.site_stats_red{color:#c15336}.site_stats_yellow{color:#b9a13f}#site_stats_navigation .stat_form{margin:-10px -10px 10px;padding:10px;border-bottom:1px solid #dae1e8}#site_stats_navigation .stat_form .stats_head{margin-bottom:10px}#site_stats_navigation .stat_form .label{width:50px}#site_stats_navigation .stat_form .labeled{margin-left:70px}#site_stats_navigation .stat_form .labeled_text{padding-top:4px;margin-left:71px}#site_stats_navigation .stat_form .labeled input{width:150px}#site_stats_navigation div.form_line{margin-top:10px}#site_stats_navigation button{margin-left:271px;margin-top:15px}
+#site_stats_css {
+    display: none
+}
+
+#site_stats_page {
+    padding: 20px
+}
+
+#site_stats_page h3 {
+    color: #45688e;
+    font-size: 1.09em;
+    font-weight: 700;
+    margin: 0;
+    padding: 0 0 8px;
+    text-align: left
+}
+
+.graph_horizontal_menu_wrapper .stats_head {
+    margin: 0
+}
+
+.graph_horizontal_menu_wrapper .summary_tabs {
+    margin: 0 0 10px!important;
+    padding: 2px 5px
+}
+
+.site_stats_round_tabs {
+    padding: 10px 10px 5px;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #dae1e8
+}
+
+.site_stats_round_tab {
+    padding: 0 5px 5px 0
+}
+
+.site_stats_round_tabs_separate {
+    margin-bottom: 15px;
+    border-top: 1px solid #dae1e8
+}
+
+#wrapper_sections_chart,
+#wrapper_sources_chart {
+    padding: 0 0 20px
+}
+
+#site_stats_page .stats_head {
+    margin: 0 0 10px
+}
+
+#site_stats_page .stats_no_data {
+    margin: 0
+}
+
+#site_stats_page #site_stats_table_wrap .top_control {
+    padding-bottom: 5px
+}
+
+#site_stats_page #site_stats_table_wrap .bottom_control {
+    padding-top: 5px
+}
+
+.site_stats_row {
+    padding: 5px 0
+}
+
+.site_stats_label {
+    padding: 4px 10px 0;
+    width: 100px;
+    color: #777;
+    vertical-align: top;
+    text-align: right
+}
+
+.site_stats_labeled {
+    padding: 0;
+    margin-left: 120px;
+    vertical-align: top
+}
+
+#referrers_search_form {
+    padding-bottom: 20px
+}
+
+#referrers_search {
+    width: 150px;
+    background: url("/images/magglass.png") no-repeat scroll 5px 5px #fff;
+    outline: medium none;
+    padding-right: 40px;
+    padding-left: 20px
+}
+
+.site_stats_navigation {
+    margin: 0 0 10px;
+    padding: 5px 10px;
+    background-color: #f7f7f7
+}
+
+.site_stats_arrow {
+    padding: 2px;
+    height: 16px;
+    width: 16px;
+    border: 1px solid #dae2e8;
+    background-color: #fff
+}
+
+.site_stats_cur_date {
+    padding: 4px 10px 0;
+    color: #666
+}
+
+.site_stats_perc {
+    color: #777;
+    font-size: 0.9em
+}
+
+.site_stats_tbl_control_row {
+    padding-top: 4px
+}
+
+#site_stats_table_wrap .graph_right_menu {
+    padding-bottom: 0
+}
+
+.site_stats_tbl_control_active {
+    font-weight: 700
+}
+
+#ref_table_progress {
+    padding: 2px 0 0 15px
+}
+
+.site_stats_green {
+    color: #4a844a
+}
+
+.site_stats_red {
+    color: #c15336
+}
+
+.site_stats_yellow {
+    color: #b9a13f
+}
+
+#site_stats_navigation .stat_form {
+    margin: -10px -10px 10px;
+    padding: 10px;
+    border-bottom: 1px solid #dae1e8
+}
+
+#site_stats_navigation .stat_form .stats_head {
+    margin-bottom: 10px
+}
+
+#site_stats_navigation .stat_form .label {
+    width: 50px
+}
+
+#site_stats_navigation .stat_form .labeled {
+    margin-left: 70px
+}
+
+#site_stats_navigation .stat_form .labeled_text {
+    padding-top: 4px;
+    margin-left: 71px
+}
+
+#site_stats_navigation .stat_form .labeled input {
+    width: 150px
+}
+
+#site_stats_navigation div.form_line {
+    margin-top: 10px
+}
+
+#site_stats_navigation button {
+    margin-left: 271px;
+    margin-top: 15px
+}

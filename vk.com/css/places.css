@@ -1,1 +1,105 @@
-#places_css{display:none}#place_map_old{width:478px;height:314px}.place_map{width:638px;height:370px}#place_map_google,#place_map_yandex,#place_map_yandex2{display:none}#place_recent_checkins{display:none;height:314px;overflow:auto}.checkin_shadow{background-color:#000;height:1px;opacity:0.25;filter:alpha(opacity=25);overflow:hidden;position:absolute;width:478px;z-index:1550}.checkin_table{border-bottom:1px solid #c0cad5}.checkin_table_last{border-bottom:0}.checkin_table td{vertical-align:top;padding:5px 0}.checkin_image{padding-left:5px;height:50px;overflow:hidden;width:55px}.checkin_table .image{width:60px}.checkin_table .name_link{font-weight:700}.checkin_table .info_msg{padding-top:3px}.checkin_table .info_no_msg{display:none}.checkin_table .info_footer{font-size:10px;padding-top:3px;color:gray}.no_checkins{background-color:#f6f7f9;border:1px solid #dbe0ea;font-weight:400;line-height:150%;margin:10px;padding:8px 11px}#checkins_load_more{display:none}.place_search_bar{padding:5px}#places_filter{margin:0;padding:5px 4px 4px 20px;width:320px;height:14px;line-height:14px;background:#fff url(/images/magglass.png) no-repeat 5px 6px;margin-right:5px}
+#places_css {
+    display: none
+}
+
+#place_map_old {
+    width: 478px;
+    height: 314px
+}
+
+.place_map {
+    width: 638px;
+    height: 370px
+}
+
+#place_map_google,
+#place_map_yandex,
+#place_map_yandex2 {
+    display: none
+}
+
+#place_recent_checkins {
+    display: none;
+    height: 314px;
+    overflow: auto
+}
+
+.checkin_shadow {
+    background-color: #000;
+    height: 1px;
+    opacity: 0.25;
+    filter: alpha(opacity=25);
+    overflow: hidden;
+    position: absolute;
+    width: 478px;
+    z-index: 1550
+}
+
+.checkin_table {
+    border-bottom: 1px solid #c0cad5
+}
+
+.checkin_table_last {
+    border-bottom: 0
+}
+
+.checkin_table td {
+    vertical-align: top;
+    padding: 5px 0
+}
+
+.checkin_image {
+    padding-left: 5px;
+    height: 50px;
+    overflow: hidden;
+    width: 55px
+}
+
+.checkin_table .image {
+    width: 60px
+}
+
+.checkin_table .name_link {
+    font-weight: 700
+}
+
+.checkin_table .info_msg {
+    padding-top: 3px
+}
+
+.checkin_table .info_no_msg {
+    display: none
+}
+
+.checkin_table .info_footer {
+    font-size: 10px;
+    padding-top: 3px;
+    color: gray
+}
+
+.no_checkins {
+    background-color: #f6f7f9;
+    border: 1px solid #dbe0ea;
+    font-weight: 400;
+    line-height: 150%;
+    margin: 10px;
+    padding: 8px 11px
+}
+
+#checkins_load_more {
+    display: none
+}
+
+.place_search_bar {
+    padding: 5px
+}
+
+#places_filter {
+    margin: 0;
+    padding: 5px 4px 4px 20px;
+    width: 320px;
+    height: 14px;
+    line-height: 14px;
+    background: #fff url(/images/magglass.png) no-repeat 5px 6px;
+    margin-right: 5px
+}

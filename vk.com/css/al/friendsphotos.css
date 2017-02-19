@@ -1,1 +1,176 @@
-#friendsphotos_css{display:none}#friends_albums .remove{background:#c4d2e1 url(/images/pics/statusx.gif) no-repeat;cursor:pointer;height:17px;width:17px;position:relative;top:-2px;left:4px}#friends_albums{padding:0px 15px}#friends_albums .album{padding:15px 0px 0px}#friends_albums .album a.album_more{display:block;margin:5px 8px 0px;padding:9px;text-align:center;border-top:1px solid #fff}#friends_albums .album a.album_more:hover{text-decoration:none;background:#e9edf1;border-top:1px solid #dae1e8}#friends_albums .album a.album_more .progress{margin:0px auto}#friends_albums .album .header{margin:0px 8px 5px;padding:5px;border-bottom:1px solid #e1e7ed;color:#777}#friends_albums .album .header a.name{font-size:1.09em;font-weight:700}#friends_albums .album .header a.name:hover{text-decoration:none}#friends_albums .album .header .date{color:#999}#friends_albums .album .photo_row a{display:block;width:130px;height:98px;overflow:hidden;text-align:center;background:#f1f1f1}#friends_albums .no_content{color:#777;background:#fff;margin-bottom:9px;padding:60px 20px;text-align:center;font-size:1.09em}#friends_albums .album .photo_row{padding:9px 9px 9px 10px;width:130px;height:98px;display:inline-block}#friends_albums .album .photo_row img{vertical-align:top}#friends_albums .album_removed{padding:25px 9px 10px;text-align:center}#friends_albums .album_removed .info{color:#777;padding-bottom:10px}#friends_albums .album_removed table{margin:0px auto}#friends_albums .album_removed table a{margin:0px 5px}#friends_albums .album_removed .progress{display:block;visibility:hidden}#friends_albums .album_removed .info_all{color:#777;padding:12px 0px 11px}#friends_albums .album_removed .info_all a{margin:0px}#albums_load_more{margin:0px 20px 15px;display:block;padding:10px;border-top:1px solid #fff;text-align:center}#albums_load_more:hover{text-decoration:none;background:#e9edf1;border-top:1px solid #dae1e8}#albums_load_more .progress{margin:0px auto}#box_layer .frph_removed_row{height:32px;padding:5px 0px;color:#777}#box_layer .frph_removed_row a.fl_l{width:42px;height:32px;overflow:hidden}#box_layer .frph_removed_row img{width:32px}#box_layer .frph_removed_row .progress,#box_layer .frph_removed_row a.fl_r{margin-top:9px}#box_layer .frph_removed_row .text{padding-top:3px}#box_layer .frph_remove_cancelled{display:none;height:23px;padding:14px 0px 5px;color:#777}#box_layer .frph_removed_many{overflow:auto;height:420px;padding:10px 14px}
+#friendsphotos_css {
+    display: none
+}
+
+#friends_albums .remove {
+    background: #c4d2e1 url(/images/pics/statusx.gif) no-repeat;
+    cursor: pointer;
+    height: 17px;
+    width: 17px;
+    position: relative;
+    top: -2px;
+    left: 4px
+}
+
+#friends_albums {
+    padding: 0px 15px
+}
+
+#friends_albums .album {
+    padding: 15px 0px 0px
+}
+
+#friends_albums .album a.album_more {
+    display: block;
+    margin: 5px 8px 0px;
+    padding: 9px;
+    text-align: center;
+    border-top: 1px solid #fff
+}
+
+#friends_albums .album a.album_more:hover {
+    text-decoration: none;
+    background: #e9edf1;
+    border-top: 1px solid #dae1e8
+}
+
+#friends_albums .album a.album_more .progress {
+    margin: 0px auto
+}
+
+#friends_albums .album .header {
+    margin: 0px 8px 5px;
+    padding: 5px;
+    border-bottom: 1px solid #e1e7ed;
+    color: #777
+}
+
+#friends_albums .album .header a.name {
+    font-size: 1.09em;
+    font-weight: 700
+}
+
+#friends_albums .album .header a.name:hover {
+    text-decoration: none
+}
+
+#friends_albums .album .header .date {
+    color: #999
+}
+
+#friends_albums .album .photo_row a {
+    display: block;
+    width: 130px;
+    height: 98px;
+    overflow: hidden;
+    text-align: center;
+    background: #f1f1f1
+}
+
+#friends_albums .no_content {
+    color: #777;
+    background: #fff;
+    margin-bottom: 9px;
+    padding: 60px 20px;
+    text-align: center;
+    font-size: 1.09em
+}
+
+#friends_albums .album .photo_row {
+    padding: 9px 9px 9px 10px;
+    width: 130px;
+    height: 98px;
+    display: inline-block
+}
+
+#friends_albums .album .photo_row img {
+    vertical-align: top
+}
+
+#friends_albums .album_removed {
+    padding: 25px 9px 10px;
+    text-align: center
+}
+
+#friends_albums .album_removed .info {
+    color: #777;
+    padding-bottom: 10px
+}
+
+#friends_albums .album_removed table {
+    margin: 0px auto
+}
+
+#friends_albums .album_removed table a {
+    margin: 0px 5px
+}
+
+#friends_albums .album_removed .progress {
+    display: block;
+    visibility: hidden
+}
+
+#friends_albums .album_removed .info_all {
+    color: #777;
+    padding: 12px 0px 11px
+}
+
+#friends_albums .album_removed .info_all a {
+    margin: 0px
+}
+
+#albums_load_more {
+    margin: 0px 20px 15px;
+    display: block;
+    padding: 10px;
+    border-top: 1px solid #fff;
+    text-align: center
+}
+
+#albums_load_more:hover {
+    text-decoration: none;
+    background: #e9edf1;
+    border-top: 1px solid #dae1e8
+}
+
+#albums_load_more .progress {
+    margin: 0px auto
+}
+
+#box_layer .frph_removed_row {
+    height: 32px;
+    padding: 5px 0px;
+    color: #777
+}
+
+#box_layer .frph_removed_row a.fl_l {
+    width: 42px;
+    height: 32px;
+    overflow: hidden
+}
+
+#box_layer .frph_removed_row img {
+    width: 32px
+}
+
+#box_layer .frph_removed_row .progress,
+#box_layer .frph_removed_row a.fl_r {
+    margin-top: 9px
+}
+
+#box_layer .frph_removed_row .text {
+    padding-top: 3px
+}
+
+#box_layer .frph_remove_cancelled {
+    display: none;
+    height: 23px;
+    padding: 14px 0px 5px;
+    color: #777
+}
+
+#box_layer .frph_removed_many {
+    overflow: auto;
+    height: 420px;
+    padding: 10px 14px
+}

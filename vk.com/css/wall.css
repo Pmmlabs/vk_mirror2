@@ -1,1 +1,264 @@
-#content,.wallpost{padding:0px}.wallpost{margin:0px;float:left;margin-bottom:15px}.wallpost td{padding:0px;vertical-align:top}.wallpost td.image{width:55px;text-align:left}.wallpost td.image img{width:50px;margin-right:5px}.wallpost .info{width:100%;border-top:solid 1px #45688e}.wallpost .info .header{padding:3px 5px;background:#f7f7f7;border-bottom:solid 1px #dae2e8}.wallpost .info .actions{padding:3px 5px;border-bottom:solid 1px #dae2e8;border-top:none;clear:right}.wallpost .info .header a.profile_link{font-weight:700}.wallpost .info .actions a:hover{text-decoration:underline}.wallpost .info .text{padding:5px;width:450px}.wallpost .photo img{width:75px;margin-left:5px}#wall{padding:10px;background:#f7f7f7}#wallpage{padding:20px;border:solid 1px #ccc;background:#fff}#wallpage .nav{margin-bottom:5px}.header .memLink{font-weight:700}.appThumb{margin-top:3px}.appThumb,.feedPhotos{vertical-align:middle}.appThumb a img,.feedPhotos a img{vertical-align:middle;padding:3px;border:1px solid #aaa;background-color:#fff;margin:3px 6px 3px 0px}.feedPhotos a:hover img{border:1px solid #45688e}.feedVideos,.feedVideos a img{vertical-align:top}.feedVideos a img{padding:1px;border:1px solid #aaa;background-color:#fff;margin:3px 6px 3px 0px}.feedVideos a:hover img{border:1px solid #45688e}.wallOnline{color:#aaa;margin:4px 0px 0px 10px}.wallWriteForm{padding-left:10px}.wallWriteButtons{height:30px;text-align:right;margin-right:21px}.wallWriteButtons .nNav{float:right}.wallWriteButtons .nNav li{margin:0 5px 0 0}.wallWriteButtons #posting_progress{margin:5px 10px 0px 0px;vertical-align:0px;float:right;display:none}#dialog.wallWrite{margin-top:12px}.videoWallLink,.videoWallLinkHover{padding:2px 0px 1px;float:left}.durationText{cursor:pointer;position:absolute;width:159px;margin-top:109px;z-index:3}.durationText div{float:right;font-size:10px;padding:0px 3px 1px}.appWallIcon,.videoWallIcon{padding:1px 5px 0px 0px;vertical-align:bottom;margin-top:2px}.wallIconText{vertical-align:bottom}a.videoWallLink:hover,a.videoWallLinkHover:hover{text-decoration:none}.videoWallLink,.videoWallLink .iTitle,.videoWallLinkHover,.videoWallLinkHover .iTitle{vertical-align:bottom}.videoWallLinkHover .iTitle{text-decoration:underline}.videoWallThumb{position:relative;margin-top:4px}.videoWallThumb img{width:160px;height:120px;vertical-align:top;padding:1px;border:1px solid #aaa;background-color:#fff;margin:3px 6px 0px 0px}.videoWallLinkHover .videoWallThumb img{border:1px solid #45688e}small.link,small.link_over{color:#2b587a;cursor:pointer}small.link_over{text-decoration:underline}div#wall div.dld{margin:0 0 15px;padding:9px 4px 10px 10px;font-weight:400}.wall_feed .status_top_table .info,.wall_feed .status_top_text{width:378px}.wall_feed .status_top_table .text{width:360px}.wall_feed .status_top_table .reply_message{width:357px}.wall_feed .audioRowWall{width:360px}.wall_feed .audioRowWall .playerClass,.wall_feed .audioRowWall .playline{width:324px}.wall_feed .status_top_table .reply_table .reply_footer{width:340px}.wall_feed .status_top_table .reply_header{width:364px}
+#content,
+.wallpost {
+    padding: 0px
+}
+
+.wallpost {
+    margin: 0px;
+    float: left;
+    margin-bottom: 15px
+}
+
+.wallpost td {
+    padding: 0px;
+    vertical-align: top
+}
+
+.wallpost td.image {
+    width: 55px;
+    text-align: left
+}
+
+.wallpost td.image img {
+    width: 50px;
+    margin-right: 5px
+}
+
+.wallpost .info {
+    width: 100%;
+    border-top: solid 1px #45688e
+}
+
+.wallpost .info .header {
+    padding: 3px 5px;
+    background: #f7f7f7;
+    border-bottom: solid 1px #dae2e8
+}
+
+.wallpost .info .actions {
+    padding: 3px 5px;
+    border-bottom: solid 1px #dae2e8;
+    border-top: none;
+    clear: right
+}
+
+.wallpost .info .header a.profile_link {
+    font-weight: 700
+}
+
+.wallpost .info .actions a:hover {
+    text-decoration: underline
+}
+
+.wallpost .info .text {
+    padding: 5px;
+    width: 450px
+}
+
+.wallpost .photo img {
+    width: 75px;
+    margin-left: 5px
+}
+
+#wall {
+    padding: 10px;
+    background: #f7f7f7
+}
+
+#wallpage {
+    padding: 20px;
+    border: solid 1px #ccc;
+    background: #fff
+}
+
+#wallpage .nav {
+    margin-bottom: 5px
+}
+
+.header .memLink {
+    font-weight: 700
+}
+
+.appThumb {
+    margin-top: 3px
+}
+
+.appThumb,
+.feedPhotos {
+    vertical-align: middle
+}
+
+.appThumb a img,
+.feedPhotos a img {
+    vertical-align: middle;
+    padding: 3px;
+    border: 1px solid #aaa;
+    background-color: #fff;
+    margin: 3px 6px 3px 0px
+}
+
+.feedPhotos a:hover img {
+    border: 1px solid #45688e
+}
+
+.feedVideos,
+.feedVideos a img {
+    vertical-align: top
+}
+
+.feedVideos a img {
+    padding: 1px;
+    border: 1px solid #aaa;
+    background-color: #fff;
+    margin: 3px 6px 3px 0px
+}
+
+.feedVideos a:hover img {
+    border: 1px solid #45688e
+}
+
+.wallOnline {
+    color: #aaa;
+    margin: 4px 0px 0px 10px
+}
+
+.wallWriteForm {
+    padding-left: 10px
+}
+
+.wallWriteButtons {
+    height: 30px;
+    text-align: right;
+    margin-right: 21px
+}
+
+.wallWriteButtons .nNav {
+    float: right
+}
+
+.wallWriteButtons .nNav li {
+    margin: 0 5px 0 0
+}
+
+.wallWriteButtons #posting_progress {
+    margin: 5px 10px 0px 0px;
+    vertical-align: 0px;
+    float: right;
+    display: none
+}
+
+#dialog.wallWrite {
+    margin-top: 12px
+}
+
+.videoWallLink,
+.videoWallLinkHover {
+    padding: 2px 0px 1px;
+    float: left
+}
+
+.durationText {
+    cursor: pointer;
+    position: absolute;
+    width: 159px;
+    margin-top: 109px;
+    z-index: 3
+}
+
+.durationText div {
+    float: right;
+    font-size: 10px;
+    padding: 0px 3px 1px
+}
+
+.appWallIcon,
+.videoWallIcon {
+    padding: 1px 5px 0px 0px;
+    vertical-align: bottom;
+    margin-top: 2px
+}
+
+.wallIconText {
+    vertical-align: bottom
+}
+
+a.videoWallLink:hover,
+a.videoWallLinkHover:hover {
+    text-decoration: none
+}
+
+.videoWallLink,
+.videoWallLink .iTitle,
+.videoWallLinkHover,
+.videoWallLinkHover .iTitle {
+    vertical-align: bottom
+}
+
+.videoWallLinkHover .iTitle {
+    text-decoration: underline
+}
+
+.videoWallThumb {
+    position: relative;
+    margin-top: 4px
+}
+
+.videoWallThumb img {
+    width: 160px;
+    height: 120px;
+    vertical-align: top;
+    padding: 1px;
+    border: 1px solid #aaa;
+    background-color: #fff;
+    margin: 3px 6px 0px 0px
+}
+
+.videoWallLinkHover .videoWallThumb img {
+    border: 1px solid #45688e
+}
+
+small.link,
+small.link_over {
+    color: #2b587a;
+    cursor: pointer
+}
+
+small.link_over {
+    text-decoration: underline
+}
+
+div#wall div.dld {
+    margin: 0 0 15px;
+    padding: 9px 4px 10px 10px;
+    font-weight: 400
+}
+
+.wall_feed .status_top_table .info,
+.wall_feed .status_top_text {
+    width: 378px
+}
+
+.wall_feed .status_top_table .text {
+    width: 360px
+}
+
+.wall_feed .status_top_table .reply_message {
+    width: 357px
+}
+
+.wall_feed .audioRowWall {
+    width: 360px
+}
+
+.wall_feed .audioRowWall .playerClass,
+.wall_feed .audioRowWall .playline {
+    width: 324px
+}
+
+.wall_feed .status_top_table .reply_table .reply_footer {
+    width: 340px
+}
+
+.wall_feed .status_top_table .reply_header {
+    width: 364px
+}

@@ -1,1 +1,74 @@
-#ie6_css{display:none}#page_body,html{overflow:hidden}#side_bar ol li .left_row{width:129px;height:100%}#side_bar ol li #myprofile_edit_wrap .left_row,#side_bar ol li #myprofile_wrap .left_row{width:auto}ul.top_nav a{display:block;margin:auto 0px;padding:0px 4px;padding-bottom:2px;color:#dae1e8;margin-top:2px}#page_header.p_head1 .top_feed{position:relative}.s_label{padding-top:5px}.fixed{position:absolute}.tt .bottom_sh{top:0px;margin-top:-1px}.tt .bottom_sh,#photos_albums .album,#photos_albums .sort_helper,#pv_tags .delete{position:relative}.tl1,.tl2{display:none}ul.t0 a{padding-top:5px}body #photos_container .photo_row,body .progress_inline{display:inline;zoom:1}.like_tt .bottom .checkbox div,.like_tt .bottom .on div,.like_tt .like_tt_clubs,.like_tt table.toup1 .bottom_pointer,.like_tt table.toup .top_pointer{background-image:url(/images/icons/like_icons_bl.gif)!important}
+#ie6_css {
+    display: none
+}
+
+#page_body,
+html {
+    overflow: hidden
+}
+
+#side_bar ol li .left_row {
+    width: 129px;
+    height: 100%
+}
+
+#side_bar ol li #myprofile_edit_wrap .left_row,
+#side_bar ol li #myprofile_wrap .left_row {
+    width: auto
+}
+
+ul.top_nav a {
+    display: block;
+    margin: auto 0px;
+    padding: 0px 4px;
+    padding-bottom: 2px;
+    color: #dae1e8;
+    margin-top: 2px
+}
+
+#page_header.p_head1 .top_feed {
+    position: relative
+}
+
+.s_label {
+    padding-top: 5px
+}
+
+.fixed {
+    position: absolute
+}
+
+.tt .bottom_sh {
+    top: 0px;
+    margin-top: -1px
+}
+
+.tt .bottom_sh,
+#photos_albums .album,
+#photos_albums .sort_helper,
+#pv_tags .delete {
+    position: relative
+}
+
+.tl1,
+.tl2 {
+    display: none
+}
+
+ul.t0 a {
+    padding-top: 5px
+}
+
+body #photos_container .photo_row,
+body .progress_inline {
+    display: inline;
+    zoom: 1
+}
+
+.like_tt .bottom .checkbox div,
+.like_tt .bottom .on div,
+.like_tt .like_tt_clubs,
+.like_tt table.toup1 .bottom_pointer,
+.like_tt table.toup .top_pointer {
+    background-image: url(/images/icons/like_icons_bl.gif)!important
+}
