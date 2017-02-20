@@ -12,9 +12,9 @@
     return e.m = t, e.c = i, e.p = "", e(0)
 }({
     0: function(t, e, i) {
-        t.exports = i(160)
+        t.exports = i(161)
     },
-    30: function(t, e) {
+    17: function(t, e) {
         "use strict";
 
         function i(t) {
@@ -33,6 +33,7 @@
         }
 
         function s(t, e, i) {
+            if (e === p) return t[e] || [];
             if (t[e]) {
                 var a = extend(!0, {}, t[e][i]);
                 if (e == h) return a.txt = clean(a.txt), a
@@ -54,11 +55,15 @@
                         c = r[1];
                     c && (c.txt || c.medias && c.medias.length) ? t[e][n] = c : t[e][n] && delete t[e][n];
                     break;
+                case p:
+                    var l = i;
+                    l && l.length > 0 ? t[e] = l : delete t[e];
+                    break;
                 case f:
-                    var l = u(i, 2),
-                        p = l[0],
-                        _ = l[1];
-                    _ && !isEmpty(_) ? t[e][p] = _ : t[e][p] && delete t[e][p]
+                    var _ = u(i, 2),
+                        v = _[0],
+                        m = _[1];
+                    m && !isEmpty(m) ? t[e][v] = m : t[e][v] && delete t[e][v]
             }
             return t
         }
@@ -161,9 +166,10 @@
         e.migrateLocalstorage = n, e.mount = l;
         var d = e.FWD_STORE_OP = "fwd",
             h = e.DRAFT_STORE_OP = "draft",
-            f = e.ATTACH_STORE_OP = "bind_attach"
+            f = e.ATTACH_STORE_OP = "bind_attach",
+            p = e.RECENT_SEARCH_OP = "recent_search"
     },
-    160: function(t, e, i) {
+    161: function(t, e, i) {
         "use strict";
 
         function a() {
@@ -230,12 +236,12 @@
                 }
             }), r
         }
-        i(176), i(179), i(178), i(177), i(175), i(174), i(180), window.getWndInner = a, window.lastWndScroll = [!1, !1], window.updateWndVScroll = o, window.defBox = s;
+        i(177), i(180), i(179), i(178), i(176), i(175), i(181), window.getWndInner = a, window.lastWndScroll = [!1, !1], window.updateWndVScroll = o, window.defBox = s;
         try {
             stManager.done("notifier.js")
         } catch (r) {}
     },
-    174: function(t, e) {
+    175: function(t, e) {
         "use strict";
         window.DesktopNotifications = {
             supported: function() {
@@ -258,9 +264,9 @@
             }
         }
     },
-    175: function(t, e, i) {
+    176: function(t, e, i) {
         "use strict";
-        var a = i(30),
+        var a = i(17),
             o = 1e4;
         window.curFastChat || (window.curFastChat = {}), window.FastChat = {
             init: function(t) {
@@ -1073,7 +1079,7 @@
                         e = e.parentNode
                     }
                     var i = curFastChat.tabs[curFastChat.activeBox.options.peer];
-                    return i && (trim(Emoji.editableVal(i.txt)) || i.imMedia && i.imMedia.getMedias().length) ? !0 : void curFastChat.activeBox.hide()
+                    return i && (trim(Emoji.editableVal(i.txt)) || i.imMedia && i.imMedia.getMedias().length) ? !0 : void curFastChat.activeBox.hide();
                 }
             },
             clistCache: function(t) {
@@ -2183,7 +2189,7 @@
             tplTab: '<div class="fc_tab_log_wrap"><div class="fc_tab_notify_wrap"></div><div class="fc_tab_log"><div class="fc_tab_log_msgs"></div><div class="fc_tab_typing" id="fc_tab_typing%id%"><div class="pr fc_tab_typing_icon _fc_tab_typing_progress" id=""><div class="pr_bt"></div><div class="pr_bt"></div><div class="pr_bt"></div></div><div class="fc_tab_typing_name _fc_tab_typing_name"></div></div></div></div><div class="fc_tab_txt_wrap"><div class="fc_tab_txt">%cont%</div></div>'
         }
     },
-    176: function(t, e) {
+    177: function(t, e) {
         "use strict";
 
         function i(t) {
@@ -2227,7 +2233,7 @@
             }
         }), window.IdleManager = i
     },
-    177: function(module, exports) {
+    178: function(module, exports) {
         "use strict";
         window.curNotifier || (window.curNotifier = {
             addQueues: {},
@@ -3026,7 +3032,7 @@
             }
         }
     },
-    178: function(t, e) {
+    179: function(t, e) {
         "use strict";
 
         function i(t, e) {
@@ -3280,7 +3286,7 @@
             }
         }), window.RBox = i
     },
-    179: function(t, e) {
+    180: function(t, e) {
         "use strict";
 
         function i(t, e) {
@@ -3353,7 +3359,7 @@
             }
         }, window.Sound = i
     },
-    180: function(module, exports) {
+    181: function(module, exports) {
         "use strict";
         window.TopNotifier = {
             tnLink: "top_notify_btn",

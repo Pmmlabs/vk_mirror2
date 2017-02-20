@@ -28,6 +28,7 @@
 .settings_otp_box_step2_en,
 .settings_otp_box_step3,
 .settings_otp_box_step3_en,
+.settings_payments_subscriptions .settings_subscription_cancel,
 .settings_transfer_action {
     -ms-high-contrast-adjust: none
 }
@@ -1018,6 +1019,15 @@ a.settings_blb_title {
     -moz-osx-font-smoothing: auto
 }
 
+.settings_history_row_deleted {
+    opacity: 0.4;
+    filter: alpha(opacity=40)
+}
+
+.settings_history_row_deleted .settings_history_actions {
+    display: none
+}
+
 .settings_transfer_date {
     color: #939393;
     font-size: 12.5px
@@ -1113,6 +1123,86 @@ a.settings_blb_title {
     pointer-events: none;
     position: relative;
     left: -5px
+}
+
+.settings_payments_subscriptions tr td {
+    border-bottom: none;
+    padding: 8px 0
+}
+
+.settings_payments_subscriptions .settings_history_gr_row td {
+    border-top: 1px solid #e7e8ec;
+    padding-top: 12px
+}
+
+.settings_payments_subscriptions .settings_history_gr_row td:not(.settings_history_photo) {
+    padding-top: 20px
+}
+
+.settings_payments_subscriptions .settings_history_gr_row:first-child td {
+    border-top: none
+}
+
+.settings_payments_subscriptions .settings_history_gr_row.settings_history_row_deleted {
+    opacity: 1;
+    -webkit-filter: none;
+    filter: none
+}
+
+.settings_payments_subscriptions .settings_history_gr_row.settings_history_row_deleted td:not(.settings_history_name):not(.settings_history_photo) {
+    opacity: 0.4;
+    filter: alpha(opacity=40)
+}
+
+.settings_payments_subscriptions .settings_history_l_row td:not(.settings_history_photo) {
+    padding-bottom: 20px
+}
+
+.settings_payments_subscriptions .settings_history_name,
+.settings_payments_subscriptions .settings_history_photo {
+    vertical-align: top
+}
+
+.settings_payments_subscriptions .settings_history_title {
+    padding-right: 15px!important;
+    width: 220px
+}
+
+.settings_payments_subscriptions .settings_history_amount {
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.settings_payments_subscriptions .settings_history_amount b {
+    color: #000
+}
+
+.settings_payments_subscriptions .settings_history_actions {
+    width: 1px
+}
+
+.settings_payments_subscriptions .settings_subscription_cancel {
+    background: url(/images/cross.png) no-repeat 50% 50%
+}
+
+.settings_payments_subscriptions tr:hover .settings_transfer_action {
+    visibility: visible
+}
+
+.settings_payments_subscriptions tr:hover .settings_transfer_action:hover {
+    opacity: 1;
+    -webkit-filter: none;
+    filter: none
+}
+
+.settings_payments_subscriptions .round_spinner,
+.settings_payments_subscriptions .settings_history_row_progress .settings_transfer_action {
+    display: none
+}
+
+.settings_payments_subscriptions .settings_history_row_progress .round_spinner {
+    display: inline-block
 }
 
 #settings_last_activity_row {

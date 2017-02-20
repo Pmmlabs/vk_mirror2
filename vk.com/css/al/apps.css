@@ -5084,6 +5084,10 @@ td.apps_cat_new_h {
     left: -5px
 }
 
+#apps_layer .apps_header .group_name .group_link {
+    color: #656565
+}
+
 #apps_layer .apps_footer_left_inner {
     overflow: visible;
     text-align: left

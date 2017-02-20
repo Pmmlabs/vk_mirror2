@@ -1748,6 +1748,24 @@ img.im_photo_thumb {
     margin: -8px 0 0 -8px
 }
 
+.im-page .im-page--clear-recent {
+    border: none;
+    background: none;
+    color: #2a5885;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-size: 13px;
+    outline: 0;
+    padding: 0;
+    line-height: 1;
+    position: absolute;
+    right: 15px
+}
+
+.im-page .im-page--clear-recent:hover {
+    text-decoration: underline;
+    cursor: pointer
+}
+
 .im-page .im-page-history-w {
     display: table;
     width: 100%;
@@ -2033,7 +2051,8 @@ img.im_photo_thumb {
     height: 37px
 }
 
-.im-page .im-page--mess-search-w+.nim-dialog .nim-dialog--content {
+.im-page .im-page--mess-search-w+.nim-dialog .nim-dialog--content,
+.im-page .im-page--messages-search+.nim-dialog .nim-dialog--content {
     border-color: transparent
 }
 
@@ -4213,16 +4232,16 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_empty .nim-dialog--date,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_empty:hover .nim-dialog--date,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_search .nim-dialog--date,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_search:hover .nim-dialog--date {
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_search:hover .nim-dialog--date,
+.nim-dialog:not(.nim-dialog_deleted):not(.nim-dialog_recent).nim-dialog_empty:hover .nim-dialog--date {
     display: block
 }
 
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_empty .nim-dialog--close,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_empty:hover .nim-dialog--close,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_search .nim-dialog--close,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_search:hover .nim-dialog--close {
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_search:hover .nim-dialog--close,
+.nim-dialog:not(.nim-dialog_deleted):not(.nim-dialog_recent).nim-dialog_empty:hover .nim-dialog--close {
     display: none
 }
 

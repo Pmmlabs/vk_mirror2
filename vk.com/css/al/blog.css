@@ -322,9 +322,10 @@
 }
 
 .blog_entry_text .wk_sub_header {
-    font-size: 19px;
-    font-weight: 500;
-    margin: 15px 0 13px;
+    font-size: 17px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto
 }

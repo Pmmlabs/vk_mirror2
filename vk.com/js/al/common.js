@@ -5201,7 +5201,7 @@ function handleSetCount(e, v, id) {
         attr = '',
         maxCntLen = (id == 'spr') ? 5 : 3,
         newCntWrap = '<span class="inl_bl left_count_sign"></span>',
-        curCntWp = geByClass1('left_count_wrap', e, 'span'),
+        curCntWp = geByClass1('left_count_wrap', e),
         curOver = hasClass(geByClass1('left_row', e, 'a'), 'left_nav_over'),
         curCntEl = geByClass1('left_count', e, 'span'),
         curCntV = val(curCntEl);
@@ -9587,7 +9587,10 @@ TopSearch = {
             // todo: seems that these call are not necessary because of topHeaderClose function was added
             //TopSearch.toggleInput(false);
             //TopMenu.toggle(false);
-            if (!checkKeyboardEvent(e) && !domClosest('_audio_layer', e.target) && !domClosest('layer_wrap', e.target)) {
+
+            if (!checkKeyboardEvent(e) &&
+                !domClosest('_audio_layer', e.target) &&
+                !domClosest('layer_wrap', e.target)) {
                 _topHeaderClose();
             }
         });

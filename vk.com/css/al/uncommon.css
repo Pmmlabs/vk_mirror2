@@ -3,6 +3,8 @@
 }
 
 .actualize_phone_box .layerbox_img,
+.load_more,
+.load_more_hidden,
 .push_validation_img,
 .save_fv_bar.page_block,
 .validation_device_thumb,
@@ -1046,7 +1048,7 @@ div.validation_last_button .button {
 .shorten_input input.dark {
     width: 338px;
     margin-right: 15px;
-    padding-bottom: 7px
+    padding-bottom: 8px
 }
 
 .shorten_input input.dark,
@@ -1212,6 +1214,20 @@ div.validation_last_button .button {
     width: 795px;
     padding: 0 30px 15px;
     box-sizing: border-box
+}
+
+.load_more,
+.load_more_hidden {
+    background: url(/images/upload.gif) no-repeat 50%;
+    height: 43px
+}
+
+.load_more {
+    display: block!important
+}
+
+.load_more_hidden {
+    display: none
 }
 
 .shortener_stats_header {

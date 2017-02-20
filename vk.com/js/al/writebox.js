@@ -12,9 +12,9 @@
     return t.m = e, t.c = r, t.p = "", t(0)
 }({
     0: function(e, t, r) {
-        e.exports = r(167)
+        e.exports = r(168)
     },
-    30: function(e, t) {
+    17: function(e, t) {
         "use strict";
 
         function r(e) {
@@ -33,6 +33,7 @@
         }
 
         function a(e, t, r) {
+            if (t === _) return e[t] || [];
             if (e[t]) {
                 var i = extend(!0, {}, e[t][r]);
                 if (t == s) return i.txt = clean(i.txt), i
@@ -54,11 +55,15 @@
                         m = n[1];
                     m && (m.txt || m.medias && m.medias.length) ? e[t][c] = m : e[t][c] && delete e[t][c];
                     break;
+                case _:
+                    var u = r;
+                    u && u.length > 0 ? e[t] = u : delete e[t];
+                    break;
                 case b:
-                    var u = d(r, 2),
-                        f = u[0],
-                        _ = u[1];
-                    _ && !isEmpty(_) ? e[t][f] = _ : e[t][f] && delete e[t][f]
+                    var f = d(r, 2),
+                        h = f[0],
+                        v = f[1];
+                    v && !isEmpty(v) ? e[t][h] = v : e[t][h] && delete e[t][h]
             }
             return e
         }
@@ -89,9 +94,9 @@
                             break;
                         case "im_draft":
                             if (intval(o) === e) {
-                                var f = "im_draft" + e + "_" + a,
-                                    _ = ls.get(f);
-                                c = n(c, s, [a, _]), ls.remove(f)
+                                var _ = "im_draft" + e + "_" + a,
+                                    f = ls.get(_);
+                                c = n(c, s, [a, f]), ls.remove(_)
                             }
                             break;
                         case "bind_to_url_store_":
@@ -161,16 +166,17 @@
         t.migrateLocalstorage = c, t.mount = u;
         var l = t.FWD_STORE_OP = "fwd",
             s = t.DRAFT_STORE_OP = "draft",
-            b = t.ATTACH_STORE_OP = "bind_attach"
+            b = t.ATTACH_STORE_OP = "bind_attach",
+            _ = t.RECENT_SEARCH_OP = "recent_search"
     },
-    167: function(e, t, r) {
+    168: function(e, t, r) {
         "use strict";
         var i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
                 return typeof e
             } : function(e) {
                 return e && "function" == typeof Symbol && e.constructor === Symbol ? "symbol" : typeof e
             },
-            o = r(30),
+            o = r(17),
             a = window.WriteBox = {
                 mrg: function(e) {
                     return vk.rtl ? {

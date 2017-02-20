@@ -13,7 +13,7 @@ addTemplates({"_":"_","audio_row":"<div class=\"audio_row _audio_row _audio_row_
     var m = window.Video ? Videoview.getVideoModule(oidvid) : cur.module;
     var oid = 53083705;
     if (oid) {
-      ajax.post("al_video.php", {act:'inc_view_counter', oid:oid, vid:161242013, hash:'910caaf1caf0ace56a3b21608252d608', module: m});
+      ajax.post("al_video.php", {act:'inc_view_counter', oid:oid, vid:161242013, hash:'0af990f2134b3a4bb2b38d487538ed87', module: m});
     }
   }, 5000);
   cur.videoStarted[oidvid] = setTimeout(function() {
@@ -34,7 +34,7 @@ addTemplates({"_":"_","audio_row":"<div class=\"audio_row _audio_row _audio_row_
     if (oid) {
       window.mvcur = window.mvcur || {};
       mvcur.viewStartedTimestamp = new Date().getTime();
-      ajax.post("al_video.php", {act:'video_view_started', oid:oid, vid:161242013, hash:'910caaf1caf0ace56a3b21608252d608', module: m, videocat: videocat});
+      ajax.post("al_video.php", {act:'video_view_started', oid:oid, vid:161242013, hash:'0af990f2134b3a4bb2b38d487538ed87', module: m, videocat: videocat});
     }
   }, 0);
   cur.destroy.push(function () {

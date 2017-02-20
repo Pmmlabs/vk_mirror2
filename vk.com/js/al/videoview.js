@@ -1627,7 +1627,7 @@ var Videoview = {
                 maxWidth: Math.max(0, e - 60)
             });
             var o = ge("mv_title");
-            o && (setStyle(o, {
+            o && (val(o, i), setStyle(o, {
                 display: "block"
             }), o.scrollHeight > o.offsetHeight && attr(o, "title", replaceEntities(stripHTML(i))), setStyle(o, {
                 display: ""
@@ -1741,24 +1741,24 @@ var Videoview = {
             });
             var o = mvcur.minSize.wrap;
             mvcur.minSize.player = {
-                w: o.w - 12,
-                h: o.h - 34
-            }, Videoview.setStyle("mvContainer", "mv_container", {
-                marginTop: 0,
-                marginBottom: 0
-            }), setStyle(mvLayer, {
-                width: "auto"
-            }), Videoview.minimizePlayer(), window.tooltips && tooltips.destroyAll("mv_container"), removeEvent(window, "resize", Videoview.onResize), removeEvent(document, "webkitfullscreenchange mozfullscreenchange fullscreenchange", Videoview.onFullscreenChange), removeEvent(document, "keydown", Videoview.onKeyDown), addEvent(window, "resize", Videoview.minResize), Videoview.enabledResize() ? (addEvent("mv_box", "mousedown", Videoview.startDrag),
-                addEvent("mv_box", "mousemove", Videoview.changeCursor), mvcur.minDestroy = function() {
+                    w: o.w - 12,
+                    h: o.h - 34
+                }, Videoview.setStyle("mvContainer", "mv_container", {
+                    marginTop: 0,
+                    marginBottom: 0
+                }), setStyle(mvLayer, {
+                    width: "auto"
+                }), Videoview.minimizePlayer(), window.tooltips && tooltips.destroyAll("mv_container"), removeEvent(window, "resize", Videoview.onResize), removeEvent(document, "webkitfullscreenchange mozfullscreenchange fullscreenchange", Videoview.onFullscreenChange), removeEvent(document, "keydown", Videoview.onKeyDown), addEvent(window, "resize", Videoview.minResize),
+                Videoview.enabledResize() ? (addEvent("mv_box", "mousedown", Videoview.startDrag), addEvent("mv_box", "mousemove", Videoview.changeCursor), mvcur.minDestroy = function() {
                     removeEvent("mv_box", "mousedown", Videoview.startDrag), removeEvent("mv_box", "mousemove", Videoview.changeCursor), setStyle("mv_box", {
                         cursor: "default"
                     })
                 }) : (addEvent(ge("mv_min_title"), "click", Videoview.unminimize), mvcur.minDestroy = function() {
-                removeEvent("mv_min_title", "click", Videoview.unminimize)
-            }), Videoview.setTitle(o.w), Videoview.minResize(), Videoview.setStyle("mvLayerWrap", mvLayerWrap, {
-                width: mvcur.minSize.wrap.w + "px",
-                height: mvcur.minSize.wrap.h + "px"
-            }), mvcur.minimized = !0, layers.wraphide(), setTimeout(Videoview.playerOnResize, 10);
+                    removeEvent("mv_min_title", "click", Videoview.unminimize)
+                }), Videoview.setTitle(o.w), Videoview.minResize(), Videoview.setStyle("mvLayerWrap", mvLayerWrap, {
+                    width: mvcur.minSize.wrap.w + "px",
+                    height: mvcur.minSize.wrap.h + "px"
+                }), mvcur.minimized = !0, layers.wraphide(), setTimeout(Videoview.playerOnResize, 10);
             var t = layerQueue.count();
             return mvcur.noLocChange || (Videoview.backLocation(), mvcur.noHistory = 1), layerQueue.skipVideo = !0, t && (debugLog("pop from minimize"), layerQueue.pop()), VideoPlaylist.toggleStateClasses(), VideoChat.toggleStateClasses(), mvcur.preparationBlock && removeClass("mv_box", "_has_preparation"), Videoview.updateExternalVideoFinishBlock(), !1
         },
@@ -2639,14 +2639,14 @@ window.VideoChat = {
     DEFAULT_COMMENT_MAX_LENGTH: 300,
     init: function(e, i, o, t, a) {
         function n(e) {
-            e = parseJSON(e), e && "success" == e.status ? (VideoDonate.apiData = e.data, VideoDonate.initForm()) : d()
+            e = parseJSON(e), e && "success" == e.status ? (VideoDonate.apiData = e.data,
+                VideoDonate.initForm()) : d()
         }
 
         function d() {
-            curBox().hide(),
-                showFastBox({
-                    title: getLang("global_error")
-                }, getLang("global_error_occured"))
+            curBox().hide(), showFastBox({
+                title: getLang("global_error")
+            }, getLang("global_error_occured"))
         }
         VideoDonate.params = {
             prefilled: i,

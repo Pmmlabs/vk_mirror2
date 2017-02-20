@@ -2313,10 +2313,7 @@ input.dev_section_search {
     background-image: url('/images/svg_icons/dev/access_icon_group.svg')
 }
 
-.dev_method_page_access_row_open_icon {
-    background-image: url('/images/svg_icons/dev/access_icon_public.svg')
-}
-
+.dev_method_page_access_row_open_icon,
 .dev_method_page_access_row_secure_icon,
 .dev_method_page_access_row_server_icon {
     background-image: url('/images/svg_icons/dev/access_icon_serve.svg')

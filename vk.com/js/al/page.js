@@ -4555,6 +4555,48 @@ var Wall = {
             btn.tt.destroy();
         }
     },
+    ignoreAdsItem: function(post_raw, feed_raw, hash) {
+        var postEl = ge('post' + post_raw),
+            adData = postEl.getAttribute('data-ad'),
+            actMenu = geByClass1('ui_actions_menu_wrap', postEl);
+        if (!postEl) {
+            return;
+        }
+        actMenu && uiActionsMenu.toggle(actMenu, false);
+        revertLastInlineVideo(postEl);
+        ajax.post('/al_feed.php?misc', {
+            act: 'a_ignore_item',
+            post_raw: post_raw,
+            feed_raw: feed_raw,
+            hash: hash,
+            ad_data: adData,
+            no_html: 1
+        }, {
+            onDone: function() {
+                hide(postEl);
+            }
+        });
+    },
+    ignoreAdsOwner: function(post_raw, owner_id, hash, btn) {
+        var postEl = ge('post' + post_raw);
+        if (!postEl) {
+            return;
+        }
+        ajax.post('/al_feed.php?misc', {
+            act: 'a_ignore_owner',
+            post_raw: post_raw,
+            owner_id: owner_id,
+            hash: hash,
+            list: 0,
+            no_html: 1
+        }, {
+            onDone: function(html) {
+                hide(postEl);
+            },
+            showProgress: btn && lockButton.pbind(btn),
+            hideProgress: btn && unlockButton.pbind(btn)
+        });
+    },
     markAsAds: function(post, hash, el, fullPost) {
         ajax.post('al_wall.php', {
             act: 'mark_as_ads',
