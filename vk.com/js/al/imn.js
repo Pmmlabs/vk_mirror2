@@ -2719,7 +2719,7 @@
     }
 
     function De(e, t, n, r, a) {
-        return n = n.replace(/\<br\s*\/?\>/gi, " "), n = n.replace(Ke.MENTION, function(e, t, n, r, a) {
+        return n = n.replace(/\<br\s*\/?\>(\n)?/gi, " "), n = n.replace(Ke.MENTION, function(e, t, n, r, a) {
             return a
         }), r && (n = Emoji.emojiToHTML(n, !0)), t && "..." !== t.trim() && !S(e) && (n = getTemplate("im_topic", {
             topic: t,
