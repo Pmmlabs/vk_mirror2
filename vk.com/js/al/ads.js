@@ -3831,13 +3831,8 @@ Ads.retargetingGroupRequestLookalike = function() {
         onDone: function(html) {
             if (refererTab == 'lookalike') {
                 ge('ads_retargeting_groups_table').innerHTML = html
-                curBox().hide()
-                return true;
             }
-
-            ge('ads_retargeting_request_lookalike_notice').innerHTML = html
-            hide('ads_retargeting_box_request_lookalike_button')
-            show('ads_retargeting_box_request_lookalike_close_button')
+            curBox().hide()
             return true;
         },
         onFail: function(err) {

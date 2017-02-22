@@ -247,7 +247,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2463215079,
     'im.css': 3225199177,
-    'imn.js': 418176850,
+    'imn.js': 402703100,
     'im.js': 1322065004,
     'emoji.js': 2026393557,
     'wide_dd.css': 942458142,
@@ -371,7 +371,7 @@ var stVersions = {
     'aes_light.js': 3013204428,
     'ads.css': 282914433,
     'ads_bonus.css': 3649229228,
-    'ads.js': 3500584858,
+    'ads.js': 270622120,
     'ads_payments.js': 2909099260,
     'ads_edit.css': 4124130320,
     'ads_edit.js': 1542034176,
@@ -570,4 +570,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 6883;
+var _rnd = 4032;
