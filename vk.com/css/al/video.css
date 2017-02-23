@@ -5,6 +5,7 @@
 .media-video-play,
 .media-video-thumb-background,
 .media-video-thumb-wrap-background,
+.video_desktop_live_intro_wrap,
 .video_empty_placeholder,
 .video_item .media_check_btn,
 .video_item .video_item_thumb,
@@ -169,7 +170,9 @@
     -moz-osx-font-smoothing: auto
 }
 
-#video_add_album_btn {
+#video_add_album_btn,
+#video_create_live_btn {
+    margin-left: 0;
     margin-right: 10px
 }
 
@@ -1074,4 +1077,25 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
 
 .video_search_filters_wrap {
     padding: 20px
+}
+
+.video_desktop_live_intro_wrap {
+    padding: 20px 20px 20px 140px;
+    background: url(/images/video/live_stream_logo.png) #fff no-repeat 20px 20px
+}
+
+.video_desktop_live_intro_title {
+    margin: 8px 0 5px;
+    font-size: 19px;
+    line-height: 23px
+}
+
+.video_desktop_live_intro_description {
+    margin: 5px 0 15px;
+    line-height: 19px
+}
+
+.video_desktop_live_intro_btn {
+    float: left;
+    margin-right: 10px
 }

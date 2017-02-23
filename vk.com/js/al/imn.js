@@ -7139,7 +7139,7 @@
     }
 
     function o(e, t, n, r) {
-        if ((0, X.isSearching)(e) && e.get().searchAllLoaded) return Promise.resolve([]);
+        if ((0, X.isSearching)(e) && e.get().searchAllLoaded || (0, X.isRecentSearchesActive)(e)) return Promise.resolve([]);
         if (e.get().dialog_search_going || (0, Y.isClassicInterface)(e) && 0 !== e.get().peer) return Promise.resolve(!1);
         if ((0, X.isSearching)(e)) return (0, Q.searchMessages)((0, X.getSearchText)(e), e.get()).then(function(e) {
             var t = V(e, 2),
@@ -7234,23 +7234,22 @@
     function g(e, t, n, r) {
         var a = arguments.length <= 4 || void 0 === arguments[4] ? {} : arguments[4],
             i = [];
-        return (0, Y.isClassicInterface)(r) && i.push("nim-dialog_classic"),
-            (0, X.isRecentSearchesActive)(r) && i.push("nim-dialog_recent"), i.push("nim-dialog_empty"), a.search && i.push("_im_search"), getTemplate("im_drow", {
-                peer: e.peerId,
-                msg_id: "",
-                photo: t,
-                user_link: n,
-                date: "",
-                body: "",
-                unread: "",
-                more: i.join(" "),
-                is_star: "",
-                unread_message_string: "",
-                is_online: onlinePlatformClass(e.online),
-                is_unread: "",
-                is_unread_out: "",
-                is_selected: e.peerId == r.get().peer ? "nim-dialog_selected _im_dialog_selected" : ""
-            })
+        return (0, Y.isClassicInterface)(r) && i.push("nim-dialog_classic"), (0, X.isRecentSearchesActive)(r) && i.push("nim-dialog_recent"), i.push("nim-dialog_empty"), a.search && i.push("_im_search"), getTemplate("im_drow", {
+            peer: e.peerId,
+            msg_id: "",
+            photo: t,
+            user_link: n,
+            date: "",
+            body: "",
+            unread: "",
+            more: i.join(" "),
+            is_star: "",
+            unread_message_string: "",
+            is_online: onlinePlatformClass(e.online),
+            is_unread: "",
+            is_unread_out: "",
+            is_selected: e.peerId == r.get().peer ? "nim-dialog_selected _im_dialog_selected" : ""
+        })
     }
 
     function f(e) {

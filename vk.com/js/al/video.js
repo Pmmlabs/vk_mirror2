@@ -1362,6 +1362,11 @@ var Video = {
                 }
             })
         }, 50)
+    },
+    hideDesktopLiveIntroBlock: function(e) {
+        slideUp("video_desktop_live_intro_block", 300), ajax.post("al_video.php?act=hide_desktop_live_intro", {
+            hash: e
+        })
     }
 };
 try {

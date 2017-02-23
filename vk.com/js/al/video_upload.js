@@ -892,24 +892,22 @@ var VideoUpload = {
     },
     liveStreamBetaIntro: function() {
         showBox("al_video.php?act=live_beta_intro_box", {}, {
+            stat: ["video_edit.css"],
             params: {
                 hideButtons: 1
             }
         })
     },
-    toLiveStream: function(e) {
+    createLiveStream: function(e) {
         return e || ls.get("video_live_beta_intro_shown") ? void showBox("al_video.php", {
             act: "a_add_new_live_trans_form",
             owner_id: cur.oid
         }, {
+            stat: ["video_edit.css", "privacy.css", "privacy.js", "upload.js"],
             onDone: function(e) {
-                var o = '<div class="back" onclick="curBox().hide();">' + getLang("video_upload_back") + "</div>";
-                if (e.setOptions({
-                        title: o,
-                        defaultTitle: o
-                    }), e.removeButtons(), e.addButton(getLang("video_save_but"), VideoUpload.saveLiveStream), e.addButton(getLang("video_cancel_but"), e.hide, "no"), ls.get("video_live_create_form_shown")) {
-                    var a = domByClass(e.bodyNode, "video_upload_live_launch_steps_wrap");
-                    hide(a), addClass(domPS(a), "video_upload_live_launch_subheader_togglable")
+                if (e.removeButtons(), e.addButton(getLang("video_save_but"), VideoUpload.saveLiveStream), e.addButton(getLang("video_cancel_but"), e.hide, "no"), ls.get("video_live_create_form_shown")) {
+                    var o = domByClass(e.bodyNode, "video_upload_live_launch_steps_wrap");
+                    hide(o), addClass(domPS(o), "video_upload_live_launch_subheader_togglable")
                 } else ls.set("video_live_create_form_shown", 1)
             },
             onFail: function(e) {

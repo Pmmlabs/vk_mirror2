@@ -1165,7 +1165,7 @@ var Feed = {
         if (!i) return a;
         a.module = cur.module, a.index = r, "feed" == cur.module && ("search" == cur.section ? (a.module = "feed_search", a.q = cur.q) : "news" == cur.section ? a.module = cur.subsection ? "feed_news_" + cur.subsection : "feed_news" : "recommended" == cur.section ? a.module = cur.subsection ? "feed_recommended_" + cur.subsection : "feed_recommended" : a.module = "feed_other");
         var c = i.getAttribute("data-ad-view");
-        if (c && (a["ad_" + c] = 1, __adsUpdateExternalStats(i)), s = i.id.match(n)) a[s[1]] = 1;
+        if (c && (a["ad_" + c] = 1), s = i.id.match(n)) a[s[1]] = 1;
         else if (t = i.className, s = t.match(/feed_reposts_wrap(-?\d+_\d+)/)) {
             if (o = domFC(i), hasClass(domFC(o), "post_copy") && (a[s[1]] = -1), (s = domFC(o).id.match(n)) && (a[s[1]] = 1), isVisible(o = domNS(o)))
                 for (o = domFC(o); o; o = domNS(o))(s = o.id.match(n)) && (a[s[1]] = 1)
