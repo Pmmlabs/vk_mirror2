@@ -197,7 +197,7 @@ var stVersions = {
     'video_upload.js': 2844193362,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 1335041337,
-    'videoplayer.js': 3436056117,
+    'videoplayer.js': 1097759713,
     'videoplayer.css': 1223187496,
     'translation.js': 272112777,
     'translation.css': 3516389000,
@@ -570,4 +570,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 1097;
+var _rnd = 6134;
