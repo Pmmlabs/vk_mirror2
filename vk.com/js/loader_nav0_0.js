@@ -329,10 +329,10 @@ var stVersions = {
     'tags_dd.css': 1587774529,
     'tasks.js': 3716388560,
     'tasks.css': 2206937196,
-    'helpdesk.js': 2418528450,
+    'helpdesk.js': 2507386045,
     'helpdesk.css': 3888885496,
     'tickets.js': 3721222779,
-    'tickets.css': 2473477868,
+    'tickets.css': 1325943564,
     'faq.js': 1417581931,
     'faq.css': 108567310,
     'talmud.js': 1641838680,
@@ -570,4 +570,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 1558;
+var _rnd = 4278;

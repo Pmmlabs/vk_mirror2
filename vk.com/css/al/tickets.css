@@ -757,17 +757,15 @@ body.dev .tickets_header_links {
     margin-top: 10px
 }
 
-#tickets_templates .template_links_wrap .template_long_wrap {
-    margin: 6px 0
-}
-
-#tickets_templates .template_links_wrap .template_long_wrap .template {
+#tickets_templates .template_links_wrap .template_long_wrap.template {
+    margin: 6px 0;
     float: none;
+    display: block;
     color: #939393;
     font-size: 12.5px
 }
 
-#tickets_templates .template_links_wrap .template_long_wrap .template:hover {
+#tickets_templates .template_links_wrap .template_long_wrap.template:hover {
     background: transparent;
     color: #656565
 }
@@ -777,7 +775,9 @@ body.dev .tickets_header_links {
     padding: 2px 6px;
     margin-top: 3px;
     line-height: 17px;
-    white-space: nowrap
+    white-space: nowrap;
+    color: #2a5885;
+    cursor: pointer
 }
 
 #tickets_templates .template_links_wrap .template.template_selected {
@@ -814,6 +814,10 @@ body.dev .tickets_header_links {
 
 #tickets_templates .templates_empty_wrap .templates_empty_text {
     color: #777
+}
+
+#tickets_templates .template_sortable_ghost {
+    opacity: 0.2
 }
 
 #tickets_pass_to {
