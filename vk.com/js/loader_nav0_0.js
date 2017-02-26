@@ -143,7 +143,7 @@ var stVersions = {
     'html5audio.js': 976782859,
     'html5video.js': 223664659,
     'html5video.css': 2883302564,
-    'audioplayer.js': 3340122347,
+    'audioplayer.js': 3902584551,
     'audioplayer.css': 2784065239,
     'audio_html5.js': 287741914,
     'audio.js': 1733633534,
@@ -570,4 +570,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 6040;
+var _rnd = 347;

@@ -224,12 +224,12 @@
                 })
             },
             chooseAudioBox: function(t, i, e) {
-                if (window.event = window.event || e, void 0 !== t.selected) cur.lastAddMedia.unchooseMedia(t.selected), t.selected = void 0, removeClass(domPN(t), "audio_selected"), t.innerHTML = i.labels.add;
+                if (void 0 !== t.selected) cur.lastAddMedia.unchooseMedia(t.selected), t.selected = void 0, removeClass(domPN(t), "audio_selected"), t.innerHTML = i.labels.add;
                 else {
                     var o = cur.attachCount && cur.attachCount() || 0;
                     cur.chooseMedia("audio", i.owner_id + "_" + i.id, i.info), (!cur.attachCount || cur.attachCount() > o) && cur.lastAddMedia && (t.selected = cur.lastAddMedia.chosenMedias.length - 1, addClass(domPN(t), "audio_selected"), t.innerHTML = i.labels.cancel)
                 }
-                window.event = void 0
+                return cancelEvent(e)
             },
             drawAudio: function(t, i) {
                 for (var e = JSON.parse(getTemplate("audio_bits_to_cls")), o = t[AudioUtils.AUDIO_ITEM_INDEX_FLAGS], a = [], s = 0; 32 > s; s++) {
@@ -882,8 +882,8 @@
             var i = 0,
                 e = function(t) {
                     if (-1 != i) {
-                        if (t && (i++,
-                                this._implSetDelay(200), i > 3)) {
+                        if (t && (i++, this._implSetDelay(200),
+                                i > 3)) {
                             i = -1;
                             var e = new MessageBox({
                                 title: getLang("global_error")
@@ -1642,7 +1642,7 @@
             if (vk.widget) return AudioPlayer.ADS_ALLOW_DISABLED;
             if (cur.adsPreview) return AudioPlayer.ADS_ALLOW_ALLOWED;
             var e = this._adsConfig || vk.audioAdsConfig;
-            return e ? e.enabled ? (!inArray(i.getPlaybackSection(), e.sections), e.day_limit_reached, AudioPlayer.ADS_ALLOW_ALLOWED) : AudioPlayer.ADS_ALLOW_DISABLED : AudioPlayer.ADS_ALLOW_REJECT
+            return e ? e.enabled ? inArray(i.getPlaybackSection(), e.sections) ? e.day_limit_reached ? AudioPlayer.ADS_ALLOW_REJECT : AudioPlayer.ADS_ALLOW_ALLOWED : AudioPlayer.ADS_ALLOW_REJECT : AudioPlayer.ADS_ALLOW_DISABLED : AudioPlayer.ADS_ALLOW_REJECT
         }, AudioPlayer.prototype._adsFetchAd = function(t, i, e, o) {
             this._loadAdman(function() {
                 function a(t, i) {
