@@ -215,7 +215,7 @@ var stVersions = {
     'module.css': 104302213,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 132598536,
-    'page.js': 1970053011,
+    'page.js': 3575869463,
     'page.css': 926066209,
     'page_help.css': 3487527373,
     'public.css': 2265726343,
@@ -258,7 +258,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 1600952117,
     'postbox.js': 760473537,
-    'feed.js': 752243193,
+    'feed.js': 2219175661,
     'feed.css': 3416854048,
     'privacy.js': 3875115925,
     'privacy.css': 3895908516,
@@ -570,4 +570,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 884;
+var _rnd = 8360;

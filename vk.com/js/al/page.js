@@ -2423,6 +2423,8 @@ var Wall = {
             added = 0;
         var adsPosts = [];
         var prevPostEl;
+        var prevCurrent;
+        var insertPositionEl;
 
         function getPostId(postEl) {
             if (!postEl || !postEl.tagName || postEl.tagName.toLowerCase() !== 'div' || !postEl.id || postEl.id.substr(0, 4) !== 'post') {
@@ -2431,7 +2433,7 @@ var Wall = {
             return postEl.id;
         }
 
-        for (var el = (revert ? n.firstChild : n.lastChild); el; el = re(revert ? n.firstChild : n.lastChild)) {
+        for (var el = re(revert ? n.firstChild : n.lastChild); el; el = re(revert ? n.firstChild : n.lastChild)) {
             if (el.tagName.toLowerCase() == 'input') {
                 var old = ge(el.id);
                 if (old) {
@@ -2446,7 +2448,8 @@ var Wall = {
             if (hasClass(el, '_ads_promoted_post')) {
                 adsPosts.push({
                     el: el,
-                    beforePost: getPostId(revert ? prevPostEl : n.lastChild)
+                    beforePost: getPostId(revert ? n.firstChild : prevPostEl),
+                    afterPost: getPostId(revert ? prevPostEl : n.lastChild)
                 });
                 continue;
             }
@@ -2475,10 +2478,17 @@ var Wall = {
                 current = el;
                 --added;
             } else {
+                // if ad was skipped above (during "current" iteration), take it into account again
+                insertPositionEl = current;
+                prevCurrent = (revert ? current.previousSibling : current.nextSibling);
+                if (prevCurrent && hasClass(prevCurrent, '_ads_promoted_post')) {
+                    insertPositionEl = prevCurrent;
+                }
+
                 if (revert) {
-                    posts.insertBefore(el, current);
+                    posts.insertBefore(el, insertPositionEl);
                 } else {
-                    posts.insertBefore(el, current.nextSibling);
+                    posts.insertBefore(el, insertPositionEl.nextSibling);
                 }
             }
             prevPostEl = el;
@@ -2491,7 +2501,7 @@ var Wall = {
         if (adsPosts.length) {
             for (var i = 0, l = adsPosts.length; i < l; ++i) {
                 adsPostData = adsPosts[i];
-                if (!adsPostData.beforePost) {
+                if (!adsPostData.beforePost && !adsPostData.afterPost) {
                     continue;
                 }
                 // �� `ge`, � ����, �� ������ ����������� id div-�� � ������� c ������� �������
@@ -2503,6 +2513,11 @@ var Wall = {
                     }
                     if (adsPostData.beforePost === postId) {
                         posts.insertBefore(adsPostData.el, el);
+                        positionFound = true;
+                        break;
+                    }
+                    if (adsPostData.afterPost === postId) {
+                        posts.insertBefore(adsPostData.el, el.nextSibling);
                         positionFound = true;
                         break;
                     }

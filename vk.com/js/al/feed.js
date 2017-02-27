@@ -19,12 +19,17 @@ var Feed = {
                 a = s.viewed,
                 c = [];
             return each(o, function(s, o) {
-                var d = domFC(o).id;
-                if (!a[d] && document.body.contains(o))
-                    if (n(o, r, e, t)) {
-                        var l = Date.now();
-                        o.longViewStartedAt ? l - o.longViewStartedAt >= i && (a[d] = !0, c.push(feed.postsGetRaws(o))) : o.longViewStartedAt = Date.now()
-                    } else o.longViewStartedAt = null
+                var d = domFC(o),
+                    l = d.id;
+                if (d && l) {
+                    var u = domData(d, "ad-block-uid"),
+                        f = "" + l;
+                    if (u && (f += "_" + u), !a[f] && document.body.contains(o))
+                        if (n(o, r, e, t)) {
+                            var p = Date.now();
+                            o.longViewStartedAt ? p - o.longViewStartedAt >= i && (a[f] = !0, c.push(feed.postsGetRaws(o))) : o.longViewStartedAt = Date.now()
+                        } else o.longViewStartedAt = null
+                }
             }), c
         },
         isAutoplayAd: function(e) {
@@ -296,26 +301,26 @@ var Feed = {
                     F = i.offsetHeight,
                     u = r.split("_")[0],
                     l = 0 > u ? 8 & a ? 2 : 2 & a ? 1 : 0 : 0,
-                    V = wall.getNewReplyHTML(e, l),
+                    D = wall.getNewReplyHTML(e, l),
                     f = !1,
-                    D = !1;
+                    V = !1;
                 if (isVisible(j) && isVisible(A) && !isVisible("reply_link" + r)) {
                     var q = j.nextSibling,
                         I = geByClass("new_reply", j, "div").length + 1;
                     if (cur.wallMyOpened[r]) {
-                        q && "replies_open" == q.className && re(q), D = !0;
+                        q && "replies_open" == q.className && re(q), V = !0;
                         var U = geByClass1("wr_header", j, "a"),
                             O = geByClass("reply", j, "div").length + 1,
                             Y = O;
                         U && (Y = intval(U.getAttribute("offs").split("/")[1]) + 1), (Y > 5 || Y > O) && (U || j.insertBefore(U = ce("a", {
                             className: "wr_header"
                         }), j.firstChild), wall.updateRepliesHeader(r, U, O, Y))
-                    } else V = wall.updatePostImages(V), f = se(V), addClass(f, "new_reply"), q && "replies_open" == q.className || (q = ce("div", {
+                    } else D = wall.updatePostImages(D), f = se(D), addClass(f, "new_reply"), q && "replies_open" == q.className || (q = ce("div", {
                         className: "replies_open",
                         onclick: wall.openNewComments.pbind(r)
                     }), j.parentNode.insertBefore(q, j.nextSibling)), q.innerHTML = getLang("wall_x_new_replies_more", Math.min(100, I)), q.newCnt = I
-                } else re("reply_link" + r), show(A, j), D = !0;
-                r.split("_")[0] == vk.id && cur.feedUnreadCount++, f || (f = se(V)), j.appendChild(f), feed.needScrollPost(t, D ? f : q) && (c += i.offsetHeight - F), D && nodeUpdated(f), Wall.repliesSideSetup(r), Wall.updateMentionsIndex();
+                } else re("reply_link" + r), show(A, j), V = !0;
+                r.split("_")[0] == vk.id && cur.feedUnreadCount++, f || (f = se(D)), j.appendChild(f), feed.needScrollPost(t, V ? f : q) && (c += i.offsetHeight - F), V && nodeUpdated(f), Wall.repliesSideSetup(r), Wall.updateMentionsIndex();
                 break;
             case "del_reply":
                 if (!cur.wallMyDeleted[r] && i) {
@@ -942,8 +947,7 @@ var Feed = {
             onDone: function(s) {
                 val("post" + e, s), each(geByClass("post", cur.rowsCont), function(s, o) {
                     var r = this.id.match(/post((-?\d+)_(-?\d+)(_\d+)?)/);
-                    r && r[1] != e && (!r[4] && r[2] == t || r[4] && r[3] == t) && (revertLastInlineVideo(this),
-                        hide(this.parentNode))
+                    r && r[1] != e && (!r[4] && r[2] == t || r[4] && r[3] == t) && (revertLastInlineVideo(this), hide(this.parentNode))
                 })
             },
             showProgress: o && lockButton.pbind(o),
