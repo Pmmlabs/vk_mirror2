@@ -1237,6 +1237,10 @@ img.im_photo_thumb {
     max-width: 550px
 }
 
+.im-page_classic.im-page .im-mess-stack_fwd .audio_row {
+    max-width: 355px
+}
+
 .im-page_classic.im-page .im-mess-stack--photo {
     left: 36px
 }

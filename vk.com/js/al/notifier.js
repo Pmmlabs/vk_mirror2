@@ -169,6 +169,77 @@
             f = e.ATTACH_STORE_OP = "bind_attach",
             p = e.RECENT_SEARCH_OP = "recent_search"
     },
+    39: function(t, e) {
+        "use strict";
+
+        function i(t, e, i) {
+            return new Promise(function(a, o) {
+                ajax.post(t, e, {
+                    timeout: i,
+                    onDone: function() {
+                        a.apply(null, [
+                            [].concat(Array.prototype.slice.call(arguments))
+                        ])
+                    },
+                    onFail: function() {
+                        return o.apply(null, arguments), !0
+                    }
+                })
+            })
+        }
+
+        function a(t, e) {
+            var i = arguments.length <= 2 || void 0 === arguments[2] ? {} : arguments[2],
+                a = o(t, e, i),
+                s = a.request;
+            a.cancel;
+            return s
+        }
+
+        function o(t, e) {
+            function i() {
+                o.abort()
+            }
+            var a = arguments.length <= 2 || void 0 === arguments[2] ? {} : arguments[2],
+                o = void 0;
+            o = window.XDomainRequest ? new XDomainRequest : ajax._getreq();
+            var s = new Promise(function(i, s) {
+                var r, n = Date.now(),
+                    c = a.timeout || 60,
+                    l = ajx2q(e);
+                if (window.XDomainRequest) o.open("get", t + "?" + l), o.ontimeout = function() {
+                    s("", {})
+                }, o.onerror = function() {
+                    s("", {})
+                }, o.onload = function() {
+                    i(o.responseText)
+                }, setTimeout(function() {
+                    o.send()
+                }, 0);
+                else {
+                    o.onreadystatechange = function() {
+                        4 == o.readyState && (clearInterval(r), o.status >= 200 && o.status < 300 ? i(o.responseText, o) : s(o.responseText, o))
+                    };
+                    try {
+                        o.open("GET", t + "?" + l, !0)
+                    } catch (u) {
+                        return s(u)
+                    }
+                    o.send()
+                }
+                r = setInterval(function() {
+                    Date.now() - n > 1e3 * c && (s("", {}), clearInterval(r))
+                }, 1e3)
+            });
+            return {
+                request: s,
+                cancel: i
+            }
+        }
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        }), e.post = i, e.plainget = a, e.plaingetCancelable = o
+    },
     161: function(t, e, i) {
         "use strict";
 
@@ -266,8 +337,43 @@
     },
     176: function(t, e, i) {
         "use strict";
-        var a = i(17),
-            o = 1e4;
+
+        function a(t, e) {
+            return t = t.map(function(t) {
+                return t.slice(0, 2).join(",")
+            }).join("*"), (0, r.post)("al_im.php", {
+                act: "draft_medias",
+                media: t
+            })
+        }
+        var o = function() {
+                function t(t, e) {
+                    var i = [],
+                        a = !0,
+                        o = !1,
+                        s = void 0;
+                    try {
+                        for (var r, n = t[Symbol.iterator](); !(a = (r = n.next()).done) && (i.push(r.value), !e || i.length !== e); a = !0);
+                    } catch (c) {
+                        o = !0, s = c
+                    } finally {
+                        try {
+                            !a && n["return"] && n["return"]()
+                        } finally {
+                            if (o) throw s
+                        }
+                    }
+                    return i
+                }
+                return function(e, i) {
+                    if (Array.isArray(e)) return e;
+                    if (Symbol.iterator in Object(e)) return t(e, i);
+                    throw new TypeError("Invalid attempt to destructure non-iterable instance")
+                }
+            }(),
+            s = i(17),
+            r = i(39),
+            n = 1e4;
         window.curFastChat || (window.curFastChat = {}), window.FastChat = {
             init: function(t) {
                 extend(curFastChat, {
@@ -276,7 +382,7 @@
                     gotPeers: {},
                     needMedia: {},
                     gotMedia: {},
-                    ldb: (0, a.mount)(vk.id),
+                    ldb: (0, s.mount)(vk.id),
                     myTypingEvents: {},
                     typingEvents: {},
                     inited: !0,
@@ -1024,7 +1130,8 @@
                 }
             },
             getCorrespondents: function(t, e, i) {
-                return clearTimeout(curFastChat.correspondentsTO), curFastChat.correspondents && void 0 !== curFastChat.correspondents[t] ? FastChat.wrapCorrespondents(curFastChat.correspondents[t]) || i && '<div class="fc_clist_empty">' + getLang("mail_im_clist_notfound") + "</div>" || "" : (curFastChat.correspondentsTO = setTimeout(FastChat.loadCorrespondents.pbind(t, e), 100), '<div id="fc_correspondents"></div>')
+                return clearTimeout(curFastChat.correspondentsTO),
+                    curFastChat.correspondents && void 0 !== curFastChat.correspondents[t] ? FastChat.wrapCorrespondents(curFastChat.correspondents[t]) || i && '<div class="fc_clist_empty">' + getLang("mail_im_clist_notfound") + "</div>" || "" : (curFastChat.correspondentsTO = setTimeout(FastChat.loadCorrespondents.pbind(t, e), 100), '<div id="fc_correspondents"></div>')
             },
             loadCorrespondents: function(t, e) {
                 t == curFastChat.q && ajax.post("hints.php", {
@@ -1079,7 +1186,7 @@
                         e = e.parentNode
                     }
                     var i = curFastChat.tabs[curFastChat.activeBox.options.peer];
-                    return i && (trim(Emoji.editableVal(i.txt)) || i.imMedia && i.imMedia.getMedias().length) ? !0 : void curFastChat.activeBox.hide();
+                    return i && (trim(Emoji.editableVal(i.txt)) || i.imMedia && i.imMedia.getMedias().length) ? !0 : void curFastChat.activeBox.hide()
                 }
             },
             clistCache: function(t) {
@@ -1610,7 +1717,7 @@
                         notify: geByClass1("fc_tab_notify_wrap", i),
                         title: geByClass1("fc_tab_title", i)
                     },
-                    s = 30;
+                    r = 30;
                 if (o.addMediaBtn = geByClass1("fc_tab_attach", i), o.editable) cur.t = o, o.emojiId = Emoji.init(o.txt, {
                     controlsCont: geByClass1("fc_tab_txt_wrap", i),
                     ttDiff: -46,
@@ -1649,14 +1756,14 @@
                     }
                 });
                 else {
-                    var r = 15;
+                    var n = 15;
                     autosizeSetup(o.txt, {
-                        minHeight: r,
+                        minHeight: n,
                         maxHeight: 42
                     }), o.txt.autosize.options.onResize = function(t) {
                         if (!o.box.minimized) {
-                            var e = 42 == t ? 42 : r;
-                            e != t && setStyle(o.txt, "height", e), e != s && (setStyle(o.logWrap, "height", o.logWrap.clientHeight - e + s), s = e, o.scroll && o.scroll.update(!1, !0))
+                            var e = 42 == t ? 42 : n;
+                            e != t && setStyle(o.txt, "height", e), e != r && (setStyle(o.logWrap, "height", o.logWrap.clientHeight - e + r), r = e, o.scroll && o.scroll.update(!1, !0))
                         }
                     }
                 }
@@ -1678,7 +1785,18 @@
                         global: 1,
                         toId: vk.id
                     }), o.imMedia.onChange = setTimeout.pbind(function() {
-                        curFastChat.sendOnUpload && (FastChat.send(curFastChat.sendOnUpload), curFastChat.sendOnUpload = void 0), FastChat.onTxtResize(t)
+                        if (curFastChat.sendOnUpload) FastChat.send(curFastChat.sendOnUpload), curFastChat.sendOnUpload = void 0;
+                        else {
+                            var e = o.imMedia.getMedias(),
+                                i = curFastChat.ldb.select(s.DRAFT_STORE_OP, t),
+                                a = extend({}, i, {
+                                    medias: e.map(function(t) {
+                                        return t.slice(0, 2)
+                                    })
+                                });
+                            curFastChat.ldb.update(s.DRAFT_STORE_OP, [t, a])
+                        }
+                        FastChat.onTxtResize(t)
                     }, 0)
                 }), o
             },
@@ -1935,12 +2053,12 @@
                     e.blinking = !0, clearTimeout(e.blinkingTO);
                     var i = e.box.wrap,
                         a = i.className,
-                        s = Math.min(o, intval(getStyle(i, "zIndex")));
+                        o = Math.min(n, intval(getStyle(i, "zIndex")));
                     setStyle(i, {
-                        zIndex: o
+                        zIndex: n
                     }), removeClass(i, "rb_inactive"), e.blinkingTO = setTimeout(function() {
-                        delete e.blinking, delete e.blinkingTO, getStyle(i, "zIndex") == o && (setStyle(i, {
-                            zIndex: s
+                        delete e.blinking, delete e.blinkingTO, getStyle(i, "zIndex") == n && (setStyle(i, {
+                            zIndex: o
                         }), i.className = a)
                     }, 2e3)
                 }
@@ -2016,19 +2134,28 @@
                 var e = curFastChat.tabs[t],
                     i = (e || {}).txt;
                 if (i && e) {
-                    var o = Emoji.editableVal(i),
-                        s = {
-                            txt: trim(o) || "",
-                            medias: []
-                        };
-                    s.txt.length || (s = !1), curFastChat.ldb.update(a.DRAFT_STORE_OP, [t, s])
+                    var a = Emoji.editableVal(i),
+                        o = curFastChat.ldb.select(s.DRAFT_STORE_OP, t),
+                        r = extend({}, o, {
+                            txt: trim(a) || ""
+                        });
+                    curFastChat.ldb.update(s.DRAFT_STORE_OP, [t, r])
                 }
             },
             restoreDraft: function(t) {
                 var e = curFastChat.tabs[t],
                     i = e.txt,
-                    o = curFastChat.ldb.select(a.DRAFT_STORE_OP, t);
-                return !i || !e || !o || o.txt && val(i).length > o.txt.length ? !1 : (o.txt = clean(o.txt), e.editable ? i.innerHTML = Emoji.emojiToHTML(o.txt, 1) : val(i, o.txt || ""), FastChat.checkEditable(e.emojiId, i), setTimeout(function() {
+                    r = curFastChat.ldb.select(s.DRAFT_STORE_OP, t);
+                return !i || !e || !r || r.txt && val(i).length > r.txt.length && 0 === r.medias.length ? !1 : (r.txt = clean(r.txt), e.editable ? i.innerHTML = Emoji.emojiToHTML(r.txt, 1) : val(i, r.txt || ""), setTimeout(function() {
+                    r.medias && r.medias.length > 0 && a(r.medias, t).then(function(t) {
+                        var i = o(t, 1),
+                            a = i[0];
+                        a.forEach(function(t) {
+                            var i;
+                            (i = e.imMedia).chooseMedia.apply(i, t)
+                        })
+                    })
+                }, 40), FastChat.checkEditable(e.emojiId, i), setTimeout(function() {
                     i.scrollTop = i.scrollHeight
                 }, 10), !0)
             },
@@ -2074,20 +2201,19 @@
                     n = t[4],
                     c = "";
                 return n && (1 & n && (c += rs(vk.pr_tpl, {
-                        id: "",
-                        cls: ""
-                    }), t[1] > 0 && setTimeout(FastChat.needMsgMedia.pbind(i, t[1]), 5)), 6 & n && (c += rs(curFastChat.tpl.msg_fwd, {
-                        msg_id: t[1],
-                        peer_nice: FastChat.nicePeer(i),
-                        label: getLang(2 & n ? "mail_im_fwd_msg" : "mail_im_fwd_msgs")
-                    })), 8 & n && (r.sticker = !0), c && (r.text += '<div class="fc_msg_attachments" id="fc_msg_attachments' + r.id + '">' + c + "</div>")),
-                    e = 2 & a ? curFastChat.me : i > 2e9 ? curFastChat.tabs[i].data.members[o] : curFastChat.tabs[i], extend(r, {
-                        from_id: o,
-                        link: e.link,
-                        photo: e.photo,
-                        name: e.name,
-                        fname: i > 2e9 ? e.fname || e.first_name : ""
-                    }), r
+                    id: "",
+                    cls: ""
+                }), t[1] > 0 && setTimeout(FastChat.needMsgMedia.pbind(i, t[1]), 5)), 6 & n && (c += rs(curFastChat.tpl.msg_fwd, {
+                    msg_id: t[1],
+                    peer_nice: FastChat.nicePeer(i),
+                    label: getLang(2 & n ? "mail_im_fwd_msg" : "mail_im_fwd_msgs")
+                })), 8 & n && (r.sticker = !0), c && (r.text += '<div class="fc_msg_attachments" id="fc_msg_attachments' + r.id + '">' + c + "</div>")), e = 2 & a ? curFastChat.me : i > 2e9 ? curFastChat.tabs[i].data.members[o] : curFastChat.tabs[i], extend(r, {
+                    from_id: o,
+                    link: e.link,
+                    photo: e.photo,
+                    name: e.name,
+                    fname: i > 2e9 ? e.fname || e.first_name : ""
+                }), r
             },
             needMsgMedia: function(t, e) {
                 0 >= e || (FastChat.lcSend("needMedia", {
@@ -2867,8 +2993,7 @@
                 }
             },
             lcServer: function(t) {
-                debugLog("becoming server"), this.lpInit(),
-                    this.lcSend("new_server"), Notifier.lcCheckServer(!0), curNotifier.is_server = !0, Notifier.onInstanceServer(1), curNotifier.lp_connected || (curNotifier.lp_connected = !0, Notifier.onConnectionInit()), window.curFastChat && curFastChat.inited && FastChat.becameServer(), this.lpStop(), t ? this.lpReset(this.lpStart.bind(this)) : this.lpStart()
+                debugLog("becoming server"), this.lpInit(), this.lcSend("new_server"), Notifier.lcCheckServer(!0), curNotifier.is_server = !0, Notifier.onInstanceServer(1), curNotifier.lp_connected || (curNotifier.lp_connected = !0, Notifier.onConnectionInit()), window.curFastChat && curFastChat.inited && FastChat.becameServer(), this.lpStop(), t ? this.lpReset(this.lpStart.bind(this)) : this.lpStart()
             },
             lcNoServer: function() {
                 this.lpStop(), curNotifier.is_server && (debugLog("not server now"), this.onInstanceServer(0), curNotifier.is_server = !1)
