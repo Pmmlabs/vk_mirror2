@@ -74,3 +74,11 @@
 .ads_web_param_value {
     padding-bottom: 10px
 }
+
+.ads_web_list_info_distr_other_servers {
+    display: inline-block;
+    vertical-align: top;
+    width: 460px;
+    font-size: 12px;
+    color: gray
+}

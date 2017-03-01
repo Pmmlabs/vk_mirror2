@@ -6561,7 +6561,7 @@
                     })
                 }
             }),
-            w = setInterval(o.bind(null, t, e), 1e3);
+            w = setInterval(o.bind(null, t, e), 3e4);
         return (0, S.isReservedPeer)(t.get().peer) || setTimeout(function() {
             t.set(T.setActions).then(a().changeActions)
         }), i(e, w, n, y)
@@ -9237,7 +9237,7 @@
                                 break;
                             case Q.eventTypes.GOT_ONLINE:
                             case Q.eventTypes.GOT_OFFLINE:
-                                var T = o.type === Q.eventTypes.GOT_ONLINE ? !0 : !1;
+                                var T = o.type === Q.eventTypes.GOT_ONLINE;
                                 e.set(ne.updateOnline.bind(null, o.userId, T)).then(function(e) {
                                     (0, re.isTabLoaded)(e.get(), o.userId) && (t.updateOnline(o.userId, e), n.updateOnline(o.userId, e))
                                 });
