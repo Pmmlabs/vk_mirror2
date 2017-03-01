@@ -4827,6 +4827,8 @@ AdsViewEditor.prototype.completeLink = function() {
 
     Ads.initFixed('ads_edit_audience_wrap');
 
+    addClass('ads_edit_error_link_msg', 'unshown');
+
     var scrollElem = ge('ads_param_link_type_wrap');
     var scrollY = getXY(scrollElem)[1] + getSize(scrollElem)[1];
     scrollToY(scrollY);

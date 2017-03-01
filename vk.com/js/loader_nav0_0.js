@@ -373,8 +373,8 @@ var stVersions = {
     'ads_bonus.css': 3649229228,
     'ads.js': 270622120,
     'ads_payments.js': 2909099260,
-    'ads_edit.css': 4124130320,
-    'ads_edit.js': 1542034176,
+    'ads_edit.css': 2193779145,
+    'ads_edit.js': 3524548172,
     'ads_edit_geo.js': 1634516705,
     'ads_moder_common.css': 805633679,
     'ads_moder.css': 2832150502,
@@ -422,7 +422,7 @@ var stVersions = {
     'contests.css': 4231728050,
     'ui.css': 1380022662,
     'ui.js': 3953380422,
-    'ui_common.js': 3299179389,
+    'ui_common.js': 760231200,
     'ui_common.css': 1997027190,
     'ui_media_selector.js': 1640890848,
     'ui_media_selector.css': 881050964,
@@ -570,4 +570,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 9981;
+var _rnd = 2206;
