@@ -1197,6 +1197,6 @@
     top: 20px;
     width: 24px;
     height: 24px;
-    background: url("data:image/svg+xml,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%22506%20120%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cg%20opacity%3D%22.5%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M506%20120h24v24h-24z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M512%20126l12%2012M524%20126l-12%2012%22%20stroke%3D%22%23828A99%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%22506%20120%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cg%20opacity%3D%22.5%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M506%20120h24v24h-24z%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M512%20126l12%2012M524%20126l-12%2012%22%20stroke%3D%22%23828A99%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
     cursor: pointer
 }

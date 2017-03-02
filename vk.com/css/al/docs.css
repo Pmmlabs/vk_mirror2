@@ -7,7 +7,9 @@
 .docs_choose_dropbox,
 .docs_choose_upload_area_label,
 .docs_item_icon,
-.docs_item_play {
+.docs_item_play,
+.docs_office_365_notice,
+.eltt.feature_intro_tt.docs_office_365_tt {
     -ms-high-contrast-adjust: none
 }
 
@@ -429,4 +431,59 @@ a.docs_item_name {
 
 #box_layer_wrap.box_layer_wrap--docs_upload {
     z-index: 2000
+}
+
+.docs_office_365_notice {
+    position: relative;
+    border-radius: 3px;
+    margin: 20px 0 5px;
+    padding: 11px 30px 11px 56px;
+    line-height: 1.46;
+    background: #e7edf2 url(/images/icons/docs_notice_office365_logo.png) no-repeat 11px 11px
+}
+
+.docs_office_365_notice_more {
+    font-weight: 600;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.docs_office_365_notice_hide {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    padding: 11px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%228%22%20height%3D%228%22%20viewBox%3D%22492%2010%208%208%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke%3D%22%23828A99%22%20stroke-width%3D%222%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M499%2011l-6%206M493%2011l6%206%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") no-repeat 50%;
+    opacity: .7;
+    cursor: pointer
+}
+
+.docs_office_365_notice_hide:hover {
+    opacity: 1
+}
+
+.eltt.feature_intro_tt.docs_office_365_tt {
+    min-height: 104px;
+    padding-left: 104px;
+    background: #fff url(/images/icons/docs_tooltip_office365_logo.png) no-repeat 16px 16px;
+    font-size: 14px;
+    line-height: 1.285
+}
+
+.docs_office_365_tt_title {
+    font-weight: 600;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.docs_office_365_tt_body {
+    margin-bottom: 5px
+}
+
+.docs_office_365_tt_more {
+    font-weight: 600;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }

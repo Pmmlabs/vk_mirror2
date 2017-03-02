@@ -265,8 +265,7 @@
                 a = r[0],
                 i = r[1],
                 o = r[2];
-            r[3], r[4];
-            t.allShown = o, t.history = u(t.history) + a, t.historyToAppend = a;
+            r[3], r[4], t.allShown = o, t.history = u(t.history) + a, t.historyToAppend = a;
             var s = Object.keys(i).length;
             return t.skipped -= s, t.offset += s, t.msgs = extend(t.msgs, i), e
         })
@@ -1601,8 +1600,7 @@
                 hash: t.tabs[e].hash
             }).then(function(r) {
                 var a = Bt(r, 2);
-                a[0], a[1];
-                return delete t.blockedFlagUpdates[e], n.msgs = null, n.history = null, n.unread = 0, n.lastmsg = !1, n.lastmsg_meta = null, t
+                return a[0], a[1], delete t.blockedFlagUpdates[e], n.msgs = null, n.history = null, n.unread = 0, n.lastmsg = !1, n.lastmsg_meta = null, t
             })
         }
     }), t.updateChatTopic = s(function(e, t, n) {
@@ -2052,8 +2050,7 @@
     }
 
     function L(e, t) {
-        new Date(1e3 * e);
-        return langDate(1e3 * e, "{hour}:{minute} {am_pm}", 1e3 * t, [], !0)
+        return new Date(1e3 * e), langDate(1e3 * e, "{hour}:{minute} {am_pm}", 1e3 * t, [], !0)
     }
 
     function A(e, t, n) {
@@ -4175,8 +4172,7 @@
         var n = arguments.length <= 2 || void 0 === arguments[2] ? {} : arguments[2],
             r = a(e, t, n),
             i = r.request;
-        r.cancel;
-        return i
+        return r.cancel, i
     }
 
     function a(e, t) {
@@ -4226,8 +4222,7 @@
     "use strict";
     Object.defineProperty(t, "__esModule", {
         value: !0
-    });
-    t.screenfull = function() {
+    }), t.screenfull = function() {
         var e = "undefined" != typeof Element && "ALLOW_KEYBOARD_INPUT" in Element,
             t = function() {
                 for (var e, t, n = [
@@ -4574,8 +4569,7 @@
 
     function T(e, t) {
         if (e.get().loading || e.get().stop || !e.get().activated) return Promise.resolve([]);
-        Math.random();
-        e.get().loading = !0;
+        Math.random(), e.get().loading = !0;
         for (var n = arguments.length, r = Array(n > 2 ? n - 2 : 0), a = 2; n > a; a++) r[a - 2] = arguments[a];
         return t.apply(void 0, r).then(function(t) {
             e.get().loading = !1
@@ -6527,8 +6521,7 @@
             changedMessageSelection: function(t) {
                 if (0 !== t.get().peer) {
                     var n = t.get().selectedMessages || [];
-                    n.length > 0;
-                    n.length > 0 ? l(e, n, t) : u(e, t)
+                    n.length > 0, n.length > 0 ? l(e, n, t) : u(e, t)
                 }
             },
             unmount: function() {
@@ -8322,8 +8315,7 @@
             },
             updateChatPhoto: function(e, a, i) {
                 if ((0, q.isPeerActive)(e.peerId, i.get())) {
-                    i.get().tabs[e.peerId];
-                    r.renderPeer(i);
+                    i.get().tabs[e.peerId], r.renderPeer(i);
                     var o = I(n);
                     (0, q.addChatPhotoToUpdate)(e, a, i.get(), d(t)), o && n.scrollBottom(se)
                 }
@@ -8484,10 +8476,7 @@
                 l().updateState(e, t)
             },
             updateChat: function(e, t) {
-                if (e.get().peer === t) {
-                    e.get().tabs[t];
-                    r.changeActions(e), r.renderPeer(e), a.updateState(e), (0, z.updateMentions)(e.get())
-                }
+                e.get().peer === t && (e.get().tabs[t], r.changeActions(e), r.renderPeer(e), a.updateState(e), (0, z.updateMentions)(e.get()))
             },
             focustTxt: function(e) {
                 a.focusOn(e)
@@ -8704,8 +8693,7 @@
     }
 
     function s(e, t, n) {
-        e.get().peer;
-        uiSearch.showProgress(n), (0, f.searchMessagesInplace)(e.get().peer, e.get()).then(function(r) {
+        e.get().peer, uiSearch.showProgress(n), (0, f.searchMessagesInplace)(e.get().peer, e.get()).then(function(r) {
             uiSearch.hideProgress(n), t().insertSearch(r, e)
         })["catch"](function(e) {
             uiSearch.focus(n), uiSearch.hideProgress(n)
@@ -9157,8 +9145,7 @@
             },
             route: function(e, a, o, s) {
                 if ("undefined" != typeof e[0]) return !0;
-                geByClass1("_im_right_menu", i.parentNode);
-                e.box && (e = {
+                geByClass1("_im_right_menu", i.parentNode), e.box && (e = {
                     box: e.box
                 });
                 var u = !1;
@@ -10340,8 +10327,7 @@
 
     function s(e, t, n, r, a, i) {
         var s = arguments.length <= 6 || void 0 === arguments[6] ? !0 : arguments[6];
-        r.get().tabs[t];
-        return I(t, r) ? Promise.resolve(!1) : (0, H.getBindAttachToUrl)(t, cur.imDb, r.get()).then(function(l) {
+        return r.get().tabs[t], I(t, r) ? Promise.resolve(!1) : (0, H.getBindAttachToUrl)(t, cur.imDb, r.get()).then(function(l) {
             var u = Object.keys(l).filter(function(e) {
                 return e === n.message
             }).map(function(e) {
@@ -10636,26 +10622,25 @@
         return {
             restoreDraft: function(r) {
                 r.get().rebuilding_draft = !0, e.unchooseMedia(), e.chosenMedias = [], r.get().rebuilding_draft = !1;
-                var i = geByClass1("ms_item_gift", n),
-                    o = geByClass1("ms_item_money", n);
-                (0, U.isUserPeer)(r.get().peer) && !r.get().gid && r.get().peer != vk.id ? show(i, o) : hide(i, o);
-                var s = r.get().peer;
-                (0, U.isReservedPeer)(s) || Promise.all([(0, H.getAttaches)(r, s), (0, H.getTextDraft)(s, cur.imDb, r.get()), (0, H.getForwardedMessages)(s, cur.imDb, r.get(), !0)]).then(function(e) {
-                    return r.set(H.cleanMediaStore.bind(null, s, cur.imDb)).then(function(t) {
+                var i = r.get().peer,
+                    o = geByClass1("ms_item_gift", n),
+                    s = geByClass1("ms_item_money", n);
+                (0, U.isUserPeer)(i) && i != vk.id && !r.get().gid ? show(o) : hide(o), (0, U.isUserPeer)(i) && i != vk.id && !r.get().gid || (0, U.isCommunityPeer)(i) && r.get().moneyTransferCommAvail && !r.get().gid ? show(s) : hide(s), (0, U.isReservedPeer)(i) || Promise.all([(0, H.getAttaches)(r, i), (0, H.getTextDraft)(i, cur.imDb, r.get()), (0, H.getForwardedMessages)(i, cur.imDb, r.get(), !0)]).then(function(e) {
+                    return r.set(H.cleanMediaStore.bind(null, i, cur.imDb)).then(function(t) {
                         return e
                     })
-                }).then(function(i) {
-                    var o = F(i, 3),
-                        l = o[0],
-                        u = o[1],
-                        c = o[2],
-                        d = O(r, s, t);
+                }).then(function(o) {
+                    var s = F(o, 3),
+                        l = s[0],
+                        u = s[1],
+                        c = s[2],
+                        d = O(r, i, t);
                     if (!d) {
                         l.length > 0 && show(ge(ee));
                         for (var g = 0; g < l.length; g++) e.chooseMedia.apply(e, l[g]);
                         c.length > 0 ? y(c, n, r) : geByClass1(Z, n).innerHTML = "", b(t, u);
                         var f = a().updateScroll();
-                        a().scrollFix(r, s, f), x(r, n, u)
+                        a().scrollFix(r, i, f), x(r, n, u)
                     }
                 })
             },
@@ -10964,8 +10949,7 @@
 
     function uploadFailed(e, t, n) {
         var r = void 0 !== t.ind ? t.ind : t;
-        (t.fileName ? t.fileName : t).replace(/[&<>"']/g, "");
-        if ("fileApi" == Upload.types[r] && !Upload.options[r].wiki_editor) {
+        if ((t.fileName ? t.fileName : t).replace(/[&<>"']/g, ""), "fileApi" == Upload.types[r] && !Upload.options[r].wiki_editor) {
             var a = t.fileName ? r + "_" + t.fileName : t;
             re("upload" + a + "_progress_wrap"), e().unchoose(a)
         }

@@ -249,7 +249,7 @@ function MediaSelector(e, a, t, o) {
                 case "money":
                     l = function() {
                         var e = cur.peer;
-                        showBox("al_payments.php", extend(_, {
+                        c > -2e9 && 0 > c && (_.owner_id = c), showBox("al_payments.php", extend(_, {
                             act: "money_transfer_box",
                             to_id: e
                         }), {

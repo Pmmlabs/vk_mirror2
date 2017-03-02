@@ -693,7 +693,7 @@
             if (this.getType() == AudioPlaylist.TYPE_ALBUM) return this.loadSilent(i);
             if (s - 20 > t) return i && i(this);
             var r = this.getSearchParams();
-            return this.getType() != AudioPlaylist.TYPE_SEARCH || r.globalQuery ? (this._onDoneLoading = this._onDoneLoading || [], this._onDoneLoading.push(i), this._loading || (this._loading = !0, ajax.post("al_audio.php", {
+            return this.getType() != AudioPlaylist.TYPE_SEARCH || r.globalQuery ? (this._onDoneLoading = this._onDoneLoading || [], this._onDoneLoading.push(i), void(this._loading || (this._loading = !0, ajax.post("al_audio.php", {
                 act: "a_load_section",
                 type: this.getType(),
                 owner_id: this.getOwnerId(),
@@ -719,7 +719,7 @@
                         i && i(o)
                     }), getAudioPlayer().saveStateCurrentPlaylist()
                 }
-            })), void 0) : i && i(this)
+            })))) : i && i(this)
         }, AudioPlaylist.prototype.getLiveInfo = function() {
             var t = this.getSelf()._live;
             return t ? (t = t.split(","), {
@@ -795,8 +795,7 @@
                 if (i[0] == e._list[o][AudioUtils.AUDIO_ITEM_INDEX_OWNER_ID] && i[1] == e._list[o][AudioUtils.AUDIO_ITEM_INDEX_ID]) return o;
             return -1
         }, AudioPlaylist.prototype.getAudio = function(t) {
-            isString(t) ? t : AudioUtils.asObject(t).fullId;
-            t = t.split("_");
+            isString(t) ? t : AudioUtils.asObject(t).fullId, t = t.split("_");
             for (var i = this.getSelf(), e = 0, o = i._list.length; o > e; e++)
                 if (t[0] == i._list[e][AudioUtils.AUDIO_ITEM_INDEX_OWNER_ID] && t[1] == i._list[e][AudioUtils.AUDIO_ITEM_INDEX_ID]) return i._list[e];
             return null
@@ -946,8 +945,7 @@
                 }
         }, AudioPlayer.prototype.onMediaKeyPressedEvent = function(t) {
             var i = this.getCurrentAudio();
-            this.getCurrentPlaylist();
-            if (i) switch (t.keyCode) {
+            if (this.getCurrentPlaylist(), i) switch (t.keyCode) {
                 case 179:
                     this.isPlaying() ? this.pause() : this.play();
                     break;
@@ -1079,7 +1077,7 @@
             }
         }, AudioPlayer.prototype.shareMusic = function() {
             var t = this.getCurrentAudio();
-            if (t) return t = AudioUtils.asObject(t), !showBox("like.php", {
+            return t ? (t = AudioUtils.asObject(t), !showBox("like.php", {
                 act: "publish_box",
                 object: "audio" + t.fullId,
                 list: "s" + vk.id,
@@ -1089,7 +1087,7 @@
                 onFail: function(t) {
                     return showDoneBox(t), !0
                 }
-            })
+            })) : void 0
         }, AudioPlayer.prototype.hasStatusExport = function() {
             for (var t in this._statusExport)
                 if (this._statusExport[t]) return !0;

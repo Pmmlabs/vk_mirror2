@@ -225,7 +225,7 @@
 .app_edit_warning .close {
     height: 12px;
     width: 12px;
-    background: url("data:image/svg+xml,%3Csvg%20version%3D%221.0%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2012%2012%22%20width%3D%2212px%22%20height%3D%2212px%22%20style%3D%22%22%3E%0A%20%20%20%20%3Cpath%20style%3D%22stroke-width%3A1.5px%3Bstroke%3A%23E89B88%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%3B%22%20d%3D%22M2%2C2L10%2C10ZM10%2C2L2%2C10Z%22%2F%3E%0A%3C%2Fsvg%3E") 50% no-repeat
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20version%3D%221.0%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2012%2012%22%20width%3D%2212px%22%20height%3D%2212px%22%20style%3D%22%22%3E%0A%20%20%20%20%3Cpath%20style%3D%22stroke-width%3A1.5px%3Bstroke%3A%23E89B88%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%3B%22%20d%3D%22M2%2C2L10%2C10ZM10%2C2L2%2C10Z%22%2F%3E%0A%3C%2Fsvg%3E") 50% no-repeat
 }
 
 .app_edit_warning:hover .close {
@@ -1148,7 +1148,7 @@ body.dev .app_author {
 .apps_edit_embedded_update_button {
     height: 20px;
     width: 20px;
-    background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2214%22%20viewBox%3D%220%200%2018%2014%22%20style%3D%22%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M3.6%202.6C4.9%201%206.8%200%209%200%2012.5%200%2015.4%202.6%2015.9%206L13.9%206C13.4%203.7%2011.4%202%209%202%207.4%202%205.9%202.8%205%204L3.6%202.6%203.6%202.6ZM15%209L18%206%2012%206%2015%209ZM14.4%2011.4C13.1%2013%2011.2%2014%209%2014%205.5%2014%202.6%2011.4%202.1%208L4.1%208C4.6%2010.3%206.6%2012%209%2012%2010.6%2012%2012.1%2011.2%2013%2010L14.4%2011.4%2014.4%2011.4ZM3%205L0%208%206%208%203%205Z%22%20style%3D%22fill%3A%23828A99%3Bopacity%3A0.7%22%2F%3E%0A%3C%2Fsvg%3E") 50% no-repeat;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2214%22%20viewBox%3D%220%200%2018%2014%22%20style%3D%22%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M3.6%202.6C4.9%201%206.8%200%209%200%2012.5%200%2015.4%202.6%2015.9%206L13.9%206C13.4%203.7%2011.4%202%209%202%207.4%202%205.9%202.8%205%204L3.6%202.6%203.6%202.6ZM15%209L18%206%2012%206%2015%209ZM14.4%2011.4C13.1%2013%2011.2%2014%209%2014%205.5%2014%202.6%2011.4%202.1%208L4.1%208C4.6%2010.3%206.6%2012%209%2012%2010.6%2012%2012.1%2011.2%2013%2010L14.4%2011.4%2014.4%2011.4ZM3%205L0%208%206%208%203%205Z%22%20style%3D%22fill%3A%23828A99%3Bopacity%3A0.7%22%2F%3E%0A%3C%2Fsvg%3E") 50% no-repeat;
     border: none;
     cursor: pointer;
     margin-right: 5px

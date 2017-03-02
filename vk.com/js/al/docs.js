@@ -1,29 +1,35 @@
 var Docs = {
     init: function() {
-        extend(cur, {
-            module: "docs",
-            rmenu: ge("docs_rmenu"),
-            menuTypesList: ge("ui_rmenu_all_list"),
-            menuTagsList: ge("ui_rmenu_tag_list"),
-            menuTagsToggle: ge("ui_rmenu_tag_toggle"),
-            searchInput: ge("docs_search"),
-            searchReset: ge("docs_reset"),
-            listCont: ge("docs_list"),
-            summary: ge("docs_summary"),
-            titleEl: ge("docs_title"),
-            listMore: ge("docs_more"),
-            searchCont: ge("docs_search_list"),
-            searchSummary: ge("docs_search_summary"),
-            searchMore: ge("docs_search_more"),
-            searchBlock: ge("docs_search_list_block")
-        }), Docs.indexDocs(), setTimeout(elfocus.pbind(cur.searchInput), 0), extend(cur, {
-            list: {
-                all: cur.docs
-            },
-            cache: {}
-        }), cur.nav.push(function(e, o, r, c) {
-            return o[0] != r[0] || (r.section == o.section || e.id) && r.type == o.type ? void 0 : (Docs.changed(r.section, r.type), nav.setLoc(r), !1)
-        }), addEvent(window, "scroll", Docs.scrollResize)
+        if (extend(cur, {
+                module: "docs",
+                rmenu: ge("docs_rmenu"),
+                menuTypesList: ge("ui_rmenu_all_list"),
+                menuTagsList: ge("ui_rmenu_tag_list"),
+                menuTagsToggle: ge("ui_rmenu_tag_toggle"),
+                searchInput: ge("docs_search"),
+                searchReset: ge("docs_reset"),
+                listCont: ge("docs_list"),
+                summary: ge("docs_summary"),
+                titleEl: ge("docs_title"),
+                listMore: ge("docs_more"),
+                searchCont: ge("docs_search_list"),
+                searchSummary: ge("docs_search_summary"),
+                searchMore: ge("docs_search_more"),
+                searchBlock: ge("docs_search_list_block")
+            }), Docs.indexDocs(), setTimeout(elfocus.pbind(cur.searchInput), 0), extend(cur, {
+                list: {
+                    all: cur.docs
+                },
+                cache: {}
+            }), cur.nav.push(function(e, o, r, c) {
+                return o[0] != r[0] || (r.section == o.section || e.id) && r.type == o.type ? void 0 : (Docs.changed(r.section, r.type), nav.setLoc(r), !1)
+            }), addEvent(window, "scroll", Docs.scrollResize), cur.tpl.office365Notice) {
+            var e = intval(ls.get("docs_office_notice_shown"));
+            if (3 > e) {
+                var o = se(cur.tpl.office365Notice);
+                domInsertBefore(o, ge("docs_list")), ls.set("docs_office_notice_shown", e + 1)
+            }
+        }
     },
     changed: function(e, o) {
         cur.section = e || "all", cur.type = o || "", Docs.getList(), cur.searchInput.setValue(""), uiSearch.onChanged(cur.searchInput, !0), Docs.updateList("", {
@@ -111,13 +117,13 @@ var Docs = {
             t = e[3],
             a = e[4],
             i = e[6],
-            u = e[7],
+            n = e[7],
             d = e[9] || 0,
-            n = e[10] ? e[10] : "",
+            u = e[10] ? e[10] : "",
             l = "/doc" + a + "_" + o,
-            h = a == vk.id || u == vk.id || a == cur.oid && 0 > a && cur.groupAdmin,
+            h = a == vk.id || n == vk.id || a == cur.oid && 0 > a && cur.groupAdmin,
             p = "";
-        _ = "", cur.selection && (s = s.replace(cur.selection.re, cur.selection.val));
+        f = "", cur.selection && (s = s.replace(cur.selection.re, cur.selection.val));
         var i = e[6];
         if (i) {
             i = i.split(",");
@@ -128,30 +134,30 @@ var Docs = {
                 tags: i.join(", ")
             })
         }
-        var _ = e[8],
-            f = " docs_icon_type" + d,
+        var f = e[8],
+            _ = " docs_icon_type" + d,
             p = rs(h ? cur.tpl.edit : cur.tpl.add, {
                 oid: a,
                 item_id: o
             });
-        _ = rs(_ ? cur.tpl.thumb : cur.tpl.icon, {
+        f = rs(f ? cur.tpl.thumb : cur.tpl.icon, {
             oid: a,
             item_id: o,
             ext: r,
             url: l,
-            thumb: _,
+            thumb: f,
             title: clean(s),
-            icon_class: f
+            icon_class: _
         });
         var m = rs(cur.tpl.itemAdditionalInfo, {
             date: t,
-            actions: n,
+            actions: u,
             tags: i
         });
         return rs(cur.tpl.item, {
             oid: a,
             item_id: o,
-            thumb: _,
+            thumb: f,
             actions: p,
             title: s,
             title_clean: c,
@@ -248,8 +254,8 @@ var Docs = {
         if (!t) return domClosest("_feed_notification", e) && cur && "notifications" == cur.section ? !1 : !0;
         var a = geByClass1("docs_item_icon", t) || geByClass1("docs_item_thumb", t),
             i = a.href,
-            u = trim(a.getAttribute("ext"));
-        return -1 == "jpg|gif|png|pdf|doc|docx|xls|xlsx|rtf|ppt|pptx".indexOf(u) ? location.href = i + (i.match(/\?/) ? "&" : "?") + "wnd=1&fragment=" + intval(c) : (c && (i = i + (i.match(/\?/) ? "&" : "?") + "fragment=1"), window.open(i)), cancelEvent(s)
+            n = trim(a.getAttribute("ext"));
+        return -1 == "jpg|gif|png|pdf|doc|docx|xls|xlsx|rtf|ppt|pptx".indexOf(n) ? location.href = i + (i.match(/\?/) ? "&" : "?") + "wnd=1&fragment=" + intval(c) : (c && (i = i + (i.match(/\?/) ? "&" : "?") + "fragment=1"), window.open(i)), cancelEvent(s)
     },
     addItem: function(e, o, r, c) {
         cur._addedDocsInfo = cur._addedDocsInfo || {};
@@ -484,8 +490,8 @@ var Docs = {
             var s, t, a = (e.fileName || e.filename).replace(/[&<>"']/g, ""),
                 i = a ? r + "_" + a : e;
             cur.imMedia || cur.imwMedia ? (re("upload" + i + "_progress_wrap"), s = (-3 == cur.peer ? cur.imwMedia : cur.imMedia).lnkId, cur.addMedia[s].unchooseMedia(!1)) : cur.addMedia && (re("upload" + i + "_progress_wrap"), s = (cur.attachMediaIndexes || {})[c], s && cur.addMedia[s].unchooseMedia(!1));
-            var u = !0;
-            o && "string" == typeof o.error && o.error.match(/ERR_UPLOAD_TERMINATED/) && (u = !1), t = o && "wrong_arch_file" == o.error ? getLang("docs_upload_arch_fail") : o && "wrong_mp3_file" == o.error ? getLang("docs_upload_mp3_fail") : getLang("docs_upload_fail"), u && setTimeout(showFastBox({
+            var n = !0;
+            o && "string" == typeof o.error && o.error.match(/ERR_UPLOAD_TERMINATED/) && (n = !1), t = o && "wrong_arch_file" == o.error ? getLang("docs_upload_arch_fail") : o && "wrong_mp3_file" == o.error ? getLang("docs_upload_mp3_fail") : getLang("docs_upload_fail"), n && setTimeout(showFastBox({
                 title: getLang("global_error")
             }, t).hide, 4e3)
         }
@@ -550,6 +556,9 @@ var Docs = {
     },
     onDragOut: function() {
         removeClass(cur.docsChooseWrap, "dropbox_over"), removeClass("box_layer_wrap", "box_layer_wrap--docs_upload")
+    },
+    hideOfficeNotice: function(e) {
+        ls.set("docs_office_notice_shown", 999), hide(domPN(e))
     },
     _eof: 1
 };

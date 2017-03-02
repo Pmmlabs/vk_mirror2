@@ -986,6 +986,15 @@ a.settings_blb_title {
     line-height: 17px
 }
 
+.settings_transfer_title_inner {
+    max-width: 240px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: top
+}
+
 .settings_history_amount {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;

@@ -313,7 +313,7 @@
             if (i.over != t) {
                 i.over && replaceClass("wddi" + i.over + "_" + e, "wddi_over", "wddi"), i.over = t;
                 var s = ge("wddi" + i.over + "_" + e);
-                replaceClass(s, "wddi", "wddi_over"), d && i.scroll.scrollIntoView(s.firstElementChild || s)
+                replaceClass(s, "wddi", "wddi_over"), d && i.scroll && i.scroll.scrollIntoView(s.firstElementChild || s)
             }
         },
         choose: function(t, d, i, s) {

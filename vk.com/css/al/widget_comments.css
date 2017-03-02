@@ -759,12 +759,12 @@
 }
 
 .wall_module .post.wcomments_post .wall_text {
-    padding: 2px 0 0
+    padding: 1px 0 0
 }
 
 .wall_module .post.wcomments_post .wall_post_text {
     padding: 0;
-    line-height: 1.308
+    line-height: 1.36
 }
 
 .wall_module .post.wcomments_post .replies_list {

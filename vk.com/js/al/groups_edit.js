@@ -2153,6 +2153,28 @@ var GroupsEdit = {
     },
     messageWidgetSettings: function(e) {
         hasClass(e, "on") ? slideDown("community_widget_settings", 300) : slideUp("community_widget_settings", 300)
+    },
+    showNextTransfersHistory: function(e) {
+        if (!buttonLocked(e)) {
+            lockButton(e);
+            var t = {
+                act: "transfers_history",
+                id: cur.gid,
+                offset: cur.historyOffset
+            };
+            return ajax.post("groupsedit.php", t, {
+                onDone: function(t, o) {
+                    var r = ge("settings_transfer_history").tBodies[0];
+                    if (t)
+                        if (unlockButton(e), cur.historyOffset += 100, browser.msie) {
+                            var s = se("<table>" + t + "</table>"),
+                                a = geByTag("tr", s);
+                            for (i in a) 1 == a[i].nodeType && r.appendChild(a[i])
+                        } else r.insertAdjacentHTML("beforeEnd", t);
+                    (!t || o) && (addClass(r.lastChild, "settings_votes_history_last"), hide(e))
+                }
+            }), !1
+        }
     }
 };
 try {

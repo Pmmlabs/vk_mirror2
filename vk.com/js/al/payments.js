@@ -461,6 +461,7 @@ var MoneyTransfer = {
 
         var params = {
             to_id: cur.paymentsOptions.toId,
+            owner_id: cur.paymentsOptions.ownerId,
             amount: amount,
             comment: val('transfer_comment'),
             hash: cur.paymentsOptions.hash
@@ -770,7 +771,7 @@ var MoneyTransfer = {
         domReplaceEl(btn, newBtn);
     },
 
-    initHistoryBox: function() {
+    initHistoryBox: function(oid) {
         var btn = ge('ui_money_transfer_load_more');
         if (btn) {
             var tbl = ge('settings_transfer_history').tBodies[0];
@@ -781,7 +782,8 @@ var MoneyTransfer = {
                 onNeedRows: function(cb, offset) {
                     ajax.post('al_payments.php', {
                         act: 'money_transfer_history_box',
-                        offset: offset
+                        offset: offset,
+                        owner_id: oid
                     }, {
                         onDone: cb
                     });

@@ -914,12 +914,12 @@ var uiTabs = {
             scrollBy: function(t, e, i) {
                 return this.disabled || this.dragging ? void 0 : this.scroll(this.el.outer.scrollTop + intval(t), e, i)
             },
-            scrollIntoView: function(e, i, s) {
-                if ((e = t.ge(e)) && e.compareDocumentPosition && e.compareDocumentPosition(this.el.content) & Node.DOCUMENT_POSITION_CONTAINS) {
-                    var o = getXY(e)[1],
-                        n = getXY(this.el.overflow)[1],
-                        r = getSize(e)[1];
-                    n >= o && o + r >= n + this.api.data.viewportHeight || o >= n && o + r <= n + this.api.data.viewportHeight ? isFunction(s) && (i ? setTimeout(s.bind(this.api), 0) : s(this.api)) : r > this.api.data.viewportHeight || n > o ? this.scrollTop(o - n + this.api.data.scrollTop - (this.options.shadows ? getSize(this.el.shadowTop)[1] : 0), i, s) : this.scrollTop(o - n + this.api.data.scrollTop + r - this.api.data.viewportHeight + (this.options.shadows ? getSize(this.el.shadowBottom)[1] : 0), i, s)
+            scrollIntoView: function(e, i, s, o) {
+                if (e && this.options.stopScrollPropagation && this.fixBlocker(), (i = t.ge(i)) && i.compareDocumentPosition && i.compareDocumentPosition(this.el.content) & Node.DOCUMENT_POSITION_CONTAINS) {
+                    var n = getXY(i)[1],
+                        r = getXY(this.el.overflow)[1],
+                        l = getSize(i)[1];
+                    r >= n && n + l >= r + this.api.data.viewportHeight || n >= r && n + l <= r + this.api.data.viewportHeight ? isFunction(o) && (s ? setTimeout(o.bind(this.api), 0) : o(this.api)) : l > this.api.data.viewportHeight || r > n ? this.scrollTop(!1, n - r + this.api.data.scrollTop - (this.options.shadows ? getSize(this.el.shadowTop)[1] : 0), s, o) : this.scrollTop(!1, n - r + this.api.data.scrollTop + l - this.api.data.viewportHeight + (this.options.shadows ? getSize(this.el.shadowBottom)[1] : 0), s, o)
                 }
                 return this.api
             },
