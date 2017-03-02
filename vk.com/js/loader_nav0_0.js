@@ -247,7 +247,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 100600161686,
-    'imn.js': 108921139685,
+    'imn.js': 110220273773,
     'im.js': 1322065004,
     'emoji.js': 2026393557,
     'wide_dd.css': 11346455800,
@@ -329,8 +329,8 @@ var stVersions = {
     'tags_dd.css': 13415672187,
     'tasks.js': 3716388560,
     'tasks.css': 13918133221,
-    'helpdesk.js': 2507386045,
-    'helpdesk.css': 12199585566,
+    'helpdesk.js': 2219619230,
+    'helpdesk.css': 14512655734,
     'tickets.js': 3721222779,
     'tickets.css': 17540661999,
     'faq.js': 1417581931,
@@ -570,4 +570,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 9396;
+var _rnd = 6566;
