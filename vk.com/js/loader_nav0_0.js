@@ -124,7 +124,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2889730895,
     'common.js': 1140,
-    'common.css': 22737832272,
+    'common.css': 20269362942,
     'pads.js': 2514146926,
     'pads.css': 13003103978,
     'retina.css': 1499557272,
@@ -215,7 +215,7 @@ var stVersions = {
     'module.css': 15234412679,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 15363300705,
-    'page.js': 2671155520,
+    'page.js': 4003367016,
     'page.css': 17893245984,
     'page_help.css': 19057379771,
     'public.css': 23436793751,
@@ -231,7 +231,7 @@ var stVersions = {
     'profile.js': 3061689951,
     'calendar.css': 16276178689,
     'calendar.js': 4203451993,
-    'wk.css': 16760599866,
+    'wk.css': 17627910527,
     'wk.js': 2226505192,
     'pay.css': 989146268,
     'pay.js': 1463178433,
@@ -246,7 +246,7 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 100600161686,
+    'im.css': 102355073725,
     'imn.js': 110220273773,
     'im.js': 1322065004,
     'emoji.js': 2026393557,
@@ -349,7 +349,7 @@ var stVersions = {
     'bugs.css': 11385352202,
     'bugtracker.js': 188714712,
     'bugtracker.css': 13230877921,
-    'login.css': 18359824131,
+    'login.css': 17111122761,
     'login.js': 3551917100,
     'upload.js': 3754775695,
     'graffiti.js': 1826105362,
@@ -570,4 +570,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 5044;
+var _rnd = 6341;

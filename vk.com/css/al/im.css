@@ -3282,7 +3282,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #888
+    color: #828282
 }
 
 .im-mess .im-mess--text .page_media_map_point {
@@ -3673,7 +3673,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 }
 
 .im-mess.im-mess_srv .im-mess--text {
-    color: #777;
+    color: #828282;
     text-align: center;
     cursor: default;
     font-size: 12.5px;

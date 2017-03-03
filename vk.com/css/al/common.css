@@ -4304,7 +4304,7 @@ body.mac #pg_fixed {
 
 .top_result_baloon {
     color: #fff;
-    cursor: pointer;
+    cursor: default;
     background: url('/images/mv_bg.png');
     background: rgba(0, 0, 0, .75);
     border-radius: 5px;

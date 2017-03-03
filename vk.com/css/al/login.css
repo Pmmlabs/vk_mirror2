@@ -88,6 +88,10 @@
     margin: 0 0 25px
 }
 
+.page_section_msg.msg:empty {
+    display: none
+}
+
 .page_section .msg {
     margin: 20px 0
 }

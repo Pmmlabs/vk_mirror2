@@ -113,6 +113,7 @@ ul.listing li span .wk_gray {
 a.wk_ext_link {
     padding-right: 10px;
     background-image: url(/images/wikiextarr.gif);
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%227%22%20height%3D%227%22%20viewBox%3D%22-2675%209108%207%207%22%20style%3D%22fill%3A%23A7B7C9%3B%22%3E%3Cpath%20d%3D%22M-2673%209112L-2670%209112%20-2670%209115%20-2673%209115%20-2673%209112ZM-2675%209112L-2671.5%209108%20-2668%209112%20-2675%209112Z%22%2F%3E%3C%2Fsvg%3E");
     background-repeat: no-repeat;
     background-position: right 50%;
     border-bottom: 1px dashed #a7b7c9

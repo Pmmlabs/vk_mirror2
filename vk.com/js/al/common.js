@@ -9135,8 +9135,10 @@ function showDoneBox(msg, opts) {
     var top = browser.mobile ? intval(window.pageYOffset) : 0;
     containerSize = getSize(resEl);
     resEl.style.top = Math.max(10, top + (height - containerSize[1]) / 3) + 'px';
-    var out = opts.out || 2000;
+    var out = opts.out || 2000,
+        start = new Date();
     var _fadeOut = function() {
+        if (out < 0) return;
         window.doneBoxTO = setTimeout(function() {
             if (opts.permit && !opts.permit()) {
                 _fadeOut();
@@ -9152,8 +9154,12 @@ function showDoneBox(msg, opts) {
     }
     addEvent(resEl, 'mouseenter', function() {
         clearTimeout(window.doneBoxTO);
+        out -= new Date() - start;
     });
-    addEvent(resEl, 'mouseleave', _fadeOut);
+    addEvent(resEl, 'mouseleave', function() {
+        start = new Date();
+        _fadeOut();
+    });
     _fadeOut();
 }
 
