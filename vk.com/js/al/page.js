@@ -4769,7 +4769,15 @@ var Wall = {
             Page.postsSeen(posts);
         }
 
-        if (hasClass(event.target, 'author') || hasClass(event.target, 'post_image') || hasClass(event.target, 'post_img')) {
+        var targetEl = event.target;
+
+        if (
+            // new way
+            inArray(targetEl.getAttribute('data-post-click-type'), ['post_owner_img', 'post_owner_link'])
+            // old way (remove?)
+            ||
+            hasClass(targetEl, 'author') || hasClass(targetEl, 'post_image') || hasClass(targetEl, 'post_img')
+        ) {
             Wall.triggerAdPostStat(postEl, 'click_post_owner');
         } else if (
             event.target.nodeName == 'A' && gpeByClass('wall_post_text', event.target, postEl) ||

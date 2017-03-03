@@ -215,7 +215,7 @@ var stVersions = {
     'module.css': 15234412679,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 15363300705,
-    'page.js': 3575869463,
+    'page.js': 2671155520,
     'page.css': 17893245984,
     'page_help.css': 19057379771,
     'public.css': 23436793751,
@@ -320,7 +320,7 @@ var stVersions = {
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
     'restore.js': 746817657,
-    'restore.css': 14974436099,
+    'restore.css': 15538031669,
     'recover.js': 2830033131,
     'recover.css': 2080137791,
     'docs.js': 3215535710,
@@ -330,11 +330,11 @@ var stVersions = {
     'tasks.js': 3716388560,
     'tasks.css': 13918133221,
     'helpdesk.js': 2219619230,
-    'helpdesk.css': 14512655734,
+    'helpdesk.css': 15076283818,
     'tickets.js': 3721222779,
     'tickets.css': 17540661999,
     'faq.js': 1417581931,
-    'faq.css': 15275080769,
+    'faq.css': 16979882811,
     'talmud.js': 1641838680,
     'agents.js': 1228491530,
     'agents.css': 13915747283,
@@ -570,4 +570,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 6566;
+var _rnd = 5044;
