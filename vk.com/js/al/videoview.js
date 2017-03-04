@@ -2637,13 +2637,13 @@ window.VideoChat = {
     }
 }, window.VideoDonate = {
     DEFAULT_COMMENT_MAX_LENGTH: 300,
-    init: function(e, i, o, t, a) {
-        function n(e) {
+    init: function(e, i, o, t, a, n) {
+        function d(e) {
             e = parseJSON(e), e && "success" == e.status ? (VideoDonate.apiData = e.data,
-                VideoDonate.initForm()) : d()
+                VideoDonate.initForm()) : r()
         }
 
-        function d() {
+        function r() {
             curBox().hide(), showFastBox({
                 title: getLang("global_error")
             }, getLang("global_error_occured"))
@@ -2652,8 +2652,9 @@ window.VideoChat = {
             prefilled: i,
             videoId: o,
             votesHash: t,
-            referrer: a
-        }, ajax.plainpost(e, "", n, d, !0)
+            referrer: a,
+            payerId: n
+        }, ajax.plainpost(e, "", d, r, !0)
     },
     initForm: function() {
         var e = VideoDonate.apiData,
@@ -2853,7 +2854,8 @@ window.VideoChat = {
             comment: val("video_donate_comment"),
             billing_system_type: n,
             redirect: 1,
-            vk_test_group: VideoDonate.params.votesHash ? 1 : 2
+            vk_test_group: VideoDonate.params.votesHash ? 1 : 2,
+            _vk_id_encrypted: VideoDonate.params.payerId
         };
         d.email && r == d.email.value ? s.email_encrypted = d.email.encrypted : s.email = r;
         var v = !0;

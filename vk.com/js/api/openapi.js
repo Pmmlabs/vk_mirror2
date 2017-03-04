@@ -1589,7 +1589,7 @@ if (!VK.Widgets) {
                         style: {
                             position: 'absolute',
                             padding: 0,
-                            display: 'block',
+                            display: 'none',
                             opacity: 0.01,
                             filter: 'alpha(opacity=1)',
                             border: '0',

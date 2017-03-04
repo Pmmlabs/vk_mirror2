@@ -1033,7 +1033,8 @@ div.validation_last_button .button {
 
 .shorten_error {
     padding-bottom: 0;
-    visibility: hidden
+    visibility: hidden;
+    height: 60px
 }
 
 .shorten_error_display {
