@@ -133,7 +133,7 @@ Tickets = {
                 (!f && k || 4 == h.type && k && -1 == f.indexOf("vk.com")) && (notaBene(m, !1, !o), o = !1), u["extra_field_" + n] = f
             }
         }
-        return o ? (nav.objLoc.mobile && (u.mobile = 1), void Tickets.trySaveTicket(function() {
+        return o ? (nav.objLoc.mobile && (u.mobile = 1), nav.objLoc.bhash && (u.bhash = nav.objLoc.bhash), void Tickets.trySaveTicket(function() {
             if (0 == u.section) {
                 var e = ls.get("support_outdated_left");
                 e && e.ts && Math.floor((new Date).getTime() / 1e3) - e.ts < 3600 && (u.outdated_ticket_id = e.id), ls.remove("support_outdated_left")
@@ -987,7 +987,7 @@ Tickets = {
                     break;
                 case "new":
                 default:
-                    addMedia = cur.ticketsNewMedia;
+                    addMedia = cur.ticketsNewMedia
             }
             return Upload.init(el, uploadData.url, uploadData.vars, {
                 file_name: "file",
@@ -1273,17 +1273,17 @@ Tickets = {
             }
         return !1
     },
-    rateFAQAdditional: function(e, t, a, i) {
+    rateFAQAdditional: function(e, t, a, i, o) {
         if (!vk.id) return !1;
-        var o = ge("tickets_faq_unuseful" + e);
+        var s = ge("tickets_faq_unuseful" + e);
         ajax.post("support", {
             act: "faq_rate_additional",
             faq_id: e,
             additional_id: t,
             hash: a
-        }), hide(geByClass1("help_table_question_rated_additional", o)), show(geByClass1("help_table_question__rated_final", o)), 2 == t && (cur.askQuestion.permission ? Tickets.tryAskQuestion(function() {
-            Tickets.goToForm(e, "dislike", i)
-        }) : cur.isFaqTutorial && 2 != t || (hide(geByClass1("help_table_question__rated_final__t", o)), show(geByClass1("help_table_question__rated_no_perm", o))))
+        }), hide(geByClass1("help_table_question_rated_additional", s)), show(geByClass1("help_table_question__rated_final", s)), 2 == t && (cur.askQuestion.permission ? Tickets.tryAskQuestion(function() {
+            Tickets.goToForm(e, "dislike", i, o)
+        }) : cur.isFaqTutorial && 2 != t || (hide(geByClass1("help_table_question__rated_final__t", s)), show(geByClass1("help_table_question__rated_no_perm", s))))
     },
     cancelRateFAQ: function(e, t, a, i) {
         return vk.id ? (ajax.post("support", {
@@ -1498,18 +1498,18 @@ Tickets = {
             t && (a.q = t), nav.go(a)
         }
     },
-    goToForm: function(e, t, a) {
-        var i = {
+    goToForm: function(e, t, a, i) {
+        var o = {
             0: "support",
             act: a
         };
-        if (e) i.id = e;
+        if (e) o.id = e;
         else {
-            var o = uiSearch.getFieldEl("faq_search_form"),
-                s = "";
-            o && (s = o.value.trim(), s && (i.title = s))
+            var s = uiSearch.getFieldEl("faq_search_form"),
+                r = "";
+            s && (r = s.value.trim(), r && (o.title = r))
         }
-        return t && (i.from = t), nav.go(i), !1
+        return t && (o.from = t), i && (o.bhash = i), nav.go(o), !1
     },
     listScrollToQuestion: function(e) {
         var t = null;

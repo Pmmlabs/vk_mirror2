@@ -5705,6 +5705,8 @@ var nav = {
         var post_id = hasAttributes ? ev.target.getAttribute('data-post-id') : '';
         var parent_post_id = post_id ? ev.target.getAttribute('data-parent-post-id') : '';
         var post_click_type = hasAttributes ? ev.target.getAttribute('data-post-click-type') : '';
+        var adDataWrapper;
+        var adData;
         if (!where.params['_post'] && post_id) {
             where.params['_post'] = post_id;
         }
@@ -5713,6 +5715,13 @@ var nav = {
         }
         if (!where.params['_post_click_type'] && post_click_type) {
             where.params['_post_click_type'] = post_click_type;
+        }
+        if (!where.params['_post_ad_data'] && where.params['_post_click_type']) {
+            adDataWrapper = gpeByClass('_ads_promoted_post_data_w', ev.target);
+            adData = adDataWrapper && adDataWrapper.getAttribute('data-ad');
+            if (adData) {
+                where.params['_post_ad_data'] = adData;
+            }
         }
         if (opts.cl_id) {
             where.params.fr_click = cur.oid + ',' + opts.cl_id + ',' + cur.options.fr_click;

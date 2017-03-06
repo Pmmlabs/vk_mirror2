@@ -331,7 +331,7 @@ var stVersions = {
     'tasks.css': 13918133221,
     'helpdesk.js': 2219619230,
     'helpdesk.css': 15076283818,
-    'tickets.js': 3721222779,
+    'tickets.js': 3747535527,
     'tickets.css': 17540661999,
     'faq.js': 1417581931,
     'faq.css': 16979882811,
@@ -570,4 +570,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 6928;
+var _rnd = 9805;
