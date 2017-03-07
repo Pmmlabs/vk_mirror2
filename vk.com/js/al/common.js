@@ -11461,6 +11461,31 @@ function updateAriaCheckboxes() {
     }, 100);
 }
 
+
+/**
+  Simple tooltips.
+
+  el - object which tootlip should point to
+  opts
+    content         - (required) string or dome element for tooltip content
+    id              - custom id for tootlip
+    cls             - custom class for tooltip
+    autoShow        - show/hide tooltip on mouse enter/leave (default: true)
+    delay           - delay for tooltip show (default: 100)
+    appendTo        - appends tooltip to particular element
+    appendToParent  - appends tooltip to closest positioned element (default: false)
+    offset          - custom offset for tooltip (default: [0, 0])
+    elClassWhenTooltip - class that will be added to el when tooltip is shown
+    setPos          - function for calculation tooltip custom position. forceSide parameter is required
+    showOnClick     - show tooltip on mouse click (default: false)
+    type            - ElementTooltip.TYPE_VERTICAL / ElementTooltip.TYPE_HORIZONTAL (default vertical)
+    forceSide       - forces tooltip to be shown on particular side top/down/left/right. It ignores type option.
+    width           - custom tooltip height (function or int value)
+
+    onShow          - callback fired when tooltip is shown
+    onHide          - callback fired when tooltip is hidden
+    onFirstTimeShow - callback fired when tooltip is shown first time (onShow also will be called next)
+*/
 function ElementTooltip(el, opts) {
     if (this.constructor != ElementTooltip) {
         throw new Error('ElementTooltip was called without \'new\' operator');
@@ -11635,9 +11660,9 @@ ElementTooltip.prototype.updatePosition = function() {
 
     } else {
         if (!side) {
-            var boundingEl = domClosestOverflowHidden(this._el);
-            var boundingElPos = getXY(boundingEl);
-            boundingElPos[1] += scrollGetY() + 30;
+            var boundingBox = this._el
+            var boundingEl = domClosestOverflowHidden(this._ttel);
+            var boundingElPos = boundingEl != bodyNode ? getXY(boundingEl) : [scrollGetX(), scrollGetY() + 30];
 
             if (this._opts.type == ElementTooltip.TYPE_VERTICAL) {
                 if (elPos[1] - boundingElPos[1] < ttelSize[1]) {
@@ -11711,6 +11736,12 @@ ElementTooltip.prototype._hide = function(byElClick) {
         this._opts.elClassWhenTooltip && removeClass(this._el, this._opts.elClassWhenTooltip);
         this._opts.onHide && this._opts.onHide(this._ttel, !!byElClick);
     }).bind(this), ElementTooltip.FADE_SPEED);
+
+    if (this._opts.onBeforeHide) {
+        try {
+            this._opts.onBeforeHide(this._ttel, !!byElClick);
+        } catch (e) {}
+    }
 
     this._isShown = false;
 

@@ -197,7 +197,6 @@ var Videoview = {
                     case 2:
                         vkImage().src = "//vk.com/rtrg?r=lD4OYmfC8ehvdc/8TL9AsAjM956qNaHyj20XV5mCNiTgYKQ6X*IXgwE8VbgqOf7rdbLJq7uCRBrdnFPTcUU2NjMgy8x4y6NWrYVwQMteNWh62XnLoNVZqobnsMMGm1OyTW09rhEkmiX5jqk3CI3JIIYbIbd8K7EC0ytQ4Kp4Kro-"
                 }
-                inArray(e, [-33118207, -18479452, -68420747, -78630688]) && (vkImage().src = "//rs.mail.ru/d23694799.gif")
             },
             onVideoPlayFinished: function() {
                 if (cur.pinnedVideoDestroy && cur.pinnedVideoDestroy(), window.mvcur && mvcur.mvShown && (mvcur.finished = !0, mvcur.mousemoved = !0, Videoview.moveCheck(), Videoview.logViewedPercentage()), window.mvcur && mvcur.mvShown && mvcur.adData) mvcur.adData.stat_link_start && !mvcur.adData.view_complete_start && (ajax.post(mvcur.adData.stat_link_start, {}, {
@@ -220,6 +219,9 @@ var Videoview = {
                     var e = Videoview.getMvData();
                     e.tns_monetized ? vkImage().src = "//www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=pladform_videovk-playerend/" + irand(1, 1e9) : vkImage().src = "//www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=platform_videovk-playerend/" + irand(1, 1e9), e.kz && (vkImage().src = "//www.tns-counter.ru/V13a****vk_kz/ru/CP1251/tmsec=vkkz_videoend/" + irand(1, 1e9))
                 }
+            },
+            onVideoPlayError: function() {
+                Videoview.isLayerShown() && re("mv_live_gifts_block")
             },
             onVideoAdsLoadStarted: function() {
                 vkImage().src = "//www.tns-counter.ru/V13a****vk_com/ru/CP1251/tmsec=vk_videoload-license/" + irand(1, 1e9)
@@ -450,8 +452,165 @@ var Videoview = {
                     hideButtons: 1,
                     onDestroy: VideoDonate.onDestroy
                 },
-                stat: ["tooltips.js", "tooltips.css"]
+                stat: ["videoview.css", "tooltips.js", "tooltips.css"]
             })
+        },
+        slideLiveGifts: function(e, i, o) {
+            var t = ge("mv_live_gifts_list"),
+                a = t.scrollWidth,
+                n = domPN(t).clientWidth;
+            e = e || 1, i = Math.abs(i) || n - 180;
+            var d = intval(domData(t, "pos"));
+            d += 0 > e ? -i : i, d = Math.max(0, Math.min(a - n, d)), domData(t, "pos", d), toggleClass(t, "animated", !o), setStyle(t, {
+                "-webkit-transform": "translateX(-" + d + "px)",
+                "-ms-transform": "translateX(-" + d + "px)",
+                transform: "translateX(-" + d + "px)"
+            }), Videoview.onLiveGiftsScroll()
+        },
+        onLiveGiftsMouseWheel: function(e) {
+            !e.deltaX || Math.abs(e.deltaY) > Math.abs(e.deltaX) || (e.preventDefault(), Videoview.slideLiveGifts(e.deltaX, e.deltaX, !0))
+        },
+        onLiveGiftsScroll: function() {
+            var e = ge("mv_live_gifts_list");
+            if (e) {
+                var i = domPN(e),
+                    o = e.scrollWidth,
+                    t = domPN(e).clientWidth,
+                    a = intval(domData(e, "pos"));
+                a > o - t && (Videoview.slideLiveGifts(1, 1, 1), a = intval(domData(e, "pos")));
+                var n = a > 0,
+                    d = o > a + t,
+                    r = domByClass(i, "mv_live_gifts_arrow_left"),
+                    s = domByClass(i, "mv_live_gifts_arrow_right");
+                toggleClass(r, "hidden", !n), toggleClass(s, "hidden", !d), mvcur.liveGiftTT && mvcur.liveGiftTT.hide()
+            }
+        },
+        getLiveBalanceStr: function() {
+            var e;
+            return e = mvcur.mvData.paymentsInMoney ? getLang("global_money_amount_rub", vk.balance * vk.vcost, !0) : getLang("global_n_votes", vk.balance, !0), langStr(getLang("video_live_you_have_X_money"), "money", e)
+        },
+        showLiveGiftTooltip: function(e) {
+            if (!data(e, "ett")) {
+                Videoview.checkLiveGiftItemVisibility(e);
+                var i = domData(e, "id"),
+                    o = domData(e, "price"),
+                    t = domData(e, "price-str"),
+                    a = domData(e, "free-left"),
+                    n = getTemplate("video_live_gift_popup", {
+                        gift_id: i,
+                        image: "/images/gift/" + i + "/256.png",
+                        price: o,
+                        price_str: t,
+                        balance_str: a || Videoview.getLiveBalanceStr()
+                    });
+                addClass(e, "active");
+                var d = mvcur.liveGiftTT = new ElementTooltip(e, {
+                    cls: "feature_intro_tt mv_live_gift_popup_tt",
+                    content: n,
+                    width: 230,
+                    autoShow: !1,
+                    appendTo: domClosest("mv_live_gifts_block", e),
+                    offset: [0, 14],
+                    onBeforeHide: function() {
+                        removeClass(e, "active")
+                    },
+                    onHide: function() {
+                        d.destroy()
+                    }
+                });
+                d.show()
+            }
+        },
+        checkLiveGiftItemVisibility: function(e) {
+            var i = ge("mv_live_gifts_list"),
+                o = domPN(i),
+                t = e.getBoundingClientRect(),
+                a = (i.getBoundingClientRect(), o.getBoundingClientRect()),
+                n = 32;
+            if (t.left < a.left + n) {
+                var d = t.left - a.left - n;
+                return void Videoview.slideLiveGifts(-1, d, !0)
+            }
+            if (t.right > a.right - n) {
+                var d = t.right - a.right + n;
+                Videoview.slideLiveGifts(1, d, !0)
+            }
+        },
+        sendLiveGift: function(e, i, o) {
+            return Videoview.liveDonateCheckVotes(i) ? void mvcur.liveGiftTT.hide() : (ajax.post("al_video.php?act=live_send_gift", {
+                owner_id: mvcur.mvData.oid,
+                video_id: mvcur.mvData.vid,
+                gift_id: e,
+                hash: o
+            }, {
+                onDone: function(i, o) {
+                    if (updateMoney(i), o) {
+                        var t = domByClass("mv_live_gifts_block", "mv_live_gifts_item_" + e);
+                        each(o, function(e, i) {
+                            e = e.replace(/_/g, "-"), domData(t, e, i)
+                        })
+                    }
+                },
+                onFail: function(e) {
+                    return e ? (showFastBox(getLang("global_error"), e), !0) : void 0
+                }
+            }), void mvcur.liveGiftTT.hide())
+        },
+        showLiveSuperMessageTooltip: function(e) {
+            if (!data(e, "ett")) {
+                addClass(e, "active");
+                var i = getTemplate("video_live_super_message_popup", {
+                        message: mvcur.liveSuperMessageDraft || ""
+                    }),
+                    o = mvcur.liveGiftTT = new ElementTooltip(e, {
+                        cls: "feature_intro_tt mv_live_gift_popup_tt",
+                        content: i,
+                        width: 230,
+                        autoShow: !1,
+                        appendTo: domClosest("mv_live_gifts_block", e),
+                        offset: [0, 14],
+                        onBeforeHide: function() {
+                            removeClass(e, "active")
+                        },
+                        onHide: function() {
+                            o.destroy()
+                        }
+                    });
+                o.show(), elfocus("mv_live_gift_popup_comment_input")
+            }
+        },
+        checkLiveSuperMessageLength: function(e, i) {
+            var o = trim(val(e)),
+                t = intval(domData(e, "maxlength"));
+            mvcur.liveSuperMessageDraft = o;
+            var a = o.length > t,
+                n = domNS(e),
+                d = domNS(n);
+            toggle(n, !a), toggle(d, a), i && n.click()
+        },
+        onLiveSuperMessageCtrlEnter: function() {
+            var e = ge("mv_live_gift_popup_comment_input");
+            Videoview.checkLiveSuperMessageLength(e, !0)
+        },
+        sendLiveSuperMessage: function(e, i) {
+            var o = ge("mv_live_gift_popup_comment_input"),
+                t = trim(val(o));
+            return t ? Videoview.liveDonateCheckVotes(e) ? void mvcur.liveGiftTT.hide() : (ajax.post("al_video.php?act=live_send_super_message", {
+                owner_id: mvcur.mvData.oid,
+                video_id: mvcur.mvData.vid,
+                message: t,
+                hash: i
+            }, {
+                onDone: function(e, i) {
+                    updateMoney(e), delete mvcur.liveSuperMessageDraft
+                },
+                onFail: function(e) {
+                    return e ? (showFastBox(getLang("global_error"), e), !0) : void 0
+                }
+            }), void mvcur.liveGiftTT.hide()) : void notaBene(o)
+        },
+        liveDonateCheckVotes: function(e) {
+            return vk.balance < e ? showBox("al_gifts.php?act=get_money") : !1
         },
         onStickersPurchased: function(e) {
             var i = Videoview.getPlayerObject();
@@ -721,7 +880,7 @@ var Videoview = {
             return e.returnValue === !1 ? !1 : e.keyCode == KEY.ESC ? (mvcur.mvEditing ? Videoview.cancelInline() : Videoview.hide(), cancelEvent(e)) : void 0
         },
         onResize: function() {
-            Videoview.updateExternalVideoFinishBlock(), Videoview.updateReplyFormPos()
+            Videoview.updateExternalVideoFinishBlock(), Videoview.updateReplyFormPos(), Videoview.onLiveGiftsScroll()
         },
         onPageFocusChange: function() {
             setTimeout(Videoview.playerNextTimerUpdate, 10)
@@ -753,8 +912,7 @@ var Videoview = {
             } else e ? mvcur.mvPrevLoc = "z" : Videoview.getPrevLoc();
             if (!e) {
                 var a = "video" + mvcur.videoRaw;
-                mvcur.listId && (a += "/" + mvcur.listId),
-                    mvcur.options.playlistId && (a += "/pl_" + mvcur.options.playlistId);
+                mvcur.listId && (a += "/" + mvcur.listId), mvcur.options.playlistId && (a += "/pl_" + mvcur.options.playlistId);
                 var n = extend(nav.objLoc, {
                     z: a
                 });
@@ -1340,7 +1498,7 @@ var Videoview = {
                 var rf = ge("reply_field" + mvcur.post);
                 if (rf && placeholderInit(rf, {
                         editable: 1
-                    }), Videoview.updateSize(), mvcur.minimized && needRemin && Videoview.minimizePlayer(), mvcur.statusVideo) {
+                    }), mvcur.minimized && needRemin && Videoview.minimizePlayer(), mvcur.statusVideo) {
                     var statusCont = ge("like_count" + mvcur.mvData.videoRaw);
                     if (statusCont) {
                         var tt = statusCont.parentNode.tt;
@@ -1372,7 +1530,7 @@ var Videoview = {
                         }
                     }) : re("mv_more"), toggle(ge("mv_edit_button"), mvcur.mvData.editHash && !mvcur.mvData.hideEdit && !mvcur.mvData.editFromDropdown)
                 }
-                mvcur.mvData.uploaded || Videoview.recache(), mvcur.mvData.is_active_live || Videoview.adaptRecomsHeight(), Videoview.updateReplyFormPos(), opt.queueParams && stManager.add("notifier.js", function() {
+                mvcur.mvData.uploaded || Videoview.recache(), Videoview.updateSize(), mvcur.mvData.is_active_live || Videoview.adaptRecomsHeight(), opt.queueParams && stManager.add("notifier.js", function() {
                     Videoview.queueCheckUpdates(opt.queueParams)
                 }), mvcur.mvData.is_live && setTimeout(Videoview.checkOtherLives.pbind(videoRaw), 6e4)
             }
@@ -1741,26 +1899,28 @@ var Videoview = {
             });
             var o = mvcur.minSize.wrap;
             mvcur.minSize.player = {
-                    w: o.w - 12,
-                    h: o.h - 34
-                }, Videoview.setStyle("mvContainer", "mv_container", {
-                    marginTop: 0,
-                    marginBottom: 0
-                }), setStyle(mvLayer, {
-                    width: "auto"
-                }), Videoview.minimizePlayer(), window.tooltips && tooltips.destroyAll("mv_container"), removeEvent(window, "resize", Videoview.onResize), removeEvent(document, "webkitfullscreenchange mozfullscreenchange fullscreenchange", Videoview.onFullscreenChange), removeEvent(document, "keydown", Videoview.onKeyDown), addEvent(window, "resize", Videoview.minResize),
-                Videoview.enabledResize() ? (addEvent("mv_box", "mousedown", Videoview.startDrag), addEvent("mv_box", "mousemove", Videoview.changeCursor), mvcur.minDestroy = function() {
-                    removeEvent("mv_box", "mousedown", Videoview.startDrag), removeEvent("mv_box", "mousemove", Videoview.changeCursor), setStyle("mv_box", {
-                        cursor: "default"
-                    })
-                }) : (addEvent(ge("mv_min_title"), "click", Videoview.unminimize), mvcur.minDestroy = function() {
-                    removeEvent("mv_min_title", "click", Videoview.unminimize)
-                }), Videoview.setTitle(o.w), Videoview.minResize(), Videoview.setStyle("mvLayerWrap", mvLayerWrap, {
-                    width: mvcur.minSize.wrap.w + "px",
-                    height: mvcur.minSize.wrap.h + "px"
-                }), mvcur.minimized = !0, layers.wraphide(), setTimeout(Videoview.playerOnResize, 10);
+                w: o.w - 12,
+                h: o.h - 34
+            }, Videoview.setStyle("mvContainer", "mv_container", {
+                marginTop: 0,
+                marginBottom: 0
+            }), setStyle(mvLayer, {
+                width: "auto"
+            }), Videoview.minimizePlayer(), window.tooltips && tooltips.destroyAll("mv_container"), removeEvent(window, "resize", Videoview.onResize), removeEvent(document, "webkitfullscreenchange mozfullscreenchange fullscreenchange", Videoview.onFullscreenChange), removeEvent(document, "keydown", Videoview.onKeyDown), addEvent(window, "resize", Videoview.minResize), Videoview.enabledResize() ? (addEvent("mv_box", "mousedown", Videoview.startDrag), addEvent("mv_box", "mousemove", Videoview.changeCursor), mvcur.minDestroy = function() {
+                removeEvent("mv_box", "mousedown", Videoview.startDrag), removeEvent("mv_box", "mousemove", Videoview.changeCursor), setStyle("mv_box", {
+                    cursor: "default"
+                })
+            }) : (addEvent(ge("mv_min_title"), "click", Videoview.unminimize), mvcur.minDestroy = function() {
+                removeEvent("mv_min_title", "click", Videoview.unminimize)
+            }), Videoview.setTitle(o.w), Videoview.minResize(), Videoview.setStyle("mvLayerWrap", mvLayerWrap, {
+                width: mvcur.minSize.wrap.w + "px",
+                height: mvcur.minSize.wrap.h + "px"
+            }), mvcur.minimized = !0, layers.wraphide(), setTimeout(Videoview.playerOnResize, 10);
             var t = layerQueue.count();
             return mvcur.noLocChange || (Videoview.backLocation(), mvcur.noHistory = 1), layerQueue.skipVideo = !0, t && (debugLog("pop from minimize"), layerQueue.pop()), VideoPlaylist.toggleStateClasses(), VideoChat.toggleStateClasses(), mvcur.preparationBlock && removeClass("mv_box", "_has_preparation"), Videoview.updateExternalVideoFinishBlock(), !1
+        },
+        isLayerShown: function(e) {
+            return window.mvcur && mvcur.mvShown && (isUndefined(e) || mvcur.videoRaw == e)
         },
         isMinimized: function() {
             return window.mvcur && mvcur.mvShown && mvcur.minimized
@@ -2639,8 +2799,7 @@ window.VideoChat = {
     DEFAULT_COMMENT_MAX_LENGTH: 300,
     init: function(e, i, o, t, a, n) {
         function d(e) {
-            e = parseJSON(e), e && "success" == e.status ? (VideoDonate.apiData = e.data,
-                VideoDonate.initForm()) : r()
+            e = parseJSON(e), e && "success" == e.status ? (VideoDonate.apiData = e.data, VideoDonate.initForm()) : r()
         }
 
         function r() {
