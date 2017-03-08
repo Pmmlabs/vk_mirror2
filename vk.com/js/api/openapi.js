@@ -1342,11 +1342,11 @@ if (!VK.Widgets) {
         var pData = VK.Util.getPageData();
         if (!VK._apiId) throw Error('VK not initialized. Please use VK.init');
         options = options || {};
+
         var obj = document.getElementById(objId),
             params = {
                 limit: options.limit || 10,
                 height: options.height || 0,
-                startWidth: (obj && obj.offsetWidth) | 0,
                 mini: options.mini === undefined ? 'auto' : options.mini,
                 norealtime: options.norealtime ? 1 : 0
             },
@@ -1433,8 +1433,7 @@ if (!VK.Widgets) {
         };
         return VK.Widgets._constructor('widget_recommended.php', objId, options, params, {}, {
             startHeight: (116 + params.limit * 47 - 15),
-            minWidth: 150,
-            width: '100%'
+            minWidth: 150
         });
     };
 
@@ -1444,8 +1443,7 @@ if (!VK.Widgets) {
             params = {
                 owner_id: ownerId,
                 post_id: postId,
-                hash: hash || '',
-                width: options.width || ((obj && obj.offsetWidth) | 0)
+                hash: hash || ''
             },
             iframe, rpc, cursorBack;
         if (options.preview) {
@@ -1707,8 +1705,7 @@ if (!VK.Widgets) {
         };
         return VK.Widgets._constructor('al_widget_poll.php', objId, options, params, {}, {
             startHeight: 144,
-            minWidth: 300,
-            width: '100%'
+            minWidth: 300
         });
     };
 
@@ -1778,6 +1775,7 @@ if (!VK.Widgets) {
             }
         }, {
             minWidth: 120,
+            maxWidth: 1200,
             startHeight: startHeight
         }, function(o, i, r) {
             rpc = r;
@@ -1862,8 +1860,7 @@ if (!VK.Widgets) {
             }
         }, {
             minWidth: 220,
-            startHeight: 22,
-            height: options.height || 22
+            startHeight: 22
         }, function(o, i, r) {
             rpc = r;
         });
@@ -2560,12 +2557,15 @@ if (!VK.Widgets) {
             return widgetId;
         }
 
-        var ifr, base_domain, width, url, urlQueryString, encodedParam, rpc, iframe, i;
         options = options || {};
         defaults = defaults || {};
         funcs = funcs || {};
-        base_domain = options.base_domain || VK._protocol + '//vk.com';
-        width = (options.width == 'auto') ? obj.clientWidth || '100%' : parseInt(options.width, 10);
+
+        var ifr, url, urlQueryString, encodedParam, rpc, iframe, i,
+            base_domain = options.base_domain || VK._protocol + '//vk.com',
+            width = options.width === 'auto' ? (obj.clientWidth || obj.offsetWidth || defaults.minWidth) | 0 : parseInt(options.width || 0, 10);
+        width = width ? (Math.max(defaults.minWidth || 200, Math.min(defaults.maxWidth || 10000, width)) + 'px') : '100%';
+        obj.style.width = width;
 
         if (options.height) {
             params.height = options.height;
@@ -2574,15 +2574,13 @@ if (!VK.Widgets) {
             obj.style.height = (defaults.startHeight || 200) + 'px';
         }
 
-        width = width ? (Math.max(defaults.minWidth || 200, Math.min(10000, width)) + 'px') : '100%';
+        if (width === '100%') params.startWidth = (obj.clientWidth || obj.offsetWidth) | 0;
+        if (!params.url) params.url = options.pageUrl || location.href.replace(/#.*$/, '');
 
-        if (!params.url) {
-            params.url = options.pageUrl || location.href.replace(/#.*$/, '');
-        }
         url = base_domain + '/' + widgetUrl;
         urlQueryString = '';
         if (!options.noDefaultParams) {
-            urlQueryString += '&app=' + (VK._apiId || '0') + '&width=' + width
+            urlQueryString += '&app=' + (VK._apiId || '0') + '&width=' + encodeURIComponent(width)
         }
         urlQueryString += '&_ver=' + VK.version
         if (VK._iframeAppWidget) {
@@ -2609,7 +2607,6 @@ if (!VK.Widgets) {
         urlQueryString += '&' + (+new Date()).toString(16);
         url += '?' + urlQueryString.substr(1);
 
-        obj.style.width = width;
         funcs.onStartLoading && funcs.onStartLoading();
         if (!options.no_loading) {
             VK.Widgets.loading(obj, true);

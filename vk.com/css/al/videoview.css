@@ -876,6 +876,7 @@ textarea.dark.mv_live_gift_popup_comment_input {
 }
 
 .mv_min_title {
+    display: inline-block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -883,7 +884,8 @@ textarea.dark.mv_live_gift_popup_comment_input {
     opacity: 0.6;
     filter: alpha(opacity=60);
     cursor: pointer;
-    font-size: 11px;
+    font-size: 12px;
+    line-height: 12px;
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -899,8 +901,8 @@ textarea.dark.mv_live_gift_popup_comment_input {
 
 .mv_min_control {
     float: right;
-    margin: 0 -4px 0 8px;
-    padding: 1px 4px;
+    margin: -8px -5px -4px 5px;
+    padding: 9px 5px;
     opacity: .6;
     cursor: pointer
 }

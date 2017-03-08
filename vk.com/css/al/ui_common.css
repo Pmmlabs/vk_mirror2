@@ -3092,3 +3092,38 @@ a.ui_search_custom_link {
 .map_balloon_title {
     color: #3b4045
 }
+
+.ui_input_labeled {
+    display: inline-block;
+    width: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 30px;
+    vertical-align: top;
+    line-height: 16px;
+    box-sizing: border-box
+}
+
+.ui_input_labeled:after {
+    content: attr(data-label);
+    padding-left: 5px;
+    display: inline-block;
+    color: #828282;
+    pointer-events: none;
+    width: 0;
+    margin-right: -5px
+}
+
+.ui_input_labeled:not(:focus):empty:after {
+    display: none
+}
+
+.ui_input_labeled:empty:before {
+    content: attr(data-placeholder);
+    color: #828282;
+    pointer-events: none
+}
+
+.ui_input_labeled:focus:empty:before {
+    display: none
+}

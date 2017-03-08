@@ -1421,11 +1421,11 @@ var Dev = {
         var posY = (getXY(obj)[1] - getXY(wrap)[1]);
         if (cur.colorInited) {
             animate(cont, {
-                marginTop: -180 + posY
+                marginTop: -179 + posY
             }, 200)
         } else {
             setStyle(cont, {
-                marginTop: -180 + posY
+                marginTop: -179 + posY
             })
             var palSize = getSize(palette);
             var pal = palette.getContext('2d');

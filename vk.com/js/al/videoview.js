@@ -436,11 +436,11 @@ var Videoview = {
             var i = Videoview.getMvData();
             showTooltip(e, {
                 text: function() {
-                    return getLang(i.liveNotifySubscribed ? "video_live_unsubscribe" : "video_live_subscribe")
+                    return getLang(i.liveNotifySubscribed ? "video_live_notify_subscribed" : "video_live_notify_unsubscribed")
                 },
                 black: 1,
                 shift: [0, 10, 0],
-                center: 1
+                needLeft: 1
             })
         },
         showDonateBox: function() {
@@ -1530,9 +1530,9 @@ var Videoview = {
                         }
                     }) : re("mv_more"), toggle(ge("mv_edit_button"), mvcur.mvData.editHash && !mvcur.mvData.hideEdit && !mvcur.mvData.editFromDropdown)
                 }
-                mvcur.mvData.uploaded || Videoview.recache(), Videoview.updateSize(), mvcur.mvData.is_active_live || Videoview.adaptRecomsHeight(), opt.queueParams && stManager.add("notifier.js", function() {
+                mvcur.mvData.is_active_live || Videoview.adaptRecomsHeight(), Videoview.updateSize(), opt.queueParams && stManager.add("notifier.js", function() {
                     Videoview.queueCheckUpdates(opt.queueParams)
-                }), mvcur.mvData.is_live && setTimeout(Videoview.checkOtherLives.pbind(videoRaw), 6e4)
+                }), mvcur.mvData.uploaded || Videoview.recache(), mvcur.mvData.is_live && setTimeout(Videoview.checkOtherLives.pbind(videoRaw), 6e4)
             }
         },
         adaptRecomsHeight: function() {

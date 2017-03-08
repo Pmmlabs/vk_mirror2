@@ -423,8 +423,7 @@
 
 .wcomments_form .wcomments_export_checkbox:before {
     float: right;
-    margin-right: 0;
-    margin-left: 7px
+    margin: 1px 0 0 7px
 }
 
 .wcomments_post .reply_box_inner_wrap {

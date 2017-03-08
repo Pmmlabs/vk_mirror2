@@ -104,7 +104,7 @@ var tooltips = {
                 n = getSize(o, !1, !0);
             if (n[0] || n[1]) {
                 var l = getSize(i),
-                    r = e.black && lastWindowWidth && lastWindowWidth - (s[0] + l[0]) < 1,
+                    r = e.needLeft || e.black && lastWindowWidth && lastWindowWidth - (s[0] + l[0]) < 1,
                     d = hasClass(i.firstChild, "toup1"),
                     a = e.shift,
                     p = vk.rtl && !e.asrtl || e.asrtl && !vk.rtl;

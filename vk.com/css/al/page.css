@@ -5493,7 +5493,6 @@ div.page_cover_image .ui_actions_menu_icons {
 
 .like_share_widget_width {
     float: right;
-    width: 45px;
     margin: 3px 0 10px
 }
 
@@ -5509,7 +5508,7 @@ div.page_cover_image .ui_actions_menu_icons {
 }
 
 .like_share_widget_preview {
-    display: inline-block
+    margin: 0 auto
 }
 
 .composer_wdd {

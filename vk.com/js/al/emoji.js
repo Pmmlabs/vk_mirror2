@@ -84,7 +84,7 @@ if (!window.Emoji) {
                                 }
                                 if (!noEnter || (e.ctrlKey || browser.mac && e.metaKey)) {
                                     Emoji.ttClick(optId, geByClass1('emoji_smile', opts.controlsCont), true);
-                                    opts.onSend();
+                                    opts.onSend && opts.onSend();
                                     return cancelEvent(e);
                                 }
                             }
@@ -223,6 +223,17 @@ if (!window.Emoji) {
         insertWithBr: function(range, text) {
             if (text) {
                 var cleanText = text.replace(/\n/g, '<br/>');
+                var div = ce('div', {
+                    innerHTML: cleanText
+                });
+                Emoji.cleanCont(div);
+                Emoji.insertHTML(div.innerHTML);
+            }
+        },
+
+        insertWithoutNL: function(range, text) {
+            if (text) {
+                var cleanText = text.replace(/\n/g, '');
                 var div = ce('div', {
                     innerHTML: cleanText
                 });
@@ -404,10 +415,10 @@ if (!window.Emoji) {
                 }
 
                 if (textRangeAndNoFocus) {
-                    this.insertWithBr(range, text);
+                    opts.noLineBreaks ? this.insertWithoutNL(range, text) : this.insertWithBr(range, text);
                     setTimeout(this.finalizeInsert.bind(this, txt), 0);
                 } else if (range) {
-                    this.focusTrick(txt, this.insertWithBr.pbind(range), this.finalizeInsert.bind(this, txt), range);
+                    this.focusTrick(txt, opts.noLineBreaks ? this.insertWithoutNL.pbind(range) : this.insertWithBr.pbind(range), this.finalizeInsert.bind(this, txt), range);
                 }
             }).bind(this));
 
@@ -2463,7 +2474,7 @@ if (!window.Emoji) {
             if (browser.ipad || browser.iphone) {
                 return str;
             }
-            str = str.replace(/&nbsp;/g, ' ').replace(/<br>/g, "\n");
+            str = (str + '').replace(/&nbsp;/g, ' ').replace(/<br>/g, "\n");
             var regs = {
                 'D83DDE07': /(\s|^)([0O�]:\))([\s\.,]|$)/g,
                 'D83DDE09': /(\s|^)(;-\)+)([\s\.,]|$)/g,
