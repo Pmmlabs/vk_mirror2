@@ -926,8 +926,9 @@ a.tasks_preview_header:hover {
 }
 
 .tasks_support_bind {
-    line-height: 160%;
-    padding: 2px 0 5px
+    float: left;
+    padding: 2px 0 5px;
+    line-height: 160%
 }
 
 .tasks_ticket_row {

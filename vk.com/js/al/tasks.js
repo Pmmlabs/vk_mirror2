@@ -630,9 +630,9 @@ Tasks = {
                     bid: cur.bug_id,
                     hash: t
                 };
-                cur.hideAutoanswer && ge("task_closed_autoanswer") && (o.no_autoanswer = cur.hideAutoanswer.val(), o.answer_text = ge("task_closed_autoanswer").value), ajax.post(Tasks.address, o, {
+                cur.hideAutoanswer && ge("task_closed_autoanswer") && (o.no_autoanswer = cur.hideAutoanswer.val(), o.answer_text = val("task_closed_autoanswer")), ajax.post(Tasks.address, o, {
                     onDone: function(e, t, o) {
-                        s && s.hide(), hide("tasks_loading"), e && (ge("task_summary").innerHTML = e), t && (ge("task_actions").innerHTML = t), o && (ge("task_comments").innerHTML = o)
+                        s && s.hide(), hide("tasks_loading"), e && val("task_summary", e), t && val("task_actions", t), o && val("task_comments", o)
                     }
                 })
             },
