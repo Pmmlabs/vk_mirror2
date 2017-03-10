@@ -102,7 +102,7 @@ var VideoUpload = {
                     setStyle(el, "width", e[0]), setStyle(el, "height", e[1]), setStyle(placeholder, "width", e[0]), setStyle(placeholder, "height", e[1]), VideoUpload.doResize(), re(domFC(placeholder))
                 }), Upload.init("video_upload_box" + vars.tag, url, vars, {
                     file_name: "video_file",
-                    file_size_limit: 1024 * (uploadOpts.file_size_limit_in_GB || 3) * 1024 * 1024,
+                    file_size_limit: 1024 * (uploadOpts.file_size_limit_in_GB || 5) * 1024 * 1024,
                     file_types_description: "Video files",
                     file_types: VideoUpload.FILE_TYPES,
                     lang: uploadLang,
@@ -304,7 +304,7 @@ var VideoUpload = {
         if (e && isObject(e)) {
             var a = {
                     file_name: "photo",
-                    file_size_limit: 5242880,
+                    file_size_limit: 1024 * (e.file_size_limit_in_MB || 50) * 1024,
                     file_types_description: "Image files (*.jpg, *.jpeg, *.png, *.gif)",
                     file_types: "*.jpg;*.JPG;*.jpeg;*.JPEG;*.png;*.PNG;*.gif;*.GIF;*.bmp;*.BMP",
                     onUploadStart: function(e, o) {
@@ -844,51 +844,6 @@ var VideoUpload = {
         }, addEvent(i, "paste blur", s), addEvent(i, "keydown input", a), cur.destroy.push(function() {
             removeEvent(i, "paste blur", s), removeEvent(i, "keydown input", a)
         })
-    },
-    initLiveStreamThumbUpload: function(e, o) {
-        if (e && isObject(e)) {
-            ({
-                file_name: "photo",
-                file_size_limit: 5242880,
-                file_types_description: "Image files (*.jpg, *.jpeg, *.png, *.gif)",
-                file_types: "*.jpg;*.JPG;*.jpeg;*.JPEG;*.png;*.PNG;*.gif;*.GIF;*.bmp;*.BMP",
-                onUploadStart: function(e, o) {
-                    show(thumbProgressEl), setStyle(thumbProgressBarEl, "width", "0%")
-                },
-                onUploadComplete: function(e, o) {
-                    if (hide(thumbProgressEl), setStyle(thumbProgressBarEl, "width", "0%"), !o) return void topError("Thumb load error");
-                    o = parseJSON(o);
-                    var a = geByClass1("video_tc_upload_image", itemEl);
-                    show(a), setStyle(a, {
-                        backgroundImage: "url(" + o.thumb.l + ")"
-                    }), itemEl.setAttribute("data-thumb-url", o.thumb.l), itemEl.setAttribute("data-thumb-id", o.photo_id + "_" + o.photo_owner_id), itemEl.setAttribute("data-thumb-hash", o.photo_hash), VideoUpload.selectThumb(itemEl)
-                },
-                onUploadProgress: function(e, o, a) {
-                    var d = intval(o / a * 100);
-                    d = Math.min(d, 100), setStyle(thumbProgressBarEl, "width", d + "%")
-                },
-                onUploadError: function(e, o) {
-                    hide(thumbProgressEl), setStyle(thumbProgressBarEl, "width", "0%"), topError("Thumb load error")
-                },
-                clear: 1,
-                type: "photo",
-                buttonClass: "secondary small",
-                max_attempts: 3,
-                server: e.server,
-                error: e.default_error,
-                error_hash: e.error_hash,
-                noCheck: !0,
-                chooseBox: !0,
-                label: cur.videoUploadThumbBtnTpl,
-                uploadButton: !0,
-                buttonClass: "_video_tc_upload_btn",
-                accept: ".jpg,.jpeg,.png",
-                filesize_hide_last: !0,
-                lang: {
-                    filesize_error: getLang("video_upload_thumb_size_error")
-                }
-            })
-        }
     },
     liveStreamBetaIntro: function() {
         showBox("al_video.php?act=live_beta_intro_box", {}, {

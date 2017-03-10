@@ -4760,8 +4760,17 @@ var Wall = {
         } else if (checkEvent(event)) {
             window.open(url, '_blank');
         } else {
+            var adParams;
+            var adData = el.getAttribute('data-ad');
+            var adBlockUID = el.getAttribute('data-ad-block-uid');
+            if (adData && adBlockUID) {
+                adParams = {
+                    post_ad_data: adData,
+                    ad_block_unique_id: adBlockUID
+                };
+            }
             Wall.hideEditPostReply();
-            Wall.postFull('wall' + matches[1] + '_' + matches[3], false, opts);
+            Wall.postFull('wall' + matches[1] + '_' + matches[3], false, opts, adParams);
         }
     },
     postClickStat: function(event) {
@@ -4896,7 +4905,7 @@ var Wall = {
 
         return cancelEvent(ev);
     },
-    postFull: function(post, event, opts) {
+    postFull: function(post, event, opts, adParams) {
         if (post.match(/^wall-?\d+_\d+$/) && !(opts || {}).nolist && !(cur.pgParams && (cur.pgParams.owners_only || cur.pgParams.q))) {
             switch (cur.wallType) {
                 case 'all':
@@ -4911,9 +4920,9 @@ var Wall = {
                     //   break;
             }
         }
-        return showWiki({
+        return showWiki(extend({
             w: post
-        }, false, event, opts);
+        }, adParams), false, event, opts);
     },
     checkReplyClick: function(el, event) {
         event = event || window.event;

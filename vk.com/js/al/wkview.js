@@ -546,34 +546,35 @@ var WkView = {
             wall: 1
         }, r)
     },
-    extPageSubscribe: function(e, r, t, o) {
+    extPageSubscribe: function(e, r, t, o, i) {
         if (!buttonLocked(e)) {
             cur.wkSubscribed = cur.wkSubscribed || {};
-            var i = hasClass(e, "secondary"),
-                a = {
+            var a = hasClass(e, "secondary"),
+                w = {
                     showProgress: lockButton.pbind(e),
                     hideProgress: unlockButton.pbind(e),
                     onDone: function() {
-                        cur.wkSubscribed[r] = !i, toggleClass(e, "secondary"), o && i && hide(e)
+                        cur.wkSubscribed[r] = !a, toggleClass(e, "secondary"), o && a && hide(e)
                     }
                 };
-            if (r > 0) ajax.post("al_friends.php", {
-                act: i ? "remove" : "add",
+            if (i = i || "", r > 0) ajax.post("al_friends.php", {
+                act: a ? "remove" : "add",
                 mid: r,
                 hash: t,
                 from: "wkview_extpage"
-            }, a);
+            }, w);
             else {
-                var w = ajax.post.pbind("al_groups.php", {
-                    act: i ? "a_leave" : "a_enter",
+                var l = ajax.post.pbind("al_groups.php", {
+                    act: a ? "a_leave" : "a_enter",
                     gid: -r,
                     hash: t,
-                    from: "wkview_extpage"
-                }, a);
-                if (o && i) var l = showFastBox(o.title, o.text, o.btn, function() {
-                    l.hide(), w()
+                    from: "wkview_extpage",
+                    t_src: i
+                }, w);
+                if (o && a) var n = showFastBox(o.title, o.text, o.btn, function() {
+                    n.hide(), l()
                 }, getLang("global_cancel"));
-                else w()
+                else l()
             }
         }
     },

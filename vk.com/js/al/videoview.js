@@ -1782,7 +1782,7 @@ var Videoview = {
         setTitle: function(e) {
             var i = mvcur.mvData.title || "";
             e = e || 590, val("mv_min_title", Videoview._isCurrentVideoPublished() ? stripHTML(i) : ""), setStyle("mv_min_title", {
-                maxWidth: Math.max(0, e - 60)
+                maxWidth: Math.max(0, e - 70)
             });
             var o = ge("mv_title");
             o && (val(o, i), setStyle(o, {
@@ -1883,9 +1883,8 @@ var Videoview = {
                 width: mvcur.minSize.player.w + n + "px",
                 height: mvcur.minSize.player.h + a + "px"
             });
-            var d = Math.abs(n) + Math.abs(a),
-                r = mvcur.minSize.player.w + n;
-            return mvcur.resizeDiff = Math.max(d, mvcur.resizeDiff), mvcur.contSize = !1, Videoview.setTitle(r), Videoview.playerOnResize(), Videoview.updateExternalVideoFinishBlock(), !1
+            var d = Math.abs(n) + Math.abs(a);
+            return mvcur.resizeDiff = Math.max(d, mvcur.resizeDiff), mvcur.contSize = !1, Videoview.setTitle(mvcur.minSize.wrap.w + n), Videoview.playerOnResize(), Videoview.updateExternalVideoFinishBlock(), !1
         },
         minimize: function(e) {
             if (e && cancelEvent(e), mvcur.minimized) return !1;
@@ -1955,7 +1954,7 @@ var Videoview = {
                 return addClass(mvLayerWrap, t), addClass(layerBG, t), mvcur.needShowApprove && (mvcur.needShowApprove = !1, show("mv_approve")), Videoview.restoreStyle("mvContainer", "mv_container"), mvcur.mvPlayer && Videoview.restoreStyle("mvPlayer", mvcur.mvPlayer), setStyle("mv_player_box", {
                     width: "",
                     height: ""
-                }), Videoview.updateSize(), addEvent(window, "resize", Videoview.onResize), addEvent(document, "webkitfullscreenchange mozfullscreenchange fullscreenchange", Videoview.onFullscreenChange), addEvent(document, "keydown", Videoview.onKeyDown), removeEvent(window, "resize", Videoview.minResize), mvcur.minDestroy && mvcur.minDestroy(), mvcur.noLocChange || e === !0 || Videoview.setLocation(), onBodyResize(!0), setStyle(mvLayerWrap, {
+                }), mvcur.mvData.is_active_live || Videoview.adaptRecomsHeight(), Videoview.updateSize(), addEvent(window, "resize", Videoview.onResize), addEvent(document, "webkitfullscreenchange mozfullscreenchange fullscreenchange", Videoview.onFullscreenChange), addEvent(document, "keydown", Videoview.onKeyDown), removeEvent(window, "resize", Videoview.minResize), mvcur.minDestroy && mvcur.minDestroy(), mvcur.noLocChange || e === !0 || Videoview.setLocation(), onBodyResize(!0), setStyle(mvLayerWrap, {
                     left: "0px",
                     top: "0px"
                 }), Videoview.showPlayer(!0), Videoview.setTitle(), VideoPlaylist.toggleStateClasses(), mvcur.chatMode && (VideoChat.toggleStateClasses(), VideoChat.updateScroll()), mvcur.preparationBlock && addClass("mv_box", "_has_preparation"), Videoview.viewScroll(), Videoview.playerOnResize(), !1
