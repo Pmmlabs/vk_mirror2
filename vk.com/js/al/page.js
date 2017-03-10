@@ -2347,7 +2347,8 @@ var Wall = {
             q: query,
             owner_id: cur.oid,
             offset: offset,
-            inline: 1
+            inline: 1,
+            owners_only: 1
         }, {
             onDone: function(rows, newOffset, count) {
                 if (cur_oid !== cur.oid) return;

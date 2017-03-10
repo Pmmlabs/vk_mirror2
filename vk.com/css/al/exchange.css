@@ -416,15 +416,6 @@ th.exchange_table_col_no_sorted {
     overflow: hidden
 }
 
-#exchange_post_msg .wall_post_text,
-#exchange_post_msg .wpe_buttons {
-    width: 410px
-}
-
-#exchange_post_msg #wpe_text {
-    width: 392px
-}
-
 #exchange_post_msg #wpe_cont {
     margin-top: 4px
 }

@@ -5150,6 +5150,7 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
             toggle(this.preview[previewParamName], !!(domainValue && !isBigApp));
             break;
         case 'photo':
+            var isPhotoSrcSet = true;
             if (this.params.photo.value && this.params.photo_link.value) {
                 this.preview[previewParamName].src = this.params.photo_link.value;
             } else {
@@ -5161,13 +5162,16 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
                     photoLinkSuffix = '_group';
                 }
                 var specialValue = ((this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO) ? 'value_empty_' : 'value_default_') + formatPhotoSize + photoLinkSuffix;
-                this.preview[previewParamName].src = this.params.photo_link[specialValue] || '';
+                specialValue = this.params.photo_link[specialValue];
+                isPhotoSrcSet = !!specialValue;
+                this.preview[previewParamName].src = specialValue || '';
             }
             var photoBoxClasses = ['promotion', 'big_image', 'legacy'];
             for (var i in photoBoxClasses) {
                 var className = photoBoxClasses[i];
                 toggleClass(this.preview.photo_box, className, !!(this.params.photo.box_classes && this.params.photo.box_classes.indexOf(className) != -1));
             }
+            this.preview.photo_box.style.display = isPhotoSrcSet ? 'block' : 'none';
             break;
         case 'photo_icon':
             this.preview[previewParamName].src = (this.params.photo['value_' + AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON] ? this.params.photo_link['value_' + AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON] : this.params.photo_link['value_default_' + AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON]);
@@ -6100,7 +6104,7 @@ AdsTargetingEditor.prototype.getUiCriterionData = function(criterionName, option
         case 'geo_mask':
             {
                 var viewParams = this.viewEditor.getParams();
-                var showOnlineGeo = inArray(viewParams.format_type, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]) && this.criteria.geo_mask.allow_online_geo;
+                var showOnlineGeo = (inArray(viewParams.format_type, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]) && this.criteria.geo_mask.allow_online_geo) || (this.criteria[criterionName].value == AdsEdit.ADS_GEO_CIRCLE_TYPE_MASK_ONLINE);
                 return this.criteria[criterionName].data.filter(function(row) {
                     return showOnlineGeo ? true : (row[0] != AdsEdit.ADS_GEO_CIRCLE_TYPE_MASK_ONLINE);
                 }, this);
@@ -6312,6 +6316,10 @@ AdsTargetingEditor.prototype.updateUiCriterionSelectedData = function(criterionN
 
     var value = this.criteria[criterionName].value;
     if (!value) {
+        return;
+    }
+
+    if (criterionName === 'geo_near') {
         return;
     }
 
