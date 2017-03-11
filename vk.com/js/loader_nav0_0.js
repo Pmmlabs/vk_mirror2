@@ -188,7 +188,7 @@ var stVersions = {
     'video.js': 3840498487,
     'video.css': 23557121992,
     'videocat.js': 1618923991,
-    'videocat.css': 20585735089,
+    'videocat.css': 20012511347,
     'videoview.js': 3132590274,
     'videoview.css': 13601730351,
     'video_edit.js': 2135196486,
@@ -213,9 +213,9 @@ var stVersions = {
     'post.css': 18502131127,
     'module.css': 18641630126,
     'owner_photo.js': 1714149322,
-    'owner_photo.css': 15773075545,
+    'owner_photo.css': 17425935337,
     'page.js': 1989463746,
-    'page.css': 20741323862,
+    'page.css': 19295599647,
     'page_help.css': 22464597218,
     'public.css': 26844011198,
     'public.js': 3882483539,
@@ -328,7 +328,7 @@ var stVersions = {
     'tags_dd.css': 13825447027,
     'tasks.js': 662793453,
     'tasks.css': 13170211948,
-    'helpdesk.js': 2184999540,
+    'helpdesk.js': 1914960490,
     'helpdesk.css': 12757623934,
     'tickets.js': 3747535527,
     'tickets.css': 20947879446,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 8180;
+var _rnd = 555;

@@ -1531,7 +1531,8 @@ html:not([lang=ru]) .wall_marked_as_ads {
 .page_media_link_desc_block {
     vertical-align: top;
     display: table-cell;
-    line-height: 0
+    line-height: 0;
+    word-break: break-word
 }
 
 .medadd_c_linkwrap_block_button {
