@@ -328,8 +328,8 @@ var stVersions = {
     'tags_dd.css': 13825447027,
     'tasks.js': 662793453,
     'tasks.css': 13170211948,
-    'helpdesk.js': 1914960490,
-    'helpdesk.css': 12757623934,
+    'helpdesk.js': 3664697477,
+    'helpdesk.css': 12999958623,
     'tickets.js': 3747535527,
     'tickets.css': 20947879446,
     'faq.js': 600540081,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 555;
+var _rnd = 1072;
