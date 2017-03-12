@@ -339,7 +339,7 @@ var stVersions = {
     'agents.css': 14325522123,
     'achievements.js': 897703126,
     'achievements.css': 12899651951,
-    'sf.css': 12513838070,
+    'sf.css': 11506569174,
     'sal.css': 12726000073,
     'members.css': 13748099718,
     'meminfo.css': 16166873366,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 1072;
+var _rnd = 3059;
