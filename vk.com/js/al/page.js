@@ -2498,7 +2498,7 @@ var Wall = {
             });
         }
 
-        var adsPostData, postId, positionFound;
+        var adsPostData, postId, positionErr;
         if (adsPosts.length) {
             for (var i = 0, l = adsPosts.length; i < l; ++i) {
                 adsPostData = adsPosts[i];
@@ -2506,25 +2506,34 @@ var Wall = {
                     continue;
                 }
                 // �� `ge`, � ����, �� ������ ����������� id div-�� � ������� c ������� �������
-                positionFound = false;
+                positionErr = 'no_position';
                 for (el = (revert ? posts.firstChild : posts.lastChild); el; el = (revert ? el.nextSibling : el.previousSibling)) {
+                    insertPositionEl = null;
                     postId = getPostId(el);
                     if (!postId) {
                         continue;
                     }
                     if (adsPostData.beforePost === postId) {
-                        posts.insertBefore(adsPostData.el, el);
-                        positionFound = true;
+                        insertPositionEl = el;
+                    } else if (adsPostData.afterPost === postId) {
+                        insertPositionEl = el.nextSibling;
+                    }
+                    if (insertPositionEl && (
+                            insertPositionEl.previousSibling && hasClass(insertPositionEl.previousSibling, '_ads_promoted_post') ||
+                            hasClass(insertPositionEl, '_ads_promoted_post')
+                        )) {
+                        insertPositionEl = null;
+                        positionErr = 'ads_sibling';
                         break;
                     }
-                    if (adsPostData.afterPost === postId) {
-                        posts.insertBefore(adsPostData.el, el.nextSibling);
-                        positionFound = true;
+                    if (insertPositionEl) {
+                        posts.insertBefore(adsPostData.el, insertPositionEl);
+                        positionErr = false;
                         break;
                     }
                 }
-                if (!positionFound) {
-                    statlogsValueEvent('debug_watch', 1, 'js_page_ads_promoted_post_no_position');
+                if (positionErr) {
+                    statlogsValueEvent('debug_watch', 1, 'js_page_ads_promoted_post_no_position', positionErr);
                 }
             }
         }

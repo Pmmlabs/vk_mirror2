@@ -189,7 +189,7 @@ var stVersions = {
     'video.css': 23557121992,
     'videocat.js': 1618923991,
     'videocat.css': 20012511347,
-    'videoview.js': 3132590274,
+    'videoview.js': 3510158674,
     'videoview.css': 13601730351,
     'video_edit.js': 2135196486,
     'video_edit.css': 19571118390,
@@ -214,7 +214,7 @@ var stVersions = {
     'module.css': 18641630126,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 17425935337,
-    'page.js': 1989463746,
+    'page.js': 1753748202,
     'page.css': 19295599647,
     'page_help.css': 22464597218,
     'public.css': 26844011198,
@@ -328,8 +328,8 @@ var stVersions = {
     'tags_dd.css': 13825447027,
     'tasks.js': 662793453,
     'tasks.css': 13170211948,
-    'helpdesk.js': 3664697477,
-    'helpdesk.css': 12999958623,
+    'helpdesk.js': 3778175514,
+    'helpdesk.css': 12385886236,
     'tickets.js': 3747535527,
     'tickets.css': 20947879446,
     'faq.js': 600540081,
@@ -516,7 +516,7 @@ var stVersions = {
     'speech_worker_opus.js': 3385759348,
     'stories.js': 3550070580,
     'stories.css': 19078138356,
-    'shortener.js': 1976251069,
+    'shortener.js': 3368715981,
     'lang': 6760
 };
 var stTypes = {
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 2416;
+var _rnd = 8646;

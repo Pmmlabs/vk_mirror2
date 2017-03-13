@@ -169,11 +169,12 @@ var Videoview = {
                 var n = Videoview.getVideoModule(e + "_" + i),
                     d = "";
                 if (window.Video && Video.isInCatalog()) {
-                    var r = (VideoPlaylist.getCurListId() || "").replace("cat_", "");
-                    d = cur.videoInlinePlayer && cur.videoInlinePlayer.getVars().live ? "lives" : cur.videoInlinePlayer || Videocat.isTop3Playlist(r) ? "featured" : r
+                    var r = window._videoLastInlined ? domData(_videoLastInlined[1], "playlist") : mvcur.options.playlistId,
+                        s = r ? r.replace("cat_", "") : "";
+                    d = Videocat.isTop3Playlist(s) ? "featured" : s
                 }
-                var s;
-                s = cur.mvOpts && cur.mvOpts.inline || window.mvcur && mvcur.mvData && mvcur.mvData.inline ? "inline" : window.mvcur && window.mvcur.options && window.mvcur.options.playlistId ? "layer_with_playlist" : "layer", window.mvcur && mvcur.mvData && (mvcur.viewStartedTimestamp = (new Date).getTime()), ajax.post("al_video.php?act=video_view_started", {
+                var v;
+                v = cur.mvOpts && cur.mvOpts.inline || window.mvcur && mvcur.mvData && mvcur.mvData.inline ? "inline" : window.mvcur && window.mvcur.options && window.mvcur.options.playlistId ? "layer_with_playlist" : "layer", window.mvcur && mvcur.mvData && (mvcur.viewStartedTimestamp = (new Date).getTime()), ajax.post("al_video.php?act=video_view_started", {
                     oid: e,
                     vid: i,
                     hash: o,
@@ -181,7 +182,7 @@ var Videoview = {
                     module: n,
                     videocat: d,
                     inline: -1,
-                    player_view_type: s
+                    player_view_type: v
                 }, {}), cur.videoInlinePlayer && cur.videoInlinePlayer.isFromAutoplay() && cur.videoAutoplayStat && cur.videoAutoplayStat.video == e + "_" + i && !a && ajax.post("al_video.php?act=autoplay_stat", {
                     event: "start",
                     start_time: vkNow() - cur.videoAutoplayStat.launched,
@@ -189,8 +190,8 @@ var Videoview = {
                     streaming_method: t,
                     module: Videoview.getVideoModule()
                 }, {});
-                var v = Videoview.getMvData();
-                switch (v.tns_monetized ? vkImage().src = "//www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=pladform_videovk-playerstart/" + irand(1, 1e9) : vkImage().src = "//www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=platform_videovk-playerstart/" + irand(1, 1e9), v.kz && (vkImage().src = "//www.tns-counter.ru/V13a****vk_kz/ru/CP1251/tmsec=vkkz_videostart/" + irand(1, 1e9)), v.l_type) {
+                var l = Videoview.getMvData();
+                switch (l.tns_monetized ? vkImage().src = "//www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=pladform_videovk-playerstart/" + irand(1, 1e9) : vkImage().src = "//www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=platform_videovk-playerstart/" + irand(1, 1e9), l.kz && (vkImage().src = "//www.tns-counter.ru/V13a****vk_kz/ru/CP1251/tmsec=vkkz_videostart/" + irand(1, 1e9)), l.l_type) {
                     case 1:
                         vkImage().src = "//vk.com/rtrg?r=JQ6ueUeOxlSLb8IoA8ToayylOLgRkThaoFV0XVgG5qvS1x1xWrkfqAg73sYWJxwq9PXWucKtMS02J3CsGLZdmOMNj9dv9UCjDN4a3ShJZXcJFMhgfVwSoPWoxp*Y/LAFUnKz5*XBvDCQXeaygAqI*gY9gz*jWTXaOXyT2lSfIPY-";
                         break;
@@ -828,7 +829,8 @@ var Videoview = {
                     mvcur.noHistory = 1, mvcur.forceHistoryHide = i, __adsUpdate("very_lazy");
                     var n = cur.mvHistoryBack ? -cur.mvHistoryBack : -1;
                     return cur.mvHistoryBack = 0, setTimeout(function() {
-                        mvcur.mvShown || (Videoview.destroyPlayer(), VideoPlaylist.removeBlock())
+                        mvcur.mvShown || (Videoview.destroyPlayer(),
+                            VideoPlaylist.removeBlock())
                     }, 10), history.go(n)
                 }
                 if (mvcur.forceHistoryHide && (i = mvcur.forceHistoryHide, mvcur.forceHistoryHide = !1), mvcur.statusVideo) {
