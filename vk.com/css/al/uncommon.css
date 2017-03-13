@@ -1031,6 +1031,10 @@ div.validation_last_button .button {
     overflow: hidden
 }
 
+.private_link {
+    padding-top: 13px
+}
+
 .shorten_error {
     padding-bottom: 0;
     visibility: hidden;

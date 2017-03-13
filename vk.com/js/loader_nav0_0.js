@@ -128,7 +128,7 @@ var stVersions = {
     'pads.css': 13412878818,
     'retina.css': 1499557272,
     'uncommon.js': 1524646384,
-    'uncommon.css': 14860237365,
+    'uncommon.css': 13860039827,
     'filebutton.css': 1044306797,
     'filebutton.js': 2454165044,
     'lite.js': 2040438164,
@@ -516,7 +516,7 @@ var stVersions = {
     'speech_worker_opus.js': 3385759348,
     'stories.js': 3550070580,
     'stories.css': 19078138356,
-    'shortener.js': 1298313198,
+    'shortener.js': 1976251069,
     'lang': 6760
 };
 var stTypes = {
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 6044;
+var _rnd = 2416;
