@@ -1701,7 +1701,7 @@ a.page_block_header:hover .apps_cat_header_link:after {
 }
 
 .app_actions_menu_wrap .ui_actions_menu {
-    right: -28px
+    right: -27px
 }
 
 .app_actions_menu_wrap.loading {
@@ -5100,7 +5100,24 @@ td.apps_cat_new_h {
 }
 
 #apps_layer .apps_footer_left_inner .app_actions_menu_wrap {
-    padding-left: 7px
+    padding-left: 7px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    color: #3d6899;
+    line-height: 53px;
+    margin-top: -14px
+}
+
+#apps_layer .apps_footer_left_inner .post_full_like_wrap {
+    border-top: 0;
+    line-height: initial;
+    margin: 0;
+    padding: 14px 0
+}
+
+#apps_layer .apps_footer_left_inner .post_share:hover {
+    background-color: #e5ebf1
 }
 
 .add_to_mine_community_box .add_community_app_card {

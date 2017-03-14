@@ -57,11 +57,11 @@ var tooltips = {
                     el.tt.showing = !0, setStyle(t, {
                         top: b,
                         left: C
-                    }), animate(t, {
-                        top: x,
-                        left: y,
+                    });
+                    var T = {
                         opacity: 1
-                    }, void 0 !== opts.showsp ? opts.showsp : 200, function() {
+                    };
+                    C != y && (T.left = y), b != x && (T.top = x), animate(t, T, void 0 !== opts.showsp ? opts.showsp : 200, function() {
                         el.tt && el.tt.showing && (el.tt.showing = !1), opts.onShowEnd && opts.onShowEnd(), el.tt && (el.tt.shown = !0)
                     }), opts.onShowStart && opts.onShowStart(el.tt)
                 }

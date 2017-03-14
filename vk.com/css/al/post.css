@@ -40,6 +40,10 @@
     padding-top: 10px
 }
 
+.post_thumbed_media:last-child {
+    padding-bottom: 1px
+}
+
 .post_thumbed_media:empty {
     margin: 0;
     padding: 0
@@ -60,6 +64,10 @@
 
 .page_post_sized_thumbs {
     padding: 10px 0 4px
+}
+
+.page_post_sized_thumbs:last-child {
+    padding-bottom: 0
 }
 
 .page_post_sized_full_thumb {
@@ -475,7 +483,8 @@ a.page_post_thumb_wrap:hover {
 }
 
 .wall_module .copy_quote .page_media_poll_wrap:last-child,
-.wall_module .post_btl .page_media_poll_wrap:last-child {
+.wall_module .post_btl .page_media_poll_wrap:last-child,
+.wall_module .post_fr_likes .page_media_poll_wrap:last-child {
     margin-bottom: 0
 }
 

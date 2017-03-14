@@ -81,13 +81,13 @@ AdsPayments.openChangeBudgetBox = function(e, n) {
                 AdsPayments.reqsOnChangeNonResident(e)
             }
         }), Radiobutton.select("req_non_resident", ge("req_non_resident").value)), isVisible("row_currency_num") && (ge("currency_num").removeAttribute("autocomplete"), cur.uiCurrencyNum = new Dropdown(ge("currency_num"), e.currency_data, {
-            width: 258,
+            width: 262,
             selectedItem: e.currency_num
         }), cur.destroy.push(cur.uiCurrencyNum.destroy.bind(cur.uiCurrencyNum)), e.req_inn && cur.uiCurrencyNum.disable(!0)), isVisible("row_contract_day") && isVisible("row_contract_day_edit") && AdsPayments.reqsReinitContractDay(e.contract_day_year, e.contract_day_month, e.contract_day_day), isVisible("row_segment_id") && isVisible("row_segment_id_edit") && (ge("segment_id").removeAttribute("autocomplete"), cur.uiSegmentId = new Dropdown(ge("segment_id"), e.segments_data, {
-            width: 258,
+            width: 262,
             selectedItem: e.segment_id
         }), cur.destroy.push(cur.uiSegmentId.destroy.bind(cur.uiSegmentId))), isVisible("row_moder_id") && isVisible("row_moder_id_edit") && (ge("moder_id").removeAttribute("autocomplete"), cur.uiModerId = new Dropdown(ge("moder_id"), e.moders_data, {
-            width: 258,
+            width: 262,
             selectedItem: e.moder_id
         }), cur.destroy.push(cur.uiModerId.destroy.bind(cur.uiModerId))), isVisible("row_rules")) {
         var n = new Checkbox(ge("payments_rules"), {
@@ -105,7 +105,7 @@ AdsPayments.openChangeBudgetBox = function(e, n) {
             onUpdate: function(e, n) {
                 cur.contractDate = e
             },
-            width: 258,
+            width: 262,
             pastActive: !0,
             year: e,
             month: n,

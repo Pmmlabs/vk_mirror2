@@ -201,19 +201,19 @@ a.groups_messages_block:before {
 }
 
 .group_friends {
-    padding: 7px;
-    font-size: 12px;
+    padding: 8px;
+    font-size: 12.5px;
     cursor: pointer
 }
 
 .group_friends_image {
     float: right;
-    width: 21px;
-    height: 21px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
-    border: 3px solid #fff;
+    border: 2px solid #fff;
     background-size: cover;
-    margin-right: -10px
+    margin-right: -8px
 }
 
 .group_friends_image:first-child {
@@ -222,8 +222,8 @@ a.groups_messages_block:before {
 
 .group_friends_text {
     overflow: hidden;
-    padding: 0 8px;
-    line-height: 27px
+    padding: 0 7px;
+    line-height: 28px
 }
 
 .group_closed {

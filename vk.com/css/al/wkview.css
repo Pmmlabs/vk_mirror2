@@ -18,7 +18,6 @@
 .wk_posts_stats_info_row .like .img,
 .wk_posts_stats_info_row .share .img,
 .wk_subscribe_icon,
-.wl_post_share .wl_action_icon,
 .wl_postreach_stat_comment_icon,
 .wl_postreach_stat_like_icon,
 .wl_postreach_stat_reach_icon,
@@ -273,6 +272,8 @@ body.mobfixed #wk_layer_wrap {
     filter: alpha(opacity=55);
     -o-transition: opacity 0.15s ease-in-out;
     transition: opacity 0.15s ease-in-out;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
     z-index: 631
 }
 
@@ -311,7 +312,9 @@ body.mobfixed #wk_layer_wrap {
     -o-transition: opacity 0.15s ease-in-out;
     transition: opacity 0.15s ease-in-out;
     cursor: pointer;
-    position: fixed
+    position: fixed;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
 }
 
 .wk_arrow#wk_left_arrow {
@@ -379,6 +382,27 @@ body.mobfixed #wk_layer_wrap {
     line-height: 150%
 }
 
+.wall_module.wl_post .reply .reply_wrap {
+    padding-top: 14px;
+    border-top: 1px solid #e7e8ec;
+    margin-top: -1px
+}
+
+.wall_module.wl_post .reply~.reply .reply_wrap {
+    padding-top: 10px
+}
+
+.wall_module.wl_post .wall_post_text:last-child {
+    margin-bottom: 0
+}
+
+.wall_module.wl_post .copy_quote .page_media_poll_wrap:last-child,
+.wall_module.wl_post .copy_quote .page_media_thumbed_link:last-child,
+.wall_module.wl_post .post_btl .page_media_poll_wrap:last-child,
+.wall_module.wl_post .post_btl .page_media_thumbed_link:last-child {
+    margin-bottom: 5px
+}
+
 .wl_post_body_wrap {
     padding: 16px 25px 10px
 }
@@ -395,29 +419,111 @@ body.mobfixed #wk_layer_wrap {
     margin-top: 15px
 }
 
-.wl_post_actions_wrap {
-    padding: 5px 25px 20px
+.wl_post_body_wrap .page_media_poll_wrap:last-child,
+.wl_post_body_wrap .page_media_thumbed_link:last-child {
+    margin-bottom: -11px
 }
 
-.wl_post_share .wl_action_icon {
-    background: url(/images/icons/layer_actions.png?1) no-repeat 0 -31px;
-    width: 12px;
-    height: 13px;
-    margin: 2px 7px 0 0
+#like_wall_preview.wl_post_body_wrap .page_media_poll_wrap:last-child,
+#like_wall_preview.wl_post_body_wrap .page_media_thumbed_link:last-child,
+.wl_postreach_wall_module.wl_post_body_wrap .page_media_poll_wrap:last-child,
+.wl_postreach_wall_module.wl_post_body_wrap .page_media_thumbed_link:last-child {
+    margin-bottom: 0
+}
+
+.post_fr_likes.wl_post_body_wrap .page_media_poll_wrap:last-child,
+.post_fr_likes.wl_post_body_wrap .page_media_thumbed_link:last-child {
+    margin-bottom: 9px
+}
+
+.wl_post_actions_wrap {
+    padding: 0 5px
+}
+
+.wl_post_actions_wrap .ui_actions_menu_wrap {
+    padding: 5px 0 6px 10px;
+    position: relative;
+    float: left
+}
+
+.wl_post_actions_wrap .ui_actions_menu_more {
+    padding-right: 10px;
+    color: #3d6899;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    white-space: nowrap
+}
+
+.wl_post_actions_wrap .ui_actions_menu_more:after {
+    display: inline-block;
+    content: '';
+    background: url(/images/svg_icons/contour_arrow.svg) no-repeat;
+    background-position: right 0;
+    height: 5px;
+    width: 14px;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    margin-right: -10px
+}
+
+.wl_post_actions_wrap .ui_actions_menu_more:hover {
+    text-decoration: none
+}
+
+.wl_post_actions_wrap .ui_actions_menu_more:hover:after {
+    opacity: 1;
+    -webkit-filter: none;
+    filter: none
+}
+
+.wl_post_actions_wrap .ui_actions_menu_icons {
+    position: static;
+    display: inline;
+    background: none;
+    width: auto;
+    height: auto;
+    top: auto;
+    right: auto
+}
+
+.wl_post_actions_wrap .ui_actions_menu {
+    right: -27.5px;
+    margin-top: -15px;
+    z-index: 621
+}
+
+.wl_post_actions_wrap .ui_actions_menu_top .ui_actions_menu {
+    margin-top: 0;
+    margin-bottom: -15px
+}
+
+.wl_post_actions_wrap .ui_actions_menu_left .ui_actions_menu {
+    margin-left: -35.5px
+}
+
+.wk_cont .post_share .post_share_link {
+    display: inline
+}
+
+.wk_cont .post_share .post_share_count {
+    margin-left: 6px
+}
+
+.wk_cont .post_share .blind_label {
+    display: none
 }
 
 .wl_replies_header {
     cursor: default;
-    background: #fafbfc;
-    color: #828282;
-    border: solid #e7e8ec;
-    border-width: 1px 0;
+    color: #222;
+    border-top: 1px solid #e7e8ec;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     font-size: 12.5px;
     line-height: 1em;
-    padding: 13px 25px
+    padding: 18px 25px 14px
 }
 
 .wl_replies_header.wl_replies_header_clickable {
@@ -432,16 +538,14 @@ body.mobfixed #wk_layer_wrap {
 .wl_replies_header_toggler {
     float: right;
     cursor: pointer;
-    margin: -31px 20px 0
+    margin: -33px 20px 0
 }
 
 .wl_replies_header_progress {
     cursor: default;
-    background-color: #fafbfc;
-    border: solid #e7e8ec;
-    border-width: 1px 0;
-    font-size: 12.5px;
-    padding: 13px 25px;
+    border-top: 1px solid #e7e8ec;
+    font-size: 12px;
+    padding: 18px 25px 14px;
     text-align: center;
     height: 1em;
     width: auto;
@@ -630,36 +734,8 @@ body.mac .wl_reply_form_fixed {
     filter: alpha(opacity=40)
 }
 
-.wk_like_label,
-.wl_action_icon,
-.wl_action_link {
+.wk_like_label {
     float: left
-}
-
-.wl_action_link.flat_button.secondary {
-    color: #4a7198
-}
-
-.wl_more_action.idd_wrap {
-    padding: 7px 16px 8px;
-    font-size: 12.5px;
-    color: #4a7198;
-    line-height: 15px
-}
-
-.wl_more_action.idd_wrap .idd_arrow {
-    background-position: right 50%
-}
-
-.wl_more_action.idd_wrap .idd_popup .idd_header.idd_arrow {
-    background-position: right 50%;
-    line-height: 15px;
-    padding: 7px 15px 8px 16px
-}
-
-.wl_more_action.idd_wrap .idd_popup .idd_item {
-    line-height: 15px;
-    padding: 7px 16px 8px
 }
 
 .tt_w.like_tt.wk_like_tt.tt_up:after {
@@ -700,6 +776,15 @@ body.mac .wl_reply_form_fixed {
 
 .wk_likes .wk_wiki_content {
     padding: 0
+}
+
+.wk_likes_bottom {
+    text-align: center;
+    color: #939699;
+    border-top: 1px solid #e7e8ec;
+    line-height: 44px;
+    padding-top: 5px;
+    margin: 0 11px
 }
 
 .wk_history_content #wk_content {

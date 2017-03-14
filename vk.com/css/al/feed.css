@@ -177,7 +177,7 @@
 }
 
 .feed_updates .wall_module .post_date {
-    padding-top: 3px
+    padding-top: 4px
 }
 
 .feed_updates .wall_module .post_author {
@@ -359,10 +359,6 @@
     display: inline
 }
 
-.wall_module .feed_article_wrap .post_share_icon {
-    background-position: 0 -15px
-}
-
 .feed_article_preview_btn {
     padding-top: 10px
 }
@@ -423,13 +419,26 @@
     color: #42648b;
     border-bottom: 1px solid #e7e8ec;
     text-align: center;
-    padding: 16px 15px 14px;
+    padding: 17px 15px 16px;
+    line-height: 14px;
     cursor: pointer;
     display: none
 }
 
 .feed_new_posts:hover {
     background: #f0f2f5
+}
+
+.feed_new_posts>b {
+    display: inline-block;
+    background-color: #618ab8;
+    color: #fff;
+    padding: 3px 7px;
+    margin: -3px 2px;
+    border-radius: 10.5px;
+    min-width: 7px;
+    height: 15px;
+    text-align: left
 }
 
 .feed_has_new .feed_new_posts {

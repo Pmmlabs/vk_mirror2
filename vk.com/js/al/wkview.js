@@ -820,7 +820,7 @@ var WkView = {
     likesToTop: function() {
         var e = ge("tb_tabs_wrap"),
             r = getXY(e, !0)[1];
-        cur.lSTL && cur.lSTL.el == ge("wk_box") && (cur.lSTLWas = 0), 0 > r && (wkLayerWrap.scrollTop += r + 1), WkView.likesOnScroll()
+        wkcur.lSTL && wkcur.lSTL.el == ge("wk_box") && (wkcur.lSTLWas = 0), 0 > r && (wkLayerWrap.scrollTop += r + 1), WkView.likesOnScroll(), wkcur.lSTL && WkView.stlOnScroll()
     },
     likesTab: function(e) {
         var r = ge("likes_tab_" + e),
@@ -1037,18 +1037,18 @@ var WkView = {
     },
     showSubscribeTooltip: function(e) {
         var r = hasClass(e, "wl_post_subscribed"),
-            t = getSize(e),
-            o = t[0];
+            t = getSize(e);
+        t[0];
         showTooltip(e, {
+            dir: "left",
+            asrtl: 1,
             text: function() {
                 return wkcur.lang[r ? "wall_unsubscribe_post_tt" : "wall_subscribe_post_tt"]
             },
-            shift: function() {
-                var r = getSize(e.tt.container);
-                return [(r[0] - o) / 2, 8, 8]
-            },
+            shift: [260, -15],
+            slideX: -10,
             showdt: 200,
-            className: "subscribe_post_tt"
+            className: "subscr_post_tt"
         })
     },
     initIntro: function(e) {

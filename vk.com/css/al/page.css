@@ -60,9 +60,6 @@
 .wall_module .media_preview .poll b,
 .wall_module .media_preview .share b,
 .wall_module .post_actions.post_actions_progress:before,
-.wall_module .post_like_icon,
-.wall_module .post_reply_icon,
-.wall_module .post_share_icon,
 .wall_module .reply_action,
 .wall_module .reply_to_title .reply_to_cancel,
 .wall_module td.page_media_link_thumb,
@@ -401,7 +398,7 @@
 
 .post_date {
     font-size: 12.5px;
-    padding-top: 2px
+    padding-top: 3px
 }
 
 .post_date,
@@ -528,7 +525,7 @@ h5.post_author {
 
 .wall_module .copy_post_date {
     font-size: 12.5px;
-    padding-top: 2px;
+    padding-top: 3px;
     color: #939393
 }
 
@@ -714,6 +711,10 @@ html:not([lang=ru]) .wall_marked_as_ads {
     word-wrap: break-word
 }
 
+.wall_post_text:last-child {
+    margin-bottom: -5px
+}
+
 .copy_quote .wall_post_text {
     padding-top: 11px
 }
@@ -758,7 +759,7 @@ html:not([lang=ru]) .wall_marked_as_ads {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #627e9e;
+    color: #3d6899;
     font-size: 11.5px
 }
 
@@ -946,13 +947,13 @@ html:not([lang=ru]) .wall_marked_as_ads {
 }
 
 .wall_module .reply .no_likes .like_icon {
-    opacity: 0.4;
-    filter: alpha(opacity=40)
+    opacity: 0.35;
+    filter: alpha(opacity=35)
 }
 
 .wall_module .reply:hover .like_wrap:hover .like_icon {
-    opacity: 0.65;
-    filter: alpha(opacity=65)
+    opacity: 0.5;
+    filter: alpha(opacity=50)
 }
 
 .wall_module .reply:hover .like_wrap.my_like .like_icon {
@@ -1344,6 +1345,7 @@ html:not([lang=ru]) .wall_marked_as_ads {
 .wl_postreach_wall_module.wall_module .wall_text .page_media_thumbed_link:last-child,
 .ads_edit_panel_preview.format_edit .wall_module .post .wall_text .page_media_thumbed_link:last-child,
 .wall_module .post.ads_ads_preview .wall_text .page_media_thumbed_link:last-child,
+.wall_module .post.post_fr_likes .page_media_thumbed_link:last-child,
 .wall_module .post.postponed .wall_text .page_media_poll_wrap:last-child,
 .wall_module .post.postponed .wall_text .page_media_thumbed_link:last-child,
 .wall_module .post.suggest .wall_text .page_media_poll_wrap:last-child,
@@ -4090,44 +4092,48 @@ div.submit_post_field[contenteditable=true]>p {
 .post_reply,
 .post_share {
     cursor: pointer;
-    color: #3f668c;
+    color: #3d6899;
     white-space: nowrap;
     overflow: hidden;
-    margin-right: 6px;
-    padding: 4px 7px 5px;
-    border-radius: 2px
+    margin-right: 8px;
+    padding: 5px 6px 6px;
+    border-radius: 3px
 }
 
 .post_like:hover,
 .post_reply:hover,
 .post_share:hover {
-    color: #2e5882
+    color: #315b8c
 }
 
 .wall_module .post_like:hover,
 .wall_module .post_reply:hover,
 .wall_module .post_share:hover {
-    background-color: #f2f4f7
+    background-color: #f5f7fa
 }
 
 .wall_module .post_like_link,
 .wall_module .post_reply_link,
 .wall_module .post_share_link {
-    margin: 1px 0 0 6px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin-left: 7px;
     float: left
 }
 
 .wall_module .post_like_icon,
 .wall_module .post_reply_icon,
-.wall_module .post_share_icon {
-    background: url(/images/post_icon.png?6) no-repeat 0 0;
+.wall_module .post_share_icon,
+.wall_module .post_views_icon {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2214%22%20viewBox%3D%220%200%2016%2014%22%20style%3D%22fill%3A%233D6899%3B%22%3E%3Cpath%20d%3D%22M8%203.2C7.4-0.3%203.2-0.8%201.4%201%20-0.5%202.9-0.5%205.8%201.4%207.7%201.9%208.2%206.9%2013%206.9%2013%207.4%2013.6%208.5%2013.6%209%2013L14.5%207.7C16.5%205.8%2016.5%202.9%2014.6%201%2012.8-0.7%208.6-0.3%208%203.2Z%22%2F%3E%3C%2Fsvg%3E") no-repeat 0 0;
     display: inline-block;
-    width: 16px;
-    height: 13px;
-    margin: 2px 0 1px;
     float: left;
-    opacity: 0.4;
-    filter: alpha(opacity=40)
+    width: 17px;
+    height: 14px;
+    margin-top: 1px;
+    opacity: 0.35;
+    filter: alpha(opacity=35)
 }
 
 .wall_module .post_like_count,
@@ -4143,12 +4149,11 @@ div.submit_post_field[contenteditable=true]>p {
 .wall_module .post_like_count,
 .wall_module .post_reply_count,
 .wall_module .post_share_count {
-    margin: 1px 0 1px 6px;
+    margin-left: 6px;
     float: left;
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #627e9e
+    -moz-osx-font-smoothing: grayscale
 }
 
 .wall_module .post_like_count .counter_anim_wrap,
@@ -4165,21 +4170,19 @@ div.submit_post_field[contenteditable=true]>p {
 .wall_module .post_like:hover .post_like_icon,
 .wall_module .post_reply:hover .post_reply_icon,
 .wall_module .post_share:hover .post_share_icon {
-    opacity: 0.65;
-    filter: alpha(opacity=65)
+    opacity: 0.5;
+    filter: alpha(opacity=50)
 }
 
 .wall_module .post_share_icon {
-    background-position: 1px -15px;
-    height: 14px;
-    margin-bottom: 0
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20style%3D%22fill%3A%233D6899%3B%22%3E%3Cpath%20d%3D%22M0%205.5L0%206.5C0%208%201.6%209%203%209L8%209C8.4%209%209.1%209.2%2010.7%2010.3%2011.7%2011.1%2012.9%2012%2012.9%2012L14%2012%2014%206%2014%206%2014%206%2014%200%2012.9%200C12.9%200%2011.7%200.9%2010.7%201.7%209.1%202.8%208.4%203%208%203L3%203C1.6%203%200%204%200%205.5ZM7.5%2012L6.4%209%204%209%205.3%2014C7.3%2014%207.5%2013.3%207.5%2012Z%22%2F%3E%3C%2Fsvg%3E");
+    width: 14px
 }
 
 .wall_module .post_reply_icon {
-    background: url(/images/icons/reply_post.png) no-repeat 0 1px;
-    width: 14px;
-    height: 14px;
-    margin-bottom: 0
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%225%206%2014%2014%22%20style%3D%22fill%3A%233D6899%3B%22%3E%3Cpath%20d%3D%22M5%207C5%206.4%205.4%206%206%206L18%206C18.5%206%2019%206.5%2019%207L19%2015C19%2015.6%2018.6%2016%2018%2016L6%2016C5.5%2016%205%2015.5%205%2015L5%207ZM9%2016L9%2020%2014%2016%209%2016Z%22%2F%3E%3C%2Fsvg%3E");
+    width: 15px;
+    margin: 2px 0 -1px
 }
 
 .wall_module .my_like .post_like_icon,
@@ -4190,30 +4193,55 @@ div.submit_post_field[contenteditable=true]>p {
 }
 
 .wall_module .post_share_count {
-    margin: 1px 0 1px 4px
+    margin-left: 8px
 }
 
 .wall_module .post_reply_count:empty {
     margin: 0
 }
 
-.wall_module .post_share_link {
-    display: none;
-    margin: 1px 0 0 4px
-}
-
-.wall_module .post_reply {
-    display: none
-}
-
-.ml_ui4 .wall_module .post_reply {
-    display: block
-}
-
-.ml_ui4 .post_full_like_wrap .reply_link,
+.wall_module .post_share_link,
 .wall_module .no_likes .post_like_count,
-.wall_module .no_shares .post_share_count {
+.wall_module .no_shares .post_share_count,
+.wall_module .no_views {
     display: none
+}
+
+.wall_module .post_views {
+    float: right;
+    color: #909399;
+    cursor: default;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 5px 0 6px 6px
+}
+
+.wall_module .post_views:hover {
+    text-decoration: none
+}
+
+.wall_module .post_views_icon {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2210%22%20viewBox%3D%221%202%2014%2010%22%20style%3D%22fill%3A%23828a99%3B%22%3E%3Cpath%20d%3D%22M8%2012C3.8%2012%201%208%201%207%201%206%203.8%202%208%202%2012.2%202%2015%206%2015%207%2015%208%2012.2%2012%208%2012ZM8%2010.5C9.9%2010.5%2011.5%208.9%2011.5%207%2011.5%205.1%209.9%203.5%208%203.5%206.1%203.5%204.5%205.1%204.5%207%204.5%208.9%206.1%2010.5%208%2010.5ZM8%208.6C7.1%208.6%206.4%207.9%206.4%207%206.4%206.1%207.1%205.4%208%205.4%208.9%205.4%209.6%206.1%209.6%207%209.6%207.9%208.9%208.6%208%208.6Z%22%2F%3E%3C%2Fsvg%3E") no-repeat 0 0;
+    width: 14px;
+    height: 10px;
+    margin: 2px 0 0;
+    opacity: 0.5;
+    filter: alpha(opacity=50)
+}
+
+.wall_module .post_views_count {
+    margin-left: 7px
+}
+
+.wall_module .post_views_count .counter_anim_wrap {
+    line-height: 15px;
+    height: 14px
+}
+
+.wall_module .post_views_count .counter_anim_wrap,
+.wall_module .post_views_count .counter_wrap {
+    -o-transition: width 100ms linear;
+    transition: width 100ms linear
 }
 
 .tt_w.like_tt,
@@ -4376,7 +4404,7 @@ div.submit_post_field[contenteditable=true]>p {
 }
 
 .post_full_like_wrap {
-    padding: 10px 0 11px;
+    padding: 11px 0;
     margin: 0 20px;
     border-top: 1px solid #e7e8ec;
     border-radius: 0 0 2px 2px
@@ -4391,13 +4419,58 @@ div.submit_post_field[contenteditable=true]>p {
 .post_full_like_wrap .post_like:first-child,
 .post_full_like_wrap .post_reply:first-child,
 .post_full_like_wrap .post_share:first-child {
-    margin-left: -7px
+    margin-left: -6px
 }
 
 .post_full_like_wrap .reply_link_wrap {
-    padding: 5px 7px;
-    margin-right: -7px;
+    padding: 5px 6px 6px;
+    line-height: 15px;
+    margin-right: -6px;
     float: right
+}
+
+.post_friends_liked {
+    margin: -9px 20px 10px
+}
+
+.post_btl .post_friends_liked {
+    margin-top: -4px
+}
+
+.post_friends_liked_images {
+    float: left;
+    margin-left: -2px
+}
+
+.post_friend_liked {
+    float: right;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #fff;
+    margin-right: -8px
+}
+
+.post_friend_liked:first-child {
+    margin-right: 0
+}
+
+.post_friend_liked_image {
+    width: 24px
+}
+
+.post_friends_liked_text {
+    overflow: hidden;
+    padding-left: 6px;
+    line-height: 28px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #656565
+}
+
+.post_friends_liked_text a.mem_link {
+    color: #656565
 }
 
 .reply_moreable,

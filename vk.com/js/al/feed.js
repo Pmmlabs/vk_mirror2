@@ -325,22 +325,21 @@ var Feed = {
             case "del_reply":
                 if (!cur.wallMyDeleted[r] && i) {
                     feed.needScrollPost(t, i) && (c -= i.offsetHeight);
-                    var W = i.parentNode.id.match(/replies(-?\d+_\d+)/);
-                    revertLastInlineVideo(i), re(i), W && Wall.repliesSideSetup(W[1])
+                    var z = i.parentNode.id.match(/replies(-?\d+_\d+)/);
+                    revertLastInlineVideo(i), re(i), z && Wall.repliesSideSetup(z[1])
                 }
+                break;
+            case "view_post":
+                Wall.likeUpdate(!1, r, 0, e[3], void 0, void 0, 1);
                 break;
             case "like_post":
             case "like_reply":
-                if (layer && r == window.cur.wallLayerLike) {
-                    window.WkView && WkView.likeUpdate(hasClass(ge("wk_like_wrap"), "my_like"), e[3], !1);
-                    break
-                }
                 if (!i) break;
-                var z = "like_reply" == o ? r.replace("_", "_wall_reply") : r,
-                    G = i && domByClass(i, "_like_wrap"),
+                var G = "like_reply" == o ? r.replace("_", "_wall_reply") : r,
+                    W = i && domByClass(i, "_like_wrap"),
                     X = i && domByClass(i, "_share_wrap");
-                wall.likeFullUpdate(G, z, {
-                    like_my: G && hasClass(G, "my_like"),
+                wall.likeFullUpdate(W, G, {
+                    like_my: W && hasClass(W, "my_like"),
                     like_num: e[3],
                     like_title: !1,
                     share_my: X && hasClass(X, "my_share"),
@@ -947,7 +946,8 @@ var Feed = {
             onDone: function(s) {
                 val("post" + e, s), each(geByClass("post", cur.rowsCont), function(s, o) {
                     var r = this.id.match(/post((-?\d+)_(-?\d+)(_\d+)?)/);
-                    r && r[1] != e && (!r[4] && r[2] == t || r[4] && r[3] == t) && (revertLastInlineVideo(this), hide(this.parentNode))
+                    r && r[1] != e && (!r[4] && r[2] == t || r[4] && r[3] == t) && (revertLastInlineVideo(this),
+                        hide(this.parentNode))
                 })
             },
             showProgress: o && lockButton.pbind(o),

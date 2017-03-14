@@ -5033,6 +5033,26 @@ var Wall = {
     domPost: function(post_id) {
         return ge('post' + post_id);
     },
+    formatCount: function(count, opts) {
+        opts = opts || {};
+        var kLimit = opts.kLimit || 1000,
+            mLimit = opts.mLimit || 1000000;
+        if (count >= mLimit && !opts.noCheck) {
+            count = intval(count / 100000);
+            count = (count > 1000) ? intval(count / 10) : count / 10;
+            return this.formatCount(count, extend(opts, {
+                noCheck: true
+            }), true) + 'M';
+        } else if (count >= kLimit && !opts.noCheck) {
+            count = intval(count / 100);
+            count = (count > 100) ? intval(count / 10) : count / 10;
+            return this.formatCount(count, extend(opts, {
+                noCheck: true
+            }), true) + 'K';
+        }
+
+        return langNumeric(count, '%s', true);
+    },
     likeFullUpdate: function(el, like_obj, likeData) {
         var matches = like_obj.match(/^(wall|photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(-?\d+_)(\d+)/),
             post = matches ? (matches[2] + (matches[1] == 'wall' ? '' : matches[1]) + matches[3]) : like_obj;
@@ -5040,20 +5060,32 @@ var Wall = {
         Wall.likeUpdate(el, post, likeData.like_my, likeData.like_num, likeData.like_title);
         Wall.likeShareUpdate(el, post, likeData.share_my, likeData.share_num, likeData.share_title);
     },
-    likeUpdate: function(el, post_id, my, count, title, share) {
-        count = intval(count);
+    likeUpdate: function(el, post_id, my, count, title, share, views) {
+        if (!views) {
+            count = intval(count);
+        }
+        if (el === false && cur.wallLayer === post_id) {
+            el = ge('wl_post_body');
+        }
 
         var matches = post_id.match(/(-?\d+)(_?)(photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(\d+)/),
             like_type = matches[3] || 'wall',
             post_raw = matches[1] + '_' + matches[4],
             like_obj = like_type + post_raw;
 
-        var post = el && gpeByClass('_post_content', el) || wall.domPost(post_raw),
-            wrap = domByClass(post, share ? '_share_wrap' : '_like_wrap'),
+        var post = el && (gpeByClass('_post_content', el) || gpeByClass('wl_post', el)) || wall.domPost(post_raw),
+            wrap = domByClass(post, views ? '_views_wrap' : (share ? '_share_wrap' : '_like_wrap')),
             icon = domByClass(wrap, '_icon'),
             countNode = domByClass(wrap, '_count');
         if (!countNode) {
             return;
+        }
+        if (!views && !share) {
+            var viewsWrap = domByClass(post, '_views_wrap'),
+                viewsCountNode = viewsWrap && domByClass(viewsWrap, '_count');
+            if (viewsCountNode && hasClass(viewsWrap, '_auto_update') && (!val(viewsCountNode) || val(viewsCountNode) == val(countNode))) {
+                wall.likeUpdate(el, post_id, 0, this.formatCount(count), undefined, undefined, 1);
+            }
         }
         var tt = wrap.tt || {},
             opts = clone(tt.opts || {});
@@ -5071,11 +5103,15 @@ var Wall = {
         if (countInput) {
             countInput.value = count;
         }
-        animateCount(countNode, count);
+        animateCount(countNode, (views ? count : langNumeric(count, '%s', true)), {
+            str: 'auto',
+            noWrapWidth: !!views
+        });
 
         toggleClass(wrap, share ? 'my_share' : 'my_like', my);
-        toggleClass(wrap, share ? 'no_shares' : 'no_likes', !count);
-        toggleClass(content, 'me_hidden', !my);
+        toggleClass(wrap, views ? 'no_views' : (share ? 'no_shares' : 'no_likes'), !count);
+        toggleClass(content, 'me_hidden', !my && !views);
+
         if (count) {
             if (tt.el) {
                 if (title === false) {
@@ -5795,7 +5831,7 @@ var Wall = {
                 post_id = ev[2],
                 updH = 0,
                 updY = 0,
-                el = layer && window.cur.wallLayer == post_id && ge('wl_post_body'),
+                el = layer && window.cur.wallLayer == post_id && ge('wl_post'),
                 mt = 15;
 
             if (!el || ev_type == 'del_reply') {
@@ -6058,16 +6094,14 @@ var Wall = {
                         }
                         break;
                     }
+                case 'view_post':
+                    {
+                        Wall.likeUpdate(false, post_id, 0, wall.formatCount(intval(ev[3])), undefined, undefined, 1);
+                        break;
+                    }
                 case 'like_post':
                 case 'like_reply':
                     {
-                        if (layer && post_id == window.cur.wallLayerLike) {
-                            if (window.WkView) {
-                                WkView.likeUpdate(hasClass(ge('wk_like_wrap'), 'my_like'), ev[3], false);
-                            }
-                            break;
-                        }
-
                         if (!el) break;
                         var likePost = (ev_type == 'like_reply' ? post_id.replace('_', '_wall_reply') : post_id),
                             likeWrap = el && domByClass(el, '_like_wrap'),
@@ -6149,7 +6183,9 @@ var Wall = {
                                 cntEl.tt.destroy();
                             }
                             toggleClass(cntEl, 'hidden', cnt == 0);
-                            animateCount(cntEl, cnt);
+                            animateCount(cntEl, langNumeric(cnt, '%s', true), {
+                                str: 'auto'
+                            });
                         }
                         break;
                     }
@@ -6531,14 +6567,16 @@ var Wall = {
         var p = wall.parsePostId(post_id),
             like_type = p.type,
             post_raw = p.id,
-            postEl = el && gpeByClass('_post_content', el) || wall.domPost(post_raw),
+            postEl = el && (gpeByClass('_post_content', el) || gpeByClass('wl_post', el)) || wall.domPost(post_raw),
             wrapEl = domByClass(postEl, '_like_wrap'),
             iconEl = domByClass(wrapEl, '_icon'),
             countEl = domByClass(wrapEl, '_count'),
             my = hasClass(wrapEl, 'my_like'),
             ref;
 
-        if (cur.wallType) {
+        if (post_id == cur.wallLayer) {
+            ref = 'wkview';
+        } else if (cur.wallType) {
             if (cur.wallType == 'feed') {
                 if (cur.section == 'news') {
                     ref = 'feed_' + (cur.subsection ? cur.subsection : cur.section)
@@ -6552,7 +6590,6 @@ var Wall = {
             }
         } else {
             ref = cur.module;
-
         }
 
         ajax.post('like.php', {
@@ -6583,8 +6620,8 @@ var Wall = {
             like_type = p.type,
             post_raw = p.id,
             like_obj = like_type + post_raw,
-            postEl = el && gpeByClass('_post_content', el) || wall.domPost(post_raw),
-            wrapClass = opts.share ? '_share_wrap' : '_like_wrap',
+            postEl = el && (gpeByClass('_post_content', el) || gpeByClass('wl_post', el)) || wall.domPost(post_raw),
+            wrapClass = opts.views ? '_views_wrap' : (opts.share ? '_share_wrap' : '_like_wrap'),
             wrapEl = domByClass(postEl, wrapClass),
             iconEl = domByClass(wrapEl, '_icon'),
             hasShare = postEl && domByClass(postEl, '_share_wrap');
@@ -6596,9 +6633,11 @@ var Wall = {
             icon_width = getSize(iconEl, true)[0],
             left_offset = icon_left + icon_width / 2 - wrap_left - tt_offset;
 
-        var extra = opts.share ? {
+        var extra = opts.views ? {
+            views: 1
+        } : (opts.share ? {
             published: 1
-        } : {};
+        } : {});
         if (opts.listId) {
             extra.list = opts.listId;
         }
@@ -6610,7 +6649,7 @@ var Wall = {
                 has_share: hasShare ? 1 : ''
             }, extra),
             slide: 15,
-            shift: [-left_offset, like_type == 'wall_reply' ? -3 : 6],
+            shift: [-left_offset, opts.views ? 2 : (like_type == 'wall_reply' ? -3 : 7)],
             ajaxdt: 100,
             showdt: 400,
             hidedt: 200,
@@ -6623,6 +6662,14 @@ var Wall = {
                     Wall.likesShow(el, post_id, opts);
                 }
             },
+            onShowStart: function() {
+                var cont = iconEl.parentNode.tt.container;
+                setTimeout(function() {
+                    setStyle(cont, {
+                        left: floatval(getStyle(cont, 'left')) + getXY(iconEl)[0] - icon_left
+                    });
+                }, 10);
+            },
             typeClass: 'like_tt',
             className: opts.cl || ''
         });
@@ -6633,7 +6680,7 @@ var Wall = {
             like_type = p.type,
             post_raw = p.id,
             like_obj = like_type + post_raw,
-            postEl = el && gpeByClass('_post_content', el) || wall.domPost(post_raw),
+            postEl = el && (gpeByClass('_post_content', el) || gpeByClass('wl_post', el)) || wall.domPost(post_raw),
             wrapClass = opts.share ? '_share_wrap' : '_like_wrap',
             wrapEl = domByClass(postEl, wrapClass),
             iconEl = domByClass(wrapEl, '_icon');
@@ -6641,7 +6688,7 @@ var Wall = {
         if (!iconEl || cur.viewAsBox) return;
 
         showWiki({
-            w: (opts.share ? 'shares' : 'likes') + '\/' + clean(like_obj)
+            w: (opts.views ? 'views' : (opts.share ? 'shares' : 'likes')) + '\/' + clean(like_obj)
         }, false, false, {
             queue: 1
         });
@@ -6651,10 +6698,39 @@ var Wall = {
             share: 1
         }));
     },
+    viewsShow: function(el, post_id, opts) {
+        Wall.likesShow(el, post_id, extend(opts, {
+            views: 1
+        }));
+    },
     sharesShowList: function(el, post_id, opts) {
         Wall.likesShowList(el, post_id, extend(opts, {
             share: 1
         }));
+    },
+    viewsShowList: function(el, post_id, opts) {
+        Wall.likesShowList(el, post_id, extend(opts, {
+            views: 1
+        }));
+    },
+    viewsUpdate: function(el, post_id) {
+        var p = wall.parsePostId(post_id),
+            like_type = p.type,
+            post_raw = p.id,
+            like_obj = like_type + post_raw,
+            params = {
+                act: 'a_get_stats',
+                'object': like_obj,
+                views: 1
+            };
+        ajax.post('/like.php', params, {
+            cache: 1,
+            onDone: function(cnt, title) {
+                Wall.likeUpdate(false, post_id, false, cnt, undefined, undefined, 1);
+                el.title = title;
+                setTimeout(ajax.invalidate.pbind('/like.php', params), 3000);
+            }
+        });
     },
     sharesOpen: function(ev, post_id, params) {
         if (cur.viewAsBox) {

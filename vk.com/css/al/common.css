@@ -4748,6 +4748,10 @@ em.highlight {
     text-align: right
 }
 
+.counter_wrap .num_delim {
+    white-space: pre
+}
+
 .counter_anim_wrap {
     position: relative;
     height: 16px;

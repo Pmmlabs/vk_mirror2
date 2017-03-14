@@ -763,7 +763,12 @@
 
 .wall_module .post.wcomments_post .wall_post_text {
     padding: 0;
+    font-size: 13px;
     line-height: 1.36
+}
+
+.wall_module .post.wcomments_post .wall_post_text:last-child {
+    margin-bottom: 0
 }
 
 .wall_module .post.wcomments_post .replies_list {
@@ -840,7 +845,8 @@
 #page_wrap .wcomments_post_footer .reply_link_wrap {
     float: left;
     padding: 0;
-    font-size: 12.5px
+    font-size: 12.5px;
+    line-height: inherit
 }
 
 #page_wrap .wcomments_post_footer .post_like_wrap {
@@ -864,7 +870,7 @@
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #627e9e;
+    color: #3d6899;
     font-size: 11.5px
 }
 
@@ -886,13 +892,13 @@
 
 #page_wrap .wcomments_post_footer .post_like_wrap:hover .post_like.no_likes .post_like_icon {
     visibility: visible;
-    opacity: 0.4;
-    filter: alpha(opacity=40)
+    opacity: 0.35;
+    filter: alpha(opacity=35)
 }
 
 #page_wrap .wcomments_post_footer .post_like_wrap:hover .post_like:hover .post_like_icon {
-    opacity: 0.65;
-    filter: alpha(opacity=65)
+    opacity: 0.5;
+    filter: alpha(opacity=50)
 }
 
 #page_wrap .wcomments_post_footer .post_like_wrap:hover .post_like.my_like .post_like_icon {
@@ -967,8 +973,8 @@
 }
 
 .wcomments_nano .wall_module .post.wcomments_post .reply_link:hover {
-    opacity: 0.65;
-    filter: alpha(opacity=65)
+    opacity: 0.5;
+    filter: alpha(opacity=50)
 }
 
 .wcomments_nano .wall_module .post.wcomments_post .reply_link:before {

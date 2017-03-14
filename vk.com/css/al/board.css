@@ -361,8 +361,8 @@ input.bnt_poll_answer {
 
 .bp_post:hover .no_likes .like_icon {
     visibility: visible;
-    opacity: 0.4;
-    filter: alpha(opacity=40)
+    opacity: 0.35;
+    filter: alpha(opacity=35)
 }
 
 .bp_post .bp_action:hover {
