@@ -1397,6 +1397,19 @@ var Videoview = {
                 })
             }, getLang("box_no"))
         },
+        removeAd: function(e, i, o, t, a) {
+            ajax.post("al_video.php", {
+                act: "remove_ad",
+                owner_id: e,
+                video_id: i,
+                hash: o,
+                all_copies: t
+            }, {
+                onDone: function(e) {
+                    a && (a.innerHTML = e)
+                }
+            })
+        },
         spamVideo: function(e, i, o, t, a, n, d) {
             t && addClass(t, "loading"), ajax.post("al_video.php", {
                 act: "spam_video",
@@ -2665,7 +2678,8 @@ window.VideoChat = {
         if (s) {
             VideoChat.stickersSenders = VideoChat.stickersSenders || {};
             var l = VideoChat.stickersSenders[o + "_" + s] || 0;
-            if (VideoChat.stickersSenders[o + "_" + s] = vkNow(), vkNow() - l < 5e3) return;
+            if (VideoChat.stickersSenders[o + "_" + s] = vkNow(),
+                vkNow() - l < 5e3) return;
             r = getTemplate("video_chat_sticker", {
                 sticker_id: s,
                 pack_id: v,

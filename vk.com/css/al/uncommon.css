@@ -1032,7 +1032,8 @@ div.validation_last_button .button {
 }
 
 .private_link {
-    padding-top: 13px
+    padding-top: 13px;
+    cursor: pointer
 }
 
 .shorten_error {

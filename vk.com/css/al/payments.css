@@ -783,7 +783,8 @@ h2.payments_getvotes_title {
     margin-bottom: -31px
 }
 
-.payments_box_instant_pay .error {
+.payments_box_instant_pay .error,
+.payments_box_instant_pay .info_msg {
     margin-bottom: 0
 }
 

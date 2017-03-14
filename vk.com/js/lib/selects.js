@@ -1571,14 +1571,10 @@ function UniversitySelect(input, container, options) {
             }, options.progressBar);
         } else {
             options.items_count = 0;
-            var new_options = {
-                defaultItems: [
-                    [0, options.placeholder]
-                ],
-                enableCustom: false
-            };
-            selector.setOptions(new_options);
             selector.setData([]);
+            selector.setOptions({
+                enableCustom: false
+            });
             updateVisibility();
         }
     }
@@ -1717,9 +1713,22 @@ function UniversityHintSelect(input, container, options) {
 
     function updateVisibility() {
         if ((!options.visible || !options.city || (!options.items_count && !options.enableCustom && !options.ignoreVoidList)) && !options.alwaysVisible) {
-            options.hide(container);
+            if (options.disableOnHide) {
+                selector.disable(true);
+            } else {
+                options.hide(container);
+            }
         } else {
-            options.show(container);
+            if (options.disableOnHide) {
+                selector.disable(false);
+                if (options.university) {
+                    selector.val(options.university);
+                } else {
+                    selector.clear();
+                }
+            } else {
+                options.show(container);
+            }
         }
     }
 
@@ -1764,13 +1773,14 @@ function UniversityHintSelect(input, container, options) {
                 updateVisibility();
             }, options.progressBar);
         } else {
+            options.items_count = 0;
             var new_options = {
                 defaultItems: [
                     [0, options.placeholder]
                 ],
                 selectedItems: '',
-                dropdown: true,
-                enableCustom: false
+                enableCustom: false,
+                dropdown: true
             };
             selector.setOptions(new_options);
             updateVisibility();
@@ -2240,6 +2250,83 @@ function CountrySelect(input, container, options) {
 
     updateOnChange();
     updateVisibility();
+
+    return selector;
+}
+
+// Container is not used, but remains as a param for a future RegionSelect's improvement.
+function RegionSelect(input, container, options) {
+    if (input == null) return false;
+
+    // default options
+    var defaults = {
+        show: show,
+        hide: hide,
+        enableCustom: false,
+        multiselect: false,
+        selectedItems: '',
+        visible: true,
+        country_id: 0,
+        placeholder: getLang('select_region_not_selected'),
+        introText: getLang('select_region_select'),
+        noResult: getLang('edit_region_not_found'),
+        dividingLine: 'smart'
+    };
+
+    var progressTimer = null;
+
+    // extend default options with user defined
+    options = extend(defaults, options);
+    options.defaultItems = [
+        [0, options.placeholder]
+    ];
+    options.country_id = intval(options.country_id);
+    var selector = new Selector(input, 'select_ajax.php?act=a_get_regions&country_id=' + options.country_id, options);
+
+    function updateOnChange() {
+        selector.old_setOptions({
+            onChange: function(value) {
+                value = intval(value);
+                options.city = value;
+                if (!value) {
+                    selector.clear();
+                } else if (value == -1) {
+                    options.city = value = 0;
+                    selector.old_setOptions({
+                        dropdown: false,
+                        defaultItems: []
+                    });
+                    selector.clear();
+                    setTimeout(selector.focus, 0);
+                }
+
+                if (isFunction(options.onChange)) {
+                    options.onChange(value);
+                }
+            }
+        });
+    }
+
+    selector.old_setOptions = selector.setOptions;
+    selector.setOptions = function(new_options) {
+        extend(options, new_options);
+        selector.old_setOptions(new_options);
+        if ("onChange" in new_options) {
+            updateOnChange();
+        }
+    };
+    selector.show = function() {
+        selector.setOptions({
+            visible: true
+        });
+    };
+    selector.hide = function() {
+        selector.setOptions({
+            visible: false
+        });
+    };
+
+    updateOnChange();
 
     return selector;
 }
