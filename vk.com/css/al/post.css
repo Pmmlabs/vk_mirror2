@@ -66,7 +66,7 @@
     padding: 10px 0 4px
 }
 
-.page_post_sized_thumbs:last-child {
+.wall_text .page_post_sized_thumbs:last-child {
     padding-bottom: 0
 }
 

@@ -1195,6 +1195,10 @@ a.settings_blb_title {
     background: url(/images/cross.png) no-repeat 50% 50%
 }
 
+.settings_payments_subscriptions .settings_subscription_reactivate {
+    background-position: right -18px
+}
+
 .settings_payments_subscriptions tr:hover .settings_transfer_action {
     visibility: visible
 }

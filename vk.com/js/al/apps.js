@@ -496,10 +496,7 @@ var vkApp = function(t, e, i, s) {
                     action: t,
                     hash: e.hash
                 };
-                "create" == o.action && (o.item = i.item), showBox("al_apps.php", o, {
-                    params: {
-                        dark: 1
-                    },
+                "create" == o.action ? o.item = i.item : "resume" == o.action && (o.subscription_id = i.subscription_id), showBox("al_apps.php", o, {
                     onFail: function(t) {
                         return showFastBox({
                             title: getLang("global_error")

@@ -210,7 +210,7 @@ var stVersions = {
     'join.css': 17052880152,
     'join.js': 4281861549,
     'intro.css': 18132514507,
-    'post.css': 19731267628,
+    'post.css': 20544930758,
     'module.css': 18001756381,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 17037339973,
@@ -262,13 +262,13 @@ var stVersions = {
     'privacy.js': 3875115925,
     'privacy.css': 13974171538,
     'apps.css': 24890881500,
-    'apps.js': 1263627382,
+    'apps.js': 342586297,
     'apps_edit.js': 2664300316,
     'apps_edit.css': 24674685157,
     'apps_check.js': 3844411974,
     'apps_check.css': 24530746550,
-    'settings.js': 4027039538,
-    'settings.css': 22159715016,
+    'settings.js': 4131320089,
+    'settings.css': 24689053005,
     'profile_edit.js': 312998250,
     'profile_edit.css': 13443542704,
     'profile_edit_edu.js': 799807020,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 7728;
+var _rnd = 3371;

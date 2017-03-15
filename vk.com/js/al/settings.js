@@ -1148,6 +1148,14 @@ var Settings = {
             }
         })) : void(cur.confirmBox = showFastBox(getLang("global_action_confirmation"), getLang("settings_subscription_cancel_confirm"), getLang("settings_subscription_cancel_btn"), Settings.paymentsSubscriptionCancel.pbind(t, e, s, o, 1), getLang("global_cancel")))
     },
+    paymentsSubscriptionReactivate: function(t, e, s, o) {
+        showBox("al_apps.php?act=show_subscription_box", {
+            aid: e,
+            subscription_id: s,
+            action: "resume",
+            hash: o
+        })
+    },
     initApps: function(opts, appTpl) {
         extend(cur, {
             aSearch: ge("s_search"),
