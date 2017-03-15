@@ -1674,38 +1674,6 @@ var Page = {
             }
         },
 
-        showVideoAutoplayTooltip: function(el) {
-            if (cur.videoAutoplayTooltip) {
-                cur.videoAutoplayTooltip.destroy();
-            }
-
-            var shown = ls.get('video_autoplay_tooltip_shown') || 0;
-            if (shown > 2 || cur.videoAutoplayTooltipShown) return;
-            ls.set('video_autoplay_tooltip_shown', shown + 1);
-            cur.videoAutoplayTooltipShown = 1;
-
-            setStyle(el, {
-                position: 'relative'
-            });
-
-            cur.videoAutoplayTooltip = new ElementTooltip(el, {
-                autoShow: false,
-                content: '<div class="feature_intro_tt_hide" onclick="cur.closeVideoAutoplayTooltip();"></div>' + getLang('global_video_autoplay_hint'),
-                forceSide: cur.module == 'profile' ? 'left' : 'right',
-                cls: 'feature_intro_tt',
-                offset: [10, 0, 0],
-                onHide: function() {
-                    cur.videoAutoplayTooltip.destroy();
-                }
-            });
-            cur.videoAutoplayTooltip.show();
-
-            cur.closeVideoAutoplayTooltip = function() {
-                cur.videoAutoplayTooltip.destroy();
-                ls.set('video_autoplay_tooltip_shown', 999);
-            };
-        },
-
         actionsDropdown: function(el, preloadClbk) {
             if (!el && preloadClbk) {
                 preloadClbk();
@@ -5051,7 +5019,7 @@ var Wall = {
             }), true) + 'K';
         }
 
-        return langNumeric(count, '%s', true);
+        return langNumeric(count, '%s', true).replace(/,/g, '\.');
     },
     likeFullUpdate: function(el, like_obj, likeData) {
         var matches = like_obj.match(/^(wall|photo|video|note|topic|wall_reply|note_reply|photo_comment|video_comment|topic_comment|market_comment|)(-?\d+_)(\d+)/),
@@ -6096,7 +6064,7 @@ var Wall = {
                     }
                 case 'view_post':
                     {
-                        Wall.likeUpdate(false, post_id, 0, wall.formatCount(intval(ev[3])), undefined, undefined, 1);
+                        Wall.likeUpdate(false, post_id, 0, Wall.formatCount(intval(ev[3])), undefined, undefined, 1);
                         break;
                     }
                 case 'like_post':
@@ -6727,7 +6695,10 @@ var Wall = {
             cache: 1,
             onDone: function(cnt, title) {
                 Wall.likeUpdate(false, post_id, false, cnt, undefined, undefined, 1);
-                el.title = title;
+                var fakeEl = ce('div', {
+                    innerHTML: title
+                });
+                el.setAttribute('title', fakeEl.innerText || fakeEl.textContent);
                 setTimeout(ajax.invalidate.pbind('/like.php', params), 3000);
             }
         });

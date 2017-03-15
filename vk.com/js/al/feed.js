@@ -325,21 +325,21 @@ var Feed = {
             case "del_reply":
                 if (!cur.wallMyDeleted[r] && i) {
                     feed.needScrollPost(t, i) && (c -= i.offsetHeight);
-                    var z = i.parentNode.id.match(/replies(-?\d+_\d+)/);
-                    revertLastInlineVideo(i), re(i), z && Wall.repliesSideSetup(z[1])
+                    var W = i.parentNode.id.match(/replies(-?\d+_\d+)/);
+                    revertLastInlineVideo(i), re(i), W && Wall.repliesSideSetup(W[1])
                 }
                 break;
             case "view_post":
-                Wall.likeUpdate(!1, r, 0, e[3], void 0, void 0, 1);
+                Wall.likeUpdate(!1, r, 0, Wall.formatCount(intval(e[3])), void 0, void 0, 1);
                 break;
             case "like_post":
             case "like_reply":
                 if (!i) break;
-                var G = "like_reply" == o ? r.replace("_", "_wall_reply") : r,
-                    W = i && domByClass(i, "_like_wrap"),
+                var z = "like_reply" == o ? r.replace("_", "_wall_reply") : r,
+                    G = i && domByClass(i, "_like_wrap"),
                     X = i && domByClass(i, "_share_wrap");
-                wall.likeFullUpdate(W, G, {
-                    like_my: W && hasClass(W, "my_like"),
+                wall.likeFullUpdate(G, z, {
+                    like_my: G && hasClass(G, "my_like"),
                     like_num: e[3],
                     like_title: !1,
                     share_my: X && hasClass(X, "my_share"),

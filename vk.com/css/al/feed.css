@@ -438,7 +438,12 @@
     border-radius: 10.5px;
     min-width: 7px;
     height: 15px;
+    line-height: 15px;
     text-align: left
+}
+
+.mac.firefox .feed_new_posts>b {
+    line-height: 14px
 }
 
 .feed_has_new .feed_new_posts {
@@ -781,6 +786,10 @@
 .feedback_content .feedback_text .wall_reply_text {
     padding-top: 2px!important;
     line-height: 1.417
+}
+
+.feedback_content .feedback_text .wall_post_text:last-child {
+    margin-bottom: 0
 }
 
 .feedback_content .feedback_text .media_desc,

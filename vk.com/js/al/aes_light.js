@@ -717,7 +717,7 @@
                 renderTo: d,
                 async: !0,
                 onRender: function() {
-                    s && a.insertBefore(se(s), a.firstChild), AdsLight.sendExperimentStat(t, "success"), AdsLight.onYaDirectRenderSuccessful(a)
+                    s && !geByClass1("ads_label", a) && a.insertBefore(se(s), a.firstChild), AdsLight.sendExperimentStat(t, "success"), AdsLight.onYaDirectRenderSuccessful(a)
                 }
             }, function() {
                 AdsLight.sendExperimentStat(t, "fail"), AdsLight.onYaDirectRenderUnsuccessful(i)

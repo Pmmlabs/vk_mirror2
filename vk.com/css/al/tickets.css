@@ -2243,11 +2243,6 @@ a.tickets_question_row_tt:hover {
     margin-right: 10px
 }
 
-.ticket_time_label {
-    width: 25px;
-    margin-top: 5px
-}
-
 #tickets_time {
     padding: 12px 23px 0
 }

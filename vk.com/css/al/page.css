@@ -704,6 +704,11 @@ html:not([lang=ru]) .wall_marked_as_ads {
     text-decoration: none
 }
 
+.wall_copy_more {
+    display: inline-block;
+    padding-bottom: 3px
+}
+
 .wall_post_text {
     line-height: 1.462;
     padding-top: 3px;
@@ -759,7 +764,7 @@ html:not([lang=ru]) .wall_marked_as_ads {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #3d6899;
+    color: #2a5885;
     font-size: 11.5px
 }
 
@@ -4092,7 +4097,7 @@ div.submit_post_field[contenteditable=true]>p {
 .post_reply,
 .post_share {
     cursor: pointer;
-    color: #3d6899;
+    color: #2a5885;
     white-space: nowrap;
     overflow: hidden;
     margin-right: 8px;
@@ -4151,9 +4156,9 @@ div.submit_post_field[contenteditable=true]>p {
 .wall_module .post_share_count {
     margin-left: 6px;
     float: left;
-    font-weight: 700;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .wall_module .post_like_count .counter_anim_wrap,

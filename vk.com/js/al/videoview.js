@@ -200,7 +200,7 @@ var Videoview = {
                 }
             },
             onVideoPlayFinished: function() {
-                if (cur.pinnedVideoDestroy && cur.pinnedVideoDestroy(), window.mvcur && mvcur.mvShown && (mvcur.finished = !0, mvcur.mousemoved = !0, Videoview.moveCheck(), Videoview.logViewedPercentage()), window.mvcur && mvcur.mvShown && mvcur.adData) mvcur.adData.stat_link_start && !mvcur.adData.view_complete_start && (ajax.post(mvcur.adData.stat_link_start, {}, {
+                if (window.mvcur && mvcur.mvShown && (mvcur.finished = !0, mvcur.mousemoved = !0, Videoview.moveCheck(), Videoview.logViewedPercentage()), window.mvcur && mvcur.mvShown && mvcur.adData) mvcur.adData.stat_link_start && !mvcur.adData.view_complete_start && (ajax.post(mvcur.adData.stat_link_start, {}, {
                     onDone: function() {},
                     onFail: function() {
                         return !0
@@ -829,8 +829,7 @@ var Videoview = {
                     mvcur.noHistory = 1, mvcur.forceHistoryHide = i, __adsUpdate("very_lazy");
                     var n = cur.mvHistoryBack ? -cur.mvHistoryBack : -1;
                     return cur.mvHistoryBack = 0, setTimeout(function() {
-                        mvcur.mvShown || (Videoview.destroyPlayer(),
-                            VideoPlaylist.removeBlock())
+                        mvcur.mvShown || (Videoview.destroyPlayer(), VideoPlaylist.removeBlock());
                     }, 10), history.go(n)
                 }
                 if (mvcur.forceHistoryHide && (i = mvcur.forceHistoryHide, mvcur.forceHistoryHide = !1), mvcur.statusVideo) {
@@ -3050,8 +3049,16 @@ window.VideoChat = {
                 data: ajx2q(s)
             }, i, o), lockButton(a);
             else {
-                var l = open(t.form_api_ssl_url + "?data=" + encodeURIComponent(ajx2q(s)), "_blank");
-                l.opener = null, curBox().hide()
+                var l = ce("iframe"),
+                    c = ce("form", {
+                        action: t.form_api_ssl_url,
+                        method: "post",
+                        target: "_blank",
+                        innerHTML: '<input type="hidden" name="data" value="' + ajx2q(s) + '"/>'
+                    });
+                utilsNode.appendChild(l), l.contentDocument.body.appendChild(c), c.submit(), setTimeout(function() {
+                    re(l)
+                }, 0), curBox().hide()
             }
             statlogsValueEvent("video_donate", "", "checkout", n), ls.set("video_donate_pay_method", n)
         }

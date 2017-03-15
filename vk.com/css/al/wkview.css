@@ -448,7 +448,7 @@ body.mobfixed #wk_layer_wrap {
 
 .wl_post_actions_wrap .ui_actions_menu_more {
     padding-right: 10px;
-    color: #3d6899;
+    color: #2a5885;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
@@ -528,7 +528,8 @@ body.mobfixed #wk_layer_wrap {
 
 .wl_replies_header.wl_replies_header_clickable {
     text-align: center;
-    cursor: pointer
+    cursor: pointer;
+    color: #2a5885
 }
 
 .wl_replies_header.wl_replies_header_clickable:hover {
