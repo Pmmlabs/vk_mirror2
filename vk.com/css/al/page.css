@@ -716,7 +716,7 @@ html:not([lang=ru]) .wall_marked_as_ads {
     word-wrap: break-word
 }
 
-.wall_post_text:last-child {
+.wall_post_cont:last-child .wall_post_text:last-child {
     margin-bottom: -5px
 }
 
@@ -3931,7 +3931,7 @@ div.submit_post_field[contenteditable=true]>p {
 }
 
 .signed_wrap {
-    margin-top: 6px;
+    margin-top: 8px;
     padding-left: 1px;
     overflow: hidden
 }
@@ -3946,7 +3946,8 @@ div.submit_post_field[contenteditable=true]>p {
     visibility: hidden;
     pointer-events: none;
     -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0)
+    transform: translate3d(100%, 0, 0);
+    line-height: 1em
 }
 
 .signed_checkbox.shown {

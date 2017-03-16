@@ -640,7 +640,8 @@ function AudioPage(e, i, t, a) {
             before: r,
             after: l,
             hash: o.options.reorderHash,
-            top_moder: intval(d)
+            top_moder: intval(d),
+            album_id: intval(nav.objLoc.album_id)
         }))
     }
 
