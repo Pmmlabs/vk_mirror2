@@ -496,7 +496,7 @@ var vkApp = function(t, e, i, s) {
                     action: t,
                     hash: e.hash
                 };
-                "create" == o.action ? o.item = i.item : "resume" == o.action && (o.subscription_id = i.subscription_id), showBox("al_apps.php", o, {
+                "create" == o.action ? o.item = i.item : ("resume" == o.action || "cancel" == o.action) && (o.subscription_id = i.subscription_id), showBox("al_apps.php", o, {
                     onFail: function(t) {
                         return showFastBox({
                             title: getLang("global_error")
@@ -1123,7 +1123,8 @@ AppsSlider.prototype = {
         val(e, t);
         var i = parseInt(getStyle(e, "line-height")),
             s = Math.ceil(getSize(e)[1] / i);
-        s > 7 && (setStyle(e, "height", 5 * i), val(e, t), removeClass(geByClass1("apps_i_description_show_more"), this.optionHiddenClass));
+        s > 7 && (setStyle(e, "height", 5 * i), val(e, t),
+            removeClass(geByClass1("apps_i_description_show_more"), this.optionHiddenClass))
     },
     showFullDescription: function() {
         addClass(geByClass1("apps_i_description_show_more"), this.optionHiddenClass), setStyle(geByClass1("apps_i_description_content"), "height", "")
@@ -2164,7 +2165,8 @@ AppsSlider.prototype = {
         }, {
             cache: t ? 0 : 1,
             onDone: this.withFastBackCheck(function(e, i, s) {
-                t == this.searchValFix(cur.searchStr) && (this.isSection("catalog", "list") && (cur.searchStr && this.sliderStop(), this.switchLayout(cur.searchStr ? "list" : cur.section), this.searchWriteToAddressBar()), this.backupListContent(!0), e && val(cur.lContent, e), val(cur.lPreload, i || ""), cur.loadMore = !!i, extend(cur, s), cur.loadMore && show(cur.lShowMoreButton), this.scrollCheck());
+                t == this.searchValFix(cur.searchStr) && (this.isSection("catalog", "list") && (cur.searchStr && this.sliderStop(), this.switchLayout(cur.searchStr ? "list" : cur.section), this.searchWriteToAddressBar()), this.backupListContent(!0), e && val(cur.lContent, e), val(cur.lPreload, i || ""),
+                    cur.loadMore = !!i, extend(cur, s), cur.loadMore && show(cur.lShowMoreButton), this.scrollCheck())
             }.bind(this)),
             showProgress: function() {
                 cur.isAppsLoading = !0, lockButton(cur.lShowMoreButton)

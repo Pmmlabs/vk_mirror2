@@ -1138,10 +1138,11 @@ var Settings = {
         return n ? (addClass(i, "settings_history_row_progress"), cur.confirmBox && cur.confirmBox.hide(), void ajax.post("al_apps.php?act=a_cancel_subscription", {
             aid: e,
             subscription_id: s,
-            hash: o
+            hash: o,
+            from: "settings"
         }, {
-            onDone: function() {
-                removeClass(i, "settings_history_row_progress"), addClass(i, "settings_history_row_deleted")
+            onDone: function(t, e) {
+                removeClass(i, "settings_history_row_progress"), val(geByClass1("settings_history_amount", i), t), val(geByClass1("settings_history_actions", i), e)
             },
             onFail: function(t) {
                 return removeClass(i, "settings_history_row_progress"), setTimeout(showFastBox(getLang("global_error"), t).hide, 2e3), !0

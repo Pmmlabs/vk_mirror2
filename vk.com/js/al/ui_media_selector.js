@@ -1123,7 +1123,7 @@ function MediaSelector(e, a, t, o) {
                                 t = r.height,
                                 i = "",
                                 l = "";
-                            if (p && (clearTimeout(p), p = null), u && (clearTimeout(u), u = null), hide("medadd_c_linkimg_loader"), clearInterval(cur.shareImgInterval), !isArray(a.images[cur.shareShowImg]) && (160 > e || 67 > t)) {
+                            if (p && (clearTimeout(p), p = null), u && (clearTimeout(u), u = null), hide("medadd_c_linkimg_loader"), clearInterval(cur.shareImgInterval), !isArray(a.images[cur.shareShowImg]) && (150 > e || 67 > t)) {
                                 if (a.images.splice(cur.shareShowImg, 1), a.images_proxy && a.images_proxy.length > cur.shareShowImg && a.images_proxy.splice(cur.shareShowImg, 1), a.images.length) return setTimeout(cur.shareShowNext.pbind(0, 0, 1), 0)
                             } else {
                                 var c = 5,
@@ -1134,7 +1134,7 @@ function MediaSelector(e, a, t, o) {
                                     var g = (cur.options.share || {}).allow_custom_photo || (cur.options.share || {}).require_image;
                                     return 0 == a.images.length && g && a.images.push([g ? d : ""]), cur.prevShareShowDir || cur.shareShowImg--, void cur.shareShowNext(cur.prevShareShowDir)
                                 }
-                                s.bigLink = m, m ? i = "width: 100%;" : (e > 160 && (t = 160 * t / e, e = 160), i = "width: " + e + "px; height: " + t + "px;")
+                                s.bigLink = m, m ? i = "width: 100%;" : (e > 150 && (t = 150 * t / e, e = 150), i = "width: " + e + "px; height: " + t + "px;")
                             }
                             a.images.length > 1 && (l = ""), a.imagesStyles[cur.shareShowImg] = 'style="' + i + '"' + l, s.showPreview(n), n = !0, o.onAddMediaChange && o.onAddMediaChange("share", a.media, a)
                         }

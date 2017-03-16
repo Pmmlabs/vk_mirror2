@@ -343,8 +343,8 @@ body.mac .wcommunity_footer .pr {
 
 .wcommunity_nano .wall_module .wcommunity_post .page_media_thumbed_link td.page_media_link_thumb,
 .wcommunity_nano .wall_module .wcommunity_post_wide .page_media_thumbed_link td.page_media_link_thumb {
-    width: 80px;
-    background-size: 80px
+    width: 75px;
+    background-size: 75px
 }
 
 .wcommunity_nano .wall_module .wcommunity_post .page_media_thumbed_link .page_media_link_desc,

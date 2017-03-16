@@ -1383,8 +1383,8 @@ html:not([lang=ru]) .wall_marked_as_ads {
     cursor: pointer;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    background-size: 160px auto;
-    width: 160px;
+    background-size: 150px auto;
+    width: 150px;
     box-shadow: 0 0 0 1px rgba(0, 20, 51, .12) inset;
     border-radius: 2px 0 0 2px
 }
