@@ -1397,6 +1397,10 @@ img.im_photo_thumb {
     position: relative
 }
 
+.im-page .im-page--header-more_loading {
+    opacity: 0
+}
+
 .im-page .im-page--typing {
     margin-left: 45px;
     display: none;
@@ -1717,12 +1721,10 @@ img.im_photo_thumb {
 }
 
 .im-page .im-page--history.im-page--history_loading {
-    position: relative;
-    overflow: hidden
+    position: relative
 }
 
-.im-page .im-page--history.im-page--history_loading .im-page-history-w {
-    height: 0;
+.im-page .im-page--history.im-page--history_loading .im-page--chat-body {
     opacity: 0
 }
 

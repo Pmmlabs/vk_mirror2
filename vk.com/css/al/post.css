@@ -445,7 +445,8 @@ a.page_post_thumb_wrap:hover {
 }
 
 .page_doc_row .page_doc_description_row {
-    pointer-events: none
+    pointer-events: none;
+    margin-left: 38px
 }
 
 .page_doc_row .page_doc_description_row .page_doc_size {

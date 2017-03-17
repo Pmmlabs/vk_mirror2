@@ -11,8 +11,8 @@
     var n = {};
     return t.m = e, t.c = n, t.p = "", t(0)
 }([function(e, t, n) {
-    e.exports = n(160)
-}, , function(e, t, n) {
+    e.exports = n(115)
+}, function(e, t, n) {
     "use strict";
 
     function r(e, t, n) {
@@ -544,7 +544,7 @@
     }
 
     function X(e, t, n, r) {
-        if ((0, zt.isFullyLoadedTab)(r, e)) {
+        if (r.peer === e) {
             r.tabs[e].imdraft = clean(t);
             var a = n.select(Gt.DRAFT_STORE_OP, e) || {};
             n.update(Gt.DRAFT_STORE_OP, [e, extend(a, {
@@ -555,7 +555,7 @@
     }
 
     function Z(e, t, n) {
-        if ((0, zt.isFullyLoadedTab)(n, e)) {
+        if ((0, zt.isTabLoaded)(n, e)) {
             var r = n.tabs[e];
             if (!r.imdraft) {
                 var a = t.select(Gt.DRAFT_STORE_OP, e);
@@ -894,7 +894,7 @@
     }
 
     function Me(e, t, n, r) {
-        if ((0, zt.isFullyLoadedTab)(r, t)) {
+        if ((0, zt.isTabLoaded)(r, t)) {
             r.pendingForward = [];
             var a = r.tabs[t];
             a.fwdMessages = e, n.update(Gt.FWD_STORE_OP, [t, e])
@@ -904,7 +904,7 @@
 
     function Le(e, t, n) {
         var r = arguments.length <= 3 || void 0 === arguments[3] ? !1 : arguments[3];
-        if ((0, zt.isFullyLoadedTab)(n, e)) {
+        if ((0, zt.isTabLoaded)(n, e)) {
             var a = n.tabs[e];
             return a.fwdMessages || (a.fwdMessages = t.select(Gt.FWD_STORE_OP, e) || []), 1 !== a.fwdMessages.length || a.fwdMessages[0].length ? r ? Promise.resolve(a.fwdMessages) : Promise.resolve(a.fwdMessages.map(function(e) {
                 return e[0] || e
@@ -1425,8 +1425,7 @@
     }
 
     function At(e) {
-        return "undefined" == typeof e.chatResizeInitialized && (e.chatResizeInitialized = !0, (0, zt.getClassicChatHeight)() > window.clientHeight() && (0,
-            zt.setClassicChatHeight)(0)), Promise.resolve(e)
+        return "undefined" == typeof e.chatResizeInitialized && (e.chatResizeInitialized = !0, (0, zt.getClassicChatHeight)() > window.clientHeight() && (0, zt.setClassicChatHeight)(0)), Promise.resolve(e);
     }
 
     function Ot(e, t) {
@@ -1478,16 +1477,16 @@
             }
         }();
     t.strHistory = u, t.updateBlockStates = c, t.loadPeer = d, t.restoreHistoryQueue = g, t.removeFailed = f, t.selectPeer = _, t.selectPeerOnMessage = v, t.changePeer = b, t.updateMentions = y, t.setActions = C, t.loadMoreHistory = T, t.loadLessHistory = S, t.createEmailChat = I, t.loadLongPollKey = k, t.loadLongPollTs = P, t.setMessageErrored = M, t.resendMessage = L, t.loadAdmins = O, t.returnedToChat = x, t.addMessage = B, t.markInboundMessagesAsRead = N, t.markOutboundMessagesAsRead = j, t.initTextStore = H, t.addMediaStore = U, t.cleanMediaStore = G, t.restoreAttaches = q, t.getAttaches = K, t.mergeTabs = W, t.updateOnline = V, t.setTyping = Q, t.waitTyping = Y, t.saveTextDraft = X, t.getTextDraft = Z, t.addSelection = $, t.cleanSelected = J, t.dropSelection = ee, t.replaceMessage = te, t.saveMedia = ne, t.loadMedia = re, t.replaceMediaAttachesStore = ae, t.setCurrentSearchDate = ie, t.setCurrentSearch = oe, t.searchHints = le, t.searchHintsIndex = ue, t.localIndexToDialog = ce, t.fetchFriends = ge, t.fetchLocalHints = fe, t.loadDialogs = me, t.searchMessages = pe, t.isSearchAllLoaded = _e, t.isSearchingInplace = he, t.cancelSearch = ve, t.clearDate = be, t.searchInplaceStart = ye, t.searchMessagesInplace = Ce, t.loadImportant = Te, t.removeMessages = Se, t.removeMessageSend = Ee, t.removeMessagesWithRestore = we, t.restoreMessage = Ie, t.restoreMessageSend = ke, t.changeMessage = Pe, t.forwardMessages = Me, t.getForwardedMessages = Le, t.prepareForward = Ae, t.setChatTitle = Oe, t.loadChatMember = De, t.checkNewPeople = xe, t.updateActions = Re, t.setMutedPeer = Be, t.removeMember = Fe, t.setExecStack = Ne, t.updateFavMessage = je, t.updateImportant = He, t.loadSpam = Ue, t.flushSpam = Ge, t.setCreationType = ze, t.getOwnerPhoto = qe, t.presetAvatar = Ke, t.setChatPhoto = We, t.createChat = Ve, t.resync = Qe, t.chatKickUser = Ye, t.toggleSendingAbility = Xe, t.setDelayedMessage = Ze, t.isAnythingLoading = Je, t.updateUnreadCount = et, t.changeSubmitSettings = tt, t.getBindAttachToUrl = nt, t.bindAttachToUrl = rt, t.clearAttachToUrl = at, t.updateFavAndTitle = ot, t.saveHistoryScroll = st, t.filterFromTab = lt, t.changeDialogsTab = ut, t.updateFolderState = ft, t.getMutexQueue = mt, t.releaseBlock = pt, t.toggleCommunityMute = _t, t.restoreDialog = ht, t.spamDialog = vt, t.updateTabbedPeers = bt, t.isEverythingLoaded = yt, t.cleanTab = Ct, t.stringifyTab = Tt, t.updateGoToEndVisibility = St, t.toggleCommunityMessages = Et, t.updateHistory = wt, t.startRecording = It, t.cancelRecording = kt, t.setVoiceMessageAvail = Pt, t.toggleConversation = Mt, t.updateSearchQuery = Lt, t.initializeChatResize = At, t.saveRecentSearchPeer = Ot, t.resetRecentSearch = Dt, t.removeFromRecentSearch = xt;
-    var Ft = n(39),
-        Nt = n(90),
-        jt = n(18),
-        Ht = n(32),
-        Ut = n(15),
-        Gt = n(17),
-        zt = n(4),
-        qt = n(14),
-        Kt = n(10),
-        Wt = n(24),
+    var Ft = n(69),
+        Nt = n(68),
+        jt = n(15),
+        Ht = n(28),
+        Ut = n(13),
+        Gt = n(45),
+        zt = n(3),
+        qt = n(12),
+        Kt = n(8),
+        Wt = n(21),
         Vt = "al_im.php",
         Qt = t.TYPING_PERIOD = 5,
         Yt = 2e4,
@@ -1767,7 +1766,7 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.createMutations = r, t.createModule = o, t.destroyModule = s;
-    var l = n(170)
+    var l = n(118)
 }, function(e, t, n) {
     "use strict";
 
@@ -2677,8 +2676,7 @@
         var l = domData(o, "msgid"),
             u = domData(s, "msgid"),
             c = (0, Ge.getMessage)(e, n, l),
-            d = (0,
-                Ge.getMessage)(e, n, u);
+            d = (0, Ge.getMessage)(e, n, u);
         if (M(c, d, e)) return t;
         var g = geByClass1("_im_stack_messages", a),
             f = geByClass1("_im_stack_messages", i).children;
@@ -2856,7 +2854,7 @@
         } : function(e) {
             return e && "function" == typeof Symbol && e.constructor === Symbol ? "symbol" : typeof e
         },
-        Ge = n(10);
+        Ge = n(8);
     Object.keys(Ge).forEach(function(e) {
         "default" !== e && Object.defineProperty(t, e, {
             enumerable: !0,
@@ -2865,12 +2863,12 @@
             }
         })
     }), t.getClassicChatHeight = i, t.setClassicChatHeight = o, t.fixTableCellChildHeight = s, t.renderSticker = l, t.isAlreadyDeleted = u, t.replaceMessageAttrs = c, t.isVoiceMessageAvailable = d, t.getAvailableMicrophones = g, t.renderAttach = f, t.dayFromVal = m, t.showInvisibleBar = p, t.appendToHistory = _, t.restoreQueue = h, t.markMessagesAsRead = v, t.replaceAttaches = b, t.isDuplicate = y, t.isReservedPeer = C, t.isUserPeer = T, t.isChatPeer = S, t.isPeerActive = w, t.isTabLoaded = I, t.isTabLoadedWithMessage = k, t.parseMessage = A, t.convertPeerToUrl = O, t.unUrlPeer = D, t.chatActions = x, t.renderPhotos = F, t.renderPhotosFromTab = N, t.renderMessagesSearch = j, t.renderClearRecent = H, t.setMessageError = U, t.startResendMessage = G, t.removeMessages = z, t.removeMessagesWithRestore = K, t.restoreMessage = W, t.formatTyper = V, t.renderEmptySearch = Y, t.isServiceMsg = X, t.renderServiceMsg = $, t.addChatPhotoToUpdate = J, t.replaceSpecialSymbols = ee, t.isSelfMessage = te, t.showVerifiedTooltip = ne, t.wrapLoading = ae, t.tabFromIds = ie, t.checkSelectClick = oe, t.renderGoTo = le, t.showFlushDialog = ue, t.cleanHistory = ce, t.showChatMembers = de, t.inviteUser = ge, t.showUnreadOnly = fe, t.changeTab = me, t.isImportant = pe, t.isUnrespond = _e, t.isPeerBlocked = he, t.isPendingForward = ve, t.isPeerBlockedByMe = be, t.blockLatencyCompensation = ye, t.showSpamLayer = Ce, t.getLastTime = Te, t.getMobileIcon = Se, t.showBlacklistBoxUser = Ee, t.showBlacklistBox = we, t.getBaseLink = Ie, t.showFavvedBox = ke, t.isEditableFocused = Pe, t.updateStar = Me, t.removewNewUnreadBarAndMerge = Le, t.isMessagesVisible = Ae, t.hideTopNotice = Oe, t.renderShortText = De, t.attachToText = Fe, t.lockButton = Ne, t.unlockButton = je;
-    var ze = n(18),
-        qe = n(14),
+    var ze = n(15),
+        qe = n(12),
         Ke = r(qe),
-        We = n(24),
-        Ve = n(3),
-        Qe = n(15),
+        We = n(21),
+        Ve = n(2),
+        Qe = n(13),
         Ye = t.SENDING_CLASS = "_im_mess_sending",
         Xe = t.FAILED_CLASS = "_im_mess_faild",
         Ze = t.ORIGINAL_CLASS = "_im_mess_original",
@@ -2887,7 +2885,7 @@
             return '<button aria-label="' + getLang("mail_deselect_all") + '" type="button" class="im-deselect ' + it + '"></button>'
         }, "chatPosition"),
         lt = {}
-}, , function(e, t) {
+}, , , function(e, t) {
     "use strict";
 
     function n(e) {
@@ -3263,7 +3261,7 @@
         ee = t.FAILED_MESSAGE = "event_failed_message",
         te = t.RESEND = "event_resend";
     t.FLAG_UNREAD = 1, t.FLAG_OUTBOUND = 2, t.FLAG_IMPORTANT = 8, t.FLAG_CHAT = 16, t.FLAG_FRIENDS = 32, t.FLAG_SPAM = 64, t.FLAG_DELETED = 128, t.FLAG_MEDIA = 512, t.FOLDER_IMPORTANT = 1, t.FOLDER_UNRESPOND = 2
-}, , , , function(e, t, n) {
+}, , function(e, t, n) {
     "use strict";
 
     function r(e) {
@@ -3443,9 +3441,9 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.getFirstUnread = a, t.getPeer = i, t.getTab = o, t.getSelectedMessages = s, t.getMessageRangeFromSelection = l, t.countUnread = u, t.getMessageByRid = c, t.isRidExist = d, t.getLocalId = g, t.getLastMessage = f, t.parserMessage = m, t.getAuthorFullName = p, t.getMessage = _, t.isClassicInterface = h, t.isLocksAvailable = v, t.isFoldersAvailable = b, t.isCommunityInterface = y, t.getBareTab = C, t.isReversedDialogs = T, t.isFullyLoadedTab = S, t.isGoToEndVisible = E, t.getUnreadScrollBottom = w, t.isSendingAvailable = I, t.isCommunityPeer = k, t.isCommunityBlocked = P, t.checkVoiceMessageAvailable = M, t.isSearching = L, t.getSearchText = A, t.isSearchingValue = O, t.isRecentSearchesActive = D;
-    var x = n(24),
-        R = n(18),
-        B = n(14)
+    var x = n(21),
+        R = n(15),
+        B = n(12)
 }, function(e, t) {
     "use strict";
 
@@ -3491,9 +3489,9 @@
         }
     }
 }, function(e, t, n) {
-    var r = n(117)("wks"),
-        a = n(54),
-        i = n(13).Symbol,
+    var r = n(95)("wks"),
+        a = n(44),
+        i = n(11).Symbol,
         o = "function" == typeof i;
     e.exports = function(e) {
         return r[e] || (r[e] = o && i[e] || (o ? i : a)("Symbol." + e))
@@ -3581,161 +3579,7 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.throttleAccumulate = n, t.executionStackPop = r, t.lplog = a, t.toArray = i, t.arrayUnique = o
-}, , function(e, t) {
-    "use strict";
-
-    function n(e) {
-        return "im_store_" + e
-    }
-
-    function r(e) {
-        return ls.get(n(e)) || {}
-    }
-
-    function a(e, t, r) {
-        if (ls.checkVersion()) {
-            var a = JSON.stringify(t);
-            rand(0, 1e5) <= 1 && statlogsValueEvent("im_local_store_size", a.length), r(n(e), a)
-        }
-    }
-
-    function i(e, t, n) {
-        if (t === m) return e[t] || [];
-        if (e[t]) {
-            var r = extend(!0, {}, e[t][n]);
-            if (t == g) return r.txt = clean(r.txt), r
-        }
-        return null
-    }
-
-    function o(e, t, n) {
-        switch (e[t] || (e[t] = {}), t) {
-            case d:
-                var r = c(n, 2),
-                    a = r[0],
-                    i = r[1];
-                i && i.length ? e[t][a] = i : e[t][a] && delete e[t][a];
-                break;
-            case g:
-                var o = c(n, 2),
-                    s = o[0],
-                    l = o[1];
-                l && (l.txt || l.medias && l.medias.length) ? e[t][s] = l : e[t][s] && delete e[t][s];
-                break;
-            case m:
-                var u = n;
-                u && u.length > 0 ? e[t] = u : delete e[t];
-                break;
-            case f:
-                var p = c(n, 2),
-                    _ = p[0],
-                    h = p[1];
-                h && !isEmpty(h) ? e[t][_] = h : e[t][_] && delete e[t][_]
-        }
-        return e
-    }
-
-    function s(e, t) {
-        var n = ["peerFwd_", "im_draft", "bind_to_url_store_"],
-            i = n.length;
-        if (ls.checkVersion()) {
-            var s = r(e);
-            Object.keys(localStorage).reduce(function(e, t) {
-                for (var r = 0; i > r; r++)
-                    if (t.substr(0, n[r].length) === n[r]) return e.concat([
-                        [n[r]].concat(t.substr(n[r].length).split("_"))
-                    ]);
-                return e
-            }, []).forEach(function(t) {
-                var n = c(t, 3),
-                    r = n[0],
-                    a = n[1],
-                    i = n[2];
-                switch (r) {
-                    case "peerFwd_":
-                        if (intval(a) === e) {
-                            var l = "peerFwd_" + e + "_" + i,
-                                u = ls.get(l);
-                            s = o(s, d, [i, u]), ls.remove(l)
-                        }
-                        break;
-                    case "im_draft":
-                        if (intval(a) === e) {
-                            var m = "im_draft" + e + "_" + i,
-                                p = ls.get(m);
-                            s = o(s, g, [i, p]), ls.remove(m)
-                        }
-                        break;
-                    case "bind_to_url_store_":
-                        var _ = "bind_to_url_store_" + a,
-                            h = ls.get(_);
-                        s = o(s, f, [a, h]), ls.remove(_)
-                }
-            }), a(e, s, t)
-        }
-    }
-
-    function l(e, t, r) {
-        r.key === n(e) && (t.db = JSON.parse(r.newValue), t.checkTime = Date.now())
-    }
-
-    function u(e) {
-        var t = debounce(function(e, t) {
-            localStorage.setItem(e, t)
-        }, 300);
-        s(e, t);
-        var n = {
-                db: r(e),
-                checkTime: Date.now()
-            },
-            u = l.bind(null, e, n);
-        return window.addEventListener("storage", u, !1), {
-            select: function(t, a) {
-                return Date.now() - n.checkTime > 1e3 && (n.db = r(e)), i(n.db, t, a)
-            },
-            update: function(r, i) {
-                var s = o(n.db, r, i);
-                return n.db = s, n.checkTime = Date.now(), a(e, s, t)
-            },
-            unmount: function() {
-                window.removeEventListener("storage", u, !1)
-            }
-        }
-    }
-    Object.defineProperty(t, "__esModule", {
-        value: !0
-    });
-    var c = function() {
-        function e(e, t) {
-            var n = [],
-                r = !0,
-                a = !1,
-                i = void 0;
-            try {
-                for (var o, s = e[Symbol.iterator](); !(r = (o = s.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
-            } catch (l) {
-                a = !0, i = l
-            } finally {
-                try {
-                    !r && s["return"] && s["return"]()
-                } finally {
-                    if (a) throw i
-                }
-            }
-            return n
-        }
-        return function(t, n) {
-            if (Array.isArray(t)) return t;
-            if (Symbol.iterator in Object(t)) return e(t, n);
-            throw new TypeError("Invalid attempt to destructure non-iterable instance")
-        }
-    }();
-    t.migrateLocalstorage = s, t.mount = u;
-    var d = t.FWD_STORE_OP = "fwd",
-        g = t.DRAFT_STORE_OP = "draft",
-        f = t.ATTACH_STORE_OP = "bind_attach",
-        m = t.RECENT_SEARCH_OP = "recent_search"
-}, function(e, t, n) {
+}, , function(e, t, n) {
     "use strict";
 
     function r(e) {
@@ -3939,19 +3783,19 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.eventTypes = void 0, t.startLongPoll = p;
-    var _ = n(2),
-        h = n(11),
+    var _ = n(1),
+        h = n(9),
         v = a(h),
-        b = n(39),
+        b = n(69),
         y = n(6),
         C = r(y),
-        T = n(32),
-        S = n(89),
-        E = n(15),
+        T = n(28),
+        S = n(67),
+        E = n(13),
         w = (t.eventTypes = C, 202),
         I = 4
 }, , function(e, t, n) {
-    e.exports = !n(52)(function() {
+    e.exports = !n(42)(function() {
         return 7 != Object.defineProperty({}, "a", {
             get: function() {
                 return 7
@@ -3964,9 +3808,9 @@
         return n.call(e, t)
     }
 }, function(e, t, n) {
-    var r = n(29),
-        a = n(73);
-    e.exports = n(20) ? function(e, t, n) {
+    var r = n(26),
+        a = n(58);
+    e.exports = n(17) ? function(e, t, n) {
         return r.f(e, t, a(1, n))
     } : function(e, t, n) {
         return e[t] = n, e
@@ -4006,19 +3850,19 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.isUnread = r, t.isOut = a, t.isGraffiti = i, t.isGift = o, t.isImportant = s, t.getUserId = l;
-    var u = n(18)
+    var u = n(15)
 }, , , , function(e, t, n) {
-    var r = n(23);
+    var r = n(20);
     e.exports = function(e) {
         if (!r(e)) throw TypeError(e + " is not an object!");
         return e
     }
 }, function(e, t, n) {
-    var r = n(28),
-        a = n(112),
-        i = n(119),
+    var r = n(25),
+        a = n(90),
+        i = n(97),
         o = Object.defineProperty;
-    t.f = n(20) ? Object.defineProperty : function(e, t, n) {
+    t.f = n(17) ? Object.defineProperty : function(e, t, n) {
         if (r(e), t = i(t, !0), r(n), a) try {
             return o(e, t, n)
         } catch (s) {}
@@ -4026,14 +3870,14 @@
         return "value" in n && (e[t] = n.value), e
     }
 }, function(e, t, n) {
-    var r = n(13),
-        a = n(22),
-        i = n(21),
-        o = n(54)("src"),
+    var r = n(11),
+        a = n(19),
+        i = n(18),
+        o = n(44)("src"),
         s = "toString",
         l = Function[s],
         u = ("" + l).split(s);
-    n(49).inspectSource = function(e) {
+    n(39).inspectSource = function(e) {
         return l.call(e)
     }, (e.exports = function(e, t, n, s) {
         var l = "function" == typeof n;
@@ -4041,48 +3885,6 @@
     })(Function.prototype, s, function() {
         return "function" == typeof this && this[o] || l.call(this)
     })
-}, function(e, t) {
-    function n() {
-        u = !1, o.length ? l = o.concat(l) : c = -1, l.length && r()
-    }
-
-    function r() {
-        if (!u) {
-            var e = setTimeout(n);
-            u = !0;
-            for (var t = l.length; t;) {
-                for (o = l, l = []; ++c < t;) o && o[c].run();
-                c = -1, t = l.length
-            }
-            o = null, u = !1, clearTimeout(e)
-        }
-    }
-
-    function a(e, t) {
-        this.fun = e, this.array = t
-    }
-
-    function i() {}
-    var o, s = e.exports = {},
-        l = [],
-        u = !1,
-        c = -1;
-    s.nextTick = function(e) {
-        var t = new Array(arguments.length - 1);
-        if (arguments.length > 1)
-            for (var n = 1; n < arguments.length; n++) t[n - 1] = arguments[n];
-        l.push(new a(e, t)), 1 !== l.length || u || setTimeout(r, 0)
-    }, a.prototype.run = function() {
-        this.fun.apply(null, this.array)
-    }, s.title = "browser", s.browser = !0, s.env = {}, s.argv = [], s.version = "", s.versions = {}, s.on = i, s.addListener = i, s.once = i, s.off = i, s.removeListener = i, s.removeAllListeners = i, s.emit = i, s.binding = function(e) {
-        throw new Error("process.binding is not supported")
-    }, s.cwd = function() {
-        return "/"
-    }, s.chdir = function(e) {
-        throw new Error("process.chdir is not supported")
-    }, s.umask = function() {
-        return 0
-    }
 }, function(e, t) {
     "use strict";
 
@@ -4148,78 +3950,9 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.pause = n, t.retryFn = r, t.debouncedPromise = a, t.abortablePause = i
-}, , , , function(e, t) {
+}, , , function(e, t) {
     e.exports = {}
 }, , , function(e, t) {
-    "use strict";
-
-    function n(e, t, n) {
-        return new Promise(function(r, a) {
-            ajax.post(e, t, {
-                timeout: n,
-                onDone: function() {
-                    r.apply(null, [
-                        [].concat(Array.prototype.slice.call(arguments))
-                    ])
-                },
-                onFail: function() {
-                    return a.apply(null, arguments), !0
-                }
-            })
-        })
-    }
-
-    function r(e, t) {
-        var n = arguments.length <= 2 || void 0 === arguments[2] ? {} : arguments[2],
-            r = a(e, t, n),
-            i = r.request;
-        return r.cancel, i
-    }
-
-    function a(e, t) {
-        function n() {
-            a.abort()
-        }
-        var r = arguments.length <= 2 || void 0 === arguments[2] ? {} : arguments[2],
-            a = void 0;
-        a = window.XDomainRequest ? new XDomainRequest : ajax._getreq();
-        var i = new Promise(function(n, i) {
-            var o, s = Date.now(),
-                l = r.timeout || 60,
-                u = ajx2q(t);
-            if (window.XDomainRequest) a.open("get", e + "?" + u), a.ontimeout = function() {
-                i("", {})
-            }, a.onerror = function() {
-                i("", {})
-            }, a.onload = function() {
-                n(a.responseText)
-            }, setTimeout(function() {
-                a.send()
-            }, 0);
-            else {
-                a.onreadystatechange = function() {
-                    4 == a.readyState && (clearInterval(o), a.status >= 200 && a.status < 300 ? n(a.responseText, a) : i(a.responseText, a))
-                };
-                try {
-                    a.open("GET", e + "?" + u, !0)
-                } catch (c) {
-                    return i(c)
-                }
-                a.send()
-            }
-            o = setInterval(function() {
-                Date.now() - s > 1e3 * l && (i("", {}), clearInterval(o))
-            }, 1e3)
-        });
-        return {
-            request: i,
-            cancel: n
-        }
-    }
-    Object.defineProperty(t, "__esModule", {
-        value: !0
-    }), t.post = n, t.plainget = r, t.plaingetCancelable = a
-}, , , , , function(e, t) {
     "use strict";
     Object.defineProperty(t, "__esModule", {
         value: !0
@@ -4233,8 +3966,7 @@
                         ["mozRequestFullScreen", "mozCancelFullScreen", "mozFullScreenElement", "mozFullScreenEnabled", "mozfullscreenchange", "mozfullscreenerror"],
                         ["msRequestFullscreen", "msExitFullscreen", "msFullscreenElement", "msFullscreenEnabled", "MSFullscreenChange", "MSFullscreenError"]
                     ], r = 0, a = n.length, i = {}; a > r; r++)
-                    if (e = n[r],
-                        e && e[1] in document) {
+                    if (e = n[r], e && e[1] in document) {
                         for (r = 0, t = e.length; t > r; r++) i[n[0][r]] = e[r];
                         return i
                     }
@@ -4279,7 +4011,7 @@
     };
     "number" == typeof __e && (__e = n)
 }, function(e, t, n) {
-    var r = n(226);
+    var r = n(164);
     e.exports = function(e, t, n) {
         if (r(e), void 0 === t) return e;
         switch (n) {
@@ -4314,8 +4046,8 @@
         }
     }
 }, function(e, t, n) {
-    var r = n(233),
-        a = n(51);
+    var r = n(171),
+        a = n(41);
     e.exports = function(e) {
         return r(a(e))
     }
@@ -4325,42 +4057,160 @@
     e.exports = function(e) {
         return "Symbol(".concat(void 0 === e ? "" : e, ")_", (++n + r).toString(36))
     }
-}, , , , , , function(e, t) {
+}, function(e, t) {
     "use strict";
 
-    function n() {
-        var e = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || window.MediaDevices && window.MediaDevices.getUserMedia,
-            t = function(t) {
-                return new Promise(function(n, r) {
-                    e ? e.call(navigator, t, n, r) : r(new Error("NotSupported"))
-                })
+    function n(e) {
+        return "im_store_" + e
+    }
+
+    function r(e) {
+        return ls.get(n(e)) || {}
+    }
+
+    function a(e, t, r) {
+        if (ls.checkVersion()) {
+            var a = JSON.stringify(t);
+            rand(0, 1e5) <= 1 && statlogsValueEvent("im_local_store_size", a.length), r(n(e), a)
+        }
+    }
+
+    function i(e, t, n) {
+        if (t === m) return e[t] || [];
+        if (e[t]) {
+            var r = extend(!0, {}, e[t][n]);
+            if (t == g) return r.txt = clean(r.txt), r
+        }
+        return null
+    }
+
+    function o(e, t, n) {
+        switch (e[t] || (e[t] = {}), t) {
+            case d:
+                var r = c(n, 2),
+                    a = r[0],
+                    i = r[1];
+                i && i.length ? e[t][a] = i : e[t][a] && delete e[t][a];
+                break;
+            case g:
+                var o = c(n, 2),
+                    s = o[0],
+                    l = o[1];
+                l && (l.txt || l.medias && l.medias.length) ? e[t][s] = l : e[t][s] && delete e[t][s];
+                break;
+            case m:
+                var u = n;
+                u && u.length > 0 ? e[t] = u : delete e[t];
+                break;
+            case f:
+                var p = c(n, 2),
+                    _ = p[0],
+                    h = p[1];
+                h && !isEmpty(h) ? e[t][_] = h : e[t][_] && delete e[t][_]
+        }
+        return e
+    }
+
+    function s(e, t) {
+        var n = ["peerFwd_", "im_draft", "bind_to_url_store_"],
+            i = n.length;
+        if (ls.checkVersion()) {
+            var s = r(e);
+            Object.keys(localStorage).reduce(function(e, t) {
+                for (var r = 0; i > r; r++)
+                    if (t.substr(0, n[r].length) === n[r]) return e.concat([
+                        [n[r]].concat(t.substr(n[r].length).split("_"))
+                    ]);
+                return e
+            }, []).forEach(function(t) {
+                var n = c(t, 3),
+                    r = n[0],
+                    a = n[1],
+                    i = n[2];
+                switch (r) {
+                    case "peerFwd_":
+                        if (intval(a) === e) {
+                            var l = "peerFwd_" + e + "_" + i,
+                                u = ls.get(l);
+                            s = o(s, d, [i, u]), ls.remove(l)
+                        }
+                        break;
+                    case "im_draft":
+                        if (intval(a) === e) {
+                            var m = "im_draft" + e + "_" + i,
+                                p = ls.get(m);
+                            s = o(s, g, [i, p]), ls.remove(m)
+                        }
+                        break;
+                    case "bind_to_url_store_":
+                        var _ = "bind_to_url_store_" + a,
+                            h = ls.get(_);
+                        s = o(s, f, [a, h]), ls.remove(_)
+                }
+            }), a(e, s, t)
+        }
+    }
+
+    function l(e, t, r) {
+        r.key === n(e) && (t.db = JSON.parse(r.newValue), t.checkTime = Date.now())
+    }
+
+    function u(e) {
+        var t = debounce(function(e, t) {
+            localStorage.setItem(e, t)
+        }, 300);
+        s(e, t);
+        var n = {
+                db: r(e),
+                checkTime: Date.now()
             },
-            n = function() {
-                return new Promise(function(e, t) {
-                    if (MediaStreamTrack && MediaStreamTrack.getSources) {
-                        var n = {
-                            audio: "audioinput",
-                            video: "videoinput"
-                        };
-                        return MediaStreamTrack.getSources(function(t) {
-                            e(t.map(function(e) {
-                                return {
-                                    label: e.label,
-                                    kind: n[e.kind],
-                                    deviceId: e.id,
-                                    groupId: ""
-                                }
-                            }))
-                        })
-                    }
-                    t(new Error("NotSupported"))
-                })
-            };
-        e && !navigator.mediaDevices && (navigator.mediaDevices = navigator.mediaDevices || {}), navigator.mediaDevices && (navigator.mediaDevices.getUserMedia || (navigator.mediaDevices.getUserMedia = t), navigator.mediaDevices.enumerateDevices || (navigator.mediaDevices.enumerateDevices = n)), window.AudioContext = window.AudioContext || window.webkitAudioContext, window.AudioContext && (window.AudioContext.prototype.createScriptProcessor = window.AudioContext.prototype.createScriptProcessor || window.AudioContext.prototype.createJavaScriptNode)
+            u = l.bind(null, e, n);
+        return window.addEventListener("storage", u, !1), {
+            select: function(t, a) {
+                return Date.now() - n.checkTime > 1e3 && (n.db = r(e)), i(n.db, t, a)
+            },
+            update: function(r, i) {
+                var s = o(n.db, r, i);
+                return n.db = s, n.checkTime = Date.now(), a(e, s, t)
+            },
+            unmount: function() {
+                window.removeEventListener("storage", u, !1)
+            }
+        }
     }
     Object.defineProperty(t, "__esModule", {
         value: !0
-    }), t.initFailBack = n
+    });
+    var c = function() {
+        function e(e, t) {
+            var n = [],
+                r = !0,
+                a = !1,
+                i = void 0;
+            try {
+                for (var o, s = e[Symbol.iterator](); !(r = (o = s.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
+            } catch (l) {
+                a = !0, i = l
+            } finally {
+                try {
+                    !r && s["return"] && s["return"]()
+                } finally {
+                    if (a) throw i
+                }
+            }
+            return n
+        }
+        return function(t, n) {
+            if (Array.isArray(t)) return t;
+            if (Symbol.iterator in Object(t)) return e(t, n);
+            throw new TypeError("Invalid attempt to destructure non-iterable instance")
+        }
+    }();
+    t.migrateLocalstorage = s, t.mount = u;
+    var d = t.FWD_STORE_OP = "fwd",
+        g = t.DRAFT_STORE_OP = "draft",
+        f = t.ATTACH_STORE_OP = "bind_attach",
+        m = t.RECENT_SEARCH_OP = "recent_search"
 }, function(e, t, n) {
     "use strict";
 
@@ -4766,10 +4616,10 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.createIdMap = u, t.addElements = c, t.collapseOps = p, t.distance = _, t.mount = k;
-    var P = n(4),
-        M = n(15),
-        L = n(62),
-        A = n(3)
+    var P = n(3),
+        M = n(13),
+        L = n(47),
+        A = n(2)
 }, function(e, t, n) {
     "use strict";
 
@@ -4791,7 +4641,7 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.getNativeOption = a, t.setNativeOption = i, t.createScroll = o;
-    var s = n(3),
+    var s = n(2),
         l = function() {
             function e(t, n) {
                 var a = this;
@@ -4880,16 +4730,16 @@
         }()
 }, , , , , , , , , , function(e, t, n) {
     "use strict";
-    var r = n(238),
-        a = n(110),
-        i = n(30),
-        o = n(22),
-        s = n(21),
-        l = n(36),
-        u = n(236),
-        c = n(74),
-        d = n(241),
-        g = n(12)("iterator"),
+    var r = n(176),
+        a = n(88),
+        i = n(27),
+        o = n(19),
+        s = n(18),
+        l = n(31),
+        u = n(174),
+        c = n(59),
+        d = n(179),
+        g = n(10)("iterator"),
         f = !([].keys && "next" in [].keys()),
         m = "@@iterator",
         p = "keys",
@@ -4945,9 +4795,9 @@
         }
     }
 }, function(e, t, n) {
-    var r = n(29).f,
-        a = n(21),
-        i = n(12)("toStringTag");
+    var r = n(26).f,
+        a = n(18),
+        i = n(10)("toStringTag");
     e.exports = function(e, t, n) {
         e && !a(e = n ? e : e.prototype, i) && r(e, i, {
             configurable: !0,
@@ -4955,8 +4805,8 @@
         })
     }
 }, function(e, t, n) {
-    var r = n(117)("keys"),
-        a = n(54);
+    var r = n(95)("keys"),
+        a = n(44);
     e.exports = function(e) {
         return r[e] || (r[e] = a(e))
     }
@@ -4967,357 +4817,6 @@
         return isNaN(e = +e) ? 0 : (e > 0 ? r : n)(e)
     }
 }, function(e, t, n) {
-    var r;
-    (function(e, a, i) {
-        (function() {
-            "use strict";
-
-            function o(e) {
-                return "function" == typeof e || "object" == typeof e && null !== e
-            }
-
-            function s(e) {
-                return "function" == typeof e
-            }
-
-            function l(e) {
-                V = e
-            }
-
-            function u(e) {
-                Z = e
-            }
-
-            function c() {
-                return function() {
-                    e.nextTick(p)
-                }
-            }
-
-            function d() {
-                return function() {
-                    W(p)
-                }
-            }
-
-            function g() {
-                var e = 0,
-                    t = new ee(p),
-                    n = document.createTextNode("");
-                return t.observe(n, {
-                        characterData: !0
-                    }),
-                    function() {
-                        n.data = e = ++e % 2
-                    }
-            }
-
-            function f() {
-                var e = new MessageChannel;
-                return e.port1.onmessage = p,
-                    function() {
-                        e.port2.postMessage(0)
-                    }
-            }
-
-            function m() {
-                return function() {
-                    setTimeout(p, 1)
-                }
-            }
-
-            function p() {
-                for (var e = 0; X > e; e += 2) {
-                    var t = re[e],
-                        n = re[e + 1];
-                    t(n), re[e] = void 0, re[e + 1] = void 0
-                }
-                X = 0
-            }
-
-            function _() {
-                try {
-                    var e = n(82);
-                    return W = e.runOnLoop || e.runOnContext, d()
-                } catch (t) {
-                    return m()
-                }
-            }
-
-            function h(e, t) {
-                var n = this,
-                    r = n._state;
-                if (r === se && !e || r === le && !t) return this;
-                var a = new this.constructor(b),
-                    i = n._result;
-                if (r) {
-                    var o = arguments[r - 1];
-                    Z(function() {
-                        R(r, a, o, i)
-                    })
-                } else A(n, a, e, t);
-                return a
-            }
-
-            function v(e) {
-                var t = this;
-                if (e && "object" == typeof e && e.constructor === t) return e;
-                var n = new t(b);
-                return k(n, e), n
-            }
-
-            function b() {}
-
-            function y() {
-                return new TypeError("You cannot resolve a promise with itself")
-            }
-
-            function C() {
-                return new TypeError("A promises callback cannot return that same promise.")
-            }
-
-            function T(e) {
-                try {
-                    return e.then
-                } catch (t) {
-                    return ue.error = t, ue
-                }
-            }
-
-            function S(e, t, n, r) {
-                try {
-                    e.call(t, n, r)
-                } catch (a) {
-                    return a
-                }
-            }
-
-            function E(e, t, n) {
-                Z(function(e) {
-                    var r = !1,
-                        a = S(n, t, function(n) {
-                            r || (r = !0, t !== n ? k(e, n) : M(e, n))
-                        }, function(t) {
-                            r || (r = !0, L(e, t))
-                        }, "Settle: " + (e._label || " unknown promise"));
-                    !r && a && (r = !0, L(e, a))
-                }, e)
-            }
-
-            function w(e, t) {
-                t._state === se ? M(e, t._result) : t._state === le ? L(e, t._result) : A(t, void 0, function(t) {
-                    k(e, t)
-                }, function(t) {
-                    L(e, t)
-                })
-            }
-
-            function I(e, t, n) {
-                t.constructor === e.constructor && n === ae && constructor.resolve === ie ? w(e, t) : n === ue ? L(e, ue.error) : void 0 === n ? M(e, t) : s(n) ? E(e, t, n) : M(e, t)
-            }
-
-            function k(e, t) {
-                e === t ? L(e, y()) : o(t) ? I(e, t, T(t)) : M(e, t)
-            }
-
-            function P(e) {
-                e._onerror && e._onerror(e._result), O(e)
-            }
-
-            function M(e, t) {
-                e._state === oe && (e._result = t, e._state = se, 0 !== e._subscribers.length && Z(O, e))
-            }
-
-            function L(e, t) {
-                e._state === oe && (e._state = le, e._result = t, Z(P, e))
-            }
-
-            function A(e, t, n, r) {
-                var a = e._subscribers,
-                    i = a.length;
-                e._onerror = null, a[i] = t, a[i + se] = n, a[i + le] = r, 0 === i && e._state && Z(O, e)
-            }
-
-            function O(e) {
-                var t = e._subscribers,
-                    n = e._state;
-                if (0 !== t.length) {
-                    for (var r, a, i = e._result, o = 0; o < t.length; o += 3) r = t[o], a = t[o + n], r ? R(n, r, a, i) : a(i);
-                    e._subscribers.length = 0
-                }
-            }
-
-            function D() {
-                this.error = null
-            }
-
-            function x(e, t) {
-                try {
-                    return e(t)
-                } catch (n) {
-                    return ce.error = n, ce
-                }
-            }
-
-            function R(e, t, n, r) {
-                var a, i, o, l, u = s(n);
-                if (u) {
-                    if (a = x(n, r), a === ce ? (l = !0, i = a.error, a = null) : o = !0, t === a) return void L(t, C())
-                } else a = r, o = !0;
-                t._state !== oe || (u && o ? k(t, a) : l ? L(t, i) : e === se ? M(t, a) : e === le && L(t, a))
-            }
-
-            function B(e, t) {
-                try {
-                    t(function(t) {
-                        k(e, t)
-                    }, function(t) {
-                        L(e, t)
-                    })
-                } catch (n) {
-                    L(e, n)
-                }
-            }
-
-            function F(e) {
-                return new _e(this, e).promise
-            }
-
-            function N(e) {
-                function t(e) {
-                    k(a, e)
-                }
-
-                function n(e) {
-                    L(a, e)
-                }
-                var r = this,
-                    a = new r(b);
-                if (!Y(e)) return L(a, new TypeError("You must pass an array to race.")), a;
-                for (var i = e.length, o = 0; a._state === oe && i > o; o++) A(r.resolve(e[o]), void 0, t, n);
-                return a
-            }
-
-            function j(e) {
-                var t = this,
-                    n = new t(b);
-                return L(n, e), n
-            }
-
-            function H() {
-                throw new TypeError("You must pass a resolver function as the first argument to the promise constructor")
-            }
-
-            function U() {
-                throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.")
-            }
-
-            function G(e) {
-                this._id = me++, this._state = void 0, this._result = void 0, this._subscribers = [], b !== e && ("function" != typeof e && H(), this instanceof G ? B(this, e) : U())
-            }
-
-            function z(e, t) {
-                this._instanceConstructor = e, this.promise = new e(b), Array.isArray(t) ? (this._input = t, this.length = t.length, this._remaining = t.length, this._result = new Array(this.length), 0 === this.length ? M(this.promise, this._result) : (this.length = this.length || 0, this._enumerate(), 0 === this._remaining && M(this.promise, this._result))) : L(this.promise, this._validationError())
-            }
-
-            function q() {
-                var e;
-                if ("undefined" != typeof a) e = a;
-                else if ("undefined" != typeof self) e = self;
-                else try {
-                    e = Function("return this")()
-                } catch (t) {
-                    throw new Error("polyfill failed because global object is unavailable in this environment")
-                }
-                var n = e.Promise;
-                (!n || "[object Promise]" !== Object.prototype.toString.call(n.resolve()) || n.cast) && (e.Promise = pe)
-            }
-            var K;
-            K = Array.isArray ? Array.isArray : function(e) {
-                return "[object Array]" === Object.prototype.toString.call(e)
-            };
-            var W, V, Q, Y = K,
-                X = 0,
-                Z = function(e, t) {
-                    re[X] = e, re[X + 1] = t, X += 2, 2 === X && (V ? V(p) : Q())
-                },
-                $ = "undefined" != typeof window ? window : void 0,
-                J = $ || {},
-                ee = J.MutationObserver || J.WebKitMutationObserver,
-                te = "undefined" != typeof e && "[object process]" === {}.toString.call(e),
-                ne = "undefined" != typeof Uint8ClampedArray && "undefined" != typeof importScripts && "undefined" != typeof MessageChannel,
-                re = new Array(1e3);
-            Q = te ? c() : ee ? g() : ne ? f() : void 0 === $ ? _() : m();
-            var ae = h,
-                ie = v,
-                oe = void 0,
-                se = 1,
-                le = 2,
-                ue = new D,
-                ce = new D,
-                de = F,
-                ge = N,
-                fe = j,
-                me = 0,
-                pe = G;
-            G.all = de, G.race = ge, G.resolve = ie, G.reject = fe, G._setScheduler = l, G._setAsap = u, G._asap = Z, G.prototype = {
-                constructor: G,
-                then: ae,
-                "catch": function(e) {
-                    return this.then(null, e)
-                }
-            };
-            var _e = z;
-            z.prototype._validationError = function() {
-                return new Error("Array Methods must be provided an Array")
-            }, z.prototype._enumerate = function() {
-                for (var e = this.length, t = this._input, n = 0; this._state === oe && e > n; n++) this._eachEntry(t[n], n)
-            }, z.prototype._eachEntry = function(e, t) {
-                var n = this._instanceConstructor,
-                    r = n.resolve;
-                if (r === ie) {
-                    var a = T(e);
-                    if (a === ae && e._state !== oe) this._settledAt(e._state, t, e._result);
-                    else if ("function" != typeof a) this._remaining--, this._result[t] = e;
-                    else if (n === pe) {
-                        var i = new n(b);
-                        I(i, e, a), this._willSettleAt(i, t)
-                    } else this._willSettleAt(new n(function(t) {
-                        t(e)
-                    }), t)
-                } else this._willSettleAt(r(e), t)
-            }, z.prototype._settledAt = function(e, t, n) {
-                var r = this.promise;
-                r._state === oe && (this._remaining--, e === le ? L(r, n) : this._result[t] = n), 0 === this._remaining && M(r, this._result)
-            }, z.prototype._willSettleAt = function(e, t) {
-                var n = this;
-                A(e, void 0, function(e) {
-                    n._settledAt(se, t, e)
-                }, function(e) {
-                    n._settledAt(le, t, e)
-                })
-            };
-            var he = q,
-                ve = {
-                    Promise: pe,
-                    polyfill: he
-                };
-            n(80).amd ? (r = function() {
-                return ve
-            }.call(t, n, t, i), !(void 0 !== r && (i.exports = r))) : "undefined" != typeof i && i.exports ? i.exports = ve : "undefined" != typeof this && (this.ES6Promise = ve), he()
-        }).call(this)
-    }).call(t, n(31), function() {
-        return this
-    }(), n(81)(e))
-}, , , function(e, t) {
-    e.exports = function() {
-        throw new Error("define cannot be used indirect")
-    }
-}, function(e, t) {
-    e.exports = function(e) {
-        return e.webpackPolyfill || (e.deprecate = function() {}, e.paths = [], e.children = [], e.webpackPolyfill = 1), e
-    }
-}, function(e, t) {}, function(e, t, n) {
     "use strict";
 
     function r(e) {
@@ -5417,13 +4916,13 @@
         }
     }();
     t.mount = o;
-    var l = n(2),
-        u = n(84),
-        c = n(87),
-        d = n(4),
-        g = n(11),
+    var l = n(1),
+        u = n(63),
+        c = n(66),
+        d = n(3),
+        g = n(9),
         f = r(g),
-        m = n(3),
+        m = n(2),
         p = n(6)
 }, function(e, t, n) {
     "use strict";
@@ -5466,9 +4965,9 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.mount = o;
-    var s = n(3),
-        l = n(2),
-        u = n(4),
+    var s = n(2),
+        l = n(1),
+        u = n(3),
         c = n(6)
 }, function(e, t, n) {
     "use strict";
@@ -5536,10 +5035,10 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.mount = s;
-    var l = n(3),
-        u = n(4),
-        c = n(2),
-        d = n(10)
+    var l = n(2),
+        u = n(3),
+        c = n(1),
+        d = n(8)
 }, function(e, t, n) {
     "use strict";
 
@@ -5703,11 +5202,11 @@
         }
     }();
     t.mount = f;
-    var p = n(2),
-        _ = n(4),
-        h = n(3),
-        v = n(85),
-        b = n(11),
+    var p = n(1),
+        _ = n(3),
+        h = n(2),
+        v = n(64),
+        b = n(9),
         y = r(b),
         C = n(6),
         T = "_im_spam_not_spam",
@@ -5770,14 +5269,14 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.mount = o;
-    var s = n(2),
-        l = n(4),
-        u = n(24),
-        c = n(10),
-        d = n(3),
+    var s = n(1),
+        l = n(3),
+        u = n(21),
+        c = n(8),
+        d = n(2),
         g = n(6),
         f = "_im_mess_fav"
-}, , function(e, t, n) {
+}, function(e, t, n) {
     "use strict";
 
     function r(e) {
@@ -5942,9 +5441,9 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.initQueue = _;
-    var h = n(11),
+    var h = n(9),
         v = r(h),
-        b = n(32)
+        b = n(28)
 }, function(e, t) {
     "use strict";
 
@@ -5973,16 +5472,85 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.updateLocation = n, t.updateLazyLocation = r
-}, , , , , function(e, t, n) {
-    n(253), n(254), n(255), n(252), e.exports = n(49).Map
+}, function(e, t) {
+    "use strict";
+
+    function n(e, t, n) {
+        return new Promise(function(r, a) {
+            ajax.post(e, t, {
+                timeout: n,
+                onDone: function() {
+                    r.apply(null, [
+                        [].concat(Array.prototype.slice.call(arguments))
+                    ])
+                },
+                onFail: function() {
+                    return a.apply(null, arguments), !0
+                }
+            })
+        })
+    }
+
+    function r(e, t) {
+        var n = arguments.length <= 2 || void 0 === arguments[2] ? {} : arguments[2],
+            r = a(e, t, n),
+            i = r.request;
+        return r.cancel, i
+    }
+
+    function a(e, t) {
+        function n() {
+            a.abort()
+        }
+        var r = arguments.length <= 2 || void 0 === arguments[2] ? {} : arguments[2],
+            a = void 0;
+        a = window.XDomainRequest ? new XDomainRequest : ajax._getreq();
+        var i = new Promise(function(n, i) {
+            var o, s = Date.now(),
+                l = r.timeout || 60,
+                u = ajx2q(t);
+            if (window.XDomainRequest) a.open("get", e + "?" + u), a.ontimeout = function() {
+                i("", {})
+            }, a.onerror = function() {
+                i("", {})
+            }, a.onload = function() {
+                n(a.responseText)
+            }, setTimeout(function() {
+                a.send()
+            }, 0);
+            else {
+                a.onreadystatechange = function() {
+                    4 == a.readyState && (clearInterval(o), a.status >= 200 && a.status < 300 ? n(a.responseText, a) : i(a.responseText, a))
+                };
+                try {
+                    a.open("GET", e + "?" + u, !0)
+                } catch (c) {
+                    return i(c)
+                }
+                a.send()
+            }
+            o = setInterval(function() {
+                Date.now() - s > 1e3 * l && (i("", {}), clearInterval(o))
+            }, 1e3)
+        });
+        return {
+            request: i,
+            cancel: n
+        }
+    }
+    Object.defineProperty(t, "__esModule", {
+        value: !0
+    }), t.post = n, t.plainget = r, t.plaingetCancelable = a
+}, , , , function(e, t, n) {
+    n(191), n(192), n(193), n(190), e.exports = n(39).Map
 }, , , , , , , , , , function(e, t) {
     e.exports = function(e, t, n, r) {
         if (!(e instanceof t) || void 0 !== r && r in e) throw TypeError(n + ": incorrect invocation!");
         return e
     }
 }, function(e, t, n) {
-    var r = n(107),
-        a = n(12)("toStringTag"),
+    var r = n(85),
+        a = n(10)("toStringTag"),
         i = "Arguments" == r(function() {
             return arguments
         }()),
@@ -6001,8 +5569,8 @@
         return n.call(e).slice(8, -1)
     }
 }, function(e, t, n) {
-    var r = n(23),
-        a = n(13).document,
+    var r = n(20),
+        a = n(11).document,
         i = r(a) && r(a.createElement);
     e.exports = function(e) {
         return i ? a.createElement(e) : {}
@@ -6010,11 +5578,11 @@
 }, function(e, t) {
     e.exports = "constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")
 }, function(e, t, n) {
-    var r = n(13),
-        a = n(49),
-        i = n(22),
-        o = n(30),
-        s = n(50),
+    var r = n(11),
+        a = n(39),
+        i = n(19),
+        o = n(27),
+        s = n(40),
         l = "prototype",
         u = function(e, t, n) {
             var c, d, g, f, m = e & u.F,
@@ -6030,12 +5598,12 @@
         };
     r.core = a, u.F = 1, u.G = 2, u.S = 4, u.P = 8, u.B = 16, u.W = 32, u.U = 64, u.R = 128, e.exports = u
 }, function(e, t, n) {
-    var r = n(50),
-        a = n(235),
-        i = n(234),
-        o = n(28),
-        s = n(118),
-        l = n(250);
+    var r = n(40),
+        a = n(173),
+        i = n(172),
+        o = n(25),
+        s = n(96),
+        l = n(188);
     e.exports = function(e, t, n, u, c) {
         var d, g, f, m = c ? function() {
                 return e
@@ -6049,8 +5617,8 @@
             for (f = m.call(e); !(g = f.next()).done;) a(f, p, g.value, t)
     }
 }, function(e, t, n) {
-    e.exports = !n(20) && !n(52)(function() {
-        return 7 != Object.defineProperty(n(108)("div"), "a", {
+    e.exports = !n(17) && !n(42)(function() {
+        return 7 != Object.defineProperty(n(86)("div"), "a", {
             get: function() {
                 return 7
             }
@@ -6064,15 +5632,15 @@
         }
     }
 }, function(e, t, n) {
-    var r = n(54)("meta"),
-        a = n(23),
-        i = n(21),
-        o = n(29).f,
+    var r = n(44)("meta"),
+        a = n(20),
+        i = n(18),
+        o = n(26).f,
         s = 0,
         l = Object.isExtensible || function() {
             return !0
         },
-        u = !n(52)(function() {
+        u = !n(42)(function() {
             return l(Object.preventExtensions({}))
         }),
         c = function(e) {
@@ -6111,17 +5679,17 @@
             onFreeze: f
         }
 }, function(e, t, n) {
-    var r = n(28),
-        a = n(239),
-        i = n(109),
-        o = n(75)("IE_PROTO"),
+    var r = n(25),
+        a = n(177),
+        i = n(87),
+        o = n(60)("IE_PROTO"),
         s = function() {},
         l = "prototype",
         u = function() {
-            var e, t = n(108)("iframe"),
+            var e, t = n(86)("iframe"),
                 r = i.length,
                 a = ">";
-            for (t.style.display = "none", n(231).appendChild(t), t.src = "javascript:", e = t.contentWindow.document, e.open(), e.write("<script>document.F=Object</script" + a), e.close(), u = e.F; r--;) delete u[l][i[r]];
+            for (t.style.display = "none", n(169).appendChild(t), t.src = "javascript:", e = t.contentWindow.document, e.open(), e.write("<script>document.F=Object</script" + a), e.close(), u = e.F; r--;) delete u[l][i[r]];
             return u()
         };
     e.exports = Object.create || function(e, t) {
@@ -6129,26 +5697,26 @@
         return null !== e ? (s[l] = r(e), n = new s, s[l] = null, n[o] = e) : n = u(), void 0 === t ? n : a(n, t)
     }
 }, function(e, t, n) {
-    var r = n(30);
+    var r = n(27);
     e.exports = function(e, t, n) {
         for (var a in t) r(e, a, t[a], n);
         return e
     }
 }, function(e, t, n) {
-    var r = n(13),
+    var r = n(11),
         a = "__core-js_shared__",
         i = r[a] || (r[a] = {});
     e.exports = function(e) {
         return i[e] || (i[e] = {})
     }
 }, function(e, t, n) {
-    var r = n(76),
+    var r = n(61),
         a = Math.min;
     e.exports = function(e) {
         return e > 0 ? a(r(e), 9007199254740991) : 0
     }
 }, function(e, t, n) {
-    var r = n(23);
+    var r = n(20);
     e.exports = function(e, t) {
         if (!r(e)) return e;
         var n, a;
@@ -6157,7 +5725,7 @@
         if (!t && "function" == typeof(n = e.toString) && !r(a = n.call(e))) return a;
         throw TypeError("Can't convert object to primitive value")
     }
-}, , , , , , , , , , , , , , function(e, t, n) {
+}, function(e, t, n) {
     "use strict";
 
     function r(e, t, n) {
@@ -6510,14 +6078,16 @@
                             action: e
                         })
                     }).join("");
-                0 === Object.keys(a).length ? setStyle(r, {
-                    opacity: 0
-                }) : (setStyle(r, {
-                    opacity: 1
-                }), val(n, i))
+                0 === Object.keys(a).length ? addClass(r, "im-page--header-more_loading") : (val(n, i), removeClass(r, "im-page--header-more_loading"))
             },
             renderPeer: function(t) {
                 u(e, t)
+            },
+            hideActions: function(t) {
+                if (!(0, S.isFullyLoadedTab)(t, t.get().peer)) {
+                    var n = geByClass1(A, e);
+                    addClass(n, "im-page--header-more_loading")
+                }
             },
             changedMessageSelection: function(t) {
                 if (0 !== t.get().peer) {
@@ -6563,12 +6133,12 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.mount = y;
-    var C = n(3),
-        T = n(2),
-        S = n(4),
+    var C = n(2),
+        T = n(1),
+        S = n(3),
         E = n(6),
-        w = n(10),
-        I = n(24),
+        w = n(8),
+        I = n(21),
         k = "_im_action",
         P = "_im_page_peer_name",
         M = "_im_page_peer_online",
@@ -6730,7 +6300,9 @@
                 })
             },
             toggle: function(e) {
-                e ? show(n) : hide(n)
+                e ? setStyle(n, {
+                    display: ""
+                }) : hide(n)
             },
             show: function() {
                 i = Date.now(), l || (addClass(geByClass1("_im_page_history"), "im-page--top-date-bar_visible"), l = setInterval(function() {
@@ -6773,9 +6345,9 @@
         }
     }();
     t.setCurrentDateBar = i, t.mount = p;
-    var h = n(4),
-        v = n(2),
-        b = n(11),
+    var h = n(3),
+        v = n(1),
+        b = n(9),
         y = r(b),
         C = 68,
         T = 32,
@@ -7085,13 +6657,13 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.mount = w;
-    var I = n(2),
-        k = n(10),
-        P = n(61),
-        M = n(4),
-        L = n(157),
-        A = n(3),
-        O = n(11),
+    var I = n(1),
+        k = n(8),
+        P = n(46),
+        M = n(3),
+        L = n(114),
+        A = n(2),
+        O = n(9),
         D = r(O),
         x = n(6),
         R = "_im_create_cancel",
@@ -7847,16 +7419,16 @@
             }
         }();
     t.mount = K;
-    var Q = n(2),
-        Y = n(4),
-        X = n(10),
-        Z = n(14),
-        $ = n(11),
+    var Q = n(1),
+        Y = n(3),
+        X = n(8),
+        Z = n(12),
+        $ = n(9),
         J = r($),
-        ee = n(61),
+        ee = n(46),
         te = n(6),
-        ne = n(3),
-        ae = n(18),
+        ne = n(2),
+        ae = n(15),
         ie = 64,
         oe = "_im_mess_search",
         se = "_im_dialog_star",
@@ -7896,8 +7468,8 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.mount = a;
-    var i = n(4),
-        o = n(2),
+    var i = n(3),
+        o = n(1),
         s = 5e3,
         l = 54e6,
         u = 72e5
@@ -8279,10 +7851,16 @@
                     removeClass(t, "im-page--history_search"), e.set(z.dropSelection), r.changeActions(e);
                     var c = e.get().peer,
                         d = e.get().prevPeer;
-                    return removeClass(t, "im-page--history_loading"), i && a.restoreDraft(e), o().updateTyping({
+                    return removeClass(t, "im-page--history_loading"), i ? a.restoreDraft(e) : a.updateState(e), w(e, t), o().updateTyping({
                         peerId: c
-                    }, e), w(e, t), (0, q.isClassicInterface)(e) && (C(t), T(e, t)), 0 !== d || (0, q.isReservedPeer)(c) ? (0, q.isReservedPeer)(d) || (0, q.isReservedPeer)(c) ? void 0 : (f(t, e, c, n, o, r, u, l, S), void S.reset(n)) : (s(t, e, c, n, o, r, u, l, S), void S.reset(n))
+                    }, e), S.toggle(!0), (0, q.isClassicInterface)(e) && (C(t), T(e, t)), 0 !== d || (0, q.isReservedPeer)(c) ? (0, q.isReservedPeer)(d) || (0, q.isReservedPeer)(c) ? void 0 : (f(t, e, c, n, o, r, u, l, S), void S.reset(n)) : (s(t, e, c, n, o, r, u, l, S), void S.reset(n))
                 }
+            },
+            preparePeer: function(e) {
+                var n = e.get().peer;
+                a.restoreDraft(e), o().updateTyping({
+                    peerId: n
+                }, e), o().hideError(), r.renderPeer(e), r.hideActions(e), u.changePeer(n, e), (0, q.isClassicInterface)(e) && C(t), S.toggle(!1)
             },
             saveScroll: function(e) {
                 return m(e, n)
@@ -8361,7 +7939,7 @@
             },
             addMessage: function(e, r) {
                 if (!(0, z.isSearchingInplace)(r.peerId, e.get())) {
-                    if ((0, q.isPeerActive)(r.peerId, e.get())) {
+                    if ((0, q.isFullyLoadedTab)(e, r.peerId) && (0, q.isPeerActive)(r.peerId, e.get())) {
                         var a, i = function() {
                             if (geByClass1("_im_mess_" + r.messageId, t)) return {
                                 v: void 0
@@ -8616,23 +8194,23 @@
             }
         }();
     t.mount = H;
-    var z = n(2),
-        q = n(4),
-        K = n(10),
-        W = n(24),
-        V = n(44),
-        Q = n(15),
-        Y = n(3),
-        X = n(133),
-        Z = n(146),
-        $ = n(139),
-        J = n(84),
-        ee = n(87),
-        te = n(85),
-        ne = n(62),
-        re = n(134),
+    var z = n(1),
+        q = n(3),
+        K = n(8),
+        W = n(21),
+        V = n(34),
+        Q = n(13),
+        Y = n(2),
+        X = n(98),
+        Z = n(111),
+        $ = n(104),
+        J = n(63),
+        ee = n(66),
+        te = n(64),
+        ne = n(47),
+        re = n(99),
         ae = n(6),
-        ie = n(169),
+        ie = n(117),
         oe = 1e3,
         se = -30,
         le = 30,
@@ -8745,8 +8323,8 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.mount = g;
-    var f = n(2),
-        m = n(3),
+    var f = n(1),
+        m = n(2),
         p = "im_hist_search",
         _ = "_im_search_date",
         h = "_im_search_date_input",
@@ -8810,13 +8388,13 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.mount = u;
-    var c = n(14),
-        d = n(2),
-        g = n(4),
+    var c = n(12),
+        d = n(1),
+        g = n(3),
         f = n(6),
-        m = n(11),
+        m = n(9),
         p = r(m),
-        _ = n(3)
+        _ = n(2)
 }, function(e, t, n) {
     "use strict";
 
@@ -8843,29 +8421,29 @@
         }, {});
         Object.keys(r).forEach(function(n) {
             var a = r[n];
-            e.set(ne.removeMessages.bind(null, a, n)).then(function() {
+            e.set(re.removeMessages.bind(null, a, n)).then(function() {
                 t.removeMessages(a, intval(n), e)
             })
         })
     }
 
     function o(e, t, n, r) {
-        t.set(ne.updateChatPhoto.bind(null, e)).then(function() {
+        t.set(re.updateChatPhoto.bind(null, e)).then(function() {
             var a = e.kludges.source_act;
             n.updateDialog(e.peerId, t), r.updateChatPhoto(e, a, t)
         })
     }
 
     function s(e, t, n, r, i, o, s) {
-        e.set(ne.updateActions.bind(null, t, r, n)).then(function() {
-            return t === re.CHAT_INVITE_USER ? (r === vk.id && e.set(ne.returnedToChat.bind(null, n)), e.set(ne.loadChatMember.bind(null, a({}, n, [r])))) : e.set(ne.chatKickUser.bind(null, n, i, r))
+        e.set(re.updateActions.bind(null, t, r, n)).then(function() {
+            return t === ae.CHAT_INVITE_USER ? (r === vk.id && e.set(re.returnedToChat.bind(null, n)), e.set(re.loadChatMember.bind(null, a({}, n, [r])))) : e.set(re.chatKickUser.bind(null, n, i, r))
         }).then(function() {
             e.get().peer === n && (s.updateChat(e, n), o.updateDialog(n, e))
         })
     }
 
     function l(e, t) {
-        "spam" === t ? (0, re.showSpamLayer)(e, X.mount, {}) : "fav" === t && (0, re.showFavvedBox)(e, {}, ae.mount, {})
+        "spam" === t ? (0, ae.showSpamLayer)(e, Z.mount, {}) : "fav" === t && (0, ae.showFavvedBox)(e, {}, ie.mount, {})
     }
 
     function u(e, t) {
@@ -8881,14 +8459,14 @@
     }
 
     function c(e, t, n, r) {
-        e.set(ne.cancelRecording).then(function(e) {
+        e.set(re.cancelRecording).then(function(e) {
             n.cancelRecording()
         }), AudioMessagePlayer.detachPlayer(), t.removeSelection(e), removeClass(r, "im-page_history-show");
         var a = e.get().peer;
-        e.set(ne.changePeer.bind(null, 0, !1)).then(function() {
-            (0, re.isClassicInterface)(e) && t.activate(), n.changePeer(e), (0, re.isClassicInterface)(e) && t.restoreScroll(e), setTimeout(function() {
-                e.get().longpoll.push([Q.eventTypes.transitionEvent("search")])
-            }, 13), (0, re.isLocksAvailable)(e) && (0, re.isPeerBlockedByMe)(a, e) && e.set(ne.releaseBlock.bind(null, a))
+        e.set(re.changePeer.bind(null, 0, !1)).then(function() {
+            (0, ae.isClassicInterface)(e) && t.activate(), n.changePeer(e), (0, ae.isClassicInterface)(e) && t.restoreScroll(e), setTimeout(function() {
+                e.get().longpoll.push([Y.eventTypes.transitionEvent("search")])
+            }, 13), (0, ae.isLocksAvailable)(e) && (0, ae.isPeerBlockedByMe)(a, e) && e.set(re.releaseBlock.bind(null, a))
         })
     }
 
@@ -8897,18 +8475,18 @@
             var i = e.kludges.source_act,
                 l = intval(e.kludges.source_mid);
             switch (i) {
-                case re.CHAT_PHOTO_REMOVE:
-                case re.CHAT_PHOTO_UPDATE:
+                case ae.CHAT_PHOTO_REMOVE:
+                case ae.CHAT_PHOTO_UPDATE:
                     o(e, t, n, r);
                     break;
-                case re.CHAT_KICK_USER:
-                case re.CHAT_INVITE_USER:
+                case ae.CHAT_KICK_USER:
+                case ae.CHAT_INVITE_USER:
                     s(t, i, e.peerId, l, e.userId, n, r);
                     break;
-                case re.CHAT_TITLE_ACTION:
+                case ae.CHAT_TITLE_ACTION:
                     var u = e.kludges.source_text;
-                    t.set(ne.setChatTitle.bind(null, e.peerId, u)).then(function() {
-                        r.updateChatTopic(e.peerId, t), (0, re.isClassicInterface)(t) && a.updateName(e.peerId, t)
+                    t.set(re.setChatTitle.bind(null, e.peerId, u)).then(function() {
+                        r.updateChatTopic(e.peerId, t), (0, ae.isClassicInterface)(t) && a.updateName(e.peerId, t)
                     })
             }
         })
@@ -8919,54 +8497,56 @@
     }
 
     function f(e, t) {
-        var n = t.flags & Q.eventTypes.FLAG_OUTBOUND,
+        var n = t.flags & Y.eventTypes.FLAG_OUTBOUND,
             r = inArray(t.peerId, e.get().mutedPeers),
-            a = t.flags & Q.eventTypes.FLAG_DELETED,
+            a = t.flags & Y.eventTypes.FLAG_DELETED,
             i = e.get().gid;
         if (!n && !r && !a) {
-            var o, s, l = g(t.subject, t.peerId) || "",
-                u = (l ? l + " " : "") + t.text || "",
-                c = t.userId,
-                d = t.peerId,
-                f = e.get().tabs[d];
-            if ((!e.get().notify_msg && !(0, re.isChatPeer)(d) || i && !e.get().mute) && window.Notifier && Notifier.playSound({
-                    author_id: d
-                }), !(0, re.isChatPeer)(d)) return;
-            u = trim(replaceEntities(stripHTML(u.replace(/<br>/g, "\n").replace(/<\*>.*$/, "")))), u = u.replace(K.MENTION, function(e, t, n, r, a) {
+            var o = g(t.subject, t.peerId) || "",
+                s = (o ? o + " " : "") + t.text || "",
+                l = t.userId,
+                u = t.peerId,
+                c = void 0,
+                d = void 0,
+                f = e.get().tabs[u];
+            if ((!e.get().notify_msg && !(0, ae.isChatPeer)(u) || i && !e.get().mute) && window.Notifier && Notifier.playSound({
+                    author_id: u
+                }), !(0, ae.isChatPeer)(u)) return;
+            s = trim(replaceEntities(stripHTML(s.replace(/<br>/g, "\n").replace(/<\*>.*$/, "")))), s = s.replace(W.MENTION, function(e, t, n, r, a) {
                 return a
-            }), (0, re.isChatPeer)(d) ? (o = f.data.members[c].name, f.tab && (o += " » " + f.tab), s = f.data.members[c].photo) : (o = f.tab, s = f.photo);
+            }), (0, ae.isChatPeer)(u) ? (c = f.data.members[l].name, f.tab && (c += " » " + f.tab), d = f.data.members[l].photo) : (c = f.tab, d = f.photo);
             var m = t.attaches[0];
-            if (m && "fwd" === m.type) u += "\n[" + getLang("mail_added_msgs") + "]";
+            if (m && "fwd" === m.type) s += "\n[" + getLang("mail_added_msgs") + "]";
             else if (m) {
                 var p = "doc" === m.type && "graffiti" === m.kind ? "graffiti" : m.type;
-                u += "\n[" + getLang("mail_added_" + p) + "]"
+                s += "\n[" + getLang("mail_added_" + p) + "]"
             }
-            o = trim(replaceEntities(stripHTML((o || "").replace("&nbsp;", " ")))), window.Notifier && Notifier.proxyIm({
+            c = trim(replaceEntities(stripHTML((c || "").replace("&nbsp;", " ")))), window.Notifier && Notifier.proxyIm({
                 id: t.messageId,
-                text: u,
-                author_id: d,
-                title: o,
-                author_photo: s
+                text: s,
+                author_id: u,
+                title: c,
+                author_photo: d
             })
         }
     }
 
     function m(e) {
-        var t = e.get().longpoll.push.bind(null, [Q.eventTypes.resetPeer()]);
+        var t = e.get().longpoll.push.bind(null, [Y.eventTypes.resetPeer()]);
         cancelStackPush("im_peer", t)
     }
 
     function p(e, t) {
         var n = e.get().tabs[t.peerId],
             r = e.get().active_tab;
-        return r === q.FOLDER_ALL ? !0 : (0, ne.filterFromTab)(r)(n)
+        return r === K.FOLDER_ALL ? !0 : (0, re.filterFromTab)(r)(n)
     }
 
     function _(e) {
         var t = e.attaches.filter(function(e) {
             return "sticker" !== e.type
         });
-        return (0, re.isServiceMsg)(e) || 0 === t.length
+        return (0, ae.isServiceMsg)(e) || 0 === t.length
     }
 
     function h(e, t, n) {
@@ -8974,12 +8554,12 @@
     }
 
     function v(e, t) {
-        (0, re.isPendingForward)(e) && (cancelStackFilter("forward"), e.set(ne.forwardMessages.bind(null, e.get().pendingForward, t, cur.imDb)))
+        (0, ae.isPendingForward)(e) && (cancelStackFilter("forward"), e.set(re.forwardMessages.bind(null, e.get().pendingForward, t, cur.imDb)))
     }
 
     function b(e, t) {
-        var n = (0, re.isCommunityInterface)(e) ? fe : me;
-        return n += pe, Math.floor((t.offsetHeight - n) / ue)
+        var n = (0, ae.isCommunityInterface)(e) ? me : pe;
+        return n += _e, Math.floor((t.offsetHeight - n) / ce)
     }
 
     function y(e, t) {
@@ -9006,34 +8586,34 @@
                         return !inArray(e.peer, o)
                     });
                 return {
-                    v: e.set(ne.updateTabbedPeers.bind(null, s, !0))
+                    v: e.set(re.updateTabbedPeers.bind(null, s, !0))
                 }
             }();
-            if ("object" === ("undefined" == typeof r ? "undefined" : B(r))) return r.v
+            if ("object" === ("undefined" == typeof r ? "undefined" : F(r))) return r.v
         }
         return Promise.resolve(e)
     }
 
     function C(e, t, n, r, a, i, o, s, l) {
-        e.set(ne.cancelRecording).then(function() {
+        e.set(re.cancelRecording).then(function() {
             r.cancelRecording()
-        }), AudioMessagePlayer.detachPlayer(), t.forward && r.hideFwd(e), (0, te.isSearching)(e) && t.cancelSearch && (a.clearSearch(e), n.restoreDialogs(e)), T(e, s, l), h(e, r, i);
+        }), AudioMessagePlayer.detachPlayer(), t.forward && r.hideFwd(e), (0, ne.isSearching)(e) && t.cancelSearch && (a.clearSearch(e), n.restoreDialogs(e)), T(e, s, l), h(e, r, i);
         var u = e.get().peer;
-        (0, ne.updateMentions)(e.get());
-        var c = e.set(ne.changePeer.bind(null, t.peerId, t.msgid)).then(function() {
-            n.selectPeer(t.msgid, e), (0, re.isClassicInterface)(e) && (n.deactivate(), y(e, i).then(function() {
+        (0, re.updateMentions)(e.get());
+        var c = e.set(re.changePeer.bind(null, t.peerId, t.msgid)).then(function() {
+            n.selectPeer(t.msgid, e), v(e, e.get().peer), r.preparePeer(e), m(e), (0, ae.isClassicInterface)(e) && (n.deactivate(), y(e, i).then(function() {
                 return o.updateMenu(e)
             }))
         });
         return c = t.msgid ? c.then(function() {
-            return e.set(ne.selectPeerOnMessage.bind(null, t.peerId === u, u))
+            return e.set(re.selectPeerOnMessage.bind(null, t.peerId === u, u))
         }) : c.then(function() {
-            return e.set(ne.selectPeer.bind(null, !0))
+            return e.set(re.selectPeer.bind(null, !0))
         }), c.then(function() {
             if (t.forward) {
                 var n = e.get().tabs[e.get().peer];
-                v(e, e.get().peer), !n.scrollBottom && n.unread && e.set(ne.readLastMessages.bind(null, e.get().peer))
-            }(0, re.isClassicInterface)(e) && o.updateMenu(e), r.changePeer(e), r.updateTyping(t, e), (0, ne.updateMentions)(e.get()), m(e)
+                !n.scrollBottom && n.unread && e.set(re.readLastMessages.bind(null, e.get().peer))
+            }(0, ae.isClassicInterface)(e) && o.updateMenu(e), r.changePeer(e, !1), r.updateTyping(t, e), (0, re.updateMentions)(e.get())
         })
     }
 
@@ -9042,24 +8622,24 @@
     }
 
     function S(e, t, n) {
-        (0, te.isSearching)(e) && (t.clearSearch(e), n.restoreDialogs(e))
+        (0, ne.isSearching)(e) && (t.clearSearch(e), n.restoreDialogs(e))
     }
 
     function E(e, t, n, r, a, i, o) {
-        (0, re.isClassicInterface)(e) && (a.saveScroll(e), i.saveScroll(e)), r.rotateCross(e), addClass(o, "im-page_creating"), e.setState({
+        (0, ae.isClassicInterface)(e) && (a.saveScroll(e), i.saveScroll(e)), r.rotateCross(e), addClass(o, "im-page_creating"), e.setState({
             isCreating: !0
-        }), n && n.show(e, t), (0, re.isClassicInterface)(e) && (setStyle(o, {
+        }), n && n.show(e, t), (0, ae.isClassicInterface)(e) && (setStyle(o, {
             height: P(o, e).page
         }), setTimeout(function() {
             addClass(o, "im-page_cropped")
-        }, 200)), (0, ne.toggleConversation)(!0)
+        }, 200)), (0, re.toggleConversation)(!0)
     }
 
     function w(e, t, n, r) {
         n && n.hide(e, t)
     }
 
-    function I(e, t, n, r, i, o, s, g, v, b, I, k, P, M, L, A, O, x, R, B) {
+    function I(e, t, n, r, i, o, s, g, m, v, b, I, k, P, M, L, A, O, D, R) {
         return {
             changePeer: function(e, n) {
                 t.selectPeer(e, n)
@@ -9083,7 +8663,7 @@
                 t.appendDialogs(e, n)
             },
             showCreation: function(e, a) {
-                E(e, a, b, r, t, n, i)
+                E(e, a, v, r, t, n, i)
             },
             updateState: function(e, r) {
                 t.updateDialog(e, r), r.get().peer === e && n.updateChat(r, e)
@@ -9092,7 +8672,7 @@
                 t.appendFastDialogs(e, n, !0)
             },
             createCanceled: function(e, a) {
-                r.createCanceled(e, a), (0, re.isClassicInterface)(e) ? (setStyle(i, {
+                r.createCanceled(e, a), (0, ae.isClassicInterface)(e) ? (setStyle(i, {
                     height: "auto"
                 }), removeClass(i, "im-page_cropped"), setTimeout(function() {
                     return r.focusInput(e)
@@ -9103,13 +8683,10 @@
                 })
             },
             updateMenu: function(e) {
-                A && A.updateMenu(e)
+                L && L.updateMenu(e)
             },
             hideFwd: function(e) {
                 n.hideFwd(e)
-            },
-            selectPeer: function(e) {
-                n.changePeer(e), m(e)
             },
             updateDialog: function(e, n) {
                 t.updateDialog(e, n)
@@ -9118,25 +8695,25 @@
                 n.focustTxt(e)
             },
             resync: function(e) {
-                (0, te.isSearching)(e) && r.clearSearch(e), t.restoreDialogs(e, !0, !0), t.focusOnSelected(e), b && b.hide(e), (0, re.isCommunityInterface)(e) && u(e, i), (0, re.isClassicInterface)(e) && e.get().tabbedPeers.forEach(function(t) {
+                (0, ne.isSearching)(e) && r.clearSearch(e), t.restoreDialogs(e, !0, !0), t.focusOnSelected(e), v && v.hide(e), (0, ae.isCommunityInterface)(e) && u(e, i), (0, ae.isClassicInterface)(e) && e.get().tabbedPeers.forEach(function(t) {
                     var n = t.peer;
-                    A.updateCounter(e, n), A.updateName(n, e)
+                    L.updateCounter(e, n), L.updateName(n, e)
                 }), n.cleanSelection(e.get().selectedMessages || []), n.cancelSearch(e, !0), n.changePeer(e, !1);
                 var a = e.get().gid ? "l_mgid" + e.get().gid : "msg";
                 handlePageCount(a, e.get().unread_cnt)
             },
             toggleSettingsLoader: function(e, t) {
-                I.toggleLoader(e, t)
+                b.toggleLoader(e, t)
             },
             onUserActions: function(e, t) {
-                if (!(0, ne.isSearchingInplace)(e.get().peer, e.get())) {
+                if (!(0, re.isSearchingInplace)(e.get().peer, e.get())) {
                     var r = e.get(),
                         a = r.peer;
-                    if ((0, re.isFullyLoadedTab)(r, a) && !o.is_idle) {
-                        var i = (0, te.countUnread)(e.get().peer, e.get());
+                    if ((0, ae.isFullyLoadedTab)(r, a) && !o.is_idle) {
+                        var i = (0, ne.countUnread)(e.get().peer, e.get());
                         if (i > 0) {
                             var s = r.tabs[a];
-                            !s.skipped && n.isNewMessagesVisible(e) && (n.hideGoToEnd(!0), e.set(ne.readLastMessages.bind(null, a)))
+                            !s.skipped && n.isNewMessagesVisible(e) && (n.hideGoToEnd(!0), e.set(re.readLastMessages.bind(null, a)))
                         }
                     }
                 }
@@ -9146,7 +8723,7 @@
             },
             route: function(e, a, o, s) {
                 if ("undefined" != typeof e[0]) return !0;
-                geByClass1("_im_right_menu", i.parentNode), e.box && (e = {
+                e.box && (e = {
                     box: e.box
                 });
                 var u = !1;
@@ -9154,147 +8731,147 @@
                     switch (e) {
                         case "sel":
                             u = !0;
-                            var a = o.sel ? (0, re.unUrlPeer)(o.sel) : 0;
-                            0 === a ? k.get().longpoll.push([Q.eventTypes.resetPeer()]) : k.get().longpoll.push([Q.eventTypes.changePeer(a)]);
+                            var a = o.sel ? (0, ae.unUrlPeer)(o.sel) : 0;
+                            0 === a ? I.get().longpoll.push([Y.eventTypes.resetPeer()]) : I.get().longpoll.push([Y.eventTypes.changePeer(a)]);
                             break;
                         case "tab":
-                            T(k, b, v), u = !0;
-                            var s = o.tab || q.FOLDER_ALL;
-                            k.get().longpoll.push([Q.eventTypes.changeTab(s)]);
+                            T(I, v, m), u = !0;
+                            var s = o.tab || K.FOLDER_ALL;
+                            I.get().longpoll.push([Y.eventTypes.changeTab(s)]);
                             break;
                         case "act":
-                            o.act && "create" === o.act ? E(k, [], b, r, t, n, i) : w(k, [], b, i);
+                            o.act && "create" === o.act ? E(I, [], v, r, t, n, i) : w(I, [], v, i);
                             break;
                         case "q":
-                            o.q ? r.setSearch(k, o.q) : r.clearSearch(k);
+                            o.q ? r.setSearch(I, o.q) : r.clearSearch(I);
                             break;
                         case "box":
-                            l(k, o.box)
+                            l(I, o.box)
                     }
-                }), (0, re.isClassicInterface)(k) && "undefined" == typeof e.sel && A.updateMenu(k), u && S(k, r, t), !1
+                }), (0, ae.isClassicInterface)(I) && "undefined" == typeof e.sel && L.updateMenu(I), u && S(I, r, t), !1
             },
             updateDialogFilters: function(e) {
-                (0, te.isSearching)(e) || t.restoreDialogs(e), I.updateFilter(e)
+                (0, ne.isSearching)(e) || t.restoreDialogs(e), b.updateFilter(e)
             },
             removePeer: function(e, n) {
-                t.removeDialog(e, n), t.saveScroll(e), e.get().peer === n && e.get().longpoll.push([Q.eventTypes.resetPeer()]), (0, re.isClassicInterface)(e) && A.updateMenu(e)
+                t.removeDialog(e, n), t.saveScroll(e), e.get().peer === n && e.get().longpoll.push([Y.eventTypes.resetPeer()]), (0, ae.isClassicInterface)(e) && L.updateMenu(e)
             },
             newMessage: function(e) {
-                (0, re.isClassicInterface)(e) || t.scrollUp(!0)
+                (0, ae.isClassicInterface)(e) || t.scrollUp(!0)
             },
             onEvents: function(e, o) {
-                var l = (e.get().gid, o),
-                    m = o.filter(re.isServiceMsg),
-                    h = o.filter(function(e) {
-                        return e.type === Q.eventTypes.ADD_MESSAGE
+                var l = o,
+                    h = o.filter(ae.isServiceMsg),
+                    T = o.filter(function(e) {
+                        return e.type === Y.eventTypes.ADD_MESSAGE
                     });
-                d(m, e, t, n, A), e.set(ne.checkNewPeople.bind(null, m, h, s)).then(function() {
+                d(h, e, t, n, L), e.set(re.checkNewPeople.bind(null, h, T, s)).then(function() {
                     l.forEach(function(o) {
                         switch (o.type) {
-                            case Q.eventTypes.ADD_MESSAGE:
+                            case Y.eventTypes.ADD_MESSAGE:
                                 var s = e.get().tabs[e.get().peer],
                                     l = !s || !s.msgs || 0 == s.msgs.length,
-                                    d = (0, re.isDuplicate)(o, e.get()),
-                                    m = (0, te.isCommunityBlocked)(e, o.peerId);
+                                    d = (0, ae.isDuplicate)(o, e.get()),
+                                    h = (0, ne.isCommunityBlocked)(e, o.peerId);
                                 if (0 === d) {
-                                    o.flags & Q.eventTypes.FLAG_OUTBOUND || e.set(ne.updateFavAndTitle.bind(null, o.peerId, !0)), e.set(ne.addMessage.bind(null, o)), y(e, i), p(e, o) && (f(e, o), t.updateTyping(o, e), (0, te.isSearching)(e) ? t.updateDialog(o.peerId, e) : t.promoteDialog(e, o));
-                                    var h = (0, te.isCommunityBlocked)(e, o.peerId);
-                                    h === !1 && m === !0 && n.updateActions(e), (0, re.isClassicInterface)(e) && (A.updateCounter(e, o.peerId), A.updateMenu(e)), n.updateTyping(o, e), n.addMessage(e, o), (0, re.isClassicInterface)(e) || I.updateFilter(e), _(o) || !(0, re.isFullyLoadedTab)(e, o.peerId) || o.local || e.set(ne.loadMedia.bind(null, o)).then(function(e) {
+                                    o.flags & Y.eventTypes.FLAG_OUTBOUND || e.set(re.updateFavAndTitle.bind(null, o.peerId, !0)), e.set(re.addMessage.bind(null, o)), y(e, i), p(e, o) && (f(e, o), t.updateTyping(o, e), (0, ne.isSearching)(e) ? t.updateDialog(o.peerId, e) : t.promoteDialog(e, o));
+                                    var T = (0, ne.isCommunityBlocked)(e, o.peerId);
+                                    T === !1 && h === !0 && n.updateActions(e), (0, ae.isClassicInterface)(e) && (L.updateCounter(e, o.peerId), L.updateMenu(e)), n.updateTyping(o, e), n.addMessage(e, o), (0, ae.isClassicInterface)(e) || b.updateFilter(e), _(o) || !(0, ae.isFullyLoadedTab)(e, o.peerId) || o.local || e.set(re.loadMedia.bind(null, o)).then(function(e) {
                                         n.replaceAttachmentPlaceholders(e, o)
                                     })
-                                } else 2 === d && (_(o) || e.set(ne.loadMedia.bind(null, o)).then(function(e) {
+                                } else 2 === d && (_(o) || e.set(re.loadMedia.bind(null, o)).then(function(e) {
                                     n.replaceAttachmentPlaceholders(e, o)
-                                }), e.set(ne.replaceMessage.bind(null, o)), n.replaceMessageAttrs(o, e), t.updateDialog(o.peerId, e));
-                                s && l && B();
+                                }), e.set(re.replaceMessage.bind(null, o)), n.replaceMessageAttrs(o, e), t.updateDialog(o.peerId, e));
+                                s && l && R();
                                 break;
-                            case Q.eventTypes.READ_INBOUND:
-                                e.set(ne.markInboundMessagesAsRead.bind(null, o)).then(function(e) {
-                                    t.updateCounter(e, o), n.updateGoToEnd(e, !0), (0, re.isClassicInterface)(e) && A.updateCounter(e, o.peerId), (0, te.isSearching)(e) || t.restoreDialogs(e), I.updateFilter(e)
+                            case Y.eventTypes.READ_INBOUND:
+                                e.set(re.markInboundMessagesAsRead.bind(null, o)).then(function(e) {
+                                    t.updateCounter(e, o), n.updateGoToEnd(e, !0), (0, ae.isClassicInterface)(e) && L.updateCounter(e, o.peerId), (0, ne.isSearching)(e) || t.restoreDialogs(e), b.updateFilter(e)
                                 });
                                 break;
-                            case Q.eventTypes.READ_OUTBOUND:
-                                e.set(ne.markOutboundMessagesAsRead.bind(null, o)).then(function(e) {
+                            case Y.eventTypes.READ_OUTBOUND:
+                                e.set(re.markOutboundMessagesAsRead.bind(null, o)).then(function(e) {
                                     t.updateCounter(e, o), n.markMessagesAsRead(e, o)
                                 });
                                 break;
-                            case Q.eventTypes.UNREAD_COUNT:
-                                e.set(ne.updateUnreadCount.bind(null, o.count)).then(function() {
+                            case Y.eventTypes.UNREAD_COUNT:
+                                e.set(re.updateUnreadCount.bind(null, o.count)).then(function() {
                                     var t = e.get().gid ? "l_mgid" + e.get().gid : "msg";
-                                    handlePageCount(t, o.count), I.updateFilter(e), (0, re.isClassicInterface)(e) && u(e, i)
+                                    handlePageCount(t, o.count), b.updateFilter(e), (0, ae.isClassicInterface)(e) && u(e, i)
                                 });
                                 break;
-                            case Q.eventTypes.GOT_ONLINE:
-                            case Q.eventTypes.GOT_OFFLINE:
-                                var T = o.type === Q.eventTypes.GOT_ONLINE;
-                                e.set(ne.updateOnline.bind(null, o.userId, T)).then(function(e) {
-                                    (0, re.isTabLoaded)(e.get(), o.userId) && (t.updateOnline(o.userId, e), n.updateOnline(o.userId, e))
+                            case Y.eventTypes.GOT_ONLINE:
+                            case Y.eventTypes.GOT_OFFLINE:
+                                var E = o.type === Y.eventTypes.GOT_ONLINE;
+                                e.set(re.updateOnline.bind(null, o.userId, E)).then(function(e) {
+                                    (0, ae.isTabLoaded)(e.get(), o.userId) && (t.updateOnline(o.userId, e), n.updateOnline(o.userId, e))
                                 });
                                 break;
-                            case Q.eventTypes.SET_FLAGS:
-                            case Q.eventTypes.RESET_FLAGS:
-                                if (o.flags !== Q.eventTypes.FLAG_DELETED || o.type !== Q.eventTypes.SET_FLAGS || (0, re.isAlreadyDeleted)(e, o.peerId, o.messageId) || e.get().blockedFlagUpdates[o.peerId] || g(o), o.flags === Q.eventTypes.FLAG_IMPORTANT) {
-                                    var E = o.type === Q.eventTypes.SET_FLAGS;
-                                    e.set(ne.updateImportant.bind(null, E ? 1 : -1, o.messageId)).then(function() {
-                                        (0, re.isClassicInterface)(e) || r.updateImportantCnt(e)
-                                    }), e.set(ne.updateFavMessage.bind(null, [o.messageId], o.peerId, E)).then(function(t) {
-                                        n.markImportant(o.messageId, E, e)
+                            case Y.eventTypes.SET_FLAGS:
+                            case Y.eventTypes.RESET_FLAGS:
+                                o.flags !== Y.eventTypes.FLAG_DELETED || o.type !== Y.eventTypes.SET_FLAGS || (0, ae.isAlreadyDeleted)(e, o.peerId, o.messageId) || e.get().blockedFlagUpdates[o.peerId] || g(o), o.flags === Y.eventTypes.FLAG_IMPORTANT && ! function() {
+                                    var t = o.type === Y.eventTypes.SET_FLAGS;
+                                    e.set(re.updateImportant.bind(null, t ? 1 : -1, o.messageId)).then(function() {
+                                        (0, ae.isClassicInterface)(e) || r.updateImportantCnt(e)
+                                    }), e.set(re.updateFavMessage.bind(null, [o.messageId], o.peerId, t)).then(function(r) {
+                                        n.markImportant(o.messageId, t, e)
                                     })
-                                }
+                                }();
                                 break;
-                            case Q.eventTypes.TYPING:
-                                (0, re.isSelfMessage)(o.peerId, e.get().gid) || (e.set(ne.setTyping.bind(null, o.peerId, o.userId)).then(function(e) {
-                                    (0, re.isTabLoaded)(e.get(), o.peerId) && (n.updateTyping(o, e), t.updateTyping(o, e))
-                                }), e.set(ne.waitTyping.bind(null, o.peerId, o.userId)).then(function(e) {
-                                    (0, re.isTabLoaded)(e.get(), o.peerId) && (n.updateTyping(o, e), t.updateTyping(o, e))
+                            case Y.eventTypes.TYPING:
+                                (0, ae.isSelfMessage)(o.peerId, e.get().gid) || (e.set(re.setTyping.bind(null, o.peerId, o.userId)).then(function(e) {
+                                    (0, ae.isTabLoaded)(e.get(), o.peerId) && (n.updateTyping(o, e), t.updateTyping(o, e))
+                                }), e.set(re.waitTyping.bind(null, o.peerId, o.userId)).then(function(e) {
+                                    (0, ae.isTabLoaded)(e.get(), o.peerId) && (n.updateTyping(o, e), t.updateTyping(o, e))
                                 }));
                                 break;
-                            case Q.eventTypes.NOTIFY_SETTINGS_CHANGED:
-                                D(e, v, o.peerId, 0 !== o.disabledUntil);
+                            case Y.eventTypes.NOTIFY_SETTINGS_CHANGED:
+                                x(e, m, o.peerId, 0 !== o.disabledUntil);
                                 break;
-                            case Q.eventTypes.RESYNC:
-                                e.get().longpoll.pause(), e.set(ne.resync).then(v().resync).then(function(t) {
+                            case Y.eventTypes.RESYNC:
+                                e.get().longpoll.pause(), e.set(re.resync).then(m().resync).then(function(t) {
                                     return e.get().longpoll.resume()
                                 });
                                 break;
-                            case Q.eventTypes.TRANSITION:
-                                P.transition(o.state);
+                            case Y.eventTypes.TRANSITION:
+                                k.transition(o.state);
                                 break;
-                            case Q.eventTypes.RESET_PEER:
-                                c(e, t, n, i), o.cancelSearch && S(e, r, t), (0, re.isClassicInterface)(e) && A.updateMenu(e), r.focusInput(e);
+                            case Y.eventTypes.RESET_PEER:
+                                c(e, t, n, i), o.cancelSearch && S(e, r, t), (0, ae.isClassicInterface)(e) && L.updateMenu(e), r.focusInput(e);
                                 break;
-                            case Q.eventTypes.CHANGE_TAB:
-                                (0, re.changeTab)(o.tab, e, v, ne.changeDialogsTab).then(function(e) {
-                                    I.updateFilter(e)
+                            case Y.eventTypes.CHANGE_TAB:
+                                (0, ae.changeTab)(o.tab, e, m, re.changeDialogsTab).then(function(e) {
+                                    b.updateFilter(e)
                                 });
                                 break;
-                            case Q.eventTypes.RESET_DIRECTORIES:
-                            case Q.eventTypes.SET_DIRECTORIES:
-                            case Q.eventTypes.REPLACE_DIRECTORIES:
-                                e.set(ne.updateFolderState.bind(null, o.peerId, o.mask, o.type, o.local)).then(function(e) {
-                                    (0, te.isSearching)(e) || o.type === Q.eventTypes.RESET_DIRECTORIES && o.mask === Q.eventTypes.FOLDER_IMPORTANT || o.type === Q.eventTypes.REPLACE_DIRECTORIES || t.restoreDialogs(e), t.updateDialog(o.peerId, e), u(e, i), e.get().peer === o.peerId && n.changedMessageSelection(e)
+                            case Y.eventTypes.RESET_DIRECTORIES:
+                            case Y.eventTypes.SET_DIRECTORIES:
+                            case Y.eventTypes.REPLACE_DIRECTORIES:
+                                e.set(re.updateFolderState.bind(null, o.peerId, o.mask, o.type, o.local)).then(function(e) {
+                                    (0, ne.isSearching)(e) || o.type === Y.eventTypes.RESET_DIRECTORIES && o.mask === Y.eventTypes.FOLDER_IMPORTANT || o.type === Y.eventTypes.REPLACE_DIRECTORIES || t.restoreDialogs(e), t.updateDialog(o.peerId, e), u(e, i), e.get().peer === o.peerId && n.changedMessageSelection(e)
                                 });
                                 break;
-                            case Q.eventTypes.CHANGE_PEER:
-                                C(e, o, t, n, r, i, A, b, v);
+                            case Y.eventTypes.CHANGE_PEER:
+                                C(e, o, t, n, r, i, L, v, m);
                                 break;
-                            case Q.eventTypes.MUTEX:
+                            case Y.eventTypes.MUTEX:
                                 var w = a({}, o.peerId, o),
-                                    k = (0, re.isPeerBlocked)(o.peerId, e);
-                                e.set(ne.updateBlockStates.bind(null, w)).then(function() {
+                                    I = (0, ae.isPeerBlocked)(o.peerId, e);
+                                e.set(re.updateBlockStates.bind(null, w)).then(function() {
                                     t.updateDialog(o.peerId, e);
-                                    var r = (0, re.isPeerBlocked)(o.peerId, e);
-                                    (0, re.isFullyLoadedTab)(e.get(), o.peerId) && k !== r && n.updateChat(e, o.peerId)
+                                    var r = (0, ae.isPeerBlocked)(o.peerId, e);
+                                    (0, ae.isFullyLoadedTab)(e.get(), o.peerId) && I !== r && n.updateChat(e, o.peerId)
                                 });
                                 break;
-                            case Q.eventTypes.FAILED_MESSAGE:
-                                e.set(ne.setMessageErrored.bind(null, o.peer, o.message)).then(function() {
+                            case Y.eventTypes.FAILED_MESSAGE:
+                                e.set(re.setMessageErrored.bind(null, o.peer, o.message)).then(function() {
                                     n.setMessageErrored(o.peer, o.message, o.error, e), t.setDialogFailed(o.peer, o.message.messageId, e)
                                 });
                                 break;
-                            case Q.eventTypes.RESEND:
-                                var M = o.message.messageId;
-                                e.set(ne.resendMessage.bind(null, o.peerId, M, o.message)).then(function() {
-                                    n.resendMessage(o.peerId, M), t.promoteDialog(e, o.message)
+                            case Y.eventTypes.RESEND:
+                                var P = o.message.messageId;
+                                e.set(re.resendMessage.bind(null, o.peerId, P, o.message)).then(function() {
+                                    n.resendMessage(o.peerId, P), t.promoteDialog(e, o.message)
                                 })
                         }
                     })
@@ -9304,36 +8881,36 @@
                 return n.updateHistory(e)
             },
             cancelRecording: function() {
-                return k.set(ne.cancelRecording).then(function() {
+                return I.set(re.cancelRecording).then(function() {
                     return n.cancelRecording()
                 })
             },
             fixHeight: function() {
-                B()
+                R()
             },
             unmount: function() {
-                (0, W.destroyModule)(e), clearInterval(k.get().update_title_to), o.stop(), s.stop(), t.unmount();
+                (0, V.destroyModule)(e), clearInterval(I.get().update_title_to), o.stop(), s.stop(), t.unmount();
                 var a = window.devicePixelRatio >= 2 ? "_2x" : "";
-                setFavIcon("/images/icons/favicons/fav_logo" + a + ".ico"), n.unmount(), r.unmount(), cancelStackFilter("im_peer"), I.unmount(), b && b.unmount(), A && A.unmount(), O && O(), M && M(), (0, re.isLocksAvailable)(k) && k.get().peer && k.set(ne.releaseBlock.bind(null, k.get().peer)), x.unmount(), A && A.unmount(), R.unmount(), clearInterval(L), cur.imDb.unmount(), cur.imDb = !1
+                setFavIcon("/images/icons/favicons/fav_logo" + a + ".ico"), n.unmount(), r.unmount(), cancelStackFilter("im_peer"), b.unmount(), v && v.unmount(), L && L.unmount(), A && A(), P && P(), (0, ae.isLocksAvailable)(I) && I.get().peer && I.set(re.releaseBlock.bind(null, I.get().peer)), O.unmount(), L && L.unmount(), D.unmount(), clearInterval(M), cur.imDb.unmount(), cur.imDb = !1
             }
         }
     }
 
     function k(e, t, n, r) {
-        (0, re.isReservedPeer)(t.get().peer) || e().onUserActions(t, r), t.set(ne.updateFavAndTitle.bind(null, !1, !1))
+        (0, ae.isReservedPeer)(t.get().peer) || e().onUserActions(t, r), t.set(re.updateFavAndTitle.bind(null, !1, !1))
     }
 
     function P(e, t) {
         var n = ge("page_header"),
             r = geByClass1("_im_page_history", e),
-            a = window.clientHeight() - n.offsetHeight - oe - 2,
-            i = (0, re.isClassicInterface)(t) ? le : se,
+            a = window.clientHeight() - n.offsetHeight - se - 2,
+            i = (0, ae.isClassicInterface)(t) ? ue : le,
             o = {
                 page: Math.max(a, i)
             };
-        if ((0, re.isClassicInterface)(t)) {
-            var s = (0, re.getClassicChatHeight)();
-            s = s > 0 ? Math.min(s - n.offsetHeight - oe - 2, a) : a;
+        if ((0, ae.isClassicInterface)(t)) {
+            var s = (0, ae.getClassicChatHeight)();
+            s = s > 0 ? Math.min(s - n.offsetHeight - se - 2, a) : a;
             var l = hasClass(r, "im-page--history_empty-hist") ? s : a;
             o.history = Math.max(s, i), o.chat = Math.max(l, i)
         }
@@ -9347,7 +8924,7 @@
             var s = P(e, t);
             if (setStyle(e, {
                     minHeight: s.page
-                }), (0, re.isClassicInterface)(t) && ("undefined" == typeof t.get().chatResizeInitialized && t.set(ne.initializeChatResize), setStyle(e, {
+                }), (0, ae.isClassicInterface)(t) && ("undefined" == typeof t.get().chatResizeInitialized && t.set(re.initializeChatResize), setStyle(e, {
                     height: t.get().isCreating ? s.page : "auto"
                 }), setStyle(geByClass1("_im_page_dialogs", e), {
                     minHeight: s.page,
@@ -9390,7 +8967,7 @@
 
     function O(e, t, n, r) {
         function i() {
-            var t = (0, z.getNativeOption)("scrollLeft"),
+            var t = (0, q.getNativeOption)("scrollLeft"),
                 n = hasClass(e, "im-page--header_static"),
                 r = [];
             c !== t ? r = u.slice().concat([e]) : n !== d && (r = [e]), c = t, d = n, r.length > 0 && r.forEach(function(r) {
@@ -9413,41 +8990,61 @@
             }
     }
 
-    function D(e, t, n, r) {
-        e.set(ne.setMutedPeer.bind(null, n, r)).then(t().updateState.bind(null, n))
+    function D(e) {
+        var t = e.get();
+        if (!(0, ae.isLocksAvailable)(e)) return null;
+        var n = (0, X.createWorker)(t.mutex_key, function(e) {
+                t.longpoll.push([Y.eventTypes.mutexEvent(e)])
+            }, function(e, n) {
+                return (0, re.getMutexQueue)(t.gid).then(function(e) {
+                    var t = B(e, 1),
+                        n = t[0];
+                    return n
+                })
+            }),
+            r = n.stop;
+        return r
     }
 
-    function x(e, t) {
-        var n, r = t.get(),
+    function x(e, t, n, r) {
+        e.set(re.setMutedPeer.bind(null, n, r)).then(t().updateState.bind(null, n))
+    }
+
+    function R(e, t) {
+        var n = t.get(),
+            r = void 0,
             a = window.devicePixelRatio >= 2 ? "_2x" : "";
-        setFavIcon("/images/icons/favicons/fav_im" + a + ".ico"), M(e, t, !1, !1, !1, !0), show(e), t.set(ne.fetchLocalHints);
-        var o = (0, W.createMutations)(I),
+        setFavIcon("/images/icons/favicons/fav_im" + a + ".ico"), M(e, t, !1, !1, !1, !0), show(e), t.set(re.fetchLocalHints);
+        var o = (0, V.createMutations)(I),
             s = o.callMutations,
             u = o.bindMutations,
-            c = (0, Q.startLongPoll)(r);
+            c = (0, Y.startLongPoll)(n);
         c.on("data", function() {
             for (var e = arguments.length, n = Array(e), r = 0; e > r; r++) n[r] = arguments[r];
             return s().onEvents(t, n)
         });
         var d = geByClass1("_im_dialogs_search", e),
             g = geByClass1("_im_dialogs_settings", e),
-            f = (0, F.mount)(geByClass1("_im_page_dcontent", e), t, s),
-            p = (0, N.mount)(geByClass1("_im_page_history", e), t, s),
-            _ = (0, j.mount)(d, t, s),
-            h = (0, H.mount)(g, t, s),
-            v = (0, $.mount)(t);
-        if (cur.imDb = (0, J.mount)(t.get().gid ? -t.get().gid : vk.id), (0, re.isClassicInterface)(t) && h.updateSettings(t), (0, re.isClassicInterface)(t)) var b = geByClass1("_im_ui_peers_list", e.parentNode),
-            y = (0, Z.mount)(b, t, s),
-            C = O(d, g, geByClass1("_im_right_menu", e.parentNode), e);
-        (0, re.isClassicInterface)(t) && r.peer && f.deactivate(), r.gid || (n = (0, U.mount)(geByClass1("_im_dialogs_creation", e), t, s));
-        var T = r.isCreating,
-            S = T ? "create" : 0 === r.peer ? "search" : "default";
-        T && n.show(t, []);
-        var E = (0, V.create)(t, S, f, p, _, n),
-            w = (0, ie.mount)(t, E);
+            f = (0, N.mount)(geByClass1("_im_page_dcontent", e), t, s),
+            p = (0, j.mount)(geByClass1("_im_page_history", e), t, s),
+            _ = (0, H.mount)(d, t, s),
+            h = (0, U.mount)(g, t, s),
+            v = (0, J.mount)(t);
+        cur.imDb = (0, ee.mount)(t.get().gid ? -t.get().gid : vk.id), (0, ae.isClassicInterface)(t) && h.updateSettings(t);
+        var b = void 0,
+            y = void 0;
+        if ((0, ae.isClassicInterface)(t)) {
+            var C = geByClass1("_im_ui_peers_list", e.parentNode);
+            b = (0, $.mount)(C, t, s), y = O(d, g, geByClass1("_im_right_menu", e.parentNode), e)
+        }(0, ae.isClassicInterface)(t) && n.peer && f.deactivate(), n.gid || (r = (0, G.mount)(geByClass1("_im_dialogs_creation", e), t, s));
+        var T = n.isCreating,
+            S = T ? "create" : 0 === n.peer ? "search" : "default";
+        T && r.show(t, []);
+        var E = (0, Q.create)(t, S, f, p, _, r),
+            w = (0, oe.mount)(t, E);
         p.updateScroll();
         var P = k.bind(null, s, t, E);
-        (0, re.isReservedPeer)(r.peer) || setTimeout(function() {
+        (0, ae.isReservedPeer)(n.peer) || setTimeout(function() {
             return m(t)
         }, 10);
         var L = new IdleManager({
@@ -9456,37 +9053,31 @@
                 focusElement: window,
                 triggerEvents: "mouseover mousedown keypress"
             }),
-            D = debounce(A, 300),
-            x = M.bind(null, e, t, p, f, n, !1, D);
-        if (t.setState({
-                longpoll: c
-            }), t.set(ne.setExecStack.bind(null, [])), L.on("unidle", function() {
-                c.abortPauses(), P()
-            }), L.start(), nav.objLoc.box && (l(t, nav.objLoc.box), (0, G.updateLocation)({
-                box: null
-            })), (0, re.isLocksAvailable)(t)) var B = (0, Y.createWorker)(r.mutex_key, function(e) {
-                r.longpoll.push([Q.eventTypes.mutexEvent(e)])
-            }, function(e, t) {
-                return (0, ne.getMutexQueue)(r.gid).then(function(e) {
-                    var t = R(e, 1),
-                        n = t[0];
-                    return n
-                })
-            }),
-            z = B.stop;
-        if (t.set(ne.fetchFriends.bind(null, cur.imDb)), (0, re.isLocksAvailable)(t)) var q = setInterval(re.blockLatencyCompensation.bind(null, t, r.longpoll), 2e3);
-        var K = (0, ee.throttleAccumulate)(i.bind(null, t, p), 200),
-            X = (0, W.createModule)({
+            x = debounce(A, 300),
+            R = M.bind(null, e, t, p, f, r, !1, x);
+        t.setState({
+            longpoll: c
+        }), t.set(re.setExecStack.bind(null, [])), L.on("unidle", function() {
+            c.abortPauses(), P()
+        }), L.start(), nav.objLoc.box && (l(t, nav.objLoc.box), (0, z.updateLocation)({
+            box: null
+        }));
+        var B = D(t);
+        t.set(re.fetchFriends.bind(null, cur.imDb));
+        var F = void 0;
+        (0, ae.isLocksAvailable)(t) && (F = setInterval(ae.blockLatencyCompensation.bind(null, t, n.longpoll), 2e3));
+        var q = (0, te.throttleAccumulate)(i.bind(null, t, p), 200),
+            K = (0, V.createModule)({
                 handlers: function(e, t) {
-                    e(document, "mousemove mousedown keypress", P), e(window, "resize", x), browser.safari && e(document, "visibilitychange", A)
+                    e(document, "mousemove mousedown keypress", P), e(window, "resize", R), browser.safari && e(document, "visibilitychange", A)
                 }
             });
-        return u(X, f, p, _, e, L, c, K, s, n, h, t, E, z, q, y, C, v, w, x)
+        return u(K, f, p, _, e, L, c, q, s, r, h, t, E, B, F, b, y, v, w, R)
     }
     Object.defineProperty(t, "__esModule", {
         value: !0
     });
-    var R = function() {
+    var B = function() {
             function e(e, t) {
                 var n = [],
                     r = !0,
@@ -9511,44 +9102,44 @@
                 throw new TypeError("Invalid attempt to destructure non-iterable instance")
             }
         }(),
-        B = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
+        F = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
             return typeof e
         } : function(e) {
             return e && "function" == typeof Symbol && e.constructor === Symbol ? "symbol" : typeof e
         };
-    t.mount = x;
-    var F = n(136),
-        N = n(138),
-        j = n(144),
-        H = n(145),
-        U = n(135),
-        G = n(90),
-        z = n(62),
-        q = n(14),
-        K = r(q),
-        W = n(3),
-        V = n(172),
-        Q = n(18),
-        Y = (n(6), n(173)),
-        X = n(86),
-        Z = n(143),
-        $ = n(137),
-        J = n(17),
-        ee = n(15),
-        te = n(10),
-        ne = n(2),
-        re = n(4),
-        ae = n(83),
-        ie = n(140),
-        oe = 30,
-        se = 400,
-        le = 250,
-        ue = 32,
-        ce = 12,
-        de = 52,
-        fe = 5 * ue + 2 * ce + de,
-        me = 3 * ue + 2 * ce,
-        pe = 10
+    t.mount = R;
+    var N = n(101),
+        j = n(103),
+        H = n(109),
+        U = n(110),
+        G = n(100),
+        z = n(68),
+        q = n(47),
+        K = n(12),
+        W = r(K),
+        V = n(2),
+        Q = n(120),
+        Y = n(15),
+        X = n(121),
+        Z = n(65),
+        $ = n(108),
+        J = n(102),
+        ee = n(45),
+        te = n(13),
+        ne = n(8),
+        re = n(1),
+        ae = n(3),
+        ie = n(62),
+        oe = n(105),
+        se = 30,
+        le = 400,
+        ue = 250,
+        ce = 32,
+        de = 12,
+        fe = 52,
+        me = 5 * ce + 2 * de + fe,
+        pe = 3 * ce + 2 * de,
+        _e = 10
 }, function(e, t, n) {
     "use strict";
 
@@ -9620,7 +9211,7 @@
 
     function s(e) {
         var t = URL.createObjectURL(Q.buffer);
-        domData(N, "duration", Q.duration), domData(N, "ogg", t), domData(N, "mp3", t), geByClass1("audio-msg-track--duration", N).innerHTML = r(Q.duration), geByClass1("audio-msg-track--wave-wrapper", N).innerHTML = AudioMessagePlayer.getWave(Q.wave, Y);
+        domData(N, "duration", Q.duration), domData(N, "ogg", t), domData(N, "mp3", t), geByClass1("audio-msg-track--duration", N).innerHTML = r(Q.duration), geByClass1("audio-msg-track--wave-wrapper", N).innerHTML = AudioMessagePlayer.getWave(Q.wave, Y)
     }
 
     function l() {
@@ -9745,10 +9336,10 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.mount = k;
-    var P, M, L, A, O, D, x, R, B, F, N, j, H, U, G = n(3),
-        z = n(2),
-        q = n(60),
-        K = n(4),
+    var P, M, L, A, O, D, x, R, B, F, N, j, H, U, G = n(2),
+        z = n(1),
+        q = n(113),
+        K = n(3),
         W = 300,
         V = browser.msie && intval(browser.version) < 10 ? window.XDomainRequest : window.XMLHttpRequest,
         Q = !1,
@@ -9887,13 +9478,13 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.mount = c;
-    var d = n(61),
-        g = n(11),
+    var d = n(46),
+        g = n(9),
         f = r(g),
-        m = n(4),
-        p = n(2),
-        _ = (n(15), n(6)),
-        h = n(3)
+        m = n(3),
+        p = n(1),
+        _ = (n(13), n(6)),
+        h = n(2)
 }, function(e, t, n) {
     "use strict";
 
@@ -9982,7 +9573,7 @@
         var o = a(t);
         uiSearch.reset(o), e.setState({
             recentSearch: !1
-        }), i(e, r, t, o, n, o.value)
+        }), i(e, r, t, o, n, o.value);
     }
 
     function f(e, t, n, r, a, i) {
@@ -10164,16 +9755,16 @@
         }
     }();
     t.mount = y;
-    var T = n(2),
-        S = n(10),
-        E = n(4),
-        w = n(171),
+    var T = n(1),
+        S = n(8),
+        E = n(3),
+        w = n(119),
         I = r(w),
-        k = n(3),
-        P = n(32),
+        k = n(2),
+        P = n(28),
         M = n(6),
-        L = n(83),
-        A = n(17),
+        L = n(62),
+        A = n(45),
         O = "_im_important_counter",
         D = "_im_gim_mute"
 }, function(e, t, n) {
@@ -10267,11 +9858,11 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.mount = l;
-    var u = n(3),
-        c = n(86),
-        d = n(2),
-        g = n(4),
-        f = n(14),
+    var u = n(2),
+        c = n(65),
+        d = n(1),
+        g = n(3),
+        f = n(12),
         m = "_im_dialogs_cog_settings",
         p = "_im_settings_action",
         _ = "_im_to_unread"
@@ -10393,7 +9984,9 @@
 
     function d(e, t, n) {
         return e.get().delayed_ts ? !1 : setTimeout(function() {
-            f.apply(null, n)
+            e.set(H.setDelayedMessage.bind(null, !1, !1)).then(function() {
+                f.apply(void 0, n)
+            })
         }, t)
     }
 
@@ -10417,7 +10010,7 @@
         return Promise.resolve().then(function() {
             var l = geByClass1("_im_send", a);
             if (!(0, G.isSendingAvailable)(e)) return !1;
-            if ((0, H.isAnythingLoading)(e.get())) {
+            if ((0, H.isAnythingLoading)(e.get()) || !(0, U.isFullyLoadedTab)(e, e.get().peer)) {
                 var g = d(e, Q, (0, K.toArray)(c));
                 return e.set(H.setDelayedMessage.bind(null, !0, g)).then(function() {
                     (0, U.lockButton)(l)
@@ -10928,17 +10521,17 @@
         }
     }();
     t.mount = B;
-    var N = n(18),
-        j = n(142),
-        H = n(2),
-        U = n(4),
-        G = n(10),
-        z = n(89),
-        q = n(174),
-        K = n(15),
-        W = n(3),
-        V = n(147),
-        Q = 4e3,
+    var N = n(15),
+        j = n(107),
+        H = n(1),
+        U = n(3),
+        G = n(8),
+        z = n(67),
+        q = n(122),
+        K = n(13),
+        W = n(2),
+        V = n(112),
+        Q = 2e3,
         Y = 3980,
         X = "_im_media_selector",
         Z = "_im_media_fwd",
@@ -11119,11 +10712,47 @@
     Object.defineProperty(exports, "__esModule", {
         value: !0
     }), exports.mount = mount;
-    var _modules = __webpack_require__(3),
+    var _modules = __webpack_require__(2),
         UPLOAD_CLASS = "_im_upload",
         DROPBOX_CLASS = "_im_upload_dropbox",
         UPLOAD_WRAP_CLASS = "_im_upload_wrap"
-}, , , , , , , , , , function(e, t, n) {
+}, function(e, t) {
+    "use strict";
+
+    function n() {
+        var e = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || window.MediaDevices && window.MediaDevices.getUserMedia,
+            t = function(t) {
+                return new Promise(function(n, r) {
+                    e ? e.call(navigator, t, n, r) : r(new Error("NotSupported"))
+                })
+            },
+            n = function() {
+                return new Promise(function(e, t) {
+                    if (MediaStreamTrack && MediaStreamTrack.getSources) {
+                        var n = {
+                            audio: "audioinput",
+                            video: "videoinput"
+                        };
+                        return MediaStreamTrack.getSources(function(t) {
+                            e(t.map(function(e) {
+                                return {
+                                    label: e.label,
+                                    kind: n[e.kind],
+                                    deviceId: e.id,
+                                    groupId: ""
+                                }
+                            }))
+                        })
+                    }
+                    t(new Error("NotSupported"))
+                })
+            };
+        e && !navigator.mediaDevices && (navigator.mediaDevices = navigator.mediaDevices || {}), navigator.mediaDevices && (navigator.mediaDevices.getUserMedia || (navigator.mediaDevices.getUserMedia = t), navigator.mediaDevices.enumerateDevices || (navigator.mediaDevices.enumerateDevices = n)), window.AudioContext = window.AudioContext || window.webkitAudioContext, window.AudioContext && (window.AudioContext.prototype.createScriptProcessor = window.AudioContext.prototype.createScriptProcessor || window.AudioContext.prototype.createJavaScriptNode)
+    }
+    Object.defineProperty(t, "__esModule", {
+        value: !0
+    }), t.initFailBack = n
+}, function(e, t, n) {
     "use strict";
 
     function r(e, t) {
@@ -11241,10 +10870,10 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.mount = g;
-    var f = n(2),
-        m = n(3),
+    var f = n(1),
+        m = n(2),
         p = "_ui_multiselect_cancel"
-}, , , function(e, t, n) {
+}, function(e, t, n) {
     "use strict";
 
     function r(e) {
@@ -11252,12 +10881,12 @@
             "default": e
         }
     }
-    var a = n(141),
-        i = n(11),
+    var a = n(106),
+        i = n(9),
         o = r(i),
-        s = n(77),
+        s = n(194),
         l = n(6),
-        u = n(2);
+        u = n(1);
     window.IM = {
         init: function(e) {
             window.Promise || (window.Promise = s.Promise), window.cur.lang.dont_attach = getLang("mail_dont_add_media"), cur.ctrl_submit = e.ctrl_submit, cur.module = "im", cur.mutedPeers = e.mutedPeers, cur.gid = e.gid, cur.peer = e.peer, e.blockedFlagUpdates = {}, e.msgid = intval(nav.objLoc.msgid), cur.options = {
@@ -11295,7 +10924,7 @@
     try {
         stManager.done("imn.js")
     } catch (c) {}
-}, , , , , , , , , function(e, t) {
+}, , function(e, t) {
     "use strict";
 
     function n(e, t) {
@@ -11393,7 +11022,7 @@
         }
     }();
     t.addDelegateEvent = i, t.removeDelegateEvent = o;
-    var l = n(95),
+    var l = n(73),
         u = r(l),
         c = new u["default"]
 }, function(e, t) {
@@ -11608,10 +11237,10 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.create = u;
-    var c = n(11),
+    var c = n(9),
         d = r(c),
-        g = n(4),
-        f = n(14)
+        g = n(3),
+        f = n(12)
 }, function(e, t, n) {
     "use strict";
 
@@ -11701,9 +11330,9 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.createWorker = g;
-    var f = n(95),
+    var f = n(73),
         m = r(f),
-        p = n(32),
+        p = n(28),
         _ = new m["default"],
         h = !1
 }, function(e, t) {
@@ -11724,21 +11353,21 @@
         value: !0
     }), t.random = n;
     var r = (t.MAX_SAFE_INTEGER = 9007199254740991, t.MAX_INTERGER = 2147483647)
-}, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , function(e, t) {
+}, , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , , function(e, t) {
     e.exports = function(e) {
         if ("function" != typeof e) throw TypeError(e + " is not a function!");
         return e
     }
 }, function(e, t, n) {
-    var r = n(12)("unscopables"),
+    var r = n(10)("unscopables"),
         a = Array.prototype;
-    void 0 == a[r] && n(22)(a, r, {}), e.exports = function(e) {
+    void 0 == a[r] && n(19)(a, r, {}), e.exports = function(e) {
         a[r][e] = !0
     }
 }, function(e, t, n) {
-    var r = n(53),
-        a = n(118),
-        i = n(248);
+    var r = n(43),
+        a = n(96),
+        i = n(186);
     e.exports = function(e) {
         return function(t, n, o) {
             var s, l = r(t),
@@ -11755,18 +11384,18 @@
     }
 }, function(e, t, n) {
     "use strict";
-    var r = n(29).f,
-        a = n(115),
-        i = (n(22), n(116)),
-        o = n(50),
-        s = n(105),
-        l = n(51),
-        u = n(111),
-        c = n(72),
-        d = n(113),
-        g = n(246),
-        f = n(20),
-        m = n(114).fastKey,
+    var r = n(26).f,
+        a = n(93),
+        i = (n(19), n(94)),
+        o = n(40),
+        s = n(83),
+        l = n(41),
+        u = n(89),
+        c = n(57),
+        d = n(91),
+        g = n(184),
+        f = n(17),
+        m = n(92).fastKey,
         p = f ? "_s" : "size",
         _ = function(e, t) {
             var n, r = m(t);
@@ -11831,18 +11460,18 @@
     }
 }, function(e, t, n) {
     "use strict";
-    var r = n(13),
-        a = n(110),
-        i = n(30),
-        o = n(116),
-        s = n(114),
-        l = n(111),
-        u = n(105),
-        c = n(23),
-        d = n(52),
-        g = n(237),
-        f = n(74),
-        m = n(232);
+    var r = n(11),
+        a = n(88),
+        i = n(27),
+        o = n(94),
+        s = n(92),
+        l = n(89),
+        u = n(83),
+        c = n(20),
+        d = n(42),
+        g = n(175),
+        f = n(59),
+        m = n(170);
     e.exports = function(e, t, n, p, _, h) {
         var v = r[e],
             b = v,
@@ -11887,28 +11516,28 @@
         return f(b, e), T[e] = b, a(a.G + a.W + a.F * (b != v), T), h || p.setStrong(b, e, _), b
     }
 }, function(e, t, n) {
-    e.exports = n(13).document && document.documentElement
+    e.exports = n(11).document && document.documentElement
 }, function(e, t, n) {
-    var r = n(23),
-        a = n(245).set;
+    var r = n(20),
+        a = n(183).set;
     e.exports = function(e, t, n) {
         var i, o = t.constructor;
         return o !== n && "function" == typeof o && (i = o.prototype) !== n.prototype && r(i) && a && a(e, i), e
     }
 }, function(e, t, n) {
-    var r = n(107);
+    var r = n(85);
     e.exports = Object("z").propertyIsEnumerable(0) ? Object : function(e) {
         return "String" == r(e) ? e.split("") : Object(e)
     }
 }, function(e, t, n) {
-    var r = n(36),
-        a = n(12)("iterator"),
+    var r = n(31),
+        a = n(10)("iterator"),
         i = Array.prototype;
     e.exports = function(e) {
         return void 0 !== e && (r.Array === e || i[a] === e)
     }
 }, function(e, t, n) {
-    var r = n(28);
+    var r = n(25);
     e.exports = function(e, t, n, a) {
         try {
             return a ? t(r(n)[0], n[1]) : t(n)
@@ -11919,11 +11548,11 @@
     }
 }, function(e, t, n) {
     "use strict";
-    var r = n(115),
-        a = n(73),
-        i = n(74),
+    var r = n(93),
+        a = n(58),
+        i = n(59),
         o = {};
-    n(22)(o, n(12)("iterator"), function() {
+    n(19)(o, n(10)("iterator"), function() {
         return this
     }), e.exports = function(e, t, n) {
         e.prototype = r(o, {
@@ -11931,7 +11560,7 @@
         }), i(e, t + " Iterator")
     }
 }, function(e, t, n) {
-    var r = n(12)("iterator"),
+    var r = n(10)("iterator"),
         a = !1;
     try {
         var i = [7][r]();
@@ -11958,41 +11587,41 @@
 }, function(e, t) {
     e.exports = !1
 }, function(e, t, n) {
-    var r = n(29),
-        a = n(28),
-        i = n(243);
-    e.exports = n(20) ? Object.defineProperties : function(e, t) {
+    var r = n(26),
+        a = n(25),
+        i = n(181);
+    e.exports = n(17) ? Object.defineProperties : function(e, t) {
         a(e);
         for (var n, o = i(t), s = o.length, l = 0; s > l;) r.f(e, n = o[l++], t[n]);
         return e
     }
 }, function(e, t, n) {
-    var r = n(244),
-        a = n(73),
-        i = n(53),
-        o = n(119),
-        s = n(21),
-        l = n(112),
+    var r = n(182),
+        a = n(58),
+        i = n(43),
+        o = n(97),
+        s = n(18),
+        l = n(90),
         u = Object.getOwnPropertyDescriptor;
-    t.f = n(20) ? u : function(e, t) {
+    t.f = n(17) ? u : function(e, t) {
         if (e = i(e), t = o(t, !0), l) try {
             return u(e, t)
         } catch (n) {}
         return s(e, t) ? a(!r.f.call(e, t), e[t]) : void 0
     }
 }, function(e, t, n) {
-    var r = n(21),
-        a = n(249),
-        i = n(75)("IE_PROTO"),
+    var r = n(18),
+        a = n(187),
+        i = n(60)("IE_PROTO"),
         o = Object.prototype;
     e.exports = Object.getPrototypeOf || function(e) {
         return e = a(e), r(e, i) ? e[i] : "function" == typeof e.constructor && e instanceof e.constructor ? e.constructor.prototype : e instanceof Object ? o : null
     }
 }, function(e, t, n) {
-    var r = n(21),
-        a = n(53),
-        i = n(228)(!1),
-        o = n(75)("IE_PROTO");
+    var r = n(18),
+        a = n(43),
+        i = n(166)(!1),
+        o = n(60)("IE_PROTO");
     e.exports = function(e, t) {
         var n, s = a(e),
             l = 0,
@@ -12002,23 +11631,23 @@
         return u
     }
 }, function(e, t, n) {
-    var r = n(242),
-        a = n(109);
+    var r = n(180),
+        a = n(87);
     e.exports = Object.keys || function(e) {
         return r(e, a)
     }
 }, function(e, t) {
     t.f = {}.propertyIsEnumerable
 }, function(e, t, n) {
-    var r = n(23),
-        a = n(28),
+    var r = n(20),
+        a = n(25),
         i = function(e, t) {
             if (a(e), !r(t) && null !== t) throw TypeError(t + ": can't set as prototype!")
         };
     e.exports = {
         set: Object.setPrototypeOf || ("__proto__" in {} ? function(e, t, r) {
             try {
-                r = n(50)(Function.call, n(240).f(Object.prototype, "__proto__").set, 2), r(e, []), t = !(e instanceof Array)
+                r = n(40)(Function.call, n(178).f(Object.prototype, "__proto__").set, 2), r(e, []), t = !(e instanceof Array)
             } catch (a) {
                 t = !0
             }
@@ -12030,10 +11659,10 @@
     }
 }, function(e, t, n) {
     "use strict";
-    var r = n(13),
-        a = n(29),
-        i = n(20),
-        o = n(12)("species");
+    var r = n(11),
+        a = n(26),
+        i = n(17),
+        o = n(10)("species");
     e.exports = function(e) {
         var t = r[e];
         i && t && !t[o] && a.f(t, o, {
@@ -12044,8 +11673,8 @@
         })
     }
 }, function(e, t, n) {
-    var r = n(76),
-        a = n(51);
+    var r = n(61),
+        a = n(41);
     e.exports = function(e) {
         return function(t, n) {
             var i, o, s = String(a(t)),
@@ -12055,31 +11684,31 @@
         }
     }
 }, function(e, t, n) {
-    var r = n(76),
+    var r = n(61),
         a = Math.max,
         i = Math.min;
     e.exports = function(e, t) {
         return e = r(e), 0 > e ? a(e + t, 0) : i(e, t)
     }
 }, function(e, t, n) {
-    var r = n(51);
+    var r = n(41);
     e.exports = function(e) {
         return Object(r(e))
     }
 }, function(e, t, n) {
-    var r = n(106),
-        a = n(12)("iterator"),
-        i = n(36);
-    e.exports = n(49).getIteratorMethod = function(e) {
+    var r = n(84),
+        a = n(10)("iterator"),
+        i = n(31);
+    e.exports = n(39).getIteratorMethod = function(e) {
         return void 0 != e ? e[a] || e["@@iterator"] || i[r(e)] : void 0
     }
 }, function(e, t, n) {
     "use strict";
-    var r = n(227),
-        a = n(113),
-        i = n(36),
-        o = n(53);
-    e.exports = n(72)(Array, "Array", function(e, t) {
+    var r = n(165),
+        a = n(91),
+        i = n(31),
+        o = n(43);
+    e.exports = n(57)(Array, "Array", function(e, t) {
         this._t = o(e), this._i = 0, this._k = t
     }, function() {
         var e = this._t,
@@ -12089,8 +11718,8 @@
     }, "values"), i.Arguments = i.Array, r("keys"), r("values"), r("entries")
 }, function(e, t, n) {
     "use strict";
-    var r = n(229);
-    e.exports = n(230)("Map", function(e) {
+    var r = n(167);
+    e.exports = n(168)("Map", function(e) {
         return function() {
             return e(this, arguments.length > 0 ? arguments[0] : void 0)
         }
@@ -12105,15 +11734,15 @@
     }, r, !0)
 }, function(e, t, n) {
     "use strict";
-    var r = n(106),
+    var r = n(84),
         a = {};
-    a[n(12)("toStringTag")] = "z", a + "" != "[object z]" && n(30)(Object.prototype, "toString", function() {
+    a[n(10)("toStringTag")] = "z", a + "" != "[object z]" && n(27)(Object.prototype, "toString", function() {
         return "[object " + r(this) + "]"
     }, !0)
 }, function(e, t, n) {
     "use strict";
-    var r = n(247)(!0);
-    n(72)(String, "String", function(e) {
+    var r = n(185)(!0);
+    n(57)(String, "String", function(e) {
         this._t = String(e), this._i = 0
     }, function() {
         var e, t = this._t,
@@ -12127,7 +11756,7 @@
         })
     })
 }, function(e, t, n) {
-    for (var r = n(251), a = n(30), i = n(13), o = n(22), s = n(36), l = n(12), u = l("iterator"), c = l("toStringTag"), d = s.Array, g = ["NodeList", "DOMTokenList", "MediaList", "StyleSheetList", "CSSRuleList"], f = 0; 5 > f; f++) {
+    for (var r = n(189), a = n(27), i = n(11), o = n(19), s = n(31), l = n(10), u = l("iterator"), c = l("toStringTag"), d = s.Array, g = ["NodeList", "DOMTokenList", "MediaList", "StyleSheetList", "CSSRuleList"], f = 0; 5 > f; f++) {
         var m, p = g[f],
             _ = i[p],
             h = _ && _.prototype;
@@ -12136,4 +11765,397 @@
             for (m in r) h[m] || a(h, m, r[m], !0)
         }
     }
-}]);
+}, function(e, t, n) {
+    var r;
+    (function(e, a, i) {
+        (function() {
+            "use strict";
+
+            function o(e) {
+                return "function" == typeof e || "object" == typeof e && null !== e
+            }
+
+            function s(e) {
+                return "function" == typeof e
+            }
+
+            function l(e) {
+                V = e
+            }
+
+            function u(e) {
+                Z = e
+            }
+
+            function c() {
+                return function() {
+                    e.nextTick(p)
+                }
+            }
+
+            function d() {
+                return function() {
+                    W(p)
+                }
+            }
+
+            function g() {
+                var e = 0,
+                    t = new ee(p),
+                    n = document.createTextNode("");
+                return t.observe(n, {
+                        characterData: !0
+                    }),
+                    function() {
+                        n.data = e = ++e % 2
+                    }
+            }
+
+            function f() {
+                var e = new MessageChannel;
+                return e.port1.onmessage = p,
+                    function() {
+                        e.port2.postMessage(0)
+                    }
+            }
+
+            function m() {
+                return function() {
+                    setTimeout(p, 1)
+                }
+            }
+
+            function p() {
+                for (var e = 0; X > e; e += 2) {
+                    var t = re[e],
+                        n = re[e + 1];
+                    t(n), re[e] = void 0, re[e + 1] = void 0
+                }
+                X = 0
+            }
+
+            function _() {
+                try {
+                    var e = n(198);
+                    return W = e.runOnLoop || e.runOnContext, d()
+                } catch (t) {
+                    return m()
+                }
+            }
+
+            function h(e, t) {
+                var n = this,
+                    r = n._state;
+                if (r === se && !e || r === le && !t) return this;
+                var a = new this.constructor(b),
+                    i = n._result;
+                if (r) {
+                    var o = arguments[r - 1];
+                    Z(function() {
+                        R(r, a, o, i)
+                    })
+                } else A(n, a, e, t);
+                return a
+            }
+
+            function v(e) {
+                var t = this;
+                if (e && "object" == typeof e && e.constructor === t) return e;
+                var n = new t(b);
+                return k(n, e), n
+            }
+
+            function b() {}
+
+            function y() {
+                return new TypeError("You cannot resolve a promise with itself")
+            }
+
+            function C() {
+                return new TypeError("A promises callback cannot return that same promise.")
+            }
+
+            function T(e) {
+                try {
+                    return e.then
+                } catch (t) {
+                    return ue.error = t, ue
+                }
+            }
+
+            function S(e, t, n, r) {
+                try {
+                    e.call(t, n, r)
+                } catch (a) {
+                    return a
+                }
+            }
+
+            function E(e, t, n) {
+                Z(function(e) {
+                    var r = !1,
+                        a = S(n, t, function(n) {
+                            r || (r = !0, t !== n ? k(e, n) : M(e, n))
+                        }, function(t) {
+                            r || (r = !0, L(e, t))
+                        }, "Settle: " + (e._label || " unknown promise"));
+                    !r && a && (r = !0, L(e, a))
+                }, e)
+            }
+
+            function w(e, t) {
+                t._state === se ? M(e, t._result) : t._state === le ? L(e, t._result) : A(t, void 0, function(t) {
+                    k(e, t)
+                }, function(t) {
+                    L(e, t)
+                })
+            }
+
+            function I(e, t, n) {
+                t.constructor === e.constructor && n === ae && constructor.resolve === ie ? w(e, t) : n === ue ? L(e, ue.error) : void 0 === n ? M(e, t) : s(n) ? E(e, t, n) : M(e, t)
+            }
+
+            function k(e, t) {
+                e === t ? L(e, y()) : o(t) ? I(e, t, T(t)) : M(e, t)
+            }
+
+            function P(e) {
+                e._onerror && e._onerror(e._result), O(e)
+            }
+
+            function M(e, t) {
+                e._state === oe && (e._result = t, e._state = se, 0 !== e._subscribers.length && Z(O, e))
+            }
+
+            function L(e, t) {
+                e._state === oe && (e._state = le, e._result = t, Z(P, e))
+            }
+
+            function A(e, t, n, r) {
+                var a = e._subscribers,
+                    i = a.length;
+                e._onerror = null, a[i] = t, a[i + se] = n, a[i + le] = r, 0 === i && e._state && Z(O, e)
+            }
+
+            function O(e) {
+                var t = e._subscribers,
+                    n = e._state;
+                if (0 !== t.length) {
+                    for (var r, a, i = e._result, o = 0; o < t.length; o += 3) r = t[o], a = t[o + n], r ? R(n, r, a, i) : a(i);
+                    e._subscribers.length = 0
+                }
+            }
+
+            function D() {
+                this.error = null
+            }
+
+            function x(e, t) {
+                try {
+                    return e(t)
+                } catch (n) {
+                    return ce.error = n, ce
+                }
+            }
+
+            function R(e, t, n, r) {
+                var a, i, o, l, u = s(n);
+                if (u) {
+                    if (a = x(n, r), a === ce ? (l = !0, i = a.error, a = null) : o = !0, t === a) return void L(t, C())
+                } else a = r, o = !0;
+                t._state !== oe || (u && o ? k(t, a) : l ? L(t, i) : e === se ? M(t, a) : e === le && L(t, a))
+            }
+
+            function B(e, t) {
+                try {
+                    t(function(t) {
+                        k(e, t)
+                    }, function(t) {
+                        L(e, t)
+                    })
+                } catch (n) {
+                    L(e, n)
+                }
+            }
+
+            function F(e) {
+                return new _e(this, e).promise
+            }
+
+            function N(e) {
+                function t(e) {
+                    k(a, e)
+                }
+
+                function n(e) {
+                    L(a, e)
+                }
+                var r = this,
+                    a = new r(b);
+                if (!Y(e)) return L(a, new TypeError("You must pass an array to race.")), a;
+                for (var i = e.length, o = 0; a._state === oe && i > o; o++) A(r.resolve(e[o]), void 0, t, n);
+                return a
+            }
+
+            function j(e) {
+                var t = this,
+                    n = new t(b);
+                return L(n, e), n
+            }
+
+            function H() {
+                throw new TypeError("You must pass a resolver function as the first argument to the promise constructor")
+            }
+
+            function U() {
+                throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.")
+            }
+
+            function G(e) {
+                this._id = me++, this._state = void 0, this._result = void 0, this._subscribers = [], b !== e && ("function" != typeof e && H(), this instanceof G ? B(this, e) : U())
+            }
+
+            function z(e, t) {
+                this._instanceConstructor = e, this.promise = new e(b), Array.isArray(t) ? (this._input = t, this.length = t.length, this._remaining = t.length, this._result = new Array(this.length), 0 === this.length ? M(this.promise, this._result) : (this.length = this.length || 0, this._enumerate(), 0 === this._remaining && M(this.promise, this._result))) : L(this.promise, this._validationError())
+            }
+
+            function q() {
+                var e;
+                if ("undefined" != typeof a) e = a;
+                else if ("undefined" != typeof self) e = self;
+                else try {
+                    e = Function("return this")()
+                } catch (t) {
+                    throw new Error("polyfill failed because global object is unavailable in this environment")
+                }
+                var n = e.Promise;
+                (!n || "[object Promise]" !== Object.prototype.toString.call(n.resolve()) || n.cast) && (e.Promise = pe)
+            }
+            var K;
+            K = Array.isArray ? Array.isArray : function(e) {
+                return "[object Array]" === Object.prototype.toString.call(e)
+            };
+            var W, V, Q, Y = K,
+                X = 0,
+                Z = function(e, t) {
+                    re[X] = e, re[X + 1] = t, X += 2, 2 === X && (V ? V(p) : Q())
+                },
+                $ = "undefined" != typeof window ? window : void 0,
+                J = $ || {},
+                ee = J.MutationObserver || J.WebKitMutationObserver,
+                te = "undefined" != typeof e && "[object process]" === {}.toString.call(e),
+                ne = "undefined" != typeof Uint8ClampedArray && "undefined" != typeof importScripts && "undefined" != typeof MessageChannel,
+                re = new Array(1e3);
+            Q = te ? c() : ee ? g() : ne ? f() : void 0 === $ ? _() : m();
+            var ae = h,
+                ie = v,
+                oe = void 0,
+                se = 1,
+                le = 2,
+                ue = new D,
+                ce = new D,
+                de = F,
+                ge = N,
+                fe = j,
+                me = 0,
+                pe = G;
+            G.all = de, G.race = ge, G.resolve = ie, G.reject = fe, G._setScheduler = l, G._setAsap = u, G._asap = Z, G.prototype = {
+                constructor: G,
+                then: ae,
+                "catch": function(e) {
+                    return this.then(null, e)
+                }
+            };
+            var _e = z;
+            z.prototype._validationError = function() {
+                return new Error("Array Methods must be provided an Array")
+            }, z.prototype._enumerate = function() {
+                for (var e = this.length, t = this._input, n = 0; this._state === oe && e > n; n++) this._eachEntry(t[n], n)
+            }, z.prototype._eachEntry = function(e, t) {
+                var n = this._instanceConstructor,
+                    r = n.resolve;
+                if (r === ie) {
+                    var a = T(e);
+                    if (a === ae && e._state !== oe) this._settledAt(e._state, t, e._result);
+                    else if ("function" != typeof a) this._remaining--, this._result[t] = e;
+                    else if (n === pe) {
+                        var i = new n(b);
+                        I(i, e, a), this._willSettleAt(i, t)
+                    } else this._willSettleAt(new n(function(t) {
+                        t(e)
+                    }), t)
+                } else this._willSettleAt(r(e), t)
+            }, z.prototype._settledAt = function(e, t, n) {
+                var r = this.promise;
+                r._state === oe && (this._remaining--, e === le ? L(r, n) : this._result[t] = n), 0 === this._remaining && M(r, this._result)
+            }, z.prototype._willSettleAt = function(e, t) {
+                var n = this;
+                A(e, void 0, function(e) {
+                    n._settledAt(se, t, e)
+                }, function(e) {
+                    n._settledAt(le, t, e)
+                })
+            };
+            var he = q,
+                ve = {
+                    Promise: pe,
+                    polyfill: he
+                };
+            n(195).amd ? (r = function() {
+                return ve
+            }.call(t, n, t, i), !(void 0 !== r && (i.exports = r))) : "undefined" != typeof i && i.exports ? i.exports = ve : "undefined" != typeof this && (this.ES6Promise = ve), he()
+        }).call(this)
+    }).call(t, n(197), function() {
+        return this
+    }(), n(196)(e))
+}, function(e, t) {
+    e.exports = function() {
+        throw new Error("define cannot be used indirect")
+    }
+}, function(e, t) {
+    e.exports = function(e) {
+        return e.webpackPolyfill || (e.deprecate = function() {}, e.paths = [], e.children = [], e.webpackPolyfill = 1), e
+    }
+}, function(e, t) {
+    function n() {
+        u = !1, o.length ? l = o.concat(l) : c = -1, l.length && r()
+    }
+
+    function r() {
+        if (!u) {
+            var e = setTimeout(n);
+            u = !0;
+            for (var t = l.length; t;) {
+                for (o = l, l = []; ++c < t;) o && o[c].run();
+                c = -1, t = l.length
+            }
+            o = null, u = !1, clearTimeout(e)
+        }
+    }
+
+    function a(e, t) {
+        this.fun = e, this.array = t
+    }
+
+    function i() {}
+    var o, s = e.exports = {},
+        l = [],
+        u = !1,
+        c = -1;
+    s.nextTick = function(e) {
+        var t = new Array(arguments.length - 1);
+        if (arguments.length > 1)
+            for (var n = 1; n < arguments.length; n++) t[n - 1] = arguments[n];
+        l.push(new a(e, t)), 1 !== l.length || u || setTimeout(r, 0)
+    }, a.prototype.run = function() {
+        this.fun.apply(null, this.array)
+    }, s.title = "browser", s.browser = !0, s.env = {}, s.argv = [], s.version = "", s.versions = {}, s.on = i, s.addListener = i, s.once = i, s.off = i, s.removeListener = i, s.removeAllListeners = i, s.emit = i, s.binding = function(e) {
+        throw new Error("process.binding is not supported")
+    }, s.cwd = function() {
+        return "/"
+    }, s.chdir = function(e) {
+        throw new Error("process.chdir is not supported")
+    }, s.umask = function() {
+        return 0
+    }
+}, function(e, t) {}]);

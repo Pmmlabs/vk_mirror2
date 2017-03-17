@@ -493,11 +493,11 @@ function MediaSelector(e, a, t, o) {
                             ge("wpe_save").innerHTML = getLang("global_save")
                         } else {
                             i.draft ? i.date = intval(t) : cur.postponedLastDate && (i.date = intval(cur.postponedLastDate) + 3600);
-                            var W = ge("official"),
-                                j = gpeByClass("_submit_post_box", W);
-                            if (W && j) {
-                                hasClass(j, "as_group") || (checkbox(W), addClass(j, "as_group")), addClass(W, "disabled"), addClass("signed", "shown");
-                                var O = window.data(W, "tt");
+                            var j = ge("official"),
+                                W = gpeByClass("_submit_post_box", j);
+                            if (j && W) {
+                                hasClass(W, "as_group") || (checkbox(j), addClass(W, "as_group")), addClass(j, "disabled"), addClass("signed", "shown");
+                                var O = window.data(j, "tt");
                                 if (O && O.rdBtns) {
                                     var $ = O.rdBtns[1],
                                         K = O.rdBtnsGroup,
@@ -841,7 +841,7 @@ function MediaSelector(e, a, t, o) {
                             p = d;
                         if (d.match(/^https?:\/\//) || (d = "http://" + d), !inArray(d, s.urlsCancelled) && !inArray(p, s.urlsCancelled)) {
                             var u = !0;
-                            if (h.match(/(^|\.|\/\/)(vkontakte\.ru|vk\.com)/i) && (u = _.match(/(#photo|^\/(photo|video|album|page|audio|doc)|z=(album|photo|video)|w=(page|product))(-?\d+_)?\d+|app\d+_-\d+|\.(jpg|png|gif)$|market-?\d+\?section=album_\d+|^\/stickers\/.+$|\?w\=story(\d+)_(\d+)$|stor(y|ies)(\d+)_(\d+)$|^(\/dev)?\/blog\/.+$|^\/landings\/.+$|\?w\=vk10\_years(\d+)$|^\/messenger$|^\/bestgames2016$|^http:\/\/instagram\.com\/p\/.+/) ? !0 : !1), u) return void s.checkURL(p, t)
+                            if (h.match(/(^|\.|\/\/)(vkontakte\.ru|vk\.com)/i) && (u = _.match(/(#photo|^\/(photo|video|album|page|audio|doc)|z=(album|photo|video)|w=(page|product))(-?\d+_)?\d+|app\d+_-\d+|\.(jpg|png|gif)$|market-?\d+\?section=album_\d+|^\/stickers\/.+$|\?w\=story(\d+)_(\d+)$|stor(y|ies)(\d+)_(\d+)$|^(\/dev)?\/blog\/.+$|^\/jobs\?w=job\d+$|^\/landings\/.+$|\?w\=vk10\_years(\d+)$|^\/messenger$|^\/bestgames2016$|^http:\/\/instagram\.com\/p\/.+/) ? !0 : !1), u) return void s.checkURL(p, t)
                         }
                     }
                 }

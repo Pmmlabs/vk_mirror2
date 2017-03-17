@@ -196,7 +196,7 @@ var stVersions = {
     'video_upload.js': 2461196155,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 11024887514,
-    'videoplayer.js': 72006528132,
+    'videoplayer.js': 72881020669,
     'videoplayer.css': 37377188076,
     'translation.js': 2541156631,
     'translation.css': 12026998480,
@@ -210,12 +210,12 @@ var stVersions = {
     'join.css': 17052880152,
     'join.js': 4281861549,
     'intro.css': 18132514507,
-    'post.css': 19271258873,
+    'post.css': 19280489395,
     'module.css': 16728084496,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 17037339973,
     'page.js': 4148636248,
-    'page.css': 18819318621,
+    'page.css': 21193311623,
     'page_help.css': 20551051588,
     'public.css': 25002937481,
     'public.js': 3882483539,
@@ -245,8 +245,8 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 103848745542,
-    'imn.js': 110220273773,
+    'im.css': 101739544546,
+    'imn.js': 110832200465,
     'im.js': 1322065004,
     'emoji.js': 4179107526,
     'wide_dd.css': 11367635276,
@@ -423,7 +423,7 @@ var stVersions = {
     'ui.js': 3953380422,
     'ui_common.js': 1765160146,
     'ui_common.css': 10765829054,
-    'ui_media_selector.js': 3967712060,
+    'ui_media_selector.js': 480361842,
     'ui_media_selector.css': 17948287816,
     'ui_manual.css': 12319208383,
     'admin.js': 2866808704,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 3925;
+var _rnd = 5499;
