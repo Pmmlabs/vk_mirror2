@@ -1028,6 +1028,11 @@ img.im_photo_thumb {
     transform: translateX(70px)
 }
 
+.im-page_classic.im-page .im-page--history.im-page--history_loading .im-page-history-w {
+    height: 0;
+    overflow: hidden
+}
+
 .im-page_classic.im-page .im-page--top-date-bar-wrap {
     width: 550px
 }

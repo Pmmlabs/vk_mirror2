@@ -383,13 +383,13 @@ body.mobfixed #wk_layer_wrap {
 }
 
 .wall_module.wl_post .reply .reply_wrap {
-    padding-top: 14px;
+    padding-top: 12px;
     border-top: 1px solid #e7e8ec;
     margin-top: -1px
 }
 
 .wall_module.wl_post .reply~.reply .reply_wrap {
-    padding-top: 10px
+    padding-top: 8px
 }
 
 .wall_module.wl_post .wall_post_text:last-child {

@@ -777,14 +777,14 @@
 
 .wall_module .post.wcomments_post .replies_list>.reply {
     border-radius: 3px;
-    margin: 4px -11px -11px;
+    margin: 2px -11px -11px;
     padding: 11px;
     border-top: 0;
     border-bottom: 0
 }
 
 .wall_module .post.wcomments_post .replies_list>.reply+.reply {
-    margin: 9px -11px -11px;
+    margin: 7px -11px -11px;
     padding: 11px
 }
 

@@ -65,8 +65,7 @@
 .wall_module td.page_media_link_thumb,
 .wall_post_source_ads_mark,
 .wall_post_source_icon,
-.wall_post_source_icon.wall_post_source_chronicle,
-.wall_signed_by {
+.wall_post_source_icon.wall_post_source_chronicle {
     -ms-high-contrast-adjust: none
 }
 
@@ -543,7 +542,7 @@ h5.post_author {
     margin: 5px 0 0
 }
 
-.wall_module .published_comment .wall_post_text {
+.wall_module .published_comment {
     padding-bottom: 8px
 }
 
@@ -644,29 +643,32 @@ h5.post_author {
 .wall_signed {
     margin-top: 5px;
     padding: 0;
-    background: none;
-    font-size: 12.5px
+    background: none
 }
 
-.wall_marked_as_ads,
+.wall_signed {
+    margin-top: 7px
+}
+
 .wall_signed_by {
+    display: inline-block;
     padding: 0 15px;
-    background: url(/images/attach_icons.png?4) no-repeat
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%228%22%20height%3D%229%22%20viewBox%3D%2220%20203%208%209%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20style%3D%22fill%3A%23AABBCE%3B%22%3E%3Cpath%20d%3D%22M24%20209c3.5%200%204%201%204%202.5%200%20.5%200%20.5-1%20.5h-6c-1%200-1%200-1-.5%200-1.5.5-2.5%204-2.5zm0-1c-1.1%200-2-1.12-2-2.5s.9-2.5%202-2.5%202%201.12%202%202.5-.9%202.5-2%202.5z%22%2F%3E%3C%2Fsvg%3E") no-repeat;
+    background-position: left 3px;
+    line-height: 15px
 }
 
-.wall_signed_by {
-    background-position: left -146px
-}
-
-.wall_signed_by:last-child {
-    padding-bottom: 0
+.mac.firefox .wall_signed_by {
+    line-height: 14.95px
 }
 
 .wall_marked_as_ads {
+    padding: 0 17px;
+    background: url(/images/attach_icons.png?4) no-repeat;
     line-height: 14px;
     margin-top: 11px;
     color: #939393;
-    background-position: left -228px;
+    background-position: left -227px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis
@@ -844,7 +846,7 @@ html:not([lang=ru]) .wall_marked_as_ads {
 }
 
 .wall_module .reply .reply_wrap {
-    padding: 10px 0
+    padding: 8px 0 10px
 }
 
 .wall_module .reply~.reply .dld,
@@ -861,7 +863,8 @@ html:not([lang=ru]) .wall_marked_as_ads {
 
 .wall_module .reply_image {
     display: block;
-    float: left
+    float: left;
+    margin-top: 2px
 }
 
 .wall_module .reply_img {
@@ -876,8 +879,7 @@ html:not([lang=ru]) .wall_marked_as_ads {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 1.36;
-    margin-top: -2px
+    line-height: 1.36
 }
 
 .wall_module .reply_date {
@@ -899,6 +901,10 @@ html:not([lang=ru]) .wall_marked_as_ads {
     margin-left: 44px;
     word-wrap: break-word;
     min-height: 34px
+}
+
+.wall_module .reply_content .post_actions_wrap {
+    margin-top: 2px
 }
 
 .wall_module .reply_text {

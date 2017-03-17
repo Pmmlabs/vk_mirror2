@@ -540,6 +540,7 @@ a.ads_edit_link_go:hover {
     margin-bottom: 20px
 }
 
+#ads_edit_error_ad,
 #ads_edit_error_link_msg {
     line-height: 1.6
 }
