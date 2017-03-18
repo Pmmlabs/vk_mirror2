@@ -307,6 +307,22 @@
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%2215%2014%2013%2013%22%3E%0A%20%20%3Cpath%20d%3D%22M18.4%2025.3C16.4%2024.4%2015%2022.6%2015%2020.5%2015%2017.5%2017.9%2015%2021.5%2015%2025.1%2015%2028%2017.5%2028%2020.5%2028%2023.5%2025.1%2026%2021.5%2026%2021.1%2026%2020.8%2026%2020.4%2025.9%2019.8%2026.6%2018.8%2027%2017%2027%2017.5%2026.5%2018.1%2025.9%2018.4%2025.3Z%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%3C%2Fsvg%3E")
 }
 
+.post_top_info_wall_like {
+    padding: 13px 15px 14px;
+    box-shadow: 0 0 0 1px #e3e4e8, 0 1px 0 0 #e7e8ec
+}
+
+.post_top_info_wall_like:empty {
+    display: none
+}
+
+.post_top_info_wall_like_icon {
+    margin: 2px 0px 0px;
+    width: 13px;
+    height: 11px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2213%22%20height%3D%2211%22%20viewBox%3D%2215%2015%2013%2011%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cpath%20d%3D%22M21.5%2017.58c-.46-2.8-3.9-3.23-5.38-1.73-1.5%201.5-1.5%203.92%200%205.4.46.48%204.46%204.4%204.46%204.4.46.47%201.3.47%201.76%200l4.46-4.4c1.58-1.48%201.58-3.9.1-5.4-1.5-1.4-4.94-1.07-5.4%201.73z%22%20fill%3D%22%23A5ABB4%22%20fill-rule%3D%22evenodd%22%2F%3E%0A%3C%2Fsvg%3E")
+}
+
 .post_top_info_sherlock_spoiler_icon {
     margin: 1px 0px -1px;
     width: 16px;
@@ -314,7 +330,8 @@
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cg%20fill%3D%22none%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%228%22%20cy%3D%228%22%20r%3D%228%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M8.8%209L7.2%209%207%204.5C7%204.2%207.2%204%207.5%204L8.5%204C8.8%204%209%204.2%209%204.5L8.8%209ZM7%2011C7%2010.7%207.1%2010.4%207.3%2010.3%207.4%2010.1%207.7%2010%208%2010%208.3%2010%208.6%2010.1%208.7%2010.3%208.9%2010.4%209%2010.7%209%2011%209%2011.3%208.9%2011.6%208.7%2011.7%208.6%2011.9%208.3%2012%208%2012%207.7%2012%207.4%2011.9%207.3%2011.7%207.1%2011.6%207%2011.3%207%2011Z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%0A%3C%2Fsvg%3E")
 }
 
-.post_top_info_wall_reply_text {
+.post_top_info_wall_reply_text,
+.post_top_info_wall_like_text {
     margin-left: 21px;
     line-height: 15px;
     color: #656565

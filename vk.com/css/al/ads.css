@@ -69,6 +69,12 @@ a .ads_sub_link:hover {
     margin: -1px
 }
 
+#ads_page h2 {
+    margin-top: 0;
+    border-bottom: 1px solid #e8ebee;
+    padding-bottom: 3px
+}
+
 #ads_hero_unit,
 #ads_page_wrap2 {
     width: 950px;
@@ -267,6 +273,7 @@ a .ads_sub_link:hover {
     vertical-align: top
 }
 
+.ads_round_tabs_all,
 .ads_tabs_filters {
     background-color: #f7f7f7;
     border-bottom: 1px solid #dae1e8;
@@ -274,12 +281,28 @@ a .ads_sub_link:hover {
     overflow: hidden
 }
 
+.ads_round_tabs_all {
+    padding-top: 0
+}
+
+.ads_round_tabs_all.separate,
 .ads_tabs_filters.separate {
     border-top: 1px solid #dae1e8
 }
 
+.ads_round_tabs_all.small_bottom,
 .ads_tabs_filters.small_bottom {
     padding-bottom: 0
+}
+
+.ads_round_tabs_block {
+    padding-top: 10px
+}
+
+.ads_round_tabs_separator {
+    border-bottom: 1px solid #dee0e0;
+    margin: 0 8px;
+    padding-top: 5px
 }
 
 .ads_round_tab_wrap {
@@ -330,6 +353,21 @@ a .ads_sub_link:hover {
 
 .ads_round_tabs_period_month .round_tab {
     min-width: 110px
+}
+
+.ads_table_value_2 {
+    color: #777;
+    font-size: 0.9em
+}
+
+.ads_table_value_3 {
+    color: #aaa;
+    font-size: 0.9em
+}
+
+.ads_table_value_fraud {
+    color: red;
+    font-size: 0.9em
 }
 
 .ads_intro_page,
@@ -849,12 +887,6 @@ td.paginated_table_cell.column_status_view {
 
 #ads_unions_content {
     vertical-align: top
-}
-
-#ads_unions_content h2 {
-    margin-top: 0;
-    border-bottom: 1px solid #e8ebee;
-    padding-bottom: 3px
 }
 
 #ads_union_children,

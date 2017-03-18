@@ -13,6 +13,7 @@
 #privacy_l_item109 .privacy_item_icon,
 #privacy_l_item110 .privacy_item_icon,
 #privacy_l_item112 .privacy_item_icon,
+#privacy_l_item113 .privacy_item_icon,
 .settings_all_services,
 .settings_apps .apps_settings_action_edit,
 .settings_apps .apps_settings_action_remove,
@@ -429,7 +430,8 @@
 #privacy_l_item108 .privacy_item_icon,
 #privacy_l_item109 .privacy_item_icon,
 #privacy_l_item110 .privacy_item_icon,
-#privacy_l_item112 .privacy_item_icon {
+#privacy_l_item112 .privacy_item_icon,
+#privacy_l_item113 .privacy_item_icon {
     background-image: url(/images/icons/mono_iconset.png?3);
     float: right;
     background-position: left 0;
@@ -482,6 +484,10 @@
 
 #privacy_l_item112 .privacy_item_icon {
     background-position: 0 -294px
+}
+
+#privacy_l_item113 .privacy_item_icon {
+    background-position: 0 -179px
 }
 
 .settings_dropdown_time {

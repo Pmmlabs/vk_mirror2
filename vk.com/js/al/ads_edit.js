@@ -3419,7 +3419,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         switch (paramName) {
             case 'format_type':
                 var formatPhotoSize = this.getFormatPhotoSize();
-                this.params.cost_type.cpm_only = this.params.cost_type.server_cpm_only !== undefined ? this.params.cost_type.server_cpm_only : inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST]);
+                this.params.cost_type.cpm_only = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST]);
                 this.params.cost_type.hidden = this.params.cost_type.cpm_only;
 
                 if (this.params.cost_type.cpm_only) {
