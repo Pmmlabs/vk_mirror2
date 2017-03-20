@@ -161,7 +161,7 @@ var Videoview = {
             },
             onVideoStreamPlaying: function(e, i) {
                 var o = Videoview.getPlayerObject();
-                o && o.isFromAutoplay && o.isFromAutoplay() && !o.isTouchedByUser() || (window.Notifier && setTimeout(function() {
+                o && o.isAutoplay && o.isAutoplay() || (window.Notifier && setTimeout(function() {
                     Notifier.lcSend("video_start")
                 }, 0), window.ap && ap.isPlaying() && (ap.pause(), ap.pausedByVideo = vkNow()))
             },
@@ -183,7 +183,7 @@ var Videoview = {
                     videocat: d,
                     inline: -1,
                     player_view_type: v
-                }, {}), cur.videoInlinePlayer && cur.videoInlinePlayer.isFromAutoplay() && cur.videoAutoplayStat && cur.videoAutoplayStat.video == e + "_" + i && !a && ajax.post("al_video.php?act=autoplay_stat", {
+                }, {}), cur.videoInlinePlayer && cur.videoInlinePlayer.isAutoplay() && cur.videoAutoplayStat && cur.videoAutoplayStat.video == e + "_" + i && !a && ajax.post("al_video.php?act=autoplay_stat", {
                     event: "start",
                     start_time: vkNow() - cur.videoAutoplayStat.launched,
                     preloaded: cur.videoAutoplayStat.preloaded ? 1 : 0,
@@ -375,7 +375,7 @@ var Videoview = {
             if (ge("video_yt") && window.VideoYoutube) VideoYoutube.togglePlay(e);
             else if (window.mvcur && mvcur.player || cur.videoInlinePlayer) {
                 var o = window.mvcur && mvcur.player || cur.videoInlinePlayer,
-                    t = o.isFromAutoplay() && !o.isTouchedByUser();
+                    t = o.isAutoplay();
                 (!t || i) && o.togglePlay(e)
             } else {
                 var o = ge("video_player");
@@ -829,10 +829,11 @@ var Videoview = {
                     mvcur.noHistory = 1, mvcur.forceHistoryHide = i, __adsUpdate("very_lazy");
                     var n = cur.mvHistoryBack ? -cur.mvHistoryBack : -1;
                     return cur.mvHistoryBack = 0, setTimeout(function() {
-                        mvcur.mvShown || (Videoview.destroyPlayer(), VideoPlaylist.removeBlock());
+                        mvcur.mvShown || (Videoview.destroyPlayer(), VideoPlaylist.removeBlock())
                     }, 10), history.go(n)
                 }
-                if (mvcur.forceHistoryHide && (i = mvcur.forceHistoryHide, mvcur.forceHistoryHide = !1), mvcur.statusVideo) {
+                if (mvcur.forceHistoryHide && (i = mvcur.forceHistoryHide,
+                        mvcur.forceHistoryHide = !1), mvcur.statusVideo) {
                     var d = ge("mv_like_icon");
                     if (d) {
                         var r = d.parentNode.tt;
@@ -2677,8 +2678,7 @@ window.VideoChat = {
         if (s) {
             VideoChat.stickersSenders = VideoChat.stickersSenders || {};
             var l = VideoChat.stickersSenders[o + "_" + s] || 0;
-            if (VideoChat.stickersSenders[o + "_" + s] = vkNow(),
-                vkNow() - l < 5e3) return;
+            if (VideoChat.stickersSenders[o + "_" + s] = vkNow(), vkNow() - l < 5e3) return;
             r = getTemplate("video_chat_sticker", {
                 sticker_id: s,
                 pack_id: v,
@@ -3120,7 +3120,7 @@ window.VideoChat = {
                 }
             }, 2),
             n = ["videoplayer.js", "videoplayer.css"];
-        i.hls && n.push("hls.min.js"), stManager.add(n, a.done.bind(a)), i.live_candy ? loadScript("https://hls.goodgame.ru/candy/candy.min.js", {
+        i.hls && n.push("hls.min.js"), stManager.add(n, a.done.bind(a)), i.from_autoplay && delete i.live_candy, i.live_candy && !window.Candy ? loadScript("https://hls.goodgame.ru/candy/candy.min.js", {
             onLoad: function() {
                 a.done()
             },
