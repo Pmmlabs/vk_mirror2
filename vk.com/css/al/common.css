@@ -4849,6 +4849,10 @@ em.highlight {
     background-image: url(/images/icons/verify_ph.png)
 }
 
+body[data-useragent=safari] .page_verified {
+    margin-left: 7px
+}
+
 .page_name .page_verified {
     top: 1px
 }

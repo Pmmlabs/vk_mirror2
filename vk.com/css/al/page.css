@@ -827,11 +827,19 @@ html:not([lang=ru]) .wall_marked_as_ads {
 }
 
 .wr_header {
-    margin: 15px 20px 0
+    margin: 15px 20px
 }
 
 .wr_header .pr {
     padding-top: 14px
+}
+
+.wr_header~.reply {
+    margin-top: -15px
+}
+
+.wr_header~.reply~.reply {
+    margin-top: 0
 }
 
 .replies_open {
@@ -3269,17 +3277,6 @@ a.wall_reply_greeting {
 }
 
 .new_reply {
-    display: none
-}
-
-.new_reply:last-of-type {
-    display: block;
-    height: 0;
-    overflow: hidden;
-    margin-bottom: 15px
-}
-
-.reply:not(.new_reply)~.new_reply:last-of-type {
     display: none
 }
 

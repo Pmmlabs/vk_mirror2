@@ -3419,7 +3419,10 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         switch (paramName) {
             case 'format_type':
                 var formatPhotoSize = this.getFormatPhotoSize();
-                this.params.cost_type.cpm_only = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST]);
+                this.params.cost_type.cpm_only = (
+                    inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]) ||
+                    (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && !this.params.cost_type.allow_promoted_posts_cpc)
+                );
                 this.params.cost_type.hidden = this.params.cost_type.cpm_only;
 
                 if (this.params.cost_type.cpm_only) {
@@ -4091,15 +4094,6 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
         }
 
         this.updateUiParam('cost_per_click');
-    }
-
-    if (isObject(result)) {
-        var cpm_only = result.cpm_only;
-        if (cpm_only === undefined) {
-            delete this.params.cost_type.server_cpm_only;
-        } else {
-            this.params.cost_type.server_cpm_only = cpm_only;
-        }
     }
 
     if (isObject(result) && 'audience_count_text' in result) {
