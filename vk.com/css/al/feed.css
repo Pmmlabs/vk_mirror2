@@ -488,6 +488,11 @@
     width: 300px
 }
 
+#feed_list_error_wrap {
+    display: none;
+    margin: 0 0 20px
+}
+
 #feed_recommends.recoms_hidden {
     height: 0!important;
     opacity: 0!important;

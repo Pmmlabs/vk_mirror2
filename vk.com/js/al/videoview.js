@@ -197,7 +197,7 @@ var Videoview = {
                         break;
                     case 2:
                         vkImage().src = "//vk.com/rtrg?r=lD4OYmfC8ehvdc/8TL9AsAjM956qNaHyj20XV5mCNiTgYKQ6X*IXgwE8VbgqOf7rdbLJq7uCRBrdnFPTcUU2NjMgy8x4y6NWrYVwQMteNWh62XnLoNVZqobnsMMGm1OyTW09rhEkmiX5jqk3CI3JIIYbIbd8K7EC0ytQ4Kp4Kro-"
-                }
+                } - 33118207 == e || -78630688 == e ? vkImage().src = "//rs.mail.ru/d23694799.gif" : -18479452 == e ? vkImage().src = "//rs.mail.ru/d25688115.gif" : -68420747 == e && (vkImage().src = "//rs.mail.ru/d23694799.gif")
             },
             onVideoPlayFinished: function() {
                 if (window.mvcur && mvcur.mvShown && (mvcur.finished = !0, mvcur.mousemoved = !0, Videoview.moveCheck(), Videoview.logViewedPercentage()), window.mvcur && mvcur.mvShown && mvcur.adData) mvcur.adData.stat_link_start && !mvcur.adData.view_complete_start && (ajax.post(mvcur.adData.stat_link_start, {}, {
@@ -829,7 +829,7 @@ var Videoview = {
                     mvcur.noHistory = 1, mvcur.forceHistoryHide = i, __adsUpdate("very_lazy");
                     var n = cur.mvHistoryBack ? -cur.mvHistoryBack : -1;
                     return cur.mvHistoryBack = 0, setTimeout(function() {
-                        mvcur.mvShown || (Videoview.destroyPlayer(), VideoPlaylist.removeBlock());
+                        mvcur.mvShown || (Videoview.destroyPlayer(), VideoPlaylist.removeBlock())
                     }, 10), history.go(n)
                 }
                 if (mvcur.forceHistoryHide && (i = mvcur.forceHistoryHide, mvcur.forceHistoryHide = !1), mvcur.statusVideo) {
@@ -2677,8 +2677,7 @@ window.VideoChat = {
         if (s) {
             VideoChat.stickersSenders = VideoChat.stickersSenders || {};
             var l = VideoChat.stickersSenders[o + "_" + s] || 0;
-            if (VideoChat.stickersSenders[o + "_" + s] = vkNow(),
-                vkNow() - l < 5e3) return;
+            if (VideoChat.stickersSenders[o + "_" + s] = vkNow(), vkNow() - l < 5e3) return;
             r = getTemplate("video_chat_sticker", {
                 sticker_id: s,
                 pack_id: v,
