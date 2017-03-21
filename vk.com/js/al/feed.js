@@ -83,7 +83,7 @@ var Feed = {
         })
     },
     update: function(e) {
-        if (!cur.feedUpdateLoading && !(cur.add_queue && window.Notifier && Notifier.addKey(cur.add_queue, feed.updated) && "news" != cur.section || "top" == cur.subsection || inArray(cur.section, ["search", "photos_search", "mentions", "articles", "articles_search", "likes", "recommended"]))) {
+        if (!cur.feedUpdateLoading && !(cur.add_queue && window.Notifier && Notifier.addKey(cur.add_queue, feed.updated) && "news" != cur.section || "top" == cur.subsection || inArray(cur.section, ["search", "photos_search", "mentions", "articles", "articles_search", "likes", "recommended", "live"]))) {
             var t = Math.random();
             "news" != cur.section && "comments" != cur.section && t > .3 || "news" == cur.section && (e || t > .05) || (cur.feedUpdateLoading = !0, ajax.post("al_feed.php?au_" + cur.section, extend(feed.getSectionParams(cur.section), {
                 timestamp: cur.timestamp,
@@ -542,7 +542,7 @@ var Feed = {
             var query = options.q;
             query.length > 30 && (query = trim(query.substr(0, 30)) + "...")
         }
-        options.last_view && (cur.options.last_view = options.last_view), feed.searchUpdate(), "comments" != cur.section || cur.reposts || toggle("comments_filters", !cur.reposts), cur.all_shown_text && val("all_shown", cur.all_shown_text), cur.empty_text && val("feed_empty", cur.empty_text), cur.count >= 0 && re("feed_error_wrap");
+        options.last_view && (cur.options.last_view = options.last_view), feed.searchUpdate(), "comments" != cur.section || cur.reposts || toggle("comments_filters", !cur.reposts), isString(cur.all_shown_text) && val("all_shown", cur.all_shown_text), isString(cur.show_more_text) && val("show_more_link", cur.show_more_text), cur.empty_text && val("feed_empty", cur.empty_text), cur.count >= 0 && re("feed_error_wrap");
         var hasNews = geByClass1("feed_row", cur.rowsCont, "div") || !1,
             isEmpty = !hasNews,
             nextRows = ge("feed_rows_next");
@@ -562,41 +562,43 @@ var Feed = {
                     for (; e.firstChild;) cur.rowsCont.insertBefore(e.firstChild, e);
                 re(e)
             }
+            "live" == cur.section && (cur.all_shown = !0);
             var t = ge("show_more_link");
-            cur.all_shown && (hide(t), show("all_shown"));
-            var s = !1,
-                o = function(e) {
-                    e.keyCode == KEY.ESC && (s = !0)
-                };
-            addEvent(document, "keyup", o);
-            var r = feed.getSectionParams(cur.section || "news");
-            extend(r, {
-                offset: cur.offset,
-                from: cur.from,
-                part: 1,
-                more: 1,
-                last_view: ge("feedback_unread_bar") ? 1 : cur.options.last_view
-            });
-            var i = cur.section;
-            ajax.post("al_feed.php?sm_" + cur.section, r, {
-                onDone: function(e, t) {
-                    if (removeEvent(document, "keyup", o), i == cur.section) {
-                        if (s) return void(cur.disableAutoMore = !0);
-                        if (t) {
-                            var r, n = ce("div");
-                            for (n.innerHTML = t; r = n.firstChild;) r.firstChild && r.firstChild.id && !ge(r.firstChild.id) || "feedback_unread_bar" == r.id || "feed_row_fb_hidden" == r.className ? cur.rowsCont.appendChild(r) : n.removeChild(r)
+            if (cur.all_shown && (hide(t), show("all_shown")), "live" != cur.section) {
+                var s = !1,
+                    o = function(e) {
+                        e.keyCode == KEY.ESC && (s = !0)
+                    };
+                addEvent(document, "keyup", o);
+                var r = feed.getSectionParams(cur.section || "news");
+                extend(r, {
+                    offset: cur.offset,
+                    from: cur.from,
+                    part: 1,
+                    more: 1,
+                    last_view: ge("feedback_unread_bar") ? 1 : cur.options.last_view
+                });
+                var i = cur.section;
+                ajax.post("al_feed.php?sm_" + cur.section, r, {
+                    onDone: function(e, t) {
+                        if (removeEvent(document, "keyup", o), i == cur.section) {
+                            if (s) return void(cur.disableAutoMore = !0);
+                            if (t) {
+                                var r, n = ce("div");
+                                for (n.innerHTML = t; r = n.firstChild;) r.firstChild && r.firstChild.id && !ge(r.firstChild.id) || "feedback_unread_bar" == r.id || "feed_row_fb_hidden" == r.className ? cur.rowsCont.appendChild(r) : n.removeChild(r)
+                            }
+                            shortCurrency(), feed.applyOptions(e), setTimeout(feed.scrollCheck, 200)
                         }
-                        shortCurrency(), feed.applyOptions(e), setTimeout(feed.scrollCheck, 200)
-                    }
-                },
-                showProgress: function() {
-                    lockButton(t), cur.isFeedLoading = !0
-                },
-                hideProgress: function() {
-                    unlockButton(t), cur.isFeedLoading = !1
-                },
-                cache: 1
-            })
+                    },
+                    showProgress: function() {
+                        lockButton(t), cur.isFeedLoading = !0
+                    },
+                    hideProgress: function() {
+                        unlockButton(t), cur.isFeedLoading = !1
+                    },
+                    cache: 1
+                })
+            }
         }
     },
     showMoreFriends: function(e, t) {
@@ -946,8 +948,7 @@ var Feed = {
             onDone: function(s) {
                 val("post" + e, s), each(geByClass("post", cur.rowsCont), function(s, o) {
                     var r = this.id.match(/post((-?\d+)_(-?\d+)(_\d+)?)/);
-                    r && r[1] != e && (!r[4] && r[2] == t || r[4] && r[3] == t) && (revertLastInlineVideo(this),
-                        hide(this.parentNode))
+                    r && r[1] != e && (!r[4] && r[2] == t || r[4] && r[3] == t) && (revertLastInlineVideo(this), hide(this.parentNode))
                 })
             },
             showProgress: o && lockButton.pbind(o),

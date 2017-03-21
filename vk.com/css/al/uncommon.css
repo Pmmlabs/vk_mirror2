@@ -1036,6 +1036,19 @@ div.validation_last_button .button {
     cursor: pointer
 }
 
+.private_link_icon {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2212%22%20height%3D%2214%22%20viewBox%3D%22117%2023%2012%2014%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M119%2029v-2c0-2.2%201.8-4%204-4s4%201.78%204%204v2h1c.55%200%201%20.45%201%201v6c0%20.55-.46%201-1%201h-10c-.55%200-1-.45-1-1v-6c0-.55.46-1%201-1h1zm2-2v2h4v-2c0-1.1-.9-2-2-2s-2%20.9-2%202z%22%20fill%3D%22%23A9AFB8%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E") 50% no-repeat;
+    float: left;
+    width: 12px;
+    height: 14px;
+    margin-top: 22px;
+    margin-left: 7px
+}
+
+.horizontal_row {
+    overflow: hidden
+}
+
 .shorten_error {
     padding-bottom: 0;
     visibility: hidden;
@@ -1119,7 +1132,8 @@ div.validation_last_button .button {
     font-size: 16px;
     right: 0;
     bottom: 0;
-    height: 19px
+    height: 19px;
+    float: left
 }
 
 .shorten_list_body {

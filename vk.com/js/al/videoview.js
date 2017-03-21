@@ -315,7 +315,7 @@ var Videoview = {
         },
         getVideoModule: function(e) {
             var i = cur.currentModule ? cur.currentModule() : cur.module;
-            return window.Video && Video.isInVideosList() && (i = cur.oid < 0 ? "community_videos" : cur.oid == vk.id ? "profile_own_videos" : "profile_videos"), "feed" == i && "feed_block" == VideoPlaylist.getCurListId() && (i = "feed_block"), "feed" == i && "videos" == cur.section && (i = "feed_videos"), i
+            return window.Video && Video.isInVideosList() && (i = cur.oid < 0 ? "community_videos" : cur.oid == vk.id ? "profile_own_videos" : "profile_videos"), "feed" == i && "feed_block" == VideoPlaylist.getCurListId() && (i = "feed_block"), "feed" == i && "videos" == cur.section && (i = "feed_videos"), "feed" == i && "live" == cur.section && (i = "feed_live"), i
         },
         showPlaylist: function() {
             VideoPlaylist.toggle(!0)
@@ -829,11 +829,10 @@ var Videoview = {
                     mvcur.noHistory = 1, mvcur.forceHistoryHide = i, __adsUpdate("very_lazy");
                     var n = cur.mvHistoryBack ? -cur.mvHistoryBack : -1;
                     return cur.mvHistoryBack = 0, setTimeout(function() {
-                        mvcur.mvShown || (Videoview.destroyPlayer(), VideoPlaylist.removeBlock())
+                        mvcur.mvShown || (Videoview.destroyPlayer(), VideoPlaylist.removeBlock());
                     }, 10), history.go(n)
                 }
-                if (mvcur.forceHistoryHide && (i = mvcur.forceHistoryHide,
-                        mvcur.forceHistoryHide = !1), mvcur.statusVideo) {
+                if (mvcur.forceHistoryHide && (i = mvcur.forceHistoryHide, mvcur.forceHistoryHide = !1), mvcur.statusVideo) {
                     var d = ge("mv_like_icon");
                     if (d) {
                         var r = d.parentNode.tt;
@@ -2678,7 +2677,8 @@ window.VideoChat = {
         if (s) {
             VideoChat.stickersSenders = VideoChat.stickersSenders || {};
             var l = VideoChat.stickersSenders[o + "_" + s] || 0;
-            if (VideoChat.stickersSenders[o + "_" + s] = vkNow(), vkNow() - l < 5e3) return;
+            if (VideoChat.stickersSenders[o + "_" + s] = vkNow(),
+                vkNow() - l < 5e3) return;
             r = getTemplate("video_chat_sticker", {
                 sticker_id: s,
                 pack_id: v,

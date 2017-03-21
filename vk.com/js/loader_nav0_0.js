@@ -123,12 +123,12 @@ var navMap = {
 var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2889730895,
-    'common.js': 1141,
+    'common.js': 1142,
     'common.css': 20597691458,
     'pads.css': 12695092610,
     'retina.css': 1499557272,
     'uncommon.js': 1524646384,
-    'uncommon.css': 13711695198,
+    'uncommon.css': 12575660973,
     'filebutton.css': 1044306797,
     'filebutton.js': 2454165044,
     'lite.js': 2040438164,
@@ -189,14 +189,14 @@ var stVersions = {
     'video.css': 20973740394,
     'videocat.js': 1618923991,
     'videocat.css': 19294725139,
-    'videoview.js': 483488435,
+    'videoview.js': 2830712022,
     'videoview.css': 12883944143,
     'video_edit.js': 2135196486,
     'video_edit.css': 18853332182,
     'video_upload.js': 2461196155,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 10695696670,
-    'videoplayer.js': 69938863217,
+    'videoplayer.js': 71222162006,
     'videoplayer.css': 37047997232,
     'translation.js': 2541156631,
     'translation.css': 11697807636,
@@ -214,7 +214,7 @@ var stVersions = {
     'module.css': 16058248528,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 16708149129,
-    'page.js': 1208908551,
+    'page.js': 1513298084,
     'page.css': 19316369092,
     'page_help.css': 19881215620,
     'public.css': 24333101513,
@@ -257,7 +257,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 3928167860,
+    'feed.js': 2192998114,
     'feed.css': 19264398939,
     'privacy.js': 3875115925,
     'privacy.css': 13644980694,
@@ -516,7 +516,7 @@ var stVersions = {
     'speech_worker_opus.js': 3385759348,
     'stories.js': 3550070580,
     'stories.css': 18360352148,
-    'shortener.js': 3368715981,
+    'shortener.js': 1002525642,
     'lang': 6760
 };
 var stTypes = {
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 2576;
+var _rnd = 6001;
