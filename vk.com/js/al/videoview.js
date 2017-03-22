@@ -197,7 +197,7 @@ var Videoview = {
                         break;
                     case 2:
                         vkImage().src = "//vk.com/rtrg?r=lD4OYmfC8ehvdc/8TL9AsAjM956qNaHyj20XV5mCNiTgYKQ6X*IXgwE8VbgqOf7rdbLJq7uCRBrdnFPTcUU2NjMgy8x4y6NWrYVwQMteNWh62XnLoNVZqobnsMMGm1OyTW09rhEkmiX5jqk3CI3JIIYbIbd8K7EC0ytQ4Kp4Kro-"
-                } - 33118207 == e || -78630688 == e ? vkImage().src = "//rs.mail.ru/d23694799.gif" : -18479452 == e ? vkImage().src = "//rs.mail.ru/d25688115.gif" : -68420747 == e && (vkImage().src = "//rs.mail.ru/d23694799.gif")
+                } - 33118207 == e || -78630688 == e ? vkImage().src = "//rs.mail.ru/d23694799.gif" : -68420747 == e || -121650415 == e ? vkImage().src = "//rs.mail.ru/d25688137.gif" : -18479452 == e && (vkImage().src = "//rs.mail.ru/d25688115.gif")
             },
             onVideoPlayFinished: function() {
                 if (window.mvcur && mvcur.mvShown && (mvcur.finished = !0, mvcur.mousemoved = !0, Videoview.moveCheck(), Videoview.logViewedPercentage()), window.mvcur && mvcur.mvShown && mvcur.adData) mvcur.adData.stat_link_start && !mvcur.adData.view_complete_start && (ajax.post(mvcur.adData.stat_link_start, {}, {
@@ -826,7 +826,8 @@ var Videoview = {
                 }
                 if (!i && mvcur.minimized) return void(mvcur.noLocChange || e === !0 || (2 === e ? nav.setLoc(hab.getLoc()) : layerQueue.count() || Videoview.backLocation()));
                 if (!mvcur.noHistory && !e && !t) {
-                    mvcur.noHistory = 1, mvcur.forceHistoryHide = i, __adsUpdate("very_lazy");
+                    mvcur.noHistory = 1, mvcur.forceHistoryHide = i,
+                        __adsUpdate("very_lazy");
                     var n = cur.mvHistoryBack ? -cur.mvHistoryBack : -1;
                     return cur.mvHistoryBack = 0, setTimeout(function() {
                         mvcur.mvShown || (Videoview.destroyPlayer(), VideoPlaylist.removeBlock())

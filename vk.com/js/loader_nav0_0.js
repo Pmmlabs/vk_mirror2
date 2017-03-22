@@ -189,7 +189,7 @@ var stVersions = {
     'video.css': 20973740394,
     'videocat.js': 1618923991,
     'videocat.css': 19294725139,
-    'videoview.js': 847170917,
+    'videoview.js': 1730204077,
     'videoview.css': 12883944143,
     'video_edit.js': 2135196486,
     'video_edit.css': 18853332182,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 2609;
+var _rnd = 9980;
