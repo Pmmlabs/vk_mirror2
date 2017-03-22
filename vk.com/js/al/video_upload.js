@@ -917,15 +917,13 @@ var VideoUpload = {
             o = geByClass1("video_tc_item_selected", e.bodyNode),
             a = null;
         o && (a = o.getAttribute("data-thumb-id"));
-        var d = val("video_new_live_trans_title"),
-            i = val("video_new_live_trans_description"),
+        var d = trim(val("video_new_live_trans_title")),
+            i = trim(val("video_new_live_trans_description")),
             t = +cur.uploadVideoLiveCategoryDropdown.val();
-        if (t > 0) {
-            if (3 == t) {
-                var r = +cur.uploadVideoLiveGameCategoryDropdown.val();
-                t = r > 0 ? r : t
-            }
-        } else t = 0;
+        if (3 == t) {
+            var r = +cur.uploadVideoLiveGameCategoryDropdown.val();
+            t = r > 0 ? r : t
+        }
         var l = {
             owner_id: cur.oid,
             thumb_id: a,
@@ -936,12 +934,11 @@ var VideoUpload = {
             preparation_check: isChecked("video_create_live_preparation_check"),
             rhash: VideoUpload.liveTransHash
         };
-        cur.oid < 0 ? l.no_comments = isChecked("video_create_live_no_comments") : (l.privacy_view = Privacy.getValue("video_live_view"), l.privacy_comment = Privacy.getValue("video_live_comment")), VideoUpload.lockSaveButton(), ajax.post("al_video.php?act=a_add_new_live_trans", l, {
-            onDone: function() {},
+        return cur.oid < 0 ? l.no_comments = isChecked("video_create_live_no_comments") : (l.privacy_view = Privacy.getValue("video_live_view"), l.privacy_comment = Privacy.getValue("video_live_comment")), l.title ? l.category ? (VideoUpload.lockSaveButton(), void ajax.post("al_video.php?act=a_add_new_live_trans", l, {
             onFail: function(e) {
-                return showFastBox(getLang("video_create_live_error"), e || getLang("video_create_live_error_try_later")), !0
+                return VideoUpload.unlockSaveButton(), showFastBox(getLang("video_create_live_error"), e || getLang("video_create_live_error_try_later")), !0
             }
-        })
+        })) : notaBene(domClosest("dropdown_container", "video_upload_live_category")) : notaBene("video_new_live_trans_title")
     }
 };
 try {
