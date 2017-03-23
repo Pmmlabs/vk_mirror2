@@ -2193,6 +2193,11 @@ a.ads_dd_menu_multi_item.label:hover {
     background-position: right 50%
 }
 
+#ads_retargeting_groups h2 {
+    padding-bottom: 0;
+    margin-bottom: -1px
+}
+
 #ads_retargeting_groups .ui_table_filter.ui_search {
     border-top: 0
 }

@@ -2760,7 +2760,7 @@
 
     function Be(e) {
         if (lt[e]) return lt[e];
-        for (var t = e.length, n = [], r = [], a = "", i = 0; t > i; i++) {
+        for (var t = e ? e.length : 0, n = [], r = [], a = "", i = 0; t > i; i++) {
             var o = e[i],
                 s = o.charCodeAt(0);
             s >= 48 && 57 >= s || "_" === o || "-" === o ? a += o : ("(" === o || ")" === o || ":" === o || "," === o) && ("" !== a && (r.push(a), n.push("id"), a = ""), r.push(o), n.push(o))
@@ -4307,7 +4307,7 @@
                     return "a" === e[0]
                 }),
                 i = t.filter(function(e) {
-                    return "r" === e[0]
+                    return "r" === e[0];
                 });
             if (i.map(function(t) {
                     return e.children[t[2]]

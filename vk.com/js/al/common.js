@@ -4107,14 +4107,20 @@ var ajax = {
             }
         }
         if (o.loader) {
+            var boxLayerWrapWasVisible = isVisible(boxLayerWrap);
+
             o.showProgress = function() {
                 boxRefreshCoords(boxLoader);
                 show(boxLoader);
-                show(boxLayerWrap);
+                if (!boxLayerWrapWasVisible) {
+                    show(boxLayerWrap);
+                }
             }
             o.hideProgress = function() {
                 hide(boxLoader);
-                hide(boxLayerWrap);
+                if (!boxLayerWrapWasVisible) {
+                    hide(boxLayerWrap);
+                }
             }
         }
         return ajax._post(url, q, o);
@@ -7189,8 +7195,11 @@ function showTabbedBox(url, params, options, e) {
 
 function showFastBox(o, c, yes, onYes, no, onNo) {
     return (new MessageBox(typeof(o) == 'string' ? {
-        title: o
-    } : o)).content(c).setButtons(yes, onYes, no, onNo).show();
+            title: o
+        } : o))
+        .content(c)
+        .setButtons(yes, onYes, no, onNo)
+        .show();
 }
 
 function showCaptchaBox(sid, dif, box, o) {

@@ -1198,7 +1198,8 @@ img.im_photo_thumb {
 }
 
 .im-page_classic.im-page .im-page--history_search .im-page--chat-body-wrap-inner {
-    vertical-align: top
+    vertical-align: top;
+    padding-top: 49px
 }
 
 .im-page_classic.im-page .im-page--chat-body-wrap-inner {
@@ -1622,6 +1623,10 @@ img.im_photo_thumb {
     display: none
 }
 
+.im-page .im-page--history_search .im-page--chat-body-abs>.ui_scroll_overflow>.ui_scroll_outer {
+    min-height: 100%
+}
+
 .im-page .im-page--history_search-empty .im-page-chat-contain,
 .im-page .im-page--history_search-empty .im-page--chat-body-abs>.ui_scroll_overflow>.ui_scroll_outer,
 .im-page .im-page--history_search-empty .im-page--chat-body-abs>.ui_scroll_overflow>.ui_scroll_outer>.ui_scroll_inner,
@@ -1648,7 +1653,8 @@ img.im_photo_thumb {
 
 .im-page .im-page--history_search .im-page--chat-body-wrap-inner {
     top: 0;
-    bottom: auto
+    bottom: auto;
+    padding-top: 0
 }
 
 .im-page .im-page--history_search .im-chat-input {
@@ -4106,7 +4112,8 @@ body[data-useragent*=msie9] .im-page--title-meta {
     overflow: hidden;
     font-size: 12.5px;
     color: #656565;
-    padding-bottom: 1px
+    padding-bottom: 1px;
+    line-height: 16px
 }
 
 .nim-dialog .nim-dialog--preview>b {
@@ -4120,11 +4127,18 @@ body[data-useragent*=msie9] .im-page--title-meta {
 .nim-dialog .nim-dialog--typer-el {
     display: none;
     overflow: hidden;
-    content: "...";
-    vertical-align: bottom;
-    -webkit-animation: 1.1s linear 0s infinite typer-simple;
-    -o-animation: 1.1s linear 0s infinite typer-simple;
-    animation: 1.1s linear 0s infinite typer-simple
+    vertical-align: top;
+    line-height: 16px;
+    height: 16px
+}
+
+.nim-dialog .nim-dialog--typer-el:before {
+    display: inline-block;
+    content: '.\A..\A...';
+    white-space: pre-wrap;
+    -webkit-animation: typer-simple 1s steps(4) infinite;
+    -o-animation: typer-simple 1s steps(4) infinite;
+    animation: typer-simple 1s steps(4) infinite
 }
 
 .nim-dialog .nim-dialog--unread {
@@ -4805,7 +4819,8 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .nim-dialog.nim-dialog_classic .nim-dialog--text-preview {
     max-width: 85%;
-    width: 85%
+    width: 85%;
+    line-height: 16px
 }
 
 .nim-dialog.nim-dialog_classic .nim-dialog--date {
@@ -4834,46 +4849,71 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 @-webkit-keyframes typer-simple {
     0%,
-    24% {
-        width: 3px
+    24.99% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0)
     }
     25%,
-    49% {
-        width: 6px
+    49.99% {
+        -webkit-transform: translateY(-16px);
+        transform: translateY(-16px)
     }
     50%,
+    99.99% {
+        -webkit-transform: translateY(-32px);
+        transform: translateY(-32px)
+    }
     to {
-        width: 12px
+        -webkit-transform: translateY(0);
+        transform: translateY(0)
     }
 }
 
 @-o-keyframes typer-simple {
     0%,
-    24% {
-        width: 3px
+    24.99% {
+        -o-transform: translateY(0);
+        transform: translateY(0)
     }
     25%,
-    49% {
-        width: 6px
+    49.99% {
+        -o-transform: translateY(-16px);
+        transform: translateY(-16px)
     }
     50%,
+    99.99% {
+        -o-transform: translateY(-32px);
+        transform: translateY(-32px)
+    }
     to {
-        width: 12px
+        -o-transform: translateY(0);
+        transform: translateY(0)
     }
 }
 
 @keyframes typer-simple {
     0%,
-    24% {
-        width: 3px
+    24.99% {
+        -webkit-transform: translateY(0);
+        -o-transform: translateY(0);
+        transform: translateY(0)
     }
     25%,
-    49% {
-        width: 6px
+    49.99% {
+        -webkit-transform: translateY(-16px);
+        -o-transform: translateY(-16px);
+        transform: translateY(-16px)
     }
     50%,
+    99.99% {
+        -webkit-transform: translateY(-32px);
+        -o-transform: translateY(-32px);
+        transform: translateY(-32px)
+    }
     to {
-        width: 12px
+        -webkit-transform: translateY(0);
+        -o-transform: translateY(0);
+        transform: translateY(0)
     }
 }
 
@@ -6654,6 +6694,74 @@ body.sf .nim-dialog .nim-dialog--unread {
         -o-transform: scale(1);
         transform: scale(1)
     }
+}
+
+#wk_history_wrap .media_desc_soft {
+    margin-top: 22px;
+    margin-right: 22px
+}
+
+#wk_history_wrap .media_desc_soft .page_doc_photo_href {
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px
+}
+
+#wk_history_wrap .media_desc_soft .page_doc_photo_href:before {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    padding: 5px 8px;
+    border-radius: 2px;
+    background: rgba(0, 0, 0, .5);
+    content: attr(data-ext);
+    text-transform: uppercase
+}
+
+#wk_history_wrap .media_desc_soft .page_doc_photo {
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .12)
+}
+
+#wk_history_wrap .media_desc_soft .page_preview_doc_photo_hint {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    padding: 6px 8px;
+    border-radius: 0 0 2px 2px;
+    background: rgba(0, 0, 0, .5);
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+#wk_history_wrap .media_desc_soft .page_preview_doc_photo_hint_title {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+#wk_history_wrap .media_desc_soft .page_preview_doc_photo_hint_size {
+    float: right;
+    padding-left: 6px
+}
+
+#wk_history_wrap .media_desc__doc {
+    float: left;
+    margin-top: 22px;
+    width: 100%
+}
+
+.wk_history_doc_content #wk_history_wrap #wk_history_wall {
+    padding: 0 26px 22px
+}
+
+.wk_history_doc_content #wk_history_wrap #wk_history_rows {
+    margin-right: -22px
 }
 
 .im_rc_emojibtn {

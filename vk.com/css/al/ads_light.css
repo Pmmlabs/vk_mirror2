@@ -1473,10 +1473,8 @@ a.ads_ad_box2:hover {
     right: 0;
     top: 0;
     bottom: 0;
-    border: 1px solid #001134;
-    border-radius: 2px;
-    opacity: 0.1;
-    filter: alpha(opacity=10)
+    border: 1px solid rgba(0, 17, 52, .1);
+    border-radius: 2px
 }
 
 .ads_ad_box.redesign .ads_ad_box6 {
