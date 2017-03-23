@@ -246,7 +246,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 102693256300,
-    'imn.js': 112112008533,
+    'imn.js': 113200235640,
     'im.js': 1322065004,
     'emoji.js': 4179107526,
     'wide_dd.css': 11038444432,
@@ -329,7 +329,7 @@ var stVersions = {
     'tasks.js': 662793453,
     'tasks.css': 12452425740,
     'helpdesk.js': 3922838592,
-    'helpdesk.css': 13717613345,
+    'helpdesk.css': 12474232551,
     'tickets.js': 3747535527,
     'tickets.css': 16444773972,
     'faq.js': 600540081,
@@ -346,7 +346,7 @@ var stVersions = {
     'groupinfo.css': 12901411135,
     'bugs.js': 3874995669,
     'bugs.css': 11077340834,
-    'bugtracker.js': 188714712,
+    'bugtracker.js': 917615535,
     'bugtracker.css': 12922866553,
     'login.css': 16803111393,
     'login.js': 3551917100,
@@ -428,7 +428,7 @@ var stVersions = {
     'ui_manual.css': 11990017539,
     'admin.js': 2866808704,
     'admin.css': 15540361948,
-    'duty_timetable.js': 3515753564,
+    'duty_timetable.js': 929110027,
     'duty_timetable.css': 14030893916,
     'paysupp_admin.js': 127920242,
     'paysupp_admin.css': 13060633882,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 1785;
+var _rnd = 1324;

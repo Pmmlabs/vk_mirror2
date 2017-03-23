@@ -265,7 +265,8 @@
                 a = r[0],
                 i = r[1],
                 o = r[2];
-            r[3], r[4], t.allShown = o, t.history = u(t.history) + a, t.historyToAppend = a;
+            r[3], r[4];
+            t.allShown = o, t.history = u(t.history) + a, t.historyToAppend = a;
             var s = Object.keys(i).length;
             return t.skipped -= s, t.offset += s, t.msgs = extend(t.msgs, i), e
         })
@@ -1604,7 +1605,8 @@
                 hash: t.tabs[e].hash
             }).then(function(r) {
                 var a = Bt(r, 2);
-                return a[0], a[1], delete t.blockedFlagUpdates[e], n.msgs = null, n.history = null, n.unread = 0, n.lastmsg = !1, n.lastmsg_meta = null, t
+                a[0], a[1];
+                return delete t.blockedFlagUpdates[e], n.msgs = null, n.history = null, n.unread = 0, n.lastmsg = !1, n.lastmsg_meta = null, t
             })
         }
     }), t.updateChatTopic = s(function(e, t, n) {
@@ -2054,7 +2056,8 @@
     }
 
     function L(e, t) {
-        return new Date(1e3 * e), langDate(1e3 * e, "{hour}:{minute} {am_pm}", 1e3 * t, [], !0)
+        new Date(1e3 * e);
+        return langDate(1e3 * e, "{hour}:{minute} {am_pm}", 1e3 * t, [], !0)
     }
 
     function A(e, t, n) {
@@ -4373,7 +4376,8 @@
 
     function T(e, t) {
         if (e.get().loading || e.get().stop || !e.get().activated) return Promise.resolve([]);
-        Math.random(), e.get().loading = !0;
+        Math.random();
+        e.get().loading = !0;
         for (var n = arguments.length, r = Array(n > 2 ? n - 2 : 0), a = 2; n > a; a++) r[a - 2] = arguments[a];
         return t.apply(void 0, r).then(function(t) {
             e.get().loading = !1
@@ -5448,7 +5452,8 @@
         var n = arguments.length <= 2 || void 0 === arguments[2] ? {} : arguments[2],
             r = a(e, t, n),
             i = r.request;
-        return r.cancel, i
+        r.cancel;
+        return i
     }
 
     function a(e, t) {
@@ -6045,7 +6050,8 @@
             changedMessageSelection: function(t) {
                 if (0 !== t.get().peer) {
                     var n = t.get().selectedMessages || [];
-                    n.length > 0, n.length > 0 ? l(e, n, t) : u(e, t)
+                    n.length > 0;
+                    n.length > 0 ? l(e, n, t) : u(e, t)
                 }
             },
             unmount: function() {
@@ -7847,7 +7853,8 @@
             },
             updateChatPhoto: function(e, a, i) {
                 if ((0, q.isPeerActive)(e.peerId, i.get())) {
-                    i.get().tabs[e.peerId], r.renderPeer(i);
+                    i.get().tabs[e.peerId];
+                    r.renderPeer(i);
                     var o = I(n);
                     (0, q.addChatPhotoToUpdate)(e, a, i.get(), d(t)), o && n.scrollBottom(se)
                 }
@@ -8008,7 +8015,10 @@
                 l().updateState(e, t)
             },
             updateChat: function(e, t) {
-                e.get().peer === t && (e.get().tabs[t], r.changeActions(e), r.renderPeer(e), a.updateState(e), (0, z.updateMentions)(e.get()))
+                if (e.get().peer === t) {
+                    e.get().tabs[t];
+                    r.changeActions(e), r.renderPeer(e), a.updateState(e), (0, z.updateMentions)(e.get())
+                }
             },
             focustTxt: function(e) {
                 a.focusOn(e)
@@ -8225,7 +8235,8 @@
     }
 
     function s(e, t, n) {
-        e.get().peer, uiSearch.showProgress(n), (0, f.searchMessagesInplace)(e.get().peer, e.get()).then(function(r) {
+        e.get().peer;
+        uiSearch.showProgress(n), (0, f.searchMessagesInplace)(e.get().peer, e.get()).then(function(r) {
             uiSearch.hideProgress(n), t().insertSearch(r, e)
         })["catch"](function(e) {
             uiSearch.focus(n), uiSearch.hideProgress(n)
@@ -8757,7 +8768,7 @@
                             case Y.eventTypes.GOT_ONLINE:
                             case Y.eventTypes.GOT_OFFLINE:
                                 var E = o.type === Y.eventTypes.GOT_ONLINE;
-                                e.set(re.updateOnline.bind(null, o.userId, E)).then(function(e) {
+                                e.set(re.updateOnline.bind(null, o.userId, E ? o.platform : !1)).then(function(e) {
                                     (0, ae.isTabLoaded)(e.get(), o.userId) && (t.updateOnline(o.userId, e), n.updateOnline(o.userId, e))
                                 });
                                 break;
@@ -9874,7 +9885,8 @@
 
     function s(e, t, n, r, a, i) {
         var s = arguments.length <= 6 || void 0 === arguments[6] ? !0 : arguments[6];
-        return r.get().tabs[t], I(t, r) ? Promise.resolve(!1) : (0, H.getBindAttachToUrl)(t, cur.imDb, r.get()).then(function(l) {
+        r.get().tabs[t];
+        return I(t, r) ? Promise.resolve(!1) : (0, H.getBindAttachToUrl)(t, cur.imDb, r.get()).then(function(l) {
             var u = Object.keys(l).filter(function(e) {
                 return e === n.message
             }).map(function(e) {
@@ -10994,8 +11006,8 @@
                 o = i(e);
             return o ? t : t.concat([
                 [a, i]
-            ])
-        }, []);
+            ]);
+        }, [])
     }
 
     function r(e, t) {
@@ -11315,7 +11327,8 @@
     "use strict";
     Object.defineProperty(t, "__esModule", {
         value: !0
-    }), t.screenfull = function() {
+    });
+    t.screenfull = function() {
         var e = "undefined" != typeof Element && "ALLOW_KEYBOARD_INPUT" in Element,
             t = function() {
                 for (var e, t, n = [
