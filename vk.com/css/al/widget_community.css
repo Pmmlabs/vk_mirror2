@@ -14,9 +14,9 @@
 }
 
 .wcommunity_wrap {
-    border-radius: 3px;
     background: #fff;
     padding: 13px;
+    border-radius: 3px;
     overflow: hidden
 }
 
@@ -36,6 +36,16 @@
 .wcommunity_wrap.wcommunity_colored:before,
 .wcommunity_wrap.wcommunity_no_head:before {
     display: none
+}
+
+.wcommunity_covered #page_wrap {
+    border-radius: 3px;
+    overflow: hidden
+}
+
+.wcommunity_covered .wcommunity_wrap {
+    overflow: visible;
+    border-radius: 6px 6px 0 0
 }
 
 .wcommunity_header {

@@ -1155,6 +1155,10 @@ var Settings = {
             subscription_id: s,
             action: "resume",
             hash: o
+        }, {
+            onFail: function(t) {
+                return setTimeout(showFastBox(getLang("global_error"), t).hide, 2e3), !0
+            }
         })
     },
     initApps: function(opts, appTpl) {

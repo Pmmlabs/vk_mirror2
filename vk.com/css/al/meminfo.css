@@ -147,7 +147,7 @@ table.history .cur_session {
     font-size: 1.19em
 }
 
-#mi_payments_buttons div {
+#mi_payments_buttons>div {
     margin-bottom: 10px
 }
 

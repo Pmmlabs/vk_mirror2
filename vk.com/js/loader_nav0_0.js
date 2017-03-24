@@ -267,7 +267,7 @@ var stVersions = {
     'apps_edit.css': 22731177304,
     'apps_check.js': 3844411974,
     'apps_check.css': 22587238697,
-    'settings.js': 3483701449,
+    'settings.js': 2453743841,
     'settings.css': 23636480318,
     'profile_edit.js': 312998250,
     'profile_edit.css': 13114351860,
@@ -291,7 +291,7 @@ var stVersions = {
     'fave.css': 17845229443,
     'widget_comments.css': 26551602920,
     'widget_auth.css': 21013876318,
-    'widget_community.css': 27245660636,
+    'widget_community.css': 25694199271,
     'widget_contactus.css': 23292134096,
     'widget_post.css': 25705289592,
     'widget_allow_messages_from_community.css': 24130329164,
@@ -342,7 +342,7 @@ var stVersions = {
     'sf.css': 11255126877,
     'sal.css': 12008213865,
     'members.css': 13030313510,
-    'meminfo.css': 15449087158,
+    'meminfo.css': 15370746402,
     'groupinfo.css': 12901411135,
     'bugs.js': 3874995669,
     'bugs.css': 11077340834,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 1324;
+var _rnd = 4284;
