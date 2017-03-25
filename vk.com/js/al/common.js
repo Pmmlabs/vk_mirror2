@@ -8820,7 +8820,7 @@ function showInlineVideo(videoId, listId, options, ev, thumb) {
         return showVideo(videoId, listId, options, ev);
     }
 
-    if (attr(thumb, 'data-loading')) return;
+    if (attr(thumb, 'data-loading')) return false;
 
     options = options || {};
 

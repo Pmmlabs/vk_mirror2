@@ -380,6 +380,15 @@ a.page_post_thumb_wrap:hover {
     background: none
 }
 
+.feedback_text .page_doc_row {
+    overflow: visible
+}
+
+.feedback_text .page_doc_row .page_doc_title {
+    max-width: 100%;
+    white-space: normal
+}
+
 .page_doc_row {
     font-size: 12.5px;
     color: #2a5885;

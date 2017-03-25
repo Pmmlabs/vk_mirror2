@@ -1894,6 +1894,11 @@ a.page_block_header:hover .apps_cat_header_link:after {
     margin-top: 0
 }
 
+.apps_settings_subscriptions_lnk {
+    display: block;
+    margin-top: 10px
+}
+
 .apps_access_item {
     margin-top: 12px;
     color: #656565;
