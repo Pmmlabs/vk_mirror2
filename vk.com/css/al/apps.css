@@ -1997,6 +1997,10 @@ a.page_block_header:hover .apps_cat_header_link:after {
     background-position: 0 -520px
 }
 
+.apps_access_phone {
+    background-position: 0 -560px
+}
+
 .apps_box_change_photo_text {
     text-align: center
 }
