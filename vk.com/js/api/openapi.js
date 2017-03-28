@@ -1775,7 +1775,6 @@ if (!VK.Widgets) {
             }
         }, {
             minWidth: 120,
-            maxWidth: 1200,
             startHeight: startHeight
         }, function(o, i, r) {
             rpc = r;

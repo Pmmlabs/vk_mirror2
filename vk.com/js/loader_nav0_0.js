@@ -476,7 +476,7 @@ var stVersions = {
     'paginated_table.js': 1572974868,
     'paginated_table.css': 13038309873,
     'api/share.js': 1988203672,
-    'api/openapi.js': 2411391688,
+    'api/openapi.js': 273491512,
     'api/xdm.js': 1449919642,
     'css_clean.js': 4210402166,
     'hls.min.js': 4279436662,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 2173;
+var _rnd = 5154;
