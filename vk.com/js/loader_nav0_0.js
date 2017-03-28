@@ -149,7 +149,7 @@ var stVersions = {
     'audio.css': 19096820961,
     'gifts.css': 16015506167,
     'gifts.js': 338252255,
-    'cc.js': 883568819,
+    'cc.js': 1644397126,
     'indexer.js': 1640179507,
     'graph.js': 3882247419,
     'graph.css': 14586350184,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 5586;
+var _rnd = 2173;
