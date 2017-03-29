@@ -3273,10 +3273,37 @@ function onDocumentClick(e) {
         opts.permanent = hash[1];
         href = '/' + hash[2];
     }
-    if (href.match(/#$/) || !(path = href.match(/^\/(.*?)(\?|#|$)/))) {
+    if (href.match(/#$/)) {
         return true;
     }
-    path = path[1];
+
+    var host;
+    var link = href;
+    // http(s) protocol and hostname (if equal to current) are removed from `href` - see above
+    if (!(path = href.match(/^\/(.*?)(\?|#|$)/))) {
+        if (target.hostname) {
+            host = target.hostname;
+            path = target.pathname + target.search;
+        } else {
+            var parseRes = /^([^:\/]+)?(?::(\d+))?(\/?[^#]*)(#?.*)$/i.exec(href);
+            if (!parseRes) {
+                return true;
+            }
+            host = parseRes[1];
+            path = parseRes[3] || '/';
+        }
+        // pass internal post links with different host (e.g. m.vk.com link on vk.com)
+        // through away with extra post params (see `nav.go`)
+        if (host && /(^|\.)vk\.com$/i.test(host) && target.getAttribute('data-post-click-type') === 'internal_link') {
+            target.setAttribute('data-change-location-with-post-away', 1);
+            link = target;
+        } else {
+            return true;
+        }
+    } else {
+        path = path[1];
+    }
+
     if (path.indexOf('.php') > 0 || /*path.indexOf('/') > 0 || */ path.match(/^(doc\-?\d+_\d+|graffiti\d+|reg\d+|images\/|utils\/|\.js|js\/|\.css|css\/|source\b)/)) {
         return true;
     }
@@ -3285,7 +3312,7 @@ function onDocumentClick(e) {
         opts.params = extend(opts.params || {}, q2ajx(_params));
     }
     try {
-        nav.go(href, e, opts);
+        nav.go(link, e, opts);
         return cancelEvent(e);
     } catch (e) {
         return true;
@@ -5545,6 +5572,24 @@ var nav = {
     },
 
     go: function(loc, ev, opts) {
+        var newLink;
+        var postParams;
+
+        if (loc && loc.href && loc.getAttribute && loc.getAttribute('data-change-location-with-post-away')) {
+            newLink = loc.href;
+            postParams = nav.getPostParams(loc);
+            var extraQuery = {};
+            if (postParams.post_id) {
+                extraQuery.post = postParams.post_id;
+                if (postParams.ad_data) {
+                    extraQuery.post_ad_data = postParams.ad_data;
+                }
+                newLink = '/away.php?to=' + encodeURIComponent(newLink) + '&' + ajx2q(extraQuery);
+            }
+            location.href = newLink;
+            return false;
+        }
+
         if (checkEvent(ev) || cur.noAjaxNav) return;
         LongView.onBeforePageChange();
         opts = opts || {};
@@ -5707,28 +5752,27 @@ var nav = {
             al_id: vk.id
         }, objLoc, opts.params || {});
 
-        var hasAttributes = !!(ev && ev.target && ev.target.getAttribute);
-        var post_id = hasAttributes ? ev.target.getAttribute('data-post-id') : '';
-        var parent_post_id = post_id ? ev.target.getAttribute('data-parent-post-id') : '';
-        var post_click_type = hasAttributes ? ev.target.getAttribute('data-post-click-type') : '';
-        var adDataWrapper;
-        var adData;
-        if (!where.params['_post'] && post_id) {
-            where.params['_post'] = post_id;
+        var postParamsEl = ev && ev.target && ev.target.getAttribute ? ev.target : (loc && loc.getAttribute ? loc : null);
+        postParams = nav.getPostParams(postParamsEl, !!where.params._post_click_type);
+
+        function setPostParam(val, setName, checkNotSet) {
+            var existingVal = checkNotSet && where.params[setName];
+            if (!val || existingVal) {
+                return false;
+            }
+            where.params[setName] = val;
+            return true;
         }
-        if (!where.params['_parent_post'] && parent_post_id) {
-            where.params['_parent_post'] = parent_post_id;
-        }
-        if (!where.params['_post_click_type'] && post_click_type) {
-            where.params['_post_click_type'] = post_click_type;
-        }
-        if (!where.params['_post_ad_data'] && where.params['_post_click_type']) {
-            adDataWrapper = gpeByClass('_ads_promoted_post_data_w', ev.target);
-            adData = adDataWrapper && adDataWrapper.getAttribute('data-ad');
-            if (adData) {
-                where.params['_post_ad_data'] = adData;
+
+        setPostParam(postParams.post_id, '_post', true);
+        setPostParam(postParams.parent_post_id, '_parent_post', true);
+        setPostParam(postParams.post_click_type, '_post_click_type', true);
+        if (where.params._post_click_type) {
+            if (setPostParam(postParams.ad_data, '_post_ad_data', true)) {
+                setPostParam(postParams.ad_block_unique_id, '_post_ad_block_unique_id')
             }
         }
+
         if (opts.cl_id) {
             where.params.fr_click = cur.oid + ',' + opts.cl_id + ',' + cur.options.fr_click;
         }
@@ -6027,6 +6071,43 @@ var nav = {
     init: function() {
         nav.strLoc = hab.getLoc();
         nav.objLoc = nav.fromStr(nav.strLoc);
+    },
+    getPostParams: function(linkElem, forceCheckAdData) {
+        var hasAttributes = !!(linkElem && linkElem.getAttribute);
+        var params = {};
+        if (!hasAttributes) {
+            return params;
+        }
+
+        var post_id = hasAttributes && linkElem.getAttribute('data-post-id');
+        if (post_id) {
+            params.post_id = post_id;
+        }
+
+        var parent_post_id = linkElem.getAttribute('data-parent-post-id');
+        if (parent_post_id) {
+            params.parent_post_id = parent_post_id;
+        }
+
+        var post_click_type = hasAttributes && linkElem.getAttribute('data-post-click-type');
+        if (post_click_type) {
+            params.post_click_type = post_click_type;
+        }
+
+        var checkAdData = !!post_click_type || forceCheckAdData;
+        if (checkAdData) {
+            var adDataWrapper = gpeByClass('_ads_promoted_post_data_w', linkElem);
+            var adData = adDataWrapper && adDataWrapper.getAttribute('data-ad');
+            var adBlockUID = adDataWrapper && adDataWrapper.getAttribute('data-ad-block-uid');
+            if (adData) {
+                params.ad_data = adData;
+            }
+            if (adBlockUID) {
+                params.ad_block_unique_id = adBlockUID;
+            }
+        }
+
+        return params;
     }
 }
 
@@ -9083,7 +9164,7 @@ function showWiki(page, edit, e, opts) {
     ajax.post('wkview.php', extend({
         act: 'show',
         loc: nav.objLoc[0]
-    }, page), params);
+    }, page, opts.ads_params), params);
     return cancelEvent(e);
 }
 

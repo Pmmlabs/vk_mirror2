@@ -4714,9 +4714,11 @@ var Wall = {
         return target || true;
     },
     postClick: function(post, event, opts) {
+        opts = opts || {};
         var matches = (post || '').match(/^(-?\d+)_(wall)?(\d+)$/),
             el = ge('post' + post);
-        if (opts && opts.skipCheck) {
+
+        if (opts.skipCheck) {
             var clickEl = true;
         } else {
             var clickEl = Wall.checkPostClick(el, event);
@@ -4735,23 +4737,31 @@ var Wall = {
         if (!matches) return;
 
         if (hasClass(el, 'suggest') || cur.onepost) return;
+
+        var adData = el.getAttribute('data-ad');
+        var adBlockUID = el.getAttribute('data-ad-block-uid');
+
         var url = '/wall' + matches[1] + '_' + matches[3];
         if (browser.mobile && event) {
-            nav.go(url);
+            var navOpts = {};
+            if (adData && adBlockUID) {
+                navOpts.params = {
+                    _post_ad_data: adData,
+                    _post_ad_block_unique_id: adBlockUID
+                };
+            }
+            nav.go(url, null, navOpts);
         } else if (checkEvent(event)) {
             window.open(url, '_blank');
         } else {
-            var adParams;
-            var adData = el.getAttribute('data-ad');
-            var adBlockUID = el.getAttribute('data-ad-block-uid');
             if (adData && adBlockUID) {
-                adParams = {
+                opts.ads_params = {
                     post_ad_data: adData,
                     ad_block_unique_id: adBlockUID
                 };
             }
             Wall.hideEditPostReply();
-            Wall.postFull('wall' + matches[1] + '_' + matches[3], false, opts, adParams);
+            Wall.postFull('wall' + matches[1] + '_' + matches[3], false, opts);
         }
     },
     postClickStat: function(event) {
@@ -4886,7 +4896,7 @@ var Wall = {
 
         return cancelEvent(ev);
     },
-    postFull: function(post, event, opts, adParams) {
+    postFull: function(post, event, opts) {
         if (post.match(/^wall-?\d+_\d+$/) && !(opts || {}).nolist && !(cur.pgParams && (cur.pgParams.owners_only || cur.pgParams.q))) {
             switch (cur.wallType) {
                 case 'all':
@@ -4901,9 +4911,9 @@ var Wall = {
                     //   break;
             }
         }
-        return showWiki(extend({
+        return showWiki({
             w: post
-        }, adParams), false, event, opts);
+        }, false, event, opts);
     },
     checkReplyClick: function(el, event) {
         event = event || window.event;

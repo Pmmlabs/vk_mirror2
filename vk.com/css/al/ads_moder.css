@@ -694,6 +694,10 @@ body .idd_popup .idd_items_wrap {
     width: 250px
 }
 
+.ads_premoderation_stat_periods .ads_moder_period_range_wrap {
+    margin-top: 0
+}
+
 .ads_premoderation_stat_moder_name_wrap {
     visibility: hidden;
     position: relative
@@ -905,41 +909,42 @@ table.ads_logs_info th {
     vertical-align: middle
 }
 
-.ads_moder_stat_summary_range_wrap {
-    margin-top: -2px
+.ads_moder_period_range_wrap {
+    margin-top: -2px;
+    float: right
 }
 
 @-moz-document url-prefix() {
-    .ads_moder_stat_summary_range_wrap {
+    .ads_moder_period_range_wrap {
         margin-top: -1px
     }
 }
 
-.ads_moder_stat_summary_range_part {
+.ads_moder_period_range_part {
     padding-left: 8px
 }
 
-.ads_moder_stat_summary_range_label {
+.ads_moder_period_range_label {
     padding-top: 5px
 }
 
 @-moz-document url-prefix() {
-    .ads_moder_stat_summary_range_label {
+    .ads_moder_period_range_label {
         padding-top: 4px
     }
 }
 
-#ads_moder_stat_summary_range_link {
+#ads_moder_period_range_link {
     opacity: 0.5;
     display: block;
     padding: 1px
 }
 
-#ads_moder_stat_summary_range_link:hover {
+#ads_moder_period_range_link:hover {
     opacity: 1
 }
 
-#ads_moder_stat_summary_range_link img {
+#ads_moder_period_range_link img {
     display: block
 }
 

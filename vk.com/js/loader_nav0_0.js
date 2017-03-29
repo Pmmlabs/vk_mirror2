@@ -214,7 +214,7 @@ var stVersions = {
     'module.css': 18584052219,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 19233952820,
-    'page.js': 2198423506,
+    'page.js': 3293077370,
     'page.css': 22265719696,
     'page_help.css': 22407019311,
     'public.css': 27282452117,
@@ -257,7 +257,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 383324776,
+    'feed.js': 2729338908,
     'feed.css': 24514567357,
     'privacy.js': 3875115925,
     'privacy.css': 16170784385,
@@ -376,9 +376,9 @@ var stVersions = {
     'ads_edit.js': 557212198,
     'ads_edit_geo.js': 1634516705,
     'ads_moder_common.css': 14088132734,
-    'ads_moder.css': 15167755677,
+    'ads_moder.css': 15012029095,
     'ads_moder_common.js': 187287116,
-    'ads_moder.js': 3121681807,
+    'ads_moder.js': 1303830416,
     'ads_tagger.js': 2289308011,
     'ads_web.css': 1585148602,
     'ads_web.js': 3654572848,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 2155;
+var _rnd = 221;

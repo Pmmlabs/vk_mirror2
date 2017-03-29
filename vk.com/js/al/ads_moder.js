@@ -900,7 +900,19 @@ AdsModer.historyToggleFilters = function() {
     }
 }
 
-AdsModer.statSummaryInit = function(periodType, fromYear, fromMonth, fromDay, toYear, toMonth, toDay) {
+AdsModer.periodRangeInit = function(periodType, fromYear, fromMonth, fromDay, toYear, toMonth, toDay) {
+    function updateLink() {
+        var fromPeriod = fromYear * 100 + fromMonth;
+        var toPeriod = toYear * 100 + toMonth;
+        if (periodType !== 'month') {
+            fromPeriod = fromPeriod * 100 + fromDay;
+            toPeriod = toPeriod * 100 + toDay;
+        }
+        var linkElem = ge('ads_moder_period_range_link');
+        linkElem.href = linkElem.href.replace(/&period=\d+-\d+/, '&period=' + fromPeriod + '-' + toPeriod);
+        linkElem.style.opacity = 1;
+    }
+
     var datePickerOptionsFrom = {
         mode: (periodType === 'month') ? 'm' : 'd',
         year: fromYear,
@@ -929,20 +941,8 @@ AdsModer.statSummaryInit = function(periodType, fromYear, fromMonth, fromDay, to
             updateLink();
         }
     };
-    new Datepicker(ge('ads_moder_stat_summary_from'), datePickerOptionsFrom);
-    new Datepicker(ge('ads_moder_stat_summary_to'), datePickerOptionsTo);
-
-    function updateLink() {
-        var fromPeriod = fromYear * 100 + fromMonth;
-        var toPeriod = toYear * 100 + toMonth;
-        if (periodType !== 'month') {
-            fromPeriod = fromPeriod * 100 + fromDay;
-            toPeriod = toPeriod * 100 + toDay;
-        }
-        var linkElem = ge('ads_moder_stat_summary_range_link');
-        linkElem.href = linkElem.href.replace(/&period=\d+-\d+/, '&period=' + fromPeriod + '-' + toPeriod);
-        linkElem.style.opacity = 1;
-    }
+    new Datepicker(ge('ads_moder_period_from'), datePickerOptionsFrom);
+    new Datepicker(ge('ads_moder_period_to'), datePickerOptionsTo);
 }
 
 AdsModer.statSummaryShowAllProperties = function() {
