@@ -1154,7 +1154,7 @@ if (!window.Upload) {
             curUpload.chunksLeft = curUpload.chunksNum;
 
             _computeFilePartsChecksum(file, function(hash) {
-                curUpload.storageKey = ['upload', vk.id, hash, curUpload.fileSize].join('_');
+                curUpload.storageKey = ['upload', hash, curUpload.fileSize].join('_');
                 options.uploading = true;
                 options.chunkedUpload = curUpload;
 
@@ -1276,8 +1276,10 @@ if (!window.Upload) {
                         ls.remove(curUpload.storageKey);
                         _onUploadComplete(e.target.responseText);
                     } else {
-                        _logChunkError(e.target.status, e.target.responseText, pointerStart + '-' + pointerEnd);
+                        ls.remove(curUpload.storageKey);
+                        curUpload.abort();
                         Upload.onUploadError(info);
+                        _logChunkError(e.target.status, e.target.responseText, pointerStart + '-' + pointerEnd);
                     }
                     delete curUpload.requestsProgress[pointerStart];
                     _onProgress();

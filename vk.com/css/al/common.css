@@ -23,6 +23,7 @@
 .box_x_button.box_x_tabs,
 .button_gray .button_lock,
 .button_lock,
+.checkbox.dark:before,
 .checkbox:before,
 .emoji_css,
 .error,
@@ -552,6 +553,10 @@ a .num_delim {
     margin: 0 7px 0 0;
     width: 15px;
     height: 15px
+}
+
+.checkbox.dark:before {
+    background: url(/images/icons/dark_check.png) 0 0 no-repeat
 }
 
 .checkbox:hover:before {

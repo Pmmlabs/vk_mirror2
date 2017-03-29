@@ -94,10 +94,10 @@ var uiTabs = {
                 }
                 if (l != t && addClass(l, "ui_tab_group_sel"), addClass(t, "ui_tab_sel"), n && removeClass(n, "ui_tab_hide_separator"), o) {
                     i = geByClass1("ui_tab_group_items", o, "div").children;
-                    var u = null;
+                    var c = null;
                     each(i, function(t, e) {
-                        "SPAN" === e.tagName ? u = e : hasClass(domFC(e), "ui_tab_sel") || hasClass(e, "unshown") || (u = null)
-                    }), u && addClass(o, "ui_tab_hide_separator")
+                        "SPAN" === e.tagName ? c = e : hasClass(domFC(e), "ui_tab_sel") || hasClass(e, "unshown") || (c = null)
+                    }), c && addClass(o, "ui_tab_hide_separator")
                 }
             }
             return !1
@@ -167,19 +167,19 @@ var uiTabs = {
                         addEvent(t, "mouseover", addClass.pbind(d, "hover")), addEvent(t, "mouseout", removeClass.pbind(d, "hover"))
                     }
                 } else t = data(t, "dummyMenu");
-                var u = data(t, "origMenu");
-                a = geByClass1("_ui_menu", t), r = domClosest("_ui_menu_wrap", u), l = domClosest(i.appendParentCls, a), setStyle(a, {
+                var c = data(t, "origMenu");
+                a = geByClass1("_ui_menu", t), r = domClosest("_ui_menu_wrap", c), l = domClosest(i.appendParentCls, a), setStyle(a, {
                     display: "block"
                 });
-                var c = getXY(l),
+                var u = getXY(l),
                     p = getXY(r),
-                    m = data(a, "top"),
-                    g = data(a, "left"),
+                    g = data(a, "top"),
+                    m = data(a, "left"),
                     v = data(a, "right"),
                     _ = {
-                        top: p[1] - c[1] + m
+                        top: p[1] - u[1] + g
                     };
-                v ? _.right = getSize(l)[0] + c[0] - p[0] - getSize(r)[0] + v : _.left = p[0] - c[0] + g, setStyle(a, _)
+                v ? _.right = getSize(l)[0] + u[0] - p[0] - getSize(r)[0] + v : _.left = p[0] - u[0] + m, setStyle(a, _)
             }
             var a = geByClass1("_ui_menu", t);
             if (i && i.autopos && a && !hasClass(t, "shown")) {
@@ -239,21 +239,21 @@ var uiTabs = {
                 h = domPN(t);
             if (o && (r += getXY(h)[1] - getXY(i)[1]), hasClass(i, "_ui_rmenu_auto_expand")) {
                 var d = geByClass("_ui_rmenu_sublist", i),
-                    u = hasClass(t, "_ui_rmenu_subitem") ? gpeByClass("_ui_rmenu_sublist", t) : hasClass(domNS(t), "_ui_rmenu_sublist") ? domNS(t) : !1;
+                    c = hasClass(t, "_ui_rmenu_subitem") ? gpeByClass("_ui_rmenu_sublist", t) : hasClass(domNS(t), "_ui_rmenu_sublist") ? domNS(t) : !1;
                 each(d, function() {
-                    isVisible(this) && this !== u && (l.push(this), hide(this))
-                }), u && !isVisible(u) && (a.push(u), show(u)), r = t.offsetTop, each(l, function() {
+                    isVisible(this) && this !== c && (l.push(this), hide(this))
+                }), c && !isVisible(c) && (a.push(c), show(c)), r = t.offsetTop, each(l, function() {
                     show(this)
                 }), each(a, function() {
                     hide(this)
                 })
             }
-            var c = geByClass1("_ui_rmenu_slider", i),
-                p = intval(c.style.top),
-                m = {
+            var u = geByClass1("_ui_rmenu_slider", i),
+                p = intval(u.style.top),
+                g = {
                     height: n
                 };
-            return browser.msie_edge ? m.marginTop = r - p + "px" : m[cssTransformProp] = "translateY(" + (r - p) + "px)", setStyle(c, m), removeClass(s, "ui_rmenu_item_sel"), addClass(t, "ui_rmenu_item_sel"), hasClass(i, "_ui_rmenu_auto_expand") ? each(l.concat(a), function() {
+            return browser.msie_edge ? g.marginTop = r - p + "px" : g[cssTransformProp] = "translateY(" + (r - p) + "px)", setStyle(u, g), removeClass(s, "ui_rmenu_item_sel"), addClass(t, "ui_rmenu_item_sel"), hasClass(i, "_ui_rmenu_auto_expand") ? each(l.concat(a), function() {
                 uiRightMenu.toggleSubmenu(this)
             }) : hasClass(t, "_ui_rmenu_subitem") && !isVisible(domPN(t)) && uiRightMenu.toggleSubmenu(domPN(t)), !1
         },
@@ -467,8 +467,8 @@ var uiTabs = {
                         if (setStyle(i, {
                                 marginLeft: d
                             }), n) {
-                            var u = getXY(n)[1] + getSize(n)[1] - scrollGetY() - t.offsetHeight;
-                            e = Math.min(r, Math.max(-t.offsetHeight, u)), e !== cur.lastUISearchPos && (setStyle(i, "top", e), cur.lastUISearchPos = e)
+                            var c = getXY(n)[1] + getSize(n)[1] - scrollGetY() - t.offsetHeight;
+                            e = Math.min(r, Math.max(-t.offsetHeight, c)), e !== cur.lastUISearchPos && (setStyle(i, "top", e), cur.lastUISearchPos = e)
                         }
                     } else o && (setStyle(s, "height", ""), setStyle(i, {
                         top: "",
@@ -702,6 +702,7 @@ var uiTabs = {
                 barMinHeight: 30,
                 preserveEdgeBelowThreshold: 20,
                 stopScrollPropagation: !0,
+                stopScrollPropagationAlways: !1,
                 minContentHeight: 0,
                 onmoreThreshold: null,
                 hidden: !1,
@@ -789,7 +790,7 @@ var uiTabs = {
             }, this.init();
             var l = "onwheel" in this.el.outer ? "wheel" : void 0 !== document.onmousewheel ? "mousewheel" : browser.mozilla ? "MozMousePixelScroll" : "DOMMouseScroll";
             return this.addEvent(this.el.container, l, function(t) {
-                this.animation && this.animation.stop(), !this.options.stopScrollPropagation || this.disabled || this.unnecessary || (this.isScrollEventUnused(t) ? cancelEvent(t) : stopEvent(t))
+                this.animation && this.animation.stop(), !this.disabled && this.options.stopScrollPropagation && (this.unnecessary ? this.options.stopScrollPropagationAlways && cancelEvent(t) : this.isScrollEventUnused(t) ? cancelEvent(t) : stopEvent(t))
             }.bind(this), !this.options.stopScrollPropagation), this.options["native"] || this.addEvent(this.el.barContainer, "mousedown", this.dragstart.bind(this)), each(this.options.scrollElements, function(t, e) {
                 this.addEvent(e, l, function(t) {
                     this.disabled || this.unnecessary || (this.scrollBy(this.scrollEventDelta(t)), (this.options.stopScrollPropagation || !this.isScrollEventUnused(t)) && cancelEvent(t))
@@ -976,11 +977,11 @@ var uiTabs = {
                     }),
                     h = ce("div"),
                     d = ce("div"),
-                    u = null;
+                    c = null;
                 return l.appendChild(h), a.appendChild(d), r.appendChild(l), r.appendChild(a), e.appendChild(r), e.__resizeSensor__ = [r, l.onscroll = a.onscroll = function() {
                     var t = (e.offsetWidth || 1e4) + 10,
                         s = (e.offsetHeight || 1e4) + 10;
-                    h.style.width = t + "px", h.style.height = s + "px", l.scrollLeft = t, l.scrollTop = s, a.scrollLeft = t, a.scrollTop = s, u !== (u = t + " " + s) && i()
+                    h.style.width = t + "px", h.style.height = s + "px", l.scrollLeft = t, l.scrollTop = s, a.scrollLeft = t, a.scrollTop = s, c !== (c = t + " " + s) && i()
                 }]
             }
         }, t
@@ -1293,15 +1294,15 @@ window.Scrollbar = window.Scrollbar || function() {
         }
         var d = s.length;
         s = s.slice(e, e + r);
-        var u = [];
+        var c = [];
         if (t) {
             t = clean(t);
-            var c = escapeRE(t),
+            var u = escapeRE(t),
                 p = parseLatin(t);
-            null != p && (c = c + "|" + escapeRE(p));
-            var m = new RegExp("(?![^&;]+;)(?!<[^<>]*)((\\(*)(" + c + "))(?![^<>]*>)(?![^&;]+;)", "gi")
+            null != p && (u = u + "|" + escapeRE(p));
+            var g = new RegExp("(?![^&;]+;)(?!<[^<>]*)((\\(*)(" + u + "))(?![^<>]*>)(?![^&;]+;)", "gi")
         }
-        var g = l.rsTpl ? l.rsTpl : function(t, e, i, s, o) {
+        var m = l.rsTpl ? l.rsTpl : function(t, e, i, s, o) {
             var n = !i && s[t[0]] || i && !s[t[0]],
                 r = t[1];
             if (e) {
@@ -1319,8 +1320,8 @@ window.Scrollbar = window.Scrollbar || function() {
             }
         };
         each(s, function() {
-            u.push(rs(n, g(this, t, l.invertedSelection, o, m)))
-        }), e || u.length || u.push('<div class="no_rows">' + (t ? getLang("global_search_not_found").replace("{search}", t) : l.noSelMsg) + "</div>"), re(this.moreEl), u = u.join(" "), e ? this.olistEl.appendChild(cf(u)) : val(this.olistEl, u), d > e + r && (this.olistEl.appendChild(this.moreEl), this.moreEl.onclick = function(i) {
+            c.push(rs(n, m(this, t, l.invertedSelection, o, g)))
+        }), e || c.length || c.push('<div class="no_rows">' + (t ? getLang("global_search_not_found").replace("{search}", t) : l.noSelMsg) + "</div>"), re(this.moreEl), c = c.join(" "), e ? this.olistEl.appendChild(cf(c)) : val(this.olistEl, c), d > e + r && (this.olistEl.appendChild(this.moreEl), this.moreEl.onclick = function(i) {
             return l.renderList(t, e + r), cancelEvent(i)
         }), l.box && l.box.scroll && l.box.scroll.update(!1, !0), l.onScroll()
     }

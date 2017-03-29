@@ -394,7 +394,8 @@ h2.payments_getvotes_title {
 }
 
 .payments_threeds_frame #card_iframe {
-    margin: 15px 0 0 15px
+    padding: 15px 0 0 15px;
+    box-sizing: border-box
 }
 
 .payments_tform .tform_row {

@@ -2552,17 +2552,22 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
 .mv_live_preparation_content {
     display: table-cell;
     vertical-align: middle;
-    padding: 0 34px;
+    padding: 0 24px;
     color: #aaa;
     text-align: center;
     line-height: 1.4
 }
 
 .mv_live_preparation_content .listing {
-    margin: 48px 0;
+    margin: 48px 0 0;
+    padding-left: 22px;
     list-style: decimal;
     text-align: left;
     color: inherit
+}
+
+.mv_live_preparation_content .listing>li {
+    padding-left: 0
 }
 
 .mv_live_preparation_content .listing>li>span {
@@ -2581,16 +2586,34 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     font-size: 19px
 }
 
-.flat_button.mv_live_preparation_publish {
-    background: #5fb053
+.mv_live_preparation_notify_checkbox {
+    text-align: left;
+    line-height: inherit;
+    margin-top: 24px;
+    padding-left: 22px;
+    position: relative
 }
 
-.flat_button.mv_live_preparation_publish:hover {
-    background: #68b35d
+.mv_live_preparation_notify_checkbox:before {
+    position: absolute;
+    margin-left: -22px
 }
 
-.flat_button.mv_live_preparation_publish:active {
-    background: #5aa84d
+.mv_live_preparation_notify_checkbox .mv_live_preparation_notify_checkbox_hint {
+    color: #777
+}
+
+.flat_button.mv_live_preparation_publish_btn {
+    margin-top: 48px;
+    background: #6590c7
+}
+
+.flat_button.mv_live_preparation_publish_btn:hover {
+    background: #6b96cf
+}
+
+.flat_button.mv_live_preparation_publish_btn:active {
+    background: #5b84ba
 }
 
 .mv_chat {

@@ -1142,7 +1142,7 @@ var Settings = {
             from: "settings"
         }, {
             onDone: function(t, e) {
-                removeClass(i, "settings_history_row_progress"), val(geByClass1("settings_history_amount", i), t), val(geByClass1("settings_history_actions", i), e)
+                return removeClass(i, "settings_history_row_progress"), t ? (val(geByClass1("settings_history_amount", i), t), void val(geByClass1("settings_history_actions", i), e)) : void addClass(i, "settings_history_row_deleted")
             },
             onFail: function(t) {
                 return removeClass(i, "settings_history_row_progress"), setTimeout(showFastBox(getLang("global_error"), t).hide, 2e3), !0

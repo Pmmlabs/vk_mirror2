@@ -1699,6 +1699,7 @@ var Videoview = {
             ajax.post("al_video.php?act=live_finish_preparation", {
                 oid: i.oid,
                 vid: i.vid,
+                notify_followers: isChecked("mv_live_preparation_notify_followers"),
                 hash: e
             }, {
                 onDone: Videoview.reload
@@ -1824,7 +1825,8 @@ var Videoview = {
                 t = Videoview.getContSize(),
                 a = e.clientX - mvcur.minSize.wrap.l,
                 n = e.clientY - mvcur.minSize.wrap.t;
-            return 6 > n && (o += 1), a > t[0] - 20 && (o += 2), n > t[1] - 10 && (o += 4), 10 > a && (o += 8), 1 == o && a > t[0] - 55 && (o = 0), !o && 25 > n && a < t[0] - 55 && (o += 16), o
+            return 6 > n && (o += 1), a > t[0] - 20 && (o += 2), n > t[1] - 10 && (o += 4), 10 > a && (o += 8), 1 == o && a > t[0] - 55 && (o = 0), !o && 25 > n && a < t[0] - 55 && (o += 16),
+                o
         },
         changeCursor: function(e) {
             if (!Videoview.isFS) {
@@ -2672,7 +2674,7 @@ window.VideoChat = {
         }), !1
     },
     onScrollUpdate: function(e) {
-        e.data.scrollBottom < VideoChat.SCROLL_EDGE_BELOW_THRESHOLD && VideoChat.toggleScrollBottomBtn(!1)
+        e.data.scrollBottom < VideoChat.SCROLL_EDGE_BELOW_THRESHOLD && VideoChat.toggleScrollBottomBtn(!1);
     },
     receiveMessage: function(e, i, o, t, a, n, d, r, s, v) {
         if (s) {

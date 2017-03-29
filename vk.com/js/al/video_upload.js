@@ -932,7 +932,8 @@ var VideoUpload = {
             category: t,
             publish: isChecked("video_create_live_publish_on_wall"),
             preparation_check: isChecked("video_create_live_preparation_check"),
-            rhash: VideoUpload.liveTransHash
+            notify_followers: isChecked("video_create_live_notify_followers"),
+            rhash: cur.liveTransHash
         };
         return cur.oid < 0 ? l.no_comments = isChecked("video_create_live_no_comments") : (l.privacy_view = Privacy.getValue("video_live_view"), l.privacy_comment = Privacy.getValue("video_live_comment")), l.title ? l.category ? (VideoUpload.lockSaveButton(), void ajax.post("al_video.php?act=a_add_new_live_trans", l, {
             onFail: function(e) {
