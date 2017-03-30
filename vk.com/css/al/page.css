@@ -1382,6 +1382,7 @@ html:not([lang=ru]) .wall_marked_as_ads {
 .ads_edit_panel_preview.format_edit .wall_module .post .wall_text .page_media_thumbed_link:last-child,
 .wall_module .post.ads_ads_preview .wall_text .page_media_thumbed_link:last-child,
 .wall_module .post.post_fr_likes .page_media_thumbed_link:last-child,
+.wall_module .post.post_fr_likes .wall_text .vk2017_snippet,
 .wall_module .post.postponed .wall_text .page_media_poll_wrap:last-child,
 .wall_module .post.postponed .wall_text .page_media_thumbed_link:last-child,
 .wall_module .post.suggest .wall_text .page_media_poll_wrap:last-child,

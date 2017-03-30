@@ -215,7 +215,7 @@ var stVersions = {
     'owner_photo.js': 1714149322,
     'owner_photo.css': 19233952820,
     'page.js': 3293077370,
-    'page.css': 22265719696,
+    'page.css': 20966751696,
     'page_help.css': 22407019311,
     'public.css': 27282452117,
     'public.js': 3882483539,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 7746;
+var _rnd = 8429;
