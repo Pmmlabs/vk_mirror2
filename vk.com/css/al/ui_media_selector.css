@@ -154,7 +154,9 @@
     width: 24px;
     height: 25px;
     display: block;
-    padding: 0
+    padding: 0;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
 }
 
 .ms_items_more_wrap.shown .ms_item_more {

@@ -190,7 +190,7 @@ var stVersions = {
     'videocat.js': 1618923991,
     'videocat.css': 21820528830,
     'videoview.js': 21577001,
-    'videoview.css': 15647707334,
+    'videoview.css': 14853111683,
     'video_edit.js': 2135196486,
     'video_edit.css': 21140384312,
     'video_upload.js': 3479025601,
@@ -424,7 +424,7 @@ var stVersions = {
     'ui_common.js': 2073087863,
     'ui_common.css': 12962441901,
     'ui_media_selector.js': 480361842,
-    'ui_media_selector.css': 20144900663,
+    'ui_media_selector.css': 20051961322,
     'ui_manual.css': 14515821230,
     'admin.js': 2866808704,
     'admin.css': 18066165639,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 221;
+var _rnd = 7746;

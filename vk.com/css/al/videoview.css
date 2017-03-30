@@ -2536,6 +2536,7 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     bottom: 0;
     width: 320px;
     background: #1e1e1e;
+    overflow: auto;
     display: none
 }
 
@@ -2545,14 +2546,13 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
 
 .mv_live_preparation_content_wrap {
     display: table;
-    height: 100%;
-    overflow: auto
+    height: 100%
 }
 
 .mv_live_preparation_content {
     display: table-cell;
     vertical-align: middle;
-    padding: 0 24px;
+    padding: 24px;
     color: #aaa;
     text-align: center;
     line-height: 1.4
