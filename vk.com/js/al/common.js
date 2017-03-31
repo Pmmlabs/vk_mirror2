@@ -2571,10 +2571,12 @@ var layers = {
                     histLen: cur.pvHistoryLength
                 }];
             } else if (window.mvcur && mvcur.mvShown && !mvcur.minimized) {
+                var autostart = mvcur.options && (mvcur.options.autoplay || mvcur.options.focusPlay);
                 var opts = {
                     scroll: mvLayerWrap.scrollTop,
                     noHistory: !!mvcur.noHistory,
-                    nomin: true,
+                    nomin: 1,
+                    autoplay: autostart,
                     prevLoc: mvcur.mvPrevLoc
                 };
                 if (VideoPlaylist.getCurListId()) {

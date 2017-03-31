@@ -3,8 +3,8 @@
 .media-video-play,
 .media-video-thumb-background,
 .media-video-thumb-wrap-background,
-.video_add_live_tab .video_upload_live_launch_subheader_togglable:after,
-.video_edit_live_settings_wrap .video_upload_live_launch_subheader_togglable:after,
+.video_add_live_tab .video_upload_live_launch_subheader:after,
+.video_edit_live_settings_wrap .video_upload_live_launch_subheader:after,
 .video_upload_cancel,
 .video_upload_live_intro:before,
 .video_upload_progress .video_upload_progress_bar,
@@ -999,20 +999,24 @@
     width: 100%
 }
 
-.video_add_live_tab .video_upload_live_launch_subheader_togglable,
-.video_edit_live_settings_wrap .video_upload_live_launch_subheader_togglable {
+.video_add_live_tab .video_upload_live_launch_subheader,
+.video_edit_live_settings_wrap .video_upload_live_launch_subheader {
     cursor: pointer
 }
 
-.video_add_live_tab .video_upload_live_launch_subheader_togglable:after,
-.video_edit_live_settings_wrap .video_upload_live_launch_subheader_togglable:after {
+.video_add_live_tab .video_upload_live_launch_subheader:after,
+.video_edit_live_settings_wrap .video_upload_live_launch_subheader:after {
     content: '';
     display: inline-block;
-    height: 7px;
-    width: 11px;
-    margin-left: 5px;
-    margin-bottom: 1px;
-    background: url(/images/dropdown_arrow.png)
+    height: 5px;
+    width: 9px;
+    margin: 0 0 1px 5px;
+    background: url(/images/icons/multidd.png?2) no-repeat
+}
+
+.video_add_live_tab .video_upload_live_launch_subheader._open:after,
+.video_edit_live_settings_wrap .video_upload_live_launch_subheader._open:after {
+    background-position: left -11px
 }
 
 .video_add_live_tab .video_upload_live_launch_steps_wrap,
@@ -1154,18 +1158,7 @@
 }
 
 .video_add_live_tab .checkbox,
-.video_edit_live_settings_wrap .checkbox {
-    margin-bottom: 10px
-}
-
-.video_add_live_tab .video_add_live_trans__checkbox_hint,
-.video_edit_live_settings_wrap .video_add_live_trans__checkbox_hint {
-    margin-left: 22px;
-    margin-top: 2px;
-    font-size: 12.5px;
-    color: #939393
-}
-
+.video_edit_live_settings_wrap .checkbox,
 .video_add_live_tab .video_add_live_trans__privacy,
 .video_edit_live_settings_wrap .video_add_live_trans__privacy {
     margin-bottom: 10px

@@ -862,7 +862,9 @@ var VideoUpload = {
             onDone: function(e) {
                 if (e.removeButtons(), e.addButton(getLang("video_save_but"), VideoUpload.saveLiveStream), e.addButton(getLang("video_cancel_but"), e.hide, "no"), ls.get("video_live_create_form_shown")) {
                     var o = domByClass(e.bodyNode, "video_upload_live_launch_steps_wrap");
-                    hide(o), addClass(domPS(o), "video_upload_live_launch_subheader_togglable")
+                    hide(o);
+                    var a = domByClass(e.bodyNode, "video_upload_live_launch_subheader");
+                    removeClass(a, "_open")
                 } else ls.set("video_live_create_form_shown", 1)
             },
             onFail: function(e) {
@@ -890,7 +892,9 @@ var VideoUpload = {
         })
     },
     toggleLiveLaunchSteps: function(e) {
-        hasClass(e, "video_upload_live_launch_subheader_togglable") && (removeClass(e, "video_upload_live_launch_subheader_togglable"), show(domByClass(curBox().bodyNode, "video_upload_live_launch_steps_wrap")))
+        toggleClass(e, "_open");
+        var o = domByClass(curBox().bodyNode, "video_upload_live_launch_steps_wrap");
+        slideToggle(o, 200)
     },
     showLiveTransSettings: function() {
         var e = ge("video_coder_settings_hidden"),

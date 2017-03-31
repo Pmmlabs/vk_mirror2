@@ -156,8 +156,43 @@ body.mobfixed #mv_layer_wrap {
     text-align: right
 }
 
-.mv_views_count_live {
-    min-width: 180px
+.mv_live_spectators_count_text {
+    cursor: pointer
+}
+
+.mv_live_spectators_count_text:hover {
+    text-decoration: underline
+}
+
+.mv_live_spectators_friends {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 6px;
+    margin-right: -2px
+}
+
+.mv_live_spectators_friends:empty {
+    display: none
+}
+
+.mv_live_spectators_friend {
+    float: right;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #fff;
+    margin-top: -3px;
+    margin-right: -8px
+}
+
+.mv_live_spectators_friend:first-child {
+    margin-right: 0
+}
+
+.mv_live_spectators_friend_img {
+    width: 24px;
+    height: 24px
 }
 
 .mv_title {
@@ -170,6 +205,10 @@ body.mobfixed #mv_layer_wrap {
     overflow: hidden;
     text-overflow: ellipsis;
     color: #000
+}
+
+.mv_live_spectators_count+.mv_title {
+    margin-right: 240px
 }
 
 .mv_title_block {

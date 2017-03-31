@@ -293,11 +293,11 @@ var Videoview = {
             onDonate: function() {
                 Videoview.showDonateBox()
             },
-            onLiveViewersCountChange: function(e, i) {
-                window.mvcur && mvcur.mvShown && mvcur.videoRaw == e && Videoview.updateLiveViewersCount(i)
+            onLiveViewersCountChange: function(e, i, o) {
+                Videoview.isLayerShown(e) && Videoview.updateLiveViewersCount(i, o)
             },
             onLiveStarted: function(e) {
-                return window.mvcur && mvcur.mvShown && mvcur.videoRaw == e ? (Videoview.reload(), !0) : void 0
+                return Videoview.isLayerShown(e) ? (Videoview.reload(), !0) : void 0
             },
             onAdPostStat: function(e, i) {
                 window.Wall && Wall.triggerAdPostStat(e, i)
@@ -826,8 +826,7 @@ var Videoview = {
                 }
                 if (!i && mvcur.minimized) return void(mvcur.noLocChange || e === !0 || (2 === e ? nav.setLoc(hab.getLoc()) : layerQueue.count() || Videoview.backLocation()));
                 if (!mvcur.noHistory && !e && !t) {
-                    mvcur.noHistory = 1, mvcur.forceHistoryHide = i,
-                        __adsUpdate("very_lazy");
+                    mvcur.noHistory = 1, mvcur.forceHistoryHide = i, __adsUpdate("very_lazy");
                     var n = cur.mvHistoryBack ? -cur.mvHistoryBack : -1;
                     return cur.mvHistoryBack = 0, setTimeout(function() {
                         mvcur.mvShown || (Videoview.destroyPlayer(), VideoPlaylist.removeBlock())
@@ -1673,8 +1672,18 @@ var Videoview = {
                 mvcur.mvReplyNames[o] = [v, l], ge("mv_comments").insertAdjacentHTML("beforeend", u), mvcur.mvData.commcount++, mvcur.mvData.commshown++
             }
         },
-        updateLiveViewersCount: function(e) {
-            (e = intval(e)) && val("mv_views", getLang("video_live_N_watching", e, !0))
+        updateLiveViewersCount: function(e, i) {
+            if (e = intval(e)) {
+                var o = getLang("video_live_N_watching", e, !0),
+                    t = (i || []).map(function(e) {
+                        return getTemplate("video_live_spectators_friend", e)
+                    }).reverse().join(""),
+                    a = getTemplate("video_live_spectators", {
+                        count_text: o,
+                        friends: t
+                    });
+                val("mv_views", a)
+            }
         },
         checkOtherLives: function(e) {
             mvcur.mvShown && !mvcur.minimized && mvcur.videoRaw == e && (ajax.post("al_video.php?act=live_other_videos", {
@@ -1825,8 +1834,8 @@ var Videoview = {
                 t = Videoview.getContSize(),
                 a = e.clientX - mvcur.minSize.wrap.l,
                 n = e.clientY - mvcur.minSize.wrap.t;
-            return 6 > n && (o += 1), a > t[0] - 20 && (o += 2), n > t[1] - 10 && (o += 4), 10 > a && (o += 8), 1 == o && a > t[0] - 55 && (o = 0), !o && 25 > n && a < t[0] - 55 && (o += 16),
-                o
+            return 6 > n && (o += 1),
+                a > t[0] - 20 && (o += 2), n > t[1] - 10 && (o += 4), 10 > a && (o += 8), 1 == o && a > t[0] - 55 && (o = 0), !o && 25 > n && a < t[0] - 55 && (o += 16), o
         },
         changeCursor: function(e) {
             if (!Videoview.isFS) {
@@ -2674,7 +2683,7 @@ window.VideoChat = {
         }), !1
     },
     onScrollUpdate: function(e) {
-        e.data.scrollBottom < VideoChat.SCROLL_EDGE_BELOW_THRESHOLD && VideoChat.toggleScrollBottomBtn(!1);
+        e.data.scrollBottom < VideoChat.SCROLL_EDGE_BELOW_THRESHOLD && VideoChat.toggleScrollBottomBtn(!1)
     },
     receiveMessage: function(e, i, o, t, a, n, d, r, s, v) {
         if (s) {
