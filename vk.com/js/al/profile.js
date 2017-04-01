@@ -108,47 +108,47 @@ var Profile = {
                 hideProgress: window.Page && Page.actionsDropdownUnlock.pbind(e)
             }), void cancelEvent(t))
         },
-        toggleFriend: function(e, i, o, t, s) {
+        toggleFriend: function(e, i, o, t, r) {
             if (cur.viewAsBox) return cur.viewAsBox();
             if (o) {
-                if (s !== !0 && cur.options.bannedhim) return showBox("al_profile.php", {
+                if (r !== !0 && cur.options.bannedhim) return showBox("al_profile.php", {
                     act: "banned_him",
                     action: "friend",
                     mid: cur.oid
                 }).onContinue = Profile.toggleFriend.pbind(e, i, o, !1, !0), cancelEvent(t);
                 stManager.add(["tooltips.css", "tooltips.js"])
             }
-            var n = ce("img", {
+            var s = ce("img", {
                     src: "/images/upload" + (window.devicePixelRatio >= 2 ? "_2x" : "") + ".gif"
                 }, {
                     width: 32
                 }),
-                r = e;
+                n = e;
             ajax.post("al_friends.php", {
                 act: o ? "add" : "remove",
                 mid: cur.oid,
                 hash: i,
                 from: "profile"
             }, {
-                onDone: function(e, i, t, s, n) {
+                onDone: function(e, i, t, r, s) {
                     if (o && cur.onFriendAdd && cur.onFriendAdd(), !e) return nav.reload();
-                    var r = (ge("profile_am_subscribed") || {}).tt;
-                    r && r.hide && (r.hide({
+                    var n = (ge("profile_am_subscribed") || {}).tt;
+                    n && n.hide && (n.hide({
                         fasthide: 1
-                    }), r.destroy());
+                    }), n.destroy());
                     var a = ge("friend_status");
-                    cleanElems(a.firstChild), e ? (show(a), val(a, e)) : hide(a), (i ? show : hide)("friend_remove"), n || cur.options.bannedhim ? nav.reload({
+                    cleanElems(a.firstChild), e ? (show(a), val(a, e)) : hide(a), (i ? show : hide)("friend_remove"), s || cur.options.bannedhim ? nav.reload({
                         noscroll: !0
                     }) : t && (ajax.preload("al_friends.php", {
                         act: "friend_tt",
                         mid: cur.oid
-                    }, [t, s]), setTimeout(Profile.friendTooltip, 0)), Profile.frDropdownClear()
+                    }, [t, r]), setTimeout(Profile.friendTooltip, 0)), Profile.frDropdownClear()
                 },
                 showProgress: function() {
-                    "BUTTON" == e.tagName ? lockButton(e) : hasClass(e, "page_actions_item") ? window.Page && Page.actionsDropdownLock(e) : hasClass(domFC(e), "progress") ? show(domFC(e)) : r.replaceChild(n, r.firstChild)
+                    "BUTTON" == e.tagName ? lockButton(e) : hasClass(e, "page_actions_item") ? window.Page && Page.actionsDropdownLock(e) : hasClass(domFC(e), "progress") ? show(domFC(e)) : n.replaceChild(s, n.firstChild)
                 },
                 hideProgress: function() {
-                    "BUTTON" == e.tagName ? unlockButton(e) : hasClass(e, "page_actions_item") ? window.Page && Page.actionsDropdownUnlock(e) : hasClass(domFC(e), "progress") ? hide(domFC(e)) : r.replaceChild(r.firstChild, n)
+                    "BUTTON" == e.tagName ? unlockButton(e) : hasClass(e, "page_actions_item") ? window.Page && Page.actionsDropdownUnlock(e) : hasClass(domFC(e), "progress") ? hide(domFC(e)) : n.replaceChild(n.firstChild, s)
                 },
                 onFail: function(e) {
                     return e ? (showFastBox({
@@ -228,11 +228,11 @@ var Profile = {
             var i = ge("page_actions_item_lists");
             if (addClass(i, "page_actions_item_unfolded"), ge("page_actions_sublist")) return clearTimeout(cur.frListsDDHide), void show("page_actions_sublist");
             cur.frListsCats || (cur.frListsCats = cur.options.curCats);
-            for (var o, t = [], s = cur.frListsCats, n = [28, 29, 27, 25, 26], r = 0; 5 > r; ++r) o = n[r], cur.options.publicLists[o] && t.push('<a class="page_actions_item page_actions_subitem' + (s & 1 << parseInt(o) ? " checked" : "") + '" onclick="Profile.frListsCheck(this, ' + o + ');">' + cur.options.publicLists[o] + "</a>");
+            for (var o, t = [], r = cur.frListsCats, s = [28, 29, 27, 25, 26], n = 0; 5 > n; ++n) o = s[n], cur.options.publicLists[o] && t.push('<a class="page_actions_item page_actions_subitem' + (r & 1 << parseInt(o) ? " checked" : "") + '" onclick="Profile.frListsCheck(this, ' + o + ');">' + cur.options.publicLists[o] + "</a>");
             for (var o in cur.options.userLists)
                 if (25 > o) {
                     var a = cur.options.userLists[o];
-                    a.length > 20 && (a = trim(a.substr(0, 18)) + "..."), t.push('<a class="page_actions_item page_actions_subitem' + (s & 1 << parseInt(o) ? " checked" : "") + '" onclick="Profile.frListsCheck(this, ' + o + ');">' + a + "</a>")
+                    a.length > 20 && (a = trim(a.substr(0, 18)) + "..."), t.push('<a class="page_actions_item page_actions_subitem' + (r & 1 << parseInt(o) ? " checked" : "") + '" onclick="Profile.frListsCheck(this, ' + o + ');">' + a + "</a>")
                 }
             t = se('<div id="page_actions_sublist" onmouseover="Profile.frListsDDShow(event);">' + t.join("") + "</div>"), i.parentNode.appendChild(t)
         },
@@ -289,20 +289,20 @@ var Profile = {
                                 "\r": 0,
                                 "!": 5,
                                 "'": 5
-                            }, s = 0, n = 0, r = !1, a = 0, c = e.length; c > a; a++) {
-                            var d = t[e.charAt(a)],
-                                l = e.charCodeAt(a);
-                            10 == l && ++n, s += void 0 !== d ? d : l > 128 && 192 > l || l > 1280 ? ("&#" + l + ";").length : 1, r === !1 && (i && s > i || o && n > o) && (r = a ? e.substr(0, a) : "")
+                            }, r = 0, s = 0, n = !1, a = 0, c = e.length; c > a; a++) {
+                            var l = t[e.charAt(a)],
+                                d = e.charCodeAt(a);
+                            10 == d && ++s, r += void 0 !== l ? l : d > 128 && 192 > d || d > 1280 ? ("&#" + d + ";").length : 1, n === !1 && (i && r > i || o && s > o) && (n = a ? e.substr(0, a) : "")
                         }
-                        return [s, n, r === !1 ? e : r]
+                        return [r, s, n === !1 ? e : n]
                     },
-                    s = 240,
-                    n = 4,
-                    r = t(o, s, n),
-                    a = r[0],
-                    c = r[1],
-                    d = ge("preq_warn");
-                r[2] !== o && (a > s ? a = s : c > 4 && (c = 4), val(i, r[2]), i.lastLen = trim(r[2]).length), a > s - 40 || c > n ? (a > s ? d.innerHTML = getLang("friends_exceeds_symbol_limit", a - s) : c > 4 ? d.innerHTML = getLang("friends_exceeds_lines_limit", c - 4) : d.innerHTML = getLang("text_N_symbols_remain", s - a), show(d)) : hide(d)
+                    r = 240,
+                    s = 4,
+                    n = t(o, r, s),
+                    a = n[0],
+                    c = n[1],
+                    l = ge("preq_warn");
+                n[2] !== o && (a > r ? a = r : c > 4 && (c = 4), val(i, n[2]), i.lastLen = trim(n[2]).length), a > r - 40 || c > s ? (a > r ? l.innerHTML = getLang("friends_exceeds_symbol_limit", a - r) : c > 4 ? l.innerHTML = getLang("friends_exceeds_lines_limit", c - 4) : l.innerHTML = getLang("text_N_symbols_remain", r - a), show(l)) : hide(l)
             }
         },
         toggleBlacklist: function(e, i, o) {
@@ -367,19 +367,19 @@ var Profile = {
             var o = ge("profile_gifts");
             if (o && e) {
                 var t = geByTag("img", geByClass1("module_body", o)),
-                    s = vkImage();
-                s.src = i || "/images/gift/" + e + "/" + (window.devicePixelRatio >= 2, "96") + ".png";
-                var n = function() {
+                    r = vkImage();
+                r.src = i || "/images/gift/" + e + "/" + (window.devicePixelRatio >= 2, "96") + ".png";
+                var s = function() {
                     var e = t[0],
                         i = e.parentNode,
                         o = t.length;
-                    e && (addClass(s, "profile_gift_img"), e.parentNode.insertBefore(s, e), i.scrollLeft = e.offsetLeft, animate(i, {
+                    e && (addClass(r, "profile_gift_img"), e.parentNode.insertBefore(r, e), i.scrollLeft = e.offsetLeft, animate(i, {
                         scrollLeft: 0
                     }, 200, function() {
                         o >= 3 && re(t[t.length - 1])
                     }))
                 };
-                s.width ? n() : addEvent(s, "load", n)
+                r.width ? s() : addEvent(r, "load", s)
             }
         },
         declineFriend: function(e) {
@@ -395,7 +395,7 @@ var Profile = {
         },
         processRelation: function(e, i, o, t) {
             if (cur.viewAsBox) return cur.viewAsBox();
-            var s = (getXY(e), getXY(e.parentNode), ge("relation_progress" + i));
+            var r = (getXY(e), getXY(e.parentNode), ge("relation_progress" + i));
             ajax.post("al_profile.php", {
                 act: "process_relation",
                 mid: i,
@@ -407,10 +407,10 @@ var Profile = {
                     val("relations_wrap", e)
                 },
                 showProgress: function() {
-                    s.style.left = e.offsetLeft + Math.floor((e.offsetWidth - 32) / 2) + "px", show(s), e.style.visibility = "hidden"
+                    r.style.left = e.offsetLeft + Math.floor((e.offsetWidth - 32) / 2) + "px", show(r), e.style.visibility = "hidden"
                 },
                 hideProgress: function() {
-                    e.style.visibility = "visible", hide(s)
+                    e.style.visibility = "visible", hide(r)
                 }
             })
         },
@@ -447,18 +447,18 @@ var Profile = {
                         display: "none"
                     })),
                     t = getXY(i),
-                    s = getSize(i);
+                    r = getSize(i);
                 o.style.opacity = 0, show(o);
-                var n = getSize(o),
-                    r = t[1] - Math.floor((n[1] - s[1]) / 2),
-                    a = t[0] + (vk.rtl ? -(n[0] + 10) : s[0] + 10);
-                o.style.left = a + (vk.rtl ? -10 : 10) + "px", o.style.top = r + "px";
+                var s = getSize(o),
+                    n = t[1] - Math.floor((s[1] - r[1]) / 2),
+                    a = t[0] + (vk.rtl ? -(s[0] + 10) : r[0] + 10);
+                o.style.left = a + (vk.rtl ? -10 : 10) + "px", o.style.top = n + "px";
                 var c = animate.pbind(o, {
                         left: a,
                         opacity: 1
                     }, 500, !1),
-                    d = vkImage();
-                d.onload = c, d.src = "/images/classhint.gif", cur.destroy.push(function(e) {
+                    l = vkImage();
+                l.onload = c, l.src = "/images/classhint.gif", cur.destroy.push(function(e) {
                     e.classhint && e.classhint.parentNode && (e.classhint.parentNode.removeChild(e.classhint), e.classhint = !1)
                 }), cur._back && cur._back.hide.push(function() {
                     cur.classhint && cur.classhint.parentNode && (cur.classhint.parentNode.removeChild(cur.classhint), cur.classhint = !1)
@@ -515,15 +515,15 @@ var Profile = {
             }, 100);
             var i = window.audioPlayer,
                 o = currentAudioId();
-            i && o && i.showCurrentTrack && i.showCurrentTrack(), cur.onPeerStatusChanged = function(e, i, o) {
+            return i && o && i.showCurrentTrack && i.showCurrentTrack(), cur.onPeerStatusChanged = function(e, i, o) {
                 if (e == cur.oid) {
                     var t = ge("profile_online_lv"),
-                        s = ge("profile_time_lv");
+                        r = ge("profile_time_lv");
                     "online" == i ? (o = intval(o), setStyle("profile_mobile_online", {
                         display: o && 1 != o ? "inline" : "none"
-                    }), isVisible(t) || (hide(s), show(t))) : "offline" == i && (hide(t), show(s))
+                    }), isVisible(t) || (hide(r), show(t))) : "offline" == i && (hide(t), show(r))
                 }
-            }
+            }, browser.msie && intval(browser.version) < 11 ? void re(geByClass1("profile_1april_button_wrap", "narrow_column")) : (browser.opera && intval(browser.version) < 13 && re(geByClass1("profile_1april_button_wrap", "narrow_column")), void(e.stickers_1april && e.stickers_1april.length ? Profile.render1AprilStickers(e.stickers_1april) : addClass(geByClass1("page_avatar_wrap"), "no_stickers_1april")))
         },
         inviteHintUpdate: function() {
             var e = ge("top_invite_hint");
@@ -585,8 +585,8 @@ var Profile = {
         },
         hideFillBlock: function(e, i, o, t) {
             e.tt && e.tt.hide && e.tt.hide();
-            var s = gpeByClass("page_block", e);
-            return s && slideUp(s, 200, re.pbind(s)), ajax.post("/al_profile.php", {
+            var r = gpeByClass("page_block", e);
+            return r && slideUp(r, 200, re.pbind(r)), ajax.post("/al_profile.php", {
                 act: "hide_rate_block",
                 type: o,
                 hash: t
@@ -599,6 +599,40 @@ var Profile = {
             }, {
                 stat: ["maps.js", "places.js", "places.css", "ui_controls.js", "ui_controls.css"]
             }), cancelEvent(i), !1
+        },
+        render1AprilStickers: function(e) {
+            var i = geByClass1("page_avatar_wrap", "profile");
+            addClass(i, "stickers_added_1april");
+            for (var o = geByClass("profile_1april_sticker", i), t = 0; t < o.length; t++) re(o[t]);
+            for (var t = 0; t < e.length; t++) {
+                var r = e[t],
+                    s = ce("div", {
+                        className: "profile_1april_sticker"
+                    });
+                i.appendChild(s), setStyle(s, {
+                    top: r.top,
+                    left: r.left,
+                    width: r.size,
+                    height: r.size,
+                    transform: "rotate(" + r.rotate + "deg)",
+                    backgroundImage: "url(/images/stickers/" + r.stickerId + "/512.png)"
+                })
+            }
+        },
+        show1AprilEditor: function(e, i, o) {
+            return cur.shownAs1AprilEditor = !0, cur.saveHash1AprilEditor = e, delete cur.pvData, showPhoto(i, "", {
+                additional: {
+                    open_pe: 1,
+                    stickers_1april: 1
+                },
+                progress: 1,
+                showProgress: function() {
+                    lockButton(o)
+                },
+                hideProgress: function() {
+                    unlockButton(o)
+                }
+            })
         }
     },
     profile = Profile;

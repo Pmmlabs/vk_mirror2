@@ -4995,7 +4995,8 @@ textarea.page_poll_export_code {
 }
 
 .owner_photo_top_bubble_wrap {
-    position: relative
+    position: relative;
+    z-index: 10
 }
 
 .owner_photo_top_bubble {
@@ -5072,7 +5073,9 @@ textarea.page_poll_export_code {
 }
 
 .page_avatar_wrap {
-    padding-bottom: 2px
+    margin-bottom: 2px;
+    position: relative;
+    overflow: hidden
 }
 
 .page_avatar {

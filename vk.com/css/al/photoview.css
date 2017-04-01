@@ -2987,3 +2987,41 @@ textarea.pe_textarea {
     position: fixed;
     z-index: 100
 }
+
+.pe_stickers_disabled {
+    opacity: 0.5
+}
+
+.pe_stickers_disabled .pe_sticker_preview:hover {
+    background-color: transparent!important
+}
+
+.pe_1april_info,
+.pe_1april_stickers_limit {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 13px;
+    line-height: 18px
+}
+
+.pe_1april_info {
+    top: -38px;
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, .5)
+}
+
+.pe_1april_stickers_limit {
+    bottom: 14px;
+    color: #ccc;
+    left: 23px;
+    width: auto
+}
+
+.pe_1april_stickers_limit span.bold {
+    font-weight: 600;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}

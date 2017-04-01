@@ -3,6 +3,8 @@ var Photoview = {
         MIN_HEIGHT: 450,
         PE_MIN_WIDTH: 750,
         PE_MIN_HEIGHT: 500,
+        PE_MIN_WIDTH_1APRIL: 400,
+        PE_MIN_HEIGHT_1APRIL: 550,
         SIDE_COLUMN_WIDTH: 310,
         SIDE_MIN_GAP: 40,
         VERTICAL_MIN_GAP: 15,
@@ -14,6 +16,7 @@ var Photoview = {
         blankf: function() {},
         cacheSize: 3,
         allSizes: ["x", "y", "z", "w"],
+        photoSize1April: ["a"],
         PE_V1: 1,
         PE_V2: 2,
         PE_V3: 4,
@@ -115,7 +118,7 @@ var Photoview = {
             return e.match(/\.[a-z]{3}$/i) || (e += ".jpg"), e.match(/https?:\/\//i) ? e : (o || "").replace(/\/[a-z0-9_:\.]*$/i, "") + "/" + e
         },
         genData: function(o, e) {
-            for (var t, r, a = "x" == e ? 3 : "y" == e ? 2 : "z" == e ? 1 : 0, i = ["w", "z", "y", "x"].slice(a), p = 0; 4 - a > p; ++p) {
+            for (var t, r, a = "x" == e ? 3 : "y" == e ? 2 : "z" == e ? 1 : 0, i = (cur.shownAs1AprilEditor ? Photoview.photoSize1April : ["w", "z", "y", "x"]).slice(a), p = 0; 4 - a > p; ++p) {
                 var v = i[p];
                 if (t = o[v + "_"]) break;
                 if (r = o[v + "_src"]) break
@@ -404,6 +407,7 @@ var Photoview = {
             })
         },
         getPhotoSize: function() {
+            if (cur.shownAs1AprilEditor) return "a";
             var o;
             switch (cur.pvVeryBig) {
                 case 3:
@@ -862,26 +866,26 @@ var Photoview = {
                     p = cur.pvVeryBig > 1 ? "z" : cur.pvVeryBig ? "y" : "x",
                     v = cur.pvVeryBig > 1 ? "y" : cur.pvVeryBig ? "x" : 0;
                 cur.pvLastFrom = o, cur.pvLastDirection = e;
-                for (var s = 0; s < Math.min(Photoview.cacheSize, r - Photoview.cacheSize); ++s) {
-                    for (var n = o + (s + 1) * -e; n >= r;) n -= r;
-                    for (; 0 > n;) n += r;
-                    var c = cur.pvData[t][n];
-                    if (c)
-                        for (var u = 0, l = Photoview.allSizes.length; l > u; ++u) {
-                            var d = Photoview.allSizes[u];
-                            c[d] && c[d].src && (c[d].src = Photoview.blank, delete c[d])
+                for (var s = cur.shownAs1AprilEditor ? Photoview.photoSize1April : Photoview.allSizes, n = 0; n < Math.min(Photoview.cacheSize, r - Photoview.cacheSize); ++n) {
+                    for (var c = o + (n + 1) * -e; c >= r;) c -= r;
+                    for (; 0 > c;) c += r;
+                    var u = cur.pvData[t][c];
+                    if (u)
+                        for (var l = 0, d = s.length; d > l; ++l) {
+                            var h = s[l];
+                            u[h] && u[h].src && (u[h].src = Photoview.blank, delete u[h])
                         }
                 }
-                for (var s = 0; s < Photoview.cacheSize; ++s) {
-                    for (var n = o + (s + 1) * e; n >= r;) n -= r;
-                    for (; 0 > n;) n += r;
-                    var c = cur.pvData[t][n];
-                    if (!c || !c.id) {
-                        (!c || vkNow() - c > 3e3) && (cur.pvData[t][n] = vkNow(), setTimeout(function() {
+                for (var n = 0; n < Photoview.cacheSize; ++n) {
+                    for (var c = o + (n + 1) * e; c >= r;) c -= r;
+                    for (; 0 > c;) c += r;
+                    var u = cur.pvData[t][c];
+                    if (!u || !u.id) {
+                        (!u || vkNow() - u > 3e3) && (cur.pvData[t][c] = vkNow(), setTimeout(function() {
                             ajax.post("al_photos.php", {
                                 act: "show",
                                 list: t,
-                                offset: Photoview.realOffset(t, n, -1),
+                                offset: Photoview.realOffset(t, c, -1),
                                 direction: e
                             }, {
                                 onDone: Photoview.loaded
@@ -889,7 +893,7 @@ var Photoview = {
                         }, 10));
                         break
                     }
-                    c[a] || (c[a + "_src"] ? (c[a] = vkImage(), c[a].src = c[a + "_src"]) : (c[a] = 1, c[i] || (c[i + "_src"] ? (c[i] = vkImage(), c[i].src = c[i + "_src"]) : (c[i] = 1, c[p] || (c[p + "_src"] ? (c[p] = vkImage(), c[p].src = c[p + "_src"]) : (c[p] = 1, c[v] || (c[v + "_src"] ? (c[v] = vkImage(), c[v].src = c[v + "_src"]) : (c[v] = 1, c.x || (c.x = vkImage(), c.x.src = c.x_src)))))))))
+                    u[a] || (u[a + "_src"] ? (u[a] = vkImage(), u[a].src = u[a + "_src"]) : (u[a] = 1, u[i] || (u[i + "_src"] ? (u[i] = vkImage(), u[i].src = u[i + "_src"]) : (u[i] = 1, u[p] || (u[p + "_src"] ? (u[p] = vkImage(), u[p].src = u[p + "_src"]) : (u[p] = 1, u[v] || (u[v + "_src"] ? (u[v] = vkImage(), u[v].src = u[v + "_src"]) : (u[v] = 1, u.x || (u.x = vkImage(), u.x.src = u.x_src)))))))))
                 }
             }
         },
@@ -909,34 +913,35 @@ var Photoview = {
         },
         doHide: function(o) {
             void 0 !== cur.pvBodyScrollTop && (bodyNode.scrollTop = cur.pvBodyScrollTop, delete cur.pvBodyScrollTop), o.pvHistoryLength = 0, cur.pvTagger && Phototag.stopTag(), cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), o.pvFriends && (cleanElems("pv_add_tag", "pv_cancel_tag", o.pvFriends.firstChild.firstChild, o.pvFriends), re(o.pvFriends), o.pvFriends = o.pvFriendName = !1), Wall.cancelEdit(!0), removeEvent(o.pvPhoto, "mousemove", Photoview.onMouseMove);
-            var e = o.pvListId,
-                t = ((o.pvData || {})[e] || {}).length;
-            if (o.pvLastDirection && t) {
-                for (var r = 0; r < Photoview.cacheSize; ++r) {
-                    for (var a = o.pvLastFrom + (r + 1) * o.pvLastDirection; a >= t;) a -= t;
-                    for (; 0 > a;) a += t;
-                    var i = o.pvData[e][a];
-                    if (i)
-                        for (var p = 0, v = Photoview.allSizes.length; v > p; ++p) {
-                            var s = Photoview.allSizes[p];
-                            i[s] && i[s].src && (i[s].src = Photoview.blank, delete i[s])
+            var e = cur.shownAs1AprilEditor ? Photoview.photoSize1April : Photoview.allSizes,
+                t = o.pvListId,
+                r = ((o.pvData || {})[t] || {}).length;
+            if (o.pvLastDirection && r) {
+                for (var a = 0; a < Photoview.cacheSize; ++a) {
+                    for (var i = o.pvLastFrom + (a + 1) * o.pvLastDirection; i >= r;) i -= r;
+                    for (; 0 > i;) i += r;
+                    var p = o.pvData[t][i];
+                    if (p)
+                        for (var v = 0, s = e.length; s > v; ++v) {
+                            var n = e[v];
+                            p[n] && p[n].src && (p[n].src = Photoview.blank, delete p[n])
                         }
                 }
                 o.pvLastDirection = o.pvLastFrom = !1
             }
             cur.pvYourComment = re(cur.pvYourComment), layers.hide(), layers.fullhide = !1, Photoview.hideTag(!0), delete cur.pvLayerCreated, window.tooltips && tooltips.destroyAll(cur.pvBox), removeClass(layerWrap, "pv_layer_wrap"), removeClass(layerBG, "pv_layer"), layerBG.style.opacity = "", o.pvShown = o.pvListId = o.pvClicked = !1, removeEvent(window, "resize", Photoview.onResize), removeEvent(document, "keydown", Photoview.onKeyDown), removeEvent(layerWrap, "click", Photoview.onLayerClick), removeEvent(layerWrap, "scroll", Photoview.scrollResize), removeEvent(layerWrap, "mousemove", Photoview.onLayerMouseMove);
-            var n = cur.pvOptions && cur.pvOptions.onHide;
+            var c = cur.pvOptions && cur.pvOptions.onHide;
             if (cur.pvOptions) {
-                var n = cur.pvOptions.onHide;
-                cur.pvOptions.onHide = !1, n && n()
+                var c = cur.pvOptions.onHide;
+                cur.pvOptions.onHide = !1, c && c()
             }
             if (layerQueue.pop(), Photoview.destroyPeriod(), o.pvPreloaded && o === cur) {
-                for (var c = geByClass1("photos_container"), u = ce("div", {
+                for (var u = geByClass1("photos_container"), l = ce("div", {
                         innerHTML: o.pvPreloaded
-                    }); u.firstChild;) c.appendChild(u.firstChild);
-                c.qsorter && setTimeout(qsorter.added.pbind(c), 0), o.pvPreloaded = !1
+                    }); l.firstChild;) u.appendChild(l.firstChild);
+                u.qsorter && setTimeout(qsorter.added.pbind(u), 0), o.pvPreloaded = !1
             }
-            uiScrollBox.hide(), Photoview.toggleFastChats(!0), delete cur.pvEditorMode, delete cur.pvEditorModeDimensionsUpdated
+            uiScrollBox.hide(), Photoview.toggleFastChats(!0), delete cur.pvEditorMode, delete cur.pvEditorModeDimensionsUpdated, cur.shownAs1AprilEditor && (delete cur.shownAs1AprilEditor, delete cur.pvData)
         },
         editPhoto: function() {},
         descTT: function(o) {
@@ -1281,7 +1286,7 @@ var Photoview = {
             if (!Photoview.isPhotosList() && !cur.pvEditorModeDimensionsUpdated) {
                 var e = Photoview.MIN_WIDTH,
                     t = Photoview.MIN_HEIGHT;
-                cur.pvEditorMode && (e = Photoview.PE_MIN_WIDTH, t = Photoview.PE_MIN_HEIGHT, cur.pvEditorModeDimensionsUpdated = !0), removeClass(cur.pvBottomInfo, "pv_with_line_break");
+                cur.pvEditorMode && (e = Photoview.PE_MIN_WIDTH, t = Photoview.PE_MIN_HEIGHT, cur.pvEditorModeDimensionsUpdated = !0), cur.shownAs1AprilEditor && (e = 400, t = Math.min(649, Math.max(cur.pvCurData.height, 449)) + 49), removeClass(cur.pvBottomInfo, "pv_with_line_break");
                 var r = isVisible(cur.pvTagInfo),
                     a = r ? getSize(cur.pvTagInfo)[1] : 0,
                     i = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
@@ -1505,10 +1510,9 @@ var Photoview = {
                     n = domByClass(v.container, "_value"),
                     c = domByClass(v.container, "_content"),
                     u = domByClass(v.container, "_title");
-                t && u && val(u, t), v && (v.likeInvalidated = !0), n && (n.value = e), animateCount(p, e), toggleClass(i, "pv_liked", o),
-                    toggleClass(i, "no_likes", !e), toggleClass(c, "me_hidden", !o), e ? !v.el || isVisible(v.container) || t || tooltips.show(v.el, extend(s, {
-                        showdt: 0
-                    })) : v.el && v.hide(), toggleClass(cur.pvHH, "pv_liked", !!o)
+                t && u && val(u, t), v && (v.likeInvalidated = !0), n && (n.value = e), animateCount(p, e), toggleClass(i, "pv_liked", o), toggleClass(i, "no_likes", !e), toggleClass(c, "me_hidden", !o), e ? !v.el || isVisible(v.container) || t || tooltips.show(v.el, extend(s, {
+                    showdt: 0
+                })) : v.el && v.hide(), toggleClass(cur.pvHH, "pv_liked", !!o)
             }
         },
         like: function() {
