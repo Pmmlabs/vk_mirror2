@@ -3147,3 +3147,13 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
 .video_donate_box_success_msg {
     margin: 0
 }
+
+.video_spectators_bottom {
+    display: none;
+    text-align: center;
+    color: #939699;
+    border-top: 1px solid #e7e8ec;
+    line-height: 44px;
+    padding-top: 5px;
+    margin: 0 11px
+}

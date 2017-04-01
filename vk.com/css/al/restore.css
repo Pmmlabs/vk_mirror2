@@ -381,7 +381,8 @@
 }
 
 #request_result_wrap .info {
-    padding-bottom: 0
+    padding-bottom: 0;
+    text-align: left
 }
 
 #restore_cancel_button {
@@ -447,9 +448,16 @@
 
 .restore_extend_comment {
     box-sizing: border-box;
-    height: 90px;
+    height: 55px;
     width: 100%;
-    resize: vertical
+    resize: vertical;
+    margin-top: 8px;
+    border: 1px solid #d3d9de;
+    border-radius: 1px
+}
+
+.restore_extend_submit_form {
+    margin-top: 15px
 }
 
 .restore_msg_wide.msg {
@@ -519,6 +527,15 @@
 
 .restore_response_image.restore_response_image_landscape {
     width: 75%
+}
+
+.restore_extended_new_phone {
+    float: none;
+    margin: 0 auto
+}
+
+.restore_extended_new_phone #new_phone {
+    width: 170px
 }
 
 #restore_roll_back_link .request_result_msg {

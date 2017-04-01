@@ -1685,6 +1685,62 @@ var Videoview = {
                 val("mv_views", a)
             }
         },
+        showLiveSpectatorsBox: function() {
+            var e = Videoview.getMvData();
+            showBox("al_video.php?act=live_spectators_box", {
+                owner_id: e.oid,
+                video_id: e.vid,
+                hash: e.hash
+            }, {
+                params: {
+                    grey: !0,
+                    hideButtons: !0,
+                    width: 638,
+                    bodyStyle: "padding: 0; border: 0;",
+                    onShow: function() {
+                        addEvent(boxLayerWrap, "scroll", Videoview.onLiveSpectatorsScroll), setTimeout(Videoview.onLiveSpectatorsScroll, 0)
+                    },
+                    onHide: function() {
+                        removeEvent(boxLayerWrap, "scroll", Videoview.onLiveSpectatorsScroll)
+                    }
+                },
+                onFail: function(e) {
+                    return showFastBox(getLang("global_error_occured"), e), !0
+                }
+            })
+        },
+        onLiveSpectatorsScroll: function() {
+            var e = lastWindowHeight,
+                i = ge("video_spectators_more_link");
+            isVisible(i) && e > getXY(i, !0)[1] && i.click()
+        },
+        loadMoreLiveSpectators: function(e) {
+            if (!isButtonLocked(e)) {
+                var i = mvcur.liveSpectatorsPerPage,
+                    o = mvcur.liveSpectatorsShown,
+                    t = mvcur.liveSpectatorsList.slice(o, o + i);
+                if (t.length) {
+                    var a = Videoview.getMvData();
+                    ajax.post("al_video.php?act=live_spectators_box", {
+                        owner_id: a.oid,
+                        video_id: a.vid,
+                        more: t.join(","),
+                        hash: a.hash
+                    }, {
+                        onDone: function(t, a) {
+                            var n = ge("video_spectators_rows");
+                            if (n.insertAdjacentHTML("beforeend", t), mvcur.liveSpectatorsShown = o + i, mvcur.liveSpectatorsShown >= mvcur.liveSpectatorsList.length && hide(e), mvcur.liveSpectatorsShown >= mvcur.liveSpectatorsLimit) {
+                                hide(e);
+                                var d = ge("video_spectators_bottom");
+                                n.appendChild(d), show(d)
+                            }
+                        },
+                        showProgress: lockButton.pbind(e),
+                        hideProgress: unlockButton.pbind(e)
+                    })
+                }
+            }
+        },
         checkOtherLives: function(e) {
             mvcur.mvShown && !mvcur.minimized && mvcur.videoRaw == e && (ajax.post("al_video.php?act=live_other_videos", {
                 video: e
@@ -1834,8 +1890,7 @@ var Videoview = {
                 t = Videoview.getContSize(),
                 a = e.clientX - mvcur.minSize.wrap.l,
                 n = e.clientY - mvcur.minSize.wrap.t;
-            return 6 > n && (o += 1),
-                a > t[0] - 20 && (o += 2), n > t[1] - 10 && (o += 4), 10 > a && (o += 8), 1 == o && a > t[0] - 55 && (o = 0), !o && 25 > n && a < t[0] - 55 && (o += 16), o
+            return 6 > n && (o += 1), a > t[0] - 20 && (o += 2), n > t[1] - 10 && (o += 4), 10 > a && (o += 8), 1 == o && a > t[0] - 55 && (o = 0), !o && 25 > n && a < t[0] - 55 && (o += 16), o
         },
         changeCursor: function(e) {
             if (!Videoview.isFS) {
@@ -2619,13 +2674,14 @@ window.VideoChat = {
     MAX_COMMENTS_NUM: 150,
     init: function(e, i) {
         VideoChat.block && VideoChat.destroy(), e && (VideoChat.block = e, VideoChat.options = extend({}, i), VideoChat.messagesWrap = domByClass(e, "mv_chat_messages_wrap"), VideoChat.scroll = new uiScroll(domFC(VideoChat.messagesWrap), {
-            global: !0,
-            reversed: !0,
-            preserveEdgeBelow: !0,
-            preserveEdgeBelowThreshold: VideoChat.SCROLL_EDGE_BELOW_THRESHOLD,
-            theme: "videoview",
-            onupdate: VideoChat.onScrollUpdate
-        }), this.scrollBottomBtnWrap = domByClass(e, "mv_chat_new_messages_btn_wrap"), VideoChat.replyForm = domByClass(e, "mv_chat_reply_form"), VideoChat.replyForm && (VideoChat.replyInput = domByClass(e, "mv_chat_reply_input"), VideoChat.initReplyInput()), VideoChat.firstMsgIntro = domByClass(e, "mv_chat_first_message_intro"))
+                global: !0,
+                reversed: !0,
+                preserveEdgeBelow: !0,
+                preserveEdgeBelowThreshold: VideoChat.SCROLL_EDGE_BELOW_THRESHOLD,
+                theme: "videoview",
+                onupdate: VideoChat.onScrollUpdate
+            }), this.scrollBottomBtnWrap = domByClass(e, "mv_chat_new_messages_btn_wrap"), VideoChat.replyForm = domByClass(e, "mv_chat_reply_form"),
+            VideoChat.replyForm && (VideoChat.replyInput = domByClass(e, "mv_chat_reply_input"), VideoChat.initReplyInput()), VideoChat.firstMsgIntro = domByClass(e, "mv_chat_first_message_intro"))
     },
     initReplyInput: function() {
         placeholderInit(VideoChat.replyInput, {

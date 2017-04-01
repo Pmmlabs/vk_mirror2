@@ -1043,6 +1043,11 @@ a.settings_blb_title {
     display: none
 }
 
+.settings_history_hint {
+    border-bottom: 1px dashed #939393;
+    cursor: pointer
+}
+
 .settings_transfer_date {
     color: #939393;
     font-size: 12.5px

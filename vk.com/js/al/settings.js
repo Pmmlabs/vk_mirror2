@@ -1150,7 +1150,10 @@ var Settings = {
         })) : void(cur.confirmBox = showFastBox(getLang("global_action_confirmation"), getLang("settings_subscription_cancel_confirm"), getLang("settings_subscription_cancel_btn"), Settings.paymentsSubscriptionCancel.pbind(t, e, s, o, 1), getLang("global_cancel")))
     },
     paymentsSubscriptionReactivate: function(t, e, s, o) {
-        showBox("al_apps.php?act=show_subscription_box", {
+        var n = domClosest("_row", t);
+        cur.onSubscriptionDone = function(t) {
+            val(geByClass1("settings_history_amount", n), t.status), val(geByClass1("settings_history_actions", n), t.actions)
+        }, showBox("al_apps.php?act=show_subscription_box", {
             aid: e,
             subscription_id: s,
             action: "resume",

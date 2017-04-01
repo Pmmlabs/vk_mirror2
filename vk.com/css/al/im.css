@@ -5414,6 +5414,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     position: static
 }
 
+.im-preloader.im-preloader_fixed-center {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
 .im-preloader.im-preloader_bottom .pr {
     margin-bottom: 5px;
     margin-top: 0
