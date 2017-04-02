@@ -612,8 +612,8 @@ var Profile = {
                 i.appendChild(s), setStyle(s, {
                     top: r.top,
                     left: r.left,
-                    width: r.size,
-                    height: r.size,
+                    width: r.size ? r.size : r.width,
+                    height: r.size ? r.size : r.height,
                     transform: "rotate(" + r.rotate + "deg)",
                     backgroundImage: "url(/images/stickers/" + r.stickerId + "/512.png)"
                 })

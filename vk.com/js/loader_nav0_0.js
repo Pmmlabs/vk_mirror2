@@ -169,7 +169,7 @@ var stVersions = {
     'fullscreen_pv.css': 14927380767,
     'friendsphotos.js': 169519698,
     'friendsphotos.css': 2849056081,
-    'spe.js': 4238613635,
+    'spe.js': 603995925,
     'friends.js': 3212870034,
     'friends.css': 15149595894,
     'friends_search.js': 3688413939,
@@ -227,7 +227,7 @@ var stVersions = {
     'groups_edit.css': 31292773798,
     'groups_edit.js': 942087830,
     'profile.css': 24468347381,
-    'profile.js': 544110825,
+    'profile.js': 2009394955,
     'calendar.css': 18493971012,
     'calendar.js': 4203451993,
     'wk.css': 20977550068,
@@ -342,7 +342,7 @@ var stVersions = {
     'sf.css': 13780930568,
     'sal.css': 14534017556,
     'members.css': 15556117201,
-    'meminfo.css': 17896550093,
+    'meminfo.css': 18011254891,
     'groupinfo.css': 18571024079,
     'bugs.js': 3874995669,
     'bugs.css': 13603144525,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 3202;
+var _rnd = 964;

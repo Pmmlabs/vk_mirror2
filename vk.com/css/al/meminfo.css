@@ -70,6 +70,7 @@
 
 .mi_meminforow_label {
     padding-top: 10px;
+    padding-right: 7px;
     color: #777
 }
 
@@ -486,4 +487,14 @@ table.history .cur_session {
 
 .mi_group_chats_warning {
     padding-bottom: 10px
+}
+
+.mi_light_bottom_margined {
+    margin-bottom: 5px
+}
+
+.mi_comments_info_textarea {
+    width: 100%;
+    resize: vertical;
+    margin-top: 10px
 }
