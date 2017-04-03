@@ -6,7 +6,6 @@
 #layer_stl_text,
 #side_bar .left_icon,
 #stl_text,
-.april1_old_vk,
 .audio_add,
 .audio_hq_label_show .audio_row.hq .audio_hq_label,
 .audio_play,
@@ -251,15 +250,6 @@ body {
     -moz-osx-font-smoothing: auto
 }
 
-body.april1 {
-    background: #fff
-}
-
-body.april1 .chat_onl_wrap,
-body.april1 .scroll_fix_wrap {
-    display: none!important
-}
-
 .fixed {
     position: fixed
 }
@@ -273,24 +263,6 @@ body.firefox #page_wrap {
 .table td {
     vertical-align: top;
     text-align: left
-}
-
-.april1_old_vk {
-    background: #fff url(/images/rip_old_design.jpg) no-repeat 50% 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10000;
-    height: 2675px;
-    min-width: 791px;
-    -o-transition: opacity 1000ms ease-out;
-    transition: opacity 1000ms ease-out
-}
-
-.april1_old_vk.fade {
-    opacity: 0;
-    filter: alpha(opacity=0)
 }
 
 :focus {
