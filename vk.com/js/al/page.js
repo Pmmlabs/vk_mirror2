@@ -324,6 +324,24 @@ var Page = {
                 stat: ['owner_photo.css', 'owner_photo.js']
             });
         },
+        ownerPhotoEffects: function(photo_raw, owner_id) {
+            var listId = 'album' + owner_id + '_0/rev';
+            if (cur.pvData && (!cur.pvShown || cur.pvListId != listId)) {
+                delete cur.pvData[listId];
+            }
+            showPhoto(photo_raw, listId, {
+                additional: {
+                    open_pe: 1,
+                    pe_no_copy: 1
+                },
+                loader: 1,
+                onHide: function() {
+                    if (cur.pvEditorSaved) {
+                        nav.reload();
+                    }
+                }
+            });
+        },
         uploadOwnerCover: function(oid) {
             return !showBox('al_page.php', {
                 act: 'owner_photo_box',

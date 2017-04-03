@@ -58,10 +58,10 @@ var Photoview = {
             }
         },
         openStickersEditor: function(o) {
-            cur.pvEditorMode || (o || (o = cur.pvCurPhoto), Photoview.toggleNavControls(), hide(cur.pvLikeFSWrap), Photoview.hideTag(!0), cur.pvEditorMode = !0, Photoview.updatePhotoDimensions(), stManager.add(["spe.js"], function() {
+            cur.pvEditorMode || (o || (o = cur.pvCurPhoto), Photoview.toggleNavControls(), hide(cur.pvLikeFSWrap), Photoview.hideTag(!0), cur.pvEditorMode = !0, cur.pvEditorSaved = !1, Photoview.updatePhotoDimensions(), stManager.add(["spe.js"], function() {
                 SPE.init(o, function(e, t, r, a) {
                     var i = e.id != o.id;
-                    if (o.closeOnPEEdit) {
+                    if (cur.pvEditorSaved = !0, o.closeOnPEEdit) {
                         if (e && t && window.ThumbsEdit && r) {
                             var p = ThumbsEdit.cache();
                             for (var v in p) {
@@ -620,17 +620,18 @@ var Photoview = {
                         offset: [0, -5]
                     }))
                 }
-                Photoview.updatePhotoDimensions(), extend(cur, {
-                    pvTagLink: ge("pv_tag_link"),
-                    pvLikeIcon: geByClass1("pv_like_icon"),
-                    pvLikeLink: geByClass1("pv_like_link"),
-                    pvDesc: ge("pv_desc"),
-                    pvTags: ge("pv_tags"),
-                    pvEditing: !1,
-                    pvProgress: ge("pv_progress")
-                }), p.deleted || !p.author ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), isArray(p.deleted) && Photoview.toggleTopInfoPanel(p.deleted[0], p.deleted[1]), hide(cur.pvHHWrap), n || Photoview.toggleDeletedState(!0)) : p.taginfo ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), Photoview.toggleTopInfoPanel(p.taginfo, '        <button class="flat_button" id="pv_confirm_tag" onclick="Photoview.confirmTag(' + p.tagid + ', this)">' + getLang("photos_confirm_tag") + '</button>         <button class="flat_button secondary black" id="pv_delete_tag" onclick="Photoview.deleteTag(' + p.tagid + ', this)">' + getLang("photos_delete_tag") + "</button>       </div>"), show(cur.pvCommentsData), Photoview.hhCheck() && show(cur.pvHHWrap)) : (Photoview.toggleTopInfoPanel(!1), Photoview.toggleDeletedState(!1), Photoview.hhCheck() && show(cur.pvHHWrap)), (cur.pvOptions || {}).scroll && cur.pvNarrowScrollbar && cur.pvNarrowScrollbar.scrollTop(cur.pvOptions.scroll), cur.pvBodyScrollTop = bodyNode.scrollTop, setTimeout(function() {
-                    void 0 !== cur.pvBodyScrollTop && (bodyNode.scrollTop = cur.pvBodyScrollTop, delete cur.pvBodyScrollTop)
-                }, 0), Photoview.updateVerticalPosition(), setTimeout(Photoview.afterShow, 2)
+                Photoview.updatePhotoDimensions(),
+                    extend(cur, {
+                        pvTagLink: ge("pv_tag_link"),
+                        pvLikeIcon: geByClass1("pv_like_icon"),
+                        pvLikeLink: geByClass1("pv_like_link"),
+                        pvDesc: ge("pv_desc"),
+                        pvTags: ge("pv_tags"),
+                        pvEditing: !1,
+                        pvProgress: ge("pv_progress")
+                    }), p.deleted || !p.author ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), isArray(p.deleted) && Photoview.toggleTopInfoPanel(p.deleted[0], p.deleted[1]), hide(cur.pvHHWrap), n || Photoview.toggleDeletedState(!0)) : p.taginfo ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), Photoview.toggleTopInfoPanel(p.taginfo, '        <button class="flat_button" id="pv_confirm_tag" onclick="Photoview.confirmTag(' + p.tagid + ', this)">' + getLang("photos_confirm_tag") + '</button>         <button class="flat_button secondary black" id="pv_delete_tag" onclick="Photoview.deleteTag(' + p.tagid + ', this)">' + getLang("photos_delete_tag") + "</button>       </div>"), show(cur.pvCommentsData), Photoview.hhCheck() && show(cur.pvHHWrap)) : (Photoview.toggleTopInfoPanel(!1), Photoview.toggleDeletedState(!1), Photoview.hhCheck() && show(cur.pvHHWrap)), (cur.pvOptions || {}).scroll && cur.pvNarrowScrollbar && cur.pvNarrowScrollbar.scrollTop(cur.pvOptions.scroll), cur.pvBodyScrollTop = bodyNode.scrollTop, setTimeout(function() {
+                        void 0 !== cur.pvBodyScrollTop && (bodyNode.scrollTop = cur.pvBodyScrollTop, delete cur.pvBodyScrollTop)
+                    }, 0), Photoview.updateVerticalPosition(), setTimeout(Photoview.afterShow, 2)
             }
         },
         toggleTopInfoPanel: function(o, e) {
@@ -1495,7 +1496,7 @@ var Photoview = {
                     angle: o.angle,
                     rot1: o.rot1,
                     rot3: o.rot3
-                }), t == cur.pvListId && r == cur.pvIndex && Photoview.show(t, r)
+                }), t == cur.pvListId && r == cur.pvIndex && Photoview.show(t, r);
             }
         },
         likeUpdate: function(o, e, t) {

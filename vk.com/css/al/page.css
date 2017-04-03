@@ -4999,6 +4999,11 @@ textarea.page_poll_export_code {
     z-index: 10
 }
 
+.owner_photo_wrap.actions_with_effects .owner_photo_bubble_wrap {
+    height: 79px;
+    margin-top: -81px
+}
+
 .owner_photo_top_bubble {
     opacity: 0;
     filter: alpha(opacity=0);
@@ -5038,7 +5043,7 @@ textarea.page_poll_export_code {
 }
 
 .owner_photo_bubble_action_in {
-    background: url(/images/icons/edit_photo_icons_white.png) no-repeat;
+    background: url(/images/icons/edit_photo_icons_white.png?2) no-repeat;
     background-position: left 1px;
     -o-transition: all 100ms ease-out;
     transition: all 100ms ease-out;
@@ -5049,6 +5054,10 @@ textarea.page_poll_export_code {
 
 .owner_photo_bubble_action_crop .owner_photo_bubble_action_in {
     background-position: left -16px
+}
+
+.owner_photo_bubble_action_effects .owner_photo_bubble_action_in {
+    background-position: left -34px
 }
 
 #owner_photo_bubble_input {
