@@ -142,7 +142,7 @@ var stVersions = {
     'html5audio.js': 976782859,
     'html5video.js': 223664659,
     'html5video.css': 18151258239,
-    'audioplayer.js': 4291731025,
+    'audioplayer.js': 6425864519,
     'audioplayer.css': 19676818051,
     'audio_html5.js': 287741914,
     'audio.js': 2995098174,
@@ -215,14 +215,14 @@ var stVersions = {
     'owner_photo.js': 1714149322,
     'owner_photo.css': 21409953085,
     'page.js': 562874834,
-    'page.css': 22017514417,
+    'page.css': 22401460088,
     'page_help.css': 23448448454,
-    'public.css': 28323881260,
+    'public.css': 26673771453,
     'public.js': 3882483539,
     'pages.css': 22012219961,
     'pages.js': 1162259210,
-    'groups.css': 23020542712,
-    'groups.js': 166703051,
+    'groups.css': 24066433342,
+    'groups.js': 2480648561,
     'groups_list.js': 2953716700,
     'groups_edit.css': 32334202941,
     'groups_edit.js': 942087830,
@@ -268,7 +268,7 @@ var stVersions = {
     'apps_check.js': 3844411974,
     'apps_check.css': 27353693575,
     'settings.js': 1675239222,
-    'settings.css': 28681812189,
+    'settings.css': 26964209106,
     'profile_edit.js': 312998250,
     'profile_edit.css': 17816155816,
     'profile_edit_edu.js': 799807020,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 5235;
+var _rnd = 8397;
