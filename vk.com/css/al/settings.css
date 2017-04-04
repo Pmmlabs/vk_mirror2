@@ -1183,15 +1183,21 @@ a.settings_blb_title {
     vertical-align: top
 }
 
+.settings_payments_subscriptions .settings_history_name {
+    padding-right: 10px!important;
+    width: 120px
+}
+
 .settings_payments_subscriptions .settings_history_title {
-    padding-right: 15px!important;
-    width: 220px
+    padding-right: 10px!important;
+    width: 190px
 }
 
 .settings_payments_subscriptions .settings_history_amount {
     font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto
+    -moz-osx-font-smoothing: auto;
+    vertical-align: top
 }
 
 .settings_payments_subscriptions .settings_history_amount b {
@@ -1199,7 +1205,8 @@ a.settings_blb_title {
 }
 
 .settings_payments_subscriptions .settings_history_actions {
-    width: 1px
+    width: 1px;
+    vertical-align: top
 }
 
 .settings_payments_subscriptions .settings_subscription_cancel {

@@ -57,6 +57,17 @@ var Groups = {
             hideProgress: window.Page && Page.actionsDropdownUnlock.pbind(o)
         }), cancelEvent(t)
     },
+    hideHelpStep: function(o, e, n, t) {
+        var a = domClosest("page_block", o);
+        return o && o.tt && o.tt.hide && o.tt.hide({
+            fasthide: !0
+        }), a && slideUp(a, 200, re.pbind(a)), ajax.post("/al_public.php", {
+            act: "a_hide_help_step",
+            pid: e,
+            step: "help_step_advice",
+            hash: n
+        }), t.cancelBubble = !0, cancelEvent(t)
+    },
     showInviteBox: function(o, e) {
         return !showBox("al_page.php", {
             act: "a_invite_box",

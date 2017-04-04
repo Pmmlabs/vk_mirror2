@@ -158,21 +158,3 @@
     line-height: 16px;
     padding-right: 4px
 }
-
-.public_help_hide {
-    float: right;
-    height: 22px;
-    width: 22px;
-    margin: 5px 6px 5px 0;
-    background: url('/images/svg_icons/groups/hide.svg') no-repeat 50% 50%;
-    -o-transition: opacity 0.15s ease;
-    transition: opacity 0.15s ease;
-    opacity: 0.5;
-    filter: alpha(opacity=50)
-}
-
-.public_help_hide:hover {
-    opacity: 1;
-    -webkit-filter: none;
-    filter: none
-}

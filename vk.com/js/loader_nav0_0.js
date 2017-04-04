@@ -221,7 +221,7 @@ var stVersions = {
     'public.js': 3882483539,
     'pages.css': 22012219961,
     'pages.js': 1162259210,
-    'groups.css': 24066433342,
+    'groups.css': 24066433345,
     'groups.js': 2480648561,
     'groups_list.js': 2953716700,
     'groups_edit.css': 32334202941,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 8397;
+var _rnd = 676;
