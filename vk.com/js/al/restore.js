@@ -308,17 +308,7 @@ var Restore = {
         o.innerHTML = e, show(o), elfocus("phone_confirm_code")
     },
     toFullRequest: function(e) {
-        hide(cur.wasShown), ajax.post("al_restore.php", {
-            act: "to_full",
-            mid: e
-        }, {
-            onDone: function(e) {
-                var o = ge("restore_fields");
-                val(o, e), hide("email_wrap"), cur.options.request_type = 0;
-                var r = geByClass1("restore_roll_colored", o);
-                r && (show(r), removeClass(r, "restore_roll_colored"))
-            }
-        })
+        nav.go("/restore?act=return_page&full=1&mid=" + e)
     },
     initRequest: function() {
         extend(cur, {

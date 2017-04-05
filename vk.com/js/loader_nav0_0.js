@@ -221,8 +221,8 @@ var stVersions = {
     'public.js': 3882483539,
     'pages.css': 22012219961,
     'pages.js': 1162259210,
-    'groups.css': 24066433345,
-    'groups.js': 2480648561,
+    'groups.css': 24066433346,
+    'groups.js': 2480648562,
     'groups_list.js': 2953716700,
     'groups_edit.css': 32334202941,
     'groups_edit.js': 942087830,
@@ -245,10 +245,10 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 107915670245,
+    'im.css': 107732861549,
     'imn.js': 117208009855,
     'im.js': 1322065004,
-    'emoji.js': 4179107526,
+    'emoji.js': 3607330516,
     'wide_dd.css': 15740248388,
     'wide_dd.js': 3323487336,
     'writebox.css': 19445147836,
@@ -314,11 +314,11 @@ var stVersions = {
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
     'touch.css': 796462384,
-    'notifier.js': 31510690831,
+    'notifier.js': 33934110537,
     'notifier.css': 24077703040,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
-    'restore.js': 213571032,
+    'restore.js': 3889172787,
     'restore.css': 22224112499,
     'recover.js': 2830033131,
     'recover.css': 2080137791,
@@ -424,7 +424,7 @@ var stVersions = {
     'ui_common.js': 2073087863,
     'ui_common.css': 15138442166,
     'ui_media_selector.js': 480361842,
-    'ui_media_selector.css': 22227961587,
+    'ui_media_selector.css': 20621080414,
     'ui_manual.css': 16691821495,
     'admin.js': 2866808704,
     'admin.css': 20242165904,
@@ -517,7 +517,7 @@ var stVersions = {
     'stories.js': 3550070580,
     'stories.css': 23062156104,
     'shortener.js': 1002525642,
-    'lang': 6762
+    'lang': 6765
 };
 var stTypes = {
     fromLib: {
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 676;
+var _rnd = 624;

@@ -2648,7 +2648,10 @@
                             break;
                         case "notify_tt":
                         case "login_attempt":
-                            ev.add && (ev.add = eval("(" + ev.add + ")"), TopNotifier.showTooltip(ev.add.text, ev.add.key)), push = 0
+                            ev.add && (ev.add = eval("(" + ev.add + ")"), TopNotifier.showTooltip(ev.add.text, ev.add.key)), push = 0;
+                            break;
+                        case "reload_stickers":
+                            window.Emoji && window.Emoji.stickers && (Emoji.stickers = !1), push = 0
                     }
                     return "mail" === ev.type && (push = this.sendMailNotification(ev)), 1 & push && (curNotifier.q_events.push(ev), curNotifier.q_events.length > 30 && curNotifier.q_events.splice(0, curNotifier.q_events.length - 30), this.checkEvents()), push
                 }
@@ -3619,7 +3622,7 @@
                     typeClass: "top_notify_tt",
                     dir: "up",
                     width: 250,
-                    shift: [0, 1],
+                    shift: [0, 0],
                     nohideover: 1,
                     nohide: 1,
                     onShowStart: function(t) {

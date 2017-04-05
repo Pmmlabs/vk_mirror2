@@ -1955,7 +1955,7 @@ if (!window.Emoji) {
                 }));
                 recentWrap.appendChild(stickerEl);
                 var top = Math.ceil((i + 1) / 4) * 68;
-                Emoji.needLoadStickers.unshift([optId + '_' + Emoji.TAB_RECENT_STICKERS + '_' + stickers[i][0], top]);
+                opts.needLoadStickers.unshift([optId + '_' + Emoji.TAB_RECENT_STICKERS + '_' + stickers[i][0], top]);
             }
         },
 
@@ -2209,15 +2209,15 @@ if (!window.Emoji) {
                 return;
             }
 
-            if (!Emoji.needLoadStickers) {
-                Emoji.needLoadStickers = [];
+            if (!opts.needLoadStickers) {
+                opts.needLoadStickers = [];
             }
 
             var st = opts.emojiScroll.data.scrollTop,
                 vh = opts.emojiScroll.data.viewportHeight;
             var startPos = st,
                 endPos = st + vh;
-            var needLoad = Emoji.needLoadStickers;
+            var needLoad = opts.needLoadStickers;
 
             clearTimeout(opts.preloadStickersTimer);
 
@@ -2345,6 +2345,7 @@ if (!window.Emoji) {
             var exp = String(this).split(':');
             var raw_id = exp[1];
             var optId = intval(exp[0]);
+            var opts = Emoji.opts[optId];
 
 
             var el = ge('emoji_sticker_item' + raw_id);
@@ -2361,10 +2362,10 @@ if (!window.Emoji) {
             attr(img, 'src', src);
             delete Emoji.opts[optId].imagesLoading[src + ':' + raw_id];
 
-            for (var i = 0; i < Emoji.needLoadStickers.length; i++) {
-                var item = Emoji.needLoadStickers[i];
+            for (var i = 0; i < opts.needLoadStickers.length; i++) {
+                var item = opts.needLoadStickers[i];
                 if (raw_id == item[0]) {
-                    Emoji.needLoadStickers.splice(i, 1);
+                    opts.needLoadStickers.splice(i, 1);
                     break;
                 }
             }
@@ -2733,6 +2734,7 @@ if (!window.Emoji) {
 
             opts.initedStickers = 1;
             opts.imagesLoading = [];
+            clearTimeout(opts.preloadStickersTimer);
 
             var posTree = [],
                 splitersPos = [];
@@ -2755,7 +2757,7 @@ if (!window.Emoji) {
                 }
                 el = el.nextSibling;
             }
-            Emoji.needLoadStickers = posTree;
+            opts.needLoadStickers = posTree;
             opts.stickersSplitersPos = splitersPos;
         },
 
@@ -3353,7 +3355,7 @@ if (!window.Emoji) {
                             cursor: 'default'
                         })
                     } else {
-                        var newCont = ge('im_stickers_my_wrap');
+                        var newCont = geByTag1('div', 'im_stickers_my_wrap');
                         newCont.appendChild(el);
                         var oldCont = ge('im_stickers_deact_wrap');
                         if (!oldCont.childNodes.length) {
@@ -3461,6 +3463,7 @@ if (!window.Emoji) {
                 }
                 Emoji.checkEmojiSlider(opts);
                 Emoji.checkNewStickers(opts);
+                opts.stickersInited = false;
             }
 
             var stickers = Emoji.stickers && clone(Emoji.stickers);
