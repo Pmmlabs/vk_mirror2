@@ -260,7 +260,8 @@
         var i = arguments.length <= 2 || void 0 === arguments[2] ? {} : arguments[2],
             a = o(t, e, i),
             s = a.request;
-        return a.cancel, s
+        a.cancel;
+        return s
     }
 
     function o(t, e) {
@@ -1199,7 +1200,10 @@
             var r, d, h;
             curFastChat.clistCache = {};
             for (a in curFastChat.friends)
-                for (r = curFastChat.friends[a][0], a = intval(a), d = 0; h = " " + r.charAt(d).toLowerCase(), curFastChat.clistCache[h] || (curFastChat.clistCache[h] = {}), curFastChat.clistCache[h][a] = 1, d = r.indexOf(" ", d + 1), -1 != d;) ++d
+                for (r = curFastChat.friends[a][0], a = intval(a), d = 0;;) {
+                    if (h = " " + r.charAt(d).toLowerCase(), curFastChat.clistCache[h] || (curFastChat.clistCache[h] = {}), curFastChat.clistCache[h][a] = 1, d = r.indexOf(" ", d + 1), -1 == d) break;
+                    ++d
+                }
         },
         clistShowMore: function() {
             if (curFastChat.clHasMore) {
@@ -1606,7 +1610,8 @@
                     act: "a_mark_read",
                     peer: t,
                     ids: e,
-                    hash: i.sendhash
+                    hash: i.sendhash,
+                    from: "fc"
                 }, {
                     onDone: function(a) {
                         i.markingRead = !1;

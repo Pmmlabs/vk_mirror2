@@ -151,7 +151,7 @@ function PhotoEdit(t, e, r, i, a, o) {
         var o = a.getContext("2d");
         t > 0 ? o.translate(a.width, 0) : o.translate(0, a.height), o.rotate(t * Math.PI / 2), o.drawImage(v, 0, 0, a.height, a.width), delete v, v = a;
         var s = this.getLastCrop();
-        this.lastCrop.t = s.l, this.lastCrop.l = s.b, this.lastCrop.b = s.r, this.lastCrop.r = s.t, n()
+        this.lastCrop.t = s.l, this.lastCrop.l = s.b, this.lastCrop.b = s.r, this.lastCrop.r = s.t, FiltersPE.hideCropArea(), n()
     }, this.show = function() {
         t.appendChild(E), o && o()
     }, this.crop = function(t, e, r, a, o, s) {
