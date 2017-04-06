@@ -4894,7 +4894,8 @@ var Wall = {
         ajax.post('al_wall.php', {
             act: 'copy_history',
             post: post,
-            offset: offset
+            offset: offset,
+            from: cur.module
         }, {
             onDone: function(rows) {
                 if (!domPN(el)) return;

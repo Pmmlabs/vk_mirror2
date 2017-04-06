@@ -1,4 +1,5 @@
 #gtop_app_in_groups .gtop_image,
+#gtop_money_transfer .gtop_image,
 .group_box_extra .info_icon_email,
 .group_box_extra .info_icon_phone,
 .group_box_row .group_box_delete,
@@ -1040,6 +1041,17 @@ a.group_app_button:after {
 
 #gtop_app_in_groups .gtop_image {
     background: url(/images/community_apps_logo.png) no-repeat 0 0
+}
+
+#gtop_money_transfer.gtop_complex_message {
+    height: 100px
+}
+
+#gtop_money_transfer .gtop_image {
+    background: url(/images/community_money.png) no-repeat 0 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%
 }
 
 .group_manage_row {

@@ -3151,7 +3151,8 @@ body[data-useragent*=msie9] .im-page--title-meta {
 .im-mess-stack.im-mess-stack_fwd .im-mess-stack--tools {
     position: static;
     display: block;
-    margin-left: 0
+    margin-left: 0;
+    margin-top: 0
 }
 
 .im-mess-stack.im-mess-stack_fwd-top .im-mess-stack_fwd .im-mess:first-child>.im-mess--text,
@@ -3277,6 +3278,56 @@ body[data-useragent*=msie9] .im-page--title-meta {
 
 .im-mess .im-mess--blind-read {
     display: none
+}
+
+.im-mess .im-mess--post {
+    margin-left: 3px;
+    border-left: 2px solid #dee6ee;
+    z-index: 2
+}
+
+.im-mess .im-mess--post .post_image {
+    width: 36px;
+    height: 36px
+}
+
+.im-mess .im-mess--post .post_image img {
+    max-height: 100%;
+    max-width: 100%
+}
+
+.im-mess .im-mess--post .post_content {
+    margin-top: -18px
+}
+
+.im-mess .im-mess--post .post_header {
+    padding: 0;
+    margin-left: 6px;
+    margin-top: 4px
+}
+
+.im-mess .im-mess--post .post_header .post_author {
+    max-width: 95%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: top
+}
+
+.im-mess .im-mess--post .wall_text .page_media_poll_wrap:last-child {
+    margin-bottom: 0
+}
+
+.im-mess .im-mess--post .post_info>.wall_text {
+    padding-left: 0;
+    margin-left: 7px;
+    padding-bottom: 10px
+}
+
+.im-mess .im-mess--post .post_header_info {
+    padding-top: 2px;
+    margin-left: 51px
 }
 
 .im-mess .im-mess--text {

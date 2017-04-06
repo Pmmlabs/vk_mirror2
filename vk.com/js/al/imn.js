@@ -1793,12 +1793,12 @@
     }
 
     function i() {
-        var e = ls.get(st);
+        var e = ls.get(lt);
         return e || 0
     }
 
     function o(e) {
-        e >= window.clientHeight() - 30 && (e = 0), ls.set(st, e)
+        e >= window.clientHeight() - 30 && (e = 0), ls.set(lt, e)
     }
 
     function s(e, t) {
@@ -2464,9 +2464,9 @@
         var n = e;
         if (!t && !n) return !1;
         var r = n.target || n.srcElement,
-            a = 4,
+            a = st,
             i = !1,
-            o = /_im_mess|im_log_act|im_log_ract|_im_log_body|im_log_rspacer|_im_graffiti_w/;
+            o = /_im_mess|im_log_act|im_log_ract|_im_log_body|im_log_rspacer|_im_graffiti_w|_wall_post_cont/;
         do
             if (!r || r.onclick || r.onmousedown || "A" == r.tagName || hasClass(r, "im_msg_media_link") || "IMG" == r.tagName && !hasClass(r, "_im_graffiti") && !hasClass(r, "emoji") && !hasClass(r, "emoji_css") && !hasClass(r, "im_gift") || "TEXTAREA" == r.tagName || hasClass(r, "play_new") || (i = o.test(r.className))) break; while (a-- && (r = r.parentNode));
         if (!i) return !0;
@@ -2680,8 +2680,7 @@
         if (re(r), p(t), !s || !o) return t;
         var l = domData(o, "msgid"),
             u = domData(s, "msgid"),
-            c = (0,
-                Ge.getMessage)(e, n, l),
+            c = (0, Ge.getMessage)(e, n, l),
             d = (0, Ge.getMessage)(e, n, u);
         if (M(c, d, e)) return t;
         var g = geByClass1("_im_stack_messages", a),
@@ -2759,7 +2758,7 @@
     }
 
     function Be(e) {
-        if (lt[e]) return lt[e];
+        if (ut[e]) return ut[e];
         for (var t = e ? e.length : 0, n = [], r = [], a = "", i = 0; t > i; i++) {
             var o = e[i],
                 s = o.charCodeAt(0);
@@ -2769,7 +2768,7 @@
         var l = Re(n, r),
             u = He(l, 1),
             c = u[0];
-        return Object.keys(lt).length > 300 && (lt = {}), lt[e] = c, c
+        return Object.keys(ut).length > 300 && (ut = {}), ut[e] = c, c
     }
 
     function Fe(e) {
@@ -2887,10 +2886,11 @@
         at = t.CHAT_PHOTO_REMOVE = "chat_photo_remove",
         it = t.DESELECT_ALL_CLASS = "_im_deselect_all",
         ot = (t.SHOW_CHAT_MEMBERS_CLASS = "_im_show_chat_mems", t.HIDE_TOP_NOTICE_CLASS = "_im_top_notice_hide", t.CLEAR_RECENT_CLASS = "_im_clear_recent"),
-        st = (t.selectionRemove = function() {
+        st = 8,
+        lt = (t.selectionRemove = function() {
             return '<button aria-label="' + getLang("mail_deselect_all") + '" type="button" class="im-deselect ' + it + '"></button>'
         }, "chatPosition"),
-        lt = {}
+        ut = {}
 }, function(e, t) {
     "use strict";
 
@@ -4301,7 +4301,8 @@
     function h(e, t, n, r, a, i) {
         for (var o = 0; r > o; o++) e = domNS(e);
         var s = se(a(t));
-        return domData(s, "list-id", n), e ? i.insertBefore(s, e) : i.appendChild(s), e
+        return domData(s, "list-id", n), e ? i.insertBefore(s, e) : i.appendChild(s),
+            e
     }
 
     function v(e, t, n, r) {

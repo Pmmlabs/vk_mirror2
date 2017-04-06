@@ -214,14 +214,14 @@ var stVersions = {
     'module.css': 19625481362,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 21409953085,
-    'page.js': 562874834,
+    'page.js': 818268577,
     'page.css': 22401460088,
     'page_help.css': 23448448454,
     'public.css': 26673771453,
     'public.js': 3882483539,
     'pages.css': 22012219961,
     'pages.js': 1162259210,
-    'groups.css': 24066433346,
+    'groups.css': 21637734732,
     'groups.js': 2480648562,
     'groups_list.js': 2953716700,
     'groups_edit.css': 32334202941,
@@ -245,8 +245,8 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 107732861549,
-    'imn.js': 117208009855,
+    'im.css': 111474296757,
+    'imn.js': 115935819220,
     'im.js': 1322065004,
     'emoji.js': 3607330516,
     'wide_dd.css': 15740248388,
@@ -372,8 +372,8 @@ var stVersions = {
     'ads_bonus.css': 460482192,
     'ads.js': 270622120,
     'ads_payments.js': 2170749464,
-    'ads_edit.css': 16306183940,
-    'ads_edit.js': 557212198,
+    'ads_edit.css': 16112371148,
+    'ads_edit.js': 1915889757,
     'ads_edit_geo.js': 1634516705,
     'ads_moder_common.css': 16264132999,
     'ads_moder.css': 17188029360,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 7457;
+var _rnd = 4178;
