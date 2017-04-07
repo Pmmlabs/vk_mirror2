@@ -2866,6 +2866,32 @@ if (!VK.Util) {
     };
 }
 
+if (!VK.Retargeting) {
+    VK.Retargeting = {
+        pixelCode: null,
+        Init: function(pixelCode) {
+            this.pixelCode = pixelCode;
+        },
+        Event: function(event) {
+            if (!this.pixelCode) {
+                return;
+            }
+
+            (window.Image ? (new Image()) : document.createElement('img')).src = 'https://vk.com/rtrg?p=' + this.pixelCode + (event ? ('&event=' + event) : '');
+        },
+        Hit: function() {
+            this.Event();
+        },
+        Add: function(audienceID) {
+            if (!this.pixelCode || !audienceID) {
+                return;
+            }
+
+            (window.Image ? (new Image()) : document.createElement('img')).src = 'https://vk.com/rtrg?p=' + this.pixelCode + '&audience=' + audienceID;
+        }
+    };
+}
+
 // Init asynchronous library loading
 window.vkAsyncInit && setTimeout(vkAsyncInit, 0);
 

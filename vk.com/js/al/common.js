@@ -5361,18 +5361,18 @@ function handlePageParams(params) {
         setEl = ge('l_set'),
         sep = setEl && setEl.nextSibling || false,
         sh = false,
-        ids = ['fr', 'ph', 'vid', 'msg', 'nts', 'gr', 'ev', 'wsh', 'ap', 'ads', 'ntf', 'wk', 'docs'];
-    var lnks = ['friends', 'albums' + vk.id, 'video', '', 'notes', 'groups', 'events', 'gifts.php?act=wishlist', 'apps', ads_menu_link, 'feed' + (ge('l_nwsf') ? '?section=notifications' : ''), 'pages', 'docs'];
-    var adds = ['', 'act=added', 'section=tagged', '', 'act=comments', '', 'tab=invitations', '', '', ads_menu_add, ge('l_nwsf') ? '' : 'section=notifications'];
+        ids = ['fr', 'ph', 'vid', 'msg', 'nts', 'gr', 'ev', 'wsh', 'ap', 'ads', 'ntf', 'fav', 'doc', 'apm', 'mk'];
+    var lnks = ['friends', 'albums' + vk.id, 'video', '', 'notes', 'groups', 'events', 'gifts.php?act=wishlist', 'apps', ads_menu_link, 'feed' + (ge('l_nwsf') ? '?section=notifications' : ''), 'pages', 'docs', 'apps_manage', 'market'];
+    var adds = ['', 'act=added', 'section=tagged', '', 'act=comments', '', 'tab=invitations', '', '', ads_menu_add, ge('l_nwsf') ? '' : 'section=notifications', '', '', '', 'only_friends=1'];
 
     if (!params.handlecnts) {
-        for (; i < 13; ++i) {
+        for (; i < ids.length; ++i) {
             vk.counts[ids[i]] = cnts[i];
         }
         return;
     }
 
-    for (; i < 13; ++i) {
+    for (; i < ids.length; ++i) {
         handlePageCount(ids[i], cnts[i], lnks[i], adds[i]);
     }
 

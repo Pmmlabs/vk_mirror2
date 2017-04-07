@@ -1178,11 +1178,6 @@ a.settings_blb_title {
     padding-bottom: 20px
 }
 
-.settings_payments_subscriptions .settings_history_name,
-.settings_payments_subscriptions .settings_history_photo {
-    vertical-align: top
-}
-
 .settings_payments_subscriptions .settings_history_name {
     padding-right: 10px!important;
     width: 120px
@@ -1196,8 +1191,7 @@ a.settings_blb_title {
 .settings_payments_subscriptions .settings_history_amount {
     font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-    vertical-align: top
+    -moz-osx-font-smoothing: auto
 }
 
 .settings_payments_subscriptions .settings_history_amount b {

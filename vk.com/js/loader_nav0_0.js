@@ -268,7 +268,7 @@ var stVersions = {
     'apps_check.js': 3844411974,
     'apps_check.css': 27353693575,
     'settings.js': 1675239222,
-    'settings.css': 26964209106,
+    'settings.css': 25340735401,
     'profile_edit.js': 312998250,
     'profile_edit.css': 17816155816,
     'profile_edit_edu.js': 799807020,
@@ -346,7 +346,7 @@ var stVersions = {
     'groupinfo.css': 20747024344,
     'bugs.js': 3874995669,
     'bugs.css': 15779144790,
-    'bugtracker.js': 3926302973,
+    'bugtracker.js': 435427861,
     'bugtracker.css': 18708739797,
     'login.css': 21504915349,
     'login.js': 3551917100,
@@ -368,9 +368,9 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 27341438600,
     'aes_light.js': 2817066015,
-    'ads.css': 21928997661,
+    'ads.css': 21768991526,
     'ads_bonus.css': 460482192,
-    'ads.js': 270622120,
+    'ads.js': 765518201,
     'ads_payments.js': 2170749464,
     'ads_edit.css': 16112371148,
     'ads_edit.js': 1915889757,
@@ -476,7 +476,7 @@ var stVersions = {
     'paginated_table.js': 1572974868,
     'paginated_table.css': 17740113829,
     'api/share.js': 1988203672,
-    'api/openapi.js': 273491512,
+    'api/openapi.js': 2055898460,
     'api/xdm.js': 1449919642,
     'css_clean.js': 4210402166,
     'hls.min.js': 4279436662,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 8405;
+var _rnd = 8507;

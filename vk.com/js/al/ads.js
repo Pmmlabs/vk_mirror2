@@ -3539,7 +3539,7 @@ Ads.retargetingCreateRuleArgumentInput = function(id, type, rule) {
 
     // create new input
     var ruleArgumentsInput;
-    if (type == cur.ruleTypesConstants.ADS_RETARGETING_RULE_TYPE_SUBSTR) {
+    if (inArray(type, [cur.ruleTypesConstants.ADS_RETARGETING_RULE_TYPE_SUBSTR, cur.ruleTypesConstants.ADS_RETARGETING_RULE_TYPE_SUBSTR_ACTION])) {
         ruleArgumentsInput = ce('input', {
             type: "hidden",
             id: 'retargeting_rule_argument_' + id
@@ -3555,7 +3555,7 @@ Ads.retargetingCreateRuleArgumentInput = function(id, type, rule) {
 
     cur.smartPixelRules[ruleIndex].argumentWrapper.appendChild(ruleArgumentsInput);
 
-    if (type == cur.ruleTypesConstants.ADS_RETARGETING_RULE_TYPE_SUBSTR) {
+    if (inArray(type, [cur.ruleTypesConstants.ADS_RETARGETING_RULE_TYPE_SUBSTR, cur.ruleTypesConstants.ADS_RETARGETING_RULE_TYPE_SUBSTR_ACTION])) {
         cur.smartPixelRules[ruleIndex].selector = new Selector(ruleArgumentsInput, [], {
             multiselect: true,
             dropdown: false,
@@ -3685,6 +3685,43 @@ Ads.retargetingAddSmartPixelRule = function(id, type, rule) {
     Ads.retargetingCreateRuleArgumentInput(id, type, rule);
     Ads.retargetingUpdateDeleteRuleVisibility();
     Ads.retargetingCheckSmartPixelRulesCount();
+}
+
+Ads.retargetingUpdateWip = function(unionId) {
+    if (!cur.options.unionId || !cur.options.wip_hash) {
+        if (cur.adsRetargetingWipInterval) {
+            clearInterval(cur.adsRetargetingWipInterval);
+            cur.adsRetargetingWipInterval = null;
+        }
+
+        return;
+    }
+    ajax.post('/ads?act=a_retargeting_update_wip', {
+        union_id: cur.options.unionId,
+        hash: cur.options.wip_hash
+    }, {
+        onDone: function(response, files_statuses) {
+            var el;
+            for (var groupId in response) {
+                el = ge('union_' + groupId + '_updated');
+                if (el) {
+                    el.innerHTML = response[groupId];
+                }
+            }
+            for (var fileKey in files_statuses) {
+                el = ge('ads_retargeting_wip_file_' + fileKey);
+                if (el) {
+                    el.innerHTML = files_statuses[fileKey];
+                }
+            }
+        },
+        onFail: function(msg) {
+            if (cur.adsRetargetingWipInterval) {
+                clearInterval(cur.adsRetargetingWipInterval);
+                cur.adsRetargetingWipInterval = null;
+            }
+        }
+    });
 }
 
 Ads.saveRetargetingGroupParam = function(id, v) {

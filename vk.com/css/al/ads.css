@@ -2163,6 +2163,26 @@ a.ads_dd_menu_multi_item.label:hover {
     color: #65686c
 }
 
+.ads_retargeting_group_wip .pr {
+    opacity: 1;
+    display: inline-block;
+    padding: 8px 6px 8px 0
+}
+
+.ads_retargeting_group_wip_badge {
+    border-radius: 10px;
+    background-color: #7394b5;
+    color: #fff;
+    padding: 1px 6px 1px 5.5px;
+    margin-left: 5px;
+    font-size: 12.5px;
+    cursor: default
+}
+
+.ads_retargeting_group_wip_wrapper {
+    pointer-events: none
+}
+
 #ads_retargeting_name {
     width: 100%
 }
