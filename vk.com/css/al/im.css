@@ -3186,6 +3186,19 @@ body[data-useragent*=msie9] .im-page--title-meta {
     margin-bottom: 3px
 }
 
+.im-mess-stack.im-mess-stack_fav .im-mess-stack--pname {
+    max-width: 390px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: top
+}
+
+.im-mess-stack.im-mess-stack_fav .im-mess-stack--content .im-mess-stack--lnk {
+    display: inline
+}
+
 .im-search--date-input {
     float: right;
     position: relative;
