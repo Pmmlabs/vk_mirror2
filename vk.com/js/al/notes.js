@@ -703,7 +703,7 @@ var notes = {
         ge('privacy_notecomm').value = Privacy.getValue('notecomm' + mid);
         var form = ge('editPost');
         var act = (mid != '') ? 'update' : 'add';
-        var exportStatus = (mid != '') ? '' : isChecked(ge('status_export'));
+        var exportStatus = (mid != '') ? '' : isChecked('status_export');
         var formWysiwyg = form.wysiwyg ? form.wysiwyg.value : '';
         ajax.post('/notes', {
             act: act,
@@ -754,7 +754,7 @@ var notes = {
     },
 
     switchExport: function() {
-        isChecked(ge('status_export')) ? hide('note_privacy') : show('note_privacy');
+        isChecked('status_export') ? hide('note_privacy') : show('note_privacy');
     },
 
     setPhotos: function(offset) {

@@ -488,7 +488,7 @@ var Settings = {
         ajax.post("/al_profile.php", {
             act: "hide_gifts",
             hash: cur.options.hide_gifts_hash,
-            shown: isChecked(ge("hide_gifts")) ? 0 : 1
+            shown: isChecked("hide_gifts") ? 0 : 1
         }, {
             onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
         })
@@ -500,7 +500,7 @@ var Settings = {
         ajax.post("/al_settings.php", {
             act: "a_change_autoplay_gif",
             hash: cur.options.gif_autoplay_hash,
-            no_autoplay: isChecked(ge("settings_gif_autoplay")) ? 0 : 1
+            no_autoplay: isChecked("settings_gif_autoplay") ? 0 : 1
         }, {
             onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
         })
@@ -521,7 +521,7 @@ var Settings = {
         ajax.post("/al_settings.php", {
             act: "a_change_stickers_hints",
             hash: cur.options.stickers_hints_hash,
-            hints: isChecked(ge("settings_stickers_hints")) ? 1 : 0
+            hints: isChecked("settings_stickers_hints") ? 1 : 0
         }, {
             onDone: function() {
                 window.uiPageBlock && uiPageBlock.showSaved("cposts"), window.Emoji && Emoji.updateTabs.apply(window, arguments)
@@ -535,7 +535,7 @@ var Settings = {
         ajax.post("/al_settings.php", {
             act: "a_change_autoplay_video",
             hash: cur.options.video_autoplay_hash,
-            video_autoplay: isChecked(ge("settings_video_autoplay")) ? 1 : 0
+            video_autoplay: isChecked("settings_video_autoplay") ? 1 : 0
         }, {
             onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
         })
@@ -547,7 +547,7 @@ var Settings = {
         ajax.post("/al_settings.php", {
             act: "a_change_autostart_video",
             hash: cur.options.video_autostart_hash,
-            video_autostart: isChecked(ge("settings_video_autostart")) ? 1 : 0
+            video_autostart: isChecked("settings_video_autostart") ? 1 : 0
         }, {
             onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
         })
@@ -559,7 +559,7 @@ var Settings = {
         ajax.post("/al_settings.php", {
             act: "a_change_ads_video",
             hash: cur.options.video_ads_hash,
-            video_ads: isChecked(ge("settings_video_ads")) ? 1 : 0
+            video_ads: isChecked("settings_video_ads") ? 1 : 0
         }, {
             onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
         })
@@ -573,7 +573,7 @@ var Settings = {
             hash: cur.options.microblog_hash
         };
         each(["status_default", "no_wall_replies"], function(e, s) {
-            t[s] = isChecked(ge("settings_" + s))
+            t[s] = isChecked("settings_" + s)
         }), ajax.post("/al_settings.php", t, {
             onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
         })

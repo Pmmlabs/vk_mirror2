@@ -1372,14 +1372,14 @@ AppsSlider.prototype = {
                     aid: t,
                     hash: e,
                     from: "appview",
-                    app_settings_1: isChecked(ge("app_settings_1")),
-                    app_settings_256: isChecked(ge("app_settings_256")),
+                    app_settings_1: isChecked("app_settings_1"),
+                    app_settings_256: isChecked("app_settings_256"),
                     add: a ? a.value : 0,
                     withdraw: n ? n.value : 0,
                     only_checkboxes: i ? 1 : 0,
                     cur_aid: cur.aid
                 };
-            isVisible("app_settings_2097152") && (r.app_settings_2097152 = isChecked(ge("app_settings_2097152"))), ajax.post("apps", r, extend({
+            isVisible("app_settings_2097152") && (r.app_settings_2097152 = isChecked("app_settings_2097152")), ajax.post("apps", r, extend({
                 onDone: function(t) {
                     s && s.btn && unlockButton(s.btn), t.left_nav && this.updateLeftNav(t.left_nav), !i && cur.app && cur.app.runCallback("onSettingsChanged", t.settings), cur.settingsOnLoad = !1, void 0 !== t.coins && cur.app && cur.app.balanceUpdated(t.coins), void 0 !== t.balance && updateMoney(t.balance), o && !i && o.hide(), Apps.addToMenuErrorResolve(t, function(t) {
                         i && checkbox("app_settings_256", 256 & t.settings)
@@ -2165,8 +2165,8 @@ AppsSlider.prototype = {
         }, {
             cache: t ? 0 : 1,
             onDone: this.withFastBackCheck(function(e, i, s) {
-                t == this.searchValFix(cur.searchStr) && (this.isSection("catalog", "list") && (cur.searchStr && this.sliderStop(), this.switchLayout(cur.searchStr ? "list" : cur.section), this.searchWriteToAddressBar()), this.backupListContent(!0), e && val(cur.lContent, e), val(cur.lPreload, i || ""),
-                    cur.loadMore = !!i, extend(cur, s), cur.loadMore && show(cur.lShowMoreButton), this.scrollCheck())
+                t == this.searchValFix(cur.searchStr) && (this.isSection("catalog", "list") && (cur.searchStr && this.sliderStop(), this.switchLayout(cur.searchStr ? "list" : cur.section), this.searchWriteToAddressBar()), this.backupListContent(!0), e && val(cur.lContent, e), val(cur.lPreload, i || ""), cur.loadMore = !!i,
+                    extend(cur, s), cur.loadMore && show(cur.lShowMoreButton), this.scrollCheck())
             }.bind(this)),
             showProgress: function() {
                 cur.isAppsLoading = !0, lockButton(cur.lShowMoreButton)

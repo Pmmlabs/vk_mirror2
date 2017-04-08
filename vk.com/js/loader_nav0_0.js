@@ -262,12 +262,12 @@ var stVersions = {
     'privacy.js': 3875115925,
     'privacy.css': 18346784650,
     'apps.css': 29492555779,
-    'apps.js': 411933577,
+    'apps.js': 535626174,
     'apps_edit.js': 2664300316,
     'apps_edit.css': 27497632182,
     'apps_check.js': 3844411974,
     'apps_check.css': 27353693575,
-    'settings.js': 1675239222,
+    'settings.js': 2089554304,
     'settings.css': 25340735401,
     'profile_edit.js': 312998250,
     'profile_edit.css': 17816155816,
@@ -281,11 +281,11 @@ var stVersions = {
     'suggester.js': 3718548841,
     'datepicker.js': 808741082,
     'datepicker.css': 21050557323,
-    'oauth_popup.css': 27457192607,
+    'oauth_popup.css': 25503629474,
     'oauth_page.css': 377358648,
     'oauth_touch.css': 850126194,
     'notes.css': 2351233181,
-    'notes.js': 2631009968,
+    'notes.js': 3300062627,
     'wiki.css': 23782730641,
     'fave.js': 128270649,
     'fave.css': 22547033399,
@@ -406,7 +406,7 @@ var stVersions = {
     'filters_pe.js': 2963371200,
     'pe.js': 318083439,
     'pe.css': 15697727766,
-    'dev.js': 1672914477,
+    'dev.js': 4080376533,
     'dev.css': 29450686476,
     'share.css': 25861384350,
     'stickers_office.css': 1312075860,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 8507;
+var _rnd = 6146;

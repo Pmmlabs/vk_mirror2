@@ -251,6 +251,10 @@ html {
     background-position: 0 -520px
 }
 
+.apps_access_phone {
+    background-position: 0 -560px
+}
+
 .oauth_centered {
     background: #edeef0
 }
