@@ -531,7 +531,8 @@
 
 .restore_extended_new_phone {
     float: none;
-    margin: 0 auto
+    margin: 0 auto;
+    width: 210px
 }
 
 .restore_extended_new_phone #new_phone {
