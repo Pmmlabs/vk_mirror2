@@ -98,22 +98,16 @@ var Restore = {
     submitPageLink: function() {
         var e = ge("submitBtn"),
             o = val("link");
-        if (!o) return void elfocus("link");
-        hide("error");
-        var r = {
+        return o ? (hide("error"), void ajax.post("al_restore.php", {
             act: "a_profile_link",
             link: o
-        };
-        ajax.post("al_restore.php", r, {
-            onDone: function(e, o) {
-                ge("error").innerHTML = (o ? "<b>" + o + "</b><br>" : "") + e, show("error")
-            },
-            onFail: function() {
-                unlockButton(e)
+        }, {
+            onDone: function(e) {
+                val("error", e), show("error")
             },
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e)
-        })
+        })) : void elfocus("link")
     },
     usePhoneAsLogin: function() {
         var e = ge("usePhoneBtn");
@@ -253,15 +247,13 @@ var Restore = {
         cur.validationLastCallback = function(e) {
             hide("request_phone_res"), e ? Restore.submitRequest() : elfocus("phone")
         }, ajax.post("/al_restore.php", u, {
-            onDone: function(e, o, r, t) {
-                if (!e) return Restore.showMsgBox(o, getLang("global_error"));
-                var s = intval(e);
-                if (-1 == s) ge("request_result").innerHTML = o, show("request_result"), hide("request_form"), scrollToTop();
+            onDone: function(e, o, r, t, s) {
+                var i = intval(e);
+                if (i > 0) cur.request_id = i, cur.request_hash = o, Restore.phone_confirm_box = showFastBox(getLang("restore_confirmation"), '<div id="phone_confirm_box">' + ge("phone_confirm").innerHTML + "</div>", getLang("box_send"), function() {
+                    Restore.confirmPhoneSend()
+                }, getLang("global_cancel")), ge("phone_confirm_code").focus();
                 else {
-                    if (-2 == s) return lockButton(n), setTimeout(Restore.submitRequest, 1e3);
-                    s > 0 ? (cur.request_id = s, cur.request_hash = o, Restore.phone_confirm_box = showFastBox(getLang("restore_confirmation"), '<div id="phone_confirm_box">' + ge("phone_confirm").innerHTML + "</div>", getLang("box_send"), function() {
-                        Restore.confirmPhoneSend()
-                    }, getLang("global_cancel")), ge("phone_confirm_code").focus()) : ("login" == t ? o += "<br>" + val("request_email_or_phone_need") : "phonenum" == t && (cur.wrongPhone = !0), Restore.showResult(e, o, r))
+                    if (-2 == i) return lockButton(n), setTimeout(Restore.submitRequest, 1e3); - 3 == i ? ("login" == s ? o += "<br>" + val("request_email_or_phone_need") : "phonenum" == s && (cur.wrongPhone = !0), Restore.showResult(r, o, t)) : Restore.showMsgBox(o, getLang("global_error"))
                 }
             },
             showProgress: lockButton.pbind(n),
