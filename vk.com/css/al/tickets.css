@@ -753,6 +753,12 @@ body.dev .tickets_header_links {
     border-radius: 2px
 }
 
+#tickets_templates .template_wrap .templates_actions .templates_move_mode_link.on {
+    background: #dae2e8;
+    border-radius: 2px;
+    padding: 4px
+}
+
 #tickets_templates .template_links_wrap {
     margin-top: 10px
 }
@@ -771,6 +777,12 @@ body.dev .tickets_header_links {
 }
 
 #tickets_templates .template_links_wrap .template {
+    -ms-user-select: none;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
     float: left;
     padding: 2px 6px;
     margin-top: 3px;
@@ -4048,4 +4060,13 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     margin-top: 0;
     margin-bottom: 0;
     padding: 8px 0
+}
+
+.not_selectable_text {
+    -ms-user-select: none;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none
 }

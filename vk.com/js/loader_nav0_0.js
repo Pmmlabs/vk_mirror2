@@ -314,7 +314,7 @@ var stVersions = {
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
     'touch.css': 796462384,
-    'notifier.js': 33226060626,
+    'notifier.js': 31215077695,
     'notifier.css': 24077703040,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
@@ -328,10 +328,10 @@ var stVersions = {
     'tags_dd.css': 17809464775,
     'tasks.js': 662793453,
     'tasks.css': 17154229696,
-    'helpdesk.js': 2683904339,
+    'helpdesk.js': 3330561566,
     'helpdesk.css': 22758278340,
-    'tickets.js': 3747535527,
-    'tickets.css': 20012006806,
+    'tickets.js': 3256001699,
+    'tickets.css': 21770842505,
     'faq.js': 600540081,
     'faq.css': 22810307455,
     'talmud.js': 1641838680,
@@ -368,7 +368,7 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 27341438600,
     'aes_light.js': 2817066015,
-    'ads.css': 21768991526,
+    'ads.css': 24287517924,
     'ads_bonus.css': 460482192,
     'ads.js': 765518201,
     'ads_payments.js': 2170749464,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 8911;
+var _rnd = 4019;

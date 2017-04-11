@@ -1520,8 +1520,12 @@ table.ads_inline_edit_table td {
     position: relative;
     width: 60px;
     height: 60px;
-    background: #e9d2d2;
+    background: rgba(0, 0, 0, .11);
     border-radius: 50%
+}
+
+.active_disapproved .ads_moder_comment_rules_icon {
+    background: #e9d2d2
 }
 
 .ads_moder_comment_rules_icon.icon_age_16p {

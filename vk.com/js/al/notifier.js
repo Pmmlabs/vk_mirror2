@@ -2374,6 +2374,7 @@
                         recvClbks: curNotifier.recvClbks || {},
                         recvData: curNotifier.recvData || {},
                         error_timeout: 1,
+                        request_timeout: 1e3,
                         sound: new Sound("mp3/bb1"),
                         sound_im: new Sound("mp3/bb2"),
                         sound_im_current: new Sound("mp3/bb3"),
@@ -3053,7 +3054,7 @@
                                 default:
                                     return
                             }
-                            busy ? this.lcNoServer() : (this.lpCheck(), curNotifier.error_timeout = Math.max(1, (curNotifier.error_timeout || 1) / 1.5))
+                            busy ? this.lcNoServer() : (clearTimeout(curNotifier.lpCheckTO), curNotifier.lpCheckTO = setTimeout(this.lpCheck.bind(this), curNotifier.request_timeout || 1e3), curNotifier.error_timeout = Math.max(1, (curNotifier.error_timeout || 1) / 1.5))
                         } catch (e) {
                             text && -1 == text.indexOf("Ad Muncher") && (topError("Notifier error: " + e.message, {
                                 dt: -1,

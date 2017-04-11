@@ -1,4 +1,4 @@
-Tickets = {
+var Tickets = {
     switchTab: function(e, t) {
         if (checkEvent(t)) return !0;
         var a = !1,
