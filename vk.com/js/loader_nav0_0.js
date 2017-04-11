@@ -319,7 +319,7 @@ var stVersions = {
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
     'restore.js': 958218634,
-    'restore.css': 21391693014,
+    'restore.css': 18416634728,
     'recover.js': 2830033131,
     'recover.css': 2080137791,
     'docs.js': 3215535710,
@@ -332,8 +332,8 @@ var stVersions = {
     'helpdesk.css': 22758278340,
     'tickets.js': 3256001699,
     'tickets.css': 21770842505,
-    'faq.js': 600540081,
-    'faq.css': 22810307455,
+    'faq.js': 1134602325,
+    'faq.css': 20544323768,
     'talmud.js': 1641838680,
     'agents.js': 1228491530,
     'agents.css': 18309539871,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 4019;
+var _rnd = 6164;

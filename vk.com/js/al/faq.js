@@ -11,54 +11,61 @@ FAQ = {
     showError: function(e) {
         var t = ge("faq_error");
         if (!t) {
-            var o;
+            var a;
             switch (cur.page) {
                 case "all":
-                    o = ge("faq_list");
+                    a = ge("faq_list");
                     break;
                 case "new":
                 case "edit":
-                    o = ge("faq_msg_p"), show("faq_msg_p")
+                    a = ge("faq_msg_p"), show("faq_msg_p")
             }
-            t = o.insertBefore(ce("div", {
+            t = a.insertBefore(ce("div", {
                 id: "faq_error",
                 className: "error"
-            }), o.firstChild)
+            }), a.firstChild)
         }
         return re("faq_msg"), hide("faq_progress"), t.innerHTML = e, t.style.backgroundColor = "#FACEBB", animate(t, {
             backgroundColor: "#FFEFE8"
         }, 2e3), scrollToTop(200), !0
     },
-    checkTextLength: function(e, t, o) {
-        var a = trim(e.value).replace(/\n\n\n+/g, "\n\n");
-        if (e.lastLen !== a.length) {
-            var i = e.lastLen = a.length,
-                r = i - a.replace(/\n/g, "").length;
-            o = ge(o), i > t - 100 || r > 10 ? (show(o), i > t ? o.innerHTML = getLang("global_recommended_exceeded", i - t) : r > 10 ? o.innerHTML = getLang("global_recommended_lines", r - 10) : o.innerHTML = getLang("text_N_symbols_remain", t - i)) : hide(o)
+    checkTextLength: function(e, t, a) {
+        var o = trim(e.value).replace(/\n\n\n+/g, "\n\n");
+        if (e.lastLen !== o.length) {
+            var i = e.lastLen = o.length,
+                r = i - o.replace(/\n/g, "").length;
+            a = ge(a), i > t - 100 || r > 10 ? (show(a), i > t ? a.innerHTML = getLang("global_recommended_exceeded", i - t) : r > 10 ? a.innerHTML = getLang("global_recommended_lines", r - 10) : a.innerHTML = getLang("text_N_symbols_remain", t - i)) : hide(a)
         }
     },
     appendExtraField: function(e) {
-        var t = ge("faq_optional_extra_fields_list"),
-            o = ge("faq_optional_extra_field_example");
+        var t = ge("faq_optional_extra_fields_list");
+        ge("faq_optional_extra_field_example");
         if (t) {
-            for (var a = o.cloneNode(!0), i = 0; ge("faq_optional_extra_field_" + i);) i++;
-            a.id = "faq_optional_extra_field_" + i, t.appendChild(a);
-            var r = geByClass1("faq_optional_extra_field_type__inp", a);
-            r.id = a.id + "_type";
-            var s = geByClass1("faq_optional_extra_field__title", a);
-            s.id = a.id + "_title", placeholderSetup(s, {
-                back: !0
-            });
-            var n = geByClass1("faq_optional_extra_field__note", a);
-            n.id = a.id + "_note", placeholderSetup(n, {
-                back: !0
-            });
-            var l = geByClass1("faq_optional_extra_field_required__inp", a);
-            l.id = a.id + "_required", t.children.length >= 10 && hide(e), FAQ.prepareExtraField(a, r, l, s, n)
+            for (var a = 0; ge("faq_optional_extra_field_" + a);) a++;
+            var o = se(getTemplate("faqExtraField", {
+                index: a
+            }));
+            t.appendChild(o), t.children.length >= 10 && hide(e), FAQ.prepareExtraField(o)
         }
     },
-    prepareExtraField: function(e, t, o, a, i) {
-        var r = new Dropdown(t, cur.selData.extra_field_types, {
+    prepareExtraField: function(e) {
+        var t = new Dropdown(geByClass1("_type", e), cur.selData.extra_field_types, {
+            width: 191,
+            introText: "",
+            noResult: "",
+            multiselect: !1,
+            autocomplete: !1,
+            big: 1,
+            onChange: function(t) {
+                toggle(geByClass1("_face_block", e), cur.selData.extra_field_face_check[t])
+            }
+        });
+        data(e, "typeSelector", t), placeholderSetup(geByClass1("_title", e), {
+            back: !0
+        }), placeholderSetup(geByClass1("_note", e), {
+            back: !0
+        });
+        var a = new Dropdown(geByClass1("_required", e), cur.selData.extra_field_required_types, {
             width: 191,
             introText: "",
             noResult: "",
@@ -66,22 +73,9 @@ FAQ = {
             autocomplete: !1,
             big: 1
         });
-        data(e, "typeSelector", r), placeholderSetup(a, {
-            back: !0
-        }), placeholderSetup(i, {
-            back: !0
-        });
-        var s = new Dropdown(o, cur.selData.extra_field_required_types, {
-            width: 191,
-            introText: "",
-            noResult: "",
-            multiselect: !1,
-            autocomplete: !1,
-            big: 1
-        });
-        data(e, "requiredSelector", s);
-        var n = geByClass1("faq_optional_extra_field__close", e);
-        addEvent(n, "click", FAQ.removeExtraField.pbind(e))
+        data(e, "requiredSelector", a);
+        var o = geByClass1("faq_optional_extra_field__close", e);
+        addEvent(o, "click", FAQ.removeExtraField.pbind(e))
     },
     removeExtraField: function(e) {
         var t = data(e, "typeSelector");
@@ -91,9 +85,9 @@ FAQ = {
         for (var e = 0; 10 > e; e++) {
             var t = ge("faq_optional_extra_field_" + e);
             if (t) {
-                var o = data(t, "typeSelector"),
-                    a = data(t, "requiredSelector");
-                o.destroy.bind(o)(), a.destroy.bind(a)()
+                var a = data(t, "typeSelector"),
+                    o = data(t, "requiredSelector");
+                a.destroy.bind(a)(), o.destroy.bind(o)()
             }
         }
     },
@@ -101,15 +95,15 @@ FAQ = {
         cur.faqText != val("faq_text") || cur.faqTitle != val("faq_title") ? show("faq_ed_notify_translators") : hide("faq_ed_notify_translators")
     },
     saveFAQText: function(e) {
-        for (var t = e, o = "", a = {}; t;) a["text" + o] = t.substring(0, 4e3), t = t.substring(4e3), o = "" === o ? "1" : parseInt(o) + 1;
-        return a
+        for (var t = e, a = "", o = {}; t;) o["text" + a] = t.substring(0, 4e3), t = t.substring(4e3), a = "" === a ? "1" : parseInt(a) + 1;
+        return o
     },
-    saveFAQ: function(e, t, o) {
-        var a = trim(val("faq_title")),
+    saveFAQ: function(e, t, a) {
+        var o = trim(val("faq_title")),
             i = trim(val("faq_text")),
             r = trim(val("faq_keywords")),
             s = trim(val("faq_description"));
-        if (!a) return notaBene("faq_title");
+        if (!o) return notaBene("faq_title");
         var n = [];
         if (cur.screens)
             for (var l in cur.screens) n.push(cur.screens[l][0]);
@@ -117,7 +111,7 @@ FAQ = {
         var d = cur.langsDD && cur.langsDD.val() || 0,
             _ = {
                 act: "save",
-                title: a,
+                title: o,
                 keywords: r,
                 description: s,
                 hash: t,
@@ -136,7 +130,7 @@ FAQ = {
                 about_email: isChecked("faq_about_email"),
                 hidden: isChecked("hidden_faq"),
                 disable_have_question: isChecked("disable_have_question_faq"),
-                save_exit: o ? 1 : 0,
+                save_exit: a ? 1 : 0,
                 notify_translators: isChecked("faq_ed_notify_translators") ? 1 : 0,
                 is_wiki: isChecked("faq_is_wiki") ? 1 : 0,
                 landing: cur.adsCategoryLandingSelector.val()
@@ -160,18 +154,18 @@ FAQ = {
             if (_.action_url = ge("faq_action_btn_url").value.trim(), !_.action_url) return elfocus("faq_action_btn_url"), notaBene("faq_action_btn_url")
         }
         if (ge("faq_optional_extra_field_add") && (!cur.sectionSelector || 0 == cur.sectionSelector.val() || 39 == cur.sectionSelector.val()) || 1 == cur.sectionSelector.val()) {
-            for (var p = {}, g = ge("faq_optional_extra_fields_list").children, l = 0; l < g.length; l++) {
-                var h = g[l];
-                p["ef_" + l + "_type"] = data(h, "typeSelector").val(), p["ef_" + l + "_title"] = geByClass1("faq_optional_extra_field__title", h).value, p["ef_" + l + "_note"] = geByClass1("faq_optional_extra_field__note", h).value, p["ef_" + l + "_required"] = data(h, "requiredSelector").val()
-            }
-            _ = extend(_, p)
+            var p = {},
+                g = domChildren(ge("faq_optional_extra_fields_list"));
+            each(g, function(e, t) {
+                p["ef_" + e + "_type"] = data(t, "typeSelector").val(), p["ef_" + e + "_title"] = val(geByClass1("_title", t)), p["ef_" + e + "_note"] = val(geByClass1("_note", t)), p["ef_" + e + "_required"] = data(t, "requiredSelector").val(), p["ef_" + e + "_face"] = isChecked(geByClass1("_face", t)) ? 1 : 0, p["ef_" + e + "_face_fail"] = val(geByClass1("_face_fail", t))
+            }), _ = extend(_, p)
         }
         ge("description_not_needed") && (_.descr_not_needed = isChecked("description_not_needed")), ge("description_placeholder_key") && (_.description_placeholder_key = val("description_placeholder_key")), ge("description_tooltip_key") && (_.description_tooltip_key = val("description_tooltip_key"));
-        var v = [],
-            m = isChecked("faq_from_chb__all") ? "_all" : 0;
-        m ? v.push(m) : each(geByClass("checkbox", "faq_from_chb_list_other"), function(e, t) {
-            isChecked(t) && v.push(attr(t, "v"))
-        }), _.from_list = v.join(","), e || (e = ge("faq_send")), ajax.post(nav.objLoc[0], _, {
+        var h = [],
+            v = isChecked("faq_from_chb__all") ? "_all" : 0;
+        v ? h.push(v) : each(geByClass("checkbox", "faq_from_chb_list_other"), function(e, t) {
+            isChecked(t) && h.push(attr(t, "v"))
+        }), _.from_list = h.join(","), e || (e = ge("faq_send")), ajax.post(nav.objLoc[0], _, {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e)
         })
@@ -188,64 +182,64 @@ FAQ = {
     },
     attachCount: function(e) {
         var t = ge("fis_preview" + (e ? "_edit" : "")),
-            o = ge("fis_prg_preview" + (e ? "_edit" : ""));
-        return t.childNodes.length + o.childNodes.length
+            a = ge("fis_prg_preview" + (e ? "_edit" : ""));
+        return t.childNodes.length + a.childNodes.length
     },
-    unchoose: function(e, t, o) {
-        e && e.tt && tooltips && tooltips.destroy(e), re("fis_preview" + t), o ? delete cur.screensEdit[t] : delete cur.screens[t], toggle("fis_add_lnk" + (o ? "_edit" : ""), FAQ.attachCount(o) < 5)
+    unchoose: function(e, t, a) {
+        e && e.tt && tooltips && tooltips.destroy(e), re("fis_preview" + t), a ? delete cur.screensEdit[t] : delete cur.screens[t], toggle("fis_add_lnk" + (a ? "_edit" : ""), FAQ.attachCount(a) < 5)
     },
-    choose: function(e, t, o, a) {
+    choose: function(e, t, a, o) {
         var i = "",
             r = ge("fis_preview" + (t ? "_edit" : ""));
         ge("fis_prg_preview" + (t ? "_edit" : ""));
-        isObject(a) || (a = {
-            thumb_m: a[0] || "",
-            thumb_s: a[1] || "",
-            list: a[2] || "",
-            view_opts: a[3] || "",
-            upload_ind: a.upload_ind || void 0
-        }), vkImage().src = a.thumb_s, i = "<div onclick=\"return showPhoto('" + o + "', '" + a.list + "', " + a.view_opts.replace(/"/g, "&quot;") + ');" class="fl_l fis_preview"><img class="fis_photo" src="' + a.thumb_s + '" /></div>';
+        isObject(o) || (o = {
+            thumb_m: o[0] || "",
+            thumb_s: o[1] || "",
+            list: o[2] || "",
+            view_opts: o[3] || "",
+            upload_ind: o.upload_ind || void 0
+        }), vkImage().src = o.thumb_s, i = "<div onclick=\"return showPhoto('" + a + "', '" + o.list + "', " + o.view_opts.replace(/"/g, "&quot;") + ');" class="fl_l fis_preview"><img class="fis_photo" src="' + o.thumb_s + '" /></div>';
         var s = ce("div", {
             innerHTML: '<div id="fis_preview' + e + '" class="fis_preview_wrap">' + i + '<div class="fis_x fl_l" ' + (browser.msie ? "title" : "tooltip") + '="' + getLang("dont_attach") + "\" onmouseover=\"if (browser.msie) return; showTooltip(this, {text: this.getAttribute('tooltip'), shift: [12, 5, 3], dir:'bottom', typeClass:'tt_black'})\" onclick=\"FAQ.unchoose(this, '" + e + "'" + (t ? ", 1" : "") + ')"></div></div>'
         }).firstChild;
-        addClass(s, "fl_l"), re("upload" + e + "_progress_wrap"), r.appendChild(s), t ? cur.screensEdit[e] = [o, s] : cur.screens[e] = [o, s], cur.fileApiUploadStarted || boxQueue.hideLast(), toggle("fis_add_lnk" + (t ? "_edit" : ""), FAQ.attachCount(t) < 5)
+        addClass(s, "fl_l"), re("upload" + e + "_progress_wrap"), r.appendChild(s), t ? cur.screensEdit[e] = [a, s] : cur.screens[e] = [a, s], cur.fileApiUploadStarted || boxQueue.hideLast(), toggle("fis_add_lnk" + (t ? "_edit" : ""), FAQ.attachCount(t) < 5)
     },
     chooseUploaded: function(e, t) {
-        var o = void 0 !== e.ind ? e.ind : e,
-            a = (e.fileName ? e.fileName : e, e.fileName ? o + "_" + e.fileName : e);
-        if (ge("upload" + a + "_progress_wrap")) {
-            var i = geByClass1("fis_prg_x", ge("upload" + a + "_progress_wrap"));
+        var a = void 0 !== e.ind ? e.ind : e,
+            o = (e.fileName ? e.fileName : e, e.fileName ? a + "_" + e.fileName : e);
+        if (ge("upload" + o + "_progress_wrap")) {
+            var i = geByClass1("fis_prg_x", ge("upload" + o + "_progress_wrap"));
             i && hide(i)
         }
         ajax.post("al_photos.php", extend({
             act: "choose_uploaded_support"
         }, t), {
-            onDone: FAQ.choose.pbind(a, Upload.options[o].forEdit),
+            onDone: FAQ.choose.pbind(o, Upload.options[a].forEdit),
             onFail: FAQ.chooseFail.pbind(e),
-            progress: "form" == Upload.types[o] && curBox() ? curBox().progress : null
+            progress: "form" == Upload.types[a] && curBox() ? curBox().progress : null
         })
     },
     chooseFail: function(e, t) {
-        var o = void 0 !== e.ind ? e.ind : e,
-            a = (e.fileName ? e.fileName : e, Upload.options[o].forEdit);
-        if ("fileApi" == Upload.types[o]) {
-            var i = e.fileName ? o + "_" + e.fileName : e;
-            re("upload" + i + "_progress_wrap"), FAQ.unchoose(null, i, a)
+        var a = void 0 !== e.ind ? e.ind : e,
+            o = (e.fileName ? e.fileName : e, Upload.options[a].forEdit);
+        if ("fileApi" == Upload.types[a]) {
+            var i = e.fileName ? a + "_" + e.fileName : e;
+            re("upload" + i + "_progress_wrap"), FAQ.unchoose(null, i, o)
         }
         curBox() && hide(curBox().progress), topError("Upload failed", {
             dt: -1,
             type: 102,
-            url: (ge("file_uploader_form" + o) || {}).action
-        }), Upload.embed(o), toggle("fis_add_lnk" + (a ? "_edit" : ""), FAQ.attachCount(a) < 5)
+            url: (ge("file_uploader_form" + a) || {}).action
+        }), Upload.embed(a), toggle("fis_add_lnk" + (o ? "_edit" : ""), FAQ.attachCount(o) < 5)
     },
     showScreenProgress: function(e, t) {
-        var o = Upload.options[e].forEdit,
-            a = ge("fis_prg_preview" + (o ? "_edit" : "")),
+        var a = Upload.options[e].forEdit,
+            o = ge("fis_prg_preview" + (a ? "_edit" : "")),
             i = intval(t.loaded / t.total * 100),
             r = t.fileName || t.name || "",
             s = r ? e + "_" + r : e,
             n = r ? r.length > 33 ? r.substr(0, 30) + "..." : r : "";
-        if (a) {
+        if (o) {
             if (ge("upload" + s + "_progress_wrap")) setStyle(ge("upload" + s + "_progress"), {
                 width: i + "%"
             }), show("upload" + s + "_progress");
@@ -258,7 +252,7 @@ FAQ = {
                     }, {
                         marginTop: "6px"
                     });
-                a.appendChild(d), show(a), toggle("fis_add_lnk" + (o ? "_edit" : ""), FAQ.attachCount(o) < 5), i || hide("upload" + s + "_progress")
+                o.appendChild(d), show(o), toggle("fis_add_lnk" + (a ? "_edit" : ""), FAQ.attachCount(a) < 5), i || hide("upload" + s + "_progress")
             }
             return !1
         }
@@ -276,9 +270,9 @@ FAQ = {
                 file_match: ".(gif|jpg|png)$",
                 lang: opts.lang,
                 onUploadStart: function(e, t) {
-                    var o = void 0 !== e.ind ? e.ind : e,
-                        a = Upload.options[o];
-                    "form" == Upload.types[o] && (curBox() && show(curBox().progress), geByClass1("file", ge("fis_add_data")).disabled = !0), "fileApi" == Upload.types[o] && (cur.notStarted && (curBox().hide(), delete cur.notStarted), a.multi_progress && this.onUploadProgress(e, 0, 0))
+                    var a = void 0 !== e.ind ? e.ind : e,
+                        o = Upload.options[a];
+                    "form" == Upload.types[a] && (curBox() && show(curBox().progress), geByClass1("file", ge("fis_add_data")).disabled = !0), "fileApi" == Upload.types[a] && (cur.notStarted && (curBox().hide(), delete cur.notStarted), o.multi_progress && this.onUploadProgress(e, 0, 0))
                 },
                 onUploadComplete: function(info, res) {
                     var params, i = void 0 !== info.ind ? info.ind : info,
@@ -292,14 +286,14 @@ FAQ = {
                     var options = Upload.options[i];
                     FAQ.chooseUploaded(info, params)
                 },
-                onUploadProgress: function(e, t, o) {
-                    var a = void 0 !== e.ind ? e.ind : e;
-                    if ("fileApi" == Upload.types[a]) {
+                onUploadProgress: function(e, t, a) {
+                    var o = void 0 !== e.ind ? e.ind : e;
+                    if ("fileApi" == Upload.types[o]) {
                         var i = {
                             loaded: t,
-                            total: o
+                            total: a
                         };
-                        e.fileName && (i.fileName = e.fileName), FAQ.showScreenProgress(a, i)
+                        e.fileName && (i.fileName = e.fileName), FAQ.showScreenProgress(o, i)
                     }
                 },
                 onUploadError: FAQ.chooseFail,
@@ -319,7 +313,7 @@ FAQ = {
         }
     },
     deleteFAQ: function(e, t) {
-        var o = showFastBox({
+        var a = showFastBox({
             title: getLang("support_delete_title"),
             width: 430
         }, getLang("support_delete_confirm"), getLang("support_delete_button"), function() {
@@ -328,22 +322,22 @@ FAQ = {
                 faq_id: e,
                 hash: t
             }, {
-                progress: o.progress,
+                progress: a.progress,
                 onFail: function(e) {
-                    return o.hide(), FAQ.showError(e), !0
+                    return a.hide(), FAQ.showError(e), !0
                 }
             })
         }, getLang("global_cancel"));
         return !1
     },
-    toggleRow: function(e, t, o) {
-        return o.target || (o.target = o.srcElement || document), "a" == o.target.tagName.toLowerCase() ? !0 : (toggle("faq_short_text" + e, !isVisible("faq_short_text" + e)), toggle("faq_full_text" + e, !isVisible("faq_full_text" + e)), isVisible("faq_full_text" + e) ? addClass(t, "detailed") : removeClass(t, "detailed"), !1)
+    toggleRow: function(e, t, a) {
+        return a.target || (a.target = a.srcElement || document), "a" == a.target.tagName.toLowerCase() ? !0 : (toggle("faq_short_text" + e, !isVisible("faq_short_text" + e)), toggle("faq_full_text" + e, !isVisible("faq_full_text" + e)), isVisible("faq_full_text" + e) ? addClass(t, "detailed") : removeClass(t, "detailed"), !1)
     },
-    setSearchString: function(e, t, o) {
-        FAQ.updateSearchString(t, o, !0)
+    setSearchString: function(e, t, a) {
+        FAQ.updateSearchString(t, a, !0)
     },
-    updateSearchString: function(e, t, o) {
-        cur.prevSearch = cur.prevSearch || "", e = trim(e), (cur.prevSearch != e || !e || o) && (clearTimeout(cur.searchTimeout), o ? (cur.prevSearch = e, FAQ.updateSearch(e)) : cur.searchTimeout = setTimeout(function() {
+    updateSearchString: function(e, t, a) {
+        cur.prevSearch = cur.prevSearch || "", e = trim(e), (cur.prevSearch != e || !e || a) && (clearTimeout(cur.searchTimeout), a ? (cur.prevSearch = e, FAQ.updateSearch(e)) : cur.searchTimeout = setTimeout(function() {
             cur.prevSearch = e, FAQ.updateSearch(e)
         }, 350))
     },
@@ -353,58 +347,58 @@ FAQ = {
     updateSearch: function(e) {
         var t = nav.objLoc;
         e ? t.q = e : delete t.q, isChecked("search_disabled") ? t.disabled = 1 : delete t.disabled, isChecked("search_expired") ? t.expired = 1 : delete t.expired, isChecked("search_with_action") ? t.with_action = 1 : delete t.with_action, isChecked("search_with_ef") ? t.with_ef = 1 : delete t.with_ef, nav.setLoc(t);
-        var o = extend({}, t);
-        o.act = "load_list", delete o[0], ajax.post(nav.objLoc[0], o, {
+        var a = extend({}, t);
+        a.act = "load_list", delete a[0], ajax.post(nav.objLoc[0], a, {
             showProgress: uiSearch.showProgress.pbind("faq_content_search__text"),
             hideProgress: uiSearch.hideProgress.pbind("faq_content_search__text"),
             onDone: function(e) {
                 var t = se(e),
-                    o = ge("faq_list");
-                o.parentNode.replaceChild(t, o)
+                    a = ge("faq_list");
+                a.parentNode.replaceChild(t, a)
             }
         })
     },
-    saveTilesTop: function(e, t, o) {
-        var a = {
+    saveTilesTop: function(e, t, a) {
+        var o = {
             act: "save_tiles",
             lang: t,
-            hash: o,
+            hash: a,
             section: cur.section
         };
         each(geByClass("faq_tiles_editor_tile__questions", ge("faq_tiles_editor__tiles")), function(e, t) {
-            var o = [];
+            var a = [];
             each(t.children, function(e, t) {
-                o.push(t.id.replace("faq_tiles_editor_tile_question", ""))
+                a.push(t.id.replace("faq_tiles_editor_tile_question", ""))
             });
             var i = t.id.replace("faq_tiles_editor_tile__questions", "");
-            a["faq" + i] = o.join(",")
-        }), ajax.post(nav.objLoc[0], a, {
+            o["faq" + i] = a.join(",")
+        }), ajax.post(nav.objLoc[0], o, {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e)
         })
     },
     tilesShowSearch: function(e, t) {
         hide(e.target);
-        var o = ge("faq_tiles_editor_tile_search__input" + t);
-        return show(o), geByClass1("selector_input", o).focus(), !1
+        var a = ge("faq_tiles_editor_tile_search__input" + t);
+        return show(a), geByClass1("selector_input", a).focus(), !1
     },
     tilesQuestionRemove: function(e, t) {
-        var o = ge("faq_tiles_editor_tile_question" + e),
-            a = o.parentNode,
-            i = a.id.replace("faq_tiles_editor_tile__questions", "");
-        FAQ.tilesSorterDestroy(a), re(o), sorter.init(a, {}), a.hasChildNodes() || hide(a), geByClass("faq_tiles_editor_tile_question", a).length < cur.perCategoryLimit && show("faq_tiles_editor_tile_search" + i), t && t.stopPropagation()
+        var a = ge("faq_tiles_editor_tile_question" + e),
+            o = a.parentNode,
+            i = o.id.replace("faq_tiles_editor_tile__questions", "");
+        FAQ.tilesSorterDestroy(o), re(a), sorter.init(o, {}), o.hasChildNodes() || hide(o), geByClass("faq_tiles_editor_tile_question", o).length < cur.perCategoryLimit && show("faq_tiles_editor_tile_search" + i), t && t.stopPropagation()
     },
-    tilesQuestionAdd: function(e, t, o) {
+    tilesQuestionAdd: function(e, t, a) {
         if (t) {
-            var a = ge("faq_tiles_editor_tile_question" + t);
-            a && FAQ.tilesQuestionRemove(t);
-            var a = ce("div", {
+            var o = ge("faq_tiles_editor_tile_question" + t);
+            o && FAQ.tilesQuestionRemove(t);
+            var o = ce("div", {
                 className: "faq_tiles_editor_tile_question",
                 id: "faq_tiles_editor_tile_question" + t
             });
-            a.innerHTML = '<span class="faq_tiles_editor_tile_question__title">' + o + '</span>    <span class="faq_tiles_editor_tile_question__remove" onclick="FAQ.tilesQuestionRemove(' + t + ', event);"></span>';
+            o.innerHTML = '<span class="faq_tiles_editor_tile_question__title">' + a + '</span>    <span class="faq_tiles_editor_tile_question__remove" onclick="FAQ.tilesQuestionRemove(' + t + ', event);"></span>';
             var i = ge("faq_tiles_editor_tile__questions" + e);
-            show(i), FAQ.tilesSorterDestroy(i), i.appendChild(a), sorter.init(i, {}), geByClass("faq_tiles_editor_tile_question", i).length >= cur.perCategoryLimit && hide("faq_tiles_editor_tile_search" + e)
+            show(i), FAQ.tilesSorterDestroy(i), i.appendChild(o), sorter.init(i, {}), geByClass("faq_tiles_editor_tile_question", i).length >= cur.perCategoryLimit && hide("faq_tiles_editor_tile_search" + e)
         }
     },
     tilesSorterDestroy: function(e) {
@@ -412,12 +406,12 @@ FAQ = {
             t.removeAttribute("style")
         })
     },
-    saveQuestionsSort: function(e, t, o, a, i) {
+    saveQuestionsSort: function(e, t, a, o, i) {
         var r = {
                 act: "save_sort",
                 lang: t,
-                category: o,
-                hash: a,
+                category: a,
+                hash: o,
                 section: cur.section
             },
             s = [];
@@ -430,22 +424,22 @@ FAQ = {
     },
     sortQuestionsReorder: function(e) {
         var t = e.getAttribute("position"),
-            o = FAQ.sortQuestionsGetPosition(e);
-        t != o ? addClass(e, "faq_sort_editor_question_moved") : removeClass(e, "faq_sort_editor_question_moved"), each(geByClass("faq_sort_editor_question_moved", ge("faq_sort_editor_question")), function(e, t) {
-            var o = t.getAttribute("position"),
-                a = FAQ.sortQuestionsGetPosition(t);
-            o == a && removeClass(t, "faq_sort_editor_question_moved")
+            a = FAQ.sortQuestionsGetPosition(e);
+        t != a ? addClass(e, "faq_sort_editor_question_moved") : removeClass(e, "faq_sort_editor_question_moved"), each(geByClass("faq_sort_editor_question_moved", ge("faq_sort_editor_question")), function(e, t) {
+            var a = t.getAttribute("position"),
+                o = FAQ.sortQuestionsGetPosition(t);
+            a == o && removeClass(t, "faq_sort_editor_question_moved")
         })
     },
     sortQuestionsGetPosition: function(e) {
-        for (var t = 0, o = e; o;) t++, o = o.previousSibling;
+        for (var t = 0, a = e; a;) t++, a = a.previousSibling;
         return Math.floor(t / 2) - 1
     },
-    saveDictionary: function(e, t, o) {
+    saveDictionary: function(e, t, a) {
         hide("faq_dictionary__submit_note"), ajax.post(nav.objLoc[0], {
             act: "dictionary_save",
             lang: t,
-            hash: o,
+            hash: a,
             beginning_words: val("faq_dictionary__beginning_words"),
             middle_words: val("faq_dictionary__middle_words")
         }, {
@@ -462,12 +456,12 @@ FAQ = {
             }
         })
     },
-    showHistory: function(e, t, o) {
+    showHistory: function(e, t, a) {
         return !showBox(nav.objLoc[0], {
             act: "show_history",
             id: e,
             faq_id: t,
-            hash: o
+            hash: a
         }, {
             params: {
                 bodyStyle: "padding: 0px",
@@ -478,10 +472,10 @@ FAQ = {
     updateFAQ: function(e, t) {
         clearTimeout(cur.faqTimeout), cur.faqTimeout = setTimeout(function() {
             var e = t.value,
-                o = trim(e),
-                a = o.split(" "),
+                a = trim(e),
+                o = a.split(" "),
                 i = ge("tickets_text");
-            e.length >= 70 && i && !i.value && !cur.flood && (isVisible("tickets_detailed_form") || FAQ.toggleDetailedForm(), t.value = "", i.focus(), i.value = e), isVisible("tickets_detailed_form") || o == cur.searchStr && (a.length < 4 || 4 == a.length && " " != e[e.length - 1]) || (o ? addClass(ge("tickets_search_reset"), "shown") : removeClass(ge("tickets_search_reset"), "shown"), cur.searchStr = o, clearTimeout(cur.searchFAQTimeout), cur.searchFAQTimeout = setTimeout(function() {
+            e.length >= 70 && i && !i.value && !cur.flood && (isVisible("tickets_detailed_form") || FAQ.toggleDetailedForm(), t.value = "", i.focus(), i.value = e), isVisible("tickets_detailed_form") || a == cur.searchStr && (o.length < 4 || 4 == o.length && " " != e[e.length - 1]) || (a ? addClass(ge("tickets_search_reset"), "shown") : removeClass(ge("tickets_search_reset"), "shown"), cur.searchStr = a, clearTimeout(cur.searchFAQTimeout), cur.searchFAQTimeout = setTimeout(function() {
                 FAQ.searchFAQ(cur.searchStr)
             }.bind(this), 300), browser.mobile || scrollToTop())
         }.bind(this), 10)
@@ -499,9 +493,9 @@ FAQ = {
             cache: 1,
             hideProgress: removeClass.pbind("tickets_search", "loading"),
             onDone: function(e, t) {
-                var o = ge("tickets_title").value,
-                    a = trim(o).split(" "),
-                    i = a.length > 4 || 4 == a.length && " " == o[o.length - 1];
+                var a = ge("tickets_title").value,
+                    o = trim(a).split(" "),
+                    i = o.length > 4 || 4 == o.length && " " == a[a.length - 1];
                 e ? ge("tlmd_found_list").innerHTML = se(e).innerHTML : (t && (ge("tickets_faq_button").innerHTML = t), i && (cur.toggled = !0, FAQ.toggleDetailedForm()))
             }
         })
@@ -511,8 +505,8 @@ FAQ = {
         if (toggleClass(ge("tickets_content"), "detailed"), isVisible("tickets_detailed_form")) t.setAttribute("placeholder", cur.lang.placeholder_title), removeClass(ge("tickets_search_reset"), "shown"), e && ge("tickets_text").focus();
         else {
             t.setAttribute("placeholder", cur.lang.placeholder_default);
-            var o = trim(ge("tickets_title").value);
-            o && addClass(ge("tickets_search_reset"), "shown"), cur.toggleCanceled = !0, delete cur.toggled, FAQ.searchFAQ(o), t.focus()
+            var a = trim(ge("tickets_title").value);
+            a && addClass(ge("tickets_search_reset"), "shown"), cur.toggleCanceled = !0, delete cur.toggled, FAQ.searchFAQ(a), t.focus()
         }
         placeholderSetup(ge("tickets_title"), {
             back: !0,
@@ -520,24 +514,24 @@ FAQ = {
         })
     },
     clearSearch: function(e, t) {
-        var o = ge("tickets_title");
+        var a = ge("tickets_title");
         setStyle(e, {
             opacity: .6
-        }), o.value = "", ge("tickets_title").focus(), FAQ.updateFAQ(t, o)
+        }), a.value = "", ge("tickets_title").focus(), FAQ.updateFAQ(t, a)
     },
     goSectionTab: function(e, t) {
-        var o = geByClass1("ui_tab_sel", gpeByClass("ui_tabs", e));
+        var a = geByClass1("ui_tab_sel", gpeByClass("ui_tabs", e));
         return uiTabs.switchTab(e, {
             noAnim: 1
-        }), addClass(o, "ui_tab_sel"), removeClass(gpeByClass("ui_tab_group", e), "ui_tab_group_sel"), nav.go(e, t), !1
+        }), addClass(a, "ui_tab_sel"), removeClass(gpeByClass("ui_tab_group", e), "ui_tab_group_sel"), nav.go(e, t), !1
     },
     acUrl: function(e, t) {
         return "faq?act=get_faq&section=" + e + (void 0 !== t ? "&ignore_id=" + t : "")
     },
     editorBlockToggle: function(e, t) {
-        var o = gpeByClass("_slide_block", e),
-            a = geByClass1("_slide_content", o);
-        slideToggle(a, 300, t), toggleClass(o, "faq_ed_block_unslided", t)
+        var a = gpeByClass("_slide_block", e),
+            o = geByClass1("_slide_content", a);
+        slideToggle(o, 300, t), toggleClass(a, "faq_ed_block_unslided", t)
     },
     addTutorial: function(e) {
         cur.addTutorialHash = e, cur.addTutorialBox = new MessageBox({
@@ -547,14 +541,14 @@ FAQ = {
     doAddTutorial: function() {
         var e = ge("faq_add_tutorial__name"),
             t = val(e),
-            o = ge("faq_add_tutorial__save");
+            a = ge("faq_add_tutorial__save");
         return t ? void ajax.post("faq", {
             act: "a_add_tutorial",
             tutorial: t,
             hash: cur.addTutorialHash
         }, {
-            showProgress: lockButton.pbind(o),
-            hideProgress: unlockButton.pbind(o),
+            showProgress: lockButton.pbind(a),
+            hideProgress: unlockButton.pbind(a),
             onDone: function() {
                 cur.addTutorialBox.hide()
             }
@@ -568,26 +562,26 @@ FAQ = {
     doAddTutorialTester: function() {
         var e = ge("faq_add_tutorial_tester__link"),
             t = val(e),
-            o = ge("faq_add_tutorial_tester__save");
+            a = ge("faq_add_tutorial_tester__save");
         return t ? void ajax.post("faq", {
             act: "a_add_tutorial_tester",
             tutorial: cur.addTutorialTesterTutorial,
             hash: cur.addTutorialTesterHash,
             link: t
         }, {
-            showProgress: lockButton.pbind(o),
-            hideProgress: unlockButton.pbind(o),
+            showProgress: lockButton.pbind(a),
+            hideProgress: unlockButton.pbind(a),
             onDone: function() {
                 cur.addTutorialBox.hide()
             }
         }) : notaBene(e)
     },
-    removeTutorialTester: function(e, t, o, a) {
+    removeTutorialTester: function(e, t, a, o) {
         ajax.post("faq", {
             act: "a_remove_tutorial_tester",
             uid: t,
-            tutorial: o,
-            hash: a
+            tutorial: a,
+            hash: o
         }, {
             onDone: function() {
                 var t = gpeByClass("_tester", e);
@@ -595,24 +589,24 @@ FAQ = {
             }
         })
     },
-    toggleTutorial: function(e, t, o, a) {
+    toggleTutorial: function(e, t, a, o) {
         ajax.post("faq", {
             act: "a_toggle_tutorial",
             tutorial: t,
-            hash: o,
-            enabled: a
+            hash: a,
+            enabled: o
         }, {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e),
-            onDone: toggleClass.pbind(ge("faq_tutorials_row__" + t), "faq_tutorials_row_disabled", !a)
+            onDone: toggleClass.pbind(ge("faq_tutorials_row__" + t), "faq_tutorials_row_disabled", !o)
         })
     },
-    deleteTutorial: function(e, t, o) {
-        var a = showFastBox(getLang("global_warning"), getLang("support_faq_confirm_tutorial_delete"), getLang("global_delete"), function() {
-            a.hide(), ajax.post("faq", {
+    deleteTutorial: function(e, t, a) {
+        var o = showFastBox(getLang("global_warning"), getLang("support_faq_confirm_tutorial_delete"), getLang("global_delete"), function() {
+            o.hide(), ajax.post("faq", {
                 act: "a_remove_tutorial",
                 tutorial: t,
-                hash: o
+                hash: a
             }, {
                 showProgress: lockButton.pbind(e),
                 hideProgress: unlockButton.pbind(e),

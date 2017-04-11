@@ -539,6 +539,10 @@
     width: 170px
 }
 
+.restore_login_input {
+    width: 150px!important
+}
+
 #restore_roll_back_link .request_result_msg {
     display: block;
     margin: 10px 0 0;

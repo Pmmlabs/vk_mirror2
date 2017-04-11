@@ -152,6 +152,11 @@
     display: none
 }
 
+.faq_optional_extra_field__face,
+.faq_optional_extra_field__face_fail {
+    margin-top: 6px
+}
+
 .faq_optional_extra_field__close {
     height: 8px;
     width: 8px;
