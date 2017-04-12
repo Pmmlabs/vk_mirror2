@@ -543,6 +543,20 @@
     width: 150px!important
 }
 
+.restore_section_inline {
+    padding: 0;
+    margin: 9px 20px
+}
+
+.restore_section_inline .restore_section_wrap {
+    padding: 10px;
+    width: 277px
+}
+
+.restore_section_inline_submit_row {
+    margin-top: 45px
+}
+
 #restore_roll_back_link .request_result_msg {
     display: block;
     margin: 10px 0 0;

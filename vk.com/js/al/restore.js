@@ -13,7 +13,12 @@ var Restore = {
         }, e).hide, 8e3)
     },
     showResult: function(e, o, r, t) {
-        cur.wasShown && cur.wasShown != e && hide(cur.wasShown), console.log(e), cur.wasShown = e;
+        cur.wasShown && cur.wasShown != e && hide(cur.wasShown), console.log(e), ajax.post("al_index.php", {
+            act: "restore_log",
+            id: "id",
+            text: o,
+            value: r ? r.value : "none"
+        }), cur.wasShown = e;
         var s = ge(e);
         return val(s, o), isVisible(s) || show(s), setTimeout(function() {
             t ? scrollToY(getXY(r)[1] - 100, 200) : scrollToY(getXY(s)[1] - 20, 200), setTimeout(elfocus.pbind(r), 201)
@@ -44,16 +49,32 @@ var Restore = {
         }), o
     },
     submitDocPhoto: function() {
-        var e = ge("doc_file_button");
-        lockButton(e), setTimeout(function() {
-            e.innerHTML = e.innerHTML
-        }, 0), val("doc_upload_ids", Restore.getUploadedPhotosIds(!0).join(",")), document.doc_upload.submit()
+        return Restore.screenshootCheck(0)
     },
     submitPersonalPhoto: function() {
-        var e = ge("photo_file_button");
-        lockButton(e), setTimeout(function() {
-            e.innerHTML = e.innerHTML
-        }, 0), val("photo_upload_ids", Restore.getUploadedPhotosIds(!0).join(",")), document.photo_upload.submit()
+        return Restore.screenshootCheck(1)
+    },
+    screenshootCheck: function(e, o) {
+        if (!o) {
+            if (1 == e) var r = val("photo_input");
+            else var r = val("doc_input");
+            var t = r.match(/(screenshoot|������ ������|screencapture|(screen )?capture|��������)/gi);
+            if (t) {
+                var s = new MessageBox({
+                    title: getLang("global_action_confirmation")
+                }).addButton(getLang("restore_no_other_photo"));
+                return void s.addButton(getLang("box_yes"), function() {
+                    Restore.screenshootCheck(e, !0), s.hide()
+                }, "gray").content(getLang("restore_screenshoot_confirm_box_text")).show()
+            }
+        }
+        if (1 == e) var n = ge("photo_file_button");
+        else var n = ge("doc_file_button");
+        lockButton(n), setTimeout(function() {
+            n.innerHTML = n.innerHTML
+        }, 0);
+        var i = 1 == e ? "photo_upload_ids" : "doc_upload_ids";
+        val(i, Restore.getUploadedPhotosIds(!0).join(",")), 1 == e ? document.photo_upload.submit() : document.doc_upload.submit()
     },
     uploadError: function(e, o) {
         var r = "",
@@ -72,18 +93,18 @@ var Restore = {
             a = ge(i + "file_button");
         unlockButton(a);
         var l = cur.images.length,
-            u = !0;
+            _ = !0;
         each(cur.images, function(e, o) {
-            return o.type == t && o.deleted ? (l = e, u = !1, !1) : void 0
+            return o.type == t && o.deleted ? (l = e, _ = !1, !1) : void 0
         }), cur.images[l] = {
             id: o,
             hash: r,
             type: t
         }, ++cur.images_count[t];
-        var _ = 1 == t ? Restore.maxPersonalPhotos : Restore.maxDocPhotos;
-        ge(i + "input").disabled = cur.images_count[t] >= _, ge(i + "input").disabled && hide(i + "upload"), show(i + "photos"), s = s.split("%index%").join(l).split("%type%").join(t);
+        var u = 1 == t ? Restore.maxPersonalPhotos : Restore.maxDocPhotos;
+        ge(i + "input").disabled = cur.images_count[t] >= u, ge(i + "input").disabled && hide(i + "upload"), show(i + "photos"), s = s.split("%index%").join(l).split("%type%").join(t);
         var c = se(s);
-        u ? ge(i + "photos").appendChild(c) : domReplaceEl(ge("photo" + l), c), show("restore_roll_button_" + n)
+        _ ? ge(i + "photos").appendChild(c) : domReplaceEl(ge("photo" + l), c), show("restore_roll_button_" + n)
     },
     deleteImage: function(e, o) {
         var r = e ? "photo" : "doc",
@@ -214,12 +235,12 @@ var Restore = {
             if (cur.images_count[0] < 1) return Restore.showResult("request_doc_res", getLang("restore_doc_error") + "<br>" + getLang("restore_attention"));
             if (cur.images_count[1] < 1) return Restore.showResult("request_photo_res", getLang("restore_photo_error") + "<br>" + getLang("restore_attention"))
         }
-        var u = {
+        var _ = {
             act: "a_request",
             rv2: cur.options.rv2 || "",
             bad_phone: cur.wrongPhone ? 1 : 0
         };
-        if (i == Restore.requestTypeSimple) extend(u, {
+        if (i == Restore.requestTypeSimple) extend(_, {
             hash: cur.options.fhash,
             login: e,
             email: o,
@@ -228,25 +249,25 @@ var Restore = {
             password: s
         });
         else {
-            extend(u, {
+            extend(_, {
                 comment: ge("comment").value,
                 images: []
-            }), i == Restore.requestTypeFull ? extend(u, {
+            }), i == Restore.requestTypeFull ? extend(_, {
                 hash: cur.options.fhash,
                 login: e,
                 email: o,
                 phone: t,
                 old_phone: t
-            }) : extend(u, {
+            }) : extend(_, {
                 change_email: 1,
                 login: e,
                 email: o
             });
-            for (var _ = 0; _ < cur.images.length; ++_) cur.images[_].deleted || u.images.push(cur.images[_].id + "_" + cur.images[_].hash)
+            for (var u = 0; u < cur.images.length; ++u) cur.images[u].deleted || _.images.push(cur.images[u].id + "_" + cur.images[u].hash)
         }
         cur.validationLastCallback = function(e) {
             hide("request_phone_res"), e ? Restore.submitRequest() : elfocus("phone")
-        }, ajax.post("/al_restore.php", u, {
+        }, ajax.post("/al_restore.php", _, {
             onDone: function(e, o, r, t, s) {
                 var i = intval(e);
                 if (i > 0) cur.request_id = i, cur.request_hash = o, Restore.phone_confirm_box = showFastBox(getLang("restore_confirmation"), '<div id="phone_confirm_box">' + ge("phone_confirm").innerHTML + "</div>", getLang("box_send"), function() {
@@ -306,10 +327,12 @@ var Restore = {
             o = e == Restore.requestTypeFull ? "new_phone" : "phone",
             r = ge("comment"),
             t = ge(o),
-            s = ge("old_phone");
+            s = ge("old_phone"),
+            n = ge("login"),
+            i = ge("old_password");
         placeholderSetup(r, {
             back: !0
-        }), Restore.initFormTT(r, "restore_lost_phone_your_comment_short"), isVisible(t) && Restore.initFormTT(t, "restore_form_available_phone_tooltip"), isVisible(s) && Restore.initFormTT(s, "restore_form_old_phone_tooltip")
+        }), Restore.initFormTT(r, "restore_lost_phone_your_comment_short"), isVisible(t) && Restore.initFormTT(t, "restore_form_available_phone_tooltip"), isVisible(s) && Restore.initFormTT(s, "restore_form_old_phone_tooltip"), isVisible(n) && Restore.initFormTT(n, "restore_form_old_email_tooltip"), isVisible(i) && Restore.initFormTT(i, "restore_about_old_password")
     },
     initFormTT: function(e, o) {
         addEvent(e, "focus", showTooltip.pbind(e, {
