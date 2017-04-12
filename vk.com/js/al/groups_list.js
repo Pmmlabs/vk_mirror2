@@ -353,10 +353,7 @@ var GroupsList = {
             filter: s.filter
         }), setTimeout(elfocus.pbind(cur.scrollList.query), 0), cur.nav.push(GroupsList.locNav), setTimeout(GroupsList.load, 0), vk.version ? addEvent(window, "load", GroupsList.initScroll) : GroupsList.initScroll(), cur.destroy.push(function(s) {
             s == cur && GroupsList.destroyScroll()
-        }), GroupsList.initAdvancedSearchBlock(s)
-    },
-    initAdvancedSearchBlock: function(s) {
-        return
+        })
     },
     updateSummary: function(s, r) {
         val(r ? cur.scrollList.searchSummary : cur.scrollList.summary, s ? langNumeric(s, "%s", !0) : "")
@@ -400,6 +397,12 @@ var GroupsList = {
             val: '<span class="highlight">$1</span>'
         }
     },
+    onSearchChange: function(s, r) {
+        delete cur.exactSearch, GroupsList.showMore(!1)
+    },
+    onSearchEnter: function(s, r) {
+        cur.exactSearch = 1, GroupsList.showMore(!0)
+    },
     showMore: function(s) {
         var r = cur.scrollList.tab,
             e = cur.scrollList.lists[r];
@@ -427,22 +430,22 @@ var GroupsList = {
             var u = e.length,
                 p = ge(cur.scrollList.prefix + r),
                 h = ge("ui_" + r + "_load_more");
-            if (GroupsList.updateSummary(u), !u) return p.innerHTML = cur.scrollList.genEmpty(o), void(o && GroupsList.needSearch(r) ? t ? (GroupsList.serverSearch(p, o), hide(h)) : cur.searchOffset && GroupsList.serverSearchMore(p, o) : (hide(h), hide(cur.scrollList.searchWrap), show(cur.scrollList.eventsPopular), cur.searchOffset = 0));
+            if (GroupsList.updateSummary(u), !u) return p.innerHTML = cur.scrollList.genEmpty(o), o && GroupsList.needSearch(r) ? t ? (GroupsList.serverSearch(p, o), hide(h)) : cur.searchOffset && GroupsList.serverSearchMore(p, o) : (hide(h), hide(cur.scrollList.searchWrap), show(cur.scrollList.eventsPopular), cur.searchOffset = 0), void setTimeout(elfocus.pbind(cur.scrollList.query), 10);
             for (var d = t ? 0 : cur.scrollList.offset, g = Math.min(u, d + cur.scrollList.perpage), L = [], n = d; g > n; ++n) {
                 var f = cur.scrollList.lists[r][e[n]];
                 if (f) {
-                    var v = f[0];
-                    i && (v = v.replace(i.re, i.val)), L.push(cur.scrollList.genRow(f, v))
+                    var _ = f[0];
+                    i && (_ = _.replace(i.re, i.val)), L.push(cur.scrollList.genRow(f, _))
                 }
             }
             if (o || d && !t || (hide(cur.scrollList.searchWrap), show(cur.scrollList.eventsPopular), cur.searchOffset = 0), t)
-                if (hasClass(cur.scrollList.queryCont, "ui_search_fixed") && scrollToY(getXY(cur.scrollList.queryWrap)[1] + 1, 0), p.innerHTML = L.join(""), checkPageBlocks(), cur.searchOffset = !1, e.length < 5 && o && GroupsList.needSearch(r)) {
-                    var _ = [];
+                if (hasClass(cur.scrollList.queryCont, "ui_search_fixed") && scrollToY(getXY(cur.scrollList.queryWrap)[1] + 1, 0), setTimeout(elfocus.pbind(cur.scrollList.query), 10), p.innerHTML = L.join(""), checkPageBlocks(), cur.searchOffset = !1, e.length < 5 && o && GroupsList.needSearch(r)) {
+                    var v = [];
                     for (var n in e) {
                         var m = cur.scrollList.lists[r][e[n]];
-                        _.push(m[2])
+                        v.push(m[2])
                     }
-                    GroupsList.serverSearch(p, o, _)
+                    GroupsList.serverSearch(p, o, v)
                 } else hide(cur.scrollList.searchWrap), show(cur.scrollList.eventsPopular), cur.searchOffset = 0;
             else p.innerHTML += L.join(""), cur.searchOffset && GroupsList.serverSearchMore(p, o);
             cur.scrollList.offset = g, cur.searchOffset || (u > g ? show : hide)(h)
@@ -472,49 +475,49 @@ var GroupsList = {
             cur.searchLoadingMore = 1;
             var e = ge("ui_search_load_more");
             e.innerHTML;
-            ajax.post("/al_groups.php", GroupsList.extendWithAdvancedParams({
+            ajax.post("/al_groups.php", {
                 act: "server_search",
                 q: r,
                 offset: cur.searchOffset,
+                exact: cur.exactSearch,
                 exclude: cur.searchExclude.join(",")
-            }), {
+            }, {
                 onDone: function(s, r, e) {
-                    cur.searchLoadingMore = 0, s ? (cur.searchOffset += s, cur.scrollList.searchCont.appendChild(cf(r))) : cur.searchOffset = 0, (!r || e >= s ? hide : show)("ui_search_load_more")
+                    cur.searchLoadingMore = 0, s ? (cur.searchOffset = e, cur.scrollList.searchCont.appendChild(cf(r))) : cur.searchOffset = 0, (!r || e >= s ? hide : show)("ui_search_load_more")
                 },
                 onFail: function() {
                     cur.searchLoadingMore = 0
                 },
-                showProgress: lockButton.pbind(domFC(e)),
-                hideProgress: unlockButton.pbind(domFC(e))
+                showProgress: lockButton.pbind(e),
+                hideProgress: unlockButton.pbind(e)
             })
         }
     },
     extendedSearch: function(s) {
         clearTimeout(cur.searchTimeout), cur.searchTimeout = setTimeout(function() {
             var r = geByClass1("groups_section_search");
-            window.searcher && r ? hasClass(r, "ui_rmenu_item_sel") ? searcher.onEnter() : (uiRightMenu.switchMenu(r), uiRightMenu.showProgress(r), nav.go(r.href + "&c[q]=" + s)) : nav.go("/groups?act=catalog&c[q]=" + s)
+            window.searcher && r ? hasClass(r, "ui_rmenu_item_sel") ? searcher.onEnter() : (uiRightMenu.switchMenu(r), uiRightMenu.showProgress(r), nav.go(r.href + "&c[like_hints]=1&c[q]=" + s)) : nav.go("/groups?act=catalog&c[q]=" + s)
         }, 500)
     },
-    extendWithAdvancedParams: function(s) {
-        return cur.isAdvancedSearch ? extend(s || {}, {
-            extended: 1,
-            safe: intval(cur.searchSafe),
-            sort: intval(cur.searchSort || -1),
-            type: intval(cur.searchGroupType || -1)
-        }) : s
+    onExtendedSearchChange: function(s, r) {
+        val("c[like_hints]", 1), GroupsList.extendedSearch(s)
+    },
+    onExtendedSearchEnter: function(s, r) {
+        val("c[like_hints]", ""), GroupsList.extendedSearch(s)
     },
     needSearch: function(s) {
         return "groups" == s || "future" == s || "past" == s
     },
     serverSearch: function(s, r, e) {
         return GroupsList.needSearch(cur.scrollList.tab) ? (clearTimeout(cur.searchTimeout), void(cur.searchTimeout = setTimeout(function() {
-            cur.searchStr == r && (cur.searchExclude = e || [], ajax.post("/al_groups.php", GroupsList.extendWithAdvancedParams({
+            cur.searchStr == r && (cur.searchExclude = e || [], ajax.post("/al_groups.php", {
                 act: "server_search",
                 q: r,
+                exact: cur.exactSearch,
                 exclude: cur.searchExclude.join(",")
-            }), {
+            }, {
                 onDone: function(s, e, o) {
-                    cur.searchStr == r && (s ? (cur.scrollList.searchCont.innerHTML = e, show(cur.scrollList.searchWrap), hide(cur.scrollList.eventsPopular), (s > o || !e) && show("ui_search_load_more")) : (cur.scrollList.searchCont.innerHTML = "", hide(cur.scrollList.searchWrap), show(cur.scrollList.eventsPopular)), checkPageBlocks(), GroupsList.updateSummary(s, !0), cur.searchOffset = s)
+                    cur.searchStr == r && (s ? (cur.scrollList.searchCont.innerHTML = e, show(cur.scrollList.searchWrap), hide(cur.scrollList.eventsPopular), (s > o || !e) && show("ui_search_load_more")) : (cur.scrollList.searchCont.innerHTML = "", hide(cur.scrollList.searchWrap), show(cur.scrollList.eventsPopular)), checkPageBlocks(), GroupsList.updateSummary(s, !0), cur.searchOffset = o)
                 },
                 showProgress: uiSearch.showProgress.pbind(cur.scrollList.query),
                 hideProgress: uiSearch.hideProgress.pbind(cur.scrollList.query)

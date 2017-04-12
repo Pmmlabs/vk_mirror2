@@ -509,6 +509,14 @@ a.groups_messages_block .ui_rmenu_count {
     width: 100%
 }
 
+.groups_list_search.ui_search.ui_search_new {
+    margin: 20px 20px 0
+}
+
+.groups_list_search.ui_search.ui_search_new .ui_search_controls {
+    right: 2px
+}
+
 #groups_list_search_wrap,
 .groups_invites_preload {
     display: none

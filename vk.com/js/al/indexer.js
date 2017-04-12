@@ -261,6 +261,11 @@ vkIndexer.prototype.equals = function(obj1, obj2) {
 
 vkIndexer.prototype.intersect = function(a, b) {
     var result = [];
+    if (isNumeric(a[0]) || isNumeric(b[0])) {
+        return a.filter(function(n) {
+            return b.indexOf(n) !== -1;
+        });
+    }
     while (a.length > 0 && b.length > 0) {
         if (a[0]._order < b[0]._order) {
             a.shift();

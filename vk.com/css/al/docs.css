@@ -471,19 +471,3 @@ a.docs_item_name {
     font-size: 14px;
     line-height: 1.285
 }
-
-.docs_office_365_tt_title {
-    font-weight: 600;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto
-}
-
-.docs_office_365_tt_body {
-    margin-bottom: 5px
-}
-
-.docs_office_365_tt_more {
-    font-weight: 600;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto
-}

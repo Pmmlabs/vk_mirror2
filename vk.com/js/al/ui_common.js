@@ -363,14 +363,16 @@ var uiTabs = {
                                 removeEvent(el, "blur", onBlur), options.onBlur && removeEvent(el, "blur", options.onBlur), options.onFocus && removeEvent(el, "focus", options.onFocus)
                             }
                         }
-                    } else var mainHandler = {
-                        start: function() {
-                            addEvent(el, "keydown", onKeyDown), addEvent(el, "paste cut input", onBuffer), addEvent(el, "blur", onBlur), options.onBlur && addEvent(el, "blur", options.onBlur), options.onFocus && addEvent(el, "focus", options.onFocus)
-                        },
-                        stop: function() {
-                            removeEvent(el, "keydown", onKeyDown), removeEvent(el, "paste cut input", onBuffer), removeEvent(el, "blur", onBlur), options.onBlur && removeEvent(el, "blur", options.onBlur), options.onFocus && removeEvent(el, "focus", options.onFocus)
-                        }
-                    };
+                    } else var searchBtn = geByClass1("_ui_search_button_search", wrapEl),
+                        onBtnClick = uiSearch.onEnter.pbind(el),
+                        mainHandler = {
+                            start: function() {
+                                addEvent(el, "keydown", onKeyDown), addEvent(el, "paste cut input", onBuffer), addEvent(el, "blur", onBlur), options.onBlur && addEvent(el, "blur", options.onBlur), options.onFocus && addEvent(el, "focus", options.onFocus), searchBtn && addEvent(searchBtn, "click", onBtnClick)
+                            },
+                            stop: function() {
+                                removeEvent(el, "keydown", onKeyDown), removeEvent(el, "paste cut input", onBuffer), removeEvent(el, "blur", onBlur), options.onBlur && removeEvent(el, "blur", options.onBlur), options.onFocus && removeEvent(el, "focus", options.onFocus), searchBtn && removeEvent(searchBtn, "click", onBtnClick)
+                            }
+                        };
                     if (mainHandler.start(), data(el, "eventHandlers", [mainHandler]), options.params) {
                         var content = se(trim(options.params.html));
                         options.paramsTooltip = new ElementTooltip(geByClass1("_ui_search_params_button", wrapEl), {
@@ -404,17 +406,18 @@ var uiTabs = {
             var r = uiSearch.getOptions(t);
             r.suggester && r.suggester.instance && r.suggester.instance.saveHistoryItem(e, i, s, o, n)
         },
+        onEnter: function(t, e) {
+            t = uiSearch.getFieldEl(t);
+            var i = data(t, "opts"),
+                s = t.getValue();
+            return i.onEnter && i.onEnter(t, s, e), cancelEvent(e)
+        },
         onKeyDown: function(t, e) {
             if (cur.preventInputActions && -1 != [KEY.RETURN, KEY.ESC, KEY.DOWN, KEY.UP].indexOf(e.keyCode)) return cancelEvent(e);
-            if (e.keyCode == KEY.RETURN) {
-                t = uiSearch.getFieldEl(t);
-                var i = data(t, "opts"),
-                    s = t.getValue();
-                return i.onEnter && i.onEnter(t, s, e), cancelEvent(e)
-            }
+            if (e.keyCode == KEY.RETURN) return uiSearch.onEnter(t, e);
             if (e.keyCode == KEY.ESC) {
-                var o = !!val(t);
-                return uiSearch.reset(t, !1, e), o ? cancelEvent(e) : !0
+                var i = !!val(t);
+                return uiSearch.reset(t, !1, e), i ? cancelEvent(e) : !0
             }
             setTimeout.pbind(uiSearch.onChanged.pbind(t, !1, e), 0)
         },
@@ -802,7 +805,8 @@ var uiTabs = {
                 }.bind(this))
             }.bind(this)), this.addEvent(this.el.outer, "scroll", function() {
                 this.update() && (this.stopped ? (this.stopped = !1, this.emitEvent("scrollstart")) : this.options["native"] || this.stopped !== !1 || (this.stopped = 0, addClass(this.el.container, "ui_scroll_scrolled")), this.emitEvent("scroll"), this.stoppedTimeout && clearTimeout(this.stoppedTimeout), this.stoppedTimeout = setTimeout(function() {
-                    this.stopped || (this.stopped = !0, this.options["native"] || removeClass(this.el.container, "ui_scroll_scrolled"), this.emitEvent("scrollstop"), this.noMore && this.released && !this.dragging && (this.noMore = !1, this.more()))
+                    this.stopped || (this.stopped = !0, this.options["native"] || removeClass(this.el.container, "ui_scroll_scrolled"),
+                        this.emitEvent("scrollstop"), this.noMore && this.released && !this.dragging && (this.noMore = !1, this.more()))
                 }.bind(this), 200))
             }.bind(this)), this.api
         };

@@ -44,7 +44,7 @@ var slide_show = function(e) {
         updResults: function() {
             if (cur.customSearchChange) return cur.customSearchChange(), !1;
             var e = searcher.getSectionParams();
-            return searcher.sameParams(e) || "video" == e["c[section]"] && !e["c[q]"] && !nav.objLoc["c[q]"] ? !1 : (cur.onSearchChange && cur.onSearchChange(e), searcher.sendSearchReq(e, ("auto" == cur.section || "audio" == cur.section && e["c[q]"] && !ge("audio_lyrics_filter") || "audio" == cur.section && !e["c[q]"] && ge("audio_lyrics_filter")) && !e.offset), void(hasClass(gpeByClass("ui_search", "search_query"), "ui_search_fixed") && scrollToTop()))
+            return e.offset || elfocus("search_query"), searcher.sameParams(e) || "video" == e["c[section]"] && !e["c[q]"] && !nav.objLoc["c[q]"] ? !1 : (cur.onSearchChange && cur.onSearchChange(e), searcher.sendSearchReq(e, ("auto" == cur.section || "audio" == cur.section && e["c[q]"] && !ge("audio_lyrics_filter") || "audio" == cur.section && !e["c[q]"] && ge("audio_lyrics_filter")) && !e.offset), void(hasClass(gpeByClass("ui_search", "search_query"), "ui_search_fixed") && scrollToTop()))
         },
         onInputChange: function(e) {
             clearTimeout(cur.requestTimeout), !e || "keydown" == e.type && 13 != e.keyCode ? cur.requestTimeout = setTimeout(function() {
@@ -256,8 +256,9 @@ var slide_show = function(e) {
         init: function(e) {
             var s = globalHistory.length;
             s && globalHistory[s - 1] && globalHistory[s - 1].loc.indexOf("search") ? cur.search_return_to = globalHistory[s - 1].loc : cur.search_return_to = "/", hide("header");
-            var t = ge("search_query");
-            iSearch.destroy(), vk.id && iSearch.init(t), elfocus(t), "search" == nav.objLoc[0] && (extend(cur, {
+            var t = ge("search_query"),
+                r = t && data(t, "opts") || {};
+            r.isNew || (iSearch.destroy(), vk.id && iSearch.init(t)), elfocus(t), "search" == nav.objLoc[0] && (extend(cur, {
                 oid: e.user_id,
                 module: "search"
             }), cur.nav.push(function(e, s, t) {
@@ -278,8 +279,8 @@ var slide_show = function(e) {
             })), cur.options || (cur.options = {
                 reply_names: {}
             }), extend(cur.options, e), searcher.applyOptions(e), t.ignoreFixed = "statuses" == cur.section, window.scrollTop = bodyNode.scrollTop = pageNode.scrollTop = htmlNode.scrollTop = 0, addEvent(window, "scroll", searcher.scrollCheck), addEvent(window, "resize", searcher.onResize), setTimeout(searcher.scrollCheck, 50), setTimeout(checkPageBlocks, 200);
-            var r = window.audioPlayer;
-            r && r.showCurrentTrack && r.showCurrentTrack(), cur._back = {
+            var c = window.audioPlayer;
+            c && c.showCurrentTrack && c.showCurrentTrack(), cur._back = {
                 text: getLang("search_back_to"),
                 show: [function() {
                     hide("header");
