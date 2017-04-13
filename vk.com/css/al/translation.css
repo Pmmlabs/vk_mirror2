@@ -558,7 +558,7 @@ i i.untranslated {
 
 .tr_lang_row {
     position: relative;
-    padding: 10px
+    padding: 10px 5px 10px 10px
 }
 
 .tr_lang_row>div {
@@ -576,9 +576,9 @@ i i.untranslated {
 
 .tr_lang_status {
     background: url(/images/lang_status.png);
-    width: 13px;
     height: 11px;
-    margin: 8px 10px 0 0
+    width: 13px;
+    margin: 8px 8px 0 0
 }
 
 .tr_lang_status.tr_lang_status_2 {
@@ -591,13 +591,13 @@ i i.untranslated {
 
 .tr_lang_name_ru_en {
     white-space: nowrap;
-    width: 300px;
+    width: 325px;
     overflow: hidden;
     text-overflow: ellipsis
 }
 
 .tr_lang_names {
-    margin: 0 0 0 10px
+    margin: 0 0 0 8px
 }
 
 .tr_lang_names_native {
@@ -612,8 +612,10 @@ i i.untranslated {
 }
 
 .tr_lang_completeness {
-    position: absolute;
-    right: 10px
+    right: 5px;
+    top: 11px;
+    font-size: 12px;
+    position: absolute
 }
 
 .tr_log {
@@ -659,4 +661,27 @@ i i.untranslated {
     padding: 20px;
     background-color: #eef0f3;
     margin-top: -20px
+}
+
+.tr_add_lang_label {
+    box-sizing: border-box;
+    float: left;
+    padding-right: 10px;
+    text-align: right;
+    color: #656565;
+    line-height: 30px;
+    width: 205px
+}
+
+.tr_add_lang_row {
+    margin: 0 0 10px
+}
+
+.tr_add_lang_row:last-child {
+    margin-bottom: 0
+}
+
+.tr_add_lang .text {
+    float: left;
+    width: 195px
 }

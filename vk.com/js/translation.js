@@ -32,30 +32,18 @@
                 saveInProgress = false;
             }
         });
-        if (deleteHash == false) {
-            translationBox.addButton({
-                label: getLang('box_restore'),
-                onClick: function() {
-                    doRestoreKey(transEl)
-                }
-            }).loadContent('translation.php', {
-                act: 'a_deleted_box',
-                key: langKey
-            }, true).show();
-        } else {
-            //if (deleteHash) {
-            //  translationBox.addControlsText('<a id="transDeleteLink" href="" onclick="return doDeleteKey(\''+langKey+'\', \''+deleteHash+'\')">'+getLang('tran_delete_key')+'</a>');
-            //}
-            translationBox.addButton({
-                label: getLang('box_save'),
-                onClick: window.tDoSave = function() {
-                    doTranslate(transEl, callback)
-                }
-            }).loadContent('translation.php', {
-                act: 'inline',
-                key: langKey
-            }, true).show();
-        }
+        //if (deleteHash) {
+        //  translationBox.addControlsText('<a id="transDeleteLink" href="" onclick="return doDeleteKey(\''+langKey+'\', \''+deleteHash+'\')">'+getLang('tran_delete_key')+'</a>');
+        //}
+        translationBox.addButton({
+            label: getLang('box_save'),
+            onClick: window.tDoSave = function() {
+                doTranslate(transEl, callback)
+            }
+        }).loadContent('translation.php', {
+            act: 'inline',
+            key: langKey
+        }, true).show();
         cancelEvent(event);
         return false;
     }
@@ -405,11 +393,7 @@
             if (section_id) {
                 show_all_phrases = '<div style="margin-top:8px" class="button_gray button_wide" ><button onclick="showAllPhrases(\'' + sections + '\');">Show all phrases</button></div>';
             }
-            if (admin_href == 'super') {
-                invitation = '<div style="text-align:center;">You are super user.<br /><a href="' + base_domain + 'translation.php?act=translators">Add translators &raquo;</a></div>';
-            } else if (admin_href == 'coordinator') {
-                invitation = '<div style="text-align:center;">You are coordinator.<br /><a href="' + base_domain + 'translation.php?act=translators">Add translators &raquo;</a></div>';
-            } else if (admin_href) {
+            if (admin_href) {
                 invitation = '<a href="' + admin_href + '">' + admin_name + '</a> has invited you to translate this page. <a href="#" onclick="return showInvitationBox();">Invite friend &raquo;</a>';
                 inviteHash = hash;
             }
@@ -689,56 +673,6 @@ var PagedList = function(container, data, options) {
 
 var prevBatchSearchKey = '';
 var betchKeysValues = {};
-window.batchSearchKey = function(force) {
-    var key = trim(ge('batch_key_search_input').value);
-    if (!force && prevBatchSearchKey == key) {
-        return;
-    }
-
-    show('batch_key_search_spinner');
-
-    betchKeysValues = {};
-
-    Ajax.Post({
-        url: 'translation.php',
-        query: {
-            act: 'batch_edit_search_key',
-            key: key
-        },
-        onDone: function(ajaxObj, responseText) {
-            hide('batch_key_search_spinner');
-            var results = JSON.parse(JSON.parse(responseText).values);
-
-            var resultsEl = ge('batch_edit_results');
-            var resultHTML = '';
-            for (var i = 0; i < results.length; i++) {
-                var lang = results[i];
-
-                var mcDiff = ''; //lang.value_mc != lang.value ? '<span>! </span>' : '';
-
-                resultHTML += '<div class="batch_edit_item" >' + mcDiff + '<span class="batch_edit_item_value" data-language-id="' + lang.language_id + '">' + lang.value + '</span>';
-
-                if (isSuperUser) {
-                    resultHTML += '<span class="batch_edit_item_result" data-language-id="' + lang.language_id + '">' + lang.value + '</span>';
-                }
-
-                resultHTML += '<span class="batch_edit_item_lang">' + lang.lang + '</span></div>';
-
-                betchKeysValues[lang.language_id] = lang.value;
-            }
-
-            resultsEl.innerHTML = resultHTML;
-
-            onPatternChange();
-        },
-        onFail: function(ajaxObj, responseText) {
-            hide('batch_key_search_spinner');
-        }
-    });
-
-    prevBatchSearchKey = key;
-}
-
 var prevBatchPattern = '';
 window.onPatternChange = function() {
     var patt = trim(ge('batch_pattern').value);
@@ -791,48 +725,4 @@ window.onPatternSubstChange = function() {
         var resEl = geByClass1('batch_edit_item_result', items[i].parentNode);
         resEl.innerHTML = value;
     }
-}
-
-
-window.batchSaveChanged = function() {
-    var items = geByClass('batch_edit_item_result');
-    var query = {};
-    var counter = 0;
-    for (var i = 0; i < items.length; i++) {
-
-        var value = items[i].innerHTML;
-        var prevValue = betchKeysValues[items[i].getAttribute('data-language-id')];
-
-        if (value == prevValue) continue;
-
-        query['lang_' + counter + '_value'] = items[i].innerHTML.replace(/<br>/g, '\n');
-        query['lang_' + counter + '_lang_id'] = items[i].getAttribute('data-language-id');
-
-        counter++;
-    }
-
-    if (!counter) return;
-
-    var key = trim(ge('batch_key_search_input').value);
-
-    query.key = key;
-    query.act = 'batch_edit_save';
-
-    hide('batch_edit_save_button');
-    show('batch_edit_save_button_spinner');
-
-    Ajax.Post({
-        url: 'translation.php',
-        query: query,
-        onDone: function(ajaxObj, responseText) {
-            show('batch_edit_save_button');
-            hide('batch_edit_save_button_spinner');
-            batchSearchKey(true);
-        },
-        onFail: function(ajaxObj, responseText) {
-            show('batch_edit_save_button');
-            hide('batch_edit_save_button_spinner');
-            batchSearchKey(true);
-        }
-    });
 }

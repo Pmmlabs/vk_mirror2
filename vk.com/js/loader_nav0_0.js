@@ -102,7 +102,7 @@ var navMap = {
     'about$': ['blog.php', ['blog.css', 'blog.js']],
     'products$': ['blog.php', ['blog.css', 'blog.js']],
     'ui$': ['ui.php', []],
-    'translation$': ['al_translation.php', []],
+    'translation($|/)': ['al_translations.php', []],
     'mobile$': ['al_login.php', []],
     'stickers($|/)': ['al_im.php', ['imn.js', 'im.css', 'emoji.js', 'notifier.css']],
     'print$': ['al_print.php', ['print.css', 'print.js']],
@@ -198,8 +198,8 @@ var stVersions = {
     'video_youtube.css': 15397500626,
     'videoplayer.js': 79179788516,
     'videoplayer.css': 42848571606,
-    'translation.js': 2541156631,
-    'translation.css': 16399611592,
+    'translation.js': 2431784533,
+    'translation.css': 16648790026,
     'reg.css': 887926110,
     'reg.js': 1336565657,
     'invite.css': 19280227089,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 9650;
+var _rnd = 4388;
