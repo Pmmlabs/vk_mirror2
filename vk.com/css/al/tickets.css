@@ -753,6 +753,10 @@ body.dev .tickets_header_links {
     border-radius: 2px
 }
 
+#tickets_templates .template_wrap .templates_actions .templates_move_mode_link {
+    display: inline-block
+}
+
 #tickets_templates .template_wrap .templates_actions .templates_move_mode_link.on {
     background: #dae2e8;
     border-radius: 2px;

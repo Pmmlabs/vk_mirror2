@@ -15,7 +15,7 @@ var Restore = {
     showResult: function(e, o, r, t) {
         cur.wasShown && cur.wasShown != e && hide(cur.wasShown), console.log(e), ajax.post("al_index.php", {
             act: "restore_log",
-            id: "id",
+            id: e,
             text: o,
             value: r ? r.value : "none"
         }), cur.wasShown = e;
@@ -58,7 +58,7 @@ var Restore = {
         if (!o) {
             if (1 == e) var r = val("photo_input");
             else var r = val("doc_input");
-            var t = r.match(/(screenshoot|������ ������|screencapture|(screen )?capture|��������)/gi);
+            var t = r.match(/(screenshoo?t|������ ������|screencapture|(screen )?capture|��������)/gi);
             if (t) {
                 var s = new MessageBox({
                     title: getLang("global_action_confirmation")

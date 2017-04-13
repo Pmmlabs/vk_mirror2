@@ -318,7 +318,7 @@ var stVersions = {
     'notifier.css': 24077703040,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
-    'restore.js': 4162890957,
+    'restore.js': 3242132922,
     'restore.css': 20788817597,
     'recover.js': 2830033131,
     'recover.css': 2080137791,
@@ -331,7 +331,7 @@ var stVersions = {
     'helpdesk.js': 3330561566,
     'helpdesk.css': 22758278340,
     'tickets.js': 3256001699,
-    'tickets.css': 21770842505,
+    'tickets.css': 19947660653,
     'faq.js': 1134602325,
     'faq.css': 20544323768,
     'talmud.js': 1641838680,
@@ -443,7 +443,7 @@ var stVersions = {
     'landings/landings.css': 19763605875,
     'landings/vk10_years.css': 17039594165,
     'chronicle.css': 17240452504,
-    'market.css': 26265744558,
+    'market.css': 24134240604,
     'market.js': 3418710663,
     'vk2016.css': 2369321949,
     'landings/common.css': 21075911973,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 2156;
+var _rnd = 9650;
