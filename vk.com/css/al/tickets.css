@@ -729,7 +729,7 @@ body.dev .tickets_header_links {
 }
 
 #tickets_templates .template_wrap .templates_actions.templates_actions_edit {
-    display: inline-block;
+    display: inline;
     vertical-align: top;
     padding-left: 8px
 }
@@ -751,10 +751,6 @@ body.dev .tickets_header_links {
 #tickets_templates .template_wrap .templates_actions .templates_switch.templates_switch_selected {
     background: #ededed;
     border-radius: 2px
-}
-
-#tickets_templates .template_wrap .templates_actions .templates_move_mode_link {
-    display: inline-block
 }
 
 #tickets_templates .template_wrap .templates_actions .templates_move_mode_link.on {

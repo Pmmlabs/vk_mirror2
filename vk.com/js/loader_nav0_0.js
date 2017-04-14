@@ -268,7 +268,7 @@ var stVersions = {
     'apps_check.js': 3844411974,
     'apps_check.css': 27353693575,
     'settings.js': 2089554304,
-    'settings.css': 25340735401,
+    'settings.css': 25728244801,
     'profile_edit.js': 312998250,
     'profile_edit.css': 17816155816,
     'profile_edit_edu.js': 799807020,
@@ -331,7 +331,7 @@ var stVersions = {
     'helpdesk.js': 3330561566,
     'helpdesk.css': 22758278340,
     'tickets.js': 3256001699,
-    'tickets.css': 19947660653,
+    'tickets.css': 19870529080,
     'faq.js': 1134602325,
     'faq.css': 20544323768,
     'talmud.js': 1641838680,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 4388;
+var _rnd = 4391;

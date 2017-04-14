@@ -1189,9 +1189,11 @@ a.settings_blb_title {
 }
 
 .settings_payments_subscriptions .settings_history_amount {
+    padding-right: 10px;
     font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto
+    -moz-osx-font-smoothing: auto;
+    text-align: right
 }
 
 .settings_payments_subscriptions .settings_history_amount b {
