@@ -364,7 +364,9 @@ var uiTabs = {
                             }
                         }
                     } else var searchBtn = geByClass1("_ui_search_button_search", wrapEl),
-                        onBtnClick = uiSearch.onEnter.pbind(el),
+                        onBtnClick = function(t) {
+                            uiSearch.onEnter(el, t), elfocus(el)
+                        },
                         mainHandler = {
                             start: function() {
                                 addEvent(el, "keydown", onKeyDown), addEvent(el, "paste cut input", onBuffer), addEvent(el, "blur", onBlur), options.onBlur && addEvent(el, "blur", options.onBlur), options.onFocus && addEvent(el, "focus", options.onFocus), searchBtn && addEvent(searchBtn, "click", onBtnClick)
@@ -805,8 +807,8 @@ var uiTabs = {
                 }.bind(this))
             }.bind(this)), this.addEvent(this.el.outer, "scroll", function() {
                 this.update() && (this.stopped ? (this.stopped = !1, this.emitEvent("scrollstart")) : this.options["native"] || this.stopped !== !1 || (this.stopped = 0, addClass(this.el.container, "ui_scroll_scrolled")), this.emitEvent("scroll"), this.stoppedTimeout && clearTimeout(this.stoppedTimeout), this.stoppedTimeout = setTimeout(function() {
-                    this.stopped || (this.stopped = !0, this.options["native"] || removeClass(this.el.container, "ui_scroll_scrolled"),
-                        this.emitEvent("scrollstop"), this.noMore && this.released && !this.dragging && (this.noMore = !1, this.more()))
+                    this.stopped || (this.stopped = !0,
+                        this.options["native"] || removeClass(this.el.container, "ui_scroll_scrolled"), this.emitEvent("scrollstop"), this.noMore && this.released && !this.dragging && (this.noMore = !1, this.more()))
                 }.bind(this), 200))
             }.bind(this)), this.api
         };

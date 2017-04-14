@@ -28,7 +28,7 @@ var Restore = {
         var o = e;
         if (phone = ge(o).value.replace(/[^0-9]/g, ""), !isVisible(o) || /^[1-9][0-9]{6,14}$/.test(phone)) {
             var r = function(e, o) {
-                var r = "request_email_res";
+                var r = "request_phone_check_res";
                 2 === e ? (cur.wasShown && cur.wasShown != r && hide(cur.wasShown), cur.wasShown = r, val(r, o), cur.checkedPhones[phone] = [e, o], isVisible(r) || setTimeout(function() {
                     slideDown(r, 150)
                 }, 50), cur.checkedPhones[phone] = [e, o]) : isVisible(r) && slideUp(r, 200)
@@ -386,10 +386,20 @@ var Restore = {
             var r = ge("restore_roll_" + e);
             removeClass(r, "_restore_roll_active"), re("restore_roll_button_" + e);
             var t = ge("restore_roll_" + o);
-            show(t), removeClass(t, "restore_roll_colored"), scrollToY(getXY(t)[1], 400), removeClass("restore_roll_" + o, "restore_roll_hidden"), addClass(t, "_restore_roll_active"), "comment" == o && autosizeSetup(ge("comment"), {
-                minHeight: 55,
-                maxHeight: 300
-            })
+            if (show(t), removeClass(t, "restore_roll_colored"), scrollToY(getXY(t)[1], 400), removeClass("restore_roll_" + o, "restore_roll_hidden"), addClass(t, "_restore_roll_active"), "comment" == o) {
+                var s = ge("comment");
+                autosizeSetup(s, {
+                    minHeight: 55,
+                    maxHeight: 300
+                }), addEvent(s, "focus keyup", function(e) {
+                    s.timeout && clearTimeout(s.timeout), s.timeout = setTimeout(function() {
+                        var e = val(s);
+                        if (e.match(/(�����(�(�|�)|��)?|��������(����|��|����?|�����)|��������(��|�(�|�))|����(���|�(���|���|�))|������)/gi)) var o = cur.goto_support;
+                        else var o = getLang("restore_lost_phone_your_comment_short");
+                        val(s.tt.container, '<div class="wrapped"><div class="tt_text">' + o + "</div></div>")
+                    }, 300)
+                })
+            }
         }
     },
     checkRoll: function(e) {

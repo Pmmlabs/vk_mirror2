@@ -430,7 +430,7 @@ var GroupsList = {
             var u = e.length,
                 p = ge(cur.scrollList.prefix + r),
                 h = ge("ui_" + r + "_load_more");
-            if (GroupsList.updateSummary(u), !u) return p.innerHTML = cur.scrollList.genEmpty(o), o && GroupsList.needSearch(r) ? t ? (GroupsList.serverSearch(p, o), hide(h)) : cur.searchOffset && GroupsList.serverSearchMore(p, o) : (hide(h), hide(cur.scrollList.searchWrap), show(cur.scrollList.eventsPopular), cur.searchOffset = 0), void setTimeout(elfocus.pbind(cur.scrollList.query), 10);
+            if (GroupsList.updateSummary(u), !u) return p.innerHTML = cur.scrollList.genEmpty(o), void(o && GroupsList.needSearch(r) ? t ? (GroupsList.serverSearch(p, o), hide(h)) : cur.searchOffset && GroupsList.serverSearchMore(p, o) : (hide(h), hide(cur.scrollList.searchWrap), show(cur.scrollList.eventsPopular), cur.searchOffset = 0));
             for (var d = t ? 0 : cur.scrollList.offset, g = Math.min(u, d + cur.scrollList.perpage), L = [], n = d; g > n; ++n) {
                 var f = cur.scrollList.lists[r][e[n]];
                 if (f) {
@@ -439,7 +439,7 @@ var GroupsList = {
                 }
             }
             if (o || d && !t || (hide(cur.scrollList.searchWrap), show(cur.scrollList.eventsPopular), cur.searchOffset = 0), t)
-                if (hasClass(cur.scrollList.queryCont, "ui_search_fixed") && scrollToY(getXY(cur.scrollList.queryWrap)[1] + 1, 0), setTimeout(elfocus.pbind(cur.scrollList.query), 10), p.innerHTML = L.join(""), checkPageBlocks(), cur.searchOffset = !1, e.length < 5 && o && GroupsList.needSearch(r)) {
+                if (hasClass(cur.scrollList.queryCont, "ui_search_fixed") && scrollToY(getXY(cur.scrollList.queryWrap)[1] + 1, 0), p.innerHTML = L.join(""), checkPageBlocks(), cur.searchOffset = !1, e.length < 5 && o && GroupsList.needSearch(r)) {
                     var v = [];
                     for (var n in e) {
                         var m = cur.scrollList.lists[r][e[n]];
@@ -502,8 +502,8 @@ var GroupsList = {
     onExtendedSearchChange: function(s, r) {
         val("c[like_hints]", 1), GroupsList.extendedSearch(s)
     },
-    onExtendedSearchEnter: function(s, r) {
-        val("c[like_hints]", ""), GroupsList.extendedSearch(s)
+    onExtendedSearchEnter: function(s, r, e) {
+        val("c[like_hints]", ""), GroupsList.extendedSearch(r)
     },
     needSearch: function(s) {
         return "groups" == s || "future" == s || "past" == s

@@ -44,7 +44,7 @@ var slide_show = function(e) {
         updResults: function() {
             if (cur.customSearchChange) return cur.customSearchChange(), !1;
             var e = searcher.getSectionParams();
-            return e.offset || elfocus("search_query"), searcher.sameParams(e) || "video" == e["c[section]"] && !e["c[q]"] && !nav.objLoc["c[q]"] ? !1 : (cur.onSearchChange && cur.onSearchChange(e), searcher.sendSearchReq(e, ("auto" == cur.section || "audio" == cur.section && e["c[q]"] && !ge("audio_lyrics_filter") || "audio" == cur.section && !e["c[q]"] && ge("audio_lyrics_filter")) && !e.offset), void(hasClass(gpeByClass("ui_search", "search_query"), "ui_search_fixed") && scrollToTop()))
+            return searcher.sameParams(e) || "video" == e["c[section]"] && !e["c[q]"] && !nav.objLoc["c[q]"] ? !1 : (cur.onSearchChange && cur.onSearchChange(e), searcher.sendSearchReq(e, ("auto" == cur.section || "audio" == cur.section && e["c[q]"] && !ge("audio_lyrics_filter") || "audio" == cur.section && !e["c[q]"] && ge("audio_lyrics_filter")) && !e.offset), void(hasClass(gpeByClass("ui_search", "search_query"), "ui_search_fixed") && scrollToTop()))
         },
         onInputChange: function(e) {
             clearTimeout(cur.requestTimeout), !e || "keydown" == e.type && 13 != e.keyCode ? cur.requestTimeout = setTimeout(function() {
