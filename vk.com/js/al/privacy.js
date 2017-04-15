@@ -263,7 +263,7 @@ var Privacy = {
                         p = f[0];
                     if (p > 0) {
                         var _ = f[4].replace(/'/g, "");
-                        v = !0, o.push('<a href="/' + (_ ? _ : "id" + p) + '" onclick="return nav.go(this, event)">' + f[5] + "</a>")
+                        v = !0, o.push('<a href="/' + (_ ? _ : "id" + p) + '" onclick="return nav.go(this, event)">' + f[6] + "</a>")
                     } else {
                         var h = -p,
                             y = (h - 1) % 8 + 1;

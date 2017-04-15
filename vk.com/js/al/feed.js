@@ -229,7 +229,7 @@ var Feed = {
                     y = wall.getNewPostHTML(e, l, feed.feedPostRepl),
                     b = e[12],
                     C = "search" != n && (window._wf <= 0 || hasClass(cur.feedEls.wrap, "feed_has_new")),
-                    k = layers && layers.visible && wkcur && "story" == wkcur.type;
+                    k = layers && layers.visible && window.wkcur && "story" == wkcur.type;
                 k && (C = !0);
                 var P = !1,
                     x = y;
