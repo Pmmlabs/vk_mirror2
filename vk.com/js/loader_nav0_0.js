@@ -318,8 +318,8 @@ var stVersions = {
     'notifier.css': 24194889067,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
-    'restore.js': 1789383637,
-    'restore.css': 20906003624,
+    'restore.js': 3882687282,
+    'restore.css': 18312034873,
     'recover.js': 2830033131,
     'recover.css': 2080137791,
     'docs.js': 3215535710,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 6802;
+var _rnd = 305;

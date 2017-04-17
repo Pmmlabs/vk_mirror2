@@ -568,3 +568,9 @@
     clear: both;
     margin-top: 20px
 }
+
+.restore_get_by_link .msg {
+    padding: 8px;
+    margin: 10px 0;
+    line-height: 160%
+}
