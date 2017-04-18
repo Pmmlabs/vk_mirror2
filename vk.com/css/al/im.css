@@ -2765,11 +2765,20 @@ img.im_photo_thumb {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    min-width: 118px
 }
 
 .im-page_classic .im-page--aside {
     padding: 0 15px
+}
+
+.im-page--chat-header_actions .im-page--aside {
+    display: none
+}
+
+.im-page--aside-in {
+    float: right
 }
 
 .im-page--aside-photo {
@@ -2781,10 +2790,6 @@ img.im_photo_thumb {
 
 .im-page--aside-photo>a {
     border-color: inherit
-}
-
-.im-page--chat-header_actions .im-page--aside {
-    display: none
 }
 
 .im-page--header-icon {

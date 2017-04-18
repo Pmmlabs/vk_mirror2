@@ -196,7 +196,7 @@ var stVersions = {
     'video_upload.js': 10194165,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 15514686653,
-    'videoplayer.js': 79179788516,
+    'videoplayer.js': 75722058208,
     'videoplayer.css': 42965757633,
     'translation.js': 2431784533,
     'translation.css': 16765976053,
@@ -245,7 +245,7 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 108512397674,
+    'im.css': 108354920467,
     'imn.js': 116921470932,
     'im.js': 1322065004,
     'emoji.js': 3607330516,
@@ -368,7 +368,7 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 27458624627,
     'aes_light.js': 2817066015,
-    'ads.css': 24404703951,
+    'ads.css': 24804210316,
     'ads_bonus.css': 460482192,
     'ads.js': 765518201,
     'ads_payments.js': 2170749464,
@@ -406,7 +406,7 @@ var stVersions = {
     'filters_pe.js': 2963371200,
     'pe.js': 318083439,
     'pe.css': 15814913793,
-    'dev.js': 4080376533,
+    'dev.js': 4126919969,
     'dev.css': 29567872503,
     'share.css': 25978570377,
     'stickers_office.css': 1312075860,
@@ -422,7 +422,7 @@ var stVersions = {
     'ui.css': 16841345798,
     'ui.js': 3953380422,
     'ui_common.js': 2289307861,
-    'ui_common.css': 15507027335,
+    'ui_common.css': 18355845740,
     'ui_media_selector.js': 480361842,
     'ui_media_selector.css': 20738266441,
     'ui_manual.css': 16809007522,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 305;
+var _rnd = 9957;
