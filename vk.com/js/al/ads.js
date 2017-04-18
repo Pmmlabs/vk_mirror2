@@ -3450,7 +3450,11 @@ Ads.showRetargetingGroupActions = function(el, groupId, hasAttachedPixel, canReq
     cur.uiRetargetingActions.show();
 }
 
-Ads.showRetargetingGroupBox = function(act, addParams) {
+Ads.showRetargetingGroupBox = function(act, addParams, boxParams) {
+    if (!boxParams) {
+        boxParams = {};
+    }
+
     var hideButtons;
     if (addParams.hideButtons) {
         hideButtons = true;
@@ -3469,16 +3473,15 @@ Ads.showRetargetingGroupBox = function(act, addParams) {
     }
 
     var showOptions = {
-        params: {}
+        params: {
+            width: 480,
+            dark: true,
+            hideButtons: hideButtons,
+            bodyStyle: 'padding: 0;'
+        }
     };
     showOptions.onFail = Ads.onBoxFail;
-    showOptions.params = {
-        width: 480,
-        dark: true,
-        hideButtons: hideButtons,
-        bodyStyle: 'padding: 0;'
-    };
-
+    extend(showOptions.params, boxParams);
     showBox('/ads?act=a_retargeting_group_' + act + '_box', ajaxParams, showOptions);
 
     return true;
@@ -3796,6 +3799,87 @@ Ads.saveRetargetingGroupParam = function(id, v) {
     });
 
     return true;
+}
+
+Ads.copyRetargetingGroup = function() {
+    if (!cur.options.unionId || !cur.options.groupId) {
+        return false;
+    }
+
+    target_client_union_id = trim(val(ge('ads_retargeting_copy_to_client_id')))
+
+    var options = {
+        union_id: cur.options.unionId,
+        retargeting_group_id: cur.options.groupId,
+        target_client_union_id: target_client_union_id,
+        hash: cur.options.copyHash,
+        is_mirror: +Ads.isMirrorCheckbox.checked()
+    };
+
+    ajax.post('/ads?act=a_retargeting_copy_group', options, {
+        onDone: function(html) {
+            ge('ads_retargeting_processing_msg').innerHTML = getLang('ads_retargeting_group_copy_status_queued');
+            var progressBarContent = geByClass1('ads_upload_progress_wrap', ge('ads_retargeting_box_processing'));
+            progressBarContent.innerHTML = '<div id="copy_' + cur.options.groupId + '_progress" class="ads_upload_progress" style="width: 0%;"></div>';
+            hide(ge('ads_retargeting_copy_form'));
+            show(ge('ads_retargeting_box_processing'));
+            cur.options.checkStatusIntervalId = setInterval(Ads.copyRetargetingGroupStatus, 1000)
+            lockButton("ads_retargeting_copy_box_button");
+        },
+        onFail: function(msg) {
+            ge('ads_retargeting_box_error').innerHTML = msg;
+            show('ads_retargeting_box_error');
+            return true;
+        },
+        showProgress: function() {
+            lockButton("ads_retargeting_copy_box_button");
+        },
+        hideProgress: function() {
+            unlockButton("ads_retargeting_copy_box_button");
+        }
+    })
+}
+
+Ads.copyRetargetingGroupStatus = function() {
+    var options = {
+        union_id: cur.options.unionId,
+        retargeting_group_id: cur.options.groupId,
+        target_client_union_id: target_client_union_id,
+    };
+    ajax.post("/ads?act=a_retargeting_copy_group_check_status", options, {
+        onDone: function(data) {
+            if (data[0] == cur.const['ADS_RETARGETING_QUEUE_COPY_STATUS_DONE']) {
+                clearInterval(cur.options.checkStatusIntervalId)
+                setStyle(ge('copy_' + cur.options.groupId + '_progress'), {
+                    width: '100%'
+                });
+                ge('ads_retargeting_groups_table').innerHTML = data[1];
+                Ui.tableInitFilters(geByClass1('ui_table'));
+                curBox().hide();
+                showDoneBox(getLang('ads_retargeting_group_copy_status_done'), {
+                    out: 2000
+                });
+            }
+
+            if (data[0] == cur.const['ADS_RETARGETING_QUEUE_COPY_STATUS_IN_PROGRESS']) {
+                var percent = intval(data[1] / data[2] * 100);
+                var statusMessage = getLang('ads_retargeting_group_copy_status_in_progress', data[1]);
+                statusMessage = statusMessage.replace('{all_count}', data[2]);
+                ge('ads_retargeting_processing_msg').innerHTML = statusMessage;
+                setStyle(ge('copy_' + cur.options.groupId + '_progress'), {
+                    width: percent + '%'
+                });
+            }
+        },
+        onFail: function(msg) {
+            clearInterval(cur.options.checkStatusIntervalId)
+            ge('ads_retargeting_box_error').innerHTML = msg;
+            show('ads_retargeting_box_error');
+            hide(ge('ads_retargeting_box_processing'));
+            unlockButton("ads_retargeting_copy_box_button");
+            return true;
+        },
+    })
 }
 
 Ads.deleteRetargetingGroup = function() {

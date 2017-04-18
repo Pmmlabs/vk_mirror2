@@ -4752,9 +4752,16 @@ function HistoryAndBookmarks(params) {
             l = (location.pathname || '') + (location.search || '');
         }
         l = fixEncode(l);
-        if (l.replace(/^(\/|!)/, '') != curLoc) {
+        l = l.replace(/^(\/|!)/, '');
+        if (l != curLoc) {
             if (vk.al == 3) {
                 try {
+                    if (window.saveScrollTopOnBack) {
+                        delete window.saveScrollTopOnBack;
+                        history.replaceState({
+                            scrollTop: window.lastScrollTop
+                        }, '', '/' + l);
+                    }
                     history.pushState({}, '', '/' + curLoc);
                     return;
                 } catch (e) {}
@@ -4832,10 +4839,14 @@ function HistoryAndBookmarks(params) {
 
 window.hab = new HistoryAndBookmarks({
     onLocChange: function(loc) {
-        nav.go('/' + loc, undefined, {
+        var opts = {
             back: true,
             hist: true
-        });
+        };
+        if (vk.al == 3 && history.state && isObject(history.state)) {
+            opts.scrollTop = intval(history.state.scrollTop);
+        }
+        nav.go('/' + loc, undefined, opts);
     }
 });
 
@@ -5803,6 +5814,8 @@ var nav = {
                 });
             }
 
+            window.lastScrollTop = scrollGetY();
+
             if (opts.bench) {
                 ajax.tProcess = new Date().getTime();
             }
@@ -5944,7 +5957,11 @@ var nav = {
 
             handlePageParams(params);
 
-            if (!opts.noscroll && !params.noscroll) scrollToTop(0);
+            if (opts.scrollTop > 0) {
+                scrollToY(opts.scrollTop, 0);
+            } else if (!opts.noscroll && !params.noscroll) {
+                scrollToTop(0);
+            }
 
             if (opts.bench) {
                 ajax.tRender = new Date().getTime();

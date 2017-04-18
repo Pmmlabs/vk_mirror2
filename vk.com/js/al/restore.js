@@ -304,6 +304,33 @@ var Restore = {
     toFullRequest: function(e) {
         nav.go("/restore?act=return_page&full=1&mid=" + e)
     },
+    initResendCounter: function(e) {
+        var o = ge("resend_sms_button");
+        if (e > 0) {
+            addClass(o, "button_disabled"), o.time = e;
+            var t = function() {
+                if (o.time <= 1) return removeClass(o, "button_disabled"), val(o, getLang("restore_resend_sms_data")), void clearInterval(o.timeInterval);
+                o.time -= 1;
+                var e = formatTime(o.time);
+                val(o, getLang("restore_can_resend_sms_after").replace("{time}", e))
+            };
+            t(), o.timeInterval = setInterval(t, 1e3)
+        }
+    },
+    resendSMS: function(e) {
+        hasClass(e, "button_disabled") || (lockButton(e), ajax.post("al_restore.php", {
+            act: "a_resend_sms",
+            hash: cur.resend_hash,
+            id: cur.rid
+        }, {
+            onDone: function(o, t, r, s) {
+                unlockButton(e), 1 == o ? (r && Restore.initResendCounter(r), 0 == t && hide(e), s && (addClass("resend_success", "active"), setTimeout(removeClass.pbind("resend_success", "active"), 1e4))) : hide(e)
+            }
+        }))
+    },
+    initTimeButton: function() {
+        cur.resend_counter > 0 && Restore.initResendCounter(cur.resend_counter)
+    },
     initRequest: function() {
         extend(cur, {
             images: [],
@@ -382,10 +409,13 @@ var Restore = {
                     maxHeight: 300
                 }), addEvent(s, "focus keyup", function(e) {
                     s.timeout && clearTimeout(s.timeout), s.timeout = setTimeout(function() {
-                        var e = val(s);
-                        if (e.match(/(�����(�(�|�)|��)?|��������(����|��|����?|�����)|��������(��|�(�|�))|����(���|�(���|���|�))|������)/gi)) var o = cur.goto_support;
-                        else var o = getLang("restore_lost_phone_your_comment_short");
-                        val(s.tt.container, '<div class="wrapped"><div class="tt_text">' + o + "</div></div>")
+                        try {
+                            var e = val(s),
+                                o = new RegExp(cur.delete_regex, "gi");
+                            if (o.test(e)) var t = cur.goto_support;
+                            else var t = getLang("restore_lost_phone_your_comment_short");
+                            val(s.tt.container, '<div class="wrapped"><div class="tt_text">' + t + "</div></div>")
+                        } catch (r) {}
                     }, 300)
                 })
             }

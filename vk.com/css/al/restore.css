@@ -557,6 +557,27 @@
     margin-top: 45px
 }
 
+.restore_section_resend_sms_button {
+    margin-left: 160px;
+    margin-bottom: 10px;
+    width: 240px
+}
+
+.resend_success_msg {
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden
+}
+
+.resend_success_msg.active {
+    height: 90px;
+    opacity: 1;
+    visibility: visible
+}
+
 #restore_roll_back_link .request_result_msg {
     display: block;
     margin: 10px 0 0;

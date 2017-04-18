@@ -517,8 +517,8 @@ function MediaSelector(e, a, t, o) {
                 if (l) {
                     var Y = s.chosenMedias,
                         J = Y.length,
-                        G = "";
-                    G = c && 1 === I ? !1 : "photos_list" == a ? se('<div class="page_preview_' + a + "_wrap" + T + '" style="position: relative">' + P + '<div class="page_photos_count">' + t.split(",").length + "</div></div>") : se('<div class="page_preview_' + a + "_wrap" + T + '"' + (o.nocl ? ' style="cursor: default"' : "") + A + ">" + P + '<div nosorthandle="1" class="page_media_x_wrap inl_bl" data-title="' + getLang("dont_attach") + '" aria-label="' + getLang("dont_attach") + '" role="button" onmouseover="showTitle(this)" onclick="cur.addMedia[' + s.lnkId + "].unchooseMedia(" + J + '); return cancelEvent(event);"><div class="page_media_x" nosorthandle="1"></div></div>' + M + "</div>"), addClass(G, I ? "fl_l" : "clear_fix"), void 0 !== i.upload_ind && re("upload" + i.upload_ind + "_progress_wrap"), o.toggleLnk && toggle(e, s.attachCount() + 1 < n), c && 1 === I ? (addClass(B, "editable_thumbs_wrap"), B = domLC(B) && hasClass(domLC(B), "editable_thumbs") ? domLC(B) : B.appendChild(ce("div", {
+                        Z = "";
+                    Z = c && 1 === I ? !1 : "photos_list" == a ? se('<div class="page_preview_' + a + "_wrap" + T + '" style="position: relative">' + P + '<div class="page_photos_count">' + t.split(",").length + "</div></div>") : se('<div class="page_preview_' + a + "_wrap" + T + '"' + (o.nocl ? ' style="cursor: default"' : "") + A + ">" + P + '<div nosorthandle="1" class="page_media_x_wrap inl_bl" data-title="' + getLang("dont_attach") + '" aria-label="' + getLang("dont_attach") + '" role="button" onmouseover="showTitle(this)" onclick="cur.addMedia[' + s.lnkId + "].unchooseMedia(" + J + '); return cancelEvent(event);"><div class="page_media_x" nosorthandle="1"></div></div>' + M + "</div>"), addClass(Z, I ? "fl_l" : "clear_fix"), void 0 !== i.upload_ind && re("upload" + i.upload_ind + "_progress_wrap"), o.toggleLnk && toggle(e, s.attachCount() + 1 < n), c && 1 === I ? (addClass(B, "editable_thumbs_wrap"), B = domLC(B) && hasClass(domLC(B), "editable_thumbs") ? domLC(B) : B.appendChild(ce("div", {
                         id: "thumbs_edit" + u,
                         className: "editable_thumbs"
                     })), stManager.add(["thumbs_edit.css", "thumbs_edit.js"], function() {
@@ -535,7 +535,7 @@ function MediaSelector(e, a, t, o) {
                             force: !0,
                             onUpdate: o.onChangedSize
                         }), toggleClass(m, "media_preview_has_medias", s.hasVisibleRows()), o.onChangedSize && o.onChangedSize()
-                    }, !0)) : (show(B), B.appendChild(G), _ && (B == w ? stManager.add(["sorter.js"], function() {
+                    }, !0)) : (show(B), B.appendChild(Z), _ && (B == w ? stManager.add(["sorter.js"], function() {
                         var e = getXY(w),
                             a = getSize(w),
                             t = function() {
@@ -546,18 +546,18 @@ function MediaSelector(e, a, t, o) {
                         e[0] || e[1] || a[0] || a[1] ? t() : cur.sorterClbk = t, o.onChangedSize && o.onChangedSize()
                     }, !0) : B == v && stManager.add(["qsorter.js"], function() {
                         v.qsorter ? qsorter.added(v) : B.childNodes.length > 1 && qsorter.init(v, s.qsorterOpts()), o.onChangedSize && o.onChangedSize()
-                    }, !0)), o.onChangedSize && o.onChangedSize()), Y.push([a, t, G, r])
+                    }, !0)), o.onChangedSize && o.onChangedSize()), Y.push([a, t, Z, r])
                 } else {
                     var J = 0;
                     "postpone" === a ? J = 1 : "mark_as_ads" === a && (J = 2);
-                    var G = se('<div class="' + (I === !1 ? "page_docs_preview" : "page_pics_preview") + (J ? "" : " post_thumbed_media") + '"><div class="page_preview_' + a + '_wrap"' + (o.nocl ? ' style="cursor: default"' : "") + A + ">" + P + '<div nosorthandle="1" class="page_media_x_wrap inl_bl" data-title="' + getLang("dont_attach") + '" aria-label="' + getLang("dont_attach") + '" role="button" onmouseover="showTitle(this)" onclick="cur.addMedia[' + s.lnkId + "].unchooseMedia(" + J + '); return cancelEvent(event);"><div class="page_media_x" nosorthandle="1"></div></div>' + M + "</div></div>");
-                    addClass(G, I ? "fl_l" : "clear_fix"), void 0 !== i.upload_ind && re("upload" + i.upload_ind + "_progress_wrap"), "postpone" !== a && "mark_as_ads" !== a && (s.chosenMedia = [a, t], s.chosenMediaData = i), s.singleAdded(G, a)
+                    var Z = se('<div class="' + (I === !1 ? "page_docs_preview" : "page_pics_preview") + (J ? "" : " post_thumbed_media") + '"><div class="page_preview_' + a + '_wrap"' + (o.nocl ? ' style="cursor: default"' : "") + A + ">" + P + '<div nosorthandle="1" class="page_media_x_wrap inl_bl" data-title="' + getLang("dont_attach") + '" aria-label="' + getLang("dont_attach") + '" role="button" onmouseover="showTitle(this)" onclick="cur.addMedia[' + s.lnkId + "].unchooseMedia(" + J + '); return cancelEvent(event);"><div class="page_media_x" nosorthandle="1"></div></div>' + M + "</div></div>");
+                    addClass(Z, I ? "fl_l" : "clear_fix"), void 0 !== i.upload_ind && re("upload" + i.upload_ind + "_progress_wrap"), "postpone" !== a && "mark_as_ads" !== a && (s.chosenMedia = [a, t], s.chosenMediaData = i), s.singleAdded(Z, a)
                 }
                 "share" == a ? !i.title || r || i.url ? s.showExternalPreview() : (cur.shareShowImg = 0, s.showPreview(!0), s.shareData.images = !1) : "page" == a ? i.nopreview || (cur.shareShowImg = 0, s.shareData = extend(s.shareData || {}, i, {
                     images: !1
                 }), s.showPreview()) : "poll" == a ? s.createPoll(i) : "postpone" == a ? s.setupPostpone(i, H) : "mark_as_ads" == a && (s.markAsAds = 1), toggleClass(m, "media_preview_has_medias", s.hasVisibleRows()), o.onChangedSize && o.onChangedSize();
-                var Q = window.event;
-                return Q && "click" == Q.type && (Q.ctrlKey || Q.metaKey || Q.shiftKey) && s.attachCount() + 1 <= n && (d = !0), cur.fileApiUploadStarted && void 0 !== i.upload_ind || cur.preventBoxHide || d === !0 || inArray(a, ["poll", "share", "page", "postpone", "mark_as_ads"]) || boxQueue.hideLast(), cur.lastPostMsg = !1, o.onMediaAdd && o.onMediaAdd(), cur.onMediaChanged && cur.onMediaChanged(s.chosenMedias), void 0 !== i.upload_ind && delete i.upload_ind, !1
+                var G = window.event;
+                return G && "click" == G.type && (G.ctrlKey || G.metaKey || G.shiftKey) && s.attachCount() + 1 <= n && (d = !0), cur.fileApiUploadStarted && void 0 !== i.upload_ind || cur.preventBoxHide || d === !0 || inArray(a, ["poll", "share", "page", "postpone", "mark_as_ads"]) || boxQueue.hideLast(), cur.lastPostMsg = !1, o.onMediaAdd && o.onMediaAdd(), cur.onMediaChanged && cur.onMediaChanged(s.chosenMedias), void 0 !== i.upload_ind && delete i.upload_ind, !1
             },
             unchooseMedia: function(a) {
                 if (s.onChange && s.onChange(!1, a) === !1) return !1;
@@ -841,7 +841,7 @@ function MediaSelector(e, a, t, o) {
                             p = d;
                         if (d.match(/^https?:\/\//) || (d = "http://" + d), !inArray(d, s.urlsCancelled) && !inArray(p, s.urlsCancelled)) {
                             var u = !0;
-                            if (h.match(/(^|\.|\/\/)(vkontakte\.ru|vk\.com)/i) && (u = _.match(/(#photo|^\/(photo|video|album|page|audio|doc)|z=(album|photo|video)|w=(page|product))(-?\d+_)?\d+|app\d+_-\d+|\.(jpg|png|gif)$|market-?\d+\?section=album_\d+|^\/stickers\/.+$|\?w\=story(\d+)_(\d+)$|stor(y|ies)(\d+)_(\d+)$|^(\/dev)?\/blog\/.+$|^\/jobs\?w=job\d+$|^\/landings\/.+$|\?w\=vk10\_years(\d+)$|^\/messenger$|^\/bestgames2016$|^http:\/\/instagram\.com\/p\/.+/) ? !0 : !1), u) return void s.checkURL(p, t)
+                            if (h.match(/(^|\.|\/\/)(vkontakte\.ru|vk\.com)/i) && (u = _.match(/(#photo|^\/(photo|video|album|page|audio|doc)|z=(album|photo|video)|w=(page|product))(-?\d+_)?\d+|app\d+_-\d+|\.(jpg|png|gif)$|market-?\d+\?section=album_\d+|^\/stickers\/.+$|\?w\=story(\d+)_(\d+)$|stor(y|ies)(\d+)_(\d+)$|^(\/dev)?\/blog\/.+$|^\/jobs\?w=job\d+$|^\/landings\/.+$|\?w\=vk10\_years(\d+)$|^\/messenger$|^\/bestgames2016$|^\/ads\/([a-zA-Z0-9\_]+)$|^http:\/\/instagram\.com\/p\/.+/) ? !0 : !1), u) return void s.checkURL(p, t)
                         }
                     }
                 }
