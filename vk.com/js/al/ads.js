@@ -3813,7 +3813,7 @@ Ads.copyRetargetingGroup = function() {
         retargeting_group_id: cur.options.groupId,
         target_client_union_id: target_client_union_id,
         hash: cur.options.copyHash,
-        is_mirror: +Ads.isMirrorCheckbox.checked()
+        is_mirror: +cur.isMirrorCheckbox.checked()
     };
 
     ajax.post('/ads?act=a_retargeting_copy_group', options, {
