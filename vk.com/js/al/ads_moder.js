@@ -200,7 +200,7 @@ AdsModer.saveFeatures = function(unionId, hash, featuresInfo, editBox) {
     }
 }
 
-AdsModer.openNoteEditBox = function(ajaxParams, noteText, noteTextParams, boxTitle, editActionText, isEdit, isOtherUser) {
+AdsModer.openNoteEditBox = function(ajaxParams, noteText, noteTextParams, boxTitle, editActionText, isEdit, isAllowEdit) {
 
     var boxHtml = '<div class="ads_note_edit_wrap"><div><textarea id="ads_note_edit" ' + noteTextParams + '>' + noteText + '</textarea></div></div>';
 
@@ -209,11 +209,11 @@ AdsModer.openNoteEditBox = function(ajaxParams, noteText, noteTextParams, boxTit
         width: 400
     }, boxHtml);
     noteEditBox.removeButtons();
-    if (isOtherUser) {
-        noteEditBox.addButton(getLang('box_cancel'), false, 'yes');
-    } else {
+    if (isAllowEdit) {
         noteEditBox.addButton(getLang('box_cancel'), false, 'no');
         noteEditBox.addButton(editActionText, AdsModer.saveNote.pbind(noteEditBox, ajaxParams, false), 'yes');
+    } else {
+        noteEditBox.addButton(getLang('box_cancel'), false, 'yes');
     }
     if (isEdit) {
         noteEditBox.setControlsText('<a href="#" id="ads_note_edit_delete_link">�������</a>');

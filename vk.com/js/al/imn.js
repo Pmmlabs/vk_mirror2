@@ -265,8 +265,7 @@
                 a = r[0],
                 i = r[1],
                 o = r[2];
-            r[3], r[4];
-            t.allShown = o, t.history = u(t.history) + a, t.historyToAppend = a;
+            r[3], r[4], t.allShown = o, t.history = u(t.history) + a, t.historyToAppend = a;
             var s = Object.keys(i).length;
             return t.skipped -= s, t.offset += s, t.msgs = extend(t.msgs, i), e
         })
@@ -1616,8 +1615,7 @@
                 hash: t.tabs[e].hash
             }).then(function(r) {
                 var a = Ft(r, 2);
-                a[0], a[1];
-                return delete t.blockedFlagUpdates[e], n.msgs = null, n.history = null, n.unread = 0, n.lastmsg = !1, n.lastmsg_meta = null, t
+                return a[0], a[1], delete t.blockedFlagUpdates[e], n.msgs = null, n.history = null, n.unread = 0, n.lastmsg = !1, n.lastmsg_meta = null, t
             })
         }
     }), t.updateChatTopic = s(function(e, t, n) {
@@ -2067,8 +2065,7 @@
     }
 
     function L(e, t) {
-        new Date(1e3 * e);
-        return langDate(1e3 * e, "{hour}:{minute} {am_pm}", 1e3 * t, [], !0)
+        return new Date(1e3 * e), langDate(1e3 * e, "{hour}:{minute} {am_pm}", 1e3 * t, [], !0)
     }
 
     function A(e, t, n) {
@@ -4397,8 +4394,7 @@
 
     function T(e, t) {
         if (e.get().loading || e.get().stop || !e.get().activated) return Promise.resolve([]);
-        Math.random();
-        e.get().loading = !0;
+        Math.random(), e.get().loading = !0;
         for (var n = arguments.length, r = Array(n > 2 ? n - 2 : 0), a = 2; n > a; a++) r[a - 2] = arguments[a];
         return t.apply(void 0, r).then(function(t) {
             e.get().loading = !1
@@ -5493,8 +5489,7 @@
         var n = arguments.length <= 2 || void 0 === arguments[2] ? {} : arguments[2],
             r = a(e, t, n),
             i = r.request;
-        r.cancel;
-        return i
+        return r.cancel, i
     }
 
     function a(e, t) {
@@ -6074,8 +6069,7 @@
             changedMessageSelection: function(t) {
                 if (0 !== t.get().peer) {
                     var n = t.get().selectedMessages || [];
-                    n.length > 0;
-                    n.length > 0 ? s(e, n, t) : l(e, t)
+                    n.length > 0, n.length > 0 ? s(e, n, t) : l(e, t)
                 }
             },
             unmount: function() {
@@ -7899,8 +7893,7 @@
             },
             updateChatPhoto: function(e, a, i) {
                 if ((0, K.isPeerActive)(e.peerId, i.get())) {
-                    i.get().tabs[e.peerId];
-                    r.renderPeer(i);
+                    i.get().tabs[e.peerId], r.renderPeer(i);
                     var o = k(n);
                     (0, K.addChatPhotoToUpdate)(e, a, i.get(), d(t)), o && n.scrollBottom(le)
                 }
@@ -8065,10 +8058,7 @@
                 l().updateState(e, t)
             },
             updateChat: function(e, t) {
-                if (e.get().peer === t) {
-                    e.get().tabs[t];
-                    r.changeActions(e), r.renderPeer(e), a.updateState(e), (0, q.updateMentions)(e.get())
-                }
+                e.get().peer === t && (e.get().tabs[t], r.changeActions(e), r.renderPeer(e), a.updateState(e), (0, q.updateMentions)(e.get()))
             },
             focustTxt: function(e) {
                 a.focusOn(e)
@@ -8287,8 +8277,7 @@
     }
 
     function s(e, t, n) {
-        e.get().peer;
-        uiSearch.showProgress(n), (0, f.searchMessagesInplace)(e.get().peer, e.get()).then(function(r) {
+        e.get().peer, uiSearch.showProgress(n), (0, f.searchMessagesInplace)(e.get().peer, e.get()).then(function(r) {
             uiSearch.hideProgress(n), t().insertSearch(r, e)
         })["catch"](function(e) {
             uiSearch.focus(n), uiSearch.hideProgress(n)
@@ -9964,8 +9953,7 @@
 
     function s(e, t, n, r, a, i) {
         var s = arguments.length <= 6 || void 0 === arguments[6] ? !0 : arguments[6];
-        r.get().tabs[t];
-        return I(t, r) ? Promise.resolve(!1) : (0, H.getBindAttachToUrl)(t, cur.imDb, r.get()).then(function(l) {
+        return r.get().tabs[t], I(t, r) ? Promise.resolve(!1) : (0, H.getBindAttachToUrl)(t, cur.imDb, r.get()).then(function(l) {
             var u = Object.keys(l).filter(function(e) {
                 return e === n.message
             }).map(function(e) {
@@ -11419,8 +11407,7 @@
     "use strict";
     Object.defineProperty(t, "__esModule", {
         value: !0
-    });
-    t.screenfull = function() {
+    }), t.screenfull = function() {
         var e = "undefined" != typeof Element && "ALLOW_KEYBOARD_INPUT" in Element,
             t = function() {
                 for (var e, t, n = [

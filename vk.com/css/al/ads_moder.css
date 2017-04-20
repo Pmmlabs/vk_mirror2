@@ -911,7 +911,8 @@ table.ads_logs_info th {
 
 .ads_moder_period_range_wrap {
     margin-top: -2px;
-    float: right
+    float: right;
+    height: 30px
 }
 
 @-moz-document url-prefix() {
@@ -1047,8 +1048,19 @@ table.ads_logs_info th {
 }
 
 .ads_note_info .ads_note_info_edit_link,
+.ads_note_info_edit_link_gray,
+.ads_note_info_edit_link_gray .ads_note_info_edit_link,
 .ads_note_info_user {
     color: #777
+}
+
+.ads_note_info_edit_link_bold,
+.ads_note_info_edit_link_bold .ads_note_info_edit_link {
+    color: #000
+}
+
+.ads_note_info_edit_link_bold .ads_note_info_edit_link {
+    font-weight: 700
 }
 
 .ads_note_separator {

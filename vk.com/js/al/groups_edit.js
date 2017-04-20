@@ -223,8 +223,8 @@ var GroupsEdit = {
             if (!g) return hide(h), val(_, GroupsEdit.uGenEmpty(r ? cur.opts.nfound[t] : getLang("groups_no_users_in_club"))), val("group_u_summary", ""), void checkPageBlocks();
             for (var m = e ? 0 : _.childNodes.length, f = Math.min(g, m + 20), v = [], c = m; f > c; ++c) {
                 var b = o[i[c]],
-                    k = (b || {})[2];
-                b && (s && (k = k.replace(s.re, s.val)), v.push(GroupsEdit.uGenRow(t, b, k)))
+                    w = (b || {})[2];
+                b && (s && (w = w.replace(s.re, s.val)), v.push(GroupsEdit.uGenRow(t, b, w)))
             }
             e ? (hasClass(cur.searchCont, "ui_search_fixed") && scrollToY(getXY(cur.searchWrap)[1] + 1, 0), val(_, v.join("")), r ? val("group_u_summary", langNumeric(g, "%s", !0)) : GroupsEdit.uUpdateSummary()) : _.innerHTML += v.join(""), n && hide("group_edit_msg"), toggle(h, g > f), checkPageBlocks()
         }
@@ -1503,6 +1503,27 @@ var GroupsEdit = {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e)
         })) : void notaBene("group_ad_cost")
+    },
+    adswebUpdateSlotsValue: function(e, t) {
+        var o = getLang("groups_edit_adsweb_slots_exchange_value", t - e),
+            r = getLang("groups_edit_adsweb_slots_adsweb_value").replace("{percent}", intval(100 * e / t)),
+            s = o + ", " + r;
+        val("group_edit_adsweb_slots_value_info", s)
+    },
+    adswebSaveSlotsValue: function(e, t) {
+        function o(o) {
+            if (unlockButton("group_edit_adsweb_slots_save_button"), t && t.hide(), isObject(o) && o.ok) return removeClass("group_edit_adsweb_slots_save_result", "unshown"), void addClass("group_edit_adsweb_slots_save_button", "button_disabled");
+            if (isObject(o) && "confirm_message" in o) {
+                e.confirm = 1;
+                var r = showFastBox(getLang("global_box_confirm_title"), o.confirm_message);
+                return void r.setButtons(o.confirm_action, GroupsEdit.adswebSaveSlotsValue.pbind(e, r), getLang("box_cancel"))
+            }
+            return isObject(o) && "error" in o ? void showFastBox(getLang("global_box_error_title"), o.error) : void 0
+        }
+        isButtonLocked("group_edit_adsweb_slots_save_button") || (lockButton("group_edit_adsweb_slots_save_button"), t && t.showProgress(), e.slots_value = val("group_edit_adsweb_slots_value"), ajax.post("/groupsedit.php?act=a_adsweb_save_slots", e, {
+            onDone: o,
+            onFail: o
+        }))
     },
     showAgeLimitsTT: function(e, t) {
         showTooltip(e, {

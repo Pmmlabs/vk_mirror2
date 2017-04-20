@@ -222,8 +222,8 @@ var stVersions = {
     'groups.css': 23321301083,
     'groups.js': 2480648562,
     'groups_list.js': 3749004720,
-    'groups_edit.css': 34483653759,
-    'groups_edit.js': 942087830,
+    'groups_edit.css': 36219292546,
+    'groups_edit.js': 3549055631,
     'profile.css': 27659227342,
     'profile.js': 2009394955,
     'calendar.css': 22819422095,
@@ -374,9 +374,9 @@ var stVersions = {
     'ads_edit.js': 1915889757,
     'ads_edit_geo.js': 1634516705,
     'ads_moder_common.css': 18413583817,
-    'ads_moder.css': 19337480178,
+    'ads_moder.css': 17776262001,
     'ads_moder_common.js': 187287116,
-    'ads_moder.js': 1303830416,
+    'ads_moder.js': 3328616431,
     'ads_tagger.js': 2289308011,
     'ads_web.css': 1585148602,
     'ads_web.js': 3654572848,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 5549;
+var _rnd = 9756;
