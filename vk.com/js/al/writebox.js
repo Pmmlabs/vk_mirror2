@@ -12,9 +12,9 @@
     return t.m = e, t.c = r, t.p = "", t(0)
 }({
     0: function(e, t, r) {
-        e.exports = r(168)
+        e.exports = r(79)
     },
-    17: function(e, t) {
+    11: function(e, t) {
         "use strict";
 
         function r(e) {
@@ -169,14 +169,14 @@
             b = t.ATTACH_STORE_OP = "bind_attach",
             _ = t.RECENT_SEARCH_OP = "recent_search"
     },
-    168: function(e, t, r) {
+    79: function(e, t, r) {
         "use strict";
         var i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
                 return typeof e
             } : function(e) {
                 return e && "function" == typeof Symbol && e.constructor === Symbol ? "symbol" : typeof e
             },
-            o = r(17),
+            o = r(11),
             a = window.WriteBox = {
                 mrg: function(e) {
                     return vk.rtl ? {
@@ -313,7 +313,7 @@
                                 txt: unclean(getLang("mail_market_tmpl")).replace(/<br>/g, "\n"),
                                 medias: [cur.mbForceAttach]
                             }), r) {
-                            a.editableHasVal(cur.mbField) || (cur.mbEditable ? (val(cur.mbField, clean(r.txt || "").replace(/\n/g, "<br/>")), window.Emoji && Emoji.editableFocus(cur.mbField, !1, !0)) : val(cur.mbField, r.txt || ""));
+                            a.editableHasVal(cur.mbField) || (cur.mbEditable ? (val(cur.mbField, (r.txt || "").replace(/\n/g, "<br/>")), window.Emoji && Emoji.editableFocus(cur.mbField, !1, !0)) : val(cur.mbField, r.txt || ""));
                             var i = (r.medias || []).length && !(cur.mbMedia.chosenMedias || []).length;
                             if (i) {
                                 var n = [];

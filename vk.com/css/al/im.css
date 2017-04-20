@@ -20,11 +20,7 @@
 .im-fwd .im-fwd--close,
 .im-member-item .im-member-item--kick-link,
 .im-mess .im-mess--check,
-.im-mess .im-mess--fav,
-.im-mess.im-mess_failed .im-mess--marker,
 .im-mess.im-mess_search:hover:after,
-.im-mess.im-mess_sending.im-mess_failed.im-mess_unread .im-mess--marker,
-.im-mess.im-mess_unread.im-mess_sending .im-mess--marker,
 .im-notice--money_transfer .im-notice--image,
 .im-page-action.im-page-action_star i,
 .im-page .im-page--center-empty,
@@ -1264,7 +1260,7 @@ img.im_photo_thumb {
     margin-right: 4px;
     max-width: 542px;
     box-sizing: border-box;
-    padding-right: 57px
+    padding-right: 28px
 }
 
 .im-page_classic.im-page .im-mess:not(.im-mess_fwd).im-mess_unread:not(.im-mess_selected) {
@@ -1274,7 +1270,7 @@ img.im_photo_thumb {
 .im-page_classic.im-page .im-mess:not(.im-mess_fwd).im-mess_unread {
     margin-left: 28px;
     margin-right: 28px;
-    padding-right: 33px
+    padding-right: 4px
 }
 
 .im-page_classic.im-page .im-mess:not(.im-mess_fwd).im-mess_unread .im-mess--marker {
@@ -1288,7 +1284,7 @@ img.im_photo_thumb {
 .im-page_classic.im-page .im-mess:not(.im-mess_fwd).im-mess_unread.im-mess_selected {
     margin-left: 4px;
     margin-right: 4px;
-    padding-right: 57px
+    padding-right: 28px
 }
 
 .im-page_classic.im-page .im-mess:not(.im-mess_fwd).im-mess_unread.im-mess_selected .im-mess--check {
@@ -3174,8 +3170,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 .im-mess-stack.im-mess-stack_fwd-top .im-mess-stack_fwd .im-mess-stack--pname,
 .im-mess-stack.im-mess-stack_fwd .im-mess-stack--pname {
     position: static;
-    display: inline;
-    margin-top: 15px
+    display: inline
 }
 
 .im-mess-stack.im-mess-stack_fwd {
@@ -3192,7 +3187,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 }
 
 .im-mess-stack.im-mess-stack_fav .im-mess-stack--pname {
-    max-width: 390px;
+    max-width: 370px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -3277,7 +3272,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 }
 
 .im-mess {
-    padding: 6px 83px 7px 0;
+    padding: 6px 112px 7px 0;
     position: relative;
     margin: 0 7px
 }
@@ -3350,7 +3345,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 
 .im-mess .im-mess--text {
     outline: 0;
-    margin: 0 20px 0 86px;
+    margin: 0 49px 0 86px;
     line-height: 18px;
     word-wrap: break-word
 }
@@ -3422,14 +3417,35 @@ body[data-useragent*=msie9] .im-page--title-meta {
     display: none
 }
 
-.im-mess .im-mess--fav {
-    background: url(/images/icons/m_star_small.png);
-    width: 12px;
-    height: 13px;
-    margin: 3px 7px 0 0;
-    display: block;
+.im-mess .im-mess--actions {
+    float: right;
+    margin: -3px 1px 0 0
+}
+
+.im-mess .im-mess--fav,
+.im-mess .im-mess--reply {
+    display: inline-block;
+    vertical-align: top;
+    width: 24px;
+    height: 24px;
     visibility: hidden;
     outline: 0
+}
+
+.im-mess .im-mess--fav:active,
+.im-mess .im-mess--reply:active {
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    -o-transform: scale(0.9);
+    transform: scale(0.9)
+}
+
+.im-mess .im-mess--reply {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2212%22%20viewBox%3D%220%200%2014%2012%22%3E%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M6%204v-3c0-.6-.3-.7-.7-.3l-4.6%204.6c-.4.4-.4%201%200%201.4l4.6%204.6c.4.4.7.3.7-.3v-3c4%200%206.1%201.2%208%204-.8-4-3-8-8-8z%22%2F%3E%3C%2Fsvg%3E") 50% no-repeat
+}
+
+.im-mess .im-mess--fav {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%23828a99%22%20d%3D%22M5.5.5c.3-.7.7-.7%201%200l1.5%203.5%203.3.3c.7.1.9.5.3%201l-2.6%202.3%201%203.7c.2.7-.1.9-.7.5l-3.3-2.4-3.3%202.4c-.6.4-.9.2-.7-.5l1-3.7-2.6-2.3c-.6-.5-.4-.9.3-1l3.3-.3%201.5-3.5z%22%2F%3E%3C%2Fsvg%3E") 50% no-repeat
 }
 
 .im-mess .im-mess--btn {
@@ -3475,8 +3491,12 @@ body[data-useragent*=msie9] .im-page--title-meta {
     background-position: 0 -20px
 }
 
+.im-mess.im-mess_gift .im-mess--reply {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2212%22%20viewBox%3D%220%200%2014%2012%22%3E%3Cpath%20fill%3D%22%23877a5e%22%20d%3D%22M6%204v-3c0-.6-.3-.7-.7-.3l-4.6%204.6c-.4.4-.4%201%200%201.4l4.6%204.6c.4.4.7.3.7-.3v-3c4%200%206.1%201.2%208%204-.8-4-3-8-8-8z%22%2F%3E%3C%2Fsvg%3E") 50% no-repeat
+}
+
 .im-mess.im-mess_gift .im-mess--fav {
-    background-position: 0 -16px
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%23877a5e%22%20d%3D%22M5.5.5c.3-.7.7-.7%201%200l1.5%203.5%203.3.3c.7.1.9.5.3%201l-2.6%202.3%201%203.7c.2.7-.1.9-.7.5l-3.3-2.4-3.3%202.4c-.6.4-.9.2-.7-.5l1-3.7-2.6-2.3c-.6-.5-.4-.9.3-1l3.3-.3%201.5-3.5z%22%2F%3E%3C%2Fsvg%3E") 50% no-repeat
 }
 
 .im-mess.im-mess_gift .im-mess--text {
@@ -3494,8 +3514,8 @@ body[data-useragent*=msie9] .im-page--title-meta {
     margin-left: 49px
 }
 
-.im-mess.im-mess_fwd-top,
-.im-mess.im-mess_fwd-top .im-mess_fwd {
+.im-mess .im-mess_fwd,
+.im-mess.im-mess_fwd-top {
     cursor: default
 }
 
@@ -3556,7 +3576,9 @@ body[data-useragent*=msie9] .im-page--title-meta {
 .im-mess.im-mess_fwd .im-mess--check,
 .im-mess.im-mess_fwd .im-mess--marker,
 .im-mess.im-mess_fwd-top .im-mess_fwd .im-mess--fav,
-.im-mess.im-mess_fwd .im-mess--fav {
+.im-mess.im-mess_fwd-top .im-mess_fwd .im-mess--reply,
+.im-mess.im-mess_fwd .im-mess--fav,
+.im-mess.im-mess_fwd .im-mess--reply {
     display: none!important
 }
 
@@ -3581,7 +3603,8 @@ body[data-useragent*=msie9] .im-page--title-meta {
     opacity: 1
 }
 
-.im-mess.im-mess_spam .im-mess--fav {
+.im-mess.im-mess_spam .im-mess--fav,
+.im-mess.im-mess_spam .im-mess--reply {
     display: none
 }
 
@@ -3589,7 +3612,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 .im-mess.im-mess_sending.im-mess_failed.im-mess_unread .im-mess--marker {
     width: 16px;
     height: 16px;
-    background: url(/images/icons/msg_fail.png);
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20fill%3D%22%23FC3D39%22%20d%3D%22M8%200c4.4%200%208%203.6%208%208s-3.6%208-8%208-8-3.6-8-8%203.6-8%208-8z%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M8.8%209h-1.6l-.2-4.5c0-.3.2-.5.5-.5h1.1c.2%200%20.4.2.4.5l-.2%204.5zm-1.8%202c0-.3.1-.6.3-.7.1-.2.4-.3.7-.3.3%200%20.6.1.7.3s.3.4.3.7c0%20.3-.1.6-.3.7-.1.2-.4.3-.7.3-.3%200-.6-.1-.7-.3-.2-.1-.3-.4-.3-.7z%22%2F%3E%3C%2Fsvg%3E') no-repeat;
     left: -23px;
     top: 8px;
     position: absolute
@@ -3598,20 +3621,28 @@ body[data-useragent*=msie9] .im-page--title-meta {
 .im-mess.im-mess_failed .im-mess--check,
 .im-mess.im-mess_sending.im-mess_failed.im-mess_unread .im-mess--check,
 .im-mess.im-mess_failed .im-mess--fav,
-.im-mess.im-mess_sending.im-mess_failed.im-mess_unread .im-mess--fav {
+.im-mess.im-mess_failed .im-mess--reply,
+.im-mess.im-mess_sending.im-mess_failed.im-mess_unread .im-mess--fav,
+.im-mess.im-mess_sending.im-mess_failed.im-mess_unread .im-mess--reply {
     display: none
 }
 
 .im-mess.im-mess_fav .im-mess--fav,
 .im-mess.im-mess_fav:hover .im-mess--fav {
     visibility: visible;
-    opacity: 1
+    opacity: 1;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%236590c7%22%20d%3D%22M5.5.5c.3-.7.7-.7%201%200l1.5%203.5%203.3.3c.7.1.9.5.3%201l-2.6%202.3%201%203.7c.2.7-.1.9-.7.5l-3.3-2.4-3.3%202.4c-.6.4-.9.2-.7-.5l1-3.7-2.6-2.3c-.6-.5-.4-.9.3-1l3.3-.3%201.5-3.5z%22%2F%3E%3C%2Fsvg%3E") 50% no-repeat
+}
+
+.im-mess.im-mess_gift.im-mess_fav .im-mess--fav,
+.im-mess.im-mess_gift.im-mess_fav:hover .im-mess--fav {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%237a6c4c%22%20d%3D%22M5.5.5c.3-.7.7-.7%201%200l1.5%203.5%203.3.3c.7.1.9.5.3%201l-2.6%202.3%201%203.7c.2.7-.1.9-.7.5l-3.3-2.4-3.3%202.4c-.6.4-.9.2-.7-.5l1-3.7-2.6-2.3c-.6-.5-.4-.9.3-1l3.3-.3%201.5-3.5z%22%2F%3E%3C%2Fsvg%3E") 50% no-repeat
 }
 
 .im-mess.im-mess_unread {
     position: relative;
     background: #edf0f5;
-    padding-right: 54px;
+    padding-right: 83px;
     margin-left: 36px;
     margin-right: 36px
 }
@@ -3629,12 +3660,12 @@ body[data-useragent*=msie9] .im-page--title-meta {
 }
 
 .im-mess.im-mess_unread.im-mess_selected {
-    padding: 6px 83px 7px 0;
+    padding: 6px 112px 7px 0;
     margin: 0 7px
 }
 
 .im-mess.im-mess_unread.im-mess_selected>.im-mess--text {
-    margin: 0 20px 0 86px
+    margin: 0 49px 0 86px
 }
 
 .im-mess.im-mess_unread.im-mess_selected>.im-mess--check {
@@ -3658,7 +3689,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 .im-mess.im-mess_unread+.im-mess:before {
     display: block;
     margin-top: -8px;
-    content: "";
+    content: '';
     position: absolute;
     width: 100%;
     height: 3px;
@@ -3674,7 +3705,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 .im-mess.im-mess_selected:last-child:before,
 .im-mess.im-mess_unread:last-child:before {
     display: block;
-    content: "";
+    content: '';
     position: absolute;
     width: 100%;
     height: 3px;
@@ -3686,7 +3717,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 .im-mess.im-mess_unread.im-mess_sending .im-mess--marker {
     width: 14px;
     height: 14px;
-    background: url(/images/icons/im_clock.png);
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%3E%3Cpath%20fill%3D%22%23C8CFD9%22%20d%3D%22M8%206.9l1.6%201.6-1%201-2-2h-.1v-3.5h1.5v2.9zm-1%207.1c-3.9%200-7-3.1-7-7s3.1-7%207-7%207%203.1%207%207-3.1%207-7%207zm0-2c2.8%200%205-2.2%205-5s-2.2-5-5-5-5%202.2-5%205%202.2%205%205%205z%22%2F%3E%3C%2Fsvg%3E') no-repeat;
     left: -23px;
     top: 10px;
     position: absolute;
@@ -3694,7 +3725,8 @@ body[data-useragent*=msie9] .im-page--title-meta {
 }
 
 .im-mess.im-mess_unread.im-mess_sending .im-mess--check,
-.im-mess.im-mess_unread.im-mess_sending .im-mess--fav {
+.im-mess.im-mess_unread.im-mess_sending .im-mess--fav,
+.im-mess.im-mess_unread.im-mess_sending .im-mess--reply {
     display: none
 }
 
@@ -3707,21 +3739,24 @@ body[data-useragent*=msie9] .im-page--title-meta {
     opacity: 0.6
 }
 
-.im-mess:hover .im-mess--fav {
+.im-mess:hover .im-mess--fav,
+.im-mess:hover .im-mess--reply {
     visibility: visible;
     opacity: 0.5
 }
 
-.im-mess .im-mess--fav:hover {
-    opacity: 0.5
+.im-mess .im-mess--fav:hover,
+.im-mess .im-mess--reply:hover {
+    opacity: 0.7
+}
+
+.im-mess .im-mess--fav:active,
+.im-mess .im-mess--reply:active {
+    opacity: 1
 }
 
 .im-mess.im-mess_search {
-    padding-right: 110px
-}
-
-.im-mess.im-mess_search .im-mess--fav {
-    visibility: hidden
+    padding-right: 139px
 }
 
 .im-mess.im-mess_search:hover {
@@ -3729,7 +3764,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 }
 
 .im-mess.im-mess_search:hover:after {
-    content: "";
+    content: '';
     display: block;
     width: 6px;
     height: 10px;
@@ -3740,8 +3775,14 @@ body[data-useragent*=msie9] .im-page--title-meta {
 }
 
 .im-mess.im-mess_search:hover .im-mess--check,
-.im-mess.im-mess_search:hover .im-mess--fav {
+.im-mess.im-mess_search:hover .im-mess--fav,
+.im-mess.im-mess_search:hover .im-mess--reply,
+.im-mess.im-mess_search .im-mess--reply {
     display: none
+}
+
+.im-mess.im-mess_search .im-mess--fav {
+    visibility: hidden
 }
 
 .im-mess.im-mess_search.im-mess_fav-search.im-mess_fav .im-mess--fav,
@@ -3763,6 +3804,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 }
 
 .im-mess.im-mess_srv .im-mess--fav,
+.im-mess.im-mess_srv .im-mess--reply,
 .im-mess.im-mess_srv .im-mess--check {
     display: none
 }
@@ -5393,7 +5435,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .im-important {
     position: relative;
-    padding: 10px 0 40px 15px
+    padding: 10px 15px 40px
 }
 
 .im-important.im-important_all {
@@ -5404,6 +5446,14 @@ body.sf .nim-dialog .nim-dialog--unread {
     padding: 150px 25px;
     text-align: center;
     color: #656565
+}
+
+.im-important .im-mess {
+    padding-right: 110px
+}
+
+.im-important .im-mess--actions {
+    margin-top: 0
 }
 
 .im-preloader .pr {
@@ -6118,6 +6168,10 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .im-star-tt.tt_w.tt_black.tt_down:after {
     left: 46px
+}
+
+.im-reply-tt.tt_w.tt_black.tt_down:after {
+    left: 30px
 }
 
 .im-star-tt_long.tt_w.tt_black.tt_down:after {

@@ -243,14 +243,14 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 110387185258,
-    'imn.js': 116921470932,
+    'im.css': 105370241560,
+    'imn.js': 116748542855,
     'im.js': 1322065004,
     'emoji.js': 3607330516,
     'wide_dd.css': 17889699206,
     'wide_dd.js': 3323487336,
     'writebox.css': 20735654902,
-    'writebox.js': 6141701117,
+    'writebox.js': 4022948418,
     'sharebox.js': 3843850841,
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
@@ -312,7 +312,7 @@ var stVersions = {
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
     'touch.css': 796462384,
-    'notifier.js': 31215077695,
+    'notifier.js': 29431198490,
     'notifier.css': 26227153858,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
@@ -517,7 +517,7 @@ var stVersions = {
     'stories.js': 2359937612,
     'stories.css': 19765823923,
     'shortener.js': 1002525642,
-    'lang': 6767
+    'lang': 6771
 };
 var stTypes = {
     fromLib: {
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 6669;
+var _rnd = 5549;
