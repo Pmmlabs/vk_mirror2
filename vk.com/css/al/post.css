@@ -44,6 +44,10 @@
     padding-bottom: 1px
 }
 
+.reply_text .post_thumbed_media:last-child {
+    padding-bottom: 4px
+}
+
 .post_thumbed_media:empty {
     margin: 0;
     padding: 0

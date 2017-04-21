@@ -1,6 +1,6 @@
 var Restore = {
-    maxPersonalPhotos: 2,
-    maxDocPhotos: 2,
+    maxPhotosWithType: 1,
+    maxPhotos: 2,
     requestTypeFull: 0,
     requestTypeSimple: 4,
     showMsgBox: function(e, o, t) {
@@ -58,23 +58,25 @@ var Restore = {
         if (!o) {
             if (1 == e) var t = val("photo_input");
             else var t = val("doc_input");
-            var r = t.match(/(screenshoo?t|������ ������|screencapture|(screen )?capture|��������)/gi);
-            if (r) {
-                var s = new MessageBox({
-                    title: getLang("global_action_confirmation")
-                }).addButton(getLang("restore_no_other_photo"));
-                return void s.addButton(getLang("box_yes"), function() {
-                    Restore.screenshootCheck(e, !0), s.hide()
-                }, "gray").content(getLang("restore_screenshoot_confirm_box_text")).show()
-            }
+            try {
+                var r = new RegExp(cur.screenshot_regex, "gi");
+                if (r.test(t)) {
+                    var s = new MessageBox({
+                        title: getLang("global_action_confirmation")
+                    }).addButton(getLang("restore_no_other_photo"));
+                    return void s.addButton(getLang("box_yes"), function() {
+                        Restore.screenshootCheck(e, !0), s.hide()
+                    }, "gray").content(getLang("restore_screenshoot_confirm_box_text")).show()
+                }
+            } catch (n) {}
         }
-        if (1 == e) var n = ge("photo_file_button");
-        else var n = ge("doc_file_button");
-        lockButton(n), setTimeout(function() {
-            n.innerHTML = n.innerHTML
+        if (1 == e) var i = ge("photo_file_button");
+        else var i = ge("doc_file_button");
+        lockButton(i), setTimeout(function() {
+            i.innerHTML = i.innerHTML
         }, 0);
-        var i = 1 == e ? "photo_upload_ids" : "doc_upload_ids";
-        val(i, Restore.getUploadedPhotosIds(!0).join(",")), 1 == e ? document.photo_upload.submit() : document.doc_upload.submit()
+        var a = 1 == e ? "photo_upload_ids" : "doc_upload_ids";
+        val(a, Restore.getUploadedPhotosIds(!0).join(",")), 1 == e ? document.photo_upload.submit() : document.doc_upload.submit()
     },
     uploadError: function(e, o) {
         var t = "",
@@ -87,34 +89,34 @@ var Restore = {
             n = ge(s + "file_button");
         unlockButton(n)
     },
-    uploadComplete: function(e, o, t, r, s) {
-        var n = r ? "photo" : "doc",
-            i = n + "_",
-            a = ge(i + "file_button");
-        unlockButton(a);
-        var l = cur.images.length,
-            _ = !0;
+    uploadComplete: function(e, o, t, r, s, n) {
+        var i = r ? "photo" : "doc",
+            a = i + "_",
+            l = ge(a + "file_button");
+        unlockButton(l);
+        var _ = cur.images.length,
+            u = !0;
         each(cur.images, function(e, o) {
-            return o.type == r && o.deleted ? (l = e, _ = !1, !1) : void 0
-        }), cur.images[l] = {
+            return o.type == r && o.deleted ? (_ = e, u = !1, !1) : void 0
+        }), cur.images[_] = {
             id: o,
             hash: t,
             type: r
         }, ++cur.images_count[r];
-        var u = 1 == r ? Restore.maxPersonalPhotos : Restore.maxDocPhotos;
-        ge(i + "input").disabled = cur.images_count[r] >= u, ge(i + "input").disabled && hide(i + "upload"), show(i + "photos"), s = s.split("%index%").join(l).split("%type%").join(r);
-        var c = se(s);
-        _ ? ge(i + "photos").appendChild(c) : domReplaceEl(ge("photo" + l), c), show("restore_roll_button_" + n)
+        var c = 1 == n || 2 == n ? Restore.maxPhotosWithType : Restore.maxPhotos;
+        ge(a + "input").disabled = cur.images_count[r] >= c, ge(a + "input").disabled && hide(a + "upload"), show(a + "photos"), s = s.split("%index%").join(_).split("%type%").join(r);
+        var h = se(s);
+        u ? ge(a + "photos").appendChild(h) : domReplaceEl(ge("photo" + _), h), show("restore_roll_button_" + i)
     },
-    deleteImage: function(e, o) {
-        var t = e ? "photo" : "doc",
-            r = t + "_";
+    deleteImage: function(e, o, t) {
+        var r = e ? "photo" : "doc",
+            s = r + "_";
         if (cur.images[o].deleted) {
             if (cur.images_count[e] >= 2) return;
             cur.images[o].deleted = !1, removeClass("photo_img" + o, "restore_uploaded_image__img_removed");
-            var s = "photo" == t ? Restore.maxPersonalPhotos : Restore.maxDocPhotos;
-            ++cur.images_count[e] >= s && (ge(r + "input").disabled = !0, hide(r + "upload")), ge("del_link" + o).innerHTML = getLang("global_delete"), show("restore_roll_button_" + t)
-        } else cur.images[o].deleted = !0, addClass("photo_img" + o, "restore_uploaded_image__img_removed"), --cur.images_count[e], ge(r + "input").disabled = !1, show(r + "upload"), ge("del_link" + o).innerHTML = getLang("global_dont_delete"), cur.images_count[e] || hide("restore_roll_button_" + t)
+            var n = 1 == t || 2 == t ? Restore.maxPhotosWithType : Restore.maxPhotos;
+            ++cur.images_count[e] >= n && (ge(s + "input").disabled = !0, hide(s + "upload")), ge("del_link" + o).innerHTML = getLang("global_delete"), show("restore_roll_button_" + r)
+        } else cur.images[o].deleted = !0, addClass("photo_img" + o, "restore_uploaded_image__img_removed"), --cur.images_count[e], ge(s + "input").disabled = !1, show(s + "upload"), ge("del_link" + o).innerHTML = getLang("global_dont_delete"), cur.images_count[e] || hide("restore_roll_button_" + r)
     },
     submitPageLink: function() {
         var e = ge("submitBtn"),

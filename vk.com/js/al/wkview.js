@@ -484,6 +484,7 @@ var WkView = {
     },
     like: function() {
         if (vk.id) {
+            if (cur.viewAsBox) return void cur.viewAsBox();
             var e = !wkcur.liked;
             ajax.post("like.php", {
                 act: "a_do_" + (e ? "" : "un") + "like",
@@ -864,7 +865,7 @@ var WkView = {
                 if (w) {
                     if (a)
                         for (var l = geByClass("wk_likes_hidden", w), n = 0, s = l.length; s > n; ++n) w.appendChild(l[n]), removeClass(l[n], "wk_likes_hidden");
-                    w.appendChild(cf(r)), wkcur.offset = t, o ? WkView.likesPreload() : hide(e), WkView.updateHeight(), i && extend(cur.options.reply_names, i)
+                    w.appendChild(cf(r)), wkcur.offset = t, o ? WkView.likesPreload() : hide(e), WkView.updateHeight(), i && extend(cur.options.reply_names, i);
                 }
             },
             showProgress: lockButton.pbind(e),

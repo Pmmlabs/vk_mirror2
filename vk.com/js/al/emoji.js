@@ -1193,18 +1193,32 @@ if (!window.Emoji) {
             }
 
             window.stickersKeywords = {};
+
             var el = ce('div');
-            each(keywords, function() {
-                var words = this.words || [],
-                    user = this.user_stickers || [],
-                    promo = this.promoted_stickers || [];
-                each(words, function(i, word) {
-                    val(el, word);
-                    word = el.innerText || el.textContent;
-                    stickersKeywords[word] = user.concat(promo.map(function(id) {
-                        return -id;
-                    }));
+            var sep = '\n';
+            var acc = [];
+            var str = '';
+
+            keywords.forEach(function(item) {
+                var words = item.words || [];
+                var user = item.user_stickers || [];
+                var promo = item.promoted_stickers || [];
+                var res = user.concat(promo.map(function(id) {
+                    return -id;
+                }));
+
+                words.forEach(function(word) {
+                    str += sep + word;
+                    acc.push(res);
                 });
+            });
+
+            val(el, str);
+
+            str = el.textContent || el.innerText;
+
+            str.slice(sep.length).split(sep).forEach(function(word, i) {
+                window.stickersKeywords[word] = acc[i];
             });
 
             if (!Emoji.stickers[-1]) {

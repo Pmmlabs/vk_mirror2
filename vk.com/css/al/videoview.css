@@ -1130,6 +1130,18 @@ textarea.dark.mv_live_gift_popup_comment_input {
     margin-left: 6px
 }
 
+.mv_stop_streaming_button {
+    background-color: #f4524d
+}
+
+.mv_stop_streaming_button:hover {
+    background-color: #f85751
+}
+
+.mv_stop_streaming_button:active {
+    background-color: #e64a45
+}
+
 #mv_progress_box {
     position: relative;
     margin: 0 auto

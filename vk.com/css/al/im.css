@@ -3419,7 +3419,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 
 .im-mess .im-mess--actions {
     float: right;
-    margin: -3px 1px 0 0
+    margin: 0 1px 0 0
 }
 
 .im-mess .im-mess--fav,

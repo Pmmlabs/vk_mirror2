@@ -116,6 +116,7 @@
             function e(t) {
                 return domData(o, "in-progress", intval(t))
             }
+            if (cur.viewAsBox) return void cur.viewAsBox();
             var o = gpeByClass("_audio_row", t);
             if (!i()) {
                 e(!0);

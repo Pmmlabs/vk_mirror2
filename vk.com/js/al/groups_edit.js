@@ -64,7 +64,7 @@ var GroupsEdit = {
             }
         })), val("group_u_header", cur.opts.headers[e] || ""), val("group_u_header_btn", cur.opts.buttons[e] || ""), val("group_u_summary", cur.opts.counts[e] ? langNumeric(cur.opts.counts[e], "%s", !0) : ""), cur.opts.data[e] = o, cur.searchInp.setAttribute("placeholder", cur.opts.placeholders[e] || getLang("groups_users_search")), placeholderInit(cur.searchInp, {
             reload: !0
-        }), window.uiRightMenu && uiRightMenu.hideProgress(domFC(ge("narrow_column"))), hasClass(cur.searchCont, "ui_search_fixed") && scrollToY(getXY(cur.searchWrap)[1] + 1, 0), checkPageBlocks(), hide("group_edit_msg"), GroupsEdit.uUpdateBack()
+        }), window.uiRightMenu && uiRightMenu.hideProgress(domFC(ge("narrow_column"))), hasClass(cur.searchCont, "ui_search_fixed") && scrollToY(getXY(cur.searchWrap)[1] + 1, 0), checkPageBlocks(), GroupsEdit.hideMessage(), GroupsEdit.uUpdateBack()
     },
     uInitScroll: function() {
         GroupsEdit.uDeinitScroll(), addEvent(window, "scroll", GroupsEdit.uScroll), addEvent(window, "resize", GroupsEdit.uScroll)
@@ -226,7 +226,7 @@ var GroupsEdit = {
                     w = (b || {})[2];
                 b && (s && (w = w.replace(s.re, s.val)), v.push(GroupsEdit.uGenRow(t, b, w)))
             }
-            e ? (hasClass(cur.searchCont, "ui_search_fixed") && scrollToY(getXY(cur.searchWrap)[1] + 1, 0), val(_, v.join("")), r ? val("group_u_summary", langNumeric(g, "%s", !0)) : GroupsEdit.uUpdateSummary()) : _.innerHTML += v.join(""), n && hide("group_edit_msg"), toggle(h, g > f), checkPageBlocks()
+            e ? (hasClass(cur.searchCont, "ui_search_fixed") && scrollToY(getXY(cur.searchWrap)[1] + 1, 0), val(_, v.join("")), r ? val("group_u_summary", langNumeric(g, "%s", !0)) : GroupsEdit.uUpdateSummary()) : _.innerHTML += v.join(""), n && GroupsEdit.hideMessage(), toggle(h, g > f), checkPageBlocks()
         }
     },
     uGetPage: function(e) {
@@ -606,7 +606,7 @@ var GroupsEdit = {
             public_date: val("gedit_public_date")
         }), ajax.post("groupsedit.php", s, {
             onDone: function(e, t) {
-                return 0 > e ? GroupsEdit.nbAddr() : e === !1 ? notaBene(ge("group_edit_name")) : "edit_first" == nav.objLoc.act ? nav.go(nav.objLoc[0]) : (show("group_edit_msg"), scrollToTop(), t != o && (each(geByTag("a"), function() {
+                return 0 > e ? GroupsEdit.nbAddr() : e === !1 ? notaBene(ge("group_edit_name")) : "edit_first" == nav.objLoc.act ? nav.go(nav.objLoc[0]) : (GroupsEdit.showMessage(getLang("groups_saved_msg")), scrollToTop(), t != o && (each(geByTag("a"), function() {
                     this.href = this.href.replace(new RegExp("/" + t + "\\?", "g"), "/" + o + "?").replace(new RegExp("/" + t + "$", "g"), "/" + o)
                 }), nav.setLoc({
                     0: o,
@@ -628,7 +628,10 @@ var GroupsEdit = {
             e[o] = isChecked(o)
         }), cur.marketCountryDD && (1 == cur.cls ? e.enable_market = isChecked("enable_market") : extend(e, GroupsEdit.getFields("market")), (e.market || e.enable_market) && (extend(e, GroupsEdit.getFields("market_comments", "market_wiki")), e.market_country = cur.marketCountryDD.val(), isVisible("group_market_city_wrap") && (e.market_city = cur.marketCityDD.val()), e.market_currency = cur.marketCurrencyDD.val(), e.market_contact = cur.marketContactDD.val())), ajax.post("groupsedit.php", e, {
             onDone: function(e) {
-                return -2 != e && -3 != e || isVisible("group_edit_market") || GroupsEdit.toggleMarketBlock(!0), -2 == e ? notaBene(domPN(ge("group_market_country"))) : -3 == e ? notaBene(domPN(ge("group_market_contact"))) : (show("group_edit_msg"), scrollToTop(), void globalHistoryDestroy(nav.objLoc[0]))
+                return -2 != e && -3 != e || isVisible("group_edit_market") || GroupsEdit.toggleMarketBlock(!0), -2 == e ? notaBene(domPN(ge("group_market_country"))) : -3 == e ? notaBene(domPN(ge("group_market_contact"))) : (GroupsEdit.showMessage(getLang("groups_sections_saved_msg")), scrollToTop(), void globalHistoryDestroy(nav.objLoc[0]))
+            },
+            onFail: function(e) {
+                return e && GroupsEdit.showMessage(e, "error"), !0
             },
             showProgress: lockButton.pbind(t),
             hideProgress: unlockButton.pbind(t)
@@ -656,9 +659,11 @@ var GroupsEdit = {
                     default:
                         key = "obscene_save_patterns_error"
                 }
-                return e ? 0 > e ? (words_field = ge("group_edit_obscene_stopwords"), notaBene(words_field, "warning")) : (show("group_edit_msg"), scrollToTop(), void globalHistoryDestroy(nav.objLoc[0])) : GroupsEdit.uShowMessage(getLang(key))
+                return e ? 0 > e ? (words_field = ge("group_edit_obscene_stopwords"), notaBene(words_field, "warning")) : (GroupsEdit.showMessage(getLang("groups_comments_saved_msg")), scrollToTop(), void globalHistoryDestroy(nav.objLoc[0])) : GroupsEdit.uShowMessage(getLang(key))
             },
-            onFail: GroupsEdit.showMessage.pbind(getLang("global_unknown_error"), "error"),
+            onFail: function(e) {
+                return e = e || getLang("global_unknown_error"), GroupsEdit.showMessage(e, "error"), !0
+            },
             showProgress: lockButton.pbind(t),
             hideProgress: unlockButton.pbind(t)
         })
@@ -673,7 +678,10 @@ var GroupsEdit = {
             t = ge("group_save");
         extend(e, GroupsEdit.getFields("messages")), e.messages && (e.messages_widget_info = trim(val("messages_widget_info")), e.messages_widget_offline_info = trim(val("messages_widget_offline_info")), e.messages_widget_domains = val("messages_widget_domains"), e.messages_widget_enable = hasClass("messages_widget_enable", "on") ? 1 : 0), ajax.post("groupsedit.php", e, {
             onDone: function() {
-                show("group_edit_msg"), scrollToTop(), globalHistoryDestroy(nav.objLoc[0])
+                GroupsEdit.showMessage(getLang("groups_messages_saved_msg")), scrollToTop(), globalHistoryDestroy(nav.objLoc[0])
+            },
+            onFail: function(e) {
+                return e && GroupsEdit.showMessage(e, "error"), !0
             },
             showProgress: lockButton.pbind(t),
             hideProgress: unlockButton.pbind(t)

@@ -86,7 +86,7 @@ function MediaSelector(e, a, t, o) {
                                 removeEvent(_, "mouseover", b)
                             })
                         }
-                        if (u) {
+                        if (u && !cur.viewAsBox) {
                             var f = function() {
                                 return n.activate(), n.hide(!0), t.onItemClick && !t.onItemClick(h) ? !1 : (u(), !1)
                             };

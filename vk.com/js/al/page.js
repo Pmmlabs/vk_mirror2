@@ -3254,7 +3254,7 @@ var Wall = {
                         attachVal = (share.user_id && share.photo_id && !share.noPhoto) ? share.user_id + '_' + share.photo_id : '';
                         if (share.share_upload_failed && !attachVal) {
                             share.share_upload_failed = 0;
-                            return false;
+                            return;
                         }
                         var needUploadShare = share.images && share.images.length &&
                             !isArray(share.images[cur.shareShowImg]) &&
@@ -5306,7 +5306,7 @@ var Wall = {
                 }
                 Page.postsUnseen(postsUnseen);
                 for (el = cur.topRow; el; el = nel) {
-                    LongView && LongView.onRegister(el, 'Wall');
+                    LongView && LongView.register(el, 'Wall');
                     top = ntop ? ntop : el.offsetTop;
                     if (top >= st + ch) break;
 
