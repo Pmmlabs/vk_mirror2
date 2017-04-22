@@ -345,7 +345,7 @@ var stVersions = {
     'bugs.js': 3874995669,
     'bugs.css': 14738594392,
     'bugtracker.js': 2116573745,
-    'bugtracker.css': 17668189399,
+    'bugtracker.css': 15297756532,
     'login.css': 20464364951,
     'login.js': 3551917100,
     'upload.js': 2080738373,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 5667;
+var _rnd = 2875;
