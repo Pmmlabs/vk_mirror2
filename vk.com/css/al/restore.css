@@ -401,11 +401,6 @@
     display: none
 }
 
-#request_email_or_phone {
-    color: #000;
-    margin: 10px 0px
-}
-
 .restore_blocked_wrap {
     padding: 30px
 }

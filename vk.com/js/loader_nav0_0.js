@@ -277,7 +277,7 @@ var stVersions = {
     'grid_sorter.js': 703789694,
     'auto_list.js': 2419796116,
     'suggester.js': 3187629441,
-    'datepicker.js': 808741082,
+    'datepicker.js': 1574876075,
     'datepicker.css': 20010006925,
     'oauth_popup.css': 24463079076,
     'oauth_page.css': 377358648,
@@ -316,8 +316,8 @@ var stVersions = {
     'notifier.css': 23037152642,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
-    'restore.js': 843534326,
-    'restore.css': 17507663055,
+    'restore.js': 2316458840,
+    'restore.css': 20060743793,
     'recover.js': 2830033131,
     'recover.css': 2080137791,
     'docs.js': 3215535710,
@@ -329,7 +329,7 @@ var stVersions = {
     'helpdesk.js': 3330561566,
     'helpdesk.css': 21717727942,
     'tickets.js': 3256001699,
-    'tickets.css': 18829978682,
+    'tickets.css': 20631844389,
     'faq.js': 1134602325,
     'faq.css': 19503773370,
     'talmud.js': 1641838680,
@@ -455,7 +455,7 @@ var stVersions = {
     'landings/psb_context.css': 19990271,
     'landings/psb_mobile.css': 25276891479,
     'landings/moneysend.css': 18167722378,
-    'landings/desktop_messenger.css': 14856370876,
+    'landings/desktop_messenger.css': 14893138716,
     'landings/vklive.css': 14997609635,
     'landings/vk2017.css': 16075063788,
     'landings/ads.css': 18652968195,
@@ -569,4 +569,4 @@ var stTypes = {
         'mobile/wiki.css': 1
     }
 };
-var _rnd = 3875;
+var _rnd = 5216;

@@ -1314,6 +1314,10 @@ body.dev a.tickets_rated {
     max-width: 100%
 }
 
+.tr_att_img {
+    height: 100%
+}
+
 .tr_att_img_wrap {
     max-height: 57px;
     min-height: 16px
@@ -1330,7 +1334,7 @@ body.dev a.tickets_rated {
     width: 75px;
     position: absolute;
     margin-bottom: 5px;
-    margin-top: -16px
+    margin-top: -18px
 }
 
 .tr_video_hint .label {

@@ -72,22 +72,22 @@
                 var M = y.getFullYear();
                 l[1] = M % 100 != 0 && M % 4 == 0 || M % 400 == 0 ? 29 : 28;
                 var k, b, x = [],
-                    C = [],
-                    S = '<table class="%cls%" cols="%cols%" cellpadding="0" border="0" cellspacing="0"><tbody>%rows%</tbody></table>';
+                    S = [],
+                    C = '<table class="%cls%" cols="%cols%" cellpadding="0" border="0" cellspacing="0"><tbody>%rows%</tbody></table>';
                 switch (d) {
                     case "m":
                         var T = c == h.y ? h.m : 0;
-                        nextYear = c + 1, lastYear = c - 1, k = '<tr><td class="month_arr"><a class="arr left" onclick="return cals.getMonth(' + i + ",1," + lastYear + ');"></a></td><td align="center" class="month">' + c + '</td><td class="month_arr"><a class="arr right" onclick="return cals.getMonth(' + i + ",1," + nextYear + ');"></a></td></tr>', x.push('<tr><td colspan="2">'), x.push(rs(S, {
+                        nextYear = c + 1, lastYear = c - 1, k = '<tr><td class="month_arr"><a class="arr left" onclick="return cals.getMonth(' + i + ",1," + lastYear + ');"></a></td><td align="center" class="month">' + c + '</td><td class="month_arr"><a class="arr right" onclick="return cals.getMonth(' + i + ",1," + nextYear + ');"></a></td></tr>', x.push('<tr><td colspan="2">'), x.push(rs(C, {
                             cls: "cal_table_head",
                             cols: "3",
                             rows: k
                         })), x.push("</td></tr><tr>");
                         for (var Y = 1; 12 >= Y; Y++) w = "", Y % 2 == 1 && (Y > 1 && x.push("</tr><tr>"), w = " day_left"), clDay = Y == T ? "day sel" : "day", U = new Date(c, Y - 1, 1), (!t.pastActive && D > U || t.pastActive && U > D) && (clDay += " past_day"), U.getTime() == D.getTime() && (clDay += " today"), x.push('<td class="' + clDay + w + '" style="width:50%" id="day' + Y + "_" + r + '" onclick="return cals.getDay(' + i + ", 1, " + Y + ", " + c + ');" onmouseover="addClass(this, \'hover\')"  onmouseout="removeClass(this, \'hover\')">' + g[Y - 1] + "</td>");
-                        x.push("</tr>"), C.push(rs(S, {
+                        x.push("</tr>"), S.push(rs(C, {
                             cls: "cal_table",
                             cols: "2",
                             rows: x.join("")
-                        })), p || (n.style.height = n.offsetHeight + "px"), val(n, C.join(""));
+                        })), p || (n.style.height = n.offsetHeight + "px"), val(n, S.join(""));
                         break;
                     default:
                         var T = c == h.y && s == h.m ? h.d : 0;
@@ -97,7 +97,7 @@
                             F = "w" === d ? "this.parentNode" : "this",
                             k = '<tr><td class="month_arr"><a class="arr left" onclick="return cals.getMonth(' + i + "," + lastMonth + "," + lastYear + ');"></a></td><td align="center" class="month"><a class="cal_month_sel" onclick="return cals.getMonth(' + i + "," + s + "," + c + ',1);">' + z + '</a></td><td class="month_arr"><a class="arr right" onclick="return cals.getMonth(' + i + "," + nextMonth + "," + nextYear + ');"></a></td></tr>',
                             b = '<tr><td class="month_arr"><span class="arr left"></span></td><td align="center" class="month">' + z + '</td><td class="month_arr"><span class="arr right"></span></td></tr>';
-                        x.push('<tr><td colspan="7">'), x.push(rs(S, {
+                        x.push('<tr><td colspan="7">'), x.push(rs(C, {
                             cls: "cal_table_head",
                             cols: "3",
                             rows: f ? b : k
@@ -119,24 +119,24 @@
                             }
                             clDay = w, I >= T && T + O > I ? clDay += " day sel" : clDay += " day", (!t.pastActive && D > U || t.pastActive && U > D) && (clDay += " past_day"), U.getTime() == D.getTime() && (clDay += " today"), I > 0 ? (A[Y] = H, x.push('<td id="day' + I + "_" + r + '" class="' + clDay + '" onclick="return cals.getDay(' + i + ", " + H + ", " + s + ", " + c + ');" onmouseover="addClass(' + F + ", 'hover')\"  onmouseout=\"removeClass(" + F + ", 'hover')\">" + I + "</td>")) : 36 != Y ? _ || ("w" === d && (A[Y] = H), date = Y > 7 && !o ? U.getDate() : "&nbsp", x.push('<td class="day no_month_day' + w + '">' + date + "</td>")) : _ = !0, Y % 7 == 0 && 36 > Y && x.push("</tr><tr>")
                         }
-                        x.push("</tr>" + u), C.push(rs(S, {
+                        x.push("</tr>" + u), S.push(rs(C, {
                             cls: L,
                             cols: "7",
                             rows: x.join("")
                         })), x = [], D = new Date(D.getFullYear(), D.getMonth(), 1);
                         var T = c == h.y ? h.m : 0,
                             L = "cal_table" + (f ? " disabled" : "") + (v ? "" : " unshown");
-                        k = '<tr><td class="month_arr"><a class="arr left" onclick="return cals.getMonth(' + i + "," + s + "," + (c - 1) + ',1);"></a></td><td align="center" class="month"><a class="cal_month_sel" onclick="return cals.getMonth(' + i + "," + s + "," + c + ');">' + c + '</a></td><td class="month_arr"><a class="arr right" onclick="return cals.getMonth(' + i + "," + s + "," + (c + 1) + ',1);"></a></td></tr>', b = '<tr><td class="month_arr"><span class="arr left"></span></td><td align="center" class="month">' + c + '</td><td class="month_arr"><span class="arr right"></span></td></tr>', x.push('<tr><td colspan="2">'), x.push(rs(S, {
+                        k = '<tr><td class="month_arr"><a class="arr left" onclick="return cals.getMonth(' + i + "," + s + "," + (c - 1) + ',1);"></a></td><td align="center" class="month"><a class="cal_month_sel" onclick="return cals.getMonth(' + i + "," + s + "," + c + ');">' + c + '</a></td><td class="month_arr"><a class="arr right" onclick="return cals.getMonth(' + i + "," + s + "," + (c + 1) + ',1);"></a></td></tr>', b = '<tr><td class="month_arr"><span class="arr left"></span></td><td align="center" class="month">' + c + '</td><td class="month_arr"><span class="arr right"></span></td></tr>', x.push('<tr><td colspan="2">'), x.push(rs(C, {
                             cls: "cal_table_head",
                             cols: "3",
                             rows: f ? b : k
                         })), x.push("</td></tr><tr>");
                         for (var Y = 1; 12 >= Y; Y++) w = "", Y % 2 == 1 && (Y > 1 && x.push("</tr><tr>"), w = " day_left"), clDay = Y == T ? "day sel" : "day", U = new Date(c, Y - 1, 1), (!t.pastActive && D > U || t.pastActive && U > D) && (clDay += " past_day"), U.getTime() == D.getTime() && (clDay += " today"), x.push('<td class="' + clDay + w + '" style="width:50%" id="day' + Y + "_" + r + '" onclick="return cals.getMonth(' + i + ", " + Y + ", " + c + ');" onmouseover="addClass(this, \'hover\')"  onmouseout="removeClass(this, \'hover\')">' + g[Y - 1] + "</td>");
-                        x.push("</tr>" + m), C.push(rs(S, {
+                        x.push("</tr>" + m), S.push(rs(C, {
                             cls: L,
                             cols: "2",
                             rows: x.join("")
-                        })), val(n, C.join("")), browser.opera && !browser.mobile && animate(n, {
+                        })), val(n, S.join("")), browser.opera && !browser.mobile && animate(n, {
                             opacity: .99
                         }, 20, animate.pbind(n, {
                             opacity: 1
@@ -166,7 +166,8 @@
                     addRows: "",
                     noPast: !1,
                     pastActive: !1,
-                    onUpdate: function(e, t) {}
+                    onUpdate: function(e, t) {},
+                    onMonthSelect: function() {}
                 };
             r = extend({}, f, r);
             var _ = r.mode,
@@ -176,7 +177,7 @@
                 M = r.addRows,
                 k = r.addRowsM || M,
                 b = function(e) {
-                    return "h" === _ ? !1 : (l ? d.hide() : C(), ge(p).blur(), !1)
+                    return "h" === _ ? !1 : (l ? d.hide() : S(), ge(p).blur(), !1)
                 },
                 x = function() {
                     var e = ge(g),
@@ -187,14 +188,14 @@
                         setStyle(t, {
                             marginTop: 0
                         });
-                        var r = getXY(e)[1] + n[1] > scrollGetY() + window.lastWindowHeight,
-                            s = r ? -n[1] - 30 - 2 * intval(getStyle(t, "paddingTop")) : 0;
+                        var s = getXY(e)[1] + n[1] > scrollGetY() + window.lastWindowHeight,
+                            i = s ? -n[1] - 30 - 2 * intval(getStyle(t, "paddingTop")) : 0;
                         setStyle(t, {
-                            marginTop: s
-                        })
+                            marginTop: i
+                        }), r.onMonthSelect()
                     }
                 },
-                C = function() {
+                S = function() {
                     if (!l) {
                         l = !0, _ui.sel(d.guid), show(v), new DateCalendar({
                             container: ge(g),
@@ -206,7 +207,7 @@
                             pastActive: r.pastActive,
                             onMonthSelect: x,
                             getDay: function(e, t, a) {
-                                S({
+                                C({
                                     d: e,
                                     m: t,
                                     y: a
@@ -220,7 +221,7 @@
                         }), x(), ge(p).focus()
                     }
                 },
-                S = function(n, s, l) {
+                C = function(n, s, l) {
                     if (!(!l && r.noPast && new Date(n.y, n.m - 1, n.d, 23, 59) < new Date)) {
                         i = n;
                         var u = geByClass1("datepicker_control", F);
@@ -230,7 +231,7 @@
             this.hide = function() {
                 l && (l = !1, _ui.sel(!1), hide(v))
             }, this.setMode = function(e) {
-                _ = e, S(i, _)
+                _ = e, C(i, _)
             }, this.destroy = function() {
                 _ui._uids[d.guid] = {}, removeEvent(geByClass1("datepicker_control", F), "mousedown", b)
             }, this.setDate = function(e, t, a) {
@@ -239,7 +240,7 @@
                     var n = new Date;
                     "m" != _ && (i.d = n.getDate()), i.m = n.getMonth() + 1, i.y = n.getFullYear()
                 }
-                S(i, _)
+                C(i, _)
             };
             var T, Y = 0;
             if (r.day || r.month || r.year) "m" != _ && (i.d = r.day), i.m = r.month, i.y = r.year, r.time && (o = r.hour || 0, c = r.min || 0);
@@ -257,7 +258,7 @@
                 }, {
                     width: s
                 });
-            if (m.replaceChild(F, n), addEvent(geByClass1("datepicker_control", F), "mousedown", b), S(i, _, !0), d.guid = _ui.reg({
+            if (m.replaceChild(F, n), addEvent(geByClass1("datepicker_control", F), "mousedown", b), C(i, _, !0), d.guid = _ui.reg({
                     container: F,
                     onEvent: function(e) {
                         if ("mousedown" === e.type) {
@@ -278,7 +279,7 @@
                 var N = ge(r.time);
                 new Timepicker(N, {
                     onUpdate: function(e, t) {
-                        o = e, c = t, S(i, _)
+                        o = e, c = t, C(i, _)
                     },
                     resfmt: D,
                     hour: o,

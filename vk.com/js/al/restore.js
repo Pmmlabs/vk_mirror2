@@ -103,7 +103,7 @@ var Restore = {
             hash: t,
             type: r
         }, ++cur.images_count[r];
-        var c = 1 == n || 2 == n ? Restore.maxPhotosWithType : Restore.maxPhotos;
+        var c = 2 == n ? Restore.maxPhotosWithType : Restore.maxPhotos;
         ge(a + "input").disabled = cur.images_count[r] >= c, ge(a + "input").disabled && hide(a + "upload"), show(a + "photos"), s = s.split("%index%").join(_).split("%type%").join(r);
         var h = se(s);
         u ? ge(a + "photos").appendChild(h) : domReplaceEl(ge("photo" + _), h), show("restore_roll_button_" + i)
@@ -114,7 +114,7 @@ var Restore = {
         if (cur.images[o].deleted) {
             if (cur.images_count[e] >= 2) return;
             cur.images[o].deleted = !1, removeClass("photo_img" + o, "restore_uploaded_image__img_removed");
-            var n = 1 == t || 2 == t ? Restore.maxPhotosWithType : Restore.maxPhotos;
+            var n = 2 == t ? Restore.maxPhotosWithType : Restore.maxPhotos;
             ++cur.images_count[e] >= n && (ge(s + "input").disabled = !0, hide(s + "upload")), ge("del_link" + o).innerHTML = getLang("global_delete"), show("restore_roll_button_" + r)
         } else cur.images[o].deleted = !0, addClass("photo_img" + o, "restore_uploaded_image__img_removed"), --cur.images_count[e], ge(s + "input").disabled = !1, show(s + "upload"), ge("del_link" + o).innerHTML = getLang("global_dont_delete"), cur.images_count[e] || hide("restore_roll_button_" + r)
     },
@@ -200,14 +200,19 @@ var Restore = {
     },
     tryToSubmitRequest: function() {
         Restore.independency_cheched && Restore.submitRequest(), cur.options && cur.options.can_restore_independently || Restore.submitRequest(), Restore.independency_cheched = !0;
-        var e = ge("login").value;
-        lockButton(ge("tryToSubmitBtn")), ajax.post("/restore", {
+        var e = ge("login").value,
+            o = ge("tryToSubmitBtn");
+        lockButton(o), ajax.post("/restore", {
             act: "check_independent_restore_allowed",
             login: e,
             hash: cur.options.fhash
         }, {
-            onDone: function(e) {
-                e ? (show("restore_roll_back_link"), hide("try_to_submit_wrapper")) : Restore.fixClassicSubmitForm()
+            onDone: function(e, t) {
+                if (e) show("restore_roll_back_link"), hide("try_to_submit_wrapper");
+                else {
+                    if (t) return unlockButton(o), Restore.showResult("request_phone_res", t, "login");
+                    Restore.fixClassicSubmitForm()
+                }
             },
             onFail: function() {
                 Restore.fixClassicSubmitForm()
@@ -267,7 +272,7 @@ var Restore = {
                     Restore.confirmPhoneSend()
                 }, getLang("global_cancel")), ge("phone_confirm_code").focus();
                 else {
-                    if (-2 == i) return lockButton(n), setTimeout(Restore.submitRequest, 1e3); - 3 == i ? ("login" == s ? o += "<br>" + val("request_email_or_phone_need") : "phonenum" == s && (cur.wrongPhone = !0), Restore.showResult(t, o, r)) : Restore.showMsgBox(o, getLang("global_error"))
+                    if (-2 == i) return lockButton(n), setTimeout(Restore.submitRequest, 1e3); - 3 == i ? ("login" == s ? o += "<br>" + val("request_email_or_phone_need") : "phonenum" == s && (cur.wrongPhone = !0), Restore.showResult(t, o, r)) : Restore.showResult("request_phone_res", o, r)
                 }
             },
             showProgress: lockButton.pbind(n),
@@ -304,7 +309,9 @@ var Restore = {
         val(o, e), show(o), elfocus("phone_confirm_code")
     },
     toFullRequest: function(e) {
-        nav.go("/restore?act=return_page&full=1&mid=" + e)
+        if (isVisible("new_phone_wrap")) var o = val("new_phone").replace(/[^0-9]/g, "");
+        else var o = val("phone").replace(/[^0-9]/g, "");
+        nav.go("/restore?act=return_page&full=1&mid=" + e + (o ? "&phone=" + o : ""))
     },
     initResendCounter: function(e) {
         var o = ge("resend_sms_button");
@@ -376,21 +383,34 @@ var Restore = {
         removeClass(t, "restore_roll_hidden"), addClass(t, "_restore_roll_active")
     },
     checkIndependentRestore: function(e, o) {
-        if (!cur.options || !cur.options.can_restore_independently) return void o();
-        if (cur.options.request_type) var t = val("phone").replace(/[^0-9]/g, "");
-        else var t = val("new_phone").replace(/[^0-9]/g, "");
-        cur.options.request_type && (t || Restore.changeFormStep("phones", "photo")), lockButton(geByClass1("flat_button", ge("restore_roll_button_phones"))), ajax.post("restore", {
+        var t = geByClass1("flat_button", ge("restore_roll_button_phones"));
+        if (cur.options.request_type) var r = val("phone").replace(/[^0-9]/g, "");
+        else var r = val("new_phone").replace(/[^0-9]/g, "");
+        return cur.options && cur.options.can_restore_independently ? (cur.options.request_type && (r || Restore.changeFormStep("phones", "photo")), lockButton(t), void ajax.post("restore", {
             act: "check_independent_restore_allowed",
-            phone: t,
+            phone: r,
             hash: cur.options.fhash
         }, {
-            onDone: function(t) {
-                t ? e() : o()
+            onDone: function(r, s) {
+                if (r) e();
+                else {
+                    if (s) return unlockButton(t), Restore.showResult("request_phone_res", s, cur.options.request_type ? "phone" : "new_phone");
+                    o()
+                }
             },
             onFail: function() {
                 o()
             }
-        })
+        })) : cur.options.need_check ? (lockButton(t), void ajax.post("al_restore.php", {
+            act: "a_check_phone",
+            hash: cur.options.fhash,
+            phone: r
+        }, {
+            onDone: function(e, r) {
+                var s = "request_phone_check_res";
+                unlockButton(t), 2 == e ? (val(s, r), isVisible(s) || slideDown(s, 200)) : (slideUp(s), o())
+            }
+        })) : void o()
     },
     _phoneIndependentRestoreSuccess: function() {
         Restore.changeFormStep("phones", "back_link")
