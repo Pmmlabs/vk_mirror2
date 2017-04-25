@@ -3750,9 +3750,13 @@ body[data-useragent*=msie9] .im-page--title-meta {
     opacity: 0.7
 }
 
-.im-mess .im-mess--fav:active,
 .im-mess .im-mess--reply:active {
     opacity: 1
+}
+
+.im-mess .im-mess--fav:active {
+    opacity: 1;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%236590c7%22%20d%3D%22M5.5.5c.3-.7.7-.7%201%200l1.5%203.5%203.3.3c.7.1.9.5.3%201l-2.6%202.3%201%203.7c.2.7-.1.9-.7.5l-3.3-2.4-3.3%202.4c-.6.4-.9.2-.7-.5l1-3.7-2.6-2.3c-.6-.5-.4-.9.3-1l3.3-.3%201.5-3.5z%22%2F%3E%3C%2Fsvg%3E") 50% no-repeat
 }
 
 .im-mess.im-mess_search {
