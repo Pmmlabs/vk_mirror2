@@ -1065,6 +1065,7 @@ a.group_ad_post_link.deleted.deleted:hover {
     font-weight: 700
 }
 
+.group_edit_adsweb_intro_description,
 .group_edit_adsweb_slots_description {
     line-height: 160%;
     padding-bottom: 10px
