@@ -3079,7 +3079,7 @@ if (!window.Emoji) {
         },
 
         showStickersStore: function(optId, from) {
-            var peer = Emoji.selectPeer(optId),
+            var peer = Emoji.selectPeer(optId !== false ? optId : undefined),
                 params = {
                     act: 'stickers_store',
                     peer: peer,

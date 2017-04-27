@@ -592,3 +592,34 @@ div#enterID.enterID {
     margin-right: 10px;
     width: 300px
 }
+
+.notify_pm_form {
+    padding: 35px 100px
+}
+
+.notify_pm_form .text {
+    box-sizing: border-box;
+    width: 100%
+}
+
+.notify_pm_form_block {
+    margin: 0 0 15px
+}
+
+.notify_pm_form_block:last-child {
+    margin-bottom: 0
+}
+
+.notify_pm_form_block__label {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-bottom: 4px;
+    color: #42648b
+}
+
+.notify_pm_form_block__note {
+    margin-top: 4px;
+    color: #656565;
+    font-size: 12px
+}

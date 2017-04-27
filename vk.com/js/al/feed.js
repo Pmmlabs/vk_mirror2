@@ -1461,8 +1461,8 @@ var Feed = {
             hash: e
         })
     },
-    hideBlogReminder: function(e, t) {
-        re("feed_blog_reminder"), ajax.post("blog.php", {
+    hideBlogReminder: function(e, t, s) {
+        s && cancelEvent(s), re("feed_blog_reminder"), ajax.post("blog.php", {
             act: "hide_reminder",
             hash: e,
             nid: t

@@ -816,6 +816,10 @@
     padding-top: 3px
 }
 
+.feedback_content .feedback_text .post_thumbed_media {
+    margin-bottom: 0
+}
+
 .feedback_group_photo {
     display: inline-block;
     width: 34px;
@@ -2053,7 +2057,8 @@ div.feed_recom {
 }
 
 .feed_blog_reminder:hover .feed_blog_reminder_hide {
-    opacity: 0.5
+    opacity: 0.5;
+    filter: alpha(opacity=50)
 }
 
 .feed_blog_reminder_icon {
@@ -2087,12 +2092,97 @@ div.feed_recom {
     padding: 4px;
     cursor: pointer;
     opacity: 0;
+    filter: alpha(opacity=0);
     -o-transition: opacity 200ms ease;
     transition: opacity 200ms ease
 }
 
 .feed_blog_reminder_hide:hover {
-    opacity: 1!important
+    opacity: 1!important;
+    -webkit-filter: none!important;
+    filter: none!important
+}
+
+.feed_blog_reminder_link {
+    white-space: nowrap;
+    color: #2a5885
+}
+
+.feed_blog_reminder_link:hover {
+    text-decoration: underline
+}
+
+.feed_blog_reminder_large {
+    padding: 0;
+    overflow: hidden;
+    display: block;
+    text-decoration: none!important
+}
+
+.feed_blog_reminder_large .feed_blog_reminder_cont {
+    margin-left: 0;
+    line-height: 18px;
+    font-size: 13px;
+    padding: 12px 15px
+}
+
+.feed_blog_reminder_large .feed_blog_reminder_title {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #42648b
+}
+
+.feed_blog_reminder_large .feed_blog_reminder_title:hover {
+    text-decoration: underline
+}
+
+.feed_blog_reminder_large .feed_blog_reminder_text {
+    margin-top: 5px;
+    color: #000
+}
+
+.feed_blog_reminder_cover {
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative
+}
+
+.feed_blog_reminder_large_close_wrap {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    height: 20px;
+    width: 20px;
+    border-radius: 3px;
+    background: rgba(0, 0, 0, .4);
+    cursor: pointer;
+    -o-transition: opacity 150ms ease-in-out;
+    transition: opacity 150ms ease-in-out;
+    opacity: 0;
+    filter: alpha(opacity=0)
+}
+
+.feed_blog_reminder_large:hover .feed_blog_reminder_large_close_wrap {
+    opacity: 1;
+    -webkit-filter: none;
+    filter: none
+}
+
+.feed_blog_reminder_large_close {
+    background-image: url('/images/svg_icons/blog_reminder_large_close.svg');
+    height: 20px;
+    width: 20px;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    -o-transition: opacity 150ms ease-in-out;
+    transition: opacity 150ms ease-in-out
+}
+
+.feed_blog_reminder_large_close:hover {
+    opacity: 1;
+    -webkit-filter: none;
+    filter: none
 }
 
 .feed_vk10_years {

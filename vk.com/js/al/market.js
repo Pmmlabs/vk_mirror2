@@ -1877,7 +1877,7 @@ var Market = {
                 var l = isChecked(cur.searchFilters.by_names);
                 l && (e.by_names = 1)
             }
-            return cur.groups && (e.groups = 1), isVisible(cur.onlyFriendsTogglerBlock) && isChecked(cur.onlyFriendsToggler) && (e.only_friends = 1), e
+            return cur.groups && (e.groups = 1), isVisible(cur.onlyFriendsTogglerBlock) && isChecked(cur.onlyFriendsToggler) && (e.only_friends = 1, cur.friendsLastView && (e.lastview = cur.friendsLastView)), e
         },
         changeView: function(e) {
             if (cur.viewType != e && !cur.changeViewTypeLoad) {
