@@ -1133,6 +1133,25 @@ var Settings = {
             hash: e
         }), !1
     },
+    paymentsSubscriptionBox: function(t, e, s, o) {
+        if (o) {
+            var n = domClosest("_row", o);
+            cur.onSubscriptionDone = function(t) {
+                var e = geByClass1("settings_history_amount", n);
+                val(e, t.status), removeClass(e, "settings_history_btn"), val(geByClass1("settings_history_actions", n), t.actions)
+            }
+        }
+        showBox("al_apps.php?act=show_subscription_box", {
+            aid: t,
+            item: e,
+            action: "create",
+            hash: s
+        }, {
+            onFail: function(t) {
+                return setTimeout(showFastBox(getLang("global_error"), t).hide, 2e3), !0
+            }
+        })
+    },
     paymentsSubscriptionCancel: function(t, e, s, o, n) {
         var i = domClosest("_row", t);
         return n ? (addClass(i, "settings_history_row_progress"), cur.confirmBox && cur.confirmBox.hide(), void ajax.post("al_apps.php?act=a_cancel_subscription", {

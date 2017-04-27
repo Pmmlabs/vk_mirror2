@@ -1147,7 +1147,8 @@ a.settings_blb_title {
 
 .settings_payments_subscriptions tr td {
     border-bottom: none;
-    padding: 8px 0
+    padding: 5px 0;
+    line-height: 19px
 }
 
 .settings_payments_subscriptions .settings_history_gr_row td {
@@ -1178,9 +1179,14 @@ a.settings_blb_title {
     padding-bottom: 20px
 }
 
+.settings_payments_subscriptions .settings_history_photo {
+    vertical-align: top
+}
+
 .settings_payments_subscriptions .settings_history_name {
     padding-right: 10px!important;
-    width: 120px
+    width: 120px;
+    vertical-align: top
 }
 
 .settings_payments_subscriptions .settings_history_title {
@@ -1193,16 +1199,22 @@ a.settings_blb_title {
     font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    text-align: right
+    text-align: right;
+    vertical-align: top;
+    white-space: nowrap
 }
 
 .settings_payments_subscriptions .settings_history_amount b {
     color: #000
 }
 
+.settings_payments_subscriptions .settings_history_btn {
+    padding: 0!important;
+    vertical-align: middle
+}
+
 .settings_payments_subscriptions .settings_history_actions {
-    width: 1px;
-    vertical-align: top
+    width: 1px
 }
 
 .settings_payments_subscriptions .settings_subscription_cancel {

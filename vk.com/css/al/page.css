@@ -4642,9 +4642,10 @@ h2.page_name {
     font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    margin: -1px 0;
+    margin: -1px 0 -1px -1px;
     overflow: hidden;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
+    padding-left: 1px
 }
 
 .wide_column .page_top {

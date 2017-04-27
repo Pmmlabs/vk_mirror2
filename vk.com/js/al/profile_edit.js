@@ -133,7 +133,9 @@ var ProfileEditor = {
             multiselect: !1,
             selectedItems: e.bday_visibility,
             dark: 1
-        }), ge("pedit_home_town").value = e.home_town, cur.uiLangs = new Dropdown(ge("pedit_langs"), e.langs, {
+        }), ge("pedit_home_town").value = e.home_town, e.langs = e.langs.map(function(e) {
+            return e[1] = winToUtf(e[1]), e
+        }), cur.uiLangs = new Dropdown(ge("pedit_langs"), e.langs, {
             multiselect: !0,
             autocomplete: !0,
             indexkeys: [1, 2],
