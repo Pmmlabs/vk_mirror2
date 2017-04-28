@@ -1034,7 +1034,7 @@
     display: none;
     margin: 0;
     padding: 8px 0 10px;
-    color: #2b2f33;
+    color: #000;
     font-size: 16px;
     border-bottom: 1px solid #e7e8ec
 }
@@ -1494,6 +1494,11 @@
 .pv_comments_list .ms_items_more,
 .pv_reply_form .ms_items_more {
     right: -70px
+}
+
+.pv_comments_list .wall_audio_rows,
+.pv_reply_form .wall_audio_rows {
+    padding: 5px 0
 }
 
 .pv_like {

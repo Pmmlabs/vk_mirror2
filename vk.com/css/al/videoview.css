@@ -164,6 +164,10 @@ body.mobfixed #mv_layer_wrap {
     text-decoration: underline
 }
 
+.mv_live_spectators_count_text>.num_delim {
+    vertical-align: baseline!important
+}
+
 .mv_live_spectators_friends {
     display: inline-block;
     vertical-align: middle;
@@ -1115,7 +1119,7 @@ textarea.dark.mv_live_gift_popup_comment_input {
     margin: 0 20px;
     padding: 8px 0;
     border-bottom: 1px solid #e7e8ec;
-    color: #2b2f33;
+    color: #000;
     font-size: 16px;
     cursor: default;
     display: none
@@ -1774,7 +1778,7 @@ textarea.dark.mv_live_gift_popup_comment_input {
     padding-bottom: 4px;
     font-size: 16px;
     line-height: 23px;
-    color: #2b2f33
+    color: #000
 }
 
 .mv_recom_item {

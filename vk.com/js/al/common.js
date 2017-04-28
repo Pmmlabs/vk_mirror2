@@ -3880,6 +3880,9 @@ var stManager = {
             if (!isArray(files)) files = [files];
             for (var i in files) {
                 var f = files[i];
+                if (!f) {
+                    continue;
+                }
                 if (f.indexOf('?') != -1) {
                     f = f.split('?')[0];
                 }
@@ -4793,6 +4796,7 @@ function HistoryAndBookmarks(params) {
 
         curLoc = l;
     }
+
     var checkTimer;
     var frameChecker = function() {
         try {
@@ -7944,14 +7948,6 @@ function showAudioClaimWarning(owner_id, id, claim_id, title, reason) {
     }, claimText);
 }
 
-function deleteAudioOnClaim(owner_id, id) {
-    var audioId = owner_id + '_' + id;
-    var audioEl = ge('audio_' + audioId);
-    AudioPage(audioEl).deleteAudio(audioEl, audioId, event, true);
-
-    cur.claimWarning && cur.claimWarning.hide();
-}
-
 function sureDeleteAll(title, text, where, objectId, toId, fromId, hash, event) {
     if (checkEvent(event)) return;
 
@@ -8538,6 +8534,7 @@ function zNav(changed, opts, fin) {
     }
 
     if (!z) return;
+
     if (zt) {
         var onFail = function() {
             delete nav.objLoc.z;
@@ -8627,6 +8624,10 @@ function zNav(changed, opts, fin) {
                 moneyTransferBox(zt[2], zt[3]);
                 return false;
                 break;
+            case 'audio_playlist':
+                showAudioPlaylist.apply(this, zt[2].split('_').concat(zt[3]))
+                return false
+                break
         }
     }
 }
@@ -9721,7 +9722,8 @@ TopSearch = {
             //TopMenu.toggle(false);
 
             if (!checkKeyboardEvent(e) &&
-                !domClosest('_audio_layer', e.target) &&
+                !domClosest('_audio_page_layout', e.target) &&
+                !domClosest('_ap_layer__close', e.target) &&
                 !domClosest('layer_wrap', e.target)) {
                 _topHeaderClose();
             }
@@ -10292,15 +10294,6 @@ function headPlayPause(event) {
         }
     }
     if (event) cancelEvent(event);
-}
-
-function currentAudioId() {
-    // return ls.get('audio_id') || window.audioPlayer && audioPlayer.id;
-    return window.audioPlayer && audioPlayer.id;
-}
-
-function padAudioPlaylist() {
-    return window.audioPlaylist || ls.get('pad_playlist');
 }
 
 function menuSettings(type) {
@@ -10989,198 +10982,12 @@ function hideProgress(el) {
     }
 }
 
-// audio functions
-function initTopAudioPlayer() {
-    stManager.add(['audioplayer.js'], function() {
-        TopAudioPlayer.init();
-    });
+function disableEl(el) {
+    setStyle(el, 'pointer-events', 'none')
 }
 
-function toggleAudioLyrics(event, ref, audioId, lyricsId) {
-    if (!lyricsId) {
-        return false;
-    }
-
-    var audioRowEl = gpeByClass('_audio_row', ref);
-    var lyricsEl = geByClass1('_audio_lyrics_wrap', audioRowEl);
-
-    if (lyricsEl.innerHTML) {
-        toggle(lyricsEl);
-        cancelEvent(event);
-        return false;
-    }
-
-    lyricsId = intval(lyricsId);
-
-    if (lyricsId) {
-        addClass(audioRowEl, 'audio_loading');
-        showProgress(audioRowEl);
-
-        var isTop = false,
-            topGenre = 0;
-
-        if (cur.audioPage) {
-            isTop = cur.audioPage.getCurrentPlaylist().getType() == AudioPlaylist.TYPE_POPULAR;
-            topGenre = cur.audioPage.getCurrentPlaylist().getAlbumId();
-        }
-
-        ajax.post('al_audio.php', {
-            act: 'get_lyrics',
-            aid: audioId,
-            lid: lyricsId,
-            top: intval(isTop),
-            genre: intval(topGenre)
-        }, {
-            onDone: function(lyrics) {
-                hideProgress(audioRowEl);
-                removeClass(audioRowEl, 'audio_loading');
-
-                lyricsEl.innerHTML = lyrics;
-                show(lyricsEl);
-            }
-        });
-
-        cancelEvent(event);
-    }
-
-    return false;
-}
-
-function audioSearchPerformer(ref, event) {
-    cur.cancelClick = true;
-
-    var audioEl = gpeByClass('_audio_row', ref);
-    var isInAudioPage = window.AudioPage && AudioPage(audioEl);
-    var audio = AudioUtils.getAudioFromEl(audioEl, true);
-
-    if (isInAudioPage) {
-        var performer = unclean(audio.performer).replace(/<em>|<\/em>/g, '');
-        return nav.change({
-            q: performer,
-            performer: 1
-        }, event, {
-            searchPerformer: true
-        });
-    } else {
-        return nav.go(ref, event);
-    }
-}
-
-function getAudioPlayer() {
-    if (window.AudioPlayer)
-        window.ap = window.ap || new AudioPlayer();
-    else {
-        return {};
-    }
-    return window.ap;
-}
-
-function prepareAudioLayer(cb) {
-    stManager.add(['audio.js', 'audioplayer.js', 'audio.css', 'suggester.js', 'auto_list.js', 'indexer.js'], function() {
-        cb && cb();
-    });
-}
-
-function showAudioLayer(event, btn) {
-    prepareAudioLayer(function() {
-        AudioUtils.showAudioLayer(btn);
-    });
-    return cancelEvent(event);
-}
-
-function audioShowActionTooltip(btn) {
-    if (cur._addRestoreInProgress) return;
-
-    var audioRow = gpeByClass('_audio_row', btn);
-    var text = btn.id;
-
-    var audioFullId = domData(audioRow, 'full-id');
-
-    var audioAddRestoreInfo = AudioUtils.getAddRestoreInfo();
-
-    switch (text) {
-        case 'delete':
-            if (window.AudioPage && AudioPage.isInRecentPlayed(audioRow)) { // todo: little bit hacky
-                text = getLang('audio_remove_from_list');
-
-            } else if (hasClass(audioRow, 'recoms')) {
-                text = getLang('audio_dont_show');
-
-            } else {
-                var restores = audioAddRestoreInfo[audioFullId];
-                if (restores && restores.deleteAll) {
-                    text = restores.deleteAll.text;
-                } else {
-                    text = getLang('global_delete_audio');
-                }
-            }
-            break;
-
-        case 'add':
-            if (hasClass(audioRow, 'recoms') && hasClass(audioRow, 'audio_deleted')) {
-                text = getLang('audio_restore_audio');
-
-            } else {
-
-                var info = audioAddRestoreInfo[audioFullId];
-
-                if (info && info.state == 'deleted') {
-                    text = getLang('audio_restore_audio');
-
-                } else if (info && info.state == 'added') {
-                    text = getLang('global_delete_audio');
-
-                } else {
-                    var audioPage = window.AudioPage ? AudioPage(btn) : false;
-                    if (audioPage && audioPage.options.oid < 0 && audioPage.options.canAudioAddToGroup) {
-                        text = getLang('audio_add_to_group');
-                    } else {
-                        text = getLang('audio_add_to_audio');
-                    }
-                }
-            }
-            break;
-
-        case 'edit':
-            text = getLang('audio_edit_audio');
-            break;
-
-        case 'next':
-            text = (cur.lang && cur.lang.global_audio_set_next_audio) || getLang('audio_set_next_audio');
-            break;
-
-        case 'recom':
-            text = getLang('audio_show_recommendations');
-            break;
-    }
-
-    var options = {
-        text: function() {
-            return text;
-        },
-        black: 1,
-        shift: [7, 5, 0],
-        needLeft: true
-    };
-
-    if (gpeByClass('_im_mess_stack', btn)) {
-        options.appendParentCls = '_im_mess_stack';
-        options.shift = [7, 10, 0];
-        options.noZIndex = true;
-
-    } else if (gpeByClass('top_notify_wrap', btn)) {
-        options.appendParentCls = 'top_notify_wrap';
-    }
-
-    showTooltip(btn, options);
-}
-
-function addAudio(btn, event) {
-    stManager.add(['audioplayer.js'], function() {
-        AudioUtils.addAudio(btn);
-    });
-
-    return cancelEvent(event);
+function enableEl(el) {
+    setStyle(el, 'pointer-events', '')
 }
 
 function isToday(date) {
@@ -11584,7 +11391,7 @@ function updateAriaCheckboxes() {
 
   el - object which tootlip should point to
   opts
-    content         - (required) string or dome element for tooltip content
+    content         - (required) string or dom element for tooltip content
     id              - custom id for tootlip
     cls             - custom class for tooltip
     autoShow        - show/hide tooltip on mouse enter/leave (default: true)
@@ -11592,12 +11399,15 @@ function updateAriaCheckboxes() {
     appendTo        - appends tooltip to particular element
     appendToParent  - appends tooltip to closest positioned element (default: false)
     offset          - custom offset for tooltip (default: [0, 0])
+    shift           - custom array shift
     elClassWhenTooltip - class that will be added to el when tooltip is shown
     setPos          - function for calculation tooltip custom position. forceSide parameter is required
     showOnClick     - show tooltip on mouse click (default: false)
     type            - ElementTooltip.TYPE_VERTICAL / ElementTooltip.TYPE_HORIZONTAL (default vertical)
     forceSide       - forces tooltip to be shown on particular side top/down/left/right. It ignores type option.
     width           - custom tooltip height (function or int value)
+    noBorder
+    arrowSize       - 'normal', 'big'
 
     onShow          - callback fired when tooltip is shown
     onHide          - callback fired when tooltip is hidden
@@ -11620,13 +11430,25 @@ function ElementTooltip(el, opts) {
     this._opts = extend({
         delay: 100,
         offset: [0, 0],
+        shift: 0,
         type: ElementTooltip.TYPE_VERTICAL,
         id: '',
         cls: '',
         width: null,
         appendToParent: false,
-        autoShow: true
+        autoShow: true,
+        arrowSize: 'normal'
     }, opts);
+
+    this._opts.cls += ' eltt_arrow_size_' + this._opts.arrowSize
+
+    if (this._opts.noBorder) {
+        this._opts.cls += ' eltt_noborder'
+    }
+
+    if (this._opts.type != ElementTooltip.TYPE_VERTICAL) {
+        delete this._opts.shift
+    }
 
     if (this._opts.setPos && !this._opts.forceSide) {
         throw new Error('forceSide parameter should be set if you use setPos');
@@ -11639,6 +11461,20 @@ function ElementTooltip(el, opts) {
     this._appendToEl = this._opts.appendTo ? this._opts.appendTo : (this._opts.appendToParent ? domClosestPositioned(el, {
         noOverflow: true
     }) : el);
+
+    this._arrowSize = {
+        'normal': ElementTooltip.ARROW_SIZE_NORMAL,
+        'big': ElementTooltip.ARROW_SIZE_BIG,
+    }[this._opts.arrowSize]
+
+    if (this._opts.forceSide) {
+        this._opts.type = {
+            'top': ElementTooltip.TYPE_VERTICAL,
+            'bottom': ElementTooltip.TYPE_VERTICAL,
+            'left': ElementTooltip.TYPE_HORIZONTAL,
+            'right': ElementTooltip.TYPE_HORIZONTAL,
+        }[this._opts.forceSide]
+    }
 
     this._el = el;
     data(this._el, 'ett', this);
@@ -11653,6 +11489,9 @@ function ElementTooltip(el, opts) {
 ElementTooltip.TYPE_VERTICAL = 0;
 ElementTooltip.TYPE_HORIZONTAL = 1;
 ElementTooltip.FADE_SPEED = 100; // keep in sync with @eltt_fade_speed
+
+ElementTooltip.ARROW_SIZE_NORMAL = 8
+ElementTooltip.ARROW_SIZE_BIG = 16
 
 ElementTooltip.prototype._initEvents = function(el) {
     if (this._opts.autoShow) {
@@ -11685,6 +11524,10 @@ ElementTooltip.prototype._onMouseWindowClick = function(event) {
         node = domPN(node);
     }
 
+    if (hasClass(event.target, '_ap_layer__close')) {
+        return
+    }
+
     if (!node || node == document.body) {
         this.hide(true);
         return cancelEvent(event);
@@ -11712,7 +11555,8 @@ ElementTooltip.prototype._onTooltipMouseLeave = function(ev) {
 
 ElementTooltip.prototype.build = function() {
     if (!this._ttel) {
-        this._ttel = se('<div class="eltt ' + (this._opts.cls || '') + '" id="' + this._opts.id + '"></div>');
+        this._ttel = se('<div class="eltt ' + (this._opts.cls || '') + '" id="' + this._opts.id + '"><div class="eltt_arrow_back _eltt_arrow_back"><div class="eltt_arrow"></div></div></div>');
+        this._ttArrowEl = geByClass1('_eltt_arrow_back', this._ttel)
 
         if (this._opts.content) {
             if (isString(this._opts.content)) {
@@ -11745,11 +11589,12 @@ ElementTooltip.prototype.show = function() {
         setStyle(this._ttel, 'width', width);
     }
 
-    this._opts.onShow && this._opts.onShow(this._ttel);
-
     this.updatePosition();
 
     show(this._ttel);
+
+    this._opts.onShow && this._opts.onShow(this._ttel);
+
     this._isShown = true;
 
     setTimeout(addClass.pbind(this._ttel, 'eltt_vis'), 10);
@@ -11762,6 +11607,17 @@ ElementTooltip.prototype.show = function() {
     addEvent(document, 'mousedown', this._ev_wclick = this._onMouseWindowClick.bind(this));
 }
 
+ElementTooltip.getType = function(side) {
+    switch (side) {
+        case 'top':
+        case 'bottom':
+            return ElementTooltip.TYPE_VERTICAL
+        case 'right':
+        case 'left':
+            return ElementTooltip.TYPE_HORIZONTAL
+    }
+}
+
 ElementTooltip.prototype.updatePosition = function() {
     var side = this._opts.forceSide;
 
@@ -11769,15 +11625,44 @@ ElementTooltip.prototype.updatePosition = function() {
     var elSize = getSize(this._el);
     var ttelSize = getSize(this._ttel);
 
-    var style;
+    var arrowSize = this._arrowSize
+    var border = this._opts.noBorder ? 0 : 1
+
+    var style, shift;
+
+    var _this = this
+
+    function setArrowCenteredPosition(side) {
+        var style = {}
+        style[side] = ttelSize[0] / 2 /*tt center*/ - border * 2 /*borders*/ - arrowSize - shift /*shift compensation*/
+        setStyle(_this._ttArrowEl, style)
+    }
 
     if (this._opts.setPos) {
-        style = this._currentPosition = this._opts.setPos.call(this, this._currentPosition || {}) || {};
-        side = this._opts.forceSide;
+        // if setPos callback provided it should return
+        // { left, top, arrowPos(optional) }
+        style = this._opts.setPos(this) || {};
+
+        if (ElementTooltip.getType(side) == ElementTooltip.TYPE_VERTICAL) {
+            if (style.arrowPosition !== (void 0)) {
+                setStyle(this._ttArrowEl, {
+                    marginLeft: style.arrowPosition
+                })
+            } else {
+                setArrowCenteredPosition('marginLeft')
+            }
+        } else {
+            if (style.arrowPosition !== (void 0)) {
+                setStyle(this._ttArrowEl, {
+                    marginTop: style.arrowPosition
+                })
+            } else {
+                setArrowCenteredPosition('marginTop')
+            }
+        }
 
     } else {
         if (!side) {
-            var boundingBox = this._el
             var boundingEl = domClosestOverflowHidden(this._ttel);
             var boundingElPos = boundingEl != bodyNode ? getXY(boundingEl) : [scrollGetX(), scrollGetY() + 30];
 
@@ -11796,49 +11681,58 @@ ElementTooltip.prototype.updatePosition = function() {
             }
         }
 
-        var arrowSize = 5;
-
         var parentPos = getXY(this._appendToEl);
-        parentOffset = [
+        var parentOffset = [
             elPos[0] - parentPos[0],
             elPos[1] - parentPos[1]
         ];
 
+        var totalLeftOffset = this._opts.offset[0] + (this._opts.shift || 0) + parentOffset[0]
+
         switch (side) {
             case 'bottom':
                 style = {
-                    left: -ttelSize[0] / 2 + elSize[0] / 2 + this._opts.offset[0] + parentOffset[0],
+                    left: -ttelSize[0] / 2 + elSize[0] / 2 + totalLeftOffset,
                     top: elSize[1] + arrowSize - this._opts.offset[1] + parentOffset[1]
                 };
                 break;
 
             case 'top':
                 style = {
-                    left: -ttelSize[0] / 2 + elSize[0] / 2 + this._opts.offset[0] + parentOffset[0],
+                    left: -ttelSize[0] / 2 + elSize[0] / 2 + totalLeftOffset,
                     top: -ttelSize[1] - arrowSize + this._opts.offset[1] + parentOffset[1]
                 };
                 break;
 
             case 'right':
                 style = {
-                    left: elSize[0] + arrowSize + this._opts.offset[0] + parentOffset[0],
+                    left: elSize[0] + arrowSize + totalLeftOffset,
                     top: elSize[1] / 2 - ttelSize[1] / 2 + this._opts.offset[1] + parentOffset[1]
                 };
                 break;
 
             case 'left':
                 style = {
-                    left: -ttelSize[0] - arrowSize + this._opts.offset[0] + parentOffset[0],
+                    left: -ttelSize[0] - arrowSize + totalLeftOffset,
                     top: elSize[1] / 2 - ttelSize[1] / 2 + this._opts.offset[1] + parentOffset[1]
                 };
                 break;
         }
+
+        shift = this._opts.shift || 0
+
+        if (this._opts.type == ElementTooltip.TYPE_VERTICAL) {
+            setArrowCenteredPosition('marginLeft')
+        } else {
+            setArrowCenteredPosition('marginTop')
+        }
     }
 
-    var _this = this;
-    each(['top', 'bottom', 'left', 'right'], function(i, side) {
-        removeClass(_this._ttel, 'eltt_' + side);
-    });
+    each(['top', 'bottom', 'left', 'right'], function(i, s) {
+        if (side != s) {
+            removeClass(this._ttel, 'eltt_' + s);
+        }
+    }.bind(this));
 
     addClass(this._ttel, 'eltt_' + side);
     setStyle(this._ttel, style);
@@ -12073,6 +11967,10 @@ function setWorkerTimeout(cb, delay) {
 }
 
 function clearWorkerTimeout(worker) {
+    if (!worker) {
+        return false
+    }
+
     if (isNumeric(worker)) {
         clearTimeout(worker);
     } else {
@@ -12740,6 +12638,369 @@ function getStatusExportHash() {
         }
     }
 })();
+
+function parallel() {
+    var args = [].slice.call(arguments)
+    var onDoneAll = args.pop()
+    var hub = new callHub(onDoneAll, args.length)
+    each(args, function(i, func) {
+        func(function() {
+            hub.done()
+        })
+    })
+}
+
+function showAudioPlaylist(playlistOwnerId, playlistId, accessHash, event) {
+    if (cur.apLayer) {
+        return cancelEvent(event) // we already in layer
+    }
+
+    boxRefreshCoords(boxLoader)
+    show(boxLoader)
+    show(boxLayerWrap)
+
+    stManager.add('auto_list.js', function() {
+        var playlist = getAudioPlayer().getPlaylist(AudioPlaylist.TYPE_PLAYLIST, playlistOwnerId, playlistId, accessHash)
+        playlist.loadAll(_showLayer)
+
+        var bgEvent, bgEventKeyEvent
+
+        function _hideLayer(hist) {
+            boxQueue.hideAll()
+
+            if (cur.apLayerAutoList) {
+                cur.apLayerAutoList.destroy()
+                cur.apLayerAutoList = null
+            }
+
+            layers.wraphide(window.audioPlaylistLayerWrap)
+            layers.fullhide = false
+            bgEvent && removeEvent(window.audioPlaylistLayerWrap, 'click', bgEvent)
+            bgEventKeyEvent && removeEvent(bodyNode, 'keydown', bgEventKeyEvent)
+            delete cur.apLayer
+            delete cur.apLayerPlaylistId
+
+            removeClass(layerBG, 'ap_layer_bg_dark')
+
+            nav.change({
+                z: false
+            })
+
+            layerQueue.pop()
+        }
+
+        function _showLayer(playlist, isDeleted) {
+            hide(boxLoader)
+            hide(boxLayerWrap)
+
+            if (isDeleted) {
+                var text = getLang('audio_error_deleted_playlist_box').split('/');
+                (new MessageBox({
+                    title: text[0]
+                })).content(text[1]).setButtons(getLang('global_close'), function() {
+                    curBox().hide()
+                }).show();
+
+                return
+            }
+
+            // Set location
+            var newLoc = extend(nav.objLoc, {
+                z: 'audio_playlist' + playlistOwnerId + '_' + playlistId + (accessHash ? ('/' + accessHash) : '')
+            })
+            nav.setLoc(newLoc)
+
+            // Init layer
+            if (!window.audioPlaylistLayerWrap) {
+                window.audioPlaylistLayerWrap = se('<div class="ap_layer_wrap"></div>')
+                bodyNode.appendChild(window.audioPlaylistLayerWrap)
+            }
+
+            window.audioPlaylistLayerWrap.innerHTML = ''
+
+            var audiosCount = playlist.getAudiosList().length
+
+            // Build layer
+            var content = getTemplate('audio_playlist_snippet', {
+                title: playlist.getTitle(),
+                description: playlist.getDescription(),
+                coverStyle: playlist.getCoverUrl() ? 'background-image:url(' + playlist.getCoverUrl() + '); background-size: cover;' : '',
+                authorLine: playlist.getAuthorLine(),
+                infoLine1: playlist.getInfoLine1(),
+                infoLine2: playlist.getInfoLine2(),
+
+                id: playlist.getPlaylistId(),
+                ownerId: playlist.getOwnerId(),
+                href: '/audio?z=audio_playlist_' + playlist.getOwnerId() + '_' + playlist.getPlaylistId() + '/' + playlist.getAccessHash(),
+                addCls: playlist.getAddClasses(),
+                followHash: playlist.getFollowHash(),
+                accessHash: playlist.getAccessHash(),
+                editHash: playlist.getEditHash(),
+                gridCovers: playlist.getGridCovers(),
+
+                followButtonText: playlist.isFollowed() ? getLang('audio_playlist_btn_followed') : getLang('audio_playlist_btn_follow')
+            })
+
+            cur.apLayer = se('<div class="ap_layer"><div class="ap_layer__content">' + content + '</div><div class="ap_layer__close _ap_layer__close"></div></div>')
+            window.audioPlaylistLayerWrap.appendChild(cur.apLayer)
+
+            // Init layer events
+            addEvent(window.audioPlaylistLayerWrap, 'click', bgEvent = function(event) {
+                if (event.target == window.audioPlaylistLayerWrap || event.target == geByClass1('_ap_layer__close', cur.apLayer)) {
+                    layers.fullhide()
+                }
+            })
+            addEvent(bodyNode, 'keydown', bgEventKeyEvent = function(event) {
+                if (event.keyCode == 27) {
+                    layers.fullhide()
+                    return cancelEvent(event)
+                }
+            })
+
+            // Open layer
+            layerQueue.push()
+            layerQueue.hide()
+
+            boxQueue.hideAll()
+            layers.wrapshow(window.audioPlaylistLayerWrap, 0.7)
+            addClass(layerBG, 'ap_layer_bg_dark')
+
+            var listEl = geByClass1('_audio_pl_snippet__list', cur.apLayer)
+            if (audiosCount) {
+                cur.apLayerAutoList = new AutoList(listEl, {
+                    scrollNode: window.audioPlaylistLayerWrap,
+                    onNeedRows: function(cb, offset) {
+                        var rows = []
+                        var audios = playlist.getAudiosList()
+                        for (var i = offset; i < offset + 30; i++) {
+                            if (!audios[i]) {
+                                break
+                            }
+                            rows.push(AudioUtils.drawAudio(audios[i], 'inlined'))
+                        }
+                        cb(rows)
+                    }
+                })
+            }
+
+            // Some stuff
+            setStyle(listEl, {
+                //height: getSize(cur.apLayer)[1] - getSize(geByClass1('_audio_pl_snippet__header', cur.apLayer))[1]
+            })
+
+            boxRefreshCoords(cur.apLayer)
+
+            getAudioPlayer().updateCurrentPlaying()
+
+            layers.fullhide = _hideLayer
+
+            cur.apLayerPlaylistId = [playlistOwnerId, playlistId]
+        }
+    });
+
+    return false;
+}
+
+/* AUDIOS FUNCTIONS */
+function addAudio(btn, event) {
+    stManager.add(['audioplayer.js'], function() {
+        AudioUtils.addAudio(btn);
+    });
+
+    return cancelEvent(event);
+}
+
+function shareAudioPlaylist(event, playlistOwnerId, playlistId, accessHash) {
+    showBox('like.php', {
+        act: 'publish_box',
+        object: 'audio_playlist' + playlistOwnerId + '_' + playlistId,
+        list: accessHash,
+    }, {
+        stat: ['wide_dd.js', 'wide_dd.css', 'sharebox.js']
+    });
+
+    return cancelEvent(event)
+}
+
+function audioSearchPerformer(ref, event) {
+    var audioEl = gpeByClass('_audio_row', ref)
+    var audio = AudioUtils.getAudioFromEl(audioEl, true)
+
+    var page = window.AudioPage ? currentAudioPage(audioEl) : false
+    var isInAudioPage = window.AudioPage && currentAudioPage(audioEl) || cur.audioPage
+
+    layers.fullhide && layers.fullhide(true)
+
+    setTimeout(function() {
+        if (isInAudioPage) {
+            var performer = unclean(audio.performer).replace(/<em>|<\/em>/g, '')
+            nav.change({
+                q: performer,
+                performer: 1
+            }, event, {
+                searchPerformer: true,
+                nav: true,
+                isLayer: page.isLayer()
+            })
+        } else {
+            nav.go(ref, event)
+        }
+    }, 50)
+
+    return cancelEvent(event)
+}
+
+function getAudioPlayer() {
+    if (window.AudioPlayer)
+        window.ap = window.ap || new AudioPlayer();
+    else {
+        return {};
+    }
+    return window.ap;
+}
+
+function audioShowActionTooltip(btn, shift, needDownAndLeft) {
+    if (cur._addRestoreInProgress) return;
+
+    var audioRow = gpeByClass('_audio_row', btn);
+    var text = btn.id;
+
+    var audioFullId = domData(audioRow, 'full-id');
+
+    var audioAddRestoreInfo = AudioUtils.getAddRestoreInfo();
+
+    switch (text) {
+        case 'delete':
+            if (window.AudioPage && AudioPage.isInRecentPlayed(audioRow)) { // todo: little bit hacky
+                text = getLang('audio_remove_from_list');
+
+            } else if (hasClass(audioRow, 'recoms')) {
+                text = getLang('audio_dont_show');
+
+            } else {
+                var restores = audioAddRestoreInfo[audioFullId];
+                if (restores && restores.deleteAll) {
+                    text = restores.deleteAll.text;
+                } else {
+                    text = getLang('global_delete_audio');
+                }
+            }
+            break;
+
+        case 'add':
+            if (hasClass(audioRow, 'recoms') && hasClass(audioRow, 'audio_deleted')) {
+                text = getLang('audio_restore_audio');
+
+            } else {
+
+                var info = audioAddRestoreInfo[audioFullId];
+
+                if (info && info.state == 'deleted') {
+                    text = getLang('audio_restore_audio');
+
+                } else if (info && info.state == 'added') {
+                    text = getLang('global_delete_audio');
+
+                } else {
+                    var audioPage = window.AudioPage ? currentAudioPage(btn) : false;
+                    if (audioPage && audioPage.getOwnerId() < 0 && audioPage.canAddToGroup()) {
+                        text = getLang('audio_add_to_group');
+                    } else {
+                        text = getLang('audio_add_to_audio');
+                    }
+                }
+            }
+            break;
+
+        case 'edit':
+            text = getLang('audio_edit_audio');
+            break;
+
+        case 'next':
+            text = (cur.lang && cur.lang.global_audio_set_next_audio) || getLang('audio_set_next_audio');
+            break;
+
+        case 'recom':
+            text = getLang('audio_show_recommendations');
+            break;
+    }
+
+    var options = {
+        text: function() {
+            return text;
+        },
+        black: 1,
+        shift: shift ? shift : [7, 4, 0],
+        needLeft: true,
+        forcetodown: needDownAndLeft
+    };
+
+    if (gpeByClass('_im_mess_stack', btn)) {
+        options.appendParentCls = '_im_mess_stack';
+        options.shift = [7, 10, 0];
+        options.noZIndex = true;
+
+    } else if (gpeByClass('top_notify_wrap', btn)) {
+        options.appendParentCls = 'top_notify_wrap';
+    }
+
+    showTooltip(btn, options);
+}
+
+function deleteAudioOnClaim(owner_id, id) {
+    var audioId = owner_id + '_' + id;
+    var audioEl = ge('audio_' + audioId);
+    AudioPage(audioEl).deleteAudio(audioEl, audioId, event, true);
+
+    cur.claimWarning && cur.claimWarning.hide();
+}
+
+function initTopAudioPlayer() {
+    stManager.add(['audioplayer.js'], function() {
+        TopAudioPlayer.init();
+    });
+}
+
+function toggleAudioLyrics(event, ref, audioId, lyricsId) {
+    if (!lyricsId) {
+        return false
+    }
+
+    var audioRowEl = gpeByClass('_audio_row', ref)
+    var lyricsEl = geByClass1('_audio_lyrics_wrap', audioRowEl)
+
+    if (lyricsEl.innerHTML) {
+        toggle(lyricsEl)
+        cancelEvent(event)
+        return false
+    }
+
+    lyricsId = intval(lyricsId)
+
+    if (lyricsId) {
+        addClass(audioRowEl, 'audio_loading')
+        showProgress(audioRowEl)
+
+        ajax.post('al_audio.php', {
+            act: 'get_lyrics',
+            aid: audioId,
+            lid: lyricsId
+        }, {
+            onDone: function(lyrics) {
+                hideProgress(audioRowEl)
+                removeClass(audioRowEl, 'audio_loading')
+
+                lyricsEl.innerHTML = lyrics
+                show(lyricsEl)
+            }
+        })
+
+        cancelEvent(event)
+    }
+
+    return false
+}
+/* END OF AUDIOS FUNCTIONS */
 
 try {
     stManager.done('common.js');

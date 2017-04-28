@@ -439,13 +439,13 @@
 }
 
 .videocat_channel_header .videocat_channel_title {
-    color: #2b2f33;
+    color: #000;
     font-size: 16px;
     margin-bottom: 3px
 }
 
 .videocat_channel_header .videocat_channel_title a {
-    color: #2b2f33
+    color: #000
 }
 
 .videocat_channel_header .videocat_channel_groupsize {

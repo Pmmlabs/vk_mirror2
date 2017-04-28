@@ -343,6 +343,14 @@ var Community = {
                         }
                     },
 
+                    shareAudioPlaylist: function(shareAudioPlaylist) {
+                        !vk.id ? Widgets.oauth() : shareAudioPlaylist.apply(null, [].slice.call(arguments, 1));
+                    }.bind(null, shareAudioPlaylist),
+
+                    addAudio: function(addAudio) {
+                        !vk.id ? Widgets.oauth() : addAudio.apply(null, [].slice.call(arguments, 1));
+                    }.bind(null, addAudio),
+
                     mentionOver: function() {
                         return true;
                     },

@@ -2547,7 +2547,7 @@ img.im_photo_thumb {
     border: none;
     -o-transition: border-bottom-color 0.3s linear;
     transition: border-bottom-color 0.3s linear;
-    -webkit-font-smoothing: subpixel-antialiase
+    -webkit-font-smoothing: subpixel-antialiased
 }
 
 .im-chat-input .im-chat-input--text * {

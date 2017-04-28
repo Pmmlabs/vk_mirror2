@@ -824,14 +824,6 @@ div.medadd_c_nofixed {
     padding-top: 10px
 }
 
-.audio_row.audio_no_actions:hover .audio_acts {
-    display: none!important
-}
-
-.audio_row.audio_no_actions:hover .audio_duration {
-    display: block!important
-}
-
 .page_preview_audio_wrap {
     position: relative
 }

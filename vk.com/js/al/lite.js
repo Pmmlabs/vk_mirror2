@@ -1151,48 +1151,138 @@ function q2ajx(qa) {
 
 window.stManager = {
     emitter: new EventEmitter(),
-
-    _add: function(f, old) {
-        var name = f.replace(/[\/\.]/g, '_');
-        if (old && old.l && old.t == 'css') {
-            var elem = ce('style', {
-                type: 'text/css',
-                media: 'screen'
-            });
-            headNode.appendChild(elem);
-            var text = '#' + name + ' { display: block; }';
-            if (elem.sheet) {
-                elem.sheet.insertRule(text, 0);
-            } else if (elem.styleSheet) {
-                elem.styleSheet.cssText = text;
+    _waiters: [],
+    _wait: function() {
+        var l = __stm._waiters.length,
+            checked = {},
+            handlers = [];
+        if (!l) {
+            clearInterval(__stm._waitTimer);
+            __stm._waitTimer = false;
+            return;
+        }
+        for (var j = 0; j < l; ++j) {
+            var wait = __stm._waiters[j][0];
+            for (var i = 0, ln = wait.length; i < ln; ++i) {
+                var f = wait[i];
+                if (!checked[f]) {
+                    if (!StaticFiles[f].l && StaticFiles[f].t == 'css' && getStyle(StaticFiles[f].n, 'display') == 'none') {
+                        __stm.done(f);
+                    }
+                    if (StaticFiles[f].l) {
+                        checked[f] = 1;
+                    } else {
+                        checked[f] = -1;
+                        if (vk.loaded) {
+                            var c = ++StaticFiles[f].c;
+                            if (c > __stm.lowlimit && stVersions[f] > 0 || c > __stm.highlimit) {
+                                if (stVersions[f] < 0) {
+                                    topError('<b>Error:</b> Could not load <b>' + f + '</b>.', {
+                                        dt: 5,
+                                        type: 1,
+                                        msg: 'Failed to load with ' + __stm.lowlimit + '/' + __stm.highlimit + ' limits (' + ((vkNow() - vk.started) / 100) + ' ticks passed)',
+                                        file: f
+                                    });
+                                    StaticFiles[f].l = 1;
+                                    checked[f] = 1;
+                                } else {
+                                    topMsg('Some problems with loading <b>' + f + '</b>...', 5);
+                                    stVersions[f] = irand(-10000, -1);
+                                    __stm._add(f, StaticFiles[f]);
+                                }
+                            }
+                        }
+                    }
+                }
+                if (checked[f] > 0) {
+                    wait.splice(i, 1);
+                    --i;
+                    --ln;
+                }
+            }
+            if (!wait.length) {
+                handlers.push(__stm._waiters.splice(j, 1)[0][1]);
+                --j;
+                --l;
             }
         }
+        for (var j = 0, l = handlers.length; j < l; ++j) {
+            handlers[j]();
+        }
+    },
+    _addCss: function(text) {
+        var elem = headNode.appendChild(ce('style', {
+            type: 'text/css',
+            media: 'screen'
+        }));
+        if (elem.sheet) {
+            elem.sheet.insertRule(text, 0);
+        } else if (elem.styleSheet) {
+            elem.styleSheet.cssText = text;
+        }
+    },
+    _srcPrefix: function(f, v) {
+        if (!vk.stDomains ||
+            __dev ||
+            f.indexOf('.js') == -1 && f.indexOf('.css') == -1 ||
+            f.indexOf('lang') != -1 ||
+            f.indexOf('dyn-') != -1 ||
+            f.indexOf('loader_nav') != -1 ||
+            location.protocol == 'https:') {
+            return '';
+        }
+        if (f.indexOf('.css') != -1) {
+            return 'http://st0.vk.me';
+        }
+        f = f.replace(/[^a-z\d\.\-_]/ig, '');
+        var src = intval(v),
+            n = f.length,
+            i;
+        for (i = 0; i < n; i++) {
+            src += f.charCodeAt(i);
+        }
+        return 'http://st' + ((src % vk.stDomains) + 1) + '.vk.me';
+    },
+    _add: function(f, old) {
+        var name = f.replace(/[\/\.]/g, '_'),
+            f_ver = stVersions[f],
+            f_full = f + '?' + f_ver,
+            f_prefix = stManager._srcPrefix(f, f_ver);
+
+        // f_prefix = ''; // tmp fix userapi problems // turned to vk.me
+
+        if (old && old.l && old.t == 'css') {
+            __stm._addCss('#' + name + ' {display: block; }');
+        }
         StaticFiles[f] = {
-            v: stVersions[f],
+            v: f_ver,
             n: name,
             l: 0,
             c: 0
         };
-        var f_full = f + '?' + stVersions[f];
         if (f.indexOf('.js') != -1) {
-            var p = 'js/';
+            var p = '/js/';
             if (stTypes.fromLib[f]) {
                 p += 'lib/';
             } else if (!/^lang\d/i.test(f) && !stTypes.fromRoot[f] && f.indexOf('/') == -1) {
                 p += 'al/';
             }
-            headNode.appendChild(ce('script', {
-                type: 'text/javascript',
-                src: p + f_full
-            }));
-
             StaticFiles[f].t = 'js';
+
+            if (f == 'common.js') {
+                setTimeout(stManager.done.bind(stManager).pbind('common.js'), 0);
+            } else {
+                headNode.appendChild(ce('script', {
+                    type: 'text/javascript',
+                    src: f_prefix + p + f_full
+                }));
+            }
         } else if (f.indexOf('.css') != -1) {
-            var p = 'css/' + (vk.css_dir || '') + (stTypes.fromRoot[f] || f.indexOf('/') != -1 ? '' : 'al/');
+            var p = '/css/' + (vk.css_dir || '') + (stTypes.fromRoot[f] || f.indexOf('/') != -1 ? '' : 'al/');
             headNode.appendChild(ce('link', {
                 type: 'text/css',
                 rel: 'stylesheet',
-                href: p + f_full
+                href: f_prefix + p + f_full
             }));
 
             StaticFiles[f].t = 'css';
@@ -1205,12 +1295,15 @@ window.stManager = {
         }
     },
 
-    add: function(files, callback) {
+    add: function(files, callback, async) {
         var wait = [],
             de = document.documentElement;
         if (!isArray(files)) files = [files];
         for (var i in files) {
             var f = files[i];
+            if (!f) {
+                continue;
+            }
             if (f.indexOf('?') != -1) {
                 f = f.split('?')[0];
             }
@@ -1219,9 +1312,12 @@ window.stManager = {
             } else if (!stVersions[f]) {
                 stVersions[f] = 1;
             }
+            // Opera Speed Dial fix
+            var opSpeed = browser.opera && de.clientHeight == 768 && de.clientWidth == 1024;
+            if ((opSpeed || __debugMode) && !(browser.iphone || browser.ipad) && f != 'common.js' && f != 'common.css' && stVersions[f] > 0 && stVersions[f] < 1000000000) stVersions[f] += irand(1000000000, 2000000000);
             var old = StaticFiles[f];
             if (!old || old.v != stVersions[f]) {
-                stManager._add(f, old);
+                __stm._add(f, old);
             }
             if (callback && !StaticFiles[f].l) {
                 wait.push(f);
@@ -1229,47 +1325,21 @@ window.stManager = {
         }
         if (!callback) return;
         if (!wait.length) {
-            return callback();
+            return (async === true) ? setTimeout(callback, 0) : callback();
         }
-        var waiter = function() {
-            var nwait = [];
-            for (var i in wait) {
-                var f = wait[i];
-                if (!StaticFiles[f].l && StaticFiles[f].t == 'css' && getStyle(StaticFiles[f].n, 'display') == 'none') {
-                    if (stVersions[f] < 0) {
-                        topMsg('<b>Warning:</b> Something is bad, please <b><a href="/techsupp.php?fid=1&act=t&tid=497998">clear your cache</a></b> and restart your browser.', 10);
-                    }
-                    StaticFiles[f].l = 1;
-                }
-                if (!StaticFiles[f].l) {
-                    if (++StaticFiles[f].c > 150) { // Can't load for 15 seconds.
-                        if (stVersions[f] < 0) {
-                            topError('<b>Error:</b> Could not load <b>' + f + '</b>.', 3);
-                            StaticFiles[f].l = 1;
-                        } else {
-                            topMsg('Some problems with loading <b>' + f + '</b>...', 3);
-                            stVersions[f] = irand(-10000, -1);
-                            stManager._add(f, StaticFiles[f]);
-                        }
-                    }
-                }
-                if (!StaticFiles[f].l) {
-                    nwait.push(f);
-                }
-            }
-            wait = nwait;
-            if (wait.length) {
-                return setTimeout(arguments.callee, 100);
-            }
-            callback();
+        __stm._waiters.push([wait, callback]);
+        if (!__stm._waitTimer) {
+            __stm._waitTimer = setInterval(__stm._wait, 100);
         }
-        setTimeout(waiter, 1);
     },
     done: function(f) {
+        if (stVersions[f] < 0) {
+            topMsg('<b>Warning:</b> Something is bad, please <b><a href="/page-777107_43991681">clear your cache</a></b> and restart your browser.', 10);
+        }
         StaticFiles[f].l = 1;
         stManager.emitter.emitEvent('update', [f, StaticFiles[f]]);
     }
-}
+}, __stm = stManager;
 
 window.ajaxCache = {};
 window.globalAjaxCache = {};
@@ -2507,6 +2577,10 @@ function setWorkerTimeout(cb, delay) {
 }
 
 function clearWorkerTimeout(worker) {
+    if (!worker) {
+        return false
+    }
+
     if (isNumeric(worker)) {
         clearTimeout(worker);
     } else {
@@ -3561,6 +3635,14 @@ function hideProgress(el) {
     }
 }
 
+function disableEl(el) {
+    setStyle(el, 'pointer-events', 'none')
+}
+
+function enableEl(el) {
+    setStyle(el, 'pointer-events', '')
+}
+
 function throttle(fn, time) {
     var timeout;
 
@@ -3597,27 +3679,6 @@ function getProgressHtml(id, cls) {
         id: id || '',
         cls: cls || ''
     });
-}
-
-function showAudioClaimWarning(owner_id, id, delete_hash, claim_id, title, reason) {
-    var claimText = getLang(reason == 'crap' ? 'audio_crap_warning' : 'audio_claim_warning'),
-        claimTitle = getLang(reason == 'crap' ? 'audio_crap_warning_title' : 'audio_claim_warning_title'),
-        el = geByClass1('_audio_row_' + owner_id + '_' + id);
-    claimText = claimText.split('{audio}').join('<b>' + title + '</b>');
-    el && showTooltip(el, {
-        slide: 15,
-        shift: [-3, 6],
-        dir: 'auto',
-        checkLeft: true,
-        showdt: 0,
-        hidedt: 200,
-        appendEl: ge('main'),
-        reverseOffset: 80,
-        showIfFit: true,
-        typeClass: 'like_tt audio_claim_warning_tt',
-        content: '<div class="audio_claim_warning_title">' + claimTitle + '</div><div class="audio_claim_warning_content">' + claimText + '</div>'
-    });
-    return false;
 }
 
 function debounce(func, wait, immediate) {
@@ -6839,19 +6900,6 @@ function getAudioPlayer() {
     return getAudioPlayer.wrapper;
 }
 
-function prepareAudioLayer(cb) {
-    stManager.add(['audio.js', 'audioplayer.js', 'ui_controls.js', 'ui_controls.css', 'audio.css', 'suggester.js', 'auto_list.js', 'indexer.js'], function() {
-        cb && cb();
-    });
-}
-
-function showAudioLayer(event, btn) {
-    prepareAudioLayer(function() {
-        AudioUtils.showAudioLayer(btn);
-    });
-    return cancelEvent(event);
-}
-
 function audioShowActionTooltip(btn) {
     if (cur._addRestoreInProgress) return;
 
@@ -6860,18 +6908,22 @@ function audioShowActionTooltip(btn) {
 
     var audioFullId = domData(audioRow, 'full-id');
 
-    cur._audioAddRestoreInfo = cur._audioAddRestoreInfo || {};
+    var audioAddRestoreInfo = AudioUtils.getAddRestoreInfo();
 
     switch (text) {
         case 'delete':
-            if (hasClass(audioRow, 'recoms')) {
+            if (window.AudioPage && AudioPage.isInRecentPlayed(audioRow)) { // todo: little bit hacky
+                text = getLang('audio_remove_from_list');
+
+            } else if (hasClass(audioRow, 'recoms')) {
                 text = getLang('audio_dont_show');
+
             } else {
-                var restores = cur._restores && cur._restores[audioFullId];
+                var restores = audioAddRestoreInfo[audioFullId];
                 if (restores && restores.deleteAll) {
                     text = restores.deleteAll.text;
                 } else {
-                    text = getLang('audio_delete_audio');
+                    text = getLang('global_delete_audio');
                 }
             }
             break;
@@ -6882,17 +6934,17 @@ function audioShowActionTooltip(btn) {
 
             } else {
 
-                var info = cur._audioAddRestoreInfo[audioFullId];
+                var info = audioAddRestoreInfo[audioFullId];
 
                 if (info && info.state == 'deleted') {
                     text = getLang('audio_restore_audio');
 
-                } else if (info && info.state == AudioUtils.AUDIO_STATE_ADDED) {
-                    text = getLang('audio_delete_audio');
+                } else if (info && info.state == 'added') {
+                    text = getLang('global_delete_audio');
 
                 } else {
-                    var audioPage = window.AudioPage ? AudioPage(btn) : false;
-                    if (audioPage && audioPage.options.oid < 0 && audioPage.options.canAudioAddToGroup) {
+                    var audioPage = window.AudioPage ? currentAudioPage(btn) : false;
+                    if (audioPage && audioPage.getOwnerId() < 0 && audioPage.canAddToGroup()) {
                         text = getLang('audio_add_to_group');
                     } else {
                         text = getLang('audio_add_to_audio');
@@ -6919,13 +6971,13 @@ function audioShowActionTooltip(btn) {
             return text;
         },
         black: 1,
-        shift: [8, 5, 0],
+        shift: [7, 5, 0],
         needLeft: true
     };
 
     if (gpeByClass('_im_mess_stack', btn)) {
         options.appendParentCls = '_im_mess_stack';
-        options.shift = [13, 10, 0];
+        options.shift = [7, 10, 0];
         options.noZIndex = true;
 
     } else if (gpeByClass('top_notify_wrap', btn)) {
@@ -6958,6 +7010,57 @@ function addAudio(btn, event) {
     });
 
     return cancelEvent(event);
+}
+
+function showAudioClaimWarning(owner_id, id, claim_id, title, reason) {
+    var claimText, claimTitle;
+
+    if (reason == 'geo') {
+        claimText = getLang('audio_claimed_geo');
+        claimTitle = getLang('audio_claim_warning_title');
+    } else {
+        claimText = getLang('audio_claim_warning');
+        claimTitle = getLang('audio_claim_warning_title');
+    }
+
+    claimText = claimText.split('{audio}').join('<b>' + title + '</b>');
+
+    var el = geByClass1('_audio_row_' + owner_id + '_' + id);
+    el && showTooltip(el, {
+        slide: 15,
+        shift: [-3, 6],
+        dir: 'auto',
+        showdt: 0,
+        hidedt: 200,
+        appendEl: ge('main'),
+        typeClass: 'like_tt audio_claim_warning_tt',
+        content: '<div class="audio_claim_warning_title">' + claimTitle + '</div><div class="audio_claim_warning_content">' + claimText + '</div>'
+    });
+}
+
+function parallel() {
+    var args = [].slice.call(arguments)
+    var onDoneAll = args.pop()
+    var hub = new callHub(onDoneAll, args.length)
+    each(args, function(i, func) {
+        func(function() {
+            hub.done()
+        })
+    })
+}
+
+function showAudioPlaylist() {}
+
+function shareAudioPlaylist(event, playlistOwnerId, playlistId, accessHash) {
+    showBox('like.php', {
+        act: 'publish_box',
+        object: 'audio_playlist' + playlistOwnerId + '_' + playlistId,
+        list: accessHash,
+    }, {
+        stat: ['wide_dd.js', 'wide_dd.css', 'sharebox.js']
+    });
+
+    return cancelEvent(event)
 }
 
 /* Post photo */

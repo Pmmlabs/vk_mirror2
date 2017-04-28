@@ -3,6 +3,7 @@
 }
 
 #page_wrap .wcomments_post_footer .post_like_wrap .post_like_icon,
+.audio_pl_snippet .audio_pl_snippet__more_btn:before,
 .wcomments_admin_icon:before,
 .wcomments_auto .wcomments_form .ms_item_more,
 .wcomments_auto .wcomments_post .ms_item_more,
@@ -45,7 +46,7 @@
 }
 
 .wcomments_posts {
-    margin-bottom: 15px
+    padding-bottom: 15px
 }
 
 .wcomments_posts:empty,
@@ -60,6 +61,7 @@
 .wcomments_posts_inner {
     position: relative;
     box-sizing: border-box;
+    overflow: hidden;
     padding: 0 15px
 }
 
@@ -687,6 +689,12 @@
     margin: 6px 0 5px!important
 }
 
+.wall_module .post.wcomments_post .audio_pl_snippet__action_btn_delete,
+.wall_module .post.wcomments_post .audio_pl_snippet__action_btn_edit {
+    display: none!important
+}
+
+.wall_module .post.wcomments_post .audio_pl_snippet,
 .wall_module .post.wcomments_post .media_desc,
 .wall_module .post.wcomments_post .page_media_thumbed_link,
 .wall_module .post.wcomments_post .page_media_wrap,
@@ -699,6 +707,7 @@
     max-width: 454px
 }
 
+.wall_module .post.wcomments_post .replies .audio_pl_snippet,
 .wall_module .post.wcomments_post .replies .media_desc,
 .wall_module .post.wcomments_post .replies .page_media_thumbed_link,
 .wall_module .post.wcomments_post .replies .page_media_wrap,
@@ -1053,4 +1062,35 @@
         background-image: url(/images/icons/comments_widget_2x.png);
         background-size: 21px 87px
     }
+}
+
+.audio_pl_snippet .audio_pl_snippet__more_btn:before {
+    width: 14px;
+    height: 9px;
+    background: url(/images/icons/like_widget.png);
+    z-index: 2;
+    top: 7px;
+    left: 29px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_pl_snippet .audio_pl_snippet__more_btn:before {
+        background-image: url(/images/icons/like_widget_2x.png);
+        background-size: 19px 59px
+    }
+}
+
+.audio_pl_snippet .audio_pl_snippet__more_btn:after {
+    z-index: 1;
+    display: block;
+    content: ' ';
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    left: 25px;
+    top: 0;
+    background: #5e81a8;
+    border-radius: 3px
 }

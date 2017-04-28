@@ -956,50 +956,6 @@ div.pad_msg_text div.im_fwd_log_wrap {
     margin: 0 -10px
 }
 
-#pad_audio_friends_list_wrap {
-    position: relative
-}
-
-#pad_playlist_panel {
-    border-right: 1px solid #dae2e8;
-    vertical-align: top;
-    padding: 14px 0px 13px 13px
-}
-
-#pad_filters_panel {
-    width: 176px;
-    height: 430px;
-    background: #f7f7f7
-}
-
-#pad_playlist_panel.light div.title_wrap b span,
-#pad_playlist_panel.light div.title_wrap span.title span {
-    background-color: #fff8cc;
-    border-bottom: 1px solid #ffe222
-}
-
-#pad_playlist_panel.light .audio.current div.title_wrap b span,
-#pad_playlist_panel.light .audio.current div.title_wrap span.title span {
-    background-color: #f0f4f7;
-    border-bottom: 1px solid #eff3f6;
-    color: #2b587a
-}
-
-#pad_side_filters_wrap {
-    height: 430px;
-    padding: 0 10px;
-    overflow: hidden;
-    position: absolute;
-    top: 0px;
-    left: 451px
-}
-
-#pad_side_filters {
-    padding: 14px 0px 0px;
-    width: 156px;
-    position: relative
-}
-
 #pad_side_filters .audio_search_filter.lyrics_filter {
     display: none
 }

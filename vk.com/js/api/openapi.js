@@ -1892,6 +1892,34 @@ if (!VK.Widgets) {
         });
     };
 
+    VK.Widgets.Playlist = function(objId, ownerId, playlistId, hash, options) {
+        var params = {
+                oid: parseInt(ownerId, 10),
+                pid: parseInt(playlistId, 10),
+                hash: hash || ''
+            },
+            rpc;
+
+        if (!options) options = {};
+        if (!params.oid) throw Error('No owner id passed');
+        if (!params.pid) throw Error('No playlist id passed');
+
+        return VK.Widgets._constructor('widget_playlist.php', objId, options, params, {
+            showBox: function(url, props) {
+                var box = VK.Util.Box(VK.Widgets.showBoxUrl(options.base_domain, url), [], {
+                    proxy: function() {
+                        rpc.callMethod.apply(rpc, arguments);
+                    }
+                });
+                box.show();
+            }
+        }, {
+            minWidth: 200
+        }, function(o, i, r) {
+            rpc = r;
+        });
+    };
+
     VK.Widgets.Ads = function(objId, options, paramsExtra) {
         options = options || {};
         paramsExtra = paramsExtra || {};

@@ -341,7 +341,7 @@
 
 .blog_entry_text,
 .blog_entry_text_wrap .wk_text {
-    color: #2b2f33;
+    color: #000;
     font-size: 15px;
     line-height: 22.5px;
     letter-spacing: -0.1px;
@@ -389,7 +389,7 @@
 }
 
 .blog_entry_text b {
-    color: #2b2f33
+    color: #000
 }
 
 .blog_more_but {
@@ -776,7 +776,7 @@
 .blog_about_big_title {
     font-size: 39px;
     letter-spacing: -0.1px;
-    color: #2b2f33;
+    color: #000;
     font-weight: 300;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;

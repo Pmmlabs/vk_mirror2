@@ -2135,7 +2135,7 @@ a.page_block_header:hover .apps_cat_header_link:after {
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     display: block;
-    color: #2b2f33;
+    color: #000;
     padding: 2px 0
 }
 

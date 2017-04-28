@@ -684,6 +684,7 @@ var WComments = {
     resizePost: function(postEl, isReply) {
         var widthTo = isReply ? cur.options.reply_max_w : cur.options.max_w,
             heightTo = Math.max(cur.options.kludges_min_h, widthTo * (isReply ? cur.options.reply_kludges_ratio : cur.options.kludges_ratio));
+
         each(geByClass('page_album_wrap', postEl, 'div'), function(i, albumEl) {
             WComments.resizePostAlbumWrap(albumEl, widthTo, 5);
         });
@@ -692,6 +693,18 @@ var WComments = {
         });
         each(geByClass('page_post_sized_thumbs', postEl, 'div'), function(i, meshEl) {
             WComments.resizePostSizedThumbs(meshEl, widthTo, 5, heightTo, true);
+        });
+        each(geByClass('audio_pl_snippet', postEl, 'div'), function(i, snippetEl) {
+            if (widthTo <= cur.playlist_snippet_max_narrow_width) {
+                var className = 'audio_pl_snippet_size_narrow';
+            } else if (widthTo <= cur.playlist_snippet_max_medium_width) {
+                var className = 'audio_pl_snippet_size_medium';
+            } else {
+                var className = '';
+            }
+            setStyle(snippetEl, 'width', widthTo);
+            removeClass(snippetEl, 'audio_pl_snippet_size_narrow audio_pl_snippet_size_medium');
+            className && addClass(snippetEl, className);
         });
 
         return postEl;
@@ -860,9 +873,7 @@ var WComments = {
                             'sticker_preview': true
                         },
                         'al_audio.php': {
-                            'a_choose_audio_box': {
-                                stat: ['audioplayer.css', 'audioplayer.js']
-                            }
+                            'choose_box': true
                         }
                     }),
 
@@ -877,6 +888,14 @@ var WComments = {
                     showPhoto: Widgets.showPhoto,
 
                     showVideo: Widgets.showVideo,
+
+                    shareAudioPlaylist: function(shareAudioPlaylist) {
+                        !vk.id ? Widgets.oauth() : shareAudioPlaylist.apply(null, [].slice.call(arguments, 1));
+                    }.bind(null, shareAudioPlaylist),
+
+                    addAudio: function(addAudio) {
+                        !vk.id ? Widgets.oauth() : addAudio.apply(null, [].slice.call(arguments, 1));
+                    }.bind(null, addAudio),
 
                     showWiki: function(likeInfo) {
                         likeInfo = (likeInfo && likeInfo['w'] || '').split('/');
@@ -1645,13 +1664,33 @@ var WComments = {
                                 });
                                 break;
                             case 'audio':
-                                handler = showBox.pbind('al_audio.php', {
-                                    to_id: cur.postTo,
-                                    act: 'a_choose_audio_box'
-                                }, {
-                                    cache: 1,
-                                    dark: 1
-                                });
+                                handler = function() {
+                                    stManager.add(['audio.js', 'indexer.js', 'auto_list.js', 'grid_sorter.js', 'audio.css'], function() {
+                                        var playlistAlreadyAttached = false
+                                        each(addMedia.chosenMedias || [], function() {
+                                            if (this[0] == 'audio_playlist') {
+                                                playlistAlreadyAttached = true
+                                            }
+                                        })
+
+                                        cur.audioAttachSwitchOwnerId = false
+
+                                        var attachOwner = params.to_id || vk.id
+                                        if (cur.wallGroupAudioEnabled !== (void 0) && !cur.wallGroupAudioEnabled) {
+                                            attachOwner = vk.id
+                                        } else {
+                                            if (params.to_id != vk.id) {
+                                                cur.audioAttachSwitchOwnerId = params.to_id
+                                            }
+                                        }
+
+                                        AudioPage.showAttachBox(attachOwner, {
+                                            playlistAlreadyAttached: playlistAlreadyAttached,
+                                            groupAudioEnabled: cur.wallGroupAudioEnabled,
+                                        })
+                                    })
+                                }
+
                                 break;
                             default:
                                 return;
@@ -1825,15 +1864,38 @@ var WComments = {
                                     break;
 
                                 case 'audio':
-                                    if (!data.info) return false;
+                                    if (!isArray(data)) {
+                                        if (!data.info) return false;
 
-                                    var mediaRowEl = geByClass1('_audio_row_' + media);
-                                    if (mediaRowEl) {
-                                        data = AudioUtils.getAudioFromEl(mediaRowEl);
+                                        var mediaRowEl = geByClass1('_audio_row_' + media);
+                                        if (mediaRowEl) {
+                                            data = AudioUtils.getAudioFromEl(mediaRowEl);
+                                        }
                                     }
 
                                     preview = Page.addAudioPreview(clean(media), data);
                                     attrs = ' id="pam' + clean(lnkId) + '_audio' + clean(media) + '"';
+                                    break;
+
+                                case 'audio_playlist':
+                                    {
+                                        var coverStyle = data.coverUrl ? ('background-image:url(' + clean(unclean(data.coverUrl)) + '); background-size: cover;') : ''
+                                        var playlistIds = data.id.split('_');
+                                        var authorLine = '';
+                                        if (data.authorHref) {
+                                            authorLine = '<a href="' + clean(unclean(data.authorHref)) + '">' + clean(unclean(data.authorName)) + '</a>';
+                                        } else {
+                                            authorLine = clean(unclean(data.authorName));
+                                        }
+                                        postview =
+                                        '<div class="_audio_pl _audio_pl_' + clean(data.id) + ' audio_pl_attach_preview clear_fix">' +
+                                        '<div class="audio_pl_attach_preview__play audio_pl_snippet_play_small" onclick="return getAudioPlayer().playPlaylist(' + clean(playlistIds[0]) + ', ' + clean(playlistIds[1]) + ')"></div>' +
+                                        '<div class="audio_pl_attach_preview__cover" style="' + coverStyle + '"></div>' +
+                                        '<div class="audio_pl_attach_preview__title">' + clean(unclean(data.title)) + '</div>' +
+                                        '<div class="audio_pl_attach_preview__authorLine">' + authorLine + '</div>' +
+                                        '</div>'
+                                        preview = '<span class="medadd_h">' + getLang('audio_attach_title_playlist') + '</span>'
+                                    }
                                     break;
 
                                 case 'share':
@@ -2588,7 +2650,7 @@ var WComments = {
                                 }
                                 var valid = true;
                                 if (domain.match(/(^|\.|\/\/)(vkontakte\.ru|vk\.com)/)) {
-                                    valid = query.match(/(#photo|^\/(photo|video|album|page|audio|doc)|z=(album|photo|video)|w=(page|product))(-?\d+_)?\d+|\.(jpg|png|gif)$|market-?\d+\?section=album_\d+|^\/stickers\/.+$|^\/blog\/.+$|^http:\/\/instagram\.com\/p\/.+/) ? true : false;
+                                    valid = query.match(/(#photo|^\/(photo|video|album|page|audio|doc)|z=(album|photo|video|audio_playlist)|w=(page|product))(-?\d+_)?\d+|\.(jpg|png|gif)$|market-?\d+\?section=album_\d+|^\/stickers\/.+$|^\/blog\/.+$|^http:\/\/instagram\.com\/p\/.+/) ? true : false;
                                 }
                                 if (valid) {
                                     addMedia.checkURL(initialUrl, withTimeout);

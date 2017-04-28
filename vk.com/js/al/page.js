@@ -6298,7 +6298,8 @@ var Wall = {
             wallMyReplied: {},
             wallMentions: [],
             wallMyRepliesCnt: 0,
-            wallUploadOpts: opts.upload
+            wallUploadOpts: opts.upload,
+            wallGroupAudioEnabled: opts.groupAudioEnabled,
         });
         if (opts.wall_tpl && opts.wall_tpl.lang) {
             cur.lang = extend(cur.lang || {}, opts.wall_tpl.lang);

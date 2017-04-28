@@ -73,7 +73,9 @@ var uiTabs = {
         goTab: function(t, e, i) {
             if (checkEvent(e)) return !0;
             var s = gpeByClass("ui_tabs", t);
-            return i || geByClass1("ui_tab_sel", s) != t ? (uiTabs.switchTab(t), uiTabs.showProgress(s), nav.go(t, e)) : !1
+            return i || geByClass1("ui_tab_sel", s) != t ? (uiTabs.switchTab(t), uiTabs.showProgress(s), nav.go(t, e, {
+                tab: t
+            })) : !1
         },
         switchTab: function(t, e) {
             var i = gpeByClass("ui_tabs", t),
@@ -383,7 +385,8 @@ var uiTabs = {
                             appendTo: wrapEl,
                             content: content,
                             autoShow: !1,
-                            offset: [0, 5]
+                            offset: [0, 5],
+                            shift: options.params.shift ? options.params.shift : 0
                         }), options.paramsTooltip.build(), setTimeout(function() {
                             (function initScript() {
                                 eval(options.params.script)
@@ -433,7 +436,7 @@ var uiTabs = {
             t = uiSearch.getFieldEl(t);
             var s = data(t, "opts"),
                 o = uiSearch.getWrapEl(t),
-                n = t.getValue();
+                n = t.getValue ? t.getValue() : t.value;
             toggleClass(o, "ui_search_field_empty", !trim(n)), n || uiSearch.removeAllFilters(t), e || s.onChange && s.onChange.call(t, n, i)
         },
         focus: function(t) {
@@ -443,18 +446,22 @@ var uiTabs = {
             t = uiSearch.getFieldEl(t);
             var s = data(t, "opts"),
                 o = uiSearch.getWrapEl(t),
-                n = t.getValue();
-            n ? (val(t, ""), uiSearch.onChanged(t, e, i), e || s.onEnter && s.onEnter(t, ""), elfocus(t)) : s.in_tabs && uiTabs.hideSearch(o), uiSearch.removeAllFilters(t), window.tooltips && tooltips.destroyAll()
+                n = t.getValue ? t.getValue() : t.value;
+            n ? (val(t, ""), uiSearch.onChanged(t, e, i), e || s.onEnter && s.onEnter(t, ""), elfocus(t)) : s.in_tabs && uiTabs.hideSearch(o), window.tooltips && tooltips.destroyAll()
         },
         showProgress: function(t) {
             t = uiSearch.getFieldEl(t);
             var e = uiSearch.getWrapEl(t);
-            addClass(e, "ui_search_loading"), toggleClass(e, "ui_search_field_empty", t.getValue ? !trim(t.getValue()) : !0)
+            addClass(e, "ui_search_loading");
+            var i = t.getValue ? trim(t.getValue()) : t.value;
+            toggleClass(e, "ui_search_field_empty", !i)
         },
         hideProgress: function(t) {
             t = uiSearch.getFieldEl(t);
             var e = uiSearch.getWrapEl(t);
-            removeClass(e, "ui_search_loading"), toggleClass(e, "ui_search_field_empty", t.getValue ? !trim(t.getValue()) : !0)
+            removeClass(e, "ui_search_loading");
+            var i = t.getValue ? trim(t.getValue()) : t.value;
+            toggleClass(e, "ui_search_field_empty", !i)
         },
         scrollResize: function(t) {
             if (!browser.mobile) {
@@ -545,7 +552,7 @@ var uiTabs = {
             var e = uiSearch._getFiltersPane(t),
                 i = data(e, "cur_filters");
             each(extend({}, i), function(e) {
-                uiSearch.removeFilter(t, e)
+                uiSearch.removeFilter(t, e, !0)
             })
         },
         toggleFilter: function(t, e, i, s) {
@@ -558,13 +565,13 @@ var uiTabs = {
                 o[e] = i, data(s, "cur_filters", o), uiSearch._renderFilters(t)
             }
         },
-        removeFilter: function(t, e) {
-            var i = uiSearch._getFiltersPane(t),
-                s = data(i, "cur_filters") || {};
-            if (s[e]) {
-                delete s[e], data(i, "cur_filters", s);
-                var o = uiSearch.getOptions(t);
-                o.onFilterRemoved && o.onFilterRemoved(e, t), uiSearch._renderFilters(t)
+        removeFilter: function(t, e, i) {
+            var s = uiSearch._getFiltersPane(t),
+                o = data(s, "cur_filters") || {};
+            if (o[e]) {
+                delete o[e], data(s, "cur_filters", o);
+                var n = uiSearch.getOptions(t);
+                n.onFilterRemoved && n.onFilterRemoved(e, t, i), uiSearch._renderFilters(t)
             }
         },
         _getFiltersPane: function(t) {
@@ -808,10 +815,10 @@ var uiTabs = {
                     removeEvent(document, "mouseup contextmenu touchend pointerup", e), this.released = !0, this.noMore && this.stopped && !this.dragging && (this.noMore = !1, this.more())
                 }.bind(this))
             }.bind(this)), this.addEvent(this.el.outer, "scroll", function() {
-                this.update() && (this.stopped ? (this.stopped = !1, this.emitEvent("scrollstart")) : this.options["native"] || this.stopped !== !1 || (this.stopped = 0, addClass(this.el.container, "ui_scroll_scrolled")), this.emitEvent("scroll"), this.stoppedTimeout && clearTimeout(this.stoppedTimeout),
-                    this.stoppedTimeout = setTimeout(function() {
-                        this.stopped || (this.stopped = !0, this.options["native"] || removeClass(this.el.container, "ui_scroll_scrolled"), this.emitEvent("scrollstop"), this.noMore && this.released && !this.dragging && (this.noMore = !1, this.more()))
-                    }.bind(this), 200))
+                this.update() && (this.stopped ? (this.stopped = !1, this.emitEvent("scrollstart")) : this.options["native"] || this.stopped !== !1 || (this.stopped = 0,
+                    addClass(this.el.container, "ui_scroll_scrolled")), this.emitEvent("scroll"), this.stoppedTimeout && clearTimeout(this.stoppedTimeout), this.stoppedTimeout = setTimeout(function() {
+                    this.stopped || (this.stopped = !0, this.options["native"] || removeClass(this.el.container, "ui_scroll_scrolled"), this.emitEvent("scrollstop"), this.noMore && this.released && !this.dragging && (this.noMore = !1, this.more()))
+                }.bind(this), 200))
             }.bind(this)), this.api
         };
         return t.prototype = {

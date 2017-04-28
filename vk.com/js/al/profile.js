@@ -466,7 +466,7 @@ var Profile = {
             }
         },
         init: function(e) {
-            extend(cur, {
+            return extend(cur, {
                 module: "profile",
                 options: e,
                 oid: e.user_id,
@@ -512,10 +512,7 @@ var Profile = {
                 clearTimeout((e || cur).clHintTimer), clearTimeout((e || cur).invHintTimer), Profile.friendTTHide(!0)
             }), nav.objLoc.suggest && (delete nav.objLoc.suggest, Profile.suggestFriends()), setTimeout(function() {
                 window.FastChat && (window.curFastChat && curFastChat.inited || window.curNotifier && void 0 !== curNotifier.fc) && show("profile_fast_chat")
-            }, 100);
-            var i = window.audioPlayer,
-                o = currentAudioId();
-            return i && o && i.showCurrentTrack && i.showCurrentTrack(), cur.onPeerStatusChanged = function(e, i, o) {
+            }, 100), cur.onPeerStatusChanged = function(e, i, o) {
                 if (e == cur.oid) {
                     var t = ge("profile_online_lv"),
                         r = ge("profile_time_lv");

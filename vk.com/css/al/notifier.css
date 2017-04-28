@@ -3676,7 +3676,7 @@ a.fc_msg_att_lnk:hover .fc_msg_att_text {
 
 .fc_tab_preview.media_preview .page_preview_audio_wrap,
 .fc_tab_preview .page_preview_audio_wrap {
-    margin: 0 0 5px -8px
+    margin: 0 0 5px -4px
 }
 
 .fc_tab_preview.media_preview .page_preview_map_wrap,
@@ -4994,7 +4994,7 @@ div.chat_tab_img {
     border: 1px solid #c5d0db;
     border-top: none;
     border-radius: 3px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    box-shadow: 0 20px 40px 0 rgba(0, 0, 0, .3);
     opacity: 0;
     filter: alpha(opacity=0);
     -o-transition: opacity 100ms linear, top 100ms linear, visibility 100ms linear;
@@ -5558,7 +5558,7 @@ div.chat_tab_img {
 }
 
 .im_msg_audiomsg .audio-msg-track:not(.audio-msg-player):hover {
-    background-color: #f0f2f5
+    background-color: #f2f4f7
 }
 
 .im_msg_audiomsg .audio-msg-player {

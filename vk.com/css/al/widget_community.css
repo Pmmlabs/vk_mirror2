@@ -2,6 +2,10 @@
     display: none
 }
 
+.audio_pl_snippet .audio_pl_snippet__more_btn:before {
+    -ms-high-contrast-adjust: none
+}
+
 .h4-text {
     color: #000;
     border-bottom: none;
@@ -54,11 +58,11 @@
     padding-top: 34px;
     border-bottom: 1px solid #e7e8ec;
     padding-bottom: 12px;
-    color: #2b2f33
+    color: #000
 }
 
 .wcommunity_header.wcommunity_header_covered {
-    color: #2b2f33
+    color: #000
 }
 
 .wcommunity_header.wcommunity_header_covered:after {
@@ -390,7 +394,7 @@ body.mac .wcommunity_show_more button .pr {
 
 .wcommunity_post_header {
     margin-bottom: 2px;
-    color: #2b2f33;
+    color: #000;
     font-size: 12px;
     line-height: 140%
 }
@@ -406,7 +410,7 @@ body.mac .wcommunity_show_more button .pr {
     min-width: 120px;
     font-size: 12px;
     line-height: 140%;
-    color: #2b2f33;
+    color: #000;
     border-top: 1px solid #e7e8ec;
     padding-top: 10px;
     margin-top: 10px
@@ -451,6 +455,12 @@ body.mac .wcommunity_show_more button .pr {
     width: 100%
 }
 
+.widget_body .audio_pl_snippet__action_btn_delete,
+.widget_body .audio_pl_snippet__action_btn_edit {
+    display: none!important
+}
+
+.widget_body .audio_pl_snippet,
 .widget_body .media_desc,
 .widget_body .page_media_thumbed_link,
 .widget_body .page_media_wrap,
@@ -463,12 +473,44 @@ body.mac .wcommunity_show_more button .pr {
     max-width: 464px
 }
 
+.widget_body .copy_quote .audio_pl_snippet,
 .widget_body .copy_quote .media_desc,
 .widget_body .copy_quote .page_media_thumbed_link,
 .widget_body .copy_quote .page_media_wrap,
 .widget_body .copy_quote .post_media,
 .widget_body .copy_quote .wall_audio_rows {
     max-width: 496px
+}
+
+.audio_pl_snippet .audio_pl_snippet__more_btn:before {
+    width: 14px;
+    height: 9px;
+    background: url(/images/icons/like_widget.png);
+    z-index: 2;
+    top: 7px;
+    left: 29px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_pl_snippet .audio_pl_snippet__more_btn:before {
+        background-image: url(/images/icons/like_widget_2x.png);
+        background-size: 19px 59px
+    }
+}
+
+.audio_pl_snippet .audio_pl_snippet__more_btn:after {
+    z-index: 1;
+    display: block;
+    content: ' ';
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    left: 25px;
+    top: 0;
+    background: #5e81a8;
+    border-radius: 3px
 }
 
 .wall_module .wcommunity_post_wide {

@@ -32,7 +32,7 @@
 
 #payments_box {
     line-height: 17px;
-    color: #2b2f33
+    color: #000
 }
 
 .payments_box_summary {
@@ -117,7 +117,7 @@
 }
 
 .payments_summary_header {
-    color: #2b2f33;
+    color: #000;
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -384,7 +384,7 @@ h2.payments_getvotes_title {
 }
 
 .payments_getvotes_amounts .radiobtn b {
-    color: #2b2f33
+    color: #000
 }
 
 .payments_getvotes_amounts .radiobtn .payments_opt_amount {
@@ -484,7 +484,7 @@ h2.payments_getvotes_title {
     box-sizing: border-box;
     width: 240px;
     height: 64px;
-    color: #2b2f33;
+    color: #000;
     font-size: 12.5px;
     overflow: hidden
 }
@@ -923,7 +923,7 @@ h2.payments_getvotes_title {
     float: left;
     margin-top: -2px;
     width: 181px;
-    color: #2b2f33;
+    color: #000;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis
@@ -1135,7 +1135,7 @@ h2.payments_getvotes_title {
 }
 
 .payments_summary_bill_row_inall {
-    color: #2b2f33
+    color: #000
 }
 
 .payments_summary_bill_label {
