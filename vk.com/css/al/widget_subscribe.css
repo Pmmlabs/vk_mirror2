@@ -68,6 +68,14 @@
     background-size: cover
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wsubscribe_avatar img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
 .wsubscribe_name {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
@@ -148,6 +156,15 @@
     background: url(/images/icons/like_widget.png) 0 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wsubscribe_button .wsubscribe_do span:after {
+        background-image: url(/images/icons/like_widget_2x.png);
+        background-size: 19px 59px
+    }
+}
+
 .wsubscribe_button.wsubscribe_no_name .wsubscribe_do span:after {
     display: none
 }
@@ -159,4 +176,13 @@
     height: 8px;
     margin-right: 7px;
     background: url(/images/icons/like_widget.png) 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wsubscribe_button.wsubscribe_no_name .wsubscribe_do span:before {
+        background-image: url(/images/icons/like_widget_2x.png);
+        background-size: 19px 59px
+    }
 }

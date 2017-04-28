@@ -50,6 +50,15 @@
     opacity: 0.6
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blog_new_entry_icon {
+        background-image: url(/images/icons/edit_newsfeed_2x.png);
+        background-size: 13px 28px
+    }
+}
+
 .blog_new_entry_icon:hover {
     opacity: 1
 }
@@ -476,6 +485,15 @@
     left: 0px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blog_nav_link_ic {
+        background-image: url(/images/blog/blog_icons_2x.png);
+        background-size: 22px 80px
+    }
+}
+
 .blog_nav_link_next .blog_nav_link_ic {
     left: initial;
     right: 0px;
@@ -656,6 +674,15 @@
     background-repeat: no-repeat
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blog_link_icon {
+        background-image: url(/images/blog/blog_icons_2x.png);
+        background-size: 22px 80px
+    }
+}
+
 .blog_link_icon_products {
     background-position: 3px -21px;
     height: 20px;
@@ -734,6 +761,16 @@
 .blog_about_link_icon,
 .blog_about_sprite {
     background: url(/images/blog/about_icons.png) no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blog_about_link_icon,
+    .blog_about_sprite {
+        background-image: url(/images/blog/about_icons_2x.png);
+        background-size: 65px 323px
+    }
 }
 
 .blog_about_big_title {
@@ -1096,6 +1133,15 @@
     transition: top 200ms ease-out
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blog_product_icon {
+        background-image: url(/images/blog/blog_products_2x.png);
+        background-size: 110px 774px
+    }
+}
+
 .blog_product:hover .blog_product_icon {
     top: -8px
 }
@@ -1196,6 +1242,15 @@
     z-index: 10
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blog_snapster_photo_shadow {
+        background-image: url(/images/pics/cm_shadow_2x.png);
+        background-size: 740px 12px
+    }
+}
+
 .blog_snapster_photo_android,
 .blog_snapster_photo_iphone,
 .blog_snapster_photo_wp {
@@ -1218,8 +1273,27 @@
     top: 112px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blog_snapster_photo_android,
+    .blog_snapster_photo_wp {
+        background-image: url(/images/blog/vinci_android_2x.png);
+        background-size: 258px 522px
+    }
+}
+
 .blog_snapster_en .blog_snapster_photo_android {
     background-image: url(/images/blog/vinci_android_en.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blog_snapster_en .blog_snapster_photo_android {
+        background-image: url(/images/blog/vinci_android_en_2x.png);
+        background-size: 258px 522px
+    }
 }
 
 .blog_snapster_photo_iphone {
@@ -1231,8 +1305,26 @@
     margin-left: -136px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blog_snapster_photo_iphone {
+        background-image: url(/images/blog/vinci_ios_2x.png);
+        background-size: 272px 554px
+    }
+}
+
 .blog_snapster_en .blog_snapster_photo_iphone {
     background-image: url(/images/blog/vinci_ios_en.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blog_snapster_en .blog_snapster_photo_iphone {
+        background-image: url(/images/blog/vinci_ios_en_2x.png);
+        background-size: 272px 554px
+    }
 }
 
 .blog_snapster_photo_wp {
@@ -1241,8 +1333,26 @@
     top: 115px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blog_snapster_photo_wp {
+        background-image: url(/images/blog/vinci_winphone_2x.png);
+        background-size: 258px 505px
+    }
+}
+
 .blog_snapster_en .blog_snapster_photo_wp {
     background: url(/images/blog/vinci_winphone_en.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blog_snapster_en .blog_snapster_photo_wp {
+        background-image: url(/images/blog/vinci_winphone_en_2x.png);
+        background-size: 258px 505px
+    }
 }
 
 .blog_snapster_photo_android.blog_snapster_photo_screen_over,
@@ -1302,6 +1412,17 @@
     background-position: 0px 0px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blog_snapster_android:after,
+    .blog_snapster_ios:after,
+    .blog_snapster_wp:after {
+        background-image: url(/images/blog/about_install_icons_2x.png);
+        background-size: 13px 39px
+    }
+}
+
 .blog_snapster_android:active:after,
 .blog_snapster_ios:active:after,
 .blog_snapster_wp:active:after {
@@ -1342,6 +1463,15 @@
     width: 70px;
     height: 70px;
     background-image: url(/images/jobs_icons.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blog_job_icon {
+        background-image: url(/images/jobs_icons_2x.png);
+        background-size: 70px 820px
+    }
 }
 
 .blog_job_icon_web_dev {
@@ -1424,14 +1554,41 @@
     position: relative
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blog_iphone_video_wrap {
+        background-image: url(/images/blog/smartfeed_ios_blog_2x.png);
+        background-size: 252px 521px
+    }
+}
+
 .blog_iphone_video_wrap.blog_iphone_black_video {
     background-image: url(/images/blog/smartfeed_ios_blog_black.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blog_iphone_video_wrap.blog_iphone_black_video {
+        background-image: url(/images/blog/smartfeed_ios_blog_black_2x.png);
+        background-size: 252px 524px
+    }
 }
 
 .blog_iphone_video_wrap.blog_android_video {
     background-image: url(/images/blog/smartfeed_android_blog.png);
     width: 239px;
     height: 485px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blog_iphone_video_wrap.blog_android_video {
+        background-image: url(/images/blog/smartfeed_android_blog_2x.png);
+        background-size: 239px 485px
+    }
 }
 
 .blog_iphone_video_wrap.blog_android_video .blog_iphone_video {

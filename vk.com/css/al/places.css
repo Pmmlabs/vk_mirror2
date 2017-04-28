@@ -67,6 +67,15 @@
     position: absolute
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .places_choose_map .places_set_current_position_button:before {
+        background-image: url(/images/map_target_2x.png);
+        background-size: 18px 18px
+    }
+}
+
 .places_choose_map_content {
     padding: 25px;
     position: relative
@@ -516,6 +525,15 @@ input.place_map_point_search {
     border-radius: 2px;
     bottom: 8px;
     right: 8px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .places_mapped_point {
+        background-image: url(/images/icons/white_pin_2x.png);
+        background-size: 10px 14px
+    }
 }
 
 .places_photo_cont {

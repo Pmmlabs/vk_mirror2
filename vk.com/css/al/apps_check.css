@@ -44,6 +44,15 @@
     background-position: 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-thumb-wrap-background {
+        background-image: url(/images/icons/video_empty_2x.png);
+        background-size: 65px 45px
+    }
+}
+
 .media-video-thumb-background {
     background-repeat: no-repeat;
     background-size: cover;
@@ -102,6 +111,15 @@
     transition: background-color 100ms linear, opacity 60ms ease
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-play {
+        background-image: url(/images/icons/video_play_small_2x.png?1);
+        background-size: 17px 24px
+    }
+}
+
 .media-video-play:hover {
     background-color: rgba(0, 0, 0, .6)
 }
@@ -135,6 +153,15 @@
     background-image: url(/images/icons/media_check_uncheck.png);
     background-position: 0 -26px;
     cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-check-btn-icon {
+        background-image: url(/images/icons/media_check_uncheck_2x.png);
+        background-size: 22px 48px
+    }
 }
 
 .media-check-btn-icon-checked {
@@ -326,6 +353,15 @@
     height: 8px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_check_row .apps_check_delete_row:before {
+        background-image: url(/images/attach_icons_2x.png?4);
+        background-size: 32px 254px
+    }
+}
+
 .apps_check_row .apps_check_delete_row:hover .thumb_x {
     opacity: 1;
     -webkit-filter: none;
@@ -429,6 +465,15 @@
 
 .decline_box_reason .idd_item.checked {
     background: url(/images/icons/dropdown_check.png?2) 0 8px no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .decline_box_reason .idd_item.checked {
+        background-image: url(/images/icons/dropdown_check_2x.png?2);
+        background-size: 14px 10px
+    }
 }
 
 .apps_autoanswer_row_answer {

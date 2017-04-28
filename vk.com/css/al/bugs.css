@@ -823,6 +823,14 @@ body.dev #page_wrap .bugs_view_data .flat_button {
     background-size: cover
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .bugs_subscriber_img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
 .bugs_subscriber_name {
     padding-top: 6px;
     line-height: 140%;

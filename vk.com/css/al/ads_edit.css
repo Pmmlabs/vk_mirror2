@@ -882,6 +882,15 @@ a.ads_edit_link_go:hover {
     background-position: 97%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_edit_geo_place_radius_selector {
+        background-image: url(/images/dropdown_arrow_small_2x.png);
+        background-size: 9px 5px
+    }
+}
+
 .ads_edit_geo_place_radius_selector:hover {
     background-color: #ededed
 }
@@ -1071,6 +1080,15 @@ a.ads_edit_link_go:hover {
     opacity: 0;
     -o-transition: opacity 0.2s ease;
     transition: opacity 0.2s ease
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_edit_geo_box_table_point_remove_button {
+        background-image: url(/images/icons/tag_cross_2x.png);
+        background-size: 10px 10px
+    }
 }
 
 .ads_edit_geo_box_table_point_row:hover .ads_edit_geo_box_table_point_remove_button {

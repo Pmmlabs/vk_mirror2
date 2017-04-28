@@ -416,6 +416,15 @@ body.mobfixed #mv_layer_wrap {
     background: url(/images/icons/gift_icon.png) no-repeat
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_live_gift_popup_send_btn:before {
+        background-image: url(/images/icons/gift_icon_2x.png);
+        background-size: 11px 13px
+    }
+}
+
 .mv_live_gift_popup_author_thumb {
     display: block;
     margin: 0 auto 15px;
@@ -446,6 +455,14 @@ body.mobfixed #mv_layer_wrap {
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
     background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_live_gift_popup_author_thumb:after {
+        background-image: url(/images/camera_200.png)
+    }
 }
 
 .mv_live_gift_popup_description {
@@ -521,6 +538,14 @@ textarea.dark.mv_live_gift_popup_comment_input {
     background-size: cover
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_author_photo:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
 .mv_actions_private_panel {
     margin: 0;
     padding: 20px;
@@ -588,23 +613,43 @@ textarea.dark.mv_live_gift_popup_comment_input {
 }
 
 .mv_subscribe_block #mv_subscribe_btn:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 7px;
+    margin-top: -2px;
+    width: 12px;
     height: 12px;
     background: url(/images/icons/video_actions.png?8) 0 -122px
 }
 
-.mv_subscribe_block #mv_subscribe_btn:before,
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_subscribe_block #mv_subscribe_btn:before {
+        background-image: url(/images/icons/video_actions_2x.png?8);
+        background-size: 19px 199px
+    }
+}
+
 .mv_subscribe_block #mv_subscribed_btn:before {
     content: '';
     display: inline-block;
     vertical-align: middle;
     margin-right: 7px;
     margin-top: -2px;
-    width: 12px
+    height: 9px;
+    width: 12px;
+    background: url(/images/icons/video_actions.png?8) 0 -138px
 }
 
-.mv_subscribe_block #mv_subscribed_btn:before {
-    height: 9px;
-    background: url(/images/icons/video_actions.png?8) 0 -138px
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_subscribe_block #mv_subscribed_btn:before {
+        background-image: url(/images/icons/video_actions_2x.png?8);
+        background-size: 19px 199px
+    }
 }
 
 .mv_subscribe_block #mv_subscribed_btn:not(:last-child) {
@@ -629,6 +674,15 @@ textarea.dark.mv_live_gift_popup_comment_input {
     height: 13px;
     width: 11px;
     background: url(/images/icons/video_actions.png?8) 0 -168px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_subscribe_block .mv_subscribe_live_btn:before {
+        background-image: url(/images/icons/video_actions_2x.png?8);
+        background-size: 19px 199px
+    }
 }
 
 .mv_subscribe_block .mv_subscribe_live_btn.mv_subscribe_live_btn_subscribed:before {
@@ -657,6 +711,15 @@ textarea.dark.mv_live_gift_popup_comment_input {
     margin-top: -2px;
     margin-right: 7px;
     background: url(/images/icons/video_actions.png?8) 0 -185px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_donate_icon {
+        background-image: url(/images/icons/video_actions_2x.png?8);
+        background-size: 19px 199px
+    }
 }
 
 .mv_share_actions {
@@ -716,6 +779,15 @@ textarea.dark.mv_live_gift_popup_comment_input {
     transition: opacity 0.2s ease
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_like_icon {
+        background-image: url(/images/icons/video_actions_2x.png?8);
+        background-size: 19px 199px
+    }
+}
+
 .mv_like_label {
     float: left
 }
@@ -745,21 +817,39 @@ textarea.dark.mv_live_gift_popup_comment_input {
 .mv_share_button .mv_share_icon {
     background: url(/images/icons/video_actions.png?8) no-repeat 0 -44px;
     height: 13px;
-    margin-right: 7px
-}
-
-.mv_share_button .mv_share_icon,
-.mv_edit_button .mv_edit_icon {
     width: 12px;
+    margin-right: 7px;
     margin-bottom: -2px;
     display: inline-block;
     position: relative
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_share_button .mv_share_icon {
+        background-image: url(/images/icons/video_actions_2x.png?8);
+        background-size: 19px 199px
+    }
+}
+
 .mv_edit_button .mv_edit_icon {
     background: url(/images/icons/video_actions.png?8) no-repeat 0 -61px;
     height: 12px;
-    margin-right: 6px
+    width: 12px;
+    display: inline-block;
+    position: relative;
+    margin-right: 6px;
+    margin-bottom: -2px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_edit_button .mv_edit_icon {
+        background-image: url(/images/icons/video_actions_2x.png?8);
+        background-size: 19px 199px
+    }
 }
 
 .mv_delete_button .mv_delete_icon {
@@ -769,6 +859,15 @@ textarea.dark.mv_live_gift_popup_comment_input {
     display: inline-block;
     position: relative;
     margin-right: 7px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_delete_button .mv_delete_icon {
+        background-image: url(/images/icons/video_actions_2x.png?8);
+        background-size: 19px 199px
+    }
 }
 
 .mv_add_button .mv_add_icon {
@@ -783,6 +882,15 @@ textarea.dark.mv_live_gift_popup_comment_input {
     filter: alpha(opacity=0);
     -o-transition: all 200ms ease;
     transition: all 200ms ease
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_add_button .mv_add_icon {
+        background-image: url(/images/icons/video_actions_2x.png?8);
+        background-size: 19px 199px
+    }
 }
 
 .mv_add_button .mv_added_icon {
@@ -956,10 +1064,28 @@ textarea.dark.mv_live_gift_popup_comment_input {
     width: 11px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_min_control_max {
+        background-image: url(/images/icons/video_icon_2x.png?3);
+        background-size: 24px 261px
+    }
+}
+
 .mv_min_control_close {
     background: url(/images/icons/video_icon.png?3) 0 -139px;
     height: 10px;
     width: 10px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_min_control_close {
+        background-image: url(/images/icons/video_icon_2x.png?3);
+        background-size: 24px 261px
+    }
 }
 
 .mv_minimized #mv_container {
@@ -1482,6 +1608,17 @@ textarea.dark.mv_live_gift_popup_comment_input {
     background: url(/images/icons/video_icon.png?3) no-repeat
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_close_icon,
+    .mv_minimize_icon,
+    .mv_toggle_sideblock_icon {
+        background-image: url(/images/icons/video_icon_2x.png?3);
+        background-size: 24px 261px
+    }
+}
+
 .mv_close_icon {
     background-position: 0px 0px;
     height: 20px;
@@ -1563,6 +1700,15 @@ textarea.dark.mv_live_gift_popup_comment_input {
     height: 30px;
     width: 20px;
     background: url(/images/icons/layer_controls.png) no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_playlist_controls .mv_playlist_controls_icon {
+        background-image: url(/images/icons/layer_controls_2x.png);
+        background-size: 20px 84px
+    }
 }
 
 .mv_playlist_controls#mv_pl_prev .mv_playlist_controls_icon {
@@ -1763,6 +1909,15 @@ textarea.dark.mv_live_gift_popup_comment_input {
     filter: alpha(opacity=60)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #mv_pl_tt .mv_tt_add_playlist .mv_tt_plus_icon {
+        background-image: url(/images/icons/video_actions_2x.png?8);
+        background-size: 19px 199px
+    }
+}
+
 #mv_pl_tt .mv_tt_add_playlist:hover {
     background-color: #edf1f5
 }
@@ -1790,6 +1945,15 @@ textarea.dark.mv_live_gift_popup_comment_input {
     height: 11px;
     width: 10px;
     margin: 0 0 -1px 7px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #mv_pl_tt .mv_tt_playlist_private_icon {
+        background-image: url(/images/icons/video_actions_2x.png?8);
+        background-size: 19px 199px
+    }
 }
 
 #mv_add_to_club_albums_progress {
@@ -1876,6 +2040,15 @@ textarea.dark.mv_live_gift_popup_comment_input {
 
 #mv_external_finish .mv_finish_icon {
     background: url(/images/video/iconset.png) no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #mv_external_finish .mv_finish_icon {
+        background-image: url(/images/video/iconset_2x.png);
+        background-size: 380px 68px
+    }
 }
 
 #mv_external_finish .mv_finish_header {
@@ -2377,8 +2550,26 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     background: url(/images/video_monetized.png) no-repeat
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_monetized {
+        background-image: url(/images/video_monetized_2x.png);
+        background-size: 19px 19px
+    }
+}
+
 .mv_in_moder {
     background: url(/images/video_in_moder.png) no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_in_moder {
+        background-image: url(/images/video_in_moder_2x.png);
+        background-size: 19px 19px
+    }
 }
 
 .mv_playlist {
@@ -2443,10 +2634,28 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     width: 18px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_playlist .mv_playlist_header .mv_playlist_header_autoplay_icon {
+        background-image: url(/images/icons/video_icon_2x.png?3);
+        background-size: 24px 261px
+    }
+}
+
 .mv_playlist .mv_playlist_header .mv_playlist_header_reverse_icon {
     background: url(/images/icons/video_icon.png?3) 0 -98px;
     height: 11px;
     width: 15px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_playlist .mv_playlist_header .mv_playlist_header_reverse_icon {
+        background-image: url(/images/icons/video_icon_2x.png?3);
+        background-size: 24px 261px
+    }
 }
 
 .mv_playlist .mv_playlist_header .mv_playlist_header_btn._active .mv_playlist_header_reverse_icon {
@@ -2749,6 +2958,14 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     background-size: cover
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_chat_message_author_thumb_img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
 .mv_chat_message_author_name {
     color: #aaa;
     font-weight: 500;
@@ -2822,6 +3039,15 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     background: url(/images/icons/video_icon.png?3) 0 -252px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_chat_message_del_icon {
+        background-image: url(/images/icons/video_icon_2x.png?3);
+        background-size: 24px 261px
+    }
+}
+
 .mv_chat_first_message_intro {
     position: absolute;
     top: 50%;
@@ -2834,6 +3060,15 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     font-size: 13px;
     line-height: 1.5;
     text-align: center
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_chat_first_message_intro {
+        background-image: url(/images/video/first_chat_msg_2x.png);
+        background-size: 62px 59px
+    }
 }
 
 .mv_chat_new_messages_btn_wrap {
@@ -2875,6 +3110,15 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     background: url(/images/icons/video_icon.png?3) -6px -234px;
     padding-right: 8px;
     margin-bottom: 4px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_chat_new_messages_btn:before {
+        background-image: url(/images/icons/video_icon_2x.png?3);
+        background-size: 24px 261px
+    }
 }
 
 .mv_chat_new_messages_btn:hover {
@@ -2926,6 +3170,14 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     background-color: transparent;
     background-image: url(/images/camera_100.png);
     background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_chat_reply_author_photo:after {
+        background-image: url(/images/camera_200.png)
+    }
 }
 
 .mv_chat_reply_input {
@@ -2999,20 +3251,37 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
 }
 
 .mv_chat_reply_emoji_icon {
+    display: inline-block;
+    vertical-align: middle;
     width: 18px;
+    height: 18px;
     background: url(/images/icons/video_icon.png?3) -3px -183px
 }
 
-.mv_chat_reply_emoji_icon,
-.mv_chat_reply_submit_icon {
-    display: inline-block;
-    vertical-align: middle;
-    height: 18px
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_chat_reply_emoji_icon {
+        background-image: url(/images/icons/video_icon_2x.png?3);
+        background-size: 24px 261px
+    }
 }
 
 .mv_chat_reply_submit_icon {
+    display: inline-block;
+    vertical-align: middle;
+    height: 18px;
     width: 16px;
     background: url(/images/icons/video_icon.png?3) -4px -207px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_chat_reply_submit_icon {
+        background-image: url(/images/icons/video_icon_2x.png?3);
+        background-size: 24px 261px
+    }
 }
 
 .mv_chat_reply_emoji_tt_wrap {
@@ -3086,6 +3355,14 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
     background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .video_donate_intro_author_photo:after {
+        background-image: url(/images/camera_200.png)
+    }
 }
 
 .video_donate_intro_text {

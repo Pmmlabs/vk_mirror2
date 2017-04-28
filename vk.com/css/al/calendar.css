@@ -41,6 +41,15 @@
     border-radius: 2px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .bd_arrow {
+        background-image: url(/images/icons/calendar_arrows_2x.png);
+        background-size: 5px 26px
+    }
+}
+
 .bd_left {
     background-position: 8px 7px
 }
@@ -327,6 +336,16 @@
     width: 18px;
     height: 15px;
     float: left
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .bd_gift_thumb,
+    .bd_pm_thumb {
+        background-image: url(/images/icons/calendar_acts_2x.png);
+        background-size: 17px 27px
+    }
 }
 
 .bd_pm_thumb {

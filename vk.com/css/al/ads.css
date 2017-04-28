@@ -1532,80 +1532,260 @@ table.ads_inline_edit_table td {
     background-image: url(/images/ads/moder_rules_icons/icon_age_16p.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_age_16p {
+        background-image: url(/images/ads/moder_rules_icons/icon_age_16p_2x.png);
+        background-size: 60px 60px
+    }
+}
+
 .ads_moder_comment_rules_icon.icon_age_18p {
     background-image: url(/images/ads/moder_rules_icons/icon_age_18p.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_age_18p {
+        background-image: url(/images/ads/moder_rules_icons/icon_age_18p_2x.png);
+        background-size: 60px 60px
+    }
 }
 
 .ads_moder_comment_rules_icon.icon_astrologer {
     background-image: url(/images/ads/moder_rules_icons/icon_astrologer.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_astrologer {
+        background-image: url(/images/ads/moder_rules_icons/icon_astrologer_2x.png);
+        background-size: 60px 60px
+    }
+}
+
 .ads_moder_comment_rules_icon.icon_book_music {
     background-image: url(/images/ads/moder_rules_icons/icon_book_music.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_book_music {
+        background-image: url(/images/ads/moder_rules_icons/icon_book_music_2x.png);
+        background-size: 60px 60px
+    }
 }
 
 .ads_moder_comment_rules_icon.icon_brick {
     background-image: url(/images/ads/moder_rules_icons/icon_brick.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_brick {
+        background-image: url(/images/ads/moder_rules_icons/icon_brick_2x.png);
+        background-size: 60px 60px
+    }
+}
+
 .ads_moder_comment_rules_icon.icon_cup_1 {
     background-image: url(/images/ads/moder_rules_icons/icon_cup_1.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_cup_1 {
+        background-image: url(/images/ads/moder_rules_icons/icon_cup_1_2x.png);
+        background-size: 60px 60px
+    }
 }
 
 .ads_moder_comment_rules_icon.icon_data {
     background-image: url(/images/ads/moder_rules_icons/icon_data.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_data {
+        background-image: url(/images/ads/moder_rules_icons/icon_data_2x.png);
+        background-size: 60px 60px
+    }
+}
+
 .ads_moder_comment_rules_icon.icon_dating {
     background-image: url(/images/ads/moder_rules_icons/icon_dating.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_dating {
+        background-image: url(/images/ads/moder_rules_icons/icon_dating_2x.png);
+        background-size: 60px 60px
+    }
 }
 
 .ads_moder_comment_rules_icon.icon_docs {
     background-image: url(/images/ads/moder_rules_icons/icon_docs.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_docs {
+        background-image: url(/images/ads/moder_rules_icons/icon_docs_2x.png);
+        background-size: 60px 60px
+    }
+}
+
 .ads_moder_comment_rules_icon.icon_grammar {
     background-image: url(/images/ads/moder_rules_icons/icon_grammar.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_grammar {
+        background-image: url(/images/ads/moder_rules_icons/icon_grammar_2x.png);
+        background-size: 60px 60px
+    }
 }
 
 .ads_moder_comment_rules_icon.icon_law {
     background-image: url(/images/ads/moder_rules_icons/icon_law.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_law {
+        background-image: url(/images/ads/moder_rules_icons/icon_law_2x.png);
+        background-size: 60px 60px
+    }
+}
+
 .ads_moder_comment_rules_icon.icon_low_res_img {
     background-image: url(/images/ads/moder_rules_icons/icon_low_res_img.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_low_res_img {
+        background-image: url(/images/ads/moder_rules_icons/icon_low_res_img_2x.png);
+        background-size: 60px 60px
+    }
 }
 
 .ads_moder_comment_rules_icon.icon_med {
     background-image: url(/images/ads/moder_rules_icons/icon_med.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_med {
+        background-image: url(/images/ads/moder_rules_icons/icon_med_2x.png);
+        background-size: 60px 60px
+    }
+}
+
 .ads_moder_comment_rules_icon.icon_misleading_ui {
     background-image: url(/images/ads/moder_rules_icons/icon_misleading_ui.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_misleading_ui {
+        background-image: url(/images/ads/moder_rules_icons/icon_misleading_ui_2x.png);
+        background-size: 60px 60px
+    }
 }
 
 .ads_moder_comment_rules_icon.icon_person_warn {
     background-image: url(/images/ads/moder_rules_icons/icon_person_warn.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_person_warn {
+        background-image: url(/images/ads/moder_rules_icons/icon_person_warn_2x.png);
+        background-size: 60px 60px
+    }
+}
+
 .ads_moder_comment_rules_icon.icon_person {
     background-image: url(/images/ads/moder_rules_icons/icon_person.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_person {
+        background-image: url(/images/ads/moder_rules_icons/icon_person_2x.png);
+        background-size: 60px 60px
+    }
 }
 
 .ads_moder_comment_rules_icon.icon_restricted_site {
     background-image: url(/images/ads/moder_rules_icons/icon_restricted_site.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_restricted_site {
+        background-image: url(/images/ads/moder_rules_icons/icon_restricted_site_2x.png);
+        background-size: 60px 60px
+    }
+}
+
 .ads_moder_comment_rules_icon.icon_restricted {
     background-image: url(/images/ads/moder_rules_icons/icon_restricted.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_restricted {
+        background-image: url(/images/ads/moder_rules_icons/icon_restricted_2x.png);
+        background-size: 60px 60px
+    }
 }
 
 .ads_moder_comment_rules_icon.icon_spy {
     background-image: url(/images/ads/moder_rules_icons/icon_spy.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_spy {
+        background-image: url(/images/ads/moder_rules_icons/icon_spy_2x.png);
+        background-size: 60px 60px
+    }
+}
+
 .ads_moder_comment_rules_icon.icon_vocabulary {
     background-image: url(/images/ads/moder_rules_icons/icon_vocabulary.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_moder_comment_rules_icon.icon_vocabulary {
+        background-image: url(/images/ads/moder_rules_icons/icon_vocabulary_2x.png);
+        background-size: 60px 60px
+    }
 }
 
 #ads_admin_box_wrapper a:hover {

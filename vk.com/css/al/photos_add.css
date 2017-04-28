@@ -37,6 +37,15 @@
     background-position: 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-thumb-wrap-background {
+        background-image: url(/images/icons/video_empty_2x.png);
+        background-size: 65px 45px
+    }
+}
+
 .media-video-thumb-background {
     background-repeat: no-repeat;
     background-size: cover;
@@ -95,6 +104,15 @@
     transition: background-color 100ms linear, opacity 60ms ease
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-play {
+        background-image: url(/images/icons/video_play_small_2x.png?1);
+        background-size: 17px 24px
+    }
+}
+
 .media-video-play:hover {
     background-color: rgba(0, 0, 0, .6)
 }
@@ -128,6 +146,15 @@
     background-image: url(/images/icons/media_check_uncheck.png);
     background-position: 0 -26px;
     cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-check-btn-icon {
+        background-image: url(/images/icons/media_check_uncheck_2x.png);
+        background-size: 22px 48px
+    }
 }
 
 .media-check-btn-icon-checked {
@@ -228,6 +255,15 @@
     height: 190px;
     width: 280px;
     margin: 0 auto 40px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .photos_upload_area_enter.photos_upload_area_drop .photos_upload_area_drop_text>div {
+        background-image: url(/images/icons/drop_upload_2x.png);
+        background-size: 280px 190px
+    }
 }
 
 .photos_go_to_album {

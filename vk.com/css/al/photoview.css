@@ -62,6 +62,15 @@
     background-position: 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-thumb-wrap-background {
+        background-image: url(/images/icons/video_empty_2x.png);
+        background-size: 65px 45px
+    }
+}
+
 .media-video-thumb-background {
     background-repeat: no-repeat;
     background-size: cover;
@@ -120,6 +129,15 @@
     transition: background-color 100ms linear, opacity 60ms ease
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-play {
+        background-image: url(/images/icons/video_play_small_2x.png?1);
+        background-size: 17px 24px
+    }
+}
+
 .media-video-play:hover {
     background-color: rgba(0, 0, 0, .6)
 }
@@ -153,6 +171,15 @@
     background-image: url(/images/icons/media_check_uncheck.png);
     background-position: 0 -26px;
     cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-check-btn-icon {
+        background-image: url(/images/icons/media_check_uncheck_2x.png);
+        background-size: 22px 48px
+    }
 }
 
 .media-check-btn-icon-checked {
@@ -210,6 +237,15 @@
     cursor: pointer
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pv_cont .pv_close_btn {
+        background-image: url(/images/icons/pv_layer_controls_2x.png);
+        background-size: 22px 96px
+    }
+}
+
 .pv_cont .pv_close_btn:hover,
 .pv_mouse_out_layer:not(.pv_left_panel_over) .pv_cont .pv_close_btn {
     opacity: 1
@@ -235,6 +271,15 @@
     opacity: 0;
     -o-transition: opacity 300ms ease;
     transition: opacity 300ms ease
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pv_cont .pv_nav_btn .pv_nav_btn_icon {
+        background-image: url(/images/icons/pv_layer_controls_2x.png);
+        background-size: 22px 96px
+    }
 }
 
 .pv_cont .pv_nav_btn#pv_nav_btn_left .pv_nav_btn_icon {
@@ -325,6 +370,15 @@
     opacity: 0.7
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pv_cont .pv_bottom_actions .pv_actions_more:after {
+        background-image: url(/images/icons/white_arrow_2x.png);
+        background-size: 8px 6px
+    }
+}
+
 .pv_cont .pv_bottom_actions .divider {
     margin-left: 15px;
     pointer-events: none
@@ -361,8 +415,27 @@
     padding: 90px 30px 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pv_cont .pv_closed_commments_placeholder,
+    .pv_cont .pv_no_commments_placeholder {
+        background-image: url(/images/icons/first_comment_2x.png);
+        background-size: 62px 59px
+    }
+}
+
 .pv_cont .pv_closed_commments_placeholder {
     background-image: url(/images/icons/privacy.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pv_cont .pv_closed_commments_placeholder {
+        background-image: url(/images/icons/privacy_2x.png);
+        background-size: 44px 58px
+    }
 }
 
 .pv_cont .pv_can_edit,
@@ -606,6 +679,15 @@
     transition: opacity 100ms linear
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pv_close {
+        background-image: url(/images/icons/layer_controls_2x.png);
+        background-size: 20px 84px
+    }
+}
+
 .pv_close:hover {
     opacity: 1
 }
@@ -640,6 +722,15 @@
     right: 7px;
     position: relative;
     float: left
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pv_bottom_info #pv_stickers:before {
+        background-image: url(/images/attach_icons_2x.png?4);
+        background-size: 32px 254px
+    }
 }
 
 .pv_album_name {
@@ -701,6 +792,15 @@
     vertical-align: top;
     background-image: url(/images/icons/pv_actions.png?3);
     background-position: 0 -157px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #pv_more_acts_tt .pv_more_act_item:before {
+        background-image: url(/images/icons/pv_actions_2x.png?3);
+        background-size: 18px 220px
+    }
 }
 
 #pv_more_acts_tt .pv_more_spam_act_item:before {
@@ -1041,6 +1141,15 @@
     margin: 0 4px 0 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pv_place_label {
+        background-image: url(/images/attach_icons_2x.png?4);
+        background-size: 32px 254px
+    }
+}
+
 #pv_actions {
     width: 160px;
     margin: 15px -5px 0
@@ -1284,6 +1393,15 @@
     transition: opacity 100ms linear
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #pv_tags .delete {
+        background-image: url(/images/attach_icons_2x.png?4);
+        background-size: 32px 254px
+    }
+}
+
 #pv_tags .delete:hover {
     opacity: 1
 }
@@ -1358,6 +1476,16 @@
     padding: 0 6px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pv_comments_list .ms_item_more,
+    .pv_reply_form .ms_item_more {
+        background-image: url(/images/icons/chats_2x.png?14);
+        background-size: 22px 182px
+    }
+}
+
 .pv_comments_list .ms_item_more_label,
 .pv_reply_form .ms_item_more_label {
     display: none
@@ -1397,6 +1525,15 @@
     float: left;
     opacity: 0.4;
     filter: alpha(opacity=40)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pv_like_icon {
+        background-image: url(/images/post_icon_2x.png?6);
+        background-size: 20px 369px
+    }
 }
 
 .pv_liked .pv_like_icon {
@@ -1529,6 +1666,15 @@
     width: 18px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pv_fs_wrap .pv_fs_btn div {
+        background-image: url(/images/icons/fullscreen_photo_2x.png);
+        background-size: 18px 18px
+    }
+}
+
 .pv_fs_wrap:hover .pv_fs_btn {
     opacity: 0.7
 }
@@ -1608,6 +1754,15 @@
 .pva_no_photos {
     cursor: default;
     background: #ecf1f5 url(/images/camera_big.png?1) 50% 56px no-repeat!important
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pva_no_photos {
+        background-image: url(/images/camera_big_2x.png?1);
+        background-size: 60px 48px
+    }
 }
 
 .pva_no_photos .pva_camera,
@@ -2525,6 +2680,15 @@ img.pv_movebox_thumb {
     display: inline-block
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pe_editor .pe_tabs .pe_tab_icon {
+        background-image: url(/images/icons/pe_icons_2x.png?2);
+        background-size: 240px 480px
+    }
+}
+
 .pe_editor .pe_tabs .pe_tab_text {
     color: #9babbc
 }
@@ -2591,6 +2755,15 @@ img.pv_movebox_thumb {
     background-position: 0px -168px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pe_editor #pe_stickers_pack_tab_recent {
+        background-image: url(/images/icons/pe_icons_2x.png?2);
+        background-size: 240px 480px
+    }
+}
+
 .pe_editor #pe_stickers_pack_tab_recent>img {
     display: none
 }
@@ -2598,6 +2771,15 @@ img.pv_movebox_thumb {
 .pe_editor #pe_stickers_pack_tab_editor {
     background-image: url(/images/icons/pe_icons.png?2);
     background-position: 0px -432px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pe_editor #pe_stickers_pack_tab_editor {
+        background-image: url(/images/icons/pe_icons_2x.png?2);
+        background-size: 240px 480px
+    }
 }
 
 .pe_editor #pe_stickers_pack_tab_editor>img {
@@ -2617,6 +2799,15 @@ img.pv_movebox_thumb {
     height: 48px;
     background-image: url(/images/icons/pe_icons.png?2);
     opacity: 0.5
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pe_editor .pe_sticker_pack_tab_btn .pe_icon {
+        background-image: url(/images/icons/pe_icons_2x.png?2);
+        background-size: 240px 480px
+    }
 }
 
 .pe_editor .pe_sticker_pack_tab_btn:hover .pe_icon {
@@ -2728,9 +2919,27 @@ img.pv_movebox_thumb {
     background-position: 0px -321px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pe_editor .pe_drawing_color.pe_selected {
+        background-image: url(/images/icons/pe_icons_2x.png?2);
+        background-size: 240px 480px
+    }
+}
+
 .pe_editor .pe_drawing_color.pe_drawing_color_white.pe_selected {
     background-image: url(/images/icons/pe_icons.png?2);
     background-position: -1px -267px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pe_editor .pe_drawing_color.pe_drawing_color_white.pe_selected {
+        background-image: url(/images/icons/pe_icons_2x.png?2);
+        background-size: 240px 480px
+    }
 }
 
 .pe_editor .pe_drawing_undo {
@@ -2757,6 +2966,15 @@ img.pv_movebox_thumb {
     margin: -2px 10px 0 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pe_editor .pe_drawing_undo:before {
+        background-image: url(/images/icons/pe_icons_2x.png?2);
+        background-size: 240px 480px
+    }
+}
+
 .pe_editor .pe_text_fonts {
     padding: 10px 0 6px
 }
@@ -2774,6 +2992,15 @@ img.pv_movebox_thumb {
     margin: 2px 7px 0 0px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pe_editor .pe_new_text_icon {
+        background-image: url(/images/icons/pe_icons_2x.png?2);
+        background-size: 240px 480px
+    }
+}
+
 .pe_editor .pe_text_fonts .radiobtn {
     font-size: 23px;
     margin: 6px 0px 12px
@@ -2785,6 +3012,15 @@ img.pv_movebox_thumb {
     width: 22px;
     height: 22px;
     margin-top: 3px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pe_editor .pe_text_fonts .radiobtn:before {
+        background-image: url(/images/icons/pe_icons_2x.png?2);
+        background-size: 240px 480px
+    }
 }
 
 .pe_editor .pe_text_fonts .radiobtn:hover:before {
@@ -2805,6 +3041,15 @@ img.pv_movebox_thumb {
     width: 80px;
     margin-left: 28px;
     pointer-events: none
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pe_editor .pe_font_sample {
+        background-image: url(/images/icons/pe_icons_2x.png?2);
+        background-size: 240px 480px
+    }
 }
 
 .pe_editor #pe_font_roboto .pe_font_sample {

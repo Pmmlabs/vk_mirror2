@@ -322,6 +322,16 @@
     float: right
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .selector_container td.selector .token span.x,
+    .selector_container td.selector .token span.x_hover {
+        background-image: url(/images/icons/tag_cross_2x.png);
+        background-size: 10px 10px
+    }
+}
+
 .list_style.selector_container td.selector .token span.x,
 .list_style.selector_container td.selector .token span.x_hover {
     margin: 5px 0 0 2px!important;
@@ -348,6 +358,16 @@
     background: url(/images/icons/common.png?6) no-repeat 5px -161px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .selector_container td.selector .token_selected span.x,
+    .selector_container td.selector .token_selected span.x_hover {
+        background-image: url(/images/icons/common_2x.png?6);
+        background-size: 32px 232px
+    }
+}
+
 .selector_container td.selector_dropdown {
     z-index: 0;
     width: 16px;
@@ -356,6 +376,15 @@
     border: none;
     border-left: 1px solid transparent;
     padding: 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .selector_container td.selector_dropdown {
+        background-image: url(/images/dropdown_arrow_2x.png);
+        background-size: 11px 7px
+    }
 }
 
 .big.selector_container td.selector_dropdown {
@@ -599,6 +628,18 @@
     overflow: hidden
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .checkbox_container table td .checkbox_off,
+    .checkbox_container table td .checkbox_off_over,
+    .checkbox_container table td .checkbox_on,
+    .checkbox_container table td .checkbox_on_over {
+        background-image: url(/images/icons/dev_check_2x.png?2);
+        background-size: 15px 75px
+    }
+}
+
 .checkbox_container table td .checkbox_on {
     background-position: 0 -15px
 }
@@ -655,6 +696,18 @@
     height: 14px;
     background: url(/images/icons/dev_radio.png?1) 0 0 no-repeat;
     margin-top: 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .radiobtn_container table td .radiobtn_off_over div,
+    .radiobtn_container table td .radiobtn_off div,
+    .radiobtn_container table td .radiobtn_on_over div,
+    .radiobtn_container table td .radiobtn_on div {
+        background-image: url(/images/icons/dev_radio_2x.png?1);
+        background-size: 14px 70px
+    }
 }
 
 .radiobtn_container table td .radiobtn_on div {
@@ -1059,6 +1112,15 @@ x:-moz-any-link {
     padding-right: 15px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .idd_wrap .idd_arrow {
+        background-image: url(/images/icons/dd_arrow_2x.png);
+        background-size: 8px 4px
+    }
+}
+
 .idd_popup {
     position: absolute;
     z-index: 300;
@@ -1100,6 +1162,15 @@ x:-moz-any-link {
     background-repeat: no-repeat;
     background-position: right 12px;
     padding-right: 15px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .idd_popup .idd_header.idd_arrow {
+        background-image: url(/images/icons/dd_arrow_2x.png);
+        background-size: 8px 4px
+    }
 }
 
 .idd_popup .idd_items_wrap {
@@ -1168,4 +1239,13 @@ x:-moz-any-link {
     background-image: url(/images/icons/idd_cascade_arrow.png?1);
     background-repeat: no-repeat;
     background-position: right 9px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .idd_popup .idd_item.idd_sublist {
+        background-image: url(/images/icons/idd_cascade_arrow_2x.png?1);
+        background-size: 11px 8px
+    }
 }

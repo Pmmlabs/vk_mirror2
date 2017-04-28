@@ -55,6 +55,15 @@
     float: right
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .jobs_head_image {
+        background-image: url(/images/jobs_intro_2x.png?2);
+        background-size: 171px 190px
+    }
+}
+
 .jobs_head_intro_text {
     margin-right: 217px
 }
@@ -324,6 +333,15 @@ td.labeled.jobs_apply_doc {
     top: 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .jobs_apply_doc_x_wrap {
+        background-image: url(/images/pics/statusx_op_2x.gif);
+        background-size: 11px 11px
+    }
+}
+
 .jobs_apply_doc_x_wrap:hover {
     opacity: 1;
     -webkit-filter: none;
@@ -335,6 +353,15 @@ td.labeled.jobs_apply_doc {
     background: url(/images/icons/mono_iconset.png?3) no-repeat 0 -275px;
     overflow: hidden;
     text-overflow: ellipsis
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .jobs_apply_doc_icon {
+        background-image: url(/images/icons/mono_iconset_2x.png?3);
+        background-size: 12px 405px
+    }
 }
 
 .jobs_apply_doc_link .fl_l {
@@ -380,6 +407,15 @@ td.labeled.jobs_apply_doc {
     filter: alpha(opacity=60);
     height: 10px;
     width: 10px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .jobs_apply_uploading_progress_x {
+        background-image: url(/images/icons/hide_2x.png);
+        background-size: 10px 10px
+    }
 }
 
 .jobs_add_form {

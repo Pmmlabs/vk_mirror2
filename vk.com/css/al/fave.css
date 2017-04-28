@@ -55,6 +55,14 @@
     background-size: cover
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .fave_link_thumb:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
 .fave_link_block {
     margin-left: 62px
 }
@@ -213,6 +221,16 @@
     cursor: pointer
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .fave_link_actions_wrap .fave_link_delete,
+    .fave_link_actions_wrap .fave_link_progress {
+        background-image: url(/images/icons/cog_cross_2x.png);
+        background-size: 14px 34px
+    }
+}
+
 .fave_link_actions_wrap .fave_link_delete:hover,
 .fave_link_actions_wrap .fave_link_progress:hover {
     text-decoration: none;
@@ -231,6 +249,15 @@
     opacity: 1;
     -webkit-filter: none;
     filter: none
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .fave_link_actions_wrap .fave_link_progress {
+        background-image: url(/images/c_upload_2x.gif);
+        background-size: 16px 16px
+    }
 }
 
 .fave_video_rows {

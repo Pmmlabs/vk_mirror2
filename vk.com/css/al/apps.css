@@ -90,6 +90,15 @@
     background-position: 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-thumb-wrap-background {
+        background-image: url(/images/icons/video_empty_2x.png);
+        background-size: 65px 45px
+    }
+}
+
 .media-video-thumb-background {
     background-repeat: no-repeat;
     background-size: cover;
@@ -148,6 +157,15 @@
     transition: background-color 100ms linear, opacity 60ms ease
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-play {
+        background-image: url(/images/icons/video_play_small_2x.png?1);
+        background-size: 17px 24px
+    }
+}
+
 .media-video-play:hover {
     background-color: rgba(0, 0, 0, .6)
 }
@@ -181,6 +199,15 @@
     background-image: url(/images/icons/media_check_uncheck.png);
     background-position: 0 -26px;
     cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-check-btn-icon {
+        background-image: url(/images/icons/media_check_uncheck_2x.png);
+        background-size: 22px 48px
+    }
 }
 
 .media-check-btn-icon-checked {
@@ -250,6 +277,15 @@
     background: url(/images/c_upload.gif) no-repeat 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_recent_apps_wrap.loading {
+        background-image: url(/images/c_upload_2x.gif);
+        background-size: 16px 16px
+    }
+}
+
 .apps_recent_apps_wrap.loading * {
     visibility: hidden
 }
@@ -299,6 +335,16 @@
     height: 8px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_cat_row .thumb_x_button .thumb_x,
+    .apps_recent_row .thumb_x_button .thumb_x {
+        background-image: url(/images/attach_icons_2x.png?4);
+        background-size: 32px 254px
+    }
+}
+
 .apps_cat_row .thumb_x_button:hover .thumb_x,
 .apps_recent_row .thumb_x_button:hover .thumb_x {
     opacity: 1;
@@ -344,6 +390,15 @@
 
 .apps_notifications_wrap.loading {
     background: url(/images/c_upload.gif) no-repeat 50%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_notifications_wrap.loading {
+        background-image: url(/images/c_upload_2x.gif);
+        background-size: 16px 16px
+    }
 }
 
 .apps_notifications_wrap.loading * {
@@ -755,6 +810,16 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
     box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .25), 0 0 2px 0 rgba(0, 0, 0, .15)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_featured_next:before,
+    .apps_featured_prev:before {
+        background-image: url(/images/icons/apps_slider_2x.png);
+        background-size: 82px 41px
+    }
+}
+
 .apps_featured_next {
     right: 0
 }
@@ -855,6 +920,15 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
     top: 0;
     bottom: 0;
     right: 20px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_header_progress:before {
+        background-image: url(/images/c_upload_2x.gif);
+        background-size: 16px 16px
+    }
 }
 
 .apps_load_more_wrap {
@@ -1034,28 +1108,91 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
     background-image: url(/images/ads_intro_label_new_ru.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .app_new_sticker.apps_sticker_ru {
+        background-image: url(/images/ads_intro_label_new_ru_2x.png);
+        background-size: 70px 70px
+    }
+}
+
 .app_new_sticker.apps_sticker_en {
     background-image: url(/images/ads_intro_label_new_en.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .app_new_sticker.apps_sticker_en {
+        background-image: url(/images/ads_intro_label_new_en_2x.png);
+        background-size: 70px 70px
+    }
 }
 
 .app_new_sticker.apps_sticker_ua {
     background-image: url(/images/ads_intro_label_new_ua.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .app_new_sticker.apps_sticker_ua {
+        background-image: url(/images/ads_intro_label_new_ua_2x.png);
+        background-size: 70px 70px
+    }
+}
+
 .app_sale_sticker {
     background-image: url(/images/label_sale.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .app_sale_sticker {
+        background-image: url(/images/label_sale_2x.png);
+        background-size: 73px 73px
+    }
 }
 
 .app_best_sticker.apps_sticker_ru {
     background-image: url(/images/label_best_ru.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .app_best_sticker.apps_sticker_ru {
+        background-image: url(/images/label_best_ru_2x.png);
+        background-size: 89px 89px
+    }
+}
+
 .app_best_sticker.apps_sticker_en {
     background-image: url(/images/label_best_en.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .app_best_sticker.apps_sticker_en {
+        background-image: url(/images/label_best_en_2x.png);
+        background-size: 89px 89px
+    }
+}
+
 .app_best_sticker.apps_sticker_ua {
     background-image: url(/images/label_best_ua.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .app_best_sticker.apps_sticker_ua {
+        background-image: url(/images/label_best_ua_2x.png);
+        background-size: 89px 89px
+    }
 }
 
 .apps_cat_header_icon {
@@ -1065,6 +1202,15 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
     margin: 13px 12px 0 0;
     border-radius: 3px;
     pointer-events: none
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_cat_header_icon {
+        background-image: url(/images/icons/apps_catalog_icons_2x.png);
+        background-size: 28px 672px
+    }
 }
 
 .apps_cat_header_icon.apps_icon_collections {
@@ -1155,6 +1301,15 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
     height: 11px;
     vertical-align: middle;
     background: url(/images/icons/search_arrow.png) no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_cat_header_link:after {
+        background-image: url(/images/icons/search_arrow_2x.png);
+        background-size: 6px 10px
+    }
 }
 
 a.apps_cat_header_link:after,
@@ -1371,6 +1526,15 @@ a.page_block_header:hover .apps_cat_header_link:after {
     background-image: url(/images/icons/app_actions_icon.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_edit_actions .icon {
+        background-image: url(/images/icons/app_actions_icon_2x.png);
+        background-size: 14px 28px
+    }
+}
+
 .apps_edit_actions .apps_action_edit .icon {
     background-position: center 1px
 }
@@ -1401,6 +1565,15 @@ a.page_block_header:hover .apps_cat_header_link:after {
 
 .apps_settings_row_wrap.loading .apps_settings_action_remove {
     background: url(/images/c_upload.gif) no-repeat 50%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_settings_row_wrap.loading .apps_settings_action_remove {
+        background-image: url(/images/c_upload_2x.gif);
+        background-size: 16px 16px
+    }
 }
 
 .apps_settings_row_wrap.deleted {
@@ -1546,6 +1719,16 @@ a.page_block_header:hover .apps_cat_header_link:after {
     border-radius: 2px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_settings_icons .apps_settings_payments,
+    .apps_settings_icons .apps_settings_stats {
+        background-image: url(/images/icons/apps_admin_icons_2x.png?1);
+        background-size: 18px 36px
+    }
+}
+
 .apps_settings_icons .apps_settings_payments:hover,
 .apps_settings_icons .apps_settings_stats:hover {
     background-color: #dde4ed
@@ -1565,6 +1748,16 @@ a.page_block_header:hover .apps_cat_header_link:after {
     display: inline-block;
     opacity: 0.75;
     filter: alpha(opacity=75)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_settings_action_edit,
+    .apps_settings_action_remove {
+        background-image: url(/images/icons/cog_cross_2x.png);
+        background-size: 14px 34px
+    }
 }
 
 .apps_settings_action_edit:hover,
@@ -1602,6 +1795,15 @@ a.page_block_header:hover .apps_cat_header_link:after {
     height: 11px;
     cursor: pointer;
     background-image: url(/images/icons/app_stars.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .app_rate {
+        background-image: url(/images/icons/app_stars_2x.png);
+        background-size: 13px 224px
+    }
 }
 
 .app_rate.full {
@@ -1707,6 +1909,15 @@ a.page_block_header:hover .apps_cat_header_link:after {
 .app_actions_menu_wrap.loading {
     background: url(/images/c_upload.gif) no-repeat 50%;
     pointer-events: none
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .app_actions_menu_wrap.loading {
+        background-image: url(/images/c_upload_2x.gif);
+        background-size: 16px 16px
+    }
 }
 
 .app_actions_menu_wrap.loading * {
@@ -1934,6 +2145,15 @@ a.page_block_header:hover .apps_cat_header_link:after {
     height: 40px;
     border-radius: 50%;
     background: url(/images/icons/app_settings.png) #648fc9
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_access_icon {
+        background-image: url(/images/icons/app_settings_2x.png);
+        background-size: 40px 600px
+    }
 }
 
 .apps_access_profile {
@@ -2398,6 +2618,16 @@ a.page_block_header:hover .apps_cat_header_link:after {
     margin-top: -0.5px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_i_slider_next:before,
+    .apps_i_slider_prev:before {
+        background-image: url(/images/icons/row_slider_btn_icon_2x.png);
+        background-size: 52px 37px
+    }
+}
+
 .apps_i_slider_next {
     right: 0
 }
@@ -2446,6 +2676,15 @@ a.page_block_header:hover .apps_cat_header_link:after {
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_i_run_box {
+        background-image: url(/images/inline_video_small_play_2x.png);
+        background-size: 46px 46px
+    }
 }
 
 .apps_i_slider_run .apps_i_run_box {
@@ -2575,6 +2814,15 @@ a.page_block_header:hover .apps_cat_header_link:after {
     width: 40px;
     height: 40px;
     border-radius: 50%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_win_instr_head:before {
+        background-image: url(/images/icons/install_download_2x.png);
+        background-size: 40px 40px
+    }
 }
 
 .apps_win_instr_screens {
@@ -3677,6 +3925,15 @@ a.app_decline:hover {
     cursor: pointer
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_paymentbox_close_lnk {
+        background-image: url(/images/cross_popup_2x.png);
+        background-size: 12px 12px
+    }
+}
+
 .apps_paymentbox_close_lnk:hover {
     opacity: 1;
     -webkit-filter: none;
@@ -3705,6 +3962,15 @@ a.app_decline:hover {
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner_big.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_paymentbox_spinner {
+        background-image: url(/images/icons/round_spinner_big_2x.png);
+        background-size: 34px 34px
+    }
 }
 
 .apps_paymentbox_progress_msg_wrap {
@@ -5049,6 +5315,14 @@ td.apps_cat_new_h {
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
     background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .allow_message_from_community_confirm_box img:after {
+        background-image: url(/images/camera_200.png)
+    }
 }
 
 .apps_footer_left .apps_info_hint,

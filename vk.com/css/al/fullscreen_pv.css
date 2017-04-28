@@ -85,6 +85,15 @@
     transition: opacity 150ms linear
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #pv_fs_close_btn {
+        background-image: url(/images/icons/pv_fs_controls_2x.png);
+        background-size: 18px 90px
+    }
+}
+
 #pv_fs_close:hover #pv_fs_close_btn {
     opacity: 1
 }
@@ -118,6 +127,15 @@ div#pv_fullscreen.pv_fs_nocursor {
     vertical-align: bottom;
     background-position: 0px -18px;
     margin-right: 7px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pv_fs_slide_check_icon {
+        background-image: url(/images/icons/pv_fs_controls_2x.png);
+        background-size: 18px 90px
+    }
 }
 
 .pv_fs_slide_on .pv_fs_slide_check_icon {
@@ -230,6 +248,16 @@ div#pv_fullscreen.pv_fs_nocursor {
     opacity: 0.5;
     -o-transition: opacity 150ms linear;
     transition: opacity 150ms linear
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #pv_fs_left,
+    #pv_fs_right {
+        background-image: url(/images/icons/pv_layer_controls_2x.png);
+        background-size: 22px 96px
+    }
 }
 
 #pv_fs_right {

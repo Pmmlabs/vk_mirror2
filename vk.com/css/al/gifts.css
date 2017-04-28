@@ -73,6 +73,15 @@
     background: url(/images/icons/send_gift_back.png) no-repeat 0 1px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .gift_send_btn {
+        background-image: url(/images/icons/send_gift_back_2x.png);
+        background-size: 13px 15px
+    }
+}
+
 .gift_delete {
     display: block;
     background: url(/images/icons/common.png?6) no-repeat 3px -27px;
@@ -86,11 +95,29 @@
     margin: 9px 2px 0 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .gift_delete {
+        background-image: url(/images/icons/common_2x.png?6);
+        background-size: 32px 232px
+    }
+}
+
 .gift_delete.gift_progress {
     background: url(/images/c_upload.gif) no-repeat 0 0;
     opacity: 1;
     -webkit-filter: none;
     filter: none
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .gift_delete.gift_progress {
+        background-image: url(/images/c_upload_2x.gif);
+        background-size: 16px 16px
+    }
 }
 
 .post:hover .gift_delete {
@@ -160,6 +187,15 @@ h4.gifts_section_header {
     transition: transform 70ms linear, -webkit-transform 70ms linear, -o-transform 70ms linear
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .gifts_section_show_all:after {
+        background-image: url(/images/icons/search_arrow_2x.png);
+        background-size: 6px 10px
+    }
+}
+
 .gifts_section_show_all:hover:after {
     -webkit-transform: translateX(3px);
     -ms-transform: translateX(3px);
@@ -227,6 +263,16 @@ h4.gifts_section_header {
     z-index: 200
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .gifts_scroll_left,
+    .gifts_scroll_right {
+        background-image: url(/images/icons/gifts_arrows_2x.png?2);
+        background-size: 40px 30px
+    }
+}
+
 .gifts_scroll_left {
     background-position: -20px
 }
@@ -284,6 +330,15 @@ h4.gifts_section_header {
     background-color: rgba(0, 0, 0, .6);
     opacity: 0.6;
     filter: alpha(opacity=60)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .gift_icon {
+        background-image: url(/images/gift_magic_2x.png?1);
+        background-size: 24px 24px
+    }
 }
 
 .gift_cell .gift_icon {
@@ -492,6 +547,15 @@ h4.gifts_section_header {
     margin: auto 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .gifts_constr_step:after {
+        background-image: url(/images/gift_const_icons_2x.png?1);
+        background-size: 35px 12px
+    }
+}
+
 .gifts_constr_step_cell:last-child .gifts_constr_step:after {
     display: none
 }
@@ -549,6 +613,15 @@ h4.gifts_section_header {
     height: 13px;
     padding: 6px 5px;
     border-radius: 3px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .gifts_constr_option.gifts_option_current:after {
+        background-image: url(/images/gift_const_icons_2x.png?1);
+        background-size: 35px 12px
+    }
 }
 
 .gifts_constr_options_ready {
@@ -786,4 +859,13 @@ img.gift_duck_tease#gift_item_733 {
     padding: 13px 18px 15px 45px;
     margin: 0;
     background: #f0f2f5 url(/images/icons/payments_promo.png?1) no-repeat 20px 15px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .gifts_promo_descr {
+        background-image: url(/images/icons/payments_promo_2x.png?1);
+        background-size: 14px 15px
+    }
 }

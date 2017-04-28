@@ -154,6 +154,15 @@
     box-sizing: border-box
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .docs_item_icon {
+        background-image: url(/images/icons/doc_icons_2x.png);
+        background-size: 30px 210px
+    }
+}
+
 .docs_item_icon:hover {
     text-decoration: none
 }
@@ -225,6 +234,15 @@
     transition: background-color 100ms linear, opacity 60ms ease
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .docs_item_play {
+        background-image: url(/images/icons/play_gif_2x.png);
+        background-size: 8px 10px
+    }
+}
+
 .docs_item_play:hover {
     background-color: rgba(0, 0, 0, .6)
 }
@@ -265,11 +283,29 @@ a.docs_item_name {
     outline: none
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .docs_action_icon {
+        background-image: url(/images/icons/common_2x.png?6);
+        background-size: 32px 232px
+    }
+}
+
 .docs_action_icon.docs_item_progress {
     background: url(/images/c_upload.gif) no-repeat 0 0;
     opacity: 1!important;
     -webkit-filter: none!important;
     filter: none!important
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .docs_action_icon.docs_item_progress {
+        background-image: url(/images/c_upload_2x.gif);
+        background-size: 16px 16px
+    }
 }
 
 .docs_delete_row {
@@ -383,6 +419,15 @@ a.docs_item_name {
     background: url(/images/icons/upload_icon.png) no-repeat left 1px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .docs_choose_upload_area_label {
+        background-image: url(/images/icons/upload_icon_2x.png);
+        background-size: 16px 16px
+    }
+}
+
 .dropbox_over {
     overflow: hidden!important
 }
@@ -429,6 +474,15 @@ a.docs_item_name {
     background: url(/images/icons/attach_file.png) no-repeat center 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .docs_choose_dropbox {
+        background-image: url(/images/icons/attach_file_2x.png);
+        background-size: 50px 62px
+    }
+}
+
 #box_layer_wrap.box_layer_wrap--docs_upload {
     z-index: 2000
 }
@@ -440,6 +494,15 @@ a.docs_item_name {
     padding: 11px 30px 11px 56px;
     line-height: 1.46;
     background: #e7edf2 url(/images/icons/docs_notice_office365_logo.png) no-repeat 11px 11px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .docs_office_365_notice {
+        background-image: url(/images/icons/docs_notice_office365_logo_2x.png);
+        background-size: 34px 34px
+    }
 }
 
 .docs_office_365_notice_more {
@@ -470,4 +533,13 @@ a.docs_item_name {
     background: #fff url(/images/icons/docs_tooltip_office365_logo.png) no-repeat 16px 16px;
     font-size: 14px;
     line-height: 1.285
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .eltt.feature_intro_tt.docs_office_365_tt {
+        background-image: url(/images/icons/docs_tooltip_office365_logo_2x.png);
+        background-size: 72px 72px
+    }
 }

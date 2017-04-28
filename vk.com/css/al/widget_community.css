@@ -587,3 +587,11 @@ body.mac .wcommunity_show_more button .pr {
     background-image: url(/images/camera_100.png);
     background-size: cover
 }
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .widget_community_confirm_box img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}

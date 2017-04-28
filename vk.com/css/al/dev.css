@@ -112,6 +112,15 @@ body.dev #stl_text {
     background: url(/images/dev_toplink.png) no-repeat left 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    body.dev #stl_text {
+        background-image: url(/images/dev_toplink_2x.png);
+        background-size: 15px 45px
+    }
+}
+
 body.dev #stl_left .down {
     background-position: left -15px
 }
@@ -294,6 +303,15 @@ body.dev .priv_h_arrow {
     margin-left: 4px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    body.dev .priv_h_arrow {
+        background-image: url(/images/dev_ddtooltip_2x.png?1);
+        background-size: 12px 11px
+    }
+}
+
 body.dev .priv_h_arrow img {
     display: none
 }
@@ -392,6 +410,15 @@ body.dev input.dev_top_input {
     color: #d9e2ec
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    body.dev input.dev_top_input {
+        background-image: url(/images/icons/dev_head_magglass_2x.png);
+        background-size: 13px 13px
+    }
+}
+
 body.dev input.dev_top_input::-webkit-input-placeholder {
     color: #8fadc8
 }
@@ -470,6 +497,15 @@ input.dev_wide_input~.placeholder .ph_content,
     width: 33px;
     margin: 11px 10px 0 0;
     vertical-align: top
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .dev_home_link:before {
+        background-image: url(/images/icons/head_icons_2x.png?6);
+        background-size: 120px 117px
+    }
 }
 
 .dev_top_link {
@@ -1067,6 +1103,15 @@ input.dev_input_simular {
     transition: transform 150ms ease, -webkit-transform 150ms ease, -o-transform 150ms ease
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .dev_main_featured .dev_main_featured_banner_slide_btn:after {
+        background-image: url(/images/dev/dev_header_icons_2x.png);
+        background-size: 14px 29px
+    }
+}
+
 .dev_main_featured .dev_main_featured_banner_slide_btn:hover {
     opacity: 0.9;
     filter: alpha(opacity=90)
@@ -1403,6 +1448,15 @@ input.dev_input_simular {
     transition: transform 70ms linear, -webkit-transform 70ms linear, -o-transform 70ms linear
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .dev_main_blog_post_more:after {
+        background-image: url(/images/icons/search_arrow_2x.png);
+        background-size: 6px 10px
+    }
+}
+
 .dev_main_blog_post_more:hover:after {
     -webkit-transform: translateX(3px);
     -ms-transform: translateX(3px);
@@ -1560,6 +1614,15 @@ input.dev_input_simular {
     left: 113px;
     -o-transition: margin 200ms ease-out;
     transition: margin 200ms ease-out
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .dev_sect_icon {
+        background-image: url(/images/icons/dev_icons_2x.png?4);
+        background-size: 92px 248px
+    }
 }
 
 .dev_sect_label {
@@ -2929,6 +2992,15 @@ input.dev_wrong_val {
     border-bottom: 1px solid #d3d9de
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .dev_community_widget_wrap {
+        background-image: url(/images/widgets/w_chat_dev_bg_2x.png);
+        background-size: 663px 442px
+    }
+}
+
 .dev_community_widget_wrap #dev_widget_preview {
     position: absolute!important;
     margin: 0px
@@ -3092,6 +3164,15 @@ input.dev_wrong_val {
     background-color: hsla(0, 0%, 100%, .3)!important;
     background-image: url(/images/dev/dev_header_icons.png)!important;
     margin: 12px 0px!important
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .dev_main_page .dev_top_input {
+        background-image: url(/images/dev/dev_header_icons_2x.png);
+        background-size: 14px 29px
+    }
 }
 
 .dev_main_page .dev_top_input_wrap .input_back_content,
@@ -3313,6 +3394,15 @@ input.dev_wrong_val {
     top: 19px;
     right: 15px;
     pointer-events: none
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .dev_section_methods_wrap .dev_section_search_arrow {
+        background-image: url(/images/dropdown_arrow_2x.png);
+        background-size: 11px 7px
+    }
 }
 
 .dev_section_methods_wrap .dev_section_search_result_wrap {

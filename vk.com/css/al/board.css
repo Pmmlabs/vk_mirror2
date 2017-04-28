@@ -107,6 +107,16 @@
     cursor: pointer
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .blst_closed,
+    .blst_fixed {
+        background-image: url(/images/icons/pin_lock_2x.png);
+        background-size: 12px 23px
+    }
+}
+
 .blst_closed {
     background-position: 0 -12px
 }
@@ -470,12 +480,30 @@ a.bp_date {
     background: url(/images/post_icon.png?6) no-repeat 1px -52px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .bp_action {
+        background-image: url(/images/post_icon_2x.png?6);
+        background-size: 20px 369px
+    }
+}
+
 .bp_action.bp_edit_button {
     background-position: 0 -40px
 }
 
 .bp_action.bp_loading {
     background: url(/images/action_upload.gif) no-repeat 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .bp_action.bp_loading {
+        background-image: url(/images/action_upload_2x.gif);
+        background-size: 13px 13px
+    }
 }
 
 .bp_tt {

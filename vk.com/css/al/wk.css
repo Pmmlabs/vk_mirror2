@@ -78,6 +78,15 @@ body.mac #wk_page_acts {
     transition: opacity 0.1s linear
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wk_page_acts a {
+        background-image: url(/images/doc_icons_2x.png);
+        background-size: 20px 80px
+    }
+}
+
 .wk_page_acts a:hover {
     opacity: 1;
     -webkit-filter: none;
@@ -335,6 +344,15 @@ a.wk_inline_video div.video_play_inline {
     transition: background-color 100ms linear
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    a.wk_inline_video div.video_play_inline {
+        background-image: url(/images/icons/video_play_small_2x.png?1);
+        background-size: 17px 24px
+    }
+}
+
 a.wk_inline_video div.video_play_inline:hover {
     background-color: rgba(0, 0, 0, .6)
 }
@@ -472,6 +490,15 @@ ol {
 
 #wk_poll_opt0 .summary_tab3 {
     background: url(/images/icons/poll_results.png) no-repeat 3px 2px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #wk_poll_opt0 .summary_tab3 {
+        background-image: url(/images/icons/poll_results_2x.png);
+        background-size: 10px 22px
+    }
 }
 
 .summary_tab_sel #wk_poll_opt0 .summary_tab3 {

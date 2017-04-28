@@ -63,6 +63,15 @@
     background-position: 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-thumb-wrap-background {
+        background-image: url(/images/icons/video_empty_2x.png);
+        background-size: 65px 45px
+    }
+}
+
 .media-video-thumb-background {
     background-repeat: no-repeat;
     background-size: cover;
@@ -121,6 +130,15 @@
     transition: background-color 100ms linear, opacity 60ms ease
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-play {
+        background-image: url(/images/icons/video_play_small_2x.png?1);
+        background-size: 17px 24px
+    }
+}
+
 .media-video-play:hover {
     background-color: rgba(0, 0, 0, .6)
 }
@@ -154,6 +172,15 @@
     background-image: url(/images/icons/media_check_uncheck.png);
     background-position: 0 -26px;
     cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-check-btn-icon {
+        background-image: url(/images/icons/media_check_uncheck_2x.png);
+        background-size: 22px 48px
+    }
 }
 
 .media-check-btn-icon-checked {
@@ -259,6 +286,15 @@
     background-image: url(/images/album_top_shadow.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .photos_container_albums .photos_album_title_wrap {
+        background-image: url(/images/album_top_shadow_2x.png);
+        background-size: 1px 200px
+    }
+}
+
 .photos_container_albums .photos_album_title {
     font-weight: 700;
     font-size: 12.5px;
@@ -281,6 +317,15 @@
     height: 10px;
     width: 8px;
     margin: 2px 6px 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .photos_container_albums .photos_album_privacy {
+        background-image: url(/images/icons/private_album_2x.png);
+        background-size: 8px 10px
+    }
 }
 
 .photos_container_albums .photos_album_description_wrap {
@@ -314,6 +359,15 @@
 
 .photos_container_albums .photos_album_no_cover .photos_album_privacy {
     background-image: url(/images/icons/private_album_blue.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .photos_container_albums .photos_album_no_cover .photos_album_privacy {
+        background-image: url(/images/icons/private_album_blue_2x.png);
+        background-size: 8px 10px
+    }
 }
 
 .photos_container_albums .photos_album_no_cover .photos_album_description {
@@ -561,6 +615,15 @@
     opacity: 0.7
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .album_thumb_action {
+        background-image: url(/images/icons/photo_album_2x.png);
+        background-size: 15px 13px
+    }
+}
+
 .album_thumb_action:hover {
     opacity: 1
 }
@@ -590,6 +653,15 @@
     background: url(/images/icons/reverse_order.png);
     width: 18px;
     height: 13px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .photos_album_reverse_btn .photos_album_reverse_icon {
+        background-image: url(/images/icons/reverse_order_2x.png);
+        background-size: 18px 26px
+    }
 }
 
 .photos_album_reverse_btn:active {
@@ -709,6 +781,15 @@
     background-image: url(/images/icons/media_check_uncheck.png);
     background-position: 0 -26px;
     cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .photos_container_edit_grid .photos_photo_edit_row_selector .photos_photo_edit_row_selector_icon {
+        background-image: url(/images/icons/media_check_uncheck_2x.png);
+        background-size: 22px 48px
+    }
 }
 
 .photos_container_edit_grid .photos_edit_selected .photos_photo_edit_row_selector {
@@ -908,6 +989,15 @@
     background-image: url(/images/icons/photo_edit_actions.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .photos_edit_actions .icon {
+        background-image: url(/images/icons/photo_edit_actions_2x.png);
+        background-size: 16px 148px
+    }
+}
+
 .photos_edit_actions #edit .icon {
     background-position: 0px -65px
 }
@@ -958,6 +1048,15 @@
     filter: alpha(opacity=0);
     -o-transition: opacity 60ms linear;
     transition: opacity 60ms linear
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #pv_move_to_album_cont .photos_album_thumb:before {
+        background-image: url(/images/icons/move_arrow_icon_2x.png);
+        background-size: 55px 44px
+    }
 }
 
 #pv_move_to_album_cont .photo_row:hover .photos_album_thumb:before {
@@ -1303,6 +1402,15 @@
 
 #photos_albums_container .photo_row .img_link.no_photo {
     background: #ecf1f5 url(/images/camera_big.png?1) 50% 60px no-repeat!important
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #photos_albums_container .photo_row .img_link.no_photo {
+        background-image: url(/images/camera_big_2x.png?1);
+        background-size: 60px 48px
+    }
 }
 
 #photos_albums_container .photo_row .photo_album_count {
@@ -2161,6 +2269,15 @@ a.photos_tt_edit:hover {
     display: inline-block
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .photos_choose_upload_area_label {
+        background-image: url(/images/icons/upload_icon_2x.png);
+        background-size: 16px 16px
+    }
+}
+
 .photos_choose_upload_area_enter .photos_choose_upload_area_upload {
     display: none
 }
@@ -2197,6 +2314,15 @@ a.photos_tt_edit:hover {
     background-position: left 4px;
     padding: 5px 5px 5px 30px;
     display: inline-block
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .web_cam_photo_icon {
+        background-image: url(/images/icons/webcam_2x.png);
+        background-size: 17px 19px
+    }
 }
 
 .photos_choose_upload_area_enter .web_cam_photo {
@@ -2349,6 +2475,15 @@ a.photos_tt_edit:hover {
     background: #ecf1f5 url(/images/camera_big.png?1) 50% 58px no-repeat!important
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .photos_choose_album_link.no_photo {
+        background-image: url(/images/camera_big_2x.png?1);
+        background-size: 60px 48px
+    }
+}
+
 .photos_choose_album_link.add.no_photo .photos_choose_album_add,
 .photos_choose_album_link.no_photo .photos_choose_album_camera,
 .photos_choose_album_link.no_photo .photos_choose_album_img {
@@ -2488,6 +2623,15 @@ a.photos_tt_edit:hover {
     color: transparent
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .photos_choose_more.photos_choose_more_loading {
+        background-image: url(/images/upload_2x.gif);
+        background-size: 32px 8px
+    }
+}
+
 .photos_choose_more:hover,
 .photos_choose_more_albums:hover {
     text-decoration: none;
@@ -2520,6 +2664,15 @@ a.photos_tt_edit:hover {
     font-size: 14px;
     padding-top: 65px;
     background: url(/images/icons/attach_photo.png) no-repeat center 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .photos_choose_upload_area_drop_label {
+        background-image: url(/images/icons/attach_photo_2x.png);
+        background-size: 60px 48px
+    }
 }
 
 .photos_choose_summary {

@@ -67,6 +67,15 @@
     margin: 8px 4px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wrecommended_logo:before {
+        background-image: url(/images/icons/comments_widget_2x.png);
+        background-size: 21px 87px
+    }
+}
+
 .wrecommended_wrap {
     padding: 15px
 }

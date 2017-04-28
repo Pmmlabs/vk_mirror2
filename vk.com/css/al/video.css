@@ -45,6 +45,15 @@
     background-position: 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-thumb-wrap-background {
+        background-image: url(/images/icons/video_empty_2x.png);
+        background-size: 65px 45px
+    }
+}
+
 .media-video-thumb-background {
     background-repeat: no-repeat;
     background-size: cover;
@@ -103,6 +112,15 @@
     transition: background-color 100ms linear, opacity 60ms ease
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-play {
+        background-image: url(/images/icons/video_play_small_2x.png?1);
+        background-size: 17px 24px
+    }
+}
+
 .media-video-play:hover {
     background-color: rgba(0, 0, 0, .6)
 }
@@ -136,6 +154,15 @@
     background-image: url(/images/icons/media_check_uncheck.png);
     background-position: 0 -26px;
     cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-check-btn-icon {
+        background-image: url(/images/icons/media_check_uncheck_2x.png);
+        background-size: 22px 48px
+    }
 }
 
 .media-check-btn-icon-checked {
@@ -214,6 +241,15 @@
     display: inline-block
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #video_sort_progress {
+        background-image: url(/images/c_upload_2x.gif);
+        background-size: 16px 16px
+    }
+}
+
 .videocat_row .video_title {
     padding-left: 4px
 }
@@ -259,6 +295,15 @@
     border-radius: 2px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .video_playlist_item .video_playlist_item_thumb_wrap {
+        background-image: url(/images/icons/video_playlist_2x.png);
+        background-size: 69px 49px
+    }
+}
+
 .video_playlist_item .video_playlist_item_thumb {
     height: 136px;
     width: 244px;
@@ -300,6 +345,15 @@
     color: #fff;
     text-align: center;
     background-position: center 30px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .video_playlist_item .video_drag_over_placeholder div {
+        background-image: url(/images/icons/video_add_to_album_2x.png);
+        background-size: 32px 32px
+    }
 }
 
 .video_playlist_item.video_on_drag_over .video_drag_over_placeholder {
@@ -449,6 +503,15 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
     display: none
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .video_item_private {
+        background-image: url(/images/icons/private_album_2x.png);
+        background-size: 8px 10px
+    }
+}
+
 .video_private .video_item_private {
     display: block
 }
@@ -513,6 +576,15 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
     background-position: 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .video_item .video_item_thumb_wrap {
+        background-image: url(/images/icons/video_empty_2x.png);
+        background-size: 65px 45px
+    }
+}
+
 .video_item .video_item_thumb {
     height: 136px;
     width: 244px;
@@ -562,6 +634,15 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
     background-image: url(/images/icons/media_check_uncheck.png);
     background-position: 0 -26px;
     cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .video_item .media_check_btn {
+        background-image: url(/images/icons/media_check_uncheck_2x.png);
+        background-size: 22px 48px
+    }
 }
 
 .video_item .media_check_btn_wrap.checked .media_check_btn {
@@ -780,6 +861,15 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
     background-image: url(/images/icons/photo_edit_actions.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .video_thumb_actions .icon {
+        background-image: url(/images/icons/photo_edit_actions_2x.png);
+        background-size: 16px 148px
+    }
+}
+
 .video_thumb_actions #edit .icon {
     background-position: 0px -65px
 }
@@ -898,6 +988,15 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
     box-sizing: border-box
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .video_empty_placeholder {
+        background-image: url(/images/icons/video_empty_icon_2x.png);
+        background-size: 82px 62px
+    }
+}
+
 .video_empty_placeholder .search_text {
     display: inline-block;
     max-width: 200px;
@@ -939,6 +1038,15 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
     margin-left: 11px;
     vertical-align: top;
     margin-top: 11px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #video_playlists_edit_box .pl_private {
+        background-image: url(/images/icons/lock_icons_2x.png);
+        background-size: 10px 101px
+    }
 }
 
 .embedbox_dropdown_outer {
@@ -1082,6 +1190,15 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
 .video_desktop_live_intro_wrap {
     padding: 20px 20px 20px 140px;
     background: url(/images/video/live_stream_logo.png) #fff no-repeat 20px 20px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .video_desktop_live_intro_wrap {
+        background-image: url(/images/video/live_stream_logo_2x.png);
+        background-size: 100px 100px
+    }
 }
 
 .video_desktop_live_intro_title {

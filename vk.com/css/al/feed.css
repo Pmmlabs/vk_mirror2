@@ -71,6 +71,15 @@
     filter: alpha(opacity=80)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .feed_lists_icon .ui_actions_menu_icons {
+        background-image: url(/images/icons/edit_newsfeed_2x.png);
+        background-size: 13px 28px
+    }
+}
+
 .feed_lists_icon .ui_actions_menu_icons:hover {
     opacity: 1;
     -webkit-filter: none;
@@ -87,6 +96,15 @@
     filter: alpha(opacity=75)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .feed_filter_icon {
+        background-image: url(/images/icons/edit_newsfeed_2x.png);
+        background-size: 13px 28px
+    }
+}
+
 .feed_filter_icon:hover {
     opacity: 1;
     -webkit-filter: none;
@@ -97,12 +115,30 @@
     background: url(/images/icons/filter_add.png) no-repeat 15px 9px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ui_actions_menu_item.feed_new_list {
+        background-image: url(/images/icons/filter_add_2x.png);
+        background-size: 12px 12px
+    }
+}
+
 .ui_actions_menu_item.feed_new_list:hover {
     background-color: #e4eaf0
 }
 
 .ui_actions_menu_item.feed_custom_list {
     background: url(/images/icons/filter_cog.png) no-repeat 15px 8px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ui_actions_menu_item.feed_custom_list {
+        background-image: url(/images/icons/filter_cog_2x.png);
+        background-size: 14px 14px
+    }
 }
 
 .ui_actions_menu_item.feed_custom_list:hover {
@@ -756,6 +792,14 @@
     background-size: cover
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .feedback_img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
 .feedback_header {
     padding: 2px 0 0;
     color: #222;
@@ -861,6 +905,14 @@
     background-size: cover
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .feedback_group_photo_img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
 .feedback_footer {
     font-size: 12.5px;
     padding: 2px 0;
@@ -928,6 +980,15 @@
     background: url(/images/icons/feedback_arrow.png?3) no-repeat;
     background-position: right 0;
     height: 5px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .feedback_grouped_row_wrap .post_actions {
+        background-image: url(/images/icons/feedback_arrow_2x.png?3);
+        background-size: 9px 5px
+    }
 }
 
 .feedback_grouped_row_wrap.feedback_row_expanded .post_actions {
@@ -1049,6 +1110,15 @@
     height: 40px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .feedback_payment_thumb {
+        background-image: url(/images/feedback_payments_2x.png);
+        background-size: 40px 200px
+    }
+}
+
 .feedback_payment_thumb.feedback_thumb_cards {
     background-position: 0 0
 }
@@ -1112,6 +1182,15 @@
     width: 40px;
     height: 40px;
     border-radius: 50%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .feedback_sticky_icon {
+        background-image: url(/images/icons/notifications_icons_2x.png?6);
+        background-size: 40px 400px
+    }
 }
 
 .feedback_event_row .feedback_sticky_icon {
@@ -1180,6 +1259,14 @@
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
     background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .feedback_sticky_img:after {
+        background-image: url(/images/camera_200.png)
+    }
 }
 
 .feedback_sticky_text {
@@ -1328,6 +1415,15 @@
     background-image: url(/images/icons/round_spinner.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .feedback_sticky_progress:before {
+        background-image: url(/images/icons/round_spinner_2x.png);
+        background-size: 16px 16px
+    }
+}
+
 .feedback_sticky_progress .feedback_sticky_hide {
     display: none
 }
@@ -1442,6 +1538,14 @@
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
     background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .feedback_row_answer .feedback_img:after {
+        background-image: url(/images/camera_200.png)
+    }
 }
 
 .feedback_row_answer .feedback_content {
@@ -2194,6 +2298,15 @@ div.feed_recom {
     background-image: url(/images/landings/vk10_years/10_min.png);
     width: 100%;
     height: 230px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .feed_vk10_years_header {
+        background-image: url(/images/landings/vk10_years/10_min_2x.png);
+        background-size: 550px 230px
+    }
 }
 
 .feed_vk10_years_ava {

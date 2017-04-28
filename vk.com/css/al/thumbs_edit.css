@@ -115,6 +115,15 @@ div.editable_thumbs {
     background: #ecf1f5 url(/images/camera_big.png?1) no-repeat 50% 45%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .editable_thumbs .page_album_nocover .draggable_thumb {
+        background-image: url(/images/camera_big_2x.png?1);
+        background-size: 60px 48px
+    }
+}
+
 .editable_thumbs .page_album_nocover .draggable_thumb.moving {
     background-size: 20px 16px!important
 }
@@ -125,6 +134,15 @@ div.editable_thumbs {
 
 .editable_thumbs .thumb_market_album_wrap.page_album_nocover .draggable_thumb {
     background: #ecf1f5 url(/images/icons/mall_icon.png?2) no-repeat 50% 45%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .editable_thumbs .thumb_market_album_wrap.page_album_nocover .draggable_thumb {
+        background-image: url(/images/icons/mall_icon_2x.png?2);
+        background-size: 81px 82px
+    }
 }
 
 .editable_thumbs .thumb_market_album_wrap.page_album_nocover .draggable_thumb.moving {

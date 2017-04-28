@@ -116,6 +116,15 @@
     filter: none
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wcomments_content_loading:before {
+        background-image: url(/images/icons/round_spinner_big_2x.png);
+        background-size: 34px 34px
+    }
+}
+
 .wcomments_section_browse .wcomments_admin_icon,
 .wcomments_section_browse .wcomments_admin_link_return,
 .wcomments_section_browse .wcomments_admin_tabs,
@@ -207,6 +216,15 @@
     background-position: right 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wcomments_bl_row .wcomments_bl_action.wcomments_bl_action_loading {
+        background-image: url(/images/upload_2x.gif);
+        background-size: 32px 8px
+    }
+}
+
 .wcomments_head {
     background: #507299;
     position: relative;
@@ -243,6 +261,16 @@
     content: '';
     display: block;
     background: url(/images/icons/comments_widget.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wcomments_admin_icon:before,
+    .wcomments_logo:before {
+        background-image: url(/images/icons/comments_widget_2x.png);
+        background-size: 21px 87px
+    }
 }
 
 .wcomments_logo {
@@ -572,6 +600,18 @@
     padding: 0 6px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wcomments_auto .wcomments_form .ms_item_more,
+    .wcomments_auto .wcomments_post .ms_item_more,
+    .wcomments_nano .wcomments_form .ms_item_more,
+    .wcomments_nano .wcomments_post .ms_item_more {
+        background-image: url(/images/icons/chats_2x.png?14);
+        background-size: 22px 182px
+    }
+}
+
 .wcomments_auto .wcomments_form .ms_item_more .ms_item_more_label,
 .wcomments_auto .wcomments_post .ms_item_more .ms_item_more_label,
 .wcomments_nano .wcomments_form .ms_item_more .ms_item_more_label,
@@ -865,6 +905,15 @@
     transition: opacity 100ms ease
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #page_wrap .wcomments_post_footer .post_like_wrap .post_like_icon {
+        background-image: url(/images/post_icon_2x.png?6);
+        background-size: 20px 369px
+    }
+}
+
 #page_wrap .wcomments_post_footer .post_like_wrap .post_like_count {
     margin: 0 0 0 4px;
     font-weight: 700;
@@ -960,6 +1009,15 @@
     background: url(/images/icons/comments_widget.png) 0 -59px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wcomments_nano .wall_module .post.wcomments_post .wpe_cancel:before {
+        background-image: url(/images/icons/comments_widget_2x.png);
+        background-size: 21px 87px
+    }
+}
+
 .wcomments_nano .wall_module .post.wcomments_post .reply_link {
     padding: 10px;
     margin: -10px;
@@ -986,4 +1044,13 @@
     content: '';
     display: inline-block;
     background: url(/images/icons/comments_widget.png) 0 -45px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wcomments_nano .wall_module .post.wcomments_post .reply_link:before {
+        background-image: url(/images/icons/comments_widget_2x.png);
+        background-size: 21px 87px
+    }
 }

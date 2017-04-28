@@ -69,6 +69,15 @@ div.wdd.wdd_focused.wdd_toup {
     background: url(/images/dropdown_arrow.png) no-repeat 2px 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wdd_arr {
+        background-image: url(/images/dropdown_arrow_2x.png);
+        background-size: 11px 7px
+    }
+}
+
 .wdd_lwrap {
     position: absolute;
     z-index: 20;
@@ -241,6 +250,15 @@ div.wdd.wdd_focused.wdd_toup {
     background: url(/images/icons/common.png?6) no-repeat 0 0;
     -o-transition: opacity 200ms linear;
     transition: opacity 200ms linear
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wdd_add_plus {
+        background-image: url(/images/icons/common_2x.png?6);
+        background-size: 32px 232px
+    }
 }
 
 .wdd_add:hover .wdd_add_plus {

@@ -149,6 +149,15 @@
     height: 15px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_narrow_row input[type=checkbox]+label:before {
+        background-image: url(/images/icons/dev_check_2x.png?2);
+        background-size: 15px 75px
+    }
+}
+
 .settings_narrow_row input[type=checkbox]:checked+label:before {
     background-position: 0 -15px
 }
@@ -312,6 +321,15 @@
     filter: alpha(opacity=60)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_more_icon {
+        background-image: url(/images/icons/menu_icon_2x.png?6);
+        background-size: 18px 964px
+    }
+}
+
 .settings_link_row {
     padding-top: 4px
 }
@@ -320,6 +338,15 @@
     background: url(/images/post_more.png?1) no-repeat;
     background-position: left 11px;
     padding-left: 22px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_all_services {
+        background-image: url(/images/post_more_2x.png?1);
+        background-size: 18px 4px
+    }
 }
 
 .settings_pwd_tt {
@@ -440,6 +467,26 @@
     height: 11px;
     margin-top: 1px;
     *position: relative
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #privacy_l_item101 .privacy_item_icon,
+    #privacy_l_item102 .privacy_item_icon,
+    #privacy_l_item103 .privacy_item_icon,
+    #privacy_l_item104 .privacy_item_icon,
+    #privacy_l_item105 .privacy_item_icon,
+    #privacy_l_item106 .privacy_item_icon,
+    #privacy_l_item107 .privacy_item_icon,
+    #privacy_l_item108 .privacy_item_icon,
+    #privacy_l_item109 .privacy_item_icon,
+    #privacy_l_item110 .privacy_item_icon,
+    #privacy_l_item112 .privacy_item_icon,
+    #privacy_l_item113 .privacy_item_icon {
+        background-image: url(/images/icons/mono_iconset_2x.png?3);
+        background-size: 12px 405px
+    }
 }
 
 #privacy_l_item101 .privacy_item_icon {
@@ -725,6 +772,14 @@ img.settings_bl_photo {
     background-size: cover
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_blb_photo_img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
 .settings_blb_info {
     overflow: hidden;
     padding: 7px 0 2px;
@@ -799,6 +854,15 @@ a.settings_blb_title {
 
 .settings_apps .apps_settings_row_wrap.loading .apps_settings_action_remove {
     background: url(/images/c_upload.gif) no-repeat 50%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_apps .apps_settings_row_wrap.loading .apps_settings_action_remove {
+        background-image: url(/images/c_upload_2x.gif);
+        background-size: 16px 16px
+    }
 }
 
 .settings_apps .apps_settings_row_wrap.deleted {
@@ -893,6 +957,16 @@ a.settings_blb_title {
     filter: alpha(opacity=75)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_apps .apps_settings_action_edit,
+    .settings_apps .apps_settings_action_remove {
+        background-image: url(/images/icons/cog_cross_2x.png);
+        background-size: 14px 34px
+    }
+}
+
 .settings_apps .apps_settings_action_edit:hover,
 .settings_apps .apps_settings_action_remove:hover {
     opacity: 1;
@@ -960,6 +1034,15 @@ a.settings_blb_title {
     width: 35px;
     height: 35px;
     background: url(/images/icons/payments_s.png) no-repeat 6px 7px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_history_thumb {
+        background-image: url(/images/icons/payments_s_2x.png);
+        background-size: 22px 226px
+    }
 }
 
 .settings_history_thumb_cards {
@@ -1065,6 +1148,15 @@ a.settings_blb_title {
     background: url(/images/icons/p2p_icons.png?2) no-repeat 0 0;
     width: 16px;
     height: 16px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_transfer_action {
+        background-image: url(/images/icons/p2p_icons_2x.png?2);
+        background-size: 14px 73px
+    }
 }
 
 .settings_transfer_repeat {
@@ -1221,6 +1313,15 @@ a.settings_blb_title {
     background: url(/images/cross.png) no-repeat 50% 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_payments_subscriptions .settings_subscription_cancel {
+        background-image: url(/images/cross_2x.png);
+        background-size: 10px 10px
+    }
+}
+
 .settings_payments_subscriptions .settings_subscription_reactivate {
     background-position: right -18px
 }
@@ -1328,28 +1429,91 @@ a.settings_blb_title {
     background: url(/images/pics/authcheck_1ru.png) no-repeat 50% 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_otp_box_pad {
+        background-image: url(/images/pics/authcheck_1ru_2x.png);
+        background-size: 152px 152px
+    }
+}
+
 .settings_otp_box_step1 {
     background-image: url(/images/pics/authcheck_1ru.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_otp_box_step1 {
+        background-image: url(/images/pics/authcheck_1ru_2x.png);
+        background-size: 152px 152px
+    }
 }
 
 .settings_otp_box_step2 {
     background-image: url(/images/pics/authcheck_2ru.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_otp_box_step2 {
+        background-image: url(/images/pics/authcheck_2ru_2x.png);
+        background-size: 152px 152px
+    }
+}
+
 .settings_otp_box_step3 {
     background-image: url(/images/pics/authcheck_3ru.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_otp_box_step3 {
+        background-image: url(/images/pics/authcheck_3ru_2x.png);
+        background-size: 152px 152px
+    }
 }
 
 .settings_otp_box_step1_en {
     background-image: url(/images/pics/authcheck_1en.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_otp_box_step1_en {
+        background-image: url(/images/pics/authcheck_1en_2x.png);
+        background-size: 152px 152px
+    }
+}
+
 .settings_otp_box_step2_en {
     background-image: url(/images/pics/authcheck_2en.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_otp_box_step2_en {
+        background-image: url(/images/pics/authcheck_2en_2x.png);
+        background-size: 152px 152px
+    }
+}
+
 .settings_otp_box_step3_en {
     background-image: url(/images/pics/authcheck_3en.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_otp_box_step3_en {
+        background-image: url(/images/pics/authcheck_3en_2x.png);
+        background-size: 152px 152px
+    }
 }
 
 .settings_otp_app_wrap {
@@ -1554,6 +1718,15 @@ input.settings_app_password_name {
 
 .settings_menu_rows .olist_item_menu .olist_item_photo {
     background: #e6edf4 url(/images/icons/menu_icon.png?6) no-repeat 8px -438px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .settings_menu_rows .olist_item_menu .olist_item_photo {
+        background-image: url(/images/icons/menu_icon_2x.png?6);
+        background-size: 18px 964px
+    }
 }
 
 .settings_menu_rows .olist_item_menu.olist_item_profile .olist_item_photo {

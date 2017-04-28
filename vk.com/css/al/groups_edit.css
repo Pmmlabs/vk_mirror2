@@ -186,6 +186,15 @@ a.group_ad_post_stats {
     background: url(/images/icons/import_contacts.png?7) no-repeat
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .gedit_import_box_icon {
+        background-image: url(/images/icons/import_contacts_2x.png?7);
+        background-size: 34px 170px
+    }
+}
+
 .gedit_import_twitter {
     background-position: 0px -102px
 }
@@ -534,6 +543,17 @@ a.group_blb_user_name,
     cursor: pointer
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .group_l_row .group_l_delete,
+    .group_l_row .group_l_edit,
+    .group_l_row .group_l_progress {
+        background-image: url(/images/icons/cog_cross_2x.png);
+        background-size: 14px 34px
+    }
+}
+
 .group_l_row .group_l_delete:hover,
 .group_l_row .group_l_edit:hover,
 .group_l_row .group_l_progress:hover {
@@ -557,6 +577,15 @@ a.group_blb_user_name,
     opacity: 1;
     -webkit-filter: none;
     filter: none
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .group_l_row .group_l_progress {
+        background-image: url(/images/c_upload_2x.gif);
+        background-size: 16px 16px
+    }
 }
 
 .group_l_row.deleted .group_l_info,
@@ -739,6 +768,15 @@ a.group_u_title {
     height: 47px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .groups_ad_withdraw_logo {
+        background-image: url(/images/socialcentrum_2x.png);
+        background-size: 248px 47px
+    }
+}
+
 .groups_ad_balance {
     font-size: 12.5px;
     font-weight: 700;
@@ -784,6 +822,15 @@ input.group_ad_cost {
     background: url(/images/icons/menu_icon.png?6) no-repeat 0 -255px;
     opacity: 0.6;
     filter: alpha(opacity=60)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .group_ad_more_icon {
+        background-image: url(/images/icons/menu_icon_2x.png?6);
+        background-size: 18px 964px
+    }
 }
 
 .group_ad_adv_comment {
@@ -904,6 +951,16 @@ a.group_ad_post_stats {
     height: 25px;
     background: #ecf1f5 url(/images/icons/adspost_actions.png) no-repeat 6px 7px;
     border-radius: 2px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    a.group_ad_post_link,
+    a.group_ad_post_stats {
+        background-image: url(/images/icons/adspost_actions_2x.png);
+        background-size: 13px 33px
+    }
 }
 
 a.group_ad_post_link:hover,
@@ -1032,6 +1089,15 @@ a.group_ad_post_link.deleted.deleted:hover {
     background-size: 135px 135px;
     line-height: 150%;
     min-height: 135px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .group_ad_join_desc {
+        background-image: url(/images/join/adspost_2x.png);
+        background-size: 160px 160px
+    }
 }
 
 .group_ad_join_desc br {
@@ -1554,6 +1620,15 @@ a.group_ad_post_link.deleted.deleted:hover {
     display: inline-block
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #groups_edit_request_type_progress {
+        background-image: url(/images/c_upload_2x.gif);
+        background-size: 16px 16px
+    }
+}
+
 .groups_api_divider {
     border-bottom: 1px solid #e7e8ec;
     margin: 12px 0 15px
@@ -1918,6 +1993,15 @@ a.group_ad_post_link.deleted.deleted:hover {
     background: url(/images/icons/p2p_icons.png?2) no-repeat 0 0;
     width: 16px;
     height: 16px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .group_money_transfers_table .settings_transfer_action {
+        background-image: url(/images/icons/p2p_icons_2x.png?2);
+        background-size: 14px 73px
+    }
 }
 
 .group_money_transfers_table .settings_transfer_repeat {

@@ -102,6 +102,15 @@ a.groups_messages_block:before {
     margin: 2px 0 0 -24px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .group_info_row:before {
+        background-image: url(/images/icons/group_info_cons_2x.png);
+        background-size: 15px 149px
+    }
+}
+
 .group_info_row.time:before {
     background-position: 0 -20px
 }
@@ -236,6 +245,15 @@ a.groups_messages_block:before {
     padding-left: 23px;
     background: url(/images/icons/group_info_cons.png) no-repeat -2px -79px;
     line-height: 15px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .group_closed_text {
+        background-image: url(/images/icons/group_info_cons_2x.png);
+        background-size: 15px 149px
+    }
 }
 
 .groups_edit_board_row {
@@ -376,6 +394,15 @@ a.groups_messages_block:before {
     background: url(/images/icons/menu_icon.png?6) no-repeat 0 -28px;
     opacity: 0.75;
     filter: alpha(opacity=75)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    a.groups_messages_block:before {
+        background-image: url(/images/icons/menu_icon_2x.png?6);
+        background-size: 18px 964px
+    }
 }
 
 a.groups_messages_block:hover {
@@ -632,6 +659,15 @@ body[data-useragent*=msie_edge] .groups_actions_menu .ui_actions_menu {
     background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAICAYAAAD0g6+qAAAATklEQVQoz2NYse245+odJx+DMIjNgARIkgNzdp76D8ZANrJikuSoZhDVvDZ54U7PSYv3PAZhEBtZMUlyYMbiPf9BGMRGVkySHNUMopbXAKLSDnCjcfmIAAAAAElFTkSuQmCC") no-repeat 50% 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .groups_actions_menu .groups_actions_icons {
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAQCAMAAABJNS0RAAAAIVBMVEUAAACktsiruMmruMqquMmrucqSm7aSo7uSo7uSoruTo7xHGkfyAAAACnRSTlMAHKbm7f8cpubtRB0YoQAAAFZJREFUeNqNkEkKACAMA7uorf7/wUo8B5JTZyi0xMwjM9wQRj7my4CnFBMJWEb5h4QlJC1J56THtQpsVXctOEprn5cNT6kOUrCM+g8NS0haks5Jj0sVXB0YCMXOanQ2AAAAAElFTkSuQmCC");
+        background-size: 18px 8px
+    }
+}
+
 .groups_actions_menu.shown .groups_actions_icons {
     background-position: 50% -4px
 }
@@ -819,6 +855,17 @@ a.groups_catalog_comm_title_link {
     cursor: pointer
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .group_box_row .group_box_delete,
+    .group_box_row .group_box_edit,
+    .group_box_row .group_box_progress {
+        background-image: url(/images/icons/cog_cross_2x.png);
+        background-size: 14px 34px
+    }
+}
+
 .group_box_row .group_box_delete:hover,
 .group_box_row .group_box_edit:hover,
 .group_box_row .group_box_progress:hover {
@@ -842,6 +889,15 @@ a.groups_catalog_comm_title_link {
     opacity: 1;
     -webkit-filter: none;
     filter: none
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .group_box_row .group_box_progress {
+        background-image: url(/images/c_upload_2x.gif);
+        background-size: 16px 16px
+    }
 }
 
 .group_box_row.deleted .group_box_image_wrap,
@@ -875,9 +931,27 @@ a.groups_catalog_comm_title_link {
     background-size: 50px 50px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .group_contacts_list .group_box_image_wrap {
+        background-image: url(/images/contact_2x.png);
+        background-size: 100px 100px
+    }
+}
+
 .group_places_list .group_box_image_wrap {
     background: url(/images/map.png) no-repeat 0 0;
     background-size: 50px 50px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .group_places_list .group_box_image_wrap {
+        background-image: url(/images/map_2x.png);
+        background-size: 100px 100px
+    }
 }
 
 .group_box_image {
@@ -926,6 +1000,16 @@ a.groups_catalog_comm_title_link {
     margin-top: 4px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .group_box_extra .info_icon_email,
+    .group_box_extra .info_icon_phone {
+        background-image: url(/images/icons/contacts_icon_2x.png);
+        background-size: 11px 26px
+    }
+}
+
 .group_box_extra .info_icon_email {
     background-position: 0 -14px
 }
@@ -963,6 +1047,15 @@ a.groups_catalog_comm_title_link {
     background: url(/images/contact.png) no-repeat 0 0;
     background-size: 80px 80px;
     overflow: hidden
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .group_contact_image_wrap {
+        background-image: url(/images/contact_2x.png);
+        background-size: 100px 100px
+    }
 }
 
 .group_contact_image {
@@ -1051,6 +1144,15 @@ a.group_app_button:after {
     background: url(/images/community_apps_logo.png) no-repeat 0 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #gtop_app_in_groups .gtop_image {
+        background-image: url(/images/community_apps_logo_2x.png);
+        background-size: 100px 100px
+    }
+}
+
 #gtop_money_transfer.gtop_complex_message {
     height: 100px
 }
@@ -1060,6 +1162,15 @@ a.group_app_button:after {
     width: 100px;
     height: 100px;
     border-radius: 50%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #gtop_money_transfer .gtop_image {
+        background-image: url(/images/community_money_2x.png);
+        background-size: 100px 100px
+    }
 }
 
 .group_manage_row {

@@ -114,6 +114,16 @@
     transition: opacity 100ms linear
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .owner_photo_rotate_left,
+    .owner_photo_rotate_right {
+        background-image: url(/images/icons/rotate_white_2x.png);
+        background-size: 41px 19px
+    }
+}
+
 .owner_photo_rotate_left:hover,
 .owner_photo_rotate_right:hover {
     opacity: 1;

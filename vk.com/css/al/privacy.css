@@ -47,9 +47,27 @@
     background: url(/images/icons/lock_icons.png) no-repeat 0 2px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .privacy_locked {
+        background-image: url(/images/icons/lock_icons_2x.png);
+        background-size: 10px 101px
+    }
+}
+
 .privacy_locked .privacy_dropdown .header .header_label {
     padding-left: 28px;
     background: url(/images/icons/lock_icons.png) no-repeat 12px -52px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .privacy_locked .privacy_dropdown .header .header_label {
+        background-image: url(/images/icons/lock_icons_2x.png);
+        background-size: 10px 101px
+    }
 }
 
 .group1,
@@ -256,6 +274,16 @@
     box-shadow: none
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .flist_item_checked .flist_item_action,
+    .flist_list_nomargin .flist_item_wrap.flist_item_checked:hover .flist_item_action {
+        background-image: url(/images/icons/check_uncheck_2x.png);
+        background-size: 22px 48px
+    }
+}
+
 .flist_list_radio .flist_item_wrap.flist_item_checked .flist_item_action,
 .flist_list_radio .flist_item_wrap:hover.flist_item_checked .flist_item_action {
     background: #fff;
@@ -343,6 +371,15 @@
     background: url(/images/icons/hide_item.png) no-repeat 50% 50%;
     top: 0;
     left: 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .flist_sel_list .flist_item_action {
+        background-image: url(/images/icons/hide_item_2x.png);
+        background-size: 16px 16px
+    }
 }
 
 .flist_sel_show_all {
@@ -491,6 +528,15 @@
     background-position: left -38px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .privacy_dropdown .header .header_label:after {
+        background-image: url(/images/icons/multidd_2x.png?2);
+        background-size: 10px 53px
+    }
+}
+
 .privacy_dropdown .body {
     background: #fff
 }
@@ -524,6 +570,15 @@
     background-position: left -21px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .privacy_dropdown .item_sel_plus:after {
+        background-image: url(/images/icons/multidd_2x.png?2);
+        background-size: 10px 53px
+    }
+}
+
 .privacy_dropdown .privacy_lists {
     position: relative
 }
@@ -551,6 +606,15 @@
     background-position: left -38px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .privacy_dropdown .l_header:after {
+        background-image: url(/images/icons/multidd_2x.png?2);
+        background-size: 10px 53px
+    }
+}
+
 .privacy_dropdown .l_item,
 .privacy_dropdown .l_item_sel {
     padding: 6px 6px 7px 24px;
@@ -565,6 +629,15 @@
     border-left: 6px solid transparent;
     background-position: left 9px;
     background-color: #fff
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .privacy_dropdown .l_item_sel {
+        background-image: url(/images/icons/dropdown_check_2x.png?2);
+        background-size: 14px 10px
+    }
 }
 
 .privacy_dropdown .l_item:hover,

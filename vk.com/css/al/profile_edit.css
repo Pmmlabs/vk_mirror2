@@ -119,6 +119,16 @@
     filter: alpha(opacity=75)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pedit_del_icon,
+    .pedit_set_icon {
+        background-image: url(/images/cross_2x.png);
+        background-size: 10px 10px
+    }
+}
+
 .pedit_del_icon:hover,
 .pedit_set_icon:hover {
     opacity: 1;
@@ -130,6 +140,15 @@
     opacity: 0.8;
     filter: alpha(opacity=80);
     background-image: url(/images/icons/cog.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pedit_set_icon {
+        background-image: url(/images/icons/cog_2x.png);
+        background-size: 14px 14px
+    }
 }
 
 .pedit_right_control .pedit_del_icon {
@@ -213,6 +232,15 @@
     height: 20px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pedit_privacy_control .privacy_edit_wrap a {
+        background-image: url(/images/icons/lock_icons_2x.png);
+        background-size: 10px 101px
+    }
+}
+
 .pedit_privacy_control .privacy_edit_wrap a:before {
     float: right;
     content: ' ';
@@ -220,6 +248,15 @@
     background-position: right 8px;
     width: 9px;
     height: 20px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pedit_privacy_control .privacy_edit_wrap a:before {
+        background-image: url(/images/icons/profile_edit_arrow_2x.png);
+        background-size: 8px 35px
+    }
 }
 
 .pedit_privacy_control .privacy_friends_list {
@@ -252,6 +289,15 @@
     height: 11px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pedit_privacy_control .privacy_dropdown .header:after {
+        background-image: url(/images/icons/lock_icons_2x.png);
+        background-size: 10px 101px
+    }
+}
+
 .pedit_privacy_control .privacy_dropdown .item {
     padding-right: 40px
 }
@@ -261,6 +307,15 @@
     top: 10px;
     width: 9px;
     height: 6px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pedit_privacy_control .privacy_dropdown .header .header_label:after {
+        background-image: url(/images/icons/profile_edit_arrow_2x.png);
+        background-size: 8px 35px
+    }
 }
 
 .pedit_privacy_locked .privacy_dropdown .header:after {
@@ -277,6 +332,17 @@
     padding-right: 0px;
     border-right: 10px solid transparent;
     background-position: right 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pedit_social_icon_1,
+    .pedit_social_icon_3,
+    .pedit_social_icon_4 {
+        background-image: url(/images/social_integration_2x.png?1);
+        background-size: 32px 96px
+    }
 }
 
 .pedit_social_icon_1 {
@@ -392,6 +458,15 @@
     background: url(/images/icons/import_contacts.png?7) no-repeat
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pedit_import_box_icon {
+        background-image: url(/images/icons/import_contacts_2x.png?7);
+        background-size: 34px 170px
+    }
+}
+
 .pedit_import_twitter {
     background-position: 0px -102px
 }
@@ -453,4 +528,13 @@
     background: url(/images/icons/add_row.png) no-repeat 0 50%;
     padding-left: 24px;
     margin-left: 160px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .pedit_add_row {
+        background-image: url(/images/icons/add_row_2x.png);
+        background-size: 14px 14px
+    }
 }

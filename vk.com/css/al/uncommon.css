@@ -65,6 +65,15 @@
     background: url(/images/join/finish_f.png) no-repeat 0 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .validation_img {
+        background-image: url(/images/join/finish_f_2x.png);
+        background-size: 160px 160px
+    }
+}
+
 .validation_row {
     margin: 0 auto 10px;
     width: 200px
@@ -172,6 +181,15 @@
     background: url(/images/push_check.png) no-repeat
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .push_validation_img {
+        background-image: url(/images/push_check_2x.png);
+        background-size: 160px 160px
+    }
+}
+
 .push_validation_box .validation_text {
     margin-bottom: 25px
 }
@@ -239,6 +257,15 @@
     border-radius: 3px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .validation_device_thumb {
+        background-image: url(/images/icons/vk_app_2x.png?2);
+        background-size: 34px 34px
+    }
+}
+
 .validation_pushed_device .validation_device_thumb {
     margin-left: -23px
 }
@@ -288,6 +315,15 @@
 
 .actualize_phone_box .layerbox_img {
     background: url(/images/join/finish_f.png) no-repeat 50% 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .actualize_phone_box .layerbox_img {
+        background-image: url(/images/join/finish_f_2x.png);
+        background-size: 160px 160px
+    }
 }
 
 .actualize_email1_box .layerbox_img {
@@ -507,6 +543,15 @@ input.passchange_input_error {
     min-height: 40px;
     line-height: 150%;
     background: #fff url(/images/desktop_icon.png) no-repeat 40px 35px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .save_fv_bar.page_block {
+        background-image: url(/images/desktop_icon_2x.png);
+        background-size: 100px 100px
+    }
 }
 
 .save_fv_bar.page_block .flat_button {
@@ -1240,6 +1285,16 @@ div.validation_last_button .button {
 .load_more_hidden {
     background: url(/images/upload.gif) no-repeat 50%;
     height: 43px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .load_more,
+    .load_more_hidden {
+        background-image: url(/images/upload_2x.gif);
+        background-size: 32px 8px
+    }
 }
 
 .load_more {

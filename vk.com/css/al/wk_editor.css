@@ -59,6 +59,15 @@ textarea.wke_textarea {
     border-radius: 2px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wke_b {
+        background-image: url(/images/icons/wiki_icons_2x.png?1);
+        background-size: 48px 408px
+    }
+}
+
 .wke_b:first-child {
     margin-left: 0
 }

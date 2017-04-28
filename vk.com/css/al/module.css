@@ -217,6 +217,15 @@
     background: url(/images/icons/topic_icon.png) no-repeat 0 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .topics_module .topic_icon {
+        background-image: url(/images/icons/topic_icon_2x.png);
+        background-size: 12px 12px
+    }
+}
+
 .topics_module .topic_title {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -292,6 +301,15 @@
     height: 15px;
     margin-top: 1px;
     background: url(/images/icons/public_places_icon.png) no-repeat 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .places_module .place_icon {
+        background-image: url(/images/icons/public_places_icon_2x.png);
+        background-size: 12px 15px
+    }
 }
 
 .places_module .place_title {
@@ -477,6 +495,15 @@
     transition: background-color 100ms linear
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .video_module .video .page_video_play_icon {
+        background-image: url(/images/icons/video_play_small_2x.png?1);
+        background-size: 17px 24px
+    }
+}
+
 .video_module .video .page_video_play_icon:hover {
     background-color: rgba(0, 0, 0, .6)
 }
@@ -571,6 +598,15 @@
     background: url(/images/upload.gif) no-repeat 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .app_module .app_container {
+        background-image: url(/images/upload_2x.gif);
+        background-size: 32px 8px
+    }
+}
+
 .app_module .app_container iframe {
     display: none;
     overflow: hidden;
@@ -607,6 +643,15 @@
     padding-left: 10px;
     height: 15px;
     background: url(/images/backlink.gif?4) no-repeat 3px -126px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .page_app_run_arr {
+        background-image: url(/images/backlink_2x.gif?4);
+        background-size: 20px 150px
+    }
 }
 
 .market_module .page_market_items_wrap {
@@ -776,6 +821,15 @@ a.page_module_upload:hover .page_upload_label {
     transition: opacity 100ms ease
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .page_upload_label {
+        background-image: url(/images/icons/group_icons_2x.png?3);
+        background-size: 17px 187px
+    }
+}
+
 .page_upload_label.page_photos_upload {
     background-position: 0 1px
 }
@@ -822,6 +876,15 @@ a.page_module_upload:hover .page_upload_label {
     height: 27px;
     margin-left: -37px;
     margin-top: -4px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wide_column .page_upload_label {
+        background-image: url(/images/icons/group_icons_big_2x.png?1);
+        background-size: 25px 132px
+    }
 }
 
 .wide_column .page_upload_label.page_topics_upload {

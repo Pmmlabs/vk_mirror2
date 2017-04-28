@@ -66,6 +66,15 @@ span.fc_contact_photo.online.mobile:after {
     background-image: url(/images/emoji/sprites/sprite0.png?7)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .emoji_sprite_0 {
+        background-image: url(/images/emoji/sprites/sprite0_2x.png?7);
+        background-size: 360px 216px
+    }
+}
+
 .emoji_d83dde38 {
     background-position: 0px 0px
 }
@@ -954,6 +963,15 @@ span.fc_contact_photo.online.mobile:after {
     background-image: url(/images/emoji/sprites/sprite1.png?7)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .emoji_sprite_1 {
+        background-image: url(/images/emoji/sprites/sprite1_2x.png?7);
+        background-size: 360px 198px
+    }
+}
+
 .emoji_d83dde39 {
     background-position: 0px 0px
 }
@@ -1820,6 +1838,15 @@ span.fc_contact_photo.online.mobile:after {
 
 .emoji_sprite_2 {
     background-image: url(/images/emoji/sprites/sprite2.png?7)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .emoji_sprite_2 {
+        background-image: url(/images/emoji/sprites/sprite2_2x.png?7);
+        background-size: 360px 198px
+    }
 }
 
 .emoji_d83dde01 {
@@ -2752,6 +2779,15 @@ span.fc_contact_photo.online.mobile:after {
     width: 10px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .notifier_close_wrap:before {
+        background-image: url(/images/icons/common_2x.png?6);
+        background-size: 32px 232px
+    }
+}
+
 .notifier_baloon_body {
     padding: 11px 12px 12px
 }
@@ -3039,6 +3075,15 @@ a.fc_contact_over span.fc_contact_photo.online.mobile:after {
     width: 15px;
     opacity: 0.7;
     filter: alpha(opacity=70)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .fc_contact_over:hover .fc_contact_status {
+        background-image: url(/images/icons/search_mobile_icon_2x.png?1);
+        background-size: 15px 46px
+    }
 }
 
 .fc_contact_name {
@@ -3502,6 +3547,17 @@ a.fc_msg_att_lnk:hover .fc_msg_att_text {
     margin: 3px 5px 0 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .fc_msg_att_icon_doc,
+    .fc_msg_att_icon_mail,
+    .fc_msg_att_icon_wall {
+        background-image: url(/images/icons/chats_2x.png?14);
+        background-size: 22px 182px
+    }
+}
+
 .fc_msg_att_icon_doc {
     background-position: 0px -169px
 }
@@ -3569,6 +3625,15 @@ a.fc_msg_att_lnk:hover .fc_msg_att_text {
 .fc_tab_attach .media_selector .ms_item_more {
     background: url(/images/icons/chats.png?14) no-repeat 0 -55px;
     padding: 0 6px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .fc_tab_attach .media_selector .ms_item_more {
+        background-image: url(/images/icons/chats_2x.png?14);
+        background-size: 22px 182px
+    }
 }
 
 .fc_tab_attach .ms_items_more {
@@ -3720,6 +3785,15 @@ a.fc_msg_att_lnk:hover .fc_msg_att_text {
     height: 22px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .fc_chronicle_icon {
+        background-image: url(/images/icons/snap_app_2x.png);
+        background-size: 22px 22px
+    }
+}
+
 .chat_onl_wrap {
     display: none;
     position: fixed;
@@ -3793,6 +3867,15 @@ body.mac .chat_onl_wrap {
     margin-left: 4px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .chat_onl:after {
+        background-image: url(/images/icons/chats_2x.png?14);
+        background-size: 22px 182px
+    }
+}
+
 .layers_shown .chat_onl:after {
     background-position: -13px -116px
 }
@@ -3819,6 +3902,15 @@ body.mac .chat_onl_wrap {
 
 .chats_sp {
     background: url(/images/icons/chats.png?14) no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .chats_sp {
+        background-image: url(/images/icons/chats_2x.png?14);
+        background-size: 22px 182px
+    }
 }
 
 .chats_sp.rb_resize {
@@ -3906,6 +3998,15 @@ img.fc_inline_chatter_half {
     background: url(/images/icons/chats.png?14) no-repeat 3px -43px;
     opacity: 0.7;
     filter: alpha(opacity=70)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .chat_tab_close:after {
+        background-image: url(/images/icons/chats_2x.png?14);
+        background-size: 22px 182px
+    }
 }
 
 .chat_tab_close:hover:after,
@@ -4201,6 +4302,15 @@ div.chat_tab_img {
     background: url(/images/icons/smile_icon.png) no-repeat 4px 4px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .emoji_smile_icon {
+        background-image: url(/images/icons/smile_icon_2x.png);
+        background-size: 17px 17px
+    }
+}
+
 .emoji_smile_icon_vector {
     width: 24px;
     height: 24px;
@@ -4445,6 +4555,15 @@ div.chat_tab_img {
     background: url(/images/emoji_sprite.png?12) 0 -29px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .emoji_cats_title_helper:after {
+        background-image: url(/images/emoji_sprite_2x.png?12);
+        background-size: 149px 78px
+    }
+}
+
 .emoji_cats_title_helper:empty:after {
     opacity: 0;
     filter: alpha(opacity=0)
@@ -4533,6 +4652,16 @@ div.chat_tab_img {
     height: 10px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ui_scroll_default_theme.ui_scroll_emoji_theme>.ui_scroll_overflow>.ui_scroll_shadow_bottom,
+    .ui_scroll_default_theme.ui_scroll_emoji_theme>.ui_scroll_overflow>.ui_scroll_shadow_top {
+        background-image: url(/images/emoji_sprite_2x.png?12);
+        background-size: 149px 78px
+    }
+}
+
 .ui_scroll_default_theme.ui_scroll_emoji_theme>.ui_scroll_bar_container>.ui_scroll_bar_outer {
     right: -9px
 }
@@ -4540,6 +4669,15 @@ div.chat_tab_img {
 .emoji_sprite {
     background-image: url(/images/emoji_sprite.png?12);
     background-repeat: no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .emoji_sprite {
+        background-image: url(/images/emoji_sprite_2x.png?12);
+        background-size: 149px 78px
+    }
 }
 
 #im_emoji_over {
@@ -4819,6 +4957,15 @@ div.chat_tab_img {
     cursor: pointer
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .sticker_hints_arrow {
+        background-image: url(/images/icons/stickers_hints_arrow_2x.png);
+        background-size: 8px 14px
+    }
+}
+
 .sticker_hints_arrow.sticker_left {
     left: 0;
     -webkit-transform: scaleX(-1);
@@ -5049,6 +5196,15 @@ div.chat_tab_img {
     background-size: 30px auto
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .notify_tt_thumb {
+        background-image: url(/images/icons/notifications_icons_2x.png?6);
+        background-size: 40px 400px
+    }
+}
+
 .top_tt_event .notify_tt_thumb {
     background-position: 0 -30px
 }
@@ -5145,6 +5301,14 @@ div.chat_tab_img {
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
     background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .top_notify_cont .feedback_img:after {
+        background-image: url(/images/camera_200.png)
+    }
 }
 
 .top_notify_cont .feedback_header {
@@ -5244,8 +5408,26 @@ div.chat_tab_img {
     margin: 0px 3px -2px 0px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .fc_snapster_invite_ic {
+        background-image: url(/images/chronicle/install_android_2x.png);
+        background-size: 11px 13px
+    }
+}
+
 .fc_snapster_invite_ic_ios {
     background-image: url(/images/chronicle/install_ios.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .fc_snapster_invite_ic_ios {
+        background-image: url(/images/chronicle/install_ios_2x.png);
+        background-size: 10px 13px
+    }
 }
 
 .fc_snapster_invite_btn {
@@ -5268,6 +5450,15 @@ div.chat_tab_img {
     background: url(/images/chronicle/snapster_invite_web.png);
     border-radius: 2px;
     background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .fc_snapster_invite_cover {
+        background-image: url(/images/chronicle/snapster_invite_web_2x.png);
+        background-size: 350px 233px
+    }
 }
 
 .fc_snapster_invite_about {

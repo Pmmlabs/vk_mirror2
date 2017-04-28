@@ -157,6 +157,15 @@ body.dev .tickets_list {
     height: 40px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_list_load_more_loading {
+        background-image: url(/images/upload_inv_2x.gif);
+        background-size: 32px 8px
+    }
+}
+
 #tickets_faq_msg {
     background: #f7f7f7;
     padding: 15px 0 0;
@@ -516,6 +525,15 @@ body.dev .tickets_header {
     display: inline-block
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_header_title_locked {
+        background-image: url(/images/icons/lock_2x.png);
+        background-size: 10px 11px
+    }
+}
+
 .tickets_header_flood_info>b {
     color: #000
 }
@@ -560,6 +578,15 @@ body.dev .tickets_header_task_info {
     margin-right: 5px;
     height: 15.002px;
     width: 32px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_header_progress {
+        background-image: url(/images/upload_2x.gif);
+        background-size: 32px 8px
+    }
 }
 
 .tickets_header_body {
@@ -1041,6 +1068,15 @@ body.dev .tu_row {
     left: 2px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tu_info.tu_info_waiting:before {
+        background-image: url(/images/support/status_icons_2x.png);
+        background-size: 32px 90px
+    }
+}
+
 .tu_info.tu_info_ok {
     padding-left: 49px
 }
@@ -1054,6 +1090,15 @@ body.dev .tu_row {
     background-position: left 0;
     top: 0;
     left: 2px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tu_info.tu_info_ok:before {
+        background-image: url(/images/support/status_icons_2x.png);
+        background-size: 32px 90px
+    }
 }
 
 .tu_info.tu_info_outdated {
@@ -1071,6 +1116,15 @@ body.dev .tu_row {
     border: 2px solid #acbed0;
     content: "";
     position: absolute
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tu_info.tu_info_outdated:before {
+        background-image: url(/images/icons/lock_2x.png);
+        background-size: 10px 11px
+    }
 }
 
 .tt_default.tt_left.tickets_side_tt_right:after,
@@ -1203,6 +1257,15 @@ body.dev .tickets_side_tt .tail {
     width: 6px;
     height: 11px;
     background: url(/images/dev_ddtooltip.png?1) -6px 0 no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    body.dev .tickets_side_tt .tail {
+        background-image: url(/images/dev_ddtooltip_2x.png?1);
+        background-size: 12px 11px
+    }
 }
 
 .tickets_side_tt #hint_opts .radiobtn {
@@ -1679,6 +1742,14 @@ body.dev .tickets_faq_row {
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
     background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .similar_row_wrap .tickets_faq_img img:after {
+        background-image: url(/images/camera_200.png)
+    }
 }
 
 .tickets_faq_content {
@@ -2868,6 +2939,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     top: 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_suggest__icon:after {
+        background-image: url(/images/support/faq_icons_2x.png);
+        background-size: 28px 392px
+    }
+}
+
 .tickets_suggest__icon.tickets_icon0:after {
     background-position: 0 -56px
 }
@@ -2959,6 +3039,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     height: 200px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .help_tiles_empty {
+        background-image: url(/images/agents/sad_2x.png);
+        background-size: 70px 70px
+    }
+}
+
 .help_tile_alert {
     margin: 18px 0 0;
     padding: 0 78px 25px 30px;
@@ -2989,6 +3078,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     top: 5px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .help_tile_alert_urgent:before {
+        background-image: url(/images/support/status_icons_2x.png);
+        background-size: 32px 90px
+    }
+}
+
 .tickets_new_urgent .help_tile_alert_urgent:before {
     left: 50px
 }
@@ -3010,6 +3108,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     background-position: left -32px;
     left: 30px;
     top: 5px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .help_tile_alert_waiting:before {
+        background-image: url(/images/support/status_icons_2x.png);
+        background-size: 32px 90px
+    }
 }
 
 .tickets_new_urgent .help_tile_alert_waiting:before {
@@ -3056,6 +3163,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     opacity: 0.2
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .help_tile_alert__edit {
+        background-image: url(/images/doc_icons_2x.png);
+        background-size: 20px 80px
+    }
+}
+
 .help_tile_alert__edit:hover {
     opacity: 1
 }
@@ -3090,6 +3206,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     content: "";
     position: absolute;
     top: 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .help_tile__title:after {
+        background-image: url(/images/support/faq_icons_2x.png);
+        background-size: 28px 392px
+    }
 }
 
 .help_tile__title.tickets_icon0:after {
@@ -3188,6 +3313,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     top: 5px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .help_tile__all:after {
+        background-image: url(/images/faq_arrow_2x.png);
+        background-size: 6px 10px
+    }
+}
+
 .help_tile__all:hover {
     opacity: 1;
     text-decoration: none
@@ -3233,6 +3367,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     content: "";
     position: absolute;
     top: 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .help_table_questions__title:after {
+        background-image: url(/images/support/faq_icons_2x.png);
+        background-size: 28px 392px
+    }
 }
 
 .help_table_questions__title.tickets_icon0:after {
@@ -3536,6 +3679,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     opacity: 0.5
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .help_table_question__edit {
+        background-image: url(/images/doc_icons_2x.png);
+        background-size: 20px 80px
+    }
+}
+
 .help_table_question__edit:hover {
     opacity: 1
 }
@@ -3627,6 +3779,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     display: inline-block
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .help_table_question_act_do:before {
+        background-image: url(/images/support/faq_btn_arrow_2x.png);
+        background-size: 12px 10px
+    }
+}
+
 .help_table_question_act_do:hover:before {
     left: 10px
 }
@@ -3640,6 +3801,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     left: 9px;
     top: 8px;
     display: inline-block
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .help_table_question_act_ok:before {
+        background-image: url(/images/support/faq_helpful_2x.png);
+        background-size: 12px 9px
+    }
 }
 
 .help_table_question_act_do:hover,
@@ -3868,6 +4038,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     width: 122px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_new_extra_field__uploaded {
+        background-image: url(/images/support/camera_big_2x.png);
+        background-size: 30px 24px
+    }
+}
+
 .tickets_new_extra_field__uploaded.tickets_new_extra_field__uploaded_p {
     background: #ecf1f5
 }
@@ -3963,6 +4142,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     opacity: 0.5
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_mobile_notice__close {
+        background-image: url(/images/icons/thin_close_2x.png);
+        background-size: 11px 11px
+    }
+}
+
 .tickets_mobile_notice__close:hover {
     opacity: 1
 }
@@ -3988,6 +4176,15 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     pointer-events: none;
     background: url(/images/upload.gif) 100% no-repeat;
     padding-right: 38px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_delegate_btn_process {
+        background-image: url(/images/upload_2x.gif);
+        background-size: 32px 8px
+    }
 }
 
 .tickets_pass_to_msg.msg {

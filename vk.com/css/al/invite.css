@@ -32,6 +32,15 @@
     background-position: 0px -136px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .invite_box_title_icon {
+        background-image: url(/images/icons/import_contacts_2x.png?7);
+        background-size: 34px 170px
+    }
+}
+
 .invite_box_title {
     padding-left: 35px
 }

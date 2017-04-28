@@ -186,6 +186,15 @@
     transition: background-color 0.2s ease
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .fans_fan_bl {
+        background-image: url(/images/cross_delete_user_2x.png);
+        background-size: 8px 8px
+    }
+}
+
 .fans_fan_bl_wrap:hover .fans_fan_bl {
     background-color: #4f4f4f
 }

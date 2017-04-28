@@ -376,6 +376,15 @@ img.im_photo_thumb {
     margin-top: 7px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im_chronicle_invite_img {
+        background-image: url(/images/chronicle/snapster_invite_web_2x.png);
+        background-size: 350px 233px
+    }
+}
+
 .im_chronicle_invite_about {
     margin: 12px 0px
 }
@@ -389,6 +398,15 @@ img.im_photo_thumb {
     background-size: cover
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im_chronicle_invite_logo {
+        background-image: url(/images/chronicle/snapster_invite_logo_2x.png);
+        background-size: 50px 50px
+    }
+}
+
 .im_chronicle_invite_descr {
     line-height: 16px;
     margin-left: 60px
@@ -396,6 +414,15 @@ img.im_photo_thumb {
 
 .im_chronicle_invite_android {
     background: #689f38 url(/images/chronicle/install_android.png) no-repeat 16px 8px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im_chronicle_invite_android {
+        background-image: url(/images/chronicle/install_android_2x.png);
+        background-size: 11px 13px
+    }
 }
 
 .im_chronicle_invite_android:active,
@@ -406,6 +433,15 @@ img.im_photo_thumb {
 .im_chronicle_invite_iphone {
     margin-left: 8px;
     background: #6383a8 url(/images/chronicle/install_ios.png) no-repeat 16px 8px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im_chronicle_invite_iphone {
+        background-image: url(/images/chronicle/install_ios_2x.png);
+        background-size: 10px 13px
+    }
 }
 
 .im_chronicle_invite_android,
@@ -509,6 +545,15 @@ img.im_photo_thumb {
     background: url(/images/icons/stickers_icon.png) no-repeat
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im_stickers_close:after {
+        background-image: url(/images/icons/stickers_icon_2x.png);
+        background-size: 14px 50px
+    }
+}
+
 .im_stickers_layer_close {
     position: fixed;
     top: 0;
@@ -540,6 +585,15 @@ img.im_photo_thumb {
     height: 20px;
     width: 20px;
     background: url(/images/icons/layer_controls.png) no-repeat 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im_stickers_layer_close:after {
+        background-image: url(/images/icons/layer_controls_2x.png);
+        background-size: 20px 84px
+    }
 }
 
 .im_stickers_banners_wrap {
@@ -582,6 +636,16 @@ img.im_photo_thumb {
     content: ' ';
     display: block;
     background: url(/images/icons/row_slider_btn_icon.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im_stickers_banners_wrap .isb_arrow_left:after,
+    .im_stickers_banners_wrap .isb_arrow_right:after {
+        background-image: url(/images/icons/row_slider_btn_icon_2x.png);
+        background-size: 52px 37px
+    }
 }
 
 .im_stickers_banners_wrap:hover .isb_arrow_left:before,
@@ -915,6 +979,15 @@ img.im_photo_thumb {
     background: url(/images/icons/stickers_icon.png) no-repeat 0 -16px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im_stickers_act_gift:before {
+        background-image: url(/images/icons/stickers_icon_2x.png);
+        background-size: 14px 50px
+    }
+}
+
 .im_stickers_act_gift.secondary:before {
     background-position: 0 -35px
 }
@@ -1092,6 +1165,15 @@ img.im_photo_thumb {
     width: 16px;
     height: 16px;
     background: url(/images/icons/msg_mute.png) no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-page_classic.im-page .im-page--gim-mute {
+        background-image: url(/images/icons/msg_mute_2x.png);
+        background-size: 16px 35px
+    }
 }
 
 .im-page_classic.im-page .im-page--gim-mute:hover {
@@ -1394,6 +1476,15 @@ img.im_photo_thumb {
     margin-top: -90px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-page .im-page--chat-search-empty {
+        background-image: url(/images/icons/empty_icon_2x.png);
+        background-size: 69px 66px
+    }
+}
+
 .im-page .im-page-chat-contain {
     z-index: 1;
     position: relative
@@ -1488,6 +1579,15 @@ img.im_photo_thumb {
     background: url(/images/icons/empty_icon.png) no-repeat top
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-page .im-page--center-empty {
+        background-image: url(/images/icons/empty_icon_2x.png);
+        background-size: 69px 66px
+    }
+}
+
 .im-page .im-page--top-notice {
     display: none
 }
@@ -1500,6 +1600,15 @@ img.im_photo_thumb {
     width: 360px;
     margin-left: -180px;
     background: url(/images/icons/fwd_icon.png) no-repeat top
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-page .im-page--center-empty.im-page--center-empty_fwd {
+        background-image: url(/images/icons/fwd_icon_2x.png);
+        background-size: 79px 60px
+    }
 }
 
 .im-page .im-page--dialogs-next {
@@ -1568,6 +1677,15 @@ img.im_photo_thumb {
     animation: none
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-page .im-page--dialogs-settings {
+        background-image: url(/images/icons/msg_cog_2x.png);
+        background-size: 18px 18px
+    }
+}
+
 .im-page .im-page--dialogs-settings_loading {
     display: inline-block;
     width: 16px;
@@ -1585,6 +1703,15 @@ img.im_photo_thumb {
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-page .im-page--dialogs-settings_loading {
+        background-image: url(/images/icons/round_spinner_2x.png);
+        background-size: 16px 16px
+    }
 }
 
 .im-page .im-page--dcontent {
@@ -1759,6 +1886,15 @@ img.im_photo_thumb {
     top: 50%;
     left: 50%;
     margin: -8px 0 0 -8px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-page .im-page--history.im-page--history_loading:before {
+        background-image: url(/images/icons/round_spinner_2x.png);
+        background-size: 16px 16px
+    }
 }
 
 .im-page .im-page--clear-recent {
@@ -1966,6 +2102,15 @@ img.im_photo_thumb {
     padding-left: 19px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-page .im-page--header-star {
+        background-image: url(/images/icons/fav_mark_2x.png);
+        background-size: 14px 33px
+    }
+}
+
 .im-page .im-page--header-star:hover {
     text-decoration: none
 }
@@ -1990,6 +2135,15 @@ img.im_photo_thumb {
     display: block;
     top: -1px;
     background: url(/images/icons/fav_mark.png) no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-page .im-page--stars i {
+        background-image: url(/images/icons/fav_mark_2x.png);
+        background-size: 14px 33px
+    }
 }
 
 .im-page .im-page--stars:hover i {
@@ -2360,6 +2514,15 @@ img.im_photo_thumb {
     margin-top: -18px;
     left: 36px;
     background: url(/images/icons/msg_warning.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-chat-input .im-chat-input--error:before {
+        background-image: url(/images/icons/msg_warning_2x.png);
+        background-size: 36px 36px
+    }
 }
 
 .im-chat-input .im-chat-input--fwd {
@@ -3407,6 +3570,15 @@ body[data-useragent*=msie9] .im-page--title-meta {
     background: url(/images/icons/msg_check.png) no-repeat
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-mess .im-mess--check {
+        background-image: url(/images/icons/msg_check_2x.png);
+        background-size: 16px 36px
+    }
+}
+
 .im-mess .im-mess--marker {
     opacity: 0;
     -o-transition: 0.2s opacity;
@@ -3778,6 +3950,15 @@ body[data-useragent*=msie9] .im-page--title-meta {
     top: 12px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-mess.im-mess_search:hover:after {
+        background-image: url(/images/icons/search_arrow_2x.png);
+        background-size: 6px 10px
+    }
+}
+
 .im-mess.im-mess_search:hover .im-mess--check,
 .im-mess.im-mess_search:hover .im-mess--fav,
 .im-mess.im-mess_search:hover .im-mess--reply,
@@ -3875,6 +4056,15 @@ body[data-useragent*=msie9] .im-page--title-meta {
     background-size: cover
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .nim-peer .nim-peer--photo .im_grid>img:after,
+    .nim-peer .nim-peer--photo>img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
 .nim-peer .nim-peer--photo_hidden {
     visibility: hidden
 }
@@ -3961,6 +4151,14 @@ body[data-useragent*=msie9] .im-page--title-meta {
     background-size: cover
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .nim-peer.nim-peer_small .im_grid>img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
 .nim-peer.nim-peer_small img {
     width: 36px;
     height: 36px
@@ -4003,6 +4201,14 @@ body[data-useragent*=msie9] .im-page--title-meta {
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
     background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .nim-peer.nim-peer_smaller .im_grid>img:after {
+        background-image: url(/images/camera_200.png)
+    }
 }
 
 .nim-peer.nim-peer_smaller.online:after {
@@ -4067,6 +4273,15 @@ body[data-useragent*=msie9] .im-page--title-meta {
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
     background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .nim-peer.nim-peer_smaller .nim-peer--photo .im_grid>img:after,
+    .nim-peer.nim-peer_smaller .nim-peer--photo>img:after {
+        background-image: url(/images/camera_200.png)
+    }
 }
 
 .nim-peer.nim-peer_smaller .nim-peer--photo_hidden {
@@ -4205,6 +4420,15 @@ body[data-useragent*=msie9] .im-page--title-meta {
     display: none
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .nim-dialog .nim-dialog--star {
+        background-image: url(/images/icons/im_actions_2x.png?4);
+        background-size: 24px 423px
+    }
+}
+
 .nim-dialog .nim-dialog--cw {
     padding: 8px 0;
     position: relative
@@ -4305,7 +4529,19 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .nim-dialog .nim-dialog--close:hover {
     text-decoration: underline;
-    cursor: pointer;
+    cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .nim-dialog .nim-dialog--close {
+        background-image: url(/images/icons/im_actions_2x.png?4);
+        background-size: 24px 423px
+    }
+}
+
+.nim-dialog .nim-dialog--close:hover {
     opacity: 1
 }
 
@@ -4331,7 +4567,19 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .nim-dialog .nim-dialog--markre:hover {
     text-decoration: underline;
-    cursor: pointer;
+    cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .nim-dialog .nim-dialog--markre {
+        background-image: url(/images/icons/im_actions_2x.png?4);
+        background-size: 24px 423px
+    }
+}
+
+.nim-dialog .nim-dialog--markre:hover {
     opacity: 1
 }
 
@@ -4605,6 +4853,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     background: url(/images/icons/verify_white.png) no-repeat 0 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .nim-dialog.nim-dialog_verified.nim-dialog_selected .nim-dialog--verfifed {
+        background-image: url(/images/icons/verify_white_2x.png);
+        background-size: 16px 16px
+    }
+}
+
 .nim-dialog.nim-dialog_verified .nim-dialog--name-w {
     padding-right: 0;
     position: relative;
@@ -4624,6 +4881,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     height: 18px;
     margin-left: 7px;
     background: url(/images/icons/verify.png) no-repeat 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .nim-dialog.nim-dialog_verified .nim-dialog--verfifed {
+        background-image: url(/images/icons/verify_2x.png);
+        background-size: 16px 16px
+    }
 }
 
 .nim-dialog.nim-dialog_unrespond:hover .nim-dialog--markre {
@@ -4655,6 +4921,16 @@ body.sf .nim-dialog .nim-dialog--unread {
     background: url(/images/icons/mute_icons.png) no-repeat 0 0;
     vertical-align: middle;
     position: absolute
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .nim-dialog.nim-dialog_muted .nim-dialog--mute,
+    .nim-dialog.nim-dialog_unread.nim-dialog_prep-injected.nim-dialog_muted .nim-dialog--mute {
+        background-image: url(/images/icons/mute_icons_2x.png);
+        background-size: 11px 30px
+    }
 }
 
 .nim-dialog.nim-dialog_muted .nim-dialog--name .nim-dialog--name-w {
@@ -4907,6 +5183,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
     background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .nim-dialog.nim-dialog_classic .nim-dialog--photo .nim-peer .nim-peer--photo .im_grid>img:after,
+    .nim-dialog.nim-dialog_classic .nim-dialog--photo .nim-peer .nim-peer--photo>img:after {
+        background-image: url(/images/camera_200.png)
+    }
 }
 
 .nim-dialog.nim-dialog_classic .nim-dialog--photo .nim-peer .im_grid>.dialogs_inline_chatter {
@@ -5178,6 +5463,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     height: 10px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-fwd .im-fwd--close {
+        background-image: url(/images/attach_icons_2x.png?4);
+        background-size: 32px 254px
+    }
+}
+
 .im-fwd .im-fwd--close:hover {
     opacity: 1;
     cursor: pointer
@@ -5202,6 +5496,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     opacity: 0.8;
     filter: alpha(opacity=80);
     vertical-align: middle
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ui_actions_menu_item.im-action:before {
+        background-image: url(/images/icons/im_actions_2x.png?4);
+        background-size: 24px 423px
+    }
 }
 
 .ui_actions_menu_item.im-action.im-action_clear:before {
@@ -5331,6 +5634,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     background: url(/images/icons/box_acts.png) no-repeat 0 -15px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-member-item .im-member-item--kick-link {
+        background-image: url(/images/icons/box_acts_2x.png);
+        background-size: 12px 25px
+    }
+}
+
 .im-member-item .im-member-item--left {
     float: left;
     width: 270px
@@ -5400,6 +5712,14 @@ body.sf .nim-dialog .nim-dialog--unread {
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
     background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-member-item .im-member-item--photo img:after {
+        background-image: url(/images/camera_200.png)
+    }
 }
 
 .im-important-box {
@@ -5581,6 +5901,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     background-repeat: no-repeat
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-page-action.im-page-action_star i {
+        background-image: url(/images/icons/fav_mark_2x.png);
+        background-size: 14px 33px
+    }
+}
+
 .im-deselect {
     width: 24px;
     height: 24px;
@@ -5604,6 +5933,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     width: 14px;
     height: 14px;
     background: url(/images/icons/box_acts.png) no-repeat 0 -14px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-deselect:before {
+        background-image: url(/images/icons/box_acts_2x.png);
+        background-size: 12px 25px
+    }
 }
 
 .im-deselect:hover {
@@ -5975,6 +6313,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     border: none
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-dialog-select .im-dialog-select--btn {
+        background-image: url(/images/icons/m_add_2x.png);
+        background-size: 14px 14px
+    }
+}
+
 .im-dialog-select.im-dialog-select_classic {
     right: -10px
 }
@@ -5990,6 +6337,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     background: #eceff6 url(/images/icons/camera.png) no-repeat 50%;
     background-size: 45%;
     position: relative
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-chat-placeholder {
+        background-image: url(/images/icons/camera_2x.png);
+        background-size: 27px 23px
+    }
 }
 
 .im-chat-placeholder:hover {
@@ -6051,6 +6407,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     display: inline-block
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-to-end .im-to-end--label {
+        background-image: url(/images/icons/history_end_2x.png);
+        background-size: 12px 12px
+    }
+}
+
 .im-to-end:hover .im-to-end--label {
     background-color: #f5f7fa
 }
@@ -6099,6 +6464,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-to-end.im-to-end_loading .im-to-end--label:before {
+        background-image: url(/images/icons/round_spinner_2x.png);
+        background-size: 16px 16px
+    }
 }
 
 .im-dropbox {
@@ -6246,6 +6620,14 @@ body.sf .nim-dialog .nim-dialog--unread {
     background-size: cover
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-prebody img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
 .im-right-menu.ui_rmenu {
     position: fixed;
     top: 42px;
@@ -6324,6 +6706,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     position: absolute;
     right: 5px;
     top: 5px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-right-menu.ui_rmenu .im-right-menu--close:before {
+        background-image: url(/images/icons/im_actions_2x.png?4);
+        background-size: 24px 423px
+    }
 }
 
 .im-right-menu.ui_rmenu .im-right-menu--close:hover {
@@ -6424,6 +6815,15 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .im-notice--money_transfer .im-notice--image {
     background: url(/images/message_money.png?1) no-repeat 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-notice--money_transfer .im-notice--image {
+        background-image: url(/images/message_money_2x.png?1);
+        background-size: 97px 100px
+    }
 }
 
 .im-audio-message-btn {
@@ -6658,6 +7058,17 @@ body.sf .nim-dialog .nim-dialog--unread {
     top: 50%;
     left: 50%;
     margin: -8px 0 0 -8px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-send-btn.im-send-btn_audio.im-send-btn_loading:before,
+    .im-send-btn.im-send-btn_loading:before,
+    .im-send-btn.im-send-btn_send.im-send-btn_loading:before {
+        background-image: url(/images/icons/round_spinner_2x.png);
+        background-size: 16px 16px
+    }
 }
 
 .im-send-btn.im-send-btn_audio.im-send-btn_loading+.tt_w.tt_black,
@@ -6964,6 +7375,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     top: 2px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ui_multiselect_has_selection .ui_multiselect_remove {
+        background-image: url(/images/icons/hide_2x.png);
+        background-size: 10px 10px
+    }
+}
+
 .ui_multiselect_has_selection .ui_multiselect_remove:hover {
     opacity: 1;
     cursor: pointer
@@ -6999,6 +7419,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     height: 120px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im_unread_info_pic_community_message {
+        background-image: url(/images/pics/comm_messages_2x.png);
+        background-size: 120px 120px
+    }
+}
+
 .im_unread_info_data_community_message {
     width: 465px
 }
@@ -7012,6 +7441,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     background: url(/images/pics/msg_banner_icon.png) no-repeat 0px 0px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im_community_message_info_pic {
+        background-image: url(/images/pics/msg_banner_icon_2x.png);
+        background-size: 18px 14px
+    }
+}
+
 .im_community_message_info_close {
     height: 45px;
     width: 45px;
@@ -7021,6 +7459,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     -o-transition: opacity 100ms linear;
     transition: opacity 100ms linear;
     cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im_community_message_info_close {
+        background-image: url(/images/icons/video_hide_channel_2x.png);
+        background-size: 11px 11px
+    }
 }
 
 .im_community_message_info_close:hover {

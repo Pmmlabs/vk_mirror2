@@ -169,6 +169,15 @@
     background-color: #577ca1
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_page_player .audio_page_player_play .icon {
+        background-image: url(/images/icons/audio_player_controls_2x.png);
+        background-size: 28px 228px
+    }
+}
+
 .audio_page_player .audio_page_player_play:hover {
     opacity: 1
 }
@@ -190,6 +199,16 @@
     height: 10px;
     width: 12px;
     background-position: 0 -88px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_page_player .audio_page_player_next .icon,
+    .audio_page_player .audio_page_player_prev .icon {
+        background-image: url(/images/icons/audio_player_controls_2x.png);
+        background-size: 28px 228px
+    }
 }
 
 .audio_page_player .audio_page_player_next:hover,
@@ -224,6 +243,15 @@
     -o-transition: background-position 150ms ease;
     transition: background-position 150ms ease;
     opacity: 0.75
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_page_player .audio_page_player_btns .icon {
+        background-image: url(/images/icons/audio_player_controls_2x.png);
+        background-size: 28px 228px
+    }
 }
 
 .audio_page_player .audio_page_player_btns .audio_page_player_btn_enabled .icon {
@@ -347,6 +375,15 @@
     outline: none
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_page_player .audio_play {
+        background-image: url(/images/icons/audio_player_controls_2x.png);
+        background-size: 28px 228px
+    }
+}
+
 .audio_page_player .audio_play.audio_playing {
     background-position: 0 -56px
 }
@@ -368,6 +405,15 @@
     opacity: 0.6;
     filter: alpha(opacity=60);
     background-image: url(/images/icons/audio_player_controls.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_page_player .audio_control_btn .icon {
+        background-image: url(/images/icons/audio_player_controls_2x.png);
+        background-size: 28px 228px
+    }
 }
 
 .audio_page_player .audio_control_btn.audio_enabled .icon {
@@ -421,6 +467,15 @@
 
 .audio_page_player .audio_player_controls .icon {
     background-image: url(/images/icons/audio_player_controls.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_page_player .audio_player_controls .icon {
+        background-image: url(/images/icons/audio_player_controls_2x.png);
+        background-size: 28px 228px
+    }
 }
 
 .audio_page_player .audio_player_controls #audio_shuffle .icon {
@@ -655,6 +710,15 @@
     text-shadow: 0px 1px 2px rgba(0, 0, 0, .46)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_catalog_performers .audio_catalog_performer_name {
+        background-image: url(/images/audio_catalog_shadow_2x.png);
+        background-size: 1px 38px
+    }
+}
+
 .audio_catalog_performers .audio_catalog_performer:hover .audio_catalog_performer_name {
     text-decoration: underline
 }
@@ -664,14 +728,41 @@
     background-image: url(/images/audio_new_ru.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_catalog_performers .audio_catalog_owner_new_ru {
+        background-image: url(/images/audio_new_ru_2x.png);
+        background-size: 56px 56px
+    }
+}
+
 .audio_catalog_performers .audio_catalog_owner_new_en {
     display: block;
     background-image: url(/images/audio_new_en.png)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_catalog_performers .audio_catalog_owner_new_en {
+        background-image: url(/images/audio_new_en_2x.png);
+        background-size: 56px 56px
+    }
+}
+
 .audio_catalog_performers .audio_catalog_owner_new_ua {
     display: block;
     background-image: url(/images/audio_new_ua.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_catalog_performers .audio_catalog_owner_new_ua {
+        background-image: url(/images/audio_new_ua_2x.png);
+        background-size: 56px 56px
+    }
 }
 
 .audio_catalog_performers_more_wrap {
@@ -789,18 +880,38 @@ body.mac .audio_rows_header.fixed {
     display: none
 }
 
-.audio_menu_btn.audio_upload_btn,
-.audio_menu_btn.audio_edit_feed_btn {
+.audio_menu_btn.audio_upload_btn {
     background-image: url(/images/icons/edit_newsfeed.png);
     height: 13px;
     width: 13px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_menu_btn.audio_upload_btn {
+        background-image: url(/images/icons/edit_newsfeed_2x.png);
+        background-size: 13px 28px
+    }
+}
+
 .audio_menu_btn.audio_edit_feed_btn {
+    background-image: url(/images/icons/edit_newsfeed.png);
+    height: 13px;
+    width: 13px;
     background-position: 0 -15px;
     opacity: 0;
     -o-transition: opacity 100ms linear;
     transition: opacity 100ms linear
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_menu_btn.audio_edit_feed_btn {
+        background-image: url(/images/icons/edit_newsfeed_2x.png);
+        background-size: 13px 28px
+    }
 }
 
 .ui_rmenu_item:hover .audio_edit_feed_btn {
@@ -821,6 +932,15 @@ body.mac .audio_rows_header.fixed {
     margin-top: 10px;
     margin-right: 10px;
     opacity: 0.75
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_delete_current_btn {
+        background-image: url(/images/icons/common_2x.png?6);
+        background-size: 32px 232px
+    }
 }
 
 .audio_delete_current_btn:hover {
@@ -2096,6 +2216,15 @@ body.mac .audio_rows_header.fixed {
     background-position: 0 -148px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_album_recom_btn .audio_album_btn_icon {
+        background-image: url(/images/icons/audio_player_controls_2x.png);
+        background-size: 28px 228px
+    }
+}
+
 .audio_album_edit_btn .audio_album_btn_icon {
     background-image: url(/images/icons/common.png?6);
     height: 13px;
@@ -2103,20 +2232,46 @@ body.mac .audio_rows_header.fixed {
     background-position: 0px -43px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_album_edit_btn .audio_album_btn_icon {
+        background-image: url(/images/icons/common_2x.png?6);
+        background-size: 32px 232px
+    }
+}
+
 .audio_album_add_btn .audio_album_btn_icon {
+    background-image: url(/images/icons/common.png?6);
+    height: 13px;
+    width: 13px;
     background-position: 0px 0px;
     margin-top: 1px
 }
 
-.audio_album_add_btn .audio_album_btn_icon,
-.audio_album_add_btn_icon {
-    background-image: url(/images/icons/common.png?6);
-    height: 13px;
-    width: 13px
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_album_add_btn .audio_album_btn_icon {
+        background-image: url(/images/icons/common_2x.png?6);
+        background-size: 32px 232px
+    }
 }
 
 .audio_album_add_btn_icon {
+    background-image: url(/images/icons/common.png?6);
+    height: 13px;
+    width: 13px;
     background-position: 0px -43px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_album_add_btn_icon {
+        background-image: url(/images/icons/common_2x.png?6);
+        background-size: 32px 232px
+    }
 }
 
 .top_audio_layer #ui_rmenu_audio_album_add {

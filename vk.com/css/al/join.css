@@ -172,6 +172,15 @@
     vertical-align: middle
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .join_box_fb_logo {
+        background-image: url(/images/icons/fb_white_2x.png);
+        background-size: 16px 16px
+    }
+}
+
 .join_box_fb_l {
     display: inline-block;
     font-weight: 500;
@@ -255,6 +264,15 @@
     width: 160px;
     height: 160px;
     background: url(/images/join/finish_f.png) no-repeat 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .join_finish_img {
+        background-image: url(/images/join/finish_f_2x.png);
+        background-size: 160px 160px
+    }
 }
 
 .join_no_code {
@@ -385,6 +403,14 @@
     background-size: cover
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .join_already_img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
 .join_already_controls {
     margin: 0 auto;
     width: 320px
@@ -477,6 +503,14 @@
     background-color: #fafbfc;
     background-image: url(/images/camera_100.png);
     background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .join_user_img:after {
+        background-image: url(/images/camera_200.png)
+    }
 }
 
 .join_user_controls {

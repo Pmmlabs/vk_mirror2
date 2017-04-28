@@ -54,6 +54,15 @@
     font-size: 12.5px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .search_filters_minimized_text {
+        background-image: url(/images/search_integration_2x.png);
+        background-size: 21px 42px
+    }
+}
+
 .search_filters_wrap {
     margin: -1px;
     padding: 1px
@@ -149,6 +158,16 @@ body.mac #filter_form {
     height: 5px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .search_filter_open .arrow,
+    .search_filter_shut .arrow {
+        background-image: url(/images/icons/multidd_2x.png?2);
+        background-size: 10px 53px
+    }
+}
+
 .search_filter_open .arrow {
     background-position: left -11px
 }
@@ -174,8 +193,26 @@ body.mac #filter_form {
     background: url(/images/icons/map_filter.png) 50% no-repeat
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .search_status_map_icon {
+        background-image: url(/images/icons/map_filter_2x.png);
+        background-size: 36px 50px
+    }
+}
+
 .search_status_map_selected .search_status_map_icon {
     background: url(/images/map/small.png) 11px 6px no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .search_status_map_selected .search_status_map_icon {
+        background-image: url(/images/map/small_2x.png);
+        background-size: 24px 20px
+    }
 }
 
 .search_status_map_selected .ui_thumb_x_button {
@@ -424,6 +461,14 @@ div.search_row:first-child {
     background-size: cover
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .search_item_img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
 .search_item_img_link {
     display: block;
     height: 80px
@@ -529,6 +574,15 @@ div.search_row:first-child {
     transition: background-color 0.2s ease
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .search_row.short .add_btn {
+        background-image: url(/images/icons/add_friend_sug_2x.png);
+        background-size: 15px 17px
+    }
+}
+
 .search_row.short .add_btn:hover {
     background-color: rgba(0, 0, 0, .7)
 }
@@ -609,6 +663,15 @@ div.search_row:first-child {
     padding-left: 17px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .search_group_num {
+        background-image: url(/images/icons/comm_followers_2x.png);
+        background-size: 12px 9px
+    }
+}
+
 .audio_lyrics_wrap {
     text-align: center
 }
@@ -616,6 +679,15 @@ div.search_row:first-child {
 .audio_lyrics_wrap .loading {
     background: url(/images/progress7.gif) 50% 50% no-repeat;
     height: 50px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_lyrics_wrap .loading {
+        background-image: url(/images/progress7_2x.gif);
+        background-size: 149px 8px
+    }
 }
 
 .audio_lyrics {
@@ -715,6 +787,16 @@ div.search_row:first-child {
     color: #2a5885;
     padding-right: 11px;
     background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAKCAYAAACXDi8zAAAATklEQVR4AaXJNQHAMBQA0fgtM6OKgIgfCwFdpbFMN95DDLRLuUrQNgIyZlyPBFS7Qwaq+Ysy3oDsF6Bch7tJQFfXk4LOdnNpHiYBFaBNE/CsSvtUf1ReAAAAAElFTkSuQmCC") no-repeat right 3px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .search_media_rows .header_side_link a,
+    .search_results .header_side_link a {
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAUCAYAAAC58NwRAAAAX0lEQVR4AWMAgZnrjsTPWH8ohoEAgCueveHIfxCeteFII2ENG45EgRSTpGnWukN11NI0qmn2+sORhCK1FVnDzHWHQwkqRuBDVSNX8ex1h+PQFRPMD5iKCcdoBCRSCAMAPSYDN5dVB0AAAAAASUVORK5CYII=");
+        background-size: 6px 10px
+    }
 }
 
 .search_results_sep {

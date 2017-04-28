@@ -446,6 +446,15 @@ img {
     height: 100%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .like_wrap .like_icon {
+        background-image: url(/images/icons/like_widget_2x.png);
+        background-size: 19px 59px
+    }
+}
+
 .like_wrap .icon_heart {
     opacity: 0.45;
     filter: alpha(opacity=45)
@@ -511,6 +520,15 @@ img {
     background: url(/images/icons/like_widget.png);
     background-position: 0 -49px;
     margin-top: -5px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .like_counter_wrap .arrow {
+        background-image: url(/images/icons/like_widget_2x.png);
+        background-size: 19px 59px
+    }
 }
 
 .like_small_vertical .like_counter_wrap {

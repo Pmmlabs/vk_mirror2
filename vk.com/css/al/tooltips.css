@@ -422,6 +422,15 @@
     line-height: 15px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mott_app {
+        background-image: url(/images/icons/mob_devices_2x.png);
+        background-size: 12px 49px
+    }
+}
+
 .mott_app.mott_app_ios {
     background-position: 0 -19px
 }
@@ -988,6 +997,15 @@ div.own_reply_tt .content {
 .mention_tt_subscr_icon {
     background: url(/images/icons/follow_icon.png?1) no-repeat 0 3px;
     padding-left: 20px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mention_tt_subscr_icon {
+        background-image: url(/images/icons/follow_icon_2x.png?1);
+        background-size: 12px 25px
+    }
 }
 
 .mention_tt_unsub_label {

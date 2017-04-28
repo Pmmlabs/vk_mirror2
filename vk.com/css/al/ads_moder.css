@@ -835,6 +835,15 @@ table.ads_logs_info th {
     background-position: 0 -198px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_mobile_apps_type_icon {
+        background-image: url(/images/profile_icons_2x.png?16);
+        background-size: 13px 330px
+    }
+}
+
 .ads_mobile_apps_type_icon.android {
     background-position: 0 -174px
 }
@@ -869,6 +878,15 @@ table.ads_logs_info th {
     background-image: url(/images/profile_icons.png?16);
     background-size: 13px auto;
     margin: 4px 0 0 8px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_mobile_apps_photo_icon {
+        background-image: url(/images/profile_icons_2x.png?16);
+        background-size: 13px 330px
+    }
 }
 
 .ads_mobile_apps_photos_wrap {

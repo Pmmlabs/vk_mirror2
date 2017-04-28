@@ -40,6 +40,15 @@ html {
     margin: 15px 0 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .oauth_head .oauth_logo {
+        background-image: url(/images/logo_vk_2x.png);
+        background-size: 40px 23px
+    }
+}
+
 .oauth_head .oauth_head_info {
     white-space: nowrap;
     overflow: hidden;
@@ -183,6 +192,15 @@ html {
     height: 40px;
     border-radius: 50%;
     background: url(/images/icons/app_settings.png) #648fc9
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_access_icon {
+        background-image: url(/images/icons/app_settings_2x.png);
+        background-size: 40px 600px
+    }
 }
 
 .apps_access_profile {

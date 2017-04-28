@@ -964,6 +964,15 @@ a.tasks_preview_header:hover {
     clear: right
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tasks_ticket_unbind {
+        background-image: url(/images/hide_left_2x.gif);
+        background-size: 14px 14px
+    }
+}
+
 li:hover .tasks_ticket_unbind,
 li:hover .tasks_ticket_unbind:hover {
     opacity: 0.5

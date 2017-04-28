@@ -35,6 +35,15 @@
     background-position: 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-thumb-wrap-background {
+        background-image: url(/images/icons/video_empty_2x.png);
+        background-size: 65px 45px
+    }
+}
+
 .media-video-thumb-background {
     background-repeat: no-repeat;
     background-size: cover;
@@ -93,6 +102,15 @@
     transition: background-color 100ms linear, opacity 60ms ease
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-play {
+        background-image: url(/images/icons/video_play_small_2x.png?1);
+        background-size: 17px 24px
+    }
+}
+
 .media-video-play:hover {
     background-color: rgba(0, 0, 0, .6)
 }
@@ -126,6 +144,15 @@
     background-image: url(/images/icons/media_check_uncheck.png);
     background-position: 0 -26px;
     cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-check-btn-icon {
+        background-image: url(/images/icons/media_check_uncheck_2x.png);
+        background-size: 22px 48px
+    }
 }
 
 .media-check-btn-icon-checked {
@@ -396,6 +423,15 @@
     background-size: cover
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .videocat_channel_header .videocat_channel_icon {
+        background-image: url(/images/icons/video_catalog_2x.png);
+        background-size: 72px 588px
+    }
+}
+
 .videocat_channel_header .videocat_channel_info {
     display: inline-block;
     vertical-align: top;
@@ -455,6 +491,15 @@
     background-repeat: no-repeat;
     background-position: 0 3px;
     padding-left: 20px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .videocat_channel_subscribe .videocat_subscribe_btn .videocat_icon {
+        background-image: url(/images/icons/follow_icon_2x.png?1);
+        background-size: 12px 25px
+    }
 }
 
 .videocat_channel_subscribe .secondary.videocat_subscribe_btn .videocat_icon {
@@ -948,6 +993,15 @@
     margin-top: 52.5px;
     background-position: 0 0;
     opacity: 1
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .videocat_row .videocat_row_slider_btn_icon {
+        background-image: url(/images/icons/row_slider_btn_2x.png);
+        background-size: 52px 37px
+    }
 }
 
 .videocat_row .videocat_row_slider:hover .videocat_row_slider_btn {

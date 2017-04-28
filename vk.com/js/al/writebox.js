@@ -1,4 +1,4 @@
-﻿! function(e) {
+! function(e) {
     function t(i) {
         if (r[i]) return r[i].exports;
         var o = r[i] = {

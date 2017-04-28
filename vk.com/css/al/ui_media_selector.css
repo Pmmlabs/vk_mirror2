@@ -38,6 +38,15 @@
     filter: alpha(opacity=70)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media_selector .ms_item:before {
+        background-image: url(/images/post_icon_2x.png?6);
+        background-size: 20px 369px
+    }
+}
+
 .media_selector .ms_item:hover:before {
     opacity: 1;
     -webkit-filter: none;

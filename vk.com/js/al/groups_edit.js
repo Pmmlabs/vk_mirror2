@@ -1533,6 +1533,20 @@ var GroupsEdit = {
             onFail: o
         }))
     },
+    adswebJoin: function(e, t) {
+        function o(e) {
+            isObject(e) && "error" in e && showFastBox(getLang("global_box_error_title"), e.error), unlockButton(r)
+        }
+        var r = window.event.currentTarget,
+            s = {
+                group_id: e,
+                hash: t
+            };
+        return lockButton(r), ajax.post("/groupsedit.php?act=a_adsweb_join", s, {
+            onDone: o,
+            onFail: o
+        }), !1
+    },
     showAgeLimitsTT: function(e, t) {
         showTooltip(e, {
             text: t,
@@ -2110,7 +2124,7 @@ var GroupsEdit = {
                 };
                 GroupsEdit.hideMessage(), ajax.post("groupsedit.php", s, {
                     onDone: function(e, t, o, r) {
-                        extend(cur, o), cur.show_alert = !0, ge("group_apps_wrapper").innerHTML = e, ge("apps_cat_add") ? ge("apps_cat_add").innerHTML = t : ge("apps_cat_main").parentNode.innerHTML += t, GroupsEdit.app.initSettings(), scrollToY(0), GroupsEdit.showMessage(r), GroupsEdit.invalidateBack()
+                        extend(cur, o), cur.show_alert = !0, ge("group_apps_wrapper").innerHTML = e, ge("apps_cat_add") ? ge("apps_cat_add").innerHTML = t : ge("apps_cat_main").parentNode.innerHTML += t, GroupsEdit.app.initSettings(), scrollToY(0), GroupsEdit.showMessage(r), GroupsEdit.invalidateBack();
                     },
                     showProgress: function() {
                         lockLink(o)

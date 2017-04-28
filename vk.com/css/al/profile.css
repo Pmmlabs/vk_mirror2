@@ -192,6 +192,15 @@
     background: url(/images/icons/add_info_icons.png) no-repeat 0 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .profile_warning_img {
+        background-image: url(/images/icons/add_info_icons_2x.png);
+        background-size: 21px 171px
+    }
+}
+
 .profile_warning_img.bday {
     background-position: 0 -25px
 }
@@ -234,6 +243,15 @@
     width: 9px;
     height: 9px;
     background: url(/images/attach_icons.png?4) no-repeat 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .profile_warning_hide {
+        background-image: url(/images/attach_icons_2x.png?4);
+        background-size: 32px 254px
+    }
 }
 
 .profile_warning_label {
@@ -328,6 +346,15 @@
     background: url(/images/upload.gif) no-repeat 50% 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .profile_photo_progress {
+        background-image: url(/images/upload_2x.gif);
+        background-size: 32px 8px
+    }
+}
+
 #profile_photos_module .info_msg img {
     display: none
 }
@@ -405,6 +432,15 @@
     padding-right: 21px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .profile_gift_icon {
+        background-image: url(/images/icons/gift_icon_2x.png);
+        background-size: 11px 13px
+    }
+}
+
 .profile_gifts .module_body {
     text-align: center;
     padding-top: 10px
@@ -434,6 +470,15 @@
     height: 13px;
     width: 11px;
     margin: 0 6px -2px 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .profile_gift_send_btn .send_thumb {
+        background-image: url(/images/icons/gift_button_2x.png?1);
+        background-size: 11px 13px
+    }
 }
 
 .profile_gift_send_btn.no_thumb .send_thumb {
@@ -946,6 +991,15 @@ h4.profile_online {
     background: url(/images/attach_icons.png?4) 0 0 no-repeat
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .gift_tt_hide:after {
+        background-image: url(/images/attach_icons_2x.png?4);
+        background-size: 32px 254px
+    }
+}
+
 .gift_tt_header {
     color: #222;
     font-size: 13px;
@@ -1007,6 +1061,15 @@ h4.profile_online {
     -o-transition: transform 70ms linear, -o-transform 70ms linear;
     transition: transform 70ms linear;
     transition: transform 70ms linear, -webkit-transform 70ms linear, -o-transform 70ms linear
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .gift_tt_show_all:after {
+        background-image: url(/images/icons/search_arrow_2x.png);
+        background-size: 6px 10px
+    }
 }
 
 .gift_tt_show_all:hover:after {

@@ -170,6 +170,15 @@
     opacity: 0.5
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .faq_optional_extra_field__close {
+        background-image: url(/images/tag_remove_2x.png);
+        background-size: 8px 8px
+    }
+}
+
 .faq_optional_extra_field__close:hover {
     opacity: 1
 }

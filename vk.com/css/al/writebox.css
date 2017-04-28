@@ -96,6 +96,14 @@
     background-size: cover
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mail_box_single_ava .mail_box_single_ava_img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
 .mail_box_label {
     color: #45688e;
     line-height: 1.27em;

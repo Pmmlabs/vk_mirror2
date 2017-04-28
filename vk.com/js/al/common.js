@@ -149,6 +149,10 @@ if (!window.stVersions) {
     window._rnd = 1;
 }
 
+function jsc(name) {
+    return 'cmodules/' + name;
+}
+
 window.__debugMode = true; // Don't turn it off
 window._wf = 0; // window focused
 
@@ -3837,6 +3841,8 @@ var stManager = {
                 var p = '/js/';
                 if (stTypes.fromLib[f]) {
                     p += 'lib/';
+                } else if (stTypes.fromCompiled && stTypes.fromCompiled[f]) {
+                    p += jsc('web/');
                 } else if (!/^lang\d/i.test(f) && !stTypes.fromRoot[f] && f.indexOf('/') == -1) {
                     p += 'al/';
                 }

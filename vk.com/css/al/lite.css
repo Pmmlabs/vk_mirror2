@@ -86,6 +86,15 @@
     background-position: 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-thumb-wrap-background {
+        background-image: url(/images/icons/video_empty_2x.png);
+        background-size: 65px 45px
+    }
+}
+
 .media-video-thumb-background {
     background-repeat: no-repeat;
     background-size: cover;
@@ -144,6 +153,15 @@
     transition: background-color 100ms linear, opacity 60ms ease
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-play {
+        background-image: url(/images/icons/video_play_small_2x.png?1);
+        background-size: 17px 24px
+    }
+}
+
 .media-video-play:hover {
     background-color: rgba(0, 0, 0, .6)
 }
@@ -177,6 +195,15 @@
     background-image: url(/images/icons/media_check_uncheck.png);
     background-position: 0 -26px;
     cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-check-btn-icon {
+        background-image: url(/images/icons/media_check_uncheck_2x.png);
+        background-size: 22px 48px
+    }
 }
 
 .media-check-btn-icon-checked {
@@ -332,6 +359,17 @@ textarea.ashelper {
     background: url(/images/upload.gif) no-repeat 50% 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .progress,
+    .progress_inv,
+    .progress_inv_img {
+        background-image: url(/images/upload_2x.gif);
+        background-size: 32px 8px
+    }
+}
+
 .progress_inline {
     display: inline-block;
     vertical-align: bottom;
@@ -340,15 +378,43 @@ textarea.ashelper {
     background: url(/images/upload.gif) no-repeat 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .progress_inline {
+        background-image: url(/images/upload_2x.gif);
+        background-size: 32px 8px
+    }
+}
+
 .progress_inv,
 .progress_inv_img {
     background-image: url(/images/upload_inv.gif)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .progress_inv,
+    .progress_inv_img {
+        background-image: url(/images/upload_inv_2x.gif);
+        background-size: 32px 8px
+    }
 }
 
 .progress_inv_mini {
     background-image: url(/images/upload_inv_mini.gif);
     width: 16px;
     height: 4px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .progress_inv_mini {
+        background-image: url(/images/upload_inv_mini_2x.gif);
+        background-size: 16px 4px
+    }
 }
 
 .progress_gray {
@@ -376,15 +442,19 @@ textarea.ashelper {
     margin: -1px
 }
 
-.round_spinner_big {
-    width: 34px;
-    height: 34px;
-    background-image: url(/images/icons/round_spinner_big.png)
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .upload_progress {
+        background-image: url(/images/progress_grad_2x.gif);
+        background-size: 10px 18px
+    }
 }
 
-.round_spinner_big,
-.round_spinner {
+.round_spinner_big {
     display: inline-block;
+    width: 34px;
+    height: 34px;
     -webkit-animation-name: round_spinner;
     -o-animation-name: round_spinner;
     animation-name: round_spinner;
@@ -396,13 +466,45 @@ textarea.ashelper {
     animation-iteration-count: infinite;
     -webkit-animation-timing-function: linear;
     -o-animation-timing-function: linear;
-    animation-timing-function: linear
+    animation-timing-function: linear;
+    background-image: url(/images/icons/round_spinner_big.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .round_spinner_big {
+        background-image: url(/images/icons/round_spinner_big_2x.png);
+        background-size: 34px 34px
+    }
 }
 
 .round_spinner {
+    display: inline-block;
     width: 16px;
     height: 16px;
+    -webkit-animation-name: round_spinner;
+    -o-animation-name: round_spinner;
+    animation-name: round_spinner;
+    -webkit-animation-duration: 700ms;
+    -o-animation-duration: 700ms;
+    animation-duration: 700ms;
+    -webkit-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .round_spinner {
+        background-image: url(/images/icons/round_spinner_2x.png);
+        background-size: 16px 16px
+    }
 }
 
 @-webkit-keyframes round_spinner {
@@ -728,6 +830,15 @@ body.mac .pr_bt {
     z-index: 100
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #box_loader .loader {
+        background-image: url(/images/upload_inv_mono_2x.gif);
+        background-size: 64px 16px
+    }
+}
+
 .box_title_wrap {
     position: relative;
     padding: 0;
@@ -750,8 +861,26 @@ body.mac .pr_bt {
     background: url(/images/cross_popup.png) no-repeat 12px 21px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .box_title_wrap.box_grey .box_x_button {
+        background-image: url(/images/cross_popup_2x.png);
+        background-size: 12px 12px
+    }
+}
+
 .box_title_wrap.box_grey.box_loading .box_x_button {
     background: url(/images/g_upload.gif) no-repeat 10px 19px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .box_title_wrap.box_grey.box_loading .box_x_button {
+        background-image: url(/images/g_upload_2x.gif);
+        background-size: 16px 16px
+    }
 }
 
 .box_title {
@@ -777,6 +906,15 @@ body.mac .pr_bt {
     border-radius: 2px 0 0 2px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .box_title .back {
+        background-image: url(/images/icons/box_back_2x.png);
+        background-size: 10px 17px
+    }
+}
+
 .box_title .back:hover {
     text-decoration: none;
     background-color: rgba(0, 31, 64, .15)
@@ -787,9 +925,27 @@ body.mac .pr_bt {
     background: url(/images/icons/security_settings.png) no-repeat 0 20px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .box_title .security {
+        background-image: url(/images/icons/security_settings_2x.png);
+        background-size: 12px 14px
+    }
+}
+
 .box_grey .box_title .back {
     background-image: url(/images/icons/box_gray_back.png);
     color: #000
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .box_grey .box_title .back {
+        background-image: url(/images/icons/box_gray_back_2x.png);
+        background-size: 10px 17px
+    }
 }
 
 .box_grey .box_title .back:hover {
@@ -833,6 +989,15 @@ body.mac .pr_bt {
     outline: none
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .box_x_button {
+        background-image: url(/images/icons/cross_2x.png);
+        background-size: 12px 12px
+    }
+}
+
 .box_x_button:hover {
     opacity: 1;
     -webkit-filter: none;
@@ -846,6 +1011,15 @@ body.mac .pr_bt {
     right: 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .box_x_button.box_x_tabs {
+        background-image: url(/images/cross_popup_2x.png);
+        background-size: 12px 12px
+    }
+}
+
 .box_loading .box_x_button {
     background: url(/images/b_upload.gif) no-repeat 10px 19px;
     -o-transition: none;
@@ -856,9 +1030,28 @@ body.mac .pr_bt {
     pointer-events: none
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .box_loading .box_x_button {
+        background-image: url(/images/b_upload_2x.gif);
+        background-size: 16px 16px
+    }
+}
+
 .box_body.box_loading .box_x_button,
 .wk_wiki_content.box_loading .box_x_button {
     background: url(/images/g_upload.gif) no-repeat 10px 19px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .box_body.box_loading .box_x_button,
+    .wk_wiki_content.box_loading .box_x_button {
+        background-image: url(/images/g_upload_2x.gif);
+        background-size: 16px 16px
+    }
 }
 
 .box_body.box_loading_empty,
@@ -898,6 +1091,16 @@ body.mac .pr_bt {
     left: 50%;
     right: 0;
     margin: -17px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .box_body.box_loading_empty:before,
+    .wk_wiki_content.box_loading_empty:before {
+        background-image: url(/images/icons/round_spinner_big_2x.png);
+        background-size: 34px 34px
+    }
 }
 
 .box_title_controls {
@@ -1134,6 +1337,16 @@ body.mac .pr_bt {
     background: url(/images/upload.gif) no-repeat center 7px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .button_no.locked .lock,
+    .button_yes.locked .lock {
+        background-image: url(/images/upload_2x.gif);
+        background-size: 32px 8px
+    }
+}
+
 #box_layer .box_dark .tabbed_box {
     margin-bottom: 0
 }
@@ -1260,6 +1473,15 @@ body.mac .pr_bt {
     transition: opacity 100ms linear
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #layer_stl_text {
+        background-image: url(/images/layer_toplink_2x.png);
+        background-size: 15px 45px
+    }
+}
+
 #layer_stl_text.down {
     background-position: left -15px
 }
@@ -1381,6 +1603,15 @@ body.mac #layer_stl .fixed {
     height: 15px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .checkbox:before {
+        background-image: url(/images/icons/dev_check_2x.png?2);
+        background-size: 15px 75px
+    }
+}
+
 .checkbox:hover:before {
     background-position: 0 -30px
 }
@@ -1414,6 +1645,15 @@ body.mac #layer_stl .fixed {
     width: 14px;
     margin: 1px 7px 1px 0;
     height: 14px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .radiobtn:before {
+        background-image: url(/images/icons/dev_radio_2x.png?1);
+        background-size: 14px 70px
+    }
 }
 
 .radiobtn:hover:before {
@@ -1479,6 +1719,15 @@ body.mac #layer_stl .fixed {
     background-image: url(/images/icons/media_check_uncheck.png);
     background-position: 0 -26px;
     cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media_check_btn_wrap .media_check_btn {
+        background-image: url(/images/icons/media_check_uncheck_2x.png);
+        background-size: 22px 48px
+    }
 }
 
 .media_check_btn_wrap .media_check_btn_wrap.checked .media_check_btn,
@@ -1859,6 +2108,15 @@ textarea.disabled {
     transition: opacity 200ms linear
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .summary_tab_x {
+        background-image: url(/images/icons/common_2x.png?6);
+        background-size: 32px 232px
+    }
+}
+
 .summary_tab_x:hover {
     opacity: 0.6;
     filter: alpha(opacity=60)
@@ -2047,6 +2305,15 @@ h2.page_block_h2 {
     cursor: pointer
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_play {
+        background-image: url(/images/icons/audio_playpause_2x.png);
+        background-size: 9px 32px
+    }
+}
+
 .audio_play.playing,
 .audio_row_playing .audio_play {
     background-position: 8px -15px
@@ -2133,6 +2400,15 @@ h2.page_block_h2 {
     overflow: hidden
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_add {
+        background-image: url(/images/icons/audio_icons_2x.png?6);
+        background-size: 257px 63px
+    }
+}
+
 .audio_add.added {
     margin: 6px 4px 6px 0
 }
@@ -2200,6 +2476,15 @@ h2.page_block_h2 {
     -o-transition: background-position 100ms ease;
     transition: background-position 100ms ease;
     cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_row .audio_acts .audio_act {
+        background-image: url(/images/icons/common_2x.png?6);
+        background-size: 32px 232px
+    }
 }
 
 .audio_row .audio_acts .audio_act:hover {
@@ -2529,6 +2814,15 @@ h2.page_block_h2 {
     opacity: 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .video_thumb_play {
+        background-image: url(/images/icons/video_play_small_2x.png?1);
+        background-size: 17px 24px
+    }
+}
+
 .video_thumb_play:hover {
     background-color: rgba(0, 0, 0, .6)
 }
@@ -2551,6 +2845,15 @@ h2.page_block_h2 {
     width: 57px;
     background-image: url(/images/icons/video_watermarks.png);
     display: none
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .video_wm {
+        background-image: url(/images/icons/video_watermarks_2x.png);
+        background-size: 58px 120px
+    }
 }
 
 .wm_yt .video_wm {
@@ -2643,6 +2946,15 @@ h2.page_block_h2 {
     background: url(/images/icons/video_icon.png?3) no-repeat;
     height: 20px;
     width: 20px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .video_widget_box_close:before {
+        background-image: url(/images/icons/video_icon_2x.png?3);
+        background-size: 24px 261px
+    }
 }
 
 .video_widget_box_close:hover {
@@ -2788,6 +3100,15 @@ small.divider {
     width: 15px;
     position: relative;
     bottom: -1px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .flat_button.logo_button:before {
+        background-image: url(/images/icons/post_widget_2x.png);
+        background-size: 16px 106px
+    }
 }
 
 .flat_button.logo_button.secondary:before {
@@ -3256,6 +3577,15 @@ wbr {
     padding-left: 55px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .error {
+        background-image: url(/images/icons/msg_error_2x.png?1);
+        background-size: 32px 32px
+    }
+}
+
 .error.msg_appear,
 .error:empty {
     background-color: #fae1e2
@@ -3267,10 +3597,28 @@ wbr {
     border-color: #c1c9d9
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .info_msg {
+        background-image: url(/images/icons/msg_info_2x.png?1);
+        background-size: 32px 32px
+    }
+}
+
 .ok_msg {
     background: #effaed url(/images/icons/msg_ok.png?1) no-repeat 12px 12px;
     padding-left: 55px;
     border-color: #afd4a9
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ok_msg {
+        background-image: url(/images/icons/msg_ok_2x.png?1);
+        background-size: 32px 32px
+    }
 }
 
 .ok_msg.msg_appear,
@@ -3703,6 +4051,15 @@ div.top_result_baloon a {
     background: url(/images/im_emoji.png?9) no-repeat
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .emoji_css {
+        background-image: url(/images/im_emoji_2x.png?9);
+        background-size: 16px 544px
+    }
+}
+
 .light_cry_dog {
     background: url('/images/icons/cry_dog.png');
     background-size: 152px 152px;
@@ -3742,6 +4099,15 @@ div.top_result_baloon a {
     -o-animation-timing-function: linear;
     animation-timing-function: linear;
     background-image: url(/images/icons/round_spinner_big.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .import_box_spinner {
+        background-image: url(/images/icons/round_spinner_big_2x.png);
+        background-size: 34px 34px
+    }
 }
 
 .eltt {

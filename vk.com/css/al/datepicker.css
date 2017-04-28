@@ -63,6 +63,15 @@
     background: url(/images/icons/back_fwd.gif?1) no-repeat
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .cal_table .month_arr .arr {
+        background-image: url(/images/icons/back_fwd_2x.gif?1);
+        background-size: 15px 67px
+    }
+}
+
 .cal_table .month_arr .arr.left {
     background-position: 6px -27px
 }
@@ -132,6 +141,15 @@
     box-sizing: border-box;
     cursor: pointer;
     height: 28px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .datepicker_text {
+        background-image: url(/images/icons/calendar_2x.png?2);
+        background-size: 15px 15px
+    }
 }
 
 .datepicker_control.disabled,

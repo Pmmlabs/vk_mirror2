@@ -303,6 +303,15 @@
     vertical-align: middle
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .index_fb_icon {
+        background-image: url(/images/attach_icons_2x.png?4);
+        background-size: 32px 254px
+    }
+}
+
 .index_terms {
     line-height: 170%;
     padding: 10px 20px 20px

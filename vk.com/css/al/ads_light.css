@@ -905,6 +905,15 @@ a.ads_ad_box2:hover {
     padding-left: 17px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_ad_domain.groups_only {
+        background-image: url(/images/icons/comm_followers_2x.png);
+        background-size: 12px 9px
+    }
+}
+
 .ads_ad_domain.mobile {
     font-size: 12px;
     padding-top: 2px
@@ -1286,6 +1295,15 @@ a.ads_ad_box2:hover {
     background: url(/images/icons/newsfeed_recommendation.png) no-repeat 0 -108px
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_ads_news_image {
+        background-image: url(/images/icons/newsfeed_recommendation_2x.png);
+        background-size: 50px 158px
+    }
+}
+
 .ads_ads_news_image.groups_only {
     background-position: 0 -54px
 }
@@ -1495,11 +1513,30 @@ a.ads_ad_box2:hover {
     background: url(/images/icons/ads_icons_blue.png) no-repeat 0 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_ad_box.redesign .ads_ad_community_join .ads_ad_community_join_icon {
+        background-image: url(/images/icons/ads_icons_blue_2x.png);
+        background-size: 8px 21px
+    }
+}
+
 .ads_ad_box.redesign .ads_ad_community_join .ads_ad_community_join_icon.join_app,
 .ads_ad_box.redesign .ads_ad_community_join .ads_ad_community_join_icon.join_game {
     width: 6px;
     height: 8px;
     background: url(/images/icons/ads_icons_blue.png) no-repeat 0 -12px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_ad_box.redesign .ads_ad_community_join .ads_ad_community_join_icon.join_app,
+    .ads_ad_box.redesign .ads_ad_community_join .ads_ad_community_join_icon.join_game {
+        background-image: url(/images/icons/ads_icons_blue_2x.png);
+        background-size: 8px 21px
+    }
 }
 
 .ads_ad_box.redesign .ads_ad_title_box {
@@ -1556,6 +1593,15 @@ a.ads_ad_box2:hover {
     filter: alpha(opacity=85);
     width: 8px;
     height: 8px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_ad_box.redesign .ads_ad_close_button .ads_ad_close_button_x {
+        background-image: url(/images/attach_icons_2x.png?4);
+        background-size: 32px 254px
+    }
 }
 
 .ads_ad_box.redesign .ads_ad_close_button:hover .ads_ad_close_button_x,

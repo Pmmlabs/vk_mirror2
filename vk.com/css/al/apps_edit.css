@@ -46,6 +46,15 @@
     background-position: 50%
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-thumb-wrap-background {
+        background-image: url(/images/icons/video_empty_2x.png);
+        background-size: 65px 45px
+    }
+}
+
 .media-video-thumb-background {
     background-repeat: no-repeat;
     background-size: cover;
@@ -104,6 +113,15 @@
     transition: background-color 100ms linear, opacity 60ms ease
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-video-play {
+        background-image: url(/images/icons/video_play_small_2x.png?1);
+        background-size: 17px 24px
+    }
+}
+
 .media-video-play:hover {
     background-color: rgba(0, 0, 0, .6)
 }
@@ -137,6 +155,15 @@
     background-image: url(/images/icons/media_check_uncheck.png);
     background-position: 0 -26px;
     cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .media-check-btn-icon {
+        background-image: url(/images/icons/media_check_uncheck_2x.png);
+        background-size: 22px 48px
+    }
 }
 
 .media-check-btn-icon-checked {
@@ -979,6 +1006,15 @@ body.dev .app_author {
     overflow: hidden
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_edit_side_tt_pointer {
+        background-image: url(/images/dev_ddtooltip_2x.png?1);
+        background-size: 12px 11px
+    }
+}
+
 .apps_edit_bottom_tt_pointer {
     background: url(/images/dev_ddtooltip.png?1) 0 -5px no-repeat;
     width: 12px;
@@ -987,6 +1023,15 @@ body.dev .app_author {
     left: 22px;
     bottom: -5px;
     overflow: hidden
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_edit_bottom_tt_pointer {
+        background-image: url(/images/dev_ddtooltip_2x.png?1);
+        background-size: 12px 11px
+    }
 }
 
 .apps_edit_tt_left .apps_edit_bottom_tt_pointer {
@@ -2305,6 +2350,15 @@ input.apps_edit_input {
     filter: alpha(opacity=85);
     width: 8px;
     height: 8px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_edit_full_wrap .thumb_x_button .thumb_x {
+        background-image: url(/images/attach_icons_2x.png?4);
+        background-size: 32px 254px
+    }
 }
 
 .apps_edit_full_wrap .thumb_x_button:hover .thumb_x,

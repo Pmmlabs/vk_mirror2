@@ -45,6 +45,15 @@
     margin: 15px 0 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .share_head .share_logo {
+        background-image: url(/images/logo_vk_2x.png);
+        background-size: 40px 23px
+    }
+}
+
 .share_head .share_head_info {
     white-space: nowrap;
     overflow: hidden;
@@ -172,6 +181,15 @@ html {
     filter: alpha(opacity=0)
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .share_field_wrap .share_field_edit {
+        background-image: url(/images/post_icon_2x.png?6);
+        background-size: 20px 369px
+    }
+}
+
 .share_field_wrap:hover .share_field_edit {
     opacity: 1;
     -webkit-filter: none;
@@ -287,6 +305,15 @@ html {
     cursor: pointer;
     -o-transition: opacity 200ms linear;
     transition: opacity 200ms linear
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .summary_tab_x {
+        background-image: url(/images/icons/common_2x.png?6);
+        background-size: 32px 232px
+    }
 }
 
 .summary_tab_x:hover {

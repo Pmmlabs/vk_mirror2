@@ -70,6 +70,15 @@
     background: url(/images/attach_icons.png?4) 0 0 no-repeat
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .intr_hide {
+        background-image: url(/images/attach_icons_2x.png?4);
+        background-size: 32px 254px
+    }
+}
+
 .intr_square {
     width: 160px;
     height: 160px;
@@ -145,8 +154,26 @@
     background: url(/images/join/settings_f.png) no-repeat 0 0
 }
 
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .intr_settings_m {
+        background-image: url(/images/join/settings_f_2x.png);
+        background-size: 160px 160px
+    }
+}
+
 .intr_notify_m {
     background: url(/images/join/notify_f.png) no-repeat 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .intr_notify_m {
+        background-image: url(/images/join/notify_f_2x.png);
+        background-size: 160px 160px
+    }
 }
 
 .profile_intro_side_tt,
