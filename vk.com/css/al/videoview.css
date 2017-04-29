@@ -2984,6 +2984,24 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     vertical-align: top
 }
 
+.mv_chat_admin_message .mv_chat_message_author_name {
+    height: 19px;
+    line-height: 19px;
+    border-radius: 9.5px;
+    padding: 0 6px;
+    background: #6590c7;
+    color: #fff
+}
+
+.mv_chat_admin_message .mv_chat_message_author_name:after {
+    display: inline-block;
+    content: '';
+    width: 10px;
+    height: 10px;
+    margin-left: 4px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%2010%2010%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cpath%20d%3D%22M4.665.944c.185-.52.485-.52.67%200l.956%202.69c.037.103.157.185.262.185h2.452c.55%200%20.632.274.2.6L7.186%205.942c-.088.067-.137.203-.108.31l.747%202.775c.146.537-.09.702-.533.365L5.166%207.767c-.092-.07-.242-.07-.332%200L2.706%209.392c-.44.336-.678.172-.533-.365l.748-2.775c.03-.104-.02-.245-.107-.31L.797%204.42c-.44-.332-.35-.6.2-.6h2.45c.11%200%20.225-.08.262-.185l.955-2.69z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%2F%3E%0A%3C%2Fsvg%3E")
+}
+
 .mv_chat_message_content {
     margin-left: 33px;
     margin-top: 3px;

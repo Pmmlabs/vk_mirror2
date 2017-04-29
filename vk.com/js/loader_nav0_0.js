@@ -132,7 +132,7 @@ var stVersions = {
     'filebutton.css': 1044306797,
     'filebutton.js': 2454165044,
     'lite.js': 1862852959,
-    'lite.css': 35291307570,
+    'lite.css': 38347217351,
     'ie6.css': 2976338090,
     'ie7.css': 2926539419,
     'rtl.css': 15243722594,
@@ -142,7 +142,7 @@ var stVersions = {
     'html5audio.js': 976782859,
     'html5video.js': 223664659,
     'html5video.css': 16896823685,
-    'audioplayer.js': 5864308735,
+    'audioplayer.js': 5026853813,
     'audioplayer.css': 16161097675,
     'audio_html5.js': 287741914,
     'audio.js': 149042064,
@@ -187,8 +187,8 @@ var stVersions = {
     'video.css': 25564160992,
     'videocat.js': 1618923991,
     'videocat.css': 24272936077,
-    'videoview.js': 1135968432,
-    'videoview.css': 21451530937,
+    'videoview.js': 1043232687,
+    'videoview.css': 27205464995,
     'video_edit.js': 2135196486,
     'video_edit.css': 22057319442,
     'video_upload.js': 10194165,
@@ -520,7 +520,7 @@ var stVersions = {
     'cmodules/internal/meminfo.js': 13000983222,
     'cmodules/internal/nospam.js': 22490289982,
     'shortener.js': 1002525642,
-    'lang': 6777
+    'lang': 6778
 };
 var stTypes = {
     fromLib: {
@@ -582,4 +582,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 5173;
+var _rnd = 8724;
