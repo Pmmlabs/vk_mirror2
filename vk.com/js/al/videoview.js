@@ -1613,6 +1613,10 @@ var Videoview = {
                             senderHref: e[7],
                             senderSex: e[8],
                             commentText: e[9]
+                        }) : 426139623 == e[4] ? mvcur.player.pushNotice({
+                            type: "streamdrop",
+                            image: "/images/video/streamdrop_treasure.png",
+                            text: e[9].replace("#streamdrop", "") + '<br/><a href="/dota2/streamdrop" target="_blank">Подробнее ›</a>'
                         }) : mvcur.chatMode && VideoChat.receiveMessage.apply(VideoChat, e.slice(2));
                         break;
                     case "edit_reply":
@@ -1846,7 +1850,7 @@ var Videoview = {
                 }, {
                     onDone: function(e) {
                         playlistsHtml = "", each(e, function(e, i) {
-                            playlistsHtml += '<div class="mv_add_to_club_albums_list_item checkbox ' + (+i.added ? "on" : "") + '" data-id="' + i.id + '" onclick="checkbox(this)">' + i.title + "</div>";
+                            playlistsHtml += '<div class="mv_add_to_club_albums_list_item checkbox ' + (+i.added ? "on" : "") + '" data-id="' + i.id + '" onclick="checkbox(this)">' + i.title + "</div>"
                         }), val("mv_add_to_club_albums_list", playlistsHtml), val("mv_add_to_club_gid", i), hide("mv_add_to_club_albums_progress"), show("mv_add_to_club_albums")
                     }
                 }))
@@ -2689,15 +2693,14 @@ window.VideoChat = {
     SCROLL_EDGE_BELOW_THRESHOLD: 20,
     MAX_COMMENTS_NUM: 150,
     init: function(e, i) {
-        VideoChat.block && VideoChat.destroy(), e && (VideoChat.block = e,
-            VideoChat.options = extend({}, i), VideoChat.messagesWrap = domByClass(e, "mv_chat_messages_wrap"), VideoChat.scroll = new uiScroll(domFC(VideoChat.messagesWrap), {
-                global: !0,
-                reversed: !0,
-                preserveEdgeBelow: !0,
-                preserveEdgeBelowThreshold: VideoChat.SCROLL_EDGE_BELOW_THRESHOLD,
-                theme: "videoview",
-                onupdate: VideoChat.onScrollUpdate
-            }), this.scrollBottomBtnWrap = domByClass(e, "mv_chat_new_messages_btn_wrap"), VideoChat.replyForm = domByClass(e, "mv_chat_reply_form"), VideoChat.replyForm && (VideoChat.replyInput = domByClass(e, "mv_chat_reply_input"), VideoChat.initReplyInput()), VideoChat.firstMsgIntro = domByClass(e, "mv_chat_first_message_intro"))
+        VideoChat.block && VideoChat.destroy(), e && (VideoChat.block = e, VideoChat.options = extend({}, i), VideoChat.messagesWrap = domByClass(e, "mv_chat_messages_wrap"), VideoChat.scroll = new uiScroll(domFC(VideoChat.messagesWrap), {
+            global: !0,
+            reversed: !0,
+            preserveEdgeBelow: !0,
+            preserveEdgeBelowThreshold: VideoChat.SCROLL_EDGE_BELOW_THRESHOLD,
+            theme: "videoview",
+            onupdate: VideoChat.onScrollUpdate
+        }), this.scrollBottomBtnWrap = domByClass(e, "mv_chat_new_messages_btn_wrap"), VideoChat.replyForm = domByClass(e, "mv_chat_reply_form"), VideoChat.replyForm && (VideoChat.replyInput = domByClass(e, "mv_chat_reply_input"), VideoChat.initReplyInput()), VideoChat.firstMsgIntro = domByClass(e, "mv_chat_first_message_intro"))
     },
     initReplyInput: function() {
         placeholderInit(VideoChat.replyInput, {

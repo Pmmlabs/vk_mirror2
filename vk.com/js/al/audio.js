@@ -263,9 +263,9 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             l = !1;
         return a.tab ? l = !1 : a.fromSearch ? l = !1 : e.q === !1 && 1 == Object.keys(e).length ? l = !1 : a.searchPerformer ? l = !1 : a.friendId && this.isLayer() ? (r = "friend", this.resetSection(r), this._sectionData = {
             friend_id: a.friendId
-        }, l = !1) : a.navigateToUploader || 1 == Object.keys(e).length && !isUndefined(e[0]) ? l = !0 : isUndefined(e[0]) || "all" != e.section && "recoms" != e.section && e.section !== !1 ? (inArray(e.section, AudioPage.PageSections) || inArray(t.section, AudioPage.PageSections) && !inArray(e.section, AudioPage.PageSections)) && (this.isLayer() ? (l = !1, this._sectionData = {
+        }, l = !1) : 2 != Object.keys(e).length || e.q !== !1 || isUndefined(e[0]) ? a.navigateToUploader || 1 == Object.keys(e).length && !isUndefined(e[0]) ? l = !0 : isUndefined(e[0]) || "all" != e.section && "recoms" != e.section && e.section !== !1 ? (inArray(e.section, AudioPage.PageSections) || inArray(t.section, AudioPage.PageSections) && !inArray(e.section, AudioPage.PageSections)) && (this.isLayer() ? (l = !1, this._sectionData = {
             audio_id: e.audio_id
-        }, r = "recoms", delete this._currentSection) : l = !0) : l = !0, l ? !0 : ("recoms" == r && this.isLayer() && this.resetSection("recoms"), i.q ? (a.fromSearch || (this._els.searchInput.value = i.q), this._showSearchSection(extend({}, i, a))) : (this._ignoreResetedSearch = !0, uiSearch.reset(this._els.searchInput, !0), this.showSection(r), this._switchTab(r)), this.isLayer() ? this._prevLoc = i : nav.setLoc(i), (a.back || a.hist || a.nav) && this.syncParametersUI(i), !1)
+        }, r = "recoms", delete this._currentSection) : l = !0) : l = !0 : l = !0, l ? !0 : ("recoms" == r && this.isLayer() && this.resetSection("recoms"), i.q ? (a.fromSearch || (this._els.searchInput.value = i.q), this._showSearchSection(extend({}, i, a))) : (this._ignoreResetedSearch = !0, uiSearch.reset(this._els.searchInput, !0), this.showSection(r), this._switchTab(r)), this.isLayer() ? this._prevLoc = i : nav.setLoc(i), (a.back || a.hist || a.nav) && this.syncParametersUI(i), !1)
     }.bind(this)))
 }, AudioPage.prototype._deleteDeletedAudios = function() {
     each(cur._audioAddRestoreInfo || {}, function(e, t) {
@@ -522,7 +522,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     show(boxLoader), show(boxLayerWrap), boxRefreshCoords(boxLoader), parallel(function(e) {
         stManager.add(["audio.css", "indexer.js", "auto_list.js", "grid_sorter.js", "edit" == i ? "upload.js" : !1], e)
     }, function(e) {
-        o ? o.load(e) : e()
+        o ? o.loadAll(e) : e()
     }, function(t) {
         cur.audioPage && cur.audioPage.getOwnerId() == e ? (s = cur.audioPage.getOwnerPlaylists(), t()) : AudioPage.loadPlaylists(e, void 0, !1, "attach" == i, function(e) {
             s = e, t()
@@ -803,7 +803,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                         if (t) {
                             setStyle(t, "background-image", e.coverUrl ? "url(" + e.coverUrl + ")" : null), setStyle(t, "background-size", e.coverUrl ? "cover" : null);
                             var i = geByClass1("_audio_pl_grid_covers_wrap", this);
-                            i && (i.innerHTML = e.coverUrl ? "" : e.gridCovers);
+                            i && (i.innerHTML = e.coverUrl ? "" : e.gridCovers)
                         }
                         var a = geByClass1("audio_pl__title", this);
                         a && val(a, e.title);
@@ -876,7 +876,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             hasClass(e.target, "_back") && c()
         }), uiSearch.init("ape_edit_playlist_search", {
             onChange: s
-        }), "edit" == e && (f("initial"), C(), L(), z.getCoverUrl() && b(z.getCoverUrl()), W.playlistNameInput.value = replaceEntities(z.getTitle()), W.playlistDescriptionInput.value = replaceEntities(z.getDescription())), "attach" == e && f("default"), _(), j && q.setControlsText('<a onclick="AudioPage.deletePlaylist(' + j.getOwnerId() + ", " + j.getPlaylistId() + ", '" + j.getEditHash() + "')\">" + getLang("audio_delete_playlist") + "</a>")
+        }), "edit" == e && (f("initial"), C(), L(), z.getCoverUrl() && b(z.getCoverUrl()), W.playlistNameInput.value = replaceEntities(z.getTitle()), W.playlistDescriptionInput.value = replaceEntities(z.getDescription())), "attach" == e && f("default"), _(), j && "attach" != e && q.setControlsText('<a onclick="AudioPage.deletePlaylist(' + j.getOwnerId() + ", " + j.getPlaylistId() + ", '" + j.getEditHash() + "')\">" + getLang("audio_delete_playlist") + "</a>")
     }
     hide(boxLoader), hide(boxLayerWrap);
     var T;

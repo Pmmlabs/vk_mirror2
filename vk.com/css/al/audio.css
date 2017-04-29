@@ -3629,7 +3629,7 @@ body.mac .audio_rows_header.fixed {
 }
 
 .audio_page_layout .no_rows {
-    padding: 40px 50px
+    padding: 10px 50px
 }
 
 .audio_page_layout .audio_section_empty .audio_page__playlists_count_header {
@@ -4774,7 +4774,7 @@ body.mac .audio_rows_header.fixed {
 }
 
 .audio_section_promo__content {
-    padding: 29px 100px
+    padding: 29px 40px 29px 100px
 }
 
 .audio_section_promo__title {
