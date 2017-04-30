@@ -458,7 +458,8 @@ var stVersions = {
     'landings/desktop_messenger.css': 14679254560,
     'landings/vklive.css': 14783725479,
     'landings/vk2017.css': 15861179632,
-    'landings/vkmusic.css': 3408972326,
+    'landings/vkmusic.css': 3258822848,
+    'landings/vkmusic.js': 2329960741,
     'landings/ads.css': 18439084039,
     'landing_aes.js': 16840307206,
     'vkme.css': 17032703288,
@@ -582,4 +583,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 8724;
+var _rnd = 4694;
