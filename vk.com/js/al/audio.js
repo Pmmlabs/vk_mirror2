@@ -431,7 +431,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         var o = t.playlistData;
         a = getAudioPlayer().getPlaylist(o.type, o.ownerId, o.id), a.getAudiosCount() || (a.mergeWith(o), a.load())
     }
-    this._pagePlaylist = a, data(this._els.audioRows, "playlist", a), uiSearch.init(geByClass1("_audio_friends_search", e)), this._initAudioRowsAutoList(), this._enableAudioRowsSorter(), this._initFixedFriendsBlock(e)
+    this._pagePlaylist = a, data(this._els.audioRows, "playlist", a), uiSearch.init(geByClass1("_audio_friends_search", e)), this._initAudioRowsAutoList(), this._enableAudioRowsSorter(i), this._initFixedFriendsBlock(e)
 }, AudioPage.prototype._initFixedFriendsBlock = function(e) {
     if (this._els.friendsBlock) {
         var t, i, a, o = !1,
@@ -458,17 +458,19 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     o && o.equals(s) && a.isPlaying() ? a.pause() : s.load(0, function() {
         a.play(s.getAudiosList()[0], s)
     })
-}, AudioPage.prototype._enableAudioRowsSorter = function() {
-    this._data.audiosReorderHash && (this._audioRowsSorter && this._audioRowsSorter.destroy(), this._audioRowsSorter = new GridSorter(this._els.audioRows, "", {
-        onReorder: function(e, t, i) {
-            var a = domData(e, "full-id"),
-                o = domData(i, "full-id");
-            ajax.post("al_audio.php", {
+}, AudioPage.prototype._enableAudioRowsSorter = function(e) {
+    (this._data.audiosReorderHash || e) && (this._audioRowsSorter && this._audioRowsSorter.destroy(), this._audioRowsSorter = new GridSorter(this._els.audioRows, "", {
+        onReorder: function(t, i, a) {
+            var o, s = domData(t, "full-id"),
+                r = domData(a, "full-id"),
+                l = e ? getAudioPlayer().getCurrentPlaylist() : this.getPageCurrentPlaylist(),
+                n = l.indexOfAudio(s);
+            r ? (o = l.indexOfAudio(r), o += 1) : o = 0, l.moveAudio(n, o), e || ajax.post("al_audio.php", {
                 act: "reorder_audios",
                 hash: this._data.audiosReorderHash,
                 owner_id: this.getOwnerId(),
-                audio_id: a ? a.split("_")[1] : 0,
-                next_audio_id: o ? o.split("_")[1] : 0
+                audio_id: s ? s.split("_")[1] : 0,
+                next_audio_id: r ? r.split("_")[1] : 0
             })
         }.bind(this)
     }), this._onSectionOut(function() {
