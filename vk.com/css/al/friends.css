@@ -103,37 +103,22 @@
     }
 }
 
-.friends_more.load_more .friends_more_icon {
+.friends_more.load_more .friends_more_icon,
+.no_rows .friends_empty_by_search {
     display: none
 }
 
-.friends_not_found {
-    padding: 150px 20px;
-    text-align: center;
-    color: #656565;
-    line-height: 21px
-}
-
-.friends_not_found .friends_empty_by_search {
-    display: none
-}
-
-.friends_not_found.friends_only_other {
-    padding-top: 80px;
-    padding-bottom: 80px
-}
-
-.friends_not_found.friends_search .friends_empty_by_search {
+.no_rows.friends_search .friends_empty_by_search {
     display: block
 }
 
-.friends_not_found.friends_search .friends_empty {
+.no_rows.friends_search .friends_empty {
     display: none
 }
 
 .friends_wide_loading {
     background: url(/images/progress7.gif) no-repeat 50% 50%;
-    height: 321px
+    height: 82px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),

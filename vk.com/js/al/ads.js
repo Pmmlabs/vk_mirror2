@@ -398,6 +398,26 @@ Ads.showIntroBox = function(section, event) {
     return false;
 }
 
+Ads.showAnnouncementVideoBox = function(title, player_link, title_link) {
+    var content = '<iframe frameborder="0" src="' + player_link + '" style="width:720px;height:405px;" allowfullscreen></iframe>';
+    if (title_link) {
+        title = '<a href="' + title_link + '" target="_blank">' + title + '</a>';
+    }
+    showFastBox({
+        title: title,
+        containerClass: "ads_announcement_video_box",
+        width: 720,
+        hideButtons: true,
+        animSpeed: 300,
+        onShow: function() {
+            setStyle(window.boxLayerBG, 'opacity', 0.8);
+        },
+        onHide: function() {
+            setStyle(window.boxLayerBG, 'opacity', '');
+        }
+    }, content);
+}
+
 //////////////////////////////////////////////////////////////////////
 // OLD
 //////////////////////////////////////////////////////////////////////

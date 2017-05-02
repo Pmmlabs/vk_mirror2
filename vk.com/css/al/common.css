@@ -3810,6 +3810,10 @@ body.mac #layer_stl .fixed {
     vertical-align: top
 }
 
+.page_block .no_rows {
+    padding: 30px 50px
+}
+
 #system_msg {
     z-index: 5000;
     left: 0;

@@ -6,7 +6,7 @@
 .media-video-thumb-background,
 .media-video-thumb-wrap-background,
 .video_desktop_live_intro_wrap,
-.video_empty_placeholder,
+.video_empty_placeholder.no_rows,
 .video_item .media_check_btn,
 .video_item .video_item_thumb,
 .video_item .video_item_thumb_wrap,
@@ -979,7 +979,7 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
     pointer-events: none
 }
 
-.video_empty_placeholder {
+.video_empty_placeholder.no_rows {
     background-image: url(/images/icons/video_empty_icon.png);
     width: 100%;
     background-repeat: no-repeat;
@@ -991,13 +991,13 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .video_empty_placeholder {
+    .video_empty_placeholder.no_rows {
         background-image: url(/images/icons/video_empty_icon_2x.png);
         background-size: 82px 62px
     }
 }
 
-.video_empty_placeholder .search_text {
+.video_empty_placeholder.no_rows .search_text {
     display: inline-block;
     max-width: 200px;
     color: #000;

@@ -733,6 +733,35 @@ a .ads_sub_link:hover {
     right: 0
 }
 
+.ads_announcement_video_box .box_title_wrap {
+    background: none;
+    position: absolute;
+    top: -40px;
+    width: 720px
+}
+
+.ads_announcement_video_box .box_title {
+    text-align: center;
+    padding-left: 49px;
+    height: 40px;
+    line-height: 40px
+}
+
+.ads_announcement_video_box .box_title a {
+    color: #fff
+}
+
+.ads_announcement_video_box .box_x_button {
+    position: relative;
+    left: 49px;
+    top: 19px
+}
+
+.ads_announcement_video_box .box_body {
+    padding: 0;
+    line-height: 0
+}
+
 .ads_lite_cb {
     display: inline-block;
     height: 14px;
