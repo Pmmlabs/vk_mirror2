@@ -11,6 +11,7 @@
 .group_contacts_list .group_box_image_wrap,
 .group_info_row:before,
 .group_places_list .group_box_image_wrap,
+.group_set_categories_wrap,
 .groups_actions_menu .groups_actions_icons,
 a.groups_messages_block:before {
     -ms-high-contrast-adjust: none
@@ -1252,4 +1253,51 @@ a.group_app_button:after {
 
 .group_help_desc {
     color: #000
+}
+
+.group_set_categories_block {
+    padding: 15px
+}
+
+.group_set_categories_wrap {
+    padding: 0 5px 5px 70px;
+    background: url(/images/group_spotty.png?1) no-repeat 0 0;
+    background-position: 5px 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .group_set_categories_wrap {
+        background-image: url(/images/group_spotty_2x.png?1);
+        background-size: 50px 50px
+    }
+}
+
+.group_edit .group_set_categories_wrap {
+    margin-bottom: 15px
+}
+
+.group_set_categories_intro_text {
+    line-height: 17px
+}
+
+.group_set_categories_selector_block_wrap {
+    margin-top: 25px
+}
+
+.group_set_categories_selector_wrap {
+    margin-top: 15px
+}
+
+.group_set_categories_selector_wrap:first-child {
+    margin-top: 0
+}
+
+.group_set_categories_submit_wrap {
+    margin-top: 20px
+}
+
+.group_set_categories_block .msg {
+    margin: 0 0 15px
 }

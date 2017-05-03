@@ -604,6 +604,10 @@ var GroupsEdit = {
             pcategory: cur.pcategoryDD.val(),
             psubcategory: cur.psubcategoryDD.val(),
             public_date: val("gedit_public_date")
+        }), cur.newCategoriesDD && extend(s, {
+            category_0: intval(cur.newCategoriesDD[0].val()),
+            category_1: intval(cur.newCategoriesDD[1].val()),
+            category_2: intval(cur.newCategoriesDD[2].val())
         }), ajax.post("groupsedit.php", s, {
             onDone: function(e, t) {
                 return 0 > e ? GroupsEdit.nbAddr() : e === !1 ? notaBene(ge("group_edit_name")) : "edit_first" == nav.objLoc.act ? nav.go(nav.objLoc[0]) : (GroupsEdit.showMessage(getLang("groups_saved_msg")), scrollToTop(), t != o && (each(geByTag("a"), function() {
@@ -735,6 +739,7 @@ var GroupsEdit = {
             }), cur.twitterVal = e.twitter, extend(cur, {
                 module: "groups_edit",
                 cls: e.cls,
+                new_categories_allowed: e.new_categories_allowed,
                 group_first_message_max_length: e.group_first_message_max_length,
                 group_first_message_max_new_lines: e.group_first_message_max_new_lines,
                 shareSetOwnPhoto: function(e, t) {
@@ -761,7 +766,7 @@ var GroupsEdit = {
                 onChange: function(t) {
                     t = intval(t), t && (e.psubcategories[t] || {}).length > 1 ? (cur.psubcategoryDD.setOptions({
                         defaultItems: e.psubcategories[t]
-                    }), cur.psubcategoryDD.val(0), GroupsEdit.show(ge("group_edit_psubcategory"))) : GroupsEdit.hide(ge("group_edit_psubcategory")), void 0 !== e.plabelsmap[t] ? val("gedit_public_date_label", e.plabels[e.plabelsmap[t]]) : val("gedit_public_date_label", e.plabels[e.plabelsmap[0]])
+                    }), cur.psubcategoryDD.val(0), cur.new_categories_allowed || GroupsEdit.show(ge("group_edit_psubcategory"))) : GroupsEdit.hide(ge("group_edit_psubcategory")), void 0 !== e.plabelsmap[t] ? val("gedit_public_date_label", e.plabels[e.plabelsmap[t]]) : val("gedit_public_date_label", e.plabels[e.plabelsmap[0]])
                 }
             }),
             psubcategoryDD: new Dropdown(ge("public_subtype"), e.psubcategories[e.pcategory || 0] || [], {
@@ -2122,17 +2127,18 @@ var GroupsEdit = {
                     hash: t,
                     cur_tab: cur.cur_tab
                 };
-                GroupsEdit.hideMessage(), ajax.post("groupsedit.php", s, {
-                    onDone: function(e, t, o, r) {
-                        extend(cur, o), cur.show_alert = !0, ge("group_apps_wrapper").innerHTML = e, ge("apps_cat_add") ? ge("apps_cat_add").innerHTML = t : ge("apps_cat_main").parentNode.innerHTML += t, GroupsEdit.app.initSettings(), scrollToY(0), GroupsEdit.showMessage(r), GroupsEdit.invalidateBack();
-                    },
-                    showProgress: function() {
-                        lockLink(o)
-                    },
-                    hideProgress: function() {
-                        unlockLink(o)
-                    }
-                })
+                GroupsEdit.hideMessage(),
+                    ajax.post("groupsedit.php", s, {
+                        onDone: function(e, t, o, r) {
+                            extend(cur, o), cur.show_alert = !0, ge("group_apps_wrapper").innerHTML = e, ge("apps_cat_add") ? ge("apps_cat_add").innerHTML = t : ge("apps_cat_main").parentNode.innerHTML += t, GroupsEdit.app.initSettings(), scrollToY(0), GroupsEdit.showMessage(r), GroupsEdit.invalidateBack()
+                        },
+                        showProgress: function() {
+                            lockLink(o)
+                        },
+                        hideProgress: function() {
+                            unlockLink(o)
+                        }
+                    })
             } else var a = getLang("groups_apps_replace_app_message_content", cur.appName),
                 i = showFastBox({
                     title: getLang("groups_apps_replace_app_message_title")

@@ -11,7 +11,10 @@ function initPublicNewSection(e) {
                 act: "a_new",
                 name: t,
                 type: n,
-                hash: e.hash
+                hash: e.hash,
+                category_0: val("new_public_category_0"),
+                category_1: val("new_public_category_1"),
+                category_2: val("new_public_category_2")
             }, {
                 onFail: function(e) {
                     return e ? cur.showError(e) : void 0
@@ -354,22 +357,22 @@ var PagedList = function(e, o, t) {
         };
     t = t ? extend(i, t) : i, this.data = o;
     for (var r = [], s = 0; s < o.length; ++s) r.push(o[s]);
-    var p = [],
-        c = 0;
+    var c = [],
+        p = 0;
     this.setData = function(e) {
-        this.data = e, this.getPage(0, p, !0)
+        this.data = e, this.getPage(0, c, !0)
     };
     var l = t.getRow.bind(this);
     this.getPage = function(o, i, s) {
-        if (void 0 === i && (i = p), c != o || !a(i, p) || s) {
-            if (c = o, t.onStart && t.onStart(), !a(i, p)) {
-                p = n(i), r = [];
+        if (void 0 === i && (i = c), p != o || !a(i, c) || s) {
+            if (p = o, t.onStart && t.onStart(), !a(i, c)) {
+                c = n(i), r = [];
                 for (var u = 0; u < this.data.length; ++u)(!i || t.filter(i, this.data[u])) && r.push(this.data[u])
             }
             if (!r.length) return ge(e).innerHTML = t.emptyRow(i), t.setPages(0, 0, "top"), void t.setPages(0, 0, "bottom");
             for (var d = [], u = o * t.perPage; u < Math.min(r.length, (o + 1) * t.perPage); ++u) {
                 var h = r[u];
-                d.push(l(h, p))
+                d.push(l(h, c))
             }
             var g = getSize(ge(e))[1];
             if (ge(e).innerHTML = d.join(""), setStyle(ge(e), {

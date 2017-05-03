@@ -6,12 +6,18 @@ var GroupsList = {
     },
     createGroup: function(s, r) {
         var e = ge("group_create_title");
-        return trim(val(e)) ? void ajax.post("al_groups.php", {
+        if (!trim(val(e))) return notaBene(e);
+        var o = {
             act: "create",
             title: trim(val(e)),
             cls: radioval("club_type"),
             hash: s
-        }, {
+        };
+        cur.newCategoriesDD && extend(o, {
+            category_0: intval(cur.newCategoriesDD[0].val()),
+            category_1: intval(cur.newCategoriesDD[1].val()),
+            category_2: intval(cur.newCategoriesDD[2].val())
+        }), ajax.post("al_groups.php", o, {
             onDone: function(s) {
                 "title" == s && notaBene(ge("group_create_title"))
             },
@@ -24,7 +30,7 @@ var GroupsList = {
             },
             showProgress: lockButton.pbind(r),
             hideProgress: unlockButton.pbind(r)
-        }) : notaBene(e)
+        })
     },
     rand: function() {
         return Math.floor(1e4 * Math.random())
@@ -137,9 +143,9 @@ var GroupsList = {
                         GroupsList.updateIndexer(h), GroupsList.showMore(!0)
                     }
                     TopNotifier && !TopNotifier.shown() && TopNotifier.invalidate();
-                    var d = ge("gl_inv" + r),
-                        g = d && geByClass1("group_row_status", d);
-                    d && (g.basehtml = g.innerHTML, g.innerHTML = e)
+                    var g = ge("gl_inv" + r),
+                        d = g && geByClass1("group_row_status", g);
+                    g && (d.basehtml = d.innerHTML, d.innerHTML = e)
                 }
             },
             onFail: function(s) {
@@ -431,24 +437,24 @@ var GroupsList = {
                 p = ge(cur.scrollList.prefix + r),
                 h = ge("ui_" + r + "_load_more");
             if (GroupsList.updateSummary(u), !u) return p.innerHTML = cur.scrollList.genEmpty(o), void(o && GroupsList.needSearch(r) ? t ? (GroupsList.serverSearch(p, o), hide(h)) : cur.searchOffset && GroupsList.serverSearchMore(p, o) : (hide(h), hide(cur.scrollList.searchWrap), show(cur.scrollList.eventsPopular), cur.searchOffset = 0));
-            for (var d = t ? 0 : cur.scrollList.offset, g = Math.min(u, d + cur.scrollList.perpage), L = [], n = d; g > n; ++n) {
+            for (var g = t ? 0 : cur.scrollList.offset, d = Math.min(u, g + cur.scrollList.perpage), L = [], n = g; d > n; ++n) {
                 var f = cur.scrollList.lists[r][e[n]];
                 if (f) {
-                    var _ = f[0];
-                    i && (_ = _.replace(i.re, i.val)), L.push(cur.scrollList.genRow(f, _))
+                    var v = f[0];
+                    i && (v = v.replace(i.re, i.val)), L.push(cur.scrollList.genRow(f, v))
                 }
             }
-            if (o || d && !t || (hide(cur.scrollList.searchWrap), show(cur.scrollList.eventsPopular), cur.searchOffset = 0), t)
+            if (o || g && !t || (hide(cur.scrollList.searchWrap), show(cur.scrollList.eventsPopular), cur.searchOffset = 0), t)
                 if (hasClass(cur.scrollList.queryCont, "ui_search_fixed") && scrollToY(getXY(cur.scrollList.queryWrap)[1] + 1, 0), p.innerHTML = L.join(""), checkPageBlocks(), cur.searchOffset = !1, e.length < 5 && o && GroupsList.needSearch(r)) {
-                    var v = [];
+                    var _ = [];
                     for (var n in e) {
                         var m = cur.scrollList.lists[r][e[n]];
-                        v.push(m[2])
+                        _.push(m[2])
                     }
-                    GroupsList.serverSearch(p, o, v)
+                    GroupsList.serverSearch(p, o, _)
                 } else hide(cur.scrollList.searchWrap), show(cur.scrollList.eventsPopular), cur.searchOffset = 0;
             else p.innerHTML += L.join(""), cur.searchOffset && GroupsList.serverSearchMore(p, o);
-            cur.scrollList.offset = g, cur.searchOffset || (u > g ? show : hide)(h)
+            cur.scrollList.offset = d, cur.searchOffset || (u > d ? show : hide)(h)
         }
     },
     showMoreInvites: function(s) {
