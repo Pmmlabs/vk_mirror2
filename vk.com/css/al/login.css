@@ -96,12 +96,6 @@
     margin: 20px 0
 }
 
-.page_section .error,
-.page_section .info,
-.page_section .msg {
-    line-height: 160%
-}
-
 .page_section_result {
     text-align: center;
     margin: 0 -50px;

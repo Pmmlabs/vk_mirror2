@@ -26,6 +26,9 @@ var Page = {
                     Upload.onFileApiSend(addMedia.clipboardImageUploadIndex, [blob]);
 
                 } else {
+                    var composer = txtEl && data(txtEl, 'composer');
+                    var composerOpts = composer && composer.options && composer.options.media && composer.options.media.options || {};
+                    var limit = composerOpts && composerOpts.limit || 2;
                     addMedia.clipboardImageUploadIndex = Upload.init(domFC(uploadEl), uploadData.url, uploadData.params, {
                         file_name: 'photo',
                         file_size_limit: 1024 * 1024 * 25, // 25Mb
@@ -113,7 +116,7 @@ var Page = {
                         noFlash: 1,
                         multiple: 1,
                         multi_progress: 1,
-                        max_files: 2,
+                        max_files: limit,
                         chooseBox: 1,
                         clear: 1,
                         type: 'photo',

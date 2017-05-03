@@ -186,8 +186,8 @@ var stVersions = {
     'video.js': 3840498487,
     'video.css': 23719065221,
     'videocat.js': 1618923991,
-    'videocat.css': 24770687053,
-    'videoview.js': 1043232687,
+    'videocat.css': 23239845517,
+    'videoview.js': 1973584100,
     'videoview.css': 27703215971,
     'video_edit.js': 2135196486,
     'video_edit.css': 22555070418,
@@ -212,7 +212,7 @@ var stVersions = {
     'module.css': 24325337068,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 20653269507,
-    'page.js': 1752668598,
+    'page.js': 236293951,
     'page.css': 23741678270,
     'page_help.css': 24969387194,
     'public.css': 28028150746,
@@ -346,9 +346,9 @@ var stVersions = {
     'bugs.css': 15022461212,
     'bugtracker.js': 1209211757,
     'bugtracker.css': 17159834724,
-    'login.css': 20748231771,
+    'login.css': 20899923028,
     'login.js': 3551917100,
-    'upload.js': 2080738373,
+    'upload.js': 3319172650,
     'graffiti.js': 1826105362,
     'graffiti.css': 404471482,
     'graffiti_new.js': 67279821,
@@ -519,7 +519,7 @@ var stVersions = {
     'stories.js': 2359937612,
     'stories.css': 16859689527,
     'cmodules/internal/meminfo.js': 13000983222,
-    'cmodules/internal/nospam.js': 28060094823,
+    'cmodules/internal/nospam.js': 28682614661,
     'shortener.js': 1002525642,
     'lang': 6778
 };
@@ -583,4 +583,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 9308;
+var _rnd = 1775;

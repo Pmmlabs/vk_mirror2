@@ -1613,11 +1613,7 @@ var Videoview = {
                             senderHref: e[7],
                             senderSex: e[8],
                             commentText: e[9]
-                        }) : mvcur.chatMode && (VideoChat.receiveMessage.apply(VideoChat, e.slice(2)), 426139623 == e[4] && /#streamdrop/.test(e[9]) && mvcur.player.pushNotice({
-                            type: "streamdrop",
-                            image: "/images/video/streamdrop_treasure.png",
-                            text: e[9].replace("#streamdrop", "") + '<br/><a href="/dota2/streamdrop" target="_blank">' + unescape("%u041F%u043E%u0434%u0440%u043E%u0431%u043D%u0435%u0435%20%u203A") + "</a>"
-                        }));
+                        }) : mvcur.chatMode && VideoChat.receiveMessage.apply(VideoChat, e.slice(2));
                         break;
                     case "edit_reply":
                         var n = e[2],
@@ -1843,18 +1839,17 @@ var Videoview = {
         },
         addToClubPlaylistBoxInit: function(e, i, o) {
             function t(e, i) {
-                return hide("mv_add_to_club_albums"),
-                    val("mv_add_to_club_albums_list", ""), -1 == e ? void val("mv_add_to_club_gid", "") : (show("mv_add_to_club_albums_progress"), void ajax.post("al_video.php?act=a_get_club_playlists", {
-                        gid: i,
-                        oid: mvcur.mvData.oid,
-                        vid: mvcur.mvData.vid
-                    }, {
-                        onDone: function(e) {
-                            playlistsHtml = "", each(e, function(e, i) {
-                                playlistsHtml += '<div class="mv_add_to_club_albums_list_item checkbox ' + (+i.added ? "on" : "") + '" data-id="' + i.id + '" onclick="checkbox(this)">' + i.title + "</div>"
-                            }), val("mv_add_to_club_albums_list", playlistsHtml), val("mv_add_to_club_gid", i), hide("mv_add_to_club_albums_progress"), show("mv_add_to_club_albums")
-                        }
-                    }))
+                return hide("mv_add_to_club_albums"), val("mv_add_to_club_albums_list", ""), -1 == e ? void val("mv_add_to_club_gid", "") : (show("mv_add_to_club_albums_progress"), void ajax.post("al_video.php?act=a_get_club_playlists", {
+                    gid: i,
+                    oid: mvcur.mvData.oid,
+                    vid: mvcur.mvData.vid
+                }, {
+                    onDone: function(e) {
+                        playlistsHtml = "", each(e, function(e, i) {
+                            playlistsHtml += '<div class="mv_add_to_club_albums_list_item checkbox ' + (+i.added ? "on" : "") + '" data-id="' + i.id + '" onclick="checkbox(this)">' + i.title + "</div>";
+                        }), val("mv_add_to_club_albums_list", playlistsHtml), val("mv_add_to_club_gid", i), hide("mv_add_to_club_albums_progress"), show("mv_add_to_club_albums")
+                    }
+                }))
             }
             WideDropdown.deinit("add_to_pl_club_dd"), mvcur.addToClubPl = WideDropdown.init("add_to_pl_club_dd", {
                 defaultItems: i,
@@ -2694,14 +2689,15 @@ window.VideoChat = {
     SCROLL_EDGE_BELOW_THRESHOLD: 20,
     MAX_COMMENTS_NUM: 150,
     init: function(e, i) {
-        VideoChat.block && VideoChat.destroy(), e && (VideoChat.block = e, VideoChat.options = extend({}, i), VideoChat.messagesWrap = domByClass(e, "mv_chat_messages_wrap"), VideoChat.scroll = new uiScroll(domFC(VideoChat.messagesWrap), {
-            global: !0,
-            reversed: !0,
-            preserveEdgeBelow: !0,
-            preserveEdgeBelowThreshold: VideoChat.SCROLL_EDGE_BELOW_THRESHOLD,
-            theme: "videoview",
-            onupdate: VideoChat.onScrollUpdate
-        }), this.scrollBottomBtnWrap = domByClass(e, "mv_chat_new_messages_btn_wrap"), VideoChat.replyForm = domByClass(e, "mv_chat_reply_form"), VideoChat.replyForm && (VideoChat.replyInput = domByClass(e, "mv_chat_reply_input"), VideoChat.initReplyInput()), VideoChat.firstMsgIntro = domByClass(e, "mv_chat_first_message_intro"))
+        VideoChat.block && VideoChat.destroy(), e && (VideoChat.block = e,
+            VideoChat.options = extend({}, i), VideoChat.messagesWrap = domByClass(e, "mv_chat_messages_wrap"), VideoChat.scroll = new uiScroll(domFC(VideoChat.messagesWrap), {
+                global: !0,
+                reversed: !0,
+                preserveEdgeBelow: !0,
+                preserveEdgeBelowThreshold: VideoChat.SCROLL_EDGE_BELOW_THRESHOLD,
+                theme: "videoview",
+                onupdate: VideoChat.onScrollUpdate
+            }), this.scrollBottomBtnWrap = domByClass(e, "mv_chat_new_messages_btn_wrap"), VideoChat.replyForm = domByClass(e, "mv_chat_reply_form"), VideoChat.replyForm && (VideoChat.replyInput = domByClass(e, "mv_chat_reply_input"), VideoChat.initReplyInput()), VideoChat.firstMsgIntro = domByClass(e, "mv_chat_first_message_intro"))
     },
     initReplyInput: function() {
         placeholderInit(VideoChat.replyInput, {
@@ -2777,7 +2773,7 @@ window.VideoChat = {
             video_owner_id: e,
             msg_id: i
         }));
-        var m = o == e || 426139623 == o ? "mv_chat_admin_message" : "",
+        var m = o == e ? "mv_chat_admin_message" : "",
             u = psr(getTemplate("video_chat_message", {
                 author_href: n,
                 author_photo: psr(a),
