@@ -5206,27 +5206,27 @@ div.chat_tab_img {
 }
 
 .top_tt_event .notify_tt_thumb {
-    background-position: 0 -30px
+    background-position: -5px -45px
 }
 
 .top_tt_important .notify_tt_thumb {
-    background-position: 0 -90px
+    background-position: -5px -125px
 }
 
 .top_tt_videocast .notify_tt_thumb {
-    background-position: 0 -120px
+    background-position: -5px -165px
 }
 
 .top_tt_celebration .notify_tt_thumb {
-    background-position: 0 -150px
+    background-position: -5px -205px
 }
 
 .top_tt_message .notify_tt_thumb {
-    background-position: 0 -180px
+    background-position: -5px -245px
 }
 
 .top_tt_activate .notify_tt_thumb {
-    background-position: 0 -270px
+    background-position: -5px -365px
 }
 
 .notify_tt_text {

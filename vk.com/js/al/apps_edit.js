@@ -264,6 +264,19 @@ var AppsEdit = {
             }
         })
     },
+    appWidgetAccess: function(e, t, a, s) {
+        actionsMenuItemLocked(e) || (lockActionsMenuItem(e), ajax.post("apps_check", {
+            act: "a_app_widget_access",
+            aid: t,
+            val: s,
+            hash: a
+        }, {
+            onDone: function() {
+                nav.reload()
+            },
+            onFail: unlockActionsMenuItem.pbind(e)
+        }))
+    },
     adminApp: function(e, t, a, s, i, n, r, o, c, p) {
         var d = showFastBox(cur.appEditAdminTitle, '<div id="apps_show_penalty" style="display:none;"><div style="color:#666;padding:5px 0;">' + cur.appEditAdminPenalty + '</div><input type="text" id="apps_penalty" class="text" style="width:440px" value="' + i + '"/></div><div style="color:#666;padding:5px 0;">' + cur.appEditAdminComment + '</div><textarea id="apps_check_comment" class="dark box_textarea"></textarea>' + (r || "") + (o || "") + (c || ""));
         d.setOptions({
@@ -1187,7 +1200,7 @@ var AppsEdit = {
             if (a) {
                 removeClass(a, "active");
                 var s = geByClass1("apps_edit_content", a);
-                slideUp(s, t)
+                slideUp(s, t);
             }
         }
         if (cur.currentActivity == e) return void(cur.currentActivity = null);

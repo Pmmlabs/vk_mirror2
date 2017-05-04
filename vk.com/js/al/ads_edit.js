@@ -6235,6 +6235,8 @@ AdsTargetingEditor.prototype.getUiCriterionData = function(criterionName, option
             return this.getUiCriterionDataRange(uniToMin, this.criteriaRanges.uni_max, -1, getLang('ads_uni_to'), getLang('ads_uni_to_placeholder'));
         case 'statuses':
             return ((this.criteria.sex.value == 1) ? this.criteria.statuses.data.female : this.criteria.statuses.data.male);
+        case 'retargeting_groups_not':
+            return this.criteria['retargeting_groups'].data || [];
         default:
             return this.criteria[criterionName].data || [];
     }

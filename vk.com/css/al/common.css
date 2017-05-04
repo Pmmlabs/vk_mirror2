@@ -748,6 +748,10 @@ a .num_delim {
     text-align: right
 }
 
+.ta_c {
+    text-align: center
+}
+
 .inl_bl {
     display: -moz-inline-stack;
     display: inline-block;
@@ -5946,6 +5950,25 @@ body.mac .pr_bt {
 
 .flat_button.ui_load_more_btn.flat_btn_lock.with_arrow:after {
     display: none!important
+}
+
+.flat_button.ui_load_more_btn .ui_load_more_btn_label {
+    display: inline-block;
+    overflow: hidden;
+    max-width: 100%;
+    vertical-align: top;
+    text-overflow: ellipsis;
+    box-sizing: border-box
+}
+
+.flat_button.ui_load_more_btn.with_arrow .ui_load_more_btn_label {
+    padding: 0 28px;
+    margin: 0 -28px
+}
+
+.flat_button.ui_load_more_btn.with_arrow.box_bottom_btn .ui_load_more_btn_label {
+    padding: 0 33px;
+    margin: 0 -33px
 }
 
 button.ui_load_more_btn {

@@ -66,7 +66,7 @@
 }
 
 .wide_column .module_header .header_top {
-    padding: 4px 20px 0;
+    padding: 3px 20px 0;
     font-size: 13px
 }
 
@@ -74,9 +74,20 @@
     padding: 5px 20px 0
 }
 
+.module_header .header_label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%
+}
+
 .module_header .header_count {
     color: #939393;
     padding: 0 6px
+}
+
+.module_header.header_separated {
+    height: 45px;
+    border-bottom: 1px solid #e7e8ec
 }
 
 .header_right_link {
@@ -88,7 +99,7 @@
 }
 
 .wide_column .header_right_link {
-    padding-top: 4px;
+    padding-top: 3px;
     font-size: 13px;
     margin-right: 20px
 }

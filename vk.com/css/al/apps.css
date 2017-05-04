@@ -3007,6 +3007,91 @@ a.page_block_header:hover .apps_cat_header_link:after {
     margin-top: 0
 }
 
+.apps_app_widget_preview_box .box_body {
+    color: #656565;
+    background: #edeef0
+}
+
+.apps_app_widget_preview_box .box_controls {
+    background: #fff;
+    border-top: 0
+}
+
+.apps_app_widget_preview_box_content {
+    width: 550px;
+    margin: 0 auto
+}
+
+.apps_app_widget_preview_box_text {
+    background: #fff;
+    padding: 12px 25px 13px 71px;
+    margin: 0 -25px;
+    position: relative;
+    bottom: -20px;
+    min-height: 38px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.apps_app_widget_preview_box_text:after {
+    height: 1px;
+    position: absolute;
+    bottom: 0;
+    left: 25px;
+    right: 25px;
+    background: #e7e8ec;
+    content: '';
+    display: block
+}
+
+.apps_app_widget_preview_box_photo {
+    position: absolute;
+    top: 14px;
+    left: 25px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    -moz-force-broken-image-icon: 0;
+    background-color: #fafbfc
+}
+
+.apps_app_widget_preview_box_photo:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 34px;
+    background-color: #fff
+}
+
+.apps_app_widget_preview_box_photo:after {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fafbfc;
+    background-image: url(/images/camera_100.png);
+    background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_app_widget_preview_box_photo:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
 .app_tabs.t_bar {
     background: none repeat scroll 0 0 #fff;
     padding: 11px 0px 0px 10px

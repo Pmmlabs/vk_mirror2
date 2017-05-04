@@ -560,6 +560,13 @@ var Docs = {
     hideOfficeNotice: function(e) {
         ls.set("docs_office_notice_shown", 999), hide(domPN(e))
     },
+    claimHint: function(e) {
+        showTooltip(e, {
+            text: getLang("docs_claimed_doc_hint"),
+            shift: [12, 5],
+            black: 1
+        })
+    },
     _eof: 1
 };
 try {

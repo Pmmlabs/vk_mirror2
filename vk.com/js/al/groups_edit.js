@@ -1737,7 +1737,7 @@ var GroupsEdit = {
         }, {
             params: {
                 dark: 1,
-                width: 480
+                width: 540
             }
         })
     },
@@ -2062,11 +2062,17 @@ var GroupsEdit = {
     app: {
         btnName: null,
         privacy: null,
+        appWidgetPrivacy: null,
         snippetType: null,
         appName: null,
         initCatalog: function() {},
         initSettings: function() {
-            GroupsEdit.app.privacy = new Dropdown(ge("groups_app_btn_privacy"), cur.btnPrivacy, {
+            cur.appWidgetInstalled && (GroupsEdit.app.appWidgetPrivacy = new Dropdown(ge("groups_app_widget_privacy"), cur.appWidgetPrivacy, {
+                width: 300,
+                big: 1,
+                multiselect: !1,
+                selectedItems: cur.appWidgetPrivacyVal
+            })), GroupsEdit.app.privacy = new Dropdown(ge("groups_app_btn_privacy"), cur.btnPrivacy, {
                 width: 300,
                 big: 1,
                 multiselect: !1,
@@ -2112,7 +2118,7 @@ var GroupsEdit = {
                 try {
                     t = document.execCommand("copy")
                 } catch (r) {
-                    t = !1
+                    t = !1;
                 }
                 return re(o), showDoneBox(getLang("groups_app_link_been_copied")), t
             };
@@ -2127,18 +2133,17 @@ var GroupsEdit = {
                     hash: t,
                     cur_tab: cur.cur_tab
                 };
-                GroupsEdit.hideMessage(),
-                    ajax.post("groupsedit.php", s, {
-                        onDone: function(e, t, o, r) {
-                            extend(cur, o), cur.show_alert = !0, ge("group_apps_wrapper").innerHTML = e, ge("apps_cat_add") ? ge("apps_cat_add").innerHTML = t : ge("apps_cat_main").parentNode.innerHTML += t, GroupsEdit.app.initSettings(), scrollToY(0), GroupsEdit.showMessage(r), GroupsEdit.invalidateBack()
-                        },
-                        showProgress: function() {
-                            lockLink(o)
-                        },
-                        hideProgress: function() {
-                            unlockLink(o)
-                        }
-                    })
+                GroupsEdit.hideMessage(), ajax.post("groupsedit.php", s, {
+                    onDone: function(e, t, o, r) {
+                        extend(cur, o), cur.show_alert = !0, ge("group_apps_wrapper").innerHTML = e, ge("apps_cat_add") ? ge("apps_cat_add").innerHTML = t : ge("apps_cat_main").parentNode.innerHTML += t, GroupsEdit.app.initSettings(), scrollToY(0), GroupsEdit.showMessage(r), GroupsEdit.invalidateBack()
+                    },
+                    showProgress: function() {
+                        lockLink(o)
+                    },
+                    hideProgress: function() {
+                        unlockLink(o)
+                    }
+                })
             } else var a = getLang("groups_apps_replace_app_message_content", cur.appName),
                 i = showFastBox({
                     title: getLang("groups_apps_replace_app_message_title")
@@ -2160,7 +2165,7 @@ var GroupsEdit = {
                 privacy: GroupsEdit.app.privacy.selectedItems()[0][0],
                 snippet_type: GroupsEdit.app.snippetType.selectedItems()[0][0]
             };
-            GroupsEdit.app.appName && (e.app_name = val(GroupsEdit.app.appName)), GroupsEdit.hideMessage(), ajax.post("groupsedit.php", e, {
+            cur.appWidgetInstalled && (e.app_widget_privacy = GroupsEdit.app.appWidgetPrivacy.selectedItems()[0][0]), GroupsEdit.app.appName && (e.app_name = val(GroupsEdit.app.appName)), GroupsEdit.hideMessage(), ajax.post("groupsedit.php", e, {
                 onDone: function(e, t) {
                     return e ? (GroupsEdit.showMessage(t), GroupsEdit.invalidateBack()) : GroupsEdit.showMessage(t, "error"), e
                 },

@@ -519,6 +519,16 @@ a.page_post_thumb_wrap:hover {
     pointer-events: all
 }
 
+.page_doc_row .claim_hint {
+    display: inline-block;
+    width: 15px;
+    background-size: contain;
+    height: 15px;
+    margin-right: 5px;
+    vertical-align: middle;
+    pointer-events: visiblePainted
+}
+
 .page_pics_preview .page_preview_doc_wrap {
     padding: 0 5px 5px 0;
     width: 130px;
