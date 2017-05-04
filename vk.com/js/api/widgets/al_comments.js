@@ -1675,18 +1675,22 @@ var WComments = {
 
                                         cur.audioAttachSwitchOwnerId = false
 
-                                        var attachOwner = params.to_id || vk.id
+                                        var attachOwnerId = params.to_id || vk.id
+
+                                        if (window.cur && cur.options && cur.options.suggesting || window.cur && cur.options && cur.options.user_id) {
+                                            attachOwnerId = vk.id
+                                        }
+
                                         if (cur.wallGroupAudioEnabled !== (void 0) && !cur.wallGroupAudioEnabled) {
-                                            attachOwner = vk.id
+                                            attachOwnerId = vk.id
                                         } else {
                                             if (params.to_id != vk.id) {
                                                 cur.audioAttachSwitchOwnerId = params.to_id
                                             }
                                         }
 
-                                        AudioPage.showAttachBox(attachOwner, {
-                                            playlistAlreadyAttached: playlistAlreadyAttached,
-                                            groupAudioEnabled: cur.wallGroupAudioEnabled,
+                                        AudioPage.showAttachBox(attachOwnerId, {
+                                            canPlaylistAttach: !playlistAlreadyAttached
                                         })
                                     })
                                 }
@@ -1879,6 +1883,9 @@ var WComments = {
 
                                 case 'audio_playlist':
                                     {
+                                        if (alreadyTypes.audio_playlist) {
+                                            return false
+                                        }
                                         var coverStyle = data.coverUrl ? ('background-image:url(' + clean(unclean(data.coverUrl)) + '); background-size: cover;') : ''
                                         var playlistIds = data.id.split('_');
                                         var authorLine = '';
@@ -1895,6 +1902,8 @@ var WComments = {
                                         '<div class="audio_pl_attach_preview__authorLine">' + authorLine + '</div>' +
                                         '</div>'
                                         preview = '<span class="medadd_h">' + getLang('audio_attach_title_playlist') + '</span>'
+
+                                        toEl = ldocsEl
                                     }
                                     break;
 

@@ -12650,6 +12650,8 @@ function parallel() {
     })
 }
 
+
+/* AUDIOS FUNCTIONS */
 function showAudioPlaylist(playlistOwnerId, playlistId, accessHash, event) {
     if (cur.apLayer) {
         return cancelEvent(event) // we already in layer
@@ -12771,7 +12773,7 @@ function showAudioPlaylist(playlistOwnerId, playlistId, accessHash, event) {
                     scrollNode: window.audioPlaylistLayerWrap,
                     onNeedRows: function(cb, offset) {
                         var rows = []
-                        var audios = playlist.getAudiosList()
+                        var audios = playlist.getUnshuffledAudiosList()
                         for (var i = offset; i < offset + 30; i++) {
                             if (!audios[i]) {
                                 break
@@ -12801,7 +12803,6 @@ function showAudioPlaylist(playlistOwnerId, playlistId, accessHash, event) {
     return false;
 }
 
-/* AUDIOS FUNCTIONS */
 function addAudio(btn, event) {
     stManager.add(['audioplayer.js'], function() {
         AudioUtils.addAudio(btn);

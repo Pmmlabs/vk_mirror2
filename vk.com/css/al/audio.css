@@ -4336,6 +4336,11 @@ body.mac .audio_rows_header.fixed {
     text-decoration: underline
 }
 
+.audio_pl_edit_box .ape_audio_item_wrap .ape_added {
+    pointer-events: none;
+    color: #bfbfbf
+}
+
 .audio_pl_edit_box .ape_audio_item_wrap .audio_row {
     overflow: hidden
 }

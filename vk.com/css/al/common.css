@@ -7250,6 +7250,7 @@ button.ui_load_more_btn {
 }
 
 .audio_current_rows .audio_row.claimed,
+.audio_owner_list_canedit .audio_row:not(.audio_deleted) #add,
 .audio_pl_snippet__list .audio_row #delete,
 .audio_pl_snippet__list .audio_row #edit,
 .audio_recent_rows .audio_row #edit,
@@ -7261,6 +7262,10 @@ button.ui_load_more_btn {
 .audio_row.claimed #add,
 .audio_row.claimed #next,
 .audio_row.inlined #recom,
+.audio_row.inlined.audio_row_current:hover #delete,
+.audio_row.inlined.audio_row_current:hover #edit,
+.inlined.audio_row_current .audio_row #delete,
+.inlined.audio_row_current .audio_row #edit,
 .pages_wiki_content .audio_row #recom {
     display: none
 }
@@ -7333,13 +7338,21 @@ button.ui_load_more_btn {
 }
 
 .audio_pl_snippet_size_narrow .audio_row:hover .audio_acts,
-.audio_row.audio_no_actions:hover .audio_acts {
+.audio_row.audio_no_actions:hover .audio_acts,
+.audio_row.inlined.audio_row_current.canadd:hover .audio_acts,
+.audio_row.no_actions:hover .audio_acts {
     display: none!important
 }
 
 .audio_pl_snippet_size_narrow .audio_row:hover .audio_duration,
-.audio_row.audio_no_actions:hover .audio_duration {
-    display: block!important
+.audio_pl_snippet_size_narrow .audio_row:hover .audio_hq_label,
+.audio_row.audio_no_actions:hover .audio_duration,
+.audio_row.audio_no_actions:hover .audio_hq_label,
+.audio_row.inlined.audio_row_current.canadd:hover .audio_duration,
+.audio_row.inlined.audio_row_current.canadd:hover .audio_hq_label,
+.audio_row.no_actions:hover .audio_duration,
+.audio_row.no_actions:hover .audio_hq_label {
+    display: inline-block!important
 }
 
 .audio_inline_player {

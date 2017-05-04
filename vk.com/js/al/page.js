@@ -1828,20 +1828,6 @@ var Page = {
 
         addAudioPreview: function(media, data) {
             stManager.add(['audioplayer.css', 'audioplayer.js']);
-
-            if (isObject(data)) {
-                var aid = media.split('_');
-                var info = data.info.split(',');
-                data = [
-                    aid[1],
-                    aid[0],
-                    info[0],
-                    data.title,
-                    data.performer,
-                    intval(info.length > 1 ? info[1] : data.duration),
-                    0, 0, '', 0, 0, '', 0
-                ];
-            }
             return AudioUtils.drawAudio(data, 'inlined');
         }
     },

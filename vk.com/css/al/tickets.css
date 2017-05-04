@@ -1142,6 +1142,16 @@ body.dev .tu_row {
     left: 20px
 }
 
+.tickets_side_tt_info__extra {
+    -o-transition: opacity 300ms linear;
+    transition: opacity 300ms linear;
+    opacity: 0.5
+}
+
+.tickets_side_tt_info__extra:hover {
+    opacity: 1
+}
+
 .tickets_side_tt .side_sh {
     display: table-cell!important
 }

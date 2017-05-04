@@ -3,7 +3,7 @@ function currentAudioPage(e) {
     return t ? data(t, "audioPage") : !1
 }
 
-function AudioPage(e, t, i) {
+function AudioPage(e, t) {
     data(e, "audioPage", this), extend(cur.lang || {}, t.langs), getAudioPlayer().langs = t.langs, this._data = t, this._ownerId = t.ownerId, this.isLayer() || (cur.audioPage = this), this.isLayer() && uiSearch.init("audio_search_layer"), AudioUtils.toggleAudioHQBodyClass(), this._els = {
         pageContainer: e,
         sections: geByClass1("_audio_page_sections", e),
@@ -30,7 +30,9 @@ function AudioPage(e, t, i) {
         global: !0,
         stopScrollPropagation: !0,
         stopScrollPropagationAlways: !0
-    })), this._readyAudio = this._data.readyAudio, !this._readyAudio && this._pagePlaylist && (this._readyAudio = this._pagePlaylist.getAudioAt(0)), this._data.playlistCoverUploadOptions && (cur.audioCoverUploadOptions = cur.audioCoverUploadOptions || {}, cur.audioCoverUploadOptions[this._ownerId] = this._data.playlistCoverUploadOptions), this._initPlayer(), this._initPlaylists(), this.initNavigation(), this.showSection(t.initSection), this._initSearchParams(), this._els.searchInput.focus(), !this.isLayer() && nav.objLoc.q && (this._els.searchInput.value = nav.objLoc.q, this._showSearchSection(nav.objLoc)), this.updateCurrentPlayingInfo(), getAudioPlayer().setStatusExportInfo(this._data["export"]), this.updateStatusExportControls(), this._initKeyEvents(), window.onAudioPageLoaded && (window.onAudioPageLoaded.call(this), delete window.onAudioPageLoaded)
+    })), this._readyAudio = this._data.readyAudio;
+    var i = this._data.readyPlaylist;
+    i && (this._pagePlaylist = getAudioPlayer().getPlaylist(i.type, i.ownerId, i.id), this._pagePlaylist.mergeWith(i)), !this._readyAudio && this._pagePlaylist && (this._readyAudio = this._pagePlaylist.getAudioAt(0)), this._data.playlistCoverUploadOptions && (cur.audioCoverUploadOptions = cur.audioCoverUploadOptions || {}, cur.audioCoverUploadOptions[this._ownerId] = this._data.playlistCoverUploadOptions), this._initPlayer(), this._initPlaylists(), this.initNavigation(), this.showSection(t.initSection), this._initSearchParams(), this._els.searchInput.focus(), !this.isLayer() && nav.objLoc.q && (this._els.searchInput.value = nav.objLoc.q, this._showSearchSection(nav.objLoc)), this.updateCurrentPlayingInfo(), getAudioPlayer().setStatusExportInfo(this._data["export"]), this.updateStatusExportControls(), this._initKeyEvents(), window.onAudioPageLoaded && (window.onAudioPageLoaded.call(this), delete window.onAudioPageLoaded), this.updateShuffleButton()
 }
 AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     var t = geByClass1("_audio_playlist", gpeByClass("_audio_layout", this));
@@ -215,7 +217,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                 onNeedRows: function(e, a, s, r, n) {
                     this._toggleSearchProgress(!0), l.load(a, function() {
                         if (this._toggleSearchProgress(!1), !n.isDone()) {
-                            if (0 == a && (t.length ? (show(this._els.searchSectionAudiosHeader), show(this._els.searchSectionAudios), o = this._ownerId == vk.id ? i.langs.audio_found_your_local : this._ownerId > 0 ? i.langs.audio_found_user_local : i.langs.audio_found_group_local, this._els.searchSectionAudiosHeader.innerHTML = langNumeric(t.length, o)) : (hide(this._els.searchSectionAudiosHeader), hide(this._els.searchSectionAudios)), hide(this._els.searchGlobalCommunitiesPlace)), a == t.length) {
+                            if (0 == a && (t.length ? (show(this._els.searchSectionAudiosHeader), show(this._els.searchSectionAudios), o = this._ownerId == vk.id ? i.langs.audio_found_your_local : this._ownerId > 0 ? i.langs.audio_found_user_local : i.langs.audio_found_group_local, this._els.searchSectionAudiosHeader.innerHTML = langNumeric(t.length, o), toggleClass(this._els.searchSectionAudios, "audio_owner_list_canedit", !!this._data.canEdit)) : (hide(this._els.searchSectionAudiosHeader), hide(this._els.searchSectionAudios)), hide(this._els.searchGlobalCommunitiesPlace)), a == t.length) {
                                 var s = l.getCommunititesBlock();
                                 toggle(this._els.searchGlobalCommunitiesPlace, !!s), this._els.searchGlobalCommunitiesPlace.innerHTML = s || "", this._els.searchGlobalAudiosList.innerHTML = "", l.getAudiosCount() > t.length ? (show(this._els.searchGlobalAudiosBlock), n.setListEl(this._els.searchGlobalAudiosList), this._els.searchGlobalAudiosBlockHeader.innerHTML = langNumeric(l.getTotalCount(), i.langs.audio_global_search_found, !0)) : hide(this._els.searchGlobalAudiosBlock)
                             }
@@ -283,7 +285,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     })
 }, AudioPage.prototype.onLayerShow = function(e) {
     var t = getAudioPlayer().getCurrentPlaylist();
-    t ? this.showSection("current") : e ? this.showSection(e) : this.showSection("all"), toggleClass(geByClass1("_audio_section_tab__current", this._els.pageContainer), "unshown", !t), this.initNavigation(), this.updateCurrentPlayingInfo(), this.updateLayerHeight();
+    t ? this.showSection("current") : e ? this.showSection(e) : this.showSection("all"), toggleClass(geByClass1("_audio_section_tab__current", this._els.pageContainer), "unshown", !t), this.initNavigation(), this.updateCurrentPlayingInfo(), this.updateLayerHeight(), this.updateShuffleButton();
     var i = this.getPageCurrentPlaylist(),
         a = getAudioPlayer().getCurrentAudio();
     if (this._audioRowsAutoList && i && a && i.indexOfAudio(a) >= 0)
@@ -406,7 +408,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         var i = getAudioPlayer().getPlaylist(AudioPlaylist.TYPE_FEED, vk.id, 0);
         i.getFeedOffset() || i.mergeWith(t.feedPlaylist);
         var a = e;
-        a.innerHTML = "", this._pagePlaylist = i, data(gpeByClass("_audio_playlist", a), "playlist", i);
+        a.innerHTML = "", this._pagePlaylist = i, domData(gpeByClass("_audio_pl", a), "playlist-id", i.getId());
         var o = new AutoList(a, {
             onNeedRows: function(e, t) {
                 i.load(t, function() {
@@ -420,7 +422,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     }
 }, AudioPage.prototype._initSection_all = function(e, t, i) {
     extend(this._els, {
-        audioRows: geByClass1("_audio_page_playlist", e),
+        audioRows: geByClass1("_audio_page__audio_rows_list", e),
         audioRowsMore: geByClass1("_audio_more_rows", e),
         friendsBlock: geByClass1("_audio_friends_list_wrap", e),
         friendsBlockContent: geByClass1("_audio_friends_list_content", e)
@@ -431,7 +433,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         var o = t.playlistData;
         a = getAudioPlayer().getPlaylist(o.type, o.ownerId, o.id), a.getAudiosCount() || (a.mergeWith(o), a.load())
     }
-    this._pagePlaylist = a, data(this._els.audioRows, "playlist", a), uiSearch.init(geByClass1("_audio_friends_search", e)), this._initAudioRowsAutoList(), this._enableAudioRowsSorter(i), this._initFixedFriendsBlock(e)
+    this._pagePlaylist = a, domData(this._els.audioRows, "playlist-id", a.getId()), uiSearch.init(geByClass1("_audio_friends_search", e)), this._initAudioRowsAutoList(i), this._enableAudioRowsSorter(i), this._initFixedFriendsBlock(e)
 }, AudioPage.prototype._initFixedFriendsBlock = function(e) {
     if (this._els.friendsBlock) {
         var t, i, a, o = !1,
@@ -478,9 +480,9 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     }.bind(this)))
 }, AudioPage.prototype._disableAudioRowsSorter = function() {
     this._audioRowsSorter && this._audioRowsSorter.disable()
-}, AudioPage.prototype._initAudioRowsAutoList = function() {
-    var e = this._pagePlaylist;
-    this._els.audioRows.innerHTML = "", this._audioRowsAutoList && this._audioRowsAutoList.destroy(), this._audioRowsAutoList = new AutoList(this._els.audioRows, {
+}, AudioPage.prototype._initAudioRowsAutoList = function(e) {
+    var t = this._pagePlaylist;
+    this._els.audioRows.innerHTML = "", toggleClass(this._els.audioRows, "audio_owner_list_canedit", !!this._data.canEdit), this._audioRowsAutoList && this._audioRowsAutoList.destroy(), this._audioRowsAutoList = new AutoList(this._els.audioRows, {
         scrollNode: this._scroll ? this._scroll.scroller : !1,
         onRendered: function() {
             getAudioPlayer().updateCurrentPlaying()
@@ -488,11 +490,11 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         onNoMore: function() {
             hide(this._els.audioRowsMore)
         }.bind(this),
-        onNeedRows: function(t, i) {
-            var a = [];
-            e.load(i, function() {
-                for (var o = e.getAudiosList(), s = i; i + 30 > s && o[s]; s++) a.push(AudioUtils.drawAudio(o[s]));
-                t(a), 0 == i && this._audioRowsSorter && this._audioRowsSorter.update()
+        onNeedRows: function(i, a, o, s, r) {
+            var l = [];
+            t.load(a, function() {
+                for (var o = e ? t.getAudiosList() : t.getUnshuffledAudiosList(), s = a; a + 30 > s && o[s]; s++) l.push(AudioUtils.drawAudio(o[s]));
+                i(l), 0 == a && this._audioRowsSorter && this._audioRowsSorter.update(), 0 == a && 1 == l.length && r.drawMore()
             }.bind(this))
         }.bind(this)
     }), this._onSectionOut(function() {
@@ -502,21 +504,22 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     vk.widget ? showBox("al_audio.php", {
         act: "choose_box",
         owner_id: e,
-        playlistAlreadyAttached: t.playlistAlreadyAttached,
-        groupAudioEnabled: t.groupAudioEnabled
+        options: JSON.stringify(t)
     }) : AudioPage.editPlaylist(e, AudioPlaylist.DEFAULT_PLAYLIST_ID, "attach", t)
 }, AudioPage.editPlaylist = function(e, t, i, a) {
+    if (vk.widget)
+        for (var o in a) a.hasOwnProperty(o) && (isString(a[o]) ? a[o] = clean(a[o]) : isFunction(a[o]) ? delete a[o] : a[o] = intval(a[o]));
     a && a.audioAttachSwitchOwnerId && (cur.audioAttachSwitchOwnerId = a.audioAttachSwitchOwnerId), i = i || "edit";
-    var o, s;
-    if (t) o = getAudioPlayer().getPlaylist(AudioPlaylist.TYPE_PLAYLIST, e, t);
+    var s, r;
+    if (t) s = getAudioPlayer().getPlaylist(AudioPlaylist.TYPE_PLAYLIST, e, t);
     else if (cur.audioPage) {
-        var r = cur.audioPage._data.maxPlaylistsCount;
-        if (isArray(cur.audioPage._data.playlists) && cur.audioPage._data.playlists.length >= r) {
-            var l = langNumeric(r, cur.lang.audio_playlists_limit_error).replace("{limit}", r),
-                n = new MessageBox({
+        var l = cur.audioPage._data.maxPlaylistsCount;
+        if (isArray(cur.audioPage._data.playlists) && cur.audioPage._data.playlists.length >= l) {
+            var n = langNumeric(l, cur.lang.audio_playlists_limit_error).replace("{limit}", l),
+                d = new MessageBox({
                     title: getLang("global_error")
                 });
-            return void n.content(l).setButtons("Ok", function() {
+            return void d.content(n).setButtons("Ok", function() {
                 curBox().hide()
             }).show()
         }
@@ -524,13 +527,13 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     show(boxLoader), show(boxLayerWrap), boxRefreshCoords(boxLoader), parallel(function(e) {
         stManager.add(["audio.css", "indexer.js", "auto_list.js", "grid_sorter.js", "edit" == i ? "upload.js" : !1], e)
     }, function(e) {
-        o ? o.loadAll(e) : e()
+        s ? s.loadAll(e) : e()
     }, function(t) {
-        cur.audioPage && cur.audioPage.getOwnerId() == e ? (s = cur.audioPage.getOwnerPlaylists(), t()) : AudioPage.loadPlaylists(e, void 0, !1, "attach" == i, function(e) {
-            s = e, t()
+        cur.audioPage && cur.audioPage.getOwnerId() == e ? (r = cur.audioPage.getOwnerPlaylists(), t()) : AudioPage.loadPlaylists(e, void 0, !1, "attach" == i, function(e) {
+            r = e, t()
         })
     }, function() {
-        AudioPage._openEditPlaylist(i, e, t, s, a)
+        AudioPage._openEditPlaylist(i, e, t, r, a)
     })
 }, AudioPage._openEditPlaylist = function(e, t, i, a, o) {
     function s(e) {
@@ -538,7 +541,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             var t = " " + (parseLatin(e) || "") + (parseCyr(e) || "");
             t = trim(t.replace(/\)/g, "").replace(/&/, "&amp;")), U = new RegExp("(\\s|^)(" + t.replace(vkIndexer.delimiter, "|").replace(/(^\||\|$|\?)/g, "") + ")", "gi")
         } else U = !1;
-        g(D, !0, e)
+        g(R, !0, e)
     }
 
     function r() {
@@ -558,18 +561,11 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             var s = AudioUtils.asObject(t);
             if (o && o.wiki_editor) {
                 var r = "editorChooseAudio('" + s.performer + "', '" + s.title + "', " + s.duration + ", '" + s.fullId + "', '" + s.url + "', " + s.duration + ", this)";
-                a = '<div class="ape_attach" onclick="' + r + '">' + getLang("global_add_media") + "</div>"
+                a = '<div class="ape_attach" onclick="' + r + '">' + o.audioPickerButtonText + "</div>"
             } else {
-                var l = clean(JSON.stringify({
-                    id: s.id,
-                    owner_id: s.ownerId,
-                    info: t,
-                    labels: {
-                        add: getLang("global_add_media"),
-                        cancel: getLang("global_cancel")
-                    }
-                }));
-                a = '<div class="ape_attach" onclick="AudioUtils.chooseAudioBox(this, ' + l + ', event)">' + getLang("global_add_media") + "</div>"
+                s = clean(JSON.stringify(s));
+                var l = clean(JSON.stringify(t));
+                a = '<div class="ape_attach" onclick="cur.onChooseAudio(event, this, ' + s + ", " + l + ')">' + o.audioPickerButtonText + "</div>"
             }
         }
         return '<div class="ape_audio_item_wrap _ape_audio_item ' + i + '">' + a + AudioUtils.drawAudio(t, "no_actions inlined") + "</div>"
@@ -585,7 +581,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                         globalQuery: e
                     },
                     hasMore: !0
-                }), M && M.destroy();
+                }), D && D.destroy();
                 var t = 0;
                 x && (t = x.getOffset(), x.destroy()), x = new AutoList(W.list, {
                     scrollNode: W.list,
@@ -604,7 +600,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     }
 
     function u() {
-        q.setOptions({
+        G.setOptions({
             title: '<div class="back _back">' + getLang("global_back") + "</div>",
             bodyStyle: "padding: 0"
         })
@@ -616,14 +612,14 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             AudioPage.showAttachBox(cur.audioAttachSwitchOwnerId, o)
         }) : (e += getLang("audio_choose_wall_to_my_audios"), cur.audioAttachSwitch = function() {
             AudioPage.showAttachBox(vk.id, o)
-        }), e += "</a>"), q.setOptions({
-            title: G + e,
+        }), e += "</a>"), G.setOptions({
+            title: q + e,
             bodyStyle: "padding: 0"
         })
     }
 
     function c() {
-        switch (R) {
+        switch (M) {
             case "initial":
                 break;
             case "default":
@@ -644,11 +640,11 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     }
 
     function g(e, t, i) {
-        D = e, t ? i ? e.search({
+        R = e, t ? i ? e.search({
             q: i
         }, function(e) {
             p(!0, e, i)
-        }) : p(!0, e.getAudiosList()) : i ? p(!1, Y.search(i), i) : p(!1, a), y("initial" != R || i ? !1 : !0)
+        }) : p(!0, e.getUnshuffledAudiosList()) : i ? p(!1, Y.search(i), i) : p(!1, a), y("initial" != M || i ? !1 : !0)
     }
 
     function p(e, t) {
@@ -688,7 +684,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     }
 
     function f(i, o) {
-        switch (R = i, A(), domData(W.list, "view", i), i) {
+        switch (M = i, A(), domData(W.list, "view", i), i) {
             case "initial":
                 show(W.header), hide(W.addAudiosFromPlaylistsButton), show(W.addAudiosButton), show(W.search), hide(W.globalResults), g(z, !0), v(o), _();
                 break;
@@ -708,27 +704,18 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     }
 
     function A() {
-        q.removeButtons()
+        G.removeButtons()
     }
 
     function P(e) {
-        function t() {
-            var t = e.getOwnerId() + "_" + e.getAlbumId(),
-                i = e.getAccessHash();
-            cur.chooseMedia("audio_playlist", t + (i ? ":" + i : ""), {
-                id: t,
-                coverUrl: e.getCoverUrl(),
-                gridCovers: e.getGridCovers(),
-                title: e.getTitle(),
-                authorName: e.getAuthorName(),
-                authorHref: e.getAuthorHref()
-            })
+        function t(t) {
+            cur.onChoosePlaylist(t, e)
         }
-        o.playlistAlreadyAttached || cur.editor || q.addButton(getLang("audio_attach_playlist_button"), t, "ok", !0)
+        o.canPlaylistAttach && G.addButton(o.playlistPickerButtonText, t, "ok", !0)
     }
 
     function v() {
-        q.addButton(getLang("audio_save_playlist_button"), w, "ok", !0)
+        G.addButton(getLang("audio_save_playlist_button"), w, "ok", !0)
     }
 
     function m(e) {
@@ -795,7 +782,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             playlist_id: I ? 0 : j.getPlaylistId(),
             title: i,
             description: a,
-            audios: o.join(","),
+            Audios: o.join(","),
             cover: isObject(H) ? JSON.stringify(H) : H
         }, {
             showProgress: lockButton.bind(this, e),
@@ -821,7 +808,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                     var i = geByClass1("_audio_page__playlists_count_header", cur.audioPage._els.pageContainer);
                     i && (i.innerHTML = langNumeric(cur.audioPage._data.playlists.length, cur.lang.audio_playlists_count_title), removeClass(gpeByClass("_audio_page_section_layout", i), "audio_section_empty"))
                 }
-                j && (j.clean(), j.mergeWith(e)), q.hide()
+                j && (j.clean(), j.mergeWith(e)), G.hide()
             }
         })
     }
@@ -874,21 +861,27 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             i = 800,
             a = 500,
             o = 200;
-        setStyle(W.boxContent, "height", Math.min(i, Math.max(t - o, a))), addEvent(W.addAudiosFromPlaylistsButton, "click", f.bind(this, "playlists")), addEvent(W.addAudiosButton, "click", f.bind(this, "default")), addEvent(W.list, "click", m), addEvent(q.titleWrap, "click", function(e) {
+        setStyle(W.boxContent, "height", Math.min(i, Math.max(t - o, a))), addEvent(W.addAudiosFromPlaylistsButton, "click", f.bind(this, "playlists")), addEvent(W.addAudiosButton, "click", f.bind(this, "default")), addEvent(W.list, "click", m), addEvent(G.titleWrap, "click", function(e) {
             hasClass(e.target, "_back") && c()
         }), uiSearch.init("ape_edit_playlist_search", {
             onChange: s
-        }), "edit" == e && (f("initial"), C(), L(), z.getCoverUrl() && b(z.getCoverUrl()), W.playlistNameInput.value = replaceEntities(z.getTitle()), W.playlistDescriptionInput.value = replaceEntities(z.getDescription())), "attach" == e && f("default"), _(), j && "attach" != e && q.setControlsText('<a onclick="AudioPage.deletePlaylist(' + j.getOwnerId() + ", " + j.getPlaylistId() + ", '" + j.getEditHash() + "')\">" + getLang("audio_delete_playlist") + "</a>")
+        }), "edit" == e && (f("initial"), C(), L(), z.getCoverUrl() && b(z.getCoverUrl()), W.playlistNameInput.value = replaceEntities(z.getTitle()), W.playlistDescriptionInput.value = replaceEntities(z.getDescription())), "attach" == e && f("default"), _(), j && "attach" != e && G.setControlsText('<a onclick="AudioPage.deletePlaylist(' + j.getOwnerId() + ", " + j.getPlaylistId() + ", '" + j.getEditHash() + "')\">" + getLang("audio_delete_playlist") + "</a>")
     }
-    hide(boxLoader), hide(boxLayerWrap);
+    hide(boxLoader), curBox() || hide(boxLayerWrap);
     var T;
-    cur.apLayer && (T = cur.apLayerPlaylistId, layers.fullhide());
+    cur.apLayer && (T = cur.apLayerPlaylistId, layers.fullhide()), o = extend({
+        audioPickerButtonText: getLang("global_add_media"),
+        playlistPickerButtonText: getLang("audio_attach_playlist_button"),
+        canPlaylistAttach: !1,
+        onAudioChoose: AudioUtils.onAudioChoose,
+        onPlaylistChoose: AudioUtils.onPlaylistChoose
+    }, o), cur.onChooseAudio = o.onAudioChoose, cur.onChoosePlaylist = o.onPlaylistChoose;
     var B, I = !i || i == AudioPlaylist.DEFAULT_PLAYLIST_ID,
         k = getAudioPlayer(),
         x = !1,
+        D = !1,
         M = !1,
         R = !1,
-        D = !1,
         O = !1,
         U = !1,
         H = 0,
@@ -908,46 +901,47 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         coverUrl: j.getCoverUrl(),
         editHash: j.getEditHash()
     }));
-    var G;
-    if (G = "attach" == e ? getLang("audio_choose_audio_title") : i ? getLang("audio_edit_playlist_title") : getLang("audio_new_playlist_title"), window.box && vk.widget) {
-        var q = window.box;
-        q.setOptions({
-            title: G,
+    var q;
+    if (q = "attach" == e ? getLang("audio_choose_audio_title") : i ? getLang("audio_edit_playlist_title") : getLang("audio_new_playlist_title"), window.box && vk.widget) {
+        var G = window.box;
+        G.setOptions({
+            title: q,
             bodyStyle: "padding: 0",
             width: 560,
             onBeforeHide: r,
             hideButtons: !0
         })
     } else {
-        curBox() && curBox().hide();
-        var q = new MessageBox({
-            title: G,
+        cur.audioChooseBox && cur.audioChooseBox == curBox() && curBox().hide();
+        var G = new MessageBox({
+            title: q,
             bodyStyle: "padding: 0",
             width: 560,
             onBeforeHide: r
-        })
+        });
+        cur.audioChooseBox = G
     }
-    q.content(getTemplate("audio_edit_playlist")), q.show();
+    G.content(getTemplate("audio_edit_playlist")), G.show();
     var W = {
-        boxContent: geByClass1("_audio_pl_edit_box", q.bodyNode),
+        boxContent: geByClass1("_audio_pl_edit_box", G.bodyNode),
         playlistNameInput: ge("ape_pl_name"),
         playlistDescriptionInput: ge("ape_pl_description"),
         stat: geByClass1("_ape_pl_stat"),
-        uploadCoverButton: geByClass1("_ape_cover", q.bodyNode),
-        uploadCoverInput: geByClass1("_ape_cover_upload", q.bodyNode),
-        errorMsg: geByClass1("_ape_error_msg", q.bodyNode),
-        header: geByClass1("_ape_header", q.bodyNode),
-        search: geByClass1("_ape_search", q.bodyNode),
-        searchInput: geByClass1("_field", q.bodyNode),
+        uploadCoverButton: geByClass1("_ape_cover", G.bodyNode),
+        uploadCoverInput: geByClass1("_ape_cover_upload", G.bodyNode),
+        errorMsg: geByClass1("_ape_error_msg", G.bodyNode),
+        header: geByClass1("_ape_header", G.bodyNode),
+        search: geByClass1("_ape_search", G.bodyNode),
+        searchInput: geByClass1("_field", G.bodyNode),
         addAudiosButton: ge("ape_add_audios_btn"),
         addAudiosFromPlaylistsButton: ge("ape_add_audios_from_playlists_btn"),
-        listWrap: geByClass1("_ape_list_wrap", q.bodyNode),
-        list: geByClass1("_ape_item_list", q.bodyNode),
-        globalResults: geByClass1("_ape_item_global_results", q.bodyNode),
-        globalResultsList: geByClass1("_ape_item_global_list", q.bodyNode),
-        emptyPlaceholder: geByClass1("_ape_audios_empty_list", q.bodyNode)
+        listWrap: geByClass1("_ape_list_wrap", G.bodyNode),
+        list: geByClass1("_ape_item_list", G.bodyNode),
+        globalResults: geByClass1("_ape_item_global_results", G.bodyNode),
+        globalResultsList: geByClass1("_ape_item_global_list", G.bodyNode),
+        emptyPlaceholder: geByClass1("_ape_audios_empty_list", G.bodyNode)
     };
-    E(q.bodyNode);
+    E(G.bodyNode);
     var K = 0
 }, AudioPage._buildAudiosAndPlaylistsList = function() {}, AudioPage.prototype.updateSearchUrl = function() {
     var e = this.getCurrentPlaylist();
@@ -1351,10 +1345,37 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             })
         }, getLang("global_cancel"))
     }
+}, AudioPage.prototype.chooseFromMyAudios = function(e) {
+    var t = this;
+    AudioPage.editPlaylist(vk.id, AudioPlaylist.DEFAULT_PLAYLIST_ID, "attach", {
+        audioPickerButtonText: getLang("global_add"),
+        playlistPickerButtonText: getLang("global_add"),
+        onAudioChoose: function(i, a, o) {
+            var s = i.ctrlKey;
+            if (ajax.post("al_audio.php", {
+                    act: "add",
+                    group_id: e,
+                    audio_owner_id: o.ownerId,
+                    audio_id: o.id,
+                    hash: o.addHash
+                }, {
+                    onDone: function(i) {
+                        var a = e ? -e : vk.id;
+                        if (i) {
+                            var o = getAudioPlayer().getPlaylist(AudioPlaylist.TYPE_PLAYLIST, a, AudioPlaylist.DEFAULT_PLAYLIST_ID);
+                            o.addAudio(i, 0), t._initAudioRowsAutoList()
+                        }
+                    }
+                }), s) a.innerHTML = getLang("audio_choose_added"), addClass(a, "ape_added");
+            else if (__bq)
+                for (; __bq.count();) __bq.hideLast()
+        }
+    })
 }, AudioPage.prototype.toggleAudioDurationType = function() {
     this.ap.toggleDurationType()
-}, AudioPage.prototype._updateShuffleButton = function(e) {
-    toggleClass(geByClass1("_audio_shuffle_btn", this._container), "audio_page_player_btn_enabled", !!e.shuffle)
+}, AudioPage.prototype.updateShuffleButton = function() {
+    var e = getAudioPlayer().getCurrentPlaylist() || this._pagePlaylist;
+    e && (toggleClass(geByClass1("_audio_page_player_shuffle", this._els.pageContainer), "audio_page_player_btn_enabled", e.isShuffled()), this.isLayer() && cur.audioPage && cur.audioPage.updateShuffleButton())
 }, AudioPage.prototype.toggleRepeat = function(e) {
     var t = getAudioPlayer(),
         i = toggleClass(e, "audio_page_player_btn_enabled");
@@ -1364,9 +1385,11 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     }
 }, AudioPage.prototype.toggleShuffle = function(e) {
     toggleClass(e, "audio_page_player_btn_enabled");
-    var t = this._pagePlaylist;
+    var t = getAudioPlayer().getCurrentPlaylist() || this._pagePlaylist;
     t.loadAll(function() {
-        t.isShuffled() ? (removeClass(e, "audio_page_player_btn_enabled"), t.shuffle(0), this._enableAudioRowsSorter()) : (addClass(e, "audio_page_player_btn_enabled"), t.shuffle(irand(1, 999999)), this._disableAudioRowsSorter()), "search" == this._currentSection ? this._doShowSearchSection() : this._initAudioRowsAutoList()
+        t.isShuffled() ? t.shuffle(0) : t.shuffle(irand(1, 999999)), "current" == this._currentSection && this._initAudioRowsAutoList(!0);
+        var e = getAudioPlayer().getCurrentAudio() || t.getAudioAt(0);
+        getAudioPlayer().play(e, t), this.updateShuffleButton()
     }.bind(this))
 }, AudioPage.prototype._getCurrentSearchParams = function() {
     var e = window.radioBtns["audio_search_type_" + intval(this.isLayer())],
@@ -1705,7 +1728,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                     a = geByClass1("_ui_item_audio_recoms_" + this.options.oid, this._getMenuEl());
                     break;
                 case AudioPlaylist.TYPE_FEED:
-                    a = geByClass1("_ui_item_audio_feed_" + this.options.oid, this._getMenuEl())
+                    a = geByClass1("_ui_item_audio_feed_" + this.options.oid, this._getMenuEl());
             }
             if (a && isVisible(a) ? (uiRightMenu.switchMenu(a), uiRightMenu.showProgress(a)) : this._hideMenuItemProgress(), !a && e.getType() == AudioPlaylist.TYPE_ALBUM && e.getOwnerId() != vk.id) {
                 var o = geByClass1("_audio_friend_" + e.getOwnerId(), this._container);
@@ -1906,7 +1929,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         }), s.on(this, AudioPlayer.EVENT_REMOVED, function(e, t) {
             e = AudioUtils.asObject(e), e && e.fullId == t && removeClass(y, "audio_player_btn_added")
         }), s.on(this, AudioPlayer.EVENT_PLAY, function(e, s, r) {
-            delete o._readyAudio, data(l, "audio", e), a(), t(e), addClass(h, "audio_playing"), s && !cur.audioStartReadyAudio && (o._trackSlider.setBackValue(0), _.innerHTML = i(0, AudioUtils.asObject(e).duration), n.setAttribute("title", ""), n.titleSet = !1), g.innerHTML = getLang("global_audio_pause"), o.updateCurrentPlayingInfo()
+            delete o._readyAudio, data(l, "audio", e), a(), t(e), addClass(h, "audio_playing"), s && !cur.audioStartReadyAudio && (o._trackSlider.setBackValue(0), _.innerHTML = i(0, AudioUtils.asObject(e).duration), n.setAttribute("title", ""), n.titleSet = !1), g.innerHTML = getLang("global_audio_pause"), o.updateCurrentPlayingInfo(), o.updateShuffleButton()
         }), s.on(this, AudioPlayer.EVENT_PAUSE, function(e) {
             removeClass(h, "audio_playing"), g.innerHTML = getLang("global_audio_play")
         }), s.on(this, AudioPlayer.EVENT_STOP, function(e) {
