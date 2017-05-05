@@ -313,7 +313,7 @@ var stVersions = {
     'developers.css': 2998332598,
     'touch.css': 796462384,
     'notifier.js': 29431198490,
-    'notifier.css': 24649331792,
+    'notifier.css': 26790874763,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
     'restore.js': 2316458840,
@@ -583,4 +583,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 3093;
+var _rnd = 5011;

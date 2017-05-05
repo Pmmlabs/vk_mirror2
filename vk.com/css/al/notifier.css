@@ -5192,8 +5192,7 @@ div.chat_tab_img {
 }
 
 .notify_tt_thumb {
-    background: url(/images/icons/notifications_icons.png?6) no-repeat;
-    background-size: 30px auto
+    background: url(/images/icons/notifications_icons.png?6) no-repeat
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
