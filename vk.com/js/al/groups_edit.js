@@ -617,6 +617,9 @@ var GroupsEdit = {
                     act: "edit"
                 }), globalHistoryDestroy(t), ge("group_edit_addr_print_text") && (o != "club" + cur.gid && o != "public" + cur.gid && o != "event" + cur.gid ? ge("group_edit_addr_print_text").innerHTML = cur.lang.groups_print_text.replace("{link}", '<a href="/' + o + '?act=edit&amp;w=print">').replace("{/link}", "</a>") : ge("group_edit_addr_print_text").innerHTML = cur.lang.groups_print_no_domain_text.replace("{link}", '<span onclick="GroupsEdit.nbAddr()">').replace("{/link}", "</span>"))), void globalHistoryDestroy(o))
             },
+            onFail: function(e) {
+                return e && GroupsEdit.showMessage(e, "error"), !0
+            },
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e)
         })
@@ -2118,7 +2121,7 @@ var GroupsEdit = {
                 try {
                     t = document.execCommand("copy")
                 } catch (r) {
-                    t = !1;
+                    t = !1
                 }
                 return re(o), showDoneBox(getLang("groups_app_link_been_copied")), t
             };

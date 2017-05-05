@@ -3435,7 +3435,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 }
 
 .im-mess {
-    padding: 6px 112px 7px 0;
+    padding: 6px 30px 7px 0;
     position: relative;
     margin: 0 7px
 }
@@ -3591,7 +3591,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 
 .im-mess .im-mess--actions {
     float: right;
-    margin: 0 1px 0 0
+    margin: 0 5px 0 -4px
 }
 
 .im-mess .im-mess--fav,
@@ -3814,7 +3814,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 .im-mess.im-mess_unread {
     position: relative;
     background: #edf0f5;
-    padding-right: 83px;
+    padding-right: 1px;
     margin-left: 36px;
     margin-right: 36px
 }
@@ -3832,7 +3832,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 }
 
 .im-mess.im-mess_unread.im-mess_selected {
-    padding: 6px 112px 7px 0;
+    padding: 6px 30px 7px 0;
     margin: 0 7px
 }
 
@@ -3932,7 +3932,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 }
 
 .im-mess.im-mess_search {
-    padding-right: 139px
+    padding-right: 57px
 }
 
 .im-mess.im-mess_search:hover {
@@ -3992,6 +3992,10 @@ body[data-useragent*=msie9] .im-page--title-meta {
 .im-mess.im-mess_srv .im-mess--reply,
 .im-mess.im-mess_srv .im-mess--check {
     display: none
+}
+
+.im-mess+.im-mess .im-mess--actions {
+    margin-top: -2px
 }
 
 .nim-peer {
@@ -5776,6 +5780,10 @@ body.sf .nim-dialog .nim-dialog--unread {
     padding-right: 110px
 }
 
+.im-important .im-mess .im-mess {
+    padding-right: 0
+}
+
 .im-important .im-mess--actions {
     margin-top: 0
 }
@@ -6553,7 +6561,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .im-star-tt_long.tt_w.tt_black.tt_down:after {
-    left: 81px
+    left: 98px
 }
 
 .im_msg_media_gift .im-gift {

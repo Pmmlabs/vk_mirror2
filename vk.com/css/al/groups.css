@@ -1927,11 +1927,18 @@ a .app_widget_tiles_title {
 }
 
 .group_set_categories_intro_text {
-    line-height: 17px
+    line-height: 19px
+}
+
+.group_set_categories_intro_title {
+    margin-top: 0;
+    margin-bottom: 7px;
+    font-weight: 500;
+    font-size: 14px
 }
 
 .group_set_categories_selector_block_wrap {
-    margin-top: 25px
+    margin-top: 20px
 }
 
 .group_set_categories_selector_wrap {

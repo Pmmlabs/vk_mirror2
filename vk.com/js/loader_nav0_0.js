@@ -219,11 +219,11 @@ var stVersions = {
     'public.js': 3770119342,
     'pages.css': 22824267692,
     'pages.js': 1162259210,
-    'groups.css': 26366376822,
+    'groups.css': 26969376755,
     'groups.js': 2975645919,
     'groups_list.js': 3507753248,
     'groups_edit.css': 29732701298,
-    'groups_edit.js': 11327943,
+    'groups_edit.js': 4194796742,
     'profile.css': 26321824255,
     'profile.js': 116458155,
     'calendar.css': 19846462670,
@@ -243,8 +243,8 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 104734537817,
-    'imn.js': 110617604995,
+    'im.css': 104406912459,
+    'imn.js': 111066913628,
     'im.js': 1322065004,
     'emoji.js': 3182708737,
     'wide_dd.css': 14916739781,
@@ -313,7 +313,7 @@ var stVersions = {
     'developers.css': 2998332598,
     'touch.css': 796462384,
     'notifier.js': 29431198490,
-    'notifier.css': 26790874763,
+    'notifier.css': 24698899202,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
     'restore.js': 2316458840,
@@ -583,4 +583,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 5011;
+var _rnd = 3835;
