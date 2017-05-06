@@ -1819,7 +1819,7 @@ if (!VK.Widgets) {
                     var vars = [];
 
                     for (var i in data) {
-                        if (i != 'session') vars.push(i + '=' + decodeURIComponent(data[i]).replace(/&/g, '%26').replace(/\?/, '%3F'));
+                        if (i != 'session') vars.push(i + '=' + decodeURIComponent(data[i]).replace(/&/g, '%26').replace(/\#/g, '%23').replace(/\?/, '%3F'));
                     }
                     window.location.href = href + vars.join('&');
                 }

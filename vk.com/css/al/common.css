@@ -7339,7 +7339,7 @@ button.ui_load_more_btn {
 
 .audio_pl_snippet_size_narrow .audio_row:hover .audio_acts,
 .audio_row.audio_no_actions:hover .audio_acts,
-.audio_row.inlined.audio_row_current.canadd:hover .audio_acts,
+.audio_row.no_actions.inlined.audio_row_current.canadd:hover .audio_acts,
 .audio_row.no_actions:hover .audio_acts {
     display: none!important
 }
@@ -7348,8 +7348,8 @@ button.ui_load_more_btn {
 .audio_pl_snippet_size_narrow .audio_row:hover .audio_hq_label,
 .audio_row.audio_no_actions:hover .audio_duration,
 .audio_row.audio_no_actions:hover .audio_hq_label,
-.audio_row.inlined.audio_row_current.canadd:hover .audio_duration,
-.audio_row.inlined.audio_row_current.canadd:hover .audio_hq_label,
+.audio_row.no_actions.inlined.audio_row_current.canadd:hover .audio_duration,
+.audio_row.no_actions.inlined.audio_row_current.canadd:hover .audio_hq_label,
 .audio_row.no_actions:hover .audio_duration,
 .audio_row.no_actions:hover .audio_hq_label {
     display: inline-block!important

@@ -170,6 +170,10 @@ if (!window.Emoji) {
                         }
                         Emoji.checkStickersKeywords(optId, opts);
                     } else if (e.type == 'keyup') {
+                        if (opts.noLineBreaks) {
+                            var fc = domFC(txt);
+                            fc && fc.tagName == 'BR' && txt.removeChild(fc);
+                        }
                         if (opts.checkEditable) {
                             opts.checkEditable(optId, txt);
                         }

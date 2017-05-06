@@ -1690,9 +1690,10 @@ input.dev_input_simular {
     border-bottom: 0
 }
 
+.dev_method_block .wk_table blockquote,
 .dev_method_page .wk_table blockquote,
 .dev_param_row blockquote {
-    max-width: 321px
+    word-break: break-word
 }
 
 .dev_param_name {

@@ -3433,6 +3433,10 @@ a.ui_search_custom_link {
     box-sizing: border-box
 }
 
+.ui_input_labeled br {
+    display: none
+}
+
 .ui_input_labeled:after {
     content: attr(data-label);
     padding-left: 5px;
