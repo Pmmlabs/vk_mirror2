@@ -131,7 +131,7 @@ var stVersions = {
     'uncommon.css': 16453956322,
     'filebutton.css': 1044306797,
     'filebutton.js': 2454165044,
-    'lite.js': 1862852959,
+    'lite.js': 4184089252,
     'lite.css': 38551292217,
     'ie6.css': 2976338090,
     'ie7.css': 2926539419,
@@ -187,7 +187,7 @@ var stVersions = {
     'video.css': 23010174212,
     'videocat.js': 1618923991,
     'videocat.css': 23173020488,
-    'videoview.js': 1973584100,
+    'videoview.js': 118280513,
     'videoview.css': 26994324962,
     'video_edit.js': 2135196486,
     'video_edit.css': 22488245389,
@@ -583,4 +583,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 974;
+var _rnd = 4372;

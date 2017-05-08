@@ -9122,24 +9122,26 @@ function checkMp4(callback) {
     var _resolved;
 
     var v = ce('video');
-    if (v.canPlayType && v.canPlayType('video/mp4')) {
+    if (v.canPlayType && v.canPlayType('video/mp4; codecs="avc1.42E01E,mp4a.40.2"').replace('no', '')) {
         v.onloadedmetadata = _resolve.pbind(true);
-        v.onerror = _resolve.pbind(false);
+        v.onerror = function() {
+            _resolve(false, 'error_' + v.error.code);
+        };
         v.src = '/images/blank.mp4';
         v.load();
-        _timeout = setTimeout(_resolve.pbind(false), 10000);
+        _timeout = setTimeout(_resolve.pbind(false, 'timeout'), 3000);
     } else {
-        _resolve(false);
+        _resolve(false, 'video_type');
     }
 
-    function _resolve(canPlay) {
+    function _resolve(canPlay, reason) {
         if (_resolved) return;
         _resolved = true;
         var storage = canPlay ? window.localStorage : window.sessionStorage;
         try {
             storage.setItem('video_can_play_mp4', intval(canPlay));
         } catch (e) {}
-        callback(canPlay);
+        callback(canPlay, reason);
         clearTimeout(_timeout);
         v.src = '';
         v.load();
