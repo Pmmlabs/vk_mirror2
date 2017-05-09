@@ -559,7 +559,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         if ("edit" == e) a = '<div class="ape_check"><div class="ape_check_icon"></div></div>';
         else {
             var s = AudioUtils.asObject(t);
-            if (o && o.wiki_editor) {
+            if (o && o.wiki) {
                 var r = "editorChooseAudio('" + s.performer + "', '" + s.title + "', " + s.duration + ", '" + s.fullId + "', '" + s.url + "', " + s.duration + ", this)";
                 a = '<div class="ape_attach" onclick="' + r + '">' + o.audioPickerButtonText + "</div>"
             } else {
