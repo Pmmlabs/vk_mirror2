@@ -142,7 +142,7 @@ var stVersions = {
     'html5audio.js': 976782859,
     'html5video.js': 223664659,
     'html5video.css': 17327749632,
-    'audioplayer.js': 3586846297,
+    'audioplayer.js': 4745785525,
     'audioplayer.css': 16592023622,
     'audio_html5.js': 287741914,
     'audio.js': 1681225465,
@@ -583,4 +583,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 5498;
+var _rnd = 7003;
