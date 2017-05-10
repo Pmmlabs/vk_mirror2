@@ -187,7 +187,7 @@ var stVersions = {
     'video.css': 23010174212,
     'videocat.js': 1618923991,
     'videocat.css': 23173020488,
-    'videoview.js': 118280513,
+    'videoview.js': 1650318123,
     'videoview.css': 26994324962,
     'video_edit.js': 2135196486,
     'video_edit.css': 22488245389,
@@ -212,7 +212,7 @@ var stVersions = {
     'module.css': 22755303622,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 20586444478,
-    'page.js': 1630068574,
+    'page.js': 646215677,
     'page.css': 23032787261,
     'page_help.css': 24260496185,
     'public.css': 27319259737,
@@ -583,4 +583,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 324;
+var _rnd = 6805;

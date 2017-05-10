@@ -4745,8 +4745,8 @@ var Wall = {
 
         if (hasClass(el, 'suggest') || cur.onepost) return;
 
-        var adData = el.getAttribute('data-ad');
-        var adBlockUID = el.getAttribute('data-ad-block-uid');
+        var adData = el && el.getAttribute('data-ad');
+        var adBlockUID = el && el.getAttribute('data-ad-block-uid');
 
         var url = '/wall' + matches[1] + '_' + matches[3];
         if (browser.mobile && event) {
