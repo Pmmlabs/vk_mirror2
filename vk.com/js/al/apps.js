@@ -615,7 +615,12 @@ var vkApp = function(t, e, i, o) {
                     overflow: "hidden",
                     scrolling: "no"
                 };
-                s.options.widget || (d.height = s.options.height + "px"), this.frame = this.RPC.append(s.cont, d, 'webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"');
+                s.options.widget || (d.height = s.options.height + "px"), this.frame = this.RPC.append(s.cont, d, 'webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"'), s.options.aid && 5575136 == s.options.aid && s.options.debug_hash && "https://timepad.ru/partners/vk_app/" !== n.substr(0, 35) && ajax.post("al_apps.php", {
+                    act: "js_app_debug",
+                    aid: s.options.aid,
+                    debug_hash: s.options.debug_hash,
+                    url: n
+                });
                 break;
             case 2:
                 debugLog("is wrapper");
@@ -1128,11 +1133,10 @@ AppsSlider.prototype = {
                 }
             };
             each(n, function() {
-                    f.push(rs(d, w(this, o, l, v)))
-                }), s || f.length || f.push('<div class="no_rows">' + (o ? getLang("global_search_not_found").replace("{search}", clean(o)) : i.lang.apps_blacklist_empty) + "</div>"),
-                re(c), f = f.join(" "), s ? r.appendChild(cf(f)) : val(r, f), h > s + u && (r.appendChild(c), c.onclick = function(t) {
-                    return a(o, s + u), cancelEvent(t)
-                }), t && t.scroll && t.scroll.update(!1, !0)
+                f.push(rs(d, w(this, o, l, v)))
+            }), s || f.length || f.push('<div class="no_rows">' + (o ? getLang("global_search_not_found").replace("{search}", clean(o)) : i.lang.apps_blacklist_empty) + "</div>"), re(c), f = f.join(" "), s ? r.appendChild(cf(f)) : val(r, f), h > s + u && (r.appendChild(c), c.onclick = function(t) {
+                return a(o, s + u), cancelEvent(t)
+            }), t && t.scroll && t.scroll.update(!1, !0)
         }
         i = i || {};
         var n = geByClass1("apps_blacklist_wrap", t.bodyNode),
@@ -2174,9 +2178,10 @@ AppsSlider.prototype = {
                             i = clone(i), cur.selection && (i[3] = i[3].replace(cur.selection.re, cur.selection.val)), a.push(cur.appTpl(i, t == o.length - 1, e))
                         }.bind(this)), i = a.join("")
                     }
-                    cur.shownApps ? i && cur.lContent.appendChild(cf(i)) : i ? (val(cur.lContent, i), val(cur.aSummaryCounter, s)) : (val(cur.lContent, cur.aSummary.innerHTML.replace("{query}", "<b>" + t + "</b>")), val(cur.aSummaryCounter, "")), cur.shownApps += cur.defaultCount, cur.shownApps >= cur.sectionCount ? hide(cur.lShowMoreButton) : (show(cur.lShowMoreButton), this.scrollCheck()), this.searchProgress(!1)
+                    cur.shownApps ? i && cur.lContent.appendChild(cf(i)) : i ? (val(cur.lContent, i), val(cur.aSummaryCounter, s)) : (val(cur.lContent, cur.aSummary.innerHTML.replace("{query}", "<b>" + t + "</b>")),
+                        val(cur.aSummaryCounter, "")), cur.shownApps += cur.defaultCount, cur.shownApps >= cur.sectionCount ? hide(cur.lShowMoreButton) : (show(cur.lShowMoreButton), this.scrollCheck()), this.searchProgress(!1)
                 }
-                return !1;
+                return !1
             }
             return !0
         }

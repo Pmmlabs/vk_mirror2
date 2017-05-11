@@ -765,7 +765,7 @@ var Page = {
                     var full_id = i + '_' + j;
                     m = modules[full_id] || '';
                     var extra = extras[full_id];
-                    var query_str = (m == 's' && extra.q) ? extra.q : '';
+                    var query_str = (m == 's' && extra && extra.q) ? extra.q : '';
                     query_str = query_str.replace(/[,;:]/g, '');
                     if (query_str) {
                         query_str = ':' + query_str;

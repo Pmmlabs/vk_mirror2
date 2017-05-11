@@ -24,7 +24,6 @@
 .page_actions_cont.narrow .page_extra_actions_btn,
 .page_actions_subitem.checked,
 .page_avatar.no_avatar,
-.page_cover_action:before,
 .page_cover_image .ui_actions_menu_item:before,
 .page_fronly,
 .page_gif_add_icon,
@@ -5529,19 +5528,9 @@ div.page_cover_image .ui_actions_menu_icons {
     display: block;
     height: 19px;
     width: 19px;
-    background: url(/images/icons/cover_edit_icons.png) -9px -9px;
-    background: url(/images/svg_icons/groups/cover_add.svg) no-repeat 50% 50%;
+    background: url(/images/svg_icons/groups/cover_add.svg) 50% no-repeat;
     opacity: 0.8;
     filter: alpha(opacity=80)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .page_cover_action:before {
-        background-image: url(/images/icons/cover_edit_icons_2x.png);
-        background-size: 37px 111px
-    }
 }
 
 .page_cover_action:hover:before {
