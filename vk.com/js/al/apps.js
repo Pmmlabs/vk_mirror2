@@ -615,7 +615,7 @@ var vkApp = function(t, e, i, o) {
                     overflow: "hidden",
                     scrolling: "no"
                 };
-                s.options.widget || (d.height = s.options.height + "px"), this.frame = this.RPC.append(s.cont, d, 'webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"'), s.options.aid && 5575136 == s.options.aid && s.options.debug_hash && "https://timepad.ru/partners/vk_app/" !== n.substr(0, 35) && ajax.post("al_apps.php", {
+                s.options.widget || (d.height = s.options.height + "px"), this.frame = this.RPC.append(s.cont, d, 'webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"'), s.options.aid && 5575136 == s.options.aid && s.options.debug_hash && "https://timepad.ru/partners/vk_app/?" !== n.substr(0, 36) && ajax.post("al_apps.php", {
                     act: "js_app_debug",
                     aid: s.options.aid,
                     debug_hash: s.options.debug_hash,

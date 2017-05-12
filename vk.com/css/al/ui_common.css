@@ -3437,12 +3437,20 @@ a.ui_search_custom_link {
     display: none
 }
 
+.ui_input_labeled:after,
+.ui_input_labeled:before {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none
+}
+
 .ui_input_labeled:after {
     content: attr(data-label);
     padding-left: 5px;
     display: inline-block;
     color: #828282;
-    pointer-events: none;
     width: 0;
     margin-right: -5px
 }
@@ -3453,8 +3461,7 @@ a.ui_search_custom_link {
 
 .ui_input_labeled:empty:before {
     content: attr(data-placeholder);
-    color: #828282;
-    pointer-events: none
+    color: #828282
 }
 
 .ui_input_labeled:focus:empty:before {

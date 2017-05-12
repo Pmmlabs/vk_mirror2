@@ -2693,7 +2693,7 @@ var Wall = {
             switch (v[0]) {
                 case 'postpone':
                     if (draftData.postpone) {
-                        lsText.medias[i][2].date = draftData.postpone;
+                        lsText.medias[i][1] = draftData.postpone;
                         lsText.medias[i][2].draft = 1;
                     }
                     break;

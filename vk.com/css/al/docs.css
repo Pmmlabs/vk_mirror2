@@ -415,8 +415,9 @@ a.docs_item_name {
 }
 
 .docs_choose_upload_area_label {
+    display: inline-block;
     padding-left: 29px;
-    background: url(/images/icons/upload_icon.png) no-repeat left 1px
+    background: url(/images/icons/upload_icon.png) no-repeat left 2px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),

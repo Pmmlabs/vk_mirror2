@@ -1157,7 +1157,7 @@ img.im_photo_thumb {
     display: block;
     position: absolute;
     right: 0;
-    margin-top: 1px;
+    margin-top: 2px;
     cursor: pointer;
     opacity: 0.7;
     width: 16px;
@@ -1451,6 +1451,7 @@ img.im_photo_thumb {
     display: block
 }
 
+.im-page.im-page_classic.im-page_group .im-page--dialogs-search .ui_search_custom_ctrl,
 .im-page-wrapper,
 .im-page {
     position: relative
@@ -3469,6 +3470,10 @@ body[data-useragent*=msie9] .im-page--title-meta {
     z-index: 2
 }
 
+.im-mess .im-mess--post .wall_text .page_media_thumbed_link:last-child {
+    margin-bottom: -3px
+}
+
 .im-mess .im-mess--post .post_image {
     width: 36px;
     height: 36px
@@ -5454,6 +5459,15 @@ body.sf .nim-dialog .nim-dialog--unread {
     color: #42648b
 }
 
+.im-fwd .im-fwd--title-name {
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: top
+}
+
 .im-fwd .im-fwd--date {
     color: #818d99;
     margin-left: 8px;
@@ -6735,8 +6749,9 @@ body.sf .nim-dialog .nim-dialog--unread {
 .im-av-time {
     color: #939393;
     position: relative;
-    top: 15px;
-    right: 36px
+    top: 17px;
+    right: 36px;
+    cursor: default
 }
 
 .im-topic {
