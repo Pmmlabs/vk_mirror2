@@ -1338,7 +1338,7 @@ AdsEdit.initCreatingPostBox = function(creatingPostBox, groupsDefaultItems) {
 
     var targetElem = ge('ads_edit_ad_creating_post_group_id');
     targetElem.removeAttribute('autocomplete');
-    creatingPostBox.cur.uiGroupId = new Autocomplete(targetElem, '/adsedit?act=search_user_objects&section=groups&events_future=1&create_promoted_stealth=1', {
+    creatingPostBox.cur.uiGroupId = new Autocomplete(targetElem, '/adsedit?act=search_user_objects&section=groups&events_future=1&no_closed=1&create_promoted_stealth=1', {
         defaultItems: groupsDefaultItems,
 
         introText: getLang('ads_type_community'),
@@ -3041,7 +3041,7 @@ AdsViewEditor.prototype.getUiParamData = function(paramName) {
     switch (paramName) {
         case 'link_id':
             if (inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_GROUP)) {
-                return '/adsedit?act=search_user_objects&section=groups&events_future=1';
+                return '/adsedit?act=search_user_objects&section=groups&events_future=1&no_closed=1';
             } else if (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_APP) {
                 return '/adsedit?act=search_user_objects&section=apps';
             } else {

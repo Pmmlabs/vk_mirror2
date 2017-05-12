@@ -450,19 +450,13 @@ var Page = {
             }
 
             var currPlaylist = currAudio ? ap.getCurrentPlaylist() : false;
-            var playbackParams = currPlaylist ? currPlaylist.getPlaybackParams() : false;
-            var isTop = 0;
-            if (currPlaylist && playbackParams) {
-                isTop = intval(playbackParams.top_audio || playbackParams.top);
-            }
 
             ajax.post('al_audio.php', {
                 act: 'toggle_status',
                 hash: hash,
                 exp: exp,
                 id: (currAudio ? currAudio.fullId : ''),
-                oid: vk.id,
-                top: isTop
+                oid: vk.id
             }, {
                 onDone: function(text, expStatus) {
                     if (vk.id != cur.oid || !text) return;
@@ -3087,6 +3081,11 @@ var Wall = {
     },
     focusOnEnd: function() {
         var el = ge('post_field');
+
+        if (!el) {
+            return
+        }
+
         if (el.tagName == 'TEXTAREA') {
             elfocus(el);
             return;
