@@ -61,7 +61,7 @@ var Videoview = {
                             var i = Videoview.getMvData();
                             if (i && i.videoRaw == t) {
                                 i.playerSuggestions = e;
-                                var o = cur.videoInlinePlayer || window.mvcur && mvcur.player;
+                                var o = cur.videoInlinePlayer || window.mvcur && mvcur.player || cur.player;
                                 o && o.setSuggestions(e)
                             }
                         }
@@ -3201,7 +3201,7 @@ window.VideoChat = {
                         a.initVideo(i)
                     } else {
                         var a = new VideoPlayer(i);
-                        o ? mvcur.player = a : i.video_ext ? cur.player = a : cur.videoInlinePlayer = a
+                        o ? mvcur.player = a : i.is_ext ? cur.player = a : cur.videoInlinePlayer = a
                     }
                     if (!t) {
                         var n = ce("div", {

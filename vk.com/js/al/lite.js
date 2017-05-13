@@ -153,6 +153,10 @@ if (!window.vk) window.vk = {
     ip_h: ''
 };
 
+function jsc(name) {
+    return 'cmodules/' + name;
+}
+
 (function() {
     var flash = [0, 0, 0],
         axon = 'ShockwaveFlash.ShockwaveFlash';
@@ -1264,6 +1268,8 @@ window.stManager = {
             var p = '/js/';
             if (stTypes.fromLib[f]) {
                 p += 'lib/';
+            } else if (stTypes.fromCompiled && stTypes.fromCompiled[f]) {
+                p += jsc('web/');
             } else if (!/^lang\d/i.test(f) && !stTypes.fromRoot[f] && f.indexOf('/') == -1) {
                 p += 'al/';
             }
