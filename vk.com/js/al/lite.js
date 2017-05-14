@@ -7057,8 +7057,6 @@ function parallel() {
     })
 }
 
-function showAudioPlaylist() {}
-
 function shareAudioPlaylist(event, playlistOwnerId, playlistId, accessHash) {
     showBox('like.php', {
         act: 'publish_box',
