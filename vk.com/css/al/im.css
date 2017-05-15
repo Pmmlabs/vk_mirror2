@@ -2933,7 +2933,8 @@ img.im_photo_thumb {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    min-width: 118px
+    min-width: 118px;
+    text-align: right
 }
 
 .im-page_classic .im-page--aside {
