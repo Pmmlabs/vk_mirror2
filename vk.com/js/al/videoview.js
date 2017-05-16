@@ -3266,7 +3266,7 @@ window.VideoChat = {
         }(document)
     },
     iframeOrFlash: function(e, i, o, t, a, n) {
-        t && browser.flash < Videoview.FLASH_MIN_VERSION ? val(e, '<iframe class="extra_player" type="text/html" width="100%" height="100%" src="' + t + '" frameborder="0" ' + a + "></iframe>") : (o = extend({
+        t && (browser.flash < Videoview.FLASH_MIN_VERSION || !i) ? val(e, '<iframe class="extra_player" type="text/html" width="100%" height="100%" src="' + t + '" frameborder="0" ' + a + "></iframe>") : (o = extend({
             stats: "",
             from: "vk"
         }, o), VideoInitializer.flash(e, i, o)), n && setTimeout(function() {

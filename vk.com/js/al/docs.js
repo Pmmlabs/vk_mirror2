@@ -123,7 +123,7 @@ var Docs = {
             l = "/doc" + a + "_" + o,
             h = a == vk.id || n == vk.id || a == cur.oid && 0 > a && cur.groupAdmin,
             p = "";
-        f = "", cur.selection && (s = s.replace(cur.selection.re, cur.selection.val));
+        _ = "", cur.selection && (s = s.replace(cur.selection.re, cur.selection.val));
         var i = e[6];
         if (i) {
             i = i.split(",");
@@ -134,20 +134,20 @@ var Docs = {
                 tags: i.join(", ")
             })
         }
-        var f = e[8],
-            _ = " docs_icon_type" + d,
+        var _ = e[8],
+            f = " docs_icon_type" + d,
             p = rs(h ? cur.tpl.edit : cur.tpl.add, {
                 oid: a,
                 item_id: o
             });
-        f = rs(f ? cur.tpl.thumb : cur.tpl.icon, {
+        _ = rs(_ ? cur.tpl.thumb : cur.tpl.icon, {
             oid: a,
             item_id: o,
             ext: r,
             url: l,
-            thumb: f,
+            thumb: _,
             title: clean(s),
-            icon_class: _
+            icon_class: f
         });
         var m = rs(cur.tpl.itemAdditionalInfo, {
             date: t,
@@ -157,7 +157,7 @@ var Docs = {
         return rs(cur.tpl.item, {
             oid: a,
             item_id: o,
-            thumb: f,
+            thumb: _,
             actions: p,
             title: s,
             title_clean: c,
@@ -563,8 +563,10 @@ var Docs = {
     claimHint: function(e) {
         showTooltip(e, {
             text: getLang("docs_claimed_doc_hint"),
-            shift: [12, 5],
-            black: 1
+            shift: [24, 3],
+            black: 1,
+            className: "claim_hint_tooltip",
+            dir: "bottom"
         })
     },
     _eof: 1

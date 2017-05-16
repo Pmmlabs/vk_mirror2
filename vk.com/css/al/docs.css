@@ -255,6 +255,21 @@
     text-overflow: ellipsis
 }
 
+.docs_item_cont .claim_hint {
+    display: inline-block;
+    background-size: contain;
+    margin-right: 5px;
+    vertical-align: middle;
+    pointer-events: visiblePainted;
+    white-space: normal
+}
+
+.docs_item_cont .claim_hint svg {
+    vertical-align: top;
+    width: 15px;
+    height: 15px
+}
+
 a.docs_item_name {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;

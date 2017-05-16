@@ -430,11 +430,6 @@
     width: 400px
 }
 
-.restore_msg_old.msg {
-    background: #f9f6e7;
-    border-color: #d4bc4c
-}
-
 .restore_page_section.page_section {
     margin: 26px auto 0;
     padding: 0 0 35px;
@@ -589,4 +584,8 @@
     padding: 8px;
     margin: 10px 0;
     line-height: 160%
+}
+
+.restore_close_button {
+    margin-left: 10px
 }

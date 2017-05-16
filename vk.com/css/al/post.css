@@ -521,12 +521,21 @@ a.page_post_thumb_wrap:hover {
 
 .page_doc_row .claim_hint {
     display: inline-block;
-    width: 15px;
     background-size: contain;
-    height: 15px;
     margin-right: 5px;
     vertical-align: middle;
-    pointer-events: visiblePainted
+    pointer-events: visiblePainted;
+    white-space: normal
+}
+
+.page_doc_row .claim_hint svg {
+    vertical-align: bottom;
+    width: 15px;
+    height: 15px
+}
+
+.claim_hint_tooltip {
+    max-width: 250px
 }
 
 .page_pics_preview .page_preview_doc_wrap {
