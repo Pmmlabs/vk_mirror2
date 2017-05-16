@@ -2937,6 +2937,10 @@ img.im_photo_thumb {
     text-align: right
 }
 
+.im-page--aside>* {
+    text-align: left
+}
+
 .im-page_classic .im-page--aside {
     padding: 0 15px
 }
