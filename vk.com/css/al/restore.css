@@ -447,7 +447,12 @@
 }
 
 .restore_extend_submit_form {
-    margin-top: 15px
+    margin-top: 10px;
+    padding-top: 10px
+}
+
+.page_section .restore_delayed_msg.msg {
+    margin-bottom: 10px
 }
 
 .restore_msg_wide.msg {

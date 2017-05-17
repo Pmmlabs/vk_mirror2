@@ -41,6 +41,9 @@ AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG = 'e';
 AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_MOBILE = 'd';
 AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON = 'i';
 
+AdsEdit.ADS_AD_CHECK_GROUP_PURPOSE_LINK_OBJECT = 'link_object';
+AdsEdit.ADS_AD_CHECK_GROUP_PURPOSE_CRITERIA = 'criteria';
+
 AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_OLD = 0;
 AdsEdit.ADS_CAMPAIGN_TYPE_UI_CREATE_NEW = 1;
 AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_APPS_WITH_BUDGET = 2;
@@ -1338,7 +1341,7 @@ AdsEdit.initCreatingPostBox = function(creatingPostBox, groupsDefaultItems) {
 
     var targetElem = ge('ads_edit_ad_creating_post_group_id');
     targetElem.removeAttribute('autocomplete');
-    creatingPostBox.cur.uiGroupId = new Autocomplete(targetElem, '/adsedit?act=search_user_objects&section=groups&events_future=1&no_closed=1&create_promoted_stealth=1', {
+    creatingPostBox.cur.uiGroupId = new Autocomplete(targetElem, '/adsedit?act=search_user_objects&section=groups&group_purpose=' + AdsEdit.ADS_AD_CHECK_GROUP_PURPOSE_LINK_OBJECT + '&create_promoted_stealth=1', {
         defaultItems: groupsDefaultItems,
 
         introText: getLang('ads_type_community'),
@@ -3041,7 +3044,7 @@ AdsViewEditor.prototype.getUiParamData = function(paramName) {
     switch (paramName) {
         case 'link_id':
             if (inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_GROUP)) {
-                return '/adsedit?act=search_user_objects&section=groups&events_future=1&no_closed=1';
+                return '/adsedit?act=search_user_objects&section=groups&group_purpose=' + AdsEdit.ADS_AD_CHECK_GROUP_PURPOSE_LINK_OBJECT;
             } else if (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_APP) {
                 return '/adsedit?act=search_user_objects&section=apps';
             } else {
@@ -6166,7 +6169,7 @@ AdsTargetingEditor.prototype.getUiCriterionData = function(criterionName, option
             return '/select.php?act=ainterests';
         case 'groups':
         case 'groups_not':
-            return '/adsedit?act=search_user_objects&section=groups';
+            return '/adsedit?act=search_user_objects&section=groups&group_purpose=' + AdsEdit.ADS_AD_CHECK_GROUP_PURPOSE_CRITERIA;
         case 'apps':
         case 'apps_not':
             return '/adsedit?act=search_user_objects&section=apps&apps_sites=1&apps_sdk=1';

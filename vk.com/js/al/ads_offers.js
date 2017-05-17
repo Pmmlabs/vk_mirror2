@@ -601,7 +601,7 @@ var Offers = {
         var uiData = false;
         switch (type) {
             case 'group':
-                uiData = '/adsedit?act=search_user_objects&section=groups&events_future=1';
+                uiData = '/adsedit?act=search_user_objects&section=groups&group_purpose=link_object';
                 var placeholderText = getLang('ads_type_community'),
                     defaultData = cur.options.typeGroups;
                 break;

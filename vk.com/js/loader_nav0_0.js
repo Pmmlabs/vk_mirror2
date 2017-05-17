@@ -187,14 +187,14 @@ var stVersions = {
     'video.css': 23010174212,
     'videocat.js': 1618923991,
     'videocat.css': 23173020488,
-    'videoview.js': 1671042833,
+    'videoview.js': 1193625786,
     'videoview.css': 26994324962,
     'video_edit.js': 2135196486,
     'video_edit.css': 22488245389,
     'video_upload.js': 10194165,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 14573992019,
-    'videoplayer.js': 77941903194,
+    'videoplayer.js': 78876263987,
     'videoplayer.css': 39641277675,
     'translation.js': 2431784533,
     'translation.css': 15825281419,
@@ -270,7 +270,7 @@ var stVersions = {
     'profile_edit.js': 2157979570,
     'profile_edit.css': 16992647209,
     'profile_edit_edu.js': 799807020,
-    'profile_edit_job.js': 281115018,
+    'profile_edit_job.js': 1688095335,
     'profile_edit_mil.js': 112384103,
     'search.js': 1757480726,
     'search.css': 30269852477,
@@ -317,7 +317,7 @@ var stVersions = {
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
     'restore.js': 3120912976,
-    'restore.css': 19746332194,
+    'restore.css': 19547847622,
     'recover.js': 2830033131,
     'recover.css': 2080137791,
     'docs.js': 4024778124,
@@ -371,7 +371,7 @@ var stVersions = {
     'ads.js': 2664761182,
     'ads_payments.js': 2170749464,
     'ads_edit.css': 15288862541,
-    'ads_edit.js': 537834974,
+    'ads_edit.js': 509956036,
     'ads_edit_geo.js': 1634516705,
     'ads_moder_common.css': 15440624392,
     'ads_moder.css': 14803302576,
@@ -435,7 +435,7 @@ var stVersions = {
     'exchange_moder.css': 16626140124,
     'exchange_moder.js': 2036879800,
     'ads_offers.css': 17535493883,
-    'ads_offers.js': 153944036,
+    'ads_offers.js': 437551776,
     'ads_offers_moder.css': 1451957431,
     'ads_offers_moder.js': 3862633445,
     'landings/landings.css': 19862179438,
@@ -521,7 +521,7 @@ var stVersions = {
     'cmodules/internal/meminfo.js': 13000983222,
     'cmodules/internal/nospam.js': 28540265332,
     'shortener.js': 1002525642,
-    'lang': 6778
+    'lang': 6782
 };
 var stTypes = {
     fromLib: {
@@ -583,4 +583,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 9871;
+var _rnd = 2461;

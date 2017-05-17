@@ -293,6 +293,9 @@ var Videoview = {
             onDonate: function() {
                 Videoview.showDonateBox()
             },
+            isInLayer: function(e) {
+                return Videoview.isLayerShown(e)
+            },
             onLiveViewersCountChange: function(e, i, o) {
                 Videoview.isLayerShown(e) && Videoview.updateLiveViewersCount(i, o)
             },
@@ -1690,15 +1693,16 @@ var Videoview = {
         },
         updateLiveViewersCount: function(e, i) {
             if (e = intval(e)) {
-                var o = getLang("video_live_N_watching", e, !0),
-                    t = (i || []).map(function(e) {
+                var o = domByClass("mv_views", "mv_live_spectators_count_text"),
+                    t = getLang("video_live_N_watching", e, !0);
+                val(o, t)
+            }
+            if (i) {
+                var o = domByClass("mv_views", "mv_live_spectators_friends"),
+                    t = i.map(function(e) {
                         return getTemplate("video_live_spectators_friend", e)
-                    }).reverse().join(""),
-                    a = getTemplate("video_live_spectators", {
-                        count_text: o,
-                        friends: t
-                    });
-                val("mv_views", a)
+                    }).reverse().join("");
+                val(o, t)
             }
         },
         showLiveSpectatorsBox: function() {
@@ -1846,7 +1850,7 @@ var Videoview = {
                 }, {
                     onDone: function(e) {
                         playlistsHtml = "", each(e, function(e, i) {
-                            playlistsHtml += '<div class="mv_add_to_club_albums_list_item checkbox ' + (+i.added ? "on" : "") + '" data-id="' + i.id + '" onclick="checkbox(this)">' + i.title + "</div>";
+                            playlistsHtml += '<div class="mv_add_to_club_albums_list_item checkbox ' + (+i.added ? "on" : "") + '" data-id="' + i.id + '" onclick="checkbox(this)">' + i.title + "</div>"
                         }), val("mv_add_to_club_albums_list", playlistsHtml), val("mv_add_to_club_gid", i), hide("mv_add_to_club_albums_progress"), show("mv_add_to_club_albums")
                     }
                 }))
@@ -2689,15 +2693,14 @@ window.VideoChat = {
     SCROLL_EDGE_BELOW_THRESHOLD: 20,
     MAX_COMMENTS_NUM: 150,
     init: function(e, i) {
-        VideoChat.block && VideoChat.destroy(), e && (VideoChat.block = e,
-            VideoChat.options = extend({}, i), VideoChat.messagesWrap = domByClass(e, "mv_chat_messages_wrap"), VideoChat.scroll = new uiScroll(domFC(VideoChat.messagesWrap), {
-                global: !0,
-                reversed: !0,
-                preserveEdgeBelow: !0,
-                preserveEdgeBelowThreshold: VideoChat.SCROLL_EDGE_BELOW_THRESHOLD,
-                theme: "videoview",
-                onupdate: VideoChat.onScrollUpdate
-            }), this.scrollBottomBtnWrap = domByClass(e, "mv_chat_new_messages_btn_wrap"), VideoChat.replyForm = domByClass(e, "mv_chat_reply_form"), VideoChat.replyForm && (VideoChat.replyInput = domByClass(e, "mv_chat_reply_input"), VideoChat.initReplyInput()), VideoChat.firstMsgIntro = domByClass(e, "mv_chat_first_message_intro"))
+        VideoChat.block && VideoChat.destroy(), e && (VideoChat.block = e, VideoChat.options = extend({}, i), VideoChat.messagesWrap = domByClass(e, "mv_chat_messages_wrap"), VideoChat.scroll = new uiScroll(domFC(VideoChat.messagesWrap), {
+            global: !0,
+            reversed: !0,
+            preserveEdgeBelow: !0,
+            preserveEdgeBelowThreshold: VideoChat.SCROLL_EDGE_BELOW_THRESHOLD,
+            theme: "videoview",
+            onupdate: VideoChat.onScrollUpdate
+        }), this.scrollBottomBtnWrap = domByClass(e, "mv_chat_new_messages_btn_wrap"), VideoChat.replyForm = domByClass(e, "mv_chat_reply_form"), VideoChat.replyForm && (VideoChat.replyInput = domByClass(e, "mv_chat_reply_input"), VideoChat.initReplyInput()), VideoChat.firstMsgIntro = domByClass(e, "mv_chat_first_message_intro"))
     },
     initReplyInput: function() {
         placeholderInit(VideoChat.replyInput, {
