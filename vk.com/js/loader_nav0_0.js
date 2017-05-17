@@ -255,7 +255,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 3472996414,
+    'feed.js': 1566906347,
     'feed.css': 21321650789,
     'privacy.js': 3620108221,
     'privacy.css': 17523276043,
@@ -521,7 +521,7 @@ var stVersions = {
     'cmodules/internal/meminfo.js': 13000983222,
     'cmodules/internal/nospam.js': 28540265332,
     'shortener.js': 1002525642,
-    'lang': 6782
+    'lang': 6788
 };
 var stTypes = {
     fromLib: {
@@ -583,4 +583,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 2461;
+var _rnd = 3085;
