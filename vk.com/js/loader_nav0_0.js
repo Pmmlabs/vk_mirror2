@@ -518,7 +518,7 @@ var stVersions = {
     'cmodules/web/speech_worker_opus.js': 3385759348,
     'stories.js': 675877973,
     'stories.css': 16792864498,
-    'cmodules/internal/meminfo.js': 13000983222,
+    'cmodules/internal/meminfo.js': 11393787619,
     'cmodules/internal/nospam.js': 28540265332,
     'shortener.js': 1002525642,
     'lang': 6788
@@ -583,4 +583,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 4428;
+var _rnd = 6535;
