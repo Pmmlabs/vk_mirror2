@@ -524,7 +524,7 @@ var Feed = {
                 var s = inArray(e, ["articles_search", "articles", "search", "photos_search", "photos"]);
                 toggleClass(cur.feedEls.wrap, "feed_search_shown", s), s && elfocus(cur.feedEls.search), cur.section && val(cur.feedEls.search, "")
             }
-            if (window.Stories && cur.section && cur.section !== e && Stories.updateFeedStories(), cur.section = e, 4 == t) return void feed.searchUpdate();
+            if (2 == t && window.Stories && Stories.updateFeedStories(e), cur.section = e, 4 == t) return void feed.searchUpdate();
             cur.editingHide = "notifications" == e || "replies" == e ? feed.notifyCheckHideReply : !1, cur.gifAutoplayScrollHandler && cur.gifAutoplayScrollHandler(), cur.videoAutoplayScrollHandler && cur.videoAutoplayScrollHandler()
         }
     },

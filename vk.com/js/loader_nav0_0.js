@@ -255,7 +255,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 1566906347,
+    'feed.js': 2576421283,
     'feed.css': 21321650789,
     'privacy.js': 3620108221,
     'privacy.css': 17523276043,
@@ -516,7 +516,7 @@ var stVersions = {
     'voice_message_player.js': 24272478849,
     'cmodules/web/speech_worker_mp3.js': 1172578475,
     'cmodules/web/speech_worker_opus.js': 3385759348,
-    'stories.js': 2952103471,
+    'stories.js': 675877973,
     'stories.css': 16792864498,
     'cmodules/internal/meminfo.js': 13000983222,
     'cmodules/internal/nospam.js': 28540265332,
@@ -583,4 +583,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 3085;
+var _rnd = 4428;
