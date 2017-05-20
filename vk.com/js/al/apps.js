@@ -5,6 +5,75 @@ function appCallback(t) {
     }, 0), setTimeout(function(i) {
         return i.app.funcs[e].apply(i.app, t)
     }.pbind(cur), 0), !0) : !0
+}
+
+function detectUnityWebPlayer(t, e) {
+    var i = function(t, e) {
+            var i = 0,
+                o = 0,
+                s = ce("object", {
+                    type: "application/vnd.unity"
+                }, {
+                    visibility: "hidden"
+                });
+            bodyNode.appendChild(s),
+                function() {
+                    if ("undefined" == typeof s.GetPluginVersion) o++ < 10 ? setTimeout(arguments.callee, 10) : (bodyNode.removeChild(s), t(null));
+                    else {
+                        var a = {};
+                        if (e)
+                            for (i = 0; i < e.length; ++i) a[e[i]] = s.GetUnityVersion(e[i]);
+                        a.plugin = s.GetPluginVersion(), bodyNode.removeChild(s), t(a)
+                    }
+                }()
+        },
+        o = function(t) {
+            var e, i, o, s, a, n = 0;
+            if (t) {
+                var r = t.toLowerCase().match(/^(\d+)(?:\.(\d+)(?:\.(\d+)([dabfr])?(\d+)?)?)?$/);
+                r && r[1] && (e = r[1], i = r[2] ? r[2] : 0, o = r[3] ? r[3] : 0, s = r[4] ? r[4] : "r", a = r[5] ? r[5] : 0, n |= e / 10 % 10 << 28, n |= e % 10 << 24, n |= i % 10 << 20, n |= o % 10 << 16, n |= {
+                    d: 8192,
+                    a: 16384,
+                    b: 24576,
+                    f: 32768,
+                    r: 32768
+                }[s], n |= a / 100 % 10 << 8, n |= a / 10 % 10 << 4, n |= a % 10)
+            }
+            return n
+        },
+        s = !1;
+    if (navigator.plugins.refresh(), "undefined" != typeof navigator.plugins && navigator.plugins["Unity Player"] && "undefined" != typeof navigator.mimeTypes && navigator.mimeTypes["application/vnd.unity"] && navigator.mimeTypes["application/vnd.unity"].enabledPlugin) {
+        if (s = !0, browser.safari && /Mac OS X 10_6/.test(navigator.appVersion)) return void i(function(e) {
+            e && e.plugin || (s = !1), t(s, e)
+        }, e);
+        if (browser.mac && browser.chrome) return void i(function(e) {
+            e && o(e.plugin) <= o("2.6.1f3") && (s = !1), t(s, e)
+        }, e);
+        if (e) return void getPluginVersion(function(e) {
+            t(s, e)
+        }, e)
+    } else if (browser.msie) {
+        var a = !1;
+        try {
+            null != ActiveXObject.prototype && (a = !0)
+        } catch (n) {}
+        if (a && (!/win64/i.test(navigator.userAgent) || !/x64/i.test(navigator.userAgent))) try {
+            var r = new ActiveXObject("UnityWebPlayer.UnityWebPlayer.1"),
+                c = r.GetPluginVersion();
+            if (e) {
+                for (var l = {}, p = 0; p < e.length; ++p) l[e[p]] = r.GetUnityVersion(e[p]);
+                l.plugin = c
+            }
+            if (s = !0, "2.5.0f5" == c) {
+                var d = /Windows NT \d+\.\d+/.exec(navigator.userAgent);
+                if (d && d.length > 0) {
+                    var u = parseFloat(d[0].split(" ")[2]);
+                    u >= 6 && (s = !1)
+                }
+            }
+        } catch (n) {}
+    }
+    t(s, l)
 }! function(t) {
     function e() {
         for (var t = "", e = 0; 5 > e; e++) t += Math.ceil(15 * Math.random()).toString(16);
@@ -336,6 +405,14 @@ var vkApp = function(t, e, i, o) {
                 }))
             },
             setNavigation: function() {},
+            checkFlashSupport: function(t) {
+                return t = positive(t), t || (t = 9), browser.flash >= t ? void cur.app.runCallback("onCheckFlashSupportSuccess") : (cur.app.showDummy("no_flash"), void cur.app.runCallback("onCheckFlashSupportFail"))
+            },
+            checkUnitySupport: function() {
+                detectUnityWebPlayer(function(t) {
+                    t ? cur.app.runCallback("onCheckUnitySupportSuccess") : (cur.app.showDummy("no_unity"), cur.app.runCallback("onCheckUnitySupportFail"))
+                })
+            },
             showInstallBox: function() {
                 if (cur.appUser) Apps.onAppAdded();
                 else {
@@ -656,14 +733,7 @@ var vkApp = function(t, e, i, o) {
                     wmode: l
                 }, i), s.frame = ge("flash_app")
         }
-        p || (s.cont.innerHTML = '<div class="apps_no_flash_msg"><img src="/images/upload' + (hasClass(bodyNode, "is_2x") ? "_2x" : "") + '.gif" width="32" height="8"/></div>', ajax.post("al_apps.php", {
-            act: "no_flash",
-            total: browser.iphone || browser.ipad ? 1 : 0
-        }, {
-            onDone: function(t) {
-                s.cont.innerHTML = t
-            }
-        })), i.widget && setTimeout(function() {
+        p || s.showDummy("no_flash"), i.widget && setTimeout(function() {
             s.inited || show("app_connect_error")
         }, 8e3), cur.destroy.push(function() {
             this.RPC && this.RPC.destroy()
@@ -676,7 +746,7 @@ vkApp.prototype.boxApp = function(t) {}, vkApp.prototype.onAppReady = function()
     var t = Array.prototype.slice.call(arguments),
         e = t[0],
         i = "customEvent";
-    if (-1 != "onLocationChanged,onMerchantPaymentSuccess,onBalanceChanged,onWindowResized,onSettingsChanged,onGroupSettingsChanged,onAppWidgetPreviewFail,onAppWidgetPreviewCancel,onAppWidgetPreviewSuccess".indexOf(e)) {
+    if (-1 != "onLocationChanged,onMerchantPaymentSuccess,onBalanceChanged,onWindowResized,onSettingsChanged,onGroupSettingsChanged,onAppWidgetPreviewFail,onAppWidgetPreviewCancel,onAppWidgetPreviewSuccess,onCheckFlashSupportSuccess,onCheckFlashSupportFail,onCheckUnitySupportSuccess,onCheckUnitySupportFail".indexOf(e)) {
         i = e;
         var o = t.slice(1)
     } else var o = t.slice();
@@ -720,6 +790,23 @@ vkApp.prototype.boxApp = function(t) {}, vkApp.prototype.onAppReady = function()
             ad_preview: vk.ad_preview,
             width: Math.max(t, 625) + 166
         }), this.frame.style.width = this.cont.style.width = t + "px"
+    }
+}, vkApp.prototype.showProgress = function() {
+    addClass(this.cont, "loading"), this.loaderEl = showProgress(this.cont, "", "pr_big app_container_progress", !0)
+}, vkApp.prototype.hideProgress = function() {
+    removeClass(this.cont, "loading"), this.loaderEl && re(this.loaderEl)
+}, vkApp.prototype.showDummy = function(t) {
+    if (this.cont && ~["no_flash", "no_unity"].indexOf(t)) {
+        var e = {
+            act: t
+        };
+        "no_flash" !== t || browser.iphone || browser.ipad ? "no_unity" !== t || browser.mobile || (e.screen = browser.msie || browser.amigo || browser.mac && browser.safari ? "install" : "browser") : e.screen = "install", ajax.post("al_apps.php", e, {
+            onDone: function(t) {
+                cur.app && (addClass(cur.app.cont, "dummy"), val(cur.app.cont, t))
+            },
+            showProgress: this.showProgress.bind(this),
+            hideProgress: this.hideProgress.bind(this)
+        })
     }
 }, vkApp.prototype.balanceUpdated = function(t) {
     this.runCallback("onBalanceChanged", t)
@@ -2178,8 +2265,7 @@ AppsSlider.prototype = {
                             i = clone(i), cur.selection && (i[3] = i[3].replace(cur.selection.re, cur.selection.val)), a.push(cur.appTpl(i, t == o.length - 1, e))
                         }.bind(this)), i = a.join("")
                     }
-                    cur.shownApps ? i && cur.lContent.appendChild(cf(i)) : i ? (val(cur.lContent, i), val(cur.aSummaryCounter, s)) : (val(cur.lContent, cur.aSummary.innerHTML.replace("{query}", "<b>" + t + "</b>")),
-                        val(cur.aSummaryCounter, "")), cur.shownApps += cur.defaultCount, cur.shownApps >= cur.sectionCount ? hide(cur.lShowMoreButton) : (show(cur.lShowMoreButton), this.scrollCheck()), this.searchProgress(!1)
+                    cur.shownApps ? i && cur.lContent.appendChild(cf(i)) : i ? (val(cur.lContent, i), val(cur.aSummaryCounter, s)) : (val(cur.lContent, cur.aSummary.innerHTML.replace("{query}", "<b>" + t + "</b>")), val(cur.aSummaryCounter, "")), cur.shownApps += cur.defaultCount, cur.shownApps >= cur.sectionCount ? hide(cur.lShowMoreButton) : (show(cur.lShowMoreButton), this.scrollCheck()), this.searchProgress(!1)
                 }
                 return !1
             }

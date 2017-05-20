@@ -896,13 +896,6 @@ var VideoUpload = {
         var o = domByClass(curBox().bodyNode, "video_upload_live_launch_steps_wrap");
         slideToggle(o, 200)
     },
-    showLiveTransSettings: function() {
-        var e = ge("video_coder_settings_hidden"),
-            o = geByClass1("_video_add_live_trans__show_link", e);
-        addClass(o, "center"), lockButton(o), VideoUpload.updateLiveTransSettings(0, function() {
-            hide("video_coder_settings_hidden"), show("video_coder_settings_shown")
-        })
-    },
     updateLiveTransSettings: function(e, o) {
         ajax.post("al_video.php?act=generate_live_trans_keys", {
             owner_id: cur.oid,
@@ -937,6 +930,7 @@ var VideoUpload = {
             publish: isChecked("video_create_live_publish_on_wall"),
             preparation_check: isChecked("video_create_live_preparation_check"),
             notify_followers: isChecked("video_create_live_notify_followers"),
+            enable_donations: isChecked("video_create_enable_donations"),
             rhash: cur.liveTransHash
         };
         return cur.oid < 0 ? l.no_comments = isChecked("video_create_live_no_comments") : (l.privacy_view = Privacy.getValue("video_live_view"), l.privacy_comment = Privacy.getValue("video_live_comment")), l.title ? l.category ? (VideoUpload.lockSaveButton(), void ajax.post("al_video.php?act=a_add_new_live_trans", l, {

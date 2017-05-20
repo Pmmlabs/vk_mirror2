@@ -190,6 +190,7 @@ var browser = {
     version: (_ua.match(/.+(?:me|ox|on|rv|it|era|opr|ie|edge)[\/: ]([\d.]+)/) || [0, '0'])[1],
     opera: (/opera/i.test(_ua) || /opr/i.test(_ua)),
     vivaldi: /vivaldi/i.test(_ua),
+    amigo: /amigo.*mrchrome soc/i.test(_ua),
     msie: (/msie/i.test(_ua) && !/opera/i.test(_ua) || /trident\//i.test(_ua)) || /edge/i.test(_ua),
     msie6: (/msie 6/i.test(_ua) && !/opera/i.test(_ua)),
     msie7: (/msie 7/i.test(_ua) && !/opera/i.test(_ua)),
@@ -4249,10 +4250,11 @@ var ajax = {
             if (o._suggest) cleanElems(o._suggest);
             o._suggest = o._captcha = o._box = hideBoxes(o._captcha, o._box);
 
-            if (text.indexOf('The page is temporarily unavailable') != -1 && __dev && !inArray(vk.id, [529834, 257385015, 5125142, 25655712])) {
+            if (text.indexOf('The page is temporarily unavailable') != -1 && __dev && inArray(vk.id, [100])) {
                 ajax._post(url, q, o);
                 return false;
             }
+
             if (!o.onFail || o.onFail(text) !== true) {
                 topError(text, {
                     dt: 5,

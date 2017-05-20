@@ -68,9 +68,9 @@ if (!window.Emoji) {
 
                 if (opts.noLineBreaks) {
                     addEvent(txt, 'blur', function(e) {
-                        if ((txt.textContent || txt.innerText) == '') {
+                        if (!txt.textContent && !txt.innerText) {
                             each(geByTag('br', txt), function(k, br) {
-                                txt.removeChild(br);
+                                re(br);
                             })
                         }
                     });
@@ -180,9 +180,9 @@ if (!window.Emoji) {
                         }
                         Emoji.checkStickersKeywords(optId, opts);
                     } else if (e.type == 'keyup') {
-                        if (opts.noLineBreaks && (txt.textContent || txt.innerText) == '') {
+                        if (opts.noLineBreaks && !txt.textContent && !txt.innerText) {
                             each(geByTag('br', txt), function(k, br) {
-                                txt.removeChild(br);
+                                re(br);
                             })
                         }
                         if (opts.checkEditable) {
@@ -420,7 +420,7 @@ if (!window.Emoji) {
             var text = this.getClipboard(e);
             var textRangeAndNoFocus = text && range && !onlyFocus;
 
-            if (inArray('text/html', e.clipboardData.types) && inArray('Files', e.clipboardData.types)) {
+            if (e.clipboardData && inArray('text/html', e.clipboardData.types) && inArray('Files', e.clipboardData.types)) {
                 cancelEvent(e);
             }
 

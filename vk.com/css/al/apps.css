@@ -2073,13 +2073,34 @@ a.page_block_header:hover .apps_cat_header_link:after {
 }
 
 .apps_main {
+    position: relative;
     padding: 0;
     text-align: center;
     background: #fff
 }
 
+.apps_main .app_container_progress {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    margin-left: -16px
+}
+
 .apps_main .app_container {
     margin: 0 auto
+}
+
+.apps_main .app_container.dummy,
+.apps_main .app_container.loading {
+    min-height: 308px
+}
+
+.apps_main .app_container.dummy {
+    min-width: 100%
+}
+
+.apps_main .app_container.loading * {
+    visibility: hidden
 }
 
 #apps_user_warning_cont,
@@ -2089,6 +2110,43 @@ a.page_block_header:hover .apps_cat_header_link:after {
 
 .apps_cont_msg {
     background: #fff
+}
+
+.apps_app_dummy {
+    padding-top: 60px;
+    line-height: 19px;
+    color: #656565
+}
+
+.apps_app_dummy:before {
+    display: inline-block;
+    vertical-align: top;
+    width: 72px;
+    height: 64px;
+    content: ''
+}
+
+.apps_app_dummy_title {
+    font-size: 19px;
+    color: #000;
+    line-height: 22px;
+    padding: 24px 0 9px
+}
+
+.apps_app_dummy_actions {
+    padding-top: 20px
+}
+
+.apps_app_dummy_actions .flat_button+.flat_button {
+    margin-left: 10px
+}
+
+.apps_app_no_flash_dummy:before {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2272%22%20height%3D%2264%22%20viewBox%3D%220%200%2072%2064%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.1%22%20d%3D%22M0%200h72v64H0z%22%2F%3E%3Cpath%20d%3D%22M5%201h62v62H5V1zm47%2012c-8%200-15%205-19%2015s-7%2015-14%2015v8c12%200%2017-9%2020-15h9v-8h-5.5c1.5-4%205.5-7%209.5-7v-8z%22%20fill%3D%22%23B3C1CF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 50%
+}
+
+.apps_app_no_unity_dummy:before {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2272%22%20height%3D%2264%22%20viewBox%3D%220%200%2072%2064%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20opacity%3D%22.1%22%20d%3D%22M0%200h72v64H0z%22%2F%3E%3Cpath%20opacity%3D%22.1%22%20d%3D%22M0%200h72v64H0z%22%2F%3E%3Cpath%20d%3D%22M56%200l7%2025.5-4%206.5%204%206.5L56%2064l-26-7-3.5-6.5h-8L0%2032l18.5-18.5h8L30%207l26-7zm-4%2013L41%2032l11%2019%205.5-19L52%2013zM13%2035l14%2014.5%2019.5%205-11-19.5H13zm0-6h22.5l11-19.5-19.5%205L13%2029z%22%20fill%3D%22%23B3C1CF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 50%
 }
 
 #apps_settings_error {
@@ -4386,13 +4444,6 @@ a.app_decline:hover {
 
 .apps_requests_banned {
     color: #707070
-}
-
-.apps_no_flash_msg {
-    padding: 120px 10px;
-    color: #666;
-    text-align: center;
-    font-size: 1.1em
 }
 
 .apps_score_tt_cont {

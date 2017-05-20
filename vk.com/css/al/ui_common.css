@@ -3433,6 +3433,11 @@ a.ui_search_custom_link {
     box-sizing: border-box
 }
 
+.ui_input_labeled div,
+.ui_input_labeled p {
+    display: inline
+}
+
 .ui_input_labeled br {
     display: none
 }

@@ -355,6 +355,10 @@ a .ads_sub_link:hover {
     min-width: 110px
 }
 
+.ads_round_tabs_block .pg_in {
+    padding: 3px 5px
+}
+
 .ads_table_value_2 {
     color: #777;
     font-size: 0.9em

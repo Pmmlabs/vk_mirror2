@@ -200,7 +200,7 @@ AdsModer.saveFeatures = function(unionId, hash, featuresInfo, editBox) {
     }
 }
 
-AdsModer.openNoteEditBox = function(ajaxParams, noteText, noteTextParams, boxTitle, editActionText, isEdit, isAllowEdit) {
+AdsModer.openNoteEditBox = function(ajaxParams, noteText, noteTextParams, boxTitle, editActionText, isEdit, isAllowEdit, doneRedirect) {
 
     var boxHtml = '<div class="ads_note_edit_wrap"><div><textarea id="ads_note_edit" ' + noteTextParams + '>' + noteText + '</textarea></div></div>';
 
@@ -211,17 +211,17 @@ AdsModer.openNoteEditBox = function(ajaxParams, noteText, noteTextParams, boxTit
     noteEditBox.removeButtons();
     if (isAllowEdit) {
         noteEditBox.addButton(getLang('box_cancel'), false, 'no');
-        noteEditBox.addButton(editActionText, AdsModer.saveNote.pbind(noteEditBox, ajaxParams, false), 'yes');
+        noteEditBox.addButton(editActionText, AdsModer.saveNote.pbind(noteEditBox, ajaxParams, false, doneRedirect), 'yes');
     } else {
         noteEditBox.addButton(getLang('box_cancel'), false, 'yes');
     }
     if (isEdit) {
         noteEditBox.setControlsText('<a href="#" id="ads_note_edit_delete_link">�������</a>');
-        addEvent(ge('ads_note_edit_delete_link'), 'click', AdsModer.saveNote.rpbind(false, noteEditBox, ajaxParams, true));
+        addEvent(ge('ads_note_edit_delete_link'), 'click', AdsModer.saveNote.rpbind(false, noteEditBox, ajaxParams, true, doneRedirect));
     }
 }
 
-AdsModer.saveNote = function(noteEditBox, ajaxParams, isDelete) {
+AdsModer.saveNote = function(noteEditBox, ajaxParams, isDelete, doneRedirect) {
     if (!Ads.lock('save_note', onLock, onUnlock)) {
         return;
     }
@@ -238,7 +238,11 @@ AdsModer.saveNote = function(noteEditBox, ajaxParams, isDelete) {
         isOk = (response && response.ok);
         Ads.unlock('save_note');
         if (isOk) {
-            nav.reload();
+            if (doneRedirect) {
+                nav.go(doneRedirect);
+            } else {
+                nav.reload();
+            }
         } else {
             showFastBox(getLang('ads_error_box_title'), getLang('ads_error_text'));
         }
