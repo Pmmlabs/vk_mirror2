@@ -519,7 +519,7 @@ var stVersions = {
     'stories.js': 675877973,
     'stories.css': 13930466382,
     'cmodules/internal/meminfo.js': 11393787619,
-    'cmodules/internal/nospam.js': 28540265332,
+    'cmodules/internal/nospam.js': 29356626234,
     'shortener.js': 1002525642,
     'lang': 6792
 };
@@ -583,4 +583,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 3226;
+var _rnd = 4049;
