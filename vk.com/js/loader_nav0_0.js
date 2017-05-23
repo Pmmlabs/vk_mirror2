@@ -329,7 +329,7 @@ var stVersions = {
     'helpdesk.js': 3971000045,
     'helpdesk.css': 16219827730,
     'tickets.js': 3256001699,
-    'tickets.css': 23059055817,
+    'tickets.css': 21108853155,
     'faq.js': 1134602325,
     'faq.css': 17110004275,
     'talmud.js': 1641838680,
@@ -583,4 +583,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 749;
+var _rnd = 5944;

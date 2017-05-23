@@ -3763,6 +3763,10 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     background: #dae2ea
 }
 
+.help_table_question_act:last-child {
+    margin-right: 0
+}
+
 .help_table_question_act.help_table_question_act_do,
 .help_table_question_act.help_table_question_act_ok {
     padding-left: 28px;
