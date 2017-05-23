@@ -129,8 +129,8 @@ var Video = {
                 each(Video.AVAILABLE_TABS, function(e, o) {
                     hide("video_subtab_pane_" + o)
                 }), show("video_subtab_pane_" + g), Video.updateEmptyPlaceholder(g);
-                var S = domFC(ge("video_tab_" + g));
-                S && uiTabs.switchTab(S, {
+                var V = domFC(ge("video_tab_" + g));
+                V && uiTabs.switchTab(V, {
                     noAnim: t.hist
                 });
                 geByClass1("video_tab_actions_wrap"), [geByClass1("_video_sort_dd_wrap"), geByClass1("divider")];
@@ -444,8 +444,8 @@ var Video = {
                             }
                         }
                         s.count = parseInt(o), Array.prototype.push.apply(s.list, d.list.slice(_));
-                        var S = s.list.length % Video.VIDEOS_PER_ROW;
-                        o > Video.VIDEOS_PER_PAGE && S && s.list.length < s.count && (s.list.splice(-S, Video.VIDEOS_PER_ROW), c -= S), s.realOffset = c
+                        var V = s.list.length % Video.VIDEOS_PER_ROW;
+                        o > Video.VIDEOS_PER_PAGE && V && s.list.length < s.count && (s.list.splice(-V, Video.VIDEOS_PER_ROW), c -= V), s.realOffset = c
                     }(a || !s.done && s.list.length == l) && (s.done = !0), Video._showGlobalSearchResults(e, i)
                 }
             })))
@@ -548,15 +548,15 @@ var Video = {
     prepareVideoItemAttrs: function(e) {
         var o = attrs = "",
             i = {};
-        i[VideoConstants.VIDEO_ITEM_FLAG_EXTERNAL] = "video_ext", i[VideoConstants.VIDEO_ITEM_FLAG_DOMAIN_YT] = "video_wm_yt", i[VideoConstants.VIDEO_ITEM_FLAG_DOMAIN_COUB] = "video_wm_coub", i[VideoConstants.VIDEO_ITEM_FLAG_DOMAIN_RT] = "video_wm_rutube", i[VideoConstants.VIDEO_ITEM_FLAG_DOMAIN_PLADFORM] = "video_wm_plad", i[VideoConstants.VIDEO_ITEM_FLAG_DOMAIN_VIMEO] = "video_wm_vimeo", i[VideoConstants.VIDEO_ITEM_FLAG_CAN_EDIT] = "video_can_edit", i[VideoConstants.VIDEO_ITEM_FLAG_CAN_ADD] = "video_can_add", i[VideoConstants.VIDEO_ITEM_FLAG_CAN_DELETE] = "video_can_delete", i[VideoConstants.VIDEO_ITEM_FLAG_PRIVATE] = "video_private", i[VideoConstants.VIDEO_ITEM_FLAG_NO_AUTOPLAY] = "video_nap", i[VideoConstants.VIDEO_ITEM_FLAG_ADDED] = "video_added", i[VideoConstants.VIDEO_ITEM_FLAG_SKIP_THUMB_LOAD] = "video_skip_thumb_load";
+        i[VideoConstants.VIDEO_ITEM_FLAG_EXTERNAL] = "video_ext", i[VideoConstants.VIDEO_ITEM_FLAG_ACTIVE_LIVE] = "video_active_live", i[VideoConstants.VIDEO_ITEM_FLAG_CAN_EDIT] = "video_can_edit", i[VideoConstants.VIDEO_ITEM_FLAG_CAN_ADD] = "video_can_add", i[VideoConstants.VIDEO_ITEM_FLAG_CAN_DELETE] = "video_can_delete", i[VideoConstants.VIDEO_ITEM_FLAG_PRIVATE] = "video_private", i[VideoConstants.VIDEO_ITEM_FLAG_NO_AUTOPLAY] = "video_nap", i[VideoConstants.VIDEO_ITEM_FLAG_ADDED] = "video_added", i[VideoConstants.VIDEO_ITEM_FLAG_SKIP_THUMB_LOAD] = "video_skip_thumb_load";
         var t = e[VideoConstants.VIDEO_ITEM_INDEX_FLAGS];
         return each(i, function(e, i) {
             t & e && (o += i + " ")
-        }), e[VideoConstants.VIDEO_ITEM_INDEX_DURATION] || (o += " video_no_duration"), t & VideoConstants.VIDEO_ITEM_FLAG_CAN_EDIT || t & VideoConstants.VIDEO_ITEM_FLAG_CAN_DELETE || t & VideoConstants.VIDEO_ITEM_FLAG_CAN_ADD || (o += " video_no_actions"), t & VideoConstants.VIDEO_ITEM_FLAG_NEED_SIGN_IN && (attrs += ' rel="nofollow"'), [o, attrs]
+        }), e[VideoConstants.VIDEO_ITEM_INDEX_DURATION] || t & VideoConstants.VIDEO_ITEM_FLAG_ACTIVE_LIVE || (o += " video_no_duration"), t & VideoConstants.VIDEO_ITEM_FLAG_CAN_EDIT || t & VideoConstants.VIDEO_ITEM_FLAG_CAN_DELETE || t & VideoConstants.VIDEO_ITEM_FLAG_CAN_ADD || (o += " video_no_actions"), t & VideoConstants.VIDEO_ITEM_FLAG_NEED_SIGN_IN && (attrs += ' rel="nofollow"'), [o, attrs]
     },
     buildVideoEl: function(e) {
         var o = trim(cur.videoItemTpl);
-        e = clone(e), e[VideoConstants.VIDEO_ITEM_INDEX_VIEWS] = langNumeric(e[VideoConstants.VIDEO_ITEM_INDEX_VIEWS], cur.lang.video_N_views_list, !0), e[VideoConstants.VIDEO_ITEM_INDEX_DATE] = Video.getFormattedUpdatedTime(e[VideoConstants.VIDEO_ITEM_INDEX_DATE]);
+        e = clone(e), e[VideoConstants.VIDEO_ITEM_INDEX_VIEWS] = langNumeric(e[VideoConstants.VIDEO_ITEM_INDEX_VIEWS], cur.lang.video_N_views_list, !0), e[VideoConstants.VIDEO_ITEM_INDEX_DATE] = Video.getFormattedUpdatedTime(e[VideoConstants.VIDEO_ITEM_INDEX_DATE]), e[VideoConstants.VIDEO_ITEM_INDEX_FLAGS] & VideoConstants.VIDEO_ITEM_FLAG_ACTIVE_LIVE && (e[VideoConstants.VIDEO_ITEM_INDEX_DURATION] = '<span class="video_thumb_label_live_icon"></span>');
         var i = Video.prepareVideoItemAttrs(e),
             t = rs(o, e);
         return t = t.replace("%classes%", i[0]).replace("%attrs%", i[1]), t = se(t)
@@ -1101,15 +1101,15 @@ var Video = {
             vkImage().src = "//go.imgsmail.ru/vk?pxn=vic&qid=" + cur.popularQid + "&vid=" + o + "&p=" + g + "&t=0"
         }
         if (cur.videoSearchStats) {
-            var S = domClosest("video_item", t);
-            if (S && S.hasAttribute("data-search-pos")) {
-                cur.videoSearchPos = parseInt(S.getAttribute("data-search-pos")), cur.videoSearchPos > cur.videoSearchStats.lastSeenIndex && (cur.videoSearchStats.lastSeenElement = S, cur.videoSearchStats.lastSeenIndex = cur.videoSearchPos), cur.videoSearchStats.positions[cur.videoSearchPos] = extend({
+            var V = domClosest("video_item", t);
+            if (V && V.hasAttribute("data-search-pos")) {
+                cur.videoSearchPos = parseInt(V.getAttribute("data-search-pos")), cur.videoSearchPos > cur.videoSearchStats.lastSeenIndex && (cur.videoSearchStats.lastSeenElement = V, cur.videoSearchStats.lastSeenIndex = cur.videoSearchPos), cur.videoSearchStats.positions[cur.videoSearchPos] = extend({
                     clicked: 0
                 }, cur.videoSearchStats.positions[cur.videoSearchPos]), cur.videoSearchStats.positions[cur.videoSearchPos].clicked++;
-                var V = ++cur.videoSearchStats.clickNum,
+                var S = ++cur.videoSearchStats.clickNum,
                     p = (new Date).getTime() - cur.videoSearchStats.lastActionTime;
                 a.addParams = extend(a.addParams || {}, {
-                    click_num: V,
+                    click_num: S,
                     click_time: p
                 })
             }

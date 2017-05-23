@@ -1205,6 +1205,7 @@ textarea.dark.mv_live_gift_popup_comment_input {
 
 #mv_reply_form.mv_reply_form_fixed {
     position: fixed;
+    z-index: 100;
     box-shadow: 0 -1px 3px rgba(0, 0, 0, .06)
 }
 

@@ -395,10 +395,11 @@ function MediaSelector(e, a, t, i) {
                             }), c) {
                             if (!o.editable) return !1;
                             i.nocl || (o.editable.click = showVideo.pbind(t, !1, {
-                                queue: 1
+                                queue: 1,
+                                autoplay: 1
                             }))
                         }
-                        S = i.nocl ? "" : " onclick=\"return showVideo('" + t + "', false, {queue:1});\"", P = "<div" + S + ' class="fl_l page_preview_video"><img class="page_preview_video" src="' + o.thumb + '" /></div>', T = 1, A = g;
+                        S = i.nocl ? "" : " onclick=\"return showVideo('" + t + "', false, {queue:1,autoplay:1});\"", P = "<div" + S + ' class="fl_l page_preview_video"><img class="page_preview_video" src="' + o.thumb + '" /></div>', T = 1, A = g;
                         break;
                     case "audio":
                         P = Page.addAudioPreview(t, o), B = ' id="pam' + u + "_audio" + t + '"';

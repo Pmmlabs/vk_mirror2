@@ -191,22 +191,6 @@ a.page_post_thumb_wrap:hover {
     text-align: center
 }
 
-.page_post_video_duration,
-.page_post_video_duration_single {
-    position: absolute;
-    bottom: 6px;
-    right: 6px;
-    padding: 2px 5px;
-    background: rgba(0, 0, 0, .45);
-    color: #fff;
-    border-radius: 2px
-}
-
-.page_post_video_duration_single {
-    bottom: 10px;
-    right: 10px
-}
-
 .page_album_wrap {
     padding: 6px 0 4px
 }

@@ -28,6 +28,8 @@ var ThumbsEdit = {
                     owner_id: n[0],
                     vid: n[1],
                     duration: i.duration,
+                    platform: i.platform,
+                    play_icon: i.play_icon,
                     sizes: i.sizes,
                     name: i.name
                 };
@@ -86,11 +88,11 @@ var ThumbsEdit = {
             s && o ? a.force = !0 : (s = e.parentNode.offsetWidth, o = .666 * s), void 0 === n && (i.wide = a.wide = n = !1);
             var r = ThumbsEdit,
                 d = r.processThumbs(s, o, t, a),
-                h = [];
+                l = [];
             each(t, function(e, t) {
-                ("photo" == t.type || "video" == t.type || "album" == t.type || "market_album" == t.type) && (h[h.length] = t)
+                ("photo" == t.type || "video" == t.type || "album" == t.type || "market_album" == t.type) && (l[l.length] = t)
             }), r.cache()[e.id] = {
-                previews: h,
+                previews: l,
                 thumbs: d.thumbs,
                 height: d.height,
                 opts: i,
@@ -115,85 +117,95 @@ var ThumbsEdit = {
                 width: intval(e.width),
                 height: intval(e.height)
             },
-            a = ce("div", {
-                className: "thumb_wrap fl_l" + (e.lastColumn ? " last_column" : "") + (e.lastRow ? " last_row" : "") + (e.msize ? " thumb_market_album_wrap" : "") + (e.image.src.match(/^\/images\//) ? " page_album_nocover" : "")
+            a = !!e.orig.vid,
+            n = ce("div", {
+                className: "thumb_wrap fl_l" + (e.lastColumn ? " last_column" : "") + (e.lastRow ? " last_row" : "") + (e.msize ? " thumb_market_album_wrap" : "") + (!a && e.image.src.match(/^\/images\//) ? " page_album_nocover" : "")
             }, i),
-            n = ce("img", {
+            s = ce("img", {
                 className: "preview"
             }),
-            s = ce("div", {
+            o = ce("div", {
                 className: "overlay"
             }),
-            o = ce("div", {
+            r = ce("div", {
                 className: "ui_thumb_x_button",
                 innerHTML: '<div class="ui_thumb_x"></div>'
             }),
-            r = ce("div", {
+            d = ce("div", {
                 className: "draggable_thumb clear_fix" + (e.unsized ? " unsized" + (e.single ? " unsized_single" : "") : "")
             }, i);
-        e.name && a.setAttribute("aria-label", e.name);
-        var d = isPhotoeditor3Available() && !vk.widget ? '<div class="ui_extra_btn ui_extra_btn_pe _ui_extra_btn_pe" id="ui_btn_pe"></div>' : "",
-            h = se('<div class="ui_thumb_extra">       <div class="ui_extra_btn ui_extra_btn_show _ui_extra_btn_show" id="ui_btn_show"></div>' + d + "     </div>"),
-            l = geByClass1("_ui_extra_btn_pe", h),
-            u = geByClass1("_ui_extra_btn_show", h);
-        addEvent(r, "click", function(e) {
+        e.name && n.setAttribute("aria-label", e.name);
+        var l = isPhotoeditor3Available() && !vk.widget ? '<div class="ui_extra_btn ui_extra_btn_pe _ui_extra_btn_pe" id="ui_btn_pe"></div>' : "",
+            h = se('<div class="ui_thumb_extra">       <div class="ui_extra_btn ui_extra_btn_show _ui_extra_btn_show" id="ui_btn_show"></div>' + l + "     </div>"),
+            u = geByClass1("_ui_extra_btn_pe", h),
+            c = geByClass1("_ui_extra_btn_show", h);
+        addEvent(d, "click", function(e) {
             if (!ThumbsEdit.cur().updating && !domClosest("ui_thumb_x_button", e.target)) {
                 var t = ThumbsEdit.getParent(e.target, "thumb_wrap"),
                     i = ThumbsEdit.cache()[t.parentNode.id].previews[t.getAttribute("index")].click;
                 cur.openEditor = !!ThumbsEdit.getParent(e.target, "ui_extra_btn_pe"), i && i()
             }
-        }), addEvent(o, "click", function(e) {
+        }), addEvent(r, "click", function(e) {
             var t = ThumbsEdit.getParent(e.target, "thumb_wrap");
             hide(t.firstChild), ThumbsEdit.removeMedia(t.parentNode.id, t.getAttribute("index"))
-        }), browser.msie && browser.version < 9 ? o.setAttribute("title", getLang("dont_attach")) : addEvent(o, "mouseover", function() {
+        }), browser.msie && browser.version < 9 ? r.setAttribute("title", getLang("dont_attach")) : addEvent(r, "mouseover", function() {
             showTooltip(this, {
                 text: getLang("dont_attach"),
                 shift: [11, 8],
                 black: 1
             })
-        }), o.setAttribute("aria-label", getLang("dont_attach")), o.setAttribute("role", "link"), l && addEvent(l, "mouseover", function() {
-            var e = ThumbsEdit.getParentTooltipCls(r);
+        }), r.setAttribute("aria-label", getLang("dont_attach")), r.setAttribute("role", "link"), u && addEvent(u, "mouseover", function() {
+            var e = ThumbsEdit.getParentTooltipCls(d);
             showTooltip(this, {
                 text: getLang("global_pe_edit"),
                 shift: [9, 8],
                 black: 1,
                 appendParentCls: e
             })
-        }), addEvent(u, "mouseover", function() {
-            var e = ThumbsEdit.getParentTooltipCls(r);
+        }), addEvent(c, "mouseover", function() {
+            var e = ThumbsEdit.getParentTooltipCls(d);
             showTooltip(this, {
                 text: getLang("global_photo_attach_show"),
                 shift: [10, 8],
                 black: 1,
                 appendParentCls: e
             })
-        }), addEvent(r, "mousedown touchstart", ThumbsEdit.startDrag);
-        var c = e.old_image ? e.old_image : e.image,
-            m = ThumbsEdit.crop(e, e.width, e.height);
-        if (e.unsized ? setStyle(r, "backgroundImage", "url(" + c.src + ")") : (extend(n, {
-                width: m.width,
-                height: m.height
-            }), setStyle(n, {
-                marginLeft: m.marginLeft,
-                marginTop: m.marginTop
-            }), n.src = c.src), e.old_image && ThumbsEdit.loadAndDisplayImage(n, e), e.unsized || r.appendChild(n), r.appendChild(s), !e.isAlbum && !e.duration && intval(e.height) > 55 && r.appendChild(h), r.appendChild(o), a.appendChild(r), a.setAttribute("index", t), a.setAttribute("attachment", e.id), e.duration && (e.single && r.appendChild(ce("div", {
+        }), addEvent(d, "mousedown touchstart", ThumbsEdit.startDrag);
+        var m = e.old_image ? e.old_image : e.image,
+            v = ThumbsEdit.crop(e, e.width, e.height);
+        if (e.unsized ? setStyle(d, "backgroundImage", "url(" + m.src + ")") : (extend(s, {
+                width: v.width,
+                height: v.height
+            }), setStyle(s, {
+                marginLeft: v.marginLeft,
+                marginTop: v.marginTop
+            }), s.src = m.src), e.old_image && ThumbsEdit.loadAndDisplayImage(s, e), e.unsized || d.appendChild(s), d.appendChild(o), !e.isAlbum && !a && intval(e.height) > 55 && d.appendChild(h), d.appendChild(r), n.appendChild(d), n.setAttribute("index", t), n.setAttribute("attachment", e.id), a) {
+            var g = e.orig.duration,
+                p = e.single && intval(e.width) >= 510 ? e.orig.platform || "" : "",
+                f = e.orig.play_icon,
+                b = "";
+            g || (b += " _no_duration"), f && (e.single || intval(e.width) > 250 ? d.appendChild(ce("div", {
                 className: "page_post_video_play_inline"
-            })), r.appendChild(ce("div", {
-                className: "duration",
-                innerHTML: e.duration
-            }))), (e.title || e.thumb) && !e.duration) {
-            var v = ce("div", {
+            })) : b += " _has_play_icon");
+            var _ = ce("div", {
+                className: "video_thumb_label " + b,
+                innerHTML: '<span class="video_thumb_label_item">' + p + '</span><span class="video_thumb_label_item">' + g + "</span></div>"
+            });
+            d.appendChild(_)
+        }
+        if ((e.title || e.thumb) && !a) {
+            var w = ce("div", {
                 className: "page_album_title"
             });
-            v.appendChild(ce("div", {
+            w.appendChild(ce("div", {
                 innerHTML: e.msize || e.size,
                 className: "page_album_size"
-            })), v.appendChild(ce("div", {
+            })), w.appendChild(ce("div", {
                 innerHTML: e.title,
                 className: "page_album_title_text"
-            })), r.appendChild(v)
+            })), d.appendChild(w)
         }
-        return a
+        return n
     },
     loadAndDisplayImage: function(e, t) {
         if (e) {
@@ -231,8 +243,8 @@ var ThumbsEdit = {
             r = 0,
             d = 0;
         if (n.width && n.height) {
-            var h = n.width / n.height;
-            t / i > h ? (a && n.width < t && (t = n.width, i = Math.min(i, n.height)), s = t, o = s / h, o > i && (d = -intval((o - i) / 2))) : (a && n.height < i && (i = n.height, t = Math.min(t, n.width)), o = i, s = o * h, s > t && (r = -intval((s - t) / 2)))
+            var l = n.width / n.height;
+            t / i > l ? (a && n.width < t && (t = n.width, i = Math.min(i, n.height)), s = t, o = s / l, o > i && (d = -intval((o - i) / 2))) : (a && n.height < i && (i = n.height, t = Math.min(t, n.width)), o = i, s = o * l, s > t && (r = -intval((s - t) / 2)))
         }
         return {
             width: s,
@@ -286,7 +298,7 @@ var ThumbsEdit = {
             });
             var d = s.wpos;
             o = s.pos[0] + intval(i.style.marginLeft) + o - d[0], r = s.pos[1] + intval(i.style.marginTop) + r - d[1];
-            var h = {
+            var l = {
                     x: o,
                     y: r,
                     offsetX: i.offsetWidth,
@@ -294,7 +306,7 @@ var ThumbsEdit = {
                     index: s.i,
                     node: i
                 },
-                l = !1,
+                h = !1,
                 u = s.i,
                 c = -1,
                 m = 5;
@@ -303,35 +315,35 @@ var ThumbsEdit = {
                     t.offsetX = t.node.offsetWidth + m, t.offsetY = t.node.offsetHeight + m;
                     var i = s.coords[e - 1],
                         a = s.coords[e + 1],
-                        n = h.x + h.offsetX / 2,
-                        o = h.y + h.offsetY / 2,
+                        n = l.x + l.offsetX / 2,
+                        o = l.y + l.offsetY / 2,
                         r = t.x + t.offsetX / 2,
                         d = t.y + t.offsetY / 2,
-                        v = (h.x + h.offsetX, h.y + h.offsetY, t.x + t.offsetX),
+                        v = (l.x + l.offsetX, l.y + l.offsetY, t.x + t.offsetX),
                         g = t.y + t.offsetY,
                         p = (i && i.x == t.x && i.y != t.y && 0 != t.y || a && a.x == t.x && a.y != t.y) && 0 != t.x,
-                        f = n >= r && (a && (n <= a.x + a.offsetX / 2 && (a.offsetY == t.offsetY || v > n) || a.y != t.y) || !a && h.x <= v) && o > t.y && g > o,
+                        f = n >= r && (a && (n <= a.x + a.offsetX / 2 && (a.offsetY == t.offsetY || v > n) || a.y != t.y) || !a && l.x <= v) && o > t.y && g > o,
                         b = r > n && n >= t.x && (!i || i.y != t.y && !(i.x == t.x && !a)) && o > t.y && g > o,
-                        w = p && o >= d && g > o && n > t.x && v > n,
-                        _ = p && d > o && o >= t.y && n > t.x && v > n;
+                        _ = p && o >= d && g > o && n > t.x && v > n,
+                        w = p && d > o && o >= t.y && n > t.x && v > n;
                     f = f && !p, b = b && !p && !f;
-                    var y = f || b || w || _;
-                    y && (l = !0, u = t.index < s.i && (f || w) ? t.index + 1 : h.index < t.index && (_ || b) ? t.index - 1 : t.index), u != s.i ? setStyle(t.node, {
+                    var y = f || b || _ || w;
+                    y && (h = !0, u = t.index < s.i && (f || _) ? t.index + 1 : l.index < t.index && (w || b) ? t.index - 1 : t.index), u != s.i ? setStyle(t.node, {
                         left: f ? -2 : b ? 2 : 0,
-                        top: w ? -2 : _ ? 2 : 0
+                        top: _ ? -2 : w ? 2 : 0
                     }) : setStyle(t.node, {
                         left: 0,
                         top: 0
-                    }), f && a && a.y == t.y && a.x > t.x && h.index > t.index && (setStyle(t.node, {
+                    }), f && a && a.y == t.y && a.x > t.x && l.index > t.index && (setStyle(t.node, {
                         left: 0,
                         top: 0
                     }), setStyle(a.node, {
                         left: 2,
                         top: 0
-                    }), c = e + 1), w && a && a.x == t.x && a.y > t.y && d >= o && (setStyle(a.node, {
+                    }), c = e + 1), _ && a && a.x == t.x && a.y > t.y && d >= o && (setStyle(a.node, {
                         left: 0,
                         top: 0
-                    }), c = e + 1), _ && i && i.x == t.x && i.y < t.y && d >= o && (setStyle(i.node, {
+                    }), c = e + 1), w && i && i.x == t.x && i.y < t.y && d >= o && (setStyle(i.node, {
                         left: 0,
                         top: -2
                     }), setStyle(t.node, {
@@ -339,7 +351,7 @@ var ThumbsEdit = {
                         top: 0
                     }))
                 }
-            }), s.to_i = l ? u : s.i
+            }), s.to_i = h ? u : s.i
         } else {
             var v = i.parentNode.parentNode,
                 g = geByClass("overlay", i)[0],
@@ -347,9 +359,9 @@ var ThumbsEdit = {
                 f = intval(i.parentNode.getAttribute("index")),
                 b = t.cache()[v.id].thumbs[f],
                 d = getXY(v),
-                w = getXY(i.parentNode),
-                _ = t.getCoords(v, d);
-            s.id = v.id, s.i = f, s.to_i = f, s.x = a - w[0], s.y = n - w[1], s.t = b, s.w = b.width, s.h = b.height, s.pos = w, s.wpos = d, s.crop = t.crop(b, b.width, b.height), s.coords = _;
+                _ = getXY(i.parentNode),
+                w = t.getCoords(v, d);
+            s.id = v.id, s.i = f, s.to_i = f, s.x = a - _[0], s.y = n - _[1], s.t = b, s.w = b.width, s.h = b.height, s.pos = _, s.wpos = d, s.crop = t.crop(b, b.width, b.height), s.coords = w;
             var y = t.scale(b.width, b.height, 75),
                 x = y[0],
                 C = y[1],
@@ -417,13 +429,13 @@ var ThumbsEdit = {
                 o = s.thumbs,
                 r = s.height,
                 d = s.opts,
-                h = d === !0 || d === !1 ? {
+                l = d === !0 || d === !1 ? {
                     wide: d
                 } : clone(d || {}),
-                l = h.width,
-                u = h.height;
-            l && u ? h.force = !0 : (l = e.parentNode.offsetWidth, u = .666 * l);
-            var c = a.processThumbs(l, u, t, h),
+                h = l.width,
+                u = l.height;
+            h && u ? l.force = !0 : (h = e.parentNode.offsetWidth, u = .666 * h);
+            var c = a.processThumbs(h, u, t, l),
                 m = ce("div"),
                 v = ce("div", {
                     className: "editable_thumbs" + (s.wide ? " wide" : "")
@@ -446,8 +458,8 @@ var ThumbsEdit = {
                     }
                 if (null != i) {
                     var d = geByClass("draggable_thumb", i.node)[0],
-                        h = geByClass("overlay", d)[0],
-                        l = geByClass("preview", d)[0],
+                        l = geByClass("overlay", d)[0],
+                        h = geByClass("preview", d)[0],
                         u = (geByClass("title_text", d)[0], o[i.index]),
                         m = null;
                     each(c.thumbs, function(e, t) {
@@ -455,7 +467,7 @@ var ThumbsEdit = {
                     }), setStyle(i.node, {
                         left: 0,
                         top: 0
-                    }), (i.height != t.height || i.width != i.width || t.x != i.x || t.y != i.y || i.index == a.cur().i) && (hasClass(d, "moving") && fadeOut(h, 150), setTimeout(function() {
+                    }), (i.height != t.height || i.width != i.width || t.x != i.x || t.y != i.y || i.index == a.cur().i) && (hasClass(d, "moving") && fadeOut(l, 150), setTimeout(function() {
                         animate(d, {
                             top: t.y - i.y,
                             left: t.x - i.x,
@@ -466,7 +478,7 @@ var ThumbsEdit = {
                             opacity: 1
                         }, 150);
                         var e = a.crop(m, t.width, t.height);
-                        l && animate(l, e, 150), (m.unsized && m.single ? addClass : removeClass)(d, "unsized_single")
+                        h && animate(h, e, 150), (m.unsized && m.single ? addClass : removeClass)(d, "unsized_single")
                     }, 4))
                 }
             }), r != c.height && setTimeout(function() {
@@ -474,7 +486,7 @@ var ThumbsEdit = {
                     height: c.height
                 }, 150)
             }, 4), setTimeout(function() {
-                h.onUpdate && h.onUpdate(), setStyle(n, {
+                l.onUpdate && l.onUpdate(), setStyle(n, {
                     height: c.height,
                     width: c.width
                 }), n.innerHTML = "", a.cache()[i].thumbs = c.thumbs, a.cache()[i].previews = t, a.cache()[i].height = c.height, each(c.thumbs, function(e, t) {
@@ -574,11 +586,11 @@ var ThumbsEdit = {
                 o = intval(i * (window.devicePixelRatio || 1)),
                 r = !!e.sizes.l,
                 d = !!e.sizes.y,
-                h = 0,
-                l = 0;
-            return 130 >= s && 98 >= o ? (n = "s", h = 130, l = 98) : 320 >= s && 240 >= o ? (n = r ? "l" : "m", h = 320, l = 240) : (n = d ? "y" : r ? "l" : "m", h = 640, l = 480), {
-                width: h,
-                height: l,
+                l = 0,
+                h = 0;
+            return 130 >= s && 98 >= o ? (n = "s", l = 130, h = 98) : 320 >= s && 240 >= o ? (n = r ? "l" : "m", l = 320, h = 240) : (n = d ? "y" : r ? "l" : "m", l = 640, h = 480), {
+                width: l,
+                height: h,
                 src: e.sizes[n][0]
             }
         }
@@ -591,13 +603,13 @@ var ThumbsEdit = {
         g > t / i ? (p = i, g > 1 && (p *= g)) : (p = t, 1 > g && (p /= g)), i *= m, t *= m;
         var f = !a && !!c.o,
             b = "",
-            w = null;
-        b = 75 > p ? "s" : 130 > p ? "m" : f && (w = c.o) && w[1] >= t && w[2] >= i ? "o" : f && (w = c.p) && w[1] >= t && w[2] >= i ? "p" : f && (w = c.q) && w[1] >= t && w[2] >= i ? "q" : f && (w = c.r) && w[1] >= t && w[2] >= i ? "r" : "x";
-        var _ = c[b];
-        return _[1] && _[2] || (e.unsized = !0), {
-            src: _[0],
-            width: _[1],
-            height: _[2]
+            _ = null;
+        b = 75 > p ? "s" : 130 > p ? "m" : f && (_ = c.o) && _[1] >= t && _[2] >= i ? "o" : f && (_ = c.p) && _[1] >= t && _[2] >= i ? "p" : f && (_ = c.q) && _[1] >= t && _[2] >= i ? "q" : f && (_ = c.r) && _[1] >= t && _[2] >= i ? "r" : "x";
+        var w = c[b];
+        return w[1] && w[2] || (e.unsized = !0), {
+            src: w[0],
+            width: w[1],
+            height: w[2]
         }
     },
     compute: function(e, t, i, a) {
@@ -613,23 +625,17 @@ var ThumbsEdit = {
             unsized: e.unsized,
             orig: e
         };
-        if (e.title && void 0 != e.size ? extend(n, {
-                title: e.title,
-                size: e.size,
-                isAlbum: !0
-            }) : e.title && void 0 != e.msize ? extend(n, {
-                title: e.title,
-                msize: e.msize,
-                isAlbum: !0
-            }) : e.vid && e.name && void 0 != e.name && extend(n, {
-                name: e.name
-            }), e.duration) {
-            var s = intval(e.duration / 60),
-                i = intval(s / 60),
-                o = e.duration - 60 * s;
-            s -= 60 * i, n.duration = (i ? i + ":" : "") + (1 > i || s >= 10 ? s : "0" + s) + ":" + (o >= 10 ? o : "0" + o)
-        }
-        return n.unsized ? n.ratio = 1 : n.ratio = n.image.width / n.image.height, n
+        return e.title && void 0 != e.size ? extend(n, {
+            title: e.title,
+            size: e.size,
+            isAlbum: !0
+        }) : e.title && void 0 != e.msize ? extend(n, {
+            title: e.title,
+            msize: e.msize,
+            isAlbum: !0
+        }) : e.vid && e.name && void 0 != e.name && extend(n, {
+            name: e.name
+        }), n.unsized ? n.ratio = 1 : n.ratio = n.image.width / n.image.height, n
     },
     processThumbs: function(e, t, i, a) {
         var n = ThumbsEdit,
@@ -644,11 +650,11 @@ var ThumbsEdit = {
                     t += i
                 }), t
             },
-            h = function(e, t, i) {
+            l = function(e, t, i) {
                 return (t - (e.length - 1) * i) / d(e)
             };
         a = isObject(a) ? a : {};
-        var l = a.wide,
+        var h = a.wide,
             u = [],
             c = 0,
             m = [],
@@ -665,11 +671,11 @@ var ThumbsEdit = {
                 a = i > 1.2 ? "w" : .8 > i ? "v" : "q";
             g += a, p[r(a)]++, f[f.length] = i
         });
-        var w, _, y = f.length > 0 ? d(f) / f.length : 1,
+        var _, w, y = f.length > 0 ? d(f) / f.length : 1,
             x = 5,
             C = x;
-        a.force ? (w = e, _ = t) : (l ? (w = 537, _ = 343) : e >= 381 ? (w = 381, _ = 1 == b ? 361 : 237) : (w = 337, _ = 1 == b ? 320 : 214), w > e && (w = e, _ = t));
-        var E = w / _,
+        a.force ? (_ = e, w = t) : (h ? (_ = 537, w = 343) : e >= 381 ? (_ = 381, w = 1 == b ? 361 : 237) : (_ = 337, w = 1 == b ? 320 : 214), _ > e && (_ = e, w = t));
+        var E = _ / w,
             T = 0,
             z = 0;
         if (1 == b) {
@@ -678,62 +684,62 @@ var ThumbsEdit = {
                 lastRow: 1,
                 single: 1
             };
-            m[0].thumb ? (T = 279, z = 185) : f[0] >= 1 * E ? (T = w, z = Math.min(T / f[0], _)) : (z = _, T = Math.min(z * f[0], w));
+            m[0].thumb ? (T = 279, z = 185) : f[0] >= 1 * E ? (T = _, z = Math.min(T / f[0], w)) : (z = w, T = Math.min(z * f[0], _));
             var k = o(m[0], T, z, M);
-            !k.unsized && (k.image.width < T && k.image.height <= _ || k.image.height < z && k.image.width <= w) && (T = k.image.width, z = k.image.height, k = o(m[0], T, z, M)), v[0] = k
+            !k.unsized && (k.image.width < T && k.image.height <= w || k.image.height < z && k.image.width <= _) && (T = k.image.width, z = k.image.height, k = o(m[0], T, z, M)), v[0] = k
         } else if (2 == b) switch (g) {
             case "ww":
                 if (y > 1.4 * E && f[1] - f[0] < .2) {
-                    var N = w,
-                        R = Math.min(N / f[0], N / f[1], (_ - C) / 2);
+                    var N = _,
+                        R = Math.min(N / f[0], N / f[1], (w - C) / 2);
                     v[0] = o(m[0], N, R, {
                         lastColumn: 1
                     }), v[1] = o(m[1], N, R, {
                         lastColumn: 1,
                         lastRow: 1
-                    }), T = w, z = 2 * R + C;
+                    }), T = _, z = 2 * R + C;
                     break
                 }
             case "vv":
             case "qv":
             case "vq":
             case "qq":
-                N = (w - x) / 2, R = Math.min(N / f[0], N / f[1], _), v[0] = o(m[0], N, R, {
+                N = (_ - x) / 2, R = Math.min(N / f[0], N / f[1], w), v[0] = o(m[0], N, R, {
                     lastRow: 1
                 }), v[1] = o(m[1], N, R, {
                     lastRow: 1,
                     lastColumn: 1
-                }), T = w, z = R;
+                }), T = _, z = R;
                 break;
             default:
-                var A = intval((w - x) / f[1] / (1 / f[0] + 1 / f[1])),
-                    L = w - A - x,
-                    R = Math.min(_, A / f[0], L / f[1]);
+                var A = intval((_ - x) / f[1] / (1 / f[0] + 1 / f[1])),
+                    L = _ - A - x,
+                    R = Math.min(w, A / f[0], L / f[1]);
                 v[0] = o(m[0], A, R, {
                     lastRow: 1
                 }), v[1] = o(m[1], L, R, {
                     lastColumn: 1,
                     lastRow: 1
-                }), T = w, z = R
+                }), T = _, z = R
         } else if (3 == b)
             if ((f[0] > 1.2 * E || y > 1.5 * E) && "www" == g) {
-                var N = w,
-                    S = Math.min(N / f[0], .66 * (_ - C));
+                var N = _,
+                    S = Math.min(N / f[0], .66 * (w - C));
                 if (v[0] = o(m[0], N, S, {
                         lastColumn: 1
                     }), "www" == g) {
-                    var N = intval(w - x) / 2,
-                        R = Math.min(_ - S - C, N / f[1], N / f[2]);
+                    var N = intval(_ - x) / 2,
+                        R = Math.min(w - S - C, N / f[1], N / f[2]);
                     v[1] = o(m[1], N, R, {
                         lastRow: 1
-                    }), v[2] = o(m[2], w - N - x, R, {
+                    }), v[2] = o(m[2], _ - N - x, R, {
                         lastColumn: 1,
                         lastRow: 1
                     })
                 } else {
-                    var A = intval((w - x) / f[2] / (1 / f[1] + 1 / f[2])),
-                        L = w - A - x,
-                        R = Math.min(_ - S - C, A / f[2], L / f[1]);
+                    var A = intval((_ - x) / f[2] / (1 / f[1] + 1 / f[2])),
+                        L = _ - A - x,
+                        R = Math.min(w - S - C, A / f[2], L / f[1]);
                     v[1] = o(m[1], A, R, {
                         lastRow: 1
                     }), v[2] = o(m[2], A, R, {
@@ -741,16 +747,16 @@ var ThumbsEdit = {
                         lastColumn: 1
                     })
                 }
-                T = w, z = S + R + C
+                T = _, z = S + R + C
             } else {
-                var R = _,
-                    Y = intval(Math.min(R * f[0], .75 * (w - x)));
+                var R = w,
+                    Y = intval(Math.min(R * f[0], .75 * (_ - x)));
                 v[0] = o(m[0], Y, R, {
                     lastRow: 1
                 });
-                var P = f[1] * (_ - C) / (f[2] + f[1]),
-                    X = _ - P - C,
-                    N = Math.min(w - Y - x, intval(P * f[2]), intval(X * f[1]));
+                var P = f[1] * (w - C) / (f[2] + f[1]),
+                    X = w - P - C,
+                    N = Math.min(_ - Y - x, intval(P * f[2]), intval(X * f[1]));
                 v[1] = o(m[1], N, X, {
                     lastColumn: 1
                 }), v[2] = o(m[2], N, P, {
@@ -758,20 +764,20 @@ var ThumbsEdit = {
                     lastRow: 1
                 });
                 var T = Y + N + x,
-                    z = _
+                    z = w
             }
         else if (4 == b)
             if ((f[0] > 1.2 * E || y > 1.5 * E) && "wwww" == g) {
-                var N = w,
-                    S = Math.min(N / f[0], .66 * (_ - C));
+                var N = _,
+                    S = Math.min(N / f[0], .66 * (w - C));
                 v[0] = o(m[0], N, S, {
                     lastColumn: 1
                 });
-                var R = (w - 2 * x) / (f[1] + f[2] + f[3]),
+                var R = (_ - 2 * x) / (f[1] + f[2] + f[3]),
                     A = intval(R * f[1]),
                     L = intval(R * f[2]),
                     B = N - A - L - 2 * x,
-                    R = Math.min(_ - S - C, R);
+                    R = Math.min(w - S - C, R);
                 v[1] = o(m[1], A, R, {
                     lastRow: 1
                 }), v[2] = o(m[2], L, R, {
@@ -779,18 +785,18 @@ var ThumbsEdit = {
                 }), v[3] = o(m[3], B, R, {
                     lastColumn: 1,
                     lastRow: 1
-                }), T = w, z = S + R + C
+                }), T = _, z = S + R + C
             } else {
-                var R = _,
-                    Y = Math.min(R * f[0], .66 * (w - x));
+                var R = w,
+                    Y = Math.min(R * f[0], .66 * (_ - x));
                 v[0] = o(m[0], Y, R, {
                     lastRow: 1
                 });
-                var N = (_ - 2 * C) / (1 / f[1] + 1 / f[2] + 1 / f[3]),
+                var N = (w - 2 * C) / (1 / f[1] + 1 / f[2] + 1 / f[3]),
                     X = intval(N / f[1]),
                     P = intval(N / f[2]),
                     H = R - X - P - 2 * C,
-                    N = Math.min(w - Y - x, N);
+                    N = Math.min(_ - Y - x, N);
                 v[1] = o(m[1], N, X, {
                     lastColumn: 1
                 }), v[2] = o(m[2], N, P, {
@@ -798,7 +804,7 @@ var ThumbsEdit = {
                 }), v[3] = o(m[3], N, H, {
                     lastColumn: 1,
                     lastRow: 1
-                }), T = Y + N + x, z = _
+                }), T = Y + N + x, z = w
             }
         else {
             var q = [],
@@ -809,15 +815,15 @@ var ThumbsEdit = {
                 -1 != indexOf(u, I) ? q[q.length] = t : q[q.length] = Math.min(1, t), I++
             });
             var O, W, D, j = {};
-            for (j[(O = b) + ""] = [h(q, w, x)], O = 1; b - 1 >= O; O++) j[O + "," + (secont_line = b - O)] = [h(q.slice(0, O), w, x), h(q.slice(O), w, x)];
+            for (j[(O = b) + ""] = [l(q, _, x)], O = 1; b - 1 >= O; O++) j[O + "," + (secont_line = b - O)] = [l(q.slice(0, O), _, x), l(q.slice(O), _, x)];
             for (O = 1; b - 2 >= O; O++)
-                for (W = 1; b - O - 1 >= W; W++) j[O + "," + W + "," + (D = b - O - W)] = [h(q.slice(0, O), w, x), h(q.slice(O, O + W), w, x), h(q.slice(O + W), w, x)];
+                for (W = 1; b - O - 1 >= W; W++) j[O + "," + W + "," + (D = b - O - W)] = [l(q.slice(0, O), _, x), l(q.slice(O, O + W), _, x), l(q.slice(O + W), _, x)];
             var F, U = null,
                 G = 0;
             for (var J in j) {
                 var K = j[J],
                     Q = d(K) + C * (K.length - 1),
-                    V = Math.abs(Q - _);
+                    V = Math.abs(Q - w);
                 if (-1 != J.indexOf(",")) {
                     for (var Z = J.split(","), I = 0; I < Z.length; I++) Z[I] = intval(Z[I]);
                     (Z[0] > Z[1] || Z[2] && Z[1] > Z[2]) && (V += 50, V *= 1.5)
@@ -830,14 +836,14 @@ var ThumbsEdit = {
                     re = se.length - 1,
                     a = {};
                 ae == I && (a.lastRow = !0);
-                for (var de = w, he = 0; he < se.length; he++) {
-                    var le = se[he],
+                for (var de = _, le = 0; le < se.length; le++) {
+                    var he = se[le],
                         ue = ee.shift(),
                         ce = a;
-                    re == he ? (thumb_width = Math.ceil(de), ce.lastColumn = !0) : (thumb_width = intval(ue * oe), de -= thumb_width + x), v[v.length] = o(le, thumb_width, oe, ce)
+                    re == le ? (thumb_width = Math.ceil(de), ce.lastColumn = !0) : (thumb_width = intval(ue * oe), de -= thumb_width + x), v[v.length] = o(he, thumb_width, oe, ce)
                 }
             }
-            T = w, z = F
+            T = _, z = F
         }
         return {
             width: intval(T),

@@ -522,22 +522,6 @@
     background-color: rgba(0, 0, 0, .6)
 }
 
-.video_module .video .page_video_duration {
-    font-size: 12.5px;
-    padding: 3px 6px;
-    margin: 8px;
-    background: rgba(0, 0, 0, .5);
-    border-radius: 2px;
-    color: #fff;
-    position: absolute;
-    bottom: 0;
-    right: 0
-}
-
-.video_module .video .page_video_duration:empty {
-    display: none
-}
-
 .video_module .video .page_video_thumb {
     width: 200px;
     height: 112px;
