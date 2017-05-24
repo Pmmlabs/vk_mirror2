@@ -1424,7 +1424,18 @@ var Videoview = {
                 all_copies: t
             }, {
                 onDone: function(e) {
-                    a && (a.innerHTML = e)
+                    val(a, e)
+                }
+            })
+        },
+        forceAutoplay: function(e, i, o, t) {
+            o = domData(t, "enable") || o, ajax.post("al_video.php?act=force_autoplay", {
+                video: e,
+                enable: o,
+                hash: i
+            }, {
+                onDone: function(e) {
+                    val(t, e), domData(t, "enable", o ? "0" : "1")
                 }
             })
         },
@@ -1843,17 +1854,18 @@ var Videoview = {
         },
         addToClubPlaylistBoxInit: function(e, i, o) {
             function t(e, i) {
-                return hide("mv_add_to_club_albums"), val("mv_add_to_club_albums_list", ""), -1 == e ? void val("mv_add_to_club_gid", "") : (show("mv_add_to_club_albums_progress"), void ajax.post("al_video.php?act=a_get_club_playlists", {
-                    gid: i,
-                    oid: mvcur.mvData.oid,
-                    vid: mvcur.mvData.vid
-                }, {
-                    onDone: function(e) {
-                        playlistsHtml = "", each(e, function(e, i) {
-                            playlistsHtml += '<div class="mv_add_to_club_albums_list_item checkbox ' + (+i.added ? "on" : "") + '" data-id="' + i.id + '" onclick="checkbox(this)">' + i.title + "</div>"
-                        }), val("mv_add_to_club_albums_list", playlistsHtml), val("mv_add_to_club_gid", i), hide("mv_add_to_club_albums_progress"), show("mv_add_to_club_albums")
-                    }
-                }))
+                return hide("mv_add_to_club_albums"), val("mv_add_to_club_albums_list", ""), -1 == e ? void val("mv_add_to_club_gid", "") : (show("mv_add_to_club_albums_progress"),
+                    void ajax.post("al_video.php?act=a_get_club_playlists", {
+                        gid: i,
+                        oid: mvcur.mvData.oid,
+                        vid: mvcur.mvData.vid
+                    }, {
+                        onDone: function(e) {
+                            playlistsHtml = "", each(e, function(e, i) {
+                                playlistsHtml += '<div class="mv_add_to_club_albums_list_item checkbox ' + (+i.added ? "on" : "") + '" data-id="' + i.id + '" onclick="checkbox(this)">' + i.title + "</div>"
+                            }), val("mv_add_to_club_albums_list", playlistsHtml), val("mv_add_to_club_gid", i), hide("mv_add_to_club_albums_progress"), show("mv_add_to_club_albums")
+                        }
+                    }))
             }
             WideDropdown.deinit("add_to_pl_club_dd"), mvcur.addToClubPl = WideDropdown.init("add_to_pl_club_dd", {
                 defaultItems: i,

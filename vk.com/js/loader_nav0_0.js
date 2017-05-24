@@ -187,7 +187,7 @@ var stVersions = {
     'video.css': 21613671565,
     'videocat.js': 1618923991,
     'videocat.css': 17529432550,
-    'videoview.js': 1193625786,
+    'videoview.js': 3561046608,
     'videoview.css': 24012903641,
     'video_edit.js': 2135196486,
     'video_edit.css': 15809073912,
@@ -583,4 +583,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 8166;
+var _rnd = 6897;
