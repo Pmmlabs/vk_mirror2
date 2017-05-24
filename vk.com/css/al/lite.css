@@ -2291,22 +2291,9 @@ h2.page_block_h2 {
     height: 100%
 }
 
-.video_thumb_label_item {
-    margin-left: 12px
-}
-
 .video_thumb_label_item:before {
-    content: "\2022 ";
-    color: #b3b3b3;
-    font-size: 8px;
-    padding: 0 1px 2px;
-    text-decoration: none;
-    vertical-align: middle;
-    display: inline-block;
-    pointer-events: none;
-    position: relative;
-    left: -5px;
-    color: #fff
+    content: ' \b7  ';
+    pointer-events: none
 }
 
 .video_thumb_label_item:empty+.video_thumb_label_item,

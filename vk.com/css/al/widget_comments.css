@@ -51,7 +51,7 @@
 
 .wcomments_posts:empty,
 .wcomments_section_admin_bl .wcomments_posts {
-    margin-bottom: 0
+    padding-bottom: 0
 }
 
 .wcomments_posts_outer {

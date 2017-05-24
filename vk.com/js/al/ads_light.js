@@ -290,7 +290,7 @@
                 case "ya_direct":
                     if (AdsLight.sendExperimentStat(a, "lineup"), vk__adsLight.yaCloseLink = d[0], !vk__adsLight.yaDirectLoaded) {
                         if (vk__adsLight.yaDirectLoadTries > 3) continue;
-                        return AdsLight.initYaDirect(), void setTimeout(function() {
+                        return AdsLight.initYaDirect(d[2]), void setTimeout(function() {
                             AdsLight.tryExperiment(e)
                         }, 300)
                     }
@@ -693,11 +693,11 @@
         return addEvent(e, "click dblclick mousedown mouseup touchstart touchmove touchend", i, !1, !1, !0), t || cur.destroy.push(function(e) {
             cleanElems(e)
         }.pbind(e)), !0
-    }, AdsLight.initYaDirect = function() {
-        vk__adsLight.yaDirectLoadTries++, vk__adsLight.yaDirectLoading || (vk__adsLight.yaDirectLoading = !0, function(e, t, s, i, a) {
-            e[s] = e[s] || [], e[s].push(function() {
+    }, AdsLight.initYaDirect = function(e) {
+        vk__adsLight.yaDirectLoadTries++, vk__adsLight.yaDirectLoading || (vk__adsLight.yaDirectLoading = !0, function(t, s, i, a, d) {
+            t[i] = t[i] || [], t[i].push(function() {
                 vk__adsLight.yaDirectLoaded = !0, vk__adsLight.yaDirectLoading = !1
-            }), a = t.getElementsByTagName("script")[0], i = t.createElement("script"), i.type = "text/javascript", i.src = "//an.yandex.ru/system/context.js", i.async = !0, a.parentNode.insertBefore(i, a)
+            }), d = s.getElementsByTagName("script")[0], a = s.createElement("script"), a.type = "text/javascript", a.src = e ? e : "//an.yandex.ru/system/context.js", a.async = !0, d.parentNode.insertBefore(a, d)
         }(window, window.document, "yandexContextAsyncCallbacks"))
     }, AdsLight.tryRenderYaDirect = function(e, t, s, i) {
         if (vk__adsLight.yaDirectLoaded) {

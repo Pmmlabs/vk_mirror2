@@ -1563,7 +1563,18 @@ a .app_widget_tiles_title {
 
 .app_widget_table.app_widget_imaged .app_widget_table_td:first-child img,
 .app_widget_table.app_widget_imaged .app_widget_table_th:first-child img {
+    float: left;
     margin: -4.5px 12px -4.5px -36px
+}
+
+.app_widget_table_th {
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.app_widget_table_td {
+    font-weight: 400
 }
 
 .app_widget_table_td,
@@ -1572,11 +1583,21 @@ a .app_widget_tiles_title {
     padding: 8.5px 0;
     vertical-align: middle;
     line-height: 15px;
-    font-weight: 400;
     color: #000;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap
+    white-space: nowrap;
+    text-align: left
+}
+
+.app_widget_table_td.ta_c,
+.app_widget_table_th.ta_c {
+    text-align: center
+}
+
+.app_widget_table_td.ta_r,
+.app_widget_table_th.ta_r {
+    text-align: right
 }
 
 .app_widget_table_td.app_widget_widened,

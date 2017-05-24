@@ -590,14 +590,10 @@ var Settings = {
         }), !1
     },
     OTPAuthAppSet: function(t) {
-        return showBox("al_settings.php", {
-            act: "otp_auth_app_box",
-            hash: cur.options.otp_hash
-        }, {
-            params: {
-                dark: !0
-            }
-        }), !1
+        var e = {
+            act: "otp_auth_app_box"
+        };
+        return t ? (curBox().hide(), e.force = 1, e.hash = t) : e.hash = cur.options.otp_hash, showBox("al_settings.php", e), !1
     },
     OTPAuthDisable: function(t) {
         if (buttonLocked(t)) return !1;

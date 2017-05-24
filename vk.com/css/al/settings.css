@@ -1534,6 +1534,10 @@ a.settings_blb_title {
     width: 140px
 }
 
+.settings_otp_auth_btn {
+    margin-top: 7px
+}
+
 #settings_set_otp_app_error .msg {
     margin-bottom: 0
 }
