@@ -481,7 +481,7 @@ var stVersions = {
     'api/openapi.js': 1813688167,
     'api/xdm.js': 1449919642,
     'css_clean.js': 4210402166,
-    'hls.min.js': 4014179262,
+    'hls.min.js': 2696969781,
     'candy.min.js': 1892723665,
     'q_frame.php': 7,
     '/swf/api_wrapper.swf': 7,
@@ -583,4 +583,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 6897;
+var _rnd = 1326;
