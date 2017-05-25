@@ -1209,6 +1209,20 @@ a.group_ad_post_link.deleted.deleted:hover {
     list-style: disc
 }
 
+.group_to_public_indexing_warning.box_msg {
+    border-width: 1px 0;
+    margin: -1px -25px -20px;
+    background-color: #f0f2f5
+}
+
+.group_to_public_two_step .group_to_public_type {
+    display: none
+}
+
+.group_to_public_two_step .group_to_public_type h4.group_to_public_type__subheader {
+    margin-top: 0
+}
+
 .group_to_public_textarea {
     display: block;
     width: 100%;

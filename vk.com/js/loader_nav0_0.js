@@ -222,7 +222,7 @@ var stVersions = {
     'groups.css': 23861449493,
     'groups.js': 2975645919,
     'groups_list.js': 3507753248,
-    'groups_edit.css': 26671812795,
+    'groups_edit.css': 27930698128,
     'groups_edit.js': 4194796742,
     'profile.css': 23260935752,
     'profile.js': 116458155,
@@ -583,4 +583,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 1326;
+var _rnd = 6821;
