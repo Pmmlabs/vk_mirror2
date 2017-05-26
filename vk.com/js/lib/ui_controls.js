@@ -773,7 +773,7 @@ extend(UiControl.prototype, {
                 var r = l.options.formatResult(h);
                 if (i && (r = l.options.highlight(r, i)) && --n, r) {
                     var a = [h[0], r];
-                    "1" === h[5] && a.push(!0), s.push(a)
+                    a.push("1" === h[5]), h[3] && a.push(1), s.push(a)
                 }
             }
         }
@@ -930,7 +930,8 @@ extend(UiControl.prototype, {
         FIRST: "first",
         LAST: "last",
         ACTIVE: "active",
-        SCROLLABLE: "result_list_scrollable"
+        SCROLLABLE: "result_list_scrollable",
+        LABEL: "label"
     },
     controlName: "SelectList",
     initOptions: function(t, e) {
@@ -1045,10 +1046,10 @@ extend(UiControl.prototype, {
         this.maxHeight < this.list.offsetHeight ? (this.container.style.height = this.maxHeight + "px", addClass(this.container, this.CSS.SCROLLABLE)) : (removeClass(this.container, this.CSS.SCROLLABLE), this.container.style.height = "auto")
     },
     content: function(t) {
-        var e, i, s, o, n, l, h = [],
-            r = t.length;
-        for (e = 0; r > e; ++e) i = t[e], s = i[0], o = i[1], n = i[2], l = this.uid + ", " + e, s = void 0 === s || null === s ? "" : s.toString(), o = (void 0 === o || null === o ? "" : o.toString()) || s, h.push("<li ", n ? 'dis="1"' : 'onmousemove="Select.itemMouseMove(' + l + ', this)" onmousedown="Select.itemMouseDown(' + l + ', this)" onclick="Select.itemMouseDown(' + l + ', this)"', ' val="', s.replace(/&/g, "&amp;").replace(/"/g, "&quot;"), '" class="', n ? "disabled " : "", e == r - 1 ? this.CSS.LAST + " " : "", (e ? "" : this.CSS.FIRST) + '">', o, "</li>");
-        return this.list.innerHTML = h.join(""), this.updateContainer(), !0
+        var e, i, s, o, n, l, h, r, a = [],
+            d = t.length;
+        for (e = 0; d > e; ++e) i = t[e], s = i[0], o = i[1], n = i[2], l = i[3], h = this.uid + ", " + e, s = void 0 === s || null === s ? "" : s.toString(), o = (void 0 === o || null === o ? "" : o.toString()) || s, r = 1 === l, a.push("<li ", n || r ? 'dis="1"' : 'onmousemove="Select.itemMouseMove(' + h + ', this)" onmousedown="Select.itemMouseDown(' + h + ', this)" onclick="Select.itemMouseDown(' + h + ', this)"', ' val="', s.replace(/&/g, "&amp;").replace(/"/g, "&quot;"), '" class="', r ? this.CSS.LABEL + " " : "", n || r ? "disabled " : "", e == d - 1 ? this.CSS.LAST + " " : "", (e ? "" : this.CSS.FIRST) + '">', o, "</li>");
+        return this.list.innerHTML = a.join(""), this.updateContainer(), !0
     },
     removeItem: function(t) {
         var e, i, s = this.list.childNodes,
@@ -1589,7 +1590,8 @@ extend(UiControl.prototype, {
             l = {};
         for (i = 0; i < this.options.indexkeys.length; i++) e[this.options.indexkeys[i]] && (n += " " + e[this.options.indexkeys[i]].replace(this.options.delimeter, " ").replace(/<[^>]*>/g, ""));
         for (n += (parseLatin(n) || "") + (parseCyr(n) || ""), n = trim(winToUtf(n).toLowerCase()).split(/\s+/), i = 0; i < n.length; i++)
-            for (s = 1; s <= this.options.chars; s++) o = n[i].substr(0, s), l[o] || (l[o] = 1, void 0 === this.storage.index[o] && (this.storage.index[o] = []), this.storage.index[o].push(t))
+            for (s = 1; s <= this.options.chars; s++) o = n[i].substr(0, s), l[o] || (l[o] = 1, void 0 === this.storage.index[o] && (this.storage.index[o] = []),
+                this.storage.index[o].push(t))
     },
     search: function(t) {
         debug("search start, index width: " + this.options.chars + ", data size: " + this.storage.data.length), t = trim(t.toLowerCase().replace(this.options.delimeter, " ")), debug("pattern: " + t + ", length: " + t.length);

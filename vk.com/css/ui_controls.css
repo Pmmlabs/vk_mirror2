@@ -487,6 +487,16 @@
     color: #000
 }
 
+.result_list ul li.label {
+    font-weight: 700
+}
+
+.result_list ul li.label.disabled {
+    background: none;
+    border-bottom: 1px solid #eee;
+    margin-top: 5px
+}
+
 .result_list_scrollable ul li.last {
     border-bottom: 0
 }
