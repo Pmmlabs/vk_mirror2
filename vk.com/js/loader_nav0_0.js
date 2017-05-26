@@ -194,7 +194,7 @@ var stVersions = {
     'video_upload.js': 1022936202,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 11963181133,
-    'videoplayer.js': 80612708939,
+    'videoplayer.js': 78589008907,
     'videoplayer.css': 35514351702,
     'translation.js': 2431784533,
     'translation.css': 13214470533,
@@ -519,7 +519,7 @@ var stVersions = {
     'stories.js': 675877973,
     'stories.css': 14182053612,
     'cmodules/internal/meminfo.js': 11393787619,
-    'cmodules/internal/nospam.js': 29356626234,
+    'cmodules/internal/nospam.js': 25230023483,
     'shortener.js': 1002525642,
     'lang': 6792
 };
@@ -583,4 +583,4 @@ var stTypes = {
         'videoplayer.js': 1
     }
 };
-var _rnd = 6821;
+var _rnd = 6898;
