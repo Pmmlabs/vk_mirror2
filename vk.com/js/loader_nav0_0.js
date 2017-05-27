@@ -463,7 +463,7 @@ var stVersions = {
     'landings/ads.css': 15807447134,
     'landing_aes.js': 16840307206,
     'vkme.css': 14401066383,
-    'ui_controls.js': 3864935042,
+    'ui_controls.js': 3923331231,
     'highcharts.js': 1982709850,
     'ui_controls.css': 13888645733,
     'selects.js': 2835310113,
@@ -586,4 +586,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 8808;
+var _rnd = 1817;

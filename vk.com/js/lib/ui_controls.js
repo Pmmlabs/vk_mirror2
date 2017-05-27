@@ -773,7 +773,7 @@ extend(UiControl.prototype, {
                 var r = l.options.formatResult(h);
                 if (i && (r = l.options.highlight(r, i)) && --n, r) {
                     var a = [h[0], r];
-                    a.push("1" === h[5]), h[3] && a.push(1), s.push(a)
+                    a.push("1" === h[5]), "label" === h[3] && a.push(1), s.push(a)
                 }
             }
         }
