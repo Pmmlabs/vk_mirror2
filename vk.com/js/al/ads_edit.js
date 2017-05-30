@@ -1743,19 +1743,19 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
             max_length_mobile: 0
         },
         category1_id: {
-            value: 0,
+            value: '',
             data: []
         },
         subcategory1_id: {
-            value: 0,
+            value: '',
             data: []
         },
         category2_id: {
-            value: 0,
+            value: '',
             data: []
         },
         subcategory2_id: {
-            value: 0,
+            value: '',
             data: []
         },
         stats_url: {
@@ -2481,9 +2481,15 @@ AdsViewEditor.prototype.initUiParam = function(paramName) {
             targetElem = ge(this.options.targetIdPrefix + paramName);
             targetElem.removeAttribute('autocomplete');
             this.params[paramName].ui = new Dropdown(targetElem, this.getUiParamData(paramName), {
+                introText: getLang('ads_select_category'),
+                placeholder: getLang('ads_select_category'),
                 selectedItem: this.params[paramName].value,
                 disabledText: this.getUiParamDisabledText(paramName),
                 big: true,
+                autocomplete: true,
+                indexkeys: [1, 4],
+                includeLabelsOnMatch: true,
+                preventDuplicates: true,
                 width: this.options.uiWidth,
                 onChange: function(value) {
                     this.onUiChange(paramName, value);

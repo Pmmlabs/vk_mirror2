@@ -371,7 +371,7 @@ var stVersions = {
     'ads.js': 2664761182,
     'ads_payments.js': 2170749464,
     'ads_edit.css': 12226299689,
-    'ads_edit.js': 2387769830,
+    'ads_edit.js': 192875725,
     'ads_edit_geo.js': 1634516705,
     'ads_moder_common.css': 12378061540,
     'ads_moder.css': 11740739724,
@@ -463,9 +463,9 @@ var stVersions = {
     'landings/ads.css': 15807447134,
     'landing_aes.js': 16840307206,
     'vkme.css': 14401066383,
-    'ui_controls.js': 3923331231,
+    'ui_controls.js': 756821912,
     'highcharts.js': 1982709850,
-    'ui_controls.css': 13888645733,
+    'ui_controls.css': 14067838183,
     'selects.js': 2835310113,
     'mentions.js': 3097650360,
     'apps_flash.js': 574154589,
@@ -586,4 +586,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 3495;
+var _rnd = 8225;

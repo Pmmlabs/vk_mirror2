@@ -488,13 +488,13 @@
 }
 
 .result_list ul li.label {
-    font-weight: 700
+    font-weight: 700;
+    border-bottom: 1px solid #eee;
+    margin-top: 5px
 }
 
 .result_list ul li.label.disabled {
-    background: none;
-    border-bottom: 1px solid #eee;
-    margin-top: 5px
+    background: none
 }
 
 .result_list_scrollable ul li.last {

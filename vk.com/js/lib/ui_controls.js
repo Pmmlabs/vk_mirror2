@@ -213,6 +213,8 @@ extend(UiControl.prototype, {
         noResult: getLang("search_nothing_found"),
         cacheLength: 100,
         indexkeys: void 0,
+        includeLabelsOnMatch: !1,
+        preventDuplicates: !1,
         onShow: void 0,
         onHide: void 0,
         onChange: void 0,
@@ -265,7 +267,9 @@ extend(UiControl.prototype, {
     },
     init: function(t, e) {
         this.disableSomeFeatures = 0 === location.pathname.indexOf("/join"), this.dataURL = "string" == typeof e ? e : null, this.dataItems = isArray(e) ? e : [], this.currentList = this.dataItems, this.dataURL ? this.cache = new Cache(this.options) : this.indexer = new Indexer(this.dataItems, {
-            indexkeys: this.options.indexkeys
+            indexkeys: this.options.indexkeys,
+            includeLabelsOnMatch: this.options.includeLabelsOnMatch,
+            preventDuplicates: this.options.preventDuplicates
         }), this._selectedItems = [], this.input = t, this.disabled = !1, this.mouseIsOver = !1, this.hasFocus = 0, this.scrollbarWidth = 0, this.timeout = null, this.readOnly = this.options.autocomplete ? "" : 'readonly="true"', this.requestTimeout = null, this.selectedTokenId = 0, this.selectorWidth = this.options.width
     },
     initDOM: function(t, e) {
@@ -1048,7 +1052,7 @@ extend(UiControl.prototype, {
     content: function(t) {
         var e, i, s, o, n, l, h, r, a = [],
             d = t.length;
-        for (e = 0; d > e; ++e) i = t[e], s = i[0], o = i[1], n = i[2], l = i[3], h = this.uid + ", " + e, s = void 0 === s || null === s ? "" : s.toString(), o = (void 0 === o || null === o ? "" : o.toString()) || s, r = 1 === l, a.push("<li ", n || r ? 'dis="1"' : 'onmousemove="Select.itemMouseMove(' + h + ', this)" onmousedown="Select.itemMouseDown(' + h + ', this)" onclick="Select.itemMouseDown(' + h + ', this)"', ' val="', s.replace(/&/g, "&amp;").replace(/"/g, "&quot;"), '" class="', r ? this.CSS.LABEL + " " : "", n || r ? "disabled " : "", e == d - 1 ? this.CSS.LAST + " " : "", (e ? "" : this.CSS.FIRST) + '">', o, "</li>");
+        for (e = 0; d > e; ++e) i = t[e], s = i[0], o = i[1], n = i[2], l = i[3], h = this.uid + ", " + e, s = void 0 === s || null === s ? "" : s.toString(), o = (void 0 === o || null === o ? "" : o.toString()) || s, r = 1 === l, a.push("<li ", n ? 'dis="1"' : 'onmousemove="Select.itemMouseMove(' + h + ', this)" onmousedown="Select.itemMouseDown(' + h + ', this)" onclick="Select.itemMouseDown(' + h + ', this)"', ' val="', s.replace(/&/g, "&amp;").replace(/"/g, "&quot;"), '" class="', r ? this.CSS.LABEL + " " : "", n ? "disabled " : "", e == d - 1 ? this.CSS.LAST + " " : "", (e ? "" : this.CSS.FIRST) + '">', o, "</li>");
         return this.list.innerHTML = a.join(""), this.updateContainer(), !0
     },
     removeItem: function(t) {
@@ -1583,15 +1587,17 @@ extend(UiControl.prototype, {
         }, clearTimeout(this.indexTimer), this.indexTimer = setTimeout(this.createIndex.bind(this), 10)
     },
     createIndex: function() {
-        this.storage.data.length && (this.storage.index = {}, debug("createIndex start, " + this.storage.data.length + " items"), each(this.storage.data, this.indexItem.bind(this)), debug("createIndex ended"))
+        this.storage.data.length && (this.storage.index = {}, debug("createIndex start, " + this.storage.data.length + " items"), this.lastLabel = null, each(this.storage.data, function(t, e) {
+            "label" === e[3] && this.options.includeLabelsOnMatch && (this.lastLabel = t), this.indexItem(t, e, this.lastLabel)
+        }.bind(this)), debug("createIndex ended"))
     },
-    indexItem: function(t, e) {
-        var i, s, o, n = "",
-            l = {};
-        for (i = 0; i < this.options.indexkeys.length; i++) e[this.options.indexkeys[i]] && (n += " " + e[this.options.indexkeys[i]].replace(this.options.delimeter, " ").replace(/<[^>]*>/g, ""));
-        for (n += (parseLatin(n) || "") + (parseCyr(n) || ""), n = trim(winToUtf(n).toLowerCase()).split(/\s+/), i = 0; i < n.length; i++)
-            for (s = 1; s <= this.options.chars; s++) o = n[i].substr(0, s), l[o] || (l[o] = 1, void 0 === this.storage.index[o] && (this.storage.index[o] = []),
-                this.storage.index[o].push(t))
+    indexItem: function(t, e, i) {
+        var s, o, n, l = "",
+            h = {};
+        for (s = 0; s < this.options.indexkeys.length; s++) e[this.options.indexkeys[s]] && (l += " " + e[this.options.indexkeys[s]].replace(this.options.delimeter, " ").replace(/<[^>]*>/g, ""));
+        for (l += (parseLatin(l) || "") + (parseCyr(l) || ""), l = trim(winToUtf(l).toLowerCase()).split(/\s+/),
+            s = 0; s < l.length; s++)
+            for (o = 1; o <= this.options.chars; o++) n = l[s].substr(0, o), h[n] || (h[n] = 1, void 0 === this.storage.index[n] && (this.storage.index[n] = []), i && i != t && this.storage.index[n].push(i), this.storage.index[n].push(t))
     },
     search: function(t) {
         debug("search start, index width: " + this.options.chars + ", data size: " + this.storage.data.length), t = trim(t.toLowerCase().replace(this.options.delimeter, " ")), debug("pattern: " + t + ", length: " + t.length);
@@ -1600,8 +1606,8 @@ extend(UiControl.prototype, {
         if (t.length <= this.options.chars && -1 == t.indexOf(" ")) {
             debug("found whole pattern indexed");
             var i = [];
-            return each(this.storage.index[t] || [], function() {
-                i.push(e.storage.data[this])
+            return e.already_added = {}, each(this.storage.index[t] || [], function() {
+                e.options.preventDuplicates && e.already_added[this] || (i.push(e.storage.data[this]), e.already_added[this] = !0)
             }), i
         }
         t = t.split(" ");
@@ -1612,18 +1618,21 @@ extend(UiControl.prototype, {
             return (!o || !t || t.length < s) && (s = t ? t.length : 0, o = this.substr(0, e.options.chars)), !s
         });
         var n = [];
-        return debug("index returned: " + s + " items"), s ? (debug("starting manual filter"), each(e.storage.index[o.substr(0, e.options.chars)], function(i, s) {
-            var o, l = e.storage.data[s],
-                h = !1,
-                r = "";
-            for (o = 0; o < e.options.indexkeys.length; o++) r += " " + l[e.options.indexkeys[o]].replace(e.options.delimeter, " ").replace(/<[^>]*>/, "");
-            for (r += (parseLatin(r) || "") + (parseCyr(r) || ""), r = winToUtf(r).toLowerCase(), o = 0; o < t.length; o++)
-                if (-1 == r.indexOf(" " + t[o])) {
-                    h = !0;
+        if (debug("index returned: " + s + " items"), !s) return n;
+        debug("starting manual filter");
+        var l = null;
+        return e.already_added = {}, each(e.storage.index[o.substr(0, e.options.chars)], function(i, s) {
+            var o, h = e.storage.data[s],
+                r = !1,
+                a = "";
+            for ("label" === h[3] && (l = s), o = 0; o < e.options.indexkeys.length; o++) h[e.options.indexkeys[o]] && (a += " " + h[e.options.indexkeys[o]].replace(e.options.delimeter, " ").replace(/<[^>]*>/, ""));
+            for (a += (parseLatin(a) || "") + (parseCyr(a) || ""), a = winToUtf(a).toLowerCase(), o = 0; o < t.length; o++)
+                if (-1 == a.indexOf(" " + t[o])) {
+                    r = !0;
                     break
                 }
-            h || n.push(l)
-        }), debug("manual filter ended, found " + n.length + " items"), n) : n
+            r || (e.options.includeLabelsOnMatch && l && (s == l || e.already_added[l] || (n.push(e.storage.data[l]), e.already_added[l] = !0), l = null), (e.options.preventDuplicates && !e.already_added[s] || !e.options.preventDuplicates) && n.push(h), e.already_added[s] = !0)
+        }), debug("manual filter ended, found " + n.length + " items"), n
     },
     flush: function() {
         delete this.storage
