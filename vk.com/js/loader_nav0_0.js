@@ -371,7 +371,7 @@ var stVersions = {
     'ads.js': 2664761182,
     'ads_payments.js': 2170749464,
     'ads_edit.css': 12226299689,
-    'ads_edit.js': 509956036,
+    'ads_edit.js': 2387769830,
     'ads_edit_geo.js': 1634516705,
     'ads_moder_common.css': 12378061540,
     'ads_moder.css': 11740739724,
@@ -586,4 +586,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 1870;
+var _rnd = 3495;
