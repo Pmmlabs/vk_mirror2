@@ -47,6 +47,7 @@ var navMap = {
     'pages($|/)': ['al_pages.php', ['pages.css', 'pages.js', 'wk.css', 'wk.js']],
     'page-?\\d+_\\d+$': ['al_pages.php', ['pages.css', 'pages.js', 'wk.css', 'wk.js']],
     'restore($|/)': ['al_restore.php', ['restore.js', 'restore.css']],
+    'restoreinfo($|/)': ['al_restore.php', ['restore.js', 'restore.css']],
     'recover($|/)': ['recover.php', ['recover.js', 'recover.css']],
     'gifts\\d*$': ['al_gifts.php', ['gifts.js', 'gifts.css']],
     'docs($|/)': ['docs.php', ['docs.css', 'docs.js', 'indexer.js']],
@@ -316,8 +317,8 @@ var stVersions = {
     'notifier.css': 21186258733,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
-    'restore.js': 3120912976,
-    'restore.css': 16485284770,
+    'restore.js': 4004318223,
+    'restore.css': 18307045252,
     'recover.js': 2830033131,
     'recover.css': 2080137791,
     'docs.js': 4024778124,
@@ -442,7 +443,7 @@ var stVersions = {
     'landings/vk10_years.css': 13153522706,
     'chronicle.css': 13354381045,
     'market.css': 20441032097,
-    'market.js': 1088949930,
+    'market.js': 2355532191,
     'vk2016.css': 2369321949,
     'landings/common.css': 17189840514,
     'landings/community_message.css': 12617096197,
@@ -586,4 +587,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 1194;
+var _rnd = 4861;

@@ -594,3 +594,21 @@
 .restore_close_button {
     margin-left: 10px
 }
+
+.restore_info_section_title {
+    text-align: center
+}
+
+.restore_info_section {
+    margin: 15px auto 0;
+    padding-left: 15px;
+    width: 510px
+}
+
+.restore_info_error_big_text {
+    line-height: 20px
+}
+
+.restore_info_error {
+    display: none
+}
