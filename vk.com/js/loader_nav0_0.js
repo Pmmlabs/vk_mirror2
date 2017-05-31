@@ -521,8 +521,8 @@ var stVersions = {
     'cmodules/internal/meminfo.js': 11393787619,
     'cmodules/internal/nospam.js': 25938936256,
     'shortener.js': 1002525642,
-    'lead_forms_app.css': 14534909232,
-    'lead_forms_app.js': 13497003815,
+    'lead_forms_app.css': 13538777352,
+    'lead_forms_app.js': 14175959010,
     'lang': 6792
 };
 var stTypes = {
@@ -586,4 +586,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 8225;
+var _rnd = 1194;
