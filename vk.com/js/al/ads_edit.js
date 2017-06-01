@@ -1744,7 +1744,8 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
         },
         category1_id: {
             value: '',
-            data: []
+            data: [],
+            suggestions: []
         },
         subcategory1_id: {
             value: '',
@@ -2929,9 +2930,18 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
         case 'category1_id':
             var value = ((this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_APP && this.params.link_id.app_game_links_ids[this.params.link_id.value]) ? 125 : 0);
             var disabled = (value == 125);
+            if (!value && this.params.category1_id.suggestions.length) {
+                var suggestion = this.params.category1_id.suggestions[0];
+                value = suggestion[1] ? suggestion[1] : suggestion[0];
+            }
             this.onParamUpdate(paramName, value, false, true);
             if (this.params[paramName].uiInited) {
-                this.params[paramName].ui.selectItem(value);
+                if (value) {
+                    this.params[paramName].ui.selectItem(value);
+                } else {
+                    this.params[paramName].ui.clear();
+                }
+
                 this.params[paramName].ui.disable(disabled);
             }
             break;
@@ -2939,7 +2949,11 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
             var value = 0;
             this.onParamUpdate(paramName, value, false, true);
             if (this.params[paramName].uiInited) {
-                this.params[paramName].ui.selectItem(value);
+                if (value) {
+                    this.params[paramName].ui.selectItem(value);
+                } else {
+                    this.params[paramName].ui.clear();
+                }
             }
             break;
         case 'disclaimer_medical':
@@ -4203,6 +4217,14 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
             this.updateUiParamVisibility('_link_post');
             this.updateUiParamVisibility('cost_type');
             this.updatePreview('promoted_post');
+
+            if ('category_suggestions' in result) {
+                this.params.category1_id.suggestions = result.category_suggestions;
+                this.updateUiParam('category1_id');
+            } else {
+                this.params.category1_id.suggestions = [];
+                this.updateUiParam('category1_id');
+            }
         }
     }
 

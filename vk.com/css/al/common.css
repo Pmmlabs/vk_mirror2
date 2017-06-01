@@ -7330,7 +7330,6 @@ button.ui_load_more_btn {
     opacity: 0.5
 }
 
-.audio_row .blind_label,
 .audio_layer_container .audio_author {
     display: none
 }
