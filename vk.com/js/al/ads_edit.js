@@ -1305,6 +1305,9 @@ AdsEdit.showCreatingPostBox = function(buttonElem) {
     }
 
     var ajaxParams = {};
+    var viewParams = cur.viewEditor.getParams();
+    ajaxParams.client_id = viewParams.client_id;
+    ajaxParams.campaign_id = viewParams.campaign_id;
 
     var boxOptions = {};
     boxOptions.width = 400;
@@ -1331,7 +1334,7 @@ AdsEdit.showCreatingPostBox = function(buttonElem) {
     }
 }
 
-AdsEdit.initCreatingPostBox = function(creatingPostBox, groupsDefaultItems) {
+AdsEdit.initCreatingPostBox = function(creatingPostBox, groupsDefaultItems, selectedItem) {
 
     creatingPostBox.removeButtons();
     var buttonElem = creatingPostBox.addButton(getLang('ads_edit_ad_creating_post_continue'), AdsEdit.showCreatingPostForm.pbind(creatingPostBox), 'yes', true);
@@ -1343,6 +1346,7 @@ AdsEdit.initCreatingPostBox = function(creatingPostBox, groupsDefaultItems) {
     targetElem.removeAttribute('autocomplete');
     creatingPostBox.cur.uiGroupId = new Autocomplete(targetElem, '/adsedit?act=search_user_objects&section=groups&group_purpose=' + AdsEdit.ADS_AD_CHECK_GROUP_PURPOSE_LINK_OBJECT + '&create_promoted_stealth=1', {
         defaultItems: groupsDefaultItems,
+        selectedItems: selectedItem,
 
         introText: getLang('ads_type_community'),
         placeholder: getLang('ads_type_community'),
