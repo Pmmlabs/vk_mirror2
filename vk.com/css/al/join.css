@@ -138,6 +138,26 @@
     bottom: 0px
 }
 
+.join_box_fbb.join_box_fbb_continue_with {
+    height: 62px;
+    position: relative
+}
+
+.join_box_fbb_continue_with_wrap {
+    position: absolute;
+    cursor: pointer;
+    height: 28px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2
+}
+
+.join_box_fbb_continue_with_btn {
+    z-index: 1;
+    pointer-events: none
+}
+
 .join_box_or {
     margin: 12px auto 15px;
     width: 120px;

@@ -108,13 +108,36 @@ var Index = {
         n || (n = cur.uiBday), n.val() > Index.getLastDay(e, t) && n.clear(), n.setData(Index.generateDays(e, t).slice(intval(cur.options.bday) ? 1 : 0))
     },
     fbCheck: function(e, t) {
-        stManager.add(["fbsign.js"], function() {
-            Fbsign.init()
-        });
-        var n = ge("index_fbsign" + (t || ""));
-        setStyle(n, {
-            opacity: 1
-        }), show(n)
+        if (cur.fbContinueWithSign) window.fbAsyncInit = function() {
+            FB.init({
+                appId: e,
+                xfbml: !0,
+                version: "v2.7"
+            });
+            var n = ge("index_fbcontinuewithsign" + (t || ""));
+            setStyle(n, {
+                opacity: 0,
+                height: 0,
+                overflow: "hidden"
+            }), show(n), FB.Event.subscribe("xfbml.render", function() {
+                animate(n, {
+                    height: "_box" == t ? 74 : 59,
+                    opacity: 1
+                }, 200)
+            })
+        }, window.FB && window.FB.init ? window.fbAsyncInit() : ! function(e, t, n) {
+            var o, i = e.getElementsByTagName(t)[0];
+            e.getElementById(n) || (o = e.createElement(t), o.id = n, o.src = "//connect.facebook.net/" + cur.fbLocale + "/sdk.js", i.parentNode.insertBefore(o, i))
+        }(document, "script", "facebook-jssdk");
+        else {
+            stManager.add(["fbsign.js"], function() {
+                Fbsign.init()
+            });
+            var n = ge("index_fbsign" + (t || ""));
+            setStyle(n, {
+                opacity: 1
+            }), show(n)
+        }
     },
     fbJoin: function(e) {
         cur.fbContext = e, setCookie("remixfbstate", cur.fbState, 30);
@@ -125,10 +148,10 @@ var Index = {
             a = "undefined" != typeof window.outerWidth ? window.outerWidth : document.body.clientWidth,
             r = "undefined" != typeof window.outerHeight ? window.outerHeight : document.body.clientHeight - 22,
             s = 640,
-            u = 340,
-            d = parseInt(o + (a - s) / 2, 10),
-            c = parseInt(i + (r - u) / 2.5, 10);
-        window.open(n, "fb_sign", "width=" + s + ",height=" + u + ",left=" + d + ",top=" + c);
+            d = 340,
+            u = parseInt(o + (a - s) / 2, 10),
+            c = parseInt(i + (r - d) / 2.5, 10);
+        window.open(n, "fb_sign", "width=" + s + ",height=" + d + ",left=" + u + ",top=" + c);
         return !1
     },
     fbFinish: function(e) {

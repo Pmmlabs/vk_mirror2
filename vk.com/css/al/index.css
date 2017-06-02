@@ -99,7 +99,8 @@
 
 .index_rcolumn {
     float: right;
-    width: 320px
+    width: 320px;
+    min-height: 617px
 }
 
 .index_rcolumn .page_block {
@@ -285,13 +286,30 @@
 .index_fbsign {
     display: none;
     margin: 20px -25px -25px;
-    border-top: 1px solid #e7e8ec
+    border-top: 1px solid #e7e8ec;
+    position: relative
 }
 
 .index_fb_lnk {
     padding: 15px 0;
     display: block;
     text-align: center
+}
+
+.index_fb_continue_with_btn {
+    padding: 15px 25px;
+    z-index: 1;
+    pointer-events: none
+}
+
+.index_fb_continue_with_wrap {
+    position: absolute;
+    z-index: 2;
+    top: 15px;
+    bottom: 15px;
+    left: 25px;
+    right: 25px;
+    cursor: pointer
 }
 
 .index_fb_icon {

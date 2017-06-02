@@ -143,7 +143,7 @@ var stVersions = {
     'html5audio.js': 976782859,
     'html5video.js': 223664659,
     'html5video.css': 14265186780,
-    'audioplayer.js': 3985648131,
+    'audioplayer.js': 3584326095,
     'audioplayer.css': 13529460770,
     'audio_html5.js': 287741914,
     'audio.js': 3050291824,
@@ -204,9 +204,9 @@ var stVersions = {
     'invite.css': 15394155630,
     'invite.js': 4133426028,
     'prereg.js': 4187303773,
-    'index.css': 18722189971,
-    'index.js': 752775373,
-    'join.css': 17539421805,
+    'index.css': 14795745686,
+    'index.js': 2083454908,
+    'join.css': 17359956940,
     'join.js': 4281861549,
     'intro.css': 16289153360,
     'post.css': 18034546180,
@@ -347,7 +347,7 @@ var stVersions = {
     'bugs.css': 11893073331,
     'bugtracker.js': 3501719115,
     'bugtracker.css': 14030446843,
-    'login.css': 17770535147,
+    'login.css': 16960635123,
     'login.js': 3551917100,
     'upload.js': 3319172650,
     'graffiti.js': 1826105362,
@@ -372,7 +372,7 @@ var stVersions = {
     'ads.js': 2664761182,
     'ads_payments.js': 2170749464,
     'ads_edit.css': 12226299689,
-    'ads_edit.js': 2687492517,
+    'ads_edit.js': 3435103565,
     'ads_edit_geo.js': 1634516705,
     'ads_moder_common.css': 12378061540,
     'ads_moder.css': 11740739724,
@@ -522,8 +522,8 @@ var stVersions = {
     'cmodules/internal/meminfo.js': 11393787619,
     'cmodules/internal/nospam.js': 25938936256,
     'shortener.js': 1002525642,
-    'lead_forms_app.css': 13571541250,
-    'lead_forms_app.js': 14175959010,
+    'lead_forms_app.css': 15767307050,
+    'lead_forms_app.js': 14589676992,
     'lang': 6792
 };
 var stTypes = {
@@ -587,4 +587,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 9803;
+var _rnd = 5993;

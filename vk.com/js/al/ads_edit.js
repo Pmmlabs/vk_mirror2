@@ -1338,7 +1338,9 @@ AdsEdit.initCreatingPostBox = function(creatingPostBox, groupsDefaultItems, sele
 
     creatingPostBox.removeButtons();
     var buttonElem = creatingPostBox.addButton(getLang('ads_edit_ad_creating_post_continue'), AdsEdit.showCreatingPostForm.pbind(creatingPostBox), 'yes', true);
-    addClass(buttonElem, 'button_disabled');
+    if (!selectedItem) {
+        addClass(buttonElem, 'button_disabled');
+    }
     creatingPostBox.cur.buttonLockElem = buttonElem;
     creatingPostBox.addButton(getLang('box_cancel'), false, 'no');
 
