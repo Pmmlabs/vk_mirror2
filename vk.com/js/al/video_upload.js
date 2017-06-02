@@ -896,8 +896,11 @@ var VideoUpload = {
         var o = domByClass(curBox().bodyNode, "video_upload_live_launch_steps_wrap");
         slideToggle(o, 200)
     },
-    updateLiveTransSettings: function(e, o) {
-        ajax.post("al_video.php?act=generate_live_trans_keys", {
+    updateLiveTransSettings: function(e, o, a, d) {
+        ajax.post("al_video.php", {
+            act: "generate_live_trans_keys",
+            rhash: d,
+            hash: a,
             owner_id: cur.oid,
             need_new: e ? 1 : 0
         }, {
