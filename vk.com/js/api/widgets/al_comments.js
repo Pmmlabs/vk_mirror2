@@ -1883,9 +1883,13 @@ var WComments = {
 
                                 case 'audio_playlist':
                                     {
-                                        if (alreadyTypes.audio_playlist) {
-                                            return false
-                                        }
+
+                                        if (
+                                            alreadyTypes.audio_playlist ||
+                                            (data.authorHref && !/^[/\w._-]+$/.test(data.authorHref)) ||
+                                            (data.id && !/^[\d_-]+$/.test(data.id))
+                                        ) return false;
+
                                         var coverStyle = data.coverUrl ? ('background-image:url(' + clean(unclean(data.coverUrl)) + '); background-size: cover;') : ''
                                         var playlistIds = data.id.split('_');
                                         var authorLine = '';

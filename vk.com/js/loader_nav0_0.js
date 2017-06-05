@@ -294,7 +294,7 @@ var stVersions = {
     'widget_contactus.css': 26198068039,
     'widget_post.css': 25072483187,
     'widget_allow_messages_from_community.css': 27036263107,
-    'api/widgets/al_comments.js': 2288253858,
+    'api/widgets/al_comments.js': 1751543635,
     'api/widgets/al_auth.js': 2044551244,
     'api/widgets/al_poll.js': 2701047015,
     'api/widgets/al_community.js': 665624601,
@@ -338,7 +338,7 @@ var stVersions = {
     'agents.css': 14658814398,
     'achievements.js': 897703126,
     'achievements.css': 12636811983,
-    'sf.css': 12070859374,
+    'sf.css': 11648271110,
     'sal.css': 12823946362,
     'members.css': 13846046007,
     'meminfo.css': 14736735845,
@@ -587,4 +587,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 1935;
+var _rnd = 4665;
