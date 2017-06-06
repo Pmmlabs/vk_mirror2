@@ -482,7 +482,7 @@ var stVersions = {
     'api/openapi.js': 1813688167,
     'api/xdm.js': 1449919642,
     'css_clean.js': 4210402166,
-    'hls.min.js': 2696969781,
+    'hls.min.js': 1170442927,
     'candy.min.js': 1892723665,
     'q_frame.php': 7,
     '/swf/api_wrapper.swf': 7,
@@ -522,8 +522,8 @@ var stVersions = {
     'cmodules/internal/meminfo.js': 11393787619,
     'cmodules/internal/nospam.js': 25938936256,
     'shortener.js': 1002525642,
-    'lead_forms_app.css': 15767307050,
-    'lead_forms_app.js': 14589676992,
+    'lead_forms_app.css': 15172897360,
+    'lead_forms_app.js': 9314033684,
     'lang': 6792
 };
 var stTypes = {
@@ -587,4 +587,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 7656;
+var _rnd = 3103;
