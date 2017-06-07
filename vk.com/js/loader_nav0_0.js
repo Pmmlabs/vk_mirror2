@@ -195,7 +195,7 @@ var stVersions = {
     'video_upload.js': 1490680443,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 11511429167,
-    'videoplayer.js': 78589008907,
+    'videoplayer.js': 74308658778,
     'videoplayer.css': 35062599736,
     'translation.js': 2431784533,
     'translation.css': 12762718567,
@@ -587,4 +587,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 3103;
+var _rnd = 8896;
