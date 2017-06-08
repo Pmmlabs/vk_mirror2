@@ -114,15 +114,18 @@ var Index = {
                 xfbml: !0,
                 version: "v2.7"
             });
-            var n = ge("index_fbcontinuewithsign" + (t || ""));
-            setStyle(n, {
+            var n = "_box" == t,
+                o = ge("index_fbcontinuewithsign" + (t || ""));
+            setStyle(o, {
                 opacity: 0,
                 height: 0,
-                overflow: "hidden"
-            }), show(n), FB.Event.subscribe("xfbml.render", function() {
-                animate(n, {
-                    height: "_box" == t ? 74 : 59,
-                    opacity: 1
+                overflow: "hidden",
+                marginTop: n ? 0 : 24
+            }), show(o), FB.Event.subscribe("xfbml.render", function() {
+                animate(o, {
+                    height: n ? 74 : 59,
+                    opacity: 1,
+                    marginTop: n ? 0 : 20
                 }, 200)
             })
         }, window.FB && window.FB.init ? window.fbAsyncInit() : ! function(e, t, n) {

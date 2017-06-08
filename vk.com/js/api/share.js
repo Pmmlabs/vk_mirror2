@@ -34,7 +34,7 @@
             if (!but.text) but.text = '\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c';
 
             var old = true,
-                count_style = 'display: none';
+                count_style = 'display: none;';
             if (index === undefined) {
                 gen.count = 0;
                 gen.shared = (but.type == 'button' || but.type == 'round') ? false : true;
@@ -68,8 +68,9 @@
                 head.appendChild(elem);
             }
 
-            var radius = '-webkit-border-radius: {v};-moz-border-radius: {v};border-radius: {v};',
+            var radius = '-webkit-border-radius:{v};-moz-border-radius:{v};border-radius:{v};',
                 strs = {
+                    cssreset: '-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;',
                     domain: this._base_domain,
                     table: '<table cellspacing="0" cellpadding="0" style="position: relative; cursor: pointer; width: auto; line-height: normal; border: 0; direction: ltr;" ',
                     is2x: window.devicePixelRatio >= 2 ? '_2x' : '',
@@ -90,21 +91,21 @@
                     acolor: 'color: #33567f;',
                     bg: 'background: #6287AE;-webkit-transition: background 200ms linear;transition: background 200ms linear;',
                 };
-            strs.td1 = tpl('<td style="vertical-align: middle;{font}">', strs);
+            strs.td1 = tpl('<td style="vertical-align: middle;{font}{cssreset}">', strs);
             strs.a = tpl('<a href="{domain}share.php?url=' + encodeURIComponent(gen.url) + '" onmouseup="this._btn=event.button;this.blur();" onclick="return VK.Share.click({i}, this);"', strs);
-            strs.a1 = tpl('{a} style="{acolor}text-decoration: none;{font}line-height: 16px;">', strs);
-            strs.a3 = tpl('{a} style="display: inline-block;text-decoration: none;">', strs);
+            strs.a1 = tpl('{a} style="{acolor}text-decoration: none;{font}line-height: 16px;{cssreset}">', strs);
+            strs.a3 = tpl('{a} style="display: inline-block;text-decoration: none;{cssreset}">', strs);
             strs.sprite = tpl("background-size: 19px 59px;background-image: url('{domain}images/icons/like_widget{is2x}.png');", strs);
-            strs.logo = tpl('<div style="{sprite}height: 8px;width: 14px;margin: 4px 0 3px;"></div>', strs);
+            strs.logo = tpl('<div style="{sprite}height: 8px;width: 14px;margin: 4px 0 3px;{cssreset}"></div>', strs);
 
             if (but.type == 'round' || but.type == 'round_nocount' || but.type == 'button' || but.type == 'button_nocount') {
-                return tpl('{table}id="vkshare{i}" onmouseover="VK.Share.change(1, {i});" onmouseout="VK.Share.change(0, {i});" onmousedown="VK.Share.change(2, {i});" onmouseup="VK.Share.change(1, {i});"><tr style="line-height: normal;">{td1}{a} style="border: 0;display: block;box-sizing: content-box;{bg}{radiusl}padding: 2px 6px 4px;">{logo}{a2}{td2}{td1}{a} style="color: #FFF;text-decoration: none;border: 0;{bg}{radiusr}{font}line-height: 16px;display:block;padding: 2px 6px 4px 0;height: 15px;">{text}{a2}{td2}' + ((but.type == 'round' || but.type == 'button') ? '{td1}{a} style="text-decoration: none;{font}line-height: 15px;-webkit-font-smoothing: subpixel-antialiased;' + count_style + '"><div style="{sprite};background-position: 0 -49px;margin: 5px 0 0 4px;width: 5px; height: 10px;position: absolute; z-index:100;"></div><div id="vkshare_cnt{i}" style="border: 1px solid #adbdcc;background: #FFF;font-size:11px;padding: 2px 5px;margin-left: 8px;color: #55677d;z-index: 99;box-sizing: content-box;{radius}">' + gen.count + '</div>{a2}{td2}' : '') + '</tr></table>', strs);
+                return tpl('{table}id="vkshare{i}" onmouseover="VK.Share.change(1, {i});" onmouseout="VK.Share.change(0, {i});" onmousedown="VK.Share.change(2, {i});" onmouseup="VK.Share.change(1, {i});"><tr style="line-height: normal;">{td1}{a} style="border: 0;display: block;{bg}{radiusl}padding: 2px 6px 4px;{cssreset}">{logo}{a2}{td2}{td1}{a} style="color: #FFF;text-decoration: none;border: 0;{bg}{radiusr}{font}line-height: 16px;display:block;padding: 2px 6px 4px 0;height: 15px;{cssreset}">{text}{a2}{td2}' + ((but.type == 'round' || but.type == 'button') ? '{td1}{a} style="text-decoration: none;{font}line-height: 15px;-webkit-font-smoothing: subpixel-antialiased;' + count_style + '{cssreset}"><div style="{sprite};background-position: 0 -49px;margin: 5px 0 0 4px;width: 5px; height: 10px;position: absolute; z-index:100;{cssreset}"></div><div id="vkshare_cnt{i}" style="border: 1px solid #adbdcc;background: #FFF;font-size:11px;padding: 2px 5px;margin-left: 8px;color: #55677d;z-index: 99;{radius}{cssreset}">' + gen.count + '</div>{a2}{td2}' : '') + '</tr></table>', strs);
             } else if (but.type == 'link') {
                 return tpl('{table}onmouseover="this.rows[0].cells[1].firstChild.style.textDecoration=\'underline\'" onmouseout="this.rows[0].cells[1].firstChild.style.textDecoration=\'none\'"><tr style="line-height: normal;">{td1}{a1}<img src="{domain}images/icons/share_link{is2x}.png" width="16" height="16" style="vertical-align: top;margin-right: 8px;"/>{a2}{td2}{td1}{a1}{text}{a2}{td2}</tr></table>', strs);
             } else if (but.type == 'link_noicon') {
-                return tpl('{a3}<span style="{acolor}position: relative;{font}line-height: normal;" onmouseover="this.style.textDecoration=\'underline\'" onmouseout="this.style.textDecoration=\'none\'">{text}</span>{a2}', strs);
+                return tpl('{a3}<span style="{acolor}position: relative;{font}line-height: normal;{cssreset}" onmouseover="this.style.textDecoration=\'underline\'" onmouseout="this.style.textDecoration=\'none\'">{text}</span>{a2}', strs);
             } else {
-                return tpl('{a3}<span style="position: relative;padding: 0;">{text}</span>{a2}', strs);
+                return tpl('{a3}<span style="position: relative;padding: 0;{cssreset}">{text}</span>{a2}', strs);
             }
         },
         change: function(state, index) {
