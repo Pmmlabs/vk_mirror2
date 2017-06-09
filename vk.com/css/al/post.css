@@ -574,7 +574,8 @@ a.page_post_thumb_wrap:hover {
 
 .page_media_poll_desc {
     float: right;
-    color: #939393
+    color: #939393;
+    padding-left: 10px
 }
 
 .page_poll_stats {
