@@ -317,8 +317,8 @@ var stVersions = {
     'notifier.css': 21186258733,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
-    'restore.js': 4004318223,
-    'restore.css': 18307045252,
+    'restore.js': 3696361772,
+    'restore.css': 14574239552,
     'recover.js': 2830033131,
     'recover.css': 2080137791,
     'docs.js': 4024778124,
@@ -347,7 +347,7 @@ var stVersions = {
     'bugs.css': 11893073331,
     'bugtracker.js': 3501719115,
     'bugtracker.css': 14030446843,
-    'login.css': 14690312598,
+    'login.css': 14438313728,
     'login.js': 3551917100,
     'upload.js': 3319172650,
     'graffiti.js': 1826105362,
@@ -587,4 +587,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 9538;
+var _rnd = 975;

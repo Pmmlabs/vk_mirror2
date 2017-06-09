@@ -386,8 +386,8 @@
 }
 
 #restore_cancel_button {
-    width: 200px;
-    margin: 20px auto 10px
+    margin: 20px auto 10px;
+    width: 200px
 }
 
 .request_result_msg {
@@ -434,6 +434,11 @@
     margin: 26px auto 0;
     padding: 0 0 35px;
     width: 563px
+}
+
+.page_section .error.restore_error {
+    margin-top: 60px;
+    display: block
 }
 
 .restore_extend_comment {

@@ -206,6 +206,8 @@ function searchFailed(ajaxObj, responseText) {
 }
 
 function added(id, act, cb) {
+    statlogsValueEvent('geodb_frontend_action', 1, act, id);
+
     if (act == 'a_postpone') {
         searchSuccess({
             id: id
@@ -347,6 +349,7 @@ function feedback_box(item_id, obj_id) {
 
             show('admin_feedback_loader');
             ajax.onDone = function(ajax, response) {
+                statlogsValueEvent('geodb_frontend_action', 1, 'do_send_feedback', item_id);
                 response = eval('(' + response + ')') || {};
                 if (response) {
                     hide('admin_feedback_loader');

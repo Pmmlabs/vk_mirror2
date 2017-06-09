@@ -30,7 +30,7 @@ var Restore = {
         showFastBox(getLang("global_box_confirm_title"), getLang("restore_you_sure_want_cancel_request"), getLang("box_no"), !1, getLang("box_yes"), Restore.closeRequest)
     },
     showResult: function(e, o, t, r) {
-        cur.wasShown && cur.wasShown != e && hide(cur.wasShown), console.log(e), ajax.post("al_index.php", {
+        cur.wasShown && cur.wasShown != e && hide(cur.wasShown), ajax.post("al_index.php", {
             act: "restore_log",
             id: e,
             text: o,
@@ -196,7 +196,7 @@ var Restore = {
             images: []
         };
         o === !0 && (t.force = 1);
-        for (var r = 0; r < cur.images.length; ++r) cur.images[r].deleted || t.images.push(cur.images[r].id + "_" + cur.images[r].hash);
+        for (var r = 0; r < cur.images.length; ++r) cur.images[r].deleted || t.images.push(cur.images[r].hash);
         if (!trim(t.comment).length && !t.images.length) return void elfocus("comment");
         if (!t.images.length && cur.restorePhotosRequested && !o) {
             var n = {
@@ -216,8 +216,8 @@ var Restore = {
         })
     },
     tryToSubmitRequest: function() {
-        Restore.independency_cheched && Restore.submitRequest(), cur.options && cur.options.can_restore_independently || Restore.submitRequest(), Restore.independency_cheched = !0;
-        var e = ge("login").value,
+        Restore.independency_checked && Restore.submitRequest(), cur.options && cur.options.can_restore_independently || Restore.submitRequest(), Restore.independency_checked = !0;
+        var e = val("login"),
             o = ge("tryToSubmitBtn");
         lockButton(o), ajax.post("/restore", {
             act: "check_independent_restore_allowed",
@@ -279,7 +279,7 @@ var Restore = {
             phone: r,
             old_phone: r
         }), each(cur.images, function(e, o) {
-            o.deleted || l.images.push(o.id + "_" + o.hash)
+            o.deleted || l.images.push(o.hash)
         })), cur.validationLastCallback = function(e) {
             hide("request_phone_res"), e ? Restore.submitRequest() : elfocus("phone")
         }, ajax.post("/al_restore.php", l, {
@@ -287,7 +287,7 @@ var Restore = {
                 var i = intval(e);
                 if (i > 0) cur.request_id = i, cur.request_hash = o, Restore.phone_confirm_box = showFastBox(getLang("restore_confirmation"), '<div id="phone_confirm_box">' + ge("phone_confirm").innerHTML + "</div>", getLang("box_send"), function() {
                     Restore.confirmPhoneSend()
-                }, getLang("global_cancel")), ge("phone_confirm_code").focus();
+                }, getLang("global_cancel")), elfocus("phone_confirm_code");
                 else {
                     if (-2 == i) return lockButton(s), setTimeout(Restore.submitRequest, 1e3); - 3 == i ? ("login" == n ? o += "<br>" + val("request_email_or_phone_need") : "phonenum" == n && (cur.wrongPhone = !0), Restore.showResult(t, o, r)) : Restore.showResult("request_phone_res", o, r)
                 }
@@ -419,32 +419,30 @@ var Restore = {
         removeClass(t, "restore_roll_hidden"), addClass(t, "_restore_roll_active")
     },
     checkIndependentRestore: function(e, o) {
-        var t = geByClass1("flat_button", ge("restore_roll_button_phones"));
-        if (cur.options.request_type) var r = val("phone").replace(/[^0-9]/g, "");
-        else var r = val("new_phone").replace(/[^0-9]/g, "");
-        return cur.options && cur.options.can_restore_independently ? (cur.options.request_type && (r || Restore.changeFormStep("phones", "photo")), lockButton(t), void ajax.post("restore", {
+        var t, r = geByClass1("flat_button", ge("restore_roll_button_phones"));
+        return t = cur.options.request_type ? val("phone").replace(/[^0-9]/g, "") : val("new_phone").replace(/[^0-9]/g, ""), cur.options && cur.options.can_restore_independently ? (cur.options.request_type && (t || Restore.changeFormStep("phones", "photo")), lockButton(r), void ajax.post("restore", {
             act: "check_independent_restore_allowed",
-            phone: r,
+            phone: t,
             hash: cur.options.fhash
         }, {
-            onDone: function(r, n) {
-                if (r) e();
+            onDone: function(t, n) {
+                if (t) e();
                 else {
-                    if (n) return unlockButton(t), Restore.showResult("request_phone_res", n, cur.options.request_type ? "phone" : "new_phone");
+                    if (n) return unlockButton(r), Restore.showResult("request_phone_res", n, cur.options.request_type ? "phone" : "new_phone");
                     o()
                 }
             },
             onFail: function() {
                 o()
             }
-        })) : cur.options.need_check ? (lockButton(t), void ajax.post("al_restore.php", {
+        })) : cur.options.need_check ? (lockButton(r), void ajax.post("al_restore.php", {
             act: "a_check_phone",
             hash: cur.options.fhash,
-            phone: r
+            phone: t
         }, {
-            onDone: function(e, r) {
+            onDone: function(e, t) {
                 var n = "request_phone_check_res";
-                unlockButton(t), 2 == e ? (val(n, r), isVisible(n) || slideDown(n, 200)) : (slideUp(n), o())
+                unlockButton(r), 2 == e ? (val(n, t), isVisible(n) || slideDown(n, 200)) : (slideUp(n), o())
             }
         })) : void o()
     },
