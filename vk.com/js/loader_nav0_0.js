@@ -114,6 +114,7 @@ var navMap = {
     'market(-?\\d+)?(_\\d+)?$': ['al_market.php', ['market.css', 'market.js']],
     'stories(-?\\d+)?(_\\d+)?$': ['al_stories.php', ['stories.css', 'stories.js']],
     'story(-?\\d+)_(\\d+)$': ['al_stories.php', ['stories.css', 'stories.js']],
+    'mask(-?\\d+)_(\\d+)$': ['al_masks.php', []],
     'bugtracker($|/)': ['al_bugtracker.php', ['bugtracker.css', 'bugtracker.js']],
     'landings$': ['landings.php', []],
     'ach($|/)': ['achievements.php', ['achievements.css', 'achievements.js']],
@@ -244,8 +245,8 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 102571302510,
-    'imn.js': 107103016188,
+    'im.css': 102191925142,
+    'imn.js': 106950742399,
     'im.js': 1322065004,
     'emoji.js': 2908692631,
     'wide_dd.css': 11854176929,
@@ -461,6 +462,8 @@ var stVersions = {
     'landings/vk2017.css': 13229542727,
     'landings/vkmusic.css': 3258822848,
     'landings/vkmusic.js': 2329960741,
+    'landings/vkmasks.css': 718588223,
+    'landings/vkmasks.js': 387551785,
     'landings/ads.css': 15807447134,
     'landing_aes.js': 16840307206,
     'vkme.css': 14401066383,
@@ -524,7 +527,7 @@ var stVersions = {
     'shortener.js': 1002525642,
     'lead_forms_app.css': 15257897026,
     'lead_forms_app.js': 9419115513,
-    'lang': 6795
+    'lang': 6800
 };
 var stTypes = {
     fromLib: {
@@ -587,4 +590,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 9590;
+var _rnd = 4229;
