@@ -511,6 +511,49 @@ table.history .cur_session {
     width: 300px
 }
 
+.mi_ban_form .mi_ban_wrap {
+    padding: 10px 100px 0
+}
+
+.mi_ban_form .ban_subcause_text {
+    padding-left: 8px;
+    padding-top: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    width: 300px
+}
+
+.mi_ban_form .select_ban_cat {
+    margin-top: -6px
+}
+
+.mi_ban_form .row {
+    margin-top: 10px;
+    min-height: 30px
+}
+
+.mi_ban_form .label {
+    float: left;
+    width: 100px;
+    color: #666;
+    text-align: right;
+    padding-top: 6px
+}
+
+.mi_ban_form .labeled {
+    padding-left: 10px;
+    text-align: left;
+    float: left;
+    padding-top: 6px
+}
+
+.mi_ban_form .row_content {
+    float: left;
+    padding: 0 0 0 5px
+}
+
 .mi_table_block_row__reason>span {
     display: block
 }

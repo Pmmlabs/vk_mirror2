@@ -341,7 +341,7 @@ var stVersions = {
     'sf.css': 11648271110,
     'sal.css': 12823946362,
     'members.css': 13846046007,
-    'meminfo.css': 14736735845,
+    'meminfo.css': 16349590970,
     'groupinfo.css': 16938258072,
     'bugs.js': 3874995669,
     'bugs.css': 11893073331,
@@ -519,7 +519,7 @@ var stVersions = {
     'cmodules/web/speech_worker_opus.js': 3385759348,
     'stories.js': 675877973,
     'stories.css': 13730301646,
-    'cmodules/internal/meminfo.js': 11393787619,
+    'cmodules/internal/meminfo.js': 14784454143,
     'cmodules/internal/nospam.js': 25938936256,
     'shortener.js': 1002525642,
     'lead_forms_app.css': 15257897026,
@@ -587,4 +587,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 4;
+var _rnd = 9590;
