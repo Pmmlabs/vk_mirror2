@@ -492,8 +492,8 @@ var Profile = {
                 }, cur.viewAsWarn, getLang("global_continue"), function() {
                     cur._leave = !0, nav.go(o)
                 }, getLang("global_cancel")), !1)
-            }), e.mail_cache && ajax.preload("al_mail.php", {
-                act: "write_box",
+            }), e.mail_cache && ajax.preload("al_im.php", {
+                act: "a_write_box",
                 to: cur.oid
             }, e.mail_cache), ge("profile_wall") && wall.init(extend(e, {
                 automore: 1

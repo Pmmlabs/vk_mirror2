@@ -81,7 +81,7 @@ var ShareBox = {
                         case 2:
                             var d = cur.wdd && cur.wdd.like_mail_dd,
                                 s = extend(s, {
-                                    act: "a_send",
+                                    act: "a_send_box",
                                     from: "box",
                                     to_ids: [],
                                     chas: cur.sbMailHash,
@@ -91,7 +91,7 @@ var ShareBox = {
                                 });
                             if (!d || !d.selCount) return elfocus("like_mail_inp");
                             for (var r in d.selected) s.to_ids.push(r.replace(/_$/, ""));
-                            s.to_ids = s.to_ids.join(","), ajax.post("al_mail.php", Wall.fixPostParams(s), ShareBox.options()), cur.shareAction = "im_send"
+                            s.to_ids = s.to_ids.join(","), ajax.post("al_im.php", Wall.fixPostParams(s), ShareBox.options()), cur.shareAction = "im_send"
                     }
                 }
             },

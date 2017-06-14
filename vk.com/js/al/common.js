@@ -8064,8 +8064,8 @@ function callHub(func, count) {
 function showWriteMessageBox(e, id) {
     if (cur.onFriendMessage) cur.onFriendMessage();
     stManager.add(['page.js', 'wide_dd.js']);
-    var box = showBox('al_mail.php', {
-        act: 'write_box',
+    var box = showBox('al_im.php', {
+        act: 'a_write_box',
         to: id
     }, {
         stat: ['writebox.js', 'writebox.css', 'wide_dd.css', 'page.css', 'emoji.js', 'notifier.css'],

@@ -438,7 +438,7 @@ function MediaSelector(e, a, t, i) {
                             return s.checkURL(o.url, void 0, E), !1
                         }
                         if (!o.title && !(cur.options.share || {}).allow_preview_empty_links) return (o.onError || function() {})(), !1;
-                        o.title = unclean((o.title || "").replace(/<br>/g, "\n")), o.description = unclean((o.description || "").replace(/<br>/g, "\n")), o.description_short = unclean((o.description_short || "").replace(/<br>/g, "\n")), o.description_narrow = unclean((o.description_narrow || "").replace(/<br>/g, "\n")), cur.options.share && cur.options.share.max_title_len && (o.title = (o.title || "").substr(0, cur.options.share.max_title_len)), cur.options.share && cur.options.share.max_desc_len && (o.description = (o.description || "").substr(0, cur.options.share.max_desc_len), o.description_short = (o.description_short || "").substr(0, cur.options.share.max_desc_len), o.description_narrow = (o.description_narrow || "").substr(0, cur.options.share.max_desc_len)), o.media = o.media || t, o.lang && (cur.lang = extend(cur.lang || {}, o.lang)), P = '<a target="_blank" href="/away.php?to=' + encodeURIComponent(o.url) + '" class="medadd_h medadd_h_link inl_bl">' + o.lang.profile_choose_link + "</a>", s.shareData = extend(s.shareData || {}, o, {
+                        o.title = unclean((o.title || "").replace(/<br>/g, "\n")), o.description = unclean((o.description || "").replace(/<br>/g, "\n")), o.description_short = unclean((o.description_short || "").replace(/<br>/g, "\n")), o.description_narrow = unclean((o.description_narrow || "").replace(/<br>/g, "\n")), cur.options = cur.options || {}, cur.options.share && cur.options.share.max_title_len && (o.title = (o.title || "").substr(0, cur.options.share.max_title_len)), cur.options.share && cur.options.share.max_desc_len && (o.description = (o.description || "").substr(0, cur.options.share.max_desc_len), o.description_short = (o.description_short || "").substr(0, cur.options.share.max_desc_len), o.description_narrow = (o.description_narrow || "").substr(0, cur.options.share.max_desc_len)), o.media = o.media || t, o.lang && (cur.lang = extend(cur.lang || {}, o.lang)), P = '<a target="_blank" href="/away.php?to=' + encodeURIComponent(o.url) + '" class="medadd_h medadd_h_link inl_bl">' + o.lang.profile_choose_link + "</a>", s.shareData = extend(s.shareData || {}, o, {
                             imagesStyles: [""]
                         }), A = f, (o.onSuccess || function() {})(), (cur.options.share || {}).button_exclusive && o.shareButtons && hide(domByClass(e, "media_selector")), hide(domByClass(h.menuNode, "_type_share"));
                         break;
@@ -784,12 +784,11 @@ function MediaSelector(e, a, t, i) {
                     attrs: (a[0] ? 'id="create_poll_ans' + a[0] + '" ' : "") + (a[1] ? '" value="' + a[1] + '" ' : ""),
                     lnkid: u
                 }) + "</div>"), 9 == o && hide("create_poll_add" + u);
-                return val("create_poll_answers" + u, i.join("")),
-                    e.question ? void elfocus("create_poll_question" + u) : (s.pollPreview.style.height = t, void animate(s.pollPreview, {
-                        height: 166
-                    }, 200, function() {
-                        s.pollPreview.style.height = "auto", elfocus("create_poll_question" + u)
-                    }))
+                return val("create_poll_answers" + u, i.join("")), e.question ? void elfocus("create_poll_question" + u) : (s.pollPreview.style.height = t, void animate(s.pollPreview, {
+                    height: 166
+                }, 200, function() {
+                    s.pollPreview.style.height = "auto", elfocus("create_poll_question" + u)
+                }))
             },
             incPoll: function() {
                 var e = ge("create_poll_answers" + u),
@@ -984,39 +983,42 @@ function MediaSelector(e, a, t, i) {
                             }
                         }),
                         y = d.shareButtons,
-                        x = d.button_text || y && y.length && y[0][1],
-                        S = d.button_text_lang || y && y.length && y[0][2],
-                        P = d.button_action || y && y.length && y[0][0];
-                    if (y && y.length && S === x)
-                        for (var M = 0; M < y.length; ++M)
-                            if (y[M][0] === P && y[M][2] === x) {
-                                x = y[M][1];
+                        x = y && y.length && y[0],
+                        S = d.button_text || x && x[1],
+                        P = d.button_text_lang || x && x[2],
+                        M = d.button_action || x && x[0];
+                    if (y && y.length && P === S)
+                        for (var I = 0; I < y.length; ++I)
+                            if (y[I][0] === M && y[I][2] === S) {
+                                S = y[I][1];
                                 break
                             }
-                    var I = !!y && y.length,
-                        T = !(!cur.options.share || !cur.options.share.allow_remove_button),
-                        l = c + '<div class="medadd_c_linkwrap ' + (c ? "" : "no_photo") + '"><div class="medadd_c_linkwrap_block">' + (d.title || C.title.editable ? '<div class="medadd_c_linkhead ' + (C.title.editable ? "medadd_inline_editable" : "") + '">' + (C.title.editable ? '<div class="medadd_inline_editable_icon"></div>' : "") + '<span class="medadd_inline_edit_target" data-max-length="' + (cur.options.share && cur.options.share.max_title_len ? cur.options.share.max_title_len : 0) + '" data-field="title">' + (clean(d.title).replace(/\n/g, "<br>") || C.title.placeholder) + "</span></div>" : "") + (k ? '<div class="medadd_c_linkmicrodata">' + k + "</div>" : "") + (d.domain ? '<div class="page_media_link_url medadd_c_linkaddr">' + d.domain + "</div>" : "") + "</div>" + (S && I ? '<div class="medadd_c_linkwrap_block medadd_c_linkwrap_block_button">' + (T ? '<div class="hide_icon medadd_c_linkbtn_remove" onclick="cur.shareRemoveButton();" onmouseover="showTooltip(this, {text: \'' + getLang("global_share_button_remove_tooltip") + "', black: 1, shift: [15, 10, 0]})\"></div>" : "") + '<div class="wall_postlink_preview_btn medadd_c_linkbtn"><a onclick="cur.toggleShareButton(this);return false;" onmouseout="Page.actionsDropdownHide(domNS(this), 0, cur.setActiveShareButton.pbind(false))" onmouseover="Page.actionsDropdownUnhide()" class="flat_button"><span onmouseover="Page.actionsDropdownUnhide()" class="' + (y.length > 1 ? "page_actions_dd_label" : "") + ' wall_postlink_preview_btn_label" data-field="button_text">' + S + "</span></a></div></div>" : "") + '</div><div class="clear_fix"></div>'
+                    var T = !1;
+                    y && y.length && (T = y.length > 1 || P === S || x[0] !== M || x[1] !== S);
+                    var A = !!y && y.length,
+                        B = !(!cur.options.share || !cur.options.share.allow_remove_button),
+                        l = c + '<div class="medadd_c_linkwrap ' + (c ? "" : "no_photo") + '"><div class="medadd_c_linkwrap_block">' + (d.title || C.title.editable ? '<div class="medadd_c_linkhead ' + (C.title.editable ? "medadd_inline_editable" : "") + '">' + (C.title.editable ? '<div class="medadd_inline_editable_icon"></div>' : "") + '<span class="medadd_inline_edit_target" data-max-length="' + (cur.options.share && cur.options.share.max_title_len ? cur.options.share.max_title_len : 0) + '" data-field="title">' + (clean(d.title).replace(/\n/g, "<br>") || C.title.placeholder) + "</span></div>" : "") + (k ? '<div class="medadd_c_linkmicrodata">' + k + "</div>" : "") + (d.domain ? '<div class="page_media_link_url medadd_c_linkaddr">' + d.domain + "</div>" : "") + "</div>" + (P && A ? '<div class="medadd_c_linkwrap_block medadd_c_linkwrap_block_button">' + (B ? '<div class="hide_icon medadd_c_linkbtn_remove" onclick="cur.shareRemoveButton();" onmouseover="showTooltip(this, {text: \'' + getLang("global_share_button_remove_tooltip") + "', black: 1, shift: [15, 10, 0]})\"></div>" : "") + '<div class="wall_postlink_preview_btn medadd_c_linkbtn"><a onclick="cur.toggleShareButton(this);return false;" onmouseout="Page.actionsDropdownHide(domNS(this), 0, cur.setActiveShareButton.pbind(false))" onmouseover="Page.actionsDropdownUnhide()" class="flat_button"><span onmouseover="Page.actionsDropdownUnhide()" class="' + (T ? "page_actions_dd_label" : "") + ' wall_postlink_preview_btn_label" data-field="button_text">' + P + "</span></a></div></div>" : "") + '</div><div class="clear_fix"></div>'
                 }
                 if (r ? addClass(domFC(n), "medadd_c_linkimg_big") : removeClass(domFC(n), "medadd_c_linkimg_big"), e) cur.preventShareAnim && (cur.preventShareAnim.stop(), clearInterval(cur.animateUpdateInterval), i.onChangedSize && i.onChangedSize()), val(domFC(n), l), domFC(n).style.height = "auto", shortCurrency();
                 else {
                     !isVisible(f);
                     show(f);
-                    var A = ge(a).appendChild(ce("div", {
+                    var N = ge(a).appendChild(ce("div", {
                             innerHTML: '<div class="medadd_c_linkcon ' + (r ? "medadd_c_linkimg_big" : "") + '">' + l + "</div>"
                         }, {
                             position: "absolute",
                             width: getSize(n)[0] - 10,
                             visibility: "hidden"
                         })),
-                        B = getSize(A)[1];
-                    re(A), setStyle(domFC(n), {
+                        L = getSize(N)[1];
+                    re(N), setStyle(domFC(n), {
                         height: "0"
                     }), setStyle(n, {
                         overflow: "hidden"
                     }), val(domFC(n), l), shortCurrency(), cur.animateUpdateInterval = setInterval(function() {
                         i.onChangedSize && i.onChangedSize()
                     }, 100), cur.preventShareAnim = animate(domFC(n), {
-                        height: B
+                        height: L
                     }, 200, function() {
                         setStyle(domFC(n), {
                             height: "auto",
@@ -1027,27 +1029,27 @@ function MediaSelector(e, a, t, i) {
                     }), re(geByClass1("medadd_c_linkprg", f))
                 }
                 if (C.title.editable) {
-                    var N = geByClass1("medadd_c_linkhead", domFC(n)),
-                        L = geByClass1("medadd_inline_edit_target", N);
-                    N && L && (N.onclick = t.bind(this, L))
+                    var D = geByClass1("medadd_c_linkhead", domFC(n)),
+                        U = geByClass1("medadd_inline_edit_target", D);
+                    D && U && (D.onclick = t.bind(this, U))
                 }
                 if (C.description.editable) {
-                    var D = geByClass1("medadd_inline_edit_target", geByClass1("medadd_c_linkdsc", domFC(n)));
-                    D && (D.onclick = t.bind(this, D))
+                    var E = geByClass1("medadd_inline_edit_target", geByClass1("medadd_c_linkdsc", domFC(n)));
+                    E && (E.onclick = t.bind(this, E))
                 }
-                if (I && (s.shareData.button_text = x, s.shareData.button_text_lang = S, s.shareData.button_action = P, y.length > 1)) {
-                    var U = domPN(geByClass1("wall_postlink_preview_btn_label", domFC(n))),
-                        E = [],
-                        z = 0,
-                        F = 0,
-                        q = [];
-                    for (var M in y) {
-                        var H = y[M];
-                        H[0] == P && H[1] == x && (z = F), E.push([F++, H[1]]), q.push('<a class="page_actions_item" tabindex="0" role="link" onclick="cur.updateShareButton(this);Page.actionsDropdownHide(domPN(domPN(this)), 1, cur.setActiveShareButton.pbind(false));return false;" data-button-text="' + H[1] + '" data-button-text-lang="' + H[2] + '" data-button-action="' + H[0] + '">' + H[2] + "</a>")
+                if (A && (s.shareData.button_text = S, s.shareData.button_text_lang = P, s.shareData.button_action = M, T)) {
+                    var z = domPN(geByClass1("wall_postlink_preview_btn_label", domFC(n))),
+                        F = [],
+                        q = 0,
+                        H = 0,
+                        R = [];
+                    for (var I in y) {
+                        var j = y[I];
+                        j[0] == M && j[1] == S && (q = H), F.push([H++, j[1]]), R.push('<a class="page_actions_item" tabindex="0" role="link" onclick="cur.updateShareButton(this);Page.actionsDropdownHide(domPN(domPN(this)), 1, cur.setActiveShareButton.pbind(false));return false;" data-button-text="' + j[1] + '" data-button-text-lang="' + j[2] + '" data-button-action="' + j[0] + '">' + j[2] + "</a>")
                     }
-                    U.setAttribute("data-items", JSON.stringify(E)), U.setAttribute("data-value", z);
-                    var R = ['<div class="page_actions_wrap medadd_c_linkbtn_actions_wrap unshown" onmouseout="Page.actionsDropdownHide(this, 0, cur.setActiveShareButton.pbind(false))" onmouseover="Page.actionsDropdownUnhide()" onmouseup="setTimeout(function () { Page.actionsDropdownUnhide(); }, 5)">', '<div class="page_actions_inner">', q.join(""), "</div>", "</div>"].join("");
-                    domPN(U).appendChild(se(R)), ls.get("share_button_text_tooltip_shown") || cur.buttonTextTooltip || setTimeout(function() {
+                    z.setAttribute("data-items", JSON.stringify(F)), z.setAttribute("data-value", q);
+                    var W = ['<div class="page_actions_wrap medadd_c_linkbtn_actions_wrap unshown" onmouseout="Page.actionsDropdownHide(this, 0, cur.setActiveShareButton.pbind(false))" onmouseover="Page.actionsDropdownUnhide()" onmouseup="setTimeout(function () { Page.actionsDropdownUnhide(); }, 5)">', '<div class="page_actions_inner">', R.join(""), "</div>", "</div>"].join("");
+                    domPN(z).appendChild(se(W)), ls.get("share_button_text_tooltip_shown") || cur.buttonTextTooltip || setTimeout(function() {
                         cur.closeButtonTextTooltip = function() {
                             cur.buttonTextTooltip.hide(), ls.set("share_button_text_tooltip_shown", 1)
                         };

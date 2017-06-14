@@ -670,8 +670,8 @@ var Market = {
         },
         showWriteMessage: function(e, t, r, o) {
             stManager.add(["page.js", "wide_dd.js"]), cur.mbForceAttach = ["market", r, o];
-            var a = showBox("al_mail.php", {
-                act: "write_box",
+            var a = showBox("al_im.php", {
+                act: "a_write_box",
                 to: t,
                 hash: o,
                 from: "market" + r
