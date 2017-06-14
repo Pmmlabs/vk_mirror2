@@ -610,6 +610,10 @@ div#enterID.enterID {
     margin-bottom: 0
 }
 
+.notify_pm_form_block .radiobtn {
+    margin-top: 4px
+}
+
 .notify_pm_form_block__label {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;

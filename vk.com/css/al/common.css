@@ -2201,7 +2201,8 @@ a.ad_box_new:hover {
     position: relative;
     width: 145px;
     min-height: 3px;
-    margin-top: 15px
+    margin-top: 15px;
+    overflow: hidden
 }
 
 #left_blocks {
