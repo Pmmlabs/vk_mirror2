@@ -400,6 +400,10 @@ body.mac #filter_form {
     display: none
 }
 
+.search_row .msg {
+    margin: 0 0 20px
+}
+
 #results>div:first-child div.search_row:first-child,
 .summary_tabs+div.search_row,
 div.search_row:first-child {
@@ -494,6 +498,10 @@ div.search_row:first-child {
 
 .search_row .controls .flat_button {
     width: 135px
+}
+
+.search_row .controls .search_btn_invite {
+    width: 160px
 }
 
 .search_row .labeled {

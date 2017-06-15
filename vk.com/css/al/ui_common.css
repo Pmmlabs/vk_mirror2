@@ -26,6 +26,7 @@
 .ui_search_custom_link.idd_wrap .idd_arrow,
 .ui_search_filters_pane .token .token_del,
 .ui_search_filters_reset,
+.ui_search_fltr_ext_link,
 .ui_search_fltr_progress,
 .ui_search_loading .ui_search_reset,
 .ui_search_new .ui_search_progress,
@@ -1426,6 +1427,24 @@ a.ui_search_custom_link {
     a.ui_search_custom_link {
         background-image: url(/images/icons/dd_arrow_2x.png);
         background-size: 8px 4px
+    }
+}
+
+.ui_search_fltr_ext_link {
+    padding: 14px 0 13px 25px;
+    background: url(/images/icons/advanced_search.png?2) no-repeat;
+    background-position: left 18px;
+    line-height: 19px;
+    font-size: 12.5px;
+    display: block
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ui_search_fltr_ext_link {
+        background-image: url(/images/icons/advanced_search_2x.png?2);
+        background-size: 15px 12px
     }
 }
 

@@ -13,7 +13,7 @@ var slide_show = function(e) {
                 "c[q]": val("search_query")
             } : serializeForm(s) || {}, t["c[q]"] = val("search_query");
             for (var r in t) t[r] && "0" != t[r] || delete t[r], "-1" == t[r] && t[r + "_custom"] ? (t[r] = t[r + "_custom"], delete t[r + "_custom"]) : t[r + "_custom"] && delete t[r + "_custom"];
-            return "video" != cur.section || t["c[sort]"] || (t["c[sort]"] = "0"), "people" == cur.section && ge("c[name]") && !t["c[name]"] && (t["c[name]"] = "0"), "people" == cur.section && ge("c[photo]") && !t["c[photo]"] && (t["c[photo]"] = "0"), "communities" != cur.section || !cur.filtersShown || t["c[q]"] || t["c[category]"] || (t["c[skip_catalog]"] = "1"), t
+            return "video" != cur.section || t["c[sort]"] || (t["c[sort]"] = "0"), "people" == cur.section && ge("c[name]") && !t["c[name]"] && (t["c[name]"] = "0"), "people" == cur.section && ge("c[photo]") && !t["c[photo]"] && (t["c[photo]"] = "0"), "people" == cur.section && t["c[invite]"] && delete t.from, "communities" != cur.section || !cur.filtersShown || t["c[q]"] || t["c[category]"] || (t["c[skip_catalog]"] = "1"), t
         },
         sameParams: function(e) {
             if (!cur.params) return !1;
@@ -28,8 +28,8 @@ var slide_show = function(e) {
             s = s || {}, "communities" == e && (val("c[category]", 0), cur.filtersShown = !1);
             var r = searcher.getSectionParams(e);
             if ("auto" != e && "quick" != e && s.updateStats && (r.swt = 1), s.tab && (r.tab = 1), ge("search_menu") && uiRightMenu) {
-                var c = geByClass1("search_menu_" + e, "search_menu");
-                c && uiRightMenu.switchMenu(c)
+                var o = geByClass1("search_menu_" + e, "search_menu");
+                o && uiRightMenu.switchMenu(o)
             }
             return searcher.setSection(e), searcher.sendSearchReq(r, !0), hasClass(gpeByClass("ui_search", "search_query"), "ui_search_fixed") && scrollToTop(), !1
         },
@@ -73,10 +73,10 @@ var slide_show = function(e) {
             s && !e.offset && (vk.no_ads = inArray(e["c[section]"], ["audio"]), extend(e, {
                 uf: 1
             })), void 0 !== cur.useRec && (e.rec = cur.useRec, delete cur.useRec), e.edit = nav.objLoc.edit, e.sign = nav.objLoc.sign, e.all = nav.objLoc.all, e.change = 1, cur.searchLoc && (e.search_loc = cur.searchLoc), void 0 !== cur.topType && (e.type = cur.topType, delete cur.topType), window.iSearch && iSearch.select && (iSearch.select.hide(), delete cur.setISearch), cur.loadingMedia || (uiSearch.showProgress("search_query"), ge("search_query").ignoreFixed = "statuses" == e["c[section]"]), cur.searchReq = ajax.post("al_search.php", e, {
-                onDone: function(t, r, c) {
-                    var o = e.uf && ge("results_wrap") ? ge("results_wrap") : ge("results"),
-                        i = ge("friends_filters_block") ? ge("friends_filters_block") : ge("filter_form");
-                    if (o.innerHTML = r || "", s && (i.innerHTML = c || "", elfocus("search_query"), t.loc)) {
+                onDone: function(t, r, o) {
+                    var i = e.uf && ge("results_wrap") ? ge("results_wrap") : ge("results"),
+                        c = ge("friends_filters_block") ? ge("friends_filters_block") : ge("filter_form");
+                    if (i.innerHTML = r || "", s && (c.innerHTML = o || "", elfocus("search_query"), t.loc)) {
                         var a = locProtocol + "//" + location.host + "/" + t.loc,
                             n = document.URL == a ? "" : document.URL;
                         setTimeout(updateOtherCounters.pbind(a, n), 10)
@@ -192,21 +192,21 @@ var slide_show = function(e) {
         },
         toggleMinimizedFilters: function(e, s, t) {
             var r = e && domNS(e),
-                c = t ? 0 : 200;
-            return void 0 === s && (s = !isVisible(r)), !s && isVisible(r) ? (cur.filtersShown = !1, removeClass(e, "ui_rmenu_item_expanded"), slideUp(r, c)) : s && !isVisible(r) && (cur.filtersShown = !0, val("c[category]", 0), addClass(e, "ui_rmenu_item_expanded"), slideDown(r, c)), !1
+                o = t ? 0 : 200;
+            return void 0 === s && (s = !isVisible(r)), !s && isVisible(r) ? (cur.filtersShown = !1, removeClass(e, "ui_rmenu_item_expanded"), slideUp(r, o)) : s && !isVisible(r) && (cur.filtersShown = !0, val("c[category]", 0), addClass(e, "ui_rmenu_item_expanded"), slideDown(r, o)), !1
         },
         onCommunitiesToggle: function() {
             "search" == cur.module && (uiRightMenu.switchMenu(geByClass1("search_menu_" + cur.section, "search_menu")), searcher.updResults())
         },
-        subscribe: function(e, s, t, r, c, o, i) {
+        subscribe: function(e, s, t, r, o, i, c) {
             var a, n, u = gpeByClass("search_row", e);
-            if (cur.unsubscribed = cur.unsubscribed || {}, !r && o && !cur.unsubscribed[s]) {
+            if (cur.unsubscribed = cur.unsubscribed || {}, !r && i && !cur.unsubscribed[s]) {
                 var l = showFastBox({
                     title: getLang("global_warning"),
                     dark: 1,
                     bodyStyle: "padding: 20px; line-height: 160%;"
-                }, getLang(o), getLang("search_group_leave"), function() {
-                    l.hide(), searcher.subscribe(e, s, t, r, c)
+                }, getLang(i), getLang("search_group_leave"), function() {
+                    l.hide(), searcher.subscribe(e, s, t, r, o)
                 }, getLang("global_cancel"));
                 return !1
             }
@@ -214,7 +214,7 @@ var slide_show = function(e) {
                 act: "subscr",
                 oid: s,
                 hash: t,
-                from: c || "search",
+                from: o || "search",
                 ref: cur.module
             }) : (a = "al_fans.php", n = {
                 act: "unsub",
@@ -224,16 +224,16 @@ var slide_show = function(e) {
                 ref: cur.module
             }), ajax.post(a, n, {
                 onDone: function() {
-                    i ? toggleClass(u, "touched", !!r) : (toggle("search_sub" + s, !r), toggle("search_unsub" + s, !!r)), r || (cur.unsubscribed[s] = 1)
+                    c ? toggleClass(u, "touched", !!r) : (toggle("search_sub" + s, !r), toggle("search_unsub" + s, !!r)), r || (cur.unsubscribed[s] = 1)
                 },
                 onFail: function(e) {
                     return e ? (setTimeout(showFastBox(getLang("global_error"), e).hide, 2e3), !0) : void 0
                 },
                 showProgress: function() {
-                    i ? (e.tt && e.tt.destroy(), addClass(u, "loading")) : lockButton(e)
+                    c ? (e.tt && e.tt.destroy(), addClass(u, "loading")) : lockButton(e)
                 },
                 hideProgress: function() {
-                    i ? removeClass(u, "loading") : unlockButton(e)
+                    c ? removeClass(u, "loading") : unlockButton(e)
                 }
             })
         },
@@ -249,8 +249,8 @@ var slide_show = function(e) {
                 }
                 var t = document.documentElement,
                     r = window.innerHeight || t.clientHeight || bodyNode.clientHeight,
-                    c = scrollGetY();
-                c + r + 200 > e.offsetTop && searcher.showMore()
+                    o = scrollGetY();
+                o + r + 200 > e.offsetTop && searcher.showMore()
             }
         },
         init: function(e) {
@@ -265,22 +265,22 @@ var slide_show = function(e) {
                 if (void 0 !== e[0] || cur.searchLoc && void 0 !== e.act) return clearTimeout(cur.setLocTO), void(nav.strLoc != cur.loc && cur.loc && hab.setLoc(cur.loc));
                 if (cur.searchLoc) {
                     var r = !1;
-                    for (var c in t)
-                        if ("c[" == c.substr(0, 2)) {
+                    for (var o in t)
+                        if ("c[" == o.substr(0, 2)) {
                             r = !0;
                             break
                         }
                     if (cur.onLocationChange && cur.onLocationChange(r), !r) return !0
                 }
-                var o = clone(t);
-                delete o[0];
-                var i = o["c[section]"] || o.section || "quick";
-                return ge("search_menu") && uiRightMenu && uiRightMenu.switchMenu(geByClass1("search_menu_" + i, "search_menu")), searcher.setSection(i), searcher.sendSearchReq(o, !0), !1
+                var i = clone(t);
+                delete i[0];
+                var c = i["c[section]"] || i.section || "quick";
+                return ge("search_menu") && uiRightMenu && uiRightMenu.switchMenu(geByClass1("search_menu_" + c, "search_menu")), searcher.setSection(c), searcher.sendSearchReq(i, !0), !1
             })), cur.options || (cur.options = {
                 reply_names: {}
             }), extend(cur.options, e), searcher.applyOptions(e), t.ignoreFixed = "statuses" == cur.section, window.scrollTop = bodyNode.scrollTop = pageNode.scrollTop = htmlNode.scrollTop = 0, addEvent(window, "scroll", searcher.scrollCheck), addEvent(window, "resize", searcher.onResize), setTimeout(searcher.scrollCheck, 50), setTimeout(checkPageBlocks, 200);
-            var c = window.audioPlayer;
-            c && c.showCurrentTrack && c.showCurrentTrack(), cur._back = {
+            var o = window.audioPlayer;
+            o && o.showCurrentTrack && o.showCurrentTrack(), cur._back = {
                 text: getLang("search_back_to"),
                 show: [function() {
                     hide("header");
@@ -341,9 +341,9 @@ void 0 === window.iSearch && (iSearch = {
             if (!s.select || s.select.active < 0) return e.keyCode == KEY.RETURN && s.select && (cur.preventISRequest = !0, s.select.hide()), !0;
             if (e.keyCode == KEY.SPACE || (e.keyCode == KEY.RETURN || 10 == e.keyCode) && s.select && s.select.isVisible()) {
                 var t, r = s.select.list.childNodes[s.select.active],
-                    c = r ? r.getAttribute("val") : "";
+                    o = r ? r.getAttribute("val") : "";
                 if (each(s.lastItems, function() {
-                        this[0] == c && (t = this)
+                        this[0] == o && (t = this)
                     }), !t) return;
                 return val(s.input, t[3] + (e.keyCode == KEY.SPACE ? " " : "")), elfocus(s.input, s.input.length), e.keyCode != KEY.SPACE && (cur.preventISRequest = !0, s.select.hide(), searcher.updResults()), cancelEvent(e)
             }
@@ -415,13 +415,13 @@ void 0 === window.iSearch && (iSearch = {
             }
         })
     },
-    groupAction: function(e, s, t, r, c) {
+    groupAction: function(e, s, t, r, o) {
         ajax.post("al_groups.php", {
             act: "member_action",
             action: s,
             gid: t,
             mid: r,
-            hash: c,
+            hash: o,
             context: "search"
         }, {
             onDone: function(s) {
@@ -432,6 +432,34 @@ void 0 === window.iSearch && (iSearch = {
                 t && globalHistoryDestroy(t)
             }
         })
+    },
+    inviteToGroup: function(e, s, t, r, o) {
+        var i = function(o) {
+            o ? link = '<button class="flat_button button_small button_wide search_btn_invite secondary" onclick="return searchActions.inviteToGroup(this, ' + s + ", " + t + ", '" + r + "', 1)\">" + getLang("search_cancel_invitation") + "</button>" : link = '<button class="flat_button button_small button_wide search_btn_invite" onclick="return searchActions.inviteToGroup(this, ' + s + ", " + t + ", 0, '" + r + "')\">" + getLang("search_send_invitation") + "</button>", e.parentNode.replaceChild(se(link), e)
+        };
+        return o ? ajax.post("/al_page.php", {
+            act: "a_cancel_invite",
+            mid: t,
+            gid: s,
+            hash: r
+        }, {
+            onDone: function(e) {
+                i(0)
+            },
+            showProgress: lockButton.pbind(e),
+            hideProgress: unlockButton.pbind(e)
+        }) : ajax.post("/al_page.php", {
+            act: "a_invite",
+            mid: t,
+            gid: s,
+            hash: r
+        }, {
+            onDone: function(s, t) {
+                s ? i(1) : (showMsg(gpeByClass("people_row", e), t, "msg"), hide(e))
+            },
+            showProgress: lockButton.pbind(e),
+            hideProgress: unlockButton.pbind(e)
+        }), !1
     },
     showLyrics: function(e, s, t) {
         var r = ge("lyrics" + e);
@@ -486,17 +514,17 @@ void 0 === window.iSearch && (iSearch = {
         }), s && s.tt && s.tt.hide && s.tt.hide(), val("search_status_map_hidden", ""), searcher.updResults()
     },
     chooseGeoPoint: function(e, s, t, r) {
-        var c = 0;
+        var o = 0;
         each([8, 11, 14, 17, 20], function(e, s) {
-            return s >= t ? !1 : void(c = e)
+            return s >= t ? !1 : void(o = e)
         }), boxQueue.hideLast();
-        var o = (new Array(c + 1).join("+"), Math.pow(10, 10)),
-            i = 200,
+        var i = (new Array(o + 1).join("+"), Math.pow(10, 10)),
+            c = 200,
             a = 120;
-        window.devicePixelRatio >= 2 && (i *= 2, a *= 2), e = Math.round(e * o) / o, s = Math.round(s * o) / o;
+        window.devicePixelRatio >= 2 && (c *= 2, a *= 2), e = Math.round(e * i) / i, s = Math.round(s * i) / i;
         var n = ge("search_status_map");
         addClass(n, "search_status_map_selected"), setStyle(n, {
-            backgroundImage: "url(/maps?lat=" + e + "&lng=" + s + "&z=" + t + "&w=" + i + "&h=" + a + ")"
+            backgroundImage: "url(/maps?lat=" + e + "&lng=" + s + "&z=" + t + "&w=" + c + "&h=" + a + ")"
         }), r || (val("search_status_map_hidden", e + "," + s + "," + t), searcher.updResults())
     },
     searchChooseGeoPoint: function() {
@@ -510,9 +538,9 @@ void 0 === window.iSearch && (iSearch = {
     },
     searchUrlOnChange: function(e, s, t) {
         var r = ge("search_status_url"),
-            c = r.name,
-            o = s ? "c[domain]" : "c[url]";
-        return radiobtn(e, s, "search_status_hint_domain"), elfocus(r), val(r) && o != c && (r.name = o, searcher.updResults()), cancelEvent(t)
+            o = r.name,
+            i = s ? "c[domain]" : "c[url]";
+        return radiobtn(e, s, "search_status_hint_domain"), elfocus(r), val(r) && i != o && (r.name = i, searcher.updResults()), cancelEvent(t)
     }
 };
 try {
