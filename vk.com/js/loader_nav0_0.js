@@ -139,8 +139,8 @@ var stVersions = {
     'ie7.css': 2926539419,
     'rtl.css': 15617249174,
     'pagination.js': 1027022568,
-    'blog.css': 16812662808,
-    'blog.js': 3187719799,
+    'blog.css': 16781826632,
+    'blog.js': 359555078,
     'html5audio.js': 976782859,
     'html5video.js': 223664659,
     'html5video.css': 17270350265,
@@ -257,8 +257,8 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 2994756722,
-    'feed.css': 19301875711,
+    'feed.js': 2937084348,
+    'feed.css': 19238172194,
     'privacy.js': 3620108221,
     'privacy.css': 17465876676,
     'apps.css': 26958019571,
@@ -392,7 +392,7 @@ var stVersions = {
     'help.css': 2602432866,
     'help.js': 981062856,
     'claims.css': 16222824188,
-    'claims.js': 577939270,
+    'claims.js': 4191854833,
     'video_embed.js': 492405,
     'video_embed.css': 18457766154,
     'site_stats.css': 3894412059,
@@ -421,7 +421,7 @@ var stVersions = {
     'contests.css': 2752582154,
     'ui.css': 15843251797,
     'ui.js': 3953380422,
-    'ui_common.js': 4053872353,
+    'ui_common.js': 917537016,
     'ui_common.css': 18098948587,
     'ui_media_selector.js': 1019447073,
     'ui_media_selector.css': 19740172440,
@@ -466,8 +466,8 @@ var stVersions = {
     'landings/vkmasks.js': 1193444147,
     'landings/ads.css': 18812610619,
     'landing_aes.js': 16840307206,
-    'landings/donors_day.css': 15706800483,
-    'landing_donors_day.js': 947786386,
+    'landings/donors_day.css': 18485485867,
+    'landing_donors_day.js': 1027075361,
     'vkme.css': 17406229868,
     'ui_controls.js': 756821912,
     'highcharts.js': 1982709850,
@@ -527,8 +527,8 @@ var stVersions = {
     'cmodules/internal/meminfo.js': 16052230988,
     'cmodules/internal/nospam.js': 29711737138,
     'shortener.js': 1002525642,
-    'lead_forms_app.css': 18263060511,
-    'lead_forms_app.js': 9419115513,
+    'lead_forms_app.css': 17962869524,
+    'lead_forms_app.js': 13036914832,
     'lang': 6825
 };
 var stTypes = {
@@ -593,4 +593,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 3784;
+var _rnd = 3921;

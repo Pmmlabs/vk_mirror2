@@ -1897,6 +1897,10 @@ textarea.blog_edit_inp {
     margin-top: 5px
 }
 
+.blog_notification_setting_row_value .checkbox {
+    margin-top: 20px
+}
+
 .blog_notification_setting_row_input {
     width: 400px
 }

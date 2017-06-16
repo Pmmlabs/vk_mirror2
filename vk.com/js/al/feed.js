@@ -232,10 +232,10 @@ var Feed = {
                     k = layers && layers.visible && window.wkcur && "story" == wkcur.type;
                 k && (C = !0);
                 var P = !1,
-                    x = y;
+                    S = y;
                 if (C && (y = wall.updatePostImages(y)), b) {
                     if (cur.ignore_owners.length && inArray(intval(b), cur.ignore_owners)) break;
-                    if (p = geByClass1("feed_reposts_wrap" + b, m, "div")) _ = geByClass1("feed_reposts_first", p, "div").firstChild, h = geByClass1("feed_reposts_group", p, "div"), g = geByClass1("feed_reposts_more_link", p, "a"), feed.needScrollPost(t, _) && (c -= _.offsetHeight + d(_)), _.parentNode.replaceChild(f = se(x), _), h.insertBefore(_, h.firstChild), isVisible(h) || val(g, getLang("news_show_X_reposts", h.childNodes.length)), p = p.parentNode, m.firstChild != p && m.insertBefore(p, m.firstChild), feed.needScrollPost(t, p) && (c += p.offsetHeight + d(p)), p.bits = 0;
+                    if (p = geByClass1("feed_reposts_wrap" + b, m, "div")) _ = geByClass1("feed_reposts_first", p, "div").firstChild, h = geByClass1("feed_reposts_group", p, "div"), g = geByClass1("feed_reposts_more_link", p, "a"), feed.needScrollPost(t, _) && (c -= _.offsetHeight + d(_)), _.parentNode.replaceChild(f = se(S), _), h.insertBefore(_, h.firstChild), isVisible(h) || val(g, getLang("news_show_X_reposts", h.childNodes.length)), p = p.parentNode, m.firstChild != p && m.insertBefore(p, m.firstChild), feed.needScrollPost(t, p) && (c += p.offsetHeight + d(p)), p.bits = 0;
                     else if ((w = geByClass("feed_repost" + b, m, "div")) && w.length) {
                         y = rs(cur.wallTpl.grouped_posts, {
                             place: b,
@@ -244,9 +244,9 @@ var Feed = {
                             other: "",
                             label: getLang("news_show_X_reposts", w.length)
                         });
-                        var S = se('<div class="feed_row' + (C ? "_unshown" : "") + '">' + y + "</div>"),
-                            B = domFC(B);
-                        m.insertBefore(S, m.firstChild), !C && feed.needScrollPost(t, S) && (c += S.offsetHeight + d(S)), P = !0, p = S.firstChild, f = geByClass1("feed_reposts_first", p, "div"), h = geByClass1("feed_reposts_group", p, "div"), each(clone(w), function() {
+                        var x = se('<div class="feed_row' + (C ? "_unshown" : "") + '">' + y + "</div>"),
+                            T = domFC(T);
+                        m.insertBefore(x, m.firstChild), !C && feed.needScrollPost(t, x) && (c += x.offsetHeight + d(x)), P = !0, p = x.firstChild, f = geByClass1("feed_reposts_first", p, "div"), h = geByClass1("feed_reposts_group", p, "div"), each(clone(w), function() {
                             feed.needScrollPost(t, this) && (c -= this.offsetHeight + d(this)), re(this.parentNode), h.appendChild(this.firstChild)
                         })
                     } else f = se('<div class="feed_row' + (C ? "_unshown" : "") + '"><div class="feed_repost' + b + '">' + y + "</div></div>"), m.insertBefore(f, m.firstChild), P = !0, !C && feed.needScrollPost(t, f) && (c += f.offsetHeight + d(f))
@@ -262,28 +262,28 @@ var Feed = {
                 m.insertBefore(f, m.firstChild), feed.needScrollPost(t, f) && (c += f.offsetHeight + d(f)), cur.feedUnreadCount++, v.length > 300 ? m.removeChild(v[300]) : v.length <= 1 && removeClass(cur.feedEls.wrap, "feed_is_empty");
                 break;
             case "edit_post":
-                var T, E = ge("wpt" + r);
+                var B, E = ge("wpt" + r);
                 if (!isVisible(i) || !E) break;
                 var L = geByClass1("wall_post_more", E);
-                L && (L = isVisible(domNS(L))), (T = feed.needScrollPost(t, E)) && (c -= E.offsetHeight);
+                L && (L = isVisible(domNS(L))), (B = feed.needScrollPost(t, E)) && (c -= E.offsetHeight);
                 var N = psr(rs(e[3], {
                         poll_hash: cur.wallTpl.poll_hash
                     })),
                     m = ge("post" + r);
-                m && !isVisible(m.parentNode) && (N = wall.updatePostImages(N)), val(E, N), L && (L = geByClass1("wall_post_more", E), L && L.onclick()), ge("post_poll_id" + r) && wall.updatePoll(r), T && (c += E.offsetHeight), nodeUpdated(E);
+                m && !isVisible(m.parentNode) && (N = wall.updatePostImages(N)), val(E, N), L && (L = geByClass1("wall_post_more", E), L && L.onclick()), ge("post_poll_id" + r) && wall.updatePoll(r), B && (c += E.offsetHeight), nodeUpdated(E);
                 break;
             case "edit_reply":
-                var H = e[3],
-                    E = ge("wpt" + H);
-                if (!isVisible("post" + H) || !E) break;
+                var M = e[3],
+                    E = ge("wpt" + M);
+                if (!isVisible("post" + M) || !E) break;
                 var L = geByClass1("wall_reply_more", E);
                 L && (L = isVisible(domNS(L))), updH = -E.offsetHeight, updY = getXY(E)[1], val(E, psr(e[4])), L && (L = geByClass1("wall_reply_more", E), L && L.onclick()), updH += E.offsetHeight, nodeUpdated(E);
                 break;
             case "post_parsed_link":
                 if (!i) break;
-                var M = geByClass1("wall_postlink_preview_btn_disabled", i);
-                if (!M) break;
-                intval(e[3]) ? removeClass(M, "wall_postlink_preview_btn_disabled") : re(M);
+                var H = geByClass1("wall_postlink_preview_btn_disabled", i);
+                if (!H) break;
+                intval(e[3]) ? removeClass(H, "wall_postlink_preview_btn_disabled") : re(H);
                 break;
             case "del_post":
                 if (i) {
@@ -405,6 +405,10 @@ var Feed = {
     updateTitle: function() {
         cur.idleManager && (cur.idleManager.isIdle || (cur.feedUnreadCount = 0), document.title = (cur.feedUnreadCount ? "(" + cur.feedUnreadCount + ") " : "") + cur.feedInitialTitle)
     },
+    toggleTabsMenuTab: function(e, t) {
+        var s = geByClass1("feed_section_" + e, cur.feedEls.rmenu);
+        s && toggleClass(s, "ui_rmenu_item_hidden", !t)
+    },
     toggleTabsMenu: function(e, t) {
         var s = ge("feed_add_list_icon");
         return void 0 === t && (t = !hasClass(s, "shown")), browser.mozilla && setStyle("page_body", {
@@ -422,12 +426,12 @@ var Feed = {
             default:
                 if (r = t.match(/list(\d+)/)) return feed.editList(r[1])
         }
-        var s, o, r, i = (ge("tabs_type_filter"), cur.my_feed_types.tabs);
+        var s, o, r, i = (ge("tabs_type_filter"), t == cur.section),
+            n = cur.my_feed_types.tabs;
         cur.feed_types.tabs;
-        s = -1 != (o = indexOf(i, t)), toggleClass(e, "checked", !s), s ? (i.splice(o, 1), cur.section == t && feed.switchSection("news")) : i.push(t), cur.my_feed_types.tabs = i;
-        var n = geByClass1("feed_section_" + t, cur.feedEls.rmenu);
-        isVisible(n);
-        toggleClass(n, "ui_rmenu_item_hidden", s), clearTimeout(cur.saveTabsTO), cur.saveTabsTO = setTimeout(feed.saveTabs, 500)
+        s = -1 != (o = indexOf(n, t)), toggleClass(e, "checked", !s), s ? (n.splice(o, 1), i && (cur.onSaveTabs = function(e, t) {
+            feed.toggleTabsMenu(null, !1), feed.switchSection("news")
+        }.pbind(t, s))) : n.push(t), cur.my_feed_types.tabs = n, feed.toggleTabsMenuTab(t, !s || i), uiRightMenu.fixScroller(ge("ui_rmenu_" + cur.section + (cur.list || ""))), clearTimeout(cur.saveTabsTO), cur.saveTabsTO = setTimeout(feed.saveTabs, 500)
     },
     hasSearchParams: function(e) {
         var t = !1;
@@ -524,7 +528,7 @@ var Feed = {
                 var s = inArray(e, ["articles_search", "articles", "search", "photos_search", "photos"]);
                 toggleClass(cur.feedEls.wrap, "feed_search_shown", s), s && elfocus(cur.feedEls.search), cur.section && val(cur.feedEls.search, "")
             }
-            if (2 == t && window.Stories && Stories.updateFeedStories(e), cur.section = e, 4 == t) return void feed.searchUpdate();
+            if (2 == t && window.Stories && Stories.updateFeedStories(e), cur.my_feed_types && (~indexOf(cur.my_feed_types.optional_tabs, cur.section) && !~indexOf(cur.my_feed_types.tabs, cur.section) && feed.toggleTabsMenuTab(cur.section, !1), ~indexOf(cur.my_feed_types.optional_tabs, e) && !~indexOf(cur.my_feed_types.tabs, e) && feed.toggleTabsMenuTab(e, !0)), cur.section = e, 4 == t) return void feed.searchUpdate();
             cur.editingHide = "notifications" == e || "replies" == e ? feed.notifyCheckHideReply : !1, cur.gifAutoplayScrollHandler && cur.gifAutoplayScrollHandler(), cur.videoAutoplayScrollHandler && cur.videoAutoplayScrollHandler()
         }
     },
@@ -1156,6 +1160,10 @@ var Feed = {
             act: "a_save_tabs",
             hash: cur.tabs_hash,
             tabs: cur.my_feed_types.tabs.join(",")
+        }, {
+            hideProgress: function() {
+                isFunction(cur.onSaveTabs) && cur.onSaveTabs(), cur.onSaveTabs = null
+            }
         })
     },
     statsShow: function(e, t) {
@@ -1235,7 +1243,7 @@ var Feed = {
         }), {
             onDone: function(options, rows, js, app_widget_html) {
                 if (revertLastInlineVideo(), removeClass(cur.feedEls.wrap, "feed_has_new"), cur.newPostsCount = 0, window.tooltips && tooltips.destroyAll(ge("feed_rows")), boxQueue.hideAll(), layers.fullhide && layers.fullhide(!0), frame && ajax._framenext(), window.wall && wall.cancelEdit(), boxQueue.hideAll(), onBeforeReplace ? onBeforeReplace(rows || "") : val(cur.rowsCont, rows || ""), feed.applyOptions(options, 2), !params.norecom) {
-                    val("feed_recommends", options.recommends || "");
+                    val("feed_recommends", options.recommends || ""), toggle("feed_recommends", !!options.recommends);
                     var str = "/al_feed.php#" + ajx2q({
                         act: "recom"
                     });
@@ -1376,13 +1384,6 @@ var Feed = {
             }
         }
         return nav.go(e, t)
-    },
-    hideCustomFeedBar: function(e, t, s) {
-        return slideUp(e, 200, re.pbind(e)), ajax.post("al_feed.php", {
-            act: "hide_custom_feed_bar",
-            section: t,
-            hash: s
-        }), !1
     },
     toggleCustomFeedTab: function(e, t) {
         return hasClass(e, "feed_tab_link_hidden") ? (removeClass(e, "feed_tab_link_hidden"), setCookie("remixcustom_feed_added", t)) : lockButton(e), feed.checkTabsFilter(geByClass1("_feed_custom_" + t), t)
