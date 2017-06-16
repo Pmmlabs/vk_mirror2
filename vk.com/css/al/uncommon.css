@@ -753,26 +753,30 @@ input.passchange_input_error {
     margin: 0 0 12px
 }
 
-#restore_cancel_box {
+.restore_cancel_box {
     line-height: 140%
 }
 
-#restore_cancel_box .clear_fix {
-    padding: 10px 0px
-}
-
-#restore_cancel_box .label {
+.restore_cancel_box .label {
+    float: left;
     padding: 4px 10px 0px;
+    text-align: right;
     color: #777;
     width: 150px
 }
 
-#restore_cancel_box .labeled {
+.restore_cancel_box .labeled {
+    float: left;
     width: 200px
 }
 
-#restore_cancel_box .labeled input {
+.restore_cancel_box .text {
     width: 150px
+}
+
+.restore_cancel_box__blocks,
+.restore_cancel_box__block {
+    padding: 5px 0
 }
 
 #vk_com_only .info {

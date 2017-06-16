@@ -15,7 +15,7 @@ var Restore = {
     closeRequest: function(e) {
         lockButton(e);
         var o = {
-            act: "cancel_request",
+            act: "a_cancel_request_by_author",
             hash: cur.options.cancel_hash,
             rhash: cur.options.hash,
             rid: cur.options.request_id
@@ -438,7 +438,8 @@ var Restore = {
         })) : cur.options.need_check ? (lockButton(r), void ajax.post("al_restore.php", {
             act: "a_check_phone",
             hash: cur.options.fhash,
-            phone: t
+            phone: t,
+            from_independent: 1
         }, {
             onDone: function(e, t) {
                 var n = "request_phone_check_res";

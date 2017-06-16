@@ -700,9 +700,9 @@ var MoneyTransfer = {
             return false;
         }
         if (submit && cur.paymentsOptions.minAmount && amount < cur.paymentsOptions.minAmount) {
-            error = getLang('payments_money_transfer_error_min_amount', cur.paymentsOptions.minAmount);
+            error = getLang('payments_money_transfer_error_min_amount_currency');
         } else if (cur.paymentsOptions.maxAmount && amount > cur.paymentsOptions.maxAmount) {
-            error = getLang('payments_money_transfer_error_max_amount', cur.paymentsOptions.maxAmount);
+            error = getLang('payments_money_transfer_error_max_amount_currency');
         }
         if (error != false) {
             val('payments_money_transfer_notice', error);
