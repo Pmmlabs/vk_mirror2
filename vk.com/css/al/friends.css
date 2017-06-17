@@ -313,7 +313,8 @@
 
 .friends_field {
     margin-bottom: 9px;
-    color: #656565
+    color: #656565;
+    word-wrap: break-word
 }
 
 .friends_field .group_link {

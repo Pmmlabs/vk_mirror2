@@ -171,7 +171,7 @@ var stVersions = {
     'fullscreen_pv.css': 16222473058,
     'spe.js': 3760998372,
     'friends.js': 493278683,
-    'friends.css': 16876670864,
+    'friends.css': 17474472951,
     'friends_search.js': 3688413939,
     'friends_search.css': 1694758778,
     'board.js': 2538879168,
@@ -370,7 +370,7 @@ var stVersions = {
     'aes_light.js': 3306454788,
     'ads.css': 24713675276,
     'ads_bonus.css': 460482192,
-    'ads.js': 2664761182,
+    'ads.js': 1629241604,
     'ads_payments.js': 2170749464,
     'ads_edit.css': 15231463174,
     'ads_edit.js': 3435103565,
@@ -593,4 +593,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 7487;
+var _rnd = 2237;
