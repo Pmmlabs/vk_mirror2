@@ -4822,38 +4822,57 @@ var Wall = {
     },
     triggerAdPostStat: function(post, event) {
         var postEl = typeof post == 'string' ? Wall.domPost(post) : post;
+
         var pixels = domData(postEl, 'ad-stat-' + event);
-        if (!pixels) {
-            return;
+        while (pixels) {
+            var adBlockUID = domData(postEl, 'ad-block-uid');
+            var isUniqueEvent = inArray(event, [
+                'load', 'impression',
+                'video_start', 'video_play_3s', 'video_play_25', 'video_play_50', 'video_play_75', 'video_play_95'
+            ]);
+            if (isUniqueEvent) {
+                domData(postEl, 'ad-stat-' + event, null);
+            }
+            if (adBlockUID && isUniqueEvent) {
+                try {
+                    var eventKey = hashCode('' + event + adBlockUID);
+                    var lsData = Wall.getAdsEvents();
+                    if (lsData[eventKey]) {
+                        break;
+                    }
+                    var now = ((new Date()).getTime() / 1000) | 0;
+                    lsData[eventKey] = now;
+                    ls.set(Wall.LS_ADS_EVENTS, lsData);
+                } catch (e) {
+                    try {
+                        console.log(e.message);
+                    } catch (e2) {}
+                }
+            }
+
+            pixels = pixels.split('$$$');
+            each(pixels, function(i, pxl) {
+                vkImage().src = pxl;
+            });
+
+            break;
         }
 
-        var adBlockUID = domData(postEl, 'ad-block-uid');
-        var isUniqueEvent = inArray(event, [
-            'load', 'impression',
-            'video_start', 'video_play_3s', 'video_play_25', 'video_play_50', 'video_play_75', 'video_play_95'
-        ]);
-        if (adBlockUID && isUniqueEvent) {
-            try {
-                var eventKey = hashCode('' + event + adBlockUID);
-                var lsData = Wall.getAdsEvents();
-                if (lsData[eventKey]) {
-                    return;
+        var statHtml = domData(postEl, 'ad-stat-html-' + event);
+        domData(postEl, 'ad-stat-html-' + event, null);
+
+        if (statHtml) {
+            var statElemWrap = ce('div', {
+                innerHTML: statHtml
+            });
+            var elem;
+            while (elem = statElemWrap.firstChild) {
+                postEl.appendChild(elem);
+                if (elem.tagName === 'SCRIPT') {
+                    eval(elem.innerHTML);
                 }
-                var now = ((new Date()).getTime() / 1000) | 0;
-                lsData[eventKey] = now;
-                ls.set(Wall.LS_ADS_EVENTS, lsData);
-            } catch (e) {
-                try {
-                    console.log(e.message);
-                } catch (e2) {}
             }
         }
-
-        pixels = pixels.split('$$$');
-        each(pixels, function(i, pxl) {
-            vkImage().src = pxl;
-        });
-        domData(postEl, 'ad-stat-' + event, null);
     },
     copyHistory: function(ev, el, post, offset) {
         ev = ev || window.event;
@@ -6348,6 +6367,11 @@ var Wall = {
             removeEvent(window, 'resize', Wall.scrollCheck);
         });
         cur.wallAutoMore = opts.automore;
+
+        var posts = geByClass('_post');
+        for (var iPost = 0, post; post = posts[iPost]; iPost++) {
+            Wall.triggerAdPostStat(post, 'load');
+        }
 
         var draft = false;
         if (!cur.options.no_draft) {
