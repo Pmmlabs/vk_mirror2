@@ -104,22 +104,22 @@ function MediaSelector(e, a, t, i) {
     var s, r = [];
     i = i || {};
     var d = i.mediaHandlers || {};
-    each(t || [], function(e, a) {
-        var t = a[0],
-            o = a[1],
-            n = a[2];
-        if (o) {
-            var l = !1,
-                c = i.toId || cur.postTo,
-                _ = {
-                    to_id: c,
+    each(t || [], function(a, t) {
+        var o = t[0],
+            n = t[1],
+            l = t[2];
+        if (n) {
+            var c = !1,
+                _ = i.toId || cur.postTo,
+                h = {
+                    to_id: _,
                     blockPersonal: i.blockPersonal
                 };
-            switch (_.mail_add = i.mail ? 1 : "", t) {
+            switch (h.mail_add = i.mail ? 1 : "", o) {
                 case "graffiti":
-                    l = showBox.pbind("al_wall.php", {
+                    c = showBox.pbind("al_wall.php", {
                         act: "canvas_draw_box",
-                        to_id: c,
+                        to_id: _,
                         flash: browser.flash
                     }, {
                         cache: 1,
@@ -127,7 +127,7 @@ function MediaSelector(e, a, t, i) {
                     });
                     break;
                 case "photos_list":
-                    l = showBox.pbind("al_photos.php", extend(_, {
+                    c = showBox.pbind("al_photos.php", extend(h, {
                         act: "choose_photo"
                     }), {
                         cache: 1,
@@ -136,7 +136,7 @@ function MediaSelector(e, a, t, i) {
                     });
                     break;
                 case "photo":
-                    l = d.photo ? d.photo.pbind(i) : showBox.pbind("al_photos.php", extend(_, {
+                    c = d.photo ? d.photo.pbind(i) : showBox.pbind("al_photos.php", extend(h, {
                         act: "choose_photo",
                         max_files: i.limit || 10
                     }), {
@@ -146,7 +146,7 @@ function MediaSelector(e, a, t, i) {
                     });
                     break;
                 case "video":
-                    l = showBox.pbind("al_video.php", extend(_, {
+                    c = showBox.pbind("al_video.php", extend(h, {
                         act: "a_choose_video_box"
                     }), {
                         cache: 1,
@@ -154,15 +154,18 @@ function MediaSelector(e, a, t, i) {
                     });
                     break;
                 case "audio":
-                    l = function() {
+                    c = function() {
                         stManager.add(["audio.js", "indexer.js", "auto_list.js", "grid_sorter.js", "audio.css"], function() {
-                            var e = !1;
+                            var a = !1;
                             each(s.chosenMedias || [], function() {
-                                "audio_playlist" == this[0] && (e = !0)
+                                "audio_playlist" == this[0] && (a = !0)
                             }), cur.audioAttachSwitchOwnerId = !1;
-                            var a = _.to_id || vk.id;
-                            a && isString(a) && 0 === a.indexOf("board") && (a = -intval(a.replace("board", ""))), (cur.options && cur.options.suggesting || cur.options && cur.options.user_id) && (a = vk.id), void 0 === cur.wallGroupAudioEnabled || cur.wallGroupAudioEnabled ? _.to_id != vk.id && "profile" != cur.module && (cur.audioAttachSwitchOwnerId = _.to_id) : a = vk.id, AudioPage.showAttachBox(a, {
-                                canPlaylistAttach: !e && !cur.editor,
+                            var t = vk.id,
+                                i = parseInt(("" + h.to_id || "").replace(/^board/, "-")),
+                                o = domClosest("_submit_post_box", e),
+                                r = hasClass(o, "as_group");
+                            r ? (t = i, cur.audioAttachSwitchOwnerId = vk.id) : cur.hasGroupAudioAccess && (cur.audioAttachSwitchOwnerId = i), AudioPage.showAttachBox(t, {
+                                canPlaylistAttach: !a && !cur.editor,
                                 onAudioChoose: AudioUtils.onAudioChoose,
                                 onPlaylistChoose: AudioUtils.onPlaylistChoose
                             })
@@ -170,20 +173,20 @@ function MediaSelector(e, a, t, i) {
                     };
                     break;
                 case "poll":
-                    l = function() {
-                        s.chooseMedia("poll", "", n)
+                    c = function() {
+                        s.chooseMedia("poll", "", l)
                     };
                     break;
                 case "doc":
-                    var h = i.docParams || {};
-                    h = extend(h, {
+                    var p = i.docParams || {};
+                    p = extend(p, {
                         act: "a_choose_doc_box"
-                    }), l = d.doc ? d.doc.pbind(i) : showBox.pbind("docs.php", extend(_, h), {
+                    }), c = d.doc ? d.doc.pbind(i) : showBox.pbind("docs.php", extend(h, p), {
                         stat: ["docs.css"]
                     });
                     break;
                 case "map":
-                    l = showBox.pbind("al_places.php", extend(_, {
+                    c = showBox.pbind("al_places.php", extend(h, {
                         act: "a_choose_place_box"
                     }), {
                         stat: ["places.css", "map.css", "maps.js", "ui_controls.css", "ui_controls.js", "boxes.css"],
@@ -193,24 +196,24 @@ function MediaSelector(e, a, t, i) {
                     });
                     break;
                 case "note":
-                    l = showWiki.pbind({
+                    c = showWiki.pbind({
                         note: "new"
                     }, !0, !1, {
                         queue: 1
                     });
                     break;
                 case "postpone":
-                    l = function() {
-                        s.chooseMedia("postpone", o, n)
+                    c = function() {
+                        s.chooseMedia("postpone", n, l)
                     };
                     break;
                 case "mark_as_ads":
-                    l = function() {
-                        s.chooseMedia("mark_as_ads", o, n)
+                    c = function() {
+                        s.chooseMedia("mark_as_ads", n, l)
                     };
                     break;
                 case "share":
-                    l = function() {
+                    c = function() {
                         window.onShareChooseUrlBoxInit = function() {
                             var e = geByClass1("share_url_input", curBox().bodyNode);
                             addEvent(e, "keydown", function(e) {
@@ -224,9 +227,9 @@ function MediaSelector(e, a, t, i) {
                             }),
                             a = function(a, t) {
                                 var i = geByClass1("share_url_input", e.bodyNode),
-                                    r = val(i);
-                                lockButton(a), disable(i, !0), hide("share_url_error"), s.chooseMedia("share", o, extend(n, {
-                                    url: r,
+                                    o = val(i);
+                                lockButton(a), disable(i, !0), hide("share_url_error"), s.chooseMedia("share", n, extend(l, {
+                                    url: o,
                                     draft: !0,
                                     onSuccess: function() {
                                         disable(i, !1), unlockButton(a), e.hide()
@@ -241,7 +244,7 @@ function MediaSelector(e, a, t, i) {
                     };
                     break;
                 case "gift":
-                    l = function() {
+                    c = function() {
                         var e = i.peer < 2e9 ? i.peer : 0,
                             e = e || cur.peer;
                         i.giftBoxPrepare && i.giftBoxPrepare(e), showBox("al_gifts.php", {
@@ -255,9 +258,9 @@ function MediaSelector(e, a, t, i) {
                     };
                     break;
                 case "money":
-                    l = function() {
+                    c = function() {
                         var e = cur.peer;
-                        c > -2e9 && 0 > c && (_.owner_id = c), showBox("al_payments.php", extend(_, {
+                        _ > -2e9 && 0 > _ && (h.owner_id = _), showBox("al_payments.php", extend(h, {
                             act: "money_transfer_box",
                             to_id: e
                         }), {
@@ -268,15 +271,15 @@ function MediaSelector(e, a, t, i) {
                     };
                     break;
                 case "market":
-                    c == vk.id ? (l = showBox.pbind("al_market.php", extend(_, {
+                    _ == vk.id ? (c = showBox.pbind("al_market.php", extend(h, {
                         act: "a_choose_user_product_box"
                     }), {
                         cache: 1
-                    }), n.tt_words && (cur.checkMessageHandler = function(e) {
-                        if (!cur.marketIntroShown && (e = " " + e + " ", e.match(new RegExp("\\s(" + n.tt_words.join("|") + ")\\s", "i")))) {
+                    }), l.tt_words && (cur.checkMessageHandler = function(e) {
+                        if (!cur.marketIntroShown && (e = " " + e + " ", e.match(new RegExp("\\s(" + l.tt_words.join("|") + ")\\s", "i")))) {
                             var a = getSize(s.menu.moreWrap);
                             showTooltip(s.menu.moreWrap, {
-                                text: n.tt_text,
+                                text: l.tt_text,
                                 dir: "left",
                                 slideX: 15,
                                 width: 230,
@@ -284,13 +287,13 @@ function MediaSelector(e, a, t, i) {
                                 hasover: 1
                             }), cur.marketIntroShown = !0
                         }
-                    })) : l = showBox.pbind("al_market.php", extend(_, {
+                    })) : c = showBox.pbind("al_market.php", extend(h, {
                         act: "a_choose_product_box"
                     }), {
                         cache: 1
                     })
             }
-            r.push([t, o, l])
+            r.push([o, n, c])
         }
     });
     var n = i.limit || 10,
@@ -408,9 +411,9 @@ function MediaSelector(e, a, t, i) {
                         if (x.audio_playlist) return !1;
                         var L = o.coverUrl ? "background-image:url(" + o.coverUrl + "); background-size: cover;" : "",
                             D = "";
-                        D = o.authorHref ? '<a href="' + o.authorHref + '">' + o.authorName + "</a>" : o.authorName;
-                        var U = o.id.split("_");
-                        M = '<div class="_audio_pl _audio_pl_' + o.id + ' audio_pl_attach_preview clear_fix"><div class="audio_pl_attach_preview__play audio_pl_snippet_play_small" onclick="return getAudioPlayer().playPlaylist(' + U[0] + ", " + U[1] + ')"></div><div class="audio_pl_attach_preview__cover" style="' + L + '">' + (o.gridCovers || "") + '</div><div class="audio_pl_attach_preview__title">' + o.title + '</div><div class="audio_pl_attach_preview__authorLine">' + D + "</div></div>", P = '<span class="medadd_h">' + getLang("global_audio_playlist") + "</span>", A = f;
+                        D = o.authorHref ? '<a href="' + o.authorHref + '" onclick="return nav.go(this)">' + o.authorName + "</a>" : o.authorName;
+                        var U = "'" + (o.accessHash || "") + "'";
+                        M = '<div class="audio_pl_snippet_small audio_pl_snippet_no_list audio_pl_snippet _audio_pl _audio_pl_' + o.id + ' audio_pl_attach_preview clear_fix"><div class="audio_pl_attach_preview__play audio_pl_snippet_play_small" onclick="return getAudioPlayer().playPlaylist(' + o.ownerId + ", " + o.id + ", " + U + ')"></div><div class="audio_pl_snippet__cover" style="' + L + '">' + (o.gridCovers || "") + '</div><div class="audio_pl_snippet__info_title audio_pl__title">' + o.title + '</div><div class="audio_pl_snippet__info_author_line">' + D + "</div></div>", P = '<span class="medadd_h">' + getLang("global_audio_playlist") + "</span>", A = f;
                         break;
                     case "doc":
                         if (!o.lang) return !1;
@@ -418,6 +421,9 @@ function MediaSelector(e, a, t, i) {
                         break;
                     case "story":
                         P = '<div class="medadd_c_story"><a target="_blank" ' + o.attr + '"><div class="medadd_c_story_thumb fl_l" style="background-image:url(' + o.thumb + ')"></div></a><div class="medadd_c_story_info fl_l"><a class="medadd_c_story_title" target="_blank" ' + o.attr + '">' + o.title + '</a><div class="medadd_c_story_desc">' + o.date_string + "</div></div>", hide(e);
+                        break;
+                    case "mask":
+                        P = '<div class="medadd_c_story"><div class="medadd_c_story_thumb fl_l" style="background-image:url(/images/landings/vkmasks/masksSnippet_2x.png)"></div></a><div class="medadd_c_story_info fl_l"><div class="medadd_c_story_title">' + o.share.title + '</div><div class="medadd_c_story_desc">' + o.share.desc + "</div></div>", hide(e);
                         break;
                     case "share":
                         if (x.share || x.page || !o.lang) return !1;
@@ -512,16 +518,16 @@ function MediaSelector(e, a, t, i) {
                                 var K = window.data(O, "tt");
                                 if (K && K.rdBtns) {
                                     var V = K.rdBtns[1],
-                                        G = K.rdBtnsGroup,
-                                        X = domData(V, "as");
-                                    radiobtn(V, X, G)
+                                        X = K.rdBtnsGroup,
+                                        Y = domData(V, "as");
+                                    radiobtn(V, Y, X)
                                 }
                             }
                             var V = ge("send_post");
                             V && (V.innerHTML = o.lang.profile_wall_postpone_btn)
                         }
-                        var Y = Math.round((new Date).getTime() / 1e3);
-                        intval(o.date) < Y && (o.date = Y + 3600), hide(domByClass(h.menuNode, "_type_postpone")), A = C;
+                        var G = Math.round((new Date).getTime() / 1e3);
+                        intval(o.date) < G && (o.date = G + 3600), hide(domByClass(h.menuNode, "_type_postpone")), A = C;
                         break;
                     case "mark_as_ads":
                         P = '<div class="medadd_h medadd_h_mark_as_ads inl_bl">' + o.lang.global_ads_wall_post_mark_as_ads_action + "</div>", hide(domByClass(h.menuNode, "_type_mark_as_ads")), A = C
@@ -852,7 +858,7 @@ function MediaSelector(e, a, t, i) {
                             p = d;
                         if (d.match(/^https?:\/\//) || (d = "http://" + d), !inArray(d, s.urlsCancelled) && !inArray(p, s.urlsCancelled)) {
                             var u = !0;
-                            if (h.match(/(^|\.|\/\/)(vkontakte\.ru|vk\.com)/i) && (u = _.match(/(#photo|^\/(photo|video|album|page|audio|doc)|z=(album|photo|video|audio_playlist)|w=(page|product))(-?\d+_)?\d+|app\d+_-\d+|\.(jpg|png|gif)$|market-?\d+\?section=album_\d+|^\/stickers\/.+$|\?w\=story(\d+)_(\d+)$|stor(y|ies)(\d+)_(\d+)$|^(\/dev)?\/blog\/.+$|^\/jobs\?w=job\d+$|^\/landings\/.+$|\?w\=vk10\_years(\d+)$|^\/messenger$|^\/bestgames2016$|^\/ads(\/([a-zA-Z0-9\_]+))?$|^http:\/\/instagram\.com\/p\/.+/) ? !0 : !1), u) return void s.checkURL(p, t)
+                            if (h.match(/(^|\.|\/\/)(vkontakte\.ru|vk\.com)/i) && (u = _.match(/(#photo|^\/(photo|video|album|page|audio|doc|mask)|z=(album|photo|video|audio_playlist)|w=(page|product))(-?\d+_)?\d+|app\d+_-\d+|\.(jpg|png|gif)$|market-?\d+\?section=album_\d+|^\/stickers\/.+$|\?w\=story(\d+)_(\d+)$|stor(y|ies)(\d+)_(\d+)$|^(\/dev)?\/blog\/.+$|^\/jobs\?w=job\d+$|^\/landings\/.+$|\?w\=vk10\_years(\d+)$|^\/messenger$|^\/bestgames2016$|^\/ads(\/([a-zA-Z0-9\_]+))?$|^http:\/\/instagram\.com\/p\/.+/) ? !0 : !1), u) return void s.checkURL(p, t)
                         }
                     }
                 }

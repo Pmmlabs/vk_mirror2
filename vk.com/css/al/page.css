@@ -245,7 +245,7 @@
 }
 
 .wall_module .reply_action {
-    background: url(/images/post_icon.png?6) no-repeat 1px -52px;
+    background: url(/images/post_icon.png?8) no-repeat 1px -52px;
     opacity: 0;
     filter: alpha(opacity=0);
     cursor: pointer;
@@ -258,8 +258,8 @@
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .wall_module .reply_action {
-        background-image: url(/images/post_icon_2x.png?6);
-        background-size: 20px 369px
+        background-image: url(/images/post_icon_2x.png?8);
+        background-size: 20px 391px
     }
 }
 
@@ -823,7 +823,7 @@ html:not([lang=ru]) .wall_marked_as_ads {
 }
 
 .wall_module .like_icon {
-    background: url(/images/post_icon.png?6) no-repeat 0 -29px;
+    background: url(/images/post_icon.png?8) no-repeat 0 -29px;
     width: 12px;
     height: 10px;
     margin: 2px 0 0;
@@ -837,8 +837,8 @@ html:not([lang=ru]) .wall_marked_as_ads {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .wall_module .like_icon {
-        background-image: url(/images/post_icon_2x.png?6);
-        background-size: 20px 369px
+        background-image: url(/images/post_icon_2x.png?8);
+        background-size: 20px 391px
     }
 }
 
@@ -1138,7 +1138,7 @@ html:not([lang=ru]) .wall_marked_as_ads {
 }
 
 .wall_module .reply_to_title .reply_to_cancel {
-    background: url(/images/post_icon.png?6) no-repeat 1px -52px;
+    background: url(/images/post_icon.png?8) no-repeat 1px -52px;
     width: 13px;
     height: 13px;
     margin: 2px 0 0 3px;
@@ -1150,8 +1150,8 @@ html:not([lang=ru]) .wall_marked_as_ads {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .wall_module .reply_to_title .reply_to_cancel {
-        background-image: url(/images/post_icon_2x.png?6);
-        background-size: 20px 369px
+        background-image: url(/images/post_icon_2x.png?8);
+        background-size: 20px 391px
     }
 }
 
@@ -6787,7 +6787,7 @@ div.medadd_c_linkprg {
     width: 12px;
     height: 10px;
     margin-top: -5px;
-    background: url(/images/post_icon.png?6) no-repeat;
+    background: url(/images/post_icon.png?8) no-repeat;
     opacity: 0;
     filter: alpha(opacity=0);
     background-position: left -41px
@@ -6797,8 +6797,8 @@ div.medadd_c_linkprg {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .medadd_inline_editable_icon {
-        background-image: url(/images/post_icon_2x.png?6);
-        background-size: 20px 369px
+        background-image: url(/images/post_icon_2x.png?8);
+        background-size: 20px 391px
     }
 }
 

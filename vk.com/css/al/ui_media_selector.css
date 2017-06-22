@@ -33,7 +33,7 @@
     content: '';
     width: 22px;
     height: 22px;
-    background: url(/images/post_icon.png?6) no-repeat;
+    background: url(/images/post_icon.png?8) no-repeat;
     opacity: 0.7;
     filter: alpha(opacity=70)
 }
@@ -42,8 +42,8 @@
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .media_selector .ms_item:before {
-        background-image: url(/images/post_icon_2x.png?6);
-        background-size: 20px 369px
+        background-image: url(/images/post_icon_2x.png?8);
+        background-size: 20px 391px
     }
 }
 
@@ -97,9 +97,12 @@
     background-position: left -285px
 }
 
-.media_selector .ms_item.ms_item_money:before,
-.media_selector .ms_item.ms_item_mark_as_ads:before {
+.media_selector .ms_item.ms_item_money:before {
     background-position: left -307px
+}
+
+.media_selector .ms_item.ms_item_mark_as_ads:before {
+    background-position: left -373px
 }
 
 .media_selector .ms_item.ms_item_share:before {

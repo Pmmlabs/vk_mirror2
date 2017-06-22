@@ -202,7 +202,8 @@ var Board = {
             pgNoArrowNav: Board.noArrowNav,
             updates: e.updates,
             topicMyReplied: !1,
-            topicMyDeleted: {}
+            topicMyDeleted: {},
+            hasGroupAudioAccess: e.hasGroupAudioAccess
         }), Board.initUpdates(), cur.addField && (data(cur.addField, "send", Board.sendPost), placeholderInit(cur.addField, {
             editable: 1
         }), Board.topicFieldUpdated(), cur.onReplyFormSizeUpdate = Board.topicFieldUpdated, cur.onMediaChanged = Board.topicAttachWillAdd), Board.topicOnScroll(!1, !1, !0), Pagination.init(e.bottom), cur.destroy.push(Pagination.deinit), cur.destroy.push(removeEvent.pbind(window, "keydown", Board.handleEditEsc))

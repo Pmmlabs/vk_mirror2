@@ -668,6 +668,7 @@ var Videoview = {
         initAddButton: function() {
             function e(e) {
                 mvcur.addButtonTT = mvcur.addButtonTT || new ElementTooltip(r, {
+                    cls: "mv_add_eltt",
                     elClassWhenTooltip: "mv_no_active",
                     onFirstTimeShow: function(i) {
                         var o = '<div id="mv_pl_tt">' + (d ? '<div class="mv_tt_private_only">' + getLang("video_only_private_video") + "</div>" : "") + '<div class="mv_tt_playlists' + (d ? " with_border" : "") + '">';
@@ -675,7 +676,7 @@ var Videoview = {
                             var a = t.added || e && t.id == mvcur.mvData.PLAYLIST_ADDED_ID,
                                 n = t["private"] ? '<span class="mv_tt_playlist_private_icon" onmouseover="showTooltip(this,{black:1,text: \'' + getLang("video_album_is_private_tt") + "', shift:[16, 8, 0]})\"></span>" : "";
                             o += '<div class="mv_tt_playlist">  <div class="checkbox' + (a ? " on" : "") + (t.disabled ? " disabled" : "") + '" data-id="' + t.id + '" onclick="checkbox(this);">' + t.title + "</div>" + n + "</div>          "
-                        }), o += "</div>", o += '<div class="mv_tt_add_playlist" onclick="Videoview.addPlaylist(' + d + ')"><span class="mv_tt_plus_icon"></span>' + (d ? getLang("video_add_private_album") : getLang("video_add_album")) + "</div></div>", i.innerHTML = o, each(geByClass("mv_tt_playlist", i), function() {
+                        }), o += "</div>", o += '<div class="mv_tt_add_playlist" onclick="Videoview.addPlaylist(' + d + ')"><span class="mv_tt_plus_icon"></span>' + (d ? getLang("video_add_private_album") : getLang("video_add_album")) + "</div></div>", i.appendChild(se("<div>" + o + "</div>")), each(geByClass("mv_tt_playlist", i), function() {
                             var i = domFC(this);
                             addEvent(i, "click", a), e && attr(i, "data-id") == mvcur.mvData.PLAYLIST_ADDED_ID && triggerEvent(i, "click")
                         })

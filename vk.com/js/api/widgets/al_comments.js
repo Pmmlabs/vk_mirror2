@@ -895,7 +895,7 @@ var WComments = {
 
                     addAudio: function(addAudio) {
                         !vk.id ? Widgets.oauth() : addAudio.apply(null, [].slice.call(arguments, 1));
-                    }.bind(null, addAudio),
+                    }.bind(null, AudioUtils.addAudio),
 
                     showWiki: function(likeInfo) {
                         likeInfo = (likeInfo && likeInfo['w'] || '').split('/');
@@ -1681,7 +1681,7 @@ var WComments = {
                                             attachOwnerId = vk.id
                                         }
 
-                                        if (cur.wallGroupAudioEnabled !== (void 0) && !cur.wallGroupAudioEnabled) {
+                                        if (cur.groupAudioEnabled !== (void 0) && !cur.groupAudioEnabled) {
                                             attachOwnerId = vk.id
                                         } else {
                                             if (params.to_id != vk.id) {
@@ -1898,13 +1898,17 @@ var WComments = {
                                         } else {
                                             authorLine = clean(unclean(data.authorName));
                                         }
+
+                                        var accessHash = '\'' + (clean(data.accessHash) || '') + '\''
+                                        var fullId = parseInt(data.ownerId) + '_' + parseInt(data.id)
                                         postview =
-                                        '<div class="_audio_pl _audio_pl_' + clean(data.id) + ' audio_pl_attach_preview clear_fix">' +
-                                        '<div class="audio_pl_attach_preview__play audio_pl_snippet_play_small" onclick="return getAudioPlayer().playPlaylist(' + clean(playlistIds[0]) + ', ' + clean(playlistIds[1]) + ')"></div>' +
-                                        '<div class="audio_pl_attach_preview__cover" style="' + coverStyle + '"></div>' +
-                                        '<div class="audio_pl_attach_preview__title">' + clean(unclean(data.title)) + '</div>' +
-                                        '<div class="audio_pl_attach_preview__authorLine">' + authorLine + '</div>' +
+                                        '<div class="audio_pl_snippet_small audio_pl_snippet_no_list audio_pl_snippet _audio_pl _audio_pl_' + fullId + ' audio_pl_attach_preview clear_fix">' +
+                                        '<div class="audio_pl_attach_preview__play audio_pl_snippet_play_small" onclick="return getAudioPlayer().playPlaylist(' + parseInt(data.ownerId) + ', ' + parseInt(data.id) + ', ' + accessHash + ')"></div>' +
+                                        '<div class="audio_pl_snippet__cover" style="' + coverStyle + '"></div>' +
+                                        '<div class="audio_pl_snippet__info_title audio_pl__title">' + clean(unclean(data.title)) + '</div>' +
+                                        '<div class="audio_pl_snippet__info_author_line">' + authorLine + '</div>' +
                                         '</div>'
+
                                         preview = '<span class="medadd_h">' + getLang('audio_attach_title_playlist') + '</span>'
 
                                         toEl = ldocsEl

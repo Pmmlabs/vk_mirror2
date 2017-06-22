@@ -904,7 +904,7 @@
 }
 
 #page_wrap .wcomments_post_footer .post_like_wrap .post_like_icon {
-    background: url(/images/post_icon.png?6) no-repeat 0 -29px;
+    background: url(/images/post_icon.png?8) no-repeat 0 -29px;
     width: 12px;
     height: 10px;
     margin: 1px 0 0;
@@ -918,8 +918,8 @@
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     #page_wrap .wcomments_post_footer .post_like_wrap .post_like_icon {
-        background-image: url(/images/post_icon_2x.png?6);
-        background-size: 20px 369px
+        background-image: url(/images/post_icon_2x.png?8);
+        background-size: 20px 391px
     }
 }
 

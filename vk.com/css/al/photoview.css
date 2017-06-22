@@ -759,8 +759,8 @@
     padding: 5px 0
 }
 
-#pv_more_acts_tt.eltt.eltt_top:after,
-#pv_more_acts_tt.eltt.eltt_top:before {
+#pv_more_acts_tt .eltt_arrow,
+#pv_more_acts_tt .eltt_arrow_back {
     border-top-color: #383838
 }
 
@@ -1522,7 +1522,7 @@
 }
 
 .pv_like_icon {
-    background: url(/images/post_icon.png?6) no-repeat 0 0;
+    background: url(/images/post_icon.png?8) no-repeat 0 0;
     display: inline-block;
     width: 16px;
     height: 13px;
@@ -1536,8 +1536,8 @@
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .pv_like_icon {
-        background-image: url(/images/post_icon_2x.png?6);
-        background-size: 20px 369px
+        background-image: url(/images/post_icon_2x.png?8);
+        background-size: 20px 391px
     }
 }
 

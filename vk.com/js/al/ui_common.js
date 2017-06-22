@@ -401,7 +401,7 @@ var uiTabs = {
                             appendTo: wrapEl,
                             content: content,
                             autoShow: !1,
-                            offset: [0, 5],
+                            offset: [0, 10],
                             shift: options.params.shift ? options.params.shift : 0
                         }), options.paramsTooltip.build(), setTimeout(function() {
                             (function initScript() {

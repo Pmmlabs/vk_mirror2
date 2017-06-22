@@ -1961,6 +1961,10 @@ textarea.dark.mv_live_gift_popup_comment_input {
     }
 }
 
+.mv_add_eltt .eltt_arrow {
+    border-top-color: #f7f8fa!important
+}
+
 #mv_add_to_club_albums_progress {
     display: none;
     margin-top: 30px;

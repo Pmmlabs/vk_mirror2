@@ -1084,12 +1084,12 @@
 .feedback_money_complete_row .feedback_photo_icon,
 .feedback_money_row .feedback_photo_icon {
     display: block;
-    background: #63b9ba url(/images/svg_icons/feedback/money.svg) no-repeat
+    background: #63b9ba url(/images/svg_icons/feedback/money.svg?1) no-repeat
 }
 
 .feedback_money_decline_row .feedback_photo_icon {
     display: block;
-    background: #f05c44 url(/images/svg_icons/feedback/money.svg) no-repeat
+    background: #f05c44 url(/images/svg_icons/feedback/money.svg?1) no-repeat
 }
 
 .feedback_ads_ok_row .feedback_photo_icon {

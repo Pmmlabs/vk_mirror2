@@ -1822,6 +1822,7 @@ var Page = {
 
         addAudioPreview: function(media, data) {
             stManager.add(['audioplayer.css', 'audioplayer.js']);
+            data[AudioUtils.AUDIO_ITEM_INDEX_CONTEXT] = 'attach_preview'
             return AudioUtils.drawAudio(data, 'inlined');
         }
     },
@@ -6306,7 +6307,7 @@ var Wall = {
             wallMentions: [],
             wallMyRepliesCnt: 0,
             wallUploadOpts: opts.upload,
-            wallGroupAudioEnabled: opts.groupAudioEnabled,
+            hasGroupAudioAccess: opts.hasGroupAudioAccess,
         });
         if (opts.wall_tpl && opts.wall_tpl.lang) {
             cur.lang = extend(cur.lang || {}, opts.wall_tpl.lang);

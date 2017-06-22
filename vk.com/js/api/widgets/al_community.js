@@ -349,7 +349,7 @@ var Community = {
 
                     addAudio: function(addAudio) {
                         !vk.id ? Widgets.oauth() : addAudio.apply(null, [].slice.call(arguments, 1));
-                    }.bind(null, addAudio),
+                    }.bind(null, AudioUtils.addAudio),
 
                     mentionOver: function() {
                         return true;
