@@ -562,7 +562,7 @@
 .audio_page_layout .audio_page_separator {
     height: 1px;
     background-color: #e7e8ec;
-    margin: 15px 0;
+    margin: 5px 0 15px;
     box-sizing: border-box
 }
 
@@ -599,7 +599,7 @@
 }
 
 .audio_page_layout .audio_friends_list_content {
-    width: 219px
+    width: 218px
 }
 
 .audio_page_layout .audio_page_block__playlists_items {
@@ -937,7 +937,7 @@
 .audio_pl_item {
     display: inline-block;
     width: 153px;
-    height: 194px;
+    height: 200px;
     padding: 5px;
     box-sizing: border-box;
     vertical-align: top
@@ -1656,7 +1656,7 @@
 }
 
 .audio_layer_container .audio_friends_list_wrap {
-    width: 219px;
+    width: 218px;
     margin-right: -20px
 }
 

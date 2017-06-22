@@ -4180,6 +4180,23 @@ div.top_result_baloon a {
     box-sizing: border-box
 }
 
+.audio_row .audio_row__action_claim_btn {
+    white-space: nowrap;
+    font-size: 12px;
+    position: relative;
+    left: -21px;
+    top: 4px;
+    opacity: 0.5
+}
+
+.audio_row .audio_row__action_claim_btn:hover {
+    opacity: 1
+}
+
+.audio_row .audio_row__action_claim_btn:active {
+    top: 5px
+}
+
 .audio_row .audio_player__place {
     position: absolute;
     width: 100%;
@@ -4525,24 +4542,6 @@ div.top_result_baloon a {
     background-color: #e7edf2
 }
 
-.audio_pl_snippet_size_narrow .audio_row:hover .audio_acts,
-.audio_row.audio_no_actions:hover .audio_acts,
-.audio_row.no_actions.inlined.audio_row_current.canadd:hover .audio_acts,
-.audio_row.no_actions:hover .audio_acts {
-    display: none!important
-}
-
-.audio_pl_snippet_size_narrow .audio_row:hover .audio_duration,
-.audio_pl_snippet_size_narrow .audio_row:hover .audio_hq_label,
-.audio_row.audio_no_actions:hover .audio_duration,
-.audio_row.audio_no_actions:hover .audio_hq_label,
-.audio_row.no_actions.inlined.audio_row_current.canadd:hover .audio_duration,
-.audio_row.no_actions.inlined.audio_row_current.canadd:hover .audio_hq_label,
-.audio_row.no_actions:hover .audio_duration,
-.audio_row.no_actions:hover .audio_hq_label {
-    display: inline-block!important
-}
-
 .audio_inline_player {
     opacity: 0;
     filter: alpha(opacity=0)
@@ -4833,10 +4832,6 @@ div.top_result_baloon a {
     display: none
 }
 
-.audio_pl_snippet .audio_row.audio_row_current {
-    background-color: inherit
-}
-
 .audio_pl_snippet .audio_pl_snippet__more_btn {
     color: #2a5885;
     cursor: pointer;
@@ -4862,7 +4857,7 @@ div.top_result_baloon a {
     height: 24px;
     position: absolute;
     left: 19px;
-    top: -2px
+    top: -1px
 }
 
 .audio_pl_snippet .audio_pl_snippet__actions {

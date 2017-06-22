@@ -300,12 +300,12 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     })
 }, AudioPage.prototype.onLayerShow = function(e) {
     var t = getAudioPlayer().getCurrentPlaylist();
-    t ? this.showSection("current") : e ? this.showSection(e) : this.showSection("all"), toggleClass(geByClass1("_audio_section_tab__current", this._els.pageContainer), "unshown", !t), this.initNavigation(), this.updateCurrentPlayingInfo(), this._initKeyEvents(), this.updateLayerHeight(), this.updateShuffleButton(), this._scroll.update();
+    t ? this.showSection("current") : e ? this.showSection(e) : this.showSection("all"), toggleClass(geByClass1("_audio_section_tab__current", this._els.pageContainer), "unshown", !t), this.initNavigation(), this.updateCurrentPlayingInfo(), this._initKeyEvents(), this.updateLayerHeight(), this.updateShuffleButton();
     var i = this.getPageCurrentPlaylist(),
         a = getAudioPlayer().getCurrentAudio();
     if (this._audioRowsAutoList && i && a && i.indexOfAudio(a) >= 0)
         for (var o = 10; o--;) {
-            var s = geByClass1("audio_row_current", this._audioRowsAutoList.getListEl());
+            var s = geByClass1(AudioUtils.AUDIO_CURRENT_CLS, this._audioRowsAutoList.getListEl());
             if (s) {
                 var r = getXY(s)[1];
                 this._scroll.scroller.scrollTop = r - scrollGetY() - 300;
@@ -313,7 +313,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             }
             this._audioRowsAutoList.drawMore(), getAudioPlayer().updateCurrentPlaying()
         }
-    delete this._muteSearch
+    this._scroll.update(), delete this._muteSearch
 }, AudioPage.prototype.resetSection = function(e) {
     var t = geByClass1("_audio_section__" + e, this._els.sections);
     re(t)
@@ -482,9 +482,9 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             case "performer":
                 var i = [].concat(t.getUnshuffledAudiosList());
                 i.sort(function(e, t) {
-                    var i = e[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER].toUpperCase(),
-                        a = t[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER].toUpperCase();
-                    return a > i ? -1 : i > a ? 1 : 0
+                    var i = trim(e[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER].toLowerCase()),
+                        a = trim(t[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER].toLowerCase());
+                    return 0 == i.indexOf("the ") && (i = i.slice(4)), 0 == a.indexOf("the ") && (a = a.slice(4)), a > i ? -1 : i > a ? 1 : 0
                 }), this._sortedList = i, this._disableAudioRowsSorter();
                 break;
             case "random":
@@ -763,7 +763,8 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                 });
                 break;
             case "playlists":
-                hide(W.header), show(W.search), hide(W.addAudiosFromPlaylistsButton), hide(W.addAudiosButton), hide(W.globalResults), u(), g(a);
+                hide(W.header), show(W.search), hide(W.addAudiosFromPlaylistsButton),
+                    hide(W.addAudiosButton), hide(W.globalResults), u(), g(a);
                 break;
             case "playlist":
                 hide(W.header), show(W.search), hide(W.addAudiosFromPlaylistsButton), hide(W.addAudiosButton), u(), g(o, !0), "attach" == e && P(o), "edit" == e && v(o)
@@ -791,7 +792,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             var i = toggleClass(e, "ape_selected", t),
                 a = geByClass1("_audio_row", e),
                 o = AudioUtils.getAudioFromEl(a);
-            i ? K.addAudio(o) : K.removeAudio(o)
+            i ? K.addAudio(o, 0) : K.removeAudio(o)
         }
         var i;
         if (i = domClosest("ape_pl_item", e.target)) {
