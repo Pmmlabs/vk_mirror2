@@ -4732,6 +4732,11 @@ div.top_result_baloon a {
     padding: 15px
 }
 
+.ap_layer .audio_pl_snippet.audio_pl__canedit .audio_pl_snippet__action_btn_delete,
+.ap_layer .audio_pl_snippet.audio_pl__canedit .audio_pl_snippet__action_btn_edit {
+    display: block
+}
+
 .audio_pl_snippet .audio_pl_snippet__info_title {
     color: #222;
     font-size: 18px;
@@ -4873,6 +4878,27 @@ div.top_result_baloon a {
     display: none!important
 }
 
+.audio_pl_snippet.audio_pl_snippet_no_list .audio_pl_snippet__header {
+    border: none
+}
+
+.audio_pl_snippet.audio_pl_snippet_no_list .audio_pl_snippet__cover {
+    border-bottom-left-radius: 2px
+}
+
+.audio_pl_snippet.audio_pl_snippet_no_list .audio_pl_snippet__cover:after {
+    border-top: solid 1px rgba(0, 20, 51, .12);
+    border-left: solid 1px rgba(0, 20, 51, .12);
+    border-bottom: solid 1px rgba(0, 20, 51, .12);
+    border-bottom-left-radius: 2px
+}
+
+.audio_pl_snippet.audio_pl_snippet_no_list .audio_pl_snippet__empty_list,
+.audio_pl_snippet.audio_pl_snippet_no_list .audio_pl_snippet__list,
+.audio_pl_snippet.audio_pl_snippet_no_list .audio_pl_snippet__more_btn {
+    display: none!important
+}
+
 .audio_pl_snippet .audio_pl_snippet__action_btn {
     display: none;
     width: 24px;
@@ -4897,11 +4923,6 @@ div.top_result_baloon a {
 
 .audio_pl_snippet .audio_pl_snippet__action_btn_delete {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%22589%20126%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M589%20126h24v24h-24z%22%2F%3E%3Cpath%20d%3D%22M596.83%20145h8.34c.45%200%20.83-.35.83-.83V135h-10v9.17c.05.43.43.83.83.83zM607%20132h-4.3v-1h-3.4v1H595c.14%200%200%20.26%200%201v1h12v-2z%22%20fill%3D%22%23828A99%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
-}
-
-.ap_layer .audio_pl_snippet.audio_pl__canedit .audio_pl_snippet__action_btn_delete,
-.ap_layer .audio_pl_snippet.audio_pl__canedit .audio_pl_snippet__action_btn_edit {
-    display: block
 }
 
 .audio_pl_snippet .audio_pl_snippet__action_btn_follow {
@@ -5001,32 +5022,6 @@ div.top_result_baloon a {
     height: 79px
 }
 
-.audio_pl_snippet.audio_pl_snippet_size_narrow .audio_pl_snippet__description,
-.audio_pl_snippet.audio_pl_snippet_size_medium .audio_pl_snippet__description {
-    display: none!important
-}
-
-.audio_pl_snippet.audio_pl_snippet_no_list .audio_pl_snippet__header {
-    border: none
-}
-
-.audio_pl_snippet.audio_pl_snippet_no_list .audio_pl_snippet__cover {
-    border-bottom-left-radius: 2px
-}
-
-.audio_pl_snippet.audio_pl_snippet_no_list .audio_pl_snippet__cover:after {
-    border-top: solid 1px rgba(0, 20, 51, .12);
-    border-left: solid 1px rgba(0, 20, 51, .12);
-    border-bottom: solid 1px rgba(0, 20, 51, .12);
-    border-bottom-left-radius: 2px
-}
-
-.audio_pl_snippet.audio_pl_snippet_no_list .audio_pl_snippet__empty_list,
-.audio_pl_snippet.audio_pl_snippet_no_list .audio_pl_snippet__list,
-.audio_pl_snippet.audio_pl_snippet_no_list .audio_pl_snippet__more_btn {
-    display: none!important
-}
-
 .bp_content .audio_pl_snippet {
     max-width: 500px;
     margin: 15px 0
@@ -5073,15 +5068,6 @@ div.top_result_baloon a {
 
 .audio_pl__canfollow .audio_pl_snippet__action_btn_edit {
     display: none
-}
-
-.audio_pl_snippet_size_medium .audio_pl_snippet_follow,
-.audio_pl_snippet_size_narrow .audio_pl_snippet_follow,
-.audio_pl_snippet_small .audio_pl_snippet_follow {
-    font-size: 0;
-    height: 30px;
-    width: 0;
-    padding-left: 19px
 }
 
 .audio_pl__followed .audio_pl_snippet_follow {
@@ -5278,6 +5264,10 @@ div.top_result_baloon a {
 
 .reply_text .wall_audio_rows {
     margin: 0
+}
+
+.wall_post_cont .audio_pl_snippet {
+    margin-top: 15px
 }
 
 .audio_claim_warning_tt {
