@@ -12747,73 +12747,7 @@ function audioShowActionTooltip(btn, shift, needDownAndLeft) {
     var audioRow = gpeByClass('_audio_row', btn);
     var audioObject = AudioUtils.getAudioFromEl(audioRow, true)
     var action = domData(btn, 'action');
-    var text
-
-    var audioAddRestoreInfo = AudioUtils.getAddRestoreInfo();
-
-    switch (action) {
-        case 'current_delete':
-            text = getLang('audio_delete_from_current')
-            break
-
-        case 'recoms_delete':
-            text = getLang('audio_dont_show');
-            break
-
-        case 'listened_delete':
-            text = getLang('audio_remove_from_list');
-            break
-
-        case 'delete':
-            if (window.AudioPage && AudioPage.isInRecentPlayed(audioRow)) { // todo: little bit hacky
-                text = getLang('audio_remove_from_list');
-
-            } else {
-                var restores = audioAddRestoreInfo[audioObject.fullId];
-                if (restores && restores.deleteAll) {
-                    text = restores.deleteAll.text;
-                } else {
-                    text = getLang('global_delete_audio');
-                }
-            }
-            break;
-
-        case 'restore_recoms':
-            text = getLang('audio_restore_audio');
-            break
-
-        case 'add':
-            var info = audioAddRestoreInfo[audioObject.fullId];
-
-            if (info && info.state == 'deleted') {
-                text = getLang('audio_restore_audio');
-
-            } else if (info && info.state == 'added') {
-                text = getLang('global_delete_audio');
-
-            } else {
-                var audioPage = window.AudioPage ? currentAudioPage(btn) : false;
-                if (audioPage && audioPage.getOwnerId() < 0 && audioPage.canAddToGroup()) {
-                    text = getLang('audio_add_to_group');
-                } else {
-                    text = getLang('audio_add_to_audio');
-                }
-            }
-            break;
-
-        case 'edit':
-            text = getLang('audio_edit_audio');
-            break;
-
-        case 'next':
-            text = (cur.lang && cur.lang.global_audio_set_next_audio) || getLang('audio_set_next_audio');
-            break;
-
-        case 'recoms':
-            text = getLang('audio_show_recommendations');
-            break;
-    }
-
+    var text = AudioUtils.getRowActionName(action, audioObject, audioRow)
     var options = {
         text: function() {
             return text;

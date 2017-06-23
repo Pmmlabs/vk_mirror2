@@ -1012,7 +1012,7 @@ div.own_reply_tt .content {
     display: none
 }
 
-.mention_tt_write {
+.flat_button.mention_tt_write {
     margin-left: 10px
 }
 

@@ -532,7 +532,10 @@
     background-repeat: no-repeat;
     margin-top: 6px;
     cursor: pointer;
-    opacity: 0.7
+    opacity: 0.7;
+    border: none;
+    background-color: transparent;
+    box-sizing: content-box
 }
 
 .audio_page_layout .audio_page__main_tabs_btn:hover {

@@ -1253,24 +1253,67 @@ textarea.dark.mv_live_gift_popup_comment_input {
     line-height: 1.4
 }
 
-.mv_publish_buttons {
-    width: 220px
-}
-
 .mv_publish_delete_btn {
     margin-left: 6px
 }
 
-.mv_stop_streaming_button {
+.mv_stop_streaming_button.flat_button {
+    margin-left: 10px;
     background-color: #f4524d
 }
 
-.mv_stop_streaming_button:hover {
+.mv_stop_streaming_button.flat_button:hover {
     background-color: #f85751
 }
 
-.mv_stop_streaming_button:active {
+.mv_stop_streaming_button.flat_button:active {
     background-color: #e64a45
+}
+
+.mv_broadcast_live_ads_button.flat_button {
+    margin-left: 10px;
+    background: #5fb053
+}
+
+.mv_broadcast_live_ads_button.flat_button:hover {
+    background: #68b35d
+}
+
+.mv_broadcast_live_ads_button.flat_button:active {
+    background: #5aa84d
+}
+
+.mv_live_ads_timer {
+    position: absolute;
+    z-index: 1;
+    left: 20px;
+    bottom: 65px;
+    width: 200px;
+    padding: 40px 20px 20px;
+    background-color: rgba(0, 0, 0, .8);
+    border-radius: 8px;
+    color: #fff;
+    text-align: center
+}
+
+.mv_live_ads_timer_caption {
+    font-size: 14px;
+    line-height: 20px
+}
+
+.mv_live_ads_timer_countdown {
+    margin-top: 24px;
+    font-size: 42px;
+    line-height: 50px
+}
+
+.mv_live_ads_timer_countdown_sub {
+    line-height: 20px
+}
+
+.mv_live_ads_timer_stop_button {
+    margin-top: 34px;
+    background-color: hsla(0, 0%, 100%, .2)
 }
 
 #mv_progress_box {

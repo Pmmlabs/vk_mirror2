@@ -4116,7 +4116,10 @@ div.top_result_baloon a {
     margin: 0 2px;
     -o-transition: background-position 200ms ease, opacity 60ms linear;
     transition: background-position 200ms ease, opacity 60ms linear;
-    opacity: 0.7
+    opacity: 0.7;
+    border: none;
+    background-color: transparent;
+    padding: 0
 }
 
 .audio_row .audio_row__action:hover {
@@ -4176,7 +4179,6 @@ div.top_result_baloon a {
     font-weight: 600;
     color: #71757d;
     vertical-align: top;
-    padding-top: 7px;
     box-sizing: border-box
 }
 
@@ -4246,7 +4248,7 @@ div.top_result_baloon a {
 
 .audio_row .audio_row__performer_title {
     overflow: hidden;
-    top: 13px;
+    top: 12px;
     -o-transition: top 70ms linear;
     transition: top 70ms linear
 }
@@ -4277,7 +4279,7 @@ div.top_result_baloon a {
 
 .audio_row .audio_row__performer {
     float: left;
-    color: #42648b;
+    color: #2a5885;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
@@ -4293,7 +4295,7 @@ div.top_result_baloon a {
 }
 
 .audio_row .audio_row__lyrics {
-    padding: 0px 11px 10px 43px
+    padding: 0 11px 10px 43px
 }
 
 ._audio_section__search .audio_row.audio_has_lyrics .audio_row__title_inner,
@@ -4435,10 +4437,6 @@ div.top_result_baloon a {
 
 .audio_w_covers .audio_row .audio_row__actions {
     margin-top: -3px
-}
-
-.audio_w_covers .audio_row .audio_row__actions .audio_row__action_uma {
-    padding-top: 7px
 }
 
 .audio_w_covers .audio_row .audio_row__duration {

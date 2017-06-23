@@ -1321,18 +1321,52 @@ var Videoview = {
         publish: function(e, i, o, t) {
             t && hasClass(t, "loading") || Videoview.showEditBox(i, e, null, !0)
         },
-        stopStreaming: function(e, i, o) {
+        stopStreaming: function(e, i) {
             showFastBox(getLang("video_are_you_sure_stop_streaming_title"), getLang("video_are_you_sure_stop_streaming"), getLang("box_yes"), function() {
                 curBox().hide(), ajax.post("al_video.php?act=live_stop_streaming", {
-                    vid: i,
-                    oid: e,
-                    hash: o
+                    owner_id: mvcur.mvData.oid,
+                    video_id: mvcur.mvData.vid,
+                    hash: i
                 }, {
+                    showProgress: lockButton.pbind(e),
+                    hideProgress: unlockButton.pbind(e),
                     onDone: function() {
                         Videoview.reload()
                     }
                 })
             }, getLang("box_no"))
+        },
+        broadcastLiveAds: function(e, i, o) {
+            mvcur.mvData.launchedLiveAds = 1, ajax.post("al_video.php?act=broadcast_live_ads", {
+                owner_id: mvcur.mvData.oid,
+                video_id: mvcur.mvData.vid,
+                hash: i,
+                stop: o
+            }, {
+                showProgress: lockButton.pbind(e),
+                hideProgress: unlockButton.pbind(e),
+                onDone: function(e, i) {
+                    o ? Videoview.removeLiveAdsTimer() : Videoview.runLiveAdsTimer(e, i)
+                },
+                onFail: function(e) {
+                    return showFastBox(getLang("global_error"), e || getLang("global_error_occured")), !0
+                }
+            })
+        },
+        runLiveAdsTimer: function(e, i) {
+            mvcur.mvData.liveAdsTimerEl = se(e), ge("mv_main").appendChild(mvcur.mvData.liveAdsTimerEl), disableButton("mv_broadcast_live_ads_button", !0);
+            var o = mvcur.videoRaw,
+                t = vkNow();
+            ! function a() {
+                if (o == mvcur.videoRaw && mvcur.mvShown && mvcur.mvData.liveAdsTimerEl) {
+                    var e = intval(i - (vkNow() - t) / 1e3);
+                    if (0 > e) return Videoview.removeLiveAdsTimer();
+                    val(domByClass(mvcur.mvData.liveAdsTimerEl, "mv_live_ads_timer_countdown"), formatTime(e)), setTimeout(a, 1e3)
+                }
+            }()
+        },
+        removeLiveAdsTimer: function() {
+            re(mvcur.mvData.liveAdsTimerEl), delete mvcur.mvData.liveAdsTimerEl, delete mvcur.mvData.launchedLiveAds, disableButton("mv_broadcast_live_ads_button", !1)
         },
         deleteVideo: function(e, i, o, t, a, n, d) {
             n && hasClass(n, "loading") || ajax.post("al_video.php", {
@@ -1675,8 +1709,14 @@ var Videoview = {
                     case "end_live":
                         mvcur.player && mvcur.player.onLiveEnded();
                         break;
+                    case "live_midroll":
+                        if (mvcur.player && !mvcur.mvData.launchedLiveAds) {
+                            var _ = !!e[2];
+                            mvcur.player.pushLiveMidroll(_)
+                        }
+                        break;
                     default:
-                        debugLog("unhandled video event")
+                        debugLog("unhandled video event", e)
                 }
             })
         },
@@ -1855,18 +1895,17 @@ var Videoview = {
         },
         addToClubPlaylistBoxInit: function(e, i, o) {
             function t(e, i) {
-                return hide("mv_add_to_club_albums"), val("mv_add_to_club_albums_list", ""), -1 == e ? void val("mv_add_to_club_gid", "") : (show("mv_add_to_club_albums_progress"),
-                    void ajax.post("al_video.php?act=a_get_club_playlists", {
-                        gid: i,
-                        oid: mvcur.mvData.oid,
-                        vid: mvcur.mvData.vid
-                    }, {
-                        onDone: function(e) {
-                            playlistsHtml = "", each(e, function(e, i) {
-                                playlistsHtml += '<div class="mv_add_to_club_albums_list_item checkbox ' + (+i.added ? "on" : "") + '" data-id="' + i.id + '" onclick="checkbox(this)">' + i.title + "</div>"
-                            }), val("mv_add_to_club_albums_list", playlistsHtml), val("mv_add_to_club_gid", i), hide("mv_add_to_club_albums_progress"), show("mv_add_to_club_albums")
-                        }
-                    }))
+                return hide("mv_add_to_club_albums"), val("mv_add_to_club_albums_list", ""), -1 == e ? void val("mv_add_to_club_gid", "") : (show("mv_add_to_club_albums_progress"), void ajax.post("al_video.php?act=a_get_club_playlists", {
+                    gid: i,
+                    oid: mvcur.mvData.oid,
+                    vid: mvcur.mvData.vid
+                }, {
+                    onDone: function(e) {
+                        playlistsHtml = "", each(e, function(e, i) {
+                            playlistsHtml += '<div class="mv_add_to_club_albums_list_item checkbox ' + (+i.added ? "on" : "") + '" data-id="' + i.id + '" onclick="checkbox(this)">' + i.title + "</div>"
+                        }), val("mv_add_to_club_albums_list", playlistsHtml), val("mv_add_to_club_gid", i), hide("mv_add_to_club_albums_progress"), show("mv_add_to_club_albums")
+                    }
+                }))
             }
             WideDropdown.deinit("add_to_pl_club_dd"), mvcur.addToClubPl = WideDropdown.init("add_to_pl_club_dd", {
                 defaultItems: i,
@@ -2117,9 +2156,7 @@ var Videoview = {
             }, {
                 onDone: function(e) {
                     showDoneBox(e)
-                },
-                showProgress: function() {},
-                hideProgress: function() {}
+                }
             })
         },
         reportComment: function(e, i, o) {
