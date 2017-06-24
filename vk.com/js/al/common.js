@@ -11609,8 +11609,9 @@ ElementTooltip.prototype.show = function() {
 
     show(this._ttel);
 
-    this._opts.onFirstTimeShow && this._opts.onFirstTimeShow.call(this, this._ttel);
-    this._opts.onShow && this._opts.onShow(this._ttel);
+    var contentEl = geByClass1('_eltt_content', this._ttel)
+    this._opts.onFirstTimeShow && this._opts.onFirstTimeShow.call(this, contentEl);
+    this._opts.onShow && this._opts.onShow(contentEl);
 
     this._isShown = true;
 

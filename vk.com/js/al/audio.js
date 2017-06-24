@@ -968,7 +968,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         j = a.length > 0,
         Y = !1,
         K = k.getPlaylist(AudioPlaylist.TYPE_TEMP, t, irand(0, 999999));
-    T && "attach" != e ? o.addAudio && K.addAudio(o.addAudio) : (Y = k.getPlaylist(AudioPlaylist.TYPE_PLAYLIST, t, i), K.addAudio(Y.getAudiosList()), K.mergeWith({
+    T && "attach" != e ? o.addAudio && K.addAudio(o.addAudio) : (Y = k.getPlaylist(AudioPlaylist.TYPE_PLAYLIST, t, i), K.addAudio(Y.getUnshuffledAudiosList()), K.mergeWith({
         title: Y.getTitle(),
         description: Y.getDescription(),
         rawDescription: Y.getRawDescription(),
