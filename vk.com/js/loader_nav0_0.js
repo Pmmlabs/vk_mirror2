@@ -144,7 +144,7 @@ var stVersions = {
     'html5audio.js': 976782859,
     'html5video.js': 223664659,
     'html5video.css': 17128183577,
-    'audioplayer.js': 4978440853,
+    'audioplayer.js': 5383949436,
     'audioplayer.css': 16392457568,
     'audio_html5.js': 287741914,
     'audio.js': 3652661926,
@@ -274,7 +274,7 @@ var stVersions = {
     'profile_edit_edu.js': 799807020,
     'profile_edit_job.js': 1688095335,
     'profile_edit_mil.js': 112384103,
-    'search.js': 3474453934,
+    'search.js': 2511896194,
     'search.css': 27064202135,
     'grid_sorter.js': 3170482150,
     'auto_list.js': 3820785325,
@@ -469,7 +469,7 @@ var stVersions = {
     'landings/donors_day.css': 18343319179,
     'landing_donors_day.js': 1027075361,
     'vkme.css': 17264063180,
-    'ui_controls.js': 756821912,
+    'ui_controls.js': 2173726660,
     'highcharts.js': 1982709850,
     'ui_controls.css': 16930834980,
     'selects.js': 2835310113,
@@ -524,8 +524,9 @@ var stVersions = {
     'cmodules/web/speech_worker_opus.js': 3385759348,
     'stories.js': 675877973,
     'stories.css': 16562710424,
-    'cmodules/internal/meminfo.js': 16052230988,
-    'cmodules/internal/nospam.js': 29711737138,
+    'cmodules/internal/meminfo.js': 17609645333,
+    'cmodules/internal/nospam.js': 27723716202,
+    'cmodules/internal/patterns_info.js': 4504396391,
     'shortener.js': 1002525642,
     'lang': 6826
 };
@@ -592,4 +593,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 361;
+var _rnd = 8860;

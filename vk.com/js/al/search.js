@@ -9,8 +9,7 @@ var slide_show = function(e) {
             var s = ge("filter_form"),
                 t = {};
             t = !s || e && e != cur.section || "quick" == cur.section ? {
-                "c[section]": e || cur.section,
-                "c[q]": val("search_query")
+                "c[section]": e || cur.section
             } : serializeForm(s) || {}, t["c[q]"] = val("search_query");
             for (var r in t) t[r] && "0" != t[r] || delete t[r], "-1" == t[r] && t[r + "_custom"] ? (t[r] = t[r + "_custom"], delete t[r + "_custom"]) : t[r + "_custom"] && delete t[r + "_custom"];
             return "video" != cur.section || t["c[sort]"] || (t["c[sort]"] = "0"), "people" == cur.section && ge("c[name]") && !t["c[name]"] && (t["c[name]"] = "0"), "people" == cur.section && ge("c[photo]") && !t["c[photo]"] && (t["c[photo]"] = "0"), "people" == cur.section && t["c[invite]"] && delete t.from, "communities" != cur.section || !cur.filtersShown || t["c[q]"] || t["c[category]"] || (t["c[skip_catalog]"] = "1"), t
@@ -150,11 +149,11 @@ var slide_show = function(e) {
                 val(r).toLowerCase() == e ? (s = !0, addClass(r, "search_hot_hashtags_item_active")) : removeClass(r, "search_hot_hashtags_item_active")
             }), s
         },
-        toggleFilter: function(e, s) {
+        toggleFilter: function(e, s, t) {
             hasClass(e, "search_filter_shut") || !isVisible(s) ? (addClass(e, "search_filter_open"), removeClass(e, "search_filter_shut"), slideDown(s, 200, function() {
-                checkPageBlocks()
+                checkPageBlocks(), t && t()
             })) : slideUp(s, 200, function() {
-                addClass(e, "search_filter_shut"), removeClass(e, "search_filter_open")
+                addClass(e, "search_filter_shut"), removeClass(e, "search_filter_open"), t && t()
             })
         },
         switchFilter: function(e, s, t) {
