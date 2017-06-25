@@ -6913,7 +6913,7 @@ function audioShowActionTooltip(btn, shift, needDownAndLeft) {
     if (cur._addRestoreInProgress) return;
 
     var audioRow = gpeByClass('_audio_row', btn);
-    let audioObject = AudioUtils.getAudioFromEl(audioRow, true)
+    var audioObject = AudioUtils.getAudioFromEl(audioRow, true)
     var action = domData(btn, 'action');
     var text
 
