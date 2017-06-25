@@ -11571,7 +11571,7 @@ ElementTooltip.prototype._onTooltipMouseLeave = function(ev) {
 
 ElementTooltip.prototype.build = function() {
     if (!this._ttel) {
-        this._ttel = se('<div data-nodrag="1" class="eltt ' + (this._opts.cls || '') + '" id="' + this._opts.id + '"><div class="eltt_arrow_back _eltt_arrow_back"><div class="eltt_arrow"></div></div><div class="eltt_content _eltt_content"></div></div>');
+        this._ttel = se('<div class="eltt ' + (this._opts.cls || '') + '" id="' + this._opts.id + '"><div class="eltt_arrow_back _eltt_arrow_back"><div class="eltt_arrow"></div></div><div class="eltt_content _eltt_content"></div></div>');
         this._ttArrowEl = geByClass1('_eltt_arrow_back', this._ttel)
 
         var contentWrap = geByClass1('_eltt_content', this._ttel)
@@ -11610,7 +11610,7 @@ ElementTooltip.prototype.show = function() {
     show(this._ttel);
 
     var contentEl = geByClass1('_eltt_content', this._ttel)
-    this._opts.onFirstTimeShow && this._opts.onFirstTimeShow.call(this, contentEl);
+    this._opts.onFirstTimeShow && this._opts.onFirstTimeShow.call(this, contentEl, this._ttel);
     this._opts.onShow && this._opts.onShow(contentEl);
 
     this._isShown = true;

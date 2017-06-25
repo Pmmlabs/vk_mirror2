@@ -731,7 +731,7 @@
     transform: translateY(1px)
 }
 
-.audio_layer_container .audio_page_layout .audio_owner_item:last-child {
+.audio_layer_container .audio_page_layout .audio_owner_item:nth-child(5) {
     display: none
 }
 
