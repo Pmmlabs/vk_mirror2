@@ -613,7 +613,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     }
 
     function r() {
-        K.clean(), k.deletePlaylist(K), B && AudioUtils.showAudioPlaylist(B[0], B[1]), window.Wall && window.Wall.focusOnEnd()
+        K.clean(), k.deletePlaylist(K), B && AudioUtils.showAudioPlaylist(B[0], B[1])
     }
 
     function l() {
@@ -763,8 +763,8 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                 });
                 break;
             case "playlists":
-                hide(W.header), show(W.search), hide(W.addAudiosFromPlaylistsButton),
-                    hide(W.addAudiosButton), hide(W.globalResults), u(), g(a);
+                hide(W.header), show(W.search), hide(W.addAudiosFromPlaylistsButton), hide(W.addAudiosButton),
+                    hide(W.globalResults), u(), g(a);
                 break;
             case "playlist":
                 hide(W.header), show(W.search), hide(W.addAudiosFromPlaylistsButton), hide(W.addAudiosButton), u(), g(o, !0), "attach" == e && P(o), "edit" == e && v(o)

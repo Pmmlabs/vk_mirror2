@@ -147,7 +147,7 @@ var stVersions = {
     'audioplayer.js': 5242501991,
     'audioplayer.css': 16392457568,
     'audio_html5.js': 287741914,
-    'audio.js': 4125373713,
+    'audio.js': 2321433814,
     'audio.css': 20675557958,
     'gifts.css': 19694235461,
     'gifts.js': 338252255,
@@ -593,4 +593,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 10;
+var _rnd = 2719;
