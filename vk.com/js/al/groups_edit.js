@@ -1259,7 +1259,7 @@ var GroupsEdit = {
                 }, function(e) {
                     hide(o.progress);
                     var t = trim((e.match(/<title>([^<]*)/i) || {})[1] || "");
-                    cur.lnkImages = ["/images/lnkinner" + window._iconAdd + ".png"], cur.lnk = s, GroupsEdit.showLinkInfo(t, s)
+                    cur.lnkImages = ["/images/lnkinner" + window._iconAdd + ".png?1"], cur.lnk = s, GroupsEdit.showLinkInfo(t, s)
                 }, 2 & r ? GroupsEdit.parseLink.pbind(a, i) : function(t) {
                     return hide(o.progress), GroupsEdit.showMessage(getLang("groups_bad_link"), !0), elfocus(e)
                 }, !0)) : 2 & r && GroupsEdit.parseLink(s, a);

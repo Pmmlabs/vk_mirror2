@@ -28,7 +28,6 @@
 .im-page .im-page--dialogs-settings,
 .im-page .im-page--dialogs-settings_loading,
 .im-page .im-page--header-star,
-.im-page .im-page--history.im-page--history_loading:before,
 .im-page_classic.im-page .im-page--gim-mute,
 .im-right-menu.ui_rmenu .im-right-menu--close:before,
 .im-send-btn.im-send-btn_audio.im-send-btn_loading:before,
@@ -1864,36 +1863,10 @@ img.im_photo_thumb {
 .im-page .im-page--history.im-page--history_loading:before {
     content: "";
     position: absolute;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    -webkit-animation-name: round_spinner;
-    -o-animation-name: round_spinner;
-    animation-name: round_spinner;
-    -webkit-animation-duration: 700ms;
-    -o-animation-duration: 700ms;
-    animation-duration: 700ms;
-    -webkit-animation-iteration-count: infinite;
-    -o-animation-iteration-count: infinite;
-    animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
-    -o-animation-timing-function: linear;
-    animation-timing-function: linear;
-    background-image: url(/images/icons/round_spinner.png);
     z-index: 100;
     display: block;
     top: 50%;
-    left: 50%;
-    margin: -8px 0 0 -8px
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .im-page .im-page--history.im-page--history_loading:before {
-        background-image: url(/images/icons/round_spinner_2x.png);
-        background-size: 16px 16px
-    }
+    left: 50%
 }
 
 .im-page .im-page--clear-recent {
