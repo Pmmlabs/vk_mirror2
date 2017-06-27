@@ -280,53 +280,6 @@
     background: #dbe0ea
 }
 
-.restore_roll_short {
-    color: #45688e;
-    cursor: pointer;
-    padding: 20px 10px;
-    margin: 0 -10px;
-    font-weight: 700;
-    line-height: 100%
-}
-
-.restore_roll_short_message {
-    font-weight: 400
-}
-
-.restore_roll_short_col {
-    box-sizing: border-box;
-    float: left;
-    width: 50%
-}
-
-.restore_roll_short_cell {
-    box-sizing: border-box;
-    float: left;
-    margin-right: 5px
-}
-
-.restore_roll_short_opposite_cell {
-    box-sizing: border-box;
-    float: right
-}
-
-.restore_roll_short_opposite_cell .restore_uploaded_image__img {
-    display: inline-block;
-    margin: 0 0 0 2px
-}
-
-.restore_roll_short:hover {
-    background: #f6f7f9
-}
-
-.restore_roll .restore_roll_short {
-    display: none
-}
-
-.restore_roll.restore_roll_hidden .restore_roll_short {
-    display: block
-}
-
 .restore_roll.restore_roll_hidden .restore_roll_full {
     display: none
 }
@@ -393,11 +346,6 @@
 .request_result_msg {
     margin: 0 0 10px;
     text-align: left;
-    display: none
-}
-
-#request_email_or_phone_need,
-#request_old_password_need {
     display: none
 }
 
@@ -614,6 +562,7 @@
     line-height: 20px
 }
 
-.restore_info_error {
+.restore_info_error,
+.restore_roll_unshown {
     display: none
 }

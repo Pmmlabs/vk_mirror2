@@ -36,9 +36,9 @@ var Restore = {
             text: o,
             value: t ? t.value : "none"
         }), cur.wasShown = e;
-        var n = ge(e);
-        return val(n, o), isVisible(n) || show(n), setTimeout(function() {
-            r ? scrollToY(getXY(t)[1] - 100, 200) : scrollToY(getXY(n)[1] - 20, 200), setTimeout(elfocus.pbind(t), 201)
+        var s = ge(e);
+        return val(s, o), isVisible(s) || show(s), setTimeout(function() {
+            r ? scrollToY(getXY(t)[1] - 100, 200) : scrollToY(getXY(s)[1] - 20, 200), setTimeout(elfocus.pbind(t), 201)
         }, 1), !1
     },
     checkPhoneOnBlur: function(e) {
@@ -46,9 +46,9 @@ var Restore = {
         if (phone = ge(o).value.replace(/[^0-9]/g, ""), !isVisible(o) || /^[1-9][0-9]{6,14}$/.test(phone)) {
             var t = function(e, o) {
                 var t = "request_phone_check_res";
-                2 === e ? (cur.wasShown && cur.wasShown != t && hide(cur.wasShown), cur.wasShown = t, val(t, o), cur.checkedPhones[phone] = [e, o], isVisible(t) || setTimeout(function() {
+                return 2 === e ? (cur.wasShown && cur.wasShown != t && hide(cur.wasShown), cur.wasShown = t, val(t, o), cur.checkedPhones[phone] = [e, o], isVisible(t) || setTimeout(function() {
                     slideDown(t, 150)
-                }, 50), cur.checkedPhones[phone] = [e, o]) : isVisible(t) && slideUp(t, 200)
+                }, 50), cur.checkedPhones[phone] = [e, o]) : isVisible(t) && slideUp(t, 200), 3 != e || cur.restoreNoEmailAccess ? void 0 : (hide("submit_wrapper"), Restore.changeFormStep("phones", "back_link"))
             };
             cur.checkedPhones = cur.checkedPhones || {}, phone in cur.checkedPhones ? t(cur.checkedPhones[phone][0], cur.checkedPhones[phone][1]) : ajax.post("al_restore.php", {
                 act: "a_check_phone",
@@ -78,14 +78,14 @@ var Restore = {
             try {
                 var r = new RegExp(cur.screenshot_regex, "gi");
                 if (r.test(t)) {
-                    var n = new MessageBox({
+                    var s = new MessageBox({
                         title: getLang("global_action_confirmation")
                     }).addButton(getLang("restore_no_other_photo"));
-                    return void n.addButton(getLang("box_yes"), function() {
-                        Restore.screenshootCheck(e, !0), n.hide()
+                    return void s.addButton(getLang("box_yes"), function() {
+                        Restore.screenshootCheck(e, !0), s.hide()
                     }, "gray").content(getLang("restore_screenshoot_confirm_box_text")).show()
                 }
-            } catch (s) {}
+            } catch (n) {}
         }
         if (1 == e) var i = ge("photo_file_button");
         else var i = ge("doc_file_button");
@@ -102,38 +102,38 @@ var Restore = {
             title: getLang("global_error"),
             width: 470
         }, t).hide, r);
-        var n = o ? "photo_" : "doc_",
-            s = ge(n + "file_button");
-        unlockButton(s)
+        var s = o ? "photo_" : "doc_",
+            n = ge(s + "file_button");
+        unlockButton(n)
     },
-    uploadComplete: function(e, o, t, r, n, s) {
+    uploadComplete: function(e, o, t, r, s, n) {
         var i = r ? "photo" : "doc",
             a = i + "_",
-            _ = ge(a + "file_button");
-        unlockButton(_);
-        var l = cur.images.length,
-            u = !0;
+            u = ge(a + "file_button");
+        unlockButton(u);
+        var c = cur.images.length,
+            l = !0;
         each(cur.images, function(e, o) {
-            return o.type == r && o.deleted ? (l = e, u = !1, !1) : void 0
-        }), cur.images[l] = {
+            return o.type == r && o.deleted ? (c = e, l = !1, !1) : void 0
+        }), cur.images[c] = {
             id: o,
             hash: t,
             type: r
         }, ++cur.images_count[r];
-        var c = 2 == s ? Restore.maxPhotosWithType : Restore.maxPhotos;
-        ge(a + "input").disabled = cur.images_count[r] >= c, ge(a + "input").disabled && hide(a + "upload"), show(a + "photos"), n = n.split("%index%").join(l).split("%type%").join(r);
-        var h = se(n);
-        u ? ge(a + "photos").appendChild(h) : domReplaceEl(ge("photo" + l), h), show("restore_roll_button_" + i)
+        var _ = 2 == n ? Restore.maxPhotosWithType : Restore.maxPhotos;
+        ge(a + "input").disabled = cur.images_count[r] >= _, ge(a + "input").disabled && hide(a + "upload"), show(a + "photos"), s = s.split("%index%").join(c).split("%type%").join(r);
+        var h = se(s);
+        return l ? ge(a + "photos").appendChild(h) : domReplaceEl(ge("photo" + c), h), Restore.changeFullRequestButton(!0)
     },
     deleteImage: function(e, o, t) {
         var r = e ? "photo" : "doc",
-            n = r + "_";
+            s = r + "_";
         if (cur.images[o].deleted) {
             if (cur.images_count[e] >= 2) return;
             cur.images[o].deleted = !1, removeClass("photo_img" + o, "restore_uploaded_image__img_removed");
-            var s = 2 == t ? Restore.maxPhotosWithType : Restore.maxPhotos;
-            ++cur.images_count[e] >= s && (ge(n + "input").disabled = !0, hide(n + "upload")), ge("del_link" + o).innerHTML = getLang("global_delete"), show("restore_roll_button_" + r)
-        } else cur.images[o].deleted = !0, addClass("photo_img" + o, "restore_uploaded_image__img_removed"), --cur.images_count[e], ge(n + "input").disabled = !1, show(n + "upload"), ge("del_link" + o).innerHTML = getLang("global_dont_delete"), cur.images_count[e] || hide("restore_roll_button_" + r)
+            var n = 2 == t ? Restore.maxPhotosWithType : Restore.maxPhotos;
+            ++cur.images_count[e] >= n && (ge(s + "input").disabled = !0, hide(s + "upload")), ge("del_link" + o).innerHTML = getLang("global_delete"), show("restore_roll_button_" + r)
+        } else cur.images[o].deleted = !0, addClass("photo_img" + o, "restore_uploaded_image__img_removed"), --cur.images_count[e], ge(s + "input").disabled = !1, show(s + "upload"), ge("del_link" + o).innerHTML = getLang("global_dont_delete"), cur.images_count[e] || hide("restore_roll_button_" + r)
     },
     submitPageLink: function() {
         var e = ge("submitBtn"),
@@ -199,11 +199,11 @@ var Restore = {
         for (var r = 0; r < cur.images.length; ++r) cur.images[r].deleted || t.images.push(cur.images[r].hash);
         if (!trim(t.comment).length && !t.images.length) return void elfocus("comment");
         if (!t.images.length && cur.restorePhotosRequested && !o) {
-            var n = {
+            var s = {
                 title: getLang("global_warning"),
                 width: 620
             };
-            return void(cur.restoreConfirmNoPhotos = showFastBox(n, getLang("restore_extend_no_photos_are_you_sure"), getLang("restore_extend"), null, getLang("restore_dont_extend_with_photos"), function() {
+            return void(cur.restoreConfirmNoPhotos = showFastBox(s, getLang("restore_extend_no_photos_are_you_sure"), getLang("restore_extend"), null, getLang("restore_dont_extend_with_photos"), function() {
                 cur.restoreConfirmNoPhotos.hide(), Restore.extendRequest(e, !0)
             }))
         }
@@ -215,86 +215,53 @@ var Restore = {
             }
         })
     },
-    tryToSubmitRequest: function() {
-        Restore.independency_checked && Restore.submitRequest(), cur.options && cur.options.can_restore_independently || Restore.submitRequest(), Restore.independency_checked = !0;
-        var e = val("login"),
-            o = ge("tryToSubmitBtn");
-        lockButton(o), ajax.post("/restore", {
-            act: "check_independent_restore_allowed",
-            login: e,
-            hash: cur.options.fhash
-        }, {
-            onDone: function(e, t) {
-                if (e) show("restore_roll_back_link"), hide("try_to_submit_wrapper");
-                else {
-                    if (t) return unlockButton(o), Restore.showResult("request_phone_res", t, "login");
-                    Restore.fixClassicSubmitForm()
-                }
-            },
-            onFail: function() {
-                Restore.fixClassicSubmitForm()
-            }
-        })
+    noEmailAccessSimpleRequest: function() {
+        hide("restore_roll_back_link"), show("submit_wrapper"), cur.restoreNoEmailAccess = 1
     },
-    fixClassicSubmitForm: function() {
-        hide("try_to_submit_wrapper"), hide("restore_roll_back_link"), show("about_old_password_wrapper"), show("submit_wrapper")
-    },
-    submitRequest: function() {
-        var e, o, t, r, n, s = ge("submitBtn"),
-            i = cur.options.request_type;
-        if (i == Restore.requestTypeSimple) {
-            if (e = val("login"), isVisible("email_wrap") && !/^\s*$/.test(e) && !/^\s*[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\s*$/.test(e) && !/^\s*[a-zA-Z0-9_]{6,32}\s*$/.test(e)) return Restore.showResult("request_email_res", getLang("restore_login_error"), "login");
-            if (o = val("email"), t = val("old_phone").replace(/[^0-9]/g, ""), !/^\s*$/.test(t) && !/^[1-9][0-9]{6,14}$/.test(t)) return Restore.showResult("request_phone_res", getLang("restore_old_phone_error"), "old_phone")
+    submitSimpleRequest: function() {
+        var e, o, t, r, s, n = ge("submitBtn");
+        if (e = val("login"), isVisible("email_wrap") && !/^\s*$/.test(e) && !/^\s*[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9_\.\-]+\s*$/.test(e) && !/^\s*[a-zA-Z0-9_]{6,32}\s*$/.test(e)) return Restore.showResult("request_email_res", getLang("restore_login_error"), "login");
+        if (o = val("email"), t = val("old_phone").replace(/[^0-9]/g, ""), !/^\s*$/.test(t) && !/^[1-9][0-9]{6,14}$/.test(t)) return Restore.showResult("request_phone_res", getLang("restore_old_phone_error"), "old_phone");
+        var i = isVisible("new_phone_wrap") ? "new_phone" : "phone";
+        if (r = ge(i).value.replace(/[^0-9]/g, ""), isVisible(i) && !/^[1-9][0-9]{6,14}$/.test(r)) return Restore.showResult("request_phone_res", getLang("restore_phone_error"), i);
+        if (cur.checkedPhones && cur.checkedPhones[r] && 2 == cur.checkedPhones[r][0]) return Restore.showResult("request_email_res", cur.checkedPhones[r][1], i, !0);
+        if (!isVisible("new_phone_wrap") && !e && !t) {
+            var a = getLang("restore_need_email_or_phone");
+            return a += "<br>" + getLang("restore_need_email_or_phone_desc"), Restore.showResult("request_phone_res", a, "old_phone")
         }
-        var a = isVisible("new_phone_wrap") ? "new_phone" : "phone";
-        if (r = ge(a).value.replace(/[^0-9]/g, ""), isVisible(a) && !/^[1-9][0-9]{6,14}$/.test(r)) return Restore.showResult("request_phone_res", getLang("restore_phone_error"), a);
-        if (cur.checkedPhones && cur.checkedPhones[r] && 2 == cur.checkedPhones[r][0]) return Restore.showResult("request_email_res", cur.checkedPhones[r][1], a, !0);
-        if (i == Restore.requestTypeSimple) {
-            if (!isVisible("new_phone_wrap") && !e && !t) {
-                var _ = getLang("restore_need_email_or_phone");
-                return _ += "<br>" + val("request_email_or_phone_need"), Restore.showResult("request_phone_res", _, "old_phone")
-            }
-            if (n = val("old_password"), !n) return Restore.showResult("request_old_password_res", getLang("restore_need_old_password") + "<br>" + val("request_old_password_need"), "old_password")
-        } else {
-            if (cur.images_count[0] < 1) return Restore.showResult("request_doc_res", getLang("restore_doc_error") + "<br>" + getLang("restore_attention"));
-            if (cur.images_count[1] < 1) return Restore.showResult("request_photo_res", getLang("restore_photo_error") + "<br>" + getLang("restore_attention"))
-        }
-        var l = {
+        return (s = val("old_password")) ? (cur.validationLastCallback = function(e) {
+            hide("request_phone_res"), e ? Restore.submitSimpleRequest() : elfocus("phone")
+        }, void ajax.post("/al_restore.php", {
             act: "a_request",
-            bad_phone: cur.wrongPhone ? 1 : 0
-        };
-        i == Restore.requestTypeSimple ? extend(l, {
+            bad_phone: cur.wrongPhone ? 1 : 0,
             hash: cur.options.fhash,
             login: e,
             email: o,
             phone: r,
             old_phone: t,
-            password: n
-        }) : (extend(l, {
-            comment: val("comment"),
-            images: [],
-            hash: cur.options.fhash,
-            login: e,
-            email: o,
-            phone: r,
-            old_phone: r
-        }), each(cur.images, function(e, o) {
-            o.deleted || l.images.push(o.hash)
-        })), cur.validationLastCallback = function(e) {
-            hide("request_phone_res"), e ? Restore.submitRequest() : elfocus("phone")
-        }, ajax.post("/al_restore.php", l, {
-            onDone: function(e, o, t, r, n) {
+            password: s,
+            no_email_access: cur.restoreNoEmailAccess || 0
+        }, {
+            onDone: function(e, o, t, r, s, n) {
                 var i = intval(e);
-                if (i > 0) cur.request_id = i, cur.request_hash = o, Restore.phone_confirm_box = showFastBox(getLang("restore_confirmation"), '<div id="phone_confirm_box">' + ge("phone_confirm").innerHTML + "</div>", getLang("box_send"), function() {
-                    Restore.confirmPhoneSend()
-                }, getLang("global_cancel")), elfocus("phone_confirm_code");
-                else {
-                    if (-2 == i) return lockButton(s), setTimeout(Restore.submitRequest, 1e3); - 3 == i ? ("login" == n ? o += "<br>" + val("request_email_or_phone_need") : "phonenum" == n && (cur.wrongPhone = !0), Restore.showResult(t, o, r)) : Restore.showResult("request_phone_res", o, r)
-                }
+                return 0 == i && (n = t), "back_link" == n ? (hide("submit_wrapper"), Restore.changeFormStep("phones", "back_link")) : void Restore.processSubmitResult(e, o, t, r, s)
             },
-            showProgress: lockButton.pbind(s),
-            hideProgress: unlockButton.pbind(s)
-        })
+            showProgress: lockButton.pbind(n),
+            hideProgress: unlockButton.pbind(n)
+        })) : Restore.showResult("request_old_password_res", getLang("restore_need_old_password") + "<br>" + getLang("restore_need_old_password_desc"), "old_password")
+    },
+    processSubmitResult: function(e, o, t, r, s, n) {
+        var i = intval(e);
+        if (i > 0) Restore.showPhoneConfirmBox(i, o);
+        else {
+            if (-2 == i) {
+                if (n) var a = ge("restore_submit_full_request"),
+                    u = Restore.submitFullRequest;
+                else var a = ge("submitBtn"),
+                    u = Restore.submitSimpleRequest;
+                return lockButton(a), setTimeout(u, 1e3)
+            } - 3 == i ? ("login" == s ? o += "<br>" + getLang("restore_need_email_or_phone_desc") : "phonenum" == s && (cur.wrongPhone = !0), Restore.showResult(t, o, r)) : Restore.showResult("request_phone_res", o, r)
+        }
     },
     confirmCodeResend: function() {
         return hide("phone_confirm_error"), ajax.post("/al_restore.php", {
@@ -317,7 +284,7 @@ var Restore = {
             hash: cur.request_hash
         }, {
             onDone: function(e, o) {
-                e ? (val("request_result", o), show("request_result"), hide("request_form"), scrollToTop(), Restore.phone_confirm_box.hide()) : Restore.confirmPhoneError(o)
+                e ? (val("request_result", o), show("request_result"), hide("request_form"), scrollToTop(), curBox().hide()) : Restore.confirmPhoneError(o)
             }
         }) : void Restore.confirmPhoneError(getLang("restore_code_error_6chars"))
     },
@@ -368,8 +335,8 @@ var Restore = {
             hash: cur.resend_hash,
             id: cur.rid
         }, {
-            onDone: function(o, t, r, n) {
-                unlockButton(e), 1 == o ? (r && Restore.initResendCounter(r), 0 == t && hide(e), n && (addClass("resend_success", "active"), setTimeout(removeClass.pbind("resend_success", "active"), 1e4))) : hide(e)
+            onDone: function(o, t, r, s) {
+                unlockButton(e), 1 == o ? (r && Restore.initResendCounter(r), 0 == t && hide(e), s && (addClass("resend_success", "active"), setTimeout(removeClass.pbind("resend_success", "active"), 1e4))) : hide(e)
             }
         }))
     },
@@ -388,12 +355,15 @@ var Restore = {
             o = e == Restore.requestTypeFull ? "new_phone" : "phone",
             t = ge("comment"),
             r = ge(o),
-            n = ge("old_phone"),
-            s = ge("login"),
-            i = ge("old_password");
+            s = ge("old_phone"),
+            n = ge("login"),
+            i = ge("old_password"),
+            a = ge("new_phone");
         placeholderSetup(t, {
             back: !0
-        }), Restore.initFormTT(t, "restore_lost_phone_your_comment_short"), isVisible(r) && Restore.initFormTT(r, "restore_form_available_phone_tooltip"), isVisible(n) && Restore.initFormTT(n, "restore_form_old_phone_tooltip"), isVisible(s) && Restore.initFormTT(s, "restore_form_old_email_tooltip"), isVisible(i) && Restore.initFormTT(i, "restore_about_old_password")
+        }), Restore.initFormTT(t, "restore_lost_phone_your_comment_short"), isVisible(r) && Restore.initFormTT(r, "restore_form_available_phone_tooltip"), e == Restore.requestTypeSimple && isVisible(a) && Restore.initFormTT(a, "restore_form_available_phone_tooltip"), isVisible(s) && Restore.initFormTT(s, "restore_form_old_phone_tooltip"), isVisible(n) && Restore.initFormTT(n, "restore_form_old_email_tooltip"), isVisible(i) && Restore.initFormTT(i, "restore_about_old_password"), cur.destroy.push(function() {
+            delete cur.request_step, delete cur.request_params, delete cur.restoreNoEmailAccess
+        })
     },
     initFormTT: function(e, o) {
         addEvent(e, "focus", showTooltip.pbind(e, {
@@ -412,109 +382,79 @@ var Restore = {
             e.tthide && e.tthide()
         })
     },
-    returnToFormStep: function(e) {
-        var o = geByClass1("_restore_roll_active", "restore");
-        removeClass(o, "_restore_roll_active"), Restore.fillRollShort(o.id.replace("restore_roll_", ""));
-        var t = ge("restore_roll_" + e);
-        removeClass(t, "restore_roll_hidden"), addClass(t, "_restore_roll_active")
-    },
-    checkIndependentRestore: function(e, o) {
-        var t, r = geByClass1("flat_button", ge("restore_roll_button_phones"));
-        return t = cur.options.request_type ? val("phone").replace(/[^0-9]/g, "") : val("new_phone").replace(/[^0-9]/g, ""), cur.options && cur.options.can_restore_independently ? (cur.options.request_type && (t || Restore.changeFormStep("phones", "photo")), lockButton(r), void ajax.post("restore", {
-            act: "check_independent_restore_allowed",
-            phone: t,
-            hash: cur.options.fhash
-        }, {
-            onDone: function(t, n) {
-                if (t) e();
-                else {
-                    if (n) return unlockButton(r), Restore.showResult("request_phone_res", n, cur.options.request_type ? "phone" : "new_phone");
-                    o()
-                }
-            },
-            onFail: function() {
-                o()
-            }
-        })) : cur.options.need_check ? (lockButton(r), void ajax.post("al_restore.php", {
-            act: "a_check_phone",
-            hash: cur.options.fhash,
-            phone: t,
-            from_independent: 1
-        }, {
-            onDone: function(e, t) {
-                var n = "request_phone_check_res";
-                unlockButton(r), 2 == e ? (val(n, t), isVisible(n) || slideDown(n, 200)) : (slideUp(n), o())
-            }
-        })) : void o()
-    },
-    _phoneIndependentRestoreSuccess: function() {
-        Restore.changeFormStep("phones", "back_link")
-    },
-    _phoneIndependentRestoreFail: function() {
-        Restore.changeFormStep("phones", "photo")
-    },
     changeFormStep: function(e, o) {
-        if (Restore.checkRoll(e)) {
-            if (Restore.fillRollShort(e), "phones" == e && "independency_check" == o) return Restore.checkIndependentRestore(Restore._phoneIndependentRestoreSuccess, Restore._phoneIndependentRestoreFail), !1;
-            var t = ge("restore_roll_" + e);
-            removeClass(t, "_restore_roll_active"), re("restore_roll_button_" + e);
-            var r = ge("restore_roll_" + o);
-            if (show(r), removeClass(r, "restore_roll_colored"), scrollToY(getXY(r)[1], 400), removeClass("restore_roll_" + o, "restore_roll_hidden"), addClass(r, "_restore_roll_active"), "comment" == o) {
-                var n = ge("comment");
-                autosizeSetup(n, {
-                    minHeight: 55,
-                    maxHeight: 300
-                }), addEvent(n, "focus keyup", function(e) {
-                    n.timeout && clearTimeout(n.timeout), n.timeout = setTimeout(function() {
-                        try {
-                            var e = val(n),
-                                o = new RegExp(cur.delete_regex, "gi");
-                            if (o.test(e)) var t = cur.goto_support;
-                            else var t = getLang("restore_lost_phone_your_comment_short");
-                            val(n.tt.container, '<div class="wrapped"><div class="tt_text">' + t + "</div></div>")
-                        } catch (r) {}
-                    }, 300)
-                })
-            }
+        var t = "restore_roll_";
+        removeClass(t + e, "_restore_roll_active"), cur.request_step = o, "back_link" == e && hide(t + e);
+        var r = ge(t + o);
+        if (show(r), removeClass(r, "restore_roll_colored"), scrollToY(getXY(r)[1], 400), removeClass("restore_roll_" + o, "restore_roll_hidden"), addClass(r, "_restore_roll_active"), "comment" == o) {
+            var s = ge("comment");
+            autosizeSetup(s, {
+                minHeight: 55,
+                maxHeight: 300
+            }), addEvent(s, "focus keyup", function(e) {
+                s.timeout && clearTimeout(s.timeout), s.timeout = setTimeout(function() {
+                    try {
+                        var e = val(s),
+                            o = new RegExp(cur.delete_regex, "gi");
+                        if (o.test(e)) var t = cur.goto_support;
+                        else var t = getLang("restore_lost_phone_your_comment_short");
+                        val(s.tt.container, '<div class="wrapped"><div class="tt_text">' + t + "</div></div>")
+                    } catch (r) {}
+                }, 300)
+            })
         }
     },
-    checkRoll: function(e) {
-        if ("phones" == e) {
-            var o = (val("old_phone"), val("phone"), cur.options.request_type);
-            if (o == Restore.requestTypeSimple) {
-                var t = ge("old_phone").value.replace(/[^0-9]/g, "");
-                if (!/^\s*$/.test(t) && !/^[1-9][0-9]{6,14}$/.test(t)) return Restore.showResult("request_phone_res", getLang("restore_old_phone_error"), "old_phone")
-            }
-            var r = isVisible("new_phone_wrap") ? "new_phone" : "phone",
-                n = ge(r).value.replace(/[^0-9]/g, "");
-            if (isVisible(r) && !n) return notaBene(r), !1;
-            if (isVisible(r) && !/^[1-9][0-9]{6,14}$/.test(n)) return Restore.showResult("request_phone_res", getLang("restore_phone_error"), r);
-            if (cur.checkedPhones && cur.checkedPhones[n] && 2 == cur.checkedPhones[n][0]) return Restore.showResult("request_email_res", cur.checkedPhones[n][1], r, !0)
-        } else if ("doc" == e) {
-            if (cur.images_count[0] < 1) return Restore.showResult("request_doc_res", getLang("restore_doc_error") + "<br>" + getLang("restore_attention"))
-        } else if ("photo" == e && cur.images_count[1] < 1) return Restore.showResult("request_photo_res", getLang("restore_photo_error") + "<br>" + getLang("restore_attention"));
-        return !0
+    checkSimpleRequestFields: function() {
+        var e = val("old_phone").replace(/[^0-9]/g, "");
+        if (!/^\s*$/.test(e) && !/^[1-9][0-9]{6,14}$/.test(e)) return Restore.showResult("request_phone_res", getLang("restore_old_phone_error"), "old_phone");
+        var o = isVisible("new_phone_wrap") ? "new_phone" : "phone",
+            t = val(o).replace(/[^0-9]/g, "");
+        return isVisible(o) && !t ? (notaBene(o), !1) : isVisible(o) && !/^[1-9][0-9]{6,14}$/.test(t) ? Restore.showResult("request_phone_res", getLang("restore_phone_error"), o) : cur.checkedPhones && cur.checkedPhones[t] && 2 == cur.checkedPhones[t][0] ? Restore.showResult("request_email_res", cur.checkedPhones[t][1], o, !0) : !0
     },
-    fillRollShort: function(e) {
-        var o = ge("restore_roll_" + e),
-            t = geByClass1("_restore_roll_short", o);
-        if ("phones" == e) {
-            var r = val("old_phone"),
-                n = val("phone"),
-                s = geByClass1("_restore_roll_short_old_phone", t),
-                i = geByClass1("_restore_roll_short_new_phone", t);
-            s.innerHTML = r ? r : getLang("restore_phone_not_set"), i.innerHTML = n ? n : getLang("restore_phone_not_set")
-        } else if ("doc" == e || "photo" == e) {
-            var a = geByClass1("_restore_roll_short_images", t),
-                _ = geByClass1("_restore_roll_short_message", t);
-            a.innerHTML = "", hide(_), each(geByClass("restore_uploaded_image__img", e + "_photos"), function(e, o) {
-                if (!hasClass(o, "restore_uploaded_image__img_removed")) {
-                    var t = o.cloneNode(!0);
-                    t.id = "", a.appendChild(t)
-                }
-            }), a.innerHTML || show(_)
-        } else "back_link" == e && hide("restore_roll_back_link");
-        return !0
+    checkSimpleRequestPhone: function(e) {
+        e && !cur.restoreNoEmailAccess && (clearTimeout(e.timeout), e.timeout = setTimeout(function() {
+            Restore.checkSimpleRequestFields(e) && Restore.checkPhoneOnBlur(e)
+        }, 1e3))
+    },
+    submitFullRequest: function(e) {
+        var o = "new_phone",
+            t = ge("restore_submit_full_request");
+        if (cur.request_params || (cur.request_params = {}, cur.request_step = "phones"), "phones" == cur.request_step) {
+            var r = val(o).replace(/[^0-9]/g, "");
+            if (!r) return notaBene(o);
+            if (!/^[1-9][0-9]{6,14}$/.test(r)) return Restore.showResult("request_phone_res", getLang("restore_phone_error"), o);
+            cur.request_params.phone = r
+        }
+        if ("back_link" == cur.request_step && e) return Restore.changeFormStep("back_link", "photo");
+        if ("photo" == cur.request_step && cur.images_count[1] < 1) return Restore.showResult("request_photo_res", getLang("restore_photo_error") + "<br>" + getLang("restore_attention"));
+        if ("doc" == cur.request_step && cur.images_count[0] < 1) return Restore.showResult("request_doc_res", getLang("restore_doc_error") + "<br>" + getLang("restore_attention"));
+        if ("doc" == cur.request_step || "photo" == cur.request_step) {
+            var s = [];
+            each(cur.images, function(e, o) {
+                o.deleted || s.push(o.hash)
+            }), cur.request_params.images = s
+        }
+        if ("doc" == cur.request_step) return Restore.changeFullRequestButton(!0, getLang("restore_submit")), Restore.changeFormStep("doc", "comment");
+        "comment" == cur.request_step && (cur.request_params.comment = val("comment"));
+        var n = extend({
+            act: "a_request",
+            bad_phone: cur.wrongPhone ? 1 : 0,
+            hash: cur.options.fhash
+        }, cur.request_params);
+        ajax.post("restore", n, {
+            onDone: function(e, o, t, r, s, n) {
+                var i = intval(e);
+                return 0 == i && (n = t), "back_link" == n ? (Restore.changeFullRequestButton(!1), Restore.changeFormStep("phones", "back_link")) : "photo" == n ? (Restore.changeFullRequestButton(!1), Restore.changeFormStep("phones", "photo")) : "doc" == n ? (Restore.changeFullRequestButton(!1), Restore.changeFormStep("photo", "doc")) : void Restore.processSubmitResult(e, o, t, r, s, !0)
+            },
+            showProgress: lockButton.pbind(t),
+            hideProgress: unlockButton.pbind(t)
+        })
+    },
+    changeFullRequestButton: function(e, o) {
+        toggle("restore_roll_button", e), o && val("restore_submit_full_request", o)
+    },
+    showPhoneConfirmBox: function(e, o) {
+        cur.request_id = e, cur.request_hash = o, showFastBox(getLang("restore_confirmation"), cur.phoneConfirmBox, getLang("box_send"), Restore.confirmPhoneSend, getLang("global_cancel")), elfocus("phone_confirm_code")
     },
     activate: function(e, o, t) {
         isButtonLocked(e) || ajax.post("restore", {

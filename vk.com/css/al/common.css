@@ -1436,7 +1436,7 @@ button.flat_btn_lock {
 .round_button {
     border-radius: 50px;
     background-color: #5885b8;
-    padding: 8px 16px 7px;
+    padding: 7px 16px 8px;
     cursor: pointer;
     border: none;
     margin: 0;
@@ -1452,8 +1452,8 @@ button.flat_btn_lock {
 
 .round_button:active {
     background-color: #507bae;
-    padding-top: 9px;
-    padding-bottom: 6px
+    padding-top: 8px;
+    padding-bottom: 7px
 }
 
 .button_cancel {
@@ -7287,7 +7287,8 @@ button.ui_load_more_btn {
 
 .ap_layer_wrap .ap_layer__content {
     background-color: #fff;
-    border-radius: 3px
+    border-radius: 3px;
+    margin-bottom: 10px
 }
 
 .ap_layer_wrap .audio_pl_snippet {

@@ -4597,7 +4597,8 @@ div.top_result_baloon a {
 
 .ap_layer_wrap .ap_layer__content {
     background-color: #fff;
-    border-radius: 3px
+    border-radius: 3px;
+    margin-bottom: 10px
 }
 
 .ap_layer_wrap .audio_pl_snippet {
