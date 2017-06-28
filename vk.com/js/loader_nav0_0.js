@@ -318,7 +318,7 @@ var stVersions = {
     'notifier.css': 19736507695,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
-    'restore.js': 1917704694,
+    'restore.js': 1242653913,
     'restore.css': 17946370140,
     'recover.js': 2830033131,
     'recover.css': 2080137791,
@@ -460,8 +460,8 @@ var stVersions = {
     'landings/desktop_messenger.css': 16341037549,
     'landings/vklive.css': 14041536437,
     'landings/vk2017.css': 15118990590,
-    'landings/vkmusic.css': 3258822848,
-    'landings/vkmusic.js': 2329960741,
+    'landings/vkmusic.css': 1141958758,
+    'landings/vkmusic.js': 1745567881,
     'landings/vkmasks.css': 3103874243,
     'landings/vkmasks.js': 1193444147,
     'landings/ads.css': 17696894997,
@@ -528,7 +528,7 @@ var stVersions = {
     'cmodules/internal/nospam.js': 27723716202,
     'cmodules/internal/patterns_info.js': 4504396391,
     'shortener.js': 1002525642,
-    'lang': 6826
+    'lang': 6830
 };
 var stTypes = {
     fromLib: {
@@ -593,4 +593,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 9178;
+var _rnd = 5124;

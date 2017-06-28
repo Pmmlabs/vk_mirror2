@@ -211,7 +211,7 @@ var Restore = {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e),
             onDone: function(e, o) {
-                e ? (val("request_result_msg", o), hide("request_result_wrap"), show("request_result_msg")) : Restore.showMsgBox(o, getLang("global_error"))
+                0 == e ? Restore.showMsgBox(o, getLang("global_error")) : 1 == e ? (val("request_result_msg", o), hide("request_result_wrap"), show("request_result_msg")) : 2 == e && notaBene("comment")
             }
         })
     },
