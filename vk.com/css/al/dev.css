@@ -1150,8 +1150,8 @@ input.dev_input_simular {
     background-image: url('/images/dev/banners/banner_1.jpg')
 }
 
-.dev_main_featured .dev_main_featured_banners_bg_item.dev_main_featured_banners_bg_community_apps {
-    background-image: url('/images/dev/banners/banner_2.jpg')
+.dev_main_featured .dev_main_featured_banners_bg_item.dev_main_featured_banners_bg_streaming_api {
+    background-image: url('/images/dev/banners/streaming_api.jpg')
 }
 
 .dev_main_featured .dev_main_featured_banners_bg_item.dev_main_featured_banners_bg_apps_platform {

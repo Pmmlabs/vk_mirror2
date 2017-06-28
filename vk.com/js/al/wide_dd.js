@@ -171,6 +171,7 @@
         _updateImgs: function(e, t) {
             var d = e.img;
             if (e.img) {
+                t = e.opts.noAnim ? e.opts.noAnim : t;
                 var i, s = 0,
                     r = [],
                     a = [],
@@ -219,6 +220,7 @@
                 requestWait: 300,
                 wholeIndex: 2,
                 maxItems: 29,
+                noAnim: !1,
                 searchKeys: [1],
                 defaultItems: d.items || [],
                 items: d.defaultItems || [],

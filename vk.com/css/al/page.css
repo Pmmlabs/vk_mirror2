@@ -5711,13 +5711,12 @@ div.page_cover_image .ui_actions_menu_icons {
 
 .like_share_ava.wdd_imgs {
     position: absolute;
-    top: 0;
-    right: 0;
-    border-radius: 50%;
-    overflow: hidden;
+    top: -2px;
+    right: -3px;
     display: none;
     opacity: 0;
-    filter: alpha(opacity=0)
+    filter: alpha(opacity=0);
+    width: 108px
 }
 
 .like_share_ava.wdd_imgs .wdd_img_layer {
@@ -5727,22 +5726,46 @@ div.page_cover_image .ui_actions_menu_icons {
 }
 
 .like_share_ava.wdd_imgs .wdd_img,
-.like_share_ava.wdd_imgs .wdd_img_full,
 .like_share_ava.wdd_imgs .wdd_img_half,
 .like_share_ava.wdd_imgs .wdd_img_tiny {
     border-radius: 0;
     box-shadow: none
 }
 
-.like_share_ava.wdd_imgs .wdd_img_half,
-.like_share_ava.wdd_imgs .wdd_img_tiny,
-.like_share_ava.wdd_imgs .wdd_img_tiny .wdd_img {
-    width: 24px
+.like_share_ava.wdd_imgs .wdd_img_full {
+    float: right;
+    margin: 2px 3px 0 0;
+    box-shadow: none
 }
 
+.like_share_ava.wdd_imgs .wdd_img_full .wdd_img {
+    border-radius: 50%
+}
+
+.like_share_ava.wdd_imgs .wdd_img_half .wdd_img,
+.like_share_ava.wdd_imgs .wdd_img_tiny .wdd_img {
+    width: 36px;
+    height: 36px;
+    margin-right: 0;
+    margin-left: 0
+}
+
+.like_share_ava.wdd_imgs a:nth-child(4n),
+.like_share_ava.wdd_imgs div:nth-child(4n) {
+    display: none;
+    opacity: 0;
+    visibility: hi
+}
+
+.like_share_ava.wdd_imgs .wdd_img_half,
 .like_share_ava.wdd_imgs .wdd_img_tiny {
-    height: 24px;
-    margin-bottom: 2px
+    border-radius: 50%!important;
+    float: right;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 2px;
+    margin-left: -14px;
+    border: solid 3px #fff
 }
 
 .like_share_cont {

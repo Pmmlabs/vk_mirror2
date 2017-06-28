@@ -200,42 +200,6 @@ html {
     margin-top: 2px
 }
 
-.share_form_ava.wdd_imgs {
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-radius: 50%;
-    overflow: hidden;
-    display: none;
-    opacity: 0;
-    filter: alpha(opacity=0)
-}
-
-.share_form_ava.wdd_imgs .wdd_img_layer {
-    margin: 0;
-    padding: 0;
-    background-color: #fff
-}
-
-.share_form_ava.wdd_imgs .wdd_img,
-.share_form_ava.wdd_imgs .wdd_img_full,
-.share_form_ava.wdd_imgs .wdd_img_half,
-.share_form_ava.wdd_imgs .wdd_img_tiny {
-    border-radius: 0;
-    box-shadow: none
-}
-
-.share_form_ava.wdd_imgs .wdd_img_half,
-.share_form_ava.wdd_imgs .wdd_img_tiny,
-.share_form_ava.wdd_imgs .wdd_img_tiny .wdd_img {
-    width: 24px
-}
-
-.share_form_ava.wdd_imgs .wdd_img_tiny {
-    height: 24px;
-    margin-bottom: 2px
-}
-
 .share_post_preview {
     margin-top: 18px
 }

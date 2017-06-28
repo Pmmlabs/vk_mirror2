@@ -4100,7 +4100,9 @@ div.top_result_baloon a {
 }
 
 .audio_row.audio_claimed .audio_row__performer_title,
-.audio_row.audio_claimed .audio_row__play_btn {
+.audio_row.audio_claimed .audio_row__play_btn,
+.audio_row.audio_moder_claimed .audio_row__performer_title,
+.audio_row.audio_moder_claimed .audio_row__play_btn {
     opacity: 0.6
 }
 
@@ -4186,8 +4188,7 @@ div.top_result_baloon a {
     white-space: nowrap;
     font-size: 12px;
     position: relative;
-    left: -21px;
-    top: 4px;
+    top: 0;
     opacity: 0.5
 }
 
@@ -4196,7 +4197,7 @@ div.top_result_baloon a {
 }
 
 .audio_row .audio_row__action_claim_btn:active {
-    top: 5px
+    top: 1px
 }
 
 .audio_row .audio_player__place {
@@ -4468,7 +4469,7 @@ div.top_result_baloon a {
     width: 40px;
     height: 40px;
     top: 0;
-    left: 4px;
+    left: 1px;
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%225%205%2024%2024%22%3E%3Cg%20fill%3D%22none%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%2F%3E%3Cpath%20d%3D%22M13.8%2022.9C13.4%2023.2%2013%2023%2013%2022.4L13%2011.6C13%2011%2013.4%2010.8%2013.8%2011.2L21.8%2016.6C22.1%2016.8%2022.1%2017.2%2021.8%2017.4L13.8%2022.9Z%22%20fill%3D%22%233D6899%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
     background-repeat: no-repeat;
     background-position: 50%
@@ -4479,8 +4480,8 @@ div.top_result_baloon a {
     position: absolute;
     width: 40px;
     height: 40px;
-    top: 0;
-    left: 4px
+    top: 1px;
+    left: 1px
 }
 
 .audio_numeric .audio_row .audio_row__counter {
@@ -4488,8 +4489,8 @@ div.top_result_baloon a {
     position: absolute;
     width: 40px;
     height: 40px;
-    top: 4px;
-    left: 4px;
+    top: 3px;
+    left: 0;
     color: #8a8a8a;
     box-sizing: border-box;
     padding: 9px 0;

@@ -99,7 +99,7 @@ var ShareBox = {
                 checkTextLength(4096, e, "like_share_warn");
                 var a = cur.wdd && cur.wdd.like_mail_dd,
                     i = a && a.full && 1 == a.selCount;
-                toggle("like_share_title_wrap", a && 2 == radioBtns.like_share.val && (e.lastLen > 200 && !i || a.selCount > 1 || val("like_share_title")) ? !0 : !1)
+                toggle("like_share_title_wrap", a && 2 == radioBtns.like_share.val && (e.lastLen > 200 && !i || val("like_share_title")) ? !0 : !1)
             }
         }), cur.sbHidden = !0, autosizeSetup(cur.sbField, {
             minHeight: 80
@@ -141,6 +141,7 @@ var ShareBox = {
             defaultItems: a.clubs,
             noResult: getLang("like_club_not_found"),
             img: cur.sbAva,
+            noAnim: !0,
             introText: getLang("like_club_choose"),
             onChange: function(e) {
                 curBox().changed = !0, ShareBox.rbChanged(ge("like_share_club"), 1, !0);
@@ -152,6 +153,7 @@ var ShareBox = {
         }), hasClass(ge("like_share_mail"), "disabled") || WideDropdown.init("like_mail_dd", {
             defaultItems: window._mbFriends,
             url: "hints.php",
+            noAnim: !0,
             params: {
                 act: "a_json_friends",
                 from: "imwrite"
@@ -230,18 +232,18 @@ var ShareBox = {
         if (i !== !0) switch (a) {
             case 0:
                 if (!cur.sbHidden) {
-                    var t = Fx.Transitions.easeOutCubic,
-                        n = 150,
+                    var n = Fx.Transitions.easeOutCubic,
+                        t = 150,
                         l = "ease-out";
                     cssAnim(cur.sbAva, extend({
                         opacity: 0
                     }, ShareBox.mrg(-26)), {
-                        duration: n,
-                        transition: t,
+                        duration: t,
+                        transition: n,
                         func: l
                     }, hide.pbind(cur.sbAva)), cssAnim(ge("dark_box_topic"), ShareBox.mrg(0), {
-                        duration: n,
-                        transition: t,
+                        duration: t,
+                        transition: n,
                         func: l
                     }), cur.sbHidden = !0
                 }
