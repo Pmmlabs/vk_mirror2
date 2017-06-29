@@ -373,7 +373,7 @@ var stVersions = {
     'ads.js': 1629241604,
     'ads_payments.js': 2170749464,
     'ads_edit.css': 19331318841,
-    'ads_edit.js': 3056186182,
+    'ads_edit.js': 1717470606,
     'ads_edit_geo.js': 1634516705,
     'ads_moder_common.css': 17831731480,
     'ads_moder.css': 17194409664,
@@ -525,8 +525,8 @@ var stVersions = {
     'stories.js': 675877973,
     'stories.css': 19153383567,
     'cmodules/internal/meminfo.js': 17609645333,
-    'cmodules/internal/nospam.js': 27723716202,
-    'cmodules/internal/patterns_info.js': 4504396391,
+    'cmodules/internal/nospam.js': 25508713502,
+    'cmodules/internal/patterns_info.js': 5428528787,
     'shortener.js': 1002525642,
     'lang': 6830
 };
@@ -593,4 +593,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 3732;
+var _rnd = 4823;

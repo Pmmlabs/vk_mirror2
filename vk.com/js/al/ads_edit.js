@@ -5730,6 +5730,9 @@ AdsTargetingEditor.prototype.initHelpCriterion = function(criterionName) {
         case 'tags':
             shiftTop = -96;
             break;
+        case 'save_audience':
+            shiftLeft = -357;
+            break;
         case 'geo_type':
             shiftLeft = -320;
             isNarrow = true;
@@ -5764,6 +5767,13 @@ AdsTargetingEditor.prototype.initHelpCriterion = function(criterionName) {
         case 'geo_near':
         case 'save_audience':
             targetElem = ge(this.options.targetIdPrefix + criterionName).parentNode;
+            if (criterionName === 'save_audience') {
+                targetElem = geByClass1('ads_edit_value_save_audience_row_selector_wrap', targetElem);
+                if (!targetElem) {
+                    return;
+                }
+            }
+
             var showTooltip = function() {
                 AdsEdit.showHelpCriterionTooltip(criterionName, targetElem, handler, this.criteria[criterionName], helpText, shiftLeft, shiftTop, this.cur, undefined, isNarrow);
             }.bind(this);
@@ -6226,16 +6236,21 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                 var addAudienceContainer = ge(this.options.targetIdPrefix + criterionName);
                 addEvent(addAudienceLink, 'click', this.saveAudienceAdd.bind(this, addAudienceContainer, this.criteria[criterionName].template, undefined, undefined));
 
-                var saveAudienceItems = this.criteria[criterionName].value.split(';');
-                each(saveAudienceItems, function(k, v) {
-                    if (!v) {
-                        return;
-                    }
-                    var saveAudienceArray = v.split(':');
-                    this.saveAudienceAdd(addAudienceContainer, this.criteria[criterionName].template, intval(saveAudienceArray[0]) || undefined, saveAudienceArray[1]);
-                }.bind(this));
+                if (this.criteria[criterionName].value) {
+                    var saveAudienceItems = this.criteria[criterionName].value.split(';');
+                    each(saveAudienceItems, function(k, v) {
+                        if (!v) {
+                            return;
+                        }
+                        var saveAudienceArray = v.split(':');
+                        this.saveAudienceAdd(addAudienceContainer, this.criteria[criterionName].template, intval(saveAudienceArray[0]) || undefined, saveAudienceArray[1]);
+                    }.bind(this));
+                } else {
+                    this.saveAudienceAdd(addAudienceContainer, this.criteria[criterionName].template);
+                }
 
                 this.saveAudienceUpdateValue(criterionName);
+                this.initHelpCriterion(criterionName);
             }
     }
 
@@ -8242,7 +8257,7 @@ AdsTargetingEditor.prototype.saveAudienceAdd = function(container, template, aud
         width: this.options.uiWidth,
         height: this.options.uiHeight,
         onChange: function(value) {
-            var toBeShowed = !intval(value);
+            var toBeShowed = (value === "0");
             toggle(targetAudienceNameRowElem, toBeShowed);
             if (toBeShowed) {
                 setTimeout(elfocus.pbind(targetAudienceNameElem), 0);
