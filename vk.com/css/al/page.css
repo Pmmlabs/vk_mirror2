@@ -42,6 +42,8 @@
 .page_more_link.loading,
 .page_wall_search .page_reset_search,
 .page_wall_search .wall_search,
+.post_header_subscribe_button ._subscribe_text:before,
+.post_header_subscribe_button ._subscribed_text:before,
 .replies_side,
 .vk2017_snippet_bottom_image_left:after,
 .vk2017_snippet_bottom_image_right:after,
@@ -383,6 +385,70 @@
 .wall_module .post_header .ui_actions_menu {
     right: -2px;
     margin-top: 3px
+}
+
+.post_header_subscribe_button {
+    margin-top: 5px
+}
+
+.post_header_subscribe_button ._subscribe_text:before,
+.post_header_subscribe_button ._subscribed_text:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+    background: url(/images/icons/follow_icon.png?2) no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .post_header_subscribe_button ._subscribe_text:before,
+    .post_header_subscribe_button ._subscribed_text:before {
+        background-image: url(/images/icons/follow_icon_2x.png?2);
+        background-size: 12px 41px
+    }
+}
+
+.post_header_subscribe_button ._subscribe_text {
+    display: block
+}
+
+.post_header_subscribe_button ._subscribe_text:before {
+    width: 12px;
+    height: 12px;
+    margin-top: -2px;
+    margin-bottom: -1px;
+    background-position: 0 -29px
+}
+
+.post_header_subscribe_button ._subscribed_text {
+    display: none
+}
+
+.post_header_subscribe_button ._subscribed_text:before {
+    height: 11px;
+    width: 12px;
+    margin-top: -2px;
+    background-position: 0 -15px
+}
+
+.post_header_subscribe_button._subscribed ._subscribe_text {
+    display: none
+}
+
+.post_header_subscribe_button._subscribed ._subscribed_text {
+    display: block
+}
+
+.post_top_info_wall_actions .ui_actions_menu_icons {
+    margin-top: -8px;
+    right: 18px
+}
+
+.post_top_info_wall_actions .ui_actions_menu {
+    margin-top: -8px;
+    right: -2px
 }
 
 .post_image {

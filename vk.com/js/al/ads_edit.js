@@ -1840,7 +1840,8 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
         },
         promoted_post_need_confirmation: {
             value: 0
-        }
+        },
+        kludges_have: {}
     }
 
     // Init "format photo size"-specific keys
@@ -4234,6 +4235,11 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
         }
     }
 
+    if (isObject(result) && 'kludges_have' in result) {
+        this.params.kludges_have = result.kludges_have;
+        this.targetingEditor.saveAudienceUpdateRules('save_audience');
+    }
+
     if (isObject(result) && 'post_check_error' in result) {
         this.editLink();
         this.params.link_id.promoted_post_checked = false;
@@ -4916,6 +4922,9 @@ AdsViewEditor.prototype.completeLink = function() {
         this.updateUiParamVisibility('subcategory1_id');
         this.updateUiParamVisibility('subcategory2_id');
     }
+
+    this.targetingEditor.updateUiCriterionVisibility('save_audience');
+    this.targetingEditor.saveAudienceUpdateRules('save_audience');
 
     if (this.params_old && this.params.link_type.value != this.params_old.link_type.value || !this.params_old) { // !this.params_old - because of there are may be predefined criteria
         this.targetingEditor.correctCriterion('user_devices');
@@ -5605,6 +5614,14 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
         },
         tags: {
             value: ''
+        },
+
+        save_audience: {
+            value: '',
+            data: [],
+            data_rules: [],
+            data_rules_video: [],
+            template: ''
         }
     };
 
@@ -5745,6 +5762,7 @@ AdsTargetingEditor.prototype.initHelpCriterion = function(criterionName) {
         case 'geo_type':
         case 'geo_mask':
         case 'geo_near':
+        case 'save_audience':
             targetElem = ge(this.options.targetIdPrefix + criterionName).parentNode;
             var showTooltip = function() {
                 AdsEdit.showHelpCriterionTooltip(criterionName, targetElem, handler, this.criteria[criterionName], helpText, shiftLeft, shiftTop, this.cur, undefined, isNarrow);
@@ -6200,6 +6218,25 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                 }.pbind(targetElem));
                 break;
             }
+
+        case 'save_audience':
+            {
+                this.criteria[criterionName].ui = [];
+                var addAudienceLink = ge(this.options.targetIdPrefix + criterionName + '_add');
+                var addAudienceContainer = ge(this.options.targetIdPrefix + criterionName);
+                addEvent(addAudienceLink, 'click', this.saveAudienceAdd.bind(this, addAudienceContainer, this.criteria[criterionName].template, undefined, undefined));
+
+                var saveAudienceItems = this.criteria[criterionName].value.split(';');
+                each(saveAudienceItems, function(k, v) {
+                    if (!v) {
+                        return;
+                    }
+                    var saveAudienceArray = v.split(':');
+                    this.saveAudienceAdd(addAudienceContainer, this.criteria[criterionName].template, intval(saveAudienceArray[0]) || undefined, saveAudienceArray[1]);
+                }.bind(this));
+
+                this.saveAudienceUpdateValue(criterionName);
+            }
     }
 
     this.criteria[criterionName].uiInited = true;
@@ -6290,6 +6327,10 @@ AdsTargetingEditor.prototype.getUiCriterionData = function(criterionName, option
             return ((this.criteria.sex.value == 1) ? this.criteria.statuses.data.female : this.criteria.statuses.data.male);
         case 'retargeting_groups_not':
             return this.criteria['retargeting_groups'].data || [];
+        case 'save_audience':
+            var saveAudiences = (this.criteria['retargeting_groups'].data || []).slice();
+            saveAudiences.unshift([0, getLang('ads_criteria_save_audience_create_new')]);
+            return saveAudiences;
         default:
             return this.criteria[criterionName].data || [];
     }
@@ -6374,6 +6415,7 @@ AdsTargetingEditor.prototype.getUiCriterionDefaultData = function(criterionName)
             return this.criteria['groups'].defaultData || [];
         case 'apps_not':
             return this.criteria['apps'].defaultData || [];
+        case 'save_audience':
         case 'retargeting_groups_not':
             return this.criteria['retargeting_groups'].data || [];
         case 'country':
@@ -6450,7 +6492,7 @@ AdsTargetingEditor.prototype.updateUiCriterionSelectedData = function(criterionN
         return;
     }
 
-    if (criterionName === 'geo_near') {
+    if (inArray(criterionName, ['geo_near', 'save_audience'])) {
         return;
     }
 
@@ -6575,6 +6617,12 @@ AdsTargetingEditor.prototype.getUiCriterionVisibility = function(criterionName, 
                 var viewParams = this.viewEditor.getParams();
                 visible = !!(this.criteria[criterionName].allowed_any || viewParams.link_type == AdsEdit.ADS_AD_LINK_TYPE_APP);
                 break;
+            case 'save_audience':
+                {
+                    var viewParams = this.viewEditor.getParams();
+                    visible = inArray(viewParams.link_type, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST);
+                    break;
+                }
         }
     }
 
@@ -6587,7 +6635,8 @@ AdsTargetingEditor.prototype.getUiCriterionVisibility = function(criterionName, 
 
 AdsTargetingEditor.prototype.updateUiCriterionVisibility = function(criterionName) {
 
-    var visible = this.getUiCriterionVisibility(criterionName, true);
+    var checkCriterionValue = criterionName !== 'save_audience';
+    var visible = this.getUiCriterionVisibility(criterionName, checkCriterionValue);
     if (visible === null) {
         return;
     }
@@ -6599,8 +6648,28 @@ AdsTargetingEditor.prototype.updateUiCriterionVisibility = function(criterionNam
     if (visible) {
         this.initUiCriterion(criterionName);
         removeClass('ads_edit_criterion_row_' + rowName, 'unshown');
+
+        if (rowName === 'save_audience') {
+            removeClass('ads_edit_group_' + rowName, 'unshown');
+        }
     } else if (!('dataInited' in this.criteria[criterionName]) || this.criteria[criterionName].dataInited) {
         addClass('ads_edit_criterion_row_' + rowName, 'unshown');
+
+        if (rowName === 'save_audience') {
+            addClass('ads_edit_group_' + rowName, 'unshown');
+
+            if (this.criteria[criterionName].uiInited) {
+                each(this.criteria[criterionName].ui, function(k, saveAudienceUiElements) {
+                    each(saveAudienceUiElements, function(kk, saveAudienceUiElement) {
+                        if (saveAudienceUiElement.destroy && !saveAudienceUiElement.destroyed) {
+                            saveAudienceUiElement.destroy();
+                        }
+                    });
+                });
+                ge(this.options.targetIdPrefix + criterionName).innerHTML = '';
+                this.saveAudienceUpdateValue(criterionName);
+            }
+        }
     }
 }
 
@@ -6671,10 +6740,12 @@ AdsTargetingEditor.prototype.getUiCriterionIntroText = function(criterionName) {
             return getLang('ads_select_user_operating_system');
         case 'user_browsers':
             return getLang('ads_select_user_browser');
+
+        case 'save_audience':
         case 'retargeting_groups':
-            return getLang('ads_select_retargeting_group_new');
         case 'retargeting_groups_not':
             return getLang('ads_select_retargeting_group_new');
+
         default:
             return '';
     }
@@ -6742,10 +6813,12 @@ AdsTargetingEditor.prototype.getUiCriterionPlaceholderText = function(criterionN
             return getLang('ads_select_user_operating_system');
         case 'user_browsers':
             return getLang('ads_select_user_browser');
+
+        case 'save_audience':
         case 'retargeting_groups':
-            return getLang('ads_select_retargeting_group_new');
         case 'retargeting_groups_not':
             return getLang('ads_select_retargeting_group_new');
+
         case 'geo_near':
             return getLang('ads_edit_ad_geo_map_address_placeholder');
         default:
@@ -8143,6 +8216,132 @@ AdsTargetingEditor.prototype.updateGeoEditorDefaultRadius = function(criterionNa
 
     geoEditor.options.defaultRadius = lastSelectedRadius;
     this.updateUiCriterionData(criterionName);
+}
+
+AdsTargetingEditor.prototype.saveAudienceAdd = function(container, template, audienceSelected, eventsSelected) {
+    var newAudience = domFC(se(template));
+    container.appendChild(newAudience);
+
+    var targetRulesElem = geByClass1('ads_edit_value_save_audience_row_rules', newAudience);
+    targetRulesElem.removeAttribute('autocomplete');
+
+    var targetAudienceElem = geByClass1('ads_edit_value_save_audience_row_selector', newAudience);
+    targetAudienceElem.removeAttribute('autocomplete');
+
+    var targetAudienceNameRowElem = geByClass1('ads_edit_save_audience_row_name', newAudience);
+    var targetAudienceNameElem = geByClass1('ads_edit_value_save_audience_row_name', targetAudienceNameRowElem);
+
+    var criterionName = 'save_audience';
+
+    var uiAudienceSelector = new Dropdown(targetAudienceElem, this.getUiCriterionData(criterionName), {
+        selectedItem: audienceSelected,
+        introText: this.getUiCriterionIntroText(criterionName),
+        placeholder: this.getUiCriterionPlaceholderText(criterionName),
+        autocomplete: true,
+        big: true,
+        width: this.options.uiWidth,
+        height: this.options.uiHeight,
+        onChange: function(value) {
+            var toBeShowed = !intval(value);
+            toggle(targetAudienceNameRowElem, toBeShowed);
+            if (toBeShowed) {
+                setTimeout(elfocus.pbind(targetAudienceNameElem), 0);
+            }
+
+            this.saveAudienceUpdateValue(criterionName);
+        }.bind(this)
+    });
+    this.cur.destroy.push(function() {
+        uiAudienceSelector.destroy();
+    }.bind(this));
+
+    var dataRules = this.viewEditor.params.kludges_have.video ? this.criteria[criterionName].data_rules_video : this.criteria[criterionName].data_rules;
+    var uiRulesSelector = new Selector(targetRulesElem, dataRules, {
+        selectedItems: eventsSelected,
+
+        introText: getLang('ads_criteria_save_audience_select_rules'),
+        placeholder: getLang('ads_criteria_save_audience_select_rules'),
+        nativePlaceholder: false,
+        hidePlaceholderOnSelected: true,
+        noResult: this.getUiCriterionNoResultText(criterionName),
+        disabledText: this.getUiCriterionDisabledText(criterionName),
+
+        dropdown: true,
+        listStyle: false,
+        limitedListHeight: false,
+        selectable: true,
+        big: true,
+        withIcons: false,
+        maxItems: this.options.uiMaxSelected,
+        width: this.options.uiWidth,
+        height: this.options.uiHeight,
+        selectedItemsDelimiter: ',',
+
+        onChange: function(value) {
+            this.saveAudienceUpdateValue(criterionName);
+        }.bind(this)
+    });
+    this.cur.destroy.push(function() {
+        uiRulesSelector.destroy();
+    }.bind(this));
+
+    addEvent(targetAudienceNameElem, 'change', function() {
+        this.saveAudienceUpdateValue(criterionName);
+    }.bind(this));
+
+    this.criteria[criterionName].ui.push([uiAudienceSelector, targetAudienceNameElem, uiRulesSelector]);
+
+    addEvent(geByClass1('ads_edit_value_save_audience_row_remove', newAudience), 'click', function() {
+        uiAudienceSelector.destroy();
+        uiRulesSelector.destroy();
+        re(newAudience);
+
+        this.saveAudienceUpdateValue(criterionName);
+    }.bind(this));
+
+    this.saveAudienceUpdateValue(criterionName);
+}
+
+AdsTargetingEditor.prototype.saveAudienceUpdateValue = function(criterionName) {
+    var values = [];
+    each(this.criteria[criterionName].ui, function(k, v) {
+        var uiAudienceSelector = v[0];
+        var targetAudienceNameElem = v[1];
+        var uiRulesSelector = v[2];
+
+        if (uiAudienceSelector.destroyed || uiRulesSelector.destroyed) {
+            return;
+        }
+
+        var audienceName = val(targetAudienceNameElem);
+        values.push([uiAudienceSelector.val(), uiRulesSelector.val(), audienceName].join(';;'));
+    });
+
+    this.onUiChange(criterionName, values.join('||'));
+}
+
+AdsTargetingEditor.prototype.saveAudienceUpdateRules = function(criterionName) {
+    var values = [];
+
+    var dataRules = this.viewEditor.params.kludges_have.video ? this.criteria[criterionName].data_rules_video : this.criteria[criterionName].data_rules;
+
+    if (!this.criteria[criterionName].ui) {
+        return;
+    }
+
+    each(this.criteria[criterionName].ui, function(k, v) {
+        var uiRulesSelector = v[2];
+
+        if (uiRulesSelector.destroyed) {
+            return;
+        }
+
+        uiRulesSelector.setData(dataRules);
+        uiRulesSelector.currenDataItems = dataRules;
+        uiRulesSelector.setOptions({
+            defaultItems: dataRules
+        });
+    });
 }
 
 try {

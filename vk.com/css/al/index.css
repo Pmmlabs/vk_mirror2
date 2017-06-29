@@ -100,7 +100,7 @@
 .index_rcolumn {
     float: right;
     width: 320px;
-    min-height: 620px
+    min-height: 675px
 }
 
 .index_rcolumn .page_block {
@@ -210,7 +210,8 @@
     float: left
 }
 
-.ij_bday input {
+.ij_bday input.big_text {
+    margin-bottom: 0;
     width: 75px
 }
 
@@ -218,7 +219,8 @@
     float: left
 }
 
-.ij_bmonth input {
+.ij_bmonth input.big_text {
+    margin-bottom: 0;
     width: 100px
 }
 
@@ -226,7 +228,8 @@
     float: left
 }
 
-.ij_byear input {
+.ij_byear input.big_text {
+    margin-bottom: 0;
     width: 75px
 }
 
@@ -296,22 +299,6 @@
     text-align: center
 }
 
-.index_fb_continue_with_btn {
-    padding: 15px 25px;
-    z-index: 1;
-    pointer-events: none
-}
-
-.index_fb_continue_with_wrap {
-    position: absolute;
-    z-index: 2;
-    top: 15px;
-    bottom: 15px;
-    left: 25px;
-    right: 25px;
-    cursor: pointer
-}
-
 .index_fb_icon {
     display: inline-block;
     margin: -2px 12px 0 0;
@@ -328,6 +315,43 @@
         background-image: url(/images/attach_icons_2x.png?4);
         background-size: 32px 254px
     }
+}
+
+.index_fbcontinuewithsign {
+    display: none
+}
+
+.index_fb_continue_with_btn {
+    margin-top: 20px;
+    border: 3px solid #4267b2;
+    background: #4267b2;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer
+}
+
+.index_fb_continue_with_btn:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2
+}
+
+.index_fb_continue_with_btn:after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: -2px;
+    top: -2px;
+    bottom: -2px;
+    width: 28px;
+    border: 2px solid #4267b2;
+    border-radius: 5px 0px 0px 5px;
+    z-index: 1
 }
 
 .index_terms {

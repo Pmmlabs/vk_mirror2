@@ -385,7 +385,7 @@ body.mobfixed #wk_layer_wrap {
 }
 
 .wk_subscribe_icon {
-    background: url(/images/icons/follow_icon.png?1) no-repeat 0 3px;
+    background: url(/images/icons/follow_icon.png?2) no-repeat 0 3px;
     padding-left: 20px
 }
 
@@ -393,8 +393,8 @@ body.mobfixed #wk_layer_wrap {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .wk_subscribe_icon {
-        background-image: url(/images/icons/follow_icon_2x.png?1);
-        background-size: 12px 25px
+        background-image: url(/images/icons/follow_icon_2x.png?2);
+        background-size: 12px 41px
     }
 }
 

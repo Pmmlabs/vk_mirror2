@@ -5255,6 +5255,44 @@ var Wall = {
             }
         }
     },
+    subscribeToAuthor: function(btn, authorId, hash, statHash) {
+        var subscribed = hasClass(btn, '_subscribed');
+
+        var reqOptions = {
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn),
+            onDone: function() {
+                subscribed = !subscribed;
+                toggleClass(btn, '_subscribed', subscribed);
+            },
+            onFail: function(msg) {
+                setTimeout(showFastBox(getLang('global_error'), msg).hide, 3000);
+            }
+        };
+
+        if (authorId > 0) {
+            ajax.post('al_friends.php', {
+                act: (subscribed ? 'remove' : 'add'),
+                mid: authorId,
+                hash: hash,
+                from: 'feed'
+            }, reqOptions);
+        } else {
+            ajax.post('al_groups.php', {
+                act: (subscribed ? 'list_leave' : 'list_enter'),
+                gid: -authorId,
+                hash: hash
+            }, reqOptions);
+        }
+
+        if (statHash) {
+            ajax.post('al_feed.php?act=viral_subscribe_stat', {
+                author_id: authorId,
+                subscribe: intval(!subscribed),
+                hash: statHash
+            });
+        }
+    },
     showPhoto: function(to_id, ph, hash, el, ev) {
         return !showBox('al_photos.php', {
             act: 'photo_box',

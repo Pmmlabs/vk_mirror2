@@ -107,7 +107,8 @@
     float: left
 }
 
-.join_box_bday input {
+.join_box_bday input.big_text {
+    margin-bottom: 0;
     width: 75px
 }
 
@@ -115,7 +116,8 @@
     float: left
 }
 
-.join_box_bmonth input {
+.join_box_bmonth input.big_text {
+    margin-bottom: 0;
     width: 100px
 }
 
@@ -123,13 +125,14 @@
     float: left
 }
 
-.join_box_byear input {
+.join_box_byear input.big_text {
+    margin-bottom: 0;
     width: 75px
 }
 
+.join_box_fbcontinuewithsign,
 .join_box_fbsign {
-    display: none;
-    position: relative
+    display: none
 }
 
 .join_box_fbb {
@@ -138,28 +141,40 @@
     bottom: 0px
 }
 
-.join_box_fbb.join_box_fbb_continue_with {
-    height: 62px;
-    position: relative
+.join_box_fbb_continue_with_btn {
+    border: 3px solid #4267b2;
+    background: #4267b2;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer
 }
 
-.join_box_fbb_continue_with_wrap {
+.join_box_fbb_continue_with_btn:before {
+    content: '';
+    display: block;
     position: absolute;
-    cursor: pointer;
-    height: 28px;
-    left: 0;
+    top: 0;
     bottom: 0;
+    left: 0;
     right: 0;
     z-index: 2
 }
 
-.join_box_fbb_continue_with_btn {
-    z-index: 1;
-    pointer-events: none
+.join_box_fbb_continue_with_btn:after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: -2px;
+    top: -2px;
+    bottom: -2px;
+    width: 28px;
+    border: 2px solid #4267b2;
+    border-radius: 5px 0px 0px 5px;
+    z-index: 1
 }
 
 .join_box_or {
-    margin: 12px auto 15px;
+    margin: 12px auto 13px;
     width: 120px;
     text-align: center
 }

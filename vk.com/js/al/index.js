@@ -119,13 +119,11 @@ var Index = {
             setStyle(o, {
                 opacity: 0,
                 height: 0,
-                overflow: "hidden",
-                marginTop: n ? 0 : 24
+                overflow: "hidden"
             }), show(o), FB.Event.subscribe("xfbml.render", function() {
                 animate(o, {
-                    height: n ? 74 : 59,
-                    opacity: 1,
-                    marginTop: n ? 0 : 20
+                    height: n ? 78 : 54,
+                    opacity: 1
                 }, 200)
             })
         }, window.FB && window.FB.init ? window.fbAsyncInit() : ! function(e, t, n) {

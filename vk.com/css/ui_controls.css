@@ -61,7 +61,8 @@
 }
 
 .big_text.selector_container table.selector_table {
-    border-radius: 3px
+    border-radius: 3px;
+    height: 35px
 }
 
 .big_text.selector_container.selector_focused table.selector_table {
@@ -158,6 +159,10 @@
 .big_text.selector_container td.selector input {
     font-size: 14px;
     padding: 4px 0 2px 9px
+}
+
+.big_text.selector_container td.selector input:first-line {
+    line-height: 14px
 }
 
 .dropdown_container.selector_container td.selector input {
