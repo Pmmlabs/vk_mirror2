@@ -3525,7 +3525,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.params.disclaimer_specialist.hidden = (!this.params.disclaimer_medical.may_be_any || !this.params.disclaimer_specialist.allow);
                 this.params.disclaimer_supplements.hidden = (!this.params.disclaimer_medical.may_be_any || !this.params.disclaimer_supplements.allow);
                 this.params.stats_url.hidden = !(this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.stats_url.allow_exclusive || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.stats_url.allow_promoted_post);
-                this.params.view_retargeting_group_id.hidden = (!this.params.view_retargeting_group_id.allow || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST);
+                this.params.view_retargeting_group_id.hidden = (!this.params.view_retargeting_group_id.allow || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST || !this.params.view_retargeting_group_id.value);
                 this.params.views_limit_flag.hidden = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.views_limit_exact.allow || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST);
                 this.params.views_limit_exact.hidden = (this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE || !this.params.views_limit_exact.allow)) || (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.cost_type.value == AdsEdit.ADS_AD_COST_TYPE_CLICK);
 
@@ -8270,7 +8270,7 @@ AdsTargetingEditor.prototype.saveAudienceAdd = function(container, template, aud
         uiAudienceSelector.destroy();
     }.bind(this));
 
-    var dataRules = this.viewEditor.params.kludges_have.video ? this.criteria[criterionName].data_rules_video : this.criteria[criterionName].data_rules;
+    var dataRules = this.viewEditor.params.kludges_have.video_ads_autoplay ? this.criteria[criterionName].data_rules_video : this.criteria[criterionName].data_rules;
     var uiRulesSelector = new Selector(targetRulesElem, dataRules, {
         selectedItems: eventsSelected,
 
@@ -8338,7 +8338,7 @@ AdsTargetingEditor.prototype.saveAudienceUpdateValue = function(criterionName) {
 AdsTargetingEditor.prototype.saveAudienceUpdateRules = function(criterionName) {
     var values = [];
 
-    var dataRules = this.viewEditor.params.kludges_have.video ? this.criteria[criterionName].data_rules_video : this.criteria[criterionName].data_rules;
+    var dataRules = this.viewEditor.params.kludges_have.video_ads_autoplay ? this.criteria[criterionName].data_rules_video : this.criteria[criterionName].data_rules;
 
     if (!this.criteria[criterionName].ui) {
         return;

@@ -63,14 +63,14 @@ span.fc_contact_photo.online.mobile:after {
 }
 
 .emoji_sprite_0 {
-    background-image: url(/images/emoji/sprites/sprite0.png?7)
+    background-image: url(/images/emoji/sprites/sprite0.png?8)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .emoji_sprite_0 {
-        background-image: url(/images/emoji/sprites/sprite0_2x.png?7);
+        background-image: url(/images/emoji/sprites/sprite0_2x.png?8);
         background-size: 360px 216px
     }
 }
@@ -855,120 +855,164 @@ span.fc_contact_photo.online.mobile:after {
     background-position: -252px -162px
 }
 
-.emoji_d83cdde9d83cddea {
+.emoji_d83edd44 {
     background-position: -270px -162px
 }
 
-.emoji_d83cddecd83cdde7 {
+.emoji_d83edd47 {
     background-position: -288px -162px
 }
 
-.emoji_d83cddefd83cddf5 {
+.emoji_d83edd4a {
     background-position: -306px -162px
 }
 
-.emoji_d83cdde6d83cddfa {
+.emoji_d83edd41 {
     background-position: -324px -162px
 }
 
-.emoji_d83cdde6d83cddf9 {
+.emoji_d83edd35 {
     background-position: -342px -162px
 }
 
-.emoji_d83cddfbd83cddf3 {
+.emoji_d83edd8c {
     background-position: 0px -180px
 }
 
-.emoji_d83cdde9d83cddf0 {
+.emoji_2604 {
     background-position: -18px -180px
 }
 
-.emoji_d83cddf2d83cddf4 {
+.emoji_d83cdf08 {
     background-position: -36px -180px
 }
 
-.emoji_d83cddf2d83cddfe {
+.emoji_d83cdde9d83cddea {
     background-position: -54px -180px
 }
 
-.emoji_d83cddf2d83cddfd {
+.emoji_d83cddecd83cdde7 {
     background-position: -72px -180px
 }
 
-.emoji_d83cdde6d83cddea {
+.emoji_d83cddefd83cddf5 {
     background-position: -90px -180px
 }
 
-.emoji_d83cddf5d83cddf1 {
+.emoji_d83cdde6d83cddfa {
     background-position: -108px -180px
 }
 
-.emoji_d83cddf5d83cddf9 {
+.emoji_d83cdde6d83cddf9 {
     background-position: -126px -180px
 }
 
-.emoji_d83cddf5d83cddf7 {
+.emoji_d83cddfbd83cddf3 {
     background-position: -144px -180px
 }
 
-.emoji_d83cddf8d83cdde6 {
+.emoji_d83cdde9d83cddf0 {
     background-position: -162px -180px
 }
 
-.emoji_d83cddf8d83cddec {
+.emoji_d83cddf2d83cddf4 {
     background-position: -180px -180px
 }
 
-.emoji_d83cddf5d83cdded {
+.emoji_d83cddf2d83cddfe {
     background-position: -198px -180px
 }
 
-.emoji_d83cddf8d83cddea {
+.emoji_d83cddf2d83cddfd {
     background-position: -216px -180px
 }
 
-.emoji_d83cdff3d83cdf08 {
+.emoji_d83cdde6d83cddea {
     background-position: -234px -180px
 }
 
-.emoji_d83ddc81200d2642fe0f {
+.emoji_d83cddf5d83cddf1 {
     background-position: -252px -180px
 }
 
-.emoji_d83dde46200d2642fe0f {
+.emoji_d83cddf5d83cddf9 {
     background-position: -270px -180px
 }
 
-.emoji_d83ddc87200d2642fe0f {
+.emoji_d83cddf5d83cddf7 {
     background-position: -288px -180px
 }
 
-.emoji_d83cdfc4200d2640fe0f {
+.emoji_d83cddf8d83cdde6 {
     background-position: -306px -180px
 }
 
-.emoji_d83cdfca200d2640fe0f {
+.emoji_d83cddf8d83cddec {
     background-position: -324px -180px
 }
 
-.emoji_d83ddeb5200d2640fe0f {
+.emoji_d83cddf5d83cdded {
     background-position: -342px -180px
 }
 
-.emoji_d83ddc6f200d2642fe0f {
+.emoji_d83cddf8d83cddea {
     background-position: 0px -198px
 }
 
+.emoji_d83cdff3d83cdf08 {
+    background-position: -18px -198px
+}
+
+.emoji_d83ddc81200d2642fe0f {
+    background-position: -36px -198px
+}
+
+.emoji_d83dde46200d2642fe0f {
+    background-position: -54px -198px
+}
+
+.emoji_d83ddc87200d2642fe0f {
+    background-position: -72px -198px
+}
+
+.emoji_d83cdfc4200d2640fe0f {
+    background-position: -90px -198px
+}
+
+.emoji_d83cdfca200d2640fe0f {
+    background-position: -108px -198px
+}
+
+.emoji_d83ddeb5200d2640fe0f {
+    background-position: -126px -198px
+}
+
+.emoji_d83ddc6f200d2642fe0f {
+    background-position: -144px -198px
+}
+
+.emoji_d83ddc69200d2696fe0f {
+    background-position: -162px -198px
+}
+
+.emoji_d83ddc69200d2708fe0f {
+    background-position: -180px -198px
+}
+
+.emoji_d83ddc69200d2695fe0f {
+    background-position: -198px -198px
+}
+
 .emoji_sprite_1 {
-    background-image: url(/images/emoji/sprites/sprite1.png?7)
+    background-image: url(/images/emoji/sprites/sprite1.png?8)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .emoji_sprite_1 {
-        background-image: url(/images/emoji/sprites/sprite1_2x.png?7);
-        background-size: 360px 198px
+        background-image: url(/images/emoji/sprites/sprite1_2x.png?8);
+        background-size: 360px 216px
     }
 }
 
@@ -1736,116 +1780,212 @@ span.fc_contact_photo.online.mobile:after {
     background-position: -180px -162px
 }
 
-.emoji_d83cddead83cddf8 {
+.emoji_d83edd87 {
     background-position: -198px -162px
 }
 
-.emoji_d83cddf0d83cddf7 {
+.emoji_d83edd90 {
     background-position: -216px -162px
 }
 
-.emoji_d83cddf0d83cddff {
+.emoji_d83edd54 {
     background-position: -234px -162px
 }
 
-.emoji_d83cdde7d83cddfe {
+.emoji_d83edd5a {
     background-position: -252px -162px
 }
 
-.emoji_d83cdde7d83cddea {
+.emoji_d83ddef6 {
     background-position: -270px -162px
 }
 
-.emoji_d83cdde7d83cddf7 {
+.emoji_d83edd48 {
     background-position: -288px -162px
 }
 
-.emoji_d83cddedd83cddf0 {
+.emoji_d83edd4b {
     background-position: -306px -162px
 }
 
-.emoji_d83cddf3d83cddf1 {
+.emoji_d83edd45 {
     background-position: -324px -162px
 }
 
-.emoji_d83cddf3d83cddff {
+.emoji_d83dded2 {
     background-position: -342px -162px
 }
 
-.emoji_d83cddf3d83cddf4 {
+.emoji_2695 {
     background-position: 0px -180px
 }
 
-.emoji_d83cddf9d83cddf7 {
+.emoji_d83cddead83cddf8 {
     background-position: -18px -180px
 }
 
-.emoji_d83cddffd83cdde6 {
+.emoji_d83cddf0d83cddf7 {
     background-position: -36px -180px
 }
 
-.emoji_d83ddd75200d2640fe0f {
+.emoji_d83cddf0d83cddff {
     background-position: -54px -180px
 }
 
-.emoji_d83dde47200d2640fe0f {
+.emoji_d83cdde7d83cddfe {
     background-position: -72px -180px
 }
 
-.emoji_d83dde4d200d2642fe0f {
+.emoji_d83cdde7d83cddea {
     background-position: -90px -180px
 }
 
-.emoji_d83ddeb6200d2640fe0f {
+.emoji_d83cdde7d83cddf7 {
     background-position: -108px -180px
 }
 
-.emoji_d83cdfcb200d2640fe0f {
+.emoji_d83cddedd83cddf0 {
     background-position: -126px -180px
 }
 
-.emoji_26f9200d2640fe0f {
+.emoji_d83cddf3d83cddf1 {
     background-position: -144px -180px
 }
 
-.emoji_d83ddc73200d2640fe0f {
+.emoji_d83cddf3d83cddff {
     background-position: -162px -180px
 }
 
-.emoji_d83ddc82200d2640fe0f {
+.emoji_d83cddf3d83cddf4 {
     background-position: -180px -180px
 }
 
-.emoji_d83cdff3200dd83cdf08fe0f {
+.emoji_d83cddf9d83cddf7 {
     background-position: -198px -180px
 }
 
-.emoji_d83edd37d83cdffb200d2640fe0f {
+.emoji_d83cddffd83cdde6 {
     background-position: -216px -180px
 }
 
-.emoji_d83edd37d83cdffb200d2642fe0f {
+.emoji_d83ddd75200d2640fe0f {
     background-position: -234px -180px
 }
 
-.emoji_d83edd3dd83cdffb200d2642fe0f {
+.emoji_d83dde47200d2640fe0f {
     background-position: -252px -180px
 }
 
-.emoji_d83edd3dd83cdffb200d2640fe0f {
+.emoji_d83dde4d200d2642fe0f {
     background-position: -270px -180px
 }
 
+.emoji_d83ddeb6200d2640fe0f {
+    background-position: -288px -180px
+}
+
+.emoji_d83cdfcb200d2640fe0f {
+    background-position: -306px -180px
+}
+
+.emoji_26f9200d2640fe0f {
+    background-position: -324px -180px
+}
+
+.emoji_d83ddc73200d2640fe0f {
+    background-position: -342px -180px
+}
+
+.emoji_d83ddc82200d2640fe0f {
+    background-position: 0px -198px
+}
+
+.emoji_d83cdff3200dd83cdf08fe0f {
+    background-position: -18px -198px
+}
+
+.emoji_d83edd37d83cdffb200d2640fe0f {
+    background-position: -36px -198px
+}
+
+.emoji_d83edd37d83cdffb200d2642fe0f {
+    background-position: -54px -198px
+}
+
+.emoji_d83edd3dd83cdffb200d2642fe0f {
+    background-position: -72px -198px
+}
+
+.emoji_d83edd3dd83cdffb200d2640fe0f {
+    background-position: -90px -198px
+}
+
+.emoji_d83edd26200d2640fe0f {
+    background-position: -108px -198px
+}
+
+.emoji_d83ddc68200dd83dde92fe0f {
+    background-position: -126px -198px
+}
+
+.emoji_d83ddc68200dd83cdfa4fe0f {
+    background-position: -144px -198px
+}
+
+.emoji_d83ddc68200dd83cdf93fe0f {
+    background-position: -162px -198px
+}
+
+.emoji_d83ddc68200dd83cdfebfe0f {
+    background-position: -180px -198px
+}
+
+.emoji_d83ddc68200dd83cdf3efe0f {
+    background-position: -198px -198px
+}
+
+.emoji_d83ddc68200dd83cdf73fe0f {
+    background-position: -216px -198px
+}
+
+.emoji_d83ddc68200dd83ddd27fe0f {
+    background-position: -234px -198px
+}
+
+.emoji_d83ddc68200dd83cdfedfe0f {
+    background-position: -252px -198px
+}
+
+.emoji_d83ddc68200dd83ddcbcfe0f {
+    background-position: -270px -198px
+}
+
+.emoji_d83ddc68200dd83ddd2cfe0f {
+    background-position: -288px -198px
+}
+
+.emoji_d83ddc68200dd83ddcbbfe0f {
+    background-position: -306px -198px
+}
+
+.emoji_d83ddc68200dd83cdfa8fe0f {
+    background-position: -324px -198px
+}
+
+.emoji_d83ddc68200dd83dde80fe0f {
+    background-position: -342px -198px
+}
+
 .emoji_sprite_2 {
-    background-image: url(/images/emoji/sprites/sprite2.png?7)
+    background-image: url(/images/emoji/sprites/sprite2.png?8)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .emoji_sprite_2 {
-        background-image: url(/images/emoji/sprites/sprite2_2x.png?7);
-        background-size: 360px 198px
+        background-image: url(/images/emoji/sprites/sprite2_2x.png?8);
+        background-size: 360px 234px
     }
 }
 
@@ -2597,120 +2737,236 @@ span.fc_contact_photo.online.mobile:after {
     background-position: -108px -162px
 }
 
-.emoji_d83cdde8d83cddf3 {
+.emoji_d83edd8e {
     background-position: -126px -162px
 }
 
-.emoji_d83cddebd83cddf7 {
+.emoji_d83edd91 {
     background-position: -144px -162px
 }
 
-.emoji_d83cddeed83cddf9 {
+.emoji_d83edd40 {
     background-position: -162px -162px
 }
 
-.emoji_d83cddf7d83cddfa {
+.emoji_d83edd52 {
     background-position: -180px -162px
 }
 
-.emoji_d83cddfad83cddf8 {
+.emoji_d83edd5e {
     background-position: -198px -162px
 }
 
-.emoji_d83cddfad83cdde6 {
+.emoji_d83edd5b {
     background-position: -216px -162px
 }
 
-.emoji_d83cddeed83cddf1 {
+.emoji_d83ddef4 {
     background-position: -234px -162px
 }
 
-.emoji_d83cddeed83cddf3 {
+.emoji_d83edd49 {
     background-position: -252px -162px
 }
 
-.emoji_d83cddeed83cdde9 {
+.emoji_d83edd34 {
     background-position: -270px -162px
 }
 
-.emoji_d83cddeed83cddea {
+.emoji_d83cdfdc {
     background-position: -288px -162px
 }
 
-.emoji_d83cdde8d83cdde6 {
+.emoji_d83cdf16 {
     background-position: -306px -162px
 }
 
-.emoji_d83cdde8d83cddf4 {
+.emoji_d83cdde8d83cddf3 {
     background-position: -324px -162px
 }
 
-.emoji_d83cddebd83cddee {
+.emoji_d83cddebd83cddf7 {
     background-position: -342px -162px
 }
 
-.emoji_d83cdde8d83cddf1 {
+.emoji_d83cddeed83cddf9 {
     background-position: 0px -180px
 }
 
-.emoji_d83cdde8d83cdded {
+.emoji_d83cddf7d83cddfa {
     background-position: -18px -180px
 }
 
-.emoji_d83ddc71200d2640fe0f {
+.emoji_d83cddfad83cddf8 {
     background-position: -36px -180px
 }
 
-.emoji_d83ddc6e200d2640fe0f {
+.emoji_d83cddfad83cdde6 {
     background-position: -54px -180px
 }
 
-.emoji_d83ddc77200d2640fe0f {
+.emoji_d83cddeed83cddf1 {
     background-position: -72px -180px
 }
 
-.emoji_d83dde45200d2642fe0f {
+.emoji_d83cddeed83cddf3 {
     background-position: -90px -180px
 }
 
-.emoji_d83dde4e200d2642fe0f {
+.emoji_d83cddeed83cdde9 {
     background-position: -108px -180px
 }
 
-.emoji_d83ddc86200d2642fe0f {
+.emoji_d83cddeed83cddea {
     background-position: -126px -180px
 }
 
-.emoji_d83cdfc3200d2640fe0f {
+.emoji_d83cdde8d83cdde6 {
     background-position: -144px -180px
 }
 
-.emoji_d83ddeb4200d2640fe0f {
+.emoji_d83cdde8d83cddf4 {
     background-position: -162px -180px
 }
 
-.emoji_d83cdfcc200d2640fe0f {
+.emoji_d83cddebd83cddee {
     background-position: -180px -180px
 }
 
-.emoji_d83dde4b200d2642fe0f {
+.emoji_d83cdde8d83cddf1 {
     background-position: -198px -180px
 }
 
-.emoji_d83edd26d83cdffb200d2642fe0f {
+.emoji_d83cdde8d83cdded {
     background-position: -216px -180px
 }
 
-.emoji_d83edd3ed83cdffb200d2642fe0f {
+.emoji_d83ddc71200d2640fe0f {
     background-position: -234px -180px
 }
 
-.emoji_d83edd3c200d2642fe0f {
+.emoji_d83ddc6e200d2640fe0f {
     background-position: -252px -180px
 }
 
-.emoji_d83edd38d83cdffb200d2642fe0f {
+.emoji_d83ddc77200d2640fe0f {
     background-position: -270px -180px
+}
+
+.emoji_d83dde45200d2642fe0f {
+    background-position: -288px -180px
+}
+
+.emoji_d83dde4e200d2642fe0f {
+    background-position: -306px -180px
+}
+
+.emoji_d83ddc86200d2642fe0f {
+    background-position: -324px -180px
+}
+
+.emoji_d83cdfc3200d2640fe0f {
+    background-position: -342px -180px
+}
+
+.emoji_d83ddeb4200d2640fe0f {
+    background-position: 0px -198px
+}
+
+.emoji_d83cdfcc200d2640fe0f {
+    background-position: -18px -198px
+}
+
+.emoji_d83dde4b200d2642fe0f {
+    background-position: -36px -198px
+}
+
+.emoji_d83edd26d83cdffb200d2642fe0f {
+    background-position: -54px -198px
+}
+
+.emoji_d83edd3ed83cdffb200d2642fe0f {
+    background-position: -72px -198px
+}
+
+.emoji_d83edd3c200d2642fe0f {
+    background-position: -90px -198px
+}
+
+.emoji_d83edd38d83cdffb200d2642fe0f {
+    background-position: -108px -198px
+}
+
+.emoji_d83edd39200d2642fe0f {
+    background-position: -126px -198px
+}
+
+.emoji_d83edd39200d2640fe0f {
+    background-position: -144px -198px
+}
+
+.emoji_d83ddc69200dd83dde92fe0f {
+    background-position: -162px -198px
+}
+
+.emoji_d83ddc69200dd83cdfa4fe0f {
+    background-position: -180px -198px
+}
+
+.emoji_d83ddc69200dd83cdf93fe0f {
+    background-position: -198px -198px
+}
+
+.emoji_d83ddc69200dd83cdfebfe0f {
+    background-position: -216px -198px
+}
+
+.emoji_d83ddc68200d2696fe0f {
+    background-position: -234px -198px
+}
+
+.emoji_d83ddc69200dd83cdf3efe0f {
+    background-position: -252px -198px
+}
+
+.emoji_d83ddc69200dd83cdf73fe0f {
+    background-position: -270px -198px
+}
+
+.emoji_d83ddc69200dd83ddd27fe0f {
+    background-position: -288px -198px
+}
+
+.emoji_d83ddc69200dd83cdfedfe0f {
+    background-position: -306px -198px
+}
+
+.emoji_d83ddc69200dd83ddcbcfe0f {
+    background-position: -324px -198px
+}
+
+.emoji_d83ddc69200dd83ddd2cfe0f {
+    background-position: -342px -198px
+}
+
+.emoji_d83ddc69200dd83ddcbbfe0f {
+    background-position: 0px -216px
+}
+
+.emoji_d83ddc69200dd83cdfa8fe0f {
+    background-position: -18px -216px
+}
+
+.emoji_d83ddc68200d2708fe0f {
+    background-position: -36px -216px
+}
+
+.emoji_d83ddc69200dd83dde80fe0f {
+    background-position: -54px -216px
+}
+
+.emoji_d83ddc68200d2695fe0f {
+    background-position: -72px -216px
 }
 
 #notifiers_wrap {

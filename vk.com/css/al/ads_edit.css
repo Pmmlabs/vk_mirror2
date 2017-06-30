@@ -39,7 +39,8 @@
 
 .ads_edit_table {
     border: 0px;
-    border-collapse: collapse
+    border-collapse: collapse;
+    width: 100%
 }
 
 .ads_edit_label,
