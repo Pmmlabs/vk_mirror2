@@ -4237,7 +4237,7 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
 
     if (isObject(result) && 'kludges_have' in result) {
         this.params.kludges_have = result.kludges_have;
-        this.targetingEditor.saveAudienceUpdateRules('save_audience');
+        this.targetingEditor.eventsRetargetingGroupsUpdateRules('events_retargeting_groups');
     }
 
     if (isObject(result) && 'post_check_error' in result) {
@@ -4923,8 +4923,8 @@ AdsViewEditor.prototype.completeLink = function() {
         this.updateUiParamVisibility('subcategory2_id');
     }
 
-    this.targetingEditor.updateUiCriterionVisibility('save_audience');
-    this.targetingEditor.saveAudienceUpdateRules('save_audience');
+    this.targetingEditor.updateUiCriterionVisibility('events_retargeting_groups');
+    this.targetingEditor.eventsRetargetingGroupsUpdateRules('events_retargeting_groups');
 
     if (this.params_old && this.params.link_type.value != this.params_old.link_type.value || !this.params_old) { // !this.params_old - because of there are may be predefined criteria
         this.targetingEditor.correctCriterion('user_devices');
@@ -5616,7 +5616,7 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
             value: ''
         },
 
-        save_audience: {
+        events_retargeting_groups: {
             value: '',
             data: [],
             data_rules: [],
@@ -5730,7 +5730,7 @@ AdsTargetingEditor.prototype.initHelpCriterion = function(criterionName) {
         case 'tags':
             shiftTop = -96;
             break;
-        case 'save_audience':
+        case 'events_retargeting_groups':
             shiftLeft = -357;
             break;
         case 'geo_type':
@@ -5765,10 +5765,10 @@ AdsTargetingEditor.prototype.initHelpCriterion = function(criterionName) {
         case 'geo_type':
         case 'geo_mask':
         case 'geo_near':
-        case 'save_audience':
+        case 'events_retargeting_groups':
             targetElem = ge(this.options.targetIdPrefix + criterionName).parentNode;
-            if (criterionName === 'save_audience') {
-                targetElem = geByClass1('ads_edit_value_save_audience_row_selector_wrap', targetElem);
+            if (criterionName === 'events_retargeting_groups') {
+                targetElem = geByClass1('ads_edit_value_events_retargeting_groups_row_selector_wrap', targetElem);
                 if (!targetElem) {
                     return;
                 }
@@ -6229,27 +6229,27 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                 break;
             }
 
-        case 'save_audience':
+        case 'events_retargeting_groups':
             {
                 this.criteria[criterionName].ui = [];
                 var addAudienceLink = ge(this.options.targetIdPrefix + criterionName + '_add');
                 var addAudienceContainer = ge(this.options.targetIdPrefix + criterionName);
-                addEvent(addAudienceLink, 'click', this.saveAudienceAdd.bind(this, addAudienceContainer, this.criteria[criterionName].template, undefined, undefined));
+                addEvent(addAudienceLink, 'click', this.eventsRetargetingGroupsAdd.bind(this, addAudienceContainer, this.criteria[criterionName].template, undefined, undefined));
 
                 if (this.criteria[criterionName].value) {
-                    var saveAudienceItems = this.criteria[criterionName].value.split(';');
-                    each(saveAudienceItems, function(k, v) {
+                    var eventsRetargetingGroupsItems = this.criteria[criterionName].value.split(';');
+                    each(eventsRetargetingGroupsItems, function(k, v) {
                         if (!v) {
                             return;
                         }
-                        var saveAudienceArray = v.split(':');
-                        this.saveAudienceAdd(addAudienceContainer, this.criteria[criterionName].template, intval(saveAudienceArray[0]) || undefined, saveAudienceArray[1]);
+                        var eventsRetargetingGroupsArray = v.split(':');
+                        this.eventsRetargetingGroupsAdd(addAudienceContainer, this.criteria[criterionName].template, intval(eventsRetargetingGroupsArray[0]) || undefined, eventsRetargetingGroupsArray[1]);
                     }.bind(this));
                 } else {
-                    this.saveAudienceAdd(addAudienceContainer, this.criteria[criterionName].template);
+                    this.eventsRetargetingGroupsAdd(addAudienceContainer, this.criteria[criterionName].template);
                 }
 
-                this.saveAudienceUpdateValue(criterionName);
+                this.eventsRetargetingGroupsUpdateValue(criterionName);
                 this.initHelpCriterion(criterionName);
             }
     }
@@ -6342,10 +6342,10 @@ AdsTargetingEditor.prototype.getUiCriterionData = function(criterionName, option
             return ((this.criteria.sex.value == 1) ? this.criteria.statuses.data.female : this.criteria.statuses.data.male);
         case 'retargeting_groups_not':
             return this.criteria['retargeting_groups'].data || [];
-        case 'save_audience':
-            var saveAudiences = (this.criteria['retargeting_groups'].data || []).slice();
-            saveAudiences.unshift([0, getLang('ads_criteria_save_audience_create_new')]);
-            return saveAudiences;
+        case 'events_retargeting_groups':
+            var eventsRetargetingGroups = (this.criteria['retargeting_groups'].data || []).slice();
+            eventsRetargetingGroups.unshift([0, getLang('ads_criteria_save_audience_create_new')]);
+            return eventsRetargetingGroups;
         default:
             return this.criteria[criterionName].data || [];
     }
@@ -6430,7 +6430,7 @@ AdsTargetingEditor.prototype.getUiCriterionDefaultData = function(criterionName)
             return this.criteria['groups'].defaultData || [];
         case 'apps_not':
             return this.criteria['apps'].defaultData || [];
-        case 'save_audience':
+        case 'events_retargeting_groups':
         case 'retargeting_groups_not':
             return this.criteria['retargeting_groups'].data || [];
         case 'country':
@@ -6507,7 +6507,7 @@ AdsTargetingEditor.prototype.updateUiCriterionSelectedData = function(criterionN
         return;
     }
 
-    if (inArray(criterionName, ['geo_near', 'save_audience'])) {
+    if (inArray(criterionName, ['geo_near', 'events_retargeting_groups'])) {
         return;
     }
 
@@ -6632,7 +6632,7 @@ AdsTargetingEditor.prototype.getUiCriterionVisibility = function(criterionName, 
                 var viewParams = this.viewEditor.getParams();
                 visible = !!(this.criteria[criterionName].allowed_any || viewParams.link_type == AdsEdit.ADS_AD_LINK_TYPE_APP);
                 break;
-            case 'save_audience':
+            case 'events_retargeting_groups':
                 {
                     var viewParams = this.viewEditor.getParams();
                     visible = inArray(viewParams.link_type, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST);
@@ -6650,7 +6650,7 @@ AdsTargetingEditor.prototype.getUiCriterionVisibility = function(criterionName, 
 
 AdsTargetingEditor.prototype.updateUiCriterionVisibility = function(criterionName) {
 
-    var checkCriterionValue = criterionName !== 'save_audience';
+    var checkCriterionValue = criterionName !== 'events_retargeting_groups';
     var visible = this.getUiCriterionVisibility(criterionName, checkCriterionValue);
     if (visible === null) {
         return;
@@ -6664,25 +6664,25 @@ AdsTargetingEditor.prototype.updateUiCriterionVisibility = function(criterionNam
         this.initUiCriterion(criterionName);
         removeClass('ads_edit_criterion_row_' + rowName, 'unshown');
 
-        if (rowName === 'save_audience') {
+        if (rowName === 'events_retargeting_groups') {
             removeClass('ads_edit_group_' + rowName, 'unshown');
         }
     } else if (!('dataInited' in this.criteria[criterionName]) || this.criteria[criterionName].dataInited) {
         addClass('ads_edit_criterion_row_' + rowName, 'unshown');
 
-        if (rowName === 'save_audience') {
+        if (rowName === 'events_retargeting_groups') {
             addClass('ads_edit_group_' + rowName, 'unshown');
 
             if (this.criteria[criterionName].uiInited) {
-                each(this.criteria[criterionName].ui, function(k, saveAudienceUiElements) {
-                    each(saveAudienceUiElements, function(kk, saveAudienceUiElement) {
-                        if (saveAudienceUiElement.destroy && !saveAudienceUiElement.destroyed) {
-                            saveAudienceUiElement.destroy();
+                each(this.criteria[criterionName].ui, function(k, eventsRetargetingGroupsUiElements) {
+                    each(eventsRetargetingGroupsUiElements, function(kk, eventsRetargetingGroupsUiElement) {
+                        if (eventsRetargetingGroupsUiElement.destroy && !eventsRetargetingGroupsUiElement.destroyed) {
+                            eventsRetargetingGroupsUiElement.destroy();
                         }
                     });
                 });
                 ge(this.options.targetIdPrefix + criterionName).innerHTML = '';
-                this.saveAudienceUpdateValue(criterionName);
+                this.eventsRetargetingGroupsUpdateValue(criterionName);
             }
         }
     }
@@ -6756,7 +6756,7 @@ AdsTargetingEditor.prototype.getUiCriterionIntroText = function(criterionName) {
         case 'user_browsers':
             return getLang('ads_select_user_browser');
 
-        case 'save_audience':
+        case 'events_retargeting_groups':
         case 'retargeting_groups':
         case 'retargeting_groups_not':
             return getLang('ads_select_retargeting_group_new');
@@ -6829,7 +6829,7 @@ AdsTargetingEditor.prototype.getUiCriterionPlaceholderText = function(criterionN
         case 'user_browsers':
             return getLang('ads_select_user_browser');
 
-        case 'save_audience':
+        case 'events_retargeting_groups':
         case 'retargeting_groups':
         case 'retargeting_groups_not':
             return getLang('ads_select_retargeting_group_new');
@@ -8233,20 +8233,20 @@ AdsTargetingEditor.prototype.updateGeoEditorDefaultRadius = function(criterionNa
     this.updateUiCriterionData(criterionName);
 }
 
-AdsTargetingEditor.prototype.saveAudienceAdd = function(container, template, audienceSelected, eventsSelected) {
+AdsTargetingEditor.prototype.eventsRetargetingGroupsAdd = function(container, template, audienceSelected, eventsSelected) {
     var newAudience = domFC(se(template));
     container.appendChild(newAudience);
 
-    var targetRulesElem = geByClass1('ads_edit_value_save_audience_row_rules', newAudience);
+    var targetRulesElem = geByClass1('ads_edit_value_events_retargeting_groups_row_rules', newAudience);
     targetRulesElem.removeAttribute('autocomplete');
 
-    var targetAudienceElem = geByClass1('ads_edit_value_save_audience_row_selector', newAudience);
+    var targetAudienceElem = geByClass1('ads_edit_value_events_retargeting_groups_row_selector', newAudience);
     targetAudienceElem.removeAttribute('autocomplete');
 
-    var targetAudienceNameRowElem = geByClass1('ads_edit_save_audience_row_name', newAudience);
-    var targetAudienceNameElem = geByClass1('ads_edit_value_save_audience_row_name', targetAudienceNameRowElem);
+    var targetAudienceNameRowElem = geByClass1('ads_edit_events_retargeting_groups_row_name', newAudience);
+    var targetAudienceNameElem = geByClass1('ads_edit_value_events_retargeting_groups_row_name', targetAudienceNameRowElem);
 
-    var criterionName = 'save_audience';
+    var criterionName = 'events_retargeting_groups';
 
     var uiAudienceSelector = new Dropdown(targetAudienceElem, this.getUiCriterionData(criterionName), {
         selectedItem: audienceSelected,
@@ -8263,7 +8263,7 @@ AdsTargetingEditor.prototype.saveAudienceAdd = function(container, template, aud
                 setTimeout(elfocus.pbind(targetAudienceNameElem), 0);
             }
 
-            this.saveAudienceUpdateValue(criterionName);
+            this.eventsRetargetingGroupsUpdateValue(criterionName);
         }.bind(this)
     });
     this.cur.destroy.push(function() {
@@ -8293,7 +8293,7 @@ AdsTargetingEditor.prototype.saveAudienceAdd = function(container, template, aud
         selectedItemsDelimiter: ',',
 
         onChange: function(value) {
-            this.saveAudienceUpdateValue(criterionName);
+            this.eventsRetargetingGroupsUpdateValue(criterionName);
         }.bind(this)
     });
     this.cur.destroy.push(function() {
@@ -8301,23 +8301,23 @@ AdsTargetingEditor.prototype.saveAudienceAdd = function(container, template, aud
     }.bind(this));
 
     addEvent(targetAudienceNameElem, 'change', function() {
-        this.saveAudienceUpdateValue(criterionName);
+        this.eventsRetargetingGroupsUpdateValue(criterionName);
     }.bind(this));
 
     this.criteria[criterionName].ui.push([uiAudienceSelector, targetAudienceNameElem, uiRulesSelector]);
 
-    addEvent(geByClass1('ads_edit_value_save_audience_row_remove', newAudience), 'click', function() {
+    addEvent(geByClass1('ads_edit_value_events_retargeting_groups_row_remove', newAudience), 'click', function() {
         uiAudienceSelector.destroy();
         uiRulesSelector.destroy();
         re(newAudience);
 
-        this.saveAudienceUpdateValue(criterionName);
+        this.eventsRetargetingGroupsUpdateValue(criterionName);
     }.bind(this));
 
-    this.saveAudienceUpdateValue(criterionName);
+    this.eventsRetargetingGroupsUpdateValue(criterionName);
 }
 
-AdsTargetingEditor.prototype.saveAudienceUpdateValue = function(criterionName) {
+AdsTargetingEditor.prototype.eventsRetargetingGroupsUpdateValue = function(criterionName) {
     var values = [];
     each(this.criteria[criterionName].ui, function(k, v) {
         var uiAudienceSelector = v[0];
@@ -8335,7 +8335,7 @@ AdsTargetingEditor.prototype.saveAudienceUpdateValue = function(criterionName) {
     this.onUiChange(criterionName, values.join('||'));
 }
 
-AdsTargetingEditor.prototype.saveAudienceUpdateRules = function(criterionName) {
+AdsTargetingEditor.prototype.eventsRetargetingGroupsUpdateRules = function(criterionName) {
     var values = [];
 
     var dataRules = this.viewEditor.params.kludges_have.video_ads_autoplay ? this.criteria[criterionName].data_rules_video : this.criteria[criterionName].data_rules;

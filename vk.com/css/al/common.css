@@ -3017,9 +3017,9 @@ body.mac #layer_stl .fixed {
 #box_loader {
     position: absolute;
     left: 50%;
-    margin: 0 auto 0 -30px;
+    margin: 0 auto 0 -50px;
     z-index: 1000;
-    width: 60px;
+    width: 100px;
     display: none
 }
 
@@ -3027,8 +3027,8 @@ body.mac #layer_stl .fixed {
     background-color: #000;
     opacity: 0.7;
     filter: alpha(opacity=70);
-    height: 60px;
-    border-radius: 5px;
+    height: 50px;
+    border-radius: 4px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, .35)
 }
 
@@ -6486,34 +6486,6 @@ button.ui_load_more_btn {
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%22216%208%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cpath%20d%3D%22M223%2025l10-10M233%2025l-10-10%22%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E") no-repeat 50%
 }
 
-.im-page--history.im-page--history_loading:before {
-    margin: -27px 0 0 -27px
-}
-
-.fidget_spinner,
-.im-page--history.im-page--history_loading:before {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 1000;
-    display: block;
-    background: url('/images/svg_icons/fidget_spinner.svg');
-    width: 54px;
-    height: 54px;
-    -webkit-animation: fidget_spinner 2s infinite forwards;
-    -o-animation: fidget_spinner 2s infinite forwards;
-    animation: fidget_spinner 2s infinite forwards
-}
-
-.fidget_spinner {
-    opacity: 0.8;
-    filter: alpha(opacity=80);
-    background: url('/images/svg_icons/fidget_spinner_white.svg') 50% / contain!important;
-    height: 40px;
-    width: 40px;
-    margin: -20px 0 0 -20px
-}
-
 .wk_text .audio_row.inlined {
     max-width: 362px;
     margin: 0
@@ -7960,39 +7932,4 @@ button.ui_load_more_btn {
 
 .wall_post_cont .audio_pl_snippet {
     margin-top: 15px
-}
-
-@-webkit-keyframes fidget_spinner {
-    0% {
-        -webkit-transform: rotate(0);
-        transform: rotate(0)
-    }
-    to {
-        -webkit-transform: rotate(1080deg);
-        transform: rotate(1080deg)
-    }
-}
-
-@-o-keyframes fidget_spinner {
-    0% {
-        -o-transform: rotate(0);
-        transform: rotate(0)
-    }
-    to {
-        -o-transform: rotate(1080deg);
-        transform: rotate(1080deg)
-    }
-}
-
-@keyframes fidget_spinner {
-    0% {
-        -webkit-transform: rotate(0);
-        -o-transform: rotate(0);
-        transform: rotate(0)
-    }
-    to {
-        -webkit-transform: rotate(1080deg);
-        -o-transform: rotate(1080deg);
-        transform: rotate(1080deg)
-    }
 }

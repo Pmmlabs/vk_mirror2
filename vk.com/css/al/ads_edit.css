@@ -4,7 +4,7 @@
 
 .ads_edit_geo_box_table_point_remove_button,
 .ads_edit_geo_place_radius_selector,
-.ads_edit_value_save_audience_row_remove {
+.ads_edit_value_events_retargeting_groups_row_remove {
     -ms-high-contrast-adjust: none
 }
 
@@ -648,13 +648,13 @@ a.ads_edit_link_go:hover {
     resize: vertical
 }
 
-.ads_edit_value_save_audience_row_remove,
-.ads_edit_value_save_audience_row_selector_wrap {
+.ads_edit_value_events_retargeting_groups_row_remove,
+.ads_edit_value_events_retargeting_groups_row_selector_wrap {
     display: inline-block;
     vertical-align: middle
 }
 
-.ads_edit_value_save_audience_row_remove {
+.ads_edit_value_events_retargeting_groups_row_remove {
     background: url(/images/icons/tag_cross.png) 50% no-repeat;
     width: 10px;
     height: 10px;
@@ -668,23 +668,23 @@ a.ads_edit_link_go:hover {
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .ads_edit_value_save_audience_row_remove {
+    .ads_edit_value_events_retargeting_groups_row_remove {
         background-image: url(/images/icons/tag_cross_2x.png);
         background-size: 10px 10px
     }
 }
 
-.ads_edit_value_save_audience_row_remove:hover {
+.ads_edit_value_events_retargeting_groups_row_remove:hover {
     opacity: 1
 }
 
-.ads_edit_value_save_audience_row:after {
+.ads_edit_value_events_retargeting_groups_row:after {
     content: '';
     display: block;
     height: 10px
 }
 
-.ads_edit_value_save_audience_row:last-child:after {
+.ads_edit_value_events_retargeting_groups_row:last-child:after {
     content: '';
     display: none;
     height: 0
