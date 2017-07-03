@@ -525,7 +525,7 @@ var stVersions = {
     'stories.js': 675877973,
     'stories.css': 19985645930,
     'cmodules/internal/meminfo.js': 17609645333,
-    'cmodules/internal/nospam.js': 25508713502,
+    'cmodules/internal/nospam.js': 24441439681,
     'cmodules/internal/patterns_info.js': 5428528787,
     'shortener.js': 1002525642,
     'lang': 6830
@@ -593,4 +593,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 5698;
+var _rnd = 7941;
