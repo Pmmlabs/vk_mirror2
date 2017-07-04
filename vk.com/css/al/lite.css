@@ -3706,12 +3706,12 @@ div.top_result_baloon a {
 
 .eltt:after {
     border-color: hsla(0, 0%, 100%, 0);
-    border-width: 8px
+    border-width: 6px
 }
 
 .eltt:before {
     border-color: rgba(188, 202, 215, 0);
-    border-width: 9px
+    border-width: 7px
 }
 
 .eltt.eltt_bottom {
@@ -3726,12 +3726,12 @@ div.top_result_baloon a {
 
 .eltt.eltt_bottom:after {
     border-bottom-color: #fff;
-    margin-left: -7px
+    margin-left: -5px
 }
 
 .eltt.eltt_bottom:before {
     border-bottom-color: #bccad7;
-    margin-left: -8px
+    margin-left: -6px
 }
 
 .eltt.eltt_top {
@@ -3746,12 +3746,12 @@ div.top_result_baloon a {
 
 .eltt.eltt_top:after {
     border-top-color: #fff;
-    margin-left: -7px
+    margin-left: -5px
 }
 
 .eltt.eltt_top:before {
     border-top-color: #bccad7;
-    margin-left: -8px
+    margin-left: -6px
 }
 
 .eltt.eltt_right {
@@ -3766,12 +3766,12 @@ div.top_result_baloon a {
 
 .eltt.eltt_right:after {
     border-right-color: #fff;
-    margin-top: -7px
+    margin-top: -5px
 }
 
 .eltt.eltt_right:before {
     border-right-color: #bccad7;
-    margin-top: -8px
+    margin-top: -6px
 }
 
 .eltt.eltt_left {
@@ -3786,12 +3786,12 @@ div.top_result_baloon a {
 
 .eltt.eltt_left:after {
     border-left-color: #fff;
-    margin-top: -7px
+    margin-top: -5px
 }
 
 .eltt.eltt_left:before {
     border-left-color: #bccad7;
-    margin-top: -8px
+    margin-top: -6px
 }
 
 .round_button {

@@ -2932,8 +2932,7 @@ function updateNarrow() {
     var wh = window.lastWindowHeight || 0,
         st = Math.min(scrollGetY(), bodyNode.clientHeight - wh),
         pl = ge('page_layout'),
-        head = ge('page_header_wrap'),
-        headH = vk.staticheader ? Math.max(0, getSize(head)[1] - st) : getSize(head)[1],
+        headH = vk.staticheader ? Math.max(0, getPageHeaderHeight() - st) : getPageHeaderHeight(),
         isFixed = getStyle(bar, 'position') == 'fixed',
         barMT = floatval(getStyle(barBlock, 'marginTop')),
         barH = getSize(bar)[1] - (isFixed ? barMT : 0),
@@ -2995,8 +2994,7 @@ function updateLeftMenu() {
         st = Math.min(scrollGetY(), bodyNode.clientHeight - wh),
         pos = 0,
         pl = ge('page_layout'),
-        head = ge('page_header_wrap'),
-        headH = getSize(head)[1],
+        headH = getPageHeaderHeight(),
         headCalcH = Math.min(Math.max(0, headH - st), headH),
         isFixed = getStyle(menu, 'position') == 'fixed',
         menuH = getSize(menu)[1],
@@ -11454,7 +11452,8 @@ function ElementTooltip(el, opts) {
         width: null,
         appendToParent: false,
         autoShow: true,
-        arrowSize: 'normal',
+        autoHide: false,
+        arrowSize: 'normal'
     }, opts);
 
     if (!this._opts.defaultSide) {
@@ -11505,6 +11504,7 @@ function ElementTooltip(el, opts) {
 ElementTooltip.TYPE_VERTICAL = 0;
 ElementTooltip.TYPE_HORIZONTAL = 1;
 ElementTooltip.FADE_SPEED = 100; // keep in sync with @eltt_fade_speed
+ElementTooltip.ARROW_SIZE = 6;
 
 ElementTooltip.ARROW_SIZE_NORMAL = 8
 ElementTooltip.ARROW_SIZE_BIG = 16
@@ -11512,6 +11512,8 @@ ElementTooltip.ARROW_SIZE_BIG = 16
 ElementTooltip.prototype._initEvents = function(el) {
     if (this._opts.autoShow) {
         addEvent(el, 'mouseenter', this._onMouseEnter.bind(this));
+    }
+    if (this._opts.autoShow || this._opts.autoHide) {
         addEvent(el, 'mouseleave', this._onMouseLeave.bind(this));
     }
 }
@@ -11594,7 +11596,7 @@ ElementTooltip.prototype.show = function() {
     if (!this._ttel) {
         this.build();
 
-        if (this._opts.autoShow) {
+        if (this._opts.autoShow || this._opts.autoHide) {
             addEvent(this._ttel, 'mouseenter', this._ev_ttenter = this._onTooltipMouseEnter.bind(this));
             addEvent(this._ttel, 'mouseleave', this._ev_ttleave = this._onTooltipMouseLeave.bind(this));
         }
@@ -11656,7 +11658,7 @@ ElementTooltip.prototype.updatePosition = function() {
 
     function setArrowCenteredPosition(side, shift) {
         var style = {}
-        style[side] = ttelSize[0] / 2 /*tt center*/ - border * 2 /*borders*/ - arrowSize - (shift || 0) /*shift compensation*/
+        style[side] = Math.ceil(ttelSize[0] / 2) /*tt center*/ - border /*borders*/ - arrowSize - (shift || 0) /*shift compensation*/
         setStyle(_this._ttArrowEl, style)
     }
 
@@ -11689,14 +11691,14 @@ ElementTooltip.prototype.updatePosition = function() {
 
         } else if (!side) {
             var boundingEl = domClosestOverflowHidden(this._ttel);
-            var boundingElPos = (boundingEl != bodyNode) ? getXY(boundingEl) : [scrollGetX(), scrollGetY() + 30];
+            var boundingElPos = (boundingEl != bodyNode) ? getXY(boundingEl) : [scrollGetX(), scrollGetY() + getPageHeaderHeight()];
             var boundingElSize = (boundingEl != bodyNode) ? getSize(boundingEl) : [window.innerWidth, window.innerHeight]
 
             if (this._opts.type == ElementTooltip.TYPE_VERTICAL) {
                 var inMessages = hasClass(bodyNode, 'body_im')
                 var bottomGap = inMessages ? 60 : (this._opts.bottomGap || 0)
 
-                var enoughSpaceAbove = (elPos[1] - boundingElPos[1]) > ttelSize[1]
+                var enoughSpaceAbove = (elPos[1] - boundingElPos[1]) > ttelSize[1] + arrowSize - this._opts.offset[1]
                 var enoughSpaceBelow = (scrollGetY() + boundingElSize[1] - (elPos[1] + elSize[1] + arrowSize) - bottomGap) > ttelSize[1]
 
                 if (this._opts.defaultSide == 'top') {
@@ -11774,8 +11776,10 @@ ElementTooltip.prototype.updatePosition = function() {
             removeClass(this._ttel, 'eltt_' + s);
         }
     }.bind(this));
+    removeClass(_this._ttel, 'eltt_shown');
 
     addClass(this._ttel, 'eltt_' + side);
+    addClassDelayed(this._ttel, 'eltt_shown');
     setStyle(this._ttel, style);
 }
 
@@ -12064,6 +12068,13 @@ function loadScript(scriptSrc, options) {
 function getStatusExportHash() {
     return vk.statusExportHash;
 }
+
+window.getPageHeaderHeight = (function() {
+    var cached;
+    return function() {
+        return cached = cached || ge('page_header').offsetHeight;
+    }
+})();
 
 /**
  * LongView

@@ -945,7 +945,7 @@ var Market = {
                 act: "post_comment",
                 item: cur.mkOptions.itemRaw,
                 hash: cur.mkOptions.hash,
-                from_group: hasClass(domClosest("_submit_post_box", ge("market_reply_as_group")), "as_group") ? 1 : "",
+                from_group: domData(domClosest("_submit_post_box", ge("market_reply_as_group")), "from-oid") < 0 ? 1 : "",
                 reply_to: (cur.reply_to || {})[1]
             })), {
                 onDone: function(r, a) {

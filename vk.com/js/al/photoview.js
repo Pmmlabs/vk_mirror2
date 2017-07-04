@@ -1122,7 +1122,7 @@ var Photoview = {
                 photo: i.id,
                 hash: i.hash,
                 fromview: 1,
-                from_group: l && hasClass(domClosest("_submit_post_box", l), "as_group") ? 1 : "",
+                from_group: l && domData(domClosest("_submit_post_box", ge(l)), "from-oid") < 0 ? 1 : "",
                 reply_to: (cur.reply_to || {})[1]
             })), {
                 onDone: function(t, s) {

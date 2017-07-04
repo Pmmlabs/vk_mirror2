@@ -668,6 +668,7 @@ var Videoview = {
         initAddButton: function() {
             function e(e) {
                 mvcur.addButtonTT = mvcur.addButtonTT || new ElementTooltip(r, {
+                    forceSide: "bottom",
                     cls: "mv_add_eltt",
                     elClassWhenTooltip: "mv_no_active",
                     onFirstTimeShow: function(i) {
@@ -1055,7 +1056,7 @@ var Videoview = {
                 hash: mvcur.mvData.hash,
                 fromview: 1,
                 videoviewer: 1,
-                from_group: hasClass(domClosest("_submit_post_box", ge("reply_as_group" + mvcur.post)), "as_group") ? 1 : "",
+                from_group: domData(domClosest("_submit_post_box", ge("reply_as_group" + mvcur.post)), "from-oid") < 0 ? 1 : "",
                 reply_to: (mvcur.mvReplyTo || {})[1]
             })), {
                 onDone: function(i, o) {

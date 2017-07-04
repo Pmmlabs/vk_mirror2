@@ -2723,7 +2723,7 @@ var Wall = {
         }
         if (ownerId < 0) {
             extend(lsText, {
-                fromGroup: (hasClass(domClosest('_submit_post_box', ge('official')), 'as_group') ? 1 : 0),
+                from: (domData(domClosest('_submit_post_box', ge('official')), 'from-oid') || vk.id),
                 signed: (isChecked('signed') ? 1 : 0)
             });
         }
@@ -3134,7 +3134,7 @@ var Wall = {
                 friends_only: isChecked('friends_only'),
                 status_export: isChecked('status_export'),
                 facebook_export: ge('facebook_export') ? (isChecked('facebook_export') ? 1 : 0) : '',
-                official: hasClass(domClosest('_submit_post_box', ge('official')), 'as_group') ? 1 : '',
+                official: (domData(domClosest('_submit_post_box', ge('official')), 'from-oid') == cur.postTo) ? 1 : '',
                 signed: isChecked('signed'),
                 hash: cur.options.post_hash,
                 from: cur.from ? cur.from : '',
@@ -3832,19 +3832,15 @@ var Wall = {
 
         if (fakeBox) {
             var postHash = ge('post_hash' + post),
-                canReplyAsGroup = intval(postHash && postHash.getAttribute('can_reply_as_group')) > 0,
                 ownerPhoto = fakeBox.getAttribute('data-owner-photo') || (geByClass1('post_img', postEl) || {}).src || '',
                 ownerHref = fakeBox.getAttribute('data-owner-href') || (geByClass1('post_image', postEl) || {}).href || '';
 
             realBox = se(rs(cur.wallTpl.reply_form, {
-                add_buttons: canReplyAsGroup ? rs(cur.wallTpl.reply_form_official, {
+                add_buttons: rs(cur.wallTpl.reply_form_official, {
                     post_id: post,
+                    oid: intval(post),
                     owner_photo: ownerPhoto
-                }) : '',
-                user_image: canReplyAsGroup ? rs(cur.wallTpl.reply_form_group_image, {
-                    owner_href: ownerHref,
-                    owner_photo: ownerPhoto
-                }) : '',
+                }),
                 post_id: post,
                 owner_photo: ownerPhoto
             }));
@@ -4005,6 +4001,9 @@ var Wall = {
         if (replyLink = ge('reply_link' + post)) {
             hide('replies_wrap' + post);
         }
+        if (window.tooltips && realBox) {
+            tooltips.hideAll(realBox);
+        }
         rf.blur();
         triggerEvent(window, 'scroll');
         val('reply_to' + post, '');
@@ -4070,7 +4069,7 @@ var Wall = {
         if (replyAs) {
             var onBehalfGroup = isVisible(replyAs.parentNode) && replyOid < 0 && replyTo && replyTo.getAttribute('rid') === replyOid;
             Wall.setReplyAsGroup(replyAs, {
-                fromGroup: onBehalfGroup
+                from: replyOid
             });
         }
 
@@ -4267,7 +4266,7 @@ var Wall = {
             params.rev = 1;
         }
         if (fromGroupEl && isVisible(fromGroupEl.parentNode)) {
-            params.from_group = hasClass(domClosest('_submit_post_box', fromGroupEl), 'as_group') ? 1 : ''; // else autodetect
+            params.from_oid = domData(domClosest('_submit_post_box', fromGroupEl), 'from-oid');
         }
 
         if (cur.wallType) {
@@ -4319,7 +4318,7 @@ var Wall = {
             hideProgress: unlockButton.pbind(ge('reply_button' + post))
         });
 
-        if (params.from_group || !params.message) return;
+        if (params.from_oid || !params.message) return;
 
         var repliesEl = ge('replies' + post),
             replyId = -(++cur.wallMyRepliesCnt);
@@ -5586,7 +5585,6 @@ var Wall = {
             post_id: ev[2],
             poll_hash: cur.wallTpl.poll_hash,
             date_postfix: '',
-            can_reply_as_group: (oid < 0 && adminLevel > 1) ? 1 : 0,
             user_image: '',
             post_url: '/wall' + post_id.replace('_wall_reply', '_'),
             owner_photo: psr(thumbs[1] || thumbs[0]),
@@ -5603,7 +5601,7 @@ var Wall = {
             className = '',
             answer = '',
             attr = '',
-            toLnk = ev[10] ? (' ' + ev[10]) : '';
+            toLnk = ev[10] || '';
 
         if (adminLevel > 0 || !ev[2].indexOf(vk.id + '_') || ev[4] == vk.id) {
             acts.push(cur.wallTpl.del_reply);
@@ -6505,8 +6503,6 @@ var Wall = {
             offset: null
         });
     },
-    REPLY_RADIO_BTNS_GROUP: 'page_post_as',
-    REPLY_RADIO_BTNS_GROUP_INDEX: 0,
     setReplyAsGroup: function(el, opts) {
         if (!el) {
             return;
@@ -6514,86 +6510,168 @@ var Wall = {
 
         var wrap = domClosest('_submit_post_box', el),
             signed = wrap && domByClass(wrap, '_signed_checkbox'),
-            ttChooser = data(el, 'tt');
-        toggleClass(wrap, 'as_group', !!opts.fromGroup);
-        ttChooser && radiobtn(ttChooser.rdBtns[intval(opts.fromGroup)], intval(opts.fromGroup), ttChooser.rdBtnsGroup);
-        if (signed) {
-            toggleClass(signed, 'shown', !!opts.fromGroup);
-            checkbox(signed, opts.signed);
-        }
-    },
-    replyAsGroup: function(obj, btn, rdName) {
-        if (hasClass(obj, 'disabled')) {
+            ttChooser = data(el, 'tt'),
+            from = opts.from || (opts.fromGroup ? cur.oid : vk.id),
+            fromData = from && window.replyAsData && replyAsData[from];
+
+        if (!fromData || domData(wrap, 'from-oid') == from) {
             return;
         }
 
-        var wrap = domClosest('_submit_post_box', obj),
-            signed = wrap && domByClass(wrap, '_signed_checkbox');
-        if (!btn) {
-            // direct click
-            var on = hasClass(wrap, 'as_group');
-            var tt = data(obj, 'tt');
-            if (tt && tt.rdBtns) {
-                btn = tt.rdBtns[on ? 0 : 1];
-                rdName = tt.rdBtnsGroup;
-            }
+        domData(wrap, 'from-oid', from);
+        wall.replyAsAnimate(wrap, fromData[2], fromData[1]);
+
+        if (ttChooser && ttChooser.rows) {
+            each(ttChooser.rows, function() {
+                toggleClass(this, 'active', domData(this, 'from-oid') == from);
+            });
         }
 
-        var as = domData(btn, 'as');
-        radiobtn(btn, as, rdName);
+        if (signed) {
+            toggleClass(signed, 'shown', from < 0);
+            checkbox(signed, opts.signed);
+        }
+        el.setAttribute('aria-label', getLang(from < 0 ? 'wall_reply_as_group' : 'wall_reply_as_user'));
 
-        checkbox(obj);
-
-        toggleClass(wrap, 'as_group', as == 'group');
-        signed && toggleClass(signed, 'shown', as == 'group');
-        obj.setAttribute('aria-label', getLang((as == 'group') ? 'wall_reply_as_group' : 'wall_reply_as_user'));
-
-        if (obj.id == 'official') {
+        if (el.id == 'official') {
             Wall.postChanged(true);
         }
     },
-    replyAsGroupOver: function(obj, tt_user, tt_group) {
+    replyAsAnimate: function(el, url, image) {
+        var author = el && geByClass1('_post_field_author', el),
+            authorImgs = author && geByClass('_post_field_image', author),
+            choose = el && geByClass1('_post_field_official', el),
+            chooseImgs = choose && geByClass('_post_field_image', choose),
+            index = hasClass(el, 'author_secondary') ? 0 : 1;
+
+        if (author && authorImgs && authorImgs[index]) {
+            author.href = url;
+            authorImgs[index].src = image;
+        }
+
+        if (chooseImgs && chooseImgs[index]) {
+            chooseImgs[index].src = image;
+        }
+
+        toggleClass(el, 'author_secondary');
+    },
+    replyAsGroupOver: function(obj) {
         if (!hasClass(obj, 'checkbox_official') || hasClass(obj, 'disabled')) return false;
 
+        var postBox = gpeByClass('_submit_post_box', obj);
+        showTooltip(obj, {
+            text: function() {
+                var fromGroup = (domData(postBox, 'from-oid') || vk.id) < 0;
+                return (fromGroup ? getLang('global_on_behalf_group') : getLang('global_on_behalf_me'));
+            },
+            black: 1,
+            shift: [9, 8, 8]
+        });
+        ajax.post('/al_groups.php', {
+            act: 'get_editor_clubs'
+        }, {
+            cache: 1
+        });
+        return;
+    },
+    replyAsGroupFocus: function(obj) {
         var ttChooser = data(obj, 'tt');
+        if (ttChooser && ttChooser.isShown()) {
+            return;
+        }
+        wall.replyAsGroupOver(obj);
+    },
+    replyAsGroup: function(obj, owner) {
+        if (!hasClass(obj, 'checkbox_official') || hasClass(obj, 'disabled')) return false;
+
+        if (!window.replyAsList) {
+            ajax.post('/al_groups.php', {
+                act: 'get_editor_clubs'
+            }, {
+                cache: 1,
+                onDone: function(list) {
+                    window.replyAsList = list;
+                    window.replyAsData = {};
+                    each(list, function() {
+                        window.replyAsData[this[0]] = this;
+                    })
+                    wall.replyAsGroupTT(obj, owner);
+                }
+            });
+        } else {
+            wall.replyAsGroupTT(obj, owner);
+        }
+    },
+    replyAsGroupTT: function(obj, owner) {
+        var ttChooser = data(obj, 'tt'),
+            postBox = gpeByClass('_submit_post_box', obj),
+            from = postBox && domData(postBox, 'from-oid');
 
         if (!ttChooser) {
-            var rdGroup = wall.REPLY_RADIO_BTNS_GROUP + (wall.REPLY_RADIO_BTNS_GROUP_INDEX++);
-
-            var postBox = gpeByClass('_submit_post_box', obj);
-            var onCls = [];
-            if (hasClass(postBox, 'as_group')) {
-                onCls = ['', 'on'];
-            } else {
-                onCls = ['on', ''];
+            var isWallReply = postBox && postBox.id.match(/reply_box(-?\d+)_(\d+)/),
+                list = [window.replyAsData[vk.id]],
+                rows = '';
+            if (owner && owner != vk.id && window.replyAsData[owner]) {
+                list.push(replyAsData[owner]);
             }
+            if (isWallReply) {
+                each(window.replyAsList, function() {
+                    if (this[0] != vk.id && this[0] != owner && !this[4]) {
+                        list.push(this);
+                    }
+                });
+            }
+            each(list, function() {
+                var cl = (from == this[0]) ? ' active' : '';
+                rows += '<a class="clear_fix post_from_tt_row' + cl + '" data-from-oid="' + this[0] + '" href="' + this[2] + '"><img class="post_from_tt_image" src="' + this[1] + '" aria-label="' + this[3] + '">' + this[3] + '</a>';
+            });
 
             ttChooser = new ElementTooltip(obj, {
-                content: '<div class="post_reply_tt_choose"> \
-            <h3>' + getLang('global_on_behalf_title') + '</h3> \
-            <div class="radiobtn ' + onCls[0] + '" data-as="me">' + getLang('global_on_behalf_me') + '</div> \
-            <div class="radiobtn ' + onCls[1] + '" data-as="group">' + getLang('global_on_behalf_group') + '</div> \
-          </div>',
+                content: '<div class="post_from_tt_choose _post_scroll_wrap">' + rows + '</div>',
                 appendToParent: true,
+                autoShow: false,
+                autoHide: true,
                 offset: [-10, -5],
                 onFirstTimeShow: function(ttel) {
-                    var btns = geByClass('radiobtn', ttel);
+                    var rowEls = geByClass('post_from_tt_row', ttel);
+                    each(rowEls, function(i, row) {
+                        addEvent(row, 'click', wall.setReplyAsGroup.pbind(obj, {
+                            from: domData(this, 'from-oid')
+                        }));
+                    });
+                    this.rows = rowEls;
+                    this.scroll = new uiScroll(geByClass1('_post_scroll_wrap', ttel));
+                    setTimeout(function() {
+                        ttChooser.scroll.update();
+                        ttChooser.updatePosition();
+                    }, 0);
+                },
+                onShow: function(ttel) {
+                    setTimeout(function() {
+                        if (!ttChooser.scroll) {
+                            return;
+                        }
 
-                    window.radioBtns[rdGroup] = {
-                        els: btns
-                    };
-
-                    addEvent(btns[0], 'click', wall.replyAsGroup.pbind(obj, btns[0], rdGroup));
-                    addEvent(btns[1], 'click', wall.replyAsGroup.pbind(obj, btns[1], rdGroup));
-
-                    this.rdBtns = btns;
-                    this.rdBtnsGroup = rdGroup;
+                        var active = geByClass1('active', ttel),
+                            newScroll = active ? active.offsetTop - (ttChooser.scroll.data.viewportHeight - getSize(active)[1]) / 2 : 0;
+                        ttChooser.scroll.scrollTop(newScroll);
+                    }, 0);
                 }
             });
             data(obj, 'tt', ttChooser);
         }
+        if (owner && ttChooser.isShown()) {
+            wall.setReplyAsGroup(obj, {
+                from: (from == vk.id ? owner : vk.id)
+            });
+        }
 
-        ttChooser.show();
+        if (obj.tt && obj.tt.hide) {
+            obj.tt.hide();
+        }
+        if (!ttChooser.isShown()) {
+            ttChooser.show();
+        }
     },
     reportPost: function(obj, ev, postRaw) {
         stManager.add(['privacy.js', 'privacy.css'], function() {

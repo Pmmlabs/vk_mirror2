@@ -1031,9 +1031,6 @@ html:not([lang=ru]) .wall_marked_as_ads {
 
 .wall_module .reply_author {
     font-size: 12.5px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     line-height: 1.36
 }
 
@@ -3801,12 +3798,6 @@ body.mac .reply_box_inner_wrap.fixed {
     margin-left: 48px
 }
 
-.post_field_group,
-.post_field_user {
-    float: left;
-    position: relative
-}
-
 .post_field_user_image {
     width: 28px;
     height: 28px;
@@ -3826,6 +3817,19 @@ body.mac .reply_box_inner_wrap.fixed {
     left: 15px
 }
 
+.author_secondary .post_field_user_image,
+.post_field_user_image.post_field_image_secondary {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg)
+}
+
+.author_secondary .post_field_user_image.post_field_image_secondary {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    z-index: 1
+}
+
+.mv_comments_block .post_field_user_image,
 .pv_reply_form .post_field_user_image {
     -o-transition: none;
     transition: none
@@ -3838,20 +3842,9 @@ body.mac .reply_box_inner_wrap.fixed {
 
 .post_field_user_link {
     display: block;
-    height: 28px
-}
-
-.as_group .post_field_user .post_field_user_image,
-.post_field_group .post_field_user_image {
-    -webkit-transform: rotateY(180deg);
-    transform: rotateY(180deg)
-}
-
-.as_group .post_field_group .post_field_user_image,
-.post_field_user .post_field_user_image {
-    -webkit-transform: rotateY(0deg);
-    transform: rotateY(0deg);
-    z-index: 1
+    height: 28px;
+    float: left;
+    position: relative
 }
 
 .submit_post_box_bordered .post_field_wrap {
@@ -4108,8 +4101,7 @@ div.submit_post_field[contenteditable=true]>p {
     outline: none
 }
 
-.checkbox_official .thumb_off,
-.checkbox_official .thumb_on {
+.checkbox_official .post_field_choose_image {
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     transition: -webkit-transform 0.3s ease;
@@ -4125,17 +4117,16 @@ div.submit_post_field[contenteditable=true]>p {
     left: 0
 }
 
-.as_group .checkbox_official .thumb_on,
-.checkbox_official .thumb_off {
+.author_secondary .checkbox_official .post_field_choose_image,
+.checkbox_official .post_field_choose_image.post_field_choose_secondary {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg)
+}
+
+.author_secondary .checkbox_official .post_field_choose_image.post_field_choose_secondary {
     -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
     z-index: 1
-}
-
-.as_group .checkbox_official .thumb_off,
-.checkbox_official .thumb_on {
-    -webkit-transform: rotateY(180deg);
-    transform: rotateY(180deg)
 }
 
 .checkbox_official:after {
@@ -4188,8 +4179,7 @@ div.submit_post_field[contenteditable=true]>p {
     height: 24px
 }
 
-.submit_post_box .thumb_off,
-.submit_post_box .thumb_on {
+.submit_post_box .post_field_choose_image {
     width: 24px;
     height: 24px;
     border-radius: 50%
@@ -4218,6 +4208,42 @@ div.submit_post_field[contenteditable=true]>p {
 
 .post_reply_tt_choose h3 {
     margin: 6px 0 11px
+}
+
+.post_from_tt_choose {
+    width: 279px;
+    max-height: 208px
+}
+
+.post_from_tt_row {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    color: #222;
+    padding: 8px 14px;
+    line-height: 28px
+}
+
+.post_from_tt_row:hover {
+    text-decoration: none;
+    background-color: #f0f2f5
+}
+
+.post_from_tt_row.active {
+    background-color: #7394b5;
+    color: #fff
+}
+
+.post_from_tt_image {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    margin-right: 8px;
+    float: left
 }
 
 .signed_wrap {

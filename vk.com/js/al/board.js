@@ -350,7 +350,7 @@ var Board = {
                 topic: cur.topic,
                 hash: cur.hash,
                 last: c,
-                from_group: a && hasClass(domClosest("_submit_post_box", a), "as_group") ? 1 : ""
+                from_group: a && domData(domClosest("_submit_post_box", ge(a)), "from-oid") < 0 ? 1 : ""
             })), cur.topicMyReplied = !0, ajax.post("/al_board.php", s, {
                 onDone: function(e, o, t, r, d, i) {
                     cur.topicMyReplied = !1, re("b_no_content"), Pagination.loaded.apply(window, arguments), Board.cancelAddPost(!n), window.Emoji && Emoji.focus(cur.addField), setTimeout(Board.scrollToEnd, 0), d && r && nav.setLoc(extend(nav.objLoc, {

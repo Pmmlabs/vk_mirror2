@@ -89,11 +89,11 @@ var tooltips = {
             }, o.hidedt || 0)) : void(t.tt = "hide")
         }, 1)))
     },
-    hideAll: function() {
+    hideAll: function(t) {
         if (cur.tooltips)
-            for (var t = 0; t < cur.tooltips.length; ++t) cur.tooltips[t].el && cur.tooltips[t].el.ttimer && clearTimeout(cur.tooltips[t].el.ttimer), cur.tooltips[t].hide({
+            for (var e = 0; e < cur.tooltips.length; ++e)(!t || isAncestor(cur.tooltips[e].el, t)) && (cur.tooltips[e].el && cur.tooltips[e].el.ttimer && clearTimeout(cur.tooltips[e].el.ttimer), cur.tooltips[e].hide({
                 fasthide: !0
-            })
+            }))
     },
     rePositionTT: function(t) {
         if (t) {
