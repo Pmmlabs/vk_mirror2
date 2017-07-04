@@ -1277,7 +1277,12 @@ var Feed = {
     },
     onFeedSearch: function(e, t, s, o) {
         var r, i, n = o || cur.section;
-        n.indexOf("photos") ? n.indexOf("articles") ? (r = "search", i = "news") : (r = "articles_search", i = "articles") : (r = "photos_search", i = "photos"), "search" == r || feed.hasSearchParams(feed.getSectionParams(r)) ? (r != cur.section && feed.setSection(r, 1), feed.go(feed.getSectionParams(r)), window.searcher && searcher.highlightHotHashtag(t || val(e))) : feed.go(feed.getSectionParams(i)), uiSearch.onChanged(e), uiSearch.showProgress(e)
+        if (n.indexOf("photos") ? n.indexOf("articles") ? (r = "search", i = "news") : (r = "articles_search", i = "articles") : (r = "photos_search", i = "photos"), "search" == r || feed.hasSearchParams(feed.getSectionParams(r))) {
+            r != cur.section && feed.setSection(r, 1);
+            var a = feed.getSectionParams(r);
+            cur.disableSort && (a.disable_sort = 1), feed.go(a), window.searcher && searcher.highlightHotHashtag(t || val(e))
+        } else feed.go(feed.getSectionParams(i));
+        uiSearch.onChanged(e), uiSearch.showProgress(e)
     },
     onSearchChange: function() {
         return setTimeout(feed.onFeedSearch.pbind(cur.feedEls.search), 0), !1

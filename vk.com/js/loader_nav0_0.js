@@ -257,7 +257,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 2937084348,
+    'feed.js': 2246779121,
     'feed.css': 22691901959,
     'privacy.js': 3620108221,
     'privacy.css': 20746645494,
@@ -445,6 +445,8 @@ var stVersions = {
     'chronicle.css': 19640313348,
     'market.css': 22563099438,
     'market.js': 706006342,
+    'stories_admin.css': 21025542686,
+    'stories_admin.js': 3667442459,
     'vk2016.css': 2369321949,
     'landings/common.css': 23475772817,
     'landings/community_message.css': 18903028500,
@@ -593,4 +595,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 9128;
+var _rnd = 1798;
