@@ -3019,7 +3019,7 @@ a.ui_search_custom_link {
     width: 18px;
     height: 8px;
     margin: 0 6px;
-    background: url(/images/icons/menu_icon.png?6) no-repeat 0 -255px;
+    background: url(/images/icons/menu_icon.png?7) no-repeat 0 -255px;
     opacity: 0.6;
     filter: alpha(opacity=60)
 }
@@ -3028,8 +3028,8 @@ a.ui_search_custom_link {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .olist_more_icon {
-        background-image: url(/images/icons/menu_icon_2x.png?6);
-        background-size: 18px 964px
+        background-image: url(/images/icons/menu_icon_2x.png?7);
+        background-size: 18px 990px
     }
 }
 

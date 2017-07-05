@@ -2271,15 +2271,15 @@ body.body_im.firefox.layers_shown #page_wrap {
     height: 25px;
     opacity: 0.75;
     filter: alpha(opacity=75);
-    background: url(/images/icons/menu_icon.png?6) no-repeat 7px -441px
+    background: url(/images/icons/menu_icon.png?7) no-repeat 7px -441px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     #side_bar .left_icon {
-        background-image: url(/images/icons/menu_icon_2x.png?6);
-        background-size: 18px 964px
+        background-image: url(/images/icons/menu_icon_2x.png?7);
+        background-size: 18px 990px
     }
 }
 
@@ -2420,6 +2420,10 @@ body.body_im.firefox.layers_shown #page_wrap {
 #side_bar .genre5 .left_icon,
 #side_bar .genre_app .left_icon {
     background-position: 7px -693px
+}
+
+#side_bar #l_bt .left_icon {
+    background-position: 7px -968px
 }
 
 #side_bar .left_label {
@@ -6188,85 +6192,7 @@ button.ui_load_more_btn {
     transform: translate(0)!important
 }
 
-.eltt .eltt_arrow {
-    position: absolute;
-    pointer-events: none
-}
-
-.eltt:after {
-    border-color: hsla(0, 0%, 100%, 0);
-    border-width: 6px
-}
-
-.eltt:before {
-    border-color: rgba(188, 202, 215, 0);
-    border-width: 7px
-}
-
-.eltt.eltt_bottom {
-    margin-top: 10px
-}
-
-.eltt.eltt_bottom:after,
-.eltt.eltt_bottom:before {
-    bottom: 100%;
-    left: 50%
-}
-
-.eltt.eltt_bottom:after {
-    border-bottom-color: #fff;
-    margin-left: -5px
-}
-
-.eltt.eltt_bottom:before {
-    border-bottom-color: #bccad7;
-    margin-left: -6px
-}
-
-.eltt.eltt_top {
-    margin-top: -10px
-}
-
-.eltt.eltt_top:after,
-.eltt.eltt_top:before {
-    top: 100%;
-    left: 50%
-}
-
-.eltt.eltt_top:after {
-    border-top-color: #fff;
-    margin-left: -5px
-}
-
-.eltt.eltt_top:before {
-    border-top-color: #bccad7;
-    margin-left: -6px
-}
-
-.eltt.eltt_shown {
-    margin: 0
-}
-
-.eltt.eltt_right {
-    margin-left: 10px
-}
-
-.eltt.eltt_right:after,
-.eltt.eltt_right:before {
-    right: 100%;
-    top: 50%
-}
-
-.eltt.eltt_right:after {
-    border-right-color: #fff;
-    margin-top: -5px
-}
-
-.eltt.eltt_right:before {
-    border-right-color: #bccad7;
-    margin-top: -6px
-}
-
+.eltt .eltt_arrow,
 .eltt .eltt_arrow_back {
     position: absolute;
     pointer-events: none

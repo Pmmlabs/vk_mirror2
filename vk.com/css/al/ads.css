@@ -1374,6 +1374,12 @@ a.ads_status_link {
     border-bottom: 1px dashed #2b587a
 }
 
+.ads_general_info_events_retargeting_groups {
+    padding-left: 10px;
+    color: #777;
+    margin-bottom: 3px
+}
+
 #general_info_row_view_retargeting_group_id .idd_menu_wrap_parent {
     position: relative
 }
@@ -2690,6 +2696,26 @@ h4.subheader.ads_retargeting_subheader_top {
     background: #597da3 url(/images/progress_grad.gif) repeat;
     border: 1px solid #45688e;
     margin: -1px
+}
+
+.ads_retargeting_usage_table {
+    border-spacing: 0;
+    margin-top: 5px
+}
+
+.ads_retargeting_usage_table td {
+    vertical-align: top
+}
+
+.ads_retargeting_usage_table .ads_retargeting_usage_table_flag {
+    padding-left: 15px;
+    padding-bottom: 6px;
+    color: #777
+}
+
+.ads_retargeting_usage_table .ads_retargeting_usage_table_union {
+    width: 180px;
+    padding-bottom: 6px
 }
 
 .ads_settings_notifacations {

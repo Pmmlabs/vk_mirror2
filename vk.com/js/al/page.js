@@ -2736,7 +2736,7 @@ var Wall = {
 
         var draft = ls.get(Wall.ownerDraftKey(ownerId)) || [];
         return [draft.txt, draft.medias, true, {
-            fromGroup: intval(draft.fromGroup),
+            from: intval(draft.from),
             signed: intval(draft.signed),
             shareShowImg: intval(draft.shareShowImg)
         }];
@@ -6529,7 +6529,9 @@ var Wall = {
 
         if (signed) {
             toggleClass(signed, 'shown', from < 0);
-            checkbox(signed, opts.signed);
+            if (opts.signed !== undefined) {
+                checkbox(signed, opts.signed);
+            }
         }
         el.setAttribute('aria-label', getLang(from < 0 ? 'wall_reply_as_group' : 'wall_reply_as_user'));
 

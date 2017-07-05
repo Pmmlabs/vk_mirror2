@@ -395,7 +395,7 @@ a.groups_messages_block:before {
     width: 17px;
     height: 14px;
     margin: 0 8px 0 -2px;
-    background: url(/images/icons/menu_icon.png?6) no-repeat 0 -28px;
+    background: url(/images/icons/menu_icon.png?7) no-repeat 0 -28px;
     opacity: 0.75;
     filter: alpha(opacity=75)
 }
@@ -404,8 +404,8 @@ a.groups_messages_block:before {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     a.groups_messages_block:before {
-        background-image: url(/images/icons/menu_icon_2x.png?6);
-        background-size: 18px 964px
+        background-image: url(/images/icons/menu_icon_2x.png?7);
+        background-size: 18px 990px
     }
 }
 

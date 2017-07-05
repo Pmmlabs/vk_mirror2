@@ -101,6 +101,10 @@
     line-height: 1.462
 }
 
+.post_moder_reply {
+    color: #939393
+}
+
 a.page_post_thumb_wrap,
 span.page_post_thumb_wrap {
     display: block;

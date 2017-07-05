@@ -737,7 +737,9 @@ var Feed = {
                 act: "post",
                 from: "feedback",
                 item: e
-            }, o.params || {}), o.sending = 1, ajax.post("al_wall.php", Wall.fixPostParams(d), {
+            }, o.params || {});
+            var l = ge("reply_as_group" + e);
+            l && isVisible(domPN(l)) && (d.from_oid = domData(domClosest("_submit_post_box", l), "from-oid")), o.sending = 1, ajax.post("al_wall.php", Wall.fixPostParams(d), {
                 onDone: function(t, s) {
                     if (delete o.sending, c ? r = Composer.reset(c) : window.Emoji && Emoji.val(i, ""), i.autosize && i.autosize.update(), feed.notifyHideReply(e), s) {
                         var n = geByClass1("_answer_wrap", a);
@@ -906,19 +908,20 @@ var Feed = {
             adData = postEl.getAttribute("data-ad"),
             actMenu = geByClass1("ui_actions_menu_wrap", postEl),
             from = feed.getModuleRef();
-        actMenu && uiActionsMenu.toggle(actMenu, !1), revertLastInlineVideo(postEl), cur.feedEntriesHTML[post_raw] = val(postEl), ajax.post("/al_feed.php?misc", {
-            act: "a_ignore_item",
-            post_raw: post_raw,
-            feed_raw: feed_raw,
-            hash: hash,
-            ad_data: adData,
-            ref: from
-        }, {
-            onDone: function(html, js) {
-                val(postEl, html), eval(js)
-            },
-            stat: ["privacy.js", "privacy.css"]
-        })
+        actMenu && uiActionsMenu.toggle(actMenu, !1), revertLastInlineVideo(postEl), cur.feedEntriesHTML[post_raw] = val(postEl),
+            ajax.post("/al_feed.php?misc", {
+                act: "a_ignore_item",
+                post_raw: post_raw,
+                feed_raw: feed_raw,
+                hash: hash,
+                ad_data: adData,
+                ref: from
+            }, {
+                onDone: function(html, js) {
+                    val(postEl, html), eval(js)
+                },
+                stat: ["privacy.js", "privacy.css"]
+            })
     },
     unignoreItem: function(e, t, s, o) {
         var r = feed.getModuleRef();

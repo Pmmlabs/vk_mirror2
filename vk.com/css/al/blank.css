@@ -2,6 +2,10 @@
     display: none
 }
 
+.groups_blocked .groups_blocked_about .groups_blocked_spamfight_img {
+    -ms-high-contrast-adjust: none
+}
+
 .h4-text {
     color: #000;
     border-bottom: none;
@@ -14,34 +18,98 @@
 }
 
 .groups_blocked {
-    padding: 40px 50px
+    font-size: 14px;
+    text-align: center
 }
 
-.groups_blocked_text {
-    padding: 30px 0px;
+.groups_blocked .groups_blocked_about {
+    margin: 0 auto;
+    padding-top: 48px;
+    width: 595px
+}
+
+.groups_blocked .groups_blocked_about .groups_blocked_spamfight_img {
+    margin: 0 auto;
+    background: url(/images/spamfight_brown.png);
+    width: 160px;
+    height: 160px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .groups_blocked .groups_blocked_about .groups_blocked_spamfight_img {
+        background-image: url(/images/spamfight_brown_2x.png);
+        background-size: 160px 160px
+    }
+}
+
+.groups_blocked .groups_blocked_text {
+    padding: 30px 0;
     line-height: 160%;
     text-align: center
 }
 
-.groups_block_act {
-    margin-left: 10px
+.groups_blocked .group_blocked_moder_comment,
+.groups_blocked .group_blocked_till_date {
+    margin-top: 6px
 }
 
-.groups_blocked_cb {
-    margin-top: 1px
+.groups_blocked .groups_blocked_acts {
+    border-top: 1px solid #e7e8ec;
+    padding: 18px 0;
+    margin: 0 auto;
+    width: 755px
 }
 
-.groups_blocked_cb_cont .checkbox {
+.groups_blocked .group_blocked_links {
+    width: 595px;
+    margin: 0 auto;
+    padding: 25px 0;
+    line-height: 22px
+}
+
+.groups_blocked .group_blocked_admin_rules {
+    margin-bottom: 6px;
+    white-space: nowrap
+}
+
+.group_blocked_no_image .groups_blocked .groups_blocked_about {
+    padding: 0
+}
+
+.group_blocked_no_image .groups_blocked .groups_blocked_spamfight_img {
+    display: none
+}
+
+.groups_blocked .group_blocked_unblock .groups_blocked_cb_cont {
+    font-size: 13px;
+    display: inline-block;
+    vertical-align: top;
+    max-width: 360px
+}
+
+.groups_blocked .group_blocked_unblock .groups_blocked_cb_cont .checkbox {
     margin-left: 23px;
-    text-align: left;
-    line-height: 120%
+    text-align: left
 }
 
-.groups_blocked_cb_cont .checkbox:before {
+.groups_blocked .group_blocked_unblock .groups_blocked_cb_cont .checkbox:before {
     margin-left: -23px
 }
 
-#groups_blocked_unblock_btn {
+.groups_blocked .group_blocked_unblock .groups_blocked_cb_cont .groups_blocked_cb {
+    margin-top: -1px
+}
+
+.groups_blocked .group_blocked_unblock .groups_blocked_unblock_btn {
+    display: inline-block;
+    vertical-align: top;
     width: 200px;
-    margin: 0 auto
+    padding-top: 2px;
+    padding-left: 45px
+}
+
+.groups_block_act {
+    margin-left: 10px
 }

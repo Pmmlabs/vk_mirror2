@@ -976,12 +976,12 @@
 .audio_pl_item .audio_pl__actions_btns {
     position: relative;
     top: 0;
-    left: 14px;
+    left: 15px;
     opacity: 0;
-    -webkit-transform: translateY(54px);
-    -ms-transform: translateY(54px);
-    -o-transform: translateY(54px);
-    transform: translateY(54px);
+    -webkit-transform: translateY(57px);
+    -ms-transform: translateY(57px);
+    -o-transform: translateY(57px);
+    transform: translateY(57px);
     transition: opacity 160ms linear, -webkit-transform 160ms ease;
     -o-transition: transform 160ms ease, opacity 160ms linear, -o-transform 160ms ease;
     transition: transform 160ms ease, opacity 160ms linear;
@@ -989,10 +989,10 @@
 }
 
 .audio_pl_item .audio_pl__cover:hover .audio_pl__actions_btns {
-    -webkit-transform: translateY(50px);
-    -ms-transform: translateY(50px);
-    -o-transform: translateY(50px);
-    transform: translateY(50px);
+    -webkit-transform: translateY(53px);
+    -ms-transform: translateY(53px);
+    -o-transform: translateY(53px);
+    transform: translateY(53px);
     opacity: 1
 }
 
