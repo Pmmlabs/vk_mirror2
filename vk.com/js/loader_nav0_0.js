@@ -15,6 +15,7 @@ var navMap = {
     'audio-?\\d+_\\d+$': ['al_audio.php', ['audio.css', 'audio.js']],
     'audios(-?\\d+)?$': ['al_audio.php', ['audio.css', 'audio.js']],
     'audio($|/)': ['al_audio.php', ['audio.css', 'audio.js']],
+    'music$': ['al_audio.php', ['audio.css', 'audio.js']],
     'apps_check($|/)': ['al_apps_check.php', ['apps.css', 'apps.js']],
     'apps($|/)': ['al_apps.php', ['apps.css', 'apps.js']],
     'editapp($|/)': ['al_apps_edit.php', ['apps.css', 'apps.js']],
@@ -144,7 +145,7 @@ var stVersions = {
     'html5audio.js': 976782859,
     'html5video.js': 223664659,
     'html5video.css': 17705317392,
-    'audioplayer.js': 3274571679,
+    'audioplayer.js': 3348232843,
     'audioplayer.css': 16969591383,
     'audio_html5.js': 287741914,
     'audio.js': 2321433814,
@@ -346,8 +347,8 @@ var stVersions = {
     'groupinfo.css': 20378388684,
     'bugs.js': 3874995669,
     'bugs.css': 15333203943,
-    'bugtracker.js': 1995791740,
-    'bugtracker.css': 21438417204,
+    'bugtracker.js': 2802945911,
+    'bugtracker.css': 21342779918,
     'login.css': 17560392130,
     'login.js': 3551917100,
     'upload.js': 3319172650,
@@ -595,4 +596,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 5090;
+var _rnd = 8014;
