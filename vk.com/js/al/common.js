@@ -3280,7 +3280,12 @@ function onDocumentClick(e) {
         opts.permanent = hash[1];
         href = '/' + hash[2];
     }
-    if (href.match(/#$/)) {
+    var isForcePostClickTracking = !!(
+        target.getAttribute &&
+        target.getAttribute('data-post-click-type') &&
+        target.getAttribute('data-post-id')
+    );
+    if (href.match(/#$/) && !isForcePostClickTracking) {
         return true;
     }
 
@@ -3299,9 +3304,9 @@ function onDocumentClick(e) {
             host = parseRes[1];
             path = parseRes[3] || '/';
         }
-        // pass internal post links with different host (e.g. m.vk.com link on vk.com)
+        // pass post links with different host (e.g. m.vk.com link on vk.com)
         // through away with extra post params (see `nav.go`)
-        if (host && /(^|\.)vk\.com$/i.test(host) && target.getAttribute('data-post-click-type') === 'internal_link') {
+        if (host && isForcePostClickTracking) {
             target.setAttribute('data-change-location-with-post-away', 1);
             link = target;
         } else {
@@ -3312,7 +3317,12 @@ function onDocumentClick(e) {
     }
 
     if (path.indexOf('.php') > 0 || /*path.indexOf('/') > 0 || */ path.match(/^(doc\-?\d+_\d+|graffiti\d+|reg\d+|images\/|utils\/|\.js|js\/|\.css|css\/|source\b)/)) {
-        return true;
+        if (isForcePostClickTracking) {
+            target.setAttribute('data-change-location-with-post-away', 1);
+            link = target;
+        } else {
+            return true;
+        }
     }
     var _params = target.getAttribute('hrefparams');
     if (_params) {
@@ -5599,15 +5609,19 @@ var nav = {
     go: function(loc, ev, opts) {
         var newLink;
         var postParams;
+        var postOptions;
+
+        opts = opts || {};
 
         if (loc && loc.href && loc.getAttribute && loc.getAttribute('data-change-location-with-post-away')) {
             newLink = loc.href;
-            postParams = nav.getPostParams(loc);
+            postParams = nav.getPostParams(loc, !!(opts.params && opts.params._post_click_type));
+            postOptions = nav.mergePostParamsOptions(postParams, opts.params);
             var extraQuery = {};
-            if (postParams.post_id) {
-                extraQuery.post = postParams.post_id;
-                if (postParams.ad_data) {
-                    extraQuery.post_ad_data = postParams.ad_data;
+            if (postOptions._post) {
+                extraQuery.post = postOptions._post;
+                if (postOptions._post_ad_data) {
+                    extraQuery.post_ad_data = postOptions._post_ad_data;
                 }
                 newLink = '/away.php?to=' + encodeURIComponent(newLink) + '&' + ajx2q(extraQuery);
             }
@@ -5617,7 +5631,6 @@ var nav = {
 
         if (checkEvent(ev) || cur.noAjaxNav) return;
         LongView.onBeforePageChange();
-        opts = opts || {};
         if (loc.tagName && loc.tagName.toLowerCase() == 'a') {
             if (loc.target == '_blank' || nav.baseBlank) {
                 return;
@@ -5780,23 +5793,7 @@ var nav = {
         var postParamsEl = ev && ev.target && ev.target.getAttribute ? ev.target : (loc && loc.getAttribute ? loc : null);
         postParams = nav.getPostParams(postParamsEl, !!where.params._post_click_type);
 
-        function setPostParam(val, setName, checkNotSet) {
-            var existingVal = checkNotSet && where.params[setName];
-            if (!val || existingVal) {
-                return false;
-            }
-            where.params[setName] = val;
-            return true;
-        }
-
-        setPostParam(postParams.post_id, '_post', true);
-        setPostParam(postParams.parent_post_id, '_parent_post', true);
-        setPostParam(postParams.post_click_type, '_post_click_type', true);
-        if (where.params._post_click_type) {
-            if (setPostParam(postParams.ad_data, '_post_ad_data', true)) {
-                setPostParam(postParams.ad_block_unique_id, '_post_ad_block_unique_id')
-            }
-        }
+        where.params = nav.mergePostParamsOptions(postParams, where.params);
 
         if (opts.cl_id) {
             where.params.fr_click = cur.oid + ',' + opts.cl_id + ',' + cur.options.fr_click;
@@ -6139,6 +6136,33 @@ var nav = {
         }
 
         return params;
+    },
+    mergePostParamsOptions: function(postParams, optsParams) {
+        optsParams = optsParams || {};
+
+        if (!postParams) {
+            return optsParams;
+        }
+
+        function setPostParam(val, setName, checkNotSet) {
+            var existingVal = checkNotSet && optsParams[setName];
+            if (!val || existingVal) {
+                return false;
+            }
+            optsParams[setName] = val;
+            return true;
+        }
+
+        setPostParam(postParams.post_id, '_post', true);
+        setPostParam(postParams.parent_post_id, '_parent_post', true);
+        setPostParam(postParams.post_click_type, '_post_click_type', true);
+        if (optsParams._post_click_type) {
+            if (setPostParam(postParams.ad_data, '_post_ad_data', true)) {
+                setPostParam(postParams.ad_block_unique_id, '_post_ad_block_unique_id')
+            }
+        }
+
+        return optsParams;
     }
 }
 
@@ -10261,6 +10285,7 @@ function mentionClick(el, ev, opts) {
         });
     }
     var loc = el;
+    var skipNavGo = false;
     if (loc.tagName && loc.tagName.toLowerCase() == 'a' && !(loc.getAttribute('target') || nav.baseBlank)) {
         opts = opts || {};
         var _params = loc.getAttribute('hrefparams');
@@ -10275,10 +10300,25 @@ function mentionClick(el, ev, opts) {
         loc = loc.replace(/^(vkontakte\.ru\/|vk\.com\/)/, '/');
         var path;
         if (loc.match(/#$/) || !(path = loc.match(/^\/(.*?)(\?|#|$)/))) {
-            return true;
+            skipNavGo = true;
+        } else {
+            path = path[1];
+            if (path.indexOf('.php') > 0 || path.match(/^(doc\-?\d+_\d+|graffiti\d+|reg\d+|images|utils|\.js|js\/|\.css|css\/)/)) {
+                skipNavGo = true;
+            }
         }
-        path = path[1];
-        if (path.indexOf('.php') > 0 || path.match(/^(doc\-?\d+_\d+|graffiti\d+|reg\d+|images|utils|\.js|js\/|\.css|css\/)/)) {
+    }
+    if (skipNavGo) {
+        var isForcePostClickTracking = !!(
+            opts &&
+            opts.params &&
+            opts.params._post &&
+            opts.params._post_click_type
+        );
+        if (isForcePostClickTracking) {
+            el.setAttribute('data-change-location-with-post-away', 1);
+            loc = el;
+        } else {
             return true;
         }
     }
