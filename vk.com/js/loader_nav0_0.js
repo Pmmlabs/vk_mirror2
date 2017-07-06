@@ -121,7 +121,8 @@ var navMap = {
     'ach($|/)': ['achievements.php', ['achievements.css', 'achievements.js']],
     'memedit($|/)': ['members.php', ['members.css', 'dyn-members.js']],
     'meminfo($|/)': ['member_info.php', ['cmodules/internal/meminfo.js', 'meminfo.css']],
-    'groupinfo($|/)': ['group_info.php', ['groupinfo.css']]
+    'groupinfo($|/)': ['group_info.php', ['groupinfo.css']],
+    'cvkmobile($|/)': ['cvkmobile.php', ['internal/cvkmobile.css', 'internal/cvkmobile.js']]
 };
 var stVersions = {
     'nav': 0,
@@ -159,7 +160,7 @@ var stVersions = {
     'boxes.css': 17239699225,
     'box.js': 590267265,
     'rate.css': 1431298744,
-    'tooltips.js': 3240307190,
+    'tooltips.js': 1683501140,
     'tooltips.css': 19043909344,
     'sorter.js': 1976440538,
     'qsorter.js': 4013122173,
@@ -190,8 +191,8 @@ var stVersions = {
     'video.css': 22067746062,
     'videocat.js': 1618923991,
     'videocat.css': 20428406794,
-    'videoview.js': 337119640,
-    'videoview.css': 23004171546,
+    'videoview.js': 1840778597,
+    'videoview.css': 24459073198,
     'video_edit.js': 2135196486,
     'video_edit.css': 17285154464,
     'video_upload.js': 1490680443,
@@ -222,11 +223,11 @@ var stVersions = {
     'public.js': 3770119342,
     'pages.css': 20217453686,
     'pages.js': 1162259210,
-    'groups.css': 24315523990,
+    'groups.css': 26671756849,
     'groups.js': 2975645919,
     'groups_list.js': 3507753248,
     'groups_edit.css': 28384772625,
-    'groups_edit.js': 2057581327,
+    'groups_edit.js': 1532383185,
     'profile.css': 23715010249,
     'profile.js': 642429379,
     'calendar.css': 20224030430,
@@ -315,8 +316,8 @@ var stVersions = {
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
     'touch.css': 796462384,
-    'notifier.js': 28460529380,
-    'notifier.css': 21460905365,
+    'notifier.js': 29061583317,
+    'notifier.css': 24584705685,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
     'restore.js': 1242653913,
@@ -362,7 +363,7 @@ var stVersions = {
     'away.css': 19199058132,
     'stats.css': 18397658538,
     'payments.css': 19311635989,
-    'payments.js': 780224796,
+    'payments.js': 2338380684,
     'offers.css': 978996883,
     'offers.js': 2030679272,
     'call.js': 4217435992,
@@ -445,7 +446,7 @@ var stVersions = {
     'landings/vk10_years.css': 16593653318,
     'chronicle.css': 16794511657,
     'market.css': 21387167923,
-    'market.js': 1510588935,
+    'market.js': 3479224246,
     'stories_admin.css': 18179740995,
     'stories_admin.js': 3033586775,
     'vk2016.css': 2369321949,
@@ -596,4 +597,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 6695;
+var _rnd = 1941;

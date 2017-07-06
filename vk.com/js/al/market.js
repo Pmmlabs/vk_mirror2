@@ -1000,6 +1000,9 @@ var Market = {
             }), t.changed = !0, autosizeSetup("item_description", {
                 minHeight: 80,
                 maxHeight: 250
+            }), autosizeSetup("item_link", {
+                minHeight: 40,
+                maxHeight: 80
             }), MarketEditItemBox.init.category(cur.mkOptions), MarketEditItemBox.init.address(e.marketAddress), MarketEditItemBox.init.albums(e), MarketEditItemBox.init.price(), MarketEditItemBox.init.upload(cur.mkOptions)
         },
         init: {
@@ -1430,7 +1433,8 @@ var Market = {
                     price: val("item_price"),
                     photo: JSON.stringify(cur.itemPhoto),
                     extraPhotos: MarketEditItemBox.upload.getUploadedPhotos().join(","),
-                    hash: cur.mkOptions.hash
+                    hash: cur.mkOptions.hash,
+                    url: val("item_link")
                 };
                 if (cur.mkOptions.oid > 0 ? (t.country_id = MarketEditItemBox.uiCountry.val(), t.city_id = MarketEditItemBox.uiCity.val(), isVisible("group_market_metro_wrap") ? t.metro_id = MarketEditItemBox.uiMetro.val() : t.metro_id = 0, cur.mkOptions.from_attach || cur.mkOptions.from_wall || (t.attach_to_wall = isChecked("item_share") ? 1 : 0), cur.mkOptions.from_wall && (t.add_attach_data = 1), t.disabled = isChecked("item_disabled"), cur.mkOptions.withSubcategories && void 0 != cur.mkOptions.subcategories[1e4 + Number(t.category)] && (t.subcategory = MarketEditItemBox.uiSubCategory.val())) : (t.disabled = isChecked("item_disabled"), t.albums = MarketEditItemBox.uiAlbums ? MarketEditItemBox.uiAlbums.val() : 0), cur.mkOptions.item_id && (t.id = cur.mkOptions.item_id), !t.name.length) return void notaBene("item_name");
                 if (!t.description.length) return void notaBene("item_description");

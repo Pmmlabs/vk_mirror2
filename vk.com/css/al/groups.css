@@ -1977,3 +1977,35 @@ a .app_widget_tiles_title {
 .group_set_categories_block .msg {
     margin: 0 0 15px
 }
+
+.api_messages_confirmation_box {
+    text-align: center
+}
+
+.api_messages_confirmation_box .box_body {
+    padding: 40px 40px 32px
+}
+
+.api_messages_confirmation_box_content {
+    line-height: 21px;
+    font-size: 14px;
+    padding-top: 20px;
+    text-align: left
+}
+
+.api_messages_confirmation_box_title {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 12px 0 0;
+    letter-spacing: 0.4px
+}
+
+.api_messages_confirmation_box_button {
+    margin-top: 30px
+}
+
+.api_messages_confirmation_box_summarize {
+    padding-top: 16px;
+    font-size: 12px;
+    color: #656565
+}

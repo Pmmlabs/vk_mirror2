@@ -1655,43 +1655,42 @@ var Videoview = {
                         mvcur.chatMode || (Videoview.appendNewComment.apply(Videoview, e.slice(2)), Videoview.updateCommentsHeader(), Videoview.updateReplyFormPos());
                         break;
                     case "new_reply_chat":
-                        var a = !!e[12];
-                        a ? mvcur.player && mvcur.player.pushDonation("comment", {
+                        mvcur.chatMode && VideoChat.receiveMessage.apply(VideoChat, e.slice(2)), e[12] && mvcur.player && mvcur.player.pushDonation("comment", {
                             senderId: e[4],
                             senderName: e[5],
                             senderPhoto: e[6],
                             senderHref: e[7],
                             senderSex: e[8],
                             commentText: e[9]
-                        }) : mvcur.chatMode && VideoChat.receiveMessage.apply(VideoChat, e.slice(2));
+                        });
                         break;
                     case "edit_reply":
-                        var n = e[2],
-                            d = e[3],
-                            r = e[4],
-                            s = ge("wpt" + o(n, d));
-                        s && !attr(s, "data-action") && val(s, psr(r)), Videoview.updateReplyFormPos();
+                        var a = e[2],
+                            n = e[3],
+                            d = e[4],
+                            r = ge("wpt" + o(a, n));
+                        r && !attr(r, "data-action") && val(r, psr(d)), Videoview.updateReplyFormPos();
                         break;
                     case "del_reply":
-                        var n = e[2],
-                            d = e[3];
-                        if (mvcur.chatMode) VideoChat.receiveDelete(n, d);
+                        var a = e[2],
+                            n = e[3];
+                        if (mvcur.chatMode) VideoChat.receiveDelete(a, n);
                         else {
-                            var s = ge("post" + o(n, d));
-                            s ? attr(s, "data-action") || (mvcur.mvData.commcount--, mvcur.mvData.commshown--, re(s)) : mvcur.mvData.commcount--, Videoview.updateCommentsHeader(), Videoview.updateReplyFormPos()
+                            var r = ge("post" + o(a, n));
+                            r ? attr(r, "data-action") || (mvcur.mvData.commcount--, mvcur.mvData.commshown--, re(r)) : mvcur.mvData.commcount--, Videoview.updateCommentsHeader(), Videoview.updateReplyFormPos()
                         }
                         break;
                     case "like_reply":
-                        var n = e[2],
-                            d = e[3],
-                            v = +e[4],
-                            l = +e[5],
-                            c = +e[6],
-                            s = ge("wpe_bottom" + o(n, d));
-                        if (s) {
-                            var m = domByClass(s, "_like_wrap"),
-                                u = domByClass(m, "_count");
-                            val(u, v > 0 ? v : ""), toggleClass(m, "no_likes", !v), l == vk.id && toggleClass(m, "my_like", !c)
+                        var a = e[2],
+                            n = e[3],
+                            s = +e[4],
+                            v = +e[5],
+                            l = +e[6],
+                            r = ge("wpe_bottom" + o(a, n));
+                        if (r) {
+                            var c = domByClass(r, "_like_wrap"),
+                                m = domByClass(c, "_count");
+                            val(m, s > 0 ? s : ""), toggleClass(c, "no_likes", !s), v == vk.id && toggleClass(c, "my_like", !l)
                         }
                         break;
                     case "video_view":
@@ -1712,8 +1711,8 @@ var Videoview = {
                         break;
                     case "live_midroll":
                         if (mvcur.player && !mvcur.mvData.launchedLiveAds) {
-                            var _ = !!e[2];
-                            mvcur.player.pushLiveMidroll(_)
+                            var u = !!e[2];
+                            mvcur.player.pushLiveMidroll(u)
                         }
                         break;
                     default:
@@ -2847,19 +2846,31 @@ window.VideoChat = {
         })
     },
     appendMessage: function(e, i) {
-        var o = "mv_chat_msg" + mvcur.mvData.oid + "_" + i;
-        ge(o) || VideoChat.messagesBatch && VideoChat.messagesBatch.getElementById(o) || (VideoChat.messagesBatch = VideoChat.messagesBatch || document.createDocumentFragment(), VideoChat.messagesBatch.appendChild(se(e)), clearTimeout(VideoChat._appendTimeout), VideoChat._appendTimeout = setTimeout(function() {
-            VideoChat.appendMessagesBatch(VideoChat.messagesBatch), VideoChat.messagesBatch = null, VideoChat._appendTimeout = null
-        }, 50))
+        var o = "mv_chat_msg" + mvcur.mvData.oid + "_" + i,
+            t = VideoChat._messagesBatch;
+        if (t || (t = VideoChat._messagesBatch = document.createDocumentFragment()), !ge(o) && !t.getElementById(o)) {
+            t.appendChild(se(e));
+            for (var a = t.childNodes; t.childNodes.length > VideoChat.MAX_COMMENTS_NUM;) re(a[0]);
+            VideoChat.isHidden() || VideoChat._appendTimeout || (VideoChat._appendTimeout = setTimeout(function() {
+                VideoChat.appendMessagesBatch(), VideoChat._appendTimeout = null
+            }, 0))
+        }
     },
-    appendMessagesBatch: function(e) {
-        VideoChat.firstMsgIntro && (re(VideoChat.firstMsgIntro), VideoChat.firstMsgIntro = null);
-        var i = VideoChat.scroll.content;
-        VideoChat.scroll.updateBelow(function() {
-            i.appendChild(e)
-        }), VideoChat.scroll.updateAbove(function() {
-            for (var e = i.childNodes; e.length > VideoChat.MAX_COMMENTS_NUM;) re(e[0])
-        }), !VideoChat.isHidden() && VideoChat.scroll.data.scrollBottom > 100 && VideoChat.toggleScrollBottomBtn(!0)
+    appendMessagesBatch: function() {
+        if (VideoChat._messagesBatch) {
+            var e = VideoChat._messagesBatch;
+            VideoChat._messagesBatch = null;
+            var i = geByClass("mv_chat_message_author_thumb_img", e, "img");
+            each(i, function(e, i) {
+                attr(i, "src", domData(i, "src"))
+            }), VideoChat.firstMsgIntro && (re(VideoChat.firstMsgIntro), VideoChat.firstMsgIntro = null);
+            var o = VideoChat.scroll.content;
+            VideoChat.scroll.updateBelow(function() {
+                o.appendChild(e)
+            }), VideoChat.scroll.updateAbove(function() {
+                for (var e = o.childNodes; e.length > VideoChat.MAX_COMMENTS_NUM;) re(e[0])
+            }), !VideoChat.isHidden() && VideoChat.scroll.data.scrollBottom > 100 && VideoChat.toggleScrollBottomBtn(!0)
+        }
     },
     toggleScrollBottomBtn: function(e) {
         toggleClass(this.scrollBottomBtnWrap, "hidden", !e)
@@ -2926,7 +2937,7 @@ window.VideoChat = {
     },
     toggle: function() {
         var e = VideoChat.isHidden();
-        this.setHidden(!e), VideoChat.toggleStateClasses(), e && VideoChat.scroll && VideoChat.updateScroll()
+        this.setHidden(!e), VideoChat.toggleStateClasses(), e && VideoChat.scroll && (VideoChat.appendMessagesBatch(), VideoChat.updateScroll())
     },
     toggleStateClasses: function() {
         var e = !!this.block,
@@ -2945,7 +2956,7 @@ window.VideoChat = {
                 var e = data(VideoChat.replyForm, "optId");
                 e && Emoji.destroy(e), removeData(VideoChat.replyForm), removeData(VideoChat.replyInput), VideoChat.replyForm = VideoChat.replyInput = null
             }
-            removeData(VideoChat.block), re(VideoChat.block), VideoChat.block = null, VideoChat.options = null, clearTimeout(VideoChat._appendTimeout), VideoChat._appendTimeout = null, VideoChat.messagesBatch = "", VideoChat.firstMsgIntro = null, VideoChat.messageSending = !1, VideoChat.stickersSenders = null, VideoChat.toggleStateClasses()
+            removeData(VideoChat.block), re(VideoChat.block), VideoChat.block = null, VideoChat.options = null, clearTimeout(VideoChat._appendTimeout), VideoChat._appendTimeout = null, VideoChat._messagesBatch = null, VideoChat.firstMsgIntro = null, VideoChat.messageSending = !1, VideoChat.stickersSenders = null, VideoChat.toggleStateClasses()
         }
     }
 }, window.VideoDonate = {

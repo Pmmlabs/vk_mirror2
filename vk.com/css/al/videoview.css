@@ -2940,11 +2940,11 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     -moz-user-select: initial;
     -ms-user-select: initial;
     user-select: initial;
-    visibility: hidden
+    display: none
 }
 
 #mv_box._has_chat:not(._hide_chat) .mv_chat {
-    visibility: visible
+    display: block
 }
 
 .mv_chat_messages_wrap {

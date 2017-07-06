@@ -4050,6 +4050,13 @@ a.fc_msg_att_lnk:hover .fc_msg_att_text {
     }
 }
 
+.chat_onl_hidden .chat_onl_wrap,
+.chat_onl_hidden .rb_box_wrap {
+    visibility: hidden;
+    pointer-events: none;
+    z-index: -1!important
+}
+
 .chat_onl_wrap {
     display: none;
     position: fixed;

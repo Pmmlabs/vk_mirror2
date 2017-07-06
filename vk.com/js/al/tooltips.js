@@ -51,7 +51,7 @@ var tooltips = {
                     x = isNewTT ? !inArray(opts.dir, ["left", "right"]) || opts.forcetoup || opts.forcetodown ? i ? e[1] - (d[1] + l[1]) : e[1] + o[1] + l[2] : e[1] - Math.floor(d[1] / 2) - l[1] : e[1] + (i ? -(d[1] + l[1]) : o[1] + l[2]);
                     var b = x + intval(opts.slide) * (i ? -1 : 1),
                         y = e[0] + (s ? l[0] + o[0] - d[0] : i ? -l[0] : -(l[3] || l[0]));
-                    v && (y -= d[0] - (opts.reverseOffset || 39)), opts.center && (addClass(t, "tocenter"), d[0] != o[0] && (y -= s ? 0 : (d[0] - o[0]) / 2));
+                    v && (y -= (d[0] - (opts.reverseOffset || 39)) * (s ? -1 : 1)), opts.center && (addClass(t, "tocenter"), d[0] != o[0] && (y -= s ? 0 : (d[0] - o[0]) / 2));
                     var C = y + (s ? -1 : 1) * intval(opts.slideX);
                     if (opts.showIfFit && (y + w[0] < 0 || y + w[0] + d[0] > lastWindowWidth || x + w[1] < 0 || x + w[1] + d[1] > lastWindowHeight)) return hide(el.tt.container);
                     el.tt.showing = !0, setStyle(t, {
