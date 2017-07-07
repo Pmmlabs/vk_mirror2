@@ -1458,7 +1458,7 @@ AppsSlider.prototype = {
         val("withdraw_votes", langNumeric(e, votes_flex)), e > 0 && (ge("app_pay_add").value = 0, this.recountAddVotes(ge("app_pay_add")))
     },
     initAppView: function(t, e) {
-        cur.nav.push(function(t, e, i, o) {
+        e.layer || cur.nav.push(function(t, e, i, o) {
             return void 0 !== t[0] || t.join || o.pass ? void 0 : t["#"] ? (cur.app.onLocChanged(t["#"]), o.back ? 3 != vk.al && nav.setLoc(i) : nav.setLoc(i), !1) : (nav.setLoc(i), !1)
         });
         var i = function(t) {

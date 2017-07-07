@@ -2862,7 +2862,7 @@ window.VideoChat = {
             VideoChat._messagesBatch = null;
             var i = geByClass("mv_chat_message_author_thumb_img", e, "img");
             each(i, function(e, i) {
-                attr(i, "src", domData(i, "src"))
+                attr(i, "src") || attr(i, "src", domData(i, "src"))
             }), VideoChat.firstMsgIntro && (re(VideoChat.firstMsgIntro), VideoChat.firstMsgIntro = null);
             var o = VideoChat.scroll.content;
             VideoChat.scroll.updateBelow(function() {

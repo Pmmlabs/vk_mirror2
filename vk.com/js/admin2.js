@@ -355,14 +355,9 @@ function feedback_box(item_id, obj_id) {
                     hide('admin_feedback_loader');
                     box.hide();
                     box.feedback_process = false;
-                    if (obj_id) {
-                        added(item_id, 'a_not_add', function() {
-                            var el = ge('admin_feedback_link' + item_id);
-                            el.parentNode.innerHTML = response.html;
-                        });
-                    } else {
-                        added(item_id, 'a_not_add');
-                    }
+
+                    let element = ge('item_id' + item_id);
+                    element.innerHTML = response.html;
                 }
             };
             ajax.onFail = function() {

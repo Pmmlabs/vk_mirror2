@@ -191,14 +191,14 @@ var stVersions = {
     'video.css': 22067746062,
     'videocat.js': 1618923991,
     'videocat.css': 20428406794,
-    'videoview.js': 1840778597,
+    'videoview.js': 786666366,
     'videoview.css': 24459073198,
     'video_edit.js': 2135196486,
     'video_edit.css': 17285154464,
     'video_upload.js': 1490680443,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 14951559779,
-    'videoplayer.js': 73703218398,
+    'videoplayer.js': 75278602345,
     'videoplayer.css': 35111382568,
     'translation.js': 2431784533,
     'translation.css': 16202849179,
@@ -264,13 +264,13 @@ var stVersions = {
     'privacy.js': 3620108221,
     'privacy.css': 17900843803,
     'apps.css': 23099348129,
-    'apps.js': 726679172,
+    'apps.js': 1470454498,
     'apps_edit.js': 119002668,
     'apps_edit.css': 23041013075,
     'apps_check.js': 3844411974,
     'apps_check.css': 22570232499,
     'settings.js': 1239649088,
-    'settings.css': 22889853599,
+    'settings.css': 21769214605,
     'profile_edit.js': 2157979570,
     'profile_edit.css': 17370214969,
     'profile_edit_edu.js': 799807020,
@@ -597,4 +597,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 1941;
+var _rnd = 5433;
