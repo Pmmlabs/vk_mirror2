@@ -3,15 +3,13 @@
 }
 
 .dev_community_widget_wrap,
-.dev_home_link:before,
 .dev_main_blog_post_more:after,
 .dev_main_featured .dev_main_featured_banner_slide_btn:after,
 .dev_sect_icon,
 .dev_section_methods_wrap .dev_section_search_arrow,
 body.dev #stl_text,
 body.dev.dev_main_page input.dev_top_input,
-body.dev .priv_h_arrow,
-body.dev input.dev_top_input {
+body.dev .priv_h_arrow {
     -ms-high-contrast-adjust: none
 }
 
@@ -403,20 +401,11 @@ body.dev input.dev_top_input {
     border-radius: 14px;
     -o-transition: background-color 0.05s, color 0.05s;
     transition: background-color 0.05s, color 0.05s;
-    background: #305075 url(/images/icons/dev_head_magglass.png) no-repeat;
+    background: #305075 url('/images/svg_icons/ic_head_loupe.svg') no-repeat;
     padding-left: 19px;
     border-left: 8px solid transparent;
     background-position: left 8px;
     color: #d9e2ec
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    body.dev input.dev_top_input {
-        background-image: url(/images/icons/dev_head_magglass_2x.png);
-        background-size: 13px 13px
-    }
 }
 
 body.dev input.dev_top_input::-webkit-input-placeholder {
@@ -491,21 +480,11 @@ input.dev_wide_input~.placeholder .ph_content,
 .dev_home_link:before {
     content: ' ';
     display: inline-block;
-    background: url(/images/icons/head_icons.png?6) no-repeat;
-    background-position: 0 -98px;
+    background: url('/images/svg_icons/ic_head_logo.svg') no-repeat 50% / contain;
     height: 19px;
-    width: 33px;
+    width: 34px;
     margin: 11px 10px 0 0;
     vertical-align: top
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .dev_home_link:before {
-        background-image: url(/images/icons/head_icons_2x.png?6);
-        background-size: 120px 117px
-    }
 }
 
 .dev_top_link {
@@ -2778,7 +2757,7 @@ input.dev_wrong_val {
     position: absolute;
     top: 7px;
     right: 0px;
-    color: #7a8087
+    color: #6f7985
 }
 
 .dev_show_hidden {

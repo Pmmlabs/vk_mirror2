@@ -916,6 +916,10 @@
     cursor: pointer
 }
 
+.blog_about_company_offices_item.disabled {
+    cursor: default
+}
+
 .blog_about_company_offices_item:first-child {
     margin-left: 0px
 }
@@ -937,7 +941,7 @@
 }
 
 .blog_about_company_office_ua {
-    background-image: url(/images/blog/ua_office.jpg)
+    background-image: url('/images/blog/vk_ua.jpg')
 }
 
 .blog_about_company_office_city {

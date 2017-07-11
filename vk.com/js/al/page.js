@@ -3832,17 +3832,22 @@ var Wall = {
 
         if (fakeBox) {
             var postHash = ge('post_hash' + post),
-                ownerPhoto = fakeBox.getAttribute('data-owner-photo') || (geByClass1('post_img', postEl) || {}).src || '',
-                ownerHref = fakeBox.getAttribute('data-owner-href') || (geByClass1('post_image', postEl) || {}).href || '';
+                canReplyAsGroup = intval(postHash && postHash.getAttribute('can_reply_as_group')) > 0 || post.match(/^(-?\d+)_(\d+)$/),
+                ownerPhoto = domData(fakeBox, 'owner-photo') || '',
+                ownerHref = domData(fakeBox, 'owner-href') || '',
+                ownerName = domData(fakeBox, 'owner-name') || '';
 
             realBox = se(rs(cur.wallTpl.reply_form, {
-                add_buttons: rs(cur.wallTpl.reply_form_official, {
+                add_buttons: canReplyAsGroup ? rs(cur.wallTpl.reply_form_official, {
                     post_id: post,
                     oid: intval(post),
                     owner_photo: ownerPhoto
-                }),
+                }) : '',
                 post_id: post,
-                owner_photo: ownerPhoto
+                oid: intval(post),
+                owner_photo: ownerPhoto,
+                owner_href: ownerHref,
+                owner_name: ownerName
             }));
             fakeBox.parentNode.replaceChild(realBox, fakeBox);
             rf = ge('reply_field' + post);
@@ -5546,7 +5551,9 @@ var Wall = {
         } else if (oid != vk.id) {
             reply_link += cur.wallTpl.own_reply_link;
         }
-        var nameStr = ev[3].replace('mem_link', 'author').replace('memLink', 'author');
+        var nameStr = ev[3].replace('mem_link', 'author').replace('memLink', 'author'),
+            ownerNameEl = se(nameStr),
+            ownerName = ownerNameEl.innerText || ownerNameEl.textContent;
         if (ev[6].indexOf('id="wpfo') != -1) {
             nameStr += '<span class="page_fronly inl_bl" onmouseover="Wall.foTT(this, false, {oid: \'' + oid + '\', pid: \'' + ev[2] + '\'})"></span>';
         }
@@ -5589,6 +5596,7 @@ var Wall = {
             post_url: '/wall' + post_id.replace('_wall_reply', '_'),
             owner_photo: psr(thumbs[1] || thumbs[0]),
             owner_href: ev[5],
+            owner_name: ownerName,
             online_class: (oid > 0) ? ' online' : ''
         };
         extendCb && extend(repls, extendCb(repls, ev));
@@ -6512,9 +6520,9 @@ var Wall = {
             signed = wrap && domByClass(wrap, '_signed_checkbox'),
             ttChooser = data(el, 'tt'),
             from = opts.from || (opts.fromGroup ? cur.oid : vk.id),
-            fromData = from && window.replyAsData && replyAsData[from];
+            fromData = (from == vk.id) ? wall.replyAsProfileData() : (window.replyAsData && window.replyAsData[from] || wall.replyAsGroupDomData(el));
 
-        if (!fromData || domData(wrap, 'from-oid') == from) {
+        if (domData(wrap, 'from-oid') == from || !fromData || fromData[0] != from) {
             return;
         }
 
@@ -6569,11 +6577,13 @@ var Wall = {
             black: 1,
             shift: [9, 8, 8]
         });
-        ajax.post('/al_groups.php', {
-            act: 'get_editor_clubs'
-        }, {
-            cache: 1
-        });
+        if (wall.isWallReply(obj)) {
+            ajax.post('/al_groups.php', {
+                act: 'get_editor_clubs'
+            }, {
+                cache: 1
+            });
+        }
         return;
     },
     replyAsGroupFocus: function(obj) {
@@ -6584,9 +6594,11 @@ var Wall = {
         wall.replyAsGroupOver(obj);
     },
     replyAsGroup: function(obj, owner) {
-        if (!hasClass(obj, 'checkbox_official') || hasClass(obj, 'disabled')) return false;
+        if (!hasClass(obj, 'checkbox_official') || hasClass(obj, 'disabled')) {
+            return false;
+        }
 
-        if (!window.replyAsList) {
+        if (wall.isWallReply(obj) && !window.replyAsList) {
             ajax.post('/al_groups.php', {
                 act: 'get_editor_clubs'
             }, {
@@ -6604,25 +6616,55 @@ var Wall = {
             wall.replyAsGroupTT(obj, owner);
         }
     },
+    replyAsGroupDomData: function(obj) {
+        var postBox = gpeByClass('_submit_post_box', obj),
+            oid = postBox && domData(postBox, 'oid'),
+            ownerPhoto = postBox && domData(postBox, 'owner-photo'),
+            ownerHref = postBox && domData(postBox, 'owner-href'),
+            ownerName = postBox && domData(postBox, 'owner-name');
+
+        return oid && ownerPhoto && ownerHref && ownerName &&
+            [oid, ownerPhoto, ownerHref, ownerName] || false;
+    },
+    isWallReply: function(obj) {
+        var ttChooser = data(obj, 'tt'),
+            postBox = gpeByClass('_submit_post_box', obj);
+
+        return postBox && postBox.id.match(/reply_box(-?\d+)_(\d+)/);
+    },
+    replyAsProfileData: function() {
+        return window.cur && cur.wallTpl && cur.wallTpl.profileData ||
+            window.wkcur && wkcur.wallTpl && wkcur.wallTpl.profileData ||
+            window.mvcur && mvcur.wallTpl && mvcur.wallTpl.profileData;
+    },
+    replyAsGroupList: function(obj, owner) {
+        var list = [wall.replyAsProfileData()],
+            ownerData = wall.replyAsGroupDomData(obj);
+        if (ownerData) {
+            list.push(ownerData);
+        }
+        if (wall.isWallReply(obj)) {
+            each(window.replyAsList, function() {
+                if (this[0] != owner) {
+                    list.push(this);
+                }
+            });
+        }
+
+        return list;
+    },
     replyAsGroupTT: function(obj, owner) {
         var ttChooser = data(obj, 'tt'),
             postBox = gpeByClass('_submit_post_box', obj),
             from = postBox && domData(postBox, 'from-oid');
 
+        if (!wall.replyAsProfileData()) {
+            return false;
+        }
+
         if (!ttChooser) {
-            var isWallReply = postBox && postBox.id.match(/reply_box(-?\d+)_(\d+)/),
-                list = [window.replyAsData[vk.id]],
+            var list = wall.replyAsGroupList(obj, owner),
                 rows = '';
-            if (owner && owner != vk.id && window.replyAsData[owner]) {
-                list.push(replyAsData[owner]);
-            }
-            if (isWallReply) {
-                each(window.replyAsList, function() {
-                    if (this[0] != vk.id && this[0] != owner && !this[4]) {
-                        list.push(this);
-                    }
-                });
-            }
             each(list, function() {
                 var cl = (from == this[0]) ? ' active' : '';
                 rows += '<a class="clear_fix post_from_tt_row' + cl + '" data-from-oid="' + this[0] + '" href="' + this[2] + '"><img class="post_from_tt_image" src="' + this[1] + '" aria-label="' + this[3] + '">' + this[3] + '</a>';

@@ -552,7 +552,7 @@ var Video = {
         var t = e[VideoConstants.VIDEO_ITEM_INDEX_FLAGS];
         return each(i, function(e, i) {
             t & e && (o += i + " ")
-        }), e[VideoConstants.VIDEO_ITEM_INDEX_DURATION] || t & VideoConstants.VIDEO_ITEM_FLAG_ACTIVE_LIVE || (o += " video_no_duration"), t & VideoConstants.VIDEO_ITEM_FLAG_CAN_EDIT || t & VideoConstants.VIDEO_ITEM_FLAG_CAN_DELETE || t & VideoConstants.VIDEO_ITEM_FLAG_CAN_ADD || (o += " video_no_actions"), t & VideoConstants.VIDEO_ITEM_FLAG_NEED_SIGN_IN && (attrs += ' rel="nofollow"'), [o, attrs]
+        }), e[VideoConstants.VIDEO_ITEM_INDEX_PLATFORM] || e[VideoConstants.VIDEO_ITEM_INDEX_DURATION] || t & VideoConstants.VIDEO_ITEM_FLAG_ACTIVE_LIVE || (o += " video_no_duration"), t & VideoConstants.VIDEO_ITEM_FLAG_CAN_EDIT || t & VideoConstants.VIDEO_ITEM_FLAG_CAN_DELETE || t & VideoConstants.VIDEO_ITEM_FLAG_CAN_ADD || (o += " video_no_actions"), t & VideoConstants.VIDEO_ITEM_FLAG_NEED_SIGN_IN && (attrs += ' rel="nofollow"'), [o, attrs]
     },
     buildVideoEl: function(e) {
         var o = trim(cur.videoItemTpl);
@@ -832,8 +832,7 @@ var Video = {
         }), delete cur.videoRecentlyRemoved[i]
     },
     onVideoEdit: function(e, o, i, t, r) {
-        cur.videoEditItem = gpeByClass("video_item", o),
-            window.Videoview && Videoview.hidePlayer();
+        cur.videoEditItem = gpeByClass("video_item", o), window.Videoview && Videoview.hidePlayer();
         var d = showBox("al_video.php", {
             act: "edit_box",
             vid: t,

@@ -60,8 +60,6 @@
 .sort_not_rev_icon,
 .sort_rev_icon,
 .summary_tab_x,
-.top_home_link .top_home_logo,
-.top_nav_btn .top_nav_btn_icon,
 .top_profile_arrow,
 .ts_cont_wrap .page_verified,
 .ts_cont_wrap .page_verified.ph_verified,
@@ -71,8 +69,7 @@
 .ui_tabs_sub_header .header_side_link.with_arrow:after,
 .video_thumb_play,
 .wk_wiki_content.box_loading .box_x_button,
-.wk_wiki_content.box_loading_empty:before,
-input.text.ts_input {
+.wk_wiki_content.box_loading_empty:before {
     -ms-high-contrast-adjust: none
 }
 
@@ -1563,20 +1560,10 @@ body.mac #page_header_cont {
 }
 
 .top_home_link .top_home_logo {
-    background: url(/images/icons/head_icons.png?6) no-repeat;
-    background-position: 0 -98px;
+    background: url('/images/svg_icons/ic_head_logo.svg') no-repeat 50% / contain;
     height: 19px;
-    width: 33px;
+    width: 34px;
     margin: 11px 10px 0 0
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .top_home_link .top_home_logo {
-        background-image: url(/images/icons/head_icons_2x.png?6);
-        background-size: 120px 117px
-    }
 }
 
 .top_home_link:active {
@@ -1613,18 +1600,9 @@ body.mac #page_header_cont {
 
 .top_nav_btn .top_nav_btn_icon {
     margin: 11px auto;
-    background: url(/images/icons/head_icons.png?6) no-repeat;
+    background: 50% / contain no-repeat;
     height: 20px;
     width: 20px
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .top_nav_btn .top_nav_btn_icon {
-        background-image: url(/images/icons/head_icons_2x.png?6);
-        background-size: 120px 117px
-    }
 }
 
 .top_nav_btn:hover {
@@ -1644,28 +1622,28 @@ body.mac #page_header_cont {
 }
 
 .top_nav_btn#top_audio .top_nav_btn_icon {
-    background-position: -5px -53px
+    background-image: url('/images/svg_icons/ic_head_audio.svg')
 }
 
 .top_nav_btn#top_audio:hover .top_nav_btn_icon {
-    background-position: -35px -53px
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20fill%3D%22%23183352%22%20fill-rule%3D%22evenodd%22%20d%3D%22M14%2C11.1552322%20L14%2C5.5%20L7%2C7.5%20L7%2C15.2999878%20C7%2C15.2999878%206.99923979%2C15.2998738%206.99774901%2C15.2996427%20C6.99305423%2C16.449672%205.98201611%2C17.5525634%204.53840209%2C17.8858479%20C2.90786903%2C18.2622862%201.34293783%2C17.5143682%201.04303041%2C16.2153265%20C0.743122996%2C14.9162848%201.82180821%2C13.5580399%203.45234127%2C13.1816017%20C3.98965862%2C13.0575522%204.51985206%2C13.0556001%205%2C13.1552322%20L5%2C3.9955775%20C5%2C3.44483697%205.42843442%2C2.88315425%205.95693506%2C2.73901771%20L15.0430649%2C0.26098229%20C15.568787%2C0.117603555%2016%2C0.447563354%2016%2C0.999660731%20L16%2C13.2999878%20C15.999253%2C13.2998718%2015.9985027%2C13.2997528%2015.9977491%2C13.2996309%20C15.9930612%2C14.4496644%2014.9820211%2C15.5525622%2013.5384021%2C15.8858479%20C11.907869%2C16.2622862%2010.3429378%2C15.5143682%2010.0430304%2C14.2153265%20C9.743123%2C12.9162848%2010.8218082%2C11.5580399%2012.4523413%2C11.1816017%20C12.9896586%2C11.0575522%2013.5198521%2C11.0556001%2014%2C11.1552322%20Z%22%20transform%3D%22translate(1%201)%22%2F%3E%3C%2Fsvg%3E")
 }
 
 .top_nav_btn#top_audio.active .top_nav_btn_icon {
-    background-position: -65px -52px
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%20d%3D%22M14%2C11.1552322%20L14%2C5.5%20L7%2C7.5%20L7%2C15.2999878%20C7%2C15.2999878%206.99923979%2C15.2998738%206.99774901%2C15.2996427%20C6.99305423%2C16.449672%205.98201611%2C17.5525634%204.53840209%2C17.8858479%20C2.90786903%2C18.2622862%201.34293783%2C17.5143682%201.04303041%2C16.2153265%20C0.743122996%2C14.9162848%201.82180821%2C13.5580399%203.45234127%2C13.1816017%20C3.98965862%2C13.0575522%204.51985206%2C13.0556001%205%2C13.1552322%20L5%2C3.9955775%20C5%2C3.44483697%205.42843442%2C2.88315425%205.95693506%2C2.73901771%20L15.0430649%2C0.26098229%20C15.568787%2C0.117603555%2016%2C0.447563354%2016%2C0.999660731%20L16%2C13.2999878%20C15.999253%2C13.2998718%2015.9985027%2C13.2997528%2015.9977491%2C13.2996309%20C15.9930612%2C14.4496644%2014.9820211%2C15.5525622%2013.5384021%2C15.8858479%20C11.907869%2C16.2622862%2010.3429378%2C15.5143682%2010.0430304%2C14.2153265%20C9.743123%2C12.9162848%2010.8218082%2C11.5580399%2012.4523413%2C11.1816017%20C12.9896586%2C11.0575522%2013.5198521%2C11.0556001%2014%2C11.1552322%20Z%22%20transform%3D%22translate(1%201)%22%2F%3E%3C%2Fsvg%3E")
 }
 
 .top_nav_btn#top_notify_btn .top_nav_btn_icon {
-    background-position: -5px -23px
+    background-image: url('/images/svg_icons/ic_head_notify.svg')
 }
 
 .top_nav_btn#top_notify_btn:hover .top_nav_btn_icon {
-    background-position: -35px -23px
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20fill%3D%22%23183352%22%20fill-rule%3D%22evenodd%22%20d%3D%22M8%2C18%20C6.64583333%2C18%205.5%2C17.3%205.5%2C16%20L10.5%2C16%20C10.5%2C17.3%209.35416667%2C18%208%2C18%20Z%20M13.9956933%2C11%20C13.9956933%2C12.5%2016%2C12.5%2016%2C13.5%20C16%2C14%2016%2C15%2013.8955984%2C15%20L1.98430985%2C15%20C-6.19060359e-13%2C15%20-1.62536651e-13%2C14%20-1.63424829e-13%2C13.5%20C-1.63369318e-13%2C12.5%201.98430985%2C12.5%202%2C11%20L2%2C8%20C2%2C4%204.09724901%2C1.5%207%2C1.1%20L7%2C1%20C7%2C0.4%207.5%2C5.74053187e-17%208%2C0%20C8.5%2C0%209%2C0.4%209%2C1%20L9%2C1.1%20C11.902751%2C1.5%2013.9956933%2C4%2013.9956933%2C8%20L13.9956933%2C11%20Z%22%20transform%3D%22translate(2%201)%22%2F%3E%3C%2Fsvg%3E")
 }
 
 .top_nav_btn#top_notify_btn.active .top_nav_btn_icon,
 .top_nav_btn#top_notify_btn.has_notify .top_nav_btn_icon {
-    background-position: -65px -23px
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%20d%3D%22M8%2C18%20C6.64583333%2C18%205.5%2C17.3%205.5%2C16%20L10.5%2C16%20C10.5%2C17.3%209.35416667%2C18%208%2C18%20Z%20M13.9956933%2C11%20C13.9956933%2C12.5%2016%2C12.5%2016%2C13.5%20C16%2C14%2016%2C15%2013.8955984%2C15%20L1.98430985%2C15%20C-6.19060359e-13%2C15%20-1.62536651e-13%2C14%20-1.63424829e-13%2C13.5%20C-1.63369318e-13%2C12.5%201.98430985%2C12.5%202%2C11%20L2%2C8%20C2%2C4%204.09724901%2C1.5%207%2C1.1%20L7%2C1%20C7%2C0.4%207.5%2C5.74053187e-17%208%2C0%20C8.5%2C0%209%2C0.4%209%2C1%20L9%2C1.1%20C11.902751%2C1.5%2013.9956933%2C4%2013.9956933%2C8%20L13.9956933%2C11%20Z%22%20transform%3D%22translate(2%201)%22%2F%3E%3C%2Fsvg%3E")
 }
 
 .top_nav_btn .round_spinner {
@@ -4675,20 +4653,11 @@ input.text.ts_input {
     border-radius: 14px;
     -o-transition: background-color 0.05s, color 0.05s;
     transition: background-color 0.05s, color 0.05s;
-    background: #305075 url(/images/icons/dev_head_magglass.png) no-repeat;
+    background: #305075 url('/images/svg_icons/ic_head_loupe.svg') no-repeat;
     padding-left: 19px;
     border-left: 8px solid transparent;
     background-position: left 8px;
     color: #d9e2ec
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    input.text.ts_input {
-        background-image: url(/images/icons/dev_head_magglass_2x.png);
-        background-size: 13px 13px
-    }
 }
 
 input.text.ts_input::-webkit-input-placeholder {
@@ -5546,6 +5515,10 @@ body.mac .narrow_column.fixed {
     line-height: 23px;
     height: 23px;
     white-space: nowrap
+}
+
+.video_no_duration .video_thumb_label {
+    display: none
 }
 
 .video_active_live .video_thumb_label,
@@ -7486,7 +7459,7 @@ button.ui_load_more_btn {
 }
 
 .audio_pl_snippet .audio_pl_snippet__stats {
-    color: #7a8087;
+    color: #6f7985;
     line-height: 1em
 }
 

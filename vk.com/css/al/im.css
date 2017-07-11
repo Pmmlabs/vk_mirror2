@@ -4826,7 +4826,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered .nim-dialog--preview>b,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic .nim-dialog--preview>b,
 .nim-dialog:not(.nim-dialog_deleted):hover .nim-dialog--preview>b {
-    color: #505559
+    color: #4e5966
 }
 
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered .nim-dialog--photo,
@@ -6833,7 +6833,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .im-notice--text {
-    color: #505559
+    color: #4e5966
 }
 
 .im-notice--buttons {

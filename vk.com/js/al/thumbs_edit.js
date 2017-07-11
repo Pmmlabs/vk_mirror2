@@ -572,7 +572,7 @@ var ThumbsEdit = {
         return null
     },
     getRatio: function(e) {
-        if (e.vid) return 1.8;
+        if (e.vid) return e.ratio || 1.8;
         if (e.thumb) return 279 / 185;
         var t = e.sizes.x,
             i = 0 == t[1] || 0 == t[2] ? 1 : t[1] / t[2];
