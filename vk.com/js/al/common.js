@@ -8980,6 +8980,9 @@ function showInlineVideo(videoId, listId, options, ev, thumb) {
         autoplay: options.autoplay,
         module: options.module
     };
+    if (domData(thumb, 'stretch-vertical')) {
+        params.stretch_vertical = 1;
+    }
     extend(params, options.addParams);
 
     showProgress();

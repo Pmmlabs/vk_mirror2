@@ -163,7 +163,7 @@ function MediaSelector(e, a, t, i) {
                             var t = vk.id,
                                 i = parseInt(("" + h.to_id || "").replace(/^board/, "-")),
                                 o = domClosest("_submit_post_box", e),
-                                r = hasClass(o, "as_group");
+                                r = domData(o, "from-oid") < 0;
                             r ? (t = i, cur.audioAttachSwitchOwnerId = vk.id) : cur.hasGroupAudioAccess && (cur.audioAttachSwitchOwnerId = i), AudioPage.showAttachBox(t, {
                                 canPlaylistAttach: !a && !cur.editor,
                                 onAudioChoose: AudioUtils.onAudioChoose,
@@ -514,33 +514,37 @@ function MediaSelector(e, a, t, i) {
                             var O = ge("official"),
                                 $ = gpeByClass("_submit_post_box", O);
                             if (O && $) {
-                                hasClass($, "as_group") || (checkbox(O), addClass($, "as_group")), addClass(O, "disabled"), addClass("signed", "shown");
-                                var K = window.data(O, "tt");
-                                if (K && K.rdBtns) {
-                                    var V = K.rdBtns[1],
-                                        X = K.rdBtnsGroup,
-                                        Y = domData(V, "as");
-                                    radiobtn(V, Y, X)
+                                var K = domData($, "from-oid"),
+                                    V = domData($, "oid");
+                                K == vk.id && V && wall.setReplyAsGroup(O, {
+                                    from: V
+                                }), addClass(O, "disabled"), addClass("signed", "shown");
+                                var G = window.data(O, "tt");
+                                if (G && G.rdBtns) {
+                                    var X = G.rdBtns[1],
+                                        Y = G.rdBtnsGroup,
+                                        J = domData(X, "as");
+                                    radiobtn(X, J, Y)
                                 }
                             }
-                            var V = ge("send_post");
-                            V && (V.innerHTML = o.lang.profile_wall_postpone_btn)
+                            var X = ge("send_post");
+                            X && (X.innerHTML = o.lang.profile_wall_postpone_btn)
                         }
-                        var G = Math.round((new Date).getTime() / 1e3);
-                        intval(o.date) < G && (o.date = G + 3600), hide(domByClass(h.menuNode, "_type_postpone")), A = C;
+                        var Z = Math.round((new Date).getTime() / 1e3);
+                        intval(o.date) < Z && (o.date = Z + 3600), hide(domByClass(h.menuNode, "_type_postpone")), A = C;
                         break;
                     case "mark_as_ads":
                         P = '<div class="medadd_h medadd_h_mark_as_ads inl_bl">' + o.lang.global_ads_wall_post_mark_as_ads_action + "</div>", hide(domByClass(h.menuNode, "_type_mark_as_ads")), A = C
                 }
                 if (l) {
-                    var J = s.chosenMedias,
-                        Z = J.length,
-                        Q = "";
-                    Q = c && 1 === T ? !1 : "photos_list" == a ? se('<div class="page_preview_' + a + "_wrap" + I + '" style="position: relative">' + P + '<div class="page_photos_count">' + t.split(",").length + "</div></div>") : se('<div class="page_preview_' + a + "_wrap" + I + '"' + (i.nocl ? ' style="cursor: default"' : "") + B + ">" + P + '<div nosorthandle="1" class="page_media_x_wrap inl_bl" data-title="' + getLang("dont_attach") + '" aria-label="' + getLang("dont_attach") + '" role="button" onmouseover="showTitle(this)" onclick="cur.addMedia[' + s.lnkId + "].unchooseMedia(" + Z + '); return cancelEvent(event);"><div class="page_media_x" nosorthandle="1"></div></div>' + M + "</div>"), addClass(Q, T ? "fl_l" : "clear_fix"), void 0 !== o.upload_ind && re("upload" + o.upload_ind + "_progress_wrap"), i.toggleLnk && toggle(e, s.attachCount() + 1 < n), c && 1 === T ? (addClass(A, "editable_thumbs_wrap"), A = domLC(A) && hasClass(domLC(A), "editable_thumbs") ? domLC(A) : A.appendChild(ce("div", {
+                    var Q = s.chosenMedias,
+                        ee = Q.length,
+                        ae = "";
+                    ae = c && 1 === T ? !1 : "photos_list" == a ? se('<div class="page_preview_' + a + "_wrap" + I + '" style="position: relative">' + P + '<div class="page_photos_count">' + t.split(",").length + "</div></div>") : se('<div class="page_preview_' + a + "_wrap" + I + '"' + (i.nocl ? ' style="cursor: default"' : "") + B + ">" + P + '<div nosorthandle="1" class="page_media_x_wrap inl_bl" data-title="' + getLang("dont_attach") + '" aria-label="' + getLang("dont_attach") + '" role="button" onmouseover="showTitle(this)" onclick="cur.addMedia[' + s.lnkId + "].unchooseMedia(" + ee + '); return cancelEvent(event);"><div class="page_media_x" nosorthandle="1"></div></div>' + M + "</div>"), addClass(ae, T ? "fl_l" : "clear_fix"), void 0 !== o.upload_ind && re("upload" + o.upload_ind + "_progress_wrap"), i.toggleLnk && toggle(e, s.attachCount() + 1 < n), c && 1 === T ? (addClass(A, "editable_thumbs_wrap"), A = domLC(A) && hasClass(domLC(A), "editable_thumbs") ? domLC(A) : A.appendChild(ce("div", {
                         id: "thumbs_edit" + u,
                         className: "editable_thumbs"
                     })), stManager.add(["thumbs_edit.css", "thumbs_edit.js"], function() {
-                        i.toggleLnk && toggle(e, s.attachCount() + 1 < n), o.editable.remove = s.unchooseMedia.pbind(Z), show(domPN(A));
+                        i.toggleLnk && toggle(e, s.attachCount() + 1 < n), o.editable.remove = s.unchooseMedia.pbind(ee), show(domPN(A));
                         var r = ThumbsEdit.convert(a, t, o.editable);
                         domFC(A) ? ThumbsEdit.addMedia(A, r, o) : i.teWidth && i.teHeight ? ThumbsEdit.init(A, [r], {
                             width: i.teWidth,
@@ -553,7 +557,7 @@ function MediaSelector(e, a, t, i) {
                             force: !0,
                             onUpdate: i.onChangedSize
                         }), toggleClass(m, "media_preview_has_medias", s.hasVisibleRows()), i.onChangedSize && i.onChangedSize()
-                    }, !0)) : (show(A), A.appendChild(Q), _ && (A == w ? stManager.add(["sorter.js"], function() {
+                    }, !0)) : (show(A), A.appendChild(ae), _ && (A == w ? stManager.add(["sorter.js"], function() {
                         var e = getXY(w),
                             a = getSize(w),
                             t = function() {
@@ -564,18 +568,18 @@ function MediaSelector(e, a, t, i) {
                         e[0] || e[1] || a[0] || a[1] ? t() : cur.sorterClbk = t, i.onChangedSize && i.onChangedSize()
                     }, !0) : A == v && stManager.add(["qsorter.js"], function() {
                         v.qsorter ? qsorter.added(v) : A.childNodes.length > 1 && qsorter.init(v, s.qsorterOpts()), i.onChangedSize && i.onChangedSize()
-                    }, !0)), i.onChangedSize && i.onChangedSize()), J.push([a, t, Q, r])
+                    }, !0)), i.onChangedSize && i.onChangedSize()), Q.push([a, t, ae, r])
                 } else {
-                    var Z = 0;
-                    "postpone" === a ? Z = 1 : "mark_as_ads" === a && (Z = 2);
-                    var Q = se('<div class="' + (T === !1 ? "page_docs_preview" : "page_pics_preview") + (Z ? "" : " post_thumbed_media") + '"><div class="page_preview_' + a + '_wrap"' + (i.nocl ? ' style="cursor: default"' : "") + B + ">" + P + '<div nosorthandle="1" class="page_media_x_wrap inl_bl" data-title="' + getLang("dont_attach") + '" aria-label="' + getLang("dont_attach") + '" role="button" onmouseover="showTitle(this)" onclick="cur.addMedia[' + s.lnkId + "].unchooseMedia(" + Z + '); return cancelEvent(event);"><div class="page_media_x" nosorthandle="1"></div></div>' + M + "</div></div>");
-                    addClass(Q, T ? "fl_l" : "clear_fix"), void 0 !== o.upload_ind && re("upload" + o.upload_ind + "_progress_wrap"), "postpone" !== a && "mark_as_ads" !== a && (s.chosenMedia = [a, t], s.chosenMediaData = o), s.singleAdded(Q, a)
+                    var ee = 0;
+                    "postpone" === a ? ee = 1 : "mark_as_ads" === a && (ee = 2);
+                    var ae = se('<div class="' + (T === !1 ? "page_docs_preview" : "page_pics_preview") + (ee ? "" : " post_thumbed_media") + '"><div class="page_preview_' + a + '_wrap"' + (i.nocl ? ' style="cursor: default"' : "") + B + ">" + P + '<div nosorthandle="1" class="page_media_x_wrap inl_bl" data-title="' + getLang("dont_attach") + '" aria-label="' + getLang("dont_attach") + '" role="button" onmouseover="showTitle(this)" onclick="cur.addMedia[' + s.lnkId + "].unchooseMedia(" + ee + '); return cancelEvent(event);"><div class="page_media_x" nosorthandle="1"></div></div>' + M + "</div></div>");
+                    addClass(ae, T ? "fl_l" : "clear_fix"), void 0 !== o.upload_ind && re("upload" + o.upload_ind + "_progress_wrap"), "postpone" !== a && "mark_as_ads" !== a && (s.chosenMedia = [a, t], s.chosenMediaData = o), s.singleAdded(ae, a)
                 }
                 "share" == a ? !o.title || r || o.url ? s.showExternalPreview() : (cur.shareShowImg = 0, s.showPreview(!0), s.shareData.images = !1) : "page" == a ? o.nopreview || (cur.shareShowImg = 0, s.shareData = extend(s.shareData || {}, o, {
                     images: !1
                 }), s.showPreview()) : "poll" == a ? s.createPoll(o) : "postpone" == a ? s.setupPostpone(o, j) : "mark_as_ads" == a && (s.markAsAds = 1), toggleClass(m, "media_preview_has_medias", s.hasVisibleRows()), i.onChangedSize && i.onChangedSize();
-                var ee = window.event;
-                return ee && "click" == ee.type && (ee.ctrlKey || ee.metaKey || ee.shiftKey) && s.attachCount() + 1 <= n && (d = !0), cur.fileApiUploadStarted && void 0 !== o.upload_ind || cur.preventBoxHide || d === !0 || inArray(a, ["poll", "share", "page", "postpone", "mark_as_ads"]) || boxQueue.hideLast(), cur.lastPostMsg = !1, i.onMediaAdd && i.onMediaAdd(), getAudioPlayer().updateCurrentPlaying(), cur.onMediaChanged && cur.onMediaChanged(s.chosenMedias), void 0 !== o.upload_ind && delete o.upload_ind, !1
+                var te = window.event;
+                return te && "click" == te.type && (te.ctrlKey || te.metaKey || te.shiftKey) && s.attachCount() + 1 <= n && (d = !0), cur.fileApiUploadStarted && void 0 !== o.upload_ind || cur.preventBoxHide || d === !0 || inArray(a, ["poll", "share", "page", "postpone", "mark_as_ads"]) || boxQueue.hideLast(), cur.lastPostMsg = !1, i.onMediaAdd && i.onMediaAdd(), getAudioPlayer().updateCurrentPlaying(), cur.onMediaChanged && cur.onMediaChanged(s.chosenMedias), void 0 !== o.upload_ind && delete o.upload_ind, !1
             },
             unchooseMedia: function(a) {
                 if (s.onChange && s.onChange(!1, a) === !1) return !1;

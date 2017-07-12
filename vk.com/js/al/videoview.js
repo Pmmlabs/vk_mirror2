@@ -3259,32 +3259,24 @@ window.VideoChat = {
         var o = window.mvLayer && mvLayer.contains(e),
             t = o && mvcur.player && e.contains(mvcur.player.el);
         t || val(e, "");
-        var a = new callHub(function() {
-                if (bodyNode.contains(e)) {
-                    if (o && mvcur.player) {
-                        var a = mvcur.player;
-                        a.initVideo(i)
-                    } else {
-                        var a = new VideoPlayer(i);
-                        o ? mvcur.player = a : i.is_ext ? cur.player = a : cur.videoInlinePlayer = a
-                    }
-                    if (!t) {
-                        var n = ce("div", {
-                            id: "video_player"
-                        });
-                        attr(n, "preventhide", 1), n.appendChild(a.el), e.appendChild(n)
-                    }
+        var a = ["videoplayer.js", "videoplayer.css"];
+        i.hls && a.push("hls.min.js"), i.live_candy && a.push("candy.min.js"), stManager.add(a, function() {
+            if (bodyNode.contains(e)) {
+                if (o && mvcur.player) {
+                    var a = mvcur.player;
+                    a.initVideo(i)
+                } else {
+                    var a = new VideoPlayer(i);
+                    o ? mvcur.player = a : i.is_ext ? cur.player = a : cur.videoInlinePlayer = a
                 }
-            }, 2),
-            n = ["videoplayer.js", "videoplayer.css"];
-        i.hls && n.push("hls.min.js"), stManager.add(n, a.done.bind(a)), i.from_autoplay && delete i.live_candy, i.live_candy && !window.Candy ? loadScript("https://hls.goodgame.ru/candy/candy.min.js", {
-            onLoad: function() {
-                a.done()
-            },
-            onError: function() {
-                delete i.live_candy, a.done()
+                if (!t) {
+                    var n = ce("div", {
+                        id: "video_player"
+                    });
+                    attr(n, "preventhide", 1), n.appendChild(a.el), e.appendChild(n)
+                }
             }
-        }) : a.done()
+        })
     },
     youtube: function(e, i) {
         var o = i.oid,

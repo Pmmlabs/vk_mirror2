@@ -1653,7 +1653,7 @@ var Page = {
                     video: domData(thumb, 'video'),
                     list: domData(thumb, 'list'),
                     post_id: domData(domClosest('post', thumb), 'post-id'),
-                    expand_on_click: domData(thumb, 'expand_on_click'),
+                    stretch_vertical: intval(domData(thumb, 'stretch-vertical')),
                     autoplay: 1,
                     from_autoplay: 1,
                     module: currentModule()
@@ -5574,6 +5574,8 @@ var Wall = {
             ev[6] = ev[6].replace('vk2017_snippet_show_layer_button', 'vk2017_snippet_show_layer_button_hidden');
         }
 
+        var canReplyAsGroup = oid < 0 && ev[9] == oid && adminLevel > 1;
+
         repls = {
             oid: oid,
             name: nameStr,
@@ -5594,9 +5596,9 @@ var Wall = {
             date_postfix: '',
             user_image: '',
             post_url: '/wall' + post_id.replace('_wall_reply', '_'),
-            owner_photo: psr(thumbs[1] || thumbs[0]),
-            owner_href: ev[5],
-            owner_name: ownerName,
+            owner_photo: canReplyAsGroup ? psr(thumbs[1] || thumbs[0]) : '',
+            owner_href: canReplyAsGroup ? ev[5] : '',
+            owner_name: canReplyAsGroup ? ownerName : '',
             online_class: (oid > 0) ? ' online' : ''
         };
         extendCb && extend(repls, extendCb(repls, ev));
@@ -6513,7 +6515,7 @@ var Wall = {
     },
     setReplyAsGroup: function(el, opts) {
         if (!el) {
-            return;
+            return false;
         }
 
         var wrap = domClosest('_submit_post_box', el),
@@ -6523,7 +6525,7 @@ var Wall = {
             fromData = (from == vk.id) ? wall.replyAsProfileData() : (window.replyAsData && window.replyAsData[from] || wall.replyAsGroupDomData(el));
 
         if (domData(wrap, 'from-oid') == from || !fromData || fromData[0] != from) {
-            return;
+            return false;
         }
 
         domData(wrap, 'from-oid', from);
@@ -6546,6 +6548,8 @@ var Wall = {
         if (el.id == 'official') {
             Wall.postChanged(true);
         }
+
+        return false;
     },
     replyAsAnimate: function(el, url, image) {
         var author = el && geByClass1('_post_field_author', el),
@@ -6624,7 +6628,7 @@ var Wall = {
             ownerName = postBox && domData(postBox, 'owner-name');
 
         return oid && ownerPhoto && ownerHref && ownerName &&
-            [oid, ownerPhoto, ownerHref, ownerName] || false;
+            [oid, ownerPhoto, ownerHref, ownerName] || cur.wallTpl && cur.wallTpl.ownerData || false;
     },
     isWallReply: function(obj) {
         var ttChooser = data(obj, 'tt'),

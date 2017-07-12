@@ -969,7 +969,7 @@ var GroupsEdit = {
             })), ajax.post(cur.searchBoxAddress, cur.searchBoxParams, {
                 onDone: function(o, r, s, a) {
                     if (e) {
-                        if (a) return extend(cur.searchBoxParams, cur.oldBoxParams), val(t, cur.oldBoxParams.q), void(cur.searchBoxFound && cur.searchBoxFound(a));
+                        if (a) return extend(cur.searchBoxParams, cur.oldBoxParams), t && val(t, cur.oldBoxParams.q), void(cur.searchBoxFound && cur.searchBoxFound(a));
                         cur.boxRows.innerHTML = o ? "" : cur.boxNoRowsTpl, curBox().tbToTop()
                     }
                     GroupsEdit.moreSearchBoxLoaded.apply(window, arguments)
@@ -978,10 +978,10 @@ var GroupsEdit = {
                     return cur.loading = 0, !0
                 },
                 showProgress: function() {
-                    cur.searchBoxParams.offset ? addClass(r, "loading") : uiSearch.showProgress(t)
+                    t && !cur.searchBoxParams.offset ? uiSearch.showProgress(t) : addClass(r, "loading")
                 },
                 hideProgress: function() {
-                    uiSearch.hideProgress(t), removeClass(r, "loading")
+                    t && uiSearch.hideProgress(t), removeClass(r, "loading")
                 },
                 cache: 1
             })

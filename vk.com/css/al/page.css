@@ -1031,7 +1031,8 @@ html:not([lang=ru]) .wall_marked_as_ads {
 
 .wall_module .reply_author {
     font-size: 12.5px;
-    line-height: 1.36
+    line-height: 1.36;
+    color: #939393
 }
 
 .wall_module .reply_date {
