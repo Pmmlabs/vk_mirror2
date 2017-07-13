@@ -1436,7 +1436,7 @@ var Market = {
                     hash: cur.mkOptions.hash,
                     url: val("item_link")
                 };
-                if (cur.mkOptions.oid > 0 ? (t.country_id = MarketEditItemBox.uiCountry.val(), t.city_id = MarketEditItemBox.uiCity.val(), isVisible("group_market_metro_wrap") ? t.metro_id = MarketEditItemBox.uiMetro.val() : t.metro_id = 0, cur.mkOptions.from_attach || cur.mkOptions.from_wall || (t.attach_to_wall = isChecked("item_share") ? 1 : 0), cur.mkOptions.from_wall && (t.add_attach_data = 1), t.disabled = isChecked("item_disabled"), cur.mkOptions.withSubcategories && void 0 != cur.mkOptions.subcategories[1e4 + Number(t.category)] && (t.subcategory = MarketEditItemBox.uiSubCategory.val())) : (t.disabled = isChecked("item_disabled"), t.albums = MarketEditItemBox.uiAlbums ? MarketEditItemBox.uiAlbums.val() : 0), cur.mkOptions.item_id && (t.id = cur.mkOptions.item_id), !t.name.length) return void notaBene("item_name");
+                if (ge("item_user_limit") && (t.user_limit = trim(val("item_user_limit"))), ge("item_limit") && (t.limit = trim(val("item_limit"))), cur.mkOptions.oid > 0 ? (t.country_id = MarketEditItemBox.uiCountry.val(), t.city_id = MarketEditItemBox.uiCity.val(), isVisible("group_market_metro_wrap") ? t.metro_id = MarketEditItemBox.uiMetro.val() : t.metro_id = 0, cur.mkOptions.from_attach || cur.mkOptions.from_wall || (t.attach_to_wall = isChecked("item_share") ? 1 : 0), cur.mkOptions.from_wall && (t.add_attach_data = 1), t.disabled = isChecked("item_disabled"), cur.mkOptions.withSubcategories && void 0 != cur.mkOptions.subcategories[1e4 + Number(t.category)] && (t.subcategory = MarketEditItemBox.uiSubCategory.val())) : (t.disabled = isChecked("item_disabled"), t.albums = MarketEditItemBox.uiAlbums ? MarketEditItemBox.uiAlbums.val() : 0), cur.mkOptions.item_id && (t.id = cur.mkOptions.item_id), !t.name.length) return void notaBene("item_name");
                 if (!t.description.length) return void notaBene("item_description");
                 if (!floatval(t.price)) return void notaBene("item_price");
                 re(geByClass1("error", "market_edit_item_box")), ajax.post("al_market.php?act=a_save_item", t, {
@@ -1809,7 +1809,7 @@ var Market = {
                 "string" == typeof t && Marketplace.searchItems(t)
             },
             onlyFriendsToggle: function(e) {
-                toggleClass(geByClass1("ui_toggler", e), "on"), Marketplace.searchItems()
+                toggleClass(geByClass1("ui_toggler", e), "on"), Marketplace.searchItems();
             }
         },
         switchToCatalog: function(e, t) {

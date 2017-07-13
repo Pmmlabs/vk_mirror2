@@ -702,6 +702,17 @@ a.ui_crumb {
     padding-left: 26px
 }
 
+.ui_rmenu_extra_label {
+    float: right;
+    padding-right: 15px;
+    color: #656565;
+    font-size: 12px
+}
+
+.ui_rmenu_loading_item .ui_rmenu_extra_label {
+    display: none
+}
+
 .ui_rmenu_slider {
     position: absolute
 }

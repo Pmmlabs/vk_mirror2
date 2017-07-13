@@ -348,8 +348,8 @@ var stVersions = {
     'groupinfo.css': 23866902782,
     'bugs.js': 3874995669,
     'bugs.css': 18821718041,
-    'bugtracker.js': 1693190479,
-    'bugtracker.css': 22028912794,
+    'bugtracker.js': 3448316377,
+    'bugtracker.css': 25568430444,
     'login.css': 21048906228,
     'login.js': 3551917100,
     'upload.js': 3319172650,
@@ -424,7 +424,7 @@ var stVersions = {
     'ui.css': 19766733022,
     'ui.js': 3953380422,
     'ui_common.js': 2918179257,
-    'ui_common.css': 22022429812,
+    'ui_common.css': 21262966787,
     'ui_media_selector.js': 3356074337,
     'ui_media_selector.css': 24943083367,
     'ui_manual.css': 19734394746,
@@ -446,7 +446,7 @@ var stVersions = {
     'landings/vk10_years.css': 20082167416,
     'chronicle.css': 20283025755,
     'market.css': 24875682021,
-    'market.js': 3479224246,
+    'market.js': 1240185718,
     'stories_admin.css': 21668255093,
     'stories_admin.js': 3033586775,
     'vk2016.css': 2369321949,
@@ -597,4 +597,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 8163;
+var _rnd = 7803;
