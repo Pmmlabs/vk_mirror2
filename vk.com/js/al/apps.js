@@ -692,12 +692,7 @@ var vkApp = function(t, e, i, o) {
                     overflow: "hidden",
                     scrolling: "no"
                 };
-                s.options.widget || (d.height = s.options.height + "px"), this.frame = this.RPC.append(s.cont, d, 'webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"'), s.options.aid && 5575136 == s.options.aid && s.options.debug_hash && "https://timepad.ru/partners/vk_app/?" !== n.substr(0, 36) && ajax.post("al_apps.php", {
-                    act: "js_app_debug",
-                    aid: s.options.aid,
-                    debug_hash: s.options.debug_hash,
-                    url: n
-                });
+                s.options.widget || (d.height = s.options.height + "px"), this.frame = this.RPC.append(s.cont, d, 'webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"');
                 break;
             case 2:
                 debugLog("is wrapper");
@@ -2207,7 +2202,8 @@ AppsSlider.prototype = {
         }
     },
     restoreListContent: function() {
-        return cur.backupList ? (this.searchProgress(!1), val(cur.lContent, ""), val(cur.lPreload, ""), extend(cur, cur.backupList.cur), cur.lContent.appendChild(cur.backupList.content), cur.lPreload.appendChild(cur.backupList.preload), delete cur.backupList, !0) : (delete cur.backupList, !1)
+        return cur.backupList ? (this.searchProgress(!1), val(cur.lContent, ""), val(cur.lPreload, ""), extend(cur, cur.backupList.cur), cur.lContent.appendChild(cur.backupList.content),
+            cur.lPreload.appendChild(cur.backupList.preload), delete cur.backupList, !0) : (delete cur.backupList, !1)
     },
     indexAll: function(t) {
         cur.appsIndex = new vkIndexer(cur.appsList.all, function(t) {

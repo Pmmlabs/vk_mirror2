@@ -3798,16 +3798,25 @@ var stManager = {
                 handlers[j]();
             }
         },
-        _addCss: function(text) {
-            var elem = headNode.appendChild(ce('style', {
+        _addCss: function(text, beforeNode) {
+            var elem = ce('style', {
                 type: 'text/css',
                 media: 'screen'
-            }));
+            });
+
+            if (beforeNode) {
+                headNode.insertBefore(elem, beforeNode);
+            } else {
+                headNode.appendChild(elem);
+            }
+
             if (elem.sheet) {
                 elem.sheet.insertRule(text, 0);
             } else if (elem.styleSheet) {
                 elem.styleSheet.cssText = text;
             }
+
+            return elem;
         },
         _srcPrefix: function(f, v) {
             if (!vk.stDomains ||
@@ -3839,9 +3848,6 @@ var stManager = {
 
             //    f_prefix = ''; // tmp fix userapi problems // turned to vk.me
 
-            if (old && old.l && old.t == 'css') {
-                __stm._addCss('#' + name + ' {display: block; }');
-            }
             StaticFiles[f] = {
                 v: f_ver,
                 n: name,
@@ -3862,26 +3868,118 @@ var stManager = {
                 if (f == 'common.js') {
                     setTimeout(stManager.done.bind(stManager).pbind('common.js'), 0);
                 } else {
-                    headNode.appendChild(ce('script', {
-                        type: 'text/javascript',
-                        src: f_prefix + p + f_full
-                    }));
+                    var src = f_prefix + p + f_full;
+                    __stm._insertNode(src, f);
+                    StaticFiles[f].src = src;
                 }
             } else if (f.indexOf('.css') != -1) {
                 var p = '/css/' + (vk.css_dir || '') + (stTypes.fromRoot[f] || f.indexOf('/') != -1 ? '' : 'al/');
-                headNode.appendChild(ce('link', {
-                    type: 'text/css',
-                    rel: 'stylesheet',
-                    href: f_prefix + p + f_full
-                }));
+                var src = f_prefix + p + f_full;
+
+                if (old && old.l && old.t == 'css') {
+                    StaticFiles[f].styleNode = __stm._addCss('#' + name + ' {display: block; }', __stm._getOldNode(src));
+                }
+
+                __stm._insertNode(src, f);
 
                 StaticFiles[f].t = 'css';
+                StaticFiles[f].src = src;
 
                 if (!ge(name)) {
                     utilsNode.appendChild(ce('div', {
                         id: name
                     }));
                 }
+            }
+        },
+
+        _getOldNode: function(src) {
+
+            if (!headNode.querySelector) {
+                return false;
+            }
+
+            src = src.split('?')[0];
+
+            var existNode;
+            if (src.match(/\.css$/)) {
+                existNode = headNode.querySelector('link[href^="' + src + '"]');
+            } else {
+                existNode = headNode.querySelector('script[src^="' + src + '"]');
+            }
+
+            return existNode;
+        },
+
+        _insertNode: function(src, file) {
+            var pathWithoutVersion = src.split('?')[0];
+
+            var isCss = pathWithoutVersion.match(/\.css$/);
+            var existNode = __stm._getOldNode(src);
+
+            var node;
+            if (isCss) {
+                node = ce('link', {
+                    type: 'text/css',
+                    rel: 'stylesheet',
+                    href: src
+                });
+                node.onload = function() {
+                    __stm._removeDuplicateNodes(file);
+                }
+            } else {
+                node = ce('script', {
+                    type: 'text/javascript',
+                    src: src
+                });
+            }
+
+            if (existNode) {
+                headNode.insertBefore(node, existNode);
+            } else {
+                headNode.appendChild(node);
+            }
+        },
+
+        _removeDuplicateNodes: function(file) {
+
+            var data = StaticFiles[file];
+            if (!data || !data.src) {
+                return;
+            }
+
+            var fileSrc = data.src.split('?')[0];
+            var node = __stm._getOldNode(fileSrc);
+            if (!node) {
+                return
+            }
+
+            var isCss = fileSrc.match(/\.css$/);
+            while (node) {
+                node = domNS(node);
+                if (!node) {
+                    break;
+                }
+
+                var src = isCss ? node.href : node.src;
+                if (!src) {
+                    break;
+                }
+                src = src.replace(/^(https?:\/\/([a-z0-9\-\.\_]+))?vk\.com/, '');
+                var srcWithoutVersion = src.split('?')[0];
+
+                if (srcWithoutVersion === fileSrc) {
+                    var curNode = node;
+                    node = domPS(node);
+                    re(curNode);
+                } else {
+                    break;
+                }
+            }
+
+            if (data.styleNode) {
+                re(data.styleNode);
+                delete StaticFiles[file].styleNode;
             }
         },
 
@@ -3927,6 +4025,10 @@ var stManager = {
                 topMsg('<b>Warning:</b> Something is bad, please <b><a href="/page-777107_43991681">clear your cache</a></b> and restart your browser.', 10);
             }
             StaticFiles[f].l = 1;
+
+            if (StaticFiles[f].t === 'js') {
+                __stm._removeDuplicateNodes(f);
+            }
         }
     },
     __stm = stManager;

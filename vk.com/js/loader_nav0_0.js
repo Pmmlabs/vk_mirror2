@@ -127,7 +127,7 @@ var navMap = {
 var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2889730895,
-    'common.js': 1151,
+    'common.js': 1152,
     'common.css': 28277804827,
     'pads.css': 19388370701,
     'retina.css': 2633262011,
@@ -264,7 +264,7 @@ var stVersions = {
     'privacy.js': 3620108221,
     'privacy.css': 21389357901,
     'apps.css': 26587862227,
-    'apps.js': 1470454498,
+    'apps.js': 1550753146,
     'apps_edit.js': 119002668,
     'apps_edit.css': 26529527173,
     'apps_check.js': 3844411974,
@@ -341,7 +341,7 @@ var stVersions = {
     'agents.css': 21587459108,
     'achievements.js': 897703126,
     'achievements.css': 19565456693,
-    'sf.css': 18576915820,
+    'sf.css': 19443931003,
     'sal.css': 19752591072,
     'members.css': 20774690717,
     'meminfo.css': 23278235680,
@@ -527,7 +527,7 @@ var stVersions = {
     'cmodules/web/speech_worker_mp3.js': 1172578475,
     'cmodules/web/speech_worker_opus.js': 3385759348,
     'stories.js': 675877973,
-    'stories.css': 20628358337,
+    'stories.css': 20999488546,
     'cmodules/internal/meminfo.js': 17609645333,
     'cmodules/internal/nospam.js': 26876059970,
     'cmodules/internal/patterns_info.js': 19343660373,
@@ -597,4 +597,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 9433;
+var _rnd = 8163;
