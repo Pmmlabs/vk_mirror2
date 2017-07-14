@@ -404,6 +404,22 @@ Payments.adsConfirmGoPaymentSystem = function(func) {
     }, getLang('box_close'));
 }
 
+Payments.adsToggleEmail = function(el) {
+    var cont = gpeByClass('_ps_wrap', el);
+    if (el.tagName === 'INPUT') {
+        el = geByClass1('_checkbox', cont);
+        if (isChecked(el)) return;
+    }
+    checkbox(el);
+    if (isChecked(el)) {
+        elfocus(geByClass1('_receipt_email', cont));
+    }
+}
+
+Payments.validateEmail = function(email) {
+    return email.length < 64 && email.match(/^.{1,40}@.{1,40}$/) && email.match(/^([a-z0-9_\-]{0,40}\.){0,10}[a-z0-9_\-*]{1,40}@(([a-z0-9][a-z0-9_\-]{0,40})?[a-z0-9]\.){1,6}[a-z]{2,7}$/i);
+}
+
 var MoneyTransfer = {
     init: function() {
         placeholderInit('transfer_amount');

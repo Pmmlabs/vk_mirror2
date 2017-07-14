@@ -472,6 +472,19 @@ h2.payments_getvotes_title {
     width: 130px
 }
 
+.payments_receipt_email_wrap {
+    margin-top: 15px
+}
+
+.payments_receipt_email_wrap .checkbox {
+    margin-bottom: 10px;
+    line-height: 15px
+}
+
+.payments_receipt_email {
+    width: 270px
+}
+
 .payments_getvotes_ps_list {
     margin: 0 auto;
     width: 500px
@@ -1010,7 +1023,7 @@ h2.payments_getvotes_title {
 }
 
 .payments_box_wide .payments_systems_logo {
-    margin: 90px 0 30px;
+    margin: 90px 0 20px;
     text-align: center;
     background-position: 50% 50%;
     width: 100%
@@ -1082,6 +1095,15 @@ h2.payments_getvotes_title {
     margin: 20px 0 5px
 }
 
+.payments_box_wide .payments_receipt_email_wrap {
+    padding-left: 150px;
+    margin-top: 25px
+}
+
+.payments_box_wide .payments_receipt_email_wrap .payments_receipt_email {
+    width: 150px
+}
+
 .payments_box_wide #payments_getvotes_waiting_mo {
     display: none
 }
@@ -1109,8 +1131,26 @@ h2.payments_getvotes_title {
     display: none
 }
 
+.payments_box_wide .payments_gvw_email .payments_systems_logo,
+.payments_box_wide .payments_gvw_instant .payments_systems_logo {
+    margin-top: 60px
+}
+
+.payments_box_wide .payments_gvw_instant.payments_gvw_email .payments_systems_logo,
+.payments_box_wide .payments_gvw_instant_remember {
+    margin-top: 30px
+}
+
+.payments_box_wide .payments_remember_wallet+.payments_receipt_email_wrap {
+    margin-top: 20px
+}
+
+.payments_box_wide .payments_gv_sms.payments_gvw_email .payments_getvotes_msg {
+    margin-top: 60px
+}
+
 .payments_box_wide #payments_box_error[style*=block]+#payments_getvotes_cont .payments_systems_logo {
-    margin-top: 20px!important
+    margin-top: 10px!important
 }
 
 .payments_box_wide #payments_box_error[style*=block]+#payments_getvotes_cont .payments_getvotes_msg {
@@ -1893,4 +1933,25 @@ h2.payments_getvotes_title {
 
 #payments_systems_form_container {
     line-height: 160%
+}
+
+.payment_card_form .labeled {
+    padding-top: 2px;
+    width: 110px
+}
+
+.payment_card_form .inputText {
+    width: 134px
+}
+
+.payment_card_form .checkbox {
+    margin-left: 120px
+}
+
+.payment_card_form .payments_receipt_email_wrap {
+    margin: 10px 0
+}
+
+.payment_system .payments_receipt_email {
+    width: 135px
 }

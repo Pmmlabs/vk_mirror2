@@ -1357,16 +1357,6 @@ var Settings = {
             }
         }), !1
     },
-    httpsOnlySubmit: function(t) {
-        ajax.post("al_settings.php", {
-            act: "save_https",
-            hash: cur.options.https_hash,
-            https: isChecked("settings_https_only")
-        }, {
-            showProgress: lockButton.pbind(t),
-            hideProgress: unlockButton.pbind(t)
-        })
-    },
     showValidateDevices: function(t, e) {
         return ajax.post("al_settings.php", {
             act: "a_validate_devices",

@@ -199,7 +199,7 @@ var stVersions = {
     'video_youtube.js': 2438487008,
     'video_youtube.css': 18440073877,
     'videoplayer.js': 75431957452,
-    'videoplayer.css': 38599896666,
+    'videoplayer.css': 39632744569,
     'translation.js': 2431784533,
     'translation.css': 19691363277,
     'reg.css': 887926110,
@@ -269,7 +269,7 @@ var stVersions = {
     'apps_edit.css': 26529527173,
     'apps_check.js': 3844411974,
     'apps_check.css': 26058746597,
-    'settings.js': 1239649088,
+    'settings.js': 2851821125,
     'settings.css': 28344495005,
     'profile_edit.js': 2157979570,
     'profile_edit.css': 20858729067,
@@ -362,8 +362,8 @@ var stVersions = {
     'verify.css': 688648654,
     'away.css': 23069099463,
     'stats.css': 21886172636,
-    'payments.css': 22800150087,
-    'payments.js': 2338380684,
+    'payments.css': 22385309681,
+    'payments.js': 1241163123,
     'offers.css': 978996883,
     'offers.js': 2030679272,
     'call.js': 4217435992,
@@ -597,4 +597,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 8586;
+var _rnd = 5962;
