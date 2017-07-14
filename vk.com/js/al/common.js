@@ -3804,8 +3804,9 @@ var stManager = {
                 media: 'screen'
             });
 
-            if (beforeNode) {
-                headNode.insertBefore(elem, beforeNode);
+            var nextNode = domNS(beforeNode);
+            if (nextNode) {
+                headNode.insertBefore(elem, nextNode);
             } else {
                 headNode.appendChild(elem);
             }
@@ -3917,6 +3918,12 @@ var stManager = {
             var isCss = pathWithoutVersion.match(/\.css$/);
             var existNode = __stm._getOldNode(src);
 
+            if (isCss && StaticFiles[file] && StaticFiles[file].styleNode) {
+                existNode = domNS(StaticFiles[file].styleNode);
+            } else if (existNode) {
+                existNode = domNS(existNode);
+            }
+
             var node;
             if (isCss) {
                 node = ce('link', {
@@ -3954,6 +3961,11 @@ var stManager = {
                 return
             }
 
+            if (data.styleNode) {
+                re(data.styleNode);
+                delete StaticFiles[file].styleNode;
+            }
+
             var isCss = fileSrc.match(/\.css$/);
             while (node) {
                 node = domNS(node);
@@ -3969,17 +3981,10 @@ var stManager = {
                 var srcWithoutVersion = src.split('?')[0];
 
                 if (srcWithoutVersion === fileSrc) {
-                    var curNode = node;
-                    node = domPS(node);
-                    re(curNode);
+                    re(domPS(node));
                 } else {
                     break;
                 }
-            }
-
-            if (data.styleNode) {
-                re(data.styleNode);
-                delete StaticFiles[file].styleNode;
             }
         },
 
