@@ -146,7 +146,7 @@ var stVersions = {
     'html5audio.js': 976782859,
     'html5video.js': 223664659,
     'html5video.css': 21193831490,
-    'audioplayer.js': 3348232843,
+    'audioplayer.js': 2596421113,
     'audioplayer.css': 20458105481,
     'audio_html5.js': 287741914,
     'audio.js': 2321433814,
@@ -348,7 +348,7 @@ var stVersions = {
     'groupinfo.css': 23866902782,
     'bugs.js': 3874995669,
     'bugs.css': 18821718041,
-    'bugtracker.js': 3448316377,
+    'bugtracker.js': 2756180137,
     'bugtracker.css': 25568430444,
     'login.css': 21048906228,
     'login.js': 3551917100,
@@ -530,6 +530,7 @@ var stVersions = {
     'stories.css': 20999488546,
     'cmodules/internal/meminfo.js': 17609645333,
     'cmodules/internal/nospam.js': 26876059970,
+    'cmodules/internal/mvk_helpdesk.js': 7177336493,
     'cmodules/internal/patterns_info.js': 19343660373,
     'shortener.js': 1002525642,
     'lang': 6830
@@ -597,4 +598,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 5962;
+var _rnd = 1306;
