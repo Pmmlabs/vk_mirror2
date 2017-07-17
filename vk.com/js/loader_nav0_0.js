@@ -269,7 +269,7 @@ var stVersions = {
     'apps_edit.css': 26529527173,
     'apps_check.js': 3844411974,
     'apps_check.css': 26058746597,
-    'settings.js': 2851821125,
+    'settings.js': 2882263597,
     'settings.css': 28344495005,
     'profile_edit.js': 2157979570,
     'profile_edit.css': 20858729067,
@@ -348,8 +348,8 @@ var stVersions = {
     'groupinfo.css': 23866902782,
     'bugs.js': 3874995669,
     'bugs.css': 18821718041,
-    'bugtracker.js': 554237760,
-    'bugtracker.css': 25299690746,
+    'bugtracker.js': 3382950792,
+    'bugtracker.css': 28121787920,
     'login.css': 21048906228,
     'login.js': 3551917100,
     'upload.js': 3319172650,
@@ -416,7 +416,7 @@ var stVersions = {
     'mapbox.js': 262357480,
     'mapbox.css': 4285195017,
     'jobs.js': 1932948232,
-    'jobs.css': 23498551787,
+    'jobs.css': 20438246938,
     'print.js': 1255624803,
     'print.css': 20776048304,
     'qrcode.js': 773151497,
@@ -598,4 +598,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 4307;
+var _rnd = 8982;

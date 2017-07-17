@@ -784,12 +784,10 @@ var Settings = {
         }
     },
     mailSubmit: function(t, e) {
-        if (e) {
-            var s = "";
-            re(t)
-        } else {
-            var s = trim(val("settings_new_mail"));
-            if (!s) return void notaBene("settings_new_mail");
+        var s;
+        if (e) s = "", re(t);
+        else {
+            if (s = trim(val("settings_new_mail")), !s) return void notaBene("settings_new_mail");
             lockButton(t)
         }
         var o = {
