@@ -2045,6 +2045,12 @@ a.ui_search_custom_link {
     background-color: #e4eaf0
 }
 
+.ui_actions_menu_item_extra_label {
+    float: right;
+    color: #656565;
+    font-size: 12px
+}
+
 .ui_actions_menu_sep {
     border-top: 1px solid #dbe4ec;
     margin: 4px 13px
