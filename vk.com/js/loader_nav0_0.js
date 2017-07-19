@@ -216,7 +216,7 @@ var stVersions = {
     'module.css': 21259511671,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 24452526336,
-    'page.js': 313692919,
+    'page.js': 2605530077,
     'page.css': 24915091277,
     'page_help.css': 25142196277,
     'public.css': 29417505098,
@@ -598,4 +598,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 9958;
+var _rnd = 1935;
