@@ -349,7 +349,7 @@ var stVersions = {
     'bugs.js': 3874995669,
     'bugs.css': 18821718041,
     'bugtracker.js': 1856783640,
-    'bugtracker.css': 27114624917,
+    'bugtracker.css': 26450002761,
     'login.css': 21048906228,
     'login.js': 3551917100,
     'upload.js': 3319172650,
@@ -424,7 +424,7 @@ var stVersions = {
     'ui.css': 19766733022,
     'ui.js': 3953380422,
     'ui_common.js': 2918179257,
-    'ui_common.css': 18403149329,
+    'ui_common.css': 20973274084,
     'ui_media_selector.js': 3356074337,
     'ui_media_selector.css': 24943083367,
     'ui_manual.css': 19734394746,
@@ -598,4 +598,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 5826;
+var _rnd = 9958;

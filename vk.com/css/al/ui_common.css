@@ -713,6 +713,14 @@ a.ui_crumb {
     display: none
 }
 
+.ui_rmenu_extra_label_onhover {
+    visibility: hidden
+}
+
+.ui_rmenu_item:hover .ui_rmenu_extra_label_onhover {
+    visibility: visible
+}
+
 .ui_rmenu_slider {
     position: absolute
 }
