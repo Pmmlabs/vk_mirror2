@@ -845,16 +845,8 @@ var VideoUpload = {
             removeEvent(i, "paste blur", s), removeEvent(i, "keydown input", a)
         })
     },
-    liveStreamBetaIntro: function() {
-        showBox("al_video.php?act=live_beta_intro_box", {}, {
-            stat: ["video_edit.css"],
-            params: {
-                hideButtons: 1
-            }
-        })
-    },
-    createLiveStream: function(e) {
-        return e || ls.get("video_live_beta_intro_shown") ? void showBox("al_video.php", {
+    createLiveStream: function() {
+        showBox("al_video.php", {
             act: "a_add_new_live_trans_form",
             owner_id: cur.oid
         }, {
@@ -870,7 +862,7 @@ var VideoUpload = {
             onFail: function(e) {
                 return e ? (curBox().hide(), showFastBox(getLang("global_error"), e), !0) : void 0
             }
-        }) : (ls.set("video_live_beta_intro_shown", 1), void this.liveStreamBetaIntro())
+        })
     },
     initLiveStreamCategoryDropdown: function(e, o) {
         cur.uploadVideoLiveCategoryDropdown = new Dropdown(ge("video_upload_live_category"), e, {
