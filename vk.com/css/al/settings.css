@@ -207,20 +207,19 @@
 }
 
 .settings_bullet_link {
-    margin-left: 12px
+    margin-left: 7px
 }
 
 .settings_bullet_link:before {
-    content: "\2022 ";
-    color: #b3b3b3;
-    font-size: 8px;
-    padding: 0 1px 2px;
+    content: "\00b7";
+    color: #939393;
+    padding: 0 1px;
     text-decoration: none;
     vertical-align: middle;
     display: inline-block;
     pointer-events: none;
     position: relative;
-    left: -5px
+    left: -3px
 }
 
 .settings_right_control {
@@ -597,20 +596,20 @@
 
 .settings_table_row a.wikiExtLink {
     text-transform: capitalize;
-    margin-left: 12px
+    margin-left: 7px;
+    margin-left: 4px
 }
 
 .settings_table_row a.wikiExtLink:before {
-    content: "\2022 ";
-    color: #b3b3b3;
-    font-size: 8px;
-    padding: 0 1px 2px;
+    content: "\00b7";
+    color: #939393;
+    padding: 0 1px;
     text-decoration: none;
     vertical-align: middle;
     display: inline-block;
     pointer-events: none;
     position: relative;
-    left: -5px
+    left: -3px
 }
 
 .settings_block_msg {
@@ -1220,21 +1219,20 @@ a.settings_blb_title {
 }
 
 .settings_transfer_sandbox_status {
-    margin-left: 12px;
+    margin-left: 7px;
     font-style: italic
 }
 
 .settings_transfer_sandbox_status:before {
-    content: "\2022 ";
-    color: #b3b3b3;
-    font-size: 8px;
-    padding: 0 1px 2px;
+    content: "\00b7";
+    color: #939393;
+    padding: 0 1px;
     text-decoration: none;
     vertical-align: middle;
     display: inline-block;
     pointer-events: none;
     position: relative;
-    left: -5px
+    left: -3px
 }
 
 .settings_payments_subscriptions tr td {

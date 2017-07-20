@@ -2709,7 +2709,7 @@ small.divide,
 small.divider {
     display: inline-block;
     padding: 0;
-    margin-left: 12px;
+    margin-left: 7px;
     color: transparent;
     position: relative
 }
@@ -2719,18 +2719,15 @@ small.divider {
 .sdivide:before,
 small.divide:before,
 small.divider:before {
-    content: "\2022 ";
-    color: #b3b3b3;
-    font-size: 8px;
-    padding: 0 1px 2px;
+    content: "\00b7";
+    color: #939393;
+    padding: 0 1px;
     text-decoration: none;
     vertical-align: middle;
     display: inline-block;
     pointer-events: none;
     position: relative;
-    left: -5px;
-    padding: 0 0 2px;
-    line-height: 2px
+    left: -3px
 }
 
 .sdivide {
@@ -2745,13 +2742,11 @@ small.divider {
 }
 
 .dvd:before {
-    content: "\2022";
+    content: "\00b7";
     display: inline;
-    font-size: 0.7em;
     pointer-events: none;
-    padding: 0 1.0em;
-    vertical-align: bottom;
-    opacity: 0.7
+    padding: 0 5px;
+    vertical-align: middle
 }
 
 .wrapped {

@@ -873,44 +873,14 @@ body.dev .tickets_header_links {
     color: #777
 }
 
-.tickets_pt_links {
-    width: 602px;
-    padding-top: 10px
-}
-
-.tickets_pt_link {
-    float: left;
-    margin-top: 10px
-}
-
-.tickets_pt_link>a {
-    padding: 4px 6px
-}
-
-.tickets_pt_link>a:hover {
-    border-radius: 2px;
-    background: #e1e7ed;
-    text-decoration: none
-}
-
 #template_title a,
 #tickets_pt_title,
 .template_wrap #template_title {
-    font-size: 1.09em
-}
-
-#template_title a,
-#tickets_pt_title,
-.template_wrap #template_title,
-.tickets_pt_title {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-size: 1.09em;
     color: #45688e
-}
-
-.tickets_pt_title {
-    font-size: 1.2em
 }
 
 #edit_template {
