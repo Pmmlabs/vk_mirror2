@@ -13,6 +13,8 @@
     padding: 0
 }
 
+.im-aside-notice_messenger,
+.im-aside-notice_vkadmin,
 .im-chat-input .im-chat-input--error:before,
 .im-chat-placeholder,
 .im-deselect:before,
@@ -20,7 +22,9 @@
 .im-member-item .im-member-item--kick-link,
 .im-mess .im-mess--check,
 .im-mess.im-mess_search:hover:after,
+.im-notice--messenger .im-notice--image,
 .im-notice--money_transfer .im-notice--image,
+.im-notice--vkadmin .im-notice--image,
 .im-page-action.im-page-action_star i,
 .im-page .im-page--center-empty,
 .im-page .im-page--center-empty.im-page--center-empty_fwd,
@@ -30,7 +34,7 @@
 .im-page .im-page--header-star,
 .im-page .im-page--history.im-page--history_loading:before,
 .im-page_classic.im-page .im-page--gim-mute,
-.im-right-menu.ui_rmenu .im-right-menu--close:before,
+.im-right-menu .im-right-menu--close:before,
 .im-send-btn.im-send-btn_audio.im-send-btn_loading:before,
 .im-send-btn.im-send-btn_loading:before,
 .im-send-btn.im-send-btn_send.im-send-btn_loading:before,
@@ -6658,7 +6662,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     }
 }
 
-.im-right-menu.ui_rmenu {
+.im-right-menu {
     position: fixed;
     top: 42px;
     margin-left: 565px;
@@ -6666,7 +6670,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     max-width: 230px
 }
 
-.im-right-menu.ui_rmenu .im-right-menu--count {
+.im-right-menu .im-right-menu--count {
     color: #42648b;
     font-weight: 500;
     vertical-align: top;
@@ -6676,19 +6680,19 @@ body.sf .nim-dialog .nim-dialog--unread {
     font-size: 13px
 }
 
-.im-right-menu.ui_rmenu .im-right-menu--count:before {
+.im-right-menu .im-right-menu--count:before {
     content: "+"
 }
 
-.im-right-menu.ui_rmenu .ui_rmenu_item:hover .im-right-menu--close {
+.im-right-menu .ui_rmenu_item:hover .im-right-menu--close {
     display: inline-block
 }
 
-.im-right-menu.ui_rmenu .ui_rmenu_item:hover .im-right-menu--count {
+.im-right-menu .ui_rmenu_item:hover .im-right-menu--count {
     display: none
 }
 
-.im-right-menu.ui_rmenu .im-right-menu--text {
+.im-right-menu .im-right-menu--text {
     max-width: 175px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -6696,14 +6700,14 @@ body.sf .nim-dialog .nim-dialog--unread {
     vertical-align: top
 }
 
-.im-right-menu.ui_rmenu .im-right-menu--unread .im-right-menu--text {
+.im-right-menu .im-right-menu--unread .im-right-menu--text {
     max-width: 150px;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto
 }
 
-.im-right-menu.ui_rmenu .im-right-menu--close {
+.im-right-menu .im-right-menu--close {
     border: none;
     background: none;
     color: #2a5885;
@@ -6722,16 +6726,16 @@ body.sf .nim-dialog .nim-dialog--unread {
     float: right
 }
 
-.im-right-menu.ui_rmenu .im-right-menu--close:hover {
+.im-right-menu .im-right-menu--close:hover {
     text-decoration: underline;
     cursor: pointer
 }
 
-.im-right-menu.ui_rmenu .im-right-menu--close:before {
+.im-right-menu .im-right-menu--close:before {
     background: url(/images/icons/im_actions.png?4) -4px -66px;
     width: 12px;
     height: 12px;
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     right: 5px;
@@ -6741,14 +6745,18 @@ body.sf .nim-dialog .nim-dialog--unread {
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .im-right-menu.ui_rmenu .im-right-menu--close:before {
+    .im-right-menu .im-right-menu--close:before {
         background-image: url(/images/icons/im_actions_2x.png?4);
         background-size: 24px 423px
     }
 }
 
-.im-right-menu.ui_rmenu .im-right-menu--close:hover {
+.im-right-menu .im-right-menu--close:hover {
     opacity: 1
+}
+
+.im-right-menu .ui_rmenu {
+    max-width: 230px
 }
 
 .im-av-time {
@@ -6855,6 +6863,132 @@ body.sf .nim-dialog .nim-dialog--unread {
         background-image: url(/images/message_money_2x.png?1);
         background-size: 97px 100px
     }
+}
+
+.im-notice--vkadmin .im-notice--image {
+    background: url(/images/vkadmin-promo/top.png) no-repeat 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-notice--vkadmin .im-notice--image {
+        background-image: url(/images/vkadmin-promo/top_2x.png);
+        background-size: 100px 100px
+    }
+}
+
+.im-notice--messenger {
+    padding: 35px 45px 28px 20px
+}
+
+.im-notice--messenger .im-notice--image {
+    margin: -8px 20px 0 0;
+    background: url(/images/messenger-promo/top.png) no-repeat 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-notice--messenger .im-notice--image {
+        background-image: url(/images/messenger-promo/top_2x.png);
+        background-size: 100px 100px
+    }
+}
+
+.im-notice--messenger .im-notice--title {
+    padding: 1px 0 2px;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    color: #000
+}
+
+.im-notice--messenger .im-notice--text {
+    line-height: 19px;
+    color: #000
+}
+
+.im-aside-notice {
+    position: relative;
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    margin: 15px 0 0;
+    padding: 112px 15px 12px;
+    font-size: 13px;
+    line-height: 18px;
+    color: #222
+}
+
+.im-aside-notice_vkadmin {
+    background: #fff url(/images/vkadmin-promo/aside.png) 0 0 no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-aside-notice_vkadmin {
+        background-image: url(/images/vkadmin-promo/aside_2x.png);
+        background-size: 230px 100px
+    }
+}
+
+.im-aside-notice_messenger {
+    background: #fff url(/images/messenger-promo/aside.png) 0 0 no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-aside-notice_messenger {
+        background-image: url(/images/messenger-promo/aside_2x.png);
+        background-size: 230px 100px
+    }
+}
+
+.im-aside-notice--close {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 20px;
+    height: 20px;
+    background: rgba(0, 0, 0, .4) url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%228%22%20viewBox%3D%220%200%208%208%22%3E%3Cpath%20class%3D%22st0%22%20d%3D%22M5.1%204l2.5-2.5c.3-.3.3-.8%200-1.1s-.8-.3-1.1%200l-2.5%202.5-2.5-2.4c-.3-.3-.8-.3-1.1%200s-.3.8%200%201.1l2.5%202.4-2.4%202.5c-.3.3-.3.8%200%201.1.1.1.3.2.5.2s.4-.1.5-.2l2.5-2.5%202.5%202.5c.1.1.3.2.5.2s.4-.1.5-.2c.3-.3.3-.8%200-1.1l-2.4-2.5z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat;
+    border-radius: 3px;
+    cursor: pointer
+}
+
+.im-aside-notice--close:hover {
+    background-color: rgba(0, 0, 0, .5)
+}
+
+.im-aside-notice--close:active {
+    background-color: rgba(0, 0, 0, .6)
+}
+
+.im-aside-notice--title {
+    color: #42648b;
+    font-weight: 700;
+    margin: 0 0 5px;
+    cursor: pointer
+}
+
+.im-aside-notice--btn {
+    background: none;
+    border: 0;
+    padding: 0;
+    font-size: 13px;
+    line-height: 18px;
+    color: #2a5885;
+    cursor: pointer
+}
+
+.im-aside-notice--btn:hover {
+    text-decoration: underline
+}
+
+.im-aside-notice--btn:after {
+    content: ' \00bb'
 }
 
 .im-audio-message-btn {

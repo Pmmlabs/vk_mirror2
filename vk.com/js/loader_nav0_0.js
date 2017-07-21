@@ -150,7 +150,7 @@ var stVersions = {
     'audioplayer.css': 21682003680,
     'audio_html5.js': 287741914,
     'audio.js': 2321433814,
-    'audio.css': 25682800817,
+    'audio.css': 26012511661,
     'gifts.css': 24983781573,
     'gifts.js': 338252255,
     'cc.js': 1644397126,
@@ -247,8 +247,8 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 109322461996,
-    'imn.js': 113838526761,
+    'im.css': 111579353755,
+    'imn.js': 113939998492,
     'im.js': 1322065004,
     'emoji.js': 1068454446,
     'wide_dd.css': 20006719838,
@@ -331,7 +331,7 @@ var stVersions = {
     'tasks.js': 662793453,
     'tasks.css': 21420701146,
     'helpdesk.js': 738132794,
-    'helpdesk.css': 25156774027,
+    'helpdesk.css': 24784350720,
     'tickets.js': 3256001699,
     'tickets.css': 24985877750,
     'faq.js': 1134602325,
@@ -349,7 +349,7 @@ var stVersions = {
     'bugs.js': 3874995669,
     'bugs.css': 20045616240,
     'bugtracker.js': 239061824,
-    'bugtracker.css': 27673900960,
+    'bugtracker.css': 28414836184,
     'login.css': 22272804427,
     'login.js': 3551917100,
     'upload.js': 3319172650,
@@ -461,7 +461,7 @@ var stVersions = {
     'landings/psb_context.css': 19990271,
     'landings/psb_mobile.css': 27050939243,
     'landings/moneysend.css': 23474744226,
-    'landings/desktop_messenger.css': 22604132595,
+    'landings/desktop_messenger.css': 22503162300,
     'landings/vklive.css': 20304631483,
     'landings/vk2017.css': 21382085636,
     'landings/vkmusic.css': 1141958758,
@@ -598,4 +598,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 5909;
+var _rnd = 7785;
