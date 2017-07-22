@@ -607,13 +607,13 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     function s(e) {
         if (e = trim(e)) {
             var t = " " + (parseLatin(e) || "") + (parseCyr(e) || "");
-            t = trim(t.replace(/\)/g, "").replace(/&/, "&amp;")), H = new RegExp("(\\s|^)(" + t.replace(vkIndexer.delimiter, "|").replace(/(^\||\|$|\?)/g, "") + ")", "gi")
-        } else H = !1;
+            t = trim(t.replace(/\)/g, "").replace(/&/, "&amp;")), U = new RegExp("(\\s|^)(" + t.replace(vkIndexer.delimiter, "|").replace(/(^\||\|$|\?)/g, "") + ")", "gi")
+        } else U = !1;
         g(R, "playlists" == O ? !1 : !0, e)
     }
 
     function r() {
-        K.clean(), k.deletePlaylist(K), B && AudioUtils.showAudioPlaylist(B[0], B[1])
+        K.clean(), k.deletePlaylist(K), E && AudioUtils.showAudioPlaylist(E[0], E[1])
     }
 
     function l() {
@@ -622,7 +622,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
 
     function n(t) {
         var i = K.indexOfAudio(t) >= 0 ? "ape_selected" : "";
-        H && (t = clone(t), t[AudioUtils.AUDIO_ITEM_INDEX_TITLE] = t[AudioUtils.AUDIO_ITEM_INDEX_TITLE].replace(H, "$1<em>$2</em>"), t[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER] = t[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER].replace(H, "$1<em>$2</em>"));
+        U && (t = clone(t), t[AudioUtils.AUDIO_ITEM_INDEX_TITLE] = t[AudioUtils.AUDIO_ITEM_INDEX_TITLE].replace(U, "$1<em>$2</em>"), t[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER] = t[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER].replace(U, "$1<em>$2</em>"));
         var a = "";
         if ("edit" == e) a = '<div class="ape_check"><div class="ape_check_icon"></div></div>';
         else {
@@ -644,7 +644,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             z = !1;
             var e = l();
             if (e) {
-                U = k.getPlaylist(AudioPlaylist.TYPE_SEARCH, vk.id, hashCode(e + "no conflict")), U.mergeWith({
+                H = k.getPlaylist(AudioPlaylist.TYPE_SEARCH, vk.id, hashCode(e + "no conflict")), H.mergeWith({
                     searchParams: {
                         globalQuery: e
                     },
@@ -654,9 +654,9 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                 x && (t = x.getOffset(), x.destroy()), x = new AutoList(W.list, {
                     scrollNode: W.list,
                     onNeedRows: function(e, i) {
-                        i -= t, U.load(i, function() {
+                        i -= t, H.load(i, function() {
                             var t = [],
-                                a = U.getAudiosList();
+                                a = H.getAudiosList();
                             if (0 == i && a.length && t.push('<div class="ape_list_header">' + getLang("audio_edit_playlist_global_results") + "<div>"), a.length)
                                 for (var o = Math.min(a.length, i + 20), s = i; o > s; s++) t.push(n(a[s]));
                             e(t)
@@ -728,7 +728,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                     var d, u = t[l];
                     if (e) d = n(u);
                     else {
-                        var _ = H ? u.title.replace(H, "$1<em>$2</em>") : u.title,
+                        var _ = U ? u.title.replace(U, "$1<em>$2</em>") : u.title,
                             c = langNumeric(u.size, cur.lang.audio_playlist_audios_count, !0).replace("{count}", u.size),
                             h = '<div class="ape_pl_item_inner"><span class="ape_pl_title">' + _ + '</span> <span class="ape_pl_size">' + c + "</span></div>";
                         d = '<div class="ape_pl_item" data-playlist-access-hash="' + u.access_hash + '"  data-playlist-owner-id="' + u.owner_id + '" data-playlist-id="' + u.id + '">' + h + "</div>"
@@ -759,7 +759,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             case "default":
                 var s = k.getPlaylist(AudioPlaylist.TYPE_PLAYLIST, t, AudioPlaylist.DEFAULT_PLAYLIST_ID);
                 disableEl(W.addAudiosButton), showProgress(W.addAudiosButton), s.load(function() {
-                    enableEl(W.addAudiosButton), hideProgress(W.addAudiosButton), hide(W.header), show(W.search), toggle(W.addAudiosFromPlaylistsButton, j), hide(W.addAudiosButton), "edit" == e ? u() : _(), g(s, !0), h(), "edit" == e && v(o)
+                    enableEl(W.addAudiosButton), hideProgress(W.addAudiosButton), hide(W.header), show(W.search), toggle(W.addAudiosFromPlaylistsButton, Y), hide(W.addAudiosButton), "edit" == e ? u() : _(), g(s, !0), h(), "edit" == e && v(o)
                 });
                 break;
             case "playlists":
@@ -769,7 +769,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             case "playlist":
                 hide(W.header), show(W.search), hide(W.addAudiosFromPlaylistsButton), hide(W.addAudiosButton), u(), g(o, !0), "attach" == e && P(o), "edit" == e && v(o)
         }
-        h(), W.searchInput.value = "", elfocus(W.searchInput), H = !1, M = null, clearTimeout(z), k.updateCurrentPlaying()
+        h(), W.searchInput.value = "", elfocus(W.searchInput), U = !1, M = null, clearTimeout(z), k.updateCurrentPlaying()
     }
 
     function A() {
@@ -846,9 +846,9 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         var r = o.newPlaylistHash || cur.audioPage && cur.audioPage._data.newPlaylistHash || "";
         ajax.post("al_audio.php", {
             act: "save_playlist",
-            hash: T ? r : Y.getEditHash(),
+            hash: T ? r : j.getEditHash(),
             owner_id: t,
-            playlist_id: T ? 0 : Y.getPlaylistId(),
+            playlist_id: T ? 0 : j.getPlaylistId(),
             title: i,
             description: a,
             Audios: s.join(","),
@@ -877,7 +877,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                     var a = geByClass1("_audio_page__playlists_count_header", cur.audioPage._els.pageContainer);
                     a && (a.innerHTML = langNumeric(cur.audioPage._data.playlists.length, cur.lang.audio_playlists_count_title), removeClass(gpeByClass("_audio_page_section_layout", a), "audio_section_empty"))
                 }
-                Y && (Y.clean(), Y.mergeWith(e)), V.hide()
+                j && (j.clean(), j.mergeWith(e)), V.hide()
             }
         })
     }
@@ -925,7 +925,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         return removeClass(W.uploadCoverButton, "ape_thumb_set"), hide(geByClass1("_ape_cover_thumb")), N = -1, cancelEvent(e)
     }
 
-    function E() {
+    function B() {
         var t = window.innerHeight,
             i = 800,
             a = 500,
@@ -938,11 +938,11 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             minHeight: 30,
             maxHeight: 150,
             onResize: h
-        }), W.playlistNameInput.value = replaceEntities(K.getTitle()), W.playlistDescriptionInput.value = replaceEntities(K.getRawDescription().replace(/<br>/g, "\n"))), "attach" == e && f("default"), _(), Y && "attach" != e && V.setControlsText('<a onclick="AudioPage.deletePlaylist(' + Y.getOwnerId() + ", " + Y.getPlaylistId() + ", '" + Y.getEditHash() + "')\">" + getLang("audio_delete_playlist") + "</a>")
+        }), W.playlistNameInput.value = replaceEntities(K.getTitle()), W.playlistDescriptionInput.value = replaceEntities(K.getRawDescription().replace(/<br>/g, "\n"))), "attach" == e && f("default"), _(), j && "attach" != e && V.setControlsText('<a onclick="AudioPage.deletePlaylist(' + j.getOwnerId() + ", " + j.getPlaylistId() + ", '" + j.getEditHash() + "')\">" + getLang("audio_delete_playlist") + "</a>")
     }
     hide(boxLoader), curBox() || hide(boxLayerWrap);
-    var B;
-    cur.apLayer && (B = cur.apLayerPlaylistId, layers.fullhide()), o = extend({
+    var E;
+    cur.apLayer && (E = cur.apLayerPlaylistId, layers.fullhide()), o = extend({
         audioPickerButtonText: getLang("global_add_media"),
         playlistPickerButtonText: getLang("audio_attach_playlist_button"),
         canPlaylistAttach: !1,
@@ -955,8 +955,8 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         D = !1,
         O = !1,
         R = !1,
-        U = !1,
         H = !1,
+        U = !1,
         N = 0,
         M = null;
     a = a.filter(function(e) {
@@ -965,15 +965,15 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     var F = new vkIndexer(a, function(e) {
             return e.title
         }),
-        j = a.length > 0,
-        Y = !1,
+        Y = a.length > 0,
+        j = !1,
         K = k.getPlaylist(AudioPlaylist.TYPE_TEMP, t, irand(0, 999999));
-    T && "attach" != e ? o.addAudio && K.addAudio(o.addAudio) : (Y = k.getPlaylist(AudioPlaylist.TYPE_PLAYLIST, t, i), K.addAudio(Y.getUnshuffledAudiosList()), K.mergeWith({
-        title: Y.getTitle(),
-        description: Y.getDescription(),
-        rawDescription: Y.getRawDescription(),
-        coverUrl: Y.getCoverUrl(),
-        editHash: Y.getEditHash()
+    T && "attach" != e ? o.addAudio && K.addAudio(o.addAudio) : (j = k.getPlaylist(AudioPlaylist.TYPE_PLAYLIST, t, i), K.addAudio(j.getUnshuffledAudiosList()), K.mergeWith({
+        title: j.getTitle(),
+        description: j.getDescription(),
+        rawDescription: j.getRawDescription(),
+        coverUrl: j.getCoverUrl(),
+        editHash: j.getEditHash()
     }));
     var G;
     if (G = "attach" == e ? getLang("audio_choose_audio_title") : i ? getLang("audio_edit_playlist_title") : getLang("audio_new_playlist_title"), window.box && vk.widget) {
@@ -1015,7 +1015,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         globalResultsList: geByClass1("_ape_item_global_list", V.bodyNode),
         emptyPlaceholder: geByClass1("_ape_audios_empty_list", V.bodyNode)
     };
-    E(V.bodyNode);
+    B(V.bodyNode);
     var z = 0
 }, AudioPage._buildAudiosAndPlaylistsList = function() {}, AudioPage.prototype.updateSearchUrl = function() {
     var e = this.getCurrentPlaylist();
@@ -1173,30 +1173,13 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         },
         dark: 1
     }), i && cancelEvent(i), !1
-}, AudioPage.prototype.hideRecommendation = function(e) {
-    var t = getAudioPlayer(),
-        i = AudioUtils.getAudioFromEl(e, !0),
-        a = AudioUtils.asObject(t.getCurrentAudio());
-    a && a.fullId == i.fullId && t.playNext();
-    var o = AudioUtils.getAudioExtra(i).recom,
-        s = {
-            act: "hide_recommendation",
-            q: o.q,
-            hash: o.hash
-        };
-    nav.objLoc.audio_id && (s.recommendation_type = "query"), nav.objLoc.album_id && (s.recommendation_type = "album"), ajax.post("al_audio.php", s), cur._audioAddRestoreInfo[i.fullId] = {
-        state: "recom_hidden"
-    };
-    var r = t.getCurrentPlaylist();
-    r && r.getType() == AudioPlaylist.TYPE_RECOM && (cur._audioAddRestoreInfo[i.fullId].removedCurrentPos = r.removeAudio(i))
 }, AudioPage.prototype.restoreRecommendation = function(e) {
     var t = AudioUtils.getAudioFromEl(e, !0),
         i = AudioUtils.getAudioExtra(t).recom,
         a = {
             act: "restore_recommendation",
-            q: i.q,
             hash: i.hash,
-            aid: t.fullId
+            audio_id: t.fullId
         };
     nav.objLoc.audio_id && (a.recommendation_type = "query"), nav.objLoc.album_id && (a.recommendation_type = "album"), ajax.post("al_audio.php", a), removeClass(e, "audio_row__deleted");
     var o = AudioUtils.getAddRestoreInfo(),
