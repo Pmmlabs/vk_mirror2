@@ -344,7 +344,7 @@ var stVersions = {
     'sf.css': 19584017420,
     'sal.css': 19892677489,
     'members.css': 20914777134,
-    'meminfo.css': 23418322097,
+    'meminfo.css': 23845774284,
     'groupinfo.css': 24006989199,
     'bugs.js': 3874995669,
     'bugs.css': 18961804458,
@@ -598,4 +598,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 1803;
+var _rnd = 7519;

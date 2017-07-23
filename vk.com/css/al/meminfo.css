@@ -439,31 +439,44 @@ table.history .cur_session {
 }
 
 .mi_deleted_content_wrap {
-    padding: 10px
+    padding: 10px;
+    margin-top: -5px
 }
 
-.mi_deleted_photo {
-    width: 300px;
-    margin-bottom: 10px
+.mi_deleted_content_wrap a {
+    text-decoration: none
 }
 
-.mi_deleted_photo .mi_deleted_photo_img {
-    width: 100%;
-    display: block
+.mi_deleted_content_wrap .mi_deleted_photo {
+    width: 250px;
+    height: 250px;
+    margin-top: 30px;
+    margin-right: 5px;
+    background: 50% 50% no-repeat;
+    background-size: cover;
+    display: inline-block;
+    vertical-align: top;
+    position: relative
 }
 
-.mi_deleted_photo:last-child {
+.mi_deleted_content_wrap .mi_deleted_photo .mi_deleted_photo_time {
+    position: absolute;
+    top: -20px;
+    color: #939393
+}
+
+.mi_deleted_content_wrap .mi_deleted_photo:last-child {
     margin-bottom: 0
 }
 
-.mi_deleted_video {
+.mi_deleted_content_wrap .mi_deleted_video {
     width: 150px;
     display: inline-block;
     margin: 5px;
     margin-bottom: 10px
 }
 
-.mi_deleted_video .mi_deleted_video_img {
+.mi_deleted_content_wrap .mi_deleted_video .mi_deleted_video_img {
     width: 100%;
     display: block
 }
