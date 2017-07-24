@@ -146,11 +146,11 @@ var stVersions = {
     'html5audio.js': 976782859,
     'html5video.js': 223664659,
     'html5video.css': 21333917907,
-    'audioplayer.js': 3288153770,
+    'audioplayer.js': 6636593958,
     'audioplayer.css': 20598191898,
     'audio_html5.js': 287741914,
     'audio.js': 2300137262,
-    'audio.css': 24928699879,
+    'audio.css': 24598989035,
     'gifts.css': 23899969791,
     'gifts.js': 338252255,
     'cc.js': 1644397126,
@@ -598,4 +598,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 7851;
+var _rnd = 8605;

@@ -2,8 +2,6 @@
     display: none
 }
 
-.audio_page_layout .audio_recoms_blocks .recoms_special_banner,
-.audio_page_layout .audio_section__recoms .recoms_special_banner,
 .audio_page_player .audio_control_btn .icon,
 .audio_page_player .audio_play,
 .audio_pl_edit_box .ape_check .ape_check_icon,
@@ -1905,62 +1903,6 @@
 .audio_page_layout .audio_section__recoms .audio_recoms_audios_block_col_right {
     width: 50%;
     float: left
-}
-
-.audio_page_layout .audio_recoms_blocks .recoms_special_banner_block,
-.audio_page_layout .audio_section__recoms .recoms_special_banner_block {
-    height: 162px
-}
-
-.audio_page_layout .audio_recoms_blocks .recoms_special_banner,
-.audio_page_layout .audio_section__recoms .recoms_special_banner {
-    background-color: #000;
-    height: 160px;
-    border-radius: 2px;
-    background-image: url(/images/LinkinPark.png)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .audio_page_layout .audio_recoms_blocks .recoms_special_banner,
-    .audio_page_layout .audio_section__recoms .recoms_special_banner {
-        background-image: url(/images/LinkinPark_2x.png);
-        background-size: 797px 160px
-    }
-}
-
-.audio_page_layout .audio_recoms_blocks .recoms_special_banner_title,
-.audio_page_layout .audio_section__recoms .recoms_special_banner_title {
-    color: #fff;
-    position: absolute;
-    top: 22px;
-    left: 33px;
-    font-size: 28px;
-    font-weight: 300
-}
-
-.audio_page_layout .audio_recoms_blocks .recoms_special_banner_title:hover,
-.audio_page_layout .audio_section__recoms .recoms_special_banner_title:hover {
-    text-decoration: none
-}
-
-.audio_page_layout .audio_recoms_blocks .recoms_special_banner_subtitle,
-.audio_page_layout .audio_section__recoms .recoms_special_banner_subtitle {
-    color: #fff;
-    position: absolute;
-    top: 60px;
-    left: 33px;
-    font-size: 22px;
-    font-weight: 200
-}
-
-.audio_page_layout .audio_recoms_blocks #recoms_special_banner_listen_all_btn,
-.audio_page_layout .audio_section__recoms #recoms_special_banner_listen_all_btn {
-    position: absolute;
-    top: 102px;
-    left: 33px;
-    font-weight: 200
 }
 
 .audio_atp_list {
