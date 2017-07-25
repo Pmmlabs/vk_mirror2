@@ -3635,6 +3635,15 @@ img.page_preview_video {
     width: 75px
 }
 
+img.page_preview_video {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto
+}
+
 .page_doc_photo {
     height: 98px;
     width: 130px;

@@ -1594,7 +1594,7 @@ extend(UiControl.prototype, {
     indexItem: function(t, e, i) {
         var s, o, n, l = "",
             h = {};
-        for (s = 0; s < this.options.indexkeys.length; s++) e[this.options.indexkeys[s]] && (l += " " + e[this.options.indexkeys[s]].replace(this.options.delimeter, " ").replace(/<[^>]*>/g, ""));
+        for (s = 0; s < this.options.indexkeys.length; s++) e[this.options.indexkeys[s]] && (l += " " + e[this.options.indexkeys[s]].replace(this.options.delimeter, " ").replace(/<[^>]*>/g, "").replace(/[��]/g, ""));
         for (l += (parseLatin(l) || "") + (parseCyr(l) || ""), l = trim(winToUtf(l).toLowerCase()).split(/\s+/),
             s = 0; s < l.length; s++)
             for (o = 1; o <= this.options.chars; o++) n = l[s].substr(0, o), h[n] || (h[n] = 1, void 0 === this.storage.index[n] && (this.storage.index[n] = []), i && i != t && this.storage.index[n].push(i), this.storage.index[n].push(t))
@@ -1625,7 +1625,7 @@ extend(UiControl.prototype, {
             var o, h = e.storage.data[s],
                 r = !1,
                 a = "";
-            for ("label" === h[3] && (l = s), o = 0; o < e.options.indexkeys.length; o++) h[e.options.indexkeys[o]] && (a += " " + h[e.options.indexkeys[o]].replace(e.options.delimeter, " ").replace(/<[^>]*>/, ""));
+            for ("label" === h[3] && (l = s), o = 0; o < e.options.indexkeys.length; o++) h[e.options.indexkeys[o]] && (a += " " + h[e.options.indexkeys[o]].replace(e.options.delimeter, " ").replace(/<[^>]*>/, "").replace(/[��]/g, ""));
             for (a += (parseLatin(a) || "") + (parseCyr(a) || ""), a = winToUtf(a).toLowerCase(), o = 0; o < t.length; o++)
                 if (-1 == a.indexOf(" " + t[o])) {
                     r = !0;
