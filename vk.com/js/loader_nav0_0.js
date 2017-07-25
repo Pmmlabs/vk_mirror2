@@ -473,7 +473,7 @@ var stVersions = {
     'landings/donors_day.css': 22549053509,
     'landing_donors_day.js': 1027075361,
     'vkme.css': 21469797510,
-    'ui_controls.js': 3374614072,
+    'ui_controls.js': 1680051856,
     'highcharts.js': 1982709850,
     'ui_controls.css': 20321143294,
     'selects.js': 2835310113,
@@ -598,4 +598,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 474;
+var _rnd = 6995;
