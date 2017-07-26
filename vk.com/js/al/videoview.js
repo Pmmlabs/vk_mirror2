@@ -100,13 +100,15 @@ var Videoview = {
             onOpenInPopup: function(e, i, o) {
                 Videoview.sendPlayerStats(8, 0);
                 var t = cur.videoInlinePlayer && cur.videoInlinePlayer.canExpand() ? cur.videoInlinePlayer : null,
-                    a = _videoLastInlined ? domData(_videoLastInlined[1], "playlist") : null;
+                    a = _videoLastInlined ? domData(domClosest("post", _videoLastInlined[1]), "post-id") : null,
+                    n = _videoLastInlined ? domData(_videoLastInlined[1], "playlist") : null;
                 showVideo(e, i, {
                     expandPlayer: t,
-                    playlistId: a,
+                    playlistId: n,
                     autoplay: 1,
                     addParams: {
-                        t: o
+                        t: o,
+                        post_id: a
                     }
                 })
             },
@@ -830,7 +832,8 @@ var Videoview = {
             if (window.mvcur && (i || mvcur.mvShown)) {
                 if (t) {
                     var a = cur.videoBackOnClick;
-                    if (cur.videoBackOnClick = !1, a) return history.back()
+                    if (cur.videoBackOnClick = !1,
+                        a) return history.back()
                 }
                 if (!i && mvcur.minimized) return void(mvcur.noLocChange || e === !0 || (2 === e ? nav.setLoc(hab.getLoc()) : layerQueue.count() || Videoview.backLocation()));
                 if (!mvcur.noHistory && !e && !t) {
@@ -1655,7 +1658,7 @@ var Videoview = {
                         mvcur.chatMode || (Videoview.appendNewComment.apply(Videoview, e.slice(2)), Videoview.updateCommentsHeader(), Videoview.updateReplyFormPos());
                         break;
                     case "new_reply_chat":
-                        mvcur.chatMode && VideoChat.receiveMessage.apply(VideoChat, e.slice(2)), e[12] && mvcur.player && mvcur.player.pushDonation("comment", {
+                        mvcur.chatMode && VideoChat.receiveMessage.apply(VideoChat, e.slice(2)), e[11] && mvcur.player && mvcur.player.pushDonation("comment", {
                             senderId: e[4],
                             senderName: e[5],
                             senderPhoto: e[6],
@@ -1685,7 +1688,7 @@ var Videoview = {
                             n = e[3],
                             s = +e[4],
                             v = +e[5],
-                            l = +e[6],
+                            l = e[6],
                             r = ge("wpe_bottom" + o(a, n));
                         if (r) {
                             var c = domByClass(r, "_like_wrap"),
@@ -1693,8 +1696,15 @@ var Videoview = {
                             val(m, s > 0 ? s : ""), toggleClass(c, "no_likes", !s), v == vk.id && toggleClass(c, "my_like", !l)
                         }
                         break;
+                    case "like":
+                        var a = e[2],
+                            s = e[3],
+                            v = e[4],
+                            l = e[5];
+                        mvcur.chatMode && !l && VideoChat.appendSticker("like");
+                        break;
                     case "video_view":
-                        Videoview.updateLiveViewersCount(e[3]);
+                        Videoview.updateLiveViewersCount(e[2]);
                         break;
                     case "gift":
                         mvcur.player && mvcur.player.pushDonation("gift", {
@@ -1823,7 +1833,7 @@ var Videoview = {
                 onFail: function() {
                     return !0
                 }
-            }), setTimeout(Videoview.checkOtherLives.pbind(e), 6e4))
+            }), setTimeout(Videoview.checkOtherLives.pbind(e), 6e4));
         },
         updateOtherLives: function(e, i) {
             if (mvcur.mvShown && mvcur.videoRaw == e) {
@@ -2743,7 +2753,7 @@ window.VideoChat = {
     SCROLL_EDGE_BELOW_THRESHOLD: 20,
     MAX_COMMENTS_NUM: 150,
     init: function(e, i) {
-        VideoChat.block && VideoChat.destroy(), e && (VideoChat.block = e, VideoChat.options = extend({}, i), VideoChat.messagesWrap = domByClass(e, "mv_chat_messages_wrap"), VideoChat.scroll = new uiScroll(domFC(VideoChat.messagesWrap), {
+        VideoChat.block && VideoChat.destroy(), e && (VideoChat.block = e, VideoChat.options = extend({}, i), VideoChat.messagesWrap = domByClass(e, "mv_chat_messages_wrap"), VideoChat.stickersWrap = domByClass(e, "mv_chat_stickers_wrap"), VideoChat.scroll = new uiScroll(domFC(VideoChat.messagesWrap), {
             global: !0,
             reversed: !0,
             preserveEdgeBelow: !0,
@@ -2810,34 +2820,26 @@ window.VideoChat = {
     onScrollUpdate: function(e) {
         e.data.scrollBottom < VideoChat.SCROLL_EDGE_BELOW_THRESHOLD && VideoChat.toggleScrollBottomBtn(!1)
     },
-    receiveMessage: function(e, i, o, t, a, n, d, r, s, v) {
-        if (s) {
-            VideoChat.stickersSenders = VideoChat.stickersSenders || {};
-            var l = VideoChat.stickersSenders[o + "_" + s] || 0;
-            if (VideoChat.stickersSenders[o + "_" + s] = vkNow(), vkNow() - l < 5e3) return;
-            r = getTemplate("video_chat_sticker", {
-                sticker_id: s,
-                pack_id: v,
-                img_size: isRetina() ? 256 : 128
-            })
-        }
-        var c = "";
-        (mvcur.adminLevel > 0 || e == vk.id || o == vk.id) && (c += getTemplate("video_chat_message_action_del", {
-            video_owner_id: e,
-            msg_id: i
-        }));
-        var m = o == e ? "mv_chat_admin_message" : "",
-            u = psr(getTemplate("video_chat_message", {
+    receiveMessage: function(e, i, o, t, a, n, d, r, s) {
+        if (intval(s)) VideoChat.appendSticker(s);
+        else {
+            var v = "";
+            (mvcur.adminLevel > 0 || e == vk.id || o == vk.id) && (v += getTemplate("video_chat_message_action_del", {
+                video_owner_id: e,
+                msg_id: i
+            }));
+            var l = psr(getTemplate("video_chat_message", {
                 author_href: n,
                 author_photo: psr(a),
                 author_name: t,
                 message: r,
                 video_owner_id: e,
                 msg_id: i,
-                actions: c,
-                classes: m
+                actions: v,
+                classes: o == e ? "mv_chat_admin_message" : ""
             }));
-        VideoChat.appendMessage(u, i)
+            VideoChat.appendMessage(l, i)
+        }
     },
     receiveDelete: function(e, i) {
         var o = ge("mv_chat_msg" + e + "_" + i);
@@ -2845,21 +2847,65 @@ window.VideoChat = {
             re("mv_chat_msg" + e + "_" + i)
         })
     },
+    appendSticker: function(e) {
+        function i(e) {
+            for (var i = "", o = "", t = 0, a = 0, n = 0, d = 0; 100 >= d; d += 20) d > 0 && (t += irand(-5, 5), a -= 30, n += irand(-5, 5)), o = "transform: translate(" + t + "px, " + a + "px) rotate(" + n + "deg);", o += "opacity:" + (0 == d || 100 == d ? 0 : 1) + ";", i += d + "% {" + o + "}";
+            var r = "mv_chat_sticker_animation_" + Date.now() + "_" + irand(0, 1e9);
+            i = "@keyframes " + r + " {" + i + "}", e.appendChild(ce("style", {
+                innerHTML: i
+            })), setStyle(e, {
+                animation: r + " " + irand(1500, 2500) + "ms linear"
+            })
+        }
+
+        function o(e) {
+            var i = e.currentTarget || e,
+                o = VideoChat._stickersBatch || (VideoChat._stickersBatch = document.createDocumentFragment());
+            o.appendChild(i), VideoChat._appendStickerTimeout || (VideoChat._appendStickerTimeout = setTimeout(function() {
+                VideoChat.appendStickersBatch(), VideoChat._appendStickerTimeout = null
+            }, 0))
+        }
+
+        function t(e) {
+            var i = e.currentTarget || e;
+            removeEvent(i), re(i)
+        }
+        if (!VideoChat.isHidden() && "animation" in bodyNode.style && "onanimationend" in window)
+            if ("like" == e) {
+                var a = ce("div", {
+                    className: "mv_chat_like"
+                });
+                i(a), addEvent(a, "animationend", t), o(a)
+            } else {
+                var a = ce("img", {
+                    className: "mv_chat_sticker",
+                    src: "/images/stickers/" + e + "/" + (isRetina() ? 128 : 64) + "b.png"
+                });
+                i(a), addEvent(a, "error animationend", t), addEvent(a, "load", o)
+            }
+    },
+    appendStickersBatch: function() {
+        var e = VideoChat._stickersBatch;
+        e && (VideoChat._stickersBatch = null, VideoChat.isHidden() || VideoChat.stickersWrap.appendChild(e))
+    },
+    removeStickers: function() {
+        if (VideoChat.stickersWrap)
+            for (var e; e = domFC(VideoChat.stickersWrap);) removeEvent(e), re(e)
+    },
     appendMessage: function(e, i) {
-        var o = "mv_chat_msg" + mvcur.mvData.oid + "_" + i,
-            t = VideoChat._messagesBatch;
-        if (t || (t = VideoChat._messagesBatch = document.createDocumentFragment()), !ge(o) && !t.getElementById(o)) {
-            t.appendChild(se(e));
-            for (var a = t.childNodes; t.childNodes.length > VideoChat.MAX_COMMENTS_NUM;) re(a[0]);
-            VideoChat.isHidden() || VideoChat._appendTimeout || (VideoChat._appendTimeout = setTimeout(function() {
-                VideoChat.appendMessagesBatch(), VideoChat._appendTimeout = null
+        var o = VideoChat._messagesBatch || (VideoChat._messagesBatch = document.createDocumentFragment()),
+            t = "#mv_chat_msg" + mvcur.mvData.oid + "_" + i;
+        if (!VideoChat.messagesWrap.querySelector(t) && !o.querySelector(t)) {
+            o.appendChild(se(e));
+            for (var a = o.childNodes; o.childNodes.length > VideoChat.MAX_COMMENTS_NUM;) re(a[0]);
+            VideoChat.isHidden() || VideoChat._appendMessageTimeout || (VideoChat._appendMessageTimeout = setTimeout(function() {
+                VideoChat.appendMessagesBatch(), VideoChat._appendMessageTimeout = null
             }, 0))
         }
     },
     appendMessagesBatch: function() {
-        if (VideoChat._messagesBatch) {
-            var e = VideoChat._messagesBatch;
-            VideoChat._messagesBatch = null;
+        var e = VideoChat._messagesBatch;
+        if (e && (VideoChat._messagesBatch = null, !VideoChat.isHidden())) {
             var i = geByClass("mv_chat_message_author_thumb_img", e, "img");
             each(i, function(e, i) {
                 attr(i, "src") || attr(i, "src", domData(i, "src"))
@@ -2937,7 +2983,7 @@ window.VideoChat = {
     },
     toggle: function() {
         var e = VideoChat.isHidden();
-        this.setHidden(!e), VideoChat.toggleStateClasses(), e && VideoChat.scroll && (VideoChat.appendMessagesBatch(), VideoChat.updateScroll())
+        this.setHidden(!e), VideoChat.toggleStateClasses(), e && VideoChat.scroll && (VideoChat.appendMessagesBatch(), VideoChat.updateScroll()), e || VideoChat.removeStickers()
     },
     toggleStateClasses: function() {
         var e = !!this.block,
@@ -2956,7 +3002,7 @@ window.VideoChat = {
                 var e = data(VideoChat.replyForm, "optId");
                 e && Emoji.destroy(e), removeData(VideoChat.replyForm), removeData(VideoChat.replyInput), VideoChat.replyForm = VideoChat.replyInput = null
             }
-            removeData(VideoChat.block), re(VideoChat.block), VideoChat.block = null, VideoChat.options = null, clearTimeout(VideoChat._appendTimeout), VideoChat._appendTimeout = null, VideoChat._messagesBatch = null, VideoChat.firstMsgIntro = null, VideoChat.messageSending = !1, VideoChat.stickersSenders = null, VideoChat.toggleStateClasses()
+            VideoChat.removeStickers(), removeData(VideoChat.block), re(VideoChat.block), VideoChat.block = null, VideoChat.messagesWrap = null, VideoChat.stickersWrap = null, VideoChat.options = null, clearTimeout(VideoChat._appendMessageTimeout), clearTimeout(VideoChat._appendStickerTimeout), VideoChat._appendMessageTimeout = null, VideoChat._appendStickerTimeout = null, VideoChat._messagesBatch = null, VideoChat.firstMsgIntro = null, VideoChat.messageSending = !1, VideoChat.toggleStateClasses()
         }
     }
 }, window.VideoDonate = {

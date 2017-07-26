@@ -3,6 +3,7 @@
 #mv_pl_tt .mv_tt_playlist_private_icon,
 .mv_add_button .mv_add_icon,
 .mv_chat_first_message_intro,
+.mv_chat_like:before,
 .mv_chat_message_del_icon,
 .mv_chat_new_messages_btn:before,
 .mv_chat_reply_emoji_icon,
@@ -3195,11 +3196,6 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     background: #595959
 }
 
-.mv_chat_message_sticker {
-    margin-top: 5px;
-    font-size: 0
-}
-
 .mv_chat_reply_form {
     position: absolute;
     z-index: 1;
@@ -3359,6 +3355,49 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     position: relative;
     left: 29px;
     top: 31.5px
+}
+
+.mv_chat_stickers_wrap {
+    position: absolute;
+    bottom: 60px;
+    right: 100%;
+    pointer-events: none
+}
+
+.mv_chat_sticker {
+    width: 64px;
+    right: 10px
+}
+
+.mv_chat_sticker,
+.mv_chat_like {
+    position: absolute;
+    bottom: 0;
+    opacity: 0
+}
+
+.mv_chat_like {
+    padding: 6px 4px 6px 5px;
+    border-radius: 50%;
+    background-color: #6590c7;
+    right: 20px
+}
+
+.mv_chat_like:before {
+    content: '';
+    display: block;
+    height: 10px;
+    width: 13px;
+    background: url(/images/icons/video_actions.png?8) no-repeat 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .mv_chat_like:before {
+        background-image: url(/images/icons/video_actions_2x.png?8);
+        background-size: 19px 199px
+    }
 }
 
 .ui_scroll_videoview_theme>.ui_scroll_bar_container>.ui_scroll_bar_outer>.ui_scroll_bar_inner {

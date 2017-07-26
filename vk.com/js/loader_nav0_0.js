@@ -191,8 +191,8 @@ var stVersions = {
     'video.css': 25696346577,
     'videocat.js': 1618923991,
     'videocat.css': 24057007309,
-    'videoview.js': 3323950202,
-    'videoview.css': 28087673713,
+    'videoview.js': 3138498182,
+    'videoview.css': 26912375751,
     'video_edit.js': 2135196486,
     'video_edit.css': 20913754979,
     'video_upload.js': 555062683,
@@ -598,4 +598,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 6995;
+var _rnd = 3992;
