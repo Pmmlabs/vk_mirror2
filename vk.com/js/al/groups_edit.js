@@ -683,7 +683,11 @@ var GroupsEdit = {
                 hash: cur.hash
             },
             t = ge("group_save");
-        extend(e, GroupsEdit.getFields("messages")), e.messages && (e.messages_widget_info = trim(val("messages_widget_info")), e.messages_widget_offline_info = trim(val("messages_widget_offline_info")), e.messages_widget_domains = val("messages_widget_domains"), e.messages_widget_enable = hasClass("messages_widget_enable", "on") ? 1 : 0), ajax.post("groupsedit.php", e, {
+        if (extend(e, GroupsEdit.getFields("messages")), e.messages && (e.messages_widget_info = trim(val("messages_widget_info")), e.messages_widget_offline_info = trim(val("messages_widget_offline_info")), e.messages_widget_domains = val("messages_widget_domains"), e.messages_widget_enable = hasClass("messages_widget_enable", "on") ? 1 : 0, extend(e, GroupsEdit.getFields("messages_chat_bot_group")), e.messages_chat_bot_group)) {
+            var o = geByClass1("_messages_enabled_bot_keyboard");
+            e.messages_enable_start = hasClass(o, "on") ? 1 : 0
+        }
+        ajax.post("groupsedit.php", e, {
             onDone: function() {
                 GroupsEdit.showMessage(getLang("groups_messages_saved_msg")), scrollToTop(), globalHistoryDestroy(nav.objLoc[0])
             },
@@ -1598,6 +1602,10 @@ var GroupsEdit = {
     },
     toggleMsgsBlock: function(e) {
         var t = ge("group_edit_messages_details");
+        e && !isVisible(t) ? slideDown(t, 300) : !e && isVisible(t) && slideUp(t, 300)
+    },
+    toggleBotBlock: function(e) {
+        var t = geByClass1("_gedit_bot_features");
         e && !isVisible(t) ? slideDown(t, 300) : !e && isVisible(t) && slideUp(t, 300)
     },
     toggleMarketBlock: function(e) {

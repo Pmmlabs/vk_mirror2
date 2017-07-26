@@ -227,7 +227,7 @@ var stVersions = {
     'groups.js': 2975645919,
     'groups_list.js': 3507753248,
     'groups_edit.css': 32013373140,
-    'groups_edit.js': 445399531,
+    'groups_edit.js': 1877324035,
     'profile.css': 27343610764,
     'profile.js': 642429379,
     'calendar.css': 23852630945,
@@ -598,4 +598,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 3992;
+var _rnd = 2343;
