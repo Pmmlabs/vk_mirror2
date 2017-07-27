@@ -216,7 +216,7 @@ var stVersions = {
     'module.css': 21399598088,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 24592612753,
-    'page.js': 2605530077,
+    'page.js': 3601490765,
     'page.css': 26789238964,
     'page_help.css': 25282282694,
     'public.css': 29557591515,
@@ -348,8 +348,8 @@ var stVersions = {
     'groupinfo.css': 24006989199,
     'bugs.js': 3874995669,
     'bugs.css': 18961804458,
-    'bugtracker.js': 90865504,
-    'bugtracker.css': 25715014278,
+    'bugtracker.js': 3545056503,
+    'bugtracker.css': 24978447750,
     'login.css': 21188992645,
     'login.js': 3551917100,
     'upload.js': 3319172650,
@@ -598,4 +598,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 2343;
+var _rnd = 7651;

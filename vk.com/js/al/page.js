@@ -3832,17 +3832,18 @@ var Wall = {
 
         if (fakeBox) {
             var postHash = ge('post_hash' + post),
-                canReplyAsGroup = intval(postHash && postHash.getAttribute('can_reply_as_group')) > 0 || post.match(/^(-?\d+)_(\d+)$/),
+                canReplyAsGroup = intval(postHash && postHash.getAttribute('can_reply_as_group')) > 0,
                 ownerPhoto = domData(fakeBox, 'owner-photo') || '',
                 ownerHref = domData(fakeBox, 'owner-href') || '',
-                ownerName = domData(fakeBox, 'owner-name') || '';
+                ownerName = domData(fakeBox, 'owner-name') || '',
+                tpl = canReplyAsGroup ? cur.wallTpl.reply_form_official_placeholder : (post.match(/^(-?\d+)_(\d+)$/) ? cur.wallTpl.reply_form_official : '');
 
             realBox = se(rs(cur.wallTpl.reply_form, {
-                add_buttons: canReplyAsGroup ? rs(cur.wallTpl.reply_form_official, {
+                add_buttons: rs(tpl, {
                     post_id: post,
                     oid: intval(post),
                     owner_photo: ownerPhoto
-                }) : '',
+                }),
                 post_id: post,
                 oid: intval(post),
                 owner_photo: ownerPhoto,
@@ -5596,6 +5597,7 @@ var Wall = {
             date_postfix: '',
             user_image: '',
             post_url: '/wall' + post_id.replace('_wall_reply', '_'),
+            can_reply_as_group: canReplyAsGroup ? 1 : '',
             owner_photo: canReplyAsGroup ? psr(thumbs[1] || thumbs[0]) : '',
             owner_href: canReplyAsGroup ? ev[5] : '',
             owner_name: canReplyAsGroup ? ownerName : '',
