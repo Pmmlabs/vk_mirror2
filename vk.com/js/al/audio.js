@@ -597,7 +597,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     }, function(e) {
         s ? s.loadAll(e) : e()
     }, function(t) {
-        cur.audioPage && cur.audioPage.getOwnerId() == e ? (r = cur.audioPage.getOwnerPlaylists(), t()) : AudioPage.loadPlaylists(e, void 0, !1, "attach" == i, function(e) {
+        cur.audioPage && cur.audioPage.getOwnerId() == e && (r = cur.audioPage.getOwnerPlaylists()), r ? t() : AudioPage.loadPlaylists(e, void 0, !1, "attach" == i, function(e) {
             r = e, t()
         })
     }, function() {
@@ -763,8 +763,8 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                 });
                 break;
             case "playlists":
-                hide(W.header), show(W.search), hide(W.addAudiosFromPlaylistsButton), hide(W.addAudiosButton),
-                    hide(W.globalResults), u(), g(a);
+                hide(W.header), show(W.search), hide(W.addAudiosFromPlaylistsButton),
+                    hide(W.addAudiosButton), hide(W.globalResults), u(), g(a);
                 break;
             case "playlist":
                 hide(W.header), show(W.search), hide(W.addAudiosFromPlaylistsButton), hide(W.addAudiosButton), u(), g(o, !0), "attach" == e && P(o), "edit" == e && v(o)
