@@ -146,7 +146,7 @@ var stVersions = {
     'html5audio.js': 976782859,
     'html5video.js': 223664659,
     'html5video.css': 21333917907,
-    'audioplayer.js': 3912837793,
+    'audioplayer.js': 3772863417,
     'audioplayer.css': 20598191898,
     'audio_html5.js': 287741914,
     'audio.js': 4085751147,
@@ -198,7 +198,7 @@ var stVersions = {
     'video_upload.js': 555062683,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 18580160294,
-    'videoplayer.js': 72104341379,
+    'videoplayer.js': 71967127788,
     'videoplayer.css': 40460339446,
     'translation.js': 2431784533,
     'translation.css': 19831449694,
@@ -598,4 +598,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 6325;
+var _rnd = 1753;
