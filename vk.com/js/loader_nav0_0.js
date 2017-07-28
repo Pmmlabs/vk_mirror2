@@ -216,7 +216,7 @@ var stVersions = {
     'module.css': 21399598088,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 24592612753,
-    'page.js': 3601490765,
+    'page.js': 562226751,
     'page.css': 26789238964,
     'page_help.css': 25282282694,
     'public.css': 29557591515,
@@ -251,7 +251,7 @@ var stVersions = {
     'imn.js': 113939998492,
     'im.js': 1322065004,
     'emoji.js': 1068454446,
-    'wide_dd.css': 18922908056,
+    'wide_dd.css': 21689516065,
     'wide_dd.js': 452755344,
     'writebox.css': 21768863752,
     'writebox.js': 4788293668,
@@ -529,9 +529,9 @@ var stVersions = {
     'stories.js': 675877973,
     'stories.css': 21139574963,
     'cmodules/internal/meminfo.js': 17609645333,
-    'cmodules/internal/nospam.js': 26876059970,
+    'cmodules/internal/nospam.js': 29136405437,
     'cmodules/internal/mvk_helpdesk.js': 7177336493,
-    'cmodules/internal/patterns_info.js': 20536205455,
+    'cmodules/internal/patterns_info.js': 19520808929,
     'shortener.js': 1002525642,
     'lang': 6830
 };
@@ -598,4 +598,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 1417;
+var _rnd = 6325;

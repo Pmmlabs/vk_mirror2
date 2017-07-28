@@ -6245,6 +6245,20 @@ var Wall = {
                         }
                         break;
                     }
+                case 'cover_updated':
+                    {
+                        var coverEl = geByClass1('_page_cover');
+                        if (coverEl && ev[2]) {
+                            var fakeEl = vkImage(),
+                                imageUrl = isRetina() ? ev[3] : ev[2];
+                            fakeEl.src = imageUrl;
+                            fakeEl.onload = function() {
+                                coverEl.style.backgroundImage = "url('" + imageUrl + "')";
+                                re(fakeEl);
+                            }
+                        }
+                        break;
+                    }
             }
             if (updH && (layer ? (updY < 0) : (curST + getSize('page_header_cont')[1] > updY))) {
                 curST += updH;
