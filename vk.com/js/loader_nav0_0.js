@@ -120,7 +120,7 @@ var navMap = {
     'landings$': ['landings.php', []],
     'ach($|/)': ['achievements.php', ['achievements.css', 'achievements.js']],
     'memedit($|/)': ['members.php', ['members.css', 'dyn-members.js']],
-    'meminfo($|/)': ['member_info.php', ['cmodules/internal/meminfo.js', 'meminfo.css']],
+    'meminfo($|/)': ['member_info.php', ['meminfo.css']],
     'groupinfo($|/)': ['group_info.php', ['groupinfo.css']],
     'cvkmobile($|/)': ['cvkmobile.php', ['internal/cvkmobile.css', 'internal/cvkmobile.js']]
 };
@@ -341,7 +341,7 @@ var stVersions = {
     'agents.css': 21727545525,
     'achievements.js': 897703126,
     'achievements.css': 19705543110,
-    'sf.css': 18871001575,
+    'sf.css': 22380163008,
     'sal.css': 19892677489,
     'members.css': 20914777134,
     'meminfo.css': 23845774284,
@@ -528,10 +528,11 @@ var stVersions = {
     'cmodules/web/speech_worker_opus.js': 3385759348,
     'stories.js': 675877973,
     'stories.css': 21139574963,
-    'cmodules/internal/meminfo.js': 17609645333,
-    'cmodules/internal/nospam.js': 29136405437,
-    'cmodules/internal/mvk_helpdesk.js': 7177336493,
-    'cmodules/internal/patterns_info.js': 19520808929,
+    'internal/nospam.css': 23002927223,
+    'internal/away_linksban.css': 21745552757,
+    'internal/patterns_info.css': 20520878925,
+    'internal/cvkmobile.css': 22076659243,
+    'internal/cvkmobile.js': 3693679928,
     'shortener.js': 1002525642,
     'lang': 6830
 };
@@ -598,4 +599,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 1753;
+var _rnd = 4433;
