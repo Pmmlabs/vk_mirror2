@@ -348,8 +348,8 @@ var stVersions = {
     'groupinfo.css': 24006989199,
     'bugs.js': 3874995669,
     'bugs.css': 18961804458,
-    'bugtracker.js': 3545056503,
-    'bugtracker.css': 24978447750,
+    'bugtracker.js': 2569383120,
+    'bugtracker.css': 26714831191,
     'login.css': 21188992645,
     'login.js': 3551917100,
     'upload.js': 3319172650,
@@ -599,4 +599,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 7212;
+var _rnd = 5316;
