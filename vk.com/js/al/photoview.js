@@ -563,7 +563,7 @@ var Photoview = {
                         d = cur.pvCommsLikes[p.id],
                         h = d[0],
                         g = d[1];
-                    c += '<div id="pv_like" class="pv_like _like_wrap ' + l + '" onmouseover="Photoview.likeOver(this)" onclick="Photoview.like();">         <i class="pv_like_icon _icon"></i>         <span class="pv_like_link _link">' + getLang("photos_i_like") + '</span>         <span class="pv_like_count _count">' + (g || "") + "</span>       </div>";
+                    c += '<div id="pv_like" class="pv_like _like_wrap ' + l + '" onmouseover="Photoview.likeOver(this)" onclick="Photoview.like();">         <i class="pv_like_icon _icon"></i>         <span class="pv_like_link _link">' + getLang("photos_i_like") + '</span>         <span class="pv_like_count _count">' + (g || "") + '</span>         <span class="blind_label" tabindex="0" role="link" onclick="Photoview.likesShowList(this)">' + getLang("photos_show_likes_list") + "</span>       </div>";
                     var m = 1 & p.actions.edit || p.desc;
                     if (m) var _ = (p.desc, "<div" + (1 & p.actions.edit ? ' class="pv_can_edit pv_desc_cont" onclick="Photoview.editInline(event)"' + (p.desc ? ' onmouseover=""' : "") : ' class="pv_cant_edit pv_desc_cont"') + ">" + (p.desc || '<span class="pv_desc_edit">' + getLang("photos_edit_desc") + "</span>") + "</div>");
                     c += '<div id="pv_desc" class="pv_right_block" style="' + (m ? "" : "display: none") + '">' + _ + "</div>", c += '<div id="pv_microdata">' + (p.microdata_html ? p.microdata_html : "") + (p.microdata_preview_button ? p.microdata_preview_button : "") + "</div>", p.microdata_html && shortCurrency();
@@ -620,18 +620,17 @@ var Photoview = {
                         offset: [0, -5]
                     }))
                 }
-                Photoview.updatePhotoDimensions(),
-                    extend(cur, {
-                        pvTagLink: ge("pv_tag_link"),
-                        pvLikeIcon: geByClass1("pv_like_icon"),
-                        pvLikeLink: geByClass1("pv_like_link"),
-                        pvDesc: ge("pv_desc"),
-                        pvTags: ge("pv_tags"),
-                        pvEditing: !1,
-                        pvProgress: ge("pv_progress")
-                    }), p.deleted || !p.author ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), isArray(p.deleted) && Photoview.toggleTopInfoPanel(p.deleted[0], p.deleted[1]), hide(cur.pvHHWrap), n || Photoview.toggleDeletedState(!0)) : p.taginfo ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), Photoview.toggleTopInfoPanel(p.taginfo, '        <button class="flat_button" id="pv_confirm_tag" onclick="Photoview.confirmTag(' + p.tagid + ', this)">' + getLang("photos_confirm_tag") + '</button>         <button class="flat_button secondary black" id="pv_delete_tag" onclick="Photoview.deleteTag(' + p.tagid + ', this)">' + getLang("photos_delete_tag") + "</button>       </div>"), show(cur.pvCommentsData), Photoview.hhCheck() && show(cur.pvHHWrap)) : (Photoview.toggleTopInfoPanel(!1), Photoview.toggleDeletedState(!1), Photoview.hhCheck() && show(cur.pvHHWrap)), (cur.pvOptions || {}).scroll && cur.pvNarrowScrollbar && cur.pvNarrowScrollbar.scrollTop(cur.pvOptions.scroll), cur.pvBodyScrollTop = bodyNode.scrollTop, setTimeout(function() {
-                        void 0 !== cur.pvBodyScrollTop && (bodyNode.scrollTop = cur.pvBodyScrollTop, delete cur.pvBodyScrollTop)
-                    }, 0), Photoview.updateVerticalPosition(), setTimeout(Photoview.afterShow, 2)
+                Photoview.updatePhotoDimensions(), extend(cur, {
+                    pvTagLink: ge("pv_tag_link"),
+                    pvLikeIcon: geByClass1("pv_like_icon"),
+                    pvLikeLink: geByClass1("pv_like_link"),
+                    pvDesc: ge("pv_desc"),
+                    pvTags: ge("pv_tags"),
+                    pvEditing: !1,
+                    pvProgress: ge("pv_progress")
+                }), p.deleted || !p.author ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), isArray(p.deleted) && Photoview.toggleTopInfoPanel(p.deleted[0], p.deleted[1]), hide(cur.pvHHWrap), n || Photoview.toggleDeletedState(!0)) : p.taginfo ? (cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), Photoview.toggleTopInfoPanel(p.taginfo, '        <button class="flat_button" id="pv_confirm_tag" onclick="Photoview.confirmTag(' + p.tagid + ', this)">' + getLang("photos_confirm_tag") + '</button>         <button class="flat_button secondary black" id="pv_delete_tag" onclick="Photoview.deleteTag(' + p.tagid + ', this)">' + getLang("photos_delete_tag") + "</button>       </div>"), show(cur.pvCommentsData), Photoview.hhCheck() && show(cur.pvHHWrap)) : (Photoview.toggleTopInfoPanel(!1), Photoview.toggleDeletedState(!1), Photoview.hhCheck() && show(cur.pvHHWrap)), (cur.pvOptions || {}).scroll && cur.pvNarrowScrollbar && cur.pvNarrowScrollbar.scrollTop(cur.pvOptions.scroll), cur.pvBodyScrollTop = bodyNode.scrollTop, setTimeout(function() {
+                    void 0 !== cur.pvBodyScrollTop && (bodyNode.scrollTop = cur.pvBodyScrollTop, delete cur.pvBodyScrollTop)
+                }, 0), Photoview.updateVerticalPosition(), setTimeout(Photoview.afterShow, 2)
             }
         },
         toggleTopInfoPanel: function(o, e) {
@@ -1496,7 +1495,7 @@ var Photoview = {
                     angle: o.angle,
                     rot1: o.rot1,
                     rot3: o.rot3
-                }), t == cur.pvListId && r == cur.pvIndex && Photoview.show(t, r);
+                }), t == cur.pvListId && r == cur.pvIndex && Photoview.show(t, r)
             }
         },
         likeUpdate: function(o, e, t) {
@@ -1593,6 +1592,19 @@ var Photoview = {
             t.liked || setTimeout(animate.pbind(cur.pvLikeIcon, {
                 opacity: .4
             }, 200, !1), 1)
+        },
+        likesShowList: function(o) {
+            var e = domPN(o),
+                t = domByClass(e, "_icon"),
+                r = cur.pvCurPhoto;
+            if (t && !cur.viewAsBox && r) {
+                var a = "photo" + r.id;
+                showWiki({
+                    w: "likes/" + clean(a)
+                }, !1, !1, {
+                    queue: 1
+                })
+            }
         },
         tagOver: function(o) {
             animate(o, {

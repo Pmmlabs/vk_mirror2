@@ -100,13 +100,13 @@ var Tickets = {
         if (r)
             for (var n in r) {
                 var c = r[n],
-                    d = c[0],
-                    l = c[1];
-                ("photo" == d || "doc" == d) && s.push(d + "," + l)
+                    l = c[0],
+                    d = c[1];
+                ("photo" == l || "doc" == l) && s.push(l + "," + d)
             }
         i || cur.descriptionNotNeeded || s.length || (notaBene("tickets_text", !1, !o), o = !1);
         var _ = Tickets.getBrowser(),
-            u = {
+            p = {
                 act: "save",
                 title: a,
                 text: i,
@@ -115,13 +115,13 @@ var Tickets = {
                 browser: _
             };
         if (cur.samples && cur.samples.audio || ge("audio_checking")) {
-            u.audio_html = ge("audio_checking").innerHTML;
-            var p = (cur.samples || {}).audio || "";
-            window.ag && window.sh && (u.audio_html = u.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (u.audio_html = u.audio_html.replace(/_info/g, "dwnl_info")), u.audio_orig = ce("div", {
-                innerHTML: p.replace(/z9q2m/g, "audio")
+            p.audio_html = ge("audio_checking").innerHTML;
+            var u = (cur.samples || {}).audio || "";
+            window.ag && window.sh && (p.audio_html = p.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (p.audio_html = p.audio_html.replace(/_info/g, "dwnl_info")), p.audio_orig = ce("div", {
+                innerHTML: u.replace(/z9q2m/g, "audio")
             }).innerHTML
         }
-        nav.objLoc.mid && (u.mid = nav.objLoc.mid), nav.objLoc.gid && (u.gid = nav.objLoc.gid), nav.objLoc.app_id && (u.app_id = nav.objLoc.app_id), nav.objLoc.union_id && (u.union_id = nav.objLoc.union_id), "new" == nav.objLoc.act && (u.section = 0), "new_ads" == nav.objLoc.act && (u.section = 1), "new_pay" == nav.objLoc.act && (u.section = 16), "new_name" == nav.objLoc.act && (u.section = 20), "new_api" == nav.objLoc.act && (u.section = 12), ("new_mobile" == nav.objLoc.act || "new_snapster" == nav.objLoc.act) && (u.section = 24), "new_app" == nav.objLoc.act && (u.section = 9), cur.fromFaqId && (u.faq = cur.fromFaqId), cur.from ? u.from = cur.from : nav.objLoc.from && (u.from = nav.objLoc.from);
+        nav.objLoc.mid && (p.mid = nav.objLoc.mid), nav.objLoc.gid && (p.gid = nav.objLoc.gid), nav.objLoc.app_id && (p.app_id = nav.objLoc.app_id), nav.objLoc.union_id && (p.union_id = nav.objLoc.union_id), "new" == nav.objLoc.act && (p.section = 0), "new_ads" == nav.objLoc.act && (p.section = 1), "new_pay" == nav.objLoc.act && (p.section = 16), "new_name" == nav.objLoc.act && (p.section = 20), "new_api" == nav.objLoc.act && (p.section = 12), ("new_mobile" == nav.objLoc.act || "new_snapster" == nav.objLoc.act) && (p.section = 24), "new_app" == nav.objLoc.act && (p.section = 9), cur.fromFaqId && (p.faq = cur.fromFaqId), cur.from ? p.from = cur.from : nav.objLoc.from && (p.from = nav.objLoc.from);
         for (var n in cur.extraFields) {
             var h = cur.extraFields[n],
                 g = ge("tickets_new_extra_field_" + n + "_inp"),
@@ -130,15 +130,15 @@ var Tickets = {
             if (3 != h.required || !cur.verifiedPage) {
                 g ? f = g.value.trim() : (m = ge("tickets_new_extra_field_" + n), f = data(m, "value"));
                 var k = 1 == h.required || (2 == h.required || 3 == h.required) && !cur.verifiedPage;
-                (!f && k || 4 == h.type && k && -1 == f.indexOf("vk.com")) && (notaBene(m, !1, !o), o = !1), u["extra_field_" + n] = f
+                (!f && k || 4 == h.type && k && -1 == f.indexOf("vk.com")) && (notaBene(m, !1, !o), o = !1), p["extra_field_" + n] = f
             }
         }
-        return o ? (nav.objLoc.mobile && (u.mobile = 1), nav.objLoc.bhash && (u.bhash = nav.objLoc.bhash), void Tickets.trySaveTicket(function() {
-            if (0 == u.section) {
+        return o ? (nav.objLoc.mobile && (p.mobile = 1), nav.objLoc.bhash && (p.bhash = nav.objLoc.bhash), void Tickets.trySaveTicket(function() {
+            if (0 == p.section) {
                 var e = ls.get("support_outdated_left");
-                e && e.ts && Math.floor((new Date).getTime() / 1e3) - e.ts < 3600 && (u.outdated_ticket_id = e.id), ls.remove("support_outdated_left")
+                e && e.ts && Math.floor((new Date).getTime() / 1e3) - e.ts < 3600 && (p.outdated_ticket_id = e.id), ls.remove("support_outdated_left")
             }
-            ajax.post(cur.objLoc, u, {
+            ajax.post(cur.objLoc, p, {
                 onDone: function(e) {
                     showDoneBox(e)
                 },
@@ -162,23 +162,23 @@ var Tickets = {
             }
         if (!a && !i.length) return void notaBene("tickets_text");
         if (Tickets.checkPayForm()) {
-            var d = Tickets.getBrowser(),
-                l = extend({
+            var l = Tickets.getBrowser(),
+                d = extend({
                     act: "save",
                     title: t,
                     text: a,
                     hash: e,
                     attachs: i,
-                    browser: d
+                    browser: l
                 }, Tickets.getPayFields());
-            if (nav.objLoc.gid && (l.gid = nav.objLoc.gid), nav.objLoc.app_id && (l.app_id = nav.objLoc.app_id), nav.objLoc.union_id && (l.union_id = nav.objLoc.union_id), cur.samples && cur.samples.audio || ge("audio_checking")) {
-                l.audio_html = ge("audio_checking").innerHTML;
+            if (nav.objLoc.gid && (d.gid = nav.objLoc.gid), nav.objLoc.app_id && (d.app_id = nav.objLoc.app_id), nav.objLoc.union_id && (d.union_id = nav.objLoc.union_id), cur.samples && cur.samples.audio || ge("audio_checking")) {
+                d.audio_html = ge("audio_checking").innerHTML;
                 var _ = (cur.samples || {}).audio || "";
-                window.ag && window.sh && (l.audio_html = l.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (l.audio_html = l.audio_html.replace(/_info/g, "dwnl_info")), l.audio_orig = ce("div", {
+                window.ag && window.sh && (d.audio_html = d.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (d.audio_html = d.audio_html.replace(/_info/g, "dwnl_info")), d.audio_orig = ce("div", {
                     innerHTML: _.replace(/z9q2m/g, "audio")
                 }).innerHTML
             }
-            "new_ads" == nav.objLoc.act && (l.section = 1), "new_pay" == nav.objLoc.act && (l.section = 16), ajax.post("support", l, {
+            "new_ads" == nav.objLoc.act && (d.section = 1), "new_pay" == nav.objLoc.act && (d.section = 16), ajax.post("support", d, {
                 onDone: function(e) {
                     showDoneBox(e)
                 },
@@ -208,9 +208,9 @@ var Tickets = {
                 }, Tickets.getDMCAFields());
             if (cur.samples && cur.samples.audio || ge("audio_checking")) {
                 c.audio_html = ge("audio_checking").innerHTML;
-                var d = (cur.samples || {}).audio || "";
+                var l = (cur.samples || {}).audio || "";
                 window.ag && window.sh && (c.audio_html = c.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (c.audio_html = c.audio_html.replace(/_info/g, "dwnl_info")), c.audio_orig = ce("div", {
-                    innerHTML: d.replace(/z9q2m/g, "audio")
+                    innerHTML: l.replace(/z9q2m/g, "audio")
                 }).innerHTML
             }
             ajax.post("/support", c, {
@@ -293,22 +293,14 @@ var Tickets = {
                     if (!floatval(val("tickets_pay_sum"))) return notaBene("tickets_pay_sum"), !1;
                     if (!trim(val("tickets_organisation"))) return notaBene("tickets_organisation"), !1
                 }
-                var e = [],
-                    t = cur.ticketsNewMedia.chosenMedias;
-                if (t)
-                    for (var a in t) {
-                        var i = t[a],
-                            o = i[0],
-                            s = i[1];
-                        ("photo" == o || "doc" == o) && e.push(o + "," + s)
-                    }
+                var e = Tickets.getReplyAttachs();
                 if (!e.length) {
-                    var r = 1 == cur.payType ? getLang("support_no_bill_photo") : getLang("support_no_payment_scan");
+                    var t = 1 == cur.payType ? getLang("support_no_bill_photo") : getLang("support_no_payment_scan");
                     return setTimeout(showFastBox({
                         title: getLang("global_error"),
                         dark: !0,
                         bodyStyle: "padding: 20px; line-height: 160%;"
-                    }, r).hide, 2e3), !1
+                    }, t).hide, 2e3), !1
                 }
                 break;
             case 2:
@@ -349,115 +341,87 @@ var Tickets = {
         }
         return e
     },
-    addTicketReply: function(hash, isCtrlEnter) {
-        if (ge("tickets_reply") && ge("tickets_reply").disabled) return !1;
-        var text = trim(val("tickets_reply")),
-            attachs = [],
-            chosen = cur.ticketsNewMedia.chosenMedias;
-        if (chosen)
-            for (var i in chosen) {
-                var att = chosen[i],
-                    type = att[0],
-                    value = att[1];
-                ("photo" == type || "doc" == type) && attachs.push(type + "," + value)
-            }
-        if (!text && !attachs.length) return isCtrlEnter && Helpdesk && Helpdesk.closeTicket(hash), elfocus("tickets_reply");
-        if (cur.sendingAnswer) return !1;
-        cur.sendingAnswer = !0;
-        var query = {
-            act: "add_comment",
-            ticket_id: cur.ticket_id,
-            text: text,
-            hash: hash,
-            attachs: attachs,
-            hidden: isChecked("tickets_hidden"),
-            copy_to_card: isChecked("copy_reply_to_card")
-        };
-        if (cur.checkedTickets) {
-            var tickets = [];
-            each(cur.checkedTickets, function(e, t) {
-                tickets.push(e)
-            }), query.similar = tickets.join(",")
-        }
-        var _ua = !1,
-            _uafull;
-        for (var i in window.browser)
-            if (window.browser[i] === !0) {
-                _ua = i;
+    getReplyQueryData: function(e, t, a) {
+        var i, o = {
+                act: "add_comment",
+                ticket_id: cur.ticket_id,
+                text: e,
+                hash: t,
+                attachs: a,
+                hidden: isChecked("tickets_hidden"),
+                copy_to_card: isChecked("copy_reply_to_card")
+            },
+            s = !1;
+        for (var r in window.browser)
+            if (window.browser[r] === !0) {
+                s = r;
                 break
             }
-        _uafull = _ua ? _ua + " " + window.browser.version : navigator.userAgent.toLowerCase();
-        var f = browser.flashfull;
-        if (_uafull += "|" + f.major + "." + f.minor + "." + f.rev, query.browser = _uafull, cur.samples && cur.samples.audio || ge("audio_checking")) {
-            query.audio_html = ge("audio_checking").innerHTML;
-            var orig = (cur.samples || {}).audio || "";
-            window.ag && window.sh && (query.audio_html = query.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (query.audio_html = query.audio_html.replace(/_info/g, "dwnl_info")), query.audio_orig = ce("div", {
-                innerHTML: orig.replace(/z9q2m/g, "audio")
+        i = s ? s + " " + window.browser.version : navigator.userAgent.toLowerCase();
+        var n = browser.flashfull;
+        if (i += "|" + n.major + "." + n.minor + "." + n.rev, o.browser = i, cur.samples && cur.samples.audio || ge("audio_checking")) {
+            o.audio_html = ge("audio_checking").innerHTML;
+            var c = (cur.samples || {}).audio || "";
+            window.ag && window.sh && (o.audio_html = o.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (o.audio_html = o.audio_html.replace(/_info/g, "dwnl_info")), o.audio_orig = ce("div", {
+                innerHTML: c.replace(/z9q2m/g, "audio")
             }).innerHTML
         }
-        var draftKey = "helpdesk_draft" + vk.id + "_" + cur.ticket_id;
-        ls.get(draftKey) && (ls.set(draftKey, !1), ls.remove(draftKey)), ajax.post(cur.objLoc, query, {
+        if (cur.getReplyDataFields) {
+            var l = cur.getReplyDataFields();
+            if (l === !1) return !1;
+            extend(o, l)
+        }
+        return o
+    },
+    removeReplyDraft: function() {
+        var e = "helpdesk_draft" + vk.id + "_" + cur.ticket_id;
+        ls.get(e) && (ls.set(e, !1), ls.remove(e))
+    },
+    getReplyAttachs: function() {
+        var e = [],
+            t = cur.ticketsNewMedia.chosenMedias;
+        return t && each(t, function(t, a) {
+            var i = a[0],
+                o = a[1];
+            ("photo" == i || "doc" == i) && e.push(i + "," + o)
+        }), e
+    },
+    addTicketReply: function(e, t) {
+        if (ge("tickets_reply") && ge("tickets_reply").disabled) return !1;
+        var a = trim(val("tickets_reply")),
+            i = Tickets.getReplyAttachs();
+        if (!a && !i.length) return t && Helpdesk && Helpdesk.closeTicket(e), elfocus("tickets_reply");
+        if (cur.sendingAnswer) return !1;
+        cur.sendingAnswer = !0;
+        var o = Tickets.getReplyQueryData(a, e, i);
+        if (o === !1) return !1;
+        if (cur.checkedTickets) {
+            var s = [];
+            each(cur.checkedTickets, function(e, t) {
+                s.push(e)
+            }), o.similar = s.join(",")
+        }
+        Tickets.doSendReply(o), delete cur.photoUploadInd
+    },
+    addPayData: function(e) {
+        if (Tickets.checkPayForm() && !cur.sendingAnswer) {
+            var t = trim(val("tickets_reply")),
+                a = Tickets.getReplyAttachs(),
+                i = Tickets.getReplyQueryData(t, e, a);
+            extend(i, Tickets.getPayFields()), Tickets.doSendReply(i)
+        }
+    },
+    doSendReply: function(query) {
+        Tickets.removeReplyDraft(), cur.sendingAnswer = !0, ajax.post(cur.objLoc, query, {
             onDone: function(content, script) {
-                cur.sendingAnswer = !1, content && (ge("tickets_content").innerHTML = content), script && eval(script)
+                cur.sendingAnswer = !1, content && val("tickets_content", content), script && eval(script)
             },
             onFail: function() {
                 cur.sendingAnswer = !1
             },
-            showProgress: lockButton.pbind(ge("tickets_send")),
-            hideProgress: unlockButton.pbind(ge("tickets_send"))
-        }), delete cur.photoUploadInd
-    },
-    addPayData: function(hash) {
-        if (Tickets.checkPayForm() && !cur.sendingAnswer) {
-            cur.sendingAnswer = !0;
-            var text = trim(val("tickets_reply")),
-                attachs = [],
-                chosen = cur.ticketsNewMedia.chosenMedias;
-            if (chosen)
-                for (var i in chosen) {
-                    var att = chosen[i],
-                        type = att[0],
-                        value = att[1];
-                    ("photo" == type || "doc" == type) && attachs.push(type + "," + value)
-                }
-            var query = {
-                    act: "add_comment",
-                    ticket_id: cur.ticket_id,
-                    text: text,
-                    hash: hash,
-                    attachs: attachs,
-                    hidden: isChecked("tickets_hidden"),
-                    copy_to_card: isChecked("copy_reply_to_card")
-                },
-                _ua = !1,
-                _uafull;
-            for (var i in window.browser)
-                if (window.browser[i] === !0) {
-                    _ua = i;
-                    break
-                }
-            _uafull = _ua ? _ua + " " + window.browser.version : navigator.userAgent.toLowerCase();
-            var f = browser.flashfull;
-            if (_uafull += "|" + f.major + "." + f.minor + "." + f.rev, query.browser = _uafull, cur.samples && cur.samples.audio || ge("audio_checking")) {
-                query.audio_html = ge("audio_checking").innerHTML;
-                var orig = (cur.samples || {}).audio || "";
-                window.ag && window.sh && (query.audio_html = query.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (query.audio_html = query.audio_html.replace(/_info/g, "dwnl_info")), query.audio_orig = ce("div", {
-                    innerHTML: orig.replace(/z9q2m/g, "audio")
-                }).innerHTML
-            }
-            extend(query, Tickets.getPayFields());
-            var draftKey = "helpdesk_draft" + vk.id + "_" + cur.ticket_id;
-            ls.get(draftKey) && (ls.set(draftKey, !1), ls.remove(draftKey)), ajax.post(cur.objLoc, query, {
-                onDone: function(content, script) {
-                    cur.sendingAnswer = !1, content && (ge("tickets_content").innerHTML = content), script && eval(script)
-                },
-                onFail: function() {
-                    cur.sendingAnswer = !1
-                },
-                showProgress: lockButton.pbind(ge("tickets_send")),
-                hideProgress: unlockButton.pbind(ge("tickets_send"))
-            })
-        }
+            showProgress: lockButton.pbind("tickets_send"),
+            hideProgress: unlockButton.pbind("tickets_send")
+        })
     },
     checkTextLength: function(e, t, a, i) {
         var o = trim(e.value).replace(/\n\n\n+/g, "\n\n");
@@ -519,8 +483,8 @@ var Tickets = {
             for (var r in s) {
                 var n = s[r],
                     c = n[0],
-                    d = n[1];
-                ("photo" == c || "doc" == c) && o.push(c + "," + d)
+                    l = n[1];
+                ("photo" == c || "doc" == c) && o.push(c + "," + l)
             }
         return i || o.length ? void ajax.post(cur.objLoc, {
             act: "edit_comment",
@@ -533,13 +497,13 @@ var Tickets = {
             onDone: function(t, a) {
                 var i = geByClass1("tickets_reply_text", ge("reply" + e)),
                     o = geByClass1("tickets_reply_actions", ge("reply" + e));
-                if (i.innerHTML = t, show(geByClass1("tickets_reply_text", ge("reply" + e))), show(o), show("attachs" + e), 0 !== a)
+                if (val(i, t), show(geByClass1("tickets_reply_text", ge("reply" + e))), show(o), show("attachs" + e), 0 !== a)
                     if (a) {
                         var s = ge("attachs" + e);
                         s || (s = o.parentNode.insertBefore(ce("div", {
                             id: "attachs" + e,
                             className: "clear_fix tr_attachs"
-                        }), o)), s.innerHTML = a
+                        }), o)), val(s, a)
                     } else re("attachs" + e);
                 re("tickets_reply_edit" + e), delete cur.editing
             },
@@ -559,7 +523,7 @@ var Tickets = {
         }, {
             onDone: function(t) {
                 var a = ge("reply" + e).firstChild;
-                a && (cur.deletedComments || (cur.deletedComments = []), cur.deletedComments[e] = a.innerHTML, a.innerHTML = t)
+                a && (cur.deletedComments || (cur.deletedComments = []), cur.deletedComments[e] = val(a), val(a, t))
             },
             onFail: function(t) {
                 return hide("reply_actions" + e), Tickets.showError(t)
@@ -575,7 +539,7 @@ var Tickets = {
         }, {
             onDone: function(t) {
                 var a = ge("reply" + e).firstChild;
-                a && (a.innerHTML = cur.deletedComments[e])
+                a && val(a, cur.deletedComments[e])
             },
             onFail: function(t) {
                 return hide("reply_actions" + e), Tickets.showError(t)
@@ -931,12 +895,12 @@ var Tickets = {
                         }
                     } else if ("flash" == Upload.types[i]) {
                         if (!ge("form" + i + "_progress")) {
-                            for (var r = Upload.obj[i], n = getSize(r)[1], c = n / 2 + 10, d = r.firstChild; d;) 1 == d.nodeType && (d.id == "uploader" + i && browser.msie ? setStyle(d, {
+                            for (var r = Upload.obj[i], n = getSize(r)[1], c = n / 2 + 10, l = r.firstChild; l;) 1 == l.nodeType && (l.id == "uploader" + i && browser.msie ? setStyle(l, {
                                 position: "relative",
                                 left: "-5000px"
-                            }) : setStyle(d, {
+                            }) : setStyle(l, {
                                 visibility: "hidden"
-                            })), d = d.nextSibling;
+                            })), l = l.nextSibling;
                             r.appendChild(ce("div", {
                                 innerHTML: '<div class="tickets_progress_wrap">            <div id="form' + i + '_progress" class="tickets_progress" style="width: 0%;"></div>          </div></div>'
                             }, {
@@ -944,9 +908,9 @@ var Tickets = {
                                 marginTop: -c + "px"
                             }))
                         }
-                        var l = intval(t / a * 100);
+                        var d = intval(t / a * 100);
                         setStyle(ge("form" + i + "_progress"), {
-                            width: l + "%"
+                            width: d + "%"
                         })
                     }
                 },
@@ -1023,12 +987,12 @@ var Tickets = {
                         }
                     } else if ("flash" == Upload.types[i]) {
                         if (!ge("form" + i + "_progress")) {
-                            for (var r = Upload.obj[i], n = getSize(r)[1], c = n / 2 + 10, d = r.firstChild; d;) 1 == d.nodeType && (d.id == "uploader" + i && browser.msie ? setStyle(d, {
+                            for (var r = Upload.obj[i], n = getSize(r)[1], c = n / 2 + 10, l = r.firstChild; l;) 1 == l.nodeType && (l.id == "uploader" + i && browser.msie ? setStyle(l, {
                                 position: "relative",
                                 left: "-5000px"
-                            }) : setStyle(d, {
+                            }) : setStyle(l, {
                                 visibility: "hidden"
-                            })), d = d.nextSibling;
+                            })), l = l.nextSibling;
                             r.appendChild(ce("div", {
                                 innerHTML: '<div class="tickets_progress_wrap">            <div id="form' + i + '_progress" class="tickets_progress" style="width: 0%;"></div>          </div></div>'
                             }, {
@@ -1036,9 +1000,9 @@ var Tickets = {
                                 marginTop: -c + "px"
                             }))
                         }
-                        var l = intval(t / a * 100);
+                        var d = intval(t / a * 100);
                         setStyle(ge("form" + i + "_progress"), {
-                            width: l + "%"
+                            width: d + "%"
                         })
                     }
                 },
@@ -1069,31 +1033,31 @@ var Tickets = {
             r = (a.fileName || a.name || "").replace(/[&<>"']/g, ""),
             n = r ? t + "_" + r : t,
             c = r ? r.length > 33 ? r.substr(0, 30) + "..." : r : "",
-            d = ge("upload" + n + "_progress");
-        if (d)
-            if (show(d), d.full) {
-                var l = a(d, "tween"),
-                    _ = intval(d.full * o);
-                l && l.isTweening ? l.to.width = _ : animate(d, {
+            l = ge("upload" + n + "_progress");
+        if (l)
+            if (show(l), l.full) {
+                var d = a(l, "tween"),
+                    _ = intval(l.full * o);
+                d && d.isTweening ? d.to.width = _ : animate(l, {
                     width: _ + "px"
                 }, 500)
-            } else setStyle(d, {
+            } else setStyle(l, {
                 width: s + "%"
             });
         else {
             hide("tickets_new_extra_field__upload_btn_" + e, "tickets_new_extra_field__example_" + e);
-            var u = ge("tickets_new_extra_field__uploaded_" + e);
-            addClass(u, "tickets_new_extra_field__uploaded_p"), cur.attachMediaIndexes || (cur.attachMediaIndexes = {}), cur.attachMediaIndexes[n] = i;
-            var p = '<div><div class="page_attach_progress_wrap">  <div id="upload' + n + '_progress" class="page_attach_progress"></div></div></div></div>' + (c ? '<div class="attach_label">' + c + "</div>" : "") + '<div class="progress_x" onmouseover="showTooltip(this, {text: \'' + getLang("dont_attach") + '\', shift: [6, 3, 3]})" onclick="Upload.terminateUpload(' + t + ", '" + (r || t) + "');\"></div>";
-            u.appendChild(ce("div", {
+            var p = ge("tickets_new_extra_field__uploaded_" + e);
+            addClass(p, "tickets_new_extra_field__uploaded_p"), cur.attachMediaIndexes || (cur.attachMediaIndexes = {}), cur.attachMediaIndexes[n] = i;
+            var u = '<div><div class="page_attach_progress_wrap">  <div id="upload' + n + '_progress" class="page_attach_progress"></div></div></div></div>' + (c ? '<div class="attach_label">' + c + "</div>" : "") + '<div class="progress_x" onmouseover="showTooltip(this, {text: \'' + getLang("dont_attach") + '\', shift: [6, 3, 3]})" onclick="Upload.terminateUpload(' + t + ", '" + (r || t) + "');\"></div>";
+            p.appendChild(ce("div", {
                 id: "upload" + n + "_progress_wrap",
-                innerHTML: p,
+                innerHTML: u,
                 className: "clear_fix upload_" + t + "_progress"
-            })), show(u), d = ge("upload" + n + "_progress"), d.full = !1, s ? setStyle(d, {
-                width: d.full ? intval(d.full * o) + "px" : s + "%"
-            }) : (setStyle(d, {
+            })), show(p), l = ge("upload" + n + "_progress"), l.full = !1, s ? setStyle(l, {
+                width: l.full ? intval(l.full * o) + "px" : s + "%"
+            }) : (setStyle(l, {
                 width: "1px"
-            }), hide(d))
+            }), hide(l))
         }
     },
     initExtraFieldUpload: function(el, params) {
@@ -1136,12 +1100,12 @@ var Tickets = {
                         e.fileName && (s.fileName = e.fileName.replace(/[&<>"']/g, "")), Tickets.showExtraFieldProgress(fieldIndex, i, s, o)
                     } else if ("flash" == Upload.types[i]) {
                         if (!ge("form" + i + "_progress")) {
-                            for (var r = Upload.obj[i], n = getSize(r)[1], c = n / 2 + 10, d = r.firstChild; d;) 1 == d.nodeType && (d.id == "uploader" + i && browser.msie ? setStyle(d, {
+                            for (var r = Upload.obj[i], n = getSize(r)[1], c = n / 2 + 10, l = r.firstChild; l;) 1 == l.nodeType && (l.id == "uploader" + i && browser.msie ? setStyle(l, {
                                 position: "relative",
                                 left: "-5000px"
-                            }) : setStyle(d, {
+                            }) : setStyle(l, {
                                 visibility: "hidden"
-                            })), d = d.nextSibling;
+                            })), l = l.nextSibling;
                             r.appendChild(ce("div", {
                                 innerHTML: '<div class="tickets_progress_wrap">          <div id="form' + i + '_progress" class="tickets_progress" style="width: 0%;"></div>        </div></div>'
                             }, {
@@ -1149,9 +1113,9 @@ var Tickets = {
                                 marginTop: -c + "px"
                             }))
                         }
-                        var l = intval(t / a * 100);
+                        var d = intval(t / a * 100);
                         setStyle(ge("form" + i + "_progress"), {
-                            width: l + "%"
+                            width: d + "%"
                         })
                     }
                 },

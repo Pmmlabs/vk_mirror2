@@ -858,6 +858,16 @@ var Market = {
                 })
             }
         },
+        likesShowList: function(e) {
+            var t = domPN(e),
+                r = domByClass(t, "_icon"),
+                o = cur.mkOptions;
+            r && !cur.viewAsBox && o && showWiki({
+                w: "likes/" + clean(o.like_obj)
+            }, !1, !1, {
+                queue: 1
+            })
+        },
         updateCommentsOnScroll: function(e) {
             return !1
         },
@@ -922,7 +932,7 @@ var Market = {
             var t = ge("market_comments_wrap"),
                 r = t ? cur.mkOptions.itemRaw : !1,
                 o = e.match(/^(-?\d+)market(_\d+)/);
-            r && o && ge("market_comment" + o[1] + o[2]) && (cur.mkComments || (cur.mkComments = {}), cur.mkComments[cur.mkOptions.itemRaw] = t)
+            r && o && ge("market_comment" + o[1] + o[2]) && (cur.mkComments || (cur.mkComments = {}), cur.mkComments[cur.mkOptions.itemRaw] = t);
         },
         sendComment: function(e, t, r) {
             var o = ge("reply_field" + e),
@@ -1803,13 +1813,13 @@ var Market = {
             },
             onBlurSearch: function() {
                 var e = trim(val(cur.searchInp));
-                cur.lastQ != e && Marketplace.searchItems()
+                cur.lastQ != e && Marketplace.searchItems();
             },
             onChangeQuery: function(e, t, r) {
                 "string" == typeof t && Marketplace.searchItems(t)
             },
             onlyFriendsToggle: function(e) {
-                toggleClass(geByClass1("ui_toggler", e), "on"), Marketplace.searchItems();
+                toggleClass(geByClass1("ui_toggler", e), "on"), Marketplace.searchItems()
             }
         },
         switchToCatalog: function(e, t) {

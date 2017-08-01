@@ -2277,30 +2277,6 @@ a.tickets_question_row_tt:hover {
     display: block
 }
 
-.tickets_next_link {
-    font-weight: 400;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-    margin: 0;
-    padding: 6px 10px;
-    display: block;
-    height: 20px;
-    text-align: center
-}
-
-.tickets_next_link.tickets_next_link_fl {
-    border-radius: 2px;
-    float: left;
-    margin-left: 8px;
-    padding: 4px 10px 6px;
-    line-height: 20px
-}
-
-.tickets_next_link:hover {
-    background-color: #e1e7ed;
-    text-decoration: none
-}
-
 .ticket_time {
     margin-bottom: 10px
 }
@@ -2745,17 +2721,6 @@ body.dev .tickets_dmca_data_row.links .value {
 
 .shown .support_show_all {
     display: none
-}
-
-.tickets_next_chkbx {
-    float: left;
-    padding: 6px 0 0 10px;
-    color: #777;
-    width: 200px
-}
-
-.tickets_next_chkbx.tickets_next_chkbx_to_card {
-    width: 60px
 }
 
 .tickets_edit_template {
@@ -3890,14 +3855,9 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     float: right
 }
 
-.tickets_post_field_moder .tickets_post_form__send {
-    float: left
-}
-
-.tickets_post_field_moder .tickets_post_form__cancel {
+.tickets_post_field_moder .flat_button {
     float: left;
-    margin-left: 8px;
-    margin-right: 0
+    margin-right: 8px
 }
 
 .tickets_thank_you_form {

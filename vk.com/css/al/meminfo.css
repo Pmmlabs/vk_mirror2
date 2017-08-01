@@ -547,6 +547,16 @@ table.history .cur_session {
     min-height: 30px
 }
 
+.mi_ban_form .row.row_small {
+    margin-top: 0;
+    min-height: 20px
+}
+
+.mi_ban_form .row.row_small .labeled {
+    padding-top: 0;
+    padding-bottom: 6px
+}
+
 .mi_ban_form .label {
     float: left;
     width: 100px;
@@ -562,9 +572,30 @@ table.history .cur_session {
     padding-top: 6px
 }
 
+.mi_ban_form .labeled.labeled_no_label {
+    padding-left: 110px
+}
+
 .mi_ban_form .row_content {
     float: left;
     padding: 0 0 0 5px
+}
+
+.mi_ban_form .row_content_near_input {
+    line-height: 28px;
+    padding-bottom: 2px
+}
+
+.mi_ban_form .fast_action {
+    border-bottom: 1px dotted;
+    line-height: 12px;
+    color: #656565;
+    display: inline-block
+}
+
+.mi_ban_form .fast_action:hover {
+    border-bottom: 1px solid;
+    text-decoration: none
 }
 
 .mi_table_block_row__reason>span {

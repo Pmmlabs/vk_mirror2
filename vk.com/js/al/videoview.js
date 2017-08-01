@@ -1278,6 +1278,19 @@ var Videoview = {
                 }
             })
         },
+        likesShowList: function(e) {
+            var i = domPN(e),
+                o = domByClass(i, "_icon"),
+                t = mvcur.mvData;
+            if (o && !cur.viewAsBox && t) {
+                var a = t.statusVideo ? "wall" + t.videoRaw : "video" + t.videoRaw;
+                showWiki({
+                    w: "likes/" + clean(a)
+                }, !1, !1, {
+                    queue: 1
+                })
+            }
+        },
         showEditBox: function(e, i, o, t) {
             Videoview.hidePlayer();
             var a = showBox("al_video.php", {
@@ -1833,7 +1846,7 @@ var Videoview = {
                 onFail: function() {
                     return !0
                 }
-            }), setTimeout(Videoview.checkOtherLives.pbind(e), 6e4));
+            }), setTimeout(Videoview.checkOtherLives.pbind(e), 6e4))
         },
         updateOtherLives: function(e, i) {
             if (mvcur.mvShown && mvcur.videoRaw == e) {
