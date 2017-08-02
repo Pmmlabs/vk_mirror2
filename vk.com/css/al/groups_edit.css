@@ -4,6 +4,8 @@
 
 #groups_edit_request_type_progress,
 .gedit_import_box_icon,
+.gedit_servers_menu .page_actions_btn,
+.gedit_servers_menu .page_actions_header,
 .group_ad_join_desc,
 .group_ad_more_icon,
 .group_l_row .group_l_delete,
@@ -1466,15 +1468,24 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .group_api_doc {
-    padding: 15px 20px
+    padding: 15px;
+    line-height: 18px
 }
 
-.group_api_container {
-    padding: 0 20px
+.group_api_doc a {
+    color: #2a5885;
+    display: block;
+    margin-top: 6px
+}
+
+.group_api_container .page_block_h2 {
+    padding: 0 10px
 }
 
 .group_api_url_desc {
-    line-height: 19px
+    line-height: 19px;
+    padding: 6px 20px 0;
+    font-size: 14px
 }
 
 .group_api_tabs {
@@ -1486,7 +1497,7 @@ a.group_ad_post_link.deleted.deleted:hover {
     padding: 10px;
     background-color: #f0f2f5;
     border-left: 3px solid #93adc8;
-    margin: 10px 0 20px
+    margin: 15px 0 16px
 }
 
 .group_api_url_label {
@@ -1502,16 +1513,17 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .group_api_url_input_wrapper {
-    overflow: hidden
+    overflow: hidden;
+    margin-bottom: 10px
 }
 
 .group_api_url_input {
-    width: 100%
+    width: 300px
 }
 
 .group_api_url_button {
-    float: right;
-    margin-left: 10px
+    margin: 5px 10px 0 0;
+    min-width: 124px
 }
 
 .group_api_result {
@@ -1527,12 +1539,16 @@ a.group_ad_post_link.deleted.deleted:hover {
 .group_api_error,
 .group_api_ok {
     display: none;
-    margin: 0 0 20px
+    margin: 0 20px 20px
 }
 
 .group_api_settings {
     margin: 15px 0 0;
-    padding-bottom: 12px
+    padding-bottom: 10px
+}
+
+.group_api_edit_row {
+    padding: 5px 0 10px
 }
 
 .group_api_settings_saved {
@@ -1553,7 +1569,7 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .group_api_requests_table_wrapper {
-    padding: 8px 0 20px
+    padding: 8px 20px 20px
 }
 
 .group_api_requests_table {
@@ -1605,6 +1621,19 @@ a.group_ad_post_link.deleted.deleted:hover {
     margin: 12px 0 20px
 }
 
+.groups_edit_ssl_hint {
+    line-height: 27px
+}
+
+.groups_edit_cert_edit_buttons {
+    padding-top: 6px
+}
+
+.groups_edit_cert_edit_buttons button {
+    margin-right: 10px;
+    float: left
+}
+
 .groups_edit_cert_upload_cont {
     margin: 12px 0 0;
     text-align: center
@@ -1645,7 +1674,7 @@ a.group_ad_post_link.deleted.deleted:hover {
 
 .groups_api_divider {
     border-bottom: 1px solid #e7e8ec;
-    margin: 12px 0 15px
+    margin: 10px 20px 15px
 }
 
 .group_tokens_rows {
@@ -1918,6 +1947,76 @@ a.group_ad_post_link.deleted.deleted:hover {
 #group_box_error_wrap {
     display: none;
     margin: 0 0 20px
+}
+
+.gedit_add_row:after {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2210px%22%20height%3D%2210px%22%20viewBox%3D%220%200%2010%2010%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20id%3D%22%D0%9C%D0%B0%D1%81%D1%82%D0%B5%D1%80%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20id%3D%22addToPlaylist%22%20fill%3D%22%2392A0B1%22%3E%3Cg%20id%3D%22tooltip-copy-2%22%3E%3Cg%20id%3D%22Group-5-Copy-23%22%3E%3Cpath%20d%3D%22M14%2C14%20L14%2C11%20C14%2C10.4477153%2013.5522847%2C10%2013%2C10%20C12.4477153%2C10%2012%2C10.4477153%2012%2C11%20L12%2C11%20L12%2C14%20L9%2C14%20C8.44771525%2C14%208%2C14.4477153%208%2C15%20C8%2C15.5522847%208.44771525%2C16%209%2C16%20L12%2C16%20L12%2C19%20C12%2C19.5522847%2012.4477153%2C20%2013%2C20%20C13.5522847%2C20%2014%2C19.5522847%2014%2C19%20L14%2C16%20L17%2C16%20C17.5522847%2C16%2018%2C15.5522847%2018%2C15%20C18%2C14.4477153%2017.5522847%2C14%2017%2C14%20L14%2C14%20Z%22%20id%3D%22Combined-Shape%22%20transform%3D%22translate(-709.000000%2C%20-712.000000)%20translate(700.000000%2C%20602.000000)%20translate(1.000000%2C%20100.000000)%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 0 50%;
+    background-color: inherit;
+    content: ' ';
+    width: 14px;
+    height: 100%;
+    float: right
+}
+
+.gedit_servers_menu .page_actions_btn {
+    padding: 9px 12px 9px 10px;
+    max-width: 158px;
+    text-overflow: ellipsis;
+    background-image: url(/images/icons/dd_arrow.png);
+    background-repeat: no-repeat;
+    background-position: right 13px;
+    border-right: 8px solid transparent
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .gedit_servers_menu .page_actions_btn {
+        background-image: url(/images/icons/dd_arrow_2x.png);
+        background-size: 8px 4px
+    }
+}
+
+.gedit_servers_menu .page_actions_btn .page_actions_dd_label {
+    background: none;
+    padding-right: 4px
+}
+
+.gedit_servers_menu .page_actions_header {
+    background-image: url(/images/icons/dd_arrow.png);
+    background-repeat: no-repeat;
+    background-position: right 12px;
+    text-align: initial;
+    padding: 6px 11px 7px;
+    border-right: 7px solid transparent;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .gedit_servers_menu .page_actions_header {
+        background-image: url(/images/icons/dd_arrow_2x.png);
+        background-size: 8px 4px
+    }
+}
+
+.gedit_servers_menu .page_actions_header_inner {
+    background: none
+}
+
+.gedit_servers_menu_cont {
+    margin: 0 10px 0 0;
+    width: 158px
+}
+
+.gedit_block_footer {
+    border-top: 1px solid #e7e8ec;
+    background: #fafbfc;
+    line-height: 140%;
+    padding: 15px 20px 17px;
+    text-align: center
 }
 
 .group_money_transfers_table {

@@ -3326,7 +3326,7 @@ window.VideoChat = {
                     a.initVideo(i)
                 } else {
                     var a = new VideoPlayer(i);
-                    o ? mvcur.player = a : i.is_ext ? cur.player = a : cur.videoInlinePlayer = a
+                    o ? mvcur.player = a : i.is_embed ? cur.player = a : cur.videoInlinePlayer = a
                 }
                 if (!t) {
                     var n = ce("div", {

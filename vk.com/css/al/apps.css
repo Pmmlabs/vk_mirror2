@@ -2284,8 +2284,7 @@ a.page_block_header:hover .apps_cat_header_link:after {
     text-align: center
 }
 
-.apps_box_change_photo,
-.apps_box_change_photo_message {
+.apps_box_change_photo {
     padding: 20px 0 0;
     text-align: center
 }

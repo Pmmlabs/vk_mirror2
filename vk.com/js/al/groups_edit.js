@@ -1761,6 +1761,229 @@ var GroupsEdit = {
             }
         })
     },
+    callback: {
+        addServer: function(e, t, o) {
+            function r(e) {
+                nav.objLoc.server = e, nav.go(nav.objLoc)
+            }
+            hide(geByClass1("page_actions_cont", ge("content"))), hide(ge("add_server_button")), show(geByClass1("ui_tabs_progress", ge("content"))), ajax.post("groupsedit.php", {
+                act: "callback_add_server",
+                id: t,
+                hash: o
+            }, {
+                onDone: r,
+                onFail: function() {
+                    GroupsEdit.callback.showError(getLang("groups_api_error_failed")), unlockButton(e)
+                }
+            })
+        },
+        showServerConfig: function(e, t, o) {
+            hide(geByClass1("page_actions_cont", ge("content"))), show(geByClass1("ui_tabs_progress", ge("content"))), nav.objLoc.server = o, nav.go(nav.objLoc)
+        },
+        checkUrl: function(e, t, o, r) {
+            function s(e, t, o, r, a, i) {
+                return i > 20 ? (GroupsEdit.callback.showError(getLang("groups_api_error_failed")), void unlockButton(a)) : void ajax.post("groupsedit.php", {
+                    act: "callback_get_check_url_result",
+                    id: e,
+                    server: t,
+                    title: u,
+                    key: r,
+                    hash: o
+                }, {
+                    onDone: function(n, u, c) {
+                        switch (n) {
+                            case "wait":
+                                return void setTimeout(s.pbind(e, t, o, r, a, i + 1), 500);
+                            case "ok":
+                                return void nav.go(nav.objLoc, void 0, {
+                                    onDone: function() {
+                                        GroupsEdit.callback.showOk(), unlockButton(a)
+                                    }
+                                });
+                            case "incorrect":
+                                return GroupsEdit.callback.showError(getLang("groups_api_error_incorrect"), u), void unlockButton(a);
+                            case "failed":
+                                return c ? GroupsEdit.callback.showError(getLang("groups_api_error") + " " + c) : GroupsEdit.callback.showError(getLang("groups_api_error_failed"), u), void unlockButton(a)
+                        }
+                    },
+                    onFail: function() {
+                        unlockButton(a)
+                    }
+                })
+            }
+            var a = ge("callback_url"),
+                i = val(a),
+                n = ge("callback_title"),
+                u = val(n);
+            return i ? (lockButton(e), void ajax.post("groupsedit.php", {
+                act: "callback_check_url",
+                id: t,
+                server: o,
+                url: i,
+                hash: r
+            }, {
+                onDone: function(a) {
+                    "error" === a ? (unlockButton(e), GroupsEdit.callback.showError(getLang("groups_api_error_failed"))) : "incorrect_url" == a ? (unlockButton(e), GroupsEdit.callback.showError(getLang("groups_api_incorrect_url"))) : s(t, o, r, a, e, 0)
+                },
+                onFail: function() {
+                    unlockButton(e)
+                }
+            })) : void notaBene(a)
+        },
+        setTitle: function(e, t, o, r) {
+            var s = ge("callback_title"),
+                a = val(s);
+            return a ? (lockButton(e), void ajax.post("groupsedit.php", {
+                act: "callback_set_title",
+                id: t,
+                server: o,
+                title: a,
+                hash: r
+            }, {
+                onDone: function() {
+                    nav.go(nav.objLoc)
+                },
+                onFail: function(t) {
+                    unlockButton(e), GroupsEdit.callback.showError(t)
+                }
+            })) : void notaBene(s)
+        },
+        saveSecret: function(e, t, o, r) {
+            var s = ge("callback_secret"),
+                a = val(s);
+            a && (hide("group_api_ok"), hide("group_api_error"), lockButton(e), ajax.post("groupsedit.php", {
+                act: "callback_save_secret",
+                id: t,
+                server: o,
+                secret: a,
+                hash: r
+            }, {
+                onDone: function(t) {
+                    unlockButton(e);
+                    var o = null;
+                    "length" == t ? o = getLang("groups_api_secret_too_long") : "pattern" == t ? o = getLang("groups_api_secret_wrong_pattern") : "ok" == t && (show("groups_edit_delete_secret"), show("group_api_secret_ok")), o ? (show("group_api_secret_error"), val("group_api_secret_error_msg", o), hide("group_api_secret_ok")) : hide("group_api_secret_error")
+                },
+                onFail: function() {
+                    unlockButton(e)
+                }
+            }))
+        },
+        certUploadBox: function(e, t, o, r) {
+            showBox("groupsedit.php", {
+                act: "select_cert",
+                id: t,
+                hash: r,
+                server: o
+            }, {
+                params: {
+                    dark: 1,
+                    bodyStyle: "padding: 20px; line-height: 160%;"
+                }
+            })
+        },
+        deleteUrl: function(e, t, o, r) {
+            var s = showFastBox({
+                title: getLang("groups_api_confirm_box_title"),
+                dark: 1,
+                bodyStyle: "padding: 20px; line-height: 160%;"
+            }, getLang("groups_api_delete_url_description"), getLang("groups_api_delete_url"), function() {
+                s.showProgress(), ajax.post("groupsedit.php", {
+                    act: "callback_delete_url",
+                    id: t,
+                    server: o,
+                    hash: r
+                }, {
+                    onDone: function(e) {
+                        s.hide(), hide("groups_edit_delete_url"), val("callback_url", "")
+                    }
+                })
+            }, getLang("global_cancel"))
+        },
+        deleteSecret: function(e, t, o, r) {
+            var s = showFastBox({
+                title: getLang("groups_api_confirm_box_title"),
+                dark: 1,
+                bodyStyle: "padding: 20px; line-height: 160%;"
+            }, getLang("groups_api_delete_secret_description"), getLang("groups_api_delete_url"), function() {
+                s.showProgress(), ajax.post("groupsedit.php", {
+                    act: "callback_delete_secret",
+                    id: t,
+                    server: o,
+                    hash: r
+                }, {
+                    onDone: function(e) {
+                        s.hide(), hide("groups_edit_delete_secret"), val("callback_secret", "")
+                    }
+                })
+            }, getLang("global_cancel"))
+        },
+        deleteCert: function(e, t, o, r) {
+            var s = showFastBox({
+                title: getLang("groups_api_confirm_box_title"),
+                dark: 1,
+                bodyStyle: "padding: 20px; line-height: 160%;"
+            }, getLang("groups_api_delete_cert_description"), getLang("groups_api_delete_url"), function() {
+                s.showProgress(), ajax.post("groupsedit.php", {
+                    act: "callback_delete_cert",
+                    id: t,
+                    server: o,
+                    hash: r
+                }, {
+                    onDone: function(e) {
+                        s.hide(), show("groups_edit_cert_not_uploaded"), hide("groups_edit_cert_uploaded")
+                    }
+                })
+            }, getLang("global_cancel"))
+        },
+        showCurlResult: function(e, t) {
+            var o = cur.curlResult[e];
+            o && showFastBox({
+                title: t ? getLang("groups_api_request_result") : getLang("groups_api_request_body"),
+                dark: 1,
+                width: 900,
+                bodyStyle: "padding: 0;"
+            }, '<div class="group_api_result"><pre class="group_api_result_pre"">' + o + "</pre></div>")
+        },
+        showError: function(e, t) {
+            hide("group_api_secret_error"), hide("group_api_secret_ok"), t ? (show("group_api_error_info"), cur.curlResult = cur.curlResult || {}, cur.curlResult.error = t) : hide("group_api_error_info"), val("group_api_error_msg", e), hide("group_api_ok"), show("group_api_error")
+        },
+        saveSetting: function(e, t, o, r) {
+            var s = ge("group_api_settings_saved");
+            setStyle(s, "opacity", 1), clearTimeout(cur.groupeditTimeout), cur.groupeditTimeout = setTimeout(setStyle.pbind(s, "opacity", 0), 1e3), ajax.post("groupsedit.php", {
+                act: "callback_save_event_setting",
+                id: e,
+                server: t,
+                name: o,
+                value: isChecked(o),
+                hash: r
+            })
+        },
+        deleteServer: function(e, t, o, r, s) {
+            var a = showFastBox({
+                title: getLang("groups_servers_delete_confirm_box_title"),
+                dark: 1
+            }, getLang("groups_tokens_servers_delete_confirm_description").replace("{serverName}", r), getLang("groups_servers_delete_confirm_box_btn"), function() {
+                a.hide();
+                var e = geByClass1("ui_tabs_progress", ge("content"));
+                show(e), hide(geByClass1("page_actions_cont", ge("content"))), ajax.post("groupsedit.php", {
+                    act: "callback_delete_server",
+                    id: t,
+                    server: o,
+                    hash: s
+                }, {
+                    onDone: function(e) {
+                        nav.objLoc.server = e, nav.go(nav.objLoc)
+                    }
+                })
+            }, getLang("global_cancel"))
+        },
+        clearServerId: function() {
+            delete nav.objLoc.server, nav.setLoc(nav.objLoc)
+        },
+        showOk: function() {
+            hide("group_api_error"), show("group_api_ok"), show("group_api_settings"), hide("group_api_secret_error"), hide("group_api_secret_ok"), show("groups_edit_delete_url")
+        }
+    },
     deleteGroupToken: function(e, t, o, r) {
         var s = showFastBox({
             title: getLang("groups_tokens_confirm_box_title"),
@@ -1842,72 +2065,6 @@ var GroupsEdit = {
             }
         })
     },
-    callbackCheckUrl: function(e, t, o) {
-        var r = ge("callback_url"),
-            s = val(r);
-        return s ? (lockButton(e), void ajax.post("groupsedit.php", {
-            act: "callback_check_url",
-            id: t,
-            url: s,
-            hash: o
-        }, {
-            onDone: function(r) {
-                "error" === r ? (unlockButton(e), GroupsEdit.callbackShowError(getLang("groups_api_error_failed"))) : "incorrect_url" == r ? (unlockButton(e), GroupsEdit.callbackShowError(getLang("groups_api_incorrect_url"))) : GroupsEdit.callbackGetUrlCheckResult(t, o, r, e, 0)
-            },
-            onFail: function() {
-                unlockButton(e)
-            }
-        })) : void notaBene(r)
-    },
-    callbackGetUrlCheckResult: function(e, t, o, r, s) {
-        return s > 20 ? (GroupsEdit.callbackShowError(getLang("groups_api_error_failed")), void unlockButton(r)) : void ajax.post("groupsedit.php", {
-            act: "callback_get_check_url_result",
-            id: e,
-            key: o,
-            hash: t
-        }, {
-            onDone: function(a, i, n) {
-                switch (a) {
-                    case "wait":
-                        return void setTimeout(GroupsEdit.callbackGetUrlCheckResult.pbind(e, t, o, r, s + 1), 500);
-                    case "ok":
-                        return GroupsEdit.callbackShowOk(), void unlockButton(r);
-                    case "incorrect":
-                        return GroupsEdit.callbackShowError(getLang("groups_api_error_incorrect"), i), void unlockButton(r);
-                    case "failed":
-                        return n ? GroupsEdit.callbackShowError(getLang("groups_api_error") + " " + n) : GroupsEdit.callbackShowError(getLang("groups_api_error_failed"), i), void unlockButton(r)
-                }
-            },
-            onFail: function() {
-                unlockButton(r)
-            }
-        })
-    },
-    callbackShowCurlResult: function(e, t) {
-        var o = cur.curlResult[e];
-        o && showFastBox({
-            title: t ? getLang("groups_api_request_result") : getLang("groups_api_request_body"),
-            dark: 1,
-            width: 900,
-            bodyStyle: "padding: 0;"
-        }, '<div class="group_api_result"><pre class="group_api_result_pre"">' + o + "</pre></div>")
-    },
-    callbackShowError: function(e, t) {
-        hide("group_api_secret_error"), hide("group_api_secret_ok"), t ? (show("group_api_error_info"), cur.curlResult = cur.curlResult || {}, cur.curlResult.error = t) : hide("group_api_error_info"), val("group_api_error_msg", e), hide("group_api_ok"), show("group_api_error")
-    },
-    callbackShowOk: function() {
-        hide("group_api_error"), show("group_api_ok"), show("group_api_settings"), hide("group_api_secret_error"), hide("group_api_secret_ok"), show("groups_edit_delete_url")
-    },
-    callbackSaveSetting: function(e, t, o) {
-        var r = ge("group_api_settings_saved");
-        setStyle(r, "opacity", 1), clearTimeout(cur.groupeditTimeout), cur.groupeditTimeout = setTimeout(setStyle.pbind(r, "opacity", 0), 1e3), ajax.post("groupsedit.php", {
-            act: "callback_save_event_setting",
-            id: e,
-            name: t,
-            value: isChecked(t),
-            hash: o
-        })
-    },
     callbackInitRequestPage: function(e) {
         var t = ge("groups_edit_request_type_dd");
         t && (cur.callbackRequestTypeDD = new InlineDropdown(t, {
@@ -1925,89 +2082,7 @@ var GroupsEdit = {
             errors: "sent" == e ? !1 : 1
         })
     },
-    callbackDeleteUrl: function(e, t, o) {
-        var r = showFastBox({
-            title: getLang("groups_api_confirm_box_title"),
-            dark: 1,
-            bodyStyle: "padding: 20px; line-height: 160%;"
-        }, getLang("groups_api_delete_url_description"), getLang("groups_api_delete_url"), function() {
-            r.showProgress(), ajax.post("groupsedit.php", {
-                act: "callback_delete_url",
-                id: t,
-                hash: o
-            }, {
-                onDone: function(e) {
-                    r.hide(), hide("groups_edit_delete_url"), val("callback_url", "")
-                }
-            })
-        }, getLang("global_cancel"))
-    },
-    callbackDeleteSecret: function(e, t, o) {
-        var r = showFastBox({
-            title: getLang("groups_api_confirm_box_title"),
-            dark: 1,
-            bodyStyle: "padding: 20px; line-height: 160%;"
-        }, getLang("groups_api_delete_secret_description"), getLang("groups_api_delete_url"), function() {
-            r.showProgress(), ajax.post("groupsedit.php", {
-                act: "callback_delete_secret",
-                id: t,
-                hash: o
-            }, {
-                onDone: function(e) {
-                    r.hide(), hide("groups_edit_delete_secret"), val("callback_secret", "")
-                }
-            })
-        }, getLang("global_cancel"))
-    },
-    callbackDeleteCert: function(e, t, o) {
-        var r = showFastBox({
-            title: getLang("groups_api_confirm_box_title"),
-            dark: 1,
-            bodyStyle: "padding: 20px; line-height: 160%;"
-        }, getLang("groups_api_delete_cert_description"), getLang("groups_api_delete_url"), function() {
-            r.showProgress(), ajax.post("groupsedit.php", {
-                act: "callback_delete_cert",
-                id: t,
-                hash: o
-            }, {
-                onDone: function(e) {
-                    r.hide(), show("groups_edit_cert_not_uploaded"), hide("groups_edit_cert_uploaded")
-                }
-            })
-        }, getLang("global_cancel"))
-    },
-    callbackSaveSecret: function(e, t, o) {
-        var r = ge("callback_secret"),
-            s = val(r);
-        s && (hide("group_api_ok"), hide("group_api_error"), lockButton(e), ajax.post("groupsedit.php", {
-            act: "callback_save_secret",
-            id: t,
-            secret: s,
-            hash: o
-        }, {
-            onDone: function(t) {
-                unlockButton(e);
-                var o = null;
-                "length" == t ? o = getLang("groups_api_secret_too_long") : "pattern" == t ? o = getLang("groups_api_secret_wrong_pattern") : "ok" == t && (show("groups_edit_delete_secret"), show("group_api_secret_ok")), o ? (show("group_api_secret_error"), val("group_api_secret_error_msg", o), hide("group_api_secret_ok")) : hide("group_api_secret_error")
-            },
-            onFail: function() {
-                unlockButton(e)
-            }
-        }))
-    },
-    certUploadBox: function(e, t, o) {
-        showBox("groupsedit.php", {
-            act: "select_cert",
-            id: t,
-            hash: o
-        }, {
-            params: {
-                dark: 1,
-                bodyStyle: "padding: 20px; line-height: 160%;"
-            }
-        })
-    },
-    certInitUploadBox: function(e, t, o, r) {
+    certInitUploadBox: function(e, t, o, r, s) {
         e.setOptions({
             width: 480
         }), Upload.init("groups_edit_cert_upload_cont", t, o, {
@@ -2024,13 +2099,14 @@ var GroupsEdit = {
                 e.showProgress()
             },
             onUploadComplete: function(t, o) {
-                if (e.hideProgress(), "ok" === (o || "").substring(0, 2)) {
+                if (e.hideProgress(),
+                    "ok" === (o || "").substring(0, 2)) {
                     show("groups_edit_cert_uploaded"), show("groups_edit_cert_updating"), hide("groups_edit_cert_not_uploaded"), hide("groups_edit_cert_ready"), e.hide();
-                    var s = o.substring(3);
-                    GroupsEdit.callbackUpdateCertResult(s, 0, r)
+                    var a = o.substring(3);
+                    GroupsEdit.callbackUpdateCertResult(a, 0, r, s)
                 } else {
-                    var a = ge("groups_edit_cert_upload_error");
-                    a.innerHTML = getLang(o), show(a)
+                    var i = ge("groups_edit_cert_upload_error");
+                    i.innerHTML = getLang(o), show(i)
                 }
             },
             onUploadError: function(t, o) {
@@ -2044,10 +2120,11 @@ var GroupsEdit = {
             noCheck: 1
         })
     },
-    callbackUpdateCertResult: function(e, t, o) {
+    callbackUpdateCertResult: function(e, t, o, r) {
         t > 30 || ajax.post("groupsedit.php", {
             act: "callback_cert_get_status",
             id: o,
+            server_id: r,
             key: e
         }, {
             onDone: function(r) {

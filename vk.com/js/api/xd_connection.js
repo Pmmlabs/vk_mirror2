@@ -605,9 +605,6 @@ VK.External = {
     setTitle: function(a) {
         VK.callMethod("setTitle", a)
     },
-    saveWallPost: function(a) {
-        VK.callMethod("saveWallPost", a)
-    },
     showProfilePhotoBox: function(a) {
         VK.callMethod("showProfilePhotoBox", a)
     },
