@@ -330,7 +330,7 @@ var stVersions = {
     'tags_dd.css': 20992124443,
     'tasks.js': 662793453,
     'tasks.css': 20336889364,
-    'helpdesk.js': 3290979618,
+    'helpdesk.js': 429859829,
     'helpdesk.css': 24238250028,
     'tickets.js': 80447799,
     'tickets.css': 22018301971,
@@ -348,7 +348,7 @@ var stVersions = {
     'groupinfo.css': 24006989199,
     'bugs.js': 3874995669,
     'bugs.css': 18961804458,
-    'bugtracker.js': 780608466,
+    'bugtracker.js': 1097219715,
     'bugtracker.css': 28317009158,
     'login.css': 21188992645,
     'login.js': 3551917100,
@@ -526,7 +526,7 @@ var stVersions = {
     'voice_message_player.js': 24272478849,
     'cmodules/web/speech_worker_mp3.js': 1172578475,
     'cmodules/web/speech_worker_opus.js': 3385759348,
-    'stories.js': 675877973,
+    'stories.js': 1228312456,
     'stories.css': 21139574963,
     'internal/nospam.css': 23002927223,
     'internal/away_linksban.css': 21745552757,
@@ -599,4 +599,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 886;
+var _rnd = 555;
