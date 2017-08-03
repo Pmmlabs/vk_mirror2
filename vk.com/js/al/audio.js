@@ -52,7 +52,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                 if (cur.audioPage) {
                     var t = geByClass1("_audio_section__all", cur.audioPage.getPageContainer()),
                         i = geByClass1("_audio_page_block__playlists_items", t);
-                    if (i) {
+                    if (t && i) {
                         var a = intval(domData(i, "max-items"));
                         e && i.children.length < a && i.appendChild(se(getTemplate("audio_pl_item", e))), 0 == i.children.length && (addClass(gpeByClass("_audio_page_section_layout", i), "no_playlists"), re(gpeByClass("_audio_page_titled_block", i)))
                     }
@@ -66,11 +66,12 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     }
     var o = getAudioPlayer().getPlaylist(AudioPlaylist.TYPE_PLAYLIST, e, t),
         s = AudioPlayer.getLang("audio_sure_delete_playlist_box_text");
-    s = s.replace("{name}", o.getTitle()), s = '<div style="overflow: hidden; text-overflow: ellipsis;">' + s + "</div>";
-    showFastBox({
+    s = s.replace("{name}", o.getTitle()), s = '<div style="overflow: hidden; text-overflow: ellipsis;">' + s + "</div>", showFastBox({
         title: AudioPlayer.getLang("audio_sure_delete_playlist_box_title"),
         dark: 1
     }, s, AudioPlayer.getLang("audio_sure_delete_playlist_box_yes"), a.bind(this), getLang("global_cancel"))
+}, AudioPage.prototype.getCurrentSection = function() {
+    return this._currentSection
 }, AudioPage.prototype._initPlaylists = function(e) {
     return this._data.generic ? e && e([]) : void AudioPage.loadPlaylists(this.getOwnerId(), this._data.playlistsTotal, !0, !1, function(t) {
         this._data.playlists = this._data.playlists.concat(t), this._data.playlistsIndex = new vkIndexer(this._data.playlists, function(e) {
@@ -763,8 +764,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                 });
                 break;
             case "playlists":
-                hide(W.header), show(W.search), hide(W.addAudiosFromPlaylistsButton),
-                    hide(W.addAudiosButton), hide(W.globalResults), u(), g(a);
+                hide(W.header), show(W.search), hide(W.addAudiosFromPlaylistsButton), hide(W.addAudiosButton), hide(W.globalResults), u(), g(a);
                 break;
             case "playlist":
                 hide(W.header), show(W.search), hide(W.addAudiosFromPlaylistsButton), hide(W.addAudiosButton), u(), g(o, !0), "attach" == e && P(o), "edit" == e && v(o)
@@ -1041,7 +1041,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     }), addEvent(window.document, "keyup", this._audioHQKeyEventHandler2 = function(t) {
         e() || (t.keyCode != KEY.CTRL || cur.ctrlMouseDown) && (delete cur.ctrlMouseDown, delete cur.ctrlPressed)
     }), addEvent(window.document, "keydown", this._audioSeekKeyEventHandler = function(t) {
-        t.target && (inArray(t.target.tagName.toLowerCase(), ["input", "textarea"]) && "" != val(t.target) || hasClass(t.target, "fc_editable")) || i.isPlaying() && inArray(t.keyCode, [KEY.RIGHT, KEY.LEFT]) && !t.ctrlKey && (e() || i.seekCurrentAudio(t.keyCode == KEY.RIGHT))
+        t.target && (inArray(t.target.tagName.toLowerCase(), ["input", "textarea"]) && "" != val(t.target) || hasClass(t.target, "fc_editable") || hasClass(t.target, "_im_text")) || i.isPlaying() && inArray(t.keyCode, [KEY.RIGHT, KEY.LEFT]) && !t.ctrlKey && (e() || i.seekCurrentAudio(t.keyCode == KEY.RIGHT))
     }), cur.destroy.push(function() {
         this._deinitKeyEvents()
     }.bind(this))

@@ -239,9 +239,9 @@ var Videoview = {
                 if (o && !cur.segmentsSaveProcess) {
                     var a = "vsegs" + vk.id + "_" + e + "_" + i,
                         n = ls.get(a);
-                    n && n.ts && (new Date).getTime() - n.ts > 864e5 && (n = null, ls.remove(a));
+                    n && n.ts && vkNow() - n.ts > 864e5 && (n = null, ls.remove(a));
                     var d = n && n.segments ? n.segments.split("|")[2] : "";
-                    if (!n || !d || o != d) {
+                    if (!d || o != d) {
                         cur.segmentsSaveProcess = !0;
                         var r = {
                                 module: Videoview.getVideoModule(e + "_" + i),
@@ -259,8 +259,8 @@ var Videoview = {
                                         e && ls.set(a, {
                                             segments: e,
                                             segmentsSig: i,
-                                            ts: (new Date).getTime()
-                                        }), cur.segmentsSaveProcess = !1, o = parseInt(o) || 0;
+                                            ts: vkNow()
+                                        }), cur.segmentsSaveProcess = !1, o = intval(o);
                                         var t = parseInt(cur.videoSearchPos);
                                         o > 0 && !isNaN(t) && cur.videoSearchStats && (cur.videoSearchStats.positions[t] = extend({
                                             viewedParts: 0
@@ -832,8 +832,7 @@ var Videoview = {
             if (window.mvcur && (i || mvcur.mvShown)) {
                 if (t) {
                     var a = cur.videoBackOnClick;
-                    if (cur.videoBackOnClick = !1,
-                        a) return history.back()
+                    if (cur.videoBackOnClick = !1, a) return history.back();
                 }
                 if (!i && mvcur.minimized) return void(mvcur.noLocChange || e === !0 || (2 === e ? nav.setLoc(hab.getLoc()) : layerQueue.count() || Videoview.backLocation()));
                 if (!mvcur.noHistory && !e && !t) {

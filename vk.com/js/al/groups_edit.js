@@ -1763,15 +1763,14 @@ var GroupsEdit = {
     },
     callback: {
         addServer: function(e, t, o) {
-            function r(e) {
-                nav.objLoc.server = e, nav.go(nav.objLoc)
-            }
             hide(geByClass1("page_actions_cont", ge("content"))), hide(ge("add_server_button")), show(geByClass1("ui_tabs_progress", ge("content"))), ajax.post("groupsedit.php", {
                 act: "callback_add_server",
                 id: t,
                 hash: o
             }, {
-                onDone: r,
+                onDone: function(t, o) {
+                    "ok" === t ? (nav.objLoc.server = o, nav.go(nav.objLoc)) : (unlockButton(e), GroupsEdit.callback.showError(o), show(geByClass1("page_actions_cont", ge("content"))), show(ge("add_server_button")), hide(geByClass1("ui_tabs_progress", ge("content"))))
+                },
                 onFail: function() {
                     GroupsEdit.callback.showError(getLang("groups_api_error_failed")), unlockButton(e)
                 }
@@ -1831,22 +1830,23 @@ var GroupsEdit = {
             })) : void notaBene(a)
         },
         setTitle: function(e, t, o, r) {
-            var s = ge("callback_title"),
-                a = val(s);
-            return a ? (lockButton(e), void ajax.post("groupsedit.php", {
+            function s(t) {
+                unlockButton(e), GroupsEdit.callback.showError(t)
+            }
+            var a = ge("callback_title"),
+                i = val(a);
+            return i ? (lockButton(e), void ajax.post("groupsedit.php", {
                 act: "callback_set_title",
                 id: t,
                 server: o,
-                title: a,
+                title: i,
                 hash: r
             }, {
-                onDone: function() {
-                    nav.go(nav.objLoc)
+                onDone: function(e, t) {
+                    "ok" === e ? nav.go(nav.objLoc) : s(t)
                 },
-                onFail: function(t) {
-                    unlockButton(e), GroupsEdit.callback.showError(t)
-                }
-            })) : void notaBene(s)
+                onFail: s
+            })) : void notaBene(a)
         },
         saveSecret: function(e, t, o, r) {
             var s = ge("callback_secret"),
@@ -1963,16 +1963,14 @@ var GroupsEdit = {
                 title: getLang("groups_servers_delete_confirm_box_title"),
                 dark: 1
             }, getLang("groups_tokens_servers_delete_confirm_description").replace("{serverName}", r), getLang("groups_servers_delete_confirm_box_btn"), function() {
-                a.hide();
-                var e = geByClass1("ui_tabs_progress", ge("content"));
-                show(e), hide(geByClass1("page_actions_cont", ge("content"))), ajax.post("groupsedit.php", {
+                a.hide(), show(geByClass1("ui_tabs_progress", ge("content"))), hide(geByClass1("page_actions_cont", ge("content"))), ajax.post("groupsedit.php", {
                     act: "callback_delete_server",
                     id: t,
                     server: o,
                     hash: s
                 }, {
-                    onDone: function(e) {
-                        nav.objLoc.server = e, nav.go(nav.objLoc)
+                    onDone: function(t, o) {
+                        "ok" === t ? (nav.objLoc.server = o, nav.go(nav.objLoc)) : (unlockButton(e), GroupsEdit.callback.showError(o), hide(geByClass1("ui_tabs_progress", ge("content"))), show(geByClass1("page_actions_cont", ge("content"))))
                     }
                 })
             }, getLang("global_cancel"))
@@ -2099,8 +2097,7 @@ var GroupsEdit = {
                 e.showProgress()
             },
             onUploadComplete: function(t, o) {
-                if (e.hideProgress(),
-                    "ok" === (o || "").substring(0, 2)) {
+                if (e.hideProgress(), "ok" === (o || "").substring(0, 2)) {
                     show("groups_edit_cert_uploaded"), show("groups_edit_cert_updating"), hide("groups_edit_cert_not_uploaded"), hide("groups_edit_cert_ready"), e.hide();
                     var a = o.substring(3);
                     GroupsEdit.callbackUpdateCertResult(a, 0, r, s)
