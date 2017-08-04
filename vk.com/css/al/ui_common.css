@@ -2066,7 +2066,7 @@ a.ui_search_custom_link {
 
 .ui_actions_menu_hide {
     float: right;
-    background: url(/images/post_icon.png?8) no-repeat 1px -52px;
+    background: url(/images/post_icon.png?9) no-repeat 1px -52px;
     margin: 9px -2px 0 0;
     cursor: pointer;
     height: 13px;
@@ -2082,8 +2082,8 @@ a.ui_search_custom_link {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .ui_actions_menu_hide {
-        background-image: url(/images/post_icon_2x.png?8);
-        background-size: 20px 391px
+        background-image: url(/images/post_icon_2x.png?9);
+        background-size: 20px 413px
     }
 }
 

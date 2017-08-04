@@ -170,7 +170,7 @@ html {
 }
 
 .share_field_wrap .share_field_edit {
-    background: url(/images/post_icon.png?8) 0 -41px;
+    background: url(/images/post_icon.png?9) 0 -41px;
     width: 12px;
     height: 10px;
     position: absolute;
@@ -185,8 +185,8 @@ html {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .share_field_wrap .share_field_edit {
-        background-image: url(/images/post_icon_2x.png?8);
-        background-size: 20px 391px
+        background-image: url(/images/post_icon_2x.png?9);
+        background-size: 20px 413px
     }
 }
 
