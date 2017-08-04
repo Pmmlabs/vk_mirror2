@@ -43,7 +43,7 @@
 (min-resolution: 192dpi) {
     .media_selector .ms_item:before {
         background-image: url(/images/post_icon_2x.png?8);
-        background-size: 20px 391px
+        background-size: 20px 413px
     }
 }
 
@@ -107,6 +107,10 @@
 
 .media_selector .ms_item.ms_item_share:before {
     background-position: left -351px
+}
+
+.media_selector .ms_item.ms_item_pretty_cards:before {
+    background-position: left -395px
 }
 
 .media_selector>.ms_item {

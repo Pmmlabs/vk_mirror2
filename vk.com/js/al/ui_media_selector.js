@@ -217,7 +217,7 @@ function MediaSelector(e, a, t, i) {
                         window.onShareChooseUrlBoxInit = function() {
                             var e = geByClass1("share_url_input", curBox().bodyNode);
                             addEvent(e, "keydown", function(e) {
-                                return e.which == KEY.ENTER ? (a(geByClass1("flat_button", curBox().bodyNode), e), !1) : void 0
+                                return e.which == KEY.ENTER ? (a(curBox().btns.ok[0], e), !1) : void 0
                             })
                         };
                         var e = showBox("share.php", {
@@ -241,6 +241,11 @@ function MediaSelector(e, a, t, i) {
                                 }))
                             };
                         e.removeButtons(), e.addButton(getLang("global_continue"), a)
+                    };
+                    break;
+                case "pretty_cards":
+                    c = function() {
+                        s.chooseMedia("pretty_cards", n, l)
                     };
                     break;
                 case "gift":
@@ -448,6 +453,9 @@ function MediaSelector(e, a, t, i) {
                             imagesStyles: [""]
                         }), A = f, (o.onSuccess || function() {})(), (cur.options.share || {}).button_exclusive && o.shareButtons && hide(domByClass(e, "media_selector")), hide(domByClass(h.menuNode, "_type_share"));
                         break;
+                    case "pretty_cards":
+                        P = '<div class="medadd_h medadd_h_pretty_cards inl_bl">' + o.lang.global_wall_pretty_cards + "</div>", hide(domByClass(e, "media_selector")), hide(domByClass(h.menuNode, "_type_pretty_cards")), A = f;
+                        break;
                     case "poll":
                         if (!o.lang) return !1;
                         P = '<div class="medadd_h medadd_h_poll inl_bl">' + o.lang.q + "</div>", hide(domByClass(h.menuNode, "_type_poll")), A = b;
@@ -577,7 +585,7 @@ function MediaSelector(e, a, t, i) {
                 }
                 "share" == a ? !o.title || r || o.url ? s.showExternalPreview() : (cur.shareShowImg = 0, s.showPreview(!0), s.shareData.images = !1) : "page" == a ? o.nopreview || (cur.shareShowImg = 0, s.shareData = extend(s.shareData || {}, o, {
                     images: !1
-                }), s.showPreview()) : "poll" == a ? s.createPoll(o) : "postpone" == a ? s.setupPostpone(o, j) : "mark_as_ads" == a && (s.markAsAds = 1), toggleClass(m, "media_preview_has_medias", s.hasVisibleRows()), i.onChangedSize && i.onChangedSize();
+                }), s.showPreview()) : "poll" == a ? s.createPoll(o) : "postpone" == a ? s.setupPostpone(o, j) : "mark_as_ads" == a ? s.markAsAds = 1 : "pretty_cards" == a && s.createPrettyCards(o), toggleClass(m, "media_preview_has_medias", s.hasVisibleRows()), i.onChangedSize && i.onChangedSize();
                 var te = window.event;
                 return te && "click" == te.type && (te.ctrlKey || te.metaKey || te.shiftKey) && s.attachCount() + 1 <= n && (d = !0), cur.fileApiUploadStarted && void 0 !== o.upload_ind || cur.preventBoxHide || d === !0 || inArray(a, ["poll", "share", "page", "postpone", "mark_as_ads"]) || boxQueue.hideLast(), cur.lastPostMsg = !1, i.onMediaAdd && i.onMediaAdd(), getAudioPlayer().updateCurrentPlaying(), cur.onMediaChanged && cur.onMediaChanged(s.chosenMedias), void 0 !== o.upload_ind && delete o.upload_ind, !1
             },
@@ -615,6 +623,9 @@ function MediaSelector(e, a, t, i) {
                             case "page":
                             case "share":
                                 s.shareData = {}, re(s.sharePreview), hide("medadd_c_linkimg_loader"), clearTimeout(cur.showLoaderTimeout), clearInterval(cur.shareImgInterval), clearTimeout(cur.shareImgInterval2), clearTimeout(cur.imgLoadTimeout), delete s.sharePreview, show(domByClass(h.menuNode, "_type_share")), show(domByClass(e, "media_selector"));
+                                break;
+                            case "pretty_cards":
+                                re(s.prettyCardGallery.el), delete s.prettyCardGallery, show(domByClass(h.menuNode, "_type_pretty_cards")), show(domByClass(e, "media_selector"));
                                 break;
                             case "poll":
                                 re(s.pollPreview), s.pollPreview = !1, show(domByClass(h.menuNode, "_type_poll"));
@@ -1224,6 +1235,11 @@ function MediaSelector(e, a, t, i) {
                         s.postponePreview.style.height = ""
                     })
                 })
+            },
+            createPrettyCards: function(e) {
+                cur.lang = extend(cur.lang || {}, e.lang || {});
+                var a = se(e.editor.container_html);
+                f.appendChild(a), s.prettyCardGallery = new PrettyCardGallery(a, e.editor, e.pretty_cards)
             },
             destroy: function() {
                 (w || {}).sorter && w.sorter.destroy();

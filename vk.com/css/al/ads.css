@@ -2741,10 +2741,7 @@ td.ads_settings_notifacations_label {
 #ad_preview_top {
     float: right;
     margin: 5px 0 0;
-    text-align: right;
-    font-family: tahoma, arial, verdana, sans-serif;
-    font-size: 11px;
-    letter-spacing: initial
+    text-align: right
 }
 
 #ad_preview_top.promoted_post {

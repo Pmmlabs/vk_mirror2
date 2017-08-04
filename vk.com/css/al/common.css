@@ -1310,6 +1310,28 @@ a.button_link:hover {
     background-color: #e9ebf0
 }
 
+.flat_button.button_bright_blue {
+    background-color: #6590c7
+}
+
+.flat_button.button_bright_blue:hover {
+    background-color: #6b96cf
+}
+
+.flat_button.button_contour {
+    border: 1px dashed #6590c7;
+    color: #2a5885;
+    background-color: transparent
+}
+
+.flat_button.button_contour:hover {
+    background-color: rgba(101, 144, 199, .12)
+}
+
+.flat_button.button_contour:active {
+    background-color: rgba(101, 144, 199, .16)
+}
+
 .button_gray button.hover,
 .button_gray button:hover,
 .flat_button.secondary.hover,

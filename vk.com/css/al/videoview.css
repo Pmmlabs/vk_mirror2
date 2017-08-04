@@ -3359,7 +3359,7 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
 
 .mv_chat_stickers_wrap {
     position: absolute;
-    bottom: 60px;
+    bottom: 30px;
     right: 100%;
     pointer-events: none
 }

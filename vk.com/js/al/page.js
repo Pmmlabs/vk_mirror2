@@ -3295,6 +3295,23 @@ var Wall = {
                             mark_as_ads: 1
                         });
                         return;
+                    case 'pretty_cards':
+                        if (!addmedia.prettyCardGallery) {
+                            return;
+                        }
+
+                        if (addmedia.prettyCardGallery.needSendData()) {
+                            addmedia.prettyCardGallery.saveCards(Wall.sendPost, function(response) {
+                                showError(response);
+                            });
+                            ret = true;
+                            return false;
+                        }
+
+                        var prettyCardsResult = addmedia.prettyCardGallery.getSendData();
+                        attachVal = prettyCardsResult.attachVal;
+
+                        break;
                 }
                 if (this[3] && trim(msg) == this[3]) {
                     params.message = '';
@@ -7675,6 +7692,23 @@ Composer = {
                     case 'mark_as_ads':
                         params.mark_as_ads = 1;
                         return;
+                    case 'pretty_cards':
+                        if (!addMedia.prettyCardGallery) {
+                            return;
+                        }
+
+                        if (addMedia.prettyCardGallery.needSendData()) {
+                            addMedia.prettyCardGallery.saveCards(delayedCallback, function(response) {
+                                showError(response);
+                            });
+                            params.delayed = true;
+                            return false;
+                        }
+
+                        var prettyCardsResult = addMedia.prettyCardGallery.getSendData();
+                        attachVal = prettyCardsResult.attachVal;
+
+                        break;
                 }
                 if (this[3] && trim(message) == this[3]) {
                     params.message = '';

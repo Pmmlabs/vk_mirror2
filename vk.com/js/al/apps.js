@@ -20,26 +20,26 @@ function detectUnityWebPlayer(t, e) {
                 function() {
                     if ("undefined" == typeof s.GetPluginVersion) o++ < 10 ? setTimeout(arguments.callee, 10) : (bodyNode.removeChild(s), t(null));
                     else {
-                        var n = {};
+                        var a = {};
                         if (e)
-                            for (i = 0; i < e.length; ++i) n[e[i]] = s.GetUnityVersion(e[i]);
-                        n.plugin = s.GetPluginVersion(), bodyNode.removeChild(s), t(n)
+                            for (i = 0; i < e.length; ++i) a[e[i]] = s.GetUnityVersion(e[i]);
+                        a.plugin = s.GetPluginVersion(), bodyNode.removeChild(s), t(a)
                     }
                 }()
         },
         o = function(t) {
-            var e, i, o, s, n, a = 0;
+            var e, i, o, s, a, n = 0;
             if (t) {
                 var r = t.toLowerCase().match(/^(\d+)(?:\.(\d+)(?:\.(\d+)([dabfr])?(\d+)?)?)?$/);
-                r && r[1] && (e = r[1], i = r[2] ? r[2] : 0, o = r[3] ? r[3] : 0, s = r[4] ? r[4] : "r", n = r[5] ? r[5] : 0, a |= e / 10 % 10 << 28, a |= e % 10 << 24, a |= i % 10 << 20, a |= o % 10 << 16, a |= {
+                r && r[1] && (e = r[1], i = r[2] ? r[2] : 0, o = r[3] ? r[3] : 0, s = r[4] ? r[4] : "r", a = r[5] ? r[5] : 0, n |= e / 10 % 10 << 28, n |= e % 10 << 24, n |= i % 10 << 20, n |= o % 10 << 16, n |= {
                     d: 8192,
                     a: 16384,
                     b: 24576,
                     f: 32768,
                     r: 32768
-                }[s], a |= n / 100 % 10 << 8, a |= n / 10 % 10 << 4, a |= n % 10)
+                }[s], n |= a / 100 % 10 << 8, n |= a / 10 % 10 << 4, n |= a % 10)
             }
-            return a
+            return n
         },
         s = !1;
     if (navigator.plugins.refresh(), "undefined" != typeof navigator.plugins && navigator.plugins["Unity Player"] && "undefined" != typeof navigator.mimeTypes && navigator.mimeTypes["application/vnd.unity"] && navigator.mimeTypes["application/vnd.unity"].enabledPlugin) {
@@ -53,11 +53,11 @@ function detectUnityWebPlayer(t, e) {
             t(s, e)
         }, e)
     } else if (browser.msie) {
-        var n = !1;
+        var a = !1;
         try {
-            null != ActiveXObject.prototype && (n = !0)
-        } catch (a) {}
-        if (n && (!/win64/i.test(navigator.userAgent) || !/x64/i.test(navigator.userAgent))) try {
+            null != ActiveXObject.prototype && (a = !0)
+        } catch (n) {}
+        if (a && (!/win64/i.test(navigator.userAgent) || !/x64/i.test(navigator.userAgent))) try {
             var r = new ActiveXObject("UnityWebPlayer.UnityWebPlayer.1"),
                 c = r.GetPluginVersion();
             if (e) {
@@ -71,7 +71,7 @@ function detectUnityWebPlayer(t, e) {
                     u >= 6 && (s = !1)
                 }
             }
-        } catch (a) {}
+        } catch (n) {}
     }
     t(s, l)
 }! function(t) {
@@ -80,9 +80,9 @@ function detectUnityWebPlayer(t, e) {
         return t
     }
 
-    function i(t, e, o, s, n) {
-        t[e] ? o.apply(s) : (n = n || 0, 1e3 > n && setTimeout(function() {
-            i(t, e, o, s, n + 1)
+    function i(t, e, o, s, a) {
+        t[e] ? o.apply(s) : (a = a || 0, 1e3 > a && setTimeout(function() {
+            i(t, e, o, s, a + 1)
         }, 0))
     }
 
@@ -104,10 +104,10 @@ function detectUnityWebPlayer(t, e) {
             case "object":
                 if ("[object Array]" === Object.prototype.toString.apply(t)) {
                     i = [];
-                    for (var o = 0, n = t.length; n > o; o++) i[o] = s(t[o], e)
+                    for (var o = 0, a = t.length; a > o; o++) i[o] = s(t[o], e)
                 } else {
                     i = {};
-                    for (var a in t) Object.hasOwnProperty.call(t, a) && (i[a] = s(t[a], e))
+                    for (var n in t) Object.hasOwnProperty.call(t, n) && (i[n] = s(t[n], e))
                 }
                 break;
             default:
@@ -116,28 +116,28 @@ function detectUnityWebPlayer(t, e) {
         return i
     }
 
-    function n(t, e) {
+    function a(t, e) {
         d.loaded ? t.apply(e, [d]) : p.push([e, t])
     }
 
-    function a() {
+    function n() {
         d.loaded = !0;
         for (var t = 0, e = p.length; e > t; t++) p[t][1].apply(p[t][0], [d])
     }
 
     function r(t, e) {
-        n(function(i) {
+        a(function(i) {
             var o = i.json.parse(t);
             if (o[0]) {
                 o[1] || (o[1] = []);
-                for (var n = 0, a = o[1].length; a > n; n++)
-                    if (o[1][n] && o[1][n]._func) {
-                        var r = o[1][n]._func;
-                        o[1][n] = function() {
+                for (var a = 0, n = o[1].length; n > a; a++)
+                    if (o[1][a] && o[1][a]._func) {
+                        var r = o[1][a]._func;
+                        o[1][a] = function() {
                             var t = Array.prototype.slice.call(arguments);
                             t.unshift("_func" + r), e.callMethod.apply(e, t)
                         }
-                    } else e.options.safe && (o[1][n] = s(o[1][n], !0));
+                    } else e.options.safe && (o[1][a] = s(o[1][a], !0));
                 setTimeout(function() {
                     if (!e.methods[o[0]]) throw Error("fastXDM: Method " + o[0] + " is undefined");
                     e.methods[o[0]].apply(e, o[1])
@@ -165,7 +165,7 @@ function detectUnityWebPlayer(t, e) {
                 if (this.methods = e || {}, this.options = i || {}, this.id = t.fastXDM._id++, this.client = !0, t.fastXDM.run(this.id), 0 !== window.name.indexOf("fXD")) throw Error("Wrong window.name property.");
                 this.key = window.name.substr(3), this.caller = window.parent, l[this.key] = [r, this], t.fastXDM.on("helper", function() {
                     t.fastXDM.onClientStart(this)
-                }, this), n(function(t) {
+                }, this), a(function(t) {
                     t.send(this, t.json.stringify(["%init%"]));
                     var e = this.methods;
                     setTimeout(function() {
@@ -192,13 +192,13 @@ function detectUnityWebPlayer(t, e) {
                 d.json = t
             },
             getJSON: function(t) {
-                return t ? void n(function(e) {
+                return t ? void a(function(e) {
                     t(e.json)
                 }) : d.json
             },
             setEnv: function(t) {
                 for (var e in t) d[e] = t[e];
-                a()
+                n()
             },
             _q: {},
             on: function(t, e, i) {
@@ -225,28 +225,28 @@ function detectUnityWebPlayer(t, e) {
             var o = document.createElement("DIV");
             o.innerHTML = '<iframe name="' + this.frameName + '" ' + (i || "") + "></iframe>";
             var s = o.firstChild,
-                n = this,
-                a = function() {
-                    s.frameBorder = "0", e && c(s, e), t.insertBefore(s, t.firstChild), n.start(s)
+                a = this,
+                n = function() {
+                    s.frameBorder = "0", e && c(s, e), t.insertBefore(s, t.firstChild), a.start(s)
                 };
-            return n.options.layer ? a() : setTimeout(function() {
-                a()
+            return a.options.layer ? n() : setTimeout(function() {
+                n()
             }, 0), s
         }, t.fastXDM.Client.prototype.callMethod = t.fastXDM.Server.prototype.callMethod = function() {
-            for (var e = Array.prototype.slice.call(arguments), o = e.shift(), a = 0, r = e.length; r > a; a++)
-                if ("function" == typeof e[a]) {
+            for (var e = Array.prototype.slice.call(arguments), o = e.shift(), n = 0, r = e.length; r > n; n++)
+                if ("function" == typeof e[n]) {
                     this.funcsCount = (this.funcsCount || 0) + 1;
-                    var c = e[a],
+                    var c = e[n],
                         l = "_func" + this.funcsCount;
                     this.methods[l] = function() {
                         c.apply(this, arguments), delete this.methods[l]
-                    }, e[a] = {
+                    }, e[n] = {
                         _func: this.funcsCount
                     }
-                } else this.options.safe && (e[a] = s(e[a], !1));
+                } else this.options.safe && (e[n] = s(e[n], !1));
             i(this, "caller", function() {
                 t.fastXDM.on(this.id, function() {
-                    n(function(t) {
+                    a(function(t) {
                         t.send(this, t.json.stringify([o, e]))
                     }, this)
                 }, this)
@@ -263,7 +263,7 @@ function detectUnityWebPlayer(t, e) {
             } catch (o) {
                 window.postMessage.call(i, t.key + ":" + e, "*")
             }
-        }, t.addEventListener ? t.addEventListener("message", t.fastXDM.onMessage, !1) : t.attachEvent("onmessage", t.fastXDM.onMessage), t.fastXDM._needJSON ? (t.fastXDM._onlyJSON = !0, o()) : a()) : o()
+        }, t.addEventListener ? t.addEventListener("message", t.fastXDM.onMessage, !1) : t.attachEvent("onmessage", t.fastXDM.onMessage), t.fastXDM._needJSON ? (t.fastXDM._onlyJSON = !0, o()) : n()) : o()
     }
 }(window), window._iconAdd || (window._iconAdd = window.devicePixelRatio >= 2 ? "_2x" : "");
 var vkApp = function(t, e, i, o) {
@@ -271,14 +271,14 @@ var vkApp = function(t, e, i, o) {
     var s = this;
     if (this.cont = ge(t), this.cont) {
         if (i.hash = i.hash || "", -1 != i.hash.indexOf("#")) {
-            var n = i.hash.split("#").pop();
-            (n || "").substr(0, 1) == vk.navPrefix ? i.hash = "" : i.hash = n
+            var a = i.hash.split("#").pop();
+            (a || "").substr(0, 1) == vk.navPrefix ? i.hash = "" : i.hash = a
         }
         if (this.params = i, this.onReady = new Array, 1 == e.type) {
-            var a = e.src,
+            var n = e.src,
                 r = [];
             for (var c in i) "hash" == c ? r.push(c + "=" + encodeURIComponent(i[c])) : r.push(c + "=" + i[c]);
-            a += (-1 == a.indexOf("?") ? "?" : "&") + r.join("&")
+            n += (-1 == n.indexOf("?") ? "?" : "&") + r.join("&")
         }
         e.inlineApp && (s.inlineApp = !0), s.options = extend({
             heightMax: 4500
@@ -511,8 +511,8 @@ var vkApp = function(t, e, i, o) {
             },
             showAllowMessagesFromCommunityBox: function() {
                 if (!cur.allowMessagesFromCommunityBox) {
-                    cur.allowMessagesFromCommunityBox = !0, cur.onAllowMessagesFromCommunity = function() {
-                        cur.app.runCallback("onAllowMessagesFromCommunity")
+                    cur.allowMessagesFromCommunityBox = !0, cur.allowMessagesFromCommunityStatus = "", cur.onAllowMessagesFromCommunity = function(t) {
+                        "ok" === t ? cur.app.runCallback("onAllowMessagesFromCommunity") : cur.app.runCallback("onAllowMessagesFromCommunityCancel")
                     };
                     var t = {
                         act: "allow_messages_from_community_box",
@@ -527,7 +527,7 @@ var vkApp = function(t, e, i, o) {
                     });
                     i.setOptions({
                         onHide: function() {
-                            setTimeout(function() {
+                            cur.onAllowMessagesFromCommunity(cur.allowMessagesFromCommunityStatus), setTimeout(function() {
                                 cur.allowMessagesFromCommunityBox = !1
                             }, 3e3)
                         }
@@ -676,7 +676,7 @@ var vkApp = function(t, e, i, o) {
                     layer: 1
                 }) : this.RPC = new fastXDM.Server(this.funcs);
                 var d = {
-                    src: a,
+                    src: n,
                     width: "100%",
                     overflow: "hidden",
                     scrolling: "no"
@@ -818,11 +818,11 @@ vkApp.prototype.boxApp = function(t) {}, vkApp.prototype.onAppReady = function()
                 dark: 1
             }
         });
-        var n = this;
+        var a = this;
         return cur.apiWallPost = function(o, s) {
             s ? i && i({
                 error: s
-            }) : n.api(t, extend(e, {
+            }) : a.api(t, extend(e, {
                 method_access: o
             }), i)
         }, !1
@@ -1135,7 +1135,7 @@ AppsSlider.prototype = {
     },
     blacklistInit: function(t, e, i) {
         function o() {
-            if (a.scrollTop > 0 ? addClass(t.bodyNode.parentNode, "olist_topsh") : removeClass(t.bodyNode.parentNode, "olist_topsh"), a.scrollTop + (a.offsetHeight || a.clientHeight) < r.scrollHeight ? addClass(t.bodyNode.parentNode, "olist_botsh") : removeClass(t.bodyNode.parentNode, "olist_botsh"), c && c.offsetTop && c.onclick) {
+            if (n.scrollTop > 0 ? addClass(t.bodyNode.parentNode, "olist_topsh") : removeClass(t.bodyNode.parentNode, "olist_topsh"), n.scrollTop + (n.offsetHeight || n.clientHeight) < r.scrollHeight ? addClass(t.bodyNode.parentNode, "olist_botsh") : removeClass(t.bodyNode.parentNode, "olist_botsh"), c && c.offsetTop && c.onclick) {
                 var e = c.offsetTop,
                     i = r.scrollTop,
                     o = r.offsetHeight || r.clientHeight;
@@ -1150,18 +1150,18 @@ AppsSlider.prototype = {
                 if (checkEvent(i)) return !0;
                 t.changed = !0;
                 var s = o.id.match(/-?\d+/)[0],
-                    n = l[s],
-                    a = !1;
+                    a = l[s],
+                    n = !1;
                 return each(e, function() {
-                    return this[0] == s ? (a = this[4], !1) : void 0
+                    return this[0] == s ? (n = this[4], !1) : void 0
                 }), ajax.post("/al_apps.php", {
                     act: "a_blacklist_delete",
-                    cancel: n ? 1 : 0,
+                    cancel: a ? 1 : 0,
                     owner_id: s,
-                    hash: a
+                    hash: n
                 }, {
                     onDone: function() {
-                        toggleClass(o, "olist_item_wrap_on", !n), l[s] = !n
+                        toggleClass(o, "olist_item_wrap_on", !a), l[s] = !a
                     },
                     showProgress: function() {
                         addClass(o, "olist_item_loading")
@@ -1175,12 +1175,12 @@ AppsSlider.prototype = {
             }
         }
 
-        function n(o, s) {
+        function a(o, s) {
             s = s || 0;
-            var a, d, u = s ? 60 : 120;
-            o && (o = clean(o).replace(/\u2013|\u2014/g, "-")), a = o ? p.search(o) : e, d = i.tpl;
-            var h = a.length;
-            a = a.slice(s, s + u);
+            var n, d, u = s ? 60 : 120;
+            o && (o = clean(o).replace(/\u2013|\u2014/g, "-")), n = o ? p.search(o) : e, d = i.tpl;
+            var h = n.length;
+            n = n.slice(s, s + u);
             var f = [];
             if (o) {
                 var g = escapeRE(o),
@@ -1192,9 +1192,9 @@ AppsSlider.prototype = {
                 var s = (i[t[0]], t[1]);
                 if (e) {
                     s = -1 == e.indexOf(" ") ? s.split(" ") : [s];
-                    var n = "";
-                    for (var a in s) n += (a > 0 ? " " : "") + s[a].replace(o, "$2<em>$3</em>");
-                    s = n
+                    var a = "";
+                    for (var n in s) a += (n > 0 ? " " : "") + s[n].replace(o, "$2<em>$3</em>");
+                    s = a
                 }
                 return {
                     id: t[0],
@@ -1203,14 +1203,14 @@ AppsSlider.prototype = {
                     link: t[3] || (t[0] > 0 ? "id" + t[0] : "app" + (-t[0] + 1e9))
                 }
             };
-            each(a, function() {
+            each(n, function() {
                 f.push(rs(d, w(this, o, l, v)))
             }), s || f.length || f.push('<div class="no_rows">' + (o ? getLang("global_search_not_found").replace("{search}", clean(o)) : i.lang.apps_blacklist_empty) + "</div>"), re(c), f = f.join(" "), s ? r.appendChild(cf(f)) : val(r, f), h > s + u && (r.appendChild(c), c.onclick = function(t) {
-                return n(o, s + u), cancelEvent(t)
+                return a(o, s + u), cancelEvent(t)
             }), t && t.scroll && t.scroll.update(!1, !0)
         }
         i = i || {};
-        var a = geByClass1("apps_blacklist_wrap", t.bodyNode),
+        var n = geByClass1("apps_blacklist_wrap", t.bodyNode),
             r = geByClass1("apps_blacklist", t.bodyNode),
             c = geByClass1("olist_more", t.bodyNode, "a"),
             l = {},
@@ -1227,10 +1227,10 @@ AppsSlider.prototype = {
         i.nofocus || setTimeout(elfocus.pbind(d), 100);
         var u = data(d, "opts");
         data(d, "opts", extend(u, {
-            onChange: n
+            onChange: a
         })), c && (isVisible(c) ? c.onclick = function(t) {
-            return n("", 60), cancelEvent(t)
-        } : (re(c), show(c))), addEvent(r, "click", s), addEvent(a, "scroll", o), setTimeout(o, 10)
+            return a("", 60), cancelEvent(t)
+        } : (re(c), show(c))), addEvent(r, "click", s), addEvent(n, "scroll", o), setTimeout(o, 10)
     },
     initDescription: function(t) {
         var e = geByClass1("apps_i_description_content");
@@ -1260,15 +1260,15 @@ AppsSlider.prototype = {
             i = ge("apps_i_slider_outer"),
             o = ge("apps_i_slider_thumbs"),
             s = o ? domPN(o) : null,
-            n = o ? o.children : [],
-            a = null,
+            a = o ? o.children : [],
+            n = null,
             r = null,
             c = function() {
                 if (o) {
                     var t = s.offsetWidth,
                         e = o.scrollWidth;
                     if (t >= e || !e || !t) return;
-                    var i = n[a],
+                    var i = a[n],
                         c = (o.offsetLeft, i.offsetLeft),
                         l = i.offsetWidth,
                         p = -c + (t - l) / 2;
@@ -1281,7 +1281,7 @@ AppsSlider.prototype = {
                 }
             },
             l = function(t) {
-                o && t !== a && (null !== a && removeClass(n[a], "selected"), a = t, addClass(n[a], "selected"), c())
+                o && t !== n && (null !== n && removeClass(a[n], "selected"), n = t, addClass(a[n], "selected"), c())
             };
         if (onRequired = function() {
                 l(null !== cur.appSsSlider.required ? cur.appSsSlider.required : cur.appSsSlider.current)
@@ -1295,7 +1295,7 @@ AppsSlider.prototype = {
                 onChange: onChange,
                 onRequired: onRequired,
                 infinite: !1
-            }), onChange(), onRequired(), this.adjustRunBoxSize(ge("apps_i_run_box")), each(n, function(t, e) {
+            }), onChange(), onRequired(), this.adjustRunBoxSize(ge("apps_i_run_box")), each(a, function(t, e) {
                 var i = new Image;
                 i.onload = c, i.src = geByTag1("img", e).src, addEvent(e, "click", function() {
                     cur.appSsSlider && cur.appSsSlider.requireIndex(t)
@@ -1324,20 +1324,20 @@ AppsSlider.prototype = {
             })).show()
         }.bind(this), 500)
     },
-    sendInstallRequest: function(t, e, i, o, s, n) {
+    sendInstallRequest: function(t, e, i, o, s, a) {
         if (t && !isButtonLocked(t) && !hasClass(t, "button_disabled")) {
             lockButton(t);
-            var a = getSize(t);
+            var n = getSize(t);
             e ? ajax.post(this.address, {
                 act: "send_install_request",
                 aid: i,
                 ref: o,
                 cid: s,
-                hash: n
+                hash: a
             }, {
                 hideProgress: function() {
                     var e = getLang("apps_install_push_sent_msg");
-                    unlockButton(t), addClass(t, "button_disabled"), setStyle(t, "width", a[0]), val(t, e);
+                    unlockButton(t), addClass(t, "button_disabled"), setStyle(t, "width", n[0]), val(t, e);
                     var i = ge("apps_i_run_box");
                     addClass(i, "sent"), val(i, e), this.adjustRunBoxSize(i)
                 }.bind(this)
@@ -1345,13 +1345,13 @@ AppsSlider.prototype = {
                 act: "send_install_request_box",
                 aid: i
             }, {
-                onDone: function(e, s, n) {
+                onDone: function(e, s, a) {
                     if (unlockButton(t), s) {
                         cur.lang || (cur.lang = {}), extend(cur.lang, e);
-                        var a = new MessageBox({
+                        var n = new MessageBox({
                             title: getLang("apps_get_push_w_install_link")
                         });
-                        a.removeButtons(), a.content(s), a.addButton(getLang("apps_install_sms_send"), function(e) {
+                        n.removeButtons(), n.content(s), n.addButton(getLang("apps_install_sms_send"), function(e) {
                             if (t = ge("apps_i_request_btn") || t, e && t && !isButtonLocked(e)) {
                                 var s = getSize(t);
                                 lockButton(e), ajax.post(this.address, {
@@ -1359,7 +1359,7 @@ AppsSlider.prototype = {
                                     ref: o,
                                     aid: i,
                                     cid: -3,
-                                    hash: n
+                                    hash: a
                                 }, {
                                     onFail: function(t) {
                                         if (t) {
@@ -1368,7 +1368,7 @@ AppsSlider.prototype = {
                                         }
                                     },
                                     onDone: function() {
-                                        this.ttDestroyAll(), a.hide();
+                                        this.ttDestroyAll(), n.hide();
                                         var i = getLang("apps_install_push_sent_msg");
                                         unlockButton(e), addClass(t, "button_disabled"), setStyle(t, "width", s[0]), val(t, i);
                                         var o = ge("apps_i_run_box");
@@ -1376,10 +1376,10 @@ AppsSlider.prototype = {
                                     }.bind(this)
                                 })
                             }
-                        }.bind(this), "yes"), a.addButton(getLang("global_cancel"), a.hide, "no"), a.show()
+                        }.bind(this), "yes"), n.addButton(getLang("global_cancel"), n.hide, "no"), n.show()
                     } else showBox("activation.php", {
                         act: "change_phone_box",
-                        hash: n
+                        hash: a
                     })
                 }.bind(this)
             }))
@@ -1478,8 +1478,8 @@ AppsSlider.prototype = {
         if (!cur.savingSettings) {
             i || (o && o.btn && lockButton(o.btn), show("apps_settings_progress"));
             var s = curBox(),
-                n = ge("app_pay_add"),
-                a = ge("app_pay_withdraw"),
+                a = ge("app_pay_add"),
+                n = ge("app_pay_withdraw"),
                 r = {
                     act: "save_settings",
                     aid: t,
@@ -1487,8 +1487,8 @@ AppsSlider.prototype = {
                     from: "appview",
                     app_settings_1: isChecked("app_settings_1"),
                     app_settings_256: isChecked("app_settings_256"),
-                    add: n ? n.value : 0,
-                    withdraw: a ? a.value : 0,
+                    add: a ? a.value : 0,
+                    withdraw: n ? n.value : 0,
                     only_checkboxes: i ? 1 : 0,
                     cur_aid: cur.aid
                 };
@@ -1580,7 +1580,7 @@ AppsSlider.prototype = {
     deleteApp: function(t, e, i, o) {
         if (!this.deletingApp) {
             this.deletingApp = !0;
-            var s = function(i, o, s, n) {
+            var s = function(i, o, s, a) {
                 ajax.post(this.address, {
                     act: "quit",
                     id: t,
@@ -1594,7 +1594,7 @@ AppsSlider.prototype = {
                         this.deletingApp = !1, o.apply(null, [].slice.call(arguments))
                     }.bind(this)),
                     showProgress: s,
-                    hideProgress: n
+                    hideProgress: a
                 })
             }.bind(this);
             switch (o) {
@@ -1608,7 +1608,7 @@ AppsSlider.prototype = {
                     }, lockActionsMenuItem.pbind(i));
                     break;
                 default:
-                    var n = curBox();
+                    var a = curBox();
                     s(function() {
                         nav.go("/apps", !1)
                     }, function(t) {
@@ -1616,9 +1616,9 @@ AppsSlider.prototype = {
                             var e = ge("apps_settings_error");
                             val(e, t), show(e), scrollToTop()
                         }
-                        n && n.hideProgress()
+                        a && a.hideProgress()
                     }, function() {
-                        n && n.showProgress()
+                        a && a.showProgress()
                     })
             }
         }
@@ -1668,10 +1668,10 @@ AppsSlider.prototype = {
             i = [],
             o = 0,
             s = cur.appUser ? cur.userRate ? getLang("apps_you_voted") : getLang("apps_you_not_voted") : getLang("apps_rating_title"),
-            n = rs(cur.rateStatsLabelTpl, {
+            a = rs(cur.rateStatsLabelTpl, {
                 label: s
             });
-        for (var a in cur.rateStats || {}) o += intval(cur.rateStats[a]);
+        for (var n in cur.rateStats || {}) o += intval(cur.rateStats[n]);
         val("app_rate_label", s);
         for (var r = 1; 5 >= r; r++) {
             e += '<span class="app_rate stats fl_r"></span>';
@@ -1691,8 +1691,8 @@ AppsSlider.prototype = {
                 width: l + "%"
             }), val(geByClass1("app_rate_percent", u), l + "%"), val(geByClass1("app_rate_cnt", u), p), geByClass1("app_rate_stars", u).className = "app_rate_stars fl_l " + d)
         }
-        n += i.reverse().join(""), showTooltip(t, {
-            text: n,
+        a += i.reverse().join(""), showTooltip(t, {
+            text: a,
             slideX: 15,
             className: "app_rate_tt",
             shift: [cur.installPage ? -70 : -66, 0, -36],
@@ -1724,15 +1724,15 @@ AppsSlider.prototype = {
             i = geByClass("app_rate", ge("apps_ratings")),
             o = Math.floor((e + 2) / 10),
             s = Math.floor((e + 2) / 5) - o;
-        for (var n in i) {
-            var a = "app_rate fl_l " + (o > n ? "full" : s > n ? "half" : "empty");
-            i[n].className = a
+        for (var a in i) {
+            var n = "app_rate fl_l " + (o > a ? "full" : s > a ? "half" : "empty");
+            i[a].className = n
         }
         if (t) {
             var r = Math.floor(t / 10);
-            for (var n in i) {
-                if (n >= r) break;
-                i[n].className += " over"
+            for (var a in i) {
+                if (a >= r) break;
+                i[a].className += " over"
             }
         }
     },
@@ -1823,7 +1823,7 @@ AppsSlider.prototype = {
     },
     notificationsRemoveAll: function(t, e, i, o, s) {
         if (!linkLocked(t) && !checkEvent(s)) {
-            var n = showFastBox({
+            var a = showFastBox({
                 title: e
             }, i, getLang("global_delete"), function(e) {
                 ajax.post(this.address, {
@@ -1840,7 +1840,7 @@ AppsSlider.prototype = {
                         lockButton(e), lockLink(t)
                     },
                     hideProgress: this.withFastBackCheck(function() {
-                        unlockButton(e), unlockLink(t), n.hide()
+                        unlockButton(e), unlockLink(t), a.hide()
                     })
                 })
             }.bind(this), getLang("global_cancel"));
@@ -1986,39 +1986,39 @@ AppsSlider.prototype = {
         if (o && cancelEvent(o), this.removingApp) return !1;
         if (this.isDelayedOnSilentLoad("removeApp" + t, this.removeApp.bind(this, t, e, i))) return !1;
         this.ttDestroyAll();
-        var n = i ? ge("recent" + t) : ge("app" + t),
-            a = n && cur.lContent && cur.lContent.contains(n) && this.isSection("settings") ? "settings" : i ? "recent" : "al_apps",
+        var a = i ? ge("recent" + t) : ge("app" + t),
+            n = a && cur.lContent && cur.lContent.contains(a) && this.isSection("settings") ? "settings" : i ? "recent" : "al_apps",
             r = function() {
-                if ("al_apps" == a) {
-                    var i = n && geByClass1("app_deleted_layer", n, "div");
+                if ("al_apps" == n) {
+                    var i = a && geByClass1("app_deleted_layer", a, "div");
                     val(i, cur.progressTpl)
-                } else if ("recent" == a) var o = cur.rAppsWrap && geByClass1("apps_recent_row_hidden", cur.rAppsWrap);
+                } else if ("recent" == n) var o = cur.rAppsWrap && geByClass1("apps_recent_row_hidden", cur.rAppsWrap);
                 ajax.post(this.address, {
                     act: "quit",
                     gid: cur.gid,
                     id: t,
                     hash: e,
                     offset: cur.recentOffset,
-                    from: a
+                    from: n
                 }, {
                     onDone: this.withFastBackCheck(function(e) {
-                        "apps" == cur.module && (delete cur.preload, "notifications" != nav.objLoc.tab && cur.rNotWrap && this.isSection("catalog", "list") ? this.recentTabsUpdate(!1, !0) : (window.notificationsListChanged = !0, e.count_all && this.notificationsSetCounters(e.count_all)), window.appsListChanged = !0, cur.apps[t] && (cur.appsIndex.remove(cur.apps[t]), cur.apps[t].deleted = !0), e.left_nav && this.updateLeftNav(e.left_nav), "settings" == a ? (cur.deletedApps[t] = {
-                            from: a,
-                            html: n.innerHTML
-                        }, n && n.appendChild(cf(e.html))) : "recent" == a ? (o && removeClass(o, "apps_recent_row_hidden"), hide(n), e.html && domInsertBefore(cf(e.html), cur.rAppsShowMoreButton), geByClass1("apps_recent_row", cur.rAppsWrap) ? cur.recentOffset += e.offset : (hide(cur.rAppsShowMoreButton), show(cur.rAppsNoContent), cur.recentOffset = 0)) : (cur.deletedApps[t] = {
-                            from: a,
-                            html: n.innerHTML
-                        }, e.html && val(i, e.html)), addClass(n, "deleted"))
+                        "apps" == cur.module && (delete cur.preload, "notifications" != nav.objLoc.tab && cur.rNotWrap && this.isSection("catalog", "list") ? this.recentTabsUpdate(!1, !0) : (window.notificationsListChanged = !0, e.count_all && this.notificationsSetCounters(e.count_all)), window.appsListChanged = !0, cur.apps[t] && (cur.appsIndex.remove(cur.apps[t]), cur.apps[t].deleted = !0), e.left_nav && this.updateLeftNav(e.left_nav), "settings" == n ? (cur.deletedApps[t] = {
+                            from: n,
+                            html: a.innerHTML
+                        }, a && a.appendChild(cf(e.html))) : "recent" == n ? (o && removeClass(o, "apps_recent_row_hidden"), hide(a), e.html && domInsertBefore(cf(e.html), cur.rAppsShowMoreButton), geByClass1("apps_recent_row", cur.rAppsWrap) ? cur.recentOffset += e.offset : (hide(cur.rAppsShowMoreButton), show(cur.rAppsNoContent), cur.recentOffset = 0)) : (cur.deletedApps[t] = {
+                            from: n,
+                            html: a.innerHTML
+                        }, e.html && val(i, e.html)), addClass(a, "deleted"))
                     }.bind(this)),
                     showProgress: function() {
-                        addClass(n, this.optionLoadingClass), this.removingApp = !0
+                        addClass(a, this.optionLoadingClass), this.removingApp = !0
                     }.bind(this),
                     hideProgress: this.withFastBackCheck(function() {
-                        removeClass(n, this.optionLoadingClass), this.removingApp = !1
+                        removeClass(a, this.optionLoadingClass), this.removingApp = !1
                     }.bind(this))
                 })
             }.bind(this);
-        if ("recent" == a) var c = showFastBox({
+        if ("recent" == n) var c = showFastBox({
             title: getLang("apps_quit_app_box_title")
         }, getLang(s ? "apps_game_quit_confirm" : "apps_quit_confirm"), getLang("apps_remove"), function() {
             r(), c.hide()
@@ -2030,17 +2030,17 @@ AppsSlider.prototype = {
         }, getLang("global_cancel"));
         else r()
     },
-    runApp: function(t, e, i, o, s, n) {
+    runApp: function(t, e, i, o, s, a) {
         if (!vk.id) return showDoneBox(cur.pleaseSignInLang), !1;
         lockButton(t);
-        var a = clone(nav.objLoc);
-        delete a.w, nav.setLoc(a), window.appsListChanged = 1;
+        var n = clone(nav.objLoc);
+        delete n.w, nav.setLoc(n), window.appsListChanged = 1;
         var r = "/" + e + "?join=1&hash=" + i + "&sett=" + o;
         if (cur.fromInstallBox && (r += "&from_install=" + (1 == cur.fromInstallBox ? 1 : 2)), s)
             if (isObject(s))
                 for (var c in s) "w" != c && (r += "&" + c + "=" + s[c]);
             else "" != s && (r += "&ref=" + s);
-        n && (r += "&mid=" + n), nav.objLoc["#"] && (r += "#" + nav.objLoc["#"]), nav.go(r)
+        a && (r += "&mid=" + a), nav.objLoc["#"] && (r += "#" + nav.objLoc["#"]), nav.go(r)
     },
     updatesInterval: null,
     stopUpdates: function() {
@@ -2070,10 +2070,10 @@ AppsSlider.prototype = {
         if (cur.updatesVersion && i == cur.updatesVersion) {
             var o = browser.opera && intval(browser.version) <= 12,
                 s = t[3],
-                n = new Date,
-                a = n.getHours(),
-                r = n.getMinutes();
-            10 > a && (a = "0" + a), 10 > r && (r = "0" + r), s = s.replace("{date}", a + ":" + r);
+                a = new Date,
+                n = a.getHours(),
+                r = a.getMinutes();
+            10 > n && (n = "0" + n), 10 > r && (r = "0" + r), s = s.replace("{date}", n + ":" + r);
             var c = domFC(cf(s));
             if (cur.fWrap) {
                 var l = cur.fWrap.__uiScroll__ ? cur.fWrap.__uiScroll__.content : cur.fWrap;
@@ -2191,7 +2191,8 @@ AppsSlider.prototype = {
         }
     },
     restoreListContent: function() {
-        return cur.backupList ? (this.searchProgress(!1), val(cur.lContent, ""), val(cur.lPreload, ""), extend(cur, cur.backupList.cur), cur.lContent.appendChild(cur.backupList.content), cur.lPreload.appendChild(cur.backupList.preload), delete cur.backupList, !0) : (delete cur.backupList, !1)
+        return cur.backupList ? (this.searchProgress(!1),
+            val(cur.lContent, ""), val(cur.lPreload, ""), extend(cur, cur.backupList.cur), cur.lContent.appendChild(cur.backupList.content), cur.lPreload.appendChild(cur.backupList.preload), delete cur.backupList, !0) : (delete cur.backupList, !1)
     },
     indexAll: function(t) {
         cur.appsIndex = new vkIndexer(cur.appsList.all, function(t) {
@@ -2244,10 +2245,10 @@ AppsSlider.prototype = {
                         o = cur.appsList[cur.curList] || [],
                         s = o.length;
                     if (o = this.filter(o.slice(cur.shownApps)).slice(0, cur.defaultCount), o.length && cur.appTpl) {
-                        var n = [];
+                        var a = [];
                         each(o, function(t, i) {
-                            i = clone(i), cur.selection && (i[3] = i[3].replace(cur.selection.re, cur.selection.val)), n.push(cur.appTpl(i, t == o.length - 1, e))
-                        }.bind(this)), i = n.join("")
+                            i = clone(i), cur.selection && (i[3] = i[3].replace(cur.selection.re, cur.selection.val)), a.push(cur.appTpl(i, t == o.length - 1, e))
+                        }.bind(this)), i = a.join("")
                     }
                     cur.shownApps ? i && cur.lContent.appendChild(cf(i)) : i ? (val(cur.lContent, i), val(cur.aSummaryCounter, s)) : (val(cur.lContent, cur.aSummary.innerHTML.replace("{query}", "<b>" + t + "</b>")), val(cur.aSummaryCounter, "")), cur.shownApps += cur.defaultCount, cur.shownApps >= cur.sectionCount ? hide(cur.lShowMoreButton) : (show(cur.lShowMoreButton), this.scrollCheck()), this.searchProgress(!1)
                 }

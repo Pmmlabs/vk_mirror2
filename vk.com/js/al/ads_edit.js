@@ -1332,6 +1332,7 @@ AdsEdit.showCreatingPostBox = function(buttonElem) {
     if (!creatingPostBox.cur) {
         creatingPostBox.cur = {};
     }
+    creatingPostBox.changed = true; // prevent hiding box on background click
 }
 
 AdsEdit.initCreatingPostBox = function(creatingPostBox, groupsDefaultItems, selectedItem) {

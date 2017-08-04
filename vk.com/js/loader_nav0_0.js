@@ -128,7 +128,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2889730895,
     'common.js': 1152,
-    'common.css': 29532151062,
+    'common.css': 30849142574,
     'pads.css': 19528457118,
     'retina.css': 2633262011,
     'uncommon.js': 1524646384,
@@ -191,8 +191,8 @@ var stVersions = {
     'video.css': 25696346577,
     'videocat.js': 1618923991,
     'videocat.css': 24057007309,
-    'videoview.js': 2579898828,
-    'videoview.css': 26912375751,
+    'videoview.js': 3729849832,
+    'videoview.css': 26338899869,
     'video_edit.js': 2135196486,
     'video_edit.css': 20913754979,
     'video_upload.js': 555062683,
@@ -216,7 +216,7 @@ var stVersions = {
     'module.css': 21399598088,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 24592612753,
-    'page.js': 562226751,
+    'page.js': 4146090818,
     'page.css': 26789238964,
     'page_help.css': 25282282694,
     'public.css': 27070874279,
@@ -264,7 +264,7 @@ var stVersions = {
     'privacy.js': 3620108221,
     'privacy.css': 21529444318,
     'apps.css': 24034107707,
-    'apps.js': 3387573351,
+    'apps.js': 2931332228,
     'apps_edit.js': 119002668,
     'apps_edit.css': 26669613590,
     'apps_check.js': 3844411974,
@@ -370,12 +370,12 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 26889452291,
     'aes_light.js': 3306454788,
-    'ads.css': 26587241760,
+    'ads.css': 25182167878,
     'ads_bonus.css': 460482192,
     'ads.js': 1629241604,
     'ads_payments.js': 2170749464,
     'ads_edit.css': 21184956568,
-    'ads_edit.js': 3403521381,
+    'ads_edit.js': 290539585,
     'ads_edit_geo.js': 1634516705,
     'ads_moder_common.css': 19446792667,
     'ads_moder.css': 18809470851,
@@ -425,8 +425,8 @@ var stVersions = {
     'ui.js': 3953380422,
     'ui_common.js': 2918179257,
     'ui_common.css': 21113360501,
-    'ui_media_selector.js': 3356074337,
-    'ui_media_selector.css': 25083169784,
+    'ui_media_selector.js': 677609288,
+    'ui_media_selector.css': 23553977412,
     'ui_manual.css': 19874481163,
     'admin.js': 2866808704,
     'admin.css': 22920594990,
@@ -534,6 +534,7 @@ var stVersions = {
     'internal/cvkmobile.css': 22076659243,
     'internal/cvkmobile.js': 3693679928,
     'shortener.js': 1002525642,
+    'cmodules/web/pretty_cards.js': 880396286,
     'lang': 6830
 };
 var stTypes = {
@@ -599,4 +600,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 555;
+var _rnd = 5416;

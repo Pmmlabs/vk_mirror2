@@ -891,7 +891,7 @@ var Videoview = {
             return e.returnValue === !1 ? !1 : e.keyCode == KEY.ESC ? (mvcur.mvEditing ? Videoview.cancelInline() : Videoview.hide(), cancelEvent(e)) : void 0
         },
         onResize: function() {
-            Videoview.updateExternalVideoFinishBlock(), Videoview.updateReplyFormPos(), Videoview.onLiveGiftsScroll()
+            Videoview.updateExternalVideoFinishBlock(), Videoview.updateReplyFormPos(), Videoview.onLiveGiftsScroll(), VideoChat.onResize()
         },
         onPageFocusChange: function() {
             setTimeout(Videoview.playerNextTimerUpdate, 10)
@@ -2861,12 +2861,12 @@ window.VideoChat = {
     },
     appendSticker: function(e) {
         function i(e) {
-            for (var i = "", o = "", t = 0, a = 0, n = 0, d = 0; 100 >= d; d += 20) d > 0 && (t += irand(-5, 5), a -= 30, n += irand(-5, 5)), o = "transform: translate(" + t + "px, " + a + "px) rotate(" + n + "deg);", o += "opacity:" + (0 == d || 100 == d ? 0 : 1) + ";", i += d + "% {" + o + "}";
-            var r = "mv_chat_sticker_animation_" + Date.now() + "_" + irand(0, 1e9);
-            i = "@keyframes " + r + " {" + i + "}", e.appendChild(ce("style", {
+            for (var i = "", o = "", t = 0, a = 0, n = 0, d = intval((VideoChat.getHeight() - 80) / 6), r = 0; 100 >= r; r += 20) r > 0 && (t += irand(-4, 4), a -= d, n += irand(-4, 4), d = intval(.9 * d)), o = "transform: translate(" + t + "px, " + a + "px) rotate(" + n + "deg) " + (r ? "" : "scale(0.7)") + ";", o += "opacity:" + (0 == r || 100 == r ? 0 : 1) + ";", i += r + "% {" + o + "}";
+            var s = "mv_chat_sticker_animation_" + Date.now() + "_" + irand(0, 1e9);
+            i = "@keyframes " + s + " {" + i + "}", e.appendChild(ce("style", {
                 innerHTML: i
             })), setStyle(e, {
-                animation: r + " " + irand(1500, 2500) + "ms linear"
+                animation: s + " " + irand(1500, 2500) + "ms linear"
             })
         }
 
@@ -2882,7 +2882,7 @@ window.VideoChat = {
             var i = e.currentTarget || e;
             removeEvent(i), re(i)
         }
-        if (!VideoChat.isHidden() && "animation" in bodyNode.style && "onanimationend" in window)
+        if (!VideoChat.isHidden() && "hidden" != document.visibilityState && "animation" in bodyNode.style && "onanimationend" in window)
             if ("like" == e) {
                 var a = ce("div", {
                     className: "mv_chat_like"
@@ -3007,6 +3007,12 @@ window.VideoChat = {
     },
     updateScroll: function() {
         VideoChat.scroll.update(), VideoChat.scroll.scrollBottom(), VideoChat.toggleScrollBottomBtn(!1)
+    },
+    onResize: function() {
+        VideoChat.block && (VideoChat._chatHeight = VideoChat.block.offsetHeight)
+    },
+    getHeight: function() {
+        return VideoChat.block ? VideoChat._chatHeight || (VideoChat._chatHeight = VideoChat.block.offsetHeight) : 0
     },
     destroy: function() {
         if (VideoChat.block) {
