@@ -451,10 +451,10 @@ function MediaSelector(e, a, t, i) {
                         if (!o.title && !(cur.options.share || {}).allow_preview_empty_links) return (o.onError || function() {})(), !1;
                         o.title = unclean((o.title || "").replace(/<br>/g, "\n")), o.description = unclean((o.description || "").replace(/<br>/g, "\n")), o.description_short = unclean((o.description_short || "").replace(/<br>/g, "\n")), o.description_narrow = unclean((o.description_narrow || "").replace(/<br>/g, "\n")), cur.options = cur.options || {}, cur.options.share && cur.options.share.max_title_len && (o.title = (o.title || "").substr(0, cur.options.share.max_title_len)), cur.options.share && cur.options.share.max_desc_len && (o.description = (o.description || "").substr(0, cur.options.share.max_desc_len), o.description_short = (o.description_short || "").substr(0, cur.options.share.max_desc_len), o.description_narrow = (o.description_narrow || "").substr(0, cur.options.share.max_desc_len)), o.media = o.media || t, o.lang && (cur.lang = extend(cur.lang || {}, o.lang)), P = '<a target="_blank" href="/away.php?to=' + encodeURIComponent(o.url) + '" class="medadd_h medadd_h_link inl_bl">' + o.lang.profile_choose_link + "</a>", s.shareData = extend(s.shareData || {}, o, {
                             imagesStyles: [""]
-                        }), A = f, (o.onSuccess || function() {})(), (cur.options.share || {}).button_exclusive && o.shareButtons && hide(domByClass(e, "media_selector")), hide(domByClass(h.menuNode, "_type_share"));
+                        }), A = f, (o.onSuccess || function() {})(), (cur.options.share || {}).button_exclusive && o.shareButtons && (hide(e), hide(geByClass1("signed_wrap", domPN(m)))), hide(domByClass(h.menuNode, "_type_share"));
                         break;
                     case "pretty_cards":
-                        P = '<div class="medadd_h medadd_h_pretty_cards inl_bl">' + o.lang.global_wall_pretty_cards + "</div>", hide(domByClass(e, "media_selector")), hide(domByClass(h.menuNode, "_type_pretty_cards")), A = f;
+                        P = '<div class="medadd_h medadd_h_pretty_cards inl_bl">' + o.lang.global_wall_pretty_cards + "</div>", hide(geByClass1("signed_wrap", domPN(m))), hide(domByClass(h.menuNode, "_type_pretty_cards")), hide(e), A = f;
                         break;
                     case "poll":
                         if (!o.lang) return !1;
@@ -520,12 +520,12 @@ function MediaSelector(e, a, t, i) {
                         } else {
                             o.draft ? o.date = intval(t) : cur.postponedLastDate && (o.date = intval(cur.postponedLastDate) + 3600);
                             var O = ge("official"),
-                                $ = gpeByClass("_submit_post_box", O);
-                            if (O && $) {
-                                var K = domData($, "from-oid"),
-                                    V = domData($, "oid");
-                                K == vk.id && V && wall.setReplyAsGroup(O, {
-                                    from: V
+                                V = gpeByClass("_submit_post_box", O);
+                            if (O && V) {
+                                var $ = domData(V, "from-oid"),
+                                    K = domData(V, "oid");
+                                $ == vk.id && K && wall.setReplyAsGroup(O, {
+                                    from: K
                                 }), addClass(O, "disabled"), addClass("signed", "shown");
                                 var G = window.data(O, "tt");
                                 if (G && G.rdBtns) {
@@ -564,7 +564,7 @@ function MediaSelector(e, a, t, i) {
                             onMove: i.onAddMediaChange,
                             force: !0,
                             onUpdate: i.onChangedSize
-                        }), toggleClass(m, "media_preview_has_medias", s.hasVisibleRows()), i.onChangedSize && i.onChangedSize()
+                        }), toggleClass(m, "media_preview_has_medias", s.hasVisibleRows() && (isVisible(e) || isVisible(geByClass1("signed_wrap", domPN(m))))), i.onChangedSize && i.onChangedSize()
                     }, !0)) : (show(A), A.appendChild(ae), _ && (A == w ? stManager.add(["sorter.js"], function() {
                         var e = getXY(w),
                             a = getSize(w),
@@ -585,7 +585,7 @@ function MediaSelector(e, a, t, i) {
                 }
                 "share" == a ? !o.title || r || o.url ? s.showExternalPreview() : (cur.shareShowImg = 0, s.showPreview(!0), s.shareData.images = !1) : "page" == a ? o.nopreview || (cur.shareShowImg = 0, s.shareData = extend(s.shareData || {}, o, {
                     images: !1
-                }), s.showPreview()) : "poll" == a ? s.createPoll(o) : "postpone" == a ? s.setupPostpone(o, j) : "mark_as_ads" == a ? s.markAsAds = 1 : "pretty_cards" == a && s.createPrettyCards(o), toggleClass(m, "media_preview_has_medias", s.hasVisibleRows()), i.onChangedSize && i.onChangedSize();
+                }), s.showPreview()) : "poll" == a ? s.createPoll(o) : "postpone" == a ? s.setupPostpone(o, j) : "mark_as_ads" == a ? s.markAsAds = 1 : "pretty_cards" == a && s.createPrettyCards(o), toggleClass(m, "media_preview_has_medias", s.hasVisibleRows() && (isVisible(e) || isVisible(geByClass1("signed_wrap", domPN(m))))), i.onChangedSize && i.onChangedSize();
                 var te = window.event;
                 return te && "click" == te.type && (te.ctrlKey || te.metaKey || te.shiftKey) && s.attachCount() + 1 <= n && (d = !0), cur.fileApiUploadStarted && void 0 !== o.upload_ind || cur.preventBoxHide || d === !0 || inArray(a, ["poll", "share", "page", "postpone", "mark_as_ads"]) || boxQueue.hideLast(), cur.lastPostMsg = !1, i.onMediaAdd && i.onMediaAdd(), getAudioPlayer().updateCurrentPlaying(), cur.onMediaChanged && cur.onMediaChanged(s.chosenMedias), void 0 !== o.upload_ind && delete o.upload_ind, !1
             },
@@ -622,10 +622,10 @@ function MediaSelector(e, a, t, i) {
                         }), v.qsorter.destroy(), re(r[a][2]), v.childNodes.length > 1 && qsorter.init(v, s.qsorterOpts())) : re(r[a][2])) : ("photo" == r[a][0] || "video" == r[a][0] || "album" == r[a][0]) && window.ThumbsEdit && ThumbsEdit.removeById("thumbs_edit" + u, r[a][0] + r[a][1]), r[a][0]) {
                             case "page":
                             case "share":
-                                s.shareData = {}, re(s.sharePreview), hide("medadd_c_linkimg_loader"), clearTimeout(cur.showLoaderTimeout), clearInterval(cur.shareImgInterval), clearTimeout(cur.shareImgInterval2), clearTimeout(cur.imgLoadTimeout), delete s.sharePreview, show(domByClass(h.menuNode, "_type_share")), show(domByClass(e, "media_selector"));
+                                s.shareData = {}, re(s.sharePreview), hide("medadd_c_linkimg_loader"), clearTimeout(cur.showLoaderTimeout), clearInterval(cur.shareImgInterval), clearTimeout(cur.shareImgInterval2), clearTimeout(cur.imgLoadTimeout), delete s.sharePreview, show(domByClass(h.menuNode, "_type_share")), show(e), show(geByClass1("signed_wrap", domPN(m)));
                                 break;
                             case "pretty_cards":
-                                re(s.prettyCardGallery.el), delete s.prettyCardGallery, show(domByClass(h.menuNode, "_type_pretty_cards")), show(domByClass(e, "media_selector"));
+                                re(s.prettyCardGallery.el), delete s.prettyCardGallery, show(geByClass1("signed_wrap", domPN(m))), show(domByClass(h.menuNode, "_type_pretty_cards")), show(e);
                                 break;
                             case "poll":
                                 re(s.pollPreview), s.pollPreview = !1, show(domByClass(h.menuNode, "_type_poll"));
@@ -687,7 +687,7 @@ function MediaSelector(e, a, t, i) {
                     }
                     i.toggleLnk && show(e)
                 }
-                if (toggleClass(m, "media_preview_has_medias", s.hasVisibleRows()), cur.onMediaChanged && cur.onMediaChanged(r), cur.lastPostMsg = !1, s.onChange && s.onChange(!1), i.onChangedSize) {
+                if (toggleClass(m, "media_preview_has_medias", s.hasVisibleRows() && (isVisible(e) || isVisible(geByClass1("signed_wrap", domPN(m))))), cur.onMediaChanged && cur.onMediaChanged(r), cur.lastPostMsg = !1, s.onChange && s.onChange(!1), i.onChangedSize) {
                     i.onChangedSize();
                     var t = setInterval(i.onChangedSize, 50);
                     setTimeout(clearTimeout.bind(null, t), 500)

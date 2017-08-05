@@ -198,7 +198,7 @@ var stVersions = {
     'video_upload.js': 555062683,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 15842985884,
-    'videoplayer.js': 73652136687,
+    'videoplayer.js': 77017256373,
     'videoplayer.css': 37723165036,
     'translation.js': 2431784533,
     'translation.css': 17094275284,
@@ -425,7 +425,7 @@ var stVersions = {
     'ui.js': 3953380422,
     'ui_common.js': 2918179257,
     'ui_common.css': 18376186091,
-    'ui_media_selector.js': 677609288,
+    'ui_media_selector.js': 292427396,
     'ui_media_selector.css': 20816803002,
     'ui_manual.css': 17137306753,
     'admin.js': 2866808704,
@@ -534,7 +534,7 @@ var stVersions = {
     'internal/cvkmobile.css': 19339484833,
     'internal/cvkmobile.js': 3693679928,
     'shortener.js': 1002525642,
-    'cmodules/web/pretty_cards.js': 880396286,
+    'cmodules/web/pretty_cards.js': 230288707,
     'lang': 6830
 };
 var stTypes = {
@@ -600,4 +600,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 6166;
+var _rnd = 6157;
