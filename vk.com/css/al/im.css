@@ -52,13 +52,13 @@
 .im_stickers_close:after,
 .im_stickers_layer_close:after,
 .im_unread_info_pic_community_message,
-.nim-dialog .nim-dialog--close,
 .nim-dialog .nim-dialog--markre,
 .nim-dialog .nim-dialog--star,
 .nim-dialog.nim-dialog_muted .nim-dialog--mute,
 .nim-dialog.nim-dialog_unread.nim-dialog_prep-injected.nim-dialog_muted .nim-dialog--mute,
 .nim-dialog.nim-dialog_verified .nim-dialog--verfifed,
 .nim-dialog.nim-dialog_verified.nim-dialog_selected .nim-dialog--verfifed,
+.nim-peer.nim-peer_search.online:after,
 .nim-peer.nim-peer_smaller.online:after,
 .ui_actions_menu_item.im-action:before,
 .ui_multiselect_has_selection .ui_multiselect_remove {
@@ -83,6 +83,7 @@
 }
 
 .im-create .im-creation--item .olist_item_photo_wrap.online.mobile:after,
+.nim-peer.nim-peer_search.online.mobile:after,
 .nim-peer.nim-peer_smaller.online.mobile:after {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%206%209%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cg%20id%3D%22Symbols%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22%238AC176%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22online%22%20transform%3D%22translate(-136.000000%2C%20-209.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M136%2C210.506398%20C136%2C209.674437%20136.66503%2C209%20137.498576%2C209%20L140.501424%2C209%20C141.329065%2C209%20142%2C209.676463%20142%2C210.506398%20L142%2C216.493602%20C142%2C217.325563%20141.33497%2C218%20140.501424%2C218%20L137.498576%2C218%20C136.670935%2C218%20136%2C217.323537%20136%2C216.493602%20L136%2C210.506398%20Z%20M137%2C211%20L141%2C211%20L141%2C216%20L137%2C216%20L137%2C211%20Z%22%20id%3D%22mobile_s%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
 }
@@ -1632,7 +1633,7 @@ img.im_photo_thumb {
 }
 
 .im-page .im-page--dialogs.im-page--dialogs_with-mess .scrollbar_top {
-    top: 85px
+    top: 88px
 }
 
 .im-page .im-page--dialogs_loading {
@@ -1849,12 +1850,39 @@ img.im_photo_thumb {
     display: block
 }
 
-.im-page .im-page--messages-search {
-    padding: 14px;
+.im-page .im-search-results-head {
+    padding: 16px 15px 9px;
     border-top: solid 1px transparent;
     border-bottom: solid 1px transparent;
-    color: #939393;
-    font-size: 12.5px
+    color: #000;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 15px
+}
+
+.im-page_classic.im-page .im-search-results-head {
+    padding-left: 20px
+}
+
+.im-page .im-i--messages-search {
+    border: none;
+    background: none;
+    color: #2a5885;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-size: 13px;
+    outline: 0;
+    padding: 0;
+    line-height: 1;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%3Crect%20width%3D%2224%22%20height%3D%2224%22%2F%3E%0A%3Cpath%20fill%3D%22%2393A3BC%22%20d%3D%22M16.7602287%2C14.6529231%20L19.6566733%2C17.3027421%20C20.0472807%2C17.6600901%2020.0640122%2C18.2496963%2019.6899586%2C18.6237499%20L19.6236889%2C18.6900196%20C19.2514645%2C19.062244%2018.6577586%2C19.0448515%2018.3026899%2C18.6567254%20L15.6529053%2C15.7602424%20C14.6412057%2C16.5377606%2013.3745837%2C17%2012%2C17%20C8.6862915%2C17%206%2C14.3137085%206%2C11%20C6%2C7.6862915%208.6862915%2C5%2012%2C5%20C15.3137085%2C5%2018%2C7.6862915%2018%2C11%20C18%2C12.3745918%2017.5377552%2C13.6412205%2016.7602287%2C14.6529231%20Z%20M12%2C15%20C14.209139%2C15%2016%2C13.209139%2016%2C11%20C16%2C8.790861%2014.209139%2C7%2012%2C7%20C9.790861%2C7%208%2C8.790861%208%2C11%20C8%2C13.209139%209.790861%2C15%2012%2C15%20Z%22%2F%3E%0A%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+    width: 24px;
+    height: 24px;
+    margin: -5px 8px -20px 0;
+    vertical-align: top
+}
+
+.im-page .im-i--messages-search:hover {
+    text-decoration: underline;
+    cursor: pointer
 }
 
 .im-page .im-page--history.im-page--history_loading {
@@ -1916,6 +1944,10 @@ img.im_photo_thumb {
 .im-page .im-page--clear-recent:hover {
     text-decoration: underline;
     cursor: pointer
+}
+
+.im-page_classic.im-page .im-page--clear-recent {
+    right: 20px
 }
 
 .im-page .im-page-history-w {
@@ -2137,7 +2169,7 @@ img.im_photo_thumb {
 }
 
 .im-page .im-page--mess-search {
-    padding: 10px 5px;
+    padding: 12px 5px;
     box-sizing: border-box;
     text-align: center;
     position: fixed;
@@ -2149,26 +2181,22 @@ img.im_photo_thumb {
     background: #fff;
     z-index: 10;
     overflow: hidden;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .im-page .im-page--mess-search:hover {
     background: #f5f7fa
 }
 
-.im-page .im-page--mess-search span {
-    font-weight: 500;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto;
-    word-wrap: break-word
-}
-
 .im-page .im-page--mess-search-w {
-    height: 37px
+    height: 40px
 }
 
 .im-page .im-page--mess-search-w+.nim-dialog .nim-dialog--content,
-.im-page .im-page--messages-search+.nim-dialog .nim-dialog--content {
+.im-page .im-search-results-head+.nim-dialog .nim-dialog--content {
     border-color: transparent
 }
 
@@ -2207,6 +2235,48 @@ img.im_photo_thumb {
 .im-page .im-page--failed-tt:after,
 .im-page .im-page--failed-tt:before {
     left: 19px!important
+}
+
+.im-page .nim-conversation-search-row {
+    height: 55px
+}
+
+.im-page .nim-conversation-search-row .nim-dialog--photo {
+    padding-top: 11px
+}
+
+.im-page .nim-conversation-search-row .nim-dialog--name {
+    font-size: 13px;
+    margin-bottom: 0;
+    margin-top: 12px
+}
+
+.im-page .nim-conversation-search-row .nim-dialog--close {
+    margin-top: 14px;
+    right: -5px
+}
+
+.im-page .nim-conversation-search-row .nim-dialog--content {
+    margin-left: 45px
+}
+
+.im-page .nim-conversation-search-row .nim-dialog--name .nim-dialog--name-w {
+    color: #2a5885;
+    max-width: 80%
+}
+
+.im-page .nim-conversation-search-row.nim-dialog_unread .nim-dialog--unread {
+    top: 0;
+    right: 12px;
+    margin-top: 19px
+}
+
+.im-page .nim-conversation-search-row:not(.nim-dialog_recent):hover .nim-dialog--close {
+    display: none
+}
+
+.im-page .nim-conversation-search-row.nim-csr_classic {
+    padding-left: 20px
 }
 
 .im-page-btn {
@@ -3446,15 +3516,19 @@ body[data-useragent*=msie9] .im-page--title-meta {
     margin: 17px 20px 0 0
 }
 
-.im-search .im-search--calendar:hover,
-.im-mess {
+.im-search .im-search--calendar:hover {
     cursor: pointer
+}
+
+.nim-dialog .nim-dialog--cw .tt_w.tt_black.tocenter.tt-search-del-offset:after {
+    margin-left: 13px
 }
 
 .im-mess {
     padding: 6px 30px 7px 0;
     position: relative;
-    margin: 0 7px
+    margin: 0 7px;
+    cursor: pointer
 }
 
 .im-mess .im-mess--blind-selected {
@@ -3929,7 +4003,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 
 .im-mess:hover .im-mess--check {
     display: block;
-    opacity: 0.6
+    opacity: 0.7
 }
 
 .im-mess:hover .im-mess--fav,
@@ -4185,9 +4259,273 @@ body[data-useragent*=msie9] .im-page--title-meta {
     }
 }
 
+.nim-peer.nim-peer_small .nim-peer--photo {
+    background-color: inherit;
+    overflow: hidden;
+    margin-left: -2px;
+    margin-bottom: -1px
+}
+
+.nim-peer.nim-peer_small .nim-peer--photo .im_grid>img,
+.nim-peer.nim-peer_small .nim-peer--photo>img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    -moz-force-broken-image-icon: 0;
+    background-color: #fafbfc;
+    background-color: inherit
+}
+
+.nim-peer.nim-peer_small .nim-peer--photo .im_grid>img:before,
+.nim-peer.nim-peer_small .nim-peer--photo>img:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    background-color: inherit
+}
+
+.nim-peer.nim-peer_small .nim-peer--photo .im_grid>img:after,
+.nim-peer.nim-peer_small .nim-peer--photo>img:after {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fafbfc;
+    background-image: url(/images/camera_100.png);
+    background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .nim-peer.nim-peer_small .nim-peer--photo .im_grid>img:after,
+    .nim-peer.nim-peer_small .nim-peer--photo>img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
+.nim-peer.nim-peer_small .nim-peer--photo_hidden {
+    visibility: hidden
+}
+
+.nim-peer.nim-peer_small img {
+    width: 36px;
+    height: 36px;
+    display: block
+}
+
+.nim-peer.nim-peer_small .dialogs_inline_chatter img {
+    border-radius: 0
+}
+
+.nim-peer.nim-peer_small .im_grid img,
+.nim-peer.nim-peer_small .nim-peer--photo>img {
+    margin-left: 2px;
+    margin-bottom: 1px
+}
+
+.nim-peer.nim-peer_small .im_grid>.dialogs_inline_chatter {
+    overflow: hidden;
+    width: 18px;
+    height: 17.5px;
+    margin-left: 1px;
+    margin-bottom: 1px
+}
+
+.nim-peer.nim-peer_small .im_grid>.dialogs_inline_chatter img {
+    margin-left: -8px;
+    margin-top: -9px
+}
+
+.nim-peer.nim-peer_small .im_grid>.dialogs_inline_chatter_half {
+    width: 18px;
+    height: 36px;
+    border-radius: 0
+}
+
+.nim-peer.nim-peer_small .im_grid>.dialogs_inline_chatter_half img {
+    margin-top: 0
+}
+
 .nim-peer.nim-peer_small img {
     width: 36px;
     height: 36px
+}
+
+.nim-peer.nim-peer_search {
+    width: 34px;
+    height: 34px
+}
+
+.nim-peer.nim-peer_search .im_grid>img {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    -moz-force-broken-image-icon: 0;
+    background-color: #fafbfc;
+    background-color: inherit
+}
+
+.nim-peer.nim-peer_search .im_grid>img:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 34px;
+    background-color: inherit
+}
+
+.nim-peer.nim-peer_search .im_grid>img:after {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fafbfc;
+    background-image: url(/images/camera_100.png);
+    background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .nim-peer.nim-peer_search .im_grid>img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
+.nim-peer.nim-peer_search.online:after {
+    bottom: 0;
+    right: 0;
+    border: 2px solid #fff;
+    height: 6px;
+    width: 6px
+}
+
+.nim-peer.nim-peer_search.online.mobile:after {
+    bottom: -1px;
+    right: 0;
+    background-color: #fff;
+    height: 9px;
+    width: 6px
+}
+
+.nim-peer.nim-peer_search.online:after {
+    border-color: inherit
+}
+
+.nim-peer.nim-peer_search .nim-peer--photo {
+    background-color: inherit;
+    overflow: hidden;
+    margin-left: -2px;
+    margin-bottom: -1px
+}
+
+.nim-peer.nim-peer_search .nim-peer--photo .im_grid>img,
+.nim-peer.nim-peer_search .nim-peer--photo>img {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    -moz-force-broken-image-icon: 0;
+    background-color: #fafbfc;
+    background-color: inherit
+}
+
+.nim-peer.nim-peer_search .nim-peer--photo .im_grid>img:before,
+.nim-peer.nim-peer_search .nim-peer--photo>img:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 34px;
+    background-color: inherit
+}
+
+.nim-peer.nim-peer_search .nim-peer--photo .im_grid>img:after,
+.nim-peer.nim-peer_search .nim-peer--photo>img:after {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fafbfc;
+    background-image: url(/images/camera_100.png);
+    background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .nim-peer.nim-peer_search .nim-peer--photo .im_grid>img:after,
+    .nim-peer.nim-peer_search .nim-peer--photo>img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
+.nim-peer.nim-peer_search .nim-peer--photo_hidden {
+    visibility: hidden
+}
+
+.nim-peer.nim-peer_search img {
+    width: 34px;
+    height: 34px;
+    display: block
+}
+
+.nim-peer.nim-peer_search .dialogs_inline_chatter img {
+    border-radius: 0
+}
+
+.nim-peer.nim-peer_search .im_grid img,
+.nim-peer.nim-peer_search .nim-peer--photo>img {
+    margin-left: 2px;
+    margin-bottom: 1px
+}
+
+.nim-peer.nim-peer_search .im_grid>.dialogs_inline_chatter {
+    overflow: hidden;
+    width: 17px;
+    height: 16.5px;
+    margin-left: 1px;
+    margin-bottom: 1px
+}
+
+.nim-peer.nim-peer_search .im_grid>.dialogs_inline_chatter img {
+    margin-left: -7.5px;
+    margin-top: -8.5px
+}
+
+.nim-peer.nim-peer_search .im_grid>.dialogs_inline_chatter_half {
+    width: 17px;
+    height: 34px;
+    border-radius: 0
+}
+
+.nim-peer.nim-peer_search .im_grid>.dialogs_inline_chatter_half img {
+    margin-top: 0
+}
+
+.nim-peer.nim-peer_search img {
+    width: 34px;
+    height: 34px
 }
 
 .nim-peer.nim-peer_smaller {
@@ -4542,11 +4880,11 @@ body.sf .nim-dialog .nim-dialog--unread {
     outline: 0;
     padding: 0;
     line-height: 1;
-    background: url(/images/icons/im_actions.png?4) -4px -66px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%0A%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%3Crect%20width%3D%2212%22%20height%3D%2212%22%2F%3E%0A%3Cpath%20stroke%3D%22%2393A3BC%22%20stroke-width%3D%221.5%22%20d%3D%22M3%2C3%20L9%2C9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20transform%3D%22matrix(-1%200%200%201%2012%200)%22%2F%3E%0A%3Cpath%20stroke%3D%22%2393A3BC%22%20stroke-width%3D%221.5%22%20d%3D%22M3%2C3%20L9%2C9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fg%3E%0A%3C%2Fsvg%3E");
     position: absolute;
     display: none;
     right: 0;
-    opacity: 0.6;
+    opacity: 0.7;
     width: 12px;
     height: 12px;
     z-index: 1;
@@ -4555,19 +4893,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .nim-dialog .nim-dialog--close:hover {
     text-decoration: underline;
-    cursor: pointer
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .nim-dialog .nim-dialog--close {
-        background-image: url(/images/icons/im_actions_2x.png?4);
-        background-size: 24px 423px
-    }
-}
-
-.nim-dialog .nim-dialog--close:hover {
+    cursor: pointer;
     opacity: 1
 }
 
@@ -4584,7 +4910,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     background: url(/images/icons/im_actions.png?4) 0 -389px;
     position: absolute;
     right: -10px;
-    opacity: 0.6;
+    opacity: 0.7;
     width: 21px;
     height: 16px;
     z-index: 1;
@@ -4726,13 +5052,13 @@ body.sf .nim-dialog .nim-dialog--unread {
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog.nim-dialog_classic.nim-dialog_unread,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog.nim-dialog_hovered,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog:hover,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered+.im-page--messages-search,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered+.im-search-results-head,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered+.nim-dialog,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.im-page--messages-search,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.im-search-results-head,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.nim-dialog,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic+.im-page--messages-search,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic+.im-search-results-head,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic+.nim-dialog,
-.nim-dialog:not(.nim-dialog_deleted):hover+.im-page--messages-search,
+.nim-dialog:not(.nim-dialog_deleted):hover+.im-search-results-head,
 .nim-dialog:not(.nim-dialog_deleted):hover+.nim-dialog {
     border-top: solid 1px #e7e8ec
 }
@@ -4740,13 +5066,13 @@ body.sf .nim-dialog .nim-dialog--unread {
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog.nim-dialog_classic.nim-dialog_unread:before,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog.nim-dialog_hovered:before,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog:hover:before,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered+.im-page--messages-search:before,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered+.im-search-results-head:before,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered+.nim-dialog:before,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.im-page--messages-search:before,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.im-search-results-head:before,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.nim-dialog:before,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic+.im-page--messages-search:before,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic+.im-search-results-head:before,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic+.nim-dialog:before,
-.nim-dialog:not(.nim-dialog_deleted):hover+.im-page--messages-search:before,
+.nim-dialog:not(.nim-dialog_deleted):hover+.im-search-results-head:before,
 .nim-dialog:not(.nim-dialog_deleted):hover+.nim-dialog:before,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog.nim-dialog_classic.nim-dialog_unread .nim-dialog--content,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog.nim-dialog_classic.nim-dialog_unread .nim-dialog--photo,
@@ -4754,20 +5080,20 @@ body.sf .nim-dialog .nim-dialog--unread {
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog.nim-dialog_hovered .nim-dialog--photo,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog:hover .nim-dialog--content,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog:hover .nim-dialog--photo,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered+.im-page--messages-search .nim-dialog--content,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered+.im-page--messages-search .nim-dialog--photo,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered+.im-search-results-head .nim-dialog--content,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered+.im-search-results-head .nim-dialog--photo,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered+.nim-dialog .nim-dialog--content,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered+.nim-dialog .nim-dialog--photo,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.im-page--messages-search .nim-dialog--content,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.im-page--messages-search .nim-dialog--photo,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.im-search-results-head .nim-dialog--content,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.im-search-results-head .nim-dialog--photo,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.nim-dialog .nim-dialog--content,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.nim-dialog .nim-dialog--photo,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic+.im-page--messages-search .nim-dialog--content,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic+.im-page--messages-search .nim-dialog--photo,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic+.im-search-results-head .nim-dialog--content,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic+.im-search-results-head .nim-dialog--photo,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic+.nim-dialog .nim-dialog--content,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic+.nim-dialog .nim-dialog--photo,
-.nim-dialog:not(.nim-dialog_deleted):hover+.im-page--messages-search .nim-dialog--content,
-.nim-dialog:not(.nim-dialog_deleted):hover+.im-page--messages-search .nim-dialog--photo,
+.nim-dialog:not(.nim-dialog_deleted):hover+.im-search-results-head .nim-dialog--content,
+.nim-dialog:not(.nim-dialog_deleted):hover+.im-search-results-head .nim-dialog--photo,
 .nim-dialog:not(.nim-dialog_deleted):hover+.nim-dialog .nim-dialog--content,
 .nim-dialog:not(.nim-dialog_deleted):hover+.nim-dialog .nim-dialog--photo {
     margin-top: -1px
@@ -4776,13 +5102,13 @@ body.sf .nim-dialog .nim-dialog--unread {
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog.nim-dialog_classic.nim-dialog_unread .nim-dialog--content,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog.nim-dialog_hovered .nim-dialog--content,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog:hover .nim-dialog--content,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered+.im-page--messages-search .nim-dialog--content,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered+.im-search-results-head .nim-dialog--content,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered+.nim-dialog .nim-dialog--content,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.im-page--messages-search .nim-dialog--content,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.im-search-results-head .nim-dialog--content,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.nim-dialog .nim-dialog--content,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic+.im-page--messages-search .nim-dialog--content,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic+.im-search-results-head .nim-dialog--content,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic+.nim-dialog .nim-dialog--content,
-.nim-dialog:not(.nim-dialog_deleted):hover+.im-page--messages-search .nim-dialog--content,
+.nim-dialog:not(.nim-dialog_deleted):hover+.im-search-results-head .nim-dialog--content,
 .nim-dialog:not(.nim-dialog_deleted):hover+.nim-dialog .nim-dialog--content {
     border-color: transparent
 }
@@ -4791,12 +5117,12 @@ body.sf .nim-dialog .nim-dialog--unread {
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog.nim-dialog_selected.nim-dialog_hovered,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog.nim-dialog_selected:hover,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered+.nim-dialog.nim-dialog_selected,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered.nim-dialog_selected+.im-page--messages-search,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.im-page--messages-search,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_hovered.nim-dialog_selected+.im-search-results-head,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.im-search-results-head,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected+.nim-dialog,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected:hover+.im-page--messages-search,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected:hover+.im-search-results-head,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic+.nim-dialog.nim-dialog_selected,
-.nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic.nim-dialog_selected+.im-page--messages-search,
+.nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic.nim-dialog_selected+.im-search-results-head,
 .nim-dialog:not(.nim-dialog_deleted):hover+.nim-dialog.nim-dialog_selected {
     border-top: solid 1px #7293b6
 }
@@ -5008,7 +5334,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_muted.nim-dialog_selected .nim-dialog--close,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected .nim-dialog--close {
-    background-position: -4px -80px
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%0A%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%3Crect%20width%3D%2212%22%20height%3D%2212%22%2F%3E%0A%3Cpath%20stroke%3D%22%23fff%22%20stroke-width%3D%221.5%22%20d%3D%22M3%2C3%20L9%2C9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20transform%3D%22matrix(-1%200%200%201%2012%200)%22%2F%3E%0A%3Cpath%20stroke%3D%22%23fff%22%20stroke-width%3D%221.5%22%20d%3D%22M3%2C3%20L9%2C9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fg%3E%0A%3C%2Fsvg%3E")
 }
 
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_muted.nim-dialog_selected .nim-dialog--unread,
@@ -5075,7 +5401,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .nim-dialog.nim-dialog_classic {
     height: 71px;
-    padding-left: 25px
+    padding-left: 20px
 }
 
 .nim-dialog.nim-dialog_classic .nim-dialog--text-preview {
@@ -5256,7 +5582,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .nim-dialog.nim-dialog_classic .nim-dialog--close {
     right: -5px;
-    margin-top: 4px
+    margin-top: 5px
 }
 
 .nim-dialog.nim-dialog_classic .nim-dialog--markre {
@@ -5492,7 +5818,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     display: block;
     position: absolute;
     right: 2px;
-    opacity: 0.6;
+    opacity: 0.7;
     margin-top: -5px;
     width: 10px;
     height: 10px
