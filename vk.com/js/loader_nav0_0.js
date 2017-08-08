@@ -264,7 +264,7 @@ var stVersions = {
     'privacy.js': 3620108221,
     'privacy.css': 18792269908,
     'apps.css': 21296933297,
-    'apps.js': 2931332228,
+    'apps.js': 1572701588,
     'apps_edit.js': 119002668,
     'apps_edit.css': 23932439180,
     'apps_check.js': 3844411974,
@@ -320,8 +320,8 @@ var stVersions = {
     'notifier.css': 25476131790,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
-    'restore.js': 1242653913,
-    'restore.css': 20070426784,
+    'restore.js': 606814516,
+    'restore.css': 17941325778,
     'recover.js': 2830033131,
     'recover.css': 2080137791,
     'docs.js': 4024778124,
@@ -337,8 +337,8 @@ var stVersions = {
     'faq.js': 1134602325,
     'faq.css': 20989809026,
     'talmud.js': 1641838680,
-    'agents.js': 1719521972,
-    'agents.css': 18990371115,
+    'agents.js': 3714363511,
+    'agents.css': 18261033336,
     'achievements.js': 897703126,
     'achievements.css': 16968368700,
     'sf.css': 17096979975,
@@ -600,4 +600,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 5155;
+var _rnd = 8966;

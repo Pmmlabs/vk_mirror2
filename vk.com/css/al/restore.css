@@ -566,3 +566,9 @@
 .restore_roll_unshown {
     display: none
 }
+
+.restore_reset_password_button {
+    margin-top: 20px;
+    padding: 3px;
+    display: inline-block
+}
