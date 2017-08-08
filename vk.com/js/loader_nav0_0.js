@@ -141,7 +141,7 @@ var stVersions = {
     'ie7.css': 2926539419,
     'rtl.css': 16943642406,
     'pagination.js': 1027022568,
-    'blog.css': 19360895639,
+    'blog.css': 17564767225,
     'blog.js': 359555078,
     'html5audio.js': 976782859,
     'html5video.js': 223664659,
@@ -191,7 +191,7 @@ var stVersions = {
     'video.css': 22959172167,
     'videocat.js': 1618923991,
     'videocat.css': 21319832899,
-    'videoview.js': 3729849832,
+    'videoview.js': 3823997575,
     'videoview.css': 23601725459,
     'video_edit.js': 2135196486,
     'video_edit.css': 18176580569,
@@ -600,4 +600,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 7292;
+var _rnd = 5155;

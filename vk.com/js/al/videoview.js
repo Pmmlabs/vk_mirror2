@@ -1639,108 +1639,115 @@ var Videoview = {
         queueCheckUpdates: function(e) {
             window.mvcur && mvcur.mvShown && mvcur.queueKey === e.key && (window.Notifier && Notifier.addKey(e, Videoview.queueReceiveUpdates), setTimeout(Videoview.queueCheckUpdates.pbind(e), 25e3))
         },
-        queueReconnect: function() {
-            var e = Videoview.getMvData(),
-                i = e.oid,
-                o = e.vid;
-            ajax.post("al_video.php?act=get_queue_params", {
-                oid: i,
-                vid: o,
-                hash: e.hash
+        queueReconnect: function(e) {
+            var i = Videoview.getMvData(),
+                o = i.oid,
+                t = i.vid,
+                a = o + "_" + t;
+            e ? (console.info("reconnecting"), ajax.post("al_video.php?act=get_queue_params", {
+                oid: o,
+                vid: t,
+                hash: i.hash
             }, {
                 onDone: function(e) {
-                    var t = Videoview.getMvData();
-                    e && t.oid === i && t.vid === o && (mvcur.queueKey = e.key, Videoview.queueCheckUpdates(e))
+                    e && Videoview.isLayerShown(a) && (mvcur.queueKey = e.key, Videoview.queueCheckUpdates(e))
                 },
                 onFail: function() {
                     return !0
                 }
-            })
+            })) : (mvcur.queueReconnectDelay = mvcur.queueReconnectDelay ? 2 * mvcur.queueReconnectDelay : 500, setTimeout(function() {
+                Videoview.isLayerShown(a) && Videoview.queueReconnect(1)
+            }, mvcur.queueReconnectDelay))
         },
         queueReceiveUpdates: function(e, i) {
             function o(e, i) {
                 return e + "video_" + i + "mv"
             }
-            if (window.mvcur && mvcur.mvShown && mvcur.queueKey === e && i) return i.failed ? (debugLog("video queue failed", i), mvcur.queueKey = null, void Videoview.queueReconnect()) : void each(i.events, function() {
-                var e = this.split("<!>"),
-                    i = e[0],
-                    t = e[1];
-                if (i == mvcur.qversion) switch (t) {
-                    case "new_reply":
-                        mvcur.chatMode || (Videoview.appendNewComment.apply(Videoview, e.slice(2)), Videoview.updateCommentsHeader(), Videoview.updateReplyFormPos());
-                        break;
-                    case "new_reply_chat":
-                        mvcur.chatMode && VideoChat.receiveMessage.apply(VideoChat, e.slice(2)), e[11] && mvcur.player && mvcur.player.pushDonation("comment", {
-                            senderId: e[4],
-                            senderName: e[5],
-                            senderPhoto: e[6],
-                            senderHref: e[7],
-                            senderSex: e[8],
-                            commentText: e[9]
-                        });
-                        break;
-                    case "edit_reply":
-                        var a = e[2],
-                            n = e[3],
-                            d = e[4],
-                            r = ge("wpt" + o(a, n));
-                        r && !attr(r, "data-action") && val(r, psr(d)), Videoview.updateReplyFormPos();
-                        break;
-                    case "del_reply":
-                        var a = e[2],
-                            n = e[3];
-                        if (mvcur.chatMode) VideoChat.receiveDelete(a, n);
-                        else {
-                            var r = ge("post" + o(a, n));
-                            r ? attr(r, "data-action") || (mvcur.mvData.commcount--, mvcur.mvData.commshown--, re(r)) : mvcur.mvData.commcount--, Videoview.updateCommentsHeader(), Videoview.updateReplyFormPos()
-                        }
-                        break;
-                    case "like_reply":
-                        var a = e[2],
-                            n = e[3],
-                            s = +e[4],
-                            v = +e[5],
-                            l = e[6],
-                            r = ge("wpe_bottom" + o(a, n));
-                        if (r) {
-                            var c = domByClass(r, "_like_wrap"),
-                                m = domByClass(c, "_count");
-                            val(m, s > 0 ? s : ""), toggleClass(c, "no_likes", !s), v == vk.id && toggleClass(c, "my_like", !l)
-                        }
-                        break;
-                    case "like":
-                        var a = e[2],
-                            s = e[3],
-                            v = e[4],
-                            l = e[5];
-                        mvcur.chatMode && !l && VideoChat.appendSticker("like");
-                        break;
-                    case "video_view":
-                        Videoview.updateLiveViewersCount(e[2]);
-                        break;
-                    case "gift":
-                        mvcur.player && mvcur.player.pushDonation("gift", {
-                            senderId: e[2],
-                            senderName: e[3],
-                            senderPhoto: e[4],
-                            senderHref: e[5],
-                            senderSex: e[6],
-                            giftId: e[7]
-                        });
-                        break;
-                    case "end_live":
-                        mvcur.player && mvcur.player.onLiveEnded();
-                        break;
-                    case "live_midroll":
-                        if (mvcur.player && !mvcur.mvData.launchedLiveAds) {
-                            var u = !!e[2];
-                            mvcur.player.pushLiveMidroll(u)
-                        }
-                        break;
-                    default:
-                        debugLog("unhandled video event", e)
-                }
-            })
+            if (window.mvcur && mvcur.mvShown && mvcur.queueKey === e && i) {
+                if (i.failed) return debugLog("video queue failed", i), mvcur.queueKey = null, void Videoview.queueReconnect();
+                delete mvcur.queueReconnectDelay, mvcur.queueBatchId = (mvcur.queueBatchId || 0) + 1, each(i.events, function() {
+                    var e = this.split("<!>"),
+                        i = e[0],
+                        t = e[1];
+                    if (i == mvcur.qversion) switch (t) {
+                        case "new_reply":
+                            mvcur.chatMode || (Videoview.appendNewComment.apply(Videoview, e.slice(2)), Videoview.updateCommentsHeader(), Videoview.updateReplyFormPos());
+                            break;
+                        case "new_reply_chat":
+                            var a = +e[10],
+                                n = !!e[11];
+                            mvcur.chatMode && VideoChat.receiveMessage.apply(VideoChat, e.slice(2)), n && !a && mvcur.player && mvcur.player.pushDonation("comment", {
+                                senderId: e[4],
+                                senderName: e[5],
+                                senderPhoto: e[6],
+                                senderHref: e[7],
+                                senderSex: e[8],
+                                commentText: e[9]
+                            });
+                            break;
+                        case "edit_reply":
+                            var d = e[2],
+                                r = e[3],
+                                s = e[4],
+                                v = ge("wpt" + o(d, r));
+                            v && !attr(v, "data-action") && val(v, psr(s)), Videoview.updateReplyFormPos();
+                            break;
+                        case "del_reply":
+                            var d = e[2],
+                                r = e[3];
+                            if (mvcur.chatMode) VideoChat.receiveDelete(d, r);
+                            else {
+                                var v = ge("post" + o(d, r));
+                                v ? attr(v, "data-action") || (mvcur.mvData.commcount--, mvcur.mvData.commshown--, re(v)) : mvcur.mvData.commcount--, Videoview.updateCommentsHeader(), Videoview.updateReplyFormPos()
+                            }
+                            break;
+                        case "like_reply":
+                            var d = e[2],
+                                r = e[3],
+                                l = +e[4],
+                                c = +e[5],
+                                m = e[6],
+                                v = ge("wpe_bottom" + o(d, r));
+                            if (v) {
+                                var u = domByClass(v, "_like_wrap"),
+                                    _ = domByClass(u, "_count");
+                                val(_, l > 0 ? l : ""), toggleClass(u, "no_likes", !l), c == vk.id && toggleClass(u, "my_like", !m)
+                            }
+                            break;
+                        case "like":
+                            var d = e[2],
+                                l = e[3],
+                                c = e[4],
+                                m = e[5];
+                            mvcur.chatMode && !m && VideoChat.appendSticker("like", c);
+                            break;
+                        case "video_view":
+                            Videoview.updateLiveViewersCount(e[2]);
+                            break;
+                        case "gift":
+                            mvcur.player && mvcur.player.pushDonation("gift", {
+                                senderId: e[2],
+                                senderName: e[3],
+                                senderPhoto: e[4],
+                                senderHref: e[5],
+                                senderSex: e[6],
+                                giftId: e[7]
+                            });
+                            break;
+                        case "end_live":
+                            mvcur.player && mvcur.player.onLiveEnded();
+                            break;
+                        case "live_midroll":
+                            if (mvcur.player && !mvcur.mvData.launchedLiveAds) {
+                                var p = !!e[2];
+                                mvcur.player.pushLiveMidroll(p)
+                            }
+                            break;
+                        default:
+                            debugLog("unhandled video event", e)
+                    }
+                })
+            }
         },
         appendNewComment: function(e, i, o, t, a, n, d, r, s, v, l) {
             if (!ge("post" + e + "video_" + i + "mv")) {
@@ -1823,7 +1830,8 @@ var Videoview = {
                     }, {
                         onDone: function(t, a) {
                             var n = ge("video_spectators_rows");
-                            if (n.insertAdjacentHTML("beforeend", t), mvcur.liveSpectatorsShown = o + i, mvcur.liveSpectatorsShown >= mvcur.liveSpectatorsList.length && hide(e), mvcur.liveSpectatorsShown >= mvcur.liveSpectatorsLimit) {
+                            if (n.insertAdjacentHTML("beforeend", t), mvcur.liveSpectatorsShown = o + i,
+                                mvcur.liveSpectatorsShown >= mvcur.liveSpectatorsList.length && hide(e), mvcur.liveSpectatorsShown >= mvcur.liveSpectatorsLimit) {
                                 hide(e);
                                 var d = ge("video_spectators_bottom");
                                 n.appendChild(d), show(d)
@@ -2764,6 +2772,8 @@ var Videoview = {
 window.VideoChat = {
     SCROLL_EDGE_BELOW_THRESHOLD: 20,
     MAX_COMMENTS_NUM: 150,
+    MAX_LIKES_PER_BATCH: 10,
+    MAX_STICKERS_PER_BATCH: 10,
     init: function(e, i) {
         VideoChat.block && VideoChat.destroy(), e && (VideoChat.block = e, VideoChat.options = extend({}, i), VideoChat.messagesWrap = domByClass(e, "mv_chat_messages_wrap"), VideoChat.stickersWrap = domByClass(e, "mv_chat_stickers_wrap"), VideoChat.scroll = new uiScroll(domFC(VideoChat.messagesWrap), {
             global: !0,
@@ -2833,7 +2843,7 @@ window.VideoChat = {
         e.data.scrollBottom < VideoChat.SCROLL_EDGE_BELOW_THRESHOLD && VideoChat.toggleScrollBottomBtn(!1)
     },
     receiveMessage: function(e, i, o, t, a, n, d, r, s) {
-        if (intval(s)) VideoChat.appendSticker(s);
+        if (intval(s)) VideoChat.appendSticker(s, o);
         else {
             var v = "";
             (mvcur.adminLevel > 0 || e == vk.id || o == vk.id) && (v += getTemplate("video_chat_message_action_del", {
@@ -2859,18 +2869,32 @@ window.VideoChat = {
             re("mv_chat_msg" + e + "_" + i)
         })
     },
-    appendSticker: function(e) {
-        function i(e) {
+    checkStickerFlood: function(e, i) {
+        var o = mvcur.queueBatchId;
+        VideoChat._stickersLimits && VideoChat._stickersLimits.batch == o || (VideoChat._stickersLimits = {
+            batch: o,
+            like: 0,
+            sticker: 0
+        }, VideoChat._stickersDelay = 0);
+        var t = "like" == e ? "like" : "sticker",
+            a = "like" == t ? VideoChat.MAX_LIKES_PER_BATCH : VideoChat.MAX_STICKERS_PER_BATCH;
+        return ++VideoChat._stickersLimits[t] > a && i != vk.id ? !1 : !0
+    },
+    appendSticker: function(e, i) {
+        function o(e) {
             for (var i = "", o = "", t = 0, a = 0, n = 0, d = intval((VideoChat.getHeight() - 80) / 6), r = 0; 100 >= r; r += 20) r > 0 && (t += irand(-4, 4), a -= d, n += irand(-4, 4), d = intval(.9 * d)), o = "transform: translate(" + t + "px, " + a + "px) rotate(" + n + "deg) " + (r ? "" : "scale(0.7)") + ";", o += "opacity:" + (0 == r || 100 == r ? 0 : 1) + ";", i += r + "% {" + o + "}";
             var s = "mv_chat_sticker_animation_" + Date.now() + "_" + irand(0, 1e9);
             i = "@keyframes " + s + " {" + i + "}", e.appendChild(ce("style", {
                 innerHTML: i
-            })), setStyle(e, {
-                animation: s + " " + irand(1500, 2500) + "ms linear"
+            }));
+            var v = irand(1500, 2500) + "ms",
+                l = (VideoChat._stickersDelay += 100) + "ms";
+            setStyle(e, {
+                animation: [s, v, l, "linear"].join(" ")
             })
         }
 
-        function o(e) {
+        function t(e) {
             var i = e.currentTarget || e,
                 o = VideoChat._stickersBatch || (VideoChat._stickersBatch = document.createDocumentFragment());
             o.appendChild(i), VideoChat._appendStickerTimeout || (VideoChat._appendStickerTimeout = setTimeout(function() {
@@ -2878,22 +2902,22 @@ window.VideoChat = {
             }, 0))
         }
 
-        function t(e) {
+        function a(e) {
             var i = e.currentTarget || e;
             removeEvent(i), re(i)
         }
-        if (!VideoChat.isHidden() && "hidden" != document.visibilityState && "animation" in bodyNode.style && "onanimationend" in window)
+        if (!VideoChat.isHidden() && "hidden" != document.visibilityState && "animation" in bodyNode.style && "onanimationend" in window && VideoChat.checkStickerFlood(e, i))
             if ("like" == e) {
-                var a = ce("div", {
+                var n = ce("div", {
                     className: "mv_chat_like"
                 });
-                i(a), addEvent(a, "animationend", t), o(a)
+                o(n), addEvent(n, "animationend", a), t(n)
             } else {
-                var a = ce("img", {
+                var n = ce("img", {
                     className: "mv_chat_sticker",
                     src: "/images/stickers/" + e + "/" + (isRetina() ? 128 : 64) + "b.png"
                 });
-                i(a), addEvent(a, "error animationend", t), addEvent(a, "load", o)
+                o(n), addEvent(n, "error animationend", a), addEvent(n, "load", t)
             }
     },
     appendStickersBatch: function() {
