@@ -2655,7 +2655,7 @@ img.im_photo_thumb {
 .im-chat-input .im-chat-input--selector {
     position: absolute;
     left: -55px;
-    top: -13px
+    bottom: -13px
 }
 
 .im-chat-input .im-chat-input--selector .ms_item_more {

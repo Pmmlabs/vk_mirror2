@@ -853,6 +853,20 @@ h2.payments_getvotes_title {
     line-height: 1px
 }
 
+.payments_box_instant_pay .payments_receipt_email_wrap {
+    width: 170px;
+    display: inline-block;
+    text-align: left
+}
+
+.payments_box_instant_pay .payments_receipt_email_wrap .checkbox {
+    width: 200px
+}
+
+.payments_box_instant_pay .payments_receipt_email_wrap .payments_receipt_email {
+    width: 170px
+}
+
 .payments_instant_progress_wrap {
     position: relative
 }

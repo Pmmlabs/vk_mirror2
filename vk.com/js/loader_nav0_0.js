@@ -247,8 +247,8 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 100595407760,
-    'imn.js': 100958339205,
+    'im.css': 99737417361,
+    'imn.js': 102250871539,
     'im.js': 1322065004,
     'emoji.js': 1068454446,
     'wide_dd.css': 18952341655,
@@ -316,7 +316,7 @@ var stVersions = {
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
     'touch.css': 796462384,
-    'notifier.js': 29061583317,
+    'notifier.js': 31502813489,
     'notifier.css': 25476131790,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
@@ -362,7 +362,7 @@ var stVersions = {
     'verify.css': 688648654,
     'away.css': 20472011470,
     'stats.css': 19289084643,
-    'payments.css': 19788221688,
+    'payments.css': 22130024768,
     'payments.js': 1241163123,
     'offers.css': 978996883,
     'offers.js': 2030679272,
@@ -472,6 +472,7 @@ var stVersions = {
     'landing_aes.js': 17456535829,
     'landings/donors_day.css': 19811879099,
     'landing_donors_day.js': 1027075361,
+    'landings/testing.css': 17094810760,
     'vkme.css': 18732623100,
     'ui_controls.js': 1680051856,
     'highcharts.js': 1982709850,
@@ -600,4 +601,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 8966;
+var _rnd = 5288;
