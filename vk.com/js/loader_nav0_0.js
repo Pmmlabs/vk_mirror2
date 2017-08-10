@@ -198,7 +198,7 @@ var stVersions = {
     'video_upload.js': 555062683,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 15842985884,
-    'videoplayer.js': 77017256373,
+    'videoplayer.js': 79392927731,
     'videoplayer.css': 37723165036,
     'translation.js': 2431784533,
     'translation.css': 17094275284,
@@ -348,8 +348,8 @@ var stVersions = {
     'groupinfo.css': 21269814789,
     'bugs.js': 3874995669,
     'bugs.css': 16224630048,
-    'bugtracker.js': 3763818047,
-    'bugtracker.css': 23415922756,
+    'bugtracker.js': 458261449,
+    'bugtracker.css': 21988648379,
     'login.css': 18451818235,
     'login.js': 3551917100,
     'upload.js': 3319172650,
@@ -430,8 +430,8 @@ var stVersions = {
     'ui_manual.css': 17137306753,
     'admin.js': 2866808704,
     'admin.css': 20183420580,
-    'duty_timetable.js': 929110027,
-    'duty_timetable.css': 19178183130,
+    'duty_timetable.js': 1485732360,
+    'duty_timetable.css': 21957814381,
     'paysupp_admin.js': 127920242,
     'paysupp_admin.css': 18207923096,
     'exchange.css': 3337097141,
@@ -601,4 +601,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 3630;
+var _rnd = 4944;
