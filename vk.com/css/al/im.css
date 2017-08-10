@@ -3187,7 +3187,8 @@ img.im_photo_thumb {
     -ms-flex-align: center;
     align-items: center;
     overflow: hidden;
-    padding: 12px 0 13px 20px
+    padding: 12px 0 13px 20px;
+    cursor: pointer
 }
 
 .im-page--selected-messages-count {
@@ -3225,7 +3226,7 @@ img.im_photo_thumb {
     opacity: .6
 }
 
-.im-page--selected-messages-remove:hover:before {
+.im-page--selected-messages:hover .im-page--selected-messages-remove:before {
     opacity: 1
 }
 
@@ -5971,7 +5972,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .im-member-item .im-member-item--kick {
     position: absolute;
-    right: 5px;
+    left: 491px;
     opacity: 0.7;
     top: 31px
 }
@@ -5982,7 +5983,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .im-member-item .tt_black:after,
 .im-member-item .tt_black:before {
-    left: 106px!important
+    left: 126px!important
 }
 
 .im-member-item .im-member-item--kick-link {
@@ -6904,15 +6905,18 @@ body.sf .nim-dialog .nim-dialog--unread {
     padding: 8px 0 5px 10px
 }
 
-.im-star-tt.tt_w.tt_black.tt_down:after {
+.im-star-tt.tt_w.tt_black.tt_down:after,
+.im-star-tt.tt_w.tt_black.tt_up:after {
     left: 46px
 }
 
-.im-reply-tt.tt_w.tt_black.tt_down:after {
+.im-reply-tt.tt_w.tt_black.tt_down:after,
+.im-reply-tt.tt_w.tt_black.tt_up:after {
     left: 30px
 }
 
-.im-star-tt_long.tt_w.tt_black.tt_down:after {
+.im-star-tt_long.tt_w.tt_black.tt_down:after,
+.im-star-tt_long.tt_w.tt_black.tt_up:after {
     left: 98px
 }
 

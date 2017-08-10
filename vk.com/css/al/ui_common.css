@@ -1625,7 +1625,8 @@ a.ui_search_custom_link {
     vertical-align: top;
     color: #55677d;
     font-size: 12.5px;
-    padding: 5px 6px 5px 11px
+    line-height: 18px;
+    padding: 4px 6px 3px 11px
 }
 
 .ui_multiselect_cnt .token .token_del,
