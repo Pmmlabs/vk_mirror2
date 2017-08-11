@@ -1857,6 +1857,20 @@ var Dev = {
         });
     },
 
+    selectNode(el, e) {
+        cancelEvent(e)
+
+        const range = document.createRange()
+        range.selectNodeContents(el)
+
+        const selection = getSelection()
+        selection.removeAllRanges()
+        selection.addRange(range)
+
+        document.execCommand('copy')
+    },
+
+
     _eof: 1
 };
 try {

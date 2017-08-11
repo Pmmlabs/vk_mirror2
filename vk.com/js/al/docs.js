@@ -532,7 +532,7 @@ var Docs = {
             }
             if (!params.file) return void Upload.onUploadError(info, params);
             var options = Upload.options[i];
-            Docs.chooseUploaded(info, params)
+            options && options.bugcomments_editor && (params.bugcomments_editor = options.bugcomments_editor), Docs.chooseUploaded(info, params)
         }
     },
     chooseHideFlashUploader: function() {
