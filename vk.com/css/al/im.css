@@ -3517,19 +3517,15 @@ body[data-useragent*=msie9] .im-page--title-meta {
     margin: 17px 20px 0 0
 }
 
-.im-search .im-search--calendar:hover {
+.im-search .im-search--calendar:hover,
+.im-mess {
     cursor: pointer
-}
-
-.nim-dialog .nim-dialog--cw .tt_w.tt_black.tocenter.tt-search-del-offset:after {
-    margin-left: 13px
 }
 
 .im-mess {
     padding: 6px 30px 7px 0;
     position: relative;
-    margin: 0 7px;
-    cursor: pointer
+    margin: 0 7px
 }
 
 .im-mess .im-mess--blind-selected {
@@ -4805,7 +4801,7 @@ body[data-useragent*=msie9] .im-page--title-meta {
 
 .nim-dialog .nim-dialog--cw .tt_w.tt_black.tt_down:after,
 .nim-dialog .nim-dialog--cw .tt_w.tt_black.tt_up:after {
-    margin-left: 8px
+    margin-left: 10px
 }
 
 .nim-dialog .nim-dialog--preview,
@@ -5598,6 +5594,13 @@ body.sf .nim-dialog .nim-dialog--unread {
 .nim-dialog.nim-dialog_classic.nim-dialog_hovered .nim-dialog--date,
 .nim-dialog.nim-dialog_classic:hover .nim-dialog--date {
     display: block
+}
+
+.nim-csr_classic .nim-dialog--cw .tt_w.tt_black.tt_down:after,
+.nim-csr_classic .nim-dialog--cw .tt_w.tt_black.tt_up:after,
+.nim-dialog.nim-dialog_classic .nim-dialog--cw .tt_w.tt_black.tt_down:after,
+.nim-dialog.nim-dialog_classic .nim-dialog--cw .tt_w.tt_black.tt_up:after {
+    margin-left: 4px
 }
 
 @-webkit-keyframes typer-simple {

@@ -1084,14 +1084,23 @@ var WkView = {
         }
         return WkView.introView(t)
     },
-    shareApp: function(e) {
-        vk.id && showBox("like.php", {
-            act: "publish_box",
-            object: wkcur.like_obj,
-            url_hash: e,
-            list: "",
-            from: "wkview"
-        })
+    shareApp: function(e, r) {
+        if (vk.id) {
+            var t = {
+                    act: "publish_box",
+                    object: wkcur.like_obj,
+                    url_hash: r,
+                    list: "",
+                    from: "wkview"
+                },
+                o = {
+                    onDone: function() {
+                        var t = e;
+                        r && (t += "#" + r), composer.addMedia.checkURL(t)
+                    }
+                };
+            showBox("like.php", t, o)
+        }
     },
     _eof: 1
 };

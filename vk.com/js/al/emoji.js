@@ -16,6 +16,8 @@ if (!window.Emoji) {
         TAB_EMOJI: 0,
         TAB_RECENT_STICKERS: -1,
 
+        CLICK_DELAY: 500,
+
         init: function(txt, opts) {
             var optId = Emoji.last;
             opts.txt = txt;
@@ -1296,6 +1298,9 @@ if (!window.Emoji) {
                 return false;
             }
             var opts = Emoji.opts[optId];
+            if (vkNow() - opts.ttShowT < Emoji.CLICK_DELAY) {
+                return
+            }
             if (opts.editable) {
                 var img = Emoji.getEmojiHTML(code, Emoji.codeToChr(code), true);
                 var editable = opts.txt;
@@ -2954,6 +2959,10 @@ if (!window.Emoji) {
 
         stickerClick: function(optId, stickerNum, width, obj, sticker_referrer) {
             var opts = Emoji.opts[optId];
+
+            if (vkNow() - opts.ttShowT < Emoji.CLICK_DELAY) {
+                return
+            }
 
             var packId = parseInt(attr(obj, 'data-pack-id'));
 
