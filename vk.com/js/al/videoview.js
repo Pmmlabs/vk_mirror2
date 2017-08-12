@@ -1644,7 +1644,7 @@ var Videoview = {
                 o = i.oid,
                 t = i.vid,
                 a = o + "_" + t;
-            e ? (console.info("reconnecting"), ajax.post("al_video.php?act=get_queue_params", {
+            e ? ajax.post("al_video.php?act=get_queue_params", {
                 oid: o,
                 vid: t,
                 hash: i.hash
@@ -1655,8 +1655,8 @@ var Videoview = {
                 onFail: function() {
                     return !0
                 }
-            })) : (mvcur.queueReconnectDelay = mvcur.queueReconnectDelay ? 2 * mvcur.queueReconnectDelay : 500, setTimeout(function() {
-                Videoview.isLayerShown(a) && Videoview.queueReconnect(1)
+            }) : (mvcur.queueReconnectDelay = mvcur.queueReconnectDelay ? 2 * mvcur.queueReconnectDelay : 500, setTimeout(function() {
+                Videoview.isLayerShown(a) && Videoview.queueReconnect(!0)
             }, mvcur.queueReconnectDelay))
         },
         queueReceiveUpdates: function(e, i) {
@@ -1830,8 +1830,8 @@ var Videoview = {
                     }, {
                         onDone: function(t, a) {
                             var n = ge("video_spectators_rows");
-                            if (n.insertAdjacentHTML("beforeend", t), mvcur.liveSpectatorsShown = o + i,
-                                mvcur.liveSpectatorsShown >= mvcur.liveSpectatorsList.length && hide(e), mvcur.liveSpectatorsShown >= mvcur.liveSpectatorsLimit) {
+                            if (n.insertAdjacentHTML("beforeend", t), mvcur.liveSpectatorsShown = o + i, mvcur.liveSpectatorsShown >= mvcur.liveSpectatorsList.length && hide(e),
+                                mvcur.liveSpectatorsShown >= mvcur.liveSpectatorsLimit) {
                                 hide(e);
                                 var d = ge("video_spectators_bottom");
                                 n.appendChild(d), show(d)
@@ -2668,7 +2668,7 @@ var Videoview = {
         saveScrollPos: function() {
             var e = VideoPlaylist.getBlock(),
                 i = domByClass(e, "mv_playlist_list");
-            data(e, "savedScrollTop", i.scrollTop)
+            data(e, "savedScrollTop", i.scrollTop);
         },
         restoreScrollPos: function() {
             var e = VideoPlaylist.getBlock(),
