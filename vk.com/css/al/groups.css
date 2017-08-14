@@ -1754,37 +1754,47 @@ a .app_widget_tiles_title {
 
 .app_widget_matches {
     color: #000;
-    display: table;
-    table-layout: fixed;
-    width: 100%;
     letter-spacing: -0.14px
 }
 
-.app_widget_matches_score,
-.app_widget_matches_team_a,
-.app_widget_matches_team_b {
+.app_widget_matches_match {
+    color: #000;
     border-top: 1px solid #e7e8ec
 }
 
-.app_widget_matches_match {
-    display: table-row
+.app_widget_matches_match:first-child {
+    border-top: 0
 }
 
-.app_widget_matches_match:first-child .app_widget_matches_score,
-.app_widget_matches_match:first-child .app_widget_matches_team_a,
-.app_widget_matches_match:first-child .app_widget_matches_team_b {
-    border-top: 0
+a.app_widget_matches_match:hover {
+    background: #f7f8fa
+}
+
+.module_body a.app_widget_matches_match:hover,
+.module_body a.app_widget_matches_match:hover+.app_widget_matches_match {
+    margin: 0 -20px;
+    padding: 0 20px
+}
+
+a.app_widget_matches_match:active,
+a.app_widget_matches_match:hover {
+    color: #000;
+    text-decoration: none
 }
 
 .app_widget_matches_team_a,
 .app_widget_matches_team_b {
-    display: table-cell;
+    width: 50%;
     height: 40px;
-    line-height: 40px
+    line-height: 40px;
+    box-sizing: border-box
 }
 
 .app_widget_matches_team_a {
-    text-align: right
+    float: left;
+    text-align: right;
+    margin-right: -39px;
+    padding-right: 39px
 }
 
 .app_widget_matches_team_a .app_widget_matches_team_icon {
@@ -1793,7 +1803,10 @@ a .app_widget_tiles_title {
 }
 
 .app_widget_matches_team_b {
-    text-align: left
+    float: right;
+    text-align: left;
+    margin-left: -39px;
+    padding-left: 39px
 }
 
 .app_widget_matches_team_b .app_widget_matches_team_icon {
@@ -1802,17 +1815,17 @@ a .app_widget_tiles_title {
 }
 
 .app_widget_matches_score {
-    display: table-cell;
+    display: block;
     line-height: 40px;
-    width: 58px;
+    width: 78px;
     white-space: nowrap;
     text-align: center;
-    padding: 0 10px
+    margin: 0 auto
 }
 
 .app_widget_matches_score span {
     display: inline-block;
-    width: 25px;
+    width: 35px;
     text-align: right
 }
 
@@ -1829,7 +1842,8 @@ a .app_widget_tiles_title {
 .app_widget_matches_team_name {
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap
+    white-space: nowrap;
+    display: block
 }
 
 .app_widget_matches_team_icon {
@@ -1844,18 +1858,30 @@ a .app_widget_tiles_title {
 }
 
 .app_widget_matches_live_icon {
-    background: #f4524d url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2223%22%20height%3D%228%22%20viewBox%3D%220%200%2023%208%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20transform%3D%22translate(-6%20-5)%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2234%22%20height%3D%2218%22%20rx%3D%223%22%2F%3E%3Cpath%20d%3D%22M10.94%2011.786H7.387V5.25H6V13h4.94v-1.214zM13.82%2013V5.25h-1.385V13h1.385zm5.64%200l2.68-7.75h-1.477l-1.934%206.133h-.093l-1.95-6.133h-1.53L17.865%2013h1.595zm9.034-1.198h-3.63v-2.17h3.43V8.504h-3.43V6.447h3.63V5.25h-5.016V13h5.016v-1.198z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 5px 5px;
     width: 33px;
     height: 18px;
-    border-radius: 3px;
     margin-top: 11px
 }
 
-.app_widget_matches_live_icon:hover {
+.app_widget_matches_live_icon a {
+    display: block;
+    width: 100%;
+    height: 100%
+}
+
+.app_widget_matches_live_icon a,
+a.app_widget_matches_live_icon {
+    background: #f4524d url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2223%22%20height%3D%228%22%20viewBox%3D%220%200%2023%208%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20transform%3D%22translate(-6%20-5)%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2234%22%20height%3D%2218%22%20rx%3D%223%22%2F%3E%3Cpath%20d%3D%22M10.94%2011.786H7.387V5.25H6V13h4.94v-1.214zM13.82%2013V5.25h-1.385V13h1.385zm5.64%200l2.68-7.75h-1.477l-1.934%206.133h-.093l-1.95-6.133h-1.53L17.865%2013h1.595zm9.034-1.198h-3.63v-2.17h3.43V8.504h-3.43V6.447h3.63V5.25h-5.016V13h5.016v-1.198z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 5px 5px;
+    border-radius: 3px
+}
+
+.app_widget_matches_live_icon a:hover,
+a.app_widget_matches_live_icon:hover {
     background-color: #f85751
 }
 
-.app_widget_matches_live_icon:active {
+.app_widget_matches_live_icon a:active,
+a.app_widget_matches_live_icon:active {
     background-color: #e64a45
 }
 

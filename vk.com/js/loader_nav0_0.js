@@ -146,7 +146,7 @@ var stVersions = {
     'html5audio.js': 976782859,
     'html5video.js': 223664659,
     'html5video.css': 18596743497,
-    'audioplayer.js': 6102755754,
+    'audioplayer.js': 4280007369,
     'audioplayer.css': 17861017488,
     'audio_html5.js': 287741914,
     'audio.js': 4208287671,
@@ -223,7 +223,7 @@ var stVersions = {
     'public.js': 3770119342,
     'pages.css': 21108879791,
     'pages.js': 1162259210,
-    'groups.css': 28779728223,
+    'groups.css': 27839021476,
     'groups.js': 2975645919,
     'groups_list.js': 3507753248,
     'groups_edit.css': 28586341854,
@@ -460,7 +460,7 @@ var stVersions = {
     'landings/psb.css': 20925040025,
     'landings/psb_context.css': 19990271,
     'landings/psb_mobile.css': 23229953051,
-    'landings/moneysend.css': 19653758034,
+    'landings/moneysend.css': 18923635979,
     'landings/desktop_messenger.css': 19781964123,
     'landings/vklive.css': 16483645291,
     'landings/vk2017.css': 17561099444,
@@ -601,4 +601,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 2507;
+var _rnd = 9531;
