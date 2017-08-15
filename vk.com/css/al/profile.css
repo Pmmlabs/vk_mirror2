@@ -47,7 +47,8 @@
 }
 
 .profile_info .labeled {
-    overflow: hidden
+    overflow: hidden;
+    text-overflow: ellipsis
 }
 
 .profile_info .labeled>a {

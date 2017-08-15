@@ -62,7 +62,7 @@ var GroupsEdit = {
             onDone: function(t, o) {
                 cur.rnd == r && (cur.opts.counts[e] = t, GroupsEdit.uIndex(e, o))
             }
-        })), val("group_u_header", cur.opts.headers[e] || ""), val("group_u_header_btn", cur.opts.buttons[e] || ""), val("group_u_summary", cur.opts.counts[e] ? langNumeric(cur.opts.counts[e], "%s", !0) : ""), cur.opts.data[e] = o, cur.searchInp.setAttribute("placeholder", cur.opts.placeholders[e] || getLang("groups_users_search")), placeholderInit(cur.searchInp, {
+        })), val("group_u_header", cur.opts.headers[e] || ""), val("group_u_header_btn", cur.opts.buttons[e] || ""), val("group_u_summary", cur.opts.counts[e] ? langNumeric(cur.opts.counts[e], "%s", !0) : ""), cur.opts.data[e] = o, cur.searchInp.setAttribute("placeholder", clean(unclean(cur.opts.placeholders[e] || getLang("groups_users_search")))), placeholderInit(cur.searchInp, {
             reload: !0
         }), window.uiRightMenu && uiRightMenu.hideProgress(domFC(ge("narrow_column"))), hasClass(cur.searchCont, "ui_search_fixed") && scrollToY(getXY(cur.searchWrap)[1] + 1, 0), checkPageBlocks(), GroupsEdit.hideMessage(), GroupsEdit.uUpdateBack()
     },

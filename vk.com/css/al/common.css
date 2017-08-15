@@ -1507,6 +1507,13 @@ div#utils {
     overflow: hidden
 }
 
+div#utils iframe {
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden
+}
+
 #page_layout {
     padding: 0 15px;
     margin: 0 auto;
