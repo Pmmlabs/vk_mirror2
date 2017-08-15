@@ -764,7 +764,7 @@ vkApp.prototype.boxApp = function(t) {}, vkApp.prototype.onAppReady = function()
     if (t) {
         this.inlineApp && t > this.options.heightMax && (t = this.options.heightMax);
         var e = t + "px";
-        this.frame.style.height = e, this.options.boxed || (this.cont.style.height = e), this.options.onResize && this.options.onResize()
+        this.frame.style.height = e, this.options.boxed || (this.cont.style.height = e), this.options.layer && WkView.onResize(), this.options.onResize && this.options.onResize()
     }
 }, vkApp.prototype.setWidth = function(t) {
     if (t && !this.inlineApp && cur.app) {
@@ -1081,11 +1081,10 @@ AppsSlider.prototype = {
         }
     },
     startEvents: function() {
-        addEvent(window, "scroll", this.scrollCheckBinded), addEvent(window, "resize", this.scrollCheckBinded), this.initUpdates(), this.scrollCheck(), this.sliderStart()
+        addEvent(window, "scroll", this.scrollCheckBinded), addEvent(window, "resize", this.scrollCheckBinded), this.initUpdates(), this.scrollCheck(), this.sliderStart();
     },
     stopEvents: function() {
-        removeEvent(window, "scroll", this.scrollCheckBinded),
-            removeEvent(window, "resize", this.scrollCheckBinded), this.stopUpdates(), this.sliderStop()
+        removeEvent(window, "scroll", this.scrollCheckBinded), removeEvent(window, "resize", this.scrollCheckBinded), this.stopUpdates(), this.sliderStop()
     },
     isSection: function() {
         for (var t = arguments.length; t--;)
