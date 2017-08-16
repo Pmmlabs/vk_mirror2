@@ -23,7 +23,7 @@ var tooltips = {
                         s = vk.rtl && !opts.asrtl || opts.asrtl && !vk.rtl,
                         n = ge("page_header_wrap") && isAncestor(el, "page_layout") ? getSize("page_header_wrap") : [0, 0];
                     if (!o[0] && !o[1]) return void hide(el.tt.container);
-                    t.style.opacity = 0, opts.width && (t.style.width = opts.width + "px"), show(t), isNewTT || (t.firstChild.className = "toup" + (opts.toup ? 1 : ""));
+                    t.style.opacity = 0, opts.width && (t.style.width = opts.width + "px"), opts.maxWidth && (t.style["max-width"] = opts.maxWidth + "px"), show(t), isNewTT || (t.firstChild.className = "toup" + (opts.toup ? 1 : ""));
                     var l = opts.shift;
                     isFunction(l) && (l = l()), void 0 !== l && 2 == l.length && l.push(l[1]);
                     var r = bodyNode.scrollTop || htmlNode.scrollTop || 0,
@@ -49,19 +49,19 @@ var tooltips = {
                         }
                     var x;
                     x = isNewTT ? !inArray(opts.dir, ["left", "right"]) || opts.forcetoup || opts.forcetodown ? i ? e[1] - (d[1] + l[1]) : e[1] + o[1] + l[2] : e[1] - Math.floor(d[1] / 2) - l[1] : e[1] + (i ? -(d[1] + l[1]) : o[1] + l[2]);
-                    var b = x + intval(opts.slide) * (i ? -1 : 1),
-                        y = e[0] + (s ? l[0] + o[0] - d[0] : i ? -l[0] : -(l[3] || l[0]));
-                    v && (y -= (d[0] - (opts.reverseOffset || 39)) * (s ? -1 : 1)), opts.center && (addClass(t, "tocenter"), d[0] != o[0] && (y -= s ? 0 : (d[0] - o[0]) / 2));
-                    var C = y + (s ? -1 : 1) * intval(opts.slideX);
-                    if (opts.showIfFit && (y + w[0] < 0 || y + w[0] + d[0] > lastWindowWidth || x + w[1] < 0 || x + w[1] + d[1] > lastWindowHeight)) return hide(el.tt.container);
+                    var y = x + intval(opts.slide) * (i ? -1 : 1),
+                        b = e[0] + (s ? l[0] + o[0] - d[0] : i ? -l[0] : -(l[3] || l[0]));
+                    v && (b -= (d[0] - (opts.reverseOffset || 39)) * (s ? -1 : 1)), opts.center && (addClass(t, "tocenter"), d[0] != o[0] && (b -= s ? 0 : (d[0] - o[0]) / 2));
+                    var C = b + (s ? -1 : 1) * intval(opts.slideX);
+                    if (opts.showIfFit && (b + w[0] < 0 || b + w[0] + d[0] > lastWindowWidth || x + w[1] < 0 || x + w[1] + d[1] > lastWindowHeight)) return hide(el.tt.container);
                     el.tt.showing = !0, setStyle(t, {
-                        top: b,
+                        top: y,
                         left: C
                     });
                     var T = {
                         opacity: 1
                     };
-                    C != y && (T.left = y), b != x && (T.top = x), animate(t, T, void 0 !== opts.showsp ? opts.showsp : 200, function() {
+                    C != b && (T.left = b), y != x && (T.top = x), animate(t, T, void 0 !== opts.showsp ? opts.showsp : 200, function() {
                         el.tt && el.tt.showing && (el.tt.showing = !1), opts.onShowEnd && opts.onShowEnd(), el.tt && (el.tt.shown = !0)
                     }), opts.onShowStart && opts.onShowStart(el.tt)
                 }

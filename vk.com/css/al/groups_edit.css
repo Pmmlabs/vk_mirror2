@@ -59,7 +59,7 @@ a.group_ad_post_stats {
 
 .group_edit_input,
 .group_edit_textarea {
-    width: 300px
+    width: 280px
 }
 
 .group_edit_textarea {
@@ -120,7 +120,7 @@ a.group_ad_post_stats {
 }
 
 .group_edit_prefix_wrap {
-    width: 300px
+    width: 280px
 }
 
 .group_edit_at {
@@ -837,7 +837,7 @@ input.group_ad_cost {
 
 .group_ad_adv_comment {
     display: block;
-    width: 300px;
+    width: 280px;
     height: 100px
 }
 
@@ -1479,13 +1479,23 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .group_api_container .page_block_h2 {
-    padding: 0 10px
+    padding: 0 20px
 }
 
 .group_api_url_desc {
     line-height: 19px;
-    padding: 6px 20px 0;
-    font-size: 14px
+    padding: 20px;
+    margin: 5px 20px 10px;
+    background: #f0f2f5;
+    font-size: 13px
+}
+
+.group_api_url_desc .bold {
+    font-weight: 700
+}
+
+.group_api_url_desc .groups_api_confirmation_message {
+    margin-bottom: 20px
 }
 
 .group_api_tabs {
@@ -1514,26 +1524,75 @@ a.group_ad_post_link.deleted.deleted:hover {
 
 .group_api_url_input_wrapper {
     overflow: hidden;
-    margin-bottom: 10px
+    padding-bottom: 10px
+}
+
+.group_api_url_input_wrapper .group_edit_labeled {
+    padding-bottom: 0
+}
+
+.group_api_creator_row {
+    padding-top: 6px
+}
+
+.group_api_url_input_text {
+    padding-top: 6px;
+    padding-bottom: 8px
+}
+
+.group_api_server_hint_confirmed:after {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2368BE67%22%20rx%3D%228%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20stroke%3D%22%23FFF%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%221.5%22%20d%3D%22M4.5%208.5l2%202%205-5%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") no-repeat 0 0
+}
+
+.group_api_server_hint_fail:after {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%23EE5D4A%22%20rx%3D%228%22%2F%3E%0A%20%20%20%20%3Cg%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%221.5%22%20transform%3D%22translate(5%205)%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M0.5%2C5.5%20L5.5%2C0.5%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M0.5%2C5.5%20L5.5%2C0.5%22%20transform%3D%22matrix(-1%200%200%201%206%200)%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") no-repeat 0 0
+}
+
+.group_api_server_hint_wait:after {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%23A7ADB7%22%20rx%3D%228%22%2F%3E%0A%20%20%20%20%3Cpolyline%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%221.5%22%20points%3D%223%205%200%204%200%200%22%20transform%3D%22translate(8%205)%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") no-repeat 0 0
 }
 
 .group_api_url_input {
-    width: 300px
+    width: 280px
+}
+
+.group_api_title_dialog_body {
+    padding-top: 3px;
+    padding-bottom: 4px
+}
+
+.group_api_title_dialog_label {
+    width: 128px
+}
+
+.group_api_title_dialog_input {
+    width: 260px
+}
+
+.group_api_title_dialog_input_hint {
+    position: absolute;
+    width: auto;
+    white-space: nowrap;
+    padding: 5px;
+    right: 50px;
+    color: #828282;
+    cursor: default;
+    pointer-events: none
 }
 
 .group_api_url_button {
     margin: 5px 10px 0 0;
-    min-width: 124px
+    min-width: 113px
 }
 
 .group_api_result {
     overflow: auto;
-    font-family: monospace
+    padding: 20px 25px
 }
 
 .group_api_result_pre {
-    padding: 20px 25px;
-    margin: 0
+    margin: 0;
+    font-family: monospace
 }
 
 .group_api_error,
@@ -1543,12 +1602,24 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .group_api_settings {
-    margin: 15px 0 0;
+    margin: 16px 0 0;
     padding-bottom: 10px
 }
 
 .group_api_edit_row {
-    padding: 5px 0 10px
+    padding: 5px 0 15px
+}
+
+.group_api_edit_row .groups_api_divider {
+    margin-top: 10px
+}
+
+.group_api_edit_row .hint_icon {
+    line-height: 27px
+}
+
+.group_api_title_row {
+    padding-bottom: 0
 }
 
 .group_api_settings_saved {
@@ -1621,12 +1692,8 @@ a.group_ad_post_link.deleted.deleted:hover {
     margin: 12px 0 20px
 }
 
-.groups_edit_ssl_hint {
-    line-height: 27px
-}
-
 .groups_edit_cert_edit_buttons {
-    padding-top: 6px
+    margin-top: 7px
 }
 
 .groups_edit_cert_edit_buttons button {
@@ -1674,7 +1741,7 @@ a.group_ad_post_link.deleted.deleted:hover {
 
 .groups_api_divider {
     border-bottom: 1px solid #e7e8ec;
-    margin: 10px 20px 15px
+    margin: 5px 20px 15px
 }
 
 .group_tokens_rows {
@@ -2015,7 +2082,7 @@ a.group_ad_post_link.deleted.deleted:hover {
     border-top: 1px solid #e7e8ec;
     background: #fafbfc;
     line-height: 140%;
-    padding: 15px 20px 17px;
+    padding: 15px 0 17px;
     text-align: center
 }
 

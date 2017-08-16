@@ -210,7 +210,7 @@ var Photoview = {
             cur.pvLayerCreated = !0, delete cur.pvLeftBtnAmount, addClass(layerWrap, "pv_layer_wrap"), addClass(layerBG, "pv_layer");
             var o = Photoview.isPhotosList(),
                 e = nav.objLoc[0].match(/^faq(\d)+$/);
-            cur.pvIsLightMode = 0 == nav.objLoc[0].indexOf("blog/") || e || inArray(nav.objLoc[0], ["blog", "about", "support", "helpdesk", "market"]), cur.pvShowBottomActions = !cur.pvIsLightMode || e || inArray(nav.objLoc[0], ["helpdesk", "support"]);
+            cur.pvIsLightMode = 0 == nav.objLoc[0].indexOf("blog/") || e || inArray(nav.objLoc[0], ["blog", "about", "support", "helpdesk", "market", "bugtracker"]), cur.pvShowBottomActions = !cur.pvIsLightMode || e || inArray(nav.objLoc[0], ["helpdesk", "support"]);
             var t = "display: none",
                 r = Photoview.hhCheck() ? "" : t,
                 a = (Photoview.canFullscreen() ? "" : t, cur.pvAlbumsShown ? cur.pvAlbumsData[cur.pvAlbumsShown].html : ""),

@@ -221,12 +221,12 @@ var GroupsEdit = {
                 _ = ge("group_u_rows_" + t),
                 h = ge("group_edit_more_" + t);
             if (!g) return hide(h), val(_, GroupsEdit.uGenEmpty(r ? cur.opts.nfound[t] : getLang("groups_no_users_in_club"))), val("group_u_summary", ""), void checkPageBlocks();
-            for (var m = e ? 0 : _.childNodes.length, f = Math.min(g, m + 20), v = [], c = m; f > c; ++c) {
+            for (var m = e ? 0 : _.childNodes.length, v = Math.min(g, m + 20), f = [], c = m; v > c; ++c) {
                 var b = o[i[c]],
                     w = (b || {})[2];
-                b && (s && (w = w.replace(s.re, s.val)), v.push(GroupsEdit.uGenRow(t, b, w)))
+                b && (s && (w = w.replace(s.re, s.val)), f.push(GroupsEdit.uGenRow(t, b, w)))
             }
-            e ? (hasClass(cur.searchCont, "ui_search_fixed") && scrollToY(getXY(cur.searchWrap)[1] + 1, 0), val(_, v.join("")), r ? val("group_u_summary", langNumeric(g, "%s", !0)) : GroupsEdit.uUpdateSummary()) : _.innerHTML += v.join(""), n && GroupsEdit.hideMessage(), toggle(h, g > f), checkPageBlocks()
+            e ? (hasClass(cur.searchCont, "ui_search_fixed") && scrollToY(getXY(cur.searchWrap)[1] + 1, 0), val(_, f.join("")), r ? val("group_u_summary", langNumeric(g, "%s", !0)) : GroupsEdit.uUpdateSummary()) : _.innerHTML += f.join(""), n && GroupsEdit.hideMessage(), toggle(h, g > v), checkPageBlocks()
         }
     },
     uGetPage: function(e) {
@@ -297,8 +297,8 @@ var GroupsEdit = {
             case "members":
             case "unsure":
             case "admins":
-                var f = "";
-                n > 3 ? 6 > n && (f = '<a onclick="GroupsEdit.uMainAdmin()">' + getLang("Edit") + "</a>") : n > 0 ? f = '<a onclick="GroupsEdit.uEditAdmin(' + r + ')">' + getLang("Edit") + "</a>" : !n && cur.opts.admin && (f = '<a onclick="GroupsEdit.uEditAdmin(' + r + ')">' + getLang("groups_members_appoint_manager") + "</a>"), f && (c += '<div class="group_u_info_row">' + f + "</div>"), 0 > n ? d += '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_restore_member") + "</a>" : 0 >= n ? d += '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_delete") + "</a>" : 5 > n && r > 0 && (d += '<a class="group_u_action" onclick="GroupsEdit.uRemoveAdmin(' + r + ')">' + getLang("groups_remove_manager") + "</a>");
+                var v = "";
+                n > 3 ? 6 > n && (v = '<a onclick="GroupsEdit.uMainAdmin()">' + getLang("Edit") + "</a>") : n > 0 ? v = '<a onclick="GroupsEdit.uEditAdmin(' + r + ')">' + getLang("Edit") + "</a>" : !n && cur.opts.admin && (v = '<a onclick="GroupsEdit.uEditAdmin(' + r + ')">' + getLang("groups_members_appoint_manager") + "</a>"), v && (c += '<div class="group_u_info_row">' + v + "</div>"), 0 > n ? d += '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_restore_member") + "</a>" : 0 >= n ? d += '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_delete") + "</a>" : 5 > n && r > 0 && (d += '<a class="group_u_action" onclick="GroupsEdit.uRemoveAdmin(' + r + ')">' + getLang("groups_remove_manager") + "</a>");
                 break;
             case "declined":
                 d += 0 > n ? '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_restore_member") + "</a>" : '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_delete") + "</a>";
@@ -1780,40 +1780,56 @@ var GroupsEdit = {
             hide(geByClass1("page_actions_cont", ge("content"))), show(geByClass1("ui_tabs_progress", ge("content"))), nav.objLoc.server = o, nav.go(nav.objLoc)
         },
         checkUrl: function(e, t, o, r) {
-            function s(e, t, o, r, a, i) {
-                return i > 20 ? (GroupsEdit.callback.showError(getLang("groups_api_error_failed")), void unlockButton(a)) : void ajax.post("groupsedit.php", {
+            function s(e, t, o, r, a) {
+                return a > 20 ? void nav.go(nav.objLoc) : void ajax.post("groupsedit.php", {
                     act: "callback_get_check_url_result",
                     id: e,
                     server: t,
-                    title: u,
-                    key: r,
                     hash: o
                 }, {
-                    onDone: function(n, u, c) {
-                        switch (n) {
+                    onDone: function(i, n, u) {
+                        switch (i) {
                             case "wait":
-                                return void setTimeout(s.pbind(e, t, o, r, a, i + 1), 500);
+                                return void setTimeout(s.pbind(e, t, o, r, a + 1), 500);
                             case "ok":
                                 return void nav.go(nav.objLoc, void 0, {
                                     onDone: function() {
-                                        GroupsEdit.callback.showOk(), unlockButton(a)
+                                        GroupsEdit.callback.showOk()
                                     }
                                 });
                             case "incorrect":
-                                return GroupsEdit.callback.showError(getLang("groups_api_error_incorrect"), u), void unlockButton(a);
+                                var c = getLang("groups_api_error_incorrect");
+                                return void nav.go(nav.objLoc, void 0, {
+                                    onDone: function() {
+                                        GroupsEdit.callback.showError(c, n), unlockButton(r)
+                                    }
+                                });
                             case "failed":
-                                return c ? GroupsEdit.callback.showError(getLang("groups_api_error") + " " + c) : GroupsEdit.callback.showError(getLang("groups_api_error_failed"), u), void unlockButton(a)
+                                if (u) {
+                                    var c = getLang("groups_api_error") + " " + u;
+                                    n = null
+                                } else var c = getLang("groups_api_error_failed");
+                                return void nav.go(nav.objLoc, void 0, {
+                                    onDone: function() {
+                                        GroupsEdit.callback.showError(c, n)
+                                    }
+                                });
+                            case "error":
+                                return void nav.go(nav.objLoc, void 0, {
+                                    onDone: function() {
+                                        GroupsEdit.callback.showError(n)
+                                    }
+                                })
                         }
                     },
                     onFail: function() {
-                        unlockButton(a)
+                        unlockButton(r)
                     }
                 })
             }
             var a = ge("callback_url"),
-                i = val(a),
-                n = ge("callback_title"),
-                u = val(n);
+                i = val(a);
+            ge("callback_title");
             return i ? (lockButton(e), void ajax.post("groupsedit.php", {
                 act: "callback_check_url",
                 id: t,
@@ -1821,21 +1837,51 @@ var GroupsEdit = {
                 url: i,
                 hash: r
             }, {
-                onDone: function(a) {
-                    "error" === a ? (unlockButton(e), GroupsEdit.callback.showError(getLang("groups_api_error_failed"))) : "incorrect_url" == a ? (unlockButton(e), GroupsEdit.callback.showError(getLang("groups_api_incorrect_url"))) : s(t, o, r, a, e, 0)
+                onDone: function(a, i) {
+                    switch (a) {
+                        case "ok":
+                            s(t, o, r, e, 0);
+                            break;
+                        case "incorrect_url":
+                            unlockButton(e), GroupsEdit.callback.showError(getLang("groups_api_incorrect_url"));
+                            break;
+                        default:
+                            unlockButton(e), GroupsEdit.callback.showError(i)
+                    }
                 },
                 onFail: function() {
                     unlockButton(e)
                 }
             })) : void notaBene(a)
         },
+        changeTitleBox: function(e, t, o, r, s) {
+            function a() {
+                i.hide(), i.destroy()
+            }
+            var i = showBox("groupsedit.php", {
+                act: "callback_show_change_title_box",
+                id: t,
+                server: o,
+                title: title,
+                hash: r
+            }, {
+                params: {
+                    width: 470,
+                    dark: 1
+                },
+                onFail: function() {}
+            });
+            i.setButtons(getLang("global_save"), function() {
+                GroupsEdit.callback.setTitle(i.btns.ok[0], t, o, s)
+            }, getLang("global_cancel"), a)
+        },
         setTitle: function(e, t, o, r) {
             function s(t) {
-                unlockButton(e), GroupsEdit.callback.showError(t)
+                unlockButton(e), val("group_api_error_title_msg", t), show("group_api_error_title")
             }
             var a = ge("callback_title"),
                 i = val(a);
-            return i ? (lockButton(e), void ajax.post("groupsedit.php", {
+            return hide("group_api_error_title"), i ? (lockButton(e), void ajax.post("groupsedit.php", {
                 act: "callback_set_title",
                 id: t,
                 server: o,
@@ -1930,19 +1976,30 @@ var GroupsEdit = {
                     hash: r
                 }, {
                     onDone: function(e) {
-                        s.hide(), show("groups_edit_cert_not_uploaded"), hide("groups_edit_cert_uploaded")
+                        nav.go(nav.objLoc)
                     }
                 })
             }, getLang("global_cancel"))
         },
-        showCurlResult: function(e, t) {
-            var o = cur.curlResult[e];
-            o && showFastBox({
-                title: t ? getLang("groups_api_request_result") : getLang("groups_api_request_body"),
-                dark: 1,
-                width: 900,
-                bodyStyle: "padding: 0;"
-            }, '<div class="group_api_result"><pre class="group_api_result_pre"">' + o + "</pre></div>")
+        showCurlResult: function(e, t, o) {
+            var r = cur.curlResult[e];
+            if (r) {
+                var s = {
+                    title: t ? getLang("groups_api_request_result") : getLang("groups_api_request_body"),
+                    dark: 1,
+                    bodyStyle: "padding:0;"
+                };
+                if (o) {
+                    if (r === o) return;
+                    s.title = getLang("global_error");
+                    var a = getLang("global_api_incorrect_response_dialog").replace("{response}", r).replace("{expected}", o);
+                    s.width = 450
+                } else {
+                    var a = '<pre class="group_api_result_pre"">' + r + "</pre>";
+                    s.width = 900
+                }
+                showFastBox(s, '<div class="group_api_result">' + a + "</div>")
+            }
         },
         showError: function(e, t) {
             hide("group_api_secret_error"), hide("group_api_secret_ok"), t ? (show("group_api_error_info"), cur.curlResult = cur.curlResult || {}, cur.curlResult.error = t) : hide("group_api_error_info"), val("group_api_error_msg", e), hide("group_api_ok"), show("group_api_error")
