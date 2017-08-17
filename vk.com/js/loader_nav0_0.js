@@ -172,7 +172,7 @@ var stVersions = {
     'fullscreen_pv.js': 2393839857,
     'fullscreen_pv.css': 17948748543,
     'spe.js': 3760998372,
-    'friends.js': 493278683,
+    'friends.js': 140439177,
     'friends.css': 19200748436,
     'friends_search.js': 3688413939,
     'friends_search.css': 1694758778,
@@ -536,7 +536,7 @@ var stVersions = {
     'internal/cvkmobile.js': 3693679928,
     'shortener.js': 1002525642,
     'cmodules/web/pretty_cards.js': 230288707,
-    'lang': 6830
+    'lang': 6831
 };
 var stTypes = {
     fromLib: {
@@ -601,4 +601,4 @@ var stTypes = {
         'lead_forms_app.js': 1
     }
 };
-var _rnd = 1364;
+var _rnd = 2747;

@@ -1038,9 +1038,10 @@ var Friends = {
         return e.city || e.sex || e.age_from || e.age_to ? e : !1
     },
     changeFilter: function() {
-        return cur.silent ? (cur.onSilentLoad = function() {
+        if (cur.silent) return cur.onSilentLoad = function() {
             Friends.changeFilter()
-        }, hide(cur.showMore), void(cur.fContent.innerHTML = '<div class="friends_wide_loading"></div>')) : (cur.filter = Friends.filterParams(), void(cur.filter ? ajax.post("friends", extend({
+        }, hide(cur.showMore), void(cur.fContent.innerHTML = '<div class="friends_wide_loading"></div>');
+        if (cur.filter = Friends.filterParams(), cur.filter) ajax.post("friends", extend({
             act: "filter_friends",
             uid: cur.oid
         }, cur.filter), {
@@ -1054,7 +1055,12 @@ var Friends = {
             },
             progress: "friends_fltr_progress",
             cache: 1
-        }) : (cur.filterIds && (cur.filterIds = !1), Friends.updateList(), Friends.updateCurFilters())))
+        });
+        else {
+            cur.filterIds && (cur.filterIds = !1);
+            var e = cur.searchStr || "";
+            cur.searchStr = "", Friends.updateList(e), Friends.updateCurFilters()
+        }
     },
     updateCurFilters: function() {
         var e = ge("friends_cur_filters");
