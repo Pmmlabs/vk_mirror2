@@ -459,7 +459,7 @@ var Restore = {
     submitFullRequest: function(e) {
         var o = "new_phone",
             t = ge("restore_submit_full_request");
-        if (cur.request_params || (cur.request_params = {}, cur.request_step = "phones"), hide("simple_request_incorrect"), "phones" == cur.request_step) {
+        if (cur.request_params || (cur.request_params = {}, cur.request_step = "phones"), "phones" == cur.request_step) {
             var r = val(o).replace(/[^0-9]/g, "");
             if (!r) return notaBene(o);
             if (!/^[1-9][0-9]{6,14}$/.test(r)) return Restore.showResult("request_phone_res", getLang("restore_phone_error"), o);
