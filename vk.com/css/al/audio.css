@@ -500,7 +500,8 @@
 
 .audio_friend_name,
 .audio_friend_name_now {
-    padding: 3px 0 3px 10px;
+    padding: 2px 0 3px 10px;
+    line-height: 1.12em;
     display: block;
     width: 137px;
     white-space: nowrap;

@@ -704,7 +704,8 @@ var MoneyTransfer = {
         if (event.keyCode == 13) {
             return;
         }
-        var v = o.value.replace(/[^0-9]/g, "");
+        var v = o.value.replace(/[^0-9]/g, '');
+        v = v.replace(/^0+/, '');
         if (o.value != v) o.value = v;
         MoneyTransfer.checkAmount(v);
         MoneyTransfer.autosizeAmount();
