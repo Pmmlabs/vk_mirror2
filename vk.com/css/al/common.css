@@ -2214,6 +2214,10 @@ a.ad_box_new:hover {
     display: none!important
 }
 
+.side_bar {
+    width: 149px
+}
+
 .side_bar_inner {
     z-index: 10;
     width: 149px;

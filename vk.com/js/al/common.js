@@ -223,6 +223,15 @@ var mobPlatforms = {
     5: 1
 };
 
+//
+// Feature detection
+//
+var browserFeatures = {
+    // Detect wheel event
+    wheelEvent: 'onwheel' in ce('div') ? 'wheel' : (document.onmousewheel !== void 0 ? 'mousewheel' : (browser.mozilla ? 'MozMousePixelScroll' : 'DOMMouseScroll')),
+    hasBoundingClientRect: 'getBoundingClientRect' in ce('div')
+};
+
 (function() {
     var flash = [0, 0, 0],
         axon = 'ShockwaveFlash.ShockwaveFlash';
@@ -2924,17 +2933,25 @@ function compareScrollStyles(st, newSt) {
 }
 
 function updateNarrow() {
-    var bar = ge('narrow_column'),
-        barBlock = bar && geByClass1('page_block', bar),
-        wideCol = ge('wide_column');
+    cur.__narrowBar = cur.__narrowBar || {};
+    cur.__narrowBar.bar = cur.__narrowBar.bar || ge('narrow_column');
+    cur.__narrowBar.barBlock = cur.__narrowBar.bar && geByClass1('page_block', cur.__narrowBar.bar);
+    cur.__narrowBar.wideCol = cur.__narrowBar.wideCol || ge('wide_column');
+    cur.__narrowBar.isBarFixed = cur.__narrowBar.isBarFixed || getStyle(cur.__narrowBar.bar, 'position') === 'fixed';
+    cur.__narrowBar.pl = cur.__narrowBar.pl || ge('page_layout');
+
+    var bar = cur.__narrowBar.bar,
+        barBlock = cur.__narrowBar.barBlock,
+        wideCol = cur.__narrowBar.wideCol,
+        scrollY = scrollGetY();
     if (browser.mobile || !bar || !barBlock || !wideCol || isVisible(boxLoader) || isVisible(boxLayerBG) || isVisible(layerBG)) return;
 
     var wh = window.lastWindowHeight || 0,
-        st = Math.min(scrollGetY(), bodyNode.clientHeight - wh),
-        pl = ge('page_layout'),
+        st = Math.min(scrollY, bodyNode.clientHeight - wh),
+        pl = cur.__narrowBar.pl,
         headH = vk.staticheader ? Math.max(0, getPageHeaderHeight() - st) : getPageHeaderHeight(),
-        isFixed = getStyle(bar, 'position') == 'fixed',
-        barMT = floatval(getStyle(barBlock, 'marginTop')),
+        isFixed = cur.__narrowBar.isBarFixed,
+        barMT = floatval(getStyle(cur.__narrowBar.barBlock, 'marginTop')),
         barH = getSize(bar)[1] - (isFixed ? barMT : 0),
         pageH = getSize(wideCol)[1],
         pagePos = getXY(wideCol)[1],
@@ -2944,8 +2961,8 @@ function updateNarrow() {
         barPB = Math.max(0, barBottom),
         barPT = pagePos - headH,
         barPos = getXY(bar)[1] + (isFixed ? barMT : 0),
-        lastSt = cur.lastSt || 0,
-        lastStyles = cur.lastStyles || {},
+        lastSt = cur.__narrowBar.lastSt || 0,
+        lastStyles = cur.__narrowBar.lastStyles || {},
         styles, needFix = false,
         smallEnough = headH + barMB + barH + barMT + barPB <= wh && !cur.narrowHide,
         delta = 1;
@@ -2977,33 +2994,40 @@ function updateNarrow() {
             lastStyles[i] = null;
         });
         setStyle(bar, extend(lastStyles, styles));
-        cur.lastStyles = styles;
+        cur.__narrowBar.lastStyles = styles;
     }
     if (needFix !== isFixed) {
         toggleClass(bar, 'fixed', needFix);
     }
-    cur.lastSt = st;
+    cur.__narrowBar.lastSt = st;
+    cur.__narrowBar.isBarFixed = needFix;
 }
 
 function updateLeftMenu() {
-    var menu = ge('side_bar_inner'),
+    cur.__leftMenu = cur.__leftMenu || {};
+    cur.__leftMenu.lmBar = cur.__leftMenu.lmBar || ge('side_bar_inner');
+    cur.__leftMenu.lmFixed = cur.__leftMenu.lmFixed || getStyle(cur.__leftMenu.lmBar, 'position') === 'fixed';
+    cur.__leftMenu.lmMarginTop = floatval(getStyle(cur.__leftMenu.lmBar, 'marginTop'));
+    cur.__leftMenu.pl = cur.__leftMenu.pl || ge('page_layout');
+
+    var menu = cur.__leftMenu.lmBar,
         pageBody = ge('page_body');
     if (browser.mobile || !menu || !pageBody) return;
 
     var wh = window.lastWindowHeight || 0,
         st = Math.min(scrollGetY(), bodyNode.clientHeight - wh),
         pos = 0,
-        pl = ge('page_layout'),
+        pl = cur.__leftMenu.pl,
         headH = getPageHeaderHeight(),
         headCalcH = Math.min(Math.max(0, headH - st), headH),
-        isFixed = getStyle(menu, 'position') == 'fixed',
+        isFixed = cur.__leftMenu.lmFixed,
         menuH = getSize(menu)[1],
-        menuPos = isFixed ? getXY(menu)[1] : floatval(getStyle(menu, 'marginTop')),
+        menuPos = isFixed ? getXY(menu)[1] : cur.__leftMenu.lmMarginTop,
         pageH = getSize(pageBody)[1],
         pagePos = pageBody.offsetTop,
         tooBig = menuH >= pageH,
-        lastSt = window.menuLastSt || 0,
-        lastStyles = window.menuLastStyles || {},
+        lastSt = cur.__leftMenu.menuLastSt || 0,
+        lastStyles = cur.__leftMenu.menuLastStyles || {},
         styles, delta = 1,
         noScrollDelta = cur.leftMenuDelta || 0;
     delete cur.leftMenuDelta;
@@ -3046,9 +3070,13 @@ function updateLeftMenu() {
             bottom: null
         };
         setStyle(menu, extend(defaultStyles, styles));
-        window.menuLastStyles = styles;
+        cur.__leftMenu.menuLastStyles = styles;
     }
-    window.menuLastSt = st;
+    cur.__leftMenu.menuLastSt = st;
+    cur.__leftMenu.lmFixed = styles.position === 'fixed';
+    if (cur.__leftMenu.lmMarginTop !== styles.marginTop) {
+        cur.__leftMenu.lmMarginTop = styles.marginTop;
+    }
 }
 
 function updateSTL() {
@@ -8033,8 +8061,12 @@ function radiobtn(el, v, name) {
     each(radioBtns[name].els, function() {
         if (this == el) {
             addClass(this, 'on');
+            this.setAttribute('aria-checked', 'true');
+            this.setAttribute('tabindex', '0');
         } else {
             removeClass(this, 'on');
+            this.setAttribute('aria-checked', 'false');
+            this.setAttribute('tabindex', '-1');
         }
     });
     return radioBtns[name].val = v;
@@ -11488,6 +11520,7 @@ function toggleOnline(obj, platform) {
 function updateAriaElements() {
     updateOnlineText();
     updateAriaCheckboxes();
+    updateAriaRadioBtns();
 }
 
 function updateOnlineText() {
@@ -11547,6 +11580,65 @@ function updateAriaCheckboxes() {
             }
         });
     }, 100);
+}
+
+/**
+ * ��������� aria ��������� ��� radio buttons.
+ */
+function updateAriaRadioBtns() {
+    clearTimeout(cur.updateRadioBtnsTO);
+    cur.updateRadioBtnsTO = setTimeout(function() {
+        var btnWrappers = [],
+            els = geByClass('radiobtn');
+
+        each(els, function() {
+            if (this.tagName === 'DIV' && !this.getAttribute('role')) {
+
+                var checked = isChecked(this);
+
+                this.setAttribute('role', 'radio');
+                this.setAttribute('aria-checked', checked ? 'true' : 'false');
+                this.setAttribute('tabindex', checked ? 0 : -1);
+
+                var btnWrap = getRadioBtnWrap(this);
+                if (!~btnWrappers.indexOf(btnWrap)) {
+                    btnWrappers.push(btnWrap);
+                }
+            }
+        });
+
+        each(btnWrappers, function() {
+            var checkedBtns = geByClass('on', this);
+            if (!checkedBtns.length) {
+                var btns = geByClass('radiobtn', this);
+                if (btns.length) {
+                    btns[0].setAttribute('tabindex', 0);
+                }
+            }
+        });
+
+    }, 100);
+}
+
+/**
+ * ���������� ���� ������� �������� ��������� ��� radioButton.
+ * @param el - ������� radioButton
+ * @returns Node
+ */
+function getRadioBtnWrap(el) {
+    var groupEl = el,
+        deep = 0,
+        maxDeep = 5;
+
+    while (deep < maxDeep && groupEl !== document) {
+        groupEl = domPN(groupEl);
+        var radioBtns = geByClass('radiobtn', groupEl);
+        if (radioBtns.length > 1) {
+            break;
+        }
+        deep++;
+    }
+    return groupEl;
 }
 
 

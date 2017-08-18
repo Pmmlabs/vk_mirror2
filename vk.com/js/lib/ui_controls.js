@@ -309,41 +309,52 @@ extend(UiControl.prototype, {
         })
     },
     initEvents: function() {
-        var t = this;
-        this.options.dropdown && this.initDropdownEvents(), addEvent(this.resultList, "wheel", function(e) {
-            return e.deltaY > 0 && t.resultList.scrollTop + t.resultList.offsetHeight >= t.resultList.childNodes[0].offsetHeight ? cancelEvent(e) : t.resultList.scrollTop <= 0 && e.deltaY < 0 ? cancelEvent(e) : void 0
-        }), this.options.limitedListHeight && (addEvent(this.selectedItemsContainer, "scroll", this.updateSelectedItemsScroll.bind(this)), this.updateSelectedItemsScroll({
-            target: this.selectedItemsContainer
-        }), addEvent(this.selectedItemsContainer, "wheel", function(t) {
+        function t(t) {
+            return t.deltaY > 0 && i.resultList.scrollTop + i.resultList.offsetHeight >= i.resultList.childNodes[0].offsetHeight ? cancelEvent(t) : i.resultList.scrollTop <= 0 && t.deltaY < 0 ? cancelEvent(t) : void 0
+        }
+
+        function e(t) {
             return this.container.showBottomFader || this.container.showTopFader ? !this.container.showBottomFader && t.deltaY > 0 ? cancelEvent(t) : !this.container.showTopFader && t.deltaY < 0 ? cancelEvent(t) : void 0 : !0
+        }
+        var i = this;
+        this.options.dropdown && this.initDropdownEvents(), addEvent(this.resultList, "mouseenter", function() {
+            addEvent(this.resultList, browserFeatures.wheelEvent, t)
+        }.bind(this)), addEvent(this.resultList, "mouseleave", function() {
+            removeEvent(this.resultList, browserFeatures.wheelEvent, t)
+        }.bind(this)), this.options.limitedListHeight && (addEvent(this.selectedItemsContainer, "scroll", this.updateSelectedItemsScroll.bind(this)), this.updateSelectedItemsScroll({
+            target: this.selectedItemsContainer
+        }), addEvent(this.resultList, "mouseenter", function() {
+            addEvent(this.selectedItemsContainer, browserFeatures.wheelEvent, e.bind(this))
+        }.bind(this)), addEvent(this.resultList, "mouseleave", function() {
+            removeEvent(this.selectedItemsContainer, browserFeatures.wheelEvent, e.bind(this))
         }.bind(this)));
-        var e = browser.opera || browser.mozilla ? "keypress" : "keydown",
-            i = browser.opera ? "keypress" : "keydown";
-        this.onEvent = function(s) {
-            if ("mousedown" == s.type) {
-                for (var o = !0, n = s.target; n && n != n.parentNode;) {
-                    if (n == t.container) {
-                        o = !1;
+        var s = browser.opera || browser.mozilla ? "keypress" : "keydown",
+            o = browser.opera ? "keypress" : "keydown";
+        this.onEvent = function(t) {
+            if ("mousedown" == t.type) {
+                for (var e = !0, n = t.target; n && n != n.parentNode;) {
+                    if (n == i.container) {
+                        e = !1;
                         break
                     }
                     n = n.parentNode
                 }
-                o && (t.select.hide(), t.deselectTokens())
+                e && (i.select.hide(), i.deselectTokens())
             }
-            s.type == e && t.handleKeyboardEventOutside(s), s.type == i && t.select.handleKeyEvent(s), "keypress" == s.type && t.select._doQuickSearch(s)
+            t.type == s && i.handleKeyboardEventOutside(t), t.type == o && i.select.handleKeyEvent(t), "keypress" == t.type && i.select._doQuickSearch(t)
         }, this.disableSomeFeatures ? addEvent(this.input, "paste keypress keydown focus blur", this.handleKeyboardEvent, !1, {
             self: this
         }) : addEvent(this.input, "keydown keypress change paste cut drop input focus blur", this.handleKeyboardEvent, !1, {
             self: this
-        }), addEvent(this.selector, "mousedown", function(e) {
-            for (var i = !1, s = e.target; null !== s;) {
+        }), addEvent(this.selector, "mousedown", function(t) {
+            for (var e = !1, s = t.target; null !== s;) {
                 if (hasClass(s, "token")) {
-                    i = !0;
+                    e = !0;
                     break
                 }
                 s = s.parentNode
             }
-            return i ? !0 : t.onInputClick(e)
+            return e ? !0 : i.onInputClick(t)
         }, !1, {
             self: this
         })
@@ -651,11 +662,11 @@ extend(UiControl.prototype, {
             }), addEvent(s, "mouseout", function(t) {
                 removeClass(s, "token_hover"), l.showImage(l.activeItemValue ? l.activeItemValue : l.selectedTokenId), isFunction(l.options.onTokenMouseOut) && l.options.onTokenMouseOut(s.getAttribute("data-id"), event)
             });
-            var h = s.firstChild.nextSibling.firstChild;
-            addEvent(h, "mousedown", function() {
+            var r = s.firstChild.nextSibling.firstChild;
+            addEvent(r, "mousedown", function() {
                 return l.select.hide(), l.removeTagData(s.getAttribute("data-id")), !l.readOnly && l.hasFocus && l.input.focus(), !1
             }), l.selectedItemsContainer.appendChild(s);
-            for (var r = s.firstChild.nextSibling.firstChild.nextSibling, a = r.innerHTML; s.offsetWidth > n && a.length > 3;) a = a.substr(0, a.length - 2), r.innerHTML = a + "...";
+            for (var h = s.firstChild.nextSibling.firstChild.nextSibling, a = h.innerHTML; s.offsetWidth > n && a.length > 3;) a = a.substr(0, a.length - 2), h.innerHTML = a + "...";
             return this.options.limitedListHeight && (this.selectedItemsContainerWrap.style.display = "none", this.selectedItemsContainerWrap.offsetHeight, this.selectedItemsContainerWrap.style.display = "block", this.updateSelectedItemsScroll({
                 target: this.selectedItemsContainer
             }), animate(this.selectedItemsContainer, {
@@ -744,16 +755,16 @@ extend(UiControl.prototype, {
             o = this.options.height || 250,
             n = this.options.minHeight || 0,
             l = (window.pageNode && window.browser.mozilla ? Math.min(getSize(pageNode)[1], window.lastWindowHeight) : window.lastWindowHeight) || getScroll()[3],
-            h = this.resultList && this.resultList.firstChild;
-        if (h && h.firstChild) {
-            var r = getStyle(this.resultList, "display"),
+            r = this.resultList && this.resultList.firstChild;
+        if (r && r.firstChild) {
+            var h = getStyle(this.resultList, "display"),
                 a = getStyle(this.resultList, "visibility");
             setStyle(this.resultList, {
                 visibility: "hidden",
                 display: "block"
             }), t = getSize(this.resultList)[1], setStyle(this.resultList, {
                 visibility: a,
-                display: r
+                display: h
             })
         } else t = n ? n : this.currenDataItems ? this.currenDataItems.length * getSize(this.container)[1] : o;
         return t > o && (t = o), i + s + t - e > l && i - t - e > 0 && i - t > 40
@@ -772,12 +783,12 @@ extend(UiControl.prototype, {
             var n = this.options.autocomplete && i ? this.options.maxItemsShown(i.length) : e.length,
                 l = this;
             for (o = 0; o < e.length; ++o) {
-                var h = e[o];
+                var r = e[o];
                 if (!n) break;
-                var r = l.options.formatResult(h);
-                if (i && (r = l.options.highlight(r, i)) && --n, r) {
-                    var a = [h[0], r];
-                    a.push("1" === h[5]), "label" === h[3] && a.push(1), s.push(a)
+                var h = l.options.formatResult(r);
+                if (i && (h = l.options.highlight(h, i)) && --n, h) {
+                    var a = [r[0], h];
+                    a.push("1" === r[5]), "label" === r[3] && a.push(1), s.push(a)
                 }
             }
         }
@@ -1050,9 +1061,9 @@ extend(UiControl.prototype, {
         this.maxHeight < this.list.offsetHeight ? (this.container.style.height = this.maxHeight + "px", addClass(this.container, this.CSS.SCROLLABLE)) : (removeClass(this.container, this.CSS.SCROLLABLE), this.container.style.height = "auto")
     },
     content: function(t) {
-        var e, i, s, o, n, l, h, r, a = [],
+        var e, i, s, o, n, l, r, h, a = [],
             d = t.length;
-        for (e = 0; d > e; ++e) i = t[e], s = i[0], o = i[1], n = i[2], l = i[3], h = this.uid + ", " + e, s = void 0 === s || null === s ? "" : s.toString(), o = (void 0 === o || null === o ? "" : o.toString()) || s, r = 1 === l, a.push("<li ", n ? 'dis="1"' : 'onmousemove="Select.itemMouseMove(' + h + ', this)" onmousedown="Select.itemMouseDown(' + h + ', this)" onclick="Select.itemMouseDown(' + h + ', this)"', ' val="', s.replace(/&/g, "&amp;").replace(/"/g, "&quot;"), '" class="', r ? this.CSS.LABEL + " " : "", n ? "disabled " : "", e == d - 1 ? this.CSS.LAST + " " : "", (e ? "" : this.CSS.FIRST) + '">', o, "</li>");
+        for (e = 0; d > e; ++e) i = t[e], s = i[0], o = i[1], n = i[2], l = i[3], r = this.uid + ", " + e, s = void 0 === s || null === s ? "" : s.toString(), o = (void 0 === o || null === o ? "" : o.toString()) || s, h = 1 === l, a.push("<li ", n ? 'dis="1"' : 'onmousemove="Select.itemMouseMove(' + r + ', this)" onmousedown="Select.itemMouseDown(' + r + ', this)" onclick="Select.itemMouseDown(' + r + ', this)"', ' val="', s.replace(/&/g, "&amp;").replace(/"/g, "&quot;"), '" class="', h ? this.CSS.LABEL + " " : "", n ? "disabled " : "", e == d - 1 ? this.CSS.LAST + " " : "", (e ? "" : this.CSS.FIRST) + '">', o, "</li>");
         return this.list.innerHTML = a.join(""), this.updateContainer(), !0
     },
     removeItem: function(t) {
@@ -1402,10 +1413,10 @@ extend(UiControl.prototype, {
             n > 500 && (n = Math.round(n / i) * Math.ceil(i / this.options.columnsCount), setStyle(this.rows, "columnCount", this.options.columnsCount.toString()), setStyle(this.rows, "MozColumnCount", this.options.columnsCount.toString()), setStyle(this.rows, "webkitColumnCount", this.options.columnsCount.toString()), setStyle(this.rows, "width", 2 * o + "px"), setStyle(this.rows, "height", n + "px"))
         }
         var l = getSize(this.header)[0],
-            h = getSize(this.body)[0];
-        l > h && setStyle(this.rows, "width", l - 2 + "px"), h = getSize(this.body)[0];
-        var r = document.documentElement.clientWidth,
-            a = t + h > r && t + l > h ? -l - 1 + "px" : "auto";
+            r = getSize(this.body)[0];
+        l > r && setStyle(this.rows, "width", l - 2 + "px"), r = getSize(this.body)[0];
+        var h = document.documentElement.clientWidth,
+            a = t + r > h && t + l > r ? -l - 1 + "px" : "auto";
         setStyle(this.body, "right", a)
     },
     moveToTarget: function() {
@@ -1593,11 +1604,10 @@ extend(UiControl.prototype, {
     },
     indexItem: function(t, e, i) {
         var s, o, n, l = "",
-            h = {};
+            r = {};
         for (s = 0; s < this.options.indexkeys.length; s++) e[this.options.indexkeys[s]] && (l += " " + e[this.options.indexkeys[s]].replace(this.options.delimeter, " ").replace(/<[^>]*>/g, "").replace(/[\u00AB\u00BB]/g, ""));
-        for (l += (parseLatin(l) || "") + (parseCyr(l) || ""),
-            l = trim(winToUtf(l).toLowerCase()).split(/\s+/), s = 0; s < l.length; s++)
-            for (o = 1; o <= this.options.chars; o++) n = l[s].substr(0, o), h[n] || (h[n] = 1, void 0 === this.storage.index[n] && (this.storage.index[n] = []), i && i != t && this.storage.index[n].push(i), this.storage.index[n].push(t))
+        for (l += (parseLatin(l) || "") + (parseCyr(l) || ""), l = trim(winToUtf(l).toLowerCase()).split(/\s+/), s = 0; s < l.length; s++)
+            for (o = 1; o <= this.options.chars; o++) n = l[s].substr(0, o), r[n] || (r[n] = 1, void 0 === this.storage.index[n] && (this.storage.index[n] = []), i && i != t && this.storage.index[n].push(i), this.storage.index[n].push(t))
     },
     search: function(t) {
         debug("search start, index width: " + this.options.chars + ", data size: " + this.storage.data.length), t = trim(t.toLowerCase().replace(this.options.delimeter, " ")), debug("pattern: " + t + ", length: " + t.length);
@@ -1622,16 +1632,16 @@ extend(UiControl.prototype, {
         debug("starting manual filter");
         var l = null;
         return e.already_added = {}, each(e.storage.index[o.substr(0, e.options.chars)], function(i, s) {
-            var o, h = e.storage.data[s],
-                r = !1,
+            var o, r = e.storage.data[s],
+                h = !1,
                 a = "";
-            for ("label" === h[3] && (l = s), o = 0; o < e.options.indexkeys.length; o++) h[e.options.indexkeys[o]] && (a += " " + h[e.options.indexkeys[o]].replace(e.options.delimeter, " ").replace(/<[^>]*>/, "").replace(/[\u00AB\u00BB]/g, ""));
+            for ("label" === r[3] && (l = s), o = 0; o < e.options.indexkeys.length; o++) r[e.options.indexkeys[o]] && (a += " " + r[e.options.indexkeys[o]].replace(e.options.delimeter, " ").replace(/<[^>]*>/, "").replace(/[\u00AB\u00BB]/g, ""));
             for (a += (parseLatin(a) || "") + (parseCyr(a) || ""), a = winToUtf(a).toLowerCase(), o = 0; o < t.length; o++)
                 if (-1 == a.indexOf(" " + t[o])) {
-                    r = !0;
+                    h = !0;
                     break
                 }
-            r || (e.options.includeLabelsOnMatch && l && (s == l || e.already_added[l] || (n.push(e.storage.data[l]), e.already_added[l] = !0), l = null), (e.options.preventDuplicates && !e.already_added[s] || !e.options.preventDuplicates) && n.push(h), e.already_added[s] = !0)
+            h || (e.options.includeLabelsOnMatch && l && (s == l || e.already_added[l] || (n.push(e.storage.data[l]), e.already_added[l] = !0), l = null), (e.options.preventDuplicates && !e.already_added[s] || !e.options.preventDuplicates) && n.push(r), e.already_added[s] = !0)
         }), debug("manual filter ended, found " + n.length + " items"), n
     },
     flush: function() {
@@ -1738,8 +1748,8 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
 }), InlineDropdown.IDD_HEADER_CORRECTION_LEFT = -10, InlineDropdown.IDD_HEADER_CORRECTION_TOP = -8, InlineDropdown.prototype._rebuildDropdown = function() {
     function t(t, i) {
         i = i || "";
-        var s = h._opts.sublists && h._opts.sublists[t[0]] ? "idd_sublist" : "",
-            n = '<div class="idd_item ' + i + " " + e + " " + s + '" id="' + o + "idd_item_" + t[0] + '" data-id="' + t[0] + '" tabindex="0">' + (h._opts.withIcon ? '<div class="idd_item_icon" id="' + t[0] + '"></div>' : "") + '<div class="idd_item_name">' + (h._opts.html ? h._opts.html(t) : t[1]) + "</div></div>";
+        var s = r._opts.sublists && r._opts.sublists[t[0]] ? "idd_sublist" : "",
+            n = '<div class="idd_item ' + i + " " + e + " " + s + '" id="' + o + "idd_item_" + t[0] + '" data-id="' + t[0] + '" tabindex="0">' + (r._opts.withIcon ? '<div class="idd_item_icon" id="' + t[0] + '"></div>' : "") + '<div class="idd_item_name">' + (r._opts.html ? r._opts.html(t) : t[1]) + "</div></div>";
         return n
     }
     var e = this._opts.withIcon ? "idd_with_icon" : "",
@@ -1748,25 +1758,29 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
         o = this._opts.idItemPrefix ? this._opts.idItemPrefix : "",
         n = '<div class="idd_header_wrap ' + e + '"><div class="idd_header ' + i + '" id="' + s + this._items[0][0] + '"></div></div>',
         l = '<div class="idd_items_wrap"><div class="idd_items_content">',
-        h = this;
+        r = this;
     each(this._items, function(e, i) {
         l += t(i)
     }), l += "</div></div>", this._els.popupItems = se(l), this._els.popupHeader = se(n);
-    var h = this;
+    var r = this;
     addEvent(this._els.popupItems, "click", function(t) {
         var e = t.target;
         if ("a" == e.tagName.toLowerCase()) return void setTimeout(function() {
-            h._hide()
+            r._hide()
         });
         for (; e && !hasClass(e, "idd_item");) e = e.parentNode;
-        e && h.select(e.getAttribute("data-id")) && h._hide(), cancelEvent(t)
+        e && r.select(e.getAttribute("data-id")) && r._hide(), cancelEvent(t)
     }), each(geByClass("idd_item", this._els.popupItems), function(t, e) {
         addEvent(e, "mouseenter", function(t) {
-            InlineDropdown._preventMouseHover || h._hoverItem(t.currentTarget)
+            InlineDropdown._preventMouseHover || r._hoverItem(t.currentTarget)
         }), addEvent(e, "mouseleave", function(t) {
-            InlineDropdown._preventMouseHover || h._unhoverItem(t.currentTarget, t)
+            InlineDropdown._preventMouseHover || r._unhoverItem(t.currentTarget, t)
         })
-    }), addEvent(this._els.popupItems, "wheel", this._onWheel.bind(this))
+    }), addEvent(this._els.popupItems, "mouseenter", function() {
+        addEvent(this._els.popupItems, browserFeatures.wheelEvent, this._onWheel.bind(this))
+    }.bind(this)), addEvent(this._els.popupItems, "mouseleave", function() {
+        removeEvent(this._els.popupItems, browserFeatures.wheelEvent, this._onWheel.bind(this))
+    }.bind(this))
 }, InlineDropdown.prototype._onClick = function(t) {
     function e() {
         var t = getXY(s._iddEl)[1],
@@ -1797,13 +1811,13 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
     var n = geByClass1("idd_header", this._els.popupHeader);
     this._opts.keepTitle ? n.innerHTML = this._title : n.innerHTML = this._selected ? this._selected[1] : "", o.id = "idd_" + this._iddEl.id, this._iddEl.appendChild(o);
     var l = getSize(o),
-        h = 0;
-    getSize(this._els.popupItems.childNodes[0])[1] > l[1] && (h = sbWidth()), this._opts.checkable && (h += 30);
-    var r = (i(geByClass1("idd_selected_value", this._iddEl)), getSize(this._els.valueEl)),
+        r = 0;
+    getSize(this._els.popupItems.childNodes[0])[1] > l[1] && (r = sbWidth()), this._opts.checkable && (r += 30);
+    var h = (i(geByClass1("idd_selected_value", this._iddEl)), getSize(this._els.valueEl)),
         a = (this._opts.withIcon ? 20 : 0, 0);
     this.openToUp && (a = -getSize(this._els.popupItems)[1]), setStyle(o, {
         marginLeft: (this._opts.headerLeft || InlineDropdown.IDD_HEADER_CORRECTION_LEFT) - (this._opts.withIcon ? 20 : 0),
-        marginTop: (this._opts.headerTop || InlineDropdown.IDD_HEADER_CORRECTION_TOP) - r[1] + a,
+        marginTop: (this._opts.headerTop || InlineDropdown.IDD_HEADER_CORRECTION_TOP) - h[1] + a,
         width: l[0] + 8,
         opacity: 1
     }), this._unhoverItem(), this._highlightItem(), this._initOutEvent(), this._initKeypressEvent(), this._opts.onShow && this._opts.onShow(this.ddEl), cancelEvent(t)
@@ -1857,11 +1871,11 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
             each(o.items, function(t, i) {
                 n += e(i)
             }), n += "</div></div></div>", this._els.currCascade = se(n), this._iddEl.appendChild(this._els.currCascade);
-            for (var h = getSize(this._els.popupEl), r = (getXY(this._els.popupEl), getSize(t)), a = getSize(this._els.currCascade), d = 0, c = t; null != (c = c.previousSibling);) d++;
-            var u = h[0] + (this._opts.headerLeft || InlineDropdown.IDD_HEADER_CORRECTION_LEFT) - 1;
+            for (var r = getSize(this._els.popupEl), h = (getXY(this._els.popupEl), getSize(t)), a = getSize(this._els.currCascade), d = 0, c = t; null != (c = c.previousSibling);) d++;
+            var u = r[0] + (this._opts.headerLeft || InlineDropdown.IDD_HEADER_CORRECTION_LEFT) - 1;
             setStyle(this._els.currCascade, {
                 marginLeft: u - 3,
-                marginTop: r[1] * d + 6 - (this.openToUp ? h[1] : 0),
+                marginTop: h[1] * d + 6 - (this.openToUp ? r[1] : 0),
                 "z-index": 200,
                 width: a[0] + 30
             }), setTimeout(function() {

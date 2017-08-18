@@ -72,6 +72,10 @@ var Help = {
         extend(cur, e), cur.doneQuestions = {}, cur.qLen = cur.doneLen = cur.doneRight = 0;
         var t;
         for (t in cur.questions) cur.qLen++;
+        for (t = 0; t < cur.questions.length; t++) radioBtns["s_test_answer_" + t] = {
+            val: 0,
+            els: geByClass("radiobtn", ge("help_question" + t), "div")
+        };
         var o = ge("help_test_finish_btn");
         setStyle("help_test_finish_btn_lock", {
             height: o.clientHeight + 2,

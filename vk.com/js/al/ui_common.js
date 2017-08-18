@@ -1063,6 +1063,7 @@ window.Scrollbar = window.Scrollbar || function() {
     }
 
     function o(o, n) {
+        var r = this.wheel.bind(this);
         this.obj = o = ge(o), this.options = extend({
             nomargin: !1,
             horizontal: !1,
@@ -1071,7 +1072,15 @@ window.Scrollbar = window.Scrollbar || function() {
             padding: 3,
             prefix: "",
             hidden: 0
-        }, n || {}), this.isHorizontal = this.options.horizontal, this.scrollProp = this.isHorizontal ? "scrollLeft" : "scrollTop", this.scrollDimensionProp = this.isHorizontal ? "scrollWidth" : "scrollHeight", this.topShadow = !1, this.bottomShadow = !1, this[this.scrollProp + "Last"] = this.obj[this.scrollProp], this.destroyList = [], this.mouseDown = i.bind(this), this.mouseMove = t.bind(this), this.mouseUp = e.bind(this), setTimeout(function() {
+        }, n || {}), this.isHorizontal = this.options.horizontal, this.scrollProp = this.isHorizontal ? "scrollLeft" : "scrollTop", this.scrollDimensionProp = this.isHorizontal ? "scrollWidth" : "scrollHeight", this.topShadow = !1, this.bottomShadow = !1, this[this.scrollProp + "Last"] = this.obj[this.scrollProp], this.destroyList = [], this.mouseDown = i.bind(this), this.mouseMove = t.bind(this), this.mouseUp = e.bind(this), this.initObjMouseWheel = function() {
+            addEvent(o, browserFeatures.wheelEvent, r)
+        }, this.destroyObjMouseWheel = function() {
+            removeEvent(o, browserFeatures.wheelEvent, r)
+        }, this.initScrollBarMouseWheel = function() {
+            addEvent(this.scrollbar, browserFeatures.wheelEvent, r)
+        }.bind(this), this.destroyScrollBarMouseWheel = function() {
+            removeEvent(this.scrollbar, browserFeatures.wheelEvent, r)
+        }.bind(this), setTimeout(function() {
             setStyle(o, {
                 overflow: "hidden"
             }), this.scrollbar = ce("div", {
@@ -1090,12 +1099,13 @@ window.Scrollbar = window.Scrollbar || function() {
                 width: t[0]
             }), o.nextSibling)), o.parentNode.insertBefore(this.scrollbar, o);
             var e = s.bind(this),
-                i = this.wheel.bind(this),
-                n = "onwheel" in ce("div") ? "wheel" : void 0 !== document.onmousewheel ? "mousewheel" : browser.mozilla ? "MozMousePixelScroll" : "DOMMouseScroll";
-            if (addEvent(o, n, i), addEvent(this.scrollbar, n, i), this.options.scrollElements && each(this.options.scrollElements, function(t, e) {
-                    addEvent(e, n, i)
+                i = function() {
+                    this.initObjMouseWheel(), removeEvent(o, "mousemove", i)
+                }.bind(this);
+            if (addEvent(o, "mouseleave", this.destroyObjMouseWheel), addEvent(o, "mouseenter", this.initObjMouseWheel), addEvent(o, "mousemove", i), addEvent(this.scrollbar, "mouseenter", this.initScrollBarMouseWheel), addEvent(this.scrollbar, "mouseleave", this.destroyScrollBarMouseWheel), this.options.scrollElements && each(this.options.scrollElements, function(t, e) {
+                    addEvent(e, browserFeatures.wheelEvent, r)
                 }), addEvent(this.scrollbar, "mouseover", this.contOver.bind(this)), addEvent(this.scrollbar, "mouseout", this.contOut.bind(this)), addEvent(this.scrollbar, "mousedown", this.contDown.bind(this)), browser.safari_mobile) {
-                var r = function(t) {
+                var n = function(t) {
                         this.isHorizontal ? cur.touchX = t.touches[0].pageX : cur.touchY = t.touches[0].pageY
                     }.bind(this),
                     l = function(t) {
@@ -1106,14 +1116,14 @@ window.Scrollbar = window.Scrollbar || function() {
                             cur.touchDiff = .9 * cur.touchDiff, cur.touchDiff < 1 && cur.touchDiff > -1 ? clearInterval(cur.animateInt) : (o[self.scrollProp] += cur.touchDiff, this.update(!0))
                         }.bind(this), 0)
                     }.bind(this);
-                addEvent(o, "touchstart", r), addEvent(o, "touchmove", l), addEvent(o, "touchend", a), this.destroyList.push(function() {
-                    removeEvent(o, "touchstart", r), removeEvent(o, "touchmove", l), removeEvent(o, "touchend", a)
+                addEvent(o, "touchstart", n), addEvent(o, "touchmove", l), addEvent(o, "touchend", a), this.destroyList.push(function() {
+                    removeEvent(o, "touchstart", n), removeEvent(o, "touchmove", l), removeEvent(o, "touchend", a)
                 })
             }
             addEvent(this.inner, "mousedown", this.mouseDown), this.options.nokeys ? this.onkeydown = e : addEvent(window, "keydown", e), this.destroyList.push(function() {
-                removeEvent(o, n, i), this.options.scrollElements && each(this.options.scrollElements, function(t, e) {
-                    removeEvent(e, n, i)
-                }), removeEvent(this.inner, "mousedown", this.mouseDown), removeEvent(window, "keydown", e), re(this.scrollbar)
+                removeEvent(o, browserFeatures.wheelEvent, r), this.options.scrollElements && each(this.options.scrollElements, function(t, e) {
+                    removeEvent(e, browserFeatures.wheelEvent, r)
+                }), removeEvent(this.inner, "mousedown", this.mouseDown), removeEvent(window, "keydown", e), removeEvent(o, "mousemove", i), re(this.scrollbar)
             }.bind(this)), this.isHorizontal || (this.contHeight() <= this.scrollHeight ? hide(this.bottomShadowDiv) : this.bottomShadow = !0), this.options.onInit && this.options.onInit(), this.inited = !0, this.update(!0), this.options.global || cur.destroy.push(this.destroy.bind(this))
         }.bind(this), 0)
     }

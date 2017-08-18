@@ -660,7 +660,7 @@
     margin-top: -18px
 }
 
-h4.profile_online {
+div.profile_online {
     color: #000;
     border-bottom: none;
     font-size: 1em;
