@@ -735,7 +735,7 @@ AdsEdit.initUploadPhotoBox = function(uploadBox, uploadUrl, uploadVars, uploadOp
         onUploadStart: AdsEdit.onUploadPhotoStart.pbind(uploadBox),
         onUploadError: AdsEdit.onUploadPhotoError.pbind(uploadBox),
         onUploadComplete: AdsEdit.onUploadPhotoComplete.pbind(uploadBox),
-        onUploadProgress: function(i, bytesLoaded, bytesTotal) {
+        onUploadProgress: function(uploadIndex, bytesLoaded, bytesTotal) {
             AdsEdit.drawUploadGradientProgress(uploadBox, bytesLoaded, bytesTotal);
         }
     });
@@ -763,11 +763,11 @@ AdsEdit.initUploadPhotoBox = function(uploadBox, uploadUrl, uploadVars, uploadOp
     uploadBox.setOptions(boxOptions);
 }
 
-AdsEdit.onUploadPhotoStart = function(uploadBox, i, result) {
+AdsEdit.onUploadPhotoStart = function(uploadBox, uploadIndex, result) {
 
-    cur.photoUploadIndex = i;
+    cur.photoUploadIndex = uploadIndex;
 
-    if (Upload.types[i] === 'form') {
+    if (Upload.types[uploadIndex] === 'form') {
         uploadBox.showProgress();
     } else {
         AdsEdit.drawUploadGradientProgress(uploadBox, 0, 100);
@@ -775,7 +775,7 @@ AdsEdit.onUploadPhotoStart = function(uploadBox, i, result) {
     hide('ads_edit_upload_photo_error');
 }
 
-AdsEdit.onUploadPhotoError = function(uploadBox, i, msg) {
+AdsEdit.onUploadPhotoError = function(uploadBox, uploadIndex, msg) {
 
     var errorElem = ge('ads_edit_upload_photo_error');
     if (errorElem) {
@@ -790,26 +790,24 @@ AdsEdit.onUploadPhotoError = function(uploadBox, i, msg) {
     uploadBox.hideProgress();
     AdsEdit.hideUploadGradientProgress(uploadBox);
 
-    Upload.embed(i);
+    Upload.embed(uploadIndex);
 }
 
-AdsEdit.onUploadPhotoComplete = function(uploadBox, i, result) {
+AdsEdit.onUploadPhotoComplete = function(uploadBox, uploadIndex, result) {
 
-    if (Upload.types[i] !== 'form') {
+    if (Upload.types[uploadIndex] !== 'form') {
         AdsEdit.drawUploadGradientProgress(uploadBox, 100, 100);
     }
 
-    var photoData;
+    var resultParsed;
     try {
-        photoData = eval('(' + result + ')');
-    } catch (e) {
-        photoData = q2ajx(result);
-    }
+        resultParsed = parseJSON(result);
+    } catch (e) {}
 
-    if (!photoData || !photoData.photo || photoData.code) {
+    if (!resultParsed || !resultParsed.photo || resultParsed.code) {
         var message;
         message = getLang('ads_photo_notloaded');
-        switch (intval(photoData.code)) {
+        switch (intval(resultParsed && resultParsed.code)) {
             case 1:
                 message += '<br>' + getLang('ads_photo_upload_error_1');
                 break;
@@ -826,28 +824,29 @@ AdsEdit.onUploadPhotoComplete = function(uploadBox, i, result) {
                 message += '<br>' + getLang('ads_photo_upload_error_3');
                 break;
             default:
-                if (photoData.code !== undefined) {
-                    message += '<br>' + getLang('ads_err_code').replace('{code}', photoData.code);
+                if (resultParsed && resultParsed.code !== undefined) {
+                    message += '<br>' + getLang('ads_err_code').replace('{code}', resultParsed.code);
                 }
                 break;
         }
-        Upload.onUploadError(i, message);
+        Upload.onUploadError(uploadIndex, message);
         return;
     }
 
     delete cur.photoUploadIndex;
     uploadBox.hide();
-    AdsEdit.showCropPhotoBox(photoData);
+    AdsEdit.showCropPhotoBox(resultParsed.photo);
 }
 
-AdsEdit.showCropPhotoBox = function(photoData) {
+AdsEdit.showCropPhotoBox = function(uploadPhoto) {
 
     var successCrop = {
         success: false
     };
 
     var ajaxParams = {};
-    ajaxParams.photo = photoData.photo;
+    ajaxParams.photo = uploadPhoto;
+    ajaxParams.format_photo_size = cur.viewEditor.getFormatPhotoSize();
 
     var viewParams = cur.viewEditor.getParams();
     ajaxParams.photo_icon = viewParams.photo_icon;
@@ -868,48 +867,13 @@ AdsEdit.showCropPhotoBox = function(photoData) {
     };
     showOptions.stat = ['tagger.css', 'ads_tagger.js'];
 
-    var boxPadding = 25 * 2;
-
-    var photoWidth = intval(photoData.photo.match(/width:(\d+)/)[1]);
-    // 725 = 145*5 (*5 -- max photo size after upload)
-    if (photoWidth && photoWidth <= 725 && viewParams.format_type != AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE) {
-        var adWidth = 118;
-        switch (viewParams.format_type) {
-            case AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE:
-            case AdsEdit.ADS_AD_FORMAT_TYPE_BIG_IMAGE:
-            case AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY:
-                {
-                    adWidth = 145;
-                    break;
-                }
-            case AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS:
-                adWidth = 175;
-                break;
-            case AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY:
-                adWidth = 128;
-                break;
-            case AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY:
-                adWidth = 128;
-                break;
-            case AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP:
-                adWidth = 560;
-                break;
-        }
-        showOptions.params.width = Math.max(photoWidth + boxPadding + 15 + adWidth, 490);
-        // 1150 - to fit retina for ADS_AD_FORMAT_PHOTO_SIZE_APP_BIG (560*2)
-    } else if (photoWidth && photoWidth <= 1150) {
-        showOptions.params.width = photoWidth + boxPadding;
-    } else {
-        showOptions.params.width = 1150 + boxPadding;
-    }
-
     showBox('/adsedit?act=crop_photo_box', ajaxParams, showOptions);
 }
 
-AdsEdit.initCropPhotoBox = function(cropBox, resultPhotoWidth, resultPhotoHeight, resultPhotoWidthSmall, resultPhotoHeightSmall, cropOptions, newSizeWidth, newSizeHeight) {
+AdsEdit.initCropPhotoBox = function(cropBox, formatPhotoSize, uploadUrl, uploadParams, cropPhotoBoxWidth, resultPhotoWidth, resultPhotoHeight, previewPhotoWidth, previewPhotoHeight, cropOptions, newSizeWidth, newSizeHeight) {
     cropBox.removeButtons();
     cropBox.addButton(getLang('box_cancel'), false, 'no');
-    cropBox.addButton(getLang('box_save'), AdsEdit.saveCropPhoto.pbind(cropBox), 'yes');
+    cropBox.addButton(getLang('box_save'), AdsEdit.saveCropPhoto.pbind(cropBox, formatPhotoSize, uploadUrl, uploadParams), 'yes');
 
     var destroyHintTt = Ads.initRedesignHintTooltip();
     cur.destroy.push(destroyHintTt);
@@ -927,12 +891,12 @@ AdsEdit.initCropPhotoBox = function(cropBox, resultPhotoWidth, resultPhotoHeight
             safeZones.top = Math.floor((resultPhotoHeight - boxh) / 2);
             safeZones.bottom = Math.ceil((resultPhotoHeight - boxh) / 2);
         }
-        resultPhotoWidthSmall = newSizeWidth;
-        resultPhotoHeightSmall = newSizeHeight;
+        previewPhotoWidth = newSizeWidth;
+        previewPhotoHeight = newSizeHeight;
     }
     var icons = [{
-        width: resultPhotoWidthSmall,
-        height: resultPhotoHeightSmall,
+        width: previewPhotoWidth,
+        height: previewPhotoHeight,
         box: 'ads_edit_crop_photo_small'
     }];
 
@@ -964,50 +928,64 @@ AdsEdit.initCropPhotoBox = function(cropBox, resultPhotoWidth, resultPhotoHeight
     }
 
     var boxOptions = {};
+    boxOptions.width = cropPhotoBoxWidth;
     boxOptions.onClean = function() {
         destroyHintTt();
         cur.photoTaggerDestroy();
-        Ads.unlock('saveCropPhoto');
-        delete cur.cropBox;
     };
     cropBox.setOptions(boxOptions);
 }
 
-AdsEdit.saveCropPhoto = function(cropBox) {
-    if (!Ads.lock('saveCropPhoto')) return;
-    cropBox.showProgress();
-    ge('ads_edit_crop_photo_crop').value = cur.photoTagger.result().join(',');
+AdsEdit.saveCropPhoto = function(cropBox, formatPhotoSize, uploadUrl, uploadParams) {
+    if (!Ads.lock('saveCropPhoto', onLock, onUnlock)) {
+        return;
+    }
 
-    cur.cropBox = cropBox;
-    addEvent('ads_edit_crop_photo_frame', 'load', function() {
-        Ads.unlock('saveCropPhoto');
+    var ajaxParams = {};
+    ajaxParams = extend({}, ajaxParams, uploadParams);
+
+    var cropInfo = cur.photoTagger.result();
+    ajaxParams.crop = cropInfo.join(','); // For backward compatibility // TODO: Remove it!
+    ajaxParams.crop_x = cropInfo[0];
+    ajaxParams.crop_y = cropInfo[1];
+    ajaxParams.crop_width = cropInfo[2];
+    ajaxParams.crop_height = cropInfo[3];
+
+    uploadUrl += '?' + ajx2q(ajaxParams);
+
+    var onComplete = AdsEdit.onSaveCropPhotoComplete.pbind(cropBox, formatPhotoSize);
+
+    ajax.plainpost(uploadUrl, {}, onComplete, onComplete, true);
+
+    function onLock() {
+        cropBox.showProgress();
+    }
+
+    function onUnlock() {
         cropBox.hideProgress();
-    });
-
-    ge('ad_edit_crop_photo_form').submit();
+    }
 }
 
-AdsEdit.onSaveCropPhotoComplete = function(result) {
+AdsEdit.onSaveCropPhotoComplete = function(cropBox, formatPhotoSize, result, r) {
+    Ads.unlock('saveCropPhoto');
 
-    var photoData = '';
+    var resultParsed;
     try {
-        photoData = eval('(' + result + ')');
+        resultParsed = parseJSON(result);
     } catch (e) {}
 
-    if (!photoData || !photoData.photo) {
+    if (!resultParsed || !resultParsed.photo) {
         var message = getLang('ads_photo_notloaded');
-        message += ((photoData.errcode !== undefined) ? ('<br>' + getLang('ads_err_code').replace('{code}', photoData.errcode)) : '');
+        message += ((resultParsed && resultParsed.errcode !== undefined) ? ('<br>' + getLang('ads_err_code').replace('{code}', resultParsed.errcode)) : '');
         var errorElem = ge('ads_edit_crop_photo_error');
         errorElem.innerHTML = message;
         show(errorElem);
         return;
     }
 
-    var formatPhotoSize = ge('ads_edit_crop_format_photo_size').value;
+    cur.viewEditor.setPhotoData(formatPhotoSize, resultParsed.photo);
 
-    cur.viewEditor.setPhotoData(formatPhotoSize, photoData.photo);
-
-    cur.cropBox.hide();
+    cropBox.hide();
 }
 
 AdsEdit.showUploadVideoBox = function(buttonElem, hash) {
@@ -1037,7 +1015,7 @@ AdsEdit.initUploadVideoBox = function(uploadVideoBox, uploadUrl, uploadVars, upl
         onUploadStart: AdsEdit.onUploadVideoStart.pbind(uploadVideoBox),
         onUploadError: AdsEdit.onUploadVideoError.pbind(uploadVideoBox, uploadVars, uploadOptions),
         onUploadComplete: AdsEdit.onUploadVideoComplete.pbind(uploadVideoBox, uploadVars, uploadOptions, updateAfterUploadHash),
-        onUploadProgress: function(i, bytesLoaded, bytesTotal) {
+        onUploadProgress: function(uploadIndex, bytesLoaded, bytesTotal) {
             AdsEdit.drawUploadGradientProgress(uploadVideoBox, bytesLoaded, bytesTotal);
         }
     });
@@ -1104,11 +1082,11 @@ AdsEdit.switchUploadVideoBox = function(isExternal) {
     }
 }
 
-AdsEdit.onUploadVideoStart = function(uploadVideoBox, i, result) {
+AdsEdit.onUploadVideoStart = function(uploadVideoBox, uploadIndex, result) {
 
-    cur.videoUploadIndex = i;
+    cur.videoUploadIndex = uploadIndex;
 
-    if (Upload.types[i] === 'form') {
+    if (Upload.types[uploadIndex] === 'form') {
         uploadVideoBox.showProgress();
     } else {
         AdsEdit.drawUploadGradientProgress(uploadVideoBox, 0, 100);
@@ -1117,21 +1095,7 @@ AdsEdit.onUploadVideoStart = function(uploadVideoBox, i, result) {
     show('ads_edit_upload_video_info');
 }
 
-AdsEdit.logVideoUploadStatus = function(stage, idx, extra, vars, uploadOpts) {
-    try {
-        ajax.post('al_video.php', {
-            act: 'upload_stats',
-            stage: stage,
-            oid: vars.oid,
-            mid: vars.mid,
-            tag: vars.tag,
-            srv: uploadOpts.server,
-            extra: (extra || null)
-        });
-    } catch (ignore) {}
-}
-
-AdsEdit.onUploadVideoError = function(uploadVideoBox, uploadVars, uploadOptions, i, msg) {
+AdsEdit.onUploadVideoError = function(uploadVideoBox, uploadVars, uploadOptions, uploadIndex, msg) {
 
     var errorElem = ge('ads_edit_upload_video_error');
     if (errorElem) {
@@ -1147,33 +1111,32 @@ AdsEdit.onUploadVideoError = function(uploadVideoBox, uploadVars, uploadOptions,
     uploadVideoBox.hideProgress();
     AdsEdit.hideUploadGradientProgress(uploadVideoBox);
 
-    Upload.embed(i);
-    AdsEdit.logVideoUploadStatus('fail', i, msg, uploadVars, uploadOptions);
+    Upload.embed(uploadIndex);
 }
 
-AdsEdit.onUploadVideoComplete = function(uploadVideoBox, uploadVars, uploadOptions, updateAfterUploadHash, i, result) {
+AdsEdit.onUploadVideoComplete = function(uploadVideoBox, uploadVars, uploadOptions, updateAfterUploadHash, uploadIndex, result) {
 
-    if (Upload.types[i] !== 'form') {
+    if (Upload.types[uploadIndex] !== 'form') {
         AdsEdit.drawUploadGradientProgress(uploadVideoBox, 100, 100);
     }
 
     // To prevent click upload during ajax request
-    if (Upload.types[i] === 'form' || Upload.types[i] === 'fileApi') {
+    if (Upload.types[uploadIndex] === 'form' || Upload.types[uploadIndex] === 'fileApi') {
         var uploaderElem = geByClass1('ads_edit_upload_uploader', uploadVideoBox.bodyNode)
         var fileElem = geByClass1('file', uploaderElem);
         fileElem.disabled = true;
     }
 
-    var videoData;
+    var resultParsed;
     try {
-        videoData = eval('(' + result + ')');
+        resultParsed = parseJSON(result);
     } catch (e) {
-        videoData = q2ajx(result);
+        resultParsed = q2ajx(result);
     }
 
-    if (!videoData || videoData.code || videoData.error) {
-        var message = videoData && (videoData.code ? videoData.code : videoData.error);
-        Upload.onUploadError(i, message);
+    if (!resultParsed || resultParsed.code || resultParsed.error) {
+        var message = resultParsed && (resultParsed.code ? resultParsed.code : resultParsed.error);
+        Upload.onUploadError(uploadIndex, message);
         return;
     }
 
@@ -4480,6 +4443,7 @@ AdsViewEditor.prototype.updatePhotoLink = function(formatPhotoSize) {
     var vkLinkType = ((this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_URL && this.params.link_url_vk.link_type_value) ? this.params.link_url_vk.link_type_value : this.params.link_type.value);
 
     var ajaxParams = {};
+    ajaxParams.format_photo_size = formatPhotoSize;
     ajaxParams.photo = this.params.photo[valueBySize];
     ajaxParams.format_type = this.params.format_type.value;
     ajaxParams.link_type = vkLinkType;

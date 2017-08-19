@@ -53,21 +53,28 @@ if (!window.Upload) {
 
             return iUpload;
         },
+
         deinit: function(iUpload) {
             if (!Upload.obj[iUpload]) return;
 
-            var options = Upload.options[iUpload] || {},
-                dragEl = options.dragEvObj;
+            var options = Upload.options[iUpload] || {};
+            var dragEl = options.dragEvObj;
+            var obj = Upload.obj[iUpload];
+
             if (dragEl) {
                 removeEvent(dragEl, 'dragenter');
                 removeEvent(dragEl, 'dragover');
                 removeEvent(dragEl, 'dragleave');
             }
+
+            obj.innerHTML = '';
+
             each(['obj', 'dropbox', 'options', 'vars', 'types', 'uploadUrls', 'callbacks'], function(i, v) {
                 if (Upload[v]) {
                     delete Upload[v][iUpload];
                 }
             });
+
             if (Upload.callbacks) {
                 var clbks = ['oncheck', 'ondone', 'onfail'];
                 each(Upload.flashCallbacks(), function(i, v) {
@@ -77,6 +84,7 @@ if (!window.Upload) {
                     delete Upload.callbacks[v + iUpload];
                 });
             }
+
             clearTimeout(Upload.checks['timer' + iUpload]);
             clearTimeout(Upload.dragTimer[iUpload]);
             delete Upload.dragTimer[iUpload];
@@ -148,12 +156,12 @@ if (!window.Upload) {
             }
         },
 
-        onCheckComplete: function(i, res) {
-            clearTimeout(Upload.checks['timer' + i]);
-            delete Upload.checks['timer' + i];
+        onCheckComplete: function(iUpload, res) {
+            clearTimeout(Upload.checks['timer' + iUpload]);
+            delete Upload.checks['timer' + iUpload];
 
             var obj = {},
-                options = Upload.options[i],
+                options = Upload.options[iUpload],
                 data = res;
             if (options.signed) {
                 obj = parseJSON(res || '{}');
@@ -172,29 +180,29 @@ if (!window.Upload) {
             if (!obj.error && !obj.fail) {
                 options.noCheck = 1;
                 if (options.onCheckComplete) {
-                    options.onCheckComplete(i);
+                    options.onCheckComplete(iUpload);
                 } else if (options.flash_lite && browser.flash) {
-                    Upload.initFlash(i, Upload.obj[i]);
+                    Upload.initFlash(iUpload, Upload.obj[iUpload]);
                 } else {
-                    Upload.embed(i);
+                    Upload.embed(iUpload);
                 }
-                Upload.serverSuccess(i, data);
+                Upload.serverSuccess(iUpload, data);
             } else {
-                Upload.serverFail(i, data);
+                Upload.serverFail(iUpload, data);
             }
         },
 
-        serverFail: function(i, err_obj) {
-            var obj = Upload.obj[i],
-                options = Upload.options[i],
-                vars = Upload.vars[i];
+        serverFail: function(iUpload, err_obj) {
+            var obj = Upload.obj[iUpload],
+                options = Upload.options[iUpload],
+                vars = Upload.vars[iUpload];
             if (!obj) return;
             if (!options.signed && !options.server) return;
 
             if (!Upload.fails) Upload.fails = {};
-            Upload.fails[i] = Upload.fails[i] ? Upload.fails[i] + 1 : 1;
+            Upload.fails[iUpload] = Upload.fails[iUpload] ? Upload.fails[iUpload] + 1 : 1;
             if (options.signed) {
-                var parts = Upload.uploadUrls[i].split('?'),
+                var parts = Upload.uploadUrls[iUpload].split('?'),
                     tmp = q2ajx(parts[1]),
                     q = extend({
                         act: 'check_result',
@@ -206,14 +214,14 @@ if (!window.Upload) {
                     });
                 ajax.post('upload_fails.php', q, {
                     onDone: function(url, check_url, base_url, static_url) {
-                        if (Upload.fails[i] < options.max_attempts) {
-                            Upload.uploadUrls[i] = url;
-                            extend(Upload.options[i], {
+                        if (Upload.fails[iUpload] < options.max_attempts) {
+                            Upload.uploadUrls[iUpload] = url;
+                            extend(Upload.options[iUpload], {
                                 check_url: check_url,
                                 base_url: base_url,
                                 static_url: static_url
                             });
-                            Upload.check(i);
+                            Upload.check(iUpload);
                         } else {
                             obj.innerHTML = '';
                             if (options.lang && options.lang.cannot_upload_title && options.lang.cannot_upload_text) {
@@ -253,11 +261,11 @@ if (!window.Upload) {
             if (window.ajax) {
                 ajax.post('upload_fails.php', query, {
                     onDone: function(url, new_vars, opts) {
-                        if (Upload.fails[i] < options.max_attempts) {
-                            Upload.uploadUrls[i] = url;
-                            extend(Upload.options[i], opts);
-                            extend(Upload.vars[i], new_vars);
-                            Upload.check(i);
+                        if (Upload.fails[iUpload] < options.max_attempts) {
+                            Upload.uploadUrls[iUpload] = url;
+                            extend(Upload.options[iUpload], opts);
+                            extend(Upload.vars[iUpload], new_vars);
+                            Upload.check(iUpload);
                         } else {
                             obj.innerHTML = '';
                             if (options.lang && options.lang.cannot_upload_title && options.lang.cannot_upload_text) {
@@ -282,11 +290,11 @@ if (!window.Upload) {
                     var opts = response.options,
                         new_vars = response.vars,
                         url = response.upload_url;
-                    if (Upload.fails[i] < options.max_attempts) {
-                        Upload.uploadUrls[i] = url;
-                        extend(Upload.options[i], opts);
-                        extend(Upload.vars[i], new_vars);
-                        Upload.check(i);
+                    if (Upload.fails[iUpload] < options.max_attempts) {
+                        Upload.uploadUrls[iUpload] = url;
+                        extend(Upload.options[iUpload], opts);
+                        extend(Upload.vars[iUpload], new_vars);
+                        Upload.check(iUpload);
                     } else {
                         obj.innerHTML = '';
                         if (options.lang && options.lang.cannot_upload_title && options.lang.cannot_upload_text) {
@@ -303,11 +311,11 @@ if (!window.Upload) {
             }
         },
 
-        serverSuccess: function(i, err_obj) {
-            var options = Upload.options[i],
-                vars = Upload.vars[i];
+        serverSuccess: function(iUpload, err_obj) {
+            var options = Upload.options[iUpload],
+                vars = Upload.vars[iUpload];
             Upload.checked = Upload.checked || {};
-            Upload.checked[i] = 1;
+            Upload.checked[iUpload] = 1;
             if (options.signed) {
                 ajax.post('upload_fails.php', {
                     act: 'check_result',
@@ -334,10 +342,11 @@ if (!window.Upload) {
         },
 
         embed: function(iUpload) {
-            var i = iUpload.num != undefined ? iUpload.num : iUpload,
-                obj = this.obj[i],
-                dropbox = this.dropbox[i],
-                options = this.options[i];
+            var i = iUpload.num != undefined ? iUpload.num : iUpload;
+            var obj = this.obj[i];
+            var dropbox = this.dropbox[i];
+            var options = this.options[i];
+
             if (options.noEmbed) {
                 re('check_upload_' + iUpload);
                 return;
@@ -519,6 +528,7 @@ if (!window.Upload) {
                 addClass(ge('lite_upload' + iUpload).nextSibling, 'hover');
             }
         },
+
         buttonOut: function(iUpload) {
             var options = Upload.options[iUpload];
             if (options.flash_lite) {
@@ -535,6 +545,7 @@ if (!window.Upload) {
                 removeClass(ge('lite_upload' + iUpload).nextSibling, 'active');
             }
         },
+
         buttonDown: function(iUpload) {
             if (Upload.options[iUpload].flash_lite) {
                 if (isVisible('photos_flash_add_button')) {
@@ -544,6 +555,7 @@ if (!window.Upload) {
                 addClass(ge('lite_upload' + iUpload).nextSibling, 'active');
             }
         },
+
         buttonUp: function(iUpload) {
             if (Upload.options[iUpload].flash_lite) {
                 if (isVisible('photos_flash_add_button')) {
@@ -614,28 +626,28 @@ if (!window.Upload) {
             }
         },
 
-        switchMode: function(i) {
-            Upload.options[i].noFlash = Upload.options[i].noCheck = 1;
-            Upload.embed(i);
+        switchMode: function(iUpload) {
+            Upload.options[iUpload].noFlash = Upload.options[iUpload].noCheck = 1;
+            Upload.embed(iUpload);
         },
 
-        onUploadFileSelected: function(i) {
-            if (Upload.options[i].onUploadFileSelected) {
-                Upload.options[i].onUploadFileSelected();
+        onUploadFileSelected: function(iUpload) {
+            if (Upload.options[iUpload].onUploadFileSelected) {
+                Upload.options[iUpload].onUploadFileSelected();
             }
         },
 
         onUploadStart: function(info, result) {
             cur.fileApiUploadStarted = true;
-            var i = info.ind !== undefined ? info.ind : info;
-            if (Upload.types[i] == 'form') {
-                var form = ge('file_uploader_form' + i);
+            var iUpload = info.ind !== undefined ? info.ind : info;
+            if (Upload.types[iUpload] == 'form') {
+                var form = ge('file_uploader_form' + iUpload);
                 form.submit();
-                var file = geByClass1('file', Upload.obj[i]);
+                var file = geByClass1('file', Upload.obj[iUpload]);
                 file.disabled = true;
             }
 
-            var options = Upload.options[i];
+            var options = Upload.options[iUpload];
             if (options.onUploadStart) {
                 options.onUploadStart(info, result);
             };
@@ -647,16 +659,17 @@ if (!window.Upload) {
             }
             return '';
         },
+
         onUploadComplete: function(info, result, extra_info) {
-            var i = info.ind !== undefined ? info.ind : info,
-                options = Upload.options[i],
+            var iUpload = info.ind !== undefined ? info.ind : info;
+            var options = Upload.options[iUpload],
                 obj;
-            if (extra_info !== undefined && i === info) {
+            if (extra_info !== undefined && iUpload === info) {
                 info = extra_info;
             }
-            info.ind = i;
-            if (Upload.types[i] == 'form') {
-                var file = geByClass1('file', Upload.obj[i]);
+            info.ind = iUpload;
+            if (Upload.types[iUpload] == 'form') {
+                var file = geByClass1('file', Upload.obj[iUpload]);
                 file.disabled = false;
             }
             if (options.onUploadComplete) {
@@ -664,26 +677,26 @@ if (!window.Upload) {
                 if (options.signed) {
                     var obj = result ? parseJSON(result) : '';
                     if (!obj) {
-                        result = '{"error":"ERR_CLIENT_UPLOAD_FAIL: upload request bad result, url \\"' + Upload.uploadUrls[i] + '\\""}';
+                        result = '{"error":"ERR_CLIENT_UPLOAD_FAIL: upload request bad result, url \\"' + Upload.uploadUrls[iUpload] + '\\""}';
                     } else {
                         errorAdd = Upload.getErrorAdditional(obj);
                     }
                 }
                 options.onUploadComplete(info, result, errorAdd);
             }
-            if (Upload.types[i] == 'form') {
+            if (Upload.types[iUpload] == 'form') {
                 Upload.onUploadCompleteAll(info, result);
             }
         },
 
         onUploadCompleteAll: function(info, result, extra_info) {
-            var i = info.ind !== undefined ? info.ind : info,
-                options = Upload.options[i];
-            if (extra_info !== undefined && i === info) {
+            var iUpload = info.ind !== undefined ? info.ind : info;
+            var options = Upload.options[iUpload];
+            if (extra_info !== undefined && iUpload === info) {
                 info = extra_info;
             }
-            if (Upload.types[i] == 'fileApi') {
-                var cfile = geByClass1('file', Upload.obj[i], 'input');
+            if (Upload.types[iUpload] == 'fileApi') {
+                var cfile = geByClass1('file', Upload.obj[iUpload], 'input');
                 if (cfile) {
                     cfile.value = '';
                 }
@@ -695,15 +708,15 @@ if (!window.Upload) {
         },
 
         onUploadError: function(info, result) {
-            var i = info.ind !== undefined ? info.ind : info,
-                options = Upload.options[i];
-            if (Upload.types[i] == 'form') {
-                var file = geByClass1('file', Upload.obj[i]);
+            var iUpload = info.ind !== undefined ? info.ind : info;
+            var options = Upload.options[iUpload];
+            if (Upload.types[iUpload] == 'form') {
+                var file = geByClass1('file', Upload.obj[iUpload]);
                 file.disabled = false;
             }
             if (options.signed) {
                 if (options.onUploadComplete) {
-                    options.onUploadComplete(info, '{"error":"ERR_CLIENT_UPLOAD_FAIL: upload request fail, code \\"' + result.replace(/([\\\"])/g, '\\$1').replace(/\n/g, '\\n') + '\\", url \\"' + Upload.uploadUrls[i] + '\\""}');
+                    options.onUploadComplete(info, '{"error":"ERR_CLIENT_UPLOAD_FAIL: upload request fail, code \\"' + result.replace(/([\\\"])/g, '\\$1').replace(/\n/g, '\\n') + '\\", url \\"' + Upload.uploadUrls[iUpload] + '\\""}');
                 }
             } else if (options.onUploadError) {
                 options.onUploadError(info, result);
@@ -711,41 +724,41 @@ if (!window.Upload) {
         },
 
         onConnectionLost: function(info) {
-            var i = info.ind !== undefined ? info.ind : info,
-                options = Upload.options[i];
+            var iUpload = info.ind !== undefined ? info.ind : info;
+            var options = Upload.options[iUpload];
             if (options.onConnectionLost) {
                 options.onConnectionLost(info);
             }
         },
 
         onUploadProgress: function(info, bytesLoaded, bytesTotal) {
-            var i = info.ind !== undefined ? info.ind : info,
-                options = Upload.options[i];
+            var iUpload = info.ind !== undefined ? info.ind : info;
+            var options = Upload.options[iUpload];
             if (options.onUploadProgress) {
                 options.onUploadProgress(info, bytesLoaded, bytesTotal);
             };
         },
 
         onDebug: function(info, result) {
-            var i = info.ind !== undefined ? info.ind : info,
-                options = Upload.options[i];
+            var iUpload = info.ind !== undefined ? info.ind : info;
+            var options = Upload.options[iUpload];
             if (options.onDebug) {
                 options.onDebug(info, result);
             }
         },
 
         onSelectClick: function(info, result) {
-            var i = info.ind !== undefined ? info.ind : info,
-                options = Upload.options[i];
+            var iUpload = info.ind !== undefined ? info.ind : info;
+            var options = Upload.options[iUpload];
             if (options.onSelectClick) {
                 options.onSelectClick(info, result);
             }
         },
 
-        getFilesNames: function(i, files) {
+        getFilesNames: function(iUpload, files) {
             if (!files || !files.length) return;
 
-            var options = this.options[i];
+            var options = this.options[iUpload];
             if (!options.multiple) {
                 return files[0].name.replace(/[&<>"']/g, '');
             } else {
@@ -768,10 +781,10 @@ if (!window.Upload) {
             return valid;
         },
 
-        onFileApiSend: function(i, files, force) {
+        onFileApiSend: function(iUpload, files, force) {
             if (!files || !files.length) return;
 
-            var options = this.options[i];
+            var options = this.options[iUpload];
 
             if (options.file_types) {
                 var filteredFiles = [];
@@ -785,7 +798,7 @@ if (!window.Upload) {
             }
 
             if (options.filterCallback) {
-                files = options.filterCallback(i, files);
+                files = options.filterCallback(iUpload, files);
                 if (!files.length) return;
             }
 
@@ -813,14 +826,14 @@ if (!window.Upload) {
                                     dark: 1,
                                     bodyStyle: 'padding: 20px; line-height: 160%;',
                                     onHide: function() {
-                                        Upload.embed(i);
+                                        Upload.embed(iUpload);
                                         delete cur.notStarted;
                                     }
                                 },
                                 fileSizeErrorText,
                                 getLang('global_continue'),
                                 function() {
-                                    Upload.uploadFiles(i, files, max_files);
+                                    Upload.uploadFiles(iUpload, files, max_files);
                                     if (options.filesize_hide_last) {
                                         curBox().hide();
                                     } else {
@@ -834,14 +847,14 @@ if (!window.Upload) {
             }
 
             if (options.photoBox && !force) {
-                return Upload.onPhotoAdd(i, files);
+                return Upload.onPhotoAdd(iUpload, files);
             }
 
-            if (options.beforeUpload) options.beforeUpload(i);
+            if (options.beforeUpload) options.beforeUpload(iUpload);
 
             cur.notStarted = cur.fileApiUploadStarted = true;
             if (!options.multi_progress) this.onUploadStart({
-                ind: i,
+                ind: iUpload,
                 fileName: (files[0].fileName || files[0].name || '').replace(/[&<>"']/g, '')
             });
             var max_files = files.length;
@@ -866,11 +879,11 @@ if (!window.Upload) {
                         dark: 1,
                         bodyStyle: 'padding: 20px; line-height: 160%;',
                         onHide: function() {
-                            Upload.embed(i);
+                            Upload.embed(iUpload);
                             delete cur.notStarted;
                         }
                     }, warnText, getLang('global_continue'), function() {
-                        Upload.uploadFiles(i, files, max_files);
+                        Upload.uploadFiles(iUpload, files, max_files);
                         if (options.max_files_hide_last) {
                             curBox().hide();
                         } else {
@@ -881,33 +894,33 @@ if (!window.Upload) {
                     if (options.force_max_files) {
                         max_files = Math.min(max_files, options.max_files - (cur.savedPhotos || []).length);
                     }
-                    this.uploadFiles(i, files, max_files);
+                    this.uploadFiles(iUpload, files, max_files);
                 }
             } else {
-                this.uploadFiles(i, files, max_files);
+                this.uploadFiles(iUpload, files, max_files);
             }
         },
 
-        onPhotoAdd: function(i, files) {
+        onPhotoAdd: function(iUpload, files) {
             var needFire = 0,
                 count = 0;
             Upload.fileList = Upload.fileList || {};
-            if (!Upload.fileList[i]) {
-                Upload.fileList[i] = [];
-                if (Upload.options[i].onPhotoBox) {
+            if (!Upload.fileList[iUpload]) {
+                Upload.fileList[iUpload] = [];
+                if (Upload.options[iUpload].onPhotoBox) {
                     needFire = true;
                 }
             }
             each(files, function(n, file) {
                 count++;
-                var preview = Upload.options[i].photoBox;
+                var preview = Upload.options[iUpload].photoBox;
                 var imageType = new RegExp('image.*')
                 if (!file.type.match(imageType)) {
                     //return false;
                 }
                 cur.uploaderPhotoId = (cur.uploaderPhotoId || 0) + 1;
                 var photoId = cur.uploaderPhotoId;
-                Upload.fileList[i][photoId] = file;
+                Upload.fileList[iUpload][photoId] = file;
 
                 var img = ce('img');
                 var photo = ce('div', {
@@ -974,16 +987,16 @@ if (!window.Upload) {
                 });
             });
             if (needFire && count) {
-                Upload.options[i].onPhotoBox();
+                Upload.options[iUpload].onPhotoBox();
             }
-            if (Upload.options[i].onPhotoAdd && count) {
-                Upload.options[i].onPhotoAdd();
+            if (Upload.options[iUpload].onPhotoAdd && count) {
+                Upload.options[iUpload].onPhotoAdd();
             }
         },
 
-        uploadPhotos: function(uplId) {
+        uploadPhotos: function(iUpload) {
             var files = [],
-                flist = Upload.fileList[uplId];
+                flist = Upload.fileList[iUpload];
             for (var i in flist) {
                 if (flist[i]) {
                     files.push(extend(flist[i], {
@@ -991,10 +1004,10 @@ if (!window.Upload) {
                     }));
                 }
             }
-            if (Upload.options[uplId].onUploadStart) Upload.options[uplId].onUploadStart();
+            if (Upload.options[iUpload].onUploadStart) Upload.options[iUpload].onUploadStart();
             if (files.length) {
                 cur.uploadCount = Math.min(500, files.length);
-                Upload.uploadFiles(uplId, files, cur.uploadCount);
+                Upload.uploadFiles(iUpload, files, cur.uploadCount);
                 return true;
             } else {
                 return false;
@@ -1027,10 +1040,10 @@ if (!window.Upload) {
             }, 100);
         },
 
-        uploadFiles: function(i, files, max_files) {
+        uploadFiles: function(iUpload, files, max_files) {
             if (max_files <= 0) return;
-            var options = this.options[i],
-                vars = options.signed ? this.vars[i] : extend(this.vars[i], {
+            var options = this.options[iUpload],
+                vars = options.signed ? this.vars[iUpload] : extend(this.vars[iUpload], {
                     ajx: 1
                 }),
                 params = [],
@@ -1053,7 +1066,7 @@ if (!window.Upload) {
             for (var j in vars) {
                 params.push(j + "=" + vars[j]);
             }
-            var uploadUrl = this.uploadUrls[i] + (this.uploadUrls[i].match(/\?/) ? '&' : '?') + params.join('&'),
+            var uploadUrl = this.uploadUrls[iUpload] + (this.uploadUrls[iUpload].match(/\?/) ? '&' : '?') + params.join('&'),
                 fileName;
 
             var errors = false;
@@ -1067,7 +1080,7 @@ if (!window.Upload) {
                 }
                 if (options.multi_progress && !options.multi_sequence) {
                     this.onUploadStart({
-                        ind: i,
+                        ind: iUpload,
                         fileName: fileName
                     });
                 }
@@ -1086,41 +1099,41 @@ if (!window.Upload) {
             });
 
             // if (options.multi_sequence && options.onUploadProgress) {
-            //   options.onUploadProgress(Upload.getFileInfo(i, options, false));
+            //   options.onUploadProgress(Upload.getFileInfo(iUpload, options, false));
             // }
 
             if (filesQueue.length > 0) {
                 if (cur.multiProgressIndex !== undefined) {
                     if (!cur.nextQueues) cur.nextQueues = [];
-                    cur.nextQueues.push(i);
+                    cur.nextQueues.push(iUpload);
                 } else {
-                    this.uploadFile(i, filesQueue.pop(), uploadUrl);
-                    if (options.multi_progress) cur.multiProgressIndex = i;
+                    this.uploadFile(iUpload, filesQueue.pop(), uploadUrl);
+                    if (options.multi_progress) cur.multiProgressIndex = iUpload;
                 }
             } else if (errors) {
-                Upload.onUploadError(i, 'file type not supported');
+                Upload.onUploadError(iUpload, 'file type not supported');
             }
         },
 
-        getFileInfo: function(i, options, file) {
+        getFileInfo: function(iUpload, options, file) {
             return options.multi_progress ? {
-                ind: i,
+                ind: iUpload,
                 fileName: (file) ? (file.fileName || file.name || '').replace(/[&<>"']/g, '') : '',
                 num: options.filesLoadedCount,
                 totalSize: options.filesTotalSize,
                 loadedSize: options.filesLoadedSize,
                 totalCount: options.filesTotalCount,
                 file: file
-            } : i;
+            } : iUpload;
         },
 
         supportsChunkedUpload: function() {
             return !!Blob && !!(Blob.prototype.webkitSlice || Blob.prototype.mozSlice || Blob.prototype.slice) && !!FileReader;
         },
 
-        uploadFileChunked: function(uplId, file, url) {
-            var options = this.options[uplId];
-            var info = Upload.getFileInfo(uplId, options, file);
+        uploadFileChunked: function(iUpload, file, url) {
+            var options = this.options[iUpload];
+            var info = Upload.getFileInfo(iUpload, options, file);
             if (options.multi_sequence) {
                 this.onUploadStart(info);
             }
@@ -1316,23 +1329,23 @@ if (!window.Upload) {
                     loaded += value;
                 });
 
-                extend(info, Upload.getFileInfo(uplId, options, file));
+                extend(info, Upload.getFileInfo(iUpload, options, file));
                 if (!options.multi_progress) {
-                    Upload.onUploadProgress(uplId, Math.min(loaded + options.filesLoadedSize, options.filesTotalSize), options.filesTotalSize);
+                    Upload.onUploadProgress(iUpload, Math.min(loaded + options.filesLoadedSize, options.filesTotalSize), options.filesTotalSize);
                 } else {
                     Upload.onUploadProgress(info, loaded, total);
                 }
             }
 
             function _onUploadComplete(responseText) {
-                extend(info, Upload.getFileInfo(uplId, options, file)); // can be extended
-                Upload.options[uplId].filesLoadedSize += curUpload.fileSize;
-                Upload.options[uplId].filesLoadedCount += 1;
+                extend(info, Upload.getFileInfo(iUpload, options, file)); // can be extended
+                Upload.options[iUpload].filesLoadedSize += curUpload.fileSize;
+                Upload.options[iUpload].filesLoadedCount += 1;
                 Upload.onUploadComplete(info, responseText);
-                if (Upload.options[uplId].filesQueue && Upload.options[uplId].filesQueue.length > 0) {
-                    Upload.uploadFile(uplId, Upload.options[uplId].filesQueue.pop(), url);
+                if (Upload.options[iUpload].filesQueue && Upload.options[iUpload].filesQueue.length > 0) {
+                    Upload.uploadFile(iUpload, Upload.options[iUpload].filesQueue.pop(), url);
                 } else {
-                    Upload.startNextQueue(uplId);
+                    Upload.startNextQueue(iUpload);
                     Upload.onUploadCompleteAll(info, responseText);
                     options.uploading = false;
                 }
@@ -1362,13 +1375,13 @@ if (!window.Upload) {
             }
         },
 
-        resumeUpload: function(uplId) {
-            var curUpload = this.options[uplId].chunkedUpload;
-            Upload.uploadFileChunked(uplId, curUpload.file, curUpload.state.url);
+        resumeUpload: function(iUpload) {
+            var curUpload = this.options[iUpload].chunkedUpload;
+            Upload.uploadFileChunked(iUpload, curUpload.file, curUpload.state.url);
         },
 
-        uploadFile: function(uplId, file, url) {
-            var options = this.options[uplId];
+        uploadFile: function(iUpload, file, url) {
+            var options = this.options[iUpload];
 
             if (options.chunked && Upload.supportsChunkedUpload() && file.size > 4 * 1024 * 1024) {
                 Upload.uploadFileChunked.apply(Upload, arguments);
@@ -1377,7 +1390,7 @@ if (!window.Upload) {
 
             var XHR = (browser.msie && intval(browser.version) < 10) ? window.XDomainRequest : window.XMLHttpRequest;
 
-            var info = Upload.getFileInfo(uplId, options, file);
+            var info = Upload.getFileInfo(iUpload, options, file);
 
             if (options.multi_sequence) {
                 this.onUploadStart(info);
@@ -1398,14 +1411,14 @@ if (!window.Upload) {
                     fastFail = true;
                 xhr.open('POST', url, true);
                 xhr.onload = function(e) {
-                    extend(info, Upload.getFileInfo(uplId, options, file)); // can be extended
-                    Upload.options[uplId].filesLoadedSize += file.size;
-                    Upload.options[uplId].filesLoadedCount += 1;
+                    extend(info, Upload.getFileInfo(iUpload, options, file)); // can be extended
+                    Upload.options[iUpload].filesLoadedSize += file.size;
+                    Upload.options[iUpload].filesLoadedCount += 1;
                     Upload.onUploadComplete(info, e.target.responseText);
-                    if (Upload.options[uplId].filesQueue && Upload.options[uplId].filesQueue.length > 0) {
-                        Upload.uploadFile(uplId, Upload.options[uplId].filesQueue.pop(), url);
+                    if (Upload.options[iUpload].filesQueue && Upload.options[iUpload].filesQueue.length > 0) {
+                        Upload.uploadFile(iUpload, Upload.options[iUpload].filesQueue.pop(), url);
                     } else {
-                        Upload.startNextQueue(uplId);
+                        Upload.startNextQueue(iUpload);
                         Upload.onUploadCompleteAll(info, e.target.responseText);
                         options.uploading = false;
                     }
@@ -1420,14 +1433,14 @@ if (!window.Upload) {
                             }
                         });
                     }
-                    extend(info, Upload.getFileInfo(uplId, options, file));
-                    Upload.options[uplId].filesTotalSize -= file.size;
-                    Upload.options[uplId].filesTotalCount -= 1;
+                    extend(info, Upload.getFileInfo(iUpload, options, file));
+                    Upload.options[iUpload].filesTotalSize -= file.size;
+                    Upload.options[iUpload].filesTotalCount -= 1;
                     Upload.onUploadError(info, e.target.responseText);
-                    if (Upload.options[uplId].filesQueue.length > 0) {
-                        Upload.uploadFile(uplId, Upload.options[uplId].filesQueue.pop(), url);
+                    if (Upload.options[iUpload].filesQueue.length > 0) {
+                        Upload.uploadFile(iUpload, Upload.options[iUpload].filesQueue.pop(), url);
                     } else {
-                        Upload.startNextQueue(uplId);
+                        Upload.startNextQueue(iUpload);
                         Upload.onUploadCompleteAll(info, e.target.responseText);
                         options.uploading = false;
                     }
@@ -1439,10 +1452,10 @@ if (!window.Upload) {
                     }
 
                     fastFail = false;
-                    extend(info, Upload.getFileInfo(uplId, options, file));
+                    extend(info, Upload.getFileInfo(iUpload, options, file));
                     if (e.lengthComputable) {
                         if (!options.multi_progress) {
-                            Upload.onUploadProgress(uplId, Math.min(e.loaded + options.filesLoadedSize, options.filesTotalSize), options.filesTotalSize);
+                            Upload.onUploadProgress(iUpload, Math.min(e.loaded + options.filesLoadedSize, options.filesTotalSize), options.filesTotalSize);
                         } else {
                             Upload.onUploadProgress(info, e.loaded, e.total);
                         }
@@ -1472,14 +1485,14 @@ if (!window.Upload) {
                         fastFail = true;
 
                     xhr.onload = function(e) {
-                        extend(info, Upload.getFileInfo(uplId, options, file));
-                        Upload.options[uplId].filesLoadedSize += file.size;
-                        Upload.options[uplId].filesLoadedCount += 1;
+                        extend(info, Upload.getFileInfo(iUpload, options, file));
+                        Upload.options[iUpload].filesLoadedSize += file.size;
+                        Upload.options[iUpload].filesLoadedCount += 1;
                         Upload.onUploadComplete(info, e.target.responseText);
-                        if (Upload.options[uplId].filesQueue.length > 0) {
-                            Upload.uploadFile(uplId, Upload.options[uplId].filesQueue.pop(), url);
+                        if (Upload.options[iUpload].filesQueue.length > 0) {
+                            Upload.uploadFile(iUpload, Upload.options[iUpload].filesQueue.pop(), url);
                         } else {
-                            Upload.startNextQueue(uplId);
+                            Upload.startNextQueue(iUpload);
                             Upload.onUploadCompleteAll(info, e.target.responseText);
                         }
                     };
@@ -1493,24 +1506,24 @@ if (!window.Upload) {
                                 }
                             });
                         }
-                        extend(info, Upload.getFileInfo(uplId, options, file));
-                        Upload.options[uplId].filesTotalSize -= file.size;
-                        Upload.options[uplId].filesTotalCount -= 1;
+                        extend(info, Upload.getFileInfo(iUpload, options, file));
+                        Upload.options[iUpload].filesTotalSize -= file.size;
+                        Upload.options[iUpload].filesTotalCount -= 1;
                         Upload.onUploadError(info, e.target.responseText);
-                        if (Upload.options[uplId].filesQueue.length > 0) {
-                            Upload.uploadFile(uplId, Upload.options[uplId].filesQueue.pop(), url);
+                        if (Upload.options[iUpload].filesQueue.length > 0) {
+                            Upload.uploadFile(iUpload, Upload.options[iUpload].filesQueue.pop(), url);
                         } else {
-                            Upload.startNextQueue(uplId);
+                            Upload.startNextQueue(iUpload);
                             Upload.onUploadCompleteAll(info, e.target.responseText);
                             options.uploading = false;
                         }
                     };
                     xhr.upload.onprogress = function(e) {
                         fastFail = false;
-                        extend(info, Upload.getFileInfo(uplId, options, file));
+                        extend(info, Upload.getFileInfo(iUpload, options, file));
                         if (e.lengthComputable) {
                             if (!options.multi_progress) {
-                                Upload.onUploadProgress(uplId, Math.min(e.loaded + options.filesLoadedSize, options.filesTotalSize), options.filesTotalSize);
+                                Upload.onUploadProgress(iUpload, Math.min(e.loaded + options.filesLoadedSize, options.filesTotalSize), options.filesTotalSize);
                             } else {
                                 Upload.onUploadProgress(info, e.loaded, e.total);
                                 options.uploading = false;
@@ -1535,21 +1548,21 @@ if (!window.Upload) {
                     console.error(e);
                 } catch (e2) {}
             }
-            Upload.options[uplId].xhr = xhr;
+            Upload.options[iUpload].xhr = xhr;
         },
 
-        terminateUpload: function(i, name, el) {
+        terminateUpload: function(iUpload, name, el) {
             try {
-                var vars = Upload.vars[i],
-                    options = Upload.options[i],
+                var vars = Upload.vars[iUpload],
+                    options = Upload.options[iUpload],
                     params = [],
                     queue = options.filesQueue;
                 inQueue = false,
                     info = options.multi_progress ? {
-                        ind: i,
+                        ind: iUpload,
                         fileName: name.replace(/[&<>"']/g, '')
-                    } : i,
-                    ind = name ? i + '_' + name : i;
+                    } : iUpload,
+                    ind = name ? iUpload + '_' + name : iUpload;
 
                 for (var j in vars) {
                     params.push(j + "=" + vars[j]);
@@ -1566,12 +1579,12 @@ if (!window.Upload) {
                 Upload.onUploadComplete(info, '{"error":"ERR_UPLOAD_TERMINATED: upload request was terminated"}');
                 if (!inQueue && options.xhr) options.xhr.abort();
                 if (!inQueue && options.chunkedUpload) options.chunkedUpload.abort();
-                var url = this.uploadUrls[i] + (this.uploadUrls[i].match(/\?/) ? '&' : '?') + params.join('&');
+                var url = this.uploadUrls[iUpload] + (this.uploadUrls[iUpload].match(/\?/) ? '&' : '?') + params.join('&');
                 if (!inQueue) {
                     if (queue.length > 0) {
-                        Upload.uploadFile(i, queue.pop(), url);
+                        Upload.uploadFile(iUpload, queue.pop(), url);
                     } else {
-                        Upload.startNextQueue(i);
+                        Upload.startNextQueue(iUpload);
                         Upload.onUploadCompleteAll(info, '');
                     }
                 }
@@ -1582,14 +1595,14 @@ if (!window.Upload) {
             }
         },
 
-        startNextQueue: function(i) {
+        startNextQueue: function(iUpload) {
             if (cur.multiProgressIndex === undefined) {
                 setTimeout(function() {
                     delete cur.fileApiUploadStarted;
                 }, 1000);
             }
-            if (i != cur.multiProgressIndex) return;
-            var options = this.options[i];
+            if (iUpload != cur.multiProgressIndex) return;
+            var options = this.options[iUpload];
             if (options.multi_progress && cur.nextQueues && cur.nextQueues.length) {
                 var next = cur.nextQueues[0],
                     queue = Upload.options[next].filesQueue;
@@ -1636,81 +1649,81 @@ if (!window.Upload) {
             return false;
         },
 
-        dragEnter: function(i, e) {
+        dragEnter: function(iUpload, e) {
             if (!cur.uploadDragStarted || cur.uploadDragStarted == 1) {
                 cur.uploadDragStarted = Upload.isFileDrag(e) ? 2 : 1;
             }
-            if (cur.uploadDragStarted == 1 || !Upload.dropbox[i]) {
+            if (cur.uploadDragStarted == 1 || !Upload.dropbox[iUpload]) {
                 cancelEvent(e);
                 return;
             }
             setTimeout(function() {
-                clearTimeout(Upload.dragTimer[i]);
-                delete Upload.dragTimer[i];
+                clearTimeout(Upload.dragTimer[iUpload]);
+                delete Upload.dragTimer[iUpload];
             }, 0);
-            if (Upload.options[i].onDragEnter) {
-                Upload.options[i].onDragEnter(e);
+            if (Upload.options[iUpload].onDragEnter) {
+                Upload.options[iUpload].onDragEnter(e);
             }
-            show(Upload.dropbox[i]);
+            show(Upload.dropbox[iUpload]);
             cancelEvent(e);
         },
 
-        dragOut: function(i, e) {
-            if (cur.uploadDragStarted == 1 || !Upload.dropbox[i]) {
+        dragOut: function(iUpload, e) {
+            if (cur.uploadDragStarted == 1 || !Upload.dropbox[iUpload]) {
                 cancelEvent(e);
                 return;
             }
-            if (Upload.dragTimer[i]) {
-                clearTimeout(Upload.dragTimer[i]);
-                delete Upload.dragTimer[i];
+            if (Upload.dragTimer[iUpload]) {
+                clearTimeout(Upload.dragTimer[iUpload]);
+                delete Upload.dragTimer[iUpload];
             }
-            Upload.dragTimer[i] = setTimeout(function() {
-                if (!Upload.options[i].visibleDropbox) {
-                    hide(Upload.dropbox[i]);
+            Upload.dragTimer[iUpload] = setTimeout(function() {
+                if (!Upload.options[iUpload].visibleDropbox) {
+                    hide(Upload.dropbox[iUpload]);
                 }
-                if (Upload.options[i].onDragOut) {
-                    Upload.options[i].onDragOut();
+                if (Upload.options[iUpload].onDragOut) {
+                    Upload.options[iUpload].onDragOut();
                 }
-                removeClass(Upload.dropbox[i], 'dropbox_over');
+                removeClass(Upload.dropbox[iUpload], 'dropbox_over');
             }, 100);
             cancelEvent(e);
         },
 
-        dragOver: function(i, e) {
-            if (cur.uploadDragStarted == 1 || !Upload.dropbox[i]) {
+        dragOver: function(iUpload, e) {
+            if (cur.uploadDragStarted == 1 || !Upload.dropbox[iUpload]) {
                 cancelEvent(e);
                 return;
             }
-            if (browser.mozilla && intval(browser.version) > 3 && !Upload.options[i].visibleDropbox) {
+            if (browser.mozilla && intval(browser.version) > 3 && !Upload.options[iUpload].visibleDropbox) {
                 if (cur.dragOverTimer) {
                     clearTimeout(cur.dragOverTimer);
                     delete cur.dragOverTimer;
                 }
                 cur.dragOverTimer = setTimeout(function() {
-                    hide(Upload.dropbox[i]);
+                    hide(Upload.dropbox[iUpload]);
                 }, 100);
             }
-            var inside = Upload.insideDropbox(i, e);
+            var inside = Upload.insideDropbox(iUpload, e);
             if (e.dataTransfer) {
                 e.dataTransfer.dropEffect = inside ? 'copy' : 'none';
             }
-            toggleClass(Upload.dropbox[i], 'dropbox_over', inside);
+            toggleClass(Upload.dropbox[iUpload], 'dropbox_over', inside);
             cancelEvent(e);
         },
 
         drop: function(e) {
-            each(Upload.dropbox, function(i, dropbox) {
+            each(Upload.dropbox, function(iUpload, dropbox) {
                 if (!dropbox) {
                     return;
                 }
-                if (Upload.insideDropbox(i, e)) {
-                    Upload.onFileApiSend(i, e.dataTransfer.files);
+                if (Upload.insideDropbox(iUpload, e)) {
+                    Upload.onFileApiSend(iUpload, e.dataTransfer.files);
                 }
-                if (!Upload.options[i].visibleDropbox) {
+                if (!Upload.options[iUpload].visibleDropbox) {
                     hide(dropbox);
                 }
-                if (Upload.options[i].onDrop) {
-                    Upload.options[i].onDrop();
+                if (Upload.options[iUpload].onDrop) {
+                    Upload.options[iUpload].onDrop();
                 }
                 removeClass(dropbox, 'dropbox_over');
             });
@@ -1719,10 +1732,10 @@ if (!window.Upload) {
             return false;
         },
 
-        insideDropbox: function(i, e) {
+        insideDropbox: function(iUpload, e) {
             var el = e.target;
             while (el.parentNode) {
-                if (el == Upload.dropbox[i]) return true;
+                if (el == Upload.dropbox[iUpload]) return true;
                 el = el.parentNode;
             }
             return false;
