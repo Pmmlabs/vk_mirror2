@@ -117,6 +117,7 @@ var navMap = {
     'story(-?\\d+)_(\\d+)$': ['al_stories.php', ['stories.css', 'stories.js']],
     'mask(-?\\d+)_(\\d+)$': ['al_masks.php', []],
     'bugtracker($|/)': ['al_bugtracker.php', ['bugtracker.css', 'bugtracker.js']],
+    'bugtracker_adm($|/)': ['al_bugtracker_adm.php', ['bugtracker.css', 'bugtracker.js']],
     'landings$': ['landings.php', []],
     'ach($|/)': ['achievements.php', ['achievements.css', 'achievements.js']],
     'memedit($|/)': ['members.php', ['members.css', 'dyn-members.js']],
@@ -198,7 +199,7 @@ var stVersions = {
     'video_upload.js': 555062683,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 16242868137,
-    'videoplayer.js': 77774822789,
+    'videoplayer.js': 77238155488,
     'videoplayer.css': 38123047289,
     'translation.js': 2431784533,
     'translation.css': 17494157537,
@@ -348,8 +349,8 @@ var stVersions = {
     'groupinfo.css': 21669697042,
     'bugs.js': 3874995669,
     'bugs.css': 16624512301,
-    'bugtracker.js': 3905802681,
-    'bugtracker.css': 22214763317,
+    'bugtracker.js': 3439562393,
+    'bugtracker.css': 22533295046,
     'login.css': 18851700488,
     'login.js': 3551917100,
     'upload.js': 645417492,
@@ -603,4 +604,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 1976;
+var _rnd = 8440;
