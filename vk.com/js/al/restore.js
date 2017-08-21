@@ -3,6 +3,8 @@ var Restore = {
     maxPhotos: 2,
     requestTypeFull: 0,
     requestTypeSimple: 4,
+    onlineNoOwner: 1,
+    onlineOwner: 2,
     showMsgBox: function(e, o, t) {
         setTimeout(showFastBox({
             title: o,
@@ -402,7 +404,7 @@ var Restore = {
         placeholderSetup(t, {
             back: !0
         }), Restore.initFormTT(t, "restore_lost_phone_your_comment_short"), isVisible(r) && Restore.initFormTT(r, "restore_form_available_phone_tooltip"), e == Restore.requestTypeSimple && isVisible(i) && Restore.initFormTT(i, "restore_form_available_phone_tooltip"), isVisible(s) && Restore.initFormTT(s, "restore_form_old_phone_tooltip"), isVisible(n) && Restore.initFormTT(n, "restore_form_old_email_tooltip"), isVisible(a) && Restore.initFormTT(a, "restore_about_old_password"), cur.destroy.push(function() {
-            delete cur.request_step, delete cur.request_params, delete cur.restoreNoEmailAccess
+            delete cur.requestStep, delete cur.requestParams, delete cur.restoreNoEmailAccess
         })
     },
     initFormTT: function(e, o) {
@@ -424,7 +426,7 @@ var Restore = {
     },
     changeFormStep: function(e, o) {
         var t = "restore_roll_";
-        removeClass(t + e, "_restore_roll_active"), cur.request_step = o, "back_link" == e && hide(t + e);
+        removeClass(t + e, "_restore_roll_active"), cur.requestStep = o, "back_link" == e && hide(t + e);
         var r = ge(t + o);
         if (show(r), removeClass(r, "restore_roll_colored"), scrollToY(getXY(r)[1], 400), removeClass("restore_roll_" + o, "restore_roll_hidden"), addClass(r, "_restore_roll_active"), "comment" == o) {
             var s = ge("comment");
@@ -459,32 +461,42 @@ var Restore = {
     submitFullRequest: function(e) {
         var o = "new_phone",
             t = ge("restore_submit_full_request");
-        if (cur.request_params || (cur.request_params = {}, cur.request_step = "phones"), "phones" == cur.request_step) {
+        if (cur.requestParams || (cur.requestParams = {}, cur.requestStep = "phones"), "phones" == cur.requestStep) {
             var r = val(o).replace(/[^0-9]/g, "");
             if (!r) return notaBene(o);
             if (!/^[1-9][0-9]{6,14}$/.test(r)) return Restore.showResult("request_phone_res", getLang("restore_phone_error"), o);
-            cur.request_params.phone = r
+            cur.requestParams.phone = r
         }
-        if ("back_link" == cur.request_step && e) return Restore.changeFormStep("back_link", "photo");
-        if ("photo" == cur.request_step && cur.images_count[1] < 1) return Restore.showResult("request_photo_res", getLang("restore_photo_error") + "<br>" + getLang("restore_attention"));
-        if ("doc" == cur.request_step && cur.images_count[0] < 1) return Restore.showResult("request_doc_res", getLang("restore_doc_error") + "<br>" + getLang("restore_attention"));
-        if ("doc" == cur.request_step || "photo" == cur.request_step) {
+        if ("back_link" == cur.requestStep && e) return Restore.changeFormStep("back_link", "photo");
+        if ("photo" == cur.requestStep && cur.images_count[1] < 1) return Restore.showResult("request_photo_res", getLang("restore_photo_error") + "<br>" + getLang("restore_attention"));
+        if ("doc" == cur.requestStep && cur.images_count[0] < 1) return Restore.showResult("request_doc_res", getLang("restore_doc_error") + "<br>" + getLang("restore_attention"));
+        if ("doc" == cur.requestStep || "photo" == cur.requestStep) {
             var s = [];
             each(cur.images, function(e, o) {
                 o.deleted || s.push(o.hash)
-            }), cur.request_params.images = s
+            }), cur.requestParams.images = s
         }
-        if ("doc" == cur.request_step) return Restore.changeFullRequestButton(!0, getLang("restore_submit")), Restore.changeFormStep("doc", "comment");
-        "comment" == cur.request_step && (cur.request_params.comment = val("comment"));
+        if ("doc" == cur.requestStep) return Restore.changeFullRequestButton(!0, getLang("restore_submit")), Restore.changeFormStep("doc", "comment");
+        "comment" == cur.requestStep && (cur.requestParams.comment = val("comment"));
         var n = extend({
             act: "a_request",
             bad_phone: cur.wrongPhone ? 1 : 0,
             hash: cur.options.fhash
-        }, cur.request_params);
+        }, cur.requestParams);
         ajax.post("restore", n, {
             onDone: function(e, o, t, r, s, n, a, i) {
                 var u = intval(e);
-                return 0 == u && (n = t, a = r, i = s), "back_link" == n ? (Restore.changeFullRequestButton(!1), cur.resetPasswordHash = a, cur.resetPasswordTHash = i, Restore.changeFormStep("phones", "back_link")) : "photo" == n ? (Restore.changeFullRequestButton(!1), Restore.changeFormStep("phones", "photo")) : "doc" == n ? (Restore.changeFullRequestButton(!1), Restore.changeFormStep("photo", "doc")) : void Restore.processSubmitResult(e, o, t, r, s, !0)
+                if (0 == u && (n = t, a = r, i = s), -5 == u) {
+                    var c = new MessageBox({
+                        title: getLang("global_action_confirmation")
+                    });
+                    return c.addButton(getLang("restore_last_online_yes"), function() {
+                        cur.requestParams.no_online = Restore.onlineOwner, c.hide(), Restore.submitFullRequest()
+                    }), c.addButton(getLang("restore_last_online_no"), function() {
+                        cur.requestParams.no_online = Restore.onlineNoOwner, c.hide(), Restore.submitFullRequest()
+                    }, "gray"), void c.content(getLang("restore_last_online_modal")).show()
+                }
+                return "back_link" == n ? (Restore.changeFullRequestButton(!1), cur.resetPasswordHash = a, cur.resetPasswordTHash = i, Restore.changeFormStep("phones", "back_link")) : "photo" == n ? (Restore.changeFullRequestButton(!1), Restore.changeFormStep("phones", "photo")) : "doc" == n ? (Restore.changeFullRequestButton(!1), Restore.changeFormStep("photo", "doc")) : void Restore.processSubmitResult(e, o, t, r, s, !0)
             },
             showProgress: lockButton.pbind(t),
             hideProgress: unlockButton.pbind(t)

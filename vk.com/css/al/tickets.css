@@ -12,7 +12,10 @@
 .help_tile_alert_urgent:before,
 .help_tile_alert_waiting:before,
 .help_tiles_empty,
+.tickets_actions_add_to_bookmark,
+.tickets_actions_bookmarks_menu .ui_actions_menu_icons,
 .tickets_delegate_btn_process,
+.tickets_header_links .ui_actions_menu_item.tickets_header_links_fav_selected:before,
 .tickets_header_progress,
 .tickets_header_title_locked,
 .tickets_list_load_more_loading,
@@ -634,10 +637,18 @@ body.dev .tickets_header_links {
 .tickets_header_links .ui_actions_menu_item.tickets_header_links_fav_selected:before {
     left: 12px;
     top: 0;
-    background: transparent;
-    content: "\21E8";
+    background: url(/images/icons/dropdown_check.png?2) no-repeat 5px 10px;
     line-height: 30px;
     opacity: 0.7
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_header_links .ui_actions_menu_item.tickets_header_links_fav_selected:before {
+        background-image: url(/images/icons/dropdown_check_2x.png?2);
+        background-size: 14px 10px
+    }
 }
 
 .tickets_header_links .ui_actions_menu_item.tickets_header_links_delfav:before {
@@ -4214,4 +4225,51 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     -khtml-user-select: none;
     -webkit-user-select: none;
     -o-user-select: none
+}
+
+.tickets_actions_bookmarks_menu {
+    position: relative
+}
+
+.tickets_actions_bookmarks_menu .ui_actions_menu_icons {
+    background: url(/images/icons/fav_mark.png) no-repeat 3px 3px;
+    right: 41px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_actions_bookmarks_menu .ui_actions_menu_icons {
+        background-image: url(/images/icons/fav_mark_2x.png);
+        background-size: 14px 33px
+    }
+}
+
+.tickets_actions_bookmarks_menu .ui_actions_menu {
+    right: 22px
+}
+
+.tickets_actions_bookmarks_menu.tickets_actions_bookmarks_menu_hidden .shown .ui_actions_menu {
+    visibility: hidden;
+    display: none!important
+}
+
+.tickets_actions_add_to_bookmark {
+    background: url(/images/icons/fav_mark.png) no-repeat 3px 3px;
+    right: 45px;
+    width: 18px;
+    height: 18px;
+    top: 17px;
+    opacity: 0.7;
+    position: absolute;
+    cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_actions_add_to_bookmark {
+        background-image: url(/images/icons/fav_mark_2x.png);
+        background-size: 14px 33px
+    }
 }
