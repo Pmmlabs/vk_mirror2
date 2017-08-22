@@ -199,7 +199,7 @@ var stVersions = {
     'video_upload.js': 555062683,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 15438698667,
-    'videoplayer.js': 77238155488,
+    'videoplayer.js': 76903393535,
     'videoplayer.css': 37318877819,
     'translation.js': 2431784533,
     'translation.css': 16689988067,
@@ -604,4 +604,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 3482;
+var _rnd = 9005;

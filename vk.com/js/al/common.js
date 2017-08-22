@@ -8216,6 +8216,20 @@ function onLoginCaptcha(sid, dif) {
     });
 }
 
+function onLoginReCaptcha(key, lang) {
+    __qlClear();
+    unlockButton(window.__qfBtn);
+    window.qloginBox = showReCaptchaBox(key, lang, window.qloginBox, {
+        onSubmit: function(response) {
+            ge('quick_recaptcha').value = response;
+            ge('quick_login_form').submit();
+        },
+        onHide: function() {
+            window.qloginBox = false;
+        }
+    });
+}
+
 function callHub(func, count) {
     this.count = count || 1;
     this.done = function(c) {
