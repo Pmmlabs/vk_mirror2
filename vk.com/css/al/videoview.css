@@ -1928,7 +1928,11 @@ textarea.dark.mv_live_gift_popup_comment_input {
     overflow-x: hidden
 }
 
-#mv_pl_tt .mv_tt_playlists.with_border {
+#mv_pl_tt .mv_tt_playlists:empty {
+    display: none
+}
+
+#mv_pl_tt .mv_tt_private_only+.mv_tt_playlists {
     border-top: 1px solid #d9e0e7
 }
 
@@ -2005,8 +2009,12 @@ textarea.dark.mv_live_gift_popup_comment_input {
     }
 }
 
-.mv_add_eltt .eltt_arrow {
+.mv_add_eltt.eltt_top .eltt_arrow {
     border-top-color: #f7f8fa!important
+}
+
+.mv_add_eltt.mv_add_eltt_add_playlist_hover.eltt_top .eltt_arrow {
+    border-top-color: #edf1f5!important
 }
 
 #mv_add_to_club_albums_progress {

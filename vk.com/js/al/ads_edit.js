@@ -1498,7 +1498,7 @@ AdsEdit.initCreatingPostForm = function(creatingPostBox, postOwnerId, wallOption
                 cur.groupSelectorTooltip.hide();
                 ls.set('ads_promoted_posts_stealth_groups_selector_hidden', 1);
             };
-            var el = geByClass1('ads_edit_ad_submit_post_author_selector', creatingPostBox.bodyNode);
+            var el = geByClass1('ads_edit_ad_submit_post_author_selector_wrapper', creatingPostBox.bodyNode);
             if (el) {
                 var appendTo = domCA(el, '.box_layout');
                 cur.groupSelectorTooltip = new ElementTooltip(el, {

@@ -294,11 +294,11 @@
 }
 
 #phone_confirm_box .clear_fix {
-    padding: 10px 0px
+    padding: 10px 0
 }
 
 #phone_confirm_box .label {
-    padding: 4px 10px 0px;
+    padding: 2px 10px 0;
     color: #777;
     width: 150px
 }
@@ -526,15 +526,16 @@
     visibility: visible
 }
 
-#restore_roll_back_link .request_result_msg {
-    display: block;
+.restore_roll_back_link .request_result_msg {
     margin: 10px 0 0;
     padding: 20px;
+    display: block;
     background: rgba(159, 180, 201, .1)
 }
 
-#restore_roll_back_link .request_result_msg .flat_button {
-    clear: both;
+.restore_roll_back_link .request_result_msg .flat_button {
+    float: left;
+    margin-right: 10px;
     margin-top: 20px
 }
 
@@ -568,6 +569,7 @@
 }
 
 .restore_reset_password_button {
+    float: left;
     margin-top: 20px;
     padding: 3px;
     display: inline-block

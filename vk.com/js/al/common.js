@@ -8506,7 +8506,7 @@ var _cleanHide = function(el) {
        forcetodown
        forcetoup
        ajaxdt
-       hasover
+       hasover - ���������� ������ �� ��������, ���� ������ ��������� �� ����� �������
        nohide
        nohideover
        slide
@@ -11696,8 +11696,8 @@ function ElementTooltip(el, opts) {
         throw new Error('First argument not a DOM element');
     }
 
-    if (data(el, 'ett')) {
-        return;
+    if (data(el, 'ett')) { // already have tt for this element
+        return data(el, 'ett');
     }
 
     this._opts = extend({
@@ -11812,9 +11812,14 @@ ElementTooltip.prototype._onMouseWindowClick = function(event) {
 
 ElementTooltip.prototype.destroy = function() {
     this._clearTimeouts();
-    data(this._el, 'ett', null);
+    removeData(this._el, 'ett');
     re(this._ttel);
     this._ev_wclick && removeEvent(document, 'mousedown', this._ev_wclick);
+    var contentEl;
+    if (this._ttel) {
+        contentEl = geByClass1('_eltt_content', this._ttel);
+    }
+    this._opts.onDestroy && this._opts.onDestroy(contentEl);
 }
 
 ElementTooltip.prototype.hide = function(byElClick) {
@@ -11877,6 +11882,8 @@ ElementTooltip.prototype.show = function() {
     this._opts.onShow && this._opts.onShow(contentEl);
 
     this._isShown = true;
+
+    this.updatePosition();
 
     setTimeout(addClass.pbind(this._ttel, 'eltt_vis'), 10);
 

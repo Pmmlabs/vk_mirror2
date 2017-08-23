@@ -6682,7 +6682,7 @@ var Wall = {
                     window.replyAsData = {};
                     each(list, function() {
                         window.replyAsData[this[0]] = this;
-                    })
+                    });
                     wall.replyAsGroupTT(obj, owner);
                 }
             });
@@ -6744,9 +6744,14 @@ var Wall = {
         if (!ttChooser) {
             var list = wall.replyAsGroupList(obj, owner),
                 rows = '';
+
+            if (obj.hasAttribute('data-enable-search')) {
+                rows += '<input class="clear_fix post_from_tt_row post_from_tt_row_search" value="" placeholder="�����..." />';
+            }
+
             each(list, function() {
                 var cl = (from == this[0]) ? ' active' : '';
-                rows += '<a class="clear_fix post_from_tt_row' + cl + '" data-from-oid="' + this[0] + '" href="' + this[2] + '"><img class="post_from_tt_image" src="' + this[1] + '" aria-label="' + this[3] + '">' + this[3] + '</a>';
+                rows += '<a class="clear_fix post_from_tt_row _post_from_tt_row_searchable' + cl + '" data-from-oid="' + this[0] + '" href="' + this[2] + '"><img class="post_from_tt_image" src="' + this[1] + '" aria-label="' + this[3] + '">' + this[3] + '</a>';
             });
 
             ttChooser = new ElementTooltip(obj, {
@@ -6754,16 +6759,31 @@ var Wall = {
                 appendToParent: true,
                 autoShow: false,
                 autoHide: true,
+                defaultSide: 'bottom',
                 offset: function() {
                     return wall.isAdsCreatingPost(obj) ? [obj.offsetWidth / 2 + 8.5, -2] : [-10, -5];
                 },
                 onFirstTimeShow: function(ttel) {
                     var rowEls = geByClass('post_from_tt_row', ttel);
                     each(rowEls, function(i, row) {
+                        if (hasClass(row, 'post_from_tt_row_search')) {
+                            return;
+                        }
                         addEvent(row, 'click', wall.setReplyAsGroup.pbind(obj, {
                             from: domData(this, 'from-oid')
                         }));
                     });
+
+                    var searchElement = geByClass1('post_from_tt_row_search', ttel);
+                    if (searchElement) {
+                        var searchableRowEls = geByClass('_post_from_tt_row_searchable', ttel);
+                        addEvent(searchElement, 'keyup valueChanged', function() {
+                            var searchTerm = trim(val(searchElement)).toLowerCase();
+                            each(searchableRowEls, function(i, row) {
+                                toggle(row, (searchTerm === '') || (row.innerHTML.toLowerCase().indexOf(searchTerm) !== -1));
+                            });
+                        });
+                    }
                     this.rows = rowEls;
                     this.scroll = new uiScroll(geByClass1('_post_scroll_wrap', ttel));
                     setTimeout(function() {
@@ -6780,7 +6800,18 @@ var Wall = {
                         var active = geByClass1('active', ttel),
                             newScroll = active ? active.offsetTop - (ttChooser.scroll.data.viewportHeight - getSize(active)[1]) / 2 : 0;
                         ttChooser.scroll.scrollTop(newScroll);
+
+                        var searchElement = geByClass1('post_from_tt_row_search', ttel);
+                        if (searchElement) {
+                            elfocus(searchElement);
+                        }
                     }, 0);
+                },
+                onHide: function(ttel) {
+                    var searchElement = geByClass1('post_from_tt_row_search', ttel);
+                    if (searchElement) {
+                        val(searchElement, '');
+                    }
                 }
             });
             data(obj, 'tt', ttChooser);

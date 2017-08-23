@@ -271,7 +271,6 @@ var Restore = {
             hide("request_phone_res"), e ? Restore.submitSimpleRequest() : elfocus("phone")
         }, void ajax.post("/al_restore.php", {
             act: "a_request",
-            bad_phone: cur.wrongPhone ? 1 : 0,
             hash: cur.options.fhash,
             login: e,
             email: o,
@@ -293,12 +292,9 @@ var Restore = {
         if (a > 0) Restore.showPhoneConfirmBox(a, o);
         else {
             if (-2 == a) {
-                if (n) var i = ge("restore_submit_full_request"),
-                    u = Restore.submitFullRequest;
-                else var i = ge("submitBtn"),
-                    u = Restore.submitSimpleRequest;
-                return lockButton(i), setTimeout(u, 1e3)
-            } - 3 == a ? ("login" == s ? o += "<br>" + getLang("restore_need_email_or_phone_desc") : "phonenum" == s && (cur.wrongPhone = !0), Restore.showResult(t, o, r)) : Restore.showResult("request_phone_res", o, r)
+                var i, u;
+                return n ? (i = ge("restore_submit_full_request"), u = Restore.submitFullRequest) : (i = ge("submitBtn"), u = Restore.submitSimpleRequest), lockButton(i), setTimeout(u, 1e3)
+            } - 3 == a ? ("login" == s && (o += "<br>" + getLang("restore_need_email_or_phone_desc")), Restore.showResult(t, o, r)) : Restore.showResult("request_phone_res", o, r)
         }
     },
     confirmCodeResend: function() {
@@ -390,8 +386,7 @@ var Restore = {
             images: [],
             images_count: [0, 0],
             request_id: !1,
-            request_hash: !1,
-            wrongPhone: !1
+            request_hash: !1
         });
         var e = cur.options.request_type,
             o = e == Restore.requestTypeFull ? "new_phone" : "phone",
@@ -480,7 +475,6 @@ var Restore = {
         "comment" == cur.requestStep && (cur.requestParams.comment = val("comment"));
         var n = extend({
             act: "a_request",
-            bad_phone: cur.wrongPhone ? 1 : 0,
             hash: cur.options.fhash
         }, cur.requestParams);
         ajax.post("restore", n, {

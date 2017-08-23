@@ -1151,7 +1151,7 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
 }
 
 #video_album_edit_title {
-    width: 270px
+    width: 100%
 }
 
 .video_album_edit_privacy_wrap {
