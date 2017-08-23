@@ -11670,7 +11670,7 @@ function getRadioBtnWrap(el) {
     delay           - delay for tooltip show (default: 100)
     appendTo        - appends tooltip to particular element
     appendToParent  - appends tooltip to closest positioned element (default: false)
-    offset          - custom offset for tooltip (default: [0, 0])
+    offset          - custom offset for tooltip (default: [0, 0]). Array or function returning array
     shift           - custom array shift
     elClassWhenTooltip - class that will be added to el when tooltip is shown
     setPos          - function for calculation tooltip custom position. forceSide parameter is required
@@ -11870,7 +11870,10 @@ ElementTooltip.prototype.show = function() {
     show(this._ttel);
 
     var contentEl = geByClass1('_eltt_content', this._ttel)
-    this._opts.onFirstTimeShow && this._opts.onFirstTimeShow.call(this, contentEl, this._ttel);
+    if (this._opts.onFirstTimeShow && !this._firstTimeShown) {
+        this._firstTimeShown = true;
+        this._opts.onFirstTimeShow.call(this, contentEl, this._ttel);
+    }
     this._opts.onShow && this._opts.onShow(contentEl);
 
     this._isShown = true;
@@ -11910,13 +11913,16 @@ ElementTooltip.prototype.updatePosition = function() {
     var arrowSize = this._arrowSize
     var border = this._opts.noBorder ? 0 : 1
 
+    var offset = isFunction(this._opts.offset) ? this._opts.offset() : this._opts.offset;
+
     var style;
 
     var _this = this
 
     function setArrowCenteredPosition(side, shift) {
         var style = {}
-        style[side] = Math.ceil(ttelSize[0] / 2) /*tt center*/ - border /*borders*/ - arrowSize - (shift || 0) /*shift compensation*/
+        var sizeIndex = ['marginLeft', 'marginTop'].indexOf(side);
+        style[side] = Math.ceil(ttelSize[sizeIndex] / 2) /*tt center*/ - border /*borders*/ - (arrowSize * (sizeIndex + 1)) - (shift || 0) /*shift compensation*/
         setStyle(_this._ttArrowEl, style)
     }
 
@@ -11956,7 +11962,7 @@ ElementTooltip.prototype.updatePosition = function() {
                 var inMessages = hasClass(bodyNode, 'body_im')
                 var bottomGap = inMessages ? 60 : (this._opts.bottomGap || 0)
 
-                var enoughSpaceAbove = (elPos[1] - boundingElPos[1]) > ttelSize[1] + arrowSize - this._opts.offset[1]
+                var enoughSpaceAbove = (elPos[1] - boundingElPos[1]) > ttelSize[1] + arrowSize - offset[1]
                 var enoughSpaceBelow = (scrollGetY() + boundingElSize[1] - (elPos[1] + elSize[1] + arrowSize) - bottomGap) > ttelSize[1]
 
                 if (this._opts.defaultSide == 'top') {
@@ -11980,7 +11986,7 @@ ElementTooltip.prototype.updatePosition = function() {
         ];
 
         var shift
-        var totalLeftOffset = this._opts.offset[0] + parentOffset[0]
+        var totalLeftOffset = offset[0] + parentOffset[0]
 
         if (this._opts.centerShift) {
             totalLeftOffset += this._opts.centerShift || 0
@@ -11996,28 +12002,28 @@ ElementTooltip.prototype.updatePosition = function() {
             case 'bottom':
                 style = {
                     left: -ttelSize[0] / 2 + elSize[0] / 2 + totalLeftOffset,
-                    top: elSize[1] + arrowSize - this._opts.offset[1] + parentOffset[1]
+                    top: elSize[1] + arrowSize - offset[1] + parentOffset[1]
                 };
                 break;
 
             case 'top':
                 style = {
                     left: -ttelSize[0] / 2 + elSize[0] / 2 + totalLeftOffset,
-                    top: -ttelSize[1] - arrowSize + this._opts.offset[1] + parentOffset[1]
+                    top: -ttelSize[1] - arrowSize + offset[1] + parentOffset[1]
                 };
                 break;
 
             case 'right':
                 style = {
                     left: elSize[0] + arrowSize + totalLeftOffset,
-                    top: elSize[1] / 2 - ttelSize[1] / 2 + this._opts.offset[1] + parentOffset[1]
+                    top: elSize[1] / 2 - ttelSize[1] / 2 + offset[1] + parentOffset[1]
                 };
                 break;
 
             case 'left':
                 style = {
                     left: -ttelSize[0] - arrowSize + totalLeftOffset,
-                    top: elSize[1] / 2 - ttelSize[1] / 2 + this._opts.offset[1] + parentOffset[1]
+                    top: elSize[1] / 2 - ttelSize[1] / 2 + offset[1] + parentOffset[1]
                 };
                 break;
         }

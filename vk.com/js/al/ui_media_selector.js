@@ -383,6 +383,7 @@ function MediaSelector(e, a, t, i) {
                         N && (N += ","), N += '"queue":1', S = i.nocl ? "" : " onclick=\"return showPhoto('" + o[4] + "', '" + o[2] + "', " + N.replace(/"/g, "&quot;") + ');"', P = "<div" + S + ' class="fl_l page_preview_photo"><img class="page_preview_photo" src="' + o[1] + '" /></div>', A = T = g;
                         break;
                     case "photo":
+                        if (x.pretty_cards) return !1;
                         isObject(o) || (o = {
                             thumb_m: o[0] || "",
                             thumb_s: o[1] || "",
@@ -398,6 +399,7 @@ function MediaSelector(e, a, t, i) {
                         S = i.nocl ? "" : ' onclick="return cur.addMedia[' + s.lnkId + "].showPhoto('" + t + "', '" + o.list + "', {" + N.replace(/"/g, "&quot;") + '});"', P = "<div " + S + ' class="fl_l page_preview_photo' + (p ? " page_preview_ph_graff" : "") + '"><img class="page_preview_photo" src="' + o.thumb_m + '" /></div>', T = 1, A = g;
                         break;
                     case "video":
+                        if (x.pretty_cards) return !1;
                         if (isObject(o) || (o = {
                                 thumb: o || ""
                             }), c) {
@@ -431,7 +433,7 @@ function MediaSelector(e, a, t, i) {
                         P = '<div class="medadd_c_story"><div class="medadd_c_story_thumb fl_l" style="background-image:url(/images/landings/vkmasks/masksSnippet_2x.png)"></div></a><div class="medadd_c_story_info fl_l"><div class="medadd_c_story_title">' + o.share.title + '</div><div class="medadd_c_story_desc">' + o.share.desc + "</div></div>", hide(e);
                         break;
                     case "share":
-                        if (x.share || x.page || !o.lang) return !1;
+                        if (x.share || x.page || x.pretty_cards || !o.lang) return !1;
                         if (isArray(o) && (o = {
                                 domain: o[0],
                                 url: o[1],
@@ -542,7 +544,10 @@ function MediaSelector(e, a, t, i) {
                         intval(o.date) < Z && (o.date = Z + 3600), hide(domByClass(h.menuNode, "_type_postpone")), A = C;
                         break;
                     case "mark_as_ads":
-                        P = '<div class="medadd_h medadd_h_mark_as_ads inl_bl">' + o.lang.global_ads_wall_post_mark_as_ads_action + "</div>", hide(domByClass(h.menuNode, "_type_mark_as_ads")), A = C
+                        P = '<div class="medadd_h medadd_h_mark_as_ads inl_bl">' + o.lang.global_ads_wall_post_mark_as_ads_action + "</div>", hide(domByClass(h.menuNode, "_type_mark_as_ads")), A = C;
+                        break;
+                    case "pretty_cards":
+                        if (x.share || x.pretty_cards) return !1
                 }
                 if (l) {
                     var Q = s.chosenMedias,
@@ -587,7 +592,7 @@ function MediaSelector(e, a, t, i) {
                     images: !1
                 }), s.showPreview()) : "poll" == a ? s.createPoll(o) : "postpone" == a ? s.setupPostpone(o, j) : "mark_as_ads" == a ? s.markAsAds = 1 : "pretty_cards" == a && s.createPrettyCards(o), toggleClass(m, "media_preview_has_medias", s.hasVisibleRows() && (isVisible(e) || isVisible(geByClass1("signed_wrap", domPN(m))))), i.onChangedSize && i.onChangedSize();
                 var te = window.event;
-                return te && "click" == te.type && (te.ctrlKey || te.metaKey || te.shiftKey) && s.attachCount() + 1 <= n && (d = !0), cur.fileApiUploadStarted && void 0 !== o.upload_ind || cur.preventBoxHide || d === !0 || inArray(a, ["poll", "share", "page", "postpone", "mark_as_ads"]) || boxQueue.hideLast(), cur.lastPostMsg = !1, i.onMediaAdd && i.onMediaAdd(), getAudioPlayer().updateCurrentPlaying(), cur.onMediaChanged && cur.onMediaChanged(s.chosenMedias), void 0 !== o.upload_ind && delete o.upload_ind, !1
+                return te && "click" == te.type && (te.ctrlKey || te.metaKey || te.shiftKey) && s.attachCount() + 1 <= n && (d = !0), cur.fileApiUploadStarted && void 0 !== o.upload_ind || cur.preventBoxHide || d === !0 || inArray(a, ["poll", "share", "page", "postpone", "mark_as_ads", "pretty_cards"]) || boxQueue.hideLast(), cur.lastPostMsg = !1, i.onMediaAdd && i.onMediaAdd(), getAudioPlayer().updateCurrentPlaying(), cur.onMediaChanged && cur.onMediaChanged(s.chosenMedias), void 0 !== o.upload_ind && delete o.upload_ind, !1
             },
             unchooseMedia: function(a) {
                 if (s.onChange && s.onChange(!1, a) === !1) return !1;

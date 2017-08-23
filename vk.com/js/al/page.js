@@ -6550,6 +6550,14 @@ var Wall = {
         if (!el) {
             return false;
         }
+        if (el.hasAttribute('data-reinit-ads-needs-confirmation') && AdsEdit && !opts.reinitConfirmed) {
+            if (AdsEdit.reinitCreatingPostFormNeeded()) {
+                AdsEdit.reinitCreatingPostFormConfirm(wall.setReplyAsGroup.pbind(el, extend({}, opts || {}, {
+                    reinitConfirmed: true
+                })));
+                return false;
+            }
+        }
 
         var wrap = domClosest('_submit_post_box', el),
             signed = wrap && domByClass(wrap, '_signed_checkbox'),
@@ -6577,6 +6585,22 @@ var Wall = {
             }
         }
         el.setAttribute('aria-label', getLang(from < 0 ? 'wall_reply_as_group' : 'wall_reply_as_user'));
+
+        if (el.hasAttribute('data-replace-owner-name')) {
+            el.innerHTML = fromData[3];
+            if (el.tagName === 'A') {
+                el.href = fromData[2];
+            }
+        }
+        if (el.hasAttribute('data-replace-post-to')) {
+            cur.postTo = fromData[0];
+        }
+        if (el.hasAttribute('data-replace-oid')) {
+            cur.oid = fromData[0];
+        }
+        if (el.hasAttribute('data-reinit-ads-post-editor') && AdsEdit) {
+            AdsEdit.reinitCreatingPostFormBound();
+        }
 
         if (el.id == 'official') {
             Wall.postChanged(true);
@@ -6614,9 +6638,15 @@ var Wall = {
             black: 1,
             shift: [9, 8, 8]
         });
-        if (wall.isWallReply(obj)) {
-            ajax.post('/al_groups.php', {
-                act: 'get_editor_clubs'
+        if (wall.isWallReply(obj) || wall.isAdsCreatingPost(obj)) {
+            var url = '/al_groups.php';
+            var act = 'get_editor_clubs';
+            if (wall.isAdsCreatingPost(obj)) {
+                url = '/ads_edit.php';
+                act = 'a_get_promoted_post_stealth_groups';
+            }
+            ajax.post(url, {
+                act: act
             }, {
                 cache: 1
             });
@@ -6635,9 +6665,16 @@ var Wall = {
             return false;
         }
 
-        if (wall.isWallReply(obj) && !window.replyAsList) {
-            ajax.post('/al_groups.php', {
-                act: 'get_editor_clubs'
+        if ((wall.isWallReply(obj) || wall.isAdsCreatingPost(obj)) && !window.replyAsList) {
+            var url = '/al_groups.php';
+            var act = 'get_editor_clubs';
+            if (wall.isAdsCreatingPost(obj)) {
+                url = '/ads_edit.php';
+                act = 'a_get_promoted_post_stealth_groups';
+            }
+
+            ajax.post(url, {
+                act: act
             }, {
                 cache: 1,
                 onDone: function(list) {
@@ -6669,18 +6706,23 @@ var Wall = {
 
         return postBox && postBox.id.match(/reply_box(-?\d+)_(\d+)/);
     },
+    isAdsCreatingPost: function(obj) {
+        var postHeader = gpeByClass('ads_edit_ad_submit_post_header', obj);
+
+        return !!postHeader;
+    },
     replyAsProfileData: function() {
         return window.cur && cur.wallTpl && cur.wallTpl.profileData ||
             window.wkcur && wkcur.wallTpl && wkcur.wallTpl.profileData ||
             window.mvcur && mvcur.wallTpl && mvcur.wallTpl.profileData;
     },
     replyAsGroupList: function(obj, owner) {
-        var list = [wall.replyAsProfileData()],
+        var list = obj.hasAttribute('data-disallow-profile') ? [] : [wall.replyAsProfileData()],
             ownerData = wall.replyAsGroupDomData(obj);
         if (ownerData) {
             list.push(ownerData);
         }
-        if (wall.isWallReply(obj)) {
+        if (wall.isWallReply(obj) || wall.isAdsCreatingPost(obj)) {
             each(window.replyAsList, function() {
                 if (this[0] != owner) {
                     list.push(this);
@@ -6712,7 +6754,9 @@ var Wall = {
                 appendToParent: true,
                 autoShow: false,
                 autoHide: true,
-                offset: [-10, -5],
+                offset: function() {
+                    return wall.isAdsCreatingPost(obj) ? [obj.offsetWidth / 2 + 8.5, -2] : [-10, -5];
+                },
                 onFirstTimeShow: function(ttel) {
                     var rowEls = geByClass('post_from_tt_row', ttel);
                     each(rowEls, function(i, row) {
@@ -6741,7 +6785,7 @@ var Wall = {
             });
             data(obj, 'tt', ttChooser);
         }
-        if (owner && ttChooser.isShown()) {
+        if (owner && ttChooser.isShown() && !obj.hasAttribute('data-disallow-profile')) {
             wall.setReplyAsGroup(obj, {
                 from: (from == vk.id ? owner : vk.id)
             });

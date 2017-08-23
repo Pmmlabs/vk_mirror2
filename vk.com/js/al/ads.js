@@ -507,51 +507,99 @@ Ads.deleteUnion = function(unionType, unionId, hash, lock, unlock, updateStatus,
     if (!lockDeletion()) {
         return;
     }
+    var completeMessage = '';
+    switch (unionType) {
+        case 'ad':
+            completeMessage = getLang('ads_archive_box_ad_complete');
+            break;
+        case 'campaign':
+            completeMessage = getLang('ads_archive_box_campaign_complete');
+            break;
+        case 'client':
+            completeMessage = getLang('ads_archive_box_client_complete');
+            break;
+    }
+    var requestsCount = 0;
+    var firstRequestedUnions = unionId.toString().split(',');
+    var firstRequestedHashes = hash.toString().split(',');
+    var lastRequestedUnions;
 
-    var ajaxParams = {};
-    ajaxParams.union_id = unionId;
-    ajaxParams.hash = hash;
-    if (newclass) ajaxParams.newclass = 1;
+    performRequest(unionId, hash);
 
-    ajax.post('/ads?act=a_union_delete', ajaxParams, {
-        onDone: onRequestComplete,
-        onFail: onRequestComplete
-    });
+    function performRequest(unionId, hash, continueHash) {
+        var ajaxParams = {};
+        ajaxParams.union_id = unionId;
+        ajaxParams.hash = hash;
+        if (newclass) ajaxParams.newclass = 1;
+        if (continueHash) ajaxParams.continue_hash = continueHash;
+
+        lastRequestedUnions = unionId.toString().split(',');
+        ajax.post('/ads?act=a_union_delete', ajaxParams, {
+            onDone: onRequestComplete,
+            onFail: onRequestComplete
+        });
+        requestsCount++;
+    }
 
     function onRequestComplete(response) {
-        unlockDeletion();
-        if (!isObject(response) || response.error) {
-            if (!isObject(response)) {
-                showMessage(getLang('ads_error_unexpected_error_try_later'));
-            } else {
-                showMessage(response.error);
-            }
-            return true;
-        }
-        if (response && (response.ok || newclass == 2)) {
-            var completeMessage = '';
-            switch (unionType) {
-                case 'ad':
-                    completeMessage = getLang('ads_archive_box_ad_complete');
-                    break;
-                case 'campaign':
-                    completeMessage = getLang('ads_archive_box_campaign_complete');
-                    break;
-                case 'client':
-                    completeMessage = getLang('ads_archive_box_client_complete');
-                    break;
-            }
-            if (updateStatus) {
-                if (newclass == 2) {
-                    updateStatus(response);
+        var lastError = false;
+        var lastMessage = false;
+        var needContinue = [];
+        if (isArray(response)) {
+            each(response, function(i, r) {
+                // Retry if not fully complete
+                if (r.timelimit) {
+                    needContinue.push([lastRequestedUnions[i], r.continueHash]);
                 } else {
-                    updateStatus(response.status, response.status_class, response.status_type, response.status_variants);
+                    if (!isObject(r) || r.error) {
+                        lastError = isObject(r) ? r.error : getLang('ads_error_unexpected_error_try_later');
+                    } else {
+                        if (updateStatus) {
+                            if (newclass != 2) { // updateStatus with newclass=2 handle multiple responses, otherwise call for each sub-response
+                                updateStatus(r.status, r.status_class, r.status_type, r.status_variants);
+                            }
+                        } else {
+                            lastMessage = completeMessage;
+                        }
+                    }
                 }
-            } else {
-                showMessage(completeMessage, true, function() {
+            });
+            if (newclass == 2 && updateStatus) {
+                // Prepare responses array for updateStatus with nulled unions which needs to be continued
+                var statuses = [];
+                each(firstRequestedUnions, function(i, union) {
+                    var idx = lastRequestedUnions.indexOf(union);
+                    statuses[i] = ((idx === -1 || response[idx].timelimit) ? null : response[idx]);
+                });
+                updateStatus(statuses);
+            }
+        }
+        if (needContinue.length && requestsCount < 5000) {
+            // resend request with left unions
+            var newUnions = [];
+            var newHashes = [];
+            var continueHashes = [];
+            each(needContinue, function(i, item) {
+                var union = item[0];
+                var idx = firstRequestedUnions.indexOf(union);
+                if (idx === -1) {
+                    console.log('bad union', union, firstRequestedUnions, lastRequestedUnions);
+                } else {
+                    newUnions.push(union);
+                    newHashes.push(firstRequestedHashes[idx]);
+                    continueHashes.push(item[1]);
+                }
+            });
+            performRequest(newUnions.join(','), newHashes.join(','), continueHashes.join(','));
+        } else {
+            if (lastError) {
+                showMessage(lastError);
+            } else if (lastMessage) {
+                showMessage(lastMessage, true, function() {
                     nav.reload();
                 }, unionType);
             }
+            unlockDeletion();
         }
         return true;
     }

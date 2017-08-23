@@ -217,7 +217,7 @@ var stVersions = {
     'module.css': 18258136461,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 21451151126,
-    'page.js': 4146090818,
+    'page.js': 3136825098,
     'page.css': 23647777337,
     'page_help.css': 22140821067,
     'public.css': 25834070752,
@@ -349,8 +349,8 @@ var stVersions = {
     'groupinfo.css': 20865527572,
     'bugs.js': 3874995669,
     'bugs.css': 15820342831,
-    'bugtracker.js': 3439562393,
-    'bugtracker.css': 21729125576,
+    'bugtracker.js': 3995786737,
+    'bugtracker.css': 23108751815,
     'login.css': 18047531018,
     'login.js': 3551917100,
     'upload.js': 645417492,
@@ -370,14 +370,14 @@ var stVersions = {
     'offers.js': 2030679272,
     'call.js': 4217435992,
     'call.css': 3256039661,
-    'aes_light.css': 23747990664,
+    'aes_light.css': 25548480703,
     'aes_light.js': 3306454788,
-    'ads.css': 22040706251,
+    'ads.css': 21022319594,
     'ads_bonus.css': 460482192,
-    'ads.js': 1629241604,
+    'ads.js': 1803608766,
     'ads_payments.js': 2170749464,
-    'ads_edit.css': 18043494941,
-    'ads_edit.js': 626559218,
+    'ads_edit.css': 18971835548,
+    'ads_edit.js': 1137449502,
     'ads_edit_geo.js': 1634516705,
     'ads_moder_common.css': 16305331040,
     'ads_moder.css': 15668009224,
@@ -427,7 +427,7 @@ var stVersions = {
     'ui.js': 3953380422,
     'ui_common.js': 2554866735,
     'ui_common.css': 18739999133,
-    'ui_media_selector.js': 292427396,
+    'ui_media_selector.js': 2444406862,
     'ui_media_selector.css': 20412515785,
     'ui_manual.css': 16733019536,
     'admin.js': 2866808704,
@@ -537,7 +537,7 @@ var stVersions = {
     'internal/cvkmobile.css': 18935197616,
     'internal/cvkmobile.js': 3693679928,
     'shortener.js': 1002525642,
-    'cmodules/web/pretty_cards.js': 349407431,
+    'cmodules/web/pretty_cards.js': 1388461462,
     'lang': 6831
 };
 var stTypes = {
@@ -604,4 +604,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 6197;
+var _rnd = 4139;

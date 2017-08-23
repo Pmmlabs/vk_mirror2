@@ -71,8 +71,9 @@ a .ads_sub_link:hover {
 
 #ads_page h2 {
     margin-top: 0;
+    margin-bottom: 20px;
     border-bottom: 1px solid #e8ebee;
-    padding-bottom: 3px
+    padding-bottom: 12px
 }
 
 #ads_hero_unit,
@@ -894,8 +895,8 @@ td.paginated_table_cell.column_status_view {
 
 #ads_unions_content .table_label.promoted_post,
 #ads_unions_content .table_label.with_redesign {
-    min-width: 160px;
-    max-width: 160px
+    min-width: 180px;
+    max-width: 180px
 }
 
 #ads_unions_content .table_label.big_app {
@@ -1854,6 +1855,10 @@ table.ads_inline_edit_table td {
     display: none
 }
 
+.ads_general_info {
+    max-width: 505px
+}
+
 .ads_general_info .table_large_text {
     width: 385px;
     max-width: 385px
@@ -1865,8 +1870,8 @@ table.ads_inline_edit_table td {
 }
 
 .ads_general_info .table_large_text.promoted_post {
-    width: 215px;
-    max-width: 215px
+    width: 315px;
+    max-width: 315px
 }
 
 .ads_general_info .table_large_text.big_app {
@@ -1877,6 +1882,179 @@ table.ads_inline_edit_table td {
 .ads_general_info .table_large_text.with_redesign {
     width: 215px;
     max-width: 215px
+}
+
+.ads_union_promoted_post_stat {
+    width: 505px;
+    margin-top: 40px;
+    float: left
+}
+
+.ads_union_promoted_post_stat_headline {
+    margin-top: 20px;
+    line-height: 0
+}
+
+.ads_union_promoted_post_stat_headline_comment {
+    color: #828282;
+    margin-top: 8px
+}
+
+.ads_union_promoted_post_stat_headline_item {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #000;
+    padding-left: 32px;
+    background-repeat: no-repeat;
+    background-size: 24px auto
+}
+
+.ads_union_promoted_post_stat_headline_item:first-child {
+    margin-left: 0
+}
+
+.ads_union_promoted_post_stat_headline_item_total_reach {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2030%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2046.1%20(44463)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Epeople%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%2F%3E%0A%20%20%20%20%3Cg%20id%3D%22master%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22people%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rec%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2230%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M22.4313725%2C20.0100446%20C23.3723922%2C20.3247768%2023.9998431%2C21.0554888%2024%2C22%20C24%2C22.5215112%2023.5898039%2C23%2023.0588235%2C23%20L11%2C23%20L11%2C22.0558036%20C11%2C21.1116071%2011.4636863%2C20.3678951%2012.3921569%2C20.0100446%20C13.3206275%2C19.6521942%2015.0215708%2C19.3414981%2015.3847843%2C18.9084821%20C15.7479978%2C18.4754661%2015.8431373%2C17.9642857%2015.8431373%2C16.8627232%20C13.6470588%2C16.390625%2012.8627451%2C14.6595982%2012.8627451%2C14.6595982%20C12.8627451%2C14.6595982%2013.6767059%2C14.8531585%2014.1176471%2C13.6367188%20C14.4313725%2C12.7712054%2013.2900392%2C10.3430469%2014.5098039%2C8.83705357%20C15.5294118%2C7.578125%2016.9411765%2C8.20758929%2016.9411765%2C8.20758929%20C16.9411765%2C8.20758929%2017.7254902%2C7.79998779%2018.6661961%2C7.79998779%20C19.7647059%2C7.79998779%2021.0026667%2C8.51760045%2020.7843137%2C10.8828125%20C20.3921569%2C15.1316964%2021.9854118%2C14.6595982%2021.9730196%2C14.6595982%20C21.9607843%2C14.6595982%2021.3333333%2C16.390625%2018.9803922%2C16.8627232%20C18.9803922%2C17.9642857%2019.05%2C18.4757254%2019.4390588%2C18.9084821%20C19.8281176%2C19.3412388%2021.4901961%2C19.6953125%2022.4313725%2C20.0100446%20Z%20M10.9573022%2C18.7242582%20C10.1746378%2C19.1938234%209%2C20.3381398%209%2C21.7468354%20L9%2C23%20L0.939197335%2C23%20C0.42049297%2C23%206.35229641e-17%2C22.5186674%200%2C22%20C0.00563518401%2C19.3385043%201.09619982%2C18.7737565%202.03524063%2C18.3043478%20C2.97490756%2C17.8347826%204.85408489%2C17.3328174%205.7917169%2C16.5826087%20C6.31344102%2C16.1651652%206.52225589%2C15.6434783%206.41784846%2C15.0173913%20C5.7917169%2C14.7043478%205.47865112%2C14.1826609%205.47865112%2C13.4521739%20C4.85251957%2C13.4521739%204.3829209%2C12.6695652%204.3829209%2C11.7304348%20C4.3829209%2C11.3129913%204.64386122%2C11.0522261%205.16558534%2C10.9478261%20C4.74811213%2C10.8434261%204.53945379%2C10.1130957%204.53945379%2C8.75652174%20C4.53945379%2C7.38476522%205.32211823%2C7.19130435%206.10478268%2C7.19130435%20C5.47865112%2C6.56521739%204.53945379%2C5%208.45277602%2C5%20C12.0530325%2C5%2012.2095654%2C8.15813913%2012.2095654%2C9.22608696%20C12.2095654%2C9.95657391%2012.0530325%2C10.5303826%2011.7399667%2C10.9478261%20C12.1574399%2C11.0522261%2012.3660982%2C11.3129913%2012.3660982%2C11.7304348%20C12.3660982%2C12.6695652%2012.0535021%2C13.4521739%2011.4269009%2C13.4521739%20C11.4269009%2C14.1826609%2011.1138351%2C14.7043478%2010.4877036%2C15.0173913%20C10.3832961%2C15.6434783%2010.539829%2C16.1651652%2010.9573022%2C16.5826087%20C11.5133071%2C17.1385739%2012.6534717%2C17.5291415%2013.6264801%2C17.8534546%20C13.6248536%2C17.8534546%2011.7399667%2C18.254693%2010.9573022%2C18.7242582%20Z%22%20id%3D%22Shape%22%20fill%3D%22%23A5ABB4%22%20fill-rule%3D%22nonzero%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
+}
+
+.ads_union_promoted_post_stat_headline_item_likes {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2030%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2046.1%20(44463)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Elike%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%2F%3E%0A%20%20%20%20%3Cg%20id%3D%22master%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22like%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rectangle-8%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2230%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M12%2C10.4630864%20C11.2142857%2C5.61744859%205.40384262%2C4.88183138%202.88736112%2C7.46211754%20C0.370879625%2C10.0424037%200.370879625%2C14.2353687%202.88736112%2C16.8156549%20C3.67376159%2C17.6219943%2010.4368056%2C24.3952454%2010.4368056%2C24.3952454%20C11.2232061%2C25.2015849%2012.6387269%2C25.2015849%2013.4251274%2C24.3952454%20L20.9745719%2C16.8156549%20C23.6483335%2C14.2353687%2023.6483335%2C10.0424037%2021.131852%2C7.46211754%20C18.6153705%2C5.04309927%2012.7857143%2C5.61744859%2012%2C10.4630864%20Z%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
+}
+
+.ads_union_promoted_post_stat_headline_item_copies {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2030%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2046.1%20(44463)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Eshare%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%2F%3E%0A%20%20%20%20%3Cg%20id%3D%22master%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22share%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rec%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2230%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M22%2C5%20L22%2C22%20L20.4555985%2C22%20C20.4555985%2C22%2018.7707968%2C20.8373626%2017.2263952%2C19.6769231%20C14.979993%2C18.0813187%2014.0603722%2C18%2013.4285714%2C18%20L6%2C18%20C3.5%2C18%202%2C16.4285714%202%2C14.2857143%20L2%2C12.8571429%20C2%2C10.7142857%203.5%2C9%206%2C9%20L13.4285714%2C9%20C14.0603722%2C9%2014.979993%2C9.06153846%2017.2263952%2C7.46593407%20C18.7707968%2C6.30549451%2020.4555985%2C5%2020.4555985%2C5%20L22%2C5%20Z%20M12.6000242%2C22.2%20C12.6000242%2C24.02%2012.4358137%2C25%209.31581382%2C25%20L7.40002441%2C18%20L10.957919%2C18%20L12.6000242%2C22.2%20Z%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
+}
+
+.ads_union_promoted_post_stat_headline_item_reply_count {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2030%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2046.1%20(44463)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Ecomment%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%2F%3E%0A%20%20%20%20%3Cg%20id%3D%22master%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22comment%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rec%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2230%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M2%2C6.99188419%20C2%2C5.89179693%202.89821238%2C5%203.99079514%2C5%20L20.0092049%2C5%20C21.1086907%2C5%2022%2C5.89339733%2022%2C6.99188419%20L22%2C18.0081158%20C22%2C19.1082031%2021.1017876%2C20%2020.0092049%2C20%20L3.99079514%2C20%20C2.89130934%2C20%202%2C19.1066027%202%2C18.0081158%20L2%2C6.99188419%20Z%20M7%2C20%20L13%2C20%20L7%2C26%20L7%2C20%20Z%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
+}
+
+.ads_union_promoted_post_stat_headline_item_views {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2030%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2046.1%20(44463)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Ctitle%3Ereach%3C%2Ftitle%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%2F%3E%0A%20%20%20%20%3Cg%20id%3D%22master%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22reach%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Crect%20id%3D%22Rec%22%20x%3D%220%22%20y%3D%220%22%20width%3D%2224%22%20height%3D%2230%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M12%2C24%20C4.8%2C24%200%2C16.8%200%2C15%20C1.46957616e-16%2C13.2%204.8%2C6%2012%2C6%20C19.2%2C6%2024%2C13.2%2024%2C15%20C24%2C16.8%2019.2%2C24%2012%2C24%20Z%20M12%2C21%20C15.3137085%2C21%2018%2C18.3137085%2018%2C15%20C18%2C11.6862915%2015.3137085%2C9%2012%2C9%20C8.6862915%2C9%206%2C11.6862915%206%2C15%20C6%2C18.3137085%208.6862915%2C21%2012%2C21%20Z%20M12%2C18%20C10.3431458%2C18%209%2C16.6568542%209%2C15%20C9%2C13.3431458%2010.3431458%2C12%2012%2C12%20C13.6568542%2C12%2015%2C13.3431458%2015%2C15%20C15%2C16.6568542%2013.6568542%2C18%2012%2C18%20Z%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
+}
+
+.ads_union_promoted_post_stat_table {
+    margin-top: 10px;
+    line-height: 0
+}
+
+.ads_union_promoted_post_stat_table_column {
+    line-height: 1.54;
+    display: inline-block;
+    vertical-align: top;
+    width: 220px;
+    margin-left: 20px
+}
+
+.ads_union_promoted_post_stat_table_column:first-child {
+    margin-left: 0
+}
+
+.ads_union_promoted_post_stat_table_row_formatted {
+    display: inline-block;
+    width: 45px;
+    text-align: right;
+    font-weight: 700
+}
+
+.ads_union_promoted_post_stat_video {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-top: 1px solid #eef0f3
+}
+
+.ads_union_promoted_post_stat_video_graph {
+    width: 100%;
+    margin-top: 50px;
+    line-height: 80px;
+    height: 80px;
+    white-space: nowrap
+}
+
+.ads_union_promoted_post_stat_video_graph_section {
+    display: inline-block;
+    vertical-align: bottom;
+    border-left: 1px solid #cdd3d8;
+    position: relative;
+    line-height: 1.46;
+    padding-top: 4px
+}
+
+.ads_union_promoted_post_stat_video_graph_section:last-child {
+    position: relative;
+    left: -1px;
+    z-index: 2
+}
+
+.ads_union_promoted_post_stat_video_graph_section_value {
+    position: absolute;
+    top: -27px;
+    left: -28px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #000;
+    width: 50px;
+    text-align: center;
+    z-index: 10;
+    padding: 1px 3px;
+    background-color: hsla(0, 0%, 100%, .7);
+    border-radius: 2px
+}
+
+.ads_union_promoted_post_stat_video_graph_section:first-child .ads_union_promoted_post_stat_video_graph_section_value {
+    text-align: left;
+    left: -5px;
+    width: auto
+}
+
+.ads_union_promoted_post_stat_video_graph_section:last-child .ads_union_promoted_post_stat_video_graph_section_value {
+    text-align: right;
+    left: -52px
+}
+
+.ads_union_promoted_post_stat_video_graph_section_label {
+    position: absolute;
+    padding-top: 10px;
+    color: #828282;
+    width: 50px;
+    text-align: center;
+    z-index: 10;
+    left: -25px
+}
+
+.ads_union_promoted_post_stat_video_graph_section:first-child .ads_union_promoted_post_stat_video_graph_section_label {
+    text-align: left;
+    left: -2px;
+    width: auto
+}
+
+.ads_union_promoted_post_stat_video_graph_section:last-child .ads_union_promoted_post_stat_video_graph_section_label {
+    text-align: right;
+    left: -49px
+}
+
+.ads_union_promoted_post_stat_video_graph_section_trend {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    border-top: solid #fff;
+    border-left: none;
+    border-right: none;
+    z-index: 1
+}
+
+.ads_union_promoted_post_stat_video_graph_section_trend_container {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: #f0f2f5
 }
 
 #ads_unions_content h4 span {
@@ -2770,7 +2948,7 @@ td.ads_settings_notifacations_label {
 
 #ad_preview_top .ads_ad_box_border.promoted_post {
     left: auto;
-    width: 388px
+    width: 385px
 }
 
 .ads_ad_with_redesign_preview p {
@@ -2861,7 +3039,7 @@ td.ads_settings_notifacations_label {
 
 #ad_preview_top.promoted_post .ad_preview_top_buttons {
     display: inline-block;
-    width: 388px
+    width: 385px
 }
 
 .ads_alt_table {

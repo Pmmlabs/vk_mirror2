@@ -1301,7 +1301,7 @@ AdsEdit.showCreatingPostBox = function(buttonElem) {
 AdsEdit.initCreatingPostBox = function(creatingPostBox, groupsDefaultItems, selectedItem) {
 
     creatingPostBox.removeButtons();
-    var buttonElem = creatingPostBox.addButton(getLang('ads_edit_ad_creating_post_continue'), AdsEdit.showCreatingPostForm.pbind(creatingPostBox), 'yes', true);
+    var buttonElem = creatingPostBox.addButton(getLang('ads_edit_ad_creating_post_continue'), AdsEdit.showCreatingPostForm.pbind(null, creatingPostBox), 'yes', true);
     if (!selectedItem) {
         addClass(buttonElem, 'button_disabled');
     }
@@ -1332,52 +1332,131 @@ AdsEdit.initCreatingPostBox = function(creatingPostBox, groupsDefaultItems, sele
     }
 }
 
-AdsEdit.showCreatingPostForm = function(creatingPostBox, postOwnerId) {
-    var groupId = creatingPostBox.cur.uiGroupId.val();
-    if (!groupId) {
+AdsEdit.showCreatingPostForm = function(buttonElem, creatingPostBox, postOwnerId) {
+    if (buttonElem && hasClass(buttonElem.parentNode, 'button_disabled')) {
         return;
     }
 
     var lockHash = 'creating_post_form';
-    if (!Ads.lock(lockHash, onLock, onUnlock)) {
+    if (!Ads.lock(lockHash)) {
         return;
     }
 
     var viewParams = cur.viewEditor.getParams();
 
     var ajaxParams = {};
-    ajaxParams.group_id = groupId;
     ajaxParams.client_id = viewParams.client_id;
     ajaxParams.campaign_id = viewParams.campaign_id;
+    ajaxParams.link_subtype = viewParams.link_subtype;
 
-    ajax.post('/adsedit?act=creating_post_form', ajaxParams, {
+    creatingPostBox = showBox('/adsedit?act=creating_post_form', ajaxParams, {
         onDone: onComplete.pbind(true),
         onFail: onComplete.pbind(false)
     });
 
     function onComplete(isDone) {
         Ads.unlock(lockHash);
-
-        if (!isDone) {
-            return;
-        }
-
-        var args = Array.prototype.slice.call(arguments);
-        args.shift();
-        args.unshift(creatingPostBox);
-        AdsEdit.initCreatingPostForm.apply(window, args);
-    }
-
-    function onLock() {
-        lockButton(creatingPostBox.cur.buttonLockElem);
-    }
-
-    function onUnlock() {
-        unlockButton(creatingPostBox.cur.buttonLockElem);
     }
 }
 
-AdsEdit.initCreatingPostForm = function(creatingPostBox, html, js, postOwnerId, wallOptions) {
+AdsEdit.triggerDefaultMediaForPostForm = function(wallOptions) {
+    if (wallOptions.additional_save_params && wallOptions.additional_save_params.ads_promoted_post_subtype) {
+        var triggerMediaType = null;
+        switch (wallOptions.additional_save_params.ads_promoted_post_subtype) {
+            case 'promoted_post_pretty_cards':
+                {
+                    triggerMediaType = 'pretty_cards';
+                    break;
+                }
+
+            case 'promoted_post_button':
+                {
+                    triggerMediaType = 'share';
+                    break;
+                }
+
+            default:
+            case 'promoted_post':
+                {
+                    // do nothing
+                    break;
+                }
+        }
+
+        if (triggerMediaType && cur.wallAddMedia) {
+            each(cur.wallAddMedia.menu.types, function(k, v) {
+                if (v[0] === triggerMediaType) {
+                    v[2]();
+                    return false;
+                }
+            });
+        }
+    }
+}
+
+AdsEdit.reinitCreatingPostForm = function(creatingPostBox, wallOptions) {
+    var boxBodyNode = creatingPostBox.bodyNode;
+    var postMessageInput = geByClass1('submit_post_field', boxBodyNode);
+    var postMessage = trim((window.Emoji ? Emoji.editableVal : val)(postMessageInput));
+
+    cur.editing = false;
+    geByClass1('ads_edit_ad_submit_post_wrap', boxBodyNode).innerHTML = creatingPostBox.postEditorHtml;
+    Wall.init(wallOptions);
+    Wall.showEditPost();
+
+    postMessageInput = geByClass1('submit_post_field', boxBodyNode);
+    val(postMessageInput, postMessage);
+
+    AdsEdit.triggerDefaultMediaForPostForm(wallOptions);
+}
+
+AdsEdit.reinitCreatingPostFormNeeded = function() {
+    var reinitNeeded = false;
+    each(cur.wallAddMedia.chosenMedias || [], function() {
+        var media = this;
+        if (!media) {
+            return;
+        }
+
+        var mediaType = media[0];
+
+        if (mediaType) {
+            switch (mediaType) {
+                case 'pretty_cards':
+                    {
+                        if (cur.wallAddMedia.prettyCardGallery.needSendData()) {
+                            reinitNeeded = true;
+                        }
+                        break;
+                    }
+                default:
+                    {
+                        reinitNeeded = true;
+                    }
+            }
+        }
+    });
+
+    return reinitNeeded;
+}
+
+AdsEdit.reinitCreatingPostFormConfirm = function(confirmCallback) {
+    showFastBox({
+            title: getLang('global_action_confirmation'),
+            dark: true,
+            width: 400,
+        },
+        getLang('ads_edit_promoted_post_confirm_reinit'),
+        getLang('global_continue'),
+        function() {
+            curBox().hide();
+            confirmCallback && confirmCallback();
+        }, getLang('global_cancel'));
+}
+
+AdsEdit.reinitCreatingPostFormBound = function() {}
+
+AdsEdit.initCreatingPostForm = function(creatingPostBox, postOwnerId, wallOptions) {
     creatingPostBox.removeButtons();
     creatingPostBox.addButton(getLang('ads_edit_ad_creating_post_create'), AdsEdit.createPost.pbind(creatingPostBox), 'yes', false, 'send_post');
     creatingPostBox.addButton(getLang('box_cancel'), false, 'no');
@@ -1385,19 +1464,80 @@ AdsEdit.initCreatingPostForm = function(creatingPostBox, html, js, postOwnerId, 
         width: 600
     });
 
-    addClass('ads_edit_ad_creating_post_group_wrap', 'unshown');
-    removeClass('ads_edit_ad_creating_post_form_wrap', 'unshown');
-    ge('ads_edit_ad_creating_post_form').innerHTML = html;
-
-    eval(js);
+    // Pre-load clubs list
+    ajax.post('/ads_edit.php', {
+        act: 'a_get_promoted_post_stealth_groups'
+    }, {
+        cache: 1
+    });
 
     // Hacks for ugly page.js
     cur.oid = postOwnerId;
     cur.postTo = postOwnerId;
     cur.options = wallOptions;
 
+    creatingPostBox.postEditorHtml = geByClass1('ads_edit_ad_submit_post_wrap', creatingPostBox.bodyNode).innerHTML;
+
     Wall.init(wallOptions);
     Wall.showEditPost();
+
+    AdsEdit.reinitCreatingPostFormBound = AdsEdit.reinitCreatingPostForm.pbind(creatingPostBox, wallOptions);
+
+    creatingPostBox.changed = true; // prevent hiding box on background click
+
+    AdsEdit.triggerDefaultMediaForPostForm(wallOptions);
+
+    if (!ls.get('ads_promoted_posts_stealth_groups_selector_hidden') && !cur.buttonTextTooltip) {
+        var tryShowTooltipInterval = setInterval(function() {
+            if (creatingPostBox.isVisible()) {
+                clearInterval(tryShowTooltipInterval);
+            } else {
+                return;
+            }
+            cur.closeGroupSelectorTooltip = function() {
+                cur.groupSelectorTooltip.hide();
+                ls.set('ads_promoted_posts_stealth_groups_selector_hidden', 1);
+            };
+            var el = geByClass1('ads_edit_ad_submit_post_author_selector', creatingPostBox.bodyNode);
+            if (el) {
+                var appendTo = domCA(el, '.box_layout');
+                cur.groupSelectorTooltip = new ElementTooltip(el, {
+                    autoShow: false,
+                    appendTo: appendTo ? appendTo : geByTag1('body'),
+                    content: '<div class="feature_intro_tt_hide" onclick="cur.closeGroupSelectorTooltip();"></div>' + getLang('ads_promoted_post_stealth_group_selector'),
+                    forceSide: 'right',
+                    offset: [18, -2],
+                    type: ElementTooltip.TYPE_HORIZONTAL,
+                    cls: 'feature_intro_tt',
+                    onHide: function() {
+                        cur.groupSelectorTooltip.destroy();
+                    }
+                });
+                cur.groupSelectorTooltip.show();
+                addEvent(el, 'mouseover', function() {
+                    if (cur.groupSelectorTooltip) {
+                        cur.groupSelectorTooltip.hide();
+                    }
+                });
+            }
+        }, 1000);
+    }
+
+    cur.prevBefUnload = window.onbeforeunload;
+    window.onbeforeunload = function(event) {
+        var confirmationMessage = getLang('ads_promoted_post_confirm_leave');
+
+        (event || window.event).returnValue = confirmationMessage;
+        return confirmationMessage;
+    };
+    cur.destroy.push(function() {
+        window.onbeforeunload = cur.prevBefUnload;
+    });
+    creatingPostBox.setOptions({
+        onHide: function() {
+            window.onbeforeunload = cur.prevBefUnload;
+        }
+    });
 }
 
 AdsEdit.createPost = function(creatingPostBox) {
@@ -1410,6 +1550,7 @@ AdsEdit.createPost = function(creatingPostBox) {
 
     function onComplete(response) {
         if (response && response.post_url) {
+            cur.viewEditor.completeLinkPending = true;
             cur.viewEditor.setLinkUrl(response.post_url);
             creatingPostBox.hide();
         }
@@ -1516,6 +1657,12 @@ AdsEdit.initEditingPostBox = function(lockHash, html, js, postOwnerId, postId, w
 AdsEdit.completeEditingPost = function(editingPostBox) {
     editingPostBox.hide();
     cur.viewEditor.updatePost();
+}
+
+AdsEdit.scrollToEditing = function() {
+    var scrollElem = geByClass1('ads_edit_link_type_cards_wrapper');
+    var scrollY = getXY(scrollElem)[1] + getSize(scrollElem)[1] + 20;
+    scrollToY(scrollY);
 }
 
 //
@@ -1649,11 +1796,13 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
         },
         link_type: {
             value: 0,
+            subvalue: '',
             complete: false,
             allow_edit_all: false,
             allow_edit_link: false,
             editing: false,
-            cancelling: false
+            cancelling: false,
+            force_show_other_link_types: false
         },
         link_id: {
             value: '',
@@ -2328,6 +2477,16 @@ AdsViewEditor.prototype.initUiParam = function(paramName) {
             Radiobutton.select(this.options.targetIdPrefix + paramName, this.params[paramName].value);
             break;
         case 'link_type':
+            var containerElem = geByClass1('ads_edit_link_type_cards_wrapper');
+            each(geByClass('ads_edit_link_type_card', containerElem), function(key, targetElem) {
+                addEvent(targetElem, 'click', function(event) {
+                    return this.onUiEvent(paramName, event);
+                }.bind(this));
+                this.cur.destroy.push(function(targetElem) {
+                    cleanElems(targetElem);
+                }.pbind(targetElem));
+            }.bind(this));
+
             targetElem = ge(this.options.targetIdPrefix + 'link_type_community');
             addEvent(targetElem, 'click', function(event) {
                 return this.onUiEvent(paramName, event);
@@ -2375,6 +2534,21 @@ AdsViewEditor.prototype.initUiParam = function(paramName) {
             this.cur.destroy.push(function(targetElem) {
                 cleanElems(targetElem);
             }.pbind(targetElem));
+
+            addEvent(ge(this.options.targetIdPrefix + 'post_or_choose_post_link'), 'click', function() {
+                this.forceShowLinkUrl = true;
+                this.updateUiParamVisibility('link_url');
+                this.updateUiParamVisibility('_link_buttons');
+                this.updateUiParam('link_url');
+                elfocus(this.options.targetIdPrefix + 'link_url');
+                return false;
+            }.bind(this));
+
+            addEvent(ge('ads_edit_link_type_show_other'), 'click', function() {
+                this.params.link_type.force_show_other_link_types = true;
+                this.updateUiParamVisibility('_link_type');
+                return false;
+            }.bind(this));
             break;
         case 'link_id':
             targetElem = ge(this.options.targetIdPrefix + paramName);
@@ -2754,6 +2928,7 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
     switch (paramName) {
         case 'link_type':
             var paramValue = this.params.link_type.value;
+            var paramSubvalue = '';
             if (inArray(paramValue, AdsEdit.ADS_AD_LINK_TYPES_ALL_GROUP)) {
                 paramValue = AdsEdit.ADS_AD_LINK_TYPE_GROUP;
             }
@@ -2762,12 +2937,18 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
             }
             if (inArray(paramValue, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST)) {
                 paramValue = AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW;
+                paramSubvalue = this.params.link_type.subvalue;
             }
-            var elems = geByClass('ads_edit_link_type_item', 'ads_param_link_type_wrap');
+            var elems = geByClass('ads_edit_link_type_card', 'ads_edit_link_type_cards_wrapper');
+            var disableAllLinkTypes = !!(this.params.link_type.disabled || !this.params.link_type.editing || !this.params.link_type.allow_edit_all);
+            var disableOtherPostTypes = inArray(paramValue, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && !!this.params.link_url.value;
             for (var i = 0, elem; elem = elems[i]; i++) {
-                toggleClass(elem, 'selected', !!(intval(elem.getAttribute('value')) == paramValue));
-                toggleClass(elem, 'disabled', !!(this.params.link_type.disabled || !this.params.link_type.editing || !this.params.link_type.allow_edit_all));
+                toggleClass(elem, 'selected', !!(intval(elem.getAttribute('value')) == paramValue && ((paramSubvalue && elem.getAttribute('subvalue') === paramSubvalue) || !paramSubvalue)));
+                toggleClass(elem, 'disabled', disableAllLinkTypes || (disableOtherPostTypes && inArray(elem.getAttribute('value'), AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && elem.getAttribute('subvalue') !== paramSubvalue));
             }
+            geByClass('ads_edit_link_type_cards_block_title').map(function(el) {
+                toggleClass(el, 'disabled', disableAllLinkTypes)
+            });
             break;
         case 'link_id':
             this.initUiParam(paramName);
@@ -3179,8 +3360,19 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
             toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
             break;
         case 'link_url':
+            var linkTypeNeedsVisibleLinkUrl = inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_URL, AdsEdit.ADS_AD_LINK_TYPE_VIDEO, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE]);
+            var showPromotedPostLinkUrl = inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && (!!this.params.link_url.value || this.forceShowLinkUrl);
+            this.params[paramName].hidden = !(linkTypeNeedsVisibleLinkUrl || showPromotedPostLinkUrl);
+
             this.initUiParam(paramName);
             toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
+            break;
+        case '_link_buttons':
+            var showButtons = true;
+            if (inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params.link_url.hidden) {
+                showButtons = false;
+            }
+            toggle(ge('ads_edit_link_object_buttons_row'), showButtons);
             break;
         case 'link_domain':
             var wrapElem = ge('ads_edit_ad_row_' + paramName);
@@ -3197,6 +3389,17 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
             break;
         case '_link_type':
             toggleClass('ads_edit_ad_row_link_upload_video', 'unshown', !(this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO));
+
+            var hideOtherLinkTypes = inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && !this.params.link_type.force_show_other_link_types;
+
+            var otherLinkTypesBlock = geByClass1('ads_edit_link_type_cards_block_other');
+            if (hideOtherLinkTypes && isVisible(otherLinkTypesBlock)) {
+                slideUp(otherLinkTypesBlock, 200);
+            }
+            if (!hideOtherLinkTypes && !isVisible(otherLinkTypesBlock)) {
+                slideDown(otherLinkTypesBlock, 200);
+            }
+            toggleClass('ads_edit_link_type_show_other_row', 'unshown', !hideOtherLinkTypes || !this.params.link_type.editing);
             break;
         case '_link_type_editing':
             toggleClass(this.options.targetIdPrefix + 'link_object_complete', 'unshown', !(this.params.link_type.editing));
@@ -3415,8 +3618,10 @@ AdsViewEditor.prototype.updateUiParamDisabledText = function(paramName) {
     });
 }
 
-AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDataUpdate, delayed) {
+AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDataUpdate, delayed, options) {
     var paramValueOld = this.params[paramName].value;
+    options = options || {};
+    var paramSubValue = options.paramSubValue ? options.paramSubValue : '';
 
     // postpone function execution
     if (!delayed) {
@@ -3440,7 +3645,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
         }
 
         setTimeout(function() {
-            this.onParamUpdate(paramName, paramValue, forceDataUpdate, true);
+            this.onParamUpdate(paramName, paramValue, forceDataUpdate, true, options);
         }.bind(this), delayMs);
         return;
     }
@@ -3456,7 +3661,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
             paramValue = AdsEdit.unescapeValue(paramValue);
         }
 
-        if (this.params[paramName].value === paramValue) {
+        if (this.params[paramName].value === paramValue && !paramSubValue) {
             break;
         }
 
@@ -3591,11 +3796,11 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 isUpdateNeeded = true;
                 break;
             case 'link_type':
+                this.params.link_type.subvalue = paramSubValue;
                 this.params.link_id.value = '';
                 this.params.link_owner_id.value = '';
                 this.params.link_id.data = [];
                 this.params.link_id.hidden = !inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_GROUP, AdsEdit.ADS_AD_LINK_TYPE_EVENT, AdsEdit.ADS_AD_LINK_TYPE_PUBLIC, AdsEdit.ADS_AD_LINK_TYPE_MARKET, AdsEdit.ADS_AD_LINK_TYPE_APP]);
-                this.params.link_url.hidden = !inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_URL, AdsEdit.ADS_AD_LINK_TYPE_VIDEO, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE, AdsEdit.ADS_AD_LINK_TYPE_POST_WITH_SHADOW, AdsEdit.ADS_AD_LINK_TYPE_POST_STEALTH]);
                 this.params.link_domain.hidden = !inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_URL, AdsEdit.ADS_AD_LINK_TYPE_VIDEO]);
                 if (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_VIDEO) {
                     this.params.link_id.value = this.params.link_id.video_value;
@@ -3620,6 +3825,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.updateUiParam('_link_type');
                 this.updateUiParam('_link_id');
                 this.updateUiParam('_link_url');
+                this.updateUiParam('_link_post');
                 this.updateUiParam('_link_video');
                 this.updateUiParamPlaceholderText('link_id');
                 this.updateUiParamData('link_id');
@@ -3631,6 +3837,7 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.updateUiParamVisibility('link_id');
                 this.updateUiParamVisibility('link_url');
                 this.updateUiParamVisibility('link_domain');
+                this.updateUiParamVisibility('_link_buttons');
                 if (!this.params.link_type.cancelling && (inArray(paramValue, AdsEdit.ADS_AD_LINK_TYPES_ALL_MOBILE_APP) || inArray(paramValueOld, AdsEdit.ADS_AD_LINK_TYPES_ALL_MOBILE_APP))) {
                     this.updateLinkDomain();
                 }
@@ -3709,12 +3916,15 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.params.link_domain_confirm.value = 0;
                 this.params.promoted_post_need_confirmation.value = 0;
                 this.updateUiParam('link_domain');
+                this.updateUiParam('link_type');
                 this.updateUiParam('_link_type');
                 this.updateUiParam('_link_url');
                 this.updateUiParam('_link_post');
                 this.updateUiParam('_link_video');
+                this.updateUiParamVisibility('link_url');
                 this.updateUiParamVisibility('_link_url');
                 this.updateUiParamVisibility('_link_post');
+                this.updateUiParamVisibility('_link_buttons');
                 if (!this.params.link_type.cancelling) {
                     this.updateLinkDomain();
                 }
@@ -3962,14 +4172,17 @@ AdsViewEditor.prototype.onUiEvent = function(paramName, event) {
                 break;
             }
 
-            var elems = geByClass('ads_edit_link_type_item', 'ads_param_link_type_wrap');
+            var elems = geByClass('ads_edit_link_type_card', 'ads_edit_link_type_cards_wrapper');
             for (var i = 0, elem; elem = elems[i]; i++) {
                 removeClass(elem, 'selected');
             }
             addClass(curElem, 'selected');
 
             var paramValue = curElem.getAttribute('value');
-            this.onParamUpdate(paramName, paramValue);
+            var paramSubValue = curElem.getAttribute('subvalue');
+            this.onParamUpdate(paramName, paramValue, undefined, undefined, {
+                paramSubValue: paramSubValue
+            });
             break;
         case 'link_url':
             var eventType = event.type;
@@ -4169,6 +4382,7 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
     if (isObject(result) && 'post_link_id' in result) {
         if (inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && data.link_type == this.params.link_type.value && data.link_url == this.params.link_url.value) {
             this.params.link_type.value = result['post_link_type'];
+            this.params.link_type.subvalue = result['post_link_subtype'];
             this.params.link_id.value = result['post_link_id'];
             this.params.link_owner_id.value = result['post_link_owner_id'];
             this.params.link_id.promoted_post_text = result['post_text'];
@@ -4182,6 +4396,7 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
                 this.setCostType(AdsEdit.ADS_AD_COST_TYPE_VIEWS);
             }
 
+            this.updateUiParam('link_type');
             this.updateUiParam('_link_type');
             this.updateUiParam('_link_url');
             this.updateUiParam('cost_per_click');
@@ -4330,6 +4545,10 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
         this.updateUiParam('title');
     }
 
+    if (this.completeLinkPending) {
+        this.completeLink();
+    }
+
     return setResult;
 }
 
@@ -4373,6 +4592,7 @@ AdsViewEditor.prototype.getParams = function() {
         params[paramName] = this.params[paramName].value;
     }
     params.photo_icon = this.params.photo['value_' + AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON];
+    params.link_subtype = this.params.link_type.subvalue;
     return params;
 }
 
@@ -4543,7 +4763,7 @@ AdsViewEditor.prototype.setLinkId = function(linkId, data) {
 AdsViewEditor.prototype.setLinkUrl = function(linkUrl) {
     var targetElem = ge(this.options.targetIdPrefix + 'link_url');
     targetElem.value = linkUrl;
-    triggerEvent(targetElem, 'blur', {}, true);
+    this.onParamUpdate('link_url', linkUrl);
 }
 
 AdsViewEditor.prototype.setTitle = function(title, noUpdateValueMax, titleValues) {
@@ -4747,6 +4967,8 @@ AdsViewEditor.prototype.completeLink = function() {
     if (this.editor.isUpdatingData()) {
         return;
     }
+    this.completeLinkPending = false;
+
     if (!this.params.link_type.complete) {
         return;
     }
@@ -4784,6 +5006,7 @@ AdsViewEditor.prototype.completeLink = function() {
     this.updateUiParam('_link_type_post');
     this.updateUiParam('_link_type_editing');
     this.updateUiParamVisibility('_link_type_editing');
+    this.updateUiParamVisibility('_link_type');
 
     if (this.params.link_type.allow_edit_all) {
         this.updateUiParam('link_type');
@@ -4933,9 +5156,7 @@ AdsViewEditor.prototype.completeLink = function() {
 
     addClass('ads_edit_error_link_msg', 'unshown');
 
-    var scrollElem = ge('ads_param_link_type_wrap');
-    var scrollY = getXY(scrollElem)[1] + getSize(scrollElem)[1];
-    scrollToY(scrollY);
+    AdsEdit.scrollToEditing();
 }
 
 AdsViewEditor.prototype.editLink = function() {
@@ -4960,6 +5181,7 @@ AdsViewEditor.prototype.editLink = function() {
     this.updateUiParam('_link_type_post');
     this.updateUiParam('_link_type_editing');
     this.updateUiParamVisibility('_link_type_editing');
+    this.updateUiParamVisibility('_link_type');
 
     if (this.params.link_type.allow_edit_all) {
         this.updateUiParam('link_type');
@@ -5003,7 +5225,7 @@ AdsViewEditor.prototype.getLink = function() {
     var linkUrl = '';
     var linkPacked = '';
     var onclick = '';
-    var target = '_blank'
+    var target = '_blank';
 
     if (this.params.link_id.value) {
         switch (this.params.link_type.value) {
@@ -5328,7 +5550,7 @@ AdsViewEditor.prototype.showLinkObjectPanel = function(delayed) {
         setTimeout(this.showLinkObjectPanel.bind(this, true), 1);
         return;
     }
-    var panelElem = ge('ads_edit_panel_link_object')
+    var panelElem = ge('ads_edit_panel_link_object');
     if (!isVisible(panelElem)) {
         slideDown(panelElem, 200);
     }
