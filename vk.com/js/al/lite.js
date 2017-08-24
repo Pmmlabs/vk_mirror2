@@ -7021,8 +7021,13 @@ function currentAudioId() {
     return window.audioPlayer && audioPlayer.id;
 }
 
-function showAudioClaimWarning(owner_id, id, claim_id, title, reason) {
+function showAudioClaimWarning(audio, claim) {
     var claimText, claimTitle;
+    var ownerId = audio.ownerId;
+    var id = audio.id;
+    var claimId = claim.id;
+    var title = audio.title;
+    var reason = claim.reason;
 
     if (reason == 'geo') {
         claimText = getLang('audio_claimed_geo');

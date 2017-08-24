@@ -742,14 +742,14 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     }
 
     function y(e) {
-        I || (I = new GridSorter(W.list, "ape_audio_item_wrap", {
+        T || (T = new GridSorter(W.list, "ape_audio_item_wrap", {
             wrapNode: W.list,
             onReorder: function(e, t) {
                 var i, a = domData(geByClass1("_audio_row", e), "full-id"),
                     o = K.indexOfAudio(a);
                 t ? (a = domData(geByClass1("_audio_row", t), "full-id"), i = K.indexOfAudio(a)) : i = K.getAudiosCount(), K.moveAudio(o, i)
             }
-        })), e ? I.enable() : I.disable()
+        })), e ? T.enable() : T.disable()
     }
 
     function f(i, o) {
@@ -846,9 +846,9 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         var r = o.newPlaylistHash || cur.audioPage && cur.audioPage._data.newPlaylistHash || "";
         ajax.post("al_audio.php", {
             act: "save_playlist",
-            hash: T ? r : j.getEditHash(),
+            hash: I ? r : j.getEditHash(),
             owner_id: t,
-            playlist_id: T ? 0 : j.getPlaylistId(),
+            playlist_id: I ? 0 : j.getPlaylistId(),
             title: i,
             description: a,
             Audios: s.join(","),
@@ -867,7 +867,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                         a && val(a, e.title);
                         var o = geByClass1("_audio_pl__stats_count", this);
                         o && (o.innerHTML = e.totalCount)
-                    }), T && cur.audioPage && t == cur.audioPage.getOwnerId() && (each(geByClass("_audio_page_block__playlists_items", cur.audioPage._els.pageContainer), function() {
+                    }), I && cur.audioPage && t == cur.audioPage.getOwnerId() && (each(geByClass("_audio_page_block__playlists_items", cur.audioPage._els.pageContainer), function() {
                         var e = se(getTemplate("audio_pl_item", i)),
                             t = this;
                         t.insertBefore(e, t.firstChild);
@@ -949,7 +949,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         onAudioChoose: AudioUtils.onAudioChoose,
         onPlaylistChoose: AudioUtils.onPlaylistChoose
     }, o), cur.onChooseAudio = o.onAudioChoose, cur.onChoosePlaylist = o.onPlaylistChoose;
-    var I, T = !i || i == AudioPlaylist.DEFAULT_PLAYLIST_ID,
+    var T, I = !i || i == AudioPlaylist.DEFAULT_PLAYLIST_ID,
         k = getAudioPlayer(),
         x = !1,
         D = !1,
@@ -968,7 +968,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         Y = a.length > 0,
         j = !1,
         K = k.getPlaylist(AudioPlaylist.TYPE_TEMP, t, irand(0, 999999));
-    T && "attach" != e ? o.addAudio && K.addAudio(o.addAudio) : (j = k.getPlaylist(AudioPlaylist.TYPE_PLAYLIST, t, i), K.addAudio(j.getUnshuffledAudiosList()), K.mergeWith({
+    I && "attach" != e ? o.addAudio && K.addAudio(o.addAudio) : (j = k.getPlaylist(AudioPlaylist.TYPE_PLAYLIST, t, i), K.addAudio(j.getUnshuffledAudiosList()), K.mergeWith({
         title: j.getTitle(),
         description: j.getDescription(),
         rawDescription: j.getRawDescription(),
@@ -1479,7 +1479,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             s = AudioUtils.asObject(s);
             var r = AudioUtils.getAudioExtra(s),
                 l = r.claim;
-            return void showAudioClaimWarning(s.ownerId, s.id, l.deleteHash, l.id, s.title)
+            return void showAudioClaimWarning(s, l)
         }
         var n;
         i && -1 != i.indexOfAudio(s) ? n = i : a && -1 != a.indexOfAudio(s) ? n = a : (n = new AudioPlaylist(AudioPlaylist.TYPE_TEMP, vk.id), n.addAudio(s)), delete this._readyAudio, cur.audioStartReadyAudio = !0, t.play(s, n)

@@ -137,7 +137,7 @@ AdsEdit.showError = function(message, section) {
 
     var errorElem = ge('ads_edit_error_' + section);
 
-    errorElem.innerHTML = message;
+    errorElem.innerHTML = '<div class="msg_text">' + message + '</div>';
     removeClass(errorElem, 'unshown');
 
     Ads.scrollToError(errorElem);

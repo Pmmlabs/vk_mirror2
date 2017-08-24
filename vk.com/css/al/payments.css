@@ -1471,6 +1471,10 @@ h2.payments_getvotes_title {
     text-decoration: underline!important
 }
 
+.payments_gv_ps .payments_systems_logo {
+    margin-top: 60px
+}
+
 .payments_box_wide .payments_box_promo_descr {
     padding: 13px 18px 15px 45px;
     margin-left: 0;
