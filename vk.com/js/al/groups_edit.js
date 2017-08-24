@@ -123,12 +123,12 @@ var GroupsEdit = {
                 if (t.match(/^(https?:\/\/)?([a-z0-9]+\.)*(vkontakte\.ru|vk\.com)\/.+/)) return void(cur.updateTimer = setTimeout(GroupsEdit.uGetPage, 1e3));
                 if (t && e !== !0) return void(cur.updateTimer = setTimeout(GroupsEdit.uSearchUpdate.pbind(!0), 1e3));
                 var s, a = ge("group_u_rows_" + o),
-                    i = ge("group_edit_more_" + o);
-                t ? (cur.htmls[o] || (cur.htmls[o] = a), hide(i), a && domPN(a).replaceChild(ce("div", {
+                    n = ge("group_edit_more_" + o);
+                t ? (cur.htmls[o] || (cur.htmls[o] = a), hide(n), a && domPN(a).replaceChild(ce("div", {
                     id: "group_u_tmp_" + o,
                     className: "group_u_rows",
                     innerHTML: GroupsEdit.uGenEmpty(getLang("members" == o || "unsure" == o || "admins" == o ? "groups_too_many_enter" : "groups_too_many_for_search"))
-                }), a)) : (cur.htmls[o] && (s = ge("group_u_tmp_" + o), domPN(s).replaceChild(cur.htmls[o], s), "group_l_row" == domFC(s).className && domPN(ge(domFC(s).id)) == cur.htmls[o] && cur.htmls[o].replaceChild(domFC(s), ge(domFC(s).id)), toggle(i, cur.offsets[o] < cur.opts.counts[o]), cur.htmls[o] = s = !1), GroupsEdit.uUpdateSummary()), checkPageBlocks()
+                }), a)) : (cur.htmls[o] && (s = ge("group_u_tmp_" + o), domPN(s).replaceChild(cur.htmls[o], s), "group_l_row" == domFC(s).className && domPN(ge(domFC(s).id)) == cur.htmls[o] && cur.htmls[o].replaceChild(domFC(s), ge(domFC(s).id)), toggle(n, cur.offsets[o] < cur.opts.counts[o]), cur.htmls[o] = s = !1), GroupsEdit.uUpdateSummary()), checkPageBlocks()
             } else "loading" != r && GroupsEdit.uShowMore(!0)
         }
     },
@@ -180,8 +180,8 @@ var GroupsEdit = {
                         var r, s = ce("div", {
                                 innerHTML: o
                             }),
-                            i = ge("group_u_rows_" + t);
-                        for (r = domFC(s); r; r = domFC(s)) ge(r.id) ? s.removeChild(r) : (i.appendChild(r), ++cur.offsets[t]);
+                            n = ge("group_u_rows_" + t);
+                        for (r = domFC(s); r; r = domFC(s)) ge(r.id) ? s.removeChild(r) : (n.appendChild(r), ++cur.offsets[t]);
                         cur.offsets[t] < cur.opts.counts[t] && ajax.post("groupsedit.php", {
                             act: "get_more",
                             id: cur.opts.id,
@@ -194,8 +194,8 @@ var GroupsEdit = {
                 },
                 cache: 1
             });
-            var i = cur.cache[t].all,
-                n = e && cur.qShown !== !1;
+            var n = cur.cache[t].all,
+                i = e && cur.qShown !== !1;
             if (e) {
                 if (GroupsEdit.uUpdateSummary(), cur.qShown === r) return;
                 cur.qShown = r
@@ -203,30 +203,30 @@ var GroupsEdit = {
             if (r)
                 if (r.match(/^(https?:\/\/)?([a-z0-9]+\.)*(vkontakte\.ru|vk\.com)\/.+/)) {
                     var u = GroupsEdit.uGetAddr(r);
-                    i = [];
-                    for (var c = 0, d = o.length; d > c; ++c)(o[c][0] == u || o[c][1] == "/" + u) && i.push(c)
+                    n = [];
+                    for (var c = 0, d = o.length; d > c; ++c)(o[c][0] == u || o[c][1] == "/" + u) && n.push(c)
                 } else {
-                    if (i = cur.cache[t]["_" + r], void 0 === i) {
+                    if (n = cur.cache[t]["_" + r], void 0 === n) {
                         var p = cur.index[t].search(r),
                             l = {};
-                        i = [];
-                        for (var c = 0, d = p.length; d > c; ++c) l[p[c]] || (l[p[c]] = !0, i.push(p[c]));
-                        i.sort(function(e, t) {
+                        n = [];
+                        for (var c = 0, d = p.length; d > c; ++c) l[p[c]] || (l[p[c]] = !0, n.push(p[c]));
+                        n.sort(function(e, t) {
                             return e - t
-                        }), cur.cache[t]["_" + r] = i
+                        }), cur.cache[t]["_" + r] = n
                     }
                     s = GroupsEdit.uGetHighlight(r)
                 }
-            var g = i.length,
+            var g = n.length,
                 _ = ge("group_u_rows_" + t),
                 h = ge("group_edit_more_" + t);
             if (!g) return hide(h), val(_, GroupsEdit.uGenEmpty(r ? cur.opts.nfound[t] : getLang("groups_no_users_in_club"))), val("group_u_summary", ""), void checkPageBlocks();
             for (var m = e ? 0 : _.childNodes.length, v = Math.min(g, m + 20), f = [], c = m; v > c; ++c) {
-                var b = o[i[c]],
+                var b = o[n[c]],
                     w = (b || {})[2];
                 b && (s && (w = w.replace(s.re, s.val)), f.push(GroupsEdit.uGenRow(t, b, w)))
             }
-            e ? (hasClass(cur.searchCont, "ui_search_fixed") && scrollToY(getXY(cur.searchWrap)[1] + 1, 0), val(_, f.join("")), r ? val("group_u_summary", langNumeric(g, "%s", !0)) : GroupsEdit.uUpdateSummary()) : _.innerHTML += f.join(""), n && GroupsEdit.hideMessage(), toggle(h, g > v), checkPageBlocks()
+            e ? (hasClass(cur.searchCont, "ui_search_fixed") && scrollToY(getXY(cur.searchWrap)[1] + 1, 0), val(_, f.join("")), r ? val("group_u_summary", langNumeric(g, "%s", !0)) : GroupsEdit.uUpdateSummary()) : _.innerHTML += f.join(""), i && GroupsEdit.hideMessage(), toggle(h, g > v), checkPageBlocks()
         }
     },
     uGetPage: function(e) {
@@ -269,42 +269,42 @@ var GroupsEdit = {
         var r = t[0],
             s = t[1],
             a = t[3],
-            i = (t[4], t[5]),
-            n = t[6],
+            n = (t[4], t[5]),
+            i = t[6],
             u = t[7],
             c = "",
             d = "",
             p = o || t[2],
             l = cur.qShown;
-        o || !l || l.match(/^(https?:\/\/)?([a-z0-9]+\.)*(vkontakte\.ru|vk\.com)\/.+/) || (highlight = GroupsEdit.uGetHighlight(l), p = p.replace(highlight.re, highlight.val)), n > 0 ? c += '<div class="group_u_info_row group_u_level">' + cur.opts.levels[n] + "</div>" : i[0] && (c += '<div class="group_u_desc">' + i[0] + "</div>");
-        var g = intval(i[1]),
+        o || !l || l.match(/^(https?:\/\/)?([a-z0-9]+\.)*(vkontakte\.ru|vk\.com)\/.+/) || (highlight = GroupsEdit.uGetHighlight(l), p = p.replace(highlight.re, highlight.val)), i > 0 ? c += '<div class="group_u_info_row group_u_level">' + cur.opts.levels[i] + "</div>" : n[0] && (c += '<div class="group_u_desc">' + n[0] + "</div>");
+        var g = intval(n[1]),
             _ = onlinePlatformClass(g),
             h = !0,
             m = h ? ' onmouseover="uiPhotoZoom.over(this, ' + r + ')"' : "";
         switch (e) {
             case "requests":
-                c += -3 == n ? rs(cur.opts.requestMsgTpl, {
+                c += -3 == i ? rs(cur.opts.requestMsgTpl, {
                     msg: getLang("groups_limit_message_autoremoved")
-                }) : -1 == n ? rs(cur.opts.requestBtnsTpl, {
+                }) : -1 == i ? rs(cur.opts.requestBtnsTpl, {
                     oid: r,
                     hash: u
                 }) : rs(cur.opts.requestDoneTpl, {
                     oid: r,
                     hash: u,
-                    text: getLang(0 > n ? "groups_request_declined" : "groups_request_accepted")
+                    text: getLang(0 > i ? "groups_request_declined" : "groups_request_accepted")
                 });
                 break;
             case "members":
             case "unsure":
             case "admins":
                 var v = "";
-                n > 3 ? 6 > n && (v = '<a onclick="GroupsEdit.uMainAdmin()">' + getLang("Edit") + "</a>") : n > 0 ? v = '<a onclick="GroupsEdit.uEditAdmin(' + r + ')">' + getLang("Edit") + "</a>" : !n && cur.opts.admin && (v = '<a onclick="GroupsEdit.uEditAdmin(' + r + ')">' + getLang("groups_members_appoint_manager") + "</a>"), v && (c += '<div class="group_u_info_row">' + v + "</div>"), 0 > n ? d += '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_restore_member") + "</a>" : 0 >= n ? d += '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_delete") + "</a>" : 5 > n && r > 0 && (d += '<a class="group_u_action" onclick="GroupsEdit.uRemoveAdmin(' + r + ')">' + getLang("groups_remove_manager") + "</a>");
+                i > 3 ? 6 > i && (v = '<a onclick="GroupsEdit.uMainAdmin()">' + getLang("Edit") + "</a>") : i > 0 ? v = '<a onclick="GroupsEdit.uEditAdmin(' + r + ')">' + getLang("Edit") + "</a>" : !i && cur.opts.admin && (v = '<a onclick="GroupsEdit.uEditAdmin(' + r + ')">' + getLang("groups_members_appoint_manager") + "</a>"), v && (c += '<div class="group_u_info_row">' + v + "</div>"), 0 > i ? d += '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_restore_member") + "</a>" : 0 >= i ? d += '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_delete") + "</a>" : 5 > i && r > 0 && (d += '<a class="group_u_action" onclick="GroupsEdit.uRemoveAdmin(' + r + ')">' + getLang("groups_remove_manager") + "</a>");
                 break;
             case "declined":
-                d += 0 > n ? '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_restore_member") + "</a>" : '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_delete") + "</a>";
+                d += 0 > i ? '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_restore_member") + "</a>" : '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_delete") + "</a>";
                 break;
             case "invites":
-                d += 0 > n ? '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_send_invitation") + "</a>" : '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_invitations_cancel") + "</a>"
+                d += 0 > i ? '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', 0)\">" + getLang("groups_send_invitation") + "</a>" : '<a class="group_u_action" onclick="GroupsEdit.uAction(this, ' + r + ", '" + u + "', -1)\">" + getLang("groups_members_invitations_cancel") + "</a>"
         }
         return rs(cur.opts.userTpl, {
             oid: r,
@@ -352,13 +352,13 @@ var GroupsEdit = {
             from: nav.objLoc.act
         }, {
             onDone: function(t, o, s) {
-                var a, i = ["members", "unsure", "admins"],
-                    n = curBox().uRemove,
+                var a, n = ["members", "unsure", "admins"],
+                    i = curBox().uRemove,
                     u = "search" == nav.objLoc.act && nav.objLoc.from && cur.gid;
-                if (n || (boxQueue.hideAll(!0), t && GroupsEdit.showMessage(t, o || u && void 0 !== o ? !1 : "error")), u) return val(ge("sgedit_acts" + e), o), val(ge("sgedit_lev" + e), s), val(ge("sgedit_edit" + e), s ? getLang("global_edit") : getLang("groups_members_appoint_manager")), void toggleClass(gpeByClass("search_row", "sgedit_lev" + e), "sgedit_moder", !!s);
+                if (i || (boxQueue.hideAll(!0), t && GroupsEdit.showMessage(t, o || u && void 0 !== o ? !1 : "error")), u) return val(ge("sgedit_acts" + e), o), val(ge("sgedit_lev" + e), s), val(ge("sgedit_edit" + e), s ? getLang("global_edit") : getLang("groups_members_appoint_manager")), void toggleClass(gpeByClass("search_row", "sgedit_lev" + e), "sgedit_moder", !!s);
                 if (o) {
                     for (a = 0; 3 > a; ++a) {
-                        var c, d, p, l = i[a],
+                        var c, d, p, l = n[a],
                             g = cur.opts.data[l],
                             _ = !1;
                         if (isArray(g))
@@ -369,7 +369,7 @@ var GroupsEdit = {
                                 }
                         "admins" == l && !_ && r ? (cur.opts.data[l].unshift(o), ++cur.opts.counts.admins, val(cur.searchInp, ""), cur.qShown = !1, GroupsEdit.uIndex(l, cur.opts.data[l])) : ((p = ge("group_u_" + l + e)) && domPN(p).replaceChild(se(GroupsEdit.uGenRow(l, o)), p), _ || (ajaxCache = {})), GroupsEdit.uUpdateSummary()
                     }
-                    n && GroupsEdit.uAction(!1, n[0], n[1], n[2])
+                    i && GroupsEdit.uAction(!1, i[0], i[1], i[2])
                 }
             },
             showProgress: lockButton.pbind(o),
@@ -395,10 +395,10 @@ var GroupsEdit = {
                             a = "requests" == s || "declined" == s || "invites" == s ? [s] : ["members", "unsure", "admins"];
                         a.length;
                         for (r = 0; 3 > r; ++r) {
-                            var i, n, u, c = a[r],
+                            var n, i, u, c = a[r],
                                 d = cur.opts.data[c];
                             if (isArray(d))
-                                for (i = 0, n = d.length; n > i; ++i)(d[i][0] == e || d[i][0] == vk.id) && (cur.opts.data[c][i][6] = d[i][0] == e ? 6 : 3, (u = ge("group_u_" + c + d[i][0])) && domPN(u).replaceChild(se(GroupsEdit.uGenRow(c, cur.opts.data[c][i])), u))
+                                for (n = 0, i = d.length; i > n; ++n)(d[n][0] == e || d[n][0] == vk.id) && (cur.opts.data[c][n][6] = d[n][0] == e ? 6 : 3, (u = ge("group_u_" + c + d[n][0])) && domPN(u).replaceChild(se(GroupsEdit.uGenRow(c, cur.opts.data[c][n])), u))
                         }
                     }
                 },
@@ -485,10 +485,10 @@ var GroupsEdit = {
                 onDone: function(e, a) {
                     if (GroupsEdit.invalidateBack(), curBox() && curBox().hide(), "search" == nav.objLoc.act && nav.objLoc.from && cur.gid) return val(ge("sgedit_acts" + t), e), val(ge("sgedit_lev" + t), a), void toggleClass(gpeByClass("search_row", "sgedit_lev" + t), "deleted", 0 > r);
                     if (isArray(e)) {
-                        var i, n = "requests" == s || "declined" == s || "invites" == s ? [s] : ["members", "unsure", "admins"],
-                            u = n.length;
-                        for (i = 0; u > i; ++i) {
-                            var c, d, p, l = n[i],
+                        var n, i = "requests" == s || "declined" == s || "invites" == s ? [s] : ["members", "unsure", "admins"],
+                            u = i.length;
+                        for (n = 0; u > n; ++n) {
+                            var c, d, p, l = i[n],
                                 g = cur.opts.data[l],
                                 _ = !1;
                             if (isArray(g))
@@ -683,7 +683,7 @@ var GroupsEdit = {
                 hash: cur.hash
             },
             t = ge("group_save");
-        if (extend(e, GroupsEdit.getFields("messages")), e.messages && (e.messages_widget_info = trim(val("messages_widget_info")), e.messages_widget_offline_info = trim(val("messages_widget_offline_info")), e.messages_widget_domains = val("messages_widget_domains"), e.messages_widget_enable = hasClass("messages_widget_enable", "on") ? 1 : 0, extend(e, GroupsEdit.getFields("messages_chat_bot_group")), e.messages_chat_bot_group)) {
+        if (extend(e, GroupsEdit.getFields("messages")), e.messages && (e.messages_widget_info = trim(val("messages_widget_info")), e.messages_widget_offline_info = trim(val("messages_widget_offline_info")), e.messages_widget_domains = val("messages_widget_domains"), e.messages_widget_enable = hasClass("messages_widget_enable", "on") ? 1 : 0, e.messages_chat_bot_group = hasClass(geByClass1("_messages_enabled_bot"), "on") ? 1 : 0, e.messages_chat_bot_group)) {
             var o = geByClass1("_messages_enabled_bot_keyboard");
             e.messages_enable_start = hasClass(o, "on") ? 1 : 0
         }
@@ -806,11 +806,11 @@ var GroupsEdit = {
             var r = 300 - t,
                 s = Math.floor(r / 2),
                 a = r - s,
-                i = {
+                n = {
                     paddingLeft: s + "px",
                     paddingRight: a + "px"
                 };
-            setStyle(o, i), setStyle(geByClass1("group_edit_at", ge("group_edit_finish_time")), i), e.hosts && extend(cur, {
+            setStyle(o, n), setStyle(geByClass1("group_edit_at", ge("group_edit_finish_time")), n), e.hosts && extend(cur, {
                 hostDD: new Dropdown(ge("event_host"), e.hosts, {
                     width: 300,
                     dark: !0,
@@ -1037,10 +1037,10 @@ var GroupsEdit = {
         });
         var a = ge("group_bl_rows");
         if (a && cur.gid == e) {
-            var i = ge("group_bl_row" + o),
-                n = se(r);
-            if (!i && 0 >= s) return;
-            i && s && (toggle("group_bl_actions" + o, s > 0), toggle("group_bl_restore" + o, 0 > s), toggleClass(i, "deleted", 0 > s)), i && s >= 0 ? domPN(i).replaceChild(n, i) : !i && s > 0 && (a.insertBefore(n, domFC(a)), hide("group_bl_no")), GroupsEdit.recache(cur.offset, s), GroupsEdit.updateBlacklistSummary(s)
+            var n = ge("group_bl_row" + o),
+                i = se(r);
+            if (!n && 0 >= s) return;
+            n && s && (toggle("group_bl_actions" + o, s > 0), toggle("group_bl_restore" + o, 0 > s), toggleClass(n, "deleted", 0 > s)), n && s >= 0 ? domPN(n).replaceChild(i, n) : !n && s > 0 && (a.insertBefore(i, domFC(a)), hide("group_bl_no")), GroupsEdit.recache(cur.offset, s), GroupsEdit.updateBlacklistSummary(s)
         }
     },
     updateBlacklistSummary: function(e) {
@@ -1215,8 +1215,8 @@ var GroupsEdit = {
                 });
                 for (var s in r.images) {
                     var a = "",
-                        i = vkImage();
-                    /^\//.test(r.images[s]) ? a = (/^https:\/\//i.test(e) ? "https://" : "http://") + GroupsEdit.getDomain(e) : /^https?:\/\//i.test(r.images[s]) || (a = e.replace(/[^\/]*$/, ""), /^https?:\/\/$/i.test(a) && (a = e + "/")), i.src = a + r.images[s], r.images[s] = i
+                        n = vkImage();
+                    /^\//.test(r.images[s]) ? a = (/^https:\/\//i.test(e) ? "https://" : "http://") + GroupsEdit.getDomain(e) : /^https?:\/\//i.test(r.images[s]) || (a = e.replace(/[^\/]*$/, ""), /^https?:\/\/$/i.test(a) && (a = e + "/")), n.src = a + r.images[s], r.images[s] = n
                 }
                 cur.imgLoadInterval = setInterval(function() {
                     var e = 0;
@@ -1265,7 +1265,7 @@ var GroupsEdit = {
             act: "get_link_info",
             lnk: t
         }, {
-            onDone: function(r, s, a, i) {
+            onDone: function(r, s, a, n) {
                 if (t != cur.lnkSent) return !1;
                 if (GroupsEdit.hideMessage(), r > 0) 1 & r ? (show(o.progress), ajax.plainpost(s, {
                     _tmp: 1
@@ -1273,7 +1273,7 @@ var GroupsEdit = {
                     hide(o.progress);
                     var t = trim((e.match(/<title>([^<]*)/i) || {})[1] || "");
                     cur.lnkImages = ["/images/lnkinner" + window._iconAdd + ".png?1"], cur.lnk = s, GroupsEdit.showLinkInfo(t, s)
-                }, 2 & r ? GroupsEdit.parseLink.pbind(a, i) : function(t) {
+                }, 2 & r ? GroupsEdit.parseLink.pbind(a, n) : function(t) {
                     return hide(o.progress), GroupsEdit.showMessage(getLang("groups_bad_link"), !0), elfocus(e)
                 }, !0)) : 2 & r && GroupsEdit.parseLink(s, a);
                 else {
@@ -1331,25 +1331,25 @@ var GroupsEdit = {
             s = t.btns.ok[0];
         if ((e || !buttonLocked(s)) && (o || r)) {
             if (lockButton(s), o && cur.lnkIndex) return GroupsEdit.uploadImg();
-            var a, i = (o || r).value,
-                n = {
+            var a, n = (o || r).value,
+                i = {
                     lnk: cur.lnk,
                     index: cur.lnkIndex,
                     owner_id: cur.lnkOwnerId,
                     photo_id: cur.lnkPhotoId,
-                    str: i,
+                    str: n,
                     gid: cur.gid,
                     lid: cur.editing,
                     hash: cur.hash
                 };
-            cur.editing ? (n.act = "do_edit_link", a = function(e, o, r, s) {
+            cur.editing ? (i.act = "do_edit_link", a = function(e, o, r, s) {
                 t.hide(), GroupsEdit.invalidateBack(), o !== !1 && (ge("group_l_photo" + e).src = o), r !== !1 && (ge("group_l_title" + e).innerHTML = r), s !== !1 && (ge("group_l_position" + e).innerHTML = s)
-            }) : (n.act = "add_link", a = function(e, o, r) {
+            }) : (i.act = "add_link", a = function(e, o, r) {
                 t.hide(), GroupsEdit.invalidateBack(), GroupsEdit.showMessage(o);
                 var s = ge("group_l_rows"),
                     a = ge("group_l_search");
                 s.insertBefore(se(r), s.firstChild), GroupsEdit.linksCount(e), val(a, ""), uiSearch.onChanged(a), elfocus(a)
-            }), setTimeout(ajax.post.pbind("groupsedit.php", n, {
+            }), setTimeout(ajax.post.pbind("groupsedit.php", i, {
                 onDone: a,
                 onFail: function(e) {
                     return t.hide(), GroupsEdit.showMessage(e || getLang("groups_bad_link"), !0), !0
@@ -1367,13 +1367,13 @@ var GroupsEdit = {
             s = geByClass("group_l_row", r),
             a = 0;
         r.sorter && r.sorter.destroy();
-        for (var i in s) {
-            var n = s[i];
+        for (var n in s) {
+            var i = s[n];
             if (e) {
-                var u = val(geByClass1("group_l_title", n));
-                u = u.toLowerCase(), u.indexOf(e) > -1 ? (show(n), a++) : hide(n)
-            } else show(n), a++;
-            setStyle(n, {
+                var u = val(geByClass1("group_l_title", i));
+                u = u.toLowerCase(), u.indexOf(e) > -1 ? (show(i), a++) : hide(i)
+            } else show(i), a++;
+            setStyle(i, {
                 left: null,
                 top: null,
                 width: null,
@@ -1605,8 +1605,9 @@ var GroupsEdit = {
         e && !isVisible(t) ? slideDown(t, 300) : !e && isVisible(t) && slideUp(t, 300)
     },
     toggleBotBlock: function(e) {
-        var t = geByClass1("_gedit_bot_features");
-        e && !isVisible(t) ? slideDown(t, 300) : !e && isVisible(t) && slideUp(t, 300)
+        var t = geByClass1("_gedit_bot_features"),
+            o = hasClass(e, "on");
+        o && !isVisible(t) ? slideDown(t, 300) : !o && isVisible(t) && slideUp(t, 300)
     },
     toggleMarketBlock: function(e) {
         e ? (setStyle("group_edit_market_placeholder", "height", getSize("group_edit_market_link")[1] + "px"), hide("group_edit_market_link"), show("group_edit_market_placeholder"), slideDown("group_edit_market", 300), slideUp("group_edit_market_placeholder", 300)) : (hide("group_edit_market_link"), slideUp("group_edit_market", 300))
@@ -1697,8 +1698,8 @@ var GroupsEdit = {
                 }
                 GroupsEdit.showMessage(getLang(key) + " (code: " + e + ")", "info"), unlockFlatButton(s)
             },
-            i = GroupsEdit.showMessage.pbind(getLang("global_unknown_error"), "error"),
-            n = {
+            n = GroupsEdit.showMessage.pbind(getLang("global_unknown_error"), "error"),
+            i = {
                 gid: cur.gid,
                 act: "a_obscene_add_pattern",
                 word: r ? val("obs_pattern_word") : val("group_bl_search"),
@@ -1706,9 +1707,9 @@ var GroupsEdit = {
                 hash: t || "",
                 override: e
             };
-        return trim(n.word) ? (lockFlatButton(s), void ajax.post("/groupsedit.php", n, {
+        return trim(i.word) ? (lockFlatButton(s), void ajax.post("/groupsedit.php", i, {
             onDone: a,
-            onFail: i
+            onFail: n
         })) : (el = r ? "obs_pattern_word" : "group_bl_search", notaBene(el, "warning"))
     },
     showObsceneWordsHint: function(e) {
@@ -1787,8 +1788,8 @@ var GroupsEdit = {
                     server: t,
                     hash: o
                 }, {
-                    onDone: function(i, n, u) {
-                        switch (i) {
+                    onDone: function(n, i, u) {
+                        switch (n) {
                             case "wait":
                                 return void setTimeout(s.pbind(e, t, o, r, a + 1), 500);
                             case "ok":
@@ -1801,23 +1802,23 @@ var GroupsEdit = {
                                 var c = getLang("groups_api_error_incorrect");
                                 return void nav.go(nav.objLoc, void 0, {
                                     onDone: function() {
-                                        GroupsEdit.callback.showError(c, n), unlockButton(r)
+                                        GroupsEdit.callback.showError(c, i), unlockButton(r)
                                     }
                                 });
                             case "failed":
                                 if (u) {
                                     var c = getLang("groups_api_error") + " " + u;
-                                    n = null
+                                    i = null
                                 } else var c = getLang("groups_api_error_failed");
                                 return void nav.go(nav.objLoc, void 0, {
                                     onDone: function() {
-                                        GroupsEdit.callback.showError(c, n)
+                                        GroupsEdit.callback.showError(c, i)
                                     }
                                 });
                             case "error":
                                 return void nav.go(nav.objLoc, void 0, {
                                     onDone: function() {
-                                        GroupsEdit.callback.showError(n)
+                                        GroupsEdit.callback.showError(i)
                                     }
                                 })
                         }
@@ -1828,16 +1829,16 @@ var GroupsEdit = {
                 })
             }
             var a = ge("callback_url"),
-                i = val(a);
+                n = val(a);
             ge("callback_title");
-            return i ? (lockButton(e), void ajax.post("groupsedit.php", {
+            return n ? (lockButton(e), void ajax.post("groupsedit.php", {
                 act: "callback_check_url",
                 id: t,
                 server: o,
-                url: i,
+                url: n,
                 hash: r
             }, {
-                onDone: function(a, i) {
+                onDone: function(a, n) {
                     switch (a) {
                         case "ok":
                             s(t, o, r, e, 0);
@@ -1846,7 +1847,7 @@ var GroupsEdit = {
                             unlockButton(e), GroupsEdit.callback.showError(getLang("groups_api_incorrect_url"));
                             break;
                         default:
-                            unlockButton(e), GroupsEdit.callback.showError(i)
+                            unlockButton(e), GroupsEdit.callback.showError(n)
                     }
                 },
                 onFail: function() {
@@ -1856,9 +1857,9 @@ var GroupsEdit = {
         },
         changeTitleBox: function(e, t, o, r, s) {
             function a() {
-                i.hide(), i.destroy()
+                n.hide(), n.destroy()
             }
-            var i = showBox("groupsedit.php", {
+            var n = showBox("groupsedit.php", {
                 act: "callback_show_change_title_box",
                 id: t,
                 server: o,
@@ -1871,8 +1872,8 @@ var GroupsEdit = {
                 },
                 onFail: function() {}
             });
-            i.setButtons(getLang("global_save"), function() {
-                GroupsEdit.callback.setTitle(i.btns.ok[0], t, o, s)
+            n.setButtons(getLang("global_save"), function() {
+                GroupsEdit.callback.setTitle(n.btns.ok[0], t, o, s)
             }, getLang("global_cancel"), a)
         },
         setTitle: function(e, t, o, r) {
@@ -1880,12 +1881,12 @@ var GroupsEdit = {
                 unlockButton(e), val("group_api_error_title_msg", t), show("group_api_error_title")
             }
             var a = ge("callback_title"),
-                i = val(a);
-            return hide("group_api_error_title"), i ? (lockButton(e), void ajax.post("groupsedit.php", {
+                n = val(a);
+            return hide("group_api_error_title"), n ? (lockButton(e), void ajax.post("groupsedit.php", {
                 act: "callback_set_title",
                 id: t,
                 server: o,
-                title: i,
+                title: n,
                 hash: r
             }, {
                 onDone: function(e, t) {
@@ -2080,8 +2081,8 @@ var GroupsEdit = {
                         s.parentNode.removeChild(s)
                     }
                     val("group_tokens_count", e > 0 ? e : ""), hide(a);
-                    var i = geByClass1("group_tokens_rows");
-                    1 == i.childNodes.length && (show(ge("group_tokens_row_empty")), hide(ge("group_tokens_delete_all_btn")))
+                    var n = geByClass1("group_tokens_rows");
+                    1 == n.childNodes.length && (show(ge("group_tokens_row_empty")), hide(ge("group_tokens_delete_all_btn")))
                 }
             })
         }, getLang("global_cancel"))
@@ -2159,8 +2160,8 @@ var GroupsEdit = {
                     var a = o.substring(3);
                     GroupsEdit.callbackUpdateCertResult(a, 0, r, s)
                 } else {
-                    var i = ge("groups_edit_cert_upload_error");
-                    i.innerHTML = getLang(o), show(i)
+                    var n = ge("groups_edit_cert_upload_error");
+                    n.innerHTML = getLang(o), show(n)
                 }
             },
             onUploadError: function(t, o) {
@@ -2296,10 +2297,10 @@ var GroupsEdit = {
                     }
                 })
             } else var a = getLang("groups_apps_replace_app_message_content", cur.appName),
-                i = showFastBox({
+                n = showFastBox({
                     title: getLang("groups_apps_replace_app_message_title")
                 }, a, getLang("groups_apps_replace_app_message_yes"), function() {
-                    i.hide(), GroupsEdit.app.attach(e, t, o, !0)
+                    n.hide(), GroupsEdit.app.attach(e, t, o, !0)
                 }, getLang("global_cancel"))
         },
         changeStatus: function(e) {

@@ -623,7 +623,7 @@ var MoneyTransfer = {
         }
         MoneyTransfer.frameHeight();
     },
-    frameHeight: function(height) {
+    frameHeight: function(height, skipContHeight) {
         var fr = ge('transfer_iframe');
         if (height) {
             cur.prevFrameHeight = fr.style.height;
@@ -632,10 +632,12 @@ var MoneyTransfer = {
             fr.style.height = cur.prevFrameHeight;
             removeClass('payments_iframe_container', 'payments_threeds_frame');
         }
+        if (!skipContHeight) {
+            ge('payments_iframe_container').style.height = (height ? height : cur.prevFrameHeight) + 5 + 'px';
+        }
         ge('payments_iframe_container').scrollTop = 0;
     },
     frameMessage: function(e) {
-        debugLog(e);
         if (!e.origin.match(/^https?:\/\/([a-zA-Z0-9\-\.]+\.)?money\.mail\.ru$/)) {
             return false;
         }
@@ -644,11 +646,14 @@ var MoneyTransfer = {
             message = parseJSON(e.data);
             if (message.type != 'billing') return;
         }
-        if (message.action == '3dsPage') {
-            setTimeout(MoneyTransfer.frameHeight.pbind(600), 1000);
+        if (message.action === 'resizeFrame') {
+            setTimeout(MoneyTransfer.frameHeight.pbind(message.action_params.height), 200);
+        } else if (e.data == 'submit' || message.action == '3dsPage') {
+            setTimeout(MoneyTransfer.frameHeight.pbind(600, true), 200);
             addClass('payments_iframe_container', 'payments_threeds_frame');
         } else if (message.action == '3dsFinish') {
             MoneyTransfer.frameHeight();
+            removeClass('payments_iframe_container', 'payments_threeds_frame');
         }
     },
     initAccept: function(data, html) {

@@ -1369,6 +1369,7 @@ body.dev a.tickets_rated {
 }
 
 .tr_att_img {
+    max-width: 150px;
     height: 100%
 }
 

@@ -192,14 +192,14 @@ var stVersions = {
     'video.css': 20591756852,
     'videocat.js': 1618923991,
     'videocat.css': 20915545682,
-    'videoview.js': 2406395791,
+    'videoview.js': 2361017482,
     'videoview.css': 24143780250,
     'video_edit.js': 2135196486,
     'video_edit.css': 17772293352,
     'video_upload.js': 555062683,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 15438698667,
-    'videoplayer.js': 76903393535,
+    'videoplayer.js': 77255094079,
     'videoplayer.css': 37318877819,
     'translation.js': 2431784533,
     'translation.css': 16689988067,
@@ -228,7 +228,7 @@ var stVersions = {
     'groups.js': 2975645919,
     'groups_list.js': 3507753248,
     'groups_edit.css': 28941979599,
-    'groups_edit.js': 4002107839,
+    'groups_edit.js': 3666134404,
     'profile.css': 21164805850,
     'profile.js': 642429379,
     'calendar.css': 20711169318,
@@ -317,7 +317,7 @@ var stVersions = {
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
     'touch.css': 796462384,
-    'notifier.js': 33771232186,
+    'notifier.js': 33665991392,
     'notifier.css': 25071844573,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
@@ -333,8 +333,8 @@ var stVersions = {
     'tasks.css': 17195427737,
     'helpdesk.js': 1343002196,
     'helpdesk.css': 22689400307,
-    'tickets.js': 1672681946,
-    'tickets.css': 22698581790,
+    'tickets.js': 1964252,
+    'tickets.css': 22143467520,
     'faq.js': 1134602325,
     'faq.css': 20585521809,
     'talmud.js': 1641838680,
@@ -365,7 +365,7 @@ var stVersions = {
     'away.css': 20067724253,
     'stats.css': 18884797426,
     'payments.css': 21725737551,
-    'payments.js': 2090453819,
+    'payments.js': 1266961447,
     'offers.css': 978996883,
     'offers.js': 2030679272,
     'call.js': 4217435992,
@@ -538,7 +538,7 @@ var stVersions = {
     'internal/cvkmobile.js': 3693679928,
     'shortener.js': 1002525642,
     'cmodules/web/pretty_cards.js': 1388461462,
-    'lang': 6831
+    'lang': 6832
 };
 var stTypes = {
     fromLib: {
@@ -604,4 +604,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 2301;
+var _rnd = 5899;

@@ -106,22 +106,23 @@ var Tickets = {
             }
         i || cur.descriptionNotNeeded || s.length || (notaBene("tickets_text", !1, !o), o = !1);
         var _ = Tickets.getBrowser(),
-            p = {
+            u = {
                 act: "save",
                 title: a,
                 text: i,
                 hash: e,
                 attachs: s,
-                browser: _
+                browser: _,
+                section: cur.faqSection
             };
         if (cur.samples && cur.samples.audio || ge("audio_checking")) {
-            p.audio_html = ge("audio_checking").innerHTML;
-            var u = (cur.samples || {}).audio || "";
-            window.ag && window.sh && (p.audio_html = p.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (p.audio_html = p.audio_html.replace(/_info/g, "dwnl_info")), p.audio_orig = ce("div", {
-                innerHTML: u.replace(/z9q2m/g, "audio")
+            u.audio_html = ge("audio_checking").innerHTML;
+            var p = (cur.samples || {}).audio || "";
+            window.ag && window.sh && (u.audio_html = u.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (u.audio_html = u.audio_html.replace(/_info/g, "dwnl_info")), u.audio_orig = ce("div", {
+                innerHTML: p.replace(/z9q2m/g, "audio")
             }).innerHTML
         }
-        nav.objLoc.mid && (p.mid = nav.objLoc.mid), nav.objLoc.gid && (p.gid = nav.objLoc.gid), nav.objLoc.app_id && (p.app_id = nav.objLoc.app_id), nav.objLoc.union_id && (p.union_id = nav.objLoc.union_id), "new" == nav.objLoc.act && (p.section = 0), "new_ads" == nav.objLoc.act && (p.section = 1), "new_pay" == nav.objLoc.act && (p.section = 16), "new_name" == nav.objLoc.act && (p.section = 20), "new_api" == nav.objLoc.act && (p.section = 12), ("new_mobile" == nav.objLoc.act || "new_snapster" == nav.objLoc.act) && (p.section = 24), "new_app" == nav.objLoc.act && (p.section = 9), cur.fromFaqId && (p.faq = cur.fromFaqId), cur.from ? p.from = cur.from : nav.objLoc.from && (p.from = nav.objLoc.from);
+        nav.objLoc.mid && (u.mid = nav.objLoc.mid), nav.objLoc.gid && (u.gid = nav.objLoc.gid), nav.objLoc.app_id && (u.app_id = nav.objLoc.app_id), nav.objLoc.union_id && (u.union_id = nav.objLoc.union_id), cur.fromFaqId && (u.faq = cur.fromFaqId), cur.from ? u.from = cur.from : nav.objLoc.from && (u.from = nav.objLoc.from);
         for (var n in cur.extraFields) {
             var h = cur.extraFields[n],
                 g = ge("tickets_new_extra_field_" + n + "_inp"),
@@ -130,15 +131,15 @@ var Tickets = {
             if (3 != h.required || !cur.verifiedPage) {
                 g ? f = g.value.trim() : (m = ge("tickets_new_extra_field_" + n), f = data(m, "value"));
                 var k = 1 == h.required || (2 == h.required || 3 == h.required) && !cur.verifiedPage;
-                (!f && k || 4 == h.type && k && -1 == f.indexOf("vk.com")) && (notaBene(m, !1, !o), o = !1), p["extra_field_" + n] = f
+                (!f && k || 4 == h.type && k && -1 == f.indexOf("vk.com")) && (notaBene(m, !1, !o), o = !1), u["extra_field_" + n] = f
             }
         }
-        return o ? (nav.objLoc.mobile && (p.mobile = 1), nav.objLoc.bhash && (p.bhash = nav.objLoc.bhash), void Tickets.trySaveTicket(function() {
-            if (0 == p.section) {
+        return o ? (nav.objLoc.mobile && (u.mobile = 1), nav.objLoc.bhash && (u.bhash = nav.objLoc.bhash), void Tickets.trySaveTicket(function() {
+            if (39 == u.faqSection) {
                 var e = ls.get("support_outdated_left");
-                e && e.ts && Math.floor((new Date).getTime() / 1e3) - e.ts < 3600 && (p.outdated_ticket_id = e.id), ls.remove("support_outdated_left")
+                e && e.ts && Math.floor((new Date).getTime() / 1e3) - e.ts < 3600 && (u.outdated_ticket_id = e.id), ls.remove("support_outdated_left")
             }
-            ajax.post(cur.objLoc, p, {
+            ajax.post(cur.objLoc, u, {
                 onDone: function(e) {
                     showDoneBox(e)
                 },
@@ -169,7 +170,8 @@ var Tickets = {
                     text: a,
                     hash: e,
                     attachs: i,
-                    browser: l
+                    browser: l,
+                    section: cur.faqSection
                 }, Tickets.getPayFields());
             if (nav.objLoc.gid && (d.gid = nav.objLoc.gid), nav.objLoc.app_id && (d.app_id = nav.objLoc.app_id), nav.objLoc.union_id && (d.union_id = nav.objLoc.union_id), cur.samples && cur.samples.audio || ge("audio_checking")) {
                 d.audio_html = ge("audio_checking").innerHTML;
@@ -202,7 +204,7 @@ var Tickets = {
                 c = extend({
                     act: "save",
                     hash: e,
-                    section: 21,
+                    section: cur.faqSection,
                     attachs: t,
                     browser: n
                 }, Tickets.getDMCAFields());
@@ -1046,14 +1048,14 @@ var Tickets = {
             });
         else {
             hide("tickets_new_extra_field__upload_btn_" + e, "tickets_new_extra_field__example_" + e);
-            var p = ge("tickets_new_extra_field__uploaded_" + e);
-            addClass(p, "tickets_new_extra_field__uploaded_p"), cur.attachMediaIndexes || (cur.attachMediaIndexes = {}), cur.attachMediaIndexes[n] = i;
-            var u = '<div><div class="page_attach_progress_wrap">  <div id="upload' + n + '_progress" class="page_attach_progress"></div></div></div></div>' + (c ? '<div class="attach_label">' + c + "</div>" : "") + '<div class="progress_x" onmouseover="showTooltip(this, {text: \'' + getLang("dont_attach") + '\', shift: [6, 3, 3]})" onclick="Upload.terminateUpload(' + t + ", '" + (r || t) + "');\"></div>";
-            p.appendChild(ce("div", {
+            var u = ge("tickets_new_extra_field__uploaded_" + e);
+            addClass(u, "tickets_new_extra_field__uploaded_p"), cur.attachMediaIndexes || (cur.attachMediaIndexes = {}), cur.attachMediaIndexes[n] = i;
+            var p = '<div><div class="page_attach_progress_wrap">  <div id="upload' + n + '_progress" class="page_attach_progress"></div></div></div></div>' + (c ? '<div class="attach_label">' + c + "</div>" : "") + '<div class="progress_x" onmouseover="showTooltip(this, {text: \'' + getLang("dont_attach") + '\', shift: [6, 3, 3]})" onclick="Upload.terminateUpload(' + t + ", '" + (r || t) + "');\"></div>";
+            u.appendChild(ce("div", {
                 id: "upload" + n + "_progress_wrap",
-                innerHTML: u,
+                innerHTML: p,
                 className: "clear_fix upload_" + t + "_progress"
-            })), show(p), l = ge("upload" + n + "_progress"), l.full = !1, s ? setStyle(l, {
+            })), show(u), l = ge("upload" + n + "_progress"), l.full = !1, s ? setStyle(l, {
                 width: l.full ? intval(l.full * o) + "px" : s + "%"
             }) : (setStyle(l, {
                 width: "1px"

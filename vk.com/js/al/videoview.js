@@ -2863,10 +2863,10 @@ window.VideoChat = {
         }
     },
     receiveDelete: function(e, i) {
-        var t = ge("mv_chat_msg" + e + "_" + i);
-        t && !hasClass(t, "_deleting") && VideoChat.scroll.updateAbove(function() {
-            re("mv_chat_msg" + e + "_" + i)
-        })
+        var t, o = "#mv_chat_msg" + mvcur.mvData.oid + "_" + i;
+        return (t = VideoChat._messagesBatch && VideoChat._messagesBatch.querySelector(o)) ? void re(t) : (t = VideoChat.messagesWrap.querySelector(o), void(t && !hasClass(t, "_deleting") && VideoChat.scroll.updateAbove(function() {
+            re(t)
+        })))
     },
     checkStickerFlood: function(e, i) {
         var t = mvcur.queueBatchId;
