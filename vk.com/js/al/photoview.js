@@ -1634,7 +1634,7 @@ var Photoview = {
                 hash: a.hash,
                 top_panel: i
             }, {
-                onDone: function(o, e, i, p, v) {
+                onDone: function(o, e, i, p) {
                     a.tagid ? (a.taginfo = a.tagid = !1, cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), Photoview.toggleTopInfoPanel(getLang("photos_tag_deleted"), o), addClass(cur.pvTagInfoButtons, "no_events"), setTimeout(function() {
                         removeClass(cur.pvTagInfoButtons, "no_events")
                     }, 1e3)) : Photoview.actionInfo().innerHTML = o, void 0 !== e && (a.tags = e, a.tagged = i, a.tagshtml = p, cur.pvListId == t && cur.pvIndex == r && (Photoview.setTags(p), (!a.taginfo && a.actions.tag && e[0] < cur.pvMaxTags ? show : hide)(cur.pvTagLink)))
@@ -1691,7 +1691,7 @@ var Photoview = {
                 photo: a.id,
                 hash: a.hash
             }, {
-                onDone: function(o, e, i, p) {
+                onDone: function(o, e, i) {
                     a.tags = o, a.tagged = e, a.tagshtml = i, a.taginfo = a.tagid = !1, t == cur.pvListId && r == cur.pvIndex && (Photoview.setTags(i), (!a.taginfo && a.actions.tag && o[0] < cur.pvMaxTags ? show : hide)(cur.pvTagLink), cleanElems("pv_confirm_tag", "pv_delete_tag", "pv_prof_cancel", "pv_prof_done"), Photoview.toggleTopInfoPanel(!1))
                 },
                 showProgress: function() {

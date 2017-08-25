@@ -3141,7 +3141,6 @@ function onBodyResize(force) {
                 });
             }
         }
-        if (_pads.shown) Pads.reposition();
     }
     if (w.lastWindowHeight != dheight || force === true) {
         changed = true;
@@ -3154,7 +3153,6 @@ function onBodyResize(force) {
         if (window.wkLayerWrap) {
             wkLayerWrap.style.height = dheight + 'px';
         }
-        if (_pads.layerBG) _pads.layerBG.style.height = dheight + 'px';
         if (browser.mozilla && layers.visible) {
             pageNode.style.height = (_oldScroll + dheight) + 'px';
         }
@@ -3232,23 +3230,11 @@ function onBodyScroll() {
     updateNarrow();
     updSideTopLink();
     updGlobalPlayer();
-    if (_pads.shown) Pads.onScroll();
 }
-
-if (!window._pads) _pads = {
-    cache: {}
-};
 
 function onDocumentClick(e) {
     if (checkEvent(e)) {
         return true;
-    }
-    if (_pads.shown) {
-        if (e && e.target && e.target.tagName && e.target.tagName.toLowerCase() != 'input' && cur.__mdEvent && e.target != cur.__mdEvent.target) return;
-        for (var el = e.target; el != bodyNode; el = domPN(el)) {
-            if (!el || el.id && el.id.match(/^(box_|mv_|wk_|pad_)?(layer|pad)_(bg|wrap)$/) || (el.className || '').match(/(^|\s)tt(\s|$)/)) break;
-        }
-        if (el == bodyNode) Pads.hide();
     }
 
     // Reset reload check flood cache
@@ -3626,7 +3612,6 @@ function domReady() {
     onBodyResize();
     setTimeout(onBodyResize.pbind(false), 0);
 
-    if (_pads.shown) Pads.updateHeight();
     updateAriaElements();
 
     addEvent(window, 'scroll', onBodyScroll);
@@ -5424,9 +5409,6 @@ function handleSetCount(e, v, id) {
             opacity: ''
         });
     };
-    if (id && newCnt != val(curCntEl) && (newCnt || curCntEl)) {
-        Pads.invalidate(id);
-    }
     if (curCntV || curOver) {
         if (newCnt) {
             animateCount(curCntEl, newCnt, {
@@ -6147,7 +6129,6 @@ var nav = {
 
         updSeenAdsInfo();
         __adsUpdate('already');
-        if (_pads.shown) Pads.hide();
 
         if (nav.objLoc[0] === 'im' || changed[0] === 'im') {
             where.params = extend({}, where.params, {
@@ -10495,7 +10476,6 @@ function mentionClick(el, ev, opts) {
 
 function headPlayPause(event) {
     var aid = currentAudioId();
-    if (!window.audioPadShown && !aid) Pads.show('mus');
     if (!aid) {
         aid = ls.get('audio_id');
         if (aid) {
@@ -10605,26 +10585,6 @@ function pageVerifiedTip(el, opts) {
         className: 'verified_tt'
     });
 }
-
-var Pads = {
-    preload: function(id) {
-        var st = ['pads.css', 'pads.js', 'notifier.js'];
-        if (id == 'msg') st.push('pads_im.css', 'pads_im.js', 'page.css', 'page.js');
-        stManager.add(st, function() {
-            Pads.preload(id);
-        });
-    },
-    show: function(id, ev) {
-        if (checkEvent(ev) === true) return;
-        var st = ['pads.css', 'pads.js', 'notifier.js'];
-        if (id == 'msg') st.push('pads_im.css', 'pads_im.js', 'page.css', 'page.js');
-        stManager.add(st, function() {
-            Pads.show(id);
-        });
-        return cancelEvent(ev);
-    },
-    invalidate: __bf
-};
 
 function cssAnim(obj, prep, opts, callb) {
     var v = intval(browser.version);

@@ -696,18 +696,16 @@ var Videoview = {
 
             function i(e, i, o) {
                 e = n ? !0 : e;
-                var a = geByClass1("mv_added_icon", r),
-                    d = geByClass1("mv_plus_icon", r),
-                    v = geByClass1("mv_add_text", r);
-                toggleClass(d, "mv_add_icon_curr", !e), toggleClass(d, "mv_add_icon_down", e), toggleClass(a, "mv_add_icon_curr", e), removeEvent(r, "click", t), removeEvent(r, "setAdded", t), e ? (v.innerHTML = getLang("video_added_to_my_playlist"), i && !s && each(geByClass("checkbox", mvcur.addButtonTT.getContent()), function() {
-                    return domData(this, "id") == mvcur.mvData.PLAYLIST_ADDED_ID ? (this.click(), !1) : void 0
-                })) : (v.innerHTML = getLang("video_add_to_my_playlist"), addEvent(r, "click", t), addEvent(r, "setAdded", t)), o || s == e || Videoview.playerOnAdded(), s = e;
-                var l = Videoview.getMvData();
-                l.added = e
+                var d = geByClass1("mv_added_icon", r),
+                    v = geByClass1("mv_plus_icon", r),
+                    l = geByClass1("mv_add_text", r);
+                toggleClass(v, "mv_add_icon_curr", !e), toggleClass(v, "mv_add_icon_down", e), toggleClass(d, "mv_add_icon_curr", e), removeEvent(r, "click", t), removeEvent(r, "setAdded", t), e ? (l.innerHTML = getLang("video_added_to_my_playlist"), i && a(!1, mvcur.mvData.PLAYLIST_ADDED_ID)) : (l.innerHTML = getLang("video_add_to_my_playlist"), addEvent(r, "click", t), addEvent(r, "setAdded", t)), o || s == e || Videoview.playerOnAdded(), s = e;
+                var c = Videoview.getMvData();
+                c.added = e
             }
 
             function t(e) {
-                isAncestor(e.target, mvcur.addButtonTT.getContent()) || (mvcur.mvData.published ? d && "click" == e.type || i(!0, !0, "setAdded" == e.type) : Videoview.showAddDialog(mvcur.videoRaw))
+                "click" == e.type && isAncestor(e.target, mvcur.addButtonTT.getContent()) || (Videoview._isCurrentVideoPublished() ? d && "click" == e.type || i(!0, !0, "setAdded" == e.type) : Videoview.showAddDialog(mvcur.videoRaw))
             }
 
             function o() {
@@ -717,33 +715,36 @@ var Videoview = {
                 }), e
             }
 
-            function a(e) {
-                var t = e.currentTarget || e.target;
-                if (!hasClass(t, "disabled")) {
-                    var a = isChecked(t),
-                        n = +t.getAttribute("data-id");
-                    each(mvcur.mvData.playlists, function(e, i) {
-                        return i.id == n ? (i.added = a, !1) : void 0
-                    }), ajax.post("al_video.php?act=a_add_to_playlist", {
-                        oid: mvcur.mvData.oid,
-                        vid: mvcur.mvData.vid,
-                        hash: mvcur.mvData.playlistAddHash,
-                        playlist_id: n,
-                        add: +a,
-                        info: window.Video && Video.isInCatalog() ? VideoPlaylist.getCurListId() : ""
-                    }, {
-                        onDone: function(e) {
-                            var i = [],
-                                t = [];
-                            if (a) {
-                                i.push(n);
-                                var o = e.indexOf(n);
-                                e.splice(o, 1)
-                            } else t.push(n), e.push(n);
-                            mvcur.mvData.info && window.Video && !Video.isInCatalog() && Video.updateVideo(vk.id, mvcur.mvData.info, e, !1, i, t)
-                        }
-                    }), i(o()), cancelEvent(e)
-                }
+            function a(e, t) {
+                var a = !0;
+                if (e) {
+                    var n = e.currentTarget || e.target;
+                    if (hasClass(n, "disabled")) return;
+                    a = isChecked(n), t = +n.getAttribute("data-id")
+                } else mvcur.addButtonTT.getContent() && each(geByClass("checkbox", mvcur.addButtonTT.getContent()), function() {
+                    return domData(this, "id") == t ? (checkbox(this), !1) : void 0
+                });
+                each(mvcur.mvData.playlists, function(e, i) {
+                    return i.id == t ? (i.added = a, !1) : void 0
+                }), ajax.post("al_video.php?act=a_add_to_playlist", {
+                    oid: mvcur.mvData.oid,
+                    vid: mvcur.mvData.vid,
+                    hash: mvcur.mvData.playlistAddHash,
+                    playlist_id: t,
+                    add: +a,
+                    info: window.Video && Video.isInCatalog() ? VideoPlaylist.getCurListId() : ""
+                }, {
+                    onDone: function(e) {
+                        var i = [],
+                            o = [];
+                        if (a) {
+                            i.push(t);
+                            var n = e.indexOf(t);
+                            e.splice(n, 1)
+                        } else o.push(t), e.push(t);
+                        mvcur.mvData.info && window.Video && !Video.isInCatalog() && Video.updateVideo(vk.id, mvcur.mvData.info, e, !1, i, o)
+                    }
+                }), e && (i(o()), cancelEvent(e))
             }
             mvcur.addButtonTT && (mvcur.addButtonTT.destroy(), mvcur.addButtonTT = null);
             var n = mvcur.mvData.uploaded,
@@ -830,7 +831,8 @@ var Videoview = {
                 if (a && /^wall_/.test(i) && VideoPlaylist.lists[i] && cur.wallVideos && cur.wallVideos[i] && (VideoPlaylist.extendList(i, cur.wallVideos[i].list), VideoPlaylist.updateBlockList(i)), a) {
                     ge("mv_main").appendChild(a);
                     var n = VideoPlaylist.getCurList().list.length;
-                    (window.Video && Video.isInVideosList() && vk.id == cur.oid || 5 > n) && (o || VideoPlaylist.toggle(!1)), isFunction(t) && t(VideoPlaylist.updateBlockList.pbind(i)), setTimeout(function() {
+                    (window.Video && Video.isInVideosList() && vk.id == cur.oid || 5 > n) && (o || VideoPlaylist.toggle(!1)),
+                    isFunction(t) && t(VideoPlaylist.updateBlockList.pbind(i)), setTimeout(function() {
                         VideoPlaylist.restoreScrollPos(), VideoPlaylist.updateScrollbar(), VideoPlaylist.setCurVideo(e, o)
                     }, 0)
                 }

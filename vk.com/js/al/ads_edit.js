@@ -1825,7 +1825,8 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
             video_value: '',
             video_preview_hash: '',
             is_ok: false,
-            event_final_time: 1
+            event_final_time: 1,
+            force_show: false
         },
         link_url_vk: {
             value: 0,
@@ -2536,7 +2537,7 @@ AdsViewEditor.prototype.initUiParam = function(paramName) {
             }.pbind(targetElem));
 
             addEvent(ge(this.options.targetIdPrefix + 'post_or_choose_post_link'), 'click', function() {
-                this.forceShowLinkUrl = true;
+                this.params.link_url.force_show = true;
                 this.updateUiParamVisibility('link_url');
                 this.updateUiParamVisibility('_link_buttons');
                 this.updateUiParam('link_url');
@@ -3361,7 +3362,7 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
             break;
         case 'link_url':
             var linkTypeNeedsVisibleLinkUrl = inArray(this.params.link_type.value, [AdsEdit.ADS_AD_LINK_TYPE_URL, AdsEdit.ADS_AD_LINK_TYPE_VIDEO, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_ANDROID, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_IPHONE, AdsEdit.ADS_AD_LINK_TYPE_MOBILE_APP_WPHONE]);
-            var showPromotedPostLinkUrl = inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && (!!this.params.link_url.value || this.forceShowLinkUrl);
+            var showPromotedPostLinkUrl = inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && (!!this.params.link_url.value || this.params.link_url.force_show);
             this.params[paramName].hidden = !(linkTypeNeedsVisibleLinkUrl || showPromotedPostLinkUrl);
 
             this.initUiParam(paramName);
