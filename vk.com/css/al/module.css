@@ -137,7 +137,8 @@
 }
 
 .page_block>:not(:empty)+* .module:first-child,
-.page_block>:not(:empty)~:empty+.module {
+.page_block>:not(:empty)~:empty+.module,
+.page_block>:not(:empty)~:empty+aside>.module {
     border-width: 1px 0 0
 }
 
