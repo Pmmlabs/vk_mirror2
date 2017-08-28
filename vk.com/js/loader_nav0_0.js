@@ -216,7 +216,7 @@ var stVersions = {
     'module.css': 18442737226,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 19294438853,
-    'page.js': 1746818983,
+    'page.js': 3586935016,
     'page.css': 20067516786,
     'page_help.css': 18648140200,
     'public.css': 22341389885,
@@ -259,7 +259,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 2806083649,
+    'feed.js': 4033662817,
     'feed.css': 18470119102,
     'privacy.js': 3620108221,
     'privacy.css': 16231270418,
@@ -493,7 +493,7 @@ var stVersions = {
     'api/openapi.js': 1813688167,
     'api/xdm.js': 1449919642,
     'css_clean.js': 4210402166,
-    'hls.min.js': 3247504666,
+    'hls.min.js': 1155829746,
     'candy.min.js': 1892723665,
     'q_frame.php': 7,
     '/swf/api_wrapper.swf': 7,
@@ -603,4 +603,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 3342;
+var _rnd = 5983;

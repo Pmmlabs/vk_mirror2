@@ -6397,6 +6397,21 @@ var Wall = {
         }, true);
     },
 
+    // fyi: this function is used only for ads at the moment, so it is called not in all expected places yet
+    onPostLoaded: function(post, maybeWrappedElement) {
+        post = ge(post);
+        if (maybeWrappedElement && !hasClass(post, '_post')) {
+            post = geByClass1('_post', post);
+        }
+        if (!post || !hasClass(post, '_post')) {
+            return;
+        }
+        //console.log('Post loaded', post.id);
+        if (hasClass(post, '_ads_promoted_post_data_w')) {
+            Wall.triggerAdPostStat(post, 'load');
+        }
+    },
+
     init: function(opts) {
         Wall.initWallOptions(opts);
 
@@ -6447,11 +6462,6 @@ var Wall = {
             removeEvent(window, 'resize', Wall.scrollCheck);
         });
         cur.wallAutoMore = opts.automore;
-
-        var posts = geByClass('_post');
-        for (var iPost = 0, post; post = posts[iPost]; iPost++) {
-            Wall.triggerAdPostStat(post, 'load');
-        }
 
         var draft = false;
         if (!cur.options.no_draft) {
@@ -6550,7 +6560,7 @@ var Wall = {
         if (!el) {
             return false;
         }
-        if (el.hasAttribute('data-reinit-ads-needs-confirmation') && AdsEdit && !opts.reinitConfirmed) {
+        if (el.hasAttribute('data-reinit-ads-needs-confirmation') && window.AdsEdit && !opts.reinitConfirmed) {
             if (AdsEdit.reinitCreatingPostFormNeeded()) {
                 AdsEdit.reinitCreatingPostFormConfirm(wall.setReplyAsGroup.pbind(el, extend({}, opts || {}, {
                     reinitConfirmed: true
@@ -6598,7 +6608,7 @@ var Wall = {
         if (el.hasAttribute('data-replace-oid')) {
             cur.oid = fromData[0];
         }
-        if (el.hasAttribute('data-reinit-ads-post-editor') && AdsEdit) {
+        if (el.hasAttribute('data-reinit-ads-post-editor') && window.AdsEdit) {
             AdsEdit.reinitCreatingPostFormBound();
         }
 
@@ -6746,7 +6756,7 @@ var Wall = {
                 rows = '';
 
             if (obj.hasAttribute('data-enable-search')) {
-                rows += '<input class="clear_fix post_from_tt_row post_from_tt_row_search" value="" placeholder="�����..." />';
+                rows += '<input class="clear_fix post_from_tt_row post_from_tt_row_search" value="" placeholder="' + getLang('global_search') + '" />';
             }
 
             each(list, function() {
@@ -6780,7 +6790,7 @@ var Wall = {
                         addEvent(searchElement, 'keyup valueChanged', function() {
                             var searchTerm = trim(val(searchElement)).toLowerCase();
                             each(searchableRowEls, function(i, row) {
-                                toggle(row, (searchTerm === '') || (row.innerHTML.toLowerCase().indexOf(searchTerm) !== -1));
+                                toggle(row, (searchTerm === '') || (row.innerText.toLowerCase().indexOf(searchTerm) !== -1));
                             });
                         });
                     }
