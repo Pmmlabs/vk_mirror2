@@ -3675,7 +3675,7 @@ function serializeForm(form) {
     return result;
 }
 
-function ajx2q(qa) {
+function ajx2q(qa, noSort) {
     var query = [],
         enc = function(str) {
             if (window._decodeEr && _decodeEr[str]) {
@@ -3702,7 +3702,7 @@ function ajx2q(qa) {
             query.push(enc(key) + '=' + enc(qa[key]));
         }
     }
-    query.sort();
+    if (!noSort) query.sort();
     return query.join('&');
 }
 
@@ -4191,7 +4191,7 @@ var ajax = {
             ajax._framenext();
         }
     },
-    framepost: function(url, query, done) {
+    framepost: function(url, query, done, o) {
         clearTimeout(iframeTO);
         if (window.iframeTransport) {
             ajax._frameover();
@@ -4201,13 +4201,13 @@ var ajax = {
         })).firstChild;
         ajax._framedone = done;
         ajax.framedata = [true];
-        url += '?' + ((typeof(query) != 'string') ? ajx2q(query) : query);
+        url += '?' + ((typeof(query) != 'string') ? ajx2q(query, o && o.noSort) : query);
         url += (url.charAt(url.length - 1) != '?' ? '&' : '') + '_rndVer=' + irand(0, 99999);
         ajax._frameurl = iframeTransport.src = url;
     },
-    plainpost: function(url, query, done, fail, urlonly, options) {
+    plainpost: function(url, query, done, fail, urlonly, options, o) {
         var r = ajax._getreq();
-        var q = (typeof(query) != 'string') ? ajx2q(query) : query;
+        var q = (typeof(query) != 'string') ? ajx2q(query, o && o.noSort) : query;
         r.onreadystatechange = function() {
             if (r.readyState == 4) {
                 if (r.status >= 200 && r.status < 300) {
@@ -4305,7 +4305,7 @@ var ajax = {
             delete ajaxCache[ajax._getCacheKey(url, query)];
         }
     },
-    _getCacheKey: function(url, query) {
+    _getCacheKey: function(url, query, o) {
         var boldq = clone(query);
         delete boldq.al;
         delete boldq.al_ad;
@@ -4315,7 +4315,7 @@ var ajax = {
         delete boldq.captcha_key;
         delete boldq._smt;
         delete boldq._preload;
-        return url + '#' + ajx2q(boldq);
+        return url + '#' + ajx2q(boldq, o && o.noSort);
     },
     _debugLog: function(text, _reqid) {
         window.debuglogGot && debuglogGot(_reqid, text);
@@ -4360,7 +4360,7 @@ var ajax = {
         var cacheKey = false;
         extend(q, __adsGetAjaxParams(q, o));
         if (o.cache) {
-            cacheKey = ajax._getCacheKey(url, q);
+            cacheKey = ajax._getCacheKey(url, q, o);
         }
         var hideBoxes = function() {
             for (var i = 0, l = arguments.length; i < l; ++i) {
@@ -4391,7 +4391,7 @@ var ajax = {
                     type: 3,
                     status: r.status,
                     url: url,
-                    query: q && ajx2q(q)
+                    query: q && ajx2q(q, o.noSort)
                 });
             }
         }
@@ -4804,7 +4804,7 @@ var ajax = {
             _callbacks: []
         };
         if (window.debuglogSent) {
-            o._reqid = debuglogSent(url + (q ? ': ' + ajx2q(q).replace(/&/g, '&amp;') : ''));
+            o._reqid = debuglogSent(url + (q ? ': ' + ajx2q(q, o.noSort).replace(/&/g, '&amp;') : ''));
             if (o.frame) {
                 window._lfrid = o._reqid;
             }
@@ -4817,7 +4817,7 @@ var ajax = {
             xhrOptions.timeout = o.timeout;
         }
 
-        return o.frame ? ajax.framepost(url, q, done) : ajax.plainpost(url, q, done, fail, false, xhrOptions);
+        return o.frame ? ajax.framepost(url, q, done, o) : ajax.plainpost(url, q, done, fail, false, xhrOptions, o);
     },
     tGetParam: function() {
         if (!ajax.tStart || !ajax.tModule) return;

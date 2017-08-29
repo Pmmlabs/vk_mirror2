@@ -136,6 +136,7 @@
     border-width: 0
 }
 
+.page_block *>aside:not(:empty)+aside>.module:first-child,
 .page_block>:not(:empty)+* .module:first-child,
 .page_block>:not(:empty)~:empty+.module,
 .page_block>:not(:empty)~:empty+aside>.module {

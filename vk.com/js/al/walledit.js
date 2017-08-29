@@ -69,14 +69,14 @@ var WallEdit = {
                 lnk: ge("wpe_add_media").firstChild,
                 preview: "wpe_media_preview",
                 types: o,
-                options: {
+                options: extend({
                     toId: e.split("_")[0],
                     disabledTypes: n,
                     limit: a.copy ? 1 : a.reply ? 2 : 10,
                     toggleLnk: a.reply || a.copy,
                     editable: !a.reply && !a.copy,
                     sortable: !a.reply && !a.copy
-                }
+                }, a.media_opts || {})
             }, a.teWidth && (t.options.teWidth = a.teWidth), a.teHeight && (t.options.teHeight = a.teHeight), ("photo_comment" == a.reply || "video_comment" == a.reply) && (t.options.nocl = 1), "photo_comment" == a.reply && (t.options.maxShown = 0, t.options.hideAfterCount = 0));
             var p = ge("wpe_text");
             if (cur.wallEditComposer = Composer.init(p, {
@@ -167,7 +167,8 @@ var WallEdit = {
                         showProgress: lockButton.pbind(i),
                         hideProgress: unlockButton.pbind(i),
                         onDone: Wall.suggestPublished.pbind(t),
-                        onFail: WallEdit.savePostFailed
+                        onFail: WallEdit.savePostFailed,
+                        noSort: !0
                     })) : (extend(d, {
                         act: "save",
                         post: t,
@@ -185,7 +186,8 @@ var WallEdit = {
                         onDone: function() {
                             return e ? void e.apply(window, arguments) : void WallEdit.cancelEditPost.apply(window, arguments)
                         },
-                        onFail: WallEdit.savePostFailed
+                        onFail: WallEdit.savePostFailed,
+                        noSort: !0
                     }))
                 }
             }

@@ -797,7 +797,7 @@ function MediaSelector(e, a, t, i) {
             },
             createPoll: function(e) {
                 var a, t = e.question ? "" : "1px",
-                    i = [];
+                    o = [];
                 e[22] ? "disabled" : "", e[8] ? "" : "disabled";
                 s.pollPreview = b.appendChild(ce("div", {
                     className: "medadd_c medadd_c_poll",
@@ -806,11 +806,11 @@ function MediaSelector(e, a, t, i) {
                     [0, ""],
                     [0, ""]
                 ]), cur.pollAnswerTemplate = '<input onkeydown="cur.addMedia[%lnkid%].keyPoll(this, event)" class="text dark medadd_c_polla" %attrs%/><div class="page_media_x_wrap medadd_c_pollrem" data-title="' + e.lang.d + '" aria-label="' + e.lang.d + '" role="button" onmouseover="showTitle(this)" onclick="cur.addMedia[%lnkid%].decPoll(this)"><div class="page_media_x"></div></div>';
-                for (var o = 0, r = e.answers.length; r > o; ++o) a = e.answers[o], i.push('<div class="medadd_c_polla_wr">' + rs(cur.pollAnswerTemplate, {
+                for (var r = 0, d = e.answers.length; d > r; ++r) a = e.answers[r], o.push('<div class="medadd_c_polla_wr">' + rs(cur.pollAnswerTemplate, {
                     attrs: (a[0] ? 'id="create_poll_ans' + a[0] + '" ' : "") + (a[1] ? '" value="' + a[1] + '" ' : ""),
                     lnkid: u
-                }) + "</div>"), 9 == o && hide("create_poll_add" + u);
-                return val("create_poll_answers" + u, i.join("")), e.question ? void elfocus("create_poll_question" + u) : (s.pollPreview.style.height = t, void animate(s.pollPreview, {
+                }) + "</div>"), r == (i.pollLimit || 10) - 1 && hide("create_poll_add" + u);
+                return val("create_poll_answers" + u, o.join("")), e.question ? void elfocus("create_poll_question" + u) : (s.pollPreview.style.height = t, void animate(s.pollPreview, {
                     height: 166
                 }, 200, function() {
                     s.pollPreview.style.height = "auto", elfocus("create_poll_question" + u)

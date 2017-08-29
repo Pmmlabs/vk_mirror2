@@ -1182,7 +1182,18 @@ var Feed = {
                     a = scrollGetY(),
                     d = 0,
                     c = [];
-                if (a + n + 1e3 > t.offsetTop && feed.showMore(), (domPN(cur.topRow) != cur.rowsCont || "feed_rows_next" == (cur.topRow || {}).id) && (cur.topRow = domFC(cur.rowsCont)), !(!vk.id || !cur.topRow || "feed_rows_next" == cur.topRow.id || "news" != cur.section && "recommended" != cur.section && "search" != cur.section || ((window.curNotifier || {}).idle_manager || {}).is_idle && "init" != (e || {}).type)) {
+                a + n + 1e3 > t.offsetTop && feed.showMore(), (domPN(cur.topRow) != cur.rowsCont || "feed_rows_next" == (cur.topRow || {}).id) && (cur.topRow = domFC(cur.rowsCont));
+                var l = {
+                    news: !0,
+                    recommended: !0,
+                    search: !0,
+                    friends: !0,
+                    groups: !0,
+                    list: !0,
+                    1917: !0,
+                    cc2017: !0
+                };
+                if (vk.id && cur.topRow && "feed_rows_next" != cur.topRow.id && l[cur.section] && (!((window.curNotifier || {}).idle_manager || {}).is_idle || "init" == (e || {}).type)) {
                     for (postsUnseen = [], t = domPS(cur.topRow); t; t = domPS(t)) cur.topRow.offsetTop > a && (cur.topRow = t), t.unseen || (t.unseen = !0, postsUnseen.push(Feed.postsGetRaws(t)));
                     for (Page.postsUnseen(postsUnseen), t = cur.topRow; t && (s = d ? d : t.offsetTop, !(s >= a + n)); t = o) o = domNS(t), "feed_rows_next" == (o || {}).id && (o = null), d = o ? o.offsetTop : s + t.offsetHeight, a > d && o && (cur.topRow = o), LongView && LongView.register(t, "feed"), i.registerElement(t) || (r = t.bits || 0, r >= 3 || (r |= (s >= a && a + n > s ? 1 : 0) | (d >= a && a + n > d ? 2 : 0), r && (t.bits = r, 3 == r && c.push(feed.postsGetRaws(t)))));
                     c = c.concat(i.process(a, n)), LongView && LongView.onScroll(a, n), Page.postsSeen(c)
@@ -1196,6 +1207,7 @@ var Feed = {
             n = /^post(-?\d+_\d+)$/,
             a = {};
         if (!i) return a;
+        if ("ads_feed_placeholder" === i.id) return a;
         a.module = cur.module, a.index = r, "feed" == cur.module && ("search" == cur.section ? (a.module = "feed_search", a.q = cur.q) : "news" == cur.section ? a.module = cur.subsection ? "feed_news_" + cur.subsection : "feed_news" : "recommended" == cur.section ? a.module = cur.subsection ? "feed_recommended_" + cur.subsection : "feed_recommended" : a.module = "feed_other");
         var d = i.getAttribute("data-ad-view");
         if (d && (a["ad_" + d] = 1), s = i.id.match(n)) a[s[1]] = 1;

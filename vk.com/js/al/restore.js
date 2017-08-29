@@ -63,7 +63,7 @@ var Restore = {
     },
     checkEmailOnBlur: function() {
         var e = val("login");
-        if (e) return /^\s*[a-zA-Z0-9_\.]+@[a-zA-Z0-9_\.]+\s*$/.test(e) ? void(cur.restoreNoEmailAccess || ajax.post("/restore", {
+        e && /^\s*[a-zA-Z0-9_\.]+@[a-zA-Z0-9_\.]+\s*$/.test(e) && (cur.restoreNoEmailAccess || ajax.post("/restore", {
             act: "a_check_email",
             hash: cur.options.fhash,
             email: e
@@ -71,7 +71,7 @@ var Restore = {
             onDone: function(e) {
                 return e ? (hide("submit_wrapper"), Restore.changeFormStep("phones", "back_link")) : void 0
             }
-        })) : Restore.showResult("request_email_res", getLang("restore_login_error"), "login")
+        }))
     },
     getUploadedPhotosIds: function(e) {
         var o = [];
