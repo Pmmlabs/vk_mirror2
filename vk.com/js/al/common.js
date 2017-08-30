@@ -10739,6 +10739,9 @@ function IframeLoader() {
     var iframe, doc, body, index, sources, aborted_sources;
 
     function iframeDoc(i) {
+        if (browser.mozilla) {
+            return false;
+        }
         try {
             if (i.contentDocument) return i.contentDocument;
             if (i.contentWindow && i.contentWindow.document) return i.contentWindow.document;

@@ -334,7 +334,7 @@ var stVersions = {
     'helpdesk.css': 20532688034,
     'tickets.js': 1964252,
     'tickets.css': 18650786653,
-    'faq.js': 1134602325,
+    'faq.js': 1669371653,
     'faq.css': 18428809536,
     'talmud.js': 1641838680,
     'agents.js': 3714363511,
@@ -342,7 +342,7 @@ var stVersions = {
     'achievements.js': 897703126,
     'achievements.css': 14407369210,
     'sf.css': 17108314198,
-    'sal.css': 14594503589,
+    'sal.css': 15166835345,
     'members.css': 15616603234,
     'meminfo.css': 19247742513,
     'groupinfo.css': 18708815299,
@@ -513,12 +513,12 @@ var stVersions = {
     'snapster/common.js': 3270962181,
     'snapster/main.js': 949985539,
     'snapster/snapster.js': 1856082732,
-    'snapster/modules.js': 891205739,
+    'snapster/modules.js': 3477296611,
     'snapster/snapster.css': 18223409122,
     'snapster/mob_templates.js': 830712780,
     'snapster/snapster_mobile.js': 300135425,
     'snapster/snapster_mobile.css': 17275473565,
-    'snapster/templates.js': 3536307956,
+    'snapster/templates.js': 1098452456,
     'snapster/snapster_ui.js': 338551892,
     'snapster/notifier.js': 2312942404,
     'snapster/snapster_ui.css': 15797417498,
@@ -537,7 +537,7 @@ var stVersions = {
     'internal/cvkmobile.js': 3693679928,
     'shortener.js': 1002525642,
     'cmodules/web/pretty_cards.js': 1388461462,
-    'lang': 6837
+    'lang': 6839
 };
 var stTypes = {
     fromLib: {
@@ -603,4 +603,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 8077;
+var _rnd = 1611;
