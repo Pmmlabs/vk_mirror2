@@ -149,7 +149,7 @@ var stVersions = {
     'audioplayer.js': 7875999483,
     'audioplayer.css': 15300017998,
     'audio_html5.js': 287741914,
-    'audio.js': 3353508202,
+    'audio.js': 2055763512,
     'audio.css': 19115782077,
     'gifts.css': 18601795891,
     'gifts.js': 338252255,
@@ -426,7 +426,7 @@ var stVersions = {
     'ui.js': 3953380422,
     'ui_common.js': 2554866735,
     'ui_common.css': 16583286860,
-    'ui_media_selector.js': 850418299,
+    'ui_media_selector.js': 549179411,
     'ui_media_selector.css': 18255803512,
     'ui_manual.css': 14576307263,
     'admin.js': 2866808704,
@@ -537,7 +537,7 @@ var stVersions = {
     'internal/cvkmobile.js': 3693679928,
     'shortener.js': 1002525642,
     'cmodules/web/pretty_cards.js': 1388461462,
-    'lang': 6832
+    'lang': 6837
 };
 var stTypes = {
     fromLib: {
@@ -603,4 +603,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 5817;
+var _rnd = 8077;
