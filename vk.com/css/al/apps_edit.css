@@ -3205,3 +3205,40 @@ input.execute_field_input {
 .apps_edit_cont_row.active .apps_edit_ver_str {
     display: block
 }
+
+.apps_edit_add_to_group_button {
+    display: block;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    padding: 10px 52px 10px 15px;
+    line-height: 28px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #336bab
+}
+
+.apps_edit_add_to_group_button:hover {
+    text-decoration: none
+}
+
+.apps_edit_add_to_group_button:hover:after {
+    background-color: #83a5d3
+}
+
+.apps_edit_add_to_group_button:after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #648fc9 url('/images/svg_icons/groups/arrow_ne.svg') no-repeat 50% calc(50% - 1px)
+}
+
+.apps_edit_table #app_short_desc {
+    height: 25px
+}

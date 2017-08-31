@@ -2330,6 +2330,10 @@ a.page_block_header:hover .apps_cat_header_link:after {
     margin: 0 210px 0 140px
 }
 
+.apps_i_info.apps_i_info_group {
+    margin-right: 0
+}
+
 .apps_i_content {
     text-align: left;
     padding: 0 25px
@@ -2351,6 +2355,11 @@ a.page_block_header:hover .apps_cat_header_link:after {
 .apps_main .apps_i_icon {
     top: 20px;
     left: 20px
+}
+
+.apps_i_group_wrap .apps_i_icon {
+    width: 112px;
+    height: 112px
 }
 
 .apps_i_buttons {
@@ -2410,11 +2419,48 @@ a.page_block_header:hover .apps_cat_header_link:after {
     margin-top: 5px
 }
 
+.apps_i_groups,
 .apps_i_users,
 .apps_ss_playing {
     color: #656565;
     font-size: 12.5px;
     line-height: 13px
+}
+
+.apps_i_groups {
+    margin: 12px 0 15px
+}
+
+.apps_i_groups .apps_i_groups_images {
+    margin-left: 2px;
+    float: left
+}
+
+.apps_i_groups .apps_i_groups_images .apps_i_groups_image_a {
+    border: 2px solid #f2f4f7;
+    float: right;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: -8px
+}
+
+.apps_i_groups .apps_i_groups_images .apps_i_groups_image_a:first-child {
+    margin-right: 0
+}
+
+.apps_i_groups .apps_i_groups_images .apps_i_groups_image,
+.apps_i_groups .apps_i_groups_images .apps_i_groups_image_a {
+    background-size: 28px
+}
+
+.apps_i_groups .apps_i_groups_text {
+    overflow: hidden;
+    padding-left: 6px;
+    line-height: 28px;
+    white-space: nowrap;
+    text-overflow: ellipsis
 }
 
 .apps_ss_playing {
@@ -5594,7 +5640,8 @@ td.apps_cat_new_h {
 }
 
 .add_to_mine_community_box .add_community_app_groups {
-    overflow: scroll
+    overflow: scroll;
+    overflow-x: hidden
 }
 
 .add_to_mine_community_box .add_community_app_groups .flist_item_wrap {
@@ -5606,6 +5653,10 @@ td.apps_cat_new_h {
     margin: -1px 0 0;
     border-top: 1px solid #e7e8ec;
     padding: 0 25px
+}
+
+.add_to_mine_community_box .add_community_app_groups .flist_item_wrap:last-of-type {
+    border-bottom: 0
 }
 
 .add_to_mine_community_box .add_community_app_groups .add_community_app_group_app,

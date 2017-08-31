@@ -161,7 +161,8 @@ body.mobfixed #wk_layer_wrap {
     line-height: 14px
 }
 
-.wk_wiki_no_title {
+.wk_wiki_no_title,
+.wk_wiki_no_footer {
     margin-top: 20px
 }
 

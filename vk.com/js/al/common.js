@@ -853,6 +853,14 @@ function isAncestor(el, ancestor) {
     return false;
 }
 
+function getScroll() {
+    var b = (browser.msie6) ? ge('PageContainer') : document.body,
+        de = document.documentElement;
+    return [b.scrollLeft || de.scrollLeft || window.pageXOffset || 0, b.scrollTop || de.scrollTop || window.pageYOffset || 0,
+        de.clientWidth || b.clientWidth || 0, de.clientHeight || b.clientHeight || 0
+    ];
+}
+
 function domClosestPositioned(el, opts) {
     opts = opts || {};
     var parent = opts.fromEl || domPN(el),
@@ -7000,7 +7008,7 @@ function MessageBox(options, dark) {
 <div class="box_controls_wrap"' + controlsStyle + '><div class="box_controls">\
 <table cellspacing="0" cellpadding="0" class="fl_r"><tr></tr></table>\
 <div class="progress" id="' + options.progress + '"></div>\
-<div class="box_controls_text _box_controls_text"></div>\
+<div class="box_controls_text _box_controls_text">' + (options.textControls || '') + '</div>\
 </div></div>\
 </div>'
     }, {
@@ -8097,26 +8105,46 @@ function showAudioClaimWarning(audio, claim, onReplace) {
     var claimId = claim.id;
     var deleteHash = claim.deleteHash;
     var reason = claim.reason;
+    var original = claim.original;
 
     if (reason == 'geo') {
         claimText = getLang('audio_claimed_geo'); //getLang(claim_id >= 0 ? 'audio_claimed_geo' : 'audio_claimed_text_geo');
+        claimTitle = getLang('audio_claim_warning_title');
+    } else if (reason == 'replace') {
+        claimText = getLang('audio_claimed_replacement_available');
         claimTitle = getLang('audio_claim_warning_title');
     } else {
         claimText = getLang('audio_claim_warning'); //getLang(claim_id > 0 ? 'audio_claim_warning_objection' : (claim_id == 0 ? 'audio_claim_warning_text' : 'audio_claim_warning'));
         claimTitle = getLang('audio_claim_warning_title');
     }
 
-    claimText = claimText.split('{audio}').join('<b>' + title + '</b>');
-    claimText = claimText.split('{objection_link}').join('<a href="/help?act=cc_objection&claim=' + claimId + '&content=audio' + ownerId + '_' + id + '">' + getLang('audio_claim_objection') + '</a>');
-    claimText = claimText.split('{delete_link}').join('<a onclick="deleteAudioOnClaim(' + ownerId + ',' + id + '); return false;">' + getLang('audio_claim_delete') + '</a>');
-    var showDialog = showFastBox.bind(null, {
+    claimText = claimText.replace(/\{audio\}/g, '<b>' + title + '</b>');
+    claimText = claimText.replace(/\{objection_link\}/g, '<a href="/help?act=cc_objection&claim=' + claimId + '&content=audio' + ownerId + '_' + id + '">' + getLang('audio_claim_objection') + '</a>');
+    claimText = claimText.replace(/\{delete_link\}/g, '<a onclick="deleteAudioOnClaim(' + ownerId + ',' + id + '); return false;">' + getLang('audio_claim_delete') + '</a>');
+    var options = {
         title: claimTitle,
         width: 470
-    }, claimText);
-    if (onReplace) {
-        showDialog = showDialog.bind(null, getLang('box_close'), null, getLang('audio_replace_with_original'), onReplace);
+    };
+    var params = [options, claimText];
+    var dialog = null;
+    if (onReplace && original) {
+        var originalAudioHtml = AudioUtils.drawAudio(original, 'no_extra');
+        params[1] = claimText
+            .replace(
+                /\{original\}/g,
+                original[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER] + ' - ' + original[AudioUtils.AUDIO_ITEM_INDEX_TITLE]) +
+            '<br/>' + '<br/>' +
+            originalAudioHtml;
+
+        params.push(getLang('audio_replace_with_original'), function() {
+            lockButton(dialog.btns["ok"][0])
+            onReplace(function() {
+                dialog.hide();
+            });
+        });
+        options.textControls = '<a onclick="deleteAudioOnClaim(' + ownerId + ',' + id + '); return false;">' + getLang('audio_claim_delete_capital') + '</a>'
     }
-    cur.claimWarning = showDialog();
+    cur.claimWarning = dialog = showFastBox.apply(null, params);
 }
 
 function sureDeleteAll(title, text, where, objectId, toId, fromId, hash, event) {
