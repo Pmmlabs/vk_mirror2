@@ -1,3 +1,7 @@
+/**
+ * @deprecated
+ * Doesn't used
+ */
 var globalCounter = 0;
 var unisCount = 0;
 var shoolsCount = 0;

@@ -56,10 +56,11 @@ var ProfileEditorEdu = {
             progressBar: "u_progress" + i.id,
             faculty: i.faculty,
             chair: i.chair,
+            ignoreVoidList: !0,
             onEnableCustomChange: function(t) {
                 var e = i.uiCountry ? i.uiCountry.val() : i.country,
                     o = i.uiChair ? i.uiChair.val() : i.chair;
-                (i.showAddChair = !t && e > 4) && !intval(o) ? show("u_add_chair_to_db" + i.id) : hide("u_add_chair_to_db" + i.id)
+                (i.showAddChair = !t && e > 4 && 8 != e) && !intval(o) ? show("u_add_chair_to_db" + i.id) : hide("u_add_chair_to_db" + i.id)
             },
             onChange: function(t) {
                 intval(t) ? hide("u_add_chair_to_db" + i.id) : i.showAddChair && show("u_add_chair_to_db" + i.id)
@@ -70,10 +71,11 @@ var ProfileEditorEdu = {
             university: i.university,
             faculty: i.faculty,
             chairSelect: i.uiChair,
+            ignoreVoidList: !0,
             onEnableCustomChange: function(t) {
                 var e = i.uiCountry ? i.uiCountry.val() : i.country,
                     o = i.uiFaculty ? i.uiFaculty.val() : i.faculty;
-                (i.showAddFaculty = !t && e > 4) && !intval(o) ? show("u_add_fac_to_db" + i.id) : hide("u_add_fac_to_db" + i.id)
+                (i.showAddFaculty = !t && e > 4 && 8 != e) && !intval(o) ? show("u_add_fac_to_db" + i.id) : hide("u_add_fac_to_db" + i.id)
             },
             onChange: function(t) {
                 intval(t) ? hide("u_add_fac_to_db" + i.id) : i.showAddFaculty && show("u_add_fac_to_db" + i.id)
@@ -86,10 +88,11 @@ var ProfileEditorEdu = {
             eduFormSelect: i.uiEducationForm,
             eduStatusSelect: i.uiEducationStatus,
             facultySelect: i.uiFaculty,
+            ignoreVoidList: !0,
             onEnableCustomChange: function(t) {
                 var e = i.uiCountry ? i.uiCountry.val() : i.country,
                     o = i.uiUniversity ? i.uiUniversity.val() : i.university;
-                (i.showAddUni = !t && e > 4) && !intval(o) ? show("u_add_uni_to_db" + i.id) : hide("u_add_uni_to_db" + i.id)
+                (i.showAddUni = !t && e > 4 && 8 != e) && !intval(o) ? show("u_add_uni_to_db" + i.id) : hide("u_add_uni_to_db" + i.id)
             },
             onChange: function(t) {
                 intval(t) ? (show("u_details" + i.id), hide("u_add_uni_to_db" + i.id)) : (hide("u_details" + i.id), i.showAddUni && show("u_add_uni_to_db" + i.id)), i.uiEducationForm.clear(), i.uiEducationStatus.clear(), i.uiGraduation.clear()
@@ -155,10 +158,11 @@ var ProfileEditorEdu = {
             city: i.city,
             school: i.school,
             classSelect: i.uiClass,
+            ignoreVoidList: !0,
             onEnableCustomChange: function(t) {
                 var e = i.uiCountry ? i.uiCountry.val() : i.country,
                     o = i.uiSchool ? i.uiSchool.val() : i.school;
-                (i.showAddSchool = !t && e > 4) && !intval(o) ? show("s_add_school_to_db" + i.id) : hide("s_add_school_to_db" + i.id)
+                (i.showAddSchool = !t && e > 4 && 8 != e) && !intval(o) ? show("s_add_school_to_db" + i.id) : hide("s_add_school_to_db" + i.id)
             },
             onChange: function(t) {
                 intval(t) ? (show("s_details" + i.id), hide("s_add_school_to_db" + i.id)) : (hide("s_details" + i.id), i.showAddSchool && show("s_add_school_to_db" + i.id)), i.uiClass.clear(), i.uiStart.clear(), i.uiFinish.clear(), i.uiGraduation.clear(), ge("s_spec" + i.id + "_custom").value = ""

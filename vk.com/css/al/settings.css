@@ -1130,7 +1130,8 @@ a.settings_blb_title {
     cursor: pointer
 }
 
-.settings_transfer_date {
+.settings_transfer_date,
+.settings_transfer_date a {
     color: #939393;
     font-size: 12.5px
 }

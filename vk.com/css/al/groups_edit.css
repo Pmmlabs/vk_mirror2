@@ -2165,7 +2165,8 @@ a.group_ad_post_link.deleted.deleted:hover {
     -moz-osx-font-smoothing: auto
 }
 
-.group_money_transfers_table .settings_transfer_date {
+.group_money_transfers_table .settings_transfer_date,
+.group_money_transfers_table .settings_transfer_date a {
     color: #939393;
     font-size: 12.5px
 }

@@ -1362,10 +1362,12 @@ AdsEdit.showCreatingPostForm = function(buttonElem, creatingPostBox, postOwnerId
 AdsEdit.triggerDefaultMediaForPostForm = function(wallOptions) {
     if (wallOptions.additional_save_params && wallOptions.additional_save_params.ads_promoted_post_subtype) {
         var triggerMediaType = null;
+        var handlerOptions = {};
         switch (wallOptions.additional_save_params.ads_promoted_post_subtype) {
             case 'promoted_post_pretty_cards':
                 {
                     triggerMediaType = 'pretty_cards';
+                    handlerOptions.replace_owner_id = cur.oid;
                     break;
                 }
 
@@ -1386,7 +1388,7 @@ AdsEdit.triggerDefaultMediaForPostForm = function(wallOptions) {
         if (triggerMediaType && cur.wallAddMedia) {
             each(cur.wallAddMedia.menu.types, function(k, v) {
                 if (v[0] === triggerMediaType) {
-                    v[2]();
+                    v[2](handlerOptions);
                     return false;
                 }
             });

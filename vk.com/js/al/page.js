@@ -6708,7 +6708,7 @@ var Wall = {
             ownerName = postBox && domData(postBox, 'owner-name');
 
         return oid && ownerPhoto && ownerHref && ownerName &&
-            [oid, ownerPhoto, ownerHref, ownerName] || cur.wallTpl && cur.wallTpl.ownerData || false;
+            [oid, ownerPhoto, ownerHref, clean(unclean(ownerName))] || cur.wallTpl && cur.wallTpl.ownerData || false;
     },
     isWallReply: function(obj) {
         var ttChooser = data(obj, 'tt'),
@@ -6756,12 +6756,16 @@ var Wall = {
                 rows = '';
 
             if (obj.hasAttribute('data-enable-search')) {
-                rows += '<input class="clear_fix post_from_tt_row post_from_tt_row_search" value="" placeholder="' + getLang('global_search') + '" />';
+                rows += '<div class="post_from_tt_row_search_wrap"><input class="clear_fix post_from_tt_row post_from_tt_row_search" value="" placeholder="' + getLang('global_search') + '" /><div class="post_from_tt_row_search_progress"></div></div>';
+            }
+
+            function rowTemplate(rowClass, rowOid, rowHref, rowImageSrc, rowText) {
+                return '<a id="_post_from_tt_row_oid_' + rowOid + '" class="clear_fix post_from_tt_row _post_from_tt_row_searchable' + rowClass + '" data-from-oid="' + rowOid + '" href="' + rowHref + '"><img class="post_from_tt_image" src="' + rowImageSrc + '" aria-label="' + rowText + '">' + rowText + '</a>';
             }
 
             each(list, function() {
                 var cl = (from == this[0]) ? ' active' : '';
-                rows += '<a class="clear_fix post_from_tt_row _post_from_tt_row_searchable' + cl + '" data-from-oid="' + this[0] + '" href="' + this[2] + '"><img class="post_from_tt_image" src="' + this[1] + '" aria-label="' + this[3] + '">' + this[3] + '</a>';
+                rows += rowTemplate(cl, this[0], this[2], this[1], this[3]);
             });
 
             ttChooser = new ElementTooltip(obj, {
@@ -6787,8 +6791,54 @@ var Wall = {
                     var searchElement = geByClass1('post_from_tt_row_search', ttel);
                     if (searchElement) {
                         var searchableRowEls = geByClass('_post_from_tt_row_searchable', ttel);
+                        var searchUrl = obj.getAttribute('data-search-url');
+                        var searchTermsDone = {};
                         addEvent(searchElement, 'keyup valueChanged', function() {
                             var searchTerm = trim(val(searchElement)).toLowerCase();
+                            if (searchUrl && searchTerm) {
+                                if (obj.searchRequestTimeout) {
+                                    clearTimeout(obj.searchRequestTimeout);
+                                    delete obj.searchRequestTimeout;
+                                }
+                                var searchProgress = geByClass1('post_from_tt_row_search_progress', ttel);
+                                if (!geByClass1('pr', searchProgress)) {
+                                    showProgress(searchProgress);
+                                }
+                                obj.searchRequestTimeout = setTimeout(function() {
+                                    if (searchTermsDone[searchTerm]) {
+                                        hideProgress(searchProgress);
+                                        return;
+                                    }
+                                    ajax.plainpost(searchUrl, {
+                                        str: searchTerm
+                                    }, function(response) {
+                                        searchTermsDone[searchTerm] = true;
+                                        response = JSON.parse(response);
+                                        each(response, function() {
+                                            if (!ge('_post_from_tt_row_oid_' + this[0])) {
+                                                var newRow = se(rowTemplate('', this[0], this[2], this[1], this[3]));
+                                                geByClass1('ui_scroll_content', ttel).appendChild(newRow);
+                                                addEvent(newRow, 'click', wall.setReplyAsGroup.pbind(obj, {
+                                                    from: domData(newRow, 'from-oid')
+                                                }));
+
+                                                if (!window.replyAsData[this[0]]) {
+                                                    window.replyAsData[this[0]] = this;
+                                                }
+                                            }
+                                        });
+
+                                        searchableRowEls = geByClass('_post_from_tt_row_searchable', ttel);
+                                        setTimeout(function() {
+                                            ttChooser.scroll.update();
+                                            ttChooser.updatePosition();
+                                        }, 0);
+                                        hideProgress(searchProgress);
+                                    }, function() {
+                                        hideProgress(searchProgress);
+                                    });
+                                }, 500);
+                            }
                             each(searchableRowEls, function(i, row) {
                                 toggle(row, (searchTerm === '') || (row.innerText.toLowerCase().indexOf(searchTerm) !== -1));
                             });
@@ -7611,6 +7661,7 @@ Composer = {
             message: message
         };
         var attachI = 0;
+        var needAttachmentAccessHash = hasClass(gpeByClass('post', input), 'suggest');
 
         if (isArray(media) && media.length) {
             medias.push(clone(media));
@@ -7797,6 +7848,9 @@ Composer = {
                 }
                 if (this[3] && trim(message) == this[3]) {
                     params.message = '';
+                }
+                if (needAttachmentAccessHash && this[4]) {
+                    attachVal += '_' + this[4];
                 }
                 params['attach' + (attachI + 1) + '_type'] = type;
                 params['attach' + (attachI + 1)] = attachVal;
