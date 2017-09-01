@@ -539,7 +539,7 @@ var stVersions = {
     'cmodules/web/pretty_cards.js': 1388461462,
     'cmodules/web/landing_ads_case.js': 3936066274,
     'landings/ads_cases.css': 27193018646,
-    'lang': 6839
+    'lang': 6841
 };
 var stTypes = {
     fromLib: {
@@ -605,4 +605,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 9973;
+var _rnd = 9714;
