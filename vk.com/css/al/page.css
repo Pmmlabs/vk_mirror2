@@ -656,7 +656,7 @@ h5.post_author {
 .wall_post_source_icon {
     display: inline-block;
     margin: 0 0 -1px 5px;
-    background: url(/images/profile_icons.png?16) no-repeat;
+    background: url(/images/profile_icons.png?17) no-repeat;
     width: 11px;
     height: 11px
 }
@@ -665,8 +665,8 @@ h5.post_author {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .wall_post_source_icon {
-        background-image: url(/images/profile_icons_2x.png?16);
-        background-size: 13px 330px
+        background-image: url(/images/profile_icons_2x.png?17);
+        background-size: 13px 341px
     }
 }
 
@@ -717,6 +717,10 @@ h5.post_author {
 
 .wall_post_source_vinci {
     background-position: 0 -308px
+}
+
+.wall_post_source_admin_app {
+    background-position: 0 -330px
 }
 
 .wall_post_source_ads_mark {
@@ -6385,7 +6389,7 @@ div.create_poll_cb {
 }
 
 .page_fronly {
-    background: url(/images/profile_icons.png?16) no-repeat;
+    background: url(/images/profile_icons.png?17) no-repeat;
     background-position: 0 -163px;
     width: 8px;
     height: 11px;
@@ -6397,8 +6401,8 @@ div.create_poll_cb {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .page_fronly {
-        background-image: url(/images/profile_icons_2x.png?16);
-        background-size: 13px 330px
+        background-image: url(/images/profile_icons_2x.png?17);
+        background-size: 13px 341px
     }
 }
 

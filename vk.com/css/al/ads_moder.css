@@ -831,7 +831,7 @@ table.ads_logs_info th {
     display: block;
     width: 11px;
     height: 11px;
-    background-image: url(/images/profile_icons.png?16);
+    background-image: url(/images/profile_icons.png?17);
     background-position: 0 -198px
 }
 
@@ -839,8 +839,8 @@ table.ads_logs_info th {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .ads_mobile_apps_type_icon {
-        background-image: url(/images/profile_icons_2x.png?16);
-        background-size: 13px 330px
+        background-image: url(/images/profile_icons_2x.png?17);
+        background-size: 13px 341px
     }
 }
 
@@ -875,7 +875,7 @@ table.ads_logs_info th {
     display: block;
     width: 11px;
     height: 11px;
-    background-image: url(/images/profile_icons.png?16);
+    background-image: url(/images/profile_icons.png?17);
     background-size: 13px auto;
     margin: 4px 0 0 8px
 }
@@ -884,8 +884,8 @@ table.ads_logs_info th {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .ads_mobile_apps_photo_icon {
-        background-image: url(/images/profile_icons_2x.png?16);
-        background-size: 13px 330px
+        background-image: url(/images/profile_icons_2x.png?17);
+        background-size: 13px 341px
     }
 }
 

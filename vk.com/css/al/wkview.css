@@ -1204,3 +1204,15 @@ span#wk_posts_reach_tooltip_link {
     min-width: 657px;
     width: auto
 }
+
+.wk_ads_case #wk_content {
+    width: 795px
+}
+
+.wk_ads_case .wk_wiki_content {
+    padding: 0
+}
+
+.wk_ads_case#wk_box {
+    border-radius: 4px
+}

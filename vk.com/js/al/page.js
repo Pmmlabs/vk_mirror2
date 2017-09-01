@@ -5744,9 +5744,11 @@ var Wall = {
         timeNow -= cur.tsDiff;
         each(geByClass('rel_date_needs_update', cont || ge('page_wall_posts'), 'span'), function(k, v) {
             if (!v) return;
+
             var timeRow = intval(v.getAttribute('time')),
                 diff = timeNow - timeRow,
                 timeText = v.getAttribute('abs_time');
+
             if (diff < 5) {
                 timeText = getLang('wall_just_now');
             } else if (diff < 60) {
