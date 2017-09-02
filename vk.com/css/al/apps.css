@@ -5678,7 +5678,7 @@ td.apps_cat_new_h {
     text-overflow: ellipsis;
     display: inline-block;
     vertical-align: top;
-    width: 297px
+    width: auto
 }
 
 .add_to_mine_community_box .add_community_app_groups .add_community_app_group_app,

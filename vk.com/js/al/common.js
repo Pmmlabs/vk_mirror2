@@ -3016,31 +3016,50 @@ function updateNarrow() {
     cur.__narrowBar.isBarFixed = needFix;
 }
 
-function updateLeftMenu() {
-    cur.__leftMenu = cur.__leftMenu || {};
-    cur.__leftMenu.lmBar = cur.__leftMenu.lmBar || ge('side_bar_inner');
-    cur.__leftMenu.lmFixed = cur.__leftMenu.lmFixed || getStyle(cur.__leftMenu.lmBar, 'position') === 'fixed';
-    cur.__leftMenu.lmMarginTop = floatval(getStyle(cur.__leftMenu.lmBar, 'marginTop'));
-    cur.__leftMenu.pl = cur.__leftMenu.pl || ge('page_layout');
+// Left Menu //
+// Store dom refs in closure
+window.getLmDomEles = (function() {
+    var c = {};
 
-    var menu = cur.__leftMenu.lmBar,
-        pageBody = ge('page_body');
+    function eleExists(ele) {
+        return ele && document.body.contains(ele);
+    }
+
+    return function() {
+        return {
+            bar: c.bar = eleExists(c.bar) ? c.bar : ge('side_bar_inner'),
+            pl: c.pl = eleExists(c.pl) ? c.pl : ge('page_layout'),
+            pb: c.pb = eleExists(c.pb) ? c.pb : ge('page_body')
+        };
+    }
+})();
+
+// Store status in global object
+window.__leftMenu = {};
+
+function updateLeftMenu() {
+    var lm = getLmDomEles();
+    __leftMenu.lmFixed = __leftMenu.lmFixed || getStyle(lm.bar, 'position') === 'fixed';
+    __leftMenu.lmMarginTop = floatval(getStyle(lm.bar, 'marginTop'));
+
+    var menu = lm.bar,
+        pageBody = lm.pb;
     if (browser.mobile || !menu || !pageBody) return;
 
     var wh = window.lastWindowHeight || 0,
         st = Math.min(scrollGetY(), bodyNode.clientHeight - wh),
         pos = 0,
-        pl = cur.__leftMenu.pl,
+        pl = lm.pl,
         headH = getPageHeaderHeight(),
         headCalcH = Math.min(Math.max(0, headH - st), headH),
-        isFixed = cur.__leftMenu.lmFixed,
+        isFixed = __leftMenu.lmFixed,
         menuH = getSize(menu)[1],
-        menuPos = isFixed ? getXY(menu)[1] : cur.__leftMenu.lmMarginTop,
+        menuPos = isFixed ? getXY(menu)[1] : __leftMenu.lmMarginTop,
         pageH = getSize(pageBody)[1],
         pagePos = pageBody.offsetTop,
         tooBig = menuH >= pageH,
-        lastSt = cur.__leftMenu.menuLastSt || 0,
-        lastStyles = cur.__leftMenu.menuLastStyles || {},
+        lastSt = __leftMenu.menuLastSt || 0,
+        lastStyles = __leftMenu.menuLastStyles || {},
         styles, delta = 1,
         noScrollDelta = cur.leftMenuDelta || 0;
     delete cur.leftMenuDelta;
@@ -3083,12 +3102,12 @@ function updateLeftMenu() {
             bottom: null
         };
         setStyle(menu, extend(defaultStyles, styles));
-        cur.__leftMenu.menuLastStyles = styles;
+        __leftMenu.menuLastStyles = styles;
     }
-    cur.__leftMenu.menuLastSt = st;
-    cur.__leftMenu.lmFixed = styles.position === 'fixed';
-    if (cur.__leftMenu.lmMarginTop !== styles.marginTop) {
-        cur.__leftMenu.lmMarginTop = styles.marginTop;
+    __leftMenu.menuLastSt = st;
+    __leftMenu.lmFixed = styles.position === 'fixed';
+    if (__leftMenu.lmMarginTop !== styles.marginTop) {
+        __leftMenu.lmMarginTop = styles.marginTop;
     }
 }
 
@@ -3164,7 +3183,8 @@ function onBodyResize(force) {
             mvLayerWrap.style.height = dheight + 'px';
         }
         if (window.wkLayerWrap) {
-            wkLayerWrap.style.height = dheight + 'px';
+            var wkLHeight = browser.mobile ? w.innerHeight : dheight;
+            wkLayerWrap.style.height = wkLHeight + 'px';
         }
         if (browser.mozilla && layers.visible) {
             pageNode.style.height = (_oldScroll + dheight) + 'px';

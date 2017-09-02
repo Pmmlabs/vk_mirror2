@@ -681,10 +681,23 @@
     text-align: center
 }
 
-.audio_page_layout .audio_owner_item .audio_owner_item__title {
+.audio_page_layout .audio_owner_item .audio_owner_item__title a:first-child {
+    box-sizing: border-box;
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: middle;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 17px
+}
+
+.audio_page_layout .audio_owner_item--verified .audio_owner_item__title a:first-child {
+    padding-right: 18px
+}
+
+.audio_page_layout .audio_owner_item .page_verified {
+    left: -21px;
+    vertical-align: middle
 }
 
 .audio_page_layout .audio_owner_item .audio_owner_item__play {

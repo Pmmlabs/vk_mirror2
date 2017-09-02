@@ -276,7 +276,7 @@ var WkView = {
             window._mediator && window._mediator.start({
                 url: location.pathname + location.search
             })
-        }, 1500))), toggle("wk_summary", title), wkcur.commonClass ? addClass(wkcur.wkBox, wkcur.commonClass) : wkcur.wkBox.className = "", wkcur.noCloseIcon && hide(wkcur.wkRight), wkcur.oid && wkcur.pid && (WkView.initSTL(), options.edit || (addEvent(wkLayerWrap, "scroll", WkView.onScroll), addEvent(window, "resize", WkView.onResize))), options.overflow ? addClass(wkcur.wkBox, "wk_overflow_hidden") : removeClass(wkcur.wkBox, "wk_overflow_hidden"), browser.mobile && (wkcur.wkYOffset = intval(window.pageYOffset), wkcur.wkCont.style.paddingTop = wkcur.wkYOffset + 10 + "px", wkcur.wkRightNav.style.top = wkcur.wkYOffset + 10 + "px"), script && eval(script), WkView.updateSize(), removeEvent(document, "keydown", WkView.onKeyDown), addEvent(document, "keydown", WkView.onKeyDown), options.onLoaded && options.onLoaded(), shortCurrency(), WkView.updateArrows(), wkcur.wkContent.focus(), wkLayerWrap.scrollTop = 0, "wall" == options.type ? WkView.wallAfterInitPost() : options.toScroll ? (wkLayerWrap.scrollTop = options.toScroll, wkcur.toScroll = 0) : wkLayerWrap.scrollTop = 0, options.fromlist && WkView.preloadArrow(1 == options.fromlist), getAudioPlayer().updateCurrentPlaying(), window.updateAriaElements && updateAriaElements();
+        }, 1500))), toggle("wk_summary", title), wkcur.commonClass ? addClass(wkcur.wkBox, wkcur.commonClass) : wkcur.wkBox.className = "", wkcur.noCloseIcon && hide(wkcur.wkRight), wkcur.oid && wkcur.pid && (WkView.initSTL(), options.edit || (addEvent(wkLayerWrap, "scroll", WkView.onScroll), addEvent(window, "resize", WkView.onResize))), options.overflow ? addClass(wkcur.wkBox, "wk_overflow_hidden") : removeClass(wkcur.wkBox, "wk_overflow_hidden"), script && eval(script), WkView.updateSize(), removeEvent(document, "keydown", WkView.onKeyDown), addEvent(document, "keydown", WkView.onKeyDown), options.onLoaded && options.onLoaded(), shortCurrency(), WkView.updateArrows(), wkcur.wkContent.focus(), wkLayerWrap.scrollTop = 0, "wall" == options.type ? WkView.wallAfterInitPost() : options.toScroll ? (wkLayerWrap.scrollTop = options.toScroll, wkcur.toScroll = 0) : wkLayerWrap.scrollTop = 0, options.fromlist && WkView.preloadArrow(1 == options.fromlist), getAudioPlayer().updateCurrentPlaying(), window.updateAriaElements && updateAriaElements();
         var postLargeGif = domByClass(wkLayer, "page_gif_large");
         return postLargeGif && Page.showGif(domFC(postLargeGif)), !1
     },
@@ -351,19 +351,20 @@ var WkView = {
         var l = WkView.getNextWkRaws(),
             n = "intro" == wkcur.wkRaw;
         if (l[0] || l[1] || n) {
-            var s = (wkcur.wkCont.offsetHeight < lastWindowHeight ? wkcur.wkCont.offsetTop + 10 + t / 2 : lastWindowHeight / 2) - 8;
+            var s = browser.mobile ? window.innerHeight : lastWindowHeight,
+                c = (wkcur.wkCont.offsetHeight < s ? wkcur.wkCont.offsetTop + 10 + t / 2 : s / 2) - 8;
             l[0] || n && wkcur.introControlsCur ? (show(wkcur.wkLeftArrow), show(wkcur.wkLeftArrowBg), setStyle(wkcur.wkLeftArrowBg, {
                 left: (lastWindowWidth - e - o) / 2 - i
             }), setStyle(wkcur.wkLeftArrow, {
                 left: (lastWindowWidth - e - o) / 2 - a + (a - w) / 2,
-                top: s
+                top: c
             })) : hide(wkcur.wkLeftArrow, wkcur.wkLeftArrowBg), setStyle(wkcur.wkRight, {
-                paddingBottom: (s - getXY(wkcur.wkRight, !0)[1] - 24) / 2
+                paddingBottom: (c - getXY(wkcur.wkRight, !0)[1] - 24) / 2
             }), l[1] || n && wkcur.introControls && wkcur.introControlsCur < wkcur.introControls.length - 1 ? (show(wkcur.wkRightArrow), show(wkcur.wkRightArrowBg), setStyle(wkcur.wkRightArrowBg, {
                 left: (lastWindowWidth - e - o) / 2 + o
             }), setStyle(wkcur.wkRightArrow, {
                 left: (lastWindowWidth - e - o) / 2 + o + (a - w) / 2,
-                top: s
+                top: c
             })) : hide(wkcur.wkRightArrow, wkcur.wkRightArrowBg)
         } else hide(wkcur.wkLeftArrow, wkcur.wkLeftArrowBg, wkcur.wkRightArrow, wkcur.wkRightArrowBg)
     },
@@ -401,13 +402,14 @@ var WkView = {
     },
     updateHeight: function() {
         window.updateWndVScroll && updateWndVScroll();
-        var e = Math.max(wkcur.wkCont.offsetHeight, lastWindowHeight);
-        wkcur.wkLeftNav.style.height = wkcur.wkRightNav.style.height = e + "px";
-        var r = wkcur.wkBox.offsetHeight;
+        var e = browser.mobile ? window.innerHeight : lastWindowHeight,
+            r = Math.max(wkcur.wkCont.offsetHeight, e);
+        wkcur.wkLeftNav.style.height = wkcur.wkRightNav.style.height = r + "px";
+        var o = wkcur.wkBox.offsetHeight;
         setStyle(wkcur.wkLeftArrowBg.firstChild, {
-            height: r
+            height: o
         }), setStyle(wkcur.wkRightArrowBg.firstChild, {
-            height: r
+            height: o
         })
     },
     updateSize: function(e) {
@@ -866,8 +868,7 @@ var WkView = {
                 if (w) {
                     if (a)
                         for (var l = geByClass("wk_likes_hidden", w), n = 0, s = l.length; s > n; ++n) w.appendChild(l[n]), removeClass(l[n], "wk_likes_hidden");
-                    w.appendChild(cf(r)), wkcur.offset = o, t ? WkView.likesPreload() : hide(e),
-                        WkView.updateHeight(), i && extend(cur.options.reply_names, i)
+                    w.appendChild(cf(r)), wkcur.offset = o, t ? WkView.likesPreload() : hide(e), WkView.updateHeight(), i && extend(cur.options.reply_names, i)
                 }
             },
             showProgress: lockButton.pbind(e),

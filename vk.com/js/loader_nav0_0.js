@@ -151,7 +151,7 @@ var stVersions = {
     'audioplayer.css': 15116651902,
     'audio_html5.js': 287741914,
     'audio.js': 2055763512,
-    'audio.css': 18932415981,
+    'audio.css': 19091535449,
     'gifts.css': 18418429795,
     'gifts.js': 338252255,
     'cc.js': 1644397126,
@@ -184,8 +184,8 @@ var stVersions = {
     'photos_add.css': 20016166968,
     'photos_add.js': 3448017910,
     'wkpoll.js': 534542755,
-    'wkview.js': 843966386,
-    'wkview.css': 19852167108,
+    'wkview.js': 2949321433,
+    'wkview.css': 17946375276,
     'single_pv.css': 1445030012,
     'single_pv.js': 2438273057,
     'video.js': 187248878,
@@ -200,7 +200,7 @@ var stVersions = {
     'video_youtube.js': 2438487008,
     'video_youtube.css': 13098620298,
     'videoplayer.js': 75874546451,
-    'videoplayer.css': 33587161479,
+    'videoplayer.css': 31491500092,
     'translation.js': 2431784533,
     'translation.css': 14349909698,
     'reg.css': 887926110,
@@ -264,7 +264,7 @@ var stVersions = {
     'feed.css': 18286753006,
     'privacy.js': 3620108221,
     'privacy.css': 16047904322,
-    'apps.css': 23279760726,
+    'apps.css': 20596351676,
     'apps.js': 1400745086,
     'apps_edit.js': 119002668,
     'apps_edit.css': 19656175836,
@@ -335,7 +335,7 @@ var stVersions = {
     'helpdesk.css': 20349321938,
     'tickets.js': 1964252,
     'tickets.css': 18467420557,
-    'faq.js': 1669371653,
+    'faq.js': 2730766454,
     'faq.css': 18245443440,
     'talmud.js': 1641838680,
     'agents.js': 3714363511,
@@ -348,7 +348,7 @@ var stVersions = {
     'groupinfo.css': 18525449203,
     'bugs.js': 3874995669,
     'bugs.css': 13480264462,
-    'bugtracker.js': 1506158744,
+    'bugtracker.js': 3629803720,
     'bugtracker.css': 18323385439,
     'login.css': 15707452649,
     'login.js': 3551917100,
@@ -390,8 +390,8 @@ var stVersions = {
     'health.css': 2251304991,
     'health.js': 2993570139,
     'pinbar.js': 284788792,
-    'sms_office.css': 3956948163,
-    'sms_office.js': 1747548685,
+    'sms_office.css': 1728588285,
+    'sms_office.js': 333673010,
     'help.css': 2602432866,
     'help.js': 915032948,
     'claims.css': 14804851834,
@@ -538,7 +538,7 @@ var stVersions = {
     'shortener.js': 1002525642,
     'cmodules/web/pretty_cards.js': 1388461462,
     'cmodules/web/landing_ads_case.js': 3936066274,
-    'landings/ads_cases.css': 27193018646,
+    'landings/ads_cases.css': 23707657311,
     'lang': 6841
 };
 var stTypes = {
@@ -605,4 +605,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 7371;
+var _rnd = 8459;

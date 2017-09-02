@@ -44,10 +44,6 @@
     display: none
 }
 
-body.mobfixed #wk_layer_wrap {
-    overflow: visible
-}
-
 .wk_fixed {
     left: 0;
     top: 0;
