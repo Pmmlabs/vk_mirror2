@@ -1565,7 +1565,7 @@ function setStyle(elem, name, value) {
             }
             elem.style.zoom = 1;
         };
-        if (elem.style.opacity != value) {
+        if (elem.style.opacity !== value) {
             elem.style.opacity = value;
         }
     } else {
@@ -1573,7 +1573,7 @@ function setStyle(elem, name, value) {
             var isN = typeof(value) == 'number';
             if (isN && (/height|width/i).test(name)) value = Math.abs(value);
             value = isN && !(/z-?index|font-?weight|opacity|zoom|line-?height/i).test(name) ? value + 'px' : value;
-            if (elem.style[name] != value) {
+            if (elem.style[name] !== value) {
                 elem.style[name] = value;
             }
         } catch (e) {
