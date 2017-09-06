@@ -2905,7 +2905,8 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     }
 }
 
-.tickets_suggest__icon.tickets_icon0:after {
+.tickets_suggest__icon.tickets_icon0:after,
+.tickets_suggest__icon.tickets_icon14:after {
     background-position: 0 -56px
 }
 
@@ -3174,7 +3175,8 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     }
 }
 
-.help_tile__title.tickets_icon0:after {
+.help_tile__title.tickets_icon0:after,
+.help_tile__title.tickets_icon14:after {
     background-position: 0 -56px
 }
 
@@ -3335,7 +3337,8 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     }
 }
 
-.help_table_questions__title.tickets_icon0:after {
+.help_table_questions__title.tickets_icon0:after,
+.help_table_questions__title.tickets_icon14:after {
     background-position: 0 -56px
 }
 
@@ -4043,19 +4046,10 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     max-width: 122px
 }
 
-.tickets_extra_fields,
-.tickets_extra_info_bar {
+.tickets_extra_fields {
     margin-top: 1em;
     padding-top: 1em;
     border-top: 1px solid #f2f4f6
-}
-
-.tickets_extra_info_bar.tickets_extra_info_bar_subject_tags {
-    line-height: 34px
-}
-
-.tickets_extra_info_bar .flat_button {
-    margin-right: 5px
 }
 
 .tickets_extra_field {

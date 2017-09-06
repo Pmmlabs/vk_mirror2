@@ -332,9 +332,9 @@ var stVersions = {
     'tasks.js': 662793453,
     'tasks.css': 14855349368,
     'helpdesk.js': 1343002196,
-    'helpdesk.css': 20349321938,
+    'helpdesk.css': 18357637936,
     'tickets.js': 1964252,
-    'tickets.css': 18467420557,
+    'tickets.css': 18875694394,
     'faq.js': 2730766454,
     'faq.css': 18245443440,
     'talmud.js': 1641838680,
@@ -605,4 +605,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 5389;
+var _rnd = 2706;
