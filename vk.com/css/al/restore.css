@@ -574,3 +574,7 @@
     padding: 3px;
     display: inline-block
 }
+
+.restore_not_actual_request_msg {
+    padding: 15px 10px
+}

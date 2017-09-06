@@ -196,7 +196,7 @@ var stVersions = {
     'videoview.css': 20467733287,
     'video_edit.js': 2135196486,
     'video_edit.css': 15432214983,
-    'video_upload.js': 555062683,
+    'video_upload.js': 220457076,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 13098620298,
     'videoplayer.js': 75874546451,
@@ -322,7 +322,7 @@ var stVersions = {
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
     'restore.js': 951793792,
-    'restore.css': 15666376877,
+    'restore.css': 14891929527,
     'recover.js': 2830033131,
     'recover.css': 2080137791,
     'docs.js': 370703063,
@@ -532,13 +532,13 @@ var stVersions = {
     'stories.css': 15658034967,
     'internal/nospam.css': 17925443782,
     'internal/away_linksban.css': 16264012761,
-    'internal/patterns_info.css': 15039338929,
+    'internal/patterns_info.css': 15477579751,
     'internal/cvkmobile.css': 16595119247,
     'internal/cvkmobile.js': 3693679928,
     'shortener.js': 1002525642,
     'cmodules/web/pretty_cards.js': 1388461462,
     'cmodules/web/landing_ads_case.js': 3936066274,
-    'landings/ads_cases.css': 23707657311,
+    'landings/ads_cases.css': 25101832628,
     'lang': 6841
 };
 var stTypes = {
@@ -605,4 +605,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 2360;
+var _rnd = 5389;

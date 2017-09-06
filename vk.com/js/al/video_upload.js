@@ -881,7 +881,7 @@ var VideoUpload = {
             onChange: function() {}
         }), cur.destroy.push(function() {
             cur.uploadVideoLiveCategoryDropdown && (cur.uploadVideoLiveCategoryDropdown.destroy(), delete cur.uploadVideoLiveCategoryDropdown), cur.uploadVideoLiveGameCategoryDropdown && (cur.uploadVideoLiveGameCategoryDropdown.destroy(), delete cur.uploadVideoLiveGameCategoryDropdown)
-        })
+        }), toggle("video_upload_live_game_category_wrap", 3 == val("video_upload_live_category"))
     },
     toggleLiveLaunchSteps: function(e) {
         toggleClass(e, "_open");
