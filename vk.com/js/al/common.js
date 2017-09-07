@@ -13082,8 +13082,8 @@ function audioShowActionTooltip(btn, shift, needDownAndLeft) {
 
 function deleteAudioOnClaim(owner_id, id) {
     var audioId = owner_id + '_' + id;
-    var audioEl = ge('audio_' + audioId);
-    AudioPage(audioEl).deleteAudio(audioEl, audioId, event, true);
+    var audioEl = geByClass1('_audio_row_' + audioId);
+    AudioUtils.deleteAudio(audioEl, AudioUtils.getAudioFromEl(audioEl, true));
 
     cur.claimWarning && cur.claimWarning.hide();
 }

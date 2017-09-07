@@ -1462,14 +1462,14 @@ a.group_app_button:after {
     font-size: 19px;
     color: #000;
     line-height: 28px;
-    padding-bottom: 32px
+    padding-bottom: 31px
 }
 
 .app_widget_text_descr {
     font-size: 13px;
     color: #656565;
     line-height: 20px;
-    margin: -23px 0 34px
+    margin: -22px 0 33px
 }
 
 .app_widget_tiles_tile {

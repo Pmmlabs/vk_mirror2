@@ -865,23 +865,40 @@ var VideoUpload = {
         })
     },
     initLiveStreamCategoryDropdown: function(e, o) {
-        cur.uploadVideoLiveCategoryDropdown = new Dropdown(ge("video_upload_live_category"), e, {
-            multiselect: !1,
-            zeroPlaceholder: !0,
-            big: !0,
-            width: 400,
-            onChange: function(e) {
-                toggle("video_upload_live_game_category_wrap", 3 == e)
-            }
-        }), cur.uploadVideoLiveGameCategoryDropdown = new Dropdown(ge("video_upload_live_game_category"), o, {
-            multiselect: !1,
-            zeroPlaceholder: !0,
-            big: !0,
-            width: 400,
-            onChange: function() {}
-        }), cur.destroy.push(function() {
-            cur.uploadVideoLiveCategoryDropdown && (cur.uploadVideoLiveCategoryDropdown.destroy(), delete cur.uploadVideoLiveCategoryDropdown), cur.uploadVideoLiveGameCategoryDropdown && (cur.uploadVideoLiveGameCategoryDropdown.destroy(), delete cur.uploadVideoLiveGameCategoryDropdown)
-        }), toggle("video_upload_live_game_category_wrap", 3 == val("video_upload_live_category"))
+        var a = ge("video_upload_live_category"),
+            d = ge("video_upload_live_game_category"),
+            i = domPN(a).offsetWidth;
+        toggle("video_upload_live_game_category_wrap", 3 == val(a));
+        var t = new Dropdown(a, e, {
+                multiselect: !1,
+                zeroPlaceholder: !0,
+                big: !0,
+                width: i,
+                onChange: function(e) {
+                    toggle("video_upload_live_game_category_wrap", 3 == e)
+                }
+            }),
+            r = new Dropdown(d, o, {
+                multiselect: !1,
+                zeroPlaceholder: !0,
+                big: !0,
+                width: i,
+                onChange: function() {}
+            });
+        cur.destroy.push(function() {
+            t.destroy(), r.destroy()
+        })
+    },
+    getLiveStreamCategoryVal: function() {
+        var e = ge("video_upload_live_category"),
+            o = ge("video_upload_live_game_category");
+        if (!e) return 0;
+        var a = +val(e);
+        if (3 == a) {
+            var d = +val(o);
+            a = d > 0 ? d : a
+        }
+        return a
     },
     toggleLiveLaunchSteps: function(e) {
         toggleClass(e, "_open");
@@ -911,24 +928,20 @@ var VideoUpload = {
         o && (a = o.getAttribute("data-thumb-id"));
         var d = trim(val("video_new_live_trans_title")),
             i = trim(val("video_new_live_trans_description")),
-            t = +cur.uploadVideoLiveCategoryDropdown.val();
-        if (3 == t) {
-            var r = +cur.uploadVideoLiveGameCategoryDropdown.val();
-            t = r > 0 ? r : t
-        }
-        var l = {
-            owner_id: cur.oid,
-            thumb_id: a,
-            title: d,
-            description: i,
-            category: t,
-            publish: isChecked("video_create_live_publish_on_wall"),
-            preparation_check: isChecked("video_create_live_preparation_check"),
-            notify_followers: isChecked("video_create_live_notify_followers"),
-            enable_donations: isChecked("video_create_enable_donations"),
-            rhash: cur.liveTransHash
-        };
-        return cur.oid < 0 ? l.no_comments = isChecked("video_create_live_no_comments") : (l.privacy_view = Privacy.getValue("video_live_view"), l.privacy_comment = Privacy.getValue("video_live_comment")), l.title ? l.category ? (VideoUpload.lockSaveButton(), void ajax.post("al_video.php?act=a_add_new_live_trans", l, {
+            t = VideoUpload.getLiveStreamCategoryVal(),
+            r = {
+                owner_id: cur.oid,
+                thumb_id: a,
+                title: d,
+                description: i,
+                category: t,
+                publish: isChecked("video_create_live_publish_on_wall"),
+                preparation_check: isChecked("video_create_live_preparation_check"),
+                notify_followers: isChecked("video_create_live_notify_followers"),
+                enable_donations: isChecked("video_create_enable_donations"),
+                rhash: cur.liveTransHash
+            };
+        return cur.oid < 0 ? r.no_comments = isChecked("video_create_live_no_comments") : (r.privacy_view = Privacy.getValue("video_live_view"), r.privacy_comment = Privacy.getValue("video_live_comment")), r.title ? r.category ? (VideoUpload.lockSaveButton(), void ajax.post("al_video.php?act=a_add_new_live_trans", r, {
             onFail: function(e) {
                 return VideoUpload.unlockSaveButton(), showFastBox(getLang("video_create_live_error"), e || getLang("video_create_live_error_try_later")), !0
             }

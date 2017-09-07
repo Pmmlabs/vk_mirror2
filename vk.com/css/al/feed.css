@@ -2465,3 +2465,82 @@ div.feed_recom {
 .feed_update_row .post_author {
     color: #000
 }
+
+.feed_block_articles .module_body {
+    padding-top: 0;
+    padding-bottom: 8px
+}
+
+.feed_block_article {
+    position: relative;
+    display: block;
+    margin: 12px 0;
+    padding-right: 68px;
+    color: inherit;
+    line-height: 18px;
+    font-size: 13px;
+    min-height: 56px
+}
+
+.feed_block_article+.feed_block_article {
+    margin-top: 25px
+}
+
+.feed_block_article+.feed_block_article:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -13px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e7e8ec;
+    pointer-events: none;
+    cursor: default
+}
+
+.feed_block_article:hover {
+    text-decoration: none
+}
+
+.feed_block_article_title {
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 36px
+}
+
+.feed_block_article_photo {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 56px;
+    height: 56px;
+    background-position: 50%;
+    background-size: cover;
+    border-radius: 2px
+}
+
+.feed_block_article_author {
+    display: block;
+    white-space: nowrap;
+    max-width: 100%;
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #939393;
+    padding-top: 5px;
+    line-height: 15px;
+    font-size: 12.5px
+}
+
+.feed_block_article_author .divider {
+    margin-bottom: -1px
+}
+
+.feed_block_article_date {
+    float: right
+}

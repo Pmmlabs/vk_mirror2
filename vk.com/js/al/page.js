@@ -661,7 +661,7 @@ var Page = {
                     delete _postsExtras[i];
                 }
                 p = i.split('_');
-                if (p[0] !== 'ad' && p[0] !== 'posthashtag') {
+                if (p[0] !== 'ad' && p[0] !== 'posthashtag' && p[0] !== 'block') {
                     p[0] = intval(p[0]);
                     if (!p[1] || p[1].substr(0, 1) != 'p') {
                         p[1] = intval(p[1]);
@@ -5426,7 +5426,17 @@ var Wall = {
             }
         }
 
-        if (m = el.id.match(/^post(-?\d+_\d+)$/)) {
+        if (el.id.substr(0, 6) === 'block_') {
+            res[el.id] = 1;
+            var contain = attr(el, 'data-contain');
+            if (contain) {
+                contain = contain.split(',');
+                contain.forEach(function(v) {
+                    v = v.split(':');
+                    res[v[0]] = intval(v[1]) || 1;
+                });
+            }
+        } else if (m = el.id.match(/^post(-?\d+_\d+)$/)) {
             res[m[1]] = 1;
             if (m = (el.getAttribute('data-copy') || '').match(/^(-?\d+_\d+)$/)) {
                 res[m[1]] = -1;

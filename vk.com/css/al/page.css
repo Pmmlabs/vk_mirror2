@@ -7314,6 +7314,10 @@ button.wall_block_app_btn {
     text-align: left
 }
 
+.wall_reasons_header+.wall_reasons_header {
+    padding-top: 4px
+}
+
 .wall_reasons_item {
     padding: 5px 0 6px
 }
