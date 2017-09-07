@@ -589,8 +589,11 @@ var Page = {
 
                 index = posts[i].index;
                 query = posts[i].q;
+                if (posts[i].hash && !window._postsViewHash) {
+                    window._postsViewHash = posts[i].hash;
+                }
                 for (j in posts[i]) {
-                    if (j == 'module' || j == 'index' || j == 'q') continue;
+                    if (j == 'module' || j == 'index' || j == 'q' || j == 'hash') continue;
 
                     _postsSeenModules[j] = module;
                     p = posts[i][j];
@@ -775,10 +778,14 @@ var Page = {
             if (!data.length) return;
             if (!vk.id) return Page.postsClear();
 
-            ajax.post('al_page.php', {
+            var query_data = {
                 act: 'seen',
                 data: data.join(';')
-            }, {
+            };
+            if (window._postsViewHash) {
+                query_data['hash'] = window._postsViewHash;
+            }
+            ajax.post('al_page.php', query_data, {
                 onDone: function() {
                     if (!ls.checkVersion()) {
                         return extend(_postsSaved, _postsSeen);
@@ -5424,6 +5431,11 @@ var Wall = {
             if (isAdsPromotedPost) {
                 res.module += '_ads_promoted_post';
             }
+        }
+
+        var postViewHash = el.getAttribute('post_view_hash');
+        if (postViewHash) {
+            res['hash'] = postViewHash;
         }
 
         if (el.id.substr(0, 6) === 'block_') {

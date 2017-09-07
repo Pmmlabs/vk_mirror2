@@ -8,13 +8,13 @@ var FullWall = {
         })
     },
     scrollCheck: function(e, o) {
-        var a, t, l, n, r = lastWindowHeight,
+        var a, t, l, r, n = lastWindowHeight,
             i = 0,
             s = [];
         if (domPN(cur.topRow) != cur.pgCont && (cur.topRow = domFC(cur.pgCont)), vk.id && cur.topRow && !((window.curNotifier || {}).idle_manager || {}).is_idle) {
             for (postsUnseen = [], t = domPS(cur.topRow); t; t = domPS(t)) cur.topRow.offsetTop > o && (cur.topRow = t), t.unseen || (t.unseen = !0, postsUnseen.push(FullWall.postsGetRaws(t)));
-            for (Page.postsUnseen(postsUnseen), t = cur.topRow; t && (a = i ? i : t.offsetTop, !(a >= o + r)); t = l) l = domNS(t), i = l ? l.offsetTop : a + t.offsetHeight, o > i && l && (cur.topRow = l), LongView && LongView.register(t, "FullWall"), n = t.bits || 0, n >= 3 || (n |= (a >= o && o + r > a ? 1 : 0) | (i >= o && o + r > i ? 2 : 0)) && (t.bits = n, 3 == n && s.push(FullWall.postsGetRaws(t)));
-            LongView && LongView.onScroll(o, r), Page.postsSeen(s)
+            for (Page.postsUnseen(postsUnseen), t = cur.topRow; t && (a = i ? i : t.offsetTop, !(a >= o + n)); t = l) l = domNS(t), i = l ? l.offsetTop : a + t.offsetHeight, o > i && l && (cur.topRow = l), LongView && LongView.register(t, "FullWall"), r = t.bits || 0, r >= 3 || (r |= (a >= o && o + n > a ? 1 : 0) | (i >= o && o + n > i ? 2 : 0)) && (t.bits = r, 3 == r && s.push(FullWall.postsGetRaws(t)));
+            LongView && LongView.onScroll(o, n), Page.postsSeen(s)
         }
     },
     postsGetRaws: function(e) {
@@ -27,7 +27,9 @@ var FullWall = {
                 e = e.split(":"), t[e[0]] = intval(e[1]) || 1
             }))
         } else(o = e.id.match(new RegExp("^post(" + cur.oid + "_\\d+)$", ""))) && (t[o[1]] = 1, (o = (e.getAttribute("data-copy") || "").match(/^(-?\d+_\d+)$/)) && (t[o[1]] = -1));
-        return t.index = a, t.module = cur.module, t
+        t.index = a, t.module = cur.module;
+        var r = e.getAttribute("post_view_hash");
+        return r && (t.hash = r), t
     },
     init: function(e, o) {
         extend(cur, {
@@ -61,10 +63,10 @@ var FullWall = {
                 lnav: 1,
                 offset: a.offset || void 0
             }, {
-                onDone: function(e, o, t, l, n, r, i, s, c, d) {
+                onDone: function(e, o, t, l, r, n, i, s, c, d) {
                     ge("fw_summary_wrap").innerHTML = e, Pagination.deinit(), extend(cur, {
-                        pgStart: n,
-                        pgOffset: r,
+                        pgStart: r,
+                        pgOffset: n,
                         pgCount: s,
                         pgParams: a.own ? {
                             own: 1
@@ -72,7 +74,7 @@ var FullWall = {
                         pgHref: l,
                         pgPages: ge("fw_pages"),
                         pgPreload: c
-                    }), toggle(cur.pgMore, s > r + cur.pgPerPage), wall.cancelEdit();
+                    }), toggle(cur.pgMore, s > n + cur.pgPerPage), wall.cancelEdit();
                     var p = ge("page_wall_posts");
                     p.innerHTML = o, each(geByTag("textarea", p), function() {
                         placeholderSetup(this, {
@@ -92,8 +94,8 @@ var FullWall = {
             }), !1) : void 0
         }))
     },
-    loadedPosts: function(e, o, a, t, l, n, r) {
-        if (n) each(geByTag("textarea", cur.pgCont), function() {
+    loadedPosts: function(e, o, a, t, l, r, n) {
+        if (r) each(geByTag("textarea", cur.pgCont), function() {
             placeholderSetup(this, {
                 fast: 1
             })
@@ -102,9 +104,9 @@ var FullWall = {
             for (var i = (cur.pgCont.childNodes.length, 0), s = cur.pgCont.lastChild; s && ++i <= cur.pgPerPage; s = s.previousSibling) placeholderSetup(geByTag1("textarea", s), {
                 fast: 1
             });
-            r = t
+            n = t
         }
-        for (var c in r) cur.options.reply_names[c] = r[c];
+        for (var c in n) cur.options.reply_names[c] = n[c];
         FullWall.updateSummary(e)
     },
     updateSummary: function(e) {
@@ -154,26 +156,26 @@ var FullWall = {
             l = t && domFC(t);
         if (l) {
             (o === !1 || void 0 === o) && (o = scrollGetY()), cur.addBlockTop = getXY(t)[1], cur.addBlockHeight = getSize(l)[1];
-            var n = o + lastWindowHeight < cur.addBlockTop + cur.addBlockHeight,
-                r = n ? Math.min(0, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(ge("page_layout"))[0])) : null,
+            var r = o + lastWindowHeight < cur.addBlockTop + cur.addBlockHeight,
+                n = r ? Math.min(0, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(ge("page_layout"))[0])) : null,
                 i = Math.min(0, o + lastWindowHeight - getXY("fw_replies_header")[1] - cur.addBlockHeight);
             setStyle(l, {
-                marginLeft: r,
+                marginLeft: n,
                 bottom: i
-            }), n ? (e && cur.docked || setStyle(t, "height", cur.addBlockHeight), cur.docked || (setStyle(l, "width", getSize(t)[0]), addClass(l, "fixed"), cur.docked = !0)) : cur.docked && (setStyle(l, {
+            }), r ? (e && cur.docked || setStyle(t, "height", cur.addBlockHeight), cur.docked || (setStyle(l, "width", getSize(t)[0]), addClass(l, "fixed"), cur.docked = !0)) : cur.docked && (setStyle(l, {
                 width: null,
                 marginLeft: null
             }), setStyle(t, "height", ""), removeClass(l, "fixed"), cur.docked = !1)
         }
     },
-    onReplySent: function(e, o, a, t, l, n, r) {
+    onReplySent: function(e, o, a, t, l, r, n) {
         cur.wallMyReplied[cur.oid + "_" + cur.pid] = 0, Pagination.loaded.apply(window, arguments), setTimeout(FullWall.scrollToEnd, 0), l && t && nav.setLoc(extend(nav.objLoc, {
             offset: t
         }))
     },
-    loadedReplies: function(e, o, a, t, l, n, r) {
-        n || (r = t);
-        for (var i in r) cur.options.reply_names[i] = r[i];
+    loadedReplies: function(e, o, a, t, l, r, n) {
+        r || (n = t);
+        for (var i in n) cur.options.reply_names[i] = n[i];
         FullWall.onePostOnScroll(), FullWall.repliesSummary(e)
     },
     repliesSummary: function(e) {
@@ -193,7 +195,7 @@ var FullWall = {
     subscribe: function(e, o, a, t) {
         if (!actionsMenuItemLocked(e)) {
             var l = intval(e.getAttribute("data-value")) ? 1 : 0,
-                n = {
+                r = {
                     showProgress: lockActionsMenuItem.pbind(e),
                     hideProgress: unlockActionsMenuItem.pbind(e),
                     onFail: function(e) {
@@ -205,23 +207,23 @@ var FullWall = {
                 mid: o,
                 hash: a,
                 from: "wall_one"
-            }, extend(n, {
+            }, extend(r, {
                 onDone: function(o) {
                     val(e, o), e.setAttribute("data-value", 1 - l)
                 }
             }));
             else {
-                var r = function(t) {
+                var n = function(t) {
                     ajax.post("al_groups.php", {
                         act: l ? "list_leave" : "list_enter",
                         gid: -o,
                         hash: a,
                         confirm: t
-                    }, extend(n, {
+                    }, extend(r, {
                         onDone: function(o, a, t) {
                             if (a) {
-                                var n = showFastBox(getLang("global_warning"), a, getLang("group_leave_group"), function() {
-                                    n.hide(), r(1)
+                                var r = showFastBox(getLang("global_warning"), a, getLang("group_leave_group"), function() {
+                                    r.hide(), n(1)
                                 }, getLang("global_cancel"));
                                 return !0
                             }
@@ -229,7 +231,7 @@ var FullWall = {
                         }
                     }))
                 };
-                r()
+                n()
             }
         }
     },

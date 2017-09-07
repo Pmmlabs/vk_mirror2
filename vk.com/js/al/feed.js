@@ -1262,10 +1262,12 @@ var Feed = {
         if ("ads_feed_placeholder" === i.id) return a;
         a.module = cur.module, a.index = r, "feed" == cur.module && ("search" == cur.section ? (a.module = "feed_search", a.q = cur.q) : "news" == cur.section ? a.module = cur.subsection ? "feed_news_" + cur.subsection : "feed_news" : "recommended" == cur.section ? a.module = cur.subsection ? "feed_recommended_" + cur.subsection : "feed_recommended" : a.module = "feed_other");
         var d = i.getAttribute("data-ad-view");
-        if (d && (a["ad_" + d] = 1), "block_" === i.id.substr(0, 6)) {
+        d && (a["ad_" + d] = 1);
+        var c = i.getAttribute("post_view_hash");
+        if (c && (a.hash = c), "block_" === i.id.substr(0, 6)) {
             a[i.id] = 1;
-            var c = attr(i, "data-contain");
-            c && (c = c.split(","), c.forEach(function(e) {
+            var l = attr(i, "data-contain");
+            l && (l = l.split(","), l.forEach(function(e) {
                 e = e.split(":"), a[e[0]] = intval(e[1]) || 1
             }))
         } else if (s = i.id.match(n)) a[s[1]] = 1;
@@ -1274,8 +1276,8 @@ var Feed = {
                 for (o = domFC(o); o; o = domNS(o))(s = o.id.match(n)) && (a[s[1]] = 1)
         } else if (s = t.match(/feed_repost(-?\d+_\d+)/)) o = domFC(i), hasClass(o, "post_copy") && (a[s[1]] = -1), (s = o.id.match(n)) && (a[s[1]] = 1);
         else {
-            var l = i.id;
-            hasClass(i, "post_photos") && (o = geByClass1("post_image", i, "a"), o && (o = domFC(o), o && (s = o.getAttribute("data-post-id").match(/^(-?\d+_p?\d+)$/)) && (l = s[1]))), a[l] = 1
+            var u = i.id;
+            hasClass(i, "post_photos") && (o = geByClass1("post_image", i, "a"), o && (o = domFC(o), o && (s = o.getAttribute("data-post-id").match(/^(-?\d+_p?\d+)$/)) && (u = s[1]))), a[u] = 1
         }
         return a
     },

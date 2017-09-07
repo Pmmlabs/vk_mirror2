@@ -93,7 +93,7 @@ var navMap = {
     'terms$': ['al_help.php', ['help.css', 'help.js']],
     'privacy$': ['al_help.php', ['help.css', 'help.js']],
     'licence$': ['al_help.php', ['help.css', 'help.js']],
-    'editdb($|/)': ['edit.php', ['edit.js']],
+    'editdb($|/)': ['edit.php', []],
     'note\\d+_\\d+$': ['al_wall.php', ['wall.js', 'wall.css', 'wk.js', 'wk.css', 'pagination.js']],
     'notes(\\d+)?$': ['al_wall.php', ['wall.js', 'wall.css', 'wk.js', 'wk.css', 'pagination.js']],
     'bugs($|/)': ['bugs.php', ['bugs.css', 'bugs.js']],
@@ -217,7 +217,7 @@ var stVersions = {
     'module.css': 17191197321,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 19111072757,
-    'page.js': 3176370991,
+    'page.js': 2228870848,
     'page.css': 19550574821,
     'page_help.css': 17446164645,
     'public.css': 18371469628,
@@ -241,7 +241,7 @@ var stVersions = {
     'tagger.css': 18206146936,
     'qsearch.js': 4098038985,
     'wall.css': 18691167672,
-    'wall.js': 407031270,
+    'wall.js': 1795168917,
     'walledit.js': 1522832013,
     'thumbs_edit.css': 13488765961,
     'thumbs_edit.js': 2241504624,
@@ -260,7 +260,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 4168379896,
+    'feed.js': 671111141,
     'feed.css': 17381037117,
     'privacy.js': 3620108221,
     'privacy.css': 16047904322,
@@ -605,4 +605,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 9554;
+var _rnd = 9500;
