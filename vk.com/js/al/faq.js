@@ -110,7 +110,7 @@ FAQ = {
         if (!i && !n.length) return notaBene("faq_text");
         var d = cur.langsDD && cur.langsDD.val() || 0,
             _ = {
-                act: "save",
+                act: "a_save",
                 title: o,
                 keywords: r,
                 description: s,
@@ -140,7 +140,7 @@ FAQ = {
                 _[e] = t
             }), _.section = intval(cur.sectionSelector.val()), cur.selData.supportsCategories[_.section] && (_.categories = cur.categorySelector.val(), !_.categories && 1 != _.section)) return elfocus(cur.categorySelector.input), notaBene(cur.categorySelector.selector);
         if (cur.selData.supportsPlatforms[_.section] && (_.platforms = cur.platformSelector.val(), !_.platforms)) return elfocus(cur.platformSelector.input), notaBene(cur.platformSelector.selector);
-        if (39 == _.section && (_.spec_section = cur.specSectionSelector.val()), cur.actionButtonSelector && (_.action_id = intval(cur.actionButtonSelector.val()), 0 != _.action_id && (_.action_label = trim(val("faq_action_btn_label"))), 7 == _.action_id)) {
+        if (39 == _.section && (_.spec_section = cur.specSectionSelector.val()), cur.actionButtonSelector && (_.action_id = intval(cur.actionButtonSelector.val()), 0 != _.action_id && 10 != _.action_id && (_.action_label = trim(val("faq_action_btn_label"))), 7 == _.action_id)) {
             if (!_.action_label) return elfocus("faq_action_btn_label"), notaBene("faq_action_btn_label");
             if (_.action_url = trim(val("faq_action_btn_url")), !_.action_url) return elfocus("faq_action_btn_url"), notaBene("faq_action_btn_url")
         }

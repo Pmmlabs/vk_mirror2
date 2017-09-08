@@ -31,12 +31,8 @@
     padding-top: 5px
 }
 
-.box_body .deleted .group .rows .row.wiped_dialog .messages_amount {
-    width: 200px
-}
-
 .box_body .deleted .group .rows .row.wiped_dialog .text {
-    width: 450px
+    width: 560px
 }
 
 .box_body .deleted .group .rows .row.wiped_dialog .date {

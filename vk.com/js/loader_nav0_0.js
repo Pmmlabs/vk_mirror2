@@ -335,7 +335,7 @@ var stVersions = {
     'helpdesk.css': 18357637936,
     'tickets.js': 1964252,
     'tickets.css': 17857084935,
-    'faq.js': 2730766454,
+    'faq.js': 1600420731,
     'faq.css': 18245443440,
     'talmud.js': 1641838680,
     'agents.js': 3714363511,
@@ -344,7 +344,7 @@ var stVersions = {
     'achievements.css': 14224003114,
     'sf.css': 13211458933,
     'members.css': 15433237138,
-    'meminfo.css': 19064376417,
+    'meminfo.css': 18942919260,
     'groupinfo.css': 18525449203,
     'bugs.js': 3874995669,
     'bugs.css': 13480264462,
@@ -490,7 +490,7 @@ var stVersions = {
     'paginated_table.js': 1572974868,
     'paginated_table.css': 15441233501,
     'api/share.js': 2621084197,
-    'api/openapi.js': 1813688167,
+    'api/openapi.js': 4285346996,
     'api/xdm.js': 1449919642,
     'css_clean.js': 4210402166,
     'hls.min.js': 1155829746,
@@ -605,4 +605,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 9363;
+var _rnd = 2012;
