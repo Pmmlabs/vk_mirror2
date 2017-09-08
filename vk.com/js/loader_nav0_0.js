@@ -189,9 +189,9 @@ var stVersions = {
     'single_pv.css': 1445030012,
     'single_pv.js': 2438273057,
     'video.js': 187248878,
-    'video.css': 15897100430,
+    'video.css': 17578072571,
     'videocat.js': 1618923991,
-    'videocat.css': 18575467313,
+    'videocat.css': 17626918867,
     'videoview.js': 3218709943,
     'videoview.css': 19449123828,
     'video_edit.js': 2135196486,
@@ -249,7 +249,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 93175002450,
-    'imn.js': 106333530175,
+    'imn.js': 107592012656,
     'im.js': 1322065004,
     'emoji.js': 1473471270,
     'wide_dd.css': 16207976069,
@@ -270,7 +270,7 @@ var stVersions = {
     'apps_edit.css': 18637566377,
     'apps_check.js': 3844411974,
     'apps_check.css': 20243660031,
-    'settings.js': 2882263597,
+    'settings.js': 2695186981,
     'settings.css': 20815371368,
     'profile_edit.js': 2157979570,
     'profile_edit.css': 15517275488,
@@ -348,7 +348,7 @@ var stVersions = {
     'groupinfo.css': 18525449203,
     'bugs.js': 3874995669,
     'bugs.css': 13480264462,
-    'bugtracker.js': 3166447039,
+    'bugtracker.js': 69052738,
     'bugtracker.css': 18323385439,
     'login.css': 15707452649,
     'login.js': 3551917100,
@@ -363,8 +363,8 @@ var stVersions = {
     'verify.css': 688648654,
     'away.css': 17727645884,
     'stats.css': 16544719057,
-    'payments.css': 17413821814,
-    'payments.js': 1266961447,
+    'payments.css': 16069789976,
+    'payments.js': 3849061612,
     'offers.css': 978996883,
     'offers.js': 2030679272,
     'call.js': 4217435992,
@@ -539,7 +539,7 @@ var stVersions = {
     'cmodules/web/pretty_cards.js': 1388461462,
     'cmodules/web/landing_ads_case.js': 3936066274,
     'landings/ads_cases.css': 25101832628,
-    'lang': 6841
+    'lang': 6843
 };
 var stTypes = {
     fromLib: {
@@ -605,4 +605,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 9500;
+var _rnd = 9363;

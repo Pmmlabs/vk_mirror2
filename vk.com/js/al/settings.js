@@ -1091,7 +1091,8 @@ var Settings = {
                 onDone: function(e, s) {
                     var n = ge(o).tBodies[0];
                     if (e)
-                        if (unlockButton(t), cur.historyOffset += 100, browser.msie) {
+                        if (unlockButton(t), cur.historyOffset ? cur.historyOffset += 100 : (n.innerHTML = "",
+                                cur.historyOffset = 5), browser.msie) {
                             var a = se("<table>" + e + "</table>"),
                                 r = geByTag("tr", a);
                             for (i in r) 1 == r[i].nodeType && n.appendChild(r[i])

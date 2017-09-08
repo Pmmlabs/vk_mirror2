@@ -611,6 +611,10 @@ h2.payments_getvotes_title {
     color: #656565
 }
 
+.payments_prices_notice:empty {
+    display: none
+}
+
 .payments_votes_bonus {
     margin-left: 4px;
     color: #7c90a6;

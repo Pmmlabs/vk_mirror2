@@ -289,6 +289,7 @@
 .video_block_layout>.videocat_row.videocat_row_games:last-child,
 .video_block_layout>.videocat_row.videocat_row_lives:last-child,
 .video_block_layout>.videocat_row.videocat_row_trends:last-child,
+.video_block_layout>.videocat_row.videocat_row_ugc_popular:last-child,
 .video_block_layout>.videocat_row.videocat_row_ugc_popular_b:last-child {
     padding-bottom: 0
 }
@@ -700,8 +701,19 @@
     transition: all 300ms ease
 }
 
+.videocat_row .video_title {
+    margin-top: 0;
+    padding-left: 4px
+}
+
 .video_block_layout .videocat_row {
+    margin-top: 20px;
     margin-bottom: 20px
+}
+
+.video_block_layout .videocat_row.videocat_row_games,
+.video_block_layout .videocat_row.videocat_row_lives {
+    margin-top: 0
 }
 
 .videocat_row.videocat_row_ugc_popular,
@@ -1017,7 +1029,8 @@
 }
 
 .video_block_layout>.videocat_row:last-child {
-    padding-bottom: 20px
+    padding-bottom: 20px;
+    margin-bottom: 0
 }
 
 .videocat_duration {

@@ -583,6 +583,11 @@ var MoneyTransfer = {
                             out: 6000
                         });
                     }
+                    var loc = nav.objLoc;
+                    if (!chkData.accept && loc[0] === 'settings' && loc.act === 'payments' && loc.section === 'transfer') {
+                        cur.historyOffset = 0;
+                        Settings.showNextPaymentsHistory(false, loc.section);
+                    }
 
                     if (result == 3) {
                         if (options && options.title) {
