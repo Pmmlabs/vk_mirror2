@@ -605,6 +605,13 @@ FAQ = {
             })
         }, getLang("global_cancel"))
     },
+    showDiff: function(e, t) {
+        showBox("faq", {
+            act: "a_show_diff",
+            id: e,
+            hash: t
+        }, {})
+    },
     _eof: 1
 };
 try {

@@ -2336,7 +2336,7 @@ var GroupsEdit = {
             };
             GroupsEdit.app.appWidgetPrivacy && (r.app_widget_privacy = GroupsEdit.app.appWidgetPrivacy.selectedItems()[0][0]), GroupsEdit.app.appName && (r.app_name = val(GroupsEdit.app.appName)), cur.withoutCatalog && GroupsEdit.hideMessage(), ajax.post("groupsedit.php", r, {
                 onDone: function(e, t) {
-                    return cur.withoutCatalog ? e ? (GroupsEdit.showMessage(t), GroupsEdit.invalidateBack()) : GroupsEdit.showMessage(t, "error") : (GroupsEdit.invalidateBack(), GroupsEdit.showMessage(t)), e
+                    return GroupsEdit.invalidateBack(), GroupsEdit.showMessage(t, e ? void 0 : "error"), e
                 },
                 showProgress: function() {
                     lockButton(o)

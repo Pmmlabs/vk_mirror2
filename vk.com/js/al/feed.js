@@ -10,25 +10,25 @@ var Feed = {
             return e ? e.longViewTracking ? !0 : e.longViewRegistered ? !1 : (e.longViewRegistered = !0, e.longViewTracking = t.isAutoplayAd(e), e.longViewTracking ? (t.tracking.push(e), !0) : !1) : !1
         },
         process: function(e, t) {
-            var s = feed.longView,
-                o = s.tracking;
-            if (0 === o.length) return [];
-            var r = s.PERCENT,
-                i = s.DURATION_MS,
-                n = s.isElemViewable,
-                a = s.viewed,
+            var o = feed.longView,
+                s = o.tracking;
+            if (0 === s.length) return [];
+            var r = o.PERCENT,
+                i = o.DURATION_MS,
+                n = o.isElemViewable,
+                a = o.viewed,
                 d = [];
-            return each(o, function(s, o) {
-                var c = domFC(o),
+            return each(s, function(o, s) {
+                var c = domFC(s),
                     l = c.id;
                 if (c && l) {
                     var u = domData(c, "ad-block-uid"),
                         f = "" + l;
-                    if (u && (f += "_" + u), !a[f] && document.body.contains(o))
-                        if (n(o, r, e, t)) {
+                    if (u && (f += "_" + u), !a[f] && document.body.contains(s))
+                        if (n(s, r, e, t)) {
                             var p = Date.now();
-                            o.longViewStartedAt ? p - o.longViewStartedAt >= i && (a[f] = !0, d.push(feed.postsGetRaws(o))) : o.longViewStartedAt = Date.now()
-                        } else o.longViewStartedAt = null
+                            s.longViewStartedAt ? p - s.longViewStartedAt >= i && (a[f] = !0, d.push(feed.postsGetRaws(s))) : s.longViewStartedAt = Date.now()
+                        } else s.longViewStartedAt = null
                 }
             }), d
         },
@@ -36,10 +36,10 @@ var Feed = {
             var t = e && domFC(e);
             return t && t.hasAttribute("data-ad-video-autoplay")
         },
-        isElemViewable: function(e, t, s, o) {
+        isElemViewable: function(e, t, o, s) {
             var r = feed.longView.getHeaderHeight(),
-                i = s + r,
-                n = s + o,
+                i = o + r,
+                n = o + s,
                 a = e.offsetHeight,
                 d = e.offsetTop + r,
                 c = d + a,
@@ -50,15 +50,15 @@ var Feed = {
             return feed.longView.headerHeight || (feed.longView.headerHeight = ge("page_header").offsetHeight)
         }
     },
-    blockHideReason: function e(t, s) {
+    blockHideReason: function e(t, o) {
         if (e.progress) return !1;
         e.progress = !0;
-        var o = "block_" + t,
-            r = ge(o);
-        delete cur.feedEntriesHTML[o], ajax.post("al_feed.php", {
+        var s = "block_" + t,
+            r = ge(s);
+        delete cur.feedEntriesHTML[s], ajax.post("al_feed.php", {
             act: "a_block_hide_reason",
             block_id: t,
-            reason: 0 | s,
+            reason: 0 | o,
             hash: attr(r, "data-hash"),
             ref: feed.getModuleRef(),
             pos: attr(r, "data-pos")
@@ -73,30 +73,30 @@ var Feed = {
     },
     blockRestore: function(e) {
         var t = "block_" + e,
-            s = ge(t);
+            o = ge(t);
         cur.feedEntriesHTML[t] && val(t, cur.feedEntriesHTML[t]), ajax.post("al_feed.php", {
             act: "a_block_restore",
             block_id: e,
-            hash: attr(s, "data-hash"),
+            hash: attr(o, "data-hash"),
             ref: feed.getModuleRef(),
-            pos: attr(s, "data-pos")
+            pos: attr(o, "data-pos")
         })
     },
     blockHide: function(e, t) {
         if (!actionsMenuItemLocked(t)) {
             lockActionsMenuItem(t);
-            var s = "block_" + e,
-                o = ge(s),
-                r = geByClass1("ui_actions_menu_wrap", o);
+            var o = "block_" + e,
+                s = ge(o),
+                r = geByClass1("ui_actions_menu_wrap", s);
             ajax.post("al_feed.php", {
                 act: "a_block_hide",
                 block_id: e,
-                hash: attr(o, "data-hash"),
+                hash: attr(s, "data-hash"),
                 ref: feed.getModuleRef(),
-                pos: attr(o, "data-pos")
+                pos: attr(s, "data-pos")
             }, {
                 onDone: function(e) {
-                    uiActionsMenu.toggle(r, !1), cur.feedEntriesHTML[s] = val(o), val(o, e)
+                    uiActionsMenu.toggle(r, !1), cur.feedEntriesHTML[o] = val(s), val(s, e)
                 },
                 hideProgress: unlockActionsMenuItem.pbind(t)
             })
@@ -115,11 +115,11 @@ var Feed = {
         })
     },
     expandVideosPost: function(e, t) {
-        var s = geByClass1("page_post_sized_thumbs", domPN(t)),
-            o = 0;
-        each(s.children, function() {
-            return !isVisible(this) && (show(this), o++, o > 5) ? !1 : void 0
-        }), toggle(t, !isVisible(s.children[s.children.length - 1]))
+        var o = geByClass1("page_post_sized_thumbs", domPN(t)),
+            s = 0;
+        each(o.children, function() {
+            return !isVisible(this) && (show(this), s++, s > 5) ? !1 : void 0
+        }), toggle(t, !isVisible(o.children[o.children.length - 1]))
     },
     closeVideoBlock: function(e) {
         ajax.post("al_feed.php", {
@@ -142,24 +142,24 @@ var Feed = {
                 posted: e ? 1 : "",
                 queue: cur.add_queue ? 1 : 0
             }), {
-                onDone: function(t, s, o) {
-                    if (cur.feedUpdateLoading = !1, 1 == e && (!s || -1 == s.indexOf(vk.id + ""))) return void setTimeout(feed.update.pbind(2), 2e3);
-                    if (!(t.section != cur.section || t.timestamp < cur.timestamp || o < cur.timestamp)) {
+                onDone: function(t, o, s) {
+                    if (cur.feedUpdateLoading = !1, 1 == e && (!o || -1 == o.indexOf(vk.id + ""))) return void setTimeout(feed.update.pbind(2), 2e3);
+                    if (!(t.section != cur.section || t.timestamp < cur.timestamp || s < cur.timestamp)) {
                         t.count += cur.count;
                         var r, i, n, a, d = cur.rowsCont,
                             c = ce("div"),
                             l = 0;
                         if ("news" == cur.section) {
-                            if (a = scrollGetY(), s) {
-                                for (c.innerHTML = s; c.lastChild;) r = c.lastChild, d.insertBefore(r, d.firstChild), Wall.onPostLoaded(r, !0);
-                                each(geByClass("ts" + o, d), function() {
+                            if (a = scrollGetY(), o) {
+                                for (c.innerHTML = o; c.lastChild;) r = c.lastChild, d.insertBefore(r, d.firstChild), Wall.onPostLoaded(r, !0);
+                                each(geByClass("ts" + s, d), function() {
                                     var e = this;
                                     l += this.offsetHeight, nodeUpdated(e), cur.feedUnreadCount++
                                 })
                             }
                             l && a > 100 && scrollToY(a + l, 0, !1, !0)
-                        } else if (s)
-                            for (c.innerHTML = s; r = c.lastChild;)
+                        } else if (o)
+                            for (c.innerHTML = o; r = c.lastChild;)
                                 if ("DIV" == r.tagName)
                                     if (n = r.firstChild.id.substr(4), n && cur.wallLayer == n) c.removeChild(r);
                                     else if (i = ge("post" + n)) {
@@ -203,44 +203,44 @@ var Feed = {
         }
     },
     getNewQKey: function(e) {
-        function t(t, o) {
+        function t(t, s) {
             if (cur.section == r) {
                 if (t) cur.add_queue = t, setTimeout(feed.update.pbind(0), 0);
-                else if (!s.only_update) {
-                    var i = o;
+                else if (!o.only_update) {
+                    var i = s;
                     return void(cur.timestamp = (i || vkNow() / 1e3) - e)
                 }
-                isArray(o) && (cur.ignore_owners = o)
+                isArray(s) && (cur.ignore_owners = s)
             }
         }
-        var s = {
+        var o = {
                 act: "a_get_key",
                 only_update: cur.add_queue ? 1 : 0,
                 need_ignore: isArray(cur.ignore_owners) ? 0 : 1
             },
-            o = {
+            s = {
                 onDone: t,
                 local: 1
             },
             r = cur.section;
-        ajax.post("al_feed.php?queue", extend(feed.getSectionParams(cur.section), s), o)
+        ajax.post("al_feed.php?queue", extend(feed.getSectionParams(cur.section), o), s)
     },
     updated: function(e, t) {
         if (("search" == cur.section || "news" == cur.section || !cur.section) && cur.add_queue && cur.add_queue.key == e) {
             if (t.failed) {
                 cur.add_queue = !1;
-                var s = curNotifier.error_timeout || 1;
-                return clearTimeout(cur.lp_error_to), void(cur.lp_error_to = setTimeout(feed.getNewQKey.bind(feed).pbind(s), 1e3 * s))
+                var o = curNotifier.error_timeout || 1;
+                return clearTimeout(cur.lp_error_to), void(cur.lp_error_to = setTimeout(feed.getNewQKey.bind(feed).pbind(o), 1e3 * o))
             }
             if (isArray(t.events) && t.events.length) {
                 cur.add_queue.ts = t.ts, t.key && (cur.add_queue.key = t.key);
-                var o = scrollGetY(),
+                var s = scrollGetY(),
                     r = 0;
                 each(t.events, function() {
-                    r += feed.pushEvent(this.split("<!>"), o + getSize("page_header_cont")[1])
+                    r += feed.pushEvent(this.split("<!>"), s + getSize("page_header_cont")[1])
                 });
                 var i = scrollGetY();
-                r && Math.abs(o - i) < 100 && (cur.leftMenuDelta = r, scrollToY(i + r, 0, !1, !0)), feed.updateTitle(), cur.gifAutoplayScrollHandler && cur.gifAutoplayScrollHandler(), cur.videoAutoplayScrollHandler && cur.videoAutoplayScrollHandler()
+                r && Math.abs(s - i) < 100 && (cur.leftMenuDelta = r, scrollToY(i + r, 0, !1, !0)), feed.updateTitle(), cur.gifAutoplayScrollHandler && cur.gifAutoplayScrollHandler(), cur.videoAutoplayScrollHandler && cur.videoAutoplayScrollHandler()
             }
         }
     },
@@ -248,8 +248,8 @@ var Feed = {
         return e + 80 > getXY(t)[1] || window.wkcur && wkcur.shown && "story" != wkcur.type || window.mvcur && mvcur.mvShown || window.pvcur && cur.pvShown
     },
     pushEvent: function(e, t) {
-        var s = e[0],
-            o = e[1],
+        var o = e[0],
+            s = e[1],
             r = e[2],
             i = ge("post" + r),
             n = cur.section,
@@ -258,8 +258,8 @@ var Feed = {
             c = function(e) {
                 return intval(getStyle(domByClass(e, "page_block"), "marginTop")) || intval(getStyle(domByClass(domNS(e), "page_block"), "marginTop")) || 15
             };
-        if (!cur.options || s != cur.options.qversion) return 0;
-        switch (o) {
+        if (!cur.options || o != cur.options.qversion) return 0;
+        switch (s) {
             case "new_post":
                 if (i) break;
                 var l = 0;
@@ -267,8 +267,8 @@ var Feed = {
                     act: "a_need_own_reply",
                     oid: intval(e[11])
                 }, {
-                    onDone: function(s) {
-                        s && (e[11] = 0, feed.pushEvent(e, t))
+                    onDone: function(o) {
+                        o && (e[11] = 0, feed.pushEvent(e, t))
                     }
                 }), 0;
                 if ("search" != n) {
@@ -355,24 +355,24 @@ var Feed = {
                     l = 0 > u ? 8 & a ? 2 : 2 & a ? 1 : 0 : 0,
                     F = wall.getNewReplyHTML(e, l),
                     f = !1,
-                    q = !1;
+                    V = !1;
                 if (isVisible(j) && isVisible(A) && !isVisible("reply_link" + r)) {
-                    var V = j.nextSibling,
+                    var q = j.nextSibling,
                         I = geByClass("new_reply", j, "div").length + 1;
                     if (cur.wallMyOpened[r]) {
-                        V && "replies_open" == V.className && re(V), q = !0;
+                        q && "replies_open" == q.className && re(q), V = !0;
                         var U = geByClass1("wr_header", j, "a"),
                             O = geByClass("reply", j, "div").length + 1,
                             Y = O;
                         U && (Y = intval(U.getAttribute("offs").split("/")[1]) + 1), (Y > 5 || Y > O) && (U || j.insertBefore(U = ce("a", {
                             className: "wr_header"
                         }), j.firstChild), wall.updateRepliesHeader(r, U, O, Y))
-                    } else F = wall.updatePostImages(F), f = se(F), addClass(f, "new_reply"), V && "replies_open" == V.className || (V = ce("div", {
+                    } else F = wall.updatePostImages(F), f = se(F), addClass(f, "new_reply"), q && "replies_open" == q.className || (q = ce("div", {
                         className: "replies_open",
                         onclick: wall.openNewComments.pbind(r)
-                    }), j.parentNode.insertBefore(V, j.nextSibling)), V.innerHTML = getLang("wall_x_new_replies_more", Math.min(100, I)), V.newCnt = I
-                } else re("reply_link" + r), show(A, j), q = !0;
-                r.split("_")[0] == vk.id && cur.feedUnreadCount++, f || (f = se(F)), j.appendChild(f), feed.needScrollPost(t, q ? f : V) && (d += i.offsetHeight - D), q && nodeUpdated(f), Wall.repliesSideSetup(r), Wall.updateMentionsIndex();
+                    }), j.parentNode.insertBefore(q, j.nextSibling)), q.innerHTML = getLang("wall_x_new_replies_more", Math.min(100, I)), q.newCnt = I
+                } else re("reply_link" + r), show(A, j), V = !0;
+                r.split("_")[0] == vk.id && cur.feedUnreadCount++, f || (f = se(F)), j.appendChild(f), feed.needScrollPost(t, V ? f : q) && (d += i.offsetHeight - D), V && nodeUpdated(f), Wall.repliesSideSetup(r), Wall.updateMentionsIndex();
                 break;
             case "del_reply":
                 if (!cur.wallMyDeleted[r] && i) {
@@ -387,7 +387,7 @@ var Feed = {
             case "like_post":
             case "like_reply":
                 if (!i) break;
-                var z = "like_reply" == o ? r.replace("_", "_wall_reply") : r,
+                var z = "like_reply" == s ? r.replace("_", "_wall_reply") : r,
                     G = i && domByClass(i, "_like_wrap"),
                     X = i && domByClass(i, "_share_wrap");
                 wall.likeFullUpdate(G, z, {
@@ -411,7 +411,7 @@ var Feed = {
     },
     feedPostRepl: function(e, t) {
         e.replies = cur.wallTpl.post_replies;
-        var s = {
+        var o = {
             full_id: t[2],
             item_id: "wall_" + t[2],
             sec_name: stripHTML(t[3]),
@@ -419,30 +419,30 @@ var Feed = {
             del: cur.wallTpl.spam
         };
         if ("search" == cur.section && cur.q) {
-            var o = e.text || "",
+            var s = e.text || "",
                 r = cur.q,
                 i = r.toLowerCase().split(/[\s.,:;!?()]/),
                 n = [];
-            o = o.replace(/<(.|\n)+?>/g, function(e) {
+            s = s.replace(/<(.|\n)+?>/g, function(e) {
                 return n.push(e), ""
             });
-            var a, d, c, l = o.toLowerCase();
+            var a, d, c, l = s.toLowerCase();
             for (a = i.length - 1; a >= 0; a--)
                 if (c = i[a], trim(c))
-                    for (d = 0; - 1 != (d = l.indexOf(c, d));) o.charAt(d - 1) != String.fromCharCode(2) ? (o = o.substr(0, d) + "" + a + "" + o.substr(d + c.length), l = l.substr(0, d) + "" + a + "" + l.substr(d + c.length)) : d += 2;
-            o = o.replace(/\x02(\d+)\x02/g, function(e, t) {
+                    for (d = 0; - 1 != (d = l.indexOf(c, d));) s.charAt(d - 1) != String.fromCharCode(2) ? (s = s.substr(0, d) + "" + a + "" + s.substr(d + c.length), l = l.substr(0, d) + "" + a + "" + l.substr(d + c.length)) : d += 2;
+            s = s.replace(/\x02(\d+)\x02/g, function(e, t) {
                 return '<span class="highlight">' + i[t] + "</span>"
-            }), o = o.replace(/\x01/g, function() {
+            }), s = s.replace(/\x01/g, function() {
                 return n.shift() || ""
-            }), s.text = o, "new_post_reply" == t[1] && (s.date_postfix = t[7])
+            }), o.text = s, "new_post_reply" == t[1] && (o.date_postfix = t[7])
         }
-        return s
+        return o
     },
     reSortItems: function() {
         cur.feedToSort && cur.feedToSort.length && (each(cur.feedToSort, function(e, t) {
-            var s = ge("post_ph" + t),
-                o = ge("post" + t).parentNode;
-            s && o && (s.parentNode.insertBefore(o, s), re(s))
+            var o = ge("post_ph" + t),
+                s = ge("post" + t).parentNode;
+            o && s && (o.parentNode.insertBefore(s, o), re(o))
         }), cur.feedToSort = [], scrollToY(0, 0))
     },
     showNewPosts: function() {
@@ -458,14 +458,14 @@ var Feed = {
         cur.idleManager && (cur.idleManager.isIdle || (cur.feedUnreadCount = 0), document.title = (cur.feedUnreadCount ? "(" + cur.feedUnreadCount + ") " : "") + cur.feedInitialTitle)
     },
     toggleTabsMenuTab: function(e, t) {
-        var s = geByClass1("feed_section_" + e, cur.feedEls.rmenu);
-        s && toggleClass(s, "ui_rmenu_item_hidden", !t)
+        var o = geByClass1("feed_section_" + e, cur.feedEls.rmenu);
+        o && toggleClass(o, "ui_rmenu_item_hidden", !t)
     },
     toggleTabsMenu: function(e, t) {
-        var s = ge("feed_add_list_icon");
-        return void 0 === t && (t = !hasClass(s, "shown")), browser.mozilla && setStyle("page_body", {
+        var o = ge("feed_add_list_icon");
+        return void 0 === t && (t = !hasClass(o, "shown")), browser.mozilla && setStyle("page_body", {
             overflow: t ? "visible" : ""
-        }), uiActionsMenu.toggle(s, t), t && addEvent(document, "mousedown", function(e) {
+        }), uiActionsMenu.toggle(o, t), t && addEvent(document, "mousedown", function(e) {
             feed.toggleTabsMenu(!1, 0), removeEvent(document, "mousedown", arguments.callee)
         }), e && cancelEvent(e)
     },
@@ -478,17 +478,17 @@ var Feed = {
             default:
                 if (r = t.match(/list(\d+)/)) return feed.editList(r[1])
         }
-        var s, o, r, i = (ge("tabs_type_filter"), t == cur.section),
+        var o, s, r, i = (ge("tabs_type_filter"), t == cur.section),
             n = cur.my_feed_types.tabs;
         cur.feed_types.tabs;
-        s = -1 != (o = indexOf(n, t)), toggleClass(e, "checked", !s), s ? (n.splice(o, 1), i && (cur.onSaveTabs = function(e, t) {
+        o = -1 != (s = indexOf(n, t)), toggleClass(e, "checked", !o), o ? (n.splice(s, 1), i && (cur.onSaveTabs = function(e, t) {
             feed.toggleTabsMenu(null, !1), feed.switchSection("news")
-        }.pbind(t, s))) : n.push(t), cur.my_feed_types.tabs = n, feed.toggleTabsMenuTab(t, !s || i), uiRightMenu.fixScroller(ge("ui_rmenu_" + cur.section + (cur.list || ""))), clearTimeout(cur.saveTabsTO), cur.saveTabsTO = setTimeout(feed.saveTabs, 500)
+        }.pbind(t, o))) : n.push(t), cur.my_feed_types.tabs = n, feed.toggleTabsMenuTab(t, !o || i), uiRightMenu.fixScroller(ge("ui_rmenu_" + cur.section + (cur.list || ""))), clearTimeout(cur.saveTabsTO), cur.saveTabsTO = setTimeout(feed.saveTabs, 500)
     },
     hasSearchParams: function(e) {
         var t = !1;
-        return each(e, function(e, s) {
-            return (!e.indexOf("c[") && "c[section]" !== e || "q" == e) && s ? (t = !0, !1) : void 0
+        return each(e, function(e, o) {
+            return (!e.indexOf("c[") && "c[section]" !== e || "q" == e) && o ? (t = !0, !1) : void 0
         }), t
     },
     getSectionParams: function(e) {
@@ -516,11 +516,11 @@ var Feed = {
                 void 0 === (t.subsection = cur.subsections[e]) && delete t.subsection;
                 break;
             case "search":
-                var s = ge("search_filters_form");
-                if (s) {
-                    var o = serializeForm(s) || {};
-                    for (var r in o) o[r] && "0" != o[r] || delete o[r];
-                    extend(t, o)
+                var o = ge("search_filters_form");
+                if (o) {
+                    var s = serializeForm(o) || {};
+                    for (var r in s) s[r] && "0" != s[r] || delete s[r];
+                    extend(t, s)
                 }
                 t["c[q]"] = trim(val(cur.feedEls.search));
                 break;
@@ -544,16 +544,16 @@ var Feed = {
     switchSubSection: function(e, t) {
         if (t && checkEvent(t)) return !0;
         cur.subsection = cur.subsections[cur.section] = e;
-        var s = feed.getSectionParams(cur.section);
-        delete cur.feedUpdateLoading, delete cur.isFeedLoading, nav.go(extend(s || {}, {
+        var o = feed.getSectionParams(cur.section);
+        delete cur.feedUpdateLoading, delete cur.isFeedLoading, nav.go(extend(o || {}, {
             0: "feed"
         })), uiRightMenu.showProgress(cur.feedEls.rmenu)
     },
-    switchSection: function(e, t, s) {
+    switchSection: function(e, t, o) {
         if (t && checkEvent(t)) return !0;
         if (cur.feedDestroy) {
-            for (var o in cur.feedDestroy) try {
-                cur.feedDestroy[o](cur)
+            for (var s in cur.feedDestroy) try {
+                cur.feedDestroy[s](cur)
             } catch (t) {
                 try {
                     console.log(t.stack)
@@ -568,7 +568,7 @@ var Feed = {
         "comments" == e && (cur.reposts = cur.options.reposts = ""), statlogsValueEvent("feed_switch", 0, e), feed.setSection(e, 1);
         var i = feed.getSectionParams(e || "news");
         delete cur.feedUpdateLoading, delete cur.isFeedLoading;
-        var n = s ? !1 : extend(i || {}, {
+        var n = o ? !1 : extend(i || {}, {
             0: "feed"
         });
         return uiRightMenu.go(geByClass1("feed_section_" + e), !1, n), !1
@@ -577,8 +577,8 @@ var Feed = {
         if (t = t || 0, cur.prevSection = cur.section, !(e == cur.section && 2 > t) && e) {
             if (uiRightMenu.hideProgress(cur.feedEls.rmenu), cur.feedEls.search && uiSearch.hideProgress(cur.feedEls.search), t > 1) {
                 toggleClass(cur.feedEls.wrap, "feed_submit_shown", inArray(e, cur.options.feed_types.tabs.concat(["list"])));
-                var s = inArray(e, ["articles_search", "articles", "search", "photos_search", "photos"]);
-                toggleClass(cur.feedEls.wrap, "feed_search_shown", s), s && elfocus(cur.feedEls.search), cur.section && val(cur.feedEls.search, "")
+                var o = inArray(e, ["articles_search", "articles", "search", "photos_search", "photos"]);
+                toggleClass(cur.feedEls.wrap, "feed_search_shown", o), o && elfocus(cur.feedEls.search), cur.section && val(cur.feedEls.search, "")
             }
             if (2 == t && window.Stories && Stories.updateFeedStories(e), cur.my_feed_types && (~indexOf(cur.my_feed_types.optional_tabs, cur.section) && !~indexOf(cur.my_feed_types.tabs, cur.section) && feed.toggleTabsMenuTab(cur.section, !1), ~indexOf(cur.my_feed_types.optional_tabs, e) && !~indexOf(cur.my_feed_types.tabs, e) && feed.toggleTabsMenuTab(e, !0)), cur.section = e, 4 == t) return void feed.searchUpdate();
             cur.editingHide = "notifications" == e || "replies" == e ? feed.notifyCheckHideReply : !1, cur.gifAutoplayScrollHandler && cur.gifAutoplayScrollHandler(), cur.videoAutoplayScrollHandler && cur.videoAutoplayScrollHandler()
@@ -619,11 +619,11 @@ var Feed = {
                 re(t)
             }
             "live" == cur.section && (cur.all_shown = !0);
-            var s = ge("show_more_link");
-            if (cur.all_shown && (hide(s), show("all_shown")), "live" != cur.section) {
-                var o = !1,
+            var o = ge("show_more_link");
+            if (cur.all_shown && (hide(o), show("all_shown")), "live" != cur.section) {
+                var s = !1,
                     r = function(e) {
-                        e.keyCode == KEY.ESC && (o = !0)
+                        e.keyCode == KEY.ESC && (s = !0)
                     };
                 addEvent(document, "keyup", r);
                 var i = feed.getSectionParams(cur.section || "news");
@@ -638,19 +638,19 @@ var Feed = {
                 ajax.post("al_feed.php?sm_" + cur.section, i, {
                     onDone: function(e, t) {
                         if (removeEvent(document, "keyup", r), n == cur.section) {
-                            if (o) return void(cur.disableAutoMore = !0);
+                            if (s) return void(cur.disableAutoMore = !0);
                             if (t) {
-                                var s, i = ce("div");
-                                for (i.innerHTML = t; s = i.firstChild;) s.firstChild && s.firstChild.id && !ge(s.firstChild.id) || "feedback_unread_bar" == s.id || "feed_row_fb_hidden" == s.className ? (cur.rowsCont.appendChild(s), Wall.onPostLoaded(s, !0)) : i.removeChild(s)
+                                var o, i = ce("div");
+                                for (i.innerHTML = t; o = i.firstChild;) o.firstChild && o.firstChild.id && !ge(o.firstChild.id) || "feedback_unread_bar" == o.id || "feed_row_fb_hidden" == o.className ? (cur.rowsCont.appendChild(o), Wall.onPostLoaded(o, !0)) : i.removeChild(o)
                             }
                             shortCurrency(), feed.applyOptions(e), setTimeout(feed.scrollCheck, 200)
                         }
                     },
                     showProgress: function() {
-                        lockButton(s), cur.isFeedLoading = !0
+                        lockButton(o), cur.isFeedLoading = !0
                     },
                     hideProgress: function() {
-                        unlockButton(s), cur.isFeedLoading = !1
+                        unlockButton(o), cur.isFeedLoading = !1
                     },
                     cache: 1
                 })
@@ -676,22 +676,22 @@ var Feed = {
         }
     },
     checkFilter: function(e, t) {
-        var s, o, r = feed.getTypesSection(),
+        var o, s, r = feed.getTypesSection(),
             i = (ge(r + "_type_filter"), cur.my_feed_types[r]),
             n = cur.feed_types[r];
-        return "notifications" == r ? void feed.setNotifyFilter(e, t) : (i === !0 && (i = clone(n)), s = -1 != (o = indexOf(i, t)), s ? i.splice(o, 1) : (i.push(t), i.length == n.length && (i = !0)), checkbox(e), cur.my_feed_types[r] = i, feed.updateTypesCookie(), Feed.setFiltersUpdatePage(), void(cur.feedEls.rmenu && uiRightMenu.showProgress(cur.feedEls.rmenu)))
+        return "notifications" == r ? void feed.setNotifyFilter(e, t) : (i === !0 && (i = clone(n)), o = -1 != (s = indexOf(i, t)), o ? i.splice(s, 1) : (i.push(t), i.length == n.length && (i = !0)), checkbox(e), cur.my_feed_types[r] = i, feed.updateTypesCookie(), Feed.setFiltersUpdatePage(), void(cur.feedEls.rmenu && uiRightMenu.showProgress(cur.feedEls.rmenu)))
     },
     setFilter: function(e, t) {
-        var s = feed.getTypesSection(),
-            o = ge(s + "_type_filter"),
-            r = (cur.my_feed_types[s], cur.feed_types[s], !0);
-        "notifications" != s && (each(geByClass("_feed_filter_row", o, "div"), function() {
+        var o = feed.getTypesSection(),
+            s = ge(o + "_type_filter"),
+            r = (cur.my_feed_types[o], cur.feed_types[o], !0);
+        "notifications" != o && (each(geByClass("_feed_filter_row", s, "div"), function() {
             return isChecked(this) && this != e ? r = !1 : void 0
-        }), r ? (cur.my_feed_types[s] = !0, each(geByClass("_feed_filter_row", o, "div"), function() {
+        }), r ? (cur.my_feed_types[o] = !0, each(geByClass("_feed_filter_row", s, "div"), function() {
             checkbox(this, !0)
-        })) : (each(geByClass("_feed_filter_row", o, "div"), function() {
+        })) : (each(geByClass("_feed_filter_row", s, "div"), function() {
             checkbox(this, !1)
-        }), cur.my_feed_types[s] = [t], checkbox(e, !0)), feed.updateTypesCookie(), Feed.setFiltersUpdatePage({
+        }), cur.my_feed_types[o] = [t], checkbox(e, !0)), feed.updateTypesCookie(), Feed.setFiltersUpdatePage({
             force_expand_filters: 1
         }), cur.feedEls.rmenu && uiRightMenu.showProgress(cur.feedEls.rmenu))
     },
@@ -700,16 +700,16 @@ var Feed = {
         var t = nav.strLoc;
         if ("updates" === cur.section) {
             t.match(/\&filters\_expanded\=1/) || ge("updates_show_all_filters") && !e.force_expand_filters || (t += "&filters_expanded=1"), t = t.replace(/\&filters\_shown\=([a-z\,]+)/, "");
-            for (var s = geByClass("_feed_filter_row", "feed_filters"), o = [], r = 0; r < s.length; r++) hasClass(s[r], "hide") || o.push(s[r].id.replace("filter_updates", ""));
-            t += "&filters_shown=" + o.join(",")
+            for (var o = geByClass("_feed_filter_row", "feed_filters"), s = [], r = 0; r < o.length; r++) hasClass(o[r], "hide") || s.push(o[r].id.replace("filter_updates", ""));
+            t += "&filters_shown=" + s.join(",")
         }
         nav.go(t)
     },
     setNotifyFilter: function(e, t) {
         checkbox(e), cur.notifyPrefs || (cur.notifyPrefs = {}), cur.notifyPrefs[t] = isChecked(e), clearTimeout(cur.saveNotifyPrefsTO), cur.saveNotifyPrefsTO = setTimeout(function() {
             var e = [];
-            each(cur.notifyPrefs, function(t, s) {
-                e.push((s ? "" : "-") + t)
+            each(cur.notifyPrefs, function(t, o) {
+                e.push((o ? "" : "-") + t)
             }), e = e.join(","), ajax.post("/al_feed.php", {
                 act: "a_set_notify_prefs",
                 prefs: e,
@@ -726,22 +726,22 @@ var Feed = {
     },
     updateTypesCookie: function() {
         var e = [];
-        each(cur.my_feed_types, function(t, s) {
-            "tabs" != t && e.push(s === !0 ? "*" : s.join(","))
+        each(cur.my_feed_types, function(t, o) {
+            "tabs" != t && e.push(o === !0 ? "*" : o.join(","))
         }), setCookie("remixfeed", e.join("."), 365)
     },
     toggleFeedTop: function(e, t) {
-        var s = geByClass1("_ui_toggler", e),
-            o = "top";
-        switch (toggleClass(s, "on"), cur.section) {
+        var o = geByClass1("_ui_toggler", e),
+            s = "top";
+        switch (toggleClass(o, "on"), cur.section) {
             case "news":
             case "recommended":
-                o = hasClass(s, "on") ? "top" : "recent";
+                s = hasClass(o, "on") ? "top" : "recent";
                 break;
             case "articles":
-                o = hasClass(s, "on") ? "suggested" : "top"
+                s = hasClass(o, "on") ? "suggested" : "top"
         }
-        feed.switchSubSection(o, t)
+        feed.switchSubSection(s, t)
     },
     switchList: function(e) {
         cur.prevList = cur.list, cur.list = e, feed.setSection("list", 1), uiRightMenu.go(geByClass1("feed_section_list" + e), !1, !1), feed.go(feed.getSectionParams(cur.section))
@@ -749,57 +749,57 @@ var Feed = {
     setSearchSort: function(e) {
         cur.search_sort_value = e, Feed.submitSearch()
     },
-    notifyClick: function(e, t, s) {
-        var o = ge("feedback_row" + e);
-        if (Wall.checkPostClick(o, t)) {
+    notifyClick: function(e, t, o) {
+        var s = ge("feedback_row" + e);
+        if (Wall.checkPostClick(s, t)) {
             (t || {}).cancelBubble = !0;
             var r = ge("reply_box" + e);
             if (cur.editing && cur.editing != e && cur.notifyReplyData && cur.notifyReplyData[cur.editing].disabled && feed.notifyCheckHideReply(cur.editing, (window.event || {}).target), r && isVisible(r)) return void feed.notifyCheckHideReply(e, !1);
-            if (void 0 === cur.notifyReplyData && (cur.notifyReplyData = {}), cur.notifyReplyData[e] = s, s.disabled) return r ? show(r) : o.appendChild(se(rs(cur.options.feedback_dis, {
+            if (void 0 === cur.notifyReplyData && (cur.notifyReplyData = {}), cur.notifyReplyData[e] = o, o.disabled) return r ? show(r) : s.appendChild(se(rs(cur.options.feedback_dis, {
                 item: e,
-                text: s.disabled
+                text: o.disabled
             }))), void setTimeout(function() {
                 cur.editing = e
             }, 0);
             show(r), Wall.showEditReply(e, t);
             var i = ge("reply_field" + e);
-            i.setAttribute("placeholder", s.ph), window.Emoji && Emoji.val(i, s.greet.replace(/ $/, "&nbsp;")), data(i, "send", feed.notifySendReply), removeClass("reply_box" + e, "clear_fix")
+            i.setAttribute("placeholder", o.ph), window.Emoji && Emoji.val(i, o.greet.replace(/ $/, "&nbsp;")), data(i, "send", feed.notifySendReply), removeClass("reply_box" + e, "clear_fix")
         }
     },
-    notifySendReply: function(e, t, s) {
-        var o = cur.notifyReplyData[e];
-        if (o && !o.sending) {
+    notifySendReply: function(e, t, o) {
+        var s = cur.notifyReplyData[e];
+        if (s && !s.sending) {
             var r, i = ge("reply_field" + e),
                 n = ge("reply_button" + e),
                 a = ge("feedback_row" + e),
                 d = i && data(i, "composer");
-            if (s.stickerId) var c = {
+            if (o.stickerId) var c = {
                 message: "",
                 attach1_type: "sticker",
-                attach1: s.stickerId
+                attach1: o.stickerId
             };
             else {
                 var c = d ? Composer.getSendParams(d, feed.notifySendReply.pbind(e)) : {
                     message: trim(Emoji.editableVal(i))
                 };
                 if (c.delayed) return;
-                if (!c.attach1_type && (!c.message || o.greet && !o.greet.indexOf(c.message))) return void Emoji.editableFocus(i, !1, !0)
+                if (!c.attach1_type && (!c.message || s.greet && !s.greet.indexOf(c.message))) return void Emoji.editableFocus(i, !1, !0)
             }
             extend(c, {
                 act: "post",
                 from: "feedback",
                 item: e
-            }, o.params || {});
+            }, s.params || {});
             var l = ge("reply_as_group" + e);
-            l && isVisible(domPN(l)) && (c.from_oid = domData(domClosest("_submit_post_box", l), "from-oid")), o.sending = 1, ajax.post("al_wall.php", Wall.fixPostParams(c), {
-                onDone: function(t, s) {
-                    if (delete o.sending, d ? r = Composer.reset(d) : window.Emoji && Emoji.val(i, ""), i.autosize && i.autosize.update(), feed.notifyHideReply(e), s) {
+            l && isVisible(domPN(l)) && (c.from_oid = domData(domClosest("_submit_post_box", l), "from-oid")), s.sending = 1, ajax.post("al_wall.php", Wall.fixPostParams(c), {
+                onDone: function(t, o) {
+                    if (delete s.sending, d ? r = Composer.reset(d) : window.Emoji && Emoji.val(i, ""), i.autosize && i.autosize.update(), feed.notifyHideReply(e), o) {
                         var n = geByClass1("_answer_wrap", a);
-                        val(n, s), show(n)
+                        val(n, o), show(n)
                     } else t && showDoneBox(t)
                 },
                 onFail: function() {
-                    delete o.sending
+                    delete s.sending
                 },
                 showProgress: lockButton.pbind(n),
                 hideProgress: unlockButton.pbind(n)
@@ -807,13 +807,13 @@ var Feed = {
         }
     },
     notifyCheckHideReply: function(e, t) {
-        var s = cur.notifyReplyData[e];
-        if (s && !s.sending && isVisible("reply_box" + e)) {
-            if (cur.editing = !1, !s.disabled) {
-                var o = ge("reply_field" + e),
-                    r = trim(window.Emoji ? Emoji.editableVal(o) : ""),
-                    i = Wall.hasComposerMedia(o);
-                if (!o || i || r && !s.greet || s.greet.indexOf(r)) return
+        var o = cur.notifyReplyData[e];
+        if (o && !o.sending && isVisible("reply_box" + e)) {
+            if (cur.editing = !1, !o.disabled) {
+                var s = ge("reply_field" + e),
+                    r = trim(window.Emoji ? Emoji.editableVal(s) : ""),
+                    i = Wall.hasComposerMedia(s);
+                if (!s || i || r && !o.greet || o.greet.indexOf(r)) return
             }
             feed.notifyHideReply(e)
         }
@@ -822,30 +822,30 @@ var Feed = {
         cur.editing == e && (cur.editing = !1);
         var t = ge("feedback_row" + e);
         removeClass(t, "reply_box_open"), hide("reply_box" + e);
-        var s = cur.replySubmitSettings;
-        s && s.tt && s.tt.el && s.tt.destroy()
+        var o = cur.replySubmitSettings;
+        o && o.tt && o.tt.el && o.tt.destroy()
     },
     ungroup: function(e, t) {
-        var s = ge("feedback_row" + e);
-        if (t = t || window.event, s && !checkEvent(t) && Wall.checkPostClick(s, t, !0)) {
-            var o = domNS(domPN(s)),
-                r = geByClass1("_header", s),
+        var o = ge("feedback_row" + e);
+        if (t = t || window.event, o && !checkEvent(t) && Wall.checkPostClick(o, t, !0)) {
+            var s = domNS(domPN(o)),
+                r = geByClass1("_header", o),
                 i = val(r),
                 n = ge("fbgr_" + e + "_that");
-            toggle(o), toggleClass(s, "feedback_row_expanded", isVisible(o)), val(r, val(n)), val(n, i)
+            toggle(s), toggleClass(o, "feedback_row_expanded", isVisible(s)), val(r, val(n)), val(n, i)
         }
     },
-    notifyPostTooltip: function(e, t, s, o) {
-        var r = (s || {}).reply,
+    notifyPostTooltip: function(e, t, o, s) {
+        var r = (o || {}).reply,
             i = "al_wall.php";
-        t.indexOf("topic_comment") ? t = t.replace("wall_reply", "").replace("wall", "") : (i = "al_board.php", t = t.replace("topic_comment", "")), o = o || {}, showTooltip(e, extend({
+        t.indexOf("topic_comment") ? t = t.replace("wall_reply", "").replace("wall", "") : (i = "al_board.php", t = t.replace("topic_comment", "")), s = s || {}, showTooltip(e, extend({
             url: i,
             params: extend({
                 act: "post_tt",
                 post: t,
                 self: 1,
                 from: "feedback"
-            }, s || {}),
+            }, o || {}),
             slide: 15,
             shift: [!r || r % 2 ? 27 : 329, 6],
             ajaxdt: 100,
@@ -854,63 +854,63 @@ var Feed = {
             dir: "auto",
             className: "rich wall_tt wall_module _feed_notification",
             appendParentCls: "scroll_fix_wrap"
-        }, o))
+        }, s))
     },
-    notifyDelete: function(e, t, s, o, r, i) {
+    notifyDelete: function(e, t, o, s, r, i) {
         r.tt && r.tt.el && r.tt.hide();
         var n = ge("feedback_row" + e),
             a = geByClass1("post_actions", n);
         ajax.post("al_feed.php", {
             act: "a_feedback_delete",
             item: t,
-            hash: o,
-            types: s,
+            hash: s,
+            types: o,
             candel: i
         }, {
             onDone: function(t) {
                 feed.notifyHideReply(e);
-                var s = geByClass1("_post_content", n),
-                    o = geByClass1("_feedback_deleted", n);
-                o ? (o.innerHTML = '<span class="dld_inner">' + t + "</span>", show(o)) : n.appendChild(ce("div", {
+                var o = geByClass1("_post_content", n),
+                    s = geByClass1("_feedback_deleted", n);
+                s ? (s.innerHTML = '<span class="dld_inner">' + t + "</span>", show(s)) : n.appendChild(ce("div", {
                     className: "feedback_row dld _feedback_deleted",
                     innerHTML: '<span class="dld_inner">' + t + "</span>"
-                })), hide(s, geByClass1("_answer_wrap", n)), hasClass(n, "feedback_row_clickable") && addClass(n, "feedback_row_touched")
+                })), hide(o, geByClass1("_answer_wrap", n)), hasClass(n, "feedback_row_clickable") && addClass(n, "feedback_row_touched")
             },
             showProgress: addClass.pbind(a, "post_actions_progress"),
             hideProgress: removeClass.pbind(a, "post_actions_progress")
         })
     },
-    notifyUndelete: function(e, t, s, o) {
+    notifyUndelete: function(e, t, o, s) {
         var r = ce("span", {
             className: "progress_inline"
         });
         ajax.post("al_feed.php", {
             act: "a_feedback_undelete",
             item: e,
-            hash: s,
+            hash: o,
             types: t
         }, {
             onDone: function(e) {
-                var t = gpeByClass("_feedback_deleted", o);
+                var t = gpeByClass("_feedback_deleted", s);
                 if (t) {
-                    var s = gpeByClass("_post_wrap", t),
-                        r = geByClass1("_post_content", s);
-                    show(r, geByClass1("_answer_wrap", s)), hide(t), removeClass(s, "feedback_row_touched")
+                    var o = gpeByClass("_post_wrap", t),
+                        r = geByClass1("_post_content", o);
+                    show(r, geByClass1("_answer_wrap", o)), hide(t), removeClass(o, "feedback_row_touched")
                 }
             },
             showProgress: function() {
-                o && "button" === o.tagName.toLowerCase() ? lockButton(o) : o.parentNode.replaceChild(r, o)
+                s && "button" === s.tagName.toLowerCase() ? lockButton(s) : s.parentNode.replaceChild(r, s)
             },
             hideProgress: function() {
-                o && "button" === o.tagName.toLowerCase() ? unlockButton(o) : r.parentNode.replaceChild(o, r)
+                s && "button" === s.tagName.toLowerCase() ? unlockButton(s) : r.parentNode.replaceChild(s, r)
             }
         })
     },
-    notifyMarkSpam: function(e, t, s) {
+    notifyMarkSpam: function(e, t, o) {
         ajax.post("al_feed.php", {
             act: "a_feedback_mark_spam",
             item: e,
-            hash: s,
+            hash: o,
             types: t
         }, {
             onDone: function(t) {
@@ -918,7 +918,7 @@ var Feed = {
             }
         })
     },
-    notifyDeleteAll: function(e, t, s, o) {
+    notifyDeleteAll: function(e, t, o, s) {
         if (cur.notifyDeletingAll || (cur.notifyDeletingAll = {}), !cur.notifyDeletingAll[e]) {
             cur.notifyDeletingAll[e] = 1;
             var r = ce("span", {
@@ -927,12 +927,12 @@ var Feed = {
             ajax.post("al_feed.php", {
                 act: "a_feedback_delete_all",
                 uid: e,
-                item: s,
+                item: o,
                 hash: t
             }, {
-                onDone: function(t, s) {
-                    var r = gpeByClass("_feedback_deleted", o);
-                    if (1 == s) return void re(gpeByClass("_feed_row", r));
+                onDone: function(t, o) {
+                    var r = gpeByClass("_feedback_deleted", s);
+                    if (1 == o) return void re(gpeByClass("_feed_row", r));
                     var i, n, a = !1;
                     if (hasClass(r, "_top_feedback_deleted") ? (a = !0, i = ge("top_notify_cont")) : i = cur.rowsCont, i && (n = i.firstChild)) {
                         var d, c, l = !1,
@@ -943,10 +943,10 @@ var Feed = {
                     r.innerHTML = '<span class="dld_inner">' + t + "</span>", a && TopNotifier && TopNotifier.refresh()
                 },
                 showProgress: function() {
-                    o && "button" === o.tagName.toLowerCase() ? lockButton(o) : o.parentNode.replaceChild(r, o)
+                    s && "button" === s.tagName.toLowerCase() ? lockButton(s) : s.parentNode.replaceChild(r, s)
                 },
                 hideProgress: function() {
-                    o && "button" === o.tagName.toLowerCase() ? unlockButton(o) : r.parentNode.replaceChild(o, r)
+                    s && "button" === s.tagName.toLowerCase() ? unlockButton(s) : r.parentNode.replaceChild(s, r)
                 }
             })
         }
@@ -974,20 +974,20 @@ var Feed = {
             stat: ["privacy.js", "privacy.css"]
         })
     },
-    unignoreItem: function(e, t, s, o) {
+    unignoreItem: function(e, t, o, s) {
         var r = feed.getModuleRef();
         ajax.post("/al_feed.php?misc", {
             act: "a_unignore_item",
             post_raw: e,
             feed_raw: t,
-            hash: s,
+            hash: o,
             ref: r
         }, {
             onDone: function() {
                 feed.restorePost(e)
             },
-            showProgress: o && lockButton.pbind(o),
-            hideProgress: o && unlockButton.pbind(o)
+            showProgress: s && lockButton.pbind(s),
+            hideProgress: s && unlockButton.pbind(s)
         })
     },
     reportIgnoredItem: function(e, t) {
@@ -997,13 +997,13 @@ var Feed = {
             hash: t
         }, {
             onDone: function(t) {
-                var s = ge("post" + e),
-                    o = s && geByClass1("feed_post_report", s, "div");
-                val(o, t)
+                var o = ge("post" + e),
+                    s = o && geByClass1("feed_post_report", o, "div");
+                val(s, t)
             }
         })
     },
-    ignoreOwner: function(e, t, s, o) {
+    ignoreOwner: function(e, t, o, s) {
         e && (cur.feedEntriesHTML[e + "_ignored"] = val("post" + e));
         var r = "list" == cur.section && cur.list || 0,
             i = feed.getModuleRef();
@@ -1011,45 +1011,73 @@ var Feed = {
             act: "a_ignore_owner",
             post_raw: e,
             owner_id: t,
-            hash: s,
+            hash: o,
             list: r,
             ref: i
         }, {
-            onDone: function(s) {
-                val("post" + e, s), each(geByClass("post", cur.rowsCont), function(s, o) {
+            onDone: function(o) {
+                val("post" + e, o), each(geByClass("post", cur.rowsCont), function(o, s) {
                     var r = this.id.match(/post((-?\d+)_(-?\d+)(_\d+)?)/);
                     r && r[1] != e && (!r[4] && r[2] == t || r[4] && r[3] == t) && (revertLastInlineVideo(this), hide(this.parentNode))
                 })
             },
-            showProgress: o && lockButton.pbind(o),
-            hideProgress: o && unlockButton.pbind(o)
+            showProgress: s && lockButton.pbind(s),
+            hideProgress: s && unlockButton.pbind(s)
         })
     },
-    unignoreOwner: function(e, t, s, o) {
+    unignoreOwner: function(e, t, o, s) {
         var r = "list" == cur.section && cur.list || 0,
             i = feed.getModuleRef();
         ajax.post("/al_feed.php?misc", {
             act: "a_unignore_owner",
             post_raw: e || "",
             owner_id: t,
-            hash: s,
+            hash: o,
             list: r,
             ref: i
         }, {
-            onDone: function(s) {
-                e ? val("post" + e, cur.feedEntriesHTML[e + "_ignored"]) : val("ignore_row" + t, s), each(geByClass("post", cur.rowsCont), function(e, s) {
-                    var o = this.id.match(/post((-?\d+)_(-?\d+)(_\d+)?)/);
-                    o && (!o[4] && o[2] == t || o[4] && o[3] == t) && show(this.parentNode)
+            onDone: function(o) {
+                e ? val("post" + e, cur.feedEntriesHTML[e + "_ignored"]) : val("ignore_row" + t, o), each(geByClass("post", cur.rowsCont), function(e, o) {
+                    var s = this.id.match(/post((-?\d+)_(-?\d+)(_\d+)?)/);
+                    s && (!s[4] && s[2] == t || s[4] && s[3] == t) && show(this.parentNode)
                 })
             },
-            showProgress: o && lockButton.pbind(o),
-            hideProgress: o && unlockButton.pbind(o)
+            showProgress: s && lockButton.pbind(s),
+            hideProgress: s && unlockButton.pbind(s)
         })
     },
-    unsubscribe: function(e, t, s) {
+    ignoreLiveOwner: function(e, t, o, s) {
+        var r = ge("post" + e),
+            i = geByClass1("ui_actions_menu_wrap", r);
+        i && uiActionsMenu.toggle(i, !1), revertLastInlineVideo(r), cur.feedEntriesHTML[e + "_ignored"] = val("post" + e), ajax.post("al_feed.php?act=a_ignore_live_owner", {
+            post_raw: e,
+            owner_id: t,
+            hash: o
+        }, {
+            onDone: function(t) {
+                val("post" + e, t)
+            },
+            showProgress: s && lockButton.pbind(s),
+            hideProgress: s && unlockButton.pbind(s)
+        })
+    },
+    unignoreLiveOwner: function(e, t, o, s) {
+        ajax.post("al_feed.php?act=a_unignore_live_owner", {
+            post_raw: e,
+            owner_id: t,
+            hash: o
+        }, {
+            onDone: function(t) {
+                val("post" + e, cur.feedEntriesHTML[e + "_ignored"])
+            },
+            showProgress: s && lockButton.pbind(s),
+            hideProgress: s && unlockButton.pbind(s)
+        })
+    },
+    unsubscribe: function(e, t, o) {
         triggerEvent(ge("post_delete" + e), "mouseout"), cur.feedEntriesHTML[e] = ge("post" + e).innerHTML;
-        var o = e.match(/(\-?\d+)_(photo|video|topic|note|market|)(\d+)/);
-        o && ajax.post("al_feed.php", {
+        var s = e.match(/(\-?\d+)_(photo|video|topic|note|market|)(\d+)/);
+        s && ajax.post("al_feed.php", {
             act: "unsubscribe",
             type: {
                 "": 24,
@@ -1058,22 +1086,22 @@ var Feed = {
                 topic: 20,
                 note: 23,
                 market: 25
-            }[o[2]],
-            owner_id: o[1],
-            place_id: o[3],
+            }[s[2]],
+            owner_id: s[1],
+            place_id: s[3],
             hash: t,
             feed: 1
         }, {
             onDone: function(t) {
                 ge("post" + e).innerHTML = t.replace("%post_raw%", e)
             },
-            showProgress: s && lockButton.pbind(s),
-            hideProgress: s && unlockButton.pbind(s)
+            showProgress: o && lockButton.pbind(o),
+            hideProgress: o && unlockButton.pbind(o)
         })
     },
-    subscribe: function(e, t, s) {
-        var o = e.match(/(\-?\d+)_(photo|video|topic|note|market|)(\d+)/);
-        o && ajax.post("al_feed.php", {
+    subscribe: function(e, t, o) {
+        var s = e.match(/(\-?\d+)_(photo|video|topic|note|market|)(\d+)/);
+        s && ajax.post("al_feed.php", {
             act: "subscribe",
             type: {
                 "": 24,
@@ -1082,27 +1110,27 @@ var Feed = {
                 topic: 20,
                 note: 23,
                 market: 25
-            }[o[2]],
-            owner_id: o[1],
-            place_id: o[3],
+            }[s[2]],
+            owner_id: s[1],
+            place_id: s[3],
             hash: t,
             feed: 1
         }, {
             onDone: feed.restorePost.pbind(e),
-            showProgress: s && lockButton.pbind(s),
-            hideProgress: s && unlockButton.pbind(s)
+            showProgress: o && lockButton.pbind(o),
+            hideProgress: o && unlockButton.pbind(o)
         })
     },
     restorePost: function(e) {
         ge("post" + e).innerHTML = cur.feedEntriesHTML[e];
         var t = geByClass1("input_back", ge("post" + e), "div"),
-            s = geByTag1("textarea", ge("post" + e));
-        s && (s.placeholder = t.innerHTML, t.parentNode.removeChild(t), placeholderSetup(s))
+            o = geByTag1("textarea", ge("post" + e));
+        o && (o.placeholder = t.innerHTML, t.parentNode.removeChild(t), placeholderSetup(o))
     },
-    toggleReposts: function(e, t, s, o) {
-        if (checkEvent(o)) return !0;
-        var r = ge("feed_reposts_more" + t + "_" + s),
-            i = ge("feed_reposts" + t + "_" + s),
+    toggleReposts: function(e, t, o, s) {
+        if (checkEvent(s)) return !0;
+        var r = ge("feed_reposts_more" + t + "_" + o),
+            i = ge("feed_reposts" + t + "_" + o),
             n = 0,
             a = scrollGetY(),
             d = isVisible(i);
@@ -1117,12 +1145,12 @@ var Feed = {
             stat: ["ui_controls.js", "ui_controls.css", "indexer.js"]
         }), cur.onOListSave = feed.onHiddenSave, !1
     },
-    onHiddenSave: function(e, t, s, o) {
+    onHiddenSave: function(e, t, o, s) {
         var r = curBox(),
             i = {
                 act: "a_ignore_olist",
                 no_reposts: ge("feed_list_reposts") && !isChecked("feed_list_reposts") ? 1 : 0,
-                hash: o.hash
+                hash: s.hash
             };
         return e.length < t.length ? i.White = e.join(",") : i.Black = t.join(","), ajax.post("al_feed.php", i, {
             onDone: function(e, t) {
@@ -1151,7 +1179,7 @@ var Feed = {
             }
         }), cur.onOListSave = feed.onListSave.pbind(e), !1
     },
-    onListSave: function(e, t, s, o, r) {
+    onListSave: function(e, t, o, s, r) {
         var i = val("feed_list_name");
         if (!trim(i)) return notaBene("feed_list_name"), !1;
         if (!t.length) return !1;
@@ -1165,9 +1193,9 @@ var Feed = {
             no_reposts: ge("feed_list_reposts") && !isChecked("feed_list_reposts") ? 1 : 0
         }, {
             onDone: function(t) {
-                var s = geByClass1("feed_section_list" + e, cur.feedEls.rmenu),
-                    o = geByClass1("feed_filter_list" + e, cur.feedEls.rmenu);
-                val(s, clean(i)), val(geByClass1("ui_actions_menu_item_label", o), clean(i)), n.hide(), e > 0 ? feed.switchList(e) : nav.go({
+                var o = geByClass1("feed_section_list" + e, cur.feedEls.rmenu),
+                    s = geByClass1("feed_filter_list" + e, cur.feedEls.rmenu);
+                val(o, clean(i)), val(geByClass1("ui_actions_menu_item_label", s), clean(i)), n.hide(), e > 0 ? feed.switchList(e) : nav.go({
                     0: "feed",
                     section: "list",
                     list: t
@@ -1182,9 +1210,9 @@ var Feed = {
             hideProgress: unlockButton.pbind(n.btns.ok[0])
         }), !1
     },
-    deleteList: function(e, t, s, o) {
-        if (o && cancelEvent(o), 0 >= e) return !1;
-        if (s) {
+    deleteList: function(e, t, o, s) {
+        if (s && cancelEvent(s), 0 >= e) return !1;
+        if (o) {
             var r = curBox();
             ajax.post("al_feed.php", extend({
                 act: "a_delete_list",
@@ -1229,7 +1257,7 @@ var Feed = {
         if (cur.idleManager && !cur.isFeedLoading && !cur.idleManager.isIdle && !cur.disableAutoMore) {
             var t = ge("show_more_link");
             if (isVisible(t)) {
-                var s, t, o, r, i = feed.longView,
+                var o, t, s, r, i = feed.longView,
                     n = window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight,
                     a = scrollGetY(),
                     d = 0,
@@ -1247,14 +1275,14 @@ var Feed = {
                 };
                 if (vk.id && cur.topRow && "feed_rows_next" != cur.topRow.id && l[cur.section] && (!((window.curNotifier || {}).idle_manager || {}).is_idle || "init" == (e || {}).type)) {
                     for (postsUnseen = [], t = domPS(cur.topRow); t; t = domPS(t)) cur.topRow.offsetTop > a && (cur.topRow = t), t.unseen || (t.unseen = !0, postsUnseen.push(Feed.postsGetRaws(t)));
-                    for (Page.postsUnseen(postsUnseen), t = cur.topRow; t && (s = d ? d : t.offsetTop, !(s >= a + n)); t = o) o = domNS(t), "feed_rows_next" == (o || {}).id && (o = null), d = o ? o.offsetTop : s + t.offsetHeight, a > d && o && (cur.topRow = o), LongView && LongView.register(t, "feed"), i.registerElement(t) || (r = t.bits || 0, r >= 3 || (r |= (s >= a && a + n > s ? 1 : 0) | (d >= a && a + n > d ? 2 : 0), r && (t.bits = r, 3 == r && c.push(feed.postsGetRaws(t)))));
+                    for (Page.postsUnseen(postsUnseen), t = cur.topRow; t && (o = d ? d : t.offsetTop, !(o >= a + n)); t = s) s = domNS(t), "feed_rows_next" == (s || {}).id && (s = null), d = s ? s.offsetTop : o + t.offsetHeight, a > d && s && (cur.topRow = s), LongView && LongView.register(t, "feed"), i.registerElement(t) || (r = t.bits || 0, r >= 3 || (r |= (o >= a && a + n > o ? 1 : 0) | (d >= a && a + n > d ? 2 : 0), r && (t.bits = r, 3 == r && c.push(feed.postsGetRaws(t)))));
                     c = c.concat(i.process(a, n)), LongView && LongView.onScroll(a, n), Page.postsSeen(c)
                 }
             }
         }
     },
     postsGetRaws: function(e) {
-        var t, s, o, r = indexOf(domPN(e).children, e),
+        var t, o, s, r = indexOf(domPN(e).children, e),
             i = domFC(e),
             n = /^post(-?\d+_\d+)$/,
             a = {};
@@ -1270,14 +1298,14 @@ var Feed = {
             l && (l = l.split(","), l.forEach(function(e) {
                 e = e.split(":"), a[e[0]] = intval(e[1]) || 1
             }))
-        } else if (s = i.id.match(n)) a[s[1]] = 1;
-        else if (t = i.className, s = t.match(/feed_reposts_wrap(-?\d+_\d+)/)) {
-            if (o = domFC(i), hasClass(domFC(o), "post_copy") && (a[s[1]] = -1), (s = domFC(o).id.match(n)) && (a[s[1]] = 1), isVisible(o = domNS(o)))
-                for (o = domFC(o); o; o = domNS(o))(s = o.id.match(n)) && (a[s[1]] = 1)
-        } else if (s = t.match(/feed_repost(-?\d+_\d+)/)) o = domFC(i), hasClass(o, "post_copy") && (a[s[1]] = -1), (s = o.id.match(n)) && (a[s[1]] = 1);
+        } else if (o = i.id.match(n)) a[o[1]] = 1;
+        else if (t = i.className, o = t.match(/feed_reposts_wrap(-?\d+_\d+)/)) {
+            if (s = domFC(i), hasClass(domFC(s), "post_copy") && (a[o[1]] = -1), (o = domFC(s).id.match(n)) && (a[o[1]] = 1), isVisible(s = domNS(s)))
+                for (s = domFC(s); s; s = domNS(s))(o = s.id.match(n)) && (a[o[1]] = 1)
+        } else if (o = t.match(/feed_repost(-?\d+_\d+)/)) s = domFC(i), hasClass(s, "post_copy") && (a[o[1]] = -1), (o = s.id.match(n)) && (a[o[1]] = 1);
         else {
             var u = i.id;
-            hasClass(i, "post_photos") && (o = geByClass1("post_image", i, "a"), o && (o = domFC(o), o && (s = o.getAttribute("data-post-id").match(/^(-?\d+_p?\d+)$/)) && (u = s[1]))), a[u] = 1
+            hasClass(i, "post_photos") && (s = geByClass1("post_image", i, "a"), s && (s = domFC(s), s && (o = s.getAttribute("data-post-id").match(/^(-?\d+_p?\d+)$/)) && (u = o[1]))), a[u] = 1
         }
         return a
     },
@@ -1322,9 +1350,9 @@ var Feed = {
                 if (cur.feedReqObj && cur.feedReqObj === feedReqObj && !(++loadedPostsCheckerIterationsCnt > loadedPostsCheckerIterationsMax)) {
                     var e = !0,
                         t = {};
-                    each(loadedPostsCheckerElements, function(s) {
-                        var o = ge(s);
-                        if (o && hasClass(o, "feed_row")) return o.firstChild ? void Wall.onPostLoaded(o, !0) : (t[s] = !0, void(e = !1))
+                    each(loadedPostsCheckerElements, function(o) {
+                        var s = ge(o);
+                        if (s && hasClass(s, "feed_row")) return s.firstChild ? void Wall.onPostLoaded(s, !0) : (t[o] = !0, void(e = !1))
                     }), e || (loadedPostsCheckerElements = t, setTimeout(loadedPostsChecker, loadedPostsCheckerInterval))
                 }
             };
@@ -1368,8 +1396,8 @@ var Feed = {
             hideProgress: hideProgress
         })
     },
-    onFeedSearch: function(e, t, s, o) {
-        var r, i, n = o || cur.section;
+    onFeedSearch: function(e, t, o, s) {
+        var r, i, n = s || cur.section;
         if (n.indexOf("photos") ? n.indexOf("articles") ? (r = "search", i = "news") : (r = "articles_search", i = "articles") : (r = "photos_search", i = "photos"), "search" == r || feed.hasSearchParams(feed.getSectionParams(r))) {
             r != cur.section && feed.setSection(r, 1);
             var a = feed.getSectionParams(r);
@@ -1399,24 +1427,24 @@ var Feed = {
                 "news" == cur.section ? setTimeout(feed.update.pbind(1), 1e3) : setTimeout(feed.switchSection.pbind("news"), 1e3)
             },
             idleManager: function() {
-                var e, t, s, o = {
+                var e, t, o, s = {
                     isIdle: !1,
                     onIdle: null,
                     onUnIdle: null,
                     stop: function() {
-                        removeEvent(document, "mousemove keydown", e), removeEvent(window, "focus blur", s)
+                        removeEvent(document, "mousemove keydown", e), removeEvent(window, "focus blur", o)
                     },
                     start: function() {
                         browser.mobile || (e = function() {
-                            cur.idleManager && o.isIdle && (o.isIdle = !1, o.onUnIdle && o.onUnIdle())
+                            cur.idleManager && s.isIdle && (s.isIdle = !1, s.onUnIdle && s.onUnIdle())
                         }, t = function() {
-                            cur.idleManager && (o.isIdle = !0, o.onIdle && o.onIdle())
-                        }, s = function(s) {
-                            "focus" == s.type ? e() : t()
-                        }, addEvent(window, "focus blur", s))
+                            cur.idleManager && (s.isIdle = !0, s.onIdle && s.onIdle())
+                        }, o = function(o) {
+                            "focus" == o.type ? e() : t()
+                        }, addEvent(window, "focus blur", o))
                     }
                 };
-                return o
+                return s
             }(),
             currentModule: function() {
                 return "videos" == cur.section ? "feed_videos" : cur.module
@@ -1436,11 +1464,11 @@ var Feed = {
                 rmenu: ge("feed_rmenu"),
                 newPosts: ge("feed_new_posts")
             }
-        }), cur.nav.push(function(e, t, s, o) {
+        }), cur.nav.push(function(e, t, o, s) {
             if (void 0 === e[0]) {
-                var r = clone(s);
+                var r = clone(o);
                 if (delete r[0], void 0 === e.section || inArray(cur.section, ["notifications", "replies"]) == inArray(e.section, ["notifications", "replies"])) {
-                    if ("notifications" == cur.section) return feed.switchNotifyList(s.list || "all", extend(r, o.params || {})), !1;
+                    if ("notifications" == cur.section) return feed.switchNotifyList(o.list || "all", extend(r, s.params || {})), !1;
                     if (e.list) return feed.switchList(e.list), !1;
                     if (void 0 !== e.section && feed.switchSection(e.section || "news", !1, !0), e.notify) return !1;
                     if (e.q) return val(cur.feedEls.search, e.q), feed.onFeedSearch(cur.feedEls.search), !1;
@@ -1448,7 +1476,7 @@ var Feed = {
                         var i = geByClass1("feed_section_" + (t.section || "news") + (t.list || ""));
                         i && uiRightMenu.go(i, !1, !1)
                     }
-                    return feed.go(extend(r, o.params || {})), !1
+                    return feed.go(extend(r, s.params || {})), !1
                 }
             }
         }), cur.idleManager.onUnIdle = feed.updateTitle, cur.idleManager.onIdle = feed.reSortItems, cur.options = cur.options || {}, extend(cur.options, e), feed.applyOptions(e, 3), cur.rowsCont = e.wallCont = ge("feed_rows"), wall.init(e), cur.rowsCont && cur.rowsCont.children && each(cur.rowsCont.children, function() {
@@ -1473,14 +1501,14 @@ var Feed = {
         }, 2e4), addEvent(window, "scroll", feed.scrollCheck), addEvent(window, "resize", feed.scrollCheck)
     },
     mentionClick: function(e, t) {
-        var s = e,
-            o = ((e.getAttribute("mention") || "").match(/^bp(-?\d+_\d+)$/) || {})[1];
-        if (!o) return nav.go(e, t);
-        for (o = o.split("_"); e; e = e.parentNode) {
+        var o = e,
+            s = ((e.getAttribute("mention") || "").match(/^bp(-?\d+_\d+)$/) || {})[1];
+        if (!s) return nav.go(e, t);
+        for (s = s.split("_"); e; e = e.parentNode) {
             var r = (e.id || "").match(/^replies(-?\d+_topic\d+)$/);
             if (r) {
                 var i = r[1].split("_");
-                if (i[0] == o[0]) return wall.showReply(s, r[1], o[0] + "topic_" + o[1], t);
+                if (i[0] == s[0]) return wall.showReply(o, r[1], s[0] + "topic_" + s[1], t);
                 break
             }
         }
@@ -1500,10 +1528,10 @@ var Feed = {
     recomMore: function(e) {
         if (checkEvent(e) === !1) {
             var t = ge("feed_recom_rows"),
-                s = ge("feed_recom_more");
+                o = ge("feed_recom_more");
             if (t.childNodes.length > 2) {
                 for (getSize(t)[1]; t.childNodes.length > 2;) t.removeChild(t.lastChild);
-                return scrollToY(0, 0), hide(s.firstChild.nextSibling), show(s.firstChild), cancelEvent(e)
+                return scrollToY(0, 0), hide(o.firstChild.nextSibling), show(o.firstChild), cancelEvent(e)
             }
             return ajax.post("/al_feed.php", {
                 act: "recom",
@@ -1511,37 +1539,37 @@ var Feed = {
             }, {
                 cache: 1,
                 onDone: function(e) {
-                    hide(s.firstChild), show(s.firstChild.nextSibling);
-                    for (var t, o = ce("div", {
+                    hide(o.firstChild), show(o.firstChild.nextSibling);
+                    for (var t, s = ce("div", {
                             innerHTML: e
-                        }), r = ge("feed_recom_rows"); t = o.firstChild;) ge(t.id) ? re(t) : r.appendChild(t);
+                        }), r = ge("feed_recom_rows"); t = s.firstChild;) ge(t.id) ? re(t) : r.appendChild(t);
                     r.childNodes.length % 2 && re(r.lastChild)
                 },
                 showProgress: function() {
-                    hide(s.firstChild), show(s.lastChild)
+                    hide(o.firstChild), show(o.lastChild)
                 },
                 hideProgress: function() {
-                    show(s.firstChild), hide(s.lastChild)
+                    show(o.firstChild), hide(o.lastChild)
                 }
             }), cancelEvent(e)
         }
     },
-    recomSubscribe: function(e, t, s) {
-        var o, r, i = s ? t : domPS(t),
-            n = s ? domNS(t) : t;
-        s ? (o = "/al_feed.php", r = {
+    recomSubscribe: function(e, t, o) {
+        var s, r, i = o ? t : domPS(t),
+            n = o ? domNS(t) : t;
+        o ? (s = "/al_feed.php", r = {
             act: "subscr",
             oid: e,
             from: nav.objLoc.section,
             hash: val("feed_recom_hash")
-        }) : (o = "/al_fans.php", r = {
+        }) : (s = "/al_fans.php", r = {
             act: "unsub",
             oid: e,
             hash: val("feed_recom_hash"),
             no_response: 1
-        }), ajax.post(o, r, {
+        }), ajax.post(s, r, {
             onDone: function() {
-                toggle(i, !s), toggle(n, !!s), "recommended" != nav.objLoc.section && nav.go(nav.objLoc, !1, {
+                toggle(i, !o), toggle(n, !!o), "recommended" != nav.objLoc.section && nav.go(nav.objLoc, !1, {
                     params: {
                         norecom: 1
                     }
@@ -1569,8 +1597,8 @@ var Feed = {
             hash: e
         })
     },
-    hideBlogReminder: function(e, t, s) {
-        s && cancelEvent(s), re("feed_blog_reminder"), ajax.post("blog.php", {
+    hideBlogReminder: function(e, t, o) {
+        o && cancelEvent(o), re("feed_blog_reminder"), ajax.post("blog.php", {
             act: "hide_reminder",
             hash: e,
             nid: t
@@ -1583,8 +1611,8 @@ var Feed = {
             var t = new XMLHttpRequest;
             t.open("GET", e), t.send()
         }
-        e && cur.videoAutoplayScrollHandler && (cur.videoAutoplayPreloaded = cur.videoAutoplayPreloaded || {}, each(e, function(e, s) {
-            t(s.index_url), t(s.index_url.replace(/index-(.+).m3u8/, "seg-1-$1.ts")), cur.videoAutoplayPreloaded[s.video] = s.quality
+        e && cur.videoAutoplayScrollHandler && (cur.videoAutoplayPreloaded = cur.videoAutoplayPreloaded || {}, each(e, function(e, o) {
+            t(o.index_url), t(o.index_url.replace(/index-(.+).m3u8/, "seg-1-$1.ts")), cur.videoAutoplayPreloaded[o.video] = o.quality
         }))
     },
     expandJoinedGroups: function(e, t) {
@@ -1592,7 +1620,7 @@ var Feed = {
     },
     showAllFilters: function(e) {
         re(e);
-        for (var t = geByClass("hide", e.parentNode), s = 0; s < t.length; s++) removeClass(t[s], "hide")
+        for (var t = geByClass("hide", e.parentNode), o = 0; o < t.length; o++) removeClass(t[o], "hide")
     }
 };
 window.feed = Feed;
