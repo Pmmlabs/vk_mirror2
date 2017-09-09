@@ -1234,7 +1234,7 @@ if (!window.Emoji) {
 
             str = el.textContent || el.innerText;
 
-            str.slice(sep.length).split(sep).forEach(function(word, i) {
+            str && str.slice(sep.length).split(sep).forEach(function(word, i) {
                 window.stickersKeywords[word] = acc[i];
             });
 

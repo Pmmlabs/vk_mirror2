@@ -199,7 +199,7 @@ var stVersions = {
     'video_upload.js': 812506149,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 13098620298,
-    'videoplayer.js': 75874546451,
+    'videoplayer.js': 74440578631,
     'videoplayer.css': 31491500092,
     'translation.js': 2431784533,
     'translation.css': 14349909698,
@@ -251,7 +251,7 @@ var stVersions = {
     'im.css': 93175002450,
     'imn.js': 107592012656,
     'im.js': 1322065004,
-    'emoji.js': 1473471270,
+    'emoji.js': 3299588725,
     'wide_dd.css': 16207976069,
     'wide_dd.js': 452755344,
     'writebox.css': 16287323756,
@@ -605,4 +605,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 2012;
+var _rnd = 895;
