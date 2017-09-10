@@ -331,7 +331,7 @@ var stVersions = {
     'tags_dd.css': 15510584447,
     'tasks.js': 662793453,
     'tasks.css': 14855349368,
-    'helpdesk.js': 1343002196,
+    'helpdesk.js': 673993035,
     'helpdesk.css': 18357637936,
     'tickets.js': 1964252,
     'tickets.css': 17857084935,
@@ -605,4 +605,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 4792;
+var _rnd = 9735;
