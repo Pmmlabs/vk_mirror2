@@ -348,8 +348,8 @@ var stVersions = {
     'groupinfo.css': 18525449203,
     'bugs.js': 3874995669,
     'bugs.css': 13480264462,
-    'bugtracker.js': 69052738,
-    'bugtracker.css': 18323385439,
+    'bugtracker.js': 228268503,
+    'bugtracker.css': 21725198458,
     'login.css': 15707452649,
     'login.js': 3551917100,
     'upload.js': 645417492,
@@ -605,4 +605,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 7272;
+var _rnd = 7046;
