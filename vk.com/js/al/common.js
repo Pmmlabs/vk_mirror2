@@ -6853,17 +6853,24 @@ function elfocus(el, from, to) {
     } catch (e) {}
 }
 
-function traverseParent(el, cb) {
+function traverseParent(el, cb, maxSteps) {
     el = ge(el)
 
+    maxSteps = maxSteps || 999
+
     while (el && !cb(el)) {
+        maxSteps--
+        if (maxSteps == 0) {
+            return false
+        }
+
         el = domPN(el)
         if (el == document) {
             break
         }
     }
 
-    return null
+    return el
 }
 
 // Message box
@@ -11698,7 +11705,7 @@ function getRadioBtnWrap(el) {
     appendToParent  - appends tooltip to closest positioned element (default: false)
     offset          - custom offset for tooltip (default: [0, 0]). Array or function returning array
     shift           - custom array shift
-    elClassWhenTooltip - class that will be added to el when tooltip is shown
+    elClassWhenShown - class that will be added to el when tooltip is shown
     setPos          - function for calculation tooltip custom position. forceSide parameter is required
     showOnClick     - show tooltip on mouse click (default: false)
     type            - ElementTooltip.TYPE_VERTICAL / ElementTooltip.TYPE_HORIZONTAL (default vertical)
@@ -11739,6 +11746,10 @@ function ElementTooltip(el, opts) {
         autoHide: false,
         arrowSize: 'normal'
     }, opts);
+
+    if (this._opts.showOnClick) {
+        this._opts.autoShow = false
+    }
 
     if (!this._opts.defaultSide) {
         this._opts.defaultSide = this._opts.type == ElementTooltip.TYPE_VERTICAL ? 'top' : 'left'
@@ -11790,15 +11801,22 @@ ElementTooltip.TYPE_HORIZONTAL = 1;
 ElementTooltip.FADE_SPEED = 100; // keep in sync with @eltt_fade_speed
 ElementTooltip.ARROW_SIZE = 6;
 
-ElementTooltip.ARROW_SIZE_NORMAL = 8
+ElementTooltip.ARROW_SIZE_NORMAL = 7
 ElementTooltip.ARROW_SIZE_BIG = 16
 
 ElementTooltip.prototype._initEvents = function(el) {
     if (this._opts.autoShow) {
-        addEvent(el, 'mouseenter', this._onMouseEnter.bind(this));
+        addEvent(el, 'mouseenter', this._el_me_event = this._onMouseEnter.bind(this));
     }
+
     if (this._opts.autoShow || this._opts.autoHide) {
-        addEvent(el, 'mouseleave', this._onMouseLeave.bind(this));
+        addEvent(el, 'mouseleave', this._el_ml_event = this._onMouseLeave.bind(this));
+    }
+
+    if (this._opts.showOnClick) {
+        addEvent(el, 'click', this._el_c_event = function() {
+            this.toggle(!this._isShown)
+        }.bind(this));
     }
 }
 
@@ -11817,6 +11835,7 @@ ElementTooltip.prototype._onMouseEnter = function(event) {
 
 ElementTooltip.prototype._onMouseLeave = function(event) {
     this._clearTimeouts();
+    this._isShown = false;
     this._hto = setTimeout(this._hide.bind(this), 200);
 }
 
@@ -11837,6 +11856,10 @@ ElementTooltip.prototype._onMouseWindowClick = function(event) {
 }
 
 ElementTooltip.prototype.destroy = function() {
+    this._el_me_event && removeEvent(this._el, 'mouseenter', this._el_me_event);
+    this._el_ml_event && removeEvent(this._el, 'mouseleave', this._el_ml_event);
+    this._el_c_event && removeEvent(this._el, 'click', this._el_c_event);
+
     this._clearTimeouts();
     removeData(this._el, 'ett');
     re(this._ttel);
@@ -11880,6 +11903,11 @@ ElementTooltip.prototype.build = function() {
 }
 
 ElementTooltip.prototype.show = function() {
+    if (this._isShown) {
+        this.updatePosition();
+        return
+    }
+
     this._clearTimeouts();
 
     if (!this._ttel) {
@@ -11896,8 +11924,6 @@ ElementTooltip.prototype.show = function() {
         setStyle(this._ttel, 'width', width);
     }
 
-    this.updatePosition();
-
     show(this._ttel);
 
     var contentEl = geByClass1('_eltt_content', this._ttel)
@@ -11907,13 +11933,14 @@ ElementTooltip.prototype.show = function() {
     }
     this._opts.onShow && this._opts.onShow(contentEl);
 
+    this.updatePosition();
+
     this._isShown = true;
 
     this.updatePosition();
+    this._visTO = setTimeout(addClass.pbind(this._ttel, 'eltt_vis'), 10);
 
-    setTimeout(addClass.pbind(this._ttel, 'eltt_vis'), 10);
-
-    this._opts.elClassWhenTooltip && addClass(this._el, this._opts.elClassWhenTooltip);
+    this._opts.elClassWhenShown && addClass(this._el, this._opts.elClassWhenShown);
 
     if (this._ev_wclick) {
         removeEvent(document, 'mousedown', this._ev_wclick);
@@ -11939,8 +11966,20 @@ ElementTooltip.prototype.getOptions = function() {
 ElementTooltip.prototype.updatePosition = function() {
     var side = this._opts.forceSide;
 
-    var elPos = getXY(this._el);
-    var elSize = getSize(this._el);
+    var boundingBox
+    if (this._opts.getTargetBoundingBox) {
+        boundingBox = this._opts.getTargetBoundingBox(this)
+    } else {
+        var elPos = getXY(this._el);
+        var elSize = getSize(this._el);
+        boundingBox = {
+            left: elPos[0],
+            top: elPos[1],
+            width: elSize[0],
+            height: elSize[1]
+        }
+    }
+
     var ttelSize = getSize(this._ttel);
 
     var arrowSize = this._arrowSize
@@ -11955,7 +11994,7 @@ ElementTooltip.prototype.updatePosition = function() {
     function setArrowCenteredPosition(side, shift) {
         var style = {}
         var sizeIndex = ['marginLeft', 'marginTop'].indexOf(side);
-        style[side] = Math.ceil(ttelSize[sizeIndex] / 2) /*tt center*/ - border /*borders*/ - (arrowSize * (sizeIndex + 1)) - (shift || 0) /*shift compensation*/
+        style[side] = Math.floor(ttelSize[sizeIndex] / 2) /*tt center*/ - border /*borders*/ - arrowSize - (shift || 0) /*shift compensation*/
         setStyle(_this._ttArrowEl, style)
     }
 
@@ -11995,8 +12034,8 @@ ElementTooltip.prototype.updatePosition = function() {
                 var inMessages = hasClass(bodyNode, 'body_im')
                 var bottomGap = inMessages ? 60 : (this._opts.bottomGap || 0)
 
-                var enoughSpaceAbove = (elPos[1] - boundingElPos[1]) > ttelSize[1] + arrowSize - offset[1]
-                var enoughSpaceBelow = (scrollGetY() + boundingElSize[1] - (elPos[1] + elSize[1] + arrowSize) - bottomGap) > ttelSize[1]
+                var enoughSpaceAbove = (boundingBox.left - boundingElPos[1]) > ttelSize[1] + arrowSize - offset[1]
+                var enoughSpaceBelow = (scrollGetY() + boundingElSize[1] - (boundingBox.top + boundingBox.height + arrowSize) - bottomGap) > ttelSize[1]
 
                 if (this._opts.defaultSide == 'top') {
                     side = enoughSpaceAbove ? 'top' : 'bottom'
@@ -12004,7 +12043,7 @@ ElementTooltip.prototype.updatePosition = function() {
                     side = enoughSpaceBelow ? 'bottom' : 'top'
                 }
             } else {
-                if ((elPos[0] - boundingElPos[0]) < ttelSize[0]) {
+                if ((boundingBox.left - boundingElPos[0]) < ttelSize[0]) {
                     side = 'right';
                 } else {
                     side = 'left';
@@ -12014,8 +12053,8 @@ ElementTooltip.prototype.updatePosition = function() {
 
         var parentPos = getXY(this._appendToEl);
         var parentOffset = [
-            elPos[0] - parentPos[0],
-            elPos[1] - parentPos[1]
+            boundingBox.left - parentPos[0],
+            boundingBox.top - parentPos[1]
         ];
 
         var shift
@@ -12034,29 +12073,29 @@ ElementTooltip.prototype.updatePosition = function() {
         switch (side) {
             case 'bottom':
                 style = {
-                    left: -ttelSize[0] / 2 + elSize[0] / 2 + totalLeftOffset,
-                    top: elSize[1] + arrowSize - offset[1] + parentOffset[1]
+                    left: -ttelSize[0] / 2 + boundingBox.width / 2 + totalLeftOffset,
+                    top: boundingBox.height + arrowSize - offset[1] + parentOffset[1]
                 };
                 break;
 
             case 'top':
                 style = {
-                    left: -ttelSize[0] / 2 + elSize[0] / 2 + totalLeftOffset,
+                    left: -ttelSize[0] / 2 + boundingBox.width / 2 + totalLeftOffset,
                     top: -ttelSize[1] - arrowSize + offset[1] + parentOffset[1]
                 };
                 break;
 
             case 'right':
                 style = {
-                    left: elSize[0] + arrowSize + totalLeftOffset,
-                    top: elSize[1] / 2 - ttelSize[1] / 2 + offset[1] + parentOffset[1]
+                    left: boundingBox.width + arrowSize + totalLeftOffset,
+                    top: boundingBox.height / 2 - ttelSize[1] / 2 + offset[1] + parentOffset[1]
                 };
                 break;
 
             case 'left':
                 style = {
                     left: -ttelSize[0] - arrowSize + totalLeftOffset,
-                    top: elSize[1] / 2 - ttelSize[1] / 2 + offset[1] + parentOffset[1]
+                    top: boundingBox.height / 2 - ttelSize[1] / 2 + offset[1] + parentOffset[1]
                 };
                 break;
         }
@@ -12079,12 +12118,14 @@ ElementTooltip.prototype.updatePosition = function() {
 }
 
 ElementTooltip.prototype._hide = function(byElClick) {
+    this._isShown = false;
+
     this._clearTimeouts();
 
     this._reTimeout = setTimeout((function() {
         hide(this._ttel);
 
-        this._opts.elClassWhenTooltip && removeClass(this._el, this._opts.elClassWhenTooltip);
+        this._opts.elClassWhenShown && removeClass(this._el, this._opts.elClassWhenShown);
         this._opts.onHide && this._opts.onHide(this._ttel, !!byElClick);
     }).bind(this), ElementTooltip.FADE_SPEED);
 
@@ -12093,8 +12134,6 @@ ElementTooltip.prototype._hide = function(byElClick) {
             this._opts.onBeforeHide(this._ttel, !!byElClick);
         } catch (e) {}
     }
-
-    this._isShown = false;
 
     removeClass(this._ttel, 'eltt_vis');
     this._ev_wclick && removeEvent(document, 'mousedown', this._ev_wclick);
@@ -12113,6 +12152,8 @@ ElementTooltip.prototype.toggle = function() {
 }
 
 ElementTooltip.prototype._clearTimeouts = function() {
+    this._visTO && clearTimeout(this._visTO);
+    this._visTO = false;
     this._sto && clearTimeout(this._sto);
     this._sto = false;
     this._hto && clearTimeout(this._hto);

@@ -1857,17 +1857,17 @@ var Dev = {
         });
     },
 
-    selectNode(el, e) {
-        cancelEvent(e)
+    selectNode: function(el, e) {
+        cancelEvent(e);
 
-        const range = document.createRange()
-        range.selectNodeContents(el)
+        var range = document.createRange();
+        range.selectNodeContents(el);
 
-        const selection = getSelection()
-        selection.removeAllRanges()
-        selection.addRange(range)
+        var selection = getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
 
-        document.execCommand('copy')
+        document.execCommand('copy');
     },
 
 

@@ -6309,7 +6309,7 @@ ElementTooltip.prototype.show = function() {
 
     setTimeout(addClass.pbind(this._ttel, 'eltt_vis'), 10);
 
-    this._opts.elClassWhenTooltip && addClass(this._el, this._opts.elClassWhenTooltip);
+    this._opts.elClassWhenShown && addClass(this._el, this._opts.elClassWhenShown);
 
     if (this._ev_wclick) {
         removeEvent(document, 'mousedown', this._ev_wclick);
@@ -6405,7 +6405,7 @@ ElementTooltip.prototype._hide = function(byElClick) {
     this._reTimeout = setTimeout((function() {
         hide(this._ttel);
 
-        this._opts.elClassWhenTooltip && removeClass(this._el, this._opts.elClassWhenTooltip);
+        this._opts.elClassWhenShown && removeClass(this._el, this._opts.elClassWhenShown);
         this._opts.onHide && this._opts.onHide(this._ttel, !!byElClick);
     }).bind(this), ElementTooltip.FADE_SPEED);
 

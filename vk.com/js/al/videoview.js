@@ -669,7 +669,7 @@ var Videoview = {
             function e() {
                 mvcur.addButtonTT = mvcur.addButtonTT || new ElementTooltip(r, {
                     cls: "mv_add_eltt",
-                    elClassWhenTooltip: "mv_no_active",
+                    elClassWhenShown: "mv_no_active",
                     onFirstTimeShow: function(e) {
                         function i(e) {
                             var i = mvcur.addButtonTT.getContent();
@@ -815,7 +815,7 @@ var Videoview = {
                 var d = domClosest("video_box_wrap", mvcur.player.el);
                 ge("mv_player_box").appendChild(d), hide("mv_progress_box"), show("mv_player_box"), mvcur.player.onExpanded()
             }
-            return o.playlistId ? Videoview.initPlaylistBlock(i, o.playlistId, o.catLoadMore) : VideoPlaylist.removeBlock(), Videoview.cleanUpStoredVSegs(), o.minimized && setTimeout(Videoview.minimize.bind(Videoview), 0), !1
+            return o.playlistId ? Videoview.initPlaylistBlock(i, o.playlistId, o.catLoadMore, !a) : VideoPlaylist.removeBlock(), Videoview.cleanUpStoredVSegs(), o.minimized && setTimeout(Videoview.minimize.bind(Videoview), 0), !1
         },
         buildLayerContent: function() {
             var e = "mv_dark";
@@ -824,16 +824,16 @@ var Videoview = {
         disableLayerContent: function() {
             addClass("mv_info", "mv_info_disabled")
         },
-        initPlaylistBlock: function(e, i, t) {
+        initPlaylistBlock: function(e, i, t, o) {
             if (-127333786 != e.split("_")[0]) {
-                var o = !!VideoPlaylist.getBlock(),
-                    a = VideoPlaylist.buildBlock(i, e);
-                if (a && /^wall_/.test(i) && VideoPlaylist.lists[i] && cur.wallVideos && cur.wallVideos[i] && (VideoPlaylist.extendList(i, cur.wallVideos[i].list), VideoPlaylist.updateBlockList(i)), a) {
-                    ge("mv_main").appendChild(a);
-                    var n = VideoPlaylist.getCurList().list.length;
-                    (window.Video && Video.isInVideosList() && vk.id == cur.oid || 5 > n) && (o || VideoPlaylist.toggle(!1)),
+                var a = !!VideoPlaylist.getBlock(),
+                    n = VideoPlaylist.buildBlock(i, e, o);
+                if (n && /^wall_/.test(i) && VideoPlaylist.lists[i] && cur.wallVideos && cur.wallVideos[i] && (VideoPlaylist.extendList(i, cur.wallVideos[i].list), VideoPlaylist.updateBlockList(i)), n) {
+                    ge("mv_main").appendChild(n);
+                    var d = VideoPlaylist.getCurList().list.length;
+                    (window.Video && Video.isInVideosList() && vk.id == cur.oid || 5 > d) && (a || VideoPlaylist.toggle(!1)),
                     isFunction(t) && t(VideoPlaylist.updateBlockList.pbind(i)), setTimeout(function() {
-                        VideoPlaylist.restoreScrollPos(), VideoPlaylist.updateScrollbar(), VideoPlaylist.setCurVideo(e, o)
+                        VideoPlaylist.restoreScrollPos(), VideoPlaylist.updateScrollbar(), VideoPlaylist.setCurVideo(e, a)
                     }, 0)
                 }
                 VideoPlaylist.toggleStateClasses(), VideoPlaylist.updateControls()

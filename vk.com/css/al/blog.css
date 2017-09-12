@@ -323,7 +323,8 @@
 }
 
 .blog_entry_text_wrap {
-    border: 1px solid #d3d9de
+    border: 1px solid #d3d9de;
+    padding: 19px
 }
 
 .blog_entry_text .wk_sub_header {

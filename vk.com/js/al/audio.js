@@ -1307,7 +1307,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                 width: 250,
                 offset: [1, 14],
                 rightShift: this.isLayer() ? 45 : 80,
-                elClassWhenTooltip: "audio_status_tt_shown",
+                elClassWhenShown: "audio_status_tt_shown",
                 id: "audio_status_tt",
                 onFirstTimeShow: function(e) {
                     this.sb = new uiScroll(geByClass1("audio_status_wrap", e), {

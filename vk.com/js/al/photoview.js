@@ -615,7 +615,7 @@ var Photoview = {
                     k && (cur.pvMoreActionsTooltip = new ElementTooltip(k, {
                         id: "pv_more_acts_tt",
                         forceSide: "top",
-                        elClassWhenTooltip: "pv_more_shown",
+                        elClassWhenShown: "pv_more_shown",
                         content: x + I,
                         offset: [0, -5]
                     }))

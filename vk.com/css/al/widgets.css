@@ -1037,6 +1037,10 @@ img {
     box-shadow: none
 }
 
+.widgets_popup_box_body .popup_box_container .box_x_button {
+    display: none
+}
+
 .widgets_popup_box_body .popup_box_container .box_layout {
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
     vertical-align: initial

@@ -6189,6 +6189,11 @@ button.ui_load_more_btn {
     pointer-events: none
 }
 
+.eltt.eltt_bottom .eltt_arrow_back,
+.eltt.eltt_top .eltt_arrow_back {
+    left: 0
+}
+
 .eltt.eltt_arrow_size_normal .eltt_arrow {
     border: 7px solid transparent
 }
