@@ -12034,7 +12034,7 @@ ElementTooltip.prototype.updatePosition = function() {
                 var inMessages = hasClass(bodyNode, 'body_im')
                 var bottomGap = inMessages ? 60 : (this._opts.bottomGap || 0)
 
-                var enoughSpaceAbove = (boundingBox.left - boundingElPos[1]) > ttelSize[1] + arrowSize - offset[1]
+                var enoughSpaceAbove = (boundingBox.top - boundingElPos[1]) > ttelSize[1] + arrowSize - offset[1]
                 var enoughSpaceBelow = (scrollGetY() + boundingElSize[1] - (boundingBox.top + boundingBox.height + arrowSize) - bottomGap) > ttelSize[1]
 
                 if (this._opts.defaultSide == 'top') {
