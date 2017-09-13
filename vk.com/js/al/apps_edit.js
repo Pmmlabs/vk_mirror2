@@ -8,31 +8,31 @@ var AppsEdit = {
         window.Dev && Dev.checkBlockHeight()
     },
     switchTab: function(e, t, a) {
-        if ((a || !checkEvent(t)) && (a || nav.objLoc.section != e)) {
-            var s = ge("apps_nav_" + e);
-            if (s) {
-                var i = geByClass("nav_selected", ge("dev_navigation"));
-                for (var n in i) removeClass(i[n], "nav_selected");
-                addClass(s, "nav_selected");
-                var r = ge("dev_left_nav");
-                if (r && i[0]) {
-                    var o = ge("dev_left_nav_mark");
-                    setStyle(o, {
-                        height: getSize(i[0])[1],
-                        top: i[0].offsetTop || 0
-                    }), addClass(r, "anim"), animate(o, {
-                        height: getSize(s)[1],
-                        top: s.offsetTop
-                    }, {
-                        duration: 100,
-                        onComplete: function() {
-                            removeClass(r, "anim")
-                        }
-                    })
-                }
+        if (!a && checkEvent(t)) return !0;
+        if (!a && nav.objLoc.section == e) return !1;
+        var s = ge("apps_nav_" + e);
+        if (s) {
+            var i = geByClass("nav_selected", ge("dev_navigation"));
+            for (var n in i) removeClass(i[n], "nav_selected");
+            addClass(s, "nav_selected");
+            var r = ge("dev_left_nav");
+            if (r && i[0]) {
+                var o = ge("dev_left_nav_mark");
+                setStyle(o, {
+                    height: getSize(i[0])[1],
+                    top: i[0].offsetTop || 0
+                }), addClass(r, "anim"), animate(o, {
+                    height: getSize(s)[1],
+                    top: s.offsetTop
+                }, {
+                    duration: 100,
+                    onComplete: function() {
+                        removeClass(r, "anim")
+                    }
+                })
             }
-            if (!a) return nav.go(s, t)
         }
+        return a ? !1 : (nav.go(s, t), !1)
     },
     animSubTab: function(e) {
         var t = ge("app_edit_subheader"),
@@ -1200,7 +1200,7 @@ var AppsEdit = {
             if (a) {
                 removeClass(a, "active");
                 var s = geByClass1("apps_edit_content", a);
-                slideUp(s, t);
+                slideUp(s, t)
             }
         }
         if (cur.currentActivity == e) return void(cur.currentActivity = null);
