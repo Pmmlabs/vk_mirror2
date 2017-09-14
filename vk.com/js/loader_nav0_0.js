@@ -130,14 +130,14 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2889730895,
     'common.js': 1157,
-    'common.css': 23547840002,
+    'common.css': 23385633494,
     'retina.css': 2633262011,
     'uncommon.js': 1524646384,
     'uncommon.css': 16314551053,
     'filebutton.css': 1044306797,
     'filebutton.js': 2454165044,
     'lite.js': 3241903126,
-    'lite.css': 34768517660,
+    'lite.css': 34606311152,
     'ie6.css': 2976338090,
     'ie7.css': 2926539419,
     'rtl.css': 14199276820,
@@ -305,7 +305,7 @@ var stVersions = {
     'api/widgets/al_contactus.js': 3360514866,
     'api/widgets/al_subscribe.js': 1435892857,
     'api/widgets/al_like.js': 4053792122,
-    'api/widgets/al_post.js': 3983188601,
+    'api/widgets/al_post.js': 732193844,
     'api/widgets/al_allow_messages_from_community.js': 2539325945,
     'api/widgets/al_add_community_app.js': 2715350043,
     'widget_add_community_app.css': 22348200770,
@@ -342,7 +342,7 @@ var stVersions = {
     'agents.css': 15516667750,
     'achievements.js': 897703126,
     'achievements.css': 14224003114,
-    'sf.css': 13211458933,
+    'sf.css': 16358090670,
     'members.css': 15433237138,
     'meminfo.css': 18942919260,
     'groupinfo.css': 18525449203,
@@ -542,7 +542,7 @@ var stVersions = {
     'cmodules/web/pretty_cards.js': 1388461462,
     'cmodules/web/landing_ads_case.js': 3936066274,
     'landings/ads_cases.css': 25101832628,
-    'lang': 6843
+    'lang': 6844
 };
 var stTypes = {
     fromLib: {
@@ -608,4 +608,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 1377;
+var _rnd = 9915;

@@ -4044,7 +4044,8 @@ div.top_result_baloon a {
     position: relative;
     cursor: pointer;
     box-sizing: border-box;
-    line-height: 1.25
+    line-height: 1.25;
+    outline: none
 }
 
 .audio_row .audio_row_content {
