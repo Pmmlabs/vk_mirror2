@@ -1481,6 +1481,25 @@ window.ajax = {
         if (url.substr(0, 1) != '/') url = '/' + url;
         ajaxCache[url + '#' + ajx2q(query)] = data;
     },
+    invalidate: function(url, query) {
+        if (url === undefined) {
+            ajaxCache = {}
+        } else {
+            delete ajaxCache[ajax._getCacheKey(url, query)];
+        }
+    },
+    _getCacheKey: function(url, query, o) {
+        var boldq = clone(query);
+        delete boldq.al;
+        delete boldq.al_ad;
+        delete boldq.ads_section;
+        delete boldq.ads_showed;
+        delete boldq.captcha_sid;
+        delete boldq.captcha_key;
+        delete boldq._smt;
+        delete boldq._preload;
+        return url + '#' + ajx2q(boldq, o && o.noSort);
+    },
     _debugLog: function(text) {
         window._updateDebug = function() {
             var dlw = ge('debuglogwrap');
@@ -1527,13 +1546,7 @@ window.ajax = {
         var cacheKey = false;
         extend(q, __adsGetAjaxParams(q, o));
         if (o.cache) {
-            var boldq = clone(q);
-            delete boldq.al;
-            delete boldq.al_ad;
-            delete boldq.ads_section;
-            delete boldq.captcha_sid;
-            delete boldq.captcha_key;
-            cacheKey = url + '#' + ajx2q(boldq);
+            cacheKey = ajax._getCacheKey(url, q, o);
         }
         var hideBoxes = function() {
             for (var i = 0; i < arguments.length; ++i) {

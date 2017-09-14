@@ -660,7 +660,7 @@ extend(UiControl.prototype, {
             }), addEvent(s, "mouseover", function(e) {
                 addClass(s, "token_hover"), l.showImage(s.getAttribute("data-id"), t), isFunction(l.options.onTokenMouseOver) && l.options.onTokenMouseOver(s.getAttribute("data-id"), e)
             }), addEvent(s, "mouseout", function(t) {
-                removeClass(s, "token_hover"), l.showImage(l.activeItemValue ? l.activeItemValue : l.selectedTokenId), isFunction(l.options.onTokenMouseOut) && l.options.onTokenMouseOut(s.getAttribute("data-id"), event)
+                removeClass(s, "token_hover"), l.showImage(l.activeItemValue ? l.activeItemValue : l.selectedTokenId), isFunction(l.options.onTokenMouseOut) && l.options.onTokenMouseOut(s.getAttribute("data-id"), t)
             });
             var r = s.firstChild.nextSibling.firstChild;
             addEvent(r, "mousedown", function() {
