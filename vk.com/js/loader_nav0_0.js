@@ -530,7 +530,7 @@ var stVersions = {
     'cmodules/web/speech_worker_opus.js': 3385759348,
     'stories.js': 4166849129,
     'stories.css': 18278775857,
-    'internal/nospam.css': 17925443782,
+    'internal/nospam.css': 15057372909,
     'internal/away_linksban.css': 16264012761,
     'internal/patterns_info.css': 15477579751,
     'article.css': 21116111340,
@@ -608,4 +608,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 7598;
+var _rnd = 8736;
