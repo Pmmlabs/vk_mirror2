@@ -7,6 +7,8 @@
 .payments_box_spinner,
 .payments_box_wide .payments_box_promo_descr,
 .payments_getvotes_method_img,
+.payments_getvotes_promo_wrap .payments_logo_sberbank,
+.payments_getvotes_promo_wrap .payments_logo_visa,
 .payments_logo_cards,
 .payments_logo_checkout,
 .payments_logo_kiwipurse,
@@ -1499,6 +1501,43 @@ h2.payments_getvotes_title {
     margin: 20px 0 15px
 }
 
+.payments_getvotes_promo_wrap .payments_getvotes_title {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 15px
+}
+
+.payments_getvotes_promo_wrap .payments_logo_visa {
+    background: url(/images/visa_logo.png) right 0 no-repeat;
+    width: 65px;
+    height: 21px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .payments_getvotes_promo_wrap .payments_logo_visa {
+        background-image: url(/images/visa_logo_2x.png);
+        background-size: 65px 21px
+    }
+}
+
+.payments_getvotes_promo_wrap .payments_logo_sberbank {
+    background: url(/images/logos/sberbank_logo.png) right 0 no-repeat;
+    width: 150px;
+    height: 30px;
+    margin-top: -5px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .payments_getvotes_promo_wrap .payments_logo_sberbank {
+        background-image: url(/images/logos/sberbank_logo_2x.png);
+        background-size: 150px 30px
+    }
+}
+
 .payments_getvotes_promo_controls {
     margin: 20px 0;
     text-align: center
@@ -1506,13 +1545,13 @@ h2.payments_getvotes_title {
 
 .payments_getvotes_promo_rules {
     color: #939393;
-    font-size: 12.5px;
-    text-align: center
+    font-size: 12.5px
 }
 
 #payments_promo_iframe_container {
     display: none;
-    margin: -20px -25px
+    margin: -20px -25px;
+    width: 480px
 }
 
 #payments_box.payments_money_transfer_box .payments_summary_cont {

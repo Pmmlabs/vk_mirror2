@@ -3333,7 +3333,7 @@ window.VideoChat = {
         }
         onLoaded(function() {
             checkMp4(function(t, o) {
-                !t && "timeout" == o && /smart-tv/.test(window._ua) && (t = !0), t && !i.is_flv || browser.flash >= Videoview.FLASH_MIN_VERSION || i.live ? (i.can_play_mp4 = t ? 1 : 0, VideoInitializer.vkHtml5(e, i)) : show(domByClass(e, "video_box_msg")), !t && o && window._ua && _ua.indexOf("smart-tv") > -1 && ajax.post("al_video.php?act=log_cant_play_mp4_reason", {
+                t && !i.is_flv || browser.flash >= Videoview.FLASH_MIN_VERSION || i.live ? (i.can_play_mp4 = t ? 1 : 0, VideoInitializer.vkHtml5(e, i)) : show(domByClass(e, "video_box_msg")), !t && o && window._ua && _ua.indexOf("smart-tv") > -1 && ajax.post("al_video.php?act=log_cant_play_mp4_reason", {
                     ua: window._ua,
                     reason: o
                 }, {

@@ -9364,6 +9364,11 @@ function pauseLastInlineVideo() {
 }
 
 function checkMp4(callback) {
+    if (/smart-tv/.test(window._ua)) {
+        callback(true);
+        return;
+    }
+
     if (ls.get('video_can_play_mp4')) {
         callback(true);
         return;

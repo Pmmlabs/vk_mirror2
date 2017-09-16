@@ -12,7 +12,7 @@ var slide_show = function(e) {
                 "c[section]": e || cur.section
             } : serializeForm(s) || {}, t["c[q]"] = val("search_query");
             for (var r in t) t[r] && "0" != t[r] || delete t[r], "-1" == t[r] && t[r + "_custom"] ? (t[r] = t[r + "_custom"], delete t[r + "_custom"]) : t[r + "_custom"] && delete t[r + "_custom"];
-            return "video" != cur.section || t["c[sort]"] || (t["c[sort]"] = "0"), "people" == cur.section && ge("c[name]") && !t["c[name]"] && (t["c[name]"] = "0"), "people" == cur.section && ge("c[photo]") && !t["c[photo]"] && (t["c[photo]"] = "0"), "people" == cur.section && t["c[invite]"] && delete t.from, "communities" != cur.section || !cur.filtersShown || t["c[q]"] || t["c[category]"] || (t["c[skip_catalog]"] = "1"), t
+            return cur.qid && (t["c[qid]"] = cur.qid), "video" != cur.section || t["c[sort]"] || (t["c[sort]"] = "0"), "people" == cur.section && ge("c[name]") && !t["c[name]"] && (t["c[name]"] = "0"), "people" == cur.section && ge("c[photo]") && !t["c[photo]"] && (t["c[photo]"] = "0"), "people" == cur.section && t["c[invite]"] && delete t.from, "communities" != cur.section || !cur.filtersShown || t["c[q]"] || t["c[category]"] || (t["c[skip_catalog]"] = "1"), t
         },
         sameParams: function(e) {
             if (!cur.params) return !1;

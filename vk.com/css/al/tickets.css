@@ -303,7 +303,7 @@ body.dev .tickets_reply_rows {
 }
 
 .tickets_reply_row {
-    padding: 10px 0 11px;
+    padding: 8px 0 9px;
     border-top: 1px solid #e7e8ec;
     font-size: 12.5px;
     position: relative
@@ -315,30 +315,45 @@ body.dev .tickets_reply_row {
 }
 
 .tickets_reply_row.first {
-    border-top: none!important
+    border-top: 0 none!important
+}
+
+.tickets_reply_row_same_author.tickets_reply_row {
+    padding-top: 0;
+    border-top: 0 none!important
+}
+
+.tickets_reply_row_same_author .tickets_image,
+.tickets_reply_row_same_author .tickets_reply_title {
+    display: none
+}
+
+.tickets_reply_row_same_author .tickets_reply_content {
+    border-top: 1px solid #e7e8ec;
+    padding-top: 8px
 }
 
 .tickets_image {
     float: left;
     margin-right: 12px;
     padding-top: 2px;
-    width: 50px
+    width: 42px
 }
 
 .tickets_image__i {
-    width: 50px;
-    height: 50px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%
 }
 
 .tickets_reply_content {
-    margin-left: 61px
+    margin-left: 54px
 }
 
 .tickets_reply_title {
     font-size: 13px;
-    line-height: 18px;
-    padding-bottom: 3px;
+    line-height: 17px;
+    padding-bottom: 2px;
     overflow: hidden
 }
 
@@ -387,10 +402,6 @@ body.dev .tickets_reply_actions {
     float: left
 }
 
-.tickets_reply_actions__date .divider {
-    margin-right: -4px
-}
-
 .tickets_reply_actions__list {
     float: right
 }
@@ -436,7 +447,7 @@ body.dev .tickets_post_field {
     margin-bottom: 0;
     padding: 14px 20px 16px;
     border: 0px none;
-    min-height: 50px;
+    min-height: 42px;
     resize: vertical;
     vertical-align: top;
     width: 100%
@@ -447,7 +458,7 @@ body.dev .tickets_post_form__text {
 }
 
 .tickets_post_field_moder .tickets_post_form__text {
-    min-height: 100px
+    min-height: 84px
 }
 
 .tickets_post_form__text.disabled {
@@ -494,7 +505,7 @@ body.dev .tickets_post_form__text {
 }
 
 .tickets_header {
-    padding: 12px 20px;
+    padding: 11px 20px;
     color: #000;
     border-bottom: 1px solid #e7e8ec
 }
@@ -543,7 +554,7 @@ body.dev .tickets_header {
 
 .tickets_header_info {
     padding-right: 35px;
-    padding-top: 4px;
+    padding-top: 3px;
     color: #939393;
     font-size: 13px
 }
@@ -558,7 +569,7 @@ body.dev .tickets_header_info {
 
 .tickets_header_task_info {
     padding-right: 35px;
-    padding-top: 4px;
+    padding-top: 3px;
     color: #939393;
     font-size: 13px
 }
@@ -600,7 +611,7 @@ body.dev .tickets_header_task_info {
 .tickets_header_links {
     float: right;
     position: relative;
-    line-height: 39.002px
+    line-height: 38.002px
 }
 
 body.dev .tickets_header_links {
@@ -1563,28 +1574,28 @@ body.dev #tis_add_lnk_edit {
     float: left;
     margin: 4px 0 0;
     height: 14px;
-    width: 62px;
+    width: 54px;
     background: transparent url(/images/tasks_icons.gif) no-repeat scroll
 }
 
 .tickets_sys_img.tickets_sys_img_up {
-    background-position: 17px 0
+    background-position: 13px 0
 }
 
 .tickets_sys_img.tickets_sys_img_plus {
-    background-position: 17px -28px
+    background-position: 13px -28px
 }
 
 .tickets_sys_img.tickets_sys_img_check {
-    background-position: 17px -42px
+    background-position: 13px -42px
 }
 
 .tickets_sys_img.tickets_sys_img_move_to {
-    background-position: 17px -55px
+    background-position: 13px -55px
 }
 
 .tickets_sys_img.tickets_sys_img_cross {
-    background-position: 17px -67px
+    background-position: 13px -67px
 }
 
 .tickets_sys_content {
@@ -2783,16 +2794,6 @@ body.dev .tickets_dmca_data_row.links .value {
 #tickets_block_playback_saved {
     color: #777;
     opacity: 0
-}
-
-.tickets_mob {
-    width: 0px;
-    height: 12px;
-    padding-left: 7px;
-    margin-right: 4px;
-    background: url(/images/mobile_online.gif?1) no-repeat -11px 0;
-    *zoom: 1;
-    cursor: pointer
 }
 
 .tickets_media_icon {
