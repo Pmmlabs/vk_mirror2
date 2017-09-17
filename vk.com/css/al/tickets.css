@@ -289,7 +289,7 @@ body.dev .tickets_title_label {
 }
 
 .tickets_reply_rows {
-    padding: 0 20px
+    padding: 0 16px
 }
 
 body.dev .tickets_reply_rows {
@@ -467,7 +467,7 @@ body.dev .tickets_post_form__text {
 }
 
 .tickets_post_form__panel {
-    padding: 15px 20px;
+    padding: 15px 16px;
     border-top: 1px solid #e7e8ec;
     display: none
 }
@@ -505,7 +505,7 @@ body.dev .tickets_post_form__text {
 }
 
 .tickets_header {
-    padding: 11px 20px;
+    padding: 11px 16px;
     color: #000;
     border-bottom: 1px solid #e7e8ec
 }

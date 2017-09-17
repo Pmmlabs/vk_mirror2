@@ -2467,40 +2467,43 @@ div.feed_recom {
 }
 
 .feed_block_articles .module_body {
-    padding-top: 0;
-    padding-bottom: 8px
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 10px;
+    padding-bottom: 10px
+}
+
+.feed_block_articles .module_body,
+.feed_block_article {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column
 }
 
 .feed_block_article {
     position: relative;
     display: block;
-    margin: 12px 0;
-    padding-right: 68px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin: 0 -10px;
+    padding: 10px 10px 10px 75px;
     color: inherit;
-    line-height: 18px;
+    line-height: 15px;
     font-size: 13px;
-    min-height: 56px
-}
-
-.feed_block_article+.feed_block_article {
-    margin-top: 25px
-}
-
-.feed_block_article+.feed_block_article:before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: -13px;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: #e7e8ec;
-    pointer-events: none;
-    cursor: default
+    min-height: 50px
 }
 
 .feed_block_article:hover {
-    text-decoration: none
+    text-decoration: none;
+    background: #f0f2f5;
+    border-radius: 2px
 }
 
 .feed_block_article_title {
@@ -2510,18 +2513,25 @@ div.feed_recom {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-height: 36px
+    max-height: 30px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .feed_block_article_photo {
     position: absolute;
-    right: 0;
-    top: 0;
-    width: 56px;
-    height: 56px;
+    left: 10px;
+    top: 10px;
+    width: 50px;
+    height: 50px;
     background-position: 50%;
     background-size: cover;
     border-radius: 2px
+}
+
+.feed_block_article_info {
+    display: block
 }
 
 .feed_block_article_author {
@@ -2532,7 +2542,7 @@ div.feed_recom {
     overflow: hidden;
     text-overflow: ellipsis;
     color: #939393;
-    padding-top: 5px;
+    padding-top: 6px;
     line-height: 15px;
     font-size: 12.5px
 }

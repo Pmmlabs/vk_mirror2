@@ -1995,6 +1995,26 @@ a.ui_search_custom_link {
     filter: alpha(opacity=75)
 }
 
+.ui_actions_menu_item.ui_actions_menu_item_about {
+    background: none;
+    color: #939393;
+    font-size: 12px;
+    line-height: 14px;
+    height: auto;
+    width: auto;
+    padding-top: 5px;
+    padding-bottom: 8px;
+    cursor: text!important
+}
+
+.ui_actions_menu_item.ui_actions_menu_item_about:before {
+    content: '';
+    border-top: 1px solid #e7e8ec;
+    display: block;
+    padding-bottom: 13px;
+    margin: 0 -5px
+}
+
 .ui_actions_menu_item.ui_actions_menu_item_lock {
     color: transparent;
     pointer-events: none
