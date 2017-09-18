@@ -342,7 +342,7 @@ var stVersions = {
     'agents.css': 12759178966,
     'achievements.js': 897703126,
     'achievements.css': 11466514330,
-    'sf.css': 13600601886,
+    'sf.css': 11624108939,
     'members.css': 12675748354,
     'meminfo.css': 16185430476,
     'groupinfo.css': 15767960419,
@@ -530,7 +530,7 @@ var stVersions = {
     'cmodules/web/speech_worker_opus.js': 3385759348,
     'stories.js': 4166849129,
     'stories.css': 15521287073,
-    'internal/nospam.css': 15599117211,
+    'internal/nospam.css': 14348886622,
     'internal/away_linksban.css': 13506523977,
     'internal/patterns_info.css': 12720090967,
     'article.css': 18358622556,
@@ -608,4 +608,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 9699;
+var _rnd = 8150;
