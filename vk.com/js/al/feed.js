@@ -135,7 +135,7 @@ var Feed = {
         })
     },
     update: function(e) {
-        if (!cur.feedUpdateLoading && !(cur.add_queue && window.Notifier && Notifier.addKey(cur.add_queue, feed.updated) && "news" != cur.section || "top" == cur.subsection || inArray(cur.section, ["search", "photos_search", "mentions", "articles", "articles_search", "likes", "recommended", "live"]))) {
+        if (!cur.feedUpdateLoading && !(cur.add_queue && window.Notifier && Notifier.addKey(cur.add_queue, feed.updated) && "news" != cur.section || "feed" !== cur.module || "top" == cur.subsection || inArray(cur.section, ["search", "photos_search", "mentions", "articles", "articles_search", "likes", "recommended", "live"]))) {
             var t = Math.random();
             "news" != cur.section && "comments" != cur.section && t > .3 || "news" == cur.section && (e || t > .05) || (cur.feedUpdateLoading = !0, ajax.post("al_feed.php?au_" + cur.section, extend(feed.getSectionParams(cur.section), {
                 timestamp: cur.timestamp,
@@ -144,7 +144,7 @@ var Feed = {
             }), {
                 onDone: function(t, o, s) {
                     if (cur.feedUpdateLoading = !1, 1 == e && (!o || -1 == o.indexOf(vk.id + ""))) return void setTimeout(feed.update.pbind(2), 2e3);
-                    if (!(t.section != cur.section || t.timestamp < cur.timestamp || s < cur.timestamp)) {
+                    if (!("feed" !== cur.module || t.section != cur.section || t.timestamp < cur.timestamp || s < cur.timestamp)) {
                         t.count += cur.count;
                         var r, i, n, a, d = cur.rowsCont,
                             c = ce("div"),
@@ -934,7 +934,8 @@ var Feed = {
                     var r = gpeByClass("_feedback_deleted", s);
                     if (1 == o) return void re(gpeByClass("_feed_row", r));
                     var i, n, a = !1;
-                    if (hasClass(r, "_top_feedback_deleted") ? (a = !0, i = ge("top_notify_cont")) : i = cur.rowsCont, i && (n = i.firstChild)) {
+                    if (hasClass(r, "_top_feedback_deleted") ? (a = !0, i = ge("top_notify_cont")) : i = cur.rowsCont,
+                        i && (n = i.firstChild)) {
                         var d, c, l = !1,
                             u = scrollGetY();
                         do n.className && hasClass(n, "_feed_row") && n.firstChild && e == n.firstChild.getAttribute("author") && (d = n.offsetHeight, c = n.offsetTop, l === !1 && (l = getXY(n.offsetParent)[1]), hide(n), u > c + l && (u -= d, scrollToY(u, 0))); while (n = n.nextSibling);
