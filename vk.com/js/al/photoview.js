@@ -537,7 +537,7 @@ var Photoview = {
                 Photoview.toggleLightModeClass(!0), isVisible(cur.pvAlbumsWrap) && (val("pva_scroll", layerWrap.scrollTop), hide(cur.pvAlbumsWrap), show(cur.pvPhotoWrap), Photoview.updateSize()), isVisible(cur.pvAlbumWrap) && (val("pvsa_scroll", layerWrap.scrollTop), hide(cur.pvAlbumWrap), show(cur.pvPhotoWrap), Photoview.updateSize()), uiScrollBox.hide(), hide(cur.pvTitle);
                 var t = cur.pvPhoto && domFC(cur.pvPhoto);
                 if (t && t.src) {
-                    var r = /https?:\/\/[a-z0-9\.]+/,
+                    var r = /https?:\/\/[a-z0-9\.\-]+/,
                         a = t.src.replace(r, ""),
                         i = e.src.replace(r, "");
                     a != i && o(e.src)
