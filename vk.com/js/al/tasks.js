@@ -621,6 +621,14 @@ Tasks = {
             }
         })
     },
+    toggleClosedAutoanswerLangBlock: function(e, t) {
+        cancelEvent(e);
+        var s = ge("task_closed_autoanswer_form_lang_" + t);
+        toggle(s), s.isInited || (autosizeSetup("task_closed_autoanswer_lang_" + t, {
+            minHeight: 60,
+            maxHeight: 500
+        }), s.isInited = !0)
+    },
     changeTaskStatus: function(status, hash) {
         var doChangeStatus = function(e, t, s) {
                 show("tasks_loading");
@@ -645,17 +653,31 @@ Tasks = {
                         hash: e,
                         start: s || ""
                     };
-                    cur.hideAutoanswer && ge("task_closed_autoanswer") && (o.no_autoanswer = cur.hideAutoanswer.val(), o.answer_text = ge("task_closed_autoanswer").value), ge("task_closed_autoanswer_addressing_m") && (o.addressing_m = ge("task_closed_autoanswer_addressing_m").value), ge("task_closed_autoanswer_addressing_f") && (o.addressing_f = ge("task_closed_autoanswer_addressing_f").value);
-                    var a = [],
-                        n = cur.ticketsAutoMedia && cur.ticketsAutoMedia.chosenMedias;
-                    if (n)
-                        for (var i in n) {
-                            var r = n[i],
-                                c = r[0],
-                                d = r[1];
-                            ("photo" == c || "doc" == c) && a.push(c + "," + d)
+                    if (cur.hideAutoanswer && ge("task_closed_autoanswer")) {
+                        o.no_autoanswer = cur.hideAutoanswer.val(), o.answer_text = ge("task_closed_autoanswer").value;
+                        var a = ge("task_closed_autoanswer_other_langs");
+                        if (a) {
+                            var n = geByClass("task_closed_autoanswer", a);
+                            each(n, function(e, t) {
+                                var s = attr(t, "data-lang_id"),
+                                    a = val(t),
+                                    n = ge("task_closed_autoanswer_addressing_m" + s),
+                                    i = ge("task_closed_autoanswer_addressing_f" + s);
+                                o["answer_text_" + s] = a, n && (o["addressing_m_" + s] = val(n)), i && (o["addressing_f_" + s] = val(i))
+                            })
                         }
-                    a.length && (o.attachs = a), ajax.post(Tasks.address, o, {
+                    }
+                    ge("task_closed_autoanswer_addressing_m") && (o.addressing_m = ge("task_closed_autoanswer_addressing_m").value), ge("task_closed_autoanswer_addressing_f") && (o.addressing_f = ge("task_closed_autoanswer_addressing_f").value);
+                    var i = [],
+                        r = cur.ticketsAutoMedia && cur.ticketsAutoMedia.chosenMedias;
+                    if (r)
+                        for (var c in r) {
+                            var d = r[c],
+                                l = d[0],
+                                u = d[1];
+                            ("photo" == l || "doc" == l) && i.push(l + "," + u)
+                        }
+                    i.length && (o.attachs = i), ajax.post(Tasks.address, o, {
                         onDone: function(s, o, a) {
                             return animate(ge("task_status_progress"), {
                                 width: o

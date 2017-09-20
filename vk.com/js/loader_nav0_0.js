@@ -147,7 +147,7 @@ var stVersions = {
     'html5audio.js': 976782859,
     'html5video.js': 223664659,
     'html5video.css': 13094889127,
-    'audioplayer.js': 6318944304,
+    'audioplayer.js': 5234391659,
     'audioplayer.css': 12359163118,
     'audio_html5.js': 287741914,
     'audio.js': 1034226099,
@@ -227,8 +227,8 @@ var stVersions = {
     'groups.css': 22674415564,
     'groups.js': 2975645919,
     'groups_list.js': 3507753248,
-    'groups_edit.css': 26960269830,
-    'groups_edit.js': 3201300955,
+    'groups_edit.css': 26240925732,
+    'groups_edit.js': 4082532822,
     'profile.css': 13712660644,
     'profile.js': 642429379,
     'calendar.css': 15613602165,
@@ -329,12 +329,12 @@ var stVersions = {
     'docs.css': 15649401029,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 12753095663,
-    'tasks.js': 662793453,
-    'tasks.css': 12097860584,
-    'helpdesk.js': 2223790063,
-    'helpdesk.css': 18113373296,
+    'tasks.js': 4285291205,
+    'tasks.css': 13098578035,
+    'helpdesk.js': 2560154961,
+    'helpdesk.css': 14701473658,
     'tickets.js': 1964252,
-    'tickets.css': 16103958167,
+    'tickets.css': 13917534501,
     'faq.js': 2841473572,
     'faq.css': 15487954656,
     'talmud.js': 1641838680,
@@ -345,7 +345,7 @@ var stVersions = {
     'sf.css': 11624108939,
     'members.css': 12675748354,
     'meminfo.css': 16185430476,
-    'groupinfo.css': 15767960419,
+    'groupinfo.css': 15037282256,
     'bugs.js': 3874995669,
     'bugs.css': 10722775678,
     'bugtracker.js': 4057341778,
@@ -608,4 +608,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 2138;
+var _rnd = 1977;

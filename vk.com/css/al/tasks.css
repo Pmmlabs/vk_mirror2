@@ -1012,24 +1012,40 @@ li:hover .tasks_ticket_unbind:hover {
     word-wrap: break-word
 }
 
-#task_closed_autoanswer {
+.task_closed_autoanswer {
     box-sizing: border-box;
     width: 100%;
     height: 70px
 }
 
-#task_closed_autoanswer_addressing_f,
-#task_closed_autoanswer_addressing_m {
+input.task_closed_autoanswer_addressing_f,
+input.task_closed_autoanswer_addressing_m {
     box-sizing: border-box;
     margin: 0 0 1px;
     width: 49.5%
 }
 
-#task_closed_autoanswer_addressing_m {
+.task_closed_autoanswer_other_langs {
+    margin: 10px 0 20px
+}
+
+.task_closed_autoanswer_other_langs .task_closed_autoanswer_other_lang {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 3px;
+    background: #f5f7fa;
+    cursor: pointer
+}
+
+.task_closed_autoanswer_other_langs .task_closed_autoanswer_other_lang:hover {
+    background-color: #eff1f4
+}
+
+.task_closed_autoanswer_addressing_m {
     float: left
 }
 
-#task_closed_autoanswer_addressing_f {
+.task_closed_autoanswer_addressing_f {
     float: right
 }
 

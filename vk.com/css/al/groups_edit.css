@@ -1141,12 +1141,16 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .group_edit_adsweb_intro_description,
-.group_edit_adsweb_slots_description {
+.group_edit_adsweb_slots_description,
+.group_edit_adsweb_state_description,
+.group_edit_adsweb_state_migration_description {
     line-height: 160%;
     margin-bottom: 10px
 }
 
-.group_edit_adsweb_slots_description {
+.group_edit_adsweb_slots_description,
+.group_edit_adsweb_state_description,
+.group_edit_adsweb_state_migration_description {
     margin-bottom: 20px
 }
 
@@ -1169,6 +1173,11 @@ a.group_ad_post_link.deleted.deleted:hover {
 #group_edit_adsweb_slots_save_result {
     padding: 6px 20px;
     color: #777
+}
+
+#group_edit_adsweb_state_info {
+    line-height: 160%;
+    margin-bottom: 20px
 }
 
 .group_st_box {

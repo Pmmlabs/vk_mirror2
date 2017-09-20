@@ -2240,18 +2240,18 @@ a.tickets_question_row_tt:hover {
     resize: vertical
 }
 
-#tickets_closed_autoanswer_addressing_f,
-#tickets_closed_autoanswer_addressing_m {
+.tickets_closed_autoanswer_addressing_f.text,
+.tickets_closed_autoanswer_addressing_m.text {
     box-sizing: border-box;
     margin: 0 0 1px;
     width: 49.5%
 }
 
-#tickets_closed_autoanswer_addressing_m {
+.tickets_closed_autoanswer_addressing_m {
     float: left
 }
 
-#tickets_closed_autoanswer_addressing_f {
+.tickets_closed_autoanswer_addressing_f {
     float: right
 }
 
@@ -4256,7 +4256,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     width: 18px;
     height: 18px;
     top: 17px;
-    opacity: 0.7;
+    opacity: 0.4;
     position: absolute;
     cursor: pointer
 }

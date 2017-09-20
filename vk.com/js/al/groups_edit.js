@@ -1554,6 +1554,30 @@ var GroupsEdit = {
             onFail: o
         }))
     },
+    adswebSaveState: function(e, t) {
+        function o(o) {
+            if (unlockButton("group_edit_adsweb_state_button"), t && t.hide(), isObject(o) && o.ok) return o.state_info && val("group_edit_adsweb_state_info", o.state_info), void(o.state_btn && val("group_edit_adsweb_state_button_wrap", o.state_btn));
+            if (isObject(o) && "confirm_message" in o) {
+                e.confirm = 1;
+                var r = showFastBox(getLang("global_box_confirm_title"), o.confirm_message);
+                return void r.setButtons(o.confirm_action, GroupsEdit.adswebSaveState.pbind(e, r), getLang("box_cancel"))
+            }
+            return isObject(o) && "error" in o ? void showFastBox(getLang("global_box_error_title"), o.error) : void 0
+        }
+        isButtonLocked("group_edit_adsweb_state_button") || (lockButton("group_edit_adsweb_state_button"), t && t.showProgress(), ajax.post("/groupsedit.php?act=a_adsweb_save_state", e, {
+            onDone: o,
+            onFail: o
+        }))
+    },
+    adswebStateMigrate: function(e) {
+        function t(e) {
+            return unlockButton("group_edit_adsweb_state_migration_button"), isObject(e) && e.ok ? void 0 : isObject(e) && "error" in e ? void showFastBox(getLang("global_box_error_title"), e.error) : void 0
+        }
+        isButtonLocked("group_edit_adsweb_state_migration_button") || (lockButton("group_edit_adsweb_state_migration_button"), ajax.post("/groupsedit.php?act=a_adsweb_state_migrate", e, {
+            onDone: t,
+            onFail: t
+        }))
+    },
     adswebJoin: function(e, t) {
         function o(e) {
             isObject(e) && "error" in e && showFastBox(getLang("global_box_error_title"), e.error), unlockButton(r)
