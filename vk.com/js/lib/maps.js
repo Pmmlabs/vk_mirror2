@@ -302,9 +302,6 @@
                     callback();
                 } else {
                     var stat = ['mapbox.css', 'mapbox.js'];
-                    if (browser.msie && browser.version < 8) {
-                        stat.push('mapbox_ie.css');
-                    }
                     stManager.add(stat, function() {
                         callback();
                     });

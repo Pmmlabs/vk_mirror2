@@ -338,10 +338,6 @@ textarea.ashelper {
     width: 7px
 }
 
-.png {
-    behavior: url(/js/iepngfix.htc)
-}
-
 .progress,
 .progress_inv,
 .progress_inv_img {

@@ -40,10 +40,6 @@ img {
     background: url(/images/vklogo.gif)
 }
 
-.giftImg {
-    behavior: url(../js/iepngfix.htc)
-}
-
 .num_delim {
     font-size: 60%!important;
     vertical-align: top!important

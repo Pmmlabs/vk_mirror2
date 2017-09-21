@@ -504,10 +504,6 @@ a .num_delim {
     pointer-events: none
 }
 
-.png {
-    behavior: url(/js/iepngfix.htc)
-}
-
 .progress,
 .progress_inv,
 .progress_inv_img {

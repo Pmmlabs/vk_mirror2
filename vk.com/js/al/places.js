@@ -142,7 +142,7 @@ var Places = {
         if (cur.iconLastNum || (cur.iconLastNum = 0), "mapbox" == o.provider) {
             if (cur.provider = "mapbox", cur.providerId = 3, f = 1, !window.L || !window.L.mapbox) {
                 var v = ["mapbox.css", "mapbox.js"];
-                return browser.msie && browser.version < 8 && v.push("mapbox_ie.css"), stManager.add(v, function() {
+                return stManager.add(v, function() {
                     Places.initPhotoMap(o)
                 }), !1
             }

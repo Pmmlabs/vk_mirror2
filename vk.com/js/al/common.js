@@ -334,12 +334,6 @@ if (browser.android) {
 }
 setCookie('remixscreen_depth', screen.pixelDepth ? screen.pixelDepth : screen.colorDepth, 365);
 
-if (!browser.msie6) {
-    delete StaticFiles['ie6.css'];
-}
-if (!browser.msie7) {
-    delete StaticFiles['ie7.css'];
-}
 for (var i in StaticFiles) {
     var f = StaticFiles[i];
     f.t = (i.indexOf('.css') != -1) ? 'css' : 'js';

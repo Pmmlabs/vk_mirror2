@@ -1401,7 +1401,6 @@ img.im_photo_thumb {
 .im-page_classic.im-page .im-page--hisory_search-open .im-page--search-header {
     padding: 0 1px;
     box-sizing: border-box;
-    border: none;
     box-shadow: none;
     border-radius: 2px 2px 0 0
 }
@@ -2041,10 +2040,6 @@ img.im_photo_thumb {
     width: 100%;
     background: #fff;
     z-index: 2
-}
-
-.im-page .im-page--search-header {
-    border: 0
 }
 
 .im-page .im-page--chat-body {
@@ -3270,7 +3265,7 @@ img.im_photo_thumb {
 
 .im-page-pinned:before {
     position: absolute;
-    top: 20px;
+    bottom: 19px;
     left: 21px;
     width: 12px;
     height: 12px;
@@ -3290,6 +3285,10 @@ img.im_photo_thumb {
     background: -o-linear-gradient(bottom, transparent, rgba(0, 0, 0, .03) 75%, rgba(0, 0, 0, .06));
     background: linear-gradient(0deg, transparent, rgba(0, 0, 0, .03) 75%, rgba(0, 0, 0, .06));
     content: ''
+}
+
+.im-page--hisory_search-open .im-page-pinned {
+    padding-top: 57px
 }
 
 .im-page_classic .im-page-pinned {
@@ -3342,10 +3341,6 @@ img.im_photo_thumb {
 .im-page-pinned--content {
     overflow: hidden;
     text-overflow: ellipsis
-}
-
-.im-page-pinned--content br {
-    display: none
 }
 
 .im-page-pinned--media {
