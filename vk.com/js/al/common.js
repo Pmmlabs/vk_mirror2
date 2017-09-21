@@ -963,7 +963,7 @@ function isVisible(elem) {
 }
 
 function clientHeight() {
-    return window.innerHeight || docEl.clientHeight || bodyNode.clientHeight;
+    return window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight;
 }
 
 function getClientRectOffsetY(elem, part, offset) {

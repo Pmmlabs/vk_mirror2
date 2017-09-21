@@ -3402,16 +3402,20 @@ a.ui_search_custom_link {
     border-radius: 2px;
     margin-top: 4px;
     opacity: 0;
-    -o-transition: margin-top 60ms linear, opacity 110ms linear;
-    transition: margin-top 60ms linear, opacity 110ms linear;
+    -o-transition: visibility 0s 110ms, margin-top 60ms linear, opacity 110ms linear;
+    transition: visibility 0s 110ms, margin-top 60ms linear, opacity 110ms linear;
     line-height: 1.1em;
     white-space: nowrap;
-    color: #4d627d
+    color: #4d627d;
+    visibility: hidden
 }
 
 .slider_hint.visible {
     margin-top: 0px;
-    opacity: 0.95
+    opacity: 0.95;
+    visibility: visible;
+    -o-transition: visibility 0s 0ms, margin-top 60ms linear, opacity 110ms linear;
+    transition: visibility 0s 0ms, margin-top 60ms linear, opacity 110ms linear
 }
 
 .slider_hint:after {

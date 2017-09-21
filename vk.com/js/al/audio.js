@@ -1398,7 +1398,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             onEndDragging: function(e) {
                 s.seek(e)
             }
-        }), s.isAdPlaying() && this._trackSlider.toggleAdState(!0), this._volumeSlider = new Slider(geByClass1("audio_page_player_volume_slider", l), {
+        }), s.isAdPlaying() && (this._trackSlider.toggleAdState(!0), this.toggleRemoveAdsLink(!0)), this._volumeSlider = new Slider(geByClass1("audio_page_player_volume_slider", l), {
             value: s.getVolume(),
             size: 1,
             hintClass: "audio_player_hint",
@@ -1410,9 +1410,9 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                 s.setVolume(e)
             }
         }), s.on(this, AudioPlayer.EVENT_AD_DEINITED, function() {}.bind(this)), s.on(this, AudioPlayer.EVENT_AD_READY, function() {}.bind(this)), s.on(this, AudioPlayer.EVENT_AD_STARTED, function() {
-            this._trackSlider.toggleAdState(!0), this._trackSlider.setBackValue(0)
+            this.toggleRemoveAdsLink(!0), this._trackSlider.toggleAdState(!0), this._trackSlider.setBackValue(0)
         }.bind(this)), s.on(this, AudioPlayer.EVENT_AD_COMPLETED, function() {
-            this._trackSlider.toggleAdState(!1)
+            this.toggleRemoveAdsLink(!1), this._trackSlider.toggleAdState(!1)
         }.bind(this)), s.on(this, AudioPlayer.EVENT_START_LOADING, function() {
             o._trackSlider.toggleLoading(!0)
         }), s.on(this, AudioPlayer.EVENT_CAN_PLAY, function() {
@@ -1489,6 +1489,8 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     cancelEvent(e), hide(this._els.promo), ajax.post("al_audio.php", {
         act: "vkmusic_hide_promo"
     })
+}, AudioPage.prototype.toggleRemoveAdsLink = function(e) {
+    toggleClass(this._els.player, "audio_page_player_show_remove_ads", !!e)
 };
 try {
     stManager.done("audio.js")

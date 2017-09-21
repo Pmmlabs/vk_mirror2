@@ -145,11 +145,11 @@ var stVersions = {
     'html5audio.js': 976782859,
     'html5video.js': 223664659,
     'html5video.css': 13094889127,
-    'audioplayer.js': 8818810192,
+    'audioplayer.js': 5497161977,
     'audioplayer.css': 12359163118,
     'audio_html5.js': 287741914,
-    'audio.js': 1034226099,
-    'audio.css': 16334046665,
+    'audio.js': 2523627483,
+    'audio.css': 15741938756,
     'gifts.css': 15660941011,
     'gifts.js': 338252255,
     'cc.js': 1644397126,
@@ -247,7 +247,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 95924877304,
-    'imn.js': 121758594607,
+    'imn.js': 124733601996,
     'im.js': 1322065005,
     'emoji.js': 3299588726,
     'wide_dd.css': 13450487285,
@@ -303,7 +303,7 @@ var stVersions = {
     'api/widgets/al_contactus.js': 3360514866,
     'api/widgets/al_subscribe.js': 1435892857,
     'api/widgets/al_like.js': 4053792122,
-    'api/widgets/al_post.js': 732193844,
+    'api/widgets/al_post.js': 1424205837,
     'api/widgets/al_allow_messages_from_community.js': 2539325945,
     'api/widgets/al_add_community_app.js': 2715350043,
     'widget_add_community_app.css': 19590711986,
@@ -422,7 +422,7 @@ var stVersions = {
     'ui.css': 11667790659,
     'ui.js': 3953380422,
     'ui_common.js': 2554866735,
-    'ui_common.css': 12206303045,
+    'ui_common.css': 13417521115,
     'ui_media_selector.js': 991580020,
     'ui_media_selector.css': 15314948632,
     'ui_manual.css': 11635452383,
@@ -520,7 +520,7 @@ var stVersions = {
     'top_logo.css': 11366269505,
     'favicon': 5,
     'speech.js': 40590190126,
-    'voice_message_player.js': 24272478849,
+    'voice_message_player.js': 22861000893,
     'cmodules/web/speech_worker_mp3.js': 1172578475,
     'cmodules/web/speech_worker_opus.js': 3385759348,
     'stories.js': 4166849129,
@@ -601,4 +601,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 8501;
+var _rnd = 6571;

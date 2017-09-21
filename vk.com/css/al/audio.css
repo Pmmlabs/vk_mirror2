@@ -5,7 +5,9 @@
 .audio_page_player .audio_control_btn .icon,
 .audio_page_player .audio_play,
 .audio_pl_edit_box .ape_check .ape_check_icon,
-.audio_pl_edit_box .ape_cover_progress {
+.audio_pl_edit_box .ape_cover_progress,
+.audio_subscription_popup__image,
+.audio_subscription_popup__img {
     -ms-high-contrast-adjust: none
 }
 
@@ -297,6 +299,31 @@
 .audio_page_player .audio_play_controls_wrap {
     float: left;
     padding: 11px 3px 0
+}
+
+.audio_page_player_remove_ads {
+    display: none;
+    margin-left: 10px;
+    float: right;
+    border: none;
+    background: none;
+    color: #2a5885;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-size: 13px;
+    outline: 0;
+    padding: 0;
+    line-height: 1;
+    font-size: inherit;
+    line-height: 14px
+}
+
+.audio_page_player_remove_ads:hover {
+    text-decoration: underline;
+    cursor: pointer
+}
+
+.audio_page_player_show_remove_ads .audio_page_player_remove_ads {
+    display: block
 }
 
 #audio_status_tt .audio_status_wrap {
@@ -2141,4 +2168,103 @@
     margin: -1px;
     background: #6287ae;
     border: 1px solid #6287ae
+}
+
+.audio_subscription_popup .box_layout {
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: #fff
+}
+
+.audio_subscription_popup__info {
+    font-size: 13px;
+    line-height: 1.15;
+    overflow: hidden;
+    margin: 20px 0
+}
+
+.audio_subscription_popup__title {
+    margin-bottom: 7px;
+    margin-top: 5px;
+    color: #222
+}
+
+.audio_subscription_popup__caption {
+    color: #656565
+}
+
+.audio_subscription_popup__image-wrap {
+    float: left;
+    margin-right: 15px;
+    background-color: #fff;
+    border: 4px solid #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .06), 0 0 1px 0 rgba(0, 0, 0, .08)
+}
+
+.audio_subscription_popup__image {
+    border-radius: 3px;
+    width: 56px;
+    height: 56px;
+    background: url(/images/icons/music_subscription.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_subscription_popup__image {
+        background-image: url(/images/icons/music_subscription_2x.png);
+        background-size: 56px 56px
+    }
+}
+
+.audio_subscription_popup__subtitle {
+    margin-bottom: 11px
+}
+
+.audio_subscription_popup__img {
+    width: 160px;
+    height: 160px;
+    background: url(/images/push_check.png) no-repeat;
+    margin: 28px auto 25px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .audio_subscription_popup__img {
+        background-image: url(/images/push_check_2x.png);
+        background-size: 160px 160px
+    }
+}
+
+.audio_subscription_popup .box_title {
+    height: auto
+}
+
+.audio_subscription_popup .box_body {
+    text-align: center;
+    padding-top: 28px;
+    padding-bottom: 15px
+}
+
+.audio_subscription_popup .box_body a {
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.audio_subscription_popup .box_controls {
+    background-color: #fff;
+    border-top: none;
+    padding-bottom: 42px
+}
+
+.audio_subscription_popup .box_controls table {
+    float: none;
+    margin: 0 auto
+}
+
+.audio_subscription_popup .box_controls button {
+    margin-left: 0
 }
