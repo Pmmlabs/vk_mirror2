@@ -314,7 +314,7 @@ var stVersions = {
     'widgets.css': 19744898855,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 31722828722,
+    'notifier.js': 33205066599,
     'notifier.css': 17619699367,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
@@ -533,7 +533,7 @@ var stVersions = {
     'cmodules/web/article.js': 15410160110,
     'internal/cvkmobile.css': 12383340578,
     'internal/cvkmobile.js': 3834199633,
-    'shortener.js': 1002525642,
+    'shortener.js': 16413120,
     'cmodules/web/pretty_cards.js': 1388461462,
     'cmodules/web/landing_ads_case.js': 3936066274,
     'landings/ads_cases.css': 22344343844,
@@ -601,4 +601,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 8122;
+var _rnd = 3211;
