@@ -559,7 +559,7 @@ var FiltersPE = {
                     var d = cur.pvShown && n == cur.pvListId && p == cur.pvIndex;
                     if (a && o && (FiltersPE.changeThumbs(o, i), delete c.x_, delete c.x_src, delete c.y_, delete c.y_src, delete c.z_, delete c.z_src, extend(c, a)), d) {
                         var h = domFC(cur.pvDesc);
-                        val(h, e || '<span class="pe_desc_edit">' + getLang("photos_edit_desc") + "</span>"), h.onmouseover = e ? Photoview.descTT.pbind(h) : function() {}, r && ge("pe_album") && (ge("pe_album").innerHTML = r), cur.pvCurData = Photoview.genData(c, vk.pvbig ? cur.pvVeryBig ? (cur.pvVeryBig > 1, "z") : "y" : "x"), domFC(cur.pvPhoto).src = Photoview.blank, setTimeout(Photoview.show.pbind(cur.pvListId, cur.pvIndex), 0)
+                        val(h, e || '<span class="pe_desc_edit">' + getLang("photos_edit_desc") + "</span>"), h && (h.onmouseover = e ? Photoview.descTT.pbind(h) : function() {}), r && ge("pe_album") && (ge("pe_album").innerHTML = r), cur.pvCurData = Photoview.genData(c, vk.pvbig ? cur.pvVeryBig ? (cur.pvVeryBig > 1, "z") : "y" : "x"), domFC(cur.pvPhoto).src = Photoview.blank, setTimeout(Photoview.show.pbind(cur.pvListId, cur.pvIndex), 0)
                     }
                 }
             }

@@ -1309,11 +1309,6 @@ body.dev .tickets_side_tt.title .hint_wrap b {
     margin: 0 0 10px
 }
 
-.tickets_no_new {
-    margin: 6px 0 0 10px;
-    color: #777
-}
-
 .tickets_rated {
     color: #939393
 }

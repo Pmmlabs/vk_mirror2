@@ -8,7 +8,6 @@
 .gift_send_btn,
 .gifts_constr_option.gifts_option_current:after,
 .gifts_constr_step:after,
-.gifts_promo_descr,
 .gifts_scroll_left,
 .gifts_scroll_right,
 .gifts_section_show_all:after {
@@ -847,25 +846,45 @@ img.gift_duck_tease#gift_item_733 {
     transition: all 5000ms ease-in-out
 }
 
-.gifts_promo_descr_wrap {
-    padding: 20px 20px 5px
+.gifts_notif_block {
+    padding: 15px;
+    margin-bottom: 0
 }
 
-.gifts_promo_descr_wrap:empty {
-    display: none
+.gifts_notif_button .flat_button {
+    margin-right: 10px
 }
 
-.gifts_promo_descr {
-    padding: 13px 18px 15px 45px;
-    margin: 0;
-    background: #f0f2f5 url(/images/icons/payments_promo.png?1) no-repeat 20px 15px
+.gifts_notif_button .flat_button:last-child {
+    margin-right: 0
 }
 
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .gifts_promo_descr {
-        background-image: url(/images/icons/payments_promo_2x.png?1);
-        background-size: 14px 15px
-    }
+.gifts_notif_image {
+    margin: 0 15px 0 0;
+    float: left
+}
+
+.gifts_notif_img {
+    display: block
+}
+
+.gifts_notif_info {
+    overflow: hidden
+}
+
+.gifts_notif_header {
+    margin: 0 0 4px;
+    font-size: 14px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.gifts_notif_text {
+    margin: 0 10px 15px 0;
+    line-height: 19px
+}
+
+.gifts_notif_text:last-child {
+    margin-bottom: 0
 }

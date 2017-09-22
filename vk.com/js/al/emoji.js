@@ -2412,7 +2412,7 @@ if (!window.Emoji) {
         emojiMove: function(e) {
             var optId = Emoji.shownId;
             var opts = Emoji.opts[optId];
-            if (Emoji.shown && opts.emojiFocused && opts.openedByTabKey) {
+            if (Emoji.shown && opts && opts.emojiFocused && opts.openedByTabKey) {
                 var el = null;
 
                 if (!opts.emojiOvered) {

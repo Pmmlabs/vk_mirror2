@@ -1005,6 +1005,50 @@ img.im_photo_thumb {
     padding: 13px 14px
 }
 
+.im_stickers_notif_block {
+    padding: 15px;
+    margin: 8px;
+    background-color: #fff
+}
+
+.im_stickers_notif_button .flat_button {
+    margin-right: 10px
+}
+
+.im_stickers_notif_button .flat_button:last-child {
+    margin-right: 0
+}
+
+.im_stickers_notif_image {
+    margin: 0 15px 0 0;
+    float: left
+}
+
+.im_stickers_notif_img {
+    display: block
+}
+
+.im_stickers_notif_info {
+    overflow: hidden
+}
+
+.im_stickers_notif_header {
+    margin: 0 0 4px;
+    font-size: 14px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.im_stickers_notif_text {
+    margin: 0 10px 15px 0;
+    line-height: 19px
+}
+
+.im_stickers_notif_text:last-child {
+    margin-bottom: 0
+}
+
 .im_group_average_summary {
     color: #aaa;
     font-weight: 400
