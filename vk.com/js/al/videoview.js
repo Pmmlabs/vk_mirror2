@@ -2103,10 +2103,10 @@ var Videoview = {
             return mvcur.noLocChange || (Videoview.backLocation(), mvcur.noHistory = 1), layerQueue.skipVideo = !0, o && (debugLog("pop from minimize"), layerQueue.pop()), VideoPlaylist.toggleStateClasses(), VideoChat.toggleStateClasses(), mvcur.preparationBlock && removeClass("mv_box", "_has_preparation"), Videoview.updateExternalVideoFinishBlock(), !1
         },
         isLayerShown: function(e) {
-            return window.mvcur && mvcur.mvShown && (isUndefined(e) || mvcur.videoRaw == e)
+            return !(!window.mvcur || !mvcur.mvShown || !isUndefined(e) && mvcur.videoRaw != e)
         },
         isMinimized: function() {
-            return window.mvcur && mvcur.mvShown && mvcur.minimized
+            return !!(window.mvcur && mvcur.mvShown && mvcur.minimized)
         },
         enabledResize: function() {
             return !browser.mobile

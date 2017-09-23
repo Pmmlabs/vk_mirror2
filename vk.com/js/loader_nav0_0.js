@@ -190,7 +190,7 @@ var stVersions = {
     'video.css': 14820583787,
     'videocat.js': 1618923991,
     'videocat.css': 14869430083,
-    'videoview.js': 3973964627,
+    'videoview.js': 2423107886,
     'videoview.css': 16691635044,
     'video_edit.js': 2135196486,
     'video_edit.css': 15346978538,
@@ -601,4 +601,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 3211;
+var _rnd = 3939;
