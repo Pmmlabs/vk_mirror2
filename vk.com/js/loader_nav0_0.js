@@ -124,7 +124,9 @@ var navMap = {
     'memedit($|/)': ['members.php', ['members.css', 'dyn-members.js']],
     'meminfo($|/)': ['member_info.php', ['meminfo.css']],
     'groupinfo($|/)': ['group_info.php', ['groupinfo.css']],
-    'cvkmobile($|/)': ['cvkmobile.php', ['internal/cvkmobile.css', 'internal/cvkmobile.js']]
+    'cvkmobile($|/)': ['cvkmobile.php', ['internal/cvkmobile.css', 'internal/cvkmobile.js']],
+    'quests(-?[0-9]+)$': ['al_questionnaires.php', ['questionnaires.css']],
+    'quest(-?[0-9]+)_([0-9]+)$': ['al_questionnaires.php', ['questionnaires.css', 'questionnaires.js']]
 };
 var stVersions = {
     'nav': 0,
@@ -328,7 +330,7 @@ var stVersions = {
     'tags_dd.css': 12753095663,
     'tasks.js': 4285291205,
     'tasks.css': 13098578035,
-    'helpdesk.js': 533065544,
+    'helpdesk.js': 1065071247,
     'helpdesk.css': 14093249820,
     'tickets.js': 1964252,
     'tickets.css': 14084822419,
@@ -341,7 +343,7 @@ var stVersions = {
     'achievements.css': 11466514330,
     'sf.css': 11624108939,
     'members.css': 12675748354,
-    'meminfo.css': 16185430476,
+    'meminfo.css': 14992898320,
     'groupinfo.css': 15037282256,
     'bugs.js': 3874995669,
     'bugs.css': 10722775678,
@@ -537,6 +539,8 @@ var stVersions = {
     'cmodules/web/pretty_cards.js': 1388461462,
     'cmodules/web/landing_ads_case.js': 3936066274,
     'landings/ads_cases.css': 22344343844,
+    'questionnaires.css': 13813928218,
+    'questionnaires.js': 1933847203,
     'lang': 6844
 };
 var stTypes = {
@@ -601,4 +605,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 6118;
+var _rnd = 4979;

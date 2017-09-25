@@ -611,3 +611,11 @@ table.history .cur_session {
     resize: vertical;
     margin-top: 10px
 }
+
+.meminfo_restore_content .meminfo_restore_content_row {
+    padding: 8px
+}
+
+.meminfo_restore_content .meminfo_restore_content_row:hover {
+    background: #e9ebf0
+}
