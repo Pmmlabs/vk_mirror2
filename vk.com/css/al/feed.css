@@ -5,10 +5,18 @@
 .feed_filter_icon,
 .feed_lists_icon .ui_actions_menu_icons,
 .feed_vk10_years_header,
+.feedback_activate_row .feedback_sticky_icon,
+.feedback_ads_row .feedback_sticky_icon,
+.feedback_celebration_row .feedback_sticky_icon,
+.feedback_event_row .feedback_sticky_icon,
 .feedback_grouped_row_wrap .post_actions,
+.feedback_important_row .feedback_sticky_icon,
+.feedback_market_row .feedback_sticky_icon,
+.feedback_message_row .feedback_sticky_icon,
+.feedback_payment_row .feedback_sticky_icon,
 .feedback_payment_thumb,
-.feedback_sticky_icon,
 .feedback_sticky_progress:before,
+.feedback_videocast_row .feedback_sticky_icon,
 .ui_actions_menu_item.feed_custom_list,
 .ui_actions_menu_item.feed_new_list {
     -ms-high-contrast-adjust: none
@@ -941,7 +949,7 @@
 }
 
 .feedback_buttons {
-    padding: 9px 0 2px
+    padding: 8px 0 2px
 }
 
 .feedback_buttons .flat_button {
@@ -966,13 +974,13 @@
     float: right;
     margin: 0 6px 0 15px;
     overflow: hidden;
-    width: 50px;
-    max-height: 60px;
-    vertical-align: top
+    max-height: 60px
 }
 
+.feedback_rphoto,
 .feedback_rphoto_img {
-    width: 50px
+    width: 50px;
+    vertical-align: top
 }
 
 .feedback_grouped_row_wrap .post_actions {
@@ -1018,52 +1026,62 @@
 
 .feedback_copy_row .feedback_photo_icon {
     display: block;
-    background: #65bf63 url(/images/svg_icons/feedback/copy.svg) no-repeat
+    background: #4bb34b url(/images/svg_icons/feedback/copy.svg) no-repeat
 }
 
 .feedback_mail_mention_row .feedback_photo_icon {
     display: block;
-    background: #65bf63 url(/images/svg_icons/feedback/bubble.svg) no-repeat
+    background: #4bb34b url(/images/svg_icons/feedback/bubble.svg) no-repeat
 }
 
 .feedback_friends_row .feedback_photo_icon {
     display: block;
-    background: #65bf63 url(/images/svg_icons/feedback/friends.svg) no-repeat
+    background: #4bb34b url(/images/svg_icons/feedback/friends.svg) no-repeat
 }
 
 .feedback_like_row .feedback_photo_icon {
     display: block;
-    background: #f05c44 url(/images/svg_icons/feedback/like.svg) no-repeat
+    background: #e64646 url(/images/svg_icons/feedback/like.svg) no-repeat
+}
+
+.feedback_live_row .feedback_photo_icon {
+    display: block;
+    background: #e64646 url(/images/svg_icons/feedback/live.svg) no-repeat
+}
+
+.feedback_comment_row .feedback_photo_icon {
+    display: block;
+    background: #5c9ce6 url(/images/svg_icons/feedback/comment.svg) no-repeat
 }
 
 .feedback_followers_row .feedback_photo_icon {
     display: block;
-    background: #74aded url(/images/svg_icons/feedback/friends.svg) no-repeat
+    background: #5c9ce6 url(/images/svg_icons/feedback/friends.svg) no-repeat
 }
 
 .feedback_invite_row .feedback_photo_icon {
     display: block;
-    background: #74aded url(/images/svg_icons/feedback/invite.svg) no-repeat
+    background: #5c9ce6 url(/images/svg_icons/feedback/invite.svg) no-repeat
 }
 
 .feedback_import_row .feedback_photo_icon {
     display: block;
-    background: #74aded url(/images/svg_icons/feedback/import.svg) no-repeat
+    background: #5c9ce6 url(/images/svg_icons/feedback/import.svg) no-repeat
 }
 
 .feedback_payment_row .feedback_photo_icon {
     display: block;
-    background: #74aded url(/images/svg_icons/feedback/payment.svg) no-repeat
+    background: #5c9ce6 url(/images/svg_icons/feedback/payment.svg) no-repeat
 }
 
 .feedback_reply_row .feedback_photo_icon {
     display: block;
-    background: #65bf63 url(/images/svg_icons/feedback/reply.svg) no-repeat
+    background: #4bb34b url(/images/svg_icons/feedback/reply.svg) no-repeat
 }
 
 .feedback_tag_row .feedback_photo_icon {
     display: block;
-    background: #65bf63 url(/images/svg_icons/feedback/tag.svg) no-repeat
+    background: #4bb34b url(/images/svg_icons/feedback/tag.svg) no-repeat
 }
 
 .feedback_publish_row .feedback_photo_icon {
@@ -1089,17 +1107,17 @@
 
 .feedback_money_decline_row .feedback_photo_icon {
     display: block;
-    background: #f05c44 url(/images/svg_icons/feedback/money.svg?1) no-repeat
+    background: #e64646 url(/images/svg_icons/feedback/money.svg?1) no-repeat
 }
 
 .feedback_ads_ok_row .feedback_photo_icon {
     display: block;
-    background: #65bf63 url(/images/svg_icons/feedback/approved.svg) no-repeat
+    background: #63b9ba url(/images/svg_icons/feedback/approved.svg) no-repeat
 }
 
 .feedback_ads_fail_row .feedback_photo_icon {
     display: block;
-    background: #f05c44 url(/images/svg_icons/feedback/declined.svg) no-repeat
+    background: #e64646 url(/images/svg_icons/feedback/declined.svg) no-repeat
 }
 
 .feedback_payment_thumb {
@@ -1174,10 +1192,15 @@
     cursor: pointer
 }
 
-.feedback_sticky_icon {
-    position: absolute;
-    top: 12px;
-    left: 15px;
+.feedback_activate_row .feedback_sticky_icon,
+.feedback_ads_row .feedback_sticky_icon,
+.feedback_celebration_row .feedback_sticky_icon,
+.feedback_event_row .feedback_sticky_icon,
+.feedback_important_row .feedback_sticky_icon,
+.feedback_market_row .feedback_sticky_icon,
+.feedback_message_row .feedback_sticky_icon,
+.feedback_payment_row .feedback_sticky_icon,
+.feedback_videocast_row .feedback_sticky_icon {
     background: url(/images/icons/notifications_icons.png?6) no-repeat;
     width: 40px;
     height: 40px;
@@ -1187,10 +1210,24 @@
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .feedback_sticky_icon {
+    .feedback_activate_row .feedback_sticky_icon,
+    .feedback_ads_row .feedback_sticky_icon,
+    .feedback_celebration_row .feedback_sticky_icon,
+    .feedback_event_row .feedback_sticky_icon,
+    .feedback_important_row .feedback_sticky_icon,
+    .feedback_market_row .feedback_sticky_icon,
+    .feedback_message_row .feedback_sticky_icon,
+    .feedback_payment_row .feedback_sticky_icon,
+    .feedback_videocast_row .feedback_sticky_icon {
         background-image: url(/images/icons/notifications_icons_2x.png?6);
         background-size: 40px 400px
     }
+}
+
+.feedback_sticky_icon {
+    position: absolute;
+    top: 12px;
+    left: 15px
 }
 
 .feedback_event_row .feedback_sticky_icon {
@@ -1269,9 +1306,15 @@
     }
 }
 
+.feedback_sticky_grid {
+    width: 40px;
+    height: 40px;
+    z-index: 1
+}
+
 .feedback_sticky_text {
-    padding: 8px 35px 10px 67px;
-    line-height: 20px;
+    padding: 12px 35px 10px 67px;
+    line-height: 17px;
     display: inline-block;
     vertical-align: middle
 }
@@ -1315,8 +1358,8 @@
 .ui_actions_menu_dummy_wrap.feedback_row_menu .ui_actions_menu {
     position: relative;
     position: absolute;
-    top: 52px;
-    right: 9px
+    top: 49px;
+    right: 8px
 }
 
 .top_notify_cont .feedback_row_menu .ui_actions_menu:after,
@@ -1349,7 +1392,7 @@
 
 .top_notify_cont .feedback_row_menu.shown .ui_actions_menu,
 .ui_actions_menu_dummy_wrap.feedback_row_menu.shown .ui_actions_menu {
-    top: 42px;
+    top: 39px;
     z-index: 100
 }
 
@@ -1462,7 +1505,7 @@
 }
 
 .top_notify_cont .dld {
-    padding-left: 67px!important
+    padding-left: 66px!important
 }
 
 .top_notify_cont .dld_inner {

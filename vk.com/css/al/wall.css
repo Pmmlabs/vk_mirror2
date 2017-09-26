@@ -110,3 +110,12 @@
 #wall_cal_clear_lnk {
     display: block
 }
+
+.wall_graffiti_wrap {
+    text-align: center;
+    padding: 45px
+}
+
+.wall_graffiti_author {
+    padding-top: 10px
+}

@@ -23,6 +23,8 @@
 .emoji_css,
 .error,
 .event:after,
+.feed_notifications .page_verified,
+.feed_notifications .page_verified.ph_verified,
 .flat_button.flat_button_loading:before,
 .flat_button.secondary.flat_button_loading:before,
 .flat_button.ui_load_more_btn.with_arrow:after,
@@ -59,6 +61,8 @@
 .sort_not_rev_icon,
 .sort_rev_icon,
 .summary_tab_x,
+.top_notify_cont .page_verified,
+.top_notify_cont .page_verified.ph_verified,
 .top_profile_arrow,
 .ts_cont_wrap .page_verified,
 .ts_cont_wrap .page_verified.ph_verified,
@@ -5102,7 +5106,9 @@ body[data-useragent=safari] .page_verified {
     top: 1px
 }
 
+.feed_notifications .page_verified,
 .reply_author .page_verified,
+.top_notify_cont .page_verified,
 .ts_cont_wrap .page_verified {
     display: inline-block;
     background: url(/images/icons/verify_small.png) no-repeat 0;
@@ -5114,14 +5120,18 @@ body[data-useragent=safari] .page_verified {
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
+    .feed_notifications .page_verified,
     .reply_author .page_verified,
+    .top_notify_cont .page_verified,
     .ts_cont_wrap .page_verified {
         background-image: url(/images/icons/verify_small_2x.png);
         background-size: 14px 14px
     }
 }
 
+.feed_notifications .page_verified.ph_verified,
 .reply_author .page_verified.ph_verified,
+.top_notify_cont .page_verified.ph_verified,
 .ts_cont_wrap .page_verified.ph_verified {
     background-image: url(/images/icons/verify_small_ph.png)
 }
@@ -5129,7 +5139,9 @@ body[data-useragent=safari] .page_verified {
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
+    .feed_notifications .page_verified.ph_verified,
     .reply_author .page_verified.ph_verified,
+    .top_notify_cont .page_verified.ph_verified,
     .ts_cont_wrap .page_verified.ph_verified {
         background-image: url(/images/icons/verify_small_ph_2x.png);
         background-size: 14px 14px
@@ -5142,6 +5154,17 @@ body[data-useragent=safari] .page_verified {
 
 .reply_author .page_verified {
     margin-right: 2px
+}
+
+.feed_notifications .page_verified,
+.top_notify_cont .page_verified {
+    display: inline;
+    margin-right: 2px
+}
+
+.feed_notifications .page_verified:before,
+.top_notify_cont .page_verified:before {
+    content: ''
 }
 
 .hint_icon {

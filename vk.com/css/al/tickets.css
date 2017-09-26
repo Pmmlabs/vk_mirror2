@@ -292,10 +292,6 @@ body.dev .tickets_title_label {
     padding: 0 16px
 }
 
-body.dev .tickets_reply_rows {
-    padding: 5px 30px 10px
-}
-
 .tickets_reply_rows .error,
 .tickets_reply_rows .msg {
     margin-left: 0;
@@ -438,10 +434,6 @@ body.dev .tickets_post_field_wrap {
     border-top: 1px solid #e7e8ec
 }
 
-body.dev .tickets_post_field {
-    padding: 20px
-}
-
 .tickets_post_form__text {
     box-sizing: border-box;
     margin-bottom: 0;
@@ -451,10 +443,6 @@ body.dev .tickets_post_field {
     resize: vertical;
     vertical-align: top;
     width: 100%
-}
-
-body.dev .tickets_post_form__text {
-    width: 592px
 }
 
 .tickets_post_field_moder .tickets_post_form__text {
@@ -508,11 +496,6 @@ body.dev .tickets_post_form__text {
     padding: 11px 16px;
     color: #000;
     border-bottom: 1px solid #e7e8ec
-}
-
-body.dev .tickets_header {
-    padding: 24px 30px 1px;
-    border-bottom: none
 }
 
 .tickets_header_title {
@@ -1608,12 +1591,6 @@ body.dev #tis_add_lnk_edit {
 .tickets_sys_content.tickets_sys_content__neighbour {
     text-align: center;
     padding-left: 36px
-}
-
-body.dev .tickets_reply_content,
-body.dev .tickets_reply_text,
-body.dev .tickets_sys_content {
-    width: 598px
 }
 
 #tickets_pass_comm,
@@ -2833,10 +2810,10 @@ body.dev .tickets_dmca_data_row.links .value {
 }
 
 .tickets_app_link {
+    margin: -1px 0 0;
+    padding: 1px 0 0 22px;
     display: inline-block;
-    height: 16px;
-    padding: 1px 0px 0px 22px;
-    margin-top: -1px
+    height: 16px
 }
 
 ul.t0#tickets_tabs #extra_tab .tab_word {

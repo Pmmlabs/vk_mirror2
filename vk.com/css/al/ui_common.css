@@ -2397,6 +2397,11 @@ a.ui_search_custom_link {
     left: 13px
 }
 
+.ui_toggler.no_transition:after {
+    -o-transition: none!important;
+    transition: none!important
+}
+
 .box_body .ui_toggler {
     margin-top: 6px
 }
@@ -3643,4 +3648,206 @@ input[type=range].step_slider:focus::-ms-fill-lower {
 
 input[type=range].step_slider:focus::-ms-fill-upper {
     background: #d9dfe3
+}
+
+.ui_photo_grid_1,
+.ui_photo_grid_2,
+.ui_photo_grid_3,
+.ui_photo_grid_4 {
+    text-align: left;
+    overflow: hidden;
+    border-radius: 50%;
+    position: relative
+}
+
+.ui_photo_grid_1 a,
+.ui_photo_grid_1 div,
+.ui_photo_grid_1 img,
+.ui_photo_grid_2 a,
+.ui_photo_grid_2 div,
+.ui_photo_grid_2 img,
+.ui_photo_grid_3 a,
+.ui_photo_grid_3 div,
+.ui_photo_grid_3 img,
+.ui_photo_grid_4 a,
+.ui_photo_grid_4 div,
+.ui_photo_grid_4 img {
+    width: inherit;
+    height: inherit
+}
+
+.ui_photo_grid_1 a,
+.ui_photo_grid_1 div,
+.ui_photo_grid_2 a,
+.ui_photo_grid_2 div,
+.ui_photo_grid_3 a,
+.ui_photo_grid_3 div,
+.ui_photo_grid_4 a,
+.ui_photo_grid_4 div {
+    position: absolute;
+    display: block;
+    overflow: hidden
+}
+
+.ui_photo_grid_1 img,
+.ui_photo_grid_2 img,
+.ui_photo_grid_3 img,
+.ui_photo_grid_4 img {
+    position: relative;
+    vertical-align: top;
+    -moz-force-broken-image-icon: 0;
+    background-color: #fafbfc
+}
+
+.ui_photo_grid_1 img:before,
+.ui_photo_grid_2 img:before,
+.ui_photo_grid_3 img:before,
+.ui_photo_grid_4 img:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+    background-color: #fff
+}
+
+.ui_photo_grid_1 img:after,
+.ui_photo_grid_2 img:after,
+.ui_photo_grid_3 img:after,
+.ui_photo_grid_4 img:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+    background-color: #fafbfc;
+    background-image: url(/images/camera_100.png);
+    background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ui_photo_grid_1 img:after,
+    .ui_photo_grid_2 img:after,
+    .ui_photo_grid_3 img:after,
+    .ui_photo_grid_4 img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
+.ui_photo_grid_2 .ui_photo_grid_i0 {
+    top: 0;
+    right: 50%;
+    border-right: 1px solid transparent
+}
+
+.ui_photo_grid_2 .ui_photo_grid_i0 img {
+    right: -25%
+}
+
+.ui_photo_grid_2 .ui_photo_grid_i1 {
+    top: 0;
+    left: 50%
+}
+
+.ui_photo_grid_2 .ui_photo_grid_i1 img {
+    left: -25%
+}
+
+.ui_photo_grid_3 .ui_photo_grid_i0 {
+    top: 0;
+    right: 50%;
+    border-right: 1px solid transparent
+}
+
+.ui_photo_grid_3 .ui_photo_grid_i0 img {
+    right: -25%
+}
+
+.ui_photo_grid_3 .ui_photo_grid_i1 {
+    bottom: 50%;
+    left: 50%;
+    border-bottom: 1px solid transparent
+}
+
+.ui_photo_grid_3 .ui_photo_grid_i1 img {
+    left: -25%;
+    bottom: -25%
+}
+
+.ui_photo_grid_3 .ui_photo_grid_i2 {
+    top: 50%;
+    left: 50%
+}
+
+.ui_photo_grid_3 .ui_photo_grid_i2 img {
+    left: -25%;
+    top: -25%
+}
+
+.ui_photo_grid_3 .ui_photo_grid_i1 img:after,
+.ui_photo_grid_3 .ui_photo_grid_i2 img:after {
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%
+}
+
+.ui_photo_grid_4 .ui_photo_grid_i0 {
+    bottom: 50%;
+    right: 50%;
+    border-right: 1px solid transparent;
+    border-bottom: 1px solid transparent
+}
+
+.ui_photo_grid_4 .ui_photo_grid_i0 img {
+    right: -25%;
+    bottom: -25%
+}
+
+.ui_photo_grid_4 .ui_photo_grid_i1 {
+    bottom: 50%;
+    left: 50%;
+    border-bottom: 1px solid transparent
+}
+
+.ui_photo_grid_4 .ui_photo_grid_i1 img {
+    left: -25%;
+    bottom: -25%
+}
+
+.ui_photo_grid_4 .ui_photo_grid_i2 {
+    top: 50%;
+    right: 50%;
+    border-right: 1px solid transparent
+}
+
+.ui_photo_grid_4 .ui_photo_grid_i2 img {
+    right: -25%;
+    top: -25%
+}
+
+.ui_photo_grid_4 .ui_photo_grid_i3 {
+    top: 50%;
+    left: 50%
+}
+
+.ui_photo_grid_4 .ui_photo_grid_i3 img {
+    left: -25%;
+    top: -25%
+}
+
+.ui_photo_grid_4 .ui_photo_grid_i0 img:after,
+.ui_photo_grid_4 .ui_photo_grid_i1 img:after,
+.ui_photo_grid_4 .ui_photo_grid_i2 img:after,
+.ui_photo_grid_4 .ui_photo_grid_i3 img:after {
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%
 }

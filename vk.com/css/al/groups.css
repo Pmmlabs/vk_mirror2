@@ -1232,6 +1232,12 @@ a.group_app_button:after {
     height: 50px
 }
 
+.app_widget_image {
+    display: inline-block;
+    background-size: cover;
+    background-position: 50%
+}
+
 .app_widget_list_row {
     line-height: 19px;
     color: #000;
@@ -1274,9 +1280,13 @@ a.group_app_button:after {
     padding-right: 12px
 }
 
-.app_widget_list_icon img {
+.app_widget_list_icon .app_widget_image {
     border-radius: 2px;
     vertical-align: top
+}
+
+.app_widget_list_icon .app_widget_image.app_widget_avatar {
+    border-radius: 50%
 }
 
 .app_widget_list_button,
@@ -1418,7 +1428,7 @@ a.group_app_button:after {
     position: relative
 }
 
-.app_widget_list_cover_row img {
+.app_widget_list_cover_row .app_widget_image {
     vertical-align: top
 }
 
@@ -1485,7 +1495,7 @@ a.group_app_button:after {
     margin-left: 15px
 }
 
-.app_widget_tiles_tile img {
+.app_widget_tiles_tile .app_widget_image {
     vertical-align: top;
     border-radius: 2px
 }
@@ -1561,10 +1571,15 @@ a .app_widget_tiles_title {
     padding-left: 36px
 }
 
-.app_widget_table.app_widget_imaged .app_widget_table_td:first-child img,
-.app_widget_table.app_widget_imaged .app_widget_table_th:first-child img {
+.app_widget_table.app_widget_imaged .app_widget_table_td:first-child .app_widget_image,
+.app_widget_table.app_widget_imaged .app_widget_table_th:first-child .app_widget_image {
     float: left;
     margin: -4.5px 12px -4.5px -36px
+}
+
+.app_widget_table.app_widget_imaged .app_widget_table_td:first-child .app_widget_image.app_widget_avatar,
+.app_widget_table.app_widget_imaged .app_widget_table_th:first-child .app_widget_image.app_widget_avatar {
+    border-radius: 50%
 }
 
 .app_widget_table_th {
@@ -1615,7 +1630,7 @@ a .app_widget_tiles_title {
     padding-left: 12px
 }
 
-.app_widget_table_td img {
+.app_widget_table_td .app_widget_image {
     vertical-align: top;
     border-radius: 2px
 }
@@ -1695,6 +1710,11 @@ a .app_widget_tiles_title {
     position: absolute;
     top: 0;
     border-radius: 2px
+}
+
+.app_widget_match_team_a_icon.app_widget_avatar,
+.app_widget_match_team_b_icon.app_widget_avatar {
+    border-radius: 50%
 }
 
 .app_widget_match_team_a_icon {
@@ -1851,10 +1871,18 @@ a.app_widget_matches_match:hover {
     border-radius: 2px
 }
 
+.app_widget_matches_team_icon.app_widget_avatar {
+    border-radius: 50%
+}
+
 .app_widget_matches_match_icon {
     float: left;
     margin: 8px 10px 0 0;
     border-radius: 2px
+}
+
+.app_widget_matches_match_icon.app_widget_avatar {
+    border-radius: 50%
 }
 
 .app_widget_matches_live_icon {

@@ -364,6 +364,11 @@ var uiTabs = {
                     data(el, "inited", 1);
                     var onKeyDown = uiSearch.onKeyDown.pbind(el),
                         onBuffer = function(t) {
+                            if ("input" === t.type && browser.msie) {
+                                var e = val(el);
+                                if (e === (domData(el, "prev-value") || "")) return;
+                                domData(el, "prev-value", e)
+                            }
                             setTimeout(uiSearch.onChanged.pbind(el, !1, t), 0)
                         },
                         onBlur = uiSearch.onBlurred.pbind(el);
@@ -824,7 +829,7 @@ var uiTabs = {
             }.bind(this), !this.options.stopScrollPropagation), this.options["native"] || this.addEvent(this.el.barContainer, "mousedown", this.dragstart.bind(this)), each(this.options.scrollElements, function(t, e) {
                 this.addEvent(e, l, function(t) {
                     this.disabled || this.unnecessary || (this.scrollBy(this.scrollEventDelta(t)), (this.options.stopScrollPropagation || !this.isScrollEventUnused(t)) && cancelEvent(t))
-                }.bind(this))
+                }.bind(this));
             }.bind(this)), this.options.reversed && this.addEvent(this.el.container, "mousedown touchstart pointerdown", function(t) {
                 this.released = !1, this.noMore = !0;
                 var e = this.addEvent(document, "mouseup contextmenu touchend pointerup", function(t) {

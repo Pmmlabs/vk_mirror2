@@ -297,16 +297,20 @@ var Settings = {
             }
         })
     },
+    updateInstantSounds: function(t) {
+        toggleClass(geByClass1("_ui_toggler", t), "on"), ls.set("sound_notify_off", hasClass(geByClass1("_settings_isounds"), "on") ? 0 : 1), uiPageBlock.showSaved(t)
+    },
     saveSiteNotify: function(t) {
+        toggleClass(geByClass1("_ui_toggler", t), "on");
         var e = {
             act: "a_save_site_notify",
-            hash: cur.options.notify_hash
+            hash: cur.options.notify_hash,
+            ienable: hasClass(geByClass1("_settings_ienable"), "on") ? 1 : 0,
+            itexts: hasClass(geByClass1("_settings_itexts"), "on") ? 1 : 0
         };
-        each(cur.options.notify_site_keys, function(t, s) {
-            e[s] = isChecked(s) ? 1 : 0
-        }), each(cur.options.notify_site_pkeys, function(t, s) {
-            e[s] = Privacy.getValue(s)
-        }), e.ienable = isChecked("settings_ienable") ? 1 : 0, e.itexts = isChecked("settings_itexts") ? 1 : 0, clearTimeout(cur.instantNotifyTO), clearTimeout(cur.instantNotifySaveTO), cur.instantNotifyTO = setTimeout(ajax.post.pbind("al_settings.php", e, {
+        cur.options.notify_privacy_keys && cur.options.notify_privacy_keys.forEach(function(t) {
+            e["nf_" + t] = 0 | Privacy.getValue(t)
+        }), clearTimeout(cur.instantNotifyTO), clearTimeout(cur.instantNotifySaveTO), cur.instantNotifyTO = setTimeout(ajax.post.pbind("al_settings.php", e, {
             onDone: function() {
                 cur.instantNotifySaveTO = setTimeout(window.uiPageBlock && uiPageBlock.showSaved.pbind(t), 1e3)
             }
@@ -327,27 +331,24 @@ var Settings = {
         }), 500)
     },
     saveNotifyPrivacyKey: function(t) {
-        "mail_period" == t ? (Settings.saveMailNotify("privacy_edit_" + t), 3 == Privacy.getValue(t) ? hide("mail_options") : show("mail_options")) : "lk_fr" == t || "co_fr" == t ? Settings.saveSiteNotify("privacy_edit_" + t) : "sms_pm_notify" == t && (0 != Privacy.getValue(t) ? hide("sms_pm_privacy_row") : show("sms_pm_privacy_row"))
+        "mail_period" == t ? (Settings.saveMailNotify("privacy_edit_" + t), 3 == Privacy.getValue(t) ? hide("mail_options") : show("mail_options")) : cur.options.notify_privacy_keys && ~cur.options.notify_privacy_keys.indexOf(t) ? Settings.saveSiteNotify("privacy_edit_" + t) : "sms_pm_notify" == t && (0 != Privacy.getValue(t) ? hide("sms_pm_privacy_row") : show("sms_pm_privacy_row"))
     },
     initNotify: function() {
-        ls.get("sound_notify_off") && removeClass("settings_isounds", "on"), cur.reloadOnMailBind = !0;
-        new Dropdown(ge("daytime_from"), ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"], {
-            selectedItems: cur.options.time_from,
-            dark: 1
-        }), new Dropdown(ge("daytime_to"), ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"], {
-            selectedItems: cur.options.time_to,
-            dark: 1
-        });
-        cur.onPrivacyChanged = Settings.saveNotifyPrivacyKey
+        cur.options.msg && Settings.showMsg(cur.options.msg);
+        var t = geByClass1("_settings_isounds");
+        toggleClass(t, "on", !ls.get("sound_notify_off")), removeClassDelayed(t, "no_transition"), cur.reloadOnMailBind = !0, cur.onPrivacyChanged = Settings.saveNotifyPrivacyKey;
+        for (var e = [], s = 24; s--;) e.unshift((10 > s ? "0" : "") + s + ":00");
+        void 0 !== cur.options.time_from && new Dropdown(ge("daytime_from"), e, {
+            selectedItems: cur.options.time_from
+        }), void 0 !== cur.options.time_to && new Dropdown(ge("daytime_to"), e, {
+            selectedItems: cur.options.time_to
+        })
     },
     smsNotifyCheck: function() {
         isChecked("smsenabled") ? (slideDown(ge("sms_options"), 200), show("sms_options_msg")) : isVisible("sms_options") && (hide("sms_options_msg"), slideUp(ge("sms_options"), 200))
     },
     smsDayTimeCheck: function() {
         isChecked("daytime") ? slideDown(ge("daytime_from_to"), 200) : slideUp(ge("daytime_from_to"), 200)
-    },
-    updateInstantSounds: function(t) {
-        ls.set("sound_notify_off", isChecked(t) ? 0 : 1), uiPageBlock.showSaved(t)
     },
     smsUnsubscribe: function(t, e, s, o) {
         var n = '<a href="' + t.href + '">' + t.innerHTML + "</a>",
@@ -1002,7 +1003,7 @@ var Settings = {
         }), setTimeout(function() {
             if (nav.objLoc.f) {
                 var t = ge(nav.objLoc.f.split(",")[0]);
-                t && hasClass(t, "settings_line") && Settings.toggleBlock(t.firstChild)
+                t && hasClass(t, "settings_line") && Settings.toggleBlock(domFC(t))
             }
         }, 100), cur.destroy.push(function() {
             window.onLogout = window.onLoginDone = nav.reload
@@ -1400,12 +1401,12 @@ var Settings = {
             }
         }), !1
     },
-    showNotifySubscriptions: function() {
-        return showBox("al_settings.php", {
+    showNotifySubscriptions: function(t) {
+        return hasClass(t, "settings_no_subscriptions") ? !1 : (showBox("al_settings.php", {
             act: "notify_subscriptions_box"
         }, {
             stat: ["indexer.js"]
-        }), !1
+        }), !1)
     },
     notifySubscriptionsInit: function(t, e, s) {
         s.onListClick = Settings.notifySubscriptionToggle, cur.subsOList = new OList(t, e, {}, s), t.removeButtons().addButton(getLang("global_close"), function() {
@@ -1414,10 +1415,12 @@ var Settings = {
     },
     notifySubscriptionToggle: function(t, e) {
         var s = t.id.match(/-?\d+/)[0],
-            o = !1;
-        each(cur.subsOList.owners, function() {
-            return this[0] == s ? (o = this[4], !1) : void 0
-        }), ajax.post("/al_wall.php", {
+            o = !1,
+            n = 0,
+            i = geByClass1("_subscriptions_count");
+        each(cur.subsOList.owners, function(t, e) {
+            cur.subsOList.selected[e[0]] || n++, o === !1 && this[0] == s && (o = this[4])
+        }), i && (toggleClass(i, "settings_no_subscriptions", !n), val(i, n ? getLang("settings_notify_subscriptions_count", n) : getLang("settings_notify_no_subscriptions"))), ajax.post("/al_wall.php", {
             act: "a_toggle_posts_subscription",
             subscribe: e ? 1 : 0,
             oid: s,

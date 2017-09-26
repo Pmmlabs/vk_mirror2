@@ -3792,7 +3792,8 @@ img.im_photo_thumb {
     position: absolute;
     left: -4px;
     top: -4px;
-    width: 18px;
+    min-width: 12px;
+    padding: 0 3px;
     height: 18px;
     text-align: center;
     font-size: 11px;
@@ -3801,7 +3802,7 @@ img.im_photo_thumb {
     -moz-osx-font-smoothing: auto;
     line-height: 18px;
     margin-top: 0;
-    border-radius: 50%;
+    border-radius: 11px;
     border: 2px solid #fff;
     background: #5181b8;
     color: #fff

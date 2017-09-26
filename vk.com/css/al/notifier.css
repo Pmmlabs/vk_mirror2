@@ -5300,23 +5300,57 @@ div.chat_tab_img {
 }
 
 .top_notify_header {
+    line-height: 13px;
     padding: 11px 14px;
     border-radius: 3px 3px 0 0;
     color: #000;
     font-size: 13px;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
     border-bottom: 1px solid #e7e8ec;
     cursor: pointer
 }
 
-.top_notify_header,
-.top_notify_prefs_lnk {
-    font-weight: 400;
-    -webkit-font-smoothing: subpixel-antialiased;
-    -moz-osx-font-smoothing: auto
+.top_notify_header .top_notify_header_sub_label,
+.top_notify_header .top_notify_header_sup_label {
+    height: 13px;
+    -o-transition: opacity 0.1s;
+    transition: opacity 0.1s
+}
+
+.top_notify_header .top_notify_header_label {
+    transition: -webkit-transform 0.1s;
+    -o-transition: transform 0.1s, -o-transform 0.1s;
+    transition: transform 0.1s;
+    transition: transform 0.1s, -webkit-transform 0.1s, -o-transform 0.1s
+}
+
+.top_notify_header .top_notify_header_sub_label {
+    position: absolute;
+    opacity: 0
+}
+
+.top_notify_header.top_notify_header_swap_labels .top_notify_header_sub_label {
+    opacity: 1
+}
+
+.top_notify_header.top_notify_header_swap_labels .top_notify_header_sup_label {
+    opacity: 0
+}
+
+.top_notify_header.top_notify_header_swap_labels .top_notify_header_label {
+    -webkit-transform: translateY(-13px);
+    -ms-transform: translateY(-13px);
+    -o-transform: translateY(-13px);
+    transform: translateY(-13px)
 }
 
 .top_notify_prefs_lnk {
-    float: right
+    float: right;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .top_notify_cont {
@@ -5326,6 +5360,11 @@ div.chat_tab_img {
     font-size: 12.5px;
     color: #000;
     white-space: normal
+}
+
+.top_notify_cont .top_notify_header {
+    border-radius: 0;
+    border-top: 1px solid #e7e8ec
 }
 
 .top_notify_cont .ui_scroll_content>.pr {
@@ -5526,7 +5565,7 @@ div.chat_tab_img {
 }
 
 .top_notify_cont .feedback_row {
-    padding: 10px 15px
+    padding: 10px 14px
 }
 
 .top_notify_cont .feedback_row .post_actions {
@@ -5574,7 +5613,7 @@ div.chat_tab_img {
 }
 
 .top_notify_cont .feedback_header {
-    padding: 1px 0 0;
+    padding: 2px 0 0;
     color: #000
 }
 
@@ -5614,6 +5653,20 @@ div.chat_tab_img {
 
 .top_notify_cont .feedback_sticky_rows:empty {
     display: none
+}
+
+.top_notify_cont .feedback_live_row .feedback_sticky_icon:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    top: 23px;
+    left: 23px;
+    border: 2px solid #fff;
+    background: #e64646 url(/images/svg_icons/feedback/live.svg) no-repeat;
+    z-index: 10
 }
 
 .fc_snapster_invite_room_wrap {
