@@ -2397,71 +2397,58 @@ a.tickets_question_row_tt:hover {
     padding-top: 5px
 }
 
-.tickets_dmca_data,
-.tickets_pay_data {
-    padding-top: 10px;
-    padding-bottom: 5px
+.tickets_text_efs {
+    padding: 10px 0 5px
 }
 
-.tickets_dmca_data_row,
-.tickets_pay_data_row {
-    clear: both;
+.tickets_text_ef_row {
     padding-top: 5px
 }
 
-.tickets_dmca_data_row.links {
-    padding-top: 10px;
-    padding-bottom: 20px
+.tickets_text_ef_row:first-child {
+    padding-top: 0
 }
 
-.tickets_dmca_data_row.info {
-    padding-top: 10px;
-    padding-bottom: 10px
+.tickets_text_ef_row.links {
+    padding: 10px 0 20px
 }
 
-.tickets_dmca_data_row.blocked {
-    padding-top: 0px;
-    padding-bottom: 15px
-}
-
-.tickets_dmca_data_row .label,
-.tickets_pay_data .label {
-    float: left;
-    margin-right: 5px;
-    font-size: 12px;
-    width: 150px;
-    color: #777
-}
-
-.tickets_dmca_data_row .value {
-    overflow: hidden
-}
-
-.tickets_dmca_data_row.blocked .label,
-.tickets_dmca_data_row.links .label,
-.tickets_dmca_data_row.name .label {
-    padding-bottom: 5px
-}
-
-.tickets_dmca_data_row.blocked .value>a:visited,
-.tickets_dmca_data_row.links .value>a:visited,
-.tickets_dmca_data_row.name .value>a:visited {
-    color: #609
-}
-
-.tickets_dmca_data_row.links .value {
-    max-width: 530px;
+.tickets_text_ef_row .value.links {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis
 }
 
-#ads_page .tickets_dmca_data_row.links .value {
-    max-width: 692px
+.tickets_text_ef_row.info {
+    padding: 10px 0
 }
 
-body.dev .tickets_dmca_data_row.links .value {
-    max-width: 628px
+.tickets_text_ef_row.blocked {
+    padding: 0 0 15px
+}
+
+.tickets_text_ef_row.blocked .label,
+.tickets_text_ef_row.info .label,
+.tickets_text_ef_row.links .label {
+    padding-bottom: 5px
+}
+
+.tickets_text_ef_row.blocked .value>a:visited,
+.tickets_text_ef_row.info .value>a:visited,
+.tickets_text_ef_row.links .value>a:visited {
+    color: #609
+}
+
+.tickets_text_ef_row .label {
+    float: left;
+    padding-right: 5px;
+    font-size: 12px;
+    width: 150px;
+    color: #777
+}
+
+.tickets_text_ef_row .value {
+    overflow: hidden
 }
 
 .tickets_dmca_buttons {

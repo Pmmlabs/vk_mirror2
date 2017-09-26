@@ -12034,7 +12034,8 @@ ElementTooltip.prototype.updatePosition = function() {
             side = this._prevSide
 
         } else if (!side) {
-            var boundingEl = domClosestOverflowHidden(this._ttel);
+            var audioLayerWrapEl = gpeByClass('audio_layer_container', this._ttel)
+            var boundingEl = audioLayerWrapEl ? audioLayerWrapEl : domClosestOverflowHidden(this._ttel);
             var boundingElPos = (boundingEl != bodyNode) ? getXY(boundingEl) : [scrollGetX(), scrollGetY() + getPageHeaderHeight()];
             var boundingElSize = (boundingEl != bodyNode) ? getSize(boundingEl) : [window.innerWidth, window.innerHeight]
 

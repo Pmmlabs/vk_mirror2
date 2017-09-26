@@ -289,42 +289,10 @@ var Restore = {
     },
     processSubmitResult: function(e, o, t, r, s, n) {
         var a = intval(e);
-        if (a > 0) Restore.showPhoneConfirmBox(a, o);
-        else {
-            if (-2 == a) {
-                var i, u;
-                return n ? (i = ge("restore_submit_full_request"), u = Restore.submitFullRequest) : (i = ge("submitBtn"), u = Restore.submitSimpleRequest), lockButton(i), setTimeout(u, 1e3)
-            } - 3 == a ? ("login" == s && (o += "<br>" + getLang("restore_need_email_or_phone_desc")), Restore.showResult(t, o, r)) : Restore.showResult("request_phone_res", o, r)
-        }
-    },
-    confirmCodeResend: function() {
-        return hide("phone_confirm_error"), ajax.post("/al_restore.php", {
-            act: "a_confirm",
-            request_id: cur.request_id,
-            resend: 1,
-            hash: cur.request_hash
-        }, {
-            onDone: function(e, o) {
-                Restore.confirmPhoneError(o)
-            }
-        }), !1
-    },
-    confirmPhoneSend: function() {
-        var e = trim(val("phone_confirm_code"));
-        return /^[0-9a-zA-Z]{6}$/i.test(e) ? void ajax.post("/al_restore.php", {
-            act: "a_confirm",
-            request_id: cur.request_id,
-            code: e,
-            hash: cur.request_hash
-        }, {
-            onDone: function(e, o) {
-                e ? (val("request_result", o), show("request_result"), hide("request_form"), scrollToTop(), curBox().hide()) : Restore.confirmPhoneError(o)
-            }
-        }) : void Restore.confirmPhoneError(getLang("restore_code_error_6chars"))
-    },
-    confirmPhoneError: function(e) {
-        var o = ge("phone_confirm_error");
-        val(o, e), show(o), elfocus("phone_confirm_code")
+        if (-2 == a) {
+            var i, u;
+            return n ? (i = ge("restore_submit_full_request"), u = Restore.submitFullRequest) : (i = ge("submitBtn"), u = Restore.submitSimpleRequest), lockButton(i), setTimeout(u, 1e3)
+        } - 3 == a ? ("login" == s && (o += "<br>" + getLang("restore_need_email_or_phone_desc")), Restore.showResult(t, o, r)) : Restore.showResult("request_phone_res", o, r)
     },
     toFullRequest: function(e, o) {
         if (isVisible("new_phone_wrap")) var t = val("new_phone").replace(/[^0-9]/g, "");
@@ -480,7 +448,8 @@ var Restore = {
         ajax.post("restore", n, {
             onDone: function(e, o, t, r, s, n, a, i) {
                 var u = intval(e);
-                if (0 == u && (n = t, a = r, i = s), -5 == u) {
+                if (0 == u && (n = t, a = r, i = s), 1 == u) return val("request_result", o), show("request_result"), hide("request_form"), void scrollToTop();
+                if (-5 == u) {
                     var c = new MessageBox({
                         title: getLang("global_action_confirmation")
                     });
@@ -515,9 +484,6 @@ var Restore = {
     },
     changeFullRequestButton: function(e, o) {
         toggle("restore_roll_button", e), o && val("restore_submit_full_request", o)
-    },
-    showPhoneConfirmBox: function(e, o) {
-        cur.request_id = e, cur.request_hash = o, showFastBox(getLang("restore_confirmation"), cur.phoneConfirmBox, getLang("box_send"), Restore.confirmPhoneSend, getLang("global_cancel")), elfocus("phone_confirm_code")
     },
     activate: function(e, o, t) {
         isButtonLocked(e) || ajax.post("restore", {

@@ -147,7 +147,7 @@ var stVersions = {
     'html5audio.js': 976782859,
     'html5video.js': 223664659,
     'html5video.css': 16077304073,
-    'audioplayer.js': 6327756732,
+    'audioplayer.js': 6957014399,
     'audioplayer.css': 15341578064,
     'audio_html5.js': 287741914,
     'audio.js': 2523627483,
@@ -320,7 +320,7 @@ var stVersions = {
     'notifier.css': 25725030542,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
-    'restore.js': 951793792,
+    'restore.js': 3097641851,
     'restore.css': 15116855689,
     'recover.js': 2830033131,
     'recover.css': 2080137791,
@@ -330,10 +330,10 @@ var stVersions = {
     'tags_dd.css': 15735510609,
     'tasks.js': 4285291205,
     'tasks.css': 16080992981,
-    'helpdesk.js': 1640276537,
-    'helpdesk.css': 19743172990,
+    'helpdesk.js': 3353134613,
+    'helpdesk.css': 17044036769,
     'tickets.js': 1883347153,
-    'tickets.css': 19345949431,
+    'tickets.css': 20020461696,
     'faq.js': 2841473572,
     'faq.css': 18470369602,
     'talmud.js': 1641838680,
@@ -605,4 +605,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 1833;
+var _rnd = 3761;
