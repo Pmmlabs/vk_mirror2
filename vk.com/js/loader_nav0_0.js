@@ -344,10 +344,10 @@ var stVersions = {
     'sf.css': 15256671542,
     'members.css': 16308310957,
     'meminfo.css': 18625460923,
-    'groupinfo.css': 18669844859,
+    'groupinfo.css': 17904731900,
     'bugs.js': 3874995669,
     'bugs.css': 14355338281,
-    'bugtracker.js': 4057341778,
+    'bugtracker.js': 1213584201,
     'bugtracker.css': 23541528217,
     'login.css': 16582526468,
     'login.js': 3551917100,
@@ -605,4 +605,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 4346;
+var _rnd = 206;
