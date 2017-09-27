@@ -1022,18 +1022,7 @@ img {
     background: #edeef0
 }
 
-.widgets_popup_box_body #box_layer {
-    display: table;
-    margin: 0 auto;
-    padding: 0;
-    height: 100%
-}
-
 .widgets_popup_box_body .popup_box_container {
-    display: table-cell;
-    vertical-align: middle;
-    margin: 0!important;
-    padding: 0!important;
     box-shadow: none
 }
 
@@ -1044,6 +1033,20 @@ img {
 .widgets_popup_box_body .popup_box_container .box_layout {
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
     vertical-align: initial
+}
+
+.widgets_popup_box_body.widgets_popup_box_center #box_layer {
+    display: table;
+    margin: 0 auto;
+    padding: 0;
+    height: 100%
+}
+
+.widgets_popup_box_body.widgets_popup_box_center .popup_box_container {
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0!important;
+    padding: 0!important
 }
 
 .inl_bl {

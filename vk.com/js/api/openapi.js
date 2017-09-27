@@ -1514,7 +1514,7 @@ if (!VK.Widgets) {
                 ttHere = options.ttHere || false,
                 isOver = false,
                 hideTimeout = null,
-                obj, buttonIfr, buttonRpc, tooltipIfr, tooltipRpc, checkTO, statsBox;
+                obj, buttonIfr, buttonRpc, tooltipIfr, tooltipRpc, checkTO;
             if (type == 'vertical' || type == 'button' || type == 'mini') delete options.width;
             if (autoWidth) params.auto_width = 1;
 
@@ -1552,12 +1552,6 @@ if (!VK.Widgets) {
                 }, 400);
             }
 
-            function handleStatsBox(act) {
-                hideTooltip(true);
-                statsBox = VK.Util.Box(buttonIfr.src + '&act=a_stats_box&widget_width=638&from=wlike');
-                statsBox.show();
-            }
-
             var widgetId = VK.Widgets._constructor('widget_like.php', objId, options, params, {
                 initTooltip: function(counter) {
                     tooltipRpc = new fastXDM.Server({
@@ -1575,7 +1569,6 @@ if (!VK.Widgets) {
                             });
                             box.show();
                         },
-                        statsBox: handleStatsBox
                     }, false, {
                         safe: true
                     });
@@ -1611,7 +1604,6 @@ if (!VK.Widgets) {
                         }, 200);
                     };
                 },
-                statsBox: handleStatsBox,
                 showTooltip: showTooltip,
                 hideTooltip: hideTooltip,
                 destroy: function() {
@@ -1627,15 +1619,6 @@ if (!VK.Widgets) {
                         tooltipIfr.parentNode.removeChild(tooltipIfr);
                     }
                     tooltipRpc && tooltipRpc.destroy();
-                    if (statsBox) {
-                        if (statsBox.iframe) {
-                            try {
-                                statsBox.iframe.src = 'about: blank;';
-                            } catch (e) {}
-                            statsBox.iframe.parentNode.removeChild(statsBox.iframe);
-                        }
-                        statsBox.rpc && statsBox.rpc.destroy();
-                    }
                 },
                 showBox: function(url, props) {
                     var box = VK.Util.Box(VK.Widgets.showBoxUrl(options.base_domain, url), [], {

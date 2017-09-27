@@ -51,7 +51,7 @@ var ShareBox = {
                             if (!d || !d.selCount) return elfocus("like_club_inp");
                             for (var r in d.selected) a = intval(r.replace(/_$/, ""));
                         case 0:
-                            vk.widget ? (window.allowCallback = function() {
+                            vk.widget && 4 !== vk.widget ? (window.allowCallback = function() {
                                 ajax.post("like.php", Wall.fixPostParams(extend(s, {
                                     act: "a_do_publish",
                                     from: "box",

@@ -763,53 +763,53 @@ table.login_blocked_reason_thumbs {
 }
 
 .login_app_device_ios .login_app_device_screen {
-    background-image: url(/images/login/ios_ru.png?4)
+    background-image: url(/images/login/ios_ru.png?5)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .login_app_device_ios .login_app_device_screen {
-        background-image: url(/images/login/ios_ru_2x.png?4);
+        background-image: url(/images/login/ios_ru_2x.png?5);
         background-size: 192px 397px
     }
 }
 
 .login_app_device_ios .login_app_device_screen.login_app_device_en {
-    background-image: url(/images/login/ios_en.png?4)
+    background-image: url(/images/login/ios_en.png?5)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .login_app_device_ios .login_app_device_screen.login_app_device_en {
-        background-image: url(/images/login/ios_en_2x.png?4);
+        background-image: url(/images/login/ios_en_2x.png?5);
         background-size: 192px 397px
     }
 }
 
 .login_app_device_ios .login_app_device_screen.login_app_device_ua {
-    background-image: url(/images/login/ios_ua.png?4)
+    background-image: url(/images/login/ios_ua.png?5)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .login_app_device_ios .login_app_device_screen.login_app_device_ua {
-        background-image: url(/images/login/ios_ua_2x.png?4);
+        background-image: url(/images/login/ios_ua_2x.png?5);
         background-size: 192px 397px
     }
 }
 
 .login_app_device_ios .login_app_device_screen.login_app_device_br {
-    background-image: url(/images/login/ios_br.png?4)
+    background-image: url(/images/login/ios_br.png?5)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .login_app_device_ios .login_app_device_screen.login_app_device_br {
-        background-image: url(/images/login/ios_br_2x.png?4);
+        background-image: url(/images/login/ios_br_2x.png?5);
         background-size: 192px 397px
     }
 }
@@ -819,105 +819,105 @@ table.login_blocked_reason_thumbs {
 }
 
 .login_app_device_android .login_app_device_screen {
-    background-image: url(/images/login/android_ru.png?4)
+    background-image: url(/images/login/android_ru.png?5)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .login_app_device_android .login_app_device_screen {
-        background-image: url(/images/login/android_ru_2x.png?4);
+        background-image: url(/images/login/android_ru_2x.png?5);
         background-size: 181px 372px
     }
 }
 
 .login_app_device_android .login_app_device_screen.login_app_device_en {
-    background-image: url(/images/login/android_en.png?4)
+    background-image: url(/images/login/android_en.png?5)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .login_app_device_android .login_app_device_screen.login_app_device_en {
-        background-image: url(/images/login/android_en_2x.png?4);
+        background-image: url(/images/login/android_en_2x.png?5);
         background-size: 181px 372px
     }
 }
 
 .login_app_device_android .login_app_device_screen.login_app_device_ua {
-    background-image: url(/images/login/android_ua.png?4)
+    background-image: url(/images/login/android_ua.png?5)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .login_app_device_android .login_app_device_screen.login_app_device_ua {
-        background-image: url(/images/login/android_ua_2x.png?4);
+        background-image: url(/images/login/android_ua_2x.png?5);
         background-size: 181px 372px
     }
 }
 
 .login_app_device_android .login_app_device_screen.login_app_device_br {
-    background-image: url(/images/login/android_br.png?4)
+    background-image: url(/images/login/android_br.png?5)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .login_app_device_android .login_app_device_screen.login_app_device_br {
-        background-image: url(/images/login/android_br_2x.png?4);
+        background-image: url(/images/login/android_br_2x.png?5);
         background-size: 181px 372px
     }
 }
 
 .login_app_device_wp .login_app_device_screen {
-    background-image: url(/images/login/wp_ru.png?4)
+    background-image: url(/images/login/wp_ru.png?5)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .login_app_device_wp .login_app_device_screen {
-        background-image: url(/images/login/wp_ru_2x.png?4);
+        background-image: url(/images/login/wp_ru_2x.png?5);
         background-size: 192px 372px
     }
 }
 
 .login_app_device_wp .login_app_device_screen.login_app_device_en {
-    background-image: url(/images/login/wp_en.png?4)
+    background-image: url(/images/login/wp_en.png?5)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .login_app_device_wp .login_app_device_screen.login_app_device_en {
-        background-image: url(/images/login/wp_en_2x.png?4);
+        background-image: url(/images/login/wp_en_2x.png?5);
         background-size: 192px 372px
     }
 }
 
 .login_app_device_wp .login_app_device_screen.login_app_device_ua {
-    background-image: url(/images/login/wp_ua.png?4)
+    background-image: url(/images/login/wp_ua.png?5)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .login_app_device_wp .login_app_device_screen.login_app_device_ua {
-        background-image: url(/images/login/wp_ua_2x.png?4);
+        background-image: url(/images/login/wp_ua_2x.png?5);
         background-size: 192px 372px
     }
 }
 
 .login_app_device_wp .login_app_device_screen.login_app_device_br {
-    background-image: url(/images/login/wp_br.png?4)
+    background-image: url(/images/login/wp_br.png?5)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .login_app_device_wp .login_app_device_screen.login_app_device_br {
-        background-image: url(/images/login/wp_br_2x.png?4);
+        background-image: url(/images/login/wp_br_2x.png?5);
         background-size: 192px 372px
     }
 }

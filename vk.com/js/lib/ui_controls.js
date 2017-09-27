@@ -1749,7 +1749,7 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
     function t(t, i) {
         i = i || "";
         var s = r._opts.sublists && r._opts.sublists[t[0]] ? "idd_sublist" : "",
-            n = '<div class="idd_item ' + i + " " + e + " " + s + '" id="' + o + "idd_item_" + t[0] + '" data-id="' + t[0] + '" tabindex="0">' + (r._opts.withIcon ? '<div class="idd_item_icon" id="' + t[0] + '"></div>' : "") + '<div class="idd_item_name">' + (r._opts.html ? r._opts.html(t) : t[1]) + "</div></div>";
+            n = '<div class="idd_item ' + i + " " + e + " " + s + '" id="' + o + "idd_item_" + t[0] + '" data-id="' + t[0] + '" tabindex="0" role="button">' + (r._opts.withIcon ? '<div class="idd_item_icon" id="' + t[0] + '"></div>' : "") + '<div class="idd_item_name">' + (r._opts.html ? r._opts.html(t) : t[1]) + "</div></div>";
         return n
     }
     var e = this._opts.withIcon ? "idd_with_icon" : "",
@@ -1769,7 +1769,7 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
             r._hide()
         });
         for (; e && !hasClass(e, "idd_item");) e = e.parentNode;
-        e && r.select(e.getAttribute("data-id")) && r._hide(), cancelEvent(t)
+        e && (r.select(e.getAttribute("data-id")) ? r._hide() : r._hoverItem(e)), cancelEvent(t)
     }), each(geByClass("idd_item", this._els.popupItems), function(t, e) {
         addEvent(e, "mouseenter", function(t) {
             InlineDropdown._preventMouseHover || r._hoverItem(t.currentTarget)
@@ -1857,7 +1857,7 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
 }, InlineDropdown.prototype._showSubmenu = function(t) {
     function e(t, e) {
         e = e || "";
-        var i = '<div class="idd_item ' + e + " " + l + '" id="idd_item_' + t[0] + '" data-id="' + t[0] + '">' + (o.withIcon ? '<div class="idd_item_icon" id="' + t[0] + '"></div>' : "") + '<div class="idd_item_name">' + (o.html ? o.html(t) : t[1]) + "</div></div>";
+        var i = '<div class="idd_item ' + e + " " + l + '" id="idd_item_' + t[0] + '" data-id="' + t[0] + '" role="button" tabindex="0">' + (o.withIcon ? '<div class="idd_item_icon" id="' + t[0] + '"></div>' : "") + '<div class="idd_item_name">' + (o.html ? o.html(t) : t[1]) + "</div></div>";
         return i
     }
     if (clearTimeout(this._hideSubmenuTimeout), t) {

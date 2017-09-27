@@ -630,11 +630,11 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             var s = AudioUtils.asObject(t);
             if (o && o.wiki) {
                 var r = "editorChooseAudio('" + s.performer + "', '" + s.title + "', " + s.duration + ", '" + s.fullId + "', '" + s.url + "', " + s.duration + ", this)";
-                a = '<div class="ape_attach" onclick="' + r + '">' + o.audioPickerButtonText + "</div>"
+                a = '<div role="button" class="ape_attach" onclick="' + r + '">' + o.audioPickerButtonText + "</div>"
             } else {
                 s = clean(JSON.stringify(s));
                 var l = clean(JSON.stringify(t));
-                a = '<div class="ape_attach" onclick="cur.onChooseAudio(event, this, ' + s + ", " + l + ')">' + o.audioPickerButtonText + "</div>"
+                a = '<div role="button" class="ape_attach" onclick="cur.onChooseAudio(event, this, ' + s + ", " + l + ')">' + o.audioPickerButtonText + "</div>"
             }
         }
         return '<div class="ape_audio_item_wrap _ape_audio_item ' + i + '">' + a + AudioUtils.drawAudio(t) + "</div>"

@@ -196,7 +196,8 @@
 }
 
 .ms_items_more_wrap.to_down .ms_items_more_helper {
-    top: 100%
+    top: 100%;
+    overflow: visible
 }
 
 .ms_items_more_wrap.to_up .ms_items_more {
@@ -208,11 +209,13 @@
 }
 
 .ms_items_more_wrap.to_up .ms_items_more_helper {
-    bottom: 100%
+    bottom: 100%;
+    overflow: visible
 }
 
 .ms_items_more_helper {
     position: absolute;
+    overflow: hidden;
     right: 50%
 }
 

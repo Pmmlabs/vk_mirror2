@@ -312,10 +312,6 @@ var Community = {
                         'widget_like.php': {
                             'a_stats_box': true
                         },
-                        'widget_post.php': {
-                            'subscribed_box': true,
-                            'audio_claim_warning': true
-                        }
                     }),
 
                     showCaptchaBox: Widgets.showCaptchaBox,

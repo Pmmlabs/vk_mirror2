@@ -7204,6 +7204,7 @@ window.Widgets = {
                     lastLeft = sL();
                     lastTop = sT();
                 }
+                onBodyResize();
             }, 0);
         }
 
@@ -7320,19 +7321,18 @@ window.Widgets = {
     },
 
     showPhoto: function(photo, list) {
-        showBox('al_photos.php', {
+        return showBox('al_photos.php', {
             act: 'photo_box',
             photo: photo,
             wall_owner: photo.split('_')[0],
             list: list,
             widget_width: 654
         });
-        return false;
     },
 
     showVideo: function(video, list) {
         window.revertLastInlineVideo && revertLastInlineVideo();
-        showBox('al_video.php', {
+        return showBox('al_video.php', {
             act: 'video_box',
             video: video,
             list: list,
@@ -7340,7 +7340,6 @@ window.Widgets = {
             widget_width: 780,
             module: cur.module || '_alpost'
         });
-        return false;
     },
 
     showSubscribeBox: function(oid, callback, state, isEvent) {
@@ -7378,30 +7377,43 @@ window.Widgets = {
 
         return function(url, params, options, e) {
             if (allowed[url] && (!isObject(allowed[url]) || allowed[url][params.act])) {
-
                 window.tooltips && tooltips.hideAll();
                 onbefore && onbefore();
 
-                var stat = params.act && isObject(allowed[url]) && allowed[url][params.act].stat;
-                stat && cur.Rpc.callMethod('showLoader', true);
+                if (isObject(allowed[url]) && allowed[url][params.act] && isObject(allowed[url][params.act].params)) {
+                    extend(params, allowed[url][params.act].params);
+                }
 
-                stManager.add(stat || [], function() {
-                    params = extend({
+                if (vk.amp) {
+                    Widgets.popupBoxOpen(url, extend({
                         widget_hash: cur.widgetHash,
-                        widget: 2,
-                        scrollbar_width: window.sbWidth(),
-                        widget_width: options && options.params && intval(options.params.width) || void(0)
-                    }, params);
-                    cur.Rpc.callMethod('showBox', url + '?' + ajx2q(params), {
-                        height: window.outerHeight || screen.availHeight || 768,
-                        width: window.outerWidth || screen.availWidth || 1028,
-                        base_domain: '//' + location.hostname + '/'
+                    }, params), url + '_' + params.act, {
+                        width: params.widget_width || void 0,
+                        height: params.widget_height || void 0,
                     });
-                });
+                } else {
+                    var stat = params.act && isObject(allowed[url]) && allowed[url][params.act].stat;
+                    stat && cur.Rpc.callMethod('showLoader', true);
+
+                    stManager.add(stat || [], function() {
+                        params = extend({
+                            widget_hash: cur.widgetHash,
+                            widget: 2,
+                            scrollbar_width: window.sbWidth(),
+                            widget_width: options && options.params && intval(options.params.width) || void(0)
+                        }, params);
+                        cur.Rpc.callMethod('showBox', url + '?' + ajx2q(params), {
+                            height: window.outerHeight || screen.availHeight || 768,
+                            width: window.outerWidth || screen.availWidth || 1028,
+                            base_domain: '//' + location.hostname + '/'
+                        });
+                    });
+                }
             } else {
                 debugLog('Forbidden request: ' + params.act + ' in ' + url);
-                return originalShowBox.apply(null, [].slice.call(arguments));
+                return true;
             }
+            return false;
         }
     },
 

@@ -4031,6 +4031,11 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     margin-top: 0.5em
 }
 
+.tickets_extra_field__note {
+    color: #777e8c;
+    font-size: 12px
+}
+
 .tickets_mobile_notice {
     padding: 23px 70px 26px 31px;
     border-bottom: 1px solid #e7e8ec;

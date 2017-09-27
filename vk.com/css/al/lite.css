@@ -20,6 +20,7 @@
 .emoji_css,
 .error,
 .flat_button.logo_button:before,
+.flat_button.ui_load_more_btn.with_arrow:after,
 .import_box_spinner,
 .info_msg,
 .media-check-btn-icon,
@@ -537,148 +538,6 @@ textarea.ashelper {
     clip: rect(1px, 1px, 1px, 1px);
     opacity: 0;
     overflow: hidden
-}
-
-.pr {
-    opacity: 0;
-    line-height: 0;
-    -o-transition: opacity 350ms linear;
-    transition: opacity 350ms linear
-}
-
-.flat_button .pr {
-    margin-top: 6px
-}
-
-button.flat_button .pr {
-    margin-top: 0
-}
-
-.pr_bt {
-    display: inline-block;
-    vertical-align: top;
-    width: 4px;
-    height: 4px;
-    background-color: #45688e;
-    border-radius: 50%;
-    margin-right: 2px;
-    opacity: 0.2;
-    -webkit-animation-duration: 750ms;
-    -o-animation-duration: 750ms;
-    animation-duration: 750ms;
-    -webkit-animation-name: pr_bt_anim;
-    -o-animation-name: pr_bt_anim;
-    animation-name: pr_bt_anim;
-    -webkit-animation-iteration-count: infinite;
-    -o-animation-iteration-count: infinite;
-    animation-iteration-count: infinite
-}
-
-body.mac .pr_bt {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0)
-}
-
-.flat_button .pr_bt {
-    background-color: #e0e8f1
-}
-
-.flat_button.secondary .pr_bt,
-.flat_button.secondary_dark .pr_bt {
-    background-color: #45688e
-}
-
-.flat_button.black .pr_bt,
-.flat_button.secondary.dark .pr_bt,
-.pr_baw .pr_bt {
-    background-color: #fff
-}
-
-.pr_medium .pr_bt {
-    width: 7px;
-    height: 7px;
-    margin-right: 4px
-}
-
-.pr_bt:last-child {
-    margin-right: 0
-}
-
-.pr_bt:nth-child(1) {
-    -webkit-animation-delay: 0ms;
-    -o-animation-delay: 0ms;
-    animation-delay: 0ms
-}
-
-.pr_bt:nth-child(2) {
-    -webkit-animation-delay: 180ms;
-    -o-animation-delay: 180ms;
-    animation-delay: 180ms
-}
-
-.pr_bt:nth-child(3) {
-    -webkit-animation-delay: 360ms;
-    -o-animation-delay: 360ms;
-    animation-delay: 360ms
-}
-
-@-webkit-keyframes pr_bt_anim {
-    0% {
-        opacity: 0.2
-    }
-    30% {
-        opacity: 1
-    }
-    to {
-        opacity: 0.2
-    }
-}
-
-@-o-keyframes pr_bt_anim {
-    0% {
-        opacity: 0.2
-    }
-    30% {
-        opacity: 1
-    }
-    to {
-        opacity: 0.2
-    }
-}
-
-@keyframes pr_bt_anim {
-    0% {
-        opacity: 0.2
-    }
-    30% {
-        opacity: 1
-    }
-    to {
-        opacity: 0.2
-    }
-}
-
-.photos_container .pr,
-.places_map .pr {
-    position: absolute;
-    background: rgba(0, 0, 0, .5);
-    padding: 5px 3px 5px 5px;
-    border-radius: 2px;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: 1;
-    -webkit-filter: none;
-    filter: none;
-    margin: auto;
-    width: 18px;
-    height: 4px
-}
-
-.photos_container .pr .pr_bt,
-.places_map .pr .pr_bt {
-    background-color: #fff
 }
 
 .fl_l {
@@ -1459,6 +1318,10 @@ body.mac .pr_bt {
     filter: alpha(opacity=50);
     -o-transition: opacity 100ms linear;
     transition: opacity 100ms linear
+}
+
+.widgets_popup_box_body #layer_stl_text {
+    top: 18px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -2843,6 +2706,162 @@ a.button_link:hover {
     background-color: #e5ebf1
 }
 
+.pr {
+    opacity: 0;
+    line-height: 0;
+    -o-transition: opacity 350ms linear;
+    transition: opacity 350ms linear
+}
+
+.flat_button .pr {
+    margin-top: 6px
+}
+
+button.flat_button .pr {
+    margin-top: 0
+}
+
+.pr_bt {
+    display: inline-block;
+    vertical-align: top;
+    width: 4px;
+    height: 4px;
+    background-color: #45688e;
+    border-radius: 50%;
+    margin-right: 2px;
+    opacity: 0.2;
+    -webkit-animation-duration: 750ms;
+    -o-animation-duration: 750ms;
+    animation-duration: 750ms;
+    -webkit-animation-name: pr_bt_anim;
+    -o-animation-name: pr_bt_anim;
+    animation-name: pr_bt_anim;
+    -webkit-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite
+}
+
+body.mac .pr_bt {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
+}
+
+.flat_button .pr_bt,
+.pr.inv .pr_bt {
+    background-color: #e0e8f1
+}
+
+.flat_button.secondary .pr_bt,
+.flat_button.secondary_dark .pr_bt {
+    background-color: #45688e
+}
+
+.flat_button.black .pr_bt,
+.flat_button.secondary.dark .pr_bt,
+.pr_baw .pr_bt {
+    background-color: #fff
+}
+
+.pr_medium .pr_bt {
+    width: 7px;
+    height: 7px;
+    margin-right: 4px
+}
+
+.pr_big .pr_bt {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    margin-right: 4px
+}
+
+.pr_big .pr_bt:last-child,
+.pr_bt:last-child {
+    margin-right: 0
+}
+
+.pr_bt:nth-child(1) {
+    -webkit-animation-delay: 0ms;
+    -o-animation-delay: 0ms;
+    animation-delay: 0ms
+}
+
+.pr_bt:nth-child(2) {
+    -webkit-animation-delay: 180ms;
+    -o-animation-delay: 180ms;
+    animation-delay: 180ms
+}
+
+.pr_bt:nth-child(3) {
+    -webkit-animation-delay: 360ms;
+    -o-animation-delay: 360ms;
+    animation-delay: 360ms
+}
+
+@-webkit-keyframes pr_bt_anim {
+    0% {
+        opacity: 0.2
+    }
+    30% {
+        opacity: 1
+    }
+    to {
+        opacity: 0.2
+    }
+}
+
+@-o-keyframes pr_bt_anim {
+    0% {
+        opacity: 0.2
+    }
+    30% {
+        opacity: 1
+    }
+    to {
+        opacity: 0.2
+    }
+}
+
+@keyframes pr_bt_anim {
+    0% {
+        opacity: 0.2
+    }
+    30% {
+        opacity: 1
+    }
+    to {
+        opacity: 0.2
+    }
+}
+
+.photos_container .pr,
+.places_map .pr {
+    position: absolute;
+    background: rgba(0, 0, 0, .5);
+    padding: 5px 3px 5px 5px;
+    border-radius: 2px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    -webkit-filter: none;
+    filter: none;
+    margin: auto;
+    width: 18px;
+    height: 4px
+}
+
+.photos_container .pr .pr_bt,
+.places_map .pr .pr_bt {
+    background-color: #fff
+}
+
+.upload_pr {
+    opacity: 1;
+    padding: 12px 0 13px
+}
+
 .flat_button.ui_load_more_btn {
     display: block;
     padding: 13px 0 14px;
@@ -2867,8 +2886,46 @@ a.button_link:hover {
     margin: 20px -25px -20px
 }
 
-.flat_button.ui_load_more_btn .pr {
-    margin-top: 6px
+.flat_button.ui_load_more_btn.with_arrow:after {
+    margin-left: 2px;
+    display: inline-block;
+    content: '';
+    background: url(/images/icons/search_arrow.png) no-repeat 0 0;
+    height: 11px;
+    width: 6px;
+    vertical-align: middle
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .flat_button.ui_load_more_btn.with_arrow:after {
+        background-image: url(/images/icons/search_arrow_2x.png);
+        background-size: 6px 10px
+    }
+}
+
+.flat_button.ui_load_more_btn.flat_btn_lock.with_arrow:after {
+    display: none!important
+}
+
+.flat_button.ui_load_more_btn .ui_load_more_btn_label {
+    display: inline-block;
+    overflow: hidden;
+    max-width: 100%;
+    vertical-align: top;
+    text-overflow: ellipsis;
+    box-sizing: border-box
+}
+
+.flat_button.ui_load_more_btn.with_arrow .ui_load_more_btn_label {
+    padding: 0 28px;
+    margin: 0 -28px
+}
+
+.flat_button.ui_load_more_btn.with_arrow.box_bottom_btn .ui_load_more_btn_label {
+    padding: 0 33px;
+    margin: 0 -33px
 }
 
 button.ui_load_more_btn {

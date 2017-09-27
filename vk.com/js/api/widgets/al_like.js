@@ -47,6 +47,7 @@ var WLike = {
             onInit: function() {},
             share: WLike.shareThisPage,
             shared: WLike.sharedThisPage,
+            openFullList: openFullList,
             hide: function() {
                 if (this.hideCallback) this.hideCallback();
             }.bind(this)
@@ -198,8 +199,7 @@ var WLike = {
             addClass(this.checkboxEl, 'checked');
             counter++;
         }
-        //WLike.updateStats(resp);
-        //cur.Rpc.callMethod('proxy', 'update', resp);
+
         cur.Rpc.callMethod('publish', (val ? 'widgets.like.shared' : 'widgets.like.unshared'), resp.num);
     },
 
@@ -210,9 +210,8 @@ var WLike = {
         ajax.post('widget_like.php', {
             act: 'a_stats_box',
             offset: cur.shown,
-            app: cur.aid,
-            url: cur.url,
-            page: cur.page,
+            pageQuery: _pageQuery,
+            app: _aid,
             obj: cur.obj,
             from: cur.from,
             tab: cur.tab || '',
@@ -242,9 +241,8 @@ var WLike = {
         ajax.post('widget_like.php', {
             act: 'a_stats_box',
             offset: 0,
-            app: cur.aid,
-            url: cur.url,
-            page: cur.page,
+            pageQuery: _pageQuery,
+            app: _aid,
             obj: cur.obj,
             from: cur.from,
             tab: tabName,
@@ -287,7 +285,11 @@ var WLike = {
 
             showTooltip: Widgets.showTooltip,
 
-            showBox: Widgets.showBox(null, function() {
+            showBox: Widgets.showBox({
+                'widget_like.php': {
+                    'a_stats_box': true
+                },
+            }, function() {
                 cur.Rpc.callMethod('hideTooltip', true);
             }),
 
@@ -296,7 +298,14 @@ var WLike = {
             showReCaptchaBox: Widgets.showReCaptchaBox,
 
             openFullList: function() {
-                cur.Rpc.callMethod('statsBox', 'show');
+                showBox('widget_like.php', {
+                    act: 'a_stats_box',
+                    pageQuery: _pageQuery,
+                    app: _aid,
+                    from: 'wlike',
+                    check_hash: likeHash,
+                    widget_width: 638
+                });
             },
 
             goAway: function(url) {
