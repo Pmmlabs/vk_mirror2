@@ -7,7 +7,7 @@ function AudioPage(e, t) {
     data(e, "audioPage", this), extend(cur.lang || {}, t.langs), getAudioPlayer().langs = t.langs, this._data = t, this._ownerId = t.ownerId, this.isLayer() || (cur.audioPage = this), this.isLayer() && uiSearch.init("audio_search_layer"), AudioUtils.toggleAudioHQBodyClass(), this._els = {
         pageContainer: e,
         sections: geByClass1("_audio_page_sections", e),
-        promo: geByClass1("_audio_section_promo", e),
+        vkMobilePromo: geByClass1("_audio_section_vkmobile_promo", e),
         playerWrap: geByClass1("_audio_page_player_wrap", e),
         player: geByClass1("_audio_page_player", e),
         contentBlock: geByClass1("_audio_page_content_block", e),
@@ -760,8 +760,8 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             case "default":
                 var s = k.getPlaylist(AudioPlaylist.TYPE_PLAYLIST, t, AudioPlaylist.DEFAULT_PLAYLIST_ID);
                 disableEl(z.addAudiosButton), showProgress(z.addAudiosButton), s.load(function() {
-                    enableEl(z.addAudiosButton), hideProgress(z.addAudiosButton), hide(z.header), show(z.search), toggle(z.addAudiosFromPlaylistsButton, Y),
-                        hide(z.addAudiosButton), "edit" == e ? u() : _(), g(s, !0), h(), "edit" == e && v(o)
+                    enableEl(z.addAudiosButton), hideProgress(z.addAudiosButton), hide(z.header), show(z.search),
+                        toggle(z.addAudiosFromPlaylistsButton, Y), hide(z.addAudiosButton), "edit" == e ? u() : _(), g(s, !0), h(), "edit" == e && v(o)
                 });
                 break;
             case "playlists":
@@ -1487,9 +1487,13 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         var n;
         i && -1 != i.indexOfAudio(s) ? n = i : a && -1 != a.indexOfAudio(s) ? n = a : (n = new AudioPlaylist(AudioPlaylist.TYPE_TEMP, vk.id), n.addAudio(s)), delete this._readyAudio, cur.audioStartReadyAudio = !0, t.play(s, n)
     }
-}, AudioPage.prototype.promoClose = function(e) {
-    cancelEvent(e), hide(this._els.promo), ajax.post("al_audio.php", {
-        act: "vkmusic_hide_promo"
+}, AudioPage.prototype.promoShowMore = function() {
+    nav.go("/app5955265_-128786769"), setTimeout(function() {
+        this.promoClose()
+    }.bind(this), 3e3)
+}, AudioPage.prototype.promoClose = function() {
+    hide(this._els.vkMobilePromo), ajax.post("al_audio.php", {
+        act: "vkmobile_hide_promo"
     })
 }, AudioPage.prototype.toggleRemoveAdsLink = function(e) {
     toggleClass(this._els.player, "audio_page_player_show_remove_ads", !!e)

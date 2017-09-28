@@ -2268,3 +2268,53 @@
 .audio_subscription_popup .box_controls button {
     margin-left: 0
 }
+
+.audio_section_vkmobile_promo {
+    padding: 22px
+}
+
+.audio_section_vkmobile_promo .audio_promo_title {
+    font-weight: 700;
+    overflow: hidden;
+    font-size: 16px
+}
+
+.audio_section_vkmobile_promo .audio_promo_desc {
+    color: #656565;
+    overflow: hidden;
+    margin-top: 6px;
+    line-height: 1.38
+}
+
+.audio_section_vkmobile_promo>button {
+    float: right;
+    margin-left: 30px;
+    margin-right: 5px;
+    margin-top: 14px
+}
+
+.audio_section_vkmobile_promo .audio_promo_close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 10px;
+    height: 10px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%2010%2010%22%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%23828A99%22%20fill-rule%3D%22evenodd%22%20d%3D%22M5%203.691L1.578.27A.924.924%200%200%200%20.273.273.92.92%200%200%200%20.27%201.578L3.69%205%20.27%208.422a.924.924%200%200%200%20.004%201.305.92.92%200%200%200%201.305.004L5%206.31%208.422%209.73a.924.924%200%200%200%201.305-.004.92.92%200%200%200%20.004-1.305L6.31%205%209.73%201.578A.924.924%200%200%200%209.727.273.92.92%200%200%200%208.422.27L5%203.69z%22%2F%3E%0A%3C%2Fsvg%3E");
+    opacity: 0.5;
+    -o-transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease;
+    cursor: pointer
+}
+
+.audio_section_vkmobile_promo .audio_promo_close:hover {
+    opacity: 1
+}
+
+.audio_section_vkmobile_promo .audio_promo_close:after {
+    content: "";
+    top: -10px;
+    bottom: -10px;
+    left: -10px;
+    right: -10px;
+    position: absolute
+}
