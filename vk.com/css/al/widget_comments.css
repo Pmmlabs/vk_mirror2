@@ -1070,7 +1070,7 @@
     background: url(/images/icons/like_widget.png);
     z-index: 2;
     top: 7px;
-    left: 29px
+    left: 22px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -1089,7 +1089,7 @@
     width: 22px;
     height: 22px;
     position: absolute;
-    left: 25px;
+    left: 18px;
     top: 0;
     background: #5e81a8;
     border-radius: 3px

@@ -6810,6 +6810,7 @@ button.ui_load_more_btn {
 .audio_row .audio_row__action {
     display: inline-block;
     cursor: pointer;
+    outline: none;
     height: 24px;
     width: 24px;
     margin: 0 2px;
@@ -7537,7 +7538,7 @@ button.ui_load_more_btn {
 .audio_pl_snippet .audio_pl_snippet__more_btn {
     color: #2a5885;
     cursor: pointer;
-    padding: 4px 28px 17px 54px;
+    padding: 4px 28px 17px 53px;
     position: relative;
     display: block;
     overflow: hidden;
@@ -7719,6 +7720,20 @@ button.ui_load_more_btn {
 .audio_pl_snippet.audio_pl_snippet_size_narrow.audio_pl_snippet_small .audio_pl_snippet__header_inner {
     padding-right: 0;
     height: 79px
+}
+
+.audio_pl_snippet.audio_pl_snippet_size_narrow .audio_pl_snippet_play {
+    font-size: 0;
+    padding-left: 22px
+}
+
+.audio_pl_snippet.audio_pl_snippet_size_narrow .audio_pl_snippet_play:after {
+    content: ' ';
+    font-size: 13px
+}
+
+.widget_body .audio_row__action_more {
+    display: none
 }
 
 .bp_content .audio_pl_snippet {

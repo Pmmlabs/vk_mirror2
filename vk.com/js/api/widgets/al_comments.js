@@ -1871,6 +1871,12 @@ var WComments = {
                                         if (mediaRowEl) {
                                             data = AudioUtils.getAudioFromEl(mediaRowEl);
                                         }
+                                    } else {
+                                        data.forEach(function(v, k) {
+                                            if (isString(v)) {
+                                                data[k] = clean(unclean(unclean(v)));
+                                            }
+                                        });
                                     }
 
                                     preview = Page.addAudioPreview(clean(media), data);
