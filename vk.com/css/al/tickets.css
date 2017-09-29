@@ -2451,6 +2451,10 @@ a.tickets_question_row_tt:hover {
     overflow: hidden
 }
 
+.tickets_text_ef_row .value.links>a:visited {
+    color: #609
+}
+
 .tickets_dmca_buttons {
     padding-top: 10px
 }

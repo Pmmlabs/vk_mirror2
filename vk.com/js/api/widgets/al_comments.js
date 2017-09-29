@@ -1,6 +1,11 @@
 var WComments = {
 
     init: function(options) {
+
+        if (options.reply_names && isArray(options.reply_names)) {
+            options.reply_names = {};
+        }
+
         extend(cur, {
             options: options,
             oid: options.user_id,
@@ -173,6 +178,9 @@ var WComments = {
 
     applyOptions: function(options) {
         if (options.reply_names) {
+            if (isArray(options.reply_names)) {
+                options.reply_names = {};
+            }
             cur.options.reply_names = extend(cur.options.reply_names || {}, options.reply_names);
             delete options.reply_names;
         }

@@ -4246,6 +4246,13 @@ div.top_result_baloon a {
     box-sizing: border-box
 }
 
+.audio_row .audio_row__action_replace {
+    color: #2a5885;
+    vertical-align: top;
+    box-sizing: border-box;
+    width: auto
+}
+
 .audio_row .audio_row__action_claim_btn {
     white-space: nowrap;
     font-size: 12px;

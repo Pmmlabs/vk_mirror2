@@ -589,7 +589,8 @@ i i.untranslated {
 }
 
 .tr_lang_flag img {
-    border-radius: 2px
+    width: 34px;
+    height: 26px
 }
 
 .tr_lang_status {
