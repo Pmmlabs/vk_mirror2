@@ -670,6 +670,8 @@ var Videoview = {
                 mvcur.addButtonTT = mvcur.addButtonTT || new ElementTooltip(r, {
                     cls: "mv_add_eltt",
                     elClassWhenShown: "mv_no_active",
+                    showOnClick: !0,
+                    noHideOnClick: !0,
                     onFirstTimeShow: function(e) {
                         function i(e) {
                             var i = mvcur.addButtonTT.getContent();
@@ -680,11 +682,11 @@ var Videoview = {
                             var t = i["private"] ? '<span class="mv_tt_playlist_private_icon" onmouseover="showTooltip(this,{black:1,text: \'' + getLang("video_album_is_private_tt") + "', shift:[16, 8, 0]})\"></span>" : "",
                                 a = '<div class="checkbox' + (i.added ? " on" : "") + (i.disabled ? " disabled" : "") + '" data-id="' + i.id + '" onclick="checkbox(this);">' + i.title + "</div>" + t;
                             o += '<div class="mv_tt_playlist">' + a + "</div>"
-                        }), o += "</div>", o += '<div class="mv_tt_add_playlist" onclick="Videoview.addPlaylist(' + d + ')"><span class="mv_tt_plus_icon"></span>' + (d ? getLang("video_add_private_album") : getLang("video_add_album")) + "</div></div>", e.innerHTML = o, each(geByClass("checkbox", e), function() {
+                        }), o += "</div>", o += '<div class="mv_tt_add_playlist" role="link" tabindex="0" onclick="Videoview.addPlaylist(' + d + ')"><span class="mv_tt_plus_icon"></span>' + (d ? getLang("video_add_private_album") : getLang("video_add_album")) + "</div></div>", e.innerHTML = o, each(geByClass("checkbox", e), function() {
                             addEvent(this, "click", a)
                         });
                         var t = domByClass(e, "mv_tt_add_playlist");
-                        addEvent(t, "mouseenter", i.pbind(!0)), addEvent(t, "mouseleave", i.pbind(!1))
+                        addEvent(t, "mouseenter", i.pbind(!0)), addEvent(t, "mouseleave", i.pbind(!1)), updateAriaCheckboxes()
                     },
                     onDestroy: function(e) {
                         e && (each(geByClass("checkbox", e), function() {
@@ -831,8 +833,7 @@ var Videoview = {
                 if (n && /^wall_/.test(i) && VideoPlaylist.lists[i] && cur.wallVideos && cur.wallVideos[i] && (VideoPlaylist.extendList(i, cur.wallVideos[i].list), VideoPlaylist.updateBlockList(i)), n) {
                     ge("mv_main").appendChild(n);
                     var d = VideoPlaylist.getCurList().list.length;
-                    (window.Video && Video.isInVideosList() && vk.id == cur.oid || 5 > d) && (a || VideoPlaylist.toggle(!1)),
-                    isFunction(o) && o(VideoPlaylist.updateBlockList.pbind(i)), setTimeout(function() {
+                    (window.Video && Video.isInVideosList() && vk.id == cur.oid || 5 > d) && (a || VideoPlaylist.toggle(!1)), isFunction(o) && o(VideoPlaylist.updateBlockList.pbind(i)), setTimeout(function() {
                         VideoPlaylist.restoreScrollPos(), VideoPlaylist.updateScrollbar(), VideoPlaylist.setCurVideo(e, a)
                     }, 0)
                 }

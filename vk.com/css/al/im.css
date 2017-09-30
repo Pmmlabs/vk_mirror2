@@ -50,6 +50,7 @@
 .im_stickers_banners_wrap .isb_arrow_right:after,
 .im_stickers_close:after,
 .im_stickers_layer_close:after,
+.im_stickers_notif_close,
 .im_unread_info_pic_community_message,
 .nim-dialog .nim-dialog--markre,
 .nim-dialog .nim-dialog--star,
@@ -1006,9 +1007,13 @@ img.im_photo_thumb {
 }
 
 .im_stickers_notif_block {
-    padding: 15px;
+    padding: 12px;
     margin: 8px;
-    background-color: #fff
+    background-color: #fff;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .08), 0 1px 2px rgba(0, 0, 0, .06);
+    position: relative
 }
 
 .im_stickers_notif_button .flat_button {
@@ -1020,7 +1025,7 @@ img.im_photo_thumb {
 }
 
 .im_stickers_notif_image {
-    margin: 0 15px 0 0;
+    margin: 0 12px 0 0;
     float: left
 }
 
@@ -1033,20 +1038,52 @@ img.im_photo_thumb {
 }
 
 .im_stickers_notif_header {
-    margin: 0 0 4px;
+    margin: 0 0 3px;
     font-size: 14px;
+    color: #222;
+    line-height: 18px;
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale
 }
 
 .im_stickers_notif_text {
-    margin: 0 10px 15px 0;
-    line-height: 19px
+    margin: 0 10px 10px 0;
+    line-height: 17px;
+    color: #656565
 }
 
 .im_stickers_notif_text:last-child {
     margin-bottom: 0
+}
+
+.im_stickers_notif_close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAZUlEQVR4AWOYvGTPFiDeM3PVGX4GNLBq1THOyYv3rp+yeM8xBiCxZvLiPf+BAichihGKQAaA5KYs2bMfqmvPbmTF2MRQdMMkkNnoTkIxGV0RSQqJtppoz+AMHphiePAAGVuJCXAAP23DGbWTuxYAAAAASUVORK5CYII=") no-repeat 50%;
+    cursor: pointer;
+    -o-transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease;
+    opacity: 0.75;
+    filter: alpha(opacity=75)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im_stickers_notif_close {
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAtklEQVR4Aa3VsQ3CMBAFUA8DUwADsAgL2UoGsN0wwylOzwAgqKGkCQVduEMp3P18yZES+aS71+T07bokR5/k5aPc+zTsHPn0edyGKBedf/s8nJxiNy3m5f10UQ4k9qzmv04/oxUYhdhstQvnsrEDRAFmMyGXfd2AUaYXNhLYKpTGEGqrRWMA5TACnWiMB3mMR/mfglFibQBKLDZACWwt2jIcpn84hCSlaXzp4do0YKsr4NHiCvgBI/N2W1tnb1UAAAAASUVORK5CYII=");
+        background-size: 10px 10px
+    }
+}
+
+.im_stickers_notif_close:hover {
+    opacity: 1;
+    -webkit-filter: none;
+    filter: none
 }
 
 .im_group_average_summary {

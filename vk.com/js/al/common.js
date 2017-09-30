@@ -11716,6 +11716,7 @@ function getRadioBtnWrap(el) {
     elClassWhenShown - class that will be added to el when tooltip is shown
     setPos          - function for calculation tooltip custom position. forceSide parameter is required
     showOnClick     - show tooltip on mouse click (default: false)
+    noHideOnClick   - no hide tooltip after show by click. work only with showOnClick (default: false)
     type            - ElementTooltip.TYPE_VERTICAL / ElementTooltip.TYPE_HORIZONTAL (default vertical)
     forceSide       - forces tooltip to be shown on particular side top/down/left/right. It ignores type option.
     defaultSide
@@ -11752,12 +11753,10 @@ function ElementTooltip(el, opts) {
         appendToParent: false,
         autoShow: true,
         autoHide: false,
+        showOnClick: false,
+        noHideOnClick: false,
         arrowSize: 'normal'
     }, opts);
-
-    if (this._opts.showOnClick) {
-        this._opts.autoShow = false
-    }
 
     if (!this._opts.defaultSide) {
         this._opts.defaultSide = this._opts.type == ElementTooltip.TYPE_VERTICAL ? 'top' : 'left'
@@ -11823,6 +11822,7 @@ ElementTooltip.prototype._initEvents = function(el) {
 
     if (this._opts.showOnClick) {
         addEvent(el, 'click', this._el_c_event = function() {
+            if (this._isShown && this._opts.noHideOnClick) return;
             this.toggle(!this._isShown)
         }.bind(this));
     }

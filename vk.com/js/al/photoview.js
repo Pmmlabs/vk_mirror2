@@ -617,7 +617,9 @@ var Photoview = {
                         forceSide: "top",
                         elClassWhenShown: "pv_more_shown",
                         content: x + I,
-                        offset: [0, -5]
+                        offset: [0, -5],
+                        showOnClick: !0,
+                        noHideOnClick: !0
                     }))
                 }
                 Photoview.updatePhotoDimensions(), extend(cur, {

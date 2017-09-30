@@ -74,7 +74,7 @@
 }
 
 .mi_section {
-    padding: 0 0 20px
+    padding: 0 0 18px
 }
 
 .mi_section h2 {
@@ -265,10 +265,16 @@ table.history .cur_session {
 }
 
 .mi_more_link {
-    margin: 18px 18px 0;
-    padding: 5px 0;
+    margin: 15px 18px 0;
+    padding: 7px 0px;
+    border-radius: 2px;
+    color: #738392;
     text-align: center;
     display: block
+}
+
+.mi_more_link.flat_button {
+    background-color: #e9edf1
 }
 
 .mi_body_adaptive .mi_more_link {
@@ -522,6 +528,10 @@ table.history .cur_session {
 
 .mi_ban_form .mi_ban_wrap {
     padding: 10px 100px 0
+}
+
+.mi_ban_form .mi_ban_wrap .trusted_warning {
+    margin-top: 10px
 }
 
 .mi_ban_form .ban_subcause_text {

@@ -314,22 +314,22 @@ var Feed = {
                 m.insertBefore(f, m.firstChild), feed.needScrollPost(t, f) && (d += f.offsetHeight + c(f)), cur.feedUnreadCount++, v.length > 300 ? m.removeChild(v[300]) : v.length <= 1 && removeClass(cur.feedEls.wrap, "feed_is_empty");
                 break;
             case "edit_post":
-                var E, B = ge("wpt" + r);
-                if (!isVisible(i) || !B) break;
-                var L = geByClass1("wall_post_more", B);
-                L && (L = isVisible(domNS(L))), (E = feed.needScrollPost(t, B)) && (d -= B.offsetHeight);
+                var B, E = ge("wpt" + r);
+                if (!isVisible(i) || !E) break;
+                var L = geByClass1("wall_post_more", E);
+                L && (L = isVisible(domNS(L))), (B = feed.needScrollPost(t, E)) && (d -= E.offsetHeight);
                 var M = psr(rs(e[3], {
                         poll_hash: cur.wallTpl.poll_hash
                     })),
                     m = ge("post" + r);
-                m && !isVisible(m.parentNode) && (M = wall.updatePostImages(M)), val(B, M), L && (L = geByClass1("wall_post_more", B), L && L.onclick()), ge("post_poll_id" + r) && wall.updatePoll(r), E && (d += B.offsetHeight), nodeUpdated(B);
+                m && !isVisible(m.parentNode) && (M = wall.updatePostImages(M)), val(E, M), L && (L = geByClass1("wall_post_more", E), L && L.onclick()), ge("post_poll_id" + r) && wall.updatePoll(r), B && (d += E.offsetHeight), nodeUpdated(E);
                 break;
             case "edit_reply":
                 var N = e[3],
-                    B = ge("wpt" + N);
-                if (!isVisible("post" + N) || !B) break;
-                var L = geByClass1("wall_reply_more", B);
-                L && (L = isVisible(domNS(L))), updH = -B.offsetHeight, updY = getXY(B)[1], val(B, psr(e[4])), L && (L = geByClass1("wall_reply_more", B), L && L.onclick()), updH += B.offsetHeight, nodeUpdated(B);
+                    E = ge("wpt" + N);
+                if (!isVisible("post" + N) || !E) break;
+                var L = geByClass1("wall_reply_more", E);
+                L && (L = isVisible(domNS(L))), updH = -E.offsetHeight, updY = getXY(E)[1], val(E, psr(e[4])), L && (L = geByClass1("wall_reply_more", E), L && L.onclick()), updH += E.offsetHeight, nodeUpdated(E);
                 break;
             case "post_parsed_link":
                 if (!i) break;
@@ -749,22 +749,26 @@ var Feed = {
     setSearchSort: function(e) {
         cur.search_sort_value = e, Feed.submitSearch()
     },
+    _activateReplyBox: function(e, t, o) {
+        (t || {}).cancelBubble = !0;
+        var s = ge("reply_box" + e);
+        if (cur.editing && cur.editing != e && cur.notifyReplyData && cur.notifyReplyData[cur.editing].disabled && feed.notifyCheckHideReply(cur.editing, (window.event || {}).target), s && isVisible(s)) return void feed.notifyCheckHideReply(e, !1);
+        if (void 0 === cur.notifyReplyData && (cur.notifyReplyData = {}), cur.notifyReplyData[e] = o, o.disabled) return s ? show(s) : itemEl.appendChild(se(rs(cur.options.feedback_dis, {
+            item: e,
+            text: o.disabled
+        }))), void setTimeout(function() {
+            cur.editing = e
+        }, 0);
+        show(s), Wall.showEditReply(e, t);
+        var r = ge("reply_field" + e);
+        r.setAttribute("placeholder", o.ph), window.Emoji && Emoji.val(r, o.greet.replace(/ $/, "&nbsp;")), data(r, "send", feed.notifySendReply), removeClass("reply_box" + e, "clear_fix")
+    },
     notifyClick: function(e, t, o) {
         var s = ge("feedback_row" + e);
-        if (Wall.checkPostClick(s, t)) {
-            (t || {}).cancelBubble = !0;
-            var r = ge("reply_box" + e);
-            if (cur.editing && cur.editing != e && cur.notifyReplyData && cur.notifyReplyData[cur.editing].disabled && feed.notifyCheckHideReply(cur.editing, (window.event || {}).target), r && isVisible(r)) return void feed.notifyCheckHideReply(e, !1);
-            if (void 0 === cur.notifyReplyData && (cur.notifyReplyData = {}), cur.notifyReplyData[e] = o, o.disabled) return r ? show(r) : s.appendChild(se(rs(cur.options.feedback_dis, {
-                item: e,
-                text: o.disabled
-            }))), void setTimeout(function() {
-                cur.editing = e
-            }, 0);
-            show(r), Wall.showEditReply(e, t);
-            var i = ge("reply_field" + e);
-            i.setAttribute("placeholder", o.ph), window.Emoji && Emoji.val(i, o.greet.replace(/ $/, "&nbsp;")), data(i, "send", feed.notifySendReply), removeClass("reply_box" + e, "clear_fix")
-        }
+        Wall.checkPostClick(s, t) && Feed._activateReplyBox(e, t, o)
+    },
+    blindNotifyReply: function(e, t, o) {
+        Feed._activateReplyBox(e, t, o)
     },
     notifySendReply: function(e, t, o) {
         var s = cur.notifyReplyData[e];
@@ -934,8 +938,7 @@ var Feed = {
                     var r = gpeByClass("_feedback_deleted", s);
                     if (1 == o) return void re(gpeByClass("_feed_row", r));
                     var i, n, a = !1;
-                    if (hasClass(r, "_top_feedback_deleted") ? (a = !0, i = ge("top_notify_cont")) : i = cur.rowsCont,
-                        i && (n = i.firstChild)) {
+                    if (hasClass(r, "_top_feedback_deleted") ? (a = !0, i = ge("top_notify_cont")) : i = cur.rowsCont, i && (n = i.firstChild)) {
                         var d, c, l = !1,
                             u = scrollGetY();
                         do n.className && hasClass(n, "_feed_row") && n.firstChild && e == n.firstChild.getAttribute("author") && (d = n.offsetHeight, c = n.offsetTop, l === !1 && (l = getXY(n.offsetParent)[1]), hide(n), u > c + l && (u -= d, scrollToY(u, 0))); while (n = n.nextSibling);

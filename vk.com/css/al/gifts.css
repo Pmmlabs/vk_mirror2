@@ -8,6 +8,7 @@
 .gift_send_btn,
 .gifts_constr_option.gifts_option_current:after,
 .gifts_constr_step:after,
+.gifts_notif_close,
 .gifts_scroll_left,
 .gifts_scroll_right,
 .gifts_section_show_all:after {
@@ -847,8 +848,12 @@ img.gift_duck_tease#gift_item_733 {
 }
 
 .gifts_notif_block {
-    padding: 15px;
-    margin-bottom: 0
+    margin: 15px 15px 0;
+    padding: 12px;
+    border: none;
+    background-color: #e6ebf0;
+    border-radius: 3px;
+    position: relative
 }
 
 .gifts_notif_button .flat_button {
@@ -860,7 +865,7 @@ img.gift_duck_tease#gift_item_733 {
 }
 
 .gifts_notif_image {
-    margin: 0 15px 0 0;
+    margin: 0 12px 0 0;
     float: left
 }
 
@@ -873,18 +878,50 @@ img.gift_duck_tease#gift_item_733 {
 }
 
 .gifts_notif_header {
-    margin: 0 0 4px;
+    margin: 0 0 3px;
     font-size: 14px;
+    line-height: 18px;
+    color: #222;
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale
 }
 
 .gifts_notif_text {
-    margin: 0 10px 15px 0;
-    line-height: 19px
+    margin: 0 10px 10px 0;
+    line-height: 17px;
+    color: #4e5966
 }
 
 .gifts_notif_text:last-child {
     margin-bottom: 0
+}
+
+.gifts_notif_close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAZUlEQVR4AWOYvGTPFiDeM3PVGX4GNLBq1THOyYv3rp+yeM8xBiCxZvLiPf+BAichihGKQAaA5KYs2bMfqmvPbmTF2MRQdMMkkNnoTkIxGV0RSQqJtppoz+AMHphiePAAGVuJCXAAP23DGbWTuxYAAAAASUVORK5CYII=") no-repeat 50%;
+    cursor: pointer;
+    -o-transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease;
+    opacity: 0.75;
+    filter: alpha(opacity=75)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .gifts_notif_close {
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAtklEQVR4Aa3VsQ3CMBAFUA8DUwADsAgL2UoGsN0wwylOzwAgqKGkCQVduEMp3P18yZES+aS71+T07bokR5/k5aPc+zTsHPn0edyGKBedf/s8nJxiNy3m5f10UQ4k9qzmv04/oxUYhdhstQvnsrEDRAFmMyGXfd2AUaYXNhLYKpTGEGqrRWMA5TACnWiMB3mMR/mfglFibQBKLDZACWwt2jIcpn84hCSlaXzp4do0YKsr4NHiCvgBI/N2W1tnb1UAAAAASUVORK5CYII=");
+        background-size: 10px 10px
+    }
+}
+
+.gifts_notif_close:hover {
+    opacity: 1;
+    -webkit-filter: none;
+    filter: none
 }

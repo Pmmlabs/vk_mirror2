@@ -360,6 +360,11 @@
     display: none
 }
 
+.info_msg.trusted_warning {
+    margin: 0px;
+    line-height: 20px
+}
+
 .profile_no_ava {
     width: 200px;
     height: 200px

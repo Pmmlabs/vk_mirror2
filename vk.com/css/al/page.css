@@ -644,6 +644,10 @@ h5.post_author {
     margin: 5px 0 0
 }
 
+.wall_module .copy_quote .page_doc_photo {
+    margin-top: 8px
+}
+
 .wall_module .published_comment {
     padding-bottom: 8px
 }

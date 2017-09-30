@@ -300,13 +300,14 @@ extend(UiControl.prototype, {
                 i.showImage(t), i.activeItemValue = t
             },
             onItemSelect: i._selectItem.bind(i),
+            forAutocomplete: i.options.autocomplete,
             onShow: function() {
                 _ui.sel(i.guid), i.highlightInput(!0), isFunction(i.options.onShow) && i.options.onShow()
             },
             onHide: function() {
-                _ui.sel(!1), i.highlightInput(!1), isFunction(i.options.onHide) && i.options.onHide()
+                _ui.sel(!1), i.highlightInput(!1), isFunction(i.options.onHide) && i.options.onHide(), i._ariaOnSelectHide()
             }
-        })
+        }), this._initAria()
     },
     initEvents: function() {
         function t(t) {
@@ -529,6 +530,7 @@ extend(UiControl.prototype, {
             case "blur":
                 if (isFunction(e.options.chooseFirst) && e.options.chooseFirst(e.input.value)) return e.select.active = 0, isFunction(e.select.options.onItemSelect) && e.select.options.onItemSelect(e.select.selectedItem(), void 0, !0), cancelEvent(t);
                 if (e.readOnly) return !0;
+                if (vk.a11y && e.select.isVisible()) return;
                 e.disabled || (e.updateCustom(), clearTimeout(e.requestTimeout), e.changeAfterBlur && isFunction(e.options.onChange) && (e.options.enableCustom && e._selectedItems.length || e.options.onChange(""), e.changeAfterBlur = !1), e.options.onBlur && e.options.onBlur()), removeClass(e.input, "focused"), e.hasFocus = 0, e.updatePlaceholder()
         }
         return !0
@@ -632,7 +634,7 @@ extend(UiControl.prototype, {
             if (this._selectedItems.length >= this.options.maxItems) return void this.select.hide();
             this.deselectTokens(), this.addTagData(s), this.showImage(), this.options.multiselect ? (this.input.value = "", this.dataURL ? this.select.clear() : this.select.removeItem(s[0])) : (this.input.value = "0" == s[0] && s[1] == this.options.placeholder ? "" : winToUtf(stripHTML(s[1])), addClass(this.input, "selected"), this.updatePlaceholder()), this.select.hide(), this.updateInput(), i && this.options.multiselect && !this.readOnly ? setTimeout(function() {
                 this.options.multinostop || (this.focusSelf = !0), hide(this.input), show(this.input), this.input.focus()
-            }.bind(this), 100) : this.options.noBlur || this.input.blur(), e && (this.options.multiselect && isFunction(this.options.onTagAdd) && this.options.onTagAdd(s, this.resultField.value), isFunction(this.options.onChange) && this.options.onChange(this.resultField.value, s))
+            }.bind(this), 100) : this.options.noBlur || this.input.blur(), e && (this.options.multiselect && isFunction(this.options.onTagAdd) && this.options.onTagAdd(s, this.resultField.value), isFunction(this.options.onChange) && this.options.onChange(this.resultField.value, s)), this._updateOptionsAriaSelected(!0)
         }
     },
     addTagData: function(t) {
@@ -666,7 +668,7 @@ extend(UiControl.prototype, {
             addEvent(r, "mousedown", function() {
                 return l.select.hide(), l.removeTagData(s.getAttribute("data-id")), !l.readOnly && l.hasFocus && l.input.focus(), !1
             }), l.selectedItemsContainer.appendChild(s);
-            for (var h = s.firstChild.nextSibling.firstChild.nextSibling, a = h.innerHTML; s.offsetWidth > n && a.length > 3;) a = a.substr(0, a.length - 2), h.innerHTML = a + "...";
+            for (var a = s.firstChild.nextSibling.firstChild.nextSibling, h = a.innerHTML; s.offsetWidth > n && h.length > 3;) h = h.substr(0, h.length - 2), a.innerHTML = h + "...";
             return this.options.limitedListHeight && (this.selectedItemsContainerWrap.style.display = "none", this.selectedItemsContainerWrap.offsetHeight, this.selectedItemsContainerWrap.style.display = "block", this.updateSelectedItemsScroll({
                 target: this.selectedItemsContainer
             }), animate(this.selectedItemsContainer, {
@@ -684,7 +686,7 @@ extend(UiControl.prototype, {
         for (i in this._selectedItems) this._selectedItems[i][0] != t ? n.push(this._selectedItems[i][0]) : o = i;
         return void 0 == o ? !1 : (this.resultField.value = n.join(this.options.selectedItemsDelimiter), isFunction(this.options.onTagRemove) && this.options.onTagRemove(this._selectedItems[o], this.resultField.value), isFunction(this.options.onChange) && this.options.onChange(this.resultField.value), this._selectedItems.splice(o, 1), this.options.multiselect && (this.defaultList = !1), this.showImage(), this.updateInput(), this.options.limitedListHeight && (this.selectedItemsContainerWrap.style.display = "none", this.selectedItemsContainerWrap.offsetHeight, this.selectedItemsContainerWrap.style.display = "block", this.updateSelectedItemsScroll({
             target: this.selectedItemsContainer
-        })), !1)
+        })), this._updateOptionsAriaSelected(!0), !1)
     },
     replaceTagID: function(t, e) {
         for (var i in this._selectedItems)
@@ -733,7 +735,8 @@ extend(UiControl.prototype, {
     showDefaultList: function() {
         var t = hasClass(this.container, "reverse"),
             e = this.needsReverse();
-        if (t != e && (this.currenDataItems && this.setSelectContent(this.currenDataText || "", this.currenDataItems), toggleClass(this.container, "reverse", e), t = e), this.defaultList && this.select.hasItems()) this.options.multiselect || !this._selectedItems.length ? this.select.show() : this.select.show(this._selectedItems[0][0]);
+        if (t != e && (this.currenDataItems && this.setSelectContent(this.currenDataText || "", this.currenDataItems), toggleClass(this.container, "reverse", e),
+                t = e), this.defaultList && this.select.hasItems()) this.options.multiselect || !this._selectedItems.length ? this.select.show() : this.select.show(this._selectedItems[0][0]);
         else {
             this.defaultList = !0;
             var i = null;
@@ -757,14 +760,14 @@ extend(UiControl.prototype, {
             l = (window.pageNode && window.browser.mozilla ? Math.min(getSize(pageNode)[1], window.lastWindowHeight) : window.lastWindowHeight) || getScroll()[3],
             r = this.resultList && this.resultList.firstChild;
         if (r && r.firstChild) {
-            var h = getStyle(this.resultList, "display"),
-                a = getStyle(this.resultList, "visibility");
+            var a = getStyle(this.resultList, "display"),
+                h = getStyle(this.resultList, "visibility");
             setStyle(this.resultList, {
                 visibility: "hidden",
                 display: "block"
             }), t = getSize(this.resultList)[1], setStyle(this.resultList, {
-                visibility: a,
-                display: h
+                visibility: h,
+                display: a
             })
         } else t = n ? n : this.currenDataItems ? this.currenDataItems.length * getSize(this.container)[1] : o;
         return t > o && (t = o), i + s + t - e > l && i - t - e > 0 && i - t > 40
@@ -785,17 +788,17 @@ extend(UiControl.prototype, {
             for (o = 0; o < e.length; ++o) {
                 var r = e[o];
                 if (!n) break;
-                var h = l.options.formatResult(r);
-                if (i && (h = l.options.highlight(h, i)) && --n, h) {
-                    var a = [r[0], h];
-                    a.push("1" === r[5]), "label" === r[3] && a.push(1), s.push(a)
+                var a = l.options.formatResult(r);
+                if (i && (a = l.options.highlight(a, i)) && --n, a) {
+                    var h = [r[0], a];
+                    h.push("1" === r[5]), "label" === r[3] && h.push(1), s.push(h)
                 }
             }
         }
         t && s.length > 1 && (s = s.slice(1)), this.select.content(s)
     },
     _showSelectList: function(t, e, i) {
-        return this.currenDataItems = e, this.currenDataText = t, this.setSelectContent(t, e, i), this.select.hasItems() ? this.options.multiselect || !this._selectedItems.length ? this.select.show() : this.select.show(this._selectedItems[0][0]) : this.select.hide(), !0
+        return this.currenDataItems = e, this.currenDataText = t, this.setSelectContent(t, e, i), this.select.hasItems() ? this.options.multiselect || !this._selectedItems.length ? this.select.show() : this.select.show(this._selectedItems[0][0]) : this.select.hide(), this._updateOptionsAriaSelected(!1), !0
     },
     receiveData: function(t, e) {
         t == this.curTerm && ("" !== t && e && e.length && this.hasFocus ? (this.receivedData = e, this.showDataList(e, t)) : this.select.hide())
@@ -924,6 +927,25 @@ extend(UiControl.prototype, {
     },
     clear: function() {
         this._clear(), this.input.value = "", this.updateInput()
+    },
+    _initAria: function() {
+        vk.a11y && (this.input.setAttribute("aria-owns", this.select.getListContainerId()), this.input.setAttribute("role", "combobox"))
+    },
+    _updateOptionsAriaSelected: function(t) {
+        if (vk.a11y) {
+            var e = this,
+                i = domChildren(this.select.list),
+                s = e.val().split(",");
+            each(i, function() {
+                if (~s.indexOf(this.getAttribute("val"))) {
+                    if (this.setAttribute("aria-label", getLang("global_dropdown_aria_label_selected") + clean(this.textContent)), this.setAttribute("aria-selected", !0), !e.options.multiselect && !t) return !1
+                } else t && (this.setAttribute("aria-selected", !1), this.setAttribute("aria-label", ""))
+            })
+        }
+    },
+    _ariaOnSelectHide: function() {
+        var t = this;
+        vk.a11y && !t.val() && (t.input.value = "", t.updatePlaceholder())
     }
 }), createChildClass("Select", UiControl, {
     common: {
@@ -955,8 +977,14 @@ extend(UiControl.prototype, {
     init: function(t, e) {
         this.container = t, this.active = -1, this.data = [], this.uid = this.common.reg(this), this.maxHeight = this.options.height ? this.options.height : 250
     },
+    getListContainerId: function() {
+        return "list_options_container_" + this.uid
+    },
     initDOM: function() {
-        this.list = ce("ul"), this.container.appendChild(this.list)
+        this.list = ce("ul"), this.list.id = this.getListContainerId(), this._initAriaDom(), this.container.appendChild(this.list)
+    },
+    _initAriaDom: function() {
+        vk.a11y && (this.list.setAttribute("role", "listbox"), this.list.setAttribute("tabindex", "0"))
     },
     show: function(t) {
         var e = isVisible(this.container);
@@ -975,7 +1003,7 @@ extend(UiControl.prototype, {
                     this.highlight(o, i);
                     break
                 }
-        }!e && isFunction(this.options.onShow) && this.options.onShow()
+        }!e && isFunction(this.options.onShow) && this.options.onShow(), this._ariaFocusOnSelectContainer()
     },
     hide: function() {
         isVisible(this.container) && (hide(this.container), isFunction(this.options.onHide) && this.options.onHide(), this.highlight(-1), isFunction(this.options.onItemActive) && this.options.onItemActive())
@@ -1044,7 +1072,7 @@ extend(UiControl.prototype, {
             if (i && !i.getAttribute("dis")) break;
             e++
         }
-        return this.highlight(e, this.list.childNodes[e]), !0
+        return this.highlight(e, this.list.childNodes[e]), this._ariaFocusOnSelectedItem(e), !0
     },
     highlight: function(t, e, i) {
         return -1 != this.active && removeClass(this.list.childNodes[this.active], this.CSS.ACTIVE), e ? (this.active = t, addClass(e, this.CSS.ACTIVE), isFunction(this.options.onItemActive) && this.options.onItemActive(e.getAttribute("val") || e.innerHTML), e.offsetTop + e.offsetHeight + this.list.offsetTop > this.container.offsetHeight + this.container.scrollTop - 1 ? this.container.scrollTop = e.offsetTop + this.list.offsetTop + e.offsetHeight - this.container.offsetHeight + 1 : e.offsetTop + this.list.offsetTop < this.container.scrollTop && (this.container.scrollTop = e.offsetTop + this.list.offsetTop), void(i && (this.container.scrollTop = e.offsetTop - this.container.offsetHeight / 2))) : void(this.active = -1)
@@ -1061,10 +1089,10 @@ extend(UiControl.prototype, {
         this.maxHeight < this.list.offsetHeight ? (this.container.style.height = this.maxHeight + "px", addClass(this.container, this.CSS.SCROLLABLE)) : (removeClass(this.container, this.CSS.SCROLLABLE), this.container.style.height = "auto")
     },
     content: function(t) {
-        var e, i, s, o, n, l, r, h, a = [],
+        var e, i, s, o, n, l, r, a, h = [],
             d = t.length;
-        for (e = 0; d > e; ++e) i = t[e], s = i[0], o = i[1], n = i[2], l = i[3], r = this.uid + ", " + e, s = void 0 === s || null === s ? "" : s.toString(), o = (void 0 === o || null === o ? "" : o.toString()) || s, h = 1 === l, a.push("<li ", n ? 'dis="1"' : 'onmousemove="Select.itemMouseMove(' + r + ', this)" onmousedown="Select.itemMouseDown(' + r + ', this)" onclick="Select.itemMouseDown(' + r + ', this)"', ' val="', s.replace(/&/g, "&amp;").replace(/"/g, "&quot;"), '" class="', h ? this.CSS.LABEL + " " : "", n ? "disabled " : "", e == d - 1 ? this.CSS.LAST + " " : "", (e ? "" : this.CSS.FIRST) + '">', o, "</li>");
-        return this.list.innerHTML = a.join(""), this.updateContainer(), !0
+        for (e = 0; d > e; ++e) i = t[e], s = i[0], o = i[1], n = i[2], l = i[3], r = this.uid + ", " + e, s = void 0 === s || null === s ? "" : s.toString(), o = (void 0 === o || null === o ? "" : o.toString()) || s, a = 1 === l, h.push("<li ", n ? 'dis="1"' : 'onmousemove="Select.itemMouseMove(' + r + ', this)" onmousedown="Select.itemMouseDown(' + r + ', this)" onclick="Select.itemMouseDown(' + r + ', this)"', ' val="', s.replace(/&/g, "&amp;").replace(/"/g, "&quot;"), '" class="', a ? this.CSS.LABEL + " " : "", n ? "disabled " : "", e == d - 1 ? this.CSS.LAST + " " : "", (e ? "" : this.CSS.FIRST) + '" role="option" aria-selected="false" tabindex="0">', o, "</li>");
+        return this.list.innerHTML = h.join(""), this.updateContainer(), !0
     },
     removeItem: function(t) {
         var e, i, s = this.list.childNodes,
@@ -1101,6 +1129,12 @@ extend(UiControl.prototype, {
     },
     toggle: function() {
         this.isVisible(this.container) ? this.hide() : this.show()
+    },
+    _ariaFocusOnSelectContainer: function() {
+        vk.a11y && !this.options.forAutocomplete && this.list.focus()
+    },
+    _ariaFocusOnSelectedItem: function(t) {
+        vk.a11y && this.list.childNodes[t].focus()
     }
 }), createChildClass("Checkbox", UiControl, {
     CSS: {
@@ -1415,9 +1449,9 @@ extend(UiControl.prototype, {
         var l = getSize(this.header)[0],
             r = getSize(this.body)[0];
         l > r && setStyle(this.rows, "width", l - 2 + "px"), r = getSize(this.body)[0];
-        var h = document.documentElement.clientWidth,
-            a = t + r > h && t + l > r ? -l - 1 + "px" : "auto";
-        setStyle(this.body, "right", a)
+        var a = document.documentElement.clientWidth,
+            h = t + r > a && t + l > r ? -l - 1 + "px" : "auto";
+        setStyle(this.body, "right", h)
     },
     moveToTarget: function() {
         var t = getXY(this.options.target);
@@ -1633,15 +1667,15 @@ extend(UiControl.prototype, {
         var l = null;
         return e.already_added = {}, each(e.storage.index[o.substr(0, e.options.chars)], function(i, s) {
             var o, r = e.storage.data[s],
-                h = !1,
-                a = "";
-            for ("label" === r[3] && (l = s), o = 0; o < e.options.indexkeys.length; o++) r[e.options.indexkeys[o]] && (a += " " + r[e.options.indexkeys[o]].replace(e.options.delimeter, " ").replace(/<[^>]*>/, "").replace(/[\u00AB\u00BB]/g, ""));
-            for (a += (parseLatin(a) || "") + (parseCyr(a) || ""), a = winToUtf(a).toLowerCase(), o = 0; o < t.length; o++)
-                if (-1 == a.indexOf(" " + t[o])) {
-                    h = !0;
+                a = !1,
+                h = "";
+            for ("label" === r[3] && (l = s), o = 0; o < e.options.indexkeys.length; o++) r[e.options.indexkeys[o]] && (h += " " + r[e.options.indexkeys[o]].replace(e.options.delimeter, " ").replace(/<[^>]*>/, "").replace(/[\u00AB\u00BB]/g, ""));
+            for (h += (parseLatin(h) || "") + (parseCyr(h) || ""), h = winToUtf(h).toLowerCase(), o = 0; o < t.length; o++)
+                if (-1 == h.indexOf(" " + t[o])) {
+                    a = !0;
                     break
                 }
-            h || (e.options.includeLabelsOnMatch && l && (s == l || e.already_added[l] || (n.push(e.storage.data[l]), e.already_added[l] = !0), l = null), (e.options.preventDuplicates && !e.already_added[s] || !e.options.preventDuplicates) && n.push(r), e.already_added[s] = !0)
+            a || (e.options.includeLabelsOnMatch && l && (s == l || e.already_added[l] || (n.push(e.storage.data[l]), e.already_added[l] = !0), l = null), (e.options.preventDuplicates && !e.already_added[s] || !e.options.preventDuplicates) && n.push(r), e.already_added[s] = !0)
         }), debug("manual filter ended, found " + n.length + " items"), n
     },
     flush: function() {
@@ -1813,11 +1847,11 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
     var l = getSize(o),
         r = 0;
     getSize(this._els.popupItems.childNodes[0])[1] > l[1] && (r = sbWidth()), this._opts.checkable && (r += 30);
-    var h = (i(geByClass1("idd_selected_value", this._iddEl)), getSize(this._els.valueEl)),
-        a = (this._opts.withIcon ? 20 : 0, 0);
-    this.openToUp && (a = -getSize(this._els.popupItems)[1]), setStyle(o, {
+    var a = (i(geByClass1("idd_selected_value", this._iddEl)), getSize(this._els.valueEl)),
+        h = (this._opts.withIcon ? 20 : 0, 0);
+    this.openToUp && (h = -getSize(this._els.popupItems)[1]), setStyle(o, {
         marginLeft: (this._opts.headerLeft || InlineDropdown.IDD_HEADER_CORRECTION_LEFT) - (this._opts.withIcon ? 20 : 0),
-        marginTop: (this._opts.headerTop || InlineDropdown.IDD_HEADER_CORRECTION_TOP) - h[1] + a,
+        marginTop: (this._opts.headerTop || InlineDropdown.IDD_HEADER_CORRECTION_TOP) - a[1] + h,
         width: l[0] + 8,
         opacity: 1
     }), this._unhoverItem(), this._highlightItem(), this._initOutEvent(), this._initKeypressEvent(), this._opts.onShow && this._opts.onShow(this.ddEl), cancelEvent(t)
@@ -1871,13 +1905,13 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
             each(o.items, function(t, i) {
                 n += e(i)
             }), n += "</div></div></div>", this._els.currCascade = se(n), this._iddEl.appendChild(this._els.currCascade);
-            for (var r = getSize(this._els.popupEl), h = (getXY(this._els.popupEl), getSize(t)), a = getSize(this._els.currCascade), d = 0, c = t; null != (c = c.previousSibling);) d++;
+            for (var r = getSize(this._els.popupEl), a = (getXY(this._els.popupEl), getSize(t)), h = getSize(this._els.currCascade), d = 0, c = t; null != (c = c.previousSibling);) d++;
             var u = r[0] + (this._opts.headerLeft || InlineDropdown.IDD_HEADER_CORRECTION_LEFT) - 1;
             setStyle(this._els.currCascade, {
                 marginLeft: u - 3,
-                marginTop: h[1] * d + 6 - (this.openToUp ? r[1] : 0),
+                marginTop: a[1] * d + 6 - (this.openToUp ? r[1] : 0),
                 "z-index": 200,
-                width: a[0] + 30
+                width: h[0] + 30
             }), setTimeout(function() {
                 cssAnim(i._els.currCascade, {
                     marginLeft: u,

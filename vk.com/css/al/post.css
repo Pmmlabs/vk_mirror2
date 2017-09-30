@@ -187,11 +187,12 @@ a.page_post_thumb_wrap:hover {
     bottom: 0;
     left: 0;
     right: 0;
-    width: 180px;
+    width: 240px;
     height: 18px;
     margin: auto;
     border-radius: 5px;
     padding: 15px 10px;
+    line-height: 18px;
     text-align: center
 }
 

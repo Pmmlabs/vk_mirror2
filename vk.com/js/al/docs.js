@@ -297,7 +297,7 @@ var Docs = {
     },
     deleteItem: function(e, o, r, c) {
         var s = domClosest("_docs_item", e);
-        if (s) return e && tooltips.destroy(e), ajax.post("/docs.php", {
+        if (s) return e && window.tooltips && tooltips.destroy(e), ajax.post("/docs.php", {
             act: "a_delete",
             hash: c,
             did: r,

@@ -24,7 +24,8 @@ var Board = {
             post: r,
             media_types: s,
             media: a,
-            from_group: isChecked("bnt_from_group")
+            from_group: isChecked("bnt_from_group"),
+            survey: isChecked("bnt_survey")
         }, d), {
             showProgress: lockButton.pbind(ge("bnt_subm")),
             hideProgress: unlockButton.pbind(ge("bnt_subm"))
