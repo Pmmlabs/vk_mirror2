@@ -714,11 +714,13 @@ a.ui_crumb {
 }
 
 .ui_rmenu_extra_label_onhover {
-    visibility: hidden
+    -o-transition: opacity 150ms linear;
+    transition: opacity 150ms linear;
+    opacity: 0
 }
 
 .ui_rmenu_item:hover .ui_rmenu_extra_label_onhover {
-    visibility: visible
+    opacity: 1
 }
 
 .ui_rmenu_slider {
