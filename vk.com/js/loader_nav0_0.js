@@ -124,7 +124,9 @@ var navMap = {
     'memedit($|/)': ['members.php', ['members.css', 'dyn-members.js']],
     'meminfo($|/)': ['member_info.php', ['meminfo.css']],
     'groupinfo($|/)': ['group_info.php', ['groupinfo.css']],
-    'cvkmobile($|/)': ['cvkmobile.php', ['internal/cvkmobile.css', 'internal/cvkmobile.js']]
+    'cvkmobile($|/)': ['cvkmobile.php', ['internal/cvkmobile.css', 'internal/cvkmobile.js']],
+    'surveys(-[0-9]+)$': ['al_surveys.php', ['surveys.css']],
+    'survey(-[0-9]+)_([0-9]+)$': ['al_surveys.php', ['surveys.css', 'surveys.js']]
 };
 var stVersions = {
     'nav': 0,
@@ -538,7 +540,7 @@ var stVersions = {
     'cmodules/web/landing_ads_case.js': 3936066274,
     'landings/ads_cases.css': 25976906447,
     'surveys.css': 20147726009,
-    'surveys.js': 4273167397,
+    'surveys.js': 3994896871,
     'lang': 6848
 };
 var stTypes = {
@@ -603,4 +605,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 7230;
+var _rnd = 80;
