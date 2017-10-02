@@ -151,7 +151,7 @@ var stVersions = {
     'audioplayer.css': 18039827305,
     'audio_html5.js': 287741914,
     'audio.js': 3846430147,
-    'audio.css': 22341492069,
+    'audio.css': 23958603838,
     'gifts.css': 18922179082,
     'gifts.js': 338252255,
     'cc.js': 1644397126,
@@ -343,7 +343,7 @@ var stVersions = {
     'achievements.css': 15099076933,
     'sf.css': 17088647978,
     'members.css': 16308310957,
-    'meminfo.css': 21368609120,
+    'meminfo.css': 17384981066,
     'groupinfo.css': 19028323677,
     'bugs.js': 3874995669,
     'bugs.css': 14355338281,
@@ -605,4 +605,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 2175;
+var _rnd = 6040;

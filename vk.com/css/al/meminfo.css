@@ -39,6 +39,23 @@
     width: 130px
 }
 
+.box_body .photos_amount_in_albums_box .row {
+    clear: both;
+    padding: 8px
+}
+
+.box_body .photos_amount_in_albums_box .row:hover {
+    background-color: #eff1f3
+}
+
+.box_body .photos_amount_in_albums_box .row .name {
+    float: left
+}
+
+.box_body .photos_amount_in_albums_box .row .photos_amount {
+    float: right
+}
+
 .mi_body_adaptive #page_layout {
     padding: 0;
     width: 100%!important

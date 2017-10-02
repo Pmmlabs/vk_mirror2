@@ -326,6 +326,10 @@
     display: block
 }
 
+.audio_page_player_show_remove_ads .audio_page_player_title_performer {
+    max-width: 100%
+}
+
 #audio_status_tt .audio_status_wrap {
     max-height: 260px;
     overflow: hidden;
