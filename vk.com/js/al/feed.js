@@ -608,6 +608,7 @@ var Feed = {
                 el.onclick(), scrollToY(getXY(el)[1], 0)
             }, browser.msie ? 100 : 0), delete cur.notify)
         }
+        cur.feedSection && cur.feedSection(options.section, options.subsection)
     },
     showMore: function() {
         if (!cur.isFeedLoading) {

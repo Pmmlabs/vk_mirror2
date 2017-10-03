@@ -1564,7 +1564,7 @@ var Videoview = {
                     Videoview.hide(!1, !0), showDoneBox(title)
                 }, 500);
                 if (title && !html && !mvcur.options.expandPlayer) return val("mv_player_box", '<div class="mv_video_unavailable_message_wrap"><div class="mv_video_unavailable_message">' + title + "</div></div>"), show("mv_player_box"), hide("mv_progress_box"), void hide("mv_info");
-                if (opt = opt || {}, addLangKeys(opt.lang, !0), cur.share_timehash = cur.share_timehash || opt.share_timehash, mvcur.post = opt.post, mvcur.maxReplyLength = opt.maxReplyLength, mvcur.maxChatReplyLength = opt.maxChatReplyLength, mvcur.maxDescriptionLength = opt.maxDescriptionLength, mvcur.mvData = opt.mvData, mvcur.videoRaw = opt.mvData.videoRaw, mvcur.adminLevel = opt.mvData.adminLevel, mvcur.commentsTpl = opt.commentsTpl, mvcur.mvMediaTypes = opt.media, mvcur.mvMediaShare = opt.share, mvcur.mvReplyNames = opt.names || {}, mvcur.rmedia_types = opt.rmedia_types, mvcur.chatMode = !!opt.chatMode, mvcur.wallTpl = opt.wallTpl, mvcur.finished = !1, mvcur.preparationBlock = !1, opt.queueParams && (mvcur.queueKey = opt.queueParams.key, mvcur.qversion = opt.qversion), opt.pl_list) {
+                if (opt || (serviceBtns = "", opt = arguments[5]), opt = opt || {}, addLangKeys(opt.lang, !0), cur.share_timehash = cur.share_timehash || opt.share_timehash, mvcur.post = opt.post, mvcur.maxReplyLength = opt.maxReplyLength, mvcur.maxChatReplyLength = opt.maxChatReplyLength, mvcur.maxDescriptionLength = opt.maxDescriptionLength, mvcur.mvData = opt.mvData, mvcur.videoRaw = opt.mvData.videoRaw, mvcur.adminLevel = opt.mvData.adminLevel, mvcur.commentsTpl = opt.commentsTpl, mvcur.mvMediaTypes = opt.media, mvcur.mvMediaShare = opt.share, mvcur.mvReplyNames = opt.names || {}, mvcur.rmedia_types = opt.rmedia_types, mvcur.chatMode = !!opt.chatMode, mvcur.wallTpl = opt.wallTpl, mvcur.finished = !1, mvcur.preparationBlock = !1, opt.queueParams && (mvcur.queueKey = opt.queueParams.key, mvcur.qversion = opt.qversion), opt.pl_list) {
                     var lists = JSON.parse(opt.pl_list);
                     each(lists, function(e, i) {
                         VideoPlaylist.addList(i)
@@ -1816,7 +1816,7 @@ var Videoview = {
         onLiveSpectatorsScroll: function() {
             var e = lastWindowHeight,
                 i = ge("video_spectators_more_link");
-            isVisible(i) && e > getXY(i, !0)[1] && i.click()
+            isVisible(i) && e > getXY(i, !0)[1] && i.click();
         },
         loadMoreLiveSpectators: function(e) {
             if (!isButtonLocked(e)) {

@@ -872,6 +872,12 @@ html:not([lang=ru]) .wall_marked_as_ads {
     padding-top: 11px
 }
 
+.feed_zoom_text .wall_post_text_zoom {
+    font-weight: 300;
+    line-height: 26px;
+    font-size: 1.5em
+}
+
 .page_description {
     cursor: pointer
 }

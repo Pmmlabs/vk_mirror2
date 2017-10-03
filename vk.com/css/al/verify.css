@@ -2,30 +2,35 @@
     display: none
 }
 
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
 #verify_bar {
+    border-bottom: 1px solid #e7e8ec;
     padding: 10px;
-    background: #f7f7f7;
-    border-bottom: 1px solid #dae1e8
+    background: #f7f7f7
 }
 
 #verify_search {
-    margin: 0;
-    padding: 7px 8px 7px 20px;
-    width: 399px;
-    height: 14px;
-    line-height: 1.27em;
-    background: #fff url(/images/magglass.png) no-repeat 5px 8px;
-    margin-right: 8px
+    margin-right: 8px;
+    width: 566px
 }
 
 #verify_submit {
-    padding: 6px 8px 7px;
-    width: 168px;
+    width: 200px;
     text-align: center
 }
 
 .verify_audio_top #verify_search {
-    width: 271px
+    width: 438px
 }
 
 .verify_genre_cont {
@@ -47,10 +52,10 @@
 }
 
 .verify_row {
+    border-bottom: 1px solid #e7e8ec;
     padding: 10px;
     height: 25px;
-    overflow: hidden;
-    border-bottom: 1px solid #dae2e8
+    overflow: hidden
 }
 
 .verify_row:last-child {

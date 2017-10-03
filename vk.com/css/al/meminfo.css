@@ -39,6 +39,13 @@
     width: 130px
 }
 
+.box_body .photos_amount_in_albums_box .header {
+    padding: 0 8px 8px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
 .box_body .photos_amount_in_albums_box .row {
     clear: both;
     padding: 8px
