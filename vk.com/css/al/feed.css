@@ -1110,6 +1110,11 @@
     background: #e64646 url(/images/svg_icons/feedback/money.svg?1) no-repeat
 }
 
+.feedback_money_request_row .feedback_photo_icon {
+    display: block;
+    background: #74aded url(/images/svg_icons/feedback/money.svg?1) no-repeat
+}
+
 .feedback_ads_ok_row .feedback_photo_icon {
     display: block;
     background: #63b9ba url(/images/svg_icons/feedback/approved.svg) no-repeat

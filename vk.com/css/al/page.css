@@ -2077,7 +2077,13 @@ a.page_media_link_desc {
 
 .page_media_money_transfer div.page_media_link_desc,
 .page_media_stickers_store div.page_media_link_desc {
-    color: #656565
+    color: #656565;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 1.5em!important
 }
 
 .page_media_money_transfer .wall_postlink_preview_btn,

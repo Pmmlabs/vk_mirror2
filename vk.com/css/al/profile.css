@@ -677,9 +677,26 @@ div.profile_online {
     float: right;
     font-size: 12.5px;
     margin-top: 5px;
+    padding-left: 10px;
     line-height: 18px;
     color: #939393;
     text-align: center
+}
+
+.profile_online_lv {
+    display: none
+}
+
+.is_vk_mobile .profile_online_lv {
+    color: #4f8cd1
+}
+
+.is_online .profile_online_lv {
+    display: block
+}
+
+.is_online .profile_time_lv {
+    display: none
 }
 
 #profile_class {

@@ -366,6 +366,11 @@
     left: 291px
 }
 
+.tt_w.mobile_tt_asrtl:after,
+.tt_w.mobile_tt_asrtl:before {
+    left: 237px
+}
+
 .gifts_tt .toup1 .bottom_pointer,
 .gifts_tt .toup .top_pointer {
     margin-left: 91px
@@ -511,6 +516,10 @@
     width: 300px;
     padding: 14px;
     overflow: hidden
+}
+
+.mobile_tt_asrtl .mott_content {
+    width: 260px
 }
 
 .tt_default.verified_tt.tt_up:after,

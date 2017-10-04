@@ -1622,6 +1622,15 @@ h2.payments_getvotes_title {
     height: 450px
 }
 
+#payments_box.payments_money_transfer_box #payments_money_transfer_summary {
+    max-width: 333px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: top
+}
+
 .payments_money_transfer_iframe {
     display: none
 }
@@ -1748,6 +1757,29 @@ h2.payments_getvotes_title {
         background-image: url(/images/mc_logo_2x.png);
         background-size: 41px 25px
     }
+}
+
+.payments_money_transfer_prg {
+    display: none;
+    height: 450px
+}
+
+.payments_money_transfer_prg_cont {
+    position: relative;
+    top: 40%;
+    text-align: center;
+    line-height: 24px
+}
+
+#payments_box.payments_money_request #payments_iframe_container,
+#payments_box.payments_money_request .payments_money_transfer_buttons,
+#payments_box.payments_money_request .payments_money_transfer_wrap {
+    display: none
+}
+
+#payments_box.payments_money_request .payments_money_transfer_iframe,
+#payments_box.payments_money_request .payments_money_transfer_prg {
+    display: block
 }
 
 .payments_systems_messages_container {

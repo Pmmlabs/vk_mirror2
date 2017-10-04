@@ -191,6 +191,18 @@ var Page = {
             }
             return false;
         },
+        moneyTransferBox: function(ev) {
+            showBox('al_payments.php', {
+                act: 'money_transfer_box',
+                to_id: cur.oid
+            }, {
+                onFail: function(text) {
+                    setTimeout(showFastBox(getLang('global_error'), text).hide, 2000);
+                    return true;
+                }
+            });
+            cancelEvent(ev);
+        },
         toggleSubscription: function(btn, hash, act, ev) {
             if (cur.toggleSubscriptionAct != undefined) {
                 act = cur.toggleSubscriptionAct;

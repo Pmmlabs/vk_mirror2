@@ -220,7 +220,8 @@ var mobPlatforms = {
     2: 1,
     3: 1,
     4: 1,
-    5: 1
+    5: 1,
+    8: 1
 };
 
 //
@@ -8321,7 +8322,7 @@ function giftsBox(mid, ev, tab) {
     }, ev);
 }
 
-function moneyTransferBox(txId, hash, ev, btn, decline, force) {
+function moneyTransferBox(txId, hash, ev, btn, decline, request, force) {
     if (cur.viewAsBox) return cur.viewAsBox();
     if (decline) {
         if (!force) {
@@ -8333,7 +8334,7 @@ function moneyTransferBox(txId, hash, ev, btn, decline, force) {
                 confirmText = (cur.lang && cur.lang.mail_money_transfer_decline_confirm) || getLang('news_fb_money_transfer_decline_confirm');
                 confirmBtn = (cur.lang && cur.lang.mail_money_transfer_decline_btn) || getLang('news_fb_money_transfer_decline_btn');
             }
-            cur.confirmBox = showFastBox(getLang('global_action_confirmation'), confirmText, confirmBtn, moneyTransferBox.pbind(txId, hash, ev, btn, decline, 1), getLang('global_cancel'));
+            cur.confirmBox = showFastBox(getLang('global_action_confirmation'), confirmText, confirmBtn, moneyTransferBox.pbind(txId, hash, ev, btn, decline, false, 1), getLang('global_cancel'));
             return;
         }
         var isSnippet = hasClass(domPN(btn), 'wall_postlink_preview_btn');
@@ -8369,7 +8370,7 @@ function moneyTransferBox(txId, hash, ev, btn, decline, force) {
             onDone: function(result, text, html) {
 
                 if (result === 0) {
-                    setTimeout(moneyTransferBox.pbind(txId, hash, ev, btn, decline, 2), 2000);
+                    setTimeout(moneyTransferBox.pbind(txId, hash, ev, btn, decline, false, 2), 2000);
                     return;
                 }
                 if (isSnippet) {
@@ -8392,12 +8393,23 @@ function moneyTransferBox(txId, hash, ev, btn, decline, force) {
         });
         return;
     }
+    var params;
+    if (request) {
+        params = {
+            act: 'money_transfer_box',
+            request_id: txId,
+            request: request,
+            hash: hash
+        };
+    } else {
+        params = {
+            act: 'accept_money_transfer_box',
+            tx_id: txId,
+            hash: hash
+        };
+    }
     cur.acceptMoneyBtn = btn;
-    return !showBox('al_payments.php', {
-        act: 'accept_money_transfer_box',
-        tx_id: txId,
-        hash: hash
-    }, {
+    return !showBox('al_payments.php', params, {
         stat: ['payments.css', 'payments.js'],
         onFail: function(text) {
             setTimeout(showFastBox(getLang('global_error'), text).hide, 2000);
@@ -10631,13 +10643,15 @@ var mobilePromo = showBox.pbind('al_login.php', {
 });
 
 function mobileOnlineTip(el, opts) {
-    var sh = (opts.right ? 289 : 35) + (browser.opera ? 1 : 0);
+    var sh = opts.asrtl ? 0 : (opts.right ? 289 : 35),
+        cl = opts.asrtl ? ' mobile_tt_asrtl' : (opts.right ? ' mobile_tt_right' : '');
     return showTooltip(el, {
         url: 'al_login.php',
         params: {
             act: 'mobile_tt',
             mid: opts.mid,
-            was: opts.was
+            was: opts.was,
+            vk_mobile: opts.vk_mobile
         },
         slide: 15,
         ajxdt: 200,
@@ -10646,9 +10660,10 @@ function mobileOnlineTip(el, opts) {
         forcetoup: opts.forcetoup,
         toup: false,
         dir: 'auto',
+        asrtl: opts.asrtl,
         appendParentCls: opts.appendParentCls,
-        shift: [sh, 8, 8],
-        className: 'mobile_tt' + (opts.right ? ' mobile_tt_right' : '')
+        shift: [sh, 8, 7],
+        className: 'mobile_tt' + cl
     });
 }
 

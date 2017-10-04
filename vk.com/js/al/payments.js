@@ -422,14 +422,22 @@ Payments.validateEmail = function(email) {
 
 var MoneyTransfer = {
     init: function() {
+        var box = curBox();
+        box.setOptions({
+            grey: true
+        });
+        if (cur.paymentsOptions.requestId) {
+            box.changed = true;
+            box.setOptions({
+                width: 560
+            });
+            MoneyTransfer.send();
+        }
         placeholderInit('transfer_amount');
         placeholderInit('transfer_comment');
         setTimeout(elfocus.pbind('transfer_amount'), 100);
         shortCurrency();
         MoneyTransfer.autosizeAmount();
-        /*if (cur.paymentsOptions.repeatId) {
-          MoneyTransfer.send();
-        }*/
     },
     send: function() {
         var box = curBox();
@@ -443,6 +451,11 @@ var MoneyTransfer = {
             elfocus('transfer_amount');
             return;
         } else if (!MoneyTransfer.checkAmount(amount, true)) {
+            return;
+        }
+
+        if (cur.paymentsOptions.boxTab == 'request') {
+            MoneyTransfer.sendReqest(amount);
             return;
         }
 
@@ -479,16 +492,20 @@ var MoneyTransfer = {
             to_id: cur.paymentsOptions.toId,
             owner_id: cur.paymentsOptions.ownerId,
             amount: amount,
+            currency: cur.paymentsOptions.currency,
             comment: val('transfer_comment'),
             hash: cur.paymentsOptions.hash
         };
+        if (cur.paymentsOptions.requestId) {
+            params.request_id = cur.paymentsOptions.requestId;
+        }
         val('payments_box_error', '');
         ajax.post('al_payments.php?act=a_init_money_transfer', params, {
             onDone: function(data, html) {
                 cur._popup_text = html;
                 cur._popup_callback = function() {
-                    hide('payments_money_transfer_wrap', 'payments_money_transfer_buttons', 'payments_box_error');
-                    show('payments_money_transfer_iframe');
+                    hide('payments_money_transfer_wrap', 'payments_money_transfer_buttons', 'payments_box_error', 'payments_money_transfer_prg');
+                    show('payments_money_transfer_iframe', 'payments_iframe_container');
                     ge('payments_iframe_container').scrollTop = 0;
                     window.addEventListener('message', MoneyTransfer.frameMessage, false);
 
@@ -496,7 +513,9 @@ var MoneyTransfer = {
                     box.setOptions({
                         width: 560
                     });
-                    box.setBackTitle(MoneyTransfer.resetSendBox);
+                    if (!cur.paymentsOptions.requestId && isVisible(box.titleWrap)) {
+                        box.setBackTitle(MoneyTransfer.resetSendBox);
+                    }
                     setStyle(iframe, {
                         width: (frc.parentNode.offsetWidth - sbWidth()) + 'px'
                     });
@@ -509,6 +528,31 @@ var MoneyTransfer = {
                     cur._popup_callback();
                 }
                 MoneyTransfer.startCheckStatus(data);
+            },
+            onFail: function(msg) {
+                MoneyTransfer.showError(msg);
+                return true;
+            },
+            showProgress: lockButton.pbind(btn),
+            hideProgress: unlockButton.pbind(btn)
+        });
+    },
+    sendReqest: function(amount) {
+        var params = {
+            to_id: cur.paymentsOptions.toId,
+            owner_id: cur.paymentsOptions.ownerId,
+            amount: amount,
+            currency: cur.paymentsOptions.currency,
+            comment: val('transfer_comment'),
+            hash: cur.paymentsOptions.hash
+        };
+        val('payments_box_error', '');
+        ajax.post('al_payments.php?act=a_send_money_request', params, {
+            onDone: function(text) {
+                curBox().hide();
+                showDoneBox(text, {
+                    out: 6000
+                });
             },
             onFail: function(msg) {
                 MoneyTransfer.showError(msg);
@@ -537,7 +581,9 @@ var MoneyTransfer = {
         box.setOptions({
             width: 480
         });
-        box.setBackTitle(false);
+        if (isVisible(box.titleWrap)) {
+            box.setBackTitle(false);
+        }
     },
     startCheckStatus: function(data) {
         cur.isPaymentCanceled = cur.isPaymentFailed = false;
@@ -787,6 +833,22 @@ var MoneyTransfer = {
                 cur.moneyTranferCheckInt = false;
             }
         }
+    },
+    switchBoxSection: function(el, tab) {
+        if (cur.paymentsOptions.boxTab === tab) return;
+        el && uiTabs.switchTab(el);
+        if (cur.paymentsOptions.boxTab === 'transfer' && isVisible('payments_money_transfer_iframe')) {
+            MoneyTransfer.resetSendBox();
+            if (cur.moneyTranferCheckInt) {
+                clearInterval(cur.moneyTranferCheckInt);
+                cur.moneyTranferCheckInt = false;
+            }
+        }
+        cur.paymentsOptions.boxTab = tab;
+        val(domPN(ge('payments_money_transfer_summary')), cur.paymentsOptions.boxSections[tab].summary);
+        val('payments_money_transfer_send', cur.paymentsOptions.boxSections[tab].btn);
+        toggle('payments_money_transfer_nf_warning', tab == 'transfer');
+        setTimeout(elfocus.pbind('transfer_amount'), 100);
     },
     updateImHistory: function(html, txId, newBtn) {
         var snippet = geByClass1('_money_transfer' + txId, html);

@@ -60,7 +60,12 @@
 .mail_box_label_info .mob_onl {
     vertical-align: middle;
     display: inline-block;
-    height: 17px
+    height: 17px;
+    margin-top: -2px
+}
+
+.mail_box_label_info .im_status_mob_onl {
+    color: #939393
 }
 
 .mail_box_single_ava .mail_box_single_ava_img {
