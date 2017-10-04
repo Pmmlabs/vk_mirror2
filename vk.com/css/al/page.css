@@ -1942,7 +1942,8 @@ a.page_media_link_desc {
 }
 
 .page_media_link_img {
-    width: 100%
+    width: 100%;
+    height: auto
 }
 
 .page_media_link_img_wrap {
@@ -1962,7 +1963,7 @@ a.page_media_link_desc {
 }
 
 .im-mess--text .page_media_link_img_wrap {
-    max-height: 177px
+    max-height: 185px
 }
 
 .page_media_link_url {

@@ -1259,30 +1259,27 @@ var Feed = {
         }, !1, e)
     },
     scrollCheck: function(e) {
-        if (cur.idleManager && !cur.isFeedLoading && !cur.idleManager.isIdle && !cur.disableAutoMore) {
-            var t = ge("show_more_link");
-            if (isVisible(t)) {
-                var o, t, s, r, i = feed.longView,
-                    n = window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight,
-                    a = scrollGetY(),
-                    d = 0,
-                    c = [];
-                a + n + 1e3 > t.offsetTop && feed.showMore(), (domPN(cur.topRow) != cur.rowsCont || "feed_rows_next" == (cur.topRow || {}).id) && (cur.topRow = domFC(cur.rowsCont));
-                var l = {
-                    news: !0,
-                    recommended: !0,
-                    search: !0,
-                    friends: !0,
-                    groups: !0,
-                    list: !0,
-                    1917: !0,
-                    cc2017: !0
-                };
-                if (vk.id && cur.topRow && "feed_rows_next" != cur.topRow.id && l[cur.section] && (!((window.curNotifier || {}).idle_manager || {}).is_idle || "init" == (e || {}).type)) {
-                    for (postsUnseen = [], t = domPS(cur.topRow); t; t = domPS(t)) cur.topRow.offsetTop > a && (cur.topRow = t), t.unseen || (t.unseen = !0, postsUnseen.push(Feed.postsGetRaws(t)));
-                    for (Page.postsUnseen(postsUnseen), t = cur.topRow; t && (o = d ? d : t.offsetTop, !(o >= a + n)); t = s) s = domNS(t), "feed_rows_next" == (s || {}).id && (s = null), d = s ? s.offsetTop : o + t.offsetHeight, a > d && s && (cur.topRow = s), LongView && LongView.register(t, "feed"), i.registerElement(t) || (r = t.bits || 0, r >= 3 || (r |= (o >= a && a + n > o ? 1 : 0) | (d >= a && a + n > d ? 2 : 0), r && (t.bits = r, 3 == r && c.push(feed.postsGetRaws(t)))));
-                    c = c.concat(i.process(a, n)), LongView && LongView.onScroll(a, n), Page.postsSeen(c)
-                }
+        if (e = e || {}, "scroll" == e.type || cur.idleManager && !cur.idleManager.isIdle) {
+            var t, o, s, r, i = feed.longView,
+                n = window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight,
+                a = scrollGetY(),
+                d = 0,
+                c = [];
+            cur.isFeedLoading || cur.disableAutoMore || (o = ge("show_more_link"), isVisible(o) && a + n + 1e3 > o.offsetTop && feed.showMore()), (domPN(cur.topRow) != cur.rowsCont || "feed_rows_next" == (cur.topRow || {}).id) && (cur.topRow = domFC(cur.rowsCont));
+            var l = {
+                news: !0,
+                recommended: !0,
+                search: !0,
+                friends: !0,
+                groups: !0,
+                list: !0,
+                1917: !0,
+                cc2017: !0
+            };
+            if (vk.id && cur.topRow && "feed_rows_next" != cur.topRow.id && l[cur.section] && (!((window.curNotifier || {}).idle_manager || {}).is_idle || "init" == e.type)) {
+                for (postsUnseen = [], o = domPS(cur.topRow); o; o = domPS(o)) cur.topRow.offsetTop > a && (cur.topRow = o), o.unseen || (o.unseen = !0, postsUnseen.push(Feed.postsGetRaws(o)));
+                for (Page.postsUnseen(postsUnseen), o = cur.topRow; o && (t = d ? d : o.offsetTop, !(t >= a + n)); o = s) s = domNS(o), "feed_rows_next" == (s || {}).id && (s = null), d = s ? s.offsetTop : t + o.offsetHeight, a > d && s && (cur.topRow = s), LongView && LongView.register(o, "feed"), i.registerElement(o) || (r = o.bits || 0, r >= 3 || (r |= (t >= a && a + n > t ? 1 : 0) | (d >= a && a + n > d ? 2 : 0), r && (o.bits = r, 3 == r && c.push(feed.postsGetRaws(o)))));
+                c = c.concat(i.process(a, n)), LongView && LongView.onScroll(a, n), Page.postsSeen(c)
             }
         }
     },
@@ -1298,7 +1295,7 @@ var Feed = {
         d && (a["ad_" + d] = 1);
         var c = i.getAttribute("post_view_hash");
         if (c && (a.hash = c), "block_" === i.id.substr(0, 6)) {
-            a[i.id] = 1;
+            a[i.id] = 1, a.block = i.id.substr(6);
             var l = attr(i, "data-contain");
             l && (l = l.split(","), l.forEach(function(e) {
                 e = e.split(":"), a[e[0]] = intval(e[1]) || 1

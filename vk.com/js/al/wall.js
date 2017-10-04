@@ -21,7 +21,7 @@ var FullWall = {
         var o, a = indexOf(domPN(e).children, e),
             t = {};
         if ("block_" === e.id.substr(0, 6)) {
-            t[e.id] = 1;
+            t[e.id] = 1, t.block = e.id.substr(6);
             var l = attr(e, "data-contain");
             l && (l = l.split(","), l.forEach(function(e) {
                 e = e.split(":"), t[e[0]] = intval(e[1]) || 1
