@@ -371,10 +371,6 @@ body.dev .tickets_reply_row {
     line-height: 17px
 }
 
-.troll .tickets_reply_text {
-    width: 625px
-}
-
 .tickets_sys_content__date {
     color: #939393;
     white-space: nowrap

@@ -509,7 +509,7 @@ var vkApp = function(t, e, i, o) {
                             })
                         },
                         onFail: function(t) {
-                            return isFunction(cur.onAppWidgetPreviewFail) && cur.onAppWidgetPreviewFail(t), !0
+                            return ~t.indexOf("413 Request Entity Too Large") && (t = "413 Request Entity Too Large"), isFunction(cur.onAppWidgetPreviewFail) && cur.onAppWidgetPreviewFail(t), !0
                         }
                     })
                 }
@@ -1081,7 +1081,8 @@ AppsSlider.prototype = {
         }
     },
     startEvents: function() {
-        addEvent(window, "scroll", this.scrollCheckBinded), addEvent(window, "resize", this.scrollCheckBinded), this.initUpdates(), this.scrollCheck(), this.sliderStart();
+        addEvent(window, "scroll", this.scrollCheckBinded), addEvent(window, "resize", this.scrollCheckBinded),
+            this.initUpdates(), this.scrollCheck(), this.sliderStart()
     },
     stopEvents: function() {
         removeEvent(window, "scroll", this.scrollCheckBinded), removeEvent(window, "resize", this.scrollCheckBinded), this.stopUpdates(), this.sliderStop()
@@ -2173,7 +2174,7 @@ AppsSlider.prototype = {
         }
     },
     scrollCheck: function() {
-        this.isDelayedOnSilentLoad("scrollCheck", this.scrollCheck.bind(this)) || !browser.mobile && !cur.isAppsLoading && !cur.disableAutoMore && isVisible(cur.lShowMoreButton) && (window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight) + scrollGetY() + 400 >= cur.lShowMoreButton.offsetTop && this.searchLoadContent()
+        this.isDelayedOnSilentLoad("scrollCheck", this.scrollCheck.bind(this)) || !browser.mobile && !cur.isAppsLoading && !cur.disableAutoMore && isVisible(cur.lShowMoreButton) && (window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight) + scrollGetY() + 400 >= cur.lShowMoreButton.offsetTop && this.searchLoadContent();
     },
     searchFocusedClass: "apps_search_focused",
     backupListContent: function(t) {

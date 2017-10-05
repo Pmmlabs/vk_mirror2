@@ -103,10 +103,12 @@
     }
 
     function openKey(e, n) {
-        var t = showBox(TR_ADDRESS, {
+        if (n) var t = vk.lang;
+        else var t = void 0 !== nav.objLoc.lang_id ? nav.objLoc.lang_id : cur.langId;
+        var a = showBox(TR_ADDRESS, {
             act: "open_key",
             key: e,
-            lang_id: void 0 !== nav.objLoc.lang_id ? nav.objLoc.lang_id : cur.langId,
+            lang_id: t,
             section_id: intval(nav.objLoc.section),
             is_deleted: e ? intval("deleted" == nav.objLoc.section) : 0
         }, {
@@ -225,8 +227,8 @@
                     }, "yes", !0);
                     if (e && cur.isSuperTranslator) {
                         cur.sections = a.sections;
-                        var w = "<a onclick=\"TR.deleteKey('" + e + "', '" + a.editHash + "')\">" + getLang("tran_delete_key") + '</a><span class="divider">|</span><a onclick="TR.cloneKey(\'' + e + "', '" + a.editHash + "')\">" + getLang("tran_copy_key") + "</a>";
-                        t.setControlsText(w)
+                        var b = "<a onclick=\"TR.deleteKey('" + e + "', '" + a.editHash + "')\">" + getLang("tran_delete_key") + '</a><span class="divider">|</span><a onclick="TR.cloneKey(\'' + e + "', '" + a.editHash + "')\">" + getLang("tran_copy_key") + "</a>";
+                        t.setControlsText(b)
                     }
                     addEvent(window, "keydown", cur.onBoxKeyDownEvent = function(t) {
                         t.ctrlKey && t.keyCode == KEY.ENTER && saveKey(x, a.editHash, function() {
@@ -237,7 +239,7 @@
                 t.addButton(getLang("global_cancel"), t.hide, "no")
             }
         });
-        t.removeButtons(), e && !n && nav.setLoc(extend({}, nav.objLoc, {
+        a.removeButtons(), e && !n && nav.setLoc(extend({}, nav.objLoc, {
             key: e
         }))
     }
@@ -441,15 +443,14 @@
             a = domData(n, "selected"),
             o = ge("tr_translators_language_selector"),
             s = JSON.parse(domData(o, "langs")),
-            r = domData(o, "selected");
-        _translatorsDateSelector = new Dropdown(n, t, {
+            r = domData(o, "selected"),
+            i = trim(val("translators_search"));
+        i && setTimeout(searchTranslators.pbind(i), 50), _translatorsDateSelector = new Dropdown(n, t, {
             big: !0,
             width: 200,
             selectedItems: a,
             onChange: function(e) {
-                nav.change({
-                    stat_date: e
-                })
+                nav.objLoc.stat_date = e, nav.change(nav.objLoc)
             }
         }), o = new Dropdown(o, s, {
             big: !0,
@@ -458,9 +459,7 @@
             placeholder: s[0][1],
             selectedItems: r,
             onChange: function(e) {
-                "" !== e && nav.change({
-                    lang_id: -1 == e ? null : e
-                })
+                "" !== e && (-1 == e ? delete nav.objLoc.lang_id : nav.objLoc.lang_id = e, nav.change(nav.objLoc))
             }
         })
     }
@@ -481,7 +480,7 @@
         var t = "";
         each(n, function(e, n) {
             t += getTemplate("translator_row", n)
-        }), geByClass1("tr_translators").innerHTML = t
+        }), geByClass1("tr_translators").innerHTML = t, nav.objLoc.q && nav.objLoc.q == e || (nav.objLoc.q = e, nav.setLoc(nav.objLoc))
     }
 
     function initLanguagesPage(e) {
