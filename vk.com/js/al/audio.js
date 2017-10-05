@@ -629,7 +629,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         else {
             var s = AudioUtils.asObject(t);
             if (a && a.wiki) {
-                var r = "editorChooseAudio('" + s.performer + "', '" + s.title + "', " + s.duration + ", '" + s.fullId + "', '" + s.url + "', " + s.duration + ", this)";
+                var r = "editorChooseAudio('" + clean(s.performer) + "', '" + clean(s.title) + "', " + s.duration + ", '" + s.fullId + "', '" + s.url + "', " + s.duration + ", this)";
                 o = '<div role="button" class="ape_attach" onclick="' + r + '">' + a.audioPickerButtonText + "</div>"
             } else {
                 s = clean(JSON.stringify(s));
@@ -760,8 +760,8 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             case "default":
                 var s = k.getPlaylist(AudioPlaylist.TYPE_PLAYLIST, t, AudioPlaylist.DEFAULT_PLAYLIST_ID);
                 disableEl(z.addAudiosButton), showProgress(z.addAudiosButton), s.load(function() {
-                    enableEl(z.addAudiosButton), hideProgress(z.addAudiosButton), hide(z.header), show(z.search),
-                        toggle(z.addAudiosFromPlaylistsButton, j), hide(z.addAudiosButton), "edit" == e ? u() : _(), g(s, !0), h(), "edit" == e && v(a)
+                    enableEl(z.addAudiosButton), hideProgress(z.addAudiosButton), hide(z.header),
+                        show(z.search), toggle(z.addAudiosFromPlaylistsButton, j), hide(z.addAudiosButton), "edit" == e ? u() : _(), g(s, !0), h(), "edit" == e && v(a)
                 });
                 break;
             case "playlists":
@@ -1152,7 +1152,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                 onDone: function(o) {
                     if (o) {
                         var a = o[AudioUtils.AUDIO_ITEM_INDEX_TITLE] != t[AudioUtils.AUDIO_ITEM_INDEX_TITLE];
-                        a = a || o[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER] != t[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER], a = a || o[AudioUtils.AUDIO_ITEM_INDEX_FLAGS] != t[AudioUtils.AUDIO_ITEM_INDEX_FLAGS], a && (getAudioPlayer().updateAudio(r.fullId, o), "all" == n._currentSection && n._initAudioRowsAutoList()), i(1.5 * e)
+                        a = a || o[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER] != t[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER], a = a || o[AudioUtils.AUDIO_ITEM_INDEX_FLAGS] != t[AudioUtils.AUDIO_ITEM_INDEX_FLAGS], a && (console.log("replaced"), getAudioPlayer().updateAudio(r.fullId, o), "all" == n._currentSection && "audio" == cur.module && n._initAudioRowsAutoList(), r = o), i(1.5 * e)
                     }
                 }
             })

@@ -3220,3 +3220,183 @@ td.ads_settings_notifacations_label {
     display: none;
     line-height: 140%
 }
+
+.ads_relevance_score {
+    position: relative;
+    margin-top: 15px;
+    text-align: left;
+    border: 1px solid #e0e3e7;
+    border-radius: 2px
+}
+
+.ads_relevance_score_top {
+    padding: 13px 16px 10px 20px;
+    line-height: 19px;
+    border-bottom: 1px solid #e7e8ec
+}
+
+.ads_relevance_score_top.ads_relevance_score_top_noborder {
+    border-bottom: 0
+}
+
+.ads_relevance_score_top_title {
+    margin: 0;
+    padding: 1px 0 2px
+}
+
+.ads_relevance_score_top_description {
+    margin: 0;
+    color: #828282
+}
+
+.ads_relevance_score_top_tabs {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+.ads_relevance_score_top_tabs_item {
+    padding: 1px 6px 2px;
+    display: block;
+    float: left;
+    margin-right: 10px;
+    color: #2b587a;
+    text-transform: lowercase;
+    cursor: pointer;
+    border-radius: 2px
+}
+
+.ads_relevance_score_top_tabs_item:hover {
+    background-color: #e1e7ed
+}
+
+.ads_relevance_score_top_tabs_item:last-child {
+    margin-right: 0
+}
+
+.ads_relevance_score_top_tabs_item.ads_relevance_score_top_tabs_item_active {
+    color: #fff;
+    cursor: default;
+    background: #5e81a8
+}
+
+.ads_relevance_score_switcher_item {
+    display: none
+}
+
+.ads_relevance_score_switcher_item.ads_relevance_score_switcher_item_active {
+    display: block
+}
+
+.ads_relevance_score_info {
+    position: relative;
+    box-sizing: border-box
+}
+
+.ads_relevance_score_info.ads_relevance_score_info_empty {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 128px
+}
+
+.ads_relevance_score_info_empty .hint_icon {
+    margin-left: 5px
+}
+
+.ads_relevance_score_info_value {
+    padding: 22px 0;
+    text-align: center;
+    color: #828282;
+    box-sizing: border-box
+}
+
+.ads_relevance_score_info_value_inner {
+    padding: 18px 16px;
+    width: 173px;
+    border-right: 1px solid #eef0f3;
+    box-sizing: border-box
+}
+
+.ads_relevance_score_info_value_score {
+    position: relative;
+    margin: 0
+}
+
+.ads_relevance_score_info_value_score_estimated {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 48px;
+    color: #222
+}
+
+.ads_relevance_score_info_value_score_emoji {
+    margin-left: 5px
+}
+
+.ads_relevance_score_info_value_text {
+    margin: 2px 0 0;
+    line-height: 20px
+}
+
+.ads_relevance_score_info_description {
+    padding: 20px 24px;
+    text-align: left;
+    box-sizing: border-box
+}
+
+.ads_relevance_score_info_description_reaction {
+    margin-bottom: 8px;
+    line-height: 20px
+}
+
+.ads_relevance_score_info_description_reaction:last-child {
+    margin-bottom: 0
+}
+
+.ads_relevance_score_info_description_reaction_name {
+    margin: 0;
+    cursor: pointer
+}
+
+.ads_relevance_score_info_description_reaction_value {
+    margin: 0;
+    font-weight: 700;
+    color: #222
+}
+
+.ads_relevance_score_footer {
+    padding: 15px 20px;
+    text-align: center;
+    border-top: 1px solid #eef0f3
+}
+
+.ads_relevance_score_footer_link:after {
+    content: '';
+    position: relative;
+    display: inline-block;
+    left: 0;
+    margin-top: 4px;
+    margin-left: 5px;
+    width: 6px;
+    height: 8px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%228%22%20viewBox%3D%2288%204%208%208%22%3E%3Cg%20fill%3D%22none%22%3E%3Crect%20x%3D%2288%22%20y%3D%224%22%20width%3D%228%22%20height%3D%228%22%2F%3E%3Cpath%20d%3D%22M90.2%2010.8C90%2011.1%2090%2011.5%2090.3%2011.7%2090.6%2011.9%2091%2011.9%2091.2%2011.6L93.8%208.4C94%208.2%2094%207.8%2093.8%207.6L91.2%204.4C91%204.1%2090.6%204.1%2090.3%204.3%2090%204.5%2090%204.9%2090.2%205.2L92.5%208%2090.2%2010.8Z%22%20fill%3D%22%239CB0C3%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    transition: -webkit-transform 150ms ease-in-out;
+    -o-transition: transform 150ms ease-in-out, -o-transform 150ms ease-in-out;
+    transition: transform 150ms ease-in-out;
+    transition: transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out, -o-transform 150ms ease-in-out
+}
+
+.ads_relevance_score_footer_link:hover:after {
+    -webkit-transform: translateX(2px);
+    -ms-transform: translateX(2px);
+    -o-transform: translateX(2px);
+    transform: translateX(2px)
+}

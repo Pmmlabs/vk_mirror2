@@ -1630,12 +1630,14 @@ var Page = {
                     if (inViewport) {
                         if (!isPlaying && !isLoading) {
                             var params = _getVideoParams(thumb);
+                            var beforeInitTime = vkNow();
                             showInlineVideo(params.video, params.list, {
                                 autoplay: 1,
                                 no_progress: 1,
                                 cache: 1,
                                 addParams: params
                             }, false, thumb);
+                            statlogsValueEvent('page_show_inline_video', vkNow() - beforeInitTime);
                             _sendLoadEvent(params);
                             cur.videoAutoplayStat = {
                                 video: params.video,

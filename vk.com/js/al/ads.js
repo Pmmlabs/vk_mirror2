@@ -4599,6 +4599,42 @@ Ads.initRedesignHintTooltip = function() {
         tooltips.destroy(el);
     }
 }
+
+Ads.toggleRelevanceScoreInfo = function(switcherName) {
+    removeClass(geByClass1("ads_relevance_score_switcher_item_active"), "ads_relevance_score_switcher_item_active");
+    addClass(ge("ads_relevance_score_switcher_" + switcherName), "ads_relevance_score_switcher_item_active");
+
+    removeClass(geByClass1("ads_relevance_score_top_tabs_item_active"), "ads_relevance_score_top_tabs_item_active");
+    addClass(ge("ads_relevance_score_top_tabs_" + switcherName), "ads_relevance_score_top_tabs_item_active");
+}
+
+Ads.showRelevanceScoreTooltip = function() {
+    if (ls.get('ads_promoted_posts_relevance_score_tooltip_hidden') || cur.buttonTextTooltip) {
+        return;
+    }
+    cur.closeAdsRelevanceScoreTooltip = function() {
+        cur.groupAdsRelevanceScoreTooltip.hide();
+        ls.set('ads_promoted_posts_relevance_score_tooltip_hidden', 1);
+    };
+    var el = geByClass1("ads_relevance_score_top");
+    if (!el) {
+        return;
+    }
+    cur.groupAdsRelevanceScoreTooltip = new ElementTooltip(el, {
+        autoShow: false,
+        appendTo: el,
+        content: '<div class="feature_intro_tt_hide" onclick="cur.closeAdsRelevanceScoreTooltip();"></div>' + getLang('ads_relevance_score_hint_new_feature'),
+        forceSide: 'left',
+        offset: [0, -10],
+        width: 190,
+        cls: 'feature_intro_tt',
+        onHide: function() {
+            cur.groupAdsRelevanceScoreTooltip.destroy();
+        }
+    });
+    cur.groupAdsRelevanceScoreTooltip.show();
+}
+
 try {
     stManager.done('ads.js');
 } catch (e) {}

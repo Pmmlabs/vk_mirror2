@@ -3073,7 +3073,6 @@ img.im_photo_thumb {
 .im-page--title-meta .vk_mobile {
     margin-top: -3px;
     position: relative;
-    top: -1px;
     margin-left: 5px;
     cursor: default
 }
@@ -5942,6 +5941,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     padding: 5px 0 5px 8px;
     width: 403px;
     box-sizing: border-box;
+    color: #4e5966;
     max-width: 403px;
     white-space: nowrap;
     overflow: hidden;
