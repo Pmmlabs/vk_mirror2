@@ -3460,13 +3460,22 @@ img.im_photo_thumb {
 }
 
 .im-mess-stack .im-mess-stack--content .im-mess-stack--lnk {
-    max-width: 180px;
+    max-width: 220px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     display: inline-block;
     vertical-align: top;
     line-height: 1.23
+}
+
+.im-mess-stack .im-mess-stack--content .im-mess-stack--lnk-money-transfer {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: top
 }
 
 .im-mess-stack .im-mess-stack--content .im-mess-stack--tools {

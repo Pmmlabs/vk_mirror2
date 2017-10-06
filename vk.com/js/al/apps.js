@@ -1331,9 +1331,10 @@ AppsSlider.prototype = {
         }.bind(this), 500)
     },
     sendInstallRequest: function(t, e, i, o, s, n) {
+        var a = !!geByClass1("apps_install_header");
         if (t && !isButtonLocked(t) && !hasClass(t, "button_disabled")) {
             lockButton(t);
-            var a = getSize(t);
+            var r = getSize(t);
             e ? ajax.post(this.address, {
                 act: "send_install_request",
                 aid: i,
@@ -1343,7 +1344,7 @@ AppsSlider.prototype = {
             }, {
                 hideProgress: function() {
                     var e = getLang("apps_install_push_sent_msg");
-                    unlockButton(t), addClass(t, "button_disabled"), setStyle(t, "width", a[0]), val(t, e);
+                    unlockButton(t), addClass(t, "button_disabled"), setStyle(t, "width", r[0]), val(t, e);
                     var i = ge("apps_i_run_box");
                     addClass(i, "sent"), val(i, e), this.adjustRunBoxSize(i)
                 }.bind(this)
@@ -1354,10 +1355,10 @@ AppsSlider.prototype = {
                 onDone: function(e, s, n) {
                     if (unlockButton(t), s) {
                         cur.lang || (cur.lang = {}), extend(cur.lang, e);
-                        var a = new MessageBox({
+                        var r = new MessageBox({
                             title: getLang("apps_get_push_w_install_link")
                         });
-                        a.removeButtons(), a.content(s), a.addButton(getLang("apps_install_sms_send"), function(e) {
+                        r.removeButtons(), r.content(s), r.addButton(getLang("apps_install_sms_send"), function(e) {
                             if (t = ge("apps_i_request_btn") || t, e && t && !isButtonLocked(e)) {
                                 var s = getSize(t);
                                 lockButton(e), ajax.post(this.address, {
@@ -1374,15 +1375,15 @@ AppsSlider.prototype = {
                                         }
                                     },
                                     onDone: function() {
-                                        this.ttDestroyAll(), a.hide();
+                                        this.ttDestroyAll(), r.hide();
                                         var i = getLang("apps_install_push_sent_msg");
-                                        unlockButton(e), addClass(t, "button_disabled"), setStyle(t, "width", s[0]), val(t, i);
+                                        unlockButton(e), addClass(t, "button_disabled"), a || setStyle(t, "width", s[0]), val(t, i);
                                         var o = ge("apps_i_run_box");
                                         addClass(o, "sent"), val(o, i), this.adjustRunBoxSize(o)
                                     }.bind(this)
                                 })
                             }
-                        }.bind(this), "yes"), a.addButton(getLang("global_cancel"), a.hide, "no"), a.show()
+                        }.bind(this), "yes"), r.addButton(getLang("global_cancel"), r.hide, "no"), r.show()
                     } else showBox("activation.php", {
                         act: "change_phone_box",
                         hash: n
@@ -1425,19 +1426,22 @@ AppsSlider.prototype = {
             })
         }
     },
-    showAppFriends: function(t, e) {
-        return !showBox(Apps.address, {
+    showAppFriends: function(t, e, i) {
+        var o = showBox(Apps.address, {
             act: "show_app_friends_box",
             aid: t
         }, {
             cache: 1,
+            dark: 1,
             params: {
                 width: "400px",
                 bodyStyle: "padding: 0px"
             },
-            stat: ["boxes.css"],
-            dark: 1
-        }, e)
+            onDone: function() {
+                new uiScroll("apps_friendslist")
+            }
+        }, e);
+        return o.setControlsText('<a href="" onclick="Apps.showInviteBox(' + t + ", '" + i + "'); return false;\">" + getLang("apps_invite_friends") + "</a>"), o
     },
     recountAddVotes: function(t) {
         var e = t.value.replace(/[^0-9]/g, "");
@@ -1669,41 +1673,47 @@ AppsSlider.prototype = {
         window.appsListChanged = !0, cur.preload && delete cur.preload.before, cur.app && (cur.app.runCallback("onApplicationAdded"), cur.appUser = !0, hide("apps_install_btn"), show("apps_show_settings"))
     },
     rateOver: function(t) {
+        var e = !!geByClass1("apps_install_header");
         cur.rated || hasClass(t, "not_installed") || addClass(t, "over");
-        var e = "",
-            i = [],
-            o = 0,
-            s = cur.appUser ? cur.userRate ? getLang("apps_you_voted") : getLang("apps_you_not_voted") : getLang("apps_rating_title"),
-            n = rs(cur.rateStatsLabelTpl, {
-                label: s
+        var i = "",
+            o = [],
+            s = 0,
+            n = [cur.installPage ? -70 : -66, 0, -36],
+            a = "left",
+            r = 15,
+            c = 0,
+            l = cur.appUser ? cur.userRate ? getLang("apps_you_voted") : getLang("apps_you_not_voted") : getLang("apps_rating_title"),
+            p = rs(cur.rateStatsLabelTpl, {
+                label: l
             });
-        for (var a in cur.rateStats || {}) o += intval(cur.rateStats[a]);
-        val("app_rate_label", s);
-        for (var r = 1; 5 >= r; r++) {
-            e += '<span class="app_rate stats fl_r"></span>';
-            var c = intval(cur.rateStats[r]),
-                l = o ? intval(100 * c / o) : 0,
-                p = langNumeric(c, "%s", !0),
-                d = cur.userRate != 10 * r && cur.userRate ? "" : "my";
-            i.push(rs(cur.rateStatsRowTpl, {
-                id: "apps_rate_row" + r,
-                stars: e,
-                count: p,
-                percent: l,
-                classname: d
+        for (var d in cur.rateStats || {}) s += intval(cur.rateStats[d]);
+        val("app_rate_label", l);
+        for (var u = 1; 5 >= u; u++) {
+            i += '<span class="app_rate stats fl_r"></span>';
+            var h = intval(cur.rateStats[u]),
+                f = s ? intval(100 * h / s) : 0,
+                g = langNumeric(h, "%s", !0),
+                v = cur.userRate != 10 * u && cur.userRate ? "" : "my";
+            o.push(rs(cur.rateStatsRowTpl, {
+                id: "apps_rate_row" + u,
+                stars: i,
+                count: g,
+                percent: f,
+                classname: v
             }));
-            var u = ge("apps_rate_row" + r);
-            u && (setStyle(geByClass1("app_rate_bg", u), {
-                width: l + "%"
-            }), val(geByClass1("app_rate_percent", u), l + "%"), val(geByClass1("app_rate_cnt", u), p), geByClass1("app_rate_stars", u).className = "app_rate_stars fl_l " + d)
+            var _ = ge("apps_rate_row" + u);
+            _ && (setStyle(geByClass1("app_rate_bg", _), {
+                width: f + "%"
+            }), val(geByClass1("app_rate_percent", _), f + "%"), val(geByClass1("app_rate_cnt", _), g), geByClass1("app_rate_stars", _).className = "app_rate_stars fl_l " + v)
         }
-        n += i.reverse().join(""), showTooltip(t, {
-            text: n,
-            slideX: 15,
+        p += o.reverse().join(""), e && (a = "top", n = [210, 0, 10], r = 0, c = 15), showTooltip(t, {
+            text: p,
+            slideX: r,
+            slide: c,
             className: "app_rate_tt",
-            shift: [cur.installPage ? -70 : -66, 0, -36],
+            shift: n,
             forcetodown: !0,
-            dir: "left",
+            dir: a,
             hasover: 1
         })
     },
@@ -2170,11 +2180,11 @@ AppsSlider.prototype = {
             e = getSize("page_header_cont")[1];
         if (cur.aSearchWrap) {
             var i = getXY(domPN(cur.aSearchWrap))[1];
-            t + (vk.staticheader ? Math.max(0, e - t) : e) > i && scrollToY(i, 200)
+            t + (vk.staticheader ? Math.max(0, e - t) : e) > i && scrollToY(i, 200);
         }
     },
     scrollCheck: function() {
-        this.isDelayedOnSilentLoad("scrollCheck", this.scrollCheck.bind(this)) || !browser.mobile && !cur.isAppsLoading && !cur.disableAutoMore && isVisible(cur.lShowMoreButton) && (window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight) + scrollGetY() + 400 >= cur.lShowMoreButton.offsetTop && this.searchLoadContent();
+        this.isDelayedOnSilentLoad("scrollCheck", this.scrollCheck.bind(this)) || !browser.mobile && !cur.isAppsLoading && !cur.disableAutoMore && isVisible(cur.lShowMoreButton) && (window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight) + scrollGetY() + 400 >= cur.lShowMoreButton.offsetTop && this.searchLoadContent()
     },
     searchFocusedClass: "apps_search_focused",
     backupListContent: function(t) {
