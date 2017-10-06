@@ -248,14 +248,14 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 115842815090,
-    'imn.js': 125841858665,
+    'im.css': 113371714096,
+    'imn.js': 124291180619,
     'im.js': 1322065005,
     'emoji.js': 478110222,
     'wide_dd.css': 12995120330,
     'wide_dd.js': 452755344,
     'writebox.css': 13421719305,
-    'writebox.js': 4788293669,
+    'writebox.js': 3870429897,
     'sharebox.js': 2160209921,
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
@@ -264,7 +264,7 @@ var stVersions = {
     'feed.css': 19702179560,
     'privacy.js': 3620108221,
     'privacy.css': 12835048583,
-    'apps.css': 24665136775,
+    'apps.css': 26019018656,
     'apps.js': 3735536424,
     'apps_edit.js': 2247867637,
     'apps_edit.css': 18380182316,
@@ -316,7 +316,7 @@ var stVersions = {
     'widgets.css': 26422686279,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 36407260888,
+    'notifier.js': 35489397116,
     'notifier.css': 24379980140,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
@@ -545,7 +545,7 @@ var stVersions = {
     'landings/author_guide.css': 13689204377,
     'internal/restore2.css': 12438412168,
     'internal/restore2.js': 1037282534,
-    'lang': 6848
+    'lang': 6850
 };
 var stTypes = {
     fromLib: {
@@ -609,4 +609,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 8195;
+var _rnd = 4243;

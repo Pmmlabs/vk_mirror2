@@ -2441,6 +2441,13 @@ a.page_block_header:hover .apps_cat_header_link:after {
 }
 
 .apps_footer .apps_footer_right {
+    max-width: 500px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: top;
+    overflow: visible;
     padding-left: 50px;
     display: table-cell;
     width: 1%
@@ -2509,6 +2516,10 @@ a.page_block_header:hover .apps_cat_header_link:after {
 
 .apps_cont_msg {
     background: #fff
+}
+
+.apps_cont_msg .no_rows {
+    padding: 60px 50px
 }
 
 .apps_app_dummy {
@@ -5910,7 +5921,13 @@ td.apps_cat_new_h {
 #apps_layer .apps_header .group_name {
     margin-left: 7px;
     margin-left: 8px;
-    color: #656565
+    color: #656565;
+    max-width: 65%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: top
 }
 
 #apps_layer .apps_header .group_name:before {

@@ -2860,6 +2860,10 @@ img.im_photo_thumb {
     height: 100px
 }
 
+.im-page--chat-header:not(.im-page--chat-header_pinned) .im-page--pinned {
+    display: none
+}
+
 .im-page_classic .im-page--chat-header {
     position: fixed;
     top: 57px;
@@ -3408,7 +3412,7 @@ img.im_photo_thumb {
     left: 14px
 }
 
-.im-page-pinned--unpin {
+.im-page-pinned--hide {
     float: right;
     width: 24px;
     height: 24px;
@@ -3420,11 +3424,11 @@ img.im_photo_thumb {
     opacity: .7
 }
 
-.im-page-pinned--unpin:hover {
+.im-page-pinned--hide:hover {
     opacity: 1
 }
 
-.im-page--chat-header_hide-pin-actions .im-page-pinned--unpin {
+.im-page--chat-header_hide-pin-actions .im-page-pinned--hide {
     display: none
 }
 
@@ -5303,7 +5307,7 @@ img.im_photo_thumb {
 (min-resolution: 192dpi) {
     .nim-dialog .nim-dialog--star {
         background-image: url(/images/icons/im_actions_2x.png?5);
-        background-size: 24px 440px
+        background-size: 24px 499px
     }
 }
 
@@ -5441,7 +5445,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 (min-resolution: 192dpi) {
     .nim-dialog .nim-dialog--markre {
         background-image: url(/images/icons/im_actions_2x.png?5);
-        background-size: 24px 440px
+        background-size: 24px 499px
     }
 }
 
@@ -6387,7 +6391,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 (min-resolution: 192dpi) {
     .ui_actions_menu_item.im-action:before {
         background-image: url(/images/icons/im_actions_2x.png?5);
-        background-size: 24px 440px
+        background-size: 24px 499px
     }
 }
 
@@ -6443,6 +6447,21 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .ui_actions_menu_item.im-action.im-action_unblock:before {
     background-position: 5px -405px;
+    margin-top: -3px
+}
+
+.ui_actions_menu_item.im-action.im-action_pin_hide:before {
+    background-position: 5px -462px;
+    margin-top: -3px
+}
+
+.ui_actions_menu_item.im-action.im-action_pin_unhide:before {
+    background-position: 5px -442px;
+    margin-top: -3px
+}
+
+.ui_actions_menu_item.im-action.im-action_unpin:before {
+    background-position: 5px -482px;
     margin-top: -3px
 }
 
@@ -6883,6 +6902,9 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .im-page--mess-actions_multiple-selection .im-page-action_pin,
+.im-page--chat-header_hide-pin-actions .im-action_pin_hide,
+.im-page--chat-header_hide-pin-actions .im-action_pin_unhide,
+.im-page--chat-header_hide-pin-actions .im-action_unpin,
 .im-page--chat-header_hide-pin-actions .im-page-action_pin {
     display: none
 }
@@ -7688,7 +7710,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 (min-resolution: 192dpi) {
     .im-right-menu .im-right-menu--close:before {
         background-image: url(/images/icons/im_actions_2x.png?5);
-        background-size: 24px 440px
+        background-size: 24px 499px
     }
 }
 
