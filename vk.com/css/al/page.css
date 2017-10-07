@@ -446,6 +446,12 @@
     margin-right: 0
 }
 
+.post_header_promote_button {
+    float: right;
+    margin-right: 26px;
+    margin-top: 4px
+}
+
 .post_top_info_wall_actions .ui_actions_menu_icons {
     margin-top: -8px;
     right: 18px
@@ -877,7 +883,8 @@ html:not([lang=ru]) .wall_marked_as_ads {
     padding-top: 11px
 }
 
-.feed_zoom_text .wall_post_text_zoom {
+.feed_zoom_text .wall_post_text_zoom,
+.wall_module.wl_post.feed_zoom_text .wall_post_text_zoom {
     font-weight: 300;
     line-height: 26px;
     font-size: 1.5em
@@ -1544,6 +1551,12 @@ html:not([lang=ru]) .wall_marked_as_ads {
 .wall_module .post.suggest .wall_text .page_media_poll_wrap:last-child,
 .wall_module .post.suggest .wall_text .page_media_thumbed_link:last-child {
     margin-bottom: 0
+}
+
+.wall_module .post.post_with_ads_button .author {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap
 }
 
 .wall_module .copy_quote .page_media_thumbed_link:last-child,

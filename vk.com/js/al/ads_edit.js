@@ -47,6 +47,7 @@ AdsEdit.ADS_AD_CHECK_GROUP_PURPOSE_CRITERIA = 'criteria';
 AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_OLD = 0;
 AdsEdit.ADS_CAMPAIGN_TYPE_UI_CREATE_NEW = 1;
 AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_APPS_WITH_BUDGET = 2;
+AdsEdit.ADS_CAMPAIGN_TYPE_UI_EASY_PROMOTE_AUTO = 3; // see ads_edit_easy.js
 
 AdsEdit.ADS_GEO_CIRCLE_TYPE_MASK_ONLINE = 1;
 
@@ -117,7 +118,7 @@ AdsEdit.getTextWidth = function(text) {
     });
     document.body.appendChild(elem);
     var size = getSize(elem);
-    re(elem)
+    re(elem);
     return size[0];
 }
 

@@ -5291,7 +5291,7 @@ img.im_photo_thumb {
 .nim-dialog .nim-dialog--star {
     width: 12px;
     height: 12px;
-    background: url(/images/icons/im_actions.png?5) -4px -4px;
+    background: url(/images/icons/im_actions.png?6) -4px -4px;
     margin-left: 6px;
     margin-top: 1px;
     cursor: pointer;
@@ -5306,7 +5306,7 @@ img.im_photo_thumb {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .nim-dialog .nim-dialog--star {
-        background-image: url(/images/icons/im_actions_2x.png?5);
+        background-image: url(/images/icons/im_actions_2x.png?6);
         background-size: 24px 499px
     }
 }
@@ -5425,7 +5425,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     padding: 0;
     line-height: 1;
     display: none;
-    background: url(/images/icons/im_actions.png?5) 0 -389px;
+    background: url(/images/icons/im_actions.png?6) 0 -389px;
     position: absolute;
     right: -10px;
     opacity: 0.7;
@@ -5444,7 +5444,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .nim-dialog .nim-dialog--markre {
-        background-image: url(/images/icons/im_actions_2x.png?5);
+        background-image: url(/images/icons/im_actions_2x.png?6);
         background-size: 24px 499px
     }
 }
@@ -6378,7 +6378,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     content: "";
     width: 20px;
     height: 15px;
-    background: url(/images/icons/im_actions.png?5) no-repeat 5px -184px;
+    background: url(/images/icons/im_actions.png?6) no-repeat 5px -184px;
     display: inline-block;
     padding-left: 15px;
     opacity: 0.8;
@@ -6390,7 +6390,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .ui_actions_menu_item.im-action:before {
-        background-image: url(/images/icons/im_actions_2x.png?5);
+        background-image: url(/images/icons/im_actions_2x.png?6);
         background-size: 24px 499px
     }
 }
@@ -7695,7 +7695,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .im-right-menu .im-right-menu--close:before {
-    background: url(/images/icons/im_actions.png?5) -4px -66px;
+    background: url(/images/icons/im_actions.png?6) -4px -66px;
     width: 12px;
     height: 12px;
     content: '';
@@ -7709,7 +7709,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .im-right-menu .im-right-menu--close:before {
-        background-image: url(/images/icons/im_actions_2x.png?5);
+        background-image: url(/images/icons/im_actions_2x.png?6);
         background-size: 24px 499px
     }
 }
@@ -8372,43 +8372,29 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .im-invitation {
-    display: none;
     text-align: center;
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    margin: 0
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 28px
 }
 
 .im-invitation .im-invitation--name {
-    max-width: 485px;
-    overflow: hidden;
-    margin: auto;
-    margin-bottom: 5px;
-    text-overflow: ellipsis
-}
-
-.im-invitation .im-invitation--name,
-.im-invitation .im-invitation--header {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    font-size: 14px
-}
-
-.im-invitation .im-invitation--header {
-    height: 49px;
-    border-bottom: solid 1px #e3e4e8;
-    margin-bottom: 80px;
-    box-sizing: border-box;
-    padding: 16px 0 15px
+    font-size: 14px;
+    max-width: 485px;
+    overflow: hidden;
+    margin: auto;
+    margin-bottom: 2px;
+    text-overflow: ellipsis
 }
 
 .im-invitation .im-invitation--count {
     color: #939393;
-    margin-bottom: 40px
+    margin-bottom: 30px
 }
 
 .im-invitation .im-invitation--user {
@@ -8424,18 +8410,18 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .im-invitation .im-invitation--users {
-    margin-left: -16px;
-    margin-bottom: 64px;
+    margin-left: -10px;
+    margin-bottom: 24px;
     min-height: 76px
 }
 
 .im-invitation .im-invitation--chat-photo {
-    margin: 0 auto 16px
+    margin: 0 auto 12px
 }
 
 .im-invitation .im-invitation--user-name {
-    margin-top: 5px;
-    width: 80px;
+    margin-top: 2px;
+    width: 70px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap
@@ -8451,21 +8437,16 @@ body.sf .nim-dialog .nim-dialog--unread {
     margin: auto
 }
 
-.im-invitation .im-invitation--cancel {
-    border: none;
-    background: none;
-    color: #2a5885;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
-    font-size: 13px;
-    outline: 0;
-    padding: 0;
-    line-height: 1;
-    margin-top: 17px
+.im-invitation .im-invitation--join {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M7%205v-4.1c0-.5-.4-.9-1-.9s-1%20.4-1%20.9v4.1h-4.1c-.5%200-.9.4-.9%201s.4%201%20.9%201h4.1v4.1c0%20.5.4.9%201%20.9s1-.4%201-.9v-4.1h4.1c.5%200%20.9-.4.9-1s-.4-1-.9-1h-4.1z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: 14px 9px;
+    position: relative;
+    padding-left: 34px
 }
 
-.im-invitation .im-invitation--cancel:hover {
-    text-decoration: underline;
-    cursor: pointer
+.im-invitation .im-invitation--join:active {
+    background-position: 14px 10px
 }
 
 @media (max-height: 620px) {

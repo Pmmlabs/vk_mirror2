@@ -414,7 +414,7 @@
     width: 32px;
     height: 32px;
     margin: 0 auto;
-    background: url('/images/svg_icons/profile_story_icon.svg') no-repeat bottom;
+    background: url('/images/svg_icons/profile_story_icon.svg?1') no-repeat bottom;
     transition: -webkit-transform 150ms ease-in-out;
     -o-transition: transform 150ms ease-in-out, -o-transform 150ms ease-in-out;
     transition: transform 150ms ease-in-out;

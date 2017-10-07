@@ -361,12 +361,12 @@ var Feed = {
                         I = geByClass("new_reply", j, "div").length + 1;
                     if (cur.wallMyOpened[r]) {
                         q && "replies_open" == q.className && re(q), V = !0;
-                        var U = geByClass1("wr_header", j, "a"),
-                            O = geByClass("reply", j, "div").length + 1,
-                            Y = O;
-                        U && (Y = intval(U.getAttribute("offs").split("/")[1]) + 1), (Y > 5 || Y > O) && (U || j.insertBefore(U = ce("a", {
+                        var O = geByClass1("wr_header", j, "a"),
+                            U = geByClass("reply", j, "div").length + 1,
+                            Y = U;
+                        O && (Y = intval(O.getAttribute("offs").split("/")[1]) + 1), (Y > 5 || Y > U) && (O || j.insertBefore(O = ce("a", {
                             className: "wr_header"
-                        }), j.firstChild), wall.updateRepliesHeader(r, U, O, Y))
+                        }), j.firstChild), wall.updateRepliesHeader(r, O, U, Y))
                     } else F = wall.updatePostImages(F), f = se(F), addClass(f, "new_reply"), q && "replies_open" == q.className || (q = ce("div", {
                         className: "replies_open",
                         onclick: wall.openNewComments.pbind(r)
@@ -543,7 +543,7 @@ var Feed = {
     },
     switchSubSection: function(e, t) {
         if (t && checkEvent(t)) return !0;
-        cur.subsection = cur.subsections[cur.section] = e;
+        cur.subsection = cur.subsections[cur.section] = cur.wkviewOpts.subsection = e;
         var o = feed.getSectionParams(cur.section);
         delete cur.feedUpdateLoading, delete cur.isFeedLoading, nav.go(extend(o || {}, {
             0: "feed"
@@ -580,12 +580,12 @@ var Feed = {
                 var o = inArray(e, ["articles_search", "articles", "search", "photos_search", "photos"]);
                 toggleClass(cur.feedEls.wrap, "feed_search_shown", o), o && elfocus(cur.feedEls.search), cur.section && val(cur.feedEls.search, "")
             }
-            if (2 == t && window.Stories && Stories.updateFeedStories(e), cur.my_feed_types && (~indexOf(cur.my_feed_types.optional_tabs, cur.section) && !~indexOf(cur.my_feed_types.tabs, cur.section) && feed.toggleTabsMenuTab(cur.section, !1), ~indexOf(cur.my_feed_types.optional_tabs, e) && !~indexOf(cur.my_feed_types.tabs, e) && feed.toggleTabsMenuTab(e, !0)), cur.section = e, 4 == t) return void feed.searchUpdate();
+            if (2 == t && window.Stories && Stories.updateFeedStories(e), cur.my_feed_types && (~indexOf(cur.my_feed_types.optional_tabs, cur.section) && !~indexOf(cur.my_feed_types.tabs, cur.section) && feed.toggleTabsMenuTab(cur.section, !1), ~indexOf(cur.my_feed_types.optional_tabs, e) && !~indexOf(cur.my_feed_types.tabs, e) && feed.toggleTabsMenuTab(e, !0)), cur.section = cur.wkviewOpts.section = e, 4 == t) return void feed.searchUpdate();
             cur.editingHide = "notifications" == e || "replies" == e ? feed.notifyCheckHideReply : !1, cur.gifAutoplayScrollHandler && cur.gifAutoplayScrollHandler(), cur.videoAutoplayScrollHandler && cur.videoAutoplayScrollHandler()
         }
     },
     applyOptions: function(options, from) {
-        if (from = from || 0, options.owner && (cur.owner = options.owner), cur.subsection = options.subsection || "", feed.setSection(options.section, from), cur.options || (cur.options = {
+        if (from = from || 0, options.owner && (cur.owner = options.owner), cur.subsection = cur.wkviewOpts.subsection = options.subsection || "", feed.setSection(options.section, from), cur.options || (cur.options = {
                 reply_names: {}
             }), extend(cur.options.reply_names, options.reply_names), delete options.reply_names, extend(cur, options), cur.subsections[cur.section] = cur.subsection, options.loc && 2 == from && nav.setLoc(options.loc), options.section && "news" == options.section && options.subsection && "top" == options.subsection && statlogsValueEvent("feed_switch", 0, "top_news", from), void 0 !== options.filters) {
             var minEl = ge("search_filters_minimized"),
@@ -1258,6 +1258,14 @@ var Feed = {
             w: "stats" + (cur.source || "")
         }, !1, e)
     },
+    editLiveBlacklist: function(e) {
+        cancelEvent(e), showBox("al_video.php?act=live_blacklist_box", {}, {
+            onDone: function(e, t) {
+                VideoLiveBlacklistBox.init(e, t)
+            },
+            stat: ["videoview.js", "videoview.css", "indexer.js"]
+        })
+    },
     scrollCheck: function(e) {
         if (e = e || {}, "scroll" == e.type || cur.idleManager && !cur.idleManager.isIdle) {
             var t, o, s, r, i = feed.longView,
@@ -1421,6 +1429,7 @@ var Feed = {
             phCache: {},
             phShown: {},
             subsections: {},
+            wkviewOpts: {},
             feed_session_id: e.feed_session_id || "na",
             module: "feed",
             isFeedLoading: !1,

@@ -3563,3 +3563,22 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     padding-top: 5px;
     margin: 0 11px
 }
+
+.video_live_blacklist_wrap:not(.video_live_blacklist_wrap_empty) {
+    height: 300px
+}
+
+.video_live_blacklist_wrap .olist_item_name {
+    width: 250px
+}
+
+.video_live_blacklist_wrap .olist_item_name,
+.video_live_blacklist_wrap .olist_item_photo_wrap {
+    -o-transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease
+}
+
+.video_live_blacklist_wrap .olist_item_wrap_on .olist_item_name,
+.video_live_blacklist_wrap .olist_item_wrap_on .olist_item_photo_wrap {
+    opacity: .5
+}

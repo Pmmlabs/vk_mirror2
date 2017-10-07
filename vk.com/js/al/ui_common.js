@@ -335,7 +335,7 @@ var uiTabs = {
     uiSearch = {
         destroy: function(t) {
             var e = uiSearch.getFieldEl(t);
-            uiSearch.stopEvents(e), data(e, "opts", {}), data(e, "inited", 0), data(e, "eventHandlers", {})
+            uiSearch.stopEvents(e), removeData(e)
         },
         getWrapEl: function(t) {
             return domClosest("_wrap", t)
@@ -829,7 +829,7 @@ var uiTabs = {
             }.bind(this), !this.options.stopScrollPropagation), this.options["native"] || this.addEvent(this.el.barContainer, "mousedown", this.dragstart.bind(this)), each(this.options.scrollElements, function(t, e) {
                 this.addEvent(e, l, function(t) {
                     this.disabled || this.unnecessary || (this.scrollBy(this.scrollEventDelta(t)), (this.options.stopScrollPropagation || !this.isScrollEventUnused(t)) && cancelEvent(t))
-                }.bind(this));
+                }.bind(this))
             }.bind(this)), this.options.reversed && this.addEvent(this.el.container, "mousedown touchstart pointerdown", function(t) {
                 this.released = !1, this.noMore = !0;
                 var e = this.addEvent(document, "mouseup contextmenu touchend pointerup", function(t) {

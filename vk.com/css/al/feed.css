@@ -158,6 +158,20 @@
     display: none
 }
 
+#ui_rmenu_live .feed_filter_icon {
+    opacity: 0
+}
+
+#ui_rmenu_live:hover .feed_filter_icon {
+    opacity: 0.75
+}
+
+#ui_rmenu_live:hover .feed_filter_icon:hover {
+    opacity: 1;
+    -webkit-filter: none;
+    filter: none
+}
+
 .feed_filters_wrap {
     padding: 11px 15px 15px;
     -webkit-user-select: none;

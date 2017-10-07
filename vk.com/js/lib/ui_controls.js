@@ -865,10 +865,10 @@ extend(UiControl.prototype, {
             }, {
                 position: "absolute",
                 background: "#000",
-                opacity: 0,
                 width: e[0] + "px",
                 height: e[1] + "px",
-                marginTop: -e[1] + "px"
+                marginTop: -e[1] + "px",
+                opacity: "0"
             })), this.input.blur(), this.input.style.color = "", this.select.hide()
         } else !t && this.disabled && (this.disabled = !1, this.options.autocomplete && (this.input.value = ""), removeClass(this.container, "disabled"), this.container.removeChild(geByClass("hide_mask", this.container)[0]));
         this.updatePlaceholder()
@@ -1211,14 +1211,25 @@ extend(UiControl.prototype, {
         _radio_buttons: {},
         _callbacks: {},
         deselect: function(t) {
-            for (var e = 0; e < this._radio_buttons[t].length; ++e) this._radio_buttons[t][e].checked(!1)
+            if (t in this._radio_buttons)
+                for (var e = 0; e < this._radio_buttons[t].length; ++e) this._radio_buttons[t][e].checked(!1)
         },
         select: function(t, e) {
-            for (var i = 0; i < this._radio_buttons[t].length; ++i)
-                if (this._radio_buttons[t][i].val() == e) return void this._radio_buttons[t][i].checked(!0)
+            if (t in this._radio_buttons)
+                for (var i = 0; i < this._radio_buttons[t].length; ++i)
+                    if (this._radio_buttons[t][i].val() == e) return void this._radio_buttons[t][i].checked(!0)
+        },
+        val: function(t) {
+            if (!(t in this._radio_buttons)) return null;
+            for (var e = 0; e < this._radio_buttons[t].length; ++e)
+                if (this._radio_buttons[t][e].checked()) return this._radio_buttons[t][e].val();
+            return null
         },
         setChangeEvent: function(t, e) {
             isFunction(e) ? this._callbacks[t] = e : delete this._callbacks[t]
+        },
+        destroy: function(t) {
+            for (; t in this._radio_buttons && this._radio_buttons[t].length;) this._radio_buttons[t][0].destroy()
         }
     },
     CSS: {
