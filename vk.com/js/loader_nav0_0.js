@@ -610,4 +610,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 6748;
+var _rnd = 672;
