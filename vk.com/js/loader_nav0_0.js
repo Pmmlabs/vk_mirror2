@@ -531,7 +531,7 @@ var stVersions = {
     'stories.css': 19083779729,
     'internal/nospam.css': 17911379278,
     'internal/away_linksban.css': 17069016633,
-    'internal/patterns_info.css': 15164433579,
+    'internal/patterns_info.css': 16379486034,
     'article.css': 25137353263,
     'article_editor.css': 24298794019,
     'cmodules/web/article.js': 15410160110,
@@ -610,4 +610,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 2781;
+var _rnd = 6697;
