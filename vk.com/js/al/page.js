@@ -191,10 +191,11 @@ var Page = {
             }
             return false;
         },
-        moneyTransferBox: function(ev) {
+        moneyTransferBox: function(ev, from) {
             showBox('al_payments.php', {
                 act: 'money_transfer_box',
-                to_id: cur.oid
+                to_id: cur.oid,
+                from: from
             }, {
                 onFail: function(text) {
                     setTimeout(showFastBox(getLang('global_error'), text).hide, 2000);

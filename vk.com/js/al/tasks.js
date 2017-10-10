@@ -818,6 +818,22 @@ Tasks = {
     sendTask: function(e) {
         Tasks.changeDeveloper(cur.task_change_dev.val(), e)
     },
+    checkBindTicket: function(e) {
+        e.timeout && clearTimeout(e.timeout), e.timeout = setTimeout(function() {
+            var t = val(e),
+                s = t.match(/(https?:\/\/)?vk.com\/helpdesk\?act=show&id=(\d+)/i);
+            ajax.post(Tasks.address, {
+                act: "a_check_bind_ticket",
+                ticket_id: s[2]
+            }, {
+                showProgress: curBox().showProgress,
+                hideProgress: curBox().hideProgress,
+                onDone: function(e, t) {
+                    1 == e && val("tasks_support_multilang_autoanswer", t)
+                }
+            })
+        }, 200)
+    },
     bindTicket: function() {
         return !showBox(Tasks.address, {
             act: "bind_ticket"

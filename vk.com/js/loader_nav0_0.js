@@ -217,7 +217,7 @@ var stVersions = {
     'module.css': 21114376643,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 19916076629,
-    'page.js': 2906242618,
+    'page.js': 2789911041,
     'page.css': 21139217270,
     'page_help.css': 21369343967,
     'public.css': 24493573426,
@@ -248,8 +248,8 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 121775512346,
-    'imn.js': 124713798764,
+    'im.css': 121633227162,
+    'imn.js': 123151702431,
     'im.js': 1322065005,
     'emoji.js': 478110222,
     'wide_dd.css': 17012979941,
@@ -328,7 +328,7 @@ var stVersions = {
     'docs.css': 22330069135,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 16315588319,
-    'tasks.js': 4285291205,
+    'tasks.js': 4283711514,
     'tasks.css': 16661070691,
     'helpdesk.js': 3923657874,
     'helpdesk.css': 19175358813,
@@ -363,7 +363,7 @@ var stVersions = {
     'away.css': 18532649756,
     'stats.css': 17349722929,
     'payments.css': 17260492354,
-    'payments.js': 1736003132,
+    'payments.js': 1735389536,
     'offers.css': 978996883,
     'offers.js': 2030679272,
     'call.js': 4217435992,
@@ -610,4 +610,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 9622;
+var _rnd = 5211;

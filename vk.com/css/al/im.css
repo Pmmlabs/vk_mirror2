@@ -3464,7 +3464,7 @@ img.im_photo_thumb {
 }
 
 .im-mess-stack .im-mess-stack--content .im-mess-stack--lnk {
-    max-width: 220px;
+    max-width: 240px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
