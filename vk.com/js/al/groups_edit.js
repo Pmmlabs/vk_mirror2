@@ -2236,110 +2236,117 @@ var GroupsEdit = {
         return e
     },
     app: {
+        editForms: {},
         btnName: null,
         privacy: null,
         appWidgetPrivacy: null,
         snippetType: null,
         appName: null,
-        initCatalog: function() {},
-        initEdit: function(e, t, o, r) {
-            GroupsEdit.app.btnName = ge("group_app_btn_name"), GroupsEdit.app.appName = ge("group_app_app_name"), o ? GroupsEdit.app.appWidgetPrivacy = new Dropdown(ge("groups_app_widget_privacy"), cur.appWidgetPrivacy, {
-                width: 300,
-                big: 1,
-                multiselect: !1,
-                selectedItems: r
-            }) : GroupsEdit.app.appWidgetPrivacy = null, GroupsEdit.app.privacy = new Dropdown(ge("groups_app_btn_privacy"), cur.btnPrivacy, {
-                width: 300,
-                big: 1,
-                multiselect: !1,
-                selectedItems: e,
-                onChange: function(e) {}
-            }), GroupsEdit.app.snippetType = new Dropdown(ge("groups_app_btn_snippet"), cur.snippetTypes, {
-                width: 300,
-                big: 1,
-                multiselect: !1,
-                selectedItems: t,
-                onChange: function(e) {}
-            })
+        init: function() {
+            GroupsEdit.app.sorterInit()
         },
-        editBox: function(e, t) {
-            var o = {
-                act: "app_edit_box",
-                app_id: e,
-                id: cur.gid,
-                hash: t
-            };
-            return showBox("/groupsedit.php", o, {
-                params: {
-                    width: "560px"
-                }
-            })
+        sorterInit: function() {
+            var e = geByClass1("group_apps_list_rows");
+            e && !e.sorter && geByClass("group_apps_list_row_drag_wrapper").length > 1 && (sorter.init(e, {
+                onReorder: GroupsEdit.app.reorderApps,
+                dt: 1,
+                onMouseDown: function(e, t, o) {}
+            }), cur.destroy.push(e.sorter.destroy))
         },
-        switchTab: function(e, t, o) {
-            cancelEvent(o);
-            var r = gpeByClass("ui_tabs", t);
-            uiTabs.switchTab(t), ajax.post("/groupsedit.php", {
+        sorterDeinit: function() {
+            var e = geByClass1("group_apps_list_rows");
+            e && e.sorter && e.sorter.destroy()
+        },
+        reorderApps: function(e, t, o) {
+            for (var r = e.id.replace("group_apps_list_row_drag_wrapper_", ""); o && !o.id;) o = o.previousSibling;
+            var s = 1,
+                a = geByClass("group_apps_list_row_drag_wrapper");
+            for (var i in a) {
+                if (a[i] == e) break;
+                s++
+            }(o && o.id || "").replace("group_apps_list_row_drag_wrapper_", "");
+            ajax.post("groupsedit.php", {
+                act: "apps_reorder",
                 id: cur.gid,
-                act: e,
-                tab: 1
+                hash: cur.reorderHash,
+                aid: r,
+                pos: s
             }, {
-                onDone: function(t) {
-                    ge("apps_catalog").innerHTML = t, nav.objLoc.act = e, nav.setLoc(nav.objLoc), cur.cur_tab = e
-                },
-                showProgress: function() {
-                    uiTabs.showProgress(r)
-                },
-                hideProgress: function() {
-                    uiTabs.showProgress(r)
-                }
+                onDone: GroupsEdit.invalidateBack
             })
         },
-        copyLink: function(e) {
-            var t = function(e) {
-                var t = !1,
-                    o = ce("textarea", {
-                        value: e
-                    });
-                utilsNode.appendChild(o), o.select();
-                try {
-                    t = document.execCommand("copy")
-                } catch (r) {
-                    t = !1
-                }
-                return re(o), showDoneBox(getLang("groups_app_link_been_copied")), t
-            };
-            t(e)
+        initEdit: function(e, t, o, r, s) {
+            var a = ge("group_app_btn_name" + e),
+                i = ge("group_app_app_name" + e),
+                n = null;
+            r && (n = new Dropdown(ge("groups_app_widget_privacy" + e), cur.appWidgetPrivacy, {
+                width: 300,
+                big: 1,
+                multiselect: !1,
+                selectedItems: s
+            }));
+            var u = new Dropdown(ge("groups_app_btn_privacy" + e), cur.btnPrivacy, {
+                    width: 300,
+                    big: 1,
+                    multiselect: !1,
+                    selectedItems: t
+                }),
+                c = new Dropdown(ge("groups_app_btn_snippet" + e), cur.snippetTypes, {
+                    width: 300,
+                    big: 1,
+                    multiselect: !1,
+                    selectedItems: o
+                });
+            GroupsEdit.app.editForms[e] = {
+                btnName: a,
+                appName: i,
+                appWidgetPrivacy: n,
+                privacy: u,
+                snippetType: c
+            }
+        },
+        showEdit: function(e, t, o) {
+            var r = o;
+            if (!lockLink(o)) {
+                var s = ge("group_apps_list_row_" + e);
+                hasClass(s, "expanded") ? (removeClass(s, "expanded"), val(r, getLang("groups_apps_change_settings_label"))) : (addClass(s, "expanded"), val(r, getLang("global_cancel"))), unlockLink(r), GroupsEdit.app.sorterDeinit(), GroupsEdit.app.sorterInit()
+            }
         },
         attach: function(e, t, o, r) {
-            if (!cur.show_alert || r) {
-                var s = {
-                    act: "app_attach",
-                    id: cur.gid,
-                    app_id: e,
-                    hash: t,
-                    cur_tab: cur.cur_tab
-                };
-                cur.withoutCatalog && GroupsEdit.hideMessage(), ajax.post("groupsedit.php", s, {
-                    onDone: function(e, t, o, r) {
-                        cur.withoutCatalog ? (extend(cur, o), cur.show_alert = !0, ge("group_apps_wrapper").innerHTML = e, ge("apps_cat_add") ? ge("apps_cat_add").innerHTML = t : ge("apps_cat_main").parentNode.innerHTML += t, GroupsEdit.app.initEdit(cur.btnPrivacyVal, cur.snippetType, cur.appWidgetInstalled, cur.appWidgetPrivacyVal), scrollToY(0), GroupsEdit.showMessage(r)) : (scrollToY(0), nav.reload({
-                            onDone: function() {
-                                GroupsEdit.showMessage(r)
-                            }
-                        })), GroupsEdit.invalidateBack()
-                    },
-                    showProgress: function() {
-                        lockLink(o)
-                    },
-                    hideProgress: function() {
-                        unlockLink(o)
-                    }
-                })
-            } else var a = getLang("groups_apps_replace_app_message_content", cur.appName),
+            if (!cur.show_limit_alert || r)
+                if (!cur.show_alert || r) {
+                    var s = {
+                        act: "app_attach",
+                        id: cur.gid,
+                        app_id: e,
+                        hash: t,
+                        cur_tab: cur.cur_tab
+                    };
+                    cur.withoutCatalog && GroupsEdit.app.hideMessage(), ajax.post("groupsedit.php", s, {
+                        onDone: function(e, t, o, r) {
+                            scrollToY(0), nav.reload({
+                                onDone: function() {
+                                    GroupsEdit.app.showMessage(r, 1)
+                                }
+                            }), GroupsEdit.invalidateBack()
+                        },
+                        showProgress: function() {
+                            lockLink(o)
+                        },
+                        hideProgress: function() {
+                            unlockLink(o)
+                        }
+                    })
+                } else var a = getLang("groups_apps_replace_app_message_content", cur.appName),
+                    i = showFastBox({
+                        title: getLang("groups_apps_replace_app_message_title")
+                    }, a, getLang("groups_apps_replace_app_message_yes"), function() {
+                        i.hide(), GroupsEdit.app.attach(e, t, o, !0)
+                    }, getLang("global_cancel"));
+            else var a = getLang("groups_apps_attach_limit_reached"),
                 i = showFastBox({
-                    title: getLang("groups_apps_replace_app_message_title")
-                }, a, getLang("groups_apps_replace_app_message_yes"), function() {
-                    i.hide(), GroupsEdit.app.attach(e, t, o, !0)
-                }, getLang("global_cancel"))
+                    title: getLang("groups_apps_attach_app_message_title")
+                }, a)
         },
         changeStatus: function(e) {
             radiobtn(ge("app_status_" + e), e, "app_status")
@@ -2348,27 +2355,36 @@ var GroupsEdit = {
             geByClass("unshown", e, "div").forEach(show), removeClass(geByClass1("last_visible", e), "last_visible"), t.remove()
         },
         save: function(e, t, o) {
-            val(GroupsEdit.app.btnName, trim(val(GroupsEdit.app.btnName)));
-            var r = {
-                act: "app_save",
-                id: cur.gid,
-                app_id: e,
-                hash: t,
-                btn_name: val(GroupsEdit.app.btnName),
-                privacy: GroupsEdit.app.privacy.selectedItems()[0][0],
-                snippet_type: GroupsEdit.app.snippetType.selectedItems()[0][0]
-            };
-            GroupsEdit.app.appWidgetPrivacy && (r.app_widget_privacy = GroupsEdit.app.appWidgetPrivacy.selectedItems()[0][0]), GroupsEdit.app.appName && (r.app_name = val(GroupsEdit.app.appName)), cur.withoutCatalog && GroupsEdit.hideMessage(), ajax.post("groupsedit.php", r, {
-                onDone: function(e, t) {
-                    return GroupsEdit.invalidateBack(), GroupsEdit.showMessage(t, e ? void 0 : "error"), e
-                },
-                showProgress: function() {
-                    lockButton(o)
-                },
-                hideProgress: function() {
-                    unlockButton(o)
-                }
-            })
+            if (GroupsEdit.app.editForms[e]) {
+                var r = GroupsEdit.app.editForms[e];
+                val(r.btnName, trim(val(r.btnName)));
+                var s = {
+                    act: "app_save",
+                    id: cur.gid,
+                    app_id: e,
+                    hash: t,
+                    btn_name: val(r.btnName),
+                    privacy: r.privacy.selectedItems()[0][0],
+                    snippet_type: r.snippetType.selectedItems()[0][0]
+                };
+                r.appWidgetPrivacy && (s.app_widget_privacy = r.appWidgetPrivacy.selectedItems()[0][0]), r.appName && (s.app_name = val(r.appName)), cur.withoutCatalog && GroupsEdit.app.hideMessage(), ajax.post("groupsedit.php", s, {
+                    onDone: function(e, t) {
+                        return GroupsEdit.invalidateBack(), GroupsEdit.app.showMessage(t, e), e
+                    },
+                    showProgress: function() {
+                        lockButton(o)
+                    },
+                    hideProgress: function() {
+                        unlockButton(o)
+                    }
+                })
+            }
+        },
+        hideMessage: function() {
+            GroupsEdit.app.sorterDeinit(), GroupsEdit.hideMessage(), GroupsEdit.app.sorterInit()
+        },
+        showMessage: function(e, t) {
+            GroupsEdit.app.sorterDeinit(), GroupsEdit.showMessage(e, t ? 0 : "error"), GroupsEdit.app.sorterInit()
         },
         "delete": function(e, t, o, r, s) {
             if (s) {
@@ -2378,9 +2394,9 @@ var GroupsEdit = {
                     id: cur.gid,
                     hash: t
                 };
-                cur.withoutCatalog && (a.cur_tab = cur.cur_tab, GroupsEdit.hideMessage()), ajax.post("groupsedit.php", a, {
+                cur.withoutCatalog && (a.cur_tab = cur.cur_tab, GroupsEdit.app.hideMessage()), ajax.post("groupsedit.php", a, {
                     onDone: function(e, t, o) {
-                        GroupsEdit.invalidateBack(), cur.withoutCatalog ? (extend(cur, t), ge("group_apps_wrapper").innerHTML = e, re("apps_cat_add"), GroupsEdit.showMessage(o, "info"), cur.show_alert = !1) : nav.reload()
+                        GroupsEdit.invalidateBack(), cur.withoutCatalog ? (extend(cur, t), ge("group_apps_wrapper").innerHTML = e, re("apps_cat_add"), GroupsEdit.app.showMessage(o, "info"), cur.show_alert = !1) : nav.reload()
                     },
                     showProgress: function() {
                         lockLink(o)

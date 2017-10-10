@@ -4938,13 +4938,7 @@ function HistoryAndBookmarks(params) {
                             delete window.preventLocationScroll;
                         }
                     }
-
-                    if (window.useReplaceHistoryStateInsteadOfPush) {
-                        history.replaceState({}, '', '/' + curLoc);
-                    } else {
-                        history.pushState({}, '', '/' + curLoc);
-                    }
-
+                    history.pushState({}, '', '/' + curLoc);
                     return;
                 } catch (e) {}
             }

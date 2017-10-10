@@ -2045,18 +2045,13 @@ a.group_ad_post_link.deleted.deleted:hover {
     padding: 8px 20px 5px
 }
 
-#group_apps_list .group_apps_list_rows .group_edit_input {
-    width: 300px
-}
-
 #group_apps_list .group_apps_list_rows .group_apps_list_row {
     border-bottom: 1px solid #e7e8ec;
-    padding: 12px 0px 11px
+    padding: 12px 0 11px
 }
 
-#group_apps_list .group_apps_list_rows .group_apps_list_row:last-child,
-#group_apps_list .group_apps_list_rows .group_apps_list_row.expanded_setting {
-    border-bottom: 0
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_edit_input {
+    width: 300px
 }
 
 #group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_list_row_img {
@@ -2074,7 +2069,8 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 #group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_list_row_info {
-    width: 380px;
+    width: 360px;
+    margin-top: 2px;
     float: left
 }
 
@@ -2088,7 +2084,6 @@ a.group_ad_post_link.deleted.deleted:hover {
 
 #group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_list_row_info .group_apps_list_row_info_field.group_apps_list_row_info_name {
     font-weight: 500;
-    padding-top: 11.5px;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto
 }
@@ -2104,9 +2099,40 @@ a.group_ad_post_link.deleted.deleted:hover {
     left: 2px
 }
 
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_list_row_info .group_apps_list_row_info_field.group_apps_list_row_info_app_name {
+    padding-top: 3px;
+    color: #000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_list_row_info .group_apps_list_row_info_field.group_apps_list_row_info_app_name:after {
+    content: ' ';
+    width: 7px;
+    height: 7px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%207%207%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cg%20id%3D%22Manage%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%220.699999988%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22App-Edit-3%22%20transform%3D%22translate(-482.000000%2C%20-157.000000)%22%20fill-rule%3D%22nonzero%22%20fill%3D%22%23828A99%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Group-6%22%20transform%3D%22translate(325.000000%2C%2057.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Group-5-Copy-2%22%20transform%3D%22translate(0.000000%2C%2063.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Group-9%22%20transform%3D%22translate(157.000000%2C%2037.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M6%2C5.5%20C6%2C5.77614237%206.22385763%2C6%206.5%2C6%20C6.77614237%2C6%207%2C5.77614237%207%2C5.5%20L7%2C0.5%20C7%2C0.223857625%206.77614237%2C0%206.5%2C0%20L1.5%2C0%20C1.22385763%2C0%201%2C0.223857625%201%2C0.5%20C1%2C0.776142375%201.22385763%2C1%201.5%2C1%20L6%2C1%20L6%2C5.5%20Z%22%20id%3D%22Path-2%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M6.14644661%2C0.146446609%20L0.146446609%2C6.14644661%20C-0.0488155365%2C6.34170876%20-0.0488155365%2C6.65829124%200.146446609%2C6.85355339%20C0.341708755%2C7.04881554%200.658291245%2C7.04881554%200.853553391%2C6.85355339%20L6.85355339%2C0.853553391%20C7.04881554%2C0.658291245%207.04881554%2C0.341708755%206.85355339%2C0.146446609%20C6.65829124%2C-0.0488155365%206.34170876%2C-0.0488155365%206.14644661%2C0.146446609%20Z%22%20id%3D%22Path-3%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+    display: inline-block;
+    position: relative
+}
+
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_list_row_info .group_apps_list_row_info_field.group_apps_list_row_info_installed_widget {
+    padding-top: 3px;
+    color: #2f942f
+}
+
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_list_row_info .group_apps_list_row_info_field.group_apps_list_row_info_installed_widget:before {
+    content: ' ';
+    width: 9px;
+    height: 9px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%229px%22%20height%3D%229px%22%20viewBox%3D%220%200%209%209%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3C!--%20Generator%3A%20Sketch%2046.2%20(44496)%20-%20http%3A%2F%2Fwww.bohemiancoding.com%2Fsketch%20--%3E%0A%20%20%20%20%3Cdesc%3ECreated%20with%20Sketch.%3C%2Fdesc%3E%0A%20%20%20%20%3Cdefs%2F%3E%0A%20%20%20%20%3Cg%20id%3D%22Manage%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22CommApps-Widget%22%20transform%3D%22translate(-413.000000%2C%20-714.000000)%22%20fill%3D%22%234BB34B%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Group-6%22%20transform%3D%22translate(325.000000%2C%20500.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Group-5-Copy-3%22%20transform%3D%22translate(0.000000%2C%20143.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Group%22%20transform%3D%22translate(88.000000%2C%2068.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M1%2C8%20L3%2C8%20C3.75%2C8%204%2C8.25%204%2C9%20L4%2C11%20C4%2C11.75%203.75%2C12%203%2C12%20L1%2C12%20C0.25%2C12%200%2C11.75%200%2C11%20L0%2C9%20C0%2C8.25%200.25%2C8%201%2C8%20Z%20M6%2C8%20L8%2C8%20C8.75%2C8%209%2C8.25%209%2C9%20L9%2C11%20C9%2C11.75%208.75%2C12%208%2C12%20L6%2C12%20C5.25%2C12%205%2C11.75%205%2C11%20L5%2C9%20C5%2C8.25%205.25%2C8%206%2C8%20Z%20M1%2C3%20L3%2C3%20C3.75%2C3%204%2C3.25%204%2C4%20L4%2C6%20C4%2C6.75%203.75%2C7%203%2C7%20L1%2C7%20C0.25%2C7%200%2C6.75%200%2C6%20L0%2C4%20C0%2C3.25%200.25%2C3%201%2C3%20Z%20M7.26516596%2C3.06516718%20L8.93484624%2C4.73483588%20L8.93484808%2C4.73483404%20C9.0812952%2C4.88128014%209.08129602%2C5.11871701%208.93484992%2C5.26516412%20C8.93484931%2C5.26516474%208.9348487%2C5.26516535%208.93484808%2C5.26516596%20L7.26516596%2C6.93483282%20L7.26516412%2C6.93483099%20C7.11871772%2C7.08127637%206.88128228%2C7.08127637%206.73483588%2C6.93483099%20L5.06515376%2C5.26516412%20L5.06515192%2C5.26516596%20C4.9187048%2C5.11871986%204.91870398%2C4.88128299%205.06515008%2C4.73483588%20C5.06515069%2C4.73483526%205.0651513%2C4.73483465%205.06515192%2C4.73483404%20L6.73483404%2C3.06516718%20L6.73483588%2C3.06516901%20C6.88128228%2C2.91872363%207.11871772%2C2.91872363%207.26516412%2C3.06516901%20L7.26516596%2C3.06516718%20Z%22%20id%3D%22Combined-Shape%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+    display: inline-block;
+    position: relative;
+    margin-right: 5px
+}
+
 #group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_list_row_controls {
     float: right;
-    margin-top: 13px
+    line-height: 55px
 }
 
 #group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_list_row_controls .group_apps_list_row_control {
@@ -2125,56 +2151,67 @@ a.group_ad_post_link.deleted.deleted:hover {
     background: url('/images/app_list_move.svg') no-repeat 6px
 }
 
-#group_apps_edit_2 {
-    border-top: 1px solid #e7e8ec;
-    padding: 20px 0 20px 2px
+#group_apps_list .group_apps_list_rows .group_apps_list_row.expanded {
+    padding-bottom: 0px;
+    border-bottom: 0;
+    margin: 0 0 -8px;
+    padding: 12px 20px 0
 }
 
-#group_apps_edit_2 .group_del_button {
-    background-color: #fff;
-    margin-right: 39px;
+#group_apps_list .group_apps_list_rows .group_apps_list_row.expanded .group_apps_edit {
+    display: block;
+    margin: 11px -20px
+}
+
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_edit {
+    border-top: 1px solid #e7e8ec;
+    padding: 20px;
+    background-color: #fff
+}
+
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_edit .group_del_button {
     line-height: 30px
 }
 
-#group_apps_edit_2 .group_edit_label {
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_edit .group_edit_label {
     padding: 0 12px;
     width: 157px
 }
 
-#group_apps_edit_2 .group_edit_field {
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_edit .group_edit_field {
     padding-top: 0
 }
 
-#group_apps_edit_2 .group_edit_row .group_edit_label {
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_edit .group_edit_row .group_edit_label {
     padding: 6px 12px 7px 0
 }
 
-#group_apps_edit_2 .group_edit_row .group_edit_field {
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_edit .group_edit_row .group_edit_field {
     width: 300px
 }
 
-#group_apps_edit_2 .app_setting_header {
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_edit .app_setting_header {
     margin-bottom: 10px
 }
 
-#group_apps_edit_2 .app_setting_header .app_settings_image {
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_edit .app_setting_header .app_settings_image {
     width: 60px;
     height: 60px
 }
 
-#group_apps_edit_2 .app_setting_header .app_settings_image .app_settings_image_img {
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_edit .app_setting_header .app_settings_image .app_settings_image_img {
     border-radius: 3px;
     width: 60px;
     height: 60px
 }
 
-#group_apps_edit_2 .app_setting_header .group_edit_app_info {
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_edit .app_setting_header .group_edit_app_info {
     min-height: 60px;
     margin-bottom: 0px
 }
 
-#group_apps_edit_2 .app_setting_header .group_edit_app_info .app_settings_group,
-#group_apps_edit_2 .app_setting_header .group_edit_app_info .app_settings_name {
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_edit .app_setting_header .group_edit_app_info .app_settings_group,
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_edit .app_setting_header .group_edit_app_info .app_settings_name {
     margin-bottom: 4px;
     white-space: nowrap;
     overflow: hidden;
@@ -2183,9 +2220,51 @@ a.group_ad_post_link.deleted.deleted:hover {
     width: 300px
 }
 
-#group_apps_edit_2 .app_setting_header .group_edit_app_info .app_settings_name,
-#group_apps_edit_2 .app_setting_header .group_edit_app_info .app_settings_name .app_settings_name_link {
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_edit .app_setting_header .group_edit_app_info .app_settings_name,
+#group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_edit .app_setting_header .group_edit_app_info .app_settings_name .app_settings_name_link {
     font-weight: 700
+}
+
+#group_apps_list .group_apps_list_rows.group_apps_list_rows_multi {
+    padding: 8px 0 0
+}
+
+#group_apps_list .group_apps_list_rows.group_apps_list_rows_multi .group_apps_edit {
+    display: none
+}
+
+#group_apps_list .group_apps_list_rows.group_apps_list_rows_multi .group_apps_list_row_drag_wrapper {
+    background-color: #fff;
+    padding: 0 20px
+}
+
+#group_apps_list .group_apps_list_rows.group_apps_list_rows_multi .group_apps_list_row_drag_wrapper .group_apps_list_row.expanded {
+    padding-left: 0;
+    padding-right: 0
+}
+
+#group_apps_list .group_apps_list_rows.group_apps_list_rows_multi .group_apps_list_row_drag_wrapper .group_apps_list_row.expanded .group_apps_edit {
+    background-color: #fafbfc;
+    border-bottom: 1px solid #e7e8ec
+}
+
+#group_apps_list .group_apps_list_rows.group_apps_list_rows_multi .group_apps_list_row_drag_wrapper .group_apps_list_row.expanded .group_apps_edit .group_del_button {
+    margin-right: 39px;
+    line-height: 30px
+}
+
+#group_apps_list .group_apps_list_rows.group_apps_list_rows_multi .group_apps_list_row_drag_wrapper:last-child .group_apps_list_row {
+    border-bottom: 0;
+    padding-bottom: 12px
+}
+
+#group_apps_list .group_apps_list_rows.group_apps_list_rows_multi .group_apps_list_row_drag_wrapper:last-child .group_apps_list_row.expanded {
+    padding-bottom: 0
+}
+
+#group_apps_list .group_apps_list_rows.group_apps_list_rows_multi .group_apps_list_row_drag_wrapper:last-child .group_apps_list_row.expanded .group_apps_edit {
+    margin-bottom: 0;
+    border-bottom: 0
 }
 
 .group_edit_messages_details {

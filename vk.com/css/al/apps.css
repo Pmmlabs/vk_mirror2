@@ -5922,7 +5922,7 @@ td.apps_cat_new_h {
     margin-left: 7px;
     margin-left: 8px;
     color: #656565;
-    max-width: 65%;
+    max-width: 45%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -6085,4 +6085,53 @@ td.apps_cat_new_h {
 
 .add_to_mine_community_box .add_community_app_groups .add_community_app_group_app {
     margin-right: 10px
+}
+
+.add_to_mine_community_box .add_community_app_groups.add_community_app_groups_multi .flist_item_hint_icon {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Crect%20width%3D%2215%22%20height%3D%2215%22%20x%3D%22.5%22%20y%3D%22.5%22%20stroke%3D%22%23B4BFCC%22%20rx%3D%227.5%22%2F%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M5.67342187%2C6.34423828%20L6.78523828%2C6.34423828%20C6.83357812%2C5.65673828%207.31160547%2C5.22167969%208.05281641%2C5.22167969%20C8.78865625%2C5.22167969%209.26668359%2C5.65136719%209.26668359%2C6.2421875%20C9.26668359%2C6.78466797%209.03572656%2C7.09082031%208.38582422%2C7.48291016%20C7.64998437%2C7.92333984%207.32234766%2C8.40673828%207.34920312%2C9.18017578%20L7.35457422%2C9.58837891%20L8.46639062%2C9.58837891%20L8.46639062%2C9.26611328%20C8.46639062%2C8.72363281%208.66512109%2C8.43896484%209.35799219%2C8.03076172%20C10.0669766%2C7.60644531%2010.4859219%2C7.02099609%2010.4859219%2C6.19384766%20C10.4859219%2C5.02832031%209.52986719%2C4.18505859%208.11189844%2C4.18505859%20C6.55428125%2C4.18505859%205.72176172%2C5.10888672%205.67342187%2C6.34423828%20Z%20M7.97762109%2C12.1235352%20C8.47176172%2C12.1235352%208.80476953%2C11.7958984%208.80476953%2C11.3071289%20C8.80476953%2C10.8076172%208.47176172%2C10.4799805%207.97762109%2C10.4799805%20C7.48348047%2C10.4799805%207.14510156%2C10.8076172%207.14510156%2C11.3071289%20C7.14510156%2C11.7958984%207.48348047%2C12.1235352%207.97762109%2C12.1235352%20Z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") 50% no-repeat;
+    background-size: 22px;
+    float: right;
+    margin: 6px 5px 0 0;
+    width: 22px;
+    height: 22px
+}
+
+.add_to_mine_community_box .add_community_app_groups.add_community_app_groups_multi .flist_item_name {
+    max-width: 223px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: top;
+    width: auto
+}
+
+.add_to_mine_community_box .add_community_app_groups.add_community_app_groups_multi .add_community_app_group_app,
+.add_to_mine_community_box .add_community_app_groups.add_community_app_groups_multi .add_community_app_group_app img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    margin-right: 16px
+}
+
+.add_to_mine_community_box .add_community_app_groups.add_community_app_groups_multi .add_community_app_group_app_multi {
+    margin-right: 16px
+}
+
+.add_to_mine_community_box .add_community_app_groups.add_community_app_groups_multi .add_community_app_group_app_multi .add_community_app_group_app,
+.add_to_mine_community_box .add_community_app_groups.add_community_app_groups_multi .add_community_app_group_app_multi .add_community_app_group_app img {
+    margin-right: -8px
+}
+
+.add_to_mine_community_box .add_community_app_groups.add_community_app_groups_multi .add_community_app_group_app_multi .add_community_app_group_app:last-child,
+.add_to_mine_community_box .add_community_app_groups.add_community_app_groups_multi .add_community_app_group_app_multi .add_community_app_group_app img:last-child {
+    margin-right: 0
+}
+
+.add_to_mine_community_box .add_community_app_groups.add_community_app_groups_multi .add_community_app_group_app_multi .add_community_app_group_app img {
+    border: 2px solid #fff
+}
+
+.apps_group_hint_icon_count_reached_tt {
+    width: 315px
 }

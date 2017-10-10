@@ -1099,7 +1099,8 @@ a.groups_catalog_comm_title_link {
     text-decoration: none
 }
 
-a.group_app_button {
+a.group_app_button,
+a.group_app_button_multi {
     display: block;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -1112,12 +1113,14 @@ a.group_app_button {
     color: #336bab
 }
 
-a.group_app_button.group_app_button_with_sign {
+a.group_app_button.group_app_button_with_sign,
+a.group_app_button_multi.group_app_button_with_sign {
     line-height: 1.23;
     padding: 8px 52px 7px 15px
 }
 
-a.group_app_button.group_app_button_with_sign .groups_app_button_sign {
+a.group_app_button.group_app_button_with_sign .groups_app_button_sign,
+a.group_app_button_multi.group_app_button_with_sign .groups_app_button_sign {
     margin-top: 1px;
     font-size: 11px;
     line-height: 1.45;
@@ -1125,12 +1128,45 @@ a.group_app_button.group_app_button_with_sign .groups_app_button_sign {
     font-weight: 400
 }
 
-a.group_app_button:hover {
+a.group_app_button:hover,
+a.group_app_button_multi:hover {
     text-decoration: none
 }
 
-a.group_app_button:hover:after {
+a.group_app_button:hover:after,
+a.group_app_button_multi:hover:after,
+a.group_app_button:hover:before,
+a.group_app_button_multi:hover:before {
     background-color: #83a5d3
+}
+
+a.group_app_button_multi {
+    border-bottom: 1px solid #e3e4e8;
+    padding: 12px
+}
+
+a.group_app_button_multi.group_app_button_with_sign {
+    padding-right: 15px
+}
+
+a.group_app_button_multi.group_app_button_with_sign .groups_app_button_sign {
+    margin-left: 12px
+}
+
+a.group_app_button_multi:last-child {
+    border-bottom: 0
+}
+
+a.group_app_button_multi .group_app_button_icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-size: 28px;
+    float: left
+}
+
+a.group_app_button_multi .group_app_button_label {
+    margin-left: 12px
 }
 
 a.group_app_button:after {
@@ -2037,33 +2073,33 @@ a.app_widget_matches_live_icon:active {
     margin: 0 0 15px
 }
 
-.api_messages_confirmation_box {
+.groups_confirmation_box {
     text-align: center
 }
 
-.api_messages_confirmation_box .box_body {
+.groups_confirmation_box .box_body {
     padding: 40px 40px 32px
 }
 
-.api_messages_confirmation_box_content {
+.groups_confirmation_box_content {
     line-height: 21px;
     font-size: 14px;
     padding-top: 20px;
     text-align: left
 }
 
-.api_messages_confirmation_box_title {
+.groups_confirmation_box_title {
     font-size: 22px;
     font-weight: 500;
     margin: 12px 0 0;
     letter-spacing: 0.4px
 }
 
-.api_messages_confirmation_box_button {
+.groups_confirmation_box_button {
     margin-top: 30px
 }
 
-.api_messages_confirmation_box_summarize {
+.groups_confirmation_box_summarize {
     padding-top: 16px;
     font-size: 12px;
     color: #656565

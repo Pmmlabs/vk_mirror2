@@ -6567,7 +6567,13 @@ body.sf .nim-dialog .nim-dialog--unread {
     -moz-osx-font-smoothing: grayscale;
     color: #42648b;
     margin-bottom: 2px;
-    margin-top: 3px
+    margin-top: 3px;
+    max-width: 190px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: top
 }
 
 .im-member-item .im-member-iterm--status {
