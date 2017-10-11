@@ -700,6 +700,10 @@ i i.untranslated {
     width: 205px
 }
 
+.tr_add_lang_label.tr_edit_lang_label {
+    width: 100px
+}
+
 .tr_add_lang_row {
     margin: 0 0 10px
 }
@@ -711,4 +715,8 @@ i i.untranslated {
 .tr_add_lang .text {
     float: left;
     width: 195px
+}
+
+.tran_filter_block {
+    padding: 1px 15px 10px
 }

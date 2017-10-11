@@ -8149,6 +8149,9 @@ function showAudioClaimWarning(audio, claim, onReplace) {
     } else if (reason == 'replace') {
         claimText = getLang('audio_claimed_replacement_available');
         claimTitle = getLang('audio_claim_warning_title');
+    } else if (reason == 'future') {
+        claimText = getLang('audio_claimed_future');
+        claimTitle = getLang('audio_claimed_future_title');
     } else {
         claimText = getLang('audio_claim_warning'); //getLang(claim_id > 0 ? 'audio_claim_warning_objection' : (claim_id == 0 ? 'audio_claim_warning_text' : 'audio_claim_warning'));
         claimTitle = getLang('audio_claim_warning_title');
