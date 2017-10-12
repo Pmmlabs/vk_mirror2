@@ -363,7 +363,7 @@ var stVersions = {
     'verify.css': 13747923098,
     'away.css': 18532649756,
     'stats.css': 17349722929,
-    'payments.css': 18434219762,
+    'payments.css': 19865389612,
     'payments.js': 2970744878,
     'offers.css': 978996883,
     'offers.js': 2030679272,
@@ -611,4 +611,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 17;
+var _rnd = 4228;

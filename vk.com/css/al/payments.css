@@ -108,14 +108,13 @@
 }
 
 .payments_summary_cont {
-    margin-top: 4px;
-    line-height: 21px
+    line-height: 21px;
+    font-size: 14px
 }
 
 .payments_summary_notice {
-    margin-top: -3px;
-    color: #939393;
-    font-size: 12.5px
+    color: #656565;
+    font-size: 13px
 }
 
 .payments_summary_header {
@@ -431,7 +430,19 @@ h2.payments_getvotes_title {
     height: 443px;
     width: 100%;
     overflow-y: auto;
-    overflow-x: hidden
+    overflow-x: hidden;
+    position: relative;
+    margin-top: 16px
+}
+
+.payments_iframe_container:before {
+    border-top: 1px solid #e7e8ec;
+    display: block;
+    content: '';
+    position: absolute;
+    left: 25px;
+    right: 25px;
+    top: 3px
 }
 
 .payments_threeds_frame {
@@ -488,7 +499,7 @@ h2.payments_getvotes_title {
 
 .payments_getvotes_ps_list {
     margin: 0 auto;
-    width: 500px
+    width: 436px
 }
 
 .payments_getvotes_ps_row {
@@ -496,7 +507,7 @@ h2.payments_getvotes_title {
     margin: 5px 5px 0;
     padding: 7px 15px 7px 9px;
     box-sizing: border-box;
-    width: 240px;
+    width: 208px;
     height: 64px;
     color: #000;
     font-size: 12.5px;
@@ -528,7 +539,7 @@ h2.payments_getvotes_title {
 }
 
 .payments_getvotes_ps_text {
-    margin-left: 62px
+    margin-left: 56px
 }
 
 .payments_getvotes_ps_title {
@@ -778,7 +789,7 @@ h2.payments_getvotes_title {
 #payments_box.payments_box_votes .payments_systems_logo {
     float: right;
     margin: -7px 0 0;
-    width: 222px;
+    width: 200px;
     height: 40px
 }
 
@@ -808,7 +819,8 @@ h2.payments_getvotes_title {
 }
 
 .payments_box_instant_pay .payments_summary_cont {
-    margin-top: 2px
+    margin-top: 2px;
+    font-size: 13px
 }
 
 .payments_box_instant_pay .payments_getvotes_order_descr {
@@ -932,7 +944,7 @@ h2.payments_getvotes_title {
     margin-left: 300px;
     background-color: #fff;
     display: table-cell;
-    width: 500px;
+    width: 480px;
     vertical-align: top
 }
 
@@ -954,6 +966,7 @@ h2.payments_getvotes_title {
 .payments_box_wide .payments_summary_cont {
     float: left;
     margin-top: -2px;
+    font-size: 13px;
     width: 181px;
     color: #000;
     white-space: nowrap;
@@ -1041,6 +1054,11 @@ h2.payments_getvotes_title {
     margin: 5px 0 20px
 }
 
+.payments_box_wide .payments_getvotes_ps_list,
+.payments_box_wide .payments_getvotes_ps_row {
+    width: 240px
+}
+
 .payments_box_wide .payments_systems_logo {
     margin: 90px 0 20px;
     text-align: center;
@@ -1078,7 +1096,7 @@ h2.payments_getvotes_title {
 }
 
 .payments_box_wide .payments_getvotes_buttons {
-    padding: 0 0 20px 175px;
+    padding: 0 0 20px 165px;
     width: 150px
 }
 
@@ -1101,21 +1119,17 @@ h2.payments_getvotes_title {
 
 .payments_box_wide.payments_phone_form .payments_getvotes_buttons {
     width: 200px;
-    padding-left: 150px
-}
-
-.payments_box_wide .payments_getvotes_ps_list {
-    width: 240px
+    padding-left: 140px
 }
 
 .payments_box_wide .payments_remember_wallet {
     text-align: left;
-    padding-left: 150px;
+    padding-left: 140px;
     margin: 20px 0 5px
 }
 
 .payments_box_wide .payments_receipt_email_wrap {
-    padding-left: 150px;
+    padding-left: 140px;
     margin-top: 25px
 }
 
@@ -1626,8 +1640,13 @@ h2.payments_getvotes_title {
 }
 
 #payments_box.payments_money_transfer_box #payments_iframe_container {
+    margin-top: 0;
     display: block;
     height: 450px
+}
+
+#payments_box.payments_money_transfer_box #payments_iframe_container:before {
+    display: none
 }
 
 #payments_box.payments_money_transfer_box #payments_money_transfer_summary {
