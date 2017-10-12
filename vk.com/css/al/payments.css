@@ -1554,45 +1554,54 @@ h2.payments_getvotes_title {
     width: 480px
 }
 
+#payments_box.payments_money_transfer_box .payments_box_summary {
+    padding-top: 15px;
+    text-align: center
+}
+
 #payments_box.payments_money_transfer_box .payments_summary_cont {
-    margin-left: 52px;
-    margin-top: 0
+    margin-top: 0;
+    font-size: 14px;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    vertical-align: top
 }
 
-#payments_box.payments_money_transfer_box .payments_summary_phumb {
-    margin-right: 12px
+#payments_box.payments_money_transfer_box .payments_summary_notice {
+    margin-top: 0;
+    font-size: 13px
+}
+
+#payments_box.payments_money_transfer_box .payments_transfer_to_photo_wrap {
+    display: inline-block;
+    float: none
 }
 
 #payments_box.payments_money_transfer_box .payments_transfer_to_photo {
-    margin-left: 5px
-}
-
-#payments_box.payments_money_transfer_box .payments_summary_phumb,
-#payments_box.payments_money_transfer_box .payments_transfer_to_photo {
-    width: 40px;
-    height: 40px;
+    margin: 0;
+    margin-right: 8px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc;
-    display: block
+    background-color: #fafbfc
 }
 
-#payments_box.payments_money_transfer_box .payments_summary_phumb:before,
 #payments_box.payments_money_transfer_box .payments_transfer_to_photo:before {
     content: " ";
     display: block;
     position: absolute;
     top: 0;
     left: 0;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     background-color: #fff
 }
 
-#payments_box.payments_money_transfer_box .payments_summary_phumb:after,
 #payments_box.payments_money_transfer_box .payments_transfer_to_photo:after {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     content: " ";
     display: block;
@@ -1607,7 +1616,6 @@ h2.payments_getvotes_title {
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    #payments_box.payments_money_transfer_box .payments_summary_phumb:after,
     #payments_box.payments_money_transfer_box .payments_transfer_to_photo:after {
         background-image: url(/images/camera_200.png)
     }
@@ -1623,7 +1631,7 @@ h2.payments_getvotes_title {
 }
 
 #payments_box.payments_money_transfer_box #payments_money_transfer_summary {
-    max-width: 333px;
+    max-width: 345px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1636,7 +1644,7 @@ h2.payments_getvotes_title {
 }
 
 .payments_money_transfer_wrap {
-    margin: 20px 25px;
+    margin: 15px 25px 20px;
     text-align: center
 }
 
@@ -1745,9 +1753,11 @@ h2.payments_getvotes_title {
 }
 
 .payments_money_transfer_mc_info_msg {
-    background: #f0f2f5 url(/images/mc_logo.png) no-repeat 15px 50%;
-    padding-left: 68px!important;
-    margin-bottom: 5px!important
+    background: #e7edf2 url(/images/mc_logo.png) no-repeat 16px 50%;
+    border: none;
+    padding-left: 71px!important;
+    margin-top: 15px!important;
+    border-radius: 3px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),

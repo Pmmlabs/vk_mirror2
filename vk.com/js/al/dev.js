@@ -1870,6 +1870,367 @@ var Dev = {
         document.execCommand('copy');
     },
 
+    appIdByLink: function(url, cb) {
+        if (!url) return cb(0, 0);
+        ajax.post('apps', {
+            act: 'a_aid_by_link',
+            url: url
+        }, {
+            onDone: cb,
+            onFail: function() {
+                cb(0, 0);
+            }
+        });
+    },
+
+    initCreateAppForm: function() {
+        var select_el = geByClass1('_dev_create_app_select'),
+            id_el = geByClass1('_dev_create_app_id'),
+            form_el = geByClass1('_dev_create_app_form'),
+            name_el = geByClass1('_dev_create_app_name'),
+            url_el = geByClass1('_dev_create_app_url'),
+            domain_el = geByClass1('_dev_create_app_domain'),
+            subject_el = geByClass1('_dev_create_app_subject'),
+            submit_el = geByClass1('_dev_create_app_submit');
+
+        if (cur.dev_create_app_apps !== false && !isArray(cur.dev_create_app_apps)) cur.dev_create_app_apps = [];
+
+        if (cur.dev_create_app_apps !== false) {
+            if (cur.dev_create_app_apps.length) {
+                hide(form_el);
+            } else {
+                hide(select_el);
+                show(form_el);
+            }
+            cur.dev_create_app_apps.splice(0, 0, [-1, '<b>' + getLang('pages_widget_newapp') + '</b>']);
+        } else {
+            hide(form_el);
+        }
+
+        if (!cur.dev_create_app_id) {
+            cur.dev_create_app_id = cur.dev_create_app_apps && cur.dev_create_app_apps.length > 1 ? cur.dev_create_app_apps[1][0] : void 0;
+        }
+
+        cur.dev_create_app_emitter = new EventEmitter();
+        cur.dev_create_app_select = new Dropdown(id_el, cur.dev_create_app_apps !== false ? cur.dev_create_app_apps : [
+            [-1, getLang('pages_widget_auth_required')]
+        ], {
+            width: 200,
+            big: 1,
+            selectedItem: cur.dev_create_app_id,
+            onChange: function(val) {
+                if (val > 0) {
+                    if (isVisible(form_el)) {
+                        hide(form_el);
+                    }
+                } else {
+                    if (!isVisible(form_el)) {
+                        show(form_el);
+                    }
+                }
+                cur.dev_create_app_emitter.emitEvent('change', [val]);
+            }
+        });
+        cur.dev_create_app_emitter.addListener('change', function(app_id) {
+            if (app_id && app_id > 0) {
+                cur.dev_create_app_id = app_id;
+                nav.setLoc(extend(nav.objLoc, {
+                    aid: app_id
+                }));
+            }
+        });
+
+        addEvent(url_el, 'paste change keyup', function() {
+            val(domain_el, val(url_el).replace(/(^https?:\/\/|\/$)/g, ''));
+        });
+
+        addEvent(submit_el, 'click', function() {
+            if (buttonLocked(submit_el)) return;
+
+            var app_name = trim(val(name_el)),
+                app_url = trim(val(url_el)),
+                app_domain = trim(val(domain_el)),
+                site_subject = val(subject_el);
+
+            if (!app_name) {
+                notaBene(name_el);
+                return;
+            }
+            if (!app_url || !app_url.match(/https?:\/\/.+/i)) {
+                notaBene(url_el);
+                return;
+            }
+            if (!app_domain || !app_url.match(/[a-zA-Z0-9\.\_\-]{4,}/i)) {
+                notaBene(domain_el);
+                return;
+            }
+
+            ajax.post('apps', {
+                'act': 'a_site_fast_add',
+                'name': app_name,
+                'site_url': app_url,
+                'site_subject': site_subject,
+                'base_domain': app_domain
+            }, {
+                onDone: function(app_id) {
+                    app_id = intval(app_id);
+                    hide(form_el);
+                    show(select_el);
+                    cur.dev_create_app_apps.unshift(cur.dev_create_app_apps.shift(), [app_id, clean(app_name)]);
+                    cur.dev_create_app_select.setData(cur.dev_create_app_apps);
+                    cur.dev_create_app_select.val(app_id);
+                    cur.dev_create_app_emitter.emitEvent('change', [app_id]);
+                },
+                onFail: function(text) {
+                    text !== void 0 && setTimeout(showFastBox(getLang('global_error'), text).hide, 2000);
+                    return true;
+                },
+                showProgress: lockButton.pbind(submit_el),
+                hideProgress: unlockButton.pbind(submit_el)
+            });
+        });
+
+        new Dropdown(subject_el, cur.dev_create_app_subjects, {
+            width: 200,
+            big: 1,
+            multiselect: false,
+            autocomplete: true,
+            introText: getLang('pages_start_typing_site_subject'),
+            noResult: '',
+            placeholder: getLang('pages_edit_choose_site_subject')
+        });
+
+        if (cur.dev_create_app_apps === false) {
+            cur.dev_create_app_select.disable(true);
+        }
+    },
+
+    initWidgetAppConstructor: function(options) {
+        var code_el = geByClass1('_dev_widget_code'),
+            preview_el = geByClass1('_dev_widget_preview'),
+            width_el = geByClass1('_dev_widget_width'),
+            height_el = geByClass1('_dev_widget_height'),
+            form_el = geByClass1('_dev_widget_form'),
+            link_el = geByClass1('_dev_widget_link'),
+            mode_el = ge('dev_widget_mode'),
+
+            state = {
+                is_group_app: options.is_group_app,
+                mode: options.mode,
+                app_id: options.app_id,
+                width: options.width,
+                height: options.height
+            },
+
+            linkTimeout = null;
+
+        function updateCode() {
+            var _options = {
+                mode: state.mode != 1 ? state.mode : void 0,
+                width: state.mode == 2 && state.width && state.width != options.width_default ? state.width : void 0,
+                height: state.mode == 3 && state.height && state.height != options.height_default ? state.height : void 0,
+                base_domain: options.base_domain || void 0
+            };
+            val(code_el, rs(options.tpl, {
+                app_id: state.app_id,
+                options: Object.keys(_options).length ? ', ' + JSON.stringify(_options) : ''
+            }));
+            val(preview_el, '<div id="dev_widget_preview" style="margin: 0 auto;"' + (state.mode == 3 ? ' class="dev_widget_preview_button"' : '') + '></div>');
+            VK.Widgets.App('dev_widget_preview', state.app_id, clone(_options));
+            nav.objLoc.mode = _options.mode;
+            nav.objLoc.width = _options.width;
+            nav.objLoc.height = _options.height;
+            nav.objLoc.aid = state.app_id != options.app_id_default ? state.app_id : void 0;
+            nav.setLoc(nav.objLoc);
+        }
+
+        function updateWidth() {
+            var width = intval(val(width_el));
+            if (width != state.width && state.mode == 2) {
+                state.width = width;
+                updateCode();
+            }
+            val(width_el, width || '');
+        }
+
+        function updateHeight() {
+            var height = intval(heightSelect.val());
+            if (height != state.height && state.mode == 3) {
+                state.height = height;
+                updateCode();
+            }
+        }
+
+        function updateMode() {
+            var mode = intval(val(mode_el));
+            if (~[1, 2, 3].indexOf(mode) && mode !== state.mode) {
+                replaceClass(form_el, 'dev_widget_mode' + state.mode, 'dev_widget_mode' + mode);
+                state.mode = mode;
+                updateCode();
+            }
+        }
+
+        function updateLink() {
+            clearTimeout(linkTimeout);
+            linkTimeout = setTimeout(function() {
+                Dev.appIdByLink(val(link_el), function(app_id, group_id) {
+                    if (app_id) {
+                        if (group_id) {
+                            app_id += '_-' + group_id;
+                        }
+                        if (state.app_id != app_id) {
+                            state.app_id = app_id;
+                            state.is_group_app = !!group_id;
+                            toggleClass(form_el, 'dev_widget_is_group_app', state.is_group_app);
+                            if (state.is_group_app && state.mode != 3) {
+                                ge('dev_widget_mode3').click();
+                            } else {
+                                updateCode();
+                            }
+                        }
+                    }
+                });
+            }, 300);
+        }
+
+        new Radiobuttons(mode_el, [
+            [1, getLang('pages_widget_show_app')],
+            [2, getLang('pages_widget_show_members')],
+            [3, getLang('pages_widget_show_button')]
+        ], {
+            width: 400,
+            onChange: updateMode,
+            selected: state.mode
+        });
+
+        var heightSelect = new Dropdown(height_el, options.height_list, {
+            width: 200,
+            big: 1,
+            selectedItem: state.height,
+            onChange: updateHeight
+        });
+
+        Emoji.init(width_el, {
+            noLineBreaks: true,
+            noCtrlSend: 1,
+            onSend: updateWidth
+        });
+        addEvent(link_el, 'paste change keyup', updateLink);
+        addEvent(width_el, 'blur', updateWidth);
+
+        updateCode();
+    },
+
+    initWidgetAuthConstructor: function(options) {
+        Dev.initCreateAppForm();
+
+        var code_el = geByClass1('_dev_widget_code'),
+            preview_el = geByClass1('_dev_widget_preview'),
+            width_el = geByClass1('_dev_widget_width'),
+            form_el = geByClass1('_dev_widget_form'),
+            link_el = geByClass1('_dev_widget_link'),
+            mode_el = ge('dev_widget_mode'),
+
+            state = {
+                mode: options.mode,
+                url: options.url,
+                width: options.width,
+                app_id: cur.dev_create_app_id || options.app_id_default
+            },
+
+            linkTimeout = null;
+
+        VK.init({
+            apiId: options.app_id_default
+        });
+
+        function updateCode() {
+            VK._apiId = state.app_id;
+
+            var cb_key = "callback_" + ((Math.random() + '').substr(2)),
+                _options = {
+                    width: state.width && state.width != options.width_default ? state.width : void 0,
+                    authUrl: state.mode == 1 && state.url ? state.url : void 0,
+                    onAuth: state.mode == 2 ? '%' + cb_key + '%' : void 0,
+                    base_domain: options.base_domain || void 0
+                },
+                tpl = rs(options.tpl, {
+                    app_id: state.app_id && state.app_id != options.app_id_default ? state.app_id : 'API_ID',
+                    options: Object.keys(_options).length ? ', ' + JSON.stringify(_options) : ''
+                }),
+                rep = {};
+            if (state.mode == 2) {
+                rep[cb_key] = "function(data) {alert('user '+data['uid']+' authorized');}";
+                _options.onAuth = function(data) {
+                    alert('user ' + data['uid'] + ' authorized');
+                };
+                tpl = rs(tpl, rep);
+            }
+            val(code_el, tpl);
+            val(preview_el, '<div id="dev_widget_preview" style="margin: 0 auto;"></div>');
+            VK.Widgets.Auth('dev_widget_preview', clone(_options));
+            nav.objLoc.mode = state.mode != options.mode_default ? state.mode : void 0;
+            nav.objLoc.width = _options.width;
+            nav.objLoc.url = state.mode == 1 && _options.authUrl && _options.authUrl != options.url_default ? _options.authUrl : void 0;
+            nav.setLoc(nav.objLoc);
+        }
+
+        function updateWidth() {
+            var width = intval(val(width_el));
+            if (width != state.width) {
+                state.width = width;
+                updateCode();
+            }
+            val(width_el, width || '');
+        }
+
+        function updateMode() {
+            var mode = intval(val(mode_el));
+            if (~[1, 2].indexOf(mode) && mode !== state.mode) {
+                replaceClass(form_el, 'dev_widget_mode' + state.mode, 'dev_widget_mode' + mode);
+                state.mode = mode;
+                updateCode();
+            }
+        }
+
+        function updateLink() {
+            clearTimeout(linkTimeout);
+            linkTimeout = setTimeout(function() {
+                var url = trim(val(link_el));
+                if (url && state.url != url && !/^javascript/i.test(url)) {
+                    state.url = url;
+                    updateCode();
+                }
+            }, 300);
+        }
+
+        new Radiobuttons(mode_el, [
+            [1, getLang('widgets_auth_type1')],
+            [2, getLang('widgets_auth_type2')],
+        ], {
+            width: 400,
+            onChange: updateMode,
+            selected: state.mode
+        });
+
+        Emoji.init(width_el, {
+            noLineBreaks: true,
+            noCtrlSend: 1,
+            onSend: updateWidth
+        });
+        addEvent(link_el, 'paste change keyup', updateLink);
+        addEvent(width_el, 'blur', updateWidth);
+
+        cur.dev_create_app_emitter.addListener('change', function(app_id) {
+            app_id = app_id && app_id > 0 ? app_id : options.app_id_default;
+            if (state.app_id != app_id) {
+                state.app_id = app_id;
+                updateCode();
+            }
+        });
+
+        updateCode();
+    },
 
     _eof: 1
 };

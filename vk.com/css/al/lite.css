@@ -1411,7 +1411,8 @@ body.mac #layer_stl .fixed {
     box-sizing: border-box;
     background: #fff;
     border-radius: 3px;
-    border: 1px solid #e1e4eb
+    border: 1px solid #e1e4eb;
+    padding: 0 10px
 }
 
 .widgets_page_error_wrap .widgets_page_error {
@@ -1421,7 +1422,7 @@ body.mac #layer_stl .fixed {
     color: #939393;
     font-size: 13px;
     text-align: center;
-    line-height: 18px
+    line-height: 15px
 }
 
 .widgets_page_error_wrap .widgets_page_error b {

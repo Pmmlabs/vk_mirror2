@@ -1692,6 +1692,44 @@ if (!VK.Widgets) {
         });
     };
 
+    VK.Widgets.App = function(objId, app_id, options) {
+        if (!app_id) throw Error('No app id passed');
+        if (!options) options = {};
+        var startHeight = void 0,
+            height = void 0,
+            minWidth = void 0,
+            params = {
+                aid: app_id,
+                mode: parseInt(options.mode, 10) || 1,
+            };
+        switch (params.mode) {
+            case 1:
+                options.width = 144;
+                startHeight = 251;
+                break;
+            case 2:
+                options.width = options.width ? Math.max(200, Math.min(10000, parseInt(options.width, 10))) : 200;
+                height = startHeight = 193;
+                break;
+            case 3:
+                options.width = options.width ? Math.max(50, Math.min(10000, parseInt(options.width, 10))) : void 0;
+                height = startHeight = options.height = ({
+                    18: 18,
+                    20: 20,
+                    22: 22,
+                    24: 24,
+                    30: 30
+                })[parseInt(options.height, 10) || 30];
+                break;
+        }
+        minWidth = options.width;
+        return VK.Widgets._constructor('widget_app.php', objId, options, params, {}, {
+            startHeight: startHeight,
+            height: height,
+            minWidth: minWidth
+        });
+    };
+
     VK.Widgets.Community = VK.Widgets.Group = function(objId, options, gid) {
         gid = parseInt(gid, 10);
         if (!gid) {

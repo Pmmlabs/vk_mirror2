@@ -256,7 +256,7 @@ body.mac .wcommunity_footer .pr {
 
 .wcommunity_closed_wrap {
     margin-top: 12px;
-    padding: 6px 0;
+    padding: 7.5px 0;
     box-sizing: border-box;
     position: relative;
     z-index: 1;
@@ -275,7 +275,7 @@ body.mac .wcommunity_footer .pr {
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 13px;
-    line-height: 18px;
+    line-height: 15px;
     color: #939393
 }
 

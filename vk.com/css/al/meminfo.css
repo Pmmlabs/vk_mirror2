@@ -39,6 +39,10 @@
     width: 130px
 }
 
+.box_body .photos_amount_in_albums_box .photos_clean_queue {
+    margin-bottom: 15px
+}
+
 .box_body .photos_amount_in_albums_box .header {
     padding: 0 8px 8px;
     font-weight: 700;

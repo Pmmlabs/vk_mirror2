@@ -429,7 +429,7 @@ var MoneyTransfer = {
         if (cur.paymentsOptions.requestId) {
             box.changed = true;
             box.setOptions({
-                width: 560
+                width: 480
             });
             MoneyTransfer.send();
         }
@@ -466,7 +466,7 @@ var MoneyTransfer = {
         }, {
             border: 0,
             height: '445px',
-            width: (560 - sbWidth()) + 'px',
+            width: (480 - sbWidth()) + 'px',
             overflowX: 'hidden',
             overflowY: 'hidden'
         });
@@ -512,7 +512,7 @@ var MoneyTransfer = {
 
                     box.changed = true;
                     box.setOptions({
-                        width: 560
+                        width: 480
                     });
                     if (!cur.paymentsOptions.requestId && isVisible(box.titleWrap)) {
                         box.setBackTitle(MoneyTransfer.resetSendBox);
@@ -717,7 +717,7 @@ var MoneyTransfer = {
         }, {
             border: 0,
             height: '445px',
-            width: (560 - sbWidth()) + 'px',
+            width: (480 - sbWidth()) + 'px',
             overflowX: 'hidden',
             overflowY: 'hidden'
         });
@@ -847,7 +847,7 @@ var MoneyTransfer = {
             }
         }
         cur.paymentsOptions.boxTab = tab;
-        val(domPN(ge('payments_money_transfer_summary')), cur.paymentsOptions.boxSections[tab].summary);
+        val('payments_money_transfer_summary', cur.paymentsOptions.boxSections[tab].summary);
         val('payments_money_transfer_send', cur.paymentsOptions.boxSections[tab].btn);
         toggle('payments_money_transfer_nf_warning', tab == 'transfer');
         setTimeout(elfocus.pbind('transfer_amount'), 100);
