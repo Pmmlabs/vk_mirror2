@@ -548,7 +548,7 @@ var stVersions = {
     'landings/author_guide.css': 25615781736,
     'internal/restore2.css': 16456271779,
     'internal/restore2.js': 1037282534,
-    'lang': 6850
+    'lang': 6854
 };
 var stTypes = {
     fromLib: {
@@ -612,4 +612,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 6254;
+var _rnd = 4443;
