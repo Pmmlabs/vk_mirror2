@@ -2033,31 +2033,19 @@ textarea.dark.mv_live_gift_popup_comment_input {
     margin-top: 10px
 }
 
-#mv_service_btns_wrap {
+#mv_moder_buttons_wrap {
     position: relative;
-    z-index: 1
+    z-index: 200
 }
 
-#mv_service_btns {
+#mv_moder_buttons {
     position: absolute;
-    top: 2px;
-    right: 2px;
-    background: #fff;
-    font-size: 11px;
-    opacity: 0.3;
-    filter: alpha(opacity=30);
-    -o-transition: opacity 200ms ease-in-out;
-    transition: opacity 200ms ease-in-out
+    top: -15px;
+    right: -6px
 }
 
-#mv_service_btns:hover {
-    opacity: 1;
-    -webkit-filter: none;
-    filter: none
-}
-
-#mv_service_btns .mv_service_btn {
-    padding: 0 3px
+#mv_moder_buttons .ui_actions_menu_item.link_lock {
+    color: #000
 }
 
 .mv_edit_box_fluid_input {

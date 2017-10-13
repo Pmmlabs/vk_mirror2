@@ -6290,6 +6290,7 @@ button.ui_load_more_btn {
 
 .eltt.eltt_left.eltt_arrow_size_normal>.eltt_arrow_back {
     right: -16px;
+    top: 0;
     border-left: 8px solid #c5d0db
 }
 
@@ -6308,6 +6309,7 @@ button.ui_load_more_btn {
 
 .eltt.eltt_right.eltt_arrow_size_normal>.eltt_arrow_back {
     left: -16px;
+    top: 0;
     border-right: 8px solid #c5d0db
 }
 
@@ -6374,6 +6376,7 @@ button.ui_load_more_btn {
 
 .eltt.eltt_left.eltt_arrow_size_big>.eltt_arrow_back {
     right: -32px;
+    top: 0;
     border-left: 16px solid #c5d0db
 }
 
@@ -6392,6 +6395,7 @@ button.ui_load_more_btn {
 
 .eltt.eltt_right.eltt_arrow_size_big>.eltt_arrow_back {
     left: -32px;
+    top: 0;
     border-right: 16px solid #c5d0db
 }
 

@@ -132,7 +132,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2889730895,
     'common.js': 1158,
-    'common.css': 28925830818,
+    'common.css': 29895529737,
     'retina.css': 2633262011,
     'uncommon.js': 1524646384,
     'uncommon.css': 17119554925,
@@ -192,8 +192,8 @@ var stVersions = {
     'video.css': 21501251893,
     'videocat.js': 1618923991,
     'videocat.css': 18431922739,
-    'videoview.js': 46408564,
-    'videoview.css': 21561748942,
+    'videoview.js': 936541200,
+    'videoview.css': 23490820155,
     'video_edit.js': 2135196486,
     'video_edit.css': 18909471194,
     'video_upload.js': 812506149,
@@ -427,7 +427,7 @@ var stVersions = {
     'ui.js': 3953380422,
     'ui_common.js': 465114920,
     'ui_common.css': 16293091632,
-    'ui_media_selector.js': 991580020,
+    'ui_media_selector.js': 3620910617,
     'ui_media_selector.css': 20791317715,
     'ui_manual.css': 15197945039,
     'admin.js': 2866808704,
@@ -541,10 +541,11 @@ var stVersions = {
     'shortener.js': 16413120,
     'cmodules/web/pretty_cards.js': 1388461462,
     'cmodules/web/landing_ads_case.js': 3936066274,
+    'cmodules/web/trending_results.js': 1020488162,
     'landings/ads_cases.css': 25906836500,
-    'surveys.css': 21781398843,
+    'surveys.css': 23385916714,
     'surveys.js': 3382685824,
-    'landings/author_guide.css': 17707063988,
+    'landings/author_guide.css': 25615781736,
     'internal/restore2.css': 16456271779,
     'internal/restore2.js': 1037282534,
     'lang': 6850
@@ -611,4 +612,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 4228;
+var _rnd = 6254;
