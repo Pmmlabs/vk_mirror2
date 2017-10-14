@@ -3036,6 +3036,20 @@ window.getLmDomEles = (function() {
 window.__leftMenu = {};
 
 function updateLeftMenu() {
+    var scrollY = scrollGetY(),
+        dy = scrollY - (__leftMenu.lastScroll || 0);
+
+    __leftMenu.lastScroll = scrollY;
+
+    if (
+        __leftMenu.lmFixed && (
+            (dy < 0 && __leftMenu.menuLastStyles.top === 0) ||
+            (dy > 0 && __leftMenu.menuLastStyles.bottom > 0)
+        )
+    ) {
+        return;
+    }
+
     var lm = getLmDomEles();
     __leftMenu.lmFixed = __leftMenu.lmFixed || getStyle(lm.bar, 'position') === 'fixed';
     __leftMenu.lmMarginTop = floatval(getStyle(lm.bar, 'marginTop'));
@@ -3045,8 +3059,7 @@ function updateLeftMenu() {
     if (browser.mobile || !menu || !pageBody) return;
 
     var wh = window.lastWindowHeight || 0,
-        st = Math.min(scrollGetY(), bodyNode.clientHeight - wh),
-        pos = 0,
+        st = Math.min(scrollY, bodyNode.clientHeight - wh),
         pl = lm.pl,
         headH = getPageHeaderHeight(),
         headCalcH = Math.min(Math.max(0, headH - st), headH),
@@ -8143,27 +8156,41 @@ function showAudioClaimWarning(audio, claim, onReplace) {
     var reason = claim.reason;
     var original = claim.original;
 
+    var options = {
+        width: 470
+    };
+
     if (reason == 'geo') {
         claimText = getLang('audio_claimed_geo'); //getLang(claim_id >= 0 ? 'audio_claimed_geo' : 'audio_claimed_text_geo');
         claimTitle = getLang('audio_claim_warning_title');
     } else if (reason == 'replace') {
         claimText = getLang('audio_claimed_replacement_available');
         claimTitle = getLang('audio_claim_warning_title');
-    } else if (reason == 'future') {
-        claimText = getLang('audio_claimed_future');
-        claimTitle = getLang('audio_claimed_future_title');
+    } else if (reason == 'subscription') {
+        options.hideButtons = true
+        options.bodyStyle = 'padding: 0; border-radius: 4px;'
+        options.width = 450
+
+        claimTitle = false
+
+        claimText = `
+      <div class="audio_claim_popup">
+        <div class="audio_claim_popup__title">${ getLang('global_audio_only_with_subscription_title') }</div>
+        <div class="audio_claim_popup__text">${ getLang('global_audio_only_with_subscription_text') }</div>
+        <div class="audio_claim_popup__close" onclick="curBox().hide()"></div>
+        <button class="flat_button round_button" onclick="getAudioPlayer().showSubscriptionPopup()">${ getLang('global_audio_only_with_subscription_btn') }</button>
+      </div>`
     } else {
         claimText = getLang('audio_claim_warning'); //getLang(claim_id > 0 ? 'audio_claim_warning_objection' : (claim_id == 0 ? 'audio_claim_warning_text' : 'audio_claim_warning'));
         claimTitle = getLang('audio_claim_warning_title');
     }
 
+    options.title = claimTitle
+
     claimText = claimText.replace(/\{audio\}/g, '<b>' + title + '</b>');
     claimText = claimText.replace(/\{objection_link\}/g, '<a href="/help?act=cc_objection&claim=' + claimId + '&content=audio' + ownerId + '_' + id + '">' + getLang('audio_claim_objection') + '</a>');
     claimText = claimText.replace(/\{delete_link\}/g, '<a onclick="deleteAudioOnClaim(' + ownerId + ',' + id + '); return false;">' + getLang('audio_claim_delete') + '</a>');
-    var options = {
-        title: claimTitle,
-        width: 470
-    };
+
     var params = [options, claimText];
     var dialog = null;
     if (onReplace && original) {

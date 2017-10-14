@@ -1659,7 +1659,7 @@ AdsEdit.initEditingPostBox = function(lockHash, html, js, postOwnerId, postId, w
 
 AdsEdit.completeEditingPost = function(editingPostBox) {
     editingPostBox.hide();
-    cur.viewEditor.updatePost();
+    cur.viewEditor.updateLinkPromotedPost();
 }
 
 AdsEdit.scrollToEditing = function() {
@@ -1784,6 +1784,9 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
 
     this.options = extend({}, this.options, options);
 
+    // ��������� ���������� ���������� ����������.
+    // value ������� ��������� ���������� �� ������ ��� ���������� ���������� � ��� ���������� ������ ����� get_target_params.
+    // ���� �����-�� �������� �� ����� ��� ���� ��������, � ��������� �����-�� �������������� ������, �� ����� ��� �������� � �������������� ���� �������� ����������� �� ������ ���������.
     this.params = {
         ad_id: {
             value: 0
@@ -1811,11 +1814,12 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
             value: '',
             data: [],
             video_value: '',
-            promoted_post_text: '',
             app_game_links_ids: {},
             app_admin_links_ids: {},
             app_in_news_links_ids: {},
             app_trusted_links_ids: {},
+            promoted_post_text: '',
+            promoted_post_kludges_have: {},
             promoted_post_checked: false,
             promoted_posts_cpc: false
         },
@@ -1958,7 +1962,6 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
         promoted_post_need_confirmation: {
             value: 0
         },
-        kludges_have: {}
     }
 
     // Init "format photo size"-specific keys
@@ -4313,7 +4316,10 @@ AdsViewEditor.prototype.setUpdateDataHandler = function(getUpdatedData) {
 }
 
 AdsViewEditor.prototype.setUpdateData = function(data, result) {
+
     var setResult = true;
+
+    var updateTargetingForPromotedPost = false;
 
     if (data['need_links']) {
         if (isObject(result) && 'link_id_data' in result) {
@@ -4390,6 +4396,7 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
             this.params.link_id.value = result['post_link_id'];
             this.params.link_owner_id.value = result['post_link_owner_id'];
             this.params.link_id.promoted_post_text = result['post_text'];
+            this.params.link_id.promoted_post_kludges_have = result['post_kludges_have'];
             this.params.link_id.promoted_posts_cpc = result['post_cpc_allowed'];
             this.params.link_id.promoted_post_checked = true;
 
@@ -4416,12 +4423,9 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
                 this.params.category1_id.suggestions = [];
                 this.updateUiParam('category1_id');
             }
-        }
-    }
 
-    if (isObject(result) && 'kludges_have' in result) {
-        this.params.kludges_have = result.kludges_have;
-        this.targetingEditor.eventsRetargetingGroupsUpdateRules('events_retargeting_groups');
+            updateTargetingForPromotedPost = true;
+        }
     }
 
     if (isObject(result) && 'post_check_error' in result) {
@@ -4433,8 +4437,25 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
     if (isObject(result) && 'post_text_new' in result) {
         if (inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && data.link_type == this.params.link_type.value && data.link_url == this.params.link_url.value) {
             this.params.link_id.promoted_post_text = result['post_text_new'];
+            this.params.link_id.promoted_post_kludges_have = result['post_kludges_have'];
+
             this.updatePreview('promoted_post');
+
+            updateTargetingForPromotedPost = true;
         }
+    }
+
+    if (updateTargetingForPromotedPost) {
+        this.targetingEditor.updateUiCriterionVisibility('price_list_id');
+        this.targetingEditor.updateUiCriterionVisibility('price_list_retargeting_formula');
+
+        var priceListIdVisible = this.targetingEditor.getUiCriterionVisibility('price_list_id', false);
+        if (priceListIdVisible === false) {
+            this.targetingEditor.correctCriterion('price_list_id');
+            this.targetingEditor.correctCriterion('price_list_retargeting_formula');
+        }
+
+        this.targetingEditor.eventsRetargetingGroupsUpdateRules('events_retargeting_groups');
     }
 
     if (isObject(result) && AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_PROMOTION_COMMUNITY + '_title' in result) {
@@ -4704,15 +4725,6 @@ AdsViewEditor.prototype.loadPhotoLink = function(formatPhotoSize, delayed) {
     }
 }
 
-AdsViewEditor.prototype.updatePost = function() {
-    if (this.params.ad_id.value) {
-        this.updateNeeded.need_link_post_text_new = true;
-    } else {
-        this.updateNeeded.need_link_post = true;
-    }
-    this.needDataUpdate();
-}
-
 AdsViewEditor.prototype.setVideoData = function(linkId, linkOwnerId, videoHash, videoPreviewHash) {
     this.params.video_hash.value = videoHash;
     this.params.link_id.video_value = linkId;
@@ -4768,6 +4780,19 @@ AdsViewEditor.prototype.setLinkUrl = function(linkUrl) {
     var targetElem = ge(this.options.targetIdPrefix + 'link_url');
     targetElem.value = linkUrl;
     this.onParamUpdate('link_url', linkUrl);
+}
+
+AdsViewEditor.prototype.getLinkPromotedPostKludgesHave = function() {
+    return this.params.link_id.promoted_post_kludges_have;
+}
+
+AdsViewEditor.prototype.updateLinkPromotedPost = function() {
+    if (this.params.ad_id.value) {
+        this.updateNeeded.need_link_post_text_new = true;
+    } else {
+        this.updateNeeded.need_link_post = true;
+    }
+    this.needDataUpdate();
 }
 
 AdsViewEditor.prototype.setTitle = function(title, noUpdateValueMax, titleValues) {
@@ -5103,6 +5128,9 @@ AdsViewEditor.prototype.completeLink = function() {
         this.updateUiParamVisibility('description');
         this.updateUiParamVisibility('platform');
         this.updateUiParamVisibility('platform_no_wall');
+
+        this.targetingEditor.updateUiCriterionVisibility('events_retargeting_groups');
+        this.targetingEditor.eventsRetargetingGroupsUpdateRules('events_retargeting_groups');
     }
 
     if (this.params.link_type.value == AdsEdit.ADS_AD_LINK_TYPE_APP && this.params.link_id.app_game_links_ids[this.params.link_id.value] ||
@@ -5116,18 +5144,19 @@ AdsViewEditor.prototype.completeLink = function() {
         this.updateUiParamVisibility('subcategory2_id');
     }
 
-    this.targetingEditor.updateUiCriterionVisibility('events_retargeting_groups');
-    this.targetingEditor.eventsRetargetingGroupsUpdateRules('events_retargeting_groups');
-
     if (this.params_old && this.params.link_type.value != this.params_old.link_type.value || !this.params_old) { // !this.params_old - because of there are may be predefined criteria
         this.targetingEditor.correctCriterion('user_devices');
         this.targetingEditor.correctCriterion('user_operating_systems');
         this.targetingEditor.correctCriterion('user_browsers');
         this.targetingEditor.correctCriterion('pays_money');
+        this.targetingEditor.correctCriterion('price_list_id');
+        this.targetingEditor.correctCriterion('price_list_retargeting_formula');
         this.targetingEditor.updateUiCriterionVisibility('user_devices');
         this.targetingEditor.updateUiCriterionVisibility('user_operating_systems');
         this.targetingEditor.updateUiCriterionVisibility('user_browsers');
         this.targetingEditor.updateUiCriterionVisibility('pays_money');
+        this.targetingEditor.updateUiCriterionVisibility('price_list_id');
+        this.targetingEditor.updateUiCriterionVisibility('price_list_retargeting_formula');
         this.targetingEditor.updateUiCriterionSelectedDataAll();
         AdsEdit.updateTargetingGroups();
     }
@@ -5618,6 +5647,22 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
             data: [],
             allow_online_geo: false
         },
+        geo_near: {
+            value: '',
+            data: [],
+            defaultData: [],
+            radius_selector: '',
+            radius_selector_full: '',
+            radius_selector_online: '',
+            data_radius: [],
+            data_radius_online: [],
+            allowed_radiuses: [],
+            allowed_radiuses_online: [],
+            default_radius: 1000,
+            default_center: [59.92688, 30.32913],
+            lngcode: 'ru',
+            zoom_radius_map: {}
+        },
         country: {
             value: 0,
             data: []
@@ -5788,26 +5833,18 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
             value: '',
             data: []
         },
-        geo_near: {
-            value: '',
-            data: [],
-            defaultData: [],
-            radius_selector: '',
-            radius_selector_full: '',
-            radius_selector_online: '',
-            data_radius: [],
-            data_radius_online: [],
-            allowed_radiuses: [],
-            allowed_radiuses_online: [],
-            default_radius: 1000,
-            default_center: [59.92688, 30.32913],
-            lngcode: 'ru',
-            zoom_radius_map: {}
+        price_list_id: {
+            value: 0,
+            data: []
+        },
+        price_list_retargeting_formula: {
+            value: ''
         },
         tags: {
             value: ''
         },
 
+        // Not criteria
         events_retargeting_groups: {
             value: '',
             data: [],
@@ -6062,8 +6099,14 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
     switch (criterionName) {}
 
     // Init UI control
+    // ����� case ���� ����� ���������� � ������������ case-�� �������������, ���� ����� �������� ���������������� ����� �� ������� ��� � ������, �������� age_from � school_from.
+    // ���� �� ������������� ������ ����������, �� ����� ��������� ����� ��������������� case, �������� cities � geo_near.
     switch (criterionName) {
+        //
         // Dropdowns
+        //
+
+        // Autocomplete with default values
         case 'country':
             {
                 targetElem = ge(this.options.targetIdPrefix + criterionName);
@@ -6085,15 +6128,16 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                 break;
             }
 
-        case 'geo_mask':
+            // Simple dropdown with any item selected
         case 'pays_money':
+        case 'price_list_id':
             {
                 targetElem = ge(this.options.targetIdPrefix + criterionName);
                 targetElem.removeAttribute('autocomplete');
                 this.criteria[criterionName].ui = new Dropdown(targetElem, this.getUiCriterionData(criterionName), {
                     selectedItem: this.getUiCriterionSelectedData(criterionName),
                     big: true,
-                    width: inArray(criterionName, ['geo_mask']) ? this.options.uiWidthGeo : this.options.uiWidth,
+                    width: this.options.uiWidth,
                     onChange: function(value) {
                         this.onUiChange(criterionName, value);
                     }.bind(this)
@@ -6105,6 +6149,27 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                 break;
             }
 
+            // Simple dropdown for geo
+        case 'geo_mask':
+            {
+                targetElem = ge(this.options.targetIdPrefix + criterionName);
+                targetElem.removeAttribute('autocomplete');
+                this.criteria[criterionName].ui = new Dropdown(targetElem, this.getUiCriterionData(criterionName), {
+                    selectedItem: this.getUiCriterionSelectedData(criterionName),
+                    big: true,
+                    width: this.options.uiWidthGeo,
+                    onChange: function(value) {
+                        this.onUiChange(criterionName, value);
+                    }.bind(this)
+                });
+                this.updateUiCriterionEnabled(criterionName);
+                this.cur.destroy.push(function() {
+                    this.criteria[criterionName].ui.destroy();
+                }.bind(this));
+                break;
+            }
+
+            // Ranges
         case 'age_from':
         case 'age_to':
         case 'school_from':
@@ -6131,6 +6196,7 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                 break;
             }
 
+            // Multi dropdown
         case 'cities':
         case 'cities_not':
         case 'statuses':
@@ -6145,7 +6211,6 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
         case 'districts':
         case 'stations':
         case 'streets':
-        case 'geo_near':
         case 'schools':
         case 'positions':
         case 'operators':
@@ -6160,25 +6225,57 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                 targetElem.removeAttribute('autocomplete');
                 this.criteria[criterionName].ui = new Autocomplete(targetElem, this.getUiCriterionData(criterionName), {
                     defaultItems: this.getUiCriterionDefaultData(criterionName),
-                    selectedItems: inArray(criterionName, ['geo_near']) ? '' : this.getUiCriterionSelectedData(criterionName),
+                    selectedItems: this.getUiCriterionSelectedData(criterionName),
 
                     introText: this.getUiCriterionIntroText(criterionName),
                     placeholder: this.getUiCriterionPlaceholderText(criterionName),
-                    nativePlaceholder: inArray(criterionName, ['geo_near']),
-                    hidePlaceholderOnSelected: !inArray(criterionName, ['geo_near']),
                     noResult: this.getUiCriterionNoResultText(criterionName),
                     disabledText: this.getUiCriterionDisabledText(criterionName),
 
-                    dropdown: !inArray(criterionName, ['geo_near']),
-                    listStyle: inArray(criterionName, ['geo_near']),
-                    limitedListHeight: inArray(criterionName, ['geo_near']),
-                    selectable: !inArray(criterionName, ['geo_near']),
+                    dropdown: true,
                     big: true,
                     withIcons: inArray(criterionName, ['groups', 'groups_not', 'apps', 'apps_not']),
                     maxItems: this.options.uiMaxSelected,
-                    width: inArray(criterionName, ['geo_near']) ? this.options.uiWidthGeo : this.options.uiWidth,
+                    width: this.options.uiWidth,
                     height: this.options.uiHeight,
-                    selectedItemsDelimiter: inArray(criterionName, ['geo_near']) ? ';' : ',',
+
+                    onTagAdd: function(tag, value) {
+                        this.onUiTagAdd(criterionName, value, tag);
+                    }.bind(this),
+                    onTagRemove: function(tag, value) {
+                        this.onUiTagRemove(criterionName, value, tag);
+                    }.bind(this)
+                });
+                this.updateUiCriterionEnabled(criterionName);
+                this.cur.destroy.push(function() {
+                    this.criteria[criterionName].ui.destroy();
+                }.bind(this));
+                break;
+            }
+        case 'geo_near':
+            {
+                targetElem = ge(this.options.targetIdPrefix + criterionName);
+                targetElem.removeAttribute('autocomplete');
+                this.criteria[criterionName].ui = new Autocomplete(targetElem, this.getUiCriterionData(criterionName), {
+                    defaultItems: this.getUiCriterionDefaultData(criterionName),
+                    selectedItems: this.getUiCriterionSelectedData(criterionName),
+
+                    introText: this.getUiCriterionIntroText(criterionName),
+                    placeholder: this.getUiCriterionPlaceholderText(criterionName),
+                    nativePlaceholder: true,
+                    hidePlaceholderOnSelected: false,
+                    noResult: this.getUiCriterionNoResultText(criterionName),
+                    disabledText: this.getUiCriterionDisabledText(criterionName),
+
+                    dropdown: false,
+                    listStyle: true,
+                    limitedListHeight: true,
+                    selectable: false,
+                    big: true,
+                    maxItems: this.options.uiMaxSelected,
+                    width: this.options.uiWidthGeo,
+                    height: this.options.uiHeight,
+                    selectedItemsDelimiter: ';',
 
                     onTagAdd: function(tag, value) {
                         this.onUiTagAdd(criterionName, value, tag);
@@ -6201,14 +6298,15 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                     this.criteria[criterionName].ui.destroy();
                 }.bind(this));
 
-                if (criterionName === 'geo_near') {
-                    var mapContainer = ge(this.options.targetIdPrefix + criterionName + '_box');
-                    this.initGeoEditor(criterionName, mapContainer);
-                }
+                var mapContainer = ge(this.options.targetIdPrefix + criterionName + '_box');
+                this.initGeoEditor(criterionName, mapContainer);
                 break;
             }
 
+            //
             // Radiobuttons
+            //
+
         case 'geo_type':
             {
                 var widthRegions = AdsEdit.getTextWidth(getLang('ads_geo_type_regions'));
@@ -6327,7 +6425,10 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                 break;
             }
 
+            //
             // Checkboxes
+            //
+
         case 'birthday':
             {
                 var labelToday = this.criteria.birthday.label_checkbox_today;
@@ -6408,7 +6509,21 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                 break;
             }
 
+            //
             // Inputs
+            //
+
+        case 'price_list_retargeting_formula':
+            {
+                targetElem = ge(this.options.targetIdPrefix + criterionName);
+                addEvent(targetElem, this.interestingEvents, function(event) {
+                    return this.onUiEvent(criterionName, event);
+                }.bind(this));
+                this.cur.destroy.push(function(targetElem) {
+                    cleanElems(targetElem);
+                }.pbind(targetElem));
+                break;
+            }
         case 'tags':
             {
                 targetElem = ge(this.options.targetIdPrefix + criterionName);
@@ -6420,6 +6535,10 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                 }.pbind(targetElem));
                 break;
             }
+
+            //
+            // Other
+            //
 
         case 'events_retargeting_groups':
             {
@@ -6622,8 +6741,8 @@ AdsTargetingEditor.prototype.getUiCriterionDefaultData = function(criterionName)
             return this.criteria['groups'].defaultData || [];
         case 'apps_not':
             return this.criteria['apps'].defaultData || [];
-        case 'events_retargeting_groups':
         case 'retargeting_groups_not':
+        case 'events_retargeting_groups':
             return this.criteria['retargeting_groups'].data || [];
         case 'country':
         case 'statuses':
@@ -6641,6 +6760,7 @@ AdsTargetingEditor.prototype.getUiCriterionDefaultData = function(criterionName)
         case 'user_browsers':
         case 'pays_money':
         case 'retargeting_groups':
+        case 'price_list_id':
             return this.criteria[criterionName].data || [];
         default:
             return this.criteria[criterionName].defaultData || [];
@@ -6667,6 +6787,8 @@ AdsTargetingEditor.prototype.updateUiCriterionDefaultData = function(criterionNa
 
 AdsTargetingEditor.prototype.getUiCriterionSelectedData = function(criterionName) {
     switch (criterionName) {
+        case 'geo_near':
+            return ''; // ���������������� � initGeoEditor
         case 'country':
             return this.criteria[criterionName].value || 0;
         case 'statuses':
@@ -6735,6 +6857,9 @@ AdsTargetingEditor.prototype.getUiCriterionEnabled = function(criterionName) {
         case 'schools':
             var citiesOnlyIds = this.getCitiesOnly();
             return !!(citiesOnlyIds || this.criteria[criterionName].value);
+        case 'price_list_id':
+            var viewParams = this.viewEditor.getParams();
+            return !(viewParams.ad_id);
         default:
             return null;
     }
@@ -6757,6 +6882,11 @@ AdsTargetingEditor.prototype.updateUiCriterionEnabled = function(criterionName) 
                 this.criteria[criterionName].ui.disable(enabled); // Fix disabling introText
                 this.criteria[criterionName].ui.disable(!enabled);
                 this.criteria[criterionName].ui.clear(); // Fix placeholder
+                if (this.criteria[criterionName].value === 0) {
+                    this.criteria[criterionName].ui.val(this.criteria[criterionName].value);
+                }
+            } else if (inArray(criterionName, ['price_list_id'])) {
+                this.criteria[criterionName].ui.disable(!enabled);
             }
         }
     }
@@ -6791,18 +6921,12 @@ AdsTargetingEditor.prototype.getUiCriterionVisibility = function(criterionName, 
             case 'country':
             case 'cities':
             case 'cities_not':
-                {
-                    visible = (this.criteria.geo_type.value == 0);
-                    break;
-                }
-
+                visible = (this.criteria.geo_type.value == 0);
+                break;
             case 'geo_mask':
             case 'geo_near':
-                {
-                    visible = (this.criteria.geo_type.value == 1);
-                    break;
-                }
-
+                visible = (this.criteria.geo_type.value == 1);
+                break;
             case 'schools':
                 visible = !!(this.criteria.schools_type.value);
                 break;
@@ -6824,12 +6948,16 @@ AdsTargetingEditor.prototype.getUiCriterionVisibility = function(criterionName, 
                 var viewParams = this.viewEditor.getParams();
                 visible = !!(this.criteria[criterionName].allowed_any || viewParams.link_type == AdsEdit.ADS_AD_LINK_TYPE_APP);
                 break;
+            case 'price_list_id':
+            case 'price_list_retargeting_formula':
+                var viewParams = this.viewEditor.getParams();
+                var promotedPostKludgesHave = this.viewEditor.getLinkPromotedPostKludgesHave();
+                visible = !!(inArray(viewParams.link_type, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && promotedPostKludgesHave.pretty_cards);
+                break;
             case 'events_retargeting_groups':
-                {
-                    var viewParams = this.viewEditor.getParams();
-                    visible = inArray(viewParams.link_type, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST);
-                    break;
-                }
+                var viewParams = this.viewEditor.getParams();
+                visible = inArray(viewParams.link_type, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST);
+                break;
         }
     }
 
@@ -6953,6 +7081,9 @@ AdsTargetingEditor.prototype.getUiCriterionIntroText = function(criterionName) {
         case 'retargeting_groups_not':
             return getLang('ads_select_retargeting_group_new');
 
+        case 'price_list_id':
+            return getLang('ads_select_price_list');
+
         default:
             return '';
     }
@@ -6979,6 +7110,8 @@ AdsTargetingEditor.prototype.updateUiCriterionIntroText = function(criterionName
 
 AdsTargetingEditor.prototype.getUiCriterionPlaceholderText = function(criterionName) {
     switch (criterionName) {
+        case 'geo_near':
+            return getLang('ads_edit_ad_geo_map_address_placeholder');
         case 'cities':
         case 'cities_not':
             return getLang('ads_starttypingname_city_region');
@@ -7026,8 +7159,11 @@ AdsTargetingEditor.prototype.getUiCriterionPlaceholderText = function(criterionN
         case 'retargeting_groups_not':
             return getLang('ads_select_retargeting_group_new');
 
-        case 'geo_near':
-            return getLang('ads_edit_ad_geo_map_address_placeholder');
+        case 'price_list_id':
+            return getLang('ads_select_price_list');
+        case 'price_list_retargeting_formula':
+            return getLang('ads_type_price_list_retargeting_formula');
+
         default:
             return '';
     }
@@ -7164,10 +7300,15 @@ AdsTargetingEditor.prototype.correctCriterion = function(criterionName) {
             }
             break;
         case 'pays_money':
+        case 'price_list_id':
             if (this.criteria[criterionName].value != 0) {
                 this.onCriterionUpdate(criterionName, 0, false, true);
                 this.criteria[criterionName].ui.selectItem(this.criteria[criterionName].value);
             }
+            break;
+        case 'price_list_retargeting_formula':
+            var targetElem = ge(this.options.targetIdPrefix + criterionName);
+            val(targetElem, '');
             break;
     }
 }
@@ -7500,6 +7641,7 @@ AdsTargetingEditor.prototype.onUiTagClick = function(criterionName, criterionVal
                 var token = gpeByClass('token', event.target);
                 var pointID = token.getAttribute('data-id');
                 this.criteria[criterionName].geo_editor.focusOnPoint(pointID);
+                break;
             }
     }
 }
@@ -7523,27 +7665,6 @@ AdsTargetingEditor.prototype.onUiEvent = function(criterionName, event) {
             this.hideGroupMore('interests');
             return false;
             break;
-        case 'tags':
-            var targetElem = ge(this.options.targetIdPrefix + criterionName);
-            var criterionValueOriginal = targetElem.value;
-            var criterionValue = this.correctInvalidValue(criterionName, criterionValueOriginal);
-            if (criterionValue !== criterionValueOriginal) {
-                targetElem.value = criterionValue;
-            }
-            if (browser.msie && event.type === 'paste') {
-                targetElem.blur();
-                targetElem.focus();
-            }
-
-            // setTimeout at least for IE
-            setTimeout(function() {
-                var targetElem = ge(this.options.targetIdPrefix + criterionName);
-                if (targetElem) {
-                    var criterionValue = this.correctInvalidValue(criterionName, targetElem.value);
-                    this.onCriterionUpdate(criterionName, criterionValue);
-                }
-            }.bind(this), 100);
-            break;
         case 'geo_near':
             {
                 if (event.type === 'mouseover') {
@@ -7560,6 +7681,31 @@ AdsTargetingEditor.prototype.onUiEvent = function(criterionName, event) {
                     var pointID = token.getAttribute('data-id');
                     this.criteria[criterionName].geo_editor.highlightPoint(pointID, false);
                 }
+                break;
+            }
+        case 'price_list_retargeting_formula':
+        case 'tags':
+            {
+                var targetElem = ge(this.options.targetIdPrefix + criterionName);
+                var criterionValueOriginal = targetElem.value;
+                var criterionValue = this.correctInvalidValue(criterionName, criterionValueOriginal);
+                if (criterionValue !== criterionValueOriginal) {
+                    targetElem.value = criterionValue;
+                }
+                if (browser.msie && event.type === 'paste') {
+                    targetElem.blur();
+                    targetElem.focus();
+                }
+
+                // setTimeout at least for IE
+                setTimeout(function() {
+                    var targetElem = ge(this.options.targetIdPrefix + criterionName);
+                    if (targetElem) {
+                        var criterionValue = this.correctInvalidValue(criterionName, targetElem.value);
+                        this.onCriterionUpdate(criterionName, criterionValue);
+                    }
+                }.bind(this), 100);
+                break;
             }
     }
 
@@ -7688,7 +7834,9 @@ AdsTargetingEditor.prototype.isUserDevicesHidden = function() {
 }
 
 AdsTargetingEditor.prototype.correctInvalidValue = function(criterionName, criterionValue) {
-    criterionValue = criterionValue.substr(0, this.criteria[criterionName].max_length);
+    if (this.criteria[criterionName].max_length) {
+        criterionValue = criterionValue.substr(0, this.criteria[criterionName].max_length);
+    }
     return criterionValue;
 }
 
@@ -8462,7 +8610,8 @@ AdsTargetingEditor.prototype.eventsRetargetingGroupsAdd = function(container, te
         uiAudienceSelector.destroy();
     }.bind(this));
 
-    var dataRules = this.viewEditor.params.kludges_have.video_ads_autoplay ? this.criteria[criterionName].data_rules_video : this.criteria[criterionName].data_rules;
+    var promotedPostKludgesHave = this.viewEditor.getLinkPromotedPostKludgesHave();
+    var dataRules = promotedPostKludgesHave.video_ads_autoplay ? this.criteria[criterionName].data_rules_video : this.criteria[criterionName].data_rules;
     var uiRulesSelector = new Selector(targetRulesElem, dataRules, {
         selectedItems: eventsSelected,
 
@@ -8528,9 +8677,9 @@ AdsTargetingEditor.prototype.eventsRetargetingGroupsUpdateValue = function(crite
 }
 
 AdsTargetingEditor.prototype.eventsRetargetingGroupsUpdateRules = function(criterionName) {
-    var values = [];
 
-    var dataRules = this.viewEditor.params.kludges_have.video_ads_autoplay ? this.criteria[criterionName].data_rules_video : this.criteria[criterionName].data_rules;
+    var promotedPostKludgesHave = this.viewEditor.getLinkPromotedPostKludgesHave();
+    var dataRules = promotedPostKludgesHave.video_ads_autoplay ? this.criteria[criterionName].data_rules_video : this.criteria[criterionName].data_rules;
 
     if (!this.criteria[criterionName].ui) {
         return;

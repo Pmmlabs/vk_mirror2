@@ -1509,11 +1509,12 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     }
 }, AudioPage.prototype.promoShowMore = function() {
     nav.go("/app5955265_-128786769"), setTimeout(function() {
-        this.promoClose()
+        this.promoClose(!0)
     }.bind(this), 3e3)
-}, AudioPage.prototype.promoClose = function() {
+}, AudioPage.prototype.promoClose = function(e) {
     hide(this._els.vkMobilePromo), ajax.post("al_audio.php", {
-        act: "vkmobile_hide_promo"
+        act: "vkmobile_hide_promo",
+        show_more: intval(e)
     })
 }, AudioPage.prototype.toggleRemoveAdsLink = function(e) {
     toggleClass(this._els.player, "audio_page_player_show_remove_ads", !!e)

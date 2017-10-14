@@ -890,6 +890,14 @@ html:not([lang=ru]) .wall_marked_as_ads {
     font-size: 1.5em
 }
 
+.feed_zoom_text .wall_post_text_zoom .emoji,
+.feed_zoom_text .wall_post_text_zoom .emoji_css,
+.wall_module.wl_post.feed_zoom_text .wall_post_text_zoom .emoji,
+.wall_module.wl_post.feed_zoom_text .wall_post_text_zoom .emoji_css {
+    position: relative;
+    top: -2px
+}
+
 .page_description {
     cursor: pointer
 }

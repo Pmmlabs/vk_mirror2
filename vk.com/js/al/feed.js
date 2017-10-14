@@ -1266,7 +1266,7 @@ var Feed = {
             stat: ["videoview.js", "videoview.css", "indexer.js"]
         })
     },
-    scrollCheck: function(e) {
+    scrollCheck: debounce(function(e) {
         if (e = e || {}, "scroll" == e.type || cur.idleManager && !cur.idleManager.isIdle) {
             var t, o, s, r, i = feed.longView,
                 n = window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight,
@@ -1290,7 +1290,7 @@ var Feed = {
                 c = c.concat(i.process(a, n)), LongView && LongView.onScroll(a, n), Page.postsSeen(c)
             }
         }
-    },
+    }, 20),
     postsGetRaws: function(e) {
         var t, o, s, r = indexOf(domPN(e).children, e),
             i = domFC(e),

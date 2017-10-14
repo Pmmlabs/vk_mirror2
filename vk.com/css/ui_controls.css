@@ -313,6 +313,7 @@
 .selector_container td.selector .token span.x,
 .selector_container td.selector .token span.x_hover {
     background: url(/images/icons/tag_cross.png) 50% no-repeat;
+    position: relative;
     display: inline-block;
     width: 20px;
     height: 10px!important;

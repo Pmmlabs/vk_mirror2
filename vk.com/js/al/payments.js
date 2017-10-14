@@ -846,6 +846,9 @@ var MoneyTransfer = {
                 cur.moneyTranferCheckInt = false;
             }
         }
+        if (cur.paymentsOptions.boxTab === 'transfer' && cur.paymentsMoneyBoxTTHide) {
+            cur.paymentsMoneyBoxTTHide();
+        }
         cur.paymentsOptions.boxTab = tab;
         val('payments_money_transfer_summary', cur.paymentsOptions.boxSections[tab].summary);
         val('payments_money_transfer_send', cur.paymentsOptions.boxSections[tab].btn);
