@@ -88,19 +88,12 @@ var Settings = {
         }
     },
     moreSearchBoxLoaded: function(t, e, s) {
-        cur.searchBoxParams.offset = e;
-        for (var o = cur.boxRows, n = ce("div", {
+        cur.loading = !1, cur.searchBoxParams.offset = e;
+        var o = cur.boxRows,
+            n = ce("div", {
                 innerHTML: t
-            }); n.firstChild;) o.appendChild(n.firstChild);
-        toggle(cur.boxMoreLink, s), s && (cur.loading = 1, ajax.post(cur.searchBoxAddress, cur.searchBoxParams, {
-            onDone: function() {
-                2 == cur.loading ? Settings.moreSearchBoxLoaded.apply(window, arguments) : cur.loading = !1
-            },
-            onFail: function() {
-                return cur.loading = 0, !0
-            },
-            cache: 1
-        }))
+            });
+        for (toggle(cur.boxMoreLink, s); n.firstChild;) o.appendChild(n.firstChild)
     },
     moreSearchBox: function(t, e, s) {
         var o = cur.boxMoreLink;
@@ -124,10 +117,10 @@ var Settings = {
                     return cur.loading = 0, !0
                 },
                 showProgress: function() {
-                    cur.searchBoxParams.offset ? addClass(o, "loading") : uiSearch.showProgress(e)
+                    addClass(o, "loading")
                 },
                 hideProgress: function() {
-                    uiSearch.hideProgress(e), removeClass(o, "loading")
+                    removeClass(o, "loading")
                 }
             })
         }
@@ -148,13 +141,14 @@ var Settings = {
         for (var a in n) {
             var r = n[a];
             if (t) {
-                var c = geByClass1("settings_bl_name", r);
-                c = val(geByTag1("a", c)).toLowerCase(), c.indexOf(t) > -1 ? (show(r), i++) : hide(r)
+                var c = geByClass1("settings_bl_name", r),
+                    l = val(geByTag1("a", c)) || val(geByClass1("name_label"));
+                l.toLowerCase().indexOf(t) > -1 ? (show(r), i++) : hide(r)
             } else show(r), i++
         }
         if (t && !i) {
-            var l = s.split("{query}").join("<b>" + t.replace(/([<>&#]*)/g, "") + "</b>");
-            e.innerHTML = l, show(e), hide("settings_bl_noempty")
+            var u = s.split("{query}").join("<b>" + t.replace(/([<>&#]*)/g, "") + "</b>");
+            e.innerHTML = u, show(e), hide("settings_bl_noempty")
         } else hide(e), show("settings_bl_noempty")
     },
     doAddToBlacklist: function(t, e) {
@@ -1092,13 +1086,13 @@ var Settings = {
                 onDone: function(e, s) {
                     var n = ge(o).tBodies[0];
                     if (e)
-                        if (unlockButton(t), cur.historyOffset ? cur.historyOffset += 100 : (n.innerHTML = "",
-                                cur.historyOffset = 5), browser.msie) {
+                        if (unlockButton(t), cur.historyOffset ? cur.historyOffset += 100 : (n.innerHTML = "", cur.historyOffset = 5), browser.msie) {
                             var a = se("<table>" + e + "</table>"),
                                 r = geByTag("tr", a);
                             for (i in r) 1 == r[i].nodeType && n.appendChild(r[i])
                         } else n.insertAdjacentHTML("beforeEnd", e);
-                    (!e || s) && (addClass(n.lastChild, "settings_votes_history_last"), hide(t))
+                    (!e || s) && (addClass(n.lastChild, "settings_votes_history_last"),
+                        hide(t))
                 }
             }), !1
         }

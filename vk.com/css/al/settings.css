@@ -20,7 +20,6 @@
 .settings_apps .apps_settings_row_wrap.loading .apps_settings_action_remove,
 .settings_history_thumb,
 .settings_menu_rows .olist_item_menu .olist_item_photo,
-.settings_more_icon,
 .settings_narrow_row input[type=checkbox]+label:before,
 .settings_otp_box_pad,
 .settings_otp_box_step1,
@@ -312,25 +311,6 @@
 
 .settings_more_progress {
     margin: 0 auto
-}
-
-.settings_more_icon {
-    display: inline-block;
-    width: 18px;
-    height: 8px;
-    margin: 0 6px;
-    background: url(/images/icons/menu_icon.png?7) no-repeat 0 -255px;
-    opacity: 0.6;
-    filter: alpha(opacity=60)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .settings_more_icon {
-        background-image: url(/images/icons/menu_icon_2x.png?7);
-        background-size: 18px 990px
-    }
 }
 
 .settings_link_row {
@@ -651,8 +631,7 @@
 }
 
 .settings_bl_list {
-    padding: 0 20px 10px;
-    font-size: 12.5px
+    padding: 0 20px 10px
 }
 
 .settings_bl_row {
@@ -673,7 +652,7 @@ img.settings_bl_photo {
 }
 
 .settings_bl_name {
-    padding: 8px 10px 2px;
+    padding: 10px 11px;
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -693,7 +672,7 @@ img.settings_bl_photo {
 }
 
 .settings_bl_action {
-    padding-top: 8px
+    padding-top: 10px
 }
 
 .settings_bl_box .msg {
@@ -1146,7 +1125,7 @@ a.settings_blb_title {
 
 .settings_transfer_action {
     display: block;
-    visibility: none;
+    visibility: hidden;
     opacity: 0.6;
     filter: alpha(opacity=60);
     background: url(/images/icons/p2p_icons.png?2) no-repeat 0 0;
@@ -1907,6 +1886,10 @@ input.settings_app_password_name {
     content: '';
     height: 28px;
     display: block
+}
+
+.settings_separated_row.settings_separated_row_square_icon .settings_separated_row_icon {
+    border-radius: 3px
 }
 
 .settings_separated_row .settings_separated_row_extra {

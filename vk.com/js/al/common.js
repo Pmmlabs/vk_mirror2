@@ -8173,13 +8173,13 @@ function showAudioClaimWarning(audio, claim, onReplace) {
 
         claimTitle = false
 
-        claimText = `
-      <div class="audio_claim_popup">
-        <div class="audio_claim_popup__title">${ getLang('global_audio_only_with_subscription_title') }</div>
-        <div class="audio_claim_popup__text">${ getLang('global_audio_only_with_subscription_text') }</div>
-        <div class="audio_claim_popup__close" onclick="curBox().hide()"></div>
-        <button class="flat_button round_button" onclick="getAudioPlayer().showSubscriptionPopup()">${ getLang('global_audio_only_with_subscription_btn') }</button>
-      </div>`
+        claimText = '\
+      <div class="audio_claim_popup">\
+        <div class="audio_claim_popup__title">' + getLang('global_audio_only_with_subscription_title') + '</div>\
+        <div class="audio_claim_popup__text">' + getLang('global_audio_only_with_subscription_text') + '</div>\
+        <div class="audio_claim_popup__close" onclick="curBox().hide()"></div>\
+        <button class="flat_button round_button" onclick="getAudioPlayer().showSubscriptionPopup()">' + getLang('global_audio_only_with_subscription_btn') + '</button>\
+      </div>'
     } else {
         claimText = getLang('audio_claim_warning'); //getLang(claim_id > 0 ? 'audio_claim_warning_objection' : (claim_id == 0 ? 'audio_claim_warning_text' : 'audio_claim_warning'));
         claimTitle = getLang('audio_claim_warning_title');
