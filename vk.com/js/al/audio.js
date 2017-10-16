@@ -1508,7 +1508,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         i && -1 != i.indexOfAudio(s) ? n = i : o && -1 != o.indexOfAudio(s) ? n = o : (n = new AudioPlaylist(AudioPlaylist.TYPE_TEMP, vk.id), n.addAudio(s)), delete this._readyAudio, cur.audioStartReadyAudio = !0, t.play(s, n)
     }
 }, AudioPage.prototype.promoShowMore = function() {
-    nav.go("/app5955265_-128786769"), setTimeout(function() {
+    nav.go("/app5955265_-128786769#utm_source=vk&utm_medium=vkmusic&utm_campaign=music_bar"), setTimeout(function() {
         this.promoClose(!0)
     }.bind(this), 3e3)
 }, AudioPage.prototype.promoClose = function(e) {

@@ -5579,7 +5579,8 @@ div.chat_tab_img {
     height: 40px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc
+    background-color: #fafbfc;
+    display: inline-block
 }
 
 .top_notify_cont .feedback_img:before {

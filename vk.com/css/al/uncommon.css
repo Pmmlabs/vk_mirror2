@@ -1014,39 +1014,6 @@ div.validation_last_button .button {
     width: 15px
 }
 
-.lang_box_row {
-    display: block;
-    padding: 0 10px
-}
-
-.lang_box_row:hover {
-    background-color: #edf0f4;
-    text-decoration: none
-}
-
-.lang_box_row_label {
-    display: block;
-    padding-left: 50px;
-    height: 42px;
-    line-height: 42px;
-    background-repeat: no-repeat;
-    background-position: 0;
-    background-size: 34px 26px;
-    color: #426a87;
-    font-weight: 700;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
-}
-
-.lang_selected .lang_box_row_label {
-    color: #333
-}
-
-.lang_selected:hover {
-    background-color: transparent!important;
-    cursor: default
-}
-
 .shorten_page,
 .shorten_page_error {
     padding: 56px 20px 0;

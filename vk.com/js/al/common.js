@@ -9490,7 +9490,7 @@ function showWiki(page, edit, e, opts) {
     ajax.post('wkview.php', extend({
         act: 'show',
         loc: nav.objLoc[0]
-    }, page, opts.ads_params, cur.wkviewOpts), params);
+    }, page, opts.ads_params, (cur.getWkviewOpts && cur.getWkviewOpts())), params);
     return cancelEvent(e);
 }
 

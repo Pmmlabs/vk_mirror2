@@ -2,12 +2,12 @@ var WallEdit = {
     handleEditEsc: function(e) {
         e.keyCode == KEY.ESC && WallEdit.cancelEditPost()
     },
-    editPost: function(e, t, i, o, a, s) {
+    editPost: function(e, t, i, o, a, n) {
         if (!window.Emoji) return stManager.add(["emoji.js", "notifier.css"], function() {
-            WallEdit.editPost(e, t, i, o, a, s)
+            WallEdit.editPost(e, t, i, o, a, n)
         }), !1;
-        var n = ge("wpe_text");
-        if (cur.editingPost && (cur.editingPost[0] != e || cur.editingPost[1]) && n) return window.Emoji ? Emoji.focus(n) : !1;
+        var s = ge("wpe_text");
+        if (cur.editingPost && (cur.editingPost[0] != e || cur.editingPost[1]) && s) return window.Emoji ? Emoji.focus(s) : !1;
         var d, r, l = window.wkcur && wkcur.shown && wkcur.post == e ? geByClass1("_wall_post_cont", wkLayer) : ge("wpt" + e);
         d = "photo_comment" == a.reply ? ge("post" + e) : "video_comment" == a.reply ? ge("mv_comment" + e.replace(/(\d+)video_(\d+)mv/, "$1_$2")) : "market_comment" == a.reply ? ge("market_comment" + e.replace(/(\d+)market_(\d+)/, "$1_$2")) : ge("post" + e), r = a.wkview ? "wl_post_actions_wrap" : a.reply ? "wpe_bottom" + e : geByClass1("ui_actions_menu_wrap", d), addClass(d, "wpe_wrap");
         var p = geByClass1("post_edit_button", d) || geByClass1("reply_edit_button", d);
@@ -60,18 +60,18 @@ var WallEdit = {
         }, 0) : void setTimeout(function() {
             show(l.previousSibling), hide(l, r, _, w);
             var t, o = [],
-                n = [];
-            a.reply ? (each(s, function() {
+                s = [];
+            a.reply ? (each(n, function() {
                 inArray(this[0], ["photo", "video", "audio", "doc", "link"]) && o.push(this)
-            }), n = ["album"]) : a.copy ? (each(s, function() {
+            }), s = ["album"]) : a.copy ? (each(n, function() {
                 inArray(this[0], ["photo", "video", "audio", "doc", "postpone", "mark_as_ads"]) && o.push(this)
-            }), n = ["album", "share", "link", "page"]) : o = s, o.length > 0 && (t = {
+            }), s = ["album", "share", "link", "page"]) : o = n, o.length > 0 && (t = {
                 lnk: ge("wpe_add_media").firstChild,
                 preview: "wpe_media_preview",
                 types: o,
                 options: extend({
                     toId: e.split("_")[0],
-                    disabledTypes: n,
+                    disabledTypes: s,
                     limit: a.copy ? 1 : a.reply ? 2 : 10,
                     toggleLnk: a.reply || a.copy,
                     editable: !a.reply && !a.copy,
@@ -79,14 +79,22 @@ var WallEdit = {
                 }, a.media_opts || {})
             }, a.teWidth && (t.options.teWidth = a.teWidth), a.teHeight && (t.options.teHeight = a.teHeight), ("photo_comment" == a.reply || "video_comment" == a.reply) && (t.options.nocl = 1), "photo_comment" == a.reply && (t.options.maxShown = 0, t.options.hideAfterCount = 0));
             var p = ge("wpe_text");
-            if (cur.wallEditComposer = Composer.init(p, {
+            if (cur.postFieldZoomText && (addEvent(p, "keydown paste", function() {
+                    setTimeout(function() {
+                        cur.postFieldZoomText(p)
+                    }, 0)
+                }), t.options.onAddMediaChange = function() {
+                    setTimeout(function() {
+                        cur.postFieldZoomText(p)
+                    }, 10)
+                }), cur.wallEditComposer = Composer.init(p, {
                     lang: g,
                     media: t
                 }), t) {
                 cur.wallEditMedia = cur.dropboxAddMedia = cur.wallEditComposer.addMedia, WallUpload.attachToEl(d);
                 for (var c = 0, u = i.length; u > c; ++c) cur.wallEditMedia.chooseMedia.apply(cur.wallEditMedia, i[c]), "postpone" == i[c][0] && cur.editingPost.push(i[c][1])
             }
-            cur.weEmoji = m(), cur.onEditFormSizeUpdate && cur.onEditFormSizeUpdate()
+            cur.weEmoji = m(), cur.onEditFormSizeUpdate && cur.onEditFormSizeUpdate(), cur.postFieldZoomText && cur.postFieldZoomText(p)
         }, 0)
     },
     emojiShowTT: function(e, t) {
@@ -99,8 +107,8 @@ var WallEdit = {
         if (cur.editingPost) {
             var o = cur.editingPost[0],
                 a = ge(cur.editingPost[1]),
-                s = ge(cur.editingPost[2]),
-                n = cur.editingPost[3],
+                n = ge(cur.editingPost[2]),
+                s = cur.editingPost[3],
                 d = ge("wpe_save"),
                 r = cur.editingPost[4],
                 l = cur.editingPost[5],
@@ -118,7 +126,7 @@ var WallEdit = {
                         visibility: ""
                     }), removeClass(w, "wpe_wrap"), -1 == e) return void Wall.postponedPublished(o);
                 if (void 0 !== e) {
-                    val(a, e), val(r, " - " + (n && n.reply ? getLang("wall_reply_saved") : getLang("wall_post_saved")));
+                    val(a, e), val(r, " - " + (s && s.reply ? getLang("wall_reply_saved") : getLang("wall_post_saved")));
                     var m = geByClass1("rel_date", w);
                     if (c) {
                         t && m && (m.innerHTML = t);
@@ -129,7 +137,7 @@ var WallEdit = {
                         opacity: 0
                     }, 500, re.pbind(r)), 1500), o.match(/^-?\d+photo_/) ? window.Photoview && Photoview.commSaved(o) : o.match(/^-?\d+video_/) && window.Videoview && Videoview.commSaved(o)
                 } else re(r);
-                show(s, a, l, p), show(geByClass1("wall_signed", domPN(a))), re(a.previousSibling), n.wkview && WkView.wallOnEdited(o), "exchange" == n.from && re("exchange_msg");
+                show(n, a, l, p), show(geByClass1("wall_signed", domPN(a))), re(a.previousSibling), s.wkview && WkView.wallOnEdited(o), "exchange" == s.from && re("exchange_msg");
                 var h = window.audioPlayer;
                 h && h.showCurrentTrack && h.showCurrentTrack()
             }
@@ -147,13 +155,13 @@ var WallEdit = {
                 o = cur.editingPost[3],
                 a = cur.editingPost[6];
             if (t && i && !buttonLocked(i)) {
-                var s = cur.wallEditComposer,
-                    n = cur.wallEditMedia || {},
-                    d = Composer.getSendParams(s, WallEdit.savePost.pbind(e)),
+                var n = cur.wallEditComposer,
+                    s = cur.wallEditMedia || {},
+                    d = Composer.getSendParams(n, WallEdit.savePost.pbind(e)),
                     r = cur.onepost ? "one" : (window.wkcur || {}).shown ? "wk" : "";
                 if (o.from ? r = o.from : t.match(/^-?\d+photo_/) && cur.pvShown ? r = "photo" : t.match(/^-?\d+video_/) && window.mvcur && mvcur.mvShown && !mvcur.minimized ? r = "video" : t.match(/^-?\d+market_/) && ge("market_comments_wrap") && (r = "market"), !d.delayed) {
                     var l;
-                    if ((l = ge("status_export" + n.lnkId)) && (d.status_export = isChecked(l)), (l = ge("facebook_export" + n.lnkId)) && (d.facebook_export = isChecked(l)), (l = ge("friends_only" + n.lnkId)) && (d.friends_only = isChecked(l)), !d.attach1_type && !d.message && !o.copy) return window.Emoji ? Emoji.focus(ge("wpe_text")) : !1;
+                    if ((l = ge("status_export" + s.lnkId)) && (d.status_export = isChecked(l)), (l = ge("facebook_export" + s.lnkId)) && (d.facebook_export = isChecked(l)), (l = ge("friends_only" + s.lnkId)) && (d.friends_only = isChecked(l)), !d.attach1_type && !d.message && !o.copy) return window.Emoji ? Emoji.focus(ge("wpe_text")) : !1;
                     o.save_result_type && (d.save_result_type = o.save_result_type);
                     var p = ge("wpe_cont"),
                         c = geByClass1("wpe_error", p);

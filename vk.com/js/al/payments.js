@@ -658,6 +658,7 @@ var MoneyTransfer = {
                 } else if (result == 2) { // failed
                     MoneyTransfer.showError(text);
                     window.removeEventListener('message', MoneyTransfer.frameMessage, false);
+                    cur.isPaymentFailed = cur.isPaymentCanceled = false;
                 }
                 clearInterval(cur.moneyTranferCheckInt);
             },

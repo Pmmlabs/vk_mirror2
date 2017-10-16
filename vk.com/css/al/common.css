@@ -5199,20 +5199,10 @@ em.highlight {
     cursor: pointer
 }
 
-.sel_lang {
-    padding: 20px 0 20px 30px
-}
-
-.lang_column {
-    float: left;
-    width: 160px;
-    margin: 0 3px
-}
-
-.lang_column a,
-.lang_column b {
-    display: block;
-    padding: 3px 7px
+.lang_beta {
+    margin-left: 2px;
+    cursor: pointer;
+    color: #777e8c
 }
 
 .tabs_pane {

@@ -4251,6 +4251,10 @@ AdsViewEditor.prototype.onUiEvent = function(paramName, event) {
             }
 
             function checkSpelling(param) {
+                if (param === 'title' && this.params.title.disabled) {
+                    return;
+                }
+
                 this.updateNeeded['need_' + param + '_spelling'] = true;
                 this.needDataUpdate();
             }
