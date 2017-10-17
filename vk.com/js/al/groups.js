@@ -1,45 +1,46 @@
 var Groups = {
     init: function(e) {
-        if (extend(cur, {
-                module: "groups",
-                hideOther: Groups.hideOther,
-                otherActs: Groups.otherActs,
-                options: e,
-                oid: -e.group_id,
-                postTo: -e.group_id,
-                _back: {
-                    loc: e.loc,
-                    show: [],
-                    hide: [],
-                    text: e.back
-                }
-            }), ge("group_wall") && wall.init(extend(e, {
-                automore: 1
-            })), cur.nav.push(function(e) {
-                e[0] && clearTimeout(Groups.keyTO)
-            }), e.cntKey && Groups.subscribe(e.cntKey), e.age_disclaimer) {
-            var o = !1,
-                t = function() {
-                    o || (e.age_disclaimer_back ? history.back() : location.href = "/")
-                },
-                s = showFastBox({
-                    title: getLang("groups_age_warning"),
-                    width: 470,
-                    hideOnBGClick: !1,
-                    onHide: t,
-                    forceNoBtn: 1
-                }, '<div class="group_age_disclaimer">' + getLang("groups_age_disclaimer") + '<br><div class="checkbox group_age_checkbox" onclick="checkbox(this); disableButton(curBox().proceedButton, !isChecked(this))"><div></div>' + getLang("groups_age_accepted") + "</div></div>");
-            s.removeButtons();
-            var a = s.addButton(getLang("global_cancel"), t, "no", !0);
-            addClass(a, "group_age_disclaimer_close"), s.proceedButton = s.addButton(getLang("groups_age_approve"), function() {
-                o = !0, removeClass(ge("group"), "hidden"), s.hide(), e.age_disclaimer_hash ? ajax.post("al_groups.php", {
-                    act: "a_set_user_age",
-                    hash: e.age_disclaimer_hash
-                }) : setCookie("remixage18", 1), cur.zNavInfo && zNav(cur.zNavInfo.info, cur.zNavInfo.opts)
-            }, "yes", !0);
-            var n = geByClass1("box_controls", domPN(s.bodyNode));
-            addClass(n, "group_age_disclaimer_box"), replaceClass(domFC(n), "fl_r", "fl_l"), disableButton(s.proceedButton, 1)
-        }
+        extend(cur, {
+            module: "groups",
+            hideOther: Groups.hideOther,
+            otherActs: Groups.otherActs,
+            options: e,
+            oid: -e.group_id,
+            postTo: -e.group_id,
+            _back: {
+                loc: e.loc,
+                show: [],
+                hide: [],
+                text: e.back
+            }
+        }), ge("group_wall") && wall.init(extend(e, {
+            automore: 1
+        })), cur.nav.push(function(e) {
+            e[0] && clearTimeout(Groups.keyTO)
+        }), e.cntKey && Groups.subscribe(e.cntKey), e.age_disclaimer && Groups.showDisclaimer(e, "group")
+    },
+    showDisclaimer: function(e, o) {
+        var t = !1,
+            s = function() {
+                t || (e.age_disclaimer_back ? history.back() : location.href = "/")
+            },
+            a = showFastBox({
+                title: getLang("groups_age_warning"),
+                width: 470,
+                hideOnBGClick: !1,
+                onHide: s,
+                forceNoBtn: 1
+            }, '<div class="group_age_disclaimer">' + getLang("groups_age_disclaimer") + '<br><div class="checkbox group_age_checkbox" onclick="checkbox(this); disableButton(curBox().proceedButton, !isChecked(this))"><div></div>' + getLang("groups_age_accepted") + "</div></div>");
+        a.removeButtons();
+        var n = a.addButton(getLang("global_cancel"), s, "no", !0);
+        addClass(n, "group_age_disclaimer_close"), a.proceedButton = a.addButton(getLang("groups_age_approve"), function() {
+            t = !0, removeClass(ge(o), "hidden"), a.hide(), e.age_disclaimer_hash ? ajax.post("al_groups.php", {
+                act: "a_set_user_age",
+                hash: e.age_disclaimer_hash
+            }) : setCookie("remixage18", 1), cur.zNavInfo && zNav(cur.zNavInfo.info, cur.zNavInfo.opts)
+        }, "yes", !0);
+        var r = geByClass1("box_controls", domPN(a.bodyNode));
+        addClass(r, "group_age_disclaimer_box"), replaceClass(domFC(r), "fl_r", "fl_l"), disableButton(a.proceedButton, 1)
     },
     switchTab: function(e, o, t) {
         return checkEvent(t) ? !0 : "wiki" == o && hasClass(e, "ui_tab_sel") ? nav.go(e, t) : (ge("page_info_wrap").className = "page_info_wrap " + o, uiTabs.switchTab(e))

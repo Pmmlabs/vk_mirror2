@@ -891,7 +891,7 @@ html:not([lang=ru]) .wall_marked_as_ads {
 .zoom_text_active div.submit_post_field.zoom_text,
 .zoom_text_active div.submit_post_field.zoom_text[contenteditable=true] {
     font-weight: 300;
-    line-height: 26px;
+    line-height: 1.334;
     font-size: 19.5px
 }
 
@@ -911,8 +911,7 @@ html:not([lang=ru]) .wall_marked_as_ads {
 .zoom_text_active .shown div.submit_post_field~.placeholder .ph_input,
 .zoom_text_active div.submit_post_field.zoom_text,
 .zoom_text_active div.submit_post_field.zoom_text[contenteditable=true] {
-    padding-top: 10px;
-    line-height: 28px
+    padding-top: 10px
 }
 
 #wpe_text.zoom_text font,

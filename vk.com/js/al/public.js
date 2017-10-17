@@ -291,7 +291,7 @@ window["public"] = window.Public = {
             }
         }), ge("public_wall") && wall.init(extend(e, {
             automore: 1
-        }))
+        })), e.age_disclaimer && Groups && Groups.showDisclaimer(e, "public")
     },
     toggleTop: function(e, o, t, n, a) {
         ajax.post("al_groups.php", {

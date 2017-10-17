@@ -1141,38 +1141,13 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .group_edit_adsweb_intro_description,
-.group_edit_adsweb_slots_description,
-.group_edit_adsweb_state_description,
-.group_edit_adsweb_state_migration_description {
+.group_edit_adsweb_state_description {
     line-height: 160%;
     margin-bottom: 10px
 }
 
-.group_edit_adsweb_slots_description,
-.group_edit_adsweb_state_description,
-.group_edit_adsweb_state_migration_description {
+.group_edit_adsweb_state_description {
     margin-bottom: 20px
-}
-
-#group_edit_adsweb_slots_value_info {
-    text-align: center;
-    font-size: 15px
-}
-
-#group_edit_adsweb_slots_value.step_slider {
-    width: 510px;
-    margin-left: 0;
-    margin-right: 0
-}
-
-.group_edit_adsweb_slots_boundaries {
-    padding: 5px 0 15px;
-    color: #777
-}
-
-#group_edit_adsweb_slots_save_result {
-    padding: 6px 20px;
-    color: #777
 }
 
 #group_edit_adsweb_state_info {
