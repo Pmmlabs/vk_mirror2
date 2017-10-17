@@ -132,7 +132,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2889730895,
     'common.js': 1158,
-    'common.css': 30053010149,
+    'common.css': 28632000484,
     'retina.css': 2633262011,
     'uncommon.js': 1524646384,
     'uncommon.css': 17111082806,
@@ -271,7 +271,7 @@ var stVersions = {
     'apps_check.js': 3844411974,
     'apps_check.css': 22724409795,
     'settings.js': 3179311966,
-    'settings.css': 25256538560,
+    'settings.css': 21814199929,
     'profile_edit.js': 2157979570,
     'profile_edit.css': 16322279360,
     'profile_edit_edu.js': 174903945,
@@ -329,9 +329,9 @@ var stVersions = {
     'docs.css': 22533288803,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 16315588319,
-    'tasks.js': 4283711514,
-    'tasks.css': 16661070691,
-    'helpdesk.js': 2030490046,
+    'tasks.js': 4178217651,
+    'tasks.css': 14067220206,
+    'helpdesk.js': 1998123585,
     'helpdesk.css': 19175358813,
     'tickets.js': 1883347153,
     'tickets.css': 23584150337,
@@ -614,4 +614,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 1830;
+var _rnd = 4105;

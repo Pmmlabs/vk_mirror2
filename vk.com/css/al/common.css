@@ -1065,6 +1065,10 @@ textarea.disabled {
     line-height: 16px
 }
 
+.full_width {
+    width: 100%
+}
+
 h1 {
     font-size: 18px;
     color: #222;

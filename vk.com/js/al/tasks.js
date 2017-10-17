@@ -694,7 +694,10 @@ Tasks = {
                 title: getLang("tasks_close_task"),
                 width: 430,
                 bodyStyle: "line-height: 160%;",
-                dark: 1
+                dark: 1,
+                onShow: function() {
+                    cur.tasksSupportCloseAutoanswerLangForms && val("task_closed_autoanswer_other_langs_list", cur.tasksSupportCloseAutoanswerLangForms)
+                }
             }, cur.tasksSureClose, getLang("global_close"), function() {
                 box.changed = !0, show("tasks_status_progress_wrap"), hide("tasks_sure_close_wrap"), sendReq(hash, box), box.removeButtons(), box.addButton(getLang("global_close"), function() {
                     cur.forceStop = !0, box.hide()
