@@ -642,15 +642,15 @@ var WkView = {
                     box.hide(), WkView.wallPostDelete(act, hash, 1)
                 }, getLang("box_cancel"));
                 else {
-                    var p = ge("wl_post_body");
+                    var p = ge("wl_post");
                     if (p) {
                         cur.pgPaused = !0, hide("wl_replies_wrap", "wl_post_actions_wrap", "wl_reply_form_wrap");
-                        var del = p.nextSibling;
-                        del && hasClass(del, "no_rows") ? val(del, msg) : (p.parentNode.insertBefore(ce("div", {
+                        var del = domNS(p);
+                        del && hasClass(del, "no_rows") ? val(del, msg) : (domPN(p).insertBefore(ce("div", {
                             id: "post_del" + post,
                             innerHTML: msg,
                             className: "no_rows"
-                        }), p.nextSibling), hide(p)), wkLayerWrap.scrollTop = 0, "spam" == act && eval(additional)
+                        }), domNS(p)), hide(p)), wkLayerWrap.scrollTop = 0, "spam" == act && eval(additional), WkView.updateSize()
                     }
                 }
             },
@@ -667,11 +667,11 @@ var WkView = {
             from: "wkview"
         }, {
             onDone: function() {
-                var e = ge("wl_post_body");
+                var e = ge("wl_post");
                 if (e && !isVisible(e)) {
                     cur.pgPaused = !1, show("wl_replies_wrap", "wl_post_actions_wrap", "wl_reply_form_wrap");
-                    var r = e.nextSibling;
-                    show(e), r && hasClass(r, "no_rows") && re(r)
+                    var r = domNS(e);
+                    show(e), r && hasClass(r, "no_rows") && re(r), WkView.updateSize()
                 }
             }
         }), !1

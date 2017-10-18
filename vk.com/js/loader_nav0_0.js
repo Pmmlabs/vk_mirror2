@@ -184,7 +184,7 @@ var stVersions = {
     'photos_add.css': 20821170840,
     'photos_add.js': 3448017910,
     'wkpoll.js': 534542755,
-    'wkview.js': 2949321433,
+    'wkview.js': 2033072125,
     'wkview.css': 23048157169,
     'single_pv.css': 1445030012,
     'single_pv.js': 2438273057,
@@ -249,7 +249,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 121836446830,
-    'imn.js': 126937032458,
+    'imn.js': 125774084635,
     'im.js': 1322065005,
     'emoji.js': 478110222,
     'wide_dd.css': 17012979941,
@@ -450,7 +450,7 @@ var stVersions = {
     'market.css': 21306049379,
     'market.js': 1427771939,
     'stories_admin.css': 17131805386,
-    'stories_admin.js': 3474276114,
+    'stories_admin.js': 3640524027,
     'vk2016.css': 2369321949,
     'landings/common.css': 20872536194,
     'landings/community_message.css': 15009291200,
@@ -614,4 +614,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 4105;
+var _rnd = 7216;
