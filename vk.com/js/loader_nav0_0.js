@@ -218,7 +218,7 @@ var stVersions = {
     'owner_photo.js': 1714149322,
     'owner_photo.css': 19916076629,
     'page.js': 3849479683,
-    'page.css': 22775306721,
+    'page.css': 21237364580,
     'page_help.css': 21572563635,
     'public.css': 24696793094,
     'public.js': 1344775948,
@@ -242,7 +242,7 @@ var stVersions = {
     'qsearch.js': 4098038985,
     'wall.css': 24175877534,
     'wall.js': 3588967340,
-    'walledit.js': 647214078,
+    'walledit.js': 972441060,
     'thumbs_edit.css': 14293769833,
     'thumbs_edit.js': 2241504624,
     'mail.css': 2042965398,
@@ -530,7 +530,7 @@ var stVersions = {
     'cmodules/web/speech_worker_opus.js': 3385759348,
     'stories.js': 4166849129,
     'stories.css': 19083779729,
-    'internal/nospam.css': 17911379278,
+    'internal/nospam.css': 17832175817,
     'internal/away_linksban.css': 17069016633,
     'internal/patterns_info.css': 16379486034,
     'article.css': 25340572931,
@@ -614,4 +614,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 7216;
+var _rnd = 4599;

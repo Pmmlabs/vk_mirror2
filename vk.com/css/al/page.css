@@ -883,11 +883,11 @@ html:not([lang=ru]) .wall_marked_as_ads {
     padding-top: 11px
 }
 
-.zoom_text_active #wpe_text.zoom_text,
 .zoom_text_active .shown div.submit_post_field[contenteditable=true]~.placeholder .ph_input,
 .zoom_text_active .shown div.submit_post_field~.placeholder .ph_input,
-.zoom_text_active.wall_module.wl_post .zoom_text,
-.zoom_text_active .zoom_text,
+.zoom_text_active.wall_module.wl_post .wl_post_body_wrap .zoom_text,
+.zoom_text_active .wall_text #wpe_text.zoom_text,
+.zoom_text_active .wall_text .zoom_text,
 .zoom_text_active div.submit_post_field.zoom_text,
 .zoom_text_active div.submit_post_field.zoom_text[contenteditable=true] {
     font-weight: 300;
@@ -895,7 +895,7 @@ html:not([lang=ru]) .wall_marked_as_ads {
     font-size: 19.5px
 }
 
-.zoom_text_active #wpe_text.zoom_text_anim,
+.zoom_text_active .wall_text #wpe_text.zoom_text_anim,
 .zoom_text_active div.submit_post_field.zoom_text_anim,
 .zoom_text_active div.submit_post_field.zoom_text_anim[contenteditable=true] {
     -o-transition: font-size 0.2s ease-in-out, line-height 0.2s ease-in-out, padding-top 0.2s ease-in-out, font-weight 0.2s ease-in-out;
@@ -903,7 +903,7 @@ html:not([lang=ru]) .wall_marked_as_ads {
     will-change: height, font-size, line-height, font-weight, padding-top
 }
 
-.zoom_text_active .wpe_text_cont:not(.zoom_text_normal) #wpe_text {
+.zoom_text_active .wall_text .wpe_text_cont:not(.zoom_text_normal) #wpe_text {
     min-height: 66px
 }
 
@@ -921,12 +921,12 @@ div.submit_post_field font {
     color: #000
 }
 
-.zoom_text_active #wpe_text.zoom_text .emoji,
-.zoom_text_active #wpe_text.zoom_text .emoji_css,
-.zoom_text_active.wall_module.wl_post .zoom_text .emoji,
-.zoom_text_active.wall_module.wl_post .zoom_text .emoji_css,
-.zoom_text_active .zoom_text .emoji,
-.zoom_text_active .zoom_text .emoji_css,
+.zoom_text_active.wall_module.wl_post .wl_post_body_wrap .zoom_text .emoji,
+.zoom_text_active.wall_module.wl_post .wl_post_body_wrap .zoom_text .emoji_css,
+.zoom_text_active .wall_text #wpe_text.zoom_text .emoji,
+.zoom_text_active .wall_text #wpe_text.zoom_text .emoji_css,
+.zoom_text_active .wall_text .zoom_text .emoji,
+.zoom_text_active .wall_text .zoom_text .emoji_css,
 .zoom_text_active div.submit_post_field.zoom_text .emoji,
 .zoom_text_active div.submit_post_field.zoom_text .emoji_css,
 .zoom_text_active div.submit_post_field.zoom_text[contenteditable=true] .emoji,
