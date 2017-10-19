@@ -214,10 +214,11 @@ var ExchangeModer = {
             return;
         }
 
-        if (refundAmount > 20000) {
-            showFastBox(getLang('global_error'), '����� ����������� ���������� 20 000 ���.');
-            return;
-        }
+        // check on server
+        /*if (refundAmount > 10000) {
+          showFastBox(getLang('global_error'), '����� ����������� ���������� 10 000 ���.');
+          return;
+        }*/
 
         var refundComment = ge('exchange_moder_refund_comment').value;
         if (!refundComment) {

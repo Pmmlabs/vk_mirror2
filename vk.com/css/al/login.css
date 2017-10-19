@@ -968,6 +968,32 @@ table.login_blocked_reason_thumbs {
     background-position: 0px -44px
 }
 
+.login_all_products_button {
+    display: inline-block;
+    line-height: 15px;
+    margin-top: 24px
+}
+
+.login_all_products_button:after {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-left: 4px;
+    transition: -webkit-transform 150ms ease-in-out;
+    -o-transition: transform 150ms ease-in-out, -o-transform 150ms ease-in-out;
+    transition: transform 150ms ease-in-out;
+    transition: transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out, -o-transform 150ms ease-in-out;
+    background: url('/images/svg_icons/login_all_products_arrow.svg') no-repeat 50% / contain
+}
+
+.login_all_products_button:hover:after {
+    -webkit-transform: translateX(2px);
+    -ms-transform: translateX(2px);
+    -o-transform: translateX(2px);
+    transform: translateX(2px)
+}
+
 .login_app_sms_sent {
     display: none;
     color: #939393;
