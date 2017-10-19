@@ -249,7 +249,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 121438972504,
-    'imn.js': 125774084635,
+    'imn.js': 128373274962,
     'im.js': 1322065005,
     'emoji.js': 478110222,
     'wide_dd.css': 16615505615,
@@ -545,7 +545,7 @@ var stVersions = {
     'landings/ads_cases.css': 25509362174,
     'surveys.css': 23191662056,
     'surveys.js': 3382685824,
-    'landings/author_guide.css': 25331707389,
+    'landings/author_guide.css': 26469934981,
     'internal/restore2.css': 16058797453,
     'internal/restore2.js': 1037282534,
     'language.js': 3496086639,
@@ -614,4 +614,4 @@ var stTypes = {
         'mr_truth.js': 1
     }
 };
-var _rnd = 3932;
+var _rnd = 1579;
