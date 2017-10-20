@@ -1131,13 +1131,24 @@ a.group_ad_post_link.deleted.deleted:hover {
     text-align: center
 }
 
+.group_edit_adsweb_approve_wrap {
+    margin-top: 10px;
+    line-height: 160%
+}
+
+.group_edit_adsweb_approve_wrap>.date {
+    white-space: nowrap
+}
+
 .group_edit_adsweb_content .error {
     margin: 0 0 15px;
     line-height: 160%
 }
 
+.group_edit_adsweb_error_disabled_violation_detected,
 .group_edit_adsweb_error_moder_intro {
-    font-weight: 700
+    font-weight: 700;
+    margin: 5px 0 3px
 }
 
 .group_edit_adsweb_intro_description,

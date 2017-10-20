@@ -960,6 +960,7 @@ var Tickets = {
                 file_size_limit: 209715200,
                 file_types_description: "Documents",
                 file_types: "*.*;",
+                file_disallowed_types: params.disallowedFileTypes ? params.disallowedFileTypes : !1,
                 lang: opts.lang,
                 onUploadStart: function(e, t) {
                     var i = void 0 !== e.ind ? e.ind : e,
@@ -1167,7 +1168,8 @@ var Tickets = {
         stManager.add("upload.js", function() {
             e.docCallback ? (cur.lastMediaTarget = t, e.docCallback()) : e.oneClick ? ge("tickets_doc_input" + t).click() : Tickets.showAddDocBox(Tickets.initDocUpload.pbind("tis_add_data", {
                 hideOnStart: !0,
-                target: t
+                target: t,
+                disallowedFileTypes: cur.disallowedFileTypes
             }))
         })
     },

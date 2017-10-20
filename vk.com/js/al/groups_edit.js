@@ -1562,6 +1562,20 @@ var GroupsEdit = {
             onFail: o
         }), !1
     },
+    adswebApproveAgain: function(e, t) {
+        function o(e) {
+            isObject(e) && "error" in e && showFastBox(getLang("global_box_error_title"), e.error), unlockButton(r)
+        }
+        var r = window.event.currentTarget,
+            s = {
+                group_id: e,
+                hash: t
+            };
+        return lockButton(r), ajax.post("/groupsedit.php?act=a_adsweb_approve_again", s, {
+            onDone: o,
+            onFail: o
+        }), !1
+    },
     showAgeLimitsTT: function(e, t) {
         showTooltip(e, {
             text: t,
