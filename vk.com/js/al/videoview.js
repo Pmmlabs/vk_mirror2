@@ -10,12 +10,12 @@ var Videoview = {
             fullscreen: function(e) {
                 Videoview.isFS = e, Videoview.updateExternalVideoFinishBlock()
             },
-            incViewCounter: function(e, i, t, o, a, n, d) {
+            incViewCounter: function(e, i, o, t, a, n, d) {
                 var r = {
                     oid: e,
                     vid: i,
-                    hash: t,
-                    curr_res: o,
+                    hash: o,
+                    curr_res: t,
                     max_res: a,
                     player: n || "flash",
                     type: d,
@@ -29,19 +29,19 @@ var Videoview = {
                 }
                 ajax.post("al_video.php?act=inc_view_counter", r)
             },
-            rotateVideo: function(e, i, t, o) {
+            rotateVideo: function(e, i, o, t) {
                 ajax.post("al_video.php?act=rotate_video", {
                     oid: e,
                     vid: i,
-                    angle: t,
-                    hash: o
+                    angle: o,
+                    hash: t
                 })
             },
             scoreCardCounter: function() {},
-            onVideoNext: function(e, i, t) {
+            onVideoNext: function(e, i, o) {
                 setTimeout(function() {
-                    var o = 0;
-                    i || e ? i && t ? o = 5 : i && !t ? o = 6 : e && (o = 7) : o = 4, Videoview.sendPlayerStats(o, 0), VideoPlaylist.getBlock() ? e && !i ? VideoPlaylist.showVideo(e) : VideoPlaylist.nextVideo() : showVideo(e, "", {
+                    var t = 0;
+                    i || e ? i && o ? t = 5 : i && !o ? t = 6 : e && (t = 7) : t = 4, Videoview.sendPlayerStats(t, 0), VideoPlaylist.getBlock() ? e && !i ? VideoPlaylist.showVideo(e) : VideoPlaylist.nextVideo() : showVideo(e, "", {
                         autoplay: 1,
                         module: Videoview.getVideoModule(e)
                     })
@@ -49,20 +49,20 @@ var Videoview = {
             },
             fetchSuggestions: function(e, i) {
                 if (e) {
-                    var t = Videoview.getMvData(),
-                        o = t.videoRaw;
+                    var o = Videoview.getMvData(),
+                        t = o.videoRaw;
                     ajax.post("al_video.php?act=fetch_player_suggestions", {
-                        oid: t.oid,
-                        vid: t.vid,
+                        oid: o.oid,
+                        vid: o.vid,
                         videos: e,
                         prepend_current: i ? 1 : 0
                     }, {
                         onDone: function(e) {
                             var i = Videoview.getMvData();
-                            if (i && i.videoRaw == o) {
+                            if (i && i.videoRaw == t) {
                                 i.playerSuggestions = e;
-                                var t = cur.videoInlinePlayer || window.mvcur && mvcur.player || cur.player;
-                                t && t.setSuggestions(e)
+                                var o = cur.videoInlinePlayer || window.mvcur && mvcur.player || cur.player;
+                                o && o.setSuggestions(e)
                             }
                         }
                     })
@@ -71,17 +71,17 @@ var Videoview = {
             setSuggestions: function(e) {
                 Videoview.playerCallback.fetchSuggestions(e)
             },
-            onSuggestionsShown: function(e, i, t) {
-                var o = t ? 16 : e ? 14 : 12;
-                if (Videoview.sendPlayerStats(o, 0), e) {
+            onSuggestionsShown: function(e, i, o) {
+                var t = o ? 16 : e ? 14 : 12;
+                if (Videoview.sendPlayerStats(t, 0), e) {
                     var a = "",
                         n = Videoview.getMvData();
-                    each(n.playerSuggestions, function(e, t) {
-                        t.vid != i && (a += "&vid=" + t.vid)
+                    each(n.playerSuggestions, function(e, o) {
+                        o.vid != i && (a += "&vid=" + o.vid)
                     }), vkImage().src = "//go.imgsmail.ru/vk?pxn=vs&qid=" + e + a
                 }
             },
-            onSuggestionClick: function(e, i, t, o, a) {
+            onSuggestionClick: function(e, i, o, t, a) {
                 var n = a ? 15 : i ? 13 : 11;
                 Videoview.sendPlayerStats(n, 0), showVideo(e, "", {
                     autoplay: 1,
@@ -89,72 +89,72 @@ var Videoview = {
                     addParams: {
                         suggestions_qid: i
                     }
-                }), i && (vkImage().src = "//go.imgsmail.ru/vk?pxn=vic&qid=" + i + "&vid=" + e + "&p=" + t + "&t=" + o)
+                }), i && (vkImage().src = "//go.imgsmail.ru/vk?pxn=vic&qid=" + i + "&vid=" + e + "&p=" + o + "&t=" + t)
             },
-            onSuggestionQuarterWatched: function(e, i, t) {
-                vkImage().src = "//go.imgsmail.ru/vk?pxn=vt25&qid=" + e + "&vid=" + i + "&t=" + t
+            onSuggestionQuarterWatched: function(e, i, o) {
+                vkImage().src = "//go.imgsmail.ru/vk?pxn=vt25&qid=" + e + "&vid=" + i + "&t=" + o
             },
             onSuggestionsReplayClicked: function() {
                 Videoview.sendPlayerStats(17, 0)
             },
-            onOpenInPopup: function(e, i, t) {
+            onOpenInPopup: function(e, i, o) {
                 Videoview.sendPlayerStats(8, 0);
-                var o = cur.videoInlinePlayer && cur.videoInlinePlayer.canExpand() ? cur.videoInlinePlayer : null,
+                var t = cur.videoInlinePlayer && cur.videoInlinePlayer.canExpand() ? cur.videoInlinePlayer : null,
                     a = _videoLastInlined ? domData(domClosest("post", _videoLastInlined[1]), "post-id") : null,
                     n = _videoLastInlined ? domData(_videoLastInlined[1], "playlist") : null;
                 showVideo(e, i, {
-                    expandPlayer: o,
+                    expandPlayer: t,
                     playlistId: n,
                     autoplay: 1,
                     addParams: {
-                        t: t,
+                        t: o,
                         post_id: a
                     }
                 })
             },
-            onVideoAdEvent: function(e, i, t, o, a, n, d) {
-                if (t) {
+            onVideoAdEvent: function(e, i, o, t, a, n, d) {
+                if (o) {
                     cur._vadStatQueue = cur._vadStatQueue || {}, cur._vadStatQueue[e + "_" + i] = cur._vadStatQueue[e + "_" + i] || {
                         type: "",
                         events: []
                     };
                     var r = cur._vadStatQueue[e + "_" + i];
-                    r.type = a, r.events.push(o), r.pl_type = d, clearTimeout(cur._vadStatTimer), cur._vadStatTimer = setTimeout(Videoview.sendVideoAdStat.bind(Videoview, e, i, t), 1e3)
+                    r.type = a, r.events.push(t), r.pl_type = d, clearTimeout(cur._vadStatTimer), cur._vadStatTimer = setTimeout(Videoview.sendVideoAdStat.bind(Videoview, e, i, o), 1e3)
                 }
             },
-            onVideoAdShown: function(e, i, t, o) {
+            onVideoAdShown: function(e, i, o, t) {
                 ajax.post("al_video.php?act=ad_event", {
                     oid: e,
                     vid: i,
-                    type: t,
-                    event: o
+                    type: o,
+                    event: t
                 }, {})
             },
-            onVideoResolutionChanged: function(e, i, t, o) {
-                window.mvcur && mvcur.mvData && (mvcur.mvData.resolution = o)
+            onVideoResolutionChanged: function(e, i, o, t) {
+                window.mvcur && mvcur.mvData && (mvcur.mvData.resolution = t)
             },
             onInitialized: function() {
-                window.mvcur && mvcur.mvShown && (VideoPlaylist.toggle(!VideoPlaylist.isCollapsed()), mvcur.options.focusPlay && ("visible" == document.visibilityState ? Videoview.togglePlay(!0) : "hidden" == document.visibilityState && addEvent(window, "focus", function t() {
-                    Videoview.togglePlay(!0), removeEvent(window, "focus", t)
+                window.mvcur && mvcur.mvShown && (VideoPlaylist.toggle(!VideoPlaylist.isCollapsed()), mvcur.options.focusPlay && ("visible" == document.visibilityState ? Videoview.togglePlay(!0) : "hidden" == document.visibilityState && addEvent(window, "focus", function o() {
+                    Videoview.togglePlay(!0), removeEvent(window, "focus", o)
                 })));
                 var e = window.mvcur && mvcur.player && mvcur.player.el || ge("video_player");
                 e && e.focus();
                 var i = Videoview.getMvData();
                 i.tns_monetized ? vkImage().src = "//www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=pladform_videovk-playerload/" + irand(1, 1e9) : vkImage().src = "//www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=platform_videovk-playerload/" + irand(1, 1e9), i.kz && (vkImage().src = "//www.tns-counter.ru/V13a****vk_kz/ru/CP1251/tmsec=vkkz_videoloading/" + irand(1, 1e9))
             },
-            onVideoPlayProgress: function(e, i, t, o, a) {
+            onVideoPlayProgress: function(e, i, o, t, a) {
                 var n = e + "_" + i;
-                5e3 > o && cur.tnsStart != n ? (this.playerCallback.scoreCardCounter(), cur.tnsStart = n) : o > a / 2 && cur.tnsEnd != n && (cur.tnsEnd = n), window.mvcur && mvcur.adData && (mvcur.adData.stat_link_start && !mvcur.adData.view_complete_start && o >= 5e3 && (ajax.post(mvcur.adData.stat_link_start, {}, {
+                5e3 > t && cur.tnsStart != n ? (this.playerCallback.scoreCardCounter(), cur.tnsStart = n) : t > a / 2 && cur.tnsEnd != n && (cur.tnsEnd = n), window.mvcur && mvcur.adData && (mvcur.adData.stat_link_start && !mvcur.adData.view_complete_start && t >= 5e3 && (ajax.post(mvcur.adData.stat_link_start, {}, {
                     onDone: function() {},
                     onFail: function() {
                         return !0
                     }
-                }), mvcur.adData.view_complete_start = !0), mvcur.adData.stat_link_half && !mvcur.adData.view_complete_half && o >= a / 2 && (ajax.post(mvcur.adData.stat_link_half, {}, {
+                }), mvcur.adData.view_complete_start = !0), mvcur.adData.stat_link_half && !mvcur.adData.view_complete_half && t >= a / 2 && (ajax.post(mvcur.adData.stat_link_half, {}, {
                     onDone: function() {},
                     onFail: function() {
                         return !0
                     }
-                }), mvcur.adData.view_complete_half = !0), mvcur.adData.stat_link_full && !mvcur.adData.view_complete_full && o >= .9 * a && (ajax.post(mvcur.adData.stat_link_full, {}, {
+                }), mvcur.adData.view_complete_half = !0), mvcur.adData.stat_link_full && !mvcur.adData.view_complete_full && t >= .9 * a && (ajax.post(mvcur.adData.stat_link_full, {}, {
                     onDone: function() {},
                     onFail: function() {
                         return !0
@@ -162,12 +162,12 @@ var Videoview = {
                 }), mvcur.adData.view_complete_full = !0))
             },
             onVideoStreamPlaying: function(e, i) {
-                var t = Videoview.getPlayerObject();
-                t && t.isAutoplay && t.isAutoplay() || (window.Notifier && setTimeout(function() {
+                var o = Videoview.getPlayerObject();
+                o && o.isAutoplay && o.isAutoplay() || (window.Notifier && setTimeout(function() {
                     Notifier.lcSend("video_start")
                 }, 0), window.ap && ap.isPlaying() && (ap.pause(), ap.pausedByVideo = vkNow()))
             },
-            onVideoPlayStarted: function(e, i, t, o, a) {
+            onVideoPlayStarted: function(e, i, o, t, a) {
                 var n = Videoview.getVideoModule(e + "_" + i),
                     d = "";
                 if (window.Video && Video.isInCatalog()) {
@@ -179,7 +179,7 @@ var Videoview = {
                 v = cur.mvOpts && cur.mvOpts.inline || window.mvcur && mvcur.mvData && mvcur.mvData.inline ? "inline" : window.mvcur && window.mvcur.options && window.mvcur.options.playlistId ? "layer_with_playlist" : "layer", window.mvcur && mvcur.mvData && (mvcur.viewStartedTimestamp = (new Date).getTime()), ajax.post("al_video.php?act=video_view_started", {
                     oid: e,
                     vid: i,
-                    hash: t,
+                    hash: o,
                     quality: window.mvcur ? mvcur.mvData.resolution : 0,
                     module: n,
                     videocat: d,
@@ -189,7 +189,7 @@ var Videoview = {
                     event: "start",
                     start_time: vkNow() - cur.videoAutoplayStat.launched,
                     preloaded: cur.videoAutoplayStat.preloaded ? 1 : 0,
-                    streaming_method: o,
+                    streaming_method: t,
                     module: Videoview.getVideoModule()
                 }, {});
                 var l = Videoview.getMvData();
@@ -235,36 +235,36 @@ var Videoview = {
             onVideoAdsPlayFinished: function() {
                 vkImage().src = "//www.tns-counter.ru/V13a****vk_com/ru/CP1251/tmsec=vk_videoend-license/" + irand(1, 1e9)
             },
-            onViewSegmentsChanged: function(e, i, t, o) {
-                if (t && !cur.segmentsSaveProcess) {
+            onViewSegmentsChanged: function(e, i, o, t) {
+                if (o && !cur.segmentsSaveProcess) {
                     var a = "vsegs" + vk.id + "_" + e + "_" + i,
                         n = ls.get(a);
                     n && n.ts && vkNow() - n.ts > 864e5 && (n = null, ls.remove(a));
                     var d = n && n.segments ? n.segments.split("|")[2] : "";
-                    if (!d || t != d) {
+                    if (!d || o != d) {
                         cur.segmentsSaveProcess = !0;
                         var r = {
                                 module: Videoview.getVideoModule(e + "_" + i),
                                 vid: i,
                                 oid: e,
-                                s: t,
+                                s: o,
                                 prev_s: n ? n.segments : "",
                                 prev_sig: n ? n.segmentsSig : "",
-                                hash: o
+                                hash: t
                             },
                             s = parseInt(cur.videoSearchPos);
                         if (isNaN(s) || (r.search_pos = s), ajax.post("al_video.php?act=a_view_segments", r, {
-                                onDone: function(e, i, t) {
+                                onDone: function(e, i, o) {
                                     if (!(0 > e)) {
                                         e && ls.set(a, {
                                             segments: e,
                                             segmentsSig: i,
                                             ts: vkNow()
-                                        }), cur.segmentsSaveProcess = !1, t = intval(t);
-                                        var o = parseInt(cur.videoSearchPos);
-                                        t > 0 && !isNaN(o) && cur.videoSearchStats && (cur.videoSearchStats.positions[o] = extend({
+                                        }), cur.segmentsSaveProcess = !1, o = intval(o);
+                                        var t = parseInt(cur.videoSearchPos);
+                                        o > 0 && !isNaN(t) && cur.videoSearchStats && (cur.videoSearchStats.positions[t] = extend({
                                             viewedParts: 0
-                                        }, cur.videoSearchStats.positions[o]), cur.videoSearchStats.positions[o].viewedParts++)
+                                        }, cur.videoSearchStats.positions[t]), cur.videoSearchStats.positions[t].viewedParts++)
                                     }
                                 }
                             }), cur.videoSearchStats && (cur.videoSearchStats.totalViewedTime || (cur.videoSearchStats.totalViewedTime = 0), cur.videoSearchStats.totalViewedTime += mvcur.mvData.vsegsSize, !isNaN(s))) {
@@ -280,8 +280,8 @@ var Videoview = {
             onLike: function(e) {
                 Videoview.like(null, !0), Videoview.sendPlayerStats(1, e)
             },
-            onAdd: function(e, i, t) {
-                Videoview.addSmall(e, i), Videoview.sendPlayerStats(3, t)
+            onAdd: function(e, i, o) {
+                Videoview.addSmall(e, i), Videoview.sendPlayerStats(3, o)
             },
             onRemove: function() {
                 Videoview.removeVideo()
@@ -298,8 +298,8 @@ var Videoview = {
             isInLayer: function(e) {
                 return Videoview.isLayerShown(e)
             },
-            onLiveViewersCountChange: function(e, i, t) {
-                Videoview.isLayerShown(e) && Videoview.updateLiveViewersCount(i, t)
+            onLiveViewersCountChange: function(e, i, o) {
+                Videoview.isLayerShown(e) && Videoview.updateLiveViewersCount(i, o)
             },
             onLiveStarted: function(e) {
                 return Videoview.isLayerShown(e) ? (Videoview.reload(), !0) : void 0
@@ -316,8 +316,8 @@ var Videoview = {
                 var e = vkNow();
                 for (var i in window.localStorage)
                     if (0 === i.indexOf("vsegs")) {
-                        var t = localStorage.getItem(i);
-                        t = JSON.parse(t), e - t.ts > 1728e5 && localStorage.removeItem(i)
+                        var o = localStorage.getItem(i);
+                        o = JSON.parse(o), e - o.ts > 1728e5 && localStorage.removeItem(i)
                     }
             }
         },
@@ -382,64 +382,64 @@ var Videoview = {
         togglePlay: function(e, i) {
             if (ge("video_yt") && window.VideoYoutube) VideoYoutube.togglePlay(e);
             else if (window.mvcur && mvcur.player || cur.videoInlinePlayer) {
-                var t = window.mvcur && mvcur.player || cur.videoInlinePlayer,
-                    o = t.isAutoplay();
-                (!o || i) && t.togglePlay(e)
+                var o = window.mvcur && mvcur.player || cur.videoInlinePlayer,
+                    t = o.isAutoplay();
+                (!t || i) && o.togglePlay(e)
             } else {
-                var t = ge("video_player");
-                t && t.playVideo && t.playVideo(e)
+                var o = ge("video_player");
+                o && o.playVideo && o.playVideo(e)
             }
         },
-        sendVideoAdStat: function(e, i, t) {
+        sendVideoAdStat: function(e, i, o) {
             if (cur._vadStatQueue && cur._vadStatQueue[e + "_" + i]) {
-                var o = cur._vadStatQueue[e + "_" + i],
+                var t = cur._vadStatQueue[e + "_" + i],
                     a = "undefined" != typeof cur.vSearchPos && null !== cur.vSearchPos;
-                o.events.length && (ajax.post("al_video.php", {
+                t.events.length && (ajax.post("al_video.php", {
                     act: "ads_stat",
-                    ev: o.events.join(","),
-                    ad_type: o.type,
-                    hash: t,
+                    ev: t.events.join(","),
+                    ad_type: t.type,
+                    hash: o,
                     oid: e,
                     vid: i,
-                    err: o.err,
-                    pl_type: o.pl_type,
+                    err: t.err,
+                    pl_type: t.pl_type,
                     from_search: a
-                }), o.events = [])
+                }), t.events = [])
             }
         },
         subscribeToAuthor: function(e, i) {
-            function t() {
+            function o() {
                 toggleClass("mv_subscribe_block", "mv_state_subscribed", e), ajax.post("al_video.php?act=a_subscribe", {
-                    author_id: o.authorId,
-                    video: o.videoRaw,
-                    hash: o.subscribeHash,
+                    author_id: t.authorId,
+                    video: t.videoRaw,
+                    hash: t.subscribeHash,
                     unsubscribe: intval(!e),
                     from: i || "videoview"
-                }, {}), o.subscribed = e;
-                var t = Videoview.getPlayerObject();
-                t && t.onSubscribed && t.onSubscribed(e);
+                }, {}), t.subscribed = e;
+                var o = Videoview.getPlayerObject();
+                o && o.onSubscribed && o.onSubscribed(e);
                 var a = ge("mv_finish_subscribe_btn");
                 a && (val(a, getLang(e ? "video_view_subscribed_msg" : "video_view_subscribe_to_author")), toggleClass("mv_finish_subscribe", "mv_finish_subscribed", e))
             }
-            var o = Videoview.getMvData();
-            if (e || !o.isClosedGroup && !o.isFriend) t();
+            var t = Videoview.getMvData();
+            if (e || !t.isClosedGroup && !t.isFriend) o();
             else {
                 var a, n;
-                o.isFriend ? (a = getLang("video_unfollow_friend_title"), n = getLang("video_unfollow_friend_text")) : (a = getLang("video_leave_closed_group_title"), n = o.adminLevel > 2 ? getLang("video_leave_admined_group_text") : getLang("video_leave_closed_group_text"));
+                t.isFriend ? (a = getLang("video_unfollow_friend_title"), n = getLang("video_unfollow_friend_text")) : (a = getLang("video_leave_closed_group_title"), n = t.adminLevel > 2 ? getLang("video_leave_admined_group_text") : getLang("video_leave_closed_group_text"));
                 var d = function() {
-                    curBox().hide(), t()
+                    curBox().hide(), o()
                 };
                 showFastBox(a, n, getLang("box_yes"), d, getLang("box_no")), Videoview.playerNextTimerUpdate()
             }
         },
         subscribeLive: function(e, i) {
-            var t = Videoview.getMvData(),
-                o = !t.liveNotifySubscribed;
+            var o = Videoview.getMvData(),
+                t = !o.liveNotifySubscribed;
             ajax.post("al_video.php?act=a_subscribe_live", {
-                owner_id: t.authorId,
-                subscribe: intval(o),
+                owner_id: o.authorId,
+                subscribe: intval(t),
                 hash: i
-            }, {}), t.liveNotifySubscribed = !t.liveNotifySubscribed, toggleClass(e, "mv_subscribe_live_btn_subscribed", o), Videoview.onSubscribeLiveOver(e), window.tooltips && e.tt && tooltips.rePositionTT(e.tt)
+            }, {}), o.liveNotifySubscribed = !o.liveNotifySubscribed, toggleClass(e, "mv_subscribe_live_btn_subscribed", t), Videoview.onSubscribeLiveOver(e), window.tooltips && e.tt && tooltips.rePositionTT(e.tt)
         },
         onSubscribeLiveOver: function(e) {
             var i = Videoview.getMvData();
@@ -464,13 +464,13 @@ var Videoview = {
                 stat: ["videoview.css", "tooltips.js", "tooltips.css"]
             })
         },
-        slideLiveGifts: function(e, i, t) {
-            var o = ge("mv_live_gifts_list"),
-                a = o.scrollWidth,
-                n = domPN(o).clientWidth;
+        slideLiveGifts: function(e, i, o) {
+            var t = ge("mv_live_gifts_list"),
+                a = t.scrollWidth,
+                n = domPN(t).clientWidth;
             e = e || 1, i = Math.abs(i) || n - 180;
-            var d = intval(domData(o, "pos"));
-            d += 0 > e ? -i : i, d = Math.max(0, Math.min(a - n, d)), domData(o, "pos", d), toggleClass(o, "animated", !t), setStyle(o, {
+            var d = intval(domData(t, "pos"));
+            d += 0 > e ? -i : i, d = Math.max(0, Math.min(a - n, d)), domData(t, "pos", d), toggleClass(t, "animated", !o), setStyle(t, {
                 "-webkit-transform": "translateX(-" + d + "px)",
                 "-ms-transform": "translateX(-" + d + "px)",
                 transform: "translateX(-" + d + "px)"
@@ -483,12 +483,12 @@ var Videoview = {
             var e = ge("mv_live_gifts_list");
             if (e) {
                 var i = domPN(e),
-                    t = e.scrollWidth,
-                    o = domPN(e).clientWidth,
+                    o = e.scrollWidth,
+                    t = domPN(e).clientWidth,
                     a = intval(domData(e, "pos"));
-                a > t - o && (Videoview.slideLiveGifts(1, 1, 1), a = intval(domData(e, "pos")));
+                a > o - t && (Videoview.slideLiveGifts(1, 1, 1), a = intval(domData(e, "pos")));
                 var n = a > 0,
-                    d = t > a + o,
+                    d = o > a + t,
                     r = domByClass(i, "mv_live_gifts_arrow_left"),
                     s = domByClass(i, "mv_live_gifts_arrow_right");
                 toggleClass(r, "hidden", !n), toggleClass(s, "hidden", !d), mvcur.liveGiftTT && mvcur.liveGiftTT.hide()
@@ -502,14 +502,14 @@ var Videoview = {
             if (!data(e, "ett")) {
                 Videoview.checkLiveGiftItemVisibility(e);
                 var i = domData(e, "id"),
-                    t = domData(e, "price"),
-                    o = domData(e, "price-str"),
+                    o = domData(e, "price"),
+                    t = domData(e, "price-str"),
                     a = domData(e, "free-left"),
                     n = getTemplate("video_live_gift_popup", {
                         gift_id: i,
                         image: "/images/gift/" + i + "/256.png",
-                        price: t,
-                        price_str: o,
+                        price: o,
+                        price_str: t,
                         balance_str: a || Videoview.getLiveBalanceStr()
                     });
                 addClass(e, "active");
@@ -532,31 +532,31 @@ var Videoview = {
         },
         checkLiveGiftItemVisibility: function(e) {
             var i = ge("mv_live_gifts_list"),
-                t = domPN(i),
-                o = e.getBoundingClientRect(),
-                a = (i.getBoundingClientRect(), t.getBoundingClientRect()),
+                o = domPN(i),
+                t = e.getBoundingClientRect(),
+                a = (i.getBoundingClientRect(), o.getBoundingClientRect()),
                 n = 32;
-            if (o.left < a.left + n) {
-                var d = o.left - a.left - n;
+            if (t.left < a.left + n) {
+                var d = t.left - a.left - n;
                 return void Videoview.slideLiveGifts(-1, d, !0)
             }
-            if (o.right > a.right - n) {
-                var d = o.right - a.right + n;
+            if (t.right > a.right - n) {
+                var d = t.right - a.right + n;
                 Videoview.slideLiveGifts(1, d, !0)
             }
         },
-        sendLiveGift: function(e, i, t) {
+        sendLiveGift: function(e, i, o) {
             return Videoview.liveDonateCheckVotes(i) ? void mvcur.liveGiftTT.hide() : (ajax.post("al_video.php?act=live_send_gift", {
                 owner_id: mvcur.mvData.oid,
                 video_id: mvcur.mvData.vid,
                 gift_id: e,
-                hash: t
+                hash: o
             }, {
-                onDone: function(i, t) {
-                    if (updateMoney(i), t) {
-                        var o = domByClass("mv_live_gifts_block", "mv_live_gifts_item_" + e);
-                        each(t, function(e, i) {
-                            e = e.replace(/_/g, "-"), domData(o, e, i)
+                onDone: function(i, o) {
+                    if (updateMoney(i), o) {
+                        var t = domByClass("mv_live_gifts_block", "mv_live_gifts_item_" + e);
+                        each(o, function(e, i) {
+                            e = e.replace(/_/g, "-"), domData(t, e, i)
                         })
                     }
                 },
@@ -571,7 +571,7 @@ var Videoview = {
                 var i = getTemplate("video_live_super_message_popup", {
                         message: mvcur.liveSuperMessageDraft || ""
                     }),
-                    t = mvcur.liveGiftTT = new ElementTooltip(e, {
+                    o = mvcur.liveGiftTT = new ElementTooltip(e, {
                         cls: "feature_intro_tt mv_live_gift_popup_tt",
                         content: i,
                         width: 230,
@@ -582,17 +582,17 @@ var Videoview = {
                             removeClass(e, "active")
                         },
                         onHide: function() {
-                            t.destroy()
+                            o.destroy()
                         }
                     });
-                t.show(), elfocus("mv_live_gift_popup_comment_input")
+                o.show(), elfocus("mv_live_gift_popup_comment_input")
             }
         },
         checkLiveSuperMessageLength: function(e, i) {
-            var t = trim(val(e)),
-                o = intval(domData(e, "maxlength"));
-            mvcur.liveSuperMessageDraft = t;
-            var a = t.length > o,
+            var o = trim(val(e)),
+                t = intval(domData(e, "maxlength"));
+            mvcur.liveSuperMessageDraft = o;
+            var a = o.length > t,
                 n = domNS(e),
                 d = domNS(n);
             toggle(n, !a), toggle(d, a), i && n.click()
@@ -602,12 +602,12 @@ var Videoview = {
             Videoview.checkLiveSuperMessageLength(e, !0)
         },
         sendLiveSuperMessage: function(e, i) {
-            var t = ge("mv_live_gift_popup_comment_input"),
-                o = trim(val(t));
-            return o ? Videoview.liveDonateCheckVotes(e) ? void mvcur.liveGiftTT.hide() : (ajax.post("al_video.php?act=live_send_super_message", {
+            var o = ge("mv_live_gift_popup_comment_input"),
+                t = trim(val(o));
+            return t ? Videoview.liveDonateCheckVotes(e) ? void mvcur.liveGiftTT.hide() : (ajax.post("al_video.php?act=live_send_super_message", {
                 owner_id: mvcur.mvData.oid,
                 video_id: mvcur.mvData.vid,
-                message: o,
+                message: t,
                 hash: i
             }, {
                 onDone: function(e, i) {
@@ -616,7 +616,7 @@ var Videoview = {
                 onFail: function(e) {
                     return e ? (showFastBox(getLang("global_error"), e), !0) : void 0
                 }
-            }), void mvcur.liveGiftTT.hide()) : void notaBene(t)
+            }), void mvcur.liveGiftTT.hide()) : void notaBene(o)
         },
         liveDonateCheckVotes: function(e) {
             return vk.balance < e ? showBox("al_gifts.php?act=get_money") : !1
@@ -659,8 +659,8 @@ var Videoview = {
                 stat: ["privacy.js", "privacy.css", "video.js", "video.css"]
             }), Videoview.playerNextTimerUpdate()
         },
-        updateVideo: function(e, i, t, o, a) {
-            window.mvcur && mvcur.mvData.oid == e && mvcur.mvData.vid == i && (mvcur.mvData.title = t, mvcur.mvData.desc = o, Videoview.setTitle(), Videoview.setDesc(), a && mvcur.mvShown && Videoview.reload())
+        updateVideo: function(e, i, o, t, a) {
+            window.mvcur && mvcur.mvData.oid == e && mvcur.mvData.vid == i && (mvcur.mvData.title = o, mvcur.mvData.desc = t, Videoview.setTitle(), Videoview.setDesc(), a && mvcur.mvShown && Videoview.reload())
         },
         setAddButtonStateAdded: function() {
             window.mvcur && mvcur.mvShown && (mvcur.mvData.published = !0, triggerEvent("mv_add_button", "setAdded"))
@@ -677,16 +677,16 @@ var Videoview = {
                             var i = mvcur.addButtonTT.getContent();
                             toggleClass(i, "mv_add_eltt_add_playlist_hover", e)
                         }
-                        var t = '<div id="mv_pl_tt">' + (d ? '<div class="mv_tt_private_only">' + getLang("video_only_private_video") + "</div>" : "") + '<div class="mv_tt_playlists' + (d ? " with_border" : "") + '">';
+                        var o = '<div id="mv_pl_tt">' + (d ? '<div class="mv_tt_private_only">' + getLang("video_only_private_video") + "</div>" : "") + '<div class="mv_tt_playlists' + (d ? " with_border" : "") + '">';
                         each(mvcur.mvData.playlists, function(e, i) {
-                            var o = i["private"] ? '<span class="mv_tt_playlist_private_icon" onmouseover="showTooltip(this,{black:1,text: \'' + getLang("video_album_is_private_tt") + "', shift:[16, 8, 0]})\"></span>" : "",
-                                a = '<div class="checkbox' + (i.added ? " on" : "") + (i.disabled ? " disabled" : "") + '" data-id="' + i.id + '" onclick="checkbox(this);">' + i.title + "</div>" + o;
-                            t += '<div class="mv_tt_playlist">' + a + "</div>"
-                        }), t += "</div>", t += '<div class="mv_tt_add_playlist" role="link" tabindex="0" onclick="Videoview.addPlaylist(' + d + ')"><span class="mv_tt_plus_icon"></span>' + (d ? getLang("video_add_private_album") : getLang("video_add_album")) + "</div></div>", e.innerHTML = t, each(geByClass("checkbox", e), function() {
+                            var t = i["private"] ? '<span class="mv_tt_playlist_private_icon" onmouseover="showTooltip(this,{black:1,text: \'' + getLang("video_album_is_private_tt") + "', shift:[16, 8, 0]})\"></span>" : "",
+                                a = '<div class="checkbox' + (i.added ? " on" : "") + (i.disabled ? " disabled" : "") + '" data-id="' + i.id + '" onclick="checkbox(this);">' + i.title + "</div>" + t;
+                            o += '<div class="mv_tt_playlist">' + a + "</div>"
+                        }), o += "</div>", o += '<div class="mv_tt_add_playlist" role="link" tabindex="0" onclick="Videoview.addPlaylist(' + d + ')"><span class="mv_tt_plus_icon"></span>' + (d ? getLang("video_add_private_album") : getLang("video_add_album")) + "</div></div>", e.innerHTML = o, each(geByClass("checkbox", e), function() {
                             addEvent(this, "click", a)
                         });
-                        var o = domByClass(e, "mv_tt_add_playlist");
-                        addEvent(o, "mouseenter", i.pbind(!0)), addEvent(o, "mouseleave", i.pbind(!1)), updateAriaCheckboxes()
+                        var t = domByClass(e, "mv_tt_add_playlist");
+                        addEvent(t, "mouseenter", i.pbind(!0)), addEvent(t, "mouseleave", i.pbind(!1)), updateAriaCheckboxes()
                     },
                     onDestroy: function(e) {
                         e && (each(geByClass("checkbox", e), function() {
@@ -696,69 +696,69 @@ var Videoview = {
                 })
             }
 
-            function i(e, i, o) {
+            function i(e, i, t) {
                 e = n ? !0 : e;
                 var d = geByClass1("mv_added_icon", r),
                     v = geByClass1("mv_plus_icon", r),
                     l = geByClass1("mv_add_text", r);
-                toggleClass(v, "mv_add_icon_curr", !e), toggleClass(v, "mv_add_icon_down", e), toggleClass(d, "mv_add_icon_curr", e), removeEvent(r, "click", t), removeEvent(r, "setAdded", t), e ? (l.innerHTML = getLang("video_added_to_my_playlist"), i && a(!1, mvcur.mvData.PLAYLIST_ADDED_ID)) : (l.innerHTML = getLang("video_add_to_my_playlist"), addEvent(r, "click", t), addEvent(r, "setAdded", t)), o || s == e || Videoview.playerOnAdded(), s = e;
+                toggleClass(v, "mv_add_icon_curr", !e), toggleClass(v, "mv_add_icon_down", e), toggleClass(d, "mv_add_icon_curr", e), removeEvent(r, "click", o), removeEvent(r, "setAdded", o), e ? (l.innerHTML = getLang("video_added_to_my_playlist"), i && a(!1, mvcur.mvData.PLAYLIST_ADDED_ID)) : (l.innerHTML = getLang("video_add_to_my_playlist"), addEvent(r, "click", o), addEvent(r, "setAdded", o)), t || s == e || Videoview.playerOnAdded(), s = e;
                 var c = Videoview.getMvData();
                 c.added = e
             }
 
-            function t(e) {
+            function o(e) {
                 "click" == e.type && isAncestor(e.target, mvcur.addButtonTT.getContent()) || (Videoview._isCurrentVideoPublished() ? d && "click" == e.type || i(!0, !0, "setAdded" == e.type) : Videoview.showAddDialog(mvcur.videoRaw))
             }
 
-            function o() {
+            function t() {
                 var e = !1;
-                return each(mvcur.mvData.playlists, function(i, t) {
-                    return t.added ? (e = !0, !1) : void 0
+                return each(mvcur.mvData.playlists, function(i, o) {
+                    return o.added ? (e = !0, !1) : void 0
                 }), e
             }
 
-            function a(e, t) {
+            function a(e, o) {
                 var a = !0;
                 if (e) {
                     var n = e.currentTarget || e.target;
                     if (hasClass(n, "disabled")) return;
-                    a = isChecked(n), t = +n.getAttribute("data-id")
+                    a = isChecked(n), o = +n.getAttribute("data-id")
                 } else mvcur.addButtonTT.getContent() && each(geByClass("checkbox", mvcur.addButtonTT.getContent()), function() {
-                    return domData(this, "id") == t ? (checkbox(this), !1) : void 0
+                    return domData(this, "id") == o ? (checkbox(this), !1) : void 0
                 });
                 each(mvcur.mvData.playlists, function(e, i) {
-                    return i.id == t ? (i.added = a, !1) : void 0
+                    return i.id == o ? (i.added = a, !1) : void 0
                 }), ajax.post("al_video.php?act=a_add_to_playlist", {
                     oid: mvcur.mvData.oid,
                     vid: mvcur.mvData.vid,
                     hash: mvcur.mvData.playlistAddHash,
-                    playlist_id: t,
+                    playlist_id: o,
                     add: +a,
                     info: window.Video && Video.isInCatalog() ? VideoPlaylist.getCurListId() : ""
                 }, {
                     onDone: function(e) {
                         var i = [],
-                            o = [];
+                            t = [];
                         if (a) {
-                            i.push(t);
-                            var n = e.indexOf(t);
+                            i.push(o);
+                            var n = e.indexOf(o);
                             e.splice(n, 1)
-                        } else o.push(t), e.push(t);
-                        mvcur.mvData.info && window.Video && !Video.isInCatalog() && Video.updateVideo(vk.id, mvcur.mvData.info, e, !1, i, o)
+                        } else t.push(o), e.push(o);
+                        mvcur.mvData.info && window.Video && !Video.isInCatalog() && Video.updateVideo(vk.id, mvcur.mvData.info, e, !1, i, t)
                     }
-                }), e && (i(o()), cancelEvent(e))
+                }), e && (i(t()), cancelEvent(e))
             }
             mvcur.addButtonTT && (mvcur.addButtonTT.destroy(), mvcur.addButtonTT = null);
             var n = mvcur.mvData.uploaded,
                 d = mvcur.mvData.noPublicAdd,
                 r = ge("mv_add_button"),
                 s = !1;
-            r && (i(n || o(), !1, !0), e())
+            r && (i(n || t(), !1, !0), e())
         },
-        locNav: function(e, i, t) {
-            t = nav.toStr(t);
-            var o = t.match(/^video(-?\d+_\d+)$/);
-            return o ? void 0 : void Videoview.hide()
+        locNav: function(e, i, o) {
+            o = nav.toStr(o);
+            var t = o.match(/^video(-?\d+_\d+)$/);
+            return t ? void 0 : void Videoview.hide()
         },
         showPlayer: function(e) {
             var i = ge("video_player");
@@ -795,29 +795,29 @@ var Videoview = {
                 opacity: .9
             }, 5e3)), mvcur.mousemoved = !1
         },
-        show: function(e, i, t, o) {
-            window.ap && ap.isPlaying() && (ap.pause(), ap.pausedByVideo = vkNow()), o && o.autoplay && Videoview.playerCallback.onVideoStreamPlaying(), debugLog("show video " + i);
+        show: function(e, i, o, t) {
+            window.ap && ap.isPlaying() && (ap.pause(), ap.pausedByVideo = vkNow()), t && t.autoplay && Videoview.playerCallback.onVideoStreamPlaying(), debugLog("show video " + i);
             var a = window.mvcur && mvcur.mvShown,
                 n = window.mvcur && mvcur.player;
             if (a && (n && domPN(n.el) === ge("video_player") ? n.deinitVideo() : (val("mv_player_box", ""), hide("mv_player_box"), show("mv_progress_box"))), window.mvcur && clearInterval(mvcur.nextTimerUpdateInterval), window.mvcur && mvcur.minimized) {
-                if (!o.nomin) return mvcur.videoRaw = i, mvcur.options = o, mvcur.listId = t, mvcur.mvData = !1, o.playlistId ? Videoview.initPlaylistBlock(i, o.playlistId, o.catLoadMore) : VideoPlaylist.removeBlock(), !0;
-                o.prevLoc && (mvcur.mvPrevLoc = o.prevLoc), debugLog("unminimizing in show"), Videoview.unminimize(!0, !1, !0)
+                if (!t.nomin) return mvcur.videoRaw = i, mvcur.options = t, mvcur.listId = o, mvcur.mvData = !1, t.playlistId ? Videoview.initPlaylistBlock(i, t.playlistId, t.catLoadMore) : VideoPlaylist.removeBlock(), !0;
+                t.prevLoc && (mvcur.mvPrevLoc = t.prevLoc), debugLog("unminimizing in show"), Videoview.unminimize(!0, !1, !0)
             }
-            if (o.queue && (debugLog("pushing in videoview.show"), layerQueue.push(), o.queue = !1), !o.noLocChange && nav.objLoc.z && 0 == nav.objLoc.z.indexOf("video") && (cur.mvHistoryBack = cur.mvHistoryBack || 1, cur.mvHistoryBack++), window.forcePauseAudio = !0, a || layerQueue.hide(), window.forcePauseAudio = !1, this.init(), mvcur.showTime = (new Date).getTime(), removeEvent(window, "resize", Videoview.onResize), removeEvent(window, "focus blur", Videoview.onPageFocusChange), removeEvent(document, "webkitfullscreenchange mozfullscreenchange fullscreenchange", Videoview.onFullscreenChange), removeEvent(document, "keydown", Videoview.onKeyDown), addEvent(window, "resize", Videoview.onResize), addEvent(window, "focus blur", Videoview.onPageFocusChange), addEvent(document, "webkitfullscreenchange mozfullscreenchange fullscreenchange", Videoview.onFullscreenChange), addEvent(document, "keydown", Videoview.onKeyDown), boxQueue.hideAll(), layers.wrapshow(mvLayerWrap, .8), layers.fullhide = Videoview.hide, mvcur.nextTimerUpdateInterval = setInterval(Videoview.playerNextTimerUpdate, 1e3), setTimeout(function() {
+            if (t.queue && (debugLog("pushing in videoview.show"), layerQueue.push(), t.queue = !1), !t.noLocChange && nav.objLoc.z && 0 == nav.objLoc.z.indexOf("video") && (cur.mvHistoryBack = cur.mvHistoryBack || 1, cur.mvHistoryBack++), window.forcePauseAudio = !0, a || layerQueue.hide(), window.forcePauseAudio = !1, this.init(), mvcur.showTime = (new Date).getTime(), removeEvent(window, "resize", Videoview.onResize), removeEvent(window, "focus blur", Videoview.onPageFocusChange), removeEvent(document, "webkitfullscreenchange mozfullscreenchange fullscreenchange", Videoview.onFullscreenChange), removeEvent(document, "keydown", Videoview.onKeyDown), addEvent(window, "resize", Videoview.onResize), addEvent(window, "focus blur", Videoview.onPageFocusChange), addEvent(document, "webkitfullscreenchange mozfullscreenchange fullscreenchange", Videoview.onFullscreenChange), addEvent(document, "keydown", Videoview.onKeyDown), boxQueue.hideAll(), layers.wrapshow(mvLayerWrap, .8), layers.fullhide = Videoview.hide, mvcur.nextTimerUpdateInterval = setInterval(Videoview.playerNextTimerUpdate, 1e3), setTimeout(function() {
                     layers.wrapshow(mvLayerWrap, .8), layers.fullhide = Videoview.hide
-                }, 0), mvcur.noLocChange = 0, o.ad_video && (o.hideInfo = 1, o.noLocChange = 1, mvcur.noLocChange = 1, mvcur.videoAds = 1), mvcur.noHistory = o.noLocChange || o.noHistory, mvcur.blackInterval = setInterval(Videoview.moveCheck, 18e4), mvcur.videoRaw = i, mvcur.options = o, mvcur.listId = t, mvcur.mvData = !1, mvcur.mvShown = !0, mvcur.player = n, o.prevLoc ? mvcur.mvPrevLoc = o.prevLoc : setTimeout(function() {
+                }, 0), mvcur.noLocChange = 0, t.ad_video && (t.hideInfo = 1, t.noLocChange = 1, mvcur.noLocChange = 1, mvcur.videoAds = 1), mvcur.noHistory = t.noLocChange || t.noHistory, mvcur.blackInterval = setInterval(Videoview.moveCheck, 18e4), mvcur.videoRaw = i, mvcur.options = t, mvcur.listId = o, mvcur.mvData = !1, mvcur.mvShown = !0, mvcur.player = n, t.prevLoc ? mvcur.mvPrevLoc = t.prevLoc : setTimeout(function() {
                     var e = document.URL;
-                    Videoview.setLocation(o.noLocChange), e == document.URL && (e = ""), setTimeout(window.comScoreUDM && comScoreUDM.pbind(locProtocol + "//" + locHost + "/al_video.php?comscorekw=pageview_candidate", e), 10)
+                    Videoview.setLocation(t.noLocChange), e == document.URL && (e = ""), setTimeout(window.comScoreUDM && comScoreUDM.pbind(locProtocol + "//" + locHost + "/al_video.php?comscorekw=pageview_candidate", e), 10)
                 }, 0), e && e.pageX && e.pageY && extend(mvcur, {
                     mvOldX: e.pageX,
                     mvOldY: e.pageY,
                     mvOldT: vkNow()
-                }), a ? (Videoview.disableLayerContent(), VideoChat.destroy()) : Videoview.buildLayerContent(), toggle("mv_info", !o.hideInfo), o.expandPlayer) {
-                mvcur.player = o.expandPlayer, o.expandPlayer = 1;
+                }), a ? (Videoview.disableLayerContent(), VideoChat.destroy()) : Videoview.buildLayerContent(), toggle("mv_info", !t.hideInfo), t.expandPlayer) {
+                mvcur.player = t.expandPlayer, t.expandPlayer = 1;
                 var d = domClosest("video_box_wrap", mvcur.player.el);
                 ge("mv_player_box").appendChild(d), hide("mv_progress_box"), show("mv_player_box"), mvcur.player.onExpanded()
             }
-            return o.playlistId ? Videoview.initPlaylistBlock(i, o.playlistId, o.catLoadMore, !a) : VideoPlaylist.removeBlock(), Videoview.cleanUpStoredVSegs(), o.minimized && setTimeout(Videoview.minimize.bind(Videoview), 0), !1
+            return t.playlistId ? Videoview.initPlaylistBlock(i, t.playlistId, t.catLoadMore, !a) : VideoPlaylist.removeBlock(), Videoview.cleanUpStoredVSegs(), t.minimized && setTimeout(Videoview.minimize.bind(Videoview), 0), !1
         },
         buildLayerContent: function() {
             var e = "mv_dark";
@@ -826,28 +826,28 @@ var Videoview = {
         disableLayerContent: function() {
             addClass("mv_info", "mv_info_disabled")
         },
-        initPlaylistBlock: function(e, i, t, o) {
+        initPlaylistBlock: function(e, i, o, t) {
             if (-127333786 != e.split("_")[0]) {
                 var a = !!VideoPlaylist.getBlock(),
-                    n = VideoPlaylist.buildBlock(i, e, o);
+                    n = VideoPlaylist.buildBlock(i, e, t);
                 if (n && /^wall_/.test(i) && VideoPlaylist.lists[i] && cur.wallVideos && cur.wallVideos[i] && (VideoPlaylist.extendList(i, cur.wallVideos[i].list), VideoPlaylist.updateBlockList(i)), n) {
                     ge("mv_main").appendChild(n);
                     var d = VideoPlaylist.getCurList().list.length;
-                    (window.Video && Video.isInVideosList() && vk.id == cur.oid || 5 > d) && (a || VideoPlaylist.toggle(!1)), isFunction(t) && t(VideoPlaylist.updateBlockList.pbind(i)), setTimeout(function() {
+                    (window.Video && Video.isInVideosList() && vk.id == cur.oid || 5 > d) && (a || VideoPlaylist.toggle(!1)), isFunction(o) && o(VideoPlaylist.updateBlockList.pbind(i)), setTimeout(function() {
                         VideoPlaylist.restoreScrollPos(), VideoPlaylist.updateScrollbar(), VideoPlaylist.setCurVideo(e, a)
                     }, 0)
                 }
                 VideoPlaylist.toggleStateClasses(), VideoPlaylist.updateControls()
             }
         },
-        hide: function(e, i, t, o) {
+        hide: function(e, i, o, t) {
             if (window.mvcur && (i || mvcur.mvShown)) {
-                if (o) {
+                if (t) {
                     var a = cur.videoBackOnClick;
                     if (cur.videoBackOnClick = !1, a) return history.back()
                 }
                 if (!i && mvcur.minimized) return void(mvcur.noLocChange || e === !0 || (2 === e ? nav.setLoc(hab.getLoc()) : layerQueue.count() || Videoview.backLocation()));
-                if (!mvcur.noHistory && !e && !o) {
+                if (!mvcur.noHistory && !e && !t) {
                     mvcur.noHistory = 1, mvcur.forceHistoryHide = i, __adsUpdate("very_lazy");
                     var n = cur.mvHistoryBack ? -cur.mvHistoryBack : -1;
                     return cur.mvHistoryBack = 0, setTimeout(function() {
@@ -886,7 +886,7 @@ var Videoview = {
                 var u = "mv_dark";
                 removeClass(mvLayerWrap, u), removeClass(layerBG, u), mvcur.mvShown = !1, removeEvent(window, "resize", Videoview.onResize), removeEvent(document, "webkitfullscreenchange mozfullscreenchange fullscreenchange", Videoview.onFullscreenChange), removeEvent(document, "keydown", Videoview.onKeyDown), clearInterval(mvcur.nextTimerUpdateInterval), mvcur.addButtonTT && (mvcur.addButtonTT.destroy(), mvcur.addButtonTT = null), Videoview.removeExternalVideoFinishBlock(), Videoview.destroyPlayer(), val("mv_player_box", "");
                 VideoPlaylist.getBlock();
-                return s && isVisible(layerWrap) || (debugLog("pop from videoview.hide"), setTimeout(layerQueue.pop, 0)), mvcur.blackInterval && clearInterval(mvcur.blackInterval), o && nav.objLoc.z ? (layerQueue.skipVideo = !0, delete nav.objLoc.z, nav.setLoc(nav.objLoc)) : mvcur.noLocChange || e === !0 || (2 === e ? nav.setLoc(hab.getLoc()) : Videoview.backLocation(), __adsUpdate("very_lazy")), __adsUpdate(), mvcur.bodyScrollTop = scrollNode.scrollTop, setTimeout(function() {
+                return s && isVisible(layerWrap) || (debugLog("pop from videoview.hide"), setTimeout(layerQueue.pop, 0)), mvcur.blackInterval && clearInterval(mvcur.blackInterval), t && nav.objLoc.z ? (layerQueue.skipVideo = !0, delete nav.objLoc.z, nav.setLoc(nav.objLoc)) : mvcur.noLocChange || e === !0 || (2 === e ? nav.setLoc(hab.getLoc()) : Videoview.backLocation(), __adsUpdate("very_lazy")), __adsUpdate(), mvcur.bodyScrollTop = scrollNode.scrollTop, setTimeout(function() {
                     void 0 !== mvcur.bodyScrollTop && (scrollNode.scrollTop = mvcur.bodyScrollTop, delete mvcur.bodyScrollTop)
                 }, 0), !1
             }
@@ -895,9 +895,9 @@ var Videoview = {
             mvcur.player && (mvcur.player.destroy(), delete mvcur.player), ge("html5_player") && window.html5video && html5video.destroy(), ge("video_yt") && window.VideoYoutube && VideoYoutube.destroy()
         },
         cmp: function(e, i) {
-            var t = e.length,
-                o = i.length;
-            return o > t ? -1 : t > o ? 1 : i > e ? -1 : e > i ? 1 : 0
+            var o = e.length,
+                t = i.length;
+            return t > o ? -1 : o > t ? 1 : i > e ? -1 : e > i ? 1 : 0
         },
         onKeyDown: function(e) {
             return e.returnValue === !1 ? !1 : e.keyCode == KEY.ESC ? (mvcur.mvEditing ? Videoview.cancelInline() : Videoview.hide(), cancelEvent(e)) : void 0
@@ -915,9 +915,9 @@ var Videoview = {
             if (mvcur.minimized) return !1;
             var e = document.documentElement,
                 i = window.innerHeight || e.clientHeight || bodyNode.clientHeight,
-                t = 2;
-            isVisible("mv_info") || (t = 1.2), setStyle("mv_container", {
-                marginTop: Math.max((i - 800) / t, 60) + "px"
+                o = 2;
+            isVisible("mv_info") || (o = 1.2), setStyle("mv_container", {
+                marginTop: Math.max((i - 800) / o, 60) + "px"
             }), onBodyResize(), Videoview.onResize()
         },
         getPrevLoc: function() {
@@ -927,11 +927,11 @@ var Videoview = {
         setLocation: function(e) {
             if (mvcur.options.fromPreload) {
                 var i = mvcur.listId.match(new RegExp("([a-z]*)([0-9-]*)")),
-                    t = mvcur.listId.match(new RegExp("claim=([0-9]+)")),
-                    o = parseInt(i[2]);
+                    o = mvcur.listId.match(new RegExp("claim=([0-9]+)")),
+                    t = parseInt(i[2]);
                 mvcur.mvPrevLoc = {
-                    0: "videos" + o
-                }, "videos" != i[1] && (mvcur.mvPrevLoc.section = i[1]), t && t[1] && (mvcur.mvPrevLoc.claim = t[1])
+                    0: "videos" + t
+                }, "videos" != i[1] && (mvcur.mvPrevLoc.section = i[1]), o && o[1] && (mvcur.mvPrevLoc.claim = o[1])
             } else e ? mvcur.mvPrevLoc = "z" : Videoview.getPrevLoc();
             if (!e) {
                 var a = "video" + mvcur.videoRaw;
@@ -962,9 +962,9 @@ var Videoview = {
                             }, 200)
                         }, 1e3)
                     }),
-                    t = getXY(e, !0)[1];
-                0 > t || t > lastWindowHeight - 200 ? animate(mvLayerWrap, {
-                    scrollTop: mvLayerWrap.scrollTop + t - 50
+                    o = getXY(e, !0)[1];
+                0 > o || o > lastWindowHeight - 200 ? animate(mvLayerWrap, {
+                    scrollTop: mvLayerWrap.scrollTop + o - 50
                 }, 300, i) : i()
             }
         },
@@ -981,18 +981,18 @@ var Videoview = {
                 hide(comment), node.appendChild(se(text)), del ? ("mv" == from ? (--mvcur.mvData.commcount, --mvcur.mvData.commshown) : (--cur.commentsCount, --cur.commentsShown), Videoview.updateCommentsHeader(from)) : "mv" == from && Videoview.recache(), script && eval(script), Videoview.updateReplyFormPos()
             }
         },
-        commAction: function(e, i, t, o, a) {
-            var n = ge("post" + i + "video_" + t + a),
+        commAction: function(e, i, o, t, a) {
+            var n = ge("post" + i + "video_" + o + a),
                 d = domByClass(n, "post_actions"),
-                r = ge("reply_" + e + i + "video_" + t + a);
+                r = ge("reply_" + e + i + "video_" + o + a);
             attr(n, "data-action", e), r && tooltips.hide(r), ajax.post("al_video.php", {
                 act: e + "_comment",
-                comment: i + "_" + t,
-                hash: o,
+                comment: i + "_" + o,
+                hash: t,
                 videoview: 1,
                 from: a
             }, {
-                onDone: Videoview.commActionDone.pbind(i + "_" + t, a),
+                onDone: Videoview.commActionDone.pbind(i + "_" + o, a),
                 showProgress: addClass.pbind(d, "post_actions_progress"),
                 hideProgress: removeClass.pbind(d, "post_actions_progress"),
                 stat: ["privacy.js", "privacy.css"]
@@ -1006,8 +1006,8 @@ var Videoview = {
                     offset: i.commshown,
                     video: i.videoRaw
                 }, {
-                    onDone: function(i, t) {
-                        Videoview.receiveComms(i, t, !0, e), e && ge("post" + e) && Videoview.showComment(e)
+                    onDone: function(i, o) {
+                        Videoview.receiveComms(i, o, !0, e), e && ge("post" + e) && Videoview.showComment(e)
                     },
                     showProgress: function() {
                         var e = ge("mv_comments_header");
@@ -1022,10 +1022,10 @@ var Videoview = {
         updateCommentsHeader: function(e) {
             if ("review" != e) {
                 var i = mvcur.mvData,
-                    t = "";
-                i.commcount > i.commshown && (t = getLang("video_show_previous_comments", i.commcount - i.commshown)), i.commcount && val("mv_comments_summary", getLang("video_comments_summary", i.commcount)), setStyle("mv_comments_summary", {
+                    o = "";
+                i.commcount > i.commshown && (o = getLang("video_show_previous_comments", i.commcount - i.commshown)), i.commcount && val("mv_comments_summary", getLang("video_comments_summary", i.commcount)), setStyle("mv_comments_summary", {
                     display: i.commcount ? null : "none"
-                }), toggleClass("mv_comments_header", "mv_comments_expanded", !t), toggleClass("mv_comments_summary", "mv_comments_expanded", !t), val("mv_comments_header", t), Videoview.recache()
+                }), toggleClass("mv_comments_header", "mv_comments_expanded", !o), toggleClass("mv_comments_summary", "mv_comments_expanded", !o), val("mv_comments_header", o), Videoview.recache()
             }
         },
         onShowEditReply: function() {
@@ -1034,35 +1034,35 @@ var Videoview = {
         onHideEditReply: function() {
             mvcur.replyFormShown = !1, mvcur.mvReplyTo = !1, Videoview.updateReplyFormPos(), setTimeout(Videoview.updateReplyFormPos, 0), Videoview.playerNextTimerUpdate()
         },
-        commentClick: function(e, i, t, o) {
-            Wall.checkReplyClick(e, i) || (mvcur.mvReplyTo = [t, o], Wall.replyTo(mvcur.post, o, t))
+        commentClick: function(e, i, o, t) {
+            Wall.checkReplyClick(e, i) || (mvcur.mvReplyTo = [o, t], Wall.replyTo(mvcur.post, t, o))
         },
-        receiveComms: function(e, i, t, o) {
+        receiveComms: function(e, i, o, t) {
             for (var a, n, d = ce("div", {
                     innerHTML: e
                 }), r = ge("mv_comments"), s = a = domLC(r), v = getXY(a, !0)[1], l = mvcur.mvData; n = domLC(d);) {
                 for (; a && Videoview.cmp(a.id, n.id) > 0;) a = domPS(a);
-                a && !Videoview.cmp(a.id, n.id) ? (r.replaceChild(n, a), a = n) : (a && domNS(a) ? r.insertBefore(n, domNS(a)) : !a && domFC(r) ? t ? r.insertBefore(n, domFC(r)) : (--l.commshown, d.removeChild(n)) : r.appendChild(n), t || ++l.commcount, ++l.commshown)
+                a && !Videoview.cmp(a.id, n.id) ? (r.replaceChild(n, a), a = n) : (a && domNS(a) ? r.insertBefore(n, domNS(a)) : !a && domFC(r) ? o ? r.insertBefore(n, domFC(r)) : (--l.commshown, d.removeChild(n)) : r.appendChild(n), o || ++l.commcount, ++l.commshown)
             }
-            o && s && (mvLayerWrap.scrollTop += getXY(s, !0)[1] - v), extend(mvcur.mvReplyNames, i), window.updateWndVScroll && updateWndVScroll(), Videoview.updateCommentsHeader(), Videoview.updateReplyFormPos()
+            t && s && (mvLayerWrap.scrollTop += getXY(s, !0)[1] - v), extend(mvcur.mvReplyNames, i), window.updateWndVScroll && updateWndVScroll(), Videoview.updateCommentsHeader(), Videoview.updateReplyFormPos()
         },
         commSaved: function(e) {},
-        sendComment: function(e, i, t) {
-            var o = ge("reply_field" + e),
-                a = o && data(o, "composer"),
+        sendComment: function(e, i, o) {
+            var t = ge("reply_field" + e),
+                a = t && data(t, "composer"),
                 n = (mvcur.mvReplyNames[(mvcur.mvReplyTo || {})[0]] || [])[1],
                 d = ge("reply_button" + e);
-            if (t) var r = {
+            if (o) var r = {
                 message: "",
                 attach1_type: "sticker",
-                attach1: t
+                attach1: o
             };
             else {
                 var r = a ? Composer.getSendParams(a, Videoview.sendComment) : {
-                    message: trim(val(o))
+                    message: trim(val(t))
                 };
                 if (r.delayed) return;
-                if (!r.attach1_type && (!r.message || n && !n.indexOf(r.message))) return void elfocus(o)
+                if (!r.attach1_type && (!r.message || n && !n.indexOf(r.message))) return void elfocus(t)
             }
             ajax.post("al_video.php", Wall.fixPostParams(extend(r, {
                 act: "post_comment",
@@ -1073,25 +1073,25 @@ var Videoview = {
                 from_group: domData(domClosest("_submit_post_box", ge("reply_as_group" + mvcur.post)), "from-oid") < 0 ? 1 : "",
                 reply_to: (mvcur.mvReplyTo || {})[1]
             })), {
-                onDone: function(i, t) {
-                    Videoview.receiveComms(i, t), val("mv_comments_summary", getLang("video_comments_summary", mvcur.mvData.commcount)), Composer.reset(a), hide("reply_warn" + e), Wall.cancelReplyTo(e), mvLayerWrap.scrollTop = 9e9
+                onDone: function(i, o) {
+                    Videoview.receiveComms(i, o), val("mv_comments_summary", getLang("video_comments_summary", mvcur.mvData.commcount)), Composer.reset(a), hide("reply_warn" + e), Wall.cancelReplyTo(e), mvLayerWrap.scrollTop = 9e9
                 },
                 onFail: function(e) {
-                    return o ? (showTooltip(o, {
+                    return t ? (showTooltip(t, {
                         text: e,
                         showdt: 200,
                         forcetodown: 0,
                         slide: 15
-                    }), elfocus(o), !0) : void 0
+                    }), elfocus(t), !0) : void 0
                 },
                 showProgress: lockButton.pbind(d),
                 hideProgress: unlockButton.pbind(d)
             })
         },
-        activate: function(e, i, t) {
+        activate: function(e, i, o) {
             2 == i ? animate(e, {
                 color: "#FFFFFF"
-            }, "undefined" != typeof t ? 0 : 200) : animate(e, {
+            }, "undefined" != typeof o ? 0 : 200) : animate(e, {
                 opacity: 1
             }, 200)
         },
@@ -1133,7 +1133,7 @@ var Videoview = {
                 }
             }), !1
         },
-        likeUpdate: function(e, i, t, o) {
+        likeUpdate: function(e, i, o, t) {
             i = intval(i);
             var a = Videoview.getMvData(),
                 n = window.mvcur && mvcur.statusVideo ? "wall" : "video",
@@ -1146,7 +1146,7 @@ var Videoview = {
                     r = domByClass(v.container, "_value"),
                     c = domByClass(v.container, "_content"),
                     d = domByClass(v.container, "_title");
-                t && d && val(d, t), r && (r.value = i), animateCount(countNode, i), toggleClass(s, "my_like", e), toggleClass(s, "no_likes", !i), toggleClass(c, "me_hidden", !e), i ? o || !v.el || isVisible(v.container) || t || tooltips.show(v.el, extend(l, {
+                o && d && val(d, o), r && (r.value = i), animateCount(countNode, i), toggleClass(s, "my_like", e), toggleClass(s, "no_likes", !i), toggleClass(c, "me_hidden", !e), i ? t || !v.el || isVisible(v.container) || o || tooltips.show(v.el, extend(l, {
                     showdt: 0
                 })) : v.el && v.hide()
             }
@@ -1155,9 +1155,9 @@ var Videoview = {
             var e = Videoview.getMvData();
             return e && e.published
         },
-        addSmall: function(e, i, t, o) {
+        addSmall: function(e, i, o, t) {
             if (Videoview._isCurrentVideoPublished()) {
-                window.mvcur && mvcur.mvShown ? Videoview.setAddButtonStateAdded() : Videoview.addVideo(e, i, !1, t, o), hide("video_add_action_link"), addClass(ge("mv_like_line"), "video_added"), addClass(geByClass1("mv_finish_add", "mv_external_finish"), "selected");
+                window.mvcur && mvcur.mvShown ? Videoview.setAddButtonStateAdded() : Videoview.addVideo(e, i, !1, o, t), hide("video_add_action_link"), addClass(ge("mv_like_line"), "video_added"), addClass(geByClass1("mv_finish_add", "mv_external_finish"), "selected");
                 var a = Videoview.getMvData();
                 a.added = !0
             } else Videoview.showAddDialog(e)
@@ -1172,14 +1172,14 @@ var Videoview = {
                     params: {
                         dark: 1
                     },
-                    onDone: function(e, t) {
-                        t && (e.removeButtons(), e.addButton(getLang("Save"), function(e) {
-                            var o = trim(val("mv_video_add_title"));
-                            o && ajax.post("al_video.php?act=a_add_publish_video", {
-                                title: o,
+                    onDone: function(e, o) {
+                        o && (e.removeButtons(), e.addButton(getLang("Save"), function(e) {
+                            var t = trim(val("mv_video_add_title"));
+                            t && ajax.post("al_video.php?act=a_add_publish_video", {
+                                title: t,
                                 video_privacy: Privacy.getValue("video_add"),
                                 videocomm_privacy: Privacy.getValue("videocomm_add"),
-                                hash: t,
+                                hash: o,
                                 oid: i[0],
                                 vid: i[1]
                             }, {
@@ -1188,8 +1188,8 @@ var Videoview = {
                                 onDone: function() {
                                     cur._recentAddedVideos[e] = !0;
                                     var e = mvcur.videoRaw,
-                                        t = mvcur.listId;
-                                    Videoview.hide(!0, !0), Videoview.recache(i[0] + "_" + i[1]), showVideo(e, t)
+                                        o = mvcur.listId;
+                                    Videoview.hide(!0, !0), Videoview.recache(i[0] + "_" + i[1]), showVideo(e, o)
                                 }
                             })
                         }))
@@ -1197,13 +1197,13 @@ var Videoview = {
                 })
             }
         },
-        share: function(e, i, t) {
+        share: function(e, i, o) {
             if (vk.id) {
-                var o = Videoview.getMvData();
-                return o && !o.addedVideo && (o.addedVideo = o.videoRaw), (o || e) && showBox("like.php", {
+                var t = Videoview.getMvData();
+                return t && !t.addedVideo && (t.addedVideo = t.videoRaw), (t || e) && showBox("like.php", {
                     act: "publish_box",
-                    object: "video" + (o.addedVideo || e),
-                    action_type: t
+                    object: "video" + (t.addedVideo || e),
+                    action_type: o
                 }, {
                     onDone: function() {
                         window.mvcur && mvcur.mvShown && Videoview.playerNextTimerUpdate()
@@ -1213,39 +1213,39 @@ var Videoview = {
         },
         like: function(e, i) {
             if (vk.id) {
-                var t = Videoview.getMvData();
-                if (t) {
-                    var o = t;
-                    if (window.mvcur && mvcur.statusVideo) var a = "wall" + o.videoRaw;
-                    else var a = "video" + o.videoRaw;
+                var o = Videoview.getMvData();
+                if (o) {
+                    var t = o;
+                    if (window.mvcur && mvcur.statusVideo) var a = "wall" + t.videoRaw;
+                    else var a = "video" + t.videoRaw;
                     var n = "";
                     if (window.Video && Video.isInCatalog()) {
                         var d = VideoPlaylist.getCurListId();
                         n = Videocat.isTop3Playlist(d) ? "featured" : d
                     }
                     ajax.post("like.php", {
-                        act: "a_do_" + (o.liked ? "un" : "") + "like",
+                        act: "a_do_" + (t.liked ? "un" : "") + "like",
                         object: a,
-                        hash: o.likeHash,
+                        hash: t.likeHash,
                         short_view: 1,
                         from: "videoview",
                         info: n
                     }, {
-                        onDone: Videoview.likeUpdate.pbind(!o.liked)
-                    }), i || Videoview.playerOnLiked(), toggleClass(geByClass1("mv_finish_like", "mv_external_finish"), "selected", !o.liked), Videoview.likeUpdate(!o.liked, o.likes + (o.liked ? -1 : 1), null, i), Videoview.recache()
+                        onDone: Videoview.likeUpdate.pbind(!t.liked)
+                    }), i || Videoview.playerOnLiked(), toggleClass(geByClass1("mv_finish_like", "mv_external_finish"), "selected", !t.liked), Videoview.likeUpdate(!t.liked, t.likes + (t.liked ? -1 : 1), null, i), Videoview.recache()
                 }
             }
         },
         likeShare: function(e) {
             if (vk.id) {
                 var i = mvcur.mvData;
-                if (mvcur.statusVideo) var t = "wall" + i.videoRaw;
-                else var t = "video" + i.videoRaw;
-                var o = ge("like_share_video" + i.videoRaw),
-                    a = isChecked(o);
-                checkbox(o), ajax.post("like.php", {
+                if (mvcur.statusVideo) var o = "wall" + i.videoRaw;
+                else var o = "video" + i.videoRaw;
+                var t = ge("like_share_video" + i.videoRaw),
+                    a = isChecked(t);
+                checkbox(t), ajax.post("like.php", {
                     act: "a_do_" + (a ? "un" : "") + "publish",
-                    object: t,
+                    object: o,
                     hash: e,
                     short_view: 1,
                     list: mvcur.listId
@@ -1256,15 +1256,15 @@ var Videoview = {
         },
         likeOver: function(e) {
             var i = mvcur.mvData;
-            if (mvcur.statusVideo) var t = "wall" + i.videoRaw;
-            else var t = "video" + i.videoRaw;
-            var o = getSize(ge("mv_like_link")),
-                a = o ? o[0] : 20;
+            if (mvcur.statusVideo) var o = "wall" + i.videoRaw;
+            else var o = "video" + i.videoRaw;
+            var t = getSize(ge("mv_like_link")),
+                a = t ? t[0] : 20;
             showTooltip(e, {
                 url: "like.php",
                 params: {
                     act: "a_get_stats",
-                    object: t,
+                    object: o,
                     list: mvcur.listId,
                     from: "videoview"
                 },
@@ -1279,10 +1279,10 @@ var Videoview = {
                 init: function(e) {
                     if (e.container) {
                         var i = geByClass1("bottom_pointer", e.container, "div"),
-                            t = geByClass1("top_pointer", e.container, "div");
+                            o = geByClass1("top_pointer", e.container, "div");
                         setStyle(i, {
                             marginLeft: a + 2
-                        }), setStyle(t, {
+                        }), setStyle(o, {
                             marginLeft: a + 2
                         })
                     }
@@ -1291,10 +1291,10 @@ var Videoview = {
         },
         likesShowList: function(e) {
             var i = domPN(e),
-                t = domByClass(i, "_icon"),
-                o = mvcur.mvData;
-            if (t && !cur.viewAsBox && o) {
-                var a = o.statusVideo ? "wall" + o.videoRaw : "video" + o.videoRaw;
+                o = domByClass(i, "_icon"),
+                t = mvcur.mvData;
+            if (o && !cur.viewAsBox && t) {
+                var a = t.statusVideo ? "wall" + t.videoRaw : "video" + t.videoRaw;
                 showWiki({
                     w: "likes/" + clean(a)
                 }, !1, !1, {
@@ -1302,25 +1302,25 @@ var Videoview = {
                 })
             }
         },
-        showEditBox: function(e, i, t, o) {
+        showEditBox: function(e, i, o, t) {
             showBox("al_video.php?act=edit_box", {
                 vid: e,
                 oid: i,
-                is_publish: +o
+                is_publish: +t
             }, {
                 stat: ["privacy.js", "privacy.css", "video.js", "video.css"]
             })
         },
-        restoreVideo: function(e, i, t, o, a) {
+        restoreVideo: function(e, i, o, t, a) {
             var n = ge("mv_warning");
             return n && (n.innerHTML = '<img style="margin-left: 100px;" src="/images/upload.gif" />'), ajax.post("al_video.php?act=restore_video", {
                 vid: e,
                 oid: i,
-                hash: t,
-                from: o || "videoviewer"
+                hash: o,
+                from: t || "videoviewer"
             }, {
-                onDone: function(t) {
-                    if ("list" == o && cur.restoreRaw && cur.restoreRaw[i + "_" + e]) {
+                onDone: function(o) {
+                    if ("list" == t && cur.restoreRaw && cur.restoreRaw[i + "_" + e]) {
                         var a = ge("video_row" + i + "_" + e);
                         val(a, cur.restoreRaw[i + "_" + e]), removeClass(a, "video_row_loading"), removeClass(a, "video_row_deleted"), setStyle(geByClass1("video_row_icon_delete", a), {
                             opacity: .8
@@ -1337,8 +1337,8 @@ var Videoview = {
                 }
             }), cancelEvent(a)
         },
-        publish: function(e, i, t, o) {
-            o && hasClass(o, "loading") || Videoview.showEditBox(i, e, null, !0)
+        publish: function(e, i, o, t) {
+            t && hasClass(t, "loading") || Videoview.showEditBox(i, e, null, !0)
         },
         stopStreaming: function(e, i) {
             showFastBox(getLang("video_are_you_sure_stop_streaming_title"), getLang("video_are_you_sure_stop_streaming"), getLang("box_yes"), function() {
@@ -1355,17 +1355,17 @@ var Videoview = {
                 })
             }, getLang("box_no"))
         },
-        broadcastLiveAds: function(e, i, t) {
+        broadcastLiveAds: function(e, i, o) {
             mvcur.mvData.launchedLiveAds = 1, ajax.post("al_video.php?act=broadcast_live_ads", {
                 owner_id: mvcur.mvData.oid,
                 video_id: mvcur.mvData.vid,
                 hash: i,
-                stop: t
+                stop: o
             }, {
                 showProgress: lockButton.pbind(e),
                 hideProgress: unlockButton.pbind(e),
                 onDone: function(e, i) {
-                    t ? Videoview.removeLiveAdsTimer() : Videoview.runLiveAdsTimer(e, i)
+                    o ? Videoview.removeLiveAdsTimer() : Videoview.runLiveAdsTimer(e, i)
                 },
                 onFail: function(e) {
                     return showFastBox(getLang("global_error"), e || getLang("global_error_occured")), !0
@@ -1374,11 +1374,11 @@ var Videoview = {
         },
         runLiveAdsTimer: function(e, i) {
             mvcur.mvData.liveAdsTimerEl = se(e), ge("mv_main").appendChild(mvcur.mvData.liveAdsTimerEl), disableButton("mv_broadcast_live_ads_button", !0);
-            var t = mvcur.videoRaw,
-                o = vkNow();
+            var o = mvcur.videoRaw,
+                t = vkNow();
             ! function a() {
-                if (t == mvcur.videoRaw && mvcur.mvShown && mvcur.mvData.liveAdsTimerEl) {
-                    var e = intval(i - (vkNow() - o) / 1e3);
+                if (o == mvcur.videoRaw && mvcur.mvShown && mvcur.mvData.liveAdsTimerEl) {
+                    var e = intval(i - (vkNow() - t) / 1e3);
                     if (0 > e) return Videoview.removeLiveAdsTimer();
                     val(domByClass(mvcur.mvData.liveAdsTimerEl, "mv_live_ads_timer_countdown"), formatTime(e)), setTimeout(a, 1e3)
                 }
@@ -1387,17 +1387,17 @@ var Videoview = {
         removeLiveAdsTimer: function() {
             re(mvcur.mvData.liveAdsTimerEl), delete mvcur.mvData.liveAdsTimerEl, delete mvcur.mvData.launchedLiveAds, disableButton("mv_broadcast_live_ads_button", !1)
         },
-        deleteVideo: function(e, i, t, o, a, n, d) {
+        deleteVideo: function(e, i, o, t, a, n, d) {
             n && hasClass(n, "loading") || ajax.post("al_video.php", {
                 act: "delete_video",
                 vid: e,
                 oid: i,
-                hash: t,
-                sure: o ? 1 : 0,
+                hash: o,
+                sure: t ? 1 : 0,
                 from: a
             }, {
-                onDone: function(o, r, s, v, l) {
-                    if (Videoview.recache(i + "_" + e), "sure" == o) {
+                onDone: function(t, r, s, v, l) {
+                    if (Videoview.recache(i + "_" + e), "sure" == t) {
                         Videoview.hidePlayer();
                         var c = showFastBox({
                             title: r,
@@ -1409,16 +1409,16 @@ var Videoview = {
                                 Videoview.showPlayer()
                             }
                         }), c.removeButtons(), c.addButton(l, c.hide, "no"), c.addButton(v, function() {
-                            c.showProgress(), Videoview.deleteVideo(e, i, t, !0, a, n, c.hide)
+                            c.showProgress(), Videoview.deleteVideo(e, i, o, !0, a, n, c.hide)
                         }, "yes")
-                    } else if ("result" == o && (d && d(s), "videoviewer" == a && (ge("mv_info") && (hide("mv_info"), val("mv_warning", s), show("mv_warning"), hide("mv_publish")), s = r), window.Video && Video.isInVideosList())) return Video.updateVideo(cur.oid, [i, e], [], !0), !0
+                    } else if ("result" == t && (d && d(s), "videoviewer" == a && (ge("mv_info") && (hide("mv_info"), val("mv_warning", s), show("mv_warning"), hide("mv_publish")), s = r), window.Video && Video.isInVideosList())) return Video.updateVideo(cur.oid, [i, e], [], !0), !0
                 },
                 showProgress: n ? addClass.pbind(n, "loading") : !1,
                 hideProgress: n ? removeClass.pbind(n, "loading") : !1
             })
         },
-        deleteVideoOnClaim: function(e, i, t, o, a, n) {
-            Videoview.deleteVideo(e, i, t, o, a, n, function(e) {
+        deleteVideoOnClaim: function(e, i, o, t, a, n) {
+            Videoview.deleteVideo(e, i, o, t, a, n, function(e) {
                 "videoviewer" == a && (hide("mv_info"), cur.claimedVideoText = val("video_player"), val("video_player", e))
             })
         },
@@ -1442,24 +1442,24 @@ var Videoview = {
                 dark: 1
             })
         },
-        setAdult: function(e, i, t, o, a) {
+        setAdult: function(e, i, o, t, a) {
             ajax.post("al_video.php?act=set_adult_video", {
                 vid: i,
                 oid: e,
-                hash: t,
-                value: o
+                hash: o,
+                value: t
             }, {
                 onDone: function(e, i) {
                     val(a, i), lockLink(a)
                 }
             })
         },
-        restoreOriginal: function(e, i, t, o) {
+        restoreOriginal: function(e, i, o, t) {
             showFastBox("Confirm", "restore original video?", getLang("box_yes"), function() {
                 ajax.post("al_video.php?act=restore_original", {
                     vid: i,
                     oid: e,
-                    hash: t
+                    hash: o
                 }, {
                     onDone: function(e, i) {
                         nav.reload()
@@ -1467,16 +1467,16 @@ var Videoview = {
                 })
             }, getLang("box_no"))
         },
-        spamVideo: function(e, i, t, o, a, n, d) {
-            o && addClass(o, "loading"), ajax.post("al_video.php?act=spam_video", {
+        spamVideo: function(e, i, o, t, a, n, d) {
+            t && addClass(t, "loading"), ajax.post("al_video.php?act=spam_video", {
                 vid: i,
                 oid: e,
-                hash: t,
+                hash: o,
                 sure: n ? 1 : 0,
                 from: a
             }, {
                 onDone: function(n, r, s, v, l) {
-                    if (o && removeClass(o, "loading"), Videoview.recache(e + "_" + i), "sure" == n) {
+                    if (t && removeClass(t, "loading"), Videoview.recache(e + "_" + i), "sure" == n) {
                         Videoview.hidePlayer();
                         var c = showFastBox({
                             title: r,
@@ -1488,41 +1488,41 @@ var Videoview = {
                                 Videoview.showPlayer()
                             }
                         }), c.removeButtons(), c.addButton(l, c.hide, "no"), c.addButton(v, function() {
-                            c.showProgress(), Videoview.spamVideo(e, i, t, o, a, !0, c.hide)
+                            c.showProgress(), Videoview.spamVideo(e, i, o, t, a, !0, c.hide)
                         }, "yes")
                     } else if ("result" == n) {
                         if (d && d(), window.Video)
                             if ("videoviewer" == a) Video.removeFromLists(e + "_" + i);
                             else if ("list" == a) return val("video_row" + e + "_" + i, '<div class="video_row">' + s + "</div>"), Video.removeFromLists(e + "_" + i, !0), !0
-                    } else val(domPN(o), n)
+                    } else val(domPN(t), n)
                 }
             })
         },
         licensed: function(e, i) {
-            var t = ge("mv_licensed_info");
-            val(t, ""), show(t), showProgress(t), ajax.post("al_video.php?act=change_licensed", {
+            var o = ge("mv_licensed_info");
+            val(o, ""), show(o), showProgress(o), ajax.post("al_video.php?act=change_licensed", {
                 video: mvcur.mvData.videoRaw,
                 hash: i
             }, {
-                onDone: function(i, o) {
-                    val(e, i), t && (val(t, o), toggle(t, !!o))
+                onDone: function(i, t) {
+                    val(e, i), o && (val(o, t), toggle(o, !!t))
                 }
             })
         },
-        claimed: function(e, i, t, o) {
-            i = domData(o, "action") || i, ajax.post("al_claims.php?act=a_" + i, {
+        claimed: function(e, i, o, t) {
+            i = domData(t, "action") || i, ajax.post("al_claims.php?act=a_" + i, {
                 type: "video",
                 id: mvcur.mvData.vid,
                 owner_id: mvcur.mvData.oid,
                 claim_id: e,
-                extra: t
+                extra: o
             }, {
                 onDone: function(e) {
-                    val(o, e), domData(o, "action", "claim" == i ? "unclaim" : "claim")
+                    val(t, e), domData(t, "action", "claim" == i ? "unclaim" : "claim")
                 }
             })
         },
-        moderAction: function(e, i, t) {
+        moderAction: function(e, i, o) {
             if ("moder_log" == i) showBox("al_video.php?act=moder_log_box", {
                 video_raw: mvcur.videoRaw
             }, {
@@ -1531,22 +1531,22 @@ var Videoview = {
                 }
             });
             else {
-                var o = extend({
+                var t = extend({
                     owner_id: mvcur.mvData.oid,
                     video_id: mvcur.mvData.vid,
                     action: i,
-                    hash: t
+                    hash: o
                 }, parseJSON(domData(e, "params")));
-                ajax.post("al_video.php?act=moder_action", o, {
-                    onDone: function(i, t, o) {
-                        i && val(e, i), t && domData(e, "params", t), o && lockLink(e)
+                ajax.post("al_video.php?act=moder_action", t, {
+                    onDone: function(i, o, t) {
+                        i && val(e, i), o && domData(e, "params", o), t && lockLink(e)
                     }
                 })
             }
         },
-        setStyle: function(e, i, t) {
+        setStyle: function(e, i, o) {
             i = ge(i), mvcur.restoreStyles || (mvcur.restoreStyles = {});
-            for (var o in t) mvcur.restoreStyles[e] || (mvcur.restoreStyles[e] = {}), mvcur.restoreStyles[e][o] = i.style[o], i.style[o] = t[o]
+            for (var t in o) mvcur.restoreStyles[e] || (mvcur.restoreStyles[e] = {}), mvcur.restoreStyles[e][t] = i.style[t], i.style[t] = o[t]
         },
         restoreStyle: function(e, i) {
             i = ge(i), setStyle(i, mvcur.restoreStyles[e])
@@ -1629,19 +1629,19 @@ var Videoview = {
             var e = geByClass1("mv_info_wide_column", "mv_info"),
                 i = geByClass1("mv_info_narrow_column", "mv_info");
             if (e && i)
-                for (var t = geByClass("mv_recom_item", i), o = t.length - 1; getSize(e)[1] < getSize(i)[1] && o > 0; --o) hide(t[o])
+                for (var o = geByClass("mv_recom_item", i), t = o.length - 1; getSize(e)[1] < getSize(i)[1] && t > 0; --t) hide(o[t])
         },
         queueCheckUpdates: function(e) {
             window.mvcur && mvcur.mvShown && mvcur.queueKey === e.key && (window.Notifier && Notifier.addKey(e, Videoview.queueReceiveUpdates), setTimeout(Videoview.queueCheckUpdates.pbind(e), 25e3))
         },
         queueReconnect: function(e) {
             var i = Videoview.getMvData(),
-                t = i.oid,
-                o = i.vid,
-                a = t + "_" + o;
+                o = i.oid,
+                t = i.vid,
+                a = o + "_" + t;
             e ? ajax.post("al_video.php?act=get_queue_params", {
-                oid: t,
-                vid: o,
+                oid: o,
+                vid: t,
                 hash: i.hash
             }, {
                 onDone: function(e) {
@@ -1655,7 +1655,7 @@ var Videoview = {
             }, mvcur.queueReconnectDelay))
         },
         queueReceiveUpdates: function(e, i) {
-            function t(e, i) {
+            function o(e, i) {
                 return e + "video_" + i + "mv"
             }
             if (window.mvcur && mvcur.mvShown && mvcur.queueKey === e && i) {
@@ -1663,8 +1663,8 @@ var Videoview = {
                 delete mvcur.queueReconnectDelay, mvcur.queueBatchId = (mvcur.queueBatchId || 0) + 1, each(i.events, function() {
                     var e = this.split("<!>"),
                         i = e[0],
-                        o = e[1];
-                    if (i == mvcur.qversion) switch (o) {
+                        t = e[1];
+                    if (i == mvcur.qversion) switch (t) {
                         case "new_reply":
                             mvcur.chatMode || (Videoview.appendNewComment.apply(Videoview, e.slice(2)), Videoview.updateCommentsHeader(), Videoview.updateReplyFormPos());
                             break;
@@ -1684,7 +1684,7 @@ var Videoview = {
                             var d = e[2],
                                 r = e[3],
                                 s = e[4],
-                                v = ge("wpt" + t(d, r));
+                                v = ge("wpt" + o(d, r));
                             v && !attr(v, "data-action") && val(v, psr(s)), Videoview.updateReplyFormPos();
                             break;
                         case "del_reply":
@@ -1692,7 +1692,7 @@ var Videoview = {
                                 r = e[3];
                             if (mvcur.chatMode) VideoChat.receiveDelete(d, r);
                             else {
-                                var v = ge("post" + t(d, r));
+                                var v = ge("post" + o(d, r));
                                 v ? attr(v, "data-action") || (mvcur.mvData.commcount--, mvcur.mvData.commshown--, re(v)) : mvcur.mvData.commcount--, Videoview.updateCommentsHeader(), Videoview.updateReplyFormPos()
                             }
                             break;
@@ -1702,7 +1702,7 @@ var Videoview = {
                                 l = +e[4],
                                 c = +e[5],
                                 m = e[6],
-                                v = ge("wpe_bottom" + t(d, r));
+                                v = ge("wpe_bottom" + o(d, r));
                             if (v) {
                                 var u = domByClass(v, "_like_wrap"),
                                     _ = domByClass(u, "_count");
@@ -1744,10 +1744,10 @@ var Videoview = {
                 })
             }
         },
-        appendNewComment: function(e, i, t, o, a, n, d, r, s, v, l) {
+        appendNewComment: function(e, i, o, t, a, n, d, r, s, v, l) {
             if (!ge("post" + e + "video_" + i + "mv")) {
                 var c = "";
-                mvcur.adminLevel > 0 || e == vk.id || t == vk.id ? c += mvcur.commentsTpl.del_reply : e != t && (c += mvcur.commentsTpl.spam_reply), (mvcur.adminLevel > 1 && e == t || o == vk.id) && (c += mvcur.commentsTpl.edit_reply), c = rs(mvcur.commentsTpl.actions, {
+                mvcur.adminLevel > 0 || e == vk.id || o == vk.id ? c += mvcur.commentsTpl.del_reply : e != o && (c += mvcur.commentsTpl.spam_reply), (mvcur.adminLevel > 1 && e == o || t == vk.id) && (c += mvcur.commentsTpl.edit_reply), c = rs(mvcur.commentsTpl.actions, {
                     actions: c
                 });
                 var m = langDate(1e3 * r, getLang("global_short_date_time", "raw"), 0, []),
@@ -1756,29 +1756,29 @@ var Videoview = {
                         post_oid: e,
                         reply_id: e + "video_" + i + "mv",
                         reply_msg_id: i,
-                        from_id: t,
-                        name: o,
+                        from_id: o,
+                        name: t,
                         photo: a,
                         href: n,
                         message: d,
                         date: m,
                         to_link: s
                     }));
-                mvcur.mvReplyNames[t] = [v, l], ge("mv_comments").insertAdjacentHTML("beforeend", u), mvcur.mvData.commcount++, mvcur.mvData.commshown++
+                mvcur.mvReplyNames[o] = [v, l], ge("mv_comments").insertAdjacentHTML("beforeend", u), mvcur.mvData.commcount++, mvcur.mvData.commshown++
             }
         },
         updateLiveViewersCount: function(e, i) {
             if (e = intval(e)) {
-                var t = domByClass("mv_views", "mv_live_spectators_count_text"),
-                    o = getLang("video_live_N_watching", e, !0);
-                val(t, o)
+                var o = domByClass("mv_views", "mv_live_spectators_count_text"),
+                    t = getLang("video_live_N_watching", e, !0);
+                val(o, t)
             }
             if (i) {
-                var t = domByClass("mv_views", "mv_live_spectators_friends"),
-                    o = i.map(function(e) {
+                var o = domByClass("mv_views", "mv_live_spectators_friends"),
+                    t = i.map(function(e) {
                         return getTemplate("video_live_spectators_friend", e)
                     }).reverse().join("");
-                val(t, o)
+                val(o, t)
             }
         },
         showLiveSpectatorsBox: function() {
@@ -1801,7 +1801,7 @@ var Videoview = {
                     }
                 },
                 onFail: function(e) {
-                    return showFastBox(getLang("global_error_occured"), e), !0
+                    return curBox().hide(), showFastBox(getLang("global_error_occured"), e), !0
                 }
             })
         },
@@ -1813,19 +1813,19 @@ var Videoview = {
         loadMoreLiveSpectators: function(e) {
             if (!isButtonLocked(e)) {
                 var i = mvcur.liveSpectatorsPerPage,
-                    t = mvcur.liveSpectatorsShown,
-                    o = mvcur.liveSpectatorsList.slice(t, t + i);
-                if (o.length) {
+                    o = mvcur.liveSpectatorsShown,
+                    t = mvcur.liveSpectatorsList.slice(o, o + i);
+                if (t.length) {
                     var a = Videoview.getMvData();
                     ajax.post("al_video.php?act=live_spectators_box", {
                         owner_id: a.oid,
                         video_id: a.vid,
-                        more: o.join(","),
+                        more: t.join(","),
                         hash: a.hash
                     }, {
-                        onDone: function(o, a) {
+                        onDone: function(t, a) {
                             var n = ge("video_spectators_rows");
-                            if (n.insertAdjacentHTML("beforeend", o), mvcur.liveSpectatorsShown = t + i, mvcur.liveSpectatorsShown >= mvcur.liveSpectatorsList.length && hide(e), mvcur.liveSpectatorsShown >= mvcur.liveSpectatorsLimit) {
+                            if (n.insertAdjacentHTML("beforeend", t), mvcur.liveSpectatorsShown = o + i, mvcur.liveSpectatorsShown >= mvcur.liveSpectatorsList.length && hide(e), mvcur.liveSpectatorsShown >= mvcur.liveSpectatorsLimit) {
                                 hide(e);
                                 var d = ge("video_spectators_bottom");
                                 n.appendChild(d), show(d)
@@ -1851,8 +1851,8 @@ var Videoview = {
         },
         updateOtherLives: function(e, i) {
             if (mvcur.mvShown && mvcur.videoRaw == e) {
-                var t = domByClass(mvLayer, "mv_info_narrow_column");
-                val(t, i), mvcur.mvData.is_active_live || Videoview.adaptRecomsHeight()
+                var o = domByClass(mvLayer, "mv_info_narrow_column");
+                val(o, i), mvcur.mvData.is_active_live || Videoview.adaptRecomsHeight()
             }
         },
         finishLivePreparation: function(e) {
@@ -1872,9 +1872,9 @@ var Videoview = {
                 autoplay: 1
             })
         },
-        onVideoShared: function(e, i, t) {
+        onVideoShared: function(e, i, o) {
             "publish" != e || Videoview._isCurrentVideoPublished() || (Videoview.hide(!0, !0), setTimeout(function() {
-                0 == i.indexOf("video") && (i = i.substr("video".length)), Videoview.recache(i), showVideo(i, t)
+                0 == i.indexOf("video") && (i = i.substr("video".length)), Videoview.recache(i), showVideo(i, o)
             }, 100))
         },
         _onAddToCommunity: function() {
@@ -1891,10 +1891,10 @@ var Videoview = {
         _onDelete: function() {
             var e = mvcur.mvData.oid,
                 i = mvcur.mvData.vid,
-                t = mvcur.mvData.deleteHash,
-                o = !1,
+                o = mvcur.mvData.deleteHash,
+                t = !1,
                 a = "videoviewer";
-            Videoview.deleteVideo(i, e, t, o, a)
+            Videoview.deleteVideo(i, e, o, t, a)
         },
         _onExport: function() {
             Videoview.sendVideo(!0)
@@ -1911,8 +1911,8 @@ var Videoview = {
                 }
             })
         },
-        addToClubPlaylistBoxInit: function(e, i, t) {
-            function o(e, i) {
+        addToClubPlaylistBoxInit: function(e, i, o) {
+            function t(e, i) {
                 return hide("mv_add_to_club_albums"), val("mv_add_to_club_albums_list", ""), -1 == e ? void val("mv_add_to_club_gid", "") : (show("mv_add_to_club_albums_progress"), void ajax.post("al_video.php?act=a_get_club_playlists", {
                     gid: i,
                     oid: mvcur.mvData.oid,
@@ -1929,18 +1929,18 @@ var Videoview = {
                 defaultItems: i,
                 noResult: "no result",
                 introText: "choose",
-                onChange: o
+                onChange: t
             }), setTimeout(elfocus.pbind("add_to_pl_club_dd_input"), 0), e.removeButtons(), e.addButton(getLang("Save"), function(e) {
                 var i = val("mv_add_to_club_gid"),
-                    o = [];
+                    t = [];
                 each(geByClass("mv_add_to_club_albums_list_item"), function(e, i) {
-                    isChecked(i) && o.push(attr(i, "data-id"))
+                    isChecked(i) && t.push(attr(i, "data-id"))
                 }), ajax.post("al_video.php?act=a_add_to_playlist", {
-                    hash: t,
+                    hash: o,
                     gid: i,
                     oid: mvcur.mvData.oid,
                     vid: mvcur.mvData.vid,
-                    playlists: o.length ? o : "0"
+                    playlists: t.length ? t : "0"
                 }, {
                     showProgress: lockButton.pbind(e),
                     hideProgress: unlockButton.pbind(e),
@@ -1955,10 +1955,10 @@ var Videoview = {
             e = e || 590, val("mv_min_title", Videoview._isCurrentVideoPublished() ? stripHTML(i) : ""), setStyle("mv_min_title", {
                 maxWidth: Math.max(0, e - 70)
             });
-            var t = ge("mv_title");
-            t && (val(t, i), setStyle(t, {
+            var o = ge("mv_title");
+            o && (val(o, i), setStyle(o, {
                 display: "block"
-            }), t.scrollHeight > t.offsetHeight && attr(t, "title", replaceEntities(stripHTML(i))), setStyle(t, {
+            }), o.scrollHeight > o.offsetHeight && attr(o, "title", replaceEntities(stripHTML(i))), setStyle(o, {
                 display: ""
             }))
         },
@@ -1976,22 +1976,22 @@ var Videoview = {
             return mvcur.contSize || (mvcur.contSize = getSize("mv_box")), mvcur.contSize
         },
         getContPlace: function(e, i) {
-            var t = 0,
-                o = Videoview.getContSize(),
+            var o = 0,
+                t = Videoview.getContSize(),
                 a = e.clientX - mvcur.minSize.wrap.l,
                 n = e.clientY - mvcur.minSize.wrap.t;
-            return 6 > n && (t += 1), a > o[0] - 20 && (t += 2), n > o[1] - 10 && (t += 4), 10 > a && (t += 8), 1 == t && a > o[0] - 55 && (t = 0), !t && 25 > n && a < o[0] - 55 && (t += 16), t
+            return 6 > n && (o += 1), a > t[0] - 20 && (o += 2), n > t[1] - 10 && (o += 4), 10 > a && (o += 8), 1 == o && a > t[0] - 55 && (o = 0), !o && 25 > n && a < t[0] - 55 && (o += 16), o
         },
         changeCursor: function(e) {
             if (!Videoview.isFS) {
                 var i = Videoview.getContPlace(e),
-                    t = "default";
+                    o = "default";
                 if (i && mvcur.minimized) {
-                    var o = "";
-                    1 & i && (o += "n"), 4 & i && (o += "s"), 2 & i && (o += "e"), 8 & i && (o += "w"), t = o + "-resize", 16 & i && (t = "move")
+                    var t = "";
+                    1 & i && (t += "n"), 4 & i && (t += "s"), 2 & i && (t += "e"), 8 & i && (t += "w"), o = t + "-resize", 16 & i && (o = "move")
                 }
                 setStyle("mv_box", {
-                    cursor: t
+                    cursor: o
                 })
             }
         },
@@ -2013,41 +2013,41 @@ var Videoview = {
             if (!(Videoview.isFS || e.button && 1 !== e.button)) {
                 var i = Videoview.getContPlace(e, !0);
                 if (i) {
-                    var t = (new Date).getTime();
+                    var o = (new Date).getTime();
                     if (Videoview.getMinSize(), extend(mvcur.minSize, {
                             x: e.clientX,
                             y: e.clientY
-                        }), mvcur.resizeDiff = 0, !i || 16 & i) var o = Videoview.onMinMove;
-                    else var o = Videoview.onMinResize;
+                        }), mvcur.resizeDiff = 0, !i || 16 & i) var t = Videoview.onMinMove;
+                    else var t = Videoview.onMinResize;
                     mvcur.resizeMask = i;
                     var a = function(e) {
-                        removeEvent(document, "mouseup", a), removeEvent(document, "mousemove", o), removeEvent(document, "drag", o);
+                        removeEvent(document, "mouseup", a), removeEvent(document, "mousemove", t), removeEvent(document, "drag", t);
                         var n = (new Date).getTime();
-                        return Videoview.getMinSize(), mvcur.resizeDiff < 8 && 400 > n - t && (16 & i || 1 == i) && Videoview.unminimize(), removeClass(mvLayerWrap, "mv_resizing"), removeClass("mv_player_box", "no_events"), addEvent("mv_box", "mousemove", Videoview.changeCursor), ls.set("mv_minSize", mvcur.minSize), !1
+                        return Videoview.getMinSize(), mvcur.resizeDiff < 8 && 400 > n - o && (16 & i || 1 == i) && Videoview.unminimize(), removeClass(mvLayerWrap, "mv_resizing"), removeClass("mv_player_box", "no_events"), addEvent("mv_box", "mousemove", Videoview.changeCursor), ls.set("mv_minSize", mvcur.minSize), !1
                     };
-                    return addClass(mvLayerWrap, "mv_resizing"), addClass("mv_player_box", "no_events"), addEvent(document, "mouseup", a), addEvent(document, "mousemove", o), addEvent(document, "drag", o), removeEvent("mv_box", "mousemove", Videoview.changeCursor), cancelEvent(e)
+                    return addClass(mvLayerWrap, "mv_resizing"), addClass("mv_player_box", "no_events"), addEvent(document, "mouseup", a), addEvent(document, "mousemove", t), addEvent(document, "drag", t), removeEvent("mv_box", "mousemove", Videoview.changeCursor), cancelEvent(e)
                 }
             }
         },
         onMinMove: function(e) {
             if (e) var i = e.clientY - mvcur.minSize.y,
-                t = e.clientX - mvcur.minSize.x;
+                o = e.clientX - mvcur.minSize.x;
             else var i = 0,
-                t = 0;
-            return mvcur.minSize.wrap.t + i > mvcur.minSize.ch - mvcur.minSize.wrap.h - 15 && (i = mvcur.minSize.ch - mvcur.minSize.wrap.h - mvcur.minSize.wrap.t), mvcur.minSize.wrap.l + t > mvcur.minSize.cw - mvcur.minSize.wrap.w - 15 && (t = mvcur.minSize.cw - mvcur.minSize.wrap.w - mvcur.minSize.wrap.l), mvcur.minSize.wrap.t + i < 15 && (i = -mvcur.minSize.wrap.t), mvcur.minSize.wrap.l + t < 15 && (t = -mvcur.minSize.wrap.l), setStyle(mvLayerWrap, {
+                o = 0;
+            return mvcur.minSize.wrap.t + i > mvcur.minSize.ch - mvcur.minSize.wrap.h - 15 && (i = mvcur.minSize.ch - mvcur.minSize.wrap.h - mvcur.minSize.wrap.t), mvcur.minSize.wrap.l + o > mvcur.minSize.cw - mvcur.minSize.wrap.w - 15 && (o = mvcur.minSize.cw - mvcur.minSize.wrap.w - mvcur.minSize.wrap.l), mvcur.minSize.wrap.t + i < 15 && (i = -mvcur.minSize.wrap.t), mvcur.minSize.wrap.l + o < 15 && (o = -mvcur.minSize.wrap.l), setStyle(mvLayerWrap, {
                 top: mvcur.minSize.wrap.t + i + "px",
-                left: mvcur.minSize.wrap.l + t + "px"
-            }), mvcur.resizeDiff = Math.max(Math.abs(t), Math.max(Math.abs(i), mvcur.resizeDiff)), e ? cancelEvent(e) : !1
+                left: mvcur.minSize.wrap.l + o + "px"
+            }), mvcur.resizeDiff = Math.max(Math.abs(o), Math.max(Math.abs(i), mvcur.resizeDiff)), e ? cancelEvent(e) : !1
         },
         onMinResize: function(e) {
             var i = 0,
-                t = 0,
-                o = mvcur.resizeMask,
-                a = 1 & o || 4 & o ? e.clientY - mvcur.minSize.y : 0,
-                n = 2 & o || 8 & o ? e.clientX - mvcur.minSize.x : 0;
-            4 & o && mvcur.minSize.wrap.t + a > mvcur.minSize.ch - mvcur.minSize.wrap.h && (a = mvcur.minSize.ch - mvcur.minSize.wrap.h - mvcur.minSize.wrap.t), 1 & o && mvcur.minSize.wrap.t + a < 0 && (a = -mvcur.minSize.wrap.t), 2 & o && mvcur.minSize.wrap.l + n > mvcur.minSize.cw - mvcur.minSize.wrap.w - 14 && (n = mvcur.minSize.cw - mvcur.minSize.wrap.w - mvcur.minSize.wrap.l - 14), 8 & o && mvcur.minSize.wrap.l + n < 0 && (n = -mvcur.minSize.wrap.l), 8 & o && (i = n, n = -n), 1 & o && (t = a, a = -a), mvcur.minSize.wrap.w + n < 307 && (n = 307 - mvcur.minSize.wrap.w, 8 & o && (i = -n)), mvcur.minSize.wrap.h + a < 200 && (a = 200 - mvcur.minSize.wrap.h, 1 & o && (t = -a)), setStyle(mvLayerWrap, {
+                o = 0,
+                t = mvcur.resizeMask,
+                a = 1 & t || 4 & t ? e.clientY - mvcur.minSize.y : 0,
+                n = 2 & t || 8 & t ? e.clientX - mvcur.minSize.x : 0;
+            4 & t && mvcur.minSize.wrap.t + a > mvcur.minSize.ch - mvcur.minSize.wrap.h && (a = mvcur.minSize.ch - mvcur.minSize.wrap.h - mvcur.minSize.wrap.t), 1 & t && mvcur.minSize.wrap.t + a < 0 && (a = -mvcur.minSize.wrap.t), 2 & t && mvcur.minSize.wrap.l + n > mvcur.minSize.cw - mvcur.minSize.wrap.w - 14 && (n = mvcur.minSize.cw - mvcur.minSize.wrap.w - mvcur.minSize.wrap.l - 14), 8 & t && mvcur.minSize.wrap.l + n < 0 && (n = -mvcur.minSize.wrap.l), 8 & t && (i = n, n = -n), 1 & t && (o = a, a = -a), mvcur.minSize.wrap.w + n < 307 && (n = 307 - mvcur.minSize.wrap.w, 8 & t && (i = -n)), mvcur.minSize.wrap.h + a < 200 && (a = 200 - mvcur.minSize.wrap.h, 1 & t && (o = -a)), setStyle(mvLayerWrap, {
                 left: positive(mvcur.minSize.wrap.l + i) + "px",
-                top: positive(mvcur.minSize.wrap.t + t) + "px",
+                top: positive(mvcur.minSize.wrap.t + o) + "px",
                 width: mvcur.minSize.wrap.w + n + "px",
                 height: mvcur.minSize.wrap.h + a + "px"
             }), setStyle(mvcur.mvPlayer, {
@@ -2067,10 +2067,10 @@ var Videoview = {
                     h: 200
                 }
             });
-            var t = mvcur.minSize.wrap;
+            var o = mvcur.minSize.wrap;
             mvcur.minSize.player = {
-                w: t.w - 12,
-                h: t.h - 34
+                w: o.w - 12,
+                h: o.h - 34
             }, Videoview.setStyle("mvContainer", "mv_container", {
                 marginTop: 0,
                 marginBottom: 0
@@ -2082,12 +2082,12 @@ var Videoview = {
                 })
             }) : (addEvent(ge("mv_min_title"), "click", Videoview.unminimize), mvcur.minDestroy = function() {
                 removeEvent("mv_min_title", "click", Videoview.unminimize)
-            }), Videoview.setTitle(t.w), Videoview.minResize(), Videoview.setStyle("mvLayerWrap", mvLayerWrap, {
+            }), Videoview.setTitle(o.w), Videoview.minResize(), Videoview.setStyle("mvLayerWrap", mvLayerWrap, {
                 width: mvcur.minSize.wrap.w + "px",
                 height: mvcur.minSize.wrap.h + "px"
             }), mvcur.minimized = !0, layers.wraphide(), setTimeout(Videoview.playerOnResize, 10);
-            var o = layerQueue.count();
-            return mvcur.noLocChange || (Videoview.backLocation(), mvcur.noHistory = 1), layerQueue.skipVideo = !0, o && (debugLog("pop from minimize"), layerQueue.pop()), VideoPlaylist.toggleStateClasses(), VideoChat.toggleStateClasses(), mvcur.preparationBlock && removeClass("mv_box", "_has_preparation"), Videoview.updateExternalVideoFinishBlock(), !1
+            var t = layerQueue.count();
+            return mvcur.noLocChange || (Videoview.backLocation(), mvcur.noHistory = 1), layerQueue.skipVideo = !0, t && (debugLog("pop from minimize"), layerQueue.pop()), VideoPlaylist.toggleStateClasses(), VideoChat.toggleStateClasses(), mvcur.preparationBlock && removeClass("mv_box", "_has_preparation"), Videoview.updateExternalVideoFinishBlock(), !1
         },
         isLayerShown: function(e) {
             return !(!window.mvcur || !mvcur.mvShown || !isUndefined(e) && mvcur.videoRaw != e)
@@ -2116,13 +2116,13 @@ var Videoview = {
                 top: mvcur.minSize.wrap.t + "px"
             }), Videoview.onMinMove(), mvcur.minimized && Videoview.getMinSize()
         },
-        unminimize: function(e, i, t) {
+        unminimize: function(e, i, o) {
             if (mvcur.minimized) {
-                window.wkcur && "story" == wkcur.type && window.Stories && WkView.hide(!1, !0), t || layerQueue.push(), i || (layerQueue.hide(), setTimeout(function() {
+                window.wkcur && "story" == wkcur.type && window.Stories && WkView.hide(!1, !0), o || layerQueue.push(), i || (layerQueue.hide(), setTimeout(function() {
                     mvcur.noHistory = 1, layerQueue.noHistory(), layers.wrapshow(mvLayerWrap, .7), layers.fullhide = Videoview.hide
                 }, 0)), Videoview.hidePlayer(!0), mvcur.controlsVisibility && show("mv_info"), hide("mv_min_header"), show("mv_top_controls"), mvcur.minimized = !1, removeClass(mvLayerWrap, "mv_minimized"), Videoview.restoreStyle("mvLayerWrap", mvLayerWrap);
-                var o = "mv_dark";
-                return addClass(mvLayerWrap, o), addClass(layerBG, o), mvcur.needShowApprove && (mvcur.needShowApprove = !1, show("mv_approve")), Videoview.restoreStyle("mvContainer", "mv_container"), mvcur.mvPlayer && Videoview.restoreStyle("mvPlayer", mvcur.mvPlayer), setStyle("mv_player_box", {
+                var t = "mv_dark";
+                return addClass(mvLayerWrap, t), addClass(layerBG, t), mvcur.needShowApprove && (mvcur.needShowApprove = !1, show("mv_approve")), Videoview.restoreStyle("mvContainer", "mv_container"), mvcur.mvPlayer && Videoview.restoreStyle("mvPlayer", mvcur.mvPlayer), setStyle("mv_player_box", {
                     width: "",
                     height: ""
                 }), mvcur.mvData.is_active_live || Videoview.adaptRecomsHeight(), Videoview.updateSize(), addEvent(window, "resize", Videoview.onResize), addEvent(document, "webkitfullscreenchange mozfullscreenchange fullscreenchange", Videoview.onFullscreenChange), addEvent(document, "keydown", Videoview.onKeyDown), removeEvent(window, "resize", Videoview.minResize), mvcur.minDestroy && mvcur.minDestroy(), mvcur.noLocChange || e === !0 || Videoview.setLocation(), onBodyResize(!0), setStyle(mvLayerWrap, {
@@ -2177,9 +2177,9 @@ var Videoview = {
                 }
             })
         },
-        reportComment: function(e, i, t) {
+        reportComment: function(e, i, o) {
             stManager.add(["privacy.js", "privacy.css"], function() {
-                return Privacy.show(e, i, "report_" + t)
+                return Privacy.show(e, i, "report_" + o)
             })
         },
         descTT: function(e) {
@@ -2192,15 +2192,15 @@ var Videoview = {
         },
         viewScroll: function() {
             var e, i = 6,
-                t = (ge("mv_top_controls"), getXY("mv_main", !0)[1]),
-                o = getSize("mv_player_box")[1];
-            e = t - i, e = 0 > e ? -e : 0, toggleClass("mv_top_controls", "fixed", e > 0), toggleClass("mv_pl_prev", "fixed", e > 0), toggleClass("mv_pl_next", "fixed", e > 0), toggleClass("mv_top_pl_toggle", "hidden", e > o), mvcur.scrolledAway = e > o / 3, Videoview.playerNextTimerUpdate(), Videoview.updateReplyFormPos()
+                o = (ge("mv_top_controls"), getXY("mv_main", !0)[1]),
+                t = getSize("mv_player_box")[1];
+            e = o - i, e = 0 > e ? -e : 0, toggleClass("mv_top_controls", "fixed", e > 0), toggleClass("mv_pl_prev", "fixed", e > 0), toggleClass("mv_pl_next", "fixed", e > 0), toggleClass("mv_top_pl_toggle", "hidden", e > t), mvcur.scrolledAway = e > t / 3, Videoview.playerNextTimerUpdate(), Videoview.updateReplyFormPos()
         },
         updateReplyFormPos: function() {
             var e = ge("mv_reply_form"),
                 i = ge("mv_comments_wrap"),
-                t = getSize(e),
-                o = domPN(e),
+                o = getSize(e),
+                t = domPN(e),
                 a = clientHeight(),
                 n = (mvLayerWrap.scrollTop, getXY(mvLayerWrap)[1]),
                 d = getXY("mv_box")[1] - n,
@@ -2209,13 +2209,13 @@ var Videoview = {
                 v = getSize("mv_box")[1],
                 l = d + v > a && s > 0;
             l ? (addClass(e, "mv_reply_form_fixed"), setStyle(e, {
-                bottom: Math.min(a - r - t[1], 0) + "px"
-            }), setStyle(o, {
-                width: t[0] + "px",
-                height: t[1] + "px"
+                bottom: Math.min(a - r - o[1], 0) + "px"
+            }), setStyle(t, {
+                width: o[0] + "px",
+                height: o[1] + "px"
             })) : (removeClass(e, "mv_reply_form_fixed"), setStyle(e, {
                 bottom: null
-            }), setStyle(o, {
+            }), setStyle(t, {
                 width: null,
                 height: null
             }))
@@ -2223,16 +2223,16 @@ var Videoview = {
         editInline: function(e) {
             if (!(e && "A" == e.target.tagName || !window.mvcur || mvcur.mvEditing) && ge("mv_description")) {
                 var i = mvcur.videoRaw,
-                    t = mvcur.mvShown,
-                    o = mvcur.mvData,
-                    a = !o.desc,
+                    o = mvcur.mvShown,
+                    t = mvcur.mvData,
+                    a = !t.desc,
                     n = function(e) {
-                        if (mvcur.mvShown && mvcur.videoRaw == i && mvcur.mvShown == t && !mvcur.mvEditing) {
+                        if (mvcur.mvShown && mvcur.videoRaw == i && mvcur.mvShown == o && !mvcur.mvEditing) {
                             Videoview.cleanExpandDescrEls(), mvcur.mvEditing = i;
-                            var o = "margin-bottom:" + (browser.chrome || browser.safari ? -4 : 0) + "px",
+                            var t = "margin-bottom:" + (browser.chrome || browser.safari ? -4 : 0) + "px",
                                 a = ce("div", {
                                     id: "mv_edit_text_wrap",
-                                    innerHTML: '<textarea id="mv_edit_text" style="' + o + '" onkeydown="onCtrlEnter(event, Videoview.saveInline)" onkeyup="checkTextLength(mvcur.maxDescriptionLength, this, ge(\'mv_caption_warn\'));" placeholder="' + getLang("video_edit_desc_intro") + '">' + e + '</textarea><div id="mv_caption_warn"></div>'
+                                    innerHTML: '<textarea id="mv_edit_text" style="' + t + '" onkeydown="onCtrlEnter(event, Videoview.saveInline)" onkeyup="checkTextLength(mvcur.maxDescriptionLength, this, ge(\'mv_caption_warn\'));" placeholder="' + getLang("video_edit_desc_intro") + '">' + e + '</textarea><div id="mv_caption_warn"></div>'
                                 });
                             ge("mv_description").appendChild(a);
                             var n = ge("mv_edit_text");
@@ -2248,8 +2248,8 @@ var Videoview = {
                     };
                 a ? n("") : ajax.post("al_video.php", {
                     act: "edit_desc",
-                    oid: o.oid,
-                    vid: o.vid
+                    oid: t.oid,
+                    vid: t.vid
                 }, {
                     onDone: n,
                     progress: "mv_inline_edit_pr"
@@ -2264,21 +2264,21 @@ var Videoview = {
                 removeEvent("mv_edit_text", "blur");
                 var e = mvcur.mvEditing,
                     i = mvcur.mvShown,
-                    t = mvcur.mvData;
+                    o = mvcur.mvData;
                 ajax.post("al_video.php", {
                     act: "save_desc",
-                    oid: t.oid,
-                    vid: t.vid,
-                    hash: t.editHash,
+                    oid: o.oid,
+                    vid: o.vid,
+                    hash: o.editHash,
                     desc: val("mv_edit_text")
                 }, {
-                    onDone: function(o) {
-                        t.desc = o;
+                    onDone: function(t) {
+                        o.desc = t;
                         var a = mvcur.mvShown && e == mvcur.videoRaw && i == mvcur.mvShown;
                         if (a) {
                             mvcur.mvEditing = !1;
                             var n = ge("mv_descr_field");
-                            val(n, o || '<span class="mv_desc_edit">' + getLang("video_edit_desc") + "</span>"), n.onmouseover = o ? Videoview.descTT.pbind(n) : function() {}, show(n), re("mv_edit_text_wrap")
+                            val(n, t || '<span class="mv_desc_edit">' + getLang("video_edit_desc") + "</span>"), n.onmouseover = t ? Videoview.descTT.pbind(n) : function() {}, show(n), re("mv_edit_text_wrap")
                         }
                     },
                     progress: "mv_inline_edit_pr"
@@ -2288,8 +2288,8 @@ var Videoview = {
         onExternalVideoEnded: function(e) {
             e = e || domPN(ge("video_player"));
             var i = getSize(e),
-                t = (Videoview.getNextVideosData() || [])[0],
-                o = !!window.CanvasRenderingContext2D,
+                o = (Videoview.getNextVideosData() || [])[0],
+                t = !!window.CanvasRenderingContext2D,
                 a = Videoview.getMvData();
             if (e && a && !ge("mv_external_finish")) {
                 var n = a.liked,
@@ -2298,7 +2298,7 @@ var Videoview = {
                     s = a.subscribed;
                 Videoview.logViewedPercentage();
                 var v = "";
-                if (t && i[0] >= 400 && i[1] >= 300) v = '<div id="mv_finish_next" class="mv_finish_next" onclick="Videoview.onExternalVideoNext(true)">  <div class="mv_finish_next_caption">' + getLang("video_player_next_title") + '</div>  <div class="mv_finish_next_thumb" style="background-image: url(' + t.thumb + ')"></div>  <div class="mv_finish_next_timer">    <canvas class="mv_finish_next_timer_canvas" width="100" height="100"></canvas>    <div class="mv_finish_next_timer_play mv_finish_icon"></div>  </div>  <div class="mv_finish_next_info">    <div class="mv_finish_next_title">' + t.title + '</div>    <div class="mv_finish_next_views">' + t.views + '</div>  </div>  <div class="mv_finish_next_cancel mv_finish_icon" onclick="Videoview.onExternalVideoNextCancel(event)"></div></div>    ';
+                if (o && i[0] >= 400 && i[1] >= 300) v = '<div id="mv_finish_next" class="mv_finish_next" onclick="Videoview.onExternalVideoNext(true)">  <div class="mv_finish_next_caption">' + getLang("video_player_next_title") + '</div>  <div class="mv_finish_next_thumb" style="background-image: url(' + o.thumb + ')"></div>  <div class="mv_finish_next_timer">    <canvas class="mv_finish_next_timer_canvas" width="100" height="100"></canvas>    <div class="mv_finish_next_timer_play mv_finish_icon"></div>  </div>  <div class="mv_finish_next_info">    <div class="mv_finish_next_title">' + o.title + '</div>    <div class="mv_finish_next_views">' + o.views + '</div>  </div>  <div class="mv_finish_next_cancel mv_finish_icon" onclick="Videoview.onExternalVideoNextCancel(event)"></div></div>    ';
                 else if (!ge("video_yt")) return;
                 var l = Videoview.getSuggestionsData(),
                     c = "onSuggestionClick";
@@ -2315,7 +2315,7 @@ var Videoview = {
                 }
                 var p = window.mvcur && mvcur.minimized,
                     h = se('<div class="mv_external_finish" id="mv_external_finish" onclick="Videoview.onExternalVideoBgClick(this, event)">  <div class="mv_finish_header">    <div id="mv_finish_subscribe" class="fl_r mv_finish_subscribe ' + (s ? "mv_finish_subscribed" : "") + '">      <button id="mv_finish_subscribe_btn" class="mv_finish_subscribe_btn fl_l" onclick="Videoview.onExternalVideoSubscribe()">' + (s ? getLang("video_view_subscribed_msg") : getLang("video_view_subscribe_to_author")) + '</button>      <a href="' + a.authorHref + '" target="_blank" class="fl_r"><img class="mv_finish_author_img" src="' + a.authorPhoto + '"></a>    </div>    <div id="mv_finish_title" class="mv_finish_title" style="' + (p ? "display:none" : "") + '">' + a.title + '</div>  </div>  <div id="mv_finish_actions" class="mv_finish_actions ' + (u ? "mv_finish_actions_extended" : "") + " " + (r ? "" : "mv_finish_actions_cant_add") + " " + (_ ? "mv_finish_actions_no_content" : "") + '">    <div class="mv_finish_like ' + (n ? "selected" : "") + '" onclick="Videoview.onExternalVideoLike()">      <div class="mv_finish_like_icon mv_finish_icon"></div>      <div class="mv_finish_liked_icon mv_finish_icon"></div>      <div class="mv_finish_like_text">' + getLang("video_i_like") + '</div>    </div>    <div class="mv_finish_share" onclick="Videoview.onExternalVideoShare()">      <div class="mv_finish_share_icon mv_finish_icon"></div>      <div class="mv_finish_share_text">' + getLang("video_share_with_friends") + '</div>    </div>    <div class="mv_finish_add ' + (d ? "selected" : "") + '" onclick="Videoview.onExternalVideoAdd()">      <div class="mv_finish_add_icon mv_finish_icon"></div>      <div class="mv_finish_added_icon mv_finish_icon"></div>    </div>  </div>  ' + v + "  " + m + "</div>  ");
-                a.canSubscribe || re(geByClass1("mv_finish_subscribe", h)), (a.noControls || a.nolikes) && re(geByClass1("mv_finish_actions", h)), e.appendChild(h), o && t && v && (window.focus(), mvcur.nextTimer = {
+                a.canSubscribe || re(geByClass1("mv_finish_subscribe", h)), (a.noControls || a.nolikes) && re(geByClass1("mv_finish_actions", h)), e.appendChild(h), t && o && v && (window.focus(), mvcur.nextTimer = {
                     ctx: geByClass1("mv_finish_next_timer_canvas", h).getContext("2d"),
                     nextTimerReset: function() {
                         clearTimeout(mvcur.nextTimer.timeout), mvcur.nextTimer.ctx.clearRect(0, 0, 100, 100), mvcur.nextTimer.started = null
@@ -2381,10 +2381,10 @@ var Videoview = {
             if (mvcur && mvcur.mvData && mvcur.mvData.videoRaw && mvcur.mvData.duration) {
                 var e = mvcur.mvData.videoRaw,
                     i = mvcur.mvData.duration,
-                    t = (new Date).getTime(),
-                    o = mvcur.viewStartedTimestamp;
-                if (!o) return !1;
-                var a = Math.min(Math.round((t - o) / 1e3), i);
+                    o = (new Date).getTime(),
+                    t = mvcur.viewStartedTimestamp;
+                if (!t) return !1;
+                var a = Math.min(Math.round((o - t) / 1e3), i);
                 delete mvcur.viewStartedTimestamp, ajax.post("al_video.php", {
                     act: "a_viewed_percentage",
                     video_raw: e,
@@ -2413,10 +2413,10 @@ var Videoview = {
         },
         showAutoplayTooltip: function(e) {
             var i = VideoPlaylist.isAutoplayEnabled(),
-                t = "video_playlist_autoplay_" + (i ? "disable" : "enable") + "_tt",
-                o = getLang(t);
+                o = "video_playlist_autoplay_" + (i ? "disable" : "enable") + "_tt",
+                t = getLang(o);
             showTooltip(e, {
-                text: o,
+                text: t,
                 shift: [7, 7, 0],
                 showdt: 0,
                 black: 1
@@ -2433,10 +2433,10 @@ var Videoview = {
             var i = VideoPlaylist.getCurList();
             i && (i.reversed = !i.reversed, toggleClass(e, "_active", i.reversed), VideoPlaylist.updateBlockList(i.id))
         },
-        buildBlock: function(e, i, t) {
-            var o = VideoPlaylist.getBlock(),
-                a = o ? data(o, "playlist") : !1;
-            if (a && a.id == e && !t) return o;
+        buildBlock: function(e, i, o) {
+            var t = VideoPlaylist.getBlock(),
+                a = t ? data(t, "playlist") : !1;
+            if (a && a.id == e && !o) return t;
             VideoPlaylist.removeBlock();
             var a = VideoPlaylist.getList(e, i);
             if (!a || a.list.length <= 1) return !1;
@@ -2450,13 +2450,13 @@ var Videoview = {
             return data(r, "playlist", a), this._block = r, r
         },
         buildBlockList: function(e) {
-            for (var i = trim(VideoPlaylist.blockItemTpl), t = "", o = function() {
+            for (var i = trim(VideoPlaylist.blockItemTpl), o = "", t = function() {
                     return e.reversed ? e.list.length - 1 : 0
                 }, a = function(i) {
                     return e.reversed ? i >= 0 : i < e.list.length
                 }, n = function(i) {
                     return e.reversed ? --i : ++i
-                }, d = o(); a(d); d = n(d)) {
+                }, d = t(); a(d); d = n(d)) {
                 var r, s = e.list[d];
                 if (isArray(s)) {
                     var v = s[VideoConstants.VIDEO_ITEM_INDEX_OWNER_ID] + "_" + s[VideoConstants.VIDEO_ITEM_INDEX_ID];
@@ -2471,18 +2471,18 @@ var Videoview = {
                 } else r = extend({}, s, {
                     itemClass: s.vid == e.current ? "mv_playlist_item_active" : ""
                 });
-                t += rs(i, r)
+                o += rs(i, r)
             }
-            return t
+            return o
         },
         updateBlockList: function(e) {
             var i = VideoPlaylist.getCurList();
             if (i && i.id == e) {
-                var t = VideoPlaylist.getBlock(),
-                    o = geByClass1("mv_playlist_list_cont", t),
+                var o = VideoPlaylist.getBlock(),
+                    t = geByClass1("mv_playlist_list_cont", o),
                     a = VideoPlaylist.buildBlockList(i);
-                val(o, a);
-                var n = data(t, "sb");
+                val(t, a);
+                var n = data(o, "sb");
                 n && n.update(), VideoPlaylist.setCurVideo(i.current), VideoPlaylist.updateControls()
             }
         },
@@ -2494,21 +2494,21 @@ var Videoview = {
             e && e.destroy(), re(this._block), removeData(this._block), this._block = null, VideoPlaylist.toggleStateClasses(), VideoPlaylist.updateControls()
         },
         setCurVideo: function(e, i) {
-            function t() {
+            function o() {
                 var e = VideoPlaylist.getBlock();
                 if (e) {
                     var i = data(e, "sb");
                     i && i.update()
                 }
             }
-            var o = VideoPlaylist.getBlock();
-            if (o) {
-                var a = data(o, "playlist");
+            var t = VideoPlaylist.getBlock();
+            if (t) {
+                var a = data(t, "playlist");
                 if (a) {
                     e && (a.current = e);
-                    var n = domByClass(o, "mv_playlist_item_active");
+                    var n = domByClass(t, "mv_playlist_item_active");
                     if (e && (removeClass(n, "mv_playlist_item_active"), n = ge("mv_playlist_video" + e), addClass(n, "mv_playlist_item_active")), n) {
-                        var d = geByClass1("mv_playlist_list", o),
+                        var d = geByClass1("mv_playlist_list", t),
                             r = getXY(n)[1],
                             s = getSize(n)[1],
                             v = getXY(d)[1],
@@ -2519,7 +2519,7 @@ var Videoview = {
                             d.scrollTop != m && (i ? animate(d, {
                                 scrollTop: m,
                                 transition: Fx.Transitions.easeOutCubic
-                            }, 450, t) : (d.scrollTop = m, t()))
+                            }, 450, o) : (d.scrollTop = m, o()))
                         }
                         VideoPlaylist._queueNextVideo(e)
                     }
@@ -2528,16 +2528,16 @@ var Videoview = {
         },
         getList: function(e, i) {
             if (this.lists[e]) return this.lists[e];
-            var t = /^wall_-?\d+$/;
-            if (postPlaylistRE = /^post_-?\d+_\d+$/, catPlaylistRE = /^cat_(\d|[\w_])+$/, ownerPlaylistRE = /^-?\d+_-?\d+$/, t.test(e)) return cur.wallVideos && cur.wallVideos[e] && this.uniqList(cur.wallVideos[e]);
+            var o = /^wall_-?\d+$/;
+            if (postPlaylistRE = /^post_-?\d+_\d+$/, catPlaylistRE = /^cat_(\d|[\w_])+$/, ownerPlaylistRE = /^-?\d+_-?\d+$/, o.test(e)) return cur.wallVideos && cur.wallVideos[e] && this.uniqList(cur.wallVideos[e]);
             if (postPlaylistRE.test(e)) return cur.pageVideosList && cur.pageVideosList[e];
             if (catPlaylistRE.test(e)) return cur.catVideosList && cur.catVideosList[e];
             if (ownerPlaylistRE.test(e)) {
-                var o, a, n, d = e.split("_"),
+                var t, a, n, d = e.split("_"),
                     r = d[0],
                     s = d[1];
-                if (-2 == s ? (o = "all", a = cur.playlistAddedTitle) : -1 == s ? (o = "uploaded", a = cur.playlistUploadedTitle) : (o = "album_" + s, a = cur.playlistTitle), each([cur.silentLoaded, cur.pageVideosList], function(e, i) {
-                        return i && i[r] && i[r][o] ? (n = i[r][o], !1) : void 0
+                if (-2 == s ? (t = "all", a = cur.playlistAddedTitle) : -1 == s ? (t = "uploaded", a = cur.playlistUploadedTitle) : (t = "album_" + s, a = cur.playlistTitle), each([cur.silentLoaded, cur.pageVideosList], function(e, i) {
+                        return i && i[r] && i[r][t] ? (n = i[r][t], !1) : void 0
                     }), n && n.length) {
                     var v;
                     if (i)
@@ -2571,17 +2571,17 @@ var Videoview = {
         },
         extendList: function(e, i) {
             if (!this.lists[e]) return !1;
-            for (var t = this.lists[e].list, o = [], a = {}, n = 0, d = 0;;)
-                if (t[n] && i[d] && t[n].vid == i[d].vid) a[t[n].vid] || (o.push(t[n]), a[t[n].vid] = 1), ++n, ++d;
-                else if (t[n]) a[t[n].vid] || (o.push(t[n]), a[t[n].vid] = 1), ++n;
+            for (var o = this.lists[e].list, t = [], a = {}, n = 0, d = 0;;)
+                if (o[n] && i[d] && o[n].vid == i[d].vid) a[o[n].vid] || (t.push(o[n]), a[o[n].vid] = 1), ++n, ++d;
+                else if (o[n]) a[o[n].vid] || (t.push(o[n]), a[o[n].vid] = 1), ++n;
             else {
                 if (!i[d]) break;
-                a[i[d].vid] || (o.push(i[d]), a[i[d].vid] = 1), ++d
+                a[i[d].vid] || (t.push(i[d]), a[i[d].vid] = 1), ++d
             }
-            return this.lists[e].list = o, this.lists[e]
+            return this.lists[e].list = t, this.lists[e]
         },
         uniqList: function(e) {
-            for (var i, t = {}, o = 0; i = e.list[o]; ++o) t[i.vid] ? e.list.splice(o, 1) : t[i.vid] = !0;
+            for (var i, o = {}, t = 0; i = e.list[t]; ++t) o[i.vid] ? e.list.splice(t, 1) : o[i.vid] = !0;
             return e
         },
         isCollapsed: function() {
@@ -2590,17 +2590,17 @@ var Videoview = {
         },
         toggle: function(e, i) {
             if (isUndefined(e) && (e = VideoPlaylist.isCollapsed()), !mvcur.minimized || !e) {
-                var t = VideoPlaylist.getBlock();
-                if (t && VideoPlaylist.isCollapsed() != !e) return data(t, "collapsed", !e), VideoPlaylist.toggleStateClasses(), Videoview.playerOnResize(), Videoview.updateReplyFormPos(), e && (VideoPlaylist.updateScrollbar(), VideoPlaylist.setCurVideo()), !1
+                var o = VideoPlaylist.getBlock();
+                if (o && VideoPlaylist.isCollapsed() != !e) return data(o, "collapsed", !e), VideoPlaylist.toggleStateClasses(), Videoview.playerOnResize(), Videoview.updateReplyFormPos(), e && (VideoPlaylist.updateScrollbar(), VideoPlaylist.setCurVideo()), !1
             }
         },
         toggleStateClasses: function() {
             var e = !!VideoPlaylist.getBlock(),
                 i = Videoview.isMinimized(),
-                t = VideoPlaylist.isCollapsed();
-            toggleClass("mv_box", "_has_playlist", e && !i), toggleClass("mv_box", "_hide_playlist", e && !i && t);
-            var o = "";
-            e && (o = getLang(t ? "video_aria_expand_playlist" : "video_aria_minimize_playlist")), attr("mv_top_pl_toggle", "aria-label", o)
+                o = VideoPlaylist.isCollapsed();
+            toggleClass("mv_box", "_has_playlist", e && !i), toggleClass("mv_box", "_hide_playlist", e && !i && o);
+            var t = "";
+            e && (t = getLang(o ? "video_aria_expand_playlist" : "video_aria_minimize_playlist")), attr("mv_top_pl_toggle", "aria-label", t)
         },
         updateScrollbar: function() {
             var e = VideoPlaylist.getBlock();
@@ -2608,8 +2608,8 @@ var Videoview = {
                 var i = data(e, "sb");
                 if (i) i.update(!0, !0);
                 else {
-                    var t = geByClass1("mv_playlist_list", e),
-                        i = new Scrollbar(t, {
+                    var o = geByClass1("mv_playlist_list", e),
+                        i = new Scrollbar(o, {
                             prefix: "mv_pl_",
                             nokeys: !0,
                             padding: 0
@@ -2625,24 +2625,24 @@ var Videoview = {
         },
         showVideo: function(e, i) {
             if (i && checkEvent(i)) return !0;
-            var t = VideoPlaylist.getCurList();
-            if (t) {
-                if (VideoPlaylist.saveScrollPos(), mvcur.options.params && "direct" == mvcur.options.params.module && mvcur.mvPrevLoc && Videoview.backLocation(), t.loaded && t.loaded.vid == e) {
-                    var o = t.loaded;
-                    Videoview.show(null, e, o.listId, extend(o.options, {
-                        playlistId: t.id
-                    })), Videoview.showVideo.apply(Videoview, o.hubData);
+            var o = VideoPlaylist.getCurList();
+            if (o) {
+                if (VideoPlaylist.saveScrollPos(), mvcur.options.params && "direct" == mvcur.options.params.module && mvcur.mvPrevLoc && Videoview.backLocation(), o.loaded && o.loaded.vid == e) {
+                    var t = o.loaded;
+                    Videoview.show(null, e, t.listId, extend(t.options, {
+                        playlistId: o.id
+                    })), Videoview.showVideo.apply(Videoview, t.hubData);
                     var a = mvcur.preloadStatsHashes ? mvcur.preloadStatsHashes[e] : "";
                     a && ajax.post("al_video.php?act=a_inc_preload_stats", {
                         stat_preload_hash: a
-                    }), t.loaded = !1
+                    }), o.loaded = !1
                 } else {
                     var n = VideoPlaylist.getVideoIndex(e),
-                        d = t.reversed ? t.list.length - 1 - n : n,
-                        r = d < t.list.length - 1 ? 1 : 0;
+                        d = o.reversed ? o.list.length - 1 - n : n,
+                        r = d < o.list.length - 1 ? 1 : 0;
                     showVideo(e, "", {
                         autoplay: 1,
-                        playlistId: t.id,
+                        playlistId: o.id,
                         addParams: {
                             force_no_repeat: 1,
                             show_next: r
@@ -2661,28 +2661,28 @@ var Videoview = {
         restoreScrollPos: function() {
             var e = VideoPlaylist.getBlock(),
                 i = domByClass(e, "mv_playlist_list"),
-                t = data(e, "savedScrollTop");
-            t && (i.scrollTop = t)
+                o = data(e, "savedScrollTop");
+            o && (i.scrollTop = o)
         },
         _queueNextVideo: function(e) {
             var i = VideoPlaylist.getCurList();
             if (i) {
                 e = e || i.current;
-                var t = VideoPlaylist._getNextVideoIndex(e);
-                if (-1 != t) {
-                    var o = i.list[t],
-                        a = isArray(o) ? o[VideoConstants.VIDEO_ITEM_INDEX_OWNER_ID] + "_" + o[VideoConstants.VIDEO_ITEM_INDEX_ID] : o.vid,
-                        n = isArray(o) ? "" : o.hash;
+                var o = VideoPlaylist._getNextVideoIndex(e);
+                if (-1 != o) {
+                    var t = i.list[o],
+                        a = isArray(t) ? t[VideoConstants.VIDEO_ITEM_INDEX_OWNER_ID] + "_" + t[VideoConstants.VIDEO_ITEM_INDEX_ID] : t.vid,
+                        n = isArray(t) ? "" : t.hash;
                     if (i.queued != a && (!i.loaded || i.loaded.vid != a)) {
                         i.loaded = !1, i.queued = a;
-                        var d = (i.reversed ? i.list.length - t : t) < i.list.length - 1 ? 1 : 0;
+                        var d = (i.reversed ? i.list.length - o : o) < i.list.length - 1 ? 1 : 0;
                         showVideo(a, n, {
-                            hidden: function(e, t, o, a) {
+                            hidden: function(e, o, t, a) {
                                 i.queued == a && (i.loaded = {
                                     vid: a,
                                     hubData: e,
-                                    options: t,
-                                    listId: o
+                                    options: o,
+                                    listId: t
                                 }), i.queued = !1
                             },
                             module: Videoview.getVideoModule(a),
@@ -2702,17 +2702,17 @@ var Videoview = {
             var e = [];
             if (!(VideoPlaylist.isAutoplayEnabled() || window.mvcur && mvcur.player)) return e;
             var i = VideoPlaylist.getCurList(),
-                t = VideoPlaylist._getNextVideoIndex();
-            if (!i || 0 > t) return e;
-            for (; e.length < 3 && t >= 0 && t < i.list.length;) {
-                var o, a = i.list[t];
-                o = isArray(a) ? {
+                o = VideoPlaylist._getNextVideoIndex();
+            if (!i || 0 > o) return e;
+            for (; e.length < 3 && o >= 0 && o < i.list.length;) {
+                var t, a = i.list[o];
+                t = isArray(a) ? {
                     vid: a[VideoConstants.VIDEO_ITEM_INDEX_OWNER_ID] + "_" + a[VideoConstants.VIDEO_ITEM_INDEX_ID],
                     thumb: a[VideoConstants.VIDEO_ITEM_INDEX_THUMB],
                     views: getLang("video_N_views_list", a[VideoConstants.VIDEO_ITEM_INDEX_VIEWS], !0),
                     title: a[VideoConstants.VIDEO_ITEM_INDEX_TITLE],
                     duration: a[VideoConstants.VIDEO_ITEM_INDEX_DURATION]
-                } : a, e.push(o), t += i.reversed ? -1 : 1
+                } : a, e.push(t), o += i.reversed ? -1 : 1
             }
             return e
         },
@@ -2721,9 +2721,9 @@ var Videoview = {
             if (e) {
                 var i = VideoPlaylist.getVideoIndex() + (e.reversed ? 1 : -1);
                 if (!(0 > i)) {
-                    var t = e.list[i],
-                        o = isArray(t) ? t[0] + "_" + t[1] : t.vid;
-                    VideoPlaylist.showVideo(o)
+                    var o = e.list[i],
+                        t = isArray(o) ? o[0] + "_" + o[1] : o.vid;
+                    VideoPlaylist.showVideo(t)
                 }
             }
         },
@@ -2732,9 +2732,9 @@ var Videoview = {
             if (e) {
                 var i = VideoPlaylist._getNextVideoIndex();
                 if (!(0 > i)) {
-                    var t = e.list[i],
-                        o = isArray(t) ? t[0] + "_" + t[1] : t.vid;
-                    VideoPlaylist.showVideo(o)
+                    var o = e.list[i],
+                        t = isArray(o) ? o[0] + "_" + o[1] : o.vid;
+                    VideoPlaylist.showVideo(t)
                 }
             }
         },
@@ -2742,19 +2742,19 @@ var Videoview = {
             var i = VideoPlaylist.getCurList();
             if (!i) return -1;
             if (e || (e = i.current), !e) return -1;
-            var t = -1;
-            return each(i.list, function(i, o) {
-                var a = isArray(o) ? o[0] + "_" + o[1] : o.vid;
-                return a == e ? (t = i, !1) : void 0
-            }), t
+            var o = -1;
+            return each(i.list, function(i, t) {
+                var a = isArray(t) ? t[0] + "_" + t[1] : t.vid;
+                return a == e ? (o = i, !1) : void 0
+            }), o
         },
         _getNextVideoIndex: function(e) {
             var i = VideoPlaylist.getCurList();
             if (!i) return -1;
-            var t = VideoPlaylist.getVideoIndex(e);
-            if (0 > t) return 0;
-            var o = t + (i.reversed ? -1 : 1);
-            return o >= 0 && o < i.list.length ? o : -1
+            var o = VideoPlaylist.getVideoIndex(e);
+            if (0 > o) return 0;
+            var t = o + (i.reversed ? -1 : 1);
+            return t >= 0 && t < i.list.length ? t : -1
         }
     };
 window.VideoChat = {
@@ -2799,19 +2799,19 @@ window.VideoChat = {
             i = e.offsetHeight;
         if (e.lastHeight !== i) {
             e.lastHeight = i;
-            var t = !VideoChat.scroll.data.scrollBottom;
+            var o = !VideoChat.scroll.data.scrollBottom;
             setStyle(VideoChat.messagesWrap, {
                 bottom: i + "px"
-            }), t && VideoChat.scroll.scrollBottom()
+            }), o && VideoChat.scroll.scrollBottom()
         }
     },
     checkTextLen: function() {
         var e = VideoChat.replyInput,
             i = trim(Emoji.editableVal(e));
         if (e.lastLen !== i.length) {
-            var t = e.lastLen = i.length,
-                o = mvcur.maxChatReplyLength;
-            t > o ? showTooltip(e, {
+            var o = e.lastLen = i.length,
+                t = mvcur.maxChatReplyLength;
+            o > t ? showTooltip(e, {
                 text: getLang("video_live_chat_msg_too_long"),
                 black: 1
             }) : window.tooltips && tooltips.destroy(e)
@@ -2822,55 +2822,55 @@ window.VideoChat = {
             shift: [-20, 7, 7]
         })
     },
-    stickerClick: function(e, i, t) {
+    stickerClick: function(e, i, o) {
         return stManager.add(["emoji.js", "notifier.css"], function() {
-            Emoji.clickSticker(e, i, t)
+            Emoji.clickSticker(e, i, o)
         }), !1
     },
     onScrollUpdate: function(e) {
         e.data.scrollBottom < VideoChat.SCROLL_EDGE_BELOW_THRESHOLD && VideoChat.toggleScrollBottomBtn(!1)
     },
-    receiveMessage: function(e, i, t, o, a, n, d, r, s) {
-        if (intval(s)) VideoChat.appendSticker(s, t);
+    receiveMessage: function(e, i, o, t, a, n, d, r, s) {
+        if (intval(s)) VideoChat.appendSticker(s, o);
         else {
             var v = "";
-            (mvcur.adminLevel > 0 || e == vk.id || t == vk.id) && (v += getTemplate("video_chat_message_action_del", {
+            (mvcur.adminLevel > 0 || e == vk.id || o == vk.id) && (v += getTemplate("video_chat_message_action_del", {
                 video_owner_id: e,
                 msg_id: i
             }));
             var l = psr(getTemplate("video_chat_message", {
                 author_href: n,
                 author_photo: psr(a),
-                author_name: o,
+                author_name: t,
                 message: r,
                 video_owner_id: e,
                 msg_id: i,
                 actions: v,
-                classes: t == e ? "mv_chat_admin_message" : ""
+                classes: o == e ? "mv_chat_admin_message" : ""
             }));
             VideoChat.appendMessage(l, i)
         }
     },
     receiveDelete: function(e, i) {
-        var t, o = "#mv_chat_msg" + mvcur.mvData.oid + "_" + i;
-        return (t = VideoChat._messagesBatch && VideoChat._messagesBatch.querySelector(o)) ? void re(t) : (t = VideoChat.messagesWrap.querySelector(o), void(t && !hasClass(t, "_deleting") && VideoChat.scroll.updateAbove(function() {
-            re(t)
+        var o, t = "#mv_chat_msg" + mvcur.mvData.oid + "_" + i;
+        return (o = VideoChat._messagesBatch && VideoChat._messagesBatch.querySelector(t)) ? void re(o) : (o = VideoChat.messagesWrap.querySelector(t), void(o && !hasClass(o, "_deleting") && VideoChat.scroll.updateAbove(function() {
+            re(o)
         })))
     },
     checkStickerFlood: function(e, i) {
-        var t = mvcur.queueBatchId;
-        VideoChat._stickersLimits && VideoChat._stickersLimits.batch == t || (VideoChat._stickersLimits = {
-            batch: t,
+        var o = mvcur.queueBatchId;
+        VideoChat._stickersLimits && VideoChat._stickersLimits.batch == o || (VideoChat._stickersLimits = {
+            batch: o,
             like: 0,
             sticker: 0
         }, VideoChat._stickersDelay = 0);
-        var o = "like" == e ? "like" : "sticker",
-            a = "like" == o ? VideoChat.MAX_LIKES_PER_BATCH : VideoChat.MAX_STICKERS_PER_BATCH;
-        return ++VideoChat._stickersLimits[o] > a && i != vk.id ? !1 : !0
+        var t = "like" == e ? "like" : "sticker",
+            a = "like" == t ? VideoChat.MAX_LIKES_PER_BATCH : VideoChat.MAX_STICKERS_PER_BATCH;
+        return ++VideoChat._stickersLimits[t] > a && i != vk.id ? !1 : !0
     },
     appendSticker: function(e, i) {
-        function t(e) {
-            for (var i = "", t = "", o = 0, a = 0, n = 0, d = intval((VideoChat.getHeight() - 80) / 6), r = 0; 100 >= r; r += 20) r > 0 && (o += irand(-4, 4), a -= d, n += irand(-4, 4), d = intval(.9 * d)), t = "transform: translate(" + o + "px, " + a + "px) rotate(" + n + "deg) " + (r ? "" : "scale(0.7)") + ";", t += "opacity:" + (0 == r || 100 == r ? 0 : 1) + ";", i += r + "% {" + t + "}";
+        function o(e) {
+            for (var i = "", o = "", t = 0, a = 0, n = 0, d = intval((VideoChat.getHeight() - 80) / 6), r = 0; 100 >= r; r += 20) r > 0 && (t += irand(-4, 4), a -= d, n += irand(-4, 4), d = intval(.9 * d)), o = "transform: translate(" + t + "px, " + a + "px) rotate(" + n + "deg) " + (r ? "" : "scale(0.7)") + ";", o += "opacity:" + (0 == r || 100 == r ? 0 : 1) + ";", i += r + "% {" + o + "}";
             var s = "mv_chat_sticker_animation_" + Date.now() + "_" + irand(0, 1e9);
             i = "@keyframes " + s + " {" + i + "}", e.appendChild(ce("style", {
                 innerHTML: i
@@ -2882,10 +2882,10 @@ window.VideoChat = {
             })
         }
 
-        function o(e) {
+        function t(e) {
             var i = e.currentTarget || e,
-                t = VideoChat._stickersBatch || (VideoChat._stickersBatch = document.createDocumentFragment());
-            t.appendChild(i), VideoChat._appendStickerTimeout || (VideoChat._appendStickerTimeout = setTimeout(function() {
+                o = VideoChat._stickersBatch || (VideoChat._stickersBatch = document.createDocumentFragment());
+            o.appendChild(i), VideoChat._appendStickerTimeout || (VideoChat._appendStickerTimeout = setTimeout(function() {
                 VideoChat.appendStickersBatch(), VideoChat._appendStickerTimeout = null
             }, 0))
         }
@@ -2899,13 +2899,13 @@ window.VideoChat = {
                 var n = ce("div", {
                     className: "mv_chat_like"
                 });
-                t(n), addEvent(n, "animationend", a), o(n)
+                o(n), addEvent(n, "animationend", a), t(n)
             } else {
                 var n = ce("img", {
                     className: "mv_chat_sticker",
                     src: "/images/stickers/" + e + "/" + (isRetina() ? 128 : 64) + "b.png"
                 });
-                t(n), addEvent(n, "error animationend", a), addEvent(n, "load", o)
+                o(n), addEvent(n, "error animationend", a), addEvent(n, "load", t)
             }
     },
     appendStickersBatch: function() {
@@ -2917,11 +2917,11 @@ window.VideoChat = {
             for (var e; e = domFC(VideoChat.stickersWrap);) removeEvent(e), re(e)
     },
     appendMessage: function(e, i) {
-        var t = VideoChat._messagesBatch || (VideoChat._messagesBatch = document.createDocumentFragment()),
-            o = "#mv_chat_msg" + mvcur.mvData.oid + "_" + i;
-        if (!VideoChat.messagesWrap.querySelector(o) && !t.querySelector(o)) {
-            t.appendChild(se(e));
-            for (var a = t.childNodes; t.childNodes.length > VideoChat.MAX_COMMENTS_NUM;) re(a[0]);
+        var o = VideoChat._messagesBatch || (VideoChat._messagesBatch = document.createDocumentFragment()),
+            t = "#mv_chat_msg" + mvcur.mvData.oid + "_" + i;
+        if (!VideoChat.messagesWrap.querySelector(t) && !o.querySelector(t)) {
+            o.appendChild(se(e));
+            for (var a = o.childNodes; o.childNodes.length > VideoChat.MAX_COMMENTS_NUM;) re(a[0]);
             VideoChat.isHidden() || VideoChat._appendMessageTimeout || (VideoChat._appendMessageTimeout = setTimeout(function() {
                 VideoChat.appendMessagesBatch(), VideoChat._appendMessageTimeout = null
             }, 0))
@@ -2934,11 +2934,11 @@ window.VideoChat = {
             each(i, function(e, i) {
                 attr(i, "src") || attr(i, "src", domData(i, "src"))
             }), VideoChat.firstMsgIntro && (re(VideoChat.firstMsgIntro), VideoChat.firstMsgIntro = null);
-            var t = VideoChat.scroll.content;
+            var o = VideoChat.scroll.content;
             VideoChat.scroll.updateBelow(function() {
-                t.appendChild(e)
+                o.appendChild(e)
             }), VideoChat.scroll.updateAbove(function() {
-                for (var e = t.childNodes; e.length > VideoChat.MAX_COMMENTS_NUM;) re(e[0])
+                for (var e = o.childNodes; e.length > VideoChat.MAX_COMMENTS_NUM;) re(e[0])
             }), !VideoChat.isHidden() && VideoChat.scroll.data.scrollBottom > 100 && VideoChat.toggleScrollBottomBtn(!0)
         }
     },
@@ -2963,11 +2963,11 @@ window.VideoChat = {
                 text: getLang("video_live_chat_too_fast"),
                 black: 1
             });
-            var t = Videoview.getMvData();
+            var o = Videoview.getMvData();
             ajax.post("al_video.php", Wall.fixPostParams(extend(i, {
                 act: "post_comment",
-                video: t.videoRaw,
-                hash: t.hash,
+                video: o.videoRaw,
+                hash: o.hash,
                 fromview: 1,
                 videoviewer_chat: 1
             })), {
@@ -2987,15 +2987,15 @@ window.VideoChat = {
         }
     },
     deleteMessage: function(e, i) {
-        var t = ge("mv_chat_msg" + e);
-        addClass(t, "_deleting"), ajax.post("al_video.php", {
+        var o = ge("mv_chat_msg" + e);
+        addClass(o, "_deleting"), ajax.post("al_video.php", {
             act: "delete_comment",
             comment: e,
             hash: i,
             videoview_chat: 1
         }, {
             onDone: function(e) {
-                val(domByClass(t, "mv_chat_message_content"), e)
+                val(domByClass(o, "mv_chat_message_content"), e)
             }
         })
     },
@@ -3012,10 +3012,10 @@ window.VideoChat = {
     toggleStateClasses: function() {
         var e = !!this.block,
             i = VideoChat.isHidden(),
-            t = Videoview.isMinimized();
-        toggleClass("mv_box", "_has_chat", e && !t), toggleClass("mv_box", "_hide_chat", e && !t && i);
-        var o = "";
-        e && (o = getLang(i ? "video_aria_expand_chat" : "video_aria_minimize_chat")), attr("mv_top_pl_toggle", "aria-label", o)
+            o = Videoview.isMinimized();
+        toggleClass("mv_box", "_has_chat", e && !o), toggleClass("mv_box", "_hide_chat", e && !o && i);
+        var t = "";
+        e && (t = getLang(i ? "video_aria_expand_chat" : "video_aria_minimize_chat")), attr("mv_top_pl_toggle", "aria-label", t)
     },
     updateScroll: function() {
         VideoChat.scroll.update(), VideoChat.scroll.scrollBottom(), VideoChat.toggleScrollBottomBtn(!1)
@@ -3037,7 +3037,7 @@ window.VideoChat = {
     }
 }, window.VideoDonate = {
     DEFAULT_COMMENT_MAX_LENGTH: 300,
-    init: function(e, i, t, o, a, n) {
+    init: function(e, i, o, t, a, n) {
         function d(e) {
             e = parseJSON(e), e && "success" == e.status ? (VideoDonate.apiData = e.data, VideoDonate.initForm()) : r()
         }
@@ -3049,8 +3049,8 @@ window.VideoChat = {
         }
         VideoDonate.params = {
             prefilled: i,
-            videoId: t,
-            votesHash: o,
+            videoId: o,
+            votesHash: t,
             referrer: a,
             payerId: n
         }, ajax.plainpost(e, "", d, r, !0)
@@ -3058,13 +3058,13 @@ window.VideoChat = {
     initForm: function() {
         var e = VideoDonate.apiData,
             i = floatval(e.user_data.donation_mins.RUB),
-            t = Math.ceil(i / vk.vcost);
-        if (VideoDonate.params.votesHash && t <= vk.balance) {
-            var o = [
+            o = Math.ceil(i / vk.vcost);
+        if (VideoDonate.params.votesHash && o <= vk.balance) {
+            var t = [
                 ["votes", getLang("video_donate_box_currency_votes")],
                 ["rubles", getLang("video_donate_box_currency_rubles")]
             ];
-            VideoDonate.currencyDropdown = new Dropdown(ge("video_donate_amount_currency"), o, {
+            VideoDonate.currencyDropdown = new Dropdown(ge("video_donate_amount_currency"), t, {
                 multiselect: !1,
                 onChange: VideoDonate.onChooseCurrency,
                 selectedItems: "votes",
@@ -3088,30 +3088,30 @@ window.VideoChat = {
         r.email && val("video_donate_email", r.email.value), ge("video_donate_billing_submit").onclick = VideoDonate.submitBillingForm, hide("video_donate_pr"), show("video_donate_step_basic")
     },
     onChooseCurrency: function(e) {
-        var i, t = VideoDonate.apiData,
-            o = floatval(t.user_data.donation_mins.RUB),
-            a = Math.ceil(o / vk.vcost),
+        var i, o = VideoDonate.apiData,
+            t = floatval(o.user_data.donation_mins.RUB),
+            a = Math.ceil(t / vk.vcost),
             n = floatval(val("video_donate_amount"));
         if (n) {
             if ("votes" == e) var d = Math.max(a, Math.round(n / vk.vcost));
-            else var d = Math.max(o, intval(n * vk.vcost));
+            else var d = Math.max(t, intval(n * vk.vcost));
             val("video_donate_amount", d)
         } else {
-            var d = "votes" == e ? a : o;
+            var d = "votes" == e ? a : t;
             val("video_donate_amount", d)
         }
-        "votes" == e ? (i = getLang("video_donate_box_min_amount_votes_hint", a), i += " " + getLang("video_donate_box_total_votes_hint", vk.balance)) : i = getLang("video_donate_box_min_amount_hint", o, !0), val("video_donate_amount_hint", i);
-        var r = !!intval(t.user_data.tts_is_enabled),
-            s = floatval((t.user_data.tts_mins || {}).RUB);
+        "votes" == e ? (i = getLang("video_donate_box_min_amount_votes_hint", a), i += " " + getLang("video_donate_box_total_votes_hint", vk.balance)) : i = getLang("video_donate_box_min_amount_hint", t, !0), val("video_donate_amount_hint", i);
+        var r = !!intval(o.user_data.tts_is_enabled),
+            s = floatval((o.user_data.tts_mins || {}).RUB);
         r && (s ? "votes" == e ? val("video_donate_comment_tts_hint", getLang("video_donate_box_text_speech_min_votes_hint", Math.ceil(s / vk.vcost))) : val("video_donate_comment_tts_hint", getLang("video_donate_box_text_speech_min_hint", s)) : val("video_donate_comment_tts_hint", getLang("video_donate_box_text_speech_hint")));
         var v = getLang("votes" == e ? "video_donate_box_pay_button" : "video_donate_box_donate_button");
         val("video_donate_basic_submit", v)
     },
     checkCommentLength: function(e) {
         var i = VideoDonate.apiData,
-            t = e.currentTarget,
-            o = val(t),
-            a = o.length,
+            o = e.currentTarget,
+            t = val(o),
+            a = t.length,
             n = i.user_data.max_comment_length || VideoDonate.COMMENT_MAX_LENGTH,
             d = "";
         if (a > n) d = getLang("video_donate_box_comment_too_long");
@@ -3138,50 +3138,50 @@ window.VideoChat = {
     },
     submitBasicForm: function(e) {
         var i = e.currentTarget,
-            t = VideoDonate.apiData,
-            o = val("video_donate_name"),
+            o = VideoDonate.apiData,
+            t = val("video_donate_name"),
             a = floatval(val("video_donate_amount")),
             n = 0,
             d = VideoDonate.currencyDropdown ? VideoDonate.currencyDropdown.val() : "rubles",
             r = val("video_donate_comment");
-        if ("votes" == d && (n = a, a *= vk.vcost), !a || a < t.user_data.donation_mins.RUB) return VideoDonate.showInputError("video_donate_amount"), !1;
+        if ("votes" == d && (n = a, a *= vk.vcost), !a || a < o.user_data.donation_mins.RUB) return VideoDonate.showInputError("video_donate_amount"), !1;
         if (r.length > VideoDonate.COMMENT_MAX_LENGTH) return VideoDonate.showInputError("video_donate_comment"), !1;
         var s = {
             step: "basic",
             referrer: VideoDonate.params.referrer,
             currency: "RUB",
-            name: o,
+            name: t,
             amount: a,
             comment: r
         };
-        lockButton(i), ajax.plainpost(t.form_api_ssl_url, {
+        lockButton(i), ajax.plainpost(o.form_api_ssl_url, {
             data: ajx2q(s)
         }, function(e) {
-            unlockButton(i), e = parseJSON(e), e && "success" == e.status ? "votes" == d ? VideoDonate.donateVotes(o, n, r) : VideoDonate.toNextForm() : e && e.errors && each(e.errors, function(e, i) {
-                var t = VideoDonate.getErrorText(i.code);
-                return VideoDonate.showInputError("video_donate_" + i.field, t), !1
+            unlockButton(i), e = parseJSON(e), e && "success" == e.status ? "votes" == d ? VideoDonate.donateVotes(t, n, r) : VideoDonate.toNextForm() : e && e.errors && each(e.errors, function(e, i) {
+                var o = VideoDonate.getErrorText(i.code);
+                return VideoDonate.showInputError("video_donate_" + i.field, o), !1
             })
         }, function() {
             unlockButton(i)
         })
     },
-    donateVotes: function(e, i, t) {
+    donateVotes: function(e, i, o) {
         ajax.post("al_video.php?act=donate_votes", {
             video: VideoDonate.params.videoId,
             hash: VideoDonate.params.votesHash,
             name: e,
             amount: i,
-            comment: t
+            comment: o
         }, {
-            onDone: function(e, i, t) {
+            onDone: function(e, i, o) {
                 if (e) {
                     curBox().hide();
-                    var o = getTemplate("video_donate_success_msg", {
+                    var t = getTemplate("video_donate_success_msg", {
                         text: i
                     });
-                    showFastBox(getLang("video_donate_box_title"), o)
+                    showFastBox(getLang("video_donate_box_title"), t)
                 } else VideoDonate.showInputError("video_donate_amount", i);
-                vk.balance != t && updateMoney(t)
+                vk.balance != o && updateMoney(o)
             },
             showProgress: lockButton.pbind("video_donate_basic_submit"),
             hideProgress: unlockButton.pbind("video_donate_basic_submit")
@@ -3195,16 +3195,16 @@ window.VideoChat = {
     },
     onChoosePayMethod: function(e) {
         var i = VideoDonate.apiData,
-            t = VideoDonate.params.prefilled,
-            o = domData(e, "value");
-        radiobtn(e, o, "video_donate_pay_method");
-        var a = i.payin_currencies[o].additional_fields,
+            o = VideoDonate.params.prefilled,
+            t = domData(e, "value");
+        radiobtn(e, t, "video_donate_pay_method");
+        var a = i.payin_currencies[t].additional_fields,
             n = "";
         a && each(a, function(e, i) {
             var a = "",
                 d = "",
                 r = "";
-            "MOBILE_FAKE" == o && "phone" == e ? (a = getLang("video_donate_box_sms_payment_phone_placeholder"), d = getLang("video_donate_box_sms_payment_phone_hint"), r = t.phone ? t.phone.value : "") : "QIWI_MYCOM" == o && "phone_number" == e && (a = getLang("video_donate_box_qiwi_payment_phone_placeholder"), d = getLang("video_donate_box_qiwi_payment_phone_hint")), (a || d) && (n += getTemplate("video_donate_additional_field", {
+            "MOBILE_FAKE" == t && "phone" == e ? (a = getLang("video_donate_box_sms_payment_phone_placeholder"), d = getLang("video_donate_box_sms_payment_phone_hint"), r = o.phone ? o.phone.value : "") : "QIWI_MYCOM" == t && "phone_number" == e && (a = getLang("video_donate_box_qiwi_payment_phone_placeholder"), d = getLang("video_donate_box_qiwi_payment_phone_hint")), (a || d) && (n += getTemplate("video_donate_additional_field", {
                 name: e,
                 placeholder: a,
                 hint: d,
@@ -3222,19 +3222,19 @@ window.VideoChat = {
                     text: getLang("video_donate_box_sms_payment_success")
                 });
                 showFastBox(getLang("video_donate_box_title"), i)
-            } else e && e.errors && each(geByClass("video_donate_input", "video_donate_billing_additional_fields"), function(i, t) {
-                var o = domData(t, "name");
-                if (e.errors[o]) {
-                    var a = VideoDonate.getErrorText(e.errors[o].code);
-                    return VideoDonate.showInputError(t, a), !1
+            } else e && e.errors && each(geByClass("video_donate_input", "video_donate_billing_additional_fields"), function(i, o) {
+                var t = domData(o, "name");
+                if (e.errors[t]) {
+                    var a = VideoDonate.getErrorText(e.errors[t].code);
+                    return VideoDonate.showInputError(o, a), !1
                 }
             })
         }
 
-        function t() {
+        function o() {
             unlockButton(a)
         }
-        var o = VideoDonate.apiData,
+        var t = VideoDonate.apiData,
             a = e.currentTarget,
             n = radioval("video_donate_pay_method"),
             d = VideoDonate.params.prefilled,
@@ -3255,25 +3255,25 @@ window.VideoChat = {
         d.email && r == d.email.value ? s.email_encrypted = d.email.encrypted : s.email = r;
         var v = !0;
         if (each(geByClass("video_donate_input", "video_donate_billing_additional_fields"), function(e, i) {
-                var t = domData(i, "name"),
+                var o = domData(i, "name"),
                     a = val(i),
                     r = intval(domData(i, "required"));
-                if ("MOBILE_FAKE" == n && "phone" == t && d.phone && replaceEntities(d.phone.value) == a) t += "_encrypted", a = d.phone.encrypted;
+                if ("MOBILE_FAKE" == n && "phone" == o && d.phone && replaceEntities(d.phone.value) == a) o += "_encrypted", a = d.phone.encrypted;
                 else if (a || r) {
                     a = a.replace(/\s+/g, "");
-                    var l = o.payin_currencies[n].additional_fields[t],
+                    var l = t.payin_currencies[n].additional_fields[o],
                         c = l.regex_validation;
                     if (c && !new RegExp(c).test(a)) return VideoDonate.showInputError(i), v = !1, !1
                 }
-                s[t] = a
+                s[o] = a
             }), v) {
-            if ("MOBILE_FAKE" == n) ajax.plainpost(o.form_api_ssl_url, {
+            if ("MOBILE_FAKE" == n) ajax.plainpost(t.form_api_ssl_url, {
                 data: ajx2q(s)
-            }, i, t), lockButton(a);
+            }, i, o), lockButton(a);
             else {
                 var l = ce("iframe"),
                     c = ce("form", {
-                        action: o.form_api_ssl_url,
+                        action: t.form_api_ssl_url,
                         method: "post",
                         target: "_blank",
                         innerHTML: '<input type="hidden" name="data" value="' + ajx2q(s) + '"/>'
@@ -3301,24 +3301,24 @@ window.VideoChat = {
         delete VideoDonate.params, delete VideoDonate.apiData, VideoDonate.currencyDropdown && (VideoDonate.currencyDropdown.destroy(), VideoDonate.currencyDropdown = null)
     }
 }, window.VideoInitializer = {
-    initPlayer: function(e, i, t) {
-        hide(domByClass(e, "video_box_msg")), VideoInitializer[i].apply(VideoInitializer, [e].concat(t)), stManager.add("notifier.js", function() {
+    initPlayer: function(e, i, o) {
+        hide(domByClass(e, "video_box_msg")), VideoInitializer[i].apply(VideoInitializer, [e].concat(o)), stManager.add("notifier.js", function() {
             var e = Videoview.togglePlay.pbind(!1);
             Notifier.addRecvClbk("audio_start", "video", e), Notifier.addRecvClbk("video_start", "video", e), Notifier.addRecvClbk("videocall_start", "video", e)
         })
     },
     vk: function(e, i) {
-        var t = i.oid + "_" + i.vid;
-        if (i.vsegs) ls.remove("vsegs" + vk.id + "_" + t);
+        var o = i.oid + "_" + i.vid;
+        if (i.vsegs) ls.remove("vsegs" + vk.id + "_" + o);
         else {
-            var o = ls.get("vsegs" + vk.id + "_" + t);
-            o && o.ts && o.segments && vkNow() - o.ts < 864e5 && (i.vsegs = o.segments.replace(/[^0-9\,\|]/gi, ""))
+            var t = ls.get("vsegs" + vk.id + "_" + o);
+            t && t.ts && t.segments && vkNow() - t.ts < 864e5 && (i.vsegs = t.segments.replace(/[^0-9\,\|]/gi, ""))
         }
         onLoaded(function() {
-            checkMp4(function(t, o) {
-                t && !i.is_flv || browser.flash >= Videoview.FLASH_MIN_VERSION || i.live ? (i.can_play_mp4 = t ? 1 : 0, VideoInitializer.vkHtml5(e, i)) : show(domByClass(e, "video_box_msg")), !t && o && window._ua && _ua.indexOf("smart-tv") > -1 && ajax.post("al_video.php?act=log_cant_play_mp4_reason", {
+            checkMp4(function(o, t) {
+                o && !i.is_flv || browser.flash >= Videoview.FLASH_MIN_VERSION || i.live ? (i.can_play_mp4 = o ? 1 : 0, VideoInitializer.vkHtml5(e, i)) : show(domByClass(e, "video_box_msg")), !o && t && window._ua && _ua.indexOf("smart-tv") > -1 && ajax.post("al_video.php?act=log_cant_play_mp4_reason", {
                     ua: window._ua,
-                    reason: o
+                    reason: t
                 }, {
                     onFail: function() {
                         return !0
@@ -3328,20 +3328,20 @@ window.VideoChat = {
         })
     },
     vkHtml5: function(e, i) {
-        var t = window.mvLayer && mvLayer.contains(e),
-            o = t && mvcur.player && e.contains(mvcur.player.el);
-        o || val(e, "");
+        var o = window.mvLayer && mvLayer.contains(e),
+            t = o && mvcur.player && e.contains(mvcur.player.el);
+        t || val(e, "");
         var a = ["videoplayer.js", "videoplayer.css"];
         i.hls && a.push("hls.min.js"), i.live_candy && a.push("candy.min.js"), stManager.add(a, function() {
             if (bodyNode.contains(e)) {
-                if (t && mvcur.player) {
+                if (o && mvcur.player) {
                     var a = mvcur.player;
                     a.initVideo(i)
                 } else {
                     var a = new VideoPlayer(i);
-                    t ? mvcur.player = a : i.is_embed ? cur.player = a : cur.videoInlinePlayer = a
+                    o ? mvcur.player = a : i.is_embed ? cur.player = a : cur.videoInlinePlayer = a
                 }
-                if (!o) {
+                if (!t) {
                     var n = ce("div", {
                         id: "video_player"
                     });
@@ -3351,8 +3351,8 @@ window.VideoChat = {
         })
     },
     youtube: function(e, i) {
-        var t = i.oid,
-            o = i.vid,
+        var o = i.oid,
+            t = i.vid,
             a = i.report_error_hash;
         window.onYouTubeIframeAPIReady = function() {
             var n = domByClass(e, "video_yt_player"),
@@ -3361,11 +3361,11 @@ window.VideoChat = {
                         onError: function(e) {
                             var i = [100, 101, 150];
                             e.data && -1 != i.indexOf(e.data) && ajax.post("al_video.php?act=reparseDeletedYoutube", {
-                                vid: o,
-                                oid: t
+                                vid: t,
+                                oid: o
                             }), debugLog("YT player error", arguments), ajax.post("al_video.php?act=external_error", {
-                                oid: t,
-                                vid: o,
+                                oid: o,
+                                vid: t,
                                 hash: a
                             })
                         },
@@ -3387,22 +3387,22 @@ window.VideoChat = {
                 VideoYoutube.initStatOnly(d, i)
             })
         }, window.YT ? onYouTubeIframeAPIReady() : ! function(e) {
-            var i, t = geByTag1("script");
+            var i, o = geByTag1("script");
             i = ce("script", {
                 async: !0,
                 src: "https://www.youtube.com/iframe_api"
-            }), t.parentNode.insertBefore(i, t)
+            }), o.parentNode.insertBefore(i, o)
         }(document)
     },
-    iframeOrFlash: function(e, i, t, o, a, n) {
-        o && (browser.flash < Videoview.FLASH_MIN_VERSION || !i) ? val(e, '<iframe class="extra_player" type="text/html" width="100%" height="100%" src="' + o + '" frameborder="0" ' + a + "></iframe>") : (t = extend({
+    iframeOrFlash: function(e, i, o, t, a, n) {
+        t && (browser.flash < Videoview.FLASH_MIN_VERSION || !i) ? val(e, '<iframe class="extra_player" type="text/html" width="100%" height="100%" src="' + t + '" frameborder="0" ' + a + "></iframe>") : (o = extend({
             stats: "",
             from: "vk"
-        }, t), VideoInitializer.flash(e, i, t)), n && setTimeout(function() {
+        }, o), VideoInitializer.flash(e, i, o)), n && setTimeout(function() {
             cur && cur.incViews && cur.incViews()
         }, 100)
     },
-    flash: function(e, i, t, o) {
+    flash: function(e, i, o, t) {
         if (browser.flash < Videoview.FLASH_MIN_VERSION) return void show(domByClass(e, "video_box_msg"));
         var a = {
             url: i,
@@ -3412,32 +3412,32 @@ window.VideoChat = {
             preventhide: 1,
             version: 11
         };
-        o = extend({
+        t = extend({
             allowfullscreen: !0,
             allowscriptaccess: "never",
             bgcolor: "#000000",
             wmode: "opaque"
-        }, o), renderFlash(e, a, o, t)
+        }, t), renderFlash(e, a, t, o)
     }
 }, window.VideoLiveBlacklistBox = {
     init: function(e, i) {
-        function t(e) {
+        function o(e) {
             var i = domClosest("olist_item_wrap", e.target);
             if (i) {
                 cancelEvent(e);
-                var t = domData(i, "id");
-                toggleClass(i, "olist_item_wrap_on") ? c[t] = 1 : delete c[t]
+                var o = domData(i, "id");
+                toggleClass(i, "olist_item_wrap_on") ? c[o] = 1 : delete c[o]
             }
         }
 
-        function o(e) {
-            var t = e;
+        function t(e) {
+            var o = e;
             if (e = trim(e).replace(/\s+/g, " ").toLowerCase(), e !== d) {
                 d = e;
-                var o = e ? n.search(e) : i.list,
+                var t = e ? n.search(e) : i.list,
                     a = "";
-                if (o.length)
-                    for (var r, s = new RegExp(e, "i"), v = 0; v < o.length; v++) r = o[v], a += getTemplate("video_live_blacklist_item", {
+                if (t.length)
+                    for (var r, s = new RegExp(e, "i"), v = 0; v < t.length; v++) r = t[v], a += getTemplate("video_live_blacklist_item", {
                         id: r.id,
                         href: r.href,
                         photo: r.photo,
@@ -3445,13 +3445,13 @@ window.VideoChat = {
                         "class": c[r.id] ? " olist_item_wrap_on" : ""
                     });
                 else a = getTemplate("video_live_blacklist_empty", {
-                    text: langStr(getLang("global_search_not_found"), "search", "<b>" + clean(t) + "</b>")
+                    text: langStr(getLang("global_search_not_found"), "search", "<b>" + clean(o) + "</b>")
                 });
                 val(l, a)
             }
         }
 
-        function a(t) {
+        function a(o) {
             ajax.post("al_video.php?act=save_live_blacklist", {
                 exclude: Object.keys(c).join(","),
                 hash: i.save_hash
@@ -3459,8 +3459,8 @@ window.VideoChat = {
                 onDone: function(i) {
                     e.hide(), i && showDoneBox(i)
                 },
-                showProgress: lockButton.pbind(t),
-                hideProgress: unlockButton.pbind(t)
+                showProgress: lockButton.pbind(o),
+                hideProgress: unlockButton.pbind(o)
             })
         }
         e.setOptions({
@@ -3473,10 +3473,10 @@ window.VideoChat = {
             v = ge("video_live_blacklist_wrap"),
             l = domByClass(v, "olist"),
             c = {};
-        i.list.length && (e.removeButtons().addButton(getLang("global_save"), a).addButton(getLang("global_cancel"), null, "no"), r = new uiScroll(v), o(""), v.onclick = t, s && (n = new vkIndexer(i.list, function(e) {
+        i.list.length && (e.removeButtons().addButton(getLang("global_save"), a).addButton(getLang("global_cancel"), null, "no"), r = new uiScroll(v), t(""), v.onclick = o, s && (n = new vkIndexer(i.list, function(e) {
             return e.name + " https://vk.com" + e.href
         }), uiSearch.init(s, {
-            onChange: o
+            onChange: t
         }), uiSearch.focus(s)))
     }
 };

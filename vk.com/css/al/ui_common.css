@@ -2044,6 +2044,15 @@ a.ui_search_custom_link {
     top: 13px
 }
 
+.ui_actions_menu_item.ui_actions_menu_item_disabled {
+    color: #abaeb1;
+    cursor: default!important
+}
+
+.ui_actions_menu_item.ui_actions_menu_item_disabled:hover {
+    background-color: transparent
+}
+
 .ui_actions_menu_item_label {
     overflow: hidden;
     text-overflow: ellipsis

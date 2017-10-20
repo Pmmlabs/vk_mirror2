@@ -192,14 +192,14 @@ var stVersions = {
     'video.css': 18702231647,
     'videocat.js': 1618923991,
     'videocat.css': 15429682825,
-    'videoview.js': 936541200,
+    'videoview.js': 960431600,
     'videoview.css': 20691799909,
     'video_edit.js': 2135196486,
     'video_edit.css': 15907231280,
     'video_upload.js': 812506149,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 10901384256,
-    'videoplayer.js': 70923243663,
+    'videoplayer.js': 78508921064,
     'videoplayer.css': 29294264050,
     'translation.js': 51041194,
     'translation.css': 14065363596,
@@ -375,7 +375,7 @@ var stVersions = {
     'ads_bonus.css': 460482192,
     'ads.js': 2559771898,
     'ads_payments.js': 2170749464,
-    'ads_edit.css': 11417541320,
+    'ads_edit.css': 13658037226,
     'ads_edit.js': 729526321,
     'ads_edit_geo.js': 1634516705,
     'ads_moder_common.css': 11768016629,
@@ -387,7 +387,7 @@ var stVersions = {
     'ads_web.js': 4274163593,
     'mrtarg.js': 1146267795,
     'mrtarg.css': 3142794554,
-    'cmodules/web/ads_edit_easy.js': 3951918293,
+    'cmodules/web/ads_edit_easy.js': 112585639,
     'health.css': 2251304991,
     'health.js': 2993570139,
     'pinbar.js': 284788792,
@@ -426,7 +426,7 @@ var stVersions = {
     'ui.css': 12228043401,
     'ui.js': 3953380422,
     'ui_common.js': 465114920,
-    'ui_common.css': 13290851718,
+    'ui_common.css': 12457277817,
     'ui_media_selector.js': 3620910617,
     'ui_media_selector.css': 17789077801,
     'ui_manual.css': 12479615278,
@@ -493,7 +493,7 @@ var stVersions = {
     'api/share.js': 2621084197,
     'api/openapi.js': 519085702,
     'api/xdm.js': 1449919642,
-    'hls.min.js': 3590183848,
+    'hls.min.js': 2157207560,
     'candy.min.js': 1892723665,
     'q_frame.php': 7,
     '/swf/api_wrapper.swf': 7,
@@ -616,4 +616,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 9785;
+var _rnd = 6885;

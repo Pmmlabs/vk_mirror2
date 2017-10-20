@@ -1622,7 +1622,11 @@ a.ads_edit_link_go:hover {
     transition: -webkit-transform 0.6s ease;
     -o-transition: transform 0.6s ease, -o-transform 0.6s ease;
     transition: transform 0.6s ease;
-    transition: transform 0.6s ease, -webkit-transform 0.6s ease, -o-transform 0.6s ease
+    transition: transform 0.6s ease, -webkit-transform 0.6s ease, -o-transform 0.6s ease;
+    -webkit-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    -o-transform: translateY(0px);
+    transform: translateY(0px)
 }
 
 .ads_edit_easy_promote_box__screens-wrapper_transition-disabled {
@@ -1643,7 +1647,7 @@ a.ads_edit_link_go:hover {
 
 .ads_edit_easy_promote_box__screen_settings {
     max-height: 400px;
-    overflow: scroll;
+    overflow: auto;
     position: relative;
     -o-transition: opacity 0.6s ease, max-height 0.8s ease;
     transition: opacity 0.6s ease, max-height 0.8s ease;
@@ -1802,7 +1806,7 @@ a.ads_edit_link_go:hover {
     background-color: #fff;
     padding: 10px 0;
     border-top: 1px solid #e7e8ec;
-    box-shadow: 0 -8px 12px -9px rgba(0, 0, 0, .2)
+    box-shadow: 0 -8px 12px -9px rgba(0, 0, 0, .15)
 }
 
 .ads_edit_easy_promote_box__row_expected-reach {
@@ -1876,7 +1880,17 @@ a.ads_edit_link_go:hover {
 
 .ads_edit_easy_promote_box__expected-reach-hint {
     margin-top: 10px;
-    line-height: 1.46
+    line-height: 1.46;
+    min-height: 54px;
+    background-position: 0 2px;
+    background-repeat: no-repeat;
+    background-size: 18px auto;
+    padding-left: 30px;
+    margin-left: -30px
+}
+
+.ads_edit_easy_promote_box__expected-reach-hint_warning {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2264%22%20height%3D%2264%22%20viewBox%3D%220%200%2064%2064%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3Eicon_error%3C%2Ftitle%3E%3Cpath%20d%3D%22M32%2064C14.327%2064%200%2049.673%200%2032%200%2014.327%2014.327%200%2032%200c17.673%200%2032%2014.327%2032%2032%200%2017.673-14.327%2032-32%2032zm0-17a2%202%200%201%200%200-4%202%202%200%200%200%200%204zm0-29a1.953%201.953%200%200%200-1.952%202l.416%2017.5a1.536%201.536%200%200%200%203.072%200l.416-17.5A1.953%201.953%200%200%200%2032%2018z%22%20fill%3D%22%23FFA000%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E")
 }
 
 .ads_edit_easy_promote_box__edit-audience-links,
