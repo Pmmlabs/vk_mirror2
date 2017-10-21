@@ -1552,6 +1552,10 @@ h2.payments_getvotes_title {
     }
 }
 
+.payments_getvotes_promo_wrap~.payments_iframe_container:before {
+    display: none
+}
+
 .payments_getvotes_promo_controls {
     margin: 20px 0;
     text-align: center

@@ -363,7 +363,7 @@ var stVersions = {
     'verify.css': 10745683184,
     'away.css': 15530409842,
     'stats.css': 14347483015,
-    'payments.css': 16863149698,
+    'payments.css': 14910334307,
     'payments.js': 2694322533,
     'offers.css': 978996883,
     'offers.js': 2030679272,
@@ -616,4 +616,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 6885;
+var _rnd = 2257;
