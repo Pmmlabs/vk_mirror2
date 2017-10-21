@@ -532,7 +532,7 @@ var stVersions = {
     'stories.css': 16081539815,
     'internal/nospam.css': 14829935903,
     'internal/away_linksban.css': 10928864581,
-    'internal/ui_manual.js': 2059169231,
+    'internal/ui_manual.js': 1615379973,
     'internal/patterns_info.css': 13377246120,
     'article.css': 22338333017,
     'article_editor.css': 21499773773,
@@ -616,4 +616,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 2257;
+var _rnd = 8123;
