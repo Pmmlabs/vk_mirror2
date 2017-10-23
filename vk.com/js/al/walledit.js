@@ -79,7 +79,7 @@ var WallEdit = {
                 }, a.media_opts || {})
             }, a.teWidth && (t.options.teWidth = a.teWidth), a.teHeight && (t.options.teHeight = a.teHeight), ("photo_comment" == a.reply || "video_comment" == a.reply) && (t.options.nocl = 1), "photo_comment" == a.reply && (t.options.maxShown = 0, t.options.hideAfterCount = 0));
             var p = ge("wpe_text");
-            if (!a.reply && cur.postFieldZoomText && (addEvent(p, "keydown paste", function() {
+            if (a.reply || a.copy || !cur.postFieldZoomText || (addEvent(p, "keydown paste", function() {
                     setTimeout(function() {
                         cur.postFieldZoomText(p)
                     }, 0)
@@ -94,7 +94,7 @@ var WallEdit = {
                 cur.wallEditMedia = cur.dropboxAddMedia = cur.wallEditComposer.addMedia, WallUpload.attachToEl(d);
                 for (var c = 0, u = i.length; u > c; ++c) cur.wallEditMedia.chooseMedia.apply(cur.wallEditMedia, i[c]), "postpone" == i[c][0] && cur.editingPost.push(i[c][1])
             }
-            cur.weEmoji = m(), cur.onEditFormSizeUpdate && cur.onEditFormSizeUpdate(), !a.reply && cur.postFieldZoomText && cur.postFieldZoomText(p)
+            cur.weEmoji = m(), cur.onEditFormSizeUpdate && cur.onEditFormSizeUpdate(), !a.reply && !a.copy && cur.postFieldZoomText && cur.postFieldZoomText(p)
         }, 0)
     },
     emojiShowTT: function(e, t) {

@@ -242,7 +242,7 @@ var stVersions = {
     'qsearch.js': 4098038985,
     'wall.css': 21173637620,
     'wall.js': 3588967340,
-    'walledit.js': 972441060,
+    'walledit.js': 865374414,
     'thumbs_edit.css': 11291529919,
     'thumbs_edit.js': 2241504624,
     'mail.css': 2042965398,
@@ -348,8 +348,8 @@ var stVersions = {
     'groupinfo.css': 15956013816,
     'bugs.js': 3874995669,
     'bugs.css': 11283028420,
-    'bugtracker.js': 1213584201,
-    'bugtracker.css': 19943338306,
+    'bugtracker.js': 3349314601,
+    'bugtracker.css': 21370290231,
     'login.css': 15261327475,
     'login.js': 3551917100,
     'upload.js': 532526424,
@@ -616,4 +616,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 2281;
+var _rnd = 4297;
