@@ -1454,6 +1454,17 @@ var Videoview = {
                 }
             })
         },
+        replaceLegal: function(e, i, o) {
+            showBox("al_video.php?act=replace_legal_box", {
+                oid: e,
+                vid: i,
+                hash: o
+            }, {
+                params: {
+                    width: 600
+                }
+            })
+        },
         restoreOriginal: function(e, i, o, t) {
             showFastBox("Confirm", "restore original video?", getLang("box_yes"), function() {
                 ajax.post("al_video.php?act=restore_original", {
@@ -2650,7 +2661,7 @@ var Videoview = {
                         module: Videoview.getVideoModule()
                     })
                 }
-                return !1;
+                return !1
             }
         },
         saveScrollPos: function() {

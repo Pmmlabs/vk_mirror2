@@ -1182,6 +1182,10 @@ h2.payments_getvotes_title {
     margin-top: 60px
 }
 
+.payments_box_wide .payments_iframe_container:before {
+    display: none
+}
+
 .payments_box_wide #payments_box_error[style*=block]+#payments_getvotes_cont .payments_systems_logo {
     margin-top: 10px!important
 }

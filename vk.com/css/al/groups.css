@@ -1279,6 +1279,10 @@ a.group_app_button:after {
     background-position: 50%
 }
 
+.app_widget_tt {
+    width: 290px
+}
+
 .app_widget_list_row {
     line-height: 19px;
     color: #000;
