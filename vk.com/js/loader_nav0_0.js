@@ -348,8 +348,8 @@ var stVersions = {
     'groupinfo.css': 15956013816,
     'bugs.js': 3874995669,
     'bugs.css': 11283028420,
-    'bugtracker.js': 3349314601,
-    'bugtracker.css': 21370290231,
+    'bugtracker.js': 3209529920,
+    'bugtracker.css': 21662300302,
     'login.css': 15261327475,
     'login.js': 3551917100,
     'upload.js': 532526424,
@@ -616,4 +616,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 319;
+var _rnd = 6925;
