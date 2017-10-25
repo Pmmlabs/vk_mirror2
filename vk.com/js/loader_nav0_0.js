@@ -371,7 +371,7 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 20388514976,
     'aes_light.js': 3306454788,
-    'ads.css': 18277416608,
+    'ads.css': 19185750329,
     'ads_bonus.css': 460482192,
     'ads.js': 1745956523,
     'ads_payments.js': 2170749464,
@@ -616,4 +616,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 3544;
+var _rnd = 9411;

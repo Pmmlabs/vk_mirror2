@@ -3573,7 +3573,8 @@ td.ads_settings_notifacations_label {
     margin-top: 15px;
     text-align: left;
     border: 1px solid #e0e3e7;
-    border-radius: 2px
+    border-radius: 2px;
+    cursor: default
 }
 
 .ads_relevance_score_top {
@@ -3711,6 +3712,14 @@ td.ads_settings_notifacations_label {
     box-sizing: border-box
 }
 
+.ads_relevance_score_info_description_tt.tt_default.tt_down:after,
+.ads_relevance_score_info_description_tt.tt_default.tt_down:before,
+.ads_relevance_score_info_description_tt.tt_default.tt_up:after,
+.ads_relevance_score_info_description_tt.tt_default.tt_up:before {
+    left: 45px;
+    right: auto
+}
+
 .ads_relevance_score_info_description_reaction {
     margin-bottom: 8px;
     line-height: 20px
@@ -3721,8 +3730,7 @@ td.ads_settings_notifacations_label {
 }
 
 .ads_relevance_score_info_description_reaction_name {
-    margin: 0;
-    cursor: pointer
+    margin: 0
 }
 
 .ads_relevance_score_info_description_reaction_value {
