@@ -21,7 +21,8 @@
 .ads_moder_comment_rules_icon.icon_restricted,
 .ads_moder_comment_rules_icon.icon_restricted_site,
 .ads_moder_comment_rules_icon.icon_spy,
-.ads_moder_comment_rules_icon.icon_vocabulary {
+.ads_moder_comment_rules_icon.icon_vocabulary,
+.ads_retargeting_price_list_item_edit:after {
     -ms-high-contrast-adjust: none
 }
 
@@ -736,6 +737,15 @@ a .ads_sub_link:hover {
 .ads_create_button_office .edit_button_wrap {
     position: absolute;
     right: 0
+}
+
+.ads_general_info_criteria_price_list_retargeting_formula {
+    line-height: 160%
+}
+
+.ads_general_info_criteria_price_list_retargeting_formula_operand {
+    padding-bottom: 1px;
+    border-bottom: 1px solid #000
 }
 
 .ads_announcement_video_box .box_title_wrap {
@@ -2896,6 +2906,343 @@ h4.subheader.ads_retargeting_subheader_top {
     padding-bottom: 6px
 }
 
+.ads_retargeting_price_list {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    line-height: 20px;
+    font-size: 14px;
+    background: #fff;
+    border-spacing: 0
+}
+
+.ads_retargeting_price_list_empty {
+    padding: 20px 50px;
+    line-height: 170%;
+    color: #777;
+    text-align: center;
+    background-color: #f7f7f7;
+    border: 1px solid #e4e9ed;
+    border-top: 0
+}
+
+.ads_retargeting_price_list_empty_text {
+    margin: 0
+}
+
+.ads_retargeting_price_list_item_cell {
+    padding: 18px 0 18px 20px;
+    width: 100px;
+    text-align: right;
+    vertical-align: middle;
+    border-bottom: 1px solid #edeef2
+}
+
+.ads_retargeting_price_list_item_last .ads_retargeting_price_list_item_cell,
+.ads_retargeting_price_list_item_opened .ads_retargeting_price_list_item_cell {
+    border-bottom: 0
+}
+
+.ads_retargeting_price_list_item_last .ads_retargeting_price_list_item_cell {
+    padding-bottom: 0
+}
+
+.ads_retargeting_price_list_item_cell_general {
+    padding-left: 10px;
+    width: 372px;
+    text-align: left
+}
+
+.ads_retargeting_price_list_item_cell_name {
+    margin: 0;
+    width: 330px;
+    color: #222;
+    word-break: break-all
+}
+
+.ads_retargeting_price_list_item_info_show,
+.ads_retargeting_price_list_item_opened .ads_retargeting_price_list_item_info_hide {
+    display: inline
+}
+
+.ads_retargeting_price_list_item_info_hide,
+.ads_retargeting_price_list_item_opened .ads_retargeting_price_list_item_info_show {
+    display: none
+}
+
+.ads_retargeting_price_list_item_edit {
+    position: relative;
+    padding-left: 20px
+}
+
+.ads_retargeting_price_list_item_edit:after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 3px;
+    left: 4px;
+    width: 13px;
+    height: 13px;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    background: url(/images/post_icon.png?10) no-repeat 0px -40px;
+    -o-transition: opacity 100ms ease;
+    transition: opacity 100ms ease
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_retargeting_price_list_item_edit:after {
+        background-image: url(/images/post_icon_2x.png?10);
+        background-size: 20px 413px
+    }
+}
+
+.ads_retargeting_price_list_item_edit:hover:after {
+    opacity: 1;
+    -webkit-filter: none;
+    filter: none
+}
+
+.ads_retargeting_price_list_item_cell_status {
+    color: #828282;
+    white-space: nowrap
+}
+
+.ads_retargeting_price_list_item_status_work {
+    color: #59ac5c
+}
+
+.ads_retargeting_price_list_item_status_error {
+    color: #c95959;
+    cursor: default
+}
+
+.ads_retargeting_price_list_item_cell_status_link {
+    margin: 0;
+    font-size: 13px
+}
+
+.ads_retargeting_price_list_item_cell_value {
+    margin: 0;
+    color: #222;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.ads_retargeting_price_list_item_cell_desc {
+    margin: 0;
+    line-height: 18px;
+    font-size: 13px;
+    color: #828282
+}
+
+.ads_retargeting_price_list_item_cell_desc:first-letter {
+    text-transform: uppercase
+}
+
+.ads_retargeting_price_list_item_cell_update {
+    padding-right: 0;
+    width: 28px
+}
+
+.ads_retargeting_price_list_item_cell_update_link {
+    position: relative;
+    display: block;
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    background-color: #e5ebf1
+}
+
+.ads_retargeting_price_list_item_cell_update_tt.tt_default.tt_down:after,
+.ads_retargeting_price_list_item_cell_update_tt.tt_default.tt_down:before,
+.ads_retargeting_price_list_item_cell_update_tt.tt_default.tt_up:after,
+.ads_retargeting_price_list_item_cell_update_tt.tt_default.tt_up:before {
+    left: auto;
+    right: 30px
+}
+
+.ads_retargeting_price_list_item_cell_update_link_disabled {
+    opacity: 0.44;
+    cursor: default
+}
+
+.ads_retargeting_price_list_item_cell_update_link:after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 5px;
+    display: block;
+    width: 18px;
+    height: 14px;
+    background: url('/images/ads/refresh.svg') 50% no-repeat
+}
+
+.ads_retargeting_price_list_item_cell_update_link.ads_retargeting_price_list_item_cell_update_link_waiting:after {
+    -webkit-animation: 700ms linear infinite round_spinner;
+    -o-animation: 700ms linear infinite round_spinner;
+    animation: 700ms linear infinite round_spinner
+}
+
+.ads_retargeting_price_list_tooltip {
+    font-size: 13px;
+    line-height: 17px
+}
+
+.ads_retargeting_price_list_actions_wrapper,
+.ads_retargeting_price_list_url {
+    display: none
+}
+
+.ads_retargeting_price_list_actions_opened .ads_retargeting_price_list_url {
+    display: block
+}
+
+.ads_retargeting_price_list_actions_last .ads_retargeting_price_list_url {
+    margin-bottom: 0
+}
+
+.ads_retargeting_price_list_actions_opened .ads_retargeting_price_list_actions_wrapper {
+    display: block
+}
+
+.ads_retargeting_price_list_actions_last .ads_retargeting_price_list_actions_table {
+    margin-top: 18px
+}
+
+.ads_retargeting_price_list_actions_cell {
+    padding: 0
+}
+
+.ads_retargeting_price_list_actions_opened .ads_retargeting_price_list_actions_cell {
+    border-bottom: 1px solid #edeef2
+}
+
+.ads_retargeting_price_list_actions_last .ads_retargeting_price_list_actions_cell {
+    border-bottom: 0
+}
+
+.ads_retargeting_price_list_actions_table {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    line-height: 16px;
+    font-size: 13px;
+    border: 1px solid #e9edf0;
+    border-bottom: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    box-sizing: border-box
+}
+
+.ads_retargeting_price_list_actions_last .ads_retargeting_price_list_actions_table {
+    border-bottom: 1px solid #e9edf0
+}
+
+.ads_retargeting_price_list_actions_table_head {
+    padding: 10px 20px 10px 0;
+    text-align: right;
+    color: #626d7a;
+    font-weight: 500;
+    background-color: #f0f2f5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.ads_retargeting_price_list_actions_table_head_action {
+    padding-left: 11px;
+    text-align: left
+}
+
+.ads_retargeting_price_list_actions_table_row {
+    background-color: #f5f7fa
+}
+
+.ads_retargeting_price_list_actions_table_row:nth-child(2n+1) {
+    background-color: #fff
+}
+
+.ads_retargeting_price_list_actions_table_item {
+    padding: 10px 20px 10px 0;
+    width: 100px;
+    text-align: right;
+    white-space: nowrap
+}
+
+.ads_retargeting_price_list_actions_table_item_name {
+    padding-left: 11px;
+    padding-right: 9px;
+    width: 286px;
+    text-align: left;
+    white-space: normal
+}
+
+.ads_retargeting_price_list_url {
+    margin: 12px 0;
+    font-size: 13px;
+    line-height: 18px;
+    color: #828282
+}
+
+.ads_retargeting_box_price_list_group {
+    margin-top: 18px
+}
+
+.ads_retargeting_box_price_list_group:first-child {
+    margin-top: 0
+}
+
+.ads_retargeting_box_price_list_label {
+    display: block;
+    margin-bottom: 12px;
+    color: #222;
+    font-weight: 500;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.ads_retargeting_box_price_list_input {
+    width: 100%
+}
+
+.ads_retargeting_box_price_list_description {
+    margin: 10px 0 20px;
+    color: #656565
+}
+
+.ads_retargeting_box_price_list_description:last-child {
+    margin-bottom: 0
+}
+
+.ads_retargeting_box_price_list_error_description {
+    margin: 0 0 15px
+}
+
+.ads_retargeting_box_price_list_error_opened .ads_retargeting_box_price_list_error_link,
+.ads_retargeting_box_price_list_error_block {
+    display: none
+}
+
+.ads_retargeting_box_price_list_error_opened .ads_retargeting_box_price_list_error_block {
+    display: block
+}
+
+.ads_retargeting_box_price_list_error_block_text {
+    margin: 0
+}
+
+.ads_retargeting_box_price_list_error_block_code {
+    margin: 10px 0 0;
+    padding: 10px 15px;
+    line-height: 22px;
+    font-family: Monaco, Menlo, Ubuntu Mono, Consolas, source-code-pro, monospace;
+    background-color: #f0f2f5;
+    border-left: 3px solid #93adc8
+}
+
 .ads_settings_notifacations {
     margin: 10px 0 0 10px;
     border-collapse: collapse
@@ -3230,7 +3577,7 @@ td.ads_settings_notifacations_label {
 }
 
 .ads_relevance_score_top {
-    padding: 13px 16px 10px 20px;
+    padding: 13px 13px 10px 15px;
     line-height: 19px;
     border-bottom: 1px solid #e7e8ec
 }
@@ -3240,8 +3587,20 @@ td.ads_settings_notifacations_label {
 }
 
 .ads_relevance_score_top_title {
+    position: relative;
     margin: 0;
-    padding: 1px 0 2px
+    padding: 1px 22px 2px 0
+}
+
+.ads_relevance_score_top_title_beta {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Ctitle%3Ebeta%3C%2Ftitle%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20stroke%3D%22%23B4BFCC%22%20x%3D%22.5%22%20y%3D%22.5%22%20width%3D%2215%22%20height%3D%2215%22%20rx%3D%227.5%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M7.243%209.674c.105.208.258.37.456.486.199.115.433.173.703.173.235%200%20.441-.05.62-.151.18-.101.319-.244.418-.428.1-.184.149-.4.149-.647%200-.4-.122-.716-.366-.947-.244-.231-.598-.358-1.06-.38a.632.632%200%200%201-.337-.137.37.37%200%200%201-.112-.289c0-.224.146-.364.44-.42.35-.012.613-.11.785-.292.173-.183.26-.435.26-.757%200-.303-.093-.547-.277-.733-.184-.185-.43-.278-.74-.278-.374%200-.65.125-.83.374-.178.249-.302.607-.302%201.076v2.622c0%20.277.087.52.193.728zm-.679-5.095C6.94%204.193%207.474%204%208.168%204c.43%200%20.797.072%201.103.217.306.145.54.351.701.618.161.267.242.58.242.937%200%20.342-.08.643-.24.901a1.55%201.55%200%200%201-.668.594v.039c.452.107.796.317%201.03.63.234.312.351.719.351%201.22%200%20.4-.08.758-.244%201.072-.162.314-.398.56-.705.735-.308.176-.67.264-1.087.264-.351%200-.66-.074-.925-.22-.265-.147-.54-.358-.676-.635v.934c0%20.195-.015.344-.112.446a.527.527%200%200%201-.4.154.512.512%200%200%201-.394-.154C6.048%2011.65%206%2011.501%206%2011.306v-5.02c0-.753.188-1.322.564-1.707z%22%20fill%3D%22%23828A99%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+    background-position: 50%;
+    background-repeat: no-repeat
 }
 
 .ads_relevance_score_top_description {

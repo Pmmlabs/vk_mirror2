@@ -3550,9 +3550,8 @@ Ads.showRetargetingGroupBox = function(act, addParams, boxParams) {
     };
     showOptions.onFail = Ads.onBoxFail;
     extend(showOptions.params, boxParams);
-    showBox('/ads?act=a_retargeting_group_' + act + '_box', ajaxParams, showOptions);
 
-    return true;
+    return showBox('/ads?act=a_retargeting_group_' + act + '_box', ajaxParams, showOptions);
 }
 
 Ads.showLookalikeExportBox = function(lookalikeRequestId) {
@@ -4600,6 +4599,148 @@ Ads.initRedesignHintTooltip = function() {
     }
 }
 
+Ads.showRetargetingPriceListActionsTable = function(event, id) {
+    event.preventDefault();
+
+    var priceListItem = ge('ads_retargeting_price_list_item_' + id),
+        priceListItemActionsBlock = ge('ads_retargeting_price_list_actions_' + id),
+        priceListItemActionsTable = geByClass1('ads_retargeting_price_list_actions_wrapper', priceListItemActionsBlock);
+
+    slideToggle(priceListItemActionsTable, 150);
+    priceListItem.classList.toggle("ads_retargeting_price_list_item_opened");
+    priceListItemActionsBlock.classList.toggle("ads_retargeting_price_list_actions_opened");
+}
+
+Ads.showRetargetingPriceListEditBox = function(event, unionId, hash, priceListId, priceListName, priceListUrl) {
+    event.preventDefault();
+
+    var box = Ads.showRetargetingGroupBox('price_list_edit', {
+        'union_id': unionId,
+        'price_list_id': priceListId,
+        'hash': hash
+    });
+    box.removeButtons();
+    box.addButton(getLang('global_save'), function() {
+        Ads.saveRetargetingPriceList(unionId, hash, priceListId, priceListName, priceListUrl)
+    }, '', false, 'ads_retargeting_box_price_list_save');
+    box.addButton(getLang('global_cancel'), box.hide, 'gray', false, 'ads_retargeting_box_price_list_cancel');
+}
+
+Ads.saveRetargetingPriceListUnescape = function(str) {
+    return str.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, '\'').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+}
+
+Ads.saveRetargetingPriceList = function(unionId, hash, priceListId, priceListName, priceListUrl) {
+    var btnSave = ge('ads_retargeting_box_price_list_save'),
+        btnCancel = ge('ads_retargeting_box_price_list_cancel');
+
+    if (isButtonLocked(btnSave)) {
+        return;
+    }
+    lockButton(btnSave);
+
+    var form = ge('ads_retargeting_box_price_list_edit'),
+        oldPriceListName = priceListName ? priceListName : '',
+        oldPriceListUrl = priceListUrl ? priceListUrl : '',
+        newPriceListName = ge('ads_retargeting_box_price_list_edit_name', form).value.trim(),
+        newPriceListUrl = ge('ads_retargeting_box_price_list_edit_url', form).value.trim();
+
+    if (priceListId && (Ads.saveRetargetingPriceListUnescape(oldPriceListName) === newPriceListName) && (Ads.saveRetargetingPriceListUnescape(oldPriceListUrl) === newPriceListUrl)) {
+        btnCancel.click();
+        return;
+    }
+
+    var ajaxParams = {
+        union_id: unionId,
+        hash: hash,
+        name: newPriceListName,
+        url: newPriceListUrl
+    };
+
+    var isNew = !priceListId;
+    if (!isNew) {
+        ajaxParams.price_list_id = priceListId;
+    }
+
+    ajax.post('/ads.php?act=a_retargeting_price_lists_save', ajaxParams, {
+        onDone: onComplete.pbind(true),
+        onFail: onComplete.pbind(false)
+    });
+
+    function onComplete(isOk, response) {
+        if (isOk && response && (response.ok || response.uninitialized)) {
+            if (response.reload_url) {
+                nav.go(response.reload_url);
+            }
+            return;
+        } else {
+            var error = (response && response.error || getLang('global_unknown_error')),
+                errorBlock = geByClass1('msg_text', ge('ads_retargeting_box_error'));
+            errorBlock.innerHTML = error;
+            show('ads_retargeting_box_error');
+
+            unlockButton(btnSave);
+            return true;
+        }
+    }
+}
+
+Ads.checkRetargetingPriceListInputKeyup = function(event, unionId, hash, priceListId, priceListName, priceListUrl) {
+    if (event.which === KEY.ENTER || event.keyCode === KEY.ENTER) {
+        Ads.saveRetargetingPriceList(unionId, hash, priceListId, priceListName, priceListUrl);
+    }
+}
+
+Ads.startPriceListUpdate = function(event, btn, startUpdate, unionId, priceListId, priceListUrl, priceListHash) {
+    event.preventDefault();
+
+    var isBtnDisabled = btn.classList.contains('ads_retargeting_price_list_item_cell_update_link_disabled');
+
+    if (isBtnDisabled || !startUpdate) {
+        return;
+    }
+
+    if (unionId && priceListId && priceListUrl) {
+        btn.classList.add('ads_retargeting_price_list_item_cell_update_link_disabled', 'ads_retargeting_price_list_item_cell_update_link_waiting');
+
+        var ajaxParams = {
+            union_id: unionId,
+            hash: priceListHash,
+            price_list_id: priceListId,
+            price_list_url: priceListUrl
+        };
+
+        ajax.post('/ads.php?act=a_retargeting_price_lists_update', ajaxParams, {
+            onDone: onComplete.pbind(true),
+            onFail: onComplete.pbind(false)
+        });
+    }
+
+    function onComplete(isOk, response) {
+        if (isOk && response) {
+            nav.reload();
+            return;
+        } else {
+            btn.classList.remove('ads_retargeting_price_list_item_cell_update_link_disabled', 'ads_retargeting_price_list_item_cell_update_link_waiting');
+        }
+    }
+}
+
+Ads.showRetargetingPriceListStatusErrorBox = function(event) {
+    event.preventDefault();
+
+    Ads.showRetargetingGroupBox('price_list_error', {
+        hideButtons: true
+    });
+}
+
+Ads.showRetargetingPriceListStatusErrorCode = function(event, link) {
+    event.preventDefault();
+
+    var errorBox = ge('ads_retargeting_box_price_list_error');
+    errorBox.classList.add('ads_retargeting_box_price_list_error_opened');
+}
+
 Ads.toggleRelevanceScoreInfo = function(switcherName) {
     removeClass(geByClass1("ads_relevance_score_switcher_item_active"), "ads_relevance_score_switcher_item_active");
     addClass(ge("ads_relevance_score_switcher_" + switcherName), "ads_relevance_score_switcher_item_active");
@@ -4625,7 +4766,7 @@ Ads.showRelevanceScoreTooltip = function() {
         appendTo: el,
         content: '<div class="feature_intro_tt_hide" onclick="cur.closeAdsRelevanceScoreTooltip();"></div>' + getLang('ads_relevance_score_hint_new_feature'),
         forceSide: 'left',
-        offset: [0, -10],
+        offset: [10, 0],
         width: 190,
         cls: 'feature_intro_tt',
         onHide: function() {

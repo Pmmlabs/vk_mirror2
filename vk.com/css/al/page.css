@@ -247,7 +247,7 @@
 }
 
 .wall_module .reply_action {
-    background: url(/images/post_icon.png?9) no-repeat 1px -52px;
+    background: url(/images/post_icon.png?10) no-repeat 1px -52px;
     opacity: 0;
     filter: alpha(opacity=0);
     cursor: pointer;
@@ -260,7 +260,7 @@
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .wall_module .reply_action {
-        background-image: url(/images/post_icon_2x.png?9);
+        background-image: url(/images/post_icon_2x.png?10);
         background-size: 20px 413px
     }
 }
@@ -960,7 +960,7 @@ div.submit_post_field font {
 }
 
 .wall_module .like_icon {
-    background: url(/images/post_icon.png?9) no-repeat 0 -29px;
+    background: url(/images/post_icon.png?10) no-repeat 0 -29px;
     width: 12px;
     height: 10px;
     margin: 2px 0 0;
@@ -974,7 +974,7 @@ div.submit_post_field font {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .wall_module .like_icon {
-        background-image: url(/images/post_icon_2x.png?9);
+        background-image: url(/images/post_icon_2x.png?10);
         background-size: 20px 413px
     }
 }
@@ -1273,7 +1273,7 @@ div.submit_post_field font {
 }
 
 .wall_module .reply_to_title .reply_to_cancel {
-    background: url(/images/post_icon.png?9) no-repeat 1px -52px;
+    background: url(/images/post_icon.png?10) no-repeat 1px -52px;
     width: 13px;
     height: 13px;
     margin: 2px 0 0 3px;
@@ -1285,7 +1285,7 @@ div.submit_post_field font {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .wall_module .reply_to_title .reply_to_cancel {
-        background-image: url(/images/post_icon_2x.png?9);
+        background-image: url(/images/post_icon_2x.png?10);
         background-size: 20px 413px
     }
 }
@@ -7165,7 +7165,7 @@ div.medadd_c_linkprg {
     width: 12px;
     height: 10px;
     margin-top: -5px;
-    background: url(/images/post_icon.png?9) no-repeat;
+    background: url(/images/post_icon.png?10) no-repeat;
     opacity: 0;
     filter: alpha(opacity=0);
     background-position: left -41px
@@ -7175,7 +7175,7 @@ div.medadd_c_linkprg {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .medadd_inline_editable_icon {
-        background-image: url(/images/post_icon_2x.png?9);
+        background-image: url(/images/post_icon_2x.png?10);
         background-size: 20px 413px
     }
 }

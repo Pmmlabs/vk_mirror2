@@ -1048,6 +1048,11 @@
     background: #4bb34b url(/images/svg_icons/feedback/bubble.svg) no-repeat
 }
 
+.feedback_interesting_row .feedback_photo_icon {
+    display: block;
+    background: #e64646 url(/images/svg_icons/feedback/interesting.svg) no-repeat
+}
+
 .feedback_friends_row .feedback_photo_icon {
     display: block;
     background: #4bb34b url(/images/svg_icons/feedback/friends.svg) no-repeat

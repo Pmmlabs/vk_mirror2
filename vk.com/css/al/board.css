@@ -477,14 +477,14 @@ a.bp_date {
     margin-left: 7px;
     -o-transition: visibility 100ms ease, opacity 100ms ease;
     transition: visibility 100ms ease, opacity 100ms ease;
-    background: url(/images/post_icon.png?9) no-repeat 1px -52px
+    background: url(/images/post_icon.png?10) no-repeat 1px -52px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .bp_action {
-        background-image: url(/images/post_icon_2x.png?9);
+        background-image: url(/images/post_icon_2x.png?10);
         background-size: 20px 413px
     }
 }

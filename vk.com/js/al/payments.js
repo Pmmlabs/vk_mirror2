@@ -687,7 +687,7 @@ var MoneyTransfer = {
             removeClass('payments_iframe_container', 'payments_threeds_frame');
         }
         if (!skipContHeight) {
-            ge('payments_iframe_container').style.height = (height ? height : cur.prevFrameHeight) + 5 + 'px';
+            ge('payments_iframe_container').style.height = (height ? height : cur.prevFrameHeight) + 10 + 'px';
         }
         ge('payments_iframe_container').scrollTop = 0;
     },
