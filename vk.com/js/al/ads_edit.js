@@ -6541,7 +6541,7 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
                 this.criteria[criterionName].ui = new RichDropDown(targetElem, this.getUiCriterionData(criterionName), this.getUiCriterionSelectedData(criterionName));
                 this.criteria[criterionName].ui.setOptions({
                     placeholder: this.getUiCriterionPlaceholderText(criterionName),
-                    operators: ['&', '&!', '|']
+                    operators: ['&', '&!', '|', '!']
                 });
                 this.criteria[criterionName].ui.onChange(function() {
                     this.onUiChange(criterionName);

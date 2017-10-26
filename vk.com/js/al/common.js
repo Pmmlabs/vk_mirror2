@@ -10808,7 +10808,8 @@ function imagesLoader(cont, options) {
 
         var images = geByClass(opts.need_load_class, cont || bodyNode),
             changed_images = [];
-        if (cont) {
+
+        if (cont && images.length) {
             var cont_h = cont.offsetHeight,
                 cont_top = cont.scrollTop - cont_h * opts.top_load,
                 cont_bottom = cont.scrollTop + cont_h * opts.bottom_load;

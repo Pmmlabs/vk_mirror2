@@ -3039,7 +3039,7 @@ h4.subheader.ads_retargeting_subheader_top {
     color: #828282
 }
 
-.ads_retargeting_price_list_item_cell_desc:first-letter {
+.ads_retargeting_price_list_item_cell_products_desc:first-letter {
     text-transform: uppercase
 }
 
@@ -3051,10 +3051,8 @@ h4.subheader.ads_retargeting_subheader_top {
 .ads_retargeting_price_list_item_cell_update_link {
     position: relative;
     display: block;
-    width: 28px;
-    height: 28px;
-    border-radius: 14px;
-    background-color: #e5ebf1
+    width: 18px;
+    height: 14px
 }
 
 .ads_retargeting_price_list_item_cell_update_tt.tt_default.tt_down:after,
@@ -3073,8 +3071,8 @@ h4.subheader.ads_retargeting_subheader_top {
 .ads_retargeting_price_list_item_cell_update_link:after {
     content: '';
     position: absolute;
-    top: 7px;
-    left: 5px;
+    top: 0;
+    left: 0;
     display: block;
     width: 18px;
     height: 14px;

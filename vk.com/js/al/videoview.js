@@ -1727,6 +1727,12 @@ var Videoview = {
                                 m = e[5];
                             mvcur.chatMode && !m && VideoChat.appendSticker("like", c);
                             break;
+                        case "sticker":
+                            var d = e[2],
+                                p = e[3],
+                                h = e[4];
+                            mvcur.chatMode && VideoChat.appendSticker(p, h);
+                            break;
                         case "video_view":
                             Videoview.updateLiveViewersCount(e[2]);
                             break;
@@ -1745,8 +1751,8 @@ var Videoview = {
                             break;
                         case "live_midroll":
                             if (mvcur.player && !mvcur.mvData.launchedLiveAds) {
-                                var p = !!e[2];
-                                mvcur.player.pushLiveMidroll(p)
+                                var g = !!e[2];
+                                mvcur.player.pushLiveMidroll(g)
                             }
                             break;
                         default:
