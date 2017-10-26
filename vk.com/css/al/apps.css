@@ -299,7 +299,36 @@
 }
 
 .apps_install_header__actions .flat_button {
-    margin-right: 5px
+    margin-right: 5px;
+    position: relative
+}
+
+.apps_install_header__actions .flat_button.app,
+.apps_install_header__actions .flat_button.game {
+    padding-left: 34px
+}
+
+.apps_install_header__actions .flat_button.app:before,
+.apps_install_header__actions .flat_button.game:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    margin-top: -10px;
+    left: 10px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%20d%3D%22M14.068%2011.094c-1.373%201.083-4.574%203.292-6.365%204.48C5.913%2016.764%206%2015.174%206%2014.26V5.68c0-2.002.745-1.918%201.703-1.266%201.738%201.183%205.18%203.558%206.367%204.434%201.188.877%201.292%201.225-.002%202.246z%22%2F%3E%3C%2Fsvg%3E");
+    background-size: cover
+}
+
+.apps_install_header__actions .flat_button.game {
+    padding-left: 38px
+}
+
+.apps_install_header__actions .flat_button.game:before {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20fill%3D%22%23FFF%22%20fill-rule%3D%22evenodd%22%20d%3D%22M6%208h-.5c-.276%200-.5.224-.5.5s.224.5.5.5H6v.5c0%20.276.224.5.5.5s.5-.224.5-.5V9h.5c.276%200%20.5-.224.5-.5S7.776%208%207.5%208H7v-.5c0-.276-.224-.5-.5-.5s-.5.224-.5.5V8zm11.77%202.254c.1.404.996%204.54-1.593%204.742-1.095.1-2.29-1.614-3.186-2.522-.795-1.01-1.69-1.513-3.085-1.513-1.393%200-2.19.506-3.086%201.515-.897.908-2.09%202.623-3.088%202.522-2.488-.1-1.592-4.338-1.492-4.742C2.636%208.035%204.03%204%206.818%204c0%200%20.896.1%201.593.504%201.197.505%201.794.505%203.088%200C12.294%204.1%2013.09%204%2013.09%204c2.888%200%204.182%203.934%204.68%206.254zM12.995%209V8h-1v1h1zM14%209h1V8h-1v1z%22%2F%3E%3C%2Fsvg%3E");
+    left: 12px
 }
 
 .apps_install_header .apps_i_desktop:after {

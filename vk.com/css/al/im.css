@@ -2617,7 +2617,7 @@ img.im_photo_thumb {
 }
 
 .im-chat-input .im-chat-input--textarea .ms_items_more_wrap {
-    z-index: 119
+    z-index: 118
 }
 
 .im-chat-input .im-chat-input--textarea>.flat_button {
@@ -4547,10 +4547,6 @@ img.im_photo_thumb {
 .im-mess--lbl-was-sebastianoved {
     color: hsla(220, 8%, 51%, .6);
     white-space: nowrap
-}
-
-.im-mess--lbl-was-sebastianoved.is_inline:before {
-    content: '\2014  '
 }
 
 .nim-peer {
@@ -7573,7 +7569,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     position: fixed;
     background: #fff;
     text-align: center;
-    z-index: 120
+    z-index: 119
 }
 
 .im-dropbox--rect {
@@ -8514,8 +8510,12 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .is_msg_sebastianoving .im-send-btn.is_input_empty {
     cursor: default;
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Crect%20width%3D%2224%22%20height%3D%2224%22%20opacity%3D%22.5%22%20rx%3D%222%22%2F%3E%0A%20%20%20%20%3Cpolyline%20stroke%3D%22%23828a99%22%20stroke-width%3D%221.8%22%20points%3D%227%2013%2010%2016%2017%209%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2211%22%20stroke%3D%22%23828a99%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Crect%20width%3D%2224%22%20height%3D%2224%22%20opacity%3D%22.5%22%20rx%3D%222%22%2F%3E%0A%20%20%20%20%3Cpolyline%20stroke%3D%22%23828a99%22%20stroke-width%3D%221.8%22%20points%3D%227%2013%2010%2016%2017%209%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2211%22%20stroke%3D%22%23828a99%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") 50% no-repeat;
     opacity: 0.7
+}
+
+.is_msg_sebastianoving .im-send-btn.is_input_empty:before {
+    display: none
 }
 
 .im-invitation {

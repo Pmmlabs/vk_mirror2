@@ -218,7 +218,7 @@ var stVersions = {
     'owner_photo.js': 1714149322,
     'owner_photo.css': 13156005566,
     'page.js': 3849479683,
-    'page.css': 14477293517,
+    'page.css': 13566916722,
     'page_help.css': 14812492572,
     'public.css': 17936722031,
     'public.js': 1344775948,
@@ -248,14 +248,14 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 112507405263,
-    'imn.js': 133377963716,
+    'im.css': 116344679791,
+    'imn.js': 127956183899,
     'im.js': 1322065005,
     'emoji.js': 632327763,
     'wide_dd.css': 10252908878,
     'wide_dd.js': 452755344,
     'writebox.css': 10679507853,
-    'writebox.js': 53762906929,
+    'writebox.js': 51040939333,
     'sharebox.js': 2160209921,
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
@@ -264,7 +264,7 @@ var stVersions = {
     'feed.css': 17262241111,
     'privacy.js': 3620108221,
     'privacy.css': 10092837131,
-    'apps.css': 25604775188,
+    'apps.css': 22976733298,
     'apps.js': 3735536424,
     'apps_edit.js': 2247867637,
     'apps_edit.css': 18029581154,
@@ -317,7 +317,7 @@ var stVersions = {
     'widgets.css': 25701399047,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 74775917652,
+    'notifier.js': 72053950056,
     'notifier.css': 18202871260,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
@@ -474,7 +474,7 @@ var stVersions = {
     'landing_aes.js': 14740012721,
     'landings/donors_day.css': 11112446322,
     'landing_donors_day.js': 1027075361,
-    'landings/testing.css': 8043109382,
+    'landings/testing.css': 11033061204,
     'vkme.css': 11445291896,
     'cmodules/web/vkme-desktop.js': 4912670899,
     'ui_controls.js': 2963107885,
@@ -551,7 +551,7 @@ var stVersions = {
     'internal/restore2.js': 1037282534,
     'language.js': 3496086639,
     'language.css': 9936650152,
-    'lang': 6856
+    'lang': 6858
 };
 var stTypes = {
     fromLib: {
@@ -616,4 +616,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 4077;
+var _rnd = 7879;

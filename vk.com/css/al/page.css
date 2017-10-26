@@ -895,6 +895,12 @@ html:not([lang=ru]) .wall_marked_as_ads {
     font-size: 19.5px
 }
 
+.zoom_text_active .zoom_text .wall_copy_more,
+.zoom_text_active .zoom_text .wall_post_more,
+.zoom_text_active .zoom_text .wall_reply_more {
+    font-size: 13px
+}
+
 .zoom_text_active .wall_text #wpe_text.zoom_text_anim,
 .zoom_text_active div.submit_post_field.zoom_text_anim,
 .zoom_text_active div.submit_post_field.zoom_text_anim[contenteditable=true] {
