@@ -4540,8 +4540,8 @@ img.im_photo_thumb {
 }
 
 .im-mess:not(.im-mess_sebastianovable) .im-mess--sebastianov,
-.im-mess.im-mess_out .im-mess--reply,
-.im-mess.im-mess_sebastianovable .im-mess--reply {
+.im-mess.im-mess_out .im-mess--reply:not(.im-mess--reply-show),
+.im-mess.im-mess_sebastianovable .im-mess--reply:not(.im-mess--reply-show) {
     display: none!important
 }
 

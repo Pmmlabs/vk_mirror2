@@ -248,7 +248,7 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 115538854493,
+    'im.css': 114149113151,
     'imn.js': 125938003966,
     'im.js': 1322065005,
     'emoji.js': 2145343042,
@@ -474,7 +474,7 @@ var stVersions = {
     'landing_aes.js': 14740012721,
     'landings/donors_day.css': 11112446322,
     'landing_donors_day.js': 1027075361,
-    'landings/testing.css': 11033061204,
+    'landings/testing.css': 9099058173,
     'vkme.css': 11445291896,
     'cmodules/web/vkme-desktop.js': 4912670899,
     'ui_controls.js': 2963107885,
@@ -616,4 +616,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 3149;
+var _rnd = 1799;
