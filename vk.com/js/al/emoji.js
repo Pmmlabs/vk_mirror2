@@ -2002,6 +2002,7 @@ if (!window.Emoji) {
             }
             return res;
         },
+
         updateRecentEmoji: function(optId) {
             var emojiList = Emoji.getRecentEmojiSorted(),
                 recent_els = Emoji.emojiGetCatCont(optId, emojiList);
@@ -2286,14 +2287,9 @@ if (!window.Emoji) {
                         window.tooltips && tooltips.destroyAll();
                         opts.scrollStarted = true;
                     },
-                    onupdate: function() {
-                        if (opts.curTab == Emoji.TAB_EMOJI && opts.scrollStarted) {
-                            if ((opts.emojiScroll.data.scrollBottom - Emoji.BOTTOM_REST_FOR_ADD_EMOJI_CATEGORY) <= 0) {
-                                setTimeout(function() {
-                                    Emoji.addNextEmojiCategoty(optId);
-                                }, 0);
-                            }
-                            Emoji.updateEmojiCatTitle(optId);
+                    onupdate: function(scroll) {
+                        if (opts.curTab == Emoji.TAB_EMOJI) {
+                            Emoji.updateEmojiCategories(scroll, opts, optId);
                         } else {
                             Emoji.updateShownStickers(optId);
                         }
@@ -2310,6 +2306,17 @@ if (!window.Emoji) {
 
             opts.emojiExpanded = true;
         },
+
+        updateEmojiCategories: function(scroll, opts, optId) {
+            if ((scroll.data.scrollBottom - Emoji.BOTTOM_REST_FOR_ADD_EMOJI_CATEGORY) <= 0 && opts.scrollStarted) {
+                setTimeout(function() {
+                    Emoji.addNextEmojiCategoty(optId);
+                    Emoji.updateEmojiCatTitle(optId);
+                }, 0);
+            }
+            Emoji.updateEmojiCatTitle(optId);
+        },
+
         updateShownStickers: function(optId, noChangeTab) {
             var opts = Emoji.opts[optId];
 
@@ -2904,6 +2911,7 @@ if (!window.Emoji) {
                 if (opts.imagesLoader) {
                     opts.imagesLoader.processLoad();
                 }
+
                 if (opts.emojiOvered && opts.curTab === 0) {
                     Emoji.emojiOver(optId, Emoji.getFirstEmojiEl(optId));
                 }
@@ -2911,6 +2919,7 @@ if (!window.Emoji) {
                     opts.emojiScroll && opts.emojiScroll.scrollTop(0);
                 }
                 Emoji.updateRecentEmoji(optId);
+                Emoji.updateEmojiCatTitle(optId);
             } else {
                 hide(emojiWrap);
                 show(stickersWrap);
@@ -3701,6 +3710,7 @@ if (!window.Emoji) {
                 opts.hideStickersInitial = noStickers;
             }
         },
+
         getSizeCached: function(el) {
             el = ge(el);
             if (!el) {

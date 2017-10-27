@@ -23,6 +23,7 @@
 .im-mess .im-mess--check,
 .im-mess.im-mess_search:hover:after,
 .im-notice--messenger .im-notice--image,
+.im-notice--messenger_community .im-notice--image,
 .im-notice--money_transfer .im-notice--image,
 .im-notice--vkadmin .im-notice--image,
 .im-page .im-page--center-empty,
@@ -7963,11 +7964,26 @@ body.sf .nim-dialog .nim-dialog--unread {
     }
 }
 
-.im-notice--messenger {
+.im-notice--money_transfer .im-notice--image {
+    background: url(/images/message_money.png?1) no-repeat 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-notice--money_transfer .im-notice--image {
+        background-image: url(/images/message_money_2x.png?1);
+        background-size: 97px 100px
+    }
+}
+
+.im-notice--messenger,
+.im-notice--messenger_community {
     padding: 35px 45px 28px 20px
 }
 
-.im-notice--messenger .im-notice--image {
+.im-notice--messenger .im-notice--image,
+.im-notice--messenger_community .im-notice--image {
     margin: -8px 20px 0 0;
     background: url(/images/messenger-promo/top.png) no-repeat 0 0
 }
@@ -7975,13 +7991,15 @@ body.sf .nim-dialog .nim-dialog--unread {
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .im-notice--messenger .im-notice--image {
+    .im-notice--messenger .im-notice--image,
+    .im-notice--messenger_community .im-notice--image {
         background-image: url(/images/messenger-promo/top_2x.png);
         background-size: 100px 100px
     }
 }
 
-.im-notice--messenger .im-notice--title {
+.im-notice--messenger .im-notice--title,
+.im-notice--messenger_community .im-notice--title {
     padding: 1px 0 2px;
     font-weight: 400;
     font-size: 19px;
@@ -7989,7 +8007,8 @@ body.sf .nim-dialog .nim-dialog--unread {
     color: #000
 }
 
-.im-notice--messenger .im-notice--text {
+.im-notice--messenger .im-notice--text,
+.im-notice--messenger_community .im-notice--text {
     line-height: 19px;
     color: #000
 }

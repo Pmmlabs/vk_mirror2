@@ -7307,9 +7307,10 @@ AdsTargetingEditor.prototype.setAutoGroupsNotValue = function(selectedValue) {
     if (selectedValue === false) return;
 
     this.showGroupMore('interests');
+    this.initUiCriterion('groups');
     this.initUiCriterion('groups_not');
 
-    if (this.criteria.groups_not.uiInited) {
+    if (this.criteria.groups.uiInited && this.criteria.groups_not.uiInited) {
         this.criteria.groups_not.ui.clear();
         this.criteria.groups_not.ui.selectItem(selectedValue);
     }

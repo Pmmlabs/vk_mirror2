@@ -2916,6 +2916,12 @@ h4.subheader.ads_retargeting_subheader_top {
     border-spacing: 0
 }
 
+.ads_retargeting_price_list_unavailable {
+    margin: 20px 0 0;
+    color: #828282;
+    text-align: center
+}
+
 .ads_retargeting_price_list_empty {
     padding: 20px 50px;
     line-height: 170%;
@@ -3168,6 +3174,11 @@ h4.subheader.ads_retargeting_subheader_top {
     width: 100px;
     text-align: right;
     white-space: nowrap
+}
+
+.ads_retargeting_price_list_actions_table_item_empty {
+    text-align: center;
+    color: #828282
 }
 
 .ads_retargeting_price_list_actions_table_item_name {
