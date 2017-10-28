@@ -147,7 +147,7 @@ var stVersions = {
     'html5audio.js': 976782859,
     'html5video.js': 223664659,
     'html5video.css': 9897310720,
-    'audioplayer.js': 6302991872,
+    'audioplayer.js': 4903647868,
     'audioplayer.css': 11209686295,
     'audio_html5.js': 287741914,
     'audio.js': 4203163340,
@@ -277,7 +277,7 @@ var stVersions = {
     'profile_edit_edu.js': 174903945,
     'profile_edit_job.js': 1688095335,
     'profile_edit_mil.js': 112384103,
-    'search.js': 2182721495,
+    'search.js': 644408153,
     'search.css': 24644445584,
     'grid_sorter.js': 3170482150,
     'auto_list.js': 3820785325,
@@ -616,4 +616,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 9493;
+var _rnd = 8929;

@@ -12,7 +12,7 @@ var slide_show = function(e) {
                 "c[section]": e || cur.section
             } : serializeForm(s) || {}, t["c[q]"] = val("search_query");
             for (var r in t) t[r] && "0" != t[r] || delete t[r], "-1" == t[r] && t[r + "_custom"] ? (t[r] = t[r + "_custom"], delete t[r + "_custom"]) : t[r + "_custom"] && delete t[r + "_custom"];
-            return cur.qid && (t["c[qid]"] = cur.qid), "video" != cur.section || t["c[sort]"] || (t["c[sort]"] = "0"), "people" == cur.section && ge("c[name]") && !t["c[name]"] && (t["c[name]"] = "0"), "people" == cur.section && ge("c[photo]") && !t["c[photo]"] && (t["c[photo]"] = "0"), "people" == cur.section && t["c[invite]"] && delete t.from, "communities" != cur.section || !cur.filtersShown || t["c[q]"] || t["c[category]"] || (t["c[skip_catalog]"] = "1"), t
+            return "video" != cur.section || t["c[sort]"] || (t["c[sort]"] = "0"), "people" == cur.section && ge("c[name]") && !t["c[name]"] && (t["c[name]"] = "0"), "people" == cur.section && ge("c[photo]") && !t["c[photo]"] && (t["c[photo]"] = "0"), "people" == cur.section && t["c[invite]"] && delete t.from, "communities" != cur.section || !cur.filtersShown || t["c[q]"] || t["c[category]"] || (t["c[skip_catalog]"] = "1"), t
         },
         sameParams: function(e) {
             if (!cur.params) return !1;
@@ -171,10 +171,8 @@ var slide_show = function(e) {
             if (!e || !isVisible(e) || cur.isSearchLoading) return void(s && searcher.appendElements(s));
             if (s && searcher.appendElements(s), !cur.has_more) return void hide(e);
             cur.disableAutoMore = !1, cur.isSearchLoading = !0, lockButton(e);
-            var t = extend(searcher.getSectionParams(), {
-                offset: cur.offset
-            });
-            t.edit = nav.objLoc.edit, t.sign = nav.objLoc.sign, t.all = nav.objLoc.all, ajax.post("al_search.php", t, {
+            var t = searcher.getSectionParams();
+            t.offset = cur.offset, t.qid = cur.qid, t.edit = nav.objLoc.edit, t.sign = nav.objLoc.sign, t.all = nav.objLoc.all, ajax.post("al_search.php", t, {
                 onDone: function(s, t) {
                     cur.isSearchLoading = !1, t && (ge("no_results") && re("no_results"), ge("results").insertBefore(ce("div", {
                         innerHTML: t,
