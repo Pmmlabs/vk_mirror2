@@ -7,7 +7,7 @@ var Tickets = {
                 hasClass(t, "page_tab_sel") && (i = t, replaceClass(t, "page_tab_sel", "page_tab"))
             }), replaceClass(ge(e + "_tab"), "page_tab", "page_tab_sel")) : (each(geByClass("active_link", ge("tickets_tabs")), function(e, t) {
                 hasClass(t, "active_link") && (i = t, removeClass(t, "active_link"))
-            }), addClass(ge(e + "_tab"), "active_link")), toggle("stats_link", "stats" == e), "show" == e) return show("show_tab", "new_link"), hide("new_tab", "extra_tab"), !1;
+            }), addClass(ge(e + "_tab"), "active_link")), "show" == e) return show("show_tab", "new_link"), hide("new_tab", "extra_tab"), !1;
         if ("new" == e) {
             hide("show_tab", "extra_tab", "new_link"), show("new_tab");
             var o = ge(e + "_tab");

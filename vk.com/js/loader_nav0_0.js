@@ -331,10 +331,10 @@ var stVersions = {
     'tags_dd.css': 9555517256,
     'tasks.js': 4178217651,
     'tasks.css': 7307149143,
-    'helpdesk.js': 1998123585,
-    'helpdesk.css': 12415287750,
-    'tickets.js': 515972259,
-    'tickets.css': 16824079274,
+    'helpdesk.js': 706879506,
+    'helpdesk.css': 14394102425,
+    'tickets.js': 2538967148,
+    'tickets.css': 16822578985,
     'faq.js': 2841473572,
     'faq.css': 12290376249,
     'talmud.js': 1641838680,
@@ -616,4 +616,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 7061;
+var _rnd = 4633;

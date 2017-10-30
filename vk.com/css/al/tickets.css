@@ -489,9 +489,22 @@ body.dev .tickets_post_field_wrap {
 }
 
 .tickets_header {
+    box-sizing: border-box;
     padding: 11px 16px;
     color: #000;
-    border-bottom: 1px solid #e7e8ec
+    border-bottom: 1px solid #e7e8ec;
+    background: #fff
+}
+
+.tickets_header_fixed {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+    top: 42px;
+    position: fixed;
+    z-index: 10
+}
+
+.tickets_header_filler {
+    display: none
 }
 
 .tickets_header_title {
