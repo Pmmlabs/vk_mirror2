@@ -7507,7 +7507,8 @@ Composer = {
     },
 
     onKeyEvent: function(composer, event) {
-        var controlEvent = composer.wdd && inArray(event.keyCode, [KEY.UP, KEY.DOWN, KEY.RETURN]);
+        var isArrowKey = !event.shiftKey && inArray(event.keyCode, [KEY.UP, KEY.DOWN, KEY.RETURN]);
+        var controlEvent = composer.wdd && isArrowKey;
         if (event.type == 'keypress' || event.type == 'keydown') {
             if (event.keyCode == KEY.RETURN || event.keyCode == 10) {
                 if (!composer.select || !composer.select.isVisible()) {

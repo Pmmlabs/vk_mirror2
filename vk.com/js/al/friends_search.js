@@ -1,48 +1,48 @@
 var FriendsSearch = {
     submit: function() {
         var e = ge("fsearch_email").value,
-            o = ge("fsearch_pass").value;
-        return /^.{1,40}@.{1,40}\..{1,4}$/.test(e) ? o ? (cur.inviteBox.showProgress(), ge("fsearch_inviter_form").submit(), void hide("fsearch_error")) : notaBene("fsearch_pass") : notaBene("fsearch_email")
+            t = ge("fsearch_pass").value;
+        return /^.{1,40}@.{1,40}\..{1,4}$/.test(e) ? t ? (cur.inviteBox.showProgress(), ge("fsearch_inviter_form").submit(), void hide("fsearch_error")) : notaBene("fsearch_pass") : notaBene("fsearch_email")
     },
-    checkResult: function(e, o, t) {
+    checkResult: function(e, t, o) {
         if (cur.inviteBox) {
             cur.inviteBox.hideProgress();
             try {
                 var r = ge("fsearch_inviter").contentWindow.location;
                 r.href, r.hash.replace("#", "")
-            } catch (n) {
-                debugLog(n.message)
+            } catch (i) {
+                debugLog(i.message)
             }
-            var i = document.createElement("script");
-            i.type = "text/javascript", i.src = "http://" + e + ".vk.com/inviter.php?act=get_friends_list&hash=" + hash + "&skey=" + key + "&mid=" + o + "&vk=" + t + "&back=FriendsSearch.getEmailResult&v=" + Math.floor(1e4 * Math.random()), headNode.appendChild(i)
+            var n = document.createElement("script");
+            n.type = "text/javascript", n.src = "http://" + e + ".vk.com/inviter.php?act=get_friends_list&hash=" + hash + "&skey=" + key + "&mid=" + t + "&vk=" + o + "&back=FriendsSearch.getEmailResult&v=" + Math.floor(1e4 * Math.random()), headNode.appendChild(n)
         }
     },
     getEmailResult: function(e) {
         if (!e || e.error) return FriendsSearch.showError(e.error), !1;
-        var o = [];
-        for (var t in e.list) o.push(t);
-        FriendsSearch.getList(1, o, {
+        var t = [];
+        for (var o in e.list) t.push(o);
+        FriendsSearch.getList(1, t, {
             hash: e.hash
         })
     },
-    getList: function(e, o, t) {
-        o = o.join("|");
+    getList: function(e, t, o) {
+        t = t.join("|");
         var r = extend({
             act: "save_friends",
             service: e,
-            Ids: o
-        }, t);
+            Ids: t
+        }, o);
         ajax.post("al_friends.php", r, {
-            onDone: function(e, o) {
-                if (1 == o) return curBox().hide(), Friends.section("suggestions", function() {
+            onDone: function(e, t) {
+                if (1 == t) return curBox().hide(), Friends.section("suggestions", function() {
                     Friends.changeSummary(), nav.setLoc(extend(nav.objLoc, {
                         section: "suggestions"
                     }))
                 }, {
                     m: 1
                 }), !0;
-                var t = ge("fsearch_results");
-                t.innerHTML = e, show(t), curBox().hideProgress()
+                var o = ge("fsearch_results");
+                o.innerHTML = e, show(o), curBox().hideProgress()
             }
         })
     },
@@ -56,24 +56,58 @@ var FriendsSearch = {
             }
         })
     },
-    checkOAuth: function(e, o, t) {
-        var r = "https://" + location.host + "/friends?act=import_contacts&type=" + t;
-        if (1 == t) var n = "https://accounts.google.com/o/oauth2/auth?scope=https://www.google.com/m8/feeds/&response_type=code&redirect_uri=" + encodeURIComponent(r) + "&approval_prompt=force&state=" + o + "&client_id=190525020719-3g15ppddiep5mnjbt0g8vi1kh6v160an.apps.googleusercontent.com&hl=" + e;
-        else if (3 == t) var n = "https://graph.facebook.com/v2.7/oauth/authorize?client_id=128749580520227&redirect_uri=" + encodeURIComponent(r) + "&display=popup&state=" + o;
-        else if (4 == t) var n = "http://www.odnoklassniki.ru/oauth/authorize?client_id=168388096&scope=VALUABLE+ACCESS&response_type=code&redirect_uri=" + encodeURIComponent(r + "&state=" + o);
-        var i = "undefined" != typeof window.screenX ? window.screenX : window.screenLeft,
+    confirmImportContacts: function(e, t, o, r) {
+        var i, n, s;
+        switch (r) {
+            case "facebook":
+                i = getTemplate("friends_confirm_import_title", {
+                    service: "facebook",
+                    title: getLang("friends_import_facebook_header")
+                }), n = getTemplate("friends_confirm_import_body", {
+                    msg: getLang("profileEdit_facebook_import_desc")
+                }), s = getLang("profileEdit_auth_in_facebook");
+                break;
+            case "google":
+                i = getTemplate("friends_confirm_import_title", {
+                    service: "google",
+                    title: getLang("friends_import_google_header")
+                }), n = getTemplate("friends_confirm_import_body", {
+                    msg: getLang("profileEdit_google_import_desc")
+                }), s = getLang("profileEdit_auth_in_google");
+                break;
+            case "ok":
+                i = getTemplate("friends_confirm_import_title", {
+                    service: "ok",
+                    title: getLang("friends_import_odnoklassniki_header")
+                }), n = getTemplate("friends_confirm_import_body", {
+                    msg: getLang("profileEdit_ok_import_desc")
+                }), s = getLang("profileEdit_auth_in_ok")
+        }
+        var a = showFastBox({
+            title: i,
+            width: 560
+        }, n, s, function() {
+            return a.hide(), FriendsSearch.checkOAuth(e, t, o)
+        }, getLang("global_cancel"))
+    },
+    checkOAuth: function(e, t, o) {
+        var r = "https://" + location.host + "/friends?act=import_contacts&type=" + o;
+        if (1 == o) var i = "https://accounts.google.com/o/oauth2/auth?scope=https://www.google.com/m8/feeds/&response_type=code&redirect_uri=" + encodeURIComponent(r) + "&approval_prompt=force&state=" + t + "&client_id=190525020719-3g15ppddiep5mnjbt0g8vi1kh6v160an.apps.googleusercontent.com&hl=" + e;
+        else if (3 == o) var i = "https://graph.facebook.com/v2.7/oauth/authorize?client_id=128749580520227&redirect_uri=" + encodeURIComponent(r) + "&display=popup&state=" + t;
+        else if (4 == o) var i = "http://www.odnoklassniki.ru/oauth/authorize?client_id=168388096&scope=VALUABLE+ACCESS&response_type=code&redirect_uri=" + encodeURIComponent(r + "&state=" + t);
+        var n = "undefined" != typeof window.screenX ? window.screenX : window.screenLeft,
             s = "undefined" != typeof window.screenY ? window.screenY : window.screenTop,
             a = "undefined" != typeof window.outerWidth ? window.outerWidth : document.body.clientWidth,
             c = "undefined" != typeof window.outerHeight ? window.outerHeight : document.body.clientHeight - 22,
             d = 640,
             h = 450,
-            u = parseInt(i + (a - d) / 2, 10),
-            p = parseInt(s + (c - h) / 2.5, 10),
-            f = "width=" + d + ",height=" + h + ",left=" + u + ",top=" + p,
-            l = window.open(n, "google_auth", f);
-        cur.importDone || (cur.importDone = {}), cur.importDone[t] = 0;
-        var m = setInterval(function() {
-            l.closed ? (clearInterval(m), FriendsSearch.checkImportResult()) : cur.importDone[t] && clearInterval(m)
+            p = parseInt(n + (a - d) / 2, 10),
+            u = parseInt(s + (c - h) / 2.5, 10),
+            f = "width=" + d + ",height=" + h + ",left=" + p + ",top=" + u,
+            l = window.open(i, "google_auth", f);
+        cur.importDone || (cur.importDone = {}), cur.importDone[o] = 0;
+        var _ = setInterval(function() {
+            l.closed ? (clearInterval(_), FriendsSearch.checkImportResult()) : cur.importDone[o] && clearInterval(_)
         }, 500)
     },
     importDone: function(e) {
@@ -108,8 +142,8 @@ var FriendsSearch = {
                 onFail: function() {
                     return !0
                 },
-                onDone: function(o) {
-                    e.hide(), clearInterval(cur.importingInt), o.show()
+                onDone: function(t) {
+                    e.hide(), clearInterval(cur.importingInt), t.show()
                 },
                 preOnDone: !0
             })
@@ -117,8 +151,8 @@ var FriendsSearch = {
     },
     showImportTT: function(e) {
         stManager.add(["intro.css"], function() {
-            var o = ge("friends_summary");
-            showTooltip(o, {
+            var t = ge("friends_summary");
+            showTooltip(t, {
                 content: '    <div id="intr_tt_pointer_left"></div>    <div id="intr_tt" style="width: 192px">      <div id="intr_hide" class="fl_r" onclick="ge(\'friends_summary\').tt.hide();" onmouseover="showTooltip(this, {text: \'' + e.hide + '\', black: 1, shift: [14, 4, 0]})"></div>      <div id="intr_header">' + e.header + '</div>      <div id="intr_text">' + e.text + "</div>    </div>",
                 slideX: 15,
                 className: "profile_intro_side_tt",
@@ -130,28 +164,28 @@ var FriendsSearch = {
         })
     },
     showError: function(e) {
-        var o = ge("fsearch_error");
-        o.innerHTML = e, show(o), curBox().hideProgress()
+        var t = ge("fsearch_error");
+        t.innerHTML = e, show(t), curBox().hideProgress()
     },
-    addImported: function(e, o, t, r) {
+    addImported: function(e, t, o, r) {
         debugLog("onimport", arguments);
-        var n = curBox();
-        if (n) return ajax.post("al_friends.php", {
+        var i = curBox();
+        if (i) return ajax.post("al_friends.php", {
             act: "add_imported",
             hash: r.hash,
             uids: e.join(",")
         }, {
             onDone: function(e) {
-                n.hide();
-                var o = ge("friends_import_msg");
-                o.className = "friends_import_success", o.innerHTML = e, setStyle(o, {
+                i.hide();
+                var t = ge("friends_import_msg");
+                t.className = "friends_import_success", t.innerHTML = e, setStyle(t, {
                     backgroundColor: "#F4EBBD"
-                }), animate(o, {
+                }), animate(t, {
                     backgroundColor: "#F9F6E7"
                 }, 2e3)
             },
             onFail: function() {
-                n.hide();
+                i.hide();
                 var e = ge("friends_import_msg");
                 e.className = "friends_import_fail", e.innerHTML = text, setStyle(e, {
                     backgroundColor: "#FACEBB"
@@ -159,8 +193,8 @@ var FriendsSearch = {
                     backgroundColor: "#FFEFE8"
                 }, 2e3)
             },
-            showProgress: n.showProgress,
-            hideProgress: n.hideProgress
+            showProgress: i.showProgress,
+            hideProgress: i.hideProgress
         }), !1
     },
     addCancelled: function(e) {

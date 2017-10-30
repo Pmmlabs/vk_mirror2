@@ -175,7 +175,7 @@ var stVersions = {
     'spe.js': 3760998372,
     'friends.js': 140439177,
     'friends.css': 10101433406,
-    'friends_search.js': 3688413939,
+    'friends_search.js': 964151048,
     'friends_search.css': 1694758778,
     'board.js': 3924396132,
     'board.css': 14846265767,
@@ -217,7 +217,7 @@ var stVersions = {
     'module.css': 14557525248,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 13156005566,
-    'page.js': 3849479683,
+    'page.js': 3108482282,
     'page.css': 13566916722,
     'page_help.css': 14812492572,
     'public.css': 17936722031,
@@ -317,7 +317,7 @@ var stVersions = {
     'widgets.css': 25701399047,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 70472489006,
+    'notifier.js': 72486820197,
     'notifier.css': 18202871260,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
@@ -551,7 +551,7 @@ var stVersions = {
     'internal/restore2.js': 1037282534,
     'language.js': 3496086639,
     'language.css': 9936650152,
-    'lang': 6861
+    'lang': 6864
 };
 var stTypes = {
     fromLib: {
@@ -616,4 +616,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 4633;
+var _rnd = 2955;
