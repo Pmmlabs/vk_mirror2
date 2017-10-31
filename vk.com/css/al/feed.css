@@ -1098,6 +1098,11 @@
     background: #4bb34b url(/images/svg_icons/feedback/reply.svg) no-repeat
 }
 
+.feedback_reply_story_row .feedback_photo_icon {
+    display: block;
+    background: #5c9ce6 url(/images/svg_icons/feedback/reply_story.svg) no-repeat
+}
+
 .feedback_tag_row .feedback_photo_icon {
     display: block;
     background: #4bb34b url(/images/svg_icons/feedback/tag.svg) no-repeat
@@ -1182,11 +1187,31 @@
 }
 
 .feedback_support_thumb {
+    background: url('/images/techsupp.png') no-repeat 0 0
+}
+
+.feedback_support_thumb,
+.feedback_new_user_requests_thumb {
     float: left;
-    background: url('/images/techsupp.png') no-repeat 0 0;
     width: 50px;
     height: 50px;
     border-radius: 50%
+}
+
+.feedback_new_user_requests_thumb.feedback_thumb_education {
+    background: url('/images/icons/notify_set_education.png') no-repeat 0 0;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+    margin: 5px 0 0 0px
+}
+
+.feedback_new_user_requests_thumb.feedback_thumb_avatar {
+    background: url('/images/icons/notify_set_photo.png') no-repeat 0 0;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+    margin: 5px 0 0 0px
 }
 
 .feedback_sticky_row {

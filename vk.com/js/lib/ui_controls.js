@@ -301,6 +301,7 @@ extend(UiControl.prototype, {
             },
             onItemSelect: i._selectItem.bind(i),
             forAutocomplete: i.options.autocomplete,
+            forDropDown: !0,
             onShow: function() {
                 _ui.sel(i.guid), i.highlightInput(!0), isFunction(i.options.onShow) && i.options.onShow()
             },
@@ -1131,7 +1132,7 @@ extend(UiControl.prototype, {
         this.isVisible(this.container) ? this.hide() : this.show()
     },
     _ariaFocusOnSelectContainer: function() {
-        vk.a11y && !this.options.forAutocomplete && this.list.focus()
+        vk.a11y && this.options.forDropDown && !this.options.forAutocomplete && this.list.focus()
     },
     _ariaFocusOnSelectedItem: function(t) {
         vk.a11y && this.list.childNodes[t].focus()

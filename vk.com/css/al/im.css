@@ -5152,154 +5152,6 @@ img.im_photo_thumb {
     height: 30px
 }
 
-.nim-peer.nim-peer_big {
-    width: 100px;
-    height: 100px
-}
-
-.nim-peer.nim-peer_big .im_grid>img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc;
-    background-color: inherit
-}
-
-.nim-peer.nim-peer_big .im_grid>img:before {
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100px;
-    height: 100px;
-    background-color: inherit
-}
-
-.nim-peer.nim-peer_big .im_grid>img:after {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #fafbfc;
-    background-image: url(/images/camera_100.png);
-    background-size: cover
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .nim-peer.nim-peer_big .im_grid>img:after {
-        background-image: url(/images/camera_200.png)
-    }
-}
-
-.nim-peer.nim-peer_big .nim-peer--photo {
-    background-color: inherit;
-    overflow: hidden;
-    margin-left: -2px;
-    margin-bottom: -1px
-}
-
-.nim-peer.nim-peer_big .nim-peer--photo .im_grid>img,
-.nim-peer.nim-peer_big .nim-peer--photo>img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    -moz-force-broken-image-icon: 0;
-    background-color: #fafbfc;
-    background-color: inherit
-}
-
-.nim-peer.nim-peer_big .nim-peer--photo .im_grid>img:before,
-.nim-peer.nim-peer_big .nim-peer--photo>img:before {
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100px;
-    height: 100px;
-    background-color: inherit
-}
-
-.nim-peer.nim-peer_big .nim-peer--photo .im_grid>img:after,
-.nim-peer.nim-peer_big .nim-peer--photo>img:after {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    content: " ";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #fafbfc;
-    background-image: url(/images/camera_100.png);
-    background-size: cover
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .nim-peer.nim-peer_big .nim-peer--photo .im_grid>img:after,
-    .nim-peer.nim-peer_big .nim-peer--photo>img:after {
-        background-image: url(/images/camera_200.png)
-    }
-}
-
-.nim-peer.nim-peer_big .nim-peer--photo_hidden {
-    visibility: hidden
-}
-
-.nim-peer.nim-peer_big img {
-    width: 100px;
-    height: 100px;
-    display: block
-}
-
-.nim-peer.nim-peer_big .dialogs_inline_chatter img {
-    border-radius: 0
-}
-
-.nim-peer.nim-peer_big .im_grid img,
-.nim-peer.nim-peer_big .nim-peer--photo>img {
-    margin-left: 2px;
-    margin-bottom: 1px
-}
-
-.nim-peer.nim-peer_big .im_grid>.dialogs_inline_chatter {
-    overflow: hidden;
-    width: 50px;
-    height: 49.5px;
-    margin-left: 1px;
-    margin-bottom: 1px
-}
-
-.nim-peer.nim-peer_big .im_grid>.dialogs_inline_chatter img {
-    margin-left: -24px;
-    margin-top: -25px
-}
-
-.nim-peer.nim-peer_big .im_grid>.dialogs_inline_chatter_half {
-    width: 50px;
-    height: 100px;
-    border-radius: 0
-}
-
-.nim-peer.nim-peer_big .im_grid>.dialogs_inline_chatter_half img {
-    margin-top: 0
-}
-
-.nim-peer.nim-peer_big img {
-    width: 100px;
-    height: 100px
-}
-
 .nim-dialog {
     height: 63px;
     box-sizing: border-box;
@@ -8550,51 +8402,108 @@ body.sf .nim-dialog .nim-dialog--unread {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    font-size: 14px;
+    font-size: 19px;
     max-width: 485px;
     overflow: hidden;
     margin: auto;
     margin-bottom: 2px;
-    text-overflow: ellipsis
-}
-
-.im-invitation .im-invitation--count {
-    color: #939393;
-    margin-bottom: 30px
+    text-overflow: ellipsis;
+    margin-bottom: 40px
 }
 
 .im-invitation .im-invitation--user {
     overflow: hidden;
     display: inline-block;
-    margin-left: 10px
+    margin-left: -15px
 }
 
-.im-invitation .im-invitation--user img {
+.im-invitation .im-invitation--user>a {
+    line-height: 0;
+    display: block
+}
+
+.im-invitation .im-invitation--user img,
+.im-invitation .im-invitation--user-more {
     width: 50px;
     height: 50px;
-    border-radius: 50%
+    border-radius: 50%;
+    border: solid 3px #fff
+}
+
+.im-invitation .im-invitation--user-more {
+    overflow: hidden;
+    display: inline-block;
+    margin-left: -15px;
+    font-size: 14px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    background: #99a2ad
 }
 
 .im-invitation .im-invitation--users {
-    margin-left: -10px;
-    margin-bottom: 24px;
-    min-height: 76px
+    margin-bottom: 5px;
+    margin-left: 15px;
+    line-height: 0
+}
+
+.im-invitation .im-invitation--names {
+    color: #656565;
+    max-width: 190px;
+    margin: auto;
+    margin-bottom: 32px
+}
+
+.im-invitation .im-invitation--names>a {
+    color: #656565
 }
 
 .im-invitation .im-invitation--chat-photo {
     margin: 0 auto 12px
 }
 
-.im-invitation .im-invitation--user-name {
-    margin-top: 2px;
-    width: 70px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap
+.im-invitation .im-invitation--chat-photo-src {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    -moz-force-broken-image-icon: 0;
+    background-color: #fafbfc
 }
 
-.im-invitation .im-invitation--user-name a {
-    color: #000
+.im-invitation .im-invitation--chat-photo-src:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    background-color: #fff
+}
+
+.im-invitation .im-invitation--chat-photo-src:after {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fafbfc;
+    background-image: url(/images/camera_100.png);
+    background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .im-invitation .im-invitation--chat-photo-src:after {
+        background-image: url(/images/camera_200.png)
+    }
 }
 
 .im-invitation .im-invitation--cancel,
