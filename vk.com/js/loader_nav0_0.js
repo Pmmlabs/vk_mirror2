@@ -217,8 +217,8 @@ var stVersions = {
     'module.css': 14557525248,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 13156005566,
-    'page.js': 3108482282,
-    'page.css': 13566916722,
+    'page.js': 497674549,
+    'page.css': 14357534075,
     'page_help.css': 14812492572,
     'public.css': 17936722031,
     'public.js': 1344775948,
@@ -277,7 +277,7 @@ var stVersions = {
     'profile_edit_edu.js': 174903945,
     'profile_edit_job.js': 1688095335,
     'profile_edit_mil.js': 112384103,
-    'search.js': 644408153,
+    'search.js': 1369093433,
     'search.css': 24644445584,
     'grid_sorter.js': 3170482150,
     'auto_list.js': 3820785325,
@@ -371,16 +371,16 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 19913645926,
     'aes_light.js': 3306454788,
-    'ads.css': 14831506905,
+    'ads.css': 16176955700,
     'ads_bonus.css': 460482192,
     'ads.js': 1745956523,
     'ads_payments.js': 2170749464,
     'ads_edit.css': 9900206077,
     'ads_edit.js': 3109794325,
     'ads_edit_geo.js': 1634516705,
-    'ads_moder_common.css': 8010185480,
+    'ads_moder_common.css': 9422019802,
     'ads_moder.css': 7372863664,
-    'ads_moder_common.js': 187287116,
+    'ads_moder_common.js': 3875868763,
     'ads_moder.js': 3522009107,
     'ads_tagger.js': 2289308011,
     'ads_web.css': 1585148602,
@@ -616,4 +616,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 6981;
+var _rnd = 3670;

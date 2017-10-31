@@ -3121,10 +3121,6 @@ h4.subheader.ads_retargeting_subheader_top {
     padding: 0
 }
 
-.ads_retargeting_price_list_actions_opened .ads_retargeting_price_list_actions_cell {
-    border-bottom: 1px solid #edeef2
-}
-
 .ads_retargeting_price_list_actions_last .ads_retargeting_price_list_actions_cell {
     border-bottom: 0
 }
@@ -3140,53 +3136,6 @@ h4.subheader.ads_retargeting_subheader_top {
     border-spacing: 0;
     border-collapse: collapse;
     box-sizing: border-box
-}
-
-.ads_retargeting_price_list_actions_last .ads_retargeting_price_list_actions_table {
-    border-bottom: 1px solid #e9edf0
-}
-
-.ads_retargeting_price_list_actions_table_head {
-    padding: 10px 20px 10px 0;
-    text-align: right;
-    color: #626d7a;
-    font-weight: 500;
-    background-color: #f0f2f5;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
-}
-
-.ads_retargeting_price_list_actions_table_head_action {
-    padding-left: 11px;
-    text-align: left
-}
-
-.ads_retargeting_price_list_actions_table_row {
-    background-color: #f5f7fa
-}
-
-.ads_retargeting_price_list_actions_table_row:nth-child(2n+1) {
-    background-color: #fff
-}
-
-.ads_retargeting_price_list_actions_table_item {
-    padding: 10px 20px 10px 0;
-    width: 100px;
-    text-align: right;
-    white-space: nowrap
-}
-
-.ads_retargeting_price_list_actions_table_item_empty {
-    text-align: center;
-    color: #828282
-}
-
-.ads_retargeting_price_list_actions_table_item_name {
-    padding-left: 11px;
-    padding-right: 9px;
-    width: 286px;
-    text-align: left;
-    white-space: normal
 }
 
 .ads_retargeting_price_list_url {

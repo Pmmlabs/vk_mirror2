@@ -3916,7 +3916,7 @@ var Wall = {
                 oid: intval(post),
                 owner_photo: ownerPhoto,
                 owner_href: ownerHref,
-                owner_name: ownerName
+                owner_name: clean(unclean(ownerName))
             }));
             fakeBox.parentNode.replaceChild(realBox, fakeBox);
             rf = ge('reply_field' + post);
@@ -5636,7 +5636,7 @@ var Wall = {
         }
         var nameStr = ev[3].replace('mem_link', 'author').replace('memLink', 'author'),
             ownerNameEl = se(nameStr),
-            ownerName = ownerNameEl.innerText || ownerNameEl.textContent;
+            ownerName = clean(unclean(ownerNameEl.innerText || ownerNameEl.textContent || ''));
         if (ev[6].indexOf('id="wpfo') != -1) {
             nameStr += '<span class="page_fronly inl_bl" onmouseover="Wall.foTT(this, false, {oid: \'' + oid + '\', pid: \'' + ev[2] + '\'})"></span>';
         }

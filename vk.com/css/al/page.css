@@ -265,6 +265,11 @@
     }
 }
 
+.wall_module .reply_action.reply_clean_button {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2217%22%20viewBox%3D%220%200%2016%2017%22%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%238BA2BB%22%20fill-rule%3D%22evenodd%22%20d%3D%22M6%202H1a1%201%200%201%200%200%202h14a1%201%200%200%200%200-2h-5V1a1%201%200%200%200-1-1H7a1%201%200%200%200-1%201v1zM2%205h12v10a2%202%200%200%201-2%202H4a2%202%200%200%201-2-2V5zm3%202a1%201%200%200%200-1%201v6a1%201%200%200%200%202%200V8a1%201%200%200%200-1-1zm6%200a1%201%200%200%200-1%201v6a1%201%200%200%200%202%200V8a1%201%200%200%200-1-1zM8%207a1%201%200%200%200-1%201v6a1%201%200%200%200%202%200V8a1%201%200%200%200-1-1z%22%2F%3E%0A%3C%2Fsvg%3E") 50% no-repeat;
+    background-size: 11px
+}
+
 .wall_module .reply_action.post_edit_button,
 .wall_module .reply_action.reply_edit_button {
     background-position: 0 -40px
