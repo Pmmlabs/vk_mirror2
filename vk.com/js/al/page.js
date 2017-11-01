@@ -204,19 +204,22 @@ var Page = {
             });
             cancelEvent(ev);
         },
-        toggleSubscription: function(btn, hash, act, ev) {
-            if (cur.toggleSubscriptionAct != undefined) {
-                act = cur.toggleSubscriptionAct;
-            }
+        toggleSubscription: function(btn, hash, ev, oid, onDone) {
+            var act = parseInt(domData(btn, 'act')) ? 1 : 0;
+
             ajax.post('al_wall.php', {
                 act: 'a_toggle_posts_subscription',
                 subscribe: act ? 1 : 0,
-                oid: cur.oid,
+                oid: oid ? oid : cur.oid,
                 hash: hash
             }, {
                 onDone: function(text) {
-                    val(btn, text);
-                    cur.toggleSubscriptionAct = !act;
+                    if (onDone) {
+                        onDone(text, act ? 0 : 1);
+                    } else {
+                        val(btn, text);
+                        btn.setAttribute('data-act', act ? 0 : 1);
+                    }
                 },
                 showProgress: Page.actionsDropdownLock.pbind(btn),
                 hideProgress: Page.actionsDropdownUnlock.pbind(btn)

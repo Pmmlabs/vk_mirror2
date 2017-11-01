@@ -840,3 +840,16 @@ div.box_stats .stats_flash_wrap {
     margin: 0 0 15px;
     padding: 10px
 }
+
+.stat_count {
+    margin: 10px 0 30px
+}
+
+.stat_count_value {
+    font-size: 28px;
+    margin-bottom: 7px
+}
+
+.stat_count_desc {
+    line-height: 19px
+}

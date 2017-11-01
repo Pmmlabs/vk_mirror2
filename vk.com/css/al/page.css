@@ -4840,6 +4840,12 @@ div.submit_post_field[contenteditable=true]>p {
     display: inline-block
 }
 
+.originality_rating {
+    line-height: 19px;
+    color: #909399;
+    margin-top: 5px
+}
+
 .tt_w.like_tt,
 .tt_w.poll_tt {
     color: #fff;
