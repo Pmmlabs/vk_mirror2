@@ -378,7 +378,7 @@ var stVersions = {
     'ads_edit.css': 9900206077,
     'ads_edit.js': 3109794325,
     'ads_edit_geo.js': 1634516705,
-    'ads_moder_common.css': 9422019802,
+    'ads_moder_common.css': 8051253803,
     'ads_moder.css': 7372863664,
     'ads_moder_common.js': 3875868763,
     'ads_moder.js': 3522009107,
@@ -551,6 +551,8 @@ var stVersions = {
     'internal/restore2.js': 3254490132,
     'language.js': 3496086639,
     'language.css': 9936650152,
+    'internal/admins.js': 3505505777,
+    'internal/admins.css': 10642743527,
     'lang': 6864
 };
 var stTypes = {
@@ -616,4 +618,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 7868;
+var _rnd = 8375;
