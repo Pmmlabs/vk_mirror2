@@ -249,7 +249,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 110712042035,
-    'imn.js': 129885738202,
+    'imn.js': 126128685062,
     'im.js': 1322065005,
     'emoji.js': 2145343042,
     'wide_dd.css': 10252908878,
@@ -618,4 +618,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 5768;
+var _rnd = 8916;
