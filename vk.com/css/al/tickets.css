@@ -1871,8 +1871,12 @@ a.tickets_question_row_tt {
 }
 
 a.tickets_question_row_tt:hover {
-    background: #edf1f5;
+    background: #f5f7fa;
     text-decoration: none
+}
+
+a.tickets_question_row_tt_unread {
+    background: #edf1f5
 }
 
 .tickets_question_title_tt {

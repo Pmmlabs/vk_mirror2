@@ -608,7 +608,8 @@ var Feed = {
                 el.onclick(), scrollToY(getXY(el)[1], 0)
             }, browser.msie ? 100 : 0), delete cur.notify)
         }
-        cur.feedSection && cur.feedSection(options.section, options.subsection)
+        var topVerified = "recommended" == cur.section || "search" == cur.section;
+        toggleClass(cur.feedEls.wrap, "mark_top_verified", topVerified), toggleClass(cur.feedEls.wrap, "mark_top", !topVerified), cur.feedSection && cur.feedSection(options.section, options.subsection)
     },
     showMore: function() {
         if (!cur.isFeedLoading) {
