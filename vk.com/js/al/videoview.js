@@ -1454,6 +1454,42 @@ var Videoview = {
                 }
             })
         },
+        encodingProcess: function(e, i) {
+            showBox("al_video.php?act=encoding_process_box", {
+                oid: e,
+                vid: i
+            }, {
+                params: {
+                    width: 600
+                }
+            })
+        },
+        updateEncodingProcess: function(e, i) {
+            ajax.post("al_video.php?act=encoding_process_action", {
+                vid: i,
+                oid: e
+            }, {
+                onDone: function(o) {
+                    var t = ge("encoding_process_data");
+                    t && o && (Videoview.proceedEncodingData(JSON.parse(o), t), setTimeout(function() {
+                        Videoview.updateEncodingProcess(e, i)
+                    }, 1e3))
+                }
+            })
+        },
+        proceedEncodingData: function(e, i) {
+            var o = '<table width="100%">';
+            for (var t in e)
+                if (e.hasOwnProperty(t)) {
+                    var a = e[t];
+                    if ("object" == typeof a) {
+                        if (0 === a.length) continue;
+                        o += "<tr><td><b>" + t + "</b></td></tr>";
+                        for (var n in a) a.hasOwnProperty(n) && (o += "<tr><td>" + n + "</td><td>" + a[n] + "</td></tr>")
+                    } else o += "<tr><td><b>" + t + "</b></td><td>" + a + "</td></tr>"
+                }
+            o += "</table>", i.innerHTML = o
+        },
         replaceLegal: function(e, i, o) {
             showBox("al_video.php?act=replace_legal_box", {
                 oid: e,

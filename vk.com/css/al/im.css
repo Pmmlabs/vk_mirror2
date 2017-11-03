@@ -1230,11 +1230,6 @@ img.im_photo_thumb {
     border-bottom: none
 }
 
-.im-page_classic.im-page .im-page--header.im-page--header_static {
-    position: relative;
-    top: 0px
-}
-
 .im-page_classic.im-page .im-page--history.im-page--history_loading {
     position: absolute
 }
