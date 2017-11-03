@@ -4611,7 +4611,7 @@ Ads.showRetargetingPriceListActionsTable = function(event, id) {
     priceListItemActionsBlock.classList.toggle("ads_retargeting_price_list_actions_opened");
 }
 
-Ads.showRetargetingPriceListEditBox = function(event, unionId, hash, priceListId, priceListName, priceListUrl) {
+Ads.showRetargetingPriceListEditBox = function(event, unionId, hash, priceListId) {
     event.preventDefault();
 
     var box = Ads.showRetargetingGroupBox('price_list_edit', {
@@ -4621,7 +4621,7 @@ Ads.showRetargetingPriceListEditBox = function(event, unionId, hash, priceListId
     });
     box.removeButtons();
     box.addButton(getLang('global_save'), function() {
-        Ads.saveRetargetingPriceList(unionId, hash, priceListId, priceListName, priceListUrl)
+        Ads.saveRetargetingPriceList(unionId, hash, priceListId)
     }, '', false, 'ads_retargeting_box_price_list_save');
     box.addButton(getLang('global_cancel'), box.hide, 'gray', false, 'ads_retargeting_box_price_list_cancel');
 }
@@ -4630,31 +4630,30 @@ Ads.saveRetargetingPriceListUnescape = function(str) {
     return str.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, '\'').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 }
 
-Ads.saveRetargetingPriceList = function(unionId, hash, priceListId, priceListName, priceListUrl) {
-    var btnSave = ge('ads_retargeting_box_price_list_save'),
-        btnCancel = ge('ads_retargeting_box_price_list_cancel');
+Ads.saveRetargetingPriceList = function(unionId, hash, priceListId) {
+    var btnSave = ge('ads_retargeting_box_price_list_save');
 
     if (isButtonLocked(btnSave)) {
         return;
     }
     lockButton(btnSave);
 
-    var form = ge('ads_retargeting_box_price_list_edit'),
-        oldPriceListName = priceListName ? priceListName : '',
-        oldPriceListUrl = priceListUrl ? priceListUrl : '',
-        newPriceListName = ge('ads_retargeting_box_price_list_edit_name', form).value.trim(),
-        newPriceListUrl = ge('ads_retargeting_box_price_list_edit_url', form).value.trim();
+    var newPriceListName = val(ge('ads_retargeting_box_price_list_edit_name')).trim(),
+        newPriceListUrl = val(ge('ads_retargeting_box_price_list_edit_url')).trim();
 
-    if (priceListId && (Ads.saveRetargetingPriceListUnescape(oldPriceListName) === newPriceListName) && (Ads.saveRetargetingPriceListUnescape(oldPriceListUrl) === newPriceListUrl)) {
-        btnCancel.click();
-        return;
-    }
+    var newPriceListHttpAuth = (cur.uiEditPriceListHttpAuth.checked() ? 1 : 0),
+        newPriceListHttpAuthUsername = (newPriceListHttpAuth ? val(ge('ads_retargeting_box_price_list_edit_http_auth_username')).trim() : ''),
+        newPriceListHttpAuthPassword = (newPriceListHttpAuth ? val(ge('ads_retargeting_box_price_list_edit_http_auth_password')).trim() : '');
 
     var ajaxParams = {
         union_id: unionId,
         hash: hash,
         name: newPriceListName,
-        url: newPriceListUrl
+        url: newPriceListUrl,
+
+        http_auth: newPriceListHttpAuth,
+        http_auth_username: newPriceListHttpAuthUsername,
+        http_auth_password: newPriceListHttpAuthPassword
     };
 
     var isNew = !priceListId;
@@ -4685,9 +4684,9 @@ Ads.saveRetargetingPriceList = function(unionId, hash, priceListId, priceListNam
     }
 }
 
-Ads.checkRetargetingPriceListInputKeyup = function(event, unionId, hash, priceListId, priceListName, priceListUrl) {
+Ads.checkRetargetingPriceListInputKeyup = function(event, unionId, hash, priceListId) {
     if (event.which === KEY.ENTER || event.keyCode === KEY.ENTER) {
-        Ads.saveRetargetingPriceList(unionId, hash, priceListId, priceListName, priceListUrl);
+        Ads.saveRetargetingPriceList(unionId, hash, priceListId);
     }
 }
 

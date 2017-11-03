@@ -3079,12 +3079,20 @@ var Wall = {
         return false;
     },
 
-    onPostValChange: function() {
+    onPostValChange: function(val) {
         if (cur.wallAddMedia) {
             cur.wallAddMedia.checkMessageURLs.apply(window, arguments);
         }
         if (cur.wallType == 'full_own' || cur.wallType == 'full_all') {
             Pagination.pageTopUpdated();
+        }
+
+        // Force redraw for IE; wrong position of placeholder
+        if (browser.msie && !val) {
+            var field = ge('post_field');
+            hide(field);
+            show(field);
+            elfocus(field);
         }
     },
     hideEditPost: function(force) {
