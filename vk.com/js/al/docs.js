@@ -421,7 +421,7 @@ var Docs = {
     },
     chooseDocsSearch: function(e) {
         var o = trim(val(e));
-        o != cur.docsSearchStr && (cur.docsSearchStr = o, o ? (cur.docsOffset = 0, Docs.chooseMore()) : (cur.docsOffset = cur.docsStartOffset, cur.docsChooseRows.innerHTML = cur.docsStartHTML))
+        o != cur.docsSearchStr && (cur.docsSearchStr = o, o ? (cur.docsOffset = 0, Docs.chooseMore()) : (cur.docsOffset = cur.docsStartOffset, cur.docsChooseRows.innerHTML = cur.docsStartHTML, toggle(cur.docsChooseMore, cur.docsStartMore)))
     },
     chooseMore: function() {
         return cur.docsChooseLoading ? !1 : void ajax.post("/docs.php", {

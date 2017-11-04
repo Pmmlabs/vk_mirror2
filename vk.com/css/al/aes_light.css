@@ -60,6 +60,33 @@
     width: 405px
 }
 
+.ads_ad_box.app_in_news.ads_preview_api,
+.ads_ad_box.apps_only.ads_preview_api,
+.ads_ad_box.groups_only.ads_preview_api,
+.ads_ad_box.repeat_hor.ads_preview_api {
+    display: block
+}
+
+.ads_ad_box.ads_preview_api_mobile .ads_ad_promoted_post .wall_module .ads_ad_promoted_post_info,
+.ads_ad_box.ver.repeat_ver.size_site.promoted_post.ads_preview_api_mobile {
+    padding: 0;
+    width: 100%;
+    max-width: 405px
+}
+
+.ads_ad_box.ads_preview_api .ads_ad_box4 {
+    display: block;
+    height: auto
+}
+
+.ads_ad_box.ads_preview_api .ads_ad_box3 {
+    height: auto
+}
+
+.ads_ad_box.ads_preview_api .ads_ad_photo.ver.big_app {
+    margin: 0 auto
+}
+
 .ads_ad_box.ver.repeat_ver.size_site.big_app {
     width: 560px
 }
@@ -1609,4 +1636,13 @@ a.ads_ad_box2:hover {
     opacity: 1;
     -webkit-filter: none;
     filter: none
+}
+
+.ads_edit_panel_preview.ads_ad_preview {
+    float: none;
+    overflow: auto
+}
+
+.ads_edit_panel_preview.ads_ad_preview .ads_ad_promoted_post .wall_module .wall_text .page_media_thumbed_link:last-child {
+    margin-bottom: 0
 }

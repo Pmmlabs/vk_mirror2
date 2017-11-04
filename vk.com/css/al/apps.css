@@ -1116,6 +1116,10 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
     filter: none
 }
 
+.apps_featured_thumbs_paid_app .apps_featured_thumb_content {
+    padding-right: 160px
+}
+
 .apps_featured_thumb_gradient {
     background-color: transparent;
     background: -o-linear-gradient(270deg, transparent, rgba(0, 0, 0, .8));
@@ -1407,6 +1411,24 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
     filter: none;
     margin-top: 5px;
     margin-bottom: 5px
+}
+
+.apps_cat_row__price_badge {
+    position: absolute;
+    display: block;
+    min-width: 50px;
+    box-sizing: border-box;
+    top: 10px;
+    left: -4px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #65bf63;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .sort .apps_cat_row {
@@ -3017,6 +3039,18 @@ a.page_block_header:hover .apps_cat_header_link:after {
     -moz-osx-font-smoothing: grayscale;
     color: #42648b;
     margin-bottom: 2px
+}
+
+.apps_purchase_btn {
+    background: #5fb053
+}
+
+.apps_purchase_btn:hover {
+    background: #68b35d
+}
+
+.apps_purchase_btn:active {
+    background: #5aa84d
 }
 
 .apps_i_slider_outer,

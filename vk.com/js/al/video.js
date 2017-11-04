@@ -1367,6 +1367,16 @@ var Video = {
         slideUp("video_desktop_live_intro_block", 300), ajax.post("al_video.php?act=hide_desktop_live_intro", {
             hash: e
         })
+    },
+    copyAlbumVideosList: function() {
+        var e = Video._getCurrentSectionType(),
+            o = cur.getOwnerId();
+        if ("album" == e && (e = Video.getLoc().section), cur.silentLoadingProgress[o][e] === !0 || !cur.silentLoaded[o][e]) return void showFastBox("", "List has not loaded yet");
+        var i = cur.silentLoaded[o][e],
+            t = i.map(function(e) {
+                return "https://vk.com/video" + e[VideoConstants.VIDEO_ITEM_INDEX_OWNER_ID] + "_" + e[VideoConstants.VIDEO_ITEM_INDEX_ID]
+            }).join("\n");
+        showFastBox("", '<textarea class="dark" style="width: 100%; height: 350px;">' + t + "</textarea>")
     }
 };
 try {
