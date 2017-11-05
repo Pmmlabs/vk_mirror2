@@ -121,7 +121,7 @@ var ThumbsEdit = {
             },
             a = !!e.orig.vid,
             n = ce("div", {
-                className: "thumb_wrap fl_l" + (e.lastColumn ? " last_column" : "") + (e.lastRow ? " last_row" : "") + (e.msize ? " thumb_market_album_wrap" : "") + (!a && e.image.src.match(/^\/images\//) ? " page_album_nocover" : "")
+                className: "thumb_wrap fl_l" + (e.lastColumn ? " last_column" : "") + (e.lastRow ? " last_row" : "") + (e.msize ? " thumb_market_album_wrap" : "") + (!a && e.image.src.match(/^\/images\//) ? " page_album_nocover" : "") + (a ? " thumb_video_wrap" : "")
             }, i),
             s = ce("img", {
                 className: "preview"

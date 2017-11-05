@@ -298,11 +298,11 @@ var Feed = {
                         });
                         var S = se('<div class="feed_row' + (C ? "_unshown" : "") + '">' + b + "</div>"),
                             T = domFC(T);
-                        m.insertBefore(S, m.firstChild), !C && feed.needScrollPost(t, S) && (d += S.offsetHeight + c(S)), P = !0, p = S.firstChild, f = geByClass1("feed_reposts_first", p, "div"), h = geByClass1("feed_reposts_group", p, "div"), each(clone(w), function() {
+                        Wall.updateAnonNewPost(e, S), m.insertBefore(S, m.firstChild), !C && feed.needScrollPost(t, S) && (d += S.offsetHeight + c(S)), P = !0, p = S.firstChild, f = geByClass1("feed_reposts_first", p, "div"), h = geByClass1("feed_reposts_group", p, "div"), each(clone(w), function() {
                             feed.needScrollPost(t, this) && (d -= this.offsetHeight + c(this)), re(this.parentNode), h.appendChild(this.firstChild)
                         })
-                    } else f = se('<div class="feed_row' + (C ? "_unshown" : "") + '"><div class="feed_repost' + y + '">' + b + "</div></div>"), m.insertBefore(f, m.firstChild), P = !0, !C && feed.needScrollPost(t, f) && (d += f.offsetHeight + c(f))
-                } else f = se('<div class="feed_row' + (C ? "_unshown" : "") + '">' + b + "</div>"), m.insertBefore(f, m.firstChild), P = !0, !C && feed.needScrollPost(t, f) && (d += f.offsetHeight + c(f));
+                    } else f = se('<div class="feed_row' + (C ? "_unshown" : "") + '"><div class="feed_repost' + y + '">' + b + "</div></div>"), Wall.updateAnonNewPost(e, f), m.insertBefore(f, m.firstChild), P = !0, !C && feed.needScrollPost(t, f) && (d += f.offsetHeight + c(f))
+                } else f = se('<div class="feed_row' + (C ? "_unshown" : "") + '">' + b + "</div>"), Wall.updateAnonNewPost(e, f), m.insertBefore(f, m.firstChild), P = !0, !C && feed.needScrollPost(t, f) && (d += f.offsetHeight + c(f));
                 C && P && (cur.newPostsCount = cur.newPostsCount ? cur.newPostsCount + 1 : 1, cur.feedEls.newPosts.innerHTML = getLang("news_new_posts", cur.newPostsCount), addClass(cur.feedEls.wrap, "feed_has_new"), 1 == cur.newPostsCount && feed.needScrollPost(t, cur.feedEls.newPosts) && !k && (d += getSize(cur.feedEls.newPosts)[1])), AudioUtils.updateQueueReceivedPost(f), ge("post_poll_id" + r) && wall.updatePoll(r), cur.feedUnreadCount++, "search" != n && nodeUpdated(f), v.length > 300 ? m.removeChild(v[300]) : v.length <= 1 && removeClass(cur.feedEls.wrap, "feed_is_empty"), Wall.updateMentionsIndex();
                 break;
             case "new_post_reply":
@@ -363,10 +363,10 @@ var Feed = {
                         q && "replies_open" == q.className && re(q), V = !0;
                         var U = geByClass1("wr_header", j, "a"),
                             O = geByClass("reply", j, "div").length + 1,
-                            Y = O;
-                        U && (Y = intval(U.getAttribute("offs").split("/")[1]) + 1), (Y > 5 || Y > O) && (U || j.insertBefore(U = ce("a", {
+                            W = O;
+                        U && (W = intval(U.getAttribute("offs").split("/")[1]) + 1), (W > 5 || W > O) && (U || j.insertBefore(U = ce("a", {
                             className: "wr_header"
-                        }), j.firstChild), wall.updateRepliesHeader(r, U, O, Y))
+                        }), j.firstChild), wall.updateRepliesHeader(r, U, O, W))
                     } else F = wall.updatePostImages(F), f = se(F), addClass(f, "new_reply"), q && "replies_open" == q.className || (q = ce("div", {
                         className: "replies_open",
                         onclick: wall.openNewComments.pbind(r)
@@ -377,8 +377,8 @@ var Feed = {
             case "del_reply":
                 if (!cur.wallMyDeleted[r] && i) {
                     feed.needScrollPost(t, i) && (d -= i.offsetHeight);
-                    var W = i.parentNode.id.match(/replies(-?\d+_\d+)/);
-                    revertLastInlineVideo(i), re(i), W && Wall.repliesSideSetup(W[1])
+                    var Y = i.parentNode.id.match(/replies(-?\d+_\d+)/);
+                    revertLastInlineVideo(i), re(i), Y && Wall.repliesSideSetup(Y[1])
                 }
                 break;
             case "view_post":
@@ -920,7 +920,7 @@ var Feed = {
             types: t
         }, {
             onDone: function(t) {
-                ge("notify_mark_spam_" + e).innerHTML = t
+                ge("notify_mark_spam_" + e).innerHTML = t;
             }
         })
     },

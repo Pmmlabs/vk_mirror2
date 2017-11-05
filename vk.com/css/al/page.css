@@ -598,7 +598,8 @@
     -moz-osx-font-smoothing: auto
 }
 
-.post_author span.author {
+.post_author span.author,
+.wall_module .copy_anon_author {
     color: #222
 }
 
@@ -4329,8 +4330,10 @@ div.submit_post_field[contenteditable=true]>p {
 
 .submit_post_box.own_field .emoji_smile,
 .submit_post_box.own_field .submit_post,
+.submit_post_box.own_field .submit_post_extend_controls,
 .submit_post_box.shown .emoji_smile,
-.submit_post_box.shown .submit_post {
+.submit_post_box.shown .submit_post,
+.submit_post_box.shown .submit_post_extend_controls {
     display: block
 }
 
@@ -4368,6 +4371,90 @@ div.submit_post_field[contenteditable=true]>p {
 
 .reply_box_open .submit_post_box .emoji_smile {
     display: block
+}
+
+.submit_post_box .submit_post_extend_controls {
+    display: none;
+    overflow: hidden
+}
+
+.submit_post_box .anon_toggle {
+    float: left
+}
+
+.submit_post_box .anon_toggle .ui_toggler {
+    float: left;
+    margin-top: 10px
+}
+
+.submit_post_box .submit_post_anon_label {
+    margin-left: 10px
+}
+
+.submit_post_box .submit_post_anon_title {
+    font-size: 14px
+}
+
+.submit_post_box .submit_post_anon_desc {
+    font-size: 12px;
+    color: #939393
+}
+
+.submit_post_box.anon_field_on .audio_row_content,
+.submit_post_box.anon_field_on .medadd_c_market_info,
+.submit_post_box.anon_field_on .medadd_c_market_thumb,
+.submit_post_box.anon_field_on .medadd_c_note,
+.submit_post_box.anon_field_on .medadd_c_poll,
+.submit_post_box.anon_field_on .medadd_c_timer,
+.submit_post_box.anon_field_on .ms_item:not(.ms_item_photo),
+.submit_post_box.anon_field_on .ms_items_more_wrap,
+.submit_post_box.anon_field_on .page_doc_row,
+.submit_post_box.anon_field_on .page_preview_map {
+    position: relative
+}
+
+.submit_post_box.anon_field_on .medadd_c_market_thumb,
+.submit_post_box.anon_field_on .ms_item:not(.ms_item_photo),
+.submit_post_box.anon_field_on .page_preview_map,
+.submit_post_box.anon_field_on .thumb_video_wrap .page_post_video_play_inline,
+.submit_post_box.anon_field_on .thumb_video_wrap .preview,
+.submit_post_box.anon_field_on .thumb_video_wrap .video_thumb_label {
+    opacity: 0.5;
+    cursor: default
+}
+
+.submit_post_box.anon_field_on .ms_items_more {
+    display: none!important
+}
+
+.submit_post_box.anon_field_on .media_selector .ms_item:hover:before,
+.submit_post_box.anon_field_on .ms_items_more_wrap.shown .ms_item_more {
+    opacity: 0.7
+}
+
+.submit_post_box.anon_field_on .checkbox_pic,
+.submit_post_box.anon_field_on .checkbox_pic:hover {
+    opacity: 0.75;
+    cursor: default
+}
+
+.submit_post_box.anon_field_on .audio_row_content:before,
+.submit_post_box.anon_field_on .medadd_c_market_info:before,
+.submit_post_box.anon_field_on .medadd_c_note:before,
+.submit_post_box.anon_field_on .medadd_c_poll:before,
+.submit_post_box.anon_field_on .medadd_c_timer:before,
+.submit_post_box.anon_field_on .ms_items_more_wrap:before,
+.submit_post_box.anon_field_on .page_doc_row:before,
+.submit_post_box.anon_field_on .page_preview_doc_photo:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.5;
+    background: #fafbfc;
+    z-index: 100
 }
 
 .post_reply_tt_choose {
@@ -4941,6 +5028,7 @@ div.submit_post_field[contenteditable=true]>p {
     transition: margin 0.2s ease
 }
 
+.anon_post .like_tt_owners,
 .like_tt_owners.me_hidden {
     margin-left: -47px
 }
@@ -6624,7 +6712,8 @@ div.create_poll_cb {
 }
 
 .medadd_c_market .page_media_x_wrap {
-    margin-top: 4px
+    margin-top: 4px;
+    z-index: 100
 }
 
 #im_docs_preview .medadd_c_market .im_media_x {

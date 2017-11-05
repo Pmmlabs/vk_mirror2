@@ -3162,8 +3162,27 @@ var Wall = {
             window.getSelection().collapse(el, el.childNodes.length);
         }
     },
+    isAnonPost: function() {
+        return hasClass(geByClass1('_ui_toggler', geByClass1('anon_toggle')), 'on') ? 1 : '';
+    },
+    saveAnon: function(el) {
+        toggleClass(geByClass1('_ui_toggler', el), 'on');
+
+        var isAnon = Wall.isAnonPost();
+
+        checkbox('friends_only', false);
+        checkbox('status_export', !isAnon);
+        checkbox('facebook_export', !isAnon);
+        toggleClass(ge('submit_post_box'), 'anon_field_on');
+
+        var prevBtnText = cur.anonPostBtn || getLang('wall_send');
+
+        cur.anonPostBtn = ge('send_post').innerHTML;
+
+        ge('send_post').innerHTML = isAnon ? getLang('wall_send') : prevBtnText;
+    },
     saveExport: function(el, service, hash) {
-        if (!isChecked('friends_only')) {
+        if (!isChecked('friends_only') && !Wall.isAnonPost()) {
             checkbox(el);
         }
 
@@ -3178,13 +3197,21 @@ var Wall = {
             });
         }, 300);
     },
+    saveFriendsOnly: function(el) {
+        var isAnon = Wall.isAnonPost();
+
+        checkbox(el, !isAnon && !isChecked(el));
+        checkbox('status_export', !isAnon && !isChecked(el));
+        checkbox('facebook_export', !isAnon && !isChecked(el));
+    },
     sendPost: function() {
         var addmedia = cur.wallAddMedia || {},
             media = addmedia.chosenMedia || {},
             medias = cur.wallAddMedia ? addmedia.getMedias() : [],
             share = (addmedia.shareData || {})
         msg = trim((window.Emoji ? Emoji.editableVal : val)(ge('post_field'))),
-            postponePost = false;
+            postponePost = false,
+            isAnon = Wall.isAnonPost();
 
         var pType = cur.options.suggesting ? 'suggest' : cur.wallType,
             params = {
@@ -3192,11 +3219,12 @@ var Wall = {
                 message: msg,
                 to_id: cur.postTo,
                 type: pType,
-                friends_only: isChecked('friends_only'),
-                status_export: isChecked('status_export'),
-                facebook_export: ge('facebook_export') ? (isChecked('facebook_export') ? 1 : 0) : '',
+                friends_only: !isAnon && isChecked('friends_only'),
+                status_export: !isAnon && isChecked('status_export'),
+                facebook_export: !isAnon && ge('facebook_export') ? (isChecked('facebook_export') ? 1 : 0) : '',
                 official: (domData(domClosest('_submit_post_box', ge('official')), 'from-oid') == cur.postTo) ? 1 : '',
                 signed: isChecked('signed'),
+                anonymous: isAnon,
                 hash: cur.options.post_hash,
                 from: cur.from ? cur.from : '',
                 fixed: cur.options.fixed_post_id || ''
@@ -3231,6 +3259,10 @@ var Wall = {
                     attachVal = this[1];
                 switch (type) {
                     case 'poll':
+                        if (isAnon) {
+                            return;
+                        }
+
                         var poll = addmedia.pollData();
                         if (!poll) {
                             ret = true;
@@ -3344,6 +3376,10 @@ var Wall = {
                         }
                         break;
                     case 'postpone':
+                        if (isAnon) {
+                            return;
+                        }
+
                         var ts = val('postpone_date' + addmedia.lnkId);
                         params = extend(params, {
                             postpone: ts
@@ -3377,6 +3413,11 @@ var Wall = {
                 if (this[3] && trim(msg) == this[3]) {
                     params.message = '';
                 }
+
+                if (isAnon && type !== 'photo') {
+                    return;
+                }
+
                 params['attach' + (attachI + 1) + '_type'] = type;
                 params['attach' + (attachI + 1)] = attachVal;
                 attachI++;
@@ -5699,6 +5740,23 @@ var Wall = {
         extendCb && extend(repls, extendCb(repls, ev));
         return rs(rs(cur.wallTpl.post, repls), repls);
     },
+    updateAnonNewPost: function(ev, el) {
+        if (ev[13] == 'anon') {
+            var authorEl = geByClass1('author', el);
+            var newAuthorEl = ce('span');
+            newAuthorEl.innerHTML = authorEl.innerHTML;
+            newAuthorEl.className = authorEl.className;
+            domReplaceEl(authorEl, newAuthorEl);
+
+            var postImgEl = geByClass1('post_image', el);
+            var newPostImgEl = ce('span');
+            newPostImgEl.innerHTML = postImgEl.innerHTML;
+            newPostImgEl.className = postImgEl.className;
+            domReplaceEl(postImgEl, newPostImgEl);
+        }
+
+        return el;
+    },
     getNewReplyHTML: function(ev, adminLevel, extendCb, cur) {
         cur = cur || window.cur;
         var acts = [],
@@ -6016,6 +6074,8 @@ var Wall = {
                             adminLevel = cur.options.is_admin !== undefined ? cur.options.is_admin : (cur.options.wall_oid < 0 ? ((flgs & 8) ? 2 : ((flgs & 2) ? 1 : 0)) : 0),
                             newEl = se(Wall.getNewPostHTML(ev, adminLevel, extendCb, cur)),
                             insBefore = cont.firstChild;
+
+                        Wall.updateAnonNewPost(ev, newEl);
 
                         if (ge('post' + post_id)) break;
                         if (lastPost && lastPost != newEl) {
