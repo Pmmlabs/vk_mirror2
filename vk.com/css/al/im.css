@@ -2522,7 +2522,7 @@ img.im_photo_thumb {
     cursor: text;
     margin-bottom: 12px;
     background: #fff;
-    border-radius: 3px;
+    border-radius: 6px;
     border: solid 1px #d3d9de
 }
 
@@ -2538,7 +2538,7 @@ img.im_photo_thumb {
 }
 
 .im-chat-input .im_mention_shown .im-chat-input--txt-wrap {
-    border-radius: 0 0 3px 3px
+    border-radius: 0 0 6px 6px
 }
 
 .im-chat-input .im_mention_shown .im-chat-input--attach,
@@ -2710,7 +2710,7 @@ img.im_photo_thumb {
     max-height: 200px;
     overflow-y: auto;
     overflow-x: hidden;
-    border-radius: 3px;
+    border-radius: 6px;
     line-height: 17px;
     padding: 9px 74px 10px 13px;
     margin-bottom: 0;
@@ -2719,6 +2719,8 @@ img.im_photo_thumb {
     border: none;
     -o-transition: border-bottom-color 0.3s linear;
     transition: border-bottom-color 0.3s linear;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
     -webkit-font-smoothing: subpixel-antialiased
 }
 

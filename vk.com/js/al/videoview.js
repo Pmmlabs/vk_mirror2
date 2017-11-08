@@ -1551,6 +1551,12 @@ var Videoview = {
                 video: mvcur.mvData.videoRaw,
                 hash: i
             }, {
+                showProgress: function() {
+                    showProgress(e), disableEl(e)
+                },
+                hideProgress: function() {
+                    enableEl(e), hideProgress(e)
+                },
                 onDone: function(i, t) {
                     val(e, i), o && (val(o, t), toggle(o, !!t))
                 }
@@ -1564,6 +1570,12 @@ var Videoview = {
                 claim_id: e,
                 extra: o
             }, {
+                showProgress: function() {
+                    showProgress(t), disableEl(t)
+                },
+                hideProgress: function() {
+                    enableEl(t), hideProgress(t)
+                },
                 onDone: function(e) {
                     val(t, e), domData(t, "action", "claim" == i ? "unclaim" : "claim")
                 }
@@ -1585,11 +1597,27 @@ var Videoview = {
                     hash: o
                 }, parseJSON(domData(e, "params")));
                 ajax.post("al_video.php?act=moder_action", t, {
+                    showProgress: function() {
+                        showProgress(e), disableEl(e)
+                    },
+                    hideProgress: function() {
+                        enableEl(e), hideProgress(e)
+                    },
                     onDone: function(i, o, t) {
                         i && val(e, i), o && domData(e, "params", o), t && lockLink(e)
                     }
                 })
             }
+        },
+        pinModerActions: function(e) {
+            var i = domByClass("mv_moder_buttons", "mv_moder_buttons_pin"),
+                o = domByClass("mv_moder_buttons", "_ui_menu_wrap"),
+                t = ls.get("video_moder_actions_pinned");
+            t && !e || !t && e ? (o.onmouseenter = function() {
+                uiActionsMenu.show(this)
+            }, o.onmouseleave = function() {
+                uiActionsMenu.hide(this)
+            }, val(i, "Pin"), ls.remove("video_moder_actions_pinned")) : (o.onmouseenter = o.onmouseleave = null, uiActionsMenu.show(o), val(i, "Unpin"), ls.set("video_moder_actions_pinned", 1))
         },
         setStyle: function(e, i, o) {
             i = ge(i), mvcur.restoreStyles || (mvcur.restoreStyles = {});
@@ -1616,7 +1644,7 @@ var Videoview = {
                     var videoBoxWrap = domByClass(ge("mv_player_box"), "video_box_wrap");
                     opt.is_vk_player && !opt.cantPlay && (!opt.is_flv || browser.flash >= Videoview.FLASH_MIN_VERSION) && mvcur.player && domClosest("video_box_wrap", mvcur.player.el) === videoBoxWrap ? (attr(videoBoxWrap, "id", "video_box_wrap" + videoRaw), needRemin = !1) : (mvcur.player && re(mvcur.player.el), val("mv_player_box", html)), hide("mv_progress_box")
                 }
-                if (val("mv_info", desc), opt.moder_buttons && val("mv_moder_buttons", opt.moder_buttons), opt.player) {
+                if (val("mv_info", desc), opt.moder_buttons && (val("mv_moder_buttons", opt.moder_buttons), Videoview.pinModerActions(!0)), opt.player) {
                     var container = domByClass(ge("mv_player_box"), "video_box_wrap");
                     VideoInitializer.initPlayer(container, opt.player.type, opt.player.params)
                 }
@@ -1800,9 +1828,10 @@ var Videoview = {
         appendNewComment: function(e, i, o, t, a, n, d, r, s, v, l) {
             if (!ge("post" + e + "video_" + i + "mv")) {
                 var c = "";
-                mvcur.adminLevel > 0 || e == vk.id || o == vk.id ? c += mvcur.commentsTpl.del_reply : e != o && (c += mvcur.commentsTpl.spam_reply), (mvcur.adminLevel > 1 && e == o || t == vk.id) && (c += mvcur.commentsTpl.edit_reply), c = rs(mvcur.commentsTpl.actions, {
-                    actions: c
-                });
+                mvcur.adminLevel > 0 || e == vk.id || o == vk.id ? c += mvcur.commentsTpl.del_reply : e != o && (c += mvcur.commentsTpl.spam_reply), (mvcur.adminLevel > 1 && e == o || t == vk.id) && (c += mvcur.commentsTpl.edit_reply),
+                    c = rs(mvcur.commentsTpl.actions, {
+                        actions: c
+                    });
                 var m = langDate(1e3 * r, getLang("global_short_date_time", "raw"), 0, []),
                     u = psr(rs(mvcur.commentsTpl.reply, {
                         actions: c,
@@ -2644,7 +2673,8 @@ var Videoview = {
         toggle: function(e, i) {
             if (isUndefined(e) && (e = VideoPlaylist.isCollapsed()), !mvcur.minimized || !e) {
                 var o = VideoPlaylist.getBlock();
-                if (o && VideoPlaylist.isCollapsed() != !e) return data(o, "collapsed", !e), VideoPlaylist.toggleStateClasses(), Videoview.playerOnResize(), Videoview.updateReplyFormPos(), e && (VideoPlaylist.updateScrollbar(), VideoPlaylist.setCurVideo()), !1
+                if (o && VideoPlaylist.isCollapsed() != !e) return data(o, "collapsed", !e),
+                    VideoPlaylist.toggleStateClasses(), Videoview.playerOnResize(), Videoview.updateReplyFormPos(), e && (VideoPlaylist.updateScrollbar(), VideoPlaylist.setCurVideo()), !1
             }
         },
         toggleStateClasses: function() {

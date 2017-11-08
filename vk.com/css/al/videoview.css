@@ -2044,8 +2044,31 @@ textarea.dark.mv_live_gift_popup_comment_input {
     right: -6px
 }
 
+#mv_moder_buttons .ui_actions_menu_item>.pr {
+    display: inline-block;
+    margin-left: 10px
+}
+
 #mv_moder_buttons .ui_actions_menu_item.link_lock {
     color: #000
+}
+
+.mv_moder_buttons_pin {
+    position: absolute;
+    right: 100%;
+    line-height: 22px;
+    padding-right: 5px;
+    visibility: hidden;
+    opacity: 0;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s
+}
+
+.ui_actions_menu_icons:hover .mv_moder_buttons_pin {
+    -o-transition-delay: 0.5s;
+    transition-delay: 0.5s;
+    visibility: visible;
+    opacity: 1
 }
 
 .mv_edit_box_fluid_input {

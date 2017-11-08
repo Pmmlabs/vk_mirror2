@@ -1516,6 +1516,11 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         act: "vkmobile_hide_promo",
         show_more: intval(e)
     })
+}, AudioPage.prototype.promoTsoyClose = function(e) {
+    var t = gpeByClass("_audio_section_tsoy_promo", e);
+    re(t), ajax.post("al_audio.php", {
+        act: "tsoy_hide_promo"
+    })
 }, AudioPage.prototype.toggleRemoveAdsLink = function(e) {
     toggleClass(this._els.player, "audio_page_player_show_remove_ads", !!e)
 };

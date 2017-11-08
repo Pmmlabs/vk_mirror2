@@ -897,8 +897,8 @@ html:not([lang=ru]) .wall_marked_as_ads {
 .zoom_text_active div.submit_post_field.zoom_text,
 .zoom_text_active div.submit_post_field.zoom_text[contenteditable=true] {
     font-weight: 300;
-    line-height: 1.334;
-    font-size: 19.5px
+    font-size: 23px;
+    line-height: 1.4
 }
 
 .zoom_text_active .zoom_text .wall_copy_more,
@@ -1826,6 +1826,10 @@ div.submit_post_field font {
     border-radius: 15px;
     padding-left: 34px;
     background: #5181b8 url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M7%205v-4.1c0-.5-.4-.9-1-.9s-1%20.4-1%20.9v4.1h-4.1c-.5%200-.9.4-.9%201s.4%201%20.9%201h4.1v4.1c0%20.5.4.9%201%20.9s1-.4%201-.9v-4.1h4.1c.5%200%20.9-.4.9-1s-.4-1-.9-1h-4.1z%22%2F%3E%3C%2Fsvg%3E') 14px 9px no-repeat
+}
+
+.wall_module .page_media_chat-invitation .page_media_link_desc_td .wall_postlink_preview_btn .flat_button:hover {
+    background-color: #5f8cbf
 }
 
 .wall_module .page_media_chat-invitation .page_media_link_desc_td .wall_postlink_preview_btn .flat_button:active {

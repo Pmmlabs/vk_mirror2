@@ -32,23 +32,23 @@ var Restore = {
             hideProgress: unlockButton.pbind(o)
         })
     },
-    submitForgotPasswordByPhone: function(e, o) {
-        var t = ge("submitBtn"),
-            r = val("password"),
-            s = val("password2");
-        return r.length ? s.length ? void ajax.post("al_login.php", {
+    submitForgotPasswordByPhone: function(e, o, t) {
+        var r = ge("submitBtn"),
+            s = val("password"),
+            n = val("password2");
+        return s.length ? n.length ? void ajax.post("al_login.php", {
             act: "a_forgot_by_phone",
-            hash: e,
-            shash: o,
-            login: cur.restoreForgotPassParams.login,
-            password: r,
-            password2: s
+            hash: o,
+            shash: t,
+            login: e,
+            password: s,
+            password2: n
         }, {
             onDone: function(e, o) {
                 1 == e ? val("restore_password_form", o) : (val("error", o), show("error"))
             },
-            showProgress: lockButton.pbind(t),
-            hideProgress: unlockButton.pbind(t)
+            showProgress: lockButton.pbind(r),
+            hideProgress: unlockButton.pbind(r)
         }) : notaBene("password2") : notaBene("password")
     },
     initForgotPassword: function(e) {
