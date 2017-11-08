@@ -6720,6 +6720,33 @@ div.create_poll_cb {
     margin-top: 3px
 }
 
+.medadd_c_wall .medadd_c_wall_thumb {
+    margin-right: 10px;
+    width: 36px;
+    border-radius: 50%
+}
+
+.medadd_c_wall .medadd_c_wall_author {
+    display: block;
+    margin-top: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 280px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.medadd_c_wall .medadd_c_wall_type {
+    color: #888
+}
+
+.medadd_c_wall .page_media_x_wrap {
+    margin-top: 4px;
+    z-index: 100
+}
+
 .medadd_c_story .medadd_c_story_thumb {
     background: 50%;
     background-size: cover;
