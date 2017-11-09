@@ -192,14 +192,14 @@ var stVersions = {
     'video.css': 14023784817,
     'videocat.js': 1618923991,
     'videocat.css': 12889217482,
-    'videoview.js': 2885980088,
+    'videoview.js': 2998929246,
     'videoview.css': 16022429586,
     'video_edit.js': 2135196486,
     'video_edit.css': 13366765937,
     'video_upload.js': 812506149,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 8360918913,
-    'videoplayer.js': 78606968815,
+    'videoplayer.js': 81989937597,
     'videoplayer.css': 26753798707,
     'translation.js': 51041194,
     'translation.css': 11524898253,
@@ -618,4 +618,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 6094;
+var _rnd = 3051;

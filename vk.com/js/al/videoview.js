@@ -1612,12 +1612,12 @@ var Videoview = {
         pinModerActions: function(e) {
             var i = domByClass("mv_moder_buttons", "mv_moder_buttons_pin"),
                 o = domByClass("mv_moder_buttons", "_ui_menu_wrap"),
-                t = ls.get("video_moder_actions_pinned");
-            t && !e || !t && e ? (o.onmouseenter = function() {
+                t = e ? ls.get("video_moder_actions_pinned") : !domData(i, "pinned");
+            t ? (o.onmouseenter = o.onmouseleave = null, uiActionsMenu.show(o), val(i, "Unpin"), domData(i, "pinned", 1), ls.set("video_moder_actions_pinned", 1)) : (o.onmouseenter = function() {
                 uiActionsMenu.show(this)
             }, o.onmouseleave = function() {
                 uiActionsMenu.hide(this)
-            }, val(i, "Pin"), ls.remove("video_moder_actions_pinned")) : (o.onmouseenter = o.onmouseleave = null, uiActionsMenu.show(o), val(i, "Unpin"), ls.set("video_moder_actions_pinned", 1))
+            }, val(i, "Pin"), domData(i, "pinned", null), ls.remove("video_moder_actions_pinned"))
         },
         setStyle: function(e, i, o) {
             i = ge(i), mvcur.restoreStyles || (mvcur.restoreStyles = {});
@@ -1828,8 +1828,8 @@ var Videoview = {
         appendNewComment: function(e, i, o, t, a, n, d, r, s, v, l) {
             if (!ge("post" + e + "video_" + i + "mv")) {
                 var c = "";
-                mvcur.adminLevel > 0 || e == vk.id || o == vk.id ? c += mvcur.commentsTpl.del_reply : e != o && (c += mvcur.commentsTpl.spam_reply), (mvcur.adminLevel > 1 && e == o || t == vk.id) && (c += mvcur.commentsTpl.edit_reply),
-                    c = rs(mvcur.commentsTpl.actions, {
+                mvcur.adminLevel > 0 || e == vk.id || o == vk.id ? c += mvcur.commentsTpl.del_reply : e != o && (c += mvcur.commentsTpl.spam_reply),
+                    (mvcur.adminLevel > 1 && e == o || t == vk.id) && (c += mvcur.commentsTpl.edit_reply), c = rs(mvcur.commentsTpl.actions, {
                         actions: c
                     });
                 var m = langDate(1e3 * r, getLang("global_short_date_time", "raw"), 0, []),
@@ -2673,8 +2673,7 @@ var Videoview = {
         toggle: function(e, i) {
             if (isUndefined(e) && (e = VideoPlaylist.isCollapsed()), !mvcur.minimized || !e) {
                 var o = VideoPlaylist.getBlock();
-                if (o && VideoPlaylist.isCollapsed() != !e) return data(o, "collapsed", !e),
-                    VideoPlaylist.toggleStateClasses(), Videoview.playerOnResize(), Videoview.updateReplyFormPos(), e && (VideoPlaylist.updateScrollbar(), VideoPlaylist.setCurVideo()), !1
+                if (o && VideoPlaylist.isCollapsed() != !e) return data(o, "collapsed", !e), VideoPlaylist.toggleStateClasses(), Videoview.playerOnResize(), Videoview.updateReplyFormPos(), e && (VideoPlaylist.updateScrollbar(), VideoPlaylist.setCurVideo()), !1
             }
         },
         toggleStateClasses: function() {
