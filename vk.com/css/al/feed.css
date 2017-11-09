@@ -1114,6 +1114,12 @@
     background-position: -4px 0
 }
 
+.feedback_private_post_row .feedback_photo_icon {
+    display: block;
+    background: #444 url(/images/svg_icons/feedback/publish.svg) no-repeat;
+    background-position: -4px 0
+}
+
 .feedback_mention_row .feedback_photo_icon {
     display: block;
     background: #fff url(/images/svg_icons/feedback/mention.svg) no-repeat

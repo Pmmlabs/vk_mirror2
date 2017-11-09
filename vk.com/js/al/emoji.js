@@ -23,6 +23,7 @@ if (!window.Emoji) {
         BOTTOM_REST_FOR_ADD_EMOJI_CATEGORY: 150,
         SHOW_TT_TIMEOUT: 100,
         HIDE_TT_TIMEOUT: 300,
+        SHOWN_TT_CLS: 'emoji_tt_shown',
 
         init: function(txt, opts) {
             var optId = Emoji.last;
@@ -981,7 +982,7 @@ if (!window.Emoji) {
             var gap = 10,
                 hintXY = getXY(el),
                 hintSize = getSize(el),
-                emojiXY = opts.tt && getXY(opts.tt);
+                emojiXY = Emoji.getEmojiTtXY(opts.tt);
 
             if (opts.tt && emojiXY &&
                 emojiXY[0] && hintXY[0] + hintSize[0] + gap > emojiXY[0] &&
@@ -997,6 +998,18 @@ if (!window.Emoji) {
             if (!domFC(el)) {
                 Emoji.stickersHintsHide(el, opts, 0);
             }
+        },
+
+        getEmojiTtXY(tooltip) {
+            var result;
+
+            if (tooltip && hasClass(tooltip, Emoji.SHOWN_TT_CLS)) {
+                result = getXY(tooltip);
+            } else {
+                result = [0, 0];
+            }
+
+            return result;
         },
 
         getStickersHintsQuery: function(el) {
@@ -2014,11 +2027,11 @@ if (!window.Emoji) {
         },
 
         hideTt: function(tt) {
-            removeClass(tt, 'emoji_tt_shown');
+            removeClass(tt, Emoji.SHOWN_TT_CLS);
         },
 
         showTt: function(tt) {
-            addClass(tt, 'emoji_tt_shown');
+            addClass(tt, Emoji.SHOWN_TT_CLS);
         },
 
         emojiGetCatCont: function(optId, cat) {
