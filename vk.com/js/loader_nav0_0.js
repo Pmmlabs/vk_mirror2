@@ -373,7 +373,7 @@ var stVersions = {
     'aes_light.js': 3306454788,
     'ads.css': 13485560206,
     'ads_bonus.css': 460482192,
-    'ads.js': 2027087623,
+    'ads.js': 3020653079,
     'ads_payments.js': 2170749464,
     'ads_edit.css': 9007205041,
     'ads_edit.js': 3109794325,
@@ -488,7 +488,7 @@ var stVersions = {
     'places.css': 10702439246,
     'map2.js': 3799102730,
     'map.css': 4020192821,
-    'paginated_table.js': 1572974868,
+    'paginated_table.js': 1694032136,
     'paginated_table.css': 9396573724,
     'api/share.js': 2621084197,
     'api/openapi.js': 519085702,
@@ -618,4 +618,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 3419;
+var _rnd = 1195;

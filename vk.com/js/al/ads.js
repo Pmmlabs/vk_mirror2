@@ -2608,7 +2608,7 @@ Ads.addOfficeFormatFunctions = function(options) {
         if (data == 0) {
             value = getLang('ads_no_money_limit');
         } else {
-            value = this._formatData(data, 'currency_int');
+            value = this._formatData(data, 'currency_int_sign');
         }
         return wrap.replace('{value}', value);
     }
