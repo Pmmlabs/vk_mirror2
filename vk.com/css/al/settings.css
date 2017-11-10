@@ -1988,9 +1988,12 @@ input.settings_app_password_name {
 .settings_separated_row_iconed.icon_type_follow:before,
 .settings_separated_row_iconed.icon_type_invite_group:before,
 .settings_separated_row_iconed.icon_type_mention:before,
-.settings_separated_row_iconed.icon_type_story_reply:before,
 .settings_separated_row_iconed.icon_type_wall:before {
     background-color: #5c9ce6
+}
+
+.settings_separated_row_iconed.icon_type_story_reply:before {
+    background-color: #aa65f0
 }
 
 .settings_separated_row_iconed.icon_type_private_post:before {

@@ -360,10 +360,13 @@ function MediaSelector(e, a, t, i) {
             _hideAddMedia: function(e) {
                 h.hide(e)
             },
+            hasRestrictingAttach: function() {
+                return geByClass1("medadd_c_market", w) || geByClass1("medadd_c_story", w)
+            },
             chooseMedia: function(a, t, o, r, d, p) {
                 if (s.onChange && s.onChange(a, t, o, r) === !1) return void 0 !== o.upload_ind && re("upload" + o.upload_ind + "_progress_wrap"), !1;
                 if ("note" == a && (cur.pbNoteAdded = !1), inArray(a, i.disabledTypes || [])) return !1;
-                if (s.attachCount() >= n && void 0 === o.upload_ind && "postpone" !== a && "mark_as_ads" !== a || geByClass1("medadd_c_market", w) || geByClass1("medadd_c_story", w)) {
+                if (s.attachCount() >= n && void 0 === o.upload_ind && "postpone" !== a && "mark_as_ads" !== a || s.hasRestrictingAttach()) {
                     if (l) return !1;
                     s.unchooseMedia()
                 }

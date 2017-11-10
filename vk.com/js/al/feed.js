@@ -924,6 +924,19 @@ var Feed = {
             }
         })
     },
+    notifyIgnoreAction: function(e, t, o, s) {
+        ajax.post("al_feed.php", {
+            act: "a_feedback_ignore_action",
+            action: e,
+            item_id: t,
+            hash: o
+        }, {
+            onDone: function(e, t) {
+                var o = gpeByClass("_feedback_deleted", s);
+                o.innerHTML = '<span class="dld_inner">' + e + "</span>", isTop && TopNotifier && TopNotifier.refresh()
+            }
+        })
+    },
     notifyDeleteAll: function(e, t, o, s) {
         if (cur.notifyDeletingAll || (cur.notifyDeletingAll = {}), !cur.notifyDeletingAll[e]) {
             cur.notifyDeletingAll[e] = 1;

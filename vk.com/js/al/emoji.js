@@ -1000,7 +1000,7 @@ if (!window.Emoji) {
             }
         },
 
-        getEmojiTtXY(tooltip) {
+        getEmojiTtXY: function(tooltip) {
             var result;
 
             if (tooltip && hasClass(tooltip, Emoji.SHOWN_TT_CLS)) {

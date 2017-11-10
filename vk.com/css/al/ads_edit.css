@@ -1516,7 +1516,8 @@ a.ads_edit_link_go:hover {
 .ads_edit_easy_promote_box__audience-menu-dots {
     position: absolute;
     top: -14px;
-    right: -48px
+    right: -48px;
+    z-index: 101
 }
 
 .ads_edit_easy_promote_box__audience-name-input {
@@ -1742,10 +1743,10 @@ a.ads_edit_link_go:hover {
 
 .ads_edit_easy_promote_box__intro-block_animated {
     opacity: 0;
-    -webkit-transform: translateX(20px);
-    -ms-transform: translateX(20px);
-    -o-transform: translateX(20px);
-    transform: translateX(20px)
+    -webkit-transform: translateY(20px);
+    -ms-transform: translateY(20px);
+    -o-transform: translateY(20px);
+    transform: translateY(20px)
 }
 
 .ads_edit_easy_promote_box__intro-block:first-child {
@@ -1806,13 +1807,12 @@ a.ads_edit_link_go:hover {
     background-color: #fff;
     padding: 10px 0;
     border-top: 1px solid #e7e8ec;
-    box-shadow: 0 -8px 12px -9px rgba(0, 0, 0, .15)
+    box-shadow: 0 -2px 4px 0px rgba(0, 0, 0, .04)
 }
 
 .ads_edit_easy_promote_box__row_expected-reach {
     padding: 10px 0;
-    margin-top: 5px;
-    border-top: 1px solid transparent
+    margin-top: 5px
 }
 
 .ads_edit_easy_promote_box__row-label {
@@ -2093,16 +2093,11 @@ input.ads_edit_easy_promote_box__payments-input-amount {
     font-size: 13px
 }
 
-.ads_edit_easy_promote_box__payments-systems-item_rotated {
-    -webkit-transform: perspective(300px) rotateX(90deg);
-    transform: perspective(300px) rotateX(90deg);
-    opacity: 0.5
-}
-
+.ads_edit_easy_promote_box__payments-systems-item_rotated,
 .ads_edit_easy_promote_box__payments-systems-item_rotated-inv {
-    -webkit-transform: perspective(300px) rotateX(-90deg);
-    transform: perspective(300px) rotateX(-90deg);
-    opacity: 0.5
+    -webkit-transform: perspective(300px);
+    transform: perspective(300px);
+    opacity: 0.0
 }
 
 .ads_edit_easy_promote_box__payments-systems-item_no-transition {
