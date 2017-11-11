@@ -594,6 +594,10 @@
     cursor: pointer
 }
 
+.checkbox_container.inline {
+    display: inline-block
+}
+
 .radiobtn_container .radiobtn:before,
 .checkbox_container .checkbox:before {
     display: none
@@ -613,6 +617,10 @@
     margin: 5px 0
 }
 
+.checkbox_container.inline table {
+    margin: 0
+}
+
 .checkbox_container table td,
 .radiobtn_container table td {
     vertical-align: middle
@@ -623,14 +631,26 @@
     padding: 2px 0 0
 }
 
+.checkbox_container.inline table td.checkbox {
+    padding: 0
+}
+
 .checkbox_container table td.checkbox_label,
 .radiobtn_container table td.radiobtn_label {
     line-height: 140%;
     padding: 0 0 0 3px
 }
 
+.checkbox_container.inline table td.checkbox_label {
+    line-height: inherit
+}
+
 .checkbox_container table td.checkbox_label {
     padding-top: 1px
+}
+
+.checkbox_container.inline table td.checkbox_label {
+    padding-top: 0
 }
 
 .checkbox_container table td .checkbox_off,
@@ -1150,6 +1170,13 @@ x:-moz-any-link {
     transition: opacity 45ms linear;
     -moz-transition: opacity 45ms linear;
     -webkit-transition: opacity 45ms linear
+}
+
+.idd_popup.idd_align_left {
+    -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%)
 }
 
 .idd_popup .idd_no_pe {

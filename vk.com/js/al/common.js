@@ -213,7 +213,8 @@ var browser = {
     opera_mobile: /opera mini|opera mobi/i.test(_ua),
     opera_mini: /opera mini/i.test(_ua),
     mac: /mac/i.test(_ua),
-    search_bot: /(yandex|google|stackrambler|aport|slurp|msnbot|bingbot|twitterbot|ia_archiver|facebookexternalhit)/i.test(_ua)
+    search_bot: /(yandex|google|stackrambler|aport|slurp|msnbot|bingbot|twitterbot|ia_archiver|facebookexternalhit)/i.test(_ua),
+    smart_tv: /smart-tv|smarttv/i.test(_ua)
 };
 var mobPlatforms = {
     1: 1,
@@ -7268,6 +7269,7 @@ function MessageBox(options, dark) {
         _hide: hideMe,
 
         bodyNode: boxBody,
+        controlsTextNode: boxControlsText,
         titleWrap: boxTitleWrap,
         btns: btns,
 
@@ -9411,7 +9413,7 @@ function pauseLastInlineVideo() {
 }
 
 function checkMp4(callback) {
-    if (/smart-tv/.test(window._ua)) {
+    if (browser.smart_tv) {
         callback(true);
         return;
     }

@@ -1951,6 +1951,7 @@ input.settings_app_password_name {
 .settings_separated_row_iconed.icon_type_new_post:before,
 .settings_separated_row_iconed.icon_type_photo_tag:before,
 .settings_separated_row_iconed.icon_type_private_post:before,
+.settings_separated_row_iconed.icon_type_related_events:before,
 .settings_separated_row_iconed.icon_type_repost:before,
 .settings_separated_row_iconed.icon_type_story_reply:before,
 .settings_separated_row_iconed.icon_type_wall:before {
@@ -1988,6 +1989,7 @@ input.settings_app_password_name {
 .settings_separated_row_iconed.icon_type_follow:before,
 .settings_separated_row_iconed.icon_type_invite_group:before,
 .settings_separated_row_iconed.icon_type_mention:before,
+.settings_separated_row_iconed.icon_type_related_events:before,
 .settings_separated_row_iconed.icon_type_wall:before {
     background-color: #5c9ce6
 }
@@ -2088,6 +2090,10 @@ input.settings_app_password_name {
 
 .settings_separated_row_iconed.icon_type_story_reply:before {
     background-position: 0 -644px
+}
+
+.settings_separated_row_iconed.icon_type_related_events:before {
+    background-position: 0 -672px
 }
 
 .settings_separated_row_iconed.icon_type_private_post:before {

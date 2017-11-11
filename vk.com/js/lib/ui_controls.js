@@ -1145,6 +1145,8 @@ extend(UiControl.prototype, {
         checkedValue: 1,
         notCheckedValue: "",
         width: 300,
+        containerClass: "",
+        inline: !1,
         label: "checkbox"
     },
     beforeInit: function() {
@@ -1155,7 +1157,7 @@ extend(UiControl.prototype, {
         return t ? (this.options = extend({}, this.defaultOptions, {
             checked: t.value,
             resultField: t.name || t.id || "checkbox"
-        }, e), this.options.checked = intval(this.options.checked) ? !0 : !1, void(this.options.width = intval(this.options.width) > 0 ? intval(this.options.width) : this.defaultOptions.width)) : !1
+        }, e), this.options.checked = intval(this.options.checked) ? !0 : !1, void(intval(this.options.width) > 0 ? this.options.width = intval(this.options.width) : "auto" === this.options.width || (this.options.width = this.defaultOptions.width))) : !1
     },
     init: function() {
         this.disabled = !1
@@ -1163,10 +1165,10 @@ extend(UiControl.prototype, {
     initDOM: function(t, e) {
         this.container = ce("div", {
             id: "container" + this.guid,
-            className: "checkbox_container",
+            className: "checkbox_container" + (this.options.inline ? " inline" : "") + (this.options.containerClass ? " " + this.options.containerClass : ""),
             innerHTML: '<table cellpadding=0 cellspacing=0><tr><td class="checkbox"><div class="checkbox_off"></div></td><td class="checkbox_label">' + this.options.label + '<input type="hidden" name="' + this.options.resultField + '" id="' + this.options.resultField + '" value="' + (this.options.checked ? this.options.checkedValue : this.options.notCheckedValue) + '"></td></tr></table>'
         }, {
-            width: this.options.width + "px"
+            width: isNumeric(this.options.width) ? this.options.width + "px" : "auto"
         }), t.parentNode.replaceChild(this.container, t), this.checkbox = geByClass("checkbox_off", this.container)[0], this.resultField = ge(this.options.resultField)
     },
     initEvents: function() {
@@ -1560,8 +1562,9 @@ extend(UiControl.prototype, {
             });
             var i = void 0 !== this.options.fadeSpeed ? this.options.fadeSpeed : 100;
             t === !1 ? this.onHide(!1) : fadeOut(this.container, i, function() {
-                show(e.container), e.onHide.call(e, !0), _ui.sel(!1)
-            }), e.parentMenu && (e.parentMenu.childIsOver = !1)
+                    show(e.container), e.onHide.call(e, !0), _ui.sel(!1)
+                }),
+                e.parentMenu && (e.parentMenu.childIsOver = !1)
         }
     },
     val: function() {
@@ -1853,7 +1856,7 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
     InlineDropdown._currIDD && InlineDropdown._currIDD._hide(), InlineDropdown._currIDD = this, window.tooltips && tooltips.hideAll();
     var s = this,
         o = this._els.popupEl = se('<div class="idd_popup"></div>');
-    this.openToUp = 1 == this._opts.forceDir || "up" == this._opts.forceDir || -1 != this._opts.forceDir && "down" != this._opts.forceDir && e(), this.openToUp ? (o.appendChild(this._els.popupItems), o.appendChild(this._els.popupHeader)) : (o.appendChild(this._els.popupHeader), o.appendChild(this._els.popupItems));
+    this._opts.alignLeft && addClass(o, "idd_align_left"), this.openToUp = 1 == this._opts.forceDir || "up" == this._opts.forceDir || -1 != this._opts.forceDir && "down" != this._opts.forceDir && e(), this.openToUp ? (o.appendChild(this._els.popupItems), o.appendChild(this._els.popupHeader)) : (o.appendChild(this._els.popupHeader), o.appendChild(this._els.popupItems));
     var n = geByClass1("idd_header", this._els.popupHeader);
     this._opts.keepTitle ? n.innerHTML = this._title : n.innerHTML = this._selected ? this._selected[1] : "", o.id = "idd_" + this._iddEl.id, this._iddEl.appendChild(o);
     var l = getSize(o),
@@ -1861,12 +1864,13 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
     getSize(this._els.popupItems.childNodes[0])[1] > l[1] && (r = sbWidth()), this._opts.checkable && (r += 30);
     var a = (i(geByClass1("idd_selected_value", this._iddEl)), getSize(this._els.valueEl)),
         h = (this._opts.withIcon ? 20 : 0, 0);
-    this.openToUp && (h = -getSize(this._els.popupItems)[1]), setStyle(o, {
-        marginLeft: (this._opts.headerLeft || InlineDropdown.IDD_HEADER_CORRECTION_LEFT) - (this._opts.withIcon ? 20 : 0),
+    this.openToUp && (h = -getSize(this._els.popupItems)[1]);
+    var d = {
         marginTop: (this._opts.headerTop || InlineDropdown.IDD_HEADER_CORRECTION_TOP) - a[1] + h,
         width: l[0] + 8,
         opacity: 1
-    }), this._unhoverItem(), this._highlightItem(), this._initOutEvent(), this._initKeypressEvent(), this._opts.onShow && this._opts.onShow(this.ddEl), cancelEvent(t)
+    };
+    this._opts.alignLeft ? d[vk.rtl ? "marginRight" : "marginLeft"] = a[0] - InlineDropdown.IDD_HEADER_CORRECTION_LEFT : d.marginLeft = (this._opts.headerLeft || InlineDropdown.IDD_HEADER_CORRECTION_LEFT) - (this._opts.withIcon ? 20 : 0), setStyle(o, d), this._unhoverItem(), this._highlightItem(), this._initOutEvent(), this._initKeypressEvent(), this._opts.onShow && this._opts.onShow(this.ddEl), cancelEvent(t)
 }, InlineDropdown.prototype._hide = function() {
     re(this._els.popupEl), this._els.popupEl = null, removeClass(this._hoveredItem, "idd_hover"), this._hoveredItem = null, this._deinitEvents(), this._hideSubmenu(), clearTimeout(this._hideSubmenuTimeout), this._opts.onHide && this._opts.onHide()
 }, InlineDropdown.prototype._highlightItem = function(t) {

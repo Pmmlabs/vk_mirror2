@@ -14,6 +14,7 @@
 .group_info_row:before,
 .group_places_list .group_box_image_wrap,
 .group_set_categories_wrap,
+.group_voting_narrow_img,
 .groups_actions_menu .groups_actions_icons,
 a.groups_messages_block:before {
     -ms-high-contrast-adjust: none
@@ -307,6 +308,68 @@ a.groups_messages_block:before {
 
 #group_voting_action {
     color: #2a5885
+}
+
+.group_voting_narrow,
+.group_voting_narrow:hover {
+    position: relative;
+    display: block;
+    min-height: 40px;
+    padding-left: 50px;
+    text-decoration: none
+}
+
+.group_voting_narrow_img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: url(/images/icons/group_poll_placeholder.png);
+    position: absolute;
+    left: 0;
+    top: 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .group_voting_narrow_img {
+        background-image: url(/images/icons/group_poll_placeholder_2x.png);
+        background-size: 40px 40px
+    }
+}
+
+.group_voting_narrow_title {
+    padding-top: 2px;
+    word-wrap: break-word;
+    display: inline-block;
+    line-height: 16px;
+    max-height: 96px;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left
+}
+
+.group_voting_narrow_title:hover {
+    text-decoration: underline
+}
+
+.group_voting_narrow_votes {
+    padding-top: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #656565;
+    display: block;
+    height: 15px;
+    line-height: 15px;
+    text-align: left
+}
+
+.voting_module .idd_wrap .idd_selected_value {
+    color: #939393
 }
 
 .group_block_module {

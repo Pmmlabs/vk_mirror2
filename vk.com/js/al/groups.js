@@ -80,11 +80,11 @@ var Groups = {
             }
         }, e)
     },
-    votingUpdate: function(html, js) {
+    votingUpdate: function(act, html, js, state) {
         var mod = ge("group_voting");
         mod.parentNode.replaceChild(ce("div", {
             innerHTML: html
-        }).firstChild, mod), js && eval(js)
+        }).firstChild, mod), "tomain" == act && toggle("group_voting", state), js && eval(js)
     },
     vote: function(e, o, t, s) {
         radiobtn(e, s, "vote_option" + t);
@@ -98,37 +98,42 @@ var Groups = {
             voting_id: t,
             hash: cur.polls[t].hash
         }, {
-            onDone: Groups.votingUpdate,
+            onDone: Groups.votingUpdate.pbind("vote"),
             progress: a
         })
     },
     subscribe: function(e) {
         window.Notifier && Notifier.addKey(e, Groups.updates), Groups.keyTO = setTimeout(Groups.subscribe, 3e4)
     },
-    votingAction: function(e) {
-        var o = 0;
+    votingAction: function(e, o) {
+        if (o) {
+            var t = gpeByClass("top_result_baloon_wrap", o);
+            t && fadeOut(t.firstChild, 200)
+        }
+        var s = 0;
         switch (e) {
             case 101:
-                e = "openclose", o = 0;
+                e = "openclose", s = 0;
                 break;
             case 102:
-                e = "openclose", o = 1;
+                e = "openclose", s = 1;
                 break;
             case 103:
-                e = "tomain", o = 0;
+                e = "tomain", s = 0;
                 break;
             case 104:
-                e = "tomain", o = 1
+                e = "tomain", s = 1
         }
         ajax.post("al_voting.php", {
             act: e,
             owner_id: cur._voting.oid,
             voting_id: cur._voting.vid,
-            state: o,
+            state: s,
+            is_wide: cur._voting.is_wide,
             context: "group",
             hash: cur._voting.hash
         }, {
-            onDone: Groups.votingUpdate
+            onDone: Groups.votingUpdate.pbind(e)
         })
     },
     toggleFeedIgnored: function(e, o, t) {

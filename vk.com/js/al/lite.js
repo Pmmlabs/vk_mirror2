@@ -138,7 +138,8 @@ var browser = {
     android: /android/i.test(_ua),
     opera_mobile: /opera mini|opera mobi/i.test(_ua),
     mobile: /iphone|ipod|ipad|opera mini|opera mobi/i.test(_ua),
-    mac: /mac/i.test(_ua)
+    mac: /mac/i.test(_ua),
+    smart_tv: /smart-tv|smarttv/i.test(_ua)
 };
 var mobPlatforms = {
     1: 1,
@@ -6802,7 +6803,7 @@ function videoCallback(params) {
 }
 
 function checkMp4(callback) {
-    if (/smart-tv/.test(window._ua)) {
+    if (browser.smart_tv) {
         callback(true);
         return;
     }

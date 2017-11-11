@@ -1115,7 +1115,8 @@ div.submit_post_field font {
 .wall_module .reply_author {
     font-size: 12.5px;
     line-height: 1.36;
-    color: #939393
+    color: #939393;
+    min-height: 1.36em
 }
 
 .wall_module .reply_date {
@@ -1427,6 +1428,64 @@ div.submit_post_field font {
     -moz-osx-font-smoothing: grayscale;
     text-align: left;
     font-size: 12.5px
+}
+
+.page_market_item_narrow,
+.page_market_item_narrow:hover {
+    position: relative;
+    display: block;
+    white-space: nowrap;
+    min-height: 40px;
+    padding-left: 50px;
+    color: #656565;
+    text-decoration: none
+}
+
+.page_market_item_narrow+.page_market_item_narrow,
+.page_market_item_narrow+.page_market_item_narrow:hover,
+.page_market_item_narrow:hover+.page_market_item_narrow,
+.page_market_item_narrow:hover+.page_market_item_narrow:hover {
+    margin-top: 14px
+}
+
+.page_market_item_narrow_img {
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    top: 0
+}
+
+.page_market_item_narrow_title {
+    padding-top: 2px
+}
+
+.page_market_item_narrow_price {
+    color: #000;
+    padding-top: 4px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.page_market_item_narrow_title:hover {
+    text-decoration: underline
+}
+
+.page_market_item_narrow_price,
+.page_market_item_narrow_title {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 15px;
+    height: 15px;
+    text-align: left
+}
+
+.narrow_column .market_module .page_market_items_wrap {
+    margin: 0
 }
 
 .wall_module .reply_box_open .replies_wrap,

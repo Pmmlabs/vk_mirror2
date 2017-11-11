@@ -633,7 +633,7 @@ var GroupsEdit = {
             t = ge("group_save");
         0 == cur.cls || 2 == cur.cls ? extend(e, GroupsEdit.getFields("wall", "photos", "video", "audio", "docs", "topics", "wiki")) : 1 == cur.cls && each(["enable_topics", "enable_photos", "enable_video", "enable_audio", "enable_links", "enable_events", "enable_places", "enable_contacts"], function(t, o) {
             e[o] = isChecked(o)
-        }), cur.marketCountryDD && (1 == cur.cls ? e.enable_market = isChecked("enable_market") : extend(e, GroupsEdit.getFields("market")), (e.market || e.enable_market) && (extend(e, GroupsEdit.getFields("market_comments", "market_wiki")), e.market_country = cur.marketCountryDD.val(), isVisible("group_market_city_wrap") && (e.market_city = cur.marketCityDD.val()), e.market_currency = cur.marketCurrencyDD.val(), e.market_contact = cur.marketContactDD.val(), isVisible("market_button_type_link") && (e.market_button_type = cur.marketButtonType.val(), e.market_button_name = trim(val("group_market_button_name"))))), ajax.post("groupsedit.php", e, {
+        }), cur.marketCountryDD && (1 == cur.cls ? e.enable_market = isChecked("enable_market") : extend(e, GroupsEdit.getFields("market")), (e.market || e.enable_market) && (extend(e, GroupsEdit.getFields("market_comments", "market_wiki")), e.market_country = cur.marketCountryDD.val(), isVisible("group_market_city_wrap") && (e.market_city = cur.marketCityDD.val()), e.market_currency = cur.marketCurrencyDD.val(), e.market_contact = cur.marketContactDD.val(), isVisible("market_button_type_link") && (e.market_button_type = cur.marketButtonType.val(), e.market_button_name = trim(val("group_market_button_name"))))), cur.mainSectionDD && cur.secondarySectionDD && (e.main_section = intval(cur.mainSectionDD.val()), e.secondary_section = intval(cur.secondarySectionDD.val())), ajax.post("groupsedit.php", e, {
             onDone: function(e) {
                 return -2 != e && -3 != e || isVisible("group_edit_market") || GroupsEdit.toggleMarketBlock(!0), -2 == e ? notaBene(domPN(ge("group_market_country"))) : -3 == e ? notaBene(domPN(ge("group_market_contact"))) : -4 == e ? notaBene(domPN(ge("group_market_button_name"))) : (GroupsEdit.showMessage(getLang("groups_sections_saved_msg")), scrollToTop(), void globalHistoryDestroy(nav.objLoc[0]))
             },
@@ -889,9 +889,40 @@ var GroupsEdit = {
             onChange: function(e) {
                 0 === intval(e) ? (show("market_button_type_im"), hide("market_button_type_link")) : 1 === intval(e) && (hide("market_button_type_im"), show("market_button_type_link"))
             }
-        })), cur.destroy.push(function(e) {
-            e.marketCountryDD && (e.marketCountryDD.destroy(), e.marketCityDD.destroy(), e.marketCurrencyDD.destroy(), e.marketContactDD.destroy(), e.marketButtonType.destroy())
+        })), e.wideSections && (extend(cur, {
+            wideSections: e.wideSections,
+            mainSectionDD: new Dropdown(ge("main_section"), e.wideSections, {
+                dark: !0,
+                multiselect: !1,
+                autocomplete: !0,
+                zeroPlaceholder: !0,
+                zeroDefault: !0,
+                onChange: GroupsEdit.manageSectionsDD
+            }),
+            secondarySectionDD: new Dropdown(ge("secondary_section"), e.wideSections, {
+                dark: !0,
+                multiselect: !1,
+                autocomplete: !0,
+                zeroPlaceholder: !0,
+                zeroDefault: !0,
+                onChange: GroupsEdit.manageSectionsDD
+            })
+        }), cur.mainSectionDD.val(e.mainSection), cur.secondarySectionDD.val(e.secondarySection), GroupsEdit.manageSectionsDD()), cur.destroy.push(function(e) {
+            e.marketCountryDD && (e.marketCountryDD.destroy(), e.marketCityDD.destroy(), e.marketCurrencyDD.destroy(), e.marketContactDD.destroy(), e.marketButtonType.destroy());
         })
+    },
+    manageSectionsDD: function() {
+        var e = intval(cur.mainSectionDD.val()),
+            t = intval(cur.secondarySectionDD.val());
+        if (e) {
+            cur.secondarySectionDD.disable(!1);
+            var o = cur.wideSections.filter(function(t) {
+                return intval(t[0]) !== e
+            });
+            cur.secondarySectionDD.setOptions({
+                defaultItems: o
+            }), cur.secondarySectionDD.val(t === e ? 0 : t)
+        } else cur.secondarySectionDD.val(0), cur.secondarySectionDD.disable(!0)
     },
     initMessages: function() {
         var e = ge("messages_widget_domains");

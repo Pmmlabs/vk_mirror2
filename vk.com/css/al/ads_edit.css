@@ -1504,6 +1504,10 @@ a.ads_edit_link_go:hover {
     overflow: hidden
 }
 
+.ads_edit_easy_promote_box__accept-terms-checkbox {
+    vertical-align: top
+}
+
 .ads_edit_easy_promote_box__audience-menu-progress {
     position: absolute;
     top: 13px;
