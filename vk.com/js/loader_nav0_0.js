@@ -138,7 +138,7 @@ var stVersions = {
     'uncommon.css': 10261419157,
     'filebutton.css': 1044306797,
     'filebutton.js': 2454165044,
-    'lite.js': 1000716318,
+    'lite.js': 2838965320,
     'lite.css': 32896274535,
     'rtl.css': 8154617043,
     'pagination.js': 1027022568,
@@ -199,7 +199,7 @@ var stVersions = {
     'video_upload.js': 812506149,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 7053960521,
-    'videoplayer.js': 81989937597,
+    'videoplayer.js': 82056071180,
     'videoplayer.css': 25446840315,
     'translation.js': 51041194,
     'translation.css': 10217939861,
@@ -218,7 +218,7 @@ var stVersions = {
     'owner_photo.js': 1714149322,
     'owner_photo.css': 13066412980,
     'page.js': 1241737814,
-    'page.css': 12917787561,
+    'page.css': 14348888471,
     'page_help.css': 12584918499,
     'public.css': 15709147958,
     'public.js': 1344775948,
@@ -271,7 +271,7 @@ var stVersions = {
     'apps_check.js': 3844411974,
     'apps_check.css': 14141224752,
     'settings.js': 3179311966,
-    'settings.css': 14432072814,
+    'settings.css': 13089782788,
     'profile_edit.js': 2157979570,
     'profile_edit.css': 9472615711,
     'profile_edit_edu.js': 174903945,
@@ -375,7 +375,7 @@ var stVersions = {
     'ads_bonus.css': 460482192,
     'ads.js': 3020653079,
     'ads_payments.js': 2170749464,
-    'ads_edit.css': 9007205041,
+    'ads_edit.css': 6954366486,
     'ads_edit.js': 3109794325,
     'ads_edit_geo.js': 1634516705,
     'ads_moder_common.css': 7961661217,
@@ -387,7 +387,7 @@ var stVersions = {
     'ads_web.js': 4274163593,
     'mrtarg.js': 1146267795,
     'mrtarg.css': 3142794554,
-    'cmodules/web/ads_edit_easy.js': 2182012956,
+    'cmodules/web/ads_edit_easy.js': 1393419303,
     'health.css': 2251304991,
     'health.js': 2993570139,
     'pinbar.js': 284788792,
@@ -477,9 +477,9 @@ var stVersions = {
     'landings/testing.css': 9009465587,
     'vkme.css': 11355699310,
     'cmodules/web/vkme-desktop.js': 4912670899,
-    'ui_controls.js': 2555599550,
+    'ui_controls.js': 3790564012,
     'highcharts.js': 1982709850,
-    'ui_controls.css': 10645762227,
+    'ui_controls.css': 9002879532,
     'selects.js': 2835310113,
     'mentions.js': 3097650360,
     'apps_flash.js': 574154589,
@@ -551,8 +551,8 @@ var stVersions = {
     'internal/restore2.js': 3254490132,
     'language.js': 3496086639,
     'language.css': 9847057566,
-    'internal/admins.js': 3505505777,
-    'internal/admins.css': 10553150941,
+    'internal/admins.js': 3518114731,
+    'internal/admins.css': 8816338216,
     'lang': 6867
 };
 var stTypes = {
@@ -618,4 +618,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 1195;
+var _rnd = 9423;
