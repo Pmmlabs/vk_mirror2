@@ -8624,7 +8624,7 @@ var _cleanHide = function(el) {
        needLeft: bool - ���������� ������ "�����������" � ����� ����������� �� ����� ������������
        reverseOffset
        checkLeft
-       appendEl
+       appendEl - ���������, � ������� ����� ������ div � ��������
        tip
        typeClass
        className

@@ -15,8 +15,9 @@
 .tickets_actions_add_to_bookmark,
 .tickets_actions_bookmarks_menu .ui_actions_menu_icons,
 .tickets_delegate_btn_process,
+.tickets_header_info.tickets_header_info_progress,
 .tickets_header_links .ui_actions_menu_item.tickets_header_links_fav_selected:before,
-.tickets_header_progress,
+.tickets_header_task_info.tickets_header_info_progress,
 .tickets_header_title_locked,
 .tickets_list_load_more_loading,
 .tickets_mobile_notice__close,
@@ -511,9 +512,8 @@ body.dev .tickets_post_field_wrap {
     font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    padding-right: 35px;
-    font-size: 15px;
-    line-height: 20px;
+    font-size: 14px;
+    line-height: 19px;
     overflow: hidden;
     text-overflow: ellipsis
 }
@@ -545,14 +545,43 @@ body.dev .tickets_post_field_wrap {
 }
 
 .tickets_header_info {
-    padding-right: 35px;
-    padding-top: 3px;
+    padding-top: 1px;
     color: #939393;
-    font-size: 13px
+    font-size: 12.5px;
+    line-height: 19px
 }
 
 body.dev .tickets_header_info {
     display: none
+}
+
+.tickets_header_info.tickets_header_info_progress {
+    background: url(/images/upload.gif) 0 no-repeat;
+    color: transparent
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_header_info.tickets_header_info_progress {
+        background-image: url(/images/upload_2x.gif);
+        background-size: 32px 8px
+    }
+}
+
+.tickets_header_info.tickets_header_info_progress>* {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden
+}
+
+.tickets_header_helpdesk .tickets_header_title {
+    padding-right: 65px
+}
+
+.tickets_header_helpdesk .tickets_header_info {
+    padding-right: 65px;
+    font-size: 12px
 }
 
 .tickets_remaining_time_delay {
@@ -560,14 +589,34 @@ body.dev .tickets_header_info {
 }
 
 .tickets_header_task_info {
-    padding-right: 35px;
-    padding-top: 3px;
+    padding-top: 1px;
     color: #939393;
-    font-size: 13px
+    font-size: 12.5px;
+    line-height: 19px
 }
 
 body.dev .tickets_header_task_info {
     display: none
+}
+
+.tickets_header_task_info.tickets_header_info_progress {
+    background: url(/images/upload.gif) 0 no-repeat;
+    color: transparent
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .tickets_header_task_info.tickets_header_info_progress {
+        background-image: url(/images/upload_2x.gif);
+        background-size: 32px 8px
+    }
+}
+
+.tickets_header_task_info.tickets_header_info_progress>* {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden
 }
 
 .tickets_header_task_info .tickets_unbind {
@@ -579,43 +628,35 @@ body.dev .tickets_header_task_info {
 }
 
 .tickets_header_progress {
-    background: url(/images/upload.gif) 50% no-repeat;
     float: left;
     margin-right: 5px;
     height: 15.002px;
     width: 32px
 }
 
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .tickets_header_progress {
-        background-image: url(/images/upload_2x.gif);
-        background-size: 32px 8px
-    }
-}
-
 .tickets_header_body {
     float: left;
-    max-width: 100%
+    max-width: 100%;
+    position: relative
 }
 
 .tickets_header_links {
     float: right;
     position: relative;
-    line-height: 38.002px
+    line-height: 35.002px
 }
 
 body.dev .tickets_header_links {
-    line-height: 20px
+    line-height: 19px
 }
 
 .tickets_header_links .ui_actions_menu_icons {
-    right: 6px
+    right: 0;
+    top: 11px
 }
 
 .tickets_header_links .ui_actions_menu {
-    right: -14px
+    right: -19px
 }
 
 .tickets_header_links .ui_actions_menu_item {
@@ -2815,7 +2856,7 @@ a.tickets_question_row_tt_unread {
 
 .tickets_app_link {
     margin: -1px 0 0;
-    padding: 1px 0 0 22px;
+    padding: 1px 0 0 18px;
     display: inline-block;
     height: 16px
 }
@@ -4094,16 +4135,6 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     color: #2a5885
 }
 
-.tickets_member_info_tt:after,
-.tickets_member_info_tt:before {
-    left: 100px
-}
-
-.tickets_group_info_tt:after,
-.tickets_group_info_tt:before {
-    right: 200px
-}
-
 .tickets_delegate_btn_process {
     pointer-events: none;
     background: url(/images/upload.gif) 100% no-repeat;
@@ -4209,8 +4240,11 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 }
 
 .tickets_actions_bookmarks_menu .ui_actions_menu_icons {
-    background: url(/images/icons/fav_mark.png) no-repeat 3px 3px;
-    right: 41px
+    background: url(/images/icons/fav_mark.png) no-repeat 0 0;
+    right: 36px;
+    width: 14px;
+    height: 14px;
+    top: 15px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -4222,8 +4256,12 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     }
 }
 
+.tickets_actions_bookmarks_menu .ui_actions_menu_icons:active {
+    top: 16px
+}
+
 .tickets_actions_bookmarks_menu .ui_actions_menu {
-    right: 22px
+    right: 12px
 }
 
 .tickets_actions_bookmarks_menu.tickets_actions_bookmarks_menu_hidden .shown .ui_actions_menu {
@@ -4232,11 +4270,11 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 }
 
 .tickets_actions_add_to_bookmark {
-    background: url(/images/icons/fav_mark.png) no-repeat 3px 3px;
-    right: 45px;
-    width: 18px;
-    height: 18px;
-    top: 17px;
+    background: url(/images/icons/fav_mark.png) no-repeat 0 0;
+    right: 36px;
+    width: 14px;
+    height: 14px;
+    top: 15px;
     opacity: 0.4;
     position: absolute;
     cursor: pointer
@@ -4249,4 +4287,8 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
         background-image: url(/images/icons/fav_mark_2x.png);
         background-size: 14px 33px
     }
+}
+
+.tickets_actions_add_to_bookmark:active {
+    top: 16px
 }

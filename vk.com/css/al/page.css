@@ -211,6 +211,11 @@
     border-top: 1px solid #e7e8ec
 }
 
+.tt_w .big_wall_cards .post:first-child,
+.tt_w .big_wall_phone_info .post:first-child {
+    border-top: 0 none
+}
+
 .wall_module .delete_post_wrap {
     position: relative;
     z-index: 10
