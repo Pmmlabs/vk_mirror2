@@ -492,6 +492,10 @@ function intval(value) {
     return isNaN(parseInt(value, 10)) ? 0 : parseInt(value, 10);
 }
 
+function isNumeric(value) {
+    return !isNaN(value);
+}
+
 function winToUtf(text) {
     var m, i, j, code;
     m = text.match(/&#[0-9]{2}[0-9]*;/gi);
