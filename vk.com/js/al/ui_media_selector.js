@@ -560,10 +560,10 @@ function MediaSelector(e, a, t, i) {
                         if (x.share || x.pretty_cards) return !1;
                         break;
                     case "wall":
-                        I = '<div class="medadd_c_wall"><a target="_blank" href="' + o.href + '"><img class="medadd_c_wall_thumb fl_l" src="' + o.thumb + '" /></a><div class="medadd_c_wall_info fl_l"><a class="medadd_c_wall_author" target="_blank" href="' + o.href + '">' + o.author + '</a><div class="medadd_c_wall_type">' + o.lang.title + "</div></div>", hide(e);
+                        I = '<div class="medadd_c_wall"><a target="_blank" href="' + o.href + '"><img class="medadd_c_wall_thumb fl_l" src="' + o.thumb + '" /></a><div class="medadd_c_wall_info fl_l"><a class="medadd_c_wall_author" target="_blank" href="' + o.href + '">' + o.author + '</a><div class="medadd_c_wall_type">' + o.lang.title + "</div></div>", N = ' id="pam' + u + "_wall" + t + '"', hide(e);
                         break;
                     case "wall_reply":
-                        I = '<div class="medadd_c_wall"><a target="_blank" href="' + o.href + '"><img class="medadd_c_wall_thumb fl_l" src="' + o.thumb + '" /></a><div class="medadd_c_wall_info fl_l"><a class="medadd_c_wall_author" target="_blank" href="' + o.href + '">' + o.author + '</a><div class="medadd_c_wall_type">' + o.lang.title + "</div></div>", hide(e)
+                        I = '<div class="medadd_c_wall"><a target="_blank" href="' + o.href + '"><img class="medadd_c_wall_thumb fl_l" src="' + o.thumb + '" /></a><div class="medadd_c_wall_info fl_l"><a class="medadd_c_wall_author" target="_blank" href="' + o.href + '">' + o.author + '</a><div class="medadd_c_wall_type">' + o.lang.title + "</div></div>", N = ' id="pam' + u + "_wall_reply" + t + '"', hide(e)
                 }
                 if (l) {
                     var ee = s.chosenMedias,
