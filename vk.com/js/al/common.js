@@ -4122,7 +4122,8 @@ function validateMobileBox(opts) {
         captcha: opts.acceptCaptcha ? 1 : '',
         skip_push: opts.skip_push ? opts.skip_push : '',
         from: opts.from || '',
-        hash: opts.hash
+        hash: opts.hash,
+        ahash: opts.ahash
     }, {
         stat: ['uncommon.css']
     }), opts.onDone, opts.onFail);
@@ -4558,7 +4559,8 @@ var ajax = {
                             }) : q, no);
                         },
                         onFail: o.onFail,
-                        hash: answer[0]
+                        hash: answer[0],
+                        ahash: answer[1]
                     });
                     break;
                 case 14:

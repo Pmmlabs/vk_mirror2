@@ -217,7 +217,7 @@ var stVersions = {
     'module.css': 11016443652,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 12518505859,
-    'page.js': 1241737814,
+    'page.js': 939990738,
     'page.css': 13788970395,
     'page_help.css': 14844742765,
     'public.css': 15342007003,
@@ -348,8 +348,8 @@ var stVersions = {
     'groupinfo.css': 11560682960,
     'bugs.js': 3874995669,
     'bugs.css': 6887697564,
-    'bugtracker.js': 1456507863,
-    'bugtracker.css': 18337751380,
+    'bugtracker.js': 579141626,
+    'bugtracker.css': 17314681308,
     'login.css': 10865996619,
     'login.js': 3551917100,
     'upload.js': 16891470,
@@ -371,7 +371,7 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 17765818530,
     'aes_light.js': 3306454788,
-    'ads.css': 15745384472,
+    'ads.css': 18173506217,
     'ads_bonus.css': 460482192,
     'ads.js': 3020653079,
     'ads_payments.js': 2170749464,
@@ -618,4 +618,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 5761;
+var _rnd = 2920;

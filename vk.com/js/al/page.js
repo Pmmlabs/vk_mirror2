@@ -3163,7 +3163,8 @@ var Wall = {
         }
     },
     isAnonPost: function() {
-        return hasClass(geByClass1('_ui_toggler', geByClass1('anon_toggle')), 'on') ? 1 : '';
+        var anonToggler = geByClass1('anon_toggle');
+        return (anonToggler && hasClass(geByClass1('_ui_toggler', anonToggler), 'on') ? 1 : '');
     },
     saveAnon: function(el) {
         toggleClass(geByClass1('_ui_toggler', el), 'on');
