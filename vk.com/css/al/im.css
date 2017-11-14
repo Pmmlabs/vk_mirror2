@@ -2719,8 +2719,6 @@ img.im_photo_thumb {
     border: none;
     -o-transition: border-bottom-color 0.3s linear;
     transition: border-bottom-color 0.3s linear;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
     -webkit-font-smoothing: subpixel-antialiased
 }
 
@@ -2829,6 +2827,12 @@ img.im_photo_thumb {
 .im-chat-input--tt:before {
     left: auto!important;
     right: 37px
+}
+
+@supports (-webkit-appearance: none) {
+    .im-chat-input--text {
+        -webkit-transform: translateZ(0)
+    }
 }
 
 .im-page--chat-header {
@@ -4484,6 +4488,10 @@ img.im_photo_thumb {
 
 .im-page--history.is_msg_sebastianoving .im-mess--check {
     display: none
+}
+
+.im-page--history.is_msg_sebastianoving .sticker_hints_tt {
+    display: none!important
 }
 
 .im-page--history.is_msg_sebastianoving .im-mess--fav,

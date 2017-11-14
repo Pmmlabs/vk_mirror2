@@ -827,7 +827,7 @@ a.page_module_upload:hover .page_upload_label {
 }
 
 .page_upload_label {
-    background: url(/images/icons/group_icons.png?3) no-repeat;
+    background: url(/images/icons/group_icons.png?4) no-repeat;
     position: absolute;
     display: block;
     width: 17px;
@@ -843,7 +843,7 @@ a.page_module_upload:hover .page_upload_label {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .page_upload_label {
-        background-image: url(/images/icons/group_icons_2x.png?3);
+        background-image: url(/images/icons/group_icons_2x.png?4);
         background-size: 17px 187px
     }
 }
@@ -889,7 +889,7 @@ a.page_module_upload:hover .page_upload_label {
 }
 
 .wide_column .page_upload_label {
-    background: url(/images/icons/group_icons_big.png?1) no-repeat;
+    background: url(/images/icons/group_icons_big.png?2) no-repeat;
     width: 25px;
     height: 27px;
     margin-left: -37px;
@@ -900,7 +900,7 @@ a.page_module_upload:hover .page_upload_label {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .wide_column .page_upload_label {
-        background-image: url(/images/icons/group_icons_big_2x.png?1);
+        background-image: url(/images/icons/group_icons_big_2x.png?2);
         background-size: 25px 169px
     }
 }

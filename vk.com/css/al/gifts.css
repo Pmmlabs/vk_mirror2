@@ -847,8 +847,12 @@ img.gift_duck_tease#gift_item_733 {
     transition: all 5000ms ease-in-out
 }
 
+.gifts_notif_wrap {
+    padding-top: 15px
+}
+
 .gifts_notif_block {
-    margin: 15px 15px 0;
+    margin: 0 15px;
     padding: 12px;
     border: none;
     background-color: #e9eef5;
