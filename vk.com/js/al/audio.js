@@ -474,9 +474,14 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
 }, AudioPage.prototype.getSortedList = function() {
     return this._sortedList
 }, AudioPage.prototype.shuffleAudioPage = function() {
-    var e = this.getPageCurrentPlaylist();
+    var e = this.getPageCurrentPlaylist(),
+        t = domData(this._els.audioRows, "audio-context");
     e.loadAll(function() {
-        this._sortedPageList = [].concat(e.getUnshuffledAudiosList()), shuffle(this._sortedPageList), getAudioPlayer().play(this._sortedPageList[0], e), this._initAudioRowsAutoList(!1, !0), this._originalPageList || (this._originalPageList = [].concat(e.getUnshuffledAudiosList())), e.setAudioList(this._sortedPageList), this._sortDD && this._sortDD.select("random", !0)
+        this._sortedPageList = [].concat(e.getUnshuffledAudiosList()), shuffle(this._sortedPageList);
+        var i = new AudioPlaylist(AudioPlaylist.TYPE_TEMP);
+        i.mergeWith({
+            list: this._sortedPageList
+        }), getAudioPlayer().play(i.getAudioAt(0), i, t), this._initAudioRowsAutoList(!1, !0), this._originalPageList || (this._originalPageList = [].concat(e.getUnshuffledAudiosList())), this._sortDD && this._sortDD.select("random", !0)
     }.bind(this)), statlogsValueEvent("audio_sort_stat", "audio_sort", "shuffle_page", this.isLayer() ? "layer" : "page")
 }, AudioPage.prototype._onSortSelected = function(e) {
     var t = this.getPageCurrentPlaylist();
@@ -733,7 +738,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                         var _ = H ? u.title.replace(H, "$1<em>$2</em>") : u.title,
                             c = langNumeric(u.size, cur.lang.audio_playlist_audios_count, !0).replace("{count}", u.size),
                             h = '<div class="ape_pl_item_inner"><span class="ape_pl_title">' + _ + '</span> <span class="ape_pl_size">' + c + "</span></div>";
-                        d = '<div class="ape_pl_item" data-playlist-access-hash="' + u.access_hash + '"  data-playlist-owner-id="' + u.owner_id + '" data-playlist-id="' + u.id + '">' + h + "</div>";
+                        d = '<div class="ape_pl_item" data-playlist-access-hash="' + u.access_hash + '"  data-playlist-owner-id="' + u.owner_id + '" data-playlist-id="' + u.id + '">' + h + "</div>"
                     }
                     s.push(d)
                 }

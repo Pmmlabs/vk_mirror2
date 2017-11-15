@@ -1357,6 +1357,12 @@ AdsEdit.showCreatingPostForm = function(buttonElem, creatingPostBox, postOwnerId
 
     function onComplete(isDone) {
         Ads.unlock(lockHash);
+
+        if (isDone) {
+            if (typeof AdsPiwik !== 'undefined') {
+                AdsPiwik.sendPaq('ads_create', 'click', 'create_post_button');
+            }
+        }
     }
 }
 
@@ -1556,6 +1562,10 @@ AdsEdit.createPost = function(creatingPostBox) {
             cur.viewEditor.completeLinkPending = true;
             cur.viewEditor.setLinkUrl(response.post_url);
             creatingPostBox.hide();
+
+            if (typeof AdsPiwik !== 'undefined') {
+                AdsPiwik.sendPaq('ads_create', 'save', 'create_post_box');
+            }
         }
     }
 }
@@ -1585,6 +1595,10 @@ AdsEdit.showEditingPostBox = function(buttonElem) {
         var args = Array.prototype.slice.call(arguments);
         args.unshift(lockHash);
         AdsEdit.initEditingPostBox.apply(window, args);
+
+        if (typeof AdsPiwik !== 'undefined') {
+            AdsPiwik.sendPaq('ads_edit', 'click', 'edit_post_button');
+        }
     }
 
     function onFail(message) {
@@ -1660,6 +1674,10 @@ AdsEdit.initEditingPostBox = function(lockHash, html, js, postOwnerId, postId, w
 AdsEdit.completeEditingPost = function(editingPostBox) {
     editingPostBox.hide();
     cur.viewEditor.updateLinkPromotedPost();
+
+    if (typeof AdsPiwik !== 'undefined') {
+        AdsPiwik.sendPaq('ads_edit', 'save', 'edit_post_box');
+    }
 }
 
 AdsEdit.scrollToEditing = function() {
@@ -2548,6 +2566,9 @@ AdsViewEditor.prototype.initUiParam = function(paramName) {
                 this.updateUiParamVisibility('_link_buttons');
                 this.updateUiParam('link_url');
                 elfocus(this.options.targetIdPrefix + 'link_url');
+                if (typeof AdsPiwik !== 'undefined') {
+                    AdsPiwik.sendPaq('ads_create', 'click', 'choose_post_link');
+                }
                 return false;
             }.bind(this));
 
@@ -4190,6 +4211,10 @@ AdsViewEditor.prototype.onUiEvent = function(paramName, event) {
             this.onParamUpdate(paramName, paramValue, undefined, undefined, {
                 paramSubValue: paramSubValue
             });
+
+            if (typeof AdsPiwik !== 'undefined') {
+                AdsPiwik.sendPaq('ads_create', 'click', paramSubValue);
+            }
             break;
         case 'link_url':
             var eventType = event.type;
