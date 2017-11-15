@@ -534,6 +534,7 @@ a.page_post_thumb_wrap:hover {
 }
 
 .page_docs_preview .page_preview_doc_wrap,
+.page_docs_preview .page_preview_wall_reply_wrap,
 .page_docs_preview .page_preview_wall_wrap {
     padding: 0 0 10px
 }

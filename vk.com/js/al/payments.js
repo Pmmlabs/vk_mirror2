@@ -429,7 +429,7 @@ var MoneyTransfer = {
         if (cur.paymentsOptions.requestId) {
             box.changed = true;
             box.setOptions({
-                width: 480
+                width: 510
             });
             MoneyTransfer.send();
         }
@@ -466,7 +466,7 @@ var MoneyTransfer = {
         }, {
             border: 0,
             height: '445px',
-            width: (480 - sbWidth()) + 'px',
+            width: (510 - sbWidth()) + 'px',
             overflowX: 'hidden',
             overflowY: 'hidden'
         });
@@ -512,7 +512,7 @@ var MoneyTransfer = {
 
                     box.changed = true;
                     box.setOptions({
-                        width: 480
+                        width: 510
                     });
                     if (!cur.paymentsOptions.requestId && isVisible(box.titleWrap)) {
                         box.setBackTitle(MoneyTransfer.resetSendBox);
@@ -581,7 +581,7 @@ var MoneyTransfer = {
         show('payments_money_transfer_wrap', 'payments_money_transfer_buttons');
         box.changed = false;
         box.setOptions({
-            width: 480
+            width: 510
         });
         if (isVisible(box.titleWrap)) {
             box.setBackTitle(false);
@@ -687,7 +687,7 @@ var MoneyTransfer = {
             removeClass('payments_iframe_container', 'payments_threeds_frame');
         }
         if (!skipContHeight) {
-            ge('payments_iframe_container').style.height = (height ? height : cur.prevFrameHeight) + 10 + 'px';
+            ge('payments_iframe_container').style.height = (height ? height : cur.prevFrameHeight) + 15 + 'px';
         }
         ge('payments_iframe_container').scrollTop = 0;
     },
@@ -718,7 +718,7 @@ var MoneyTransfer = {
         }, {
             border: 0,
             height: '445px',
-            width: (480 - sbWidth()) + 'px',
+            width: '510px',
             overflowX: 'hidden',
             overflowY: 'hidden'
         });

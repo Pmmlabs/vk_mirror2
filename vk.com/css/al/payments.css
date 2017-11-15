@@ -264,14 +264,14 @@
     float: left;
     width: 42px;
     height: 42px;
-    background: url(/images/icons/payments_n.png) no-repeat 0 0
+    background: url(/images/icons/payments_n.png?1) no-repeat 0 0
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .payments_getvotes_method_img {
-        background-image: url(/images/icons/payments_n_2x.png);
+        background-image: url(/images/icons/payments_n_2x.png?1);
         background-size: 84px 210px
     }
 }
@@ -1573,7 +1573,7 @@ h2.payments_getvotes_title {
 #payments_promo_iframe_container {
     display: none;
     margin: -20px -25px;
-    width: 480px
+    width: 510px
 }
 
 #payments_box.payments_money_transfer_box .payments_box_summary {
@@ -1658,7 +1658,7 @@ h2.payments_getvotes_title {
 }
 
 #payments_box.payments_money_transfer_box #payments_money_transfer_summary {
-    max-width: 345px;
+    max-width: 375px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1747,7 +1747,7 @@ h2.payments_getvotes_title {
     border-top: none;
     border-radius: 0 0 3px 3px!important;
     height: 48px;
-    width: 430px;
+    width: 460px;
     resize: none;
     background-color: #f7f9fa
 }

@@ -3284,6 +3284,18 @@ img.im_photo_thumb {
     display: block
 }
 
+.im-page--mess-actions-promo {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 26px;
+    vertical-align: middle
+}
+
+.im-page--mess-actions-promo-content {
+    white-space: normal
+}
+
 .im-page--members {
     display: inline;
     margin: 0;

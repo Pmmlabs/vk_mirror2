@@ -1644,6 +1644,55 @@
     color: #828282
 }
 
+.audio_page__shuffle_all {
+    margin: 0 -4px 3px
+}
+
+.audio_page__shuffle_all .audio_page__shuffle_all_button {
+    display: block;
+    border: none;
+    background: transparent;
+    outline: none;
+    position: relative;
+    width: 100%;
+    padding: 4px;
+    padding-left: 54px;
+    cursor: pointer;
+    text-align: left;
+    color: #000;
+    font-size: 13px;
+    line-height: 40px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.audio_page__shuffle_all .audio_page__shuffle_all_button:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 40px;
+    height: 40px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%22627%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22translate(627)%22%3E%3Cpath%20d%3D%22M16%207c-2.94%200-4.4%202.3-5.87%204.25-1.3%201.7-2.38%203.7-4.13%203.75H3v2h3c2.93%200%204.24-2.6%205.7-4.53C13%2010.73%2014.16%209%2016%209h1V7h-1zM9.94%208.84c-.52-.46-1.38-1.1-2.04-1.38C7.26%207.16%206.5%207%205.67%207H3v2h3c.44%200%20.8.08%201.14.22.45.2%201.14.7%201.58%201.1l1.23-1.48zM16%2015h1v2h-1c-1.77%200-3.24-1.08-4.32-2.15l1.23-1.5c.8.83%201.98%201.65%203.1%201.65zm1%204v-6l4%203-4%203zm0-8V5l4%203-4%203z%22%20fill%3D%22%23356CA9%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") 50% no-repeat
+}
+
+.audio_page__shuffle_all .audio_page__shuffle_all_button:active {
+    padding-top: 5px;
+    padding-bottom: 3px
+}
+
+.audio_page__shuffle_all .audio_page__shuffle_all_button:active:before {
+    -webkit-transform: translate3d(0, 1px, 0);
+    transform: translate3d(0, 1px, 0)
+}
+
+.audio_page__shuffle_all .audio_page__shuffle_all_button:hover {
+    background-color: #f2f4f7;
+    border-radius: 2px
+}
+
 .audio_layer_container {
     border-radius: 0 0 3px 3px;
     overflow: hidden
