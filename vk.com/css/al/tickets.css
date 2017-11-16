@@ -896,6 +896,11 @@ body.dev .tickets_header_links {
     text-decoration: none
 }
 
+#tickets_templates .template_links_wrap .template:active {
+    padding-bottom: 1px;
+    padding-top: 3px
+}
+
 #tickets_templates .templates_export_wrap {
     padding: 7px 0 6px;
     text-align: center

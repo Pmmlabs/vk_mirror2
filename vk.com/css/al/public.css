@@ -113,8 +113,8 @@
     position: absolute;
     top: 10px;
     left: 12px;
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     background: #648fc9 url('/images/svg_icons/groups/market.svg') no-repeat 50% 50%
 }
@@ -154,7 +154,7 @@
 .public_help_label {
     display: table-cell;
     vertical-align: middle;
-    height: 32px;
+    height: 28px;
     line-height: 16px;
     padding-right: 4px
 }

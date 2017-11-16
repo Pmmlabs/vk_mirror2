@@ -1168,8 +1168,7 @@ a.group_app_button_multi {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    padding: 10px 52px 10px 15px;
-    line-height: 28px;
+    line-height: 24px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1178,8 +1177,7 @@ a.group_app_button_multi {
 
 a.group_app_button.group_app_button_with_sign,
 a.group_app_button_multi.group_app_button_with_sign {
-    line-height: 1.23;
-    padding: 8px 52px 7px 15px
+    line-height: 1.23
 }
 
 a.group_app_button.group_app_button_with_sign .groups_app_button_sign,
@@ -1204,12 +1202,17 @@ a.group_app_button_multi:hover:before {
 }
 
 a.group_app_button_multi {
-    border-bottom: 1px solid #e3e4e8;
-    padding: 12px
+    padding: 12px 12px 11px;
+    border-bottom: 1px solid #e3e4e8
 }
 
 a.group_app_button_multi.group_app_button_with_sign {
+    padding: 8px 12px 9px;
     padding-right: 15px
+}
+
+a.group_app_button_multi.group_app_button_with_sign .group_app_button_icon {
+    margin-top: 2px
 }
 
 a.group_app_button_multi.group_app_button_with_sign .groups_app_button_sign {
@@ -1221,10 +1224,10 @@ a.group_app_button_multi:last-child {
 }
 
 a.group_app_button_multi .group_app_button_icon {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
-    background-size: 28px;
+    background-size: 24px;
     float: left
 }
 
@@ -1238,8 +1241,8 @@ a.group_app_button:after {
     position: absolute;
     top: 10px;
     right: 12px;
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     background: #648fc9 url('/images/svg_icons/groups/arrow_ne.svg') no-repeat 50% calc(50% - 1px)
 }
@@ -2045,7 +2048,7 @@ a.app_widget_matches_live_icon:active {
     float: right;
     height: 22px;
     width: 22px;
-    margin: 5px 6px 5px 0;
+    margin: 3px 6px 3px 0;
     background: url('/images/svg_icons/groups/hide.svg') no-repeat 50% 50%;
     -o-transition: opacity 0.15s ease;
     transition: opacity 0.15s ease;

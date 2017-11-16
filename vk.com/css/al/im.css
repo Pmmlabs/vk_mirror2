@@ -8431,6 +8431,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 .im-invitation .im-invitation--user {
     overflow: hidden;
     display: inline-block;
+    vertical-align: middle;
     margin-left: -15px
 }
 
@@ -8458,6 +8459,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     text-align: center;
     line-height: 50px;
     color: #fff;
+    vertical-align: middle;
     background: #99a2ad
 }
 

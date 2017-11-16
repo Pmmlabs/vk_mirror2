@@ -1,19 +1,19 @@
 var Tickets = {
     switchTab: function(e, t) {
         if (checkEvent(t)) return !0;
-        var i = !1,
-            a = ge("tickets_page_tabs");
-        if (a ? (each(geByClass("page_tab_sel", ge("tickets_page_tabs")), function(e, t) {
-                hasClass(t, "page_tab_sel") && (i = t, replaceClass(t, "page_tab_sel", "page_tab"))
+        var a = !1,
+            i = ge("tickets_page_tabs");
+        if (i ? (each(geByClass("page_tab_sel", ge("tickets_page_tabs")), function(e, t) {
+                hasClass(t, "page_tab_sel") && (a = t, replaceClass(t, "page_tab_sel", "page_tab"))
             }), replaceClass(ge(e + "_tab"), "page_tab", "page_tab_sel")) : (each(geByClass("active_link", ge("tickets_tabs")), function(e, t) {
-                hasClass(t, "active_link") && (i = t, removeClass(t, "active_link"))
+                hasClass(t, "active_link") && (a = t, removeClass(t, "active_link"))
             }), addClass(ge(e + "_tab"), "active_link")), "show" == e) return show("show_tab", "new_link"), hide("new_tab", "extra_tab"), !1;
         if ("new" == e) {
             hide("show_tab", "extra_tab", "new_link"), show("new_tab");
             var o = ge(e + "_tab");
-            return a || (o = o.firstChild), cur.fromTopLink && (o += "&from=top"), nav.go(o, t, {
+            return i || (o = o.firstChild), cur.fromTopLink && (o += "&from=top"), nav.go(o, t, {
                 onFail: function(t) {
-                    return hide("new_tab"), show("show_tab", "new_link"), a ? (replaceClass(ge(e + "_tab"), "page_tab_sel", "page_tab"), i && replaceClass(i, "page_tab", "page_tab_sel")) : (removeClass(ge(e + "_tab"), "active_link"), i && addClass(i, "active_link")), setTimeout(showFastBox({
+                    return hide("new_tab"), show("show_tab", "new_link"), i ? (replaceClass(ge(e + "_tab"), "page_tab_sel", "page_tab"), a && replaceClass(a, "page_tab", "page_tab_sel")) : (removeClass(ge(e + "_tab"), "active_link"), a && addClass(a, "active_link")), setTimeout(showFastBox({
                         title: getLang("global_error"),
                         dark: !0,
                         bodyStyle: "padding: 20px; line-height: 160%;"
@@ -24,7 +24,7 @@ var Tickets = {
         if ("extra" != e) {
             hide("extra_tab", "show_tab", "new_tab"), show("new_link");
             var o = ge(e + "_tab");
-            return a || (o = o.firstChild), o = o.href, ("all_history" == e || "history" == e) && nav.objLoc.q && ge(e + "_tab").firstChild && (o += "&q=" + nav.objLoc.q), nav.go(o, t)
+            return i || (o = o.firstChild), o = o.href, ("all_history" == e || "history" == e) && nav.objLoc.q && ge(e + "_tab").firstChild && (o += "&q=" + nav.objLoc.q), nav.go(o, t)
         }
         hide("show_tab", "new_tab"), show("extra_tab", "new_link")
     },
@@ -32,35 +32,35 @@ var Tickets = {
         return Tickets.switchTab("show", t), nav.go(e, t)
     },
     getBrowser: function() {
-        var e, t, i = !1,
-            a = ["opera_mini", "opera_mobile", "safari_mobile", "msie_mobile", "bada", "android", "ipad", "ipod", "iphone", "mozilla", "opera", "chrome", "safari", "msie10", "msie9", "msie8", "msie7", "msie6", "msie"];
-        for (var o in a)
-            if (window.browser[a[o]] === !0) {
-                i = a[o];
+        var e, t, a = !1,
+            i = ["opera_mini", "opera_mobile", "safari_mobile", "msie_mobile", "bada", "android", "ipad", "ipod", "iphone", "mozilla", "opera", "chrome", "safari", "msie10", "msie9", "msie8", "msie7", "msie6", "msie"];
+        for (var o in i)
+            if (window.browser[i[o]] === !0) {
+                a = i[o];
                 break
             }
-        if (window._ua && /yabrowser/i.test(_ua) && (i = "yabrowser"), i) {
+        if (window._ua && /yabrowser/i.test(_ua) && (a = "yabrowser"), a) {
             if (window.browser && browser.msie && (!browser.version || browser.version < 10)) t = "";
             else {
                 var s = (window._ua.match(/.+(?:mini|bada|mobi)[\/: ]([\d.]+)/) || [0, "0"])[1];
                 t = "0" != s ? " " + s : " " + window.browser.version
             }
-            e = i + t
+            e = a + t
         } else e = navigator.userAgent.toLowerCase();
         var r = browser.flashfull;
         return e += "|" + r.major + "." + r.minor + "." + r.rev
     },
-    showTooltip: function(e, t, i, a, o) {
+    showTooltip: function(e, t, a, i, o) {
         showTooltip(e, {
-            dir: a ? "right" : "left",
+            dir: i ? "right" : "left",
             text: t,
-            slideX: a ? -15 : 15,
-            className: "tickets_side_tt " + i,
+            slideX: i ? -15 : 15,
+            className: "tickets_side_tt " + a,
             shift: function() {
                 var t = getSize(e.tt.container),
-                    i = getSize(e),
+                    a = getSize(e),
                     o = 0;
-                return o = a ? t[0] + 7 : -i[0] - 7, [o, 0, -(i[1] + t[1]) / 2]
+                return o = i ? t[0] + 7 : -a[0] - 7, [o, 0, -(a[1] + t[1]) / 2]
             },
             forcetodown: !0,
             hasover: 1,
@@ -75,71 +75,63 @@ var Tickets = {
     initExtraFields: function() {
         for (var e in cur.extraFields) {
             var t = cur.extraFields[e],
-                i = ge("tickets_new_extra_field_" + e + "_inp");
-            3 == t.required && cur.verifiedPage || (i ? (t.title && placeholderSetup(i, {
+                a = ge("tickets_new_extra_field_" + e + "_inp");
+            3 == t.required && cur.verifiedPage || (a ? (t.title && placeholderSetup(a, {
                 back: !0
-            }), t.note && (data(i, "note", t.note), addEvent(i, "focus", function(e) {
+            }), t.note && (data(a, "note", t.note), addEvent(a, "focus", function(e) {
                 var t = e.target;
                 Tickets.showTooltip(t, '<div class="hint_wrap">' + data(t, "note") + "</div>", "extra_field", !0, !0)
-            }), addEvent(i, "blur", Tickets.hideTooltip.pbind(i)))) : data(ge("tickets_new_extra_field_" + e), "value", ""))
+            }), addEvent(a, "blur", Tickets.hideTooltip.pbind(a)))) : data(ge("tickets_new_extra_field_" + e), "value", ""))
         }
     },
     trySaveTicket: function(e, t) {
-        var i = nav.objLoc.from;
-        !t || "n" == i || "top" == i || "s" == i || "dislike" == i && nav.objLoc.id ? e() : Tickets.tryAskQuestion(function() {
+        var a = nav.objLoc.from;
+        !t || "n" == a || "top" == a || "s" == a || "dislike" == a && nav.objLoc.id ? e() : Tickets.tryAskQuestion(function() {
             e()
         })
     },
     saveTicket: function(e, t) {
-        var i = trim(val("tickets_title")),
-            a = trim(val("tickets_text")),
+        var a = trim(val("tickets_title")),
+            i = trim(val("tickets_text")),
             o = !0;
-        i || (notaBene("tickets_title", !1, !o), o = !1);
-        var s = [],
-            r = cur.ticketsNewMedia.chosenMedias;
-        if (r)
-            for (var n in r) {
-                var c = r[n],
-                    l = c[0],
-                    d = c[1];
-                ("photo" == l || "doc" == l) && s.push(l + "," + d)
-            }
-        a || cur.descriptionNotNeeded || s.length || (notaBene("tickets_text", !1, !o), o = !1);
-        var _ = Tickets.getBrowser(),
-            u = {
+        a || (notaBene("tickets_title", !1, !o), o = !1);
+        var s = Tickets.getUploadAttachs();
+        i || cur.descriptionNotNeeded || s.length || (notaBene("tickets_text", !1, !o), o = !1);
+        var r = Tickets.getBrowser(),
+            n = {
                 act: "save",
-                title: i,
-                text: a,
+                title: a,
+                text: i,
                 hash: e,
                 attachs: s,
-                browser: _,
+                browser: r,
                 section: cur.faqSection
             };
         if (cur.samples && cur.samples.audio || ge("audio_checking")) {
-            u.audio_html = ge("audio_checking").innerHTML;
-            var p = (cur.samples || {}).audio || "";
-            window.ag && window.sh && (u.audio_html = u.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (u.audio_html = u.audio_html.replace(/_info/g, "dwnl_info")), u.audio_orig = ce("div", {
-                innerHTML: p.replace(/z9q2m/g, "audio")
+            n.audio_html = ge("audio_checking").innerHTML;
+            var c = (cur.samples || {}).audio || "";
+            window.ag && window.sh && (n.audio_html = n.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (n.audio_html = n.audio_html.replace(/_info/g, "dwnl_info")), n.audio_orig = ce("div", {
+                innerHTML: c.replace(/z9q2m/g, "audio")
             }).innerHTML
         }
-        nav.objLoc.mid && (u.mid = nav.objLoc.mid), nav.objLoc.gid && (u.gid = nav.objLoc.gid), nav.objLoc.app_id && (u.app_id = nav.objLoc.app_id), nav.objLoc.union_id && (u.union_id = nav.objLoc.union_id), cur.fromFaqId && (u.faq = cur.fromFaqId), cur.from ? u.from = cur.from : nav.objLoc.from && (u.from = nav.objLoc.from);
-        for (var n in cur.extraFields) {
-            var h = cur.extraFields[n],
-                g = ge("tickets_new_extra_field_" + n + "_inp"),
-                f = "",
-                m = g;
-            if (3 != h.required || !cur.verifiedPage) {
-                g ? f = g.value.trim() : (m = ge("tickets_new_extra_field_" + n), f = data(m, "value"));
-                var k = 1 == h.required || (2 == h.required || 3 == h.required) && !cur.verifiedPage;
-                (!f && k || 4 == h.type && k && -1 == f.indexOf("vk.com")) && (notaBene(m, !1, !o), o = !1), u["extra_field_" + n] = f
+        nav.objLoc.mid && (n.mid = nav.objLoc.mid), nav.objLoc.gid && (n.gid = nav.objLoc.gid), nav.objLoc.app_id && (n.app_id = nav.objLoc.app_id), nav.objLoc.union_id && (n.union_id = nav.objLoc.union_id), cur.fromFaqId && (n.faq = cur.fromFaqId), cur.from ? n.from = cur.from : nav.objLoc.from && (n.from = nav.objLoc.from);
+        for (var l in cur.extraFields) {
+            var d = cur.extraFields[l],
+                _ = ge("tickets_new_extra_field_" + l + "_inp"),
+                u = "",
+                p = _;
+            if (3 != d.required || !cur.verifiedPage) {
+                _ ? u = _.value.trim() : (p = ge("tickets_new_extra_field_" + l), u = data(p, "value"));
+                var h = 1 == d.required || (2 == d.required || 3 == d.required) && !cur.verifiedPage;
+                (!u && h || 4 == d.type && h && -1 == u.indexOf("vk.com")) && (notaBene(p, !1, !o), o = !1), n["extra_field_" + l] = u
             }
         }
-        return o ? (nav.objLoc.mobile && (u.mobile = 1), nav.objLoc.bhash && (u.bhash = nav.objLoc.bhash), void Tickets.trySaveTicket(function() {
-            if (39 == u.faqSection) {
+        return o ? (nav.objLoc.mobile && (n.mobile = 1), nav.objLoc.bhash && (n.bhash = nav.objLoc.bhash), void Tickets.trySaveTicket(function() {
+            if (39 == n.faqSection) {
                 var e = ls.get("support_outdated_left");
-                e && e.ts && Math.floor((new Date).getTime() / 1e3) - e.ts < 3600 && (u.outdated_ticket_id = e.id), ls.remove("support_outdated_left")
+                e && e.ts && Math.floor((new Date).getTime() / 1e3) - e.ts < 3600 && (n.outdated_ticket_id = e.id), ls.remove("support_outdated_left")
             }
-            ajax.post(cur.objLoc, u, {
+            ajax.post(cur.objLoc, n, {
                 onDone: function(e) {
                     showDoneBox(e)
                 },
@@ -150,37 +142,29 @@ var Tickets = {
     },
     savePayTicket: function(e) {
         var t = trim(val("tickets_title")),
-            i = trim(val("tickets_text"));
+            a = trim(val("tickets_text"));
         if (!t) return void notaBene("tickets_title");
-        var a = [],
-            o = cur.ticketsNewMedia.chosenMedias;
-        if (o)
-            for (var s in o) {
-                var r = o[s],
-                    n = r[0],
-                    c = r[1];
-                ("photo" == n || "doc" == n) && a.push(n + "," + c)
-            }
-        if (!i && !a.length) return void notaBene("tickets_text");
+        var i = Tickets.getUploadAttachs();
+        if (!a && !i.length) return void notaBene("tickets_text");
         if (Tickets.checkPayForm()) {
-            var l = Tickets.getBrowser(),
-                d = extend({
+            var o = Tickets.getBrowser(),
+                s = extend({
                     act: "save",
                     title: t,
-                    text: i,
+                    text: a,
                     hash: e,
-                    attachs: a,
-                    browser: l,
+                    attachs: i,
+                    browser: o,
                     section: cur.faqSection
                 }, Tickets.getPayFields());
-            if (nav.objLoc.gid && (d.gid = nav.objLoc.gid), nav.objLoc.app_id && (d.app_id = nav.objLoc.app_id), nav.objLoc.union_id && (d.union_id = nav.objLoc.union_id), cur.samples && cur.samples.audio || ge("audio_checking")) {
-                d.audio_html = ge("audio_checking").innerHTML;
-                var _ = (cur.samples || {}).audio || "";
-                window.ag && window.sh && (d.audio_html = d.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (d.audio_html = d.audio_html.replace(/_info/g, "dwnl_info")), d.audio_orig = ce("div", {
-                    innerHTML: _.replace(/z9q2m/g, "audio")
+            if (nav.objLoc.gid && (s.gid = nav.objLoc.gid), nav.objLoc.app_id && (s.app_id = nav.objLoc.app_id), nav.objLoc.union_id && (s.union_id = nav.objLoc.union_id), cur.samples && cur.samples.audio || ge("audio_checking")) {
+                s.audio_html = ge("audio_checking").innerHTML;
+                var r = (cur.samples || {}).audio || "";
+                window.ag && window.sh && (s.audio_html = s.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (s.audio_html = s.audio_html.replace(/_info/g, "dwnl_info")), s.audio_orig = ce("div", {
+                    innerHTML: r.replace(/z9q2m/g, "audio")
                 }).innerHTML
             }
-            "new_ads" == nav.objLoc.act && (d.section = 1), "new_pay" == nav.objLoc.act && (d.section = 16), ajax.post("support", d, {
+            "new_ads" == nav.objLoc.act && (s.section = 1), "new_pay" == nav.objLoc.act && (s.section = 16), ajax.post("support", s, {
                 onDone: function(e) {
                     showDoneBox(e)
                 },
@@ -191,31 +175,23 @@ var Tickets = {
     },
     saveDMCATicket: function(e) {
         if (Tickets.checkDMCAForm()) {
-            var t = [],
-                i = cur.ticketsNewMedia.chosenMedias;
-            if (i)
-                for (var a in i) {
-                    var o = i[a],
-                        s = o[0],
-                        r = o[1];
-                    ("photo" == s || "doc" == s) && t.push(s + "," + r)
-                }
-            var n = Tickets.getBrowser(),
-                c = extend({
+            var t = Tickets.getUploadAttachs(),
+                a = Tickets.getBrowser(),
+                i = extend({
                     act: "save",
                     hash: e,
                     section: cur.faqSection,
                     attachs: t,
-                    browser: n
+                    browser: a
                 }, Tickets.getDMCAFields());
             if (cur.samples && cur.samples.audio || ge("audio_checking")) {
-                c.audio_html = ge("audio_checking").innerHTML;
-                var l = (cur.samples || {}).audio || "";
-                window.ag && window.sh && (c.audio_html = c.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (c.audio_html = c.audio_html.replace(/_info/g, "dwnl_info")), c.audio_orig = ce("div", {
-                    innerHTML: l.replace(/z9q2m/g, "audio")
+                i.audio_html = ge("audio_checking").innerHTML;
+                var o = (cur.samples || {}).audio || "";
+                window.ag && window.sh && (i.audio_html = i.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (i.audio_html = i.audio_html.replace(/_info/g, "dwnl_info")), i.audio_orig = ce("div", {
+                    innerHTML: o.replace(/z9q2m/g, "audio")
                 }).innerHTML
             }
-            ajax.post("/support", c, {
+            ajax.post("/support", i, {
                 onDone: function(e) {
                     showDoneBox(e)
                 },
@@ -227,7 +203,7 @@ var Tickets = {
     checkDMCAForm: function() {
         var e = Tickets.getDMCAFields(),
             t = 1 == e.type,
-            i = t ? "_legal" : "";
+            a = t ? "_legal" : "";
         if (!e.links || e.links.length < 9) return notaBene("tickets_links"), !1;
         if (!e.text) return notaBene("tickets_text"), !1;
         if (t) {
@@ -247,7 +223,7 @@ var Tickets = {
             if (!e.repr || e.repr.length < 5) return notaBene("tickets_dmca_repr"), !1;
             if (!e.post || e.post.length < 3) return notaBene("tickets_dmca_post"), !1
         }
-        return isChecked("support_dmca_agree_owner" + i) ? isChecked("support_dmca_agree_unauthorized" + i) ? isChecked("support_dmca_agree_perjury" + i) ? isChecked("support_dmca_agree_email" + i) ? isChecked("support_dmca_agree_inform" + i) ? isChecked("support_dmca_agree_rules") ? !0 : Tickets.showMsgBox(getLang("help_ccform_need_rules"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_inform" : "help_ccform_natural_need_inform"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_email" : "help_ccform_natural_need_email"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_perjury" : "help_ccform_natural_need_perjury"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_unauthorized" : "help_ccform_natural_need_unauthorized"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_is_owner" : "help_ccform_natural_need_owner"), getLang("global_error"))
+        return isChecked("support_dmca_agree_owner" + a) ? isChecked("support_dmca_agree_unauthorized" + a) ? isChecked("support_dmca_agree_perjury" + a) ? isChecked("support_dmca_agree_email" + a) ? isChecked("support_dmca_agree_inform" + a) ? isChecked("support_dmca_agree_rules") ? !0 : Tickets.showMsgBox(getLang("help_ccform_need_rules"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_inform" : "help_ccform_natural_need_inform"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_email" : "help_ccform_natural_need_email"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_perjury" : "help_ccform_natural_need_perjury"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_unauthorized" : "help_ccform_natural_need_unauthorized"), getLang("global_error")) : Tickets.showMsgBox(getLang(t ? "help_ccform_legal_need_is_owner" : "help_ccform_natural_need_owner"), getLang("global_error"))
     },
     getDMCAFields: function() {
         var e = (trim(val("tickets_text")), trim(val("tickets_links")), {
@@ -262,13 +238,13 @@ var Tickets = {
         for (var t in e) "" === e[t] && delete e[t];
         return e
     },
-    showMsgBox: function(e, t, i) {
+    showMsgBox: function(e, t, a) {
         return setTimeout(showFastBox({
             title: t,
             dark: !0,
             bodyStyle: "line-height: 160%;",
             onHide: function() {
-                i && ge(i).focus()
+                a && ge(a).focus()
             }
         }, e).hide, 4e3), !1
     },
@@ -295,7 +271,7 @@ var Tickets = {
                     if (!floatval(val("tickets_pay_sum"))) return notaBene("tickets_pay_sum"), !1;
                     if (!trim(val("tickets_organisation"))) return notaBene("tickets_organisation"), !1
                 }
-                var e = Tickets.getReplyAttachs();
+                var e = Tickets.getUploadAttachs();
                 if (!e.length) {
                     var t = 1 == cur.payType ? getLang("support_no_bill_photo") : getLang("support_no_payment_scan");
                     return setTimeout(showFastBox({
@@ -343,13 +319,13 @@ var Tickets = {
         }
         return e
     },
-    getReplyQueryData: function(e, t, i) {
-        var a, o = {
+    getReplyQueryData: function(e, t, a) {
+        var i, o = {
                 act: "add_comment",
                 ticket_id: cur.ticket_id,
                 text: e,
                 hash: t,
-                attachs: i,
+                attachs: a,
                 hidden: isChecked("tickets_hidden"),
                 copy_to_card: isChecked("copy_reply_to_card")
             },
@@ -359,9 +335,9 @@ var Tickets = {
                 s = r;
                 break
             }
-        a = s ? s + " " + window.browser.version : navigator.userAgent.toLowerCase();
+        i = s ? s + " " + window.browser.version : navigator.userAgent.toLowerCase();
         var n = browser.flashfull;
-        if (a += "|" + n.major + "." + n.minor + "." + n.rev, o.browser = a, cur.samples && cur.samples.audio || ge("audio_checking")) {
+        if (i += "|" + n.major + "." + n.minor + "." + n.rev, o.browser = i, cur.samples && cur.samples.audio || ge("audio_checking")) {
             o.audio_html = ge("audio_checking").innerHTML;
             var c = (cur.samples || {}).audio || "";
             window.ag && window.sh && (o.audio_html = o.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (o.audio_html = o.audio_html.replace(/_info/g, "dwnl_info")), o.audio_orig = ce("div", {
@@ -379,23 +355,23 @@ var Tickets = {
         var e = "helpdesk_draft" + vk.id + "_" + cur.ticket_id;
         ls.get(e) && (ls.set(e, !1), ls.remove(e))
     },
-    getReplyAttachs: function() {
+    getUploadAttachs: function() {
         var e = [],
             t = cur.ticketsNewMedia.chosenMedias;
-        return t && each(t, function(t, i) {
-            var a = i[0],
-                o = i[1];
-            ("photo" == a || "doc" == a) && e.push(a + "," + o)
+        return t && each(t, function(t, a) {
+            var i = a[0],
+                o = a[1];
+            ("photo" == i || "doc" == i) && e.push(i + "," + o)
         }), e
     },
     addTicketReply: function(e, t) {
         if (ge("tickets_reply") && ge("tickets_reply").disabled) return !1;
-        var i = trim(val("tickets_reply")),
-            a = Tickets.getReplyAttachs();
-        if (!i && !a.length) return t && Helpdesk && Helpdesk.closeTicket(e), elfocus("tickets_reply");
+        var a = trim(val("tickets_reply")),
+            i = Tickets.getUploadAttachs();
+        if (!a && !i.length) return t && Helpdesk && Helpdesk.closeTicket(e), elfocus("tickets_reply");
         if (cur.sendingAnswer) return !1;
         cur.sendingAnswer = !0;
-        var o = Tickets.getReplyQueryData(i, e, a);
+        var o = Tickets.getReplyQueryData(a, e, i);
         if (o === !1) return !1;
         if (cur.checkedTickets) {
             var s = [];
@@ -408,9 +384,9 @@ var Tickets = {
     addPayData: function(e) {
         if (Tickets.checkPayForm() && !cur.sendingAnswer) {
             var t = trim(val("tickets_reply")),
-                i = Tickets.getReplyAttachs(),
-                a = Tickets.getReplyQueryData(t, e, i);
-            extend(a, Tickets.getPayFields()), Tickets.doSendReply(a)
+                a = Tickets.getUploadAttachs(),
+                i = Tickets.getReplyQueryData(t, e, a);
+            extend(i, Tickets.getPayFields()), Tickets.doSendReply(i)
         }
     },
     doSendReply: function(query) {
@@ -425,12 +401,12 @@ var Tickets = {
             hideProgress: unlockButton.pbind("tickets_send")
         })
     },
-    checkTextLength: function(e, t, i, a) {
+    checkTextLength: function(e, t, a, i) {
         var o = trim(e.value).replace(/\n\n\n+/g, "\n\n");
         if (e.lastLen !== o.length) {
             var s = e.lastLen = o.length,
                 r = s - o.replace(/\n/g, "").length;
-            a = a || 10, i = ge(i), s > t - 100 || r > a || ("dmca" == cur.objLoc || "new_dmca" == nav.objLoc.act) && s > 0 ? (show(i), s > t ? i.innerHTML = getLang("text_exceeds_symbol_limit", s - t) : r > a ? i.innerHTML = getLang("global_recommended_lines", r - a) : i.innerHTML = getLang("text_N_symbols_remain", t - s)) : hide(i)
+            i = i || 10, a = ge(a), s > t - 100 || r > i || ("dmca" == cur.objLoc || "new_dmca" == nav.objLoc.act) && s > 0 ? (show(a), s > t ? a.innerHTML = getLang("text_exceeds_symbol_limit", s - t) : r > i ? a.innerHTML = getLang("global_recommended_lines", r - i) : a.innerHTML = getLang("text_N_symbols_remain", t - s)) : hide(a)
         }
     },
     editComment: function(cid, hash, ticket_id) {
@@ -471,14 +447,14 @@ var Tickets = {
             }
         }), !1
     },
-    saveComment: function(e, t, i, a) {
-        return e && 27 == e.keyCode ? void this.cancelEditComment(cur.editing) : void(e && (e.ctrlKey || e.metaKey && browser.mac) && (10 == e.keyCode || 13 == e.keyCode) && this.doSaveComment(t, i, a))
+    saveComment: function(e, t, a, i) {
+        return e && 27 == e.keyCode ? void this.cancelEditComment(cur.editing) : void(e && (e.ctrlKey || e.metaKey && browser.mac) && (10 == e.keyCode || 13 == e.keyCode) && this.doSaveComment(t, a, i))
     },
     cancelEditComment: function(e) {
         show(geByClass1("tickets_reply_text", ge("reply" + e))), show(geByClass1("tickets_reply_actions", ge("reply" + e))), show("attachs" + e), re("tickets_reply_edit" + e), delete cur.editing
     },
-    doSaveComment: function(e, t, i) {
-        var a = trim(val("reply" + e + "edit")),
+    doSaveComment: function(e, t, a) {
+        var i = trim(val("reply" + e + "edit")),
             o = [],
             s = cur.ticketsEditMedia && cur.ticketsEditMedia.chosenMedias || [];
         if (s)
@@ -488,24 +464,24 @@ var Tickets = {
                     l = n[1];
                 ("photo" == c || "doc" == c) && o.push(c + "," + l)
             }
-        return a || o.length ? void ajax.post(cur.objLoc, {
+        return i || o.length ? void ajax.post(cur.objLoc, {
             act: "edit_comment",
-            ticket_id: i,
+            ticket_id: a,
             cid: e,
-            text: a,
+            text: i,
             attachs: o,
             hash: t
         }, {
-            onDone: function(t, i) {
-                var a = geByClass1("tickets_reply_text", ge("reply" + e)),
+            onDone: function(t, a) {
+                var i = geByClass1("tickets_reply_text", ge("reply" + e)),
                     o = geByClass1("tickets_reply_actions", ge("reply" + e));
-                if (val(a, t), show(geByClass1("tickets_reply_text", ge("reply" + e))), show(o), show("attachs" + e), 0 !== i)
-                    if (i) {
+                if (val(i, t), show(geByClass1("tickets_reply_text", ge("reply" + e))), show(o), show("attachs" + e), 0 !== a)
+                    if (a) {
                         var s = ge("attachs" + e);
                         s || (s = o.parentNode.insertBefore(ce("div", {
                             id: "attachs" + e,
                             className: "clear_fix tr_attachs"
-                        }), o)), val(s, i)
+                        }), o)), val(s, a)
                     } else re("attachs" + e);
                 re("tickets_reply_edit" + e), delete cur.editing
             },
@@ -516,45 +492,45 @@ var Tickets = {
             hideProgress: unlockButton.pbind("save_butn" + e)
         }) : void notaBene("reply" + e + "edit")
     },
-    deleteComment: function(e, t, i) {
+    deleteComment: function(e, t, a) {
         return ajax.post(cur.objLoc, {
             act: "delete_comment",
-            ticket_id: cur.ticket_id || i,
+            ticket_id: cur.ticket_id || a,
             cid: e,
             hash: t
         }, {
             onDone: function(t) {
-                var i = ge("reply" + e).firstChild;
-                i && (cur.deletedComments || (cur.deletedComments = []), cur.deletedComments[e] = val(i), val(i, t))
+                var a = ge("reply" + e).firstChild;
+                a && (cur.deletedComments || (cur.deletedComments = []), cur.deletedComments[e] = val(a), val(a, t))
             },
             onFail: function(t) {
                 return hide("reply_actions" + e), Tickets.showError(t)
             }
         }), !1
     },
-    restoreComment: function(e, t, i) {
+    restoreComment: function(e, t, a) {
         return ajax.post(cur.objLoc, {
             act: "restore_comment",
-            ticket_id: cur.ticket_id || i,
+            ticket_id: cur.ticket_id || a,
             cid: e,
             hash: t
         }, {
             onDone: function(t) {
-                var i = ge("reply" + e).firstChild;
-                i && val(i, cur.deletedComments[e])
+                var a = ge("reply" + e).firstChild;
+                a && val(a, cur.deletedComments[e])
             },
             onFail: function(t) {
                 return hide("reply_actions" + e), Tickets.showError(t)
             }
         }), !1
     },
-    rateComment: function(e, t, i) {
+    rateComment: function(e, t, a) {
         return cur.replyRating ? !1 : (cur.replyRating = !0, ajax.post("support", {
             act: "rate_comment",
             ticket_id: cur.ticket_id,
             reply_id: e,
             rate: t,
-            hash: i
+            hash: a
         }, {
             onDone: function(t) {
                 delete cur.replyRating, ge("reply_actions" + e).innerHTML = t
@@ -565,7 +541,7 @@ var Tickets = {
         }), !1)
     },
     deleteTicket: function(e, t) {
-        var i = showFastBox({
+        var a = showFastBox({
             title: getLang("support_delete_title"),
             dark: !0,
             bodyStyle: "padding: 20px; line-height: 160%;",
@@ -576,9 +552,9 @@ var Tickets = {
                 ticket_id: e,
                 hash: t
             }, {
-                progress: i.progress,
+                progress: a.progress,
                 onFail: function(e) {
-                    i.hide()
+                    a.hide()
                 }
             })
         }, getLang("global_cancel"));
@@ -587,22 +563,22 @@ var Tickets = {
     showMsg: function(e) {
         var t = ge("tickets_msg");
         if (!t) {
-            var i;
+            var a;
             switch (cur.section) {
                 case "list":
-                    i = ge("tickets_list");
+                    a = ge("tickets_list");
                     break;
                 case "new_faq":
-                    i = ge("tickets_faq_msg"), show("tickets_faq_msg");
+                    a = ge("tickets_faq_msg"), show("tickets_faq_msg");
                     break;
                 case "show":
                 default:
-                    i = ge("tickets_reply_rows")
+                    a = ge("tickets_reply_rows")
             }
-            i && (t = i.insertBefore(ce("div", {
+            a && (t = a.insertBefore(ce("div", {
                 id: "tickets_msg",
                 className: "msg"
-            }), i.firstChild))
+            }), a.firstChild))
         }
         return re("tickets_error"), t && (t.innerHTML = e, t.style.backgroundColor = "#F4EBBD", animate(t, {
             backgroundColor: "#F9F6E7"
@@ -611,23 +587,23 @@ var Tickets = {
     showError: function(e) {
         var t = ge("tickets_error");
         if (!t) {
-            var i;
+            var a;
             switch (cur.section) {
                 case "list":
-                    i = ge("tickets_list");
+                    a = ge("tickets_list");
                     break;
                 case "new_faq":
-                    i = ge("tickets_faq_msg"), show("tickets_faq_msg");
+                    a = ge("tickets_faq_msg"), show("tickets_faq_msg");
                     break;
                 case "history":
                 case "show":
                 default:
-                    i = ge("tickets_reply_rows")
+                    a = ge("tickets_reply_rows")
             }
-            i && (t = i.insertBefore(ce("div", {
+            a && (t = a.insertBefore(ce("div", {
                 id: "tickets_error",
                 className: "error"
-            }), i.firstChild))
+            }), a.firstChild))
         }
         return re("tickets_msg"), hide("tickets_progress"), t && (t.innerHTML = e, t.style.backgroundColor = "#FACEBB", animate(t, {
             backgroundColor: "#FFEFE8"
@@ -681,24 +657,24 @@ var Tickets = {
             }
         }), !1
     },
-    showPhoto: function(e, t, i) {
-        var a = curBox();
-        if (!a) return showPhoto(e, t, i);
+    showPhoto: function(e, t, a) {
+        var i = curBox();
+        if (!i) return showPhoto(e, t, a);
         var o = [];
-        each(geByTag("button", a.bodyNode.nextSibling), function() {
+        each(geByTag("button", i.bodyNode.nextSibling), function() {
             o.push([this.innerHTML, this.onclick, hasClass(this, "flat_button") ? "yes" : "no"])
         }), cur.boxBackup = {
             body: document.createDocumentFragment(),
-            width: getSize(a.bodyNode.parentNode)[0],
-            hideButtons: !isVisible(a.bodyNode.nextSibling),
-            bodyStyle: a.bodyNode.getAttribute("style"),
-            title: geByClass1("box_title", a.bodyNode.previousSibling).innerHTML,
+            width: getSize(i.bodyNode.parentNode)[0],
+            hideButtons: !isVisible(i.bodyNode.nextSibling),
+            bodyStyle: i.bodyNode.getAttribute("style"),
+            title: geByClass1("box_title", i.bodyNode.previousSibling).innerHTML,
             btns: o
         };
-        var s = a.bodyNode;
-        return cur.scrollTopBack = boxLayerWrap.scrollTop, i.onShow = function() {
+        var s = i.bodyNode;
+        return cur.scrollTopBack = boxLayerWrap.scrollTop, a.onShow = function() {
             for (; s.firstChild;) cur.boxBackup.body.appendChild(s.firstChild)
-        }, i.onHide = function() {
+        }, a.onHide = function() {
             box = showFastBox("", ""), box.setOptions({
                 hideButtons: cur.boxBackup.hideButtons,
                 title: cur.boxBackup.title,
@@ -707,7 +683,7 @@ var Tickets = {
             }), box.bodyNode.appendChild(cur.boxBackup.body), cur.boxBackup.btns && (box.removeButtons(), each(cur.boxBackup.btns.reverse(), function() {
                 box.addButton.apply(box, this)
             })), box.setOptions({}), boxLayerWrap.scrollTop = cur.scrollTopBack
-        }, showPhoto(e, t, i)
+        }, showPhoto(e, t, a)
     },
     showAddScreenBox: function(e) {
         var t = {
@@ -741,50 +717,50 @@ var Tickets = {
             hideButtons: !0
         }, cur.extraFieldsBox)
     },
-    choosePhotoUploaded: function(e, t, i) {
-        var a = void 0 !== e.ind ? e.ind : e,
+    choosePhotoUploaded: function(e, t, a) {
+        var i = void 0 !== e.ind ? e.ind : e,
             o = (e.fileName || e).replace(/[&<>"']/g, ""),
-            s = e.fileName ? a + "_" + e.fileName : e,
+            s = e.fileName ? i + "_" + e.fileName : e,
             r = ge("upload" + s + "_progress_wrap");
         r && hide(geByClass1("progress_x", r)), ajax.post("al_photos.php", extend({
             act: "choose_uploaded_support"
         }, t), {
             onDone: function(e, t) {
-                i.chooseMedia("photo", e, extend(t, {
-                    upload_ind: a + "_" + o
+                a.chooseMedia("photo", e, extend(t, {
+                    upload_ind: i + "_" + o
                 }))
             },
-            onFail: Tickets.chooseFail.pbind(i, e)
+            onFail: Tickets.chooseFail.pbind(a, e)
         })
     },
-    chooseDocUploaded: function(e, t, i) {
-        var a = void 0 !== e.ind ? e.ind : e,
-            o = e.fileName ? a + "_" + e.fileName : e,
+    chooseDocUploaded: function(e, t, a) {
+        var i = void 0 !== e.ind ? e.ind : e,
+            o = e.fileName ? i + "_" + e.fileName : e,
             s = ge("upload" + o + "_progress_wrap");
         s && hide(geByClass1("progress_x", s)), ajax.post("docs.php", extend({
             act: "a_save_doc",
             from: "choose",
             support_hash: cur.uploadDocData.support_hash
         }, t), {
-            onDone: function(e, t, a) {
+            onDone: function(e, t, i) {
                 re("upload" + o + "_progress_wrap");
                 var s = curBox();
-                s && (cur.preventBoxHide = !0), i.chooseMedia("doc", e + "_" + t, a), s && (cur.preventBoxHide = !1)
+                s && (cur.preventBoxHide = !0), a.chooseMedia("doc", e + "_" + t, i), s && (cur.preventBoxHide = !1)
             },
-            onFail: Tickets.chooseFail.pbind(i, e)
+            onFail: Tickets.chooseFail.pbind(a, e)
         })
     },
-    chooseExtraFieldUploaded: function(e, t, i) {
-        var a = void 0 !== t.ind ? t.ind : t,
+    chooseExtraFieldUploaded: function(e, t, a) {
+        var i = void 0 !== t.ind ? t.ind : t,
             o = (t.fileName || t).replace(/[&<>"']/g, ""),
-            s = t.fileName ? a + "_" + t.fileName : t,
+            s = t.fileName ? i + "_" + t.fileName : t,
             r = ge("upload" + s + "_progress_wrap");
         r && hide(geByClass1("progress_x", r)), ajax.post("al_photos.php", extend({
             act: "choose_uploaded_support"
-        }, i), {
-            onDone: function(t, i) {
-                Tickets.chooseExtraFieldComplete(e, t, extend(i, {
-                    upload_ind: a + "_" + o
+        }, a), {
+            onDone: function(t, a) {
+                Tickets.chooseExtraFieldComplete(e, t, extend(a, {
+                    upload_ind: i + "_" + o
                 }))
             },
             onFail: function(e) {
@@ -794,45 +770,45 @@ var Tickets = {
         })
     },
     removeExtraFieldFile: function(e, t) {
-        var i = e.target.parentNode;
-        i.tt && i.tt.hide && i.tt.hide();
-        var a = ge("tickets_new_extra_field__uploaded_" + t);
-        removeClass(a, "tickets_new_extra_field__uploaded_c"), removeClass(a, "tickets_new_extra_field__uploaded_p"), re("tickets_new_extra_field__file_" + t), hide("tis_add_lnk"), show("tickets_new_extra_field__upload_btn_" + t, "tickets_new_extra_field__example_" + t), data(ge("tickets_new_extra_field_" + t), "value", "")
+        var a = e.target.parentNode;
+        a.tt && a.tt.hide && a.tt.hide();
+        var i = ge("tickets_new_extra_field__uploaded_" + t);
+        removeClass(i, "tickets_new_extra_field__uploaded_c"), removeClass(i, "tickets_new_extra_field__uploaded_p"), re("tickets_new_extra_field__file_" + t), hide("tis_add_lnk"), show("tickets_new_extra_field__upload_btn_" + t, "tickets_new_extra_field__example_" + t), data(ge("tickets_new_extra_field_" + t), "value", "")
     },
     allExtraFieldFilesUploaded: function() {
         for (var e in cur.extraFields) {
             var t = cur.extraFields[e];
             if (6 == t.type || 7 == t.type || 8 == t.type) {
-                var i = data(ge("tickets_new_extra_field_" + e), "value");
-                if (!i) return !1
+                var a = data(ge("tickets_new_extra_field_" + e), "value");
+                if (!a) return !1
             }
         }
         return !0
     },
-    chooseExtraFieldComplete: function(e, t, i) {
-        if (void 0 === i.upload_ind) return !1;
-        isObject(i) || (i = {
-            thumb_m: i[0] || "",
-            thumb_s: i[1] || "",
-            list: i[2] || "",
-            view_opts: i[3] || "",
-            upload_ind: i.upload_ind || void 0
-        }), vkImage().src = i.thumb_m;
-        var a = "<div onclick=\"return Tickets.showPhoto('" + t + "', '" + i.list + "', " + i.view_opts.replace(/"/g, "&quot;") + ');" class="fl_l page_preview_photo"><img class="page_preview_photo" src="' + i.thumb_m + '" /></div>',
-            o = se('<div class="page_preview_photo_wrap" id="tickets_new_extra_field__file_' + e + '">' + a + '<div class="page_media_x_wrap inl_bl" ' + (browser.msie ? "title" : "tootltip") + '="' + getLang("dont_attach") + '" onmouseover="if (browser.msie) return; showTooltip(this, {text: this.getAttribute(\'tootltip\'), shift: [13, 3, 3], black: 1})"><div class="page_media_x" onclick="Tickets.removeExtraFieldFile(event, ' + e + ');"></div></div></div>');
-        re("upload" + i.upload_ind + "_progress_wrap"), data(ge("tickets_new_extra_field_" + e), "value", t);
+    chooseExtraFieldComplete: function(e, t, a) {
+        if (void 0 === a.upload_ind) return !1;
+        isObject(a) || (a = {
+            thumb_m: a[0] || "",
+            thumb_s: a[1] || "",
+            list: a[2] || "",
+            view_opts: a[3] || "",
+            upload_ind: a.upload_ind || void 0
+        }), vkImage().src = a.thumb_m;
+        var i = "<div onclick=\"return Tickets.showPhoto('" + t + "', '" + a.list + "', " + a.view_opts.replace(/"/g, "&quot;") + ');" class="fl_l page_preview_photo"><img class="page_preview_photo" src="' + a.thumb_m + '" /></div>',
+            o = se('<div class="page_preview_photo_wrap" id="tickets_new_extra_field__file_' + e + '">' + i + '<div class="page_media_x_wrap inl_bl" ' + (browser.msie ? "title" : "tootltip") + '="' + getLang("dont_attach") + '" onmouseover="if (browser.msie) return; showTooltip(this, {text: this.getAttribute(\'tootltip\'), shift: [13, 3, 3], black: 1})"><div class="page_media_x" onclick="Tickets.removeExtraFieldFile(event, ' + e + ');"></div></div></div>');
+        re("upload" + a.upload_ind + "_progress_wrap"), data(ge("tickets_new_extra_field_" + e), "value", t);
         var s = ge("tickets_new_extra_field__uploaded_" + e);
-        return s.appendChild(o), removeClass(s, "tickets_new_extra_field__uploaded_p"), addClass(s, "tickets_new_extra_field__uploaded_c"), cur.fileApiUploadStarted || boxQueue.hideLast(), cur.lastPostMsg = !1, void 0 !== i.upload_ind && delete i.upload_ind, Tickets.allExtraFieldFilesUploaded() && show("tis_add_lnk"), !1
+        return s.appendChild(o), removeClass(s, "tickets_new_extra_field__uploaded_p"), addClass(s, "tickets_new_extra_field__uploaded_c"), cur.fileApiUploadStarted || boxQueue.hideLast(), cur.lastPostMsg = !1, void 0 !== a.upload_ind && delete a.upload_ind, Tickets.allExtraFieldFilesUploaded() && show("tis_add_lnk"), !1
     },
-    chooseFail: function(e, t, i) {
-        var a = void 0 !== t.ind ? t.ind : t;
+    chooseFail: function(e, t, a) {
+        var i = void 0 !== t.ind ? t.ind : t;
         (t.fileName || t).replace(/[&<>"']/g, "");
-        if ("fileApi" == Upload.types[a] && !Upload.options[a].wiki_editor) {
-            var o = t.fileName ? a + "_" + t.fileName : t;
+        if ("fileApi" == Upload.types[i] && !Upload.options[i].wiki_editor) {
+            var o = t.fileName ? i + "_" + t.fileName : t;
             e && re("upload" + o + "_progress_wrap")
         }
         var s = "",
-            r = (Upload.options[a] || {}).type || "";
+            r = (Upload.options[i] || {}).type || "";
         "doc" == r ? s = getLang("support_upload_fail") : "photo" == r && (s = getLang("support_photo_upload_fail")), s && setTimeout(showFastBox({
             title: getLang("global_error"),
             dark: 1,
@@ -840,8 +816,8 @@ var Tickets = {
         }, s).hide, 4e3), topError("Upload failed", {
             dt: -1,
             type: 102,
-            url: (ge("file_uploader_form" + a) || {}).action
-        }), Upload.embed(a)
+            url: (ge("file_uploader_form" + i) || {}).action
+        }), Upload.embed(i)
     },
     initPhotoUpload: function(el, params) {
         if (el = ge(el)) {
@@ -871,9 +847,9 @@ var Tickets = {
                 file_match: ".(gif|jpg|jpeg|png)$",
                 lang: opts.lang,
                 onUploadStart: function(e, t) {
-                    var i = void 0 !== e.ind ? e.ind : e,
-                        a = Upload.options[i];
-                    "form" == Upload.types[i] && (geByClass1("file", el).disabled = !0), "fileApi" == Upload.types[i] && (cur.notStarted && (params && params.hideOnStart && boxQueue.hideLast(), delete cur.notStarted), a.multi_progress && this.onUploadProgress(e, 0, 0))
+                    var a = void 0 !== e.ind ? e.ind : e,
+                        i = Upload.options[a];
+                    "form" == Upload.types[a] && (geByClass1("file", el).disabled = !0), "fileApi" == Upload.types[a] && (cur.notStarted && (params && params.hideOnStart && boxQueue.hideLast(), delete cur.notStarted), i.multi_progress && this.onUploadProgress(e, 0, 0))
                 },
                 onUploadComplete: function(info, res) {
                     var params;
@@ -884,34 +860,34 @@ var Tickets = {
                     }
                     return params.photos ? void Tickets.choosePhotoUploaded(info, params, addMedia) : void Upload.onUploadError(info)
                 },
-                onUploadProgress: function(e, t, i) {
-                    var a = void 0 !== e.ind ? e.ind : e;
-                    if ("fileApi" == Upload.types[a]) {
-                        var o = (cur.attachMediaIndexes || {})[a];
+                onUploadProgress: function(e, t, a) {
+                    var i = void 0 !== e.ind ? e.ind : e;
+                    if ("fileApi" == Upload.types[i]) {
+                        var o = (cur.attachMediaIndexes || {})[i];
                         if (void 0 === o || o && cur.addMedia[o].chosenMedia) {
                             var s = {
                                 loaded: t,
-                                total: i
+                                total: a
                             };
-                            e.fileName && (s.fileName = e.fileName.replace(/[&<>"']/g, "")), addMedia.showMediaProgress("photo", a, s)
+                            e.fileName && (s.fileName = e.fileName.replace(/[&<>"']/g, "")), addMedia.showMediaProgress("photo", i, s)
                         }
-                    } else if ("flash" == Upload.types[a]) {
-                        if (!ge("form" + a + "_progress")) {
-                            for (var r = Upload.obj[a], n = getSize(r)[1], c = n / 2 + 10, l = r.firstChild; l;) 1 == l.nodeType && (l.id == "uploader" + a && browser.msie ? setStyle(l, {
+                    } else if ("flash" == Upload.types[i]) {
+                        if (!ge("form" + i + "_progress")) {
+                            for (var r = Upload.obj[i], n = getSize(r)[1], c = n / 2 + 10, l = r.firstChild; l;) 1 == l.nodeType && (l.id == "uploader" + i && browser.msie ? setStyle(l, {
                                 position: "relative",
                                 left: "-5000px"
                             }) : setStyle(l, {
                                 visibility: "hidden"
                             })), l = l.nextSibling;
                             r.appendChild(ce("div", {
-                                innerHTML: '<div class="tickets_progress_wrap">            <div id="form' + a + '_progress" class="tickets_progress" style="width: 0%;"></div>          </div></div>'
+                                innerHTML: '<div class="tickets_progress_wrap">            <div id="form' + i + '_progress" class="tickets_progress" style="width: 0%;"></div>          </div></div>'
                             }, {
                                 height: c + "px",
                                 marginTop: -c + "px"
                             }))
                         }
-                        var d = intval(t / i * 100);
-                        setStyle(ge("form" + a + "_progress"), {
+                        var d = intval(t / a * 100);
+                        setStyle(ge("form" + i + "_progress"), {
                             width: d + "%"
                         })
                     }
@@ -963,9 +939,9 @@ var Tickets = {
                 file_disallowed_types: params.disallowedFileTypes ? params.disallowedFileTypes : !1,
                 lang: opts.lang,
                 onUploadStart: function(e, t) {
-                    var i = void 0 !== e.ind ? e.ind : e,
-                        a = Upload.options[i];
-                    "form" == Upload.types[i] && (geByClass1("file", el).disabled = !0), "fileApi" == Upload.types[i] && (cur.notStarted && (params && params.hideOnStart && boxQueue.hideLast(), delete cur.notStarted), a.multi_progress && this.onUploadProgress(e, 0, 0))
+                    var a = void 0 !== e.ind ? e.ind : e,
+                        i = Upload.options[a];
+                    "form" == Upload.types[a] && (geByClass1("file", el).disabled = !0), "fileApi" == Upload.types[a] && (cur.notStarted && (params && params.hideOnStart && boxQueue.hideLast(), delete cur.notStarted), i.multi_progress && this.onUploadProgress(e, 0, 0))
                 },
                 onUploadComplete: function(info, res) {
                     var fileName = (info.fileName || info).replace(/[&<>"']/g, ""),
@@ -977,34 +953,34 @@ var Tickets = {
                     }
                     return params.file ? void Tickets.chooseDocUploaded(info, params, addMedia) : void Upload.onUploadError(info)
                 },
-                onUploadProgress: function(e, t, i) {
-                    var a = void 0 !== e.ind ? e.ind : e;
-                    if ("fileApi" == Upload.types[a]) {
-                        var o = (cur.attachMediaIndexes || {})[a];
+                onUploadProgress: function(e, t, a) {
+                    var i = void 0 !== e.ind ? e.ind : e;
+                    if ("fileApi" == Upload.types[i]) {
+                        var o = (cur.attachMediaIndexes || {})[i];
                         if (void 0 === o || o && cur.addMedia[o].chosenMedia) {
                             var s = {
                                 loaded: t,
-                                total: i
+                                total: a
                             };
-                            e.fileName && (s.fileName = e.fileName.replace(/[&<>"']/g, "")), addMedia.showMediaProgress("doc", a, s)
+                            e.fileName && (s.fileName = e.fileName.replace(/[&<>"']/g, "")), addMedia.showMediaProgress("doc", i, s)
                         }
-                    } else if ("flash" == Upload.types[a]) {
-                        if (!ge("form" + a + "_progress")) {
-                            for (var r = Upload.obj[a], n = getSize(r)[1], c = n / 2 + 10, l = r.firstChild; l;) 1 == l.nodeType && (l.id == "uploader" + a && browser.msie ? setStyle(l, {
+                    } else if ("flash" == Upload.types[i]) {
+                        if (!ge("form" + i + "_progress")) {
+                            for (var r = Upload.obj[i], n = getSize(r)[1], c = n / 2 + 10, l = r.firstChild; l;) 1 == l.nodeType && (l.id == "uploader" + i && browser.msie ? setStyle(l, {
                                 position: "relative",
                                 left: "-5000px"
                             }) : setStyle(l, {
                                 visibility: "hidden"
                             })), l = l.nextSibling;
                             r.appendChild(ce("div", {
-                                innerHTML: '<div class="tickets_progress_wrap">            <div id="form' + a + '_progress" class="tickets_progress" style="width: 0%;"></div>          </div></div>'
+                                innerHTML: '<div class="tickets_progress_wrap">            <div id="form' + i + '_progress" class="tickets_progress" style="width: 0%;"></div>          </div></div>'
                             }, {
                                 height: c + "px",
                                 marginTop: -c + "px"
                             }))
                         }
-                        var d = intval(t / i * 100);
-                        setStyle(ge("form" + a + "_progress"), {
+                        var d = intval(t / a * 100);
+                        setStyle(ge("form" + i + "_progress"), {
                             width: d + "%"
                         })
                     }
@@ -1030,16 +1006,16 @@ var Tickets = {
             })
         }
     },
-    showExtraFieldProgress: function(e, t, i, a) {
-        var o = i.loaded / i.total,
+    showExtraFieldProgress: function(e, t, a, i) {
+        var o = a.loaded / a.total,
             s = intval(100 * o),
-            r = (i.fileName || i.name || "").replace(/[&<>"']/g, ""),
+            r = (a.fileName || a.name || "").replace(/[&<>"']/g, ""),
             n = r ? t + "_" + r : t,
             c = r ? r.length > 33 ? r.substr(0, 30) + "..." : r : "",
             l = ge("upload" + n + "_progress");
         if (l)
             if (show(l), l.full) {
-                var d = i(l, "tween"),
+                var d = a(l, "tween"),
                     _ = intval(l.full * o);
                 d && d.isTweening ? d.to.width = _ : animate(l, {
                     width: _ + "px"
@@ -1050,7 +1026,7 @@ var Tickets = {
         else {
             hide("tickets_new_extra_field__upload_btn_" + e, "tickets_new_extra_field__example_" + e);
             var u = ge("tickets_new_extra_field__uploaded_" + e);
-            addClass(u, "tickets_new_extra_field__uploaded_p"), cur.attachMediaIndexes || (cur.attachMediaIndexes = {}), cur.attachMediaIndexes[n] = a;
+            addClass(u, "tickets_new_extra_field__uploaded_p"), cur.attachMediaIndexes || (cur.attachMediaIndexes = {}), cur.attachMediaIndexes[n] = i;
             var p = '<div><div class="page_attach_progress_wrap">  <div id="upload' + n + '_progress" class="page_attach_progress"></div></div></div></div>' + (c ? '<div class="attach_label">' + c + "</div>" : "") + '<div class="progress_x" onmouseover="showTooltip(this, {text: \'' + getLang("dont_attach") + '\', shift: [6, 3, 3]})" onclick="Upload.terminateUpload(' + t + ", '" + (r || t) + "');\"></div>";
             u.appendChild(ce("div", {
                 id: "upload" + n + "_progress_wrap",
@@ -1079,9 +1055,9 @@ var Tickets = {
                 file_match: ".(jpg|jpeg|png)$",
                 lang: opts.lang,
                 onUploadStart: function(e, t) {
-                    var i = void 0 !== e.ind ? e.ind : e,
-                        a = Upload.options[i];
-                    "form" == Upload.types[i] && (geByClass1("file", el).disabled = !0), "fileApi" == Upload.types[i] && (cur.notStarted && (params && params.hideOnStart && boxQueue.hideLast(), delete cur.notStarted), a.multi_progress && this.onUploadProgress(e, 0, 0))
+                    var a = void 0 !== e.ind ? e.ind : e,
+                        i = Upload.options[a];
+                    "form" == Upload.types[a] && (geByClass1("file", el).disabled = !0), "fileApi" == Upload.types[a] && (cur.notStarted && (params && params.hideOnStart && boxQueue.hideLast(), delete cur.notStarted), i.multi_progress && this.onUploadProgress(e, 0, 0))
                 },
                 onUploadComplete: function(info, res) {
                     var params;
@@ -1092,32 +1068,32 @@ var Tickets = {
                     }
                     return params.photos ? void Tickets.chooseExtraFieldUploaded(fieldIndex, info, params) : void Upload.onUploadError(info)
                 },
-                onUploadProgress: function(e, t, i) {
-                    var a = void 0 !== e.ind ? e.ind : e;
-                    if ("fileApi" == Upload.types[a]) {
-                        var o = (cur.attachMediaIndexes || {})[a],
+                onUploadProgress: function(e, t, a) {
+                    var i = void 0 !== e.ind ? e.ind : e;
+                    if ("fileApi" == Upload.types[i]) {
+                        var o = (cur.attachMediaIndexes || {})[i],
                             s = {
                                 loaded: t,
-                                total: i
+                                total: a
                             };
-                        e.fileName && (s.fileName = e.fileName.replace(/[&<>"']/g, "")), Tickets.showExtraFieldProgress(fieldIndex, a, s, o)
-                    } else if ("flash" == Upload.types[a]) {
-                        if (!ge("form" + a + "_progress")) {
-                            for (var r = Upload.obj[a], n = getSize(r)[1], c = n / 2 + 10, l = r.firstChild; l;) 1 == l.nodeType && (l.id == "uploader" + a && browser.msie ? setStyle(l, {
+                        e.fileName && (s.fileName = e.fileName.replace(/[&<>"']/g, "")), Tickets.showExtraFieldProgress(fieldIndex, i, s, o)
+                    } else if ("flash" == Upload.types[i]) {
+                        if (!ge("form" + i + "_progress")) {
+                            for (var r = Upload.obj[i], n = getSize(r)[1], c = n / 2 + 10, l = r.firstChild; l;) 1 == l.nodeType && (l.id == "uploader" + i && browser.msie ? setStyle(l, {
                                 position: "relative",
                                 left: "-5000px"
                             }) : setStyle(l, {
                                 visibility: "hidden"
                             })), l = l.nextSibling;
                             r.appendChild(ce("div", {
-                                innerHTML: '<div class="tickets_progress_wrap">          <div id="form' + a + '_progress" class="tickets_progress" style="width: 0%;"></div>        </div></div>'
+                                innerHTML: '<div class="tickets_progress_wrap">          <div id="form' + i + '_progress" class="tickets_progress" style="width: 0%;"></div>        </div></div>'
                             }, {
                                 height: c + "px",
                                 marginTop: -c + "px"
                             }))
                         }
-                        var d = intval(t / i * 100);
-                        setStyle(ge("form" + a + "_progress"), {
+                        var d = intval(t / a * 100);
+                        setStyle(ge("form" + i + "_progress"), {
                             width: d + "%"
                         })
                     }
@@ -1173,41 +1149,41 @@ var Tickets = {
             }))
         })
     },
-    initAddMedia: function(e, t, i, a) {
-        var o = new MediaSelector(e, t, i, extend(a, {
+    initAddMedia: function(e, t, a, i) {
+        var o = new MediaSelector(e, t, a, extend(i, {
             disabledTypes: ["share", "page"],
             mediaHandlers: {
                 photo: Tickets.__photoMediaHandler,
                 doc: Tickets.__docMediaHandler
             }
         }));
-        return a.oneClick && (Tickets.__initOneClickMediaUpload("photo", a, Tickets.initPhotoUpload), Tickets.__initOneClickMediaUpload("doc", a, Tickets.initDocUpload)), o
+        return i.oneClick && (Tickets.__initOneClickMediaUpload("photo", i, Tickets.initPhotoUpload), Tickets.__initOneClickMediaUpload("doc", i, Tickets.initDocUpload)), o
     },
-    __initOneClickMediaUpload: function(e, t, i) {
-        var a = t.target || "new",
-            o = Tickets.__getFormUploadIds(a),
-            s = "tickets_" + e + "_input" + a,
+    __initOneClickMediaUpload: function(e, t, a) {
+        var i = t.target || "new",
+            o = Tickets.__getFormUploadIds(i),
+            s = "tickets_" + e + "_input" + i,
             r = ge(s);
         r || ge(o[0]).appendChild(ce("input", {
             type: "file",
             multiple: "true",
             id: s,
             onchange: function() {
-                data(this, "changed", !0), cur.uploadInput = this, i(o[1], {
-                    target: a
+                data(this, "changed", !0), cur.uploadInput = this, a(o[1], {
+                    target: i
                 })
             }
         }))
     },
-    toggleFAQRow: function(e, t, i, a) {
-        return a.target || (a.target = a.srcElement || document), "a" == a.target.tagName.toLowerCase() ? !0 : (toggle("tickets_faq_short_text" + e, !isVisible("tickets_faq_short_text" + e)), toggle("tickets_faq_full_text" + e, !isVisible("tickets_faq_full_text" + e)), isVisible("tickets_faq_full_text" + e) ? (addClass(i, "detailed"), vk.id && Tickets.setFAQclicked(e, t, 0, !1)) : (removeClass(i, "detailed"), Tickets.cancelFAQclicked(e)), !1)
+    toggleFAQRow: function(e, t, a, i) {
+        return i.target || (i.target = i.srcElement || document), "a" == i.target.tagName.toLowerCase() ? !0 : (toggle("tickets_faq_short_text" + e, !isVisible("tickets_faq_short_text" + e)), toggle("tickets_faq_full_text" + e, !isVisible("tickets_faq_full_text" + e)), isVisible("tickets_faq_full_text" + e) ? (addClass(a, "detailed"), vk.id && Tickets.setFAQclicked(e, t, 0, !1)) : (removeClass(a, "detailed"), Tickets.cancelFAQclicked(e)), !1)
     },
-    setFAQclicked: function(e, t, i, a) {
-        a ? (clearTimeout(cur.faqViewTimeouts[e]), cur.faqViewTimeouts[e] = null, ajax.post("support", {
+    setFAQclicked: function(e, t, a, i) {
+        i ? (clearTimeout(cur.faqViewTimeouts[e]), cur.faqViewTimeouts[e] = null, ajax.post("support", {
             act: "faq_clicked",
             faq_id: e,
             hash: t,
-            from_new: i
+            from_new: a
         }, {
             cache: 1
         })) : cur.faqViewTimeouts.hasOwnProperty(e) || (cur.faqViewTimeouts[e] = setTimeout(function() {
@@ -1215,7 +1191,7 @@ var Tickets = {
                 act: "faq_clicked",
                 faq_id: e,
                 hash: t,
-                from_new: i
+                from_new: a
             }, {
                 cache: 1
             })
@@ -1224,15 +1200,15 @@ var Tickets = {
     cancelFAQclicked: function(e) {
         cur.faqViewTimeouts[e] && (clearTimeout(cur.faqViewTimeouts[e]), delete cur.faqViewTimeouts[e])
     },
-    rateFAQ: function(e, t, i, a, o) {
+    rateFAQ: function(e, t, a, i, o) {
         if (!vk.id) return !1;
         if (ajax.post("support", {
                 act: "faq_rate",
                 faq_id: e,
                 val: t,
-                hash: i,
-                from_new: a
-            }), Tickets.setFAQclicked(e, i, a, !0), !o)
+                hash: a,
+                from_new: i
+            }), Tickets.setFAQclicked(e, a, i, !0), !o)
             if (hide("tickets_faq_links" + e), t > 0) show("tickets_faq_useful" + e);
             else {
                 var s = ge("tickets_faq_unuseful" + e),
@@ -1241,58 +1217,58 @@ var Tickets = {
             }
         return !1
     },
-    rateFAQAdditional: function(e, t, i, a, o) {
+    rateFAQAdditional: function(e, t, a, i, o) {
         if (!vk.id) return !1;
         var s = ge("tickets_faq_unuseful" + e);
         ajax.post("support", {
             act: "faq_rate_additional",
             faq_id: e,
             additional_id: t,
-            hash: i
+            hash: a
         }), hide(geByClass1("help_table_question_rated_additional", s)), show(geByClass1("help_table_question__rated_final", s)), 2 == t && (cur.askQuestion.permission ? Tickets.tryAskQuestion(function() {
-            Tickets.goToForm(e, "dislike", a, o)
+            Tickets.goToForm(e, "dislike", i, o)
         }) : cur.isFaqTutorial && 2 != t || (hide(geByClass1("help_table_question__rated_final__t", s)), show(geByClass1("help_table_question__rated_no_perm", s))))
     },
-    cancelRateFAQ: function(e, t, i, a) {
+    cancelRateFAQ: function(e, t, a, i) {
         return vk.id ? (ajax.post("support", {
             act: "faq_rate",
             faq_id: e,
             val: t,
             cancel: 1,
-            hash: i
-        }), hide("tickets_faq_useful" + e, "tickets_faq_unuseful" + e), show("tickets_faq_links" + e), a && a.stopPropagation(), !1) : !1
+            hash: a
+        }), hide("tickets_faq_useful" + e, "tickets_faq_unuseful" + e), show("tickets_faq_links" + e), i && i.stopPropagation(), !1) : !1
     },
-    rateFAQUrgent: function(e, t, i) {
+    rateFAQUrgent: function(e, t, a) {
         return vk.id ? (ajax.post("support", {
             act: "faq_rate",
             faq_id: e,
             val: t,
-            hash: i,
+            hash: a,
             from_new: 1
-        }), Tickets.setFAQclicked(e, i, 1, !0), hide("tickets_faq_urgent_links" + e), t > 0 ? (show("tickets_faq_useful" + e), slideUp("tickets_new_wrap", 450)) : show("tickets_faq_unuseful" + e), !1) : !1
+        }), Tickets.setFAQclicked(e, a, 1, !0), hide("tickets_faq_urgent_links" + e), t > 0 ? (show("tickets_faq_useful" + e), slideUp("tickets_new_wrap", 450)) : show("tickets_faq_unuseful" + e), !1) : !1
     },
-    cancelRateFAQUrgent: function(e, t, i) {
+    cancelRateFAQUrgent: function(e, t, a) {
         if (!vk.id) return !1;
         ajax.post("support", {
             act: "faq_rate",
             faq_id: e,
             val: t,
             cancel: 1,
-            hash: i
+            hash: a
         }), hide("tickets_faq_useful" + e, "tickets_faq_unuseful" + e), show("tickets_faq_urgent_links" + e);
-        var a = ge("tickets_new_wrap");
-        return isVisible(a) || slideDown(a, 500), !1
+        var i = ge("tickets_new_wrap");
+        return isVisible(i) || slideDown(i, 500), !1
     },
     showAverageTime: function(e, t) {
         if (cur.timeShown) return void Tickets.toggleDetailedForm();
-        var i = getLang("support_wait_message").replace(/\{time\}/g, e) + '<div class="tickets_wait_img"><img src="/images/pics/support_wait.png" /></div>',
-            a = showFastBox({
+        var a = getLang("support_wait_message").replace(/\{time\}/g, e) + '<div class="tickets_wait_img"><img src="/images/pics/support_wait.png" /></div>',
+            i = showFastBox({
                 title: getLang("support_average_wait_time"),
                 width: 430,
                 dark: !0,
                 bodyStyle: "padding: 20px; line-height: 160%;"
-            }, i, getLang("support_ask_question"), function() {
-                a.hide(), cur.timeShown = !0, t()
+            }, a, getLang("support_ask_question"), function() {
+                i.hide(), cur.timeShown = !0, t()
             }, getLang("support_back_to_faq"))
     },
     toggleDetailedForm: function(e) {
@@ -1300,8 +1276,8 @@ var Tickets = {
         if (toggleClass(ge("tickets_content"), "detailed"), isVisible("tickets_detailed_form")) t.setAttribute("placeholder", getLang("support_please_add_title")), removeClass(ge("tickets_search_reset"), "shown"), e && ge("tickets_text").focus();
         else {
             t.setAttribute("placeholder", getLang("support_title_msg"));
-            var i = trim(ge("tickets_title").value);
-            i && addClass(ge("tickets_search_reset"), "shown"), cur.toggleCanceled = !0, delete cur.toggled, Tickets.searchFAQ(i), t.focus()
+            var a = trim(ge("tickets_title").value);
+            a && addClass(ge("tickets_search_reset"), "shown"), cur.toggleCanceled = !0, delete cur.toggled, Tickets.searchFAQ(a), t.focus()
         }
         placeholderSetup(ge("tickets_title"), {
             back: !0,
@@ -1313,12 +1289,12 @@ var Tickets = {
         return e ? e.value : ""
     },
     getFormQuery: function(e, t) {
-        var i = {
+        var a = {
             0: "support",
             act: e,
             title: Tickets.getSearchQuery()
         };
-        return t && (i.ask = 1), i
+        return t && (a.ask = 1), a
     },
     switchToPayForm: function(e, t) {
         return lockButton("tickets_create_pay"), nav.go(Tickets.getFormQuery("new_pay", t), e)
@@ -1338,10 +1314,10 @@ var Tickets = {
     updateFAQ: function(e, t) {
         clearTimeout(cur.faqTimeout), cur.faqTimeout = setTimeout(function() {
             var e = t.value,
-                i = trim(e),
-                a = i.split(" "),
+                a = trim(e),
+                i = a.split(" "),
                 o = ge("tickets_text");
-            e.length >= 70 && o && !o.value && !cur.flood && (isVisible("tickets_detailed_form") || Tickets.toggleDetailedForm(), t.value = "", o.focus(), o.value = e), isVisible("tickets_detailed_form") || i == cur.searchStr && (a.length < 4 || 4 == a.length && " " != e[e.length - 1]) || (i ? addClass(ge("tickets_search_reset"), "shown") : removeClass(ge("tickets_search_reset"), "shown"), cur.searchStr = i, clearTimeout(cur.searchFAQTimeout), cur.searchFAQTimeout = setTimeout(function() {
+            e.length >= 70 && o && !o.value && !cur.flood && (isVisible("tickets_detailed_form") || Tickets.toggleDetailedForm(), t.value = "", o.focus(), o.value = e), isVisible("tickets_detailed_form") || a == cur.searchStr && (i.length < 4 || 4 == i.length && " " != e[e.length - 1]) || (a ? addClass(ge("tickets_search_reset"), "shown") : removeClass(ge("tickets_search_reset"), "shown"), cur.searchStr = a, clearTimeout(cur.searchFAQTimeout), cur.searchFAQTimeout = setTimeout(function() {
                 Tickets.searchFAQ(cur.searchStr)
             }.bind(this), 300), browser.mobile || scrollToTop())
         }.bind(this), 10)
@@ -1358,13 +1334,13 @@ var Tickets = {
         nav.objLoc.gid && (t.gid = nav.objLoc.gid), nav.objLoc.app_id && (t.app_id = nav.objLoc.app_id), nav.objLoc.union_id && (t.union_id = nav.objLoc.union_id), cur.tlmd && cur.showAll && (delete cur.showAll, t.show_all = 1, cur.from_ads && (t.from = "ads")), ajax.post("support", t, {
             cache: 1,
             hideProgress: removeClass.pbind("tickets_search", "loading"),
-            onDone: function(t, i) {
-                var a = ge("tickets_title").value,
-                    o = trim(a).split(" "),
+            onDone: function(t, a) {
+                var i = ge("tickets_title").value,
+                    o = trim(i).split(" "),
                     s = !1;
-                if (cur.toggleCanceled || !(o.length > 4 || 4 == o.length && " " == a[a.length - 1]) || cur.flood || (s = !0), t ? ge("tickets_faq_list").innerHTML = ce("div", {
+                if (cur.toggleCanceled || !(o.length > 4 || 4 == o.length && " " == i[i.length - 1]) || cur.flood || (s = !0), t ? ge("tickets_faq_list").innerHTML = ce("div", {
                         innerHTML: t
-                    }).firstChild.innerHTML : (i && (ge("tickets_faq_button").innerHTML = i), s && (cur.toggled = !0, Tickets.toggleDetailedForm())), cur.tlmd) {
+                    }).firstChild.innerHTML : (a && (ge("tickets_faq_button").innerHTML = a), s && (cur.toggled = !0, Tickets.toggleDetailedForm())), cur.tlmd) {
                     if (e ? extend(nav.objLoc, {
                             q: e
                         }) : delete nav.objLoc.q, "faq" == nav.objLoc.act) {
@@ -1377,17 +1353,17 @@ var Tickets = {
         })
     },
     clearSearch: function(e, t) {
-        var i = ge("tickets_title");
+        var a = ge("tickets_title");
         setStyle(e, {
             opacity: .6
-        }), i.value = "", ge("tickets_title").focus(), Tickets.updateFAQ(t, i)
+        }), a.value = "", ge("tickets_title").focus(), Tickets.updateFAQ(t, a)
     },
     checkOut: function(e, t) {
         checkbox(e.firstChild)
     },
     getCheckedArr: function() {
         var e = [];
-        return isObject(cur.checkedTickets) && each(cur.checkedTickets, function(t, i) {
+        return isObject(cur.checkedTickets) && each(cur.checkedTickets, function(t, a) {
             e.push(t)
         }), e
     },
@@ -1395,56 +1371,56 @@ var Tickets = {
         if (ge("tickets_search_options")) {
             var e = Tickets.getCheckedArr(),
                 t = e.length,
-                i = ge("tickets_all_search"),
-                a = ge("tickets_all_selected");
-            t ? (isVisible(i) && slideUp(i, 200), ge("t_n_marked").innerHTML = langNumeric(t, cur.lang.x_tickets_checked, !0), isVisible(a) || slideDown(a, 200)) : (isVisible(i) || slideDown(i, 200), isVisible(a) && slideUp(a, 200))
+                a = ge("tickets_all_search"),
+                i = ge("tickets_all_selected");
+            t ? (isVisible(a) && slideUp(a, 200), ge("t_n_marked").innerHTML = langNumeric(t, cur.lang.x_tickets_checked, !0), isVisible(i) || slideDown(i, 200)) : (isVisible(a) || slideDown(a, 200), isVisible(i) && slideUp(i, 200))
         }
     },
     checkChange: function(e, t) {
-        var i = geByClass1("checkbox", e);
-        cur.checkedTickets[t] ? (delete cur.checkedTickets[t], checkbox(i, 0)) : (cur.checkedTickets[t] = !0, checkbox(i, 1)), this.updateChecked()
+        var a = geByClass1("checkbox", e);
+        cur.checkedTickets[t] ? (delete cur.checkedTickets[t], checkbox(a, 0)) : (cur.checkedTickets[t] = !0, checkbox(a, 1)), this.updateChecked()
     },
     saveDraft: function(e, t) {
-        var i = ge("tickets_reply");
-        if (!browser.mobile && i && !i.disabled && cur.canUseDrafts) {
-            for (var a = val(i), o = {
-                    txt: trim(a),
+        var a = ge("tickets_reply");
+        if (!browser.mobile && a && !a.disabled && cur.canUseDrafts) {
+            for (var i = val(a), o = {
+                    txt: trim(i),
                     medias: []
                 }, s = (cur.ticketsNewMedia || {}).chosenMedias || [], r = 0, n = s.length; n > r; ++r) s[r] && o.medias.push([s[r][0], s[r][1]]);
-            o.medias.length || o.txt.length || (o = !1), ls.set("helpdesk_draft" + vk.id + "_" + e, o), i && cur.ticketsNewMedia && ("paste" == t || "keyup" == t) && cur.ticketsNewMedia.checkMessageURLs(a, "keyup" != t)
+            o.medias.length || o.txt.length || (o = !1), ls.set("helpdesk_draft" + vk.id + "_" + e, o), a && cur.ticketsNewMedia && ("paste" == t || "keyup" == t) && cur.ticketsNewMedia.checkMessageURLs(i, "keyup" != t)
         }
     },
-    listToggleQuestion: function(e, t, i) {
+    listToggleQuestion: function(e, t, a) {
         if (checkEvent(e)) return !0;
-        var a = e.target.parentNode,
-            o = geByClass1("help_table_question__ans", a);
-        return isVisible(o) ? (removeClass(a, "help_table_question_visible"), slideUp(o, 200), Tickets.cancelFAQclicked(t)) : (addClass(a, "help_table_question_visible"), slideDown(o, 200), Tickets.setFAQclicked(t, i, 1, !1)), !1
+        var i = e.target.parentNode,
+            o = geByClass1("help_table_question__ans", i);
+        return isVisible(o) ? (removeClass(i, "help_table_question_visible"), slideUp(o, 200), Tickets.cancelFAQclicked(t)) : (addClass(i, "help_table_question_visible"), slideDown(o, 200), Tickets.setFAQclicked(t, a, 1, !1)), !1
     },
     listToggleUnusefulButton: function(e) {
         toggle(ge("tickets_unuseful"), e)
     },
     listShowAltButton: function(e) {
-        each(geByClass("secondary", ge("help_table_questions_btn")), function(t, i) {
-            "" == e || i.id != e ? hide(i) : show(i)
+        each(geByClass("secondary", ge("help_table_questions_btn")), function(t, a) {
+            "" == e || a.id != e ? hide(a) : show(a)
         })
     },
     updateSearchSuggests: function(e) {
         el = this, e = trim(e);
         var t = ge("faq_search_form");
         return t.hideTimeout && (clearTimeout(t.hideTimeout), t.hideTimeout = null), t.searchTimeout && (clearTimeout(t.searchTimeout), t.searchTimeout = null), e ? void(t.searchTimeout = setTimeout(function() {
-            var i = ge("faq_search_form_suggests");
-            i || (i = ce("div", {
+            var a = ge("faq_search_form_suggests");
+            a || (a = ce("div", {
                 id: "faq_search_form_suggests",
                 className: "tickets_suggests"
-            }), t.appendChild(i), hide(i)), ajax.post("support", {
+            }), t.appendChild(a), hide(a)), ajax.post("support", {
                 act: "load_faq_suggests",
                 q: e,
                 section: cur.section,
                 union_id: nav.objLoc.union_id
             }, {
                 cache: 1,
-                onDone: function(a) {
-                    a && (show(i), addClass(t, "faq_search_form_with_suggests", e)), i.innerHTML = a
+                onDone: function(i) {
+                    i && (show(a), addClass(t, "faq_search_form_with_suggests", e)), a.innerHTML = i
                 },
                 showProgress: uiSearch.showProgress.pbind(el),
                 hideProgress: uiSearch.hideProgress.pbind(el)
@@ -1459,17 +1435,17 @@ var Tickets = {
     },
     goToSearchResult: function(e, t) {
         if (t = trim(t), t || "faqs" == nav.objLoc.act) {
-            var i = {
+            var a = {
                 0: cur.objLoc,
                 act: cur.faqsAct
             };
-            t && (i.q = t), nav.go(i)
+            t && (a.q = t), nav.go(a)
         }
     },
-    goToForm: function(e, t, i, a) {
+    goToForm: function(e, t, a, i) {
         var o = {
             0: "support",
-            act: i
+            act: a
         };
         if (e) o.id = e;
         else {
@@ -1477,14 +1453,14 @@ var Tickets = {
                 r = "";
             s && (r = s.value.trim(), r && (o.title = r))
         }
-        return t && (o.from = t), a && (o.bhash = a), nav.go(o), !1
+        return t && (o.from = t), i && (o.bhash = i), nav.go(o), !1
     },
     listScrollToQuestion: function(e) {
         var t = null;
         if (e && (t = ge("help_table_question_" + e)), t) {
             scrollToY(getXY(t)[1] - 10), hasClass(t, "help_table_question_visible") || addClass(t, "help_table_question_visible");
-            var i = geByClass1("help_table_question__ans", t);
-            isVisible(i) || show(i)
+            var a = geByClass1("help_table_question__ans", t);
+            isVisible(a) || show(a)
         }
     },
     listClearSearchInput: function() {
@@ -1492,9 +1468,9 @@ var Tickets = {
     },
     listSelectCategory: function(e, t) {
         "top" != e && (e = "cat" + e);
-        var i = ge("ui_rmenu_" + e),
-            a = i.innerHTML;
-        return uiRightMenu.switchMenu(i), t && uiRightMenu.showProgress(i), a
+        var a = ge("ui_rmenu_" + e),
+            i = a.innerHTML;
+        return uiRightMenu.switchMenu(a), t && uiRightMenu.showProgress(a), i
     },
     listDiselectCategory: function() {
         each(geByClass("ui_rmenu_item_sel", ge("help_table_categories")), function(e, t) {
@@ -1534,9 +1510,9 @@ var Tickets = {
     loadTickets: function() {
         var e = ge("tickets_list_load_more"),
             t = getXY(e)[1],
-            i = scrollGetY(),
-            a = t >= i && t <= i + window.innerHeight;
-        if (a && !cur.ticketsLoading && cur.ticketsLoadMore) {
+            a = scrollGetY(),
+            i = t >= a && t <= a + window.innerHeight;
+        if (i && !cur.ticketsLoading && cur.ticketsLoadMore) {
             var o = {
                 act: "",
                 offset: cur.ticketsOffset,
@@ -1549,13 +1525,13 @@ var Tickets = {
                 hideProgress: function() {
                     removeClass(e, "tickets_list_load_more_loading"), cur.ticketsLoading = !1
                 },
-                onDone: function(e, t, i) {
-                    cur.ticketsOffset = t, cur.ticketsLoadMore = i;
-                    var a = ge("tickets_list");
-                    removeClass(a.lastChild, "last");
+                onDone: function(e, t, a) {
+                    cur.ticketsOffset = t, cur.ticketsLoadMore = a;
+                    var i = ge("tickets_list");
+                    removeClass(i.lastChild, "last");
                     var o = sech(e);
                     each(o, function(e, t) {
-                        a.appendChild(t)
+                        i.appendChild(t)
                     }), Tickets.loadTickets()
                 }
             })
@@ -1578,13 +1554,13 @@ var Tickets = {
         }), console.log("Win")
     },
     tutorialOpen: function(e, t) {
-        var i = cur.chosenTutorialFaqId ? ge("help_table_question_" + cur.chosenTutorialFaqId) : null;
-        i ? show("support_tutorial_container") : slideDown("support_tutorial_container", 300), e.parentNode.replaceChild(ce("span", {
+        var a = cur.chosenTutorialFaqId ? ge("help_table_question_" + cur.chosenTutorialFaqId) : null;
+        a ? show("support_tutorial_container") : slideDown("support_tutorial_container", 300), e.parentNode.replaceChild(ce("span", {
             innerHTML: e.innerHTML
         }), e), ajax.post("support", {
             act: "a_open_tutorial",
             hash: t
-        }), i && scrollToY(getXY(i)[1])
+        }), a && scrollToY(getXY(a)[1])
     },
     tutorialSelect: function(btn, id, noActions) {
         cur.tutorialProcessing || ajax.post("support", {
@@ -1616,8 +1592,8 @@ var Tickets = {
     },
     toggleQuestionHider: function(e) {
         var t = domPN(domPN(e)),
-            i = geByClass1("wk_hider_body", t);
-        toggleClass(t, "wk_hider_box"), toggleClass(t, "wk_hider_box_opened"), hasClass(t, "wk_hider_box_opened") ? slideDown(i, 200) : slideUp(i, 200)
+            a = geByClass1("wk_hider_body", t);
+        toggleClass(t, "wk_hider_box"), toggleClass(t, "wk_hider_box_opened"), hasClass(t, "wk_hider_box_opened") ? slideDown(a, 200) : slideUp(a, 200)
     },
     _eof: 1
 };

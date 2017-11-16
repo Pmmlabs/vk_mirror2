@@ -477,34 +477,34 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     var e = this.getPageCurrentPlaylist(),
         t = domData(this._els.audioRows, "audio-context");
     e.loadAll(function() {
-        this._sortedPageList = [].concat(e.getUnshuffledAudiosList()), shuffle(this._sortedPageList);
+        this._sortedList = [].concat(e.getUnshuffledAudiosList()), shuffle(this._sortedList);
         var i = new AudioPlaylist(AudioPlaylist.TYPE_TEMP);
         i.mergeWith({
-            list: this._sortedPageList
-        }), getAudioPlayer().play(i.getAudioAt(0), i, t), this._initAudioRowsAutoList(!1, !0), this._originalPageList || (this._originalPageList = [].concat(e.getUnshuffledAudiosList())), this._sortDD && this._sortDD.select("random", !0)
+            list: this._sortedList
+        }), getAudioPlayer().play(i.getAudioAt(0), i, t), this._initAudioRowsAutoList(), this._sortDD && this._sortDD.select("random", !0)
     }.bind(this)), statlogsValueEvent("audio_sort_stat", "audio_sort", "shuffle_page", this.isLayer() ? "layer" : "page")
 }, AudioPage.prototype._onSortSelected = function(e) {
     var t = this.getPageCurrentPlaylist();
     t.loadAll(function() {
-        switch (this._originalPageList || (this._originalPageList = [].concat(t.getUnshuffledAudiosList())), e) {
+        switch (e) {
             case 0:
-                delete this._sortedPageList, this._enableAudioRowsSorter(), statlogsValueEvent("audio_sort_stat", "audio_sort", "dropdown_default");
+                delete this._sortedList, this._enableAudioRowsSorter(), statlogsValueEvent("audio_sort_stat", "audio_sort", "dropdown_default");
                 break;
             case "performer":
-                var i = clone(this._originalPageList);
+                var i = [].concat(t.getUnshuffledAudiosList());
                 i.sort(function(e, t) {
                     var i = trim(e[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER].toLowerCase()),
                         o = trim(t[AudioUtils.AUDIO_ITEM_INDEX_PERFORMER].toLowerCase());
                     return 0 == i.indexOf("the ") && (i = i.slice(4)), 0 == o.indexOf("the ") && (o = o.slice(4)), o > i ? -1 : i > o ? 1 : 0
-                }), this._sortedPageList = i, this._disableAudioRowsSorter(), statlogsValueEvent("audio_sort_stat", "audio_sort", "dropdown_performer");
+                }), this._sortedList = i, this._disableAudioRowsSorter(), statlogsValueEvent("audio_sort_stat", "audio_sort", "dropdown_performer");
                 break;
             case "random":
-                this._sortedPageList = clone(this._originalPageList), shuffle(this._sortedPageList), this._disableAudioRowsSorter(), statlogsValueEvent("audio_sort_stat", "audio_sort", "dropdown_shuffle");
+                this._sortedList = [].concat(t.getUnshuffledAudiosList()), shuffle(this._sortedList), this._disableAudioRowsSorter(), statlogsValueEvent("audio_sort_stat", "audio_sort", "dropdown_shuffle");
                 break;
             case "reverse":
-                this._sortedPageList = clone(this._originalPageList), this._sortedPageList.reverse(), this._disableAudioRowsSorter(), statlogsValueEvent("audio_sort_stat", "audio_sort", "dropdown_reverse")
+                this._sortedList = [].concat(t.getUnshuffledAudiosList()), this._sortedList.reverse(), this._disableAudioRowsSorter(), statlogsValueEvent("audio_sort_stat", "audio_sort", "dropdown_reverse")
         }
-        this._initAudioRowsAutoList(!1, !0)
+        this._initAudioRowsAutoList()
     }.bind(this))
 }, AudioPage.prototype._initFixedFriendsBlock = function(e) {
     if (this._els.friendsBlock) {
@@ -553,8 +553,8 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
     }.bind(this)))
 }, AudioPage.prototype._disableAudioRowsSorter = function() {
     this._audioRowsSorter && this._audioRowsSorter.disable()
-}, AudioPage.prototype._initAudioRowsAutoList = function(e, t) {
-    var i = this._pagePlaylist;
+}, AudioPage.prototype._initAudioRowsAutoList = function(e) {
+    var t = this._pagePlaylist;
     this._els.audioRows.innerHTML = "", toggleClass(this._els.audioRows, "audio_owner_list_canedit", !!this._data.canEdit), this._audioRowsAutoList && this._audioRowsAutoList.destroy(), this._audioRowsAutoList = new AutoList(this._els.audioRows, {
         scrollNode: this._scroll ? this._scroll.scroller : !1,
         onRendered: function() {
@@ -563,13 +563,13 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         onNoMore: function() {
             hide(this._els.audioRowsMore)
         }.bind(this),
-        onNeedRows: function(o, a, s, r, l) {
-            var n = [];
-            i.load(a, function() {
-                var s = [];
-                s = e ? i.getAudiosList() : t && this._sortedPageList ? this._sortedPageList : t && this._originalPageList ? this._originalPageList : i.getUnshuffledAudiosList();
-                for (var r = a; a + 30 > r && s[r]; r++) n.push(AudioUtils.drawAudio(s[r]));
-                o(n), 0 == a && this._audioRowsSorter && this._audioRowsSorter.update(), 0 == a && 1 == n.length && l.drawMore()
+        onNeedRows: function(i, o, a, s, r) {
+            var l = [];
+            t.load(o, function() {
+                var a = [];
+                a = e ? t.getAudiosList() : this._sortedList ? this._sortedList : t.getUnshuffledAudiosList();
+                for (var s = o; o + 30 > s && a[s]; s++) l.push(AudioUtils.drawAudio(a[s]));
+                i(l), 0 == o && this._audioRowsSorter && this._audioRowsSorter.update(), 0 == o && 1 == l.length && r.drawMore()
             }.bind(this))
         }.bind(this)
     }), this._onSectionOut(function() {
@@ -892,7 +892,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         show(z.coverThumb), setStyle(z.coverThumb, "background-image", "url(" + e + ")"), addClass(z.uploadCoverButton, "ape_thumb_set")
     }
 
-    function L() {
+    function b() {
         if (cur.audioCoverUploadOptions && cur.audioCoverUploadOptions[t]) {
             var e = cur.audioCoverUploadOptions[t],
                 i = {
@@ -921,13 +921,13 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
                     filesize_hide_last: !0,
                     label: e.button
                 };
-            Upload.init(z.uploadCoverButton, e.url, e.vars, i), addEvent(geByClass1("_ape_cover_delete"), "click", b), addEvent(z.uploadCoverButton, "click", function() {
+            Upload.init(z.uploadCoverButton, e.url, e.vars, i), addEvent(geByClass1("_ape_cover_delete"), "click", L), addEvent(z.uploadCoverButton, "click", function() {
                 (!isObject(M) || isVisible(geByClass1("_ape_cover_progress"))) && geByTag1("input", this).click()
             }), z.coverThumb = geByClass1("_ape_cover_thumb")
         }
     }
 
-    function b(e) {
+    function L(e) {
         return removeClass(z.uploadCoverButton, "ape_thumb_set"), hide(geByClass1("_ape_cover_thumb")), M = -1, cancelEvent(e)
     }
 
@@ -940,7 +940,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             hasClass(e.target, "_back") && c()
         }), uiSearch.init("ape_edit_playlist_search", {
             onChange: s
-        }), "edit" == e && (f("initial"), C(), L(), V.getCoverUrl() && S(V.getCoverUrl()), autosizeSetup(z.playlistDescriptionInput, {
+        }), "edit" == e && (f("initial"), C(), b(), V.getCoverUrl() && S(V.getCoverUrl()), autosizeSetup(z.playlistDescriptionInput, {
             minHeight: 30,
             maxHeight: 150,
             onResize: h

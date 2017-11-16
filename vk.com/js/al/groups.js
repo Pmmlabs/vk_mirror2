@@ -32,7 +32,7 @@ var Groups = {
                 forceNoBtn: 1
             }, '<div class="group_age_disclaimer">' + getLang("groups_age_disclaimer") + '<br><div class="checkbox group_age_checkbox" onclick="checkbox(this); disableButton(curBox().proceedButton, !isChecked(this))"><div></div>' + getLang("groups_age_accepted") + "</div></div>");
         a.removeButtons();
-        var n = a.addButton(getLang("global_cancel"), s, "no", !0);
+        var n = a.addButton(getLang("global_cancel"), a.hide, "no", !0);
         addClass(n, "group_age_disclaimer_close"), a.proceedButton = a.addButton(getLang("groups_age_approve"), function() {
             t = !0, removeClass(ge(o), "hidden"), a.hide(), e.age_disclaimer_hash ? ajax.post("al_groups.php", {
                 act: "a_set_user_age",
