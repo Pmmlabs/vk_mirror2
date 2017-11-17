@@ -598,6 +598,7 @@ a.page_poll_code {
 }
 
 .page_poll_radio {
+    word-wrap: break-word;
     padding: 12px 0 0
 }
 
@@ -663,7 +664,8 @@ a.page_poll_code {
 }
 
 .page_media_poll .page_poll_text {
-    padding: 0 0 3px
+    padding: 0 0 3px;
+    word-wrap: break-word
 }
 
 .page_media_poll .page_poll_percent {

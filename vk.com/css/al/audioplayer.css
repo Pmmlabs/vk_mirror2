@@ -49,10 +49,12 @@
     position: absolute;
     top: 0;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none
 }
 
 .audio_white_line {
@@ -88,10 +90,12 @@
     top: -3px;
     display: none;
     background-color: #577ca1;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     cursor: pointer
 }
 

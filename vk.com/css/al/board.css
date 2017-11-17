@@ -599,7 +599,8 @@ a.bp_date {
     color: #42648b;
     padding: 15px 0 0;
     font-size: 12.5px;
-    line-height: 16px
+    line-height: 16px;
+    word-wrap: break-word
 }
 
 .bv_wrap {
@@ -617,7 +618,8 @@ a.bp_date {
 }
 
 .bv_radio {
-    padding: 13px 0 0
+    padding: 13px 0 0;
+    word-wrap: break-word
 }
 
 .bv_actions {

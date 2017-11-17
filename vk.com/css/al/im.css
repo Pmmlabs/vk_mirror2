@@ -3690,7 +3690,8 @@ img.im_photo_thumb {
 }
 
 .im-search--date-input .cal_div {
-    z-index: 102
+    z-index: 102;
+    margin-top: 16px
 }
 
 .im-search--date-input .cal_table .past_day.day,

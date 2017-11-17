@@ -378,10 +378,12 @@ img {
     font-weight: 400;
     letter-spacing: 0.1px;
     border-radius: 2px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     cursor: pointer;
     display: block;
     position: relative;

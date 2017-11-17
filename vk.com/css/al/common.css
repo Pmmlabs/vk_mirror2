@@ -192,10 +192,12 @@
     top: 0;
     left: 0;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     opacity: 0.7;
     -o-transition: opacity 60ms linear;
     transition: opacity 60ms linear
@@ -763,10 +765,12 @@ a .num_delim {
 }
 
 .noselect {
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none
 }
 
 .fakeinput,
@@ -4038,24 +4042,30 @@ body.mac #layer_stl .fixed {
 }
 
 .no_select {
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none
 }
 
 .select_fix {
-    -webkit-user-select: text;
-    -moz-user-select: text;
     -ms-user-select: text;
-    user-select: text
+    user-select: text;
+    -o-user-select: text;
+    -moz-user-select: text;
+    -khtml-user-select: text;
+    -webkit-user-select: text
 }
 
 .placeholder {
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     position: relative;
     z-index: 3;
     cursor: text;
@@ -4559,10 +4569,12 @@ div.top_result_baloon a {
     text-align: center;
     color: #7f92a5;
     font-size: 1.27em;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     border: 3px dashed #a3b6c9;
     position: relative;
     min-height: 100%
@@ -6134,10 +6146,12 @@ button.ui_load_more_btn {
     top: 0;
     left: 0;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     opacity: 0.7;
     -o-transition: opacity 60ms linear;
     transition: opacity 60ms linear

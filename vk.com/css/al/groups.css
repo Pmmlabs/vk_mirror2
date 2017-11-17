@@ -290,7 +290,8 @@ a.groups_messages_block:before {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow: hidden
+    overflow: hidden;
+    word-wrap: break-word
 }
 
 .group_voting_msg.info_msg {

@@ -4283,10 +4283,12 @@ div.submit_post_field[contenteditable=true]>p {
     overflow: hidden;
     opacity: 0.75;
     filter: alpha(opacity=75);
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -4335,10 +4337,12 @@ div.submit_post_field[contenteditable=true]>p {
     -webkit-transform: perspective(1000px);
     transform: perspective(1000px);
     position: relative;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     outline: none
 }
 
@@ -6923,10 +6927,12 @@ div.medadd_c_linkprg {
     overflow: hidden;
     position: relative;
     margin: 0;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     font-size: 0;
     text-align: center;
     line-height: 0;

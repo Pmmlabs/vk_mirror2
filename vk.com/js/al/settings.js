@@ -1197,10 +1197,10 @@ var Settings = {
         }, {
             cache: 1,
             local: 1,
-            onDone: function(data, count) {
+            onDone: function(data) {
                 return (data = eval("(" + data + ")")) ? (void 0 === cur.searchOffset && (cur.searchOffset = 0), cur.curList = "all", cur.appsList = data[cur.curList] ? data : {
                     all: []
-                }, cur.appsCount = count, void this.indexApp(function() {
+                }, cur.appsCount = cur.appsList.all.length, void this.indexApp(function() {
                     if (cur.silent = !1, cur.onSilentLoad)
                         for (var t in cur.onSilentLoad) isFunction(cur.onSilentLoad[t]) && cur.onSilentLoad[t]()
                 })) : cur.silent = !1

@@ -81,10 +81,12 @@ input.ui_search_field {
     padding: 0 10px;
     margin: 0;
     list-style: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none
 }
 
 .ui_tabs.ui_tabs_box {
@@ -635,10 +637,12 @@ a.ui_crumb {
     line-height: 31px;
     padding: 0 5px 0 20px;
     color: #2a5885;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     outline: none;
     cursor: pointer
 }
@@ -1249,10 +1253,12 @@ input.ui_search_field:focus~.placeholder .ph_content {
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, .12);
     border-radius: 0 0 3px 3px;
     display: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none
 }
 
 .ui_search_sugg_list .ui_search_sugg_history_header {
@@ -1498,10 +1504,12 @@ a.ui_search_custom_link {
     transition: opacity 100ms linear, top 100ms linear, visibility 100ms linear;
     pointer-events: none;
     color: #000;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none
 }
 
 .ui_search_fltr:after,
@@ -1758,10 +1766,12 @@ a.ui_search_custom_link {
     float: left;
     z-index: 2;
     color: #828282;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none
 }
 
 .prefix_input_field {
@@ -2343,10 +2353,12 @@ a.ui_search_custom_link {
     font-size: 12.5px;
     line-height: 15px;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none
 }
 
 .ui_toggler_wrap .ui_toggler {
@@ -2936,10 +2948,12 @@ a.ui_search_custom_link {
     line-height: 0;
     zoom: 1;
     border-bottom: 1px solid #e7e8ec;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none
 }
 
 .olist_item_wrap:hover {
@@ -3529,10 +3543,12 @@ a.ui_search_custom_link {
 
 .ui_input_labeled:after,
 .ui_input_labeled:before {
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     pointer-events: none
 }
 

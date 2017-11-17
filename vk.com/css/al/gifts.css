@@ -225,10 +225,12 @@ h4.gifts_section_header {
     top: 0;
     bottom: 0;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     opacity: 0;
     filter: alpha(opacity=0);
     z-index: 200;

@@ -1158,10 +1158,12 @@ input.dev_input_simular {
     display: inline-block;
     -o-transition: all 250ms ease-in-out;
     transition: all 250ms ease-in-out;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none
 }
 
 .dev_main_featured .dev_main_featured_banners_change_button:first-child {
@@ -3219,10 +3221,12 @@ body.dev.dev_main_page input.dev_top_input {
     padding: 24px 0 16px;
     border-bottom: 1px solid #e7e8ec;
     position: relative;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     -o-transition: border-color 200ms ease-in-out;
     transition: border-color 200ms ease-in-out
 }

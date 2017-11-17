@@ -784,141 +784,6 @@ body.dev .tickets_header_links {
     margin-left: 8px
 }
 
-#tickets_templates {
-    padding: 20px 0 10px
-}
-
-#tickets_templates .template_wrap {
-    display: table-cell
-}
-
-#tickets_templates .template_wrap .template_title_wrap {
-    display: inline-block;
-    line-height: 16px
-}
-
-#tickets_templates .template_wrap .template_title_wrap .template_title {
-    max-width: 270px;
-    display: inline-block;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    vertical-align: top
-}
-
-#tickets_templates .template_wrap .templates_actions a {
-    color: #777
-}
-
-#tickets_templates .template_wrap .templates_actions.templates_actions_edit {
-    display: inline;
-    vertical-align: top;
-    padding-left: 8px
-}
-
-#tickets_templates .template_wrap .templates_actions .template_add {
-    margin-left: -2px;
-    white-space: nowrap
-}
-
-#tickets_templates .template_wrap .templates_actions.templates_actions_switch {
-    display: block;
-    margin: 10px 0 5px
-}
-
-#tickets_templates .template_wrap .templates_actions .templates_switch {
-    padding: 4px 6px
-}
-
-#tickets_templates .template_wrap .templates_actions .templates_switch.templates_switch_selected {
-    background: #ededed;
-    border-radius: 2px
-}
-
-#tickets_templates .template_wrap .templates_actions .templates_move_mode_link.on {
-    background: #dae2e8;
-    border-radius: 2px;
-    padding: 4px
-}
-
-#tickets_templates .template_links_wrap {
-    margin-top: 10px
-}
-
-#tickets_templates .template_links_wrap .template_long_wrap.template {
-    margin: 6px 0;
-    float: none;
-    display: block;
-    color: #939393;
-    font-size: 12.5px
-}
-
-#tickets_templates .template_links_wrap .template_long_wrap.template:hover {
-    background: transparent;
-    color: #656565
-}
-
-#tickets_templates .template_links_wrap .template {
-    -ms-user-select: none;
-    user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -o-user-select: none;
-    float: left;
-    padding: 2px 6px;
-    margin-top: 3px;
-    line-height: 17px;
-    white-space: nowrap;
-    color: #2a5885;
-    cursor: pointer
-}
-
-#tickets_templates .template_links_wrap .template.template_selected {
-    border-radius: 2px;
-    margin: 3px 1px 0;
-    padding: 2px 5px;
-    background: #5e81a8;
-    color: #fff
-}
-
-#tickets_templates .template_links_wrap .template.template_selected:hover {
-    background: #6888ad
-}
-
-#tickets_templates .template_links_wrap .template:hover {
-    border-radius: 2px;
-    background: #e1e7ed
-}
-
-#tickets_templates .template_links_wrap .template:active,
-#tickets_templates .template_links_wrap .template:hover {
-    text-decoration: none
-}
-
-#tickets_templates .template_links_wrap .template:active {
-    padding-bottom: 1px;
-    padding-top: 3px
-}
-
-#tickets_templates .templates_export_wrap {
-    padding: 7px 0 6px;
-    text-align: center
-}
-
-#tickets_templates .templates_empty_wrap {
-    text-align: center;
-    padding: 12px 0 14px
-}
-
-#tickets_templates .templates_empty_wrap .templates_empty_text {
-    color: #777
-}
-
-#tickets_templates .template_sortable_ghost {
-    opacity: 0.2
-}
-
 #tickets_pass_to {
     padding: 10px 0
 }
@@ -933,9 +798,7 @@ body.dev .tickets_header_links {
     color: #777
 }
 
-#template_title a,
-#tickets_pt_title,
-.template_wrap #template_title {
+#tickets_pt_title {
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -2081,10 +1944,12 @@ a.tickets_question_row_tt_unread {
 
 .tickets_check {
     float: left;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     padding: 24px 0 24px 18px;
     width: 35px;
     vertical-align: middle;

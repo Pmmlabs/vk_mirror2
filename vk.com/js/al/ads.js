@@ -4740,6 +4740,45 @@ Ads.showRetargetingPriceListStatusErrorCode = function(event, link) {
     errorBox.classList.add('ads_retargeting_box_price_list_error_opened');
 }
 
+Ads.checkRetargetingPriceListProduct = function() {
+    var btn = ge('ads_retargeting_box_price_list_check_product_button');
+
+    if (isButtonLocked(btn)) {
+        return;
+    }
+
+    var errWrap = ge('ads_retargeting_box_price_list_check_product_error');
+    var resWrap = ge('ads_retargeting_box_price_list_check_product_result');
+
+    addClass(errWrap, 'unshown');
+    addClass(resWrap, 'unshown');
+
+    var productFullId = val('ads_retargeting_box_price_list_check_product_input').trim();
+    if (!productFullId || !productFullId.match(/(\d+)_(.+)/)) {
+        notaBene('ads_retargeting_box_price_list_check_product_input');
+        return false;
+    }
+
+    ajax.post('/ads?act=a_retargeting_group_price_list_check_product', {
+        union_id: cur.options.unionId,
+        product_full_id: productFullId
+    }, {
+        onDone: function(html) {
+            resWrap.innerHTML = html;
+            removeClass(resWrap, 'unshown');
+            elfocus('ads_retargeting_box_price_list_check_product_input');
+            return true;
+        },
+        onFail: function(err) {
+            errWrap.innerHTML = err;
+            removeClass(errWrap, 'unshown');
+            return true;
+        },
+        showProgress: lockButton.pbind(btn),
+        hideProgress: unlockButton.pbind(btn)
+    });
+};
+
 Ads.toggleRelevanceScoreInfo = function(switcherName) {
     removeClass(geByClass1("ads_relevance_score_switcher_item_active"), "ads_relevance_score_switcher_item_active");
     addClass(ge("ads_relevance_score_switcher_" + switcherName), "ads_relevance_score_switcher_item_active");

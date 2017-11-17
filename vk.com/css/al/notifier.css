@@ -4767,10 +4767,12 @@ div.chat_tab_img {
 
 .emoji_block_cont {
     overflow: hidden;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none
 }
 
 .emoji_animation {

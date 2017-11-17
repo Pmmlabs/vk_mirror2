@@ -143,10 +143,12 @@ body.mac #filter_form {
     cursor: pointer;
     color: #656565;
     font-size: 12.5px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none
 }
 
 .search_filter_open .arrow,

@@ -131,10 +131,12 @@
     top: 0;
     left: 0;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     opacity: 0.7;
     -o-transition: opacity 60ms linear;
     transition: opacity 60ms linear
@@ -599,10 +601,12 @@ body[data-useragent*=msie] .video_playlist_item_counter_back {
     top: 0;
     left: 0;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     opacity: 0.7;
     -o-transition: opacity 60ms linear;
     transition: opacity 60ms linear

@@ -174,10 +174,12 @@
 
 .feed_filters_wrap {
     padding: 11px 15px 15px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none
 }
 
 .feed_filters_wrap .checkbox {

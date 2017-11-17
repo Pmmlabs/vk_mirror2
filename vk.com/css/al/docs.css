@@ -95,10 +95,12 @@
 .docs_item.docs_item_deleted .docs_item_icon,
 .docs_item.docs_item_deleted .docs_item_thumb {
     pointer-events: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     opacity: 0.5;
     filter: alpha(opacity=50)
 }

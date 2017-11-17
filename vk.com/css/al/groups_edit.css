@@ -809,10 +809,12 @@ input.group_ad_cost {
     padding: 7px 0 8px 177px;
     border-radius: 2px;
     line-height: 1.154;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none
 }
 
 .group_ad_info_link:hover {

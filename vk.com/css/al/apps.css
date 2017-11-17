@@ -179,10 +179,12 @@
     top: 0;
     left: 0;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     opacity: 0.7;
     -o-transition: opacity 60ms linear;
     transition: opacity 60ms linear
@@ -3070,10 +3072,12 @@ a.page_block_header:hover .apps_cat_header_link:after {
 .apps_i_slider_outer {
     background: #000;
     overflow: hidden;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     position: relative;
     border-radius: 3px
 }
@@ -3291,10 +3295,12 @@ a.page_block_header:hover .apps_cat_header_link:after {
 }
 
 .apps_i_slider_thumbs_outer {
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     direction: ltr;
     margin-top: 10px;
     position: relative;
@@ -5562,10 +5568,12 @@ td.apps_cat_new_h {
     padding: 50px 10px 49px;
     cursor: pointer;
     -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     opacity: 0;
     filter: alpha(opacity=0);
     z-index: 3;

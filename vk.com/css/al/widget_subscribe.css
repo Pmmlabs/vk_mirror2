@@ -93,10 +93,12 @@
 }
 
 .wsubscribe_button .wsubscribe_do {
-    -webkit-user-select: none;
-    -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     height: 22px;
     display: inline-block;
     border-radius: 2px;
