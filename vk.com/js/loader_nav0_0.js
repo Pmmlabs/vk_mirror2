@@ -249,13 +249,13 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 115371869856,
-    'imn.js': 128632425000,
+    'imn.js': 125533564892,
     'im.js': 1322065005,
     'emoji.js': 3160351728,
     'wide_dd.css': 15363123961,
     'wide_dd.js': 452755344,
     'writebox.css': 15789722936,
-    'writebox.js': 55363255957,
+    'writebox.js': 56551962466,
     'sharebox.js': 2160209921,
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
@@ -317,7 +317,7 @@ var stVersions = {
     'widgets.css': 29106458433,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 78390597871,
+    'notifier.js': 75727671941,
     'notifier.css': 22378709575,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
@@ -331,7 +331,7 @@ var stVersions = {
     'tags_dd.css': 14665732339,
     'tasks.js': 4178217651,
     'tasks.css': 12417364226,
-    'helpdesk.js': 1519106982,
+    'helpdesk.js': 618263583,
     'helpdesk.css': 15981998741,
     'tickets.js': 4198914222,
     'tickets.css': 22049665478,
@@ -476,7 +476,7 @@ var stVersions = {
     'landing_donors_day.js': 1027075361,
     'landings/testing.css': 14209273256,
     'vkme.css': 16555506979,
-    'cmodules/web/vkme-desktop.js': 4912670899,
+    'cmodules/web/vkme-desktop.js': 4936530422,
     'ui_controls.js': 2713858100,
     'highcharts.js': 1982709850,
     'ui_controls.css': 15101363889,
@@ -618,4 +618,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 2792;
+var _rnd = 7167;
