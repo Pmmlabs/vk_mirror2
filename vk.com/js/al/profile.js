@@ -266,7 +266,7 @@ var Profile = {
                 onDone: function(e) {
                     if (curBox() && curBox().hide(), e) {
                         var i = ge("preq_text");
-                        val(i, e), show(i.parentNode), hide(ge("preq_input").parentNode)
+                        val(i, e), i && show(i.parentNode), i = ge("preq_input"), i && hide(i.parentNode)
                     }
                 },
                 showProgress: lockButton.pbind("preq_submit"),

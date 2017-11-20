@@ -230,7 +230,7 @@ var stVersions = {
     'groups_edit.css': 29152307507,
     'groups_edit.js': 3660395697,
     'profile.css': 22481839084,
-    'profile.js': 3346872471,
+    'profile.js': 610604261,
     'calendar.css': 17526238841,
     'calendar.js': 4203451993,
     'wk.css': 19162988312,
@@ -331,10 +331,10 @@ var stVersions = {
     'tags_dd.css': 14665732339,
     'tasks.js': 4178217651,
     'tasks.css': 12417364226,
-    'helpdesk.js': 618263583,
-    'helpdesk.css': 15981998741,
+    'helpdesk.js': 1369640753,
+    'helpdesk.css': 19554612276,
     'tickets.js': 4198914222,
-    'tickets.css': 22049665478,
+    'tickets.css': 18308152784,
     'faq.js': 2841473572,
     'faq.css': 17400591332,
     'talmud.js': 1641838680,
@@ -551,7 +551,7 @@ var stVersions = {
     'internal/restore2.js': 3254490132,
     'language.js': 3551638980,
     'language.css': 15046865235,
-    'internal/admins.js': 3518114731,
+    'internal/admins.js': 2810460581,
     'internal/admins.css': 14016145885,
     'lang': 6868
 };
@@ -618,4 +618,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 1083;
+var _rnd = 832;

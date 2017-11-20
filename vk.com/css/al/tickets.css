@@ -61,6 +61,10 @@ body.dev .tickets_new_wrap {
     width: 585px
 }
 
+.tickets_new_wrap .info_msg {
+    margin: 0 0 15px
+}
+
 body.dev #tickets_content {
     width: 725px
 }
@@ -117,11 +121,9 @@ body.dev .detailed .tickets_new_title {
 }
 
 h4.tickets_template {
-    border-bottom: none;
     margin: 0px 0 4px;
-    padding: 0 0px 4px;
-    font-size: 1.09em;
-    line-height: 1.27em
+    border-bottom: none;
+    font-size: 1em
 }
 
 h4.tickets_template.favs {
@@ -401,16 +403,6 @@ body.dev .tickets_reply_actions {
 
 .tickets_reply_action {
     white-space: nowrap
-}
-
-.tickets_reply_action.tickets_reply_action__bold {
-    font-weight: 700;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
-}
-
-.tickets_reply_action.tickets_reply_action_comment {
-    font-size: 12px
 }
 
 .tickets_post_field_wrap {
@@ -832,6 +824,10 @@ body.dev .tickets_header_links {
     white-space: nowrap;
     overflow: hidden;
     box-sizing: content-box
+}
+
+.template_edit_wrap .add_template_title_text_wrap {
+    margin-bottom: 12px
 }
 
 .template_edit_wrap .add_template_text {
@@ -1500,10 +1496,6 @@ body.dev #tis_add_lnk_edit {
     word-wrap: break-word;
     color: #555;
     overflow: hidden
-}
-
-.tickets_sys_content .tickets_reply_action_comment {
-    float: right
 }
 
 .tickets_sys_content.tickets_sys_content__neighbour {
