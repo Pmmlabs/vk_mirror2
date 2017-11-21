@@ -8474,7 +8474,9 @@ body.sf .nim-dialog .nim-dialog--unread {
     color: #656565;
     max-width: 190px;
     margin: auto;
-    margin-bottom: 32px
+    margin-bottom: 32px;
+    overflow: hidden;
+    text-overflow: ellipsis
 }
 
 .im-invitation .im-invitation--names>a {

@@ -2227,19 +2227,6 @@ var GroupsEdit = {
             onFail: function() {}
         })
     },
-    snapsterRoomEdit: function(e) {
-        cancelEvent(e);
-        var t = Math.max(350, Math.min(600, lastWindowHeight)) - 203;
-        cur.snapsterRoomsBox = showBox("/groupsedit.php", {
-            act: "snapster_room",
-            id: cur.gid,
-            height: t
-        }, {
-            params: {
-                width: 470
-            }
-        })
-    },
     replaceValueNewLines: function(e, t) {
         for (var o = 0, r = 0; o >= 0; r++) {
             if (r >= t) {

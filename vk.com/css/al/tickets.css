@@ -221,7 +221,7 @@ body.dev .tickets_summary {
 }
 
 .tickets_summary.tickets_summary_with_checks {
-    padding-left: 72px;
+    padding-left: 52px;
     position: relative
 }
 
@@ -1936,23 +1936,25 @@ a.tickets_question_row_tt_unread {
 
 .tickets_check {
     float: left;
+    margin-left: -5px;
+    padding: 24px 0 24px 8px;
     -ms-user-select: none;
     user-select: none;
     -o-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
-    padding: 24px 0 24px 18px;
-    width: 35px;
+    width: 32px;
     vertical-align: middle;
     cursor: pointer
 }
 
 .tickets_check.tickets_check_all {
-    left: 38px;
+    left: 23px;
+    margin-left: 0;
+    padding: 0;
     top: 15px;
-    position: absolute;
-    padding: 0
+    position: absolute
 }
 
 #tickets_similar .tickets_check {
@@ -2204,7 +2206,7 @@ a.tickets_question_row_tt_unread {
 .tickets_unbind {
     clear: right;
     float: left;
-    margin-top: 2px;
+    margin-top: 4px;
     margin-left: 3px;
     height: 12px;
     width: 14px;
