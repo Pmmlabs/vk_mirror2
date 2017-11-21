@@ -112,8 +112,11 @@ var tooltips = {
                 var c = getXY(domPN(i));
                 s[0] -= c[0], s[1] -= c[1];
                 var h = s[0] + (p ? a[0] + n[0] - l[0] : d ? -a[0] : -(a[3] || a[0]));
-                r && (h -= l[0] - 39), e.center && l[0] != n[0] && (h -= (l[0] - n[0]) / 2), setStyle(i, {
-                    left: h
+                r && (h -= l[0] - 39), e.center && l[0] != n[0] && (h -= (l[0] - n[0]) / 2);
+                var u = s[1] + (d ? -(l[1] + a[1]) : n[1] + a[2]);
+                setStyle(i, {
+                    left: h,
+                    top: u
                 })
             }
         }

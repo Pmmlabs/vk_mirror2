@@ -3023,7 +3023,8 @@ body.mac #layer_stl .fixed {
     outline: none
 }
 
-#box_loader {
+#box_loader,
+#stories_loader {
     position: absolute;
     left: 50%;
     margin: 0 auto 0 -50px;
@@ -3032,7 +3033,15 @@ body.mac #layer_stl .fixed {
     display: none
 }
 
-#box_loader .back {
+#stories_loader {
+    position: fixed;
+    display: block;
+    top: 50%;
+    margin-top: -25px
+}
+
+#box_loader .back,
+#stories_loader .back {
     background-color: #000;
     opacity: 0.7;
     filter: alpha(opacity=70);
@@ -3041,7 +3050,8 @@ body.mac #layer_stl .fixed {
     box-shadow: 0 2px 10px rgba(0, 0, 0, .35)
 }
 
-#box_loader #box_loader_pr {
+#box_loader #box_loader_pr,
+#stories_loader #stories_loader_pr {
     position: absolute;
     z-index: 1;
     opacity: 1;

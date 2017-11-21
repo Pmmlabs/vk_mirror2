@@ -1419,6 +1419,7 @@ if (!window.Emoji) {
             if (opts.saveDraft) {
                 opts.saveDraft();
             }
+            opts.onEmojiAdded && opts.onEmojiAdded();
             Emoji.incrRecentEmojiRate(optId, code);
         },
 

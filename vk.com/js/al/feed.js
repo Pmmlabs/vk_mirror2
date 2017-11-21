@@ -245,7 +245,7 @@ var Feed = {
         }
     },
     needScrollPost: function(e, t) {
-        return e + 80 > getXY(t)[1] || window.wkcur && wkcur.shown && "story" != wkcur.type || window.mvcur && mvcur.mvShown || window.pvcur && cur.pvShown
+        return e + 80 > getXY(t)[1] || cur.storyLayer || window.mvcur && mvcur.mvShown || window.pvcur && cur.pvShown
     },
     pushEvent: function(e, t) {
         var o = e[0],
@@ -281,7 +281,7 @@ var Feed = {
                     b = wall.getNewPostHTML(e, l, feed.feedPostRepl),
                     y = e[12],
                     C = "search" != n && (window._wf <= 0 || hasClass(cur.feedEls.wrap, "feed_has_new")),
-                    k = layers && layers.visible && window.wkcur && "story" == wkcur.type;
+                    k = cur.storyLayer;
                 k && (C = !0);
                 var P = !1,
                     x = b;
@@ -920,7 +920,7 @@ var Feed = {
             types: t
         }, {
             onDone: function(t) {
-                ge("notify_mark_spam_" + e).innerHTML = t;
+                ge("notify_mark_spam_" + e).innerHTML = t
             }
         })
     },

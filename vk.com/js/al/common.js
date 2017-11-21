@@ -2624,6 +2624,8 @@ var layers = {
                     prevLoc: wkcur.prevLoc,
                     myLoc: wkcur.myLoc
                 }];
+            } else if (cur.storyLayer) {
+                clayer = ['stories', cur.storyLayer.getList()];
             } else {
                 return false;
             }
@@ -2680,6 +2682,8 @@ var layers = {
                 showWiki({
                     w: last[1]
                 }, false, false, last[3]);
+            } else if (last[0] == 'stories') {
+                showStory(last[1]);
             }
         },
         back: function(type, id, type2, id2) {
@@ -8785,6 +8789,8 @@ function zNav(changed, opts, fin) {
     if (w) {
         if (z === false) {
             layers.fullhide(opts.hist ? 2 : false);
+        } else if (w.match(/^story([0-9\-]+)_(\d+)/)) {
+            return showStory(w);
         } else {
             if (!fin) fin = clone(nav.objLoc);
             if (w) fin.w = w;
@@ -13264,6 +13270,36 @@ function toggleAudioLyrics(event, ref, audioId, lyricsId) {
     return false
 }
 /* END OF AUDIOS FUNCTIONS */
+
+function showStory(list, opts) {
+    if (cur.storiesNotSupported) {
+        return showFastBox(getLang('global_error'), getLang('stories_bad_browser'))
+    }
+    opts = opts || {};
+    delete cur.storiesLastSnippetId;
+
+    clearTimeout(cur.storiesStaticLoadTimer);
+    cur.storiesStaticLoadTimer = setTimeout(function() {
+        bodyNode.appendChild(ce('div', {
+            id: 'stories_loader',
+            innerHTML: getProgressHtml('stories_loader_pr', 'pr_baw pr_medium') + '<div class="back"></div>'
+        }));
+    }, 1000);
+
+    stManager.add(['stories.js', 'stories.css'], function() {
+        clearTimeout(cur.storiesStaticLoadTimer);
+        re('stories_loader');
+        Stories.show(list, opts);
+    });
+}
+
+function storiesPreloadStatic() {
+    if (cur.storiesPreloadStaticStart || cur.storiesNotSupported) {
+        return;
+    }
+    cur.storiesPreloadStaticStart = true;
+    stManager.add(['stories.js', 'stories.css']);
+}
 
 try {
     stManager.done('common.js');
