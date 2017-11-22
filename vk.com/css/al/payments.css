@@ -7,6 +7,7 @@
 .payments_box_spinner,
 .payments_box_wide .payments_box_promo_descr,
 .payments_getvotes_method_img,
+.payments_getvotes_promo_wrap .payments_getvotes_title,
 .payments_getvotes_promo_wrap .payments_logo_sberbank,
 .payments_getvotes_promo_wrap .payments_logo_visa,
 .payments_logo_cards,
@@ -1522,7 +1523,18 @@ h2.payments_getvotes_title {
 .payments_getvotes_promo_wrap .payments_getvotes_title {
     border-bottom: none;
     margin-bottom: 0;
-    padding-bottom: 15px
+    padding-bottom: 15px;
+    padding-left: 20px;
+    background: url(/images/icons/payments_promo.png?1) no-repeat 0 2px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .payments_getvotes_promo_wrap .payments_getvotes_title {
+        background-image: url(/images/icons/payments_promo_2x.png?1);
+        background-size: 14px 15px
+    }
 }
 
 .payments_getvotes_promo_wrap .payments_logo_visa {

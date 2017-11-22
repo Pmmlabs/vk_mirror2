@@ -1579,7 +1579,7 @@ var Page = {
                 statlogsValueEvent('feed_init_video_autoplay', 'good_browser');
             }
 
-            var canPlayHls = window.MediaSource && MediaSource.isTypeSupported && MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E,mp4a.40.2"') && !browser.safari && !browser.vivaldi;
+            var canPlayHls = window.MediaSource && MediaSource.isTypeSupported && MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E,mp4a.40.2"');
             var noHlsMaxDuration = 5 * 60;
             var fixedHeaderHeight = getSize('page_header')[1];
 

@@ -655,6 +655,35 @@ var vkApp = function(t, e, i, o) {
             },
             debug: function() {
                 debugLog(1 == arguments.length ? arguments[0] : arguments)
+            },
+            openExternalApp: function(t, i) {
+                if (t) {
+                    var o = "",
+                        s = [];
+                    if (i) {
+                        i.aid = e.aid;
+                        for (var n in i) {
+                            var a = "";
+                            void 0 !== i[n] && (a = encodeURIComponent(i[n])), s.push(encodeURIComponent(n) + "=" + a)
+                        }
+                        o = t + "?" + s.join("&")
+                    }
+                    if (o) {
+                        var r = {
+                            act: "open_external_app",
+                            url: t,
+                            q: s.join("&"),
+                            aid: e.aid
+                        };
+                        ajax.post("al_apps.php", r, {
+                            onDone: function(t, e) {
+                                e && showWiki({
+                                    w: t
+                                })
+                            }
+                        })
+                    }
+                }
             }
         }, i.widget ? (s.options.type = 1, s.options.widget = !0) : (renderFlash(ge("flash_api_external_cont"), {
             url: "/swf/api_external.swf",
@@ -1067,7 +1096,7 @@ AppsSlider.prototype = {
                         all: []
                     }, cur.sectionCount = this.isSection("catalog", "list") && !cur.searchStr ? 0 : cur.appsList[cur.curList].length, void this.indexAll(function() {
                         if (cur.silent = !1, cur.onSilentLoad)
-                            for (var t in cur.onSilentLoad) isFunction(cur.onSilentLoad[t]) && cur.onSilentLoad[t]()
+                            for (var t in cur.onSilentLoad) isFunction(cur.onSilentLoad[t]) && cur.onSilentLoad[t]();
                     })) : cur.silent = !1
                 }.bind(this))
             })
@@ -1081,8 +1110,7 @@ AppsSlider.prototype = {
         }
     },
     startEvents: function() {
-        addEvent(window, "scroll", this.scrollCheckBinded), addEvent(window, "resize", this.scrollCheckBinded),
-            this.initUpdates(), this.scrollCheck(), this.sliderStart()
+        addEvent(window, "scroll", this.scrollCheckBinded), addEvent(window, "resize", this.scrollCheckBinded), this.initUpdates(), this.scrollCheck(), this.sliderStart()
     },
     stopEvents: function() {
         removeEvent(window, "scroll", this.scrollCheckBinded), removeEvent(window, "resize", this.scrollCheckBinded), this.stopUpdates(), this.sliderStop()
@@ -2180,7 +2208,7 @@ AppsSlider.prototype = {
             e = getSize("page_header_cont")[1];
         if (cur.aSearchWrap) {
             var i = getXY(domPN(cur.aSearchWrap))[1];
-            t + (vk.staticheader ? Math.max(0, e - t) : e) > i && scrollToY(i, 200);
+            t + (vk.staticheader ? Math.max(0, e - t) : e) > i && scrollToY(i, 200)
         }
     },
     scrollCheck: function() {
