@@ -6563,14 +6563,16 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
             {
                 targetElem = ge(this.options.targetIdPrefix + criterionName);
                 setStyle(targetElem, 'width', this.options.uiWidth + 'px');
-                this.criteria[criterionName].ui = new RichDropDown(targetElem, this.getUiCriterionData(criterionName), this.getUiCriterionSelectedData(criterionName));
+                this.criteria[criterionName].ui = new RichDropDown(targetElem);
                 this.criteria[criterionName].ui.setOptions({
+                    items: this.getUiCriterionData(criterionName),
+                    value: this.getUiCriterionSelectedData(criterionName),
                     placeholder: this.getUiCriterionPlaceholderText(criterionName),
-                    operators: ['&', '&!', '|', '!']
+                    operators: ['&', '&!', '|', '!'],
+                    onChange: function() {
+                        this.onUiChange(criterionName);
+                    }.bind(this)
                 });
-                this.criteria[criterionName].ui.onChange(function() {
-                    this.onUiChange(criterionName);
-                }.bind(this));
                 this.updateUiCriterionEnabled(criterionName);
                 this.cur.destroy.push(function() {
                     this.criteria[criterionName].ui.destroy();

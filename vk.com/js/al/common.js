@@ -8013,6 +8013,9 @@ function autosizeSetup(el, options) {
                     overflowX: 'hidden'
                 });
             }
+            if (opts.addHeight) {
+                newHeight += opts.addHeight
+            }
             if (oldHeight != newHeight || curOverflow != newStyle.overflow) {
                 newStyle.height = newHeight;
                 setStyle(el, newStyle);

@@ -376,7 +376,7 @@ var stVersions = {
     'ads.js': 1908075671,
     'ads_payments.js': 2170749464,
     'ads_edit.css': 14008739353,
-    'ads_edit.js': 298331018,
+    'ads_edit.js': 1067782254,
     'ads_edit_geo.js': 1634516705,
     'ads_moder_common.css': 15016034084,
     'ads_moder.css': 14337643945,
@@ -528,11 +528,11 @@ var stVersions = {
     'voice_message_player.js': 22861000893,
     'cmodules/web/speech_worker_mp3.js': 1172578475,
     'cmodules/web/speech_worker_opus.js': 3385759348,
-    'stories.js': 15667418975,
-    'stories.css': 19775153107,
+    'stories.js': 18597817533,
+    'stories.css': 18153817934,
     'internal/nospam.css': 18036885035,
     'internal/away_linksban.css': 14403132355,
-    'internal/ui_manual.js': 916576507,
+    'internal/ui_manual.js': 4115291397,
     'internal/patterns_info.css': 16584195252,
     'article.css': 26215032049,
     'article_editor.css': 25376472805,
@@ -619,4 +619,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 9763;
+var _rnd = 3363;
