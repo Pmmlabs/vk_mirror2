@@ -6574,6 +6574,36 @@ button.ui_load_more_btn {
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%22216%208%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cpath%20d%3D%22M223%2025l10-10M233%2025l-10-10%22%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E") no-repeat 50%
 }
 
+.unsubscribe_box_done {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2284%22%20height%3D%2284%22%20viewBox%3D%220%200%2084%2084%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3ESlice%3C%2Ftitle%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h84v84H0z%22%2F%3E%3Cpath%20d%3D%22M28.121%2041.879a3%203%200%201%200-4.242%204.242l10%2010a3%203%200%200%200%204.242%200l23-23a3%203%200%201%200-4.242-4.242L36%2049.757l-7.879-7.878z%22%20fill%3D%22%23FFF%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    margin: 36px auto 32px;
+    background-color: #4bb34b
+}
+
+.unsubscribe_box_title {
+    font-size: 22px;
+    line-height: 1.27;
+    text-align: center;
+    color: #222;
+    margin: 0
+}
+
+.unsubscribe_box_text {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.44;
+    text-align: center;
+    color: #656565;
+    margin: 12px 20px 0
+}
+
+.unsubscribe_box_text:last-child {
+    margin-bottom: 28px
+}
+
 .wk_text .audio_row.inlined {
     max-width: 362px;
     margin: 0

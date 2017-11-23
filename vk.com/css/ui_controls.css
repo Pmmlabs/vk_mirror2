@@ -235,6 +235,7 @@
 
 .selector_container td.selector .token_inner,
 .selector_container td.selector .token_prefix {
+    position: relative;
     font-size: 1em;
     line-height: 1em;
     color: #55677d;
@@ -310,11 +311,16 @@
     color: #fff
 }
 
+.selector_container td.selector .token .token_inner {
+    padding-right: 20px!important
+}
+
 .selector_container td.selector .token span.x,
 .selector_container td.selector .token span.x_hover {
     background: url(/images/icons/tag_cross.png) 50% no-repeat;
-    position: relative;
+    position: absolute;
     display: inline-block;
+    right: 0;
     width: 20px;
     height: 10px!important;
     cursor: pointer;

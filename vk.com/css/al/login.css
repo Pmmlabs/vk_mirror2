@@ -1156,3 +1156,92 @@ table.login_blocked_reason_thumbs {
 .login_fast_restore_resend .progress_inline {
     height: 15px
 }
+
+.login_relogin_wrap {
+    margin-top: 50px
+}
+
+.login_relogin_title {
+    margin: 0;
+    line-height: 24px;
+    text-align: center;
+    padding: 40px 0 0;
+    font-size: 20px;
+    letter-spacing: 0.4px
+}
+
+.login_relogin_msg {
+    text-align: center;
+    width: 400px;
+    margin: 0 auto;
+    line-height: 19px;
+    padding-top: 10px
+}
+
+.login_relogin_photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    -moz-force-broken-image-icon: 0;
+    background-color: #fafbfc;
+    margin: 32px auto 0;
+    display: block
+}
+
+.login_relogin_photo:before {
+    background-color: #fff
+}
+
+.login_relogin_photo:before,
+.login_relogin_photo:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px
+}
+
+.login_relogin_photo:after {
+    border-radius: 50%;
+    background-color: #fafbfc;
+    background-image: url(/images/camera_100.png);
+    background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .login_relogin_photo:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
+.login_relogin_name {
+    line-height: 19px;
+    font-size: 16px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.3px;
+    text-align: center;
+    padding-top: 12px
+}
+
+.login_relogin_city {
+    padding-top: 6px;
+    line-height: 15px;
+    letter-spacing: -0.3px;
+    text-align: center;
+    color: #656565
+}
+
+.login_relogin_btns {
+    text-align: center;
+    padding: 32px 0 40px
+}
+
+.login_relogin_btns .flat_button+.flat_button {
+    margin-left: 10px
+}

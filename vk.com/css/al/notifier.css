@@ -5684,6 +5684,10 @@ div.chat_tab_img {
     z-index: 10
 }
 
+.top_notify_cont ._notify_unread .feed_row:first-child .feedback_row_wrap {
+    box-shadow: 0px -1px 0 0 #e7e8ec
+}
+
 .fc_snapster_invite_room_wrap {
     text-align: center
 }
