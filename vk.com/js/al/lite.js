@@ -6852,9 +6852,6 @@ function checkMp4(callback) {
 
 /* Post audio */
 
-function updGlobalPlayer() {
-    return false;
-}
 
 function audioSearchPerformer(ref, ev) {}
 
@@ -7064,7 +7061,7 @@ function showAudioClaimWarning(audio, claim) {
 
     claimText = claimText.split('{audio}').join('<b>' + title + '</b>');
 
-    var el = geByClass1('_audio_row_' + owner_id + '_' + id);
+    var el = geByClass1('_audio_row_' + ownerId + '_' + id);
     el && showTooltip(el, {
         slide: 15,
         shift: [-3, 6],

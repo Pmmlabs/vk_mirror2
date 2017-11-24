@@ -83,8 +83,16 @@
     background-color: #96c
 }
 
+.ads_marker_clicked_without_hide {
+    background-color: #cc00b6
+}
+
 .ads_marker_closed {
     background-color: #00b2cc
+}
+
+.ads_marker_action_ttl {
+    background-color: #ccab7b
 }
 
 .ads_marker_viewed {
@@ -149,6 +157,14 @@
 
 .ads_marker_clicked_tip {
     color: #96c
+}
+
+.ads_marker_clicked_without_hide_tip {
+    color: #cc00b6
+}
+
+.ads_marker_action_ttl_tip {
+    color: #ccab7b
 }
 
 .ads_marker_closed_tip {

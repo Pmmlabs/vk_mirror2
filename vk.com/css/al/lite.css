@@ -4979,6 +4979,10 @@ div.top_result_baloon a {
     display: none!important
 }
 
+.audio_pl_snippet.audio_pl_snippet_no_share .audio_pl_snippet__action_btn_share {
+    display: none
+}
+
 .audio_pl_snippet .audio_pl_snippet__action_btn {
     display: none;
     width: 24px;
@@ -5410,7 +5414,8 @@ div.top_result_baloon a {
 }
 
 .audio_claim_warning_tt {
-    cursor: default!important
+    cursor: default!important;
+    background-color: #fff
 }
 
 .audio_claim_warning_tt.tt_w.like_tt.tt_down:after,

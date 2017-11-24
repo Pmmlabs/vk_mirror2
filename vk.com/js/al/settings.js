@@ -302,7 +302,9 @@ var Settings = {
             ienable: hasClass(geByClass1("_settings_ienable"), "on") ? 1 : 0,
             itexts: hasClass(geByClass1("_settings_itexts"), "on") ? 1 : 0
         };
-        cur.options.notify_privacy_keys && cur.options.notify_privacy_keys.forEach(function(t) {
+        each(geByClass("_settings_nf_bt"), function(t, s) {
+            e["nf_bt_" + s.getAttribute("data-id")] = +hasClass(s, "on")
+        }), cur.options.notify_privacy_keys && cur.options.notify_privacy_keys.forEach(function(t) {
             e["nf_" + t] = 0 | Privacy.getValue(t)
         }), clearTimeout(cur.instantNotifyTO), clearTimeout(cur.instantNotifySaveTO), cur.instantNotifyTO = setTimeout(ajax.post.pbind("al_settings.php", e, {
             onDone: function() {
@@ -1089,10 +1091,9 @@ var Settings = {
                         if (unlockButton(t), cur.historyOffset ? cur.historyOffset += 100 : (n.innerHTML = "", cur.historyOffset = 5), browser.msie) {
                             var a = se("<table>" + e + "</table>"),
                                 r = geByTag("tr", a);
-                            for (i in r) 1 == r[i].nodeType && n.appendChild(r[i])
+                            for (i in r) 1 == r[i].nodeType && n.appendChild(r[i]);
                         } else n.insertAdjacentHTML("beforeEnd", e);
-                    (!e || s) && (addClass(n.lastChild, "settings_votes_history_last"),
-                        hide(t))
+                    (!e || s) && (addClass(n.lastChild, "settings_votes_history_last"), hide(t))
                 }
             }), !1
         }

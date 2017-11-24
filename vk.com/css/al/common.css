@@ -7684,6 +7684,10 @@ button.ui_load_more_btn {
     display: none!important
 }
 
+.audio_pl_snippet.audio_pl_snippet_no_share .audio_pl_snippet__action_btn_share {
+    display: none
+}
+
 .audio_pl_snippet .audio_pl_snippet__action_btn {
     display: none;
     width: 24px;

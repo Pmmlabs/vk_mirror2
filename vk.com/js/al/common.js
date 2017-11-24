@@ -2921,10 +2921,6 @@ function __adsUpdateExternalStats(elem) {
     stManager.add(['aes_light.js'], __adsUpdateExternalStats.pbind(elem));
 }
 
-function updGlobalPlayer() {}
-
-function toggleGlobalPlayer(open) {}
-
 function updateHeaderStyles(styles) {
     var elems = [ge('dev_top_nav_wrap'), ge('page_header_wrap')];
     each(elems, function(i, el) {
@@ -3278,7 +3274,6 @@ function onBodyScroll() {
     updateLeftMenu();
     updateNarrow();
     updSideTopLink();
-    updGlobalPlayer();
 }
 
 function onDocumentClick(e) {
@@ -8277,7 +8272,6 @@ window.onLogout = function() {
     __qlClear();
     if (window.audioPlayer) {
         audioPlayer.stop();
-        toggleGlobalPlayer(false);
     }
     window.Notifier && Notifier.standby();
     window.FastChat && FastChat.standby();
@@ -13303,6 +13297,8 @@ function storiesPreloadStatic() {
     cur.storiesPreloadStaticStart = true;
     stManager.add(['stories.js', 'stories.css']);
 }
+
+debugLog('common js old')
 
 try {
     stManager.done('common.js');
