@@ -3205,14 +3205,15 @@ var Wall = {
         checkbox('status_export', !isAnon && !isChecked(el));
         checkbox('facebook_export', !isAnon && !isChecked(el));
     },
-    sendPost: function() {
+    sendPost: function(skipLocked) {
         var addmedia = cur.wallAddMedia || {},
             media = addmedia.chosenMedia || {},
             medias = cur.wallAddMedia ? addmedia.getMedias() : [],
             share = (addmedia.shareData || {})
         msg = trim((window.Emoji ? Emoji.editableVal : val)(ge('post_field'))),
             postponePost = false,
-            isAnon = Wall.isAnonPost();
+            isAnon = Wall.isAnonPost(),
+            sendBtn = ge('send_post');
 
         var pType = cur.options.suggesting ? 'suggest' : cur.wallType,
             params = {
@@ -3345,7 +3346,10 @@ var Wall = {
                             !share.noPhoto &&
                             !share.share_own_image;
                         if (needUploadShare) {
-                            addmedia.uploadShare(Wall.sendPost);
+                            lockButton(sendBtn);
+                            addmedia.uploadShare(function() {
+                                Wall.sendPost(true);
+                            });
                             ret = true;
                             return false;
                         }
@@ -3424,16 +3428,22 @@ var Wall = {
                 attachI++;
             });
             if (ret) {
+                if (skipLocked) {
+                    unlockButton(sendBtn);
+                }
                 return;
             }
         }
         if (!attachI && !msg) {
+            if (skipLocked) {
+                unlockButton(sendBtn);
+            }
+
             elfocus('post_field');
             return;
         }
 
-        var sendBtn = ge('send_post');
-        if (sendBtn && buttonLocked(sendBtn)) {
+        if (sendBtn && !skipLocked && buttonLocked(sendBtn)) {
             return;
         }
 

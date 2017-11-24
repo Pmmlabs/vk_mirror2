@@ -132,7 +132,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2889730895,
     'common.js': 1160,
-    'common.css': 27642575865,
+    'common.css': 27821038744,
     'retina.css': 2633262011,
     'uncommon.js': 1524646384,
     'uncommon.css': 17315792024,
@@ -190,7 +190,7 @@ var stVersions = {
     'single_pv.js': 2438273057,
     'video.js': 2585777191,
     'video.css': 22578930679,
-    'videocat.js': 1618923991,
+    'videocat.js': 4019516548,
     'videocat.css': 18636631957,
     'videoview.js': 2998929246,
     'videoview.css': 24577575448,
@@ -217,7 +217,7 @@ var stVersions = {
     'module.css': 18618723640,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 20120785847,
-    'page.js': 3114286438,
+    'page.js': 1813218876,
     'page.css': 19568995690,
     'page_help.css': 22447022753,
     'public.css': 21122032298,
@@ -348,8 +348,8 @@ var stVersions = {
     'groupinfo.css': 19162962948,
     'bugs.js': 3874995669,
     'bugs.css': 14489977552,
-    'bugtracker.js': 69564442,
-    'bugtracker.css': 26274589096,
+    'bugtracker.js': 2540271599,
+    'bugtracker.css': 22875526756,
     'login.css': 17682837405,
     'login.js': 3551917100,
     'upload.js': 16891470,
@@ -619,4 +619,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 3363;
+var _rnd = 76;

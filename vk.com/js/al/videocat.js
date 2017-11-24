@@ -68,22 +68,19 @@ var Videocat = window.Videocat || {
             });
             var o = getXY(e[e.length - 1]);
             if (!cur.videocatLoadingMoreCats && clientHeight() + scrollGetY() > o[1]) {
+                var t = cur.moreCatsOffsets = cur.moreCatsOffsets || e.length;
+                if (t >= cur.moreChannelsInfo.length) return;
                 cur.videocatLoadingMoreCats = !0;
-                var t = [];
+                var i = [];
                 each(cur.moreChannelsInfo, function(e, o) {
-                    t.push(o.cat_id + ":" + o.channels.join(","))
-                });
-                var i = cur.moreCatsOffsets = cur.moreCatsOffsets || e.length;
-                ajax.post("al_video.php", {
-                    act: "a_more_cats",
-                    offset: i,
-                    cats: t.join("/")
+                    i.push(o.cat_id + ":" + o.channels.join(","))
+                }), ajax.post("al_video.php?act=a_more_cats", {
+                    offset: t,
+                    cats: i.join("/")
                 }, {
                     onDone: function(e, o) {
                         var t = ge("videocat_other_blocks");
-                        each(e, function(e, o) {
-                            t.appendChild(se(trim(o)))
-                        }), cur.catVideosList = extend(cur.catVideosList, o)
+                        t.insertAdjacentHTML(e.join()), cur.catVideosList = extend(cur.catVideosList, o)
                     }
                 })
             }
