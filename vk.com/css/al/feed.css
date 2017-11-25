@@ -1222,6 +1222,14 @@
     margin: 5px 0 0 0px
 }
 
+.feedback_new_user_requests_thumb.feedback_thumb_friends_recommend {
+    background: url('/images/icons/notify_possible_friends.png') no-repeat 0 0;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+    margin: 5px 0 0 0px
+}
+
 .feedback_sticky_row {
     min-height: 64px;
     line-height: 60px;

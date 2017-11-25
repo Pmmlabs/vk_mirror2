@@ -10320,6 +10320,8 @@ TopSearch = {
             }
             if (mid == -128932034) {
                 verifyClass += 'ph_verified ';
+            } else if (mid == -29246653) {
+                verifyClass += 'pg_verified ';
             }
             verified = '<div class="' + verifyClass + '" onmouseover="pageVerifiedTip(this, {type: ' + verified + ', oid: ' + mid + '})"></div>';
         } else {

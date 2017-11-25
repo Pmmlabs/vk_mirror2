@@ -984,6 +984,9 @@ AppsSlider.prototype = {
             this.indexRequired++, this.serve()
         }
     },
+    last: function() {
+        this.indexRequired = this.slides.length - 1, this.serve()
+    },
     prev: function() {
         if (this.init()) {
             if (!this.options.infinite && this.indexRequired < 1) return;
@@ -1028,6 +1031,9 @@ AppsSlider.prototype = {
             for (; this.indexCurrent <= this.indexPrev + this.indexMargin;) index = this.getIndex(this.indexPrev), this.slides[index].style.left = (this.indexPrev - index) * this.widthSlide + "px", this.indexPrev--, this.indexNext--
         }
         this.current = this.getIndex(this.indexCurrent), this.slideNext = this.slides[this.options.infinite ? this.getIndex(this.indexCurrent + 1) : this.indexCurrent + 1] || null, this.slidePrev = this.slides[this.options.infinite ? this.getIndex(this.indexCurrent - 1) : this.indexCurrent - 1] || null, this.slideCurrent = this.slides[this.current]
+    },
+    update: function() {
+        this.inited = !1, this.slides = domChildren(this.inner), this.init()
     }
 }, window.Apps || (window.Apps = {
     optionHiddenClass: "apps_hidden",
@@ -1093,11 +1099,12 @@ AppsSlider.prototype = {
                 local: 1,
                 onDone: this.withFastBackCheck(function(data, opts, preload, preload_before, preload_header) {
                     return opts && (opts = eval("(" + opts + ")"), extend(opts.lang, cur.lang || {}), extend(cur, opts)), cur.preload = extend(cur.preload || {}, preload), cur.preload.before = preload_before, cur.preload.header = preload_header, (data = eval("(" + data + ")")) ? (void 0 === cur.searchOffset && (cur.searchOffset = 0), cur.curList = "all", cur.appsList = data[cur.curList] ? data : {
-                        all: []
-                    }, cur.sectionCount = this.isSection("catalog", "list") && !cur.searchStr ? 0 : cur.appsList[cur.curList].length, void this.indexAll(function() {
-                        if (cur.silent = !1, cur.onSilentLoad)
-                            for (var t in cur.onSilentLoad) isFunction(cur.onSilentLoad[t]) && cur.onSilentLoad[t]();
-                    })) : cur.silent = !1
+                            all: []
+                        }, cur.sectionCount = this.isSection("catalog", "list") && !cur.searchStr ? 0 : cur.appsList[cur.curList].length,
+                        void this.indexAll(function() {
+                            if (cur.silent = !1, cur.onSilentLoad)
+                                for (var t in cur.onSilentLoad) isFunction(cur.onSilentLoad[t]) && cur.onSilentLoad[t]()
+                        })) : cur.silent = !1
                 }.bind(this))
             })
         }
@@ -2552,6 +2559,9 @@ AppsSlider.prototype = {
                 bodyStyle: "padding: 22px 0 0"
             }
         })
+    },
+    makeAppSlider: function(t) {
+        return new AppsSlider(t)
     }
 });
 try {

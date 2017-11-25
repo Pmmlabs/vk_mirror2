@@ -1,4 +1,5 @@
 var AppsEdit = {
+    PANORAMIC_SLIDER_MAX_PHOTOS: 5,
     init: function() {
         cur.module = "apps_edit", cur.nav.push(function(e, t, a) {
             return void 0 === e[0] && e.section ? (this.switchSection(a.section), !1) : void 0
@@ -507,6 +508,16 @@ var AppsEdit = {
             }
         }), !1
     },
+    getUploadErrorText: function(e, t, a) {
+        var s, i = {
+            apps_full_banner_error: "apps_full_banner_size_1120_error",
+            apps_photo_error: "apps_photo_size_error",
+            apps_catalog_image_error: "apps_catalog_image_size_278_error",
+            apps_screenshot_error: "apps_screenshot_size_error",
+            apps_panoramic_banner_error: "apps_full_banner_size_1120_error"
+        };
+        return 105 == e ? a.apps_banner_size_error : -1 == e ? (s = i[t] || a.apps_banner_size_error, a[s]) : "ERR_UPLOAD_BAD_IMAGE_SIZE" == e && "apps_panoramic_banner_error" == t ? (s = i[t], a[s]) : a.apps_photo_notloaded_unknown
+    },
     initUpload: function(cont, opts, lang, resObj) {
         var options = {
             file_name: "photo",
@@ -517,6 +528,13 @@ var AppsEdit = {
             onUploadStart: function(e, t) {
                 "form" == Upload.types[e] && show(box.progress), hide("apps_edit_upload_error")
             },
+            onNoFilteredCallback: function() {
+                if (lang) {
+                    var e = Upload.obj[i],
+                        t = domPN(e);
+                    hasClass(t, "apps_edit_progress") && removeClass(t, "apps_edit_progress"), AppsEdit.showError(lang.apps_edit_invalid_image_file, opts.errorObj)
+                }
+            },
             onUploadComplete: function(i, res) {
                 var obj;
                 try {
@@ -525,6 +543,7 @@ var AppsEdit = {
                     obj = q2ajx(res)
                 }
                 if (obj.code) return void Upload.onUploadError(i, obj.code);
+                if (obj.error) return void Upload.onUploadError(i, obj.error);
                 opts.vars.mid && (obj.mid = opts.vars.mid);
                 var params = {
                     act: opts.save_act,
@@ -565,15 +584,9 @@ var AppsEdit = {
                 })
             },
             onUploadError: function(e, t) {
-                if (debugLog("error", e, t), 105 == t) var a = lang.apps_banner_size_error;
-                else if (-1 == t)
-                    if ("apps_full_banner_error" == opts.errorObj) var a = lang.apps_full_banner_size_1120_error;
-                    else if ("apps_photo_error" == opts.errorObj) var a = lang.apps_photo_size_error;
-                else if ("apps_catalog_image_error" == opts.errorObj) var a = lang.apps_catalog_image_size_278_error;
-                else if ("apps_screenshot_error" == opts.errorObj) var a = lang.apps_screenshot_size_error;
-                else var a = lang.apps_banner_size_error;
-                else var a = lang.apps_photo_notloaded_unknown;
-                var s = void 0 !== e.ind ? e.ind : e,
+                debugLog("error", e, t);
+                var a = AppsEdit.getUploadErrorText(t, opts.errorObj, lang),
+                    s = void 0 !== e.ind ? e.ind : e,
                     i = Upload.obj[s],
                     n = domPN(i);
                 hasClass(n, "apps_edit_progress") && removeClass(n, "apps_edit_progress"), Upload.embed(s), AppsEdit.showError(a, opts.errorObj)
@@ -1190,7 +1203,8 @@ var AppsEdit = {
                 } return a
     },
     putVersionCode: function(e, t) {
-        var a = AppsEdit.getFuncVersionCode(e, t); - 1 == t ? ge("func_remove_btn" + e).innerHTML = cur.lang.developers_func_remove : ge("func_remove_btn" + e).innerHTML = cur.lang.developers_remove_func_version, cur.funcsVersion[e] = parseInt(t);
+        var a = AppsEdit.getFuncVersionCode(e, t); - 1 == t ? ge("func_remove_btn" + e).innerHTML = cur.lang.developers_func_remove : ge("func_remove_btn" + e).innerHTML = cur.lang.developers_remove_func_version,
+            cur.funcsVersion[e] = parseInt(t);
         var s = geByClass("apps_edit_editor", ge("func_row_" + e))[0].ace;
         s.setValue(a), delete cur.editedFuncs[e], delete cur.funcsSaveCallbacks[e], cur.funcsVersionsDD[e].val(t)
     },
@@ -2125,6 +2139,86 @@ var AppsEdit = {
             onDone: function() {
                 hide(geByClass1("app_edit_warning", "app_edit_warning_wrap"))
             }
+        })
+    },
+    getPanoramicBannerSlidesCnt: function(e) {
+        return e = e || ge("apps_featured_slides"), e ? domChildren(e).length : 0
+    },
+    removePanoramicBannerThumb: function(e, t, a, s, i) {
+        cancelEvent(t);
+        var n, r, o = {
+                act: "a_remove_panoramic_banner",
+                aid: a,
+                seq: s,
+                hash: i
+            },
+            c = ge("apps_panoramic_banner_error"),
+            p = domCA(e, ".apps_featured_thumb"),
+            d = ge("apps_featured_slides"),
+            u = this.getPanoramicBannerSlidesCnt(d) - 1,
+            _ = window.cur && cur.panoramicBannerAppsSlider,
+            l = _ && _.indexCurrent || 0;
+        return n = domChildIndex(p, d) === u, n = n || l === u, window.tooltips && tooltips.hideAll(), ajax.post("editapp", o, {
+            onFail: function(e) {
+                return c && e ? (c.textContent = e, show(c), !0) : void 0
+            }
+        }), re(p), r = this.getPanoramicBannerSlidesCnt(d), r ? (_ && _.update(), n && _ && _.prev()) : this.hidePanoramicBannerWrapper(), this.canAddNewPanoramicBannerPhoto(d) && this.enablePanoramicBannerUploadBtn(), 1 >= r && this.hideSliderArrows(), !1
+    },
+    addNewPanoramicBannerThumb: function(e) {
+        var t, a = ge("apps_featured_slides"),
+            s = window.cur && cur.panoramicBannerAppsSlider;
+        a && (t = domChildren(a).length, a.insertAdjacentHTML("beforeEnd", e), t ? (s && s.update(), s && s.last()) : (s || (this.initPanoramicBannerAppsSlider(), s = window.cur && cur.panoramicBannerAppsSlider), this.showPanoramicBannerWrapper(), s && s.prev()), this.getPanoramicBannerSlidesCnt(a) > 1 && this.showSliderArrows()), this.canAddNewPanoramicBannerPhoto(a) || this.disablePanoramicBannerUploadBtn()
+    },
+    canAddNewPanoramicBannerPhoto: function(e) {
+        return this.getPanoramicBannerSlidesCnt(e) < this.PANORAMIC_SLIDER_MAX_PHOTOS
+    },
+    enablePanoramicBannerUploadBtn: function() {
+        var e = ge("apps_edit_upload_panoramic_banner");
+        e && removeClass(e, "apps_edit_upload_panoramic_banner_disable")
+    },
+    disablePanoramicBannerUploadBtn: function() {
+        var e = ge("apps_edit_upload_panoramic_banner");
+        e && addClass(e, "apps_edit_upload_panoramic_banner_disable")
+    },
+    showPanoramicBannerWrapper: function() {
+        var e = ge("apps_edit_panoramic_wrap");
+        removeClass(e, "apps_edit_full_wrap_hidden")
+    },
+    showSliderArrows: function() {
+        var e = ge("apps_featured_slider"),
+            t = geByClass1("apps_featured_prev", e),
+            a = geByClass1("apps_featured_next", e);
+        removeClass(t, "apps_featured_prev_hidden"), removeClass(a, "apps_featured_next_hidden")
+    },
+    hideSliderArrows: function() {
+        var e = ge("apps_featured_slider"),
+            t = geByClass1("apps_featured_prev", e),
+            a = geByClass1("apps_featured_next", e);
+        addClass(t, "apps_featured_prev_hidden"), addClass(a, "apps_featured_next_hidden")
+    },
+    hidePanoramicBannerWrapper: function() {
+        var e = ge("apps_edit_panoramic_wrap");
+        addClass(e, "apps_edit_full_wrap_hidden")
+    },
+    initPanoramicBannerAppsSlider: function() {
+        if (window.Apps && window.cur && this.getPanoramicBannerSlidesCnt()) {
+            var e = ge("apps_featured_slides");
+            cur.panoramicBannerAppsSlider = Apps.makeAppSlider({
+                inner: "apps_featured_slides",
+                outer: "apps_featured_slider",
+                next: "apps_featured_next",
+                prev: "apps_featured_prev",
+                infinite: !1
+            }), cur.panoramicBannerAppsSlider.prev(), this.getPanoramicBannerSlidesCnt(e) <= 1 && this.hideSliderArrows()
+        }
+    },
+    initPanoramicBanner: function() {
+        this.initPanoramicBannerAppsSlider();
+        var e = ge("apps_edit_upload_panoramic_banner");
+        addEvent(e, "click", function(e) {
+            return hasClass(this, "apps_edit_upload_panoramic_banner_disable") ? (showTitle(this, null, [0, 7, 0, 0], {
+                appendEl: document.body
+            }), void cancelEvent(e)) : void 0
         })
     },
     _eof: 1

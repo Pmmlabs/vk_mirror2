@@ -169,31 +169,33 @@ var Videoview = {
             },
             onVideoPlayStarted: function(e, i, o, t, a) {
                 var n = Videoview.getVideoModule(e + "_" + i),
-                    d = "";
+                    d = cur.videoInlinePlayer && cur.videoInlinePlayer.isAutoplay(),
+                    r = "";
                 if (window.Video && Video.isInCatalog()) {
-                    var r = window._videoLastInlined ? domData(_videoLastInlined[1], "playlist") : mvcur.options.playlistId,
-                        s = r ? r.replace("cat_", "") : "";
-                    d = Videocat.isTop3Playlist(s) ? "featured" : s
+                    var s = window._videoLastInlined ? domData(_videoLastInlined[1], "playlist") : mvcur.options.playlistId,
+                        v = s ? s.replace("cat_", "") : "";
+                    r = Videocat.isTop3Playlist(v) ? "featured" : v
                 }
-                var v;
-                v = cur.mvOpts && cur.mvOpts.inline || window.mvcur && mvcur.mvData && mvcur.mvData.inline ? "inline" : window.mvcur && window.mvcur.options && window.mvcur.options.playlistId ? "layer_with_playlist" : "layer", window.mvcur && mvcur.mvData && (mvcur.viewStartedTimestamp = (new Date).getTime()), ajax.post("al_video.php?act=video_view_started", {
+                var l;
+                l = cur.mvOpts && cur.mvOpts.inline || window.mvcur && mvcur.mvData && mvcur.mvData.inline ? "inline" : window.mvcur && window.mvcur.options && window.mvcur.options.playlistId ? "layer_with_playlist" : "layer", window.mvcur && mvcur.mvData && (mvcur.viewStartedTimestamp = (new Date).getTime()), ajax.post("al_video.php?act=video_view_started", {
                     oid: e,
                     vid: i,
                     hash: o,
                     quality: window.mvcur ? mvcur.mvData.resolution : 0,
                     module: n,
-                    videocat: d,
+                    videocat: r,
+                    autoplay: d ? 1 : 0,
                     inline: -1,
-                    player_view_type: v
-                }, {}), cur.videoInlinePlayer && cur.videoInlinePlayer.isAutoplay() && cur.videoAutoplayStat && cur.videoAutoplayStat.video == e + "_" + i && !a && ajax.post("al_video.php?act=autoplay_stat", {
+                    player_view_type: l
+                }, {}), d && cur.videoAutoplayStat && cur.videoAutoplayStat.video == e + "_" + i && !a && ajax.post("al_video.php?act=autoplay_stat", {
                     event: "start",
                     start_time: vkNow() - cur.videoAutoplayStat.launched,
                     preloaded: cur.videoAutoplayStat.preloaded ? 1 : 0,
                     streaming_method: t,
                     module: Videoview.getVideoModule()
                 }, {});
-                var l = Videoview.getMvData();
-                switch (l.tns_monetized ? vkImage().src = "//www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=pladform_videovk-playerstart/" + irand(1, 1e9) : vkImage().src = "//www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=platform_videovk-playerstart/" + irand(1, 1e9), l.kz && (vkImage().src = "//www.tns-counter.ru/V13a****vk_kz/ru/CP1251/tmsec=vkkz_videostart/" + irand(1, 1e9)), l.l_type) {
+                var c = Videoview.getMvData();
+                switch (c.tns_monetized ? vkImage().src = "//www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=pladform_videovk-playerstart/" + irand(1, 1e9) : vkImage().src = "//www.tns-counter.ru/V13a****pladform_ru/ru/CP1251/tmsec=platform_videovk-playerstart/" + irand(1, 1e9), c.kz && (vkImage().src = "//www.tns-counter.ru/V13a****vk_kz/ru/CP1251/tmsec=vkkz_videostart/" + irand(1, 1e9)), c.l_type) {
                     case 1:
                         vkImage().src = "//vk.com/rtrg?r=JQ6ueUeOxlSLb8IoA8ToayylOLgRkThaoFV0XVgG5qvS1x1xWrkfqAg73sYWJxwq9PXWucKtMS02J3CsGLZdmOMNj9dv9UCjDN4a3ShJZXcJFMhgfVwSoPWoxp*Y/LAFUnKz5*XBvDCQXeaygAqI*gY9gz*jWTXaOXyT2lSfIPY-";
                         break;

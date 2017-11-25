@@ -1546,6 +1546,10 @@ td.apps_edit_info_save {
     padding-bottom: 20px
 }
 
+#apps_edit_panoramic_wrap {
+    margin-top: 20px
+}
+
 .apps_edit_screenshot_img_text {
     position: absolute;
     width: 147px;
@@ -2327,8 +2331,8 @@ input.apps_edit_input {
     width: 665px
 }
 
-.apps_edit_full_wrap .apps_featured_next,
-.apps_edit_full_wrap .apps_featured_prev {
+.apps_edit_full_wrap .apps_featured_next_hidden,
+.apps_edit_full_wrap .apps_featured_prev_hidden {
     display: none
 }
 
@@ -2379,6 +2383,22 @@ input.apps_edit_input {
     filter: none
 }
 
+.apps_edit_full_wrap .thumb_x_button.panoramic_banner_x_button {
+    z-index: 10;
+    top: 0;
+    right: 0
+}
+
+.apps_edit_full_wrap_hidden {
+    display: none
+}
+
+.apps_edit_upload_panoramic_banner_disable button {
+    opacity: 0.7;
+    cursor: none;
+    pointer-events: none
+}
+
 .apps_edit_banner_text,
 .apps_edit_img_text {
     position: absolute;
@@ -2401,6 +2421,7 @@ input.apps_edit_input {
 #apps_catalog_image_error,
 #apps_full_banner_error,
 #apps_old_banner_error,
+#apps_panoramic_banner_error,
 #apps_photo_error,
 #apps_screenshot_error {
     border: 1px solid #e89b88;
