@@ -335,7 +335,7 @@ var stVersions = {
     'helpdesk.js': 882017110,
     'helpdesk.css': 21409177474,
     'tickets.js': 4198914222,
-    'tickets.css': 21590224630,
+    'tickets.css': 23535627090,
     'faq.js': 2841473572,
     'faq.css': 19255156530,
     'talmud.js': 1641838680,
@@ -620,4 +620,4 @@ var stTypes = {
         'rich_dropdown.js': 1
     }
 };
-var _rnd = 1696;
+var _rnd = 2590;

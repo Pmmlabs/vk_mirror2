@@ -584,7 +584,8 @@ body.dev .tickets_header_info {
     padding-top: 1px;
     color: #939393;
     font-size: 12.5px;
-    line-height: 19px
+    line-height: 19px;
+    font-size: 12px
 }
 
 body.dev .tickets_header_task_info {
