@@ -1420,7 +1420,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             withBackLine: !0,
             formatHint: function(e) {
                 var t = s.getCurrentAudio() || a._readyAudio;
-                return t = AudioUtils.asObject(t), formatTime(Math.round(e * t ? t.duration : 0))
+                return t = AudioUtils.asObject(t), formatTime(Math.round(e * (t ? t.duration : 0)))
             },
             onEndDragging: function(e) {
                 s.seek(e)
