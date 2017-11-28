@@ -2582,7 +2582,7 @@ a.ads_dd_menu_multi_item.label:hover {
 
 .ads_retargeting_group_wip_badge {
     border-radius: 10px;
-    background-color: #7394b5;
+    background-color: #5181b8;
     color: #fff;
     padding: 1px 6px 1px 5.5px;
     margin-left: 5px;
@@ -3146,6 +3146,7 @@ h4.subheader.ads_retargeting_subheader_top {
 }
 
 .ads_retargeting_box_price_list_http_auth_wrap,
+.ads_retargeting_box_price_list_url_extra_params_wrap,
 .ads_retargeting_box_price_list_group {
     margin-top: 18px
 }
@@ -3597,7 +3598,7 @@ td.ads_settings_notifacations_label {
 .ads_relevance_score_top_tabs_item.ads_relevance_score_top_tabs_item_active {
     color: #fff;
     cursor: default;
-    background: #5e81a8
+    background: #5181b8
 }
 
 .ads_relevance_score_switcher_item {

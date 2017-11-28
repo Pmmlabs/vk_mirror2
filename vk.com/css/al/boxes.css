@@ -64,7 +64,7 @@
 }
 
 .tabbed_box .summary_tab_sel {
-    border-bottom: 2px solid #6387ac
+    border-bottom: 2px solid #5181b8
 }
 
 .tabbed_box .summary_tab_sel .summary_tab2 {
@@ -76,7 +76,7 @@
 }
 
 .tabbed_box .summary_tab_sel:hover {
-    border-bottom: 2px solid #6387ac
+    border-bottom: 2px solid #5181b8
 }
 
 #box_layer .fixed_height {

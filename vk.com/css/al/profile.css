@@ -111,7 +111,7 @@
 #profile_groups_link {
     display: block;
     padding: 7px 0 8px 165px;
-    border-radius: 2px;
+    border-radius: 4px;
     line-height: 1.154;
     margin-top: 7px
 }
@@ -125,7 +125,7 @@
     display: block;
     padding-left: 165px;
     margin: 10px 0 -5px;
-    border-radius: 2px;
+    border-radius: 4px;
     height: 34px;
     line-height: 32px
 }
@@ -396,8 +396,8 @@
 }
 
 .profile_msg_split .profile_btn_cut_left {
-    border-radius: 2px 0 0 2px;
-    border-right: 1px solid #7496b9;
+    border-radius: 4px 0 0 4px;
+    border-right: 1px solid #6a98cc;
     height: 30px
 }
 
@@ -407,7 +407,7 @@
 }
 
 .profile_msg_split .profile_btn_cut_right {
-    border-radius: 0 2px 2px 0;
+    border-radius: 0 4px 4px 0;
     border-right: 1px solid #5e82a7;
     height: 30px;
     width: 38px;

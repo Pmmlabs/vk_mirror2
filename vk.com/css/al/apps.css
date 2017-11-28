@@ -36,7 +36,6 @@
 .apps_settings_icons .apps_settings_stats,
 .apps_settings_row_wrap.loading .apps_settings_action_remove,
 .apps_win_instr_head:before,
-.media-check-btn-icon,
 .media-photo-thumb-background,
 .media-video-play,
 .media-video-thumb-background,
@@ -201,23 +200,13 @@
 .media-check-btn-icon {
     height: 22px;
     width: 22px;
-    background-image: url(/images/icons/media_check_uncheck.png);
-    background-position: 0 -26px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2222%22%20height%3D%2222%22%20viewBox%3D%220%200%2022%2022%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Crect%20id%3D%22a%22%20width%3D%2222%22%20height%3D%2222%22%20x%3D%221074%22%20y%3D%221823%22%20rx%3D%2211%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22translate(-1074%20-1823)%22%3E%3Cuse%20fill%3D%22%23FFF%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Crect%20width%3D%2221%22%20height%3D%2221%22%20x%3D%221074.5%22%20y%3D%221823.5%22%20stroke%3D%22%23C1C9D1%22%20rx%3D%2210.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 0;
     cursor: pointer
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .media-check-btn-icon {
-        background-image: url(/images/icons/media_check_uncheck_2x.png);
-        background-size: 22px 48px
-    }
 }
 
 .media-check-btn-icon-checked {
     opacity: 1;
-    background-position: 0 0
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2222%22%20height%3D%2222%22%20viewBox%3D%220%200%2022%2022%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2222%22%20height%3D%2222%22%20fill%3D%22%235181B8%22%20rx%3D%2211%22%2F%3E%3Cpath%20stroke%3D%22%23FFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M6%2012l3%203%207-7%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .media-mask-panel {
@@ -591,7 +580,7 @@
     text-align: center;
     border-radius: 50%;
     color: #fff;
-    background-color: #7394b5
+    background-color: #5181b8
 }
 
 .apps_friendlist_row__badge_1 {
@@ -2764,7 +2753,7 @@ a.page_block_header:hover .apps_cat_header_link:after {
     background: #fff;
     text-align: left;
     line-height: 1.154;
-    border-radius: 5px 5px 4px 4px;
+    border-radius: 6px 6px 6px 6px;
     overflow: hidden
 }
 
@@ -3479,7 +3468,7 @@ a.page_block_header:hover .apps_cat_header_link:after {
     font-size: 12.5px;
     padding: 14px 25px;
     margin: 0 -25px -20px;
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .apps_call_out {

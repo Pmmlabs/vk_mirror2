@@ -16,19 +16,16 @@
 .box_x_button.box_x_tabs,
 .button_no.locked .lock,
 .button_yes.locked .lock,
-.checkbox:before,
 .emoji_css,
 .error,
 .flat_button.logo_button:before,
 .flat_button.ui_load_more_btn.with_arrow:after,
 .import_box_spinner,
 .info_msg,
-.media-check-btn-icon,
 .media-photo-thumb-background,
 .media-video-play,
 .media-video-thumb-background,
 .media-video-thumb-wrap-background,
-.media_check_btn_wrap .media_check_btn,
 .ok_msg,
 .online:after,
 .progress,
@@ -36,7 +33,6 @@
 .progress_inv,
 .progress_inv_img,
 .progress_inv_mini,
-.radiobtn:before,
 .round_spinner,
 .round_spinner_big,
 .summary_tab_x,
@@ -187,23 +183,13 @@
 .media-check-btn-icon {
     height: 22px;
     width: 22px;
-    background-image: url(/images/icons/media_check_uncheck.png);
-    background-position: 0 -26px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2222%22%20height%3D%2222%22%20viewBox%3D%220%200%2022%2022%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Crect%20id%3D%22a%22%20width%3D%2222%22%20height%3D%2222%22%20x%3D%221074%22%20y%3D%221823%22%20rx%3D%2211%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22translate(-1074%20-1823)%22%3E%3Cuse%20fill%3D%22%23FFF%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Crect%20width%3D%2221%22%20height%3D%2221%22%20x%3D%221074.5%22%20y%3D%221823.5%22%20stroke%3D%22%23C1C9D1%22%20rx%3D%2210.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 0;
     cursor: pointer
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .media-check-btn-icon {
-        background-image: url(/images/icons/media_check_uncheck_2x.png);
-        background-size: 22px 48px
-    }
 }
 
 .media-check-btn-icon-checked {
     opacity: 1;
-    background-position: 0 0
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2222%22%20height%3D%2222%22%20viewBox%3D%220%200%2022%2022%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2222%22%20height%3D%2222%22%20fill%3D%22%235181B8%22%20rx%3D%2211%22%2F%3E%3Cpath%20stroke%3D%22%23FFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M6%2012l3%203%207-7%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .media-mask-panel {
@@ -693,9 +679,9 @@ textarea.ashelper {
 .box_title_wrap {
     position: relative;
     padding: 0;
-    background-color: #6287ae;
+    background-color: #5b88bd;
     color: #fff;
-    border-radius: 2px 2px 0 0
+    border-radius: 4px 4px 0 0
 }
 
 .box_title_wrap.box_grey {
@@ -754,7 +740,7 @@ textarea.ashelper {
     background-position: 13px 19px;
     float: left;
     cursor: pointer;
-    border-radius: 2px 0 0 2px
+    border-radius: 4px 0 0 4px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -768,7 +754,7 @@ textarea.ashelper {
 
 .box_title .back:hover {
     text-decoration: none;
-    background-color: rgba(0, 31, 64, .15)
+    background-color: #5181b8
 }
 
 .box_title .security {
@@ -959,15 +945,15 @@ textarea.ashelper {
 }
 
 .box_no_title {
-    border-radius: 2px 2px 0 0
+    border-radius: 4px 4px 0 0
 }
 
 .box_no_buttons {
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .box_no_title.box_no_buttons {
-    border-radius: 2px
+    border-radius: 4px
 }
 
 .box_body {
@@ -984,7 +970,7 @@ textarea.ashelper {
     padding: 14px 23px 14px 25px;
     height: 29px;
     background-color: #fafbfc;
-    border-radius: 0 0 2px 2px;
+    border-radius: 0 0 4px 4px;
     border-top: 1px solid #e7e8ec;
     white-space: nowrap
 }
@@ -1453,39 +1439,30 @@ body.mac #layer_stl .fixed {
     display: block;
     content: '';
     float: left;
-    background: url(/images/icons/dev_check.png?2) 0 0 no-repeat;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2215%22%20viewBox%3D%220%200%2015%2015%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Crect%20id%3D%22a%22%20width%3D%2215%22%20height%3D%2215%22%20rx%3D%223%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cuse%20fill%3D%22%23FFF%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Crect%20width%3D%2214%22%20height%3D%2214%22%20x%3D%22.5%22%20y%3D%22.5%22%20stroke%3D%22%23C1C9D1%22%20rx%3D%223%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 0;
     margin: 0 7px 0 0;
     width: 15px;
     height: 15px
 }
 
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .checkbox:before {
-        background-image: url(/images/icons/dev_check_2x.png?2);
-        background-size: 15px 75px
-    }
-}
-
 .checkbox:hover:before {
-    background-position: 0 -30px
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2215%22%20viewBox%3D%220%200%2015%2015%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Crect%20id%3D%22a%22%20width%3D%2215%22%20height%3D%2215%22%20rx%3D%223%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cuse%20fill%3D%22%23F2F4F8%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Crect%20width%3D%2214%22%20height%3D%2214%22%20x%3D%22.5%22%20y%3D%22.5%22%20stroke%3D%22%23C1C9D1%22%20rx%3D%223%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .checkbox.disabled:hover:before {
-    background-position: 0 0
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2215%22%20viewBox%3D%220%200%2015%2015%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Crect%20id%3D%22a%22%20width%3D%2215%22%20height%3D%2215%22%20rx%3D%223%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cuse%20fill%3D%22%23FFF%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Crect%20width%3D%2214%22%20height%3D%2214%22%20x%3D%22.5%22%20y%3D%22.5%22%20stroke%3D%22%23C1C9D1%22%20rx%3D%223%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .checkbox.on:before {
-    background-position: 0 -15px
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2215%22%20viewBox%3D%220%200%2015%2015%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22%235181B8%22%20rx%3D%223%22%2F%3E%3Cpath%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M4%207.5L6.5%2010%2011%204.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .checkbox.on:hover:before {
-    background-position: 0 -45px
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2215%22%20viewBox%3D%220%200%2015%2015%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22%235B88BD%22%20rx%3D%223%22%2F%3E%3Cpath%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M4%207.5L6.5%2010%2011%204.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .checkbox.disabled.on:hover:before {
-    background-position: 0 -15px
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2215%22%20viewBox%3D%220%200%2015%2015%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2215%22%20height%3D%2215%22%20fill%3D%22%235181B8%22%20rx%3D%223%22%2F%3E%3Cpath%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M4%207.5L6.5%2010%2011%204.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .radiobtn {
@@ -1497,47 +1474,43 @@ body.mac #layer_stl .fixed {
     display: block;
     content: '';
     float: left;
-    background: url(/images/icons/dev_radio.png?1) 0 0 no-repeat;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Ccircle%20id%3D%22a%22%20cx%3D%227%22%20cy%3D%227%22%20r%3D%227%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cuse%20fill%3D%22%23FFF%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%226.5%22%20stroke%3D%22%23C1C9D1%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 0;
     width: 14px;
     margin: 1px 7px 1px 0;
     height: 14px
 }
 
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .radiobtn:before {
-        background-image: url(/images/icons/dev_radio_2x.png?1);
-        background-size: 14px 70px
-    }
-}
-
 .radiobtn:hover:before {
-    background-position: 0 -28px
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Ccircle%20id%3D%22a%22%20cx%3D%227%22%20cy%3D%227%22%20r%3D%227%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cuse%20fill%3D%22%23F2F4F8%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%226.5%22%20stroke%3D%22%23C1C9D1%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
+.radiobtn.disabled:before {
+    opacity: 0.5
+}
+
+.radiobtn.disabled:before,
 .radiobtn.disabled:hover:before {
-    background-position: 0 0
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Ccircle%20id%3D%22a%22%20cx%3D%227%22%20cy%3D%227%22%20r%3D%227%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cuse%20fill%3D%22%23FFF%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%226.5%22%20stroke%3D%22%23C1C9D1%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .radiobtn_hover:before {
-    background-position: 0 -28px
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Ccircle%20id%3D%22a%22%20cx%3D%227%22%20cy%3D%227%22%20r%3D%227%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cuse%20fill%3D%22%23F2F4F8%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%226.5%22%20stroke%3D%22%23C1C9D1%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .radiobtn.on:before {
-    background-position: 0 -14px
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Ccircle%20id%3D%22a%22%20cx%3D%227%22%20cy%3D%227%22%20r%3D%227%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cuse%20fill%3D%22%23FFF%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%226.5%22%20stroke%3D%22%235181B8%22%2F%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%223%22%20fill%3D%22%235181B8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .radiobtn.on:hover:before {
-    background-position: 0 -42px
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Ccircle%20id%3D%22a%22%20cx%3D%227%22%20cy%3D%227%22%20r%3D%227%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cuse%20fill%3D%22%23F2F4F8%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%226.5%22%20stroke%3D%22%235181B8%22%2F%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%223%22%20fill%3D%22%235181B8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
-.radiobtn.disabled.on:hover:before {
-    background-position: 0 -14px
+.radiobtn.on.disabled:hover:before {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Ccircle%20id%3D%22a%22%20cx%3D%227%22%20cy%3D%227%22%20r%3D%227%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cuse%20fill%3D%22%23FFF%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%226.5%22%20stroke%3D%22%235181B8%22%2F%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%223%22%20fill%3D%22%235181B8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .radiobtn.on.radiobtn_hover:before {
-    background-position: 0 -42px
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Ccircle%20id%3D%22a%22%20cx%3D%227%22%20cy%3D%227%22%20r%3D%227%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cuse%20fill%3D%22%23F2F4F8%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%226.5%22%20stroke%3D%22%235181B8%22%2F%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%223%22%20fill%3D%22%235181B8%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .checkbox_label,
@@ -1574,24 +1547,14 @@ body.mac #layer_stl .fixed {
 .media_check_btn_wrap .media_check_btn {
     height: 22px;
     width: 22px;
-    background-image: url(/images/icons/media_check_uncheck.png);
-    background-position: 0 -26px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2222%22%20height%3D%2222%22%20viewBox%3D%220%200%2022%2022%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%3Cdefs%3E%3Crect%20id%3D%22a%22%20width%3D%2222%22%20height%3D%2222%22%20x%3D%221074%22%20y%3D%221823%22%20rx%3D%2211%22%2F%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20transform%3D%22translate(-1074%20-1823)%22%3E%3Cuse%20fill%3D%22%23FFF%22%20xlink%3Ahref%3D%22%23a%22%2F%3E%3Crect%20width%3D%2221%22%20height%3D%2221%22%20x%3D%221074.5%22%20y%3D%221823.5%22%20stroke%3D%22%23C1C9D1%22%20rx%3D%2210.5%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 0;
     cursor: pointer
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .media_check_btn_wrap .media_check_btn {
-        background-image: url(/images/icons/media_check_uncheck_2x.png);
-        background-size: 22px 48px
-    }
 }
 
 .media_check_btn_wrap .media_check_btn_wrap.checked .media_check_btn,
 .selected .media_check_btn_wrap .media_check_btn {
     opacity: 1;
-    background-position: 0 0
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2222%22%20height%3D%2222%22%20viewBox%3D%220%200%2022%2022%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2222%22%20height%3D%2222%22%20fill%3D%22%235181B8%22%20rx%3D%2211%22%2F%3E%3Cpath%20stroke%3D%22%23FFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M6%2012l3%203%207-7%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .fakeinput,
@@ -1840,7 +1803,7 @@ input.dark~.placeholder .ph_input,
 textarea.dark,
 textarea.dark~.placeholder .ph_input {
     padding: 5px 9px 7px;
-    border-radius: 1px;
+    border-radius: 2px;
     box-sizing: border-box
 }
 
@@ -1994,7 +1957,7 @@ textarea.disabled {
 
 .summary_tab_sel .summary_tab2,
 .summary_tab_sel .summary_tab2:hover {
-    background: #6285af
+    background: #5181b8
 }
 
 .summary_tab_sel .summary_tab3 {
@@ -2449,11 +2412,11 @@ small.divider {
     text-align: center;
     text-decoration: none;
     background: none;
-    background-color: #5e81a8;
+    background-color: #5181b8;
     color: #fff;
     border: 0;
     *border: 0;
-    border-radius: 2px;
+    border-radius: 4px;
     box-sizing: border-box
 }
 
@@ -2462,13 +2425,13 @@ small.divider {
 }
 
 .flat_button:hover {
-    background-color: #6888ad;
+    background-color: #5b88bd;
     text-decoration: none
 }
 
 .flat_button.active,
 .flat_button:active {
-    background-color: #5779a1;
+    background-color: #4872a3;
     padding-top: 8px;
     padding-bottom: 7px
 }
@@ -2497,7 +2460,7 @@ small.divider {
 
 .flat_button.button_disabled:active,
 .flat_button.button_disabled:hover {
-    background-color: #5e81a8;
+    background-color: #5181b8;
     cursor: default;
     pointer-events: none
 }
@@ -2886,7 +2849,7 @@ body.mac .pr_bt {
     color: #2a5885;
     background-color: #fff;
     border-top: 1px solid #e7e8ec;
-    border-radius: 0 0 2px 2px;
+    border-radius: 0 0 4px 4px;
     -o-transition: background-color 40ms linear;
     transition: background-color 40ms linear
 }
@@ -3865,7 +3828,7 @@ div.top_result_baloon a {
 
 .round_button {
     border-radius: 50px;
-    background-color: #5885b8;
+    background-color: #5181b8;
     padding: 7px 16px 8px;
     cursor: pointer;
     border: none;
@@ -3936,7 +3899,7 @@ div.top_result_baloon a {
 .audio_page_player .slider .slider_amount,
 .audio_inline_player .slider .slider_handler,
 .audio_page_player .slider .slider_handler {
-    background-color: #577ca1
+    background-color: #5181b8
 }
 
 #flash_audio {
@@ -3961,11 +3924,11 @@ div.top_result_baloon a {
 }
 
 .top_audio_player:hover {
-    background-color: #486991
+    background-color: #3d6898
 }
 
 .top_audio_player.audio_top_btn_active {
-    background-color: #43648c
+    background-color: #335e8f
 }
 
 .top_audio_player.top_audio_player_enabled {
@@ -4124,7 +4087,7 @@ div.top_result_baloon a {
 
 .audio_row.audio_row__current .audio_row_content {
     background-color: #e9edf1;
-    border-radius: 2px
+    border-radius: 4px
 }
 
 .audio_row .audio_row__info {
@@ -4133,7 +4096,7 @@ div.top_result_baloon a {
 
 .audio_row:hover:not(.audio_row__current) .audio_row_content {
     background-color: #f2f4f7;
-    border-radius: 2px
+    border-radius: 4px
 }
 
 .audio_row .audio_row__performer_title {
@@ -4308,7 +4271,7 @@ div.top_result_baloon a {
 }
 
 .audio_row .audio_row__play_btn {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%235885B8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M9.8458023%2C16.8599024%20C9.37867859%2C17.1627978%209%2C16.957255%209%2C16.4099471%20L9%2C7.58814172%20C9%2C7.03674286%209.38012398%2C6.83622826%209.8458023%2C7.13818645%20L16.755585%2C11.618673%20C17.079559%2C11.8287463%2017.0833788%2C12.1668656%2016.755585%2C12.3794158%20L9.8458023%2C16.8599024%20Z%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%235181B8%22%2F%3E%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M9.846%2016.86c-.467.303-.846.097-.846-.45V7.588c0-.551.38-.752.846-.45l6.91%204.48c.324.21.327.549%200%20.761l-6.91%204.48z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
     width: 24px;
     height: 24px;
     position: absolute;
@@ -4317,7 +4280,7 @@ div.top_result_baloon a {
 }
 
 .audio_row.audio_row__playing .audio_row__play_btn {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%235885B8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M8%2C7.59559822%20C8%2C7.26665841%208.27685547%2C7%208.60709476%2C7%20L10.3929052%2C7%20C10.7281944%2C7%2011%2C7.26747584%2011%2C7.59559822%20L11%2C16.4044018%20C11%2C16.7333416%2010.7231445%2C17%2010.3929052%2C17%20L8.60709476%2C17%20C8.27180558%2C17%208%2C16.7325242%208%2C16.4044018%20L8%2C7.59559822%20Z%20M13%2C7.59559822%20C13%2C7.26665841%2013.2768555%2C7%2013.6070948%2C7%20L15.3929052%2C7%20C15.7281944%2C7%2016%2C7.26747584%2016%2C7.59559822%20L16%2C16.4044018%20C16%2C16.7333416%2015.7231445%2C17%2015.3929052%2C17%20L13.6070948%2C17%20C13.2718056%2C17%2013%2C16.7325242%2013%2C16.4044018%20L13%2C7.59559822%20Z%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%235181B8%22%2F%3E%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M8%207.596c0-.33.277-.596.607-.596h1.786c.335%200%20.607.267.607.596v8.808a.605.605%200%200%201-.607.596H8.607A.602.602%200%200%201%208%2016.404V7.596zm5%200c0-.33.277-.596.607-.596h1.786c.335%200%20.607.267.607.596v8.808a.605.605%200%200%201-.607.596h-1.786a.602.602%200%200%201-.607-.596V7.596z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
 }
 
 .audio_row .audio_row__inner {
@@ -4413,7 +4376,7 @@ div.top_result_baloon a {
 .audio_w_covers .audio_row.ui_gridsorter_moveable .audio_row_content {
     background-color: #fff;
     box-shadow: 0px 2px 6px -3px rgba(0, 0, 0, .34);
-    border-radius: 2px
+    border-radius: 4px
 }
 
 .audio_w_covers .audio_row .audio_row__cover,
@@ -4434,7 +4397,7 @@ div.top_result_baloon a {
     image-rendering: optimize-contrast;
     -ms-interpolation-mode: nearest-neighbor;
     background-size: cover;
-    border-radius: 2px;
+    border-radius: 4px;
     background-image: url('/images/audio_row_placeholder.png')
 }
 
@@ -4446,7 +4409,7 @@ div.top_result_baloon a {
     background-color: transparent;
     -o-transition: background-color 60ms linear;
     transition: background-color 60ms linear;
-    border-radius: 2px
+    border-radius: 4px
 }
 
 .audio_w_covers .audio_row .audio_row__cover_icon {
@@ -5226,7 +5189,7 @@ div.top_result_baloon a {
 }
 
 .audio_pl_snippet_play_small {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%235885B8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M9.8458023%2C16.8599024%20C9.37867859%2C17.1627978%209%2C16.957255%209%2C16.4099471%20L9%2C7.58814172%20C9%2C7.03674286%209.38012398%2C6.83622826%209.8458023%2C7.13818645%20L16.755585%2C11.618673%20C17.079559%2C11.8287463%2017.0833788%2C12.1668656%2016.755585%2C12.3794158%20L9.8458023%2C16.8599024%20Z%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2212%22%20fill%3D%22%235181B8%22%2F%3E%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M9.846%2016.86c-.467.303-.846.097-.846-.45V7.588c0-.551.38-.752.846-.45l6.91%204.48c.324.21.327.549%200%20.761l-6.91%204.48z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
     background-repeat: no-repeat;
     background-position: 50%;
     width: 24px;
@@ -5271,8 +5234,7 @@ div.top_result_baloon a {
 #audio_layer_tt {
     box-shadow: 0 20px 40px 0 rgba(0, 0, 0, .3);
     border-top: 0;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0
+    border-radius: 0 0 4px 4px
 }
 
 #audio_layer_tt>.eltt_arrow_back {

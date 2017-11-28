@@ -747,7 +747,7 @@ table.login_blocked_reason_thumbs {
     background: #fafbfc;
     color: #000;
     border-top: 1px solid #e7e8ec;
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .login_app_device_screen {

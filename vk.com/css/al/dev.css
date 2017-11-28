@@ -401,7 +401,7 @@ body.dev input.dev_top_input {
     border-radius: 14px;
     -o-transition: background-color 0.05s, color 0.05s;
     transition: background-color 0.05s, color 0.05s;
-    background: #305075 url('/images/svg_icons/ic_head_loupe.svg') no-repeat;
+    background: #224b7a url('/images/svg_icons/ic_head_loupe.svg') no-repeat;
     padding-left: 19px;
     border-left: 8px solid transparent;
     background-position: left 8px;
@@ -494,12 +494,12 @@ input.dev_wide_input~.placeholder .ph_content,
 
 .dev_top_link.sel,
 .dev_top_link.sel:hover {
-    background-color: #43648c
+    background-color: #335e8f
 }
 
 .dev_home_link:hover,
 .dev_top_link:hover {
-    background-color: #486991
+    background-color: #3d6898
 }
 
 #dev_top_nav_wrap {
@@ -509,7 +509,7 @@ input.dev_wide_input~.placeholder .ph_content,
     width: 100%;
     z-index: 125;
     height: 42px;
-    background: #507299
+    background: #4a76a8
 }
 
 #dev_top_nav_wrap .input_back_content {

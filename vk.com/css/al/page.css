@@ -4565,7 +4565,7 @@ div.submit_post_field[contenteditable=true]>p {
 }
 
 .post_from_tt_row.active {
-    background-color: #7394b5;
+    background-color: #5181b8;
     color: #fff
 }
 
@@ -7736,7 +7736,7 @@ button.wall_block_app_btn {
     top: 0;
     width: 198px;
     background: #fff;
-    border-radius: 2px;
+    border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
     border: 1px solid #c5d0db;
     font-size: 12.5px;
@@ -7746,6 +7746,7 @@ button.wall_block_app_btn {
 .page_actions_header {
     text-align: center;
     line-height: 15px;
+    border-radius: 3px 3px 0 0;
     background: #dce1e6;
     padding: 6px 0 7px;
     cursor: pointer
@@ -7893,7 +7894,7 @@ button.wall_block_app_btn {
 }
 
 .page_actions_expanded .page_actions_item {
-    border-radius: 2px
+    border-radius: 4px
 }
 
 .page_actions_expanded .page_actions_separator {

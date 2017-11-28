@@ -3573,7 +3573,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 }
 
 .help_table_question_act {
-    border-radius: 2px;
+    border-radius: 4px;
     float: left;
     margin-right: 8px;
     padding: 4px 15px 5px;
@@ -3603,7 +3603,7 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 .help_table_question_act.help_table_question_act_do,
 .help_table_question_act.help_table_question_act_ok {
     padding-left: 28px;
-    background: #5e81a8;
+    background: #5181b8;
     color: #fff;
     position: relative
 }
@@ -3661,14 +3661,14 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 
 .help_table_question_act_do:hover,
 .help_table_question_act_ok:hover {
-    background-color: #6888ad
+    background-color: #5b88bd
 }
 
 .help_table_question_act.help_table_question_act_do:active,
 .help_table_question_act.help_table_question_act_ok:active {
     padding-top: 5px;
     padding-bottom: 4px;
-    background-color: #5779a1
+    background-color: #4872a3
 }
 
 .help_table_question_act.help_table_question_act_do:active:before,

@@ -38,7 +38,7 @@
 .audio_load_line,
 .audio_progress_line {
     height: 2px;
-    background-color: #577ca1;
+    background-color: #5181b8;
     border-radius: 1px
 }
 
@@ -89,7 +89,7 @@
     right: -4px;
     top: -3px;
     display: none;
-    background-color: #577ca1;
+    background-color: #5181b8;
     -ms-user-select: none;
     user-select: none;
     -o-user-select: none;

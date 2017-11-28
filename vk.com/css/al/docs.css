@@ -389,7 +389,7 @@ a.docs_item_name {
     border-bottom: none;
     margin-bottom: 0;
     padding-bottom: 20px;
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .docs_choose_rows .docs_item:hover {

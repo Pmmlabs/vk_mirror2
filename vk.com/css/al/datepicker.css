@@ -55,7 +55,7 @@
 .cal_table .month,
 .cal_table .month_arr {
     text-align: center;
-    background-color: #6287ae
+    background-color: #5181b8
 }
 
 .cal_table .month_arr .arr {
@@ -127,7 +127,7 @@
 
 .datepicker_control {
     border: 1px solid #d3d9de;
-    border-radius: 1px;
+    border-radius: 2px;
     cursor: pointer
 }
 

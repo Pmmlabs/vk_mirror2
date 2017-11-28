@@ -25,7 +25,7 @@ html {
 }
 
 .oauth_head {
-    background-color: #6287ae;
+    background-color: #5b88bd;
     padding: 0 25px;
     font-size: 12.5px;
     color: #fff;
@@ -68,7 +68,7 @@ html {
 }
 
 .oauth_head .oauth_logout_link {
-    color: #d8e1eb
+    color: #d6e1ef
 }
 
 .oauth_head .oauth_user_photo {
@@ -290,15 +290,15 @@ html {
 }
 
 .oauth_centered .oauth_head {
-    border-radius: 2px 2px 0 0
+    border-radius: 4px 4px 0 0
 }
 
 .oauth_centered .oauth_content:last-child {
-    border-radius: 0 0 2px 2px
+    border-radius: 0 0 4px 4px
 }
 
 .oauth_centered .oauth_wrap_content {
-    border-radius: 2px;
+    border-radius: 4px;
     display: inline-block;
     width: 655px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;

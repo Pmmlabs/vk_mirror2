@@ -2,8 +2,6 @@
     display: none
 }
 
-.flist_item_checked .flist_item_action,
-.flist_list_nomargin .flist_item_wrap.flist_item_checked:hover .flist_item_action,
 .flist_sel_list .flist_item_action,
 .privacy_dropdown .header .header_label:after,
 .privacy_dropdown .item_sel_plus:after,
@@ -276,18 +274,8 @@
 
 .flist_item_checked .flist_item_action,
 .flist_list_nomargin .flist_item_wrap.flist_item_checked:hover .flist_item_action {
-    background: url(/images/icons/check_uncheck.png) no-repeat 0 0;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2222%22%20height%3D%2222%22%20viewBox%3D%220%200%2022%2022%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Crect%20width%3D%2222%22%20height%3D%2222%22%20fill%3D%22%235181B8%22%20rx%3D%2211%22%2F%3E%3Cpath%20stroke%3D%22%23FFF%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M6%2012l3%203%207-7%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 0;
     box-shadow: none
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .flist_item_checked .flist_item_action,
-    .flist_list_nomargin .flist_item_wrap.flist_item_checked:hover .flist_item_action {
-        background-image: url(/images/icons/check_uncheck_2x.png);
-        background-size: 22px 48px
-    }
 }
 
 .flist_list_radio .flist_item_wrap.flist_item_checked .flist_item_action,
@@ -300,7 +288,7 @@
 .flist_list_radio .flist_item_wrap:hover.flist_item_checked .flist_item_action:before {
     content: '';
     display: block;
-    background: #6287ae;
+    background: #5181b8;
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -394,8 +382,8 @@
     height: 41px;
     width: 41px;
     border-radius: 23px;
-    border: 2px solid #6287ae;
-    color: #6287ae;
+    border: 2px solid #5181b8;
+    color: #5181b8;
     font-size: 12.5px;
     font-weight: 700;
     -webkit-font-smoothing: antialiased;
@@ -416,7 +404,7 @@
 
 .flist_sel_showed_all {
     color: #fff;
-    background-color: #6287ae;
+    background-color: #5181b8;
     opacity: 1;
     -webkit-filter: none;
     filter: none
@@ -426,8 +414,8 @@
     opacity: 1;
     -webkit-filter: none;
     filter: none;
-    background-color: #6888ad;
-    border-color: #6888ad
+    background-color: #5b88bd;
+    border-color: #5b88bd
 }
 
 .flist_full .flist_item_wrap {

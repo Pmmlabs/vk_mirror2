@@ -736,7 +736,7 @@ a.group_u_title {
     padding: 7px 0 8px;
     margin: 0 20px 15px;
     border-top: 1px solid #e7e8ec;
-    border-radius: 2px;
+    border-radius: 4px;
     line-height: 1.154
 }
 
@@ -807,7 +807,7 @@ input.group_ad_cost {
 .group_ad_info_link {
     display: block;
     padding: 7px 0 8px 177px;
-    border-radius: 2px;
+    border-radius: 4px;
     line-height: 1.154;
     -ms-user-select: none;
     user-select: none;

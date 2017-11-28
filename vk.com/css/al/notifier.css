@@ -3481,8 +3481,8 @@ em.fc_clist_hl {
 
 .fc_tab_head {
     cursor: move;
-    background-color: #507299;
-    border: 1px solid #466991;
+    background-color: #4a76a8;
+    border: 1px solid #4872a3;
     border-radius: 3px 3px 0 0;
     padding: 0 7px 0 8px
 }
@@ -5270,7 +5270,7 @@ div.chat_tab_img {
     z-index: 800;
     border: 1px solid #c5d0db;
     border-top: none;
-    border-radius: 3px;
+    border-radius: 0 0 4px 4px;
     box-shadow: 0 20px 40px 0 rgba(0, 0, 0, .3);
     opacity: 0;
     filter: alpha(opacity=0);
@@ -5316,7 +5316,6 @@ div.chat_tab_img {
 .top_notify_header {
     line-height: 13px;
     padding: 11px 14px;
-    border-radius: 3px 3px 0 0;
     color: #000;
     font-size: 13px;
     font-weight: 400;
@@ -5408,7 +5407,7 @@ div.chat_tab_img {
     background-color: #fafbfc;
     border-top: 1px solid #e7e8ec;
     text-align: center;
-    border-radius: 0 0 3px 3px
+    border-radius: 0 0 4px 4px
 }
 
 .top_notify_show_all:hover {
@@ -5422,7 +5421,7 @@ div.chat_tab_img {
     background: #fff;
     border: 1px solid #c5d0db;
     border-top: none;
-    border-radius: 3px;
+    border-radius: 4px;
     cursor: pointer
 }
 
@@ -5663,7 +5662,7 @@ div.chat_tab_img {
 }
 
 .top_notify_cont .feedback_sticky_rows {
-    border-left: 2px solid #6285af
+    border-left: 2px solid #5181b8
 }
 
 .top_notify_cont .feedback_sticky_rows:empty {
@@ -5821,7 +5820,7 @@ div.chat_tab_img {
     width: 24px;
     height: 24px;
     float: left;
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20version%3D%221.0%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2010%2011%22%20width%3D%2210px%22%20height%3D%2211px%22%3E%0A%20%20%20%20%3Cpolygon%20stroke%3D%22%23fff%22%20fill%3D%22%23fff%22%20style%3D%22stroke-linecap%3A%20round%3B%20stroke-linejoin%3A%20round%3B%22%20points%3D%222.5%200.5%202.5%209.5%209.5%205%22%20transform%3D%22%22%2F%3E%0A%3C%2Fsvg%3E") #5779a1 no-repeat 50%
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20version%3D%221.0%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2010%2011%22%20width%3D%2210px%22%20height%3D%2211px%22%3E%0A%20%20%20%20%3Cpolygon%20stroke%3D%22%23fff%22%20fill%3D%22%23fff%22%20style%3D%22stroke-linecap%3A%20round%3B%20stroke-linejoin%3A%20round%3B%22%20points%3D%222.5%200.5%202.5%209.5%209.5%205%22%20transform%3D%22%22%2F%3E%0A%3C%2Fsvg%3E") #4872a3 no-repeat 50%
 }
 
 .audio-msg-track.audio-msg-track_playing .audio-msg-track--btn {

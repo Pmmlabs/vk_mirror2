@@ -4638,12 +4638,25 @@ Ads.saveRetargetingPriceList = function(unionId, hash, priceListId) {
     }
     lockButton(btnSave);
 
-    var newPriceListName = val(ge('ads_retargeting_box_price_list_edit_name')).trim(),
-        newPriceListUrl = val(ge('ads_retargeting_box_price_list_edit_url')).trim();
+    var checkboxHttpAuth = cur.uiEditPriceListHttpAuth;
+    var checkboxUrlStripUtm = cur.uiEditPriceListUrlStripUtmCheckBox;
+    var checkboxUrlExtraParams = cur.uiEditPriceListUrlExtraParamsCheckbox;
 
-    var newPriceListHttpAuth = (cur.uiEditPriceListHttpAuth.checked() ? 1 : 0),
-        newPriceListHttpAuthUsername = (newPriceListHttpAuth ? val(ge('ads_retargeting_box_price_list_edit_http_auth_username')).trim() : ''),
-        newPriceListHttpAuthPassword = (newPriceListHttpAuth ? val(ge('ads_retargeting_box_price_list_edit_http_auth_password')).trim() : '');
+    if (!checkboxHttpAuth || !checkboxUrlStripUtm || !checkboxUrlExtraParams) {
+        topError('Checkboxes init failed');
+        return;
+    }
+
+    var newPriceListName = val('ads_retargeting_box_price_list_edit_name').trim(),
+        newPriceListUrl = val('ads_retargeting_box_price_list_edit_url').trim();
+
+    var newPriceListHttpAuth = (checkboxHttpAuth.checked() ? 1 : 0),
+        newPriceListHttpAuthUsername = (newPriceListHttpAuth ? val('ads_retargeting_box_price_list_edit_http_auth_username').trim() : ''),
+        newPriceListHttpAuthPassword = (newPriceListHttpAuth ? val('ads_retargeting_box_price_list_edit_http_auth_password').trim() : '');
+
+    var newPriceListUrlStripUtmEnabled = (checkboxUrlStripUtm.checked() ? 1 : 0),
+        newPriceListUrlExtraParamsEnabled = (checkboxUrlExtraParams.checked() ? 1 : 0),
+        newPriceListUrlExtraParams = val('ads_retargeting_box_price_list_edit_url_extra_params').trim();
 
     var ajaxParams = {
         union_id: unionId,
@@ -4653,7 +4666,11 @@ Ads.saveRetargetingPriceList = function(unionId, hash, priceListId) {
 
         http_auth: newPriceListHttpAuth,
         http_auth_username: newPriceListHttpAuthUsername,
-        http_auth_password: newPriceListHttpAuthPassword
+        http_auth_password: newPriceListHttpAuthPassword,
+
+        url_strip_utm_enabled: newPriceListUrlStripUtmEnabled,
+        url_extra_params_enabled: newPriceListUrlExtraParamsEnabled,
+        url_extra_params: newPriceListUrlExtraParams
     };
 
     var isNew = !priceListId;

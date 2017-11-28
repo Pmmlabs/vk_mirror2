@@ -104,7 +104,7 @@
     border-radius: 2px;
     padding: 0 7px;
     color: #fff;
-    background: #5e81a8
+    background: #5181b8
 }
 
 .wsubscribe_button .wsubscribe_do b {
@@ -133,11 +133,11 @@
 
 .wsubscribe_button .wsubscribe_do:hover {
     text-decoration: none;
-    background: #6888ad
+    background: #5b88bd
 }
 
 .wsubscribe_button .wsubscribe_do:active {
-    background: #5779a1
+    background: #4872a3
 }
 
 .wsubscribe_button .wsubscribe_do:active span {

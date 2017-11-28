@@ -228,7 +228,7 @@
 }
 
 .wcomments_head {
-    background: #507299;
+    background: #4a76a8;
     position: relative;
     height: 40px;
     line-height: 38px;
@@ -243,7 +243,7 @@
 }
 
 .wcomments_head .divider:before {
-    color: #a8b9cc
+    color: #a5bbd4
 }
 
 .wcomments_admin_icon,
@@ -314,7 +314,7 @@
 
 .wcomments_admin_link_browse,
 .wcomments_admin_link_return {
-    color: #d3dce6
+    color: #d2dde9
 }
 
 .wcomments_admin_tabs.ui_tabs {
@@ -1091,6 +1091,6 @@
     position: absolute;
     left: 18px;
     top: 0;
-    background: #5e81a8;
+    background: #5181b8;
     border-radius: 3px
 }

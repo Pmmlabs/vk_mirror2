@@ -2453,6 +2453,39 @@ img.im_photo_thumb {
     display: none
 }
 
+.im-page--retry {
+    position: relative;
+    background: none;
+    border: 0;
+    padding: 0 0 0 20px;
+    font: 13px/18px -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    color: #2a5885;
+    cursor: pointer
+}
+
+.im-page--retry:focus {
+    outline: 0
+}
+
+.im-page--retry:hover {
+    text-decoration: underline
+}
+
+.im-page--retry:before {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    width: 14px;
+    height: 12px;
+    opacity: .5;
+    background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2212%22%20viewBox%3D%220%200%2014%2012%22%3E%3Cpath%20d%3D%22M6%2011.7a6%206%200%201%200-4-5.7h-2l3%203.3%203-3.3h-2a4%204%200%201%201%204%204l-1.2-.2h-.4a1%201%200%200%200-.4%201.9z%22%20fill%3D%22%2342648b%22%20%2F%3E%3C%2Fsvg%3E') no-repeat;
+    content: ''
+}
+
+.im-page--retry:hover:before {
+    opacity: .6
+}
+
 .mac.sf .im-chat-input .im-chat-input--textarea .placeholder {
     top: 27px
 }
@@ -5855,7 +5888,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     top: 0px;
     width: 2px;
     height: 64px;
-    background: #6285af
+    background: #5181b8
 }
 
 .nim-dialog.nim-dialog_deleted .nim-dialog--close,
@@ -6240,7 +6273,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 .im-fwd {
     position: relative;
     padding-left: 10px;
-    border-left: solid 2px #c4d2e1
+    border-left: solid 2px #bccde0
 }
 
 .im-fwd .im-fwd--messages {

@@ -3540,7 +3540,7 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     margin: 20px -25px -20px;
     padding: 15px 25px 16px;
     border-top: 1px solid #e7e8ec;
-    border-radius: 0 0 2px 2px;
+    border-radius: 0 0 4px 4px;
     text-align: center;
     background-color: #fafbfc;
     font-size: 12.5px

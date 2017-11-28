@@ -1726,7 +1726,7 @@
     background-color: #fff;
     border-top: 1px solid #e7e8ec;
     display: block;
-    border-radius: 0 0 2px 2px;
+    border-radius: 0 0 4px 4px;
     -o-transition: background-color 40ms linear;
     transition: background-color 40ms linear
 }
