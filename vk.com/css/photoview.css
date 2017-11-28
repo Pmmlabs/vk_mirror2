@@ -1,0 +1,332 @@
+.pv_fixed {
+    position: fixed;
+    left: 0px;
+    top: 0px
+}
+
+.pv_bg {
+    z-index: 600
+}
+
+.pv_dark .pv_bg {
+    background: #000
+}
+
+.pv_dark .pv_bg,
+.pv_light .pv_bg {
+    opacity: 0.7;
+    filter: alpha(opacity=70)
+}
+
+.pv_light .pv_bg {
+    background: #b6bcc1
+}
+
+.pv_wrap {
+    overflow: auto;
+    z-index: 610
+}
+
+.no_select {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none
+}
+
+.select_fix {
+    -webkit-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+    -o-user-select: text;
+    -moz-user-select: text;
+    -khtml-user-select: text
+}
+
+.pv_controls {
+    width: 61px;
+    height: 30px;
+    top: 11px;
+    z-index: 640
+}
+
+.pv_dark .pv_controls {
+    background: #000
+}
+
+.pv_light .pv_controls {
+    background: #fff
+}
+
+.pv_close,
+.pv_controls,
+.pv_left,
+.pv_max,
+.pv_min,
+.pv_right {
+    opacity: 0.4;
+    filter: alpha(opacity=40)
+}
+
+.pv_close,
+.pv_max,
+.pv_min {
+    z-index: 650;
+    top: 11px;
+    padding: 8px 0px 0px 8px;
+    cursor: pointer
+}
+
+.pv_close div,
+.pv_left,
+.pv_max div,
+.pv_min div,
+.pv_right {
+    width: 8px;
+    height: 15px;
+    background: url(/images/photoview.gif) no-repeat;
+    z-index: 630;
+    cursor: pointer
+}
+
+.pv_close div,
+.pv_max div,
+.pv_min div {
+    width: 15px;
+    height: 15px
+}
+
+.pv_dark .pv_close div {
+    background-position: -1px -1px
+}
+
+.pv_dark .pv_min div {
+    background-position: -1px -18px
+}
+
+.pv_dark .pv_max div {
+    background-position: -1px -35px
+}
+
+.pv_dark .pv_left {
+    background-position: -4px -52px
+}
+
+.pv_dark .pv_right {
+    background-position: -5px -69px
+}
+
+.pv_light .pv_close div {
+    background-position: -18px -1px
+}
+
+.pv_light .pv_min div {
+    background-position: -18px -18px
+}
+
+.pv_light .pv_max div {
+    background-position: -18px -35px
+}
+
+.pv_light .pv_left {
+    background-position: -21px -52px
+}
+
+.pv_light .pv_right {
+    background-position: -22px -69px
+}
+
+.pv_cont {
+    position: relative;
+    width: 748px;
+    padding: 10px 0px
+}
+
+.pv_cont,
+.pv_cont table {
+    margin: 0px auto
+}
+
+.pv_cont .sidesh {
+    background: #000;
+    width: 1px
+}
+
+.pv_cont .sidesh div {
+    width: 1px;
+    overflow: hidden
+}
+
+.pv_cont .bottomsh {
+    background: #000;
+    height: 1px
+}
+
+.pv_cont .bottomsh div {
+    height: 1px;
+    overflow: hidden
+}
+
+.pv_cont .s1 {
+    opacity: 0.05;
+    filter: alpha(opacity=5)
+}
+
+.pv_cont .s2 {
+    opacity: 0.15;
+    filter: alpha(opacity=15)
+}
+
+.pv_cont .s3 {
+    opacity: 0.25;
+    filter: alpha(opacity=25)
+}
+
+#pv_polaroid {
+    padding: 10px;
+    background: #fff;
+    width: 604px
+}
+
+.pv_comments {
+    margin: 10px auto 0px;
+    width: 604px
+}
+
+.pv_comments .info {
+    color: #777
+}
+
+#pv_your_comment {
+    margin-top: 5px;
+    padding: 6px 7px;
+    background: #f7f7f7;
+    border: solid #dae2e8;
+    border-width: 1px 0px
+}
+
+#photo_comment_submit {
+    padding-top: 6px;
+    display: none
+}
+
+#photo_comment_submit .button_yes {
+    margin: 0px
+}
+
+#photo_comment_progress {
+    display: none;
+    padding: 9px 10px 0px
+}
+
+#photo_album,
+#photo_desc,
+#photo_from,
+#photo_x_of_y {
+    padding-bottom: 5px
+}
+
+#photo_desc,
+#photo_from {
+    padding-top: 5px
+}
+
+.pv_cont .left_column {
+    width: 394px
+}
+
+.pv_cont .right_column {
+    overflow: hidden;
+    margin-left: 20px;
+    border-left: 1px solid #ccc;
+    padding-left: 20px;
+    width: 169px
+}
+
+#fast_photo {
+    display: block;
+    text-align: center
+}
+
+#fast_photo img {
+    vertical-align: top;
+    margin: 0px auto
+}
+
+#pv_left_nav,
+#pv_right_nav {
+    position: absolute;
+    top: 11px;
+    left: 0px;
+    width: 60px;
+    z-index: 620;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+}
+
+.pv_dark #pv_left_nav,
+.pv_dark #pv_right_nav {
+    background: #000
+}
+
+.pv_light #pv_left_nav,
+.pv_light #pv_right_nav {
+    background: #fff
+}
+
+#pv_right_nav {
+    left: 688px
+}
+
+.pv_switch {
+    padding: 10px;
+    width: 14px;
+    height: 14px;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+    cursor: pointer;
+    z-index: 630
+}
+
+.pv_switch img {
+    behavior: url(/js/iepngfix.htc)
+}
+
+.pv_comment {
+    border-top: 1px solid #dae2e8;
+    padding: 5px 0px;
+    width: 394px
+}
+
+.pv_thumb {
+    width: 30px;
+    padding: 2px;
+    height: 25px;
+    overflow: hidden
+}
+
+.pv_thumb img {
+    width: 25px;
+    height: 25px
+}
+
+.pv_comm {
+    width: 360px;
+    overflow: hidden
+}
+
+.pv_commtext {
+    padding: 0px 3px
+}
+
+.pv_commdata {
+    padding: 4px 0px 0px
+}
+
+.pv_commdata .fl_l {
+    color: #999;
+    font-size: 10px
+}

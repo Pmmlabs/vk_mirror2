@@ -1,0 +1,145 @@
+div.tooltip {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    z-index: 1000
+}
+
+div.tooltip table {
+    border-collapse: collapse;
+    width: 100%
+}
+
+div.tooltip div.tt_title_wrap {
+    height: 21px;
+    position: relative
+}
+
+div.tooltip span.tt_title,
+div.tooltip span.tt_title_shadow {
+    color: #fff;
+    font-weight: 700;
+    float: left;
+    padding: 4px 0px 0px 10px;
+    position: absolute;
+    line-height: 12px
+}
+
+div.tooltip span.tt_title_shadow {
+    color: #46617b;
+    margin-left: 0px;
+    margin-top: 1px
+}
+
+div.tooltip div.tt_text {
+    padding: 10px;
+    background-color: #fff;
+    line-height: 130%
+}
+
+div.tooltip div.tt_buttons_wrap {
+    background: #eef2f6;
+    border-top: #d8dee5 solid 1px;
+    padding: 4px
+}
+
+div.tooltip div.ttx,
+div.tooltip div.ttx_down,
+div.tooltip div.ttx_hover {
+    margin: 7px 6px 0px 0px;
+    float: right;
+    width: 7px;
+    height: 9px;
+    overflow: hidden;
+    background-image: url('../images/intro2_x.gif');
+    cursor: pointer
+}
+
+div.tooltip div.ttx_hover {
+    background-position: 0px -9px
+}
+
+div.tooltip div.ttx_down {
+    background-position: 0px 9px
+}
+
+div.tooltip td.ttc1 {
+    background-position: 0 0
+}
+
+div.tooltip td.ttc2 {
+    background-position: 100% 0
+}
+
+div.tooltip td.ttc3 {
+    background-position: 0 100%
+}
+
+div.tooltip td.ttc4 {
+    background-position: 100% 100%
+}
+
+table.tt_bottom td {
+    padding: 0;
+    background-image: url('../images/intro2.png');
+    *background-image: url('../images/intro2_ie.gif');
+    background-repeat: no-repeat
+}
+
+table.tt_bottom td.ttc1 {
+    padding-left: 3px
+}
+
+table.tt_bottom td.ttc2 {
+    width: 3px
+}
+
+table.tt_bottom td.ttc3 {
+    height: 16px
+}
+
+table.tt_top td {
+    padding: 0;
+    background-image: url('../images/intro4.png');
+    *background-image: url('../images/intro4_ie.gif');
+    background-repeat: no-repeat
+}
+
+table.tt_top td.ttc1 {
+    padding: 15px 0px 0px 3px
+}
+
+table.tt_top td.ttc2 {
+    width: 3px
+}
+
+table.tt_top td.ttc3 {
+    height: 3px
+}
+
+table.tt_top_r td {
+    padding: 0;
+    background-image: url('../images/intro3.png');
+    *background-image: url('../images/intro3_ie.gif');
+    background-repeat: no-repeat
+}
+
+table.tt_top_r td.ttc1 {
+    width: 3px
+}
+
+table.tt_top_r td.ttc2 {
+    padding: 15px 3px 0px 0px
+}
+
+table.tt_top_r td.ttc3 {
+    height: 3px
+}
+
+div.tooltip .button_yes {
+    float: right
+}
+
+div.tooltip .button_yes div {
+    padding: 1px 10px 2px
+}

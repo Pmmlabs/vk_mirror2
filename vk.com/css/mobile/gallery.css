@@ -1,0 +1,273 @@
+@media screen and (max-width: 140px) {
+    .thumbs_list .thumb_item {
+        width: 100%;
+        max-height: 87px;
+        margin: 2% 0
+    }
+    .msg_item .thumbs_list .thumb_item,
+    .post_item .thumbs_list .thumb_item,
+    .wall_item .thumbs_list .thumb_item {
+        width: 96%;
+        margin: 0 4% 4% 0
+    }
+    .photos_page.thumbs_list .thumb_item {
+        height: 87px
+    }
+}
+
+@media screen and (min-width: 140px) {
+    .thumbs_list .thumb_item {
+        width: 48%;
+        max-height: 73px;
+        margin: 1%
+    }
+    .msg_item .thumbs_list .thumb_item,
+    .post_item .thumbs_list .thumb_item,
+    .wall_item .thumbs_list .thumb_item {
+        margin: 0 2% 2% 0
+    }
+    .photos_page.thumbs_list .thumb_item {
+        height: 73px
+    }
+}
+
+@media screen and (min-width: 270px) {
+    .thumbs_list .thumb_item {
+        width: 32%;
+        max-height: 69px;
+        margin: .65%
+    }
+    .msg_item .thumbs_list .thumb_item,
+    .post_item .thumbs_list .thumb_item,
+    .wall_item .thumbs_list .thumb_item {
+        margin: 0 1.3% 1.3% 0
+    }
+    .photos_page.thumbs_list .thumb_item {
+        height: 69px
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .thumbs_list .thumb_item {
+        width: 24%;
+        max-height: 77px;
+        margin: .5%
+    }
+    .msg_item .thumbs_list .thumb_item,
+    .post_item .thumbs_list .thumb_item,
+    .wall_item .thumbs_list .thumb_item {
+        margin: 0 1% 1% 0
+    }
+    .photos_page.thumbs_list .thumb_item {
+        height: 77px
+    }
+}
+
+@media screen and (min-width: 540px) {
+    .thumbs_list .thumb_item {
+        width: 19%;
+        max-height: 76px;
+        margin: .5%
+    }
+    .msg_item .thumbs_list .thumb_item,
+    .post_item .thumbs_list .thumb_item,
+    .wall_item .thumbs_list .thumb_item {
+        margin: 0 1% 1% 0
+    }
+    .photos_page.thumbs_list .thumb_item {
+        height: 76px
+    }
+}
+
+@media screen and (min-width: 690px) {
+    .thumbs_list .thumb_item {
+        width: 16%;
+        max-height: 86px;
+        margin: .32%
+    }
+    .msg_item .thumbs_list .thumb_item,
+    .post_item .thumbs_list .thumb_item,
+    .wall_item .thumbs_list .thumb_item {
+        margin: 0 .6% .6% 0
+    }
+    .photos_page.thumbs_list .thumb_item {
+        height: 86px
+    }
+}
+
+@media screen and (min-width: 540px) {
+    .msg_item .thumbs_list5 .thumb_item,
+    .post_item .thumbs_list5 .thumb_item,
+    .wall_item .thumbs_list5 .thumb_item {
+        width: 19%;
+        max-height: 76px;
+        max-height: none;
+        margin: 0 2px 2px 0
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .msg_item .thumbs_list4 .thumb_item,
+    .post_item .thumbs_list4 .thumb_item,
+    .wall_item .thumbs_list4 .thumb_item {
+        width: 24%;
+        max-height: 77px;
+        max-height: none;
+        margin: 0 3px 3px 0
+    }
+}
+
+@media screen and (min-width: 270px) {
+    .msg_item .thumbs_list3 .thumb_item,
+    .post_item .thumbs_list3 .thumb_item,
+    .wall_item .thumbs_list3 .thumb_item {
+        width: 32%;
+        max-height: 69px;
+        max-height: none;
+        margin: 0 3px 3px 0
+    }
+}
+
+@media screen and (min-width: 140px) {
+    .msg_item .thumbs_list2 .thumb_item,
+    .post_item .thumbs_list2 .thumb_item,
+    .wall_item .thumbs_list2 .thumb_item {
+        width: 48%;
+        max-height: 73px;
+        max-height: none;
+        margin: 0 4px 4px 0
+    }
+}
+
+@media screen {
+    .msg_item .thumbs_list1 .thumb_item,
+    .post_item .thumbs_list1 .thumb_item,
+    .wall_item .thumbs_list1 .thumb_item {
+        width: 96%;
+        max-height: none;
+        margin: 0 4px 4px 0
+    }
+}
+
+@media screen and (max-width: 319px) {
+    .thumb_map_album_column,
+    .thumb_map_album_row {
+        display: none!important
+    }
+    .msg_item .pi_medias {
+        padding-right: 0
+    }
+    .msg_item .thumbs_list .thumb_map_img {
+        max-width: 100%
+    }
+    .msg_item .thumbs_list .thumb_map_img_unsized {
+        background-position: center 0;
+        background-size: contain
+    }
+    .msg_item .thumbs_list .thumb_map_album .thumb_map_img_unsized {
+        background-position: 50%;
+        background-size: cover;
+        max-height: 98px
+    }
+    .thumb_map_wide .mt_label {
+        font-size: .92em;
+        line-height: 1em
+    }
+    .thumb_map_wide .mt_count,
+    .thumb_map_wide .mt_dur {
+        font-size: .75em
+    }
+    .thumb_map_wide .mt_dur {
+        padding: 2px 4px
+    }
+    .thumb_map_wide .mt_count {
+        padding: 3px 4px
+    }
+    .thumb_map_wide .mt_title {
+        padding: 4px 5px
+    }
+    .thumb_map_wide .mt_photo_count {
+        background-position: 4px;
+        padding: 4px 4px 4px 18px
+    }
+}
+
+@media screen {
+    .stickers_list {
+        padding: 4px 4px 10px
+    }
+    .sticker_item {
+        width: 100%;
+        padding: 7px 0 0
+    }
+    .sticker_thumb {
+        width: 32px;
+        height: 32px
+    }
+    .sticker_item .th_img {
+        height: 32px
+    }
+}
+
+@media screen and (min-width: 88px) {
+    .sticker_item {
+        width: 50%
+    }
+}
+
+@media screen and (min-width: 128px) {
+    .sticker_item {
+        width: 33.3%
+    }
+}
+
+@media screen and (min-width: 177px) {
+    .sticker_item {
+        width: 50%
+    }
+    .sticker_thumb {
+        width: 64px;
+        height: 64px
+    }
+    .sticker_item .th_img {
+        height: 64px
+    }
+}
+
+@media screen and (min-width: 240px) {
+    .stickers_list {
+        padding: 6px 6px 14px
+    }
+    .sticker_item {
+        width: 33.3%;
+        padding: 10px 0 0
+    }
+}
+
+@media screen and (min-width: 316px) {
+    .sticker_item {
+        width: 25%
+    }
+}
+
+@media screen and (min-width: 404px) {
+    .stickers_list {
+        padding: 7px 7px 16px
+    }
+    .sticker_item {
+        width: 20%;
+        padding: 12px 0 0
+    }
+}
+
+@media screen and (min-width: 482px) {
+    .sticker_item {
+        width: 16.6%
+    }
+}
+
+@media screen and (min-width: 560px) {
+    .sticker_item {
+        width: 14.25%
+    }
+}

@@ -1,0 +1,177 @@
+#landings_common_css {
+    display: none
+}
+
+.landing .landing_button .landing_button_arrow {
+    -ms-high-contrast-adjust: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+body.is_page {
+    background: #fff
+}
+
+.landing_wk_wrap {
+    width: 900px
+}
+
+.is_page #stl_left {
+    display: none!important
+}
+
+.landing {
+    text-align: center
+}
+
+.landing .landing_close_wrap {
+    width: 80px;
+    height: 80px;
+    top: 0px;
+    right: 0px;
+    position: absolute;
+    cursor: pointer
+}
+
+.landing .landing_close_wrap .landing_close {
+    background: url(/images/pics/cross.png) no-repeat 0px 0px;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    opacity: 0.65;
+    -o-transition: opacity 200ms ease;
+    transition: opacity 200ms ease
+}
+
+.landing .landing_close_wrap:hover .landing_close {
+    opacity: 1
+}
+
+.landing .flat_button {
+    font-family: Open Sans, Helvetica Neue, sans-serif
+}
+
+.landing .landing_button {
+    font-size: 13px;
+    background: #6383a8;
+    color: #fff;
+    padding: 11px 27px 12px;
+    border-radius: 40px;
+    line-height: 13px;
+    font-weight: 400;
+    cursor: pointer;
+    border: 0px;
+    outline: none;
+    text-align: center;
+    margin-right: 10px
+}
+
+.landing .landing_button.landing_button_more {
+    background: #ebf0f5;
+    color: #42648b;
+    margin-right: 0;
+    position: relative
+}
+
+.landing .landing_button.landing_button_more:hover {
+    background-color: #e1e7ed
+}
+
+.landing .landing_button.landing_button_more.landing_button_with_arrow {
+    padding-right: 42px
+}
+
+.landing .landing_button.landing_button_more.landing_button_with_arrow:hover .landing_button_arrow {
+    right: 25px
+}
+
+.landing .landing_button .landing_button_arrow {
+    background: url(/images/pics/show_all_arrow_blue.png) no-repeat 0px 0px;
+    background-size: 7px 12px;
+    width: 7px;
+    height: 12px;
+    position: absolute;
+    top: 12px;
+    right: 27px;
+    -o-transition: right 100ms ease;
+    transition: right 100ms ease
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing .landing_button .landing_button_arrow {
+        background-image: url(/images/pics/show_all_arrow_blue_2x.png);
+        background-size: 7px 12px
+    }
+}
+
+.landing .landing_button:hover {
+    background-color: #6d8cb0
+}
+
+.landing .landing_button:active {
+    padding: 12px 27px 11px
+}
+
+.landing .landing_button:active .landing_button_arrow {
+    top: 13px
+}
+
+.landing .landing_section {
+    padding-top: 64px;
+    border-bottom: 1px solid #e8e8e8
+}
+
+.landing .landing_section:last-child {
+    border-bottom: none
+}
+
+.landing .landing_section.dark {
+    background-color: #f7f7f7
+}
+
+.landing .landing_section .landing_page_title {
+    margin-top: 0
+}
+
+.landing .landing_page_title {
+    font-size: 36px;
+    letter-spacing: -0.1px;
+    color: #2b2f33;
+    font-weight: 300;
+    margin-top: 55px;
+    line-height: 41px;
+    text-align: center
+}
+
+.landing .landing_page_text {
+    font-family: Open Sans, Helvetica Neue, sans-serif;
+    text-align: left;
+    font-weight: 300;
+    font-size: 19px;
+    line-height: 28px;
+    padding: 0 60px;
+    margin: 40px auto;
+    max-width: 830px
+}
+
+.is_2x .landing_wk_wrap .landing_close {
+    background-image: url(/images/pics/cross_2x.png);
+    background-size: 14px 14px
+}
+
+.is_2x .landing_wk_wrap .landing_button .landing_button_arrow {
+    background-image: url(/images/pics/show_all_arrow_blue_2x.png)
+}

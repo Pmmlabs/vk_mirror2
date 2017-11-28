@@ -1,0 +1,349 @@
+#sal_css {
+    display: none
+}
+
+.sal_emp_editor_fixed_row__remove {
+    -ms-high-contrast-adjust: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+.sal_emps_wrap {
+    padding: 0 10px
+}
+
+.sal_emps_row__action {
+    -o-transition: opacity 300ms linear;
+    transition: opacity 300ms linear;
+    line-height: 19px;
+    display: block;
+    opacity: 0.1
+}
+
+.sal_emps {
+    box-sizing: border-box;
+    border-collapse: collapse;
+    width: 100%
+}
+
+.sal_emps>thead>tr>th {
+    padding: 6px 4px
+}
+
+.sal_emps>tbody>tr>td {
+    padding: 4px
+}
+
+.sal_emps>tbody>tr:hover {
+    background: #fafbfc
+}
+
+.sal_emps>tbody>tr:hover .sal_emps_row__action {
+    opacity: 1
+}
+
+.sal_emps_row_name {
+    width: 300px
+}
+
+.sal_emps_row__uids {
+    font-size: 12px;
+    line-height: 19px;
+    width: 120px
+}
+
+.sal_emp_editor_row__label {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0 0 4px;
+    color: #42648b;
+    font-size: 13px
+}
+
+.sal_emp_editor_row {
+    margin-bottom: 10px
+}
+
+.sal_emp_editor_row .text {
+    box-sizing: border-box;
+    width: 100%
+}
+
+.sal_emp_editor_depts__col {
+    box-sizing: border-box;
+    float: left;
+    width: 50%
+}
+
+.sal_emp_editor_depts__col .checkbox {
+    margin-bottom: 4px
+}
+
+.sal_emp_logs {
+    box-sizing: border-box;
+    width: 100%
+}
+
+.sal_emp_logs_row>td {
+    padding: 4px
+}
+
+.sal_emp_logs_row__date {
+    color: #939393
+}
+
+.sal_emp_logs_row__who {
+    width: 120px
+}
+
+.sal_emp_logs_row__note {
+    color: #656565
+}
+
+.sal_show_total_row {
+    margin: 5px 0 10px
+}
+
+.sal_show_total_row .checkbox {
+    float: right;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 2px 4px;
+    margin-top: -2px;
+    margin-left: 8px
+}
+
+.sal_show_total_row .sal_show_total_useless {
+    background: #fdf1d4
+}
+
+.sal_show_total_row .sal_show_total_bad {
+    background: #ffefe9
+}
+
+.salaries_admin_hide_useless .sal_stats_row_useless {
+    display: none
+}
+
+.sal_filters {
+    margin: 0 0 10px
+}
+
+.sal_filters .checkbox {
+    margin: 4px 0;
+    display: inline-block;
+    width: 180px
+}
+
+.sal_adm_link {
+    float: left;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.sal_adm_link,
+.sal_adm_details_link {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.sal_adm_off_id {
+    float: left;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    padding-left: 10px;
+    -o-transition: opacity 300ms linear;
+    transition: opacity 300ms linear;
+    color: #656565;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 15px;
+    opacity: 0.1
+}
+
+.salaries_admin_row:hover .sal_adm_off_id {
+    opacity: 0.4
+}
+
+.salaries_admin_row:hover .sal_adm_off_id:hover {
+    opacity: 1;
+    text-decoration: underline
+}
+
+.sal_stats_row:hover {
+    background: #f0f2f5
+}
+
+.sal_stats_row.sal_stats_row_unused {
+    background: #fdf1d4
+}
+
+.sal_stats_row.sal_stats_row_unavailable {
+    background: #ffefe9;
+    cursor: not-allowed
+}
+
+.sal_stats_row.sal_stats_row_unavailable:hover {
+    background: #fae1e2
+}
+
+.sal_stats_row_title {
+    width: 380px
+}
+
+.sal_stats_row_title,
+.sal_stats_row_value {
+    float: left;
+    padding: 0 0 0 25px;
+    line-height: 1.81em
+}
+
+.salaries_admin_bad_only .salaries_admin_row_good {
+    display: none
+}
+
+.sal_ready_rows {
+    border-top: 1px solid #e7e8ec;
+    margin-top: 15px;
+    padding-top: 15px;
+    text-align: center
+}
+
+.sal_ready_row {
+    margin-bottom: 8px;
+    color: #828282;
+    line-height: 30px
+}
+
+.sal_ready_row:last-child {
+    margin-bottom: 0
+}
+
+.sal_ready_box_block {
+    border-top: 1px solid #e7e8ec;
+    padding: 10px 0
+}
+
+.sal_ready_box_block:first-child {
+    border: 0 none
+}
+
+.sal_ready_box_block:empty,
+.sal_ready_box_block ol:empty {
+    display: none
+}
+
+.sal_ready_box_label {
+    color: #828282;
+    font-size: 12.5px
+}
+
+.sal_emp_editor_fixed_row__remove {
+    right: 5px;
+    height: 30px;
+    width: 20px;
+    top: 0;
+    -o-transition: opacity 150ms linear;
+    transition: opacity 150ms linear;
+    background: url(/images/pics/cross.png) no-repeat 50%;
+    background-size: 11px 11px;
+    color: #656565;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .sal_emp_editor_fixed_row__remove {
+        background-image: url(/images/pics/cross_2x.png);
+        background-size: 14px 14px
+    }
+}
+
+.sal_emp_editor_fixed_row:hover .sal_emp_editor_fixed_row__remove {
+    opacity: 0.5
+}
+
+.sal_emp_editor_fixed_row:hover .sal_emp_editor_fixed_row__remove:hover {
+    opacity: 1
+}
+
+.sal_emp_editor_fixed_row__sum {
+    float: left;
+    width: 100px
+}
+
+.sal_emp_editor_fixed_row__reason {
+    float: left;
+    width: 265px
+}
+
+.sal_emp_editor_fixed_row {
+    margin-bottom: 5px;
+    margin-right: -25px;
+    padding-right: 25px;
+    position: relative
+}
+
+.sal_emp_editor_fixed_row input.text {
+    margin-left: 5px
+}
+
+.sal_emp_editor_fixed_row__who {
+    text-align: right;
+    margin-top: 2px;
+    color: #656565;
+    font-size: 11px
+}
+
+.sal_edit_row .text {
+    width: 100%
+}
+
+.sal_edit_row_title {
+    margin-bottom: 4px
+}
+
+.sal_script {
+    padding: 10px;
+    -o-transition: background-color 200ms linear;
+    transition: background-color 200ms linear
+}
+
+.sal_script:hover {
+    background-color: #e7edf2
+}
+
+.sal_script_time {
+    float: right;
+    color: #939393
+}
+
+.sal_script_title {
+    font-size: 13px
+}
+
+.sal_script_subtitle {
+    margin: 3px 0 0;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #656565;
+    font-size: 11px
+}

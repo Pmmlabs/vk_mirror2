@@ -1,0 +1,274 @@
+#widget_auth_css {
+    display: none
+}
+
+.wauth_content_loading:before,
+.wauth_logo:before {
+    -ms-high-contrast-adjust: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+#page_wrap {
+    background: #fff;
+    min-width: 200px;
+    border-radius: 3px;
+    overflow: hidden
+}
+
+.wauth_content {
+    padding: 10px 9px 9px;
+    border: 1px solid #e1e4eb;
+    border-top: 0;
+    border-radius: 0 0 3px 3px
+}
+
+.wauth_content_loading {
+    position: relative
+}
+
+.wauth_content_loading * {
+    opacity: 0;
+    filter: alpha(opacity=0)
+}
+
+.wauth_content_loading:before {
+    content: '';
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    -webkit-animation-name: round_spinner;
+    -o-animation-name: round_spinner;
+    animation-name: round_spinner;
+    -webkit-animation-duration: 700ms;
+    -o-animation-duration: 700ms;
+    animation-duration: 700ms;
+    -webkit-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+    background-image: url(/images/icons/round_spinner_big.png);
+    position: absolute;
+    top: 50%;
+    bottom: 0;
+    left: 50%;
+    right: 0;
+    margin: -17px;
+    opacity: 1;
+    -webkit-filter: none;
+    filter: none
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wauth_content_loading:before {
+        background-image: url(/images/icons/round_spinner_big_2x.png);
+        background-size: 34px 34px
+    }
+}
+
+.wauth_head {
+    background: #4a76a8;
+    padding-left: 10px;
+    position: relative;
+    height: 40px;
+    line-height: 38px;
+    font-size: 13px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    color: #fff;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.wauth_logo {
+    margin: 6px 6px 0 10px;
+    position: relative;
+    z-index: 1;
+    float: right;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%
+}
+
+.wauth_logo:before {
+    pointer-events: none;
+    content: '';
+    display: block;
+    background: url(/images/icons/comments_widget.png);
+    width: 20px;
+    height: 12px;
+    margin: 8px 4px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wauth_logo:before {
+        background-image: url(/images/icons/comments_widget_2x.png);
+        background-size: 21px 87px
+    }
+}
+
+.wauth_auth {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.wauth_empty,
+.wauth_error {
+    word-wrap: break-word;
+    text-align: center;
+    color: #939393;
+    font-size: 13px;
+    line-height: 16px;
+    padding-bottom: 10px
+}
+
+.wauth_user_block {
+    height: 34px;
+    position: relative;
+    padding-bottom: 10px
+}
+
+.wauth_user_pic,
+.wauth_user_pic img {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%
+}
+
+.wauth_user_pic img {
+    vertical-align: top;
+    -moz-force-broken-image-icon: 0;
+    background-color: #fafbfc
+}
+
+.wauth_user_pic img:before {
+    background-color: #fff
+}
+
+.wauth_user_pic img:before,
+.wauth_user_pic img:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 34px
+}
+
+.wauth_user_pic img:after {
+    border-radius: 50%;
+    background-color: #fafbfc;
+    background-image: url(/images/camera_100.png);
+    background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wauth_user_pic img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}
+
+.wauth_user_info {
+    position: absolute;
+    top: 1px;
+    bottom: 0;
+    left: 43px;
+    right: 0;
+    font-size: 13px;
+    line-height: 16px
+}
+
+.wauth_user_name {
+    color: #42648b
+}
+
+.wauth_user_name a {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.wauth_info_row {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.wauth_info_row.wauth_grey_row,
+.wauth_info_row.wauth_grey_row a,
+.wauth_info_row.wauth_grey_row b {
+    color: #939393
+}
+
+.wauth_friends_list {
+    padding-top: 10px
+}
+
+.wauth_friend {
+    display: inline-block
+}
+
+.wauth_friend,
+.wauth_friend img {
+    width: 50%;
+    height: 50%;
+    border-radius: 50%
+}
+
+.wauth_friend img {
+    vertical-align: top;
+    -moz-force-broken-image-icon: 0;
+    background-color: #fafbfc
+}
+
+.wauth_friend img:before {
+    background-color: #fff
+}
+
+.wauth_friend img:before,
+.wauth_friend img:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 50%
+}
+
+.wauth_friend img:after {
+    border-radius: 50%;
+    background-color: #fafbfc;
+    background-image: url(/images/camera_100.png);
+    background-size: cover
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .wauth_friend img:after {
+        background-image: url(/images/camera_200.png)
+    }
+}

@@ -1,0 +1,914 @@
+#landings_psb_mobile_css {
+    display: none
+}
+
+.landing .landings_psb_tools .background_wrapper,
+.landing .landings_psb_tools_wrapper.file,
+.landing .landings_psb_tools_wrapper.pixel,
+.landings_psb__image--budget,
+.landings_psb__image--click,
+.landings_psb__image--mic,
+.landings_psb__image--money,
+.landings_psb__image--newusers,
+.landings_psb__image--partners,
+.landings_psb__image--psblogo,
+.landings_psb__image--user1,
+.landings_psb__image--user2,
+.landings_psb__image--user3,
+.landings_psb__image--userava1,
+.landings_psb__image--userava2,
+.landings_psb__image--userava3,
+.landings_psb__image--vklogo,
+.landings_psb_advantage__image--cities,
+.landings_psb_advantage__image--demography,
+.landings_psb_advantage__image--interests {
+    -ms-high-contrast-adjust: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0
+}
+
+.common_text,
+.landing .landings_psb_advantage .landings_psb_advantage__title,
+.landing .landings_psb_bonus,
+.landing .landings_psb_retargeting {
+    font-size: 14px;
+    line-height: 1.29;
+    text-align: center;
+    color: #1d1d1e
+}
+
+.landing {
+    min-width: 320px;
+    max-width: 882px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .3);
+    background: #fff;
+    margin: 0 auto;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.29
+}
+
+.landing .landings_divider {
+    width: 80%;
+    margin: 32px 10%;
+    height: 1px;
+    background-color: #c6cedc;
+    clear: both
+}
+
+.landing * {
+    box-sizing: border-box;
+    font-family: inherit;
+    vertical-align: top
+}
+
+.landing .landings_psb_clear {
+    clear: both
+}
+
+.landing .padding_container {
+    padding: 0 16px
+}
+
+.landing .adv_promo_section__title {
+    font-size: 22px;
+    font-weight: 300;
+    text-align: center;
+    color: #2b2f33;
+    margin-bottom: 24px;
+    padding: 0 34px
+}
+
+.landing .landings_psb_logos {
+    padding: 0 0 24px
+}
+
+.landing .landings_psb_logos .landings_psb_logo {
+    box-sizing: content-box;
+    display: inline-block;
+    padding: 0 30px;
+    vertical-align: middle
+}
+
+.landing .landings_psb_activate {
+    font-weight: 400
+}
+
+.landing .reflection_wrapper {
+    position: relative;
+    overflow: hidden;
+    background-color: #f7f8fa
+}
+
+.landing .reflection_wrapper .reflection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1
+}
+
+.landing .reflection_wrapper .reflection img {
+    width: 100%
+}
+
+.landing .reflection_wrapper .landings_frame {
+    position: relative;
+    z-index: 10
+}
+
+.landing .landing_psb_find_clients {
+    padding-top: 34px;
+    padding-bottom: 34px;
+    position: relative
+}
+
+.landing .landings_psb_retargeting {
+    font-family: inherit;
+    color: #7c7f82;
+    margin: 24px auto
+}
+
+.landing .landings_psb_tools_wrapper {
+    background-color: #050504;
+    position: relative;
+    padding-bottom: 59.9773243%;
+    width: 100%;
+    display: block
+}
+
+.landing .landings_psb_tools_wrapper.pixel {
+    background: url(/images/landings/PSB/mob_assets/imge2.jpg)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing .landings_psb_tools_wrapper.pixel {
+        background-image: url(/images/landings/PSB/mob_assets/imge2_2x.jpg);
+        background-size: 882px 529px
+    }
+}
+
+.landing .landings_psb_tools_wrapper.file {
+    background: url(/images/landings/PSB/mob_assets/imge1.jpg)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing .landings_psb_tools_wrapper.file {
+        background-image: url(/images/landings/PSB/mob_assets/imge1_2x.jpg);
+        background-size: 882px 529px
+    }
+}
+
+.landing .landings_psb_tools_wrapper.file,
+.landing .landings_psb_tools_wrapper.pixel {
+    background-position: 50%;
+    background-size: cover
+}
+
+.landing .landings_psb_tools_wrapper .shadow1,
+.landing .landings_psb_tools_wrapper .shadow2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, .5)
+}
+
+.landing .landings_psb_tools_wrapper .landings_psb_text_block {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+    width: 100%;
+    max-width: 500px;
+    margin-left: 50%
+}
+
+.landing .landings_psb_tools_wrapper .landings_psb_text_block .landings_psb_header {
+    position: relative;
+    z-index: 20;
+    font-family: inherit;
+    font-size: 22px;
+    text-align: center;
+    color: #fff;
+    padding-top: 31px;
+    font-weight: 400
+}
+
+.landing .landings_psb_tools_wrapper .landings_psb_text_block .landings_psb_text {
+    position: relative;
+    z-index: 20;
+    font-size: 14px;
+    line-height: 1.29;
+    text-align: center;
+    color: #fff;
+    padding: 14px 9px
+}
+
+.landing .landings_psb_bonus {
+    font-family: inherit;
+    text-align: center;
+    color: #1d1d1e;
+    margin-bottom: 52px
+}
+
+.landing .landins_psb_ads_type {
+    padding-top: 57px
+}
+
+.landing .adv_promo_gallery {
+    height: auto;
+    position: relative
+}
+
+.landing .adv_promo_gallery .adv_promo_gallery__devices {
+    padding: 0 5px;
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 106.451613%
+}
+
+@media (min-width: 595px) {
+    .landing .adv_promo_gallery .adv_promo_gallery__devices {
+        padding: 0;
+        height: 652px
+    }
+}
+
+.landing .adv_promo_gallery .adv_promo_gallery__devices img {
+    max-width: 596px;
+    width: 100%;
+    height: auto
+}
+
+.landing .adv_promo_gallery .adv_promo_gallery__nav_wrapper {
+    height: 45px;
+    overflow: hidden;
+    margin-bottom: 15px
+}
+
+.landing .adv_promo_gallery .adv_promo_gallery__nav {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: 16px;
+    font-weight: 600;
+    height: 60px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap
+}
+
+.landing .adv_promo_gallery .adv_promo_gallery__nav .adv_promo_nav__item {
+    padding: 0 10px;
+    margin: 0;
+    margin-bottom: 15px;
+    display: inline-block;
+    height: 45px
+}
+
+@media (min-width: 420px) {
+    .landing .adv_promo_gallery .adv_promo_gallery__nav .adv_promo_nav__item {
+        min-width: 120px;
+        width: 20%;
+        padding: 0
+    }
+}
+
+.landing .adv_promo_gallery .adv_promo_gallery__nav .adv_promo_nav__item button {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none!important;
+    color: #a5abb4!important;
+    border: 0;
+    background: transparent;
+    outline: none!important;
+    cursor: pointer;
+    padding: 0;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    font-size: 12px;
+    letter-spacing: 0.1px;
+    text-align: center
+}
+
+.landing .adv_promo_gallery .adv_promo_gallery__nav .adv_promo_nav__item.adv_promo_nav__item--active button,
+.landing .adv_promo_gallery .adv_promo_gallery__nav .adv_promo_nav__item:hover button {
+    color: #4a6f97!important
+}
+
+.landing .adv_promo_gallery .adv_promo_gallery__nav .adv_promo_nav__item.adv_promo_nav__item--active button {
+    border-bottom: 1px solid #6386ad
+}
+
+.landing .landings_psb_common_text {
+    padding: 0 14px
+}
+
+.landing .landings_psb_coverage .adv_promo_section__title {
+    padding: 0 15px
+}
+
+.landing .landings_psb_coverage .landings_psb_coverage__amount {
+    font-family: inherit;
+    font-size: 32px;
+    font-weight: 300;
+    text-align: center;
+    color: #93adc8
+}
+
+.landing .landings_psb_coverage .landings_psb_coverage__comment {
+    font-size: 22px;
+    font-weight: 300;
+    text-align: center;
+    color: #93adc8;
+    margin-bottom: 24px
+}
+
+.landing .landings_psb_advantage {
+    width: 100%;
+    display: inline-block;
+    padding: 20px 0
+}
+
+.landing .landings_psb_advantage .landings_psb_advantage__image {
+    text-align: center
+}
+
+.landing .landings_psb_advantage .landings_psb_advantage__image>div {
+    margin: 0 auto
+}
+
+.landing .landings_psb_advantage .landings_psb_advantage__title {
+    font-size: 22px;
+    font-weight: 300;
+    text-align: center;
+    color: #2b2f33;
+    margin: 24px 0 14px
+}
+
+.landing .landings_psb_advantage .landings_psb_advantage__text {
+    font-size: 14px;
+    padding: 0 15px;
+    line-height: 1.29;
+    text-align: center;
+    color: #7c7f82
+}
+
+.landing .landings_psb_questions {
+    background-color: #f7f8fa;
+    position: relative;
+    padding-bottom: 24px;
+    margin-bottom: 60px
+}
+
+.landing .landings_psb_questions,
+body.mac .landing .landings_psb_questions {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
+}
+
+.landing .landings_psb_questions #_landings_psb_questions__questions_list {
+    width: 100%;
+    position: relative
+}
+
+.landing .landings_psb_questions .landings_psb_questions__questions_list {
+    white-space: nowrap;
+    padding-bottom: 24px
+}
+
+.landing .landings_psb_questions .landings_psb_questions__questions_list .landings_psb_question {
+    display: inline-block;
+    height: 100%;
+    padding-top: 34px;
+    white-space: normal
+}
+
+.landing .landings_psb_questions .landings_psb_questions__questions_list .landings_psb_question .landings_psb_common_text {
+    padding: 0 25px
+}
+
+.landing .landings_psb_questions .landings_psb_questions__buttons {
+    margin: 0 auto
+}
+
+.landing .landings_psb_questions .landings_psb_questions__buttons .button {
+    width: 8px;
+    height: 8px;
+    opacity: 0.4;
+    background-color: #6d8eb2;
+    display: inline-block;
+    border-radius: 4px;
+    margin: 8px 4px;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    cursor: pointer
+}
+
+.landing .landings_psb_questions .landings_psb_questions__buttons .button.button--active,
+.landing .landings_psb_questions .landings_psb_questions__buttons .button:hover {
+    opacity: 1
+}
+
+.landing .landings_psb_questions .landings_psb_questions__left_arrow,
+.landing .landings_psb_questions .landings_psb_questions__right_arrow {
+    width: 15px;
+    height: 27px;
+    position: absolute;
+    top: 174px;
+    background-color: #fff;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .25)
+}
+
+.landing .landings_psb_questions .landings_psb_questions__left_arrow {
+    left: 60px
+}
+
+.landing .landings_psb_questions .landings_psb_questions__right_arrow {
+    right: 60px
+}
+
+.landing .landings_psb_success {
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 458px
+}
+
+.landing .landings_psb_success a {
+    text-decoration: none!important
+}
+
+.landing .landings_psb_success .landings_psb_success__gallery {
+    width: 800px;
+    position: absolute;
+    white-space: nowrap;
+    left: 50%;
+    margin-left: -400px;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
+}
+
+@media (min-width: 800px) {
+    .landing .landings_psb_success .landings_psb_success__gallery {
+        margin-left: -400px!important
+    }
+}
+
+.landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story {
+    display: inline-block;
+    white-space: normal;
+    width: 260px;
+    height: 340px;
+    border-radius: 2px;
+    background-color: #fff;
+    box-shadow: 0 1px 32px 0 rgba(0, 0, 0, .08);
+    position: relative;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease
+}
+
+.landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story:hover {
+    box-shadow: 0 1px 32px 0 rgba(0, 0, 0, .16)
+}
+
+.landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story+.landings_psb_success_story {
+    margin-left: 10px
+}
+
+.landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story .landings_psb_success_story__background {
+    width: 260px;
+    height: 120px;
+    border-radius: 2px;
+    background-color: #638a78
+}
+
+.landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story .landings_psb_success_story__avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .3);
+    position: absolute;
+    top: 70px;
+    left: 90px
+}
+
+.landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story .landings_psb_success_story__name {
+    font-size: 22px;
+    font-weight: 300;
+    text-align: center;
+    color: #2b2f33;
+    margin-top: 47px
+}
+
+.landing .landings_psb_success .landings_psb_success__gallery .landings_psb_success_story .landings_psb_success_story__text {
+    font-size: 14px;
+    line-height: 1.29;
+    text-align: center;
+    color: #1d1d1e;
+    padding: 0 11px
+}
+
+.landing .landings_psb_success .landings_psb_success__buttons {
+    margin: 0 auto;
+    margin-top: 24px;
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    margin-left: -27px
+}
+
+@media (min-width: 800px) {
+    .landing .landings_psb_success .landings_psb_success__buttons {
+        display: none
+    }
+}
+
+.landing .landings_psb_success .landings_psb_success__buttons .button {
+    width: 8px;
+    height: 8px;
+    opacity: 0.4;
+    background-color: #6d8eb2;
+    display: inline-block;
+    border-radius: 4px;
+    margin: 8px 4px;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    cursor: pointer
+}
+
+.landing .landings_psb_success .landings_psb_success__buttons .button.button--active,
+.landing .landings_psb_success .landings_psb_success__buttons .button:hover {
+    opacity: 1
+}
+
+.landing .landings_psb_brands {
+    padding-bottom: 18px
+}
+
+.landing .landings_psb_brands .brand {
+    vertical-align: middle;
+    display: inline-block;
+    margin: 18px
+}
+
+.landing .landings_psb_gift {
+    background: #f7f8fa;
+    padding-bottom: 34px
+}
+
+.landing .landings_psb_gift .adv_promo_section__title {
+    margin-bottom: 35px;
+    padding-top: 33px
+}
+
+.landing .landings_psb_gift .landings_psb_gift__comment {
+    color: #7c7f82;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.29;
+    text-align: center
+}
+
+.landing .landings_psb_gift a {
+    margin-top: 34px
+}
+
+.landing .landings_psb_tools {
+    background-position: bottom;
+    background-repeat: no-repeat
+}
+
+.landing .landings_psb_tools .landings_psb_advantage {
+    position: relative;
+    z-index: 200
+}
+
+.landing .landings_psb_tools .background_wrapper {
+    background: url(/images/landings/PSB/mob_assets/image22.jpg);
+    background-size: contain;
+    position: relative;
+    top: -45px;
+    margin-bottom: -45px;
+    z-index: 1;
+    padding-bottom: 42.1768707%;
+    width: 100%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing .landings_psb_tools .background_wrapper {
+        background-image: url(/images/landings/PSB/mob_assets/image22_2x.jpg);
+        background-size: 882px 372px
+    }
+}
+
+.landing .landings_psb_tools .background_wrapper .background_wrapper2 {
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    left: 0;
+    display: block;
+    background: -o-linear-gradient(top, #fff 0%, hsla(0, 0%, 100%, 0) 100%);
+    background: linear-gradient(180deg, #fff 0%, hsla(0, 0%, 100%, 0));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00ffffff', GradientType=0)
+}
+
+.landings_psb__image--vklogo {
+    width: 39px;
+    height: 23px;
+    background: url(/images/landings/PSB/web_assets/vk_logo.png);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landings_psb__image--vklogo {
+        background-image: url(/images/landings/PSB/web_assets/vk_logo_2x.png);
+        background-size: 65px 39px
+    }
+}
+
+.landings_psb__image--psblogo {
+    width: 70px;
+    height: 45px;
+    background: url(/images/landings/PSB/web_assets/PSB_logo.png);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landings_psb__image--psblogo {
+        background-image: url(/images/landings/PSB/web_assets/PSB_logo_2x.png);
+        background-size: 117px 61px
+    }
+}
+
+.landings_psb_advantage__image--cities {
+    height: 78px;
+    width: 78px;
+    background: url(/images/landings/PSB/web_assets/cities.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landings_psb_advantage__image--cities {
+        background-image: url(/images/landings/PSB/web_assets/cities_2x.png);
+        background-size: 78px 78px
+    }
+}
+
+.landings_psb_advantage__image--demography {
+    height: 62px;
+    width: 82px;
+    background: url(/images/landings/PSB/web_assets/demography.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landings_psb_advantage__image--demography {
+        background-image: url(/images/landings/PSB/web_assets/demography_2x.png);
+        background-size: 82px 62px
+    }
+}
+
+.landings_psb_advantage__image--interests {
+    height: 51px;
+    width: 74px;
+    background: url(/images/landings/PSB/web_assets/interests.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landings_psb_advantage__image--interests {
+        background-image: url(/images/landings/PSB/web_assets/interests_2x.png);
+        background-size: 74px 51px
+    }
+}
+
+.landings_psb__image--mic {
+    height: 82px;
+    width: 82px;
+    background: url(/images/landings/PSB/web_assets/mic.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landings_psb__image--mic {
+        background-image: url(/images/landings/PSB/web_assets/mic_2x.png);
+        background-size: 82px 82px
+    }
+}
+
+.landings_psb__image--newusers {
+    height: 82px;
+    width: 82px;
+    background: url(/images/landings/PSB/web_assets/newusers.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landings_psb__image--newusers {
+        background-image: url(/images/landings/PSB/web_assets/newusers_2x.png);
+        background-size: 82px 82px
+    }
+}
+
+.landings_psb__image--click {
+    height: 82px;
+    width: 82px;
+    background: url(/images/landings/PSB/web_assets/click.png);
+    background-position: 50%;
+    background-repeat: no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landings_psb__image--click {
+        background-image: url(/images/landings/PSB/web_assets/click_2x.png);
+        background-size: 82px 82px
+    }
+}
+
+.landings_psb__image--money {
+    height: 82px;
+    width: 82px;
+    background: url(/images/landings/PSB/web_assets/money.png);
+    background-position: 50%;
+    background-repeat: no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landings_psb__image--money {
+        background-image: url(/images/landings/PSB/web_assets/money_2x.png);
+        background-size: 82px 82px
+    }
+}
+
+.landings_psb__image--partners {
+    width: 82px;
+    height: 82px;
+    background: url(/images/landings/PSB/web_assets/partners.png);
+    background-position: 50%;
+    background-repeat: no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landings_psb__image--partners {
+        background-image: url(/images/landings/PSB/web_assets/partners_2x.png);
+        background-size: 82px 82px
+    }
+}
+
+.landings_psb__image--budget {
+    width: 82px;
+    height: 82px;
+    background: url(/images/landings/PSB/web_assets/budget.png);
+    background-position: 50%;
+    background-repeat: no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landings_psb__image--budget {
+        background-image: url(/images/landings/PSB/web_assets/budget_2x.png);
+        background-size: 82px 82px
+    }
+}
+
+.landings_psb__image--user1 {
+    height: 162px;
+    width: 386px;
+    background: url(/images/landings/PSB/mob_assets/bg_user1.jpg)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landings_psb__image--user1 {
+        background-image: url(/images/landings/PSB/mob_assets/bg_user1_2x.jpg);
+        background-size: 261px 120px
+    }
+}
+
+.landings_psb__image--user2 {
+    height: 162px;
+    width: 386px;
+    background: url(/images/landings/PSB/mob_assets/bg_user2.jpg)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landings_psb__image--user2 {
+        background-image: url(/images/landings/PSB/mob_assets/bg_user2_2x.jpg);
+        background-size: 261px 120px
+    }
+}
+
+.landings_psb__image--user3 {
+    height: 162px;
+    width: 386px;
+    background: url(/images/landings/PSB/mob_assets/bg_user3.jpg)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landings_psb__image--user3 {
+        background-image: url(/images/landings/PSB/mob_assets/bg_user3_2x.jpg);
+        background-size: 261px 120px
+    }
+}
+
+.landings_psb__image--userava1 {
+    height: 84px;
+    width: 84px;
+    background: url(/images/landings/PSB/mob_assets/user1.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landings_psb__image--userava1 {
+        background-image: url(/images/landings/PSB/mob_assets/user1_2x.png);
+        background-size: 84px 84px
+    }
+}
+
+.landings_psb__image--userava2 {
+    height: 84px;
+    width: 84px;
+    background: url(/images/landings/PSB/mob_assets/user2.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landings_psb__image--userava2 {
+        background-image: url(/images/landings/PSB/mob_assets/user2_2x.png);
+        background-size: 84px 84px
+    }
+}
+
+.landings_psb__image--userava3 {
+    height: 84px;
+    width: 84px;
+    background: url(/images/landings/PSB/mob_assets/user3.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landings_psb__image--userava3 {
+        background-image: url(/images/landings/PSB/mob_assets/user3_2x.png);
+        background-size: 84px 84px
+    }
+}

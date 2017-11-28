@@ -1,0 +1,168 @@
+.oauth_sdk_winmobile,
+.oauth_sdk_winmobile .mcont {
+    font-size: 14px;
+    font-family: Segoe WP, Segoe UI, Sans-Serif, Verdana, Tahoma, Lucida Sans;
+    -webkit-user-select: none;
+    background-color: #fff
+}
+
+.oauth_sdk_header_wrap {
+    padding: 16px;
+    background-color: #f2f3f5
+}
+
+.oauth_sdk_header {
+    color: #8b8f94;
+    position: relative
+}
+
+.oauth_sdk_header .member {
+    color: #384554
+}
+
+.oauth_sdk_header:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0
+}
+
+.oauth_sdk_app_img {
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin: 4px 12px 0 0
+}
+
+.oauth_sdk_user_img {
+    float: right;
+    width: 50px;
+    height: 50px;
+    margin: 4px 0 0 12px
+}
+
+.oauth_sdk_app_body {
+    margin: 0 62px;
+    min-height: 54px;
+    word-wrap: break-word;
+    line-height: 1.5em
+}
+
+.oauth_sdk_app_title {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-top: 3px;
+    color: #384554
+}
+
+.oauth_sdk_body {
+    padding: 12px 16px 16px
+}
+
+.oauth_sdk_access_wrap {
+    font-size: 1em
+}
+
+.oauth_access_header,
+.oauth_access_items {
+    width: 50%;
+    vertical-align: top;
+    line-height: 1.5em
+}
+
+.oauth_access_header {
+    font-weight: 400;
+    text-align: right;
+    padding-right: 7px;
+    color: #4d4d4d
+}
+
+.oauth_access_items {
+    vertical-align: top;
+    padding: 0 0 0 7px;
+    color: #8c8c8c
+}
+
+.oauth_sdk_buttons {
+    padding: 16px 0 0
+}
+
+.oauth_sdk_buttons .row_table {
+    direction: rtl
+}
+
+.oauth_sdk_allow_btn,
+.oauth_sdk_cancel_btn {
+    text-transform: lowercase;
+    font-weight: 400;
+    padding: 4px 10px 8px;
+    text-align: center;
+    display: block;
+    border: 2px solid #5181b8;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+.oauth_sdk_allow_btn {
+    margin-right: 7px;
+    background-color: #5181b8;
+    color: #fff
+}
+
+._hover .oauth_sdk_allow_btn:hover,
+._touch .oauth_sdk_allow_btn.hover {
+    text-decoration: none
+}
+
+.oauth_sdk_cancel_btn {
+    margin-left: 7px;
+    background-color: #fff;
+    color: #5181b8
+}
+
+._hover .oauth_sdk_cancel_btn:hover,
+._touch .oauth_sdk_cancel_btn.hover {
+    text-decoration: none
+}
+
+.oauth_sdk_requests .oauth_sdk_header_wrap {
+    padding: 18px 16px
+}
+
+.oauth_sdk_requests .oauth_sdk_body {
+    padding-top: 18px
+}
+
+.oauth_sdk_requests .oauth_sdk_user_img {
+    float: left;
+    margin: 4px 12px 0 0
+}
+
+.oauth_sdk_requests .oauth_sdk_app_img {
+    float: right;
+    margin: 4px 0 0 12px
+}
+
+.oauth_requests_body {
+    margin: 0 62px;
+    min-height: 54px;
+    overflow: hidden
+}
+
+.oauth_requests_title {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #384554
+}
+
+.oauth_requests_text {
+    color: #8b8f94
+}
+
+.oauth_sdk_requests .oauth_sdk_buttons {
+    padding: 16px 0 0
+}

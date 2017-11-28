@@ -1,0 +1,520 @@
+#content {
+    padding: 0px
+}
+
+.tBar {
+    padding-top: 15px
+}
+
+.lang_table {
+    border-collapse: collapse;
+    padding: 0px;
+    width: 100%
+}
+
+.lang_table_hidden {
+    display: none
+}
+
+.trans_area {
+    width: 340px;
+    background-color: #ecf0f3
+}
+
+.trans_label {
+    height: 20px;
+    width: 100px;
+    padding-top: 4px;
+    vertical-align: top;
+    color: gray
+}
+
+.trans_divide {
+    height: 1px;
+    background-color: #dae1e8;
+    margin: 10px 0px;
+    overflow: hidden
+}
+
+.blue_button_shadow {
+    border-bottom: 1px solid #d1d1d1
+}
+
+.blue_button {
+    border: 1px solid #3b6798
+}
+
+.blue_button_body,
+.blue_button_body_over {
+    border: 1px solid #5c82ab;
+    border-top: 1px solid #7e9cbc;
+    background-color: #6d8fb3;
+    _width: 120px;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer
+}
+
+.blue_button_body_over {
+    border: 1px solid #7293b7;
+    border-top: 1px solid #92acc7;
+    background-color: #84a1bf
+}
+
+.s_row {
+    margin: 0px
+}
+
+.s_pad,
+.s_pad_over {
+    border: 1px solid #f7f7f7;
+    background-color: #f7f7f7;
+    cursor: pointer;
+    padding: 4px 5px 4px 10px
+}
+
+.s_pad_over {
+    background-color: #dae1e8;
+    border: 1px solid #dae1e8
+}
+
+.s_pad_sel {
+    background-color: #6d8fb3;
+    border: 1px solid #3b6798;
+    color: #fff;
+    padding: 4px 5px 4px 10px;
+    cursor: pointer
+}
+
+.s_sep {
+    border-bottom: 1px solid #dae2e8;
+    height: 1px;
+    margin: 5px 0;
+    overflow: hidden
+}
+
+#langRows {
+    padding: 10px;
+    vertical-align: top
+}
+
+#langRows .listing {
+    padding-left: 20px;
+    margin: 0px 0px 4px;
+    line-height: 190%
+}
+
+.summaryBar {
+    border-bottom: 1px solid #dae2e8;
+    clear: both;
+    padding: 11px 10px 0;
+    font-weight: 400;
+    line-height: normal
+}
+
+.summaryBar .summary {
+    color: #45688e;
+    float: left;
+    font-weight: 700;
+    padding-top: 3px;
+    padding-bottom: 4px
+}
+
+#progressBottom,
+#progressTop {
+    display: none;
+    float: right;
+    margin: 3px 3px 0 0
+}
+
+.buttons {
+    height: 23px;
+    text-align: left
+}
+
+.buttons img {
+    left: 10px;
+    top: 8px
+}
+
+.buttons img,
+#addProgress {
+    position: relative;
+    display: none
+}
+
+#addProgress {
+    float: right;
+    top: 9px
+}
+
+.userRow {
+    padding: 0px 0px 10px
+}
+
+.userRow .content {
+    padding: 5px;
+    border: 1px solid #dae2e8;
+    background-color: #fff
+}
+
+.userRow .photo {
+    overflow: hidden;
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin: 0px 10px 5px 0px;
+    border: 1px solid #dae2e8
+}
+
+.userRow .info {
+    margin: 5px 5px 5px 0px
+}
+
+.userRow .name {
+    float: left;
+    position: relative;
+    top: 4px;
+    z-index: 1
+}
+
+.userRow .name a em {
+    background-color: #dae2e8;
+    font-weight: 700;
+    font-style: normal;
+    color: #000
+}
+
+.userRow .dellink {
+    float: right;
+    text-align: right
+}
+
+.userRow .lang {
+    margin-bottom: 10px
+}
+
+.userRow .name_status {
+    height: 30px
+}
+
+#editTranslators {
+    padding: 0px 10px 10px;
+    background-color: #f7f7f7
+}
+
+#editTranslatorsAdd {
+    padding: 10px 0px
+}
+
+#editTranslatorsAdd .box_panel {
+    background-color: #edeff1;
+    padding: 2px;
+    margin: 20px 50px
+}
+
+#editTranslatorsAdd .box_panel_editor {
+    background-color: #fff;
+    border: 1px solid #adbbca
+}
+
+#editTranslatorsAdd .box_panel_border {
+    border: 10px solid #dae2e8;
+    padding: 20px;
+    text-align: center
+}
+
+#editTranslatorsAdd input {
+    width: 150px
+}
+
+#editTranslatorsAdd table.add {
+    margin: 15px 0px 0px 80px
+}
+
+#editTranslatorsAdd ul.nNav {
+    margin-left: 150px
+}
+
+#editTranslatorsAdd tr.add {
+    vertical-align: middle;
+    height: 30px
+}
+
+#editTranslatorsAdd td.label {
+    text-align: right;
+    font-weight: 700
+}
+
+#editTranslatorsAdd td.labelField {
+    padding-left: 10px
+}
+
+#editTranslatorsAdd .buttons {
+    margin-top: 10px
+}
+
+#editTranslators h4 {
+    margin: 0px;
+    display: inline;
+    padding-bottom: 2px;
+    font-size: 12px;
+    font-weight: 700;
+    border-bottom: 1px solid #b9c4da
+}
+
+#quick_find {
+    width: 200px;
+    float: right;
+    position: relative;
+    top: -3px
+}
+
+.langRowLabel {
+    width: 150px;
+    color: gray
+}
+
+#translationForm blockquote {
+    padding: 10px;
+    border-left: 9px solid #c9d8df;
+    border-bottom: 2px solid #ebeff2;
+    background-color: #f5f7f8;
+    line-height: 150%;
+    margin-top: 0
+}
+
+#noResults {
+    padding: 60px 0px;
+    text-align: center;
+    color: #777;
+    font-size: 13px;
+    line-height: 150%
+}
+
+.rows_wrap {
+    border: 1px solid #dae2e8;
+    background: #fff;
+    padding: 8px 5px 5px
+}
+
+.notice {
+    background-color: #fcfcfc;
+    border: 1px solid #d0dbe5;
+    line-height: 150%;
+    padding: 8px 11px;
+    margin-bottom: 8px
+}
+
+.wikiHeader,
+.wikiSubHeader {
+    color: #45688e;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #dae1e8
+}
+
+.wikiSubHeader {
+    font-size: 11px;
+    border-bottom: 0px
+}
+
+.wikiSubSubHeader {
+    color: #45688e;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 5px
+}
+
+.dellink .lang {
+    height: 22px
+}
+
+.langList {
+    float: right
+}
+
+.language_row {
+    background-color: #fff;
+    border: 1px solid #dae2e8;
+    padding: 10px;
+    margin: 0px 10px 10px
+}
+
+.language_row.version0 {
+    color: #777
+}
+
+#en_translation_cut {
+    padding: 10px 0 0;
+    display: none
+}
+
+.wide_toggle {
+    cursor: pointer;
+    color: #6a7989;
+    background: #e9edf1;
+    padding: 9px 0px 8px;
+    text-align: center;
+    font-size: 11px;
+    margin-top: 5px
+}
+
+.toggle_link {
+    color: #7285a4;
+    font-weight: 700;
+    cursor: pointer
+}
+
+.toggle_link:hover {
+    color: #45688e
+}
+
+.key_info {
+    line-height: 160%;
+    margin: 7px 0 15px
+}
+
+.info_key {
+    color: #999
+}
+
+#historyWrap {
+    margin-top: 10px
+}
+
+.flat_button {
+    padding: 6px 8px 5px;
+    cursor: pointer;
+    color: #2b587a;
+    display: inline-block
+}
+
+.flat_button:hover {
+    background: #e1e7ed
+}
+
+.action_controls_wrap {
+    background-color: #f1f1f1;
+    display: none;
+    padding: 10px;
+    margin-top: 7px
+}
+
+.action_input_wrap {
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: top
+}
+
+.action_input_wrap input {
+    margin: 0;
+    height: 14px
+}
+
+.action_button {
+    margin-left: 8px
+}
+
+input.clone_key_name,
+input.move_key_name {
+    width: 160px
+}
+
+#action_clone_prefix,
+#action_move_prefix {
+    display: inline-block;
+    line-height: 20px;
+    color: #888;
+    margin-left: 3px;
+    vertical-align: top;
+    margin-top: 2px
+}
+
+.key_action_button_wrap {
+    display: inline-block;
+    margin-top: -1px
+}
+
+img#actionProgressSpinned {
+    margin-top: 8px;
+    margin-left: 10px
+}
+
+.batch_edit_controls {
+    padding: 20px
+}
+
+.batch_edit_controls input {
+    width: 200px
+}
+
+.batch_edit_controls_pattern {
+    padding: 10px;
+    background-color: #f3f3f3;
+    margin-top: 10px
+}
+
+.batch_edit_controls .label {
+    margin: 0px 5px
+}
+
+.batch_edit_results {
+    padding: 0px 43px 30px 30px;
+    line-height: 140%
+}
+
+.batch_edit_results .batch_edit_item {
+    padding: 5px 8px;
+    width: 100%;
+    min-height: 13px;
+    position: relative
+}
+
+.batch_edit_results .batch_edit_item_lang {
+    color: #999;
+    margin-left: 10px;
+    top: 0;
+    right: 0;
+    position: absolute
+}
+
+.batch_edit_results .batch_edit_item_value {
+    display: inline-block;
+    width: 700px
+}
+
+.batch_edit_results .batch_edit_item_value .hl {
+    background-color: #f8e23a
+}
+
+.batch_edit_item_value_mc {
+    color: #999;
+    font-size: 9px
+}
+
+.batch_edit_item_result {
+    color: #707070;
+    display: block;
+    background-color: #f5f5f5;
+    padding: 4px 6px;
+    margin-left: -6px;
+    margin-top: 2px;
+    width: 700px;
+    border-left: 1px solid #ccc
+}
+
+#batch_edit_save_button {
+    margin-left: 20px
+}
+
+.batch_edit_controls .hint {
+    color: #777;
+    padding: 0px 0px 13px 3px
+}
+
+#batch_edit_save_button_spinner {
+    margin-left: 30px
+}

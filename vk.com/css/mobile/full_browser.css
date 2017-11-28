@@ -1,0 +1,138 @@
+.button,
+.small_button,
+body,
+input,
+select,
+textarea {
+    font-size: 12px
+}
+
+.fi_fat .option_label,
+.fi_fat .textfield,
+.fi_value,
+.field_inline .email_post,
+.field_prefix,
+.hp_header,
+.join_button,
+.mh_header,
+.op_header,
+.payments_phone_number,
+.wiki_content .wiki_title,
+.zpv_values {
+    font-size: 1.17em
+}
+
+.app_name_label,
+.away_page .away_bottom_date,
+.away_page .away_bottom_source,
+.away_page .wiki_content,
+.away_page .wiki_cut,
+.body_fullscreen .away_page,
+.fi_header,
+.lfm_item,
+.mhb_notify,
+.mi_gift .mi_text,
+.mm_label,
+.profile_menu,
+.zpv_close_msg {
+    font-size: 1.08em
+}
+
+.app_inline_item .app_name_label,
+.away_bottom .item_like,
+.away_bottom .item_repost,
+.body_fullscreen .away_page .away_bottom_date,
+.body_fullscreen .away_page .away_bottom_source,
+.bottom_panel,
+.button,
+.cp_attached_wrap .msh_desc,
+.email_post_change,
+.fi_fat .fi_subrow .option_label,
+.fi_header_light,
+.head_panel,
+.near_btn,
+.new_item_link,
+.owner_panel,
+.slim_header,
+.small_button,
+.small_near_btn,
+.sub_header,
+.text_panel,
+.zpv_close_btn {
+    font-size: 1em
+}
+
+#zhead,
+.ai_dur,
+.album_cnt,
+.app_genre,
+.app_label,
+.app_new,
+.away_page .wk_audio,
+.checkins_cnt,
+.di_chat_user,
+.di_date,
+.di_fld,
+.di_title,
+.edit_partner_tip,
+.fi_field_sample,
+.fi_sample_row,
+.footer_tip,
+.fp_filter,
+.fp_filter_reset,
+.fp_label,
+.free_terms_box,
+.login_help,
+.medias_audio_dur,
+.medias_poll_type,
+.medias_private_album,
+.medias_thumb .media_action,
+.mi_date,
+.mi_edited,
+.mi_failed .explain,
+.mi_medias_plain,
+.msh_desc,
+.mt_label,
+.payments_help,
+.payments_phone_desc,
+.pi_actions,
+.pi_info,
+.pi_links,
+.pi_text_more,
+.pic_desc,
+.poll_option_line,
+.poll_option_line_pro,
+.poll_option_line_val,
+.poll_option_val,
+.pp_info,
+.pp_last_activity,
+.pp_no_status,
+.pp_status,
+.prv_value,
+.sel_desc,
+.selected_names,
+.si_date,
+.si_links,
+.si_slabel,
+.slim_header_cnt,
+.sp_str,
+.tab_counter,
+.thumb_map_wide .mt_label,
+.ti_count,
+.ti_info,
+.topbar_item,
+.vv_not_support,
+.zpv_tag_label,
+.zpv_tl {
+    font-size: .92em
+}
+
+.body_fullscreen .wiki_content .wk_audio {
+    font-size: .87em
+}
+
+.mt_count,
+.mt_dur,
+.thumb_label {
+    font-size: .75em
+}

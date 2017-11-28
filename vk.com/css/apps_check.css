@@ -1,0 +1,169 @@
+div.return_check {
+    margin-top: -5px;
+    margin-left: 83px
+}
+
+div.return_check,
+div.brand_app {
+    background-color: #fff;
+    border: 1px solid;
+    border-left: 0px;
+    border-color: #cad1d9 #dae1e8 #dae1e8;
+    padding: 0px 3px;
+    position: absolute;
+    display: none
+}
+
+div.brand_app {
+    margin-left: 90px
+}
+
+.checkbox_container table {
+    margin: 2px 0px 3px
+}
+
+.checkbox_container {
+    color: #000
+}
+
+.span_link {
+    color: #2b587a;
+    cursor: pointer
+}
+
+#appRows #nav li a {
+    padding: 4px 3px 4px 6px;
+    border-bottom: 1px solid #fff
+}
+
+#appRows #nav li.liOver a {
+    background: #dae1e8;
+    color: #36638e;
+    border-top: 1px solid #cad1d9;
+    text-decoration: none
+}
+
+#appRows #nav li.liOver a,
+#appRows #nav li a:hover {
+    border-bottom: 1px solid #dae1e8
+}
+
+#appRows #nav li a:hover div.brand_app,
+#appRows #nav li a:hover div.return_check {
+    display: block
+}
+
+#appRows #nav li div.rules,
+#appRows #nav li div.rules_off,
+#appRows #nav li div.rules_on {
+    color: #2b587a;
+    background-color: #fff;
+    border: solid 1px;
+    border-color: #fff;
+    cursor: pointer;
+    margin: 0px;
+    padding: 0px
+}
+
+#appRows #nav li div.rules_off div,
+#appRows #nav li div.rules_on div {
+    padding: 3px 1px 3px 4px;
+    border: 1px solid #fff
+}
+
+#appRows #nav li div.rules_on div {
+    border-color: #dae1e8
+}
+
+#appRows #nav li div.rules_on {
+    border-color: #cad1d9 #dae1e8 #dae1e8
+}
+
+#appRows #nav li div.rules_on div {
+    background: #dae1e8 url(images/flydead.gif) no-repeat scroll right 4px
+}
+
+#appRows #nav li div.rules {
+    border: 1px solid #3b6798;
+    padding: 0px;
+    position: relative;
+    z-index: 10
+}
+
+#appRows #nav li div.rules div {
+    padding: 3px 1px 3px 4px;
+    background: #6d8fb3 url(images/flydead.gif) no-repeat scroll right -14px;
+    border: 1px solid;
+    border-color: #7e9cbc #5c82ab #5c82ab;
+    color: #fff
+}
+
+.appRow {
+    width: 795px
+}
+
+#rules_box {
+    position: absolute;
+    display: none;
+    border: 1px solid #96aabe;
+    width: 178px;
+    background-color: #fff
+}
+
+#rules_box a {
+    display: block;
+    border: 0px;
+    padding: 3px 3px 3px 10px
+}
+
+#rules_box a:hover {
+    background-color: #eef2f6;
+    border: 0px;
+    text-decoration: none
+}
+
+#rules_box a.checked {
+    background: #fff url(images/dropdead_check.gif) no-repeat scroll 4px 2px
+}
+
+#rules_box a.checked:hover {
+    background-color: #eef2f6
+}
+
+table.infotable td.label {
+    padding: 2px
+}
+
+div.block,
+div.decline,
+div.request,
+div.trust,
+div.verify {
+    margin-top: 5px;
+    padding: 10px
+}
+
+div.block {
+    border: 1px solid #e4d4ca;
+    background-color: #f5e9e2
+}
+
+div.decline {
+    border: 1px solid #e8e0c3;
+    background-color: #faf3d8
+}
+
+div.request {
+    border: 1px solid #e0e0e0;
+    background-color: #fcfcfc
+}
+
+div.verify {
+    border: 1px solid #cdd1e1;
+    background-color: #e4e7f2
+}
+
+div.trust {
+    border: 1px solid #cfdebf;
+    background-color: #e8f2dc
+}

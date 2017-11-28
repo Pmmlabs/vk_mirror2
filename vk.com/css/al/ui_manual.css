@@ -1,0 +1,100 @@
+#ui_manual_css {
+    display: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+.ui_manual_block {
+    padding: 15px 20px
+}
+
+.ui_manual_block h2:first-child {
+    margin-top: 0
+}
+
+.ui_manual_block p {
+    text-indent: 25px;
+    text-align: justify
+}
+
+.ui_manual_block p.ui_manual_code {
+    text-indent: 0;
+    padding: 10px;
+    background: #edeef0;
+    border-radius: 1px;
+    font-family: Courier New, monospace;
+    white-space: pre-wrap;
+    word-break: break-word
+}
+
+.ui_manual_uiscroll_example {
+    border: 1px solid #edeef0;
+    max-height: 150px
+}
+
+.ui_manual_uiscroll_example .ui_scroll_content [contenteditable=true] {
+    padding: 7px 12px 9px;
+    border: 0;
+    margin: 0
+}
+
+.ui_manual_uiscroll_example:first-letter {
+    text-transform: uppercase
+}
+
+.ui_manual_uiscroll_example_table {
+    display: table;
+    width: 100%
+}
+
+.ui_manual_uiscroll_example_row {
+    display: table-row
+}
+
+.ui_manual_uiscroll_example_buttons,
+.ui_manual_uiscroll_example_content {
+    vertical-align: top;
+    display: table-cell
+}
+
+.ui_manual_uiscroll_example_buttons {
+    width: 1%;
+    padding-left: 20px
+}
+
+.ui_manual_uiscroll_example_buttons button {
+    width: 100%;
+    margin-top: 10px
+}
+
+.ui_manual_uiscroll_example_buttons button:first-child {
+    margin-top: 0
+}
+
+.ui_manual_uiscroll_example_buttons:empty {
+    display: none
+}
+
+.ui_scroll_default_theme.ui_scroll_big_shadows_theme .ui_scroll_shadow_bottom,
+.ui_scroll_default_theme.ui_scroll_big_shadows_theme .ui_scroll_shadow_top {
+    box-shadow: 0 2px 10px 1px #000
+}
+
+.ui_manual_rich_dd_demo {
+    min-height: 300px
+}
+
+.ui_manual_rich_dd_demo_result {
+    margin-top: 15px;
+    line-height: 20px;
+    font-size: 14px
+}

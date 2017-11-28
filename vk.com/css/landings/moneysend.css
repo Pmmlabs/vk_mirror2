@@ -1,0 +1,579 @@
+#landings_moneysend_css {
+    display: none
+}
+
+.landing_moneysend_box_image,
+.landing_moneysend_desktop_image,
+.landing_moneysend_en .landing_moneysend_box_image,
+.landing_moneysend_en .landing_moneysend_desktop_image,
+.landing_moneysend_en .landing_moneysend_iphone_image,
+.landing_moneysend_iphone_image,
+.landing_moneysend_mastercard-fee .landing_moneysend_mastercard_icon,
+.landing_moneysend_mastercard_club_href,
+.landing_moneysend_when_icon,
+.landing_page_mastercard_title {
+    -ms-high-contrast-adjust: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+.moneysend-text-font {
+    font-size: 16px;
+    line-height: 22px;
+    font-family: Roboto, sans-serif;
+    color: #656565
+}
+
+.landing_moneysend {
+    color: #656565
+}
+
+.landing_moneysend .landing_section:first-child {
+    padding-top: 59px
+}
+
+.landing_moneysend .landing_page_title {
+    margin: 0;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 43px;
+    color: #000
+}
+
+.landing_moneysend .landing_page_title,
+.landing_moneysend .landing_page_text {
+    font-family: Roboto, sans-serif;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.landing_moneysend .landing_page_text {
+    margin: 21px auto 36px;
+    padding: 0;
+    font-size: 16px;
+    line-height: 22px;
+    color: #656565;
+    font-weight: 400;
+    text-align: center;
+    width: 660px
+}
+
+.landing_moneysend .landing_page_list {
+    text-align: left;
+    padding: 0;
+    padding-left: 23px;
+    max-width: 440px;
+    margin: 0 auto 24px
+}
+
+.landing_moneysend .landing_page_list li {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 8px
+}
+
+.landing_moneysend_desktop_image {
+    margin: 0 auto 52px;
+    background: url(/images/landings/moneysend_desktop.png?5) no-repeat 0 0;
+    width: 630px;
+    height: 580px;
+    position: relative
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_moneysend_desktop_image {
+        background-image: url(/images/landings/moneysend_desktop_2x.png?5);
+        background-size: 630px 580px
+    }
+}
+
+.landing_moneysend_iphone_image {
+    position: absolute;
+    right: -25px;
+    top: 150px;
+    background: url(/images/landings/moneysend_android.png) no-repeat 0 0;
+    width: 200px;
+    height: 413px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_moneysend_iphone_image {
+        background-image: url(/images/landings/moneysend_android_2x.png);
+        background-size: 200px 413px
+    }
+}
+
+.landing_moneysend_box_image {
+    margin: 0 auto 52px;
+    background: url(/images/landings/moneysend_box.png?4) no-repeat 0 0;
+    width: 530px;
+    height: 476px;
+    background-position: 50%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_moneysend_box_image {
+        background-image: url(/images/landings/moneysend_box_2x.png?4);
+        background-size: 530px 476px
+    }
+}
+
+.landing_moneysend_en .landing_moneysend_desktop_image {
+    background-image: url(/images/landings/moneysend_desktop_en.png?2)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_moneysend_en .landing_moneysend_desktop_image {
+        background-image: url(/images/landings/moneysend_desktop_en_2x.png?2);
+        background-size: 630px 580px
+    }
+}
+
+.landing_moneysend_en .landing_moneysend_iphone_image {
+    background-image: url(/images/landings/moneysend_android_en.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_moneysend_en .landing_moneysend_iphone_image {
+        background-image: url(/images/landings/moneysend_android_en_2x.png);
+        background-size: 200px 413px
+    }
+}
+
+.landing_moneysend_en .landing_moneysend_box_image {
+    background-image: url(/images/landings/moneysend_box_en.png?1)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_moneysend_en .landing_moneysend_box_image {
+        background-image: url(/images/landings/moneysend_box_en_2x.png?1);
+        background-size: 530px 476px
+    }
+}
+
+.landing_moneysend_when_wrap {
+    margin: 0 auto 65px;
+    width: 668px
+}
+
+.landing_moneysend_when {
+    display: inline-block;
+    margin: 55px 90px 0 0;
+    width: 160px
+}
+
+.landing_moneysend_when:nth-child(3n) {
+    margin-right: 0
+}
+
+.landing_moneysend_mastercard_block,
+.landing_moneysend_when {
+    text-align: center;
+    vertical-align: top;
+    font-size: 16px;
+    line-height: 22px;
+    font-family: Roboto, sans-serif;
+    color: #656565
+}
+
+.landing_moneysend_when_icon {
+    display: inline-block;
+    width: 126px;
+    height: 126px;
+    border-radius: 50%;
+    margin-bottom: 24px;
+    background: url(/images/landings/moneysend_pics.png?1) no-repeat 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_moneysend_when_icon {
+        background-image: url(/images/landings/moneysend_pics_2x.png?1);
+        background-size: 128px 768px
+    }
+}
+
+.landing_moneysend_when-bill .landing_moneysend_when_icon {
+    background-color: #feaa2a;
+    background-position: -1px 0
+}
+
+.landing_moneysend_when-gift .landing_moneysend_when_icon {
+    background-color: #f25730;
+    background-position: 0 -130px
+}
+
+.landing_moneysend_when-help .landing_moneysend_when_icon {
+    background-color: #b55dc7;
+    background-position: 0 -258px
+}
+
+.landing_moneysend_when-rent .landing_moneysend_when_icon {
+    background-color: #57ad5c;
+    background-position: 0 -387px
+}
+
+.landing_moneysend_when-homeland .landing_moneysend_when_icon {
+    background-color: #45a0e6;
+    background-position: 0 -513px
+}
+
+.landing_moneysend_when-market .landing_moneysend_when_icon {
+    background-color: #6464d1;
+    background-position: 0 -640px
+}
+
+.landing_page_mastercard_title {
+    padding-top: 74px;
+    background: url(/images/landings/moneysend_mc_logo.png?1) no-repeat 50% 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_page_mastercard_title {
+        background-image: url(/images/landings/moneysend_mc_logo_2x.png?1);
+        background-size: 82px 50px
+    }
+}
+
+.landing_moneysend_mastercard_block_wrap {
+    margin: 0 auto 56px;
+    width: 684px
+}
+
+.landing_moneysend_mastercard_block {
+    display: inline-block;
+    margin: 55px 40px 0 0;
+    width: 320px
+}
+
+.landing_moneysend_mastercard_block:nth-child(2n) {
+    margin-right: 0
+}
+
+.landing_moneysend_mastercard_icon {
+    display: inline-block;
+    margin-bottom: 24px
+}
+
+.landing_moneysend_mastercard-fee .landing_moneysend_mastercard_icon {
+    background: url(/images/landings/moneysend_mc_fee.png) no-repeat 0 0;
+    width: 160px;
+    height: 160px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_moneysend_mastercard-fee .landing_moneysend_mastercard_icon {
+        background-image: url(/images/landings/moneysend_mc_fee_2x.png);
+        background-size: 160px 160px
+    }
+}
+
+.landing_moneysend_mastercard-stickers .landing_moneysend_mastercard_icon {
+    background: url(/images/gift/-104/256.jpg) no-repeat 0 0;
+    width: 160px;
+    height: 160px;
+    background-size: 160px 160px
+}
+
+.landing_moneysend_mastercard_club_link {
+    text-align: center;
+    margin-bottom: 48px;
+    font-size: 16px;
+    line-height: 22px;
+    font-family: Roboto, sans-serif;
+    color: #656565
+}
+
+.landing_moneysend_mastercard_club_href {
+    background: url(/images/landings/moneysend_mc_arrow.png) no-repeat 100% 50%;
+    padding-right: 16px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_moneysend_mastercard_club_href {
+        background-image: url(/images/landings/moneysend_mc_arrow_2x.png);
+        background-size: 8px 14px
+    }
+}
+
+.landing_moneysend_mastercard_club_logo {
+    margin-right: 12px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    vertical-align: middle;
+    position: relative;
+    top: -2px
+}
+
+.is_2x .landing_moneysend_mastercard-stickers .landing_moneysend_mastercard_icon {
+    background-image: url(/images/gift/-104/512.jpg)
+}
+
+@media screen and (max-width: 800px) {
+    .landing_moneysend {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 30px 20px
+    }
+    .landing_moneysend .landing_section {
+        padding-top: 0!important;
+        border: 0!important;
+        background: #fff!important
+    }
+    .landing_moneysend .landing_page_title {
+        font-size: 28px;
+        line-height: 39px
+    }
+    .landing_moneysend .landing_page_text {
+        width: auto;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 23px
+    }
+    .landing_moneysend .landing_moneysend_desktop_image {
+        background: none;
+        text-align: center;
+        width: auto;
+        height: auto
+    }
+    .landing_moneysend .landing_moneysend_iphone_image {
+        background-size: 100%!important;
+        position: relative;
+        right: 0;
+        top: 0;
+        display: inline-block
+    }
+    .landing_moneysend .landing_moneysend_mastercard_block_wrap,
+    .landing_moneysend .landing_moneysend_when_wrap {
+        width: auto;
+        overflow: hidden;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center
+    }
+    .landing_moneysend .landing_moneysend_mastercard_block,
+    .landing_moneysend .landing_moneysend_when {
+        margin: 30px 0 0!important;
+        display: inline-block
+    }
+    .landing_moneysend .landing_moneysend_when {
+        width: 165px
+    }
+    .landing_moneysend .landing_moneysend_mastercard_block {
+        width: auto
+    }
+    .landing_moneysend .landing_moneysend_when_icon {
+        margin-bottom: 15px
+    }
+    .landing_moneysend .landing_moneysend_box_image {
+        background: url(/images/landings/moneysend_iphone.png?4) no-repeat center 0;
+        width: auto
+    }
+    .landing_moneysend .landing_moneysend_mastercard_club_link {
+        margin-bottom: 0
+    }
+    .os_android .landing_moneysend_iphone_image {
+        background-image: url(/images/landings/moneysend/p2p_android_ru.png)
+    }
+    .os_android.lang_3 .landing_moneysend_iphone_image {
+        background-image: url(/images/landings/moneysend/p2p_android_en.png)
+    }
+    .os_android .landing_moneysend_box_image {
+        background-image: url(/images/landings/moneysend/p2p_android_send_ru.png)
+    }
+    .os_android.lang_3 .landing_moneysend_box_image {
+        background-image: url(/images/landings/moneysend/p2p_android_send_en.png)
+    }
+    .os_ios .landing_moneysend_iphone_image {
+        background-image: url(/images/landings/moneysend/p2p_iphone_ru.png)
+    }
+    .os_ios.lang_3 .landing_moneysend_iphone_image {
+        background-image: url(/images/landings/moneysend/p2p_iphone_en.png)
+    }
+    .os_ios .landing_moneysend_box_image {
+        background-image: url(/images/landings/moneysend/p2p_iphone_send_ru.png)
+    }
+    .os_ios.lang_3 .landing_moneysend_box_image {
+        background-image: url(/images/landings/moneysend/p2p_iphone_send_en.png)
+    }
+    .os_wphone .landing_moneysend_iphone_image {
+        background-image: url(/images/landings/moneysend/p2p_wp_ru.png)
+    }
+    .os_wphone.lang_3 .landing_moneysend_iphone_image {
+        background-image: url(/images/landings/moneysend/p2p_wp_en.png)
+    }
+    .os_wphone .landing_moneysend_box_image {
+        background-image: url(/images/landings/moneysend/p2p_wp_send_ru.png)
+    }
+    .os_wphone.lang_3 .landing_moneysend_box_image {
+        background-image: url(/images/landings/moneysend/p2p_wp_send_en.png)
+    }
+}
+
+@media screen and (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2),
+(-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_moneysend .landing_moneysend_box_image {
+        background-image: url(/images/landings/moneysend_iphone_2x.png?4);
+        background-size: 218px 450px
+    }
+}
+
+@media screen and (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2),
+(-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .os_android .landing_moneysend_iphone_image {
+        background-image: url(/images/landings/moneysend/p2p_android_ru_2x.png);
+        background-size: 200px 413px
+    }
+}
+
+@media screen and (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2),
+(-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .os_android.lang_3 .landing_moneysend_iphone_image {
+        background-image: url(/images/landings/moneysend/p2p_android_en_2x.png);
+        background-size: 200px 413px
+    }
+}
+
+@media screen and (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2),
+(-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .os_android .landing_moneysend_box_image {
+        background-image: url(/images/landings/moneysend/p2p_android_send_ru_2x.png);
+        background-size: 200px 413px
+    }
+}
+
+@media screen and (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2),
+(-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .os_android.lang_3 .landing_moneysend_box_image {
+        background-image: url(/images/landings/moneysend/p2p_android_send_en_2x.png);
+        background-size: 200px 413px
+    }
+}
+
+@media screen and (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2),
+(-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .os_ios .landing_moneysend_iphone_image {
+        background-image: url(/images/landings/moneysend/p2p_iphone_ru_2x.png);
+        background-size: 218px 450px
+    }
+}
+
+@media screen and (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2),
+(-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .os_ios.lang_3 .landing_moneysend_iphone_image {
+        background-image: url(/images/landings/moneysend/p2p_iphone_en_2x.png);
+        background-size: 218px 450px
+    }
+}
+
+@media screen and (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2),
+(-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .os_ios .landing_moneysend_box_image {
+        background-image: url(/images/landings/moneysend/p2p_iphone_send_ru_2x.png);
+        background-size: 218px 450px
+    }
+}
+
+@media screen and (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2),
+(-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .os_ios.lang_3 .landing_moneysend_box_image {
+        background-image: url(/images/landings/moneysend/p2p_iphone_send_en_2x.png);
+        background-size: 218px 450px
+    }
+}
+
+@media screen and (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2),
+(-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .os_wphone .landing_moneysend_iphone_image {
+        background-image: url(/images/landings/moneysend/p2p_wp_ru_2x.png);
+        background-size: 218px 415px
+    }
+}
+
+@media screen and (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2),
+(-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .os_wphone.lang_3 .landing_moneysend_iphone_image {
+        background-image: url(/images/landings/moneysend/p2p_wp_en_2x.png);
+        background-size: 218px 415px
+    }
+}
+
+@media screen and (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2),
+(-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .os_wphone .landing_moneysend_box_image {
+        background-image: url(/images/landings/moneysend/p2p_wp_send_ru_2x.png);
+        background-size: 218px 415px
+    }
+}
+
+@media screen and (max-width: 800px) and (-webkit-min-device-pixel-ratio: 2),
+(-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .os_wphone.lang_3 .landing_moneysend_box_image {
+        background-image: url(/images/landings/moneysend/p2p_wp_send_en_2x.png);
+        background-size: 218px 415px
+    }
+}

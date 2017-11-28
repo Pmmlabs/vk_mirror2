@@ -1,0 +1,395 @@
+#vkme_css {
+    display: none
+}
+
+.vkme_page_wrap3 .vkme_client_app_wrap .vkme_client_app_arrow,
+.vkme_page_wrap3 .vkme_client_app_wrap .vkme_client_app_label,
+.vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_msg_logo,
+.vkme_top_nav_wrap .vkme_head_home_logo {
+    -ms-high-contrast-adjust: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+@font-face {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 400;
+    src: url(/fonts/opensans400.eot);
+    src: local('Open Sans'), local('OpenSans'), url(/fonts/opensans400.eot?#iefix) format('embedded-opentype'), url(/fonts/opensans400.woff) format('woff'), url(/fonts/opensans400.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 600;
+    src: url(/fonts/opensans600.eot);
+    src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(/fonts/opensans600.eot?#iefix) format('embedded-opentype'), url(/fonts/opensans600.woff) format('woff'), url(/fonts/opensans600.ttf) format('truetype')
+}
+
+body.vkme {
+    background: #edeef0;
+    font-family: Open Sans, sans-serif;
+    color: #000
+}
+
+body.vkme .scroll_fix {
+    width: 100%!important;
+    overflow: hidden
+}
+
+body.vkme #stl_left,
+body.vkme #stl_side {
+    display: none!important
+}
+
+body.vkme #page_header,
+body.vkme #page_header .content,
+body.vkme #page_header .left,
+body.vkme #page_header .right {
+    display: none
+}
+
+body.vkme #page_header.p_head1 .back {
+    height: 42px;
+    background: #507299
+}
+
+body.vkme #page_layout {
+    padding: 0
+}
+
+body.vkme #page_body {
+    margin-top: 0
+}
+
+body.vkme #footer_wrap,
+body.vkme #reg_bar {
+    display: none
+}
+
+.vkme .flat_button {
+    font-family: Open Sans, sans-serif
+}
+
+.vkme .flat_button.button_big {
+    min-width: 190px;
+    font-size: 13px;
+    padding: 10px 25px 11px;
+    border-radius: 3px;
+    margin-bottom: 10px
+}
+
+.vkme .flat_button.button_big.active,
+.vkme .flat_button.button_big:active {
+    padding: 11px 25px 10px
+}
+
+.vkme.vkme_mobile,
+.vkme.vkme_mobile .flat_button {
+    font-family: -apple-system, Open Sans, sans-serif
+}
+
+.vkme.vkme_mobile .flat_button {
+    font-weight: 500
+}
+
+.vkme.vkme_mobile .flat_button.button_big {
+    min-width: 208px;
+    font-size: 14px;
+    padding: 12px 25px 13px
+}
+
+.vkme.vkme_mobile .flat_button.button_big.active,
+.vkme.vkme_mobile .flat_button.button_big:active {
+    padding: 13px 25px 12px
+}
+
+.vkme_top_nav_wrap {
+    height: 42px;
+    background: #507299
+}
+
+.vkme_top_nav_wrap .vkme_top_nav {
+    margin: 0 auto;
+    width: 980px;
+    height: 42px;
+    border-collapse: collapse;
+    overflow: hidden;
+    display: table
+}
+
+.vkme_top_nav_wrap .vkme_top_nav .vkme_top_nav_link:active {
+    position: relative;
+    top: 1px
+}
+
+.vkme_top_nav_wrap .vkme_top_nav a,
+.vkme_top_nav_wrap .vkme_top_nav a:hover,
+.vkme_top_nav_wrap .vkme_top_nav a:visited {
+    color: #fff;
+    text-decoration: none
+}
+
+.vkme_top_nav_wrap .vkme_top_nav .vkme_top_nav_item {
+    display: table-cell;
+    vertical-align: top;
+    white-space: normal
+}
+
+.vkme_top_nav_wrap .vkme_top_nav .vkme_top_nav_item.vkme_head_owner_name {
+    visibility: hidden;
+    text-align: center;
+    font-size: 15px;
+    line-height: 18px;
+    color: #fff;
+    cursor: pointer;
+    white-space: nowrap
+}
+
+.vkme_top_nav_wrap .vkme_top_nav .vkme_top_nav_item.vkme_head_owner_name:active {
+    background: #4d7199
+}
+
+.vkme_top_nav_wrap .vkme_top_nav .vkme_top_nav_item:first-child,
+.vkme_top_nav_wrap .vkme_top_nav .vkme_top_nav_item:last-child {
+    width: 51px
+}
+
+.vkme_top_nav_wrap .vkme_head_home_logo {
+    background-image: url(/images/vkme_logo.png);
+    background-size: 33px 19px;
+    height: 19px;
+    width: 33px;
+    display: inline-block;
+    margin: 11px 9px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .vkme_top_nav_wrap .vkme_head_home_logo {
+        background-image: url(/images/vkme_logo_2x.png);
+        background-size: 33px 19px
+    }
+}
+
+.vkme_page_wrap3 .vkme_client_app_wrap {
+    display: none;
+    box-shadow: 0px 1px 2px 0px rgba(32, 35, 38, .2);
+    font-family: Open Sans Semibold, sans-serif;
+    background: #fff
+}
+
+.vkme_mobile .vkme_page_wrap3 .vkme_client_app_wrap {
+    font-family: -apple-system, Open Sans, sans-serif
+}
+
+.vkme_page_wrap3 .vkme_client_app_wrap .vkme_client_app_link {
+    color: #517094;
+    font-size: 14px
+}
+
+.vkme_mobile .vkme_page_wrap3 .vkme_client_app_wrap .vkme_client_app_link:hover {
+    text-decoration: none
+}
+
+.vkme_page_wrap3 .vkme_client_app_wrap .vkme_client_app_link:hover .vkme_client_app_arrow {
+    right: 14px
+}
+
+.vkme_page_wrap3 .vkme_client_app_wrap .vkme_client_app_link_wrap {
+    white-space: nowrap
+}
+
+.vkme_page_wrap3 .vkme_client_app_wrap .vkme_client_app_label {
+    background: url(/images/icons/mobile.png?1) no-repeat 0;
+    background-size: 11px 17px;
+    padding: 16px 25px;
+    position: relative;
+    margin-left: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .vkme_page_wrap3 .vkme_client_app_wrap .vkme_client_app_label {
+        background-image: url(/images/icons/mobile_2x.png?1);
+        background-size: 7px 11px
+    }
+}
+
+.vkme_page_wrap3 .vkme_client_app_wrap .vkme_client_app_arrow {
+    background: url(/images/icons/blue_arrow.png) no-repeat 50%;
+    background-size: 9px 15px;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    margin-top: -7.5px;
+    height: 15px;
+    width: 9px;
+    -o-transition: right 100ms linear;
+    transition: right 100ms linear
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .vkme_page_wrap3 .vkme_client_app_wrap .vkme_client_app_arrow {
+        background-image: url(/images/icons/blue_arrow_2x.png);
+        background-size: 9px 15px
+    }
+}
+
+.vkme_page_wrap3 .vkme_page_about_wrap {
+    text-align: center;
+    padding: 0 50px
+}
+
+.vkme_mobile .vkme_page_wrap3 .vkme_page_about_wrap {
+    padding: 0 30px
+}
+
+.vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_msg_logo {
+    background-size: 100px;
+    background-image: url(/images/vkme_msg_icon.png);
+    height: 100px;
+    width: 100px;
+    margin: 0 auto 25px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_msg_logo {
+        background-image: url(/images/vkme_msg_icon_2x.png);
+        background-size: 100px 100px
+    }
+}
+
+.vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_title {
+    font-size: 21px;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    line-height: 25px
+}
+
+.vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_text {
+    font-size: 14px;
+    color: #656565;
+    margin-top: 13px;
+    line-height: 20px
+}
+
+.vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_blog,
+.vkme_mobile .vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_blog {
+    margin-top: 30px
+}
+
+.vkme_page_wrap3 .vkme_page_about_wrap .vkme_about_blog .flat_button.button_big {
+    min-width: unset
+}
+
+.vkme_page_wrap2 {
+    padding: 142px 0 72px
+}
+
+.vkme_owner_wrap {
+    text-align: center
+}
+
+.vkme_owner_wrap .vkme_owner_photo {
+    height: 100px;
+    width: 100px;
+    margin: 0 auto
+}
+
+.vkme_owner_wrap .vkme_owner_photo .vkme_owner_photo_img {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    overflow: hidden
+}
+
+.vkme_owner_wrap .vkme_owner_info {
+    padding: 27px 0 35px
+}
+
+.vkme_owner_wrap .vkme_owner_info .vkme_owner_name {
+    font-size: 21px;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 0;
+    padding: 0
+}
+
+.vkme_mobile .vkme_owner_wrap .vkme_owner_info .vkme_owner_name {
+    line-height: 25px;
+    padding: 0 15px
+}
+
+.vkme_owner_wrap .vkme_owner_info .vkme_owner_description {
+    font-size: 14px;
+    color: #656565;
+    margin-top: 7px
+}
+
+@media only screen and (max-width: 768px) {
+    .vkme_top_nav_wrap {
+        height: 43px
+    }
+    .vkme_top_nav_wrap .vkme_head_home_logo {
+        margin: 12px 9px 0
+    }
+    .vkme_top_nav_wrap .vkme_top_nav {
+        width: 100%;
+        height: 43px;
+        margin: 0
+    }
+    .vkme_top_nav_wrap .vkme_top_nav .vkme_top_nav_item.vkme_head_owner_name {
+        visibility: visible;
+        padding-top: 12px;
+        font-weight: 500;
+        min-width: 190px
+    }
+    .vkme_page_wrap3 .error {
+        display: none
+    }
+    .vkme_page_wrap3 .vkme_client_app_wrap {
+        display: block
+    }
+    .vkme_page_wrap2 {
+        padding-top: 71px
+    }
+    .vkme_owner_wrap .vkme_owner_info {
+        padding-top: 33px
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .vkme_page_wrap3 .vkme_client_app_wrap .vkme_client_app_label {
+        background: none;
+        padding-left: 0
+    }
+}
+
+@media only screen and (max-device-width: 374px) {
+    .vkme_page_wrap2 {
+        padding-top: 32.33333333px
+    }
+}

@@ -1,0 +1,472 @@
+html {
+    width: 100%;
+    height: 100%
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-size: medium;
+    font-size: 12px;
+    line-height: 1.6;
+    font-weight: 400;
+    font-family: Open Sans, HelveticaNeue, Helvetica Neue, Helvetica, Arial, sans-serif;
+    color: #222;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%
+}
+
+.mhead {
+    display: none
+}
+
+.chronicle_header {
+    height: 50px;
+    border-bottom: 1px solid #f8f8f8;
+    background: #fff;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50
+}
+
+.chronicle_logo {
+    height: 20px;
+    width: 88px;
+    background: url(/images/mobile/chronicle/logo.png);
+    float: left;
+    margin-top: 15px;
+    margin-left: 15px
+}
+
+.chronicle_market {
+    float: right;
+    margin-top: 10px
+}
+
+.chronicle_market .ios {
+    background: url(/images/mobile/chronicle/apple.png);
+    margin-right: 5px
+}
+
+.chronicle_market .ios,
+.chronicle_market .android {
+    height: 30px;
+    width: 30px;
+    display: block;
+    display: inline-block
+}
+
+.chronicle_market .android {
+    background: url(/images/mobile/chronicle/android.png);
+    margin-right: 10px
+}
+
+.chronicle_row {
+    padding-top: 40px
+}
+
+.chronicle_row_black {
+    background: #f6f7f9
+}
+
+.chronicle_row_first {
+    padding-top: 0
+}
+
+.chronicle_row_last {
+    padding-bottom: 60px
+}
+
+.chronicle_row_inner {
+    padding: 0 15px
+}
+
+.chronicle_row_title {
+    color: #2b2f34;
+    font-size: 1.9em;
+    line-height: 1.2;
+    letter-spacing: -0.1rem;
+    text-align: center;
+    margin-bottom: 7px
+}
+
+.chronicle_row_desc {
+    color: #7c7e82;
+    font-size: 1.16em;
+    line-height: 1.45;
+    margin-bottom: 25px;
+    font-family: Open Sans
+}
+
+.chronicle_row_icon {
+    height: 81px;
+    width: 81px;
+    margin: 0 auto 12px
+}
+
+.chronicle_row_icon1 {
+    background: url(/images/mobile/chronicle/icon_1.png)
+}
+
+.chronicle_row_icon2 {
+    background: url(/images/mobile/chronicle/icon_2.png)
+}
+
+.chronicle_row_icon3 {
+    background: url(/images/mobile/chronicle/icon_3.png)
+}
+
+.chronicle_row_icon4 {
+    background: url(/images/mobile/chronicle/icon_4.png)
+}
+
+.chronicle_row_icon5 {
+    background: url(/images/mobile/chronicle/icon_5.png)
+}
+
+.chronicle_row_icon6 {
+    background: url(/images/mobile/chronicle/icon_6.png)
+}
+
+.chronicle_row_iphone_frame {
+    height: 399px;
+    width: 220px;
+    position: relative;
+    background: url(/images/mobile/chronicle/m_iphone.png);
+    margin: 2px auto 0
+}
+
+.chronicle_row_screen {
+    height: 342px;
+    width: 192px;
+    position: absolute;
+    top: 55px;
+    left: 14px
+}
+
+.chronicle_row_screen1 {
+    background-image: url(/images/mobile/chronicle/1.png)
+}
+
+.chronicle_row_screen2 {
+    background-image: url(/images/mobile/chronicle/2.png)
+}
+
+.chronicle_row_screen3 {
+    background-image: url(/images/mobile/chronicle/3.png)
+}
+
+.chronicle_row_screen4 {
+    background-image: url(/images/mobile/chronicle/4.png)
+}
+
+.chronicle_row_screen5 {
+    background-image: url(/images/mobile/chronicle/5.png)
+}
+
+.chronicle_int .chronicle_row_screen1 {
+    background-image: url(/images/mobile/chronicle/1_en.png)
+}
+
+.chronicle_int .chronicle_row_screen2 {
+    background-image: url(/images/mobile/chronicle/2_en.png)
+}
+
+.chronicle_int .chronicle_row_screen3 {
+    background-image: url(/images/mobile/chronicle/3_en.png)
+}
+
+.chronicle_int .chronicle_row_screen4 {
+    background-image: url(/images/mobile/chronicle/4_en.png)
+}
+
+.chronicle_int .chronicle_row_screen5 {
+    background-image: url(/images/mobile/chronicle/5_en.png)
+}
+
+.chronicle_row_sync {
+    width: auto;
+    max-width: 509px;
+    height: 324px;
+    background: url(/images/mobile/chronicle/sync.png?1) 50%;
+    margin: 10px auto 40px
+}
+
+.chronicle_int .chronicle_row_sync {
+    background-image: url(/images/mobile/chronicle/sync_en.png?2)
+}
+
+.chronicle_row_snapster {
+    width: 110px;
+    height: 110px;
+    background: url(/images/mobile/chronicle/app_icon.png?1);
+    margin: 0 auto 24px
+}
+
+.chronicle_content {
+    margin-top: 78px;
+    text-align: center
+}
+
+.chronicle_video_frame {
+    height: 82px;
+    width: 145px;
+    background: url(/images/mobile/chronicle/video.gif);
+    margin: 10px auto 40px;
+    border-radius: 3px;
+    position: relative;
+    display: block
+}
+
+.chronicle_video_frame_play {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 82px;
+    width: 145px;
+    background: url(/images/mobile/chronicle/play_video.png) 50% no-repeat;
+    z-index: 10
+}
+
+.chronicle_video_frame_dark {
+    z-index: 5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 82px;
+    width: 145px;
+    background: #000;
+    opacity: 0.3;
+    border-radius: 3px
+}
+
+.chronicle_video_frame:hover {
+    cursor: pointer
+}
+
+.chronicle_video_frame:active .chronicle_video_frame_dark,
+.chronicle_video_frame:hover .chronicle_video_frame_dark {
+    display: none
+}
+
+.chronicle_video_container video {
+    max-width: 100%;
+    margin-bottom: 30px
+}
+
+.chronicle_main_screens {
+    height: 392px;
+    width: 100%;
+    max-width: 100%;
+    background: url(/images/mobile/chronicle/mobile.png?2) 50% no-repeat;
+    margin: 0 auto 20px
+}
+
+.chronicle_int .chronicle_main_screens {
+    background-image: url(/images/mobile/chronicle/mobile_en.png?2)
+}
+
+.chronicle_market_ios {
+    height: 62px;
+    width: 210px;
+    display: block;
+    margin: 0 auto 20px;
+    background: url(/images/mobile/chronicle/market_ios.png)
+}
+
+.chronicle_market_google {
+    height: 62px;
+    width: 210px;
+    display: block;
+    margin: 0 auto;
+    background: url(/images/mobile/chronicle/market_google.png)
+}
+
+.chronicle_int .chronicle_market_ios {
+    background: url(/images/mobile/chronicle/market_ios_en.png)
+}
+
+.chronicle_int .chronicle_market_google {
+    background: url(/images/mobile/chronicle/market_google_en.png)
+}
+
+.chronicle_market_google,
+.chronicle_market_ios {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 7px 20px
+}
+
+.chronicle_header.chronicle_app {
+    display: none
+}
+
+.chronicle_content.chronicle_app {
+    margin-top: 10px
+}
+
+.chronicle_app .chronicle_row_last {
+    padding: 40px 0
+}
+
+.chronicle_app .chronicle_row_last .chronicle_row_inner,
+.chronicle_app .chronicle_row_last a {
+    display: none
+}
+
+.chronicle_app .chronicle_row_snapster {
+    margin: 0 auto
+}
+
+.x2 .chronicle_logo {
+    background-image: url(/images/mobile/chronicle/logo_2x.png);
+    background-size: 88px 20px
+}
+
+.x2 .chronicle_market .android {
+    background-image: url(/images/mobile/chronicle/android_2x.png);
+    background-size: 30px 30px
+}
+
+.x2 .chronicle_market .ios {
+    background-image: url(/images/mobile/chronicle/apple_2x.png);
+    background-size: 30px 30px
+}
+
+.x2 .chronicle_main_screens {
+    background-image: url(/images/mobile/chronicle/mobile_2x.png?2);
+    background-size: 334px 392px
+}
+
+.x2 .chronicle_int .chronicle_main_screens {
+    background-image: url(/images/mobile/chronicle/mobile_en_2x.png?2);
+    background-size: 334px 392px
+}
+
+.x2 .chronicle_row_icon1 {
+    background-image: url(/images/mobile/chronicle/icon_1_2x.png);
+    background-size: 81px 81px
+}
+
+.x2 .chronicle_row_icon2 {
+    background-image: url(/images/mobile/chronicle/icon_2_2x.png);
+    background-size: 81px 81px
+}
+
+.x2 .chronicle_row_icon3 {
+    background-image: url(/images/mobile/chronicle/icon_3_2x.png);
+    background-size: 81px 81px
+}
+
+.x2 .chronicle_row_icon4 {
+    background-image: url(/images/mobile/chronicle/icon_4_2x.png);
+    background-size: 81px 81px
+}
+
+.x2 .chronicle_row_icon5 {
+    background-image: url(/images/mobile/chronicle/icon_5_2x.png);
+    background-size: 81px 81px
+}
+
+.x2 .chronicle_row_icon6 {
+    background-image: url(/images/mobile/chronicle/icon_6_2x.png);
+    background-size: 81px 81px
+}
+
+.x2 .chronicle_row_iphone_frame {
+    background-image: url(/images/mobile/chronicle/m_iphone_2x.png?1);
+    background-size: 220px 399px
+}
+
+.x2 .chronicle_row_screen1 {
+    background-image: url(/images/mobile/chronicle/1_2x.png);
+    background-size: 192px 342px
+}
+
+.x2 .chronicle_row_screen2 {
+    background-image: url(/images/mobile/chronicle/2_2x.png);
+    background-size: 192px 342px
+}
+
+.x2 .chronicle_row_screen3 {
+    background-image: url(/images/mobile/chronicle/3_2x.png);
+    background-size: 192px 342px
+}
+
+.x2 .chronicle_row_screen4 {
+    background-image: url(/images/mobile/chronicle/4_2x.png);
+    background-size: 192px 342px
+}
+
+.x2 .chronicle_row_screen5 {
+    background-image: url(/images/mobile/chronicle/5_2x.png);
+    background-size: 192px 342px
+}
+
+.x2 .chronicle_int .chronicle_row_screen1 {
+    background-image: url(/images/mobile/chronicle/1_en_2x.png)
+}
+
+.x2 .chronicle_int .chronicle_row_screen2 {
+    background-image: url(/images/mobile/chronicle/2_en_2x.png)
+}
+
+.x2 .chronicle_int .chronicle_row_screen3 {
+    background-image: url(/images/mobile/chronicle/3_en_2x.png)
+}
+
+.x2 .chronicle_int .chronicle_row_screen4 {
+    background-image: url(/images/mobile/chronicle/4_en_2x.png)
+}
+
+.x2 .chronicle_int .chronicle_row_screen5 {
+    background-image: url(/images/mobile/chronicle/5_en_2x.png)
+}
+
+.x2 .chronicle_row_sync {
+    background-image: url(/images/mobile/chronicle/sync_2x.png?1);
+    background-size: 509px 324px
+}
+
+.x2 .chronicle_int .chronicle_row_sync {
+    background-image: url(/images/mobile/chronicle/sync_en_2x.png?2)
+}
+
+.x2 .chronicle_market_google {
+    background-image: url(/images/mobile/chronicle/market_google_2x.png);
+    background-size: 210px 62px
+}
+
+.x2 .chronicle_market_ios {
+    background-image: url(/images/mobile/chronicle/market_ios_2x.png);
+    background-size: 210px 62px
+}
+
+.x2 .chronicle_video_frame {
+    background-image: url(/images/mobile/chronicle/video_2x.gif);
+    background-size: 145px 82px
+}
+
+.x2 .chronicle_row_snapster {
+    background-image: url(/images/mobile/chronicle/app_icon_2x.png?1);
+    background-size: 110px 110px
+}
+
+.x2 .chronicle_video_frame_play {
+    background-image: url(/images/mobile/chronicle/play_video_2x.png);
+    background-size: 52px 52px
+}
+
+.x2 .chronicle_int .chronicle_market_ios {
+    background-image: url(/images/mobile/chronicle/market_ios_en_2x.png);
+    background-size: 210px 62px
+}
+
+.x2 .chronicle_int .chronicle_market_google {
+    background-image: url(/images/mobile/chronicle/market_google_en_2x.png);
+    background-size: 210px 62px
+}

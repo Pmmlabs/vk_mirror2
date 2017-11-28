@@ -1,0 +1,200 @@
+#graffiti_new_css {
+    display: none
+}
+
+.graffiti_resize {
+    -ms-high-contrast-adjust: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+.graffiti_wrap {
+    background-color: #fafbfc
+}
+
+.graffiti_links {
+    padding: 14px 25px 2px
+}
+
+.graffiti_link_save {
+    float: right
+}
+
+.graffiti_drawarea_wrap {
+    background-color: #fff;
+    width: 588px;
+    height: 294px;
+    border: 1px solid #e7e8ec
+}
+
+.graffiti_drawarea_border {
+    padding: 10px 25px 0
+}
+
+.graffiti_canvas_main,
+.graffiti_canvas_stroke {
+    display: block;
+    width: 100%;
+    height: 100%
+}
+
+.graffiti_canvas_history {
+    position: absolute;
+    top: -10000px;
+    left: -10000px
+}
+
+.graffiti_canvas_stroke {
+    position: relative;
+    top: -100%
+}
+
+.graffiti_resize {
+    height: 25px;
+    cursor: ns-resize;
+    border-bottom: 1px solid #e7e8ec;
+    background: url(/images/graffiti_shutter.png) no-repeat center 8px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .graffiti_resize {
+        background-image: url(/images/graffiti_shutter_2x.png);
+        background-size: 20px 9px
+    }
+}
+
+.graffiti_tools {
+    overflow: hidden;
+    background-color: #fff;
+    height: 94px;
+    margin: 0 auto;
+    text-align: center
+}
+
+.graffiti_tools_section {
+    margin: 22px 0 0 45px;
+    text-align: left;
+    display: inline-block;
+    vertical-align: top
+}
+
+.graffiti_slider_caption {
+    color: #656565;
+    font-size: 12.5px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.graffiti_slider_wrap {
+    cursor: pointer;
+    height: 9px;
+    margin-top: 9px;
+    padding-top: 5px
+}
+
+.graffiti_slider {
+    width: 100px;
+    opacity: 0.25;
+    filter: alpha(opacity=25)
+}
+
+.graffiti_slider,
+.graffiti_slider_thumb {
+    height: 4px;
+    border-radius: 2px;
+    background-color: #5181b8
+}
+
+.graffiti_slider_thumb {
+    float: left;
+    margin-top: -4px
+}
+
+.graffiti_slider_thumb:before {
+    content: '';
+    display: block;
+    position: relative;
+    margin-top: -3px;
+    margin-left: -5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #5181b8
+}
+
+.graffiti_tools_brush {
+    display: inline-block;
+    margin: 7px 0 0 -20px
+}
+
+.graffiti_brush_canvas,
+.graffiti_tools_brush {
+    width: 80px;
+    height: 80px
+}
+
+.graffiti_colorpreview_wrap {
+    cursor: pointer;
+    width: 31px;
+    background: url(/images/svg_icons/contour_arrow.svg) no-repeat;
+    background-position: right 7px
+}
+
+.graffiti_colorpreview_box {
+    width: 18px;
+    height: 18px;
+    border-radius: 2px;
+    background-color: #5f7fa2;
+    margin-top: 7px
+}
+
+.graffiti_tt.tt_w .tt_text {
+    padding: 7px
+}
+
+.graffiti_colorpicker_cell {
+    float: left;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #333;
+    margin: -1px 0 0 -1px
+}
+
+.graffiti_colorpicker_cell:first-child {
+    margin-left: 0
+}
+
+.graffiti_colorpicker_cell:hover {
+    position: relative;
+    border-color: #fff
+}
+
+.graffiti_colorpicker_row:first-child .graffiti_colorpicker_cell {
+    margin-top: 0
+}
+
+#graffiti_utils {
+    width: 0;
+    height: 0
+}
+
+#graffiti_save {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    opacity: 0;
+    filter: alpha(opacity=0)
+}

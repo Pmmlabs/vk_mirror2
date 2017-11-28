@@ -1,0 +1,3491 @@
+#landings_ads_css {
+    display: none
+}
+
+.landing_ads_community_ads_feed_image,
+.landing_ads_community_ads_post_image,
+.landing_ads_company_page_create_market_screen,
+.landing_ads_company_page_create_page_screen,
+.landing_ads_company_page_messages_screen,
+.landing_ads_company_page_post,
+.landing_ads_company_page_posts_iphone,
+.landing_ads_company_page_search_icon,
+.landing_ads_company_page_tools_row_icon.audience,
+.landing_ads_company_page_tools_row_icon.create,
+.landing_ads_company_page_tools_row_icon.dem,
+.landing_ads_company_page_tools_row_icon.geo,
+.landing_ads_company_page_tools_row_icon.icon1,
+.landing_ads_company_page_tools_row_icon.icon2,
+.landing_ads_company_page_tools_row_icon.icon3,
+.landing_ads_company_page_tools_row_icon.icon4,
+.landing_ads_company_page_tools_row_icon.icon5,
+.landing_ads_company_page_tools_row_icon.icon6,
+.landing_ads_company_page_tools_row_icon.icon7,
+.landing_ads_company_page_tools_row_icon.icon8,
+.landing_ads_company_page_tools_row_icon.icon9,
+.landing_ads_company_page_tools_row_icon.icon10,
+.landing_ads_company_page_tools_row_icon.icon11,
+.landing_ads_company_page_tools_row_icon.interests,
+.landing_ads_company_page_tools_row_icon.start,
+.landing_ads_company_page_tools_row_icon.target,
+.landing_ads_company_page_widgets_site,
+.landing_ads_en .landing_ads_community_ads_feed_image,
+.landing_ads_en .landing_ads_community_ads_post_image,
+.landing_ads_en .landing_ads_company_page_create_market_screen,
+.landing_ads_en .landing_ads_company_page_create_page_screen,
+.landing_ads_en .landing_ads_company_page_messages_screen,
+.landing_ads_en .landing_ads_company_page_post,
+.landing_ads_en .landing_ads_company_page_tools_row_icon.icon4,
+.landing_ads_en .landing_ads_company_page_tools_row_icon.icon9,
+.landing_ads_en .landing_ads_special_projects_cocacola_bot,
+.landing_ads_en .landing_ads_targering_stats .landing_ads_company_page_messages_screen,
+.landing_ads_en .landing_ads_targeting_ads_example_group_image.group1,
+.landing_ads_en .landing_ads_targeting_ads_example_group_image.group2,
+.landing_ads_en .landing_ads_targeting_ads_example_group_image.group3,
+.landing_ads_en .landing_ads_targeting_ads_example_group_image.group4,
+.landing_ads_en .landing_ads_targeting_ads_example_group_image.group5,
+.landing_ads_en .landing_ads_targeting_ads_example_group_image.group6,
+.landing_ads_en .landing_ads_targeting_ads_example_post_wrap,
+.landing_ads_en .landing_ads_targeting_post.post1,
+.landing_ads_en .landing_ads_targeting_post.post2,
+.landing_ads_en .landing_ads_targeting_post.post3,
+.landing_ads_en .landing_ads_targeting_post.post4,
+.landing_ads_en .landing_ads_targeting_post.post5,
+.landing_ads_en .landing_ads_targeting_post.post6,
+.landing_ads_en .landing_ads_targeting_post.post7,
+.landing_ads_en .landing_ads_targeting_post_browser.post1,
+.landing_ads_en .landing_ads_targeting_post_browser.post2,
+.landing_ads_en .landing_ads_targeting_post_browser.post3,
+.landing_ads_en .landing_ads_targeting_post_browser.post4,
+.landing_ads_en .landing_ads_targeting_post_browser.post5,
+.landing_ads_en .landing_ads_targeting_post_browser.post6,
+.landing_ads_en .landing_ads_targeting_post_browser.post7,
+.landing_ads_en .landing_ads_widget.comments,
+.landing_ads_en .landing_ads_widget.followers,
+.landing_ads_en .landing_ads_widget.messages,
+.landing_ads_examples_row_icon.dodo,
+.landing_ads_examples_row_icon.family776,
+.landing_ads_examples_row_icon.gorun,
+.landing_ads_examples_row_icon.taxovichkof,
+.landing_ads_examples_row_icon.yota,
+.landing_ads_news_header_more_btn:after,
+.landing_ads_special_projects_brand_picture,
+.landing_ads_special_projects_cocacola_bot,
+.landing_ads_special_projects_picture,
+.landing_ads_targering_stats .landing_ads_company_page_messages_screen,
+.landing_ads_targeting_ads_example_group_image.group1,
+.landing_ads_targeting_ads_example_group_image.group2,
+.landing_ads_targeting_ads_example_group_image.group3,
+.landing_ads_targeting_ads_example_group_image.group4,
+.landing_ads_targeting_ads_example_group_image.group5,
+.landing_ads_targeting_ads_example_group_image.group6,
+.landing_ads_targeting_ads_example_post_wrap,
+.landing_ads_targeting_post.post1,
+.landing_ads_targeting_post.post2,
+.landing_ads_targeting_post.post3,
+.landing_ads_targeting_post.post4,
+.landing_ads_targeting_post.post5,
+.landing_ads_targeting_post.post6,
+.landing_ads_targeting_post.post7,
+.landing_ads_targeting_post_browser.post1,
+.landing_ads_targeting_post_browser.post2,
+.landing_ads_targeting_post_browser.post3,
+.landing_ads_targeting_post_browser.post4,
+.landing_ads_targeting_post_browser.post5,
+.landing_ads_targeting_post_browser.post6,
+.landing_ads_targeting_post_browser.post7,
+.landing_ads_targeting_vk_info_icon,
+.landing_ads_ua .landing_ads_community_ads_feed_image,
+.landing_ads_ua .landing_ads_community_ads_post_image,
+.landing_ads_ua .landing_ads_company_page_create_market_screen,
+.landing_ads_ua .landing_ads_company_page_create_page_screen,
+.landing_ads_ua .landing_ads_company_page_messages_screen,
+.landing_ads_ua .landing_ads_company_page_post,
+.landing_ads_ua .landing_ads_company_page_tools_row_icon.icon4,
+.landing_ads_ua .landing_ads_company_page_tools_row_icon.icon9,
+.landing_ads_ua .landing_ads_special_projects_cocacola_bot,
+.landing_ads_ua .landing_ads_targering_stats .landing_ads_company_page_messages_screen,
+.landing_ads_ua .landing_ads_targeting_ads_example_group_image.group1,
+.landing_ads_ua .landing_ads_targeting_ads_example_group_image.group2,
+.landing_ads_ua .landing_ads_targeting_ads_example_group_image.group3,
+.landing_ads_ua .landing_ads_targeting_ads_example_group_image.group4,
+.landing_ads_ua .landing_ads_targeting_ads_example_group_image.group5,
+.landing_ads_ua .landing_ads_targeting_ads_example_group_image.group6,
+.landing_ads_ua .landing_ads_targeting_ads_example_post_wrap,
+.landing_ads_ua .landing_ads_targeting_post.post1,
+.landing_ads_ua .landing_ads_targeting_post.post2,
+.landing_ads_ua .landing_ads_targeting_post.post3,
+.landing_ads_ua .landing_ads_targeting_post.post4,
+.landing_ads_ua .landing_ads_targeting_post.post5,
+.landing_ads_ua .landing_ads_targeting_post.post6,
+.landing_ads_ua .landing_ads_targeting_post.post7,
+.landing_ads_ua .landing_ads_targeting_post_browser.post1,
+.landing_ads_ua .landing_ads_targeting_post_browser.post2,
+.landing_ads_ua .landing_ads_targeting_post_browser.post3,
+.landing_ads_ua .landing_ads_targeting_post_browser.post4,
+.landing_ads_ua .landing_ads_targeting_post_browser.post5,
+.landing_ads_ua .landing_ads_targeting_post_browser.post6,
+.landing_ads_ua .landing_ads_targeting_post_browser.post7,
+.landing_ads_ua .landing_ads_widget.comments,
+.landing_ads_ua .landing_ads_widget.followers,
+.landing_ads_ua .landing_ads_widget.messages,
+.landing_ads_widget.comments,
+.landing_ads_widget.followers,
+.landing_ads_widget.messages {
+    -ms-high-contrast-adjust: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+.landing_ads_body {
+    background: #fff!important
+}
+
+.landing_ads_body .footer_wrap,
+.landing_ads_body .page_header_cont {
+    display: none!important
+}
+
+.landing_ads_body #page_body,
+.landing_ads_body #page_layout,
+.landing_ads_body .scroll_fix {
+    width: 100%!important;
+    margin: 0!important;
+    padding: 0!important
+}
+
+.landing_ads_body .page_block {
+    border: 0;
+    box-shadow: none;
+    margin: 0
+}
+
+.landing_ads_body #stl_left {
+    display: none!important
+}
+
+.landing_ads_container {
+    min-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden
+}
+
+.landing_ads_main_slider_wrap {
+    position: relative;
+    min-width: 990px
+}
+
+#ads_main_slider {
+    z-index: 2;
+    position: relative;
+    min-height: 440px;
+    height: 25vw
+}
+
+.landing_ads_header {
+    height: 48px;
+    width: 100%;
+    z-index: 2;
+    position: relative;
+    padding: 0 15px;
+    box-sizing: border-box
+}
+
+.landing_ads_header .landing_ads_header_cont {
+    max-width: 990px;
+    margin: 0 auto
+}
+
+.landing_ads_header .landing_ads_header_cont a {
+    color: #fff
+}
+
+.landing_ads_header .landing_ads_header_logo {
+    display: block;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: 52px;
+    line-height: 50px
+}
+
+.landing_ads_header .landing_ads_header_logo:before {
+    content: ' ';
+    display: inline-block;
+    background: url('/images/svg_icons/ic_head_logo.svg') no-repeat 50% / contain;
+    height: 19px;
+    width: 34px;
+    margin: 17px 10px 0 0;
+    vertical-align: top
+}
+
+.landing_ads_header_union_link {
+    line-height: 50px;
+    height: 52px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.landing_ads_header_user_img {
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    margin-top: 12px;
+    margin-left: 10px
+}
+
+.landing_ads_header_shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 169px;
+    background: -o-linear-gradient(top, #000, transparent);
+    background: linear-gradient(180deg, #000, transparent);
+    z-index: 2
+}
+
+.landing_ads_separator {
+    height: 1px;
+    width: 100%;
+    background: #e7e8ec;
+    margin: 50px 0
+}
+
+.landing_ads_products {
+    margin: 40px auto 0;
+    width: 792px
+}
+
+.landing_ads_product {
+    width: 140px;
+    margin-left: 186px;
+    text-align: center;
+    float: left
+}
+
+.landing_ads_product:first-child {
+    margin-left: 0!important
+}
+
+a.landing_ads_product {
+    text-decoration: none!important
+}
+
+a.landing_ads_product .landing_ads_product_icon {
+    -o-transition: opacity 200ms ease-in-out;
+    transition: opacity 200ms ease-in-out
+}
+
+a.landing_ads_product:hover .landing_ads_product_title {
+    color: #2a5885
+}
+
+a.landing_ads_product:hover .landing_ads_product_icon {
+    opacity: 0.7
+}
+
+.landing_ads_product_icon {
+    width: 72px;
+    height: 72px;
+    background: no-repeat 50%;
+    margin: 0 auto
+}
+
+.landing_ads_product_icon.company_page {
+    background-image: url('/images/landings/ads/company_page_icon.svg')
+}
+
+.landing_ads_product_icon.target_ads {
+    background-image: url('/images/landings/ads/target_ads_icon.svg')
+}
+
+.landing_ads_product_icon.special_projects {
+    background-image: url('/images/landings/ads/special_projects_icon.svg')
+}
+
+.landing_ads_product_icon.check_mark {
+    background-image: url('/images/landings/ads/check_mark.svg')
+}
+
+.landing_ads_product_icon.price {
+    background-image: url('/images/landings/ads/price.svg')
+}
+
+.landing_ads_product_icon.settings {
+    background-image: url('/images/landings/ads/settings.svg')
+}
+
+.landing_ads_product_icon.start_price {
+    background-image: url('/images/landings/ads/start_price.svg')
+}
+
+.landing_ads_product_icon.one_year {
+    background-image: url('/images/landings/ads/one_year.svg')
+}
+
+.landing_ads_product_icon.two_clients {
+    background-image: url('/images/landings/ads/two_clients.svg')
+}
+
+.landing_ads_product_icon.cert {
+    background-image: url('/images/landings/ads/cert.svg')
+}
+
+.landing_ads_product_icon.search {
+    background-image: url('/images/svg_icons/landing_ads_search_clients.svg')
+}
+
+.landing_ads_product_icon.site {
+    background-image: url('/images/svg_icons/landing_ads_site_clients.svg')
+}
+
+.landing_ads_product_icon.offline {
+    background-image: url('/images/svg_icons/landing_ads_offline_clients.svg')
+}
+
+.landing_ads_product_icon.question {
+    background-image: url('/images/svg_icons/landing_ads_question_icon.svg')
+}
+
+.landing_ads_product_icon.community {
+    background-image: url('/images/svg_icons/landing_ads_comminity_icon.svg')
+}
+
+.landing_ads_product_title {
+    font-size: 14px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    line-height: 18px;
+    margin-top: 10px;
+    color: #000
+}
+
+.landing_ads_product_caption {
+    color: #939393;
+    line-height: 17px;
+    margin-top: 11px
+}
+
+.landing_ads_section_title {
+    font-size: 20px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    text-align: center
+}
+
+.landing_ads_section_title_anchor {
+    padding-top: 45px
+}
+
+.landing_ads_section_caption {
+    margin-top: 16px;
+    text-align: center
+}
+
+.landing_ads_examples_slider {
+    height: 274px!important;
+    min-height: 274px!important;
+    margin-top: 50px
+}
+
+.landing_ads_examples_slider .landings_base_slider_slides_container {
+    left: 50%;
+    margin-left: -440px;
+    width: 880px
+}
+
+.landing_ads_examples_slider .landings_base_slider_slide_wrap {
+    width: 224px;
+    height: 274px;
+    left: 50%;
+    padding-right: 104px;
+    margin-left: -112px
+}
+
+#ads_games_integration_slider .landings_slider_base_arrow:after,
+.landing_ads_examples_slider .landings_slider_base_arrow:after {
+    background-image: url('/images/svg_icons/landing_ads_examples_arrow.svg')
+}
+
+.landing_ads_examples_row {
+    display: block;
+    width: 224px;
+    height: 274px;
+    float: left;
+    text-align: center
+}
+
+.landing_ads_examples_row:hover {
+    text-decoration: none
+}
+
+.landing_ads_examples_row:first-child {
+    margin-left: 0
+}
+
+.landing_ads_examples_row_icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    background-size: cover!important;
+    background-position: 50%;
+    margin: 0 auto
+}
+
+.landing_ads_examples_row_icon.dodo {
+    background: url(/images/landings/ads_cases/dodo_entrypoint.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_examples_row_icon.dodo {
+        background-image: url(/images/landings/ads_cases/dodo_entrypoint_2x.png);
+        background-size: 90px 90px
+    }
+}
+
+.landing_ads_examples_row_icon.family776 {
+    background: url(/images/landings/ads_cases/776_entrypoint.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_examples_row_icon.family776 {
+        background-image: url(/images/landings/ads_cases/776_entrypoint_2x.png);
+        background-size: 90px 90px
+    }
+}
+
+.landing_ads_examples_row_icon.taxovichkof {
+    background: url(/images/landings/ads_cases/taxovichkof_entrypoint.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_examples_row_icon.taxovichkof {
+        background-image: url(/images/landings/ads_cases/taxovichkof_entrypoint_2x.png);
+        background-size: 92px 92px
+    }
+}
+
+.landing_ads_examples_row_icon.gorun {
+    background: url(/images/landings/ads_cases/gorun_entrypoint.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_examples_row_icon.gorun {
+        background-image: url(/images/landings/ads_cases/gorun_entrypoint_2x.png);
+        background-size: 90px 90px
+    }
+}
+
+.landing_ads_examples_row_icon.yota {
+    background: url(/images/landings/ads_cases/yota_entrypoint.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_examples_row_icon.yota {
+        background-image: url(/images/landings/ads_cases/yota_entrypoint_2x.png);
+        background-size: 90px 90px
+    }
+}
+
+.landing_ads_examples_row_title {
+    color: #222;
+    font-size: 14px;
+    line-height: 18px;
+    margin-top: 30px
+}
+
+.landing_ads_examples_row:hover .landing_ads_examples_row_title {
+    text-decoration: underline
+}
+
+.landing_ads_examples_row_subtitle {
+    margin-top: 2px;
+    line-height: 18px
+}
+
+.landing_ads_examples_row_subtitle:empty {
+    display: none
+}
+
+.landing_ads_examples_row_caption {
+    color: #828282;
+    margin-top: 18px;
+    line-height: 17px
+}
+
+.landing_ads_news {
+    width: 880px;
+    margin: 0 auto
+}
+
+.landing_ads_news_header_title {
+    font-size: 20px;
+    line-height: 18px
+}
+
+.landing_ads_news_header_more_btn {
+    font-size: 14px;
+    line-height: 18px;
+    display: block
+}
+
+.landing_ads_news_header_more_btn:after {
+    content: '';
+    display: inline-block;
+    height: 11px;
+    width: 6px;
+    margin-left: 5px;
+    background: url(/images/icons/search_arrow.png) no-repeat 50%;
+    transition: -webkit-transform 150ms ease-in-out;
+    -o-transition: transform 150ms ease-in-out, -o-transform 150ms ease-in-out;
+    transition: transform 150ms ease-in-out;
+    transition: transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out, -o-transform 150ms ease-in-out
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_news_header_more_btn:after {
+        background-image: url(/images/icons/search_arrow_2x.png);
+        background-size: 6px 10px
+    }
+}
+
+.landing_ads_news_header_more_btn:hover:after {
+    -webkit-transform: translateX(2px);
+    -ms-transform: translateX(2px);
+    -o-transform: translateX(2px);
+    transform: translateX(2px)
+}
+
+.landing_ads_news_rows {
+    margin-top: 32px
+}
+
+.landing_ads_news_row {
+    width: 272px;
+    margin-left: 32px;
+    float: left;
+    cursor: pointer
+}
+
+.landing_ads_news_row:first-child {
+    margin-left: 0
+}
+
+.landing_ads_news_row_cover {
+    width: 272px;
+    height: 132px;
+    border-radius: 2px;
+    background-position: 50%;
+    background-size: cover
+}
+
+.landing_ads_news_row_title {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin-top: 12px
+}
+
+.landing_ads_news_row_date {
+    color: #828282;
+    margin-top: 3px;
+    line-height: 17px
+}
+
+.landing_ads_footer {
+    width: 880px;
+    margin: 50px auto 0;
+    font-size: 14px;
+    padding: 50px 20px;
+    border-top: 1px solid #e7e8ec
+}
+
+.landing_ads_footer_column {
+    text-align: left;
+    width: 272px;
+    margin-left: 32px
+}
+
+.landing_ads_footer_column:first-child {
+    margin-left: 0
+}
+
+.landing_ads_footer_column_title {
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.landing_ads_footer_column_links {
+    margin-top: 10px;
+    list-style-type: none;
+    padding-left: 0
+}
+
+.landing_ads_footer_column_link {
+    padding: 6px 0
+}
+
+.landing_ads_footer_bottom {
+    margin-top: 86px
+}
+
+.landing_ads_footer_lang {
+    color: #828282
+}
+
+.landing_ads_tabs {
+    width: 960px;
+    margin: 0 auto!important;
+    text-align: center;
+    white-space: nowrap
+}
+
+.landing_ads_tabs .ui_tab,
+.landing_ads_tabs li {
+    display: inline-block!important
+}
+
+.landing_ads_tabs .ui_tab {
+    font-size: 14px;
+    line-height: 16px;
+    padding: 18px 8px!important;
+    margin-left: 60px;
+    margin-bottom: -4px;
+    border-bottom: 2px solid transparent
+}
+
+.landing_ads_tabs .ui_tab.ui_tab_sel {
+    border-color: #5181b8
+}
+
+.landing_ads_tabs .ui_tab:fist-child {
+    margin-left: 0
+}
+
+.landing_ads_tabs:after,
+.landing_ads_tabs:before {
+    content: '';
+    width: 30px;
+    position: absolute;
+    bottom: -1px;
+    height: 1px
+}
+
+.landing_ads_tabs:before {
+    left: 0;
+    background: -o-linear-gradient(right, #e7e8ec, #fff);
+    background: linear-gradient(270deg, #e7e8ec, #fff)
+}
+
+.landing_ads_tabs:after {
+    right: 0;
+    background: -o-linear-gradient(left, #e7e8ec, #fff);
+    background: linear-gradient(90deg, #e7e8ec, #fff);
+    visibility: visible
+}
+
+.landing_ads_company_page_tools {
+    width: 938px;
+    margin: 50px auto 0
+}
+
+.landing_ads_company_page_tools_row {
+    width: 200px;
+    float: left;
+    margin-left: 46px;
+    text-align: center
+}
+
+.landing_ads_company_page_tools_row .landing_ads_product_title {
+    margin-top: 30px
+}
+
+.landing_ads_company_page_tools_row:first-child {
+    margin-left: 0!important
+}
+
+.landing_ads_company_page_tools_row_icon {
+    width: 134px;
+    height: 134px;
+    background: no-repeat top;
+    margin: 0 auto
+}
+
+.landing_ads_company_page_tools_row_icon.icon1 {
+    background-image: url(/images/landings/ads/company_page_ic1.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.icon1 {
+        background-image: url(/images/landings/ads/company_page_ic1_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_company_page_tools_row_icon.icon2 {
+    background-image: url(/images/landings/ads/company_page_ic2.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.icon2 {
+        background-image: url(/images/landings/ads/company_page_ic2_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_company_page_tools_row_icon.icon3 {
+    background-image: url(/images/landings/ads/company_page_ic3.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.icon3 {
+        background-image: url(/images/landings/ads/company_page_ic3_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_company_page_tools_row_icon.icon4 {
+    background-image: url(/images/landings/ads/company_page_ic4.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.icon4 {
+        background-image: url(/images/landings/ads/company_page_ic4_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_company_page_tools_row_icon.icon5 {
+    background-image: url(/images/landings/ads/company_page_ic5.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.icon5 {
+        background-image: url(/images/landings/ads/company_page_ic5_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_company_page_tools_row_icon.icon6 {
+    background-image: url(/images/landings/ads/company_page_ic6.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.icon6 {
+        background-image: url(/images/landings/ads/company_page_ic6_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_company_page_tools_row_icon.icon7 {
+    background-image: url(/images/landings/ads/company_page_ic7.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.icon7 {
+        background-image: url(/images/landings/ads/company_page_ic7_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_company_page_tools_row_icon.icon8 {
+    background-image: url(/images/landings/ads/company_page_ic8.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.icon8 {
+        background-image: url(/images/landings/ads/company_page_ic8_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_company_page_tools_row_icon.icon9 {
+    background-image: url(/images/landings/ads/community_ads_ic1.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.icon9 {
+        background-image: url(/images/landings/ads/community_ads_ic1_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_company_page_tools_row_icon.icon10 {
+    background-image: url(/images/landings/ads/community_ads_ic2.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.icon10 {
+        background-image: url(/images/landings/ads/community_ads_ic2_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_company_page_tools_row_icon.icon11 {
+    background-image: url(/images/landings/ads/community_ads_ic3.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.icon11 {
+        background-image: url(/images/landings/ads/community_ads_ic3_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_company_page_tools_row_icon.geo {
+    background-image: url(/images/landings/ads/targeting_geographi.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.geo {
+        background-image: url(/images/landings/ads/targeting_geographi_2x.png);
+        background-size: 140px 138px
+    }
+}
+
+.landing_ads_company_page_tools_row_icon.dem {
+    background-image: url(/images/landings/ads/targeting_demography.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.dem {
+        background-image: url(/images/landings/ads/targeting_demography_2x.png);
+        background-size: 140px 140px
+    }
+}
+
+.landing_ads_company_page_tools_row_icon.interests {
+    background-image: url(/images/landings/ads/targeting_interests.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.interests {
+        background-image: url(/images/landings/ads/targeting_interests_2x.png);
+        background-size: 139px 140px
+    }
+}
+
+.landing_ads_company_page_tools_row_icon.target {
+    background-image: url(/images/landings/ads/targeting_ic_target.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.target {
+        background-image: url(/images/landings/ads/targeting_ic_target_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_company_page_tools_row_icon.create {
+    background-image: url(/images/landings/ads/targeting_ic_create.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.create {
+        background-image: url(/images/landings/ads/targeting_ic_create_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_company_page_tools_row_icon.audience {
+    background-image: url(/images/landings/ads/targeting_ic_audience.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.audience {
+        background-image: url(/images/landings/ads/targeting_ic_audience_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_company_page_tools_row_icon.start {
+    background-image: url(/images/landings/ads/targeting_ic_start.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_tools_row_icon.start {
+        background-image: url(/images/landings/ads/targeting_ic_start_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_company_page_create_page_wrap {
+    background: #f7f8fa;
+    padding: 60px 15px 0;
+    margin-top: 30px
+}
+
+.landing_ads_company_page_create_page,
+.landing_ads_company_page_posts,
+.landing_ads_company_page_widgets {
+    width: 878px;
+    margin: 0 auto
+}
+
+.landing_ads_company_page_create_page_screen {
+    width: 399px;
+    height: 479px;
+    background: url(/images/landings/ads/ru/public2.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_create_page_screen {
+        background-image: url(/images/landings/ads/ru/public2_2x.png);
+        background-size: 399px 479px
+    }
+}
+
+.landing_ads_company_page_create_page_info {
+    width: 348px
+}
+
+.landing_ads_company_page_create_page_title {
+    font-size: 20px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    line-height: 24px
+}
+
+.landing_ads_company_page_create_page_caption {
+    font-size: 14px;
+    color: #828282;
+    line-height: 17px;
+    margin-top: 30px
+}
+
+.landing_ads_company_page_create_page_caption_steps {
+    color: #000;
+    margin-top: 15px;
+    line-height: 28px
+}
+
+.landing_ads_company_page_posts {
+    margin-bottom: -50px
+}
+
+.landing_ads_company_page_posts .landing_ads_company_page_create_page_title,
+.landing_ads_company_page_widgets .landing_ads_company_page_create_page_title {
+    padding-top: 100px
+}
+
+.landing_ads_company_page_posts_iphone {
+    background: #ebedf0 url(/images/landings/ads/company_page_iphone.png) no-repeat 50%;
+    width: 392px;
+    height: 514px;
+    overflow: hidden
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_posts_iphone {
+        background-image: url(/images/landings/ads/company_page_iphone_2x.png);
+        background-size: 392px 514px
+    }
+}
+
+.landing_ads_company_page_post_container {
+    -webkit-transform-origin: 0;
+    -ms-transform-origin: 0;
+    -o-transform-origin: 0;
+    transform-origin: 0
+}
+
+.landing_ads_company_page_post {
+    width: 100%;
+    background: 50% no-repeat;
+    height: 2135px;
+    margin-top: 10px;
+    background-image: url(/images/landings/ads/ru/iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_post {
+        background-image: url(/images/landings/ads/ru/iphone_2x.png);
+        background-size: 338px 2135px
+    }
+}
+
+.landing_ads_company_page_messages {
+    padding: 0 15px;
+    margin-bottom: 0
+}
+
+.landing_ads_company_page_messages_screen_wrap {
+    width: 398px;
+    height: 612px;
+    position: relative
+}
+
+.landing_ads_company_page_messages_screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(/images/landings/ads/ru/big_chat.png);
+    width: 633px;
+    height: 612px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_messages_screen {
+        background-image: url(/images/landings/ads/ru/big_chat_2x.png);
+        background-size: 633px 612px
+    }
+}
+
+.landing_ads_company_page_create_market {
+    text-align: center
+}
+
+.landing_ads_company_page_create_market_screen {
+    width: 558px;
+    height: 336px;
+    margin: 45px auto 0;
+    background: url(/images/landings/ads/ru/public1.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_create_market_screen {
+        background-image: url(/images/landings/ads/ru/public1_2x.png);
+        background-size: 558px 336px
+    }
+}
+
+.landing_ads_company_page_widgets {
+    margin-bottom: 0;
+    padding: 0 15px
+}
+
+.landing_ads_company_page_widgets,
+.landing_ads_company_page_widgets .landing_ads_company_page_messages_screen_wrap {
+    height: 555px
+}
+
+.landing_ads_company_page_widgets .landing_ads_company_page_create_page_info {
+    width: 368px
+}
+
+.landing_ads_company_page_widgets .landing_ads_company_page_messages_screen_wrap {
+    width: 508px
+}
+
+.landing_ads_company_page_widget_bg,
+.landing_ads_company_page_widgets_site,
+.landing_ads_company_page_widgets_site_wrap {
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.landing_ads_company_page_widgets_site_wrap {
+    width: 704px;
+    height: 100%;
+    overflow: hidden
+}
+
+.landing_ads_company_page_widgets_site {
+    width: 707px;
+    height: 787px;
+    background: url(/images/landings/ads/company_page_website.png);
+    z-index: 1;
+    transition: -webkit-transform 200ms ease-in-out;
+    -o-transition: transform 200ms ease-in-out, -o-transform 200ms ease-in-out;
+    transition: transform 200ms ease-in-out;
+    transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out, -o-transform 200ms ease-in-out
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_widgets_site {
+        background-image: url(/images/landings/ads/company_page_website_2x.png);
+        background-size: 707px 907px
+    }
+}
+
+.landing_ads_widget {
+    position: absolute;
+    z-index: 3;
+    opacity: 0;
+    -o-transition: opacity 300ms ease-in-out;
+    transition: opacity 300ms ease-in-out
+}
+
+.landing_ads_widget.messages {
+    top: 75px;
+    left: 206px;
+    background: url(/images/landings/ads/ru/small_chat.png);
+    width: 326px;
+    height: 410px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_widget.messages {
+        background-image: url(/images/landings/ads/ru/small_chat_2x.png);
+        background-size: 326px 410px
+    }
+}
+
+.landing_ads_widget.followers {
+    top: 385px;
+    left: 460px;
+    background: url(/images/landings/ads/ru/subscribe.png);
+    width: 204px;
+    height: 144px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_widget.followers {
+        background-image: url(/images/landings/ads/ru/subscribe_2x.png);
+        background-size: 204px 144px
+    }
+}
+
+.landing_ads_widget.comments {
+    top: 237px;
+    left: 27px;
+    background: url(/images/landings/ads/ru/comments.png);
+    width: 510px;
+    height: 242px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_widget.comments {
+        background-image: url(/images/landings/ads/ru/comments_2x.png);
+        background-size: 510px 242px
+    }
+}
+
+.landing_ads_company_page_widget_bg {
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background: -o-linear-gradient(top, hsla(0, 0%, 100%, .9), hsla(0, 0%, 100%, .4), hsla(0, 0%, 100%, .9));
+    background: linear-gradient(180deg, hsla(0, 0%, 100%, .9), hsla(0, 0%, 100%, .4), hsla(0, 0%, 100%, .9))
+}
+
+.landing_ads_widgets_caption {
+    padding-bottom: 4px
+}
+
+.landing_ads_widget_title {
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    font-size: 14px;
+    margin-top: 18px;
+    line-height: 16px;
+    cursor: pointer
+}
+
+.landing_ads_widget_title:hover {
+    text-decoration: underline
+}
+
+.landing_ads_widget_caption {
+    margin-top: 6px;
+    line-height: 17px;
+    display: none
+}
+
+.landing_ads_company_page_widgets {
+    margin-bottom: -50px
+}
+
+.landing_ads_company_page_widgets.messages .messages {
+    opacity: 1
+}
+
+.landing_ads_company_page_widgets.followers .landing_ads_company_page_widgets_site {
+    -webkit-transform: translateY(-105px);
+    -ms-transform: translateY(-105px);
+    -o-transform: translateY(-105px);
+    transform: translateY(-105px)
+}
+
+.landing_ads_company_page_widgets.followers .followers {
+    opacity: 1
+}
+
+.landing_ads_company_page_widgets.comments .landing_ads_company_page_widgets_site {
+    -webkit-transform: translateY(-355px);
+    -ms-transform: translateY(-355px);
+    -o-transform: translateY(-355px);
+    transform: translateY(-355px)
+}
+
+.landing_ads_company_page_widgets.comments .comments {
+    opacity: 1
+}
+
+.landing_ads_company_page_widgets.comments .comments_title,
+.landing_ads_company_page_widgets.followers .followers_title,
+.landing_ads_company_page_widgets.messages .messages_title {
+    color: #356ca9;
+    text-decoration: none!important;
+    cursor: default
+}
+
+.landing_ads_company_page_clients {
+    text-align: center
+}
+
+.landing_ads_company_page_clients .landing_ads_products {
+    margin-top: 60px;
+    width: 908px
+}
+
+.landing_ads_company_page_clients .landing_ads_product {
+    width: 196px;
+    margin-left: 160px
+}
+
+.landing_ads_targeting_links .landing_ads_products {
+    width: 552px
+}
+
+.landing_ads_company_page_search {
+    padding: 71px 20px 0;
+    margin: 60px 0 0px
+}
+
+.landing_ads_company_page_search .landing_ads_company_page_create_page {
+    width: 1108px
+}
+
+.landing_ads_company_page_search .landing_ads_company_page_create_page_info {
+    padding-top: 62px;
+    width: 418px
+}
+
+.landing_ads_company_page_search_icons_wrap {
+    width: 597px;
+    height: 389px
+}
+
+.landing_ads_company_page_search_icons {
+    width: 525px;
+    height: 301px;
+    position: relative;
+    cursor: pointer
+}
+
+.landing_ads_company_page_search_icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(/images/landings/ads/company_page_search1.png) no-repeat 50%;
+    background-size: cover;
+    opacity: 0;
+    -o-transition: opacity 200ms ease-in-out;
+    transition: opacity 200ms ease-in-out
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_company_page_search_icon {
+        background-image: url(/images/landings/ads/company_page_search1_2x.png);
+        background-size: 520px 300px
+    }
+}
+
+.landing_ads_company_page_search_icon.selected {
+    opacity: 1
+}
+
+.landing_ads_company_page_search_icon_caption {
+    color: #828282;
+    margin-top: 20px;
+    line-height: 15px
+}
+
+.landing_ads_experience_slider .landing_ads_examples_row_icon {
+    width: 90px;
+    height: 90px
+}
+
+.landing_ads_experience_slider .landing_ads_examples_slider {
+    height: 210px!important;
+    min-height: 210px!important;
+    margin-top: 50px
+}
+
+.landing_ads_company_page_experience_slider_caption {
+    font-size: 13px;
+    margin-top: 32px;
+    text-align: center
+}
+
+.landing_ads_action_button_wrap {
+    margin-top: 50px;
+    text-align: center
+}
+
+.landing_ads_action_button {
+    color: #fff;
+    background: #648fc9;
+    border-radius: 100px;
+    display: inline-block;
+    font-size: 14px;
+    padding: 10px 22px 11px;
+    line-height: 16px;
+    cursor: pointer;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    text-decoration: none!important
+}
+
+.landing_ads_action_button:after {
+    content: '';
+    height: 9px;
+    width: 8px;
+    background: url('/images/svg_icons/landings_main_slider_button_arrow.svg') no-repeat 50%;
+    display: inline-block;
+    margin-left: 6px;
+    transition: -webkit-transform 150ms ease-in-out;
+    -o-transition: transform 150ms ease-in-out, -o-transform 150ms ease-in-out;
+    transition: transform 150ms ease-in-out;
+    transition: transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out, -o-transform 150ms ease-in-out
+}
+
+.landing_ads_action_button:hover:after {
+    -webkit-transform: translateX(2px);
+    -ms-transform: translateX(2px);
+    -o-transform: translateX(2px);
+    transform: translateX(2px)
+}
+
+.landing_ads_action_button:active {
+    padding: 11px 22px 10px
+}
+
+.landing_ads_targeting_vk_info {
+    margin-top: 50px
+}
+
+.landing_ads_targeting_vk_info .landing_ads_company_page_create_page_caption {
+    color: #000
+}
+
+.landing_ads_targeting_vk_info_icon {
+    width: 950px;
+    height: 192px;
+    margin: 43px auto 0;
+    background: url(/images/landings/ads/targeting_vk_info_icon.png) no-repeat bottom
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_vk_info_icon {
+        background-image: url(/images/landings/ads/targeting_vk_info_icon_2x.png);
+        background-size: 950px 155px
+    }
+}
+
+.landing_ads_targeting_who_see {
+    text-align: center
+}
+
+.landing_ads_targeting_who_see .landing_ads_company_page_tools {
+    width: 882px
+}
+
+.landing_ads_targeting_who_see .landing_ads_company_page_tools_row {
+    width: 174px;
+    margin-left: 180px
+}
+
+.landing_ads_targeting_who_see .landing_ads_company_page_tools_row_icon {
+    width: 140px;
+    height: 140px
+}
+
+.landing_ads_targeting_ads_examples {
+    text-align: center;
+    padding: 0 20px
+}
+
+.landing_ads_targeting_ads_examples .landing_ads_tabs {
+    margin-top: 40px!important
+}
+
+.landing_ads_targeting_ads_example_tab {
+    text-align: left;
+    width: 940px;
+    margin: 60px auto 0;
+    display: none
+}
+
+.landing_ads_targeting_ads_example_tab.selected_tab {
+    display: block
+}
+
+.landing_ads_targeting_ads_example_tab_info {
+    width: 375px
+}
+
+.landing_ads_targeting_ads_example_types {
+    color: #828282;
+    margin-top: 18px
+}
+
+.landing_ads_targeting_ads_example_type {
+    font-size: 14px;
+    padding: 7px 0;
+    cursor: pointer
+}
+
+.landing_ads_targeting_ads_example_type:hover {
+    text-decoration: underline
+}
+
+.landing_ads_targeting_ads_example_type.selected {
+    color: #356ca9;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    text-decoration: none!important;
+    cursor: default
+}
+
+.landing_ads_targeting_ads_example_post_wrap {
+    position: relative;
+    width: 506px;
+    height: 381px;
+    background: url(/images/landings/ads/ru/iphone_browser.png) no-repeat 50%;
+    background-size: contain
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_ads_example_post_wrap {
+        background-image: url(/images/landings/ads/ru/iphone_browser_2x.png);
+        background-size: 506px 381px
+    }
+}
+
+.landing_ads_targeting_ads_example_post_iphone_cont_wrap {
+    position: absolute;
+    top: 78px;
+    left: 37px;
+    width: 150px;
+    height: 236px;
+    overflow: hidden
+}
+
+.landing_ads_targeting_post {
+    width: 100%;
+    height: 236px;
+    background: 50% no-repeat;
+    background-size: contain!important
+}
+
+.landing_ads_targeting_post.post1 {
+    background-image: url(/images/landings/ads/ru/genius_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_post.post1 {
+        background-image: url(/images/landings/ads/ru/genius_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_targeting_post.post2 {
+    background-image: url(/images/landings/ads/ru/megasport_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_post.post2 {
+        background-image: url(/images/landings/ads/ru/megasport_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_targeting_post.post3 {
+    background-image: url(/images/landings/ads/ru/lady_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_post.post3 {
+        background-image: url(/images/landings/ads/ru/lady_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_targeting_post.post4 {
+    background-image: url(/images/landings/ads/ru/pizza_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_post.post4 {
+        background-image: url(/images/landings/ads/ru/pizza_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_targeting_post.post5 {
+    background-image: url(/images/landings/ads/ru/fashionland_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_post.post5 {
+        background-image: url(/images/landings/ads/ru/fashionland_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_targeting_post.post6 {
+    background-image: url(/images/landings/ads/ru/wedding_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_post.post6 {
+        background-image: url(/images/landings/ads/ru/wedding_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_targeting_post.post7 {
+    background-image: url(/images/landings/ads/ru/shkatulka_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_post.post7 {
+        background-image: url(/images/landings/ads/ru/shkatulka_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_targeting_post_browser {
+    height: 243px;
+    margin-bottom: 30px
+}
+
+.landing_ads_targeting_post_browser:first-child {
+    margin-top: 15px
+}
+
+.landing_ads_targeting_post_browser.post1 {
+    background-image: url(/images/landings/ads/ru/genius.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_post_browser.post1 {
+        background-image: url(/images/landings/ads/ru/genius_2x.png);
+        background-size: 246px 243px
+    }
+}
+
+.landing_ads_targeting_post_browser.post2 {
+    background-image: url(/images/landings/ads/ru/megasport.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_post_browser.post2 {
+        background-image: url(/images/landings/ads/ru/megasport_2x.png);
+        background-size: 246px 244px
+    }
+}
+
+.landing_ads_targeting_post_browser.post3 {
+    background-image: url(/images/landings/ads/ru/lady.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_post_browser.post3 {
+        background-image: url(/images/landings/ads/ru/lady_2x.png);
+        background-size: 248px 249px
+    }
+}
+
+.landing_ads_targeting_post_browser.post4 {
+    background-image: url(/images/landings/ads/ru/pizza.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_post_browser.post4 {
+        background-image: url(/images/landings/ads/ru/pizza_2x.png);
+        background-size: 248px 248px
+    }
+}
+
+.landing_ads_targeting_post_browser.post5 {
+    background-image: url(/images/landings/ads/ru/fashonland.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_post_browser.post5 {
+        background-image: url(/images/landings/ads/ru/fashonland_2x.png);
+        background-size: 248px 248px
+    }
+}
+
+.landing_ads_targeting_post_browser.post6 {
+    background-image: url(/images/landings/ads/ru/wedding.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_post_browser.post6 {
+        background-image: url(/images/landings/ads/ru/wedding_2x.png);
+        background-size: 248px 241px
+    }
+}
+
+.landing_ads_targeting_post_browser.post7 {
+    background-image: url(/images/landings/ads/ru/shkatulka.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_post_browser.post7 {
+        background-image: url(/images/landings/ads/ru/shkatulka_2x.png);
+        background-size: 248px 238px
+    }
+}
+
+.landing_ads_targeting_ads_example_post_browser_cont_wrap {
+    position: absolute;
+    top: 57px;
+    left: 211px;
+    width: 246px;
+    height: 270px;
+    overflow: hidden
+}
+
+.landing_ads_targeting_ads_example_post_browser_feed,
+.landing_ads_targeting_ads_example_post_iphone_feed {
+    transition: -webkit-transform 200ms ease-in-out;
+    -o-transition: transform 200ms ease-in-out, -o-transform 200ms ease-in-out;
+    transition: transform 200ms ease-in-out;
+    transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out, -o-transform 200ms ease-in-out
+}
+
+.landing_ads_targeting_ads_example_group_wrap {
+    width: 546px;
+    height: 348px;
+    position: relative
+}
+
+.landing_ads_targeting_ads_example_group_image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: no-repeat 50%;
+    background-size: contain!important;
+    opacity: 0
+}
+
+.landing_ads_targeting_ads_example_group_image.shown {
+    opacity: 1
+}
+
+.landing_ads_targeting_ads_example_group_image.group1 {
+    background-image: url(/images/landings/ads/ru/sberbank1.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_ads_example_group_image.group1 {
+        background-image: url(/images/landings/ads/ru/sberbank1_2x.png);
+        background-size: 610px 412px
+    }
+}
+
+.landing_ads_targeting_ads_example_group_image.group2 {
+    background-image: url(/images/landings/ads/ru/sberbank2.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_ads_example_group_image.group2 {
+        background-image: url(/images/landings/ads/ru/sberbank2_2x.png);
+        background-size: 610px 412px
+    }
+}
+
+.landing_ads_targeting_ads_example_group_image.group3 {
+    background-image: url(/images/landings/ads/ru/sberbank3.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_ads_example_group_image.group3 {
+        background-image: url(/images/landings/ads/ru/sberbank3_2x.png);
+        background-size: 610px 412px
+    }
+}
+
+.landing_ads_targeting_ads_example_group_image.group4 {
+    background-image: url(/images/landings/ads/ru/sberbank4.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_ads_example_group_image.group4 {
+        background-image: url(/images/landings/ads/ru/sberbank4_2x.png);
+        background-size: 556px 381px
+    }
+}
+
+.landing_ads_targeting_ads_example_group_image.group5 {
+    background-image: url(/images/landings/ads/ru/sberbank5.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_ads_example_group_image.group5 {
+        background-image: url(/images/landings/ads/ru/sberbank5_2x.png);
+        background-size: 610px 403px
+    }
+}
+
+.landing_ads_targeting_ads_example_group_image.group6 {
+    background-image: url(/images/landings/ads/ru/sberbank6.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targeting_ads_example_group_image.group6 {
+        background-image: url(/images/landings/ads/ru/sberbank6_2x.png);
+        background-size: 610px 403px
+    }
+}
+
+.landing_ads_targeting_budget {
+    padding-bottom: 65px
+}
+
+.landing_ads_targeting_budget .landing_ads_products {
+    margin-top: 50px;
+    width: 885px
+}
+
+.landing_ads_targeting_budget .landing_ads_product {
+    width: 180px;
+    margin-left: 55px
+}
+
+.landing_ads_targering_stats {
+    padding: 70px 20px
+}
+
+.landing_ads_targering_stats .landing_ads_company_page_create_page_title {
+    padding-top: 70px
+}
+
+.landing_ads_targering_stats .landing_ads_company_page_messages_screen,
+.landing_ads_targering_stats .landing_ads_company_page_messages_screen_wrap {
+    height: 440px
+}
+
+.landing_ads_targering_stats .landing_ads_company_page_messages_screen {
+    width: 668px;
+    height: 450px;
+    top: 0;
+    left: 0;
+    background: url(/images/landings/ads/ru/mac.png) no-repeat 50%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_targering_stats .landing_ads_company_page_messages_screen {
+        background-image: url(/images/landings/ads/ru/mac_2x.png);
+        background-size: 668px 450px
+    }
+}
+
+.landing_ads_questions_wrap {
+    padding-bottom: 60px;
+    margin-bottom: 50px
+}
+
+.landing_ads_questions {
+    margin: 60px auto 0;
+    width: 690px;
+    text-align: left
+}
+
+.landing_ads_question {
+    padding-bottom: 4px;
+    border-bottom: 1px solid #e7e8ec;
+    font-size: 14px;
+    position: relative;
+    cursor: pointer
+}
+
+.landing_ads_question:after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 0;
+    width: 16px;
+    height: 8px;
+    background: url('/images/landings/ads/questions_arrow.svg') 50% no-repeat;
+    opacity: 0.5;
+    transition: opacity 150ms ease-in-out, -webkit-transform 150ms ease-in-out;
+    -o-transition: opacity 150ms ease-in-out, transform 150ms ease-in-out, -o-transform 150ms ease-in-out;
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out, -webkit-transform 150ms ease-in-out, -o-transform 150ms ease-in-out
+}
+
+.landing_ads_question:hover:after {
+    opacity: 1
+}
+
+.landing_ads_question_title {
+    color: #2a5885;
+    padding: 14px 0 10px
+}
+
+.landing_ads_question_title:hover {
+    text-decoration: underline
+}
+
+.landing_ads_question_answer {
+    color: #656565;
+    line-height: 17px;
+    display: none
+}
+
+.landing_ads_question_answer:after {
+    content: '';
+    height: 10px;
+    display: block
+}
+
+.landing_ads_question:first-child .landing_ads_question_answer {
+    display: block
+}
+
+.landing_ads_question.shown:after {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg)
+}
+
+.landing_ads_question.shown .landing_ads_question_title {
+    color: #000
+}
+
+.landing_ads_targeting_create_wrap {
+    margin-top: 60px
+}
+
+.landing_ads_special_projects_picture_wrap {
+    margin-bottom: -50px;
+    text-align: center
+}
+
+.landing_ads_special_projects_picture {
+    background: url(/images/landings/ads/special_projects_picture.png) bottom no-repeat;
+    width: 803px;
+    height: 280px;
+    margin: 35px auto 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_special_projects_picture {
+        background-image: url(/images/landings/ads/special_projects_picture_2x.png);
+        background-size: 799px 268px
+    }
+}
+
+.landing_ads_special_projects_cocacola {
+    padding: 0 20px!important
+}
+
+.landing_ads_special_projects_cocacola_bot_wrap {
+    height: 600px!important
+}
+
+.landing_ads_special_projects_cocacola_bot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(/images/landings/ads/ru/chatbot.png) 50% no-repeat;
+    width: 610px;
+    height: 600px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_special_projects_cocacola_bot {
+        background-image: url(/images/landings/ads/ru/chatbot_2x.png);
+        background-size: 634px 626px
+    }
+}
+
+.landing_ads_special_projects_live {
+    margin-top: 0;
+    padding-bottom: 50px
+}
+
+.landing_ads_special_projects_live .landing_ads_company_page_create_page_caption {
+    color: #222
+}
+
+.landing_ads_special_projects_live_player_wrap {
+    width: 960px;
+    height: 405px;
+    margin: 43px auto 0;
+    background: #1e1e1e
+}
+
+.landing_ads_lives_wrap {
+    width: 240px!important;
+    height: 405px!important;
+    color: #fff;
+    text-align: left;
+    position: static!important;
+    display: block!important
+}
+
+.landing_ads_lives_rows {
+    height: 375px;
+    overflow: hidden
+}
+
+.landing_ads_live_player {
+    width: 720px;
+    height: 405px
+}
+
+.landing_ads_special_projects_brand_wrap {
+    margin: 50px auto -61px
+}
+
+.landing_ads_special_projects_brand_picture {
+    width: 948px;
+    height: 336px;
+    background-image: url(/images/landings/ads/special_projects_brand.png)!important;
+    position: relative
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_special_projects_brand_picture {
+        background-image: url(/images/landings/ads/special_projects_brand_2x.png);
+        background-size: 933px 330px
+    }
+}
+
+.landing_ads_special_projects_games_integration {
+    margin: 0 auto -50px;
+    padding-top: 20px
+}
+
+#ads_games_integration_slider {
+    margin-top: 50px
+}
+
+#ads_games_integration_slider,
+.landing_ads_games_integration_slider,
+.landing_ads_games_integration_slider {
+    height: 321px!important;
+    min-height: 321px!important
+}
+
+.landing_ads_games_integration_slider .landings_base_slider_slides_container {
+    width: 1013px;
+    left: 50%;
+    margin-left: -506px
+}
+
+.landing_ads_games_integration_slider .landings_base_slider_slide_wrap {
+    width: 338px;
+    height: 253px;
+    left: 50%;
+    margin-left: -169px;
+    top: 68px!important
+}
+
+.landing_ads_games_integration_slider .landings_base_slider_slide_wrap,
+.landing_ads_games_integration_slide {
+    -webkit-transform-origin: bottom;
+    -ms-transform-origin: bottom;
+    -o-transform-origin: bottom;
+    transform-origin: bottom
+}
+
+.landing_ads_games_integration_slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 100% auto!important;
+    background: no-repeat top;
+    transition: z-index 300ms linear, -webkit-transform 300ms ease-in-out;
+    -o-transition: transform 300ms ease-in-out, z-index 300ms linear, -o-transform 300ms ease-in-out;
+    transition: transform 300ms ease-in-out, z-index 300ms linear;
+    transition: transform 300ms ease-in-out, z-index 300ms linear, -webkit-transform 300ms ease-in-out, -o-transform 300ms ease-in-out;
+    cursor: pointer
+}
+
+@-webkit-keyframes ads_games_integration_anim {
+    0%,
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
+    to {
+        -webkit-transform: scale(1.26);
+        transform: scale(1.26)
+    }
+}
+
+@-o-keyframes ads_games_integration_anim {
+    0%,
+    50% {
+        -o-transform: scale(1);
+        transform: scale(1)
+    }
+    to {
+        -o-transform: scale(1.26);
+        transform: scale(1.26)
+    }
+}
+
+@keyframes ads_games_integration_anim {
+    0%,
+    50% {
+        -webkit-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1)
+    }
+    to {
+        -webkit-transform: scale(1.26);
+        -o-transform: scale(1.26);
+        transform: scale(1.26)
+    }
+}
+
+.landing_ads_community_ads_tools {
+    width: 856px
+}
+
+.landing_ads_community_ads_tools .landing_ads_company_page_tools_row {
+    width: 164px;
+    margin-left: 182px
+}
+
+.landing_ads_community_ads_post_image {
+    background: url(/images/landings/ads/ru/englishfirst.png);
+    width: 460px;
+    height: 340px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_community_ads_post_image {
+        background-image: url(/images/landings/ads/ru/englishfirst_2x.png);
+        background-size: 460px 340px
+    }
+}
+
+.landing_ads_community_ads_post_wrap .landing_ads_company_page_create_page_title {
+    padding-top: 30px
+}
+
+.landing_ads_community_ads_post_wrap .landing_ads_company_page_create_page_caption {
+    width: 381px
+}
+
+.landing_ads_community_ads_select_wrap {
+    margin: -50px auto;
+    height: 400px;
+    padding-top: 0!important
+}
+
+.landing_ads_community_ads_select_wrap .landing_ads_company_page_posts {
+    padding-top: 0
+}
+
+.landing_ads_community_ads_select_wrap .landing_ads_company_page_create_page_info {
+    width: 436px
+}
+
+.landing_ads_community_ads_select_wrap .landing_ads_company_page_create_page_title {
+    padding-top: 76px
+}
+
+.landing_ads_looped_communities_wrap {
+    width: 384px;
+    overflow: hidden;
+    position: relative;
+    height: 400px
+}
+
+#looped_groups_marquee {
+    -webkit-animation-name: landing_ads_marquee;
+    -o-animation-name: landing_ads_marquee;
+    animation-name: landing_ads_marquee;
+    -webkit-animation-duration: 5s;
+    -o-animation-duration: 5s;
+    animation-duration: 5s;
+    -webkit-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-transform-origin: 0;
+    -ms-transform-origin: 0;
+    -o-transform-origin: 0;
+    transform-origin: 0
+}
+
+@-webkit-keyframes landing_ads_marquee {
+    0% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px)
+    }
+    to {
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%)
+    }
+}
+
+@-o-keyframes landing_ads_marquee {
+    0% {
+        -o-transform: translateY(0px);
+        transform: translateY(0px)
+    }
+    to {
+        -o-transform: translateY(-100%);
+        transform: translateY(-100%)
+    }
+}
+
+@keyframes landing_ads_marquee {
+    0% {
+        -webkit-transform: translateY(0px);
+        -o-transform: translateY(0px);
+        transform: translateY(0px)
+    }
+    to {
+        -webkit-transform: translateY(-100%);
+        -o-transform: translateY(-100%);
+        transform: translateY(-100%)
+    }
+}
+
+.landing_ads_looped_group {
+    padding: 10px 0
+}
+
+.landing_ads_looped_group_icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 45px;
+    background-size: cover
+}
+
+.landing_ads_looped_group_info {
+    margin-left: 125px;
+    padding-top: 6px
+}
+
+.landing_ads_looped_group_title {
+    color: #222;
+    font-size: 14px;
+    line-height: 18px
+}
+
+.landing_ads_looped_group_caption {
+    margin-top: 10px;
+    color: #828282;
+    line-height: 17px
+}
+
+.landing_ads_community_ads_section {
+    width: 921px
+}
+
+.landing_ads_community_ads_feed_wrap {
+    margin: -50px auto -30px
+}
+
+.landing_ads_community_ads_feed_wrap .landing_ads_company_page_create_page_info {
+    width: 381px
+}
+
+.landing_ads_community_ads_feed_wrap .landing_ads_company_page_create_page_title {
+    padding-top: 115px
+}
+
+.landing_ads_community_ads_feed_image {
+    width: 460px;
+    height: 500px;
+    background: url(/images/landings/ads/ru/englishfirst2.png) no-repeat 50%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_community_ads_feed_image {
+        background-image: url(/images/landings/ads/ru/englishfirst2_2x.png);
+        background-size: 460px 500px
+    }
+}
+
+.landing_ads_community_ads_questions {
+    margin-bottom: -50px
+}
+
+.landing_ads_special_project_request_error {
+    margin: 0 0 15px;
+    display: none
+}
+
+.landing_ads_special_project_request_rows {
+    margin-top: 45px
+}
+
+.landing_ads_special_project_request_row {
+    margin-bottom: 20px
+}
+
+.landing_ads_special_project_request_row.project_type .landing_ads_special_project_request_label {
+    padding-top: 0!important
+}
+
+.landing_ads_special_project_request_label {
+    text-align: right;
+    color: #939393;
+    width: 175px;
+    padding-top: 6px
+}
+
+.landing_ads_special_project_request_label:before {
+    content: '*';
+    display: inline-block;
+    color: #eb6a6c;
+    margin-right: 2px
+}
+
+.landing_ads_special_project_request_label.not_required:before {
+    display: none
+}
+
+.landing_ads_special_project_request_value {
+    margin-left: 20px;
+    width: 290px
+}
+
+.landing_ads_special_project_request_value .dark {
+    width: 100%
+}
+
+.landing_ads_special_project_request_value textarea {
+    min-height: 90px
+}
+
+.landing_ads_special_project_request_value .radiobtn {
+    margin-top: 15px
+}
+
+.landing_ads_special_project_request_value .radiobtn:first-child {
+    margin-top: 8px
+}
+
+#special_project_request_budget_wrap {
+    position: relative
+}
+
+.landing_ads_special_projects_bad_price_tt_text {
+    font-size: 14px;
+    margin-right: 40px
+}
+
+.landing_ads_tabs_other_pages .ui_tab {
+    margin-left: 47px!important
+}
+
+.landing_ads_tabs_other_pages li:first-child .ui_tab {
+    margin-left: 7px!important
+}
+
+.landing_ads_other_page_info_block {
+    text-align: center
+}
+
+.landing_ads_other_page_info_block.landing_ads_other_page_info_block_first {
+    margin-top: 50px
+}
+
+.landing_ads_partner_rows {
+    width: 882px;
+    margin: 50px auto 0
+}
+
+.landing_ads_partner_row {
+    display: block;
+    width: 386px;
+    margin-bottom: 30px;
+    text-decoration: none!important
+}
+
+.landing_ads_partner_row:nth-child(even) {
+    margin-left: 110px
+}
+
+.landing_ads_partner_row_icon {
+    width: 90px;
+    height: 90px;
+    background-size: contain
+}
+
+.landing_ads_partner_row_cont {
+    margin-left: 125px;
+    padding-top: 25px;
+    text-align: left
+}
+
+.landing_ads_partner_row_title {
+    font-size: 14px;
+    color: #222;
+    line-height: 18px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    white-space: nowrap
+}
+
+.landing_ads_partner_row_caption {
+    color: #828282;
+    line-height: 17px;
+    margin-top: 4px
+}
+
+.landing_ads_partner_row_caption,
+.landing_ads_partner_row_title {
+    display: inline-block
+}
+
+.landing_ads_partner_row_caption:hover,
+.landing_ads_partner_row_title:hover {
+    text-decoration: underline
+}
+
+.landing_ads_automation_form_title {
+    margin-top: 100px
+}
+
+.landing_ads_media_ads_rows {
+    margin: 50px auto 0;
+    width: 691px;
+    padding-bottom: 30px
+}
+
+.landing_ads_media_ads_row {
+    margin-bottom: 30px;
+    display: table;
+    width: 100%;
+    height: 90px;
+    text-decoration: none!important
+}
+
+.landing_ads_media_ads_row:last-child {
+    margin-bottom: 0
+}
+
+.landing_ads_media_ads_row_column {
+    display: table-cell;
+    vertical-align: middle;
+    box-sizing: border-box;
+    cursor: pointer
+}
+
+.landing_ads_media_ads_row_column.title {
+    width: 310px;
+    color: #222;
+    font-size: 14px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    text-align: right;
+    padding-right: 60px
+}
+
+.landing_ads_media_ads_row_column.icon {
+    width: 90px;
+    height: 90px;
+    background-size: contain
+}
+
+.landing_ads_media_ads_row_column.caption {
+    width: 293px;
+    max-width: 293px;
+    color: #828282;
+    padding-left: 35px
+}
+
+.landing_ads_media_ads_row_column span:hover {
+    text-decoration: underline
+}
+
+.landing_ads_adv_agency_info .landing_ads_company_page_create_page_caption {
+    color: #000
+}
+
+.landing_ads_adv_agency_info .landing_ads_company_page_create_page_title {
+    margin-top: 30px
+}
+
+.landing_ads_adv_agency_form {
+    width: 488px;
+    margin: 15px auto 0
+}
+
+.landing_ads_adv_agency_form .msg {
+    margin: 0 0 20px
+}
+
+#adv_agency_form_sent {
+    display: none
+}
+
+.landing_ads_checkbox {
+    padding: 10px 0
+}
+
+.landing_ads_checkbox:first-child {
+    margin-top: -2px
+}
+
+.landing_ads_en .landing_ads_company_page_create_page_screen {
+    background-image: url(/images/landings/ads/en/public2.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_company_page_create_page_screen {
+        background-image: url(/images/landings/ads/en/public2_2x.png);
+        background-size: 399px 479px
+    }
+}
+
+.landing_ads_en .landing_ads_company_page_post {
+    background-image: url(/images/landings/ads/en/iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_company_page_post {
+        background-image: url(/images/landings/ads/en/iphone_2x.png);
+        background-size: 338px 2135px
+    }
+}
+
+.landing_ads_en .landing_ads_company_page_messages_screen {
+    background-image: url(/images/landings/ads/en/big_chat.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_company_page_messages_screen {
+        background-image: url(/images/landings/ads/en/big_chat_2x.png);
+        background-size: 633px 612px
+    }
+}
+
+.landing_ads_en .landing_ads_company_page_create_market_screen {
+    background-image: url(/images/landings/ads/en/public1.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_company_page_create_market_screen {
+        background-image: url(/images/landings/ads/en/public1_2x.png);
+        background-size: 558px 336px
+    }
+}
+
+.landing_ads_en .landing_ads_widget.messages {
+    background-image: url(/images/landings/ads/en/small_chat.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_widget.messages {
+        background-image: url(/images/landings/ads/en/small_chat_2x.png);
+        background-size: 326px 410px
+    }
+}
+
+.landing_ads_en .landing_ads_widget.followers {
+    background-image: url(/images/landings/ads/en/subscribe.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_widget.followers {
+        background-image: url(/images/landings/ads/en/subscribe_2x.png);
+        background-size: 204px 144px
+    }
+}
+
+.landing_ads_en .landing_ads_widget.comments {
+    background-image: url(/images/landings/ads/en/comments.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_widget.comments {
+        background-image: url(/images/landings/ads/en/comments_2x.png);
+        background-size: 510px 242px
+    }
+}
+
+.landing_ads_en .landing_ads_company_page_tools_row_icon.icon4 {
+    background-image: url(/images/landings/ads/en/company_page_ic4.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_company_page_tools_row_icon.icon4 {
+        background-image: url(/images/landings/ads/en/company_page_ic4_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_en .landing_ads_company_page_tools_row_icon.icon9 {
+    background-image: url(/images/landings/ads/en/community_ads_ic1.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_company_page_tools_row_icon.icon9 {
+        background-image: url(/images/landings/ads/en/community_ads_ic1_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_post.post1 {
+    background-image: url(/images/landings/ads/en/genius_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_post.post1 {
+        background-image: url(/images/landings/ads/en/genius_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_post.post2 {
+    background-image: url(/images/landings/ads/en/megasport_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_post.post2 {
+        background-image: url(/images/landings/ads/en/megasport_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_post.post3 {
+    background-image: url(/images/landings/ads/en/lady_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_post.post3 {
+        background-image: url(/images/landings/ads/en/lady_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_post.post4 {
+    background-image: url(/images/landings/ads/en/pizza_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_post.post4 {
+        background-image: url(/images/landings/ads/en/pizza_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_post.post5 {
+    background-image: url(/images/landings/ads/en/fashionland_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_post.post5 {
+        background-image: url(/images/landings/ads/en/fashionland_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_post.post6 {
+    background-image: url(/images/landings/ads/en/wedding_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_post.post6 {
+        background-image: url(/images/landings/ads/en/wedding_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_post.post7 {
+    background-image: url(/images/landings/ads/en/shkatulka_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_post.post7 {
+        background-image: url(/images/landings/ads/en/shkatulka_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_post_browser.post1 {
+    background-image: url(/images/landings/ads/en/genius.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_post_browser.post1 {
+        background-image: url(/images/landings/ads/en/genius_2x.png);
+        background-size: 246px 243px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_post_browser.post2 {
+    background-image: url(/images/landings/ads/en/megasport.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_post_browser.post2 {
+        background-image: url(/images/landings/ads/en/megasport_2x.png);
+        background-size: 246px 244px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_post_browser.post3 {
+    background-image: url(/images/landings/ads/en/lady.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_post_browser.post3 {
+        background-image: url(/images/landings/ads/en/lady_2x.png);
+        background-size: 248px 249px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_post_browser.post4 {
+    background-image: url(/images/landings/ads/en/pizza.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_post_browser.post4 {
+        background-image: url(/images/landings/ads/en/pizza_2x.png);
+        background-size: 248px 248px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_post_browser.post5 {
+    background-image: url(/images/landings/ads/en/fashonland.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_post_browser.post5 {
+        background-image: url(/images/landings/ads/en/fashonland_2x.png);
+        background-size: 248px 248px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_post_browser.post6 {
+    background-image: url(/images/landings/ads/en/wedding.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_post_browser.post6 {
+        background-image: url(/images/landings/ads/en/wedding_2x.png);
+        background-size: 248px 241px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_post_browser.post7 {
+    background-image: url(/images/landings/ads/en/shkatulka.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_post_browser.post7 {
+        background-image: url(/images/landings/ads/en/shkatulka_2x.png);
+        background-size: 248px 238px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_ads_example_group_image.group1 {
+    background-image: url(/images/landings/ads/en/sberbank1.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_ads_example_group_image.group1 {
+        background-image: url(/images/landings/ads/en/sberbank1_2x.png);
+        background-size: 610px 412px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_ads_example_group_image.group2 {
+    background-image: url(/images/landings/ads/en/sberbank2.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_ads_example_group_image.group2 {
+        background-image: url(/images/landings/ads/en/sberbank2_2x.png);
+        background-size: 610px 412px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_ads_example_group_image.group3 {
+    background-image: url(/images/landings/ads/en/sberbank3.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_ads_example_group_image.group3 {
+        background-image: url(/images/landings/ads/en/sberbank3_2x.png);
+        background-size: 610px 412px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_ads_example_group_image.group4 {
+    background-image: url(/images/landings/ads/en/sberbank4.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_ads_example_group_image.group4 {
+        background-image: url(/images/landings/ads/en/sberbank4_2x.png);
+        background-size: 556px 381px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_ads_example_group_image.group5 {
+    background-image: url(/images/landings/ads/en/sberbank5.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_ads_example_group_image.group5 {
+        background-image: url(/images/landings/ads/en/sberbank5_2x.png);
+        background-size: 610px 403px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_ads_example_group_image.group6 {
+    background-image: url(/images/landings/ads/en/sberbank6.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_ads_example_group_image.group6 {
+        background-image: url(/images/landings/ads/en/sberbank6_2x.png);
+        background-size: 610px 403px
+    }
+}
+
+.landing_ads_en .landing_ads_special_projects_cocacola_bot {
+    background-image: url(/images/landings/ads/en/chatbot.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_special_projects_cocacola_bot {
+        background-image: url(/images/landings/ads/en/chatbot_2x.png);
+        background-size: 634px 626px
+    }
+}
+
+.landing_ads_en .landing_ads_community_ads_feed_image {
+    background-image: url(/images/landings/ads/en/englishfirst2.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_community_ads_feed_image {
+        background-image: url(/images/landings/ads/en/englishfirst2_2x.png);
+        background-size: 460px 500px
+    }
+}
+
+.landing_ads_en .landing_ads_community_ads_post_image {
+    background-image: url(/images/landings/ads/en/englishfirst.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_community_ads_post_image {
+        background-image: url(/images/landings/ads/en/englishfirst_2x.png);
+        background-size: 460px 340px
+    }
+}
+
+.landing_ads_en .landing_ads_targering_stats .landing_ads_company_page_messages_screen {
+    background-image: url(/images/landings/ads/en/mac.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targering_stats .landing_ads_company_page_messages_screen {
+        background-image: url(/images/landings/ads/en/mac_2x.png);
+        background-size: 668px 450px
+    }
+}
+
+.landing_ads_en .landing_ads_targeting_ads_example_post_wrap {
+    background-image: url(/images/landings/ads/en/iphone_browser.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_en .landing_ads_targeting_ads_example_post_wrap {
+        background-image: url(/images/landings/ads/en/iphone_browser_2x.png);
+        background-size: 506px 381px
+    }
+}
+
+.landing_ads_ua .landing_ads_company_page_create_page_screen {
+    background-image: url(/images/landings/ads/ua/public2.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_company_page_create_page_screen {
+        background-image: url(/images/landings/ads/ua/public2_2x.png);
+        background-size: 399px 479px
+    }
+}
+
+.landing_ads_ua .landing_ads_company_page_post {
+    background-image: url(/images/landings/ads/ua/iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_company_page_post {
+        background-image: url(/images/landings/ads/ua/iphone_2x.png);
+        background-size: 338px 2135px
+    }
+}
+
+.landing_ads_ua .landing_ads_company_page_messages_screen {
+    background-image: url(/images/landings/ads/ua/big_chat.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_company_page_messages_screen {
+        background-image: url(/images/landings/ads/ua/big_chat_2x.png);
+        background-size: 633px 612px
+    }
+}
+
+.landing_ads_ua .landing_ads_company_page_create_market_screen {
+    background-image: url(/images/landings/ads/ua/public1.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_company_page_create_market_screen {
+        background-image: url(/images/landings/ads/ua/public1_2x.png);
+        background-size: 558px 336px
+    }
+}
+
+.landing_ads_ua .landing_ads_widget.messages {
+    background-image: url(/images/landings/ads/ua/small_chat.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_widget.messages {
+        background-image: url(/images/landings/ads/ua/small_chat_2x.png);
+        background-size: 326px 410px
+    }
+}
+
+.landing_ads_ua .landing_ads_widget.followers {
+    background-image: url(/images/landings/ads/ua/subscribe.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_widget.followers {
+        background-image: url(/images/landings/ads/ua/subscribe_2x.png);
+        background-size: 204px 144px
+    }
+}
+
+.landing_ads_ua .landing_ads_widget.comments {
+    background-image: url(/images/landings/ads/ua/comments.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_widget.comments {
+        background-image: url(/images/landings/ads/ua/comments_2x.png);
+        background-size: 510px 241px
+    }
+}
+
+.landing_ads_ua .landing_ads_company_page_tools_row_icon.icon4 {
+    background-image: url(/images/landings/ads/ua/company_page_ic4.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_company_page_tools_row_icon.icon4 {
+        background-image: url(/images/landings/ads/ua/company_page_ic4_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_ua .landing_ads_company_page_tools_row_icon.icon9 {
+    background-image: url(/images/landings/ads/ua/community_ads_ic1.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_company_page_tools_row_icon.icon9 {
+        background-image: url(/images/landings/ads/ua/community_ads_ic1_2x.png);
+        background-size: 130px 130px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_post.post1 {
+    background-image: url(/images/landings/ads/ua/genius_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_post.post1 {
+        background-image: url(/images/landings/ads/ua/genius_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_post.post2 {
+    background-image: url(/images/landings/ads/ua/megasport_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_post.post2 {
+        background-image: url(/images/landings/ads/ua/megasport_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_post.post3 {
+    background-image: url(/images/landings/ads/ua/lady_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_post.post3 {
+        background-image: url(/images/landings/ads/ua/lady_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_post.post4 {
+    background-image: url(/images/landings/ads/ua/pizza_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_post.post4 {
+        background-image: url(/images/landings/ads/ua/pizza_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_post.post5 {
+    background-image: url(/images/landings/ads/ua/fashionland_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_post.post5 {
+        background-image: url(/images/landings/ads/ua/fashionland_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_post.post6 {
+    background-image: url(/images/landings/ads/ua/wedding_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_post.post6 {
+        background-image: url(/images/landings/ads/ua/wedding_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_post.post7 {
+    background-image: url(/images/landings/ads/ua/shkatulka_iphone.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_post.post7 {
+        background-image: url(/images/landings/ads/ua/shkatulka_iphone_2x.png);
+        background-size: 150px 237px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_post_browser.post1 {
+    background-image: url(/images/landings/ads/ua/genius.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_post_browser.post1 {
+        background-image: url(/images/landings/ads/ua/genius_2x.png);
+        background-size: 246px 243px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_post_browser.post2 {
+    background-image: url(/images/landings/ads/ua/megasport.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_post_browser.post2 {
+        background-image: url(/images/landings/ads/ua/megasport_2x.png);
+        background-size: 246px 244px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_post_browser.post3 {
+    background-image: url(/images/landings/ads/ua/lady.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_post_browser.post3 {
+        background-image: url(/images/landings/ads/ua/lady_2x.png);
+        background-size: 248px 249px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_post_browser.post4 {
+    background-image: url(/images/landings/ads/ua/pizza.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_post_browser.post4 {
+        background-image: url(/images/landings/ads/ua/pizza_2x.png);
+        background-size: 248px 248px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_post_browser.post5 {
+    background-image: url(/images/landings/ads/ua/fashonland.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_post_browser.post5 {
+        background-image: url(/images/landings/ads/ua/fashonland_2x.png);
+        background-size: 248px 247px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_post_browser.post6 {
+    background-image: url(/images/landings/ads/ua/wedding.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_post_browser.post6 {
+        background-image: url(/images/landings/ads/ua/wedding_2x.png);
+        background-size: 248px 247px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_post_browser.post7 {
+    background-image: url(/images/landings/ads/ua/shkatulka.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_post_browser.post7 {
+        background-image: url(/images/landings/ads/ua/shkatulka_2x.png);
+        background-size: 248px 238px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_ads_example_group_image.group1 {
+    background-image: url(/images/landings/ads/ua/sberbank1.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_ads_example_group_image.group1 {
+        background-image: url(/images/landings/ads/ua/sberbank1_2x.png);
+        background-size: 610px 412px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_ads_example_group_image.group2 {
+    background-image: url(/images/landings/ads/ua/sberbank2.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_ads_example_group_image.group2 {
+        background-image: url(/images/landings/ads/ua/sberbank2_2x.png);
+        background-size: 610px 412px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_ads_example_group_image.group3 {
+    background-image: url(/images/landings/ads/ua/sberbank3.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_ads_example_group_image.group3 {
+        background-image: url(/images/landings/ads/ua/sberbank3_2x.png);
+        background-size: 610px 412px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_ads_example_group_image.group4 {
+    background-image: url(/images/landings/ads/ua/sberbank4.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_ads_example_group_image.group4 {
+        background-image: url(/images/landings/ads/ua/sberbank4_2x.png);
+        background-size: 556px 381px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_ads_example_group_image.group5 {
+    background-image: url(/images/landings/ads/ua/sberbank5.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_ads_example_group_image.group5 {
+        background-image: url(/images/landings/ads/ua/sberbank5_2x.png);
+        background-size: 610px 403px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_ads_example_group_image.group6 {
+    background-image: url(/images/landings/ads/ua/sberbank6.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_ads_example_group_image.group6 {
+        background-image: url(/images/landings/ads/ua/sberbank6_2x.png);
+        background-size: 610px 403px
+    }
+}
+
+.landing_ads_ua .landing_ads_special_projects_cocacola_bot {
+    background-image: url(/images/landings/ads/ua/chatbot_updated.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_special_projects_cocacola_bot {
+        background-image: url(/images/landings/ads/ua/chatbot_updated_2x.png);
+        background-size: 634px 626px
+    }
+}
+
+.landing_ads_ua .landing_ads_community_ads_feed_image {
+    background-image: url(/images/landings/ads/ua/englishfirst2.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_community_ads_feed_image {
+        background-image: url(/images/landings/ads/ua/englishfirst2_2x.png);
+        background-size: 460px 500px
+    }
+}
+
+.landing_ads_ua .landing_ads_community_ads_post_image {
+    background-image: url(/images/landings/ads/ua/englishfirst.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_community_ads_post_image {
+        background-image: url(/images/landings/ads/ua/englishfirst_2x.png);
+        background-size: 460px 340px
+    }
+}
+
+.landing_ads_ua .landing_ads_targering_stats .landing_ads_company_page_messages_screen {
+    background-image: url(/images/landings/ads/ua/mac.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targering_stats .landing_ads_company_page_messages_screen {
+        background-image: url(/images/landings/ads/ua/mac_2x.png);
+        background-size: 668px 450px
+    }
+}
+
+.landing_ads_ua .landing_ads_targeting_ads_example_post_wrap {
+    background-image: url(/images/landings/ads/ua/iphone_browser.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_ads_ua .landing_ads_targeting_ads_example_post_wrap {
+        background-image: url(/images/landings/ads/ua/iphone_browser_2x.png);
+        background-size: 506px 381px
+    }
+}
+
+.landing_ads_become_partner_box {
+    font-size: 13px
+}
+
+.landing_ads_become_partner_box .landing_ads_become_partner_box_list {
+    padding-left: 15px
+}
+
+.landing_ads_become_partner_box .landing_ads_become_partner_box_list_item {
+    margin-bottom: 10px;
+    color: #768eab
+}
+
+.landing_ads_become_partner_box .landing_ads_become_partner_box_list_item_text {
+    color: #000
+}
+
+.landing_ads_partners_action_button_wrap {
+    margin-top: 30px
+}

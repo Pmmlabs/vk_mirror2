@@ -1,0 +1,415 @@
+#statlogs_css {
+    display: none
+}
+
+#statlogs_page_wrap {
+    padding: 20px
+}
+
+#statlogs_page h3 {
+    color: #45688e;
+    font-size: 1.09em;
+    font-weight: 700;
+    margin: 0;
+    padding: 0 0 8px;
+    text-align: left
+}
+
+.graph_horizontal_menu_wrapper .stats_head {
+    margin: 0
+}
+
+.graph_horizontal_menu_wrapper .summary_tabs {
+    margin: 0 0 10px!important;
+    padding: 2px 5px
+}
+
+.statlogs_round_tabs {
+    padding: 10px 10px 5px;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #dae1e8
+}
+
+.statlogs_round_tab {
+    padding: 0 5px 5px 0
+}
+
+.statlogs_round_tabs_separate {
+    margin-bottom: 15px;
+    border-top: 1px solid #dae1e8
+}
+
+#wrapper_sections_chart,
+#wrapper_sources_chart {
+    padding: 0 0 20px
+}
+
+#statlogs_page .stats_head {
+    margin: 0 0 10px
+}
+
+#statlogs_page .stats_no_data {
+    margin: 0
+}
+
+#statlogs_page #statlogs_table_wrap .top_control {
+    padding-bottom: 5px
+}
+
+#statlogs_page #statlogs_table_wrap .bottom_control {
+    padding-top: 5px
+}
+
+.statlogs_row {
+    padding: 5px 0
+}
+
+.statlogs_label {
+    padding: 4px 10px 0;
+    width: 100px;
+    color: #777;
+    vertical-align: top;
+    text-align: right
+}
+
+.statlogs_labeled {
+    padding: 0;
+    margin-left: 120px;
+    vertical-align: top
+}
+
+#referrers_search_form {
+    padding-bottom: 20px
+}
+
+#referrers_search {
+    width: 150px;
+    background: url("/images/magglass.png") no-repeat scroll 5px 5px #fff;
+    outline: medium none;
+    padding-right: 40px;
+    padding-left: 20px
+}
+
+.statlogs_navigation {
+    margin: 0 0 10px;
+    padding: 5px 10px;
+    background-color: #f7f7f7
+}
+
+.statlogs_arrow {
+    padding: 2px;
+    height: 16px;
+    width: 16px;
+    border: 1px solid #dae2e8;
+    background-color: #fff
+}
+
+.statlogs_cur_date {
+    padding: 4px 10px 0;
+    color: #666
+}
+
+.statlogs_perc {
+    color: #777;
+    font-size: 0.9em
+}
+
+.statlogs_tbl_control_row {
+    padding-top: 4px
+}
+
+#statlogs_table_wrap .graph_right_menu {
+    padding-bottom: 0
+}
+
+.statlogs_tbl_control_active {
+    font-weight: 700
+}
+
+#ref_table_progress {
+    padding: 2px 0 0 15px
+}
+
+.statlogs_green {
+    color: #4a844a
+}
+
+.statlogs_red {
+    color: #c15336
+}
+
+.statlogs_yellow {
+    color: #b9a13f
+}
+
+#statlogs_navigation {
+    width: 500px;
+    padding-left: 50px
+}
+
+#statlogs_navigation .stat_form {
+    margin: 0px 2px 10px 0px;
+    padding: 10px
+}
+
+#statlogs_navigation .stat_form .stats_head {
+    margin-bottom: 10px
+}
+
+#statlogs_navigation button {
+    margin-top: 15px
+}
+
+.statlogs_edit_label {
+    width: 150px;
+    text-align: left;
+    padding: 0px;
+    color: #666
+}
+
+.left_controls .statlogs_edit_label {
+    padding: 5px
+}
+
+.statlogs_edit_value {
+    width: 190px;
+    outline: none
+}
+
+#description_box .statlogs_edit_value {
+    width: 372px
+}
+
+#description_box {
+    padding: 8px;
+    padding-left: 20px;
+    position: relative
+}
+
+textarea {
+    background: #fff;
+    color: #000;
+    border: 1px solid #c3cbd4;
+    padding: 3px;
+    margin: 0px
+}
+
+#description_box textarea {
+    overflow: hidden;
+    outline: none;
+    width: 372px;
+    height: 14px;
+    resize: none
+}
+
+.statlogs_stat_head {
+    border-bottom: 1px solid #dae1e8;
+    color: #45688e;
+    font-size: 1.09em;
+    font-weight: 700;
+    margin: 0 10px 10px;
+    padding: 10px 0 2px;
+    text-align: left
+}
+
+.statlogs_stat_alert {
+    background-color: #6383a8;
+    border-radius: 3px;
+    font-size: 11px;
+    color: #fff;
+    padding: 3px;
+    margin-bottom: 2px
+}
+
+#description_box .description_line {
+    padding-bottom: 10px
+}
+
+#statlogs_wiki_formula {
+    width: 580px;
+    height: 64px;
+    display: block;
+    outline: none
+}
+
+.statlogs_graph_actions {
+    padding-top: 7px
+}
+
+.statlogs_graph_actions,
+.statlogs_graph_input {
+    padding-left: 10px;
+    padding-right: 10px
+}
+
+.statlogs_stat_top_links {
+    display: block;
+    height: 30px
+}
+
+.statlogs_short_result {
+    height: 15px;
+    overflow: hidden;
+    margin-top: 15px
+}
+
+#statlogs_short_result {
+    display: none
+}
+
+#statlogs_short_link {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 5px 4px;
+    width: 150px;
+    background: #e1e7ed
+}
+
+.statlogs_commits_badge {
+    width: 4px;
+    height: 4px;
+    background-color: #6d8cb0;
+    color: #fff;
+    font-size: 0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px
+}
+
+.statlogs_commits_badge:after {
+    top: 7px;
+    left: 4px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: transparent;
+    border-top-color: #6d8cb0;
+    border-width: 2px;
+    margin-left: -2px
+}
+
+.statlogs_commits_wrapper:hover .statlogs_commits_badge {
+    background-color: #82a6d1
+}
+
+.statlogs_commits_wrapper:hover .statlogs_commits_badge:after {
+    border-top-color: #82a6d1
+}
+
+.highcharts-container {
+    overflow: visible!important
+}
+
+.statlogs_commits_info {
+    position: absolute;
+    bottom: 51px;
+    width: auto;
+    height: auto;
+    padding: 3px 5px;
+    left: -9px;
+    background-color: #e6eaf0;
+    border-radius: 2px;
+    text-overflow: ellipsis;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, .2);
+    -webkit-user-select: auto;
+    -moz-user-select: all;
+    -ms-user-select: all;
+    user-select: all;
+    opacity: 0;
+    -o-transition: opacity 0.1s;
+    transition: opacity 0.1s;
+    pointer-events: none
+}
+
+.statlogs_commits_hover_bridge {
+    position: absolute;
+    bottom: 39px;
+    left: -20px;
+    height: 20px;
+    width: 40px;
+    display: none
+}
+
+.statlogs_commits_wrapper {
+    position: absolute;
+    top: -7px;
+    left: -8px;
+    padding: 3px 2px 40px;
+    font-size: 0.8em;
+    z-index: 100
+}
+
+.statlogs_commits_wrapper:hover {
+    z-index: 101
+}
+
+.statlogs_commits_wrapper:hover .statlogs_commits_info {
+    opacity: 1;
+    pointer-events: auto
+}
+
+.statlogs_commits_wrapper:hover .statlogs_commits_hover_bridge,
+.statlogs_commits_hover_bridge:hover+.statlogs_commits_info,
+.statlogs_commits_info:hover {
+    display: block
+}
+
+.statlogs_commits_count_badge {
+    display: inline-block;
+    vertical-align: top;
+    background-color: #fff;
+    color: #000;
+    border-radius: 30px;
+    padding: 1px 2px;
+    font-size: 0.8em;
+    font-weight: 700;
+    margin-right: 2px
+}
+
+.statlogs_commits_info:after {
+    top: 100%;
+    left: 13px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: transparent;
+    border-top-color: #e6eaf0;
+    border-width: 6px;
+    margin-left: -6px
+}
+
+.statlogs_commits_info_inner {
+    display: inline-block
+}
+
+.statlogs_commit_info_comment {
+    display: inline-block;
+    max-width: 200px;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    vertical-align: bottom
+}
+
+.statlogs_shift_mode {
+    cursor: pointer;
+    color: #45688e
+}
+
+.statlogs_shift_mode:hover {
+    text-decoration: underline
+}
+
+.statlogs_shift_mode.active:hover {
+    text-decoration: none
+}
+
+.statlogs_shift_mode.active {
+    font-weight: 700;
+    cursor: text
+}

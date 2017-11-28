@@ -1,0 +1,174 @@
+#landings_smartfeed_css {
+    display: none
+}
+
+.landing_smartfeed {
+    font-family: Open Sans, Helvetica Neue, sans-serif;
+    font-weight: 400;
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 55px 20px 0
+}
+
+.landing_smartfeed_title {
+    font-size: 46px;
+    color: #2b2f33
+}
+
+.landing_smartfeed_paragraph {
+    font-size: 19px;
+    line-height: 29px;
+    text-align: left;
+    margin: 30px auto
+}
+
+.landing_smartfeed_image {
+    display: inline-block;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin: 0 auto
+}
+
+.landing_smartfeed_image_0 {
+    background-image: url(/images/landings/smartfeed_image_0.png);
+    margin-top: 60px;
+    margin-bottom: 40px;
+    background-size: 406px 240px;
+    width: 406px;
+    height: 240px
+}
+
+.landing_smartfeed_image_phone {
+    margin-top: 30px
+}
+
+.os_android .landing_smartfeed_image_phone {
+    background-size: 257px 521px;
+    width: 257px;
+    height: 521px;
+    background-image: url(/images/landings/smartfeed_android_0.png)
+}
+
+.os_android.lang_1 .landing_smartfeed_image_phone {
+    background-image: url(/images/landings/smartfeed_android_1.png)
+}
+
+.os_android.lang_3 .landing_smartfeed_image_phone {
+    background-image: url(/images/landings/smartfeed_android_3.png)
+}
+
+.os_android.is_2x .landing_smartfeed_image_phone {
+    background-image: url(/images/landings/smartfeed_android_0_2x.png)
+}
+
+.os_android.is_2x.lang_1 .landing_smartfeed_image_phone {
+    background-image: url(/images/landings/smartfeed_android_1_2x.png)
+}
+
+.os_android.is_2x.lang_3 .landing_smartfeed_image_phone {
+    background-image: url(/images/landings/smartfeed_android_3_2x.png)
+}
+
+.os_ios .landing_smartfeed_image_phone {
+    background-size: 252px 521px;
+    width: 252px;
+    height: 521px;
+    background-image: url(/images/landings/smartfeed_ios_0.png)
+}
+
+.os_ios.lang_1 .landing_smartfeed_image_phone {
+    background-image: url(/images/landings/smartfeed_ios_1.png)
+}
+
+.os_ios.lang_3 .landing_smartfeed_image_phone {
+    background-image: url(/images/landings/smartfeed_ios_3.png)
+}
+
+.os_ios.is_2x .landing_smartfeed_image_phone {
+    background-image: url(/images/landings/smartfeed_ios_0_2x.png)
+}
+
+.os_ios.is_2x.lang_1 .landing_smartfeed_image_phone {
+    background-image: url(/images/landings/smartfeed_ios_1_2x.png)
+}
+
+.os_ios.is_2x.lang_3 .landing_smartfeed_image_phone {
+    background-image: url(/images/landings/smartfeed_ios_3_2x.png)
+}
+
+.os_wphone .landing_smartfeed_image_phone {
+    background-size: 325px 485px;
+    width: 325px;
+    height: 485px;
+    background-image: url(/images/landings/smartfeed_wphone_0.png)
+}
+
+.os_wphone.lang_1 .landing_smartfeed_image_phone {
+    background-image: url(/images/landings/smartfeed_wphone_1.png)
+}
+
+.os_wphone.lang_3 .landing_smartfeed_image_phone {
+    background-image: url(/images/landings/smartfeed_wphone_3.png)
+}
+
+.landing_smartfeed_image_star {
+    background-image: url(/images/landings/smartfeed_image_star.jpg);
+    background-size: 20px 20px;
+    width: 20px;
+    height: 20px
+}
+
+.is_2x .landing_smartfeed_image_0 {
+    background-image: url(/images/landings/smartfeed_image_0_2x.png)
+}
+
+@media (max-width: 630px) {
+    .is_page .landing_smartfeed_title {
+        font-size: 33px
+    }
+    .is_page .landing_smartfeed_image_0 {
+        margin-top: 40px;
+        margin-bottom: 20px;
+        background-size: 365px 216px;
+        width: 365px;
+        height: 216px
+    }
+    .is_page .landing_smartfeed_image_phone {
+        margin-top: 10px
+    }
+    .is_page.os_ios .landing_smartfeed_image_phone {
+        background-size: 227px 469px;
+        width: 227px;
+        height: 469px
+    }
+    .is_page.os_wphone .landing_smartfeed_image_phone {
+        background-size: 293px 437px;
+        width: 293px;
+        height: 437px
+    }
+    .is_page .landing_smartfeed_paragraph {
+        text-align: center;
+        font-size: 15px;
+        line-height: 24px
+    }
+}
+
+@media (max-width: 450px) {
+    .is_page .landing_smartfeed {
+        padding-top: 35px
+    }
+    .is_page .landing_smartfeed_image_0 {
+        background-size: 284px 168px;
+        width: 284px;
+        height: 168px
+    }
+    .is_page.os_wphone .landing_smartfeed_image_phone {
+        background-size: 227px 340px;
+        width: 227px;
+        height: 340px
+    }
+    .is_page .landing_smartfeed_title {
+        font-size: 23px
+    }
+}
