@@ -8112,3 +8112,39 @@ button.ui_load_more_btn {
 .audio_claim_popup>button {
     margin: 35px 0 25px
 }
+
+.lazyload {
+    transition: -webkit-filter 200ms ease-in-out;
+    -o-transition: filter 200ms ease-in-out;
+    transition: filter 200ms ease-in-out;
+    transition: filter 200ms ease-in-out, -webkit-filter 200ms ease-in-out
+}
+
+.lazyload,
+.lazyload_preview {
+    -webkit-filter: blur(2px);
+    filter: blur(2px)
+}
+
+.lazyload_preview {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: no-repeat 50% / cover;
+    z-index: -1;
+    pointer-events: none
+}
+
+.lazyload_loaded,
+.lazyload_loaded .lazyload_preview,
+.lazyload_preview_inner {
+    -webkit-filter: blur(0px);
+    filter: blur(0px)
+}
+
+.lazyload_no_animation {
+    -o-transition: none;
+    transition: none
+}

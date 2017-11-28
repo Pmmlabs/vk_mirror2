@@ -180,6 +180,10 @@
     padding-bottom: 10px
 }
 
+.restore_check_page .restore_submit_row {
+    text-align: center
+}
+
 .restore_section_wrap {
     float: left;
     width: 255px

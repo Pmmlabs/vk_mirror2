@@ -752,7 +752,8 @@ var uiTabs = {
                 ondragstop: null,
                 onupdate: null,
                 onmore: null,
-                noForceReFlow: !1
+                noForceReFlow: !1,
+                noLazyLoadWatch: !1
             }, i), this.options["native"] && (this.options.shadows = !1), browser.mobile && (this.options.stopScrollPropagation = !1), isArray(this.options.scrollElements) || (this.options.scrollElements = []), this.removeEvents = [], this.removeElements = [], this.dragging = !1, this.dragged = !1, this.released = !0, this.noMore = !1, this.dragY = null, this.dragScroll = null, this.shadowTop = !1, this.shadowBottom = !1, this.unnecessary = !1, this.disabled = !1, this.stopped = !0, this.stoppedTimeout = null, this.fixSizeDefault = null, this.animation = null, this.barOuterHeight = null, this.barInnerHeight = null, this.currentFrame = null, this.blockerScrollTop = 500, this.emitter = new EventEmitter, isFunction(this.options.onresize) && this.emitter.addListener("resize", this.options.onresize), isFunction(this.options.onscroll) && this.emitter.addListener("scroll", this.options.onscroll), isFunction(this.options.onscrollstart) && this.emitter.addListener("scrollstart", this.options.onscrollstart), isFunction(this.options.onscrollstop) && this.emitter.addListener("scrollstop", this.options.onscrollstop), isFunction(this.options.ondrag) && this.emitter.addListener("drag", this.options.ondrag), isFunction(this.options.ondragstart) && this.emitter.addListener("dragstart", this.options.ondragstart), isFunction(this.options.ondragstop) && this.emitter.addListener("dragstop", this.options.ondragstop), isFunction(this.options.onupdate) && this.emitter.addListener("update", this.options.onupdate), isFunction(this.options.onmore) && this.emitter.addListener("more", this.options.onmore), this.el = {
                 container: e,
                 overflow: ce("div", {
@@ -823,13 +824,14 @@ var uiTabs = {
                     scrollHeight: null,
                     viewportHeight: null
                 }
-            }, this.init();
+            }, this.init(), this.options.noLazyLoadWatch || (window.LazyLoad && LazyLoad.watch(this.el.outer), window.LazyLoad && LazyLoad.scanDelayed());
             var l = "onwheel" in this.el.outer ? "wheel" : void 0 !== document.onmousewheel ? "mousewheel" : browser.mozilla ? "MozMousePixelScroll" : "DOMMouseScroll";
             return this.addEvent(this.el.container, l, function(t) {
                 this.animation && this.animation.stop(), !this.disabled && this.options.stopScrollPropagation && (this.unnecessary ? this.options.stopScrollPropagationAlways && cancelEvent(t) : this.isScrollEventUnused(t) ? cancelEvent(t) : stopEvent(t))
             }.bind(this), !this.options.stopScrollPropagation), this.options["native"] || this.addEvent(this.el.barContainer, "mousedown", this.dragstart.bind(this)), each(this.options.scrollElements, function(t, e) {
                 this.addEvent(e, l, function(t) {
-                    this.disabled || this.unnecessary || (this.scrollBy(this.scrollEventDelta(t)), (this.options.stopScrollPropagation || !this.isScrollEventUnused(t)) && cancelEvent(t))
+                    this.disabled || this.unnecessary || (this.scrollBy(this.scrollEventDelta(t)),
+                        (this.options.stopScrollPropagation || !this.isScrollEventUnused(t)) && cancelEvent(t))
                 }.bind(this))
             }.bind(this)), this.options.reversed && this.addEvent(this.el.container, "mousedown touchstart pointerdown", function(t) {
                 this.released = !1, this.noMore = !0;
@@ -978,7 +980,7 @@ var uiTabs = {
                     this.style[browser.msie9 ? "msTransform" : "transform"] = t
                 }.bind(this.el.barInner, "translateY(" + (this.barOuterHeight - this.barInnerHeight) * this.api.data.scrollTop / (e - this.api.data.viewportHeight) + "px)"))), this.options.shadows && (this.shadowTop != (this.api.data.scrollTop && !i) && toggleClass(this.el.container, "ui_scroll_shadow_top_visible", this.shadowTop = this.api.data.scrollTop && !i), this.shadowBottom != (this.api.data.scrollBottom && !i) && toggleClass(this.el.container, "ui_scroll_shadow_bottom_visible", this.shadowBottom = this.api.data.scrollBottom && !i)), this.unnecessary !== i && (toggleClass(this.el.container, "ui_scroll_unnecessary", i), this.unnecessary = i, this.options.stopScrollPropagation && this.fixBlocker(), i && this.barInnerHeight && this.barOuterHeight && this.nextFrame(function(t) {
                     this.el.barInner.style.height = 100 * this.barInnerHeight / this.barOuterHeight + "%", this.el.barInner.style[browser.msie9 ? "msTransform" : "transform"] = "translateY(" + (this.barOuterHeight - this.barInnerHeight) * this.api.data.scrollTop / (e - this.api.data.viewportHeight) * 100 / this.barInnerHeight + "%)"
-                }.bind(this)))), this.emitEvent("update"), (!this.options.reversed || s >= 0) && this.more(), !0) : !1
+                }.bind(this)))), this.emitEvent("update"), this.options.noLazyLoadWatch || window.LazyLoad && LazyLoad.scanDelayed(this.el.outer), (!this.options.reversed || s >= 0) && this.more(), !0) : !1
             },
             more: function() {
                 !this.noMore && (this.options.reversed ? this.api.data.scrollTop : this.api.data.scrollBottom) <= (null !== this.options.onmoreThreshold ? this.options.onmoreThreshold : 2 * this.api.data.viewportHeight) && this.emitEvent("more")
@@ -1436,7 +1438,7 @@ Slider.prototype.toggleAdState = function(t) {
         i = Math.max(t.pageX, e[0]);
     i = Math.min(i, e[0] + this._width), i -= e[0], this.setValue(i / this._width, !0, !0), this._onValueChangeDebounced ? this._onValueChangeDebounced() : this._onValueChange(), this._toggleHint(!0), this._updateHint(t, !0), cancelEvent(t)
 }, Slider.prototype._getPos = function() {
-    return this._slidePos = getXY(this._slideEl)
+    return this._slidePos = getXY(this._slideEl);
 }, Slider.LOGFBASE = 35, Slider.prototype._logf = function(t) {
     if (!this.options.log) return t;
     var e = Slider.LOGFBASE;
@@ -1447,7 +1449,7 @@ Slider.prototype.toggleAdState = function(t) {
     }
     if (!this.options.log) return t;
     var i = Slider.LOGFBASE;
-    return e(i, 1 + t * (i - 1));
+    return e(i, 1 + t * (i - 1))
 }, Slider.prototype.setValue = function(t, e, i) {
     if (!hasClass(this._el, "active") || i) {
         var s = i ? this._logf(t) : t;

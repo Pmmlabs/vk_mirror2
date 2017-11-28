@@ -5,7 +5,7 @@ var WkView = {
         }), window.wkLayerWrap = ce("div", {
             id: "wk_layer_wrap",
             className: "scroll_fix_wrap fixed layer_wrap js-mediator-container"
-        }), wkLayerWrap.appendChild(window.wkLayer), bodyNode.appendChild(wkLayerWrap), window.wkLayer.style.width = lastWindowWidth - sbWidth() - 2 + "px")
+        }), wkLayerWrap.appendChild(window.wkLayer), bodyNode.appendChild(wkLayerWrap), window.LazyLoad && LazyLoad.watch(wkLayerWrap), window.wkLayer.style.width = lastWindowWidth - sbWidth() - 2 + "px")
     },
     showLayer: function() {
         layerQueue.hide(), layers.wrapshow(wkLayerWrap, .8), layers.fullhide = WkView.hide, WkView.onScroll(), wkcur.showT = setTimeout(function() {
@@ -278,7 +278,7 @@ var WkView = {
             })
         }, 1500))), toggle("wk_summary", title), wkcur.commonClass ? addClass(wkcur.wkBox, wkcur.commonClass) : wkcur.wkBox.className = "", wkcur.noCloseIcon && hide(wkcur.wkRight), wkcur.oid && wkcur.pid && (WkView.initSTL(), options.edit || (addEvent(wkLayerWrap, "scroll", WkView.onScroll), addEvent(window, "resize", WkView.onResize))), options.overflow ? addClass(wkcur.wkBox, "wk_overflow_hidden") : removeClass(wkcur.wkBox, "wk_overflow_hidden"), script && eval(script), WkView.updateSize(), removeEvent(document, "keydown", WkView.onKeyDown), addEvent(document, "keydown", WkView.onKeyDown), options.onLoaded && options.onLoaded(), shortCurrency(), WkView.updateArrows(), wkcur.wkContent.focus(), wkLayerWrap.scrollTop = 0, "wall" == options.type ? WkView.wallAfterInitPost() : options.toScroll ? (wkLayerWrap.scrollTop = options.toScroll, wkcur.toScroll = 0) : wkLayerWrap.scrollTop = 0, options.fromlist && WkView.preloadArrow(1 == options.fromlist), getAudioPlayer().updateCurrentPlaying(), window.updateAriaElements && updateAriaElements();
         var postLargeGif = domByClass(wkLayer, "page_gif_large");
-        return postLargeGif && Page.showGif(domFC(postLargeGif)), !1
+        return postLargeGif && Page.showGif(domFC(postLargeGif)), window.LazyLoad && LazyLoad.scanDelayed(), !1
     },
     hide: function(e, r, o) {
         if (window.wkcur && (r || wkcur.shown)) {
@@ -868,7 +868,8 @@ var WkView = {
                 if (w) {
                     if (a)
                         for (var l = geByClass("wk_likes_hidden", w), n = 0, s = l.length; s > n; ++n) w.appendChild(l[n]), removeClass(l[n], "wk_likes_hidden");
-                    w.appendChild(cf(r)), wkcur.offset = o, t ? WkView.likesPreload() : hide(e), WkView.updateHeight(), i && extend(cur.options.reply_names, i)
+                    w.appendChild(cf(r)), wkcur.offset = o, t ? WkView.likesPreload() : hide(e),
+                        WkView.updateHeight(), i && extend(cur.options.reply_names, i)
                 }
             },
             showProgress: lockButton.pbind(e),
