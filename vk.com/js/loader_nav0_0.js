@@ -200,7 +200,7 @@ var stVersions = {
     'video_upload.js': 812506149,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 13293833004,
-    'videoplayer.js': 74889086066,
+    'videoplayer.js': 75013459339,
     'videoplayer.css': 31054462405,
     'translation.js': 497102029,
     'translation.css': 16165774169,
@@ -219,7 +219,7 @@ var stVersions = {
     'owner_photo.js': 1714149322,
     'owner_photo.css': 19306285463,
     'page.js': 1813218876,
-    'page.css': 15276740375,
+    'page.css': 18818245159,
     'page_help.css': 19161536763,
     'public.css': 17836546308,
     'public.js': 1344775948,
@@ -230,7 +230,7 @@ var stVersions = {
     'groups_list.js': 3507753248,
     'groups_edit.css': 27721386715,
     'groups_edit.js': 3566441099,
-    'profile.css': 18267609941,
+    'profile.css': 17787774993,
     'profile.js': 610604261,
     'calendar.css': 18566303655,
     'calendar.js': 4203451993,
@@ -334,7 +334,7 @@ var stVersions = {
     'tasks.css': 13457429040,
     'helpdesk.js': 882017110,
     'helpdesk.css': 20594677090,
-    'tickets.js': 4198914222,
+    'tickets.js': 882776351,
     'tickets.css': 20250141100,
     'faq.js': 2812535921,
     'faq.css': 19686241339,
@@ -621,4 +621,4 @@ var stTypes = {
         'lazyload.js': 1
     }
 };
-var _rnd = 2439;
+var _rnd = 3129;

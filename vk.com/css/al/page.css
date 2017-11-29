@@ -8192,6 +8192,37 @@ button.wall_block_app_btn {
     background-color: #f0f2f5!important
 }
 
+.page_notify_img {
+    display: none
+}
+
+.eltt .notify_groups_money_btn_tt {
+    text-align: center
+}
+
+.eltt .notify_groups_money_btn_tt .page_notify_img {
+    display: block;
+    padding: 21px 0 8px;
+    margin: 0 auto;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2256%22%20height%3D%2256%22%20viewBox%3D%220%200%2056%2056%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h56v56H0z%22%2F%3E%3Cpath%20fill%3D%22%23528BCC%22%20d%3D%22M47%2032.614V21H9v14.154c0%201.337.14%201.822.4%202.311.262.489.646.873%201.135%201.134.489.262.974.4%202.31.4H44.9l3%203.001H13.692c-2.675%200-3.645-.278-4.623-.801a5.452%205.452%200%200%201-2.268-2.268C6.278%2037.953%206%2036.983%206%2034.308V15.692c0-2.675.278-3.645.801-4.623A5.452%205.452%200%200%201%209.07%208.801C10.047%208.278%2011.017%208%2013.692%208h28.616c2.675%200%203.645.278%204.623.801a5.452%205.452%200%200%201%202.268%202.268c.523.978.801%201.948.801%204.623v19.922l-3-3zM47%2018v-3.154c0-1.337-.14-1.822-.4-2.311a2.726%202.726%200%200%200-1.135-1.134c-.489-.262-.974-.401-2.31-.401h-30.31c-1.336%200-1.821.14-2.31.4A2.726%202.726%200%200%200%209.4%2012.536c-.262.489-.401.974-.401%202.31V18h38z%22%2F%3E%3Cpath%20stroke%3D%22%23528BCC%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M40.5%2032.5l8%208-8%208%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 0 21px;
+    background-size: 56px 56px;
+    width: 56px;
+    height: 56px
+}
+
+.eltt .notify_groups_money_btn_tt .page_notify_text {
+    padding: 0 10px
+}
+
+.eltt .notify_groups_money_btn_tt .flat_button {
+    margin-top: 24px
+}
+
+.page_notify_text {
+    font-size: 14px;
+    line-height: 18px
+}
+
 .vk2017_snippet {
     background-color: #fff;
     border: 1px solid rgba(0, 20, 51, .12);

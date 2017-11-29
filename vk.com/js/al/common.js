@@ -11804,7 +11804,7 @@ function getRadioBtnWrap(el) {
     showOnClick     - show tooltip on mouse click (default: false)
     noHideOnClick   - no hide tooltip after show by click. work only with showOnClick (default: false)
     type            - ElementTooltip.TYPE_VERTICAL / ElementTooltip.TYPE_HORIZONTAL (default vertical)
-    forceSide       - forces tooltip to be shown on particular side top/down/left/right. It ignores type option.
+    forceSide       - forces tooltip to be shown on particular side top/bottom/left/right. It ignores type option.
     defaultSide
     width           - custom tooltip height (function or int value)
     noBorder
@@ -11863,7 +11863,7 @@ function ElementTooltip(el, opts) {
     }
 
     if (this._opts.forceSide) {
-        this._opts.type = inArray(this._opts.forceSide, ['top', 'down']) ? ElementTooltip.TYPE_VERTICAL : ElementTooltip.TYPE_HORIZONTAL;
+        this._opts.type = inArray(this._opts.forceSide, ['top', 'bottom']) ? ElementTooltip.TYPE_VERTICAL : ElementTooltip.TYPE_HORIZONTAL;
     }
 
     this._appendToEl = this._opts.appendTo ? this._opts.appendTo : (this._opts.appendToParent ? domClosestPositioned(el, {
