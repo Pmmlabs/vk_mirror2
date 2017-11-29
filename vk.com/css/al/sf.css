@@ -82,7 +82,8 @@
     }
 }
 
-.search_page .bottom_loader.shown {
+.search_page .bottom_loader.shown,
+.sf_report.message_report .sf_content .sf_entry_lvl_content .sf_entry_lvl_body .sf_post .wall_text .wall_post_cont {
     display: block
 }
 

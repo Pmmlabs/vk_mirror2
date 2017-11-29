@@ -337,7 +337,7 @@ FAQ = {
     },
     updateSearch: function(e) {
         var t = nav.objLoc;
-        e ? t.q = e : delete t.q, isChecked("search_disabled") ? t.disabled = 1 : delete t.disabled, isChecked("search_expired") ? t.expired = 1 : delete t.expired, isChecked("search_with_action") ? t.with_action = 1 : delete t.with_action, isChecked("search_with_ef") ? t.with_ef = 1 : delete t.with_ef, nav.setLoc(t);
+        e ? t.q = e : delete t.q, isChecked("search_disabled") ? t.disabled = 1 : delete t.disabled, isChecked("search_expired") ? t.expired = 1 : delete t.expired, isChecked("search_orphans") ? t.orphans = 1 : delete t.orphans, cur.noTranslationsDD && cur.noTranslationsDD.val() > 0 ? t.no_trans = cur.noTranslationsDD.val() : delete t.no_trans, isChecked("search_with_action") ? t.with_action = 1 : delete t.with_action, isChecked("search_with_ef") ? t.with_ef = 1 : delete t.with_ef, nav.setLoc(t);
         var a = extend({}, t);
         a.act = "a_load_list", delete a[0], ajax.post("faq", a, {
             showProgress: uiSearch.showProgress.pbind("faq_content_search__text"),
