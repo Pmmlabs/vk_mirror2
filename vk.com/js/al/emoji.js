@@ -1185,38 +1185,6 @@ if (!window.Emoji) {
                 }
             });
 
-            if (cur.stickersPromoteTestGroup) {
-                var promoteCount = 0;
-                for (var i = 0; i < result.length; i++) {
-                    var stickerId = result[i];
-
-                    if (stickerId > 0) {
-                        continue;
-                    }
-
-                    switch (cur.stickersPromoteTestGroup) {
-                        case 'second_last':
-                            if (promoteCount === 0) {
-                                result.splice(1, 0, result.splice(i, 1))
-                            }
-                            break;
-                        case 'third_last':
-                            if (promoteCount === 0) {
-                                result.splice(2, 0, result.splice(i, 1))
-                            }
-                            break;
-                        case 'third_four':
-                            if (promoteCount === 0) {
-                                result.splice(2, 0, result.splice(i, 1))
-                            } else if (promoteCount === 1) {
-                                result.splice(3, 0, result.splice(i, 1))
-                            }
-                            break;
-                    }
-                    promoteCount++
-                }
-            }
-
             return result;
         },
 

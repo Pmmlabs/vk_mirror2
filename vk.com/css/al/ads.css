@@ -22,6 +22,7 @@
 .ads_moder_comment_rules_icon.icon_restricted_site,
 .ads_moder_comment_rules_icon.icon_spy,
 .ads_moder_comment_rules_icon.icon_vocabulary,
+.ads_retargeting_price_list_item_archive:after,
 .ads_retargeting_price_list_item_edit:after {
     -ms-high-contrast-adjust: none
 }
@@ -3006,6 +3007,42 @@ h4.subheader.ads_retargeting_subheader_top {
 }
 
 .ads_retargeting_price_list_item_edit:hover:after {
+    opacity: 1;
+    -webkit-filter: none;
+    filter: none
+}
+
+.ads_retargeting_price_list_item_archive {
+    position: relative;
+    padding-left: 20px;
+    color: #f05c44
+}
+
+.ads_retargeting_price_list_item_archive:after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 3px;
+    left: 4px;
+    width: 13px;
+    height: 13px;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    background: url(/images/post_icon.png?10) no-repeat 1px -52px;
+    -o-transition: opacity 100ms ease;
+    transition: opacity 100ms ease
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_retargeting_price_list_item_archive:after {
+        background-image: url(/images/post_icon_2x.png?10);
+        background-size: 20px 413px
+    }
+}
+
+.ads_retargeting_price_list_item_archive:hover:after {
     opacity: 1;
     -webkit-filter: none;
     filter: none

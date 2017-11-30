@@ -200,7 +200,7 @@ var stVersions = {
     'video_upload.js': 812506149,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 13293833004,
-    'videoplayer.js': 75013459339,
+    'videoplayer.js': 77868639481,
     'videoplayer.css': 31054462405,
     'translation.js': 497102029,
     'translation.css': 16165774169,
@@ -252,7 +252,7 @@ var stVersions = {
     'im.css': 118223720864,
     'imn.js': 126482867599,
     'im.js': 1322065005,
-    'emoji.js': 700456431,
+    'emoji.js': 2206550274,
     'wide_dd.css': 16403188775,
     'wide_dd.js': 452755344,
     'writebox.css': 16829787750,
@@ -372,9 +372,9 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 22082612528,
     'aes_light.js': 3306454788,
-    'ads.css': 22091186418,
+    'ads.css': 18967412018,
     'ads_bonus.css': 460482192,
-    'ads.js': 313863734,
+    'ads.js': 3779746250,
     'ads_payments.js': 2170749464,
     'ads_edit.css': 13194238969,
     'ads_edit.js': 1067782254,
@@ -545,8 +545,8 @@ var stVersions = {
     'cmodules/web/landing_ads_case.js': 3936066274,
     'cmodules/web/trending_results.js': 1020488162,
     'landings/ads_cases.css': 25297045334,
-    'surveys.css': 21178109510,
-    'surveys.js': 3382685824,
+    'surveys.css': 21121525315,
+    'surveys.js': 3079369917,
     'landings/author_guide.css': 26257618141,
     'internal/restore2.css': 15206967651,
     'internal/restore2.js': 992681237,
@@ -621,4 +621,4 @@ var stTypes = {
         'lazyload.js': 1
     }
 };
-var _rnd = 3129;
+var _rnd = 2163;

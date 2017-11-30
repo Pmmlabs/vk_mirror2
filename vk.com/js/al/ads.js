@@ -4701,6 +4701,71 @@ Ads.saveRetargetingPriceList = function(unionId, hash, priceListId) {
     }
 }
 
+Ads.archiveRetargetingPriceList = function(event, unionId, hash, priceListId, confirm, box) {
+    event.preventDefault();
+
+    var clickElem = event.currentTarget;
+
+    if (isButtonLocked(clickElem)) {
+        return;
+    }
+    lockButton(clickElem);
+    box && box.showProgress();
+
+    var ajaxParams = {
+        union_id: unionId,
+        hash: hash,
+        price_list_id: priceListId,
+        confirm: confirm | 0
+    };
+
+    ajax.post('/ads.php?act=a_retargeting_price_lists_archive', ajaxParams, {
+        onDone: onComplete.pbind(true),
+        onFail: onComplete.pbind(false)
+    });
+
+    function onComplete(isDone, response) {
+        var newBox;
+        var error;
+
+        unlockButton(clickElem);
+        box && box.hide();
+
+        if (!isDone || !isObject(response)) {
+            error = (isObject(response) && response.error || getLang('global_unknown_error'));
+            showFastBox(getLang('global_box_error_title'), error);
+            return true;
+        }
+
+        if (response.confirm_required) {
+            newBox = showFastBox(getLang('global_box_confirm_title'), response.confirm_message);
+            newBox.setButtons(response.confirm_action, Ads.archiveRetargetingPriceList.pbind(event, unionId, hash, priceListId, true, newBox), getLang('box_cancel'));
+            return;
+        }
+
+        if (response.retargeting_group_is_used) {
+            newBox = showFastBox(response.error_title, response.error);
+            newBox.setButtons(
+                response.show_usages_action,
+                Ads.showRetargetingGroupBox.pbind('usage', {
+                    union_id: unionId,
+                    group_id: response.retargeting_group_id
+                }),
+                getLang('box_cancel')
+            );
+            return;
+        }
+
+        if (response.ok) {
+            showFastBox('Done', (response.message || 'Done. Refresh the page.'));
+            return;
+        }
+
+        error = response.error || getLang('global_unknown_error');
+        showFastBox(getLang('global_box_error_title'), error);
+    }
+}
+
 Ads.checkRetargetingPriceListInputKeyup = function(event, unionId, hash, priceListId) {
     if (event.which === KEY.ENTER || event.keyCode === KEY.ENTER) {
         Ads.saveRetargetingPriceList(unionId, hash, priceListId);
