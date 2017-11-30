@@ -4482,6 +4482,8 @@ AdsViewEditor.prototype.setUpdateData = function(data, result) {
         if (priceListIdVisible === false) {
             this.targetingEditor.correctCriterion('price_list_id');
             this.targetingEditor.correctCriterion('price_list_retargeting_formula');
+            this.targetingEditor.updateUiCriterionVisibility('price_list_id');
+            this.targetingEditor.updateUiCriterionVisibility('price_list_retargeting_formula');
         }
 
         this.targetingEditor.eventsRetargetingGroupsUpdateRules('events_retargeting_groups');
@@ -4645,8 +4647,9 @@ AdsViewEditor.prototype.getParams = function() {
     for (var paramName in this.params) {
         params[paramName] = this.params[paramName].value;
     }
-    params.photo_icon = this.params.photo['value_' + AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON];
+    params.link_complete = (this.params.link_type.complete ? 1 : 0);
     params.link_subtype = this.params.link_type.subvalue;
+    params.photo_icon = this.params.photo['value_' + AdsEdit.ADS_AD_FORMAT_PHOTO_SIZE_ICON];
     return params;
 }
 
@@ -5673,8 +5676,7 @@ AdsTargetingEditor.prototype.init = function(options, editor, viewEditor, criter
         },
         geo_mask: {
             value: 0,
-            data: [],
-            allow_online_geo: false
+            data: []
         },
         geo_near: {
             value: '',
@@ -6562,13 +6564,13 @@ AdsTargetingEditor.prototype.initUiCriterion = function(criterionName) {
         case 'price_list_retargeting_formula':
             {
                 targetElem = ge(this.options.targetIdPrefix + criterionName);
-                setStyle(targetElem, 'width', this.options.uiWidth + 'px');
-                this.criteria[criterionName].ui = new RichDropDown(targetElem);
-                this.criteria[criterionName].ui.setOptions({
+                this.criteria[criterionName].ui = new RichDropDown(targetElem, {
                     items: this.getUiCriterionData(criterionName),
                     value: this.getUiCriterionSelectedData(criterionName),
-                    placeholder: this.getUiCriterionPlaceholderText(criterionName),
+                    width: this.options.uiWidth,
+                    autoCompleteMaxWidth: 400,
                     operators: ['&', '&!', '|', '!'],
+                    placeholder: this.getUiCriterionPlaceholderText(criterionName),
                     onChange: function() {
                         this.onUiChange(criterionName);
                     }.bind(this)
@@ -6635,7 +6637,7 @@ AdsTargetingEditor.prototype.getUiCriterionData = function(criterionName, option
         case 'geo_mask':
             {
                 var viewParams = this.viewEditor.getParams();
-                var showOnlineGeo = (inArray(viewParams.format_type, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]) && this.criteria.geo_mask.allow_online_geo) || (this.criteria[criterionName].value == AdsEdit.ADS_GEO_CIRCLE_TYPE_MASK_ONLINE);
+                var showOnlineGeo = (inArray(viewParams.format_type, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]) || (this.criteria[criterionName].value == AdsEdit.ADS_GEO_CIRCLE_TYPE_MASK_ONLINE));
                 return this.criteria[criterionName].data.filter(function(row) {
                     return showOnlineGeo ? true : (row[0] != AdsEdit.ADS_GEO_CIRCLE_TYPE_MASK_ONLINE);
                 }, this);
@@ -6692,10 +6694,6 @@ AdsTargetingEditor.prototype.getUiCriterionData = function(criterionName, option
             return ((this.criteria.sex.value == 1) ? this.criteria.statuses.data.female : this.criteria.statuses.data.male);
         case 'retargeting_groups_not':
             return this.criteria['retargeting_groups'].data || [];
-        case 'events_retargeting_groups':
-            var eventsRetargetingGroups = (this.criteria['retargeting_groups'].data || []).slice();
-            eventsRetargetingGroups.unshift([0, getLang('ads_criteria_save_audience_create_new')]);
-            return eventsRetargetingGroups;
         default:
             return this.criteria[criterionName].data || [];
     }
@@ -6781,7 +6779,6 @@ AdsTargetingEditor.prototype.getUiCriterionDefaultData = function(criterionName)
         case 'apps_not':
             return this.criteria['apps'].defaultData || [];
         case 'retargeting_groups_not':
-        case 'events_retargeting_groups':
             return this.criteria['retargeting_groups'].data || [];
         case 'country':
         case 'statuses':
@@ -6860,7 +6857,7 @@ AdsTargetingEditor.prototype.updateUiCriterionSelectedData = function(criterionN
         return;
     }
 
-    if (inArray(criterionName, ['geo_near', 'events_retargeting_groups'])) {
+    if (inArray(criterionName, ['geo_near', 'price_list_retargeting_formula', 'events_retargeting_groups'])) {
         return;
     }
 
@@ -6898,7 +6895,7 @@ AdsTargetingEditor.prototype.getUiCriterionEnabled = function(criterionName) {
             return !!(citiesOnlyIds || this.criteria[criterionName].value);
         case 'price_list_id':
             var viewParams = this.viewEditor.getParams();
-            return !(viewParams.ad_id);
+            return !(viewParams.ad_id || this.criteria[criterionName].data.length <= 1);
         case 'price_list_retargeting_formula':
             return !!(this.criteria.price_list_id.value);
         default:
@@ -6920,7 +6917,7 @@ AdsTargetingEditor.prototype.updateUiCriterionEnabled = function(criterionName) 
         var enabled = this.getUiCriterionEnabled(criterionName);
         if (enabled !== null) {
             if (inArray(criterionName, ['price_list_retargeting_formula'])) {
-                this.criteria[criterionName].ui[enabled ? 'enable' : 'disable']();
+                this.criteria[criterionName].ui.toggleDisable(!enabled);
             } else if (!this.criteria[criterionName].value) {
                 this.criteria[criterionName].ui.disable(enabled); // Fix disabling introText
                 this.criteria[criterionName].ui.disable(!enabled);
@@ -7378,8 +7375,7 @@ AdsTargetingEditor.prototype.correctCriterion = function(criterionName) {
             }
             break;
         case 'price_list_retargeting_formula':
-            var targetElem = ge(this.options.targetIdPrefix + criterionName);
-            val(targetElem, '');
+            this.criteria[criterionName].ui.setValue('');
             break;
     }
 }
@@ -7501,6 +7497,10 @@ AdsTargetingEditor.prototype.onCriterionUpdate = function(criterionName, criteri
                 this.updateUiCriterionData('uni_from');
                 break;
             case 'price_list_id':
+                this.updateUiCriterionEnabled('price_list_retargeting_formula');
+                this.updateUiCriterionPlaceholderText('price_list_retargeting_formula');
+                break;
+            case 'price_list_retargeting_formula':
                 this.updateUiCriterionEnabled('price_list_retargeting_formula');
                 this.updateUiCriterionPlaceholderText('price_list_retargeting_formula');
                 break;

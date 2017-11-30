@@ -178,7 +178,7 @@ var VideoUpload = {
                                 item = ge("video_upload_item_" + ind),
                                 callback = function() {
                                     var e = ge("video_upload_item_" + ind);
-                                    data(e, "video_id", video_id), VideoUpload.setUploadStatus(getLang("video_upload_link_text"), e);
+                                    domData(e, "video_id", video_id), domData(e, "uploaded", 1), VideoUpload.setUploadStatus(getLang("video_upload_link_text"), e);
                                     var o = geByClass1("video_upload_link", e, "a");
                                     if (o) {
                                         o.innerHTML = rs(o.innerHTML, {
@@ -437,7 +437,7 @@ var VideoUpload = {
                     n && setTimeout(VideoUpload.runVideoProgressUpdate.pbind(e, o, a, d, i, t, _, l), 1e3)
                 }
             },
-            onError: function() {
+            onFail: function() {
                 l || (l = 1), setTimeout(VideoUpload.runVideoProgressUpdate.pbind(e, o, a, d, i, t, r, l + 1), 2e3 * l)
             }
         })
@@ -448,10 +448,10 @@ var VideoUpload = {
             t = geByClass1("upload_video_error_label", e),
             r = geByClass1("upload_video_try_again_button", e),
             l = geByClass1("upload_video_resume_button", e);
-        t && val(t, o), toggle(r, !a), toggle(l, !!a), hide(i), show(d), disableButton(geByClass1("video_upload_ready_button", e), !0), disableButton(geByClass1("video_upload_back_edit", e), !0), data(e, "error", !0)
+        t && val(t, o), toggle(r, !a), toggle(l, !!a), hide(i), show(d), disableButton(geByClass1("video_upload_ready_button", e), !0), disableButton(geByClass1("video_upload_back_edit", e), !0), domData(e, "error", 1)
     },
     setPublished: function(e) {
-        data(e, "published", !0), VideoUpload.setStatusHeader(getLang("video_upload_published_title"), e), VideoUpload.setUploadStatus(getLang("video_upload_ready_link_text"), e);
+        domData(e, "published", 1), VideoUpload.setStatusHeader(getLang("video_upload_published_title"), e), VideoUpload.setUploadStatus(getLang("video_upload_ready_link_text"), e);
         var o = geByClass1("video_upload_progress_wrap", e);
         isVisible(o) && slideUp(o, {
             duration: 150,
@@ -479,23 +479,22 @@ var VideoUpload = {
     saveParams: function(e) {
         disableButton(e, !0);
         var o = VideoUpload.getUploadItem(e),
-            a = VideoUpload.getParams(o);
-        data(o, "video_id") && (a.vid = data(o, "video_id"));
-        var d = o.id.substr("video_upload_item_".length),
-            i = Upload.vars[d];
-        a.oid = i.oid, a.tag = i.tag, a.act = "save_video_params", a.hash = cur.videoHashs[i.tag], a.ocl = cur.ocl ? 1 : void 0, ajax.post("al_video.php", a, {
-            onDone: function(d, i, t) {
-                disableButton(e, !1), "published" == d && VideoUpload.setPublished(o);
+            a = o.id.substr("video_upload_item_".length),
+            d = Upload.vars[a],
+            i = VideoUpload.getParams(o);
+        i.vid = domData(o, "video_id"), i.oid = d.oid, i.tag = d.tag, i.hash = cur.videoHashs[d.tag], cur.ocl && (i.ocl = cur.ocl), ajax.post("al_video.php?act=save_video_params", i, {
+            onDone: function(a, d, t) {
+                disableButton(e, !1), domData(o, "saved", 1), "published" == a && VideoUpload.setPublished(o);
                 var r = geByClass1("js_video_upload_inputs", o),
                     l = geByClass1("js_video_upload_ready", o),
                     s = geByClass1("video_upload_ready_name", l);
-                val(s, i || getLang("video_upload_no_name"));
+                val(s, d || getLang("video_upload_no_name"));
                 var n = geByClass1("video_upload_ready_description", l);
                 val(n, t || "");
                 var _ = geByClass1("video_upload_item_name", o);
-                val(_, (a.title || getLang("video_upload_no_name")).substr(0, cur.videoTitleLength));
+                val(_, (i.title || getLang("video_upload_no_name")).substr(0, cur.videoTitleLength));
                 var u = geByClass1("video_upload_description", o);
-                val(u, (a.desc || "").substr(0, cur.videoDescriptionLength)), data(o, "saved", !0), slideUp(r, {
+                val(u, (i.desc || "").substr(0, cur.videoDescriptionLength)), slideUp(r, {
                     duration: 150,
                     transition: Fx.Transitions.swiftOut
                 }), slideDown(l, {
@@ -516,16 +515,15 @@ var VideoUpload = {
                 }), slideDown(e, {
                     duration: 150,
                     transition: Fx.Transitions.swiftOut
-                }), data(o, "saved", !1)
+                }), domData(o, "saved", null)
             };
-        if (data(o, "published")) a();
+        if (domData(o, "published")) a();
         else {
             disableButton(e, !0);
-            var d = VideoUpload.getParams(o);
-            data(o, "video_id") && (d.vid = data(o, "video_id"));
-            var i = o.id.substr("video_upload_item_".length),
-                t = Upload.vars[i];
-            d.oid = t.oid, d.tag = t.tag, d.act = "delete_video_params", ajax.post("al_video.php", d, {
+            var d = o.id.substr("video_upload_item_".length),
+                i = Upload.vars[d],
+                t = VideoUpload.getParams(o);
+            t.vid = domData(o, "video_id"), t.oid = i.oid, t.tag = i.tag, ajax.post("al_video.php?act=delete_video_params", t, {
                 onDone: function(o) {
                     disableButton(e, !1), a()
                 },
@@ -582,7 +580,7 @@ var VideoUpload = {
     },
     resumeUpload: function(e) {
         var o = VideoUpload.getUploadItem(e);
-        hide(geByClass1("upload_video_error_panel", o)), show(geByClass1("upload_video_info_panel", o)), disableButton(geByClass1("video_upload_ready_button", o), !1), disableButton(geByClass1("video_upload_back_edit", o), !1), data(o, "error", !1);
+        hide(geByClass1("upload_video_error_panel", o)), show(geByClass1("upload_video_info_panel", o)), disableButton(geByClass1("video_upload_ready_button", o), !1), disableButton(geByClass1("video_upload_back_edit", o), !1), domData(o, "error", null);
         var a = data(o, "upload_index");
         Upload.resumeUpload(a)
     },
@@ -603,8 +601,8 @@ var VideoUpload = {
         }, getLang("video_upload_stop_text"), getLang("video_upload_stop_button"), function() {
             o.hide(), Upload.terminateUpload(e);
             var a = ge("video_upload_item_" + e),
-                d = !1;
-            if (data(a, "video_id") && (d = data(a, "video_id")), d) {
+                d = domData(a, "video_id");
+            if (d) {
                 var i = Upload.vars[e];
                 ajax.post("al_video.php", {
                     act: "delete_video",
@@ -645,7 +643,7 @@ var VideoUpload = {
             var d = geByClass("video_upload_item_panel", a);
             for (var i in d) {
                 var t = d[i];
-                if (!data(t, "published") && !data(t, "error")) {
+                if (!(domData(t, "uploaded") && domData(t, "saved") || domData(t, "error"))) {
                     o = getLang("video_upload_changed");
                     break
                 }

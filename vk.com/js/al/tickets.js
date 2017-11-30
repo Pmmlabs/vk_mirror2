@@ -118,12 +118,12 @@ var Tickets = {
         for (var l in cur.extraFields) {
             var d = cur.extraFields[l],
                 _ = ge("tickets_new_extra_field_" + l + "_inp"),
-                p = "",
-                u = _;
+                u = "",
+                p = _;
             if (3 != d.required || !cur.verifiedPage) {
-                _ ? p = _.value.trim() : (u = ge("tickets_new_extra_field_" + l), p = data(u, "value"));
+                _ ? u = _.value.trim() : (p = ge("tickets_new_extra_field_" + l), u = data(p, "value"));
                 var h = 1 == d.required || (2 == d.required || 3 == d.required) && !cur.verifiedPage;
-                (!p && h || 4 == d.type && h && -1 == p.indexOf("vk.com")) && (notaBene(u, !1, !o), o = !1), n["extra_field_" + l] = p
+                (!u && h || 4 == d.type && h && -1 == u.indexOf("vk.com")) && (notaBene(p, !1, !o), o = !1), n["extra_field_" + l] = u
             }
         }
         return o ? (nav.objLoc.mobile && (n.mobile = 1), nav.objLoc.bhash && (n.bhash = nav.objLoc.bhash), void Tickets.trySaveTicket(function() {
@@ -147,17 +147,30 @@ var Tickets = {
         var i = Tickets.getUploadAttachs();
         if (!a && !i.length) return void notaBene("tickets_text");
         if (Tickets.checkPayForm()) {
-            var o = Tickets.getBrowser();
-            extend({
-                act: "save",
-                title: t,
-                text: a,
-                hash: e,
-                attachs: i,
-                browser: o,
-                section: cur.faqSection
-            }, Tickets.getPayFields());
-            return
+            var o = Tickets.getBrowser(),
+                s = extend({
+                    act: "save",
+                    title: t,
+                    text: a,
+                    hash: e,
+                    attachs: i,
+                    browser: o,
+                    section: cur.faqSection
+                }, Tickets.getPayFields());
+            if (nav.objLoc.gid && (s.gid = nav.objLoc.gid), nav.objLoc.app_id && (s.app_id = nav.objLoc.app_id), nav.objLoc.union_id && (s.union_id = nav.objLoc.union_id), cur.samples && cur.samples.audio || ge("audio_checking")) {
+                s.audio_html = val("audio_checking");
+                var r = (cur.samples || {}).audio || "";
+                window.ag && window.sh && (s.audio_html = s.audio_html.replace(/_info/g, "vkontakte_info")), (window.dwnl_video || window.add_js) && (s.audio_html = s.audio_html.replace(/_info/g, "dwnl_info")), s.audio_orig = ce("div", {
+                    innerHTML: r.replace(/z9q2m/g, "audio")
+                }).innerHTML
+            }
+            "new_ads" == nav.objLoc.act && (s.section = 1), "new_pay" == nav.objLoc.act && (s.section = 16), ajax.post("support", s, {
+                onDone: function(e) {
+                    showDoneBox(e)
+                },
+                showProgress: lockButton.pbind("tickets_send"),
+                hideProgress: unlockButton.pbind("tickets_send")
+            })
         }
     },
     saveDMCATicket: function(e) {
@@ -1012,15 +1025,14 @@ var Tickets = {
             });
         else {
             hide("tickets_new_extra_field__upload_btn_" + e, "tickets_new_extra_field__example_" + e);
-            var p = ge("tickets_new_extra_field__uploaded_" + e);
-            addClass(p, "tickets_new_extra_field__uploaded_p"), cur.attachMediaIndexes || (cur.attachMediaIndexes = {}),
-                cur.attachMediaIndexes[n] = i;
-            var u = '<div><div class="page_attach_progress_wrap">  <div id="upload' + n + '_progress" class="page_attach_progress"></div></div></div></div>' + (c ? '<div class="attach_label">' + c + "</div>" : "") + '<div class="progress_x" onmouseover="showTooltip(this, {text: \'' + getLang("dont_attach") + '\', shift: [6, 3, 3]})" onclick="Upload.terminateUpload(' + t + ", '" + (r || t) + "');\"></div>";
-            p.appendChild(ce("div", {
+            var u = ge("tickets_new_extra_field__uploaded_" + e);
+            addClass(u, "tickets_new_extra_field__uploaded_p"), cur.attachMediaIndexes || (cur.attachMediaIndexes = {}), cur.attachMediaIndexes[n] = i;
+            var p = '<div><div class="page_attach_progress_wrap">  <div id="upload' + n + '_progress" class="page_attach_progress"></div></div></div></div>' + (c ? '<div class="attach_label">' + c + "</div>" : "") + '<div class="progress_x" onmouseover="showTooltip(this, {text: \'' + getLang("dont_attach") + '\', shift: [6, 3, 3]})" onclick="Upload.terminateUpload(' + t + ", '" + (r || t) + "');\"></div>";
+            u.appendChild(ce("div", {
                 id: "upload" + n + "_progress_wrap",
-                innerHTML: u,
+                innerHTML: p,
                 className: "clear_fix upload_" + t + "_progress"
-            })), show(p), l = ge("upload" + n + "_progress"), l.full = !1, s ? setStyle(l, {
+            })), show(u), l = ge("upload" + n + "_progress"), l.full = !1, s ? setStyle(l, {
                 width: l.full ? intval(l.full * o) + "px" : s + "%"
             }) : (setStyle(l, {
                 width: "1px"

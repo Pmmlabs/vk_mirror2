@@ -1068,7 +1068,9 @@ var WkView = {
                 t = {
                     onDone: function() {
                         var o = e;
-                        r && (o += "#" + r), composer.addMedia.checkURL(o)
+                        r && (o += "#" + r);
+                        var t = cur.sbField && data(cur.sbField, "composer");
+                        t && t.addMedia.checkURL(o)
                     }
                 };
             showBox("like.php", o, t)
