@@ -461,7 +461,7 @@
     margin: 15px 0 -1px;
     display: inline-block;
     vertical-align: top;
-    border-radius: 2px;
+    border-radius: 4px;
     overflow: hidden
 }
 
@@ -497,7 +497,7 @@
     width: 200px;
     height: 112px;
     overflow: hidden;
-    border-radius: 2px
+    border-radius: 4px
 }
 
 .video_module .video:hover {

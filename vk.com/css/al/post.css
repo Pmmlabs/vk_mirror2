@@ -433,7 +433,7 @@ a.page_post_thumb_wrap:hover {
     width: 30px;
     height: 30px;
     margin-right: 8px;
-    border-radius: 2px;
+    border-radius: 3px;
     background: url(/images/icons/doc_icons.png) no-repeat;
     text-align: center;
     overflow: hidden;

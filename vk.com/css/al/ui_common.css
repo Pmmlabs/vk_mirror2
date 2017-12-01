@@ -3378,10 +3378,10 @@ a.ui_search_custom_link {
 
 .slider.slider_size_1.active .slider_handler,
 .slider.slider_size_1:hover .slider_handler {
-    height: 8px;
-    width: 8px;
-    top: -3px;
-    margin-left: -4px
+    height: 9px;
+    width: 9px;
+    top: -3.5px;
+    margin-left: -4.5px
 }
 
 @-webkit-keyframes slider_loading_animation {
