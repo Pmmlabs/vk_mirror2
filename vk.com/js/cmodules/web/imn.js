@@ -3691,8 +3691,7 @@
     "use strict";
     Object.defineProperty(t, "__esModule", {
         value: !0
-    });
-    t.screenfull = function() {
+    }), t.screenfull = function() {
         var e = "undefined" != typeof Element && "ALLOW_KEYBOARD_INPUT" in Element,
             t = function() {
                 for (var e, t, n = [
@@ -4460,8 +4459,7 @@
     }
     Object.defineProperty(t, "__esModule", {
         value: !0
-    }), t.post = n, t.plainget = r, t.plaingetCancelable = i;
-    t.CONTROLLER = "al_im.php"
+    }), t.post = n, t.plainget = r, t.plaingetCancelable = i, t.CONTROLLER = "al_im.php"
 }, function(e, t, n) {
     var r = n(14),
         i = Math.max,
@@ -11966,8 +11964,7 @@
                 i = r[0],
                 a = r[1],
                 s = r[2];
-            r[3], r[4];
-            t.allShown = t.allShown || s, t.history = g(t.history) + i, t.historyToAppend = i;
+            r[3], r[4], t.allShown = t.allShown || s, t.history = g(t.history) + i, t.historyToAppend = i;
             var o = Object.keys(a).length;
             return t.skipped -= o, t.offset += o, t.msgs = extend(t.msgs, a), e
         })
@@ -12555,8 +12552,7 @@
             });
             return dt(i, !0, n), t.then(function(t) {
                 var i = xt(t, 2);
-                i[0], i[1];
-                return delete n.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, n
+                return i[0], i[1], delete n.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, n
             })
         }
     }
@@ -13245,8 +13241,7 @@
             share_url: t.share_url
         }, Xt).then(function(e) {
             var t = xt(e, 1);
-            t[0];
-            return n
+            return t[0], n
         })
     }), t.searchTopConv = le(function(e) {
         return e.topConvTree

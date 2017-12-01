@@ -683,29 +683,27 @@
                 e = e.originalEvent || e || window.event;
                 var btn = e.which,
                     nohide = !1;
-                1 == btn && (e.ctrlKey || browser.mac && e.metaKey) && (btn = 2, browser.mac && (nohide = !0)); {
-                    if ("A" != (e.target || e.srcElement).tagName) {
-                        switch (btn) {
-                            case 1:
-                                eval(ev.onclick), Notifier.hideEvent(ev);
-                                break;
-                            case 2:
-                                var wnd = window.open(ev.link, "_blank");
-                                try {
-                                    wnd.blur(), window.focus()
-                                } catch (e) {}
-                                nohide || Notifier.hideEvent(ev);
-                                break;
-                            case 3:
-                                if (browser.mozilla) return
-                        }
-                        return cancelEvent(e)
-                    }
+                if (1 == btn && (e.ctrlKey || browser.mac && e.metaKey) && (btn = 2, browser.mac && (nohide = !0)), "A" != (e.target || e.srcElement).tagName) {
                     switch (btn) {
                         case 1:
+                            eval(ev.onclick), Notifier.hideEvent(ev);
+                            break;
+                        case 2:
+                            var wnd = window.open(ev.link, "_blank");
+                            try {
+                                wnd.blur(), window.focus()
+                            } catch (e) {}
+                            nohide || Notifier.hideEvent(ev);
                             break;
                         case 3:
+                            if (browser.mozilla) return
                     }
+                    return cancelEvent(e)
+                }
+                switch (btn) {
+                    case 1:
+                        break;
+                    case 3:
                 }
             }), addEvent(ev.baloonEl, "contextmenu", function(e) {
                 return setTimeout(function() {
@@ -1697,8 +1695,7 @@
     }
     Object.defineProperty(t, "__esModule", {
         value: !0
-    }), t.post = i, t.plainget = r, t.plaingetCancelable = a;
-    t.CONTROLLER = "al_im.php"
+    }), t.post = i, t.plainget = r, t.plaingetCancelable = a, t.CONTROLLER = "al_im.php"
 }, function(e, t, i) {
     var r = i(14),
         a = Math.max,
@@ -5641,10 +5638,7 @@
             var o, d, f;
             curFastChat.clistCache = {};
             for (r in curFastChat.friends)
-                for (o = curFastChat.friends[r][0], r = intval(r), d = 0;;) {
-                    if (f = " " + o.charAt(d).toLowerCase(), curFastChat.clistCache[f] || (curFastChat.clistCache[f] = {}), curFastChat.clistCache[f][r] = 1, d = o.indexOf(" ", d + 1), -1 == d) break;
-                    ++d
-                }
+                for (o = curFastChat.friends[r][0], r = intval(r), d = 0; f = " " + o.charAt(d).toLowerCase(), curFastChat.clistCache[f] || (curFastChat.clistCache[f] = {}), curFastChat.clistCache[f][r] = 1, d = o.indexOf(" ", d + 1), -1 != d;) ++d
         },
         clistShowMore: function() {
             if (curFastChat.clHasMore) {
@@ -7881,8 +7875,7 @@
                 a = r[0],
                 n = r[1],
                 o = r[2];
-            r[3], r[4];
-            t.allShown = t.allShown || o, t.history = f(t.history) + a, t.historyToAppend = a;
+            r[3], r[4], t.allShown = t.allShown || o, t.history = f(t.history) + a, t.historyToAppend = a;
             var s = Object.keys(n).length;
             return t.skipped -= s, t.offset += s, t.msgs = extend(t.msgs, n), e
         })
@@ -8470,8 +8463,7 @@
             });
             return dt(a, !0, i), t.then(function(t) {
                 var a = Rt(t, 2);
-                a[0], a[1];
-                return delete i.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, i
+                return a[0], a[1], delete i.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, i
             })
         }
     }
@@ -9160,8 +9152,7 @@
             share_url: t.share_url
         }, Xt).then(function(e) {
             var t = Rt(e, 1);
-            t[0];
-            return i
+            return t[0], i
         })
     }), t.searchTopConv = ce(function(e) {
         return e.topConvTree

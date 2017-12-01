@@ -570,7 +570,7 @@ stats_loading = '��������...';
 stats_no_data = '����������� ������� ������';
 // section = 38; version = 5;
 
-paysupp_error = 'Error';
+paysupp_error = '������';
 // section = 39; version = 18;
 
 wall_post_info_anon = '���-�� �� ����� ���������';
