@@ -7296,6 +7296,12 @@ input.wide_button {
     padding: 5px 1px
 }
 
+.gift_informer.informer {
+    border-bottom: 1px solid #efefef;
+    padding: 10px 7px 0;
+    margin: 0 -7px 10px
+}
+
 .stickers_list {
     border-bottom: 1px solid #dfe3e8;
     padding: 4px

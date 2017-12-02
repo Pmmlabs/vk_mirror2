@@ -178,13 +178,13 @@ var BugTracker = {
         var o = cur.btSearchProductDD.val(),
             n = cur.btSearchVersionDD.val(),
             a = cur.btSearchPlatformDD.val(),
-            s = cur.btSearchPlatformVersionDD.val(),
-            i = cur.btSearchStatusDD.val(),
+            i = cur.btSearchPlatformVersionDD.val(),
+            s = cur.btSearchStatusDD.val(),
             c = cur.btSearchSeverityDD.val(),
             u = cur.btSearchTagsDD.val(),
             d = cur.btSearchOriginalDD ? parseInt(cur.btSearchOriginalDD.val()) : 0,
             _ = cur.btSearchDeviceDD.val();
-        BugTracker.ddVisible(cur.btSearchProductDD) && o > 0 && (r.product = o), n > 0 && BugTracker.ddVisible(cur.btSearchVersionDD) && (r.version = n), a > 0 && BugTracker.ddVisible(cur.btSearchPlatformDD) && (r.platform = a), s && BugTracker.ddVisible(cur.btSearchPlatformVersionDD) && (r.pversion = s), _ && BugTracker.ddVisible(cur.btSearchDeviceDD) && (r.device = _), i && (r.status = i), c && (r.severity = c), u && BugTracker.ddVisible(cur.btSearchTagsDD) && (r.tag = u), cur.btSearchRegionDD && cur.btSearchRegionDD.val() > 0 && BugTracker.ddVisible(cur.btSearchRegionDD) && (r.region = cur.btSearchRegionDD.val()), d > 0 && (r.original = d), isChecked("bt_sb_search_vulnerabilites") && (r.vulnerability = 1), isChecked("bt_sb_search_wishes") && (r.wishes = 1), isChecked("bt_sb_search_unrated") && (r.unrated = 1), ge("bt_sb_search_member") && nav.objLoc.mid && (r.mid = nav.objLoc.mid), BugTracker.loadSearch(r, e, t)
+        BugTracker.ddVisible(cur.btSearchProductDD) && o > 0 && (r.product = o), n > 0 && BugTracker.ddVisible(cur.btSearchVersionDD) && (r.version = n), a > 0 && BugTracker.ddVisible(cur.btSearchPlatformDD) && (r.platform = a), i && BugTracker.ddVisible(cur.btSearchPlatformVersionDD) && (r.pversion = i), _ && BugTracker.ddVisible(cur.btSearchDeviceDD) && (r.device = _), s && (r.status = s), c && (r.severity = c), u && BugTracker.ddVisible(cur.btSearchTagsDD) && (r.tag = u), cur.btSearchRegionDD && cur.btSearchRegionDD.val() > 0 && BugTracker.ddVisible(cur.btSearchRegionDD) && (r.region = cur.btSearchRegionDD.val()), d > 0 && (r.original = d), isChecked("bt_sb_search_vulnerabilites") && (r.vulnerability = 1), isChecked("bt_sb_search_wishes") && (r.wishes = 1), isChecked("bt_sb_search_unrated") && (r.unrated = 1), ge("bt_sb_search_member") && nav.objLoc.mid && (r.mid = nav.objLoc.mid), BugTracker.loadSearch(r, e, t)
     },
     doUpdateSearch: function(e, t) {
         e = e.toLowerCase(), (e != nav.objLoc.q || t) && (e ? nav.objLoc.q = e : delete nav.objLoc.q, BugTracker.loadSearch(nav.objLoc))
@@ -498,18 +498,18 @@ var BugTracker = {
         var a = e.map(n || function(e) {
                 return getTemplate(e.shown_pos ? "btMemberRowTemplatePos" : "btMemberRowTemplateNoPos", e)
             }).join(),
-            s = 0,
-            i = sech(a),
+            i = 0,
+            s = sech(a),
             c = ge(o || "bt_reporters"),
             u = null;
-        return each(i, function(e, o) {
+        return each(s, function(e, o) {
             var n = ge(o.id);
             if (n) {
                 if (!t) return void(u = n);
                 re(n)
             }
-            r && u && u.nextSibling ? c.insertBefore(o, u.nextSibling) : c.appendChild(o), u = o, s++
-        }), s
+            r && u && u.nextSibling ? c.insertBefore(o, u.nextSibling) : c.appendChild(o), u = o, i++
+        }), i
     },
     markUpdatesRead: function() {
         setTimeout(function() {
@@ -1003,10 +1003,10 @@ var BugTracker = {
     showMemshipDetails: function(e, t, r, o, n) {
         var a = ge("bt_member_" + t);
         if (a) {
-            var s = geByClass1("_details", a);
-            if (s) {
-                if (!hasClass(e, "_details_unloaded")) return void slideToggle(s, 300);
-                show(s), ajax.post("bugtracker", {
+            var i = geByClass1("_details", a);
+            if (i) {
+                if (!hasClass(e, "_details_unloaded")) return void slideToggle(i, 300);
+                show(i), ajax.post("bugtracker", {
                     act: "a_member_details",
                     uid: t,
                     product_id: r,
@@ -1016,7 +1016,7 @@ var BugTracker = {
                     showProgress: addClass.pbind(a, "bt_member_loading"),
                     hideProgress: removeClass.pbind(a, "bt_member_loading"),
                     onDone: function(t) {
-                        val(s, t), removeClass(e, "_details_unloaded")
+                        val(i, t), removeClass(e, "_details_unloaded")
                     }
                 })
             }
@@ -1051,9 +1051,9 @@ var BugTracker = {
         var o = (ge("post_field"), cur.options.additional_save_params.wall_message_prefix);
         val("bt_fb_tone_text", e.innerHTML);
         for (var n = ["negative_", "neutral_", "positive_"], a = 0; a < n.length; a++) o = o.replace("#" + n[a] + r, "");
-        var s = n[t + 1] + r,
-            i = o.indexOf("@" + r) + r.length + 2;
-        " " !== o[i] && (s += " "), o = o.substr(0, i) + "#" + s + o.substr(i), cur.options.additional_save_params.wall_message_prefix = o
+        var i = n[t + 1] + r,
+            s = o.indexOf("@" + r) + r.length + 2;
+        " " !== o[s] && (i += " "), o = o.substr(0, s) + "#" + i + o.substr(s), cur.options.additional_save_params.wall_message_prefix = o
     },
     switchComments: function(e, t) {
         nav.objLoc.tone = t, nav.go(nav.objLoc), showProgress(ge("tone_filter_selector").parentNode), hide(ge("tone_filter_selector"))
@@ -1062,32 +1062,32 @@ var BugTracker = {
         function t(r, o, n) {
             if (Object.getPrototypeOf(this) !== t.prototype) throw new TypeError('Invites should be called via "new"');
             var a = 0,
-                s = !1;
+                i = !1;
             this.search = function() {
-                a = 0, s = !1, this.loadMoreResults(!0)
+                a = 0, i = !1, this.loadMoreResults(!0)
             }, this.loadMoreResults = function(t) {
-                if (!s) {
-                    s = !0;
-                    var i = val("bt_invites_search_" + e.randomId);
+                if (!i) {
+                    i = !0;
+                    var s = val("bt_invites_search_" + e.randomId);
                     ajax.post("bugtracker?act=a_product_invite_search", extend(this.filter, {
-                        text: i,
+                        text: s,
                         product: o,
                         hash: r,
                         tab: n,
                         offset: a || 0
                     }), {
                         onDone: function(e) {
-                            this.appendReporters(t, i, e), t && "n" === n && setTimeout(this.selectForInviteChanged.bind(this), 0)
+                            this.appendReporters(t, s, e), t && "n" === n && setTimeout(this.selectForInviteChanged.bind(this), 0)
                         }.bind(this),
                         onFail: function() {
-                            s = !1
+                            i = !1
                         }
                     })
                 }
             }, this.appendReporters = function(t, r, o) {
-                if (s = !1, r === val("bt_invites_search_" + e.randomId)) {
-                    var i = ge("bugtracker_invites_list_" + e.randomId);
-                    t && each(geByClass("bt_reporter_row", i), function(e, t) {
+                if (i = !1, r === val("bt_invites_search_" + e.randomId)) {
+                    var s = ge("bugtracker_invites_list_" + e.randomId);
+                    t && each(geByClass("bt_reporter_row", s), function(e, t) {
                         var r = o.findIndex(function(e) {
                             return e.uid == attr(t, "data-id")
                         }); - 1 === r && re(t)
@@ -1102,8 +1102,8 @@ var BugTracker = {
                                     return getTemplate("btMemberRequestRowTemplate", e)
                             }
                         },
-                        u = BugTracker.appendReporters(o, !1, !0, i, n ? c : null);
-                    0 === u && (s = t), a += u
+                        u = BugTracker.appendReporters(o, !1, !0, s, n ? c : null);
+                    0 === u && (i = t), a += u
                 }
             }
         }
@@ -1112,7 +1112,7 @@ var BugTracker = {
             getAgeToData: function() {},
             getAgeFromData: function() {},
             filterChanged: function() {
-                this.filter.city = this.cityFilter.val_full()[0], this.filter.nda = this.ndaFilter.val_full()[0], this.filter.activity = this.activityFilter.val_full()[0], this.filter.soc = isChecked("invites_filter_soc_" + e.randomId), this.filter.agents = isChecked("invites_filter_agents_" + e.randomId), this.filter.notagents = isChecked("invites_filter_notagents_" + e.randomId), this.filter.ios = isChecked("invites_filter_ios_" + e.randomId), this.filter.droid = isChecked("invites_filter_droid_" + e.randomId), this.updateFilters(), this.search()
+                this.filter.city = this.cityFilter.val_full()[0], this.filter.nda = this.ndaFilter.val_full()[0], this.filter.activity = this.activityFilter.val_full()[0], this.filter.soc = isChecked("invites_filter_soc_" + e.randomId), isChecked("invites_filter_tf0_" + e.randomId) ? this.filter.tf = 1 : isChecked("invites_filter_tf1_" + e.randomId) ? this.filter.tf = 2 : this.filter.tf = 0, isChecked("invites_filter_ha0_" + e.randomId) ? this.filter.ha = 1 : isChecked("invites_filter_ha1_" + e.randomId) ? this.filter.ha = 2 : this.filter.ha = 0, this.filter.agents = isChecked("invites_filter_agents_" + e.randomId), this.filter.notagents = isChecked("invites_filter_notagents_" + e.randomId), this.filter.ios = isChecked("invites_filter_ios_" + e.randomId), this.filter.droid = isChecked("invites_filter_droid_" + e.randomId), this.updateFilters(), this.search()
             },
             clearFilter: function() {
                 this.filter = {}, this.updateFilters(), this.search()
@@ -1130,6 +1130,18 @@ var BugTracker = {
                         break;
                     case "soc":
                         checkbox("invites_filter_soc_" + e.randomId, !1);
+                        break;
+                    case "tf0":
+                        checkbox("invites_filter_tf0_" + e.randomId, !1);
+                        break;
+                    case "ha0":
+                        checkbox("invites_filter_ha0_" + e.randomId, !1);
+                        break;
+                    case "tf1":
+                        checkbox("invites_filter_tf1_" + e.randomId, !1);
+                        break;
+                    case "ha1":
+                        checkbox("invites_filter_ha1_" + e.randomId, !1);
                         break;
                     case "agents":
                         checkbox("invites_filter_agents_" + e.randomId, !1);
@@ -1152,8 +1164,8 @@ var BugTracker = {
                     for (var o in this.filter) {
                         var n = this.filter[o],
                             a = "",
-                            s = !1,
                             i = !1,
+                            s = !1,
                             c = ge("invites_filters_token_" + o + "_" + e.randomId);
                         if (n) {
                             switch (o) {
@@ -1193,7 +1205,7 @@ var BugTracker = {
                                     innerHTML: d,
                                     onclick: this.removeFilter.bind(this, o)
                                 });
-                                s && ge("invites_filters_token_" + s) ? domInsertBefore(u, ge("invites_filters_token_" + s)) : i && ge("invites_filters_token_" + i) ? domInsertAfter(u, ge("invites_filters_token_" + i)) : t.appendChild(u)
+                                i && ge("invites_filters_token_" + i) ? domInsertBefore(u, ge("invites_filters_token_" + i)) : s && ge("invites_filters_token_" + s) ? domInsertAfter(u, ge("invites_filters_token_" + s)) : t.appendChild(u)
                             }
                         } else c && re(c)
                     }
@@ -1281,6 +1293,9 @@ var BugTracker = {
             }), BugTracker.invitesSearch[t] && (e[t] = setTimeout(BugTracker.invitesSearch[t].search.bind(BugTracker.invitesSearch[t]), 1600))
         }
     }(),
+    pairedCheckbox: function(e, t) {
+        checkbox(e), isChecked && checkbox(t, !1)
+    },
     openMoveToProductBox: function(e, t, r) {
         cur.moveToProductBox = showBox("bugtracker?act=move_bugreport_to_product_box", {
             id: e

@@ -924,7 +924,8 @@ body.body_helpdesk_small_sb .left_menu_nav {
     height: 11px;
     width: 7px;
     margin-right: 4px;
-    display: inline-block
+    display: inline-block;
+    opacity: 0.8
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -934,6 +935,12 @@ body.body_helpdesk_small_sb .left_menu_nav {
         background-image: url(/images/icons/mobile_2x.png?1);
         background-size: 7px 11px
     }
+}
+
+.helpdesk_mobile_ticket.helpdesk_mobile_ticket_uikit {
+    -webkit-filter: sepia() saturate(10000%) hue-rotate(195deg);
+    filter: sepia() saturate(10000%) hue-rotate(195deg);
+    opacity: 1
 }
 
 .helpdesk_user_marks {

@@ -31,13 +31,13 @@ var Helpdesk = {
     onReorderBookmarks: function(e, t, s) {
         var a = Helpdesk._getBookmarkGroupId(e),
             o = Helpdesk._getBookmarkGroupId(t),
-            i = Helpdesk._getBookmarkGroupId(s);
+            r = Helpdesk._getBookmarkGroupId(s);
         ajax.post("/helpdesk", {
             act: "reorder_bookmarks",
             hash: cur.reorderHash,
             group_id: a,
             next_group_id: o,
-            prev_group_id: i
+            prev_group_id: r
         })
     },
     initBookmarksGroupsSorter: function() {
@@ -66,11 +66,11 @@ var Helpdesk = {
                         if (-2 == e) return t.groupsDD.val(a), Helpdesk.editFavoritesGroup(0, s);
                         if (removeClass(t, "_group_" + a), addClass(t, "_group_" + e), attr(t, "data-group_id", e), cur.hashes && cur.hashes.favorite_hash) var o = cur.hashes.favorite_hash;
                         else var o = cur.favoriteHash;
-                        var i = -1 == e ? 0 : 1;
-                        0 == i && (re(t), e = 0, 0 == geByClass("helpdesk_bookmark_row", "helpdesk_bookmarks").length && show("helpdesk_no_bookmarks")), ajax.post("helpdesk", {
+                        var r = -1 == e ? 0 : 1;
+                        0 == r && (re(t), e = 0, 0 == geByClass("helpdesk_bookmark_row", "helpdesk_bookmarks").length && show("helpdesk_no_bookmarks")), ajax.post("helpdesk", {
                             act: "favorite",
                             ticket_id: s,
-                            add: i,
+                            add: r,
                             gid: e,
                             hash: o
                         })
@@ -130,9 +130,9 @@ var Helpdesk = {
                         cur.helpdeskNoteSaveLoading = !1, hideProgress("helpdesk_note_edit_form_progress_" + e)
                     },
                     onDone: function(t, s, o) {
-                        var i = ge("helpdesk_note_" + e),
-                            r = ge("helpdesk_note_edit_" + e);
-                        i && (attr(i, "data-text", s), attr(i, "data-formated_text", o), toggle(i, a), toggle(r, !a)), Helpdesk._hideNoteEditForm()
+                        var r = ge("helpdesk_note_" + e),
+                            i = ge("helpdesk_note_edit_" + e);
+                        r && (attr(r, "data-text", s), attr(r, "data-formated_text", o), toggle(r, a), toggle(i, !a)), Helpdesk._hideNoteEditForm()
                     }
                 })
             }
@@ -321,29 +321,29 @@ var Helpdesk = {
                 o = getLang("helpdesk_title_from_support") + " " + t.title_text, a = ge("tickets_title"), s = ge("tickets_text")
         }
         null !== a && val(a, o);
-        var i = s.scrollTop,
-            r = 0,
+        var r = s.scrollTop,
+            i = 0,
             n = s.selectionStart || "0" == s.selectionStart ? "ff" : document.selection ? "ie" : !1,
             c = replaceEntities(t.text.replace(/<br>/g, "\n")) + "\n";
         if ("ie" == n) {
             s.focus();
             var d = document.selection.createRange();
-            d.collapse(!0), d.moveStart("character", -s.value.length), r = d.text.length
-        } else "ff" == n && (r = s.selectionStart);
-        if (browser.chrome && (r += 1), r += c.length, "ie" == n) {
+            d.collapse(!0), d.moveStart("character", -s.value.length), i = d.text.length
+        } else "ff" == n && (i = s.selectionStart);
+        if (browser.chrome && (i += 1), i += c.length, "ie" == n) {
             s.focus();
             var d = document.selection.createRange();
-            d.moveStart("character", -s.value.length), d.moveStart("character", r), d.moveEnd("character", 0), d.select()
-        } else "ff" == n && (s.focus(), s.selectionStart = r, s.selectionEnd = r);
-        var l = s.value.substring(0, r - c.length),
-            _ = s.value.substring(r - c.length, s.value.length);
-        if (s.value = l + c + _, s.scrollTop = i, s.autosize || autosizeSetup(s, {
+            d.moveStart("character", -s.value.length), d.moveStart("character", i), d.moveEnd("character", 0), d.select()
+        } else "ff" == n && (s.focus(), s.selectionStart = i, s.selectionEnd = i);
+        var l = s.value.substring(0, i - c.length),
+            _ = s.value.substring(i - c.length, s.value.length);
+        if (s.value = l + c + _, s.scrollTop = r, s.autosize || autosizeSetup(s, {
                 minHeight: 42,
                 maxHeight: 100
             }), s.autosize.update(), "ie" == n) {
             var d = s.createTextRange();
-            d.move("character", r), d.select()
-        } else "ff" == n && (s.focus(), s.setSelectionRange(r, r));
+            d.move("character", i), d.select()
+        } else "ff" == n && (s.focus(), s.setSelectionRange(i, i));
         if (val("helpdesk_template_title", '<a onclick="Helpdesk.deselectTemplate(' + t.type + "," + e + ');">' + t.title + "</a>"), setStyle("edit_template", {
                 display: vk.id == intval(t.author_id) || cur.canEditTemplates ? "inline-block" : "none"
             }), cur.selectedTemplate = e, t.attachs) {
@@ -381,19 +381,19 @@ var Helpdesk = {
     deselectTemplate: function(e, t) {
         var s, a = null,
             o = "",
-            i = getLang("support_templates");
+            r = getLang("support_templates");
         switch (e) {
             case 0:
                 s = ge("tickets_reply");
                 break;
             case 1:
-                o = getLang("helpdesk_title_from_support") + " ", a = ge("tickets_title"), s = ge("tickets_text"), i = getLang("helpdesk_tickets_templates")
+                o = getLang("helpdesk_title_from_support") + " ", a = ge("tickets_title"), s = ge("tickets_text"), r = getLang("helpdesk_tickets_templates")
         }
-        var r = cur.templates[t] ? cur.templates[t].text.replace(/<br>/g, "\n") : "";
-        return cur.templates[t] && trim(val(s)) == trim(replaceEntities(r)) && (val(s, ""), 0 == e && autosizeSetup("tickets_reply", {
+        var i = cur.templates[t] ? cur.templates[t].text.replace(/<br>/g, "\n") : "";
+        return cur.templates[t] && trim(val(s)) == trim(replaceEntities(i)) && (val(s, ""), 0 == e && autosizeSetup("tickets_reply", {
             minHeight: 42,
             maxHeight: 100
-        })), a && val(a, o), val("helpdesk_template_title", i), hide("edit_template"), delete cur.selectedTemplate, !1
+        })), a && val(a, o), val("helpdesk_template_title", r), hide("edit_template"), delete cur.selectedTemplate, !1
     },
     clearCommentsFlood: function(e, t, s) {
         hide("tickets_flood_msg"), ajax.post("helpdesk", {
@@ -514,12 +514,12 @@ var Helpdesk = {
         cur.cat_average_times && intval(cur.cat_average_times[t]) > 0 && (o.avg_time = getTemplate("passToBoxAvgTime", {
             avg_time: cur.cat_average_times[t]
         })), 16 != t && 17 != t && 18 != t || cur.isMobileTicket || (o.send_payform = '<div class="checkbox' + (cur.sendPayFormDefault ? " on" : "") + '" id="support_send_payform" onclick="checkbox(this);">' + getLang("support_send_form_to_user") + "</div>");
-        var i = getTemplate("passToBox", o),
-            r = showFastBox({
+        var r = getTemplate("passToBox", o),
+            i = showFastBox({
                 title: getLang("support_pass_title"),
                 width: 575
-            }, i, getLang("support_do_pass"), function() {
-                Helpdesk.doPass(t, val("tickets_pass_comm"), r)
+            }, r, getLang("support_do_pass"), function() {
+                Helpdesk.doPass(t, val("tickets_pass_comm"), i)
             }, getLang("global_cancel"));
         (1 == s || 16 == t || 17 == t || 18 == t || 20 == t || 23 == t || 25 == t) && (checkbox("support_dont_pass_autoanswer", !0), toggle("helpdesk_pt_answer_wrap", !1)), cur.helpdeskPassToCategoryId = t;
         var n = cur.passToLangKeys && cur.passToLangKeys[t] ? cur.passToLangKeys[t] : "";
@@ -560,10 +560,10 @@ var Helpdesk = {
             };
         if (ge("support_send_payform") && (o.send_pay_form = isChecked("support_send_payform") ? 1 : 0), s && ge("support_dont_pass_autoanswer") && !isChecked("support_dont_pass_autoanswer")) {
             o.autoanswer = val("tickets_send_autoanswer");
-            var i = ge("helpdesk_autoanswer_other_langs");
-            if (i) {
-                var r = geByClass("tickets_send_autoanswer", i);
-                each(r, function(e, t) {
+            var r = ge("helpdesk_autoanswer_other_langs");
+            if (r) {
+                var i = geByClass("tickets_send_autoanswer", r);
+                each(i, function(e, t) {
                     var s = attr(t, "data-lang_id"),
                         a = val(t);
                     o["autoanswer_" + s] = a
@@ -619,10 +619,10 @@ var Helpdesk = {
         var s = ge("helpdesk_autoanswer_form_lang_" + t),
             a = ge("tickets_send_autoanswer_lang_" + t),
             o = attr(s, "data-langs_list"),
-            i = !1;
-        if (o && (i = JSON.parse(o)), cur.helpdeskPassToCategoryId && i && i[cur.helpdeskPassToCategoryId]) {
-            var r = replaceEntities(i[cur.helpdeskPassToCategoryId]);
-            val(a, r)
+            r = !1;
+        if (o && (r = JSON.parse(o)), cur.helpdeskPassToCategoryId && r && r[cur.helpdeskPassToCategoryId]) {
+            var i = replaceEntities(r[cur.helpdeskPassToCategoryId]);
+            val(a, i)
         }
         toggle(s), s.isInited || (autosizeSetup(a, {
             minHeight: 60,
@@ -649,22 +649,22 @@ var Helpdesk = {
             a && (s.tickets = a), ge("tickets_closed_autoanswer_addressing_m") && (s.addressing_m = val("tickets_closed_autoanswer_addressing_m")), ge("tickets_closed_autoanswer_addressing_f") && (s.addressing_f = val("tickets_closed_autoanswer_addressing_f")), s.no_autoanswer = isChecked("support_ignore_autoanswer") ? 1 : 0, s.answer_text = val("tickets_send_autoanswer");
             var o = ge("helpdesk_autoanswer_other_langs");
             if (o) {
-                var i = geByClass("tickets_send_autoanswer", o);
-                each(i, function(e, t) {
+                var r = geByClass("tickets_send_autoanswer", o);
+                each(r, function(e, t) {
                     var a = attr(t, "data-lang_id"),
                         o = val(t),
-                        i = ge("tickets_closed_autoanswer_addressing_m" + a),
-                        r = ge("tickets_closed_autoanswer_addressing_f" + a);
-                    s["answer_text_" + a] = o, i && (s["addressing_m_" + a] = val(i)), r && (s["addressing_f_" + a] = val(r))
+                        r = ge("tickets_closed_autoanswer_addressing_m" + a),
+                        i = ge("tickets_closed_autoanswer_addressing_f" + a);
+                    s["answer_text_" + a] = o, r && (s["addressing_m_" + a] = val(r)), i && (s["addressing_f_" + a] = val(i))
                 })
             }
-            var r = [],
+            var i = [],
                 n = cur.ticketsAutoMedia.chosenMedias;
             return n && each(n, function(e, t) {
                 var s = t[0],
                     a = t[1];
-                ("photo" == s || "doc" == s) && r.push(s + "," + a)
-            }), r.length && (s.attachs = r), ajax.post("helpdesk", s, {
+                ("photo" == s || "doc" == s) && i.push(s + "," + a)
+            }), i.length && (s.attachs = i), ajax.post("helpdesk", s, {
                 cache: 1,
                 onDone: Helpdesk._show,
                 onFail: function() {
@@ -724,17 +724,17 @@ var Helpdesk = {
                         o = t[1];
                     ("photo" == s || "doc" == s) && a.push(s + "," + o)
                 }), a && (s.attachs = a);
-                var i = Helpdesk._getCheckedTicketsList();
-                if (i && (s.tickets = i), ge("support_ignore_autoanswer") && ge("tickets_send_autoanswer")) {
+                var r = Helpdesk._getCheckedTicketsList();
+                if (r && (s.tickets = r), ge("support_ignore_autoanswer") && ge("tickets_send_autoanswer")) {
                     s.no_autoanswer = isChecked("support_ignore_autoanswer") ? 1 : 0, s.answer_text = val("tickets_send_autoanswer");
-                    var r = ge("helpdesk_autoanswer_other_langs");
-                    if (r) {
-                        var n = geByClass("tickets_send_autoanswer", r);
+                    var i = ge("helpdesk_autoanswer_other_langs");
+                    if (i) {
+                        var n = geByClass("tickets_send_autoanswer", i);
                         each(n, function(e, t) {
                             var a = attr(t, "data-lang_id"),
                                 o = ge("tickets_closed_autoanswer_addressing_m" + a),
-                                i = ge("tickets_closed_autoanswer_addressing_f" + a);
-                            s["answer_text_" + a] = val(t), o && (s["addressing_m_" + a] = val(o)), i && (s["addressing_f_" + a] = val(i))
+                                r = ge("tickets_closed_autoanswer_addressing_f" + a);
+                            s["answer_text_" + a] = val(t), o && (s["addressing_m_" + a] = val(o)), r && (s["addressing_f_" + a] = val(r))
                         })
                     }
                     ge("tickets_closed_autoanswer_addressing_m") && (s.addressing_m = val("tickets_closed_autoanswer_addressing_m")), ge("tickets_closed_autoanswer_addressing_f") && (s.addressing_f = val("tickets_closed_autoanswer_addressing_f")), ajax.post("helpdesk", s, {
@@ -802,10 +802,10 @@ var Helpdesk = {
             typeClass: "tt_black"
         })
     },
-    switchModersSubTab: function(e, t, s, a, o, i) {
+    switchModersSubTab: function(e, t, s, a, o, r) {
         return hasClass(e, "active") ? !1 : (each(geByClass("tickets_subtab1", e.parentNode), function(e, t) {
             removeClass(t, "active")
-        }), addClass(e, "active"), Helpdesk.updateModerStats(t, s, a, 0, i))
+        }), addClass(e, "active"), Helpdesk.updateModerStats(t, s, a, 0, r))
     },
     showModerStats: function(id, hash) {
         var cont = ge("support_moders_stats" + id),
@@ -957,8 +957,10 @@ var Helpdesk = {
                     a && (t.mobile = a);
                     var o = cur.searchBrowser.val();
                     o && "0" != o && (t.browser = -1 == o ? cur.searchBrowser.curTerm : o);
-                    var i = intval(cur.searchTutorial.val());
-                    i && (t.tutorial = i), isChecked("tickets_time_checkbox") && (t.time_from = val("search_start_date"), t.time_to = val("search_end_date"))
+                    var r = intval(cur.searchTutorial.val());
+                    r && (t.tutorial = r);
+                    var i = intval(cur.searchSource.val());
+                    i && (t.source = i), isChecked("tickets_time_checkbox") && (t.time_from = val("search_start_date"), t.time_to = val("search_end_date"))
                 }
                 break;
             case "history":
@@ -1018,7 +1020,7 @@ var Helpdesk = {
                         }));
                         break;
                     case "all":
-                        ge("tickets_all").innerHTML = cont, script && eval(script), delete nav.objLoc.offset, each(["q", "good", "opened", "download", "from_support", "photo_server", "id100", "nospam_pid", "time_from", "time_to", "mobile", "browser", "id1000", "cdn", "no_category", "tutorial", "has_replies"], function(e, t) {
+                        val("tickets_all", cont), script && eval(script), delete nav.objLoc.offset, each(["q", "good", "opened", "download", "from_support", "photo_server", "id100", "nospam_pid", "time_from", "time_to", "mobile", "browser", "id1000", "cdn", "no_category", "tutorial", "source", "has_replies"], function(e, t) {
                             query[t] ? nav.objLoc[t] = query[t] : delete nav.objLoc[t]
                         }), nav.setLoc(nav.objLoc);
                         break;
@@ -1038,7 +1040,7 @@ var Helpdesk = {
             a = s.txt || "";
         if (!browser.mobile && t && !t.disabled && cur.canUseDrafts && (a || s.medias) && cur.ticket_id == e && (val(t).length < a.length && (val(t, a), t.autosize.update()), (s.medias || []).length && !((cur.ticketsNewMedia || {}).chosenMedias || []).length)) {
             var o = [];
-            for (var i in s.medias) s.medias[i] && o.push(s.medias[i].slice(0, 2).join(","));
+            for (var r in s.medias) s.medias[r] && o.push(s.medias[r].slice(0, 2).join(","));
             ajax.post("helpdesk", {
                 act: "draft_medias",
                 attachs: o
@@ -1436,14 +1438,14 @@ var Helpdesk = {
             uiTabs.switchTab(geByClass1("ui_tab", "tickets_tab_all"), {
                 noAnim: 1
             });
-            var i = showFastBox(getLang("support_ento_checked_leave_title"), getLang("support_ento_checked_leave_text"), getLang("global_continue"), function() {
-                i.hide(), cur.checkedTickets = {}, nav.go(s)
+            var r = showFastBox(getLang("support_ento_checked_leave_title"), getLang("support_ento_checked_leave_text"), getLang("global_continue"), function() {
+                r.hide(), cur.checkedTickets = {}, nav.go(s)
             }, getLang("global_cancel"));
             return !1
         }
     },
-    banContentChunk: function(e, t, s, a, o, i) {
-        lockButton(i), ajax.post("al_helpdesk.php", {
+    banContentChunk: function(e, t, s, a, o, r) {
+        lockButton(r), ajax.post("al_helpdesk.php", {
             act: "claim_content_chunk",
             claim_id: e,
             reply_id: t,
@@ -1452,7 +1454,7 @@ var Helpdesk = {
             hash: o
         }, {
             onDone: function() {
-                unlockButton(i), val(i, getLang("helpdesk_content_banned")), disableButton(i, !0)
+                unlockButton(r), val(r, getLang("helpdesk_content_banned")), disableButton(r, !0)
             }
         })
     },
@@ -1476,23 +1478,23 @@ var Helpdesk = {
             a.moveStart("character", -t.length), s = a.text.length
         } else(e.selectionStart || "0" == e.selectionStart) && (s = e.selectionStart);
         var o = t.substring(0, s),
-            i = t.substring(s),
-            r = o.match(/(.+)$/);
-        if (!r) return !1;
+            r = t.substring(s),
+            i = o.match(/(.+)$/);
+        if (!i) return !1;
         each(geByClass("helpdesk_template_selected", "helpdesk_template_links"), function(e, t) {
             removeClass(t, "helpdesk_template_selected")
-        }), r = r[1].toLowerCase(), console.log("Name part: %s", r);
+        }), i = i[1].toLowerCase(), console.log("Name part: %s", i);
         var n = [],
             c = [];
         if (each(cur.templates, function(e, t) {
-                return r == t.title_low ? (n = [e], c = [r], !1) : void(0 == t.title_low.indexOf(r) && (n.push(e), c.push(t.title_low)))
+                return i == t.title_low ? (n = [e], c = [i], !1) : void(0 == t.title_low.indexOf(i) && (n.push(e), c.push(t.title_low)))
             }), n.length > 1) {
             each(n, function(e, t) {
                 addClass("template" + t, "helpdesk_template_selected")
             });
             for (var d = c.sort(), l = d[0], _ = d[d.length - 1], u = l.length, h = 0; u > h && l.charAt(h) === _.charAt(h);) h++;
-            h > r.length && (val(e, o.substring(0, o.length - r.length) + l.substring(0, h) + i), elfocus(e, o.length - r.length + h))
-        } else 1 == n.length && (val(e, o.substring(0, o.length - r.length) + i), elfocus(e, o.length - r.length), Helpdesk.selectTemplate(n[0]));
+            h > i.length && (val(e, o.substring(0, o.length - i.length) + l.substring(0, h) + r), elfocus(e, o.length - i.length + h))
+        } else 1 == n.length && (val(e, o.substring(0, o.length - i.length) + r), elfocus(e, o.length - i.length), Helpdesk.selectTemplate(n[0]));
         return !1
     },
     toggleSectionStats: function(e) {
@@ -1541,8 +1543,8 @@ var Helpdesk = {
             o = ge("helpdesk_edit_pattern_box__save");
         each(["title", "query", "message", "period", "frequency", "danger"], function(e, t) {
             var o = ge("helpdesk_edit_pattern_box__" + t),
-                i = val(o);
-            "" == i && "query" != t && "message" != t && (notaBene(o), a = !0), s[t] = i
+                r = val(o);
+            "" == r && "query" != t && "message" != t && (notaBene(o), a = !0), s[t] = r
         }), a || ajax.post("helpdesk", s, {
             showProgress: lockButton.pbind(o),
             hideProgress: unlockButton.pbind(o),

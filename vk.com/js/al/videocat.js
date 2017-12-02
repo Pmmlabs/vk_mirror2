@@ -18,13 +18,29 @@ var Videocat = window.Videocat || {
             }, s)
         }
     },
-    moreUGC: function(e) {
-        var o = geByClass("video_item", gpeByClass("video_block_layout", e)),
-            t = 0,
-            i = 0;
-        each(o, function() {
-            return isVisible(this) || (removeClass(this, "video_skip_thumb_load"), t++), i++, 9 == t ? !1 : void 0
-        }), i >= o.length && re(e), isAncestor(e, ge("videocat_page_block_ugc_popular")) && Videocat.sendPopularShownStats(!0)
+    moreUGC: function(e, o) {
+        var t = domByClass("videocat_page_block_" + o, "videocat_items_block"),
+            i = geByClass("video_item", t);
+        if (cur.moreVideosInfo[o]) ajax.post("al_video.php?act=a_more_videos", {
+            type: o,
+            videos: cur.moreVideosInfo[o].join(","),
+            layout: "grid"
+        }, {
+            onDone: function(e, o) {
+                t.insertAdjacentHTML("beforeend", e), each(o, function(e, o) {
+                    cur.catVideosList[e].list = cur.catVideosList[e].list.concat(o.list)
+                })
+            },
+            showProgress: lockButton.pbind(e),
+            hideProgress: unlockButton.pbind(e)
+        }), delete cur.moreVideosInfo[o];
+        else {
+            var s = 0,
+                a = 0;
+            each(i, function() {
+                return hasClass(this, "video_skip_thumb_load") && (removeClass(this, "video_skip_thumb_load"), s++), a++, 9 == s ? !1 : void 0
+            }), a >= i.length && re(e), "ugc_popular" == o && Videocat.sendPopularShownStats(!0)
+        }
     },
     moreSeries: function(e) {
         var o = geByClass("videocat_featured_playlist", gpeByClass("video_block_layout", e)),
@@ -292,12 +308,12 @@ var Videocat = window.Videocat || {
             }), !t && Videocat._sliderExtends && (each(Videocat._sliderExtends, function(e, o) {
                 o()
             }), Videocat._sliderExtends = []), !t && 0 > o) {
-            var g = gpeByClass("videocat_row", e),
-                p = g ? g.getAttribute("data-type") : "";
-            if (p) {
-                p = intval(p), Videocat.slideLoadMore(g, p)
+            var p = gpeByClass("videocat_row", e),
+                g = p ? p.getAttribute("data-type") : "";
+            if (g) {
+                g = intval(g), Videocat.slideLoadMore(p, g)
             }
-            if (!Videocat.feedDataLoading && g && "feed" == g.getAttribute("data-block-id") && Videocat.feedData && !isEmpty(Videocat.feedData)) {
+            if (!Videocat.feedDataLoading && p && "feed" == p.getAttribute("data-block-id") && Videocat.feedData && !isEmpty(Videocat.feedData)) {
                 Videocat.feedDataLoading = !0;
                 var m = Videocat.feedData;
                 m.act = "a_fetch_next_feed", m.module = cur.module, ajax.post("al_video.php", m, {
@@ -306,7 +322,7 @@ var Videocat = window.Videocat || {
                             video_feed_from: t,
                             video_feed_offset: i,
                             hash: s
-                        }), t || (Videocat.feedData = !1), o && o.feed && (Videocat.lists.feed = Videocat.lists.feed || {}, Videocat.lists.feed.list = Videocat.lists.feed.list.concat(o.feed.list)), Videocat.extendSlider(g, e), Videocat.feedDataLoading = !1
+                        }), t || (Videocat.feedData = !1), o && o.feed && (Videocat.lists.feed = Videocat.lists.feed || {}, Videocat.lists.feed.list = Videocat.lists.feed.list.concat(o.feed.list)), Videocat.extendSlider(p, e), Videocat.feedDataLoading = !1
                     }
                 })
             }

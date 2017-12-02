@@ -2872,7 +2872,7 @@ window.VideoChat = {
                     VideoChat.checkFormHeight(), VideoChat.checkTextLen()
                 },
                 onStickerSend: function(e, i) {
-                    VideoChat.sendMessage(e)
+                    VideoChat.sendSticker(e)
                 }
             });
             data(VideoChat.replyForm, "optId", e)
@@ -3032,26 +3032,20 @@ window.VideoChat = {
     scrollBottom: function() {
         VideoChat.scroll.scrollBottom(0)
     },
-    sendMessage: function(e) {
+    sendMessage: function() {
         if (!VideoChat.messageSending) {
-            var i = {};
-            if (e) i = {
-                message: "",
-                attach1_type: "sticker",
-                attach1: e
+            var e = {
+                message: trim(Emoji.val(VideoChat.replyInput))
             };
-            else if (i = {
-                    message: trim(Emoji.val(VideoChat.replyInput))
-                }, !i.message) return void elfocus(VideoChat.replyInput);
+            if (!e.message) return void elfocus(VideoChat.replyInput);
             if (vkNow() - VideoChat.lastMsgSent < 1e3) return window.tooltips && tooltips.destroy(VideoChat.replyInput), void showTooltip(VideoChat.replyInput, {
                 text: getLang("video_live_chat_too_fast"),
                 black: 1
             });
-            var o = Videoview.getMvData();
-            ajax.post("al_video.php", Wall.fixPostParams(extend(i, {
-                act: "post_comment",
-                video: o.videoRaw,
-                hash: o.hash,
+            var i = Videoview.getMvData();
+            ajax.post("al_video.php?act=post_comment", Wall.fixPostParams(extend(e, {
+                video: i.videoRaw,
+                hash: i.hash,
                 fromview: 1,
                 videoviewer_chat: 1
             })), {
@@ -3069,6 +3063,15 @@ window.VideoChat = {
                 }
             }), VideoChat.messageSending = !0
         }
+    },
+    sendSticker: function(e) {
+        var i = Videoview.getMvData();
+        ajax.post("al_video.php?act=live_send_sticker", {
+            sticker_id: e,
+            owner_id: i.oid,
+            video_id: i.vid,
+            hash: i.hash
+        })
     },
     deleteMessage: function(e, i) {
         var o = ge("mv_chat_msg" + e);
@@ -3412,26 +3415,39 @@ window.VideoChat = {
         })
     },
     vkHtml5: function(e, i) {
-        var o = window.mvLayer && mvLayer.contains(e),
-            t = o && mvcur.player && e.contains(mvcur.player.el);
-        t || val(e, "");
-        var a = ["videoplayer.js", "videoplayer.css"];
-        i.hls && a.push("hls.min.js"), i.live_candy && a.push("candy.min.js"), stManager.add(a, function() {
+        function o() {
             if (bodyNode.contains(e)) {
-                if (o && mvcur.player) {
-                    var a = mvcur.player;
-                    a.initVideo(i)
+                if (t && mvcur.player) {
+                    var o = mvcur.player;
+                    o.initVideo(i)
                 } else {
-                    var a = new VideoPlayer(i);
-                    o ? mvcur.player = a : i.is_embed ? cur.player = a : cur.videoInlinePlayer = a
+                    var o = new VideoPlayer(i);
+                    t ? mvcur.player = o : i.is_embed ? cur.player = o : cur.videoInlinePlayer = o
                 }
-                if (!t) {
+                if (!a) {
                     var n = ce("div", {
                         id: "video_player"
                     });
-                    attr(n, "preventhide", 1), n.appendChild(a.el), e.appendChild(n)
+                    attr(n, "preventhide", 1), n.appendChild(o.el), e.appendChild(n)
                 }
             }
+        }
+        var t = window.mvLayer && mvLayer.contains(e),
+            a = t && mvcur.player && e.contains(mvcur.player.el);
+        a || val(e, "");
+        var n = new callHub(o);
+        i.hls_candy_server && !window.Candy && (n.count++, loadScript("https://cdn.candy.systems/js/vk/candy2.min.js", {
+            timeout: 5e3,
+            onLoad: function() {
+                n.done()
+            },
+            onError: function() {
+                delete i.hls_candy, n.done()
+            }
+        }));
+        var d = ["videoplayer.js", "videoplayer.css"];
+        i.hls && d.push("hls.min.js"), stManager.add(d, function() {
+            n.done()
         })
     },
     youtube: function(e, i) {

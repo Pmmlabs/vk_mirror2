@@ -7742,7 +7742,9 @@ Composer = {
         var noAlias = prefValue.match(/\#[\w_\.\u0400-\u04FF]+$/i) ? true : false;
 
         var isEmoji = (window.Emoji && composer.input.emojiId !== undefined);
-        if (!isEmoji) {
+        if (isEmoji) {
+            suffValue = clean(suffValue);
+        } else {
             alias = replaceEntities(alias);
         }
 

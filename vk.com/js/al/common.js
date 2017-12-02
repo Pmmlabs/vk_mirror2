@@ -9183,19 +9183,21 @@ function showVideo(videoId, listId, options, ev) {
         },
         onFail: function(text) {
             hub.failed = 1;
-            if (window.mvcur && mvcur.mvShown) {
-                Videoview.hide();
-            } else {
-                var loc = clone(nav.objLoc);
-                if (loc.z == 'video' + videoId) {
-                    delete loc.z;
+            if (!options.hidden) {
+                if (window.mvcur && mvcur.mvShown) {
+                    Videoview.hide();
+                } else {
+                    var loc = clone(nav.objLoc);
+                    if (loc.z == 'video' + videoId) {
+                        delete loc.z;
+                    }
+                    if (loc[0] == 'video' + videoId) {
+                        loc[0] = 'videos' + videoId.split('_')[0];
+                    }
+                    nav.setLoc(loc);
                 }
-                if (loc[0] == 'video' + videoId) {
-                    loc[0] = 'videos' + videoId.split('_')[0];
-                }
-                nav.setLoc(loc);
+                showFastBox(getLang('global_error'), text || getLang('global_error_occured'));
             }
-            showFastBox(getLang('global_error'), text || getLang('global_error_occured'));
             return true;
         },
         cache: (listId != 'status')
