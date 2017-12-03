@@ -550,7 +550,7 @@ var stVersions = {
     'surveys.js': 3079369917,
     'landings/author_guide.css': 29111416045,
     'internal/restore2.css': 18060765555,
-    'internal/restore2.js': 2974930263,
+    'internal/restore2.js': 1050319325,
     'language.js': 3551638980,
     'language.css': 18940727953,
     'internal/admins.js': 2810460581,
@@ -622,4 +622,4 @@ var stTypes = {
         'lazyload.js': 1
     }
 };
-var _rnd = 6462;
+var _rnd = 3335;
