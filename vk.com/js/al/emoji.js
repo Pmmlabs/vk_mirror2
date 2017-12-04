@@ -220,6 +220,7 @@ if (!window.Emoji) {
 
             window.Notifier && Notifier.addRecvClbk('emoji', 0, Emoji.lcRecv, true);
             Emoji.initStickersKeywords();
+            Emoji.initPromotedStickerUrls();
             Emoji.checkNewStickers(opts);
 
             Emoji.opts[Emoji.last] = opts;
@@ -898,7 +899,7 @@ if (!window.Emoji) {
             });
         },
 
-        stickerHintClick: function(optId, stickerId, el) {
+        stickerHintClick: function(optId, stickerId, stickerUrl, el) {
             var opts = Emoji.opts[optId] || {},
                 text = opts.txt,
                 stCont = text && geByClass1('_sticker_hints', domPN(text)),
@@ -911,7 +912,7 @@ if (!window.Emoji) {
                 });
             } else {
                 val(text, '');
-                Emoji.stickerClick(optId, stickerId, 256, el, sticker_referrer);
+                Emoji.stickerClick(optId, stickerId, 256, stickerUrl, el, sticker_referrer);
                 if (opts.checkEditable) {
                     opts.checkEditable(optId, text);
                 }
@@ -1057,15 +1058,24 @@ if (!window.Emoji) {
                         var stickers = Emoji.sortStickersHints(text, stickersKeywords[str]),
                             stickerSize = (window.devicePixelRatio >= 2) ? '128' : '64',
                             html = '';
+
+                        var promotedStickers = Emoji.stickers[-1].promoted;
+
                         each(stickers, function() {
-                            html += rs(Emoji.hintsStickerItem(), {
-                                optId: optId,
-                                selId: 0,
-                                stickerId: Math.abs(this),
-                                class: (this < 0 ? 'promo' : ''),
-                                onclick: 'Emoji.stickerHintClick(' + optId + ', ' + this + ', this)',
-                                stickerSize: stickerSize
-                            });
+                            var stickerId = Math.abs(this);
+                            var stickerUrl = promotedStickers[stickerId] ? promotedStickers[stickerId][2] : window.promotedStickerUrls && window.promotedStickerUrls[stickerId];
+                            if (stickerUrl) {
+                                html += rs(Emoji.hintsStickerItem(), {
+                                    optId: optId,
+                                    selId: 0,
+                                    stickerId: stickerId,
+                                    stickerUrl: stickerUrl,
+                                    class: (this < 0 ? 'promo' : ''),
+                                    onclick: 'Emoji.stickerHintClick(' + optId + ', ' + this + ', \'' + stickerUrl + '\'' + ', this)',
+                                    stickerSize: stickerSize
+                                });
+                            }
+
                         });
                         Emoji.showStickersHints(stCont, opts, html);
                     } else {
@@ -1216,6 +1226,29 @@ if (!window.Emoji) {
             }
             if (window.stickersKeywordsData) {
                 Emoji.setStickersKeywords(window.stickersKeywordsData);
+            }
+        },
+
+        initPromotedStickerUrls: function() {
+            if (!window.promotedStickerUrls) {
+                var data = ls.get('promoted_stickers_urls');
+                if (data && data.time && data.time > vkNow() - 86400000 * (2 + Math.random())) {
+                    window.promotedStickerUrls = data.stickerUrls;
+                } else {
+                    var params = {
+                        act: 'get_promoted_stickers'
+                    };
+                    ajax.post('al_im.php', params, {
+                        onDone: function(stickerUrls) {
+                            ls.set('promoted_stickers_urls', {
+                                time: vkNow(),
+                                stickerUrls: stickerUrls
+                            });
+
+                            window.promotedStickerUrls = stickerUrls;
+                        }
+                    });
+                }
             }
         },
 
@@ -2064,8 +2097,9 @@ if (!window.Emoji) {
                     optId: optId,
                     selId: Emoji.TAB_RECENT_STICKERS,
                     stickerId: stickers[i][0],
-                    size: stickers[i][1],
-                    stickerSize: stickerSize
+                    size: stickers[i][1] ? stickers[i][1] : 256,
+                    stickerSize: stickerSize,
+                    stickerUrl: stickers[i][2]
                 }));
                 recentWrap.appendChild(stickerEl);
                 var top = Math.ceil((i + 1) / 4) * 68;
@@ -2836,8 +2870,9 @@ if (!window.Emoji) {
                             optId: optId,
                             selId: packId,
                             stickerId: list[i][0],
-                            size: list[i][1],
-                            stickerSize: stickerSize
+                            size: list[i][1] ? list[i][1] : 256,
+                            stickerSize: stickerSize,
+                            stickerUrl: list[i][2]
                         });
                     }
                     if (packId == Emoji.TAB_RECENT_STICKERS) {
@@ -2892,10 +2927,10 @@ if (!window.Emoji) {
 
         stickerItem: function() {
             // <img class="emoji_sticker_image emoji_need_load" src="/images/blank.gif" data-src="/images/stickers/%stickerId%/%stickerSize%.png" />
-            return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" data-pack-id="%selId%" data-src="/images/stickers/%stickerId%/%stickerSize%.png" class="emoji_sticker_item" onclick="Emoji.stickerClick(%optId%, %stickerId%, %size%, this, \'keyboard\');"></a>';
+            return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" data-pack-id="%selId%" data-src="%stickerUrl%" class="emoji_sticker_item" onclick="Emoji.stickerClick(%optId%, %stickerId%, %size%, \'%stickerUrl%\', this, \'keyboard\');"></a>';
         },
         hintsStickerItem: function() {
-            return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" data-pack-id="%selId%" class="emoji_sticker_item %class%" onclick="%onclick%" onmouseover="Emoji.stickerHintOver(this)" onmouseout="Emoji.stickerHintOut(this)"><img class="emoji_sticker_image" src="/images/stickers/%stickerId%/%stickerSize%.png" /></a>';
+            return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" data-pack-id="%selId%" class="emoji_sticker_item %class%" onclick="%onclick%" onmouseover="Emoji.stickerHintOver(this)" onmouseout="Emoji.stickerHintOut(this)"><img class="emoji_sticker_image" src="%stickerUrl%"  /></a>';
         },
         tabSwitch: function(obj, selId, optId, noScrollUpdate) {
             if (obj == undefined) {
@@ -3052,7 +3087,7 @@ if (!window.Emoji) {
             return res;
         },
 
-        stickerClick: function(optId, stickerNum, width, obj, sticker_referrer) {
+        stickerClick: function(optId, stickerNum, width, stickerUrl, obj, sticker_referrer) {
             var opts = Emoji.opts[optId];
 
             if (vkNow() - opts.ttShowT < Emoji.CLICK_DELAY) {
@@ -3082,7 +3117,7 @@ if (!window.Emoji) {
                         Emoji.stickers[-1].stickers.splice(i, 1);
                     }
                 }
-                Emoji.stickers[-1].stickers.unshift([stickerNum, width]);
+                Emoji.stickers[-1].stickers.unshift([stickerNum, width, stickerUrl]);
                 ls.set('recent_stickers', Emoji.stickers[-1]);
                 Emoji.updateRecentStickers(optId);
             }
@@ -3522,6 +3557,7 @@ if (!window.Emoji) {
                 var isActive = stickers[i][1];
                 var isPromoted = stickers[i][3];
                 var isForced = stickers[i][4] && stNum == forceStickerPack;
+                var packThumbUrl = stickers[i][5];
                 if (!isActive && !isPromoted && !isForced) {
                     continue;
                 }
@@ -3537,7 +3573,9 @@ if (!window.Emoji) {
                 if (stNum === -1) {
                     systemTabsHtml += '<a class="emoji_tab emoji_tab_img_cont emoji_tab_recent emoji_tab_' + stNum + (cur.stickersTab == stNum ? ' emoji_tab_sel' : '') + '" onclick="' + act + '"><span class="emoji_tab_icon emoji_sprite emoji_tab_icon_recent"></span></a>';
                 } else if (stNum) {
-                    var tabHtml = '<a class="emoji_tab emoji_tab_img_cont emoji_tab_' + stNum + (cur.stickersTab == stNum ? ' emoji_tab_sel' : '') + (isActive || isForced ? '' : ' emoji_tab_promo') + '" onclick="' + act + '"><img width="22" height="22" src="/images/store/stickers/' + stNum + '/thumb_' + (window.devicePixelRatio >= 2 ? '44' : '22') + '.png" class="emoji_tab_img"/></a>';
+                    var tabHtml = '<a class="emoji_tab emoji_tab_img_cont emoji_tab_' + stNum + (cur.stickersTab == stNum ? ' emoji_tab_sel' : '') + (isActive || isForced ? '' : ' emoji_tab_promo') + '" onclick="' + act + '">' +
+                        '<img width="22" height="22" src="' + packThumbUrl + '" class="emoji_tab_img"/>' +
+                        '</a>';
                     if (isForced) {
                         stickersTabsHtml = tabHtml + stickersTabsHtml;
                     } else {
