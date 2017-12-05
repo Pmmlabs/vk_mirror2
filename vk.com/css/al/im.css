@@ -3944,10 +3944,6 @@ img.im_photo_thumb {
     cursor: pointer
 }
 
-.im-mess .im-mess--blind-selected {
-    display: none
-}
-
 .im-mess .im-mess--del-attach {
     color: #939393
 }
@@ -4276,11 +4272,6 @@ img.im_photo_thumb {
     background: #edf0f5
 }
 
-.im-mess.im-mess_selected:not(.im-mess_is_editing) .im-mess--blind-selected,
-.im-mess.im-mess_selected:not(.im-mess_is_editing):hover .im-mess--blind-selected {
-    display: block
-}
-
 .im-mess.im-mess_selected:not(.im-mess_is_editing) .im-mess--marker,
 .im-mess.im-mess_selected:not(.im-mess_is_editing):hover .im-mess--marker {
     display: none!important
@@ -4429,15 +4420,20 @@ img.im_photo_thumb {
     background: #fff
 }
 
+.history_a11y .im-mess.im-mess_selected .im-mess--marker,
 .im-mess:hover .im-mess--marker {
     opacity: 0
 }
 
+.history_a11y .im-mess.im-mess_selected .im-mess--check,
 .im-mess:hover .im-mess--check {
     display: block;
     opacity: 0.7
 }
 
+.history_a11y .im-mess.im-mess_selected .im-mess--edit,
+.history_a11y .im-mess.im-mess_selected .im-mess--fav,
+.history_a11y .im-mess.im-mess_selected .im-mess--reply,
 .im-mess:hover .im-mess--edit,
 .im-mess:hover .im-mess--fav,
 .im-mess:hover .im-mess--reply {

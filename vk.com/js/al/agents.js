@@ -25,7 +25,7 @@ var Agents = {
                 user_id: cur.userId,
                 hash: cur.hash,
                 num: a,
-                force: e
+                force: e ? 1 : 0
             }, {
                 onDone: function(e, o) {
                     1 == e ? (val("agent_num", "#" + a), hide("edit_number_form")) : (val(n, o), show(n))
