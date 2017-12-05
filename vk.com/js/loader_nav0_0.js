@@ -177,7 +177,7 @@ var stVersions = {
     'spe.js': 3760998372,
     'friends.js': 140439177,
     'friends.css': 19105511207,
-    'friends_search.js': 964151048,
+    'friends_search.js': 710255976,
     'friends_search.css': 1694758778,
     'board.js': 3924396132,
     'board.css': 28559834188,
@@ -389,7 +389,7 @@ var stVersions = {
     'ads_web.js': 4274163593,
     'mrtarg.js': 1146267795,
     'mrtarg.css': 3142794554,
-    'cmodules/web/ads_edit_easy.js': 3647759686,
+    'cmodules/web/ads_edit_easy.js': 888550816,
     'health.css': 2251304991,
     'health.js': 2993570139,
     'pinbar.js': 284788792,
@@ -451,8 +451,8 @@ var stVersions = {
     'chronicle.css': 17990582786,
     'market.css': 30055700694,
     'market.js': 1427771939,
-    'stories_admin.css': 16132764315,
-    'stories_admin.js': 2465269552,
+    'stories_admin.css': 19853035523,
+    'stories_admin.js': 206224943,
     'vk2016.css': 2369321949,
     'landings/common.css': 23116542932,
     'landings/community_message.css': 17253297938,
@@ -622,4 +622,4 @@ var stTypes = {
         'lazyload.js': 1
     }
 };
-var _rnd = 235;
+var _rnd = 7029;

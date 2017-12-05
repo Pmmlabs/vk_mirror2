@@ -92,7 +92,7 @@ var FriendsSearch = {
     },
     checkOAuth: function(e, t, o) {
         var r = "https://" + location.host + "/friends?act=import_contacts&type=" + o;
-        if (1 == o) var i = "https://accounts.google.com/o/oauth2/auth?scope=https://www.google.com/m8/feeds/&response_type=code&redirect_uri=" + encodeURIComponent(r) + "&approval_prompt=force&state=" + t + "&client_id=190525020719-3g15ppddiep5mnjbt0g8vi1kh6v160an.apps.googleusercontent.com&hl=" + e;
+        if (1 == o) var i = "https://accounts.google.com/o/oauth2/auth?scope=https://www.googleapis.com/auth/contacts.readonly&response_type=code&redirect_uri=" + encodeURIComponent(r) + "&approval_prompt=force&state=" + t + "&client_id=841415684880-q8mkaiptra78d5aqgifo84qli993b1km.apps.googleusercontent.com&hl=" + e;
         else if (3 == o) var i = "https://graph.facebook.com/v2.7/oauth/authorize?client_id=128749580520227&redirect_uri=" + encodeURIComponent(r) + "&display=popup&state=" + t;
         else if (4 == o) var i = "http://www.odnoklassniki.ru/oauth/authorize?client_id=168388096&scope=VALUABLE+ACCESS&response_type=code&redirect_uri=" + encodeURIComponent(r + "&state=" + t);
         var n = "undefined" != typeof window.screenX ? window.screenX : window.screenLeft,
