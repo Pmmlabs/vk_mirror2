@@ -5628,7 +5628,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic+.nim-dialog.nim-dialog_selected,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_unread.nim-dialog_classic.nim-dialog_selected+.im-search-results-head,
 .nim-dialog:not(.nim-dialog_deleted):hover+.nim-dialog.nim-dialog_selected {
-    border-top: solid 1px #7293b6
+    border-top: solid 1px #5b88bd
 }
 
 .nim-dialog:not(.nim-dialog_deleted):hover .nim-dialog--close {
@@ -5800,7 +5800,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_muted.nim-dialog_selected,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected {
-    background: #7293b6;
+    background: #5b88bd;
     cursor: pointer
 }
 
@@ -5817,7 +5817,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_muted.nim-dialog_selected .nim-dialog--photo,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected .nim-dialog--photo {
-    border-color: #7293b6
+    border-color: #5b88bd
 }
 
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_muted.nim-dialog_selected .nim-dialog--photo .online:after,
@@ -5827,7 +5827,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_muted.nim-dialog_selected .nim-dialog--photo .online.mobile:after,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected .nim-dialog--photo .online.mobile:after {
-    background-color: #7293b6;
+    background-color: #5b88bd;
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%207%2011%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cg%20id%3D%22Symbols%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22%23BBE6AC%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22online%22%20transform%3D%22translate(-203.000000%2C%20-422.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M203%2C423.506439%20C203%2C422.674456%20203.671189%2C422%20204.501676%2C422%20L208.498324%2C422%20C209.327677%2C422%20210%2C422.671541%20210%2C423.506439%20L210%2C431.493561%20C210%2C432.325544%20209.328811%2C433%20208.498324%2C433%20L204.501676%2C433%20C203.672323%2C433%20203%2C432.328459%20203%2C431.493561%20L203%2C423.506439%20Z%20M204%2C424%20L209%2C424%20L209%2C430%20L204%2C430%20L204%2C424%20Z%22%20id%3D%22mobile_m%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E")
 }
 
@@ -5844,7 +5844,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_muted.nim-dialog_selected .nim-dialog--unread,
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_selected .nim-dialog--unread {
     background: #fff;
-    color: #7293b6
+    color: #5b88bd
 }
 
 .nim-dialog:not(.nim-dialog_deleted).nim-dialog_muted.nim-dialog_selected .nim-dialog--date,

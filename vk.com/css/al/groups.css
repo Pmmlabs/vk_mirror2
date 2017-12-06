@@ -674,6 +674,41 @@ a.groups_messages_block .ui_rmenu_count {
     content: ""
 }
 
+.gtop_message .gtop_stories_ban_warning .messages .full_message {
+    display: none
+}
+
+.gtop_message .gtop_stories_ban_warning .messages .full_message.shown {
+    display: block
+}
+
+.gtop_message .gtop_stories_ban_warning .messages .short_message {
+    display: none
+}
+
+.gtop_message .gtop_stories_ban_warning .messages .short_message.shown {
+    display: block
+}
+
+.gtop_message .gtop_stories_ban_warning .buttons .hide_full_message_button {
+    display: none
+}
+
+.gtop_message .gtop_stories_ban_warning .buttons .hide_full_message_button.shown {
+    display: block
+}
+
+.gtop_message .gtop_stories_ban_warning .buttons .show_full_message_button {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: none
+}
+
+.gtop_message .gtop_stories_ban_warning .buttons .show_full_message_button.shown {
+    display: block
+}
+
 .gtop_button {
     margin: 15px 10px 0 0;
     float: left
@@ -2174,4 +2209,12 @@ a.app_widget_matches_live_icon:active {
     padding-top: 16px;
     font-size: 12px;
     color: #656565
+}
+
+.box_body .moder_warning {
+    margin-bottom: 8px
+}
+
+.box_body .datepicker_container {
+    margin-top: 8px
 }

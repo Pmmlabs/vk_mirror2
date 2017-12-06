@@ -13,6 +13,45 @@
     padding: 0
 }
 
+.uploaded_stories_rows {
+    padding: 10px
+}
+
+.uploaded_stories_rows .story {
+    margin: 10px;
+    display: inline-block
+}
+
+.uploaded_stories_rows .story .header {
+    position: absolute;
+    padding-top: 5px;
+    padding-left: 5px;
+    background: #000;
+    background: rgba(0, 0, 0, .4);
+    width: 130px;
+    height: 35px;
+    font-size: 12px;
+    font-weight: 600;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    line-height: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.uploaded_stories_rows .story .header .additional_label,
+.uploaded_stories_rows .story .header .date {
+    color: #fff
+}
+
+.uploaded_stories_rows .story .story_preview {
+    width: 135px;
+    height: 255px;
+    cursor: pointer;
+    -o-object-fit: cover;
+    object-fit: cover
+}
+
 .gi_section {
     margin: 0 0 18px
 }
