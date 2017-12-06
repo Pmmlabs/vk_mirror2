@@ -250,14 +250,14 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 127146466556,
-    'imn.js': 135728351810,
+    'im.css': 126900140184,
+    'imn.js': 136217325026,
     'im.js': 1322065005,
     'emoji.js': 910862776,
     'wide_dd.css': 22023865609,
     'wide_dd.js': 452755344,
     'writebox.css': 22450464584,
-    'writebox.js': 53473954311,
+    'writebox.js': 52853631762,
     'sharebox.js': 2160209921,
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
@@ -319,7 +319,7 @@ var stVersions = {
     'widgets.css': 38650087705,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 77945616758,
+    'notifier.js': 77325294209,
     'notifier.css': 33462483146,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
@@ -622,4 +622,4 @@ var stTypes = {
         'lazyload.js': 1
     }
 };
-var _rnd = 8374;
+var _rnd = 2699;
