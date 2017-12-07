@@ -752,8 +752,15 @@
     margin-left: 0
 }
 
-.stories_button.views:empty {
+.stories_button.views:empty,
+.stories_button.share {
     display: none
+}
+
+.stories_item.can_share .stories_button.share {
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex
 }
 
 .stories_button.share:after {
@@ -2238,7 +2245,7 @@
 }
 
 .stories_feedback_loader {
-    height: 200px
+    height: 136px
 }
 
 .stories_feedback_loader .stories_view_loader_circular {

@@ -346,8 +346,8 @@ var stVersions = {
     'achievements.css': 19871043501,
     'sf.css': 19981618201,
     'members.css': 21080277525,
-    'meminfo.css': 24031719584,
-    'groupinfo.css': 24472317575,
+    'meminfo.css': 27399223205,
+    'groupinfo.css': 24255844442,
     'bugs.js': 3874995669,
     'bugs.css': 19127304849,
     'bugtracker.js': 3214135889,
@@ -530,8 +530,8 @@ var stVersions = {
     'voice_message_player.js': 18578298340,
     'cmodules/web/speech_worker_mp3.js': 1074082218,
     'cmodules/web/speech_worker_opus.js': 2818771805,
-    'stories.js': 18135901516,
-    'stories.css': 23862569603,
+    'stories.js': 21555320892,
+    'stories.css': 24726707051,
     'internal/nospam.css': 22529505236,
     'internal/away_linksban.css': 19040459652,
     'internal/ui_manual.js': 1761369792,
@@ -622,4 +622,4 @@ var stTypes = {
         'lazyload.js': 1
     }
 };
-var _rnd = 2564;
+var _rnd = 4792;
