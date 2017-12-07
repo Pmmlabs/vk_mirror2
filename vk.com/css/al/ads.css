@@ -3162,6 +3162,29 @@ h4.subheader.ads_retargeting_subheader_top {
     border-bottom: 0
 }
 
+.ads_retargeting_price_list_actions_error {
+    display: none;
+    margin: 0;
+    font-size: 13px;
+    color: #c95959;
+    text-align: center;
+    height: 32px
+}
+
+.ads_retargeting_price_list_actions_error_shown {
+    display: block
+}
+
+.ads_retargeting_price_list_actions_loading {
+    display: none;
+    padding-top: 12px;
+    height: 20px
+}
+
+.ads_retargeting_price_list_actions_loading_progress {
+    text-align: center
+}
+
 .ads_retargeting_price_list_actions_table {
     margin: 0;
     padding: 0;

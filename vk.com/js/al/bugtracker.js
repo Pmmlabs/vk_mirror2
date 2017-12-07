@@ -495,9 +495,7 @@ var BugTracker = {
         })
     },
     appendReporters: function(e, t, r, o, n) {
-        var a = e.map(n || function(e) {
-                return getTemplate(e.shown_pos ? "btMemberRowTemplatePos" : "btMemberRowTemplateNoPos", e)
-            }).join(),
+        var a = e.map(n).join(),
             i = 0,
             s = sech(a),
             c = ge(o || "bt_reporters"),
@@ -1059,51 +1057,53 @@ var BugTracker = {
         nav.objLoc.tone = t, nav.go(nav.objLoc), showProgress(ge("tone_filter_selector").parentNode), hide(ge("tone_filter_selector"))
     },
     initInvitesSearch: function(e) {
-        function t(r, o, n) {
+        function t(r, o) {
             if (Object.getPrototypeOf(this) !== t.prototype) throw new TypeError('Invites should be called via "new"');
-            var a = 0,
-                i = !1;
+            var n = 0,
+                a = !1;
             this.search = function() {
-                a = 0, i = !1, this.loadMoreResults(!0)
+                n = 0, a = !1, this.loadMoreResults(!0)
             }, this.loadMoreResults = function(t) {
-                if (!i) {
-                    i = !0;
-                    var s = val("bt_invites_search_" + e.randomId);
-                    ajax.post("bugtracker?act=a_product_invite_search", extend(this.filter, {
-                        text: s,
+                if (!a) {
+                    a = !0;
+                    var i = val("bt_invites_search_" + e.randomId);
+                    ajax.post("bugtracker?act=a_product_members_search", extend(this.filter, {
+                        text: i,
                         product: o,
                         hash: r,
-                        tab: n,
-                        offset: a || 0
+                        relation: e.relation,
+                        offset: n || 0
                     }), {
-                        onDone: function(e) {
-                            this.appendReporters(t, s, e), t && "n" === n && setTimeout(this.selectForInviteChanged.bind(this), 0)
+                        onDone: function(r) {
+                            this.appendReporters(t, i, r), t && 3 == e.relation && setTimeout(this.selectForInviteChanged.bind(this), 0)
                         }.bind(this),
                         onFail: function() {
-                            i = !1
+                            a = !1
                         }
                     })
                 }
             }, this.appendReporters = function(t, r, o) {
-                if (i = !1, r === val("bt_invites_search_" + e.randomId)) {
-                    var s = ge("bugtracker_invites_list_" + e.randomId);
-                    t && each(geByClass("bt_reporter_row", s), function(e, t) {
+                if (a = !1, r === val("bt_invites_search_" + e.randomId)) {
+                    var i = ge("bugtracker_invites_list_" + e.randomId);
+                    t && each(geByClass("bt_reporter_row", i), function(e, t) {
                         var r = o.findIndex(function(e) {
                             return e.uid == attr(t, "data-id")
                         }); - 1 === r && re(t)
                     });
-                    var c = function(e) {
-                            switch (n) {
-                                case "n":
-                                    return getTemplate("btMemberInviteRowTemplate", e);
-                                case "i":
-                                    return getTemplate("btMemberInvitedRowTemplate", e);
-                                case "r":
-                                    return getTemplate("btMemberRequestRowTemplate", e)
+                    var s = function(t) {
+                            switch (e.relation) {
+                                case 4:
+                                    return getTemplate("btMemberInviteRowTemplate", t);
+                                case 3:
+                                    return getTemplate("btMemberInvitedRowTemplate", t);
+                                case 2:
+                                    return getTemplate("btMemberRequestRowTemplate", t);
+                                default:
+                                    return getTemplate(t.shown_pos ? "btMemberRowTemplatePos" : "btMemberRowTemplateNoPos", t)
                             }
                         },
-                        u = BugTracker.appendReporters(o, !1, !0, s, n ? c : null);
-                    0 === u && (i = t), a += u
+                        c = BugTracker.appendReporters(o, !1, !0, i, s);
+                    0 === c && (a = t), n += c
                 }
             }
         }
@@ -1112,7 +1112,7 @@ var BugTracker = {
             getAgeToData: function() {},
             getAgeFromData: function() {},
             filterChanged: function() {
-                this.filter.city = this.cityFilter.val_full()[0], this.filter.nda = this.ndaFilter.val_full()[0], this.filter.activity = this.activityFilter.val_full()[0], this.filter.soc = isChecked("invites_filter_soc_" + e.randomId), isChecked("invites_filter_tf0_" + e.randomId) ? this.filter.tf = 1 : isChecked("invites_filter_tf1_" + e.randomId) ? this.filter.tf = 2 : this.filter.tf = 0, isChecked("invites_filter_ha0_" + e.randomId) ? this.filter.ha = 1 : isChecked("invites_filter_ha1_" + e.randomId) ? this.filter.ha = 2 : this.filter.ha = 0, this.filter.agents = isChecked("invites_filter_agents_" + e.randomId), this.filter.notagents = isChecked("invites_filter_notagents_" + e.randomId), this.filter.ios = isChecked("invites_filter_ios_" + e.randomId), this.filter.droid = isChecked("invites_filter_droid_" + e.randomId), this.updateFilters(), this.search()
+                this.filter.city = this.cityFilter.val_full()[0], this.filter.nda = this.ndaFilter && this.ndaFilter.val_full()[0], this.filter.activity = this.activityFilter && this.activityFilter.val_full()[0], this.filter.soc = isChecked("invites_filter_soc_" + e.randomId), isChecked("invites_filter_tf0_" + e.randomId) ? this.filter.tf = 1 : isChecked("invites_filter_tf1_" + e.randomId) ? this.filter.tf = 2 : this.filter.tf = 0, isChecked("invites_filter_ha0_" + e.randomId) ? this.filter.ha = 1 : isChecked("invites_filter_ha1_" + e.randomId) ? this.filter.ha = 2 : this.filter.ha = 0, this.filter.agents = isChecked("invites_filter_agents_" + e.randomId), this.filter.notagents = isChecked("invites_filter_notagents_" + e.randomId), this.filter.ios = isChecked("invites_filter_ios_" + e.randomId), this.filter.droid = isChecked("invites_filter_droid_" + e.randomId), this.updateFilters(), this.search()
             },
             clearFilter: function() {
                 this.filter = {}, this.updateFilters(), this.search()
@@ -1257,30 +1257,34 @@ var BugTracker = {
                     hash: t
                 }))
             },
-            exportFoundMembers: function(t) {
-                var r = val("bt_invites_search_" + e.randomId);
+            exportFoundMembers: function() {
+                var t = val("bt_invites_search_" + e.randomId);
                 nav.go("bugtracker?act=a_product_export_members", null, {
                     params: extend(this.filter, {
-                        text: r,
+                        text: t,
                         product: e.productId,
-                        tab: t
+                        relation: e.relation
                     })
                 })
             }
         };
-        var r = new t(e.searchHash, e.productId, e.tabPrefix);
-        return stManager.add(["ui_controls.js", "ui_controls.css"], function() {
+        var r = new t(e.searchHash, e.productId);
+        stManager.add(["ui_controls.js", "ui_controls.css"], function() {
             r.cityFilter = new Dropdown(ge("invites_fltr_city_" + e.randomId), e.cities, {
                 big: 1,
                 onChange: r.filterChanged.bind(r)
             })
-        }), r.ndaFilter = new Dropdown(ge("invites_fltr_nda_" + e.randomId), cur.btNdaFilterOptions, {
+        });
+        var o = ge("invites_fltr_nda_" + e.randomId);
+        o && (r.ndaFilter = new Dropdown(o, cur.btNdaFilterOptions, {
             big: 1,
             onChange: r.filterChanged.bind(r)
-        }), r.activityFilter = new Dropdown(ge("invites_fltr_activity_" + e.randomId), cur.btActivityFilterOptions, {
+        }));
+        var n = ge("invites_fltr_activity_" + e.randomId);
+        return n && (r.activityFilter = new Dropdown(n, cur.btActivityFilterOptions, {
             big: 1,
             onChange: r.filterChanged.bind(r)
-        }), BugTracker.invitesSearch[e.randomId] = r, r
+        })), BugTracker.invitesSearch[e.randomId] = r, r
     },
     invitesSearch: {},
     delayedInvitesSearch: function() {

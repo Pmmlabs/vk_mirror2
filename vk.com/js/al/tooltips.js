@@ -91,9 +91,12 @@ var tooltips = {
     },
     hideAll: function(t) {
         if (cur.tooltips)
-            for (var e = 0; e < cur.tooltips.length; ++e)(!t || isAncestor(cur.tooltips[e].el, t)) && (cur.tooltips[e].el && cur.tooltips[e].el.ttimer && clearTimeout(cur.tooltips[e].el.ttimer), cur.tooltips[e].hide({
-                fasthide: !0
-            }))
+            for (var e = 0; e < cur.tooltips.length; ++e) {
+                var o = cur.tooltips[e];
+                (!t || isAncestor(o.el, t)) && (o.opts.forceNoHide || (o.el && o.el.ttimer && clearTimeout(o.el.ttimer), o.hide({
+                    fasthide: !0
+                })))
+            }
     },
     rePositionTT: function(t) {
         if (t) {

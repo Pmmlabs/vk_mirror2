@@ -2819,6 +2819,11 @@
     width: 100%
 }
 
+.bt_members_list .box_controls_wrap .flat_button {
+    margin-right: 10px;
+    float: left
+}
+
 .bugtracker_members_filters {
     padding: 4px 20px 10px;
     border-bottom: 1px solid #e7e8ec;

@@ -4599,16 +4599,105 @@ Ads.initRedesignHintTooltip = function() {
     }
 }
 
-Ads.showRetargetingPriceListActionsTable = function(event, id) {
-    event.preventDefault();
+Ads.showRetargetingPriceListActionsTable = function(event, curUnionId, priceListId, hash) {
+    cancelEvent(event);
 
-    var priceListItem = ge('ads_retargeting_price_list_item_' + id),
-        priceListItemActionsBlock = ge('ads_retargeting_price_list_actions_' + id),
-        priceListItemActionsTable = geByClass1('ads_retargeting_price_list_actions_wrapper', priceListItemActionsBlock);
+    if (Ads.checkRetargetingPriceListActionsTableLoading(priceListId)) {
+        return;
+    }
 
-    slideToggle(priceListItemActionsTable, 150);
+    var priceListItem = ge('ads_retargeting_price_list_item_' + priceListId),
+        priceListItemActionsBlock = ge('ads_retargeting_price_list_actions_' + priceListId),
+        priceListItemActionsWrapper = geByClass1('ads_retargeting_price_list_actions_wrapper', priceListItemActionsBlock);
+
+    if (hasClass(priceListItem, 'ads_retargeting_price_list_item_opened')) {
+        var priceListItemActionsError = ge('ads_retargeting_price_list_actions_error_' + priceListId);
+        hide(priceListItemActionsError);
+        Ads.toggleRetargetingPriceListActionsTable(priceListItem, priceListItemActionsBlock, priceListItemActionsWrapper);
+        return;
+    }
+
+    if (priceListItemActionsWrapper.getAttribute('data-filled') === '1') {
+        Ads.toggleRetargetingPriceListActionsTable(priceListItem, priceListItemActionsBlock, priceListItemActionsWrapper);
+        return;
+    }
+    Ads.getRetargetingPriceListActionsTable(event, curUnionId, priceListId, hash);
+}
+
+Ads.checkRetargetingPriceListActionsTableLoading = function(priceListId) {
+    cur.adsRetargetingPriceList = cur.adsRetargetingPriceList || {};
+    cur.adsRetargetingPriceList[priceListId] = cur.adsRetargetingPriceList[priceListId] || {};
+
+    if (cur.adsRetargetingPriceList[priceListId].loading) {
+        return true;
+    }
+
+    return false;
+}
+
+Ads.getRetargetingPriceListActionsTable = function(event, curUnionId, priceListId, hash) {
+    cancelEvent(event);
+
+    if (Ads.checkRetargetingPriceListActionsTableLoading(priceListId)) {
+        return;
+    }
+
+    cur.adsRetargetingPriceList[priceListId].loading = true;
+
+    var priceListItem = ge('ads_retargeting_price_list_item_' + priceListId),
+        priceListItemActionsBlock = ge('ads_retargeting_price_list_actions_' + priceListId),
+        priceListItemActionsWrapper = geByClass1('ads_retargeting_price_list_actions_wrapper', priceListItemActionsBlock),
+        priceListItemActionsError = ge('ads_retargeting_price_list_actions_error_' + priceListId),
+        priceListItemLoading = ge('ads_retargeting_price_list_actions_loading_' + priceListId);
+
+    hide(priceListItemActionsError);
+    show(priceListItemLoading);
+    showProgress(priceListItemLoading, 'ads_retargeting_price_list_actions_loading_progress_' + priceListId, 'ads_retargeting_price_list_actions_loading_progress pr_medium');
+    addClass(priceListItem, "ads_retargeting_price_list_item_opened");
+
+    var ajaxParams = {
+        cur_union_id: curUnionId,
+        price_list_id: priceListId,
+        hash: hash
+    };
+
+    ajax.post('/ads?act=a_retargeting_price_list_actions', ajaxParams, {
+        onDone: onComplete,
+        onFail: onComplete
+    });
+
+    function onComplete(response) {
+        cur.adsRetargetingPriceList[priceListId].loading = false;
+
+        if (response && response.ok && response.result) {
+            slideUp(priceListItemActionsError, 100);
+            priceListItemActionsWrapper.innerHTML = response.result;
+            priceListItemActionsWrapper.setAttribute('data-filled', '1');
+            Ads.openRetargetingPriceListActionsTable(priceListItem, priceListItemActionsBlock, priceListItemActionsWrapper, priceListItemLoading);
+            return;
+        }
+
+        var priceListItemActionsErrorText = geByClass1('ads_retargeting_price_list_actions_error_text', priceListItemActionsError);
+        if (priceListItemActionsErrorText) {
+            priceListItemActionsErrorText.innerHTML = response || getLang('global_unknown_error');
+            slideDown(priceListItemActionsError, 100);
+            Ads.openRetargetingPriceListActionsTable(priceListItem, priceListItemActionsBlock, priceListItemActionsWrapper, priceListItemLoading);
+        }
+    }
+}
+
+Ads.toggleRetargetingPriceListActionsTable = function(priceListItem, priceListItemActionsBlock, priceListItemActionsWrapper) {
+    slideToggle(priceListItemActionsWrapper, 150);
     priceListItem.classList.toggle("ads_retargeting_price_list_item_opened");
     priceListItemActionsBlock.classList.toggle("ads_retargeting_price_list_actions_opened");
+}
+
+Ads.openRetargetingPriceListActionsTable = function(priceListItem, priceListItemActionsBlock, priceListItemActionsWrapper, priceListItemLoading) {
+    slideUp(priceListItemLoading, 100);
+    hideProgress(priceListItemLoading);
+
+    slideDown(priceListItemActionsWrapper, 150);
+    addClass(priceListItemActionsBlock, "ads_retargeting_price_list_actions_opened");
 }
 
 Ads.showRetargetingPriceListEditBox = function(event, unionId, hash, priceListId) {
