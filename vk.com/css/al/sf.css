@@ -87,6 +87,26 @@
     display: block
 }
 
+.sf_report.message_report .sf_content .sf_entry_lvl_content .sf_entry_lvl_body .message_edit_history_block .wr_header {
+    margin-left: 0px;
+    margin-right: 0px
+}
+
+.sf_report.message_report .sf_content .sf_entry_lvl_content .sf_entry_lvl_body .message_edit_history_block .old_message_versions {
+    margin-top: 8px;
+    display: none
+}
+
+.sf_report.message_report .sf_content .sf_entry_lvl_content .sf_entry_lvl_body .message_edit_history_block .old_message_versions.shown {
+    display: block
+}
+
+.sf_report.message_report .sf_content .sf_entry_lvl_content .sf_entry_lvl_body .message_edit_history_block .old_message_versions .sf_post {
+    padding-left: 19px;
+    border-left: 1px solid #c5c8cd;
+    margin-top: 8px
+}
+
 body.sf .mention_tt_actions {
     display: none
 }

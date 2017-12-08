@@ -14143,6 +14143,173 @@ charset=utf-8,
     display: none
 }
 
+.mailActs__dialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10000;
+    display: none;
+    height: 100%;
+    width: 100%
+}
+
+.mailActs_deleteConfirmation .mailActs__dialog {
+    display: table
+}
+
+.mailActs__dialogOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -100px;
+    background: rgba(0, 0, 0, .4)
+}
+
+.mailActs__dialogWrap {
+    padding: 0 8px;
+    display: table-cell;
+    vertical-align: middle
+}
+
+@media (max-width: 319px) {
+    .mailActs__dialogWrap {
+        padding: 0
+    }
+}
+
+.mailActs__dialogContent {
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 14px 16px 16px;
+    position: relative;
+    margin: 12px auto 20px;
+    max-width: 380px;
+    word-break: break-word;
+    font-size: 15px;
+    line-height: 20px
+}
+
+@media (max-width: 319px) {
+    .mailActs__dialogContent {
+        border-radius: 0
+    }
+}
+
+.mailActs__dialogFooter {
+    padding: 18px 0 0
+}
+
+.mailActs__dialogFooter:after {
+    content: '';
+    display: table;
+    clear: both
+}
+
+.mailActs__dialogClose {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    margin: -2px -4px 12px 12px;
+    float: right;
+    background-image: url('/images/mobile/icons/list_clear_24.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 50%;
+    cursor: pointer
+}
+
+.mailActs__dialogClose:after {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    right: -12px;
+    bottom: -12px
+}
+
+.vk_2x .mailActs__dialogClose {
+    background-image: url('/images/mobile/icons/list_clear_24_2x.png')
+}
+
+.mailActs__checkbox {
+    clear: left
+}
+
+.mailActs__checkboxIn {
+    position: relative;
+    padding: 0 0 0 32px;
+    font-size: 15px;
+    line-height: 23px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: top
+}
+
+.mailActs__checkboxInput {
+    display: none
+}
+
+.mailActs__checkboxLabel {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.mailActs__checkboxLabel:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    background: #fff;
+    border: 1px solid #acc2d9;
+    margin: 2px;
+    content: ''
+}
+
+.mailActs__checkboxLabel .mailActs__checkboxIn:hover .mailActs__checkboxLabel {
+    background: #e4e8ed
+}
+
+.mailActs__checkboxInput:checked+.mailActs__checkboxLabel:before {
+    border: 0;
+    width: 20px;
+    height: 20px;
+    background: #5181b8 url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2213%22%20height%3D%2210%22%20viewBox%3D%220%200%2013%2010%22%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22M4.7%209.9l-4.4-4.2%201.4-1.4%203%202.8%206.6-6.3%201.4%201.4z%22%2F%3E%3C%2Fsvg%3E') 4px 5px no-repeat
+}
+
+.mailActs__dialogButton {
+    cursor: pointer;
+    float: left;
+    height: 34px;
+    font-size: 14px;
+    line-height: 34px;
+    background: #5181b8;
+    color: #fff;
+    padding: 0 12px;
+    margin: 20px 7px 0 0;
+    border-radius: 3px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent
+}
+
+.mailActs__dialogButton_secondary {
+    background: transparent;
+    color: #306096
+}
+
+.mailActs__dialogButton_secondary:hover {
+    background: #e4e8ed
+}
+
 .mailFilter {
     height: 44px;
     position: relative;

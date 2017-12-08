@@ -677,13 +677,18 @@ var vkApp = function(t, e, i, o) {
                         };
                         ajax.post("al_apps.php", r, {
                             onDone: function(t, e) {
-                                e && showWiki({
+                                e && (showWiki({
                                     w: t
-                                })
+                                }), cur.onExternalAppDone = function(t) {
+                                    this.runCallback("onExternalAppDone", t)
+                                }.bind(cur.app))
                             }
                         })
                     }
                 }
+            },
+            externalAppDone: function(t) {
+                window.WkView && WkView.hide(!1, !0), cur.onExternalAppDone && (cur.onExternalAppDone(t), cur.onExternalAppDone = null)
             }
         }, i.widget ? (s.options.type = 1, s.options.widget = !0) : (renderFlash(ge("flash_api_external_cont"), {
             url: "/swf/api_external.swf",
@@ -1098,10 +1103,10 @@ AppsSlider.prototype = {
                 cache: 1,
                 local: 1,
                 onDone: this.withFastBackCheck(function(data, opts, preload, preload_before, preload_header) {
-                    return opts && (opts = eval("(" + opts + ")"), extend(opts.lang, cur.lang || {}), extend(cur, opts)), cur.preload = extend(cur.preload || {}, preload), cur.preload.before = preload_before, cur.preload.header = preload_header, (data = eval("(" + data + ")")) ? (void 0 === cur.searchOffset && (cur.searchOffset = 0), cur.curList = "all", cur.appsList = data[cur.curList] ? data : {
+                    return opts && (opts = eval("(" + opts + ")"), extend(opts.lang, cur.lang || {}), extend(cur, opts)), cur.preload = extend(cur.preload || {}, preload), cur.preload.before = preload_before, cur.preload.header = preload_header,
+                        (data = eval("(" + data + ")")) ? (void 0 === cur.searchOffset && (cur.searchOffset = 0), cur.curList = "all", cur.appsList = data[cur.curList] ? data : {
                             all: []
-                        }, cur.sectionCount = this.isSection("catalog", "list") && !cur.searchStr ? 0 : cur.appsList[cur.curList].length,
-                        void this.indexAll(function() {
+                        }, cur.sectionCount = this.isSection("catalog", "list") && !cur.searchStr ? 0 : cur.appsList[cur.curList].length, void this.indexAll(function() {
                             if (cur.silent = !1, cur.onSilentLoad)
                                 for (var t in cur.onSilentLoad) isFunction(cur.onSilentLoad[t]) && cur.onSilentLoad[t]()
                         })) : cur.silent = !1
@@ -2182,18 +2187,19 @@ AppsSlider.prototype = {
     },
     ttCommon: function(t, e, i) {
         return i = extend({
-            parent: void 0,
-            center: void 0,
-            event: 0,
-            appendEl: void 0,
-            shift: void 0
-        }, i), 0 === i.event && (i.event = window.event), i.event && cancelEvent(i.event), i.appendEl && (i.appendEl = ge(i.appendEl)), i.center ? showTooltip(t, {
-            center: i.center,
-            shift: i.shift || [0, 8, 8],
-            black: 1,
-            appendEl: i.appendEl,
-            text: e
-        }) : showTitle(t, e, i.shift, i)
+                parent: void 0,
+                center: void 0,
+                event: 0,
+                appendEl: void 0,
+                shift: void 0
+            }, i), 0 === i.event && (i.event = window.event), i.event && cancelEvent(i.event), i.appendEl && (i.appendEl = ge(i.appendEl)),
+            i.center ? showTooltip(t, {
+                center: i.center,
+                shift: i.shift || [0, 8, 8],
+                black: 1,
+                appendEl: i.appendEl,
+                text: e
+            }) : showTitle(t, e, i.shift, i)
     },
     ttHideAll: function() {
         window.tooltips && tooltips.hideAll()
