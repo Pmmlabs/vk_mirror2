@@ -1090,6 +1090,11 @@
     display: none
 }
 
+.bt_comment_form .bt_comment_form_text {
+    border: 0 none;
+    padding: 15px 20px
+}
+
 .bt_comment_form_unavailable {
     padding: 35px 75px;
     text-align: center;
@@ -1098,10 +1103,12 @@
     line-height: 160%
 }
 
+.bt_comment_edit_form .flat_button {
+    margin-left: 10px
+}
+
 .bt_comment_form_text {
-    border: 0 none;
     box-sizing: border-box;
-    padding: 15px 20px;
     display: block;
     width: 100%
 }
@@ -1213,6 +1220,27 @@
 
 .bt_report_cmt:hover .bt_reporter_card_link {
     opacity: 0.7
+}
+
+.bt_report_cmt .reply_action {
+    -o-transition: visibility 100ms ease, opacity 100ms ease;
+    transition: visibility 100ms ease, opacity 100ms ease;
+    outline: none
+}
+
+.bt_report_cmt:hover .reply_action {
+    opacity: 0.6;
+    filter: alpha(opacity=60)
+}
+
+.bt_report_cmt .reply_action:hover {
+    opacity: 1;
+    -webkit-filter: none;
+    filter: none
+}
+
+.bt_report_cmt.editing .post_actions_wrap {
+    display: none
 }
 
 .bt_report_cmt_a {
@@ -1331,7 +1359,7 @@
 }
 
 .bt_report_cmt_meta {
-    margin: 6px 0 8px
+    margin: 6px 0 8px 1px
 }
 
 .bt_report_cmt_meta_row {

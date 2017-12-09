@@ -4855,6 +4855,21 @@ Ads.archiveRetargetingPriceList = function(event, unionId, hash, priceListId, co
     }
 }
 
+Ads.showRetargetingPriceListProcessInfoBox = function(event, unionId, priceListId, tech) {
+    event.preventDefault();
+
+    var params = {
+        'union_id': unionId,
+        'price_list_id': priceListId,
+        'tech': (tech ? 1 : 0)
+    };
+    var options = {
+        width: 800
+    };
+    var box = Ads.showRetargetingGroupBox('price_list_process_info', params, options);
+    box.removeButtons();
+}
+
 Ads.checkRetargetingPriceListInputKeyup = function(event, unionId, hash, priceListId) {
     if (event.which === KEY.ENTER || event.keyCode === KEY.ENTER) {
         Ads.saveRetargetingPriceList(unionId, hash, priceListId);

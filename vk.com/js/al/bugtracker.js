@@ -76,12 +76,12 @@ var BugTracker = {
                     region_id: isVisible("bt_form_region_block") ? cur.newBugRegionDD.val() : 0,
                     box: cur.newBugBox ? 1 : 0
                 },
-                n = !1;
-            if (o.title || (notaBene("bt_form_title"), n = !0), o.tags.length || (notaBene(cur.newBugTagsDD.container), n = !0), isVisible("bt_form_phone_block") && "" == o.phone && (notaBene("bt_form_phone"), n = !0), isVisible("bt_form_region_block") && 0 == o.region_id && (notaBene(cur.newBugRegionDD.container), n = !0), !o.platforms.length && isVisible("bt_form_platforms") && (notaBene(cur.newBugPlatformsDD.container), n = !0), "" === cur.newBugPlatformsIOSVersionsDD.val() && isVisible("bt_form_platforms_ios_versions") && (notaBene(cur.newBugPlatformsIOSVersionsDD.container), n = !0), "" === cur.newBugPlatformsAndroidVersionsDD.val() && isVisible("bt_form_platforms_android_versions") && (notaBene(cur.newBugPlatformsAndroidVersionsDD.container), n = !0), !o.devices.length && cur.newBugDevicesDD.dataItems.length > 1 && isVisible("bt_form_devices") && (notaBene(cur.newBugDevicesDD.container), n = !0), !n) {
-                var a = [];
+                a = !1;
+            if (o.title || (notaBene("bt_form_title"), a = !0), o.tags.length || (notaBene(cur.newBugTagsDD.container), a = !0), isVisible("bt_form_phone_block") && "" == o.phone && (notaBene("bt_form_phone"), a = !0), isVisible("bt_form_region_block") && 0 == o.region_id && (notaBene(cur.newBugRegionDD.container), a = !0), !o.platforms.length && isVisible("bt_form_platforms") && (notaBene(cur.newBugPlatformsDD.container), a = !0), "" === cur.newBugPlatformsIOSVersionsDD.val() && isVisible("bt_form_platforms_ios_versions") && (notaBene(cur.newBugPlatformsIOSVersionsDD.container), a = !0), "" === cur.newBugPlatformsAndroidVersionsDD.val() && isVisible("bt_form_platforms_android_versions") && (notaBene(cur.newBugPlatformsAndroidVersionsDD.container), a = !0), !o.devices.length && cur.newBugDevicesDD.dataItems.length > 1 && isVisible("bt_form_devices") && (notaBene(cur.newBugDevicesDD.container), a = !0), !a) {
+                var n = [];
                 each(cur.btNewMedia.getMedias(), function(e, t) {
-                    a.push(t[0] + "," + t[1])
-                }), o.attachs = a, ajax.post("bugtracker", o, {
+                    n.push(t[0] + "," + t[1])
+                }), o.attachs = n, ajax.post("bugtracker", o, {
                     onDone: function(e) {
                         if (e) {
                             var t = se(e);
@@ -107,11 +107,11 @@ var BugTracker = {
         }
         var r = "" !== e ? e.split(",") : [],
             o = !1,
-            n = !1,
-            a = !1;
+            a = !1,
+            n = !1;
         each(r, function(e, t) {
-            t = t.toString(), cur.btFormPlatformSupportsDevices[t] && (o = !0), 3 == t ? n = !0 : 4 == t && (a = !0)
-        }), toggle("bt_form_devices", o), toggle("bt_form_platforms_ios_versions", n), toggle("bt_form_platforms_android_versions", a)
+            t = t.toString(), cur.btFormPlatformSupportsDevices[t] && (o = !0), 3 == t ? a = !0 : 4 == t && (n = !0)
+        }), toggle("bt_form_devices", o), toggle("bt_form_platforms_ios_versions", a), toggle("bt_form_platforms_android_versions", n)
     },
     sendComment: function() {
         if (cur.bugreportId && cur.bugreportHash) {
@@ -164,8 +164,8 @@ var BugTracker = {
         clearTimeout(cur.btSearchTimeout), BugTracker.doUpdateSearch(t, !0)
     },
     addSearchFilter: function(e, t, r, o) {
-        var n = null;
-        "platform" == e ? n = cur.btSearchPlatformDD : "product" == e ? n = cur.btSearchProductDD : "platform_version" == e ? n = cur.btSearchPlatformVersionDD : "device" == e ? n = cur.btSearchDeviceDD : "version" == e ? n = cur.btSearchVersionDD : "tag" == e ? n = cur.btSearchTagsDD : "region" == e && (n = cur.btSearchRegionDD), n && (r && BugTracker.ddVisible(cur.btSearchProductDD) && cur.btSearchProductDD.val() != r && (cur.btPreventUpdateProduct = "product" != e, cur.btSearchProductDD.val(r, !0)), "product" != e && ("platform_version" != e && "device" != e || !BugTracker.ddVisible(cur.btSearchPlatformDD) || (cur.btPreventUpdatePlatform = !0, cur.btSearchPlatformDD.val(o, !0)), n.val(t, !0)))
+        var a = null;
+        "platform" == e ? a = cur.btSearchPlatformDD : "product" == e ? a = cur.btSearchProductDD : "platform_version" == e ? a = cur.btSearchPlatformVersionDD : "device" == e ? a = cur.btSearchDeviceDD : "version" == e ? a = cur.btSearchVersionDD : "tag" == e ? a = cur.btSearchTagsDD : "region" == e && (a = cur.btSearchRegionDD), a && (r && BugTracker.ddVisible(cur.btSearchProductDD) && cur.btSearchProductDD.val() != r && (cur.btPreventUpdateProduct = "product" != e, cur.btSearchProductDD.val(r, !0)), "product" != e && ("platform_version" != e && "device" != e || !BugTracker.ddVisible(cur.btSearchPlatformDD) || (cur.btPreventUpdatePlatform = !0, cur.btSearchPlatformDD.val(o, !0)), a.val(t, !0)))
     },
     ddVisible: function(e) {
         return isVisible(domPN(e.container))
@@ -176,15 +176,15 @@ var BugTracker = {
         };
         nav.objLoc.act && (r.act = nav.objLoc.act), nav.objLoc.q && (r.q = nav.objLoc.q);
         var o = cur.btSearchProductDD.val(),
-            n = cur.btSearchVersionDD.val(),
-            a = cur.btSearchPlatformDD.val(),
+            a = cur.btSearchVersionDD.val(),
+            n = cur.btSearchPlatformDD.val(),
             i = cur.btSearchPlatformVersionDD.val(),
             s = cur.btSearchStatusDD.val(),
             c = cur.btSearchSeverityDD.val(),
-            u = cur.btSearchTagsDD.val(),
-            d = cur.btSearchOriginalDD ? parseInt(cur.btSearchOriginalDD.val()) : 0,
+            d = cur.btSearchTagsDD.val(),
+            u = cur.btSearchOriginalDD ? parseInt(cur.btSearchOriginalDD.val()) : 0,
             _ = cur.btSearchDeviceDD.val();
-        BugTracker.ddVisible(cur.btSearchProductDD) && o > 0 && (r.product = o), n > 0 && BugTracker.ddVisible(cur.btSearchVersionDD) && (r.version = n), a > 0 && BugTracker.ddVisible(cur.btSearchPlatformDD) && (r.platform = a), i && BugTracker.ddVisible(cur.btSearchPlatformVersionDD) && (r.pversion = i), _ && BugTracker.ddVisible(cur.btSearchDeviceDD) && (r.device = _), s && (r.status = s), c && (r.severity = c), u && BugTracker.ddVisible(cur.btSearchTagsDD) && (r.tag = u), cur.btSearchRegionDD && cur.btSearchRegionDD.val() > 0 && BugTracker.ddVisible(cur.btSearchRegionDD) && (r.region = cur.btSearchRegionDD.val()), d > 0 && (r.original = d), isChecked("bt_sb_search_vulnerabilites") && (r.vulnerability = 1), isChecked("bt_sb_search_wishes") && (r.wishes = 1), isChecked("bt_sb_search_unrated") && (r.unrated = 1), ge("bt_sb_search_member") && nav.objLoc.mid && (r.mid = nav.objLoc.mid), BugTracker.loadSearch(r, e, t)
+        BugTracker.ddVisible(cur.btSearchProductDD) && o > 0 && (r.product = o), a > 0 && BugTracker.ddVisible(cur.btSearchVersionDD) && (r.version = a), n > 0 && BugTracker.ddVisible(cur.btSearchPlatformDD) && (r.platform = n), i && BugTracker.ddVisible(cur.btSearchPlatformVersionDD) && (r.pversion = i), _ && BugTracker.ddVisible(cur.btSearchDeviceDD) && (r.device = _), s && (r.status = s), c && (r.severity = c), d && BugTracker.ddVisible(cur.btSearchTagsDD) && (r.tag = d), cur.btSearchRegionDD && cur.btSearchRegionDD.val() > 0 && BugTracker.ddVisible(cur.btSearchRegionDD) && (r.region = cur.btSearchRegionDD.val()), u > 0 && (r.original = u), isChecked("bt_sb_search_vulnerabilites") && (r.vulnerability = 1), isChecked("bt_sb_search_wishes") && (r.wishes = 1), isChecked("bt_sb_search_unrated") && (r.unrated = 1), ge("bt_sb_search_member") && nav.objLoc.mid && (r.mid = nav.objLoc.mid), BugTracker.loadSearch(r, e, t)
     },
     doUpdateSearch: function(e, t) {
         e = e.toLowerCase(), (e != nav.objLoc.q || t) && (e ? nav.objLoc.q = e : delete nav.objLoc.q, BugTracker.loadSearch(nav.objLoc))
@@ -230,6 +230,61 @@ var BugTracker = {
             onDone: function(e) {
                 e && (toggleClass("bt_report_sb_subscribe_btns", "bt_report_sb_subscribed"), val("bt_report_sb_nsubscribers", e))
             }
+        })
+    },
+    cancelEdit: function() {
+        var e = geByClass1("bt_comment_edit_form");
+        if (e) {
+            var t = e.getAttribute("data-id"),
+                r = ge("cmt" + t),
+                o = geByClass1("bt_report_cmt_text", r);
+            re(e), setTimeout(function() {
+                show(geByClass1("page_post_sized_thumbs", r)), show(geByClass1("post_thumbed_media", r)), show(o), show(geByClass1("bt_report_cmt_info", r)), toggleClass(r, "editing", !1)
+            })
+        }
+    },
+    saveComment: function(btn, hash) {
+        var editForm = geByClass1("bt_comment_edit_form");
+        if (editForm) {
+            var cidRaw = editForm.getAttribute("data-id"),
+                t = ge("bt_comment_edit_form_text"),
+                m = trim(val(t)),
+                attachs = [];
+            return each(cur.btEditCommentMedia.getMedias(), function(e, t) {
+                attachs.push(t[0] + "," + t[1])
+            }), m || attachs.length ? void ajax.post("bugtracker", {
+                act: "a_save_edited_comment",
+                comment_id: cidRaw,
+                hash: hash,
+                message: m,
+                attachs: attachs
+            }, {
+                showProgress: lockButton.pbind(btn),
+                hideProgress: unlockButton.pbind(btn),
+                onDone: function(html, js) {
+                    domReplaceEl(ge("bt_report_one_section"), se(html)), js && eval(js)
+                }
+            }) : notaBene(t)
+        }
+    },
+    editComment: function(e, t, r, o, a) {
+        BugTracker.cancelEdit();
+        var n = ge("cmt" + e),
+            i = geByClass1("bt_report_cmt_text", n),
+            s = '<div class="bt_comment_edit_form" data-id="' + e + '">  <textarea class="text bt_comment_form_text" id="bt_comment_edit_form_text" onkeydown="onCtrlEnter(event, BugTracker.sendComment);" style="overflow: hidden; resize: none; height: 50px;">' + val(i) + '</textarea>  <div id="bt_comment_edit_form_media_preview" class="clear_fix bt_comment_form_media_preview"></div>  <div id="bt_comment_edit_form_attach" class="bt_comment_form_attach clear_fix"><span class="add_media_lnk"></span></div>  <div>  <button type="button" class="flat_button fl_r" id="bt_comment_form_submit" onclick="BugTracker.saveComment(this, \'' + t + "');\">" + getLang("global_save") + '</button>  <button type="button" class="flat_button button_light secondary fl_r" id="bt_comment_form_submit" onclick="BugTracker.cancelEdit()">' + getLang("global_cancel") + "</button>  </div>  </div>",
+            c = sech(s)[0];
+        i.parentNode.insertBefore(c, i), hide(i), hide(geByClass1("page_post_sized_thumbs", n)), hide(geByClass1("post_thumbed_media", n)), hide(geByClass1("bt_report_cmt_info", n)), toggleClass(n, "editing", !0), setTimeout(function() {
+            autosizeSetup(geByClass1("bt_comment_form_text", n), {}), cur.btEditCommentMedia = MediaSelector(ge("bt_comment_edit_form_attach").firstChild, "bt_comment_edit_form_media_preview", cur.btCommentMediaTypes, {
+                limit: 10,
+                hideAfterCount: 10,
+                editable: 1,
+                sortable: 1,
+                teWidth: 210,
+                teHeight: 160,
+                toId: a
+            }), r.forEach(function(e) {
+                cur.btEditCommentMedia.chooseMedia(e.type, e[0], e.data)
+            })
         })
     },
     removeComment: function(e, t) {
@@ -292,9 +347,9 @@ var BugTracker = {
             onDone: function(t, r) {
                 cur.btMaxUDate = r, r || re(e);
                 var o = sech(t),
-                    n = ge("bt_reports");
+                    a = ge("bt_reports");
                 each(o, function(e, t) {
-                    ge(t.id) || n.appendChild(t)
+                    ge(t.id) || a.appendChild(t)
                 }), BugTracker.checkSelectedReports()
             }
         })
@@ -311,8 +366,8 @@ var BugTracker = {
         each(geByClass("_sel_checkbox", "bt_reports"), function(e, r) {
             if (t != isChecked(r)) {
                 var o = gpeByClass("bt_report_row", r),
-                    n = o.id.replace("bugreport", "");
-                checkbox(r, t), BugTracker.storeSelection(n, t)
+                    a = o.id.replace("bugreport", "");
+                checkbox(r, t), BugTracker.storeSelection(a, t)
             }
         }), BugTracker.updateSelectedCount()
     },
@@ -397,13 +452,13 @@ var BugTracker = {
         })
     },
     checkReportsSelected: function(e, t, r, o) {
-        var n = cur.btSelected ? cur.btSelected.count : 0;
-        if (n) {
+        var a = cur.btSelected ? cur.btSelected.count : 0;
+        if (a) {
             ge("bt_tab_all") && uiTabs.switchTab(geByClass1("ui_tab", "bt_tab_all"), {
                 noAnim: 1
             });
-            var a = showFastBox(getLang("global_action_confirmation"), getLang("bugs_t_confirm_leave_selected_reports"), getLang("global_continue"), function() {
-                a.hide(), BugTracker.diselectAllReports(), nav.go(r)
+            var n = showFastBox(getLang("global_action_confirmation"), getLang("bugs_t_confirm_leave_selected_reports"), getLang("global_continue"), function() {
+                n.hide(), BugTracker.diselectAllReports(), nav.go(r)
             }, getLang("global_cancel"));
             return !1
         }
@@ -434,9 +489,9 @@ var BugTracker = {
             onDone: function(t, r) {
                 cur.btMaxTime = r, cur.btMaxTime || hide(e);
                 var o = sech(t),
-                    n = ge("bt_updates");
+                    a = ge("bt_updates");
                 each(o, function(e, t) {
-                    ge(t.id) || n.appendChild(t)
+                    ge(t.id) || a.appendChild(t)
                 })
             }
         })
@@ -488,25 +543,37 @@ var BugTracker = {
         }, {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e),
-            onDone: function(r, o, n, a) {
-                cur.btOffset = o, cur.btPrevRate = a, cur.btPos = n, cur.btOffset || hide(e), Array.prototype.push.apply(cur.btMembers, r), BugTracker.appendReporters(r, !0, !1), t && t()
+            onDone: function(r, o, a, n) {
+                cur.btOffset = o, cur.btPrevRate = n, cur.btPos = a, cur.btOffset || hide(e), Array.prototype.push.apply(cur.btMembers, r), BugTracker.appendReporters(r, !0, !1), t && t()
             },
             onFail: t
         })
     },
-    appendReporters: function(e, t, r, o, n) {
-        var a = e.map(n).join(),
+    templateSelector: function(e, t) {
+        switch (e) {
+            case 4:
+                return getTemplate("btMemberInviteRowTemplate", t);
+            case 3:
+                return getTemplate("btMemberInvitedRowTemplate", t);
+            case 2:
+                return getTemplate("btMemberRequestRowTemplate", t);
+            default:
+                return getTemplate(t.shown_pos ? "btMemberRowTemplatePos" : "btMemberRowTemplateNoPos", t)
+        }
+    },
+    appendReporters: function(e, t, r, o, a) {
+        var n = e.map(BugTracker.templateSelector.bind(null, a)).join(),
             i = 0,
-            s = sech(a),
+            s = sech(n),
             c = ge(o || "bt_reporters"),
-            u = null;
+            d = null;
         return each(s, function(e, o) {
-            var n = ge(o.id);
-            if (n) {
-                if (!t) return void(u = n);
-                re(n)
+            var a = ge(o.id);
+            if (a) {
+                if (!t) return void(d = a);
+                re(a)
             }
-            r && u && u.nextSibling ? c.insertBefore(o, u.nextSibling) : c.appendChild(o), u = o, i++
+            r && d && d.nextSibling ? c.insertBefore(o, d.nextSibling) : c.appendChild(o), d = o, i++
         }), i
     },
     markUpdatesRead: function() {
@@ -624,9 +691,9 @@ var BugTracker = {
             },
             r = ge("bt_edit_product__btn"),
             o = !1,
-            n = ge("bt_edit_product__version_title"),
-            a = ge("bt_edit_product__release_notes");
-        isVisible("bt_edit_product__version") && (t.version_title = trim(val(n)), t.release_notes = trim(val(a)), "" === t.version_title && (notaBene(n), o = !0)), t.tags.length || (notaBene(cur.editProductTagsDD.container), o = !0), cur.btProductTypesPlatformsRequired[t.type] && (each(geByClass("checkbox", "bt_edit_product_platforms_block"), function(e, r) {
+            a = ge("bt_edit_product__version_title"),
+            n = ge("bt_edit_product__release_notes");
+        isVisible("bt_edit_product__version") && (t.version_title = trim(val(a)), t.release_notes = trim(val(n)), "" === t.version_title && (notaBene(a), o = !0)), t.tags.length || (notaBene(cur.editProductTagsDD.container), o = !0), cur.btProductTypesPlatformsRequired[t.type] && (each(geByClass("checkbox", "bt_edit_product_platforms_block"), function(e, r) {
             isVisible(r) && isChecked(r) && t.platforms.push(attr(r, "platform-id"))
         }), t.platforms.length || (notaBene("bt_edit_product_platforms_block"), o = !0)), "" == t.title && (notaBene(e), o = !0), o || ajax.post("bugtracker", t, {
             showProgress: lockButton.pbind(r),
@@ -714,7 +781,7 @@ var BugTracker = {
             }
         })
     },
-    giveLicence: function(e, t, r, o, n) {
+    giveLicence: function(e, t, r, o, a) {
         ajax.post("bugtracker", {
             act: "a_give_licence",
             product_id: t,
@@ -724,7 +791,7 @@ var BugTracker = {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e),
             onDone: function(e) {
-                if (n) hide("bt_reporter_buttons" + r), hide("bt_reporter_revoked" + r), show("bt_reporter_accepted" + r), show("bt_reporter_revoke" + r);
+                if (a) hide("bt_reporter_buttons" + r), hide("bt_reporter_revoked" + r), show("bt_reporter_accepted" + r), show("bt_reporter_revoke" + r);
                 else {
                     var t = se(e);
                     domReplaceEl(ge(t.id), t)
@@ -781,7 +848,7 @@ var BugTracker = {
             }
         })
     },
-    revokeLicence: function(e, t, r, o, n) {
+    revokeLicence: function(e, t, r, o, a) {
         ajax.post("bugtracker", {
             act: "a_revoke_licence",
             product_id: t,
@@ -791,7 +858,7 @@ var BugTracker = {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e),
             onDone: function(e) {
-                if (n) hide("bt_reporter_buttons" + r), hide("bt_reporter_revoke" + r), show("bt_reporter_revoked" + r);
+                if (a) hide("bt_reporter_buttons" + r), hide("bt_reporter_revoke" + r), show("bt_reporter_revoked" + r);
                 else {
                     var t = se(e);
                     domReplaceEl(ge(t.id), t)
@@ -831,8 +898,8 @@ var BugTracker = {
     searchLicence: function(e, t, r) {
         var o = uiSearch.getWrapEl(e);
         uiSearch.showProgress(o);
-        var n = nav.objLoc;
-        "" != t ? n.q = t : delete n.q, nav.go(n)
+        var a = nav.objLoc;
+        "" != t ? a.q = t : delete a.q, nav.go(a)
     },
     searchMemship: function(e, t, r) {
         var o = nav.objLoc;
@@ -998,10 +1065,10 @@ var BugTracker = {
             hideProgress: unlockButton.pbind(e)
         })
     },
-    showMemshipDetails: function(e, t, r, o, n) {
-        var a = ge("bt_member_" + t);
-        if (a) {
-            var i = geByClass1("_details", a);
+    showMemshipDetails: function(e, t, r, o, a) {
+        var n = ge("bt_member_" + t);
+        if (n) {
+            var i = geByClass1("_details", n);
             if (i) {
                 if (!hasClass(e, "_details_unloaded")) return void slideToggle(i, 300);
                 show(i), ajax.post("bugtracker", {
@@ -1009,10 +1076,10 @@ var BugTracker = {
                     uid: t,
                     product_id: r,
                     hash: o,
-                    by_product: n
+                    by_product: a
                 }, {
-                    showProgress: addClass.pbind(a, "bt_member_loading"),
-                    hideProgress: removeClass.pbind(a, "bt_member_loading"),
+                    showProgress: addClass.pbind(n, "bt_member_loading"),
+                    hideProgress: removeClass.pbind(n, "bt_member_loading"),
                     onDone: function(t) {
                         val(i, t), removeClass(e, "_details_unloaded")
                     }
@@ -1048,10 +1115,10 @@ var BugTracker = {
     switchCommentTone: function(e, t, r) {
         var o = (ge("post_field"), cur.options.additional_save_params.wall_message_prefix);
         val("bt_fb_tone_text", e.innerHTML);
-        for (var n = ["negative_", "neutral_", "positive_"], a = 0; a < n.length; a++) o = o.replace("#" + n[a] + r, "");
-        var i = n[t + 1] + r,
+        for (var a = ["negative_", "neutral_", "positive_"], n = 0; n < a.length; n++) o = o.replace("#" + a[n] + r, "");
+        var i = a[t + 1] + r,
             s = o.indexOf("@" + r) + r.length + 2;
-        " " !== o[s] && (i += " "), o = o.substr(0, s) + "#" + i + o.substr(s), cur.options.additional_save_params.wall_message_prefix = o
+        " " !== o[s] && (i += " "), o = o.substr(0, s) + "#" + i + o.substr(s), cur.options.additional_save_params.wall_message_prefix = o;
     },
     switchComments: function(e, t) {
         nav.objLoc.tone = t, nav.go(nav.objLoc), showProgress(ge("tone_filter_selector").parentNode), hide(ge("tone_filter_selector"))
@@ -1059,51 +1126,39 @@ var BugTracker = {
     initInvitesSearch: function(e) {
         function t(r, o) {
             if (Object.getPrototypeOf(this) !== t.prototype) throw new TypeError('Invites should be called via "new"');
-            var n = 0,
-                a = !1;
+            var a = 0,
+                n = !1;
             this.search = function() {
-                n = 0, a = !1, this.loadMoreResults(!0)
+                a = 0, n = !1, this.loadMoreResults(!0)
             }, this.loadMoreResults = function(t) {
-                if (!a) {
-                    a = !0;
+                if (!n) {
+                    n = !0;
                     var i = val("bt_invites_search_" + e.randomId);
                     ajax.post("bugtracker?act=a_product_members_search", extend(this.filter, {
                         text: i,
                         product: o,
                         hash: r,
                         relation: e.relation,
-                        offset: n || 0
+                        offset: a || 0
                     }), {
                         onDone: function(r) {
                             this.appendReporters(t, i, r), t && 3 == e.relation && setTimeout(this.selectForInviteChanged.bind(this), 0)
                         }.bind(this),
                         onFail: function() {
-                            a = !1
+                            n = !1
                         }
                     })
                 }
             }, this.appendReporters = function(t, r, o) {
-                if (a = !1, r === val("bt_invites_search_" + e.randomId)) {
+                if (n = !1, r === val("bt_invites_search_" + e.randomId)) {
                     var i = ge("bugtracker_invites_list_" + e.randomId);
                     t && each(geByClass("bt_reporter_row", i), function(e, t) {
                         var r = o.findIndex(function(e) {
                             return e.uid == attr(t, "data-id")
                         }); - 1 === r && re(t)
                     });
-                    var s = function(t) {
-                            switch (e.relation) {
-                                case 4:
-                                    return getTemplate("btMemberInviteRowTemplate", t);
-                                case 3:
-                                    return getTemplate("btMemberInvitedRowTemplate", t);
-                                case 2:
-                                    return getTemplate("btMemberRequestRowTemplate", t);
-                                default:
-                                    return getTemplate(t.shown_pos ? "btMemberRowTemplatePos" : "btMemberRowTemplateNoPos", t)
-                            }
-                        },
-                        c = BugTracker.appendReporters(o, !1, !0, i, s);
-                    0 === c && (a = t), n += c
+                    var s = BugTracker.appendReporters(o, !1, !0, i, e.relation);
+                    0 === s && (n = t), a += s
                 }
             }
         }
@@ -1162,50 +1217,50 @@ var BugTracker = {
                     r = !1;
                 if (this.filter)
                     for (var o in this.filter) {
-                        var n = this.filter[o],
-                            a = "",
+                        var a = this.filter[o],
+                            n = "",
                             i = !1,
                             s = !1,
                             c = ge("invites_filters_token_" + o + "_" + e.randomId);
-                        if (n) {
+                        if (a) {
                             switch (o) {
                                 case "city":
                                     if (0 == this.cityFilter.val_full()[0]) {
                                         re(c);
                                         continue
                                     }
-                                    a = this.cityFilter.val_full()[1];
+                                    n = this.cityFilter.val_full()[1];
                                     break;
                                 case "nda":
                                     if (0 == this.ndaFilter.val_full()[0]) {
                                         re(c);
                                         continue
                                     }
-                                    a = this.ndaFilter.val_full()[1];
+                                    n = this.ndaFilter.val_full()[1];
                                     break;
                                 case "activity":
                                     if (0 == this.activityFilter.val_full()[0]) {
                                         re(c);
                                         continue
                                     }
-                                    a = this.activityFilter.val_full()[1];
+                                    n = this.activityFilter.val_full()[1];
                                     break;
                                 default:
-                                    var u = ge("invites_filter_" + o + "_" + e.randomId);
-                                    if (!u) continue;
-                                    a = ge("invites_filter_" + o + "_" + e.randomId).textContent
+                                    var d = ge("invites_filter_" + o + "_" + e.randomId);
+                                    if (!d) continue;
+                                    n = ge("invites_filter_" + o + "_" + e.randomId).textContent
                             }
-                            r = !0, a = stripHTML(a);
-                            var d = '<span class="label">' + a + '</span><span class="del_icon"></span>';
-                            if (c) c.innerHTML = d;
+                            r = !0, n = stripHTML(n);
+                            var u = '<span class="label">' + n + '</span><span class="del_icon"></span>';
+                            if (c) c.innerHTML = u;
                             else {
-                                var u = ce("div", {
+                                var d = ce("div", {
                                     id: "invites_filters_token_" + o + "_" + e.randomId,
                                     className: "token",
-                                    innerHTML: d,
+                                    innerHTML: u,
                                     onclick: this.removeFilter.bind(this, o)
                                 });
-                                i && ge("invites_filters_token_" + i) ? domInsertBefore(u, ge("invites_filters_token_" + i)) : s && ge("invites_filters_token_" + s) ? domInsertAfter(u, ge("invites_filters_token_" + s)) : t.appendChild(u)
+                                i && ge("invites_filters_token_" + i) ? domInsertBefore(d, ge("invites_filters_token_" + i)) : s && ge("invites_filters_token_" + s) ? domInsertAfter(d, ge("invites_filters_token_" + s)) : t.appendChild(d)
                             }
                         } else c && re(c)
                     }
@@ -1280,8 +1335,8 @@ var BugTracker = {
             big: 1,
             onChange: r.filterChanged.bind(r)
         }));
-        var n = ge("invites_fltr_activity_" + e.randomId);
-        return n && (r.activityFilter = new Dropdown(n, cur.btActivityFilterOptions, {
+        var a = ge("invites_fltr_activity_" + e.randomId);
+        return a && (r.activityFilter = new Dropdown(a, cur.btActivityFilterOptions, {
             big: 1,
             onChange: r.filterChanged.bind(r)
         })), BugTracker.invitesSearch[e.randomId] = r, r

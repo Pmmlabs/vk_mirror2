@@ -226,6 +226,9 @@ var Feed = {
         ajax.post("al_feed.php?queue", extend(feed.getSectionParams(cur.section), o), s)
     },
     updated: function(e, t) {
+        cur.queueTO = cur.queueTO || irand(0, 5e3), setTimeout(feed.handleQueueEvent.pbind(e, t), cur.queueTO)
+    },
+    handleQueueEvent: function(e, t) {
         if (("search" == cur.section || "news" == cur.section || !cur.section) && cur.add_queue && cur.add_queue.key == e) {
             if (t.failed) {
                 cur.add_queue = !1;
@@ -296,9 +299,9 @@ var Feed = {
                             other: "",
                             label: getLang("news_show_X_reposts", w.length)
                         });
-                        var S = se('<div class="feed_row' + (C ? "_unshown" : "") + '">' + b + "</div>"),
-                            T = domFC(T);
-                        Wall.updateAnonNewPost(e, S), m.insertBefore(S, m.firstChild), !C && feed.needScrollPost(t, S) && (d += S.offsetHeight + c(S)), P = !0, p = S.firstChild, f = geByClass1("feed_reposts_first", p, "div"), h = geByClass1("feed_reposts_group", p, "div"), each(clone(w), function() {
+                        var T = se('<div class="feed_row' + (C ? "_unshown" : "") + '">' + b + "</div>"),
+                            S = domFC(S);
+                        Wall.updateAnonNewPost(e, T), m.insertBefore(T, m.firstChild), !C && feed.needScrollPost(t, T) && (d += T.offsetHeight + c(T)), P = !0, p = T.firstChild, f = geByClass1("feed_reposts_first", p, "div"), h = geByClass1("feed_reposts_group", p, "div"), each(clone(w), function() {
                             feed.needScrollPost(t, this) && (d -= this.offsetHeight + c(this)), re(this.parentNode), h.appendChild(this.firstChild)
                         })
                     } else f = se('<div class="feed_row' + (C ? "_unshown" : "") + '"><div class="feed_repost' + y + '">' + b + "</div></div>"), Wall.updateAnonNewPost(e, f), m.insertBefore(f, m.firstChild), P = !0, !C && feed.needScrollPost(t, f) && (d += f.offsetHeight + c(f))
@@ -361,12 +364,12 @@ var Feed = {
                         I = geByClass("new_reply", j, "div").length + 1;
                     if (cur.wallMyOpened[r]) {
                         q && "replies_open" == q.className && re(q), V = !0;
-                        var U = geByClass1("wr_header", j, "a"),
-                            O = geByClass("reply", j, "div").length + 1,
-                            W = O;
-                        U && (W = intval(U.getAttribute("offs").split("/")[1]) + 1), (W > 5 || W > O) && (U || j.insertBefore(U = ce("a", {
+                        var O = geByClass1("wr_header", j, "a"),
+                            U = geByClass("reply", j, "div").length + 1,
+                            W = U;
+                        O && (W = intval(O.getAttribute("offs").split("/")[1]) + 1), (W > 5 || W > U) && (O || j.insertBefore(O = ce("a", {
                             className: "wr_header"
-                        }), j.firstChild), wall.updateRepliesHeader(r, U, O, W))
+                        }), j.firstChild), wall.updateRepliesHeader(r, O, U, W))
                     } else F = wall.updatePostImages(F), f = se(F), addClass(f, "new_reply"), q && "replies_open" == q.className || (q = ce("div", {
                         className: "replies_open",
                         onclick: wall.openNewComments.pbind(r)
@@ -389,12 +392,12 @@ var Feed = {
                 if (!i) break;
                 var z = "like_reply" == s ? r.replace("_", "_wall_reply") : r,
                     G = i && domByClass(i, "_like_wrap"),
-                    X = i && domByClass(i, "_share_wrap");
+                    Q = i && domByClass(i, "_share_wrap");
                 wall.likeFullUpdate(G, z, {
                     like_my: G && hasClass(G, "my_like"),
                     like_num: e[3],
                     like_title: !1,
-                    share_my: X && hasClass(X, "my_share"),
+                    share_my: Q && hasClass(Q, "my_share"),
                     share_num: e[4],
                     share_title: !1
                 });

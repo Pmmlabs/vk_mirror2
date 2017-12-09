@@ -177,7 +177,7 @@ var stVersions = {
     'spe.js': 3760998372,
     'friends.js': 140439177,
     'friends.css': 23365476369,
-    'friends_search.js': 710255976,
+    'friends_search.js': 3438694410,
     'friends_search.css': 1694758778,
     'board.js': 3924396132,
     'board.css': 31157863965,
@@ -262,7 +262,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 981913053,
+    'feed.js': 2344208354,
     'feed.css': 31704777881,
     'privacy.js': 3620108221,
     'privacy.css': 19528831807,
@@ -350,8 +350,8 @@ var stVersions = {
     'groupinfo.css': 24255844442,
     'bugs.js': 3874995669,
     'bugs.css': 19127304849,
-    'bugtracker.js': 3214135889,
-    'bugtracker.css': 34403180326,
+    'bugtracker.js': 69604353,
+    'bugtracker.css': 32079246505,
     'login.css': 22320164702,
     'login.js': 3551917100,
     'upload.js': 16891470,
@@ -373,9 +373,9 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 32888313439,
     'aes_light.js': 592436914,
-    'ads.css': 31509016050,
+    'ads.css': 31797955918,
     'ads_bonus.css': 460482192,
-    'ads.js': 1048753631,
+    'ads.js': 2815593368,
     'ads_payments.js': 2170749464,
     'ads_edit.css': 18646066650,
     'ads_edit.js': 2933318002,
@@ -555,7 +555,7 @@ var stVersions = {
     'language.css': 21538757730,
     'internal/admins.js': 2810460581,
     'internal/admins.css': 20508038380,
-    'lang': 6870
+    'lang': 6873
 };
 var stTypes = {
     fromLib: {
@@ -622,4 +622,4 @@ var stTypes = {
         'lazyload.js': 1
     }
 };
-var _rnd = 8256;
+var _rnd = 6640;

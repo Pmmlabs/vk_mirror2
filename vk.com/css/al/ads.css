@@ -3048,6 +3048,27 @@ h4.subheader.ads_retargeting_subheader_top {
     filter: none
 }
 
+.ads_retargeting_price_list_item_get_process_info {
+    position: relative;
+    padding-left: 10px
+}
+
+.ads_retargeting_price_list_item_get_process_info:after {
+    content: '?';
+    display: inline-block;
+    width: 15px;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    -o-transition: opacity 100ms ease;
+    transition: opacity 100ms ease
+}
+
+.ads_retargeting_price_list_item_get_process_info:hover:after {
+    opacity: 1;
+    -webkit-filter: none;
+    filter: none
+}
+
 .ads_retargeting_price_list_item_cell_status {
     color: #828282;
     white-space: nowrap
