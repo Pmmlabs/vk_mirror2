@@ -4254,19 +4254,6 @@ img.im_photo_thumb {
     margin-top: 4px
 }
 
-.im-mess.im-mess_fwd-top .im-mess_fwd .im-mess--check,
-.im-mess.im-mess_fwd-top .im-mess_fwd .im-mess--marker,
-.im-mess.im-mess_fwd .im-mess--check,
-.im-mess.im-mess_fwd .im-mess--marker,
-.im-mess.im-mess_fwd-top .im-mess_fwd .im-mess--edit,
-.im-mess.im-mess_fwd-top .im-mess_fwd .im-mess--fav,
-.im-mess.im-mess_fwd-top .im-mess_fwd .im-mess--reply,
-.im-mess.im-mess_fwd .im-mess--edit,
-.im-mess.im-mess_fwd .im-mess--fav,
-.im-mess.im-mess_fwd .im-mess--reply {
-    display: none!important
-}
-
 .im-mess.im-mess_selected:not(.im-mess_is_editing),
 .im-mess.im-mess_selected:not(.im-mess_is_editing):hover {
     background: #edf0f5
@@ -4515,13 +4502,6 @@ img.im_photo_thumb {
     cursor: default;
     font-size: 12.5px;
     margin-left: 20px
-}
-
-.im-mess.im-mess_srv .im-mess--edit,
-.im-mess.im-mess_srv .im-mess--fav,
-.im-mess.im-mess_srv .im-mess--reply,
-.im-mess.im-mess_srv .im-mess--check {
-    display: none
 }
 
 .im-mess+.im-mess .im-mess--actions {
@@ -6708,13 +6688,6 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .im-pinned-box .im-mess .im-mess {
     padding-right: 0
-}
-
-.im-pinned-box .im-mess--actions,
-.im-pinned-box .im-mess--check,
-.im-pinned-box .im-mess--marker,
-.im-pinned-box:hover .im-mess--check {
-    display: none
 }
 
 .im-preloader .pr {
