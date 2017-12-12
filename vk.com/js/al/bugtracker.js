@@ -271,7 +271,7 @@ var BugTracker = {
         BugTracker.cancelEdit();
         var n = ge("cmt" + e),
             i = geByClass1("bt_report_cmt_text", n),
-            s = '<div class="bt_comment_edit_form" data-id="' + e + '">  <textarea class="text bt_comment_form_text" id="bt_comment_edit_form_text" onkeydown="onCtrlEnter(event, BugTracker.sendComment);" style="overflow: hidden; resize: none; height: 50px;">' + val(i) + '</textarea>  <div id="bt_comment_edit_form_media_preview" class="clear_fix bt_comment_form_media_preview"></div>  <div id="bt_comment_edit_form_attach" class="bt_comment_form_attach clear_fix"><span class="add_media_lnk"></span></div>  <div>  <button type="button" class="flat_button fl_r" id="bt_comment_form_submit" onclick="BugTracker.saveComment(this, \'' + t + "');\">" + getLang("global_save") + '</button>  <button type="button" class="flat_button button_light secondary fl_r" id="bt_comment_form_submit" onclick="BugTracker.cancelEdit()">' + getLang("global_cancel") + "</button>  </div>  </div>",
+            s = '<div class="bt_comment_edit_form" data-id="' + e + '">  <textarea class="text bt_comment_form_text" id="bt_comment_edit_form_text" onkeydown="onCtrlEnter(event, BugTracker.saveComment.bind(null, ge(\'bt_comment_edit_form_submit\'), \'' + t + '\'));" style="overflow: hidden; resize: none; height: 50px;">' + i.innerText + '</textarea>  <div id="bt_comment_edit_form_media_preview" class="clear_fix bt_comment_form_media_preview"></div>  <div id="bt_comment_edit_form_attach" class="bt_comment_form_attach clear_fix"><span class="add_media_lnk"></span></div>  <div>  <button type="button" class="flat_button fl_r" id="bt_comment_edit_form_submit" onclick="BugTracker.saveComment(this, \'' + t + "');\">" + getLang("global_save") + '</button>  <button type="button" class="flat_button button_light secondary fl_r" id="bt_comment_edit_form_cancel" onclick="BugTracker.cancelEdit()">' + getLang("global_cancel") + "</button>  </div>  </div>",
             c = sech(s)[0];
         i.parentNode.insertBefore(c, i), hide(i), hide(geByClass1("page_post_sized_thumbs", n)), hide(geByClass1("post_thumbed_media", n)), hide(geByClass1("bt_report_cmt_info", n)), toggleClass(n, "editing", !0), setTimeout(function() {
             autosizeSetup(geByClass1("bt_comment_form_text", n), {}), cur.btEditCommentMedia = MediaSelector(ge("bt_comment_edit_form_attach").firstChild, "bt_comment_edit_form_media_preview", cur.btCommentMediaTypes, {
@@ -1118,7 +1118,8 @@ var BugTracker = {
         for (var a = ["negative_", "neutral_", "positive_"], n = 0; n < a.length; n++) o = o.replace("#" + a[n] + r, "");
         var i = a[t + 1] + r,
             s = o.indexOf("@" + r) + r.length + 2;
-        " " !== o[s] && (i += " "), o = o.substr(0, s) + "#" + i + o.substr(s), cur.options.additional_save_params.wall_message_prefix = o;
+        " " !== o[s] && (i += " "), o = o.substr(0, s) + "#" + i + o.substr(s),
+            cur.options.additional_save_params.wall_message_prefix = o
     },
     switchComments: function(e, t) {
         nav.objLoc.tone = t, nav.go(nav.objLoc), showProgress(ge("tone_filter_selector").parentNode), hide(ge("tone_filter_selector"))

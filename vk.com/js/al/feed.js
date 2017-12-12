@@ -283,7 +283,7 @@ var Feed = {
                     v = m.childNodes,
                     b = wall.getNewPostHTML(e, l, feed.feedPostRepl),
                     y = e[12],
-                    C = "search" != n && (window._wf <= 0 || hasClass(cur.feedEls.wrap, "feed_has_new")),
+                    C = "search" != n && (window._wf <= 0 || hasClass(cur.feedEls.wrap, "feed_has_new") || feed.needScrollPost(t, m)),
                     k = cur.storyLayer;
                 k && (C = !0);
                 var P = !1,
