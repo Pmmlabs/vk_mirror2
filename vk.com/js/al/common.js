@@ -3015,112 +3015,8 @@ function updateNarrow() {
     cur.__narrowBar.isBarFixed = needFix;
 }
 
-// Left Menu //
-// Store dom refs in closure
-window.getLmDomEles = (function() {
-    var c = {};
-
-    function eleExists(ele) {
-        return ele && document.body.contains(ele);
-    }
-
-    return function() {
-        return {
-            bar: c.bar = eleExists(c.bar) ? c.bar : ge('side_bar_inner'),
-            pl: c.pl = eleExists(c.pl) ? c.pl : ge('page_layout'),
-            pb: c.pb = eleExists(c.pb) ? c.pb : ge('page_body')
-        };
-    }
-})();
-
-// Store status in global object
-window.__leftMenu = {};
-
-function updateLeftMenu() {
-    var scrollY = scrollGetY(),
-        dy = scrollY - (__leftMenu.lastScroll || 0);
-
-    __leftMenu.lastScroll = scrollY;
-
-    if (
-        __leftMenu.lmFixed && (
-            (dy < 0 && __leftMenu.menuLastStyles.top === 0) ||
-            (dy > 0 && __leftMenu.menuLastStyles.bottom > 0)
-        )
-    ) {
-        return;
-    }
-
-    var lm = getLmDomEles();
-    __leftMenu.lmFixed = __leftMenu.lmFixed || getStyle(lm.bar, 'position') === 'fixed';
-    __leftMenu.lmMarginTop = floatval(getStyle(lm.bar, 'marginTop'));
-
-    var menu = lm.bar,
-        pageBody = lm.pb;
-    if (browser.mobile || !menu || !pageBody) return;
-
-    var wh = window.lastWindowHeight || 0,
-        st = Math.min(scrollY, bodyNode.clientHeight - wh),
-        pl = lm.pl,
-        headH = getPageHeaderHeight(),
-        headCalcH = Math.min(Math.max(0, headH - st), headH),
-        isFixed = __leftMenu.lmFixed,
-        menuH = getSize(menu)[1],
-        menuPos = isFixed ? getXY(menu)[1] : __leftMenu.lmMarginTop,
-        pageH = getSize(pageBody)[1],
-        pagePos = pageBody.offsetTop,
-        tooBig = menuH >= pageH,
-        lastSt = __leftMenu.menuLastSt || 0,
-        lastStyles = __leftMenu.menuLastStyles || {},
-        styles, delta = 1,
-        noScrollDelta = cur.leftMenuDelta || 0;
-    delete cur.leftMenuDelta;
-
-    if (noScrollDelta) {
-        styles = clone(lastStyles);
-        if (styles.position !== 'fixed' && styles.marginTop) {
-            styles.marginTop = Math.max(headH, styles.marginTop + noScrollDelta);
-        }
-    } else if (st - delta < (vk.staticheader ? headH : 0) || tooBig || hasClass(bodyNode, 'body_im')) {
-        styles = {
-            position: 'relative',
-            marginTop: headH
-        }
-    } else if (st - delta < Math.min(lastSt, menuPos - (vk.staticheader ? 0 : headH))) {
-        styles = {
-            position: 'fixed',
-            top: (vk.staticheader ? -headH + headCalcH : 0),
-            marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
-        }
-    } else if (st + delta > Math.max(lastSt, menuPos + menuH - (vk.staticheader ? headCalcH : headH))) {
-        styles = {
-            position: 'fixed',
-            bottom: wh - (vk.staticheader ? headCalcH : headH),
-            marginLeft: Math.min(-bodyNode.scrollLeft, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(pl)[0]))
-        }
-    } else {
-        styles = {
-            position: 'relative',
-            marginTop: Math.min(menuPos, pageH + pagePos - menuH)
-        }
-    }
-
-    if (!compareScrollStyles(styles, lastStyles)) {
-        var defaultStyles = {
-            position: 'relative',
-            marginTop: null,
-            marginLeft: null,
-            top: null,
-            bottom: null
-        };
-        setStyle(menu, extend(defaultStyles, styles));
-        __leftMenu.menuLastStyles = styles;
-    }
-    __leftMenu.menuLastSt = st;
-    __leftMenu.lmFixed = styles.position === 'fixed';
-    if (__leftMenu.lmMarginTop !== styles.marginTop) {
-        __leftMenu.lmMarginTop = styles.marginTop;
-    }
+function updateLeftMenu(jumpDown) {
+    window.__leftMenu && window.__leftMenu.handleUpdateRequest(jumpDown);
 }
 
 function updateSTL() {
@@ -3244,7 +3140,6 @@ function onBodyResize(force) {
         redraw(rbar, 'fixed');
         setTimeout(redraw.pbind(rbar, 'fixed'), 0);
     }
-    updateLeftMenu();
     updateNarrow();
     updateSTL();
 }
@@ -3479,11 +3374,13 @@ function _stlMousedown(e) {
             var to = _stlWas;
             _stlWas = 0;
             scrollToY(to, 0, true, true);
+            updateLeftMenu(true);
         } else if (_stlBack === 1) {
             _tbLink.onclick();
         } else {
             _stlWas = scrollGetY();
             scrollToY(0, 0, true, true);
+            updateLeftMenu();
         }
     }
     // temporaly comment this code, because it prevents hiding header popups
@@ -5500,7 +5397,6 @@ function handlePageParams(params) {
         bodyNode.className = params.body_class || '';
     }
     updateSTL();
-    updateLeftMenu();
     if (params.pvbig !== undefined) vk.pvbig = params.pvbig;
     if (params.pvdark !== undefined) vk.pvdark = params.pvdark;
     cur._level = params.level;

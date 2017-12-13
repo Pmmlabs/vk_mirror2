@@ -2183,7 +2183,25 @@ a.ad_box_new:hover {
 }
 
 .side_bar {
-    width: 149px
+    width: 149px;
+    top: 0;
+    z-index: 11;
+    position: relative
+}
+
+.body_im .side_bar,
+.side_bar.sticky_top {
+    position: fixed;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0!important
+}
+
+.body_im .side_bar {
+    height: 100vh;
+    overflow: hidden;
+    padding-left: 28px;
+    margin-left: -28px
 }
 
 .side_bar_inner {
@@ -2205,16 +2223,11 @@ a.ad_box_new:hover {
     margin-bottom: -5px
 }
 
-.body_im #side_bar {
-    position: fixed;
-    top: 0
-}
-
 .body_im #footer_wrap {
     display: none
 }
 
-body.body_im.firefox #page_wrap {
+body.firefox #page_wrap {
     overflow: visible
 }
 

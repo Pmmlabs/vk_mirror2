@@ -572,7 +572,7 @@ stats_loading = '��������...';
 stats_no_data = '����������� ������� ������';
 // section = 38; version = 5;
 
-paysupp_error = '������';
+paysupp_error = 'Error';
 // section = 39; version = 18;
 
 wall_post_info_anon = '���-�� �� ����� ���������';
@@ -660,6 +660,7 @@ mobile_unknown_error = '����������� ������';
 bugs_invite_X_members = ['', '���������� %s ���������', '���������� %s ����������', '���������� %s ����������'];
 bugs_search_results = '���������� ������';
 bugs_t_report_export_button = '��������������';
+bugs_t_notify_found = '��������';
 // section = 63; version = 12;
 
 adslight_age_restriction_none = '�� ���������';

@@ -44,6 +44,7 @@
 .page_wall_search .wall_search,
 .post_header_subscribe_button ._subscribe_text:before,
 .post_header_subscribe_button ._subscribed_text:before,
+.post_top_info_wall_mention_icon,
 .replies_side,
 .vk2017_snippet_bottom_image_left:after,
 .vk2017_snippet_bottom_image_right:after,
@@ -315,11 +316,13 @@
     display: none
 }
 
+.post_top_info_wall_mention,
 .post_top_info_wall_reply {
     padding: 13px 15px 14px;
     box-shadow: 0 0 0 1px #e3e4e8, 0 1px 0 0 #e7e8ec
 }
 
+.post_top_info_wall_mention:empty,
 .post_top_info_wall_reply:empty {
     display: none
 }
@@ -336,6 +339,22 @@
     width: 13px;
     height: 13px;
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%2215%2014%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M18.5004264%2C23.0014212%20L18%2C23.0014212%20C16.5%2C23.0014212%2015%2C22.2871355%2015%2C20.8942784%20L15%2C20.1071429%20C15%2C18.7142857%2016.5%2C18%2018%2C18%20L22%2C18%20C23%2C18%2023.4369954%2C17.64%2024.8971569%2C16.6028571%20C25.9010179%2C15.8485714%2026.996139%2C15%2026.996139%2C15%20L28%2C15%20L28%2C26.0014212%20L26.996139%2C26.0014212%20C26.996139%2C26.0014212%2025.9010179%2C25.1528498%2024.8971569%2C24.3985641%20C23.4369954%2C23.3614212%2023%2C23.0014212%2022%2C23.0014212%20L21.0004572%2C23.0014212%20C21.0205846%2C23.0639764%2021.700616%2C25.1766941%2022%2C26%20C22%2C27.2071429%2021.9246753%2C28%2020%2C28%20L18.5004264%2C23.0014212%20Z%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%3C%2Fsvg%3E")
+}
+
+.post_top_info_wall_mention_icon {
+    margin: 2px 0px -1px;
+    width: 13px;
+    height: 13px;
+    background: url(/images/icons/mono_iconset.png?3) no-repeat left -406px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .post_top_info_wall_mention_icon {
+        background-image: url(/images/icons/mono_iconset_2x.png?3);
+        background-size: 12px 417px
+    }
 }
 
 .post_top_info_wall_like {
@@ -361,7 +380,18 @@
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cg%20fill%3D%22none%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%228%22%20cy%3D%228%22%20r%3D%228%22%20fill%3D%22%23A5ABB4%22%2F%3E%0A%20%20%20%20%3Cpath%20d%3D%22M8.8%209L7.2%209%207%204.5C7%204.2%207.2%204%207.5%204L8.5%204C8.8%204%209%204.2%209%204.5L8.8%209ZM7%2011C7%2010.7%207.1%2010.4%207.3%2010.3%207.4%2010.1%207.7%2010%208%2010%208.3%2010%208.6%2010.1%208.7%2010.3%208.9%2010.4%209%2010.7%209%2011%209%2011.3%208.9%2011.6%208.7%2011.7%208.6%2011.9%208.3%2012%208%2012%207.7%2012%207.4%2011.9%207.3%2011.7%207.1%2011.6%207%2011.3%207%2011Z%22%20fill%3D%22%23FFF%22%2F%3E%3C%2Fg%3E%0A%3C%2Fsvg%3E")
 }
 
-.post_top_info_wall_reply_text,
+.post_top_info_wall_reply_text {
+    margin-left: 21px;
+    line-height: 15px;
+    color: #656565
+}
+
+.post_top_info_wall_mention_text {
+    margin-left: 16px;
+    line-height: 15px;
+    color: #656565
+}
+
 .post_top_info_wall_like_text {
     margin-left: 21px;
     line-height: 15px;
@@ -2604,7 +2634,7 @@ a.page_media_link_desc {
 (min-resolution: 192dpi) {
     .media_audio_icon {
         background-image: url(/images/icons/mono_iconset_2x.png?3);
-        background-size: 12px 405px
+        background-size: 12px 417px
     }
 }
 
@@ -2621,7 +2651,7 @@ a.page_media_link_desc {
 (min-resolution: 192dpi) {
     .media_doc_icon {
         background-image: url(/images/icons/mono_iconset_2x.png?3);
-        background-size: 12px 405px
+        background-size: 12px 417px
     }
 }
 
@@ -2657,7 +2687,7 @@ a.page_media_link_desc {
     .wall_module .media_preview .poll b,
     .wall_module .media_preview .share b {
         background-image: url(/images/icons/mono_iconset_2x.png?3);
-        background-size: 12px 405px
+        background-size: 12px 417px
     }
 }
 
@@ -5607,7 +5637,7 @@ body[data-useragent=safari] h2.page_name {
 (min-resolution: 192dpi) {
     .current_app {
         background-image: url(/images/icons/mono_iconset_2x.png?3);
-        background-size: 12px 405px
+        background-size: 12px 417px
     }
 }
 
