@@ -2419,6 +2419,23 @@ a.ui_search_custom_link {
     left: 13px
 }
 
+.ui_toggler.on.ui_toggler_disable {
+    background-color: #d9e1eb
+}
+
+.ui_toggler.on.ui_toggler_disable:after {
+    background-color: #9db3d2;
+    border-color: #9db3d2
+}
+
+.ui_toggler.ui_toggler_disable {
+    background-color: #e3e7ec
+}
+
+.ui_toggler.ui_toggler_disable:after {
+    border: 1px solid #d7dce2
+}
+
 .ui_toggler.no_transition:after {
     -o-transition: none!important;
     transition: none!important

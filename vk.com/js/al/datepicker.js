@@ -347,7 +347,7 @@
                     year: 0,
                     month: 0,
                     day: 0,
-                    format: '{day}<div class="fl_l" style="padding:0 3px;">&nbsp;</div>{month}<div class="fl_l" style="padding:0 3px;">&nbsp;</div>{year}',
+                    format: '{day}<div class="fl_l" style="padding:0 3px;width:4px;">&nbsp;</div>{month}<div class="fl_l" style="padding:0 3px;width:4px;">&nbsp;</div>{year}',
                     width: 0
                 },
                 d = extend({}, i, a),

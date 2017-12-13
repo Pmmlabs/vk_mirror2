@@ -59,7 +59,7 @@ a.group_ad_post_stats {
 
 .group_edit_input,
 .group_edit_textarea {
-    width: 280px
+    width: 300px
 }
 
 .group_edit_textarea {
@@ -124,7 +124,7 @@ a.group_ad_post_stats {
 }
 
 .group_edit_prefix_wrap {
-    width: 280px
+    width: 300px
 }
 
 .group_edit_at {
@@ -843,7 +843,7 @@ input.group_ad_cost {
 
 .group_ad_adv_comment {
     display: block;
-    width: 280px;
+    width: 300px;
     height: 100px
 }
 
@@ -1565,7 +1565,7 @@ a.group_ad_post_link.deleted.deleted:hover {
 }
 
 .group_api_url_input {
-    width: 280px
+    width: 300px
 }
 
 .group_api_title_dialog_body {
@@ -2040,10 +2040,6 @@ a.group_ad_post_link.deleted.deleted:hover {
 #group_apps_list .group_apps_list_rows .group_apps_list_row {
     border-bottom: 1px solid #e7e8ec;
     padding: 12px 0 11px
-}
-
-#group_apps_list .group_apps_list_rows .group_apps_list_row .group_edit_input {
-    width: 300px
 }
 
 #group_apps_list .group_apps_list_rows .group_apps_list_row .group_apps_list_row_img {

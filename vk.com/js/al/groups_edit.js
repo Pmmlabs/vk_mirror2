@@ -601,6 +601,7 @@ var GroupsEdit = {
             email: val("event_mail"),
             phone: val("event_phone")
         })) : 1 == cur.cls && extend(s, {
+            sprivacy: cur.sprivacyDD ? cur.sprivacyDD.val() : void 0,
             pcategory: cur.pcategoryDD.val(),
             psubcategory: cur.psubcategoryDD.val(),
             public_date: val("gedit_public_date")
@@ -783,13 +784,18 @@ var GroupsEdit = {
                 multiselect: !1,
                 autocomplete: !1
             }),
+            sprivacyDD: ge("sprivacy") ? new Dropdown(ge("sprivacy"), e.sprivacies, {
+                dark: !0,
+                multiselect: !1,
+                autocomplete: !1
+            }) : !1,
             bdPicker: new Daypicker("gedit_public_date", {
                 startYear: 1800,
                 width: 300,
                 dark: !0,
                 zeroPlaceholder: !0
             })
-        }), cur.pcategoryDD.val(e.pcategory, !0), cur.psubcategoryDD.val(e.psubcategory);
+        }), cur.sprivacyDD && cur.sprivacyDD.val(e.sprivacy, !0), cur.pcategoryDD.val(e.pcategory, !0), cur.psubcategoryDD.val(e.psubcategory);
         else if (2 == cur.cls) {
             new Datepicker("group_start_date", {
                 time: "group_start_time",
@@ -821,7 +827,7 @@ var GroupsEdit = {
             })
         }
         cur.destroy.push(function(e) {
-            0 == e.cls ? e.subjectDD.destroy() : 1 == e.cls ? (e.pcategoryDD.destroy(), e.psubcategoryDD.destroy()) : 2 == e.cls && (e.subjectDD.destroy(), e.hostDD && e.hostDD.destroy())
+            0 == e.cls ? e.subjectDD.destroy() : 1 == e.cls ? (e.sprivacyDD && e.sprivacyDD.destroy(), e.pcategoryDD.destroy(), e.psubcategoryDD.destroy()) : 2 == e.cls && (e.subjectDD.destroy(), e.hostDD && e.hostDD.destroy())
         }), placeholderSetup("group_rss")
     },
     initSections: function(e) {
@@ -890,25 +896,26 @@ var GroupsEdit = {
                 0 === intval(e) ? (show("market_button_type_im"), hide("market_button_type_link")) : 1 === intval(e) && (hide("market_button_type_im"), show("market_button_type_link"))
             }
         })), e.wideSections && (extend(cur, {
-            wideSections: e.wideSections,
-            mainSectionDD: new Dropdown(ge("main_section"), e.wideSections, {
-                dark: !0,
-                multiselect: !1,
-                autocomplete: !0,
-                zeroPlaceholder: !0,
-                zeroDefault: !0,
-                onChange: GroupsEdit.manageSectionsDD
-            }),
-            secondarySectionDD: new Dropdown(ge("secondary_section"), e.wideSections, {
-                dark: !0,
-                multiselect: !1,
-                autocomplete: !0,
-                zeroPlaceholder: !0,
-                zeroDefault: !0,
-                onChange: GroupsEdit.manageSectionsDD
-            })
-        }), cur.mainSectionDD.val(e.mainSection), cur.secondarySectionDD.val(e.secondarySection), GroupsEdit.manageSectionsDD()), cur.destroy.push(function(e) {
-            e.marketCountryDD && (e.marketCountryDD.destroy(), e.marketCityDD.destroy(), e.marketCurrencyDD.destroy(), e.marketContactDD.destroy(), e.marketButtonType.destroy());
+                wideSections: e.wideSections,
+                mainSectionDD: new Dropdown(ge("main_section"), e.wideSections, {
+                    dark: !0,
+                    multiselect: !1,
+                    autocomplete: !0,
+                    zeroPlaceholder: !0,
+                    zeroDefault: !0,
+                    onChange: GroupsEdit.manageSectionsDD
+                }),
+                secondarySectionDD: new Dropdown(ge("secondary_section"), e.wideSections, {
+                    dark: !0,
+                    multiselect: !1,
+                    autocomplete: !0,
+                    zeroPlaceholder: !0,
+                    zeroDefault: !0,
+                    onChange: GroupsEdit.manageSectionsDD
+                })
+            }), cur.mainSectionDD.val(e.mainSection),
+            cur.secondarySectionDD.val(e.secondarySection), GroupsEdit.manageSectionsDD()), cur.destroy.push(function(e) {
+            e.marketCountryDD && (e.marketCountryDD.destroy(), e.marketCityDD.destroy(), e.marketCurrencyDD.destroy(), e.marketContactDD.destroy(), e.marketButtonType.destroy())
         })
     },
     manageSectionsDD: function() {
