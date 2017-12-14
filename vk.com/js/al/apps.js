@@ -2551,14 +2551,15 @@ AppsSlider.prototype = {
             hideProgress: unlockButton.pbind(t)
         }) : hide(t) : void 0
     },
-    addToMineGroups: function(t, e, i) {
-        var o = {
+    addToMineGroups: function(t, e, i, o) {
+        var s = {
             act: "add_to_mine_group_box",
             aid: t,
             hash: e,
-            height: lastWindowHeight
+            height: lastWindowHeight,
+            from_gid: o
         };
-        i && (o.source = i), showBox("apps", o, {
+        i && (s.source = i), showBox("apps", s, {
             params: {
                 dark: 1,
                 width: 450,

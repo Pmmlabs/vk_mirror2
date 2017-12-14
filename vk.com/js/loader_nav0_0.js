@@ -267,7 +267,7 @@ var stVersions = {
     'privacy.js': 3620108221,
     'privacy.css': 16676126133,
     'apps.css': 41316178417,
-    'apps.js': 2410703693,
+    'apps.js': 1591499650,
     'apps_edit.js': 3193774142,
     'apps_edit.css': 36692263604,
     'apps_check.js': 3844411974,
@@ -623,4 +623,4 @@ var stTypes = {
         'lazyload.js': 1
     }
 };
-var _rnd = 4306;
+var _rnd = 3107;
