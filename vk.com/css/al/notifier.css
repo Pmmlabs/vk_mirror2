@@ -63,14 +63,14 @@ span.fc_contact_photo.online.mobile:after {
 }
 
 .emoji_sprite_0 {
-    background-image: url(/images/emoji/sprites/sprite0.png?8)
+    background-image: url(/images/emoji/sprites/sprite0.png?9)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .emoji_sprite_0 {
-        background-image: url(/images/emoji/sprites/sprite0_2x.png?8);
+        background-image: url(/images/emoji/sprites/sprite0_2x.png?9);
         background-size: 360px 216px
     }
 }
@@ -1004,14 +1004,14 @@ span.fc_contact_photo.online.mobile:after {
 }
 
 .emoji_sprite_1 {
-    background-image: url(/images/emoji/sprites/sprite1.png?8)
+    background-image: url(/images/emoji/sprites/sprite1.png?9)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .emoji_sprite_1 {
-        background-image: url(/images/emoji/sprites/sprite1_2x.png?8);
+        background-image: url(/images/emoji/sprites/sprite1_2x.png?9);
         background-size: 360px 216px
     }
 }
@@ -1977,14 +1977,14 @@ span.fc_contact_photo.online.mobile:after {
 }
 
 .emoji_sprite_2 {
-    background-image: url(/images/emoji/sprites/sprite2.png?8)
+    background-image: url(/images/emoji/sprites/sprite2.png?9)
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .emoji_sprite_2 {
-        background-image: url(/images/emoji/sprites/sprite2_2x.png?8);
+        background-image: url(/images/emoji/sprites/sprite2_2x.png?9);
         background-size: 360px 234px
     }
 }

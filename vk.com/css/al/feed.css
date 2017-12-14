@@ -17,6 +17,7 @@
 .feedback_payment_thumb,
 .feedback_sticky_progress:before,
 .feedback_videocast_row .feedback_sticky_icon,
+.feedback_vkpay_row .feedback_sticky_icon,
 .ui_actions_menu_item.feed_custom_list,
 .ui_actions_menu_item.feed_new_list {
     -ms-high-contrast-adjust: none
@@ -1265,7 +1266,8 @@
 .feedback_market_row .feedback_sticky_icon,
 .feedback_message_row .feedback_sticky_icon,
 .feedback_payment_row .feedback_sticky_icon,
-.feedback_videocast_row .feedback_sticky_icon {
+.feedback_videocast_row .feedback_sticky_icon,
+.feedback_vkpay_row .feedback_sticky_icon {
     background: url(/images/icons/notifications_icons.png?6) no-repeat;
     width: 40px;
     height: 40px;
@@ -1283,7 +1285,8 @@
     .feedback_market_row .feedback_sticky_icon,
     .feedback_message_row .feedback_sticky_icon,
     .feedback_payment_row .feedback_sticky_icon,
-    .feedback_videocast_row .feedback_sticky_icon {
+    .feedback_videocast_row .feedback_sticky_icon,
+    .feedback_vkpay_row .feedback_sticky_icon {
         background-image: url(/images/icons/notifications_icons_2x.png?6);
         background-size: 40px 400px
     }
@@ -1299,7 +1302,8 @@
     background-position: 0 -40px
 }
 
-.feedback_payment_row .feedback_sticky_icon {
+.feedback_payment_row .feedback_sticky_icon,
+.feedback_sticky_icon.feedback_payment_row {
     background-position: 0 -80px
 }
 
@@ -2486,6 +2490,14 @@ div.feed_recom {
 .feed_wall_reply_row .feedback_rphoto {
     margin-right: 0px;
     margin-top: -5px
+}
+
+.feedback_money_complete_row .feedback_rphoto,
+.feedback_money_decline_row .feedback_rphoto,
+.feedback_money_request_row .feedback_rphoto,
+.feedback_money_row .feedback_rphoto,
+.feedback_vkpay_row .feedback_rphoto {
+    padding-top: 14px
 }
 
 .feed_added_friends_wrap .feedback_group_photo {
