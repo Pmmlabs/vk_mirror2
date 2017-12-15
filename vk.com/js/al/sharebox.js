@@ -114,7 +114,7 @@ var ShareBox = {
                 types: a.shTypes,
                 options: {
                     limit: 1,
-                    disabledTypes: ["album", "share", "link", "page"],
+                    disabledTypes: ["album", "share", "link", "page", "article"],
                     toggleLnk: !0,
                     nocl: 1,
                     onAddMediaChange: ShareBox.mediaChange,

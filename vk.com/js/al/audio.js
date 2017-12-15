@@ -1521,10 +1521,11 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         act: "vkmobile_hide_promo",
         show_more: intval(e)
     })
-}, AudioPage.prototype.promoTsoyClose = function(e) {
-    var t = gpeByClass("_audio_section_tsoy_promo", e);
-    re(t), ajax.post("al_audio.php", {
-        act: "tsoy_hide_promo"
+}, AudioPage.prototype.promoAlbumClose = function(e, t) {
+    var i = gpeByClass("audio_section_promo_album", e);
+    re(i), ajax.post("al_audio.php", {
+        act: "hide_promo",
+        promo_name: t
     })
 }, AudioPage.prototype.toggleRemoveAdsLink = function(e) {
     toggleClass(this._els.player, "audio_page_player_show_remove_ads", !!e)

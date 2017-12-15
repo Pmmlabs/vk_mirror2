@@ -4531,6 +4531,10 @@ div.chat_tab_img {
     }
 }
 
+.fast_chats_toggle_hide {
+    display: none!important
+}
+
 .emoji_cont {
     position: relative
 }

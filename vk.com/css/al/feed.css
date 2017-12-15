@@ -1338,7 +1338,7 @@
 }
 
 .feedback_sticky_icon.report_processed_thumb {
-    background: #4bb34b url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Cpath%20opacity%3D%22.3%22%20d%3D%22M0%200h24v24H0z%22%2F%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M8.574%2016.926a6%206%200%200%200%208.352-8.352l-8.352%208.352zm-1.5-1.5l8.352-8.352a6%206%200%200%200-8.352%208.352zM12%2020a8%208%200%201%201%200-16%208%208%200%200%201%200%2016z%22%2F%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") 50% no-repeat;
+    background: #4bb34b url(/images/svg_icons/feedback/report_processed.svg) 50% no-repeat;
     width: 40px;
     height: 40px;
     border-radius: 50%

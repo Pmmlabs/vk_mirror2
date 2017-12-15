@@ -430,7 +430,8 @@ var Docs = {
             to_id: cur.docsToId,
             tab: cur.docsTab,
             q: cur.docsSearchStr,
-            more: 1
+            more: 1,
+            ext_filter: cur.docsCurFilter
         }, {
             onDone: function(e, o, r) {
                 0 == cur.docsOffset ? cur.docsChooseRows.innerHTML = e : cur.docsChooseRows.appendChild(cf(e)), cur.docsOffset = o, r && hide(cur.docsChooseMore)

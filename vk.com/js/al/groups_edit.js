@@ -2333,7 +2333,7 @@ var GroupsEdit = {
                     };
                     cur.withoutCatalog && GroupsEdit.app.hideMessage(), ajax.post("groupsedit.php", s, {
                         onDone: function(e, t, o, r) {
-                            scrollToY(0), nav.reload({
+                            scrollToY(0), GroupsEdit.app.clearFromRef(), nav.reload({
                                 onDone: function() {
                                     GroupsEdit.app.showMessage(r, 1)
                                 }
@@ -2405,7 +2405,7 @@ var GroupsEdit = {
                 };
                 cur.withoutCatalog && (a.cur_tab = cur.cur_tab, GroupsEdit.app.hideMessage()), ajax.post("groupsedit.php", a, {
                     onDone: function(e, t, o) {
-                        GroupsEdit.invalidateBack(), cur.withoutCatalog ? (extend(cur, t), ge("group_apps_wrapper").innerHTML = e, re("apps_cat_add"), GroupsEdit.app.showMessage(o, "info"), cur.show_alert = !1) : nav.reload()
+                        GroupsEdit.invalidateBack(), cur.withoutCatalog ? (extend(cur, t), ge("group_apps_wrapper").innerHTML = e, re("apps_cat_add"), GroupsEdit.app.showMessage(o, "info"), cur.show_alert = !1) : (GroupsEdit.app.clearFromRef(), nav.reload())
                     },
                     showProgress: function() {
                         lockLink(o)
@@ -2420,6 +2420,9 @@ var GroupsEdit = {
                 }, i, getLang("groups_apps_delete_app_message_yes"), function() {
                     n.hide(), GroupsEdit.app["delete"](e, t, o, r, !0)
                 }, getLang("global_cancel"))
+        },
+        clearFromRef: function() {
+            nav.objLoc.from && (delete nav.objLoc.from, nav.setLoc(nav.objLoc))
         }
     },
     messageWidgetSettings: function(e) {

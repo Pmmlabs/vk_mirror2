@@ -38,62 +38,68 @@ function MediaSelector(e, a, t, i) {
                     extend(t, e)
                 },
                 setItems: function(e) {
-                    for (window.tooltips && tooltips.destroyAll(r); r.firstChild;) re(r.firstChild);
-                    var a = void 0 !== t.hideAfterCount ? t.hideAfterCount : 4,
-                        i = void 0 !== t.maxShown ? t.maxShown : 3,
-                        o = !1,
-                        s = t.hideItem,
-                        l = (s || e.length > a) && !browser.mobile,
-                        c = s && t.hideLabel || getLang("global_media_selector_more");
-                    n.moreWrap = !1, n.lastTypes = e, each(e, function(e, a) {
-                        var _, h = a[0],
-                            p = a[1],
-                            u = a[2];
-                        if (l && (s ? h == s : e == i)) {
-                            var m = r.appendChild(ce("div", {
-                                    className: "ms_items_more_wrap"
-                                })),
-                                g = function(e) {
-                                    n.fromKeyboard = checkKeyboardEvent(e), ("mouseover" != e.type || !n.touched && !n.fromKeyboard) && (n.fromKeyboard && hasClass(n.moreWrap, "shown") ? n.hide() : n.show())
-                                },
-                                v = function() {
-                                    n.fromKeyboard || n.hide()
-                                };
-                            addEvent(m, "mouseover click", g), addEvent(m, "mouseout", v), d.push(function() {
-                                removeEvent(m, "mouseover click", g), removeEvent(m, "mouseout", v)
-                            }), t.vectorIcon && (c = '<span class="blind_label">' + c + "</span>", addClass(m, "ms_items_more_wrap_vector")), _ = m.appendChild(ce("a", {
-                                className: "ms_item_more",
-                                innerHTML: '<span class="ms_item_more_label">' + c + "</span>"
-                            })), _.setAttribute("tabindex", 0), _.setAttribute("role", "button");
-                            var w = ce("div", {
-                                className: "ms_items_more_helper"
-                            });
-                            o = ce("div", {
-                                className: "ms_items_more _more_items"
-                            }), w.appendChild(o), _ = m.appendChild(w), n.moreWrap = m
-                        }
-                        if (_ = (o ? o : r).appendChild(ce("a", {
-                                innerHTML: o ? p : '<span class="blind_label">' + p + "</span>",
-                                className: "ms_item ms_item_" + h + " _type_" + h
-                            })), _.setAttribute("tabindex", 0), !o) {
-                            _.setAttribute("data-title", p), _.setAttribute("aria-label", p), _.setAttribute("role", "link");
-                            var b = function() {
-                                showTitle(this, !1, !1, {
+                    function a(e, a, i, o, s, r) {
+                        var l = ce("a", {
+                            innerHTML: o ? a : '<span class="blind_label">' + a + "</span>",
+                            className: "ms_item ms_item_" + e + " _type_" + e
+                        });
+                        if (!o && n.moreWrap ? domInsertBefore(l, n.moreWrap) : (o ? o : s).appendChild(l), l.setAttribute("tabindex", 0), !o) {
+                            l.setAttribute("data-title", a), l.setAttribute("aria-label", a), l.setAttribute("role", "link");
+                            var c = function() {
+                                showTitle(this, !1, r || !1, {
                                     noZIndex: !0
                                 })
                             };
-                            addEvent(_, "mouseover", b), d.push(function() {
-                                removeEvent(_, "mouseover", b)
+                            addEvent(l, "mouseover", c), d.push(function() {
+                                removeEvent(l, "mouseover", c)
                             })
                         }
-                        if (u && !cur.viewAsBox) {
-                            var f = function() {
-                                return n.activate(), n.hide(!0), t.onItemClick && !t.onItemClick(h) ? !1 : (u(), !1)
+                        if (i && !cur.viewAsBox) {
+                            var _ = function() {
+                                return n.activate(), n.hide(!0), t.onItemClick && !t.onItemClick(e) ? !1 : (i(), !1)
                             };
-                            addEvent(_, "click", f), d.push(function() {
-                                removeEvent(_, "click", f)
+                            addEvent(l, "click", _), d.push(function() {
+                                removeEvent(l, "click", _)
                             })
                         }
+                    }
+                    for (window.tooltips && tooltips.destroyAll(r); r.firstChild;) re(r.firstChild);
+                    var i = void 0 !== t.hideAfterCount ? t.hideAfterCount : 4,
+                        o = void 0 !== t.maxShown ? t.maxShown : 3,
+                        s = !1,
+                        l = t.hideItem,
+                        c = (l || e.length > i) && !browser.mobile,
+                        _ = l && t.hideLabel || getLang("global_media_selector_more");
+                    n.moreWrap = !1, n.lastTypes = e, each(e, function(e, i) {
+                        var h = i[0],
+                            p = i[1],
+                            u = i[2];
+                        if ("article" == h) return void a(h, p, u, !1, r, [-6, 7]);
+                        var m;
+                        if (c && (l ? h == l : e == o)) {
+                            var g = r.appendChild(ce("div", {
+                                    className: "ms_items_more_wrap"
+                                })),
+                                v = function(e) {
+                                    n.fromKeyboard = checkKeyboardEvent(e), ("mouseover" != e.type || !n.touched && !n.fromKeyboard) && (n.fromKeyboard && hasClass(n.moreWrap, "shown") ? n.hide() : n.show())
+                                },
+                                w = function() {
+                                    n.fromKeyboard || n.hide()
+                                };
+                            addEvent(g, "mouseover click", v), addEvent(g, "mouseout", w), d.push(function() {
+                                removeEvent(g, "mouseover click", v), removeEvent(g, "mouseout", w)
+                            }), t.vectorIcon && (_ = '<span class="blind_label">' + _ + "</span>", addClass(g, "ms_items_more_wrap_vector")), m = g.appendChild(ce("a", {
+                                className: "ms_item_more",
+                                innerHTML: '<span class="ms_item_more_label">' + _ + "</span>"
+                            })), m.setAttribute("tabindex", 0), m.setAttribute("role", "button");
+                            var b = ce("div", {
+                                className: "ms_items_more_helper"
+                            });
+                            s = ce("div", {
+                                className: "ms_items_more _more_items"
+                            }), b.appendChild(s), m = g.appendChild(b), n.moreWrap = g
+                        }
+                        a(h, p, u, s, r)
                     })
                 }
             });
@@ -303,7 +309,12 @@ function MediaSelector(e, a, t, i) {
                         act: "a_choose_product_box"
                     }), {
                         cache: 1
-                    })
+                    });
+                    break;
+                case "article":
+                    c = function() {
+                        openArticleEditor(_)
+                    }
             }
             r.push([o, n, c])
         }
@@ -376,21 +387,21 @@ function MediaSelector(e, a, t, i) {
                         return this[0] == a && this[1] == t ? (C = !0, !1) : void(x[this[0]] = x[this[0]] ? x[this[0]] + 1 : 1)
                     }), C)) return !1;
                 var S, P, I = "",
+                    A = "",
                     M = "",
-                    T = "",
-                    A = !1,
+                    T = !1,
                     B = w,
                     N = "";
                 switch (a) {
                     case "graffiti":
                         isObject(o) || (o = {
                             thumb: o || ""
-                        }), I = '<div class="fl_l page_preview_graffiti"><img class="page_preview_graffiti" src="' + o.thumb + '" /></div>', B = A = k;
+                        }), I = '<div class="fl_l page_preview_graffiti"><img class="page_preview_graffiti" src="' + o.thumb + '" /></div>', B = T = k;
                         break;
                     case "photos_list":
                         hide(this._addMediaLink), vkImage().src = o[1];
                         var L = o[3].replace(/^{|}$/g, "");
-                        L && (L += ","), L += '"queue":1', S = i.nocl ? "" : " onclick=\"return showPhoto('" + o[4] + "', '" + o[2] + "', " + L.replace(/"/g, "&quot;") + ');"', I = "<div" + S + ' class="fl_l page_preview_photo"><img class="page_preview_photo" src="' + o[1] + '" /></div>', B = A = g;
+                        L && (L += ","), L += '"queue":1', S = i.nocl ? "" : " onclick=\"return showPhoto('" + o[4] + "', '" + o[2] + "', " + L.replace(/"/g, "&quot;") + ');"', I = "<div" + S + ' class="fl_l page_preview_photo"><img class="page_preview_photo" src="' + o[1] + '" /></div>', B = T = g;
                         break;
                     case "photo":
                         if (x.pretty_cards) return !1;
@@ -406,7 +417,7 @@ function MediaSelector(e, a, t, i) {
                             if (!o.editable) return !1;
                             i.nocl || (o.editable.click = s.showPhoto.pbind(t, o.list, parseJSON("{" + L + "}")))
                         }
-                        S = i.nocl ? "" : ' onclick="return cur.addMedia[' + s.lnkId + "].showPhoto('" + t + "', '" + o.list + "', {" + L.replace(/"/g, "&quot;") + '});"', I = "<div " + S + ' class="fl_l page_preview_photo' + (p ? " page_preview_ph_graff" : "") + '"><img class="page_preview_photo" src="' + o.thumb_m + '" /></div>', A = 1, B = g;
+                        S = i.nocl ? "" : ' onclick="return cur.addMedia[' + s.lnkId + "].showPhoto('" + t + "', '" + o.list + "', {" + L.replace(/"/g, "&quot;") + '});"', I = "<div " + S + ' class="fl_l page_preview_photo' + (p ? " page_preview_ph_graff" : "") + '"><img class="page_preview_photo" src="' + o.thumb_m + '" /></div>', T = 1, B = g;
                         break;
                     case "video":
                         if (x.pretty_cards) return !1;
@@ -419,7 +430,11 @@ function MediaSelector(e, a, t, i) {
                                 autoplay: 1
                             }))
                         }
-                        S = i.nocl ? "" : " onclick=\"return showVideo('" + t + "', '" + o.list_id + "', {queue:1,autoplay:1});\"", I = "<div" + S + ' class="fl_l page_preview_video"><img class="page_preview_video" src="' + o.thumb + '" /></div>', A = 1, B = g, P = o.list_id;
+                        S = i.nocl ? "" : " onclick=\"return showVideo('" + t + "', '" + o.list_id + "', {queue:1,autoplay:1});\"", I = "<div" + S + ' class="fl_l page_preview_video"><img class="page_preview_video" src="' + o.thumb + '" /></div>', T = 1, B = g, P = o.list_id;
+                        break;
+                    case "article":
+                        if (x.article || x.share || x.page || x.pretty_cards) return !1;
+                        I = '<div class="medadd_h medadd_h_pretty_cards inl_bl">' + getLang("global_article") + "</div>", A = o.snippet_html, t = o.url, B = f;
                         break;
                     case "audio":
                         I = Page.addAudioPreview(t, o), N = ' id="pam' + u + "_audio" + t + '"';
@@ -430,11 +445,11 @@ function MediaSelector(e, a, t, i) {
                             U = "";
                         U = o.authorHref ? '<a href="' + o.authorHref + '" onclick="return nav.go(this)">' + o.authorName + "</a>" : o.authorName;
                         var E = "'" + (o.accessHash || "") + "'";
-                        M = '<div class="audio_pl_snippet_small audio_pl_snippet_no_list audio_pl_snippet _audio_pl _audio_pl_' + o.id + ' audio_pl_attach_preview clear_fix"><div class="audio_pl_attach_preview__play audio_pl_snippet_play_small" onclick="return getAudioPlayer().playPlaylist(' + o.ownerId + ", " + o.id + ", " + E + ')"></div><div class="audio_pl_snippet__cover" style="' + D + '">' + (o.gridCovers || "") + '</div><div class="audio_pl_snippet__info_title audio_pl__title">' + o.title + '</div><div class="audio_pl_snippet__info_author_line">' + U + "</div></div>", I = '<span class="medadd_h">' + getLang("global_audio_playlist") + "</span>", B = f;
+                        A = '<div class="audio_pl_snippet_small audio_pl_snippet_no_list audio_pl_snippet _audio_pl _audio_pl_' + o.id + ' audio_pl_attach_preview clear_fix"><div class="audio_pl_attach_preview__play audio_pl_snippet_play_small" onclick="return getAudioPlayer().playPlaylist(' + o.ownerId + ", " + o.id + ", " + E + ')"></div><div class="audio_pl_snippet__cover" style="' + D + '">' + (o.gridCovers || "") + '</div><div class="audio_pl_snippet__info_title audio_pl__title">' + o.title + '</div><div class="audio_pl_snippet__info_author_line">' + U + "</div></div>", I = '<span class="medadd_h">' + getLang("global_audio_playlist") + "</span>", B = f;
                         break;
                     case "doc":
                         if (!o.lang) return !1;
-                        o.thumb && o.thumb_s ? (I = "gif" == o.ext ? '<a onclick="if (cur.cancelClick) return (cur.cancelClick = false);" target="_blank" href="' + o.href + '" class="pam_dpic"><div class="page_preview_doc_photo"><img src="' + o.thumb + '" align="center" /></div><div class="page_preview_doc_photo_hint doc_gif">' + o.title + "</div>" : '<a onclick="if (cur.cancelClick) return (cur.cancelClick = false);" target="_blank" href="' + o.href + '" class="pam_dpic"><div class="page_preview_doc_photo"><img src="' + o.thumb + '" align="center" /></div><div class="page_preview_doc_photo_hint">' + o.title + "</div>", M = '</a><div class="pam_bg"></div>', B = A = v, N = ' id="pam' + u + "_doc" + t + '"') : (I = "", M = '<div class="page_doc_row"><a target="_blank" href="' + o.href + '" class="page_doc_icon page_doc_icon' + intval(o.type) + '"></a><a target="_blank" href="' + o.href + '" class="page_doc_title">' + o.title + '</a><div class="page_doc_description_row"><div class="page_doc_size">' + o.size_str + "</div></div></div>", N = ' id="pam' + u + "_doc" + t + '"');
+                        o.thumb && o.thumb_s ? (I = "gif" == o.ext ? '<a onclick="if (cur.cancelClick) return (cur.cancelClick = false);" target="_blank" href="' + o.href + '" class="pam_dpic"><div class="page_preview_doc_photo"><img src="' + o.thumb + '" align="center" /></div><div class="page_preview_doc_photo_hint doc_gif">' + o.title + "</div>" : '<a onclick="if (cur.cancelClick) return (cur.cancelClick = false);" target="_blank" href="' + o.href + '" class="pam_dpic"><div class="page_preview_doc_photo"><img src="' + o.thumb + '" align="center" /></div><div class="page_preview_doc_photo_hint">' + o.title + "</div>", A = '</a><div class="pam_bg"></div>', B = T = v, N = ' id="pam' + u + "_doc" + t + '"') : (I = "", A = '<div class="page_doc_row"><a target="_blank" href="' + o.href + '" class="page_doc_icon page_doc_icon' + intval(o.type) + '"></a><a target="_blank" href="' + o.href + '" class="page_doc_title">' + o.title + '</a><div class="page_doc_description_row"><div class="page_doc_size">' + o.size_str + "</div></div></div>", N = ' id="pam' + u + "_doc" + t + '"');
                         break;
                     case "story":
                         I = '<div class="medadd_c_story"><a target="_blank" ' + o.attr + '"><div class="medadd_c_story_thumb fl_l" style="background-image:url(' + o.thumb + ')"></div></a><div class="medadd_c_story_info fl_l"><a class="medadd_c_story_title" target="_blank" ' + o.attr + '">' + o.title + '</a><div class="medadd_c_story_desc">' + o.date_string + "</div></div>", hide(e);
@@ -475,7 +490,7 @@ function MediaSelector(e, a, t, i) {
                     case "map":
                         var F = 340,
                             q = 127;
-                        I = "<div class=\"fl_l\"><a onclick=\"return showBox('al_places.php', {act: 'geo_box', lat: " + o[0] + ", long: " + o[1] + ", provider: " + intval(o[3]) + '}, {dark: 1});"><div class="page_media_map_point"></div><img class="page_preview_map" width="' + F + '" height="' + q + '" src="/maps?lat=' + o[0] + "&lng=" + o[1] + "&z=11&" + (window.devicePixelRatio >= 2, "w=" + 2 * F + "&h=" + 2 * q) + '" /></a></div>', B = A = k, hide(domByClass(h.menuNode, "_type_map"));
+                        I = "<div class=\"fl_l\"><a onclick=\"return showBox('al_places.php', {act: 'geo_box', lat: " + o[0] + ", long: " + o[1] + ", provider: " + intval(o[3]) + '}, {dark: 1});"><div class="page_media_map_point"></div><img class="page_preview_map" width="' + F + '" height="' + q + '" src="/maps?lat=' + o[0] + "&lng=" + o[1] + "&z=11&" + (window.devicePixelRatio >= 2, "w=" + 2 * F + "&h=" + 2 * q) + '" /></a></div>', B = T = k, hide(domByClass(h.menuNode, "_type_map"));
                         break;
                     case "page":
                         if (x.share || x.page || !o.lang) return !1;
@@ -496,11 +511,11 @@ function MediaSelector(e, a, t, i) {
                         var H = o.thumb;
                         vkImage().src = H, S = i.nocl ? "" : ' href="/album' + t + '" onclick="return nav.change({z: \'album' + t + "'}, event)\"";
                         var j = "fl_l page_album_link" + (H ? "" : " page_album_nocover");
-                        I = '<a class="' + j + '" ' + S + ">" + (H ? '<div class="page_album_thumb_wrap"><img class="page_album_thumb" src="' + H + '"/></div>' : "") + '  <div class="page_album_title">    <div class="page_album_size">' + o.count + '</div>    <div class="page_album_title_text">' + o.title + "</div>  </div></a>", A = 1, B = g;
+                        I = '<a class="' + j + '" ' + S + ">" + (H ? '<div class="page_album_thumb_wrap"><img class="page_album_thumb" src="' + H + '"/></div>' : "") + '  <div class="page_album_title">    <div class="page_album_size">' + o.count + '</div>    <div class="page_album_title_text">' + o.title + "</div>  </div></a>", T = 1, B = g;
                         break;
                     case "note":
                         if (!o.lang) return !1;
-                        I = "<a onclick=\"showWiki({w: 'note" + o.raw + '\', edit: 1}, true, event, {queue: 1})" class="medadd_h medadd_h_note inl_bl">' + o.lang.profile_choose_note + "</a>", M = '<div class="medadd_c medadd_c_note"><a onclick="showWiki({w: \'note' + o.raw + '\', edit: 1}, true, event, {queue: 1})" id="share_note_title' + o.raw + '">' + o.title + "</a></div>", B = f;
+                        I = "<a onclick=\"showWiki({w: 'note" + o.raw + '\', edit: 1}, true, event, {queue: 1})" class="medadd_h medadd_h_note inl_bl">' + o.lang.profile_choose_note + "</a>", A = '<div class="medadd_c medadd_c_note"><a onclick="showWiki({w: \'note' + o.raw + '\', edit: 1}, true, event, {queue: 1})" id="share_note_title' + o.raw + '">' + o.title + "</a></div>", B = f;
                         break;
                     case "market":
                         I = '<div class="medadd_c_market"><a target="_blank" href="' + o.href + '"><img class="medadd_c_market_thumb fl_l" src="' + o.thumb + '" /></a><div class="medadd_c_market_info fl_l"><a class="medadd_c_market_title" target="_blank" href="' + o.href + '">' + o.title + '</a><div class="medadd_c_market_price">' + o.price + "</div></div>", hide(e);
@@ -517,7 +532,7 @@ function MediaSelector(e, a, t, i) {
                         var R = t.split("_");
                         vkImage().src = o.thumb, S = i.nocl ? "" : ' href="/market' + R[0] + "?section=album_" + R[1] + '"';
                         var j = "fl_l page_preview_album wall_album_cover_wrap wall_market_album_cover" + (o.thumb ? "" : " page_album_nocover");
-                        I = '<a class="' + j + '" ' + S + ">" + (o.thumb ? '<img class="wall_album_cover" src="' + o.thumb + '"/>' : "") + '  <div class="wall_album_caption">    <div class="wall_album_title_wrap clear_fix">      <div class="wall_album_count fl_r">' + o.count + '</div>      <div class="wall_album_title">' + o.title + "</div>    </div>  </div></a>", A = 1, B = g;
+                        I = '<a class="' + j + '" ' + S + ">" + (o.thumb ? '<img class="wall_album_cover" src="' + o.thumb + '"/>' : "") + '  <div class="wall_album_caption">    <div class="wall_album_title_wrap clear_fix">      <div class="wall_album_count fl_r">' + o.count + '</div>      <div class="wall_album_title">' + o.title + "</div>    </div>  </div></a>", T = 1, B = g;
                         break;
                     case "postpone":
                         if (I = '<div class="medadd_h medadd_h_timer inl_bl">' + o.lang.profile_choose_timer + '<span id="postpone_preview' + u + '"></span></div>', cur.editingPost && !l) t = intval(t), t ? o.date = t : o.date = intval(cur.editingPost[7]), ge("wpe_save").innerHTML = getLang("global_save");
@@ -539,16 +554,16 @@ function MediaSelector(e, a, t, i) {
                                 K == vk.id && G && wall.setReplyAsGroup(V, {
                                     from: G
                                 }), addClass(V, "disabled"), addClass("signed", "shown");
-                                var X = window.data(V, "tt");
-                                if (X && X.rdBtns) {
-                                    var Y = X.rdBtns[1],
-                                        Z = X.rdBtnsGroup,
-                                        J = domData(Y, "as");
-                                    radiobtn(Y, J, Z)
+                                var Z = window.data(V, "tt");
+                                if (Z && Z.rdBtns) {
+                                    var X = Z.rdBtns[1],
+                                        Y = Z.rdBtnsGroup,
+                                        J = domData(X, "as");
+                                    radiobtn(X, J, Y)
                                 }
                             }
-                            var Y = ge("send_post");
-                            Y && (Y.innerHTML = o.lang.profile_wall_postpone_btn)
+                            var X = ge("send_post");
+                            X && (X.innerHTML = o.lang.profile_wall_postpone_btn)
                         }
                         var Q = Math.round((new Date).getTime() / 1e3);
                         intval(o.date) < Q && (o.date = Q + 3600), hide(domByClass(h.menuNode, "_type_postpone")), B = y;
@@ -569,7 +584,7 @@ function MediaSelector(e, a, t, i) {
                     var ee = s.chosenMedias,
                         ae = ee.length,
                         te = "";
-                    te = c && 1 === A ? !1 : "photos_list" == a ? se('<div class="page_preview_' + a + "_wrap" + T + '" style="position: relative">' + I + '<div class="page_photos_count">' + t.split(",").length + "</div></div>") : se('<div class="page_preview_' + a + "_wrap" + T + '"' + (i.nocl ? ' style="cursor: default"' : "") + N + ">" + I + '<div nosorthandle="1" class="page_media_x_wrap inl_bl" data-title="' + getLang("dont_attach") + '" aria-label="' + getLang("dont_attach") + '" role="button" onmouseover="showTitle(this)" onclick="cur.addMedia[' + s.lnkId + "].unchooseMedia(" + ae + '); return cancelEvent(event);"><div class="page_media_x" nosorthandle="1"></div></div>' + M + "</div>"), addClass(te, A ? "fl_l" : "clear_fix"), void 0 !== o.upload_ind && re("upload" + o.upload_ind + "_progress_wrap"), i.toggleLnk && toggle(e, s.attachCount() + 1 < n), c && 1 === A ? (addClass(B, "editable_thumbs_wrap"), B = domLC(B) && hasClass(domLC(B), "editable_thumbs") ? domLC(B) : B.appendChild(ce("div", {
+                    te = c && 1 === T ? !1 : "photos_list" == a ? se('<div class="page_preview_' + a + "_wrap" + M + '" style="position: relative">' + I + '<div class="page_photos_count">' + t.split(",").length + "</div></div>") : se('<div class="page_preview_' + a + "_wrap" + M + '"' + (i.nocl ? ' style="cursor: default"' : "") + N + ">" + I + '<div nosorthandle="1" class="page_media_x_wrap inl_bl" data-title="' + getLang("dont_attach") + '" aria-label="' + getLang("dont_attach") + '" role="button" onmouseover="showTitle(this)" onclick="cur.addMedia[' + s.lnkId + "].unchooseMedia(" + ae + '); return cancelEvent(event);"><div class="page_media_x" nosorthandle="1"></div></div>' + A + "</div>"), addClass(te, T ? "fl_l" : "clear_fix"), void 0 !== o.upload_ind && re("upload" + o.upload_ind + "_progress_wrap"), i.toggleLnk && toggle(e, s.attachCount() + 1 < n), c && 1 === T ? (addClass(B, "editable_thumbs_wrap"), B = domLC(B) && hasClass(domLC(B), "editable_thumbs") ? domLC(B) : B.appendChild(ce("div", {
                         id: "thumbs_edit" + u,
                         className: "editable_thumbs"
                     })), stManager.add(["thumbs_edit.css", "thumbs_edit.js"], function() {
@@ -601,8 +616,8 @@ function MediaSelector(e, a, t, i) {
                 } else {
                     var ae = 0;
                     "postpone" === a ? ae = 1 : "mark_as_ads" === a && (ae = 2);
-                    var te = se('<div class="' + (A === !1 ? "page_docs_preview" : "page_pics_preview") + (ae ? "" : " post_thumbed_media") + '"><div class="page_preview_' + a + '_wrap"' + (i.nocl ? ' style="cursor: default"' : "") + N + ">" + I + '<div nosorthandle="1" class="page_media_x_wrap inl_bl" data-title="' + getLang("dont_attach") + '" aria-label="' + getLang("dont_attach") + '" role="button" onmouseover="showTitle(this)" onclick="cur.addMedia[' + s.lnkId + "].unchooseMedia(" + ae + '); return cancelEvent(event);"><div class="page_media_x" nosorthandle="1"></div></div>' + M + "</div></div>");
-                    addClass(te, A ? "fl_l" : "clear_fix"), void 0 !== o.upload_ind && re("upload" + o.upload_ind + "_progress_wrap"), "postpone" !== a && "mark_as_ads" !== a && (s.chosenMedia = [a, t], s.chosenMediaData = o), s.singleAdded(te, a)
+                    var te = se('<div class="' + (T === !1 ? "page_docs_preview" : "page_pics_preview") + (ae ? "" : " post_thumbed_media") + '"><div class="page_preview_' + a + '_wrap"' + (i.nocl ? ' style="cursor: default"' : "") + N + ">" + I + '<div nosorthandle="1" class="page_media_x_wrap inl_bl" data-title="' + getLang("dont_attach") + '" aria-label="' + getLang("dont_attach") + '" role="button" onmouseover="showTitle(this)" onclick="cur.addMedia[' + s.lnkId + "].unchooseMedia(" + ae + '); return cancelEvent(event);"><div class="page_media_x" nosorthandle="1"></div></div>' + A + "</div></div>");
+                    addClass(te, T ? "fl_l" : "clear_fix"), void 0 !== o.upload_ind && re("upload" + o.upload_ind + "_progress_wrap"), "postpone" !== a && "mark_as_ads" !== a && (s.chosenMedia = [a, t], s.chosenMediaData = o), s.singleAdded(te, a)
                 }
                 "share" == a ? !o.title || r || o.url ? s.showExternalPreview() : (cur.shareShowImg = 0, s.showPreview(!0), s.shareData.images = !1) : "page" == a ? o.nopreview || (cur.shareShowImg = 0, s.shareData = extend(s.shareData || {}, o, {
                     images: !1
@@ -693,8 +708,8 @@ function MediaSelector(e, a, t, i) {
                     } else {
                         if (s.postponePreview || s.markAsAds) {
                             for (var C = s.postponePreview && domPN(s.postponePreview), S = s.markAsAds && domPN(geByClass1("page_preview_mark_as_ads_wrap", m)), P = [], I = 0; I < m.childNodes.length; I++) {
-                                var M = m.childNodes[I];
-                                "DIV" == M.nodeName && M != C && M != S && P.push(M)
+                                var A = m.childNodes[I];
+                                "DIV" == A.nodeName && A != C && A != S && P.push(A)
                             }
                             each(P, function(e, a) {
                                 re(a)
@@ -896,7 +911,7 @@ function MediaSelector(e, a, t, i) {
                             p = d;
                         if (d.match(/^https?:\/\//) || (d = "http://" + d), !inArray(d, s.urlsCancelled) && !inArray(p, s.urlsCancelled)) {
                             var u = !0;
-                            if (h.match(/(^|\.|\/\/)(vkontakte\.ru|vk\.com)/i) && (u = _.match(/(#photo|^\/(photo|video|album|page|audio|doc|mask)|z=(album|photo|video|audio_playlist)|w=(page|product))(-?\d+_)?\d+|app\d+(?:_-\d+)?|\.(jpg|png|gif)$|market-?\d+\?section=album_\d+|^\/stickers\/.+$|\?w\=story(\d+)_(\d+)$|stor(y|ies)(\d+)_(\d+)$|^(\/dev)?\/blog\/.+$|^\/jobs\?w=job\d+$|^\/landings\/.+$|\?w\=vk10\_years(\d+)$|^\/messenger$|^\/bestgames2016$|^\/ads(\/([a-zA-Z0-9\_]+))?$|^http:\/\/instagram\.com\/p\/.+/) ? !0 : !1, !u && _.match(/[a-zA-Z0-9_\.-]{2,32}/))) return void s.checkURLDomain(_, p, t);
+                            if (h.match(/(^|\.|\/\/)(vkontakte\.ru|vk\.com)/i) && (u = _.match(/(#photo|^\/(photo|video|album|page|audio|doc|mask)|z=(album|photo|video|audio_playlist)|w=(page|product))(-?\d+_)?\d+|app\d+(?:_-\d+)?|\.(jpg|png|gif)$|market-?\d+\?section=album_\d+|^\/stickers\/.+$|\?w\=story(\d+)_(\d+)$|stor(y|ies)(\d+)_(\d+)$|^(\/dev)?\/blog\/.+$|^\/jobs\?w=job\d+$|^\/landings\/.+$|\?w\=vk10\_years(\d+)$|^\/messenger$|^\/bestgames2016$|^\/ads(\/([a-zA-Z0-9\_]+))?$|^http:\/\/instagram\.com\/p\/.+/) ? !0 : !1, u = u || _.match(/^\/@[_a-zA-Z0-9-]+$/), !u && _.match(/[a-zA-Z0-9_\.-]{2,32}/))) return void s.checkURLDomain(_, p, t);
                             if (u) return void s.checkURL(p, t)
                         }
                     }
@@ -1048,16 +1063,16 @@ function MediaSelector(e, a, t, i) {
                         P = d.button_text_lang || x && x[2],
                         I = d.button_action || x && x[0];
                     if (C && C.length && P === S)
-                        for (var M = 0; M < C.length; ++M)
-                            if (C[M][0] === I && C[M][2] === S) {
-                                S = C[M][1];
+                        for (var A = 0; A < C.length; ++A)
+                            if (C[A][0] === I && C[A][2] === S) {
+                                S = C[A][1];
                                 break
                             }
-                    var T = !1;
-                    C && C.length && (T = C.length > 1 || P === S || x[0] !== I || x[1] !== S);
-                    var A = !!C && C.length,
+                    var M = !1;
+                    C && C.length && (M = C.length > 1 || P === S || x[0] !== I || x[1] !== S);
+                    var T = !!C && C.length,
                         B = !(!cur.options.share || !cur.options.share.allow_remove_button),
-                        l = c + '<div class="medadd_c_linkwrap ' + (c ? "" : "no_photo") + '"><div class="medadd_c_linkwrap_block">' + (d.title || y.title.editable ? '<div class="medadd_c_linkhead ' + (y.title.editable ? "medadd_inline_editable" : "") + '">' + (y.title.editable ? '<div class="medadd_inline_editable_icon"></div>' : "") + '<span class="medadd_inline_edit_target" data-max-length="' + (cur.options.share && cur.options.share.max_title_len ? cur.options.share.max_title_len : 0) + '" data-field="title">' + (clean(d.title).replace(/\n/g, "<br>") || y.title.placeholder) + "</span></div>" : "") + (k ? '<div class="medadd_c_linkmicrodata">' + k + "</div>" : "") + (d.domain ? '<div class="page_media_link_url medadd_c_linkaddr">' + d.domain + "</div>" : "") + "</div>" + (P && A ? '<div class="medadd_c_linkwrap_block medadd_c_linkwrap_block_button">' + (B ? '<div class="hide_icon medadd_c_linkbtn_remove" onclick="cur.shareRemoveButton();" onmouseover="showTooltip(this, {text: \'' + getLang("global_share_button_remove_tooltip") + "', black: 1, shift: [15, 10, 0]})\"></div>" : "") + '<div class="wall_postlink_preview_btn medadd_c_linkbtn"><a onclick="cur.toggleShareButton(this);return false;" onmouseout="Page.actionsDropdownHide(domNS(this), 0, cur.setActiveShareButton.pbind(false))" onmouseover="Page.actionsDropdownUnhide()" class="flat_button"><span onmouseover="Page.actionsDropdownUnhide()" class="' + (T ? "page_actions_dd_label" : "") + ' wall_postlink_preview_btn_label" data-field="button_text">' + P + "</span></a></div></div>" : "") + '</div><div class="clear_fix"></div>'
+                        l = c + '<div class="medadd_c_linkwrap ' + (c ? "" : "no_photo") + '"><div class="medadd_c_linkwrap_block">' + (d.title || y.title.editable ? '<div class="medadd_c_linkhead ' + (y.title.editable ? "medadd_inline_editable" : "") + '">' + (y.title.editable ? '<div class="medadd_inline_editable_icon"></div>' : "") + '<span class="medadd_inline_edit_target" data-max-length="' + (cur.options.share && cur.options.share.max_title_len ? cur.options.share.max_title_len : 0) + '" data-field="title">' + (clean(d.title).replace(/\n/g, "<br>") || y.title.placeholder) + "</span></div>" : "") + (k ? '<div class="medadd_c_linkmicrodata">' + k + "</div>" : "") + (d.domain ? '<div class="page_media_link_url medadd_c_linkaddr">' + d.domain + "</div>" : "") + "</div>" + (P && T ? '<div class="medadd_c_linkwrap_block medadd_c_linkwrap_block_button">' + (B ? '<div class="hide_icon medadd_c_linkbtn_remove" onclick="cur.shareRemoveButton();" onmouseover="showTooltip(this, {text: \'' + getLang("global_share_button_remove_tooltip") + "', black: 1, shift: [15, 10, 0]})\"></div>" : "") + '<div class="wall_postlink_preview_btn medadd_c_linkbtn"><a onclick="cur.toggleShareButton(this);return false;" onmouseout="Page.actionsDropdownHide(domNS(this), 0, cur.setActiveShareButton.pbind(false))" onmouseover="Page.actionsDropdownUnhide()" class="flat_button"><span onmouseover="Page.actionsDropdownUnhide()" class="' + (M ? "page_actions_dd_label" : "") + ' wall_postlink_preview_btn_label" data-field="button_text">' + P + "</span></a></div></div>" : "") + '</div><div class="clear_fix"></div>'
                 }
                 if (r ? addClass(domFC(n), "medadd_c_linkimg_big") : removeClass(domFC(n), "medadd_c_linkimg_big"), e) cur.preventShareAnim && (cur.preventShareAnim.stop(), clearInterval(cur.animateUpdateInterval), i.onChangedSize && i.onChangedSize()), val(domFC(n), l), domFC(n).style.height = "auto", shortCurrency();
                 else {
@@ -1097,14 +1112,14 @@ function MediaSelector(e, a, t, i) {
                     var E = geByClass1("medadd_inline_edit_target", geByClass1("medadd_c_linkdsc", domFC(n)));
                     E && (E.onclick = t.bind(this, E))
                 }
-                if (A && (s.shareData.button_text = S, s.shareData.button_text_lang = P, s.shareData.button_action = I, T)) {
+                if (T && (s.shareData.button_text = S, s.shareData.button_text_lang = P, s.shareData.button_action = I, M)) {
                     var z = domPN(geByClass1("wall_postlink_preview_btn_label", domFC(n))),
                         F = [],
                         q = 0,
                         R = 0,
                         H = [];
-                    for (var M in C) {
-                        var j = C[M];
+                    for (var A in C) {
+                        var j = C[A];
                         j[0] == I && j[1] == S && (q = R), F.push([R++, j[1]]), H.push('<a class="page_actions_item" tabindex="0" role="link" onclick="cur.updateShareButton(this);Page.actionsDropdownHide(domPN(domPN(this)), 1, cur.setActiveShareButton.pbind(false));return false;" data-button-text="' + j[1] + '" data-button-text-lang="' + j[2] + '" data-button-action="' + j[0] + '">' + j[2] + "</a>")
                     }
                     z.setAttribute("data-items", JSON.stringify(F)), z.setAttribute("data-value", q);

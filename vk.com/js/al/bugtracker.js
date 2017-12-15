@@ -27,7 +27,7 @@ var BugTracker = {
         })
     },
     clearForm: function() {
-        cur.newBugTagsDD = null, cur.newBugPlatformsDD = null, cur.newBugPlatformsIOSVersionsDD = null, cur.newBugDevicesDD = null, cur.newBugProductDD = null, cur.newBugBox = null, cur.btRemoveBtn = null
+        cur.newBugTagsDD = null, cur.newBugPlatformsDD = null, cur.newBugPlatformsIOSVersionsDD = null, cur.newBugProductDD = null, cur.newBugBox = null, cur.btRemoveBtn = null
     },
     closeNewBugBoxCallback: function(e) {
         if (!e && !cur.btForceCloseNewBox && (trim(val("bt_form_title")) || trim(val("bt_form_descr")) || cur.newBugTagsDD && cur.newBugTagsDD.val() || cur.btNewMedia && cur.btNewMedia.getMedias().length)) {
@@ -67,7 +67,6 @@ var BugTracker = {
                     severity: cur.newBugSeverityDD.val(),
                     platforms: cur.newBugPlatformsDD ? cur.newBugPlatformsDD.val() : "",
                     platforms_versions: BugTracker.getPlatformsVersions(),
-                    devices: cur.newBugDevicesDD ? cur.newBugDevicesDD.val() : "",
                     tags: cur.newBugTagsDD.val(),
                     vulnerability: isChecked("bt_form_vulnerability") ? 1 : 0,
                     confidential: isChecked("bt_form_confidential") ? 1 : 0,
@@ -77,11 +76,14 @@ var BugTracker = {
                     box: cur.newBugBox ? 1 : 0
                 },
                 a = !1;
-            if (o.title || (notaBene("bt_form_title"), a = !0), o.tags.length || (notaBene(cur.newBugTagsDD.container), a = !0), isVisible("bt_form_phone_block") && "" == o.phone && (notaBene("bt_form_phone"), a = !0), isVisible("bt_form_region_block") && 0 == o.region_id && (notaBene(cur.newBugRegionDD.container), a = !0), !o.platforms.length && isVisible("bt_form_platforms") && (notaBene(cur.newBugPlatformsDD.container), a = !0), "" === cur.newBugPlatformsIOSVersionsDD.val() && isVisible("bt_form_platforms_ios_versions") && (notaBene(cur.newBugPlatformsIOSVersionsDD.container), a = !0), "" === cur.newBugPlatformsAndroidVersionsDD.val() && isVisible("bt_form_platforms_android_versions") && (notaBene(cur.newBugPlatformsAndroidVersionsDD.container), a = !0), !o.devices.length && cur.newBugDevicesDD.dataItems.length > 1 && isVisible("bt_form_devices") && (notaBene(cur.newBugDevicesDD.container), a = !0), !a) {
+            if (o.title || (notaBene("bt_form_title"), a = !0), o.tags.length || (notaBene(cur.newBugTagsDD.container), a = !0), isVisible("bt_form_phone_block") && "" == o.phone && (notaBene("bt_form_phone"), a = !0), isVisible("bt_form_region_block") && 0 == o.region_id && (notaBene(cur.newBugRegionDD.container), a = !0), !o.platforms.length && isVisible("bt_form_platforms") && (notaBene(cur.newBugPlatformsDD.container), a = !0), "" === cur.newBugPlatformsIOSVersionsDD.val() && isVisible("bt_form_platforms_ios_versions") && (notaBene(cur.newBugPlatformsIOSVersionsDD.container), a = !0), "" === cur.newBugPlatformsAndroidVersionsDD.val() && isVisible("bt_form_platforms_android_versions") && (notaBene(cur.newBugPlatformsAndroidVersionsDD.container), a = !0), !a) {
                 var n = [];
                 each(cur.btNewMedia.getMedias(), function(e, t) {
                     n.push(t[0] + "," + t[1])
-                }), o.attachs = n, ajax.post("bugtracker", o, {
+                }), o.attachs = n, o.user_devices = [].map.call(geByClass("bugtracker_device user_device on"), function(e) {
+                    var t = JSON.parse(e.getAttribute("device-info"));
+                    return t.user_id
+                }), ajax.post("bugtracker", o, {
                     onDone: function(e) {
                         if (e) {
                             var t = se(e);
@@ -98,20 +100,28 @@ var BugTracker = {
     formGetProductId: function() {
         return cur.newBugProductDD ? cur.newBugProductDD.val() : cur.newProductId
     },
-    formPlatformsChanged: function() {
-        var e = cur.newBugPlatformsDD.val();
-        if (isVisible("bt_form_platforms")) "" === e && 1 == cur.newBugPlatformsDD.dataItems.length && (e = cur.newBugPlatformsDD.dataItems[0][0].toString());
+    formPlatformsChanged: function(e) {
+        var t = cur.newBugPlatformsDD.val();
+        if (isVisible("bt_form_platforms")) "" === t && 1 == cur.newBugPlatformsDD.dataItems.length && (t = cur.newBugPlatformsDD.dataItems[0][0].toString());
         else {
-            var t = BugTracker.formGetProductId();
-            e = cur.btFormDDValues[t].platforms[0][0].toString()
+            var r = BugTracker.formGetProductId();
+            t = cur.btFormDDValues[r].platforms[0][0].toString()
         }
-        var r = "" !== e ? e.split(",") : [],
-            o = !1,
+        var o = "" !== t ? t.split(",") : [],
             a = !1,
-            n = !1;
-        each(r, function(e, t) {
-            t = t.toString(), cur.btFormPlatformSupportsDevices[t] && (o = !0), 3 == t ? a = !0 : 4 == t && (n = !0)
-        }), toggle("bt_form_devices", o), toggle("bt_form_platforms_ios_versions", a), toggle("bt_form_platforms_android_versions", n)
+            n = !1,
+            i = !1;
+        if (each(o, function(e, t) {
+                t = t.toString(), cur.btFormPlatformSupportsDevices[t] && (a = !0), 3 == t ? n = !0 : 4 == t && (i = !0)
+            }), toggle("bt_form_platforms_ios_versions", n), toggle("bt_form_platforms_android_versions", i), !cur.btLockDeviceRecheck) {
+            var s = (e || "").split(",");
+            each(geByClass("bugtracker_device user_device on"), function(e, t) {
+                var r = JSON.parse(t.getAttribute("device-info"));
+                s.find(function(e) {
+                    return e == r.platform
+                }) || checkbox(t, !1)
+            })
+        }
     },
     sendComment: function() {
         if (cur.bugreportId && cur.bugreportHash) {
@@ -271,7 +281,7 @@ var BugTracker = {
         BugTracker.cancelEdit();
         var n = ge("cmt" + e),
             i = geByClass1("bt_report_cmt_text", n),
-            s = '<div class="bt_comment_edit_form" data-id="' + e + '">  <textarea class="text bt_comment_form_text" id="bt_comment_edit_form_text" onkeydown="onCtrlEnter(event, BugTracker.saveComment.bind(null, ge(\'bt_comment_edit_form_submit\'), \'' + t + '\'));" style="overflow: hidden; resize: none; height: 50px;">' + i.innerText + '</textarea>  <div id="bt_comment_edit_form_media_preview" class="clear_fix bt_comment_form_media_preview"></div>  <div id="bt_comment_edit_form_attach" class="bt_comment_form_attach clear_fix"><span class="add_media_lnk"></span></div>  <div>  <button type="button" class="flat_button fl_r" id="bt_comment_edit_form_submit" onclick="BugTracker.saveComment(this, \'' + t + "');\">" + getLang("global_save") + '</button>  <button type="button" class="flat_button button_light secondary fl_r" id="bt_comment_edit_form_cancel" onclick="BugTracker.cancelEdit()">' + getLang("global_cancel") + "</button>  </div>  </div>",
+            s = '<div class="bt_comment_edit_form" data-id="' + e + '">  <textarea class="text bt_comment_form_text" id="bt_comment_edit_form_text" onkeydown="onCtrlEnter(event, BugTracker.sendComment);" style="overflow: hidden; resize: none; height: 50px;">' + val(i) + '</textarea>  <div id="bt_comment_edit_form_media_preview" class="clear_fix bt_comment_form_media_preview"></div>  <div id="bt_comment_edit_form_attach" class="bt_comment_form_attach clear_fix"><span class="add_media_lnk"></span></div>  <div>  <button type="button" class="flat_button fl_r" id="bt_comment_form_submit" onclick="BugTracker.saveComment(this, \'' + t + "');\">" + getLang("global_save") + '</button>  <button type="button" class="flat_button button_light secondary fl_r" id="bt_comment_form_submit" onclick="BugTracker.cancelEdit()">' + getLang("global_cancel") + "</button>  </div>  </div>",
             c = sech(s)[0];
         i.parentNode.insertBefore(c, i), hide(i), hide(geByClass1("page_post_sized_thumbs", n)), hide(geByClass1("post_thumbed_media", n)), hide(geByClass1("bt_report_cmt_info", n)), toggleClass(n, "editing", !0), setTimeout(function() {
             autosizeSetup(geByClass1("bt_comment_form_text", n), {}), cur.btEditCommentMedia = MediaSelector(ge("bt_comment_edit_form_attach").firstChild, "bt_comment_edit_form_media_preview", cur.btCommentMediaTypes, {
@@ -289,17 +299,20 @@ var BugTracker = {
     },
     removeComment: function(e, t) {
         var r = ge("cmt" + e);
-        r && ajax.post("bugtracker", {
-            act: "remove_comment",
-            id: e,
-            hash: t
-        }, {
-            showProgress: addClass.pbind(r, "bt_report_cmt_processing"),
-            hideProgress: removeClass.pbind(r, "bt_report_cmt_processing"),
-            onDone: function(e) {
-                addClass(r, "bt_report_cmt_removed"), r.appendChild(se(e))
-            }
-        })
+        if (r) {
+            var o = geByClass1("post_actions", r);
+            ajax.post("bugtracker", {
+                act: "remove_comment",
+                id: e,
+                hash: t
+            }, {
+                showProgress: addClass.pbind(o, "post_actions_progress"),
+                hideProgress: removeClass.pbind(o, "post_actions_progress"),
+                onDone: function(e) {
+                    addClass(r, "bt_report_cmt_removed"), r.appendChild(se(e))
+                }
+            })
+        }
     },
     restoreComment: function(e, t) {
         var r = ge("cmt" + e);
@@ -1118,8 +1131,7 @@ var BugTracker = {
         for (var a = ["negative_", "neutral_", "positive_"], n = 0; n < a.length; n++) o = o.replace("#" + a[n] + r, "");
         var i = a[t + 1] + r,
             s = o.indexOf("@" + r) + r.length + 2;
-        " " !== o[s] && (i += " "), o = o.substr(0, s) + "#" + i + o.substr(s),
-            cur.options.additional_save_params.wall_message_prefix = o
+        " " !== o[s] && (i += " "), o = o.substr(0, s) + "#" + i + o.substr(s), cur.options.additional_save_params.wall_message_prefix = o
     },
     switchComments: function(e, t) {
         nav.objLoc.tone = t, nav.go(nav.objLoc), showProgress(ge("tone_filter_selector").parentNode), hide(ge("tone_filter_selector"))
@@ -1422,6 +1434,176 @@ var BugTracker = {
             hideProgress: unlockButton.pbind(e),
             onDone: function() {
                 cur.moveToProductBox.hide()
+            }
+        })
+    },
+    addUserDevice: function(e, t, r) {
+        var o = curBox();
+        return o.showCloseProgress(), ajax.post("bugtracker?act=a_add_device", {
+            device_id: t,
+            hash: r
+        }, {
+            hideProgress: function() {
+                o.hideCloseProgress()
+            },
+            onDone: function(e) {
+                o.hide();
+                var t = ge("bugtracker_user_device_list").appendChild(sech(e)[0]),
+                    r = [].map.call(ge("bugtracker_user_device_list").childNodes, function(e) {
+                        return e.getAttribute("platform-id")
+                    });
+                each(ge("bt_settings_platforms").childNodes, function(e, t) {
+                    r.indexOf(t.getAttribute("platform-id")) >= 0 ? (checkbox(t, !0), disable(t, !0)) : disable(t, !1)
+                }), setTimeout(function() {
+                    geByClass1("edit", t).click()
+                })
+            }
+        }), !1
+    },
+    removeUserDevice: function(e, t, r) {
+        return ajax.post("bugtracker?act=a_remove_device", {
+            udid: t,
+            hash: r
+        }, {
+            showProgress: addClass.pbind(e.parentNode, "locked"),
+            hideProgress: removeClass.pbind(e.parentNode, "locked"),
+            onDone: function() {
+                re("bugtracker_device" + t);
+                var e = [].map.call(ge("bugtracker_user_device_list").childNodes, function(e) {
+                    return e.getAttribute("platform-id")
+                });
+                each(ge("bt_settings_platforms").childNodes, function(t, r) {
+                    e.indexOf(r.getAttribute("platform-id")) >= 0 ? (checkbox(r, !0), disable(r, !0)) : disable(r, !1)
+                })
+            }
+        }), !1
+    },
+    addUserDeviceBox: function(e, t) {
+        return showBox("/bugtracker?act=a_add_device_box", {
+            hash: t
+        }, {
+            params: {
+                grey: !0,
+                bodyStyle: "padding:0"
+            }
+        }), !1
+    },
+    searchDevice: function() {
+        var e = !1,
+            t = 0,
+            r = "";
+        return function o(a) {
+            r = a, e || (clearTimeout(t), t = setTimeout(function() {
+                e = !0, ajax.post("bugtracker?act=a_search_device", {
+                    q: a
+                }, {
+                    onDone: function(t) {
+                        e = !1, val("bugtracker_device_search_results_container", t), r !== a && o(r)
+                    },
+                    onFail: function() {
+                        e = !1
+                    }
+                })
+            }, 200))
+        }
+    }(),
+    changePlatformVersions: function(e, t) {
+        if (!cur.btLockDeviceRecheck) {
+            var r = (t || "").split(",");
+            each(geByClass("bugtracker_device user_device on"), function(t, o) {
+                var a = JSON.parse(o.getAttribute("device-info"));
+                a.platform != e || r.find(function(e) {
+                    return e == a.version
+                }) || checkbox(o, !1)
+            })
+        }
+    },
+    selectUserDeviceForReport: function(e, t) {
+        if (checkbox(e), isChecked(e)) {
+            var r = JSON.parse(e.getAttribute("device-info")),
+                o = BugTracker.formGetProductId(),
+                a = cur.btFormDDValues[o].platforms,
+                n = a.find(function(e) {
+                    return e[0] == r.platform
+                });
+            switch (n && (t && cur.newBugPlatformsDD.clear(), cur.newBugPlatformsDD.selectedItems().find(function(e) {
+                return e[0] == r.platform
+            }) || cur.newBugPlatformsDD.selectItem(n)), +r.platform) {
+                case 3:
+                    var i = cur.btPlatformsVersionsIOS.find(function(e) {
+                        return e[0] == r.version
+                    });
+                    i && (t && cur.newBugPlatformsIOSVersionsDD.clear(), cur.newBugPlatformsIOSVersionsDD.selectItem(i));
+                    break;
+                case 4:
+                    var i = cur.btPlatformsVersionsAndroid.find(function(e) {
+                        return e[0] == r.version
+                    });
+                    i && (t && cur.newBugPlatformsAndroidVersionsDD.clear(), cur.newBugPlatformsAndroidVersionsDD.selectItem(i))
+            }
+        }
+    },
+    newUserDevice: function(e) {
+        return showBox("/bugtracker?act=a_new_device_box", {
+            hash: e
+        }, {
+            params: {
+                grey: !0
+            }
+        }), !1
+    },
+    saveDevice: function(e, t, r, o, a) {
+        var n = val(o + "_brand"),
+            i = val(o + "_market_name"),
+            s = val(o + "_device"),
+            c = val(o + "_model");
+        return n || i || s || c ? void ajax.post("bugtracker?act=a_save_device", {
+            hash: t,
+            state_hash: r,
+            device_id: a,
+            platform: val(o + "_platform"),
+            brand: n,
+            market_name: i,
+            device: s,
+            model: c,
+            comment: val(o + "_comment")
+        }, {
+            showProgress: lockButton.pbind(e),
+            hideProgress: unlockButton.pbind(e),
+            onDone: function(t, r) {
+                curBox().hide(), BugTracker.addUserDevice(e, t, r)
+            }
+        }) : (notaBene(o + "_brand"), notaBene(o + "_market_name"), notaBene(o + "_device"), void notaBene(o + "_model"))
+    },
+    editUserDevice: function(e, t, r) {
+        return showBox("/bugtracker?act=a_edit_user_device_box", {
+            udid: t,
+            hash: r
+        }, {
+            params: {
+                grey: !0
+            }
+        }), !1
+    },
+    saveUserDevice: function(e, t, r, o) {
+        ajax.post("bugtracker?act=a_save_user_device", {
+            hash: t,
+            udid: o,
+            title: val(r + "_title"),
+            version: val(r + "_version")
+        }, {
+            showProgress: lockButton.pbind(e),
+            hideProgress: unlockButton.pbind(e),
+            onDone: function(e) {
+                curBox().hide();
+                var t = sech(e)[0];
+                ge("bugtracker_user_device_list").replaceChild(t, ge("bugtracker_device" + o));
+                var r = [].map.call(ge("bugtracker_user_device_list").childNodes, function(e) {
+                    return e.getAttribute("platform-id")
+                });
+                each(ge("bt_settings_platforms").childNodes, function(e, t) {
+                    r.indexOf(t.getAttribute("platform-id")) >= 0 ? (checkbox(t, !0), disable(t, !0)) : disable(t, !1)
+                })
             }
         })
     },

@@ -640,6 +640,10 @@ function domQuery(selectors, parent) {
     return (parent || document).querySelectorAll(selectors);
 }
 
+function domQuery1(selector, parent) {
+    return (parent || document).querySelector(selector);
+}
+
 function domClosest(className, elem) {
     if (hasClass(elem, className)) return elem;
     return gpeByClass(className, elem);
@@ -2737,7 +2741,7 @@ function updSeenAdsInfo() {
 window.__scrLeft = 0;
 
 function updSideTopLink(resized) {
-    if (!window.scrollNode || browser.mobile) return;
+    if (!window.scrollNode || browser.mobile || !window._tbLink) return;
 
     var pb = ge('page_body'),
         xy = getXY(pb),
@@ -5392,6 +5396,10 @@ function handleSetCount(e, v, id) {
 vk.counts = {};
 
 function handlePageParams(params) {
+    if (vk.isStandaloneArticlePage) {
+        return
+    }
+
     vk.id = params.id;
     if (params.body_class !== bodyNode.className) {
         bodyNode.className = params.body_class || '';
@@ -5736,6 +5744,7 @@ var nav = {
                     changed[i] = false;
                 }
             }
+
             if (zNav(clone(changed), {
                     hist: opts.hist,
                     asBox: opts.asBox,
@@ -5743,6 +5752,12 @@ var nav = {
                 }, objLoc) === false) {
                 nav.setLoc(strLoc);
                 return false;
+            }
+
+            var isHandled = articleNav(strLoc, nav.toStr(nav.objLoc), opts.back)
+            if (isHandled) {
+                nav.setLoc(strLoc)
+                return false
             }
         }
 
@@ -6783,9 +6798,8 @@ function elfocus(el, from, to) {
 }
 
 function traverseParent(el, cb, maxSteps) {
-    el = ge(el)
-
     maxSteps = maxSteps || 999
+    el = ge(el)
 
     while (el && !cb(el)) {
         maxSteps--
@@ -6795,7 +6809,7 @@ function traverseParent(el, cb, maxSteps) {
 
         el = domPN(el)
         if (el == document) {
-            break
+            return false
         }
     }
 
@@ -8654,6 +8668,90 @@ function updateMoney(balance, balanceEx) {
     }
 }
 
+function articleNav(strLoc, oldLoc, isBack) {
+    var url = strLoc
+
+    var pattern = /^(?:%40|@)[a-z0-9_-]+$/
+    var match = url.toLowerCase().match(pattern)
+
+    if (match) {
+        // Navigated to article
+
+        if (!cur.articleLayer) {
+            cur.articlePrevLoc = oldLoc
+        }
+
+        stManager.add([jsc('web/article_layer.js'), 'article.css'], function() {
+            var prevArticleLayer = cur.articleLayer
+
+            if (prevArticleLayer) {
+                prevArticleLayer.setFaded()
+            }
+
+            cur.articleLayer = new ArticleLayer({
+                url: url
+            })
+            cur.articleLayer.show(function() {
+                if (prevArticleLayer) {
+                    prevArticleLayer.close()
+                }
+            }, !prevArticleLayer)
+
+            cur.articleSequence = (cur.articleSequence || 0) + 1
+        })
+
+        return true
+
+    } else {
+        if (cur.articleLayer && cur.articleLayer.isShown()) {
+            function closeLayer() {
+                cur.articleLayer && cur.articleLayer.close()
+                delete cur.articleLayer
+                delete cur.articleSequence
+            }
+
+            var prevLoc = cur.articlePrevLoc
+            delete cur.articlePrevLoc
+
+            if (true || isBack) {
+                if (prevLoc && !pattern.test(prevLoc)) {
+                    if (strLoc == prevLoc) {
+                        closeLayer()
+                        return true
+                    } else {
+                        layers.fullhide = function() {
+                            closeLayer()
+                        }
+                        return false
+                    }
+                } else {
+                    closeLayer()
+                    return true
+                }
+            } else {
+                layers.fullhide = function() {
+                    closeLayer()
+                }
+                return false
+            }
+        }
+    }
+
+    return false
+}
+
+function articlePrepare(articleUrl) {
+    if (!articleUrl) {
+        return
+    }
+
+    stManager.add([jsc('web/article_layer.js'), 'article.css'], function() {
+        ArticleLayer.prepare({
+            url: articleUrl
+        })
+    })
+}
+
 function zNav(changed, opts, fin) {
     var z = changed.z,
         f = changed.f,
@@ -8836,6 +8934,9 @@ function zNav(changed, opts, fin) {
                 AudioUtils.showAudioPlaylist.apply(this, [playlistId[0], playlistId[1], zt[3], undefined, undefined, opts.onDone]);
                 return false;
                 break
+            case 'article_edit':
+                openArticleEditor.apply(this, zt[2].split('_'))
+                return false;
         }
     }
 }
@@ -11691,7 +11792,8 @@ function getRadioBtnWrap(el) {
     content         - (required) string or dom element for tooltip content
     id              - custom id for tootlip
     cls             - custom class for tooltip
-    autoShow        - show/hide tooltip on mouse enter/leave (default: true)
+    autoShow        - show/hide tooltip on mouse enter/leave, if false - on mouse click (default: true)
+    customShow      - external code sets visibility of tooltip
     delay           - delay for tooltip show (default: 100)
     appendTo        - appends tooltip to particular element
     appendToParent  - appends tooltip to closest positioned element (default: false)
@@ -11699,8 +11801,7 @@ function getRadioBtnWrap(el) {
     shift           - custom array shift
     elClassWhenShown - class that will be added to el when tooltip is shown
     setPos          - function for calculation tooltip custom position. forceSide parameter is required
-    showOnClick     - show tooltip on mouse click (default: false)
-    noHideOnClick   - no hide tooltip after show by click. work only with showOnClick (default: false)
+    noHideOnClick   - no hide tooltip after show by click. work only with autoShow=false (default: false)
     type            - ElementTooltip.TYPE_VERTICAL / ElementTooltip.TYPE_HORIZONTAL (default vertical)
     forceSide       - forces tooltip to be shown on particular side top/bottom/left/right. It ignores type option.
     defaultSide
@@ -11737,10 +11838,14 @@ function ElementTooltip(el, opts) {
         appendToParent: false,
         autoShow: true,
         autoHide: false,
-        showOnClick: false,
         noHideOnClick: false,
-        arrowSize: 'normal'
+        arrowSize: 'normal',
+        customShow: false,
     }, opts);
+
+    if (this._opts.customShow) {
+        this._opts.autoShow = false
+    }
 
     if (!this._opts.defaultSide) {
         this._opts.defaultSide = this._opts.type == ElementTooltip.TYPE_VERTICAL ? 'top' : 'left'
@@ -11804,7 +11909,7 @@ ElementTooltip.prototype._initEvents = function(el) {
         addEvent(el, 'mouseleave', this._el_ml_event = this._onMouseLeave.bind(this));
     }
 
-    if (this._opts.showOnClick) {
+    if (!this._opts.autoShow && !this._opts.customShow) {
         addEvent(el, 'click', this._el_c_event = function() {
             if (this._isShown && this._opts.noHideOnClick) return;
             this.toggle(!this._isShown)
@@ -11827,7 +11932,6 @@ ElementTooltip.prototype._onMouseEnter = function(event) {
 
 ElementTooltip.prototype._onMouseLeave = function(event) {
     this._clearTimeouts();
-    this._isShown = false;
     this._hto = setTimeout(this._hide.bind(this), 200);
 }
 
@@ -11920,10 +12024,11 @@ ElementTooltip.prototype.show = function() {
 
     var contentEl = geByClass1('_eltt_content', this._ttel)
     if (this._opts.onFirstTimeShow && !this._firstTimeShown) {
-        this._firstTimeShown = true;
         this._opts.onFirstTimeShow.call(this, contentEl, this._ttel);
     }
-    this._opts.onShow && this._opts.onShow(contentEl);
+    this._opts.onShow && this._opts.onShow(contentEl, !this._firstTimeShown);
+
+    this._firstTimeShown = true;
 
     this.updatePosition();
 
@@ -12156,7 +12261,7 @@ ElementTooltip.prototype._clearTimeouts = function() {
 }
 
 ElementTooltip.prototype.getContent = function() {
-    return this._ttel;
+    return geByClass1('_eltt_content', this._ttel);
 }
 
 function isFullScreen() {

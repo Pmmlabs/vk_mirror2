@@ -2927,7 +2927,7 @@ if (!VK.Retargeting) {
                 return;
             }
 
-            (window.Image ? (new Image()) : document.createElement('img')).src = 'https://vk.com/rtrg?p=' + this.pixelCode + (event ? ('&event=' + event) : '');
+            (window.Image ? (new Image()) : document.createElement('img')).src = 'https://vk.com/rtrg?p=' + this.pixelCode + (event ? ('&event=' + encodeURIComponent(event)) : '');
         },
         Hit: function() {
             this.Event();
@@ -2937,18 +2937,72 @@ if (!VK.Retargeting) {
                 return;
             }
 
-            (window.Image ? (new Image()) : document.createElement('img')).src = 'https://vk.com/rtrg?p=' + this.pixelCode + '&audience=' + audienceID;
+            (window.Image ? (new Image()) : document.createElement('img')).src = 'https://vk.com/rtrg?p=' + this.pixelCode + '&audience=' + encodeURIComponent(audienceID);
         },
         ProductEvent: function(priceListID, event, params) {
             if (!this.pixelCode || !event || !priceListID) {
                 return;
             }
 
-            (window.Image ? (new Image()) : document.createElement('img')).src =
-                'https://vk.com/rtrg?p=' + this.pixelCode +
-                '&products_event=' + event +
-                '&price_list_id=' + priceListID +
-                (params ? ('&products_params=' + encodeURIComponent(JSON.stringify(params))) : '');
+            var url = 'https://vk.com/rtrg';
+            var productParams = params ? JSON.stringify(params) : '';
+            var requestParams = {
+                'p': this.pixelCode,
+                'products_event': event,
+                'price_list_id': priceListID,
+                'e': '1'
+            };
+            if (productParams) {
+                requestParams.products_params = productParams;
+            }
+
+            var query = Object.keys(requestParams).map(function(key) {
+                var segment = encodeURIComponent(key) + '=' + encodeURIComponent(requestParams[key]);
+                return segment;
+            }).join('&');
+
+            var requestUrl = url + '?' + query;
+
+            VK.Api.makeRequest(requestUrl, this.onDone.bind(this));
+        },
+        onDone: function(response) {
+            if (!response) {
+                return;
+            }
+
+            var resp;
+            try {
+                resp = JSON.parse(response);
+            } catch (e) {
+                return;
+            }
+
+            if (!resp || !resp.errors) {
+                return;
+            }
+            this.showErrors(resp.errors);
+        },
+        showErrors: function(errors) {
+            if (!errors && !errors.length) {
+                return;
+            }
+
+            var errorBegin = 'VK Pixel Error: ';
+
+            if (typeof errors === 'string') {
+                console.error(errorBegin + errors);
+                return;
+            }
+
+            var errorsLength = errors.length;
+
+            if (!errorsLength) {
+                return;
+            }
+
+            for (var i = 0; i < errorsLength; i++) {
+                console.error(errorBegin + errors[i]);
+            }
         }
     };
 }

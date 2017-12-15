@@ -6920,8 +6920,8 @@ var Wall = {
             ttChooser = new ElementTooltip(obj, {
                 content: '<div class="post_from_tt_choose _post_scroll_wrap">' + rows + '</div>',
                 appendToParent: true,
-                autoShow: false,
                 autoHide: true,
+                customShow: true,
                 defaultSide: 'bottom',
                 offset: function() {
                     return wall.isAdsCreatingPost(obj) ? [obj.offsetWidth / 2 + 8.5, -2] : [-10, -5];
@@ -7487,30 +7487,6 @@ WallUpload = {
         }
     }
 };
-
-var urlActiveExp = /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0]))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9�-����_\-]+\.)+(?:��|���|������|����|���))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)]*(&nbsp;|[ \t\r\n \u00A0])))/i,
-    urlInactiveExp = /(?:([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+(?:[a-z]{2,9}|xn--p1ai|xn--j1amh|xn--80asehdb|xn--80aswg))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$))|([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9�-����_\-]+\.)+(?:��|���|������|����|���))(\/.*?)?(\#.*?)?)(?:[\.!:;,\*\(\)&]*(&nbsp;|[ \t\r\n \u00A0]|$)))/i;
-
-function extractUrls(text, inactive) {
-    var rx = inactive ? urlInactiveExp : urlActiveExp,
-        matches;
-
-    var result = [];
-    while (text && (matches = text.match(rx))) {
-        text = text.substr(matches.index + matches[0].length);
-        var offset = 0;
-        if (!matches[4]) {
-            offset = 7;
-        }
-        result.push({
-            url: matches[2 + offset],
-            query: matches[5 + offset] || '',
-            domain: matches[4 + offset]
-        });
-    }
-
-    return result;
-}
 
 Composer = {
     init: function(el, options) {

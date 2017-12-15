@@ -672,7 +672,7 @@ var Videoview = {
                 mvcur.addButtonTT = mvcur.addButtonTT || new ElementTooltip(r, {
                     cls: "mv_add_eltt",
                     elClassWhenShown: "mv_no_active",
-                    showOnClick: !0,
+                    autoShow: !1,
                     noHideOnClick: !0,
                     onFirstTimeShow: function(e) {
                         function i(e) {

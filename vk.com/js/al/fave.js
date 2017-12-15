@@ -9,22 +9,22 @@ var Fave = {
     },
     getLinkInfo: function(e) {
         var r = trim(e.value).replace(/\s/g, "+"),
-            n = curBox();
+            a = curBox();
         return r ? (cur.lnkSent = r, void ajax.post("al_fave.php", {
             act: "get_link_info",
             lnk: r,
             hash: cur.fave_hash
         }, {
-            onDone: function(n, a, o, s) {
-                return r != cur.lnkSent ? !1 : (Fave.hideMessage(), 0 > n ? (Fave.showMessage(a, !0), elfocus(e)) : (cur.lnk = a, ge("fave_al_link_info").innerHTML = o, placeholderInit("fave_al_position"), elfocus("fave_al_position"), void 0))
+            onDone: function(a, n, o, s) {
+                return r != cur.lnkSent ? !1 : (Fave.hideMessage(), 0 > a ? (Fave.showMessage(n, !0), elfocus(e)) : (cur.lnk = n, ge("fave_al_link_info").innerHTML = o, placeholderInit("fave_al_position"), elfocus("fave_al_position"), void 0))
             },
-            progress: n.progress
+            progress: a.progress
         })) : elfocus(e)
     },
     showMessage: function(e, r) {
-        var n = curBox() ? ge("fave_edit_box_msg") : ge("fave_edit_msg"),
-            a = domFC(n);
-        a && (a.innerHTML = e, n.className = r ? "info" == r ? "msg info_msg" : "msg error" : "msg ok_msg", show(n))
+        var a = curBox() ? ge("fave_edit_box_msg") : ge("fave_edit_msg"),
+            n = domFC(a);
+        n && (n.innerHTML = e, a.className = r ? "info" == r ? "msg info_msg" : "msg error" : "msg ok_msg", show(a))
     },
     hideMessage: function() {
         var e = curBox() ? ge("fave_edit_box_msg") : ge("fave_edit_msg");
@@ -32,20 +32,20 @@ var Fave = {
     },
     doAddLink: function(e) {
         var r = curBox(),
-            n = ge("fave_al_position");
+            a = ge("fave_al_position");
         if (e || !isVisible(r.progress)) {
-            var a = val(n);
+            var n = val(a);
             ajax.post("al_fave.php", {
                 act: "add_link",
                 link: cur.lnk,
-                desc: a,
+                desc: n,
                 hash: cur.fave_hash
             }, {
-                onDone: function(e, n) {
+                onDone: function(e, a) {
                     if (e) {
-                        var a, o;
-                        ge("empty_links") ? (o = ge("empty_links"), a = o.parentNode) : ge("links") && (o = ge("links"), a = o.parentNode), a.removeChild(o), a.innerHTML += n, r.hide()
-                    } else Fave.showMessage(n, !0)
+                        var n, o;
+                        ge("empty_links") ? (o = ge("empty_links"), n = o.parentNode) : ge("links") && (o = ge("links"), n = o.parentNode), n.removeChild(o), n.innerHTML += a, r.hide()
+                    } else Fave.showMessage(a, !0)
                 },
                 onFail: function() {},
                 progress: r.progress
@@ -54,34 +54,34 @@ var Fave = {
     },
     deleteLink: function(e, r) {
         window.tooltips && tooltips.hideAll();
-        var n = e.id.substr(6),
-            a = n.split("_");
+        var a = e.id.substr(6),
+            n = a.split("_");
         ajax.post("al_fave.php", {
             act: "unfave_link",
-            type: a[0],
-            owner_id: a[1],
-            item_id: a[2],
+            type: n[0],
+            owner_id: n[1],
+            item_id: n[2],
             hash: r
         }, {
             onDone: function(e, r) {
-                e && (ge("link" + n).innerHTML = r)
+                e && (ge("link" + a).innerHTML = r)
             },
             onFail: function() {},
             showProgress: function() {
-                hide("unfave" + n), show("unfave_progress" + n)
+                hide("unfave" + a), show("unfave_progress" + a)
             },
             hideProgress: function() {
-                hide("unfave_progress" + n), show("unfave" + n)
+                hide("unfave_progress" + a), show("unfave" + a)
             }
         })
     },
     showMore: function(e, r) {
         cur.disableAutoMore = !1, r = r || !1;
-        var n = ge("fave_rows_next_" + e);
-        if (faveRows = domPN(n), !r && n)
-            for (; n.firstChild;) faveRows.insertBefore(n.firstChild, n), r = !0;
+        var a = ge("fave_rows_next_" + e);
+        if (faveRows = domPN(a), !r && a)
+            for (; a.firstChild;) faveRows.insertBefore(a.firstChild, a), r = !0;
         if (!cur.isListLoading) {
-            var a = ge("show_more_" + e),
+            var n = ge("show_more_" + e),
                 o = !1,
                 s = function(e) {
                     e.keyCode == KEY.ESC && (o = !0)
@@ -96,17 +96,17 @@ var Fave = {
                     if (removeEvent(document, "keyup", s), o) return void(cur.disableAutoMore = !0);
                     if (i) {
                         var u, l = ce("div"),
-                            f = r ? n : faveRows;
-                        for (l.innerHTML = i, r || f.removeChild(n); u = l.firstChild;) f.appendChild(u);
-                        r || f.appendChild(n)
+                            v = r ? a : faveRows;
+                        for (l.innerHTML = i, r || v.removeChild(a); u = l.firstChild;) v.appendChild(u);
+                        r || v.appendChild(a)
                     }
-                    t ? hide(a) : show("show_more_" + e), cur.faveData[e + "Offset"] = c
+                    t ? hide(n) : show("show_more_" + e), cur.faveData[e + "Offset"] = c
                 },
                 showProgress: function() {
-                    cur.isListLoading = !0, lockButton(a)
+                    cur.isListLoading = !0, lockButton(n)
                 },
                 hideProgress: function() {
-                    cur.isListLoading = !1, unlockButton(a)
+                    cur.isListLoading = !1, unlockButton(n)
                 },
                 cache: 1
             })
@@ -117,36 +117,36 @@ var Fave = {
             var e = ge("show_more_" + cur.section);
             if (isVisible(e)) {
                 var r = document.documentElement,
-                    n = window.innerHeight || r.clientHeight || bodyNode.clientHeight,
-                    a = scrollGetY();
-                a + n + 200 > e.offsetTop && Fave.showMore(cur.section)
+                    a = window.innerHeight || r.clientHeight || bodyNode.clientHeight,
+                    n = scrollGetY();
+                n + a + 200 > e.offsetTop && Fave.showMore(cur.section)
             }
         }
     },
     searchSummary: function(e) {
         var r = e.length;
         val("users" == cur.section ? "fave_users_count" : "fave_users_online_count", r);
-        var n = ge("fave_list_empty_" + cur.section);
+        var a = ge("fave_list_empty_" + cur.section);
         if (0 == r) {
-            var a = cur.lang.fave_search_query_not_found,
+            var n = cur.lang.fave_search_query_not_found,
                 o = ge("fave_search").value.replace(/([<>&#]*)/g, "");
-            n.innerHTML = a.replace("{search}", "<b>" + o + "</b>"), show(n)
-        } else hide(n)
+            a.innerHTML = n.replace("{search}", "<b>" + o + "</b>"), show(a)
+        } else hide(a)
     },
     drawUsers: function(e, r) {
         if (e) {
             this.searchSummary(e);
-            var n = ge("users" == cur.section ? "users_content" : "users_online_content");
-            n.innerHTML = "";
-            for (var a = 0; a < e.length; a++) {
-                var o = e[a];
-                if (n.innerHTML += cur.faveData.userRows[o.id], a > 28) {
+            var a = ge("users" == cur.section ? "users_content" : "users_online_content");
+            a.innerHTML = "";
+            for (var n = 0; n < e.length; n++) {
+                var o = e[n];
+                if (a.innerHTML += cur.faveData.userRows[o.id], n > 28) {
                     setTimeout(function() {
-                        for (var r = "", o = a + 1; o < e.length; o++) {
+                        for (var r = "", o = n + 1; o < e.length; o++) {
                             var s = e[o];
                             r += cur.faveData.userRows[s.id]
                         }
-                        n.innerHTML += r
+                        a.innerHTML += r
                     }, 0);
                     break
                 }
@@ -157,8 +157,8 @@ var Fave = {
                     val: "<em>$1</em>"
                 };
                 var s = geByClass("fans_fan_name", "users" == cur.section ? "users_content" : "users_online_content");
-                for (var a in s) {
-                    var i = geByClass1("mem_link", s[a]);
+                for (var n in s) {
+                    var i = geByClass1("mem_link", s[n]);
                     i && (i.innerHTML = i.innerHTML.replace(cur.selection.re, cur.selection.val))
                 }
             }
@@ -179,13 +179,13 @@ var Fave = {
             e && e()
         })
     },
-    reorderFave: function(e, r, n) {
-        var a = e.getAttribute("data-id"),
+    reorderFave: function(e, r, a) {
+        var n = e.getAttribute("data-id"),
             o = r ? r.getAttribute("data-id") : null,
-            s = n ? n.getAttribute("data-id") : null;
+            s = a ? a.getAttribute("data-id") : null;
         ajax.post("al_fave.php", {
             act: "reorder_users",
-            uid: a,
+            uid: n,
             before: o,
             after: s
         })
@@ -224,22 +224,22 @@ var Fave = {
             onReorder: Fave.reorderFave
         })
     },
-    remove: function(e, r, n, a, o) {
+    remove: function(e, r, a, n, o) {
         return e.tt && e.tt.destroy && e.tt.destroy(), showFastBox({
             title: getLang("global_warning"),
             dark: 1,
             bodyStyle: "padding: 20px; line-height: 160%;"
-        }, getLang("fave_sure_delete").replace("{user}", n), getLang("global_delete"), function() {
+        }, getLang("fave_sure_delete").replace("{user}", a), getLang("global_delete"), function() {
             isVisible(curBox().progress) || ajax.post("al_fave.php", {
                 act: "unfave_user",
                 uid: r,
-                hash: a
+                hash: n
             }, {
                 onDone: function() {
                     val("fave_search", ""), cur.prevQuery = "";
-                    for (var n = 0, a = cur.faveData.faveUsers.length; a > n; ++n)
-                        if (cur.faveData.faveUsers[n].id == r) {
-                            cur.faveData.faveUsers.splice(n, 1);
+                    for (var a = 0, n = cur.faveData.faveUsers.length; n > a; ++a)
+                        if (cur.faveData.faveUsers[a].id == r) {
+                            cur.faveData.faveUsers.splice(a, 1);
                             break
                         }
                     if (!cur.faveData.faveUsers.length) return nav.reload();
@@ -250,6 +250,24 @@ var Fave = {
                 progress: curBox().progress
             })
         }, getLang("global_cancel")), cancelEvent(o)
+    },
+    removeArticle: function(e, r, a) {
+        addClass(e, "removed"), ajax.post("al_fave.php", {
+            act: "defave_article",
+            link: r,
+            hash: a
+        }, {
+            onFail: removeClass.pbind(e, "removed")
+        })
+    },
+    restoreArticle: function(e, r, a) {
+        removeClass(e, "removed"), ajax.post("al_fave.php", {
+            act: "enfave_article",
+            link: r,
+            hash: a
+        }, {
+            onFail: addClass.pbind(e, "removed")
+        })
     }
 };
 try {
