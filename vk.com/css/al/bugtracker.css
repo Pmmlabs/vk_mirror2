@@ -2946,3 +2946,9 @@
     cursor: default;
     text-align: center
 }
+
+.bugtracker_members_notify_text {
+    width: 100%;
+    margin: 0;
+    height: 160px
+}

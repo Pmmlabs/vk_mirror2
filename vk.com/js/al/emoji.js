@@ -875,6 +875,11 @@ if (!window.Emoji) {
                     removeEvent(opts.txt, 'blur', opts.onTxtBlur);
                     delete opts.onTxtBlur;
                 }
+
+                if (opts.onTxtFocus) {
+                    removeEvent(opts.txt, 'focus', opts.onTxtFocus);
+                }
+
                 opts.onTxtFocus = function() {
                     var stCont = opts.txt && geByClass1('_sticker_hints', domPN(opts.txt));
                     if (stCont && !isVisible(stCont)) {

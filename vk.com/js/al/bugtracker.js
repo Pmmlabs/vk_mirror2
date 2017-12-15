@@ -1127,40 +1127,43 @@ var BugTracker = {
     initInvitesSearch: function(e) {
         function t(r, o) {
             if (Object.getPrototypeOf(this) !== t.prototype) throw new TypeError('Invites should be called via "new"');
-            var a = 0,
-                n = !1;
+            var a = e.initialMembersCount,
+                n = 0,
+                i = !1;
             this.search = function() {
-                a = 0, n = !1, this.loadMoreResults(!0)
+                n = 0, this.loadMoreResults(!0)
             }, this.loadMoreResults = function(t) {
-                if (!n) {
-                    n = !0;
-                    var i = val("bt_invites_search_" + e.randomId);
+                if (!i) {
+                    i = !0;
+                    var s = val("bt_invites_search_" + e.randomId);
                     ajax.post("bugtracker?act=a_product_members_search", extend(this.filter, {
-                        text: i,
+                        text: s,
                         product: o,
                         hash: r,
                         relation: e.relation,
-                        offset: a || 0
+                        offset: n || 0
                     }), {
-                        onDone: function(r) {
-                            this.appendReporters(t, i, r), t && 3 == e.relation && setTimeout(this.selectForInviteChanged.bind(this), 0)
+                        onDone: function(r, o) {
+                            i = !1, a = o, this.appendReporters(t, s, r), t && 3 == e.relation && setTimeout(this.selectForInviteChanged.bind(this), 0)
                         }.bind(this),
                         onFail: function() {
-                            n = !1
+                            i = !1
                         }
                     })
                 }
             }, this.appendReporters = function(t, r, o) {
-                if (n = !1, r === val("bt_invites_search_" + e.randomId)) {
-                    var i = ge("bugtracker_invites_list_" + e.randomId);
-                    t && each(geByClass("bt_reporter_row", i), function(e, t) {
+                if (i = !1, r === val("bt_invites_search_" + e.randomId)) {
+                    var a = ge("bugtracker_invites_list_" + e.randomId);
+                    t && each(geByClass("bt_reporter_row", a), function(e, t) {
                         var r = o.findIndex(function(e) {
                             return e.uid == attr(t, "data-id")
                         }); - 1 === r && re(t)
                     });
-                    var s = BugTracker.appendReporters(o, !1, !0, i, e.relation);
-                    0 === s && (n = t), a += s
+                    var s = BugTracker.appendReporters(o, !1, !0, a, e.relation);
+                    0 === s && (i = t), n += s
                 }
+            }, this.getLastSearchResultsCount = function() {
+                return a
             }
         }
         t.prototype = {
@@ -1322,6 +1325,31 @@ var BugTracker = {
                         relation: e.relation
                     })
                 })
+            },
+            notifyFound: function(t) {
+                var r = {
+                        grey: !0,
+                        width: "550px",
+                        title: getLang("bugs_t_notify_found"),
+                        bodyStyle: "padding:20px 25px 15px"
+                    },
+                    o = new MessageBox(r);
+                o.content('<textarea class="text dark bugtracker_members_notify_text" id="bugtracker_members_notify_text" placeholder="' + getLang("bugs_notify_write_message_placeholder").replace('"', "&quot;") + '"></textarea>'), o.addButton(getLang("box_send"), function(r) {
+                    var o = val("bt_invites_search_" + e.randomId);
+                    ajax.post("bugtracker?act=a_product_members_notify_found", extend(this.filter, {
+                        text: o,
+                        product: e.productId,
+                        relation: e.relation,
+                        message: val("bugtracker_members_notify_text"),
+                        hash: t
+                    }), {
+                        showProgress: lockButton.pbind(r),
+                        hideProgress: unlockButton.pbind(r),
+                        onDone: function() {
+                            curBox().hide()
+                        }
+                    })
+                }), o.setControlsText(getLang("bugs_t_notify_recipients_count", this.getLastSearchResultsCount())), o.show(), autosizeSetup("bugtracker_members_notify_text", {})
             }
         };
         var r = new t(e.searchHash, e.productId);
