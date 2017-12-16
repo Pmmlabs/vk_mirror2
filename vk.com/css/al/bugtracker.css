@@ -3095,3 +3095,29 @@
     margin: 0;
     height: 160px
 }
+
+.bugtracker_adm_device_edit_dialog .bugtracker_adm_device_edit_field_title {
+    color: #656565;
+    line-height: 17px;
+    margin-top: 6px;
+    width: 50%
+}
+
+.bugtracker_adm_device_edit_dialog .bugtracker_adm_device_edit_field>* {
+    width: 197px
+}
+
+.bugtracker_adm_device_edit_dialog .bugtracker_adm_device_edit_line {
+    white-space: nowrap;
+    margin-bottom: 15px
+}
+
+.bugtracker_adm_device_edit_dialog .bugtracker_adm_device_edit_line>* {
+    display: inline-block;
+    vertical-align: top;
+    text-align: initial
+}
+
+.bugtracker_adm_device_edit_dialog .bugtracker_adm_device_edit_line:last-child {
+    margin-bottom: 0
+}

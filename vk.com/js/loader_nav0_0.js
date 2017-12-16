@@ -351,7 +351,7 @@ var stVersions = {
     'bugs.js': 3874995669,
     'bugs.css': 12187222135,
     'bugtracker.js': 1328641420,
-    'bugtracker.css': 27602705533,
+    'bugtracker.css': 26396862519,
     'login.css': 15380081988,
     'login.js': 1216110060,
     'upload.js': 16891470,
@@ -626,4 +626,4 @@ var stTypes = {
         'lazyload.js': 1
     }
 };
-var _rnd = 3412;
+var _rnd = 1544;
