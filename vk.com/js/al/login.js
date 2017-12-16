@@ -13,7 +13,7 @@ var Login = {
                     expire_input: val("expire_input")
                 }
             }), !1) : (notaBene(o), !1) : (notaBene(r), !1) : !0
-        }, !0
+        }, window.loginByCredential && (r.onclick = loginByCredential, o.onclick = loginByCredential), !0
     },
     showFastRestore: function(e) {
         var r = gpeByClass("_retore_wrap", e);

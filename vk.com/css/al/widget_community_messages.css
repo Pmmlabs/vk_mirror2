@@ -567,7 +567,7 @@ a {
 }
 
 .wcm_fwd_ic {
-    background: url(/images/icons/mono_iconset.png?3) no-repeat 0px -294px;
+    background: url(/images/icons/mono_iconset.png?4) no-repeat 0px -294px;
     width: 12px;
     height: 12px
 }
@@ -576,7 +576,7 @@ a {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .wcm_fwd_ic {
-        background-image: url(/images/icons/mono_iconset_2x.png?3);
+        background-image: url(/images/icons/mono_iconset_2x.png?4);
         background-size: 12px 417px
     }
 }

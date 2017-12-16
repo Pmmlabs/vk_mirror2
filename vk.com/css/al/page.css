@@ -346,14 +346,14 @@
     margin: 2px 0px -1px;
     width: 13px;
     height: 13px;
-    background: url(/images/icons/mono_iconset.png?3) no-repeat left -406px
+    background: url(/images/icons/mono_iconset.png?4) no-repeat left -406px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .post_top_info_wall_mention_icon {
-        background-image: url(/images/icons/mono_iconset_2x.png?3);
+        background-image: url(/images/icons/mono_iconset_2x.png?4);
         background-size: 12px 417px
     }
 }
@@ -2625,7 +2625,7 @@ a.page_media_link_desc {
 
 .media_audio_icon {
     float: left;
-    background: url(/images/icons/mono_iconset.png?3) no-repeat left -222px;
+    background: url(/images/icons/mono_iconset.png?4) no-repeat left -222px;
     width: 13px;
     height: 11px
 }
@@ -2634,14 +2634,14 @@ a.page_media_link_desc {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .media_audio_icon {
-        background-image: url(/images/icons/mono_iconset_2x.png?3);
+        background-image: url(/images/icons/mono_iconset_2x.png?4);
         background-size: 12px 417px
     }
 }
 
 .media_doc_icon {
     float: left;
-    background: url(/images/icons/mono_iconset.png?3) no-repeat left -280px;
+    background: url(/images/icons/mono_iconset.png?4) no-repeat left -280px;
     width: 11px;
     height: 11px;
     margin: 0 3px 0 -1px
@@ -2651,7 +2651,7 @@ a.page_media_link_desc {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .media_doc_icon {
-        background-image: url(/images/icons/mono_iconset_2x.png?3);
+        background-image: url(/images/icons/mono_iconset_2x.png?4);
         background-size: 12px 417px
     }
 }
@@ -2674,7 +2674,7 @@ a.page_media_link_desc {
 .wall_module .media_preview .note b,
 .wall_module .media_preview .poll b,
 .wall_module .media_preview .share b {
-    background: url(/images/icons/mono_iconset.png?3) no-repeat left -236px;
+    background: url(/images/icons/mono_iconset.png?4) no-repeat left -236px;
     width: 15px;
     height: 11px;
     margin-top: 4px
@@ -2687,7 +2687,7 @@ a.page_media_link_desc {
     .wall_module .media_preview .note b,
     .wall_module .media_preview .poll b,
     .wall_module .media_preview .share b {
-        background-image: url(/images/icons/mono_iconset_2x.png?3);
+        background-image: url(/images/icons/mono_iconset_2x.png?4);
         background-size: 12px 417px
     }
 }
@@ -5631,14 +5631,14 @@ body[data-useragent=safari] h2.page_name {
 
 .current_app {
     padding-left: 17px;
-    background: url(/images/icons/mono_iconset.png?3) no-repeat left -57px
+    background: url(/images/icons/mono_iconset.png?4) no-repeat left -57px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .current_app {
-        background-image: url(/images/icons/mono_iconset_2x.png?3);
+        background-image: url(/images/icons/mono_iconset_2x.png?4);
         background-size: 12px 417px
     }
 }

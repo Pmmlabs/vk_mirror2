@@ -434,7 +434,7 @@
 #privacy_l_item112 .privacy_item_icon,
 #privacy_l_item113 .privacy_item_icon,
 #privacy_l_item114 .privacy_item_icon {
-    background-image: url(/images/icons/mono_iconset.png?3);
+    background-image: url(/images/icons/mono_iconset.png?4);
     float: right;
     background-position: left 0;
     background-repeat: no-repeat;
@@ -460,7 +460,7 @@
     #privacy_l_item112 .privacy_item_icon,
     #privacy_l_item113 .privacy_item_icon,
     #privacy_l_item114 .privacy_item_icon {
-        background-image: url(/images/icons/mono_iconset_2x.png?3);
+        background-image: url(/images/icons/mono_iconset_2x.png?4);
         background-size: 12px 417px
     }
 }

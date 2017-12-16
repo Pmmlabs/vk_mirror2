@@ -2143,7 +2143,7 @@ var Videoview = {
         },
         minimize: function(e) {
             if (e && cancelEvent(e), mvcur.minimized) return !1;
-            mvcur.controlsVisibility = isVisible("mv_info"), show("mv_min_header"), hide("mv_info"), hide("mv_top_controls"), isVisible("mv_approve") ? (mvcur.needShowApprove = !0, hide("mv_approve")) : mvcur.needShowApprove = !1, Wall.cancelEdit(!0), addClass(mvLayerWrap, "mv_minimized"), mvcur.minSize || (mvcur.minSize = ls.get("mv_minSize"));
+            show("mv_min_header"), hide("mv_info"), hide("mv_top_controls"), isVisible("mv_approve") ? (mvcur.needShowApprove = !0, hide("mv_approve")) : mvcur.needShowApprove = !1, Wall.cancelEdit(!0), addClass(mvLayerWrap, "mv_minimized"), mvcur.minSize || (mvcur.minSize = ls.get("mv_minSize"));
             var i = "mv_dark";
             removeClass(mvLayerWrap, i), removeClass(layerBG, i), layers.fullhide = !1, mvcur.minSize && Videoview.enabledResize() && mvcur.minSize.wrap.w || (mvcur.minSize = {
                 wrap: {
@@ -2204,7 +2204,7 @@ var Videoview = {
             if (mvcur.minimized) {
                 window.wkcur && "story" == wkcur.type && window.Stories && WkView.hide(!1, !0), o || layerQueue.push(), i || (layerQueue.hide(), setTimeout(function() {
                     mvcur.noHistory = 1, layerQueue.noHistory(), layers.wrapshow(mvLayerWrap, .7), layers.fullhide = Videoview.hide
-                }, 0)), Videoview.hidePlayer(!0), mvcur.controlsVisibility && show("mv_info"), hide("mv_min_header"), show("mv_top_controls"), mvcur.minimized = !1, removeClass(mvLayerWrap, "mv_minimized"), Videoview.restoreStyle("mvLayerWrap", mvLayerWrap);
+                }, 0)), Videoview.hidePlayer(!0), mvcur.minimized = !1, removeClass(mvLayerWrap, "mv_minimized"), Videoview.restoreStyle("mvLayerWrap", mvLayerWrap), toggle("mv_info", !mvcur.options.hideInfo && !mvcur.mvData.noControls && !mvcur.minimized), hide("mv_min_header"), show("mv_top_controls");
                 var t = "mv_dark";
                 return addClass(mvLayerWrap, t), addClass(layerBG, t), mvcur.needShowApprove && (mvcur.needShowApprove = !1, show("mv_approve")), Videoview.restoreStyle("mvContainer", "mv_container"), mvcur.mvPlayer && Videoview.restoreStyle("mvPlayer", mvcur.mvPlayer), setStyle("mv_player_box", {
                     width: "",

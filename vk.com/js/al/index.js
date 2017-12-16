@@ -15,7 +15,7 @@ var Index = {
                     expire_input: val("index_expire_input")
                 }
             }), !1) : (notaBene(n), !1) : (notaBene(t), !1) : !0
-        }, window.onReLoginDone = function(e) {
+        }, window.loginByCredential && (t.onclick = loginByCredential, n.onclick = loginByCredential), window.onReLoginDone = function(e) {
             location.href = e
         }, window.onReLoginFailed = function(e) {
             -1 === e && (location.href = location.href.replace(/^http:/, "https:"))
@@ -150,9 +150,9 @@ var Index = {
             r = "undefined" != typeof window.outerHeight ? window.outerHeight : document.body.clientHeight - 22,
             s = 640,
             d = 340,
-            u = parseInt(o + (a - s) / 2, 10),
-            c = parseInt(i + (r - d) / 2.5, 10);
-        window.open(n, "fb_sign", "width=" + s + ",height=" + d + ",left=" + u + ",top=" + c);
+            c = parseInt(o + (a - s) / 2, 10),
+            u = parseInt(i + (r - d) / 2.5, 10);
+        window.open(n, "fb_sign", "width=" + s + ",height=" + d + ",left=" + c + ",top=" + u);
         return !1
     },
     fbFinish: function(e) {

@@ -231,7 +231,8 @@ var mobPlatforms = {
 var browserFeatures = {
     // Detect wheel event
     wheelEvent: 'onwheel' in ce('div') ? 'wheel' : (document.onmousewheel !== void 0 ? 'mousewheel' : (browser.mozilla ? 'MozMousePixelScroll' : 'DOMMouseScroll')),
-    hasBoundingClientRect: 'getBoundingClientRect' in ce('div')
+    hasBoundingClientRect: 'getBoundingClientRect' in ce('div'),
+    cmaEnabled: navigator.credentials && navigator.credentials.preventSilentAccess && vk.cma
 };
 
 (function() {
@@ -8175,8 +8176,9 @@ window.__qlClear = function() {
         clearTimeout(__qlTimer);
     }, 2000);
 }
-window.onLoginDone = function() {
+window.onLoginDone = function(userUrl, userData) {
     __qlClear();
+    storePasswordCredential(userData);
     nav.reload({
         force: true,
         from: 6
@@ -8242,6 +8244,18 @@ function onLoginReCaptcha(key, lang) {
             window.qloginBox = false;
         }
     });
+}
+
+function storePasswordCredential(params) {
+    if (!browserFeatures.cmaEnabled) return;
+
+    var cred = new PasswordCredential({
+        id: ge('quick_email').value,
+        password: ge('quick_pass').value,
+        name: params.name,
+        iconURL: params.photo_50
+    });
+    navigator.credentials.store(cred);
 }
 
 function callHub(func, count) {

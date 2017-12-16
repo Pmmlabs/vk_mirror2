@@ -336,7 +336,7 @@ td.labeled.jobs_apply_doc {
 
 .jobs_apply_doc_icon {
     padding-left: 15px;
-    background: url(/images/icons/mono_iconset.png?3) no-repeat 0 -275px;
+    background: url(/images/icons/mono_iconset.png?4) no-repeat 0 -275px;
     overflow: hidden;
     text-overflow: ellipsis
 }
@@ -345,7 +345,7 @@ td.labeled.jobs_apply_doc {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .jobs_apply_doc_icon {
-        background-image: url(/images/icons/mono_iconset_2x.png?3);
+        background-image: url(/images/icons/mono_iconset_2x.png?4);
         background-size: 12px 417px
     }
 }
