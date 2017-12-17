@@ -901,6 +901,10 @@ body.body_helpdesk_small_sb .left_menu_nav {
     margin: 6px 0
 }
 
+.helpdesk_photos_choose_upload_area_cont.fixed {
+    width: 638px
+}
+
 .helpdesk_mark_note_tt {
     min-width: 200px;
     max-width: 350px

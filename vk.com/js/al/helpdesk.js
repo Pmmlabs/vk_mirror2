@@ -1335,7 +1335,7 @@ var Helpdesk = {
             to_id: e
         }, {
             onDone: function(e, s, a) {
-                domInsertBefore(cf(e), "photos_choose_clear"), attr(t, "offset", s), a && hide(t)
+                domInsertBefore(cf(e), ge("photos_choose_clear")), attr(t, "offset", s), a && hide(t)
             },
             onFail: removeClass.pbind(t, "photos_choose_more_loading"),
             showProgress: addClass.pbind(t, "photos_choose_more_loading"),

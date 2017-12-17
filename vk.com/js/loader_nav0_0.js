@@ -333,8 +333,8 @@ var stVersions = {
     'tags_dd.css': 14217542120,
     'tasks.js': 4178217651,
     'tasks.css': 11969174007,
-    'helpdesk.js': 1438408908,
-    'helpdesk.css': 16966458907,
+    'helpdesk.js': 785695637,
+    'helpdesk.css': 18049384057,
     'tickets.js': 3275479332,
     'tickets.css': 21985270862,
     'faq.js': 2812535921,
@@ -538,9 +538,9 @@ var stVersions = {
     'internal/patterns_info.css': 14281439835,
     'article.css': 34634000501,
     'article_editor.css': 31158681648,
-    'cmodules/web/article.js': 23826726202,
-    'cmodules/web/article_layer.js': 15480386240,
-    'article_view.js': 12841030705,
+    'cmodules/web/article.js': 23510223483,
+    'cmodules/web/article_layer.js': 17149436502,
+    'article_view.js': 14510080967,
     'internal/cvkmobile.css': 13847787035,
     'internal/cvkmobile.js': 3588813277,
     'shortener.js': 16413120,
@@ -626,4 +626,4 @@ var stTypes = {
         'lazyload.js': 1
     }
 };
-var _rnd = 1156;
+var _rnd = 4280;
