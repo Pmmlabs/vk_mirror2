@@ -175,14 +175,14 @@
     background-position: right 7px
 }
 
-.media_selector .submit_post_box.shown .ms_item_article {
+.submit_post_box.shown .ms_item_article {
     margin-left: 0;
     border-left: none;
     width: 22px;
     padding-left: 0
 }
 
-.media_selector .submit_post_box.shown .ms_item_article:before {
+.submit_post_box.shown .ms_item_article:before {
     left: 0
 }
 

@@ -485,7 +485,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         var i = new AudioPlaylist(AudioPlaylist.TYPE_TEMP);
         i.mergeWith({
             list: this._sortedList
-        }), getAudioPlayer().play(i.getAudioAt(0), i, t), this._initAudioRowsAutoList(), this._sortDD && this._sortDD.select("random", !0)
+        }), getAudioPlayer().play(i.getAudioAt(0), i, t), this._disableAudioRowsSorter(), this._initAudioRowsAutoList(), this._sortDD && this._sortDD.select("random", !0)
     }.bind(this)), statlogsValueEvent("audio_sort_stat", "audio_sort", "shuffle_page", this.isLayer() ? "layer" : "page")
 }, AudioPage.prototype._onSortSelected = function(e) {
     var t = this.getPageCurrentPlaylist();

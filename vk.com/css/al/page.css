@@ -8565,6 +8565,17 @@ button.wall_block_app_btn {
     margin-bottom: 24px
 }
 
+.article_snippet .article_snippet__deleted_text:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20fill%3D%22%23828A99%22%20d%3D%22M10%205V4a1%201%200%200%201%201-1h2a1%201%200%200%201%201%201v1h5a1%201%200%200%201%200%202H5a1%201%200%201%201%200-2h5zM6%208h12v10a2%202%200%200%201-2%202H8a2%202%200%200%201-2-2V8zm3%202a1%201%200%200%200-1%201v6a1%201%200%200%200%202%200v-6a1%201%200%200%200-1-1zm6%200a1%201%200%200%200-1%201v6a1%201%200%200%200%202%200v-6a1%201%200%200%200-1-1zm-3%200a1%201%200%200%200-1%201v6a1%201%200%200%200%202%200v-6a1%201%200%200%200-1-1z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    width: 24px;
+    height: 24px;
+    margin-left: -30px;
+    margin-top: -5px
+}
+
 .article_snippet.article_snippet__deleted .article_snippet__fade {
     display: none
 }
