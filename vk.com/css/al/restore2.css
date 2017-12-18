@@ -1,0 +1,252 @@
+#restore2_css {
+    display: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+#restore2 {
+    padding: 20px
+}
+
+.restore2_banned_warn {
+    color: #800;
+    cursor: pointer;
+    font-size: 11px
+}
+
+#restore2_admins_table .paginated_table_cell {
+    white-space: nowrap
+}
+
+#restore2_admins_table .paginated_table_row {
+    cursor: pointer
+}
+
+#restore2_admins_table .paginated_table_row:hover .paginated_table_cell {
+    background-color: #dae1e8
+}
+
+#restore2_admins_table .paginated_table_row.my_row .paginated_table_cell {
+    background-color: #f4ebd6
+}
+
+.restore2_admins_tt.right .tail_wrap {
+    position: absolute;
+    top: 25px;
+    bottom: auto;
+    left: -7px;
+    z-index: 2001
+}
+
+.restore2_admins_tt.right .tail {
+    width: 8px;
+    height: 11px;
+    background: url(/images/ddtooltip.png) -8px 0 no-repeat;
+    background-position: 0 0
+}
+
+.restore2_admins_tt.right .hint_wrap {
+    width: 200px;
+    padding: 4px 0
+}
+
+.restore2_admins_tt.right .restore2_admins_tt_row {
+    display: block;
+    margin-bottom: 5px
+}
+
+.restore2_admins_tt.right .restore2_admins_tt_row.hint_title {
+    font-weight: 700
+}
+
+.restore2_admins_tt.right .restore2_admins_tt_row:last-child {
+    margin-bottom: 0
+}
+
+.restore2_admins_tt.right span.restore2_admins_tt_row {
+    color: #000
+}
+
+.restore2_admins_notes {
+    display: none;
+    margin-top: 20px
+}
+
+.restore2_admin_date_controls {
+    padding: 0 14px
+}
+
+.restore2_admin_date_controls .summary_tab,
+.restore2_admin_date_controls .summary_tab_sel {
+    padding-top: 11px
+}
+
+.restore2_admin_date_controls .restore2_admin_date_next,
+.restore2_admin_date_controls .restore2_admin_date_prev {
+    display: block;
+    width: 28px;
+    height: 28px;
+    border: 1px solid #dae1e8
+}
+
+.restore2_admin_date_controls .restore2_admin_date_prev {
+    background: #fff url(/images/stat_arrow_left.gif) 6px 6px no-repeat;
+    margin-top: 7px
+}
+
+.restore2_admin_date_controls .restore2_admin_date_next {
+    background: #fff url(/images/stat_arrow_right.gif) 6px 6px no-repeat;
+    margin-top: 7px;
+    margin-right: 20px
+}
+
+.restore2_admin_date_controls .restore2_admin_this_date {
+    margin: 7px 8px 0
+}
+
+.restore2_stats_wrap {
+    margin: 0 -10px
+}
+
+.restore2_dph_table {
+    margin: 15px auto;
+    border-collapse: collapse;
+    width: 650px
+}
+
+.restore2_dph_table>thead>tr>th {
+    border-bottom: 1px solid #d3d9de;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 1px 3px;
+    text-align: center;
+    color: #5c5c5c
+}
+
+.restore2_dph_table>tbody>tr>td {
+    border-bottom: 1px solid #e7e8ec;
+    padding: 10px
+}
+
+.restore2_dph_row_count,
+.restore2_dph_row_photo {
+    text-align: center
+}
+
+.restore2_dph_row_info {
+    color: #939393
+}
+
+.restore2_dph_form {
+    border-bottom: 1px solid #e7e8ec;
+    padding: 10px 0;
+    background: #f7f7f7
+}
+
+.restore2_dph_form .text {
+    width: 470px
+}
+
+.restore2_dph_form_inner,
+.restore2_dph_button_row {
+    margin: 0 auto;
+    width: 650px
+}
+
+.restore2_dph_button_row {
+    padding: 0 0 20px
+}
+
+.restore2_binfo_tt {
+    max-width: 360px;
+    padding: 12px
+}
+
+.restore2_binfo_who {
+    margin-bottom: 4px
+}
+
+.restore2_binfo_who:empty {
+    display: none
+}
+
+.restore2_binfo_comment {
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #e7e8ec;
+    color: green
+}
+
+.restore2_binfo_comment:empty {
+    display: none
+}
+
+.restore2_binfo_url_like {
+    color: #2b587a;
+    cursor: pointer
+}
+
+.restore2_binfo_url_like:hover {
+    text-decoration: underline
+}
+
+.restore2_du_form {
+    border-bottom: 1px solid #e7e8ec;
+    padding: 10px 40px 10px 178px;
+    background: #f7f7f7
+}
+
+.restore2_du_form .text {
+    margin-right: 8px;
+    padding: 5px 8px;
+    line-height: 1;
+    width: 280px
+}
+
+.restore2_du_rows {
+    padding: 15px 0 15px 178px;
+    width: 484px
+}
+
+.restore2_du_row {
+    border-bottom: 1px solid #dae1e8;
+    line-height: 1;
+    padding: 10px 10px 11px
+}
+
+.restore2_du_row:nth-child(even) {
+    background: #f0f2f4
+}
+
+.restore2_du_row:hover {
+    background: #dae1e8
+}
+
+.restore2_du_row:last-child {
+    border-bottom: 0px none
+}
+
+.restore2_du_id {
+    color: #777;
+    font-size: 10px;
+    line-height: 10px;
+    margin-left: 3px;
+    padding-top: 1px
+}
+
+.restore2_du_remove_progress {
+    pointer-events: none;
+    color: #999;
+    opacity: 0.5;
+    text-decoration: none
+}

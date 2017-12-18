@@ -1,0 +1,234 @@
+#community_apps_css {
+    display: none
+}
+
+.apps_group_catalog_header {
+    -ms-high-contrast-adjust: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+.apps_group_catalog_header {
+    display: block;
+    height: 159px;
+    background: url(/images/apps/apps_groups_catalog_header.png) no-repeat right 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .apps_group_catalog_header {
+        background-image: url(/images/apps/apps_groups_catalog_header_2x.png);
+        background-size: 360px 160px
+    }
+}
+
+.apps_group_catalog_header:hover {
+    text-decoration: none
+}
+
+.apps_group_catalog_header:hover .apps_group_catalog_header_catalog_link {
+    text-decoration: underline
+}
+
+.apps_group_catalog_header .apps_group_catalog_header_desc {
+    width: 200px;
+    padding: 41px 0 0 32px
+}
+
+.apps_group_catalog_header .apps_group_catalog_header_desc.from_page {
+    width: 250px
+}
+
+.apps_group_catalog_header .apps_group_catalog_header_desc.from_page .apps_group_catalog_header_desc_link {
+    color: #656565
+}
+
+.apps_group_catalog_header .apps_group_catalog_header_desc.from_page .apps_group_catalog_header_desc_link:after {
+    content: none
+}
+
+.apps_group_catalog_header .apps_group_catalog_header_desc .apps_group_catalog_header_desc_text {
+    color: #000;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 0 16px;
+    letter-spacing: 0.4px;
+    line-height: 1.2
+}
+
+.apps_group_catalog_header .apps_group_catalog_header_desc .apps_group_catalog_header_desc_link {
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: -0.2px;
+    line-height: 1.57
+}
+
+.apps_catalog_goto_arrow:after {
+    content: ' ';
+    height: 8px;
+    width: 6px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%228%22%20viewBox%3D%2288%204%208%208%22%3E%3Cg%20fill%3D%22none%22%3E%3Crect%20x%3D%2288%22%20y%3D%224%22%20width%3D%228%22%20height%3D%228%22%2F%3E%3Cpath%20d%3D%22M90.2%2010.8C90%2011.1%2090%2011.5%2090.3%2011.7%2090.6%2011.9%2091%2011.9%2091.2%2011.6L93.8%208.4C94%208.2%2094%207.8%2093.8%207.6L91.2%204.4C91%204.1%2090.6%204.1%2090.3%204.3%2090%204.5%2090%204.9%2090.2%205.2L92.5%208%2090.2%2010.8Z%22%20fill%3D%22%239CB0C3%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    display: inline-block;
+    left: 0;
+    position: relative
+}
+
+#group_apps_wrapper .apps_catalog_row_desc:after {
+    content: ' ';
+    height: 7px;
+    width: 7px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%207%207%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cg%20id%3D%22Manage%22%20stroke%3D%22none%22%20stroke-width%3D%221%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%20opacity%3D%220.699999988%22%3E%0A%20%20%20%20%20%20%20%20%3Cg%20id%3D%22App-Edit-3%22%20transform%3D%22translate(-482.000000%2C%20-157.000000)%22%20fill-rule%3D%22nonzero%22%20fill%3D%22%23828A99%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Group-6%22%20transform%3D%22translate(325.000000%2C%2057.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Group-5-Copy-2%22%20transform%3D%22translate(0.000000%2C%2063.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cg%20id%3D%22Group-9%22%20transform%3D%22translate(157.000000%2C%2037.000000)%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M6%2C5.5%20C6%2C5.77614237%206.22385763%2C6%206.5%2C6%20C6.77614237%2C6%207%2C5.77614237%207%2C5.5%20L7%2C0.5%20C7%2C0.223857625%206.77614237%2C0%206.5%2C0%20L1.5%2C0%20C1.22385763%2C0%201%2C0.223857625%201%2C0.5%20C1%2C0.776142375%201.22385763%2C1%201.5%2C1%20L6%2C1%20L6%2C5.5%20Z%22%20id%3D%22Path-2%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M6.14644661%2C0.146446609%20L0.146446609%2C6.14644661%20C-0.0488155365%2C6.34170876%20-0.0488155365%2C6.65829124%200.146446609%2C6.85355339%20C0.341708755%2C7.04881554%200.658291245%2C7.04881554%200.853553391%2C6.85355339%20L6.85355339%2C0.853553391%20C7.04881554%2C0.658291245%207.04881554%2C0.341708755%206.85355339%2C0.146446609%20C6.65829124%2C-0.0488155365%206.34170876%2C-0.0488155365%206.14644661%2C0.146446609%20Z%22%20id%3D%22Path-3%22%2F%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
+    display: inline-block;
+    position: relative;
+    margin-left: 4px
+}
+
+#group_apps_catalog .apps_group_catalog_rows {
+    border-top: 1px solid #e7e8ec
+}
+
+#group_apps_catalog_mine .apps_group_catalog_rows,
+#group_apps_catalog_recent .apps_group_catalog_rows {
+    border-top: 0
+}
+
+#apps_search {
+    border-top: 1px solid #e7e8ec
+}
+
+.apps_catalog_label,
+.apps_group_catalog_rows .apps_catalog_row .apps_catalog_row_info .apps_catalog_label_new,
+.apps_group_catalog_rows .apps_catalog_row .apps_catalog_row_info .apps_catalog_label_widget {
+    display: inline-block;
+    padding: 2px 5px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-left: 7px;
+    border-radius: 13px;
+    line-height: 12px;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0
+}
+
+.mac .apps_catalog_label {
+    padding-top: 1px
+}
+
+.apps_group_catalog_rows {
+    padding: 8px 20px;
+    border-top: 1px solid #e7e8ec
+}
+
+.apps_group_catalog_rows.with_search {
+    border-top: 0
+}
+
+.apps_group_catalog_rows .apps_catalog_row_added {
+    color: #656565
+}
+
+.apps_group_catalog_rows.apps_group_catalog_rows_catalog .apps_catalog_row .apps_catalog_row_info {
+    width: 550px
+}
+
+.apps_group_catalog_rows .apps_catalog_row {
+    border-bottom: 1px solid #e7e8ec;
+    padding: 12px 0px 11px
+}
+
+.apps_group_catalog_rows .apps_catalog_row:last-child {
+    border-bottom: 0
+}
+
+.apps_group_catalog_rows .apps_catalog_row .apps_catalog_row_count {
+    color: #939393
+}
+
+.apps_group_catalog_rows .apps_catalog_row .apps_catalog_row_img {
+    margin-right: 12px;
+    width: 56px;
+    height: 56px;
+    float: left;
+    border-radius: 3px
+}
+
+.apps_group_catalog_rows .apps_catalog_row .apps_catalog_row_img .apps_catalog_row_img_img {
+    width: 56px;
+    height: 56px;
+    border-radius: 3px
+}
+
+.apps_group_catalog_rows .apps_catalog_row .apps_catalog_row_info {
+    width: 370px;
+    float: left;
+    margin-top: 2px
+}
+
+.apps_group_catalog_rows .apps_catalog_row .apps_catalog_row_info .apps_catalog_label_new {
+    background-color: #ee5d4a
+}
+
+.apps_group_catalog_rows .apps_catalog_row .apps_catalog_row_info .apps_catalog_label_widget {
+    background-color: #5c9ce6
+}
+
+.apps_group_catalog_rows .apps_catalog_row .apps_catalog_row_info .apps_catalog_row_field {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-height: 15px;
+    padding-right: 10px
+}
+
+.apps_group_catalog_rows .apps_catalog_row .apps_catalog_row_info .apps_catalog_row_name {
+    max-height: 16px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.apps_group_catalog_rows .apps_catalog_row .apps_catalog_row_info .apps_catalog_row_name a.apps_catalog_row_name_link {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.apps_group_catalog_rows .apps_catalog_row .apps_catalog_row_info .apps_catalog_row_desc {
+    margin: 3px 0
+}
+
+.apps_group_catalog_rows .apps_catalog_row .apps_catalog_row_add,
+.apps_group_catalog_rows .apps_catalog_row .apps_catalog_row_added {
+    float: right;
+    height: 52px;
+    line-height: 52px
+}
+
+.apps_group_catalog_rows .apps_catalog_row .apps_catalog_row_add .flat_button,
+.apps_group_catalog_rows .apps_catalog_row .apps_catalog_row_added .flat_button {
+    vertical-align: middle
+}
+
+.apps_group_catalog_rows .apps_catalog_row.last_visible {
+    border-bottom: 0
+}

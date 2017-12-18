@@ -1,0 +1,90 @@
+#header h1 {
+    font-size: 11px;
+}
+
+#content {
+    padding: 0px;
+}
+
+.uRow {
+    background-color: #FFF;
+    border-bottom: 1px dashed #BCC9D6;
+    padding: 5px;
+}
+
+.uRow span {
+    font-size: 10px;
+    color: #555;
+    font-weight: normal;
+}
+
+.uRow span a {
+    font-size: 10px;
+    color: gray;
+}
+
+.country {
+    height: 1.5em;
+    font-size: 15px;
+    text-align: center;
+}
+
+.fac {}
+
+.uni {}
+
+.city {}
+
+.wrapRows {
+    margin: 0px 20px 20px 20px;
+}
+
+.wrapHead {
+    font-weight: bold;
+    font-size: 12px;
+    color: #36638E;
+    padding: 10px 0px 2px 0px;
+    border-bottom: 1px solid #BCC9D6;
+    margin: 0px 15px 0px 15px;
+}
+
+.noRow {
+    font-size: 12px;
+    text-align: center;
+    padding: 10px;
+    color: gray;
+}
+
+.addNewWrap {
+    margin: 5px 10px;
+}
+
+.addNew {
+    padding: 3px 5px 3px 21px;
+    background: #FFF;
+    border: 1px solid #859DB5;
+    width: 9.5em;
+    background-image: url(../images/plus.gif);
+    background-repeat: no-repeat;
+    background-position: 3px center;
+    font-size: 11px;
+    text-decoration: none;
+    color: #2B587A;
+    cursor: hand;
+    cursor: pointer;
+}
+
+.closeItem {
+    padding: 3px 5px 3px 21px;
+    background: #FFF;
+    border: 1px solid #859DB5;
+    width: 9.5em;
+    background-image: url(../images/close.gif);
+    background-repeat: no-repeat;
+    background-position: 3px center;
+    font-size: 11px;
+    text-decoration: none;
+    color: #2B587A;
+    cursor: hand;
+    cursor: pointer;
+}

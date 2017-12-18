@@ -1,0 +1,888 @@
+#landings_author_guide_css {
+    display: none
+}
+
+.is_mobile .landing_author_guide_footer,
+.is_mobile .landing_author_guide_header__background,
+.is_mobile .landing_author_guide_header__fire,
+.is_mobile .stats .landing_author_guide_header__background,
+.is_mobile .verified .landing_author_guide_header__fire,
+.landing_author_guide_footer,
+.landing_author_guide_header__background,
+.landing_author_guide_header__close-button,
+.landing_author_guide_header__fire,
+.stats .landing_author_guide_header__background,
+.trending_stats_int_item__icon,
+.trending_stats_sex__chart,
+.verified .landing_author_guide_header__fire {
+    -ms-high-contrast-adjust: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+#wk_box.landing_wk_box_author_guide,
+#wk_box.landing_wk_box_trending_results {
+    margin-top: 40px;
+    background-color: transparent
+}
+
+#wk_box.landing_wk_box_author_guide #wk_content,
+#wk_box.landing_wk_box_trending_results #wk_content {
+    width: 800px
+}
+
+#wk_box.landing_wk_box_author_guide .wk_wiki_content,
+#wk_box.landing_wk_box_trending_results .wk_wiki_content {
+    padding: 0
+}
+
+.landing_wk_wrap_author_guide,
+.landing_wk_wrap_trending_results {
+    width: 800px
+}
+
+.landing_author_guide_header {
+    height: 440px;
+    position: relative
+}
+
+.is_mobile .landing_author_guide_header {
+    height: auto
+}
+
+.landing_author_guide_header__close-button {
+    background: url(/images/landings/testing/close.png) no-repeat 50%;
+    height: 64px;
+    width: 64px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    -o-transition: opacity 200ms ease;
+    transition: opacity 200ms ease
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_author_guide_header__close-button {
+        background-image: url(/images/landings/testing/close_2x.png);
+        background-size: 14px 14px
+    }
+}
+
+.landing_author_guide_header__close-button:hover {
+    opacity: 1;
+    -webkit-filter: none;
+    filter: none
+}
+
+.is_mobile .landing_author_guide_header__close-button {
+    display: none
+}
+
+.landing_author_guide_header__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(/images/landings/author_guide/header.png) no-repeat 50% 0;
+    background-color: #5c93ff;
+    border-radius: 3px 3px 0 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_author_guide_header__background {
+        background-image: url(/images/landings/author_guide/header_2x.png);
+        background-size: 801px 471px
+    }
+}
+
+.stats .landing_author_guide_header__background {
+    background: url(/images/landings/author_guide/stats_header.png) no-repeat 50% 0;
+    background-color: #5c93ff
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .stats .landing_author_guide_header__background {
+        background-image: url(/images/landings/author_guide/stats_header_2x.png);
+        background-size: 801px 440px
+    }
+}
+
+.is_mobile .stats .landing_author_guide_header__background {
+    background: url(/images/landings/author_guide/mob_stats_header.png) no-repeat 50% 0;
+    background-color: #5c93ff
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .is_mobile .stats .landing_author_guide_header__background {
+        background-image: url(/images/landings/author_guide/mob_stats_header_2x.png);
+        background-size: 375px 200px
+    }
+}
+
+.is_mobile .landing_author_guide_header__background {
+    width: auto;
+    height: auto;
+    background: url(/images/landings/author_guide/mob_header.png) no-repeat 50% 100%;
+    background-size: contain!important;
+    background-color: #5c93ff;
+    position: relative;
+    margin-bottom: 60px;
+    max-height: 400px;
+    border-radius: 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .is_mobile .landing_author_guide_header__background {
+        background-image: url(/images/landings/author_guide/mob_header_2x.png);
+        background-size: 375px 200px
+    }
+}
+
+.is_mobile .landing_author_guide_header__background:after {
+    content: '';
+    display: block;
+    padding-bottom: 53.333333%
+}
+
+.landing_author_guide_header__avatar {
+    width: 148px;
+    height: 148px;
+    position: absolute;
+    top: -33px;
+    left: 50%;
+    margin-left: -74px
+}
+
+.landing_author_guide_header__avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-sizing: border-box
+}
+
+.is_mobile .landing_author_guide_header__avatar {
+    width: 128px;
+    height: 128px;
+    margin-left: -65px;
+    top: auto;
+    bottom: -64px
+}
+
+.is_mobile .landing_author_guide_header__avatar img {
+    box-shadow: 0 1px 12px 0 rgba(0, 0, 0, .1), 0 1px 4px 0 rgba(0, 0, 0, .1)
+}
+
+.landing_author_guide_header__fire {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 48px;
+    height: 48px;
+    background: url(/images/landings/author_guide/ic_fire_web.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_author_guide_header__fire {
+        background-image: url(/images/landings/author_guide/ic_fire_web_2x.png);
+        background-size: 48px 48px
+    }
+}
+
+.is_mobile .landing_author_guide_header__fire {
+    width: 38px;
+    height: 38px;
+    background: url(/images/landings/author_guide/ic_fire_mob.png);
+    bottom: 6px;
+    right: 6px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .is_mobile .landing_author_guide_header__fire {
+        background-image: url(/images/landings/author_guide/ic_fire_mob_2x.png);
+        background-size: 40px 40px
+    }
+}
+
+.stats .landing_author_guide_header__fire {
+    display: none
+}
+
+.verified .landing_author_guide_header__fire {
+    background: url(/images/landings/author_guide/ic_fire_verified_web.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .verified .landing_author_guide_header__fire {
+        background-image: url(/images/landings/author_guide/ic_fire_verified_web_2x.png);
+        background-size: 48px 48px
+    }
+}
+
+.is_mobile .verified .landing_author_guide_header__fire {
+    background: url(/images/landings/author_guide/ic_fire_verified_mob.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .is_mobile .verified .landing_author_guide_header__fire {
+        background-image: url(/images/landings/author_guide/ic_fire_verified_mob_2x.png);
+        background-size: 40px 40px
+    }
+}
+
+.landing_author_guide_header__title-group {
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    width: 100%
+}
+
+.is_mobile .landing_author_guide_header__title-group {
+    position: relative;
+    width: auto;
+    bottom: auto;
+    color: #000;
+    padding: 32px 16px 16px
+}
+
+.landing_author_guide_header__title {
+    font-size: 36px;
+    line-height: 1.22em;
+    max-width: 500px;
+    margin: 0 auto 10px;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.is_mobile .landing_author_guide_header__title {
+    font-size: 24px;
+    max-width: none
+}
+
+.landing_author_guide_header__subtitle {
+    font-size: 16px;
+    line-height: 1.31em;
+    max-width: 500px;
+    margin: 0 auto
+}
+
+.is_mobile .landing_author_guide_header__subtitle {
+    max-width: none;
+    font-size: 15px;
+    line-height: 1.33em;
+    color: #656565
+}
+
+.landing_author_guide_content {
+    padding: 40px 50px;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: left;
+    color: #000;
+    background-color: #fff
+}
+
+.is_mobile .landing_author_guide_content {
+    padding: 16px 16px 30px;
+    font-size: 15px
+}
+
+.landing_author_guide_content .wikiSubHeader {
+    font-size: 26px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    color: #222
+}
+
+.landing_author_guide_content .wikiSubHeader:first-child {
+    margin-top: 0
+}
+
+.is_mobile .landing_author_guide_content .wikiSubHeader {
+    font-size: 24px;
+    line-height: 1.2em;
+    margin-bottom: 10px;
+    margin-top: 18px
+}
+
+.landing_author_guide_content ol.numbered,
+.landing_author_guide_content ul.listing {
+    color: #000;
+    margin-bottom: 0
+}
+
+.trending_stats_title_group {
+    text-align: center;
+    margin: 40px 0
+}
+
+.is_mobile .trending_stats_title_group {
+    margin-top: 50px
+}
+
+.trending_stats_title_group:first-child {
+    margin-top: 0
+}
+
+.trending_stats_title_group__title {
+    font-size: 26px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    color: #222
+}
+
+.trending_stats_title_group__title:first-child {
+    margin-top: 0
+}
+
+.is_mobile .trending_stats_title_group__title {
+    font-size: 24px;
+    line-height: 1.2em;
+    margin-bottom: 10px;
+    margin-top: 18px
+}
+
+.trending_stats_title_group__subtitle:empty {
+    display: none
+}
+
+.trending_results_embed {
+    max-width: 550px;
+    margin: 0 auto
+}
+
+.landing_author_guide_footer {
+    height: 100px;
+    background: url(/images/landings/author_guide/footer.png);
+    border-radius: 0 0 3px 3px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_author_guide_footer {
+        background-image: url(/images/landings/author_guide/footer_2x.png);
+        background-size: 800px 102px
+    }
+}
+
+.is_mobile .landing_author_guide_footer {
+    height: 80px;
+    background: url(/images/landings/author_guide/mob_footer.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .is_mobile .landing_author_guide_footer {
+        background-image: url(/images/landings/author_guide/mob_footer_2x.png);
+        background-size: 376px 80px
+    }
+}
+
+.landing_author_guide_footer.stats {
+    display: none
+}
+
+.trending_stats_content {
+    margin: 40px 0
+}
+
+.trending_stats_general_stats_list {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around
+}
+
+.is_mobile .trending_stats_general_stats_list {
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap
+}
+
+.trending_stats_general_stat {
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    text-align: center
+}
+
+.is_mobile .trending_stats_general_stat {
+    width: 50%;
+    -webkit-flex-basis: 50%;
+    -ms-flex-preferred-size: 50%;
+    flex-basis: 50%;
+    margin-top: 24px
+}
+
+.is_mobile .trending_stats_general_stat:nth-child(-n+2) {
+    margin-top: 0
+}
+
+.trending_stats_general_stat__count {
+    color: #528bcc;
+    font-size: 46px;
+    line-height: 1.2em;
+    font-weight: 300;
+    white-space: nowrap
+}
+
+.ge10000 .trending_stats_general_stat__count {
+    font-size: 36px
+}
+
+.ge1000 .trending_stats_general_stat__count {
+    font-size: 42px
+}
+
+.is_mobile .trending_stats_general_stat__count {
+    font-size: 36px
+}
+
+.is_mobile .ge10000 .trending_stats_general_stat__count {
+    font-size: 32px
+}
+
+.trending_stats_general_stat__count:before {
+    content: '';
+    display: inline-block;
+    width: 0.45em;
+    height: 0.7em;
+    background-position: 50%;
+    background-repeat: no-repeat
+}
+
+.arrow .trending_stats_general_stat__count:before {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2025%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%236289cb%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3EUntitled-1%3C%2Ftitle%3E%3Cg%20id%3D%22Layer_2%22%20data-name%3D%22Layer%202%22%3E%3Cpolygon%20class%3D%22cls-1%22%20points%3D%2219.9%209.9%2010%200%200.1%209.9%202.1%2011.9%208.6%205.4%208.6%2025%2011.4%2025%2011.4%205.4%2017.9%2011.9%2019.9%209.9%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.plus .trending_stats_general_stat__count:before {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20id%3D%22Layer_1%22%20data-name%3D%22Layer%201%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2025%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%236289cb%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3EUntitled-1%3C%2Ftitle%3E%3Cpolygon%20class%3D%22cls-1%22%20points%3D%2211.4%2011.1%2011.4%203.6%208.6%203.6%208.6%2011.1%201.1%2011.1%201.1%2013.9%208.6%2013.9%208.6%2021.4%2011.4%2021.4%2011.4%2013.9%2018.9%2013.9%2018.9%2011.1%2011.4%2011.1%22%2F%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_general_stat__label {
+    color: #828282
+}
+
+.trending_stats_interests {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin: 20px 0 30px
+}
+
+.is_mobile .trending_stats_interests {
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    margin-bottom: 0px
+}
+
+.trending_stats_int_item {
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.is_mobile .trending_stats_int_item {
+    -webkit-flex-basis: 33%;
+    -ms-flex-preferred-size: 33%;
+    flex-basis: 33%;
+    width: 33%;
+    margin-bottom: 30px
+}
+
+.trending_stats_int_item__icon {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    background: url(/images/landings/author_guide/interests_icons/icon_study.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .trending_stats_int_item__icon {
+        background-image: url(/images/landings/author_guide/interests_icons/icon_study_2x.png);
+        background-size: 120px 120px
+    }
+}
+
+.is_mobile .trending_stats_int_item__icon {
+    width: 100px;
+    height: 100px;
+    background-size: 100px 100px!important
+}
+
+.trending_stats_int_item__icon_1 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M398.5%2C214.3h-30l-17-54.4a36.1%2C36.1%2C0%2C0%2C0-34.6-25.5H183a36.1%2C36.1%2C0%2C0%2C0-34.6%2C25.5l-17%2C54.4H101.7a26%2C26%2C0%2C1%2C0%2C0%2C52.1h4.8v36.7a26.9%2C26.9%2C0%2C0%2C0%2C.2%2C3.2h-.2v40.4a18.9%2C18.9%2C0%2C0%2C0%2C18.9%2C18.9h25.9a18.9%2C18.9%2C0%2C0%2C0%2C18.9-18.9V329.9H329.7v16.8a18.9%2C18.9%2C0%2C0%2C0%2C18.9%2C18.9h25.9a18.9%2C18.9%2C0%2C0%2C0%2C18.9-18.9V266.4h4.9a26%2C26%2C0%2C0%2C0%2C0-52.1ZM158.9%2C163.2A25.1%2C25.1%2C0%2C0%2C1%2C183%2C145.4H316.9A25.1%2C25.1%2C0%2C0%2C1%2C341%2C163.2L357%2C214.3H340.7a37.4%2C37.4%2C0%2C0%2C0-74%2C0H143Zm170.6%2C51.1H277.9a26.4%2C26.4%2C0%2C0%2C1%2C51.6%2C0Zm-242.9%2C26a15.1%2C15.1%2C0%2C0%2C1%2C15-15H122a44.9%2C44.9%2C0%2C0%2C0-15.4%2C30.1h-4.9A15.1%2C15.1%2C0%2C0%2C1%2C86.6%2C240.3Zm72.6%2C106.4a7.9%2C7.9%2C0%2C0%2C1-7.9%2C7.9H125.3a7.9%2C7.9%2C0%2C0%2C1-7.9-7.9v-22a26.6%2C26.6%2C0%2C0%2C0%2C15.8%2C5.2h26Zm36.6-27.8%2C9.5-21.5a10.4%2C10.4%2C0%2C0%2C1%2C9.6-6.2h70.2a10.4%2C10.4%2C0%2C0%2C1%2C9.6%2C6.2l9.5%2C21.5Zm178.8%2C35.7H348.7a7.9%2C7.9%2C0%2C0%2C1-7.9-7.9V329.9h26a26.6%2C26.6%2C0%2C0%2C0%2C15.8-5.2v22A7.9%2C7.9%2C0%2C0%2C1%2C374.6%2C354.6Zm-7.9-35.7H316.1l-11.4-26a21.5%2C21.5%2C0%2C0%2C0-19.6-12.8H214.9a21.5%2C21.5%2C0%2C0%2C0-19.6%2C12.8l-11.4%2C26H133.2a15.8%2C15.8%2C0%2C0%2C1-15.8-15.8V259.2a34%2C34%2C0%2C0%2C1%2C34-34H348.6a34%2C34%2C0%2C0%2C1%2C34%2C34v43.9A15.8%2C15.8%2C0%2C0%2C1%2C366.8%2C318.9Zm31.7-63.5h-5.1A44.9%2C44.9%2C0%2C0%2C0%2C378%2C225.3h20.5a15%2C15%2C0%2C0%2C1%2C0%2C30.1Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M366.1%2C249.8H133.9a5.5%2C5.5%2C0%2C0%2C0-5.5%2C5.5v13.5a19.1%2C19.1%2C0%2C0%2C0%2C19%2C19h25.2a19.1%2C19.1%2C0%2C0%2C0%2C19-19v-8H308.3v8a19.1%2C19.1%2C0%2C0%2C0%2C19%2C19h25.2a19.1%2C19.1%2C0%2C0%2C0%2C19-19V255.3A5.5%2C5.5%2C0%2C0%2C0%2C366.1%2C249.8Zm-185.4%2C19a8.1%2C8.1%2C0%2C0%2C1-8%2C8H147.4a8.1%2C8.1%2C0%2C0%2C1-8-8v-8h41.3Zm179.9%2C0a8.1%2C8.1%2C0%2C0%2C1-8%2C8H327.3a8.1%2C8.1%2C0%2C0%2C1-8-8v-8h41.3Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_2 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M158.3%2C377.6H341.7a32.2%2C32.2%2C0%2C0%2C0%2C32.2-32.2V279.9a17.5%2C17.5%2C0%2C0%2C0-17.5-17.5H344V207.1c0-.4%2C0-.9%2C0-1.3h7.5a18.4%2C18.4%2C0%2C0%2C0%2C18.4-18.4V167.9a18.4%2C18.4%2C0%2C0%2C0-18.4-18.4H344a23.4%2C23.4%2C0%2C0%2C0-23.3-21.7H292.5v-6.2a19.7%2C19.7%2C0%2C0%2C0-19.7-19.7H227.2a19.7%2C19.7%2C0%2C0%2C0-19.7%2C19.7v6.2H179.3A23.4%2C23.4%2C0%2C0%2C0%2C156%2C149.5h-7.5a18.4%2C18.4%2C0%2C0%2C0-18.4%2C18.4v19.6a18.4%2C18.4%2C0%2C0%2C0%2C18.4%2C18.4H156c0%2C.4%2C0%2C.9%2C0%2C1.3v55.2H143.7a17.5%2C17.5%2C0%2C0%2C0-17.5%2C17.5v65.6A32.2%2C32.2%2C0%2C0%2C0%2C158.3%2C377.6Zm67.1-157h6.7V248a5.5%2C5.5%2C0%2C0%2C0%2C2%2C4.3l12.3%2C10a5.5%2C5.5%2C0%2C0%2C0%2C6.9%2C0l12.3-10a5.5%2C5.5%2C0%2C0%2C0%2C2-4.3V220.6h6.7a69.4%2C69.4%2C0%2C0%2C0%2C53.9-25.7%2C18.5%2C18.5%2C0%2C0%2C1%2C4.6%2C12.2v81.5a29.4%2C29.4%2C0%2C0%2C0-18.5-6.5H185.5a29.4%2C29.4%2C0%2C0%2C0-18.5%2C6.5V207.1a18.6%2C18.6%2C0%2C0%2C1%2C4.6-12.2A69.4%2C69.4%2C0%2C0%2C0%2C225.4%2C220.6Zm31.4-11H243.2v-8.1h13.7Zm0%2C11v24.8l-6.8%2C5.5-6.8-5.5V220.6ZM191%2C293.1H309V310a13.9%2C13.9%2C0%2C0%2C1-13.9%2C13.9H204.9A13.9%2C13.9%2C0%2C0%2C1%2C191%2C310Zm-5.5%2C73.5A18.5%2C18.5%2C0%2C0%2C1%2C167%2C348.1V311.6a18.5%2C18.5%2C0%2C0%2C1%2C13-17.7v16a25%2C25%2C0%2C0%2C0%2C24.9%2C24.9h90.2A25%2C25%2C0%2C0%2C0%2C320%2C310v-16a18.5%2C18.5%2C0%2C0%2C1%2C13%2C17.7v36.5a18.5%2C18.5%2C0%2C0%2C1-18.5%2C18.5Zm170.9-93.3a6.5%2C6.5%2C0%2C0%2C1%2C6.5%2C6.5v65.6a21.2%2C21.2%2C0%2C0%2C1-21.2%2C21.2h-4.2a29.4%2C29.4%2C0%2C0%2C0%2C6.5-18.5V273.3Zm2.5-105.5v19.6a7.4%2C7.4%2C0%2C0%2C1-7.4%2C7.4H341.4a29.5%2C29.5%2C0%2C0%2C0-6.6-9.1%2C69%2C69%2C0%2C0%2C0%2C8.6-25.2h8.1A7.4%2C7.4%2C0%2C0%2C1%2C358.8%2C167.9ZM218.5%2C121.6a8.7%2C8.7%2C0%2C0%2C1%2C8.7-8.7h45.5a8.7%2C8.7%2C0%2C0%2C1%2C8.7%2C8.7v6.2h-63Zm-39.2%2C17.2H320.7A12.4%2C12.4%2C0%2C0%2C1%2C333%2C151.1a58.5%2C58.5%2C0%2C0%2C1-58.5%2C58.5h-6.7V196a5.5%2C5.5%2C0%2C0%2C0-5.5-5.5H237.7a5.5%2C5.5%2C0%2C0%2C0-5.5%2C5.5v13.6h-6.7A58.5%2C58.5%2C0%2C0%2C1%2C167%2C151.1%2C12.4%2C12.4%2C0%2C0%2C1%2C179.3%2C138.8Zm-30.8%2C56a7.4%2C7.4%2C0%2C0%2C1-7.4-7.4V167.9a7.4%2C7.4%2C0%2C0%2C1%2C7.4-7.4h8.1a69%2C69%2C0%2C0%2C0%2C8.6%2C25.2%2C29.6%2C29.6%2C0%2C0%2C0-6.5%2C9.1Zm-11.4%2C85a6.5%2C6.5%2C0%2C0%2C1%2C6.5-6.5H156v74.7a29.4%2C29.4%2C0%2C0%2C0%2C6.5%2C18.5h-4.2a21.2%2C21.2%2C0%2C0%2C1-21.2-21.2Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_3 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M133.9%2C369.5H366.1a25.2%2C25.2%2C0%2C0%2C0%2C25.2-25.2V193.5a33.8%2C33.8%2C0%2C0%2C0-33.8-33.8h-46V144.3a25.8%2C25.8%2C0%2C0%2C0-25.8-25.8H224.3a25.8%2C25.8%2C0%2C0%2C0-25.8%2C25.8v15.4H142.5a33.8%2C33.8%2C0%2C0%2C0-33.8%2C33.8V344.3A25.2%2C25.2%2C0%2C0%2C0%2C133.9%2C369.5Zm-13.1-19.7H324.4a25.1%2C25.1%2C0%2C0%2C0%2C3.8%2C8.7H133.9A14.2%2C14.2%2C0%2C0%2C1%2C120.8%2C349.8Zm259.5-5.5a14.2%2C14.2%2C0%2C0%2C1-14.2%2C14.2H363v-159a5.5%2C5.5%2C0%2C0%2C0-11%2C0v159H349a14.2%2C14.2%2C0%2C0%2C1-14.2-14.2V247.6a5.5%2C5.5%2C0%2C0%2C0-11%2C0v91.2H119.7V239.2h16.6v7.1a13%2C13%2C0%2C0%2C0%2C12.9%2C12.9H159a13%2C13%2C0%2C0%2C0%2C12.9-12.9v-7.1h99.6v7.1a13%2C13%2C0%2C0%2C0%2C12.9%2C12.9h9.7a13%2C13%2C0%2C0%2C0%2C12.9-12.9v-7.1a28.7%2C28.7%2C0%2C0%2C0%2C27.6-28.7V193.5a22.8%2C22.8%2C0%2C1%2C1%2C45.5%2C0V344.3Zm-233-98V221.1a1.9%2C1.9%2C0%2C0%2C1%2C1.9-1.9H159a1.9%2C1.9%2C0%2C0%2C1%2C1.9%2C1.9v25.2a1.9%2C1.9%2C0%2C0%2C1-1.9%2C1.9h-9.7A1.9%2C1.9%2C0%2C0%2C1%2C147.3%2C246.2Zm135.2%2C0V221.1a1.9%2C1.9%2C0%2C0%2C1%2C1.9-1.9h9.7a1.9%2C1.9%2C0%2C0%2C1%2C1.9%2C1.9v25.2a1.9%2C1.9%2C0%2C0%2C1-1.9%2C1.9h-9.7A1.9%2C1.9%2C0%2C0%2C1%2C282.5%2C246.2Zm-73-101.9a14.8%2C14.8%2C0%2C0%2C1%2C14.8-14.8h61.4a14.8%2C14.8%2C0%2C0%2C1%2C14.8%2C14.8v15.4h-91Zm-67.1%2C26.4H332.6a33.6%2C33.6%2C0%2C0%2C0-8.9%2C22.8v16.9a17.7%2C17.7%2C0%2C0%2C1-16.6%2C17.7v-7a13%2C13%2C0%2C0%2C0-12.9-12.9h-9.7a13%2C13%2C0%2C0%2C0-12.9%2C12.9v7.1H171.9v-7.1A13%2C13%2C0%2C0%2C0%2C159%2C208.1h-9.7a13%2C13%2C0%2C0%2C0-12.9%2C12.9v7.1H119.7V193.5A22.8%2C22.8%2C0%2C0%2C1%2C142.5%2C170.8Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_4 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M381.8%2C183.3l-53.3-4.7a15.7%2C15.7%2C0%2C0%2C1-13.7-11.4A26.7%2C26.7%2C0%2C0%2C0%2C293.7%2C148l-47.1-8.2q-1.1-2.7-2.3-5.5a5.5%2C5.5%2C0%2C0%2C0-4.2-3.2%2C144.2%2C144.2%2C0%2C0%2C0-31-.5c-23.1%2C2-42.1%2C9.4-55.2%2C21.4a5.5%2C5.5%2C0%2C0%2C0-1.7%2C4.7%2C83%2C83%2C0%2C0%2C0%2C17.9%2C41.9l-9%2C43.7a41.7%2C41.7%2C0%2C0%2C1-17.1%2C26l-37.3%2C25.9a5.5%2C5.5%2C0%2C1%2C0%2C6.3%2C9l33.1-23c24.3%2C29.8%2C61.1%2C44.5%2C112%2C44.5%2C8.3%2C0%2C16.9-.4%2C25.9-1.2l10.1%2C41.4a5.5%2C5.5%2C0%2C0%2C0%2C5.3%2C4.2l1.3-.2a5.5%2C5.5%2C0%2C0%2C0%2C4-6.6l-19.6-80.8L331%2C270.5c53-12.5%2C62.6-53.8%2C64.3-71a14.9%2C14.9%2C0%2C0%2C0-13.5-16.2Zm1.7%2C12.3a3.8%2C3.8%2C0%2C0%2C1%2C.9%2C2.8%2C78.7%2C78.7%2C0%2C0%2C1-1.7%2C10.2l-13.1-4.2a8.3%2C8.3%2C0%2C0%2C1-5.6-6.1l-1.2-5.6%2C18.1%2C1.6A3.9%2C3.9%2C0%2C0%2C1%2C383.5%2C195.7Zm-147.9-54%2C1.6%2C4.1a5.5%2C5.5%2C0%2C0%2C0%2C.5%2C1.5%2C98.9%2C98.9%2C0%2C0%2C1%2C3.5%2C55.8%2C97.5%2C97.5%2C0%2C0%2C1-8.4%2C23.3c-14-4.3-61.6-22-69.3-68C187.2%2C138.7%2C224.8%2C140.6%2C235.5%2C141.7ZM154.9%2C273.9a52.6%2C52.6%2C0%2C0%2C0%2C9.7-11.3%2C112.7%2C112.7%2C0%2C0%2C0%2C24.4%2C18.9c14.8%2C8.6%2C38%2C17.8%2C69.7%2C17.8a174.3%2C174.3%2C0%2C0%2C0%2C19-1.1l3.6%2C14.7C222%2C317.7%2C180.5%2C304.9%2C154.9%2C273.9Zm173.5-14-51.3%2C12.5a5.5%2C5.5%2C0%2C0%2C0-4%2C6.6l2.1%2C8.5c-30.3%2C3.1-57.2-2-80.1-15.2A98.7%2C98.7%2C0%2C0%2C1%2C169.9%2C252a53.3%2C53.3%2C0%2C0%2C0%2C2.1-7.4l7.4-36a112.4%2C112.4%2C0%2C0%2C0%2C17.2%2C13.1%2C135.3%2C135.3%2C0%2C0%2C0%2C37.7%2C16.3h1.2a5.5%2C5.5%2C0%2C0%2C0%2C4.6-2.5c1.1-1.7%2C23.6-37%2C10.5-84l41.2%2C7.2a15.7%2C15.7%2C0%2C0%2C1%2C12.4%2C11.3%2C26.7%2C26.7%2C0%2C0%2C0%2C23.4%2C19.5l23.7%2C2.1%2C2%2C9a19.4%2C19.4%2C0%2C0%2C0%2C12.9%2C14.2l13.2%2C4.3C372.9%2C235.4%2C358.8%2C252.7%2C328.5%2C259.8Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M294.8%2C178.6H281.7a5.5%2C5.5%2C0%2C0%2C0%2C0%2C11h13.1a5.5%2C5.5%2C0%2C0%2C0%2C0-11Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_5 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M234.3%2C356.8a21.9%2C21.9%2C0%2C0%2C0%2C30.9%2C0l89.9-89.9a67.5%2C67.5%2C0%2C1%2C0-95.5-95.5l-9.9%2C9.9-9.9-9.9a67.5%2C67.5%2C0%2C1%2C0-95.5%2C95.5ZM152.2%2C179.2a56.5%2C56.5%2C0%2C0%2C1%2C80%2C0l13.8%2C13.8a5.5%2C5.5%2C0%2C0%2C0%2C7.8%2C0l13.8-13.8a56.5%2C56.5%2C0%2C0%2C1%2C80%2C80L257.5%2C349a10.9%2C10.9%2C0%2C0%2C1-15.4%2C0l-89.9-89.9a56.5%2C56.5%2C0%2C0%2C1%2C0-80Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M214.7%2C277.5h15v15A11.5%2C11.5%2C0%2C0%2C0%2C241.2%2C304h17.1a11.5%2C11.5%2C0%2C0%2C0%2C11.5-11.5v-15h15A11.5%2C11.5%2C0%2C0%2C0%2C296.3%2C266V248.9a11.5%2C11.5%2C0%2C0%2C0-11.5-11.5h-15v-15a11.5%2C11.5%2C0%2C0%2C0-11.5-11.5H241.2a11.5%2C11.5%2C0%2C0%2C0-11.5%2C11.5v15h-15a11.5%2C11.5%2C0%2C0%2C0-11.5%2C11.5V266A11.5%2C11.5%2C0%2C0%2C0%2C214.7%2C277.5Zm-.5-28.6a.5.5%2C0%2C0%2C1%2C.5-.5h26v-26a.5.5%2C0%2C0%2C1%2C.5-.5h17.1a.5.5%2C0%2C0%2C1%2C.5.5v26h26a.5.5%2C0%2C0%2C1%2C.5.5V266a.5.5%2C0%2C0%2C1-.5.5h-26v26a.5.5%2C0%2C0%2C1-.5.5H241.2a.5.5%2C0%2C0%2C1-.5-.5v-26h-26a.5.5%2C0%2C0%2C1-.5-.5Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_7 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M106.3%2C299.6a44%2C44%2C0%2C0%2C0%2C43.8%2C48.7%2C55%2C55%2C0%2C0%2C0%2C51.7-36.5l5.8-16.4a23%2C23%2C0%2C0%2C0%2C26.3-17.2h32.2a23%2C23%2C0%2C0%2C0%2C26.3%2C17.2l5.8%2C16.4a55%2C55%2C0%2C0%2C0%2C51.7%2C36.5%2C44%2C44%2C0%2C0%2C0%2C43.8-48.7l-9.5-89.7a49.9%2C49.9%2C0%2C0%2C0-49.7-44.7H165.5a49.9%2C49.9%2C0%2C0%2C0-49.7%2C44.7Zm105.2-14.8a12%2C12%2C0%2C1%2C1%2C12-12A12.1%2C12.1%2C0%2C0%2C1%2C211.5%2C284.7Zm64.9-12a12%2C12%2C0%2C1%2C1%2C12%2C12A12.1%2C12.1%2C0%2C0%2C1%2C276.4%2C272.7ZM217%2C176.2h66v7.6a7.2%2C7.2%2C0%2C0%2C1-7.1%2C7.1H224.2a7.2%2C7.2%2C0%2C0%2C1-7.1-7.1ZM117.2%2C300.7l9.5-89.7a38.9%2C38.9%2C0%2C0%2C1%2C38.8-34.9H206v7.6A18.2%2C18.2%2C0%2C0%2C0%2C224.2%2C202h51.7A18.2%2C18.2%2C0%2C0%2C0%2C294%2C183.8v-7.6h40.5A38.9%2C38.9%2C0%2C0%2C1%2C373.2%2C211l9.5%2C89.7a33%2C33%2C0%2C0%2C1-32.8%2C36.5%2C44%2C44%2C0%2C0%2C1-41.3-29.2L302.5%2C291a23%2C23%2C0%2C1%2C0-36.4-23.8H233.9A23%2C23%2C0%2C1%2C0%2C197.5%2C291l-6.1%2C17.1a44%2C44%2C0%2C0%2C1-41.3%2C29.2%2C33%2C33%2C0%2C0%2C1-32.8-36.5Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M147.8%2C235.5h8.7v8.7a14.5%2C14.5%2C0%2C1%2C0%2C29.1%2C0v-8.7h8.7a14.5%2C14.5%2C0%2C1%2C0%2C0-29.1h-8.7v-8.7a14.5%2C14.5%2C0%2C0%2C0-29.1%2C0v8.7h-8.7a14.5%2C14.5%2C0%2C0%2C0%2C0%2C29.1Zm0-18.1H162a5.5%2C5.5%2C0%2C0%2C0%2C5.5-5.5V197.7a3.5%2C3.5%2C0%2C0%2C1%2C7.1%2C0v14.2a5.5%2C5.5%2C0%2C0%2C0%2C5.5%2C5.5h14.2a3.5%2C3.5%2C0%2C1%2C1%2C0%2C7.1H180.1a5.5%2C5.5%2C0%2C0%2C0-5.5%2C5.5v14.2a3.5%2C3.5%2C0%2C1%2C1-7.1%2C0V230a5.5%2C5.5%2C0%2C0%2C0-5.5-5.5H147.8a3.5%2C3.5%2C0%2C0%2C1%2C0-7.1Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M314.1%2C238.1A17.5%2C17.5%2C0%2C0%2C0%2C326.5%2C268h0a17.4%2C17.4%2C0%2C0%2C0%2C12.4-5.1h0a17.5%2C17.5%2C0%2C0%2C0-24.7-24.7Zm17%2C17h0a6.5%2C6.5%2C0%2C1%2C1%2C1.9-4.6A6.4%2C6.4%2C0%2C0%2C1%2C331.1%2C255.1Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M298.7%2C241.3a17.5%2C17.5%2C0%2C0%2C0%2C0-35h0a17.5%2C17.5%2C0%2C1%2C0%2C0%2C35Zm-4.6-22.1a6.5%2C6.5%2C0%2C1%2C1-1.9%2C4.6A6.4%2C6.4%2C0%2C0%2C1%2C294.1%2C219.2Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M336.3%2C222.7a17.5%2C17.5%2C0%2C1%2C0%2C17.5-17.5A17.5%2C17.5%2C0%2C0%2C0%2C336.3%2C222.7Zm17.5-6.5a6.5%2C6.5%2C0%2C1%2C1-6.5%2C6.5A6.5%2C6.5%2C0%2C0%2C1%2C353.8%2C216.2Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M326.1%2C213.9a17.5%2C17.5%2C0%2C1%2C0%2C0-35h0a17.5%2C17.5%2C0%2C1%2C0%2C0%2C35Zm-4.6-22.1a6.5%2C6.5%2C0%2C1%2C1%2C0%2C9.2A6.5%2C6.5%2C0%2C0%2C1%2C321.5%2C191.9Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M130.5%2C166.6a5.5%2C5.5%2C0%2C0%2C0%2C2.9-.9%2C51.1%2C51.1%2C0%2C0%2C1%2C27.4-7.9h23.8a5.5%2C5.5%2C0%2C0%2C0%2C0-11H160.9a62.1%2C62.1%2C0%2C0%2C0-33.3%2C9.6%2C5.5%2C5.5%2C0%2C0%2C0%2C2.9%2C10.1Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M338.6%2C158.8a51.1%2C51.1%2C0%2C0%2C1%2C27.4%2C7.9%2C5.5%2C5.5%2C0%2C0%2C0%2C5.9-9.3%2C62.1%2C62.1%2C0%2C0%2C0-33.3-9.6H314.8a5.5%2C5.5%2C0%2C0%2C0%2C0%2C11Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_9 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M158.3%2C351.9H294.5a36%2C36%2C0%2C0%2C0%2C36-36V304.2L375.2%2C332a17.4%2C17.4%2C0%2C0%2C0%2C26.7-14.8V248.1a17.4%2C17.4%2C0%2C0%2C0-26.7-14.8l-44.7%2C27.8V249.4a36.1%2C36.1%2C0%2C0%2C0-21.8-33.1%2C48.5%2C48.5%2C0%2C1%2C0-57.5-2.9H201.5a48.5%2C48.5%2C0%2C1%2C0-57.5%2C2.9%2C36.1%2C36.1%2C0%2C0%2C0-21.8%2C33.1v66.5A36%2C36%2C0%2C0%2C0%2C158.3%2C351.9Zm21.1-11%2C10-21.7a12.5%2C12.5%2C0%2C0%2C1%2C11.3-7.2h51.5a12.5%2C12.5%2C0%2C0%2C1%2C11.3%2C7.2l10%2C21.7Zm140.1-25a25%2C25%2C0%2C0%2C1-25%2C25h-9l-12.1-26.3A23.5%2C23.5%2C0%2C0%2C0%2C252.2%2C301H200.6a23.5%2C23.5%2C0%2C0%2C0-21.3%2C13.6l-12.1%2C26.3h-9a25%2C25%2C0%2C0%2C1-25-25v-61H319.5v61ZM381%2C242.6a6.4%2C6.4%2C0%2C0%2C1%2C9.8%2C5.5v69.1a6.4%2C6.4%2C0%2C0%2C1-9.8%2C5.5l-50.5-31.4V274Zm-61.5-66.7a37.3%2C37.3%2C0%2C0%2C1-7.4%2C22.4l-52.5-52.5a37.5%2C37.5%2C0%2C0%2C1%2C59.9%2C30.1Zm-75.1%2C0a37.3%2C37.3%2C0%2C0%2C1%2C7.4-22.4L304.3%2C206a37.5%2C37.5%2C0%2C0%2C1-59.9-30.1Zm-36.1%2C0a37.3%2C37.3%2C0%2C0%2C1-7.4%2C22.4l-52.5-52.5a37.5%2C37.5%2C0%2C0%2C1%2C59.9%2C30.1Zm-75.1%2C0a37.3%2C37.3%2C0%2C0%2C1%2C7.4-22.4L193.2%2C206a37.5%2C37.5%2C0%2C0%2C1-59.9-30.1Zm25%2C48.5H294.5a25%2C25%2C0%2C0%2C1%2C24.4%2C19.5h-185A25%2C25%2C0%2C0%2C1%2C158.3%2C224.4Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_10 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M103.2%2C190.6H103l28.2%2C157.6a12.7%2C12.7%2C0%2C0%2C0%2C12.5%2C10.5h16.8a5.5%2C5.5%2C0%2C0%2C0%2C5.5-5.7l-2.5-91.7a1.7%2C1.7%2C0%2C0%2C1%2C3-1.2c10.6%2C11.7%2C27.7%2C33%2C49.3%2C68.2l.3.4c13.6%2C18.5%2C25.4%2C30%2C42.4%2C30H393.2A13.8%2C13.8%2C0%2C0%2C0%2C407%2C344.9v-9.4h0v-.2c0-.4-1.8-38.5-46.2-38.5-17.1%2C0-34.4-14.3-52.7-43.8a18.3%2C18.3%2C0%2C0%2C0-15.6-8.6H265.1L255%2C231.9l29.5-11.8a5.5%2C5.5%2C0%2C0%2C0%2C2.9-7.4l-13-28a5.5%2C5.5%2C0%2C0%2C0-7.2-2.7L229%2C198.7l-2.7-3.5c-22.8-30-46.7-49-100.9-57.5h-.3l-19.8-2.1a5.5%2C5.5%2C0%2C0%2C0-5.3%2C2.7c-.3.5-6.8%2C12-6.8%2C29.7A30.9%2C30.9%2C0%2C0%2C0%2C103.2%2C190.6Zm163.6%2C3.6%2C8.3%2C17.9-27.2%2C10.8L236%2C207.6Zm-159-46.6c24.4%2C8.2%2C28%2C31.9%2C28.2%2C44.2L118.8%2C187a19.9%2C19.9%2C0%2C0%2C1-14.6-19.1A57.6%2C57.6%2C0%2C0%2C1%2C107.8%2C147.6ZM393.2%2C347.7H258.4c-10.9%2C0-19.6-6.6-33.4-25.3-22-35.8-39.6-57.6-50.4-69.6a12.7%2C12.7%2C0%2C0%2C0-22.1%2C8.9l2.4%2C86H143.7a1.7%2C1.7%2C0%2C0%2C1-1.7-1.4L115.4%2C197.5l.5.2%2C18.7%2C5.1c18.7%2C5.1%2C55.9%2C49.2%2C99.6%2C117.8A44%2C44%2C0%2C0%2C0%2C271.4%2C341H396v3.9A2.8%2C2.8%2C0%2C0%2C1%2C393.2%2C347.7ZM217.6%2C201.8c9%2C11.8%2C17.3%2C22.4%2C24%2C30.9v.2h0c9.9%2C12.5%2C16.4%2C20.4%2C16.5%2C20.6a5.5%2C5.5%2C0%2C0%2C0%2C4.3%2C2h30a7.4%2C7.4%2C0%2C0%2C1%2C6.3%2C3.4c20.5%2C32.9%2C40.8%2C49%2C62%2C49%2C14.2%2C0%2C24.4%2C4.6%2C30.3%2C13.6A31.4%2C31.4%2C0%2C0%2C1%2C395%2C330H271.4a33%2C33%2C0%2C0%2C1-28-15.4c-12-18.9-30.4-46.6-49.5-70.9s-34.6-40-47-47.4c.7-13.8-2.5-33-15.3-46.5C176.9%2C158.4%2C197.1%2C175%2C217.6%2C201.8Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_12 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M159.3%2C322.4H340.7a5.5%2C5.5%2C0%2C0%2C0%2C5.5-5.5v-135a5.5%2C5.5%2C0%2C0%2C0-5.5-5.5H159.3a5.5%2C5.5%2C0%2C0%2C0-5.5%2C5.5v135A5.5%2C5.5%2C0%2C0%2C0%2C159.3%2C322.4Zm5.5-11V280.1L182.8%2C262l12.8%2C12.8a5.5%2C5.5%2C0%2C0%2C0%2C7.8%2C0l8.5-8.5%2C8.3%2C8.3a5.5%2C5.5%2C0%2C0%2C0%2C7.8%2C0l8.7-8.7L260.7%2C290a5.5%2C5.5%2C0%2C0%2C0%2C7.8%2C0l24.1-24.1a8.4%2C8.4%2C0%2C0%2C1%2C11.9%2C0l30.7%2C30.7v14.9Zm25.8-57.1L201.9%2C243a8.4%2C8.4%2C0%2C0%2C1%2C11.9%2C0l15.1%2C15.1-4.8%2C4.8-8.3-8.3a5.5%2C5.5%2C0%2C0%2C0-7.8%2C0l-8.5%2C8.5Zm144.6-66.9v93.6l-22.9-22.9a19.4%2C19.4%2C0%2C0%2C0-27.4%2C0l-20.2%2C20.2-43.1-43.1a19.4%2C19.4%2C0%2C0%2C0-27.4%2C0l-29.4%2C29.4V187.4Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M117.1%2C317.5l-.2.2a28.7%2C28.7%2C0%2C0%2C0%2C40.5%2C40.7l9.7-9H332.7l8.9%2C8.9a28.7%2C28.7%2C0%2C0%2C0%2C40.6-40.6l-7.7-7.7V188.8l7.7-7.7a28.7%2C28.7%2C0%2C0%2C0-40.6-40.6l-8.9%2C8.9H288.2l-25.5-25.5a18.8%2C18.8%2C0%2C0%2C0-26.5%2C0l-25.5%2C25.5H167.3l-8.9-8.9a28.7%2C28.7%2C0%2C1%2C0-40.6%2C40.6l7.7%2C7.7V309.8ZM244%2C131.7a7.8%2C7.8%2C0%2C0%2C1%2C11%2C0l17.7%2C17.7H226.3Zm-109.1%2C51-9.3-9.3a17.7%2C17.7%2C0%2C1%2C1%2C25-25l10.5%2C10.5a5.5%2C5.5%2C0%2C0%2C0%2C3.9%2C1.6h170a5.5%2C5.5%2C0%2C0%2C0%2C3.9-1.6l10.5-10.5a17.7%2C17.7%2C0%2C1%2C1%2C25%2C25l-9.3%2C9.3a5.5%2C5.5%2C0%2C0%2C0-1.6%2C3.9V312.2a5.5%2C5.5%2C0%2C0%2C0%2C1.6%2C3.9l9.3%2C9.3a17.7%2C17.7%2C0%2C1%2C1-25%2C25L338.8%2C340a5.5%2C5.5%2C0%2C0%2C0-3.9-1.6H165a5.5%2C5.5%2C0%2C0%2C0-3.7%2C1.5l-11.4%2C10.5-.2.2a17.7%2C17.7%2C0%2C0%2C1-25.1-25l10.1-9.2a5.5%2C5.5%2C0%2C0%2C0%2C1.8-4.1V186.6A5.5%2C5.5%2C0%2C0%2C0%2C134.9%2C182.7Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M264.9%2C245.2a20.4%2C20.4%2C0%2C1%2C0-20.4-20.4A20.4%2C20.4%2C0%2C0%2C0%2C264.9%2C245.2Zm0-29.8a9.4%2C9.4%2C0%2C1%2C1-9.4%2C9.4A9.4%2C9.4%2C0%2C0%2C1%2C264.9%2C215.4Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M147.3%2C175.4a5.5%2C5.5%2C0%2C0%2C0%2C3.9-9.4l-9.9-9.9a5.5%2C5.5%2C0%2C1%2C0-7.8%2C7.8l9.9%2C9.9A5.5%2C5.5%2C0%2C0%2C0%2C147.3%2C175.4Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M353.3%2C175.4a5.5%2C5.5%2C0%2C0%2C0%2C3.9-1.6l9.9-9.9a5.5%2C5.5%2C0%2C0%2C0-7.8-7.8l-9.9%2C9.9a5.5%2C5.5%2C0%2C0%2C0%2C3.9%2C9.4Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M133.5%2C343.6a5.5%2C5.5%2C0%2C0%2C0%2C7.8%2C0l9.9-9.9a5.5%2C5.5%2C0%2C0%2C0-7.8-7.8l-9.9%2C9.9A5.5%2C5.5%2C0%2C0%2C0%2C133.5%2C343.6Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M349.4%2C325.9a5.5%2C5.5%2C0%2C0%2C0%2C0%2C7.8l9.9%2C9.9a5.5%2C5.5%2C0%2C0%2C0%2C7.8-7.8l-9.9-9.9A5.5%2C5.5%2C0%2C0%2C0%2C349.4%2C325.9Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_13 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M104.5%2C334.8a23%2C23%2C0%2C0%2C0%2C23%2C23h245a23%2C23%2C0%2C0%2C0%2C23-23V171.1a5.5%2C5.5%2C0%2C0%2C0-11%2C0V334.8a12%2C12%2C0%2C0%2C1-12%2C12H272.7v-6.5h99.8a5.5%2C5.5%2C0%2C0%2C0%2C5.5-5.5V160.2a19%2C19%2C0%2C0%2C0-19-19H278.1A33.6%2C33.6%2C0%2C0%2C0%2C250%2C156.4a33.6%2C33.6%2C0%2C0%2C0-28.1-15.2H141a19%2C19%2C0%2C0%2C0-19%2C19V334.8a5.5%2C5.5%2C0%2C0%2C0%2C5.5%2C5.5h99.8v6.5H127.5a12%2C12%2C0%2C0%2C1-12-12V171.1a5.5%2C5.5%2C0%2C0%2C0-11%2C0ZM367%2C329.3H255.8a22.7%2C22.7%2C0%2C0%2C1%2C22.3-18.7H367ZM278.1%2C152.2H359a8%2C8%2C0%2C0%2C1%2C8%2C8V299.6H278.1a33.5%2C33.5%2C0%2C0%2C0-22.6%2C8.8V174.8A22.7%2C22.7%2C0%2C0%2C1%2C278.1%2C152.2Zm-137.1%2C0h80.8a22.7%2C22.7%2C0%2C0%2C1%2C22.6%2C22.6V308.3a33.5%2C33.5%2C0%2C0%2C0-22.6-8.8H133V160.2A8%2C8%2C0%2C0%2C1%2C141%2C152.2Zm-8%2C158.4h88.9a22.7%2C22.7%2C0%2C0%2C1%2C22.3%2C18.7H133Zm105.3%2C29.7h23.4v6.5H238.3Z%22%2F%3E%3Crect%20class%3D%22cls-1%22%20x%3D%22151%22%20y%3D%22181.1%22%20width%3D%2274.7%22%20height%3D%2211%22%2F%3E%3Crect%20class%3D%22cls-1%22%20x%3D%22151%22%20y%3D%22207.3%22%20width%3D%2274.7%22%20height%3D%2211%22%2F%3E%3Crect%20class%3D%22cls-1%22%20x%3D%22151%22%20y%3D%22233.6%22%20width%3D%2274.7%22%20height%3D%2211%22%2F%3E%3Crect%20class%3D%22cls-1%22%20x%3D%22151%22%20y%3D%22259.8%22%20width%3D%2274.7%22%20height%3D%2211%22%2F%3E%3Crect%20class%3D%22cls-1%22%20x%3D%22274.3%22%20y%3D%22181.1%22%20width%3D%2274.7%22%20height%3D%2211%22%2F%3E%3Crect%20class%3D%22cls-1%22%20x%3D%22274.3%22%20y%3D%22207.3%22%20width%3D%2274.7%22%20height%3D%2211%22%2F%3E%3Crect%20class%3D%22cls-1%22%20x%3D%22274.3%22%20y%3D%22233.6%22%20width%3D%2274.7%22%20height%3D%2211%22%2F%3E%3Crect%20class%3D%22cls-1%22%20x%3D%22274.3%22%20y%3D%22259.8%22%20width%3D%2274.7%22%20height%3D%2211%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_16 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M250%2C291.3a41.8%2C41.8%2C0%2C1%2C0-41.8-41.8A41.9%2C41.9%2C0%2C0%2C0%2C250%2C291.3Zm0-72.7a30.8%2C30.8%2C0%2C1%2C1-30.8%2C30.8A30.9%2C30.9%2C0%2C0%2C1%2C250%2C218.6Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M133.6%2C317.1a24.2%2C24.2%2C0%2C0%2C0%2C19.9-10.4c17.4%2C5.4%2C38.6%2C8.1%2C61.5%2C8.1h8.6a273.4%2C273.4%2C0%2C0%2C0%2C22.9%2C21%2C5.5%2C5.5%2C0%2C1%2C0%2C6.9-8.5c-5-4.1-10.1-8.5-15-13.3%2C6.7-.5%2C13.5-1.2%2C20.3-2.2s13.5-2.1%2C20.2-3.5c-9.6%2C16.4-20.2%2C30.6-31.2%2C41.7-17.8%2C17.8-34.8%2C25.3-46.6%2C20.5s-18.8-21.7-19.3-46.6a5.5%2C5.5%2C0%2C0%2C0-5.5-5.4h-.1a5.5%2C5.5%2C0%2C0%2C0-5.4%2C5.6c.6%2C29.9%2C9.9%2C50%2C26.2%2C56.5a31.2%2C31.2%2C0%2C0%2C0%2C11.8%2C2.2c14.1%2C0%2C30.2-8.6%2C46.8-25.2%2C13.6-13.7%2C26.6-31.9%2C37.9-52.8a273.3%2C273.3%2C0%2C0%2C0%2C29.6-9.3%2C5.5%2C5.5%2C0%2C0%2C0-3.9-10.3c-6.1%2C2.3-12.4%2C4.4-19%2C6.4q4.3-9.1%2C8.2-18.7c2.6-6.4%2C4.9-12.8%2C7.1-19.2a216.5%2C216.5%2C0%2C0%2C1%2C19%2C42.5%2C24.2%2C24.2%2C0%2C0%2C0%2C3.4%2C44.7%2C22.7%2C22.7%2C0%2C0%2C1-7.4%2C11.3c-10.3%2C8-29.1%2C5.3-51.6-7.5a5.5%2C5.5%2C0%2C0%2C0-5.4%2C9.6c15.8%2C9%2C30%2C13.5%2C42%2C13.5%2C8.5%2C0%2C15.9-2.3%2C21.8-6.9s9.7-10.9%2C11.8-19.1a24.2%2C24.2%2C0%2C0%2C0-3.8-48.2h-.2c-5.3-17.2-13.9-35.7-25.3-54.1a273.5%2C273.5%2C0%2C0%2C0%2C6.8-30.3%2C5.5%2C5.5%2C0%2C0%2C0-10.9-1.7c-1%2C6.4-2.4%2C13-4%2C19.6q-5.7-8.3-12.1-16.5c-4.2-5.4-8.6-10.7-13.1-15.7%2C19%2C.1%2C36.6%2C2.2%2C51.7%2C6.2%2C24.3%2C6.5%2C39.3%2C17.4%2C41.1%2C30.1s-9.9%2C27.8-32.3%2C40.9a5.5%2C5.5%2C0%2C1%2C0%2C5.6%2C9.5c26.7-15.7%2C40.1-34.1%2C37.6-51.9s-19.9-31.5-49.2-39.2c-18.7-5-40.9-7.1-64.7-6.4a273.3%2C273.3%2C0%2C0%2C0-22.9-21%2C5.5%2C5.5%2C0%2C1%2C0-6.9%2C8.5c5%2C4.1%2C10.1%2C8.5%2C15%2C13.3-6.7.5-13.5%2C1.3-20.3%2C2.2s-13.5%2C2.1-20.1%2C3.5c9.1-15.6%2C19.2-29.3%2C29.4-39.9A24.2%2C24.2%2C0%2C0%2C0%2C288.8%2C127a21.3%2C21.3%2C0%2C0%2C1%2C10.2%2C1.3c12.1%2C4.9%2C19.1%2C22.5%2C19.3%2C48.4a5.5%2C5.5%2C0%2C0%2C0%2C5.5%2C5.5h0a5.5%2C5.5%2C0%2C0%2C0%2C5.5-5.5c-.2-31-9.5-51.8-26.2-58.5a33%2C33%2C0%2C0%2C0-18.8-1.6%2C24.2%2C24.2%2C0%2C0%2C0-40.9%2C25.7c-13.3%2C13.6-25.8%2C31.3-36.8%2C51.7a273.4%2C273.4%2C0%2C0%2C0-29.6%2C9.3%2C5.5%2C5.5%2C0%2C0%2C0%2C3.9%2C10.3c6.1-2.3%2C12.4-4.4%2C19-6.4q-4.3%2C9.1-8.2%2C18.7c-2.6%2C6.4-4.9%2C12.8-7.1%2C19.3-26.8-46.8-30.8-86.3-14.9-98.6%2C10-7.8%2C28.2-5.4%2C50%2C6.6a5.5%2C5.5%2C0%2C0%2C0%2C5.3-9.6c-26.2-14.4-48.2-16.4-62-5.6-23.5%2C18.4-15.3%2C68.5%2C17.4%2C121.4a273.4%2C273.4%2C0%2C0%2C0-6.8%2C30.3%2C5.5%2C5.5%2C0%2C0%2C0%2C4.6%2C6.3h.9a5.5%2C5.5%2C0%2C0%2C0%2C5.4-4.6c1-6.4%2C2.4-13%2C4-19.6q5.7%2C8.2%2C12.1%2C16.5c4.2%2C5.4%2C8.6%2C10.7%2C13.1%2C15.7-20.9-.1-40.1-2.6-55.9-7.4a24.2%2C24.2%2C0%2C0%2C0-35.8-24.7%2C19.5%2C19.5%2C0%2C0%2C1-1.1-4.2c-1.8-12.6%2C9.4-27.1%2C30.7-40a5.5%2C5.5%2C0%2C0%2C0-5.7-9.4c-25.6%2C15.5-38.3%2C33.5-35.9%2C50.9a31.1%2C31.1%2C0%2C0%2C0%2C3.5%2C10.6%2C24.2%2C24.2%2C0%2C0%2C0%2C20.3%2C37.4Zm224.9.8a13.2%2C13.2%2C0%2C1%2C1-13.2-13.2A13.2%2C13.2%2C0%2C0%2C1%2C358.5%2C317.9ZM264.9%2C117.9a13.2%2C13.2%2C0%2C1%2C1-13.2%2C13.2A13.2%2C13.2%2C0%2C0%2C1%2C264.9%2C117.9ZM192.1%2C257.6c2.7-9.2%2C6-18.5%2C9.7-27.6s7.8-18.1%2C12.2-26.6c9.3-2.2%2C19-4%2C28.7-5.4s19.6-2.3%2C29.1-2.7c6.6%2C7%2C13%2C14.4%2C19.1%2C22.2s11.8%2C15.8%2C16.9%2C23.8c-2.7%2C9.2-6%2C18.5-9.7%2C27.6S290.3%2C287%2C286%2C295.4c-9.3%2C2.2-19%2C4-28.7%2C5.4s-19.6%2C2.3-29.1%2C2.7c-6.6-7-13-14.4-19.1-22.2S197.2%2C265.4%2C192.1%2C257.6Zm-45.3%2C35.3a13.2%2C13.2%2C0%2C1%2C1-13.2-13.2A13.2%2C13.2%2C0%2C0%2C1%2C146.8%2C292.9Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M235.5%2C249.4A14.5%2C14.5%2C0%2C0%2C1%2C250%2C235a5.5%2C5.5%2C0%2C0%2C0%2C0-11%2C25.5%2C25.5%2C0%2C0%2C0-25.5%2C25.5%2C5.5%2C5.5%2C0%2C0%2C0%2C11%2C0Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_20 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M348.1%2C241.1a25.6%2C25.6%2C0%2C0%2C0%2C0%2C36.1l14.2%2C14.2a5.5%2C5.5%2C0%2C0%2C0%2C7.8%2C0l14.2-14.2a25.5%2C25.5%2C0%2C0%2C0-12.6-43V203.1l8-4.1a18%2C18%2C0%2C0%2C0%2C0-32L274.3%2C112.9a49%2C49%2C0%2C0%2C0-44.7%2C0L124.3%2C167a18%2C18%2C0%2C0%2C0%2C0%2C32l48.4%2C24.8-.5%2C41.6-1.5.4a39.2%2C39.2%2C0%2C0%2C0-16.8-25.3%2C5.5%2C5.5%2C0%2C0%2C0-5.7%2C9.4%2C28%2C28%2C0%2C0%2C1%2C11.1%2C15.6c-11.4-2.7-22.8-.9-32.1%2C5.2-12.6%2C8.2-20.1%2C23.2-20.1%2C40.1%2C0%2C33.7%2C27.5%2C63.2%2C58.7%2C63.2%2C20.3%2C0%2C39-12.5%2C49.7-30.4a144.1%2C144.1%2C0%2C0%2C0%2C36.8%2C4.6c45.2%2C0%2C80.5-18.9%2C80.5-42.9l1-82.8%2C26.9-13.8v25.5A25.4%2C25.4%2C0%2C0%2C0%2C348.1%2C241.1ZM125.5%2C183a6.9%2C6.9%2C0%2C0%2C1%2C3.8-6.2l105.4-54.1a38%2C38%2C0%2C0%2C1%2C34.6%2C0l105.4%2C54.1a7%2C7%2C0%2C0%2C1%2C0%2C12.4L269.3%2C243.3a38%2C38%2C0%2C0%2C1-34.6%2C0L129.3%2C189.2A6.9%2C6.9%2C0%2C0%2C1%2C125.5%2C183Zm58.1%2C46.5%2C46%2C23.6a49%2C49%2C0%2C0%2C0%2C44.7%2C0l21.5-11-.8%2C58.3c-11.4%2C4.2-26%2C6.9-42.7%2C6.9a135.7%2C135.7%2C0%2C0%2C1-28-2.8c-1.6-14.9-8.6-27.5-19.4-34.6a37.5%2C37.5%2C0%2C0%2C0-21.6-6Zm15.8%2C117.7c-9.2%2C10.3-21.2%2C16-33.6%2C16s-24.3-5.7-33.6-16a55.1%2C55.1%2C0%2C0%2C1-14.2-36.2c0-13.1%2C5.6-24.7%2C15.1-30.9a28.6%2C28.6%2C0%2C0%2C1%2C15.9-4.7%2C36.6%2C36.6%2C0%2C0%2C1%2C14.6%2C3.2h0a5.5%2C5.5%2C0%2C0%2C0%2C2.2.5h1.8l.4-.2h0a44.4%2C44.4%2C0%2C0%2C1%2C10.5-3.2h.3c7.4-1.2%2C14.2.1%2C20%2C3.8%2C9.3%2C6%2C14.8%2C17.9%2C14.8%2C31.8a53.6%2C53.6%2C0%2C0%2C1-5.7%2C23.7h0A56.3%2C56.3%2C0%2C0%2C1%2C199.4%2C347.1Zm52.8-9.9a134.3%2C134.3%2C0%2C0%2C1-31.9-3.7%2C63.9%2C63.9%2C0%2C0%2C0%2C4-17.9%2C148%2C148%2C0%2C0%2C0%2C27.9%2C2.6c30.1%2C0%2C55.8-8.4%2C69.6-21.1v8.1C321.8%2C320.7%2C293.9%2C337.3%2C252.3%2C337.3Zm69.9-63.9a5.5%2C5.5%2C0%2C0%2C0-.4%2C2c0%2C7-5.7%2C14.1-15.7%2C19.9l.8-58.9%2C15.8-8.1Zm54.3-3.9-10.3%2C10.3-10.3-10.3a14.6%2C14.6%2C0%2C1%2C1%2C20.6%2C0Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M156.9%2C340.1a33.8%2C33.8%2C0%2C0%2C1-12.3-11.8%2C5.5%2C5.5%2C0%2C1%2C0-9.3%2C5.9%2C44.7%2C44.7%2C0%2C0%2C0%2C16.3%2C15.5%2C5.5%2C5.5%2C0%2C0%2C0%2C5.3-9.7Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M138.6%2C313.8c-.3-1.4-.4-2.2-.4-2.3a5.5%2C5.5%2C0%2C0%2C0-10.9%2C1.2c0%2C.1.2%2C1.4.6%2C3.3a5.5%2C5.5%2C0%2C0%2C0%2C5.4%2C4.3h1.2A5.5%2C5.5%2C0%2C0%2C0%2C138.6%2C313.8Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_22 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M165.6%2C140v30h-9.9a15.2%2C15.2%2C0%2C0%2C0-15.2%2C15.2v19h0l.2.6h0L156%2C251.1A24.6%2C24.6%2C0%2C0%2C0%2C179.3%2C268h3.5l12.8%2C110.5H174a5.5%2C5.5%2C0%2C0%2C0%2C0%2C11H326a5.5%2C5.5%2C0%2C0%2C0%2C0-11H304.3L317.1%2C268h3.6A24.6%2C24.6%2C0%2C0%2C0%2C344%2C251.1l15.2-46.2h0l.2-.6h0v-19A15.2%2C15.2%2C0%2C0%2C0%2C344.3%2C170H331V140a5.5%2C5.5%2C0%2C0%2C0-1.6-3.9l-11.4-11.5a21%2C21%2C0%2C0%2C0-3.3-25.2L306.3%2C91a21%2C21%2C0%2C1%2C0-29.6%2C29.6l8.4%2C8.4a20.9%2C20.9%2C0%2C0%2C0%2C25.2%2C3.4l9.7%2C9.8V170H176.6V142.3l9.3-9.3%2C1.2%2C1.2a12.6%2C12.6%2C0%2C0%2C0%2C8.9%2C3.7h1a12.6%2C12.6%2C0%2C0%2C0%2C9.2-5.2l17-23.4h0a12.5%2C12.5%2C0%2C0%2C0-1.3-16.3l-3.7-3.7a12.5%2C12.5%2C0%2C0%2C0-16.3-1.3l-23.4%2C17A12.6%2C12.6%2C0%2C0%2C0%2C177%2C124l1.2%2C1.2-10.9%2C10.9A5.5%2C5.5%2C0%2C0%2C0%2C165.6%2C140Zm127.2-18.7-8.4-8.4a10%2C10%2C0%2C0%2C1%2C14.1-14.1l8.4%2C8.4a10%2C10%2C0%2C0%2C1-14.1%2C14.1ZM179.3%2C257a13.6%2C13.6%2C0%2C0%2C1-12.9-9.4l-12.8-38.9h9.2v10.6a16.2%2C16.2%2C0%2C0%2C0%2C16.2%2C16.2h0l2.5%2C21.5Zm141.6-32.5H179.1a5.2%2C5.2%2C0%2C0%2C1-5.2-5.2V208.7H326.1v10.6A5.2%2C5.2%2C0%2C0%2C1%2C320.9%2C224.5Zm-114.1%2C154-16.6-143H309.8l-16.6%2C143ZM333.6%2C247.6a13.6%2C13.6%2C0%2C0%2C1-12.9%2C9.4h-2.3l2.5-21.5h0a16.2%2C16.2%2C0%2C0%2C0%2C16.2-16.2V208.7h9.3Zm14.9-62.4v12.5H151.5V185.2a4.2%2C4.2%2C0%2C0%2C1%2C4.2-4.2H344.3A4.2%2C4.2%2C0%2C0%2C1%2C348.5%2C185.2ZM184.3%2C115a1.6%2C1.6%2C0%2C0%2C1%2C.7-1.2l23.4-17a1.6%2C1.6%2C0%2C0%2C1%2C2.1.2l3.7%2C3.7a1.6%2C1.6%2C0%2C0%2C1%2C.2%2C2.1h0l-17%2C23.4a1.6%2C1.6%2C0%2C0%2C1-1.2.7%2C1.6%2C1.6%2C0%2C0%2C1-1.2-.5l-10.1-10.1A1.6%2C1.6%2C0%2C0%2C1%2C184.3%2C115Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M278.6%2C326.2H221.4a5.5%2C5.5%2C0%2C1%2C0%2C0%2C11h57.2a5.5%2C5.5%2C0%2C0%2C0%2C0-11Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M231.9%2C309.5l15.6%2C8a5.5%2C5.5%2C0%2C0%2C0%2C5%2C0l15.6-8a24.3%2C24.3%2C0%2C0%2C0%2C13.3-21.7v-33a5.5%2C5.5%2C0%2C0%2C0-5.5-5.5H224.2a5.5%2C5.5%2C0%2C0%2C0-5.5%2C5.5v33A24.3%2C24.3%2C0%2C0%2C0%2C231.9%2C309.5Zm-2.2-49.2h40.7v27.5a13.3%2C13.3%2C0%2C0%2C1-7.3%2C11.9h0L250%2C306.4l-13-6.7a13.3%2C13.3%2C0%2C0%2C1-7.3-11.9Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_25 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M101.7%2C377.5H303.8A17.2%2C17.2%2C0%2C0%2C0%2C321%2C360.3V282.1a81.1%2C81.1%2C0%2C0%2C0%2C11.9%2C1h.9a80.2%2C80.2%2C0%2C0%2C0%2C57.6-24.4l.9-1a80.2%2C80.2%2C0%2C0%2C0%2C.8-109.2l-.3-.3-1.6-1.8a79.9%2C79.9%2C0%2C0%2C0-56.6-24.1h-.9a79.8%2C79.8%2C0%2C0%2C0-56.2%2C23l-1.7%2C1.8-.2.2a79.8%2C79.8%2C0%2C0%2C0-22.2%2C54.6%2C80.7%2C80.7%2C0%2C0%2C0%2C1.6%2C17H240.7V193.8a14.5%2C14.5%2C0%2C0%2C0-14.5-14.5H169.4a14.5%2C14.5%2C0%2C0%2C0-14.5%2C14.5v25.1H101.7a17.2%2C17.2%2C0%2C0%2C0-17.2%2C17.2V360.3A17.2%2C17.2%2C0%2C0%2C0%2C101.7%2C377.5Zm166-17.2V236.1a6.2%2C6.2%2C0%2C0%2C1%2C6.2-6.2h9.5V366.5h-9.5A6.2%2C6.2%2C0%2C0%2C1%2C267.6%2C360.3Zm36.2%2C6.2h-9.5V229.9h9.5a6.2%2C6.2%2C0%2C0%2C1%2C6.2%2C6.2v39a5.5%2C5.5%2C0%2C0%2C0%2C0%2C.6v84.6A6.2%2C6.2%2C0%2C0%2C1%2C303.8%2C366.5Zm-39.1-170a68.7%2C68.7%2C0%2C0%2C1%2C15.9-38.3%2C105%2C105%2C0%2C0%2C0%2C17.7%2C8.5%2C152.5%2C152.5%2C0%2C0%2C0-4.2%2C30.1Zm69.8-63.2c6.8.1%2C13.8%2C7%2C19.1%2C18.9%2C1.1%2C2.4%2C2.1%2C5%2C3%2C7.7a94.9%2C94.9%2C0%2C0%2C1-21.4%2C2.4h-1a94.9%2C94.9%2C0%2C0%2C1-22.3-2.9c1-2.7%2C2-5.2%2C3.1-7.6%2C5.5-11.8%2C12.6-18.5%2C19.3-18.5ZM403%2C198l-29.4-.3a152.5%2C152.5%2C0%2C0%2C0-3.6-30.2%2C105.1%2C105.1%2C0%2C0%2C0%2C17.9-8.2A68.7%2C68.7%2C0%2C0%2C1%2C403%2C198Zm-16%2C49.3a105.1%2C105.1%2C0%2C0%2C0-17.7-8.5%2C152.5%2C152.5%2C0%2C0%2C0%2C4.2-30.1l29.4.3A68.7%2C68.7%2C0%2C0%2C1%2C387%2C247.3Zm-53.9%2C24.8c-4.9-.1-9.1-3.6-12-7.1V243.8a94.9%2C94.9%2C0%2C0%2C1%2C34.7%2C2.2c-1%2C2.7-2%2C5.2-3.1%2C7.6-5.5%2C11.8-12.6%2C18.5-19.3%2C18.5Zm29.5-13.8a94.5%2C94.5%2C0%2C0%2C0%2C3.7-9%2C94%2C94%2C0%2C0%2C1%2C12.8%2C6%2C68.9%2C68.9%2C0%2C0%2C1-22.2%2C12.9A68.3%2C68.3%2C0%2C0%2C0%2C362.5%2C258.3Zm4.6-101.4a94.6%2C94.6%2C0%2C0%2C0-3.5-9.1%2C68.4%2C68.4%2C0%2C0%2C0-5.5-10%2C68.9%2C68.9%2C0%2C0%2C1%2C21.9%2C13.3A94.1%2C94.1%2C0%2C0%2C1%2C367.1%2C156.9Zm-62.1-9.7a94.5%2C94.5%2C0%2C0%2C0-3.7%2C9%2C94%2C94%2C0%2C0%2C1-12.8-6%2C69%2C69%2C0%2C0%2C1%2C22.2-12.9A68.3%2C68.3%2C0%2C0%2C0%2C305.1%2C147.2Zm3.7%2C22.9a105.9%2C105.9%2C0%2C0%2C0%2C25.3%2C3.3h1.1a105.9%2C105.9%2C0%2C0%2C0%2C24.3-2.8%2C141.5%2C141.5%2C0%2C0%2C1%2C3.1%2C27l-57.5-.6A141.5%2C141.5%2C0%2C0%2C1%2C308.8%2C170.1Zm53.7%2C38.5a141.5%2C141.5%2C0%2C0%2C1-3.7%2C26.9%2C105.2%2C105.2%2C0%2C0%2C0-38.1-2.7A17.2%2C17.2%2C0%2C0%2C0%2C305.6%2C219c-.4-3.6-.6-7.3-.7-11Zm-97.9-1%2C29.4.3q.1%2C5.6.6%2C11.1H266.3A69.2%2C69.2%2C0%2C0%2C1%2C264.6%2C207.5Zm-95.2-17.2h56.8a3.5%2C3.5%2C0%2C0%2C1%2C3.5%2C3.5v1.7H165.9v-1.7A3.5%2C3.5%2C0%2C0%2C1%2C169.4%2C190.3Zm-3.5%2C16.3h63.8v12.3H165.9ZM95.5%2C236.1a6.2%2C6.2%2C0%2C0%2C1%2C6.2-6.2H257.8a17.1%2C17.1%2C0%2C0%2C0-1.2%2C6.2V360.3a17.1%2C17.1%2C0%2C0%2C0%2C1.2%2C6.2H101.7a6.2%2C6.2%2C0%2C0%2C1-6.2-6.2Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M102.9%2C270.9%2C149.4%2C286l1.7.3a5.5%2C5.5%2C0%2C0%2C0%2C5.2-3.8l7.2-22.1a5.5%2C5.5%2C0%2C0%2C0-3.5-6.9l-46.5-15.2a5.5%2C5.5%2C0%2C0%2C0-6.9%2C3.5l-7.2%2C22.1A5.5%2C5.5%2C0%2C0%2C0%2C102.9%2C270.9Zm12.4-20.4%2C36.1%2C11.8-3.8%2C11.6-36.1-11.8Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M224.7%2C310.5a22.9%2C22.9%2C0%2C1%2C0%2C22.9%2C22.9A22.9%2C22.9%2C0%2C0%2C0%2C224.7%2C310.5Zm0%2C34.8a11.9%2C11.9%2C0%2C1%2C1%2C11.9-11.9A11.9%2C11.9%2C0%2C0%2C1%2C224.7%2C345.4Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M192.1%2C272.1a13.2%2C13.2%2C0%2C0%2C0%2C13%2C11.7h1.5l29.7-3.4h0a13.2%2C13.2%2C0%2C0%2C0%2C11.6-14.5l-.9-7.9a13.2%2C13.2%2C0%2C0%2C0-14.5-11.6l-29.7%2C3.4a13.1%2C13.1%2C0%2C0%2C0-11.6%2C14.5Zm10.5-10.7a2.1%2C2.1%2C0%2C0%2C1%2C1.4-.8l29.7-3.4h.2a2.2%2C2.2%2C0%2C0%2C1%2C2.1%2C1.9l.9%2C7.9a2.2%2C2.2%2C0%2C0%2C1-1.9%2C2.4h0l-29.7%2C3.4a2.1%2C2.1%2C0%2C0%2C1-2.4-1.9l-.9-7.9A2.1%2C2.1%2C0%2C0%2C1%2C202.6%2C261.5Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M104.4%2C324.7v26.1a5.5%2C5.5%2C0%2C0%2C0%2C5.5%2C5.5h60.5a5.5%2C5.5%2C0%2C0%2C0%2C5.5-5.5V324.7a5.5%2C5.5%2C0%2C0%2C0-5.5-5.5H109.9A5.5%2C5.5%2C0%2C0%2C0%2C104.4%2C324.7Zm11%2C5.5h49.5v15.1H115.4Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_28 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M393.9%2C176.9a20.9%2C20.9%2C0%2C0%2C0-15.1-20.1%2C20.9%2C20.9%2C0%2C0%2C0-29.4-29.4%2C20.9%2C20.9%2C0%2C0%2C0-22.7-14.9%2C20.9%2C20.9%2C0%2C0%2C0-33-4.5l-28.2%2C28.2a5.5%2C5.5%2C0%2C0%2C0-7.8%2C0l-4.3%2C4.3a56.9%2C56.9%2C0%2C0%2C0-8.4-14.4%2C5.5%2C5.5%2C0%2C0%2C0-8.1-.4l-66.6%2C66.6a36.8%2C36.8%2C0%2C0%2C0-10.6%2C30.2v.2l2.4%2C16.9-9.5%2C9.5-4.7-4.7a5.5%2C5.5%2C0%2C0%2C0-7.8%2C0L107.6%2C277a5.5%2C5.5%2C0%2C0%2C0%2C0%2C7.8l15.6%2C15.6L192.8%2C370h0l18.4%2C18.4.8.7.6.3.4.2.7.2h2.8l.7-.2.4-.2.6-.3.8-.7L251.5%2C356a5.5%2C5.5%2C0%2C0%2C0%2C0-7.8l-4.7-4.7%2C11.1-11.1A43.1%2C43.1%2C0%2C0%2C0%2C301%2C321.6l50-50%2C25.8-25.8L387.6%2C235a20.7%2C20.7%2C0%2C0%2C0-8.6-34.5l8.8-8.8A20.8%2C20.8%2C0%2C0%2C0%2C393.9%2C176.9Zm-92.4-61.1a9.9%2C9.9%2C0%2C0%2C1%2C14%2C0l.9%2C1-1.9%2C1.6L276%2C157a42.8%2C42.8%2C0%2C0%2C0-4.3-11.4ZM160.3%2C257l11.4-11.4a5.5%2C5.5%2C0%2C0%2C0%2C1.6-4.6l-2.7-19.5a25.9%2C25.9%2C0%2C0%2C1%2C7.5-21.2L240%2C138.3a34.5%2C34.5%2C0%2C0%2C1%2C4.5%2C11.2l-53.4%2C53.4a36.8%2C36.8%2C0%2C0%2C0-10.6%2C30.2v.2l2.4%2C16.9-14.7%2C14.7-4.7-4.7Zm-16.4-.8%2C7.8%2C7.8-24.7%2C24.7-7.8-7.8Zm15.6%2C15.6%2C49.8%2C49.8a28.4%2C28.4%2C0%2C0%2C0-24.7%2C24.7l-49.8-49.8Zm55.5%2C104.9-14.5-14.5a17.4%2C17.4%2C0%2C0%2C1%2C24.7-24.7l14.5%2C14.5ZM380%2C184l-58.4%2C58.4a5.5%2C5.5%2C0%2C0%2C0%2C0%2C7.8l.9.7.4.2.6.3.5.2.5.2h1.4a5.5%2C5.5%2C0%2C0%2C0%2C3.5-1.6l36.6-36.6a9.7%2C9.7%2C0%2C0%2C1%2C13.8%2C13.8L369%2C238.1l-25.8%2C25.8-50%2C50a32.1%2C32.1%2C0%2C0%2C1-34.7%2C7.1%2C5.5%2C5.5%2C0%2C0%2C0-5.9%2C1.2L239%2C335.7l-5.9-5.9h0L176%2C272.7%2C192.6%2C256a5.5%2C5.5%2C0%2C0%2C0%2C1.6-4.6l-2.7-19.5a25.9%2C25.9%2C0%2C0%2C1%2C7.5-21.2l61.9-61.9c3.5%2C5.9%2C7.8%2C15.7%2C1.6%2C21.9l-32.7%2C32.7a5.5%2C5.5%2C0%2C1%2C0%2C7.8%2C7.8l32.7-32.7h0l52.1-52.1a9.9%2C9.9%2C0%2C0%2C1%2C14%2C14L278%2C198.7a5.5%2C5.5%2C0%2C1%2C0%2C7.8%2C7.8l58.4-58.4%2C11.2-11.2a9.9%2C9.9%2C0%2C0%2C1%2C14%2C14l-11.2%2C11.2-58.4%2C58.4a5.5%2C5.5%2C0%2C1%2C0%2C7.8%2C7.8L366%2C169.9a9.9%2C9.9%2C0%2C0%2C1%2C14%2C14Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M220.1%2C349.2l-6-6a5.5%2C5.5%2C0%2C0%2C0-7.8%2C7.8l6%2C6a5.5%2C5.5%2C0%2C0%2C0%2C7.8-7.8Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_30 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M117.7%2C246.1v.7c0%2C1.1%2C0%2C2.1%2C0%2C3.2s0%2C2%2C0%2C3.1v1c0%2C.6%2C0%2C1.3.1%2C2h0a131.5%2C131.5%2C0%2C0%2C0%2C21.3%2C66.2l.4.6a132.4%2C132.4%2C0%2C0%2C0%2C75.4%2C54.8h.3a132.5%2C132.5%2C0%2C0%2C0%2C69.7%2C0h.3a132.4%2C132.4%2C0%2C0%2C0%2C75.4-54.8l.4-.6a131.5%2C131.5%2C0%2C0%2C0%2C21.3-66.1h0c0-.7.1-1.3.1-2v-1c0-1%2C0-2.1%2C0-3.1s0-2.1%2C0-3.2v-.7q0-1.3-.1-2.7v-.5a130.7%2C130.7%2C0%2C0%2C0-28.8-75.6l-.5-.6a133%2C133%2C0%2C0%2C0-55.8-40.5l-.5-.2a131.5%2C131.5%2C0%2C0%2C0-29.6-7.4h-.5l-2.6-.3h-.8l-2.4-.2H239.3l-2.4.2h-.8l-2.6.3H233a131.5%2C131.5%2C0%2C0%2C0-29.6%2C7.4l-.5.2a133%2C133%2C0%2C0%2C0-55.8%2C40.5l-.5.6a130.7%2C130.7%2C0%2C0%2C0-28.8%2C75.6v.5Q117.7%2C244.7%2C117.7%2C246.1Zm11%2C1.2q0-1.9.1-3.8v-1.6l.2-2.1c.1-.7.1-1.5.2-2.2v-.2a120.6%2C120.6%2C0%2C0%2C1%2C21.2-56.8L163.9%2C222l-35.2%2C25.6Zm42.6-17.1%2C29%2C9.4%2C15.6%2C48L198%2C312.3H145.9a120.5%2C120.5%2C0%2C0%2C1-16.7-51.4Zm45-96.8%2C1.1-.3%2C3.6-.9%2C1.6-.4%2C2-.4%2C1.8-.4%2C1.9-.4%2C3.3-.6%2C1.5-.2%2C2.5-.3%2C1.4-.2%2C3.7-.3h.9l3.2-.2h10.3l3.2.2h.9l3.7.3%2C1.5.2%2C2.4.3%2C1.6.2%2C3.3.5%2C1.9.4%2C1.7.4%2C2.1.5%2C1.1.3%2C4.1%2C1.1%2C1.1.3%2C1.5.5L250%2C159.5l-35.2-25.6Zm112.4%2C96.8%2C42.2%2C30.7a120.5%2C120.5%2C0%2C0%2C1-16.7%2C51.4H302l-17.9-24.6%2C15.6-48Zm42%2C7.2v.2c.1.7.1%2C1.5.2%2C2.2l.2%2C2.1v1.6q.1%2C1.9.1%2C3.8v.3L336.1%2C222l13.4-41.4A120.6%2C120.6%2C0%2C0%2C1%2C370.7%2C237.4ZM291.8%2C364h-.1l-1.9.7%2C13.5-41.4h43.5A121.9%2C121.9%2C0%2C0%2C1%2C291.8%2C364ZM274%2C283.1H226l-14.8-45.7L250%2C209.1l38.9%2C28.2ZM208.4%2C364h-.1a121.9%2C121.9%2C0%2C0%2C1-54.9-40.7h43.5l13.5%2C41.4Zm14.6%2C4.3-16.1-49.6%2C17.9-24.6h50.4l17.9%2C24.6L277%2C368.3a121.8%2C121.8%2C0%2C0%2C1-54%2C0ZM341.4%2C170.2l-16.1%2C49.5-29%2C9.4-40.8-29.6V169.1l42.2-30.7A122%2C122%2C0%2C0%2C1%2C341.4%2C170.2ZM202.3%2C138.4l42.2%2C30.7v30.5l-40.8%2C29.6-29-9.4-16.1-49.5A122%2C122%2C0%2C0%2C1%2C202.3%2C138.4Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M384.9%2C320.1a5.5%2C5.5%2C0%2C0%2C0-7.5%2C2.1%2C146.9%2C146.9%2C0%2C0%2C1-75.5%2C64.7%2C5.5%2C5.5%2C0%2C1%2C0%2C3.9%2C10.3%2C157.9%2C157.9%2C0%2C0%2C0%2C81.1-69.6A5.5%2C5.5%2C0%2C0%2C0%2C384.9%2C320.1Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M398.3%2C283.2a5.5%2C5.5%2C0%2C0%2C0-6.7%2C3.9%2C145.5%2C145.5%2C0%2C0%2C1-5.5%2C16.8%2C5.5%2C5.5%2C0%2C1%2C0%2C10.2%2C4.1%2C156.7%2C156.7%2C0%2C0%2C0%2C5.9-18.1A5.5%2C5.5%2C0%2C0%2C0%2C398.3%2C283.2Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M122.7%2C177.8a146.9%2C146.9%2C0%2C0%2C1%2C75.5-64.7%2C5.5%2C5.5%2C0%2C1%2C0-3.9-10.3%2C158%2C158%2C0%2C0%2C0-81.1%2C69.6%2C5.5%2C5.5%2C0%2C1%2C0%2C9.6%2C5.4Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M110.8%2C188.9a5.5%2C5.5%2C0%2C0%2C0-7.1%2C3.1A157%2C157%2C0%2C0%2C0%2C97.8%2C210a5.5%2C5.5%2C0%2C0%2C0%2C3.9%2C6.7l1.4.2a5.5%2C5.5%2C0%2C0%2C0%2C5.3-4.1%2C145.9%2C145.9%2C0%2C0%2C1%2C5.5-16.8A5.5%2C5.5%2C0%2C0%2C0%2C110.8%2C188.9Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_37 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M411.6%2C245H395a5.5%2C5.5%2C0%2C0%2C0%2C0%2C11h16.6a5.5%2C5.5%2C0%2C0%2C0%2C0-11Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M245.6%2C90v16.6a5.5%2C5.5%2C0%2C0%2C0%2C11%2C0V90a5.5%2C5.5%2C0%2C0%2C0-11%2C0Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M251.1%2C388.9a5.5%2C5.5%2C0%2C0%2C0-5.5%2C5.5V411a5.5%2C5.5%2C0%2C0%2C0%2C11%2C0V394.4A5.5%2C5.5%2C0%2C0%2C0%2C251.1%2C388.9Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M350.1%2C301.3l-24.2-14A142.1%2C142.1%2C0%2C0%2C0%2C360.4%2C256h15.7a5.5%2C5.5%2C0%2C1%2C0%2C0-11H361.3a141%2C141%2C0%2C0%2C0-13.6-15.2L372.1%2C187l20.8-12a5.5%2C5.5%2C0%2C0%2C0-5.5-9.5l-10.3%2C6a17.9%2C17.9%2C0%2C0%2C0-2.3-7%2C17.7%2C17.7%2C0%2C0%2C0-15.4-8.9H312.1l3-5.2a5.5%2C5.5%2C0%2C1%2C0-9.5-5.5l-6.2%2C10.7H256.6V125.5a5.5%2C5.5%2C0%2C0%2C0-11%2C0v30.1H202.4l-5.5-9.5a5.5%2C5.5%2C0%2C0%2C0-9.5%2C5.5l2.3%2C4H140.9a17.7%2C17.7%2C0%2C0%2C0-15.5%2C8.9%2C18%2C18%2C0%2C0%2C0-2.1%2C5.8l-8.5-4.9a5.5%2C5.5%2C0%2C0%2C0-5.5%2C9.5l17.8%2C10.3%2C25.6%2C44a141%2C141%2C0%2C0%2C0-14.3%2C15.9l-12.2-.2a5.5%2C5.5%2C0%2C1%2C0-.2%2C11l13.7.2a142.1%2C142.1%2C0%2C0%2C0%2C34.9%2C31.4l-25.1%2C14.5a5.5%2C5.5%2C0%2C1%2C0%2C5.5%2C9.5L185.7%2C294l.4.2%2C4.6%2C2.3a5.4%2C5.4%2C0%2C0%2C0%2C.5%2C1.4l13.3%2C22.9-17.2%2C29.8a5.5%2C5.5%2C0%2C1%2C0%2C9.5%2C5.5l14-24.3%2C24.7%2C42.6a17.7%2C17.7%2C0%2C0%2C0%2C15.4%2C8.9h.1a17.7%2C17.7%2C0%2C0%2C0%2C15.4-9l24.9-43.7%2C14%2C24.3a5.5%2C5.5%2C0%2C0%2C0%2C9.5-5.5l-17.3-29.9L310.7%2C297a5.5%2C5.5%2C0%2C0%2C0%2C.6-1.4l2.7-1.3%2C1-.5%2C29.7%2C17.1a5.5%2C5.5%2C0%2C1%2C0%2C5.5-9.5ZM135%2C176.9a6.8%2C6.8%2C0%2C0%2C1%2C5.9-10.3H359.3a6.8%2C6.8%2C0%2C0%2C1%2C5.9%2C10.2l-25.9%2C45.5a140.8%2C140.8%2C0%2C0%2C0-25.4-16.7%2C140.8%2C140.8%2C0%2C0%2C0-127.9%2C0%2C140.7%2C140.7%2C0%2C0%2C0-24.9%2C16.3Zm147.5%2C56.8A32.5%2C32.5%2C0%2C1%2C1%2C250%2C201.2%2C32.5%2C32.5%2C0%2C0%2C1%2C282.5%2C233.7ZM148.8%2C249.9a131.6%2C131.6%2C0%2C0%2C1%2C14.2-15.2l.7-.7A127.7%2C127.7%2C0%2C0%2C1%2C217%2C205.4a43.5%2C43.5%2C0%2C1%2C0%2C66%2C0%2C127.7%2C127.7%2C0%2C0%2C1%2C53.6%2C28.9l1%2C1a131.7%2C131.7%2C0%2C0%2C1%2C13.6%2C14.6%2C129.5%2C129.5%2C0%2C0%2C1-37.9%2C32.3%2C5.5%2C5.5%2C0%2C0%2C0-1.7.9%2C129.8%2C129.8%2C0%2C0%2C1-162.8-33.2ZM257%2C368.8a6.7%2C6.7%2C0%2C0%2C1-5.9%2C3.5h0a6.7%2C6.7%2C0%2C0%2C1-5.9-3.4l-38.3-66a141.5%2C141.5%2C0%2C0%2C0%2C88.2-.6Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M383.5%2C320.6l-15.5-8.9a5.5%2C5.5%2C0%2C0%2C0-5.5%2C9.5l15.5%2C8.9a5.5%2C5.5%2C0%2C1%2C0%2C5.5-9.5Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M131.6%2C312.6l-15.5%2C8.9a5.5%2C5.5%2C0%2C1%2C0%2C5.5%2C9.5l15.5-8.9a5.5%2C5.5%2C0%2C0%2C0-5.5-9.5Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M325.5%2C367.3a5.5%2C5.5%2C0%2C0%2C0-9.5%2C5.5l8.9%2C15.5a5.5%2C5.5%2C0%2C1%2C0%2C9.5-5.5Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M184.5%2C366.6a5.5%2C5.5%2C0%2C0%2C0-7.5%2C2L168%2C384a5.5%2C5.5%2C0%2C1%2C0%2C9.5%2C5.5l8.9-15.5A5.5%2C5.5%2C0%2C0%2C0%2C184.5%2C366.6Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M170.1%2C110.7a5.5%2C5.5%2C0%2C0%2C0-2%2C7.5l8.9%2C15.5a5.5%2C5.5%2C0%2C0%2C0%2C9.5-5.5l-8.9-15.5A5.5%2C5.5%2C0%2C0%2C0%2C170.1%2C110.7Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M324.9%2C111.4%2C316%2C126.9a5.5%2C5.5%2C0%2C1%2C0%2C9.5%2C5.5l8.9-15.5a5.5%2C5.5%2C0%2C0%2C0-9.5-5.5Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M107.4%2C244.9l-16.6-.2h-.1a5.5%2C5.5%2C0%2C0%2C0-.1%2C11l16.6.2h.1a5.5%2C5.5%2C0%2C0%2C0%2C.1-11Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_41 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M332.5%2C134.1l-.5-.5a128.5%2C128.5%2C0%2C0%2C0-19.6-13.1l-.7-.4-1.4-.7a128.3%2C128.3%2C0%2C0%2C0-48.8-14.3h0l-2.4-.2H241.8l-2.4.2h0a128.3%2C128.3%2C0%2C0%2C0-48.8%2C14.3l-1.4.7-.7.4A128.5%2C128.5%2C0%2C0%2C0%2C169%2C133.6l-.5.5a129.2%2C129.2%2C0%2C0%2C0-1.6%2C198.4l1%2C.7A25.1%2C25.1%2C0%2C0%2C0%2C212%2C316.6v-9.7a25.1%2C25.1%2C0%2C0%2C0-6.5-16.9%2C240.3%2C240.3%2C0%2C0%2C1-6.3-50.6H301.8a240.3%2C240.3%2C0%2C0%2C1-6.3%2C50.6%2C25.1%2C25.1%2C0%2C0%2C0-6.5%2C16.9v9.7a25.1%2C25.1%2C0%2C0%2C0%2C44.1%2C16.5l1-.7a129.2%2C129.2%2C0%2C0%2C0-1.6-198.4Zm36.1%2C94.3H312.8c-.5-24.4-4.1-46.9-10-65.8a118.5%2C118.5%2C0%2C0%2C0%2C25.9-17.3A118%2C118%2C0%2C0%2C1%2C368.6%2C228.4Zm-182-94%2C.5-.3%2C2.9-1.8%2C2.2-1.3%2C1.2-.7a118.7%2C118.7%2C0%2C0%2C1%2C27.8-11c-7.5%2C8.1-14%2C19.2-19.3%2C32.7a107.4%2C107.4%2C0%2C0%2C1-20.8-13.9Zm63.9-18.8c15.1%2C0%2C29%2C16%2C38.5%2C41a107.4%2C107.4%2C0%2C0%2C1-77%2C0C221.5%2C131.7%2C235.4%2C115.6%2C250.5%2C115.6Zm58.4%2C15.4%2C2.2%2C1.3%2C2.9%2C1.8.5.3%2C5.5%2C3.8a107.4%2C107.4%2C0%2C0%2C1-20.8%2C13.9c-5.2-13.5-11.8-24.6-19.3-32.7a118.7%2C118.7%2C0%2C0%2C1%2C27.8%2C11Zm-58.4%2C43.7a118.2%2C118.2%2C0%2C0%2C0%2C42.1-7.7c5.4%2C17.7%2C8.8%2C38.8%2C9.2%2C61.4H199.2c.5-22.5%2C3.8-43.6%2C9.2-61.4A118.2%2C118.2%2C0%2C0%2C0%2C250.5%2C174.7Zm-78.2-29.5a118.5%2C118.5%2C0%2C0%2C0%2C25.9%2C17.3c-5.9%2C18.9-9.5%2C41.4-10%2C65.8H132.4A118%2C118%2C0%2C0%2C1%2C172.3%2C145.2ZM201%2C316.6a14.2%2C14.2%2C0%2C0%2C1-28.3%2C0v-9.7a14.1%2C14.1%2C0%2C0%2C1%2C23.8-10.4l.4.4a14.1%2C14.1%2C0%2C0%2C1%2C4.1%2C10Zm-8.4-34.2a25.1%2C25.1%2C0%2C0%2C0-30.9%2C24.5V312a118%2C118%2C0%2C0%2C1-29.3-72.6h55.8A259.6%2C259.6%2C0%2C0%2C0%2C192.6%2C282.4Zm121.6%2C48.4A14.2%2C14.2%2C0%2C0%2C1%2C300%2C316.6v-9.7a14.1%2C14.1%2C0%2C0%2C1%2C4.1-9.9l.4-.4a14.1%2C14.1%2C0%2C0%2C1%2C23.8%2C10.3v9.7A14.2%2C14.2%2C0%2C0%2C1%2C314.2%2C330.8ZM339.3%2C312v-5.1a25.1%2C25.1%2C0%2C0%2C0-30.9-24.5%2C259.6%2C259.6%2C0%2C0%2C0%2C4.4-43h55.8A118%2C118%2C0%2C0%2C1%2C339.3%2C312Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M250.7%2C331A29.3%2C29.3%2C0%2C0%2C0%2C280%2C301.8V291.2a29.2%2C29.2%2C0%2C0%2C0-58.5%2C0v10.6A29.3%2C29.3%2C0%2C0%2C0%2C250.7%2C331Zm-18.2-39.8a18.2%2C18.2%2C0%2C0%2C1%2C36.5%2C0v10.6a18.2%2C18.2%2C0%2C0%2C1-36.5%2C0Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M359.6%2C366a25.3%2C25.3%2C0%2C0%2C0-24.8-19.9H295.4a29.5%2C29.5%2C0%2C0%2C0-19.8-7.5H225.8a29.5%2C29.5%2C0%2C0%2C0-19.8%2C7.5H166.2A25.3%2C25.3%2C0%2C0%2C0%2C141.4%2C366l-4.6%2C20.6a5.5%2C5.5%2C0%2C0%2C0%2C5.4%2C6.7H358.9a5.5%2C5.5%2C0%2C0%2C0%2C5.4-6.7Zm-207.5%2C2.4a14.4%2C14.4%2C0%2C0%2C1%2C14.1-11.3h32.1a30.2%2C30.2%2C0%2C0%2C0-1.4%2C4.6l-4.6%2C20.6H149Zm117.4%2C13.9H203.6l4.1-18.2a18.5%2C18.5%2C0%2C0%2C1%2C18.2-14.6h49.8a18.5%2C18.5%2C0%2C0%2C1%2C18.2%2C14.6l4.1%2C18.2Zm39.7%2C0-4.6-20.6a30.2%2C30.2%2C0%2C0%2C0-1.4-4.6h31.7a14.4%2C14.4%2C0%2C0%2C1%2C14.1%2C11.3l3.1%2C13.9Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_29 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M410.8%2C225.9l-96.7-84.8a5.5%2C5.5%2C0%2C0%2C0-3.6-1.4H189.3l-.8.2h-.1l-.8.4h-.1l-.7.5h0L150%2C173.3V161.2a5.5%2C5.5%2C0%2C0%2C0-5.5-5.5H116.1a5.5%2C5.5%2C0%2C0%2C0-5.5%2C5.5v46.7L89.9%2C225.9a15.1%2C15.1%2C0%2C0%2C0-.7%2C22h.1a15.1%2C15.1%2C0%2C0%2C0%2C20.6.7l.7-.6V357.2a5.5%2C5.5%2C0%2C0%2C0%2C5.5%2C5.5H385.8a5.5%2C5.5%2C0%2C0%2C0%2C5.5-5.5V252.3h9.6a15.1%2C15.1%2C0%2C0%2C0%2C9.9-26.4ZM121.6%2C166.7H139v16.3l-4.7%2C4.2-12.7%2C11.1Zm-18.9%2C73.8a4.1%2C4.1%2C0%2C0%2C1-5.5-.2H97a4.1%2C4.1%2C0%2C0%2C1%2C.2-5.9l93.1-81.6%2C93.1%2C81.6a4%2C4%2C0%2C0%2C1-2.4%2C7.1h-.3a4%2C4%2C0%2C0%2C1-2.6-1l-84.2-73.6a5.5%2C5.5%2C0%2C0%2C0-7.2%2C0Zm18.9-2%2C68.7-60.3L259%2C238.3V351.7H121.6ZM311.2%2C351.7V295.2a13.9%2C13.9%2C0%2C0%2C1%2C27.8%2C0v56.5Zm69%2C0H350.1V295.2a24.9%2C24.9%2C0%2C0%2C0-49.8%2C0v56.5H270V247.9l.8.7a15%2C15%2C0%2C0%2C0%2C9.4%2C3.7H380.3Zm23.5-111.5a4%2C4%2C0%2C0%2C1-3.1%2C1.2H295.2a15%2C15%2C0%2C0%2C0-4.6-15.4l-85.7-75.2H308.4l95.2%2C83.4a4.1%2C4.1%2C0%2C0%2C1%2C.2%2C5.9Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M224.4%2C270.3H156.2a5.5%2C5.5%2C0%2C0%2C0-5.5%2C5.5v52.6a5.5%2C5.5%2C0%2C0%2C0%2C5.5%2C5.5h68.3a5.5%2C5.5%2C0%2C0%2C0%2C5.5-5.5V275.8A5.5%2C5.5%2C0%2C0%2C0%2C224.4%2C270.3Zm-62.8%2C11h23.1v41.6H161.7Zm57.3%2C41.6H195.8V281.3h23.1Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M324.9%2C178.7a29.4%2C29.4%2C0%2C0%2C0-29.4%2C29.4%2C5.5%2C5.5%2C0%2C0%2C0%2C5.5%2C5.5h47.8a5.5%2C5.5%2C0%2C0%2C0%2C5.5-5.5A29.4%2C29.4%2C0%2C0%2C0%2C324.9%2C178.7Zm-17.6%2C23.9a18.4%2C18.4%2C0%2C0%2C1%2C35.1%2C0Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M361%2C371.3H305.7a5.5%2C5.5%2C0%2C0%2C0%2C0%2C11H361a5.5%2C5.5%2C0%2C0%2C0%2C0-11Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_8 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M370.8%2C120.9H129.2A27.2%2C27.2%2C0%2C0%2C0%2C102%2C148.1V308a27.2%2C27.2%2C0%2C0%2C0%2C27.2%2C27.2h94.7l-7.5%2C29.9H203.9a5.5%2C5.5%2C0%2C1%2C0%2C0%2C11h92.2a5.5%2C5.5%2C0%2C0%2C0%2C0-11H283.6l-7.5-29.9h94.7A27.2%2C27.2%2C0%2C0%2C0%2C398%2C308V148.1A27.2%2C27.2%2C0%2C0%2C0%2C370.8%2C120.9Zm-241.6%2C11H370.8A16.2%2C16.2%2C0%2C0%2C1%2C387%2C148.1V293.3H113V148.1A16.2%2C16.2%2C0%2C0%2C1%2C129.2%2C131.9ZM272.3%2C365.1H227.7l7.5-29.9h29.5Zm98.5-40.9H129.2A16.2%2C16.2%2C0%2C0%2C1%2C113%2C308v-3.6H387V308A16.2%2C16.2%2C0%2C0%2C1%2C370.8%2C324.2Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M168.2%2C280.2H331.8a17.5%2C17.5%2C0%2C0%2C0%2C17.5-17.5V164.2a17.5%2C17.5%2C0%2C0%2C0-17.5-17.5H168.2a17.5%2C17.5%2C0%2C0%2C0-17.5%2C17.5v98.6A17.5%2C17.5%2C0%2C0%2C0%2C168.2%2C280.2Zm-6.5-17.5V191.2h49.2v78.1H168.2A6.5%2C6.5%2C0%2C0%2C1%2C161.7%2C262.7Zm170%2C6.5H221.9V191.2H338.3v71.5A6.5%2C6.5%2C0%2C0%2C1%2C331.8%2C269.2ZM168.2%2C157.7H331.8a6.5%2C6.5%2C0%2C0%2C1%2C6.5%2C6.5v16H161.7v-16A6.5%2C6.5%2C0%2C0%2C1%2C168.2%2C157.7Z%22%2F%3E%3Ccircle%20class%3D%22cls-1%22%20cx%3D%22175%22%20cy%3D%22169.5%22%20r%3D%225.8%22%2F%3E%3Ccircle%20class%3D%22cls-1%22%20cx%3D%22192.8%22%20cy%3D%22169.5%22%20r%3D%225.8%22%2F%3E%3Ccircle%20class%3D%22cls-1%22%20cx%3D%22210.6%22%20cy%3D%22169.5%22%20r%3D%225.8%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M238.5%2C212.1h56.9a5.5%2C5.5%2C0%2C0%2C0%2C0-11H238.5a5.5%2C5.5%2C0%2C0%2C0%2C0%2C11Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M308%2C224.5H255.6a5.5%2C5.5%2C0%2C0%2C0%2C0%2C11H308a5.5%2C5.5%2C0%2C0%2C0%2C0-11Z%22%2F%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M295.4%2C247.8H238.5a5.5%2C5.5%2C0%2C1%2C0%2C0%2C11h56.9a5.5%2C5.5%2C0%2C1%2C0%2C0-11Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__icon_42 {
+    background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3A%2377a2ff%3B%7D%3C%2Fstyle%3E%3C%2Fdefs%3E%3Ctitle%3Eicons_oct08_01_v_05%3C%2Ftitle%3E%3Cg%20id%3D%22text%22%3E%3Cpath%20class%3D%22cls-1%22%20d%3D%22M368%2C303.6l-.2-.5v-.2l-.4-.8v-.2l-.6-.7h-.1l-65.1-65.1%2C65.3-71.4a20.6%2C20.6%2C0%2C0%2C0-29.1-29.1l-71.4%2C65.3L233%2C167.6h0l-21.4-21.4h0l-18.7-18.7a18.8%2C18.8%2C0%2C0%2C0-26.6%2C0l-29.2%2C29.2a18.8%2C18.8%2C0%2C0%2C0%2C0%2C26.6l18.7%2C18.7%2C21.4%2C21.4%2C31.1%2C31.1-25%2C25a41%2C41%2C0%2C0%2C0-30.5%2C12c-6.3%2C6.3-10%2C15.4-13.9%2C24.9-5.4%2C13.1-10.9%2C26.7-23.7%2C33.8a5.5%2C5.5%2C0%2C0%2C0-1.4%2C1.1h-.1l-.3.3-.2.2-.2.3-.3.5v.2l-.2.5v.7h0a5.5%2C5.5%2C0%2C0%2C0-.1.6h0a5.5%2C5.5%2C0%2C0%2C0%2C0%2C.6v.7h0l.2.6h0l.3.5h.1l.3.4h.1l.4.5h.1l.4.4h.1l.5.3h.1c13.4%2C7.9%2C27.5%2C11.9%2C41.7%2C11.9a75.2%2C75.2%2C0%2C0%2C0%2C16.6-1.9c14.1-3.2%2C28.1-10.7%2C37.6-20.2a41%2C41%2C0%2C0%2C0%2C12-30.5l25-25L310.8%2C357h.1l.7.6h.2l.8.4h.6l67.5%2C19.5%2C1.5.2a5.5%2C5.5%2C0%2C0%2C0%2C5.3-7Zm-42.8%2C46.8%2C6.8-6.8h0l21.2-21.2h0l6.8-6.8%2C6.2%2C21.7-19.4%2C19.4ZM215.7%2C192.6%2C341.5%2C318.5l-13.4%2C13.4L202.2%2C206.1ZM349.3%2C310.7%2C223.5%2C184.8l5.6-5.6L354.9%2C305.1Zm-4.1-167a9.6%2C9.6%2C0%2C0%2C1%2C13.5%2C13.5l-65%2C71.1-19.6-19.6ZM144.9%2C164.4%2C174%2C135.2a7.8%2C7.8%2C0%2C0%2C1%2C11%2C0l14.8%2C14.8-40.2%2C40.2-14.8-14.8A7.8%2C7.8%2C0%2C0%2C1%2C144.9%2C164.4Zm62.8-6.6%2C13.6%2C13.6-40.2%2C40.2L167.4%2C198Zm-13.2%2C56L320.3%2C339.7l-5.6%2C5.6L253.4%2C284a5.5%2C5.5%2C0%2C0%2C0-1.2-1.8l-32-32a5.5%2C5.5%2C0%2C0%2C0-1.8-1.2l-29.5-29.5ZM149.1%2C320.5c3.5-8.5%2C6.7-16.5%2C11.5-21.3a30.1%2C30.1%2C0%2C0%2C1%2C22.3-8.8l6.7%2C6.7c-13.7%2C7.3-18.3%2C18-22.4%2C27.5-5.3%2C12.2-9.6%2C22.2-33.6%2C24.5C140.9%2C340.5%2C145.2%2C330.1%2C149.1%2C320.5Zm54.2%2C21.4c-10.7%2C10.7-33.8%2C23.7-61.4%2C17.1%2C24.5-4.5%2C30.2-17.9%2C35.5-30%2C4.2-9.7%2C7.8-18.1%2C20.5-23.6l14.3%2C14.3A30.1%2C30.1%2C0%2C0%2C1%2C203.2%2C341.8Zm14.1-32.5-24.2-24.2L216%2C262.2l24.2%2C24.2Zm141.6%2C50.8%2C10.8-10.8%2C4.4%2C15.2Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
+}
+
+.trending_stats_int_item__title {
+    text-align: center;
+    color: #828282;
+    font-size: 16px;
+    line-height: 1.5
+}
+
+.trending_stats_int_item__title:first-letter {
+    text-transform: uppercase
+}
+
+.trending_stats_sex {
+    padding: 0 43px
+}
+
+.trending_stats_sex__chart {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+    background: url(/images/landings/author_guide/users_icon.png) 50% no-repeat;
+    margin-bottom: 20px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .trending_stats_sex__chart {
+        background-image: url(/images/landings/author_guide/users_icon_2x.png);
+        background-size: 120px 120px
+    }
+}
+
+.trending_stats_sex__progress {
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%
+}
+
+.trending_stats_sex__meter,
+.trending_stats_sex__value {
+    fill: none;
+    stroke-width: 2px
+}
+
+.trending_stats_sex__meter {
+    stroke: #f07979
+}
+
+.trending_stats_sex__value {
+    stroke: #528bcc;
+    stroke-linecap: round
+}
+
+.trending_stats_sex__caption {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 220px;
+    margin: 0 auto
+}
+
+.trending_stats_sex__caption>* {
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    text-align: center
+}
+
+.trending_stats_sex__caption-item {
+    color: #528bcc
+}
+
+.trending_stats_sex__caption-item.women {
+    color: #f07979
+}
+
+.trending_stats_sex__caption-count {
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 40px
+}
+
+.is_mobile .trending_stats_city_list {
+    margin-top: 50px
+}
+
+.trending_stats_sex_and_city {
+    margin-top: 30px;
+    margin-bottom: 40px
+}
+
+.is_mobile .trending_stats_sex_and_city {
+    padding: 0
+}
+
+.trending_stats_sex_and_city__content {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.trending_stats_sex_and_city__content>* {
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+.is_mobile .trending_stats_sex_and_city__content {
+    display: block
+}
+
+.trending_stats_city {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 29px
+}
+
+.trending_stats_city:first-child {
+    margin-top: 0
+}
+
+.trending_stats_city__perc {
+    -webkit-flex-basis: 55px;
+    -ms-flex-preferred-size: 55px;
+    flex-basis: 55px;
+    font-size: 28px;
+    line-height: 22px;
+    font-weight: 300;
+    text-align: right;
+    color: #528bcc;
+    margin-right: 14px
+}
+
+.trending_stats_city__name {
+    position: relative;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    padding-top: 10px;
+    color: #82a2cd;
+    font-size: 14px;
+    line-height: 16px
+}
+
+.trending_stats_city__name:before,
+.trending_stats_city__name_perc {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background-color: #82a2cd;
+    opacity: 0.4;
+    border-radius: 2px;
+    top: 0;
+    left: 0
+}
+
+.trending_stats_city__name_perc {
+    background-color: #528bcc;
+    opacity: 1
+}
+
+.trending_stats_age_chart {
+    border-top: 1px solid #e7e8ec;
+    padding-top: 40px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around
+}
+
+.trending_stats_age_item__col {
+    height: 210px;
+    position: relative;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end
+}
+
+.trending_stats_age_item__col-graphic {
+    width: 4px;
+    background-color: #528bcc;
+    margin-right: 16px
+}
+
+.trending_stats_age_item__value {
+    font-size: 28px;
+    font-weight: 300;
+    color: #528bcc;
+    text-align: center;
+    margin-top: 10px
+}
+
+.is_mobile .trending_stats_age_item__value {
+    font-size: 24px
+}
+
+.trending_stats_age_item__col-label {
+    position: absolute;
+    white-space: nowrap;
+    font-size: 14px;
+    left: 50%;
+    bottom: 0;
+    -webkit-transform: translate(4px, 12px) rotate(-90deg);
+    -ms-transform: translate(4px, 12px) rotate(-90deg);
+    -o-transform: translate(4px, 12px) rotate(-90deg);
+    transform: translate(4px, 12px) rotate(-90deg);
+    -webkit-transform-origin: 0;
+    -ms-transform-origin: 0;
+    -o-transform-origin: 0;
+    transform-origin: 0;
+    color: #82a2cd
+}

@@ -1,0 +1,30 @@
+#imnumberx_css {
+    display: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+.imnumberx_block {
+    padding: 80px 50px;
+    text-align: center;
+    font-size: 20px
+}
+
+.imnumberx_number {
+    padding: 15px 0;
+    font-size: 48px
+}
+
+.imnumberx_visitors {
+    color: #939393;
+    font-size: 14px
+}

@@ -1,0 +1,182 @@
+#questionnaires_css {
+    display: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
+.quest_row {
+    padding: 7px 0;
+    margin: 0 20px;
+    border-bottom: 1px solid #e7e8ec;
+    font-size: 12.5px
+}
+
+.quest_row:last-child {
+    border-bottom: 0
+}
+
+.quest_last {
+    float: right;
+    width: 200px;
+    padding: 8px 12px;
+    border-radius: 2px;
+    overflow: hidden
+}
+
+.quest_last:hover {
+    text-decoration: none;
+    background-color: #f0f2f5
+}
+
+.quest_thumb {
+    margin-right: 10px;
+    width: 40px 40px;
+    height: 40px 40px;
+    overflow: hidden;
+    float: left
+}
+
+.quest_img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%
+}
+
+.quest_mem {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #42648b;
+    line-height: 16px;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.quest_mem,
+.quest_date {
+    overflow: hidden;
+    padding-top: 3px
+}
+
+.quest_date {
+    color: #939393
+}
+
+.quest_info {
+    padding: 11px 15px 0 0;
+    overflow: hidden
+}
+
+.quest_title_wrap {
+    word-wrap: break-word
+}
+
+.quest_title {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 16px;
+    color: #42648b
+}
+
+.quest_other {
+    padding-top: 3px;
+    margin-bottom: 6px;
+    color: #656565
+}
+
+.quest_page {
+    padding: 0 3px
+}
+
+.quest_block_title {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #42648b;
+    padding: 15px 0;
+    font-size: 12.5px;
+    line-height: 16px
+}
+
+.quest_content {
+    padding: 15px
+}
+
+.quest_block_wrap {
+    margin: 0 20px 10px
+}
+
+.quest_block_wrap .bt_pages_wrap {
+    border-bottom: 1 px solid #e7e8ec;
+    padding-top: 20px
+}
+
+.quest_block_wrap .bt_pages {
+    float: right;
+    margin-bottom: -1px
+}
+
+.quest_block_wrap textarea {
+    max-width: 450px;
+    min-width: 450px;
+    min-height: 100px;
+    height: 100px;
+    margin: 0 0 10px 21px
+}
+
+.quest_radio {
+    padding: 13px 0 0
+}
+
+.quest_actions {
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.quest_text {
+    padding: 15px
+}
+
+.quest_textb {
+    white-space: nowrap
+}
+
+.quest_option {
+    padding-right: 10px;
+    min-height: 25px;
+    vertical-align: top
+}
+
+.quest_footer {
+    padding-bottom: 20px
+}
+
+.quest_footer>* {
+    display: block;
+    margin: 0 auto
+}
+
+.quest_gratitude {
+    display: none
+}
+
+.quest_gratitude .no_rows {
+    padding-top: 0;
+    padding-bottom: 28px
+}
+
+.quest_error {
+    padding-top: 100px;
+    padding-bottom: 100px
+}
