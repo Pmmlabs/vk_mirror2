@@ -358,7 +358,7 @@ var Videoview = {
             return cur.mvOpts || window.mvcur && mvcur.mvData
         },
         getPlayerObject: function() {
-            return window.mvcur && mvcur.player || cur.videoInlinePlayer || ge("video_yt") && window.VideoYoutube || ge("video_player") || window.html5video || null
+            return window.mvcur && mvcur.player || cur.videoInlinePlayer || ge("video_yt") && window.VideoYoutube || null
         },
         getPlayerObjectEl: function() {
             return ge("video_player") || ge("html5_player") || geByClass1("extra_player") || null
@@ -372,7 +372,7 @@ var Videoview = {
             e && e.onLiked && e.onLiked()
         },
         playerOnResize: function() {
-            mvcur.player && mvcur.player.resize(), ge("html5_player") && window.html5video && html5video.onResize(), ge("video_yt") && window.VideoYoutube && VideoYoutube.onResize()
+            mvcur.player && mvcur.player.resize(), ge("video_yt") && window.VideoYoutube && VideoYoutube.onResize()
         },
         playerNextTimerUpdate: function() {
             var e;
@@ -672,7 +672,7 @@ var Videoview = {
                 mvcur.addButtonTT = mvcur.addButtonTT || new ElementTooltip(r, {
                     cls: "mv_add_eltt",
                     elClassWhenShown: "mv_no_active",
-                    autoShow: !1,
+                    autoShow: !0,
                     noHideOnClick: !0,
                     onFirstTimeShow: function(e) {
                         function i(e) {
@@ -835,7 +835,8 @@ var Videoview = {
                 if (n && /^wall_/.test(i) && VideoPlaylist.lists[i] && cur.wallVideos && cur.wallVideos[i] && (VideoPlaylist.extendList(i, cur.wallVideos[i].list), VideoPlaylist.updateBlockList(i)), n) {
                     ge("mv_main").appendChild(n);
                     var d = VideoPlaylist.getCurList().list.length;
-                    (window.Video && Video.isInVideosList() && vk.id == cur.oid || 5 > d) && (a || VideoPlaylist.toggle(!1)), isFunction(o) && o(VideoPlaylist.updateBlockList.pbind(i)), setTimeout(function() {
+                    (window.Video && Video.isInVideosList() && vk.id == cur.oid || 5 > d) && (a || VideoPlaylist.toggle(!1)),
+                    isFunction(o) && o(VideoPlaylist.updateBlockList.pbind(i)), setTimeout(function() {
                         VideoPlaylist.restoreScrollPos(), VideoPlaylist.updateScrollbar(), VideoPlaylist.setCurVideo(e, a)
                     }, 0)
                 }
@@ -894,7 +895,7 @@ var Videoview = {
             }
         },
         destroyPlayer: function() {
-            mvcur.player && (mvcur.player.destroy(), delete mvcur.player), ge("html5_player") && window.html5video && html5video.destroy(), ge("video_yt") && window.VideoYoutube && VideoYoutube.destroy()
+            mvcur.player && (mvcur.player.destroy(), delete mvcur.player), ge("video_yt") && window.VideoYoutube && VideoYoutube.destroy()
         },
         cmp: function(e, i) {
             var o = e.length,
@@ -1830,10 +1831,9 @@ var Videoview = {
         appendNewComment: function(e, i, o, t, a, n, d, r, s, v, l) {
             if (!ge("post" + e + "video_" + i + "mv")) {
                 var c = "";
-                mvcur.adminLevel > 0 || e == vk.id || o == vk.id ? c += mvcur.commentsTpl.del_reply : e != o && (c += mvcur.commentsTpl.spam_reply),
-                    (mvcur.adminLevel > 1 && e == o || t == vk.id) && (c += mvcur.commentsTpl.edit_reply), c = rs(mvcur.commentsTpl.actions, {
-                        actions: c
-                    });
+                mvcur.adminLevel > 0 || e == vk.id || o == vk.id ? c += mvcur.commentsTpl.del_reply : e != o && (c += mvcur.commentsTpl.spam_reply), (mvcur.adminLevel > 1 && e == o || t == vk.id) && (c += mvcur.commentsTpl.edit_reply), c = rs(mvcur.commentsTpl.actions, {
+                    actions: c
+                });
                 var m = langDate(1e3 * r, getLang("global_short_date_time", "raw"), 0, []),
                     u = psr(rs(mvcur.commentsTpl.reply, {
                         actions: c,
@@ -2612,32 +2612,35 @@ var Videoview = {
         },
         getList: function(e, i) {
             if (this.lists[e]) return this.lists[e];
-            var o = /^wall_-?\d+$/;
-            if (postPlaylistRE = /^post_-?\d+_\d+$/, catPlaylistRE = /^cat_(\d|[\w_])+$/, ownerPlaylistRE = /^-?\d+_-?\d+$/, o.test(e)) return cur.wallVideos && cur.wallVideos[e] && this.uniqList(cur.wallVideos[e]);
-            if (postPlaylistRE.test(e)) return cur.pageVideosList && cur.pageVideosList[e];
-            if (catPlaylistRE.test(e)) return cur.catVideosList && cur.catVideosList[e];
-            if (ownerPlaylistRE.test(e)) {
-                var t, a, n, d = e.split("_"),
-                    r = d[0],
-                    s = d[1];
-                if (-2 == s ? (t = "all", a = cur.playlistAddedTitle) : -1 == s ? (t = "uploaded", a = cur.playlistUploadedTitle) : (t = "album_" + s, a = cur.playlistTitle), each([cur.silentLoaded, cur.pageVideosList], function(e, i) {
-                        return i && i[r] && i[r][t] ? (n = i[r][t], !1) : void 0
-                    }), n && n.length) {
-                    var v;
+            var o = /^wall_-?\d+$/,
+                t = /^post_-?\d+_\d+$/,
+                a = /^cat_(\d|[\w_])+$/,
+                n = /^-?\d+_-?\d+$/;
+            if (o.test(e)) return cur.wallVideos && cur.wallVideos[e] && this.uniqList(cur.wallVideos[e]);
+            if (t.test(e)) return cur.pageVideosList && cur.pageVideosList[e];
+            if (a.test(e)) return cur.catVideosList && cur.catVideosList[e];
+            if (n.test(e)) {
+                var d, r, s, v = e.split("_"),
+                    l = v[0],
+                    c = v[1];
+                if (-2 == c ? (d = "all", r = cur.playlistAddedTitle) : -1 == c ? (d = "uploaded", r = cur.playlistUploadedTitle) : (d = "album_" + c, r = cur.playlistTitle), each([cur.silentLoaded, cur.pageVideosList], function(e, i) {
+                        return i && i[l] && i[l][d] ? (s = i[l][d], !1) : void 0
+                    }), s && s.length) {
+                    var m;
                     if (i)
-                        for (v = n.length; --v;) {
-                            var l = n[v];
-                            if (l[0] + "_" + l[1] == i) break
-                        } else v = 0;
-                    if (n.length > VideoPlaylist.VIDEOS_LIMIT) {
-                        var c = positive(v - VideoPlaylist.VIDEOS_LIMIT / 2),
-                            m = c + VideoPlaylist.VIDEOS_LIMIT;
-                        m > n.length && (c = positive(n.length - VideoPlaylist.VIDEOS_LIMIT), m = n.length), n = n.slice(c, m)
+                        for (m = s.length; --m;) {
+                            var u = s[m];
+                            if (u[0] + "_" + u[1] == i) break
+                        } else m = 0;
+                    if (s.length > VideoPlaylist.VIDEOS_LIMIT) {
+                        var _ = positive(m - VideoPlaylist.VIDEOS_LIMIT / 2),
+                            p = _ + VideoPlaylist.VIDEOS_LIMIT;
+                        p > s.length && (_ = positive(s.length - VideoPlaylist.VIDEOS_LIMIT), p = s.length), s = s.slice(_, p)
                     }
                     return {
                         id: e,
-                        title: a,
-                        list: n
+                        title: r,
+                        list: s
                     }
                 }
             }
@@ -2675,7 +2678,8 @@ var Videoview = {
         toggle: function(e, i) {
             if (isUndefined(e) && (e = VideoPlaylist.isCollapsed()), !mvcur.minimized || !e) {
                 var o = VideoPlaylist.getBlock();
-                if (o && VideoPlaylist.isCollapsed() != !e) return data(o, "collapsed", !e), VideoPlaylist.toggleStateClasses(), Videoview.playerOnResize(), Videoview.updateReplyFormPos(), e && (VideoPlaylist.updateScrollbar(), VideoPlaylist.setCurVideo()), !1
+                if (o && VideoPlaylist.isCollapsed() != !e) return data(o, "collapsed", !e), VideoPlaylist.toggleStateClasses(), Videoview.playerOnResize(),
+                    Videoview.updateReplyFormPos(), e && (VideoPlaylist.updateScrollbar(), VideoPlaylist.setCurVideo()), !1
             }
         },
         toggleStateClasses: function() {

@@ -11,202 +11,606 @@
     var n = {};
     return t.m = e, t.c = n, t.p = "", t(0)
 }([function(e, t, n) {
-    e.exports = n(57)
-}, function(e, t, n) {
-    e.exports = !n(152)(function() {
-        return 7 != Object.defineProperty({}, "a", {
-            get: function() {
-                return 7
-            }
-        }).a
-    })
-}, function(e, t) {
-    "use strict";
-
-    function n(e, t) {
-        return new Promise(function(n) {
-            setTimeout(n.bind(null, t), 1e3 * e)
-        })
-    }
-
-    function r(e, t) {
-        var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : null,
-            a = 0;
-        return function i() {
-            for (var o = arguments.length, s = Array(o), u = 0; o > u; u++) s[u] = arguments[u];
-            return Promise.resolve().then(function() {
-                return e.apply(void 0, s)
-            })["catch"](function(e) {
-                if (a++, t >= a) {
-                    var o = "function" == typeof r ? r(a) : 0;
-                    return 0 === o ? i.apply(void 0, s) : n(o).then(function() {
-                        return i.apply(void 0, s)
-                    })
-                }
-                throw e
-            })
-        }
-    }
-
-    function a(e, t, n) {
-        var r = void 0,
-            a = void 0;
-        return function() {
-            for (var i = arguments.length, o = Array(i), s = 0; i > s; s++) o[s] = arguments[s];
-            return new Promise(function(e, i) {
-                var s = function() {
-                        r = null, a = null, n || e(o)
-                    },
-                    u = n && !r;
-                clearTimeout(r), a && a.reject("debounce"), r = setTimeout(s, t), u ? e(o) : n && i("debounce"), a = {
-                    resolve: e,
-                    reject: i
-                }
-            }).then(function(t) {
-                return e.apply(void 0, t)
-            })
-        }
-    }
-
-    function i(e, t) {
-        var n = void 0,
-            r = new Promise(function(r) {
-                n = r, setTimeout(r.bind(null, t), 1e3 * e)
-            });
-        return {
-            pause: function() {
-                return r
-            },
-            abort: function() {
-                n(t)
-            }
-        }
-    }
-    Object.defineProperty(t, "__esModule", {
-        value: !0
-    }), t.pause = n, t.retryFn = r, t.debouncedPromise = a, t.abortablePause = i
-}, function(e, t, n) {
-    var r = n(116),
-        a = Math.max,
-        i = Math.min;
-    e.exports = function(e, t) {
-        return e = r(e), 0 > e ? a(e + t, 0) : i(e, t)
-    }
+    e.exports = n(26)
 }, , function(e, t) {
     e.exports = function(e) {
         if ("function" != typeof e) throw TypeError(e + " is not a function!");
         return e
     }
+}, function(e, t) {
+    e.exports = function(e, t, n, r) {
+        if (!(e instanceof t) || void 0 !== r && r in e) throw TypeError(n + ": incorrect invocation!");
+        return e
+    }
 }, function(e, t, n) {
     "use strict";
-    var r = n(33),
-        a = n(109),
-        i = n(44),
-        o = n(136),
-        s = n(125),
-        u = n(95),
-        c = n(56),
-        d = n(31),
-        l = n(152),
-        m = n(41),
-        f = n(23),
-        _ = n(91);
-    e.exports = function(e, t, n, p, g, h) {
-        var v = r[e],
-            b = v,
-            y = g ? "set" : "add",
-            E = b && b.prototype,
-            T = {},
-            k = function(e) {
-                var t = E[e];
-                i(E, e, "delete" == e ? function(e) {
-                    return h && !d(e) ? !1 : t.call(this, 0 === e ? 0 : e)
-                } : "has" == e ? function(e) {
-                    return h && !d(e) ? !1 : t.call(this, 0 === e ? 0 : e)
-                } : "get" == e ? function(e) {
-                    return h && !d(e) ? void 0 : t.call(this, 0 === e ? 0 : e)
-                } : "add" == e ? function(e) {
-                    return t.call(this, 0 === e ? 0 : e), this
-                } : function(e, n) {
-                    return t.call(this, 0 === e ? 0 : e, n), this
-                })
-            };
-        if ("function" == typeof b && (h || E.forEach && !l(function() {
-                (new b).entries().next()
-            }))) {
-            var I = new b,
-                O = I[y](h ? {} : -0, 1) != I,
-                L = l(function() {
-                    I.has(1)
-                }),
-                A = m(function(e) {
-                    new b(e)
-                }),
-                w = !h && l(function() {
-                    for (var e = new b, t = 5; t--;) e[y](t, t);
-                    return !e.has(-0)
-                });
-            A || (b = t(function(t, n) {
-                c(t, b, e);
-                var r = _(new v, t, b);
-                return void 0 != n && u(n, g, r[y], r), r
-            }), b.prototype = E, E.constructor = b), (L || w) && (k("delete"), k("has"), g && k("get")), (w || O) && k(y), h && E.clear && delete E.clear
-        } else b = p.getConstructor(t, e, g, y), o(b.prototype, n), s.NEED = !0;
-        return f(b, e), T[e] = b, a(a.G + a.W + a.F * (b != v), T), h || p.setStrong(b, e, g), b
+
+    function r(e, t) {
+        if ((0, h.unpackStore)(e).searchShown) return !1;
+        var n = (0, h.getTab)(e, t),
+            r = n && (0, h.parserMessage)(n.pinned);
+        return r ? n.pinHideId != r.chat_local_id : !1
     }
+
+    function a(e, t, n) {
+        var r = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : !0,
+            a = (0, h.getTab)(e, t),
+            i = a && (0, h.parserMessage)(a.pinned);
+        a && i && (a.pinHideId = i.chat_local_id, cur.imDb.update(b.PIN_HIDDEN_ID_OP, [a.peerId, a.pinHideId]), u(n, t, e), re(geByClass1("_im_pinned_tt")), r && window.Notifier && Notifier.lcSend("pin_hide", {
+            hide: 1,
+            peer: t
+        }), statlogsValueEvent("im_pinned_messages", "hide"))
+    }
+
+    function i(e, t, n) {
+        var r = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : !0,
+            a = (0, h.getTab)(e, t);
+        a && (delete a.pinHideId, cur.imDb.update(b.PIN_HIDDEN_ID_OP, [a.peerId, void 0]), u(n, t, e), r && window.Notifier && Notifier.lcSend("pin_hide", {
+            hide: 0,
+            peer: t
+        }), statlogsValueEvent("im_pinned_messages", "show"))
+    }
+
+    function o(e, t, n) {
+        var r = u.bind(null, n, t),
+            a = (0, g.showUnpinDialog)(function() {
+                a.hideProgress(), a.hide(), e.set(f.unpinMessageOptimistic.bind(null, t)).then(r).then(function(e) {
+                    return e.set(f.unpinMessage.bind(null, t))
+                }).then(r)
+            })
+    }
+
+    function s(e, t, n) {
+        var r = e.get(),
+            i = r.peer,
+            o = (0, h.parserMessage)((0, h.getTab)(e, i).pinned);
+        if (n.target.classList.contains(y)) o && a(e, i, t);
+        else if ("A" !== n.target.tagName) {
+            var s = o && o.messageId;
+            if (s && !(0, g.isAlreadyDeleted)(e, i, s)) {
+                var u = e.get(),
+                    c = (0, h.getMessage)(e, i, s);
+                c ? (e.setState({
+                    msgid: s
+                }), (0, v.updateLocation)({
+                    msgid: s
+                }), t().focusOnMessage()) : u.longpoll.push([(0, _.changePeer)(i, s)])
+            } else(0, g.showPinnedBox)(e, t, i, p.mount, n);
+            statlogsValueEvent("im_pinned_messages", "open")
+        }
+    }
+
+    function u(e, t, n) {
+        return e().updateChatTopic(t, n), (0, f.setActions)(n.get()), e().updateActions(n), n
+    }
+
+    function c(e) {
+        showTooltip(e.target, {
+            text: getLang("mail_hide_unpin_hover"),
+            black: 1,
+            needLeft: 1,
+            shift: [8, 4],
+            forcetoup: !0,
+            className: "_im_pinned_tt",
+            appendEl: bodyNode
+        })
+    }
+
+    function l(e) {
+        return {
+            unmount: function() {
+                (0, m.destroyModule)(e)
+            }
+        }
+    }
+
+    function d(e, t, n) {
+        var r = (0, m.createMutations)(l),
+            a = r.bindMutations,
+            i = s.bind(null, t, n),
+            o = c.bind(null),
+            u = (0, m.createModule)({
+                handlers: function(t, n) {
+                    n(e, "click", E, i), n(e, "mouseover", y, o)
+                }
+            });
+        return a(u)
+    }
+    Object.defineProperty(t, "__esModule", {
+        value: !0
+    }), t.isPinnedMessageVisibleInTab = r, t.pinnedMessageHide = a, t.pinnedMessageUnHide = i, t.pinnedMessageUnpin = o, t.mount = d;
+    var m = n(118),
+        f = n(90),
+        _ = n(19),
+        p = n(38),
+        g = n(68),
+        h = n(77),
+        v = n(64),
+        b = n(61),
+        y = "_im_pin_hide",
+        E = "_im_pinned_message"
+}, , function(e, t, n) {
+    "use strict";
+
+    function r(e, t) {
+        t = (0, u.parserMessage)(t);
+        var n = vk.id == t.peerId && !(0, u.unpackStore)(e).gid;
+        return 333 == t.peerId ? !1 : n || (0, c.isOut)(t) ? (0, l.isServiceMsg)(t) ? !1 : Date.now() / 1e3 - t.date > 86400 ? !1 : (0, c.isGift)(t) || (0, c.isSticker)(t) || (0, c.isAudioMsg)(t) || (0, c.isGraffiti)(t) || (0, c.isMoney)(t) || (0, c.isMessageWithInviteLink)(t) ? !1 : (0, u.isCommunityInterface)(e) && (t.kludges || {}).from_admin != vk.id ? !1 : (0, l.isAlreadyDeleted)(e, t.peerId, t.messageId) ? !1 : !0 : !1
+    }
+
+    function a(e) {
+        var t = document.createElement("div");
+        return e = e.replace(/\[((id|club)\d+)\|(.+?)]/g, "@$1 ($3)"), t.innerHTML = e, Emoji.val(t)
+    }
+
+    function i(e, t) {
+        var n = t && t.msgs ? Object.keys(t.msgs) : [],
+            a = n.filter(function(e) {
+                return e > 0
+            }).sort(function(e, t) {
+                return t - e
+            }).find(function(n) {
+                return r(e, t.msgs[n])
+            });
+        return +a || null
+    }
+
+    function o(e, t, n) {
+        var r = (0, d.convertKludgesToAttaches)(t.kludges, t.messageId),
+            i = n.dData.attaches;
+        if (a(t.text) !== n.dData.txt || r.length !== i.length) return !0;
+        for (var o = r.length; o--;)
+            if (r[o].id != i[o].id || r[o].type != i[o].type) return !0;
+        return !1
+    }
+
+    function s(e, t, n, r, a) {
+        t.origText = n, t.text = (0, l.replaceSpecialSymbols)(clean(n)).replace(/\n/gi, "<br>"), t.attaches = r, t.kludges.emoji = 1, t.local = 1, t.share_url = a, t.update_time = Math.floor(Date.now() / 1e3), e.get().tabs[t.peerId].msgs[t.messageId] = t
+    }
+    Object.defineProperty(t, "__esModule", {
+        value: !0
+    }), t.canMessageBeEdited = r, t.convertEmojiHtmlToRegularText = a, t.findLastMessageToEdit = i, t.wasMessageReallyModified = o, t.replaceMsgAfterEdit = s;
+    var u = n(77),
+        c = n(117),
+        l = n(68),
+        d = n(59)
+}, , function(e, t) {
+    e.exports = function(e) {
+        try {
+            return !!e()
+        } catch (t) {
+            return !0
+        }
+    }
+}, function(e, t, n) {
+    "use strict";
+    var r = n(42).f,
+        a = n(83),
+        i = (n(54), n(58)),
+        o = n(105),
+        s = n(3),
+        u = n(82),
+        c = n(84),
+        l = n(50),
+        d = n(56),
+        m = n(23),
+        f = n(29),
+        _ = n(35).fastKey,
+        p = f ? "_s" : "size",
+        g = function(e, t) {
+            var n, r = _(t);
+            if ("F" !== r) return e._i[r];
+            for (n = e._f; n; n = n.n)
+                if (n.k == t) return n
+        };
+    e.exports = {
+        getConstructor: function(e, t, n, l) {
+            var d = e(function(e, r) {
+                s(e, d, t, "_i"), e._i = a(null), e._f = void 0, e._l = void 0, e[p] = 0, void 0 != r && c(r, n, e[l], e)
+            });
+            return i(d.prototype, {
+                clear: function() {
+                    for (var e = this, t = e._i, n = e._f; n; n = n.n) n.r = !0, n.p && (n.p = n.p.n = void 0), delete t[n.i];
+                    e._f = e._l = void 0, e[p] = 0
+                },
+                "delete": function(e) {
+                    var t = this,
+                        n = g(t, e);
+                    if (n) {
+                        var r = n.n,
+                            a = n.p;
+                        delete t._i[n.i], n.r = !0, a && (a.n = r), r && (r.p = a), t._f == n && (t._f = r), t._l == n && (t._l = a), t[p]--
+                    }
+                    return !!n
+                },
+                forEach: function(e) {
+                    s(this, d, "forEach");
+                    for (var t, n = o(e, arguments.length > 1 ? arguments[1] : void 0, 3); t = t ? t.n : this._f;)
+                        for (n(t.v, t.k, this); t && t.r;) t = t.p
+                },
+                has: function(e) {
+                    return !!g(this, e)
+                }
+            }), f && r(d.prototype, "size", {
+                get: function() {
+                    return u(this[p])
+                }
+            }), d
+        },
+        def: function(e, t, n) {
+            var r, a, i = g(e, t);
+            return i ? i.v = n : (e._l = i = {
+                i: a = _(t, !0),
+                k: t,
+                v: n,
+                p: r = e._l,
+                n: void 0,
+                r: !1
+            }, e._f || (e._f = i), r && (r.n = i), e[p]++, "F" !== a && (e._i[a] = i)), e
+        },
+        getEntry: g,
+        setStrong: function(e, t, n) {
+            l(e, t, function(e, t) {
+                this._t = e, this._k = t, this._l = void 0
+            }, function() {
+                for (var e = this, t = e._k, n = e._l; n && n.r;) n = n.p;
+                return e._t && (e._l = n = n ? n.n : e._t._f) ? "keys" == t ? d(0, n.k) : "values" == t ? d(0, n.v) : d(0, [n.k, n.v]) : (e._t = void 0, d(1))
+            }, n ? "entries" : "values", !n, !0), m(t)
+        }
+    }
+}, function(e, t, n) {
+    var r = n(85);
+    e.exports = function(e) {
+        if (!r(e)) throw TypeError(e + " is not an object!");
+        return e
+    }
+}, , , , , , function(e, t) {
+    t.f = {}.propertyIsEnumerable
 }, , , function(e, t, n) {
     "use strict";
 
     function r(e) {
-        return e && e.__esModule ? e : {
-            "default": e
+        var t = P(e, 2),
+            n = t[1];
+        return {
+            type: N,
+            localId: n
         }
     }
 
     function a(e) {
-        var t = d.get(e.currentTarget);
-        if (t) {
-            var n = t[e.type];
-            if (n)
-                for (var r = void 0, a = 0; a < n.length; a++) {
-                    var i = s(n[a], 2),
-                        o = i[0],
-                        u = i[1],
-                        c = void 0;
-                    if (hasClass(e.target, o) ? c = u(e, e.target) : (r = gpeByClass(o, e.target, e.currentTarget)) && (c = u(e, r)), c === !1) break
-                }
+        var t = P(e, 4),
+            n = t[1],
+            r = t[2],
+            a = t[3];
+        return {
+            type: F,
+            messageId: n,
+            mask: r,
+            peerId: a
         }
     }
 
-    function i(e, t, n, r) {
-        var i = d.get(e);
-        i || (d.set(e, {}), i = d.get(e));
-        for (var o = t.split(" "), s = 0; s < o.length; s++) {
-            var u = o[s];
-            i[u] || (i[u] = [], addEvent(e, u, a)), i[u].push([n, r])
+    function i(e) {
+        var t = P(e, 4),
+            n = t[1],
+            r = t[2],
+            a = t[3];
+        return {
+            type: j,
+            messageId: n,
+            flags: r,
+            peerId: a
         }
     }
 
-    function o(e, t, n, r) {
-        var i = d.get(e);
-        if (i) {
-            t.split(" ").forEach(function(t) {
-                i[t] && (i[t] = i[t].filter(function(e) {
-                    return e[0] !== n || e[1] !== r
-                }), 0 === i[t].length && removeEvent(e, t, a))
-            });
-            var o = Object.keys(i).map(function(e) {
-                return i[e].length
-            }).reduce(function(e, t) {
-                return e + t
-            });
-            0 === o && d["delete"](e)
+    function o(e) {
+        var t = P(e, 4),
+            n = t[1],
+            r = t[2],
+            a = t[3];
+        return {
+            type: H,
+            messageId: n,
+            flags: r,
+            peerId: a
+        }
+    }
+
+    function s(e) {
+        var t = P(e, 11),
+            n = t[1],
+            r = t[2],
+            a = t[3],
+            i = t[4],
+            o = t[5],
+            s = t[6],
+            u = t[7],
+            c = t[8],
+            l = t[9],
+            d = t[10],
+            m = extend(s, u || void 0);
+        return {
+            type: U,
+            messageId: intval(n),
+            flags: intval(r),
+            peerId: intval(a),
+            date: intval(i),
+            attaches: (0, D.convertKludgesToAttaches)(m, n),
+            subject: s.title || "",
+            text: o,
+            kludges: m,
+            randomId: intval(c),
+            userId: (0, x.isChatPeer)(a) ? intval(m.from) : intval(a),
+            update_time: d,
+            chat_local_id: l
+        }
+    }
+
+    function u(e) {
+        var t = s(e);
+        return t.type = ce, t
+    }
+
+    function c(e) {
+        return extend({}, e, {
+            type: ce
+        })
+    }
+
+    function l(e) {
+        var t = P(e, 4),
+            n = t[1],
+            r = t[2],
+            a = t[3];
+        return {
+            type: G,
+            peerId: n,
+            upToId: r,
+            unread: a
+        }
+    }
+
+    function d(e) {
+        var t = P(e, 4),
+            n = t[1],
+            r = t[2],
+            a = t[3];
+        return {
+            type: B,
+            peerId: n,
+            upToId: r,
+            unread: a
+        }
+    }
+
+    function m(e) {
+        var t = P(e, 4),
+            n = t[1],
+            r = t[2],
+            a = t[3];
+        return {
+            type: q,
+            userId: -n,
+            platform: r,
+            lastSeenTs: a
+        }
+    }
+
+    function f(e) {
+        var t = P(e, 4),
+            n = t[1],
+            r = t[2],
+            a = t[3];
+        return {
+            type: z,
+            userId: -n,
+            reason: r,
+            lastSeenTs: a
+        }
+    }
+
+    function _(e) {
+        var t = P(e, 4),
+            n = t[1],
+            r = t[2],
+            a = t[3],
+            i = void 0 === a ? !1 : a;
+        return {
+            type: X,
+            peerId: n,
+            mask: r,
+            local: i
+        }
+    }
+
+    function p(e) {
+        var t = P(e, 3),
+            n = t[1],
+            r = t[2];
+        return {
+            type: Z,
+            peerId: n,
+            mask: r
+        }
+    }
+
+    function g(e) {
+        var t = P(e, 4),
+            n = t[1],
+            r = t[2],
+            a = t[3],
+            i = void 0 === a ? !1 : a;
+        return {
+            type: J,
+            peerId: n,
+            mask: r,
+            local: i
+        }
+    }
+
+    function h(e) {
+        var t = P(e, 3),
+            n = t[1],
+            r = t[2];
+        return {
+            type: ue,
+            peerId: n,
+            localId: r
+        }
+    }
+
+    function v(e) {
+        var t = P(e, 3),
+            n = t[1],
+            r = t[2];
+        return {
+            type: W,
+            chatId: n,
+            self: r
+        }
+    }
+
+    function b(e) {
+        var t = P(e, 2),
+            n = t[1];
+        return {
+            type: K,
+            userId: n,
+            peerId: n
+        }
+    }
+
+    function y(e) {
+        var t = P(e, 3),
+            n = t[1],
+            r = t[2];
+        return {
+            type: K,
+            userId: n,
+            peerId: r + 2e9
+        }
+    }
+
+    function E(e) {
+        var t = P(e, 3),
+            n = t[1],
+            r = t[2];
+        return {
+            type: V,
+            userId: n,
+            callId: r
+        }
+    }
+
+    function T(e) {
+        var t = P(e, 2),
+            n = t[1];
+        return {
+            type: Q,
+            count: n
+        }
+    }
+
+    function k(e) {
+        var t = P(e, 2),
+            n = t[1],
+            r = void 0 === n ? {} : n;
+        return {
+            type: Y,
+            peerId: r.peer_id,
+            sound: r.sound,
+            disabledUntil: r.disabled_until
+        }
+    }
+
+    function I(e) {
+        return {
+            type: $,
+            params: e
+        }
+    }
+
+    function O(e) {
+        return {
+            type: te,
+            state: e
+        }
+    }
+
+    function L() {
+        return {
+            type: ee
+        }
+    }
+
+    function w() {
+        var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : !1,
+            t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : !1;
+        return {
+            type: ne,
+            cancelSearch: e,
+            removeActivePeer: t
+        }
+    }
+
+    function A(e) {
+        var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : !1,
+            n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : !1,
+            r = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : !1;
+        return {
+            type: ae,
+            peerId: e,
+            msgid: t,
+            forward: n,
+            cancelSearch: r
+        }
+    }
+
+    function S(e) {
+        return {
+            type: ie,
+            tab: e
+        }
+    }
+
+    function M(e, t, n) {
+        return {
+            type: oe,
+            message: t,
+            peer: e,
+            error: n
+        }
+    }
+
+    function C(e) {
+        var t = P(e, 6),
+            n = (t[0], t[1]),
+            r = t[2],
+            a = t[3],
+            i = t[4],
+            o = t[5];
+        return {
+            type: re,
+            free: !!intval(n) || intval(i) === vk.id,
+            resource: r,
+            peerId: intval(a),
+            who: intval(i),
+            name: o
+        }
+    }
+
+    function R(e, t) {
+        return {
+            type: se,
+            message: t,
+            peerId: e
         }
     }
     Object.defineProperty(t, "__esModule", {
         value: !0
-    });
-    var s = function() {
+    }), t.FOLDER_UNRESPOND = t.FOLDER_IMPORTANT = t.FLAG_STEALTH = t.FLAG_MEDIA = t.FLAG_DELETED = t.FLAG_SPAM = t.FLAG_FRIENDS = t.FLAG_CHAT = t.FLAG_IMPORTANT = t.FLAG_OUTBOUND = t.FLAG_UNREAD = t.EDIT_MESSAGE = t.DELETE_DIALOG = t.RESEND = t.FAILED_MESSAGE = t.CHANGE_TAB = t.CHANGE_PEER = t.MUTEX = t.RESET_PEER = t.TRANSITION = t.RESYNC = t.SET_DIRECTORIES = t.REPLACE_DIRECTORIES = t.RESET_DIRECTORIES = t.EMPTY = t.NOTIFY_SETTINGS_CHANGED = t.UNREAD_COUNT = t.VIDEO_CALL = t.TYPING = t.CHAT_CHANGED = t.GOT_OFFLINE = t.GOT_ONLINE = t.READ_OUTBOUND = t.READ_INBOUND = t.ADD_MESSAGE = t.RESET_FLAGS = t.REPLACE_FLAGS = t.SET_FLAGS = t.DELETE = void 0;
+    var P = function() {
         function e(e, t) {
             var n = [],
                 r = !0,
@@ -231,31 +635,473 @@
             throw new TypeError("Invalid attempt to destructure non-iterable instance")
         }
     }();
-    t.addDelegateEvent = i, t.removeDelegateEvent = o;
-    var u = n(98),
-        c = r(u),
-        d = new c["default"]
-}, , function(e, t) {
-    var n = 0,
-        r = Math.random();
-    e.exports = function(e) {
-        return "Symbol(".concat(void 0 === e ? "" : e, ")_", (++n + r).toString(36))
+    t.deleteEvent = r, t.replaceFlagsEvent = a, t.setFlagsEvent = i, t.resetFlagsEvent = o, t.addMessageEvent = s, t.editMessageEvent = u, t.editMessageLocallyEvent = c, t.readInboundEvent = l, t.readOutboundEvent = d, t.gotOnlineEvent = m, t.gotOfflineEvent = f, t.resetDirectoriesEvent = _, t.replaceDirectoriesEvent = p, t.setDirectoriesEvent = g, t.deleteDialogEvent = h, t.chatChangedEvent = v, t.typingUserEvent = b, t.typingChatEvent = y, t.videoCallEvent = E, t.unreadCountEvent = T, t.notifySettingsChangedEvent = k, t.emptyEvent = I, t.transitionEvent = O, t.resyncEvent = L, t.resetPeer = w, t.changePeer = A, t.changeTab = S, t.failedMessage = M, t.mutexEvent = C, t.resendEvent = R;
+    var x = n(68),
+        D = n(59),
+        N = t.DELETE = "event_delete",
+        j = t.SET_FLAGS = "event_set_flags",
+        F = t.REPLACE_FLAGS = "event_replace_flags",
+        H = t.RESET_FLAGS = "event_reset_flags",
+        U = t.ADD_MESSAGE = "event_add_message",
+        G = t.READ_INBOUND = "event_read_inbound",
+        B = t.READ_OUTBOUND = "event_read_outbound",
+        q = t.GOT_ONLINE = "event_got_online",
+        z = t.GOT_OFFLINE = "event_got_offline",
+        W = t.CHAT_CHANGED = "event_chat_changed",
+        K = t.TYPING = "event_typing",
+        V = t.VIDEO_CALL = "event_video_call",
+        Q = t.UNREAD_COUNT = "event_unread_count",
+        Y = t.NOTIFY_SETTINGS_CHANGED = "event_notify_settings_changed",
+        $ = t.EMPTY = "event_empty",
+        X = t.RESET_DIRECTORIES = "event_reset_directories",
+        Z = t.REPLACE_DIRECTORIES = "event_replace_directories",
+        J = t.SET_DIRECTORIES = "event_set_directories",
+        ee = t.RESYNC = "event_resync",
+        te = t.TRANSITION = "transition_event",
+        ne = t.RESET_PEER = "reset_peer",
+        re = t.MUTEX = "mutex",
+        ae = t.CHANGE_PEER = "change_peer",
+        ie = t.CHANGE_TAB = "event_change_tab",
+        oe = t.FAILED_MESSAGE = "event_failed_message",
+        se = t.RESEND = "event_resend",
+        ue = t.DELETE_DIALOG = "event_delete_dialog",
+        ce = t.EDIT_MESSAGE = "event_edit_message";
+    t.FLAG_UNREAD = 1, t.FLAG_OUTBOUND = 2, t.FLAG_IMPORTANT = 8, t.FLAG_CHAT = 16, t.FLAG_FRIENDS = 32, t.FLAG_SPAM = 64, t.FLAG_DELETED = 128, t.FLAG_MEDIA = 512, t.FLAG_STEALTH = 65536, t.FOLDER_IMPORTANT = 1, t.FOLDER_UNRESPOND = 2
+}, , , function(e, t, n) {
+    "use strict";
+
+    function r(e, t) {
+        for (var n = void 0, r = 0, a = e; null !== (n = l.MESSAGE_REGEXP.exec(e));) {
+            var i = n[0].length,
+                s = n.index + i,
+                u = e[n.index - 1],
+                c = e[s - 1],
+                d = void 0 !== u && /([\w\$А-Яа-яёЁєЄҐґЇїІіЈј\—\-\_@;.])/i.test(u),
+                m = void 0 !== c && /([:;$])/i.test(c);
+            if (!d && !m) {
+                var f = o(n),
+                    _ = f.domain;
+                if (_.length <= l.MAX_DOMAIN_LENGTH && -1 !== l.TOP_DOMAINS.indexOf(_)) {
+                    var p = t(f);
+                    a = a.slice(0, n.index + r) + p + a.slice(s + r), r += p.length - i
+                }
+            }
+        }
+        return a
     }
+
+    function a(e, t) {
+        return e.replace(l.EMAIL, t || function(e) {
+            return '<a href="mailto:' + e + '">' + e + "</a>"
+        })
+    }
+
+    function i(e, t) {
+        return e.replace(l.MENTION, t || function(e, t, n, r, a) {
+            return '<a href="/' + (t + n) + '" class="mem_link" mention="' + m(r || "") + '" mention_id="' + m(t + n) + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)">' + a + "</a>"
+        })
+    }
+
+    function o(e) {
+        return {
+            full: e[0],
+            protocol: e[1] || "http://",
+            url: e[2],
+            domain: e[4],
+            query: e[6] || ""
+        }
+    }
+
+    function s(e) {
+        _("ttl_message_confirm_delivery", e)
+    }
+
+    function u(e, t) {
+        var n = t.protocol,
+            r = t.url,
+            a = t.query,
+            i = t.domain,
+            o = t.full;
+        try {
+            o = decodeURIComponent(o)
+        } catch (s) {}
+        if (o.length > 55 && (o = o.substr(0, 53) + ".."), o = m(o).replace(/&amp;/g, "&"), !e && i.match(l.OUR_DOMAINS)) {
+            r = f(r).replace(l.ENTITIES, encodeURIComponent);
+            var u = r,
+                d = r.indexOf("#/"),
+                _ = "",
+                p = void 0;
+            return d >= 0 ? u = r.substr(d + 1) : (d = r.indexOf("#!"), d >= 0 && (u = "/" + r.substr(d + 2).replace(/^\//, ""))), p = u.match(l.VK_DOMAIN), p && p[1].length < 32 && (_ = ' mention_id="' + p[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'), '<a href="' + c(n + r + a) + '" target="_blank"' + _ + ">" + o + "</a>"
+        }
+        var g = "away.php?utf=1&to=" + encodeURIComponent(n + f(r + a)),
+            h = m(n + r + a).replace(/'/g, "\\'"),
+            v = "return goAway('" + h + "', {}, event);";
+        return '<a href="' + g + '" target="_blank" onclick="' + v + '">' + o + "</a>"
+    }
+
+    function c(e) {
+        return e.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    }
+    Object.defineProperty(t, "__esModule", {
+        value: !0
+    }), t.replaceHyperLinks = r, t.replaceEmailLinks = a, t.replaceMentions = i, t.confirmDelivery = s, t.linksReplacer = u;
+    var l = n(119),
+        d = window,
+        m = d.clean,
+        f = d.replaceEntities,
+        _ = d.statlogsValueEvent
 }, function(e, t, n) {
-    var r = n(107),
-        a = n(149),
-        i = n(49),
-        o = n(63),
-        s = n(132),
-        u = n(124),
-        c = Object.getOwnPropertyDescriptor;
-    t.f = n(1) ? c : function(e, t) {
-        if (e = i(e), t = o(t, !0), u) try {
-            return c(e, t)
-        } catch (n) {}
-        return s(e, t) ? a(!r.f.call(e, t), e[t]) : void 0
+    "use strict";
+    var r = n(91),
+        a = n(42),
+        i = n(29),
+        o = n(80)("species");
+    e.exports = function(e) {
+        var t = r[e];
+        i && t && !t[o] && a.f(t, o, {
+            configurable: !0,
+            get: function() {
+                return this
+            }
+        })
     }
 }, , , function(e, t, n) {
+    "use strict";
+    var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
+            return typeof e
+        } : function(e) {
+            return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
+        },
+        a = n(61),
+        i = n(59),
+        o = window.WriteBox = {
+            mrg: function(e) {
+                return vk.rtl ? {
+                    marginRight: e
+                } : {
+                    marginLeft: e
+                }
+            },
+            show: function(e, t) {
+                var n = t.toData[0],
+                    r = t.toData[7];
+                if (e.setOptions({
+                        hideButtons: !0,
+                        width: 502,
+                        bodyStyle: "padding: 0px; border: 0px;",
+                        title: t.title,
+                        titleControls: ('<a class="mail_box_header_link" href="/im?sel=' + n + '" onclick="return WriteBox.toFull(event, ' + n + ')">' + t.mail_go_to_dialog + "</a>").replace("%s", r)
+                    }), e.removeButtons(), cur.lang = extend(cur.lang || {}, t.lang), extend(cur, {
+                        mbTxtInp: {},
+                        mbEditable: t.editable,
+                        mbSmile: ge("mbe_smile"),
+                        toData: t.toData,
+                        mbEmoji: t.emoji,
+                        mbMedia: null,
+                        mbField: ge(t.editable ? "mail_box_editable" : "mail_box_text"),
+                        mbAva: ge("mail_box_ava"),
+                        mbMediaTypes: t.mediaTypes,
+                        mbTo: t.toData,
+                        mbHash: t.hash,
+                        mbBannedHim: t.bannedhim,
+                        ldb: (0, a.mount)(vk.id)
+                    }), t.emojiRcnt && !cur.mbRcntEmoji) {
+                    for (var i = [], s = t.emojiRcnt, u = 0, c = s.length; c > u; ++u) {
+                        var l = s[u];
+                        l && i.push('<a id="mbe_rc_em_' + l + '" class="mbe_rc_emojibtn" onmousedown="Emoji.addEmoji(cur.emojiWId, \'' + l + "', this); return cancelEvent(event);\">" + Emoji.getEmojiHTML(l, !1, !0) + "</a>")
+                    }
+                    cur.mbRcntEmoji = i.join("")
+                }
+                cur.nav.push(function() {
+                    cur.ldb.unmount()
+                }), val("mbe_rcemoji", cur.mbRcntEmoji || ""), cur.peer = o.getPeer(), cur.sharedImWrite = {}, cur.emojiWId = Emoji.init(cur.mbField, {
+                    ttDiff: 1,
+                    controlsCont: ge("mbe_emoji_wrap"),
+                    shouldFocus: !0,
+                    onSend: o.send,
+                    rPointer: !0,
+                    noEnterSend: 1,
+                    noStickers: !!t.checkedRecipent,
+                    forceTxt: !t.editable,
+                    sharedTT: cur.sharedImWrite,
+                    txt: ge("mail_box_editable"),
+                    checkEditable: o.checkEditable,
+                    saveDraft: o.saveDraft,
+                    rceCont: ge("mbe_rcemoji_cont"),
+                    addMediaBtn: ge("mail_box_add_row"),
+                    sendWrap: ge("mail_box_controls"),
+                    onKeyAction: function(e) {
+                        clearTimeout(cur.saveWriteBoxDraft);
+                        var t = "paste" == e.type ? 0 : 300;
+                        cur.saveWriteBoxDraft = setTimeout(o.saveDraft, t)
+                    },
+                    onStickerSend: function(e, t) {
+                        var n = trim(Emoji.editableVal(cur.mbField)),
+                            r = cur.mbMedia.getMedias(),
+                            a = cur.toData[0];
+                        ajax.post("/al_im.php", {
+                            act: "a_send_box",
+                            to_ids: a,
+                            chas: cur.mbHash,
+                            msg: "",
+                            ts: cur.ts,
+                            media: "sticker:" + e,
+                            send_sticker: 1,
+                            from: "box",
+                            sticker_referrer: t
+                        }, {
+                            onDone: function(e, t) {
+                                n || r.length ? o.send(!1) : (t && ls.set("im_draft" + vk.id + "_" + t, !1), curBox().hide(), showDoneBox(e))
+                            },
+                            showProgress: lockButton.pbind("mail_box_send"),
+                            hideProgress: unlockButton.pbind("mail_box_send"),
+                            onFail: function(e) {
+                                var t = showFastBox(getLang("global_error"), e).hide;
+                                return setTimeout(t, 3e3), !0
+                            }
+                        })
+                    },
+                    onRecentEmojiUpdate: function() {
+                        o.extractEmoji()
+                    }
+                }), Emoji.emojiLoadMore(cur.emojiWId), cur.mbTo[0] ? cur.mbHidden = !1 : cur.mbHidden = !0, cur.imwEmoji = -1;
+                var d = cur.postTo;
+                cur.postTo = !1, e.setOptions({
+                    onHide: function() {
+                        removeEvent(document, "keydown", o.onKey), cur.mbEmojiShown && Emoji.ttClick(cur.emojiWId, cur.mbSmile, !0), cur.mbOnMouseClick && (cur.onMouseClick = cur.mbOnMouseClick, cur.mbOnMouseClick = !1), browser.mozilla
+                    },
+                    onShow: function() {
+                        addEvent(document, "keydown", o.onKey), cur.mbOnMouseClick || (cur.mbOnMouseClick = cur.onMouseClick), browser.mozilla, cur.sorterClbk && (cur.sorterClbk(), delete cur.sorterClbk)
+                    },
+                    onClean: function() {
+                        clearTimeout(cur.mbSaveDraftTO), delete cur.mbSaveDraftTO, delete cur.mbField, cur.postTo = d, cur.mbEmojiScroll = cur.mbEmojiExpanded = !1, cur.mbForceAttach = !1, window.WideDropdown && WideDropdown.deinit("mail_box_dd")
+                    }
+                }), addEvent(document, "keydown", o.onKey), cur.mbOnMouseClick || (cur.mbOnMouseClick = cur.onMouseClick), stManager.add(["page.js", "page.css"], function() {
+                    var t = {
+                        mail: 1,
+                        nocl: 1,
+                        editable: 1,
+                        sortable: 1,
+                        teWidth: 150,
+                        teHeight: 100,
+                        toggleLnk: !0
+                    };
+                    cur.mbForceAttach && "market" == cur.mbForceAttach[0] && (t.onMediaAdd = function() {
+                        for (var e in cur.mbMedia.chosenMedias)
+                            if ("market" == cur.mbMedia.chosenMedias[e][0]) {
+                                var t = cur.mbMedia.chosenMedias[e][2];
+                                hide(geByClass1("page_media_x_wrap", t))
+                            }
+                    }), cur.mbMedia = new MediaSelector("mail_box_add_link", "mail_box_added_row", cur.mbMediaTypes, t), cur.mbMedia.onChange = function() {
+                        e.changed = !0, setTimeout(function() {
+                            o.saveDraft()
+                        }, 100)
+                    }, ls.checkVersion() && cur.mbTo[0] && o.restoreDraft(cur.mbTo[0])
+                })
+            },
+            getPeer: function() {
+                return intval(cur.toData[0])
+            },
+            restoreDraft: function(e) {
+                var t = o.getPeer();
+                if (!(!t || e && t != intval(e) || browser.mobile) && cur.mbMedia) {
+                    var n = (0, i.loadDraftForPeer)(cur.ldb, t);
+                    cur.mbForceAttach && "market" == cur.mbForceAttach[0] && (n.setText(unclean(getLang("mail_market_tmpl")).replace(/<br>/g, "\n")), n.removeAllAttaches(), n.addAttach("market", cur.mbForceAttach[1])), o.editableHasVal(cur.mbField) || (cur.mbEditable ? (val(cur.mbField, n.dData.txt.replace(/\n/g, "<br/>")), window.Emoji && Emoji.editableFocus(cur.mbField, !1, !0)) : val(cur.mbField, n.dData.txt)), n.prepareObjects().then(function() {
+                        if (cur.mbField && o.getPeer() == t)
+                            for (var e = n.dData.attaches, r = 0; r < e.length; r++) cur.mbMedia.chooseMedia(e[r].type, e[r].id, e[r].object || {}, null, !0)
+                    }), o.checkEditable(cur.emojiWId, cur.mbField), o.checkLen(cur.mbField)
+                }
+            },
+            saveDraft: function() {
+                var e = o.getPeer();
+                if (e) {
+                    var t = (0, i.loadDraftForPeer)(cur.ldb, e);
+                    t.setText(trim(Emoji.val(cur.mbField))), t.removeAllAttaches(), cur.mbMedia.getMedias().forEach(function(e) {
+                        return t.addAttach(e[0], e[1])
+                    }), t.destroy()
+                }
+            },
+            toFull: function(e, t) {
+                if (!checkEvent(e)) {
+                    var n = {
+                            0: "im",
+                            sel: t
+                        },
+                        a = trim(Emoji.editableVal(cur.mbField));
+                    if (a && (n.message = a), cur.mbMedia.chosenMedias) {
+                        for (var i = cur.mbMedia.getMedias(), o = [], s = 0, u = i.length; u > s; ++s) {
+                            var c = i[s],
+                                l = [];
+                            for (var d in c) "object" != r(c[d]) && l.push(c[d]);
+                            o.push(l.join(","))
+                        }
+                        n.media = o.join("*")
+                    }
+                    return nav.go(n, null, {
+                        noback: !0
+                    }), !1
+                }
+            },
+            send: function(e) {
+                if (!buttonLocked("mail_box_send")) {
+                    var t = trim(Emoji.editableVal(cur.mbField)),
+                        n = cur.mbMedia.getMedias();
+                    cur.mbEditable && o.extractEmoji();
+                    var r = {
+                        act: "a_send_box",
+                        chas: cur.mbHash,
+                        message: t,
+                        title: isVisible("mail_box_title_wrap") && val("mail_box_title") || "",
+                        from: "box",
+                        media: [],
+                        to_ids: []
+                    };
+                    cur.mbForceAttach && (r.attach1_type = cur.mbForceAttach[0], r.attach1 = cur.mbForceAttach[1], r.attach1_hash = cur.mbForceAttach[2]);
+                    for (var a, s = 0, u = n.length; u > s; ++s)(a = n[s]) && r.media.push(a[0] + ":" + a[1]);
+                    return r.media = r.media.join(","), t || r.media ? (r.to_ids = cur.toData[0], cur.mbBannedHim == r.to_ids && e !== !0 ? void(showBox("al_profile.php", {
+                        act: "banned_him",
+                        action: "mail",
+                        mid: cur.mbBannedHim
+                    }, {
+                        dark: 1
+                    }).onContinue = o.send.pbind(!0)) : void ajax.post("al_im.php", r, {
+                        onDone: function(e, t) {
+                            if (t) {
+                                var n = (0, i.loadDraftForPeer)(cur.ldb, t);
+                                n.clear(), n.destroy()
+                            }
+                            curBox().hide(), showDoneBox(e)
+                        },
+                        showProgress: lockButton.pbind("mail_box_send"),
+                        hideProgress: unlockButton.pbind("mail_box_send")
+                    })) : cur.mbEditable ? Emoji.editableFocus(cur.mbField) : elfocus(cur.mbField)
+                }
+            },
+            checkLen: function(e) {
+                cur.mbTxtInp.value = Emoji.editableVal(e), checkTextLength(4096, cur.mbTxtInp, "mail_box_warn"), toggle("mail_box_title_wrap", cur.mbTxtInp.lastLen > 200)
+            },
+            codeToChr: function(e) {
+                for (var t = e.length / 4, n = "", r = 0; t--;) n += String.fromCharCode(parseInt(e.substr(r, 4), 16)), r += 4;
+                return n
+            },
+            editableHasVal: function(e) {
+                return e ? "TEXTAREA" == e.tagName ? !!val(e) : !(!geByTag1("IMG", e) && !stripHTML(val(e)).replace(/[\s\xa0]/g, "").length) : !1
+            },
+            checkEditable: function(e, t) {
+                cur.mbEditable && Emoji.checkEditable(e, t, {
+                    height: 180
+                })
+            },
+            cssAnimation: function() {
+                var e = intval(browser.version);
+                return browser.chrome && e > 14 || browser.mozilla && e > 13 || browser.opera && e > 2 ? !0 : !1
+            },
+            onKey: function(e) {
+                var t = "INPUT" == e.target.tagName || "TEXTAREA" == e.target.tagName || "mail_box_editable" == e.target.id;
+                if (!isInputActive()) {
+                    if (e.keyCode > 40 && !e.ctrlKey && !e.metaKey && !t)
+                        if (cur.mbEditable) Emoji.editableFocus(cur.mbField, !1, !0);
+                        else {
+                            var n = cur.mbField;
+                            !n.active && elfocus(n)
+                        }
+                    return !0
+                }
+            },
+            extractEmoji: function() {
+                var e = ge("mbe_rcemoji");
+                if (e) {
+                    var t = "",
+                        n = Emoji.getRecentEmojiSorted().slice(0, 7);
+                    for (var r in n)
+                        if (n.hasOwnProperty(r)) {
+                            var a = n[r];
+                            t += '<a id="mbe_rc_em_' + a + '" class="mbe_rc_emojibtn" onmousedown="Emoji.addEmoji(cur.emojiWId, \'' + a + "', this); return cancelEvent(event);\">" + Emoji.getEmojiHTML(a, !1, !0) + "</a>"
+                        }
+                    val(e, t)
+                }
+            }
+        };
+    try {
+        stManager.done("writebox.js")
+    } catch (s) {}
+}, , , function(e, t, n) {
+    e.exports = !n(8)(function() {
+        return 7 != Object.defineProperty({}, "a", {
+            get: function() {
+                return 7
+            }
+        }).a
+    })
+}, , , , , function(e, t, n) {
+    "use strict";
+    var r = n(142)(!0);
+    n(50)(String, "String", function(e) {
+        this._t = String(e), this._i = 0
+    }, function() {
+        var e, t = this._t,
+            n = this._i;
+        return n >= t.length ? {
+            value: void 0,
+            done: !0
+        } : (e = r(t, n), this._i += e.length, {
+            value: e,
+            done: !1
+        })
+    })
+}, function(e, t, n) {
+    var r = n(47)("meta"),
+        a = n(85),
+        i = n(113),
+        o = n(42).f,
+        s = 0,
+        u = Object.isExtensible || function() {
+            return !0
+        },
+        c = !n(8)(function() {
+            return u(Object.preventExtensions({}))
+        }),
+        l = function(e) {
+            o(e, r, {
+                value: {
+                    i: "O" + ++s,
+                    w: {}
+                }
+            })
+        },
+        d = function(e, t) {
+            if (!a(e)) return "symbol" == typeof e ? e : ("string" == typeof e ? "S" : "P") + e;
+            if (!i(e, r)) {
+                if (!u(e)) return "F";
+                if (!t) return "E";
+                l(e)
+            }
+            return e[r].i
+        },
+        m = function(e, t) {
+            if (!i(e, r)) {
+                if (!u(e)) return !0;
+                if (!t) return !1;
+                l(e)
+            }
+            return e[r].w
+        },
+        f = function(e) {
+            return c && _.NEED && u(e) && !i(e, r) && l(e), e
+        },
+        _ = e.exports = {
+            KEY: r,
+            NEED: !1,
+            fastKey: d,
+            getWeak: m,
+            onFreeze: f
+        }
+}, function(e, t, n) {
+    var r = n(92);
+    e.exports = Object("z").propertyIsEnumerable(0) ? Object : function(e) {
+        return "String" == r(e) ? e.split("") : Object(e)
+    }
+}, , function(e, t, n) {
     "use strict";
 
     function r(e) {
@@ -277,8 +1123,459 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.mount = a;
-    var i = n(77)
-}, , , function(e, t) {
+    var i = n(118)
+}, , function(e, t, n) {
+    var r = n(92),
+        a = n(80)("toStringTag"),
+        i = "Arguments" == r(function() {
+            return arguments
+        }()),
+        o = function(e, t) {
+            try {
+                return e[t]
+            } catch (n) {}
+        };
+    e.exports = function(e) {
+        var t, n, s;
+        return void 0 === e ? "Undefined" : null === e ? "Null" : "string" == typeof(n = o(t = Object(e), a)) ? n : i ? r(t) : "Object" == (s = r(t)) && "function" == typeof t.callee ? "Arguments" : s
+    }
+}, function(e, t, n) {
+    "use strict";
+    var r = n(40),
+        a = {};
+    a[n(80)("toStringTag")] = "z", a + "" != "[object z]" && n(53)(Object.prototype, "toString", function() {
+        return "[object " + r(this) + "]"
+    }, !0)
+}, function(e, t, n) {
+    var r = n(10),
+        a = n(67),
+        i = n(46),
+        o = Object.defineProperty;
+    t.f = n(29) ? Object.defineProperty : function(e, t, n) {
+        if (r(e), t = i(t, !0), r(n), a) try {
+            return o(e, t, n)
+        } catch (s) {}
+        if ("get" in n || "set" in n) throw TypeError("Accessors not supported!");
+        return "value" in n && (e[t] = n.value), e
+    }
+}, function(e, t) {
+    "use strict";
+
+    function n(e, t, n) {
+        return t && (t.im_v = i), new Promise(function(r, a) {
+            ajax.post(e, t, {
+                timeout: n,
+                onDone: function() {
+                    r.apply(null, [
+                        [].concat(Array.prototype.slice.call(arguments))
+                    ])
+                },
+                onFail: function() {
+                    return a.apply(null, arguments), !0
+                }
+            })
+        })
+    }
+
+    function r(e, t) {
+        var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
+            r = a(e, t, n),
+            i = r.request;
+        return i
+    }
+
+    function a(e, t) {
+        function n() {
+            a.abort()
+        }
+        var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
+            a = void 0;
+        a = window.XDomainRequest ? new XDomainRequest : ajax._getreq();
+        var i = new Promise(function(n, i) {
+            var o = void 0,
+                s = Date.now(),
+                u = r.timeout || 60,
+                c = ajx2q(t);
+            if (window.XDomainRequest) a.open("get", e + "?" + c), a.ontimeout = function() {
+                i(["", {}])
+            }, a.onerror = function() {
+                i(["", {}])
+            }, a.onload = function() {
+                n([a.responseText, {}])
+            }, setTimeout(function() {
+                a.send()
+            }, 0);
+            else {
+                a.onreadystatechange = function() {
+                    4 == a.readyState && (clearInterval(o), a.status >= 200 && a.status < 300 ? n([a.responseText, a]) : i([a.responseText, a]))
+                };
+                try {
+                    a.open("GET", e + "?" + c, !0)
+                } catch (l) {
+                    return i([l, a])
+                }
+                a.send()
+            }
+            o = setInterval(function() {
+                Date.now() - s > 1e3 * u && (i(["", {}]), clearInterval(o))
+            }, 1e3)
+        });
+        return {
+            request: i,
+            cancel: n
+        }
+    }
+    Object.defineProperty(t, "__esModule", {
+        value: !0
+    }), t.post = n, t.plainget = r, t.plaingetCancelable = a;
+    var i = (t.CONTROLLER = "al_im.php", 2)
+}, function(e, t, n) {
+    var r = n(36),
+        a = n(82);
+    e.exports = function(e) {
+        return r(a(e))
+    }
+}, function(e, t, n) {
+    var r = n(42).f,
+        a = n(113),
+        i = n(80)("toStringTag");
+    e.exports = function(e, t, n) {
+        e && !a(e = n ? e : e.prototype, i) && r(e, i, {
+            configurable: !0,
+            value: t
+        })
+    }
+}, function(e, t, n) {
+    var r = n(85);
+    e.exports = function(e, t) {
+        if (!r(e)) return e;
+        var n, a;
+        if (t && "function" == typeof(n = e.toString) && !r(a = n.call(e))) return a;
+        if ("function" == typeof(n = e.valueOf) && !r(a = n.call(e))) return a;
+        if (!t && "function" == typeof(n = e.toString) && !r(a = n.call(e))) return a;
+        throw TypeError("Can't convert object to primitive value")
+    }
+}, function(e, t) {
+    var n = 0,
+        r = Math.random();
+    e.exports = function(e) {
+        return "Symbol(".concat(void 0 === e ? "" : e, ")_", (++n + r).toString(36))
+    }
+}, , , function(e, t, n) {
+    "use strict";
+    var r = n(96),
+        a = n(72),
+        i = n(53),
+        o = n(54),
+        s = n(113),
+        u = n(79),
+        c = n(55),
+        l = n(45),
+        d = n(88),
+        m = n(80)("iterator"),
+        f = !([].keys && "next" in [].keys()),
+        _ = "@@iterator",
+        p = "keys",
+        g = "values",
+        h = function() {
+            return this
+        };
+    e.exports = function(e, t, n, v, b, y, E) {
+        c(n, t, v);
+        var T, k, I, O = function(e) {
+                if (!f && e in S) return S[e];
+                switch (e) {
+                    case p:
+                        return function() {
+                            return new n(this, e)
+                        };
+                    case g:
+                        return function() {
+                            return new n(this, e)
+                        }
+                }
+                return function() {
+                    return new n(this, e)
+                }
+            },
+            L = t + " Iterator",
+            w = b == g,
+            A = !1,
+            S = e.prototype,
+            M = S[m] || S[_] || b && S[b],
+            C = M || O(b),
+            R = b ? w ? O("entries") : C : void 0,
+            P = "Array" == t ? S.entries || M : M;
+        if (P && (I = d(P.call(new e)), I !== Object.prototype && (l(I, L, !0), r || s(I, m) || o(I, m, h))), w && M && M.name !== g && (A = !0, C = function() {
+                return M.call(this)
+            }), r && !E || !f && !A && S[m] || o(S, m, C), u[t] = C, u[L] = h, b)
+            if (T = {
+                    values: w ? C : O(g),
+                    keys: y ? C : O(p),
+                    entries: R
+                }, E)
+                for (k in T) k in S || i(S, k, T[k]);
+            else a(a.P + a.F * (f || A), t, T);
+        return T
+    }
+}, , , function(e, t, n) {
+    var r = n(91),
+        a = n(54),
+        i = n(113),
+        o = n(47)("src"),
+        s = "toString",
+        u = Function[s],
+        c = ("" + u).split(s);
+    n(145).inspectSource = function(e) {
+        return u.call(e)
+    }, (e.exports = function(e, t, n, s) {
+        var u = "function" == typeof n;
+        u && (i(n, "name") || a(n, "name", t)), e[t] !== n && (u && (i(n, o) || a(n, o, e[t] ? "" + e[t] : c.join(String(t)))), e === r ? e[t] = n : s ? e[t] ? e[t] = n : a(e, t, n) : (delete e[t], a(e, t, n)))
+    })(Function.prototype, s, function() {
+        return "function" == typeof this && this[o] || u.call(this)
+    })
+}, function(e, t, n) {
+    var r = n(42),
+        a = n(115);
+    e.exports = n(29) ? function(e, t, n) {
+        return r.f(e, t, a(1, n))
+    } : function(e, t, n) {
+        return e[t] = n, e
+    }
+}, function(e, t, n) {
+    "use strict";
+    var r = n(83),
+        a = n(115),
+        i = n(45),
+        o = {};
+    n(54)(o, n(80)("iterator"), function() {
+        return this
+    }), e.exports = function(e, t, n) {
+        e.prototype = r(o, {
+            next: a(1, n)
+        }), i(e, t + " Iterator")
+    }
+}, function(e, t) {
+    e.exports = function(e, t) {
+        return {
+            value: t,
+            done: !!e
+        }
+    }
+}, function(e, t, n) {
+    "use strict";
+    var r = n(137),
+        a = n(56),
+        i = n(79),
+        o = n(44);
+    e.exports = n(50)(Array, "Array", function(e, t) {
+        this._t = o(e), this._i = 0, this._k = t
+    }, function() {
+        var e = this._t,
+            t = this._k,
+            n = this._i++;
+        return !e || n >= e.length ? (this._t = void 0, a(1)) : "keys" == t ? a(0, n) : "values" == t ? a(0, e[n]) : a(0, [n, e[n]])
+    }, "values"), i.Arguments = i.Array, r("keys"), r("values"), r("entries")
+}, function(e, t, n) {
+    var r = n(53);
+    e.exports = function(e, t, n) {
+        for (var a in t) r(e, a, t[a], n);
+        return e
+    }
+}, function(e, t, n) {
+    "use strict";
+
+    function r() {
+        return {
+            txt: "",
+            attaches: [],
+            urlBinds: []
+        }
+    }
+
+    function a(e, t) {
+        this._db = e, this._key = t, this.dData = r(), this.load()
+    }
+
+    function i(e) {
+        switch (e.type) {
+            case "mail":
+                return e.id < 0 && 1 == e.object.fwd_count;
+            default:
+                return !e.object
+        }
+    }
+
+    function o(e) {
+        return {
+            txt: e.txt,
+            attaches: e.attaches.length ? e.attaches : void 0,
+            urlBinds: e.urlBinds.length ? e.urlBinds : void 0
+        }
+    }
+
+    function s(e) {
+        return {
+            txt: e.txt,
+            attaches: e.attaches || [],
+            urlBinds: e.urlBinds || []
+        }
+    }
+
+    function u(e, t) {
+        var n = [];
+        e.fwd_count ? n.push({
+            type: "mail",
+            id: -t,
+            object: {
+                fwd_count: e.fwd_count
+            }
+        }) : e.fwd && n.push({
+            type: "mail",
+            id: -t,
+            object: {
+                fwd_count: (0, m.parseFwd)(e.fwd).length
+            }
+        });
+        for (var r = 1; e["attach" + r + "_type"]; ++r) n.push({
+            type: e["attach" + r + "_type"],
+            id: e["attach" + r],
+            kind: e["attach" + r + "_kind"],
+            productId: e["attach" + r + "_product_id"]
+        });
+        return e.geo && n.push({
+            type: "geo",
+            id: e.geo
+        }), n
+    }
+
+    function c(e, t) {
+        return new a(e, "draft_" + t)
+    }
+    Object.defineProperty(t, "__esModule", {
+        value: !0
+    });
+    var l = function() {
+        function e(e, t) {
+            var n = [],
+                r = !0,
+                a = !1,
+                i = void 0;
+            try {
+                for (var o, s = e[Symbol.iterator](); !(r = (o = s.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
+            } catch (u) {
+                a = !0, i = u
+            } finally {
+                try {
+                    !r && s["return"] && s["return"]()
+                } finally {
+                    if (a) throw i
+                }
+            }
+            return n
+        }
+        return function(t, n) {
+            if (Array.isArray(t)) return t;
+            if (Symbol.iterator in Object(t)) return e(t, n);
+            throw new TypeError("Invalid attempt to destructure non-iterable instance")
+        }
+    }();
+    t.ImDraft = a, t.convertKludgesToAttaches = u, t.loadDraftForPeer = c;
+    var d = n(43),
+        m = n(68);
+    a.prototype.dump = function() {
+        this._key && this._db.updateByKey(this._key, o(this.dData))
+    }, a.prototype.load = function() {
+        if (this._key) {
+            var e = this._db.selectByKey(this._key);
+            e && (this.dData = s(e))
+        }
+    }, a.prototype.clear = function() {
+        this.dData = r(), this.dump()
+    }, a.prototype.setText = function(e) {
+        this.dData.txt = trim(e), this.dump()
+    }, a.prototype.addAttach = function(e, t, n) {
+        ("share" === e || "mail" === e) && this.removeAttachByType(e);
+        var r = this.dData.attaches.find(function(n) {
+            return n.type === e && n.id === t
+        });
+        !r && e && t && (this.dData.attaches.push({
+            type: e,
+            id: t,
+            object: n
+        }), this.dump())
+    }, a.prototype.syncWithSelector = function(e) {
+        var t = this,
+            n = this.getFwdRaw();
+        this.dData.attaches = (n ? [n] : []).concat(e.getMedias().map(function(e) {
+            var n = l(e, 2),
+                r = n[0],
+                a = n[1],
+                i = t.dData.attaches.find(function(e) {
+                    return e.type == r && e.id == a
+                });
+            return i || {
+                type: r,
+                id: a
+            }
+        })), this.dump()
+    }, a.prototype.removeAttachByType = function(e) {
+        for (var t = this.dData.attaches.length; t--;) this.dData.attaches[t].type === e && this.dData.attaches.splice(t, 1);
+        this.dump()
+    }, a.prototype.removeAllAttaches = function() {
+        this.dData.attaches = [], this.dump()
+    }, a.prototype.addBindUrl = function(e, t, n) {
+        this.getBoundAttach(e) || (this.dData.urlBinds.push({
+            url: e,
+            type: t,
+            id: n
+        }), this.dump())
+    }, a.prototype.getBoundAttach = function(e) {
+        var t = this.dData.urlBinds.find(function(t) {
+            return t.url === e
+        });
+        return t ? this.dData.attaches.find(function(e) {
+            return e.type === t.type && e.id === t.id
+        }) || null : null
+    }, a.prototype.getShareUrl = function() {
+        var e = this.dData.attaches.find(function(e) {
+            return "share" === e.type
+        });
+        return e && e.object ? e.object.url : void 0
+    }, a.prototype.hasAttaches = function() {
+        return this.dData.attaches.length > 0
+    }, a.prototype.destroy = function() {
+        this.dData = {}, this._key = this._db = null
+    }, a.prototype.prepareObjects = function(e, t) {
+        var n = this,
+            r = this.dData.attaches.find(i);
+        return r ? (0, d.post)(d.CONTROLLER, {
+            act: "draft_medias",
+            gid: e,
+            messageId: t || 0,
+            media: t ? void 0 : this.dData.attaches.map(function(e) {
+                return [e.type, e.id]
+            }).join("*")
+        }).then(function(e) {
+            var t = l(e, 1),
+                r = t[0];
+            n.dData.attaches = r.map(function(e) {
+                return {
+                    type: e[0],
+                    id: e[1],
+                    object: e[2]
+                }
+            })
+        }) : Promise.resolve()
+    }, a.prototype.getFwdRaw = function() {
+        return this.dData.attaches.find(function(e) {
+            return "mail" === e.type
+        })
+    }, a.prototype.getFwdCount = function() {
+        var e = this.getFwdRaw();
+        return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
+    }
+}, function(e, t) {
     "use strict";
 
     function n(e, t) {
@@ -332,438 +1629,85 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t.throttleAccumulate = n, t.executionStackPop = r, t.lplog = a, t.toArray = i, t.arrayUnique = o
-}, function(e, t, n) {
-    "use strict";
-    var r = n(75).f,
-        a = n(81),
-        i = (n(79), n(136)),
-        o = n(134),
-        s = n(56),
-        u = n(102),
-        c = n(95),
-        d = n(89),
-        l = n(82),
-        m = n(122),
-        f = n(1),
-        _ = n(125).fastKey,
-        p = f ? "_s" : "size",
-        g = function(e, t) {
-            var n, r = _(t);
-            if ("F" !== r) return e._i[r];
-            for (n = e._f; n; n = n.n)
-                if (n.k == t) return n
-        };
-    e.exports = {
-        getConstructor: function(e, t, n, d) {
-            var l = e(function(e, r) {
-                s(e, l, t, "_i"), e._i = a(null), e._f = void 0, e._l = void 0, e[p] = 0, void 0 != r && c(r, n, e[d], e)
-            });
-            return i(l.prototype, {
-                clear: function() {
-                    for (var e = this, t = e._i, n = e._f; n; n = n.n) n.r = !0, n.p && (n.p = n.p.n = void 0), delete t[n.i];
-                    e._f = e._l = void 0, e[p] = 0
-                },
-                "delete": function(e) {
-                    var t = this,
-                        n = g(t, e);
-                    if (n) {
-                        var r = n.n,
-                            a = n.p;
-                        delete t._i[n.i], n.r = !0, a && (a.n = r), r && (r.p = a), t._f == n && (t._f = r), t._l == n && (t._l = a), t[p]--
-                    }
-                    return !!n
-                },
-                forEach: function(e) {
-                    s(this, l, "forEach");
-                    for (var t, n = o(e, arguments.length > 1 ? arguments[1] : void 0, 3); t = t ? t.n : this._f;)
-                        for (n(t.v, t.k, this); t && t.r;) t = t.p
-                },
-                has: function(e) {
-                    return !!g(this, e)
-                }
-            }), f && r(l.prototype, "size", {
-                get: function() {
-                    return u(this[p])
-                }
-            }), l
-        },
-        def: function(e, t, n) {
-            var r, a, i = g(e, t);
-            return i ? i.v = n : (e._l = i = {
-                i: a = _(t, !0),
-                k: t,
-                v: n,
-                p: r = e._l,
-                n: void 0,
-                r: !1
-            }, e._f || (e._f = i), r && (r.n = i), e[p]++, "F" !== a && (e._i[a] = i)), e
-        },
-        getEntry: g,
-        setStrong: function(e, t, n) {
-            d(e, t, function(e, t) {
-                this._t = e, this._k = t, this._l = void 0
-            }, function() {
-                for (var e = this, t = e._k, n = e._l; n && n.r;) n = n.p;
-                return e._t && (e._l = n = n ? n.n : e._t._f) ? "keys" == t ? l(0, n.k) : "values" == t ? l(0, n.v) : l(0, [n.k, n.v]) : (e._t = void 0, l(1))
-            }, n ? "entries" : "values", !n, !0), m(t)
-        }
-    }
-}, function(e, t, n) {
-    var r = n(147)("keys"),
-        a = n(11);
-    e.exports = function(e) {
-        return r[e] || (r[e] = a(e))
-    }
-}, , , function(e, t, n) {
-    var r = n(75).f,
-        a = n(132),
-        i = n(46)("toStringTag");
-    e.exports = function(e, t, n) {
-        e && !a(e = n ? e : e.prototype, i) && r(e, i, {
-            configurable: !0,
-            value: t
-        })
-    }
-}, function(e, t, n) {
-    var r = n(102);
-    e.exports = function(e) {
-        return Object(r(e))
-    }
-}, , , , function(e, t, n) {
-    var r = n(110),
-        a = n(46)("iterator"),
-        i = Array.prototype;
-    e.exports = function(e) {
-        return void 0 !== e && (r.Array === e || i[a] === e)
-    }
-}, function(e, t, n) {
+}, function(e, t) {
     "use strict";
 
-    function r(e, t, n, r, a) {
-        if ("Script error." !== e) {
-            var i = a ? a.stack || a.message : null;
-            o("unhandled_error", i ? {
-                err: e,
-                stack: i
-            } : {
-                err: e
-            })
-        }
-        m && m.apply(this, arguments)
+    function n(e) {
+        return "im_store_" + e
     }
-
-    function a(e) {
-        e.preventDefault()
-    }
-
-    function i() {
-        return !!window.imwl
-    }
-
-    function o(e, t) {
-        i() && (console.error(e, t), console.trace(), (0, l.retryFn)(d.post, 3, function() {
-            return 2
-        })("al_im.php", {
-            act: "a_weird_log",
-            kind: e,
-            data: JSON.stringify(extend({
-                errIdx: f++,
-                ua: navigator.userAgent,
-                noSh: 1
-            }, t))
-        }))
-    }
-
-    function s(e, t) {
-        var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {};
-        return o(e, extend({
-            err: t && t.message || t
-        }, n)), Promise.reject(t)
-    }
-
-    function u() {
-        m = window.onerror, window.onerror = r, window.addEventListener("unhandledrejection", a)
-    }
-
-    function c() {
-        window.onerror = m, m = void 0, window.removeEventListener("unhandledrejection", a)
-    }
-    Object.defineProperty(t, "__esModule", {
-        value: !0
-    }), t.isWeirdLogging = i, t.imWeirdLog = o, t.imWeirdCatch = s, t.startLoggingAllUnhandled = u, t.stopLoggingAllUnhandled = c;
-    var d = n(58),
-        l = n(2),
-        m = void 0,
-        f = 1
-}, function(e, t, n) {
-    "use strict";
 
     function r(e) {
-        if (e && e.__esModule) return e;
-        var t = {};
-        if (null != e)
-            for (var n in e) Object.prototype.hasOwnProperty.call(e, n) && (t[n] = e[n]);
-        return t["default"] = e, t
+        return ls.get(n(e)) || {}
     }
 
-    function a(e) {
-        return e.get ? e.get() : e
+    function a(e, t, r) {
+        if (ls.checkVersion()) {
+            var a = JSON.stringify(t);
+            rand(0, 1e5) <= 1 && statlogsValueEvent("im_local_store_size", a.length), r(n(e), a)
+        }
     }
 
-    function i(e, t) {
-        var n = a(e),
-            r = n.tabs[n.peer];
-        return Object.keys(r.msgs).filter(function(n) {
-            var a = v(e, t, n);
-            return !(0, G.isOut)(a) && intval(n) > r.in_up_to
-        })[0]
+    function i(e, t, n) {
+        return t === d ? e[t] || [] : t === m ? e[t] && e[t][n] : e[t] ? extend(!0, {}, e[t][n]) : null
     }
 
-    function o(e) {
-        var t = a(e);
-        return t.peer
+    function o(e, t, n) {
+        switch (e[t] || (e[t] = {}), t) {
+            case d:
+                var r = n;
+                r && r.length > 0 ? e[t] = r : delete e[t];
+                break;
+            case m:
+                var a = l(n, 2),
+                    i = a[0],
+                    o = a[1];
+                o ? e[t][i] = +o : delete e[t][i]
+        }
+        return e
     }
 
     function s(e, t) {
-        var n = a(e);
-        return n.tabs[t]
+        for (var n = ["fwd", "draft", "bind_attach"], i = r(e), o = !1, s = n.length; s--;) n[s] in i && (delete i[n[s]], o = !0);
+        o && a(e, i, t)
     }
 
-    function u(e) {
-        var t = a(e);
-        return t.peer ? t.tabs[t.peer] : null
+    function u(e, t, r) {
+        r.key === n(e) && (t.db = JSON.parse(r.newValue), t.checkTime = Date.now())
     }
 
     function c(e) {
-        var t = a(e);
-        return t.selectedMessages
-    }
-
-    function d(e, t, n) {
-        var r = s(e, t),
-            a = c(e)[0];
-        if ("undefined" == typeof a) return [n];
-        var i = Math.min(n, a),
-            o = Math.max(n, a);
-        return Object.keys(r.msgs).filter(function(e) {
-            return e >= i && o >= e
-        }).filter(function(t) {
-            return !(0, W.isServiceMsg)(v(e, e.get().peer, t))
-        }).map(intval)
-    }
-
-    function l(e, t) {
-        var n = a(t),
-            r = s(n, e),
-            i = 0;
-        for (var o in r.msgs)
-            if (r.msgs.hasOwnProperty(o)) {
-                var u = v(t, e, o);
-                (0, G.isOut)(u) || (i += (0, G.isUnread)(r, u) ? 1 : 0)
-            }
-        return i
-    }
-
-    function m(e, t, n) {
-        var r = s(e, t);
-        return Object.keys(r.msgs).filter(function(r) {
-            return intval(v(e, t, r).randomId) === n
-        }).length > 0
-    }
-
-    function f(e, t, n) {
-        var r = m(e, t, n);
-        return !!r
-    }
-
-    function _(e, t) {
-        var n = a(e),
-            r = n.msg_local_ids_sort && n.msg_local_ids_sort[t];
-        return "undefined" != typeof r ? 2e9 + r : t
-    }
-
-    function p(e, t, n) {
-        var r = s(e, t),
-            a = v(e, t, n),
-            i = Object.keys(r.msgs).filter(function(n) {
-                var r = v(e, t, n),
-                    i = r.local && r.type !== B.EDIT_MESSAGE;
-                return !a.local && i ? !1 : a.local && !i ? !0 : _(e, a.messageId) > _(e, r.messageId)
-            }),
-            o = i.pop();
-        return o ? v(e, t, o) : null
-    }
-
-    function g(e) {
-        return e && e.length > 0 ? q.addMessageEvent([0].concat(e)) : e
-    }
-
-    function h(e, t, n) {
-        var r = s(e, t),
-            i = v(e, t, n),
-            o = a(e);
-        return (0, G.isOut)(i) ? (0, K.oCacheGet)(e, o.id).name : i.userId !== i.peerId ? (0, K.oCacheExists)(e, i.userId) ? (0, K.oCacheGet)(e, i.userId).name : !1 : r.tab
-    }
-
-    function v(e, t, n) {
-        var r = s(e, t),
-            a = r && r.msgs && r.msgs[n];
-        return a ? g(a) : null
-    }
-
-    function b(e) {
-        var t = a(e);
-        return t.gid || t.isClassic
-    }
-
-    function y(e) {
-        return a(e).gid
-    }
-
-    function E(e) {
-        return a(e).gid
-    }
-
-    function T(e) {
-        return a(e).gid
-    }
-
-    function k(e, t) {
-        var n = a(t);
-        return n.tabs[e] || n.mapped_index[e]
-    }
-
-    function I(e) {
-        var t = a(e);
-        return T(e) ? 19542789 !== t.gid && 103416369 != t.gid ? !1 : t.active_tab === z.FOLDER_UNRESPOND || t.active_tab === z.FOLDER_UNREAD ? !0 : !1 : !1
-    }
-
-    function O(e, t) {
-        e = a(e);
-        var n = e.tabs[t] && "undefined" != typeof e.tabs[t].history;
-        return e.tabs[t] && e.tabs[t].msgs && n ? !0 : !1
-    }
-
-    function L(e, t) {
-        var n = s(e, t);
-        n && (n.msgs = void 0, n.msgid = void 0, n.scrollTop = void 0, n.scrollBottom = void 0, n.contHeight = void 0, n.offset = void 0, n.skipped = void 0)
-    }
-
-    function A(e) {
-        var t = e.get().go_to_end_visible;
-        return t ? t[0] : !1
-    }
-
-    function w(e) {
-        var t = e.get().go_to_end_visible;
-        return t ? t[1] : 0
-    }
-
-    function S(e) {
-        var t = a(e);
-        return !t.lockedSending
-    }
-
-    function M(e) {
-        return e > -2e9 && 0 > e
-    }
-
-    function C(e, t) {
-        return M(t) ? !!s(e, t).blocked_community : !1
-    }
-
-    function R(e) {
-        var t = a(e);
-        return t.voice_message_available
-    }
-
-    function P(e) {
-        var t = a(e);
-        return !(!x(t) && !t.recentSearch)
-    }
-
-    function x(e) {
-        var t = a(e);
-        return t.searchText
-    }
-
-    function D(e, t) {
-        var n = a(e);
-        return t && t !== x(e) || n.recentSearch ? !0 : !1
-    }
-
-    function N(e) {
-        var t = a(e);
-        return t.recentSearch
-    }
-
-    function j(e) {
-        var t = u(e);
-        return t && t.pinned && g(t.pinned)
-    }
-
-    function F(e) {
-        var t = e.get().popular_sugg;
-        return t && t.length > 0
-    }
-
-    function H(e) {
-        return 1 == a(e).isEditing
-    }
-
-    function U(e) {
-        return e.draft || (e.draft = (0, V.loadDraftForPeer)(cur.imDb, e.peerId)), e.draft
-    }
-    Object.defineProperty(t, "__esModule", {
-        value: !0
-    }), t.unpackStore = a, t.getFirstUnread = i, t.getPeer = o, t.getTab = s, t.getCurrentTab = u, t.getSelectedMessages = c, t.getMessageRangeFromSelection = d, t.countUnread = l, t.getMessageByRid = m, t.isRidExist = f, t.getLocalId = _, t.getLastMessage = p, t.parserMessage = g, t.getAuthorFullName = h, t.getMessage = v, t.isClassicInterface = b, t.isLocksAvailable = y, t.isFoldersAvailable = E, t.isCommunityInterface = T, t.getBareTab = k, t.isReversedDialogs = I, t.isFullyLoadedTab = O, t.makeTabNotFullyLoaded = L, t.isGoToEndVisible = A, t.getUnreadScrollBottom = w, t.isSendingAvailable = S, t.isCommunityPeer = M, t.isCommunityBlocked = C, t.checkVoiceMessageAvailable = R, t.isSearching = P, t.getSearchText = x, t.isSearchingValue = D, t.isRecentSearchesActive = N, t.getPinnedMessage = j, t.doPopularSuggExist = F, t.isAnyMessageBeingEdited = H, t.getTabDraft = U;
-    var G = n(104),
-        B = n(45),
-        q = r(B),
-        z = n(88),
-        W = n(38),
-        K = n(128),
-        V = n(131)
-}, function(e, t) {
-    e.exports = function(e) {
-        return "object" == typeof e ? null !== e : "function" == typeof e
-    }
-}, , function(e, t) {
-    var n = e.exports = "undefined" != typeof window && window.Math == Math ? window : "undefined" != typeof self && self.Math == Math ? self : Function("return this")();
-    "number" == typeof __g && (__g = n)
-}, function(e, t, n) {
-    "use strict";
-
-    function r(e, t) {
-        var n = domData(t, "chat-id"),
-            r = domData(t, "hash");
-        return lockButton(t), (0, o.joinChat)(n, r, e.get()).then(function(n) {
-            var r = i(n, 1),
-                a = r[0];
-            unlockButton(t), e.get().longpoll.push([(0, u.changePeer)(a)])
-        })["catch"](function(e) {
-            showFastBox(getLang("mail_join_invite_error_title"), e), unlockButton(t)
-        })
-    }
-
-    function a(e, t) {
-        var n = (0, s.createModule)({
-            handlers: function(n, a) {
-                a(e, "click", c, function(e) {
-                    return r(t, e.target)
-                })
-            }
-        });
-        return {
+        var t = debounce(function(e, t) {
+            localStorage.setItem(e, t)
+        }, 300);
+        ls.checkVersion() && s(e, t);
+        var n = {
+                db: r(e),
+                checkTime: Date.now()
+            },
+            c = u.bind(null, e, n);
+        return window.addEventListener("storage", c, !1), {
+            select: function(t, a) {
+                return Date.now() - n.checkTime > 1e3 && (n.db = r(e)), i(n.db, t, a)
+            },
+            selectByKey: function(t) {
+                return Date.now() - n.checkTime > 1e3 && (n.db = r(e)), n.db[t]
+            },
+            update: function(r, i) {
+                var s = o(n.db, r, i);
+                return n.db = s, n.checkTime = Date.now(), a(e, s, t)
+            },
+            updateByKey: function(r, i) {
+                return n.db[r] = i, n.checkTime = Date.now(), a(e, n.db, t)
+            },
             unmount: function() {
-                (0, s.destroyModule)(n)
+                window.removeEventListener("storage", c, !1)
             }
         }
     }
     Object.defineProperty(t, "__esModule", {
         value: !0
     });
-    var i = function() {
+    var l = function() {
         function e(e, t) {
             var n = [],
                 r = !0,
@@ -788,18 +1732,54 @@
             throw new TypeError("Invalid attempt to destructure non-iterable instance")
         }
     }();
-    t.mount = a;
-    var o = n(129),
-        s = n(77),
-        u = n(45),
-        c = "_im_join_chat"
-}, , , function(e, t, n) {
-    var r = n(60),
-        a = n(46)("iterator"),
-        i = n(110);
-    e.exports = n(85).getIteratorMethod = function(e) {
-        return void 0 != e ? e[a] || e["@@iterator"] || i[r(e)] : void 0
+    t.deleteOldStoredFormat = s, t.mount = c;
+    var d = t.RECENT_SEARCH_OP = "recent_search",
+        m = t.PIN_HIDDEN_ID_OP = "pin_hide"
+}, , , function(e, t) {
+    "use strict";
+
+    function n(e) {
+        var t = o({}, i.objLoc, e);
+        Object.keys(t).filter(function(e) {
+            return "" === t[e]
+        }).forEach(function(e) {
+            delete t[e]
+        });
+        var n = i.toStr(t);
+        i.setLoc(n)
     }
+
+    function r() {
+        var e = {};
+        return {
+            scheduleNav: function(t) {
+                e = o(e, t)
+            },
+            commitNav: function() {
+                n(e), e = {}
+            },
+            scheduleNavWithTimeOut: function(t) {
+                var r = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 100;
+                e = o(e, t), setTimeout(function() {
+                    n(e), e = {}
+                }, r)
+            }
+        }
+    }
+    Object.defineProperty(t, "__esModule", {
+        value: !0
+    }), t.updateLocation = n, t.updateLazyLocation = r;
+    var a = window,
+        i = a.nav,
+        o = a.extend
+}, , , function(e, t, n) {
+    e.exports = !n(29) && !n(8)(function() {
+        return 7 != Object.defineProperty(n(147)("div"), "a", {
+            get: function() {
+                return 7
+            }
+        }).a
+    })
 }, function(e, t, n) {
     "use strict";
 
@@ -846,7 +1826,7 @@
         return t ? '<div class="im_sticker_row">\n      <a onmouseover="return Emoji.stickerOver(' + Zt(e) + ', this);"\n        onclick="return Emoji.clickSticker(' + Zt(t) + ', this, event);">\n          <img height="128"\n            class="im_gift"\n            src="/images/stickers/' + Zt(e) + "/" + n + '.png"/>\n      </a>\n    </div>' : '<div class="im_sticker_row">\n      <img height="128"\n        class="im_gift"\n        src="/images/stickers/' + Zt(e) + "/" + n + '.png"/>\n    </div>'
     }
 
-    function d(e, t, n) {
+    function l(e, t, n) {
         var r = e.get ? e.get() : e;
         if (R(r, t)) {
             var a = r.tabs[t].deleted || [];
@@ -855,7 +1835,7 @@
         return !1
     }
 
-    function l(e, t, n) {
+    function d(e, t, n) {
         var r = n.randomId,
             a = cn("_im_mess_rid" + r, t);
         return a && (t = te([a], t), t = E(e, n, t, !0, !1)), t
@@ -905,7 +1885,7 @@
     function v(e, t) {
         var n = ["_im_mess"],
             r = (0, yt.isUnread)(e.tabs[t.peerId], t);
-        (0, yt.isOut)(t) && r && n.push("im-mess_unread _im_mess_unread"), (0, yt.isOut)(t) && n.push("im-mess_out"), (0, yt.wasEdited)(t) && n.push("im-mess_was_edited"), (0, At.canMessageBeEdited)(e, t) && n.push("im-mess_editable"), (0, yt.isImportant)(t) && n.push("im-mess_fav"), -1 != (e.selectedMessages || []).indexOf(t.messageId) && n.push("im-mess_selected");
+        (0, yt.isOut)(t) && r && n.push("im-mess_unread _im_mess_unread"), (0, yt.isOut)(t) && n.push("im-mess_out"), (0, yt.wasEdited)(t) && n.push("im-mess_was_edited"), (0, wt.canMessageBeEdited)(e, t) && n.push("im-mess_editable"), (0, yt.isImportant)(t) && n.push("im-mess_fav"), -1 != (e.selectedMessages || []).indexOf(t.messageId) && n.push("im-mess_selected");
         var a = Date.now() - 1e3 * t.date > 1e3;
         t.local && a && n.push("im-mess_sending"), t.local && n.push("" + St), t.local && (0, yt.wasEdited)(t) && !r && n.push("im-mess_unread im-mess_nobg"), t.failed && n.push("im-mess_failed " + Mt), (0, yt.isGift)(t) && n.push("im-mess_gift");
         var i = b(t),
@@ -959,14 +1939,14 @@
         var u = v(e, t),
             c = rn(n);
         _n(c, "_im_mess_stack") || (c = on(c, "._im_mess_stack", -1));
-        var d = (0, pt.getLastMessage)(e, t.peerId, t.messageId),
-            l = cn("_im_unread_bar_row", n),
+        var l = (0, pt.getLastMessage)(e, t.peerId, t.messageId),
+            d = cn("_im_unread_bar_row", n),
             m = (0, yt.getUserId)(t),
-            f = d ? x(d.date, e) : 0;
-        if (!d || D(o, d, t, e, a)) {
+            f = l ? x(l.date, e) : 0;
+        if (!l || D(o, l, t, e, a)) {
             var _ = "",
                 p = !1;
-            if (l && (0, yt.isOut)(t) && qe(e, n, t.peerId), 1 === o.unread && !(0, yt.isOut)(t) && a && (_ += vn("im_mess_bar", {}), p = !0, qe(e, n, t.peerId)), !An(new Date(f))) {
+            if (d && (0, yt.isOut)(t) && qe(e, n, t.peerId), 1 === o.unread && !(0, yt.isOut)(t) && a && (_ += vn("im_mess_bar", {}), p = !0, qe(e, n, t.peerId)), !wn(new Date(f))) {
                 var g = new Date,
                     h = p ? "im-page--history-new-bar_hide _im_invisible_bar" : "";
                 _ += vn("im_day_bar", {
@@ -976,7 +1956,7 @@
                 })
             }
             if (ue(t)) _ += vn("im_service_row", {
-                text: de(e, t, o),
+                text: le(e, t, o),
                 type: "",
                 date: t.date,
                 from_id: "",
@@ -997,15 +1977,15 @@
                     O += ' <span class="im-mess-stack--gift">' + yn(E.sex || 0, L) + "</span>"
                 }
                 if ((0, yt.isMoney)(t)) {
-                    var A = (0, yt.isMoneyRequest)(t) ? bn("mail_money_request_message_sent", "raw") : bn("mail_money_tranfer_message_sent", "raw");
-                    O += ' <span class="im-mess-stack--money-transfer">' + yn(E.sex || 0, A) + "</span>"
+                    var w = (0, yt.isMoneyRequest)(t) ? bn("mail_money_request_message_sent", "raw") : bn("mail_money_tranfer_message_sent", "raw");
+                    O += ' <span class="im-mess-stack--money-transfer">' + yn(E.sex || 0, w) + "</span>"
                 }
                 t.attaches[0] && "chronicle_invite" === t.attaches[0].type && (O += " " + bn("mail_chronicle_invite_inf"));
-                var w = e.gid ? "/gim" + e.gid : "/im",
+                var A = e.gid ? "/gim" + e.gid : "/im",
                     M = void 0;
                 if (M = t.local ? N(t.date, e.timeshift) : vn("im_stack_date", {
                         date: N(t.date, e.timeshift),
-                        link: w + "?sel=" + t.peerId + "&msgid=" + t.messageId
+                        link: A + "?sel=" + t.peerId + "&msgid=" + t.messageId
                     }), b && e.admins[b]) {
                     var C = e.admins[b],
                         R = b === Wt.id ? bn("mail_by_you") : C[0];
@@ -1030,10 +2010,10 @@
             }(0, It.toArray)($t(_)).forEach(function(e) {
                 return n && n.appendChild(e)
             })
-        } else l && e.peer === t.peerId && !o.inplaceSearch && (0, yt.isOut)(t) && qe(e, n, t.peerId), cn("_im_stack_messages", c).appendChild(Vt(u));
+        } else d && e.peer === t.peerId && !o.inplaceSearch && (0, yt.isOut)(t) && qe(e, n, t.peerId), cn("_im_stack_messages", c).appendChild(Vt(u));
         return (0, yt.isOut)(t) && !i && setTimeout(function() {
             var e = cn("_im_mess_" + t.messageId, n);
-            _n(e, St) && ln(e, "im-mess_sending")
+            _n(e, St) && dn(e, "im-mess_sending")
         }, 500), s = s.filter(function(e) {
             return e.rid !== t.randomId
         }), y(n), T(s, e, n)
@@ -1074,11 +2054,11 @@
         return n.msgs[e.messageId] ? 1 : n.msgs["rid" + e.randomId] ? 2 : 0
     }
 
-    function A(e) {
+    function w(e) {
         return 0 == e ? !0 : !1
     }
 
-    function w(e) {
+    function A(e) {
         return e > 0 && 2e9 > e
     }
 
@@ -1319,7 +2299,7 @@
     function Z(e, t, n) {
         var r = cn("_im_mess_" + t.messageId, n);
         if (r) {
-            pn(r, "aria-hidden", "false"), ln(r, "im-mess_failed " + Mt);
+            pn(r, "aria-hidden", "false"), dn(r, "im-mess_failed " + Mt);
             var a = cn("_im_mess_marker", r);
             pn(a, "aria-label", bn("mail_send_message_error")), pn(a, "role", "link")
         }
@@ -1356,7 +2336,7 @@
         }), n.filter(function(e) {
             return 0 === an(e).length
         }).map(function(e) {
-            return dn("_im_mess_stack", e)
+            return ln("_im_mess_stack", e)
         }).forEach(function(e) {
             _n(nn(e), "_im_bar_date") && Qt(nn(e)), _n(nn(e), "_im_unread_bar_row") && Qt(nn(e)), Qt(e)
         }), t
@@ -1368,7 +2348,7 @@
         }).filter(function(e) {
             return e
         }).forEach(function(e) {
-            hn(e, oe(t, e, n)), ln(e, "im-mess_light")
+            hn(e, oe(t, e, n)), dn(e, "im-mess_light")
         }), r
     }
 
@@ -1398,21 +2378,21 @@
                 var t = (0, Ot.oCacheExists)(r, e);
                 return t || s.push(e), t
             });
-        if (s.length && (0, wt.loadChatMember)(a({}, t, s), r), 0 === u.length) return "";
-        var c = w(t) || (0, pt.isCommunityPeer)(t) ? "first_name" : i ? "short_name" : "name";
+        if (s.length && (0, At.loadChatMember)(a({}, t, s), r), 0 === u.length) return "";
+        var c = A(t) || (0, pt.isCommunityPeer)(t) ? "first_name" : i ? "short_name" : "name";
         if (1 == u.length) {
-            var d = n ? "" : (0, Ot.oCacheGet)(r, u[0])[c];
-            return d + " " + bn("mail_typing")
+            var l = n ? "" : (0, Ot.oCacheGet)(r, u[0])[c];
+            return l + " " + bn("mail_typing")
         }
-        var l = bn("mail_typing_several", u.length),
+        var d = bn("mail_typing_several", u.length),
             m = u.slice(0, Math.min(u.length - 1, o)),
             f = m.map(function(e) {
                 return (0, Ot.oCacheGet)(r, e)[c]
             }).join(", ");
-        if (u.length > o + 1) f += " " + bn("mail_and_peer").replace("{count}", u.length - o).replace("{typing}", l);
+        if (u.length > o + 1) f += " " + bn("mail_and_peer").replace("{count}", u.length - o).replace("{typing}", d);
         else {
             var _ = (0, Ot.oCacheGet)(r, u[m.length])[c];
-            f += " " + bn("mail_and_peer_one") + " " + _ + " " + l
+            f += " " + bn("mail_and_peer_one") + " " + _ + " " + d
         }
         return f
     }
@@ -1436,7 +2416,7 @@
         return n ? '<a class="im_srv_lnk ' + r + '" target="_blank" href="' + e + '">' + t + "</a>" : '<span class="' + r + '">' + t + "</span>"
     }
 
-    function de(e, t, n) {
+    function le(e, t, n) {
         var r = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : !0,
             a = t.kludges,
             i = a.source_act,
@@ -1444,7 +2424,7 @@
             s = t.userId,
             u = (0, Ot.oCacheGet)(e, s),
             c = "",
-            d = s === o;
+            l = s === o;
         switch (i) {
             case Pt:
                 c = "mail_im_chat_created";
@@ -1453,10 +2433,10 @@
                 c = "mail_im_title_updated_dot";
                 break;
             case Dt:
-                c = d ? "mail_im_returned_to_chat" : "mail_im_invited";
+                c = l ? "mail_im_returned_to_chat" : "mail_im_invited";
                 break;
             case Nt:
-                c = d ? "mail_im_left" : "mail_im_kicked_from_chat";
+                c = l ? "mail_im_left" : "mail_im_kicked_from_chat";
                 break;
             case jt:
                 c = "mail_im_photo_set";
@@ -1477,8 +2457,8 @@
                 return "mail_no_support"
         }
         if (c = yn(u.sex, bn(c, "raw")), c = c.replace("{from}", ce(u.link, u.name, r)), o && o !== s) {
-            var l = a.source_email;
-            if (l) c = c.replace("{user}", ce("/im?email=" + encodeURIComponent(l), "email", r));
+            var d = a.source_email;
+            if (d) c = c.replace("{user}", ce("/im?email=" + encodeURIComponent(d), "email", r));
             else {
                 var m = (0, Ot.oCacheGet)(e, o),
                     f = i === Nt ? m.inv_name : m.kick_name;
@@ -1500,7 +2480,7 @@
         return c
     }
 
-    function le(e, t, n, r) {
+    function de(e, t, n, r) {
         if (t === jt) {
             var a = cn("_im_mess_" + e.messageId, r);
             if (a) {
@@ -1508,7 +2488,7 @@
                 a.parentNode.innerHTML = vn("im_msg_row", {
                     msg_id: e.messageId,
                     from_id: e.peerId,
-                    text: de(n, e, i) + n.chat_photo_msg,
+                    text: le(n, e, i) + n.chat_photo_msg,
                     ts: e.date,
                     cls: "im-mess_srv"
                 })
@@ -1555,7 +2535,7 @@
                 })),
                 i = !1;
             setTimeout(function() {
-                i || ("bottom" === n ? e.appendChild(a) : e.insertBefore(a, tn(e)), ln(a, "im-preloader_visible"))
+                i || ("bottom" === n ? e.appendChild(a) : e.insertBefore(a, tn(e)), dn(a, "im-preloader_visible"))
             }, 0), t.then(function() {
                 i = !0, mn(a, "im-preloader_visible"), a.parentNode && a.parentNode.removeChild(a)
             })
@@ -1637,7 +2617,7 @@
                         }), o(r.bodyNode.parentNode, "mouseover", "im_status_mob_onl", function(e, t) {
                             var n = cn("_im_chat_members_w", r.bodyNode.parentNode),
                                 a = 160,
-                                i = dn("_im_member_item", t),
+                                i = ln("_im_member_item", t),
                                 o = i.offsetTop - n.scrollTop + a,
                                 s = o > 370;
                             Pn(t, {
@@ -1667,7 +2647,7 @@
         })
     }
 
-    function Ae(e, t, n, r) {
+    function we(e, t, n, r) {
         if (t.get().active_tab === e) return Promise.resolve(t);
         var a = (0, pt.isReversedDialogs)(t);
         return t.set(r.bind(null, e)).then(function(e) {
@@ -1675,7 +2655,7 @@
         })
     }
 
-    function we(e, t) {
+    function Ae(e, t) {
         "undefined" == typeof t && (t = e.get().peer);
         var n = e.get().tabs[t];
         return bt.FOLDER_MASKS[bt.FOLDER_IMPORTANT] & n.folders
@@ -1814,9 +2794,9 @@
         if (Qt(r), g(t), !s || !o) return t;
         var u = sn(o, "msgid"),
             c = sn(s, "msgid"),
-            d = (0, pt.getMessage)(e, n, u),
-            l = (0, pt.getMessage)(e, n, c);
-        if (D(e.tabs[n], d, l, e)) return t;
+            l = (0, pt.getMessage)(e, n, u),
+            d = (0, pt.getMessage)(e, n, c);
+        if (D(e.tabs[n], l, d, e)) return t;
         var m = cn("_im_stack_messages", a),
             f = cn("_im_stack_messages", i).children;
         return (0, It.toArray)(f).forEach(function(e) {
@@ -1833,7 +2813,7 @@
             if (!i) return [!0, 0];
             a = cn("_im_mess_" + i.messageId, t)
         }
-        var o = _n(a, "_im_mess_srv") ? a : dn("_im_mess_stack", a);
+        var o = _n(a, "_im_mess_srv") ? a : ln("_im_mess_stack", a);
         if (!o) return [!0, 0];
         var s = a ? a.offsetTop : 0,
             u = o.offsetTop + s,
@@ -1843,10 +2823,10 @@
 
     function We(e, t, n) {
         Un(t);
-        var r = dn("_im_top_notice", n);
+        var r = ln("_im_top_notice", n);
         Hn(r, 200, Qt.pbind(r));
-        var a = dn("_im_page_dialogs", r);
-        a && _n(a, "im-page--dialogs-notice") && mn(a, "im-page--dialogs-notice"), wn.post("al_im.php", {
+        var a = ln("_im_page_dialogs", r);
+        a && _n(a, "im-page--dialogs-notice") && mn(a, "im-page--dialogs-notice"), An.post("al_im.php", {
             act: "a_hide_top_notice",
             type: r.getAttribute("data-type"),
             hash: r.getAttribute("data-hash")
@@ -1855,8 +2835,8 @@
 
     function Ke(e, t, n) {
         Un(t);
-        var r = dn("_im_aside_notice", n);
-        Fn(r, 200, Qt.pbind(r)), wn.post("al_im.php", {
+        var r = ln("_im_aside_notice", n);
+        Fn(r, 200, Qt.pbind(r)), An.post("al_im.php", {
             act: "a_hide_top_notice",
             type: r.getAttribute("data-type"),
             hash: r.getAttribute("data-hash")
@@ -1897,8 +2877,8 @@
                 var s = Ye(e, t, n + 1, r + 1),
                     u = ft(s, 2),
                     c = u[0],
-                    d = u[1];
-                n = d, a.push(Qe(i, c)), i = ""
+                    l = u[1];
+                n = l, a.push(Qe(i, c)), i = ""
             } else if (")" === o) return "" !== i && a.push(Qe(i)), [a, n];
             n++
         }
@@ -1915,8 +2895,8 @@
         a.length > 0 && (r.push(a), n.push("id"));
         var u = Ye(n, r),
             c = ft(u, 1),
-            d = c[0];
-        return Object.keys(Wn).length > 300 && (Wn = {}), Wn[e] = d, d
+            l = c[0];
+        return Object.keys(Wn).length > 300 && (Wn = {}), Wn[e] = l, l
     }
 
     function Xe(e, t) {
@@ -1981,7 +2961,7 @@
     }
 
     function Ze(e) {
-        ln(e, "im-send-btn_loading")
+        dn(e, "im-send-btn_loading")
     }
 
     function Je(e) {
@@ -2094,7 +3074,7 @@
         return e.length > Gn
     }
 
-    function dt(e, t, n) {
+    function lt(e, t, n) {
         var r = !1;
         Sn("al_im.php", {
             act: "a_chat_preview",
@@ -2120,7 +3100,7 @@
         }, {})
     }
 
-    function lt() {
+    function dt() {
         Mn(bn("global_error"), bn("mail_message_wait_until_uploaded"))
     }
 
@@ -2129,7 +3109,7 @@
         if (!t || !(0, yt.isOut)(t)) return !1;
         if (333 == t.peerId) return !1;
         if (Date.now() / 1e3 - t.date > 86400) return !1;
-        if (d(e, t.peerId, t.messageId)) return !1;
+        if (l(e, t.peerId, t.messageId)) return !1;
         if (S(t.peerId)) {
             if (n.data.kicked || n.data.closed) return !1
         } else if (n.block_error > 0) return !1;
@@ -2168,7 +3148,7 @@
         } : function(e) {
             return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
         },
-        pt = n(30);
+        pt = n(77);
     Object.keys(pt).forEach(function(e) {
         "default" !== e && "__esModule" !== e && Object.defineProperty(t, e, {
             enumerable: !0,
@@ -2176,20 +3156,20 @@
                 return pt[e]
             }
         })
-    }), t.getClassicChatHeight = i, t.setClassicChatHeight = o, t.fixTableCellChildHeight = s, t.applyInnerHtml = u, t.renderSticker = c, t.isAlreadyDeleted = d, t.replaceMessageAttrs = l, t.isVoiceMessageAvailable = m, t.getAvailableMicrophones = f, t.renderAttach = _, t.dayFromVal = p, t.showInvisibleBar = g, t.editAndReplaceMessage = h, t.renderMessage = v, t.renderMessageMedia = b, t.ensureDomHasActions = y, t.appendToHistory = E, t.restoreQueue = T, t.markMessagesAsRead = I, t.replaceAttaches = O, t.isDuplicate = L, t.isReservedPeer = A, t.isUserPeer = w, t.isChatPeer = S, t.isPeerActive = C, t.isTabLoaded = R, t.isTabLoadedWithMessage = P, t.parseMessage = j, t.convertPeerToUrl = F, t.unUrlPeer = H, t.simplifyCounter = U, t.chatActions = G, t.renderPhotos = z, t.renderPhotosFromTab = W, t.renderBtnSearchOnlyMessages = K, t.renderMessagesSep = V, t.renderConversationsSep = Q, t.renderPopularSuggSep = Y, t.renderClearRecent = $, t.renderPopularSuggestions = X, t.setMessageError = Z, t.startResendMessage = J, t.removeMessages = ee, t.removeMessagesWithRestore = ne, t.restoreMessage = re, t.formatTyper = ae, t.formatTyperHelper = ie, t.renderEmptySearch = se, t.isServiceMsg = ue, t.serviceLink = ce, t.renderServiceMsg = de, t.addChatPhotoToUpdate = le, t.replaceSpecialSymbols = me, t.isSelfMessage = fe, t.showVerifiedTooltip = _e, t.wrapLoading = pe, t.tabFromIds = ge, t.checkSelectClick = he, t.renderGoTo = be, t.showFlushDialog = ye, t.showUnpinDialog = Ee, t.showMsgDeleteDialog = Te, t.cleanHistory = ke, t.showChatMembers = Ie, t.inviteUser = Oe, t.showUnreadOnly = Le, t.changeTab = Ae, t.isImportant = we, t.isUnrespond = Se, t.isPeerBlocked = Me, t.isPendingForward = Ce, t.isPeerBlockedByMe = Re, t.blockLatencyCompensation = Pe, t.showSpamLayer = xe, t.getLastSeenTextInHeader = De, t.getMobileIcon = Ne, t.showBlacklistBoxUser = je, t.showBlacklistBox = Fe, t.getBaseLink = He, t.showFavvedBox = Ue, t.isEditableFocused = Ge, t.updateStar = Be, t.removewNewUnreadBarAndMerge = qe, t.isMessagesVisible = ze, t.hideTopNotice = We, t.hideAsideNotice = Ke, t.renderShortText = Ve, t.parseFwd = $e, t.attachToText = Xe, t.lockButton = Ze, t.unlockButton = Je, t.renderPinnedMessage = et, t.showEditTimeTooltip = tt, t.boxHandleEditTimeTooltips = nt, t.showPinnedBox = rt, t.isUserAliveInChat = at, t.getAliveMembersCount = it, t.normalizeTab = ot, t.normalizeTabsGotFromServer = st, t.splitMessageToParts = ut, t.isMessageTooLong = ct, t.showInvitationBox = dt, t.showWaitUntilUploadedBox = lt, t.canMessageBeDeletedForAll = mt;
-    var gt = n(45),
+    }), t.getClassicChatHeight = i, t.setClassicChatHeight = o, t.fixTableCellChildHeight = s, t.applyInnerHtml = u, t.renderSticker = c, t.isAlreadyDeleted = l, t.replaceMessageAttrs = d, t.isVoiceMessageAvailable = m, t.getAvailableMicrophones = f, t.renderAttach = _, t.dayFromVal = p, t.showInvisibleBar = g, t.editAndReplaceMessage = h, t.renderMessage = v, t.renderMessageMedia = b, t.ensureDomHasActions = y, t.appendToHistory = E, t.restoreQueue = T, t.markMessagesAsRead = I, t.replaceAttaches = O, t.isDuplicate = L, t.isReservedPeer = w, t.isUserPeer = A, t.isChatPeer = S, t.isPeerActive = C, t.isTabLoaded = R, t.isTabLoadedWithMessage = P, t.parseMessage = j, t.convertPeerToUrl = F, t.unUrlPeer = H, t.simplifyCounter = U, t.chatActions = G, t.renderPhotos = z, t.renderPhotosFromTab = W, t.renderBtnSearchOnlyMessages = K, t.renderMessagesSep = V, t.renderConversationsSep = Q, t.renderPopularSuggSep = Y, t.renderClearRecent = $, t.renderPopularSuggestions = X, t.setMessageError = Z, t.startResendMessage = J, t.removeMessages = ee, t.removeMessagesWithRestore = ne, t.restoreMessage = re, t.formatTyper = ae, t.formatTyperHelper = ie, t.renderEmptySearch = se, t.isServiceMsg = ue, t.serviceLink = ce, t.renderServiceMsg = le, t.addChatPhotoToUpdate = de, t.replaceSpecialSymbols = me, t.isSelfMessage = fe, t.showVerifiedTooltip = _e, t.wrapLoading = pe, t.tabFromIds = ge, t.checkSelectClick = he, t.renderGoTo = be, t.showFlushDialog = ye, t.showUnpinDialog = Ee, t.showMsgDeleteDialog = Te, t.cleanHistory = ke, t.showChatMembers = Ie, t.inviteUser = Oe, t.showUnreadOnly = Le, t.changeTab = we, t.isImportant = Ae, t.isUnrespond = Se, t.isPeerBlocked = Me, t.isPendingForward = Ce, t.isPeerBlockedByMe = Re, t.blockLatencyCompensation = Pe, t.showSpamLayer = xe, t.getLastSeenTextInHeader = De, t.getMobileIcon = Ne, t.showBlacklistBoxUser = je, t.showBlacklistBox = Fe, t.getBaseLink = He, t.showFavvedBox = Ue, t.isEditableFocused = Ge, t.updateStar = Be, t.removewNewUnreadBarAndMerge = qe, t.isMessagesVisible = ze, t.hideTopNotice = We, t.hideAsideNotice = Ke, t.renderShortText = Ve, t.parseFwd = $e, t.attachToText = Xe, t.lockButton = Ze, t.unlockButton = Je, t.renderPinnedMessage = et, t.showEditTimeTooltip = tt, t.boxHandleEditTimeTooltips = nt, t.showPinnedBox = rt, t.isUserAliveInChat = at, t.getAliveMembersCount = it, t.normalizeTab = ot, t.normalizeTabsGotFromServer = st, t.splitMessageToParts = ut, t.isMessageTooLong = ct, t.showInvitationBox = lt, t.showWaitUntilUploadedBox = dt, t.canMessageBeDeletedForAll = mt;
+    var gt = n(19),
         ht = r(gt),
-        vt = n(88),
+        vt = n(119),
         bt = r(vt),
-        yt = n(104),
-        Et = n(130),
-        Tt = n(34),
-        kt = n(77),
-        It = n(18),
-        Ot = n(128),
-        Lt = n(40),
-        At = n(43),
-        wt = n(129),
+        yt = n(117),
+        Et = n(22),
+        Tt = n(106),
+        kt = n(118),
+        It = n(60),
+        Ot = n(108),
+        Lt = n(4),
+        wt = n(6),
+        At = n(90),
         St = t.SENDING_CLASS = "_im_mess_sending",
         Mt = t.FAILED_CLASS = "_im_mess_failed",
         Ct = t.ORIGINAL_CLASS = "_im_mess_original",
@@ -2224,8 +3204,8 @@
         sn = zt.domData,
         un = zt.geByClass,
         cn = zt.geByClass1,
-        dn = zt.gpeByClass,
-        ln = zt.addClass,
+        ln = zt.gpeByClass,
+        dn = zt.addClass,
         mn = zt.removeClass,
         fn = zt.toggleClass,
         _n = zt.hasClass,
@@ -2241,8 +3221,8 @@
         In = zt.getSmDate,
         On = zt.getShortDate,
         Ln = zt.isSameDate,
-        An = zt.isToday,
-        wn = zt.ajax,
+        wn = zt.isToday,
+        An = zt.ajax,
         Sn = zt.showBox,
         Mn = zt.showFastBox,
         Cn = zt.showTabbedBox,
@@ -2261,543 +3241,85 @@
         zn = "chatPosition",
         Wn = {}
 }, , function(e, t, n) {
-    "use strict";
-
-    function r(e, t) {
-        if ((0, h.unpackStore)(e).searchShown) return !1;
-        var n = (0, h.getTab)(e, t),
-            r = n && (0, h.parserMessage)(n.pinned);
-        return r ? n.pinHideId != r.chat_local_id : !1
-    }
-
-    function a(e, t, n) {
-        var r = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : !0,
-            a = (0, h.getTab)(e, t),
-            i = a && (0, h.parserMessage)(a.pinned);
-        a && i && (a.pinHideId = i.chat_local_id, cur.imDb.update(b.PIN_HIDDEN_ID_OP, [a.peerId, a.pinHideId]), u(n, t, e), re(geByClass1("_im_pinned_tt")), r && window.Notifier && Notifier.lcSend("pin_hide", {
-            hide: 1,
-            peer: t
-        }), statlogsValueEvent("im_pinned_messages", "hide"))
-    }
-
-    function i(e, t, n) {
-        var r = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : !0,
-            a = (0, h.getTab)(e, t);
-        a && (delete a.pinHideId, cur.imDb.update(b.PIN_HIDDEN_ID_OP, [a.peerId, void 0]), u(n, t, e), r && window.Notifier && Notifier.lcSend("pin_hide", {
-            hide: 0,
-            peer: t
-        }), statlogsValueEvent("im_pinned_messages", "show"))
-    }
-
-    function o(e, t, n) {
-        var r = u.bind(null, n, t),
-            a = (0, g.showUnpinDialog)(function() {
-                a.hideProgress(), a.hide(), e.set(f.unpinMessageOptimistic.bind(null, t)).then(r).then(function(e) {
-                    return e.set(f.unpinMessage.bind(null, t))
-                }).then(r)
-            })
-    }
-
-    function s(e, t, n) {
-        var r = e.get(),
-            i = r.peer,
-            o = (0, h.parserMessage)((0, h.getTab)(e, i).pinned);
-        if (n.target.classList.contains(y)) o && a(e, i, t);
-        else if ("A" !== n.target.tagName) {
-            var s = o && o.messageId;
-            if (s && !(0, g.isAlreadyDeleted)(e, i, s)) {
-                var u = e.get(),
-                    c = (0, h.getMessage)(e, i, s);
-                c ? (e.setState({
-                    msgid: s
-                }), (0, v.updateLocation)({
-                    msgid: s
-                }), t().focusOnMessage()) : u.longpoll.push([(0, _.changePeer)(i, s)])
-            } else(0, g.showPinnedBox)(e, t, i, p.mount, n);
-            statlogsValueEvent("im_pinned_messages", "open")
-        }
-    }
-
-    function u(e, t, n) {
-        return e().updateChatTopic(t, n), (0, f.setActions)(n.get()), e().updateActions(n), n
-    }
-
-    function c(e) {
-        showTooltip(e.target, {
-            text: getLang("mail_hide_unpin_hover"),
-            black: 1,
-            needLeft: 1,
-            shift: [8, 4],
-            forcetoup: !0,
-            className: "_im_pinned_tt",
-            appendEl: bodyNode
-        })
-    }
-
-    function d(e) {
-        return {
-            unmount: function() {
-                (0, m.destroyModule)(e)
-            }
-        }
-    }
-
-    function l(e, t, n) {
-        var r = (0, m.createMutations)(d),
-            a = r.bindMutations,
-            i = s.bind(null, t, n),
-            o = c.bind(null),
-            u = (0, m.createModule)({
-                handlers: function(t, n) {
-                    n(e, "click", E, i), n(e, "mouseover", y, o)
-                }
-            });
-        return a(u)
-    }
-    Object.defineProperty(t, "__esModule", {
-        value: !0
-    }), t.isPinnedMessageVisibleInTab = r, t.pinnedMessageHide = a, t.pinnedMessageUnHide = i, t.pinnedMessageUnpin = o, t.mount = l;
-    var m = n(77),
-        f = n(129),
-        _ = n(45),
-        p = n(15),
-        g = n(38),
-        h = n(30),
-        v = n(118),
-        b = n(137),
-        y = "_im_pin_hide",
-        E = "_im_pinned_message"
-}, function(e, t, n) {
-    var r = n(46)("iterator"),
-        a = !1;
-    try {
-        var i = [7][r]();
-        i["return"] = function() {
-            a = !0
-        }, Array.from(i, function() {
-            throw 2
-        })
-    } catch (o) {}
-    e.exports = function(e, t) {
-        if (!t && !a) return !1;
-        var n = !1;
-        try {
-            var i = [7],
-                o = i[r]();
-            o.next = function() {
-                n = !0
-            }, i[r] = function() {
-                return o
-            }, e(i)
-        } catch (s) {}
-        return n
+    var r = n(40),
+        a = n(80)("iterator"),
+        i = n(79);
+    e.exports = n(145).getIteratorMethod = function(e) {
+        return void 0 != e ? e[a] || e["@@iterator"] || i[r(e)] : void 0
     }
 }, , function(e, t, n) {
-    "use strict";
-
-    function r(e, t) {
-        t = (0, u.parserMessage)(t);
-        var n = vk.id == t.peerId && !(0, u.unpackStore)(e).gid;
-        return 333 == t.peerId ? !1 : n || (0, c.isOut)(t) ? (0, d.isServiceMsg)(t) ? !1 : Date.now() / 1e3 - t.date > 86400 ? !1 : (0, c.isGift)(t) || (0, c.isSticker)(t) || (0, c.isAudioMsg)(t) || (0, c.isGraffiti)(t) || (0, c.isMoney)(t) || (0, c.isMessageWithInviteLink)(t) ? !1 : (0, u.isCommunityInterface)(e) && (t.kludges || {}).from_admin != vk.id ? !1 : (0, d.isAlreadyDeleted)(e, t.peerId, t.messageId) ? !1 : !0 : !1
-    }
-
-    function a(e) {
-        var t = document.createElement("div");
-        return e = e.replace(/\[((id|club)\d+)\|(.+?)]/g, "@$1 ($3)"), t.innerHTML = e, Emoji.val(t)
-    }
-
-    function i(e, t) {
-        var n = t && t.msgs ? Object.keys(t.msgs) : [],
-            a = n.filter(function(e) {
-                return e > 0
-            }).sort(function(e, t) {
-                return t - e
-            }).find(function(n) {
-                return r(e, t.msgs[n])
-            });
-        return +a || null
-    }
-
-    function o(e, t, n) {
-        var r = (0, l.convertKludgesToAttaches)(t.kludges, t.messageId),
-            i = n.dData.attaches;
-        if (a(t.text) !== n.dData.txt || r.length !== i.length) return !0;
-        for (var o = r.length; o--;)
-            if (r[o].id != i[o].id || r[o].type != i[o].type) return !0;
-        return !1
-    }
-
-    function s(e, t, n, r, a) {
-        t.origText = n, t.text = (0, d.replaceSpecialSymbols)(clean(n)).replace(/\n/gi, "<br>"), t.attaches = r, t.kludges.emoji = 1, t.local = 1, t.share_url = a, t.update_time = Math.floor(Date.now() / 1e3), e.get().tabs[t.peerId].msgs[t.messageId] = t
-    }
-    Object.defineProperty(t, "__esModule", {
-        value: !0
-    }), t.canMessageBeEdited = r, t.convertEmojiHtmlToRegularText = a, t.findLastMessageToEdit = i, t.wasMessageReallyModified = o, t.replaceMsgAfterEdit = s;
-    var u = n(30),
-        c = n(104),
-        d = n(38),
-        l = n(131)
-}, function(e, t, n) {
-    var r = n(33),
-        a = n(79),
-        i = n(132),
-        o = n(11)("src"),
-        s = "toString",
-        u = Function[s],
-        c = ("" + u).split(s);
-    n(85).inspectSource = function(e) {
-        return u.call(e)
-    }, (e.exports = function(e, t, n, s) {
-        var u = "function" == typeof n;
-        u && (i(n, "name") || a(n, "name", t)), e[t] !== n && (u && (i(n, o) || a(n, o, e[t] ? "" + e[t] : c.join(String(t)))), e === r ? e[t] = n : s ? e[t] ? e[t] = n : a(e, t, n) : (delete e[t], a(e, t, n)))
-    })(Function.prototype, s, function() {
-        return "function" == typeof this && this[o] || u.call(this)
-    })
+    var r = n(91),
+        a = n(145),
+        i = n(54),
+        o = n(53),
+        s = n(105),
+        u = "prototype",
+        c = function(e, t, n) {
+            var l, d, m, f, _ = e & c.F,
+                p = e & c.G,
+                g = e & c.S,
+                h = e & c.P,
+                v = e & c.B,
+                b = p ? r : g ? r[t] || (r[t] = {}) : (r[t] || {})[u],
+                y = p ? a : a[t] || (a[t] = {}),
+                E = y[u] || (y[u] = {});
+            p && (n = t);
+            for (l in n) d = !_ && b && void 0 !== b[l], m = (d ? b : n)[l], f = v && d ? s(m, r) : h && "function" == typeof m ? s(Function.call, m) : m, b && o(b, l, m, e & c.U), y[l] != m && i(y, l, f), h && E[l] != m && (E[l] = m)
+        };
+    r.core = a, c.F = 1, c.G = 2, c.S = 4, c.P = 8, c.B = 16, c.W = 32, c.U = 64, c.R = 128, e.exports = c
 }, function(e, t, n) {
     "use strict";
 
     function r(e) {
-        var t = P(e, 2),
-            n = t[1];
-        return {
-            type: N,
-            localId: n
+        return e && e.__esModule ? e : {
+            "default": e
         }
     }
 
     function a(e) {
-        var t = P(e, 4),
-            n = t[1],
-            r = t[2],
-            a = t[3];
-        return {
-            type: F,
-            messageId: n,
-            mask: r,
-            peerId: a
+        var t = l.get(e.currentTarget);
+        if (t) {
+            var n = t[e.type];
+            if (n)
+                for (var r = void 0, a = 0; a < n.length; a++) {
+                    var i = s(n[a], 2),
+                        o = i[0],
+                        u = i[1],
+                        c = void 0;
+                    if (hasClass(e.target, o) ? c = u(e, e.target) : (r = gpeByClass(o, e.target, e.currentTarget)) && (c = u(e, r)), c === !1) break
+                }
         }
     }
 
-    function i(e) {
-        var t = P(e, 4),
-            n = t[1],
-            r = t[2],
-            a = t[3];
-        return {
-            type: j,
-            messageId: n,
-            flags: r,
-            peerId: a
+    function i(e, t, n, r) {
+        var i = l.get(e);
+        i || (l.set(e, {}), i = l.get(e));
+        for (var o = t.split(" "), s = 0; s < o.length; s++) {
+            var u = o[s];
+            i[u] || (i[u] = [], addEvent(e, u, a)), i[u].push([n, r])
         }
     }
 
-    function o(e) {
-        var t = P(e, 4),
-            n = t[1],
-            r = t[2],
-            a = t[3];
-        return {
-            type: H,
-            messageId: n,
-            flags: r,
-            peerId: a
-        }
-    }
-
-    function s(e) {
-        var t = P(e, 11),
-            n = t[1],
-            r = t[2],
-            a = t[3],
-            i = t[4],
-            o = t[5],
-            s = t[6],
-            u = t[7],
-            c = t[8],
-            d = t[9],
-            l = t[10],
-            m = extend(s, u || void 0);
-        return {
-            type: U,
-            messageId: intval(n),
-            flags: intval(r),
-            peerId: intval(a),
-            date: intval(i),
-            attaches: (0, D.convertKludgesToAttaches)(m, n),
-            subject: s.title || "",
-            text: o,
-            kludges: m,
-            randomId: intval(c),
-            userId: (0, x.isChatPeer)(a) ? intval(m.from) : intval(a),
-            update_time: l,
-            chat_local_id: d
-        }
-    }
-
-    function u(e) {
-        var t = s(e);
-        return t.type = ce, t
-    }
-
-    function c(e) {
-        return extend({}, e, {
-            type: ce
-        })
-    }
-
-    function d(e) {
-        var t = P(e, 4),
-            n = t[1],
-            r = t[2],
-            a = t[3];
-        return {
-            type: G,
-            peerId: n,
-            upToId: r,
-            unread: a
-        }
-    }
-
-    function l(e) {
-        var t = P(e, 4),
-            n = t[1],
-            r = t[2],
-            a = t[3];
-        return {
-            type: B,
-            peerId: n,
-            upToId: r,
-            unread: a
-        }
-    }
-
-    function m(e) {
-        var t = P(e, 4),
-            n = t[1],
-            r = t[2],
-            a = t[3];
-        return {
-            type: q,
-            userId: -n,
-            platform: r,
-            lastSeenTs: a
-        }
-    }
-
-    function f(e) {
-        var t = P(e, 4),
-            n = t[1],
-            r = t[2],
-            a = t[3];
-        return {
-            type: z,
-            userId: -n,
-            reason: r,
-            lastSeenTs: a
-        }
-    }
-
-    function _(e) {
-        var t = P(e, 4),
-            n = t[1],
-            r = t[2],
-            a = t[3],
-            i = void 0 === a ? !1 : a;
-        return {
-            type: X,
-            peerId: n,
-            mask: r,
-            local: i
-        }
-    }
-
-    function p(e) {
-        var t = P(e, 3),
-            n = t[1],
-            r = t[2];
-        return {
-            type: Z,
-            peerId: n,
-            mask: r
-        }
-    }
-
-    function g(e) {
-        var t = P(e, 4),
-            n = t[1],
-            r = t[2],
-            a = t[3],
-            i = void 0 === a ? !1 : a;
-        return {
-            type: J,
-            peerId: n,
-            mask: r,
-            local: i
-        }
-    }
-
-    function h(e) {
-        var t = P(e, 3),
-            n = t[1],
-            r = t[2];
-        return {
-            type: ue,
-            peerId: n,
-            localId: r
-        }
-    }
-
-    function v(e) {
-        var t = P(e, 3),
-            n = t[1],
-            r = t[2];
-        return {
-            type: W,
-            chatId: n,
-            self: r
-        }
-    }
-
-    function b(e) {
-        var t = P(e, 2),
-            n = t[1];
-        return {
-            type: K,
-            userId: n,
-            peerId: n
-        }
-    }
-
-    function y(e) {
-        var t = P(e, 3),
-            n = t[1],
-            r = t[2];
-        return {
-            type: K,
-            userId: n,
-            peerId: r + 2e9
-        }
-    }
-
-    function E(e) {
-        var t = P(e, 3),
-            n = t[1],
-            r = t[2];
-        return {
-            type: V,
-            userId: n,
-            callId: r
-        }
-    }
-
-    function T(e) {
-        var t = P(e, 2),
-            n = t[1];
-        return {
-            type: Q,
-            count: n
-        }
-    }
-
-    function k(e) {
-        var t = P(e, 2),
-            n = t[1],
-            r = void 0 === n ? {} : n;
-        return {
-            type: Y,
-            peerId: r.peer_id,
-            sound: r.sound,
-            disabledUntil: r.disabled_until
-        }
-    }
-
-    function I(e) {
-        return {
-            type: $,
-            params: e
-        }
-    }
-
-    function O(e) {
-        return {
-            type: te,
-            state: e
-        }
-    }
-
-    function L() {
-        return {
-            type: ee
-        }
-    }
-
-    function A() {
-        var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : !1,
-            t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : !1;
-        return {
-            type: ne,
-            cancelSearch: e,
-            removeActivePeer: t
-        }
-    }
-
-    function w(e) {
-        var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : !1,
-            n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : !1,
-            r = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : !1;
-        return {
-            type: ae,
-            peerId: e,
-            msgid: t,
-            forward: n,
-            cancelSearch: r
-        }
-    }
-
-    function S(e) {
-        return {
-            type: ie,
-            tab: e
-        }
-    }
-
-    function M(e, t, n) {
-        return {
-            type: oe,
-            message: t,
-            peer: e,
-            error: n
-        }
-    }
-
-    function C(e) {
-        var t = P(e, 6),
-            n = (t[0], t[1]),
-            r = t[2],
-            a = t[3],
-            i = t[4],
-            o = t[5];
-        return {
-            type: re,
-            free: !!intval(n) || intval(i) === vk.id,
-            resource: r,
-            peerId: intval(a),
-            who: intval(i),
-            name: o
-        }
-    }
-
-    function R(e, t) {
-        return {
-            type: se,
-            message: t,
-            peerId: e
+    function o(e, t, n, r) {
+        var i = l.get(e);
+        if (i) {
+            t.split(" ").forEach(function(t) {
+                i[t] && (i[t] = i[t].filter(function(e) {
+                    return e[0] !== n || e[1] !== r
+                }), 0 === i[t].length && removeEvent(e, t, a))
+            });
+            var o = Object.keys(i).map(function(e) {
+                return i[e].length
+            }).reduce(function(e, t) {
+                return e + t
+            });
+            0 === o && l["delete"](e)
         }
     }
     Object.defineProperty(t, "__esModule", {
         value: !0
-    }), t.FOLDER_UNRESPOND = t.FOLDER_IMPORTANT = t.FLAG_STEALTH = t.FLAG_MEDIA = t.FLAG_DELETED = t.FLAG_SPAM = t.FLAG_FRIENDS = t.FLAG_CHAT = t.FLAG_IMPORTANT = t.FLAG_OUTBOUND = t.FLAG_UNREAD = t.EDIT_MESSAGE = t.DELETE_DIALOG = t.RESEND = t.FAILED_MESSAGE = t.CHANGE_TAB = t.CHANGE_PEER = t.MUTEX = t.RESET_PEER = t.TRANSITION = t.RESYNC = t.SET_DIRECTORIES = t.REPLACE_DIRECTORIES = t.RESET_DIRECTORIES = t.EMPTY = t.NOTIFY_SETTINGS_CHANGED = t.UNREAD_COUNT = t.VIDEO_CALL = t.TYPING = t.CHAT_CHANGED = t.GOT_OFFLINE = t.GOT_ONLINE = t.READ_OUTBOUND = t.READ_INBOUND = t.ADD_MESSAGE = t.RESET_FLAGS = t.REPLACE_FLAGS = t.SET_FLAGS = t.DELETE = void 0;
-    var P = function() {
+    });
+    var s = function() {
         function e(e, t) {
             var n = [],
                 r = !0,
@@ -2822,776 +3344,72 @@
             throw new TypeError("Invalid attempt to destructure non-iterable instance")
         }
     }();
-    t.deleteEvent = r, t.replaceFlagsEvent = a, t.setFlagsEvent = i, t.resetFlagsEvent = o, t.addMessageEvent = s, t.editMessageEvent = u, t.editMessageLocallyEvent = c, t.readInboundEvent = d, t.readOutboundEvent = l, t.gotOnlineEvent = m, t.gotOfflineEvent = f, t.resetDirectoriesEvent = _, t.replaceDirectoriesEvent = p, t.setDirectoriesEvent = g, t.deleteDialogEvent = h, t.chatChangedEvent = v, t.typingUserEvent = b, t.typingChatEvent = y, t.videoCallEvent = E, t.unreadCountEvent = T, t.notifySettingsChangedEvent = k, t.emptyEvent = I, t.transitionEvent = O, t.resyncEvent = L, t.resetPeer = A, t.changePeer = w, t.changeTab = S, t.failedMessage = M, t.mutexEvent = C, t.resendEvent = R;
-    var x = n(38),
-        D = n(131),
-        N = t.DELETE = "event_delete",
-        j = t.SET_FLAGS = "event_set_flags",
-        F = t.REPLACE_FLAGS = "event_replace_flags",
-        H = t.RESET_FLAGS = "event_reset_flags",
-        U = t.ADD_MESSAGE = "event_add_message",
-        G = t.READ_INBOUND = "event_read_inbound",
-        B = t.READ_OUTBOUND = "event_read_outbound",
-        q = t.GOT_ONLINE = "event_got_online",
-        z = t.GOT_OFFLINE = "event_got_offline",
-        W = t.CHAT_CHANGED = "event_chat_changed",
-        K = t.TYPING = "event_typing",
-        V = t.VIDEO_CALL = "event_video_call",
-        Q = t.UNREAD_COUNT = "event_unread_count",
-        Y = t.NOTIFY_SETTINGS_CHANGED = "event_notify_settings_changed",
-        $ = t.EMPTY = "event_empty",
-        X = t.RESET_DIRECTORIES = "event_reset_directories",
-        Z = t.REPLACE_DIRECTORIES = "event_replace_directories",
-        J = t.SET_DIRECTORIES = "event_set_directories",
-        ee = t.RESYNC = "event_resync",
-        te = t.TRANSITION = "transition_event",
-        ne = t.RESET_PEER = "reset_peer",
-        re = t.MUTEX = "mutex",
-        ae = t.CHANGE_PEER = "change_peer",
-        ie = t.CHANGE_TAB = "event_change_tab",
-        oe = t.FAILED_MESSAGE = "event_failed_message",
-        se = t.RESEND = "event_resend",
-        ue = t.DELETE_DIALOG = "event_delete_dialog",
-        ce = t.EDIT_MESSAGE = "event_edit_message";
-    t.FLAG_UNREAD = 1, t.FLAG_OUTBOUND = 2, t.FLAG_IMPORTANT = 8, t.FLAG_CHAT = 16, t.FLAG_FRIENDS = 32, t.FLAG_SPAM = 64, t.FLAG_DELETED = 128, t.FLAG_MEDIA = 512, t.FLAG_STEALTH = 65536, t.FOLDER_IMPORTANT = 1, t.FOLDER_UNRESPOND = 2
-}, function(e, t, n) {
-    var r = n(147)("wks"),
-        a = n(11),
-        i = n(33).Symbol,
-        o = "function" == typeof i;
-    e.exports = function(e) {
-        return r[e] || (r[e] = o && i[e] || (o ? i : a)("Symbol." + e))
-    }
-}, , function(e, t, n) {
-    "use strict";
-    var r = n(19);
-    e.exports = n(6)("Map", function(e) {
-        return function() {
-            return e(this, arguments.length > 0 ? arguments[0] : void 0)
-        }
-    }, {
-        get: function(e) {
-            var t = r.getEntry(this, e);
-            return t && t.v
-        },
-        set: function(e, t) {
-            return r.def(this, 0 === e ? 0 : e, t)
-        }
-    }, r, !0)
-}, function(e, t, n) {
-    var r = n(135),
-        a = n(102);
-    e.exports = function(e) {
-        return r(a(e))
-    }
-}, , , , function(e, t) {
-    e.exports = !1
-}, function(e, t, n) {
-    for (var r = n(87), a = n(44), i = n(33), o = n(79), s = n(110), u = n(46), c = u("iterator"), d = u("toStringTag"), l = s.Array, m = ["NodeList", "DOMTokenList", "MediaList", "StyleSheetList", "CSSRuleList"], f = 0; 5 > f; f++) {
-        var _, p = m[f],
-            g = i[p],
-            h = g && g.prototype;
-        if (h) {
-            h[c] || o(h, c, l), h[d] || o(h, d, p), s[p] = l;
-            for (_ in r) h[_] || a(h, _, r[_], !0)
-        }
-    }
-}, , function(e, t) {
-    e.exports = function(e, t, n, r) {
-        if (!(e instanceof t) || void 0 !== r && r in e) throw TypeError(n + ": incorrect invocation!");
-        return e
-    }
+    t.addDelegateEvent = i, t.removeDelegateEvent = o;
+    var u = n(140),
+        c = r(u),
+        l = new c["default"]
 }, function(e, t, n) {
     "use strict";
-    var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
-            return typeof e
-        } : function(e) {
-            return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
-        },
-        a = n(137),
-        i = n(131),
-        o = window.WriteBox = {
-            mrg: function(e) {
-                return vk.rtl ? {
-                    marginRight: e
-                } : {
-                    marginLeft: e
-                }
-            },
-            show: function(e, t) {
-                var n = t.toData[0],
-                    r = t.toData[7];
-                if (e.setOptions({
-                        hideButtons: !0,
-                        width: 502,
-                        bodyStyle: "padding: 0px; border: 0px;",
-                        title: t.title,
-                        titleControls: ('<a class="mail_box_header_link" href="/im?sel=' + n + '" onclick="return WriteBox.toFull(event, ' + n + ')">' + t.mail_go_to_dialog + "</a>").replace("%s", r)
-                    }), e.removeButtons(), cur.lang = extend(cur.lang || {}, t.lang), extend(cur, {
-                        mbTxtInp: {},
-                        mbEditable: t.editable,
-                        mbSmile: ge("mbe_smile"),
-                        toData: t.toData,
-                        mbEmoji: t.emoji,
-                        mbMedia: null,
-                        mbField: ge(t.editable ? "mail_box_editable" : "mail_box_text"),
-                        mbAva: ge("mail_box_ava"),
-                        mbMediaTypes: t.mediaTypes,
-                        mbTo: t.toData,
-                        mbHash: t.hash,
-                        mbBannedHim: t.bannedhim,
-                        ldb: (0, a.mount)(vk.id)
-                    }), t.emojiRcnt && !cur.mbRcntEmoji) {
-                    for (var i = [], s = t.emojiRcnt, u = 0, c = s.length; c > u; ++u) {
-                        var d = s[u];
-                        d && i.push('<a id="mbe_rc_em_' + d + '" class="mbe_rc_emojibtn" onmousedown="Emoji.addEmoji(cur.emojiWId, \'' + d + "', this); return cancelEvent(event);\">" + Emoji.getEmojiHTML(d, !1, !0) + "</a>")
-                    }
-                    cur.mbRcntEmoji = i.join("")
-                }
-                cur.nav.push(function() {
-                    cur.ldb.unmount()
-                }), val("mbe_rcemoji", cur.mbRcntEmoji || ""), cur.peer = o.getPeer(), cur.sharedImWrite = {}, cur.emojiWId = Emoji.init(cur.mbField, {
-                    ttDiff: 1,
-                    controlsCont: ge("mbe_emoji_wrap"),
-                    shouldFocus: !0,
-                    onSend: o.send,
-                    rPointer: !0,
-                    noEnterSend: 1,
-                    noStickers: !!t.checkedRecipent,
-                    forceTxt: !t.editable,
-                    sharedTT: cur.sharedImWrite,
-                    txt: ge("mail_box_editable"),
-                    checkEditable: o.checkEditable,
-                    saveDraft: o.saveDraft,
-                    rceCont: ge("mbe_rcemoji_cont"),
-                    addMediaBtn: ge("mail_box_add_row"),
-                    sendWrap: ge("mail_box_controls"),
-                    onKeyAction: function(e) {
-                        clearTimeout(cur.saveWriteBoxDraft);
-                        var t = "paste" == e.type ? 0 : 300;
-                        cur.saveWriteBoxDraft = setTimeout(o.saveDraft, t)
-                    },
-                    onStickerSend: function(e, t) {
-                        var n = trim(Emoji.editableVal(cur.mbField)),
-                            r = cur.mbMedia.getMedias(),
-                            a = cur.toData[0];
-                        ajax.post("/al_im.php", {
-                            act: "a_send_box",
-                            to_ids: a,
-                            chas: cur.mbHash,
-                            msg: "",
-                            ts: cur.ts,
-                            media: "sticker:" + e,
-                            send_sticker: 1,
-                            from: "box",
-                            sticker_referrer: t
-                        }, {
-                            onDone: function(e, t) {
-                                n || r.length ? o.send(!1) : (t && ls.set("im_draft" + vk.id + "_" + t, !1), curBox().hide(), showDoneBox(e))
-                            },
-                            showProgress: lockButton.pbind("mail_box_send"),
-                            hideProgress: unlockButton.pbind("mail_box_send"),
-                            onFail: function(e) {
-                                var t = showFastBox(getLang("global_error"), e).hide;
-                                return setTimeout(t, 3e3), !0
-                            }
-                        })
-                    },
-                    onRecentEmojiUpdate: function() {
-                        o.extractEmoji()
-                    }
-                }), Emoji.emojiLoadMore(cur.emojiWId), cur.mbTo[0] ? cur.mbHidden = !1 : cur.mbHidden = !0, cur.imwEmoji = -1;
-                var l = cur.postTo;
-                cur.postTo = !1, e.setOptions({
-                    onHide: function() {
-                        removeEvent(document, "keydown", o.onKey), cur.mbEmojiShown && Emoji.ttClick(cur.emojiWId, cur.mbSmile, !0), cur.mbOnMouseClick && (cur.onMouseClick = cur.mbOnMouseClick, cur.mbOnMouseClick = !1), browser.mozilla
-                    },
-                    onShow: function() {
-                        addEvent(document, "keydown", o.onKey), cur.mbOnMouseClick || (cur.mbOnMouseClick = cur.onMouseClick), browser.mozilla, cur.sorterClbk && (cur.sorterClbk(), delete cur.sorterClbk)
-                    },
-                    onClean: function() {
-                        clearTimeout(cur.mbSaveDraftTO), delete cur.mbSaveDraftTO, delete cur.mbField, cur.postTo = l, cur.mbEmojiScroll = cur.mbEmojiExpanded = !1, cur.mbForceAttach = !1, window.WideDropdown && WideDropdown.deinit("mail_box_dd")
-                    }
-                }), addEvent(document, "keydown", o.onKey), cur.mbOnMouseClick || (cur.mbOnMouseClick = cur.onMouseClick), stManager.add(["page.js", "page.css"], function() {
-                    var t = {
-                        mail: 1,
-                        nocl: 1,
-                        editable: 1,
-                        sortable: 1,
-                        teWidth: 150,
-                        teHeight: 100,
-                        toggleLnk: !0
-                    };
-                    cur.mbForceAttach && "market" == cur.mbForceAttach[0] && (t.onMediaAdd = function() {
-                        for (var e in cur.mbMedia.chosenMedias)
-                            if ("market" == cur.mbMedia.chosenMedias[e][0]) {
-                                var t = cur.mbMedia.chosenMedias[e][2];
-                                hide(geByClass1("page_media_x_wrap", t))
-                            }
-                    }), cur.mbMedia = new MediaSelector("mail_box_add_link", "mail_box_added_row", cur.mbMediaTypes, t), cur.mbMedia.onChange = function() {
-                        e.changed = !0, setTimeout(function() {
-                            o.saveDraft()
-                        }, 100)
-                    }, ls.checkVersion() && cur.mbTo[0] && o.restoreDraft(cur.mbTo[0])
+    var r = n(91),
+        a = n(72),
+        i = n(53),
+        o = n(58),
+        s = n(35),
+        u = n(84),
+        c = n(3),
+        l = n(85),
+        d = n(8),
+        m = n(141),
+        f = n(45),
+        _ = n(134);
+    e.exports = function(e, t, n, p, g, h) {
+        var v = r[e],
+            b = v,
+            y = g ? "set" : "add",
+            E = b && b.prototype,
+            T = {},
+            k = function(e) {
+                var t = E[e];
+                i(E, e, "delete" == e ? function(e) {
+                    return h && !l(e) ? !1 : t.call(this, 0 === e ? 0 : e)
+                } : "has" == e ? function(e) {
+                    return h && !l(e) ? !1 : t.call(this, 0 === e ? 0 : e)
+                } : "get" == e ? function(e) {
+                    return h && !l(e) ? void 0 : t.call(this, 0 === e ? 0 : e)
+                } : "add" == e ? function(e) {
+                    return t.call(this, 0 === e ? 0 : e), this
+                } : function(e, n) {
+                    return t.call(this, 0 === e ? 0 : e, n), this
                 })
-            },
-            getPeer: function() {
-                return intval(cur.toData[0])
-            },
-            restoreDraft: function(e) {
-                var t = o.getPeer();
-                if (!(!t || e && t != intval(e) || browser.mobile) && cur.mbMedia) {
-                    var n = (0, i.loadDraftForPeer)(cur.ldb, t);
-                    cur.mbForceAttach && "market" == cur.mbForceAttach[0] && (n.setText(unclean(getLang("mail_market_tmpl")).replace(/<br>/g, "\n")), n.removeAllAttaches(), n.addAttach("market", cur.mbForceAttach[1])), o.editableHasVal(cur.mbField) || (cur.mbEditable ? (val(cur.mbField, n.dData.txt.replace(/\n/g, "<br/>")), window.Emoji && Emoji.editableFocus(cur.mbField, !1, !0)) : val(cur.mbField, n.dData.txt)), n.prepareObjects().then(function() {
-                        if (cur.mbField && o.getPeer() == t)
-                            for (var e = n.dData.attaches, r = 0; r < e.length; r++) cur.mbMedia.chooseMedia(e[r].type, e[r].id, e[r].object || {}, null, !0)
-                    }), o.checkEditable(cur.emojiWId, cur.mbField), o.checkLen(cur.mbField)
-                }
-            },
-            saveDraft: function() {
-                var e = o.getPeer();
-                if (e) {
-                    var t = (0, i.loadDraftForPeer)(cur.ldb, e);
-                    t.setText(trim(Emoji.val(cur.mbField))), t.removeAllAttaches(), cur.mbMedia.getMedias().forEach(function(e) {
-                        return t.addAttach(e[0], e[1])
-                    }), t.destroy()
-                }
-            },
-            toFull: function(e, t) {
-                if (!checkEvent(e)) {
-                    var n = {
-                            0: "im",
-                            sel: t
-                        },
-                        a = trim(Emoji.editableVal(cur.mbField));
-                    if (a && (n.message = a), cur.mbMedia.chosenMedias) {
-                        for (var i = cur.mbMedia.getMedias(), o = [], s = 0, u = i.length; u > s; ++s) {
-                            var c = i[s],
-                                d = [];
-                            for (var l in c) "object" != r(c[l]) && d.push(c[l]);
-                            o.push(d.join(","))
-                        }
-                        n.media = o.join("*")
-                    }
-                    return nav.go(n, null, {
-                        noback: !0
-                    }), !1
-                }
-            },
-            send: function(e) {
-                if (!buttonLocked("mail_box_send")) {
-                    var t = trim(Emoji.editableVal(cur.mbField)),
-                        n = cur.mbMedia.getMedias();
-                    cur.mbEditable && o.extractEmoji();
-                    var r = {
-                        act: "a_send_box",
-                        chas: cur.mbHash,
-                        message: t,
-                        title: isVisible("mail_box_title_wrap") && val("mail_box_title") || "",
-                        from: "box",
-                        media: [],
-                        to_ids: []
-                    };
-                    cur.mbForceAttach && (r.attach1_type = cur.mbForceAttach[0], r.attach1 = cur.mbForceAttach[1], r.attach1_hash = cur.mbForceAttach[2]);
-                    for (var a, s = 0, u = n.length; u > s; ++s)(a = n[s]) && r.media.push(a[0] + ":" + a[1]);
-                    return r.media = r.media.join(","), t || r.media ? (r.to_ids = cur.toData[0], cur.mbBannedHim == r.to_ids && e !== !0 ? void(showBox("al_profile.php", {
-                        act: "banned_him",
-                        action: "mail",
-                        mid: cur.mbBannedHim
-                    }, {
-                        dark: 1
-                    }).onContinue = o.send.pbind(!0)) : void ajax.post("al_im.php", r, {
-                        onDone: function(e, t) {
-                            if (t) {
-                                var n = (0, i.loadDraftForPeer)(cur.ldb, t);
-                                n.clear(), n.destroy()
-                            }
-                            curBox().hide(), showDoneBox(e)
-                        },
-                        showProgress: lockButton.pbind("mail_box_send"),
-                        hideProgress: unlockButton.pbind("mail_box_send")
-                    })) : cur.mbEditable ? Emoji.editableFocus(cur.mbField) : elfocus(cur.mbField)
-                }
-            },
-            checkLen: function(e) {
-                cur.mbTxtInp.value = Emoji.editableVal(e), checkTextLength(4096, cur.mbTxtInp, "mail_box_warn"), toggle("mail_box_title_wrap", cur.mbTxtInp.lastLen > 200)
-            },
-            codeToChr: function(e) {
-                for (var t = e.length / 4, n = "", r = 0; t--;) n += String.fromCharCode(parseInt(e.substr(r, 4), 16)), r += 4;
-                return n
-            },
-            editableHasVal: function(e) {
-                return e ? "TEXTAREA" == e.tagName ? !!val(e) : !(!geByTag1("IMG", e) && !stripHTML(val(e)).replace(/[\s\xa0]/g, "").length) : !1
-            },
-            checkEditable: function(e, t) {
-                cur.mbEditable && Emoji.checkEditable(e, t, {
-                    height: 180
-                })
-            },
-            cssAnimation: function() {
-                var e = intval(browser.version);
-                return browser.chrome && e > 14 || browser.mozilla && e > 13 || browser.opera && e > 2 ? !0 : !1
-            },
-            onKey: function(e) {
-                var t = "INPUT" == e.target.tagName || "TEXTAREA" == e.target.tagName || "mail_box_editable" == e.target.id;
-                if (!isInputActive()) {
-                    if (e.keyCode > 40 && !e.ctrlKey && !e.metaKey && !t)
-                        if (cur.mbEditable) Emoji.editableFocus(cur.mbField, !1, !0);
-                        else {
-                            var n = cur.mbField;
-                            !n.active && elfocus(n)
-                        }
-                    return !0
-                }
-            },
-            extractEmoji: function() {
-                var e = ge("mbe_rcemoji");
-                if (e) {
-                    var t = "",
-                        n = Emoji.getRecentEmojiSorted().slice(0, 7);
-                    for (var r in n)
-                        if (n.hasOwnProperty(r)) {
-                            var a = n[r];
-                            t += '<a id="mbe_rc_em_' + a + '" class="mbe_rc_emojibtn" onmousedown="Emoji.addEmoji(cur.emojiWId, \'' + a + "', this); return cancelEvent(event);\">" + Emoji.getEmojiHTML(a, !1, !0) + "</a>"
-                        }
-                    val(e, t)
-                }
-            }
-        };
-    try {
-        stManager.done("writebox.js")
-    } catch (s) {}
-}, function(e, t) {
-    "use strict";
-
-    function n(e, t, n) {
-        return t && (t.im_v = i), new Promise(function(r, a) {
-            ajax.post(e, t, {
-                timeout: n,
-                onDone: function() {
-                    r.apply(null, [
-                        [].concat(Array.prototype.slice.call(arguments))
-                    ])
-                },
-                onFail: function() {
-                    return a.apply(null, arguments), !0
-                }
-            })
-        })
+            };
+        if ("function" == typeof b && (h || E.forEach && !d(function() {
+                (new b).entries().next()
+            }))) {
+            var I = new b,
+                O = I[y](h ? {} : -0, 1) != I,
+                L = d(function() {
+                    I.has(1)
+                }),
+                w = m(function(e) {
+                    new b(e)
+                }),
+                A = !h && d(function() {
+                    for (var e = new b, t = 5; t--;) e[y](t, t);
+                    return !e.has(-0)
+                });
+            w || (b = t(function(t, n) {
+                c(t, b, e);
+                var r = _(new v, t, b);
+                return void 0 != n && u(n, g, r[y], r), r
+            }), b.prototype = E, E.constructor = b), (L || A) && (k("delete"), k("has"), g && k("get")), (A || O) && k(y), h && E.clear && delete E.clear
+        } else b = p.getConstructor(t, e, g, y), o(b.prototype, n), s.NEED = !0;
+        return f(b, e), T[e] = b, a(a.G + a.W + a.F * (b != v), T), h || p.setStrong(b, e, g), b
     }
-
-    function r(e, t) {
-        var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
-            r = a(e, t, n),
-            i = r.request;
-        return i
-    }
-
-    function a(e, t) {
-        function n() {
-            a.abort()
-        }
-        var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
-            a = void 0;
-        a = window.XDomainRequest ? new XDomainRequest : ajax._getreq();
-        var i = new Promise(function(n, i) {
-            var o = void 0,
-                s = Date.now(),
-                u = r.timeout || 60,
-                c = ajx2q(t);
-            if (window.XDomainRequest) a.open("get", e + "?" + c), a.ontimeout = function() {
-                i(["", {}])
-            }, a.onerror = function() {
-                i(["", {}])
-            }, a.onload = function() {
-                n([a.responseText, {}])
-            }, setTimeout(function() {
-                a.send()
-            }, 0);
-            else {
-                a.onreadystatechange = function() {
-                    4 == a.readyState && (clearInterval(o), a.status >= 200 && a.status < 300 ? n([a.responseText, a]) : i([a.responseText, a]))
-                };
-                try {
-                    a.open("GET", e + "?" + c, !0)
-                } catch (d) {
-                    return i([d, a])
-                }
-                a.send()
-            }
-            o = setInterval(function() {
-                Date.now() - s > 1e3 * u && (i(["", {}]), clearInterval(o))
-            }, 1e3)
-        });
-        return {
-            request: i,
-            cancel: n
-        }
-    }
-    Object.defineProperty(t, "__esModule", {
-        value: !0
-    }), t.post = n, t.plainget = r, t.plaingetCancelable = a;
-    var i = (t.CONTROLLER = "al_im.php", 2)
-}, , function(e, t, n) {
-    var r = n(133),
-        a = n(46)("toStringTag"),
-        i = "Arguments" == r(function() {
-            return arguments
-        }()),
-        o = function(e, t) {
-            try {
-                return e[t]
-            } catch (n) {}
-        };
-    e.exports = function(e) {
-        var t, n, s;
-        return void 0 === e ? "Undefined" : null === e ? "Null" : "string" == typeof(n = o(t = Object(e), a)) ? n : i ? r(t) : "Object" == (s = r(t)) && "function" == typeof t.callee ? "Arguments" : s
-    }
-}, , , function(e, t, n) {
-    var r = n(31);
-    e.exports = function(e, t) {
-        if (!r(e)) return e;
-        var n, a;
-        if (t && "function" == typeof(n = e.toString) && !r(a = n.call(e))) return a;
-        if ("function" == typeof(n = e.valueOf) && !r(a = n.call(e))) return a;
-        if (!t && "function" == typeof(n = e.toString) && !r(a = n.call(e))) return a;
-        throw TypeError("Can't convert object to primitive value")
-    }
-}, , function(e, t, n) {
-    var r = n(132),
-        a = n(24),
-        i = n(20)("IE_PROTO"),
-        o = Object.prototype;
-    e.exports = Object.getPrototypeOf || function(e) {
-        return e = a(e), r(e, i) ? e[i] : "function" == typeof e.constructor && e instanceof e.constructor ? e.constructor.prototype : e instanceof Object ? o : null
-    }
-}, , function(e, t, n) {
-    var r = n(116),
+}, function(e, t, n) {
+    var r = n(129),
         a = Math.min;
     e.exports = function(e) {
         return e > 0 ? a(r(e), 9007199254740991) : 0
-    }
-}, , function(e, t, n) {
-    var r = n(31);
-    e.exports = function(e) {
-        if (!r(e)) throw TypeError(e + " is not an object!");
-        return e
-    }
-}, function(e, t, n) {
-    var r = n(75),
-        a = n(69),
-        i = n(93);
-    e.exports = n(1) ? Object.defineProperties : function(e, t) {
-        a(e);
-        for (var n, o = i(t), s = o.length, u = 0; s > u;) r.f(e, n = o[u++], t[n]);
-        return e
-    }
-}, , function(e, t, n) {
-    "use strict";
-    var r = n(148)(!0);
-    n(89)(String, "String", function(e) {
-        this._t = String(e), this._i = 0
-    }, function() {
-        var e, t = this._t,
-            n = this._i;
-        return n >= t.length ? {
-            value: void 0,
-            done: !0
-        } : (e = r(t, n), this._i += e.length, {
-            value: e,
-            done: !1
-        })
-    })
-}, , , function(e, t, n) {
-    var r = n(69),
-        a = n(124),
-        i = n(63),
-        o = Object.defineProperty;
-    t.f = n(1) ? Object.defineProperty : function(e, t, n) {
-        if (r(e), t = i(t, !0), r(n), a) try {
-            return o(e, t, n)
-        } catch (s) {}
-        if ("get" in n || "set" in n) throw TypeError("Accessors not supported!");
-        return "value" in n && (e[t] = n.value), e
-    }
-}, , function(e, t, n) {
-    "use strict";
-
-    function r(e) {
-        return {
-            callMutations: function() {
-                if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
-                return e
-            },
-            bindMutations: function() {
-                if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
-                return e = e.apply(void 0, arguments)
-            }
-        }
-    }
-
-    function a(e, t, n, r) {
-        d(t, n, r), e._registeredHandlers.push(["bind", t, n, r])
-    }
-
-    function i(e, t, n, r, a) {
-        (0, u.addDelegateEvent)(t, n, r, a), e._registeredHandlers.push(["delegate", t, n, r, a])
-    }
-
-    function o(e) {
-        var t = {
-            _registeredHandlers: []
-        };
-        return e.handlers(a.bind(null, t), i.bind(null, t)), t
-    }
-
-    function s(e) {
-        e._registeredHandlers.forEach(function(e) {
-            var t = e.slice(1);
-            "delegate" === e[0] ? u.removeDelegateEvent.apply(void 0, t) : l.apply(void 0, t)
-        }), e._registeredHandlers = []
-    }
-    Object.defineProperty(t, "__esModule", {
-        value: !0
-    }), t.createMutations = r, t.createModule = o, t.destroyModule = s;
-    var u = n(9),
-        c = window,
-        d = c.addEvent,
-        l = c.removeEvent
-}, , function(e, t, n) {
-    var r = n(75),
-        a = n(149);
-    e.exports = n(1) ? function(e, t, n) {
-        return r.f(e, t, a(1, n))
-    } : function(e, t, n) {
-        return e[t] = n, e
-    }
-}, , function(e, t, n) {
-    var r = n(69),
-        a = n(70),
-        i = n(146),
-        o = n(20)("IE_PROTO"),
-        s = function() {},
-        u = "prototype",
-        c = function() {
-            var e, t = n(127)("iframe"),
-                r = i.length,
-                a = ">";
-            for (t.style.display = "none", n(83).appendChild(t), t.src = "javascript:", e = t.contentWindow.document, e.open(), e.write("<script>document.F=Object</script" + a), e.close(), c = e.F; r--;) delete c[u][i[r]];
-            return c()
-        };
-    e.exports = Object.create || function(e, t) {
-        var n;
-        return null !== e ? (s[u] = r(e), n = new s, s[u] = null, n[o] = e) : n = c(), void 0 === t ? n : a(n, t)
-    }
-}, function(e, t) {
-    e.exports = function(e, t) {
-        return {
-            value: t,
-            done: !!e
-        }
-    }
-}, function(e, t, n) {
-    e.exports = n(33).document && document.documentElement
-}, , function(e, t) {
-    var n = e.exports = {
-        version: "2.2.1"
-    };
-    "number" == typeof __e && (__e = n)
-}, , function(e, t, n) {
-    "use strict";
-    var r = n(105),
-        a = n(82),
-        i = n(110),
-        o = n(49);
-    e.exports = n(89)(Array, "Array", function(e, t) {
-        this._t = o(e), this._i = 0, this._k = t
-    }, function() {
-        var e = this._t,
-            t = this._k,
-            n = this._i++;
-        return !e || n >= e.length ? (this._t = void 0, a(1)) : "keys" == t ? a(0, n) : "values" == t ? a(0, e[n]) : a(0, [n, e[n]])
-    }, "values"), i.Arguments = i.Array, r("keys"), r("values"), r("entries")
-}, function(e, t) {
-    "use strict";
-
-    function n(e, t, n) {
-        return t in e ? Object.defineProperty(e, t, {
-            value: n,
-            enumerable: !0,
-            configurable: !0,
-            writable: !0
-        }) : e[t] = n, e
-    }
-    Object.defineProperty(t, "__esModule", {
-        value: !0
-    });
-    var r, a = "\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј",
-        i = "(https?:\\/\\/)?",
-        o = "((?:[" + a + "\\—\\-\\_]+\\.){1,5})",
-        s = "([A-Za-z\\$а-яА-Я\\-\\d]{2,22})",
-        u = "(?:\\:(\\d{2,5}))",
-        c = "(" + o + s + u + "?)",
-        d = "([\\/?#])",
-        l = "\\wА-Яа-я\\xa8\\xb8\\xc0-\\xffєЄҐґЇїІіЈј",
-        m = "ªµºÀ-ÖØ-öø-ˁˆ-ˑˠ-ˤˬˮͰ-ʹͶͷͺ-ͽͿΆΈ-ΊΌΎ-ΡΣ-ϵϷ-ҁҊ-ԯԱ-Ֆՙա-ևא-תװ-ײؠ-يٮٯٱ-ۓەۥۦۮۯۺ-ۼۿܐܒ-ܯݍ-ޥޱߊ-ߪߴߵߺࠀ-ࠕࠚࠤࠨࡀ-ࡘࢠ-ࢴࢶ-ࢽऄ-हऽॐक़-ॡॱ-ঀঅ-ঌএঐও-নপ-রলশ-হঽৎড়ঢ়য়-ৡৰৱਅ-ਊਏਐਓ-ਨਪ-ਰਲਲ਼ਵਸ਼ਸਹਖ਼-ੜਫ਼ੲ-ੴઅ-ઍએ-ઑઓ-નપ-રલળવ-હઽૐૠૡૹଅ-ଌଏଐଓ-ନପ-ରଲଳଵ-ହଽଡ଼ଢ଼ୟ-ୡୱஃஅ-ஊஎ-ஐஒ-கஙசஜஞடணதந-பம-ஹௐఅ-ఌఎ-ఐఒ-నప-హఽౘ-ౚౠౡಀಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹಽೞೠೡೱೲഅ-ഌഎ-ഐഒ-ഺഽൎൔ-ൖൟ-ൡൺ-ൿඅ-ඖක-නඳ-රලව-ෆก-ะาำเ-ๆກຂຄງຈຊຍດ-ທນ-ຟມ-ຣລວສຫອ-ະາຳຽເ-ໄໆໜ-ໟༀཀ-ཇཉ-ཬྈ-ྌက-ဪဿၐ-ၕၚ-ၝၡၥၦၮ-ၰၵ-ႁႎႠ-ჅჇჍა-ჺჼ-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚᎀ-ᎏᎠ-Ᏽᏸ-ᏽᐁ-ᙬᙯ-ᙿᚁ-ᚚᚠ-ᛪᛱ-ᛸᜀ-ᜌᜎ-ᜑᜠ-ᜱᝀ-ᝑᝠ-ᝬᝮ-ᝰក-ឳៗៜᠠ-ᡷᢀ-ᢄᢇ-ᢨᢪᢰ-ᣵᤀ-ᤞᥐ-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉᨀ-ᨖᨠ-ᩔᪧᬅ-ᬳᭅ-ᭋᮃ-ᮠᮮᮯᮺ-ᯥᰀ-ᰣᱍ-ᱏᱚ-ᱽᲀ-ᲈᳩ-ᳬᳮ-ᳱᳵᳶᴀ-ᶿḀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼⁱⁿₐ-ₜℂℇℊ-ℓℕℙ-ℝℤΩℨK-ℭℯ-ℹℼ-ℿⅅ-ⅉⅎↃↄⰀ-Ⱞⰰ-ⱞⱠ-ⳤⳫ-ⳮⳲⳳⴀ-ⴥⴧⴭⴰ-ⵧⵯⶀ-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⸯ々〆〱-〵〻〼ぁ-ゖゝ-ゟァ-ヺー-ヿㄅ-ㄭㄱ-ㆎㆠ-ㆺㇰ-ㇿ㐀-䶵一-鿕ꀀ-ꒌꓐ-ꓽꔀ-ꘌꘐ-ꘟꘪꘫꙀ-ꙮꙿ-ꚝꚠ-ꛥꜗ-ꜟꜢ-ꞈꞋ-ꞮꞰ-ꞷꟷ-ꠁꠃ-ꠅꠇ-ꠊꠌ-ꠢꡀ-ꡳꢂ-ꢳꣲ-ꣷꣻꣽꤊ-ꤥꤰ-ꥆꥠ-ꥼꦄ-ꦲꧏꧠ-ꧤꧦ-ꧯꧺ-ꧾꨀ-ꨨꩀ-ꩂꩄ-ꩋꩠ-ꩶꩺꩾ-ꪯꪱꪵꪶꪹ-ꪽꫀꫂꫛ-ꫝꫠ-ꫪꫲ-ꫴꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-ꭚꭜ-ꭥꭰ-ꯢ가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִײַ-ﬨשׁ-זּטּ-לּמּנּסּףּפּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻﹰ-ﹴﹶ-ﻼＡ-Ｚａ-ｚｦ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ",
-        f = "　-〿＀-￯",
-        _ = "\\—\\-\\_@#%?+\\/\\$.~=;:'",
-        p = "[" + l + _ + m + f + "]",
-        g = "(?:\\(|\\[)[" + a + "\\d&#%;,]+(?:\\)|\\])",
-        h = "(" + d + "(?:\\&amp;|\\&#\\d{2,6};|,[_%]|!|,*" + p + "+|" + g + "){0,200})?",
-        v = i + c + h,
-        b = "ac,ad,ae,af,ag,ai,al,am,an,ao,aq,ar,as,at,au,aw,ax,az,ba,bb,bd,be,bf,bg,bh,bi,bj,bm,bn,bo,br,bs,bt,bv,bw,by,bz,ca,cc,cd,cf,cg,ch,ci,ck,cl,cm,cn,co,cr,cu,cv,cx,cy,cz,de,dj,dk,dm,do,dz,ec,ee,eg,eh,er,es,et,eu,fi,fj,fk,fm,fo,fr,ga,gd,ge,gf,gg,gh,gi,gl,gm,gn,gp,gq,gr,gs,gt,gu,gw,gy,hk,hm,hn,hr,ht,hu,id,ie,il,im,in,io,iq,ir,is,it,je,jm,jo,jp,ke,kg,kh,ki,km,kn,kp,kr,kw,ky,kz,la,lb,lc,li,lk,lr,ls,lt,lu,lv,ly,ma,mc,md,me,mg,mh,mk,ml,mm,mn,mo,mp,mq,mr,ms,mt,mu,mv,mw,mx,my,mz,na,nc,ne,nf,ng,ni,nl,no,np,nr,nu,nz,om,pa,pe,pf,pg,ph,pk,pl,pm,pn,pr,ps,pt,pw,py,qa,re,ro,ru,rs,rw,sa,sb,sc,sd,se,sg,sh,si,sj,sk,sl,sm,sn,so,sr,ss,st,su,sv,sx,sy,sz,tc,td,tf,tg,th,tj,tk,tl,tm,tn,to,tp,tr,tt,tv,tw,tz,ua,ug,uk,um,us,uy,uz,va,vc,ve,vg,vi,vn,vu,wf,ws,ye,yt,yu,za,zm,zw,arpa,aero,asia,biz,cat,com,coop,info,int,jobs,media,mobi,museum,name,net,org,place,post,pro,tattoo,tel,travel,xxx,club,academy,camera,edu,gov,mil,local,international,bar,design",
-        y = "бг,бел,дети,ею,католик,ком,мкд,мон,москва,онлайн,орг,рус,рф,сайт,срб,укр",
-        E = "qxam,90ae,90ais,d1acj3b,e1a4c,80aqecdr1a,j1aef,d1alf,l1acc,80adxhks,80asehdb,c1avg,p1acf,p1ai,80aswg,90a3ac,j1amh,80ao21a,y9a3aq,9dbq2a,mgbca7dzdo,mgba3a3ejt,mgbayh7gpa,lgbbat1ad8j,mgberp4a5d4ar,mgba7c0bbn0a,mgbc0a9azcg,mgb2ddes,mgbaam7a8h,mgba3a4f16a,mgbbh1a,mgbab2bd,ngbe9e0a,mgbbh1a71e,pgbs0dh,mgbpl2fh,ogbpf8fl,ngbc5azd,mgbtx2b,mgb9awbf,ygbi2ammx,wgbl6a,mgbi4ecexp,fhbei,wgbh1c,mgbx4cd0ab,mgbb9fbpob,4gbrim,mgbt3dhd,mgbai9azgqp6j,mgbgu82a,11b4c3d,c2br7g,h2brj9c,h2breg3eve,h2brj9c8c,i1b6b1a6a2e,54b7fta0cc,45brj9c,45br5cyl,s9brj9c,gecrj9c,3hcrj9c,xkc2dl3a5ee0h,xkc2al3hye2a,clchc0ea0b2g2a9gcd,fpcrj9c3d,2scrj9c,rvc1e0am3e,fzc2c9e2c,42c2d9a,o3cw4h,node,q9jyb4c,gckr3f0f,qcka1pmc,tckwe,cck2b3b,1ck2e1b,bck1b9a5dre4c,eckvdtc9d,rhqv96g,fiq64b,fiqs8s,fiqz9s,fiq228c5hs,vhquv,1qqw23a,vuq861b,nyqy26a,45q11c,55qx5d,55qw42g,kprw13d,kpry57d,czru2d,czrs0t,czr694b,w4rs40l,w4r85el8fhu5dnra,3ds443g,3oq18vl8pn36a,pssy2u,tiq49xqyj,fjq720a,fct429k,estv75g,xhq521b,9krt00a,30rr7y,6qq986b3xl,kput3i,kpu716f,zfr164b,mxtq1m,yfro4i67o,efvy88h,9et52u,rovu88b,nqv7f,b4w605ferd,unup4y,mix891f,mix082f,3pxu8k,pbt977c,6frz82g,nqv7fs00ema,ses554g,hxt814e,5tzm5g,io0a7i,8y0a063a,jlq61u9w7b,flw351e,g2xx48c,gk3at1e,3bst00m,fzys8d69uvgm,kcrx77d1x4a,jvr189m,imr513n,5su34j936bgsg,j6w193g,t60b56a,mk1bu44c,cg4bki,3e0b707e",
-        T = (t.OUR_DOMAINS = /^([a-zA-Z0-9\.\_\-]+\.)?(vkontakte\.ru|vk\.com|vkadre\.ru|vshtate\.ru|userapi\.com|vk\.me)$/, t.ENTITIES = /([^a-zA-Z0-9#%;_\-.\/?&=\[\]])/g, t.VK_DOMAIN = /^(?:https?:\/\/)?(?:vk\.com|vkontakte\.ru)?\/([a-zA-Z0-9\._]+)\??$/, t.MENTION = /\[(id|club)(\d+)(?:\:([a-z0-9_\-]+))?\|([^\$]+?)\]/g, t.MENTION_RAW = /(^|[\s.,:\'\";>\)\(])(\*|@)([A-Za-z0-9_\.]{2,32})\s*\((.+?)\)/g, t.ARROW_UP = 38),
-        k = t.ARROW_DOWN = 40,
-        I = t.PAGE_UP = 33,
-        O = t.PAGE_DOWN = 34,
-        L = t.END_KEY = 35,
-        A = t.HOME = 36,
-        w = t.ENTER = 13,
-        S = t.ESC = 27,
-        M = (t.UNPRINTABLE_KEYS = [T, k, I, O, w, S, L, A], t.UP_DOWN_CONTROLS = [I, O, k, T, A, L], t.PRINTABLE = "printable", t.FOLDER_UNREAD = "unread"),
-        C = t.FOLDER_ALL = "all",
-        R = t.FOLDER_UNRESPOND = "unrespond",
-        P = t.FOLDER_IMPORTANT = "important",
-        x = (t.FOLDERS = [C, M, R, P], t.FOLDER_MASKS = (r = {}, n(r, R, 2), n(r, P, 1), r), t.TOP_DOMAINS = [].concat(b.split(","), y.split(","), E.split(",").map(function(e) {
-            return "xn--" + e
-        })));
-    t.MAX_DOMAIN_LENGTH = x.reduce(function(e, t) {
-        return Math.max(e, t.length)
-    }, 0), t.EMAIL = new RegExp("([a-zA-Zа-яА-Я\\-_\\.0-9\\+]+@(" + o + s + "))", "ig"), t.MESSAGE_REGEXP = new RegExp(v, "ig")
-}, function(e, t, n) {
-    "use strict";
-    var r = n(53),
-        a = n(109),
-        i = n(44),
-        o = n(79),
-        s = n(132),
-        u = n(110),
-        c = n(114),
-        d = n(23),
-        l = n(65),
-        m = n(46)("iterator"),
-        f = !([].keys && "next" in [].keys()),
-        _ = "@@iterator",
-        p = "keys",
-        g = "values",
-        h = function() {
-            return this
-        };
-    e.exports = function(e, t, n, v, b, y, E) {
-        c(n, t, v);
-        var T, k, I, O = function(e) {
-                if (!f && e in S) return S[e];
-                switch (e) {
-                    case p:
-                        return function() {
-                            return new n(this, e)
-                        };
-                    case g:
-                        return function() {
-                            return new n(this, e)
-                        }
-                }
-                return function() {
-                    return new n(this, e)
-                }
-            },
-            L = t + " Iterator",
-            A = b == g,
-            w = !1,
-            S = e.prototype,
-            M = S[m] || S[_] || b && S[b],
-            C = M || O(b),
-            R = b ? A ? O("entries") : C : void 0,
-            P = "Array" == t ? S.entries || M : M;
-        if (P && (I = l(P.call(new e)), I !== Object.prototype && (d(I, L, !0), r || s(I, m) || o(I, m, h))), A && M && M.name !== g && (w = !0, C = function() {
-                return M.call(this)
-            }), r && !E || !f && !w && S[m] || o(S, m, C), u[t] = C, u[L] = h, b)
-            if (T = {
-                    values: A ? C : O(g),
-                    keys: y ? C : O(p),
-                    entries: R
-                }, E)
-                for (k in T) k in S || i(S, k, T[k]);
-            else a(a.P + a.F * (f || w), t, T);
-        return T
-    }
-}, , function(e, t, n) {
-    var r = n(31),
-        a = n(115).set;
-    e.exports = function(e, t, n) {
-        var i, o = t.constructor;
-        return o !== n && "function" == typeof o && (i = o.prototype) !== n.prototype && r(i) && a && a(e, i), e
-    }
-}, , function(e, t, n) {
-    var r = n(108),
-        a = n(146);
-    e.exports = Object.keys || function(e) {
-        return r(e, a)
-    }
-}, , function(e, t, n) {
-    var r = n(134),
-        a = n(99),
-        i = n(28),
-        o = n(69),
-        s = n(67),
-        u = n(37);
-    e.exports = function(e, t, n, c, d) {
-        var l, m, f, _ = d ? function() {
-                return e
-            } : u(e),
-            p = r(n, c, t ? 2 : 1),
-            g = 0;
-        if ("function" != typeof _) throw TypeError(e + " is not iterable!");
-        if (i(_))
-            for (l = s(e.length); l > g; g++) t ? p(o(m = e[g])[0], m[1]) : p(e[g]);
-        else
-            for (f = _.call(e); !(m = f.next()).done;) a(f, p, m.value, t)
-    }
-}, function(e, t, n) {
-    var r = n(49),
-        a = n(67),
-        i = n(3);
-    e.exports = function(e) {
-        return function(t, n, o) {
-            var s, u = r(t),
-                c = a(u.length),
-                d = i(o, c);
-            if (e && n != n) {
-                for (; c > d;)
-                    if (s = u[d++], s != s) return !0
-            } else
-                for (; c > d; d++)
-                    if ((e || d in u) && u[d] === n) return e || d;
-            return !e && -1
-        }
-    }
-}, , function(e, t, n) {
-    n(101), n(72), n(54), n(48), e.exports = n(85).Map
-}, function(e, t, n) {
-    var r = n(69);
-    e.exports = function(e, t, n, a) {
-        try {
-            return a ? t(r(n)[0], n[1]) : t(n)
-        } catch (i) {
-            var o = e["return"];
-            throw void 0 !== o && r(o.call(e)), i
-        }
-    }
-}, , function(e, t, n) {
-    "use strict";
-    var r = n(60),
-        a = {};
-    a[n(46)("toStringTag")] = "z", a + "" != "[object z]" && n(44)(Object.prototype, "toString", function() {
-        return "[object " + r(this) + "]"
-    }, !0)
-}, function(e, t) {
-    e.exports = function(e) {
-        if (void 0 == e) throw TypeError("Can't call method on  " + e);
-        return e
     }
 }, , function(e, t, n) {
     "use strict";
@@ -3604,299 +3422,307 @@
         return t["default"] = e, t
     }
 
-    function a(e, t) {
-        return "number" != typeof t.messageId ? !0 : i(t) ? t.messageId > e.out_up_to : t.messageId > e.in_up_to
-    }
-
-    function i(e) {
-        return e.flags & y.FLAG_OUTBOUND
-    }
-
-    function o(e, t) {
-        var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : null,
-            r = e.attaches[0];
-        return r && (r.type === t || r.type === n)
-    }
-
-    function s(e) {
-        return o(e, "doc") && "graffiti" === e.attaches[0].kind
-    }
-
-    function u(e) {
-        return o(e, "doc") && "audiomsg" === e.attaches[0].kind
-    }
-
-    function c(e) {
-        return o(e, "sticker")
-    }
-
-    function d(e) {
-        return o(e, "gift")
-    }
-
-    function l(e) {
-        return o(e, "money_transfer", "money_request")
-    }
-
-    function m(e) {
-        return o(e, "money_request")
-    }
-
-    function f(e) {
-        return o(e, "link") && _(e.kludges.attach1_url)
-    }
-
-    function _(e) {
-        var t = /^https:\/\/(.+\.)?vk\.com\/vk-me\.php\?act=join&(amp;)?link=[\w\/=_]+$/,
-            n = /^https:\/\/vk\.me\/join\/[\w\/=_]+$/;
-        return t.test(e) || n.test(e)
-    }
-
-    function p(e) {
-        return e.flags & y.FLAG_IMPORTANT
-    }
-
-    function g(e) {
-        return i(e) ? vk.id : e.userId
-    }
-
-    function h(e) {
-        return e.update_time > 0
-    }
-
-    function v(e, t) {
-        return (e.get().selectedMessages || []).indexOf(t) >= 0
-    }
-    Object.defineProperty(t, "__esModule", {
-        value: !0
-    }), t.isUnread = a, t.isOut = i, t.isGraffiti = s, t.isAudioMsg = u, t.isSticker = c, t.isGift = d, t.isMoney = l, t.isMoneyRequest = m, t.isMessageWithInviteLink = f, t.isImportant = p, t.getUserId = g, t.wasEdited = h, t.isMessageSelected = v;
-    var b = n(45),
-        y = r(b)
-}, function(e, t, n) {
-    var r = n(46)("unscopables"),
-        a = Array.prototype;
-    void 0 == a[r] && n(79)(a, r, {}), e.exports = function(e) {
-        a[r][e] = !0
-    }
-}, , function(e, t) {
-    t.f = {}.propertyIsEnumerable
-}, function(e, t, n) {
-    var r = n(132),
-        a = n(49),
-        i = n(96)(!1),
-        o = n(20)("IE_PROTO");
-    e.exports = function(e, t) {
-        var n, s = a(e),
-            u = 0,
-            c = [];
-        for (n in s) n != o && r(s, n) && c.push(n);
-        for (; t.length > u;) r(s, n = t[u++]) && (~i(c, n) || c.push(n));
-        return c
-    }
-}, function(e, t, n) {
-    var r = n(33),
-        a = n(85),
-        i = n(79),
-        o = n(44),
-        s = n(134),
-        u = "prototype",
-        c = function(e, t, n) {
-            var d, l, m, f, _ = e & c.F,
-                p = e & c.G,
-                g = e & c.S,
-                h = e & c.P,
-                v = e & c.B,
-                b = p ? r : g ? r[t] || (r[t] = {}) : (r[t] || {})[u],
-                y = p ? a : a[t] || (a[t] = {}),
-                E = y[u] || (y[u] = {});
-            p && (n = t);
-            for (d in n) l = !_ && b && void 0 !== b[d], m = (l ? b : n)[d], f = v && l ? s(m, r) : h && "function" == typeof m ? s(Function.call, m) : m, b && o(b, d, m, e & c.U), y[d] != m && i(y, d, f), h && E[d] != m && (E[d] = m)
-        };
-    r.core = a, c.F = 1, c.G = 2, c.S = 4, c.P = 8, c.B = 16, c.W = 32, c.U = 64, c.R = 128, e.exports = c
-}, function(e, t) {
-    e.exports = {}
-}, , , , function(e, t, n) {
-    "use strict";
-    var r = n(81),
-        a = n(149),
-        i = n(23),
-        o = {};
-    n(79)(o, n(46)("iterator"), function() {
-        return this
-    }), e.exports = function(e, t, n) {
-        e.prototype = r(o, {
-            next: a(1, n)
-        }), i(e, t + " Iterator")
-    }
-}, function(e, t, n) {
-    var r = n(31),
-        a = n(69),
-        i = function(e, t) {
-            if (a(e), !r(t) && null !== t) throw TypeError(t + ": can't set as prototype!")
-        };
-    e.exports = {
-        set: Object.setPrototypeOf || ("__proto__" in {} ? function(e, t, r) {
-            try {
-                r = n(134)(Function.call, n(12).f(Object.prototype, "__proto__").set, 2), r(e, []), t = !(e instanceof Array)
-            } catch (a) {
-                t = !0
-            }
-            return function(e, n) {
-                return i(e, n), t ? e.__proto__ = n : r(e, n), e
-            }
-        }({}, !1) : void 0),
-        check: i
-    }
-}, function(e, t) {
-    var n = Math.ceil,
-        r = Math.floor;
-    e.exports = function(e) {
-        return isNaN(e = +e) ? 0 : (e > 0 ? r : n)(e)
-    }
-}, , function(e, t) {
-    "use strict";
-
-    function n(e) {
-        var t = o({}, i.objLoc, e);
-        Object.keys(t).filter(function(e) {
-            return "" === t[e]
-        }).forEach(function(e) {
-            delete t[e]
-        });
-        var n = i.toStr(t);
-        i.setLoc(n)
-    }
-
-    function r() {
-        var e = {};
-        return {
-            scheduleNav: function(t) {
-                e = o(e, t)
-            },
-            commitNav: function() {
-                n(e), e = {}
-            },
-            scheduleNavWithTimeOut: function(t) {
-                var r = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : 100;
-                e = o(e, t), setTimeout(function() {
-                    n(e), e = {}
-                }, r)
-            }
-        }
-    }
-    Object.defineProperty(t, "__esModule", {
-        value: !0
-    }), t.updateLocation = n, t.updateLazyLocation = r;
-    var a = window,
-        i = a.nav,
-        o = a.extend
-}, , , , function(e, t, n) {
-    "use strict";
-    var r = n(33),
-        a = n(75),
-        i = n(1),
-        o = n(46)("species");
-    e.exports = function(e) {
-        var t = r[e];
-        i && t && !t[o] && a.f(t, o, {
-            configurable: !0,
-            get: function() {
-                return this
-            }
-        })
-    }
-}, , function(e, t, n) {
-    e.exports = !n(1) && !n(152)(function() {
-        return 7 != Object.defineProperty(n(127)("div"), "a", {
-            get: function() {
-                return 7
-            }
-        }).a
-    })
-}, function(e, t, n) {
-    var r = n(11)("meta"),
-        a = n(31),
-        i = n(132),
-        o = n(75).f,
-        s = 0,
-        u = Object.isExtensible || function() {
-            return !0
-        },
-        c = !n(152)(function() {
-            return u(Object.preventExtensions({}))
-        }),
-        d = function(e) {
-            o(e, r, {
-                value: {
-                    i: "O" + ++s,
-                    w: {}
-                }
-            })
-        },
-        l = function(e, t) {
-            if (!a(e)) return "symbol" == typeof e ? e : ("string" == typeof e ? "S" : "P") + e;
-            if (!i(e, r)) {
-                if (!u(e)) return "F";
-                if (!t) return "E";
-                d(e)
-            }
-            return e[r].i
-        },
-        m = function(e, t) {
-            if (!i(e, r)) {
-                if (!u(e)) return !0;
-                if (!t) return !1;
-                d(e)
-            }
-            return e[r].w
-        },
-        f = function(e) {
-            return c && _.NEED && u(e) && !i(e, r) && d(e), e
-        },
-        _ = e.exports = {
-            KEY: r,
-            NEED: !1,
-            fastKey: l,
-            getWeak: m,
-            onFreeze: f
-        }
-}, , function(e, t, n) {
-    var r = n(31),
-        a = n(33).document,
-        i = r(a) && r(a.createElement);
-    e.exports = function(e) {
-        return i ? a.createElement(e) : {}
-    }
-}, function(e, t, n) {
-    "use strict";
-
-    function r(e) {
-        if (!e.first_name) {
-            var t = e.name.split(" ", 2);
-            e.first_name = t[0], e.short_name = t[1] ? t[0] + " " + t[1].substr(0, 1) + "." : t[0]
-        }
-        e.inv_name || (e.inv_name = e.name), e.kick_name || (e.kick_name = e.inv_name)
-    }
-
-    function a(e, t) {
-        var n = (0, s.unpackStore)(e);
-        return t in n.oCache
+    function a(e) {
+        return e.get ? e.get() : e
     }
 
     function i(e, t) {
-        var n = (0, s.unpackStore)(e).oCache[t];
-        return n && !n._n && (r(n), n._n = 1), n
+        var n = a(e),
+            r = n.tabs[n.peer];
+        return Object.keys(r.msgs).filter(function(n) {
+            var a = v(e, t, n);
+            return !(0, G.isOut)(a) && intval(n) > r.in_up_to
+        })[0]
     }
 
-    function o(e, t) {
-        var n = (0, s.unpackStore)(e);
-        n.oCache || (n.oCache = {}), t.id && (n.oCache[t.id] = t)
+    function o(e) {
+        var t = a(e);
+        return t.peer
+    }
+
+    function s(e, t) {
+        var n = a(e);
+        return n.tabs[t]
+    }
+
+    function u(e) {
+        var t = a(e);
+        return t.peer ? t.tabs[t.peer] : null
+    }
+
+    function c(e) {
+        var t = a(e);
+        return t.selectedMessages
+    }
+
+    function l(e, t, n) {
+        var r = s(e, t),
+            a = c(e)[0];
+        if ("undefined" == typeof a) return [n];
+        var i = Math.min(n, a),
+            o = Math.max(n, a);
+        return Object.keys(r.msgs).filter(function(e) {
+            return e >= i && o >= e
+        }).filter(function(t) {
+            return !(0, W.isServiceMsg)(v(e, e.get().peer, t))
+        }).map(intval)
+    }
+
+    function d(e, t) {
+        var n = a(t),
+            r = s(n, e),
+            i = 0;
+        for (var o in r.msgs)
+            if (r.msgs.hasOwnProperty(o)) {
+                var u = v(t, e, o);
+                (0, G.isOut)(u) || (i += (0, G.isUnread)(r, u) ? 1 : 0)
+            }
+        return i
+    }
+
+    function m(e, t, n) {
+        var r = s(e, t);
+        return Object.keys(r.msgs).filter(function(r) {
+            return intval(v(e, t, r).randomId) === n
+        }).length > 0
+    }
+
+    function f(e, t, n) {
+        var r = m(e, t, n);
+        return !!r
+    }
+
+    function _(e, t) {
+        var n = a(e),
+            r = n.msg_local_ids_sort && n.msg_local_ids_sort[t];
+        return "undefined" != typeof r ? 2e9 + r : t
+    }
+
+    function p(e, t, n) {
+        var r = s(e, t),
+            a = v(e, t, n),
+            i = Object.keys(r.msgs).filter(function(n) {
+                var r = v(e, t, n),
+                    i = r.local && r.type !== B.EDIT_MESSAGE;
+                return !a.local && i ? !1 : a.local && !i ? !0 : _(e, a.messageId) > _(e, r.messageId)
+            }),
+            o = i.pop();
+        return o ? v(e, t, o) : null
+    }
+
+    function g(e) {
+        return e && e.length > 0 ? q.addMessageEvent([0].concat(e)) : e
+    }
+
+    function h(e, t, n) {
+        var r = s(e, t),
+            i = v(e, t, n),
+            o = a(e);
+        return (0, G.isOut)(i) ? (0, K.oCacheGet)(e, o.id).name : i.userId !== i.peerId ? (0, K.oCacheExists)(e, i.userId) ? (0, K.oCacheGet)(e, i.userId).name : !1 : r.tab
+    }
+
+    function v(e, t, n) {
+        var r = s(e, t),
+            a = r && r.msgs && r.msgs[n];
+        return a ? g(a) : null
+    }
+
+    function b(e) {
+        var t = a(e);
+        return t.gid || t.isClassic
+    }
+
+    function y(e) {
+        return a(e).gid
+    }
+
+    function E(e) {
+        return a(e).gid
+    }
+
+    function T(e) {
+        return a(e).gid
+    }
+
+    function k(e, t) {
+        var n = a(t);
+        return n.tabs[e] || n.mapped_index[e]
+    }
+
+    function I(e) {
+        var t = a(e);
+        return T(e) ? 19542789 !== t.gid && 103416369 != t.gid ? !1 : t.active_tab === z.FOLDER_UNRESPOND || t.active_tab === z.FOLDER_UNREAD ? !0 : !1 : !1
+    }
+
+    function O(e, t) {
+        e = a(e);
+        var n = e.tabs[t] && "undefined" != typeof e.tabs[t].history;
+        return e.tabs[t] && e.tabs[t].msgs && n ? !0 : !1
+    }
+
+    function L(e, t) {
+        var n = s(e, t);
+        n && (n.msgs = void 0, n.msgid = void 0, n.scrollTop = void 0, n.scrollBottom = void 0, n.contHeight = void 0, n.offset = void 0, n.skipped = void 0)
+    }
+
+    function w(e) {
+        var t = e.get().go_to_end_visible;
+        return t ? t[0] : !1
+    }
+
+    function A(e) {
+        var t = e.get().go_to_end_visible;
+        return t ? t[1] : 0
+    }
+
+    function S(e) {
+        var t = a(e);
+        return !t.lockedSending
+    }
+
+    function M(e) {
+        return e > -2e9 && 0 > e
+    }
+
+    function C(e, t) {
+        return M(t) ? !!s(e, t).blocked_community : !1
+    }
+
+    function R(e) {
+        var t = a(e);
+        return t.voice_message_available
+    }
+
+    function P(e) {
+        var t = a(e);
+        return !(!x(t) && !t.recentSearch)
+    }
+
+    function x(e) {
+        var t = a(e);
+        return t.searchText
+    }
+
+    function D(e, t) {
+        var n = a(e);
+        return t && t !== x(e) || n.recentSearch ? !0 : !1
+    }
+
+    function N(e) {
+        var t = a(e);
+        return t.recentSearch
+    }
+
+    function j(e) {
+        var t = u(e);
+        return t && t.pinned && g(t.pinned)
+    }
+
+    function F(e) {
+        var t = e.get().popular_sugg;
+        return t && t.length > 0
+    }
+
+    function H(e) {
+        return 1 == a(e).isEditing
+    }
+
+    function U(e) {
+        return e.draft || (e.draft = (0, V.loadDraftForPeer)(cur.imDb, e.peerId)), e.draft
     }
     Object.defineProperty(t, "__esModule", {
         value: !0
-    }), t.oCacheExists = a, t.oCacheGet = i, t.oCacheAdd = o;
-    var s = n(30)
+    }), t.unpackStore = a, t.getFirstUnread = i, t.getPeer = o, t.getTab = s, t.getCurrentTab = u, t.getSelectedMessages = c, t.getMessageRangeFromSelection = l, t.countUnread = d, t.getMessageByRid = m, t.isRidExist = f, t.getLocalId = _, t.getLastMessage = p, t.parserMessage = g, t.getAuthorFullName = h, t.getMessage = v, t.isClassicInterface = b, t.isLocksAvailable = y, t.isFoldersAvailable = E, t.isCommunityInterface = T, t.getBareTab = k, t.isReversedDialogs = I, t.isFullyLoadedTab = O, t.makeTabNotFullyLoaded = L, t.isGoToEndVisible = w, t.getUnreadScrollBottom = A, t.isSendingAvailable = S, t.isCommunityPeer = M, t.isCommunityBlocked = C, t.checkVoiceMessageAvailable = R, t.isSearching = P, t.getSearchText = x, t.isSearchingValue = D, t.isRecentSearchesActive = N, t.getPinnedMessage = j, t.doPopularSuggExist = F, t.isAnyMessageBeingEdited = H, t.getTabDraft = U;
+    var G = n(117),
+        B = n(19),
+        q = r(B),
+        z = n(119),
+        W = n(68),
+        K = n(108),
+        V = n(59)
+}, , function(e, t) {
+    e.exports = {}
 }, function(e, t, n) {
+    var r = n(148)("wks"),
+        a = n(47),
+        i = n(91).Symbol,
+        o = "function" == typeof i;
+    e.exports = function(e) {
+        return r[e] || (r[e] = o && i[e] || (o ? i : a)("Symbol." + e))
+    }
+}, function(e, t) {
+    e.exports = "constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")
+}, function(e, t) {
+    e.exports = function(e) {
+        if (void 0 == e) throw TypeError("Can't call method on  " + e);
+        return e
+    }
+}, function(e, t, n) {
+    var r = n(10),
+        a = n(128),
+        i = n(81),
+        o = n(143)("IE_PROTO"),
+        s = function() {},
+        u = "prototype",
+        c = function() {
+            var e, t = n(147)("iframe"),
+                r = i.length,
+                a = ">";
+            for (t.style.display = "none", n(104).appendChild(t), t.src = "javascript:", e = t.contentWindow.document, e.open(), e.write("<script>document.F=Object</script" + a), e.close(), c = e.F; r--;) delete c[u][i[r]];
+            return c()
+        };
+    e.exports = Object.create || function(e, t) {
+        var n;
+        return null !== e ? (s[u] = r(e), n = new s, s[u] = null, n[o] = e) : n = c(), void 0 === t ? n : a(n, t)
+    }
+}, function(e, t, n) {
+    var r = n(105),
+        a = n(103),
+        i = n(101),
+        o = n(10),
+        s = n(75),
+        u = n(70);
+    e.exports = function(e, t, n, c, l) {
+        var d, m, f, _ = l ? function() {
+                return e
+            } : u(e),
+            p = r(n, c, t ? 2 : 1),
+            g = 0;
+        if ("function" != typeof _) throw TypeError(e + " is not iterable!");
+        if (i(_))
+            for (d = s(e.length); d > g; g++) t ? p(o(m = e[g])[0], m[1]) : p(e[g]);
+        else
+            for (f = _.call(e); !(m = f.next()).done;) a(f, p, m.value, t)
+    }
+}, function(e, t) {
+    e.exports = function(e) {
+        return "object" == typeof e ? null !== e : "function" == typeof e
+    }
+}, function(e, t, n) {
+    "use strict";
+    var r = n(9);
+    e.exports = n(74)("Map", function(e) {
+        return function() {
+            return e(this, arguments.length > 0 ? arguments[0] : void 0)
+        }
+    }, {
+        get: function(e) {
+            var t = r.getEntry(this, e);
+            return t && t.v
+        },
+        set: function(e, t) {
+            return r.def(this, 0 === e ? 0 : e, t)
+        }
+    }, r, !0)
+}, , function(e, t, n) {
+    var r = n(113),
+        a = n(98),
+        i = n(143)("IE_PROTO"),
+        o = Object.prototype;
+    e.exports = Object.getPrototypeOf || function(e) {
+        return e = a(e), r(e, i) ? e[i] : "function" == typeof e.constructor && e instanceof e.constructor ? e.constructor.prototype : e instanceof Object ? o : null
+    }
+}, , function(e, t, n) {
     "use strict";
 
     function r(e) {
@@ -3965,11 +3791,11 @@
         return "string" == typeof e ? se("<div>" + e + "</div>") : e
     }
 
-    function d(e, t) {
+    function l(e, t) {
         var n = e ? e.indexOf(t) : 0; - 1 === n && e.push(t)
     }
 
-    function l(e, t) {
+    function d(e, t) {
         var n = e ? e.indexOf(t) : -1; - 1 !== n && e.splice(n, 1)
     }
 
@@ -4003,9 +3829,9 @@
                     return (0, Qt.oCacheAdd)(a, e)
                 }), a.tabs || (a.tabs = {}), a.dialog_tab_cts = c, a.tabs[e] || (a.tabs[e] = (0, zt.normalizeTab)(a, i)), f(u, a), n) {
                 if (a.tabs[e]) {
-                    var d = a.tabs[e].lastmsg,
-                        l = a.tabs[e].lastmsg_meta;
-                    extend(a.tabs[e], i), a.tabs[e].lastmsg = d, a.tabs[e].lastmsg_meta = l
+                    var l = a.tabs[e].lastmsg,
+                        d = a.tabs[e].lastmsg_meta;
+                    extend(a.tabs[e], i), a.tabs[e].lastmsg = l, a.tabs[e].lastmsg_meta = d
                 }
             } else extend(a.tabs[e], i);
             return a.admins = extend(a.admins, s), a.imQueue(e, !1), p(e, a)
@@ -4165,7 +3991,7 @@
         return r === Ut.FLAG_OUTBOUND ? a.out_up_to = n : a.in_up_to = n, e
     }
 
-    function A(e, t) {
+    function w(e, t) {
         return (0, jt.post)(jt.CONTROLLER, {
             act: "a_email_start",
             email: e,
@@ -4178,7 +4004,7 @@
         })
     }
 
-    function w(e) {
+    function A(e) {
         return (0, jt.post)(jt.CONTROLLER, {
             act: "a_get_key",
             uid: e.id,
@@ -4518,8 +4344,9 @@
                 var r = t ? e.search(t) : e.list,
                     a = r.map(oe);
                 return n.mapped_index || (n.mapped_index = {}), a.forEach(function(e) {
-                    n.mapped_index[e.peerId] = e
-                }), a
+                        n.mapped_index[e.peerId] = e
+                    }),
+                    a
             })
         }
     }
@@ -4558,7 +4385,7 @@
         })
     }
 
-    function de(e) {
+    function le(e) {
         var t = e.active_tab,
             n = void 0;
         return n = e.dialog_tabs[t].length > 0 ? Math.min.apply(null, e.dialog_tabs[t].map(function(t) {
@@ -4580,7 +4407,7 @@
         })
     }
 
-    function le(e, t) {
+    function de(e, t) {
         return (0, jt.post)(jt.CONTROLLER, {
             act: "a_search",
             q: e,
@@ -4755,11 +4582,11 @@
         }), t.addAttach("mail", e.msgIds.join(";"), e.object || null)), Promise.resolve(n)
     }
 
-    function Ae(e, t) {
+    function we(e, t) {
         return t.pendingForward = e, Promise.resolve(t)
     }
 
-    function we(e, t, n) {
+    function Ae(e, t, n) {
         if ((0, zt.isTabLoaded)(n, e)) {
             n.blockedFlagUpdates || (n.blockedFlagUpdates = {}), n.blockedFlagUpdates[e] = !0, R(n, n.tabs[e], !0, function(t) {
                 return t.filter(function(t) {
@@ -4950,8 +4777,8 @@
                 o = i[0],
                 s = i[1],
                 u = i[2],
-                d = i[3],
-                l = i[4];
+                l = i[3],
+                d = i[4];
             s.forEach(function(t) {
                 return (0, Qt.oCacheAdd)(e, t)
             }), (0, zt.normalizeTabsGotFromServer)(e, o), u.user_unread && handlePageCount("msg", u.user_unread), (0, Bt.lplog)("Resync success", "success");
@@ -4966,9 +4793,9 @@
                 f = q(a({}, m, o[m]), _)
             }
             return f.then(function(n) {
-                e.tabs = o, e.admins = extend(e.admins, d), n && (e.tabs[m] = n.tabs[m], e.tabs[m].history = (0, zt.restoreQueue)(m, e, c(e.tabs[m].history))), e.loadingDialogs = !1, e.mutedPeers = u.mutedPeers, e.lastDialogsOptions = {
+                e.tabs = o, e.admins = extend(e.admins, l), n && (e.tabs[m] = n.tabs[m], e.tabs[m].history = (0, zt.restoreQueue)(m, e, c(e.tabs[m].history))), e.loadingDialogs = !1, e.mutedPeers = u.mutedPeers, e.lastDialogsOptions = {
                     has_more: u.has_more
-                }, e.dialog_tab_cts = u.folder_cts, e.dialog_tabs[r] = l.map(intval);
+                }, e.dialog_tab_cts = u.folder_cts, e.dialog_tabs[r] = d.map(intval);
                 var a = e.dialog_tabs[r].map(function(t) {
                     return e.tabs[t]
                 });
@@ -4988,7 +4815,7 @@
     function We(e, t, n, r) {
         if ((0, zt.isTabLoaded)(r, e)) {
             var a = r.tabs[e];
-            d(a.memberIds, n), a.membersCount++, n === vk.id && (a.data.kicked = 0, a.data.closed = 0)
+            l(a.memberIds, n), a.membersCount++, n === vk.id && (a.data.kicked = 0, a.data.closed = 0)
         }
         return Promise.resolve(r)
     }
@@ -4996,7 +4823,7 @@
     function Ke(e, t, n, r) {
         if ((0, zt.isTabLoaded)(r, e)) {
             var a = r.tabs[e];
-            l(a.memberIds, n), a.membersCount--, n === vk.id && (t == n ? a.data.closed = 1 : a.data.kicked = 1)
+            d(a.memberIds, n), a.membersCount--, n === vk.id && (t == n ? a.data.closed = 1 : a.data.kicked = 1)
         }
         return Promise.resolve(r)
     }
@@ -5152,12 +4979,12 @@
         })
     }
 
-    function dt(e, t) {
+    function lt(e, t) {
         var n = ls.get("comm_mute_" + t.gid) ? 1 : 0;
         return e && (n = 1 ^ n), ls.set("comm_mute_" + t.gid, n), t.mute = n, Promise.resolve(t)
     }
 
-    function lt(e, t, n, r) {
+    function dt(e, t, n, r) {
         return (0, jt.post)(jt.CONTROLLER, {
             act: "a_restore_dialog",
             hash: t,
@@ -5282,7 +5109,7 @@
         })
     }
 
-    function At(e, t) {
+    function wt(e, t) {
         return (0, jt.post)(jt.CONTROLLER, {
             act: "a_reset_link",
             chat_id: e,
@@ -5290,7 +5117,7 @@
         })
     }
 
-    function wt(e) {
+    function At(e) {
         return rn({
             invite_chat_id: null,
             invite_hash: null
@@ -5363,21 +5190,21 @@
             throw new TypeError("Invalid attempt to destructure non-iterable instance")
         }
     }();
-    t.strHistory = m, t.updateBlockStates = f, t.loadPeer = _, t.restoreHistoryQueue = p, t.removeFailed = g, t.selectPeer = v, t.selectPeerOnMessage = y, t.changePeer = E, t.updateMentions = T, t.setActions = k, t.loadMoreHistory = I, t.loadLessHistory = O, t.createEmailChat = A, t.loadLongPollKey = w, t.loadLongPollTs = S, t.setMessageErrored = M, t.resendMessage = C, t.loadAdmins = P, t.editMessage = N, t.addMessage = j, t.markInboundMessagesAsRead = H, t.markOutboundMessagesAsRead = U, t.initTextStore = G, t.processFwd = B, t.mergeTabs = q, t.updateOnline = z, t.setTyping = W, t.waitTyping = K, t.addSelection = Q, t.cleanSelected = Y, t.dropSelection = $, t.replaceMessage = X, t.saveMedia = Z, t.loadMedia = J, t.addAttachmentsToStoreData = ee, t.replaceMediaAttachesStore = te, t.setCurrentSearchDate = ne, t.setCurrentSearch = re, t.searchHints = ae, t.searchHintsIndex = ie, t.localIndexToDialog = oe, t.preloadSearchIndex = ce, t.loadDialogs = de, t.searchMessages = le, t.isSearchAllLoaded = me, t.isSearchingInplace = fe, t.cancelSearch = _e, t.clearDate = pe, t.searchInplaceStart = ge, t.searchMessagesInplace = he, t.loadImportant = ve, t.loadActualLastMessage = be, t.removeMessagesMarkDeleted = ye, t.removeMessages = Ee, t.removeMessageSend = Te, t.removeMessagesWithRestore = ke, t.restoreMessage = Ie, t.restoreMessageSend = Oe, t.forwardMessages = Le, t.prepareForward = Ae, t.deletedDialog = we, t.setChatTitle = Se, t.loadChatMember = Me, t.checkNewPeople = Ce, t.updateActions = Re, t.setMutedPeer = Pe, t.setExecStack = xe, t.updateFavMessage = De, t.updateImportant = Ne, t.loadSpam = je, t.flushSpam = Fe, t.setCreationType = He, t.getOwnerPhoto = Ue, t.presetAvatar = Ge, t.setChatPhoto = Be, t.createChat = qe, t.resync = ze, t.chatUserHasJoined = We, t.chatUserHasLeft = Ke, t.toggleSendingAbility = Ve, t.setDelayedMessage = Qe, t.isAnythingLoading = $e, t.updateUnreadCount = Xe, t.changeSubmitSettings = Ze, t.updateFavAndTitle = et, t.saveHistoryScroll = tt, t.filterFromTab = nt, t.changeDialogsTab = rt, t.updateFolderState = st, t.getMutexQueue = ut, t.releaseBlock = ct, t.toggleCommunityMute = dt, t.restoreDialog = lt, t.spamDialog = mt, t.updateTabbedPeers = ft, t.isEverythingLoaded = _t, t.cleanTab = pt, t.stringifyTab = gt, t.updateGoToEndVisibility = ht, t.toggleCommunityMessages = vt, t.updateHistory = bt, t.startRecording = yt, t.cancelRecording = Et, t.setVoiceMessageAvail = Tt, t.toggleConversation = kt, t.updateSearchQuery = It, t.initializeChatResize = Ot, t.joinChat = Lt, t.resetInviteLink = At, t.leaveInvitation = wt, t.saveRecentSearchPeer = St, t.resetRecentSearch = Mt, t.removeFromRecentSearch = Ct, t.pinMessageOptimistic = Rt, t.unpinMessageOptimistic = Pt, t.checkChatMember = xt, t.hidePromoTooltip = Dt;
-    var jt = n(58),
-        Ft = n(118),
-        Ht = n(45),
+    t.strHistory = m, t.updateBlockStates = f, t.loadPeer = _, t.restoreHistoryQueue = p, t.removeFailed = g, t.selectPeer = v, t.selectPeerOnMessage = y, t.changePeer = E, t.updateMentions = T, t.setActions = k, t.loadMoreHistory = I, t.loadLessHistory = O, t.createEmailChat = w, t.loadLongPollKey = A, t.loadLongPollTs = S, t.setMessageErrored = M, t.resendMessage = C, t.loadAdmins = P, t.editMessage = N, t.addMessage = j, t.markInboundMessagesAsRead = H, t.markOutboundMessagesAsRead = U, t.initTextStore = G, t.processFwd = B, t.mergeTabs = q, t.updateOnline = z, t.setTyping = W, t.waitTyping = K, t.addSelection = Q, t.cleanSelected = Y, t.dropSelection = $, t.replaceMessage = X, t.saveMedia = Z, t.loadMedia = J, t.addAttachmentsToStoreData = ee, t.replaceMediaAttachesStore = te, t.setCurrentSearchDate = ne, t.setCurrentSearch = re, t.searchHints = ae, t.searchHintsIndex = ie, t.localIndexToDialog = oe, t.preloadSearchIndex = ce, t.loadDialogs = le, t.searchMessages = de, t.isSearchAllLoaded = me, t.isSearchingInplace = fe, t.cancelSearch = _e, t.clearDate = pe, t.searchInplaceStart = ge, t.searchMessagesInplace = he, t.loadImportant = ve, t.loadActualLastMessage = be, t.removeMessagesMarkDeleted = ye, t.removeMessages = Ee, t.removeMessageSend = Te, t.removeMessagesWithRestore = ke, t.restoreMessage = Ie, t.restoreMessageSend = Oe, t.forwardMessages = Le, t.prepareForward = we, t.deletedDialog = Ae, t.setChatTitle = Se, t.loadChatMember = Me, t.checkNewPeople = Ce, t.updateActions = Re, t.setMutedPeer = Pe, t.setExecStack = xe, t.updateFavMessage = De, t.updateImportant = Ne, t.loadSpam = je, t.flushSpam = Fe, t.setCreationType = He, t.getOwnerPhoto = Ue, t.presetAvatar = Ge, t.setChatPhoto = Be, t.createChat = qe, t.resync = ze, t.chatUserHasJoined = We, t.chatUserHasLeft = Ke, t.toggleSendingAbility = Ve, t.setDelayedMessage = Qe, t.isAnythingLoading = $e, t.updateUnreadCount = Xe, t.changeSubmitSettings = Ze, t.updateFavAndTitle = et, t.saveHistoryScroll = tt, t.filterFromTab = nt, t.changeDialogsTab = rt, t.updateFolderState = st, t.getMutexQueue = ut, t.releaseBlock = ct, t.toggleCommunityMute = lt, t.restoreDialog = dt, t.spamDialog = mt, t.updateTabbedPeers = ft, t.isEverythingLoaded = _t, t.cleanTab = pt, t.stringifyTab = gt, t.updateGoToEndVisibility = ht, t.toggleCommunityMessages = vt, t.updateHistory = bt, t.startRecording = yt, t.cancelRecording = Et, t.setVoiceMessageAvail = Tt, t.toggleConversation = kt, t.updateSearchQuery = It, t.initializeChatResize = Ot, t.joinChat = Lt, t.resetInviteLink = wt, t.leaveInvitation = At, t.saveRecentSearchPeer = St, t.resetRecentSearch = Mt, t.removeFromRecentSearch = Ct, t.pinMessageOptimistic = Rt, t.unpinMessageOptimistic = Pt, t.checkChatMember = xt, t.hidePromoTooltip = Dt;
+    var jt = n(43),
+        Ft = n(64),
+        Ht = n(19),
         Ut = r(Ht),
-        Gt = n(2),
-        Bt = n(18),
-        qt = n(137),
-        zt = n(38),
-        Wt = n(88),
-        Kt = n(30),
-        Vt = n(104),
-        Qt = n(128),
-        Yt = n(29),
-        $t = n(40),
+        Gt = n(131),
+        Bt = n(60),
+        qt = n(61),
+        zt = n(68),
+        Wt = n(119),
+        Kt = n(77),
+        Vt = n(117),
+        Qt = n(108),
+        Yt = n(111),
+        $t = n(4),
         Xt = t.TYPING_PERIOD = 5,
         Zt = 2e4,
         Jt = 8,
@@ -5479,7 +5306,7 @@
             return t
         })
     }), t.flushHistory = u(function(e, t) {
-        return we(e, (0, jt.post)("al_im.php", {
+        return Ae(e, (0, jt.post)("al_im.php", {
             act: "a_flush_history",
             id: e,
             from: "im",
@@ -5644,294 +5471,42 @@
             hash: r.hash
         })
     })
-}, function(e, t, n) {
-    "use strict";
-
-    function r(e, t) {
-        for (var n = void 0, r = 0, a = e; null !== (n = d.MESSAGE_REGEXP.exec(e));) {
-            var i = n[0].length,
-                s = n.index + i,
-                u = e[n.index - 1],
-                c = e[s - 1],
-                l = void 0 !== u && /([\w\$А-Яа-яёЁєЄҐґЇїІіЈј\—\-\_@;.])/i.test(u),
-                m = void 0 !== c && /([:;$])/i.test(c);
-            if (!l && !m) {
-                var f = o(n),
-                    _ = f.domain;
-                if (_.length <= d.MAX_DOMAIN_LENGTH && -1 !== d.TOP_DOMAINS.indexOf(_)) {
-                    var p = t(f);
-                    a = a.slice(0, n.index + r) + p + a.slice(s + r), r += p.length - i
-                }
-            }
-        }
-        return a
-    }
-
-    function a(e, t) {
-        return e.replace(d.EMAIL, t || function(e) {
-            return '<a href="mailto:' + e + '">' + e + "</a>"
-        })
-    }
-
-    function i(e, t) {
-        return e.replace(d.MENTION, t || function(e, t, n, r, a) {
-            return '<a href="/' + (t + n) + '" class="mem_link" mention="' + m(r || "") + '" mention_id="' + m(t + n) + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)">' + a + "</a>"
-        })
-    }
-
-    function o(e) {
-        return {
-            full: e[0],
-            protocol: e[1] || "http://",
-            url: e[2],
-            domain: e[4],
-            query: e[6] || ""
-        }
-    }
-
-    function s(e) {
-        _("ttl_message_confirm_delivery", e)
-    }
-
-    function u(e, t) {
-        var n = t.protocol,
-            r = t.url,
-            a = t.query,
-            i = t.domain,
-            o = t.full;
-        try {
-            o = decodeURIComponent(o)
-        } catch (s) {}
-        if (o.length > 55 && (o = o.substr(0, 53) + ".."), o = m(o).replace(/&amp;/g, "&"), !e && i.match(d.OUR_DOMAINS)) {
-            r = f(r).replace(d.ENTITIES, encodeURIComponent);
-            var u = r,
-                l = r.indexOf("#/"),
-                _ = "",
-                p = void 0;
-            return l >= 0 ? u = r.substr(l + 1) : (l = r.indexOf("#!"), l >= 0 && (u = "/" + r.substr(l + 2).replace(/^\//, ""))), p = u.match(d.VK_DOMAIN), p && p[1].length < 32 && (_ = ' mention_id="' + p[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'), '<a href="' + c(n + r + a) + '" target="_blank"' + _ + ">" + o + "</a>"
-        }
-        var g = "away.php?utf=1&to=" + encodeURIComponent(n + f(r + a)),
-            h = m(n + r + a).replace(/'/g, "\\'"),
-            v = "return goAway('" + h + "', {}, event);";
-        return '<a href="' + g + '" target="_blank" onclick="' + v + '">' + o + "</a>"
-    }
-
-    function c(e) {
-        return e.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-    }
-    Object.defineProperty(t, "__esModule", {
-        value: !0
-    }), t.replaceHyperLinks = r, t.replaceEmailLinks = a, t.replaceMentions = i, t.confirmDelivery = s, t.linksReplacer = u;
-    var d = n(88),
-        l = window,
-        m = l.clean,
-        f = l.replaceEntities,
-        _ = l.statlogsValueEvent
-}, function(e, t, n) {
-    "use strict";
-
-    function r() {
-        return {
-            txt: "",
-            attaches: [],
-            urlBinds: []
-        }
-    }
-
-    function a(e, t) {
-        this._db = e, this._key = t, this.dData = r(), this.load()
-    }
-
-    function i(e) {
-        switch (e.type) {
-            case "mail":
-                return e.id < 0 && 1 == e.object.fwd_count;
-            default:
-                return !e.object
-        }
-    }
-
-    function o(e) {
-        return {
-            txt: e.txt,
-            attaches: e.attaches.length ? e.attaches : void 0,
-            urlBinds: e.urlBinds.length ? e.urlBinds : void 0
-        }
-    }
-
-    function s(e) {
-        return {
-            txt: e.txt,
-            attaches: e.attaches || [],
-            urlBinds: e.urlBinds || []
-        }
-    }
-
-    function u(e, t) {
-        var n = [];
-        e.fwd_count ? n.push({
-            type: "mail",
-            id: -t,
-            object: {
-                fwd_count: e.fwd_count
-            }
-        }) : e.fwd && n.push({
-            type: "mail",
-            id: -t,
-            object: {
-                fwd_count: (0, m.parseFwd)(e.fwd).length
-            }
-        });
-        for (var r = 1; e["attach" + r + "_type"]; ++r) n.push({
-            type: e["attach" + r + "_type"],
-            id: e["attach" + r],
-            kind: e["attach" + r + "_kind"],
-            productId: e["attach" + r + "_product_id"]
-        });
-        return e.geo && n.push({
-            type: "geo",
-            id: e.geo
-        }), n
-    }
-
-    function c(e, t) {
-        return new a(e, "draft_" + t)
-    }
-    Object.defineProperty(t, "__esModule", {
-        value: !0
-    });
-    var d = function() {
-        function e(e, t) {
-            var n = [],
-                r = !0,
-                a = !1,
-                i = void 0;
-            try {
-                for (var o, s = e[Symbol.iterator](); !(r = (o = s.next()).done) && (n.push(o.value), !t || n.length !== t); r = !0);
-            } catch (u) {
-                a = !0, i = u
-            } finally {
-                try {
-                    !r && s["return"] && s["return"]()
-                } finally {
-                    if (a) throw i
-                }
-            }
-            return n
-        }
-        return function(t, n) {
-            if (Array.isArray(t)) return t;
-            if (Symbol.iterator in Object(t)) return e(t, n);
-            throw new TypeError("Invalid attempt to destructure non-iterable instance")
-        }
-    }();
-    t.ImDraft = a, t.convertKludgesToAttaches = u, t.loadDraftForPeer = c;
-    var l = n(58),
-        m = n(38);
-    a.prototype.dump = function() {
-        this._key && this._db.updateByKey(this._key, o(this.dData))
-    }, a.prototype.load = function() {
-        if (this._key) {
-            var e = this._db.selectByKey(this._key);
-            e && (this.dData = s(e))
-        }
-    }, a.prototype.clear = function() {
-        this.dData = r(), this.dump()
-    }, a.prototype.setText = function(e) {
-        this.dData.txt = trim(e), this.dump()
-    }, a.prototype.addAttach = function(e, t, n) {
-        ("share" === e || "mail" === e) && this.removeAttachByType(e);
-        var r = this.dData.attaches.find(function(n) {
-            return n.type === e && n.id === t
-        });
-        !r && e && t && (this.dData.attaches.push({
-            type: e,
-            id: t,
-            object: n
-        }), this.dump())
-    }, a.prototype.syncWithSelector = function(e) {
-        var t = this,
-            n = this.getFwdRaw();
-        this.dData.attaches = (n ? [n] : []).concat(e.getMedias().map(function(e) {
-            var n = d(e, 2),
-                r = n[0],
-                a = n[1],
-                i = t.dData.attaches.find(function(e) {
-                    return e.type == r && e.id == a
-                });
-            return i || {
-                type: r,
-                id: a
-            }
-        })), this.dump()
-    }, a.prototype.removeAttachByType = function(e) {
-        for (var t = this.dData.attaches.length; t--;) this.dData.attaches[t].type === e && this.dData.attaches.splice(t, 1);
-        this.dump()
-    }, a.prototype.removeAllAttaches = function() {
-        this.dData.attaches = [], this.dump()
-    }, a.prototype.addBindUrl = function(e, t, n) {
-        this.getBoundAttach(e) || (this.dData.urlBinds.push({
-            url: e,
-            type: t,
-            id: n
-        }), this.dump())
-    }, a.prototype.getBoundAttach = function(e) {
-        var t = this.dData.urlBinds.find(function(t) {
-            return t.url === e
-        });
-        return t ? this.dData.attaches.find(function(e) {
-            return e.type === t.type && e.id === t.id
-        }) || null : null
-    }, a.prototype.getShareUrl = function() {
-        var e = this.dData.attaches.find(function(e) {
-            return "share" === e.type
-        });
-        return e && e.object ? e.object.url : void 0
-    }, a.prototype.hasAttaches = function() {
-        return this.dData.attaches.length > 0
-    }, a.prototype.destroy = function() {
-        this.dData = {}, this._key = this._db = null
-    }, a.prototype.prepareObjects = function(e, t) {
-        var n = this,
-            r = this.dData.attaches.find(i);
-        return r ? (0, l.post)(l.CONTROLLER, {
-            act: "draft_medias",
-            gid: e,
-            messageId: t || 0,
-            media: t ? void 0 : this.dData.attaches.map(function(e) {
-                return [e.type, e.id]
-            }).join("*")
-        }).then(function(e) {
-            var t = d(e, 1),
-                r = t[0];
-            n.dData.attaches = r.map(function(e) {
-                return {
-                    type: e[0],
-                    id: e[1],
-                    object: e[2]
-                }
-            })
-        }) : Promise.resolve()
-    }, a.prototype.getFwdRaw = function() {
-        return this.dData.attaches.find(function(e) {
-            return "mail" === e.type
-        })
-    }, a.prototype.getFwdCount = function() {
-        var e = this.getFwdRaw();
-        return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
-    }
 }, function(e, t) {
-    var n = {}.hasOwnProperty;
-    e.exports = function(e, t) {
-        return n.call(e, t)
-    }
+    var n = e.exports = "undefined" != typeof window && window.Math == Math ? window : "undefined" != typeof self && self.Math == Math ? self : Function("return this")();
+    "number" == typeof __g && (__g = n)
 }, function(e, t) {
     var n = {}.toString;
     e.exports = function(e) {
         return n.call(e).slice(8, -1)
     }
+}, , , , function(e, t) {
+    e.exports = !1
+}, , function(e, t, n) {
+    var r = n(82);
+    e.exports = function(e) {
+        return Object(r(e))
+    }
+}, , , function(e, t, n) {
+    var r = n(79),
+        a = n(80)("iterator"),
+        i = Array.prototype;
+    e.exports = function(e) {
+        return void 0 !== e && (r.Array === e || i[a] === e)
+    }
+}, , function(e, t, n) {
+    var r = n(10);
+    e.exports = function(e, t, n, a) {
+        try {
+            return a ? t(r(n)[0], n[1]) : t(n)
+        } catch (i) {
+            var o = e["return"];
+            throw void 0 !== o && r(o.call(e)), i
+        }
+    }
 }, function(e, t, n) {
-    var r = n(5);
+    e.exports = n(91).document && document.documentElement
+}, function(e, t, n) {
+    var r = n(2);
     e.exports = function(e, t, n) {
         if (r(e), void 0 === t) return e;
         switch (n) {
@@ -5953,95 +5528,38 @@
         }
     }
 }, function(e, t, n) {
-    var r = n(133);
-    e.exports = Object("z").propertyIsEnumerable(0) ? Object : function(e) {
-        return "String" == r(e) ? e.split("") : Object(e)
-    }
-}, function(e, t, n) {
-    var r = n(44);
-    e.exports = function(e, t, n) {
-        for (var a in t) r(e, a, t[a], n);
-        return e
-    }
-}, function(e, t) {
     "use strict";
 
-    function n(e) {
-        return "im_store_" + e
+    function r(e, t) {
+        var n = domData(t, "chat-id"),
+            r = domData(t, "hash");
+        return lockButton(t), (0, o.joinChat)(n, r, e.get()).then(function(n) {
+            var r = i(n, 1),
+                a = r[0];
+            unlockButton(t), e.get().longpoll.push([(0, u.changePeer)(a)])
+        })["catch"](function(e) {
+            showFastBox(getLang("mail_join_invite_error_title"), e), unlockButton(t)
+        })
     }
 
-    function r(e) {
-        return ls.get(n(e)) || {}
-    }
-
-    function a(e, t, r) {
-        if (ls.checkVersion()) {
-            var a = JSON.stringify(t);
-            rand(0, 1e5) <= 1 && statlogsValueEvent("im_local_store_size", a.length), r(n(e), a)
-        }
-    }
-
-    function i(e, t, n) {
-        return t === l ? e[t] || [] : t === m ? e[t] && e[t][n] : e[t] ? extend(!0, {}, e[t][n]) : null
-    }
-
-    function o(e, t, n) {
-        switch (e[t] || (e[t] = {}), t) {
-            case l:
-                var r = n;
-                r && r.length > 0 ? e[t] = r : delete e[t];
-                break;
-            case m:
-                var a = d(n, 2),
-                    i = a[0],
-                    o = a[1];
-                o ? e[t][i] = +o : delete e[t][i]
-        }
-        return e
-    }
-
-    function s(e, t) {
-        for (var n = ["fwd", "draft", "bind_attach"], i = r(e), o = !1, s = n.length; s--;) n[s] in i && (delete i[n[s]], o = !0);
-        o && a(e, i, t)
-    }
-
-    function u(e, t, r) {
-        r.key === n(e) && (t.db = JSON.parse(r.newValue), t.checkTime = Date.now())
-    }
-
-    function c(e) {
-        var t = debounce(function(e, t) {
-            localStorage.setItem(e, t)
-        }, 300);
-        ls.checkVersion() && s(e, t);
-        var n = {
-                db: r(e),
-                checkTime: Date.now()
-            },
-            c = u.bind(null, e, n);
-        return window.addEventListener("storage", c, !1), {
-            select: function(t, a) {
-                return Date.now() - n.checkTime > 1e3 && (n.db = r(e)), i(n.db, t, a)
-            },
-            selectByKey: function(t) {
-                return Date.now() - n.checkTime > 1e3 && (n.db = r(e)), n.db[t]
-            },
-            update: function(r, i) {
-                var s = o(n.db, r, i);
-                return n.db = s, n.checkTime = Date.now(), a(e, s, t)
-            },
-            updateByKey: function(r, i) {
-                return n.db[r] = i, n.checkTime = Date.now(), a(e, n.db, t)
-            },
+    function a(e, t) {
+        var n = (0, s.createModule)({
+            handlers: function(n, a) {
+                a(e, "click", c, function(e) {
+                    return r(t, e.target)
+                })
+            }
+        });
+        return {
             unmount: function() {
-                window.removeEventListener("storage", c, !1)
+                (0, s.destroyModule)(n)
             }
         }
     }
     Object.defineProperty(t, "__esModule", {
         value: !0
     });
-    var d = function() {
+    var i = function() {
         function e(e, t) {
             var n = [],
                 r = !0,
@@ -6066,27 +5584,112 @@
             throw new TypeError("Invalid attempt to destructure non-iterable instance")
         }
     }();
-    t.deleteOldStoredFormat = s, t.mount = c;
-    var l = t.RECENT_SEARCH_OP = "recent_search",
-        m = t.PIN_HIDDEN_ID_OP = "pin_hide"
-}, , , , , , , , , function(e, t) {
-    e.exports = "constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")
-}, function(e, t, n) {
-    var r = n(33),
-        a = "__core-js_shared__",
-        i = r[a] || (r[a] = {});
-    e.exports = function(e) {
-        return i[e] || (i[e] = {})
+    t.mount = a;
+    var o = n(90),
+        s = n(118),
+        u = n(19),
+        c = "_im_join_chat"
+}, , function(e, t, n) {
+    "use strict";
+
+    function r(e) {
+        if (!e.first_name) {
+            var t = e.name.split(" ", 2);
+            e.first_name = t[0], e.short_name = t[1] ? t[0] + " " + t[1].substr(0, 1) + "." : t[0]
+        }
+        e.inv_name || (e.inv_name = e.name), e.kick_name || (e.kick_name = e.inv_name)
+    }
+
+    function a(e, t) {
+        var n = (0, s.unpackStore)(e);
+        return t in n.oCache
+    }
+
+    function i(e, t) {
+        var n = (0, s.unpackStore)(e).oCache[t];
+        return n && !n._n && (r(n), n._n = 1), n
+    }
+
+    function o(e, t) {
+        var n = (0, s.unpackStore)(e);
+        n.oCache || (n.oCache = {}), t.id && (n.oCache[t.id] = t)
+    }
+    Object.defineProperty(t, "__esModule", {
+        value: !0
+    }), t.oCacheExists = a, t.oCacheGet = i, t.oCacheAdd = o;
+    var s = n(77)
+}, , , function(e, t, n) {
+    "use strict";
+
+    function r(e, t, n, r, a) {
+        if ("Script error." !== e) {
+            var i = a ? a.stack || a.message : null;
+            o("unhandled_error", i ? {
+                err: e,
+                stack: i
+            } : {
+                err: e
+            })
+        }
+        m && m.apply(this, arguments)
+    }
+
+    function a(e) {
+        e.preventDefault()
+    }
+
+    function i() {
+        return !!window.imwl
+    }
+
+    function o(e, t) {
+        i() && (console.error(e, t), console.trace(), (0, d.retryFn)(l.post, 3, function() {
+            return 2
+        })("al_im.php", {
+            act: "a_weird_log",
+            kind: e,
+            data: JSON.stringify(extend({
+                errIdx: f++,
+                ua: navigator.userAgent,
+                noSh: 1
+            }, t))
+        }))
+    }
+
+    function s(e, t) {
+        var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {};
+        return o(e, extend({
+            err: t && t.message || t
+        }, n)), Promise.reject(t)
+    }
+
+    function u() {
+        m = window.onerror, window.onerror = r, window.addEventListener("unhandledrejection", a)
+    }
+
+    function c() {
+        window.onerror = m, m = void 0, window.removeEventListener("unhandledrejection", a)
+    }
+    Object.defineProperty(t, "__esModule", {
+        value: !0
+    }), t.isWeirdLogging = i, t.imWeirdLog = o, t.imWeirdCatch = s, t.startLoggingAllUnhandled = u, t.stopLoggingAllUnhandled = c;
+    var l = n(43),
+        d = n(131),
+        m = void 0,
+        f = 1
+}, , function(e, t) {
+    var n = {}.hasOwnProperty;
+    e.exports = function(e, t) {
+        return n.call(e, t)
     }
 }, function(e, t, n) {
-    var r = n(116),
-        a = n(102);
-    e.exports = function(e) {
-        return function(t, n) {
-            var i, o, s = String(a(t)),
-                u = r(n),
-                c = s.length;
-            return 0 > u || u >= c ? e ? "" : void 0 : (i = s.charCodeAt(u), 55296 > i || i > 56319 || u + 1 === c || (o = s.charCodeAt(u + 1)) < 56320 || o > 57343 ? e ? s.charAt(u) : i : e ? s.slice(u, u + 2) : (i - 55296 << 10) + (o - 56320) + 65536)
+    for (var r = n(57), a = n(53), i = n(91), o = n(54), s = n(79), u = n(80), c = u("iterator"), l = u("toStringTag"), d = s.Array, m = ["NodeList", "DOMTokenList", "MediaList", "StyleSheetList", "CSSRuleList"], f = 0; 5 > f; f++) {
+        var _, p = m[f],
+            g = i[p],
+            h = g && g.prototype;
+        if (h) {
+            h[c] || o(h, c, d), h[l] || o(h, l, p), s[p] = d;
+            for (_ in r) h[_] || a(h, _, r[_], !0)
         }
     }
 }, function(e, t) {
@@ -6098,12 +5701,410 @@
             value: t
         }
     }
-}, , , function(e, t) {
-    e.exports = function(e) {
-        try {
-            return !!e()
-        } catch (t) {
-            return !0
+}, , function(e, t, n) {
+    "use strict";
+
+    function r(e) {
+        if (e && e.__esModule) return e;
+        var t = {};
+        if (null != e)
+            for (var n in e) Object.prototype.hasOwnProperty.call(e, n) && (t[n] = e[n]);
+        return t["default"] = e, t
+    }
+
+    function a(e, t) {
+        return "number" != typeof t.messageId ? !0 : i(t) ? t.messageId > e.out_up_to : t.messageId > e.in_up_to
+    }
+
+    function i(e) {
+        return e.flags & y.FLAG_OUTBOUND
+    }
+
+    function o(e, t) {
+        var n = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : null,
+            r = e.attaches[0];
+        return r && (r.type === t || r.type === n)
+    }
+
+    function s(e) {
+        return o(e, "doc") && "graffiti" === e.attaches[0].kind
+    }
+
+    function u(e) {
+        return o(e, "doc") && "audiomsg" === e.attaches[0].kind
+    }
+
+    function c(e) {
+        return o(e, "sticker")
+    }
+
+    function l(e) {
+        return o(e, "gift")
+    }
+
+    function d(e) {
+        return o(e, "money_transfer", "money_request")
+    }
+
+    function m(e) {
+        return o(e, "money_request")
+    }
+
+    function f(e) {
+        return o(e, "link") && _(e.kludges.attach1_url)
+    }
+
+    function _(e) {
+        var t = /^https:\/\/(.+\.)?vk\.com\/vk-me\.php\?act=join&(amp;)?link=[\w\/=_]+$/,
+            n = /^https:\/\/vk\.me\/join\/[\w\/=_]+$/;
+        return t.test(e) || n.test(e)
+    }
+
+    function p(e) {
+        return e.flags & y.FLAG_IMPORTANT
+    }
+
+    function g(e) {
+        return i(e) ? vk.id : e.userId
+    }
+
+    function h(e) {
+        return e.update_time > 0
+    }
+
+    function v(e, t) {
+        return (e.get().selectedMessages || []).indexOf(t) >= 0
+    }
+    Object.defineProperty(t, "__esModule", {
+        value: !0
+    }), t.isUnread = a, t.isOut = i, t.isGraffiti = s, t.isAudioMsg = u, t.isSticker = c, t.isGift = l, t.isMoney = d, t.isMoneyRequest = m, t.isMessageWithInviteLink = f, t.isImportant = p, t.getUserId = g, t.wasEdited = h, t.isMessageSelected = v;
+    var b = n(19),
+        y = r(b)
+}, function(e, t, n) {
+    "use strict";
+
+    function r(e) {
+        return {
+            callMutations: function() {
+                if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
+                return e
+            },
+            bindMutations: function() {
+                if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
+                return e = e.apply(void 0, arguments)
+            }
         }
+    }
+
+    function a(e, t, n, r) {
+        l(t, n, r), e._registeredHandlers.push(["bind", t, n, r])
+    }
+
+    function i(e, t, n, r, a) {
+        (0, u.addDelegateEvent)(t, n, r, a), e._registeredHandlers.push(["delegate", t, n, r, a])
+    }
+
+    function o(e) {
+        var t = {
+            _registeredHandlers: []
+        };
+        return e.handlers(a.bind(null, t), i.bind(null, t)), t
+    }
+
+    function s(e) {
+        e._registeredHandlers.forEach(function(e) {
+            var t = e.slice(1);
+            "delegate" === e[0] ? u.removeDelegateEvent.apply(void 0, t) : d.apply(void 0, t)
+        }), e._registeredHandlers = []
+    }
+    Object.defineProperty(t, "__esModule", {
+        value: !0
+    }), t.createMutations = r, t.createModule = o, t.destroyModule = s;
+    var u = n(73),
+        c = window,
+        l = c.addEvent,
+        d = c.removeEvent
+}, function(e, t) {
+    "use strict";
+
+    function n(e, t, n) {
+        return t in e ? Object.defineProperty(e, t, {
+            value: n,
+            enumerable: !0,
+            configurable: !0,
+            writable: !0
+        }) : e[t] = n, e
+    }
+    Object.defineProperty(t, "__esModule", {
+        value: !0
+    });
+    var r, a = "\\w\\$А-Яа-яёЁєЄҐґЇїІіЈј",
+        i = "(https?:\\/\\/)?",
+        o = "((?:[" + a + "\\—\\-\\_]+\\.){1,5})",
+        s = "([A-Za-z\\$а-яА-Я\\-\\d]{2,22})",
+        u = "(?:\\:(\\d{2,5}))",
+        c = "(" + o + s + u + "?)",
+        l = "([\\/?#])",
+        d = "\\wА-Яа-я\\xa8\\xb8\\xc0-\\xffєЄҐґЇїІіЈј",
+        m = "ªµºÀ-ÖØ-öø-ˁˆ-ˑˠ-ˤˬˮͰ-ʹͶͷͺ-ͽͿΆΈ-ΊΌΎ-ΡΣ-ϵϷ-ҁҊ-ԯԱ-Ֆՙա-ևא-תװ-ײؠ-يٮٯٱ-ۓەۥۦۮۯۺ-ۼۿܐܒ-ܯݍ-ޥޱߊ-ߪߴߵߺࠀ-ࠕࠚࠤࠨࡀ-ࡘࢠ-ࢴࢶ-ࢽऄ-हऽॐक़-ॡॱ-ঀঅ-ঌএঐও-নপ-রলশ-হঽৎড়ঢ়য়-ৡৰৱਅ-ਊਏਐਓ-ਨਪ-ਰਲਲ਼ਵਸ਼ਸਹਖ਼-ੜਫ਼ੲ-ੴઅ-ઍએ-ઑઓ-નપ-રલળવ-હઽૐૠૡૹଅ-ଌଏଐଓ-ନପ-ରଲଳଵ-ହଽଡ଼ଢ଼ୟ-ୡୱஃஅ-ஊஎ-ஐஒ-கஙசஜஞடணதந-பம-ஹௐఅ-ఌఎ-ఐఒ-నప-హఽౘ-ౚౠౡಀಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹಽೞೠೡೱೲഅ-ഌഎ-ഐഒ-ഺഽൎൔ-ൖൟ-ൡൺ-ൿඅ-ඖක-නඳ-රලව-ෆก-ะาำเ-ๆກຂຄງຈຊຍດ-ທນ-ຟມ-ຣລວສຫອ-ະາຳຽເ-ໄໆໜ-ໟༀཀ-ཇཉ-ཬྈ-ྌက-ဪဿၐ-ၕၚ-ၝၡၥၦၮ-ၰၵ-ႁႎႠ-ჅჇჍა-ჺჼ-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚᎀ-ᎏᎠ-Ᏽᏸ-ᏽᐁ-ᙬᙯ-ᙿᚁ-ᚚᚠ-ᛪᛱ-ᛸᜀ-ᜌᜎ-ᜑᜠ-ᜱᝀ-ᝑᝠ-ᝬᝮ-ᝰក-ឳៗៜᠠ-ᡷᢀ-ᢄᢇ-ᢨᢪᢰ-ᣵᤀ-ᤞᥐ-ᥭᥰ-ᥴᦀ-ᦫᦰ-ᧉᨀ-ᨖᨠ-ᩔᪧᬅ-ᬳᭅ-ᭋᮃ-ᮠᮮᮯᮺ-ᯥᰀ-ᰣᱍ-ᱏᱚ-ᱽᲀ-ᲈᳩ-ᳬᳮ-ᳱᳵᳶᴀ-ᶿḀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼⁱⁿₐ-ₜℂℇℊ-ℓℕℙ-ℝℤΩℨK-ℭℯ-ℹℼ-ℿⅅ-ⅉⅎↃↄⰀ-Ⱞⰰ-ⱞⱠ-ⳤⳫ-ⳮⳲⳳⴀ-ⴥⴧⴭⴰ-ⵧⵯⶀ-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⸯ々〆〱-〵〻〼ぁ-ゖゝ-ゟァ-ヺー-ヿㄅ-ㄭㄱ-ㆎㆠ-ㆺㇰ-ㇿ㐀-䶵一-鿕ꀀ-ꒌꓐ-ꓽꔀ-ꘌꘐ-ꘟꘪꘫꙀ-ꙮꙿ-ꚝꚠ-ꛥꜗ-ꜟꜢ-ꞈꞋ-ꞮꞰ-ꞷꟷ-ꠁꠃ-ꠅꠇ-ꠊꠌ-ꠢꡀ-ꡳꢂ-ꢳꣲ-ꣷꣻꣽꤊ-ꤥꤰ-ꥆꥠ-ꥼꦄ-ꦲꧏꧠ-ꧤꧦ-ꧯꧺ-ꧾꨀ-ꨨꩀ-ꩂꩄ-ꩋꩠ-ꩶꩺꩾ-ꪯꪱꪵꪶꪹ-ꪽꫀꫂꫛ-ꫝꫠ-ꫪꫲ-ꫴꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꬰ-ꭚꭜ-ꭥꭰ-ꯢ가-힣ힰ-ퟆퟋ-ퟻ豈-舘並-龎ﬀ-ﬆﬓ-ﬗיִײַ-ﬨשׁ-זּטּ-לּמּנּסּףּפּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻﹰ-ﹴﹶ-ﻼＡ-Ｚａ-ｚｦ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ",
+        f = "　-〿＀-￯",
+        _ = "\\—\\-\\_@#%?+\\/\\$.~=;:'",
+        p = "[" + d + _ + m + f + "]",
+        g = "(?:\\(|\\[)[" + a + "\\d&#%;,]+(?:\\)|\\])",
+        h = "(" + l + "(?:\\&amp;|\\&#\\d{2,6};|,[_%]|!|,*" + p + "+|" + g + "){0,200})?",
+        v = i + c + h,
+        b = "ac,ad,ae,af,ag,ai,al,am,an,ao,aq,ar,as,at,au,aw,ax,az,ba,bb,bd,be,bf,bg,bh,bi,bj,bm,bn,bo,br,bs,bt,bv,bw,by,bz,ca,cc,cd,cf,cg,ch,ci,ck,cl,cm,cn,co,cr,cu,cv,cx,cy,cz,de,dj,dk,dm,do,dz,ec,ee,eg,eh,er,es,et,eu,fi,fj,fk,fm,fo,fr,ga,gd,ge,gf,gg,gh,gi,gl,gm,gn,gp,gq,gr,gs,gt,gu,gw,gy,hk,hm,hn,hr,ht,hu,id,ie,il,im,in,io,iq,ir,is,it,je,jm,jo,jp,ke,kg,kh,ki,km,kn,kp,kr,kw,ky,kz,la,lb,lc,li,lk,lr,ls,lt,lu,lv,ly,ma,mc,md,me,mg,mh,mk,ml,mm,mn,mo,mp,mq,mr,ms,mt,mu,mv,mw,mx,my,mz,na,nc,ne,nf,ng,ni,nl,no,np,nr,nu,nz,om,pa,pe,pf,pg,ph,pk,pl,pm,pn,pr,ps,pt,pw,py,qa,re,ro,ru,rs,rw,sa,sb,sc,sd,se,sg,sh,si,sj,sk,sl,sm,sn,so,sr,ss,st,su,sv,sx,sy,sz,tc,td,tf,tg,th,tj,tk,tl,tm,tn,to,tp,tr,tt,tv,tw,tz,ua,ug,uk,um,us,uy,uz,va,vc,ve,vg,vi,vn,vu,wf,ws,ye,yt,yu,za,zm,zw,arpa,aero,asia,biz,cat,com,coop,info,int,jobs,media,mobi,museum,name,net,org,place,post,pro,tattoo,tel,travel,xxx,club,academy,camera,edu,gov,mil,local,international,bar,design,art,photo,express,plus,dance,guru,top,xyz,cloud,email,photography,website,gdn,space,online,click,link,live,archi,ski,shop,salon,google",
+        y = "бг,бел,дети,ею,католик,ком,мкд,мон,москва,онлайн,орг,рус,рф,сайт,срб,укр",
+        E = "qxam,90ae,90ais,d1acj3b,e1a4c,80aqecdr1a,j1aef,d1alf,l1acc,80adxhks,80asehdb,c1avg,p1acf,p1ai,80aswg,90a3ac,j1amh,80ao21a,y9a3aq,9dbq2a,mgbca7dzdo,mgba3a3ejt,mgbayh7gpa,lgbbat1ad8j,mgberp4a5d4ar,mgba7c0bbn0a,mgbc0a9azcg,mgb2ddes,mgbaam7a8h,mgba3a4f16a,mgbbh1a,mgbab2bd,ngbe9e0a,mgbbh1a71e,pgbs0dh,mgbpl2fh,ogbpf8fl,ngbc5azd,mgbtx2b,mgb9awbf,ygbi2ammx,wgbl6a,mgbi4ecexp,fhbei,wgbh1c,mgbx4cd0ab,mgbb9fbpob,4gbrim,mgbt3dhd,mgbai9azgqp6j,mgbgu82a,11b4c3d,c2br7g,h2brj9c,h2breg3eve,h2brj9c8c,i1b6b1a6a2e,54b7fta0cc,45brj9c,45br5cyl,s9brj9c,gecrj9c,3hcrj9c,xkc2dl3a5ee0h,xkc2al3hye2a,clchc0ea0b2g2a9gcd,fpcrj9c3d,2scrj9c,rvc1e0am3e,fzc2c9e2c,42c2d9a,o3cw4h,node,q9jyb4c,gckr3f0f,qcka1pmc,tckwe,cck2b3b,1ck2e1b,bck1b9a5dre4c,eckvdtc9d,rhqv96g,fiq64b,fiqs8s,fiqz9s,fiq228c5hs,vhquv,1qqw23a,vuq861b,nyqy26a,45q11c,55qx5d,55qw42g,kprw13d,kpry57d,czru2d,czrs0t,czr694b,w4rs40l,w4r85el8fhu5dnra,3ds443g,3oq18vl8pn36a,pssy2u,tiq49xqyj,fjq720a,fct429k,estv75g,xhq521b,9krt00a,30rr7y,6qq986b3xl,kput3i,kpu716f,zfr164b,mxtq1m,yfro4i67o,efvy88h,9et52u,rovu88b,nqv7f,b4w605ferd,unup4y,mix891f,mix082f,3pxu8k,pbt977c,6frz82g,nqv7fs00ema,ses554g,hxt814e,5tzm5g,io0a7i,8y0a063a,jlq61u9w7b,flw351e,g2xx48c,gk3at1e,3bst00m,fzys8d69uvgm,kcrx77d1x4a,jvr189m,imr513n,5su34j936bgsg,j6w193g,t60b56a,mk1bu44c,cg4bki,3e0b707e",
+        T = (t.OUR_DOMAINS = /^([a-zA-Z0-9\.\_\-]+\.)?(vkontakte\.ru|vk\.com|vkadre\.ru|vshtate\.ru|userapi\.com|vk\.me)$/, t.ENTITIES = /([^a-zA-Z0-9#%;_\-.\/?&=\[\]])/g, t.VK_DOMAIN = /^(?:https?:\/\/)?(?:vk\.com|vkontakte\.ru)?\/([a-zA-Z0-9\._]+)\??$/, t.MENTION = /\[(id|club)(\d+)(?:\:([a-z0-9_\-]+))?\|([^\$]+?)\]/g, t.MENTION_RAW = /(^|[\s.,:\'\";>\)\(])(\*|@)([A-Za-z0-9_\.]{2,32})\s*\((.+?)\)/g, t.ARROW_UP = 38),
+        k = t.ARROW_DOWN = 40,
+        I = t.PAGE_UP = 33,
+        O = t.PAGE_DOWN = 34,
+        L = t.END_KEY = 35,
+        w = t.HOME = 36,
+        A = t.ENTER = 13,
+        S = t.ESC = 27,
+        M = (t.UNPRINTABLE_KEYS = [T, k, I, O, A, S, L, w], t.UP_DOWN_CONTROLS = [I, O, k, T, w, L], t.PRINTABLE = "printable", t.FOLDER_UNREAD = "unread"),
+        C = t.FOLDER_ALL = "all",
+        R = t.FOLDER_UNRESPOND = "unrespond",
+        P = t.FOLDER_IMPORTANT = "important",
+        x = (t.FOLDERS = [C, M, R, P], t.FOLDER_MASKS = (r = {}, n(r, R, 2), n(r, P, 1), r), t.TOP_DOMAINS = [].concat(b.split(","), y.split(","), E.split(",").map(function(e) {
+            return "xn--" + e
+        })));
+    t.MAX_DOMAIN_LENGTH = x.reduce(function(e, t) {
+        return Math.max(e, t.length)
+    }, 0), t.EMAIL = new RegExp("([a-zA-Zа-яА-Я\\-_\\.0-9\\+]+@(" + o + s + "))", "ig"), t.MESSAGE_REGEXP = new RegExp(v, "ig")
+}, , , , , function(e, t, n) {
+    var r = n(85),
+        a = n(10),
+        i = function(e, t) {
+            if (a(e), !r(t) && null !== t) throw TypeError(t + ": can't set as prototype!")
+        };
+    e.exports = {
+        set: Object.setPrototypeOf || ("__proto__" in {} ? function(e, t, r) {
+            try {
+                r = n(105)(Function.call, n(144).f(Object.prototype, "__proto__").set, 2), r(e, []), t = !(e instanceof Array)
+            } catch (a) {
+                t = !0
+            }
+            return function(e, n) {
+                return i(e, n), t ? e.__proto__ = n : r(e, n), e
+            }
+        }({}, !1) : void 0),
+        check: i
+    }
+}, , , function(e, t, n) {
+    var r = n(44),
+        a = n(75),
+        i = n(136);
+    e.exports = function(e) {
+        return function(t, n, o) {
+            var s, u = r(t),
+                c = a(u.length),
+                l = i(o, c);
+            if (e && n != n) {
+                for (; c > l;)
+                    if (s = u[l++], s != s) return !0
+            } else
+                for (; c > l; l++)
+                    if ((e || l in u) && u[l] === n) return e || l;
+            return !e && -1
+        }
+    }
+}, function(e, t, n) {
+    var r = n(42),
+        a = n(10),
+        i = n(139);
+    e.exports = n(29) ? Object.defineProperties : function(e, t) {
+        a(e);
+        for (var n, o = i(t), s = o.length, u = 0; s > u;) r.f(e, n = o[u++], t[n]);
+        return e
+    }
+}, function(e, t) {
+    var n = Math.ceil,
+        r = Math.floor;
+    e.exports = function(e) {
+        return isNaN(e = +e) ? 0 : (e > 0 ? r : n)(e)
+    }
+}, , function(e, t) {
+    "use strict";
+
+    function n(e, t) {
+        return new Promise(function(n) {
+            setTimeout(n.bind(null, t), 1e3 * e)
+        })
+    }
+
+    function r(e, t) {
+        var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : null,
+            a = 0;
+        return function i() {
+            for (var o = arguments.length, s = Array(o), u = 0; o > u; u++) s[u] = arguments[u];
+            return Promise.resolve().then(function() {
+                return e.apply(void 0, s)
+            })["catch"](function(e) {
+                if (a++, t >= a) {
+                    var o = "function" == typeof r ? r(a) : 0;
+                    return 0 === o ? i.apply(void 0, s) : n(o).then(function() {
+                        return i.apply(void 0, s)
+                    })
+                }
+                throw e
+            })
+        }
+    }
+
+    function a(e, t, n) {
+        var r = void 0,
+            a = void 0;
+        return function() {
+            for (var i = arguments.length, o = Array(i), s = 0; i > s; s++) o[s] = arguments[s];
+            return new Promise(function(e, i) {
+                var s = function() {
+                        r = null, a = null, n || e(o)
+                    },
+                    u = n && !r;
+                clearTimeout(r), a && a.reject("debounce"), r = setTimeout(s, t), u ? e(o) : n && i("debounce"), a = {
+                    resolve: e,
+                    reject: i
+                }
+            }).then(function(t) {
+                return e.apply(void 0, t)
+            })
+        }
+    }
+
+    function i(e, t) {
+        var n = void 0,
+            r = new Promise(function(r) {
+                n = r, setTimeout(r.bind(null, t), 1e3 * e)
+            });
+        return {
+            pause: function() {
+                return r
+            },
+            abort: function() {
+                n(t)
+            }
+        }
+    }
+    Object.defineProperty(t, "__esModule", {
+        value: !0
+    }), t.pause = n, t.retryFn = r, t.debouncedPromise = a, t.abortablePause = i
+}, , , function(e, t, n) {
+    var r = n(85),
+        a = n(124).set;
+    e.exports = function(e, t, n) {
+        var i, o = t.constructor;
+        return o !== n && "function" == typeof o && (i = o.prototype) !== n.prototype && r(i) && a && a(e, i), e
+    }
+}, , function(e, t, n) {
+    var r = n(129),
+        a = Math.max,
+        i = Math.min;
+    e.exports = function(e, t) {
+        return e = r(e), 0 > e ? a(e + t, 0) : i(e, t)
+    }
+}, function(e, t, n) {
+    var r = n(80)("unscopables"),
+        a = Array.prototype;
+    void 0 == a[r] && n(54)(a, r, {}), e.exports = function(e) {
+        a[r][e] = !0
+    }
+}, , function(e, t, n) {
+    var r = n(146),
+        a = n(81);
+    e.exports = Object.keys || function(e) {
+        return r(e, a)
+    }
+}, function(e, t, n) {
+    n(41), n(34), n(114), n(86), e.exports = n(145).Map
+}, function(e, t, n) {
+    var r = n(80)("iterator"),
+        a = !1;
+    try {
+        var i = [7][r]();
+        i["return"] = function() {
+            a = !0
+        }, Array.from(i, function() {
+            throw 2
+        })
+    } catch (o) {}
+    e.exports = function(e, t) {
+        if (!t && !a) return !1;
+        var n = !1;
+        try {
+            var i = [7],
+                o = i[r]();
+            o.next = function() {
+                n = !0
+            }, i[r] = function() {
+                return o
+            }, e(i)
+        } catch (s) {}
+        return n
+    }
+}, function(e, t, n) {
+    var r = n(129),
+        a = n(82);
+    e.exports = function(e) {
+        return function(t, n) {
+            var i, o, s = String(a(t)),
+                u = r(n),
+                c = s.length;
+            return 0 > u || u >= c ? e ? "" : void 0 : (i = s.charCodeAt(u), 55296 > i || i > 56319 || u + 1 === c || (o = s.charCodeAt(u + 1)) < 56320 || o > 57343 ? e ? s.charAt(u) : i : e ? s.slice(u, u + 2) : (i - 55296 << 10) + (o - 56320) + 65536)
+        }
+    }
+}, function(e, t, n) {
+    var r = n(148)("keys"),
+        a = n(47);
+    e.exports = function(e) {
+        return r[e] || (r[e] = a(e))
+    }
+}, function(e, t, n) {
+    var r = n(16),
+        a = n(115),
+        i = n(44),
+        o = n(46),
+        s = n(113),
+        u = n(67),
+        c = Object.getOwnPropertyDescriptor;
+    t.f = n(29) ? c : function(e, t) {
+        if (e = i(e), t = o(t, !0), u) try {
+            return c(e, t)
+        } catch (n) {}
+        return s(e, t) ? a(!r.f.call(e, t), e[t]) : void 0
+    }
+}, function(e, t) {
+    var n = e.exports = {
+        version: "2.2.1"
+    };
+    "number" == typeof __e && (__e = n)
+}, function(e, t, n) {
+    var r = n(113),
+        a = n(44),
+        i = n(127)(!1),
+        o = n(143)("IE_PROTO");
+    e.exports = function(e, t) {
+        var n, s = a(e),
+            u = 0,
+            c = [];
+        for (n in s) n != o && r(s, n) && c.push(n);
+        for (; t.length > u;) r(s, n = t[u++]) && (~i(c, n) || c.push(n));
+        return c
+    }
+}, function(e, t, n) {
+    var r = n(85),
+        a = n(91).document,
+        i = r(a) && r(a.createElement);
+    e.exports = function(e) {
+        return i ? a.createElement(e) : {}
+    }
+}, function(e, t, n) {
+    var r = n(91),
+        a = "__core-js_shared__",
+        i = r[a] || (r[a] = {});
+    e.exports = function(e) {
+        return i[e] || (i[e] = {})
     }
 }]);

@@ -9,7 +9,7 @@ var VideoUpload = {
             bodyStyle: "padding: 20px; line-height: 160%;"
         }, getLang("video_claims_no_upload")).hide, 5e3), !1) : ge("video_upload_tab") || 4 != vk.al ? (e = e || {}, e = extend(e, {
             act: "upload_box",
-            oid: cur.oid,
+            oid: cur.oid || vk.id,
             ocl: cur.ocl ? 1 : 0
         }), cur.uploadVideoBox = showBox("al_video.php", e, {
             stat: ["video_edit.css", "privacy.css", "privacy.js"],

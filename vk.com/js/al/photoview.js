@@ -618,7 +618,7 @@ var Photoview = {
                         elClassWhenShown: "pv_more_shown",
                         content: x + I,
                         offset: [0, -5],
-                        autoShow: !1,
+                        autoShow: !0,
                         noHideOnClick: !0
                     }))
                 }

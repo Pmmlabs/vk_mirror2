@@ -828,6 +828,11 @@
     padding: 0
 }
 
+.article_bottom_extra_info {
+    margin-top: 10px;
+    color: #939393
+}
+
 .blog_entry_text .article,
 .blog_entry_text_wrap .article,
 .blog_post_text .article {

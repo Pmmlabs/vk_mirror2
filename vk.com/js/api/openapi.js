@@ -2987,7 +2987,7 @@ if (!VK.Retargeting) {
                 return;
             }
 
-            var errorBegin = 'VK Pixel Error: ';
+            var errorBegin = 'VK Pixel Error (' + this.pixelCode + '): ';
 
             if (typeof errors === 'string') {
                 console.error(errorBegin + errors);

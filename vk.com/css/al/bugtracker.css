@@ -3121,3 +3121,94 @@
 .bugtracker_adm_device_edit_dialog .bugtracker_adm_device_edit_line:last-child {
     margin-bottom: 0
 }
+
+.top_home_link:hover {
+    text-decoration: none
+}
+
+.bugtracker_logo_event_text {
+    margin: 11px 10px 0 0;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px
+}
+
+.top_home_logo.bugtracker_logo_glitch:hover {
+    background-size: 34px 19px!important;
+    height: 7px!important;
+    background-position: 0 0!important
+}
+
+.top_home_logo.bugtracker_logo_glitch:hover:after,
+.top_home_logo.bugtracker_logo_glitch:hover:before {
+    background: url('/images/svg_icons/ic_head_logo.svg') no-repeat 50% / contain;
+    display: inline-block;
+    height: 7px;
+    width: 34px;
+    content: ' ';
+    background-size: 34px 19px!important;
+    position: relative;
+    left: 0
+}
+
+.top_home_logo.bugtracker_logo_glitch:hover:before {
+    background-position: 0 -6px;
+    top: 2px
+}
+
+.top_home_logo.bugtracker_logo_glitch:hover:after {
+    background-position: 0 -12px;
+    top: -6px
+}
+
+.top_home_logo.bugtracker_logo_glitch:hover.frame0:after {
+    left: 2px
+}
+
+.top_home_logo.bugtracker_logo_glitch:hover.frame1 {
+    background-position-x: 3px!important
+}
+
+.top_home_logo.bugtracker_logo_glitch:hover.frame1:after {
+    left: -3px
+}
+
+.top_home_logo.bugtracker_logo_glitch:hover.frame1:before {
+    left: 2px
+}
+
+.top_home_logo.bugtracker_logo_glitch:hover.frame3 {
+    background-position-x: -1px!important
+}
+
+.top_home_logo.bugtracker_logo_glitch:hover.frame3:after {
+    left: -2px
+}
+
+.top_home_logo.bugtracker_logo_glitch:hover.frame3:before {
+    left: 1px
+}
+
+.top_home_logo.bugtracker_logo_glitch:hover.frame4 {
+    background-position-x: 2px!important
+}
+
+.top_home_logo.bugtracker_logo_glitch:hover.frame4:after {
+    left: -3px
+}
+
+.top_home_logo.bugtracker_logo_glitch:hover.frame4:before {
+    left: 2px
+}
+
+.top_home_logo.bugtracker_logo_glitch:hover.frame5 {
+    background-position-x: -3px!important
+}
+
+.top_home_logo.bugtracker_logo_glitch:hover.frame5:after {
+    left: 4px
+}
+
+.top_home_logo.bugtracker_logo_glitch:hover.frame5:before {
+    left: -4px
+}
