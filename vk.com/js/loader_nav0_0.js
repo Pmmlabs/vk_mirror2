@@ -534,8 +534,8 @@ var stVersions = {
     'internal/away_linksban.css': 12100376938,
     'internal/ui_manual.js': 1761369792,
     'internal/patterns_info.css': 14281439835,
-    'article.css': 37149201771,
-    'article_editor.css': 33007898202,
+    'article.css': 31104581880,
+    'article_editor.css': 30811095698,
     'cmodules/web/article.js': 25177687880,
     'cmodules/web/article_layer.js': 12471883713,
     'article_view.js': 9832528178,
@@ -625,4 +625,4 @@ var stTypes = {
         'lazyload.js': 1
     }
 };
-var _rnd = 6422;
+var _rnd = 8290;
