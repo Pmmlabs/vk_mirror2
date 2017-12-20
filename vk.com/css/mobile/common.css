@@ -12287,7 +12287,7 @@ charset=utf-8,
 .icon_notify_wall:before {
     width: 28px;
     height: 28px;
-    background-image: url('/images/mobile/skins/icon/notifications.png?6')
+    background-image: url('/images/mobile/skins/icon/notifications.png?7')
 }
 
 .vk_2x .icon_notify_birthday:before,
@@ -12310,7 +12310,7 @@ charset=utf-8,
 .vk_2x .icon_notify_repost:before,
 .vk_2x .icon_notify_story_reply:before,
 .vk_2x .icon_notify_wall:before {
-    background-image: url('/images/mobile/skins/icon/notifications_2x.png?6')
+    background-image: url('/images/mobile/skins/icon/notifications_2x.png?7')
 }
 
 .icon_notify_like:before {

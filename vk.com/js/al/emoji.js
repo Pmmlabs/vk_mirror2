@@ -4,6 +4,7 @@ if (!window.Emoji) {
         EMOJI_SPRITES_NUM: 3,
 
         opts: {},
+        raw: {},
         last: 0,
         shownId: false,
         hasNewStickers: false,
@@ -89,6 +90,9 @@ if (!window.Emoji) {
                 addEvent(txt, 'keypress keydown keyup paste', function(e) {
                     if (e.canceled) return false;
                     if (e.type == 'keydown') {
+                        if (opts.onChange) {
+                            Emoji.raw[optId] = txt.innerHTML;
+                        }
                         var noEnter = opts.ctrlSend ? opts.ctrlSend() : opts.noEnterSend;
                         if (e.keyCode == KEY.RETURN || e.keyCode == 10) {
                             if (opts.forceEnterSend && opts.onSend) {
@@ -199,6 +203,12 @@ if (!window.Emoji) {
                             opts.checkEditable(optId, txt);
                         }
                         Emoji.checkStickersKeywords(optId, opts);
+                        if (opts.onChange) {
+                            if (Emoji.raw[optId] != txt.innerHTML) {
+                                Emoji.onChange(opts);
+                            }
+                            delete Emoji.raw[optId];
+                        }
                     } else if (e.type == 'keydown') {
                         if (opts.checkEditable) {
                             setTimeout(opts.checkEditable.pbind(optId, txt), 0);
@@ -225,6 +235,10 @@ if (!window.Emoji) {
 
             Emoji.opts[Emoji.last] = opts;
             return Emoji.last++;
+        },
+
+        onChange: function(opts) {
+            isFunction(opts.onChange) && setTimeout(opts.onChange, 0);
         },
 
         preventMouseOverHandle: function() {
@@ -451,6 +465,8 @@ if (!window.Emoji) {
             if (isImagePaste || textRangeAndNoFocus) {
                 cancelEvent(e);
             }
+
+            Emoji.onChange(opts);
         },
 
         cleanCont: function(cont) {
@@ -1398,6 +1414,7 @@ if (!window.Emoji) {
                 }
                 if (editable.check) editable.check();
                 setTimeout(Emoji.correctCaret.pbind(editable), 5);
+                Emoji.onChange(opts);
             } else {
                 var textArea = opts.txt;
                 var val = textArea.value;

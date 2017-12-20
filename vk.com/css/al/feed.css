@@ -715,6 +715,14 @@
     overflow: hidden
 }
 
+.feedback_row .report_processed_thumb {
+    background: #4bb34b url(/images/svg_icons/feedback/report_processed.svg) 50% no-repeat;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute
+}
+
 .feedback_row_clickable:not(.feedback_row_touched) {
     cursor: pointer
 }
@@ -1337,13 +1345,6 @@
     background-position: 0 -360px
 }
 
-.feedback_sticky_icon.report_processed_thumb {
-    background: #4bb34b url(/images/svg_icons/feedback/report_processed.svg) 50% no-repeat;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%
-}
-
 .feedback_sticky_img {
     width: 40px;
     height: 40px;
@@ -1590,6 +1591,14 @@
 
 .top_notify_cont .dld_inner .progress_inline {
     vertical-align: middle
+}
+
+.top_notify_cont .report_processed_thumb {
+    background: #4bb34b url(/images/svg_icons/feedback/report_processed.svg) 50% no-repeat;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: absolute
 }
 
 .feedback_row_answer {

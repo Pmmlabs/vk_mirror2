@@ -3081,6 +3081,10 @@
     display: block
 }
 
+.bugtracker_add_device_button {
+    margin-top: 10px
+}
+
 .bugtracker_add_user_device_box .bugtracker_device_search_results {
     height: 500px;
     padding-right: 10px

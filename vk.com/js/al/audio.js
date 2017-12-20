@@ -1526,7 +1526,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
         show_more: intval(e)
     })
 }, AudioPage.prototype.promoAlbumClose = function(e, t) {
-    var i = gpeByClass("audio_section_promo_album", e);
+    var i = gpeByClass("audio_section_promo_block", e);
     re(i), ajax.post("al_audio.php", {
         act: "hide_promo",
         promo_name: t

@@ -900,7 +900,6 @@ var GroupsEdit = {
                 mainSectionDD: new Dropdown(ge("main_section"), e.wideSections, {
                     dark: !0,
                     multiselect: !1,
-                    autocomplete: !0,
                     zeroPlaceholder: !0,
                     zeroDefault: !0,
                     onChange: GroupsEdit.manageSectionsDD
@@ -908,13 +907,12 @@ var GroupsEdit = {
                 secondarySectionDD: new Dropdown(ge("secondary_section"), e.wideSections, {
                     dark: !0,
                     multiselect: !1,
-                    autocomplete: !0,
                     zeroPlaceholder: !0,
                     zeroDefault: !0,
                     onChange: GroupsEdit.manageSectionsDD
                 })
-            }), cur.mainSectionDD.val(e.mainSection),
-            cur.secondarySectionDD.val(e.secondarySection), GroupsEdit.manageSectionsDD()), cur.destroy.push(function(e) {
+            }), cur.mainSectionDD.val(e.mainSection), cur.secondarySectionDD.val(e.secondarySection),
+            GroupsEdit.manageSectionsDD()), cur.destroy.push(function(e) {
             e.marketCountryDD && (e.marketCountryDD.destroy(), e.marketCityDD.destroy(), e.marketCurrencyDD.destroy(), e.marketContactDD.destroy(), e.marketButtonType.destroy())
         })
     },

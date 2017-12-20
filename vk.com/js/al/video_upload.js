@@ -939,11 +939,11 @@ var VideoUpload = {
                 enable_donations: isChecked("video_create_enable_donations"),
                 rhash: cur.liveTransHash
             };
-        return cur.oid < 0 ? r.no_comments = isChecked("video_create_live_no_comments") : (r.privacy_view = Privacy.getValue("video_live_view"), r.privacy_comment = Privacy.getValue("video_live_comment")), r.title ? r.category ? (VideoUpload.lockSaveButton(), void ajax.post("al_video.php?act=a_add_new_live_trans", r, {
+        return cur.oid < 0 ? r.no_comments = isChecked("video_create_live_no_comments") : (r.privacy_view = Privacy.getValue("video_live_view"), r.privacy_comment = Privacy.getValue("video_live_comment")), !r.title || r.title.length > cur.videoTitleLength ? notaBene("video_new_live_trans_title") : r.description.length > cur.videoDescriptionLength ? notaBene("video_new_live_trans_description") : r.category ? (VideoUpload.lockSaveButton(), void ajax.post("al_video.php?act=a_add_new_live_trans", r, {
             onFail: function(e) {
                 return VideoUpload.unlockSaveButton(), showFastBox(getLang("video_create_live_error"), e || getLang("video_create_live_error_try_later")), !0
             }
-        })) : notaBene(domClosest("dropdown_container", "video_upload_live_category")) : notaBene("video_new_live_trans_title")
+        })) : notaBene(domClosest("dropdown_container", "video_upload_live_category"))
     }
 };
 try {

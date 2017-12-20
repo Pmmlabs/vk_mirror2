@@ -4356,6 +4356,15 @@ div.submit_post_field[contenteditable=true]>p {
     background-position: 0 -114px
 }
 
+.checkbox_pic.check_sign_pic {
+    height: 17px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20fill%3D%22%23A9AFB8%22%20d%3D%22M15%208a3%203%200%201%200-6%200%203%203%200%201%200%206%200zM5%2016.462v.66c0%20.484.394.878.88.878h12.24a.88.88%200%200%200%20.88-.88v-.658C19%2013.77%2014.336%2013%2012%2013c-2.336%200-7%20.77-7%203.462z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") -4px -4px
+}
+
+.checkbox_pic.check_sign_pic.on {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20fill%3D%22%236287AE%22%20d%3D%22M12.404%2013.007c2.43.083%206.596.91%206.596%203.455v.66a.88.88%200%200%201-.88.878h-3.053l.815%201.53a1%201%200%201%201-1.764.94l-8-15a1%201%200%201%201%201.764-.94l1.3%202.437a3%203%200%201%201%202.106%203.948l1.116%202.092zm-4.504.62L10.233%2018H5.88a.88.88%200%200%201-.88-.88v-.658c0-1.43%201.316-2.318%202.9-2.836z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") -4px -4px
+}
+
 .checkbox_pic.on,
 .checkbox_pic:hover {
     opacity: 1;

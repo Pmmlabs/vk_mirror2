@@ -1272,6 +1272,10 @@ a.group_app_button_multi .group_app_button_label {
     margin-left: 12px
 }
 
+a.group_app_button_multi .group_app_button_label:hover {
+    text-decoration: underline
+}
+
 a.group_app_button:after {
     display: block;
     content: '';

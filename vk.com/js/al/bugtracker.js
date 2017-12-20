@@ -281,7 +281,7 @@ var BugTracker = {
         BugTracker.cancelEdit();
         var n = ge("cmt" + e),
             i = geByClass1("bt_report_cmt_text", n),
-            s = '<div class="bt_comment_edit_form" data-id="' + e + '">  <textarea class="text bt_comment_form_text" id="bt_comment_edit_form_text" onkeydown="onCtrlEnter(event, BugTracker.sendComment);" style="overflow: hidden; resize: none; height: 50px;">' + val(i) + '</textarea>  <div id="bt_comment_edit_form_media_preview" class="clear_fix bt_comment_form_media_preview"></div>  <div id="bt_comment_edit_form_attach" class="bt_comment_form_attach clear_fix"><span class="add_media_lnk"></span></div>  <div>  <button type="button" class="flat_button fl_r" id="bt_comment_form_submit" onclick="BugTracker.saveComment(this, \'' + t + "');\">" + getLang("global_save") + '</button>  <button type="button" class="flat_button button_light secondary fl_r" id="bt_comment_form_submit" onclick="BugTracker.cancelEdit()">' + getLang("global_cancel") + "</button>  </div>  </div>",
+            s = '<div class="bt_comment_edit_form" data-id="' + e + '">  <textarea class="text bt_comment_form_text" id="bt_comment_edit_form_text" onkeydown="onCtrlEnter(event, BugTracker.saveComment.bind(null, ge(\'bt_comment_edit_form_submit\'), \'' + t + '\'));" style="overflow: hidden; resize: none; height: 50px;">' + i.innerText + '</textarea>  <div id="bt_comment_edit_form_media_preview" class="clear_fix bt_comment_form_media_preview"></div>  <div id="bt_comment_edit_form_attach" class="bt_comment_form_attach clear_fix"><span class="add_media_lnk"></span></div>  <div>  <button type="button" class="flat_button fl_r" id="bt_comment_edit_form_submit" onclick="BugTracker.saveComment(this, \'' + t + "');\">" + getLang("global_save") + '</button>  <button type="button" class="flat_button button_light secondary fl_r" id="bt_comment_edit_form_cancel" onclick="BugTracker.cancelEdit()">' + getLang("global_cancel") + "</button>  </div>  </div>",
             c = sech(s)[0];
         i.parentNode.insertBefore(c, i), hide(i), hide(geByClass1("page_post_sized_thumbs", n)), hide(geByClass1("post_thumbed_media", n)), hide(geByClass1("bt_report_cmt_info", n)), toggleClass(n, "editing", !0), setTimeout(function() {
             autosizeSetup(geByClass1("bt_comment_form_text", n), {}), cur.btEditCommentMedia = MediaSelector(ge("bt_comment_edit_form_attach").firstChild, "bt_comment_edit_form_media_preview", cur.btCommentMediaTypes, {
@@ -1437,26 +1437,28 @@ var BugTracker = {
             }
         })
     },
-    addUserDevice: function(e, t, r) {
-        var o = curBox();
-        return o.showCloseProgress(), ajax.post("bugtracker?act=a_add_device", {
+    addUserDevice: function(e, t, r, o) {
+        var a = curBox();
+        return a.showCloseProgress(), ajax.post("bugtracker?act=a_add_device", {
             device_id: t,
+            from_report: +o,
             hash: r
         }, {
             hideProgress: function() {
-                o.hideCloseProgress()
+                a.hideCloseProgress()
             },
-            onDone: function(e) {
-                o.hide();
-                var t = ge("bugtracker_user_device_list").appendChild(sech(e)[0]),
-                    r = [].map.call(ge("bugtracker_user_device_list").childNodes, function(e) {
+            onDone: function(t, r, n) {
+                a.hide();
+                ge("bugtracker_user_device_list").appendChild(sech(t)[0]);
+                if (!o) {
+                    var i = [].map.call(ge("bugtracker_user_device_list").childNodes, function(e) {
                         return e.getAttribute("platform-id")
                     });
-                each(ge("bt_settings_platforms").childNodes, function(e, t) {
-                    r.indexOf(t.getAttribute("platform-id")) >= 0 ? (checkbox(t, !0), disable(t, !0)) : disable(t, !1)
-                }), setTimeout(function() {
-                    geByClass1("edit", t).click()
-                })
+                    each(ge("bt_settings_platforms").childNodes, function(e, t) {
+                        i.indexOf(t.getAttribute("platform-id")) >= 0 ? (checkbox(t, !0), disable(t, !0)) : disable(t, !1)
+                    })
+                }
+                BugTracker.editUserDevice(e, r, n, o)
             }
         }), !1
     },
@@ -1478,8 +1480,9 @@ var BugTracker = {
             }
         }), !1
     },
-    addUserDeviceBox: function(e, t) {
+    addUserDeviceBox: function(e, t, r) {
         return showBox("/bugtracker?act=a_add_device_box", {
+            from_report: +r,
             hash: t
         }, {
             params: {
@@ -1575,9 +1578,10 @@ var BugTracker = {
             }
         }) : (notaBene(o + "_brand"), notaBene(o + "_market_name"), notaBene(o + "_device"), void notaBene(o + "_model"))
     },
-    editUserDevice: function(e, t, r) {
+    editUserDevice: function(e, t, r, o) {
         return showBox("/bugtracker?act=a_edit_user_device_box", {
             udid: t,
+            from_report: +o,
             hash: r
         }, {
             params: {
@@ -1585,25 +1589,27 @@ var BugTracker = {
             }
         }), !1
     },
-    saveUserDevice: function(e, t, r, o) {
+    saveUserDevice: function(e, t, r, o, a) {
         ajax.post("bugtracker?act=a_save_user_device", {
             hash: t,
             udid: o,
             title: val(r + "_title"),
-            version: val(r + "_version")
+            version: val(r + "_version"),
+            from_report: +a
         }, {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e),
             onDone: function(e) {
                 curBox().hide();
                 var t = sech(e)[0];
-                ge("bugtracker_user_device_list").replaceChild(t, ge("bugtracker_device" + o));
-                var r = [].map.call(ge("bugtracker_user_device_list").childNodes, function(e) {
-                    return e.getAttribute("platform-id")
-                });
-                each(ge("bt_settings_platforms").childNodes, function(e, t) {
-                    r.indexOf(t.getAttribute("platform-id")) >= 0 ? (checkbox(t, !0), disable(t, !0)) : disable(t, !1)
-                })
+                if (ge("bugtracker_user_device_list").replaceChild(t, ge("bugtracker_device" + o)), !a) {
+                    var r = [].map.call(ge("bugtracker_user_device_list").childNodes, function(e) {
+                        return e.getAttribute("platform-id")
+                    });
+                    each(ge("bt_settings_platforms").childNodes, function(e, t) {
+                        r.indexOf(t.getAttribute("platform-id")) >= 0 ? (checkbox(t, !0), disable(t, !0)) : disable(t, !1)
+                    })
+                }
             }
         })
     },

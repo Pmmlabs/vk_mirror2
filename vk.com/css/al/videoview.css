@@ -1602,7 +1602,8 @@ textarea.dark.mv_live_gift_popup_comment_input {
     box-sizing: border-box
 }
 
-#mv_desc_warn {
+#mv_desc_warn,
+#mv_title_warn {
     display: none;
     margin-top: 5px;
     color: #777
