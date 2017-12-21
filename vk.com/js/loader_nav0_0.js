@@ -192,7 +192,7 @@ var stVersions = {
     'video.css': 26625206309,
     'videocat.js': 3520065324,
     'videocat.css': 23086734657,
-    'videoview.js': 17245451205,
+    'videoview.js': 15720580560,
     'videoview.css': 26805477793,
     'video_edit.js': 2135196486,
     'video_edit.css': 23564283112,
@@ -493,7 +493,7 @@ var stVersions = {
     'api/share.js': 2621084197,
     'api/openapi.js': 4127665087,
     'api/xdm.js': 1449919642,
-    'hls.min.js': 3740087726,
+    'hls.min.js': 1200179027,
     'candy.min.js': 1892723665,
     'q_frame.php': 7,
     '/swf/api_wrapper.swf': 7,
@@ -534,9 +534,9 @@ var stVersions = {
     'internal/away_linksban.css': 12100376938,
     'internal/ui_manual.js': 1761369792,
     'internal/patterns_info.css': 14281439835,
-    'article.css': 31104581880,
-    'article_editor.css': 30811095698,
-    'cmodules/web/article.js': 26345952046,
+    'article.css': 29633267461,
+    'article_editor.css': 29339781279,
+    'cmodules/web/article.js': 25342221487,
     'cmodules/web/article_layer.js': 12471883713,
     'article_view.js': 9832528178,
     'internal/cvkmobile.css': 13847787035,
@@ -625,4 +625,4 @@ var stTypes = {
         'lazyload.js': 1
     }
 };
-var _rnd = 2138;
+var _rnd = 9704;
