@@ -192,7 +192,7 @@ var stVersions = {
     'video.css': 26625206309,
     'videocat.js': 3520065324,
     'videocat.css': 23086734657,
-    'videoview.js': 15720580560,
+    'videoview.js': 16795102102,
     'videoview.css': 26805477793,
     'video_edit.js': 2135196486,
     'video_edit.css': 23564283112,
@@ -374,7 +374,7 @@ var stVersions = {
     'ads.css': 25371009574,
     'ads_bonus.css': 460482192,
     'ads.js': 2815593368,
-    'ads_payments.js': 2170749464,
+    'ads_payments.js': 2829386674,
     'ads_edit.css': 11705983936,
     'ads_edit.js': 2933318002,
     'ads_edit_geo.js': 1634516705,
@@ -536,7 +536,7 @@ var stVersions = {
     'internal/patterns_info.css': 14281439835,
     'article.css': 29633267461,
     'article_editor.css': 29339781279,
-    'cmodules/web/article.js': 25342221487,
+    'cmodules/web/article.js': 23353421408,
     'cmodules/web/article_layer.js': 12471883713,
     'article_view.js': 9832528178,
     'internal/cvkmobile.css': 13847787035,
@@ -625,4 +625,4 @@ var stTypes = {
         'lazyload.js': 1
     }
 };
-var _rnd = 9704;
+var _rnd = 7065;

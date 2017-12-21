@@ -14970,7 +14970,7 @@ charset=utf-8,
     border-top: 1px solid #ebebec!important;
     padding: 9px 0 0!important;
     display: none;
-    overflow-x: scroll;
+    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     white-space: nowrap
 }
