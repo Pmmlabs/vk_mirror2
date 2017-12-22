@@ -1073,19 +1073,28 @@ AdsModer.increaseBudget = function() {
     }
 }
 
-AdsModer.openDisableOfficeBox = function(ajaxParams, isCompany) {
+AdsModer.openDisableOfficeBox = function(ajaxParams, isCompleteCompany, companyName, companyClearFields) {
     cur.lang.ads_disable_office_box_title = '�������� ���������� ��������';
     cur.lang.ads_disable_office_box_button = '������� �������';
-    cur.lang.ads_disable_office_confirm_message = '�� ������� ��� ������ ������� ��������� �������?<br><br>����� �������� �������� ��������� ������ � ����������, �� ����� �������� �������� ����� ����������.';
-    cur.lang.ads_disable_office_company_confirm_message = '������ ����� �������� �������� �������� �������� ������ ���������� ����� � ����� ��������.';
+    cur.lang.ads_disable_office_confirm_message = '�� ������� ��� ������ <b>�������</b> ��������� �������?<br><br>����� �������� �������� ��������� ������ � ����������, �� ����� <b>�������� �������� ����� ����������</b>.';
+    cur.lang.ads_disable_office_company_info_message = '� �������� �������� ����������� ��������.<br>������������: <b>{company_name}</b><br><br>������ ����� �������� �������� �������� �������� ������ ���������� ����� � ����� ��������.';
+    cur.lang.ads_disable_office_company_clear_fields_message = '��� �������� �������� ��������� ���� ����� <b>��������</b>.';
     cur.lang.ads_disable_office_reason_label = '������� ������� �������� ��������:';
 
     var boxHtml = '';
-    boxHtml += getLang('ads_disable_office_confirm_message')
-    if (isCompany) {
-        boxHtml += '<br><br>' + getLang('ads_disable_office_company_confirm_message');
+    boxHtml += getLang('ads_disable_office_confirm_message') + '<br><br>';
+    if (isCompleteCompany) {
+        boxHtml += getLang('ads_disable_office_company_info_message').replace('{company_name}', companyName) + '<br><br>';
+        if (companyClearFields && companyClearFields.length) {
+            boxHtml += getLang('ads_disable_office_company_clear_fields_message') + '<br>';
+            for (var i in companyClearFields) {
+                var companyClearField = companyClearFields[i];
+                boxHtml += companyClearField[0] + ' <b>' + companyClearField[1] + '</b><br>';
+            }
+            boxHtml += '<br>';
+        }
     }
-    boxHtml += '<br><br>' + getLang('ads_disable_office_reason_label');
+    boxHtml += getLang('ads_disable_office_reason_label');
     boxHtml += '<div class="ads_note_edit_wrap"><div><textarea id="ads_note_edit"></textarea></div></div>';
 
     var box = showFastBox(getLang('ads_disable_office_box_title'), boxHtml, getLang('ads_disable_office_box_button'), function() {

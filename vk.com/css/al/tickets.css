@@ -2838,10 +2838,12 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     background-position: 0 -280px
 }
 
+.tickets_suggest__icon.tickets_icon100:after,
 .tickets_suggest__icon.tickets_icon_top:after {
     background-position: 0 -336px
 }
 
+.tickets_suggest__icon.tickets_icon99:after,
 .tickets_suggest__icon.tickets_icon_search:after {
     background-position: 0 -364px
 }
@@ -3108,12 +3110,22 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     background-position: 0 -280px
 }
 
+.help_tile__title.tickets_icon100:after,
 .help_tile__title.tickets_icon_top:after {
     background-position: 0 -336px
 }
 
+.help_tile__title.tickets_icon99:after,
 .help_tile__title.tickets_icon_search:after {
     background-position: 0 -364px
+}
+
+.help_tile_no_icon .help_tile__title {
+    padding-left: 0
+}
+
+.help_tile_no_icon .help_tile__title:after {
+    display: none
 }
 
 .help_tile__title_a {
@@ -3182,6 +3194,10 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     border-right: 1px solid #e7e8ec;
     padding: 15px 20px 20px;
     vertical-align: top
+}
+
+.help_table_questions .wk_sub_header {
+    font-size: 14px
 }
 
 .help_table_found {
@@ -3270,10 +3286,12 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     background-position: 0 -280px
 }
 
+.help_table_questions__title.tickets_icon100:after,
 .help_table_questions__title.tickets_icon_top:after {
     background-position: 0 -336px
 }
 
+.help_table_questions__title.tickets_icon99:after,
 .help_table_questions__title.tickets_icon_search:after {
     background-position: 0 -364px
 }

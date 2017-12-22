@@ -1413,14 +1413,14 @@ var Tickets = {
                 id: "faq_search_form_suggests",
                 className: "tickets_suggests"
             }), t.appendChild(a), hide(a)), ajax.post("support", {
-                act: "load_faq_suggests",
+                act: "a_load_faq_suggests",
                 q: e,
                 section: cur.section,
                 union_id: nav.objLoc.union_id
             }, {
                 cache: 1,
                 onDone: function(i) {
-                    i && (show(a), addClass(t, "faq_search_form_with_suggests", e)), a.innerHTML = i
+                    i && (show(a), addClass(t, "faq_search_form_with_suggests", e)), e(a, i)
                 },
                 showProgress: uiSearch.showProgress.pbind(el),
                 hideProgress: uiSearch.hideProgress.pbind(el)

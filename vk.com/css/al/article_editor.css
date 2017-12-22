@@ -1788,6 +1788,27 @@ body[data-useragent*=msie] .article_editor_canvas[contenteditable=true] .article
     margin-top: 10px
 }
 
+.article_editor_canvas[contenteditable=true] figure .article_ed__video_play_note {
+    display: none;
+    font-size: 13px;
+    pointer-events: none;
+    background-color: rgba(0, 0, 0, .4);
+    color: #fff;
+    padding: 1px 13px;
+    border-radius: 3px;
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    top: 10px
+}
+
+.article_editor_canvas[contenteditable=true] figure.article_ed__object_highlighted .article_ed__video_play_note {
+    display: inline-block
+}
+
 @-webkit-keyframes article_ed__object_loader {
     0% {
         -webkit-transform: rotate(0deg);
