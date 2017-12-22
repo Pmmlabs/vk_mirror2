@@ -861,6 +861,9 @@ AdsEdit.showCropPhotoBox = function(uploadPhoto) {
     ajaxParams.disclaimer_medical = viewParams.disclaimer_medical;
     ajaxParams.disclaimer_specialist = viewParams.disclaimer_specialist;
     ajaxParams.disclaimer_supplements = viewParams.disclaimer_supplements;
+    ajaxParams.disclaimer_finance = viewParams.disclaimer_finance;
+    ajaxParams.disclaimer_finance_name = viewParams.disclaimer_finance_name;
+    ajaxParams.disclaimer_finance_license_no = viewParams.disclaimer_finance_license_no;
     ajaxParams.age_restriction = viewParams.age_restriction;
 
     var showOptions = {
@@ -1917,6 +1920,21 @@ AdsViewEditor.prototype.init = function(options, editor, targetingEditor, params
         disclaimer_supplements: {
             value: 0
         },
+        disclaimer_finance: {
+            value: 0
+        },
+        disclaimer_finance_name: {
+            value: '',
+            value_escaped: '',
+            value_default: '',
+            max_length: 0
+        },
+        disclaimer_finance_license_no: {
+            value: '',
+            value_escaped: '',
+            value_default: '',
+            max_length: 0
+        },
         age_restriction: {
             value: 0,
             data: []
@@ -2090,6 +2108,7 @@ AdsViewEditor.prototype.initPreview = function(paramName) {
     this.preview.disclaimer_medical = geByClass1('ads_ad_disclaimer_medical', this.preview.layout);
     this.preview.disclaimer_specialist = geByClass1('ads_ad_disclaimer_specialist', this.preview.layout);
     this.preview.disclaimer_supplements = geByClass1('ads_ad_disclaimer_supplements', this.preview.layout);
+    this.preview.disclaimer_finance = geByClass1('ads_ad_disclaimer_finance', this.preview.layout);
     this.preview.disclaimers_photo = geByClass1('ads_ad_disclaimers_photo', this.preview.layout);
     this.preview.disclaimers_bottom = geByClass1('ads_ad_disclaimers_bottom', this.preview.layout);
     this.preview.disclaimers = geByClass1('ads_ad_disclaimers', this.preview.layout);
@@ -2729,6 +2748,30 @@ AdsViewEditor.prototype.initUiParam = function(paramName) {
                 this.params[paramName].ui.destroy();
             }.bind(this));
             break;
+        case 'disclaimer_finance':
+            targetElem = ge(this.options.targetIdPrefix + paramName);
+            this.params[paramName].ui = new Checkbox(targetElem, {
+                label: this.params[paramName].label_checkbox,
+                checked: this.params[paramName].value,
+                width: this.options.uiWidth,
+                onChange: function(state) {
+                    this.onUiChange(paramName, state);
+                }.bind(this)
+            });
+            this.cur.destroy.push(function() {
+                this.params[paramName].ui.destroy();
+            }.bind(this));
+            break;
+        case 'disclaimer_finance_name':
+        case 'disclaimer_finance_license_no':
+            targetElem = ge(this.options.targetIdPrefix + paramName);
+            addEvent(targetElem, this.interestingEvents, function(event) {
+                return this.onUiEvent(paramName, event);
+            }.bind(this));
+            this.cur.destroy.push(function(targetElem) {
+                cleanElems(targetElem);
+            }.pbind(targetElem));
+            break;
         case 'age_restriction':
             targetElem = ge(this.options.targetIdPrefix + paramName);
             targetElem.removeAttribute('autocomplete');
@@ -3139,7 +3182,8 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
         case 'disclaimer_medical':
         case 'disclaimer_specialist':
         case 'disclaimer_supplements':
-            var disclaimers = ['disclaimer_medical', 'disclaimer_specialist', 'disclaimer_supplements'];
+        case 'disclaimer_finance':
+            var disclaimers = ['disclaimer_medical', 'disclaimer_specialist', 'disclaimer_supplements', 'disclaimer_finance'];
             if (this.params[paramName].value) {
                 for (var i in disclaimers) {
                     var disclaimer = disclaimers[i];
@@ -3193,7 +3237,7 @@ AdsViewEditor.prototype.updateUiParam = function(paramName) {
             recommendedLongElem.innerHTML = this.params[paramName][costPerClickRecommendedLong];
             break;
         case 'platform':
-            var isDisclaimers = (this.params.disclaimer_medical.value || this.params.disclaimer_specialist.value || this.params.disclaimer_supplements.value);
+            var isDisclaimers = (this.params.disclaimer_medical.value || this.params.disclaimer_specialist.value || this.params.disclaimer_supplements.value || this.params.disclaimer_finance.value);
             this.params[paramName].disabled_web = (this.params.campaign_type.value == AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_APPS_WITH_BUDGET || this.params.campaign_type.value == AdsEdit.ADS_CAMPAIGN_TYPE_UI_USE_OLD && this.params.campaign_id.value_app && this.params.campaign_id.value == this.params.campaign_id.value_app || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE || this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_CLICK || isDisclaimers);
             this.params[paramName].disabled = (!inArray(this.params.link_type.value, AdsEdit.ADS_AD_LINK_TYPES_ALL_POST) && this.params[paramName].disabled_web);
 
@@ -3510,13 +3554,19 @@ AdsViewEditor.prototype.updateUiParamVisibility = function(paramName) {
             toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
             break;
         case '_view_additional':
-            toggleClass('ads_edit_ad_row_view_additional', 'unshown', !!(this.params.disclaimer_medical.hidden && this.params.disclaimer_specialist.hidden && this.params.disclaimer_supplements.hidden));
+            toggleClass('ads_edit_ad_row_view_additional', 'unshown', !!(this.params.disclaimer_medical.hidden && this.params.disclaimer_specialist.hidden && this.params.disclaimer_supplements.hidden && this.params.disclaimer_finance.hidden));
             break;
         case 'disclaimer_medical':
         case 'disclaimer_specialist':
         case 'disclaimer_supplements':
+        case 'disclaimer_finance':
             this.initUiParam(paramName);
-            toggleClass(this.options.targetIdPrefix + paramName + '_wrap', 'unshown', !!this.params.disclaimer_medical.hidden);
+            toggleClass(this.options.targetIdPrefix + paramName + '_wrap', 'unshown', !!this.params[paramName].hidden);
+            break;
+        case 'disclaimer_finance_name':
+        case 'disclaimer_finance_license_no':
+            this.initUiParam(paramName);
+            toggleClass('ads_edit_ad_row_' + paramName, 'unshown', !!this.params[paramName].hidden);
             break;
         case 'category1_id':
         case 'category2_id':
@@ -3717,10 +3767,11 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.params.title.disabled = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_APP_IN_NEWS, AdsEdit.ADS_AD_FORMAT_TYPE_APPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE]);
                 this.params.description.hidden = !inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_APP]);
                 this.params.description.max_length = ((this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE) ? this.params.description.max_length_mobile : this.params.description.max_length_normal);
-                this.params.disclaimer_medical.may_be_any = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY]);
+                this.params.disclaimer_medical.may_be_any = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST]);
                 this.params.disclaimer_medical.hidden = (!this.params.disclaimer_medical.may_be_any || !this.params.disclaimer_medical.allow);
                 this.params.disclaimer_specialist.hidden = (!this.params.disclaimer_medical.may_be_any || !this.params.disclaimer_specialist.allow);
                 this.params.disclaimer_supplements.hidden = (!this.params.disclaimer_medical.may_be_any || !this.params.disclaimer_supplements.allow);
+                this.params.disclaimer_finance.hidden = (!this.params.disclaimer_medical.may_be_any || !this.params.disclaimer_finance.allow);
                 this.params.stats_url.hidden = !(this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.stats_url.allow_exclusive || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST && this.params.stats_url.allow_promoted_post);
                 this.params.view_retargeting_group_id.hidden = (!this.params.view_retargeting_group_id.allow || this.params.format_type.value != AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST || !this.params.view_retargeting_group_id.value);
                 this.params.views_limit_flag.hidden = (this.params.cost_type.value != AdsEdit.ADS_AD_COST_TYPE_VIEWS || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE && this.params.views_limit_exact.allow || this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST);
@@ -3785,6 +3836,9 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.updateUiParamVisibility('disclaimer_medical');
                 this.updateUiParamVisibility('disclaimer_specialist');
                 this.updateUiParamVisibility('disclaimer_supplements');
+                this.updateUiParamVisibility('disclaimer_finance');
+                this.updateUiParamVisibility('disclaimer_finance_name');
+                this.updateUiParamVisibility('disclaimer_finance_license_no');
                 this.updateUiParamVisibility('age_restriction');
                 this.updateUiParamVisibility('stats_url');
                 this.updateUiParamVisibility('view_retargeting_group_id');
@@ -4013,6 +4067,26 @@ AdsViewEditor.prototype.onParamUpdate = function(paramName, paramValue, forceDat
                 this.updatePreview('disclaimer_supplements');
                 this.updatePreview('disclaimers');
                 break;
+            case 'disclaimer_finance':
+                this.params.disclaimer_finance_name.hidden = !this.params.disclaimer_finance.value;
+                this.params.disclaimer_finance_license_no.hidden = !this.params.disclaimer_finance.value;
+                this.updateUiParam('disclaimer_finance');
+                this.updateUiParam('platform');
+                this.updateUiParamVisibility('disclaimer_finance_name');
+                this.updateUiParamVisibility('disclaimer_finance_license_no');
+                this.updatePreview('disclaimer_finance');
+                this.updatePreview('disclaimers');
+                break;
+            case 'disclaimer_finance_name':
+                this.updateUiParam('disclaimer_finance_name');
+                this.updatePreview('disclaimer_finance');
+                this.updatePreview('disclaimers');
+                break;
+            case 'disclaimer_finance_license_no':
+                this.updateUiParam('disclaimer_finance_license_no');
+                this.updatePreview('disclaimer_finance');
+                this.updatePreview('disclaimers');
+                break;
             case 'age_restriction':
                 this.updateUiParam('age_restriction');
                 this.updatePreview('age_restriction');
@@ -4192,7 +4266,6 @@ AdsViewEditor.prototype.onUiChange = function(paramName, paramValue) {
 }
 
 AdsViewEditor.prototype.onUiEvent = function(paramName, event) {
-
     switch (paramName) {
         case 'link_type':
             var curElem = event.currentTarget;
@@ -4251,39 +4324,6 @@ AdsViewEditor.prototype.onUiEvent = function(paramName, event) {
             break;
         case 'title':
         case 'description':
-            function correctValue(delayed, event) {
-                var targetElem = ge(this.options.targetIdPrefix + paramName);
-                if (!targetElem) {
-                    return;
-                }
-                var paramValueOriginal = targetElem.value;
-                var paramValue = this.correctInvalidValue(paramName, paramValueOriginal);
-                if (paramValue !== paramValueOriginal) {
-                    targetElem.value = paramValue;
-                }
-                //console.log('onUiEvent, paramName = ' + paramName + ', event.type = ' + event.type + ', paramValue = ' + paramValue + ', delayed = ', delayed);
-                if (browser.msie && event.type === 'paste') {
-                    targetElem.blur();
-                    targetElem.focus();
-                }
-                if (browser.chrome) { // Bug: Chrome counts new lines as 2 chars
-                    var maxLengthNew = this.params[paramName].max_length + paramValue.split("\n").length - 1;
-                    targetElem.setAttribute('maxlength', maxLengthNew);
-                }
-                if (delayed) {
-                    this.onParamUpdate(paramName, paramValue);
-                }
-            }
-
-            function checkSpelling(param) {
-                if (param === 'title' && this.params.title.disabled) {
-                    return;
-                }
-
-                this.updateNeeded['need_' + param + '_spelling'] = true;
-                this.needDataUpdate();
-            }
-
             correctValue.bind(this)(false, event);
 
             // setTimeout at least for IE
@@ -4324,9 +4364,49 @@ AdsViewEditor.prototype.onUiEvent = function(paramName, event) {
                 this.onParamUpdate(paramName, paramValue);
             }.bind(this), 100);
             break;
+        case 'disclaimer_finance_name':
+        case 'disclaimer_finance_license_no':
+            correctValue.bind(this)(false, event);
+            // setTimeout at least for IE
+            setTimeout(correctValue.bind(this, true, event), 100);
+            break;
     }
 
     return true;
+
+
+    function correctValue(delayed, event) {
+        var targetElem = ge(this.options.targetIdPrefix + paramName);
+        if (!targetElem) {
+            return;
+        }
+        var paramValueOriginal = targetElem.value;
+        var paramValue = this.correctInvalidValue(paramName, paramValueOriginal);
+        if (paramValue !== paramValueOriginal) {
+            targetElem.value = paramValue;
+        }
+        //console.log('onUiEvent, paramName = ' + paramName + ', event.type = ' + event.type + ', paramValue = ' + paramValue + ', delayed = ', delayed);
+        if (browser.msie && event.type === 'paste') {
+            targetElem.blur();
+            targetElem.focus();
+        }
+        if (browser.chrome) { // Bug: Chrome counts new lines as 2 chars
+            var maxLengthNew = this.params[paramName].max_length + paramValue.split("\n").length - 1;
+            targetElem.setAttribute('maxlength', maxLengthNew);
+        }
+        if (delayed) {
+            this.onParamUpdate(paramName, paramValue);
+        }
+    }
+
+    function checkSpelling(param) {
+        if (param === 'title' && this.params.title.disabled) {
+            return;
+        }
+
+        this.updateNeeded['need_' + param + '_spelling'] = true;
+        this.needDataUpdate();
+    }
 }
 
 AdsViewEditor.prototype.needDataUpdate = function() {
@@ -5517,6 +5597,15 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
         case 'disclaimer_supplements':
             toggle(this.preview[previewParamName], !!(this.params.disclaimer_supplements.value));
             break;
+        case 'disclaimer_finance':
+            if (this.params.disclaimer_finance.value) {
+                var text = getLang(this.params.disclaimer_finance.active_template)
+                    .replace("{name}", this.params.disclaimer_finance_name.value_escaped || this.params.disclaimer_finance_name.value_default)
+                    .replace("{license_no}", this.params.disclaimer_finance_license_no.value_escaped || this.params.disclaimer_finance_license_no.value_default);
+                this.preview[previewParamName].innerHTML = text;
+            }
+            toggle(this.preview[previewParamName], !!(this.params.disclaimer_finance.value));
+            break;
         case 'age_restriction':
             var isMobile = (this.params.format_type.value == AdsEdit.ADS_AD_FORMAT_TYPE_MOBILE);
             if (isMobile) {
@@ -5527,8 +5616,8 @@ AdsViewEditor.prototype.updatePreview = function(previewParamName) {
             }
             break;
         case 'disclaimers':
-            var isDisclaimersAllowed = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY]);
-            toggle(this.preview.disclaimers, isDisclaimersAllowed && (!!(this.params.disclaimer_medical.value) || !!(this.params.disclaimer_specialist.value) || !!(this.params.disclaimer_supplements.value)));
+            var isDisclaimersAllowed = inArray(this.params.format_type.value, [AdsEdit.ADS_AD_FORMAT_TYPE_TEXT_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_BIG_IMAGE, AdsEdit.ADS_AD_FORMAT_TYPE_EXCLUSIVE, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTION_COMMUNITY, AdsEdit.ADS_AD_FORMAT_TYPE_GROUPS_ONLY, AdsEdit.ADS_AD_FORMAT_TYPE_PROMOTED_POST]);
+            toggle(this.preview.disclaimers, isDisclaimersAllowed && (!!(this.params.disclaimer_medical.value) || !!(this.params.disclaimer_specialist.value) || !!(this.params.disclaimer_supplements.value) || !!(this.params.disclaimer_finance.value)));
             break;
         case 'domain':
             var domainValue = this.getPreviewDomain();

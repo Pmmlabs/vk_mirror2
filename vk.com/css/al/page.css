@@ -560,6 +560,15 @@
     color: #939393
 }
 
+.wall_promoted_post_disclaimer {
+    color: #939393;
+    line-height: 19px;
+    padding-top: 10px;
+    margin-bottom: -9px;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
 .wall_fixed .post_header {
     padding-top: 0
 }

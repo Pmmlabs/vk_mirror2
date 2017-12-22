@@ -1201,6 +1201,15 @@ a.ads_ad_box2:hover {
     padding-top: 3px
 }
 
+.ads_ad_disclaimers.promoted_post {
+    position: relative;
+    color: #939393;
+    font-size: 12.5px;
+    line-height: 19px;
+    padding: 10px 20px;
+    text-align: left
+}
+
 .ads_ad_age_restriction {
     color: #777;
     font-size: 9px;

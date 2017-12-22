@@ -1777,9 +1777,8 @@ img.im_photo_thumb {
 }
 
 .im-group-online-box .im-group-online-box--manual {
-    padding: 29px 48px;
+    padding: 29px 48px 45px;
     text-align: center;
-    border-bottom: 1px solid #ededed;
     border-radius: 0 0 4px 4px
 }
 

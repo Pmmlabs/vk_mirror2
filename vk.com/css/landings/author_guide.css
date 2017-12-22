@@ -2,15 +2,17 @@
     display: none
 }
 
-.is_mobile .landing_author_guide_footer,
+.female .landing_author_guide_header__background,
+.is_mobile .female .landing_author_guide_header__background,
 .is_mobile .landing_author_guide_header__background,
 .is_mobile .landing_author_guide_header__fire,
+.is_mobile .stats.female .landing_author_guide_header__background,
 .is_mobile .stats .landing_author_guide_header__background,
 .is_mobile .verified .landing_author_guide_header__fire,
-.landing_author_guide_footer,
 .landing_author_guide_header__background,
 .landing_author_guide_header__close-button,
 .landing_author_guide_header__fire,
+.stats.female .landing_author_guide_header__background,
 .stats .landing_author_guide_header__background,
 .trending_stats_int_item__icon,
 .trending_stats_sex__chart,
@@ -31,7 +33,6 @@
 
 #wk_box.landing_wk_box_author_guide,
 #wk_box.landing_wk_box_trending_results {
-    margin-top: 40px;
     background-color: transparent
 }
 
@@ -98,8 +99,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: url(/images/landings/author_guide/header.png) no-repeat 50% 0;
-    background-color: #5c93ff;
+    background: url(/images/landings/author_guide/fire_start_male.jpg) no-repeat 50% 0;
+    background-color: #372358!important;
     border-radius: 3px 3px 0 0
 }
 
@@ -107,45 +108,81 @@
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .landing_author_guide_header__background {
-        background-image: url(/images/landings/author_guide/header_2x.png);
-        background-size: 801px 471px
+        background-image: url(/images/landings/author_guide/fire_start_male_2x.jpg);
+        background-size: 800px 440px
+    }
+}
+
+.female .landing_author_guide_header__background {
+    background: url(/images/landings/author_guide/fire_start_female.jpg) no-repeat 50% 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .female .landing_author_guide_header__background {
+        background-image: url(/images/landings/author_guide/fire_start_female_2x.jpg);
+        background-size: 800px 440px
     }
 }
 
 .stats .landing_author_guide_header__background {
-    background: url(/images/landings/author_guide/stats_header.png) no-repeat 50% 0;
-    background-color: #5c93ff
+    background: url(/images/landings/author_guide/fire_finish_male.jpg) no-repeat 50% 0
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .stats .landing_author_guide_header__background {
-        background-image: url(/images/landings/author_guide/stats_header_2x.png);
-        background-size: 801px 440px
+        background-image: url(/images/landings/author_guide/fire_finish_male_2x.jpg);
+        background-size: 800px 440px
     }
 }
 
 .is_mobile .stats .landing_author_guide_header__background {
-    background: url(/images/landings/author_guide/mob_stats_header.png) no-repeat 50% 0;
-    background-color: #5c93ff
+    background: url(/images/landings/author_guide/fire_finish_male_mob.jpg) no-repeat 50% 100%
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .is_mobile .stats .landing_author_guide_header__background {
-        background-image: url(/images/landings/author_guide/mob_stats_header_2x.png);
-        background-size: 375px 200px
+        background-image: url(/images/landings/author_guide/fire_finish_male_mob_2x.jpg);
+        background-size: 414px 200px
+    }
+}
+
+.stats.female .landing_author_guide_header__background {
+    background: url(/images/landings/author_guide/fire_finish_female.jpg) no-repeat 50% 0
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .stats.female .landing_author_guide_header__background {
+        background-image: url(/images/landings/author_guide/fire_finish_female_2x.jpg);
+        background-size: 800px 440px
+    }
+}
+
+.is_mobile .stats.female .landing_author_guide_header__background {
+    background: url(/images/landings/author_guide/fire_finish_female_mob.jpg) no-repeat 50% 100%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .is_mobile .stats.female .landing_author_guide_header__background {
+        background-image: url(/images/landings/author_guide/fire_finish_female_mob_2x.jpg);
+        background-size: 414px 200px
     }
 }
 
 .is_mobile .landing_author_guide_header__background {
     width: auto;
     height: auto;
-    background: url(/images/landings/author_guide/mob_header.png) no-repeat 50% 100%;
+    background: url(/images/landings/author_guide/fire_start_male_mob.jpg) no-repeat 50% 100%;
     background-size: contain!important;
-    background-color: #5c93ff;
     position: relative;
     margin-bottom: 60px;
     max-height: 400px;
@@ -156,22 +193,35 @@
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .is_mobile .landing_author_guide_header__background {
-        background-image: url(/images/landings/author_guide/mob_header_2x.png);
-        background-size: 375px 200px
+        background-image: url(/images/landings/author_guide/fire_start_male_mob_2x.jpg);
+        background-size: 414px 200px
     }
 }
 
 .is_mobile .landing_author_guide_header__background:after {
     content: '';
     display: block;
-    padding-bottom: 53.333333%
+    padding-bottom: 48.333333%
+}
+
+.is_mobile .female .landing_author_guide_header__background {
+    background: url(/images/landings/author_guide/fire_start_female_mob.jpg) no-repeat 50% 100%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .is_mobile .female .landing_author_guide_header__background {
+        background-image: url(/images/landings/author_guide/fire_start_female_mob_2x.jpg);
+        background-size: 414px 200px
+    }
 }
 
 .landing_author_guide_header__avatar {
     width: 148px;
     height: 148px;
     position: absolute;
-    top: -33px;
+    top: 37px;
     left: 50%;
     margin-left: -74px
 }
@@ -391,39 +441,6 @@
 .trending_results_embed {
     max-width: 550px;
     margin: 0 auto
-}
-
-.landing_author_guide_footer {
-    height: 100px;
-    background: url(/images/landings/author_guide/footer.png);
-    border-radius: 0 0 3px 3px
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .landing_author_guide_footer {
-        background-image: url(/images/landings/author_guide/footer_2x.png);
-        background-size: 800px 102px
-    }
-}
-
-.is_mobile .landing_author_guide_footer {
-    height: 80px;
-    background: url(/images/landings/author_guide/mob_footer.png)
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(-o-min-device-pixel-ratio: 2/1),
-(min-resolution: 192dpi) {
-    .is_mobile .landing_author_guide_footer {
-        background-image: url(/images/landings/author_guide/mob_footer_2x.png);
-        background-size: 376px 80px
-    }
-}
-
-.landing_author_guide_footer.stats {
-    display: none
 }
 
 .trending_stats_content {
