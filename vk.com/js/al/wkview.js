@@ -756,7 +756,7 @@ var WkView = {
             },
             showProgress: addClass.pbind("wl_replies_header_wrap", "wl_replies_header_loading"),
             hideProgress: removeClass.pbind("wl_replies_header_wrap", "wl_replies_header_loading")
-        })
+        }), StickersAnimation && StickersAnimation.reloadStickers()
     },
     wallUpdateReplies: function() {
         toggle("wl_replies_more", wkcur.offset + wkcur.loaded < wkcur.count);
@@ -868,8 +868,8 @@ var WkView = {
                 if (w) {
                     if (a)
                         for (var l = geByClass("wk_likes_hidden", w), n = 0, s = l.length; s > n; ++n) w.appendChild(l[n]), removeClass(l[n], "wk_likes_hidden");
-                    w.appendChild(cf(r)), wkcur.offset = o, t ? WkView.likesPreload() : hide(e),
-                        WkView.updateHeight(), i && extend(cur.options.reply_names, i)
+                    w.appendChild(cf(r)),
+                        wkcur.offset = o, t ? WkView.likesPreload() : hide(e), WkView.updateHeight(), i && extend(cur.options.reply_names, i)
                 }
             },
             showProgress: lockButton.pbind(e),

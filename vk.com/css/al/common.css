@@ -8177,3 +8177,15 @@ button.ui_load_more_btn {
     -o-transition: none;
     transition: none
 }
+
+.sticker_animation {
+    -webkit-transform: translate(0);
+    -ms-transform: translate(0);
+    -o-transform: translate(0);
+    transform: translate(0)
+}
+
+.sticker_animation.sticker_animation_128 {
+    width: 128px;
+    height: 128px
+}

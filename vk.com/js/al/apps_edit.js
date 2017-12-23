@@ -2089,44 +2089,81 @@ var AppsEdit = {
     changeStatBlockPeriod: function(e) {
         cur.stat_main_block_period || (cur.stat_main_block_period = "yesterday"), cur.stat_main_block_period != e && (cur.stat_main_block_period = e, "yesterday" == e ? (removeClass(ge("app_stat_main_blocks_selector_month"), "selected"), addClass(ge("app_stat_main_blocks_selector_yesterday"), "selected")) : (removeClass(ge("app_stat_main_blocks_selector_yesterday"), "selected"), addClass(ge("app_stat_main_blocks_selector_month"), "selected")), toggle(ge("app_stat_main_block1_day")), toggle(ge("app_stat_main_block2_day")), toggle(ge("app_stat_main_block3_day")), toggle(ge("app_stat_main_block1_subtitle_day")), toggle(ge("app_stat_main_block1_month")), toggle(ge("app_stat_main_block2_month")), toggle(ge("app_stat_main_block3_month")), toggle(ge("app_stat_main_block1_subtitle_month")))
     },
-    choosePromoVideo: function(e) {
-        var t = showBox("al_video.php", {
-            act: "a_choose_video_box",
-            from: "app_edit",
-            app_id: cur.aid
-        }, {
-            stat: ["page.css", "page.js"],
-            cache: 1
-        });
-        cur.chooseMedia = function(a, s, i) {
+    chooseVideo: function(e, t) {
+        var a = {
+                promo: "a_save_promo_video",
+                banner: "a_save_banner_video"
+            },
+            s = {
+                promo: "apps_edit_promo_video_thumb",
+                banner: "apps_edit_banner_video_thumb"
+            },
+            i = showBox("al_video.php", {
+                act: "a_choose_video_box",
+                from: "app_edit",
+                app_id: cur.aid
+            }, {
+                stat: ["page.css", "page.js"],
+                cache: 1
+            });
+        cur.chooseMedia = function(n, r, o) {
+            var c = a[t];
             return ajax.post("al_apps.php", {
-                act: "a_save_promo_video",
+                act: c,
                 aid: cur.aid,
                 hash: e,
-                video_id: s
+                video_id: r
             }, {
                 onDone: function(e) {
                     if (e) showFastBox({
-                        title: "not applicable",
+                        title: getLang("global_error"),
                         dark: 1
-                    }, e), setTimeout(function() {
-                        ge("box_layer_wrap").scrollTop = 0
-                    });
+                    }, e);
                     else {
-                        t.hide();
-                        var a = i.editable && i.editable.sizes && i.editable.sizes.l ? i.editable.sizes.l[0] : i.thumb,
-                            n = geByClass1("apps_edit_video_thumb");
-                        cur.appPromoVideoId = s, setStyle(n, "background-image", "url('" + a + "')"), show(n)
+                        i.hide();
+                        var a = o.editable && o.editable.sizes && o.editable.sizes.l ? o.editable.sizes.l[0] : o.thumb,
+                            n = ge(s[t]);
+                        domData(n, "video-id", r), setStyle(n, "background-image", "url('" + a + "')"), show(n)
                     }
+                },
+                onFail: function(e) {
+                    return showFastBox({
+                        title: getLang("global_error"),
+                        dark: 1
+                    }, e), !0
                 }
             }), !1
         }
     },
-    removeSelectedPromoVideo: function(e, t) {
-        return cur.appPromoVideoId = !1, hide(geByClass1("apps_edit_video_thumb")), ajax.post("al_apps.php", {
-            act: "a_save_promo_video",
+    showVideo: function(e, t) {
+        var a = domData(e, "video-id");
+        if (a) return showVideo(a, "", {
+            autoplay: 1,
+            queue: 1
+        }, t)
+    },
+    removeSelectedVideo: function(e, t, a) {
+        var s = {
+                promo: "a_save_promo_video",
+                banner: "a_save_banner_video"
+            },
+            i = {
+                promo: "apps_edit_promo_video_thumb",
+                banner: "apps_edit_banner_video_thumb"
+            },
+            n = ge(i[a]),
+            r = s[a];
+        return hide(n), ajax.post("al_apps.php", {
+            act: r,
             aid: cur.aid,
             hash: e
+        }, {
+            onFail: function(e) {
+                return showFastBox({
+                    title: getLang("global_error"),
+                    dark: 1
+                }, e), show(n), !0
+            }
         }), cancelEvent(t), !1
     },
     hideWarning: function(e, t, a) {

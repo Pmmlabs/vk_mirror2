@@ -1111,6 +1111,29 @@ body.mac .apps_featured_thumb .ads_ad_big_app_info_box {
     padding-right: 160px
 }
 
+.apps_featured_thumbs_video .apps_featured_thumb_content {
+    z-index: 1
+}
+
+.apps_featured_thumbs_video .videoplayer_autoplay_hint,
+.apps_featured_thumbs_video .videoplayer_autoplay_timer,
+.apps_featured_thumbs_video .videoplayer_controls {
+    display: none
+}
+
+.apps_featured_thumbs_video .videoplayer_ui {
+    z-index: -1
+}
+
+.apps_featured_thumbs_video .videoplayer {
+    z-index: 0;
+    cursor: pointer!important
+}
+
+.apps_featured_thumbs_video .videoplayer_big_play_btn {
+    display: none!important
+}
+
 .apps_featured_thumb_gradient {
     background-color: transparent;
     background: -o-linear-gradient(270deg, transparent, rgba(0, 0, 0, .8));

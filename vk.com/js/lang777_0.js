@@ -662,7 +662,7 @@ bugs_search_results = '���������� ������';
 bugs_t_notify_found = '��������';
 bugs_t_notify_recipients_count = ['', '��������� ���������� %s ����������', '��������� ���������� %s �����������', '��������� ���������� %s �����������'];
 bugs_t_report_export_button = '��������������';
-// section = 63; version = 16;
+// section = 63; version = 17;
 
 adslight_age_restriction_none = '�� ���������';
 // section = 67; version = 2;

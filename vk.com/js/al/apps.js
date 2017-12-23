@@ -945,7 +945,7 @@ var AppsSlider = function(t) {
             infinite: !0,
             slideshowDuration: 4e3,
             animationDuration: 500
-        }, t || {}), this.required = null, this.current = null, this.slideNext = null, this.slidePrev = null, this.slideCurrent = null, this.options.outer && this.options.inner && (this.outer = ge(this.options.outer), this.inner = ge(this.options.inner), this.outer && this.inner)) {
+        }, t || {}), this.required = null, this.current = null, this.slideNext = null, this.slidePrev = null, this.slideCurrent = null, this.hasVideoSlides = !1, this.options.outer && this.options.inner && (this.outer = ge(this.options.outer), this.inner = ge(this.options.inner), this.outer && this.inner)) {
         if (this.slideshow = !1, this.animation = {
                 stop: function() {}
             }, this.slideshowTimeout = null, this.interacted = !1, this.slides = domChildren(this.inner), this.options.infinite) {
@@ -957,7 +957,7 @@ var AppsSlider = function(t) {
 };
 AppsSlider.prototype = {
     init: function() {
-        return void 0 !== this.inited ? this.inited ? !0 : 0 !== this.outer.offsetWidth && 0 !== this.slides[0].offsetWidth ? (this.widthOuter = this.outer.offsetWidth, this.widthInner = this.inner.offsetWidth, this.widthSlide = this.widthInner / this.slides.length, this.offsetInner = this.inner.offsetLeft, this.widthSide = (this.widthOuter - this.widthSlide) / 2, this.indexNext = this.slides.length - 1, this.indexPrev = 0, this.indexMargin = (this.slides.length - 1) / 2 | 0, this.indexRequired = this.indexCurrent = this.getIndex(), this.highlight(), this.rearrange(), this.slideshow && !this.slideshowTimeout && this.slideshowStart(), this.inited = !0) : void 0 : void 0
+        return void 0 !== this.inited ? this.inited ? !0 : 0 !== this.outer.offsetWidth && 0 !== this.slides[0].offsetWidth ? (this.widthOuter = this.outer.offsetWidth, this.widthInner = this.inner.offsetWidth, this.widthSlide = this.widthInner / this.slides.length, this.offsetInner = this.inner.offsetLeft, this.widthSide = (this.widthOuter - this.widthSlide) / 2, this.indexNext = this.slides.length - 1, this.indexPrev = 0, this.indexMargin = (this.slides.length - 1) / 2 | 0, this.indexRequired = this.indexCurrent = this.getIndex(), this.highlight(), this.rearrange(), this._initVideoSlides(), this.slideshow && !this.slideshowTimeout && this.slideshowStart(), this.inited = !0) : void 0 : void 0
     },
     highlight: function() {
         this.slideHighlighted && (removeClass(this.slideHighlighted, "selected"), this.slideHighlighted = null, this.indexHighlighted = null), this.indexHighlighted !== this.indexCurrent && (this.indexHighlighted = this.indexCurrent, this.slideHighlighted = this.slides[this.getIndex(this.indexCurrent)], addClass(this.slideHighlighted, "selected"))
@@ -967,7 +967,7 @@ AppsSlider.prototype = {
         this.interacted != e && (this.interacted = e, e ? (this.slideshowInterrupted = this.slideshow, this.slideshowStop()) : (this.slideshow = this.slideshowInterrupted, this.slideshow && this.slideshowStart()))
     },
     slideshowStart: function() {
-        this.slideshow = !0, this.interacted || (this.slideshowStop(), this.slideshow = !0, this.slideshowTimeout = setTimeout(function() {
+        this.slideshow = !0, this.interacted || this._videosIsPlay || (this.slideshowStop(), this.slideshow = !0, this.slideshowTimeout = setTimeout(function() {
             this.slideshowTimeout = null, vk.rtl ? this.indexRequired-- : this.indexRequired++, this.serve()
         }.bind(this), this.options.slideshowDuration))
     },
@@ -1028,7 +1028,7 @@ AppsSlider.prototype = {
         var t = this.indexCurrent - this.getIndex(this.indexCurrent);
         t > 30 && (this.indexPrev = 0, this.indexNext = this.slides.length - 1, this.indexCurrent -= t, this.indexRequired -= t, this.offsetInner = -(this.indexRequired * this.widthSlide - (this.widthOuter - this.widthSlide) / 2), this.inner.style.left = this.offsetInner + "px", each(this.slides, function(t, e) {
             e.style.left = 0
-        }.bind(this))), this.rearrange(), isFunction(this.options.onSlide) && this.options.onSlide(), this.slideshow && this.slideshowStart()
+        }.bind(this))), this.hasVideoSlides && this._serveVideoSlide(), this.rearrange(), isFunction(this.options.onSlide) && this.options.onSlide(), this.slideshow && this.slideshowStart()
     },
     rearrange: function() {
         if (this.options.infinite) {
@@ -1039,6 +1039,73 @@ AppsSlider.prototype = {
     },
     update: function() {
         this.inited = !1, this.slides = domChildren(this.inner), this.init()
+    },
+    getCurrentSlide: function() {
+        return this.slides[this.current]
+    },
+    _initVideoSlides: function() {
+        var t = this;
+        each(this.slides, function() {
+            var e = domData(this, "video");
+            return e ? (t.hasVideoSlides = !0, !1) : void 0
+        }), t.hasVideoSlides && (this._preloadVideos(), this._serveVideoSlide())
+    },
+    _isPreloadedVideo: function(t) {
+        var e = !1;
+        return each(ajaxCache, function(i, o) {
+            return 0 == i.indexOf("/al_video.php?act=show_inline") && i.indexOf("&video=" + t) > 0 ? (e = !0, !1) : void 0
+        }), e
+    },
+    _onVideoPreloaded: function(t, e) {
+        if (t) {
+            var i = e[3].player.params,
+                o = i[0];
+            VideoPlayer.preload(o)
+        }
+    },
+    _preloadVideos: function() {
+        var t = this;
+        each(this.slides, function() {
+            var e = domData(this, "video");
+            if (e) {
+                var i = t._getVideoParams(this);
+                t._isPreloadedVideo(i.video) || loadInlineVideo(i, t._onVideoPreloaded, !0)
+            }
+        })
+    },
+    _onVideoStop: function() {
+        this._videosIsPlay = !1, this.interacted = !1, this.slideshowStart()
+    },
+    _onVideoStart: function() {
+        this._videosIsPlay = !0, this.interacted = !0, this.slideshowStop()
+    },
+    _onVideoLoaded: function(t, e) {
+        e.on("media.playing", function() {
+            this.getCurrentSlide() === t ? this._onVideoStart() : (e.seekTo(0), e.pause())
+        }.bind(this)), e.on("media.ended", function() {
+            this._onVideoStop(), this.next()
+        }.bind(this)), e.on("media.error", function() {
+            this._onVideoStop(), this.next()
+        }.bind(this)), e.on("media.pause", this._onVideoStop.bind(this)), e.on("_destroy", this._onVideoStop.bind(this))
+    },
+    _getVideoParams: function(t) {
+        return {
+            video: domData(t, "video"),
+            list: domData(t, "hash"),
+            autoplay: 1,
+            from_autoplay: 1,
+            module: "apps_slider",
+            addParams: {
+                from_autoplay: 1
+            },
+            no_progress: 1,
+            cache: 1
+        }
+    },
+    _serveVideoSlide: function() {
+        var t, e, i, o, s = this.getCurrentSlide(),
+            n = domData(s, "video");
+        n ? (t = geByTag1("img", s), e = domData(t, "loading"), i = domData(t, "playing"), e || i ? cur.videoInlinePlayer && cur.videoInlinePlayer.play() : (o = this._getVideoParams(s), o.onLoaded = this._onVideoLoaded.bind(this, s), showInlineVideo(o.video, o.list, o, !1, t))) : cur.videoInlinePlayer && cur.videoInlinePlayer.pause()
     }
 }, window.Apps || (window.Apps = {
     optionHiddenClass: "apps_hidden",
@@ -1103,13 +1170,12 @@ AppsSlider.prototype = {
                 cache: 1,
                 local: 1,
                 onDone: this.withFastBackCheck(function(data, opts, preload, preload_before, preload_header) {
-                    return opts && (opts = eval("(" + opts + ")"), extend(opts.lang, cur.lang || {}), extend(cur, opts)), cur.preload = extend(cur.preload || {}, preload), cur.preload.before = preload_before, cur.preload.header = preload_header,
-                        (data = eval("(" + data + ")")) ? (void 0 === cur.searchOffset && (cur.searchOffset = 0), cur.curList = "all", cur.appsList = data[cur.curList] ? data : {
-                            all: []
-                        }, cur.sectionCount = this.isSection("catalog", "list") && !cur.searchStr ? 0 : cur.appsList[cur.curList].length, void this.indexAll(function() {
-                            if (cur.silent = !1, cur.onSilentLoad)
-                                for (var t in cur.onSilentLoad) isFunction(cur.onSilentLoad[t]) && cur.onSilentLoad[t]()
-                        })) : cur.silent = !1
+                    return opts && (opts = eval("(" + opts + ")"), extend(opts.lang, cur.lang || {}), extend(cur, opts)), cur.preload = extend(cur.preload || {}, preload), cur.preload.before = preload_before, cur.preload.header = preload_header, (data = eval("(" + data + ")")) ? (void 0 === cur.searchOffset && (cur.searchOffset = 0), cur.curList = "all", cur.appsList = data[cur.curList] ? data : {
+                        all: []
+                    }, cur.sectionCount = this.isSection("catalog", "list") && !cur.searchStr ? 0 : cur.appsList[cur.curList].length, void this.indexAll(function() {
+                        if (cur.silent = !1, cur.onSilentLoad)
+                            for (var t in cur.onSilentLoad) isFunction(cur.onSilentLoad[t]) && cur.onSilentLoad[t]()
+                    })) : cur.silent = !1
                 }.bind(this))
             })
         }
@@ -2187,19 +2253,18 @@ AppsSlider.prototype = {
     },
     ttCommon: function(t, e, i) {
         return i = extend({
-                parent: void 0,
-                center: void 0,
-                event: 0,
-                appendEl: void 0,
-                shift: void 0
-            }, i), 0 === i.event && (i.event = window.event), i.event && cancelEvent(i.event), i.appendEl && (i.appendEl = ge(i.appendEl)),
-            i.center ? showTooltip(t, {
-                center: i.center,
-                shift: i.shift || [0, 8, 8],
-                black: 1,
-                appendEl: i.appendEl,
-                text: e
-            }) : showTitle(t, e, i.shift, i)
+            parent: void 0,
+            center: void 0,
+            event: 0,
+            appendEl: void 0,
+            shift: void 0
+        }, i), 0 === i.event && (i.event = window.event), i.event && cancelEvent(i.event), i.appendEl && (i.appendEl = ge(i.appendEl)), i.center ? showTooltip(t, {
+            center: i.center,
+            shift: i.shift || [0, 8, 8],
+            black: 1,
+            appendEl: i.appendEl,
+            text: e
+        }) : showTitle(t, e, i.shift, i)
     },
     ttHideAll: function() {
         window.tooltips && tooltips.hideAll()

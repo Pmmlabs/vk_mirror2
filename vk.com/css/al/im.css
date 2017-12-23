@@ -758,6 +758,17 @@ img.im_photo_thumb {
     text-align: center
 }
 
+.im_sticker_bl_demo.im_sticker_bl_demo_background {
+    height: 188px;
+    width: 296px;
+    background-size: cover
+}
+
+.im_sticker_bl_demo.im_sticker_bl_demo_background .sticker_animation {
+    margin: auto;
+    padding-top: 30px
+}
+
 .im_sticker_bl_demo_thumb {
     vertical-align: top;
     border-radius: 2px 2px 0 0
@@ -820,6 +831,10 @@ img.im_photo_thumb {
     background: #f7f8fa;
     color: #222;
     padding: 17px 25px
+}
+
+.im_stickers_my_tip .sticker_animation {
+    margin-top: 10px
 }
 
 .im_stickers_my_wrap {

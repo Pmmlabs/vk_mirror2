@@ -9258,7 +9258,12 @@ function showInlineVideo(videoId, listId, options, ev, thumb) {
 
     var h = thumb.clientHeight,
         w = thumb.clientWidth,
-        btn = domByClass(thumb, 'page_post_video_play_inline');
+        btn = domByClass(thumb, 'page_post_video_play_inline'),
+        onLoaded = options.onLoaded;
+
+    if (onLoaded) {
+        delete options.onLoaded;
+    }
 
     var params = {
         video: videoId,
@@ -9306,6 +9311,9 @@ function showInlineVideo(videoId, listId, options, ev, thumb) {
 
         if (opts.player) {
             var container = domByClass(videoWrap, 'video_box_wrap');
+            if (isFunction(onLoaded)) {
+                opts.player.params[0].onPlayerLoaded = onLoaded;
+            }
             VideoInitializer.initPlayer(container, opts.player.type, opts.player.params);
         }
 

@@ -1062,6 +1062,10 @@ table.ads_logs_info th {
     font-weight: 700
 }
 
+.ads_sign_compare_equal_wide {
+    letter-spacing: -2px
+}
+
 .ads_note {
     padding-bottom: 5px
 }

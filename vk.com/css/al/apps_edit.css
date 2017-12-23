@@ -3031,7 +3031,7 @@ input.execute_field_input {
     cursor: default
 }
 
-#apps_edit_choose_video_btn {
+.apps_edit_choose_video_btn {
     margin-top: 10px
 }
 

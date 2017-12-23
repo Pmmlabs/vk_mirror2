@@ -4454,6 +4454,7 @@ var Wall = {
                 re('reply_link' + post);
                 hide('reply_warn' + post);
                 Wall._repliesLoaded(post, false, replies, names, data);
+                Wall.processPostReplyActions(reply);
             },
             onFail: function() {
                 newEl && re(newEl);
@@ -7269,6 +7270,9 @@ var Wall = {
         if (window.mvcur && mvcur.mvShown) return mvcur;
         if (window.pvcur && cur.pvShown) return pvcur;
         return cur;
+    },
+    processPostReplyActions: function(reply) {
+
     }
 }
 

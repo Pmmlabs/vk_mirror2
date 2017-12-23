@@ -1420,7 +1420,7 @@ var Tickets = {
             }, {
                 cache: 1,
                 onDone: function(i) {
-                    i && (show(a), addClass(t, "faq_search_form_with_suggests", e)), e(a, i)
+                    i && (show(a), addClass(t, "faq_search_form_with_suggests", e)), val(a, i)
                 },
                 showProgress: uiSearch.showProgress.pbind(el),
                 hideProgress: uiSearch.hideProgress.pbind(el)
