@@ -258,7 +258,7 @@ videofile_num = ['', '���������', '���������
 votes_flex = ['', '��������', '��������', '��������'];
 Work_place = '������:';
 yesterday = '��������';
-global_article_added_to_faves = '������ ��������� � {link}��������{/link}';
+global_article_added_to_faves = 'Article added to {link}Bookmarks{/link}';
 // section = 0; version = 260;
 
 friends_no_user_selected = '�� �� ������� �� ������ ����������.';
