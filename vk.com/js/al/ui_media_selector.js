@@ -441,7 +441,7 @@ function MediaSelector(e, a, t, i) {
                         break;
                     case "audio_playlist":
                         if (x.audio_playlist) return !1;
-                        var D = o.coverUrl ? "background-image:url(" + o.coverUrl + "); background-size: cover;" : "",
+                        var D = o.coverUrl ? "background-image:url('" + o.coverUrl + "'); background-size: cover;" : "",
                             U = "";
                         U = o.authorHref ? '<a href="' + o.authorHref + '" onclick="return nav.go(this)">' + o.authorName + "</a>" : o.authorName;
                         var E = "'" + (o.accessHash || "") + "'";
@@ -546,15 +546,15 @@ function MediaSelector(e, a, t, i) {
                             ge("wpe_save").innerHTML = getLang("global_save")
                         } else {
                             o.draft ? o.date = intval(t) : cur.postponedLastDate && (o.date = intval(cur.postponedLastDate) + 3600);
-                            var V = ge("official"),
-                                $ = gpeByClass("_submit_post_box", V);
-                            if (V && $) {
-                                var K = domData($, "from-oid"),
-                                    G = domData($, "oid");
-                                K == vk.id && G && wall.setReplyAsGroup(V, {
+                            var $ = ge("official"),
+                                V = gpeByClass("_submit_post_box", $);
+                            if ($ && V) {
+                                var K = domData(V, "from-oid"),
+                                    G = domData(V, "oid");
+                                K == vk.id && G && wall.setReplyAsGroup($, {
                                     from: G
-                                }), addClass(V, "disabled"), addClass("signed", "shown");
-                                var Z = window.data(V, "tt");
+                                }), addClass($, "disabled"), addClass("signed", "shown");
+                                var Z = window.data($, "tt");
                                 if (Z && Z.rdBtns) {
                                     var X = Z.rdBtns[1],
                                         Y = Z.rdBtnsGroup,
@@ -911,7 +911,7 @@ function MediaSelector(e, a, t, i) {
                             p = d;
                         if (d.match(/^https?:\/\//) || (d = "http://" + d), !inArray(d, s.urlsCancelled) && !inArray(p, s.urlsCancelled)) {
                             var u = !0;
-                            if (h.match(/(^|\.|\/\/)(vkontakte\.ru|vk\.com)/i) && (u = _.match(/(#photo|^\/(photo|video|album|page|audio|doc|mask)|z=(album|photo|video|audio_playlist)|w=(page|product))(-?\d+_)?\d+|app\d+(?:_-\d+)?|\.(jpg|png|gif)$|market-?\d+\?section=album_\d+|^\/stickers\/.+$|\?w\=story(\d+)_(\d+)$|stor(y|ies)(\d+)_(\d+)$|^(\/dev)?\/blog\/.+$|^\/jobs\?w=job\d+$|^\/landings\/.+$|\?w\=vk10\_years(\d+)$|^\/messenger$|^\/bestgames2016$|^\/ads(\/([a-zA-Z0-9\_]+))?$|^http:\/\/instagram\.com\/p\/.+/) ? !0 : !1, u = u || _.match(/^\/@[_a-zA-Z0-9-]+$/), !u && _.match(/[a-zA-Z0-9_\.-]{2,32}/))) return void s.checkURLDomain(_, p, t);
+                            if (h.match(/(^|\.|\/\/)(vkontakte\.ru|vk\.com)/i) && (u = _.match(/(#photo|^\/(photo|video|album|page|audio|doc|mask)|z=(album|photo|video|audio_playlist)|w=(page|product))(-?\d+_)?\d+|app\d+(?:_-\d+)?|\.(jpg|png|gif)$|market-?\d+\?section=album_\d+|^\/stickers\/.+$|\?w\=story(\d+)_(\d+)$|stor(y|ies)(\d+)_(\d+)$|^(\/dev)?\/blog\/.+$|^\/jobs\?w=job\d+$|^\/landings\/.+$|\?w\=vk10\_years(\d+)$|^\/messenger$|^\/bestgames2016$|^\/bestgames2017$|^\/ads(\/([a-zA-Z0-9\_]+))?$|^http:\/\/instagram\.com\/p\/.+/) ? !0 : !1, u = u || _.match(/^\/@[._a-zA-Z0-9-]+$/), !u && _.match(/[a-zA-Z0-9_\.-]{2,32}/))) return void s.checkURLDomain(_, p, t);
                             if (u) return void s.checkURL(p, t)
                         }
                     }

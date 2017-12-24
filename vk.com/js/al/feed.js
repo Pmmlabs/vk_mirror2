@@ -356,26 +356,26 @@ var Feed = {
                     D = i.offsetHeight,
                     u = r.split("_")[0],
                     l = 0 > u ? 8 & a ? 2 : 2 & a ? 1 : 0 : 0,
-                    F = wall.getNewReplyHTML(e, l),
+                    V = wall.getNewReplyHTML(e, l),
                     f = !1,
-                    V = !1;
+                    F = !1;
                 if (isVisible(j) && isVisible(A) && !isVisible("reply_link" + r)) {
                     var q = j.nextSibling,
                         I = geByClass("new_reply", j, "div").length + 1;
                     if (cur.wallMyOpened[r]) {
-                        q && "replies_open" == q.className && re(q), V = !0;
+                        q && "replies_open" == q.className && re(q), F = !0;
                         var O = geByClass1("wr_header", j, "a"),
                             U = geByClass("reply", j, "div").length + 1,
                             W = U;
                         O && (W = intval(O.getAttribute("offs").split("/")[1]) + 1), (W > 5 || W > U) && (O || j.insertBefore(O = ce("a", {
                             className: "wr_header"
                         }), j.firstChild), wall.updateRepliesHeader(r, O, U, W))
-                    } else F = wall.updatePostImages(F), f = se(F), addClass(f, "new_reply"), q && "replies_open" == q.className || (q = ce("div", {
+                    } else V = wall.updatePostImages(V), f = se(V), addClass(f, "new_reply"), q && "replies_open" == q.className || (q = ce("div", {
                         className: "replies_open",
                         onclick: wall.openNewComments.pbind(r)
                     }), j.parentNode.insertBefore(q, j.nextSibling)), q.innerHTML = getLang("wall_x_new_replies_more", Math.min(100, I)), q.newCnt = I
-                } else re("reply_link" + r), show(A, j), V = !0;
-                r.split("_")[0] == vk.id && cur.feedUnreadCount++, f || (f = se(F)), j.appendChild(f), feed.needScrollPost(t, V ? f : q) && (d += i.offsetHeight - D), V && nodeUpdated(f), Wall.repliesSideSetup(r), Wall.updateMentionsIndex();
+                } else re("reply_link" + r), show(A, j), F = !0;
+                r.split("_")[0] == vk.id && cur.feedUnreadCount++, f || (f = se(V)), j.appendChild(f), feed.needScrollPost(t, F ? f : q) && (d += i.offsetHeight - D), F && nodeUpdated(f), Wall.repliesSideSetup(r), Wall.updateMentionsIndex();
                 break;
             case "del_reply":
                 if (!cur.wallMyDeleted[r] && i) {
@@ -646,7 +646,7 @@ var Feed = {
                             if (s) return void(cur.disableAutoMore = !0);
                             if (t) {
                                 var o, i = ce("div");
-                                for (i.innerHTML = t; o = i.firstChild;) o.firstChild && o.firstChild.id && !ge(o.firstChild.id) || "feedback_unread_bar" == o.id || "feed_row_fb_hidden" == o.className ? (cur.rowsCont.appendChild(o), Wall.onPostLoaded(o, !0)) : i.removeChild(o)
+                                for (i.innerHTML = t; o = i.firstChild;) o.firstChild && o.firstChild.id && !ge(o.firstChild.id) || "feedback_unread_bar" == o.id || "feed_row_fb_hidden" == o.className || hasClass(o, "feed_to_recomm") ? (cur.rowsCont.appendChild(o), Wall.onPostLoaded(o, !0)) : i.removeChild(o)
                             }
                             shortCurrency(), feed.applyOptions(e), setTimeout(feed.scrollCheck, 200)
                         }
@@ -1303,7 +1303,11 @@ var Feed = {
             };
             if (vk.id && cur.topRow && "feed_rows_next" != cur.topRow.id && l[cur.section] && (!((window.curNotifier || {}).idle_manager || {}).is_idle || "init" == e.type)) {
                 for (postsUnseen = [], o = domPS(cur.topRow); o; o = domPS(o)) cur.topRow.offsetTop > a && (cur.topRow = o), o.unseen || (o.unseen = !0, postsUnseen.push(Feed.postsGetRaws(o)));
-                for (Page.postsUnseen(postsUnseen), o = cur.topRow; o && (t = d ? d : o.offsetTop, !(t >= a + n)); o = s) s = domNS(o), "feed_rows_next" == (s || {}).id && (s = null), d = s ? s.offsetTop : t + o.offsetHeight, a > d && s && (cur.topRow = s), LongView && LongView.register(o, "feed"), i.registerElement(o) || (r = o.bits || 0, r >= 3 || (r |= (t >= a && a + n > t ? 1 : 0) | (d >= a && a + n > d ? 2 : 0), r && (o.bits = r, 3 == r && c.push(feed.postsGetRaws(o)))));
+                for (Page.postsUnseen(postsUnseen), o = cur.topRow; o && (t = d ? d : o.offsetTop, !(t >= a + n)); o = s)
+                    if (s = domNS(o), "feed_rows_next" == (s || {}).id && (s = null), d = s ? s.offsetTop : t + o.offsetHeight, a > d && s && (cur.topRow = s), LongView && LongView.register(o, "feed"), !i.registerElement(o) && (r = o.bits || 0, !(r >= 3) && (r |= (t >= a && a + n > t ? 1 : 0) | (d >= a && a + n > d ? 2 : 0), r && (o.bits = r, 3 == r)))) {
+                        var u = feed.postsGetRaws(o);
+                        c.push(u), hasClass(o, "feed_to_recomm") && statlogsValueEvent("promo_button_view_blocks", u.index, u.module)
+                    }
                 c = c.concat(i.process(a, n)), LongView && LongView.onScroll(a, n), Page.postsSeen(c)
             }
         }
@@ -1661,6 +1665,10 @@ var Feed = {
                 }
             })
         })
+    },
+    logBlockInteraction: function(e, t, o) {
+        var s = indexOf(domPN(e).children, e);
+        statlogsValueEvent("block_interaction", s, t, o)
     }
 };
 window.feed = Feed;

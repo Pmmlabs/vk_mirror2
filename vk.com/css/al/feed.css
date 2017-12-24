@@ -4,6 +4,7 @@
 
 .feed_filter_icon,
 .feed_lists_icon .ui_actions_menu_icons,
+.feed_to_recomm .feed_to_recomm_icon,
 .feed_vk10_years_header,
 .feedback_activate_row .feedback_sticky_icon,
 .feedback_ads_row .feedback_sticky_icon,
@@ -2690,4 +2691,53 @@ div.feed_recom {
 
 .feed_block_article_date {
     float: right
+}
+
+.feed_to_recomm {
+    padding: 12px 20px 12px 15px;
+    overflow: hidden
+}
+
+.feed_to_recomm .feed_to_recomm_icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    float: left;
+    background: url(/images/icons/rocket.png) no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .feed_to_recomm .feed_to_recomm_icon {
+        background-image: url(/images/icons/rocket_2x.png);
+        background-size: 40px 40px
+    }
+}
+
+.feed_to_recomm .feed_to_recomm_info {
+    margin-left: 52px;
+    position: relative
+}
+
+.feed_to_recomm .feed_to_recomm_title {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+    color: #222
+}
+
+.feed_to_recomm .feed_to_recomm_desc {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 17px;
+    color: #656565
+}
+
+.feed_to_recomm .feed_to_recomm_button {
+    position: absolute;
+    right: 0;
+    top: 5px
 }

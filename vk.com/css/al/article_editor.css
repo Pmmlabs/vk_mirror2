@@ -1791,6 +1791,7 @@ body[data-useragent*=msie] .article_editor_canvas[contenteditable=true] .article
 .article_editor_canvas[contenteditable=true] figure .article_ed__video_play_note {
     display: none;
     font-size: 13px;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
     pointer-events: none;
     background-color: rgba(0, 0, 0, .4);
     color: #fff;
