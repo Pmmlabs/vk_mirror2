@@ -450,7 +450,7 @@ ExchangeModer.premoderationProcessRequestsMass = function(action, requestKeyMode
 
     function onComplete(response, responseRequestKey, responseText) {
         var responseAdId = cur.requestsParams[responseRequestKey].ad_id;
-        responseInfos.push('<a href="/exchange?act=post&ad_id=' + responseAdId + '" target="_blank">' + responseAdId + ' - ' + responseText + '</a>');
+        responseInfos.push('<a href="/adsmarket?act=post&ad_id=' + responseAdId + '" target="_blank">' + responseAdId + ' - ' + responseText + '</a>');
 
         if (response && (response.approved || response.disapproved)) {
             if (response.approved) {

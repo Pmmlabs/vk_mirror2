@@ -22,6 +22,7 @@
 .ads_moder_comment_rules_icon.icon_restricted_site,
 .ads_moder_comment_rules_icon.icon_spy,
 .ads_moder_comment_rules_icon.icon_vocabulary,
+.ads_retargeting_hero,
 .ads_retargeting_price_list_item_archive:after,
 .ads_retargeting_price_list_item_edit:after {
     -ms-high-contrast-adjust: none
@@ -2456,26 +2457,43 @@ a.ads_dd_menu_multi_item.label:hover {
 }
 
 .ads_retargeting_hero {
-    padding: 29px 80px 22px 60px;
+    padding: 20px;
+    padding-left: 140px;
+    background: url(/images/ads/ads_spotty.png);
+    background-position: 20px 20px;
+    background-repeat: no-repeat;
     background-color: #fff
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .ads_retargeting_hero {
+        background-image: url(/images/ads/ads_spotty_2x.png);
+        background-size: 100px 100px
+    }
 }
 
 .ads_retargeting_hero p {
     margin-top: 5px;
     margin-bottom: 0;
-    line-height: 19px
+    line-height: 1.46
 }
 
 .ads_retargeting_hero_title {
-    text-align: center;
+    text-align: left;
     margin-bottom: 5px;
     margin-top: 0;
     font-size: 19px
 }
 
 .ads_retargeting_hero_footer {
-    margin-top: 34px;
-    text-align: center
+    margin-top: 20px;
+    text-align: left
+}
+
+.ads_retargeting_hero_footer a {
+    vertical-align: baseline
 }
 
 .ads_retargeting_hero_units {

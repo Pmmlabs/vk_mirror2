@@ -997,7 +997,7 @@ a.group_ad_post_link.deleted.deleted:hover {
 .group_ad_request_box textarea.dark {
     width: 100%;
     display: block;
-    margin-bottom: 20px
+    margin-bottom: 0
 }
 
 .group_ad_request_box .group_edit_at {
@@ -1031,6 +1031,10 @@ a.group_ad_post_link.deleted.deleted:hover {
 
 .group_ad_request_next_day {
     margin-left: 5px
+}
+
+.group_ad_request_decline_reason {
+    margin-bottom: 10px
 }
 
 .group_ad_withdrawal_table {

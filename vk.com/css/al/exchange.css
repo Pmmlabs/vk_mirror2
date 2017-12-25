@@ -1,3 +1,18 @@
+.exchange_btn_with_arr span {
+    -ms-high-contrast-adjust: none
+}
+
+.h4-text {
+    color: #000;
+    border-bottom: none;
+    font-size: 1em;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    margin: 0;
+    padding: 0
+}
+
 #exchange_css {
     display: none
 }
@@ -78,8 +93,10 @@
     padding: 6px 5px
 }
 
+#exchange_info_requests_table.exchange_table td:first-child,
+#exchange_requests_list_table.exchange_table td:first-child,
 .exchange_table td:first-child {
-    padding-left: 10px!important
+    padding-left: 10px
 }
 
 .exchange_table td:last-child {
@@ -105,10 +122,6 @@
     color: #a33
 }
 
-th.exchange_table_col_no_sorted {
-    cursor: pointer
-}
-
 .is_2x th.exchange_table_col_sort {
     background-image: url(/images/wide_dd_2x.png)
 }
@@ -120,7 +133,16 @@ th.exchange_table_col_no_sorted {
 
 .exchange_btn_with_arr span {
     padding-right: 20px;
-    background: url(/images/backlink.gif) no-repeat 105% -126px
+    background: url(/images/backlink.gif?4) no-repeat 105% -126px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .exchange_btn_with_arr span {
+        background-image: url(/images/backlink_2x.gif?4);
+        background-size: 20px 150px
+    }
 }
 
 #exchange_box_comment {
@@ -133,12 +155,33 @@ th.exchange_table_col_no_sorted {
 }
 
 #exchange_comm_search_table {
-    margin: 15px 10px;
-    width: 930px
+    margin: 0;
+    width: 100%
 }
 
 #exchange_comm_search_table td {
     line-height: 160%
+}
+
+#exchange_comm_search_table th {
+    background-color: #f7f7f7;
+    color: #2b587a;
+    border-top: 1px solid #eee
+}
+
+#exchange_comm_search_table td:first-child,
+#exchange_comm_search_table th:first-child {
+    padding-left: 20px
+}
+
+#exchange_comm_search_table th:last-child {
+    padding-right: 35px;
+    text-align: right
+}
+
+#exchange_comm_search_table td:last-child {
+    padding-right: 20px;
+    text-align: right
 }
 
 #exchange_comm_search_filters {
@@ -150,9 +193,31 @@ th.exchange_table_col_no_sorted {
     color: #9cabb8
 }
 
+.exchange_row_excluded {
+    opacity: 0.5
+}
+
 .exchange_filter_block {
     float: left;
     width: 230px
+}
+
+.exchange_comm_search_actions td {
+    text-align: right;
+    background-color: #f7f7f7
+}
+
+.exchange_comm_search_actions .exchange_comm_search_total_price {
+    text-align: left
+}
+
+.exchange_comm_search_actions .exchange_comm_search_footer_cell {
+    padding-top: 14px;
+    white-space: nowrap
+}
+
+.exchange_comm_search_actions .exchange_comm_search_button {
+    white-space: nowrap
 }
 
 .exchange_comm_thumb {
@@ -213,11 +278,8 @@ th.exchange_table_col_no_sorted {
     color: #2b587a
 }
 
-#exchange_comm_search_filters input {
-    width: 190px
-}
-
 #exchange_comm_search_filters input.text {
+    width: 190px;
     padding: 7px 8px 8px!important;
     height: 13px
 }
@@ -443,7 +505,7 @@ th.exchange_table_col_no_sorted {
 }
 
 #exchange_post_info_wrap {
-    width: 290px
+    width: 400px
 }
 
 .exchange_post_info_row {
@@ -456,7 +518,7 @@ th.exchange_table_col_no_sorted {
 }
 
 .exchange_post_info_row .value {
-    max-width: 165px
+    max-width: 195px
 }
 
 .exchange_info .exchange_post_info_row .value {
@@ -464,7 +526,7 @@ th.exchange_table_col_no_sorted {
 }
 
 #exchange_post_wrap .exchange_post_info_row .label {
-    width: 125px
+    width: 165px
 }
 
 #ads_post_title_text {
@@ -508,7 +570,7 @@ th.exchange_table_col_no_sorted {
 }
 
 #exchange_box_error {
-    margin-bottom: 10px
+    margin: 0 0 10px
 }
 
 #exchange_request_box_error {
@@ -798,6 +860,10 @@ a.exchange_ad_post_link.deleted:hover {
     display: block
 }
 
+#exchange_search_wrap {
+    position: relative
+}
+
 #exchange_more_results td {
     padding: 0;
     border-bottom: none
@@ -1027,4 +1093,10 @@ a.exchange_ad_post_link.deleted:hover {
 
 #exchange_stats_content .preserve_th_width th.ui_table_cell.sortable.ta_l .ui_table_header_name {
     padding-right: 16px
+}
+
+.exchange_submit_requests_hint {
+    margin-right: 6px;
+    padding-top: 4px;
+    display: inline-block
 }

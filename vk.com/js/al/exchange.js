@@ -7,24 +7,24 @@ var Exchange = {
             ge("ads_navigation_offices_menu").removeAttribute("onmouseover");
             var a = "";
             a = -1 != location.hash.indexOf("#/") || -1 != location.hash.indexOf("#!") ? location.hash.replace("#/", "").replace("#!", "") : location.pathname + location.search;
-            var n, o, r = "",
-                c = [];
+            var n, r, o = "",
+                s = [];
             for (var i in cur.mainNavigationOfficesItems) {
-                c[i] = {}, c[i].onClick = t;
-                for (var s in cur.mainNavigationOfficesItems[i]) c[i][s] = cur.mainNavigationOfficesItems[i][s];
-                n = "", o = intval(c[i].i), r = "", -1 == c[i].i.indexOf("default") && (n = o, r = "&union_id=" + o);
-                var u = "/exchange?act=office" + r,
+                s[i] = {}, s[i].onClick = t;
+                for (var c in cur.mainNavigationOfficesItems[i]) s[i][c] = cur.mainNavigationOfficesItems[i][c];
+                n = "", r = intval(s[i].i), o = "", -1 == s[i].i.indexOf("default") && (n = r, o = "&union_id=" + r);
+                var u = "/adsmarket?act=office" + o,
                     d = !1;
-                o ? cur.getOfficeLink ? u = cur.getOfficeLink(n) : a.match(/act=budget(&|$)/) ? u = "/exchange?act=budget" + r : a.match(/act=export_stats(&|$)/) ? u = "/exchange?act=export_stats" + r : a.match(/act=settings(&|$)/) && (u = "/exchange?act=settings" + r) : (u = "/exchange?act=office", d = function(e) {
+                r ? cur.getOfficeLink ? u = cur.getOfficeLink(n) : a.match(/act=budget(&|$)/) ? u = "/adsmarket?act=budget" + o : a.match(/act=export_stats(&|$)/) ? u = "/adsmarket?act=export_stats" + o : a.match(/act=settings(&|$)/) && (u = "/adsmarket?act=settings" + o) : (u = "/adsmarket?act=office", d = function(e) {
                     return t(), showWiki({
                         w: "new_ad_union",
                         create: 1
                     }, !1, e, {
                         queue: !0
                     })
-                }), c[i].h = u, d && (c[i].onClick = d)
+                }), s[i].h = u, d && (s[i].onClick = d)
             }
-            var h = {
+            var _ = {
                 title: '<span id="ads_navigation_dd_menu_header_text">' + ge("ads_navigation_offices_menu_text").innerHTML + "</span>",
                 containerClass: "ads_navigation_dd_menu_header_wrap",
                 target: ge("ads_navigation_offices_menu"),
@@ -32,7 +32,7 @@ var Exchange = {
                 updateTarget: !1,
                 onSelect: function(e) {}
             };
-            cur.navigationOficesMenu = new DropdownMenu(c, h), cur.destroy.push(function() {
+            cur.navigationOficesMenu = new DropdownMenu(s, _), cur.destroy.push(function() {
                 cur.navigationOficesMenu.destroy()
             })
         }
@@ -55,17 +55,25 @@ var Exchange = {
     initCommunitySearch: function() {
         Exchange.initScroll(), cur.destroy.push(function(e) {
             e == cur && Exchange.deinitScroll()
-        }), placeholderSetup("exchange_search_input", {
-            back: !0
-        }), each(["filter_cost_to", "filter_reach", "filter_preach", "filter_size"], function(e, t) {
+        }), each(["filter_cost_to", "filter_reach", "filter_preach", "filter_size", "exchange_budget_input"], function(e, t) {
             placeholderSetup(t), addEvent(t, "change", Exchange.updateCommunitySearch), addEvent(t, "keydown", function(e) {
                 e.keyCode == KEY.ENTER && Exchange.updateCommunitySearch()
             })
         })
     },
-    getSearchParams: function(e) {
-        var t = {
-            q: trim(val(e)),
+    getSearchParams: function() {
+        cur.requestsIncluded = [], each(geByClass("exchange_request_button"), function(e, t) {
+            var a = t.getAttribute("data-gid");
+            ("included" === t.getAttribute("data-state") ? cur.requestsIncluded : cur.requestsExcluded).push(a)
+        });
+        var e = new Date(1e3 * val("exchange_request_time_from_d")),
+            t = new Date(1e3 * val("exchange_request_time_to_d")),
+            a = new Date(1e3 * val("exchange_request_date_from")),
+            n = new Date(1e3 * val("exchange_request_date_to"));
+        a.setHours(e.getHours()), a.setMinutes(e.getMinutes()), a.setSeconds(0), a.setMilliseconds(0), n.setHours(t.getHours()), n.setMinutes(t.getMinutes()), n.setSeconds(0), n.setMilliseconds(0);
+        var r = {
+            q: null,
+            budget: val("filter_budget") || 0,
             load: 1,
             cache: 1,
             offset: cur.searchOffset || 0,
@@ -79,9 +87,14 @@ var Exchange = {
             country: cur.uiCountry.val(),
             city: cur.uiCity.val(),
             sex: cur.uiSex.val(),
-            age: cur.uiAge.val()
+            age: cur.uiAge.val(),
+            include: (cur.requestsIncluded || []).join(",") || null,
+            exclude: (cur.requestsExcluded || []).join(",") || null,
+            hash: cur.requestsHash || null,
+            date_from: Math.round(+a / 1e3),
+            date_to: Math.round(+n / 1e3)
         };
-        return t
+        return r
     },
     sameParams: function(e) {
         if (!cur.params) return !1;
@@ -91,27 +104,53 @@ var Exchange = {
             if (e[t] != cur.params[t]) return !1;
         return !0
     },
-    updateCommunitySearch: function(e, t, a, n) {
-        e = e || ge("exchange_search_input"), t = t || 10, void 0 != a && (cur.searchSortRev = cur.searchSortRev || cur.searchSortBy != a && "cost" != a ? 0 : 1, cur.searchSortBy = a), n || (cur.searchOffset = 0), clearTimeout(cur.searchTimeout), cur.searchTimeout = setTimeout(function() {
-            var t = Exchange.getSearchParams(e);
-            (!Exchange.sameParams(t) || cur.ignoreEqual) && (delete cur.ignoreEqual, cur.params = t, Exchange.searchCommunity()), t.offset || scrollToTop()
-        }.bind(this), t)
+    showBudgetTooltip: function() {
+        if (!ls.get("ads_exchange_budget_tooltip_hidden") && !cur.budgetTooltip) {
+            cur.closeAdsBudgetTooltip = function(e) {
+                cur.budgetTooltip.hide(), ls.set("ads_exchange_budget_tooltip_hidden", 1), cancelEvent(e)
+            };
+            var e = ge("exchange_search_wrap");
+            e && (cur.budgetTooltip = new ElementTooltip(e, {
+                autoShow: !1,
+                appendTo: e,
+                content: '<div class="feature_intro_tt_hide" onclick="cur.closeAdsBudgetTooltip();return false;"></div>' + getLang("ads_posts_community_search_budget_hint") + "<br><br>" + getLang("ads_posts_community_search_hint"),
+                forceSide: "bottom",
+                offset: [-10, -4],
+                width: 240,
+                cls: "feature_intro_tt",
+                onHide: function() {
+                    cur.budgetTooltip.destroy()
+                }
+            }), cur.budgetTooltip.show())
+        }
+    },
+    updateCommunitySearch: function(e, t, a) {
+        e = e || 100, void 0 != t && (cur.searchSortRev = cur.searchSortRev || cur.searchSortBy != t && "cost" != t ? 0 : 1, cur.searchSortBy = t), a || (cur.searchOffset = 0), clearTimeout(cur.searchTimeout), cur.searchTimeout = setTimeout(function() {
+            var e = Exchange.getSearchParams();
+            (!Exchange.sameParams(e) || cur.ignoreEqual) && (delete cur.ignoreEqual, cur.params = e, Exchange.searchCommunity()), e.offset || scrollToTop()
+        }.bind(this), e)
+    },
+    updateSearchDatesInputs: function(e, t) {
+        var a = new Date(1e3 * e),
+            n = new Date(1e3 * t);
+        cur.uiExchangeDateFrom.setDate(a.getFullYear(), a.getMonth() + 1, a.getDate(), !0), cur.uiExchangeTimeFrom.timePicker.hourDD.selectItem(a.getHours(), !1), cur.uiExchangeTimeFrom.timePicker.minDD.selectItem(a.getMinutes(), !1), cur.uiExchangeDateTo.setDate(n.getFullYear(), n.getMonth() + 1, n.getDate(), !0), cur.uiExchangeTimeTo.timePicker.hourDD.selectItem(n.getHours(), !1), cur.uiExchangeTimeTo.timePicker.minDD.selectItem(n.getMinutes(), !1)
     },
     searchCommunity: function() {
-        var e = cur.params || Exchange.getSearchParams(ge("exchange_search_input"));
-        ajax.post("/exchange?act=community_search" + (cur.post_id ? "&ad_id=" + cur.post_id : "&union_id=" + cur.union_id), e, {
+        var e = cur.params || Exchange.getSearchParams();
+        ajax.post("/adsmarket?act=community_search" + (cur.post_id ? "&ad_id=" + cur.post_id : "&union_id=" + cur.union_id), e, {
             cache: 1,
-            onDone: function(t, a) {
-                var n = ge("exchange_more_results");
+            onDone: function(t, a, n, r, o, s) {
+                cur.requestsHash = n, cur.requestsExcluded = r, Exchange.updateSearchDatesInputs(o, s);
+                var c = ge("exchange_more_results");
                 if (e.offset > 0) {
-                    var o = ge("exchange_comm_search_table").tBodies[0];
+                    var u = ge("exchange_comm_search_table").tBodies[0];
                     if (t) {
                         if (browser.msie) {
-                            var r = se("<table>" + t + "</table>"),
-                                t = geByTag("tr", r);
-                            for (i in t) 1 == t[i].nodeType && o.appendChild(t[i])
-                        } else o.insertAdjacentHTML("beforeEnd", t);
-                        o.appendChild(n)
+                            var d = se("<table>" + t + "</table>"),
+                                t = geByTag("tr", d);
+                            for (i in t) 1 == t[i].nodeType && u.appendChild(t[i])
+                        } else u.insertAdjacentHTML("beforeEnd", t);
+                        u.appendChild(c)
                     }
                 } else ge("exchange_comm_search_table").innerHTML = t, cur.searchOffset = 0;
                 a ? show("exchange_more_results") : hide("exchange_more_results"), each(e, function(e, t) {
@@ -119,32 +158,31 @@ var Exchange = {
                 }), nav.setLoc(nav.objLoc)
             },
             showProgress: function() {
-                addClass(ge("exchange_search_wrap"), "loading"), cur.isSearchLoading = !0
+                addClass(ge("exchange_search_wrap"), "loading"), cur.isSearchLoading = !0, lockButton("exchange_submit_requests")
             },
             hideProgress: function() {
-                removeClass(ge("exchange_search_wrap"), "loading"), cur.isSearchLoading = !1
+                removeClass(ge("exchange_search_wrap"), "loading"), cur.isSearchLoading = !1, unlockButton("exchange_submit_requests")
             }
         })
     },
     clearCommunitySearch: function() {
-        var e = ge("exchange_search_input");
-        val(e, ""), elfocus(e), Exchange.updateCommunitySearch(e)
+        elfocus(ge("filter_budget")), Exchange.updateCommunitySearch()
     },
     searchCommunityShowMore: function() {
         var e = cur.searchOffset || 0;
-        return e += cur.searchPerPage, cur.searchOffset = e, hide("exchange_more_results"), Exchange.updateCommunitySearch(ge("exchange_search_input"), 10, void 0, !0), !1
+        return e += cur.searchPerPage, cur.searchOffset = e, hide("exchange_more_results"), Exchange.updateCommunitySearch(10, void 0, !0), !1
     },
-    switchSubTab: function(e, t, a, n, o) {
+    switchSubTab: function(e, t, a, n, r) {
         if (checkEvent(n) || hasClass(e, "active")) return !1;
         if (each(geByClass("exchange_subtab1", ge(t)), function(e, t) {
                 removeClass(t, "active")
-            }), addClass(e, "active"), o.part) {
-            var r = nav.fromStr(a),
-                c = r[0];
-            return delete r[0], ajax.post(c, extend(r, {
+            }), addClass(e, "active"), r.part) {
+            var o = nav.fromStr(a),
+                s = o[0];
+            return delete o[0], ajax.post(s, extend(o, {
                 part: 1
             }), {
-                onDone: o.onDone.pbind(r)
+                onDone: r.onDone.pbind(o)
             }), !1
         }
         return nav.go(a, n)
@@ -170,7 +208,7 @@ var Exchange = {
         for (var n in t) toggleClass(t[n], "even", a++ % 2 > 0)
     },
     addRequest: function(e, t, a, n) {
-        return !showBox("/exchange", {
+        return !showBox("/adsmarket", {
             act: "a_request_box",
             gid: e,
             ad_id: t,
@@ -186,19 +224,64 @@ var Exchange = {
             onFail: nav.reload
         })
     },
-    deleteRequest: function(e, t, a, n, o, r) {
-        var c = "line-height: 160%; padding: 16px 20px;";
-        r && (c += " background-color: #F7F7F7");
-        var i = r ? 370 : 430,
-            s = function() {
-                ajax.post("/exchange", {
+    excludeRequest: function(e) {
+        var t = e.getAttribute("data-state"),
+            a = "included" === t,
+            n = a ? "excluded" : "included";
+        e.setAttribute("data-state", n), e.innerHTML = a ? getLang("ads_posts_community_search_excluded") : getLang("ads_posts_community_search_exclude");
+        var r = e.getAttribute("data-gid"),
+            o = ge("exchange_row_" + r);
+        toggleClass(o, "exchange_row_excluded", a);
+        var s = !1;
+        each(geByClass("exchange_request_button"), function(e, t) {
+            return "excluded" === t.getAttribute("data-state") ? (s = !0, !1) : void 0
+        });
+        var i = ge("exchange_submit_requests");
+        i.innerHTML = s ? getLang("ads_posts_community_search_update") : getLang("ads_posts_community_search_submit")
+    },
+    submitRequests: function(e, t, a) {
+        var n = !1;
+        if (each(geByClass("exchange_request_button"), function(e, t) {
+                return "excluded" === t.getAttribute("data-state") ? (n = !0, !1) : void 0
+            }), n) Exchange.updateCommunitySearch(10);
+        else {
+            var r = Exchange.getSearchParams();
+            if (!a) {
+                var o = r.include.split(",").length,
+                    s = langNumeric(o, getLang("ads_posts_community_search_submit_confirmation", "raw"));
+                return s = langStr(s, "total_price", geByClass1("exchange_comm_search_total_price").innerHTML, "requests_count", o), void showFastBox(getLang("global_action_confirmation"), s, getLang("ads_posts_community_search_submit"), Exchange.submitRequests.pbind(e, t, !0), getLang("global_cancel"))
+            }
+            ajax.post("/adsmarket", {
+                act: "a_submit_requests",
+                include: r.include,
+                exclude: r.exclude,
+                hash: r.hash,
+                date_from: r.date_from,
+                date_to: r.date_to,
+                submit_hash: t,
+                ad_id: e
+            }, {
+                showProgress: lockButton.pbind("exchange_submit_requests"),
+                hideProgress: unlockButton.pbind("exchange_submit_requests"),
+                onFail: function(e) {
+                    return showFastBox(getLang("ads_error_box_title"), e), !0
+                }
+            })
+        }
+    },
+    deleteRequest: function(e, t, a, n, r, o) {
+        var s = "line-height: 160%; padding: 16px 20px;";
+        o && (s += " background-color: #F7F7F7");
+        var i = o ? 370 : 430,
+            c = function() {
+                ajax.post("/adsmarket", {
                     act: "a_delete_request",
                     gid: e,
                     ad_id: t,
                     request_id: a,
                     from_office: n,
                     comment: ge("exchange_box_comment") && val("exchange_box_comment") || "",
-                    hash: o
+                    hash: r
                 }, {
                     progress: curBox().progress,
                     onDone: function() {
@@ -209,15 +292,15 @@ var Exchange = {
                     }
                 })
             };
-        cur.doDeleteRequest = s;
+        cur.doDeleteRequest = c;
         showFastBox({
             title: getLang("ads_posts_sure_delete_title"),
             dark: !0,
             width: i,
-            bodyStyle: c,
-            hideButtons: r
-        }, '<div id="exchange_box_error" class="error" style="display: none;"></div><div>' + getLang("ads_posts_sure_delete_text") + '</div><div id="exchange_box_comment_wrap" class="clear_fix" style="display:none;"><textarea id="exchange_box_comment" placeholder="' + getLang("ads_posts_delete_placeholder") + '" onkeypress="onCtrlEnter(event, cur.doDeleteRequest)"></textarea><div class="exchange_box_send_wrap button_blue fl_r"><button id="exchange_box_send" onclick="cur.doDeleteRequest()">' + getLang("ads_posts_delete") + "</button></div></div>", getLang("ads_posts_delete"), s, getLang("global_cancel"));
-        return r && (show("exchange_box_comment_wrap"), placeholderSetup("exchange_box_comment", {
+            bodyStyle: s,
+            hideButtons: o
+        }, '<div id="exchange_box_error" class="error" style="display: none;"></div><div>' + getLang("ads_posts_sure_delete_text") + '</div><div id="exchange_box_comment_wrap" class="clear_fix" style="display:none;"><textarea id="exchange_box_comment" placeholder="' + getLang("ads_posts_delete_placeholder") + '" onkeypress="onCtrlEnter(event, cur.doDeleteRequest)"></textarea><div class="exchange_box_send_wrap button_blue fl_r"><button id="exchange_box_send" onclick="cur.doDeleteRequest()">' + getLang("ads_posts_delete") + "</button></div></div>", getLang("ads_posts_delete"), c, getLang("global_cancel"));
+        return o && (show("exchange_box_comment_wrap"), placeholderSetup("exchange_box_comment", {
             back: !0
         }), autosizeSetup("exchange_box_comment", {
             minHeight: 45,
@@ -225,17 +308,15 @@ var Exchange = {
         })), !1
     },
     checkFromAndToDates: function() {
-        var e = new Date(1e3 * val("exchange_request_time_from_d")),
-            t = new Date(1e3 * val("exchange_request_time_to_d"));
-        100 * e.getHours() + e.getMinutes() > 100 * t.getHours() + t.getMinutes() ? show(ge("exchange_request_box_next_day")) : hide(ge("exchange_request_box_next_day"))
+        Exchange.updateCommunitySearch()
     },
-    sendRequest: function(e, t, a, n, o, r) {
-        return ajax.post("/exchange", {
+    sendRequest: function(e, t, a, n, r, o) {
+        return ajax.post("/adsmarket", {
             act: "a_save_request",
             ad_id: t,
             gid: e,
             price: a,
-            from_office: o,
+            from_office: r,
             hash: n,
             text: val("exchange_request_comment"),
             time_from: val("exchange_request_time_from_d"),
@@ -243,8 +324,8 @@ var Exchange = {
             date_from: val("exchange_request_date_from"),
             date_to: val("exchange_request_date_to")
         }, {
-            showProgress: lockButton.pbind(r),
-            hideProgress: unlockButton.pbind(r),
+            showProgress: lockButton.pbind(o),
+            hideProgress: unlockButton.pbind(o),
             onDone: function(e) {
                 curBox().hide();
                 var t = showFastBox({
@@ -263,7 +344,7 @@ var Exchange = {
         }), !1
     },
     updatePostActions: function() {
-        ajax.post("/exchange", {
+        ajax.post("/adsmarket", {
             act: "a_update_actions",
             ad_id: cur.ad_id
         }, {
@@ -304,8 +385,8 @@ var Exchange = {
         }
     },
     archivePost: function(e, t, a, n) {
-        var o = function(e, t, a) {
-            addClass("exchange_info_archive", "loading"), ajax.post("/exchange", {
+        var r = function(e, t, a) {
+            addClass("exchange_info_archive", "loading"), ajax.post("/adsmarket", {
                 act: "a_archive",
                 ad_id: e,
                 status: t,
@@ -318,66 +399,66 @@ var Exchange = {
                 hideProgress: removeClass.pbind("exchange_info_archive", "loading")
             })
         };
-        if (2 == t) var r = showFastBox({
+        if (2 == t) var o = showFastBox({
             title: getLang("ads_posts_sure_archive_title"),
             dark: !0,
             width: 430,
             bodyStyle: "line-height: 160%; padding: 16px 20px;"
         }, getLang("ads_posts_sure_archive_text"), getLang("ads_posts_archive_btn"), function() {
-            r.hide(), o(e, t, a, n)
+            o.hide(), r(e, t, a, n)
         }, getLang("global_cancel"));
-        else o(e, t, a, n);
+        else r(e, t, a, n);
         return !1
     },
     changeStatusLink: function(e, t, a, n) {
-        function o() {
+        function r() {
             e.parentNode.replaceChild(i, e)
         }
 
-        function r() {
+        function o() {
             i.parentNode.replaceChild(e, i)
         }
 
-        function c(t) {
+        function s(t) {
             t && (e.parentNode.innerHTML = t)
         }
         var i = ce("img", {
             src: "/images/upload.gif"
         });
-        return Exchange.changeStatus(t, a, n, !1, !1, o, r, c)
+        return Exchange.changeStatus(t, a, n, !1, !1, r, o, s)
     },
-    changeStatus: function(e, t, a, n, o, r, c, i) {
-        if (3 != t || o) {
-            var s = curBox(),
+    changeStatus: function(e, t, a, n, r, o, s, i) {
+        if (3 != t || r) {
+            var c = curBox(),
                 u = {
                     ad_id: e,
                     status: t,
                     hash: a,
                     from: i ? "table" : "button"
                 };
-            n && (u = extend(u, n)), ajax.post("/exchange?act=a_change_status", u, {
+            n && (u = extend(u, n)), ajax.post("/adsmarket?act=a_change_status", u, {
                 onDone: function(e, t) {
-                    if (s && s.onDone) s.onDone(e), s.hide();
+                    if (c && c.onDone) c.onDone(e), c.hide();
                     else if (i) i(e);
                     else {
-                        s && s.hide();
+                        c && c.hide();
                         var a = ge("exchange_info_status").parentNode.parentNode;
                         ge("exchange_status_btn").parentNode.parentNode.innerHTML = e, t ? (ge("exchange_info_status").innerHTML = t, show(a)) : hide(a)
                     }
                 },
                 onFail: function(e) {
                     var t = e ? e : getLang("ads_error_unexpected_error_try_later");
-                    return s ? Exchange.showError(e, s.bodyNode) : showFastBox(getLang("ads_cant_start_offer_box_title"), t), !0
+                    return c ? Exchange.showError(e, c.bodyNode) : showFastBox(getLang("ads_cant_start_offer_box_title"), t), !0
                 },
                 showProgress: function() {
-                    s && s.showProgress(), r ? r() : s || lockButton("exchange_status_btn")
+                    c && c.showProgress(), o ? o() : c || lockButton("exchange_status_btn")
                 },
                 hideProgress: function() {
-                    s && s.hideProgress(), c ? c() : s || unlockButton("exchange_status_btn")
+                    c && c.hideProgress(), s ? s() : c || unlockButton("exchange_status_btn")
                 }
             })
         } else {
-            var s = showBox("/exchange", {
+            var c = showBox("/adsmarket", {
                 act: "a_review_box",
                 ad_id: e,
                 hash: a
@@ -389,9 +470,9 @@ var Exchange = {
                 dark: 1,
                 onFail: Exchange.onBoxFail
             });
-            s.postData = function(n) {
-                Exchange.changeStatus(e, t, a, n, !0, r, c, i)
-            }, i && requestBox(s, i)
+            c.postData = function(n) {
+                Exchange.changeStatus(e, t, a, n, !0, o, s, i)
+            }, i && requestBox(c, i)
         }
     },
     showMsg: function(e, t) {
@@ -428,7 +509,7 @@ var Exchange = {
         }, 1), !0
     },
     createUnion: function(e, t) {
-        return ajax.post("/exchange?act=a_new_union", {
+        return ajax.post("/adsmarket?act=a_new_union", {
             hash: t
         }, {
             showProgress: lockButton.pbind(e),
@@ -442,11 +523,11 @@ var Exchange = {
         var a, n = /([!()?., \n\r\t \u00A0]|^)((https?:\/\/)?((?:[a-z0-9_\-]+\.)+[a-z]{2,6})(\/.*?)?(\#.*?)?)(&nbsp;|[ \t\r\n \u00A0]|$)/i;
         if (e && (a = e.match(n))) {
             e = e.substr(a.index + a[0].length);
-            var o = a[2],
-                r = a[5] || "";
-            o.match(/^https?:\/\//) || (o = "http://" + o);
-            var c = !1;
-            return a[4].match(/(^|\.|\/\/)(vkontakte\.ru|vk\.com)/) && (c = r.match(/wall(-?\d+_?\d+)$/)), c = c && c[1] ? c[1] : !1
+            var r = a[2],
+                o = a[5] || "";
+            r.match(/^https?:\/\//) || (r = "http://" + r);
+            var s = !1;
+            return a[4].match(/(^|\.|\/\/)(vkontakte\.ru|vk\.com)/) && (s = o.match(/wall(-?\d+_?\d+)$/)), s = s && s[1] ? s[1] : !1
         }
     },
     reInitComposer: function(e) {
@@ -475,7 +556,7 @@ var Exchange = {
         })
     },
     addClient: function(e) {
-        return !showBox("/exchange", {
+        return !showBox("/adsmarket", {
             act: "a_create_client_box",
             union_id: e
         }, {
@@ -488,7 +569,7 @@ var Exchange = {
     },
     createClient: function(e, t) {
         var a = trim(val("new_union_name"));
-        return a ? void ajax.post("/exchange?act=a_create_client", {
+        return a ? void ajax.post("/adsmarket?act=a_create_client", {
             union_id: e,
             hash: t,
             name: a
@@ -502,7 +583,7 @@ var Exchange = {
         if (!cur.loadingPeriod) {
             cur.loadingPeriod = !0;
             var a = clone(nav.objLoc);
-            delete a[0], ajax.post("/exchange", extend(a, {
+            delete a[0], ajax.post("/adsmarket", extend(a, {
                 period: e,
                 load: 1
             }), {
@@ -517,7 +598,7 @@ var Exchange = {
         }
     },
     openHelpBox: function(e, t) {
-        return showBox("/exchange?act=a_help_text_box", {
+        return showBox("/adsmarket?act=a_help_text_box", {
             type: e,
             union_id: t
         }, {
@@ -564,14 +645,14 @@ var Exchange = {
             t = cur.topUnionId ? "&union_id=" + cur.topUnionId : "",
             a = "dwcookie",
             n = Math.random(),
-            o = {
+            r = {
                 method: "post",
-                action: "/exchange?act=get_export_stats" + t
+                action: "/adsmarket?act=get_export_stats" + t
             };
         if (e) {
-            var r = {};
-            for (var c in cur.watchControls) r[cur.watchControls[c]] = Ads.getNamespace("exchange_export_stats")[cur.watchControls[c]].value;
-            r.start_time = cur.exportParamsData.start_time.year + ("0" + cur.exportParamsData.start_time.month).slice(-2) + ("0" + cur.exportParamsData.start_time.day).slice(-2), r.end_time = cur.exportParamsData.stop_time.year + ("0" + cur.exportParamsData.stop_time.month).slice(-2) + ("0" + cur.exportParamsData.stop_time.day).slice(-2), r.dwcookie = n, r.hash = cur.exportStatsHash, ajax.post("/exchange?act=get_export_stats" + t, r, {
+            var o = {};
+            for (var s in cur.watchControls) o[cur.watchControls[s]] = Ads.getNamespace("exchange_export_stats")[cur.watchControls[s]].value;
+            o.start_time = cur.exportParamsData.start_time.year + ("0" + cur.exportParamsData.start_time.month).slice(-2) + ("0" + cur.exportParamsData.start_time.day).slice(-2), o.end_time = cur.exportParamsData.stop_time.year + ("0" + cur.exportParamsData.stop_time.month).slice(-2) + ("0" + cur.exportParamsData.stop_time.day).slice(-2), o.dwcookie = n, o.hash = cur.exportStatsHash, ajax.post("/adsmarket?act=get_export_stats" + t, o, {
                 onDone: function(e) {
                     ge("exchange_stats_content").innerHTML = e
                 },
@@ -587,30 +668,30 @@ var Exchange = {
                 name: "secret_iframe",
                 id: "secret_iframe"
             });
-            i.style.display = "none", document.body.appendChild(i), o.target = "secret_iframe";
-            var s = ce("form", o);
-            for (var c in cur.watchControls) s.appendChild(ce("input", {
+            i.style.display = "none", document.body.appendChild(i), r.target = "secret_iframe";
+            var c = ce("form", r);
+            for (var s in cur.watchControls) c.appendChild(ce("input", {
                 type: "hidden",
-                name: cur.watchControls[c],
-                value: Ads.getNamespace("exchange_export_stats")[cur.watchControls[c]].value
+                name: cur.watchControls[s],
+                value: Ads.getNamespace("exchange_export_stats")[cur.watchControls[s]].value
             }));
-            s.appendChild(ce("input", {
+            c.appendChild(ce("input", {
                 type: "hidden",
                 name: "start_time",
                 value: cur.exportParamsData.start_time.year + ("0" + cur.exportParamsData.start_time.month).slice(-2) + ("0" + cur.exportParamsData.start_time.day).slice(-2)
-            })), s.appendChild(ce("input", {
+            })), c.appendChild(ce("input", {
                 type: "hidden",
                 name: "hash",
                 value: cur.exportStatsHash
-            })), s.appendChild(ce("input", {
+            })), c.appendChild(ce("input", {
                 type: "hidden",
                 name: "end_time",
                 value: cur.exportParamsData.stop_time.year + ("0" + cur.exportParamsData.stop_time.month).slice(-2) + ("0" + cur.exportParamsData.stop_time.day).slice(-2)
-            })), s.appendChild(ce("input", {
+            })), c.appendChild(ce("input", {
                 type: "hidden",
                 name: "dwcookie",
                 value: n
-            })), document.body.appendChild(s), s.submit()
+            })), document.body.appendChild(c), c.submit()
         }
         var u = setInterval(function() {
             -1 != document.cookie.indexOf(a + "=" + n + "-error") && (clearInterval(u), Ads.unlock("exchange_stat_export"), e || showFastBox({

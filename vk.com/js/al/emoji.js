@@ -3014,7 +3014,7 @@ if (!window.Emoji) {
             return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" data-sticker-id="%stickerId%" data-pack-id="%selId%" data-src="%stickerUrl%" class="emoji_sticker_item" onclick="Emoji.stickerClick(%optId%, %stickerId%, %size%, \'%stickerUrl%\', this, \'keyboard\');"></a>';
         },
         stickerItemAnimation: function() {
-            return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" data-uniq-id="%uniqId%" data-sticker-id="%stickerId%" data-pack-id="%selId%" data-src="/stickers.php?act=proxy_sticker&sticker_id=%stickerId%&size=%stickerSize%" data-animation-path="%animationUrl%" class="emoji_sticker_item" onclick="Emoji.stickerClick(%optId%, %stickerId%, %size%,  \'%stickerUrl%\', this, \'keyboard\');"></a>';
+            return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" data-uniq-id="%uniqId%" data-sticker-id="%stickerId%" data-pack-id="%selId%" data-src="%stickerUrl%" data-animation-path="%animationUrl%" class="emoji_sticker_item" onclick="Emoji.stickerClick(%optId%, %stickerId%, %size%,  \'%stickerUrl%\', this, \'keyboard\');"></a>';
         },
         hintsStickerItemAnimation: function() {
             return '<a id="emoji_sticker_item%optId%_%selId%_%stickerId%" data-pack-id="%selId%" class="emoji_sticker_item %class%" onclick="%onclick%" onmouseover="Emoji.stickerHintOver(this)" onmouseout="Emoji.stickerHintOut(this)" onmouseenter="StickersAnimation.loadAndPlaySticker(this);" data-animation-path="%animationUrl%" data-uniq-id="%uniqId%" data-sticker-id="%stickerId%"><img class="emoji_sticker_image sticker_img" src="%stickerUrl%"  /></a>';

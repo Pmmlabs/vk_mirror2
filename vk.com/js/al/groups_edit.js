@@ -1490,6 +1490,10 @@ var GroupsEdit = {
             request_id: t,
             status: o,
             hash: r
+        }, {
+            params: {
+                width: 480
+            }
         })
     },
     toggleAdOtherSettings: function() {

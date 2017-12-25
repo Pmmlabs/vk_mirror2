@@ -1438,6 +1438,10 @@ a.ads_ad_box2:hover {
     padding-bottom: 20px
 }
 
+.ads_ad_promoted_post .wall_module .wall_text .page_media_thumbed_link:last-child {
+    margin-bottom: 0
+}
+
 .ads_ad_promoted_post .wall_module .ads_ad_promoted_post_info {
     min-height: 60px
 }
@@ -1651,8 +1655,4 @@ a.ads_ad_box2:hover {
 .ads_edit_panel_preview.ads_ad_preview {
     float: none;
     overflow: auto
-}
-
-.ads_edit_panel_preview.ads_ad_preview .ads_ad_promoted_post .wall_module .wall_text .page_media_thumbed_link:last-child {
-    margin-bottom: 0
 }
