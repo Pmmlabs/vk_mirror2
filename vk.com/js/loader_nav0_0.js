@@ -266,7 +266,7 @@ var stVersions = {
     'privacy.js': 3620108221,
     'privacy.css': 12588749093,
     'apps.css': 33194667303,
-    'apps.js': 1579358795,
+    'apps.js': 4077396980,
     'apps_edit.js': 1119189232,
     'apps_edit.css': 29562040838,
     'apps_check.js': 3844411974,
@@ -438,7 +438,7 @@ var stVersions = {
     'paysupp_admin.js': 127920242,
     'paysupp_admin.css': 14170515183,
     'exchange.css': 14291154803,
-    'exchange.js': 1330490579,
+    'exchange.js': 2624135189,
     'exchange_moder.css': 13857726076,
     'exchange_moder.js': 1937742752,
     'ads_offers.css': 14767079835,
@@ -628,4 +628,4 @@ var stTypes = {
         'lazyload.js': 1
     }
 };
-var _rnd = 9569;
+var _rnd = 9457;
