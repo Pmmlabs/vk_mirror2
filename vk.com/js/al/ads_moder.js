@@ -994,38 +994,6 @@ AdsModer.statSummaryShowAllPropertyItems = function(hiderElem) {
     toggleClass(hiderElem, 'hide');
 }
 
-AdsModer.statSummaryDistrShowCountLabel = function(id, i, val) {
-    var contXy = getXY(ge(id + '_stats_graph_wrap'));
-    var colXy = getXY(ge(id + '_distr_col_' + i));
-
-    setStyle(ge(id + '_max_label'), {
-        left: colXy[0] - contXy[0] + 14,
-        top: colXy[1] - contXy[1] - 11
-    });
-    ge(id + '_max_label').innerHTML = val;
-    show(id + '_max_label');
-    setStyle(ge(id + '_max_label_out'), {
-        width: ge(id + '_max_label').offsetWidth + 2,
-        height: ge(id + '_max_label').offsetHeight + 2,
-        left: colXy[0] - contXy[0] + 13,
-        top: colXy[1] - contXy[1] - 12
-    });
-    show(id + '_max_label_out');
-    setStyle(ge(id + '_max_label_out2'), {
-        width: ge(id + '_max_label').offsetWidth + 4,
-        height: ge(id + '_max_label').offsetHeight + 4,
-        left: colXy[0] - contXy[0] + 12,
-        top: colXy[1] - contXy[1] - 13
-    });
-    show(id + '_max_label_out2');
-}
-
-AdsModer.statSummaryDistrHideCountLabel = function(id) {
-    hide(id + '_max_label');
-    hide(id + '_max_label_out');
-    hide(id + '_max_label_out2');
-}
-
 AdsModer.statSummaryShowVotesBox = function(periodType, period) {
     var ajaxParams = {};
     ajaxParams.period_type = periodType;

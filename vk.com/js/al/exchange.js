@@ -133,24 +133,24 @@ var Exchange = {
     updateSearchDatesInputs: function(e, t) {
         var a = new Date(1e3 * e),
             n = new Date(1e3 * t);
-        cur.uiExchangeDateFrom.setDate(a.getFullYear(), a.getMonth() + 1, a.getDate(), !0), cur.uiExchangeTimeFrom.timePicker.hourDD.selectItem(a.getHours(), !1), cur.uiExchangeTimeFrom.timePicker.minDD.selectItem(a.getMinutes(), !1), cur.uiExchangeDateTo.setDate(n.getFullYear(), n.getMonth() + 1, n.getDate(), !0), cur.uiExchangeTimeTo.timePicker.hourDD.selectItem(n.getHours(), !1), cur.uiExchangeTimeTo.timePicker.minDD.selectItem(n.getMinutes(), !1)
+        cur.uiExchangeDateFrom.setDate(a.getFullYear(), a.getMonth() + 1, a.getDate(), !0), cur.uiExchangeTimeFrom.timePicker.hourDD.selectItem(a.getHours(), !1), cur.uiExchangeTimeFrom.timePicker.minDD.selectItem(a.getMinutes(), !1), val("exchange_request_time_from_d", e), val("exchange_request_date_from", e), cur.uiExchangeDateTo.setDate(n.getFullYear(), n.getMonth() + 1, n.getDate(), !0), cur.uiExchangeTimeTo.timePicker.hourDD.selectItem(n.getHours(), !1), cur.uiExchangeTimeTo.timePicker.minDD.selectItem(n.getMinutes(), !1), val("exchange_request_time_to_d", t), val("exchange_request_date_to", t)
     },
     searchCommunity: function() {
         var e = cur.params || Exchange.getSearchParams();
         ajax.post("/adsmarket?act=community_search" + (cur.post_id ? "&ad_id=" + cur.post_id : "&union_id=" + cur.union_id), e, {
             cache: 1,
-            onDone: function(t, a, n, o, r, s) {
-                cur.requestsHash = n, cur.requestsExcluded = o, Exchange.updateSearchDatesInputs(r, s);
-                var c = ge("exchange_more_results");
+            onDone: function(t, a, n, o, r, s, c) {
+                cur.requestsHash = n, cur.requestsExcluded = o, val("filter_budget", c), Exchange.updateSearchDatesInputs(r, s);
+                var u = ge("exchange_more_results");
                 if (e.offset > 0) {
-                    var u = ge("exchange_comm_search_table").tBodies[0];
+                    var d = ge("exchange_comm_search_table").tBodies[0];
                     if (t) {
                         if (browser.msie) {
-                            var d = se("<table>" + t + "</table>"),
-                                t = geByTag("tr", d);
-                            for (i in t) 1 == t[i].nodeType && u.appendChild(t[i])
-                        } else u.insertAdjacentHTML("beforeEnd", t);
-                        u.appendChild(c)
+                            var _ = se("<table>" + t + "</table>"),
+                                t = geByTag("tr", _);
+                            for (i in t) 1 == t[i].nodeType && d.appendChild(t[i])
+                        } else d.insertAdjacentHTML("beforeEnd", t);
+                        d.appendChild(u)
                     }
                 } else ge("exchange_comm_search_table").innerHTML = t, cur.searchOffset = 0;
                 a ? show("exchange_more_results") : hide("exchange_more_results"), each(e, function(e, t) {

@@ -1,3 +1,16 @@
+.stories_feed_test_group_smartfeed_35 .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_36 .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_37 .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_38 .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_39 .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_39 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_40 .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_40 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow,
+.stories_feed_tooltip_icon,
 .stories_reply_item_multi .stories_reply_item_image:before,
 .stories_reply_item_name {
     -ms-high-contrast-adjust: none
@@ -1478,38 +1491,86 @@
     color: #356ca9
 }
 
-.stories_feed_test_group_big_ava .stories_feed_item {
+.stories_feed_test_group_smartfeed_33 .stories_feed_item,
+.stories_feed_test_group_smartfeed_34 .stories_feed_item {
     width: 80px
 }
 
-.stories_feed_test_group_big_ava .stories_feed_item:first-child {
+.stories_feed_test_group_smartfeed_33 .stories_feed_item:first-child,
+.stories_feed_test_group_smartfeed_34 .stories_feed_item:first-child {
     margin-left: 12px
 }
 
-.stories_feed_test_group_big_ava .stories_feed_item:last-child {
+.stories_feed_test_group_smartfeed_33 .stories_feed_item:last-child,
+.stories_feed_test_group_smartfeed_34 .stories_feed_item:last-child {
     margin-right: 12px
 }
 
-.stories_feed_test_group_big_ava .stories_feed_item_ava {
+.stories_feed_test_group_smartfeed_33 .stories_feed_item_ava,
+.stories_feed_test_group_smartfeed_34 .stories_feed_item_ava {
     width: 64px;
     height: 64px
 }
 
-.stories_feed_test_group_big_ava .stories_feed_arrow_left,
-.stories_feed_test_group_big_ava .stories_feed_arrow_right {
+.stories_feed_test_group_smartfeed_33 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_33 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_34 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_34 .stories_feed_arrow_right {
     height: 98px
 }
 
-.stories_feed_test_group_big_ava .stories_feed_arrow_left:after,
-.stories_feed_test_group_big_ava .stories_feed_arrow_right:after {
+.stories_feed_test_group_smartfeed_33 .stories_feed_arrow_left:after,
+.stories_feed_test_group_smartfeed_33 .stories_feed_arrow_right:after,
+.stories_feed_test_group_smartfeed_34 .stories_feed_arrow_left:after,
+.stories_feed_test_group_smartfeed_34 .stories_feed_arrow_right:after {
     top: 38px
 }
 
-.stories_feed_test_group_preview #stories_feed_items {
+.stories_feed_test_group_smartfeed_35 #stories_feed_items,
+.stories_feed_test_group_smartfeed_36 #stories_feed_items,
+.stories_feed_test_group_smartfeed_37 #stories_feed_items,
+.stories_feed_test_group_smartfeed_38 #stories_feed_items,
+.stories_feed_test_group_smartfeed_39 #stories_feed_items,
+.stories_feed_test_group_smartfeed_40 #stories_feed_items {
     font-size: 0
 }
 
-.stories_feed_test_group_preview .stories_feed_preview_item {
+.stories_feed_test_group_smartfeed_35 .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_36 .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_37 .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_38 .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_39 .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_40 .stories_feed_preview_author_shadow {
+    display: block;
+    background: url(/images/shadow_stories.png) repeat-x 0 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 110px;
+    z-index: 1
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .stories_feed_test_group_smartfeed_35 .stories_feed_preview_author_shadow,
+    .stories_feed_test_group_smartfeed_36 .stories_feed_preview_author_shadow,
+    .stories_feed_test_group_smartfeed_37 .stories_feed_preview_author_shadow,
+    .stories_feed_test_group_smartfeed_38 .stories_feed_preview_author_shadow,
+    .stories_feed_test_group_smartfeed_39 .stories_feed_preview_author_shadow,
+    .stories_feed_test_group_smartfeed_40 .stories_feed_preview_author_shadow {
+        background-image: url(/images/shadow_stories_2x.png);
+        background-size: 1px 110px
+    }
+}
+
+.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_39 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_40 .stories_feed_preview_item {
     position: relative;
     display: inline-block;
     background: no-repeat 50% / cover;
@@ -1518,17 +1579,28 @@
     border-radius: 8px;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .12);
     margin-left: 6px;
-    overflow: hidden
+    overflow: hidden;
+    background-clip: content-box
 }
 
-.stories_feed_test_group_preview .stories_feed_preview_item:hover {
+.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item:hover,
+.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item:hover,
+.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item:hover,
+.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item:hover,
+.stories_feed_test_group_smartfeed_39 .stories_feed_preview_item:hover,
+.stories_feed_test_group_smartfeed_40 .stories_feed_preview_item:hover {
     transition: -webkit-transform 100ms linear;
     -o-transition: transform 100ms linear, -o-transform 100ms linear;
     transition: transform 100ms linear;
     transition: transform 100ms linear, -webkit-transform 100ms linear, -o-transform 100ms linear
 }
 
-.stories_feed_test_group_preview .stories_feed_preview_item:active {
+.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item:active,
+.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item:active,
+.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item:active,
+.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item:active,
+.stories_feed_test_group_smartfeed_39 .stories_feed_preview_item:active,
+.stories_feed_test_group_smartfeed_40 .stories_feed_preview_item:active {
     -webkit-transform: scale(0.98);
     -ms-transform: scale(0.98);
     -o-transform: scale(0.98);
@@ -1537,42 +1609,62 @@
     transition: none
 }
 
-.stories_feed_test_group_preview .stories_feed_preview_item:first-child {
+.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item:first-child,
+.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item:first-child,
+.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item:first-child,
+.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item:first-child,
+.stories_feed_test_group_smartfeed_39 .stories_feed_preview_item:first-child,
+.stories_feed_test_group_smartfeed_40 .stories_feed_preview_item:first-child {
     margin-left: 20px
 }
 
-.stories_feed_test_group_preview .stories_feed_preview_item:last-child {
+.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item:last-child,
+.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item:last-child,
+.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item:last-child,
+.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item:last-child,
+.stories_feed_test_group_smartfeed_39 .stories_feed_preview_item:last-child,
+.stories_feed_test_group_smartfeed_40 .stories_feed_preview_item:last-child {
     margin-right: 20px
 }
 
-.stories_feed_test_group_preview .stories_feed_preview_item:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: hsla(0, 0%, 64%, .4);
-    z-index: 2
-}
-
-.stories_feed_test_group_preview .stories_feed_preview_item.story_feed_new_item:after {
+.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item.story_feed_new_item:after,
+.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item.story_feed_new_item:after,
+.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item.story_feed_new_item:after,
+.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item.story_feed_new_item:after,
+.stories_feed_test_group_smartfeed_39 .stories_feed_preview_item.story_feed_new_item:after,
+.stories_feed_test_group_smartfeed_40 .stories_feed_preview_item.story_feed_new_item:after {
     display: none
 }
 
-.stories_feed_test_group_preview .stories_feed_preview_author_shadow {
-    display: block;
-    background: url('/images/shadow_new_stories.png') repeat-x 0 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 110px;
-    z-index: 1;
-    opacity: 0.72
+.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_39 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_40 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow {
+    background-image: url(/images/shadow_new_stories.png)
 }
 
-.stories_feed_test_group_preview .stories_feed_preview_author {
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .stories_feed_test_group_smartfeed_35 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow,
+    .stories_feed_test_group_smartfeed_36 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow,
+    .stories_feed_test_group_smartfeed_37 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow,
+    .stories_feed_test_group_smartfeed_38 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow,
+    .stories_feed_test_group_smartfeed_39 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow,
+    .stories_feed_test_group_smartfeed_40 .stories_feed_preview_item.story_feed_new_item .stories_feed_preview_author_shadow {
+        background-image: url(/images/shadow_new_stories_2x.png);
+        background-size: 1px 110px
+    }
+}
+
+.stories_feed_test_group_smartfeed_35 .stories_feed_preview_author,
+.stories_feed_test_group_smartfeed_36 .stories_feed_preview_author,
+.stories_feed_test_group_smartfeed_37 .stories_feed_preview_author,
+.stories_feed_test_group_smartfeed_38 .stories_feed_preview_author,
+.stories_feed_test_group_smartfeed_39 .stories_feed_preview_author,
+.stories_feed_test_group_smartfeed_40 .stories_feed_preview_author {
     position: absolute;
     bottom: 10px;
     left: 0;
@@ -1580,7 +1672,12 @@
     z-index: 3
 }
 
-.stories_feed_test_group_preview .stories_feed_preview_author_ava {
+.stories_feed_test_group_smartfeed_35 .stories_feed_preview_author_ava,
+.stories_feed_test_group_smartfeed_36 .stories_feed_preview_author_ava,
+.stories_feed_test_group_smartfeed_37 .stories_feed_preview_author_ava,
+.stories_feed_test_group_smartfeed_38 .stories_feed_preview_author_ava,
+.stories_feed_test_group_smartfeed_39 .stories_feed_preview_author_ava,
+.stories_feed_test_group_smartfeed_40 .stories_feed_preview_author_ava {
     width: 34px;
     height: 34px;
     border-radius: 50%;
@@ -1589,7 +1686,12 @@
     position: relative
 }
 
-.stories_feed_test_group_preview .stories_feed_preview_author_name {
+.stories_feed_test_group_smartfeed_35 .stories_feed_preview_author_name,
+.stories_feed_test_group_smartfeed_36 .stories_feed_preview_author_name,
+.stories_feed_test_group_smartfeed_37 .stories_feed_preview_author_name,
+.stories_feed_test_group_smartfeed_38 .stories_feed_preview_author_name,
+.stories_feed_test_group_smartfeed_39 .stories_feed_preview_author_name,
+.stories_feed_test_group_smartfeed_40 .stories_feed_preview_author_name {
     font-size: 12px;
     line-height: 14px;
     color: #fff;
@@ -1605,16 +1707,21 @@
     width: 100%
 }
 
-.stories_feed_test_group_preview .story_feed_new_item .stories_feed_preview_author_shadow {
-    display: block;
-    opacity: 0.88
+.stories_feed_test_group_smartfeed_35 .story_feed_new_item .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_36 .story_feed_new_item .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_37 .story_feed_new_item .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_38 .story_feed_new_item .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_39 .story_feed_new_item .stories_feed_preview_author_shadow,
+.stories_feed_test_group_smartfeed_40 .story_feed_new_item .stories_feed_preview_author_shadow {
+    display: block
 }
 
-.stories_feed_test_group_preview .story_feed_new_item .stories_feed_preview_author_name {
-    color: #b8d9ff
-}
-
-.stories_feed_test_group_preview .story_feed_new_item .stories_feed_preview_author_ava:after {
+.stories_feed_test_group_smartfeed_35 .story_feed_new_item .stories_feed_preview_author_ava:after,
+.stories_feed_test_group_smartfeed_36 .story_feed_new_item .stories_feed_preview_author_ava:after,
+.stories_feed_test_group_smartfeed_37 .story_feed_new_item .stories_feed_preview_author_ava:after,
+.stories_feed_test_group_smartfeed_38 .story_feed_new_item .stories_feed_preview_author_ava:after,
+.stories_feed_test_group_smartfeed_39 .story_feed_new_item .stories_feed_preview_author_ava:after,
+.stories_feed_test_group_smartfeed_40 .story_feed_new_item .stories_feed_preview_author_ava:after {
     position: absolute;
     content: '';
     border: 2px solid #70c1ff;
@@ -1626,13 +1733,33 @@
     border-radius: 50%
 }
 
-.stories_feed_test_group_preview:hover .stories_feed_arrow_left,
-.stories_feed_test_group_preview:hover .stories_feed_arrow_right {
+.stories_feed_test_group_smartfeed_35:hover .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_35:hover .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_36:hover .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_36:hover .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_37:hover .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_37:hover .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_38:hover .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_38:hover .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_39:hover .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_39:hover .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_40:hover .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_40:hover .stories_feed_arrow_right {
     opacity: .8!important
 }
 
-.stories_feed_test_group_preview .stories_feed_arrow_left,
-.stories_feed_test_group_preview .stories_feed_arrow_right {
+.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_39 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_39 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_40 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_40 .stories_feed_arrow_right {
     background: transparent!important;
     width: 64px;
     height: 196px;
@@ -1644,8 +1771,18 @@
     transition: transform 150ms ease-in-out, opacity 150ms ease-in-out, -webkit-transform 150ms ease-in-out, -o-transform 150ms ease-in-out
 }
 
-.stories_feed_test_group_preview .stories_feed_arrow_left:after,
-.stories_feed_test_group_preview .stories_feed_arrow_right:after {
+.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_left:after,
+.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_right:after,
+.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_left:after,
+.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_right:after,
+.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_left:after,
+.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_right:after,
+.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_left:after,
+.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_right:after,
+.stories_feed_test_group_smartfeed_39 .stories_feed_arrow_left:after,
+.stories_feed_test_group_smartfeed_39 .stories_feed_arrow_right:after,
+.stories_feed_test_group_smartfeed_40 .stories_feed_arrow_left:after,
+.stories_feed_test_group_smartfeed_40 .stories_feed_arrow_right:after {
     width: 28px;
     height: 39px;
     top: 50%;
@@ -1657,24 +1794,54 @@
     background: url('/images/svg_icons/stories_feed_preview_arrow_right.svg') no-repeat 50% / contain
 }
 
-.stories_feed_test_group_preview .stories_feed_arrow_left.stories_feed_arrow_right,
-.stories_feed_test_group_preview .stories_feed_arrow_right.stories_feed_arrow_right {
+.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_left.stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_right.stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_left.stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_right.stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_left.stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_right.stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_left.stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_right.stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_39 .stories_feed_arrow_left.stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_39 .stories_feed_arrow_right.stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_40 .stories_feed_arrow_left.stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_40 .stories_feed_arrow_right.stories_feed_arrow_right {
     -webkit-transform: translateX(5px);
     -ms-transform: translateX(5px);
     -o-transform: translateX(5px);
     transform: translateX(5px)
 }
 
-.stories_feed_test_group_preview .stories_feed_arrow_left.stories_feed_arrow_left,
-.stories_feed_test_group_preview .stories_feed_arrow_right.stories_feed_arrow_left {
+.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_left.stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_right.stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_left.stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_right.stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_left.stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_right.stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_left.stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_right.stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_39 .stories_feed_arrow_left.stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_39 .stories_feed_arrow_right.stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_40 .stories_feed_arrow_left.stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_40 .stories_feed_arrow_right.stories_feed_arrow_left {
     -webkit-transform: translateX(-5px);
     -ms-transform: translateX(-5px);
     -o-transform: translateX(-5px);
     transform: translateX(-5px)
 }
 
-.stories_feed_test_group_preview .stories_feed_arrow_left:hover,
-.stories_feed_test_group_preview .stories_feed_arrow_right:hover {
+.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_left:hover,
+.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_right:hover,
+.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_left:hover,
+.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_right:hover,
+.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_left:hover,
+.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_right:hover,
+.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_left:hover,
+.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_right:hover,
+.stories_feed_test_group_smartfeed_39 .stories_feed_arrow_left:hover,
+.stories_feed_test_group_smartfeed_39 .stories_feed_arrow_right:hover,
+.stories_feed_test_group_smartfeed_40 .stories_feed_arrow_left:hover,
+.stories_feed_test_group_smartfeed_40 .stories_feed_arrow_right:hover {
     -webkit-transform: translateX(0);
     -ms-transform: translateX(0);
     -o-transform: translateX(0);
@@ -1682,11 +1849,124 @@
     opacity: 1!important
 }
 
-.stories_feed_test_group_preview .stories_feed_arrow_left:after {
+.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_left:after,
+.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_left:after,
+.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_left:after,
+.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_left:after,
+.stories_feed_test_group_smartfeed_39 .stories_feed_arrow_left:after,
+.stories_feed_test_group_smartfeed_40 .stories_feed_arrow_left:after {
     -webkit-transform: translate(-50%, -50%) scaleX(-1);
     -ms-transform: translate(-50%, -50%) scaleX(-1);
     -o-transform: translate(-50%, -50%) scaleX(-1);
     transform: translate(-50%, -50%) scaleX(-1)
+}
+
+.stories_feed_test_group_smartfeed_35.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_35.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_36.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_36.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_37.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_37.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_38.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_38.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_39.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_39.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_40.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_40.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item {
+    width: 104px
+}
+
+.stories_feed_test_group_smartfeed_35.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_35.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_35.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_35.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_35.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_35.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_36.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_36.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_36.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_36.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_36.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_36.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_37.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_37.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_37.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_37.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_37.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_37.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_38.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_38.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_38.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_38.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_38.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_38.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_39.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_39.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_39.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_39.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_39.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_39.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_40.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_40.stories_feed_test_group_smartfeed_37 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_40.stories_feed_test_group_smartfeed_37 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_40.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_40.stories_feed_test_group_smartfeed_38 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_40.stories_feed_test_group_smartfeed_38 .stories_feed_preview_item {
+    height: 185px
+}
+
+.stories_feed_test_group_smartfeed_35.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_35.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_36.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_36.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_37.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_37.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_38.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_38.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_39.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_39.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_40.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_40.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item {
+    width: 94px
+}
+
+.stories_feed_test_group_smartfeed_35.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_35.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_35.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_35.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_35.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_35.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_36.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_36.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_36.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_36.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_36.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_36.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_37.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_37.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_37.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_37.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_37.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_37.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_38.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_38.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_38.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_38.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_38.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_38.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_39.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_39.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_39.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_39.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_39.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_39.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_40.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_40.stories_feed_test_group_smartfeed_35 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_40.stories_feed_test_group_smartfeed_35 .stories_feed_preview_item,
+.stories_feed_test_group_smartfeed_40.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_left,
+.stories_feed_test_group_smartfeed_40.stories_feed_test_group_smartfeed_36 .stories_feed_arrow_right,
+.stories_feed_test_group_smartfeed_40.stories_feed_test_group_smartfeed_36 .stories_feed_preview_item {
+    height: 167px
 }
 
 .stories_hide_animation {
@@ -1817,6 +2097,11 @@
     left: 16px;
     top: -33px;
     z-index: 2
+}
+
+.stories_item.replies_button_to_bottom .stories_answers_wrap {
+    top: inherit;
+    bottom: 16px
 }
 
 .stories_item.failed .stories_answers_wrap {
@@ -2149,7 +2434,7 @@
 }
 
 .stories_feedback_replies {
-    padding: 0 16px
+    padding: 0 8px
 }
 
 .stories_replies_chunk_hidden {
@@ -2171,27 +2456,25 @@
 }
 
 .stories_feedback_replies_items {
-    margin-left: -16px;
+    margin-left: 0;
     white-space: normal
 }
 
 .stories_feedback_replies_items .stories_feed_item {
-    margin-left: 16px;
-    margin-right: 0!important
-}
-
-.stories_feedback_replies_items .stories_feed_item,
-.stories_feedback_replies_items .stories_feed_item .stories_feed_item_ava {
-    width: 52px
+    margin: 12px 0 0!important;
+    width: 68px
 }
 
 .stories_feedback_replies_items .stories_feed_item .stories_feed_item_ava {
+    width: 52px;
     height: 52px;
     border-radius: 26px
 }
 
 .stories_feedback_replies_items .stories_feed_item_name {
-    margin-top: 6px
+    margin-top: 6px;
+    padding: 0 1px;
+    box-sizing: border-box
 }
 
 .stories_feedback_separator {
@@ -2245,7 +2528,7 @@
 }
 
 .stories_feedback_loader {
-    height: 136px
+    height: 148px
 }
 
 .stories_feedback_loader .stories_view_loader_circular {
@@ -2597,4 +2880,41 @@
 
 .stories_hide_reply_other_action.disabled:hover {
     text-decoration: none
+}
+
+.stories_feed_tooltip {
+    text-align: center;
+    font-size: 14px!important;
+    top: 0!important;
+    padding: 32px 26px 28px!important
+}
+
+.stories_feed_tooltip .feature_intro_tt_hide {
+    margin: -32px -26px 0 0!important
+}
+
+.stories_feed_tooltip a {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.stories_feed_tooltip .eltt_arrow_back {
+    margin-top: 69px!important
+}
+
+.stories_feed_tooltip_icon {
+    background: url(/images/stories_tooltip_icon.png) no-repeat;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 24px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .stories_feed_tooltip_icon {
+        background-image: url(/images/stories_tooltip_icon_2x.png);
+        background-size: 120px 120px
+    }
 }

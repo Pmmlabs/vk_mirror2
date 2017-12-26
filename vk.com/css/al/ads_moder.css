@@ -1063,7 +1063,7 @@ table.ads_logs_info th {
 }
 
 .ads_sign_compare_equal_wide {
-    letter-spacing: -2px
+    letter-spacing: -0.3ch
 }
 
 .ads_note {
@@ -1177,84 +1177,6 @@ table.ads_logs_info th {
 #ads_premoderation_stat .ads_unions_list th.column_moder *,
 #ads_premoderation_stat .ads_unions_list th.column_period * {
     text-align: left
-}
-
-.ads_moder_chart_table_wrap {
-    position: relative
-}
-
-.ads_moder_chart_table {
-    background-color: #f3f5f7;
-    border: 0 none;
-    margin-bottom: 10px;
-    vertical-align: bottom;
-    margin: 0 auto
-}
-
-.ads_moder_chart_table td.ads_moder_total_chart_row {
-    background-color: #fff;
-    color: #45688e;
-    border: 0 none;
-    padding-top: 10px;
-    padding-bottom: 30px;
-    vertical-align: bottom
-}
-
-.ads_moder_chart_column {
-    background-color: #b0c1cf;
-    vertical-align: bottom;
-    cursor: pointer
-}
-
-.ads_moder_chart_column.even {
-    background-color: #c7d3dd
-}
-
-.ads_moder_chart_table td {
-    vertical-align: bottom
-}
-
-.ads_moder_chart_table td.ads_moder_chart_under_num {
-    background-color: #eaeef2;
-    height: 15px;
-    padding-bottom: 3px
-}
-
-.ads_moder_chart_table td.ads_moder_chart_under_num.even {
-    background-color: #fff
-}
-
-.ads_moder_chart_date {
-    font-size: 9px;
-    height: 10px;
-    padding-top: 4px;
-    text-align: center
-}
-
-.ads_moder_chart_max_label {
-    background-color: #fff;
-    color: #000;
-    display: none;
-    font-size: 9px;
-    padding: 2px 4px;
-    position: absolute;
-    z-index: 100
-}
-
-.ads_moder_chart_max_label_out {
-    opacity: 0.2
-}
-
-.ads_moder_chart_max_label_out,
-.ads_moder_chart_max_label_out2 {
-    background-color: #2b587a;
-    display: none;
-    position: absolute;
-    z-index: 90
-}
-
-.ads_moder_chart_max_label_out2 {
-    opacity: 0.1
 }
 
 #ads_moder_domain_search {

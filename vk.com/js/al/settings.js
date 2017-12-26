@@ -575,6 +575,18 @@ var Settings = {
             onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
         })
     },
+    photoTagFriendsCheck: function() {
+        clearTimeout(cur.photoAutoTagFriendsUpdateTO), cur.photoAutoTagFriendsUpdateTO = setTimeout(Settings.photoTagFriendsSubmit, 200)
+    },
+    photoTagFriendsSubmit: function() {
+        ajax.post("/al_settings.php", {
+            act: "a_change_autotag_friends",
+            hash: cur.options.autotag_friends_hash,
+            autotag_friends: isChecked("settings_photos_auto_tag") ? 1 : 0
+        }, {
+            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("cposts")
+        })
+    },
     OTPAuthEnable: function(t) {
         return showBox("al_settings.php", {
             act: "otp_auth_box",
@@ -1091,7 +1103,7 @@ var Settings = {
                         if (unlockButton(t), cur.historyOffset ? cur.historyOffset += 100 : (n.innerHTML = "", cur.historyOffset = 5), browser.msie) {
                             var a = se("<table>" + e + "</table>"),
                                 r = geByTag("tr", a);
-                            for (i in r) 1 == r[i].nodeType && n.appendChild(r[i]);
+                            for (i in r) 1 == r[i].nodeType && n.appendChild(r[i])
                         } else n.insertAdjacentHTML("beforeEnd", e);
                     (!e || s) && (addClass(n.lastChild, "settings_votes_history_last"), hide(t))
                 }

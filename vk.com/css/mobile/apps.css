@@ -9926,8 +9926,9 @@ only screen and (min-device-pixel-ratio: 2) {
 }
 
 .informer_title {
-    font-weight: 700;
-    color: #2e3033
+    font-weight: 500;
+    color: #2e3033;
+    font-size: 15px
 }
 
 .informer_view_1 .informer_title {
@@ -9991,6 +9992,48 @@ only screen and (min-device-pixel-ratio: 2) {
     line-height: 32px;
     padding-left: 5px;
     color: #888
+}
+
+.r .informer_view_0 .informer_button.primary,
+.r .informer_view_1 .informer_button.primary,
+.r .informer_view_2 .informer_button.primary {
+    font-weight: 500;
+    color: #fff;
+    background-color: #5181b8;
+    font-size: 14px
+}
+
+.r .feedAssistance_pushNotificationsSwitch {
+    display: none
+}
+
+.r .informer_view_1.feedAssistance_pushNotificationsSwitch .informer_title {
+    margin-top: 0
+}
+
+.r .informer_view_1.feedAssistance_pushNotificationsSwitch .informer_message {
+    font-weight: 400;
+    font-size: 14px
+}
+
+.r .informer_view_1.feedAssistance_pushNotificationsSwitch .informer_button.primary {
+    padding: 9px 12px
+}
+
+.r .informer.informer_view_2.feedAssistance_pushNotificationsSwitch {
+    padding-bottom: 28px
+}
+
+.r .informer.informer_view_2.feedAssistance_pushNotificationsSwitch .informer_message {
+    font-size: 13px
+}
+
+.r .informer.informer_view_2.feedAssistance_pushNotificationsSwitch .informer_button.primary {
+    margin-top: 8px
+}
+
+.push_notifier_default+body .feedAssistance_pushNotificationsSwitch {
+    display: block
 }
 
 .top_hashtags {

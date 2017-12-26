@@ -21,7 +21,7 @@ function photoTagger(t, e) {
         b = E ? 1 : floatval(e.mina),
         A = E ? 1 : floatval(e.maxa);
     b > 0 && A > 0 && b > A && (A = b), t.src && (T.src = t.src);
-    var _, L, I, X, Y, H, O, q, F = {},
+    var _, I, L, X, Y, H, O, q, F = {},
         R = 0,
         W = 0,
         j = {},
@@ -29,7 +29,7 @@ function photoTagger(t, e) {
             j = extend(j, t), each(t, function(t) {
                 var e = this + ("left" == t ? h : "top" == t ? a : 0);
                 _.style[t] = e + "px"
-            }), L.style.marginLeft = -t.left + "px", L.style.marginTop = -t.top + "px", each(F, function(e) {
+            }), I.style.marginLeft = -t.left + "px", I.style.marginTop = -t.top + "px", each(F, function(e) {
                 if (e.length < 2) "n" == e || "s" == e ? (this.style.left = h + t.left + intval(t.width / 2) - 5 + "px", this.style.top = a + t.top + ("n" == e ? 0 : t.height) - 5 + "px") : (this.style.left = h + t.left + ("w" == e ? 0 : t.width) - 5 + "px", this.style.top = a + t.top + intval(t.height / 2) - 5 + "px");
                 else {
                     var i = e.charAt(0),
@@ -85,7 +85,7 @@ function photoTagger(t, e) {
             return e
         },
         U = function(i) {
-            return q = Q(t), X = P(i), O = extend({}, j), d = l = c = !1, i.target == L ? B = 1 : i.target == I || i.target == t ? B = 2 : i.target == r || i.target == o ? (B = i.target, j.width && j.height || k({
+            return q = Q(t), X = P(i), O = extend({}, j), d = l = c = !1, i.target == I ? B = 1 : i.target == L || i.target == t ? B = 2 : i.target == r || i.target == o ? (B = i.target, j.width && j.height || k({
                 left: 0,
                 top: 0,
                 width: w(100, w(R, W)),
@@ -115,7 +115,7 @@ function photoTagger(t, e) {
                     left: h,
                     top: a
                 }))
-            } else if (2 == B) v(n[0] - X[0]) > 3 && v(n[1] - X[1]) > 3 && (B = 3, K(), q = Q(t), X[0] -= q[0], X[1] -= q[1], show(_, I), each(F, function() {
+            } else if (2 == B) v(n[0] - X[0]) > 3 && v(n[1] - X[1]) > 3 && (B = 3, K(), q = Q(t), X[0] -= q[0], X[1] -= q[1], show(_, L), each(F, function() {
                 show(this), setStyle(this, "opacity", .7)
             }));
             else if (B == r || B == o) {
@@ -142,8 +142,8 @@ function photoTagger(t, e) {
                 var C = 0,
                     M = 0,
                     T = 0,
-                    L = 0;
-                0 > h ? (C = h, h = 0) : g > R - h && (C = R - h - g), C && (g += C, b > 0 && b * f > g && (L = u(g / b) - f, f += L, a -= x > 0 ? 0 : L)), 0 > a ? (M = a, a = 0) : f > W - a && (M = W - a - f), M && (f += M, A > 0 && g > A * f && (T = u(f * A) - g, g += T, h -= E > 0 ? 0 : T)), k({
+                    I = 0;
+                0 > h ? (C = h, h = 0) : g > R - h && (C = R - h - g), C && (g += C, b > 0 && b * f > g && (I = u(g / b) - f, f += I, a -= x > 0 ? 0 : I)), 0 > a ? (M = a, a = 0) : f > W - a && (M = W - a - f), M && (f += M, A > 0 && g > A * f && (T = u(f * A) - g, g += T, h -= E > 0 ? 0 : T)), k({
                     left: h,
                     top: a,
                     width: g,
@@ -200,7 +200,7 @@ function photoTagger(t, e) {
                     height: c
                 })
             }
-            return show(_, I), each(F, function() {
+            return show(_, L), each(F, function() {
                 fadeTo(this, 200, .3)
             }), hide(s), B = 0, removeEvent(bodyNode, "mousemove", V), removeEvent(bodyNode, "mouseup", Z), removeEvent(bodyNode, "dragend", Z), e.onFinish && e.onFinish(), cancelEvent(h)
         };
@@ -221,7 +221,7 @@ function photoTagger(t, e) {
                 zIndex: x + 40,
                 left: 0,
                 top: 0
-            })), L = geByTag1("img", _), I = f.appendChild(ce("div", {
+            })), I = geByTag1("img", _), L = f.appendChild(ce("div", {
                 className: "tag_faded"
             }, {
                 cursor: "crosshair",
@@ -247,20 +247,23 @@ function photoTagger(t, e) {
                 height: l[2]
             }
         }
-        e.rect ? (k(e.rect), show(I, _), each(F, function() {
+        e.rect ? (k(e.rect), show(L, _), each(F, function() {
             show(this)
         })) : (t.style.cursor = "crosshair", addEvent(t, "mousedown", U))
     }(), {
         destroy: function() {
-            cleanElems(f, t, _, I, r, o), bodyNode.removeChild(s), f.removeChild(_), f.removeChild(I), each(["nw", "n", "ne", "w", "e", "sw", "s", "se"], function() {
+            cleanElems(f, t, _, L, r, o), bodyNode.removeChild(s), f.removeChild(_), f.removeChild(L), each(["nw", "n", "ne", "w", "e", "sw", "s", "se"], function() {
                 var t = this.toString();
                 F[t] && f.removeChild(F[t])
-            }), t.style.cursor = "default", removeEvent(t, "mousedown", U), removeEvent(window, "resize", G), each(F, function() {
+            }), setStyle(t, {
+                cursor: "",
+                zIndex: ""
+            }), removeEvent(t, "mousedown", U), removeEvent(window, "resize", G), each(F, function() {
                 cleanElems(this)
             })
         },
         reset: function() {
-            j = {}, hide(I, _), each(F, function() {
+            j = {}, hide(L, _), each(F, function() {
                 hide(this)
             }), t.style.cursor = "crosshair", removeEvent(t, "mousedown", U), addEvent(t, "mousedown", U)
         },
@@ -268,12 +271,12 @@ function photoTagger(t, e) {
             d || (d = R, l = W, c = clone(j));
             var o = e / d,
                 s = r / l;
-            R = e, W = r, C = w(R, C), i = intval(C / 2), M = w(W, M), n = intval(M / 2), N = w(N, C), S = w(S, M), b > 0 && S * b > N ? N = m(S * b) : A > 0 && N > S * A && (S = m(N / A)), h = t.offsetLeft, a = t.offsetTop, setStyle(I, {
+            R = e, W = r, C = w(R, C), i = intval(C / 2), M = w(W, M), n = intval(M / 2), N = w(N, C), S = w(S, M), b > 0 && S * b > N ? N = m(S * b) : A > 0 && N > S * A && (S = m(N / A)), h = t.offsetLeft, a = t.offsetTop, setStyle(L, {
                 left: h,
                 top: a,
                 width: e,
                 height: r
-            }), setStyle(L, {
+            }), setStyle(I, {
                 width: e,
                 height: r
             }), j.width && (j.left = u(o * c.left), j.width = u(o * c.width), j.top = u(s * c.top), j.height = u(s * c.height), j.width < N && (j.width = N), j.height < S && (j.height = S), k(j))

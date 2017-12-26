@@ -194,6 +194,375 @@
     padding: 0 10px
 }
 
+.pv_photo_tags {
+    height: 0;
+    z-index: 1;
+    position: relative
+}
+
+.photo_tags_suggested_areas_list {
+    width: 100%;
+    position: relative
+}
+
+.photo_tags_suggested_areas_list.visible_all .photo_tags_suggested_area {
+    visibility: visible;
+    opacity: 1;
+    -o-transition: visibility 0s 0s, opacity 0.2s, border 0.15s;
+    transition: visibility 0s 0s, opacity 0.2s, border 0.15s;
+    border-color: hsla(0, 0%, 100%, .32)
+}
+
+.photo_tags_suggested_areas_list.visible_all.area_hover .photo_tags_suggested_area {
+    border-color: hsla(0, 0%, 100%, .24)
+}
+
+.photo_tags_suggested_area {
+    display: block;
+    pointer-events: none;
+    position: absolute;
+    box-sizing: border-box;
+    border: 2px solid hsla(0, 0%, 100%, .32);
+    box-shadow: 0 0 1px rgba(0, 0, 0, .4), inset 0 0 1px 0 rgba(0, 0, 0, .4);
+    border-radius: 4px;
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    -o-transition: visibility 0s 0.2s, opacity 0.2s, border 0.15s;
+    transition: visibility 0s 0.2s, opacity 0.2s, border 0.15s;
+    z-index: 1
+}
+
+.photo_tags_suggested_area.active {
+    z-index: 2;
+    pointer-events: all;
+    border-color: hsla(0, 0%, 100%, .48)!important
+}
+
+.photo_tags_suggested_area.deleted {
+    display: none
+}
+
+.photo_tooltip {
+    position: absolute;
+    white-space: nowrap;
+    z-index: 630;
+    width: 280px;
+    -webkit-filter: drop-shadow(0px 0px 1px rgba(0, 20, 51, .12));
+    filter: drop-shadow(0px 0px 1px rgba(0, 20, 51, 0.12));
+    cursor: default;
+    text-align: center
+}
+
+.photo_tooltip .photo_tooltip__content {
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 20px 40px 0 rgba(0, 0, 0, .3);
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    box-sizing: border-box
+}
+
+.photo_tooltip .photo_tooltip__content:after {
+    content: '';
+    width: 14px;
+    height: 14px;
+    display: block;
+    position: absolute;
+    background-color: #fff;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    border-radius: 2px
+}
+
+.photo_tooltip[data-dir=bottom] .photo_tooltip__content {
+    margin-top: 12px
+}
+
+.photo_tooltip[data-dir=bottom] .photo_tooltip__content:after {
+    top: -5px;
+    left: 50%;
+    margin-left: -7px
+}
+
+.photo_tooltip[data-dir=right_top] {
+    text-align: left
+}
+
+.photo_tooltip[data-dir=right_top] .photo_tooltip__content {
+    margin-left: 12px
+}
+
+.photo_tooltip[data-dir=right_top] .photo_tooltip__content:after {
+    top: 50%;
+    margin-top: -7px;
+    left: -5px
+}
+
+.photo_tooltip .photo_tooltip__name {
+    padding: 13px 30px 13px 13px;
+    font-size: 13px;
+    line-height: 15px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.photo_tooltip .photo_tooltip__name button {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    right: 9px;
+    margin-top: -8px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%2216%2020%2024%2024%22%20version%3D%221.1%22%20style%3D%22%22%3E%0A%20%20%3Cg%20style%3D%22fill-rule%3Aevenodd%3Bfill%3Anone%3Bstroke-width%3A1.5%3Bstroke%3Anone%22%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2220%22%20width%3D%2224%22%20height%3D%2224%22%20opacity%3D%220.4%22%2F%3E%0A%20%20%20%20%3Cg%20style%3D%22stroke-linecap%3Around%3Bstroke-width%3A2.5%3Bstroke%3A%23828A99%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M22.5%2026.5L33.5%2037.5%22%2F%3E%3Cpath%20d%3D%22M33.5%2026.5L22.5%2037.5%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") 50% no-repeat;
+    background-size: 15px;
+    border: none;
+    background-color: transparent;
+    text-indent: -999px;
+    cursor: pointer;
+    opacity: 0.7;
+    overflow: hidden
+}
+
+.photo_tooltip .photo_tooltip__name button:hover {
+    opacity: 0.9
+}
+
+.suggested-tag-user {
+    padding: 13px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    white-space: nowrap
+}
+
+.suggested-tag-user .suggested-tag-user__name {
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.suggested-tag-user .suggested-tag-user__actions {
+    padding-left: 10px;
+    margin-left: auto;
+    color: #939393
+}
+
+.suggested-tag-user .suggested-tag-user__actions button {
+    -webkit-appearance: none;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: none;
+    font-size: 13px;
+    line-height: 15px;
+    cursor: pointer;
+    color: inherit
+}
+
+.suggested-tag-user .suggested-tag-user__actions button:hover {
+    text-decoration: underline
+}
+
+.suggested-tag-user .suggested-tag-user__actions button.yes {
+    color: #2a5685
+}
+
+.friends_dropdown__list {
+    width: 240px;
+    box-sizing: border-box;
+    text-align: left;
+    position: relative;
+    padding: 10px 12px 10px 8px;
+    background-color: #fff;
+    border-radius: 8px
+}
+
+.friends_dropdown__list.show-dropdown {
+    border-radius: 8px 8px 0 0
+}
+
+.friends_dropdown__list_input {
+    box-sizing: border-box;
+    padding: 2px 0;
+    border: none;
+    width: 100%;
+    font-size: 13px;
+    line-height: 15px;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%221284%20207%2024%2024%22%3E%3Cg%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M1298.5%20222.9C1297.5%20223.6%201296.3%20224%201295%20224%201291.7%20224%201289%20221.3%201289%20218%201289%20214.7%201291.7%20212%201295%20212%201298.3%20212%201301%20214.7%201301%20218%201301%20219.3%201300.6%20220.5%201299.9%20221.5L1302.7%20224.2C1303%20224.6%201303.1%20225.3%201302.7%20225.7%201302.3%20226%201301.6%20226%201301.2%20225.7L1298.5%20222.9ZM1295%20222C1297.2%20222%201299%20220.2%201299%20218%201299%20215.8%201297.2%20214%201295%20214%201292.8%20214%201291%20215.8%201291%20218%201291%20220.2%201292.8%20222%201295%20222Z%22%20fill%3D%22rgba(130%2C138%2C153%2C0.71)%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-size: 24px auto;
+    padding-left: 26px
+}
+
+.friends_dropdown__list.show-dropdown .friends_dropdown__list_dropdown {
+    display: block
+}
+
+.friends_dropdown__list_dropdown {
+    position: absolute;
+    background-color: #fff;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 230px;
+    overflow: auto;
+    border-radius: 0 0 4px 4px;
+    padding-top: 4px;
+    border-top: 1px solid #e7e8ec;
+    display: none
+}
+
+.friends_dropdown__list_item {
+    padding: 7px 10px;
+    background-color: #fff;
+    cursor: pointer;
+    display: block
+}
+
+.friends_dropdown__list_item:after {
+    content: '.';
+    display: block;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    clear: both;
+    visibility: hidden
+}
+
+* html .friends_dropdown__list_item {
+    height: 1%
+}
+
+.friends_dropdown__list_item:hover {
+    background-color: #f0f2f5
+}
+
+.friends_dropdown__list_item.system_message {
+    cursor: default;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #939393;
+    white-space: normal;
+    line-height: 1.5
+}
+
+.friends_dropdown__list_item.system_message:hover {
+    background-color: transparent
+}
+
+.friends_dropdown__list_item.system_message .add_term_tag {
+    color: #2a5885;
+    cursor: pointer
+}
+
+.friends_dropdown__list_item.system_message .add_term_tag:hover {
+    text-decoration: underline
+}
+
+.friends_dropdown__list_item .friends_dropdown__list_image {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    margin-right: 8px;
+    float: left
+}
+
+.friends_dropdown__list_item .friends_dropdown__list_info {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    height: 34px
+}
+
+.friends_dropdown__list_item .friends_dropdown__list_label,
+.friends_dropdown__list_item .friends_dropdown__list_name {
+    font-size: 13px;
+    line-height: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.friends_dropdown__list_item .friends_dropdown__list_name {
+    color: #2a5885
+}
+
+.friends_dropdown__list_item .friends_dropdown__list_label {
+    color: #6f7985
+}
+
+.autotag_settings_box .box_title_wrap {
+    background-color: #fff;
+    padding-top: 82px;
+    text-align: center;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0
+}
+
+.autotag_settings_box .box_title {
+    font-size: 22px;
+    padding-left: 0
+}
+
+.autotag_settings_box .box_x_button {
+    position: absolute;
+    top: 0;
+    right: 0
+}
+
+.autotag_settings_box .box_body {
+    font-size: 16px;
+    line-height: 1.44;
+    text-align: center;
+    padding: 10px 40px 35px
+}
+
+.autotag_settings_box .box_controls {
+    height: auto;
+    background: #fff;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    text-align: center;
+    padding-bottom: 27px
+}
+
+.autotag_settings_box .box_controls table {
+    float: none
+}
+
+.autotag_settings_box .box_controls table,
+.autotag_settings_box .box_controls tbody,
+.autotag_settings_box .box_controls td,
+.autotag_settings_box .box_controls tr {
+    display: block
+}
+
+.autotag_settings_box .box_controls .flat_button {
+    margin-left: 0;
+    margin-bottom: 15px
+}
+
 .pv_layer_wrap {
     cursor: pointer
 }
@@ -638,6 +1007,31 @@
     -o-transform: scale(1);
     transform: scale(1);
     opacity: 1
+}
+
+.pv_cont .tag_faded {
+    opacity: 0
+}
+
+.pv_cont .tag_frame {
+    border-radius: 0
+}
+
+.pv_cont .tag_frame:after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border: 1px solid hsla(0, 0%, 100%, .7);
+    box-sizing: border-box;
+    pointer-events: none
+}
+
+.pv_cont .tag_frame_handle {
+    border-radius: 50%
 }
 
 #layer_bg.pv_light,
