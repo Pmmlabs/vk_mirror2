@@ -168,10 +168,10 @@ var stVersions = {
     'sorter.js': 1976440538,
     'qsorter.js': 4013122173,
     'usorter.js': 362016183,
-    'cmodules/web/photos_module.js': 12694000941,
-    'photo_tagger_mode.js': 171461877,
+    'cmodules/web/photos_module.js': 13696759782,
+    'photo_tagger_mode.js': 2811660011,
     'photoview.js': 864074332,
-    'photoview.css': 28483489924,
+    'photoview.css': 27766569006,
     'fullscreen_pv.js': 2393839857,
     'fullscreen_pv.css': 13511458377,
     'spe.js': 3760998372,
@@ -250,7 +250,7 @@ var stVersions = {
     'mail.css': 2042965398,
     'mail.js': 2691231200,
     'email.css': 2955752408,
-    'im.css': 120254292718,
+    'im.css': 120770199531,
     'imn.js': 140830464477,
     'im.js': 1322065005,
     'emoji.js': 1446212884,
@@ -374,13 +374,13 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 22160482978,
     'aes_light.js': 592436914,
-    'ads.css': 21240965815,
+    'ads.css': 23549184976,
     'ads_bonus.css': 460482192,
     'ads.js': 2815593368,
     'ads_payments.js': 2205910694,
     'ads_edit.css': 11705983936,
     'ads_edit.js': 500497847,
-    'ads_edit_geo.js': 1634516705,
+    'ads_edit_geo.js': 519167575,
     'ads_moder_common.css': 12713278667,
     'ads_moder.css': 12291477237,
     'ads_moder_common.js': 3875868763,
@@ -440,7 +440,7 @@ var stVersions = {
     'paysupp_admin.js': 127920242,
     'paysupp_admin.css': 14170515183,
     'exchange.css': 14291154803,
-    'exchange.js': 3173164795,
+    'exchange.js': 3247888613,
     'exchange_moder.css': 13857726076,
     'exchange_moder.js': 1937742752,
     'ads_offers.css': 14767079835,
@@ -630,4 +630,4 @@ var stTypes = {
         'lazyload.js': 1
     }
 };
-var _rnd = 6475;
+var _rnd = 694;

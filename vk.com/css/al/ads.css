@@ -640,6 +640,11 @@ a .ads_sub_link:hover {
     display: inline-block
 }
 
+.ads_intro_box_exchange {
+    line-height: 19px;
+    padding-bottom: 20px
+}
+
 .ads_mobile_intro {
     background-color: #edf1f5;
     padding: 22px 40px 0;

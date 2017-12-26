@@ -13460,11 +13460,11 @@ charset=utf-8,
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 14px;
-    color: #909499
+    color: #71757a
 }
 
 .convo__msgAuthor {
-    color: #a0a6ac
+    color: #92969c
 }
 
 .convo__msgAttach,
@@ -13505,7 +13505,7 @@ charset=utf-8,
     text-overflow: ellipsis;
     font-size: 14px;
     line-height: 20px;
-    color: #787f86
+    color: #71757a
 }
 
 .convo_typing .convo__typing {
@@ -13563,7 +13563,7 @@ charset=utf-8,
 .m .convo__text .mi_medias_plain {
     display: inline;
     padding-top: 0;
-    color: #909499;
+    color: #71757a;
     font-size: 14px
 }
 
@@ -14394,16 +14394,17 @@ charset=utf-8,
     font-size: 14px;
     line-height: 28px;
     background: #5181b8;
-    border: 0;
     border-right: 1px solid #6b95c4;
     color: #fff;
-    padding: 0 8px;
+    padding: 0 10px;
     margin: 0 0 7px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    -webkit-tap-highlight-color: transparent
+    -webkit-tap-highlight-color: transparent;
+    border: 0;
+    border-radius: 3px
 }
 
 .mailActs__button:focus {
@@ -14411,12 +14412,7 @@ charset=utf-8,
 }
 
 .mailActs__button:first-child {
-    border-radius: 3px 0 0 3px
-}
-
-.mailActs__button:last-child {
-    border-radius: 0 3px 3px 0;
-    border: 0
+    margin-right: 6px
 }
 
 .mailActs__icon {

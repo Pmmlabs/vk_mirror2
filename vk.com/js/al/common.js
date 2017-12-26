@@ -5455,7 +5455,7 @@ function handlePageParams(params) {
     var ads_menu_add = '';
 
     if (intval(cnts[9]) > 0) {
-        ads_menu_link = 'exchange';
+        ads_menu_link = 'adsmarket';
         ads_menu_add = 'act=overview&status=-1';
     } else if (intval(cnts[9]) < -1) {
         cnts[9] = 1;

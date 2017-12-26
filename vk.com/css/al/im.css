@@ -4929,7 +4929,11 @@ img.im_photo_thumb {
 
 .im-mess--lbl-was-edited {
     color: hsla(220, 8%, 51%, .6);
-    white-space: nowrap
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
 }
 
 .nim-peer {
