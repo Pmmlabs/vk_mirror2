@@ -3131,26 +3131,26 @@
 }
 
 .bugtracker_logo_event_text {
-    margin: 11px 10px 0 0;
+    margin: 7px 10px 0 0;
     color: #fff;
     font-weight: 700;
     font-size: 16px
 }
 
 .top_home_logo.bugtracker_logo_glitch:hover {
-    background-size: 34px 19px!important;
+    background-size: 39px 23px!important;
     height: 7px!important;
     background-position: 0 0!important
 }
 
 .top_home_logo.bugtracker_logo_glitch:hover:after,
 .top_home_logo.bugtracker_logo_glitch:hover:before {
-    background: url('/images/svg_icons/ic_head_logo.svg') no-repeat 50% / contain;
+    background: url('/images/svg_icons/ic_ny_head_logo.svg') no-repeat 50% / contain;
     display: inline-block;
     height: 7px;
-    width: 34px;
+    width: 39px;
     content: ' ';
-    background-size: 34px 19px!important;
+    background-size: 39px 23px!important;
     position: relative;
     left: 0
 }

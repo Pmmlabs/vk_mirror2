@@ -221,9 +221,9 @@
 .landing_ads_header .landing_ads_header_logo:before {
     content: ' ';
     display: inline-block;
-    background: url('/images/svg_icons/ic_head_logo.svg') no-repeat 50% / contain;
-    height: 19px;
-    width: 34px;
+    background: url('/images/svg_icons/ic_ny_head_logo.svg') no-repeat 50% / contain;
+    height: 23px;
+    width: 39px;
     margin: 17px 10px 0 0;
     vertical-align: top
 }

@@ -1095,7 +1095,8 @@ if (!window.Emoji) {
                                 stickerSize: stickerSize
                             };
                             var rsTemplate = '';
-                            if (!browser.msie && animationUrl && stickerUrl) {
+
+                            if ((!browser.msie || browser.msie_edge) && animationUrl && stickerUrl) {
                                 rsTemplate = Emoji.hintsStickerItemAnimation();
                                 var m = rand(1, 100000);
                                 tempOpts.animationUrl = animationUrl;
@@ -2144,7 +2145,7 @@ if (!window.Emoji) {
                     stickerUrl: stickers[i][2]
                 };
                 var rsHtml = '';
-                if (!browser.msie && stickers[i][3]) {
+                if ((!browser.msie || browser.msie_edge) && stickers[i][3]) {
                     rsHtml = Emoji.stickerItemAnimation();
                     var m = rand(1, 100000);
                     tempOpts.animationUrl = stickers[i][3];
@@ -2950,7 +2951,7 @@ if (!window.Emoji) {
                             stickerUrl: list[i][2]
                         };
                         var rsTemplate = '';
-                        if (!browser.msie && list[i][3]) {
+                        if ((!browser.msie || browser.msie_edge) && list[i][3]) {
                             rsTemplate = Emoji.stickerItemAnimation();
                             var m = rand(1, 100000);
                             tempOpts.uniqId = m;

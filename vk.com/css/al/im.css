@@ -112,6 +112,10 @@
     padding: 7px
 }
 
+.im_sticker_row .sticker_animation {
+    display: inline-block
+}
+
 .im_log_body .wall_module .post_media,
 .im_log_body div.wrapped,
 .im_single_log .im_log_body div.im_fwd_log_wrapped {
