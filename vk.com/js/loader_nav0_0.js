@@ -540,8 +540,8 @@ var stVersions = {
     'article.css': 31917434741,
     'article_editor.css': 28788296226,
     'cmodules/web/article.js': 19516274990,
-    'cmodules/web/article_layer.js': 14108295575,
-    'article_view.js': 11468940040,
+    'cmodules/web/article_layer.js': 12991075048,
+    'article_view.js': 10351719513,
     'internal/cvkmobile.css': 15069324120,
     'internal/cvkmobile.js': 3588813277,
     'shortener.js': 16413120,
@@ -630,4 +630,4 @@ var stTypes = {
         'lazyload.js': 1
     }
 };
-var _rnd = 6599;
+var _rnd = 2493;
