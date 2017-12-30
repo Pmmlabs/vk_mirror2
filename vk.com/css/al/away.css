@@ -62,10 +62,10 @@
 
 .away_logo {
     display: inline-block;
-    background: url('/images/svg_icons/ic_ny_head_logo.svg') no-repeat 50% / contain;
+    background: url('/images/svg_icons/ic_ny_head_logo.svg?1') no-repeat 50% / contain;
     height: 23px;
     width: 39px;
-    margin: 18px 0 0 25px
+    margin: 15px 0 0 25px
 }
 
 .good_browsers {

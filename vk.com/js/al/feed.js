@@ -322,9 +322,10 @@ var Feed = {
                 var L = geByClass1("wall_post_more", E);
                 L && (L = isVisible(domNS(L))), (B = feed.needScrollPost(t, E)) && (d -= E.offsetHeight);
                 var M = psr(rs(e[3], {
-                        poll_hash: cur.wallTpl.poll_hash
-                    })),
-                    m = ge("post" + r);
+                    poll_hash: cur.wallTpl.poll_hash
+                }));
+                window.ny2018ReplaceText && (M = ny2018ReplaceText(M));
+                var m = ge("post" + r);
                 m && !isVisible(m.parentNode) && (M = wall.updatePostImages(M)), val(E, M), L && (L = geByClass1("wall_post_more", E), L && L.onclick()), ge("post_poll_id" + r) && wall.updatePoll(r), B && (d += E.offsetHeight), nodeUpdated(E);
                 break;
             case "edit_reply":
@@ -332,7 +333,7 @@ var Feed = {
                     E = ge("wpt" + N);
                 if (!isVisible("post" + N) || !E) break;
                 var L = geByClass1("wall_reply_more", E);
-                L && (L = isVisible(domNS(L))), updH = -E.offsetHeight, updY = getXY(E)[1], val(E, psr(e[4])), L && (L = geByClass1("wall_reply_more", E), L && L.onclick()), updH += E.offsetHeight, nodeUpdated(E);
+                L && (L = isVisible(domNS(L))), updH = -E.offsetHeight, updY = getXY(E)[1], window.ny2018ReplaceText && val(E, ny2018ReplaceText(psr(e[4]))), L && (L = geByClass1("wall_reply_more", E), L && L.onclick()), updH += E.offsetHeight, nodeUpdated(E);
                 break;
             case "post_parsed_link":
                 if (!i) break;
@@ -911,7 +912,7 @@ var Feed = {
                 s && "button" === s.tagName.toLowerCase() ? lockButton(s) : s.parentNode.replaceChild(r, s)
             },
             hideProgress: function() {
-                s && "button" === s.tagName.toLowerCase() ? unlockButton(s) : r.parentNode.replaceChild(s, r)
+                s && "button" === s.tagName.toLowerCase() ? unlockButton(s) : r.parentNode.replaceChild(s, r);
             }
         })
     },

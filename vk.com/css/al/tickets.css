@@ -724,12 +724,6 @@ body.dev .tickets_header_links {
     background-position: 0 -153px
 }
 
-.tickets_important {
-    font-weight: 700;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
-}
-
 .tickets_edit_reply {
     margin-right: -3px
 }

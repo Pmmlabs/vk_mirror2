@@ -13329,6 +13329,15 @@ function storiesPreloadStatic() {
     stManager.add(['stories.js', 'stories.css']);
 }
 
+function ny2018ReplaceText(text) {
+    if (!cur.ny2018Enabled) {
+        return text;
+    }
+    return text.replace(/(� ����� �����|� �����������)([\!]+)?(?=(\s|\,|\<br\>|$))?/i, (found) => {
+        return '<span class="ny2017_link" onClick="Ny2018.startFlapper(); return false;">' + found + '</span>';
+    });
+}
+
 debugLog('common js old')
 
 try {

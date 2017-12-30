@@ -7618,6 +7618,10 @@ addEvent(window, 'DOMContentLoaded load', function() {
     vk.loaded = true;
 });
 
+window.ny2018ReplaceText = function(text) {
+    return text;
+}
+
 try {
     stManager.done('lite.js');
 } catch (e) {}

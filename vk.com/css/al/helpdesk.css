@@ -1140,6 +1140,16 @@ body.body_helpdesk_small_sb .left_menu_nav {
     font-size: 13px
 }
 
+.helpdesk_important {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.helpdesk_long_opened {
+    text-decoration: underline
+}
+
 .helpdesk_m_table {
     border: 1px solid #d2d8df;
     border-collapse: collapse;

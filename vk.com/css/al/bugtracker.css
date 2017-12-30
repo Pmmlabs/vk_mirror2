@@ -3131,7 +3131,7 @@
 }
 
 .bugtracker_logo_event_text {
-    margin: 7px 10px 0 0;
+    margin: 7px 10px 0 -1px;
     color: #fff;
     font-weight: 700;
     font-size: 16px
@@ -3145,7 +3145,7 @@
 
 .top_home_logo.bugtracker_logo_glitch:hover:after,
 .top_home_logo.bugtracker_logo_glitch:hover:before {
-    background: url('/images/svg_icons/ic_ny_head_logo.svg') no-repeat 50% / contain;
+    background: url('/images/svg_icons/ic_ny_head_logo.svg?1') no-repeat 50% / contain;
     display: inline-block;
     height: 7px;
     width: 39px;

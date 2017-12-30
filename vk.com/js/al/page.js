@@ -5762,6 +5762,11 @@ var Wall = {
             owner_name: canReplyAsGroup ? ownerName : '',
             online_class: (oid > 0) ? ' online' : ''
         };
+
+        if (window.ny2018ReplaceText) {
+            repls.text = ny2018ReplaceText(repls.text);
+        }
+
         extendCb && extend(repls, extendCb(repls, ev));
         return rs(rs(cur.wallTpl.post, repls), repls);
     },
@@ -5832,6 +5837,11 @@ var Wall = {
             reply_msg_id: ev[3].split('_')[1],
             reply_uid: ev[4] || 'false'
         };
+
+        if (window.ny2018ReplaceText) {
+            repls.text = ny2018ReplaceText(repls.text);
+        }
+
         extendCb && extend(repls, extendCb(repls));
         return rs(cur.wallTpl.reply, repls);
     },
@@ -6146,6 +6156,9 @@ var Wall = {
                         var text = psr(rs(ev[3], {
                             poll_hash: cur.wallTpl.poll_hash
                         }));
+                        if (window.ny2018ReplaceText) {
+                            text = ny2018ReplaceText(text);
+                        }
                         val(editEl, text);
                         if (wasExpanded) {
                             wasExpanded = geByClass1('wall_post_more', editEl);
@@ -6169,7 +6182,9 @@ var Wall = {
 
                         updH = -editEl.offsetHeight;
                         updY = getXY(editEl, fixed)[1];
-                        val(editEl, psr(ev[4]));
+                        if (window.ny2018ReplaceText) {
+                            val(editEl, ny2018ReplaceText(psr(ev[4])));
+                        }
                         if (wasExpanded) {
                             wasExpanded = geByClass1('wall_reply_more', editEl);
                             if (wasExpanded) wasExpanded.onclick();
