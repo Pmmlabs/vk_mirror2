@@ -1668,10 +1668,10 @@ body.mac #page_header_cont {
 }
 
 .top_home_link .top_home_logo {
-    background: url('/images/svg_icons/ic_ny_head_logo.svg?1') no-repeat 50% / contain;
-    height: 23px;
-    width: 39px;
-    margin: 7px 10px 0 -1px
+    background: url('/images/svg_icons/ic_head_logo.svg') no-repeat 50% / contain;
+    height: 19px;
+    width: 34px;
+    margin: 11px 10px 0 0
 }
 
 .top_home_link:active {
