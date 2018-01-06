@@ -8247,7 +8247,8 @@ function onLoginReCaptcha(key, lang) {
 }
 
 function storePasswordCredential(params) {
-    if (!browserFeatures.cmaEnabled) return;
+    if (!browserFeatures.cmaEnabled || !window.ResizeObserver) return;
+    // window.ResizeObserver from Chrome 64
 
     var cred = new PasswordCredential({
         id: ge('quick_email').value,
