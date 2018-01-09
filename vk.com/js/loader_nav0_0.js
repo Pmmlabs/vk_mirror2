@@ -56,7 +56,7 @@ var navMap = {
     'doc-?\\d+_\\d+$': ['docs.php', ['docs.css', 'docs.js', 'indexer.js']],
     'docs-?\\d+$': ['docs.php', ['docs.css', 'docs.js', 'indexer.js']],
     'login($|/)': ['al_login.php', ['login.css', 'login.js']],
-    'tasks($|/)': ['tasks.php', ['tasks.css', 'tasks.js']],
+    'tasks($|/)': ['tasks.php', ['internal/tasks.css', 'internal/tasks.js']],
     'abuse($|/)': ['abuse.php', ['abuse.css', 'abuse.js']],
     'abuse2($|/)': ['abuse2.php', []],
     'restore2($|/)': ['restore2.php', ['internal/restore2.css', 'internal/restore2.js', 'internal/restore2_autoanswers.js', 'sorter.js']],
@@ -332,8 +332,8 @@ var stVersions = {
     'docs.css': 21483761164,
     'tags_dd.js': 3735969205,
     'tags_dd.css': 14185143922,
-    'tasks.js': 4178217651,
-    'tasks.css': 11936775809,
+    'internal/tasks.js': 3155934960,
+    'internal/tasks.css': 12380949060,
     'helpdesk.js': 785695637,
     'helpdesk.css': 19151067507,
     'tickets.js': 2432513104,
@@ -631,4 +631,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 4557;
+var _rnd = 2454;
