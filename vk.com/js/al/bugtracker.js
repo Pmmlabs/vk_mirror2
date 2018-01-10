@@ -589,21 +589,22 @@ var BugTracker = {
             r && d && d.nextSibling ? c.insertBefore(o, d.nextSibling) : c.appendChild(o), d = o, i++
         }), i
     },
-    markUpdatesRead: function() {
+    markUpdatesRead: function(e) {
         setTimeout(function() {
             ajax.post("bugtracker", {
-                act: "updates_clear"
+                act: "updates_clear",
+                hash: e
             }, {});
-            var e = ge("bt_updates"),
-                t = function() {
-                    var r = geByClass1("bt_report_cmt_new", e);
-                    if (removeClass(r, "bt_report_cmt_new"), r) setTimeout(t, 500);
+            var t = ge("bt_updates"),
+                r = function() {
+                    var e = geByClass1("bt_report_cmt_new", t);
+                    if (removeClass(e, "bt_report_cmt_new"), e) setTimeout(r, 500);
                     else {
                         var o = geByClass1("ui_tab_count", "bt_tab_updates");
                         setTimeout(val.pbind(o, ""), 2e3)
                     }
                 };
-            t()
+            r()
         }, 500)
     },
     toggleSetRate: function() {
@@ -977,10 +978,11 @@ var BugTracker = {
         }
         nav.go(e)
     },
-    clearCart: function(e) {
+    clearCart: function(e, t) {
         cur.btClearCartCallback && cur.btClearCartCallback(), slideUp("bt_shop_cart_info", 300), ajax.post("bugtracker", {
             act: "a_clear_cart",
-            reload: e
+            reload: e,
+            hash: t
         }, {})
     },
     setDelivery: function(e, t) {

@@ -12,9 +12,9 @@
     return e.m = t, e.c = i, e.p = "", e(0)
 }({
     0: function(t, e, i) {
-        t.exports = i(14)
+        t.exports = i(37)
     },
-    14: function(module, exports, __webpack_require__) {
+    37: function(module, exports, __webpack_require__) {
         "use strict";
 
         function _interopRequireDefault(t) {
@@ -268,8 +268,8 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            _audio_unmask_source = __webpack_require__(38),
-            _audio_layer = __webpack_require__(20),
+            _audio_unmask_source = __webpack_require__(88),
+            _audio_layer = __webpack_require__(146),
             _audio_layer2 = _interopRequireDefault(_audio_layer);
         window.AudioLayer = _audio_layer2["default"], window.AudioUtils = {
             AUDIO_ITEM_INDEX_ID: 0,
@@ -1297,6 +1297,13 @@
                         width: 750
                     }
                 })
+            },
+            cancelReplacement: function(t, e, i) {
+                ajax.post("al_audio.php", {
+                    act: "cancel_replacement",
+                    hash: e,
+                    audio_id: t
+                }), re(i)
             }
         }, window.TopAudioPlayer = function(t, e) {
             this.ap = getAudioPlayer(), this._el = t, this._playIconBtn = ge("top_audio"), this.init()
@@ -1871,8 +1878,8 @@
                 var o = this;
                 if (a.withInlinePlayer && (e ? this._addRowPlayer(t, i) : this._removeRowPlayer(t)), e) {
                     this.on(t, AudioPlayer.EVENT_PLAY, function(e) {
-                        AudioUtils.asObject(e).fullId == a.fullId && (addClass(t, AudioUtils.AUDIO_PLAYING_CLS), l && attr(l, "aria-label", getLang("global_audio_pause")),
-                            s && attr(s, "role", "heading"))
+                        AudioUtils.asObject(e).fullId == a.fullId && (addClass(t, AudioUtils.AUDIO_PLAYING_CLS),
+                            l && attr(l, "aria-label", getLang("global_audio_pause")), s && attr(s, "role", "heading"))
                     }), this.on(t, AudioPlayer.EVENT_PROGRESS, function(t, e, i) {
                         if (!a.withInlinePlayer && o.isAdPlaying()) return void(r && (r.innerHTML = formatTime(a.duration)));
                         i = intval(i);
@@ -3065,7 +3072,78 @@
             stManager.done("audioplayer.js")
         } catch (e) {}
     },
-    20: function(module, exports) {
+    88: function(t, e) {
+        "use strict";
+
+        function i() {
+            return window.wbopen && ~(window.open + "").indexOf("wbopen")
+        }
+
+        function o(t) {
+            if (!i() && ~t.indexOf("audio_api_unavailable")) {
+                var e = t.split("?extra=")[1].split("#"),
+                    o = "" === e[1] ? "" : a(e[1]);
+                if (e = a(e[0]), "string" != typeof o || !e) return t;
+                o = o ? o.split(String.fromCharCode(9)) : [];
+                for (var s, r, n = o.length; n--;) {
+                    if (r = o[n].split(String.fromCharCode(11)), s = r.splice(0, 1, e)[0], !l[s]) return t;
+                    e = l[s].apply(null, r)
+                }
+                if (e && "http" === e.substr(0, 4)) return e
+            }
+            return t
+        }
+
+        function a(t) {
+            if (!t || t.length % 4 == 1) return !1;
+            for (var e, i, o = 0, a = 0, s = ""; i = t.charAt(a++);) i = r.indexOf(i), ~i && (e = o % 4 ? 64 * e + i : i, o++ % 4) && (s += String.fromCharCode(255 & e >> (-2 * o & 6)));
+            return s
+        }
+
+        function s(t, e) {
+            var i = t.length,
+                o = [];
+            if (i) {
+                var a = i;
+                for (e = Math.abs(e); a--;) e = (i * (a + 1) ^ e + a) % i, o[a] = e
+            }
+            return o
+        }
+        Object.defineProperty(e, "__esModule", {
+            value: !0
+        }), e.audioUnmaskSource = o;
+        var r = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0PQRSTUVWXYZO123456789+/=",
+            l = {
+                v: function(t) {
+                    return t.split("").reverse().join("")
+                },
+                r: function(t, e) {
+                    t = t.split("");
+                    for (var i, o = r + r, a = t.length; a--;) i = o.indexOf(t[a]), ~i && (t[a] = o.substr(i - e, 1));
+                    return t.join("")
+                },
+                s: function(t, e) {
+                    var i = t.length;
+                    if (i) {
+                        var o = s(t, e),
+                            a = 0;
+                        for (t = t.split(""); ++a < i;) t[a] = t.splice(o[i - 1 - a], 1, t[a])[0];
+                        t = t.join("")
+                    }
+                    return t
+                },
+                i: function(t, e) {
+                    return l.s(t, e ^ vk.id)
+                },
+                x: function(t, e) {
+                    var i = [];
+                    return e = e.charCodeAt(0), each(t.split(""), function(t, o) {
+                        i.push(String.fromCharCode(o.charCodeAt(0) ^ e))
+                    }), i.join("")
+                }
+            }
+    },
+    146: function(module, exports) {
         "use strict";
 
         function _classCallCheck(t, e) {
@@ -3151,76 +3229,5 @@
             }, AudioLayer
         }();
         exports["default"] = AudioLayer
-    },
-    38: function(t, e) {
-        "use strict";
-
-        function i() {
-            return window.wbopen && ~(window.open + "").indexOf("wbopen")
-        }
-
-        function o(t) {
-            if (!i() && ~t.indexOf("audio_api_unavailable")) {
-                var e = t.split("?extra=")[1].split("#"),
-                    o = "" === e[1] ? "" : a(e[1]);
-                if (e = a(e[0]), "string" != typeof o || !e) return t;
-                o = o ? o.split(String.fromCharCode(9)) : [];
-                for (var s, r, n = o.length; n--;) {
-                    if (r = o[n].split(String.fromCharCode(11)), s = r.splice(0, 1, e)[0], !l[s]) return t;
-                    e = l[s].apply(null, r)
-                }
-                if (e && "http" === e.substr(0, 4)) return e
-            }
-            return t
-        }
-
-        function a(t) {
-            if (!t || t.length % 4 == 1) return !1;
-            for (var e, i, o = 0, a = 0, s = ""; i = t.charAt(a++);) i = r.indexOf(i), ~i && (e = o % 4 ? 64 * e + i : i, o++ % 4) && (s += String.fromCharCode(255 & e >> (-2 * o & 6)));
-            return s
-        }
-
-        function s(t, e) {
-            var i = t.length,
-                o = [];
-            if (i) {
-                var a = i;
-                for (e = Math.abs(e); a--;) e = (i * (a + 1) ^ e + a) % i, o[a] = e
-            }
-            return o
-        }
-        Object.defineProperty(e, "__esModule", {
-            value: !0
-        }), e.audioUnmaskSource = o;
-        var r = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMN0PQRSTUVWXYZO123456789+/=",
-            l = {
-                v: function(t) {
-                    return t.split("").reverse().join("")
-                },
-                r: function(t, e) {
-                    t = t.split("");
-                    for (var i, o = r + r, a = t.length; a--;) i = o.indexOf(t[a]), ~i && (t[a] = o.substr(i - e, 1));
-                    return t.join("")
-                },
-                s: function(t, e) {
-                    var i = t.length;
-                    if (i) {
-                        var o = s(t, e),
-                            a = 0;
-                        for (t = t.split(""); ++a < i;) t[a] = t.splice(o[i - 1 - a], 1, t[a])[0];
-                        t = t.join("")
-                    }
-                    return t
-                },
-                i: function(t, e) {
-                    return l.s(t, e ^ vk.id)
-                },
-                x: function(t, e) {
-                    var i = [];
-                    return e = e.charCodeAt(0), each(t.split(""), function(t, o) {
-                        i.push(String.fromCharCode(o.charCodeAt(0) ^ e))
-                    }), i.join("")
-                }
-            }
     }
 });

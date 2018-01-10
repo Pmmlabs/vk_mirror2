@@ -317,23 +317,23 @@ var Feed = {
                 m.insertBefore(f, m.firstChild), feed.needScrollPost(t, f) && (d += f.offsetHeight + c(f)), cur.feedUnreadCount++, v.length > 300 ? m.removeChild(v[300]) : v.length <= 1 && removeClass(cur.feedEls.wrap, "feed_is_empty");
                 break;
             case "edit_post":
-                var B, E = ge("wpt" + r);
-                if (!isVisible(i) || !E) break;
-                var L = geByClass1("wall_post_more", E);
-                L && (L = isVisible(domNS(L))), (B = feed.needScrollPost(t, E)) && (d -= E.offsetHeight);
+                var E, B = ge("wpt" + r);
+                if (!isVisible(i) || !B) break;
+                var L = geByClass1("wall_post_more", B);
+                L && (L = isVisible(domNS(L))), (E = feed.needScrollPost(t, B)) && (d -= B.offsetHeight);
                 var M = psr(rs(e[3], {
                     poll_hash: cur.wallTpl.poll_hash
                 }));
                 window.ny2018ReplaceText && (M = ny2018ReplaceText(M));
                 var m = ge("post" + r);
-                m && !isVisible(m.parentNode) && (M = wall.updatePostImages(M)), val(E, M), L && (L = geByClass1("wall_post_more", E), L && L.onclick()), ge("post_poll_id" + r) && wall.updatePoll(r), B && (d += E.offsetHeight), nodeUpdated(E);
+                m && !isVisible(m.parentNode) && (M = wall.updatePostImages(M)), val(B, M), L && (L = geByClass1("wall_post_more", B), L && L.onclick()), ge("post_poll_id" + r) && wall.updatePoll(r), E && (d += B.offsetHeight), nodeUpdated(B);
                 break;
             case "edit_reply":
                 var N = e[3],
-                    E = ge("wpt" + N);
-                if (!isVisible("post" + N) || !E) break;
-                var L = geByClass1("wall_reply_more", E);
-                L && (L = isVisible(domNS(L))), updH = -E.offsetHeight, updY = getXY(E)[1], window.ny2018ReplaceText && val(E, ny2018ReplaceText(psr(e[4]))), L && (L = geByClass1("wall_reply_more", E), L && L.onclick()), updH += E.offsetHeight, nodeUpdated(E);
+                    B = ge("wpt" + N);
+                if (!isVisible("post" + N) || !B) break;
+                var L = geByClass1("wall_reply_more", B);
+                L && (L = isVisible(domNS(L))), updH = -B.offsetHeight, updY = getXY(B)[1], window.ny2018ReplaceText && val(B, ny2018ReplaceText(psr(e[4]))), L && (L = geByClass1("wall_reply_more", B), L && L.onclick()), updH += B.offsetHeight, nodeUpdated(B);
                 break;
             case "post_parsed_link":
                 if (!i) break;
@@ -845,6 +845,13 @@ var Feed = {
             toggle(s), toggleClass(o, "feedback_row_expanded", isVisible(s)), val(r, val(n)), val(n, i)
         }
     },
+    ungroupUnified: function(e, t) {
+        var o = ge("feedback_row" + e);
+        if (t = t || window.event, o && !checkEvent(t) && Wall.checkPostClick(o, t, !0)) {
+            var s = domNS(domPN(o));
+            show(s), re(domPN(o))
+        }
+    },
     notifyPostTooltip: function(e, t, o, s) {
         var r = (o || {}).reply,
             i = "al_wall.php";
@@ -905,14 +912,14 @@ var Feed = {
                 if (t) {
                     var o = gpeByClass("_post_wrap", t),
                         r = geByClass1("_post_content", o);
-                    show(r, geByClass1("_answer_wrap", o)), hide(t), removeClass(o, "feedback_row_touched")
+                    show(r, geByClass1("_answer_wrap", o)), hide(t), removeClass(o, "feedback_row_touched");
                 }
             },
             showProgress: function() {
                 s && "button" === s.tagName.toLowerCase() ? lockButton(s) : s.parentNode.replaceChild(r, s)
             },
             hideProgress: function() {
-                s && "button" === s.tagName.toLowerCase() ? unlockButton(s) : r.parentNode.replaceChild(s, r);
+                s && "button" === s.tagName.toLowerCase() ? unlockButton(s) : r.parentNode.replaceChild(s, r)
             }
         })
     },

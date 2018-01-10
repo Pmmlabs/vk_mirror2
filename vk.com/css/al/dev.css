@@ -2439,12 +2439,8 @@ input.dev_poll_field {
     margin-bottom: 2px
 }
 
-input.dev_poll_answer {
-    width: 200px
-}
-
 input.dev_poll_answer+input.dev_poll_answer {
-    margin-top: 3px
+    margin-top: 5px
 }
 
 textarea.dev_poll_code {

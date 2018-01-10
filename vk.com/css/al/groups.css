@@ -1016,22 +1016,21 @@ a.groups_catalog_comm_title_link {
 }
 
 .group_box_image_wrap {
+    position: relative;
     float: left;
     display: block;
-    margin-right: 12px
-}
-
-.group_box_image_wrap,
-.group_box_image_link {
-    position: relative;
     width: 50px;
     height: 50px;
-    border-radius: 50%
+    border-radius: 50%;
+    margin-right: 12px
 }
 
 .group_box_image_link {
     display: table-cell;
     vertical-align: middle;
+    position: relative;
+    height: 50px;
+    width: 50px;
     overflow: hidden
 }
 
@@ -1065,7 +1064,9 @@ a.groups_catalog_comm_title_link {
 
 .group_box_image {
     display: table-cell;
-    width: 50px
+    width: 50px;
+    height: 50px;
+    border-radius: 50%
 }
 
 .group_box_actions {
