@@ -374,9 +374,9 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 22128084780,
     'aes_light.js': 592436914,
-    'ads.css': 23516786778,
+    'ads.css': 22898392870,
     'ads_bonus.css': 460482192,
-    'ads.js': 2815593368,
+    'ads.js': 1110652796,
     'ads_payments.js': 2205910694,
     'ads_edit.css': 11673585738,
     'ads_edit.js': 500497847,
@@ -553,8 +553,8 @@ var stVersions = {
     'surveys.css': 22483024548,
     'surveys.js': 3079369917,
     'landings/author_guide.css': 19777125414,
-    'internal/restore2.css': 14301993630,
-    'internal/restore2.js': 1062702743,
+    'internal/restore2.css': 11878564984,
+    'internal/restore2.js': 1111637510,
     'language.js': 3551638980,
     'language.css': 14566276818,
     'internal/admins.js': 2810460581,
@@ -631,4 +631,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 7816;
+var _rnd = 3605;
