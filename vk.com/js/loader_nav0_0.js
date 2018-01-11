@@ -201,7 +201,7 @@ var stVersions = {
     'video_upload.js': 3600027222,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 11773179773,
-    'videoplayer.js': 74904062470,
+    'videoplayer.js': 75527346215,
     'videoplayer.css': 33576632285,
     'translation.js': 1828242830,
     'translation.css': 15783225610,
@@ -219,7 +219,7 @@ var stVersions = {
     'module.css': 16694736883,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 17785632232,
-    'page.js': 347175277,
+    'page.js': 1853483566,
     'page.css': 24602888805,
     'page_help.css': 20523035996,
     'public.css': 25802268858,
@@ -244,7 +244,7 @@ var stVersions = {
     'qsearch.js': 4098038985,
     'wall.css': 23001149544,
     'wall.js': 3588967340,
-    'walledit.js': 534457542,
+    'walledit.js': 3354405371,
     'thumbs_edit.css': 15963176500,
     'thumbs_edit.js': 1864853921,
     'mail.css': 2042965398,
@@ -273,7 +273,7 @@ var stVersions = {
     'apps_check.js': 3844411974,
     'apps_check.css': 25032349302,
     'settings.js': 1980295408,
-    'settings.css': 21407622521,
+    'settings.css': 20685021599,
     'profile_edit.js': 2157979570,
     'profile_edit.css': 14191834963,
     'profile_edit_edu.js': 174903945,
@@ -533,7 +533,7 @@ var stVersions = {
     'cmodules/web/speech_worker_opus.js': 2818771805,
     'stories.js': 22684661752,
     'stories.css': 16202468584,
-    'internal/nospam.css': 15557024324,
+    'internal/nospam.css': 14696828806,
     'internal/away_linksban.css': 12067978740,
     'internal/ui_manual.js': 1761369792,
     'internal/patterns_info.css': 14249041637,
@@ -631,4 +631,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 3605;
+var _rnd = 8492;

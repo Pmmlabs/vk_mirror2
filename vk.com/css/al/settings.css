@@ -1964,6 +1964,7 @@ input.settings_app_password_name {
     background-color: #a5abb4
 }
 
+.settings_separated_row_iconed.icon_type_birthday:before,
 .settings_separated_row_iconed.icon_type_event:before,
 .settings_separated_row_iconed.icon_type_interesting:before,
 .settings_separated_row_iconed.icon_type_like:before,
@@ -2001,8 +2002,7 @@ input.settings_app_password_name {
     background-color: #444
 }
 
-.settings_separated_row_iconed.icon_type_ads:before,
-.settings_separated_row_iconed.icon_type_birthday:before {
+.settings_separated_row_iconed.icon_type_ads:before {
     background-color: #63b9ba
 }
 

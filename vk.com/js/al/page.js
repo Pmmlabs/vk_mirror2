@@ -1666,7 +1666,7 @@ var Page = {
                         break;
                     }
                 } while (++preloadIndex < thumbsNum);
-            }, vk.id % 2 ? 25 : 50);
+            }, 50);
 
             cur.videoAutoplayScrollHandler = scrollHandler;
 
