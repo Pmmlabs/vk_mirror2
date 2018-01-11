@@ -2740,6 +2740,10 @@ function scrollToTop(speed) {
     }
 }
 
+function scrollGetX() {
+    return window.pageXOffset || scrollNode.scrollLeft || document.documentElement.scrollLeft;
+}
+
 function scrollGetY() {
     return window.pageYOffset || scrollNode.scrollTop || document.documentElement.scrollTop;
 }

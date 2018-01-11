@@ -2777,6 +2777,10 @@
     overflow: hidden
 }
 
+.bt_members_list .ui_search_fltr {
+    z-index: 101
+}
+
 .bt_members_list .bt_members_content {
     height: 60vh;
     overflow: hidden;
@@ -2910,6 +2914,10 @@
     padding-right: 48px!important
 }
 
+.bugtracker_members_box_header .ui_tab_count:empty {
+    display: none
+}
+
 .bugtracker_invite_tab {
     background: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%3E%3Cpath%20fill%3D%22%2391A8C4%22%20d%3D%22M8%206v-6h-2v6h-6v2h6v6h2v-6h6v-2h-6z%22%2F%3E%3C%2Fsvg%3E') 50% no-repeat;
     width: 16px;
@@ -2968,6 +2976,14 @@
 
 .bugtracker_device.user_device:last-child {
     padding-bottom: 0
+}
+
+.bugtracker_device:first-child {
+    margin-top: -0.15em
+}
+
+.bugtracker_device .line_block {
+    line-height: 1.5em
 }
 
 .bugtracker_device.hoverable:hover {

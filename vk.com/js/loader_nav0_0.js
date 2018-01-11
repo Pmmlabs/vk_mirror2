@@ -142,7 +142,7 @@ var stVersions = {
     'uncommon.css': 14980638409,
     'filebutton.css': 1044306797,
     'filebutton.js': 2454165044,
-    'lite.js': 3222114666,
+    'lite.js': 2326387790,
     'lite.css': 40661067928,
     'rtl.css': 12873836295,
     'pagination.js': 1027022568,
@@ -351,8 +351,8 @@ var stVersions = {
     'groupinfo.css': 16972553358,
     'bugs.js': 3874995669,
     'bugs.css': 12154823937,
-    'bugtracker.js': 487708709,
-    'bugtracker.css': 22104932247,
+    'bugtracker.js': 2256008986,
+    'bugtracker.css': 23019163804,
     'login.css': 15347683790,
     'login.js': 1216110060,
     'upload.js': 16891470,
@@ -631,4 +631,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 8492;
+var _rnd = 800;

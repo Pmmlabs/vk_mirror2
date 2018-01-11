@@ -1451,13 +1451,14 @@ var BugTracker = {
             },
             onDone: function(t, r, n) {
                 a.hide();
-                ge("bugtracker_user_device_list").appendChild(sech(t)[0]);
+                var i = geByClass1("bugtracker_user_device_list");
+                i.appendChild(sech(t)[0]);
                 if (!o) {
-                    var i = [].map.call(ge("bugtracker_user_device_list").childNodes, function(e) {
+                    var s = [].map.call(i.childNodes, function(e) {
                         return e.getAttribute("platform-id")
                     });
                     each(ge("bt_settings_platforms").childNodes, function(e, t) {
-                        i.indexOf(t.getAttribute("platform-id")) >= 0 ? (checkbox(t, !0), disable(t, !0)) : disable(t, !1)
+                        s.indexOf(t.getAttribute("platform-id")) >= 0 ? (checkbox(t, !0), disable(t, !0)) : disable(t, !1)
                     })
                 }
                 BugTracker.editUserDevice(e, r, n, o)
@@ -1473,7 +1474,7 @@ var BugTracker = {
             hideProgress: removeClass.pbind(e.parentNode, "locked"),
             onDone: function() {
                 re("bugtracker_device" + t);
-                var e = [].map.call(ge("bugtracker_user_device_list").childNodes, function(e) {
+                var e = [].map.call(geByClass1("bugtracker_user_device_list").childNodes, function(e) {
                     return e.getAttribute("platform-id")
                 });
                 each(ge("bt_settings_platforms").childNodes, function(t, r) {
@@ -1603,13 +1604,14 @@ var BugTracker = {
             hideProgress: unlockButton.pbind(e),
             onDone: function(e) {
                 curBox().hide();
-                var t = sech(e)[0];
-                if (ge("bugtracker_user_device_list").replaceChild(t, ge("bugtracker_device" + o)), !a) {
-                    var r = [].map.call(ge("bugtracker_user_device_list").childNodes, function(e) {
+                var t = sech(e)[0],
+                    r = geByClass1("bugtracker_user_device_list");
+                if (r.replaceChild(t, ge("bugtracker_device" + o)), !a) {
+                    var n = [].map.call(r.childNodes, function(e) {
                         return e.getAttribute("platform-id")
                     });
                     each(ge("bt_settings_platforms").childNodes, function(e, t) {
-                        r.indexOf(t.getAttribute("platform-id")) >= 0 ? (checkbox(t, !0), disable(t, !0)) : disable(t, !1)
+                        n.indexOf(t.getAttribute("platform-id")) >= 0 ? (checkbox(t, !0), disable(t, !0)) : disable(t, !1)
                     })
                 }
             }
