@@ -371,9 +371,9 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 22128084780,
     'aes_light.js': 592436914,
-    'ads.css': 22898392870,
+    'ads.css': 23483622299,
     'ads_bonus.css': 460482192,
-    'ads.js': 1110652796,
+    'ads.js': 642767427,
     'ads_payments.js': 2205910694,
     'ads_edit.css': 11673585738,
     'ads_edit.js': 500497847,
@@ -628,4 +628,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 7975;
+var _rnd = 5389;

@@ -3284,8 +3284,12 @@ h4.subheader.ads_retargeting_subheader_top {
     margin-bottom: 0
 }
 
-.ads_retargeting_box_price_list_error_description {
-    margin: 0 0 15px
+.ads_retargeting_box_error_description,
+ads_retargeting_box_price_list_error_description {
+    margin: 10px 0;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .ads_retargeting_box_price_list_error_opened .ads_retargeting_box_price_list_error_link,
@@ -3297,17 +3301,48 @@ h4.subheader.ads_retargeting_subheader_top {
     display: block
 }
 
+.ads_retargeting_box_error_block_text,
 .ads_retargeting_box_price_list_error_block_text {
     margin: 0
 }
 
+.ads_retargeting_box_error_block_type {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee
+}
+
+.ads_retargeting_box_error_block_type:last-child {
+    padding-bottom: 0;
+    border-bottom: 0
+}
+
+.ads_retargeting_box_error_block_code,
 .ads_retargeting_box_price_list_error_block_code {
     margin: 10px 0 0;
     padding: 10px 15px;
     line-height: 22px;
-    font-family: Monaco, Menlo, Ubuntu Mono, Consolas, source-code-pro, monospace;
     background-color: #f0f2f5;
-    border-left: 3px solid #93adc8
+    border-left: 3px solid #93adc8;
+    overflow-wrap: break-word
+}
+
+.ads_retargeting_box_price_list_error_block_code {
+    font-family: Monaco, Menlo, Ubuntu Mono, Consolas, source-code-pro, monospace
+}
+
+.ads_retargeting_box_error_block_code_text {
+    margin: 0 0 5px;
+    line-height: 18px
+}
+
+.ads_retargeting_box_error_block_code_text:last-child {
+    margin-bottom: 0
+}
+
+.ads_retargeting_box_error_block_code_text_title {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
 }
 
 .ads_settings_notifacations {
@@ -3833,4 +3868,14 @@ td.ads_settings_notifacations_label {
     -ms-transform: translateX(2px);
     -o-transform: translateX(2px);
     transform: translateX(2px)
+}
+
+.ads_retargeting_hint {
+    cursor: pointer
+}
+
+.ads_retargeting_hint_tt.tt_default.tt_down:after,
+.ads_retargeting_hint_tt.tt_default.tt_down:before {
+    right: 30px;
+    left: auto
 }

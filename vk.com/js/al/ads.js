@@ -5044,6 +5044,25 @@ Ads.showRelevanceScoreTooltip = function() {
     cur.groupAdsRelevanceScoreTooltip.show();
 }
 
+Ads.showPixelErrorsBox = function(event, unionId, pixelId, hash) {
+    event.preventDefault();
+
+    var ajaxParams = {
+        union_id: unionId,
+        pixel_id: pixelId,
+        hash: hash
+    };
+
+    var showOptions = {
+        onFail: Ads.onBoxFail,
+        params: {
+            width: 600
+        }
+    };
+
+    showBox('/ads?act=a_retargeting_pixel_get_errors_box', ajaxParams, showOptions);
+}
+
 try {
     stManager.done('ads.js');
 } catch (e) {}
