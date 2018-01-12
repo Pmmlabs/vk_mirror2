@@ -71,13 +71,13 @@
         },
         sendChangeState: function(t, e, o, i, n) {
             Community.sendStateEvent(t);
-            var c = ge("hiddenDomain");
+            var u = ge("hiddenDomain");
             ajax.post("/widget_community.php", {
                 act: "a_change_state",
                 state: t,
                 oid: e,
                 hash: cur.hash,
-                domain: c ? c.value : "",
+                domain: u ? u.value : "",
                 is_event: i ? 1 : 0
             }, {
                 onDone: o,
@@ -202,7 +202,6 @@
                                 a_stats_box: !0
                             }
                         }),
-                        showCaptchaBox: Widgets.showCaptchaBox,
                         showReCaptchaBox: Widgets.showReCaptchaBox,
                         gotSession: function(t) {
                             location.reload()
@@ -244,10 +243,10 @@
                             o = o || {};
                             var i = hasClass(t, "post_like"),
                                 n = wall.parsePostId(e),
-                                c = n.type,
-                                u = n.id,
-                                a = c + u,
-                                s = t && gpeByClass("_post_content", t) || wall.domPost(u),
+                                u = n.type,
+                                c = n.id,
+                                a = u + c,
+                                s = t && gpeByClass("_post_content", t) || wall.domPost(c),
                                 r = o.share ? "_share_wrap" : "_like_wrap",
                                 l = domByClass(s, r),
                                 d = domByClass(l, "_icon"),
@@ -257,7 +256,7 @@
                                     p = getXY(l)[0],
                                     g = getXY(d)[0],
                                     f = getSize(d, !0)[0],
-                                    w = g + f / 2 - p - m;
+                                    _ = g + f / 2 - p - m;
                                 showTooltip(d.parentNode, {
                                     url: "/like.php",
                                     params: extend({
@@ -268,7 +267,7 @@
                                         published: 1
                                     } : {}),
                                     slide: 15,
-                                    shift: [-w, i ? 5 : -3],
+                                    shift: [-_, i ? 5 : -3],
                                     ajaxdt: 100,
                                     showdt: 400,
                                     hidedt: 200,

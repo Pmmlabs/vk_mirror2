@@ -696,3 +696,8 @@ table.history .cur_session {
 .meminfo_restore_content .meminfo_restore_content_row:hover {
     background: #e9ebf0
 }
+
+.meminfo_restore_limit_progress {
+    display: inline-block;
+    color: #828282
+}

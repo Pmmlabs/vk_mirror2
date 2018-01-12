@@ -590,68 +590,58 @@ var vkApp = function(cont, options, params, onInit) {
             if (!query) {
                 return;
             }
-            if (window.AndroidBridge) {
-                window.AndroidBridge.callMethod('openExternalUrl', query); //android
-            } else if (window.webkit) {
-                window.webkit.messageHandler['openExternalUrl'].postMessage(query); //ios
-            } else {
-                var queryParams = {
-                    act: 'open_external_app',
-                    url: url,
-                    query: req.join('&'),
-                    aid: options.aid
-                };
-                var externalAppWin = window.open('', '_blank');
 
-                ajax.post('/apps.php', queryParams, {
-                    onDone: function(redirectLink) {
-                        cur.onExternalAppDone = function(params) {
-                            this.runCallback('onExternalAppDone', params);
-                        }.bind(cur.app);
-
-                        cur.onExternalAppDoneListener = function(event) {
-                            if (event.origin === 'https://vk.com' && event.isTrusted && cur.onExternalAppDone) {
-                                window.focus();
-                                cur.onExternalAppDone(event.data);
-                            }
-
-                            cur.onExternalAppDone = null;
-                            window.removeEventListener('message', cur.onExternalAppDoneListener);
-                            cur.onExternalAppDoneListener = null;
-                        };
-
-                        window.addEventListener('message', cur.onExternalAppDoneListener);
-                        externalAppWin.location.href = redirectLink;
-                    }
-                });
+            if (cur.app.isNativeClientWebView()) { // IOS and Android
+                cur.app.callNativeClientMethod('openExternalUrl', query);
+                return;
             }
+
+            var queryParams = {
+                act: 'open_external_app',
+                url: url,
+                query: req.join('&'),
+                aid: options.aid
+            };
+            var externalAppWin = window.open('', '_blank');
+
+            ajax.post('/apps.php', queryParams, {
+                onDone: function(redirectLink) {
+                    cur.onExternalAppDone = function(params) {
+                        this.runCallback('onExternalAppDone', params);
+                    }.bind(cur.app);
+
+                    cur.onExternalAppDoneListener = function(event) {
+                        if (event.origin === 'https://vk.com' && event.isTrusted && cur.onExternalAppDone) {
+                            if (event.data.method === 'externalAppDone') {
+                                window.focus();
+                                cur.onExternalAppDone(event.data.params);
+
+                                cur.onExternalAppDone = null;
+                                window.removeEventListener('message', cur.onExternalAppDoneListener);
+                                cur.onExternalAppDoneListener = null;
+                            }
+                        }
+                    };
+
+                    window.addEventListener('message', cur.onExternalAppDoneListener);
+                    externalAppWin.location.href = redirectLink;
+                }
+            });
         },
 
         externalAppDone: function(params) {
-            if (window.AndroidBridge) {
-                window.AndroidBridge.callMethod('externalAppDone', params); //android
-                return;
-            }
-
-            if (window.webkit) {
-                window.webkit.messageHandler['externalAppDone'].postMessage(params); //ios
-                return;
-            }
-
             if (window.opener) {
-                window.opener.postMessage(params, 'https://vk.com');
+                var data = {
+                    method: 'externalAppDone',
+                    params: params
+                };
+                window.opener.postMessage(data, 'https://vk.com');
                 window.close();
             }
         },
-        closeApp: function() {
-            if (window.AndroidBridge) {
-                window.AndroidBridge.callMethod('close'); //android
-                return;
-            }
 
-            if (window.webkit) {
-                window.webkit.messageHandler['close'].postMessage(); //ios
-            }
+        closeApp: function() {
+            cur.app.callNativeClientMethod('close');
         }
     };
 
@@ -685,8 +675,15 @@ var vkApp = function(cont, options, params, onInit) {
         if (this.RPC) {
             this.RPC.destroy();
         }
+
+        if (this._nativeClientCallbackListener) {
+            removeEvent(window, 'VKWebAppEvent', this._nativeClientCallbackListener);
+        }
     }).bind(this));
 
+    if (this.isNativeClientWebView()) {
+        this.initNativeClientCallbackListener();
+    }
 }
 
 vkApp.prototype.boxApp = function(options) {
@@ -912,6 +909,33 @@ vkApp.prototype.api = function(method, inputParams, callback, captcha) {
     };
     ajax.plainpost(self.params['api_script'], params, done, fail);
 }
+
+vkApp.prototype.callNativeClientMethod = function(method, params) {
+    if (window.AndroidBridge) {
+        window.AndroidBridge.callMethod(method, params);
+        return;
+    }
+
+    var iosBridge = window.webkit && window.webkit.messageHandlers;
+    if (iosBridge) {
+        iosBridge[method].postMessage(params);
+    }
+};
+
+vkApp.prototype.isNativeClientWebView = function() {
+    return window.AndroidBridge || (window.webkit && window.webkit.messageHandlers);
+};
+
+vkApp.prototype.initNativeClientCallbackListener = function() {
+    this._nativeClientCallbackListener = function(vkEvent) {
+        var eventData = vkEvent.detail || {};
+        if (eventData.type === 'appRunCallback') {
+            this.runCallback(eventData.event, eventData.data);
+        }
+    }.bind(this);
+
+    addEvent(window, 'VKWebAppEvent', this._nativeClientCallbackListener);
+};
 
 if (!window.Apps) window.Apps = {
     optionHiddenClass: 'apps_hidden',

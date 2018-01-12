@@ -67,8 +67,6 @@ var WAuth = {
 
             showBox: Widgets.showBox(),
 
-            showCaptchaBox: Widgets.showCaptchaBox,
-
             showReCaptchaBox: Widgets.showReCaptchaBox,
 
             gotSession: function(data) {

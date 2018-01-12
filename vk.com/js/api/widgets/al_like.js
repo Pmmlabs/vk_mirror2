@@ -293,8 +293,6 @@ var WLike = {
                 cur.Rpc.callMethod('hideTooltip', true);
             }),
 
-            showCaptchaBox: Widgets.showCaptchaBox,
-
             showReCaptchaBox: Widgets.showReCaptchaBox,
 
             openFullList: function() {

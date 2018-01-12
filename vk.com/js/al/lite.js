@@ -7298,23 +7298,6 @@ window.Widgets = {
         }
     })(window.showTooltip),
 
-    showCaptchaBox: function(sid, dif, box, o) {
-        var difficulty = intval(dif) ? '' : '&s=1';
-        var imgSrc = o.imgSrc || '/captcha.php?sid=' + sid + difficulty;
-        showBox('al_apps.php', {
-            act: 'show_captcha_box',
-            sid: sid,
-            src: imgSrc,
-            need_mobile: intval(window.need_mobile_act == 1),
-            widget_width: 322
-        });
-        cur.Rpc.methods.captcha = o.onSubmit || function() {};
-        cur.Rpc.methods.captchaHide = function() {
-            isFunction(cur.captchaHide) && cur.captchaHide();
-            isFunction(o.onHide) && o.onHide();
-        }
-    },
-
     showReCaptchaBox: function(key, lang, box, o) {
         showBox('al_apps.php', {
             act: 'show_recaptcha_box',
@@ -7378,7 +7361,6 @@ window.Widgets = {
         allowed = extend(allowed || {}, {
             'blank.php': true,
             'al_apps.php': {
-                'show_captcha_box': true,
                 'show_recaptcha_box': true
             }
         });

@@ -1418,8 +1418,6 @@ var CommunityWidget = {
                 }
             }),
 
-            showCaptchaBox: Widgets.showCaptchaBox,
-
             showReCaptchaBox: Widgets.showReCaptchaBox,
 
             gotSession: function(session_data) {

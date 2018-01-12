@@ -3566,33 +3566,6 @@ div.top_result_baloon a {
     margin: 13px auto 0px
 }
 
-.captcha_box_wrap {
-    margin: 0 auto;
-    width: 130px;
-    height: 81px
-}
-
-.captcha_box_wrap .captcha_box_input {
-    width: 100%;
-    box-sizing: border-box
-}
-
-.captcha_box_wrap .captcha_box_img {
-    display: block;
-    padding-bottom: 5px
-}
-
-.captcha_box_wrap .captcha_box_img img {
-    width: 130px;
-    height: 50px;
-    vertical-align: top
-}
-
-.captcha_box_wrap .captcha_box_loader {
-    margin: 10px -10px;
-    vertical-align: top
-}
-
 .recaptcha .pr {
     padding: 35px 0;
     text-align: center
