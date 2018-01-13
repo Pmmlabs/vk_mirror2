@@ -59,7 +59,8 @@ var Index = {
                 bday: cur.uiBday.val(),
                 bmonth: cur.uiBmonth.val(),
                 byear: cur.uiByear.val(),
-                frm: 1
+                frm: 1,
+                ah: nav.objLoc.ah
             };
             isVisible("ij_sex_row") && (t.sex = intval(radioval("ij_sex"))), window.tooltips && tooltips.hideAll(), val("ij_msg", ""), ajax.post("join.php?act=start", t, {
                 onDone: function(e, t) {

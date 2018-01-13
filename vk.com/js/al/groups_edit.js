@@ -610,8 +610,8 @@ var GroupsEdit = {
             category_1: intval(cur.newCategoriesDD[1].val()),
             category_2: intval(cur.newCategoriesDD[2].val())
         }), ajax.post("groupsedit.php", s, {
-            onDone: function(e, t) {
-                return 0 > e ? GroupsEdit.nbAddr() : e === !1 ? notaBene(ge("group_edit_name")) : "edit_first" == nav.objLoc.act ? nav.go(nav.objLoc[0]) : (GroupsEdit.showMessage(getLang("groups_saved_msg")), scrollToTop(), t != o && (each(geByTag("a"), function() {
+            onDone: function(e, t, r) {
+                return 0 > e ? GroupsEdit.nbAddr() : e === !1 ? notaBene(ge("group_edit_name")) : "edit_first" == nav.objLoc.act ? nav.go(nav.objLoc[0]) : (r && val("group_edit_name", replaceEntities(r)), GroupsEdit.showMessage(getLang("groups_saved_msg")), scrollToTop(), t != o && (each(geByTag("a"), function() {
                     this.href = this.href.replace(new RegExp("/" + t + "\\?", "g"), "/" + o + "?").replace(new RegExp("/" + t + "$", "g"), "/" + o)
                 }), nav.setLoc({
                     0: o,
@@ -911,8 +911,8 @@ var GroupsEdit = {
                     zeroDefault: !0,
                     onChange: GroupsEdit.manageSectionsDD
                 })
-            }), cur.mainSectionDD.val(e.mainSection), cur.secondarySectionDD.val(e.secondarySection),
-            GroupsEdit.manageSectionsDD()), cur.destroy.push(function(e) {
+            }), cur.mainSectionDD.val(e.mainSection),
+            cur.secondarySectionDD.val(e.secondarySection), GroupsEdit.manageSectionsDD()), cur.destroy.push(function(e) {
             e.marketCountryDD && (e.marketCountryDD.destroy(), e.marketCityDD.destroy(), e.marketCurrencyDD.destroy(), e.marketContactDD.destroy(), e.marketButtonType.destroy())
         })
     },

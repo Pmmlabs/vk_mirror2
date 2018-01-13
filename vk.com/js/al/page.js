@@ -6159,7 +6159,27 @@ var Wall = {
                         if (window.ny2018ReplaceText) {
                             text = ny2018ReplaceText(text);
                         }
+
+                        // only for VK videos
+                        var isPlayerLoaded = (cur.videoInlinePlayer && isAncestor(window._videoLastInlined[0], editEl));
+                        var isVideoPlaying = isPlayerLoaded && cur.videoInlinePlayer.getState() == 'playing';
+
                         val(editEl, text);
+
+                        if (isPlayerLoaded) {
+                            var wrapEl = geByClass1('page_post_sized_thumbs', editEl);
+                            if (domChildren(wrapEl).length == 1) {
+                                wrapEl.innerHTML = '';
+                                wrapEl.appendChild(window._videoLastInlined[1]);
+                                wrapEl.appendChild(window._videoLastInlined[0]);
+                                if (isVideoPlaying) {
+                                    setTimeout(function() {
+                                        cur.videoInlinePlayer.play();
+                                    }, 0);
+                                }
+                            }
+                        }
+
                         if (wasExpanded) {
                             wasExpanded = geByClass1('wall_post_more', editEl);
                             if (wasExpanded) wasExpanded.onclick();

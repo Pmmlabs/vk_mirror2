@@ -592,6 +592,9 @@ var vkApp = function(cont, options, params, onInit) {
             }
 
             if (cur.app.isNativeClientWebView()) { // IOS and Android
+                if (cur.app.isNativeIosWebView() && !/^https?:\/\//.test(query)) {
+                    query = 'https://' + query;
+                }
                 cur.app.callNativeClientMethod('openExternalUrl', query);
                 return;
             }
@@ -923,7 +926,15 @@ vkApp.prototype.callNativeClientMethod = function(method, params) {
 };
 
 vkApp.prototype.isNativeClientWebView = function() {
-    return window.AndroidBridge || (window.webkit && window.webkit.messageHandlers);
+    return this.isNativeIosWebView() || this.isNativeAndroidWebView();
+};
+
+vkApp.prototype.isNativeIosWebView = function() {
+    return window.webkit && window.webkit.messageHandlers;
+};
+
+vkApp.prototype.isNativeAndroidWebView = function() {
+    return window.AndroidBridge;
 };
 
 vkApp.prototype.initNativeClientCallbackListener = function() {

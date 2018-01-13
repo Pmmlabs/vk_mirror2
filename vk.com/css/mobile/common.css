@@ -2666,6 +2666,10 @@ input.wide_button {
     top: -5px
 }
 
+._hfixed .post_item .anchor {
+    top: -53px!important
+}
+
 .pi_img,
 .pi_iwrap {
     width: 25px;

@@ -327,6 +327,10 @@
     margin-top: 2px
 }
 
+.bt_hform_control_list {
+    padding-top: 5px
+}
+
 .bt_hform_checkboxes {
     padding-top: 7px
 }
@@ -2968,6 +2972,14 @@
     min-width: 300px
 }
 
+.bugtracker_device.checkbox:before {
+    margin-top: 2px
+}
+
+.bugtracker_device.radio:before {
+    margin-top: 3px
+}
+
 .bugtracker_device.user_device {
     padding-left: 0;
     padding-right: 0;
@@ -2976,10 +2988,6 @@
 
 .bugtracker_device.user_device:last-child {
     padding-bottom: 0
-}
-
-.bugtracker_device:first-child {
-    margin-top: -0.15em
 }
 
 .bugtracker_device .line_block {

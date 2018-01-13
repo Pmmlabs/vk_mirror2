@@ -202,7 +202,7 @@ var stVersions = {
     'video_youtube.css': 11773179773,
     'videoplayer.js': 75527346215,
     'videoplayer.css': 33576632285,
-    'translation.js': 1828242830,
+    'translation.js': 2635875905,
     'translation.css': 15783225610,
     'reg.css': 887926110,
     'reg.js': 1336565657,
@@ -210,7 +210,7 @@ var stVersions = {
     'invite.js': 4133426028,
     'prereg.js': 4187303773,
     'index.css': 12532212953,
-    'index.js': 2226083772,
+    'index.js': 356147149,
     'join.css': 14712750631,
     'join.js': 4281861549,
     'intro.css': 18838456936,
@@ -218,7 +218,7 @@ var stVersions = {
     'module.css': 16694736883,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 17785632232,
-    'page.js': 1853483566,
+    'page.js': 2409030092,
     'page.css': 24602888805,
     'page_help.css': 20523035996,
     'public.css': 25802268858,
@@ -229,7 +229,7 @@ var stVersions = {
     'groups.js': 2855040531,
     'groups_list.js': 3507753248,
     'groups_edit.css': 29458336840,
-    'groups_edit.js': 2656748301,
+    'groups_edit.js': 2665222037,
     'profile.css': 19149274226,
     'profile.js': 610604261,
     'calendar.css': 17045650424,
@@ -349,7 +349,7 @@ var stVersions = {
     'bugs.js': 3874995669,
     'bugs.css': 12154823937,
     'bugtracker.js': 2256008986,
-    'bugtracker.css': 23019163804,
+    'bugtracker.css': 21528064236,
     'login.css': 15347683790,
     'login.js': 1216110060,
     'upload.js': 16891470,
@@ -628,4 +628,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 5389;
+var _rnd = 741;
