@@ -193,7 +193,7 @@ var stVersions = {
     'video.css': 23607950975,
     'videocat.js': 3520065324,
     'videocat.css': 23054336459,
-    'videoview.js': 15633694559,
+    'videoview.js': 14531202381,
     'videoview.css': 23788222459,
     'video_edit.js': 2135196486,
     'video_edit.css': 23531884914,
@@ -628,4 +628,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 2530;
+var _rnd = 4406;
