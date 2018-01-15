@@ -219,7 +219,7 @@ var stVersions = {
     'owner_photo.js': 1714149322,
     'owner_photo.css': 17785632232,
     'page.js': 2409030092,
-    'page.css': 24602888805,
+    'page.css': 27343418945,
     'page_help.css': 20523035996,
     'public.css': 25802268858,
     'public.js': 1344775948,
@@ -628,4 +628,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 9319;
+var _rnd = 969;

@@ -1730,6 +1730,10 @@ div.submit_post_field font {
     margin-bottom: 10px
 }
 
+.wall_module .post_wf .page_media_thumbed_link:last-child {
+    margin-bottom: 0
+}
+
 .wall_module .page_media_preview_link {
     cursor: pointer!important
 }
