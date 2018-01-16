@@ -671,15 +671,62 @@ var BugTracker = {
             }
         })
     },
+    openCreateProductBox: function() {
+        cur.createProductBox = showBox("bugtracker", {
+            act: "create_product_box"
+        })
+    },
+    createProduct: function() {
+        var e = {
+                hash: cur.btProductHash,
+                title: trim(val("bt_prod_create_title")),
+                type: cur.btCreateProductTypeDD.val(),
+                level: cur.btCreateProductLevelDD.val()
+            },
+            t = !1,
+            r = cur.createProductBox.btns.ok[0];
+        if (cur.btProductTypesPlatformsRequired[e.type])
+            if (e.platforms = [], cur.btProductTypesSinglePlatform[e.type]) {
+                var o = radioval("platformType");
+                o || (notaBene("bt_prod_create_platforms_radios"), t = !0), e.platforms.push(o)
+            } else each(geByClass("on", "bt_prod_create_platforms_checkboxes"), function(t, r) {
+                e.platforms.push(attr(r, "platform-id"))
+            }), e.platforms.length || (notaBene("bt_prod_create_platforms_checkboxes"), t = !0);
+        0 == e.type && (notaBene(cur.btCreateProductTypeDD.container), t = !0), "" == e.title && (notaBene("bt_prod_create_title"), t = !0), isVisible("bt_prod_create_nda") && (e.nda = isChecked("bt_prod_create_nda") ? 1 : 0), t || ajax.post("bugtracker?act=a_create_product", e, {
+            showProgress: lockButton.pbind(r),
+            onFail: function() {
+                unlockButton(r)
+            }
+        })
+    },
+    openCreateProductBranchBox: function(e) {
+        cur.createProductBox = showBox("bugtracker?act=create_product_branch_box", {
+            id: e
+        })
+    },
+    createProductBranch: function() {
+        var e = {
+                hash: cur.btProductHash,
+                title: trim(val("bt_prod_create_title")),
+                level: cur.btCreateProductLevelDD.val(),
+                product_id: cur.btParentProductId
+            },
+            t = !1,
+            r = cur.createProductBox.btns.ok[0];
+        ge("bt_prod_create_platforms_checkboxes") && (e.platforms = [], each(geByClass("on", "bt_prod_create_platforms_checkboxes"), function(t, r) {
+            e.platforms.push(attr(r, "platform-id"))
+        }), e.platforms.length || (notaBene("bt_prod_create_platforms_checkboxes"), t = !0)), "" == e.title && (notaBene("bt_prod_create_title"), t = !0), isVisible("bt_prod_create_nda") && (e.nda = isChecked("bt_prod_create_nda") ? 1 : 0), t || ajax.post("bugtracker?act=a_create_product_branch", e, {
+            showProgress: lockButton.pbind(r),
+            onFail: function() {
+                unlockButton(r)
+            }
+        })
+    },
     openEditProductBox: function(e, t) {
         cur.editProductBox = showBox("bugtracker", {
             act: "edit_product_box",
             id: t
         }, {
-            showProgress: lockButton.pbind(e),
-            hideProgress: function() {
-                unlockButton(e), cur.editProductBox.show()
-            },
             params: {
                 width: 700
             }
@@ -695,20 +742,17 @@ var BugTracker = {
                 title_short: trim(val("bt_edit_product__title_short")),
                 descr: trim(val("bt_edit_product__descr")),
                 gid: val("bt_edit_product__gid"),
-                type: cur.editProductTypeDD.val(),
                 level: cur.editProductLevelDD.val(),
                 nda: isChecked("bt_edit_product__nda") ? 1 : 0,
                 platforms: [],
                 requirements: trim(val("bt_edit_product__requirements")),
                 tags: cur.editProductTagsDD.val(),
-                distr_type: radioval("distr_type")
+                distr_type: ge("bt_edit_product_distribution_block") ? radioval("distr_type") : 0
             },
             r = ge("bt_edit_product__btn"),
-            o = !1,
-            a = ge("bt_edit_product__version_title"),
-            n = ge("bt_edit_product__release_notes");
-        isVisible("bt_edit_product__version") && (t.version_title = trim(val(a)), t.release_notes = trim(val(n)), "" === t.version_title && (notaBene(a), o = !0)), t.tags.length || (notaBene(cur.editProductTagsDD.container), o = !0), cur.btProductTypesPlatformsRequired[t.type] && (each(geByClass("checkbox", "bt_edit_product_platforms_block"), function(e, r) {
-            isVisible(r) && isChecked(r) && t.platforms.push(attr(r, "platform-id"))
+            o = !1;
+        t.tags.length || (notaBene(cur.editProductTagsDD.container), o = !0), ge("bt_edit_product_platforms_block") && !hasClass("_readonly", "bt_edit_product_platforms_block") && (each(geByClass("checkbox", "bt_edit_product_platforms_block"), function(e, r) {
+            isChecked(r) && t.platforms.push(attr(r, "platform-id"))
         }), t.platforms.length || (notaBene("bt_edit_product_platforms_block"), o = !0)), "" == t.title && (notaBene(e), o = !0), o || ajax.post("bugtracker", t, {
             showProgress: lockButton.pbind(r),
             hideProgress: unlockButton.pbind(r),
@@ -759,7 +803,7 @@ var BugTracker = {
             hash: t
         }, {
             onDone: function(t, r) {
-                cur.editVersionBox.hide(), showDoneBox(t), re("bt_prod_version" + e), "" == val("bt_prod_block bt_prod_block_versions") && val("bt_prod_block bt_prod_block_versions", r)
+                cur.editVersionBox.hide(), showDoneBox(t), re("bt_prod_version" + e), "" == val("bt_prod_block_versions") && val("bt_prod_block_versions", r)
             }
         })
     },
@@ -1614,6 +1658,19 @@ var BugTracker = {
                         n.indexOf(t.getAttribute("platform-id")) >= 0 ? (checkbox(t, !0), disable(t, !0)) : disable(t, !1)
                     })
                 }
+            }
+        })
+    },
+    mergeProducts: function(e, t, r, o) {
+        ajax.post("bugtracker?act=a_merge_products", {
+            id: t,
+            vid: r,
+            hash: o
+        }, {
+            showProgress: lockButton.pbind(e),
+            hideProgress: unlockButton.pbind(e),
+            onDone: function(t) {
+                re(e), val("bt_merge_buttons", t)
             }
         })
     },

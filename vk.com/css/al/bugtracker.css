@@ -1731,8 +1731,13 @@
     color: #b00
 }
 
-.bt_reporter_products {
+.bt_products_list {
     padding: 0 20px
+}
+
+.bt_products_list .bt_empty_message {
+    padding-top: 59px;
+    padding-bottom: 59px
 }
 
 .bt_reporter_product {
@@ -1769,6 +1774,7 @@
     line-height: 13px
 }
 
+.bt_reporter_product_nreports.bt_reporter_product_nreports_no,
 .bt_reporter_product_unavailable .bt_reporter_product_title,
 .bt_reporter_product_unavailable .bt_reporter_product_nreports {
     color: #939393
@@ -1863,6 +1869,11 @@
 
 .bt_product_row_title {
     line-height: 19px
+}
+
+.bt_product_row_title_parent {
+    color: #939393;
+    font-size: 12px
 }
 
 .bt_product_row_subtitle {
@@ -1988,6 +1999,7 @@
     padding: 10px 5px;
     border-bottom: 1px solid #e7e8ec;
     line-height: 19px;
+    position: relative;
     word-wrap: break-word
 }
 
@@ -2056,6 +2068,10 @@
         background-image: url(/images/icons/box_edit_icon_2x.png);
         background-size: 13px 13px
     }
+}
+
+.bt_prod_version_more {
+    padding: 0 20px 10px
 }
 
 .bt_prod_reporter {
@@ -2713,7 +2729,7 @@
 }
 
 .bt_settings .bt_hform_label {
-    width: 180px
+    width: 185px
 }
 
 .bt_settings .bt_hform_label:after {
@@ -3239,4 +3255,12 @@
 
 .top_home_logo.bugtracker_logo_glitch:hover.frame5:before {
     left: -4px
+}
+
+.bt_merge_buttons {
+    border-top: 1px solid #e7e8ec;
+    margin-top: 15px;
+    padding-top: 15px;
+    color: #656565;
+    line-height: 31px
 }
