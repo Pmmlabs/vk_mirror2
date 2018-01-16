@@ -134,7 +134,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 2889730895,
     'common.js': 1161,
-    'common.css': 28078398903,
+    'common.css': 27839751567,
     'cmodules/web/common_web.js': 1,
     'retina.css': 2633262011,
     'uncommon.js': 1524646384,
@@ -148,7 +148,7 @@ var stVersions = {
     'blog.css': 15011155352,
     'blog.js': 1358605934,
     'html5audio.js': 976782859,
-    'audioplayer.js': 8204050309,
+    'audioplayer.js': 4244609727,
     'audioplayer.css': 15839312961,
     'audio_html5.js': 287741914,
     'audio.js': 1055450991,
@@ -169,8 +169,8 @@ var stVersions = {
     'usorter.js': 362016183,
     'cmodules/web/photos_module.js': 13696759782,
     'photo_tagger_mode.js': 2811660011,
-    'photoview.js': 864074332,
-    'photoview.css': 27734170808,
+    'photoview.js': 100019790,
+    'photoview.css': 24578795189,
     'fullscreen_pv.js': 2393839857,
     'fullscreen_pv.css': 13479060179,
     'spe.js': 3760998372,
@@ -193,8 +193,8 @@ var stVersions = {
     'video.css': 23607950975,
     'videocat.js': 3520065324,
     'videocat.css': 23054336459,
-    'videoview.js': 14531202381,
-    'videoview.css': 23788222459,
+    'videoview.js': 16776220841,
+    'videoview.css': 21868840802,
     'video_edit.js': 2135196486,
     'video_edit.css': 23531884914,
     'video_upload.js': 3600027222,
@@ -229,7 +229,7 @@ var stVersions = {
     'groups.js': 2855040531,
     'groups_list.js': 3507753248,
     'groups_edit.css': 29458336840,
-    'groups_edit.js': 2665222037,
+    'groups_edit.js': 1633960107,
     'profile.css': 19149274226,
     'profile.js': 610604261,
     'calendar.css': 17045650424,
@@ -320,7 +320,7 @@ var stVersions = {
     'developers.css': 2998332598,
     'notifier.js': 76731787743,
     'notifier.css': 20750675573,
-    'cmodules/sw/sw.js': 3797214872,
+    'cmodules/sw/sw.js': 4303672181,
     'earthday.js': 2276669993,
     'earthday.css': 287663071,
     'restore.js': 118430100,
@@ -371,7 +371,7 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 22128084780,
     'aes_light.js': 592436914,
-    'ads.css': 23483622299,
+    'ads.css': 20612487176,
     'ads_bonus.css': 460482192,
     'ads.js': 642767427,
     'ads_payments.js': 2205910694,
@@ -558,7 +558,7 @@ var stVersions = {
     'internal/admins.css': 13535557468,
     'cmodules/web/stickers.js': 8911239512,
     'cmodules/web/bodymovin.js': 1520167629,
-    'lang': 6875
+    'lang': 6877
 };
 var stTypes = {
     fromLib: {
@@ -628,4 +628,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 969;
+var _rnd = 3249;

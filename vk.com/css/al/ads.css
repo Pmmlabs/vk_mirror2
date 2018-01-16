@@ -3345,6 +3345,10 @@ ads_retargeting_box_price_list_error_description {
     -moz-osx-font-smoothing: grayscale
 }
 
+.ads_retargeting_box_error_block_code_text_desc_empty {
+    font-style: italic
+}
+
 .ads_settings_notifacations {
     margin: 10px 0 0 10px;
     border-collapse: collapse

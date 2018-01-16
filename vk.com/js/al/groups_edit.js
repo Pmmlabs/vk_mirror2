@@ -2041,7 +2041,7 @@ var GroupsEdit = {
                 if (o) {
                     if (r === o) return;
                     s.title = getLang("global_error");
-                    var a = getLang("global_api_incorrect_response_dialog").replace("{response}", r).replace("{expected}", o);
+                    var a = getLang("groups_api_incorrect_response_dialog").replace("{response}", r).replace("{expected}", o);
                     s.width = 450
                 } else {
                     var a = '<pre class="group_api_result_pre"">' + r + "</pre>";

@@ -499,7 +499,8 @@ mail_error = '������';
 mail_im_get_invitation_link = '������������ ������';
 mail_im_joined_chat_from_invitation = ['', '{from} ������������� � ������� �� ������������� �������', '{from} �������������� � ������� �� ������������� �������'];
 mail_marked_as_spam = '���������� ����� � ���������� � �������� ������������.';
-// section = 22; version = 106;
+mail_money_amount_rub = ['', '%s ���.', '%s ���.', '%s ���.'];
+// section = 22; version = 108;
 
 payments_amount_rubles = ['', '�����', '�����', '������'];
 payments_amount_votes = ['', '��������', '��������', '��������'];
