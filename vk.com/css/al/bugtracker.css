@@ -3259,8 +3259,12 @@
 
 .bt_merge_buttons {
     border-top: 1px solid #e7e8ec;
-    margin-top: 15px;
     padding-top: 15px;
-    color: #656565;
     line-height: 31px
+}
+
+.bt_merge_buttons,
+.bt_move_to_product {
+    margin-top: 15px;
+    color: #656565
 }

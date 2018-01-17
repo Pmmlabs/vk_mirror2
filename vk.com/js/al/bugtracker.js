@@ -1445,6 +1445,10 @@ var BugTracker = {
     openMoveToProductBox: function(e, t, r) {
         cur.moveToProductBox = showBox("bugtracker?act=move_bugreport_to_product_box", {
             id: e
+        }, {
+            params: {
+                width: 500
+            }
         })
     },
     loadProductVersionsDropdown: function(e, t, r) {
@@ -1459,11 +1463,13 @@ var BugTracker = {
                 var o = ce("input", {
                     type: "text"
                 });
-                val(o, t), console.log(t), val(r, ""), r.appendChild(o), cur.btVersionDD && cur.btVersionDD.destroy && cur.btVersionDD.destroy(), cur.btVersionDD = new Dropdown(o, e, {
+                val(o, t), val(r, ""), r.appendChild(o), cur.btVersionDD && cur.btVersionDD.destroy && cur.btVersionDD.destroy(), cur.btVersionDD = new Dropdown(o, e, {
                     big: 1,
-                    width: 400,
+                    width: 450,
                     autocomplete: !1
-                }), show(r), notaBene(cur.btVersionDD.container, "notice")
+                }), show(r), notaBene(cur.btVersionDD.container, "notice"), cur.moveToProductBox.setOptions({
+                    hideButtons: !1
+                })
             }
         })
     },
@@ -1475,11 +1481,11 @@ var BugTracker = {
                 version_id: cur.btVersionDD ? cur.btVersionDD.val() : 0,
                 hash: cur.btMoveToProductHash
             };
-        return 0 == t.product_id ? notaBene(cur.btProductDD.container) : 0 == t.version_id ? notaBene(cur.btVersionDD.container) : void ajax.post("bugtracker?act=a_move_bugreport_to_product", t, {
+        return 0 == t.product_id ? notaBene(cur.btProductDD.container) : 0 == t.version_id && cur.btCanChangeVersion ? notaBene(cur.btVersionDD.container) : void ajax.post("bugtracker?act=a_move_bugreport_to_product", t, {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e),
-            onDone: function() {
-                cur.moveToProductBox.hide()
+            onDone: function(e) {
+                cur.moveToProductBox.hide(), showDoneBox(e), nav.reload()
             }
         })
     },

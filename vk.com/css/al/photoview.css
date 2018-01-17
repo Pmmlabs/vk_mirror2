@@ -1247,10 +1247,6 @@
     background-position: 0 -197px
 }
 
-#pv_more_acts_tt #pv_more_act_add_to_forbidden_registry:before {
-    background: url('/images/svg_icons/internal/db_white.svg') 0 0px
-}
-
 #pv_more_acts_tt .pv_more_acts_hidden {
     display: none
 }

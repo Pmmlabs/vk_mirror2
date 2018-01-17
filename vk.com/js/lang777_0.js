@@ -14,7 +14,6 @@ box_yes = '��';
 captcha_cancel = '������';
 captcha_enter_code = '������� ���� � ��������';
 captcha_send = '���������';
-claims_flood_error = '�� ��� ��������� ��������� �����. ����������, ��������� ������� ������ ��������� �����.';
 datepicker_date_format = '{day} {month} {year}';
 datepicker_month_format = '{month} {year}';
 functions_sure_delete = '�� ������������� ������ ��������� ��� ������?';
@@ -195,17 +194,6 @@ Secondary_education = '������� ��� ���� ����
 Sex = '���:';
 Sex_fm = '�������';
 Sex_m = '�������';
-search_by_app = '�� �����������';
-search_by_audio = '�� �����������';
-search_by_event = '�� ��������';
-search_by_goods = '�� �������';
-search_by_group = '�� ������';
-search_by_note = '�� ��������';
-search_by_person = '�� ���������';
-search_by_question = '�� ��������';
-search_by_status = '�� ��������';
-search_by_topic = '�� ��������';
-search_by_video = '�� ����������';
 select_chair_not_selected = '- �� ������� -';
 select_chair_select = '������� ��������';
 select_city_not_found = '����� �� ������';
@@ -713,22 +701,6 @@ var langConfig = {
     "larr": "&larr;",
     "rarr": "&rarr;"
 };
-var market_currency_count = ['RUB', 'UAH', 'KZT', 'USD', 'EUR'];
-
-var qArr = [
-    [0, getLang('search_by_person'), '', 'people', 0],
-    [1, getLang('search_by_group'), '', 'groups', 0x00800000],
-    [2, getLang('search_by_event'), '', 'events', 0x01000000],
-    [3, getLang('search_by_audio'), '', 'audio', 0x00000002],
-    [4, getLang('search_by_video'), '', 'video', 0x00400000],
-    [5, getLang('search_by_ad'), '', 'ads', 0x00000100],
-    [6, getLang('search_by_app'), '', 'apps', 0x00000020],
-    [7, getLang('search_by_question'), '', 'questions', 0x00000040],
-    [8, getLang('search_by_note'), '', 'notes', 0x02000000],
-    [9, getLang('search_by_topic'), '', 'topics', 0x00800000],
-    [11, getLang('search_by_status'), '', 'statuses', 0]
-];
-
 var year_offset = langConfig.yearOffset;
 var larr = langConfig.larr;
 var rarr = langConfig.rarr;

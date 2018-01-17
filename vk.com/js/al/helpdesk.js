@@ -1281,10 +1281,19 @@ var Helpdesk = {
         }), !1
     },
     takeToSection: function() {
-        return ajax.post("helpdesk", {
-            act: "take",
+        return ajax.post("helpdesk?act=a_take_to_section", {
             ticket_id: cur.ticket_id,
             hash: cur.hashes.next_hash
+        }, {
+            showProgress: Helpdesk.showTicketProgress,
+            hideProgress: Helpdesk.hideTicketProgress,
+            onDone: Helpdesk._show
+        }), !1
+    },
+    dropTicket: function() {
+        return ajax.post("helpdesk?act=a_drop_ticket", {
+            ticket_id: cur.ticket_id,
+            hash: cur.hashes.drop_hash
         }, {
             showProgress: Helpdesk.showTicketProgress,
             hideProgress: Helpdesk.hideTicketProgress,
