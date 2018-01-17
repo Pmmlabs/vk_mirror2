@@ -1200,7 +1200,8 @@
     letter-spacing: -0.1px;
     display: block;
     text-decoration: none!important;
-    display: table
+    display: table;
+    border-radius: 4px
 }
 
 .blog_job:hover {
@@ -1279,12 +1280,19 @@
 }
 
 .blog_job_title {
-    margin-top: 0px
+    color: #2a5885;
+    font-size: 19px;
+    line-height: 23px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .blog_job_descr {
     line-height: 21px;
-    margin-top: 5px
+    margin-top: 7px;
+    font-size: 14px;
+    color: #000
 }
 
 .blog_email_status_wrap {

@@ -145,13 +145,13 @@ var stVersions = {
     'lite.css': 37053557488,
     'rtl.css': 12873836295,
     'pagination.js': 1027022568,
-    'blog.css': 15011155352,
+    'blog.css': 15000476063,
     'blog.js': 1358605934,
     'html5audio.js': 976782859,
     'audioplayer.js': 4244609727,
     'audioplayer.css': 15839312961,
     'audio_html5.js': 287741914,
-    'audio.js': 1055450991,
+    'audio.js': 4163806548,
     'audio.css': 23402929982,
     'gifts.css': 17776270652,
     'gifts.js': 338252255,
@@ -173,7 +173,7 @@ var stVersions = {
     'photoview.css': 27734170808,
     'fullscreen_pv.js': 2393839857,
     'fullscreen_pv.css': 13479060179,
-    'spe.js': 3760998372,
+    'spe.js': 1627392370,
     'friends.js': 140439177,
     'friends.css': 16392995457,
     'friends_search.js': 3438694410,
@@ -266,7 +266,7 @@ var stVersions = {
     'privacy.js': 3620108221,
     'privacy.css': 12556350895,
     'apps.css': 33162269105,
-    'apps.js': 4077396980,
+    'apps.js': 2168906660,
     'apps_edit.js': 1119189232,
     'apps_edit.css': 29529642640,
     'apps_check.js': 3844411974,
@@ -491,7 +491,7 @@ var stVersions = {
     'paginated_table.js': 1750088857,
     'paginated_table.css': 14115792976,
     'api/share.js': 2621084197,
-    'api/openapi.js': 4127665087,
+    'api/openapi.js': 563962739,
     'api/xdm.js': 1449919642,
     'hls.min.js': 1200179027,
     'candy.min.js': 1892723665,
@@ -628,4 +628,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 8810;
+var _rnd = 2394;

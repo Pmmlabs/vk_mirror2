@@ -144,7 +144,7 @@
         var i = e + "_" + t;
         if (!Fe[i] || a) {
             var r = vkImage();
-            r.onload = function() {
+            r.crossOrigin = "anonymous", r.onload = function() {
                 a && a(this)
             }, r.src = Pe[e].sizes[t], Fe[i] = r
         }

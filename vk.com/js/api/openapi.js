@@ -1160,6 +1160,68 @@ if (!VK.xdConnectionCallbacks) {
         };
     }
 
+    if (!VK.App) {
+        VK.App = {
+            _appOpened: false,
+
+            open: function(url, params) {
+                if (VK.App._appOpened || !VK._apiId) {
+                    return;
+                }
+
+                if (!VK._session) {
+                    VK.Auth.login(function(resp) {
+                        if (resp && resp.session) {
+                            VK.App._openApp(url, params);
+                        }
+                    });
+                } else {
+                    VK.App._openApp(url, params);
+                }
+            },
+
+            _openApp: function(url, params) {
+                var src, box, request = [];
+                params = params || {};
+
+                if (!url || !VK._apiId || VK.App._appOpened) {
+                    return;
+                }
+                src = VK._protocol + '//vk.com/apps?act=open_external_app_openapi&aid=' + VK._apiId;
+                params['aid'] = VK._apiId;
+
+                for (var arg in params) {
+                    var val = '';
+                    if (!params.hasOwnProperty(arg)) {
+                        continue;
+                    }
+                    if (params[arg] !== undefined) {
+                        val = encodeURIComponent(params[arg]);
+                    }
+                    request.push(encodeURIComponent(arg) + '=' + val);
+                }
+
+                src += '&url=' + url;
+                src += '&q=' + encodeURIComponent(request.join('&'));
+
+                box = VK.Util.Box(src, {}, {
+                    closeExternalApp: function() {
+                        VK.Observer.publish('app.closed');
+                        box.hide();
+                        VK.App._appOpened = false;
+                    },
+                    externalAppDone: function(params) {
+                        VK.Observer.publish('app.done', params);
+                        box.hide();
+                        VK.App._appOpened = false;
+                    }
+                });
+                box.show();
+                VK.App._appOpened = true;
+            },
+        }
+    }
+
 } else { // if VK.xdConnectionCallbacks
     setTimeout(function() {
         var callback;

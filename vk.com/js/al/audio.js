@@ -1281,14 +1281,17 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
 }, AudioPage.searchAudios = function(e, t, i) {
     currentAudioPage(this).searchAudios(e, t, i)
 }, AudioPage.prototype.searchAudios = function(e, t, i) {
-    return this._muteSearch ? void delete this._muteSearch : (e = trim(e), void nav.change(extend(this._getCurrentSearchParams(), {
-        q: e || null
-    }), !1, {
-        fromSearch: !0,
-        globalQuery: t,
-        fromHistory: i,
-        isLayer: this.isLayer()
-    }))
+    if (this.lastQuery !== e || this.lastSuggestedQuery === t) {
+        if (this.lastQuery = e, this.lastSuggestedQuery = t, this._muteSearch) return void delete this._muteSearch;
+        e = trim(e), nav.change(extend(this._getCurrentSearchParams(), {
+            q: e || null
+        }), !1, {
+            fromSearch: !0,
+            globalQuery: t,
+            fromHistory: i,
+            isLayer: this.isLayer()
+        })
+    }
 }, AudioPage.prototype.onUserAction = function(e, t) {
     var i = t.indexOfAudio(e);
     if (-1 != i && t.getType() == AudioPlaylist.TYPE_SEARCH) {
