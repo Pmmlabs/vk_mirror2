@@ -145,7 +145,7 @@ var stVersions = {
     'lite.css': 37053557488,
     'rtl.css': 12873836295,
     'pagination.js': 1027022568,
-    'blog.css': 15000476063,
+    'blog.css': 14640526034,
     'blog.js': 1358605934,
     'html5audio.js': 976782859,
     'audioplayer.js': 4244609727,
@@ -250,13 +250,13 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 119321725070,
-    'imn.js': 141922720705,
+    'imn.js': 142569767353,
     'im.js': 1322065005,
     'emoji.js': 2024669263,
     'wide_dd.css': 14882535544,
     'wide_dd.js': 452755344,
     'writebox.css': 15309134519,
-    'writebox.js': 56707704618,
+    'writebox.js': 57354751266,
     'sharebox.js': 3977597905,
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
@@ -318,7 +318,7 @@ var stVersions = {
     'widgets.css': 29037036874,
     'common_light.js': 2102079137,
     'developers.css': 2998332598,
-    'notifier.js': 76731787743,
+    'notifier.js': 77378834391,
     'notifier.css': 20750675573,
     'cmodules/sw/sw.js': 4303672181,
     'earthday.js': 2276669993,
@@ -371,7 +371,7 @@ var stVersions = {
     'call.css': 3256039661,
     'aes_light.css': 22128084780,
     'aes_light.js': 592436914,
-    'ads.css': 23728191194,
+    'ads.css': 21447385378,
     'ads_bonus.css': 460482192,
     'ads.js': 642767427,
     'ads_payments.js': 2205910694,
@@ -628,4 +628,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 2492;
+var _rnd = 8302;

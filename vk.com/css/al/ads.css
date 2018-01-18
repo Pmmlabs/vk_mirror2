@@ -2582,8 +2582,8 @@ a.ads_dd_menu_multi_item.label:hover {
     color: #417505
 }
 
-.ads_retargeting_pixel_status_not_working {
-    color: #d0021b
+.ads_retargeting_pixel_status_working_errors {
+    color: #ffa000
 }
 
 .ads_retargeting_group_actions_link {
@@ -2738,15 +2738,24 @@ a.ads_dd_menu_multi_item.label:hover {
 }
 
 .ads_retargeting_box_block {
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #e7e8ec
+    margin-bottom: 25px;
+    padding-bottom: 25px
 }
 
 .ads_retargeting_box_block:last-child {
     margin: 0;
     padding: 0;
     border-bottom: 0
+}
+
+.ads_retargeting_box_block_title_process {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e8ebee;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .ads_retargeting_box_block_title {
