@@ -197,7 +197,7 @@ var stVersions = {
     'videoview.css': 21868840802,
     'video_edit.js': 2135196486,
     'video_edit.css': 23531884914,
-    'video_upload.js': 3600027222,
+    'video_upload.js': 3535577292,
     'video_youtube.js': 2438487008,
     'video_youtube.css': 11773179773,
     'videoplayer.js': 75527346215,
@@ -262,7 +262,7 @@ var stVersions = {
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
     'feed.js': 3768614057,
-    'feed.css': 16749054020,
+    'feed.css': 20205192742,
     'privacy.js': 3620108221,
     'privacy.css': 12556350895,
     'apps.css': 33162269105,
@@ -348,8 +348,8 @@ var stVersions = {
     'groupinfo.css': 16972553358,
     'bugs.js': 3874995669,
     'bugs.css': 12154823937,
-    'bugtracker.js': 4076828173,
-    'bugtracker.css': 22684006605,
+    'bugtracker.js': 1251503767,
+    'bugtracker.css': 21710850757,
     'login.css': 15347683790,
     'login.js': 1216110060,
     'upload.js': 16891470,
@@ -413,7 +413,7 @@ var stVersions = {
     'dev.js': 2143073519,
     'dev.css': 30983385244,
     'share.css': 28181606101,
-    'stickers_office.css': 1312075860,
+    'stickers_office.css': 13687973613,
     'stickers_office.js': 2301605568,
     'mapbox.js': 262357480,
     'mapbox.css': 4285195017,
@@ -628,4 +628,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 2394;
+var _rnd = 2492;

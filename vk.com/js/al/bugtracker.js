@@ -194,7 +194,7 @@ var BugTracker = {
             d = cur.btSearchTagsDD.val(),
             u = cur.btSearchOriginalDD ? parseInt(cur.btSearchOriginalDD.val()) : 0,
             _ = cur.btSearchDeviceDD.val();
-        BugTracker.ddVisible(cur.btSearchProductDD) && o > 0 && (r.product = o), a > 0 && BugTracker.ddVisible(cur.btSearchVersionDD) && (r.version = a), n > 0 && BugTracker.ddVisible(cur.btSearchPlatformDD) && (r.platform = n), i && BugTracker.ddVisible(cur.btSearchPlatformVersionDD) && (r.pversion = i), _ && BugTracker.ddVisible(cur.btSearchDeviceDD) && (r.device = _), s && (r.status = s), c && (r.severity = c), d && BugTracker.ddVisible(cur.btSearchTagsDD) && (r.tag = d), cur.btSearchRegionDD && cur.btSearchRegionDD.val() > 0 && BugTracker.ddVisible(cur.btSearchRegionDD) && (r.region = cur.btSearchRegionDD.val()), u > 0 && (r.original = u), isChecked("bt_sb_search_vulnerabilites") && (r.vulnerability = 1), isChecked("bt_sb_search_wishes") && (r.wishes = 1), isChecked("bt_sb_search_unrated") && (r.unrated = 1), ge("bt_sb_search_member") && nav.objLoc.mid && (r.mid = nav.objLoc.mid), BugTracker.loadSearch(r, e, t)
+        BugTracker.ddVisible(cur.btSearchProductDD) && o > 0 && (r.product = o), a > 0 && BugTracker.ddVisible(cur.btSearchVersionDD) && (r.version = a), n > 0 && BugTracker.ddVisible(cur.btSearchPlatformDD) && (r.platform = n), i && BugTracker.ddVisible(cur.btSearchPlatformVersionDD) && (r.pversion = i), _ && BugTracker.ddVisible(cur.btSearchDeviceDD) && (r.device = _), s && (r.status = s), c && (r.severity = c), d && BugTracker.ddVisible(cur.btSearchTagsDD) && (r.tag = d), cur.btSearchRegionDD && cur.btSearchRegionDD.val() > 0 && BugTracker.ddVisible(cur.btSearchRegionDD) && (r.region = cur.btSearchRegionDD.val()), u > 0 && (r.original = u), isChecked("bt_sb_search_vulnerabilites") && (r.vulnerability = 1), isChecked("bt_sb_search_wishes") && (r.wishes = 1), isChecked("bt_sb_search_unrated") && (r.unrated = 1), isChecked("bt_sb_search_deleted") && (r.deleted = 1), ge("bt_sb_search_member") && nav.objLoc.mid && (r.mid = nav.objLoc.mid), BugTracker.loadSearch(r, e, t)
     },
     doUpdateSearch: function(e, t) {
         e = e.toLowerCase(), (e != nav.objLoc.q || t) && (e ? nav.objLoc.q = e : delete nav.objLoc.q, BugTracker.loadSearch(nav.objLoc))
@@ -1100,7 +1100,8 @@ var BugTracker = {
                 platforms: []
             },
             o = !0;
-        "" != r.login_tf && -1 == r.login_tf.indexOf("@") && (notaBene("bt_settings__login_tf"), o = !1), "" != r.login_ha && -1 == r.login_ha.indexOf("@") && (notaBene("bt_settings__login_ha"), o = !1), o && (each(geByClass("on", "bt_settings_platforms"), function(e, t) {
+        "" != r.login_tf && -1 == r.login_tf.indexOf("@") && (notaBene("bt_settings__login_tf"), o = !1), "" != r.login_ha && -1 == r.login_ha.indexOf("@") && (notaBene("bt_settings__login_ha"),
+            o = !1), o && (each(geByClass("on", "bt_settings_platforms"), function(e, t) {
             r.platforms.push(attr(t, "platform-id"))
         }), ajax.post("bugtracker", r, {
             showProgress: lockButton.pbind(e),
@@ -1229,7 +1230,7 @@ var BugTracker = {
             getAgeToData: function() {},
             getAgeFromData: function() {},
             filterChanged: function() {
-                this.filter.city = this.cityFilter.val_full()[0], this.filter.nda = this.ndaFilter && this.ndaFilter.val_full()[0], this.filter.activity = this.activityFilter && this.activityFilter.val_full()[0], this.filter.soc = isChecked("invites_filter_soc_" + e.randomId), isChecked("invites_filter_tf0_" + e.randomId) ? this.filter.tf = 1 : isChecked("invites_filter_tf1_" + e.randomId) ? this.filter.tf = 2 : this.filter.tf = 0, isChecked("invites_filter_ha0_" + e.randomId) ? this.filter.ha = 1 : isChecked("invites_filter_ha1_" + e.randomId) ? this.filter.ha = 2 : this.filter.ha = 0, this.filter.agents = isChecked("invites_filter_agents_" + e.randomId), this.filter.notagents = isChecked("invites_filter_notagents_" + e.randomId), this.filter.ios = isChecked("invites_filter_ios_" + e.randomId), this.filter.droid = isChecked("invites_filter_droid_" + e.randomId), this.updateFilters(), this.search()
+                this.filter.city = this.cityFilter.val_full()[0], this.filter.nda = this.ndaFilter && this.ndaFilter.val_full()[0], this.filter.activity = this.activityFilter && this.activityFilter.val_full()[0], this.filter.other_product = this.productBranchFilter && this.productBranchFilter.val_full()[0], this.filter.soc = isChecked("invites_filter_soc_" + e.randomId), isChecked("invites_filter_tf0_" + e.randomId) ? this.filter.tf = 1 : isChecked("invites_filter_tf1_" + e.randomId) ? this.filter.tf = 2 : this.filter.tf = 0, isChecked("invites_filter_ha0_" + e.randomId) ? this.filter.ha = 1 : isChecked("invites_filter_ha1_" + e.randomId) ? this.filter.ha = 2 : this.filter.ha = 0, this.filter.agents = isChecked("invites_filter_agents_" + e.randomId), this.filter.notagents = isChecked("invites_filter_notagents_" + e.randomId), this.filter.ios = isChecked("invites_filter_ios_" + e.randomId), this.filter.droid = isChecked("invites_filter_droid_" + e.randomId), this.updateFilters(), this.search()
             },
             clearFilter: function() {
                 this.filter = {}, this.updateFilters(), this.search()
@@ -1244,6 +1245,9 @@ var BugTracker = {
                         break;
                     case "activity":
                         this.activityFilter.val("0");
+                        break;
+                    case "other_product":
+                        this.productBranchFilter.val("0");
                         break;
                     case "soc":
                         checkbox("invites_filter_soc_" + e.randomId, !1);
@@ -1306,6 +1310,13 @@ var BugTracker = {
                                         continue
                                     }
                                     n = this.activityFilter.val_full()[1];
+                                    break;
+                                case "other_product":
+                                    if (0 == this.productBranchFilter.val_full()[0]) {
+                                        re(c);
+                                        continue
+                                    }
+                                    n = this.productBranchFilter.val_full()[1];
                                     break;
                                 default:
                                     var d = ge("invites_filter_" + o + "_" + e.randomId);
@@ -1423,7 +1434,12 @@ var BugTracker = {
             onChange: r.filterChanged.bind(r)
         }));
         var a = ge("invites_fltr_activity_" + e.randomId);
-        return a && (r.activityFilter = new Dropdown(a, cur.btActivityFilterOptions, {
+        a && (r.activityFilter = new Dropdown(a, cur.btActivityFilterOptions, {
+            big: 1,
+            onChange: r.filterChanged.bind(r)
+        }));
+        var n = ge("invites_fltr_other_product_" + e.randomId);
+        return n && (r.productBranchFilter = new Dropdown(n, e.productBranches, {
             big: 1,
             onChange: r.filterChanged.bind(r)
         })), BugTracker.invitesSearch[e.randomId] = r, r

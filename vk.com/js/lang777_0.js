@@ -490,6 +490,9 @@ mail_marked_as_spam = '���������� ����� � ��
 mail_money_amount_rub = ['', '%s ���.', '%s ���.', '%s ���.'];
 // section = 22; version = 108;
 
+news_group_posts_owner_link = '������� �� �������� ���������';
+// section = 25; version = 45;
+
 payments_amount_rubles = ['', '�����', '�����', '������'];
 payments_amount_votes = ['', '��������', '��������', '��������'];
 payments_cancel = '������';

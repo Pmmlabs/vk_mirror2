@@ -637,30 +637,43 @@ var VideoUpload = {
     },
     checkChanges: function(e) {
         if (!cur.leaving) {
-            var o = !1,
-                a = ge("video_upload_tab");
-            if (!a) return !1;
-            var d = geByClass("video_upload_item_panel", a);
-            for (var i in d) {
-                var t = d[i];
-                if (!(domData(t, "uploaded") && domData(t, "saved") || domData(t, "error"))) {
-                    o = getLang("video_upload_changed");
-                    break
-                }
+            var o = ge("video_upload_tab");
+            if (!o) return !1;
+            for (var a = "", d = "", i = geByClass("video_upload_item_panel", o), t = i.length, r = 0, l = 0, s = 0; s < i.length; s++) {
+                var n = i[s];
+                domData(n, "error") ? t-- : (domData(n, "uploaded") && r++, domData(n, "saved") && l++)
+            }
+            if (r !== t) a = getLang("video_upload_changed");
+            else if (l !== t) {
+                var _ = t - l;
+                d = getLang("video_upload_leaving_without_saving", _)
             }
             if (1 === e) {
-                if (!o) return !0;
-                var r = showFastBox({
+                if (!a && !d) return !0;
+                if (a) var u = showFastBox({
                     title: getLang("global_warning"),
                     dark: !0
-                }, o, getLang("global_continue"), function() {
-                    cur.leaving = !0, r.hide(), cur.onContinueCb && cur.onContinueCb()
+                }, a, getLang("global_continue"), function() {
+                    cur.leaving = !0, u.hide(), cur.onContinueCb && cur.onContinueCb()
                 }, getLang("global_cancel"), function() {
-                    r.hide(), cur.onCancelCb && cur.onCancelCb(), nav.objLoc.section = "upload", nav.setLoc(nav.objLoc)
+                    u.hide(), nav.objLoc.section = "upload", nav.setLoc(nav.objLoc)
+                });
+                else if (d) var u = showFastBox({
+                    title: getLang("global_warning"),
+                    dark: !0
+                }, d, getLang("global_save"), function() {
+                    u.hide(), nav.objLoc.section = "upload", nav.setLoc(nav.objLoc);
+                    for (var e = geByClass("video_upload_ready_button"), o = 0; o < e.length; o++) {
+                        var a = e[o];
+                        VideoUpload.saveParams(a)
+                    }
+                }, getLang("video_upload_publish_later"), function() {
+                    cur.leaving = !0, u.hide(), cur.onContinueCb && cur.onContinueCb()
                 });
                 return !1
             }
-            return o ? winToUtf(o.replace(/<\/?b>/g, "").replace(/<br\s*\/?>/g, "\n")) : void 0
+            var p = a || d;
+            return p ? winToUtf(p.replace(/<\/?b>/g, "").replace(/<br\s*\/?>/g, "\n")) : void 0
         }
     },
     toUploadVideo: function() {

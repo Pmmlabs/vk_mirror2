@@ -1132,6 +1132,12 @@
     background-position: -4px 0
 }
 
+.feedback_gift_row .feedback_photo_icon {
+    display: block;
+    background: #ffa000 url(/images/svg_icons/feedback/gift_2.svg) no-repeat;
+    background-position: -2px -2px
+}
+
 .feedback_mention_row .feedback_photo_icon {
     display: block;
     background: #fff url(/images/svg_icons/feedback/mention.svg) no-repeat
