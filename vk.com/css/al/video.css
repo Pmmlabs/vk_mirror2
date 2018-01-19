@@ -188,9 +188,16 @@
 }
 
 #video_add_album_btn,
+#video_album_videos_list_btn,
 #video_create_live_btn {
     margin-left: 0;
     margin-right: 10px
+}
+
+#video_add_album_btn:first-child,
+#video_album_videos_list_btn:first-child,
+#video_create_live_btn:first-child {
+    margin-right: 0
 }
 
 .video_tab_actions_wrap {

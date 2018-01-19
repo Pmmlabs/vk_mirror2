@@ -1017,6 +1017,17 @@
     background-position: -16px 0px
 }
 
+.blog_about_link_icon_support {
+    background: url('/images/svg_icons/about_support.svg') no-repeat 50% / contain;
+    width: 56px;
+    height: 56px;
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0
+}
+
 .blog_about_link_icon_partners {
     width: 28px;
     height: 24px;

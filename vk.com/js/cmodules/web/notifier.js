@@ -1347,10 +1347,7 @@
             var o, d, f;
             curFastChat.clistCache = {};
             for (a in curFastChat.friends)
-                for (o = curFastChat.friends[a][0], a = intval(a), d = 0;;) {
-                    if (f = " " + o.charAt(d).toLowerCase(), curFastChat.clistCache[f] || (curFastChat.clistCache[f] = {}), curFastChat.clistCache[f][a] = 1, d = o.indexOf(" ", d + 1), -1 == d) break;
-                    ++d
-                }
+                for (o = curFastChat.friends[a][0], a = intval(a), d = 0; f = " " + o.charAt(d).toLowerCase(), curFastChat.clistCache[f] || (curFastChat.clistCache[f] = {}), curFastChat.clistCache[f][a] = 1, d = o.indexOf(" ", d + 1), -1 != d;) ++d
         },
         clistShowMore: function() {
             if (curFastChat.clHasMore) {
@@ -1662,8 +1659,7 @@
             var e = [],
                 t = {};
             each(curFastChat.needPeers, function(i) {
-                e.push(i), e.push(this[0]), clearTimeout(this[2]),
-                    t[i] = this[0]
+                e.push(i), e.push(this[0]), clearTimeout(this[2]), t[i] = this[0];
             }), e.length && (FastChat.lcSend("fetchingPeers", t), ajax.post("al_im.php", {
                 act: "a_get_fc_peers",
                 peers: e.join(",")
@@ -2722,8 +2718,7 @@
             }, t
         }(function(e, t) {
             function i(e) {
-                if (!e && cur.topNotifyTTKey && (e = cur.topNotifyTTKey, delete cur.topNotifyTTKey),
-                    e) {
+                if (!e && cur.topNotifyTTKey && (e = cur.topNotifyTTKey, delete cur.topNotifyTTKey), e) {
                     var t = e.split(":"),
                         i = ls.get("ntfseen") || {};
                     2 == t.length && (i[0] = parseInt((new Date).getTime() / 1e3), i[t[0]] = t[1], ls.set("ntfseen", i))
@@ -3468,29 +3463,27 @@
                 e = e.originalEvent || e || window.event;
                 var btn = e.which,
                     nohide = !1;
-                1 == btn && (e.ctrlKey || browser.mac && e.metaKey) && (btn = 2, browser.mac && (nohide = !0)); {
-                    if ("A" != (e.target || e.srcElement).tagName) {
-                        switch (btn) {
-                            case 1:
-                                eval(ev.onclick), Notifier.hideEvent(ev);
-                                break;
-                            case 2:
-                                var wnd = window.open(ev.link, "_blank");
-                                try {
-                                    wnd.blur(), window.focus()
-                                } catch (e) {}
-                                nohide || Notifier.hideEvent(ev);
-                                break;
-                            case 3:
-                                if (browser.mozilla) return
-                        }
-                        return cancelEvent(e)
-                    }
+                if (1 == btn && (e.ctrlKey || browser.mac && e.metaKey) && (btn = 2, browser.mac && (nohide = !0)), "A" != (e.target || e.srcElement).tagName) {
                     switch (btn) {
                         case 1:
+                            eval(ev.onclick), Notifier.hideEvent(ev);
+                            break;
+                        case 2:
+                            var wnd = window.open(ev.link, "_blank");
+                            try {
+                                wnd.blur(), window.focus()
+                            } catch (e) {}
+                            nohide || Notifier.hideEvent(ev);
                             break;
                         case 3:
+                            if (browser.mozilla) return
                     }
+                    return cancelEvent(e)
+                }
+                switch (btn) {
+                    case 1:
+                        break;
+                    case 3:
                 }
             }), addEvent(ev.baloonEl, "contextmenu", function(e) {
                 return setTimeout(function() {
@@ -4385,8 +4378,7 @@
                 r = a[0],
                 n = a[1],
                 o = a[2];
-            a[3], a[4];
-            t.allShown = t.allShown || o, t.history = f(t.history) + r, t.historyToAppend = r;
+            a[3], a[4], t.allShown = t.allShown || o, t.history = f(t.history) + r, t.historyToAppend = r;
             var s = Object.keys(n).length;
             return t.skipped -= s, t.offset += s, t.msgs = extend(t.msgs, n), e
         })
@@ -5006,8 +4998,7 @@
             });
             return ht(r, !0, i), t.then(function(t) {
                 var r = At(t, 2);
-                r[0], r[1];
-                return delete i.blockedFlagUpdates[e], a.msgs = null, a.history = null, a.unread = 0, a.lastmsg = !1, a.lastmsg_meta = null, i
+                return r[0], r[1], delete i.blockedFlagUpdates[e], a.msgs = null, a.history = null, a.unread = 0, a.lastmsg = !1, a.lastmsg_meta = null, i
             })
         }
     }
@@ -5695,8 +5686,7 @@
             share_url: t.share_url
         }, Jt).then(function(e) {
             var t = At(e, 1);
-            t[0];
-            return i
+            return t[0], i
         })
     }), t.searchTopConv = ce(function(e) {
         return e.topConvTree

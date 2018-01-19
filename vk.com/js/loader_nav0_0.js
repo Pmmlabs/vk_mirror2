@@ -98,7 +98,6 @@ var navMap = {
     'notes(\\d+)?$': ['al_wall.php', ['wall.js', 'wall.css', 'wk.js', 'wk.css', 'pagination.js']],
     'bugs($|/)': ['bugs.php', ['bugs.css', 'bugs.js']],
     'wkview.php($)': ['wkview.php', ['wkview.js', 'wkview.css', 'wk.js', 'wk.css']],
-    'stickers_office($|/)': ['stickers_office.php', ['stickers_office.css', 'stickers_office.js']],
     'charts($|/)': ['al_audio.php', ['audio.css', 'audio.js']],
     'maps($|/)': ['maps.php', []],
     'jobs$': ['al_jobs.php', ['jobs.css', 'jobs.js', 'blog.css', 'blog.js']],
@@ -190,7 +189,7 @@ var stVersions = {
     'single_pv.css': 1445030012,
     'single_pv.js': 2438273057,
     'video.js': 2585777191,
-    'video.css': 23607950975,
+    'video.css': 22173770299,
     'videocat.js': 3520065324,
     'videocat.css': 23054336459,
     'videoview.js': 13227581006,
@@ -198,7 +197,7 @@ var stVersions = {
     'video_edit.js': 2135196486,
     'video_edit.css': 23531884914,
     'video_upload.js': 3535577292,
-    'video_youtube.js': 2438487008,
+    'video_youtube.js': 458412745,
     'video_youtube.css': 11773179773,
     'videoplayer.js': 75527346215,
     'videoplayer.css': 33576632285,
@@ -218,8 +217,8 @@ var stVersions = {
     'module.css': 16694736883,
     'owner_photo.js': 1714149322,
     'owner_photo.css': 17785632232,
-    'page.js': 2409030092,
-    'page.css': 27343418945,
+    'page.js': 2692938283,
+    'page.css': 24322525986,
     'page_help.css': 20523035996,
     'public.css': 25802268858,
     'public.js': 1344775948,
@@ -387,7 +386,7 @@ var stVersions = {
     'ads_web.js': 4274163593,
     'mrtarg.js': 1146267795,
     'mrtarg.css': 3142794554,
-    'cmodules/web/ads_edit_easy.js': 888550816,
+    'cmodules/web/ads_edit_easy.js': 1211627462,
     'health.css': 2251304991,
     'health.js': 2993570139,
     'pinbar.js': 284788792,
@@ -413,8 +412,7 @@ var stVersions = {
     'dev.js': 2143073519,
     'dev.css': 30983385244,
     'share.css': 28181606101,
-    'stickers_office.css': 13687973613,
-    'stickers_office.js': 2301605568,
+    'stickers_office.css': 12283927662,
     'mapbox.js': 262357480,
     'mapbox.css': 4285195017,
     'jobs.js': 1932948232,
@@ -628,4 +626,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 8302;
+var _rnd = 1058;

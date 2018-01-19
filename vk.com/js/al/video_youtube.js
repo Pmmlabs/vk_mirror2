@@ -89,6 +89,21 @@ var VideoYoutube = {
         var o = VideoYoutube.cur.player;
         o && (e = null != e ? e : !VideoYoutube.cur.playing, e ? o.playVideo() : o.pauseVideo(), toggleClass("video_yt_play_btn", "playing", e), toggleClass("video_yt_popup", "hidden", e), VideoYoutube.cur.playing = e)
     },
+    getState: function() {
+        switch (VideoYoutube.cur.state) {
+            case YT.PlayerState.UNSTARTED:
+                return "unstarted";
+            case YT.PlayerState.PLAYING:
+            case YT.PlayerState.BUFFERING:
+                return "playing";
+            case YT.PlayerState.PAUSED:
+                return "paused";
+            case YT.PlayerState.ENDED:
+                return "ended";
+            default:
+                return "empty"
+        }
+    },
     replayVideo: function() {
         VideoYoutube.cur.player.seekTo(0), VideoYoutube.cur.player.playVideo()
     },

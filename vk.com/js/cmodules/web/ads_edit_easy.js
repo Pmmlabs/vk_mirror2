@@ -12,9 +12,9 @@
     return t.m = e, t.c = s, t.p = "", t(0)
 }({
     0: function(e, t, s) {
-        e.exports = s(28)
+        e.exports = s(16)
     },
-    28: function(e, t) {
+    16: function(e, t) {
         "use strict";
 
         function s(e, t) {
@@ -129,7 +129,7 @@
             }, e.prototype.onUpdateTargetParamsFailed = function(e) {
                 return debugLog("Get target params failed: ", e), this.options.expected_reach.value = 0, this.options.expected_reach.limit = 0, this.updateExpectedReach(), !0
             }, e.prototype.onPaymentScreenClicked = function(e) {
-                if (hasClass(e.target, this.classname("payments-systems-item")) && hasClass(e.target, this.classname("payments-systems-item_clickable")) && !(intval(val(this.paymentTotalBudgetInput)) < intval(this.options.payment_min_amount))) {
+                if (hasClass(e.target, this.classname("payments-systems-item")) && hasClass(e.target, this.classname("payments-systems-item_clickable")) && !(intval(val(this.paymentTotalBudgetInput).replace(/\D+/g, "")) < intval(this.options.payment_min_amount))) {
                     hide(this.paymentErrorElement), tooltips.destroy(this.paymentTotalBudgetInput);
                     var t = hasClass(e.target, this.classname("payments-systems-item_inverse"));
                     if (t) {
