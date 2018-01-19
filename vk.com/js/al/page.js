@@ -1575,26 +1575,76 @@ var Page = {
                 return;
             }
 
+            var isMessagePage = (cur.module == 'im');
+
             if (cur.module == 'feed') {
                 statlogsValueEvent('feed_init_video_autoplay', 'good_browser');
+            } else if (isMessagePage) {
+                var chatWrapper = geByClass1('_im_chat_body_abs');
+                var chatWrapperUiScroll = data(chatWrapper, 'ui-scroll');
+
+                var chatHeader = geByClass1('im-page--chat-header'),
+                    chatHeaderHeight = getSize(chatHeader)[1];
+                var chatInputBox = geByClass1('im-chat-input');
+                var chatHeaderBottom, chatInputBoxTop;
+
+                var lastScroll = 0;
+                var directionUp = true;
+                var lastAutoPlayVideo = null;
             }
 
             var canPlayHls = window.MediaSource && MediaSource.isTypeSupported && MediaSource.isTypeSupported('video/mp4; codecs="avc1.42E01E,mp4a.40.2"');
             var noHlsMaxDuration = 5 * 60;
             var fixedHeaderHeight = getSize('page_header')[1];
 
-            var scrollHandler = debounce(function() {
+            var scrollHandler = debounce(function(e, playInOrder) {
                 if (layers.visible || window.mvcur && mvcur.mvShown || nav.objLoc.z || _getFullscreenElement()) return;
 
                 var thumbs = geByClass('page_video_autoplayable');
                 var thumbsNum = thumbs.length;
                 if (!thumbsNum) return;
 
+                if (playInOrder && cur.videoInlinePlayer && !cur.videoInlinePlayer.isAutoplay()) {
+                    return;
+                }
+
+                var bodyHeight = document.body.scrollHeight - fixedHeaderHeight;
                 var viewportHeight = (window.innerHeight || document.documentElement.clientHeight) - fixedHeaderHeight;
+                var activeTop, activeBottom;
                 var viewportMiddle = fixedHeaderHeight + viewportHeight / 2;
                 var activeSpace = Math.min(viewportHeight, 800);
-                var activeTop = scrollGetY() < 300 ? fixedHeaderHeight : (viewportMiddle - activeSpace / 2);
-                var activeBottom = activeTop + activeSpace;
+
+                if (isMessagePage) {
+                    var currentScroll = cur.imClassicInterface ? bodyHeight - (viewportHeight + scrollGetY()) : chatWrapperUiScroll.api.data.scrollBottom;
+                    directionUp = currentScroll >= lastScroll;
+                    lastScroll = currentScroll;
+
+                    if (playInOrder || (currentScroll && ((cur.imClassicInterface && directionUp) || (!cur.imClassicInterface && directionUp)))) {
+                        thumbs = thumbs.reverse();
+                    }
+
+                    activeTop = viewportMiddle - activeSpace / 2;
+                    activeBottom = currentScroll < 100 ? viewportHeight : activeTop + activeSpace;
+
+                    if (cur.imClassicInterface) {
+                        chatHeaderBottom = chatHeader.getBoundingClientRect().top + chatHeaderHeight;
+                        chatInputBoxTop = chatInputBox.getBoundingClientRect().top;
+                    } else {
+                        chatHeaderBottom = getXY(chatHeader)[1] + chatHeaderHeight;
+                        chatInputBoxTop = getXY(chatInputBox)[1];
+                    }
+
+                    if (activeTop < chatHeaderBottom) {
+                        activeTop = chatHeaderBottom;
+                    }
+                    if (activeBottom > chatInputBoxTop) {
+                        activeBottom = chatInputBoxTop;
+                    }
+                } else {
+                    currentScroll = scrollGetY();
+                    activeTop = currentScroll < 300 ? fixedHeaderHeight : (viewportMiddle - activeSpace / 2);
+                    activeBottom = activeTop + activeSpace;
+                }
 
                 var curPlayer = cur.videoInlinePlayer;
                 if (curPlayer) {
@@ -1609,13 +1659,18 @@ var Page = {
                         if (isAutoplaying && curPlayer.getState() == 'paused') {
                             curPlayer.play();
                         }
-                        return;
+                        if (curPlayer.getState() != 'ended') {
+                            return;
+                        }
                     } else if (isAutoplaying && !curPlayer.isActiveLive()) {
                         curPlayer.pause();
                     }
                 }
 
                 var index = thumbsNum;
+                if (playInOrder && lastAutoPlayVideo) {
+                    index = thumbs.indexOf(lastAutoPlayVideo);
+                }
                 while (index--) {
                     var thumb = thumbs[index];
                     if (!canPlayHls && intval(domData(thumb, 'duration')) > noHlsMaxDuration) continue;
@@ -1635,6 +1690,8 @@ var Page = {
                         if (!isPlaying && !isLoading) {
                             var params = _getVideoParams(thumb);
                             var beforeInitTime = vkNow();
+                            lastAutoPlayVideo = thumb;
+
                             showInlineVideo(params.video, params.list, {
                                 autoplay: 1,
                                 no_progress: 1,
@@ -1650,12 +1707,18 @@ var Page = {
                             };
                         }
                         break;
-                    } else if (rect.top <= activeTop) {
+                    } else if (!isMessagePage && rect.top <= activeTop) {
                         break;
                     }
                 }
 
                 var preloadIndex = index + 1;
+                if (isMessagePage) {
+                    if (!currentScroll) {
+                        return;
+                    }
+                    preloadIndex = index - 1;
+                }
                 do {
                     var nextThumb = thumbs[preloadIndex];
                     if (nextThumb && (canPlayHls || intval(domData(nextThumb, 'duration')) <= noHlsMaxDuration)) {
@@ -1665,7 +1728,7 @@ var Page = {
                         }
                         break;
                     }
-                } while (++preloadIndex < thumbsNum);
+                } while (++preloadIndex < thumbsNum && !isMessagePage);
             }, 50);
 
             cur.videoAutoplayScrollHandler = scrollHandler;
@@ -1673,11 +1736,17 @@ var Page = {
             addEvent(window, 'scroll', scrollHandler);
             addEvent(window, 'resize', scrollHandler);
 
+            if (isMessagePage && !cur.imClassicInterface) {
+                addEvent(window, 'imScroll', scrollHandler);
+            }
+
             scrollHandler();
 
             cur.destroy.push(function() {
                 removeEvent(window, 'scroll', scrollHandler);
                 removeEvent(window, 'resize', scrollHandler);
+                removeEvent(window, 'imScroll', scrollHandler);
+
                 scrollHandler = null;
                 delete cur.videoAutoplayScrollHandler;
             });

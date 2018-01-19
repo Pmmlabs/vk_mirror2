@@ -786,7 +786,7 @@ var uiTabs = {
                 barInner: ce("div", {
                     className: "ui_scroll_bar_inner"
                 })
-            };
+            }, data(this.el.container, "ui-scroll", this);
             var s = cf(),
                 o = ["ui_scroll_container"];
             for (each(isArray(this.options.theme) ? this.options.theme : trim(this.options.theme + "").split(/\s+/), function(t, e) {
@@ -865,7 +865,7 @@ var uiTabs = {
                     for (var t = cf(); this.el.content.firstChild;) t.appendChild(this.el.content.firstChild);
                     this.el.container.appendChild(t)
                 }
-                return this.el.container.className = this.el.container.className.replace(/\bui_scroll_.+?\b/g, " "), each(this.removeElements, function(t, e) {
+                return removeData(this.el.container, "ui-scroll"), this.el.container.className = this.el.container.className.replace(/\bui_scroll_.+?\b/g, " "), each(this.removeElements, function(t, e) {
                     re(e)
                 }), this.el.container.scrollTop = this.api.data.scrollTop, delete this.el.container.__uiScroll__, this.api
             },
@@ -1439,7 +1439,7 @@ Slider.prototype.toggleAdState = function(t) {
         i = Math.max(t.pageX, e[0]);
     i = Math.min(i, e[0] + this._width), i -= e[0], this.setValue(i / this._width, !0, !0), this._onValueChangeDebounced ? this._onValueChangeDebounced() : this._onValueChange(), this._toggleHint(!0), this._updateHint(t, !0), cancelEvent(t)
 }, Slider.prototype._getPos = function() {
-    return this._slidePos = getXY(this._slideEl);
+    return this._slidePos = getXY(this._slideEl)
 }, Slider.LOGFBASE = 35, Slider.prototype._logf = function(t) {
     if (!this.options.log) return t;
     var e = Slider.LOGFBASE;

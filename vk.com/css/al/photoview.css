@@ -246,10 +246,11 @@
 .photo_tooltip {
     position: absolute;
     white-space: nowrap;
-    z-index: 630;
+    z-index: 109;
     width: 280px;
     -webkit-filter: drop-shadow(0px 0px 1px rgba(0, 20, 51, .12));
     filter: drop-shadow(0px 0px 1px rgba(0, 20, 51, 0.12));
+    -webkit-backface-visibility: hidden;
     cursor: default;
     text-align: center
 }
@@ -303,7 +304,7 @@
 }
 
 .photo_tooltip .photo_tooltip__name {
-    padding: 13px 30px 13px 13px;
+    padding: 13px;
     font-size: 13px;
     line-height: 15px;
     font-weight: 500;
@@ -313,6 +314,10 @@
     cursor: pointer;
     overflow: hidden;
     text-overflow: ellipsis
+}
+
+.photo_tooltip .photo_tooltip__name.show_delete {
+    padding-right: 30px
 }
 
 .photo_tooltip .photo_tooltip__name button {
@@ -336,7 +341,7 @@
     opacity: 0.9
 }
 
-.suggested-tag-user {
+.suggested_tag_user {
     padding: 13px;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -344,7 +349,7 @@
     white-space: nowrap
 }
 
-.suggested-tag-user .suggested-tag-user__name {
+.suggested_tag_user .suggested_tag_user__name {
     -webkit-flex-shrink: 1;
     -ms-flex-negative: 1;
     flex-shrink: 1;
@@ -355,13 +360,13 @@
     -moz-osx-font-smoothing: auto
 }
 
-.suggested-tag-user .suggested-tag-user__actions {
+.suggested_tag_user .suggested_tag_user__actions {
     padding-left: 10px;
     margin-left: auto;
     color: #939393
 }
 
-.suggested-tag-user .suggested-tag-user__actions button {
+.suggested_tag_user .suggested_tag_user__actions button {
     -webkit-appearance: none;
     display: inline-block;
     padding: 0;
@@ -374,20 +379,21 @@
     color: inherit
 }
 
-.suggested-tag-user .suggested-tag-user__actions button:hover {
+.suggested_tag_user .suggested_tag_user__actions button:hover {
     text-decoration: underline
 }
 
-.suggested-tag-user .suggested-tag-user__actions button.yes {
+.suggested_tag_user .suggested_tag_user__actions button.yes {
     color: #2a5685
 }
 
 .friends_dropdown__list {
+    z-index: 10;
     width: 240px;
     box-sizing: border-box;
     text-align: left;
     position: relative;
-    padding: 10px 12px 10px 8px;
+    padding: 0 12px 0 8px;
     background-color: #fff;
     border-radius: 8px
 }
@@ -398,7 +404,7 @@
 
 .friends_dropdown__list_input {
     box-sizing: border-box;
-    padding: 2px 0;
+    padding: 12px 0;
     border: none;
     width: 100%;
     font-size: 13px;
@@ -410,23 +416,38 @@
     padding-left: 26px
 }
 
+.friends_dropdown__list_input::-ms-clear {
+    display: none
+}
+
 .friends_dropdown__list.show-dropdown .friends_dropdown__list_dropdown {
     display: block
 }
 
 .friends_dropdown__list_dropdown {
     position: absolute;
-    background-color: #fff;
     top: 100%;
     left: 0;
     width: 100%;
-    max-height: 230px;
-    overflow: auto;
-    border-radius: 0 0 8px 8px;
-    padding-top: 4px;
-    padding-bottom: 4px;
     border-top: 1px solid #e7e8ec;
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
     display: none
+}
+
+.friends_dropdown__list_content {
+    max-height: 230px;
+    overflow: hidden;
+    background-color: #fff
+}
+
+.friends_dropdown__list_content .ui_scroll_outer {
+    border-radius: 0 0 8px 8px
+}
+
+.friends_dropdown__list_content .ui_scroll_content {
+    padding-top: 4px;
+    padding-bottom: 4px
 }
 
 .friends_dropdown__list_item {
@@ -450,7 +471,7 @@
     height: 1%
 }
 
-.friends_dropdown__list_item:hover {
+.friends_dropdown__list_item.hover {
     background-color: #f0f2f5
 }
 
