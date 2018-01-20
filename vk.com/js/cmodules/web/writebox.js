@@ -3057,8 +3057,7 @@
                 a = r[0],
                 i = r[1],
                 o = r[2];
-            r[3], r[4];
-            t.allShown = t.allShown || o, t.history = m(t.history) + a, t.historyToAppend = a;
+            r[3], r[4], t.allShown = t.allShown || o, t.history = m(t.history) + a, t.historyToAppend = a;
             var s = Object.keys(i).length;
             return t.skipped -= s, t.offset += s, t.msgs = extend(t.msgs, i), e
         })
@@ -3677,8 +3676,7 @@
             });
             return ft(a, !0, n), t.then(function(t) {
                 var a = Nt(t, 2);
-                a[0], a[1];
-                return delete n.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, n
+                return a[0], a[1], delete n.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, n
             })
         }
     }
@@ -4370,8 +4368,7 @@
             share_url: t.share_url
         }, Jt).then(function(e) {
             var t = Nt(e, 1);
-            t[0];
-            return n
+            return t[0], n
         })
     }), t.searchTopConv = ue(function(e) {
         return e.topConvTree

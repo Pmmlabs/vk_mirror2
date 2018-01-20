@@ -995,8 +995,10 @@ var Video = {
             videos: cur.chosenVideos.join(",")
         }, {
             onDone: function(o) {
-                hasClass(e, "flat_button") && unlockButton(e), hide("global_prg"), each(o, function(e, o) {
-                    cur.isNoteEdit && window.editorChooseVideo ? editorChooseVideo(o.thumb, o.name, o.duration, "/video" + e, e) : cur.chooseMedia("video", e, o, !1, cur.chosenVideos.length > 1)
+                hasClass(e, "flat_button") && unlockButton(e), hide("global_prg");
+                var i = 0;
+                each(o, function(e, o) {
+                    cur.isNoteEdit && window.editorChooseVideo ? editorChooseVideo(o.thumb, o.name, o.duration, "/video" + e, e) : cur.chooseMedia("video", e, o, i, cur.chosenVideos.length > 1), i++
                 }), curBox() && cur.chosenVideos.length > 1 && curBox().hide()
             }
         })
@@ -1042,6 +1044,7 @@ var Video = {
         Video.toggleTooltip(e, hasClass(t, "video_added") ? i : o)
     },
     show: function(e, o, i, t) {
+        if (cur.articleEditorLayer) return cancelEvent(e);
         if (cur.isCurrentChooseVideoBox) {
             var r = window.event,
                 d = o.split("_");

@@ -269,12 +269,12 @@
 }
 
 .article>blockquote {
-    padding: 20px 30px 20px 70px;
+    padding: 0 30px 0 70px;
     font-style: italic;
     margin: 0;
     line-height: 1.5em;
     border-left: 2px solid #000;
-    padding-left: 25px
+    padding-left: 18px
 }
 
 .article blockquote+blockquote {
@@ -293,6 +293,10 @@
     font-style: normal;
     line-height: 1.5em;
     font-size: 20px
+}
+
+.article>cite em {
+    font-style: normal!important
 }
 
 .article>cite:before {
@@ -337,14 +341,14 @@
     background-color: #a3a3a3!important
 }
 
-.article a {
+.article>:not(figure) a {
     text-decoration: none;
     cursor: pointer;
     color: #1d528f;
     border-bottom: 1px solid #b8c7db
 }
 
-.article a:hover {
+.article>:not(figure) a:hover {
     text-decoration: none;
     border-bottom: 1px solid #7490b7
 }
@@ -356,6 +360,12 @@
 
 .article_dark .article a:hover {
     border-bottom: 1px solid #a3a3a3
+}
+
+.article h1,
+.article h2,
+.article h3 {
+    margin-left: -2px
 }
 
 .article h1 a:visited,
@@ -373,12 +383,14 @@
 
 .article>figure {
     position: relative;
-    margin-right: 0;
-    margin-left: 0
+    margin-right: -40px;
+    margin-left: -40px
 }
 
 .article>figure figcaption {
-    text-align: center
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto
 }
 
 .article>figure figcaption:not(.article_ed__figcaption) {
@@ -431,10 +443,18 @@
     line-height: 18px
 }
 
+.article .article_object_video {
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
+}
+
 .article .article_object_video .article_object_video__thumb {
     width: 100%;
     height: 100%;
     border-radius: 2px
+}
+
+.article .video_box_wrap {
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
 }
 
 .article .article_object_gif {
@@ -463,18 +483,15 @@
     min-height: 530px
 }
 
-.article figure[data-type="101"] .article_object_photo {
-    position: relative;
-    margin: 0 auto;
-    max-width: 100%
-}
-
 .article figure[data-type="101"] img {
     margin: 0 auto;
     display: block;
     max-width: 100%;
     border-radius: 2px;
-    position: absolute
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
 }
 
 .article figure[data-type="101"] .article_object_photo__image_blur {
@@ -491,14 +508,14 @@
     border-radius: 2px;
     background-size: cover;
     background-position: 50%;
-    cursor: pointer
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
 }
 
 .article figure[data-type="102"] .vv_inline_video,
 .article figure[data-type="102"] video {
     max-width: 100%;
-    display: block;
-    position: absolute
+    display: block
 }
 
 .article figure[data-type="102"] .vv_inline_video {
@@ -637,15 +654,20 @@
     margin-top: 0
 }
 
-.article:not(.article_mobile)>blockquote,
 .article:not(.article_mobile)>cite,
 .article:not(.article_mobile)>figure {
     margin-top: 40px;
     margin-bottom: 40px
 }
 
+.article:not(.article_mobile)>blockquote {
+    margin-top: 28px;
+    margin-bottom: 28px
+}
+
 .article:not(.article_mobile) blockquote+blockquote {
-    margin-top: -40px!important
+    padding-top: 20px;
+    margin-top: -28px!important
 }
 
 .article:not(.article_mobile)>ol>li,
@@ -700,15 +722,20 @@
     margin-top: 0
 }
 
-.article.article_mobile>blockquote,
 .article.article_mobile>cite,
 .article.article_mobile>figure {
     margin-top: 33px;
     margin-bottom: 33px
 }
 
+.article.article_mobile>blockquote {
+    margin-top: 23.1px;
+    margin-bottom: 23.1px
+}
+
 .article.article_mobile blockquote+blockquote {
-    margin-top: -33px!important
+    padding-top: 20px;
+    margin-top: -23.1px!important
 }
 
 .article.article_mobile>ol>li,
@@ -766,11 +793,11 @@
 }
 
 .article.article_mobile>blockquote {
+    margin-right: -16px;
     border-radius: 0;
     border-left: 3px solid #000
 }
 
-.article.article_mobile>blockquote,
 .article.article_mobile>figure {
     margin-right: -16px;
     margin-left: -16px
@@ -1010,14 +1037,14 @@
     background-color: #fff;
     height: 84px;
     z-index: 100;
-    padding: 0 40px;
-    margin-left: -40px
+    padding: 0 45px;
+    margin-left: -45px;
+    border-bottom: 1px solid #e0e0e0
 }
 
 .article_ed_layer .article_ed_layer__header .article_ed_layer__header_inner {
     padding: 0 30px;
     position: relative;
-    border-bottom: 1px solid #e0e0e0;
     height: 84px
 }
 
@@ -1032,7 +1059,8 @@
     position: absolute;
     right: 0;
     top: 47px;
-    font-size: 14px
+    font-size: 14px;
+    cursor: default
 }
 
 .article_ed_layer .article_ed_layer__header .article_ed_layer__save {
@@ -1042,27 +1070,35 @@
     transition: opacity 50ms linear
 }
 
-.article_ed_layer .article_ed_layer__header .article_ed_layer__list {
-    color: #939393;
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%23939393%22%2F%3E%3C%2Fsvg%3E")
-}
-
 .article_ed_layer .article_ed_layer__header .article_ed_layer__list,
 .article_ed_layer .article_ed_layer__header .article_ed_layer__publish {
-    cursor: pointer;
     display: inline-block;
     background-repeat: no-repeat;
     background-position: 100%;
     padding-right: 15px;
+    margin-left: 20px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    margin-left: 20px
+    cursor: pointer
+}
+
+.article_ed_layer .article_ed_layer__header .article_ed_layer__list {
+    color: #939393;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%23bebebe%22%2F%3E%3C%2Fsvg%3E")
+}
+
+.article_ed_layer .article_ed_layer__header .article_ed_layer__list:hover {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%23939393%22%2F%3E%3C%2Fsvg%3E")
 }
 
 .article_ed_layer .article_ed_layer__header .article_ed_layer__publish {
     color: #2a5885;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%23859BB5%22%2F%3E%3C%2Fsvg%3E")
+}
+
+.article_ed_layer .article_ed_layer__header .article_ed_layer__publish:hover {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%22944%201152%208%204%22%3E%3Cpath%20d%3D%22M945.2%201152.2C944.9%201152%20944.5%201152%20944.3%201152.3%20944.1%201152.6%20944.1%201153%20944.4%201153.2L947.6%201155.8C947.8%201156%20948.2%201156%20948.4%201155.8L951.6%201153.2C951.9%201153%20951.9%201152.6%20951.7%201152.3%20951.5%201152%20951.1%201152%20950.8%201152.2L948%201154.5%20945.2%201152.2Z%22%20fill%3D%22%232A5885%22%2F%3E%3C%2Fsvg%3E")
 }
 
@@ -1231,6 +1267,11 @@
     margin-top: 24px
 }
 
+.article_ed_layer .article_ed_layer__publish_settings .article_ed_layer__publish_settings_attach.hidden {
+    visibility: hidden!important;
+    pointer-events: none
+}
+
 .article_ed_layer .article_ed_layer__publish_settings .article_ed_layer__publish_settings_published_text {
     display: none;
     margin: 23px 0 5px;
@@ -1393,7 +1434,11 @@
 
 .article_editor .article_format_btns {
     padding: 10px;
-    white-space: nowrap
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
 }
 
 .article_editor .article_format_btn {
@@ -1699,7 +1744,7 @@ body[data-useragent*=msie] .article_editor_canvas[contenteditable=true] .article
 }
 
 .article_editor_canvas[contenteditable=true] sup {
-    vertical-align: top;
+    vertical-align: inherit;
     font-size: inherit;
     background-color: #c3d9ec
 }

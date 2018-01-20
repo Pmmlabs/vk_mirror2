@@ -402,19 +402,23 @@ var Docs = {
         })
     },
     chooseSwitch: function(e) {
-        return hasClass(curBox().titleWrap, "box_loading") ? !1 : (cur.docsChooseInput.setValue(""), uiSearch.onChanged(cur.docsChooseInput, !0), cur.docsTab = "user_docs" == cur.docsTab ? "group_docs" : "user_docs", void ajax.post("/docs.php", {
+        if (hasClass(curBox().titleWrap, "box_loading")) return !1;
+        cur.docsChooseInput.setValue(""), uiSearch.onChanged(cur.docsChooseInput, !0), cur.docsTab = "user_docs" == cur.docsTab ? "group_docs" : "user_docs";
+        var o = cur.docsCurFilter;
+        ajax.post("/docs.php", {
             act: "a_choose_doc_box",
             offset: 0,
             to_id: cur.docsToId,
             tab: cur.docsTab,
-            switch_tab: 1
+            switch_tab: 1,
+            ext_filter: o || ""
         }, {
             onDone: function(o, r, c, s, t) {
                 cur.docsChooseRows.innerHTML = o, cur.docsChooseMore.innerHTML = s, toggle(cur.docsChooseMore, !c), cur.docsOffset = r, e.innerHTML = t
             },
             showProgress: curBox().showCloseProgress,
             hideProgress: curBox().hideCloseProgress
-        }))
+        })
     },
     chooseUpdateList: function(e, o) {
         o != cur.chooseDocsQuery && (clearTimeout(this.searchTimeout), this.searchTimeout = setTimeout(Docs.chooseDocsSearch.pbind(e), o ? 300 : 0))

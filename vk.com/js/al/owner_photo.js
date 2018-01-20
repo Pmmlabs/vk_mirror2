@@ -418,7 +418,7 @@ var OwnerPhoto = {
         if (r.error) unlockButton(t), OwnerPhoto.showError(o ? 2 : 3, r.error + Upload.getErrorAdditional(r));
         else {
             if (cur.photoTooltipHide && cur.photoTooltipHide(!0), cur.recieveCropResult) return void cur.recieveCropResult(e);
-            var a = o && window.IM ? IM.chatPhotoSaved : function(o) {
+            var a = o && window.IMBRIDGE ? IMBRIDGE.chatPhotoSaved : function(o) {
                 if (r.oid == vk.id && o) {
                     var e = geByTag1("img", ge("top_profile_link"));
                     e && (e.src = o)
@@ -445,7 +445,7 @@ var OwnerPhoto = {
             oid: o,
             hash: e
         }, {
-            onDone: window.IM ? IM.chatPhotoSaved : nav.reload,
+            onDone: window.IMBRIDGE ? IMBRIDGE.chatPhotoSaved : nav.reload,
             showProgress: lockButton.pbind("owner_photo_remove_btn"),
             hideProgress: unlockButton.pbind("owner_photo_remove_btn")
         })

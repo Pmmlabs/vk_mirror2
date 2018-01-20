@@ -1,4 +1,4 @@
-d#stickers_office_css {
+#stickers_office_css {
     display: none
 }
 
@@ -13,38 +13,38 @@ d#stickers_office_css {
     padding: 0
 }
 
-#stickers_office .stickers_office_content {
+.stickers_office_content {
     padding: 30px
 }
 
-#stickers_office .stickers_office_content .stickers_office_name_cell {
+.stickers_office_content .stickers_office_name_cell {
     padding: 12px 0
 }
 
-#stickers_office .stickers_office_content .stickers_office_name_cell.sticker_office_name_cell_stat {
+.stickers_office_content .stickers_office_name_cell.sticker_office_name_cell_stat {
     border-radius: 4px;
     width: 240px;
     padding: 10px
 }
 
-#stickers_office .stickers_office_content .stickers_office_name_cell.sticker_office_name_cell_stat.active {
+.stickers_office_content .stickers_office_name_cell.sticker_office_name_cell_stat.active {
     background-color: #f0f2f5
 }
 
-#stickers_office .stickers_office_content .stickers_office_name_cell .stickers_office_img {
+.stickers_office_content .stickers_office_name_cell .stickers_office_img {
     width: 40px;
     height: 40px;
     vertical-align: middle
 }
 
-#stickers_office .stickers_office_content .stickers_office_name_cell .stickers_office_name {
+.stickers_office_content .stickers_office_name_cell .stickers_office_name {
     margin-left: 12px;
     display: inline-block;
     vertical-align: top;
     margin-top: 3px
 }
 
-#stickers_office .stickers_office_content .stickers_office_name_cell .stickers_office_name .stickers_office_pack_title {
+.stickers_office_content .stickers_office_name_cell .stickers_office_name .stickers_office_pack_title {
     font-weight: 500;
     line-height: 1.23;
     letter-spacing: -0.1px;
@@ -52,29 +52,29 @@ d#stickers_office_css {
     color: #000
 }
 
-#stickers_office .stickers_office_content .stickers_office_name_cell .stickers_office_name .stickers_office_pack_info {
+.stickers_office_content .stickers_office_pack_info {
     margin-top: 4px;
     font-size: 12.5px;
     text-align: left;
     color: #828282
 }
 
-#stickers_office .stats_head {
-    border-top: 0
-}
-
-#stickers_office #stickers_office_sale .ui_table .header {
+.stickers_office_content .ui_table .header {
     height: 52px
 }
 
-#stickers_office #stickers_office_sale .ui_table .header .ui_table_cell {
+.stickers_office_content .ui_table .header .ui_table_cell {
     padding-left: 12px;
     font-weight: 500;
     line-height: 1.23;
     letter-spacing: -0.1px
 }
 
-#stickers_office #stickers_office_sale .ui_table .header .ui_table_cell .stat_subheader {
+.stickers_office_content .ui_table .header .ui_table_cell .stat_subheader {
     font-size: 10px;
     color: #6f7985
+}
+
+.stats_head {
+    border-top: 0
 }

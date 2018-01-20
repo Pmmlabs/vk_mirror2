@@ -779,7 +779,7 @@ AudioPage.address = "audio", AudioPage.updateSearchHighlight = function(e) {
             case "playlist":
                 hide(z.header), show(z.search), hide(z.addAudiosFromPlaylistsButton), hide(z.addAudiosButton), u(), g(o, !0), "attach" == e && P(o), "edit" == e && v(o)
         }
-        h(), z.searchInput.value = "", elfocus(z.searchInput), H = !1, N = null, clearTimeout(Q), k.updateCurrentPlaying()
+        h(), z.searchInput.value = "", elfocus(z.searchInput), H = !1, N = null, clearTimeout(Q), k && k.updateCurrentPlaying && k.updateCurrentPlaying()
     }
 
     function A() {

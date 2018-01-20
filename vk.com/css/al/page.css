@@ -8533,7 +8533,9 @@ button.wall_block_app_btn {
     color: #fff;
     text-align: center;
     line-height: 1.13;
-    padding: 0 20px
+    padding: 0 20px;
+    word-break: break-word;
+    word-wrap: break-word
 }
 
 .article_snippet.article_snippet__long_title .article_snippet__title {
@@ -8555,10 +8557,6 @@ button.wall_block_app_btn {
 }
 
 .article_snippet .article_snippet__read_btn {
-    padding-left: 32px;
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%20%20%20%20%3Crect%20width%3D%2224%22%20height%3D%2224%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M10.5159727%2C16.7438514%20C10.1741929%2C18.1203636%2010.687342%2C18.4055299%2011.6053255%2C17.4005852%20L15.4613785%2C12.9698209%20C16.3535455%2C11.8808642%2016.1300862%2C11.0059438%2014.8452805%2C10.7872179%20L12.9861121%2C10.4429102%20L12.9861121%2C10.4429102%20C12.8775019%2C10.4227962%2012.8057616%2C10.3184447%2012.8258756%2C10.2098345%20C12.8265392%2C10.2062511%2012.8273007%2C10.2026864%2012.8281591%2C10.1991446%20L13.5436135%2C7.24719783%20C13.8863521%2C5.8619451%2013.3150978%2C5.61107807%2012.4582164%2C6.59275159%20C11.2270125%2C7.98097123%2010.2913754%2C9.02966176%209.65130514%2C9.73882318%20C9.42814828%2C9.98606827%209.06894462%2C10.3719875%208.57369417%2C10.8965808%20C7.48829706%2C12.1010165%208.05955136%2C12.9745105%209.31498713%2C13.1932365%20L11.0917769%2C13.5117472%20L11.0917769%2C13.5117472%20C11.2005008%2C13.5312372%2011.2728391%2C13.6351751%2011.253349%2C13.743899%20C11.2525988%2C13.7480841%2011.2517153%2C13.7522442%2011.2506999%2C13.756373%20L10.5159727%2C16.7438514%20Z%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
-    background-repeat: no-repeat;
-    background-position: 7px 3px;
     background-color: #fff;
     color: #000;
     margin-top: 32px;
@@ -8701,12 +8699,19 @@ button.wall_block_app_btn {
     min-width: 140px;
     background-size: cover;
     background-position: 50%;
-    border-radius: 2px 0 0 2px
+    border-radius: 2px 0 0 2px;
+    overflow: hidden
 }
 
 .article_snippet.article_snippet_mini.article_snippet__deleted .article_snippet_mini_thumb {
     -webkit-filter: grayscale(1) brightness(0.8);
     filter: grayscale(1) brightness(0.8)
+}
+
+.article_snippet.article_snippet_mini.article_snippet__no_cover .article_snippet_mini_thumb {
+    -webkit-filter: blur(14px) brightness(0.5);
+    filter: blur(14px) brightness(0.5);
+    background-size: 400%
 }
 
 .article_snippet.article_snippet_mini.article_snippet__protected {
@@ -8742,6 +8747,7 @@ button.wall_block_app_btn {
     margin-top: 8px
 }
 
+.copy_quote .article_snippet,
 .wall_post_cont .article_snippet {
     margin-top: 15px
 }
