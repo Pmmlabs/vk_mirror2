@@ -3044,7 +3044,7 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    margin-right: 6px;
+    margin-right: 3px;
     max-width: 100%;
     white-space: nowrap;
     overflow: hidden;

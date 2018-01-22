@@ -1483,15 +1483,21 @@ a.group_ad_post_link.deleted.deleted:hover {
     margin: 0 auto
 }
 
-.group_api_doc {
+.group_settings_advice {
     padding: 15px;
     line-height: 18px
 }
 
-.group_api_doc a {
-    color: #2a5885;
+.group_settings_advice a {
     display: block;
-    margin-top: 6px
+    margin: 6px 0 0;
+    color: #2a5885
+}
+
+.group_settings_advice_header {
+    margin: 0 0 8px;
+    font-size: 13px;
+    color: #939393
 }
 
 .group_api_container .page_block_h2 {
