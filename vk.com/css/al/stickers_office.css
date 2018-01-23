@@ -2,6 +2,10 @@
     display: none
 }
 
+#graph_loader .loader {
+    -ms-high-contrast-adjust: none
+}
+
 .h4-text {
     color: #000;
     border-bottom: none;
@@ -23,8 +27,14 @@
 
 .stickers_office_content .stickers_office_name_cell.sticker_office_name_cell_stat {
     border-radius: 4px;
-    width: 240px;
-    padding: 10px
+    width: 220px;
+    padding: 10px;
+    display: inline-block
+}
+
+.stickers_office_content .stickers_office_name_cell.sticker_office_name_cell_stat:hover {
+    background-color: #f0f2f5;
+    cursor: pointer
 }
 
 .stickers_office_content .stickers_office_name_cell.sticker_office_name_cell_stat.active {
@@ -77,4 +87,37 @@
 
 .stats_head {
     border-top: 0
+}
+
+#graph_loader {
+    text-align: center;
+    display: none
+}
+
+#graph_loader .loader {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    -webkit-animation-name: round_spinner;
+    -o-animation-name: round_spinner;
+    animation-name: round_spinner;
+    -webkit-animation-duration: 700ms;
+    -o-animation-duration: 700ms;
+    animation-duration: 700ms;
+    -webkit-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+    background-image: url(/images/icons/round_spinner_big.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    #graph_loader .loader {
+        background-image: url(/images/icons/round_spinner_big_2x.png);
+        background-size: 34px 34px
+    }
 }

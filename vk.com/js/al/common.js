@@ -3535,7 +3535,14 @@ function domReady() {
         _tbLink: ge('top_back_link')
     });
 
-    window.scrollNode = (browser.chrome || browser.safari) ? bodyNode : htmlNode;
+    if (browser.chrome || browser.msie_edge) {
+        // In 60+ version incorrect work body.scrollTop
+        // https://bugs.chromium.org/p/chromium/issues/detail?id=766938
+        // For edge need use scrollingElement
+        window.scrollNode = document.scrollingElement || bodyNode;
+    } else {
+        window.scrollNode = browser.safari ? bodyNode : htmlNode;
+    }
 
     if (vk.al == 1) {
         showTitleProgress();

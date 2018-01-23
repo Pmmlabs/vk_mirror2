@@ -4,11 +4,11 @@
     }
 
     function a(e, t, a) {
-        function n(t, a) {
+        function r(t, a) {
             re(o);
             var i = getSize(cur.pvCont)[1],
-                n = se(t);
-            cur.pvNarrowColumnWrap.appendChild(n), setStyle(n, "height", i), hide(cur.pvNarrowColumn), Le = {}, J = a, J.hash = e.pe_hash, Le.stickersListEl = geByClass1("pe_sticker_pack_list"), Le.tabs = geByClass("pe_tab"), Le.tabContents = geByClass("pe_tab_content"), Le.editPanel = n, extend(cur.lang, a.lang), each(J.stickerPacks, function(e, t) {
+                r = se(t);
+            cur.pvNarrowColumnWrap.appendChild(r), setStyle(r, "height", i), hide(cur.pvNarrowColumn), Le = {}, J = a, J.hash = e.pe_hash, Le.stickersListEl = geByClass1("pe_sticker_pack_list"), Le.tabs = geByClass("pe_tab"), Le.tabContents = geByClass("pe_tab_content"), Le.editPanel = r, extend(cur.lang, a.lang), each(J.stickerPacks, function(e, t) {
                 each(t, function(e, t) {
                     Pe[t.id] = t
                 })
@@ -18,34 +18,34 @@
             }), cur.pvBox.appendChild(Le.info1April), Le.stickersLimit1AprilMsg = ce("div", {
                 className: "pe_1april_stickers_limit",
                 innerHTML: e.pe_data.stickers_limit_1april.replace("{selected}", '<span id="pe_1april_selected_stickers_count"></span>').replace("{limit}", '<span class="bold">' + be + "</span>")
-            }), cur.pvBottomInfo.appendChild(Le.stickersLimit1AprilMsg)), this.openTab(ge("pe_tab_stickers")), r()
+            }), cur.pvBottomInfo.appendChild(Le.stickersLimit1AprilMsg)), this.openTab(ge("pe_tab_stickers")), n()
         }
         s(), V = t, Z = a, addClass(cur.pvCont, "pv_pe");
         var o = se('<div id="pe_font_preload">      <div style="font-family: \'ImpactPE\'">test</div>       <div style="font-family: \'Lobster\'">test</div>       <div style="font-family: \'RobotoPE\'">test</div>     </div>');
-        cur.pvCont.appendChild(o), hide(domFC(cur.pvBottomInfo)), e.pe_html && e.pe_data ? (n.call(this, e.pe_html, e.pe_data), delete e.pe_html, delete e.pe_data) : ajax.post("al_photos.php", {
+        cur.pvCont.appendChild(o), hide(domFC(cur.pvBottomInfo)), e.pe_html && e.pe_data ? (r.call(this, e.pe_html, e.pe_data), delete e.pe_html, delete e.pe_data) : ajax.post("al_photos.php", {
             act: "get_editor",
             photo_id: e.id,
             hash: e.pe_hash
         }, {
-            onDone: n.bind(this)
+            onDone: r.bind(this)
         }), cur.shownAs1AprilEditor && i()
     }
 
     function i() {
         for (var e = cur.pvPhWidth < cur.pvCurData.width ? (cur.pvCurData.width - cur.pvPhWidth) / 2 : 0, t = (cur.pvPhHeight < 449 ? (cur.pvCurData.height - cur.pvPhHeight) / 2 : 0, cur.pvCurPhoto.faked_detected), a = 0; a < t.faces.length; a++) {
             var i = t.faces[a],
-                r = ze[irand(0, ze.length - 1)],
-                n = Math.max(xe, Math.min(Se, i.width)),
-                s = E("sticker", i.x, i.y, extend(Pe[r], {
-                    size: [n, n],
+                n = ze[irand(0, ze.length - 1)],
+                r = Math.max(xe, Math.min(Se, i.width)),
+                s = E("sticker", i.x, i.y, extend(Pe[n], {
+                    size: [r, r],
                     packId: "editor"
                 })),
-                o = i.y0 - .7 * n,
+                o = i.y0 - .7 * r,
                 l = i.x0 - e;
-            e && (n -= e / 2), setStyle(s, {
+            e && (r -= e / 2), setStyle(s, {
                 transform: "rotate(" + i.rotate + "deg)",
-                width: n,
-                height: n,
+                width: r,
+                height: r,
                 top: o,
                 left: l
             })
@@ -59,7 +59,7 @@
                     h = 0;
                 if ("eyes" === d ? p = De[irand(0, De.length - 1)] : "nose" === d && (p = Te[irand(0, Te.length - 1)]), l = i.x, o = i.y, h = i.width, e && (h -= e / 2), !(30 > h)) {
                     var s = E("sticker", 0, 0, extend(Pe[p], {
-                        size: [n, n],
+                        size: [r, r],
                         packId: "editor"
                     }));
                     setStyle(s, {
@@ -74,7 +74,7 @@
         }
     }
 
-    function r() {
+    function n() {
         var e = z(!0).length > 0 || Ie.length > 0 || Le.textLayers.children.length > 0;
         if (toggleClass(U, "button_disabled", !e), cur.shownAs1AprilEditor) {
             var t = Le.stickerLayers.children.length;
@@ -84,7 +84,7 @@
         }
     }
 
-    function n() {
+    function r() {
         removeClass(cur.pvCont, "pv_pe"), show(cur.pvNarrowColumn), re(Le.editPanel), re(Le.canvasEl), re(de), Be && re(Be), show(domFC(cur.pvBottomInfo)), Z()
     }
 
@@ -94,20 +94,20 @@
 
     function o() {
         function e() {
-            r = Math.max(Math.min(0, r), s), setStyle(a, "left", r), toggle(t[0], 0 > r), toggle(t[1], r > s)
+            n = Math.max(Math.min(0, n), s), setStyle(a, "left", n), toggle(t[0], 0 > n), toggle(t[1], n > s)
         }
         var t = geByClass("pe_sticker_pack_tab_btn"),
             a = geByClass1("pe_sticker_packs_slider_cont"),
             i = domPN(a),
-            r = intval(getStyle(a, "left")),
-            n = 250,
+            n = intval(getStyle(a, "left")),
+            r = 250,
             s = -a.scrollWidth + getSize(i)[0];
         addEvent(i, "mousewheel", function(t) {
-            r -= t.deltaY, e()
+            n -= t.deltaY, e()
         }), addEvent(t[0], "click", function(t) {
-            return r += n, e(), cancelEvent(t)
+            return n += r, e(), cancelEvent(t)
         }), addEvent(t[1], "click", function(t) {
-            return r -= n, e(), cancelEvent(t)
+            return n -= r, e(), cancelEvent(t)
         })
     }
 
@@ -133,7 +133,7 @@
 
     function c() {
         var e = te;
-        w(), re(e), r()
+        w(), re(e), n()
     }
 
     function d(e) {
@@ -143,10 +143,10 @@
     function p(e, t, a) {
         var i = e + "_" + t;
         if (!Fe[i] || a) {
-            var r = vkImage();
-            r.crossOrigin = "anonymous", r.onload = function() {
+            var n = vkImage();
+            n.crossOrigin = "anonymous", n.onload = function() {
                 a && a(this)
-            }, r.src = Pe[e].sizes[t], Fe[i] = r
+            }, n.src = Pe[e].sizes[t], Fe[i] = n
         }
     }
 
@@ -164,13 +164,13 @@
         ae = new uiScroll(Le.stickersListEl, {
             onmoreThreshold: 200,
             onmore: function(t) {
-                var r = J.stickerPacks[e].slice(a, a + i);
-                each(r, function(e, a) {
+                var n = J.stickerPacks[e].slice(a, a + i);
+                each(n, function(e, a) {
                     t.content.appendChild(se('<div class="pe_sticker_preview" data-sticker-id="' + a.id + '"><img src="' + a.sizes[me] + '"/></div>'))
                 }), a += i
             }
         });
-        var r, n;
+        var n, r;
         removeEvent(Le.stickersListEl, "mousedown"), addEvent(Le.stickersListEl, "mousedown", function(a) {
             var i = domClosest("pe_sticker_preview", a.target);
             if (i && !(cur.shownAs1AprilEditor && Le.stickerLayers.children.length >= be)) {
@@ -184,7 +184,7 @@
                 cur.pvCont.appendChild(c);
                 var d = [a.pageX, a.pageY],
                     h = 0;
-                return r = function(e) {
+                return n = function(e) {
                     var t = [we * l, we];
                     cur.shownAs1AprilEditor && (t = [128 * l, 128]), setStyle(c, {
                         left: e.pageX - t[0] / 2,
@@ -192,15 +192,15 @@
                     });
                     var a = [e.pageX - d[0], e.pageY - d[1]];
                     h = Math.sqrt(a[0] * a[0] + a[1] * a[1])
-                }, addEvent(window, "mousemove", r), addEvent(window, "mouseup", n = function(a) {
+                }, addEvent(window, "mousemove", n), addEvent(window, "mouseup", r = function(a) {
                     var i = getSize(geByTag1("img", c));
                     re(c);
                     var s = g(a);
                     i && i[0] || (i = [we, we], cur.shownAs1AprilEditor && t() && (i = [we / 2, we / 2])), o = extend({}, o, {
                         size: i,
                         packId: e
-                    }), s[0] > 0 && s[0] < K[0] && s[1] > 0 && s[1] < K[1] ? E("sticker", s[0], s[1], o) : 5 > h && E("sticker", K[0] / 2, K[1] / 2, o), removeEvent(window, "mousemove", r), removeEvent(window, "mouseup", n)
-                }), r(a), cancelEvent(a)
+                    }), s[0] > 0 && s[0] < K[0] && s[1] > 0 && s[1] < K[1] ? E("sticker", s[0], s[1], o) : 5 > h && E("sticker", K[0] / 2, K[1] / 2, o), removeEvent(window, "mousemove", n), removeEvent(window, "mouseup", r)
+                }), n(a), cancelEvent(a)
             }
         })
     }
@@ -272,35 +272,35 @@
             if (hasClass(e.target, "pe_layer_selection_handler")) {
                 var t, a = e.target.id.split("_")[1],
                     i = gpeByClass("pe_canvas_layer", e.target),
-                    r = f(i),
-                    n = u(i, !0),
-                    s = [n[0] + r[0] / 2, n[1] + r[1] / 2];
+                    n = f(i),
+                    r = u(i, !0),
+                    s = [r[0] + n[0] / 2, r[1] + n[1] / 2];
                 switch (a) {
                     case "se":
-                        t = [n[0] + r[0] - s[0], n[1] + r[1] - s[1]];
+                        t = [r[0] + n[0] - s[0], r[1] + n[1] - s[1]];
                         break;
                     case "sw":
-                        t = [n[0] - s[0], n[1] + r[1] - s[1]];
+                        t = [r[0] - s[0], r[1] + n[1] - s[1]];
                         break;
                     case "ne":
-                        t = [n[0] + r[0] - s[0], n[1] - s[1]];
+                        t = [r[0] + n[0] - s[0], r[1] - s[1]];
                         break;
                     case "nw":
-                        t = [n[0] - s[0], n[1] - s[1]]
+                        t = [r[0] - s[0], r[1] - s[1]]
                 }
                 var o = Math.sqrt(t[0] * t[0] + t[1] * t[1]);
                 return Q = function(e) {
                     var a = g(e),
-                        n = [a[0] - s[0], a[1] - s[1]],
-                        l = 180 * (Math.atan2(n[1], n[0]) - Math.atan2(t[1], t[0])) / Math.PI,
+                        r = [a[0] - s[0], a[1] - s[1]],
+                        l = 180 * (Math.atan2(r[1], r[0]) - Math.atan2(t[1], t[0])) / Math.PI,
                         c = {
                             transform: "rotateZ(" + l + "deg)"
                         };
                     if (!y(te)) {
-                        var d = Math.max(xe, Math.sqrt(n[0] * n[0] + n[1] * n[1])),
+                        var d = Math.max(xe, Math.sqrt(r[0] * r[0] + r[1] * r[1])),
                             p = d / o,
-                            h = r[0] * p,
-                            _ = r[1] * p;
+                            h = n[0] * p,
+                            _ = n[1] * p;
                         cur.shownAs1AprilEditor && (h = Math.min(Se, h), _ = Math.min(Se, _)), extend(c, {
                             width: h,
                             height: _,
@@ -336,11 +336,11 @@
         }
     }
 
-    function E(e, a, i, n) {
+    function E(e, a, i, r) {
         var s = se('<div class="pe_canvas_layer"></div>');
         if (w(), "sticker" == e) {
-            setStyle(s, "background-image", "url('" + n.sizes[me] + "')"), domData(s, "sticker-id", n.id), domData(s, "pack-id", n.packId);
-            var o = (Math.max(K[0], K[1]), n.size[0] / n.size[1]),
+            setStyle(s, "background-image", "url('" + r.sizes[me] + "')"), domData(s, "sticker-id", r.id), domData(s, "pack-id", r.packId);
+            var o = (Math.max(K[0], K[1]), r.size[0] / r.size[1]),
                 l = [we * o, we];
             cur.shownAs1AprilEditor && t() && (l = [128 * o, 128]), setStyle(s, {
                 left: a - l[0] / 2,
@@ -350,8 +350,8 @@
             });
             var c = vkImage();
             c.onload = function() {
-                setStyle(s, "background-image", "url('" + n.sizes[ke] + "')")
-            }, c.src = n.sizes[ke], setTimeout(function() {
+                setStyle(s, "background-image", "url('" + r.sizes[ke] + "')")
+            }, c.src = r.sizes[ke], setTimeout(function() {
                 k(s)
             }, 10), Le.stickerLayers.appendChild(s)
         } else if ("text" == e) {
@@ -369,7 +369,7 @@
                 })
             }), addClass(s, "pe_canvas_text_layer"), Le.textLayers.appendChild(s)
         }
-        return r(), s
+        return n(), s
     }
 
     function b(e) {
@@ -382,8 +382,8 @@
             var t = m(te),
                 a = e.fontFamily ? e.fontFamily : t.style.fontFamily,
                 i = a.toLowerCase().indexOf("impact") >= 0,
-                r = a.toLowerCase().indexOf("lobster") >= 0;
-            setStyle(t, e), toggleClass(t, "pe_text_impact_style", i), toggleClass(t, "pe_text_lobster_style", r), de && (setStyle(de, e), toggleClass(de, "pe_text_impact_style", i), toggleClass(de, "pe_text_lobster_style", r), triggerEvent(de, "change"))
+                n = a.toLowerCase().indexOf("lobster") >= 0;
+            setStyle(t, e), toggleClass(t, "pe_text_impact_style", i), toggleClass(t, "pe_text_lobster_style", n), de && (setStyle(de, e), toggleClass(de, "pe_text_impact_style", i), toggleClass(de, "pe_text_lobster_style", n), triggerEvent(de, "change"))
         }
     }
 
@@ -430,7 +430,7 @@
         if (te && y(te)) {
             var e = geByClass1("pe_textarea", Le.textEdits);
             if (e) {
-                var t = val(e).replace(/\n/g, "</br>");
+                var t = clean(val(e)).replace(/\n/g, "</br>");
                 val(geByClass1("pe_layer_text_inner", te), t), domPN(e) && re(e), show(te), de = !1
             }
         }
@@ -440,10 +440,10 @@
         var t = se('<textarea class="pe_textarea"></textarea>'),
             a = f(e),
             i = u(e, !0),
-            r = m(e),
-            n = r.innerHTML;
-        n = n.replace(/<\/?br>/g, "\n"), val(t, n);
-        var s = window.getComputedStyle(r),
+            n = m(e),
+            r = n.innerHTML;
+        r = r.replace(/<\/?br>/g, "\n"), val(t, unclean(r));
+        var s = window.getComputedStyle(n),
             o = {
                 color: "white",
                 fontFamily: s.fontFamily,
@@ -460,16 +460,16 @@
             if (l) {
                 var e = val(t);
                 if (!trim(e)) return l = !1, c();
-                e = e.replace(/\n/g, "</br>") + (inArray(e[e.length - 1], ["\n", " "]) ? "&nbsp;" : "");
+                e = clean(e).replace(/\n/g, "</br>") + (inArray(e[e.length - 1], ["\n", " "]) ? "&nbsp;" : "");
                 var a = se('<div class="pe_text_temp">' + e + "</div>"),
                     i = m(te),
-                    r = window.getComputedStyle(i),
-                    n = {
-                        fontSize: r.fontSize,
-                        fontFamily: r.fontFamily,
-                        letterSpacing: r.letterSpacing
+                    n = window.getComputedStyle(i),
+                    r = {
+                        fontSize: n.fontSize,
+                        fontFamily: n.fontFamily,
+                        letterSpacing: n.letterSpacing
                     };
-                Le.canvasEl.appendChild(a), setStyle(a, n);
+                Le.canvasEl.appendChild(a), setStyle(a, r);
                 var s = getSize(a);
                 re(a), setStyle(t, {
                     width: s[0],
@@ -487,8 +487,8 @@
     function F(e, t, a) {
         function i(a) {
             var i = a.target,
-                r = domData(i, "color-index");
-            A(e, r), t(Ae[r], r)
+                n = domData(i, "color-index");
+            A(e, n), t(Ae[n], n)
         }
         e.children.length > 0 || (each(Ae, function(t, a) {
             var i = "#FFFFFF" == a ? "pe_drawing_color_white" : "";
@@ -514,7 +514,7 @@
         }, Q = function(e) {
             a.push(g(e)), H()
         }, ee = function(e) {
-            r(), toggle(Le.undoDrawing, Ie.length > 0)
+            n(), toggle(Le.undoDrawing, Ie.length > 0)
         }, _e = _e || new Slider(geByClass1("pe_drawing_width_slider"), {
             value: .3,
             fireChangeEventOnInit: !0,
@@ -566,10 +566,10 @@
     function H(e, t) {
         var a = e;
         he || a || (he = Le.drawingCanvas.getContext("2d")), e = e || he, t = t || 1, e.lineJoin = e.lineCap = "round", a || e.clearRect(0, 0, e.canvas.width, e.canvas.height);
-        for (var i = 0, r = Ie.length; r > i; i++) {
-            var n = Ie[i];
-            e.lineWidth = n.width * t, e.strokeStyle = T(n.color, n.opacity), e.beginPath(), e.moveTo(n.path[0][0] * t, n.path[0][1] * t);
-            for (var s = 0, o = n.path.length; o > s; s++) e.lineTo(n.path[s][0] * t, n.path[s][1] * t);
+        for (var i = 0, n = Ie.length; n > i; i++) {
+            var r = Ie[i];
+            e.lineWidth = r.width * t, e.strokeStyle = T(r.color, r.opacity), e.beginPath(), e.moveTo(r.path[0][0] * t, r.path[0][1] * t);
+            for (var s = 0, o = r.path.length; o > s; s++) e.lineTo(r.path[s][0] * t, r.path[s][1] * t);
             e.stroke()
         }
     }
@@ -582,18 +582,18 @@
 
     function N(e) {
         for (var t = (cur.pvPhWidth < cur.pvCurData.width ? (cur.pvCurData.width - cur.pvPhWidth) / 2 : 0, cur.pvPhHeight < 449 ? (cur.pvCurData.height - cur.pvPhHeight) / 2 : 0, []), a = Le.stickerLayers.children, i = 0; i < a.length; i++) {
-            var r = a[i],
-                n = r.style.transform ? parseFloat(r.style.transform.match(/-?[\d.]+/)[0]) : 0,
+            var n = a[i],
+                r = n.style.transform ? parseFloat(n.style.transform.match(/-?[\d.]+/)[0]) : 0,
                 s = cur.pvCurData.width / cur.pvPhWidth,
                 o = cur.pvCurData.height / cur.pvPhHeight;
             t.push({
-                packId: attr(r, "data-pack-id"),
-                stickerId: attr(r, "data-sticker-id").split("_")[1],
-                left: r.offsetLeft * s,
-                top: r.offsetTop * o,
-                width: r.offsetWidth * s,
-                height: r.offsetHeight * o,
-                rotate: n
+                packId: attr(n, "data-pack-id"),
+                stickerId: attr(n, "data-sticker-id").split("_")[1],
+                left: n.offsetLeft * s,
+                top: n.offsetTop * o,
+                width: n.offsetWidth * s,
+                height: n.offsetHeight * o,
+                rotate: r
             })
         }
         t.length && (lockButton(e), w(), ajax.post("al_photos.php", {
@@ -653,8 +653,8 @@
         t.append("file0", e, encodeURIComponent("edited_" + irand(99999) + ".jpg"));
         var a = J.upload.url,
             i = browser.msie && intval(browser.version) < 10 ? window.XDomainRequest : window.XMLHttpRequest,
-            r = new i;
-        r.open("POST", a, !0), r.onload = function(e) {
+            n = new i;
+        n.open("POST", a, !0), n.onload = function(e) {
             e = e.target.responseText;
             var t = (parseJSON(e), z());
             ajax.post("al_photos.php", {
@@ -666,11 +666,11 @@
                 need_copy: J.need_copy,
                 texts: W()
             }, {
-                onDone: function(e, t, a, i, r) {
-                    n(), V(t, a, i, r)
+                onDone: function(e, t, a, i, n) {
+                    r(), V(t, a, i, n)
                 }
             })
-        }, r.send(t)
+        }, n.send(t)
     }
 
     function j() {
@@ -682,7 +682,7 @@
             hash: J.hash
         }, {
             onDone: function(e, t, a, i) {
-                n(), V(e, t, a, i)
+                r(), V(e, t, a, i)
             }
         })
     }
@@ -690,50 +690,50 @@
     function R(e, t) {
         var a = se('<canvas width="' + e.width + '" height="' + e.height + '">'),
             i = a.getContext("2d"),
-            r = e.width / K[0],
-            n = browser.mozilla ? -5 : browser.chrome ? 7.778 : 0;
-        n *= r, i.drawImage(e, 0, 0), each(Le.stickerLayers.children, function() {
+            n = e.width / K[0],
+            r = browser.mozilla ? -5 : browser.chrome ? 7.778 : 0;
+        r *= n, i.drawImage(e, 0, 0), each(Le.stickerLayers.children, function() {
             var e = this;
             i.save();
             var t = f(e);
-            t[0] *= r, t[1] *= r;
+            t[0] *= n, t[1] *= n;
             var a = u(e, !0);
-            a[0] *= r, a[1] *= r;
-            var n = e.style.transform ? parseFloat(e.style.transform.match(/-?[\d.]+/)[0]) * Math.PI / 180 : 0;
-            i.translate(a[0], a[1]), i.translate(t[0] / 2, t[1] / 2), i.rotate(n), i.translate(-t[0] / 2, -t[1] / 2);
+            a[0] *= n, a[1] *= n;
+            var r = e.style.transform ? parseFloat(e.style.transform.match(/-?[\d.]+/)[0]) * Math.PI / 180 : 0;
+            i.translate(a[0], a[1]), i.translate(t[0] / 2, t[1] / 2), i.rotate(r), i.translate(-t[0] / 2, -t[1] / 2);
             var s = domData(e, "sticker-id"),
                 o = h(s, O(t));
             i.drawImage(o, 0, 0, t[0], t[1]), i.restore()
-        }), H(i, r), each(Le.textLayers.children, function() {
+        }), H(i, n), each(Le.textLayers.children, function() {
             var e = this;
             i.save();
             var t = f(e);
-            t[0] *= r, t[1] *= r;
+            t[0] *= n, t[1] *= n;
             var a = u(e, !0);
-            a[0] *= r, a[1] *= r;
+            a[0] *= n, a[1] *= n;
             var s = e.style.transform ? parseFloat(e.style.transform.match(/-?[\d.]+/)[0]) * Math.PI / 180 : 0;
             i.translate(t[0] / 2, 0), i.translate(a[0], a[1]), i.translate(0, t[1] / 2), i.rotate(s), i.translate(0, -t[1] / 2);
             var o = m(e),
                 l = replaceEntities(o.innerHTML.replace(/<br>/g, "\n")).split("\n"),
-                c = parseInt(o.style.fontSize) * r,
+                c = parseInt(o.style.fontSize) * n,
                 d = o.style.fontFamily,
                 p = d.toLowerCase().indexOf("impact") >= 0,
                 h = d.toLowerCase().indexOf("lobster") >= 0;
             i.textBaseline = "top", i.fillStyle = o.style.color, i.font = c + "px " + d, i.textAlign = "center", p && (i.strokeStyle = "black", i.lineWidth = 10, i.lineJoin = "round"), h && (i.shadowColor = "rgba(0, 0, 0, 0.6)", i.shadowBlur = 3, i.shadowOffsetX = 1, i.shadowOffsetY = 1);
-            for (var _ = 0; _ < l.length; _++) p && i.strokeText(l[_], 0, _ * c - n), i.fillText(l[_], 0, _ * c - n);
+            for (var _ = 0; _ < l.length; _++) p && i.strokeText(l[_], 0, _ * c - r), i.fillText(l[_], 0, _ * c - r);
             i.restore()
         }), a.toBlob(t, "image/jpeg", 1)
     }
 
     function q(e) {
-        if (hasClass(U, "button_disabled")) return n(), e();
+        if (hasClass(U, "button_disabled")) return r(), e();
         var t = showFastBox({
             title: getLang("photos_pe_are_you_sure_close_title"),
             bodyStyle: "padding: 20px; line-height: 160%;",
             dark: 1,
             forceNoBtn: 1
         }, getLang("photos_pe_are_you_sure_close_text"), getLang("box_yes"), function() {
-            n(), t.hide(), e()
+            r(), t.hide(), e()
         }, getLang("box_no"))
     }
     var J, K, U, G, V, Z, $, Q, ee, te, ae, ie, ne, oe, le, de, pe, he, _e, ve, ue, fe, ye, me = t() ? 256 : 128,
@@ -759,7 +759,7 @@
         onKeyPress: d,
         addTextLayer: L,
         save: X,
-        closeEditor: n,
+        closeEditor: r,
         restoreOriginal: j,
         selectStickerPack: _,
         attemptHide: q,

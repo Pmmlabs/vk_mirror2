@@ -2789,10 +2789,7 @@
             var o, d, f;
             curFastChat.clistCache = {};
             for (a in curFastChat.friends)
-                for (o = curFastChat.friends[a][0], a = intval(a), d = 0;;) {
-                    if (f = " " + o.charAt(d).toLowerCase(), curFastChat.clistCache[f] || (curFastChat.clistCache[f] = {}), curFastChat.clistCache[f][a] = 1, d = o.indexOf(" ", d + 1), -1 == d) break;
-                    ++d
-                }
+                for (o = curFastChat.friends[a][0], a = intval(a), d = 0; f = " " + o.charAt(d).toLowerCase(), curFastChat.clistCache[f] || (curFastChat.clistCache[f] = {}), curFastChat.clistCache[f][a] = 1, d = o.indexOf(" ", d + 1), -1 != d;) ++d
         },
         clistShowMore: function() {
             if (curFastChat.clHasMore) {
@@ -3104,8 +3101,8 @@
             var e = [],
                 t = {};
             each(curFastChat.needPeers, function(i) {
-                e.push(i),
-                    e.push(this[0]), clearTimeout(this[2]), t[i] = this[0]
+                e.push(i), e.push(this[0]),
+                    clearTimeout(this[2]), t[i] = this[0]
             }), e.length && (FastChat.lcSend("fetchingPeers", t), ajax.post("al_im.php", {
                 act: "a_get_fc_peers",
                 peers: e.join(",")
@@ -4233,12 +4230,13 @@
                     p = n[1] - l,
                     m = browser.msie ? "selectstart" : "mousedown";
                 a.options.fixed && FastChat.pinTab(a.options.peer || -1, e, !0), o || a.focus(e), a.toBottom ? (a.toBottom = !1, t = n[0] - intval(getStyle(a.wrap, "bottom")) - u, setStyle(a.wrap, {
-                    top: t,
-                    bottom: "auto"
-                }), removeClass(a.wrap, "fc_tobottom")) : t = intval(getStyle(a.wrap, "top")), a.toRight ? (a.toRight = !1, i = n[1] - intval(getStyle(a.wrap, "right")) - l, setStyle(a.wrap, {
-                    left: i,
-                    right: "auto"
-                })) : i = intval(getStyle(a.wrap, "left")), d = t, f = i, cur._fcdrag = 1;
+                        top: t,
+                        bottom: "auto"
+                    }), removeClass(a.wrap, "fc_tobottom")) : t = intval(getStyle(a.wrap, "top")),
+                    a.toRight ? (a.toRight = !1, i = n[1] - intval(getStyle(a.wrap, "right")) - l, setStyle(a.wrap, {
+                        left: i,
+                        right: "auto"
+                    })) : i = intval(getStyle(a.wrap, "left")), d = t, f = i, cur._fcdrag = 1;
                 var _ = function(e) {
                         return d = Math.max(0, Math.min(h, t + e.pageY - s)), 10 > h - d ? d = h : 10 > d && (d = 0), a.wrap.style.top = d + "px", f = Math.max(0, Math.min(p, i + e.pageX - c)), 10 > p - f ? f = p : 10 > f && (f = 0), a.wrap.style.left = f + "px", cancelEvent(e)
                     },
@@ -4637,8 +4635,7 @@
                 r = a[0],
                 n = a[1],
                 o = a[2];
-            a[3], a[4];
-            t.allShown = t.allShown || o, t.history = f(t.history) + r, t.historyToAppend = r;
+            a[3], a[4], t.allShown = t.allShown || o, t.history = f(t.history) + r, t.historyToAppend = r;
             var s = Object.keys(n).length;
             return t.skipped -= s, t.offset += s, t.msgs = extend(t.msgs, n), e
         })
@@ -5257,8 +5254,7 @@
             });
             return ht(r, !0, i), t.then(function(t) {
                 var r = Dt(t, 2);
-                r[0], r[1];
-                return delete i.blockedFlagUpdates[e], a.msgs = null, a.history = null, a.unread = 0, a.lastmsg = !1, a.lastmsg_meta = null, i
+                return r[0], r[1], delete i.blockedFlagUpdates[e], a.msgs = null, a.history = null, a.unread = 0, a.lastmsg = !1, a.lastmsg_meta = null, i
             })
         }
     }
@@ -5543,8 +5539,7 @@
         if (t && !i.update_title_to) {
             var n = Ze(a, r, i);
             i.update_title_to = setInterval(n, 1e3), n()
-        } else !t && i.update_old_title && (document.title = i.update_old_title, i.cur_unread_cnt = {}, a = !1, i.update_old_title = !1, setFavIcon("/images/icons/favicons/fav_im" + r + ".ico"), clearInterval(i.update_title_to),
-            i.update_title_to = !1);
+        } else !t && i.update_old_title && (document.title = i.update_old_title, i.cur_unread_cnt = {}, a = !1, i.update_old_title = !1, setFavIcon("/images/icons/favicons/fav_im" + r + ".ico"), clearInterval(i.update_title_to), i.update_title_to = !1);
         return Promise.resolve(i)
     }
 
@@ -5951,8 +5946,7 @@
             share_url: t.share_url
         }, Zt).then(function(e) {
             var t = Dt(e, 1);
-            t[0];
-            return i
+            return t[0], i
         })
     }), t.searchTopConv = ce(function(e) {
         return e.topConvTree
@@ -7932,29 +7926,27 @@
                 e = e.originalEvent || e || window.event;
                 var btn = e.which,
                     nohide = !1;
-                1 == btn && (e.ctrlKey || browser.mac && e.metaKey) && (btn = 2, browser.mac && (nohide = !0)); {
-                    if ("A" != (e.target || e.srcElement).tagName) {
-                        switch (btn) {
-                            case 1:
-                                eval(ev.onclick), Notifier.hideEvent(ev);
-                                break;
-                            case 2:
-                                var wnd = window.open(ev.link, "_blank");
-                                try {
-                                    wnd.blur(), window.focus()
-                                } catch (e) {}
-                                nohide || Notifier.hideEvent(ev);
-                                break;
-                            case 3:
-                                if (browser.mozilla) return
-                        }
-                        return cancelEvent(e)
-                    }
+                if (1 == btn && (e.ctrlKey || browser.mac && e.metaKey) && (btn = 2, browser.mac && (nohide = !0)), "A" != (e.target || e.srcElement).tagName) {
                     switch (btn) {
                         case 1:
+                            eval(ev.onclick), Notifier.hideEvent(ev);
+                            break;
+                        case 2:
+                            var wnd = window.open(ev.link, "_blank");
+                            try {
+                                wnd.blur(), window.focus()
+                            } catch (e) {}
+                            nohide || Notifier.hideEvent(ev);
                             break;
                         case 3:
+                            if (browser.mozilla) return
                     }
+                    return cancelEvent(e)
+                }
+                switch (btn) {
+                    case 1:
+                        break;
+                    case 3:
                 }
             }), addEvent(ev.baloonEl, "contextmenu", function(e) {
                 return setTimeout(function() {
