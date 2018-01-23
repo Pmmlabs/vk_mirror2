@@ -843,8 +843,7 @@
                         i = s.split("_"),
                         a = n(i, 2),
                         o = a[0];
-                    a[1];
-                    this.editCriteriaPreset(o, 0, t, 0)
+                    a[1], this.editCriteriaPreset(o, 0, t, 0)
                 }
                 return this.isEditingAudienceName = !1, !1
             }, e

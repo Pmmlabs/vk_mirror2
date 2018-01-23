@@ -2240,7 +2240,7 @@ a.app_widget_matches_live_icon:active {
 .group_online_answer_status_title,
 .group_online_status_title {
     margin: 0;
-    color: #6ea4e1;
+    color: #1b77e0;
     line-height: 1.23;
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -2248,7 +2248,7 @@ a.app_widget_matches_live_icon:active {
 }
 
 .group_online_status_title {
-    color: #14a327
+    color: #16a300
 }
 
 .group_online_answer_status_description,
@@ -2267,7 +2267,7 @@ a.app_widget_matches_live_icon:active {
 }
 
 .group_online_beacon_wrapper {
-    background: #e3f1e1
+    background: #dcf1d9
 }
 
 .group_online_beacon_wrapper,
@@ -2282,7 +2282,7 @@ a.app_widget_matches_live_icon:active {
 
 .group_online_beacon_wrapper:after {
     content: '';
-    background: #65bf63;
+    background: #52b842;
     -webkit-animation: beacon_wrapper_pulsate 2.5s ease-out;
     -o-animation: beacon_wrapper_pulsate 2.5s ease-out;
     animation: beacon_wrapper_pulsate 2.5s ease-out;
@@ -2388,7 +2388,7 @@ a.app_widget_matches_live_icon:active {
     left: 5px;
     width: 14px;
     height: 14px;
-    background: #65bf63;
+    background: #52b842;
     border-radius: 7px
 }
 
@@ -2397,7 +2397,7 @@ a.app_widget_matches_live_icon:active {
     margin-top: 3px;
     width: 24px;
     height: 24px;
-    background: url('/images/rocket.svg') no-repeat 0 0;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%2F%3E%3Cpath%20d%3D%22M14.499%2014.505S21%209.395%2020.999%203.5c.003-.5.002-.5-.498-.5C14.498%203%209%209.503%209%209.503c-4.205%200-4%20.498-5.808%205.302-.193.69.3%201.2.95%201%20.464-.17%201.081-.437%201.852-.8l3.002%203.001c-.33.803-.58%201.437-.752%201.901-.229.609.257%201.092.953.9%204.848-1.332%205.302-1.806%205.302-6.302zm-.561-4.444a1.499%201.499%200%200%201%200-2.12%201.504%201.504%200%200%201%202.122%200%201.499%201.499%200%200%201%200%202.12%201.504%201.504%200%200%201-2.122%200z%22%20fill%3D%22%234597F5%22%20fill-rule%3D%22nonzero%22%2F%3E%3Cpath%20d%3D%22M5.5%2016.5l2%202C6.833%2020.167%205.333%2021%203%2021c0-2.333.833-3.833%202.5-4.5z%22%20fill%3D%22%23ADD3FF%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 0 0;
     border: 0
 }
 

@@ -3216,32 +3216,66 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     background: #595959
 }
 
-.mv_chat_reply_form {
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-top: 1px solid #404040;
-    background: #1e1e1e
+.mv_chat_reply_author_photo {
+    margin-left: 10px;
+    margin-right: 8px;
+    margin-top: 7px;
+    display: inline-block;
+    float: left;
+    height: 25px;
+    position: relative;
+    width: 25px;
+    will-change: transform
 }
 
-.mv_chat_reply_author_photo {
-    float: left;
+.mv_chat_reply_author_as_group {
+    cursor: pointer
+}
+
+.mv_chat_reply_author_as_group:hover .mv_chat_reply_author_icon {
+    opacity: 1
+}
+
+.mv_chat_reply_author_as_group:hover .mv_chat_reply_author_photo_img {
+    opacity: .5
+}
+
+.mv_chat_reply_author_icon {
+    margin-left: 8px;
+    margin-top: 12px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%228%22%20height%3D%224%22%20viewBox%3D%220%200%208%204%22%3E%3Cpath%20fill%3D%22none%22%20stroke%3D%22%23FFF%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M.8.7L4%203.3%207.2.7%22%2F%3E%3C%2Fsvg%3E") no-repeat;
+    height: 4px;
+    opacity: 0;
+    position: absolute;
+    width: 8px;
+    z-index: 2
+}
+
+.mv_chat_reply_author_photo_img {
     width: 25px;
     height: 25px;
     border-radius: 50%;
     -moz-force-broken-image-icon: 0;
     background-color: transparent;
-    margin: 7px 8px 7px 10px
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    left: 0;
+    position: absolute;
+    top: 0;
+    -webkit-transform: rotateY(0deg) translateZ(-1000px);
+    transform: rotateY(0deg) translateZ(-1000px);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, -webkit-transform 0.3s ease, -o-transform 0.3s ease, opacity 0.3s ease;
+    will-change: transform
 }
 
-.mv_chat_reply_author_photo:before {
+.mv_chat_reply_author_photo_img:before {
     background-color: #1e1e1e
 }
 
-.mv_chat_reply_author_photo:before,
-.mv_chat_reply_author_photo:after {
+.mv_chat_reply_author_photo_img:before,
+.mv_chat_reply_author_photo_img:after {
     content: " ";
     display: block;
     position: absolute;
@@ -3251,7 +3285,7 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
     height: 25px
 }
 
-.mv_chat_reply_author_photo:after {
+.mv_chat_reply_author_photo_img:after {
     border-radius: 50%;
     background-color: transparent;
     background-image: url(/images/camera_100.png);
@@ -3261,9 +3295,34 @@ body.mac #mv_external_finish .mv_finish_suggestions_item {
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .mv_chat_reply_author_photo:after {
+    .mv_chat_reply_author_photo_img:after {
         background-image: url(/images/camera_200.png)
     }
+}
+
+.mv_chat_reply_author_photo_secondary_img {
+    -webkit-transform: rotateY(180deg) translateZ(1000px);
+    transform: rotateY(180deg) translateZ(1000px)
+}
+
+.mv_chat_author_secondary .mv_chat_reply_author_photo_img {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg)
+}
+
+.mv_chat_author_secondary .mv_chat_reply_author_photo_secondary_img {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg)
+}
+
+.mv_chat_reply_form {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #404040;
+    background: #1e1e1e
 }
 
 .mv_chat_reply_input {

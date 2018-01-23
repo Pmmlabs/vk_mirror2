@@ -786,8 +786,7 @@
                         if (w = s(e, n), o = r(o), void 0 === w) return
                     } else {
                         var i = o.toString().match(/^([+-]=)?([\d+-.]+)(.*)$/);
-                        h.cur(t, !0) || 0;
-                        i && (o = parseFloat(i[2]), i[1] && (o = ("-=" == i[1] ? -1 : 1) * o + o)), w = h.cur(t, !0), 0 != w || "width" != t && "height" != t || (w = 1), "opacity" == t && o > 0 && !p && (setStyle(e, "opacity", 0), w = 0, show(e))
+                        h.cur(t, !0) || 0, i && (o = parseFloat(i[2]), i[1] && (o = ("-=" == i[1] ? -1 : 1) * o + o)), w = h.cur(t, !0), 0 != w || "width" != t && "height" != t || (w = 1), "opacity" == t && o > 0 && !p && (setStyle(e, "opacity", 0), w = 0, show(e))
                     }(w != o || isArray(w) && w.join(",") == o.join(",")) && (c[t] = w, u[t] = o)
                 }), h.start(c, u), data(e, "tween", h), h
             }
@@ -1445,14 +1444,12 @@
             if (t && "border-box" === le(e, "boxSizing") && (t = !1), e == document) a = [Math.max(r.clientWidth, bodyNode.scrollWidth, r.scrollWidth, bodyNode.offsetWidth, r.offsetWidth), Math.max(r.clientHeight, bodyNode.scrollHeight, r.scrollHeight, bodyNode.offsetHeight, r.offsetHeight)];
             else if (e) {
                 var s = function() {
-                    if (a = G(e) && (i = K(e, o)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t) {
-                        each(a, function(t, o) {
-                            var n = t ? ["Top", "Bottom"] : ["Left", "Right"];
-                            each(n, function() {
-                                a[t] -= parseFloat(le(e, "padding" + this)) || 0, a[t] -= parseFloat(le(e, "border" + this + "Width")) || 0
-                            })
+                    a = G(e) && (i = K(e, o)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t && each(a, function(t, o) {
+                        var n = t ? ["Top", "Bottom"] : ["Left", "Right"];
+                        each(n, function() {
+                            a[t] -= parseFloat(le(e, "padding" + this)) || 0, a[t] -= parseFloat(le(e, "border" + this + "Width")) || 0
                         })
-                    }
+                    })
                 };
                 if (W(e)) s();
                 else {
@@ -2379,8 +2376,7 @@
             return typeof e
         } : function(e) {
             return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
-        };
-        ! function(i) {
+        }, ! function(i) {
             var a = i.HTMLCanvasElement && i.HTMLCanvasElement.prototype,
                 r = i.Blob && function() {
                     try {
@@ -3728,8 +3724,7 @@
                         innerHTML: '<div class="input_back"><div class="input_back_content' + (a.big ? " big" : "") + '" style="width: ' + (getSize(n)[0] - 20) + 'px;">' + o + "</div></div>"
                     }), n),
                     f = domFC(h);
-                domFC(f);
-                setStyle(f, r);
+                domFC(f), setStyle(f, r);
                 var w = __phCheck.pbind(n, a),
                     _ = browser.mobile ? w : function(e, t) {
                         setTimeout(w.pbind(e, t), 0)
@@ -4118,8 +4113,7 @@
                         if (!trim(i.value) && t !== !0) return void elfocus(i);
                         var a = geByTag1("img", o.bodyNode),
                             r = a[0];
-                        a[1];
-                        removeEvent(i), removeEvent(r), show(geByClass1("progress", o.bodyNode)), hide(i), n.onSubmit(e, i.value)
+                        a[1], removeEvent(i), removeEvent(r), show(geByClass1("progress", o.bodyNode)), hide(i), n.onSubmit(e, i.value)
                     }
                 },
                 a = o ? !0 : !1,
@@ -4512,8 +4506,7 @@
                 }
             }, this.init = function(e) {
                 this.sCont = ge("quick_search"), this.opt = e || {}
-            };
-            this.preload = function() {}
+            }, this.preload = function() {}
         };
         var _cleanHide = function(e) {
             e.temphide && (removeEvent(e, "mouseout", e.temphide), removeAttr(e, "temphide"), removeAttr(e, "showing"))
@@ -4782,25 +4775,21 @@
                     }, o.additional), o), !1)
                 }
             }, window.showAlbums = function(e, t, o) {
-                if (cur.viewAsBox) return cur.viewAsBox();
-                if (!checkEvent(o)) return stManager.add(["photoview.js", "photoview.css"], function() {
+                return cur.viewAsBox ? cur.viewAsBox() : checkEvent(o) ? void 0 : (stManager.add(["photoview.js", "photoview.css"], function() {
                     Photoview.showAlbums(e, t)
-                }), !1
+                }), !1)
             }, window.showAlbum = function(e, t, o) {
-                if (cur.viewAsBox) return cur.viewAsBox();
-                if (!checkEvent(o)) return stManager.add(["photoview.js", "photoview.css"], function() {
+                return cur.viewAsBox ? cur.viewAsBox() : checkEvent(o) ? void 0 : (stManager.add(["photoview.js", "photoview.css"], function() {
                     Photoview.showAlbum(e, t)
-                }), !1
+                }), !1)
             }, window.showPhotoTags = function(e, t, o) {
-                if (cur.viewAsBox) return cur.viewAsBox();
-                if (!checkEvent(o)) return stManager.add(["photoview.js", "photoview.css"], function() {
+                return cur.viewAsBox ? cur.viewAsBox() : checkEvent(o) ? void 0 : (stManager.add(["photoview.js", "photoview.css"], function() {
                     Photoview.showTagged(e, t)
-                }), !1
+                }), !1)
             }, window.showVideoTags = function(e, t, o) {
-                if (cur.viewAsBox) return cur.viewAsBox();
-                if (!checkEvent(o)) return stManager.add(["video.js", "video.css", "photoview.js", "photoview.css"], function() {
+                return cur.viewAsBox ? cur.viewAsBox() : checkEvent(o) ? void 0 : (stManager.add(["video.js", "video.css", "photoview.js", "photoview.css"], function() {
                     Photoview.showVideoTags(e, t)
-                }), !1
+                }), !1)
             }, window.showWiki = function(e, t, o, n) {
                 if (checkEvent(o)) return !0;
                 var n = n || {};
@@ -4880,7 +4869,8 @@
                     c = new Date, u()
                 }), u()
             }, window.animateCount = function(e, t, o) {
-                if (e = ge(e), o = o || {}, t = o.str ? trim(t.toString()) || "" : positive(t), e) {
+                if (e = ge(e), o = o || {},
+                    t = o.str ? trim(t.toString()) || "" : positive(t), e) {
                     if (browser.mobile && !browser.safari_mobile && !browser.android) return void val(e, t || "");
                     var n = data(e, "curCount"),
                         i = data(e, "nextCount");
@@ -5234,7 +5224,7 @@
                     }), each(i.getList(e), function(e) {
                         var t = intval(e),
                             i = r[t];
-                        if ((!n || !n[t]) && i) return o-- ? void a.push([t, this]) : !1
+                        return n && n[t] || !i ? void 0 : o-- ? void a.push([t, this]) : !1
                     }), a
                 },
                 row: function(e, t, o, n, i, a, r, s, l) {
@@ -5319,8 +5309,7 @@
                         o = "",
                         n = t.maxItems,
                         i = ge("ts_cont_wrap");
-                    geByClass1("active", i);
-                    if (!i || !vk.id) return !1;
+                    if (geByClass1("active", i), !i || !vk.id) return !1;
                     if (cur.tsStr && cur.tsStr == e && !t.forceUpdate) return !1;
                     delete t.forceUpdate, t.initListsHtml();
                     var a, r = {};
@@ -5895,11 +5884,9 @@
                     return t.name !== e
                 }), window.cancelStack
             }, window.cancelStackPush = function(e, t, o) {
-                o && _topHeaderClose(function() {
+                return o && _topHeaderClose(function() {
                     t(), cancelStackFilter(e)
-                });
-                window.cancelStack || [];
-                return window.cancelStack = cancelStackFilter(e).concat([{
+                }), window.cancelStack || [], window.cancelStack = cancelStackFilter(e).concat([{
                     func: t,
                     name: e,
                     dclick: o

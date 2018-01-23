@@ -1555,7 +1555,7 @@ img.im_photo_thumb {
     position: absolute;
     width: 20px;
     height: 20px;
-    background: #e3f1e1;
+    background: #dcf1d9;
     border-radius: 10px
 }
 
@@ -1565,7 +1565,7 @@ img.im_photo_thumb {
     left: 4px;
     width: 12px;
     height: 12px;
-    background: #65bf63;
+    background: #52b842;
     border-radius: 6px
 }
 
@@ -8286,6 +8286,14 @@ body.sf .nim-dialog .nim-dialog--unread {
     }
 }
 
+.im-aside-notice-promo {
+    padding-top: 12px
+}
+
+.im-aside-notice-promo .im-aside-notice--text {
+    letter-spacing: -0.1px
+}
+
 .im-aside-notice--close {
     position: absolute;
     top: 4px;
@@ -8305,10 +8313,20 @@ body.sf .nim-dialog .nim-dialog--unread {
     background-color: rgba(0, 0, 0, .6)
 }
 
+.im-aside-notice-promo .im-aside-notice--close {
+    background: url('/images/vkadmin-promo/hide.svg') 0 0 no-repeat;
+    background-size: 100%;
+    width: 24px;
+    height: 24px
+}
+
 .im-aside-notice--title {
     color: #42648b;
     font-weight: 700;
-    margin: 0 0 5px;
+    margin: 0 0 5px
+}
+
+.im-aside-notice--title.--link {
     cursor: pointer
 }
 
@@ -8328,6 +8346,40 @@ body.sf .nim-dialog .nim-dialog--unread {
 
 .im-aside-notice--btn:after {
     content: ' \00bb'
+}
+
+.im-aside-notice-vkadmin--client {
+    display: inline-block;
+    color: #2a5885;
+    padding-left: 20px;
+    margin-top: 8px;
+    background: no-repeat 0
+}
+
+.im-aside-notice-vkadmin--client+.im-aside-notice-vkadmin--client {
+    margin-left: 16px
+}
+
+.im-aside-notice-vkadmin--client.--ios {
+    background-image: url(/images/vkadmin-promo/install-ios.svg)
+}
+
+.im-aside-notice-vkadmin--client.--android {
+    background-image: url(/images/vkadmin-promo/install-android.svg)
+}
+
+.im-aside-notice-vkadmin--client:hover {
+    text-decoration: none
+}
+
+.im-aside-notice-promo .im-aside-notice--notification {
+    display: none;
+    margin-top: 8px;
+    color: #828282
+}
+
+.im-aside-notice-promo.--action-called .im-aside-notice--notification {
+    display: block
 }
 
 .im-audio-message-btn {

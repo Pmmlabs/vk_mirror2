@@ -939,23 +939,22 @@
                     e.isClaimed && (l = !0);
                     var n = AudioUtils.getAddRestoreInfo(),
                         d = n[e.fullId];
-                    if (d && d.deleteAll) {
-                        showFastBox({
-                            title: getLang("audio_delete_all_title"),
-                            dark: 1
-                        }, d.deleteConfirmMsg || "", getLang("global_delete"), function(t) {
-                            var e = extend({
-                                act: "delete_all"
-                            }, d.deleteAll);
-                            ajax.post("al_audio.php", e, {
-                                showProgress: lockButton.pbind(t),
-                                onDone: function() {
-                                    var t = getAudioPlayer().getPlaylist(AudioPlaylist.TYPE_PLAYLIST, d.deleteAll.from_id, AudioPlaylist.DEFAULT_PLAYLIST_ID);
-                                    getAudioPlayer().deletePlaylist(t), nav.reload()
-                                }
-                            })
-                        }, getLang("global_cancel"))
-                    } else {
+                    if (d && d.deleteAll) showFastBox({
+                        title: getLang("audio_delete_all_title"),
+                        dark: 1
+                    }, d.deleteConfirmMsg || "", getLang("global_delete"), function(t) {
+                        var e = extend({
+                            act: "delete_all"
+                        }, d.deleteAll);
+                        ajax.post("al_audio.php", e, {
+                            showProgress: lockButton.pbind(t),
+                            onDone: function() {
+                                var t = getAudioPlayer().getPlaylist(AudioPlaylist.TYPE_PLAYLIST, d.deleteAll.from_id, AudioPlaylist.DEFAULT_PLAYLIST_ID);
+                                getAudioPlayer().deletePlaylist(t), nav.reload()
+                            }
+                        })
+                    }, getLang("global_cancel"));
+                    else {
                         if (l ? re(t) : addClass(t, "audio_row__deleted"), a) {
                             ajax.post("al_audio.php", {
                                 act: "remove_listened",
@@ -1846,8 +1845,7 @@
                     if (e[0] == o[a][AudioUtils.AUDIO_ITEM_INDEX_OWNER_ID] && e[1] == o[a][AudioUtils.AUDIO_ITEM_INDEX_ID]) return a;
                 return -1
             }, AudioPlaylist.prototype.getAudio = function(t) {
-                isString(t) ? t : AudioUtils.asObject(t).fullId;
-                t = t.split("_");
+                isString(t) ? t : AudioUtils.asObject(t).fullId, t = t.split("_");
                 for (var e = this.getSelf(), i = 0, o = e._list.length; o > i; i++)
                     if (t[0] == e._list[i][AudioUtils.AUDIO_ITEM_INDEX_OWNER_ID] && t[1] == e._list[i][AudioUtils.AUDIO_ITEM_INDEX_ID]) return e._list[i];
                 return null
@@ -1985,8 +1983,7 @@
                     }
             }, AudioPlayer.prototype.onMediaKeyPressedEvent = function(t) {
                 var e = this.getCurrentAudio();
-                this.getCurrentPlaylist();
-                if (e) switch (t.keyCode) {
+                if (this.getCurrentPlaylist(), e) switch (t.keyCode) {
                     case 179:
                         this.isPlaying() ? this.pause() : this.play();
                         break;
@@ -2686,7 +2683,7 @@
                     this._adsCurrentProgress = t.percent / 100, this.notify(AudioPlayer.EVENT_PROGRESS, t.percent / 100, t.duration), each(o, function(t, i) {
                         return this._adsCurrentProgress >= i ? (o.shift(), this._adsSendAdEvent("progress_" + intval(100 * i), e), !1) : void 0
                     }.bind(this))
-                }.bind(this)), this._adman.start(AudioPlayer.AD_TYPE), t ? i && i() : (this._adsPlaying = !0, this.notify(AudioPlayer.EVENT_PLAY), this.notify(AudioPlayer.EVENT_PROGRESS, 0), this._adsPrevTitle = document.title, document.title = getLang("global_audio_ad"), void 0)
+                }.bind(this)), this._adman.start(AudioPlayer.AD_TYPE), t ? i && i() : (this._adsPlaying = !0, this.notify(AudioPlayer.EVENT_PLAY), this.notify(AudioPlayer.EVENT_PROGRESS, 0), this._adsPrevTitle = document.title, void(document.title = getLang("global_audio_ad")))
             }, AudioPlayer.prototype._adsUpdateVolume = function() {
                 this._adman && this._adman.setVolume(.7 * this.getVolume())
             }, AudioPlayer.prototype._adsSendAdEvent = function(t, e) {

@@ -177,7 +177,7 @@
 .article {
     padding: 0;
     margin: 0;
-    font-size: 20px;
+    font-size: 19px;
     font-family: PT Serif, serif;
     color: #000;
     line-height: 1.5em;
@@ -257,7 +257,7 @@
     color: #222;
     font-size: 24px;
     font-weight: 700;
-    line-height: 1.08em
+    line-height: 1.4em
 }
 
 .article>h3 em {
@@ -389,7 +389,7 @@
 
 .article>figure figcaption {
     text-align: center;
-    max-width: 720px;
+    max-width: 612px;
     margin: 0 auto
 }
 

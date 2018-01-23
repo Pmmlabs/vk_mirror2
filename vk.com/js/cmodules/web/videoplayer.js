@@ -34,8 +34,7 @@
     "use strict";
     Object.defineProperty(e, "__esModule", {
         value: !0
-    });
-    e._INIT_VIDEO = "_initVideo", e._DEINIT_VIDEO = "_deinitVideo", e._RESIZE = "_resize", e._DESTROY = "_destroy", e.STATE_CHANGE = "stateChange", e.QUALITIES_LIST_CHANGE = "qualitiesListChange", e.QUALITY_CHANGE = "qualityChange", e.FULLSCREEN_CHANGE = "fullscreenChange", e.SEEK = "seek", e.EXPANDED = "expanded", e.NEXT_TIMER_RESET = "nextTimerReset", e.NEXT_TIMER_START = "nextTimerStart", e.VIDEO_LIKE = "videoLike", e.VIDEO_SHARE = "videoShare", e.VIDEO_ADD = "videoAdd", e.SUBSCRIBED = "subscribed", e.LIVE_PHASE_CHANGE = "livePhaseChange", e.LIVE_DONATION = "liveDonation", e.MEDIA_TIMEUPDATE = "media.timeupdate", e.MEDIA_PROGRESS = "media.progress", e.MEDIA_VOLUMECHANGE = "media.volumechange", e.MEDIA_DURATIONCHANGE = "media.durationchange", e.MEDIA_WAITING = "media.waiting", e.MEDIA_PLAYING = "media.playing", e.MEDIA_PAUSE = "media.pause", e.MEDIA_ENDED = "media.ended", e.MEDIA_ERROR = "media.error", e.MEDIA_SEEKING = "media.seeking", e.MEDIA_SEEKED = "media.seeked", e.MEDIA_LIVE_WARNING = "media.liveWarning", e.MEDIA_HLS_FIRST_LEVEL_LOADED = "media.hlsFirstLevelLoaded", e.MEDIA_HLS_FIRST_FRAG_LOADED = "media.hlsFirstFragLoaded", e.UI_SEEKSTART = "ui.seekstart", e.UI_SEEKEND = "ui.seekend", e.UI_CONTROLS_HIDE = "ui.controlsHide", e.UI_CONTROLS_SHOW = "ui.controlsShow", e.ADS_WAITING = "ads.waiting", e.ADS_TIME_REMAINED = "ads.timeRemained", e.ADS_LINEAR_STARTED = "ads.linearStarted", e.ADS_LINEAR_COMPLETED = "ads.linearCompleted", e.ADS_OVERLAY_STARTED = "ads.overlayStarted", e.ADS_OVERLAY_COMPLETED = "ads.overlayCompleted"
+    }), e._INIT_VIDEO = "_initVideo", e._DEINIT_VIDEO = "_deinitVideo", e._RESIZE = "_resize", e._DESTROY = "_destroy", e.STATE_CHANGE = "stateChange", e.QUALITIES_LIST_CHANGE = "qualitiesListChange", e.QUALITY_CHANGE = "qualityChange", e.FULLSCREEN_CHANGE = "fullscreenChange", e.SEEK = "seek", e.EXPANDED = "expanded", e.NEXT_TIMER_RESET = "nextTimerReset", e.NEXT_TIMER_START = "nextTimerStart", e.VIDEO_LIKE = "videoLike", e.VIDEO_SHARE = "videoShare", e.VIDEO_ADD = "videoAdd", e.SUBSCRIBED = "subscribed", e.LIVE_PHASE_CHANGE = "livePhaseChange", e.LIVE_DONATION = "liveDonation", e.MEDIA_TIMEUPDATE = "media.timeupdate", e.MEDIA_PROGRESS = "media.progress", e.MEDIA_VOLUMECHANGE = "media.volumechange", e.MEDIA_DURATIONCHANGE = "media.durationchange", e.MEDIA_WAITING = "media.waiting", e.MEDIA_PLAYING = "media.playing", e.MEDIA_PAUSE = "media.pause", e.MEDIA_ENDED = "media.ended", e.MEDIA_ERROR = "media.error", e.MEDIA_SEEKING = "media.seeking", e.MEDIA_SEEKED = "media.seeked", e.MEDIA_LIVE_WARNING = "media.liveWarning", e.MEDIA_HLS_FIRST_LEVEL_LOADED = "media.hlsFirstLevelLoaded", e.MEDIA_HLS_FIRST_FRAG_LOADED = "media.hlsFirstFragLoaded", e.UI_SEEKSTART = "ui.seekstart", e.UI_SEEKEND = "ui.seekend", e.UI_CONTROLS_HIDE = "ui.controlsHide", e.UI_CONTROLS_SHOW = "ui.controlsShow", e.ADS_WAITING = "ads.waiting", e.ADS_TIME_REMAINED = "ads.timeRemained", e.ADS_LINEAR_STARTED = "ads.linearStarted", e.ADS_LINEAR_COMPLETED = "ads.linearCompleted", e.ADS_OVERLAY_STARTED = "ads.overlayStarted", e.ADS_OVERLAY_COMPLETED = "ads.overlayCompleted"
 }, function(t, e, i) {
     "use strict";
 
@@ -194,8 +193,7 @@
     "use strict";
     Object.defineProperty(e, "__esModule", {
         value: !0
-    });
-    e.EMPTY = "empty", e.UNSTARTED = "unstarted", e.PLAYING = "playing", e.PAUSED = "paused", e.ENDED = "ended", e.ERROR = "error"
+    }), e.EMPTY = "empty", e.UNSTARTED = "unstarted", e.PLAYING = "playing", e.PAUSED = "paused", e.ENDED = "ended", e.ERROR = "error"
 }, function(t, e) {
     var i = {}.toString;
     t.exports = function(t) {
@@ -340,8 +338,7 @@
     }
     Object.defineProperty(e, "__esModule", {
         value: !0
-    }), e.loadScript = i, e.fillArray = n, e.request = r, e.safeOpenLink = o, e.setText = s, e.fromTimecode = a, e.toTimecode = l, e.parseUrl = u, e.getCssProp = h, e.canCopyToClipboard = d, e.copyToClipboard = c;
-    e.storage = {
+    }), e.loadScript = i, e.fillArray = n, e.request = r, e.safeOpenLink = o, e.setText = s, e.fromTimecode = a, e.toTimecode = l, e.parseUrl = u, e.getCssProp = h, e.canCopyToClipboard = d, e.copyToClipboard = c, e.storage = {
         set: function(t, e) {
             try {
                 localStorage.setItem(t, JSON.stringify(e))
@@ -972,8 +969,7 @@
     "use strict";
     Object.defineProperty(e, "__esModule", {
         value: !0
-    });
-    e.WAITING = 1, e.STARTED = 2, e.ENDED = 3, e.FAILED = 4, e.UPCOMING = 5
+    }), e.WAITING = 1, e.STARTED = 2, e.ENDED = 3, e.FAILED = 4, e.UPCOMING = 5
 }, , , , function(t, e, i) {
     var n = i(131)("meta"),
         r = i(121),
@@ -1157,8 +1153,7 @@
     "use strict";
     Object.defineProperty(e, "__esModule", {
         value: !0
-    });
-    e.screenfull = function() {
+    }), e.screenfull = function() {
         var t = "undefined" != typeof Element && "ALLOW_KEYBOARD_INPUT" in Element,
             e = function() {
                 for (var t, e, i = [
@@ -1669,8 +1664,7 @@
     "use strict";
     Object.defineProperty(e, "__esModule", {
         value: !0
-    });
-    e.INLINE = 1, e.END_SMALL = 2, e.END_LARGE = 3
+    }), e.INLINE = 1, e.END_SMALL = 2, e.END_LARGE = 3
 }, function(t, e) {
     "use strict";
 
