@@ -7401,6 +7401,11 @@ body.sf .nim-dialog .nim-dialog--unread {
     background: #f0f2f5
 }
 
+.im-create .im-creation--item.im-creation--item_hovered .olist_item_photo_wrap.online:after,
+.im-create .im-creation--item:hover .olist_item_photo_wrap.online:after {
+    border-color: #f0f2f5
+}
+
 .im-create .im-creation--item .olist_item {
     height: 34px;
     padding: 10px 0

@@ -1364,7 +1364,7 @@
 }
 
 .bt_report_cmt_meta {
-    margin: 6px 0 8px 1px
+    margin: 6px 1px 8px
 }
 
 .bt_report_cmt_meta_row {
@@ -2598,7 +2598,8 @@
 
 .bt_orders_list>tbody>tr>td {
     border-bottom: 1px solid #e7e8ec;
-    padding: 12px 0
+    padding: 12px 2px;
+    white-space: nowrap
 }
 
 .bt_orders_list>tbody>tr>td.bt_orders_list_id {
@@ -2993,7 +2994,7 @@
     margin-top: 2px
 }
 
-.bugtracker_device.radio:before {
+.bugtracker_device.radiobtn:before {
     margin-top: 3px
 }
 
