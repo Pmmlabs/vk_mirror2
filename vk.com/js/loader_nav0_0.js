@@ -200,7 +200,7 @@ var stVersions = {
     'video_upload.js': 3535577292,
     'video_youtube.js': 458412745,
     'video_youtube.css': 11773179773,
-    'videoplayer.js': 78401787407,
+    'videoplayer.js': 89267975640,
     'videoplayer.css': 42892225569,
     'translation.js': 2635875905,
     'translation.css': 15783225610,
@@ -219,7 +219,7 @@ var stVersions = {
     'owner_photo.js': 3401070266,
     'owner_photo.css': 17785632232,
     'page.js': 777606356,
-    'page.css': 23549208165,
+    'page.css': 26681319176,
     'page_help.css': 20523035996,
     'public.css': 25880515705,
     'public.js': 1344775948,
@@ -478,7 +478,7 @@ var stVersions = {
     'landings/testing.css': 13728684839,
     'vkme.css': 16074918562,
     'cmodules/web/vkme-desktop.js': 2495416607,
-    'ui_controls.js': 2713858100,
+    'ui_controls.js': 2872214892,
     'highcharts.js': 1982709850,
     'ui_controls.css': 15124418919,
     'selects.js': 2835310113,
@@ -537,7 +537,7 @@ var stVersions = {
     'internal/patterns_info.css': 14249041637,
     'article.css': 31290678833,
     'article_editor.css': 29318644740,
-    'cmodules/web/article.js': 28214237397,
+    'cmodules/web/article.js': 28366465140,
     'cmodules/web/article_layer.js': 18099891163,
     'article_view.js': 15460535628,
     'internal/cvkmobile.css': 13815388837,
@@ -630,4 +630,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 9878;
+var _rnd = 4104;

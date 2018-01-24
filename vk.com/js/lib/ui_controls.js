@@ -277,7 +277,7 @@ extend(UiControl.prototype, {
         this.container = ce("div", {
             id: "container" + this.guid,
             className: "selector_container" + (i.options.autocomplete ? "" : " dropdown_container") + (i.options.big ? " big" : "") + (i.options.big_text ? " big_text" : "") + (i.options.withIcons ? " with_icons" : "") + (browser.mobile ? " mobile_selector_container" : "") + (i.options.noArr ? " dropdown_noarr" : "") + (i.options.listStyle ? " list_style" : "") + (i.options.limitedListHeight ? " limited_height" : ""),
-            innerHTML: '<table cellspacing="0" cellpadding="0" class="selector_table">    <tr>      <td class="selector">        <div class="placeholder_wrap1">          <div class="placeholder_wrap2">            <div class="placeholder_content"></div>            <div class="placeholder_cover"></div>          </div>        </div>        ' + (i.options.limitedListHeight ? '<div class="selected_items_wrap"><div class="scroll_fader_top"></div>' : "") + '        <span class="selected_items"></span>        ' + (i.options.limitedListHeight ? '<div class="scroll_fader_bottom"></div></div>' : "") + '        <input type="text" class="selector_input" ' + this.readOnly + ' />        <input type="hidden" name="' + i.options.resultField + '" id="' + i.options.resultField + '" value="" class="resultField">        <input type="hidden" name="' + i.options.customField + '" id="' + i.options.customField + '" value="" class="customField">      </td>' + (i.options.dropdown ? '<td id="dropdown' + this.guid + '" class="selector_dropdown">&nbsp;</td>' : "") + '    </tr>  </table>  <div class="results_container">    <div class="result_list" style="display:none;"></div>  </div>'
+            innerHTML: i._containerHtml()
         }, {
             width: i.options.width + "px"
         }), t.parentNode.replaceChild(this.container, t), each({
@@ -296,19 +296,26 @@ extend(UiControl.prototype, {
         }), browser.chrome && (this.resultList.style.opacity = 1), t.autocomplete = "1", i.options.dividingLine && addClass(this.resultList, "dividing_line"), this.resultList.style.width = i.options.resultListWidth + "px", this.options.dropdown && this.initDropdown(), this.updatePlaceholder(), this.select = new Select(this.resultList, {
             selectFirst: i.options.selectFirst,
             height: i.options.height,
-            onItemActive: function(t) {
-                i.showImage(t), i.activeItemValue = t
+            onItemActive: function(t, e) {
+                i.showImage(t), i.activeItemValue = t, i._ariaOnItemActive(e)
             },
             onItemSelect: i._selectItem.bind(i),
             forAutocomplete: i.options.autocomplete,
             forDropDown: !0,
             onShow: function() {
-                _ui.sel(i.guid), i.highlightInput(!0), isFunction(i.options.onShow) && i.options.onShow()
+                _ui.sel(i.guid), i.highlightInput(!0), isFunction(i.options.onShow) && i.options.onShow(), i._ariaOnSelectShow()
             },
             onHide: function() {
                 _ui.sel(!1), i.highlightInput(!1), isFunction(i.options.onHide) && i.options.onHide(), i._ariaOnSelectHide()
-            }
+            },
+            onEsc: i._ariaRestoreFocus.bind(i)
         }), this._initAria()
+    },
+    _containerHtml: function() {
+        var t = this.options.dropdown ? '<td id="dropdown' + this.guid + '" class="selector_dropdown" role="button" aria-hidden="true">&nbsp;</td>' : "",
+            e = this.options.limitedListHeight ? '<div class="selected_items_wrap"><div class="scroll_fader_top"></div>' : "",
+            i = this.options.limitedListHeight ? '<div class="scroll_fader_bottom"></div></div>' : "";
+        return '<table cellspacing="0" cellpadding="0" class="selector_table">       <tr>         <td class="selector">           <div class="placeholder_wrap1">             <div class="placeholder_wrap2">               <div class="placeholder_content" aria-hidden="true"></div>               <div class="placeholder_cover"></div>             </div>           </div>' + e + '            <span class="selected_items"></span>            ' + i + '            <input type="text" class="selector_input" ' + this.readOnly + ' />            <input type="hidden" name="' + this.options.resultField + '" id="' + this.options.resultField + '" value="" class="resultField">            <input type="hidden" name="' + this.options.customField + '" id="' + this.options.customField + '" value="" class="customField">          </td>' + t + '        </tr>     </table>    <div class="results_container">      <div class="result_list" style="display:none;"></div>    </div>'
     },
     initEvents: function() {
         function t(t) {
@@ -476,7 +483,7 @@ extend(UiControl.prototype, {
                 i = this.hasFocus ? this.options.placeholderColorBack : this.options.placeholderColor,
                 s = (t || this.disabled) && this.options.placeholderColor || "#222",
                 o = !(this._selectedItems.length && this.options.multiselect && this.options.hidePlaceholderOnSelected || this.input.value.length && !this.options.nativePlaceholder || t);
-            this.options.nativePlaceholder ? (hide(this.placeholder), this.input.setAttribute("placeholder", o ? e : "")) : (e !== this.placeholderTextPrev && (this.placeholderContent.innerHTML = e), i !== this.placeholderColorPrev && animate(this.placeholderContent, {
+            this.options.nativePlaceholder || vk.a11y ? (hide(this.placeholder), this.input.setAttribute("placeholder", o ? e : "")) : (e !== this.placeholderTextPrev && (this.placeholderContent.innerHTML = e), i !== this.placeholderColorPrev && animate(this.placeholderContent, {
                 color: i
             }, 200), s !== this.placeholderInputColorPrev && (this.input.style.color = s), o !== this.placeholderVisiblePrev && toggle(this.placeholder, o)), this.placeholderTextPrev = e, this.placeholderColorPrev = i, this.placeholderInputColorPrev = s, this.placeholderVisiblePrev = o
         }
@@ -494,9 +501,12 @@ extend(UiControl.prototype, {
                 break;
             case "keypress":
                 if (t.which == KEY.RETURN && browser.opera && e.options.enableCustom && (e.options.multiCustom || null === e.select.selectedItem() || void 0 === e.select.selectedItem())) return e.select.hide(), e.options.noBlur ? isFunction(e.options.onChange) && (e.updateCustom(), e.options.onChange(e.resultField.value)) : e.input.blur(), !1;
-                (t.which == KEY.SPACE || t.which > 40 && !t.metaKey) && (clearTimeout(e.timeout), e.timeout = setTimeout(function() {
-                    e.onChange()
-                }, 0));
+                if (t.which == KEY.SPACE || t.which > 40 && !t.metaKey) {
+                    if ((e.readOnly || e.disabled) && vk.a11y) return;
+                    clearTimeout(e.timeout), e.timeout = setTimeout(function() {
+                        e.onChange()
+                    }, 0)
+                }
                 break;
             case "keydown":
                 switch (e.options.addCustomTokenOnKeys && inArray(t.which, e.options.addCustomTokenOnKeys) && (t.keyCode = KEY.RETURN), t.keyCode) {
@@ -523,7 +533,7 @@ extend(UiControl.prototype, {
                 }
                 break;
             case "focus":
-                if (e.disabled || e.select.isVisible() || e.focusSelf || e.showDefaultList(), e.focusSelf = !1, e.disabled || e.readOnly) return e.input.blur(), !0;
+                if (e.disabled || e.select.isVisible() || e.focusSelf || vk.a11y || e.showDefaultList(), e.focusSelf = !1, (e.disabled || e.readOnly) && !vk.a11y) return e.input.blur(), !0;
                 0 != e._selectedItems.length && !e.options.multiselect || e.options.enableCustom || (browser.mozilla ? setTimeout(function() {
                     e.input.value = ""
                 }, 0) : e.input.value = ""), addClass(e.input, "focused"), e.input.style.color = "#222", e.hasFocus++, e.updatePlaceholder();
@@ -631,11 +641,11 @@ extend(UiControl.prototype, {
                         break
                     }
             }
-            if ("object" != typeof s && (s = [t, t]), s[0] = s[0].toString(), s[1] = s[1].toString(), this.changeAfterBlur = !1, s[0] === this.resultField.value) return void(this.options.multiselect || (this.input.value = winToUtf(stripHTML(s[1])), this.showImage(), (this.input.value.length || !this.options.placeholder) && addClass(this.input, "selected"), this.updatePlaceholder()));
+            if ("object" != typeof s && (s = [t, t]), s[0] = s[0].toString(), s[1] = s[1].toString(), this.changeAfterBlur = !1, s[0] === this.resultField.value) return this.options.multiselect || (this.input.value = winToUtf(stripHTML(s[1])), this.showImage(), (this.input.value.length || !this.options.placeholder) && addClass(this.input, "selected"), this.updatePlaceholder()), this._ariaRestoreFocus(), void this.select.hide();
             if (this._selectedItems.length >= this.options.maxItems) return void this.select.hide();
             this.deselectTokens(), this.addTagData(s), this.showImage(), this.options.multiselect ? (this.input.value = "", this.dataURL ? this.select.clear() : this.select.removeItem(s[0])) : (this.input.value = "0" == s[0] && s[1] == this.options.placeholder ? "" : winToUtf(stripHTML(s[1])), addClass(this.input, "selected"), this.updatePlaceholder()), this.select.hide(), this.updateInput(), i && this.options.multiselect && !this.readOnly ? setTimeout(function() {
                 this.options.multinostop || (this.focusSelf = !0), hide(this.input), show(this.input), this.input.focus()
-            }.bind(this), 100) : this.options.noBlur || this.input.blur(), e && (this.options.multiselect && isFunction(this.options.onTagAdd) && this.options.onTagAdd(s, this.resultField.value), isFunction(this.options.onChange) && this.options.onChange(this.resultField.value, s)), this._updateOptionsAriaSelected(!0)
+            }.bind(this), 100) : this.options.noBlur || this.input.blur(), e && (this.options.multiselect && isFunction(this.options.onTagAdd) && this.options.onTagAdd(s, this.resultField.value), isFunction(this.options.onChange) && this.options.onChange(this.resultField.value, s)), this._updateOptionsAriaSelected(!0), this._ariaRestoreFocus()
         }
     },
     addTagData: function(t) {
@@ -654,7 +664,11 @@ extend(UiControl.prototype, {
             s.setAttribute("data-id", t[0]);
             var o, n = Math.max(this.selector.clientWidth, getSize(s)[0]),
                 l = this;
-            o = this.options.tokenPrefix ? '<span class="token_prefix">' + this.options.tokenPrefix + "</span>" : "<span></span>", s.innerHTML = o + '<span class="token_inner"><span class="x"></span><span class="l"><span class="lc">' + clean(stripHTML(t[1])) + "</span>" + (t[5] ? t[5] : "") + "</span>", addEvent(s, "click", function(e) {
+            o = this.options.tokenPrefix ? '<span class="token_prefix">' + this.options.tokenPrefix + "</span>" : "<span></span>";
+            var a = clean(stripHTML(t[1])),
+                r = clean(getLang("global_delete")) + " " + a,
+                h = vk.a11y ? ' tabindex="0" aria-label="' + r + '" ' : "";
+            s.innerHTML = o + '<span class="token_inner"><span class="x" role="button"' + h + '></span><span class="l"><span class="lc">' + a + "</span>" + (t[5] ? t[5] : "") + "</span>", vk.a11y && (attr(s, "tabindex", -1), attr(s, "role", "option")), addEvent(s, "click", function(e) {
                 return isFunction(l.options.onTokenClick) && l.options.onTokenClick(s.getAttribute("data-id"), e), l.selectToken(t[0]), !1
             }), addEvent(s, "dblclick", function() {
                 return t[4] && (l.removeTagData(s.getAttribute("data-id")), each(t[4], function(t, e) {
@@ -665,11 +679,11 @@ extend(UiControl.prototype, {
             }), addEvent(s, "mouseout", function(t) {
                 removeClass(s, "token_hover"), l.showImage(l.activeItemValue ? l.activeItemValue : l.selectedTokenId), isFunction(l.options.onTokenMouseOut) && l.options.onTokenMouseOut(s.getAttribute("data-id"), t)
             });
-            var r = s.firstChild.nextSibling.firstChild;
-            addEvent(r, "mousedown", function() {
+            var d = s.firstChild.nextSibling.firstChild;
+            addEvent(d, "mousedown", function() {
                 return l.select.hide(), l.removeTagData(s.getAttribute("data-id")), !l.readOnly && l.hasFocus && l.input.focus(), !1
             }), l.selectedItemsContainer.appendChild(s);
-            for (var a = s.firstChild.nextSibling.firstChild.nextSibling, h = a.innerHTML; s.offsetWidth > n && h.length > 3;) h = h.substr(0, h.length - 2), a.innerHTML = h + "...";
+            for (var c = s.firstChild.nextSibling.firstChild.nextSibling, u = c.innerHTML; s.offsetWidth > n && u.length > 3;) u = u.substr(0, u.length - 2), c.innerHTML = u + "...";
             return this.options.limitedListHeight && (this.selectedItemsContainerWrap.style.display = "none", this.selectedItemsContainerWrap.offsetHeight, this.selectedItemsContainerWrap.style.display = "block", this.updateSelectedItemsScroll({
                 target: this.selectedItemsContainer
             }), animate(this.selectedItemsContainer, {
@@ -736,8 +750,7 @@ extend(UiControl.prototype, {
     showDefaultList: function() {
         var t = hasClass(this.container, "reverse"),
             e = this.needsReverse();
-        if (t != e && (this.currenDataItems && this.setSelectContent(this.currenDataText || "", this.currenDataItems), toggleClass(this.container, "reverse", e),
-                t = e), this.defaultList && this.select.hasItems()) this.options.multiselect || !this._selectedItems.length ? this.select.show() : this.select.show(this._selectedItems[0][0]);
+        if (t != e && (this.currenDataItems && this.setSelectContent(this.currenDataText || "", this.currenDataItems), toggleClass(this.container, "reverse", e), t = e), this.defaultList && this.select.hasItems()) this.options.multiselect || !this._selectedItems.length ? this.select.show() : this.select.show(this._selectedItems[0][0]);
         else {
             this.defaultList = !0;
             var i = null;
@@ -759,16 +772,16 @@ extend(UiControl.prototype, {
             o = this.options.height || 250,
             n = this.options.minHeight || 0,
             l = (window.pageNode && window.browser.mozilla ? Math.min(getSize(pageNode)[1], window.lastWindowHeight) : window.lastWindowHeight) || getScroll()[3],
-            r = this.resultList && this.resultList.firstChild;
-        if (r && r.firstChild) {
-            var a = getStyle(this.resultList, "display"),
+            a = this.resultList && this.resultList.firstChild;
+        if (a && a.firstChild) {
+            var r = getStyle(this.resultList, "display"),
                 h = getStyle(this.resultList, "visibility");
             setStyle(this.resultList, {
                 visibility: "hidden",
                 display: "block"
             }), t = getSize(this.resultList)[1], setStyle(this.resultList, {
                 visibility: h,
-                display: a
+                display: r
             })
         } else t = n ? n : this.currenDataItems ? this.currenDataItems.length * getSize(this.container)[1] : o;
         return t > o && (t = o), i + s + t - e > l && i - t - e > 0 && i - t > 40
@@ -787,12 +800,12 @@ extend(UiControl.prototype, {
             var n = this.options.autocomplete && i ? this.options.maxItemsShown(i.length) : e.length,
                 l = this;
             for (o = 0; o < e.length; ++o) {
-                var r = e[o];
+                var a = e[o];
                 if (!n) break;
-                var a = l.options.formatResult(r);
-                if (i && (a = l.options.highlight(a, i)) && --n, a) {
-                    var h = [r[0], a];
-                    h.push("1" === r[5]), "label" === r[3] && h.push(1), s.push(h)
+                var r = l.options.formatResult(a);
+                if (i && (r = l.options.highlight(r, i)) && --n, r) {
+                    var h = [a[0], r];
+                    h.push("1" === a[5]), "label" === a[3] && h.push(1), s.push(h)
                 }
             }
         }
@@ -930,7 +943,7 @@ extend(UiControl.prototype, {
         this._clear(), this.input.value = "", this.updateInput()
     },
     _initAria: function() {
-        vk.a11y && (this.input.setAttribute("aria-owns", this.select.getListContainerId()), this.input.setAttribute("role", "combobox"))
+        vk.a11y && (this.options.noBlur = !0, attr(this.input, "aria-owns", this.select.getListContainerId()), attr(this.input, "aria-controls", this.select.getListContainerId()), attr(this.input, "role", "combobox"), this.options.autocomplete ? attr(this.input, "aria-autocomplete", "list") : attr(this.input, "aria-readonly", "true"), this._ariaMakeFocusAnchor())
     },
     _updateOptionsAriaSelected: function(t) {
         if (vk.a11y) {
@@ -945,8 +958,20 @@ extend(UiControl.prototype, {
         }
     },
     _ariaOnSelectHide: function() {
-        var t = this;
-        vk.a11y && !t.val() && (t.input.value = "", t.updatePlaceholder())
+        vk.a11y && (this.val() || (this.input.value = "", this.updatePlaceholder()), attr(this.input, "aria-haspopup", !1))
+    },
+    _ariaOnSelectShow: function() {
+        vk.a11y && attr(this.input, "aria-haspopup", !0)
+    },
+    _ariaRestoreFocus: function() {
+        vk.a11y && this.ariaAnchor && this.ariaAnchor.focus()
+    },
+    _ariaMakeFocusAnchor: function() {
+        var t = ce("span");
+        addClass(t, "blind_label"), attr(t, "tabindex", -1), this.container.appendChild(t), this.ariaAnchor = t
+    },
+    _ariaOnItemActive: function(t) {
+        vk.a11y && t && attr(this.input, "aria-activedescendant", t.id)
     }
 }), createChildClass("Select", UiControl, {
     common: {
@@ -985,7 +1010,7 @@ extend(UiControl.prototype, {
         this.list = ce("ul"), this.list.id = this.getListContainerId(), this._initAriaDom(), this.container.appendChild(this.list)
     },
     _initAriaDom: function() {
-        vk.a11y && (this.list.setAttribute("role", "listbox"), this.list.setAttribute("tabindex", "0"))
+        vk.a11y && (this.list.setAttribute("role", "listbox"), this.list.setAttribute("tabindex", "-1"))
     },
     show: function(t) {
         var e = isVisible(this.container);
@@ -1004,10 +1029,10 @@ extend(UiControl.prototype, {
                     this.highlight(o, i);
                     break
                 }
-        }!e && isFunction(this.options.onShow) && this.options.onShow(), this._ariaFocusOnSelectContainer()
+        }!e && isFunction(this.options.onShow) && this.options.onShow(), this._ariaOnShow()
     },
     hide: function() {
-        isVisible(this.container) && (hide(this.container), isFunction(this.options.onHide) && this.options.onHide(), this.highlight(-1), isFunction(this.options.onItemActive) && this.options.onItemActive())
+        isVisible(this.container) && (hide(this.container), isFunction(this.options.onHide) && this.options.onHide(), this.highlight(-1), isFunction(this.options.onItemActive) && this.options.onItemActive(), this._ariaOnHide())
     },
     handleKeyEvent: function(t) {
         if (!isVisible(this.container)) return !0;
@@ -1022,7 +1047,7 @@ extend(UiControl.prototype, {
             case KEY.RETURN:
                 return isFunction(this.options.onItemSelect) && this.active > -1 && this.options.onItemSelect(this.selectedItem(), void 0, !0), cancelEvent(t), !1;
             case KEY.ESC:
-                return this.hide(), !1;
+                return isFunction(this.options.onEsc) && this.options.onEsc(), this.hide(), !1;
             case KEY.PAGEUP:
             case KEY.PAGEDOWN:
                 return !1
@@ -1073,10 +1098,10 @@ extend(UiControl.prototype, {
             if (i && !i.getAttribute("dis")) break;
             e++
         }
-        return this.highlight(e, this.list.childNodes[e]), this._ariaFocusOnSelectedItem(e), !0
+        return this.highlight(e, this.list.childNodes[e]), !0
     },
     highlight: function(t, e, i) {
-        return -1 != this.active && removeClass(this.list.childNodes[this.active], this.CSS.ACTIVE), e ? (this.active = t, addClass(e, this.CSS.ACTIVE), isFunction(this.options.onItemActive) && this.options.onItemActive(e.getAttribute("val") || e.innerHTML), e.offsetTop + e.offsetHeight + this.list.offsetTop > this.container.offsetHeight + this.container.scrollTop - 1 ? this.container.scrollTop = e.offsetTop + this.list.offsetTop + e.offsetHeight - this.container.offsetHeight + 1 : e.offsetTop + this.list.offsetTop < this.container.scrollTop && (this.container.scrollTop = e.offsetTop + this.list.offsetTop), void(i && (this.container.scrollTop = e.offsetTop - this.container.offsetHeight / 2))) : void(this.active = -1)
+        return -1 != this.active && removeClass(this.list.childNodes[this.active], this.CSS.ACTIVE), e ? (this.active = t, addClass(e, this.CSS.ACTIVE), isFunction(this.options.onItemActive) && this.options.onItemActive(e.getAttribute("val") || e.innerHTML, e), e.offsetTop + e.offsetHeight + this.list.offsetTop > this.container.offsetHeight + this.container.scrollTop - 1 ? this.container.scrollTop = e.offsetTop + this.list.offsetTop + e.offsetHeight - this.container.offsetHeight + 1 : e.offsetTop + this.list.offsetTop < this.container.scrollTop && (this.container.scrollTop = e.offsetTop + this.list.offsetTop), i && (this.container.scrollTop = e.offsetTop - this.container.offsetHeight / 2), void this._ariaFocusOnActiveItem(e)) : void(this.active = -1)
     },
     onMouseMove: function(t, e) {
         return this.currQuickSearchPreventMouseMove ? !1 : hasClass(e, "active") ? !1 : (this.highlight(t, e), !0)
@@ -1090,10 +1115,13 @@ extend(UiControl.prototype, {
         this.maxHeight < this.list.offsetHeight ? (this.container.style.height = this.maxHeight + "px", addClass(this.container, this.CSS.SCROLLABLE)) : (removeClass(this.container, this.CSS.SCROLLABLE), this.container.style.height = "auto")
     },
     content: function(t) {
-        var e, i, s, o, n, l, r, a, h = [],
-            d = t.length;
-        for (e = 0; d > e; ++e) i = t[e], s = i[0], o = i[1], n = i[2], l = i[3], r = this.uid + ", " + e, s = void 0 === s || null === s ? "" : s.toString(), o = (void 0 === o || null === o ? "" : o.toString()) || s, a = 1 === l, h.push("<li ", n ? 'dis="1"' : 'onmousemove="Select.itemMouseMove(' + r + ', this)" onmousedown="Select.itemMouseDown(' + r + ', this)" onclick="Select.itemMouseDown(' + r + ', this)"', ' val="', s.replace(/&/g, "&amp;").replace(/"/g, "&quot;"), '" class="', a ? this.CSS.LABEL + " " : "", n ? "disabled " : "", e == d - 1 ? this.CSS.LAST + " " : "", (e ? "" : this.CSS.FIRST) + '" role="option" aria-selected="false" tabindex="0">', o, "</li>");
-        return this.list.innerHTML = h.join(""), this.updateContainer(), !0
+        var e, i, s, o, n, l, a, r, h, d = [],
+            c = t.length;
+        for (e = 0; c > e; ++e) i = t[e], s = i[0], o = i[1], n = i[2], l = i[3], a = this.uid + ", " + e, h = this._getOptionId(e), s = void 0 === s || null === s ? "" : s.toString(), o = (void 0 === o || null === o ? "" : o.toString()) || s, r = 1 === l, d.push("<li ", n ? 'dis="1"' : 'onmousemove="Select.itemMouseMove(' + a + ', this)" onmousedown="Select.itemMouseDown(' + a + ', this)" onclick="Select.itemMouseDown(' + a + ', this)"', ' val="', s.replace(/&/g, "&amp;").replace(/"/g, "&quot;"), '" class="', r ? this.CSS.LABEL + " " : "", n ? "disabled " : "", e == c - 1 ? this.CSS.LAST + " " : "", (e ? "" : this.CSS.FIRST) + '" role="option" aria-selected="false" tabindex="-1" id="' + h + '">', o, "</li>");
+        return this.list.innerHTML = d.join(""), this.updateContainer(), !0
+    },
+    _getOptionId: function(t) {
+        return "option_" + this.getListContainerId() + "_" + (t + 1)
     },
     removeItem: function(t) {
         var e, i, s = this.list.childNodes,
@@ -1131,11 +1159,14 @@ extend(UiControl.prototype, {
     toggle: function() {
         this.isVisible(this.container) ? this.hide() : this.show()
     },
-    _ariaFocusOnSelectContainer: function() {
-        vk.a11y && this.options.forDropDown && !this.options.forAutocomplete && this.list.focus()
+    _ariaFocusOnActiveItem: function(t) {
+        vk.a11y && !this.options.forAutocomplete && t && t.focus()
     },
-    _ariaFocusOnSelectedItem: function(t) {
-        vk.a11y && this.list.childNodes[t].focus()
+    _ariaOnShow: function() {
+        vk.a11y && this.list && attr(this.list, "aria-expanded", !0)
+    },
+    _ariaOnHide: function() {
+        vk.a11y && this.list && attr(this.list, "aria-expanded", !1)
     }
 }), createChildClass("Checkbox", UiControl, {
     CSS: {
@@ -1461,10 +1492,10 @@ extend(UiControl.prototype, {
             n > 500 && (n = Math.round(n / i) * Math.ceil(i / this.options.columnsCount), setStyle(this.rows, "columnCount", this.options.columnsCount.toString()), setStyle(this.rows, "MozColumnCount", this.options.columnsCount.toString()), setStyle(this.rows, "webkitColumnCount", this.options.columnsCount.toString()), setStyle(this.rows, "width", 2 * o + "px"), setStyle(this.rows, "height", n + "px"))
         }
         var l = getSize(this.header)[0],
-            r = getSize(this.body)[0];
-        l > r && setStyle(this.rows, "width", l - 2 + "px"), r = getSize(this.body)[0];
-        var a = document.documentElement.clientWidth,
-            h = t + r > a && t + l > r ? -l - 1 + "px" : "auto";
+            a = getSize(this.body)[0];
+        l > a && setStyle(this.rows, "width", l - 2 + "px"), a = getSize(this.body)[0];
+        var r = document.documentElement.clientWidth,
+            h = t + a > r && t + l > a ? -l - 1 + "px" : "auto";
         setStyle(this.body, "right", h)
     },
     moveToTarget: function() {
@@ -1526,7 +1557,8 @@ extend(UiControl.prototype, {
         extend(this.options, t), this.options.title && (this.header.innerHTML = "<div>" + this.options.title + "</div>"), "undefined" != typeof this.options.hideOnClick && (this.header.onclick = this.options.hideOnClick ? this.toggle.bind(this) : this.show.bind(this)), "left" == this.options.align && this.alignBody()
     },
     onHide: function(t) {
-        this.visible = !1, t || !this.options.showHover ? hide(this.header) : addClass(this.header, "dd_header_hover"), hide(this.body), this.options.onHide && this.options.onHide()
+        this.visible = !1,
+            t || !this.options.showHover ? hide(this.header) : addClass(this.header, "dd_header_hover"), hide(this.body), this.options.onHide && this.options.onHide()
     },
     toggle: function() {
         this.visible ? this.hide(!1) : this.show()
@@ -1562,9 +1594,8 @@ extend(UiControl.prototype, {
             });
             var i = void 0 !== this.options.fadeSpeed ? this.options.fadeSpeed : 100;
             t === !1 ? this.onHide(!1) : fadeOut(this.container, i, function() {
-                    show(e.container), e.onHide.call(e, !0), _ui.sel(!1)
-                }),
-                e.parentMenu && (e.parentMenu.childIsOver = !1)
+                show(e.container), e.onHide.call(e, !0), _ui.sel(!1)
+            }), e.parentMenu && (e.parentMenu.childIsOver = !1)
         }
     },
     val: function() {
@@ -1653,10 +1684,10 @@ extend(UiControl.prototype, {
     },
     indexItem: function(t, e, i) {
         var s, o, n, l = "",
-            r = {};
+            a = {};
         for (s = 0; s < this.options.indexkeys.length; s++) e[this.options.indexkeys[s]] && (l += " " + e[this.options.indexkeys[s]].replace(this.options.delimeter, " ").replace(/<[^>]*>/g, "").replace(/[\u00AB\u00BB]/g, ""));
         for (l += (parseLatin(l) || "") + (parseCyr(l) || ""), l = trim(winToUtf(l).toLowerCase()).split(/\s+/), s = 0; s < l.length; s++)
-            for (o = 1; o <= this.options.chars; o++) n = l[s].substr(0, o), r[n] || (r[n] = 1, void 0 === this.storage.index[n] && (this.storage.index[n] = []), i && i != t && this.storage.index[n].push(i), this.storage.index[n].push(t))
+            for (o = 1; o <= this.options.chars; o++) n = l[s].substr(0, o), a[n] || (a[n] = 1, void 0 === this.storage.index[n] && (this.storage.index[n] = []), i && i != t && this.storage.index[n].push(i), this.storage.index[n].push(t))
     },
     search: function(t) {
         debug("search start, index width: " + this.options.chars + ", data size: " + this.storage.data.length), t = trim(t.toLowerCase().replace(this.options.delimeter, " ")), debug("pattern: " + t + ", length: " + t.length);
@@ -1681,16 +1712,16 @@ extend(UiControl.prototype, {
         debug("starting manual filter");
         var l = null;
         return e.already_added = {}, each(e.storage.index[o.substr(0, e.options.chars)], function(i, s) {
-            var o, r = e.storage.data[s],
-                a = !1,
+            var o, a = e.storage.data[s],
+                r = !1,
                 h = "";
-            for ("label" === r[3] && (l = s), o = 0; o < e.options.indexkeys.length; o++) r[e.options.indexkeys[o]] && (h += " " + r[e.options.indexkeys[o]].replace(e.options.delimeter, " ").replace(/<[^>]*>/, "").replace(/[\u00AB\u00BB]/g, ""));
+            for ("label" === a[3] && (l = s), o = 0; o < e.options.indexkeys.length; o++) a[e.options.indexkeys[o]] && (h += " " + a[e.options.indexkeys[o]].replace(e.options.delimeter, " ").replace(/<[^>]*>/, "").replace(/[\u00AB\u00BB]/g, ""));
             for (h += (parseLatin(h) || "") + (parseCyr(h) || ""), h = winToUtf(h).toLowerCase(), o = 0; o < t.length; o++)
                 if (-1 == h.indexOf(" " + t[o])) {
-                    a = !0;
+                    r = !0;
                     break
                 }
-            a || (e.options.includeLabelsOnMatch && l && (s == l || e.already_added[l] || (n.push(e.storage.data[l]), e.already_added[l] = !0), l = null), (e.options.preventDuplicates && !e.already_added[s] || !e.options.preventDuplicates) && n.push(r), e.already_added[s] = !0)
+            r || (e.options.includeLabelsOnMatch && l && (s == l || e.already_added[l] || (n.push(e.storage.data[l]), e.already_added[l] = !0), l = null), (e.options.preventDuplicates && !e.already_added[s] || !e.options.preventDuplicates) && n.push(a), e.already_added[s] = !0)
         }), debug("manual filter ended, found " + n.length + " items"), n
     },
     flush: function() {
@@ -1797,8 +1828,8 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
 }), InlineDropdown.IDD_HEADER_CORRECTION_LEFT = -10, InlineDropdown.IDD_HEADER_CORRECTION_TOP = -8, InlineDropdown.prototype._rebuildDropdown = function() {
     function t(t, i) {
         i = i || "";
-        var s = r._opts.sublists && r._opts.sublists[t[0]] ? "idd_sublist" : "",
-            n = '<div class="idd_item ' + i + " " + e + " " + s + '" id="' + o + "idd_item_" + t[0] + '" data-id="' + t[0] + '" tabindex="0" role="button">' + (r._opts.withIcon ? '<div class="idd_item_icon" id="' + t[0] + '"></div>' : "") + '<div class="idd_item_name">' + (r._opts.html ? r._opts.html(t) : t[1]) + "</div></div>";
+        var s = a._opts.sublists && a._opts.sublists[t[0]] ? "idd_sublist" : "",
+            n = '<div class="idd_item ' + i + " " + e + " " + s + '" id="' + o + "idd_item_" + t[0] + '" data-id="' + t[0] + '" tabindex="0" role="button">' + (a._opts.withIcon ? '<div class="idd_item_icon" id="' + t[0] + '"></div>' : "") + '<div class="idd_item_name">' + (a._opts.html ? a._opts.html(t) : t[1]) + "</div></div>";
         return n
     }
     var e = this._opts.withIcon ? "idd_with_icon" : "",
@@ -1807,23 +1838,23 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
         o = this._opts.idItemPrefix ? this._opts.idItemPrefix : "",
         n = '<div class="idd_header_wrap ' + e + '"><div class="idd_header ' + i + '" id="' + s + this._items[0][0] + '"></div></div>',
         l = '<div class="idd_items_wrap"><div class="idd_items_content">',
-        r = this;
+        a = this;
     each(this._items, function(e, i) {
         l += t(i)
     }), l += "</div></div>", this._els.popupItems = se(l), this._els.popupHeader = se(n);
-    var r = this;
+    var a = this;
     addEvent(this._els.popupItems, "click", function(t) {
         var e = t.target;
         if ("a" == e.tagName.toLowerCase()) return void setTimeout(function() {
-            r._hide()
+            a._hide()
         });
         for (; e && !hasClass(e, "idd_item");) e = e.parentNode;
-        e && (r.select(e.getAttribute("data-id")) ? r._hide() : r._hoverItem(e)), cancelEvent(t)
+        e && (a.select(e.getAttribute("data-id")) ? a._hide() : a._hoverItem(e)), cancelEvent(t)
     }), each(geByClass("idd_item", this._els.popupItems), function(t, e) {
         addEvent(e, "mouseenter", function(t) {
-            InlineDropdown._preventMouseHover || r._hoverItem(t.currentTarget)
+            InlineDropdown._preventMouseHover || a._hoverItem(t.currentTarget)
         }), addEvent(e, "mouseleave", function(t) {
-            InlineDropdown._preventMouseHover || r._unhoverItem(t.currentTarget, t)
+            InlineDropdown._preventMouseHover || a._unhoverItem(t.currentTarget, t)
         })
     }), addEvent(this._els.popupItems, "mouseenter", function() {
         addEvent(this._els.popupItems, browserFeatures.wheelEvent, this._onWheel.bind(this))
@@ -1860,17 +1891,17 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
     var n = geByClass1("idd_header", this._els.popupHeader);
     this._opts.keepTitle ? n.innerHTML = this._title : n.innerHTML = this._selected ? this._selected[1] : "", o.id = "idd_" + this._iddEl.id, this._iddEl.appendChild(o);
     var l = getSize(o),
-        r = 0;
-    getSize(this._els.popupItems.childNodes[0])[1] > l[1] && (r = sbWidth()), this._opts.checkable && (r += 30);
-    var a = (i(geByClass1("idd_selected_value", this._iddEl)), getSize(this._els.valueEl)),
+        a = 0;
+    getSize(this._els.popupItems.childNodes[0])[1] > l[1] && (a = sbWidth()), this._opts.checkable && (a += 30);
+    var r = (i(geByClass1("idd_selected_value", this._iddEl)), getSize(this._els.valueEl)),
         h = (this._opts.withIcon ? 20 : 0, 0);
     this.openToUp && (h = -getSize(this._els.popupItems)[1]);
     var d = {
-        marginTop: (this._opts.headerTop || InlineDropdown.IDD_HEADER_CORRECTION_TOP) - a[1] + h,
+        marginTop: (this._opts.headerTop || InlineDropdown.IDD_HEADER_CORRECTION_TOP) - r[1] + h,
         width: l[0] + 8,
         opacity: 1
     };
-    this._opts.alignLeft ? d[vk.rtl ? "marginRight" : "marginLeft"] = a[0] - InlineDropdown.IDD_HEADER_CORRECTION_LEFT : d.marginLeft = (this._opts.headerLeft || InlineDropdown.IDD_HEADER_CORRECTION_LEFT) - (this._opts.withIcon ? 20 : 0), setStyle(o, d), this._unhoverItem(), this._highlightItem(), this._initOutEvent(), this._initKeypressEvent(), this._opts.onShow && this._opts.onShow(this.ddEl), cancelEvent(t)
+    this._opts.alignLeft ? d[vk.rtl ? "marginRight" : "marginLeft"] = r[0] - InlineDropdown.IDD_HEADER_CORRECTION_LEFT : d.marginLeft = (this._opts.headerLeft || InlineDropdown.IDD_HEADER_CORRECTION_LEFT) - (this._opts.withIcon ? 20 : 0), setStyle(o, d), this._unhoverItem(), this._highlightItem(), this._initOutEvent(), this._initKeypressEvent(), this._opts.onShow && this._opts.onShow(this.ddEl), cancelEvent(t)
 }, InlineDropdown.prototype._hide = function() {
     re(this._els.popupEl), this._els.popupEl = null, removeClass(this._hoveredItem, "idd_hover"), this._hoveredItem = null, this._deinitEvents(), this._hideSubmenu(), clearTimeout(this._hideSubmenuTimeout), this._opts.onHide && this._opts.onHide()
 }, InlineDropdown.prototype._highlightItem = function(t) {
@@ -1921,11 +1952,11 @@ window.inlineOnEvent || (window.inlineOnEvent = function(t) {
             each(o.items, function(t, i) {
                 n += e(i)
             }), n += "</div></div></div>", this._els.currCascade = se(n), this._iddEl.appendChild(this._els.currCascade);
-            for (var r = getSize(this._els.popupEl), a = (getXY(this._els.popupEl), getSize(t)), h = getSize(this._els.currCascade), d = 0, c = t; null != (c = c.previousSibling);) d++;
-            var u = r[0] + (this._opts.headerLeft || InlineDropdown.IDD_HEADER_CORRECTION_LEFT) - 1;
+            for (var a = getSize(this._els.popupEl), r = (getXY(this._els.popupEl), getSize(t)), h = getSize(this._els.currCascade), d = 0, c = t; null != (c = c.previousSibling);) d++;
+            var u = a[0] + (this._opts.headerLeft || InlineDropdown.IDD_HEADER_CORRECTION_LEFT) - 1;
             setStyle(this._els.currCascade, {
                 marginLeft: u - 3,
-                marginTop: a[1] * d + 6 - (this.openToUp ? r[1] : 0),
+                marginTop: r[1] * d + 6 - (this.openToUp ? a[1] : 0),
                 "z-index": 200,
                 width: h[0] + 30
             }), setTimeout(function() {
