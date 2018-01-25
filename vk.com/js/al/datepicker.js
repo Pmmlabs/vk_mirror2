@@ -48,19 +48,19 @@
                     y: -1
                 };
             h.m || (h = c(h));
-            var p = this,
-                u = t.addRows || "",
-                m = t.addRowsM || u;
+            var u = this,
+                p = t.addRows || "",
+                m = t.addRowsM || p;
             this.setDay = function(e, t, a) {
                 h = t ? {
                     d: e,
                     m: t,
                     y: a
-                } : c(e), p.getMonth(h.m, h.y)
+                } : c(e), u.getMonth(h.m, h.y)
             }, this.setMode = function(e) {
-                d = (s[e] || e || "d").replace(/(this|next|prev)/, ""), p.getMonth(h.m, h.y, !0)
+                d = (s[e] || e || "d").replace(/(this|next|prev)/, ""), u.getMonth(h.m, h.y, !0)
             };
-            this.getDay = t.getDay || function(e, t, a) {}, this.getMonth = function(s, c, p, v) {
+            this.getDay = t.getDay || function(e, t, a) {}, this.getMonth = function(s, c, u, v) {
                 var g = e.mn,
                     y = new Date(c, s - 1, 1);
                 y.od = y.getDay(), 0 == y.od && (y.od = 7);
@@ -87,7 +87,7 @@
                             cls: "cal_table",
                             cols: "2",
                             rows: x.join("")
-                        })), p || (n.style.height = n.offsetHeight + "px"), val(n, S.join(""));
+                        })), u || (n.style.height = n.offsetHeight + "px"), val(n, S.join(""));
                         break;
                     default:
                         var T = c == h.y && s == h.m ? h.d : 0;
@@ -119,7 +119,7 @@
                             }
                             clDay = w, I >= T && T + H > I ? clDay += " day sel" : clDay += " day", (!t.pastActive && D > P || t.pastActive && P > D) && (clDay += " past_day"), P.getTime() == D.getTime() && (clDay += " today"), I > 0 ? (A[Y] = U, x.push('<td id="day' + I + "_" + r + '" class="' + clDay + '" onclick="return cals.getDay(' + i + ", " + U + ", " + s + ", " + c + ');" onmouseover="addClass(' + F + ", 'hover')\"  onmouseout=\"removeClass(" + F + ", 'hover')\">" + I + "</td>")) : 36 != Y ? _ || ("w" === d && (A[Y] = U), date = Y > 7 && !l ? P.getDate() : "&nbsp", x.push('<td class="day no_month_day' + w + '">' + date + "</td>")) : _ = !0, Y % 7 == 0 && 36 > Y && x.push("</tr><tr>")
                         }
-                        x.push("</tr>" + u), S.push(rs(C, {
+                        x.push("</tr>" + p), S.push(rs(C, {
                             cls: L,
                             cols: "7",
                             rows: x.join("")
@@ -153,8 +153,8 @@
                 l = 0,
                 c = 0,
                 h = n.id,
-                p = h + "_date_input",
-                u = n.name || h,
+                u = h + "_date_input",
+                p = n.name || h,
                 m = n.parentNode,
                 v = h + "_cal_box",
                 g = h + "_cal_div",
@@ -164,6 +164,7 @@
                     resfmt: "ts",
                     width: 145,
                     addRows: "",
+                    noFuture: !1,
                     noPast: !1,
                     pastActive: !1,
                     onUpdate: function(e, t) {},
@@ -177,12 +178,12 @@
                 M = r.addRows,
                 k = r.addRowsM || M,
                 b = function(e) {
-                    return "h" === _ ? !1 : (o ? d.hide() : S(), ge(p).blur(), !1)
+                    return "h" === _ ? !1 : (o ? d.hide() : S(), ge(u).blur(), !1)
                 },
                 x = function() {
                     var e = ge(g),
                         t = ge(v),
-                        a = ge(p);
+                        a = ge(u);
                     if (headH = getSize("page_header_cont")[1], e && t && a) {
                         var n = getSize(e);
                         setStyle(t, {
@@ -218,14 +219,14 @@
                         setStyle(ge(y), {
                             width: e[0],
                             height: e[1]
-                        }), x(), ge(p).focus()
+                        }), x(), ge(u).focus()
                     }
                 },
                 C = function(n, s, o) {
-                    if (!(!o && r.noPast && new Date(n.y, n.m - 1, n.d, 23, 59) < new Date)) {
+                    if (!(!o && r.noPast && new Date(n.y, n.m - 1, n.d, 23, 59) < new Date || !o && r.noFuture && new Date(n.y, n.m - 1, n.d, 0, 0) > new Date)) {
                         i = n;
-                        var u = geByClass1("datepicker_control", F);
-                        "h" === s ? addClass(u, "disabled") : (removeClass(u, "disabled"), "m" === s ? ge(p).value = a.replace("{month}", winToUtf(e.mn[n.m - 1])).replace("{year}", n.y) : ge(p).value = t.replace("{day}", n.d).replace("{month}", winToUtf(e.mnOf[n.m - 1])).replace("{year}", n.y)), d.hide(), "plain" === D ? ge(h).value = n.d + "." + n.m + "." + n.y + (r.time ? " " + l + ":" + c : "") : "ts" === D && (ge(h).value = Math.floor(new Date(n.y, n.m - 1, n.d, l, c).getTime() / 1e3) - (60 * (new Date).getTimezoneOffset() + intval(vk.tz)) - intval(vk.dt)), o || w(n, s)
+                        var p = geByClass1("datepicker_control", F);
+                        "h" === s ? addClass(p, "disabled") : (removeClass(p, "disabled"), "m" === s ? ge(u).value = a.replace("{month}", winToUtf(e.mn[n.m - 1])).replace("{year}", n.y) : ge(u).value = t.replace("{day}", n.d).replace("{month}", winToUtf(e.mnOf[n.m - 1])).replace("{year}", n.y)), d.hide(), "plain" === D ? ge(h).value = n.d + "." + n.m + "." + n.y + (r.time ? " " + l + ":" + c : "") : "ts" === D && (ge(h).value = Math.floor(new Date(n.y, n.m - 1, n.d, l, c).getTime() / 1e3) - (60 * (new Date).getTimezoneOffset() + intval(vk.tz)) - intval(vk.dt)), o || w(n, s)
                     }
                 };
             this.hide = function() {
@@ -250,7 +251,7 @@
                 Y = new Date(1e3 * z)
             } else Y = new Date;
             Y && (i.d = Y.getDate(), i.m = Y.getMonth() + 1, i.y = Y.getFullYear(), l = Y.getHours(), c = Y.getMinutes());
-            var L = '<input type="hidden" name="' + u + '" id="' + h + '"/><div class="datepicker_control"><input readonly="1" type="text" class="datepicker_text" id="' + p + '"/></div><div id="' + v + '" class="cal_box"><iframe id="' + y + '" class="cal_frame"></iframe><div id="' + g + '" class="cal_div"></div></div>',
+            var L = '<input type="hidden" name="' + p + '" id="' + h + '"/><div class="datepicker_control"><input readonly="1" type="text" class="datepicker_text" id="' + u + '"/></div><div id="' + v + '" class="cal_box"><iframe id="' + y + '" class="cal_frame"></iframe><div id="' + g + '" class="cal_div"></div></div>',
                 F = ce("div", {
                     id: h + "_datepicker_container",
                     className: "datepicker_container",
@@ -311,13 +312,13 @@
                 c = i.resfmt;
             l -= l % i.minStep;
             var h = '<input type="hidden" name="' + n + '" id="' + a + '" value="' + r + '"/>' + i.format.replace("{hour}", '<div class="fl_l"><input type="hidden" id="' + a + '_hour_input" value="' + o + '"/></div>').replace("{min}", '<div class="fl_l"><input type="hidden" id="' + a + '_min_input" value="' + l + '"/></div>') + '<div class="results_container"><div class="result_list" style="display:none;"></div><div class="result_list_shadow"><div class="shadow1"></div><div class="shadow2"></div></div></div>',
-                p = ce("div", {
+                u = ce("div", {
                     id: a + "_timepicker_container",
                     className: "timepicker_container",
                     innerHTML: h
                 });
-            d.replaceChild(p, e);
-            for (var u = function() {
+            d.replaceChild(u, e);
+            for (var p = function() {
                     var e = this.hourDD.val(),
                         t = this.minDD.val();
                     "plain" === c ? ge(a).value = e + ":" + t : "ts" === c && (ge(a).value = 3600 * e + 60 * t), i.onUpdate(e, t)
@@ -327,12 +328,12 @@
                 width: 60,
                 dark: 1,
                 multiselect: !1,
-                onChange: u.bind(this)
+                onChange: p.bind(this)
             }), this.minDD = new Dropdown(ge(a + "_min_input"), v, {
                 width: 60,
                 dark: 1,
                 multiselect: !1,
-                onChange: u.bind(this)
+                onChange: p.bind(this)
             })
         }
     }, window.Daypicker = function(t, a) {
@@ -364,39 +365,39 @@
                     innerHTML: c
                 });
             o.replaceChild(h, t);
-            for (var p = function(e, t) {
+            for (var u = function(e, t) {
                     for (var a = new Date(t ? t : 2004, e, 0).getDate(), n = [
                             [0, getLang("global_day_label")]
                         ], r = 1; a >= r; r++) n.push([r, r]);
                     return n
-                }, u = function() {
+                }, p = function() {
                     var e = parseInt(_.val()),
                         t = parseInt(f.val()),
                         a = parseInt(y.val());
-                    ge(n).value = 1e4 * e + 100 * t + a, y.setData(p(t, e)), d.onUpdate(e, t, a)
+                    ge(n).value = 1e4 * e + 100 * t + a, y.setData(u(t, e)), d.onUpdate(e, t, a)
                 }, l = new Date, m = [
                     [0, getLang("global_year_label")]
                 ], v = [
                     [0, getLang("global_month_label")]
                 ], g = l.getFullYear(); g >= (d.startYear || 1800); g--) m.push([g, g]);
             for (var g = 0; 12 > g; g++) v.push([g + 1, e.mnOf[g]]);
-            var y = new Dropdown(ge(n + "_day_input"), p(d.month, d.year), {
+            var y = new Dropdown(ge(n + "_day_input"), u(d.month, d.year), {
                     width: 80,
                     dark: 1,
                     zeroPlaceholder: d.zeroPlaceholder,
-                    onChange: u
+                    onChange: p
                 }),
                 f = new Dropdown(ge(n + "_month_input"), v, {
                     width: 120,
                     dark: 1,
                     zeroPlaceholder: d.zeroPlaceholder,
-                    onChange: u
+                    onChange: p
                 }),
                 _ = new Dropdown(ge(n + "_year_input"), m, {
                     width: 75,
                     dark: 1,
                     zeroPlaceholder: d.zeroPlaceholder,
-                    onChange: u
+                    onChange: p
                 });
             if (d.width) {
                 var w = getSize(h.firstChild)[0],

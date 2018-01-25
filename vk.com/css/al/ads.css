@@ -2586,6 +2586,10 @@ a.ads_dd_menu_multi_item.label:hover {
     color: #ffa000
 }
 
+.ads_retargeting_pixel_errors_column {
+    position: relative
+}
+
 .ads_retargeting_group_actions_link {
     padding-right: 13px;
     background: url(/images/icons/profile_arrow_2x.png) no-repeat;
@@ -3151,7 +3155,7 @@ h4.subheader.ads_retargeting_subheader_top {
 }
 
 .ads_retargeting_price_list_item_cell_status_link {
-    margin: 0;
+    position: relative;
     font-size: 13px
 }
 

@@ -5017,33 +5017,6 @@ Ads.toggleRelevanceScoreInfo = function(switcherName) {
     addClass(ge("ads_relevance_score_top_tabs_" + switcherName), "ads_relevance_score_top_tabs_item_active");
 }
 
-Ads.showRelevanceScoreTooltip = function() {
-    if (ls.get('ads_promoted_posts_relevance_score_tooltip_hidden') || cur.buttonTextTooltip) {
-        return;
-    }
-    cur.closeAdsRelevanceScoreTooltip = function() {
-        cur.groupAdsRelevanceScoreTooltip.hide();
-        ls.set('ads_promoted_posts_relevance_score_tooltip_hidden', 1);
-    };
-    var el = geByClass1("ads_relevance_score_top");
-    if (!el) {
-        return;
-    }
-    cur.groupAdsRelevanceScoreTooltip = new ElementTooltip(el, {
-        autoShow: false,
-        appendTo: el,
-        content: '<div class="feature_intro_tt_hide" onclick="cur.closeAdsRelevanceScoreTooltip();"></div>' + getLang('ads_relevance_score_hint_new_feature'),
-        forceSide: 'left',
-        offset: [10, 0],
-        width: 190,
-        cls: 'feature_intro_tt',
-        onHide: function() {
-            cur.groupAdsRelevanceScoreTooltip.destroy();
-        }
-    });
-    cur.groupAdsRelevanceScoreTooltip.show();
-}
-
 Ads.showPixelErrorsBox = function(event, unionId, pixelId, hash) {
     event.preventDefault();
 
@@ -5061,6 +5034,90 @@ Ads.showPixelErrorsBox = function(event, unionId, pixelId, hash) {
     };
 
     showBox('/ads?act=a_retargeting_pixel_get_errors_box', ajaxParams, showOptions);
+}
+
+Ads.showRelevanceScoreTooltip = function() {
+    Ads.showNewFeatureTooltip('ads_promoted_posts_relevance_score_tooltip', geByClass1("ads_relevance_score_top"), {
+        width: 190,
+        offset: [10, 0],
+        content: getLang('ads_relevance_score_hint_new_feature')
+    });
+}
+
+Ads.showPixelErrorsTooltip = function() {
+    Ads.showNewFeatureTooltip('adsPixelErrorsTooltip', geByClass1("ads_retargeting_pixel_errors_column"), {
+        width: 235,
+        offset: [-5, 0],
+        content: getLang('ads_retargeting_pixel_errors_new_feature')
+    });
+}
+
+Ads.showPriceListErrorsTooltip = function() {
+    Ads.showNewFeatureTooltip('adsPriceListErrorsTooltip', geByClass1("ads_retargeting_price_list_item_cell_status_link"), {
+        width: 235,
+        offset: [-15, 0],
+        content: getLang('ads_retargeting_price_list_errors_new_feature')
+    });
+}
+
+/**
+ Show tooltip about new feature.
+ ttp  - tooltip name
+ el   - object id which tootlip should point to
+ opts - opts for new ElementTooltip (usual for ElementTooltip + closeIcon: true/false (default: true))
+ */
+Ads.showNewFeatureTooltip = function(ttp, el, opts) {
+    if (!ttp || !el) {
+        return;
+    }
+
+    var tooltipName = ttp;
+    var tooltipLs = tooltipName + '_hidden';
+
+    if (ls.get(tooltipLs) || cur[tooltipName]) {
+        return;
+    }
+
+    opts = opts || {};
+
+    var defaultOpts = {
+        autoShow: false,
+        appendTo: el,
+        forceSide: 'left',
+        width: 220,
+        cls: 'eltt_blue'
+    };
+
+    defaultOpts.content = '';
+    if (typeof opts.closeIcon !== 'undefined') {
+        defaultOpts.content = opts.closeIcon ? '<div class="eltt_blue_hide" onclick="cur.' + tooltipName + '.closeTooltip(event);"></div>' : '';
+        delete opts.closeIcon;
+    } else {
+        defaultOpts.content = '<div class="eltt_blue_hide" onclick="cur.' + tooltipName + '.closeTooltip(event);"></div>';
+    }
+
+    if (typeof opts.content !== 'undefined') {
+        defaultOpts.content += opts.content;
+        delete opts.content;
+    }
+
+    defaultOpts.onHide = function() {
+        if (typeof opts.onHide !== 'undefined') {
+            opts.onHide();
+            delete opts.onHide;
+        }
+        cur[tooltipName].destroy();
+    }
+
+    var params = extend(defaultOpts, opts);
+    cur[tooltipName] = new ElementTooltip(el, params);
+    cur[tooltipName].show();
+
+    cur[tooltipName].closeTooltip = function(event) {
+        cancelEvent(event);
+        cur[tooltipName].hide();
+        ls.set(tooltipLs, 1);
+    };
 }
 
 try {

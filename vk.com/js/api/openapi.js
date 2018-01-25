@@ -3001,9 +3001,20 @@ if (!VK.Retargeting) {
 
             (window.Image ? (new Image()) : document.createElement('img')).src = 'https://vk.com/rtrg?p=' + this.pixelCode + '&audience=' + encodeURIComponent(audienceID);
         },
-        ProductEvent: function(priceListID, event, params) {
+        ProductEvent: function(priceListID, event, params, opts) {
             if (!this.pixelCode || !event || !priceListID) {
                 return;
+            }
+
+            opts = opts || {};
+
+            var canShowErrors = true;
+            if (typeof opts.show_errors !== 'undefined') {
+                canShowErrors = opts.show_errors ? true : false;
+            }
+            var errorsIgnore = '0';
+            if (typeof opts.errors_ignore !== 'undefined') {
+                errorsIgnore = opts.errors_ignore ? '1' : '0';
             }
 
             var url = 'https://vk.com/rtrg';
@@ -3012,7 +3023,8 @@ if (!VK.Retargeting) {
                 'p': this.pixelCode,
                 'products_event': event,
                 'price_list_id': priceListID,
-                'e': '1'
+                'e': '1',
+                'i': errorsIgnore
             };
             if (productParams) {
                 requestParams.products_params = productParams;
@@ -3025,10 +3037,10 @@ if (!VK.Retargeting) {
 
             var requestUrl = url + '?' + query;
 
-            VK.Api.makeRequest(requestUrl, this.onDone.bind(this));
+            VK.Api.makeRequest(requestUrl, this.onDone.bind(this, canShowErrors));
         },
-        onDone: function(response) {
-            if (!response) {
+        onDone: function(canShowErrors, response) {
+            if (!response || !canShowErrors) {
                 return;
             }
 

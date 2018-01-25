@@ -779,8 +779,7 @@
     "use strict";
     Object.defineProperty(t, "__esModule", {
         value: !0
-    });
-    t.screenfull = function() {
+    }), t.screenfull = function() {
         var e = "undefined" != typeof Element && "ALLOW_KEYBOARD_INPUT" in Element,
             t = function() {
                 for (var e, t, n = [
@@ -10690,8 +10689,7 @@
                 a = r[0],
                 i = r[1],
                 s = r[2];
-            r[3], r[4];
-            t.allShown = t.allShown || s, t.history = c(t.history) + a, t.historyToAppend = a;
+            r[3], r[4], t.allShown = t.allShown || s, t.history = c(t.history) + a, t.historyToAppend = a;
             var o = Object.keys(i).length;
             return t.skipped -= o, t.offset += o, t.msgs = extend(t.msgs, i), e
         })
@@ -11310,8 +11308,7 @@
             });
             return lt(a, !0, n), t.then(function(t) {
                 var a = Ot(t, 2);
-                a[0], a[1];
-                return delete n.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, n
+                return a[0], a[1], delete n.blockedFlagUpdates[e], r.msgs = null, r.history = null, r.unread = 0, r.lastmsg = !1, r.lastmsg_meta = null, n
             })
         }
     }
@@ -11984,8 +11981,7 @@
             share_url: t.share_url
         }, Qt).then(function(e) {
             var t = Ot(e, 1);
-            t[0];
-            return n
+            return t[0], n
         })
     }), t.searchTopConv = ie(function(e) {
         return e.topConvTree

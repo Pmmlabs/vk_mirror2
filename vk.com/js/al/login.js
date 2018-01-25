@@ -1,34 +1,34 @@
 var Login = {
     init: function() {
-        each(geByClass("big_text", "login_form_wrap"), function(e, r) {
-            placeholderInit(r)
+        each(geByClass("big_text", "login_form_wrap"), function(e, o) {
+            placeholderInit(o)
         }), setTimeout(elfocus.pbind(val("email") ? "pass" : "email"), 0);
         var e = ge("login_form"),
-            r = ge("email"),
-            o = ge("pass");
+            o = ge("email"),
+            r = ge("pass");
         return e.onsubmit = function() {
-            return window.submitQuickLoginForm ? trim(r.value) ? trim(o.value) ? (submitQuickLoginForm(r.value, o.value, {
+            return window.submitQuickLoginForm ? trim(o.value) ? trim(r.value) ? (submitQuickLoginForm(o.value, r.value, {
                 prg: "login_button",
                 params: {
                     expire_input: val("expire_input")
                 }
-            }), !1) : (notaBene(o), !1) : (notaBene(r), !1) : !0
-        }, window.loginByCredential && (r.onclick = loginByCredential, o.onclick = loginByCredential), !0
+            }), !1) : (notaBene(r), !1) : (notaBene(o), !1) : !0
+        }, window.loginByCredential && (o.onclick = loginByCredential, r.onclick = loginByCredential), !0
     },
     showFastRestore: function(e) {
-        var r = gpeByClass("_retore_wrap", e);
-        return each(geByClass("big_text", r), function(e, r) {
-            placeholderInit(r)
-        }), addClass(r, "shown"), elfocus("fast_restore_phone"), !1
+        var o = gpeByClass("_retore_wrap", e);
+        return each(geByClass("big_text", o), function(e, o) {
+            placeholderInit(o)
+        }), addClass(o, "shown"), elfocus("fast_restore_phone"), !1
     },
-    showInputTooltip: function(e, r) {
-        var o = getSize(e);
+    showInputTooltip: function(e, o) {
+        var r = getSize(e);
         showTooltip(e, {
-            text: r,
+            text: o,
             dir: "left",
             slideX: 15,
             className: "login_tt",
-            shift: [-o[0] - 10, -o[1] / 2],
+            shift: [-r[0] - 10, -r[1] / 2],
             onCreate: function() {
                 removeEvent(e, "mouseout"), e.onblur = function() {
                     e.tt.hide()
@@ -43,72 +43,94 @@ var Login = {
         cur.frResendDelay > 0 ? (ge("login_fast_restore_resend").innerHTML = getLang(e ? "join_send_code_via_sms_time" : "join_resend_code_time").replace("%s", Math.floor(cur.frResendDelay / 60) + ":" + (cur.frResendDelay % 60 < 10 ? "0" : "") + cur.frResendDelay % 60), cur.frResendDelay--) : (ge("login_fast_restore_resend").innerHTML = '<a onclick="return Login.fastRestoreResend(this);">' + getLang(e ? "join_send_code_via_sms" : "join_resend_code") + "</a>", clearInterval(cur.frResendInt), cur.frResendInt = !1)
     },
     fastRestoreResend: function(e) {
-        var r = val("fast_restore_phone"),
-            o = ce("span", {
+        var o = val("fast_restore_phone"),
+            r = ce("span", {
                 className: "progress_inline"
             }),
-            t = domPN(e);
+            n = domPN(e);
         return geByClass1("error", "login_fast_restore_error") || val("login_fast_restore_error", ""), ajax.post("/al_login.php?act=a_fast_restore_resend", {
-            phone: r,
+            phone: o,
             restore: cur.frCode
         }, {
             onDone: function(e) {
-                t.innerHTML = e, setTimeout(elfocus("fast_restore_code"), 0)
+                n.innerHTML = e, setTimeout(elfocus("fast_restore_code"), 0)
             },
             onFail: function(e) {
                 return Login.showFastRestoreError(e, "fast_restore_code"), !0
             },
             showProgress: function() {
-                e.parentNode == t && t.replaceChild(o, e)
+                e.parentNode == n && n.replaceChild(r, e)
             },
             hideProgress: function() {
-                o.parentNode == t && t.replaceChild(e, o)
+                r.parentNode == n && n.replaceChild(e, r)
             }
         }), !1
     },
-    fastRestore: function(e, r) {
+    fastRestore: function(e, o) {
         if (e = e || window.event, e && void 0 !== e.keyCode && "click" != e.type) {
             if (e.keyCode !== KEY.ENTER) return;
             if (e.target == ge("fast_restore_phone") && isVisible("login_fast_restore_code_row")) return elfocus("fast_restore_code"), cancelEvent(e)
         }
-        var o, t = ge("login_fast_restore_btn"),
-            n = val("fast_restore_phone");
-        if (n.replace(/[^0-9]/g, "").length < 8) return notaBene("fast_restore_phone"), cancelEvent(e);
+        var r, n = ge("login_fast_restore_btn"),
+            t = val("fast_restore_phone");
+        if (t.replace(/[^0-9]/g, "").length < 8) return notaBene("fast_restore_phone"), cancelEvent(e);
         if (val("login_fast_restore_error", ""), isVisible("login_fast_restore_code_row")) {
-            if (o = val("fast_restore_code"), o.replace(/[^0-9a-z]/g, "").length < 5) return notaBene("fast_restore_code"), cancelEvent(e);
+            if (r = val("fast_restore_code"), r.replace(/[^0-9a-z]/g, "").length < 5) return notaBene("fast_restore_code"), cancelEvent(e);
             ajax.post("/al_login.php?act=a_fast_restore_code", {
-                phone: n,
-                code: o,
+                phone: t,
+                code: r,
                 restore: cur.frCode
             }, {
                 onFail: function(e) {
                     return Login.showFastRestoreError(e, "fast_restore_code"), !0
                 },
-                showProgress: lockButton.pbind(t),
-                hideProgress: unlockButton.pbind(t)
+                showProgress: lockButton.pbind(n),
+                hideProgress: unlockButton.pbind(n)
             })
         } else {
             var s = isVisible("login_fast_restore_name_row") ? val("fast_restore_name") : "";
             if (!s && isVisible("login_fast_restore_name_row")) return void notaBene("fast_restore_name");
             ajax.post("/al_login.php?act=a_fast_restore", {
-                phone: n,
-                hash: r,
+                phone: t,
+                hash: o,
                 name: s
             }, {
-                onDone: function(e, r, o, t) {
-                    return e ? 1 == e ? (show("login_fast_restore_name_row"), void setTimeout(elfocus("fast_restore_name"), 0)) : 2 == e ? void Login.showFastRestoreError(t, !1, "error") : (val("login_fast_restore_btn", getLang("login_fast_restore_access")), cur.frCode = r, cur.frSentPhone = n, show("login_fast_restore_code_row", "login_fast_restore_resend"), setTimeout(elfocus("fast_restore_code"), 0), cur.frResendDelay = o, cur.frResendInt = setInterval(Login.fastRestoreResendUpdate.pbind(4 == e), 1e3), 4 == e && Login.fastRestoreResendUpdate(!0), void(t && Login.showFastRestoreError(t, !1, "info_msg"))) : void setTimeout(Login.fastRestore.pbind(!1), 1e3)
+                onDone: function(e, o, r, n) {
+                    return e ? 1 == e ? (show("login_fast_restore_name_row"), void setTimeout(elfocus("fast_restore_name"), 0)) : 2 == e ? void Login.showFastRestoreError(n, !1, "error") : (val("login_fast_restore_btn", getLang("login_fast_restore_access")), cur.frCode = o, cur.frSentPhone = t, show("login_fast_restore_code_row", "login_fast_restore_resend"), setTimeout(elfocus("fast_restore_code"), 0), cur.frResendDelay = r, cur.frResendInt = setInterval(Login.fastRestoreResendUpdate.pbind(4 == e), 1e3), 4 == e && Login.fastRestoreResendUpdate(!0), void(n && Login.showFastRestoreError(n, !1, "info_msg"))) : void setTimeout(Login.fastRestore.pbind(!1), 1e3)
                 },
                 onFail: function(e) {
                     return Login.showFastRestoreError(e, "fast_restore_phone"), !0
                 },
-                showProgress: lockButton.pbind(t),
-                hideProgress: unlockButton.pbind(t)
+                showProgress: lockButton.pbind(n),
+                hideProgress: unlockButton.pbind(n)
             })
         }
         return cancelEvent(e)
     },
-    showFastRestoreError: function(e, r, o) {
-        showMsg("login_fast_restore_error", e, o ? o : "error", !0), r = ge(r), r && (notaBene(r), r.tt && r.tt.hide && r.tt.hide())
+    showFastRestoreError: function(e, o, r) {
+        showMsg("login_fast_restore_error", e, r ? r : "error", !0), o = ge(o), o && (notaBene(o), o.tt && o.tt.hide && o.tt.hide())
+    },
+    changeMail: function(e, o, r) {
+        var n = trim(val("login_new_mail")),
+            t = 1;
+        return n ? (e && (r = cur.changeMailHash), /^\s*[a-zA-Z0-9_\.]+@[a-zA-Z0-9_\.]+\s*$/.test(n) ? (e && (t = 0), void ajax.post("/login?act=a_change_mail", {
+            newmail: n,
+            hash: r,
+            from_page: t
+        }, {
+            showProgress: lockButton.pbind(o),
+            hideProgress: unlockButton.pbind(o),
+            onDone: function(o) {
+                var r = "login_change_mail_form";
+                e && (r = "login_change_mail_box", curBox().removeButtons(), curBox().addButton(getLang("global_cancel"), null, "no")), val(r, o)
+            },
+            onFail: function(e) {
+                return showMsg("login_change_mail_error", e, "error"), !0
+            }
+        })) : showMsg("login_change_mail_error", getLang("reg0_error_bad_email"), "error")) : notaBene("login_new_mail")
+    },
+    initChangeMailBox: function() {
+        curBox().removeButtons(), curBox().addButton(getLang("global_cancel"), null, "no"), curBox().addButton(getLang("reg0_change_mail"), Login.changeMail.pbind(1)), elfocus("change_mail_new")
     }
 };
 try {

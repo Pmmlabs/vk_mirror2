@@ -1245,3 +1245,38 @@ table.login_blocked_reason_thumbs {
 .login_relogin_btns .flat_button+.flat_button {
     margin-left: 10px
 }
+
+.login_change_mail_section.page_section .info {
+    text-align: left
+}
+
+.login_change_mail_box {
+    padding: 10px 0px 0px
+}
+
+.login_change_mail_box .clear_fix {
+    padding-bottom: 10px
+}
+
+.login_change_mail_box .label {
+    color: #656565;
+    padding: 6px 10px 0px;
+    text-align: right;
+    width: 120px
+}
+
+.login_change_mail_box .labeled {
+    width: 210px
+}
+
+.login_change_mail_box .labeled .big_text {
+    width: 250px
+}
+
+.login_change_mail_box .error {
+    margin: 0 0 20px
+}
+
+.login_change_mail_box .done_msg {
+    padding-bottom: 10px
+}

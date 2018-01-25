@@ -389,7 +389,7 @@
 
 .article>figure figcaption {
     text-align: center;
-    max-width: 612px;
+    max-width: 720px;
     margin: 0 auto
 }
 
@@ -983,7 +983,7 @@
 }
 
 .article_ed_layer .article_ed_layer__wrap {
-    width: 612px;
+    width: 720px;
     margin: 0 auto;
     height: 100%;
     position: relative
@@ -1050,7 +1050,7 @@
 .article_ed_layer .article_ed_layer__header {
     position: fixed;
     top: 0;
-    width: 612px;
+    width: 720px;
     background-color: #fff;
     height: 84px;
     z-index: 100;
