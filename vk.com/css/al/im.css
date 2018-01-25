@@ -7229,10 +7229,7 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .im-page--mess-actions_multiple-selection .im-page-action_pin,
-.im-page--chat-header_hide-pin-actions .im-action_pin_hide,
-.im-page--chat-header_hide-pin-actions .im-action_pin_unhide,
-.im-page--chat-header_hide-pin-actions .im-action_unpin,
-.im-page--chat-header_hide-pin-actions .im-page-action_pin {
+.im-page--mess-actions_no-pin-btn .im-page-action_pin {
     display: none
 }
 

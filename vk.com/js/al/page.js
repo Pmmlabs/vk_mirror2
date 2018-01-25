@@ -4055,7 +4055,7 @@ var Wall = {
                 add_buttons: rs(tpl, {
                     post_id: post,
                     oid: intval(post),
-                    owner_photo: ownerPhoto
+                    owner_photo: ownerPhoto || '/images/blank.gif'
                 }),
                 post_id: post,
                 oid: intval(post),
@@ -5474,7 +5474,7 @@ var Wall = {
             }
         }
     },
-    subscribeToAuthor: function(btn, authorId, hash, statHash) {
+    subscribeByButton: function(btn, authorId, hash, statHash, from) {
         var subscribed = hasClass(btn, '_subscribed');
 
         var reqOptions = {
@@ -5484,30 +5484,81 @@ var Wall = {
                 subscribed = !subscribed;
                 toggleClass(btn, '_subscribed', subscribed);
             },
+        };
+        var query = {};
+
+        if (authorId > 0 && from) {
+            query.from = from;
+        }
+
+        Wall.subscribeToAuthor(subscribed, authorId, hash, statHash, reqOptions, query);
+    },
+    subscribeByAction: function(btn, authorId, hash, from) {
+        if (actionsMenuItemLocked(btn)) {
+            return;
+        }
+
+        var subscribed = intval(domData(btn, 'value')) ? 1 : 0;
+        var reqOptions = {
+            showProgress: lockActionsMenuItem.pbind(btn),
+            hideProgress: unlockActionsMenuItem.pbind(btn),
+        };
+        var query = {};
+
+        if (authorId > 0 && from) {
+            query.from = from;
+        } else if (authorId < 0) {
+            reqOptions = extend(reqOptions, {
+                onDone: function(text, confirmText, isClosed) {
+                    if (confirmText) {
+                        var box = showFastBox(getLang('global_warning'), confirmText, getLang('group_leave_group'), function() {
+                            box.hide();
+                            Wall.subscribeToAuthor(subscribed, authorId, hash, reqOptions, '', {
+                                confirm: 1
+                            });
+                        }, getLang('global_cancel'));
+                        return true;
+                    }
+
+                    val(btn, text);
+                    btn.setAttribute('data-value', 1 - subscribed);
+                    if (isClosed) {
+                        re(domNS(btn));
+                        re(btn);
+                    }
+                }
+            })
+        }
+
+        Wall.subscribeToAuthor(subscribed, authorId, hash, '', reqOptions, query);
+    },
+    subscribeToAuthor: function(state, authorId, hash, statHash, reqOptions, query) {
+        reqOptions = extend({
             onFail: function(msg) {
                 setTimeout(showFastBox(getLang('global_error'), msg).hide, 3000);
             }
-        };
+        }, reqOptions);
+        query = query || {};
 
         if (authorId > 0) {
-            ajax.post('al_friends.php', {
-                act: (subscribed ? 'remove' : 'add'),
+            ajax.post('al_friends.php', extend({
+                act: (state ? 'remove' : 'add'),
                 mid: authorId,
                 hash: hash,
                 from: 'feed'
-            }, reqOptions);
+            }, query), reqOptions);
         } else {
-            ajax.post('al_groups.php', {
-                act: (subscribed ? 'list_leave' : 'list_enter'),
+            ajax.post('al_groups.php', extend({
+                act: (state ? 'list_leave' : 'list_enter'),
                 gid: -authorId,
                 hash: hash
-            }, reqOptions);
+            }, query), reqOptions);
         }
 
         if (statHash) {
             ajax.post('al_feed.php?act=viral_subscribe_stat', {
                 author_id: authorId,
-                subscribe: intval(!subscribed),
+                subscribe: intval(!state),
                 hash: statHash
             });
         }

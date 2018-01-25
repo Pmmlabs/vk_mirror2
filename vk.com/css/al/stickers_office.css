@@ -121,3 +121,25 @@
         background-size: 34px 34px
     }
 }
+
+#stickers_office_export_box .stickers_office_export_box_block {
+    margin: 10px 0
+}
+
+#stickers_office_export_box .stickers_office_export_box_label {
+    float: left;
+    padding-right: 10px;
+    width: 30%;
+    font-size: 13px;
+    letter-spacing: -0.1px;
+    text-align: right;
+    color: #656565
+}
+
+#stickers_office_export_box .stickers_office_export_box_label.selector {
+    padding-top: 6px
+}
+
+#stickers_office_export_box .stickers_office_export_box_value {
+    display: inline-block
+}

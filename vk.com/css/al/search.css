@@ -298,6 +298,10 @@ body.mac #filter_form {
     margin-bottom: 0!important
 }
 
+.search_auto_results.wall_module .wall_text .page_media_poll_wrap:last-child {
+    margin-bottom: 0
+}
+
 .search_auto_results .post_full_like_wrap {
     margin-bottom: 19px;
     border-top: none;

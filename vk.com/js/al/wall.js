@@ -8,28 +8,28 @@ var FullWall = {
         })
     },
     scrollCheck: function(e, o) {
-        var a, t, l, r, n = lastWindowHeight,
-            i = 0,
-            s = [];
+        var l, a, t, r, n = lastWindowHeight,
+            s = 0,
+            i = [];
         if (domPN(cur.topRow) != cur.pgCont && (cur.topRow = domFC(cur.pgCont)), vk.id && cur.topRow && !((window.curNotifier || {}).idle_manager || {}).is_idle) {
-            for (postsUnseen = [], t = domPS(cur.topRow); t; t = domPS(t)) cur.topRow.offsetTop > o && (cur.topRow = t), t.unseen || (t.unseen = !0, postsUnseen.push(FullWall.postsGetRaws(t)));
-            for (Page.postsUnseen(postsUnseen), t = cur.topRow; t && (a = i ? i : t.offsetTop, !(a >= o + n)); t = l) l = domNS(t), i = l ? l.offsetTop : a + t.offsetHeight, o > i && l && (cur.topRow = l), LongView && LongView.register(t, "FullWall"), r = t.bits || 0, r >= 3 || (r |= (a >= o && o + n > a ? 1 : 0) | (i >= o && o + n > i ? 2 : 0)) && (t.bits = r, 3 == r && s.push(FullWall.postsGetRaws(t)));
-            LongView && LongView.onScroll(o, n), Page.postsSeen(s)
+            for (postsUnseen = [], a = domPS(cur.topRow); a; a = domPS(a)) cur.topRow.offsetTop > o && (cur.topRow = a), a.unseen || (a.unseen = !0, postsUnseen.push(FullWall.postsGetRaws(a)));
+            for (Page.postsUnseen(postsUnseen), a = cur.topRow; a && (l = s ? s : a.offsetTop, !(l >= o + n)); a = t) t = domNS(a), s = t ? t.offsetTop : l + a.offsetHeight, o > s && t && (cur.topRow = t), LongView && LongView.register(a, "FullWall"), r = a.bits || 0, r >= 3 || (r |= (l >= o && o + n > l ? 1 : 0) | (s >= o && o + n > s ? 2 : 0)) && (a.bits = r, 3 == r && i.push(FullWall.postsGetRaws(a)));
+            LongView && LongView.onScroll(o, n), Page.postsSeen(i)
         }
     },
     postsGetRaws: function(e) {
-        var o, a = indexOf(domPN(e).children, e),
-            t = {};
+        var o, l = indexOf(domPN(e).children, e),
+            a = {};
         if ("block_" === e.id.substr(0, 6)) {
-            t[e.id] = 1, t.block = e.id.substr(6);
-            var l = attr(e, "data-contain");
-            l && (l = l.split(","), l.forEach(function(e) {
-                e = e.split(":"), t[e[0]] = intval(e[1]) || 1
+            a[e.id] = 1, a.block = e.id.substr(6);
+            var t = attr(e, "data-contain");
+            t && (t = t.split(","), t.forEach(function(e) {
+                e = e.split(":"), a[e[0]] = intval(e[1]) || 1
             }))
-        } else(o = e.id.match(new RegExp("^post(" + cur.oid + "_\\d+)$", ""))) && (t[o[1]] = 1, (o = (e.getAttribute("data-copy") || "").match(/^(-?\d+_\d+)$/)) && (t[o[1]] = -1));
-        t.index = a, t.module = cur.module;
+        } else(o = e.id.match(new RegExp("^post(" + cur.oid + "_\\d+)$", ""))) && (a[o[1]] = 1, (o = (e.getAttribute("data-copy") || "").match(/^(-?\d+_\d+)$/)) && (a[o[1]] = -1));
+        a.index = l, a.module = cur.module;
         var r = e.getAttribute("post_view_hash");
-        return r && (t.hash = r), t
+        return r && (a.hash = r), a
     },
     init: function(e, o) {
         extend(cur, {
@@ -53,36 +53,36 @@ var FullWall = {
             pgNoNavScroll: !0,
             oid: e.owner_id,
             postTo: e.owner_id
-        }), wall.init(e), (!e.wall_type || "cards" != e.wall_type && "supp" != e.wall_type && "restore" != e.wall_type && "phone_info" != e.wall_type && !nav.objLoc.postponed) && Pagination.init(), cur.destroy.push(Pagination.deinit), e.with_id || (wall.initUpdates(e.add_queue_key), (!e.wall_type || "cards" != e.wall_type && "supp" != e.wall_type && "restore" != e.wall_type && "phone_info" != e.wall_type) && cur.nav.push(function(e, o, a) {
-            var t = e.own;
-            return delete e.own, delete e.offset, isEmpty(e) && void 0 !== t ? (ajax.post("al_wall.php", {
+        }), wall.init(e), (!e.wall_type || "cards" != e.wall_type && "supp" != e.wall_type && "restore" != e.wall_type && "phone_info" != e.wall_type && !nav.objLoc.postponed) && Pagination.init(), cur.destroy.push(Pagination.deinit), e.with_id || (wall.initUpdates(e.add_queue_key), (!e.wall_type || "cards" != e.wall_type && "supp" != e.wall_type && "restore" != e.wall_type && "phone_info" != e.wall_type) && cur.nav.push(function(e, o, l) {
+            var a = e.own;
+            return delete e.own, delete e.offset, isEmpty(e) && void 0 !== a ? (ajax.post("al_wall.php", {
                 act: "s",
                 owner_id: cur.oid,
-                own: a.own || void 0,
-                q: a.q || void 0,
+                own: l.own || void 0,
+                q: l.q || void 0,
                 lnav: 1,
-                offset: a.offset || void 0
+                offset: l.offset || void 0
             }, {
-                onDone: function(e, o, t, l, r, n, i, s, c, d) {
+                onDone: function(e, o, a, t, r, n, s, i, c, d) {
                     ge("fw_summary_wrap").innerHTML = e, Pagination.deinit(), extend(cur, {
                         pgStart: r,
                         pgOffset: n,
-                        pgCount: s,
-                        pgParams: a.own ? {
+                        pgCount: i,
+                        pgParams: l.own ? {
                             own: 1
                         } : !1,
-                        pgHref: l,
+                        pgHref: t,
                         pgPages: ge("fw_pages"),
                         pgPreload: c
-                    }), toggle(cur.pgMore, s > n + cur.pgPerPage), wall.cancelEdit();
+                    }), toggle(cur.pgMore, i > n + cur.pgPerPage), wall.cancelEdit();
                     var p = ge("page_wall_posts");
                     p.innerHTML = o, each(geByTag("textarea", p), function() {
                         placeholderSetup(this, {
                             fast: 1
                         })
                     }), Pagination.init(), wall.initUpdates(d);
-                    for (var u in t) cur.options.reply_names[u] = t[u];
-                    cur.wallType = "full_" + (a.own ? "own" : "all"), nav.setLoc(a), scrollToTop()
+                    for (var u in a) cur.options.reply_names[u] = a[u];
+                    cur.wallType = "full_" + (l.own ? "own" : "all"), nav.setLoc(l), scrollToTop()
                 },
                 showProgress: function() {
                     hide("fw_search_toggler")
@@ -94,17 +94,17 @@ var FullWall = {
             }), !1) : void 0
         }))
     },
-    loadedPosts: function(e, o, a, t, l, r, n) {
+    loadedPosts: function(e, o, l, a, t, r, n) {
         if (r) each(geByTag("textarea", cur.pgCont), function() {
             placeholderSetup(this, {
                 fast: 1
             })
         }), wall.cancelEdit();
         else {
-            for (var i = (cur.pgCont.childNodes.length, 0), s = cur.pgCont.lastChild; s && ++i <= cur.pgPerPage; s = s.previousSibling) placeholderSetup(geByTag1("textarea", s), {
+            for (var s = (cur.pgCont.childNodes.length, 0), i = cur.pgCont.lastChild; i && ++s <= cur.pgPerPage; i = i.previousSibling) placeholderSetup(geByTag1("textarea", i), {
                 fast: 1
             });
-            n = t
+            n = a
         }
         for (var c in n) cur.options.reply_names[c] = n[c];
         FullWall.updateSummary(e)
@@ -116,7 +116,7 @@ var FullWall = {
         return cur.__focused || (ge("own_reply_field") || {}).focused || cur.editingPost
     },
     initOnePost: function(e, o) {
-        var a = e.post_raw;
+        var l = e.post_raw;
         Page.postsSeen(e.seen), extend(cur, {
             onepost: !0,
             options: e,
@@ -126,7 +126,7 @@ var FullWall = {
             pgOffset: e.offset,
             pgCount: e.count,
             pgPerPage: e.per_page,
-            pgCont: ge("replies" + a),
+            pgCont: ge("replies" + l),
             pgMore: ge("fw_load_more"),
             pgPages: ge("fw_pages"),
             pgPreload: o,
@@ -151,31 +151,31 @@ var FullWall = {
         scrollGetY() < e && Pagination.setScroll(e)
     },
     onePostOnScroll: function(e, o) {
-        var a = cur.options.post_raw || "",
-            t = ge("reply_box_wrap" + a),
-            l = t && domFC(t);
-        if (l) {
-            (o === !1 || void 0 === o) && (o = scrollGetY()), cur.addBlockTop = getXY(t)[1], cur.addBlockHeight = getSize(l)[1];
+        var l = cur.options.post_raw || "",
+            a = ge("reply_box_wrap" + l),
+            t = a && domFC(a);
+        if (t) {
+            (o === !1 || void 0 === o) && (o = scrollGetY()), cur.addBlockTop = getXY(a)[1], cur.addBlockHeight = getSize(t)[1];
             var r = o + lastWindowHeight < cur.addBlockTop + cur.addBlockHeight,
                 n = r ? Math.min(0, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(ge("page_layout"))[0])) : null,
-                i = Math.min(0, o + lastWindowHeight - getXY("fw_replies_header")[1] - cur.addBlockHeight);
-            setStyle(l, {
+                s = Math.min(0, o + lastWindowHeight - getXY("fw_replies_header")[1] - cur.addBlockHeight);
+            setStyle(t, {
                 marginLeft: n,
-                bottom: i
-            }), r ? (e && cur.docked || setStyle(t, "height", cur.addBlockHeight), cur.docked || (setStyle(l, "width", getSize(t)[0]), addClass(l, "fixed"), cur.docked = !0)) : cur.docked && (setStyle(l, {
+                bottom: s
+            }), r ? (e && cur.docked || setStyle(a, "height", cur.addBlockHeight), cur.docked || (setStyle(t, "width", getSize(a)[0]), addClass(t, "fixed"), cur.docked = !0)) : cur.docked && (setStyle(t, {
                 width: null,
                 marginLeft: null
-            }), setStyle(t, "height", ""), removeClass(l, "fixed"), cur.docked = !1)
+            }), setStyle(a, "height", ""), removeClass(t, "fixed"), cur.docked = !1)
         }
     },
-    onReplySent: function(e, o, a, t, l, r, n) {
-        cur.wallMyReplied[cur.oid + "_" + cur.pid] = 0, Pagination.loaded.apply(window, arguments), setTimeout(FullWall.scrollToEnd, 0), l && t && nav.setLoc(extend(nav.objLoc, {
-            offset: t
+    onReplySent: function(e, o, l, a, t, r, n) {
+        cur.wallMyReplied[cur.oid + "_" + cur.pid] = 0, Pagination.loaded.apply(window, arguments), setTimeout(FullWall.scrollToEnd, 0), t && a && nav.setLoc(extend(nav.objLoc, {
+            offset: a
         }))
     },
-    loadedReplies: function(e, o, a, t, l, r, n) {
-        r || (n = t);
-        for (var i in n) cur.options.reply_names[i] = n[i];
+    loadedReplies: function(e, o, l, a, t, r, n) {
+        r || (n = a);
+        for (var s in n) cur.options.reply_names[s] = n[s];
         FullWall.onePostOnScroll(), FullWall.repliesSummary(e)
     },
     repliesSummary: function(e) {
@@ -183,57 +183,14 @@ var FullWall = {
         o && (o.innerHTML = e ? getLang("wall_n_replies", e) : getLang("wall_no_replies"), show(o.parentNode))
     },
     addTetaTet: function(e, o) {
-        var a = {
+        var l = {
             own_reply_link: "",
             tet_a_tet: ""
         };
-        return o[9] && o[9] != o[2].split("_")[0] && cur.wallTpl.tet_a_tet ? a.tet_a_tet = cur.wallTpl.tet_a_tet.replace("%from_uid%", o[9]) : a.own_reply_link = cur.wallTpl.own_reply_link.replace("%post_id%", o[2]), a
+        return o[9] && o[9] != o[2].split("_")[0] && cur.wallTpl.tet_a_tet ? l.tet_a_tet = cur.wallTpl.tet_a_tet.replace("%from_uid%", o[9]) : l.own_reply_link = cur.wallTpl.own_reply_link.replace("%post_id%", o[2]), l
     },
     notePart: function(e, o) {
         hide(e), show(o)
-    },
-    subscribe: function(e, o, a, t) {
-        if (!actionsMenuItemLocked(e)) {
-            var l = intval(e.getAttribute("data-value")) ? 1 : 0,
-                r = {
-                    showProgress: lockActionsMenuItem.pbind(e),
-                    hideProgress: unlockActionsMenuItem.pbind(e),
-                    onFail: function(e) {
-                        setTimeout(showFastBox(getLang("global_error"), e).hide, 3e3)
-                    }
-                };
-            if (o > 0) ajax.post("al_friends.php", {
-                act: l ? "remove" : "add",
-                mid: o,
-                hash: a,
-                from: "wall_one"
-            }, extend(r, {
-                onDone: function(o) {
-                    val(e, o), e.setAttribute("data-value", 1 - l)
-                }
-            }));
-            else {
-                var n = function(t) {
-                    ajax.post("al_groups.php", {
-                        act: l ? "list_leave" : "list_enter",
-                        gid: -o,
-                        hash: a,
-                        confirm: t
-                    }, extend(r, {
-                        onDone: function(o, a, t) {
-                            if (a) {
-                                var r = showFastBox(getLang("global_warning"), a, getLang("group_leave_group"), function() {
-                                    r.hide(), n(1)
-                                }, getLang("global_cancel"));
-                                return !0
-                            }
-                            val(e, o), e.setAttribute("data-value", 1 - l), t && (re(domNS(e)), re(e))
-                        }
-                    }))
-                };
-                n()
-            }
-        }
     },
     doSearch: function(e, o) {
         uiSearch.showProgress(e), nav.objLoc[0].split("/").length > 1 ? nav.change({
