@@ -536,10 +536,10 @@ var stVersions = {
     'internal/ui_manual.js': 1761369792,
     'internal/patterns_info.css': 14249041637,
     'article.css': 31911992615,
-    'article_editor.css': 29426547803,
+    'article_editor.css': 30026575570,
     'cmodules/web/article.js': 29406123770,
-    'cmodules/web/article_layer.js': 19779096763,
-    'article_view.js': 17139741228,
+    'cmodules/web/article_layer.js': 18524442527,
+    'article_view.js': 15885086992,
     'internal/cvkmobile.css': 13815388837,
     'internal/cvkmobile.js': 3588813277,
     'shortener.js': 16413120,
@@ -630,4 +630,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 682;
+var _rnd = 5466;

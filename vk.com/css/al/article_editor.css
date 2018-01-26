@@ -1615,6 +1615,17 @@
     opacity: 1
 }
 
+.article_ed_layer .article_ed_guide .article_ed_guide__tab_more {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3Elr_link_16%3C%2Ftitle%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cpath%20d%3D%22M0%200h16v16H0z%22%2F%3E%3Cg%20stroke%3D%22%23000%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M5.5%2010.5l5.002-5.002M10.496%2010.005V5.5H6%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    padding-right: 16px;
+    background-position: 100% 0
+}
+
+.article_ed_layer .article_ed_guide .article_ed_guide__tab_more>a {
+    color: inherit
+}
+
 .article_ed_layer .article_ed_guide #slide_0 img {
     width: 612px
 }
