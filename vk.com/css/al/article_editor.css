@@ -179,7 +179,7 @@
     margin: 0;
     font-size: 19px;
     font-family: PT Serif, serif;
-    color: #000;
+    color: rgba(0, 0, 0, .86);
     line-height: 1.5em;
     background-color: #fff;
     word-break: break-word;
@@ -1132,8 +1132,8 @@
     transition: opacity 150ms linear
 }
 
-.article_ed_layer.article_ed_guide_shown .article_ed_layer__content {
-    margin-bottom: 320px
+.article_ed_layer.article_ed_guide_shown .article_ed_layer__wrap {
+    padding-bottom: 320px
 }
 
 .article_ed_layer .article_ed_layer__drafts_list {
@@ -1169,7 +1169,7 @@
 
 .article_ed_layer .article_ed_layer__publish_settings .article_ed_layer__publish_settings_cover {
     width: 100%;
-    height: 198px;
+    height: 180px;
     position: relative;
     background-size: cover;
     background-position: 50%;
@@ -1441,7 +1441,7 @@
     padding: 32px 0 0;
     border-top: 1px solid #e7e8ec;
     opacity: 1;
-    background-color: #fff;
+    background-color: #fafbfc;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -1475,7 +1475,7 @@
     position: absolute;
     right: 30px;
     top: 30px;
-    opacity: 0.32
+    opacity: 0.6
 }
 
 .article_ed_layer .article_ed_guide .article_ed_guide__close:active {
@@ -1483,7 +1483,7 @@
 }
 
 .article_ed_layer .article_ed_guide .article_ed_guide__close:hover {
-    opacity: 0.7
+    opacity: 0.8
 }
 
 .article_ed_layer .article_ed_guide .article_ed_guide__left,
@@ -1539,7 +1539,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background-color: #fff;
+    background-color: #fafbfc;
     white-space: normal
 }
 
@@ -1998,7 +1998,7 @@
     border: none;
     font-size: 19px;
     font-family: PT Serif, serif;
-    color: #000
+    color: rgba(0, 0, 0, .86)
 }
 
 body[data-useragent*=msie] .article_editor_canvas[contenteditable=true],

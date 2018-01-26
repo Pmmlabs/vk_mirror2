@@ -629,11 +629,11 @@ var VideoUpload = {
         }) : show("video_upload_no_video")), cleanElems(e)
     },
     initBeforeUnload: function() {
-        window.onbeforeunload != VideoUpload.checkChanges && (cur.nav.push(function(e, o, a, d) {
+        cur.nav.push(function(e, o, a, d) {
             return VideoUpload.checkChanges(1) === !1 ? (cur.onContinueCb = nav.go.pbind(a), !1) : void 0
         }), cur.prevBefUnload = window.onbeforeunload, window.onbeforeunload = VideoUpload.checkChanges, cur.destroy.push(function() {
             window.onbeforeunload = cur.prevBefUnload, VideoUpload.destroyTab()
-        }))
+        })
     },
     checkChanges: function(e) {
         if (!cur.leaving) {

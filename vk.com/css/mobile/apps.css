@@ -2323,6 +2323,7 @@ input.wide_button {
 
 .ii_body {
     display: block;
+    position: relative;
     padding-right: 22px;
     min-height: 32px
 }

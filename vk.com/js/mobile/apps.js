@@ -670,7 +670,7 @@ var vkApp = function(cont, options, params, onInit) {
             if (self.options.height) {
                 frameParams.height = '100%';
             }
-            this.frame = this.RPC.append(self.cont, frameParams, 'webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"');
+            this.frame = this.RPC.append(self.cont, frameParams, 'webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true" allow="geolocation; microphone; camera"');
             this.frame.style.display = 'block';
             break;
     }

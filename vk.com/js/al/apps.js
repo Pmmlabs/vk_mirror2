@@ -723,7 +723,7 @@ var vkApp = function(e, t, i, o) {
                     overflow: "hidden",
                     scrolling: "no"
                 };
-                n.options.widget || (d.height = n.options.height + "px"), this.frame = this.RPC.append(n.cont, d, 'webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"');
+                n.options.widget || (d.height = n.options.height + "px"), this.frame = this.RPC.append(n.cont, d, 'webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true" allow="geolocation; microphone; camera"');
                 break;
             case 2:
                 debugLog("is wrapper");
@@ -1120,7 +1120,7 @@ AppsSlider.prototype = {
     _serveVideoSlide: function() {
         var e, t, i, o, n = this.getCurrentSlide(),
             s = domData(n, "video");
-        s ? (e = geByTag1("img", n), t = domData(e, "loading"), i = domData(e, "playing"), t || i ? this._canUseVideo() && this.videoPlayer && this.videoPlayer.play() : (o = this._getVideoParams(n), o.onLoaded = this._onVideoLoaded.bind(this, n), this._canUseVideo() && showInlineVideo(o.video, o.list, o, !1, e))) : this._canUseVideo() && this.videoPlayer && this.videoPlayer.pause()
+        s ? (e = geByTag1("img", n), t = domData(e, "loading"), i = domData(e, "playing"), t || i ? this._canUseVideo() && this.videoPlayer && this.videoPlayer.play() : (o = this._getVideoParams(n), o.onLoaded = this._onVideoLoaded.bind(this, n), this._canUseVideo() && showInlineVideo(o.video, o.list, o, !1, e))) : this._canUseVideo() && this.videoPlayer && this.videoPlayer.pause();
     },
     _canUseVideo: function() {
         var e = window.wkcur && window.wkcur.shown && window.wkLayerWrap && isVisible(wkLayerWrap) || window.Videoview.isLayerShown();
@@ -2171,7 +2171,7 @@ AppsSlider.prototype = {
         else if (cur.adminApps && cur.adminApps[e]) var c = showFastBox({
             title: getLang("apps_deletingapp")
         }, getLang("apps_admin_quit"), getLang("global_delete"), function() {
-            r(), c.hide();
+            r(), c.hide()
         }, getLang("global_cancel"));
         else r()
     },

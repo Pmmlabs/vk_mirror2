@@ -1876,6 +1876,10 @@
     font-size: 12px
 }
 
+.bt_product_row_title_parent>a {
+    color: #939393
+}
+
 .bt_product_row_subtitle {
     margin-top: 2px;
     color: #656565;
