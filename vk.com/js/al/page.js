@@ -5823,7 +5823,8 @@ var Wall = {
             oid = post_id.split('_')[0],
             reply_link = reply_button = '',
             thumbs = ev[4].split('|'),
-            repls;
+            repls,
+            date = Wall.getNowRelTime(cur);
 
         if (ev[8] == 1) {
             reply_link += cur.wallTpl.reply_link;
@@ -5846,7 +5847,8 @@ var Wall = {
         } else if (ev[2].split('_')[0] != ev[4]) {
             acts.push(cur.wallTpl.spam);
         }
-        if (adminLevel > 1 && ev[9] == oid || oid == vk.id || ev[9] == vk.id) {
+        var isEditor = adminLevel > 1 && ev[9] == oid || oid == vk.id || ev[9] == vk.id;
+        if (isEditor) {
             acts.push(cur.wallTpl.edit);
         }
 
@@ -5870,7 +5872,7 @@ var Wall = {
             photo: psr(thumbs[0]),
             link: ev[5],
             text: psr(ev[6]),
-            date: Wall.getNowRelTime(cur),
+            date: date,
             post_id: ev[2],
             poll_hash: cur.wallTpl.poll_hash,
             date_postfix: '',
@@ -5888,6 +5890,14 @@ var Wall = {
         }
 
         extendCb && extend(repls, extendCb(repls, ev));
+
+        if (isEditor && cur.wallTpl.author_data) {
+            repls.date = rs(cur.wallTpl.author_data, {
+                date: repls.date,
+                post_id: post_id
+            });
+        }
+
         return rs(rs(cur.wallTpl.post, repls), repls);
     },
     updateAnonNewPost: function(ev, el) {
@@ -6309,6 +6319,7 @@ var Wall = {
                         }
                         updH += editEl.offsetHeight;
                         nodeUpdated(editEl);
+                        Wall.updatePostAuthorData(post_id);
                         break;
                     }
                 case 'edit_reply':
@@ -7428,6 +7439,59 @@ var Wall = {
     },
     processPostReplyActions: function(reply) {
 
+    },
+
+    updatePostAuthorData: function(post_id) {
+        geByClass('_post_author_data_' + post_id).forEach(function(el) {
+            el.post_author_data_update = true;
+        });
+    },
+
+    showPostAuthorData: function(el, event) {
+        var post_raw = el.className.match(/_post_author_data_(-?\d+_\d+)/)[1] || '';
+        var target = event ? event.target : window.event.srcElement;
+
+        if (!post_raw || target != el && target.onmouseover) {
+            return;
+        }
+
+        if (el.post_author_data_update) {
+            delete el.post_author_data_update;
+
+            if (el.post_author_data_tt) {
+                el.post_author_data_tt.destroy();
+                el.post_author_data_tt = false;
+            }
+        }
+
+        if (el.post_author_data_tt) {
+            return;
+        }
+
+        ajax.post('al_page.php', {
+            act: 'post_author_data_tt',
+            raw: post_raw
+        }, {
+            onDone: function(html) {
+                var anchor = geByClass1('post_link', el) || domFC(el);
+
+                if (!html || !anchor) {
+                    el.post_author_data_tt = true;
+                    return;
+                }
+
+                el.post_author_data_tt = new ElementTooltip(anchor, {
+                    content: html,
+                    arrowSize: 'mini',
+                    appendToParent: true,
+                    cls: 'post_author_data',
+                    offset: vk.widget ? [0, -2] : void 0,
+                    forceSide: 'bottom',
+                    id: 'author_tt_' + post_raw
+                });
+                el.post_author_data_tt.show();
+            }
+        })
     }
 }
 

@@ -1353,7 +1353,10 @@ body.article_body .article_layer {
     background-color: #fff;
     padding: 11px 0;
     margin-bottom: 30px;
-    margin-top: 30px;
+    margin-top: 30px
+}
+
+.article_layer .article_layer__footer.article_layer__footer--trans {
     transition: background-color 450ms ease-in-out, border-top-color 450ms ease-in-out, -webkit-transform 350ms ease;
     -o-transition: background-color 450ms ease-in-out, transform 350ms ease, border-top-color 450ms ease-in-out, -o-transform 350ms ease;
     transition: background-color 450ms ease-in-out, transform 350ms ease, border-top-color 450ms ease-in-out;

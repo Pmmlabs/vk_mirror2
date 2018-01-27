@@ -637,3 +637,17 @@ body.mac .wcommunity_show_more button .pr {
         background-image: url(/images/camera_200.png)
     }
 }
+
+.wcommunity_mini .eltt.post_author_data,
+.wcommunity_nano .eltt.post_author_data {
+    max-width: 274px
+}
+
+.wcommunity_nano .eltt.post_author_data {
+    min-width: 200px;
+    left: -65px!important
+}
+
+.wcommunity_nano .eltt.post_author_data .eltt_arrow_back {
+    left: 65px!important
+}

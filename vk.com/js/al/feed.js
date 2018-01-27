@@ -326,7 +326,7 @@ var Feed = {
                 }));
                 window.ny2018ReplaceText && (M = ny2018ReplaceText(M));
                 var m = ge("post" + r);
-                m && !isVisible(m.parentNode) && (M = wall.updatePostImages(M)), val(E, M), L && (L = geByClass1("wall_post_more", E), L && L.onclick()), ge("post_poll_id" + r) && wall.updatePoll(r), B && (c += E.offsetHeight), nodeUpdated(E);
+                m && !isVisible(m.parentNode) && (M = wall.updatePostImages(M)), val(E, M), L && (L = geByClass1("wall_post_more", E), L && L.onclick()), ge("post_poll_id" + r) && wall.updatePoll(r), B && (c += E.offsetHeight), nodeUpdated(E), window.Wall && Wall.updatePostAuthorData(r);
                 break;
             case "edit_reply":
                 var N = e[3],
@@ -912,7 +912,8 @@ var Feed = {
                 if (t) {
                     var o = gpeByClass("_post_wrap", t),
                         r = geByClass1("_post_content", o);
-                    show(r, geByClass1("_answer_wrap", o)), hide(t), removeClass(o, "feedback_row_touched");
+                    show(r, geByClass1("_answer_wrap", o)), hide(t),
+                        removeClass(o, "feedback_row_touched")
                 }
             },
             showProgress: function() {

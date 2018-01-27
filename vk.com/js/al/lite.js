@@ -6177,8 +6177,35 @@ function showDoneBox(msg, opts) {
     _fadeOut();
 }
 
-/* UI ElementTooltip */
+/**
+ Simple tooltips.
 
+ el - object which tootlip should point to
+ opts
+ content         - (required) string or dom element for tooltip content
+ id              - custom id for tootlip
+ cls             - custom class for tooltip
+ autoShow        - show/hide tooltip on mouse enter/leave, if false - on mouse click (default: true)
+ customShow      - external code sets visibility of tooltip
+ delay           - delay for tooltip show (default: 100)
+ appendTo        - appends tooltip to particular element
+ appendToParent  - appends tooltip to closest positioned element (default: false)
+ offset          - custom offset for tooltip (default: [0, 0]). Array or function returning array
+ shift           - custom array shift
+ elClassWhenShown - class that will be added to el when tooltip is shown
+ setPos          - function for calculation tooltip custom position. forceSide parameter is required
+ noHideOnClick   - no hide tooltip after show by click. work only with autoShow=false (default: false)
+ type            - ElementTooltip.TYPE_VERTICAL / ElementTooltip.TYPE_HORIZONTAL (default vertical)
+ forceSide       - forces tooltip to be shown on particular side top/bottom/left/right. It ignores type option.
+ defaultSide
+ width           - custom tooltip height (function or int value)
+ noBorder
+ arrowSize       - 'mini', normal', 'big'
+
+ onShow          - callback fired when tooltip is shown
+ onHide          - callback fired when tooltip is hidden
+ onFirstTimeShow - callback fired when tooltip is shown first time (onShow also will be called next)
+ */
 function ElementTooltip(el, opts) {
     if (this.constructor != ElementTooltip) {
         throw new Error('ElementTooltip was called without \'new\' operator');
@@ -6189,32 +6216,65 @@ function ElementTooltip(el, opts) {
         throw new Error('First argument not a DOM element');
     }
 
-    if (data(el, 'ett')) {
-        return;
+    if (data(el, 'ett')) { // already have tt for this element
+        return data(el, 'ett');
     }
 
     this._opts = extend({
         delay: 100,
         offset: [0, 0],
+        shift: 0,
         type: ElementTooltip.TYPE_VERTICAL,
         id: '',
         cls: '',
         width: null,
         appendToParent: false,
-        autoShow: true
+        autoShow: true,
+        autoHide: false,
+        noHideOnClick: false,
+        arrowSize: 'normal',
+        customShow: false,
     }, opts);
+
+    if (this._opts.customShow) {
+        this._opts.autoShow = false
+    }
+
+    if (!this._opts.defaultSide) {
+        this._opts.defaultSide = this._opts.type == ElementTooltip.TYPE_VERTICAL ? 'top' : 'left'
+    }
+
+    this._opts.cls += ' eltt_arrow_size_' + this._opts.arrowSize
+
+    if (this._opts.noBorder) {
+        this._opts.cls += ' eltt_noborder'
+    }
+
+    if (this._opts.type != ElementTooltip.TYPE_VERTICAL) {
+        delete this._opts.shift
+    }
 
     if (this._opts.setPos && !this._opts.forceSide) {
         throw new Error('forceSide parameter should be set if you use setPos');
     }
 
     if (this._opts.forceSide) {
-        this._opts.type = inArray(this._opts.forceSide, ['top', 'down']) ? ElementTooltip.TYPE_VERTICAL : ElementTooltip.TYPE_HORIZONTAL;
+        this._opts.type = inArray(this._opts.forceSide, ['top', 'bottom']) ? ElementTooltip.TYPE_VERTICAL : ElementTooltip.TYPE_HORIZONTAL;
     }
 
     this._appendToEl = this._opts.appendTo ? this._opts.appendTo : (this._opts.appendToParent ? domClosestPositioned(el, {
         noOverflow: true
     }) : el);
+
+    this._arrowSize = {
+        'mini': ElementTooltip.ARROW_SIZE_MINI,
+        'normal': ElementTooltip.ARROW_SIZE_NORMAL,
+        'big': ElementTooltip.ARROW_SIZE_BIG,
+    }[this._opts.arrowSize]
+
+    if (this._opts.forceSide) {
+        this._opts.type = ElementTooltip.getType(this._opts.forceSide)
+    }
 
     this._el = el;
     data(this._el, 'ett', this);
@@ -6229,11 +6289,26 @@ function ElementTooltip(el, opts) {
 ElementTooltip.TYPE_VERTICAL = 0;
 ElementTooltip.TYPE_HORIZONTAL = 1;
 ElementTooltip.FADE_SPEED = 100; // keep in sync with @eltt_fade_speed
+ElementTooltip.ARROW_SIZE = 6;
+
+ElementTooltip.ARROW_SIZE_MINI = 9
+ElementTooltip.ARROW_SIZE_NORMAL = 7
+ElementTooltip.ARROW_SIZE_BIG = 16
 
 ElementTooltip.prototype._initEvents = function(el) {
     if (this._opts.autoShow) {
-        addEvent(el, 'mouseenter', this._onMouseEnter.bind(this));
-        addEvent(el, 'mouseleave', this._onMouseLeave.bind(this));
+        addEvent(el, 'mouseenter', this._el_me_event = this._onMouseEnter.bind(this));
+    }
+
+    if (this._opts.autoShow || this._opts.autoHide) {
+        addEvent(el, 'mouseleave', this._el_ml_event = this._onMouseLeave.bind(this));
+    }
+
+    if (!this._opts.autoShow && !this._opts.customShow) {
+        addEvent(el, 'click', this._el_c_event = function() {
+            if (this._isShown && this._opts.noHideOnClick) return;
+            this.toggle(!this._isShown)
+        }.bind(this));
     }
 }
 
@@ -6261,6 +6336,10 @@ ElementTooltip.prototype._onMouseWindowClick = function(event) {
         node = domPN(node);
     }
 
+    if (hasClass(event.target, '_ap_layer__close')) {
+        return
+    }
+
     if (!node || node == document.body) {
         this.hide(true);
         return cancelEvent(event);
@@ -6268,10 +6347,19 @@ ElementTooltip.prototype._onMouseWindowClick = function(event) {
 }
 
 ElementTooltip.prototype.destroy = function() {
+    this._el_me_event && removeEvent(this._el, 'mouseenter', this._el_me_event);
+    this._el_ml_event && removeEvent(this._el, 'mouseleave', this._el_ml_event);
+    this._el_c_event && removeEvent(this._el, 'click', this._el_c_event);
+
     this._clearTimeouts();
-    data(this._el, 'ett', null);
+    removeData(this._el, 'ett');
     re(this._ttel);
     this._ev_wclick && removeEvent(document, 'mousedown', this._ev_wclick);
+    var contentEl;
+    if (this._ttel) {
+        contentEl = geByClass1('_eltt_content', this._ttel);
+    }
+    this._opts.onDestroy && this._opts.onDestroy(contentEl);
 }
 
 ElementTooltip.prototype.hide = function(byElClick) {
@@ -6288,13 +6376,16 @@ ElementTooltip.prototype._onTooltipMouseLeave = function(ev) {
 
 ElementTooltip.prototype.build = function() {
     if (!this._ttel) {
-        this._ttel = se('<div class="eltt ' + (this._opts.cls || '') + '" id="' + this._opts.id + '"></div>');
+        this._ttel = se('<div class="eltt ' + (this._opts.cls || '') + '" id="' + this._opts.id + '"><div class="eltt_arrow_back _eltt_arrow_back"><div class="eltt_arrow"></div></div><div class="eltt_content _eltt_content"></div></div>');
+        this._ttArrowEl = geByClass1('_eltt_arrow_back', this._ttel)
+
+        var contentWrap = geByClass1('_eltt_content', this._ttel)
 
         if (this._opts.content) {
             if (isString(this._opts.content)) {
-                this._ttel.appendChild(se('<div>' + trim(this._opts.content) + '</div>'));
+                contentWrap.innerHTML = this._opts.content;
             } else {
-                this._ttel.appendChild(this._opts.content);
+                contentWrap.appendChild(this._opts.content);
             }
         }
 
@@ -6303,14 +6394,17 @@ ElementTooltip.prototype.build = function() {
 }
 
 ElementTooltip.prototype.show = function() {
+    if (this._isShown) {
+        this.updatePosition();
+        return
+    }
+
     this._clearTimeouts();
 
     if (!this._ttel) {
         this.build();
 
-        this._opts.onFirstTimeShow && this._opts.onFirstTimeShow.call(this, this._ttel);
-
-        if (this._opts.autoShow) {
+        if (this._opts.autoShow || this._opts.autoHide) {
             addEvent(this._ttel, 'mouseenter', this._ev_ttenter = this._onTooltipMouseEnter.bind(this));
             addEvent(this._ttel, 'mouseleave', this._ev_ttleave = this._onTooltipMouseLeave.bind(this));
         }
@@ -6321,14 +6415,22 @@ ElementTooltip.prototype.show = function() {
         setStyle(this._ttel, 'width', width);
     }
 
-    this._opts.onShow && this._opts.onShow(this._ttel);
+    show(this._ttel);
+
+    var contentEl = geByClass1('_eltt_content', this._ttel)
+    if (this._opts.onFirstTimeShow && !this._firstTimeShown) {
+        this._opts.onFirstTimeShow.call(this, contentEl, this._ttel);
+    }
+    this._opts.onShow && this._opts.onShow(contentEl, !this._firstTimeShown);
+
+    this._firstTimeShown = true;
 
     this.updatePosition();
 
-    show(this._ttel);
     this._isShown = true;
 
-    setTimeout(addClass.pbind(this._ttel, 'eltt_vis'), 10);
+    this.updatePosition();
+    this._visTO = setTimeout(addClass.pbind(this._ttel, 'eltt_vis'), 10);
 
     this._opts.elClassWhenShown && addClass(this._el, this._opts.elClassWhenShown);
 
@@ -6338,33 +6440,103 @@ ElementTooltip.prototype.show = function() {
     addEvent(document, 'mousedown', this._ev_wclick = this._onMouseWindowClick.bind(this));
 }
 
+ElementTooltip.getType = function(side) {
+    switch (side) {
+        case 'top':
+        case 'bottom':
+            return ElementTooltip.TYPE_VERTICAL
+        case 'right':
+        case 'left':
+            return ElementTooltip.TYPE_HORIZONTAL
+    }
+}
+
+ElementTooltip.prototype.getOptions = function() {
+    return this._opts
+}
+
 ElementTooltip.prototype.updatePosition = function() {
     var side = this._opts.forceSide;
 
-    var elPos = getXY(this._el);
-    var elSize = getSize(this._el);
+    var boundingBox
+    if (this._opts.getTargetBoundingBox) {
+        boundingBox = this._opts.getTargetBoundingBox(this)
+    } else {
+        var elPos = getXY(this._el);
+        var elSize = getSize(this._el);
+        boundingBox = {
+            left: elPos[0],
+            top: elPos[1],
+            width: elSize[0],
+            height: elSize[1]
+        }
+    }
+
     var ttelSize = getSize(this._ttel);
+
+    var arrowSize = this._arrowSize
+    var border = this._opts.noBorder ? 0 : 1
+
+    var offset = isFunction(this._opts.offset) ? this._opts.offset() : this._opts.offset;
 
     var style;
 
+    var _this = this
+
+    function setArrowCenteredPosition(side, shift) {
+        var style = {}
+        var sizeIndex = ['marginLeft', 'marginTop'].indexOf(side);
+        style[side] = Math.floor(ttelSize[sizeIndex] / 2) /*tt center*/ - border /*borders*/ - arrowSize - (shift || 0) /*shift compensation*/
+        setStyle(_this._ttArrowEl, style)
+    }
+
     if (this._opts.setPos) {
-        style = this._currentPosition = this._opts.setPos.call(this, this._currentPosition || {}) || {};
-        side = this._opts.forceSide;
+        // if setPos callback provided it should return
+        // { left, top, arrowPos(optional) }
+        style = this._opts.setPos(this) || {};
+
+        if (ElementTooltip.getType(side) == ElementTooltip.TYPE_VERTICAL) {
+            if (style.arrowPosition !== (void 0)) {
+                setStyle(this._ttArrowEl, {
+                    marginLeft: style.arrowPosition
+                })
+            } else {
+                setArrowCenteredPosition('marginLeft')
+            }
+        } else {
+            if (style.arrowPosition !== (void 0)) {
+                setStyle(this._ttArrowEl, {
+                    marginTop: style.arrowPosition
+                })
+            } else {
+                setArrowCenteredPosition('marginTop')
+            }
+        }
 
     } else {
-        if (!side) {
-            var boundingEl = domClosestOverflowHidden(this._el);
-            var boundingElPos = getXY(boundingEl);
-            boundingElPos[1] += scrollGetY() + 30;
+        if (!side && this._prevSide && this._opts.preventSideChange) {
+            side = this._prevSide
+
+        } else if (!side) {
+            var audioLayerWrapEl = gpeByClass('audio_layer_container', this._ttel)
+            var boundingEl = audioLayerWrapEl ? audioLayerWrapEl : domClosestOverflowHidden(this._ttel);
+            var boundingElPos = (boundingEl != bodyNode) ? getXY(boundingEl) : [scrollGetX(), scrollGetY() + getPageHeaderHeight()];
+            var boundingElSize = (boundingEl != bodyNode) ? getSize(boundingEl) : [window.innerWidth, window.innerHeight]
 
             if (this._opts.type == ElementTooltip.TYPE_VERTICAL) {
-                if (elPos[1] - boundingElPos[1] < ttelSize[1]) {
-                    side = 'bottom';
+                var inMessages = hasClass(bodyNode, 'body_im')
+                var bottomGap = inMessages ? 60 : (this._opts.bottomGap || 0)
+
+                var enoughSpaceAbove = (boundingBox.top - boundingElPos[1]) > ttelSize[1] + arrowSize - offset[1]
+                var enoughSpaceBelow = (scrollGetY() + boundingElSize[1] - (boundingBox.top + boundingBox.height + arrowSize) - bottomGap) > ttelSize[1]
+
+                if (this._opts.defaultSide == 'top') {
+                    side = enoughSpaceAbove ? 'top' : 'bottom'
                 } else {
-                    side = 'top';
+                    side = enoughSpaceBelow ? 'bottom' : 'top'
                 }
             } else {
-                if (elPos[0] - boundingElPos[0] < ttelSize[0]) {
+                if ((boundingBox.left - boundingElPos[0]) < ttelSize[0]) {
                     side = 'right';
                 } else {
                     side = 'left';
@@ -6372,55 +6544,75 @@ ElementTooltip.prototype.updatePosition = function() {
             }
         }
 
-        var arrowSize = 5;
-
         var parentPos = getXY(this._appendToEl);
-        parentOffset = [
-            elPos[0] - parentPos[0],
-            elPos[1] - parentPos[1]
+        var parentOffset = [
+            boundingBox.left - parentPos[0],
+            boundingBox.top - parentPos[1]
         ];
+
+        var shift
+        var totalLeftOffset = offset[0] + parentOffset[0]
+
+        if (this._opts.centerShift) {
+            totalLeftOffset += this._opts.centerShift || 0
+            shift = this._opts.centerShift
+        } else if (this._opts.rightShift) {
+            shift = -(ttelSize[0] / 2 - this._opts.rightShift)
+            totalLeftOffset += shift
+        }
+
+        this._prevSide = side
 
         switch (side) {
             case 'bottom':
                 style = {
-                    left: -ttelSize[0] / 2 + elSize[0] / 2 + this._opts.offset[0] + parentOffset[0],
-                    top: elSize[1] + arrowSize - this._opts.offset[1] + parentOffset[1]
+                    left: -ttelSize[0] / 2 + boundingBox.width / 2 + totalLeftOffset,
+                    top: boundingBox.height + arrowSize - offset[1] + parentOffset[1]
                 };
                 break;
 
             case 'top':
                 style = {
-                    left: -ttelSize[0] / 2 + elSize[0] / 2 + this._opts.offset[0] + parentOffset[0],
-                    top: -ttelSize[1] - arrowSize + this._opts.offset[1] + parentOffset[1]
+                    left: -ttelSize[0] / 2 + boundingBox.width / 2 + totalLeftOffset,
+                    top: -ttelSize[1] - arrowSize + offset[1] + parentOffset[1]
                 };
                 break;
 
             case 'right':
                 style = {
-                    left: elSize[0] + arrowSize + this._opts.offset[0] + parentOffset[0],
-                    top: elSize[1] / 2 - ttelSize[1] / 2 + this._opts.offset[1] + parentOffset[1]
+                    left: boundingBox.width + arrowSize + totalLeftOffset,
+                    top: boundingBox.height / 2 - ttelSize[1] / 2 + offset[1] + parentOffset[1]
                 };
                 break;
 
             case 'left':
                 style = {
-                    left: -ttelSize[0] - arrowSize + this._opts.offset[0] + parentOffset[0],
-                    top: elSize[1] / 2 - ttelSize[1] / 2 + this._opts.offset[1] + parentOffset[1]
+                    left: -ttelSize[0] - arrowSize + totalLeftOffset,
+                    top: boundingBox.height / 2 - ttelSize[1] / 2 + offset[1] + parentOffset[1]
                 };
                 break;
         }
+
+        if (this._opts.type == ElementTooltip.TYPE_VERTICAL) {
+            setArrowCenteredPosition('marginLeft', shift)
+        } else {
+            setArrowCenteredPosition('marginTop')
+        }
     }
 
-    var _this = this;
-    each(['top', 'bottom', 'left', 'right'], function(i, side) {
-        removeClass(_this._ttel, 'eltt_' + side);
-    });
+    each(['top', 'bottom', 'left', 'right'], function(i, s) {
+        if (side != s) {
+            removeClass(this._ttel, 'eltt_' + s);
+        }
+    }.bind(this));
 
     addClass(this._ttel, 'eltt_' + side);
     setStyle(this._ttel, style);
 }
 
 ElementTooltip.prototype._hide = function(byElClick) {
+    this._isShown = false;
+
     this._clearTimeouts();
 
     this._reTimeout = setTimeout((function() {
@@ -6430,7 +6622,11 @@ ElementTooltip.prototype._hide = function(byElClick) {
         this._opts.onHide && this._opts.onHide(this._ttel, !!byElClick);
     }).bind(this), ElementTooltip.FADE_SPEED);
 
-    this._isShown = false;
+    if (this._opts.onBeforeHide) {
+        try {
+            this._opts.onBeforeHide(this._ttel, !!byElClick);
+        } catch (e) {}
+    }
 
     removeClass(this._ttel, 'eltt_vis');
     this._ev_wclick && removeEvent(document, 'mousedown', this._ev_wclick);
@@ -6449,6 +6645,8 @@ ElementTooltip.prototype.toggle = function() {
 }
 
 ElementTooltip.prototype._clearTimeouts = function() {
+    this._visTO && clearTimeout(this._visTO);
+    this._visTO = false;
     this._sto && clearTimeout(this._sto);
     this._sto = false;
     this._hto && clearTimeout(this._hto);
@@ -6458,7 +6656,7 @@ ElementTooltip.prototype._clearTimeouts = function() {
 }
 
 ElementTooltip.prototype.getContent = function() {
-    return this._ttel;
+    return geByClass1('_eltt_content', this._ttel);
 }
 
 /* UI Radio */
