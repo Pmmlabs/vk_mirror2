@@ -294,7 +294,7 @@
                 case "criteo":
                     return AdsLight.sendExperimentStat(d, "lineup"), AdsLight.tryRenderCriteo(d, e.slice(t + 1)), !0;
                 case "rb":
-                    return AdsLight.sendExperimentStat(d, "lineup"), AdsLight.tryRenderTarget(a[0], a[1], d, r, a[2], a[3], e.slice(t + 1)), !0;
+                    return AdsLight.sendExperimentStat(d, "lineup"), AdsLight.tryRenderTarget(a[0], a[1], d, r, a[2], a[3], a[4], e.slice(t + 1)), !0;
                 case "vk":
                     AdsLight.sendExperimentStat(d, "lineup"), AdsLight.sendExperimentStat(d, "try");
                     var l = vk__adsLight.adsParams;
@@ -920,28 +920,29 @@
             r = "https://ad.mail.ru/adq/?callback=" + n + "&q%5B%5D=" + o + "%3Fn%3D" + encodeURIComponent(e),
             l = {},
             g = 5e3;
-        s && s.test_id && (l.test_id = s.test_id), s && s.cpm_floor && "0" != s.cpm_floor && (l.cpm_floor = s.cpm_floor), s && s.vk_id && (l.vk_id = s.vk_id);
+        s && s.test_id && (l.test_id = s.test_id), s && s.cpm_floor && "0" != s.cpm_floor && (l.cpm_floor = s.cpm_floor), s && s.vk_id && (l.vk_id = s.vk_id), s && s.count && (l.count = s.count);
         var h;
         for (h in l) r += "&" + h + "=" + l[h];
         return d(r, t, i), n
-    }, AdsLight.tryRenderTarget = function(e, t, i, s, d, a, n) {
-        var o = {
+    }, AdsLight.tryRenderTarget = function(e, t, i, s, d, a, n, o) {
+        var r = {
             slot_id: t,
             label: s,
             cpm_floor: d,
-            test_id: a
+            test_id: a,
+            count: n
         };
-        e && (o.test_id = e), window.vk && vk.id && (o.vk_id = vk.id), AdsLight.sendExperimentStat(i, "try");
-        var r = !1,
-            l = setTimeout(function() {
-                AdsLight.sendExperimentStat(i, "noresult"), r && window[r] && (window[r] = function() {}), AdsLight.tryExperiment(n)
+        e && (r.test_id = e), window.vk && vk.id && (r.vk_id = vk.id), AdsLight.sendExperimentStat(i, "try");
+        var l = !1,
+            g = setTimeout(function() {
+                AdsLight.sendExperimentStat(i, "noresult"), l && window[l] && (window[l] = function() {}), AdsLight.tryExperiment(o)
             }, 6e3);
         stManager.add(["mrtarg.js", "mrtarg.css"], function() {
-            r = AdsLight.getRBAds("ads_left", function() {
-                clearTimeout(l), AdsLight.sendExperimentStat(i, "success"), window.RB && window.RB.doCheck && window.RB.doCheck()
+            l = AdsLight.getRBAds("ads_left", function() {
+                clearTimeout(g), AdsLight.sendExperimentStat(i, "success"), window.RB && window.RB.doCheck && window.RB.doCheck()
             }, function(e) {
-                clearTimeout(l), AdsLight.sendExperimentStat(i, "fail"), AdsLight.tryExperiment(n)
-            }, o)
+                clearTimeout(g), AdsLight.sendExperimentStat(i, "fail"), AdsLight.tryExperiment(o)
+            }, r)
         })
     }, AdsLight.initGADX = function(e, t, i, s) {
         if (vk__adsLight.gadxLoadTries++, !vk__adsLight.gadxLoading && !vk__adsLight.gadxLoaded) {

@@ -167,10 +167,10 @@ var stVersions = {
     'sorter.js': 1976440538,
     'qsorter.js': 4013122173,
     'usorter.js': 362016183,
-    'cmodules/web/photos_module.js': 12894243194,
+    'cmodules/web/photos_module.js': 13713315011,
     'photo_tagger_mode.js': 2604367346,
     'photoview.js': 533491074,
-    'photoview.css': 30984976839,
+    'photoview.css': 30104953868,
     'fullscreen_pv.js': 2393839857,
     'fullscreen_pv.css': 14735729113,
     'spe.js': 2562549032,
@@ -370,7 +370,7 @@ var stVersions = {
     'call.js': 4217435992,
     'call.css': 3256039661,
     'aes_light.css': 23384753714,
-    'aes_light.js': 592436914,
+    'aes_light.js': 1378715905,
     'ads.css': 23803984683,
     'ads_bonus.css': 460482192,
     'ads.js': 2039077661,
@@ -630,4 +630,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 5277;
+var _rnd = 6954;
