@@ -167,7 +167,7 @@ var stVersions = {
     'sorter.js': 1976440538,
     'qsorter.js': 4013122173,
     'usorter.js': 362016183,
-    'cmodules/web/photos_module.js': 12160308159,
+    'cmodules/web/photos_module.js': 12894243194,
     'photo_tagger_mode.js': 2604367346,
     'photoview.js': 533491074,
     'photoview.css': 30984976839,
@@ -630,4 +630,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 2585;
+var _rnd = 5277;
