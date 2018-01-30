@@ -905,7 +905,7 @@ body[data-useragent=safari] .videoplayer_live_app_link {
 
 .videoplayer_quality_select_label_hd_icon {
     display: block;
-    background: #85beff url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%229%22%20height%3D%225%22%20viewBox%3D%220%200%209%205%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M8%205H5V0h3v1H6v3h2v1zm0-4h1v3H8V1zM1%202h2V0h1v5H3V3H1v2H0V0h1v2z%22%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E") no-repeat 50%;
+    background: #58a1f5 url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%229%22%20height%3D%225%22%20viewBox%3D%220%200%209%205%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M8%205H5V0h3v1H6v3h2v1zm0-4h1v3H8V1zM1%202h2V0h1v5H3V3H1v2H0V0h1v2z%22%20fill%3D%22%23fff%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E") no-repeat 50%;
     border-radius: 2px;
     padding: 2px;
     height: 5px;
@@ -989,15 +989,15 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     height: 5px;
     width: 9px;
     pointer-events: none;
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%229%22%20height%3D%225%22%20viewBox%3D%220%200%209%205%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M8%205H5V0h3v1H6v3h2v1zm0-4h1v3H8V1zM1%202h2V0h1v5H3V3H1v2H0V0h1v2z%22%20fill%3D%22%2385BEFF%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E") no-repeat 50%
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%229%22%20height%3D%225%22%20viewBox%3D%220%200%209%205%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M8%205H5V0h3v1H6v3h2v1zm0-4h1v3H8V1zM1%202h2V0h1v5H3V3H1v2H0V0h1v2z%22%20fill%3D%22%2358A1F5%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E") no-repeat 50%
 }
 
 .videoplayer_quality_select_item._hd_2k:before {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%229%22%20height%3D%225%22%20viewBox%3D%220%200%209%205%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%205H0V2h3V1H0V0h4v3H1v1h3v1H1zm5-3h1V1h1v3H7V3H6v2H5V0h1v2zm2-2h1v1H8V0zm0%204h1v1H8V4z%22%20fill%3D%22%2385BEFF%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E")
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%229%22%20height%3D%225%22%20viewBox%3D%220%200%209%205%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M1%205H0V2h3V1H0V0h4v3H1v1h3v1H1zm5-3h1V1h1v3H7V3H6v2H5V0h1v2zm2-2h1v1H8V0zm0%204h1v1H8V4z%22%20fill%3D%22%2358A1F5%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E")
 }
 
 .videoplayer_quality_select_item._hd_4k:before {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%229%22%20height%3D%225%22%20viewBox%3D%220%200%209%205%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M2%204H0V2h1v1h1V2H1V1h1V0h1v3h1v1H3v1H2V4zm4-2h1V1h1v3H7V3H6v2H5V0h1v2zm2-2h1v1H8V0zm0%204h1v1H8V4z%22%20fill%3D%22%2385BEFF%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E")
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%229%22%20height%3D%225%22%20viewBox%3D%220%200%209%205%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M2%204H0V2h1v1h1V2H1V1h1V0h1v3h1v1H3v1H2V4zm4-2h1V1h1v3H7V3H6v2H5V0h1v2zm2-2h1v1H8V0zm0%204h1v1H8V4z%22%20fill%3D%22%2358A1F5%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E")
 }
 
 .videoplayer_end_screen {

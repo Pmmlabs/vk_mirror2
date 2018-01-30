@@ -435,23 +435,61 @@ var MoneyTransfer = {
         }
         placeholderInit('transfer_amount');
         placeholderInit('transfer_comment');
+        if (cur.paymentsOptions.isChat) {
+            placeholderInit('transfer_chunk_amount');
+            cur.uiAutoacceptCard = new Dropdown(ge('transfer_autoaccept_card'), cur.paymentsOptions.cards, {
+                big: false,
+                multiselect: false,
+                onChange: function(v) {
+                    if (v == -1) {
+                        MoneyTransfer.sendBind();
+                    }
+                }
+            });
+            if (cur.paymentsOptions.autoAcceptEnabled) {
+                MoneyTransfer.enableAutoaccept();
+            } else {
+                cur.uiAutoacceptCard.disable(true);
+            }
+            addEvent(cur.uiAutoacceptCard.container, 'mousedown', MoneyTransfer.enableAutoaccept);
+            box.setOptions({
+                onClean: function() {
+                    if (cur.uiAutoacceptCard) {
+                        removeEvent(cur.uiAutoacceptCard.container, 'mousedown', MoneyTransfer.enableAutoaccept);
+                    }
+                }
+            });
+            if (cur.paymentsOptions.cards.length < 2) {
+                var link = ce('a', {
+                    id: 'payments_money_transfer_new_card_lnk',
+                    innerHTML: getLang('payments_money_transfer_new_card')
+                });
+                addEvent(link, 'mousedown', MoneyTransfer.sendBind);
+                hide(cur.uiAutoacceptCard.container);
+                cur.uiAutoacceptCard.container.parentNode.appendChild(link);
+            }
+        }
         setTimeout(elfocus.pbind('transfer_amount'), 100);
         shortCurrency();
         MoneyTransfer.autosizeAmount();
     },
     send: function() {
-        var box = curBox();
-        btn = ge('payments_money_transfer_send');
+        var box = curBox(),
+            btn = ge('payments_money_transfer_send');
         if (isButtonLocked(btn)) return;
 
-        var amount = val('transfer_amount');
-        if (!amount || amount <= 0) {
-            addClass('payments_money_transfer_amount_wrap', 'money_error');
-            setTimeout(removeClass.pbind('payments_money_transfer_amount_wrap', 'money_error'), 500);
-            elfocus('transfer_amount');
-            return;
-        } else if (!MoneyTransfer.checkAmount(amount, true)) {
-            return;
+        if (!isChecked('transfer_no_amount')) {
+            var amount = val('transfer_amount');
+            if (!amount || amount <= 0) {
+                addClass('payments_money_transfer_amount_wrap', 'money_error');
+                setTimeout(removeClass.pbind('payments_money_transfer_amount_wrap', 'money_error'), 500);
+                elfocus('transfer_amount');
+                return;
+            } else if (!MoneyTransfer.checkAmount(amount, true)) {
+                return;
+            }
+        } else {
+            var amount = 0;
         }
 
         if (cur.paymentsOptions.boxTab == 'request') {
@@ -459,34 +497,7 @@ var MoneyTransfer = {
             return;
         }
 
-        var frc = ge('payments_iframe_container');
-        var iframe = ce('iframe', {
-            id: 'transfer_iframe',
-            name: 'transfer_iframe'
-        }, {
-            border: 0,
-            height: '445px',
-            width: (510 - sbWidth()) + 'px',
-            overflowX: 'hidden',
-            overflowY: 'hidden'
-        });
-        iframe.frameBorder = 0;
-        frc.innerHTML = '';
-        frc.appendChild(iframe);
-
-        var popupUrl = '';
-        if (browser.msie && browser.version <= 10 || browser.opera) {
-            popupUrl = '/payments?act=go_gate&type=p2p';
-        }
-        if (popupUrl) {
-            var form = ce('form', {
-                target: 'transfer_iframe',
-                method: 'POST',
-                action: popupUrl
-            });
-            frc.appendChild(form);
-            form.submit();
-        }
+        var popupUrl = MoneyTransfer.createFrame();
 
         var params = {
             to_id: cur.paymentsOptions.toId,
@@ -518,7 +529,7 @@ var MoneyTransfer = {
                         box.setBackTitle(MoneyTransfer.resetSendBox);
                     }
                     setStyle(iframe, {
-                        width: (frc.parentNode.offsetWidth - sbWidth()) + 'px'
+                        width: (ge('payments_iframe_container').parentNode.offsetWidth - sbWidth()) + 'px'
                     });
                 }
                 if (!popupUrl) {
@@ -539,6 +550,7 @@ var MoneyTransfer = {
         });
     },
     sendReqest: function(amount) {
+        var btn = ge('payments_money_transfer_send');
         var params = {
             to_id: cur.paymentsOptions.toId,
             owner_id: cur.paymentsOptions.ownerId,
@@ -548,6 +560,29 @@ var MoneyTransfer = {
             from: cur.paymentsOptions.from,
             hash: cur.paymentsOptions.hash
         };
+        if (cur.paymentsOptions.isChat) {
+            params.total_amount = amount;
+            params.amount = val('transfer_chunk_amount');
+            params.pin_message = isChecked('transfer_pin_message') ? 1 : 0;
+            params.private = isChecked('transfer_no_private') ? 0 : 1;
+            if (cur.uiAutoacceptCard) {
+                params.accept_card = cur.uiAutoacceptCard.val();
+            }
+
+            var error = false;
+            if (cur.paymentsOptions.minAmount && params.amount < cur.paymentsOptions.minAmount) {
+                error = getLang('payments_money_request_error_min_chunk_amount_currency')
+            } else if (cur.paymentsOptions.maxAmount && params.amount > cur.paymentsOptions.maxAmount) {
+                error = getLang('payments_money_request_error_max_chunk_amount_currency');
+            } else if (params.total_amount && params.amount > params.total_amount) {
+                error = getLang('payments_money_request_error_chunk_amount_too_big');
+            }
+            if (error) {
+                MoneyTransfer.showError(error);
+                notaBene('transfer_chunk_amount');
+                return false;
+            }
+        }
         val('payments_box_error', '');
         ajax.post('al_payments.php?act=a_send_money_request', params, {
             onDone: function(text) {
@@ -564,6 +599,99 @@ var MoneyTransfer = {
             hideProgress: unlockButton.pbind(btn)
         });
     },
+    sendBind: function() {
+        var box = curBox();
+        var popupUrl = MoneyTransfer.createFrame();
+
+        hide('payments_money_transfer_wrap', 'payments_money_transfer_buttons', 'payments_box_error', 'payments_money_transfer_summary_wrap', 'payments_iframe_container', geByClass1('msg', 'payments_money_transfer_iframe'));
+        show('payments_money_transfer_iframe', 'payments_money_transfer_prg');
+        box.setBackTitle(MoneyTransfer.resetSendBox);
+        box.setOptions({
+            width: 510
+        });
+
+        var params = {
+            type: 'card',
+            only_auth: 1,
+            hash: cur.paymentsOptions.bindHash
+        };
+        val('payments_box_error', '');
+        ajax.post('al_payments.php?act=a_getvotes_charge', params, {
+            onDone: function(data, html) {
+                cur._popup_text = html;
+                cur._popup_callback = function() {
+                    hide('payments_money_transfer_prg');
+                    show('payments_iframe_container');
+                    ge('payments_iframe_container').scrollTop = 0;
+                    window.addEventListener('message', MoneyTransfer.frameMessage, false);
+
+                    if (cur.uiAutoacceptCard && isVisible(cur.uiAutoacceptCard.container)) {
+                        cur.uiAutoacceptCard.selectItem(cur.paymentsOptions.cards[0][0]);
+                    }
+
+                    box.changed = true;
+                    setStyle(iframe, {
+                        width: (ge('payments_iframe_container').parentNode.offsetWidth - sbWidth()) + 'px'
+                    });
+                }
+                if (!popupUrl) {
+                    var iframe = ge('transfer_iframe');
+                    iframe.contentWindow.document.open('text/html', 'replace');
+                    iframe.contentWindow.document.write(html);
+                    iframe.contentWindow.document.close();
+                    cur._popup_callback();
+                }
+
+                cur.isPaymentCanceled = cur.isPaymentFailed = false;
+                cur.moneyTranferCheckInt = setInterval(function() {
+                    MoneyTransfer.checkBindStatus(data);
+                    if (cur.isPaymentCanceled || cur.isPaymentFailed) {
+                        clearInterval(cur.moneyTranferCheckInt);
+                        if (cur.isPaymentFailed) {
+                            MoneyTransfer.showError(getLang('payments_landing_cancelled'));
+                        } else {
+                            MoneyTransfer.showError(getLang('payments_payment_cancelled'), 'info_msg');
+                        }
+                    }
+                }, 2000);
+            },
+            onFail: function(msg) {
+                MoneyTransfer.showError(msg);
+                return true;
+            }
+        });
+    },
+    createFrame: function() {
+        var frc = ge('payments_iframe_container');
+        var iframe = ce('iframe', {
+            id: 'transfer_iframe',
+            name: 'transfer_iframe'
+        }, {
+            border: 0,
+            height: '445px',
+            width: (510 - sbWidth()) + 'px',
+            overflowX: 'hidden',
+            overflowY: 'hidden'
+        });
+        iframe.frameBorder = 0;
+        frc.innerHTML = '';
+        frc.appendChild(iframe);
+
+        var popupUrl = '';
+        if (browser.msie && browser.version <= 10 || browser.opera) {
+            popupUrl = '/payments?act=go_gate&type=p2p';
+        }
+        if (popupUrl) {
+            var form = ce('form', {
+                target: 'transfer_iframe',
+                method: 'POST',
+                action: popupUrl
+            });
+            frc.appendChild(form);
+            form.submit();
+        }
+        return popupUrl;
+    },
     popupWrite: function(popup) {
         if (popup.document.innerHTML == cur._popup_text) return;
         popup.document.write(cur._popup_text);
@@ -578,7 +706,7 @@ var MoneyTransfer = {
     resetSendBox: function() {
         var box = curBox();
         hide('payments_money_transfer_iframe');
-        show('payments_money_transfer_wrap', 'payments_money_transfer_buttons');
+        show('payments_money_transfer_wrap', 'payments_money_transfer_buttons', 'payments_money_transfer_summary_wrap');
         box.changed = false;
         box.setOptions({
             width: 510
@@ -659,6 +787,46 @@ var MoneyTransfer = {
                     MoneyTransfer.showError(text);
                     window.removeEventListener('message', MoneyTransfer.frameMessage, false);
                     cur.isPaymentFailed = cur.isPaymentCanceled = false;
+                }
+                clearInterval(cur.moneyTranferCheckInt);
+            },
+            onFail: function(msg) {
+                clearInterval(cur.moneyTranferCheckInt);
+                MoneyTransfer.showError(msg);
+                return true;
+            }
+        });
+    },
+    checkBindStatus: function(chkData) {
+        var params = {
+            act: 'a_getvotes_check',
+            type: 'card'
+        };
+        if (chkData && (chkData.oid || chkData.qid)) {
+            params.oid = chkData.oid;
+            params.qid = chkData.qid;
+            params.hash = chkData.hash;
+        }
+        ajax.post('al_payments.php', params, {
+            onDone: function(result, text, card) {
+                if (!result) {
+                    return;
+                }
+                if (result == 1) { //success
+                    MoneyTransfer.resetSendBox();
+                    MoneyTransfer.enableAutoaccept();
+                    if (card && cur.uiAutoacceptCard) {
+                        if (!isVisible(cur.uiAutoacceptCard.container)) {
+                            hide(geByTag('A', cur.uiAutoacceptCard.container.parentNode)[0]);
+                            show(cur.uiAutoacceptCard.container);
+                        }
+                        cur.paymentsOptions.cards.unshift([card.bindingId, card.bin]);
+                        cur.uiAutoacceptCard.setData(cur.paymentsOptions.cards);
+                        cur.uiAutoacceptCard.clear();
+                        cur.uiAutoacceptCard.selectItem(card.bindingId);
+                    }
+                } else if (result == 2) { // failed
+                    MoneyTransfer.showError(text);
                 }
                 clearInterval(cur.moneyTranferCheckInt);
             },
@@ -775,9 +943,10 @@ var MoneyTransfer = {
         if (submit && errorShown) {
             return false;
         }
+        var isChatRequest = cur.paymentsOptions.isChat && cur.paymentsOptions.boxTab == 'request';
         if (submit && cur.paymentsOptions.minAmount && amount < cur.paymentsOptions.minAmount) {
             error = getLang('payments_money_transfer_error_min_amount_currency');
-        } else if (cur.paymentsOptions.maxAmount && amount > cur.paymentsOptions.maxAmount) {
+        } else if (cur.paymentsOptions.maxAmount && !isChatRequest && amount > cur.paymentsOptions.maxAmount) {
             error = getLang('payments_money_transfer_error_max_amount_currency');
         }
         if (error != false) {
@@ -787,6 +956,13 @@ var MoneyTransfer = {
         } else if (errorShown) {
             val('payments_money_transfer_notice', getLang('payments_money_transfer_amount_limits'));
             removeClass('payments_money_transfer_amount_wrap', 'money_error');
+        }
+        if (!submit && isChatRequest) {
+            var chunkAmount = Math.max(cur.paymentsOptions.minAmount || 100, Math.ceil(amount / (cur.paymentsOptions.chatCount - 1)));
+            if (cur.paymentsOptions.maxAmount) {
+                chunkAmount = Math.min(chunkAmount, cur.paymentsOptions.maxAmount);
+            }
+            val('transfer_chunk_amount', chunkAmount);
         }
         return true;
     },
@@ -816,6 +992,28 @@ var MoneyTransfer = {
     checkUserMessage: function() {
         checkTextLength(cur.paymentsOptions.maxTextLength, ge('transfer_comment'), ge('transfer_comment_limit_message'), false, true);
         (val('transfer_comment_limit_message') && isVisible('transfer_comment_limit_message') ? hide : show)('payments_money_transfer_fee_link');
+    },
+    checkRequestNoAmount: function() {
+        if (isChecked('transfer_no_amount')) {
+            hide('payments_money_transfer_amount_wrap');
+            show('payments_money_transfer_no_amount_wrap');
+        } else {
+            hide('payments_money_transfer_no_amount_wrap');
+            show('payments_money_transfer_amount_wrap');
+            elfocus('transfer_amount');
+        }
+    },
+    checkAutoAccept: function() {
+        cur.uiAutoacceptCard.disable(!isChecked('transfer_autoaccept'));
+    },
+    enableAutoaccept: function() {
+        if (!isChecked('transfer_autoaccept')) {
+            checkbox('transfer_autoaccept', true);
+            cur.uiAutoacceptCard.disable(false);
+            if (isVisible(cur.uiAutoacceptCard.container)) {
+                triggerEvent(cur.uiAutoacceptCard.selector, 'mousedown');
+            }
+        }
     },
     aboutBox: function(textKey) {
         return !showFastBox({

@@ -1961,6 +1961,10 @@ img.im_photo_thumb {
     top: 106px
 }
 
+.im-page .im-page--chat-header.im-page--chat-header_pinned .im-page--pinned_with-bar~.im-page--top-date-bar-wrap {
+    top: 117px
+}
+
 .im-page .im-page--top-date-bar_visible .im-page--top-date-bar {
     opacity: 1
 }
@@ -3859,6 +3863,28 @@ img.im_photo_thumb {
 
 .im-page-pinned--media {
     color: #4a6f97
+}
+
+.im-page--pinned_with-bar .im-page-pinned {
+    height: 46px
+}
+
+.im-page--pinned_with-bar .im-page-pinned:before {
+    bottom: 30px
+}
+
+.im-page-pinned--media-bar {
+    margin-top: 7px;
+    background-color: #e5ebf1;
+    border-radius: 2px;
+    height: 4px;
+    width: 100%
+}
+
+.im-page-pinned--media-bar .im-page-pinned--media-bar_progress {
+    background-color: #5181b8;
+    border-radius: 2px;
+    height: 4px
 }
 
 .im-mess-stack {
@@ -9168,6 +9194,77 @@ body.sf .nim-dialog .nim-dialog--unread {
     margin: 0 0 5px;
     height: 38px;
     max-height: 38px
+}
+
+.im-money-request-snippet {
+    margin: 5px 0;
+    padding: 15px;
+    border: 1px solid rgba(0, 20, 51, .12);
+    border-radius: 4px;
+    background-color: #fff
+}
+
+.im-money-request-snippet__title {
+    font-size: 16px
+}
+
+.im-money-request-snippet__bar {
+    margin: 12px 0 14px;
+    background-color: #e5ebf1;
+    border-radius: 2px;
+    height: 4px;
+    width: 100%
+}
+
+.im-money-request-snippet__bar .im-money-request-snippet__progress {
+    background-color: #5181b8;
+    border-radius: 2px;
+    height: 4px
+}
+
+.im-money-request-snippet__line {
+    margin: 15px 0 14px;
+    height: 0;
+    border-top: 1px solid rgba(0, 20, 51, .12)
+}
+
+.im-money-request-snippet__users {
+    height: 30px
+}
+
+.im-money-request-snippet__users_images {
+    float: left;
+    margin: 0px 8px 0 -3px
+}
+
+.im-money-request-snippet__user {
+    float: right;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #fff;
+    margin-right: -10px
+}
+
+.im-money-request-snippet__user:first-child {
+    margin-right: 0
+}
+
+.im-money-request-snippet__user_image {
+    width: 24px
+}
+
+.im-money-request-snippet__users_text {
+    overflow: hidden;
+    line-height: 30px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #656565
+}
+
+.im-money-request-snippet__button {
+    float: right
 }
 
 .im_rc_emojibtn {

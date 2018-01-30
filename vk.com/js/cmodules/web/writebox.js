@@ -12,7 +12,7 @@
     return t.m = e, t.c = a, t.p = "", t(0)
 }({
     0: function(e, t, a) {
-        e.exports = a(123)
+        e.exports = a(77)
     },
     2: function(e, t) {
         "use strict";
@@ -51,21 +51,28 @@
             j = t.PAGE_UP = 33,
             E = t.PAGE_DOWN = 34,
             D = t.END_KEY = 35,
-            A = t.HOME = 36,
-            T = t.ENTER = 13,
+            T = t.HOME = 36,
+            A = t.ENTER = 13,
             M = t.ESC = 27,
-            O = (t.UNPRINTABLE_KEYS = [_, x, j, E, T, M, D, A], t.UP_DOWN_CONTROLS = [j, E, x, _, A, D], t.PRINTABLE = "printable", t.FOLDER_UNREAD = "unread"),
+            O = (t.UNPRINTABLE_KEYS = [_, x, j, E, A, M, D, T], t.UP_DOWN_CONTROLS = [j, E, x, _, T, D], t.PRINTABLE = "printable", t.FOLDER_UNREAD = "unread"),
             z = t.FOLDER_ALL = "all",
-            q = t.FOLDER_UNRESPOND = "unrespond",
-            F = t.FOLDER_IMPORTANT = "important",
-            I = (t.FOLDERS = [z, O, q, F], t.FOLDER_MASKS = (r = {}, a(r, q, 2), a(r, F, 1), r), t.TOP_DOMAINS = [].concat(y.split(","), k.split(","), w.split(",").map(function(e) {
+            R = t.FOLDER_UNRESPOND = "unrespond",
+            q = t.FOLDER_IMPORTANT = "important",
+            F = (t.FOLDERS = [z, O, R, q], t.FOLDER_MASKS = (r = {}, a(r, R, 2), a(r, q, 1), r), t.TOP_DOMAINS = [].concat(y.split(","), k.split(","), w.split(",").map(function(e) {
                 return "xn--" + e
-            })));
-        t.MAX_DOMAIN_LENGTH = I.reduce(function(e, t) {
-            return Math.max(e, t.length)
-        }, 0), t.EMAIL = new RegExp("([a-zA-Zа-яА-Я\\-_\\.0-9\\+]+@(" + o + c + "))", "ig"), t.MESSAGE_REGEXP = new RegExp(v, "ig")
+            }))),
+            I = (t.MAX_DOMAIN_LENGTH = F.reduce(function(e, t) {
+                return Math.max(e, t.length)
+            }, 0), t.EMAIL = new RegExp("([a-zA-Zа-яА-Я\\-_\\.0-9\\+]+@(" + o + c + "))", "ig"), t.MESSAGE_REGEXP = new RegExp(v, "ig"), "#"),
+            S = "a-zA-Zа-яА-ЯёіјєїґўЁІЈЄЇҐЎ’",
+            N = "(?:&#(?:19[2-9]|(?:[2-9]|1[0-3])[0-9][0-9]);?)",
+            P = "(?:[" + S + "]|" + N + ")",
+            B = "(?:[" + S + "_\\d]|" + N + ")",
+            C = "(" + I + B + "{0,100}" + P + B + "{0,100})",
+            L = "((?:[a-z0-9_]*[a-z0-9])?(?:(?:.[a-z](?:[a-z0-9_]+[a-z0-9])?)*.[a-z][a-z0-9_]{2,40}[a-z0-9])?)";
+        t.RE_HASHTAG_EXTRACTION_PATTERN = "(^|[s.,:'\";>)(]?)(" + C + ")(@" + L + ")?(?=$|[s.,:'\"&;?<)(]?)"
     },
-    51: function(e, t) {
+    13: function(e, t) {
         "use strict";
 
         function a(e) {
@@ -172,80 +179,148 @@
         var d = t.RECENT_SEARCH_OP = "recent_search",
             m = t.PIN_HIDDEN_ID_OP = "pin_hide"
     },
-    53: function(e, t, a) {
+    35: function(e, t, a) {
         "use strict";
 
-        function r() {
-            return {
-                txt: "",
-                attaches: [],
-                urlBinds: []
-            }
+        function r(e) {
+            var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [],
+                a = e.split("_"),
+                r = g(a, 2),
+                n = r[0],
+                i = r[1];
+            return [n, i, t]
         }
 
         function n(e, t) {
-            this._db = e, this._key = t, this.dData = r(), this.load()
+            var a = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 0,
+                i = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 0;
+            if (i > 50) return [
+                [], e.length
+            ];
+            for (var o = [], c = ""; a < e.length;) {
+                var s = e[a];
+                if ("id" === s) c = t[a];
+                else if ("," === s && c) o.push(r(c)), c = "";
+                else if ("(" === s) {
+                    var l = n(e, t, a + 1, i + 1),
+                        u = g(l, 2),
+                        d = u[0],
+                        m = u[1];
+                    a = m, o.push(r(c, d)), c = ""
+                } else if (")" === s) return "" !== c && o.push(r(c)), [o, a];
+                a++
+            }
+            return c && o.push(r(c)), [o, a]
         }
 
         function i(e) {
-            switch (e.type) {
-                case "mail":
-                    return e.id < 0 && 1 == e.object.fwd_count;
-                default:
-                    return !e.object
+            if (x[e]) return x[e];
+            for (var t = e ? e.length : 0, a = [], r = [], i = "", o = 0; t > o; o++) {
+                var c = e[o],
+                    s = c.charCodeAt(0);
+                s >= 48 && 57 >= s || "_" === c || "-" === c ? i += c : ("(" === c || ")" === c || ":" === c || "," === c) && ("" !== i && (r.push(i), a.push("id"), i = ""), r.push(c), a.push(c))
             }
+            i.length > 0 && (r.push(i), a.push("id"));
+            var l = n(a, r),
+                u = g(l, 1),
+                d = u[0];
+            return Object.keys(x).length > 300 && (x = {}), x[e] = d, d
         }
 
-        function o(e) {
-            return {
-                txt: e.txt,
-                attaches: e.attaches.length ? e.attaches : void 0,
-                urlBinds: e.urlBinds.length ? e.urlBinds : void 0
+        function o(e, t) {
+            for (var a = void 0, r = 0, n = e; null !== (a = f.MESSAGE_REGEXP.exec(e));) {
+                a = l(a);
+                var i = a[0].length,
+                    o = a.index + i,
+                    c = e[a.index - 1],
+                    s = e[o - 1],
+                    d = void 0 !== c && /([\w\$А-Яа-яёЁєЄҐґЇїІіЈј\—\-\_@;.])/i.test(c),
+                    m = void 0 !== s && /([:;$])/i.test(s);
+                if (!d && !m) {
+                    var b = u(a),
+                        h = b.domain;
+                    if (h.length <= f.MAX_DOMAIN_LENGTH && -1 !== f.TOP_DOMAINS.indexOf(h)) {
+                        var p = t(b);
+                        n = n.slice(0, a.index + r) + p + n.slice(o + r), r += p.length - i
+                    }
+                }
             }
+            return n
         }
 
-        function c(e) {
-            return {
-                txt: e.txt,
-                attaches: e.attaches || [],
-                urlBinds: e.urlBinds || []
-            }
+        function c(e, t) {
+            return e.replace(f.EMAIL, t || function(e) {
+                return '<a href="mailto:' + e + '">' + e + "</a>"
+            })
         }
 
         function s(e, t) {
-            var a = [];
-            e.fwd_count ? a.push({
-                type: "mail",
-                id: -t,
-                object: {
-                    fwd_count: e.fwd_count
-                }
-            }) : e.fwd && a.push({
-                type: "mail",
-                id: -t,
-                object: {
-                    fwd_count: (0, m.parseFwd)(e.fwd).length
-                }
-            });
-            for (var r = 1; e["attach" + r + "_type"]; ++r) a.push({
-                type: e["attach" + r + "_type"],
-                id: e["attach" + r],
-                kind: e["attach" + r + "_kind"],
-                productId: e["attach" + r + "_product_id"]
-            });
-            return e.geo && a.push({
-                type: "geo",
-                id: e.geo
-            }), a
+            return e.replace(f.MENTION, t || function(e, t, a, r, n) {
+                return '<a href="/' + (t + a) + '" class="mem_link" mention="' + k(r || "") + '" mention_id="' + k(t + a) + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)">' + n + "</a>"
+            })
         }
 
-        function l(e, t) {
-            return new n(e, "draft_" + t)
+        function l(e) {
+            if (!e[0] || !e[6]) return e;
+            var t = e[0].length - 1,
+                a = e[6].length - 1;
+            return "." === e[0][t] && "." === e[6][a] && (e[0] = e[0].slice(0, t), e[6] = e[6].slice(0, a)), e
+        }
+
+        function u(e) {
+            return {
+                full: e[0],
+                protocol: e[1] || "http://",
+                url: e[2],
+                domain: e[4],
+                query: e[6] || ""
+            }
+        }
+
+        function d() {
+            return v || (v = new RegExp(f.RE_HASHTAG_EXTRACTION_PATTERN, "ig")), v
+        }
+
+        function m(e, t) {
+            return e.replace(d(), function(e, a, r, n, i, o) {
+                return (a || "") + t(r + (i || ""))
+            })
+        }
+
+        function b(e) {
+            _("ttl_message_confirm_delivery", e)
+        }
+
+        function h(e, t) {
+            var a = t.protocol,
+                r = t.url,
+                n = t.query,
+                i = t.domain,
+                o = t.full;
+            try {
+                o = decodeURIComponent(o)
+            } catch (c) {}
+            if (o.length > 55 && (o = o.substr(0, 53) + ".."), o = k(o).replace(/&amp;/g, "&"), !e && i.match(f.OUR_DOMAINS)) {
+                r = w(r).replace(f.ENTITIES, encodeURIComponent);
+                var s = r,
+                    l = r.indexOf("#/"),
+                    u = "",
+                    d = void 0;
+                return l >= 0 ? s = r.substr(l + 1) : (l = r.indexOf("#!"), l >= 0 && (s = "/" + r.substr(l + 2).replace(/^\//, ""))), d = s.match(f.VK_DOMAIN), d && d[1].length < 32 && (u = ' mention_id="' + d[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'), '<a href="' + p(a + r + n) + '" target="_blank"' + u + ">" + o + "</a>"
+            }
+            var m = "away.php?utf=1&to=" + encodeURIComponent(a + w(r + n)),
+                b = k((a + r + n).replace(/'/g, "\\'")),
+                h = "return goAway('" + b + "', {}, event);";
+            return '<a href="' + m + '" target="_blank" onclick="' + h + '">' + o + "</a>"
+        }
+
+        function p(e) {
+            return e.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
         }
         Object.defineProperty(t, "__esModule", {
             value: !0
         });
-        var u = function() {
+        var g = function() {
             function e(e, t) {
                 var a = [],
                     r = !0,
@@ -270,103 +345,16 @@
                 throw new TypeError("Invalid attempt to destructure non-iterable instance")
             }
         }();
-        t.ImDraft = n, t.convertKludgesToAttaches = s, t.loadDraftForPeer = l;
-        var d = a(79),
-            m = a(127);
-        n.prototype.dump = function() {
-            this._key && this._db.updateByKey(this._key, o(this.dData))
-        }, n.prototype.load = function() {
-            if (this._key) {
-                var e = this._db.selectByKey(this._key);
-                e && (this.dData = c(e))
-            }
-        }, n.prototype.clear = function() {
-            this.dData = r(), this.dump()
-        }, n.prototype.setText = function(e) {
-            this.dData.txt = trim(e), this.dump()
-        }, n.prototype.addAttach = function(e, t, a) {
-            ("share" === e || "mail" === e) && this.removeAttachByType(e);
-            var r = this.dData.attaches.find(function(a) {
-                return a.type === e && a.id === t
-            });
-            !r && e && t && (this.dData.attaches.push({
-                type: e,
-                id: t,
-                object: a
-            }), this.dump())
-        }, n.prototype.syncWithSelector = function(e) {
-            var t = this,
-                a = this.getFwdRaw();
-            this.dData.attaches = (a ? [a] : []).concat(e.getMedias().map(function(e) {
-                var a = u(e, 2),
-                    r = a[0],
-                    n = a[1],
-                    i = t.dData.attaches.find(function(e) {
-                        return e.type == r && e.id == n
-                    });
-                return i || {
-                    type: r,
-                    id: n
-                }
-            })), this.dump()
-        }, n.prototype.removeAttachByType = function(e) {
-            for (var t = this.dData.attaches.length; t--;) this.dData.attaches[t].type === e && this.dData.attaches.splice(t, 1);
-            this.dump()
-        }, n.prototype.removeAllAttaches = function() {
-            this.dData.attaches = [], this.dump()
-        }, n.prototype.addBindUrl = function(e, t, a) {
-            this.getBoundAttach(e) || (this.dData.urlBinds.push({
-                url: e,
-                type: t,
-                id: a
-            }), this.dump())
-        }, n.prototype.getBoundAttach = function(e) {
-            var t = this.dData.urlBinds.find(function(t) {
-                return t.url === e
-            });
-            return t ? this.dData.attaches.find(function(e) {
-                return e.type === t.type && e.id === t.id
-            }) || null : null
-        }, n.prototype.getShareUrl = function() {
-            var e = this.dData.attaches.find(function(e) {
-                return "share" === e.type
-            });
-            return e && e.object ? e.object.url : void 0
-        }, n.prototype.hasAttaches = function() {
-            return this.dData.attaches.length > 0
-        }, n.prototype.destroy = function() {
-            this.dData = {}, this._key = this._db = null
-        }, n.prototype.prepareObjects = function(e, t) {
-            var a = this,
-                r = this.dData.attaches.find(i);
-            return r ? (0, d.post)(d.CONTROLLER, {
-                act: "draft_medias",
-                gid: e,
-                messageId: t || 0,
-                media: t ? void 0 : this.dData.attaches.map(function(e) {
-                    return [e.type, e.id]
-                }).join("*")
-            }).then(function(e) {
-                var t = u(e, 1),
-                    r = t[0];
-                a.dData.attaches = r.map(function(e) {
-                    return {
-                        type: e[0],
-                        id: e[1],
-                        object: e[2]
-                    }
-                })
-            }) : Promise.resolve()
-        }, n.prototype.getFwdRaw = function() {
-            return this.dData.attaches.find(function(e) {
-                return "mail" === e.type
-            })
-        }, n.prototype.getFwdCount = function() {
-            var e = this.getFwdRaw();
-            return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
-        }
+        t.parseFwd = i, t.replaceHyperLinks = o, t.replaceEmailLinks = c, t.replaceMentions = s, t.replaceHashtags = m, t.confirmDelivery = b, t.linksReplacer = h;
+        var f = a(2),
+            v = void 0,
+            y = window,
+            k = y.clean,
+            w = y.replaceEntities,
+            _ = y.statlogsValueEvent,
+            x = {}
     },
-    79: function(e, t) {
+    47: function(e, t) {
         "use strict";
 
         function a(e, t, a) {
@@ -438,15 +426,15 @@
         }), t.post = a, t.plainget = r, t.plaingetCancelable = n;
         var i = (t.CONTROLLER = "al_im.php", 2)
     },
-    123: function(e, t, a) {
+    77: function(e, t, a) {
         "use strict";
         var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
                 return typeof e
             } : function(e) {
                 return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
             },
-            n = a(51),
-            i = a(53),
+            n = a(13),
+            i = a(137),
             o = window.WriteBox = {
                 mrg: function(e) {
                     return vk.rtl ? {
@@ -699,138 +687,80 @@
             stManager.done("writebox.js")
         } catch (c) {}
     },
-    127: function(e, t, a) {
+    137: function(e, t, a) {
         "use strict";
 
-        function r(e) {
-            var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [],
-                a = e.split("_"),
-                r = h(a, 2),
-                n = r[0],
-                i = r[1];
-            return [n, i, t]
+        function r() {
+            return {
+                txt: "",
+                attaches: [],
+                urlBinds: []
+            }
         }
 
         function n(e, t) {
-            var a = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 0,
-                i = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 0;
-            if (i > 50) return [
-                [], e.length
-            ];
-            for (var o = [], c = ""; a < e.length;) {
-                var s = e[a];
-                if ("id" === s) c = t[a];
-                else if ("," === s && c) o.push(r(c)), c = "";
-                else if ("(" === s) {
-                    var l = n(e, t, a + 1, i + 1),
-                        u = h(l, 2),
-                        d = u[0],
-                        m = u[1];
-                    a = m, o.push(r(c, d)), c = ""
-                } else if (")" === s) return "" !== c && o.push(r(c)), [o, a];
-                a++
-            }
-            return c && o.push(r(c)), [o, a]
+            this._db = e, this._key = t, this.dData = r(), this.load()
         }
 
         function i(e) {
-            if (k[e]) return k[e];
-            for (var t = e ? e.length : 0, a = [], r = [], i = "", o = 0; t > o; o++) {
-                var c = e[o],
-                    s = c.charCodeAt(0);
-                s >= 48 && 57 >= s || "_" === c || "-" === c ? i += c : ("(" === c || ")" === c || ":" === c || "," === c) && ("" !== i && (r.push(i), a.push("id"), i = ""), r.push(c), a.push(c))
+            switch (e.type) {
+                case "mail":
+                    return e.id < 0 && 1 == e.object.fwd_count;
+                default:
+                    return !e.object
             }
-            i.length > 0 && (r.push(i), a.push("id"));
-            var l = n(a, r),
-                u = h(l, 1),
-                d = u[0];
-            return Object.keys(k).length > 300 && (k = {}), k[e] = d, d
         }
 
-        function o(e, t) {
-            for (var a = void 0, r = 0, n = e; null !== (a = p.MESSAGE_REGEXP.exec(e));) {
-                a = l(a);
-                var i = a[0].length,
-                    o = a.index + i,
-                    c = e[a.index - 1],
-                    s = e[o - 1],
-                    d = void 0 !== c && /([\w\$А-Яа-яёЁєЄҐґЇїІіЈј\—\-\_@;.])/i.test(c),
-                    m = void 0 !== s && /([:;$])/i.test(s);
-                if (!d && !m) {
-                    var b = u(a),
-                        h = b.domain;
-                    if (h.length <= p.MAX_DOMAIN_LENGTH && -1 !== p.TOP_DOMAINS.indexOf(h)) {
-                        var g = t(b);
-                        n = n.slice(0, a.index + r) + g + n.slice(o + r), r += g.length - i
-                    }
-                }
+        function o(e) {
+            return {
+                txt: e.txt,
+                attaches: e.attaches.length ? e.attaches : void 0,
+                urlBinds: e.urlBinds.length ? e.urlBinds : void 0
             }
-            return n
         }
 
-        function c(e, t) {
-            return e.replace(p.EMAIL, t || function(e) {
-                return '<a href="mailto:' + e + '">' + e + "</a>"
-            })
+        function c(e) {
+            return {
+                txt: e.txt,
+                attaches: e.attaches || [],
+                urlBinds: e.urlBinds || []
+            }
         }
 
         function s(e, t) {
-            return e.replace(p.MENTION, t || function(e, t, a, r, n) {
-                return '<a href="/' + (t + a) + '" class="mem_link" mention="' + f(r || "") + '" mention_id="' + f(t + a) + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)">' + n + "</a>"
-            })
+            var a = [];
+            e.fwd_count ? a.push({
+                type: "mail",
+                id: -t,
+                object: {
+                    fwd_count: e.fwd_count
+                }
+            }) : e.fwd && a.push({
+                type: "mail",
+                id: -t,
+                object: {
+                    fwd_count: (0, m.parseFwd)(e.fwd).length
+                }
+            });
+            for (var r = 1; e["attach" + r + "_type"]; ++r) a.push({
+                type: e["attach" + r + "_type"],
+                id: e["attach" + r],
+                kind: e["attach" + r + "_kind"],
+                productId: e["attach" + r + "_product_id"]
+            });
+            return e.geo && a.push({
+                type: "geo",
+                id: e.geo
+            }), a
         }
 
-        function l(e) {
-            if (!e[0] || !e[6]) return e;
-            var t = e[0].length - 1,
-                a = e[6].length - 1;
-            return "." === e[0][t] && "." === e[6][a] && (e[0] = e[0].slice(0, t), e[6] = e[6].slice(0, a)), e
-        }
-
-        function u(e) {
-            return {
-                full: e[0],
-                protocol: e[1] || "http://",
-                url: e[2],
-                domain: e[4],
-                query: e[6] || ""
-            }
-        }
-
-        function d(e) {
-            y("ttl_message_confirm_delivery", e)
-        }
-
-        function m(e, t) {
-            var a = t.protocol,
-                r = t.url,
-                n = t.query,
-                i = t.domain,
-                o = t.full;
-            try {
-                o = decodeURIComponent(o)
-            } catch (c) {}
-            if (o.length > 55 && (o = o.substr(0, 53) + ".."), o = f(o).replace(/&amp;/g, "&"), !e && i.match(p.OUR_DOMAINS)) {
-                r = v(r).replace(p.ENTITIES, encodeURIComponent);
-                var s = r,
-                    l = r.indexOf("#/"),
-                    u = "",
-                    d = void 0;
-                return l >= 0 ? s = r.substr(l + 1) : (l = r.indexOf("#!"), l >= 0 && (s = "/" + r.substr(l + 2).replace(/^\//, ""))), d = s.match(p.VK_DOMAIN), d && d[1].length < 32 && (u = ' mention_id="' + d[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'), '<a href="' + b(a + r + n) + '" target="_blank"' + u + ">" + o + "</a>"
-            }
-            var m = "away.php?utf=1&to=" + encodeURIComponent(a + v(r + n)),
-                h = f((a + r + n).replace(/'/g, "\\'")),
-                g = "return goAway('" + h + "', {}, event);";
-            return '<a href="' + m + '" target="_blank" onclick="' + g + '">' + o + "</a>"
-        }
-
-        function b(e) {
-            return e.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        function l(e, t) {
+            return new n(e, "draft_" + t)
         }
         Object.defineProperty(t, "__esModule", {
             value: !0
         });
-        var h = function() {
+        var u = function() {
             function e(e, t) {
                 var a = [],
                     r = !0,
@@ -855,12 +785,100 @@
                 throw new TypeError("Invalid attempt to destructure non-iterable instance")
             }
         }();
-        t.parseFwd = i, t.replaceHyperLinks = o, t.replaceEmailLinks = c, t.replaceMentions = s, t.confirmDelivery = d, t.linksReplacer = m;
-        var p = a(2),
-            g = window,
-            f = g.clean,
-            v = g.replaceEntities,
-            y = g.statlogsValueEvent,
-            k = {}
+        t.ImDraft = n, t.convertKludgesToAttaches = s, t.loadDraftForPeer = l;
+        var d = a(47),
+            m = a(35);
+        n.prototype.dump = function() {
+            this._key && this._db.updateByKey(this._key, o(this.dData))
+        }, n.prototype.load = function() {
+            if (this._key) {
+                var e = this._db.selectByKey(this._key);
+                e && (this.dData = c(e))
+            }
+        }, n.prototype.clear = function() {
+            this.dData = r(), this.dump()
+        }, n.prototype.setText = function(e) {
+            this.dData.txt = trim(e), this.dump()
+        }, n.prototype.addAttach = function(e, t, a) {
+            ("share" === e || "mail" === e) && this.removeAttachByType(e);
+            var r = this.dData.attaches.find(function(a) {
+                return a.type === e && a.id === t
+            });
+            !r && e && t && (this.dData.attaches.push({
+                type: e,
+                id: t,
+                object: a
+            }), this.dump())
+        }, n.prototype.syncWithSelector = function(e) {
+            var t = this,
+                a = this.getFwdRaw();
+            this.dData.attaches = (a ? [a] : []).concat(e.getMedias().map(function(e) {
+                var a = u(e, 2),
+                    r = a[0],
+                    n = a[1],
+                    i = t.dData.attaches.find(function(e) {
+                        return e.type == r && e.id == n
+                    });
+                return i || {
+                    type: r,
+                    id: n
+                }
+            })), this.dump()
+        }, n.prototype.removeAttachByType = function(e) {
+            for (var t = this.dData.attaches.length; t--;) this.dData.attaches[t].type === e && this.dData.attaches.splice(t, 1);
+            this.dump()
+        }, n.prototype.removeAllAttaches = function() {
+            this.dData.attaches = [], this.dump()
+        }, n.prototype.addBindUrl = function(e, t, a) {
+            this.getBoundAttach(e) || (this.dData.urlBinds.push({
+                url: e,
+                type: t,
+                id: a
+            }), this.dump())
+        }, n.prototype.getBoundAttach = function(e) {
+            var t = this.dData.urlBinds.find(function(t) {
+                return t.url === e
+            });
+            return t ? this.dData.attaches.find(function(e) {
+                return e.type === t.type && e.id === t.id
+            }) || null : null
+        }, n.prototype.getShareUrl = function() {
+            var e = this.dData.attaches.find(function(e) {
+                return "share" === e.type
+            });
+            return e && e.object ? e.object.url : void 0
+        }, n.prototype.hasAttaches = function() {
+            return this.dData.attaches.length > 0
+        }, n.prototype.destroy = function() {
+            this.dData = {}, this._key = this._db = null
+        }, n.prototype.prepareObjects = function(e, t) {
+            var a = this,
+                r = this.dData.attaches.find(i);
+            return r ? (0, d.post)(d.CONTROLLER, {
+                act: "draft_medias",
+                gid: e,
+                messageId: t || 0,
+                media: t ? void 0 : this.dData.attaches.map(function(e) {
+                    return [e.type, e.id]
+                }).join("*")
+            }).then(function(e) {
+                var t = u(e, 1),
+                    r = t[0];
+                a.dData.attaches = r.map(function(e) {
+                    return {
+                        type: e[0],
+                        id: e[1],
+                        object: e[2]
+                    }
+                })
+            }) : Promise.resolve()
+        }, n.prototype.getFwdRaw = function() {
+            return this.dData.attaches.find(function(e) {
+                return "mail" === e.type
+            })
+        }, n.prototype.getFwdCount = function() {
+            var e = this.getFwdRaw();
+            return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
+        }
     }
 });

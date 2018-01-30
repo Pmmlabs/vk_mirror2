@@ -930,7 +930,7 @@ var Photoview = {
             }
         },
         hide: function(o, e) {
-            if (cur.pvShown && (!__afterFocus || e === !0)) {
+            if (Photoview.hideTag(!0), cur.pvShown && (!__afterFocus || e === !0)) {
                 if (cur.pvCanvas && Photoview.fullscreenStop(!0), cur.prevPhotoWidth = cur.prevPhotoHeight = 0, (cur.pvJumpTo || {}).z == "albums" + val("pva_owner") && !cur.pvAlbumsShown && 0 === o) return Photoview.jumpToAlbums(!0);
                 if ((cur.pvJumpTo || {}).z == "album" + val("pvsa_album") && !cur.pvAlbumShown && 0 === o) return Photoview.jumpToAlbum(!0);
                 if ((cur.pvJumpTo || {}).z == "tag" + val("pvsa_tag") && !cur.pvPhotoTagShown && 0 === o) return Photoview.jumpToTagged(!0);
@@ -961,7 +961,7 @@ var Photoview = {
                 }
                 o.pvLastDirection = o.pvLastFrom = !1
             }
-            cur.pvYourComment = re(cur.pvYourComment), layers.hide(), layers.fullhide = !1, Photoview.hideTag(!0), delete cur.pvLayerCreated, window.tooltips && tooltips.destroyAll(cur.pvBox), removeClass(layerWrap, "pv_layer_wrap"), removeClass(layerBG, "pv_layer"), layerBG.style.opacity = "", o.pvShown = o.pvListId = o.pvClicked = !1, removeEvent(window, "resize", Photoview.onResize), removeEvent(document, "keydown", Photoview.onKeyDown), removeEvent(layerWrap, "click", Photoview.onLayerClick), removeEvent(layerWrap, "scroll", Photoview.scrollResize), removeEvent(layerWrap, "mousemove", Photoview.onLayerMouseMove);
+            cur.pvYourComment = re(cur.pvYourComment), layers.hide(), layers.fullhide = !1, delete cur.pvLayerCreated, window.tooltips && tooltips.destroyAll(cur.pvBox), removeClass(layerWrap, "pv_layer_wrap"), removeClass(layerBG, "pv_layer"), layerBG.style.opacity = "", o.pvShown = o.pvListId = o.pvClicked = !1, removeEvent(window, "resize", Photoview.onResize), removeEvent(document, "keydown", Photoview.onKeyDown), removeEvent(layerWrap, "click", Photoview.onLayerClick), removeEvent(layerWrap, "scroll", Photoview.scrollResize), removeEvent(layerWrap, "mousemove", Photoview.onLayerMouseMove);
             var c = cur.pvOptions && cur.pvOptions.onHide;
             if (cur.pvOptions) {
                 var c = cur.pvOptions.onHide;
