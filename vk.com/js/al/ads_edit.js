@@ -1417,7 +1417,7 @@ AdsEdit.reinitCreatingPostForm = function(creatingPostBox, wallOptions) {
     Wall.showEditPost();
 
     postMessageInput = geByClass1('submit_post_field', boxBodyNode);
-    val(postMessageInput, postMessage);
+    val(postMessageInput, clean(postMessage));
 
     AdsEdit.triggerDefaultMediaForPostForm(wallOptions);
 }

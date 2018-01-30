@@ -46,9 +46,9 @@ function MediaSelector(e, a, t, i) {
                         if (!o && n.moreWrap ? domInsertBefore(l, n.moreWrap) : (o ? o : s).appendChild(l), l.setAttribute("tabindex", 0), !o) {
                             l.setAttribute("data-title", a), l.setAttribute("aria-label", a), l.setAttribute("role", "link");
                             var c = function() {
-                                hasClass(this, "_type_article") && hasClass(domClosest("_submit_post_box", this), "shown") && (r = [5, 7]), showTitle(this, !1, r || !1, {
+                                hasClass(this, "ms_item_article_highlight") || (hasClass(this, "_type_article") && (r = hasClass(domClosest("_submit_post_box", this), "shown") ? [5, 7] : [-6, 8]), showTitle(this, !1, r || !1, {
                                     noZIndex: !0
-                                })
+                                }))
                             };
                             addEvent(l, "mouseover", c), d.push(function() {
                                 removeEvent(l, "mouseover", c)

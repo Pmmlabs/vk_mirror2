@@ -515,7 +515,7 @@ var Restore = {
                         cur.requestParams.no_online = Restore.onlineNoOwner, i.hide(), Restore.submitFullRequest()
                     }, "gray"), void i.content(getLang("restore_last_online_modal")).show()
                 }
-                return "back_link" == n ? (Restore.changeFullRequestButton(!1), Restore.changeFormStep("phones", "back_link")) : "photo" == n ? (Restore.changeFullRequestButton(!1), Restore.changeFormStep("phones", "photo")) : "doc" == n ? (Restore.changeFullRequestButton(!1), Restore.changeFormStep("photo", "doc")) : void Restore.processSubmitResult(e, o, t, r, s, !0)
+                return "back_link" == n ? (Restore.changeFullRequestButton(!1), Restore.changeFormStep("phones", "back_link")) : "photo" == n ? (Restore.changeFullRequestButton(!1), Restore.changeFormStep("phones", "photo")) : "doc" == n ? (Restore.changeFullRequestButton(!1), Restore.changeFormStep("photo", "doc")) : (-3 == a && hide("simple_request_incorrect"), void Restore.processSubmitResult(e, o, t, r, s, !0))
             },
             showProgress: lockButton.pbind(t),
             hideProgress: unlockButton.pbind(t)

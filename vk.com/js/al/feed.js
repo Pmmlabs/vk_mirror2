@@ -317,23 +317,23 @@ var Feed = {
                 m.insertBefore(f, m.firstChild), feed.needScrollPost(t, f) && (c += f.offsetHeight + l(f)), cur.feedUnreadCount++, v.length > 300 ? m.removeChild(v[300]) : v.length <= 1 && removeClass(cur.feedEls.wrap, "feed_is_empty");
                 break;
             case "edit_post":
-                var B, E = ge("wpt" + r);
-                if (!isVisible(i) || !E) break;
-                var L = geByClass1("wall_post_more", E);
-                L && (L = isVisible(domNS(L))), (B = feed.needScrollPost(t, E)) && (c -= E.offsetHeight);
+                var E, B = ge("wpt" + r);
+                if (!isVisible(i) || !B) break;
+                var L = geByClass1("wall_post_more", B);
+                L && (L = isVisible(domNS(L))), (E = feed.needScrollPost(t, B)) && (c -= B.offsetHeight);
                 var M = psr(rs(e[3], {
                     poll_hash: cur.wallTpl.poll_hash
                 }));
                 window.ny2018ReplaceText && (M = ny2018ReplaceText(M));
                 var m = ge("post" + r);
-                m && !isVisible(m.parentNode) && (M = wall.updatePostImages(M)), val(E, M), L && (L = geByClass1("wall_post_more", E), L && L.onclick()), ge("post_poll_id" + r) && wall.updatePoll(r), B && (c += E.offsetHeight), nodeUpdated(E), window.Wall && Wall.updatePostAuthorData(r);
+                m && !isVisible(m.parentNode) && (M = wall.updatePostImages(M)), val(B, M), L && (L = geByClass1("wall_post_more", B), L && L.onclick()), ge("post_poll_id" + r) && wall.updatePoll(r), E && (c += B.offsetHeight), nodeUpdated(B), window.Wall && Wall.updatePostAuthorData(r);
                 break;
             case "edit_reply":
                 var N = e[3],
-                    E = ge("wpt" + N);
-                if (!isVisible("post" + N) || !E) break;
-                var L = geByClass1("wall_reply_more", E);
-                L && (L = isVisible(domNS(L))), updH = -E.offsetHeight, updY = getXY(E)[1], window.ny2018ReplaceText && val(E, ny2018ReplaceText(psr(e[4]))), L && (L = geByClass1("wall_reply_more", E), L && L.onclick()), updH += E.offsetHeight, nodeUpdated(E);
+                    B = ge("wpt" + N);
+                if (!isVisible("post" + N) || !B) break;
+                var L = geByClass1("wall_reply_more", B);
+                L && (L = isVisible(domNS(L))), updH = -B.offsetHeight, updY = getXY(B)[1], window.ny2018ReplaceText && val(B, ny2018ReplaceText(psr(e[4]))), L && (L = geByClass1("wall_reply_more", B), L && L.onclick()), updH += B.offsetHeight, nodeUpdated(B);
                 break;
             case "post_parsed_link":
                 if (!i) break;
@@ -1034,17 +1034,18 @@ var Feed = {
             }
         })
     },
-    ignoreOwner: function(e, t, o, s) {
+    ignoreOwner: function(e, t, o, s, r) {
         e && (cur.feedEntriesHTML[e + "_ignored"] = val("post" + e));
-        var r = "list" == cur.section && cur.list || 0,
-            i = feed.getModuleRef();
+        var i = "list" == cur.section && cur.list || 0,
+            n = feed.getModuleRef();
         ajax.post("/al_feed.php?misc", {
             act: "a_ignore_owner",
             post_raw: e,
             owner_id: t,
-            hash: o,
-            list: r,
-            ref: i
+            type: o,
+            hash: s,
+            list: i,
+            ref: n
         }, {
             onDone: function(o) {
                 val("post" + e, o), each(geByClass("post", cur.rowsCont), function(o, s) {
@@ -1052,8 +1053,8 @@ var Feed = {
                     r && r[1] != e && (!r[4] && r[2] == t || r[4] && r[3] == t) && (revertLastInlineVideo(this), hide(this.parentNode))
                 })
             },
-            showProgress: s && lockButton.pbind(s),
-            hideProgress: s && unlockButton.pbind(s)
+            showProgress: r && lockButton.pbind(r),
+            hideProgress: r && unlockButton.pbind(r)
         })
     },
     unignoreOwner: function(e, t, o, s) {
@@ -1689,36 +1690,45 @@ var Feed = {
     },
     initArticleFeatureTooltip: function(e) {
         function t() {
-            o || (o = !0, ajax.post("al_index.php", {
+            r || (r = !0, ajax.post("al_index.php", {
                 act: "hide_feature_tt",
                 hash: e,
                 type: "articles_web"
             }))
         }
-        if (geByClass1("ms_item_article") && isVisible(geByClass1("ms_item_article"))) {
-            var o = !1,
-                s = '<div class="article_feat_tt">';
-            s += '<div class="article_feat_tt__close"></div>', s += '<div class="article_feat_tt__image"></div>', s += '<div class="article_feat_tt__text">' + getLang("wall_article_feature_text") + "</div>", s += "</div>", s = se(s);
-            var r = geByClass1("_submit_post_box");
-            cur.articleFeatureTT = new ElementTooltip(r, {
-                content: s,
-                forceSide: "right",
+        var o = geByClass1("_submit_post_box"),
+            s = geByClass1("ms_item_article");
+        if (s && isVisible(s) && !hasClass(o, "shown")) {
+            var r = !1,
+                i = '<div class="article_feat_tt">';
+            i += '<div class="article_feat_tt__close"></div>', i += '<div class="article_feat_tt__text">' + getLang("wall_article_feature_text") + "</div>", i += "</div>", i = se(i), cur.articleFeatureTT = new ElementTooltip(s, {
+                content: i,
+                forceSide: "bottom",
                 customShow: !0,
                 cls: "feature_intro_tt articles_feature_tooltip",
                 autoShow: !1,
                 noHideOnClick: !0,
                 noAutoHideOnWindowClick: !0,
-                setPos: function() {
-                    return {
-                        left: getSize(r)[0] + 8,
-                        top: -5
-                    }
+                appendTo: o,
+                centerShift: -120,
+                offset: [6, -3],
+                onShow: function() {
+                    addClass(s, "ms_item_article_highlight")
+                },
+                onHide: function() {
+                    removeClass(s, "ms_item_article_highlight")
                 }
-            }), cur.articleFeatureTT.show(), addEvent(geByClass1("article_feat_tt__close", s), "click", function() {
-                cur.articleFeatureTT.hide(), t()
-            }), setTimeout(function() {
+            }), cur.articleFeatureTT.show(), addEvent(geByClass1("article_feat_tt__close", i), "click", function(e) {
+                return cur.articleFeatureTT.hide(), t(), cancelEvent(e)
+            });
+            var n = setTimeout(function() {
                 t()
-            }, 3e3)
+            }, 3e3);
+            cur.destroy.push(function() {
+                clearTimeout(n)
+            }), cur.onShowEditPost = function() {
+                cur.articleFeatureTT.hide(), t()
+            }
         }
     }
 };
