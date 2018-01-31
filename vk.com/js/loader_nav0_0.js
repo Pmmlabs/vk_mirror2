@@ -516,10 +516,10 @@ var stVersions = {
     'snapster/snapster.js': 3582987504,
     'snapster/modules.js': 1096919680,
     'snapster/snapster.css': 18005067034,
-    'snapster/mob_templates.js': 337325793,
+    'snapster/mob_templates.js': 616353024,
     'snapster/snapster_mobile.js': 300135426,
     'snapster/snapster_mobile.css': 17986248451,
-    'snapster/templates.js': 1074277382,
+    'snapster/templates.js': 417248447,
     'snapster/snapster_ui.js': 338551892,
     'snapster/notifier.js': 2312942404,
     'snapster/snapster_ui.css': 17963671920,
@@ -630,4 +630,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 1489;
+var _rnd = 3879;
