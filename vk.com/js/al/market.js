@@ -42,7 +42,7 @@ var Market = {
                     innerHTML: o
                 }))
             }
-            return cur.mSection = e, nav.setLoc("market" + cur.oid + (e ? "?section=" + e : "")), ge("market").className = "page_block", document.title = replaceEntities(stripHTML(cur.htitles[e] || cur.htitles[""])), Market._createSorters(), !1
+            return cur.mSection = e, nav.setLoc("market" + cur.oid + (e ? "?section=" + e : "")), ge("market").className = "page_block", setDocumentTitle(replaceEntities(stripHTML(cur.htitles[e] || cur.htitles[""]))), Market._createSorters(), !1
         },
         _createSorters: function() {
             cur.itemsSorter && cur.itemsSorter.destroy(), cur.albumsSorter && cur.albumsSorter.destroy(), cur.canEdit && ((!cur.mSection || "albums" == cur.mSection) && cur.albumsCount > 1 && (cur.itemsSorter = new GridSorter("market_albums_cont", "market_album_photo_img", {

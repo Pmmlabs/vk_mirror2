@@ -470,7 +470,7 @@ var photos = {
     },
     doEditBatchProcess: function(o, e, t, a, r, i) {
         function s(e) {
-            if (!_.isVisible()) return i(u), void(document.title = p);
+            if (!_.isVisible()) return i(u), void setDocumentTitle(p);
             var t = n.slice(e * l, (e + 1) * l);
             ajax.post("/al_photos.php", extend({
                 photos: t.join(",")
@@ -480,8 +480,8 @@ var photos = {
                         width: 100 * e / c + "%"
                     });
                     var _ = getLang(a).replace("{count}", u).replace("{total}", d);
-                    document.title = _, r(o, n, t, u, d, l), c > e ? s(e) : setTimeout(function() {
-                        document.title = p, i(u, n)
+                    setDocumentTitle(_), r(o, n, t, u, d, l), c > e ? s(e) : setTimeout(function() {
+                        setDocumentTitle(p), i(u, n)
                     }, 200)
                 }
             })
@@ -1034,18 +1034,19 @@ var photos = {
     },
     registerDragZone: function(o) {
         addEvent(document, "dragenter dragover", function(e) {
-            return photos.checkHtml5Uploader() ? (setTimeout(function() {
-                clearTimeout(cur.dragTimer), delete cur.dragTimer
-            }, 0), o.on(e), cancelEvent(e)) : void 0
-        }), addEvent(document, "dragleave", function(e) {
-            cur.dragTimer && (clearTimeout(cur.dragTimer), delete cur.dragTimer), cur.dragTimer = setTimeout(function() {
-                o.un(e)
-            }, 100), cancelEvent(e)
-        }), addEvent(document, "drop", function(e) {
-            return o.un(e, !0), o.drop(e.dataTransfer.files), cancelEvent(e)
-        }), cur.destroy.push(function() {
-            removeEvent(document, "dragenter dragover"), removeEvent(document, "dragleave"), removeEvent(document, "drop")
-        })
+                return photos.checkHtml5Uploader() ? (setTimeout(function() {
+                    clearTimeout(cur.dragTimer), delete cur.dragTimer
+                }, 0), o.on(e), cancelEvent(e)) : void 0
+            }), addEvent(document, "dragleave", function(e) {
+                cur.dragTimer && (clearTimeout(cur.dragTimer), delete cur.dragTimer), cur.dragTimer = setTimeout(function() {
+                    o.un(e)
+                }, 100), cancelEvent(e)
+            }), addEvent(document, "drop", function(e) {
+                return o.un(e, !0), o.drop(e.dataTransfer.files), cancelEvent(e)
+            }),
+            cur.destroy.push(function() {
+                removeEvent(document, "dragenter dragover"), removeEvent(document, "dragleave"), removeEvent(document, "drop")
+            })
     },
     openWebcamPhoto: function() {
         var o = showBox("al_photos.php", {

@@ -2436,6 +2436,7 @@ h2.payments_getvotes_title {
     -moz-osx-font-smoothing: auto;
     text-align: right;
     width: 80px;
+    line-height: 57px;
     background-color: #f7f9fa;
     -o-transition: width 50ms linear;
     transition: width 50ms linear

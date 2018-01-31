@@ -1994,8 +1994,11 @@
     margin-right: 0
 }
 
+.bt_prod_one_actions .info_msg,
 .bt_prod_one_actions .msg {
     margin: 10px 0 0;
+    padding-top: 9px;
+    padding-bottom: 7px;
     display: block
 }
 

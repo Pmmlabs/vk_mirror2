@@ -35,7 +35,7 @@ var AppsCheck = {
                 } catch (e) {
                     console.error(e.stack), console.log(script)
                 }
-                summary && (ge("apps_summary").innerHTML = summary), title && (document.title = replaceEntities(stripHTML(title))), nav_tabs ? (ge("apps_nav_tabs").innerHTML = nav_tabs, show("apps_nav_tabs")) : (ge("apps_nav_tabs").innerHTML = "", hide("apps_nav_tabs")), AppsCheck.hideError(), "requests" != act ? extend(nav.objLoc, {
+                summary && (ge("apps_summary").innerHTML = summary), title && setDocumentTitle(replaceEntities(stripHTML(title))), nav_tabs ? (ge("apps_nav_tabs").innerHTML = nav_tabs, show("apps_nav_tabs")) : (ge("apps_nav_tabs").innerHTML = "", hide("apps_nav_tabs")), AppsCheck.hideError(), "requests" != act ? extend(nav.objLoc, {
                     act: act
                 }) : delete nav.objLoc.act, delete nav.objLoc.mid, delete nav.objLoc.offset, nav.setLoc(nav.objLoc);
                 var box = curBox();
@@ -484,7 +484,7 @@ var AppsCheck = {
             load: 1
         }, {
             onDone: function(content, script, summary, title) {
-                hide("apps_check_progress"), ge("apps_check_content").innerHTML = content, script && eval(script), summary && (ge("apps_summary").innerHTML = summary), title && (document.title = replaceEntities(stripHTML(title))), AppsCheck.hideError()
+                hide("apps_check_progress"), ge("apps_check_content").innerHTML = content, script && eval(script), summary && (ge("apps_summary").innerHTML = summary), title && setDocumentTitle(replaceEntities(stripHTML(title))), AppsCheck.hideError()
             },
             onFail: AppsCheck.showError
         })

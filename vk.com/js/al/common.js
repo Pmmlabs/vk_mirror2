@@ -5822,7 +5822,7 @@ var nav = {
                             handlePageView(h);
                         }
                         scrollToY(h.scrollTop, 0);
-                        document.title = h.htitle;
+                        setDocumentTitle(h.htitle);
                         tNode.innerHTML = h.title;
                         if (h.bodyClass !== bodyNode.className) {
                             bodyNode.className = h.bodyClass || '';
@@ -8690,7 +8690,7 @@ function updateMoney(balance, balanceEx) {
     }
 }
 
-function articleNav(strLoc, oldLoc, isBack) {
+function articleNav(strLoc, oldLoc, isBack, postId) {
     var url = strLoc
 
     var pattern = /^(?:%40|@)[a-z0-9_-]+$/

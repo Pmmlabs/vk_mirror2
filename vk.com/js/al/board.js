@@ -294,7 +294,7 @@ var Board = {
         }
     },
     updateTitle: function(e) {
-        cur.updates && (e && (cur.updates.unread = 0), document.title = replaceEntities((cur.updates.unread ? "(" + cur.updates.unread + ") " : "") + cur.updates.skin.title))
+        cur.updates && (e && (cur.updates.unread = 0), setDocumentTitle(replaceEntities((cur.updates.unread ? "(" + cur.updates.unread + ") " : "") + cur.updates.skin.title)))
     },
     cancelAddPost: function(e) {
         if (e === !0) {

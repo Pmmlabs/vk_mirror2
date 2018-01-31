@@ -122,7 +122,7 @@ var slide_show = function(e) {
                         debugLog(e)
                     }
                 }, 100);
-            if (options.htitle && (document.title = replaceEntities(stripHTML(options.htitle))), void 0 !== options.q) {
+            if (options.htitle && setDocumentTitle(replaceEntities(stripHTML(options.htitle))), void 0 !== options.q) {
                 val("search_query", replaceEntities(stripHTML(options.q)) || "");
                 var reset_el = ge("search_clear_params");
                 reset_el && show(reset_el)

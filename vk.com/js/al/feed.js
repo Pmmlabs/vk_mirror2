@@ -459,7 +459,7 @@ var Feed = {
         })
     },
     updateTitle: function() {
-        cur.idleManager && (cur.idleManager.isIdle || (cur.feedUnreadCount = 0), document.title = (cur.feedUnreadCount ? "(" + cur.feedUnreadCount + ") " : "") + cur.feedInitialTitle)
+        cur.idleManager && (cur.idleManager.isIdle || (cur.feedUnreadCount = 0), setDocumentTitle((cur.feedUnreadCount ? "(" + cur.feedUnreadCount + ") " : "") + cur.feedInitialTitle))
     },
     toggleTabsMenuTab: function(e, t) {
         var o = geByClass1("feed_section_" + e, cur.feedEls.rmenu);
@@ -912,8 +912,8 @@ var Feed = {
                 if (t) {
                     var o = gpeByClass("_post_wrap", t),
                         r = geByClass1("_post_content", o);
-                    show(r, geByClass1("_answer_wrap", o)), hide(t),
-                        removeClass(o, "feedback_row_touched")
+                    show(r, geByClass1("_answer_wrap", o)),
+                        hide(t), removeClass(o, "feedback_row_touched")
                 }
             },
             showProgress: function() {

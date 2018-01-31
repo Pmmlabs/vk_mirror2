@@ -2,9 +2,9 @@
     display: none
 }
 
-.article .article_object_phone_android,
-.article .article_object_phone_iphone,
 .article_layer__subscribe_icon,
+.article_view .article_object_phone_android,
+.article_view .article_object_phone_iphone,
 .article figure[data-type="102"] .article_object_video_play {
     -ms-high-contrast-adjust: none
 }
@@ -184,11 +184,6 @@
     background-color: #fff;
     word-break: break-word;
     word-wrap: break-word
-}
-
-.article_layer .article {
-    -o-transition: background-color 450ms ease-in-out;
-    transition: background-color 450ms ease-in-out
 }
 
 .article_dark .article {
@@ -387,6 +382,15 @@
     margin-left: -40px
 }
 
+.article>figure .article_object_video,
+.article>figure img,
+.article>figure video {
+    border-radius: 2px;
+    display: block;
+    margin: 0 auto;
+    max-width: 100%
+}
+
 .article>figure figcaption {
     text-align: center;
     max-width: 720px;
@@ -443,14 +447,10 @@
     line-height: 18px
 }
 
-.article .article_object_video {
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
-}
-
-.article .article_object_video .article_object_video__thumb {
-    width: 100%;
-    height: 100%;
-    border-radius: 2px
+.article>figure .article_object_sizer_wrap {
+    position: relative;
+    margin: 0 auto;
+    max-width: 100%
 }
 
 .article .video_box_wrap {
@@ -458,11 +458,11 @@
 }
 
 .article .article_object_gif {
+    position: relative;
     border-radius: 2px;
     overflow: hidden;
     margin: 0 auto;
-    max-width: 100%;
-    position: relative
+    max-width: 100%
 }
 
 .article .article_object_gif>video {
@@ -479,37 +479,18 @@
     width: 100%
 }
 
-.article:not(.article_mobile) figure[data-type="104"] {
-    min-height: 530px
-}
-
-.article figure[data-type="101"] img {
-    margin: 0 auto;
-    display: block;
-    max-width: 100%;
-    border-radius: 2px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none
-}
-
-.article figure[data-type="101"] .article_object_photo__image_blur {
-    -webkit-filter: blur(5px);
-    filter: blur(5px)
-}
-
-.article figure[data-type="101"] .article_image_full_viewable {
-    cursor: pointer
-}
-
 .article figure[data-type="102"] .article_object_video {
-    position: relative;
-    border-radius: 2px;
     background-size: cover;
     background-position: 50%;
     cursor: pointer;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    position: relative
+}
+
+.article figure[data-type="102"] .article_object_video__thumb {
+    width: 100%;
+    height: 100%;
+    border-radius: 2px
 }
 
 .article figure[data-type="102"] .vv_inline_video,
@@ -557,7 +538,70 @@
     border-radius: 2px
 }
 
-.article .article_object_phone_iphone {
+.article:not(.article_mobile) figure[data-type="104"] {
+    min-height: 530px
+}
+
+.article_edit figure[data-type="103"] img,
+.article_edit figure[data-type="103"] video {
+    width: 100%
+}
+
+.article_view>figure .article_figure_content {
+    position: relative;
+    margin: 0 auto;
+    border-radius: 2px;
+    overflow: hidden;
+    max-width: 100%
+}
+
+.article_view>figure .article_figure_sizer_content {
+    position: absolute;
+    width: 100%;
+    height: 100%
+}
+
+.article_view>figure[data-type="103"] img,
+.article_view>figure[data-type="103"] video {
+    width: 100%
+}
+
+.article_view>figure[data-type="102"] .article_object_video {
+    height: 100%;
+    background-size: cover;
+    background-position: 50%
+}
+
+.article_view>figure[data-type="102"] .vv_inline_video,
+.article_view>figure[data-type="102"] video {
+    max-width: 100%;
+    display: block
+}
+
+.article_view>figure[data-type="102"] .vv_inline_video {
+    height: 100%;
+    max-height: 100%
+}
+
+.article_view>figure[data-type="101"] img {
+    width: 100%;
+    display: block;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+.article_view>figure[data-type="101"] .article_object_photo__image_blur {
+    -webkit-filter: blur(5px);
+    filter: blur(5px)
+}
+
+.article_view>figure[data-type="101"] .article_image_full_viewable {
+    cursor: pointer
+}
+
+.article_view .article_object_phone_iphone {
     height: 521px;
     margin: 0 auto;
     background: url(/images/blog/smartfeed_ios_blog.png);
@@ -568,20 +612,20 @@
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .article .article_object_phone_iphone {
+    .article_view .article_object_phone_iphone {
         background-image: url(/images/blog/smartfeed_ios_blog_2x.png);
         background-size: 252px 521px
     }
 }
 
-.article .article_object_phone_iphone>video {
+.article_view .article_object_phone_iphone>video {
     width: 216px!important;
     height: 384px!important;
     position: relative;
     top: 65px
 }
 
-.article .article_object_phone_android {
+.article_view .article_object_phone_android {
     height: 485px;
     margin: 0 auto;
     background: url(/images/blog/smartfeed_android_blog.png);
@@ -592,20 +636,20 @@
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .article .article_object_phone_android {
+    .article_view .article_object_phone_android {
         background-image: url(/images/blog/smartfeed_android_blog_2x.png);
         background-size: 239px 485px
     }
 }
 
-.article .article_object_phone_android>video {
+.article_view .article_object_phone_android>video {
     width: 216px!important;
     height: 384px!important;
     position: relative;
     top: 44px
 }
 
-.article .article_unmute_button {
+.article_view .article_unmute_button {
     position: absolute;
     left: 20px;
     bottom: 20px;
@@ -624,20 +668,20 @@
     transition: background-color 0.2s, opacity 0.2s
 }
 
-.article .article_unmute_button:hover {
+.article_view .article_unmute_button:hover {
     background-color: #eee
 }
 
-.article .article_unmute_button:active {
+.article_view .article_unmute_button:active {
     bottom: 19px
 }
 
-.article .article_object_unmuted .article_unmute_button {
+.article_view .article_object_unmuted .article_unmute_button {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%2212%2012%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%0A%20%20%20%20%3Cpath%20opacity%3D%22.3%22%20d%3D%22M12%2012h24v24H12z%22%2F%3E%0A%20%20%20%20%3Cg%20id%3D%22Group-5%22%20fill%3D%22%231E1E1E%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M24.980843%2030.822762c-.032051%201.2070087-.6704932%201.608931-1.828752.6202508-1.7185994-1.4687545-3.6088746-3.194293-4.2421592-3.7215065-.6321794-.528454-1.644919-.620251-3.0728486-.620251-1.4268244%200-1.8150587-.6202512-1.8150587-1.2405017s-.0136933-1.8288162-.0136933-2.001246c0-.0549443.004646-.085056.0136933-.1291845.0195496-.095355-.0581776-.9728524%200-1.591076.085101-.9055665.3882343-1.2405024%201.8150587-1.2405024%201.4279296%200%202.4406692-.0917972%203.0728486-.620251.6332846-.528454%202.5235598-2.252752%204.2421593-3.7215066%201.1582588-.9886802%201.7967004-.5867575%201.8287515.620251.043103%201.6064504e-7%203.850203e-7%206.6822696%200%202.8295855.0431032%205.3568042%200%206.9632545z%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M27.8812816%2022.1187184c.0737402.0737403.2138434.2488693.3590057.5029032.241777.4231097.3847127.887651.3847127%201.3783784%200%20.4907274-.1429358.9552688-.3847127%201.3783784-.1451623.254034-.2852655.429163-.3590057.5029032-.3417088.3417087-.3417088.895728%200%201.2374368.3417087.3417088.895728.3417088%201.2374368%200%20.1762598-.1762597.4111566-.4698807.6409943-.8720968C30.1429357%2025.5759812%2030.375%2024.8217726%2030.375%2024c0-.8217726-.2320642-1.5759812-.6152873-2.2466216-.2298377-.402216-.4647345-.695837-.6409943-.8720968-.3417087-.3417088-.895728-.3417088-1.2374368%200-.3417088.3417087-.3417088.895728%200%201.2374368z%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M30.8812816%2020.1187184c.1375896.1375897.3825507.4642045.638697.976497.4071252.8142506.6673665%201.7901702.7054825%202.933928-.038116%201.085471-.2983572%202.0613906-.7054824%202.875641-.2561463.5122927-.5011074.8389075-.638697.9764972-.3417088.3417087-.3417088.895728%200%201.2374368.3417087.3417088.895728.3417088%201.2374368%200%20.2637116-.2637116.6207023-.7396992.9665078-1.43131.5167785-1.033557.842501-2.255035.889264-3.658265-.046763-1.4615167-.3724855-2.6829947-.889264-3.7165517-.3458055-.691611-.7027962-1.1675985-.9665078-1.43131-.3417087-.341709-.895728-.341709-1.2374368%200-.3417088.3417086-.3417088.895728%200%201.2374367z%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E");
     opacity: 0
 }
 
-.article .article_object_unmuted:hover .article_unmute_button {
+.article_view .article_object_unmuted:hover .article_unmute_button {
     opacity: 1
 }
 
@@ -656,18 +700,18 @@
 
 .article:not(.article_mobile)>cite,
 .article:not(.article_mobile)>figure {
-    margin-top: 40px;
-    margin-bottom: 40px
+    margin-top: 30px;
+    margin-bottom: 30px
 }
 
 .article:not(.article_mobile)>blockquote {
-    margin-top: 28px;
-    margin-bottom: 28px
+    margin-top: 21px;
+    margin-bottom: 21px
 }
 
 .article:not(.article_mobile) blockquote+blockquote {
     padding-top: 20px;
-    margin-top: -28px!important
+    margin-top: -21px!important
 }
 
 .article:not(.article_mobile)>ol>li,
@@ -724,18 +768,18 @@
 
 .article.article_mobile>cite,
 .article.article_mobile>figure {
-    margin-top: 33px;
-    margin-bottom: 33px
+    margin-top: 25px;
+    margin-bottom: 25px
 }
 
 .article.article_mobile>blockquote {
-    margin-top: 23.1px;
-    margin-bottom: 23.1px
+    margin-top: 17.5px;
+    margin-bottom: 17.5px
 }
 
 .article.article_mobile blockquote+blockquote {
     padding-top: 20px;
-    margin-top: -23.1px!important
+    margin-top: -17.5px!important
 }
 
 .article.article_mobile>ol>li,
@@ -1454,7 +1498,9 @@ body.article_body .article_layer {
     -webkit-user-select: text;
     -moz-user-select: text;
     -ms-user-select: text;
-    user-select: text
+    user-select: text;
+    -o-transition: background-color 450ms ease-in-out;
+    transition: background-color 450ms ease-in-out
 }
 
 .article_layer .article_layer__simple_footer {

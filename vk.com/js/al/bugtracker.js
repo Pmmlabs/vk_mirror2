@@ -744,6 +744,7 @@ var BugTracker = {
                 gid: val("bt_edit_product__gid"),
                 level: cur.editProductLevelDD.val(),
                 nda: isChecked("bt_edit_product__nda") ? 1 : 0,
+                is_over: isChecked("bt_edit_product__is_over") ? 1 : 0,
                 platforms: [],
                 requirements: trim(val("bt_edit_product__requirements")),
                 tags: cur.editProductTagsDD.val(),
@@ -1100,8 +1101,8 @@ var BugTracker = {
                 platforms: []
             },
             o = !0;
-        "" != r.login_tf && -1 == r.login_tf.indexOf("@") && (notaBene("bt_settings__login_tf"), o = !1), "" != r.login_ha && -1 == r.login_ha.indexOf("@") && (notaBene("bt_settings__login_ha"),
-            o = !1), o && (each(geByClass("on", "bt_settings_platforms"), function(e, t) {
+        "" != r.login_tf && -1 == r.login_tf.indexOf("@") && (notaBene("bt_settings__login_tf"),
+            o = !1), "" != r.login_ha && -1 == r.login_ha.indexOf("@") && (notaBene("bt_settings__login_ha"), o = !1), o && (each(geByClass("on", "bt_settings_platforms"), function(e, t) {
             r.platforms.push(attr(t, "platform-id"))
         }), ajax.post("bugtracker", r, {
             showProgress: lockButton.pbind(e),

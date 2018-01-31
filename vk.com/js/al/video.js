@@ -84,10 +84,10 @@ var Video = {
     _switch: function(e, o) {
         var i = ge("video_content_" + o);
         if (!i && "undefined" == typeof cur._preloadedPages[o]) return cur._switchOnPagePreloaded = [e, o], !1;
-        if (Video.doSearch(""), Video.inputVal(cur.searchInputEl, ""), hide("video_content_" + e), toggle("videocat_other_blocks", "catalog" != e), i || ge("video_layout_contents").appendChild(cur._preloadedPages[o]), show(i), "catalog" == e) Video.initOwnerVideoPage(), document.title = getLang("video_myvideos");
+        if (Video.doSearch(""), Video.inputVal(cur.searchInputEl, ""), hide("video_content_" + e), toggle("videocat_other_blocks", "catalog" != e), i || ge("video_layout_contents").appendChild(cur._preloadedPages[o]), show(i), "catalog" == e) Video.initOwnerVideoPage(), setDocumentTitle(getLang("video_myvideos"));
         else {
             var t = ge("videocat_other_blocks");
-            trim(t.innerHTML) || (t.innerHTML = cur._preloadedPages.other), Videocat.init(), document.title = getLang("video_catalogue_tab_full")
+            trim(t.innerHTML) || (t.innerHTML = cur._preloadedPages.other), Videocat.init(), setDocumentTitle(getLang("video_catalogue_tab_full"))
         }
         return toggle("video_add_album_btn", "catalog" != o), uiTabs.switchTab(domFC(ge("videocat_tab_" + o))), uiTabs.hideProgress("video_main_tabs"), Video._updateThumbsInView(), !1
     },
@@ -370,7 +370,7 @@ var Video = {
         })
     },
     _updateSearchPageTitle: function(e) {
-        curBox() || (e ? (cur.prevVideoPageTitle || (cur.prevVideoPageTitle = document.title), document.title = getLang("video_title_search").replace("{q}", e)) : cur.prevVideoPageTitle && (document.title = cur.prevVideoPageTitle))
+        curBox() || (e ? (cur.prevVideoPageTitle || (cur.prevVideoPageTitle = document.title), setDocumentTitle(getLang("video_title_search").replace("{q}", e))) : cur.prevVideoPageTitle && setDocumentTitle(cur.prevVideoPageTitle))
     },
     inputVal: function(e, o) {
         if (val(e) != o) {
@@ -829,7 +829,7 @@ var Video = {
             onDone: function() {
                 removeClass(d, "video_deleted"), re(n)
             }
-        }), delete cur.videoRecentlyRemoved[i]
+        }), delete cur.videoRecentlyRemoved[i];
     },
     onVideoEdit: function(e, o, i, t, r) {
         cur.videoEditItem = gpeByClass("video_item", o), window.Videoview && Videoview.hidePlayer();

@@ -561,8 +561,8 @@ var MoneyTransfer = {
             hash: cur.paymentsOptions.hash
         };
         if (cur.paymentsOptions.isChat) {
-            params.total_amount = amount;
-            params.amount = val('transfer_chunk_amount');
+            params.total_amount = parseInt(amount);
+            params.amount = parseInt(val('transfer_chunk_amount'));
             params.pin_message = isChecked('transfer_pin_message') ? 1 : 0;
             params.private = isChecked('transfer_no_private') ? 0 : 1;
             if (cur.uiAutoacceptCard) {

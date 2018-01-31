@@ -379,7 +379,7 @@ var vkApp = function(e, t, i, o) {
                 if (!n.inlineApp) {
                     e = e.replace(/[<>]+/gi, "");
                     var t = cur.backLang;
-                    t = t ? t : getLang("global_vkontakte"), document.title = t + (e ? " | " + e : "")
+                    t = t ? t : getLang("global_vkontakte"), setDocumentTitle(t + (e ? " | " + e : ""))
                 }
             },
             resizeWindow: function(e, t) {
