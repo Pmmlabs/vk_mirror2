@@ -219,7 +219,7 @@ var stVersions = {
     'owner_photo.js': 3401070266,
     'owner_photo.css': 19042301166,
     'page.js': 1675901880,
-    'page.css': 32026389024,
+    'page.css': 29857263606,
     'page_help.css': 21779704930,
     'public.css': 27137184639,
     'public.js': 1344775948,
@@ -261,7 +261,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 395196917,
+    'feed.js': 612423272,
     'feed.css': 21461861676,
     'privacy.js': 3620108221,
     'privacy.css': 13813019829,
@@ -349,9 +349,9 @@ var stVersions = {
     'bugs.js': 3874995669,
     'bugs.css': 13411492871,
     'bugtracker.js': 572731161,
-    'bugtracker.css': 22336023903,
+    'bugtracker.css': 26080105362,
     'login.css': 15609115642,
-    'login.js': 3347113160,
+    'login.js': 56821690,
     'upload.js': 16891470,
     'upload_photo_transform.js': 1497838791,
     'graffiti.js': 1826105362,
@@ -364,7 +364,7 @@ var stVersions = {
     'away.css': 17658874293,
     'stats.css': 15619219110,
     'payments.css': 22323011083,
-    'payments.js': 824364574,
+    'payments.js': 2978057703,
     'offers.css': 978996883,
     'offers.js': 2030679272,
     'call.js': 4217435992,
@@ -471,8 +471,8 @@ var stVersions = {
     'landings/vkmasks.js': 1193444147,
     'landings/vkvalentine.css': 3589450557,
     'landings/vkvalentine.js': 2683872383,
-    'landings/ads.css': 17023990589,
-    'landing_aes.js': 14740012721,
+    'landings/ads.css': 17628890602,
+    'landing_aes.js': 17791984732,
     'landings/donors_day.css': 16998741922,
     'landing_donors_day.js': 1027075361,
     'landings/testing.css': 14985353773,
@@ -630,4 +630,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 3879;
+var _rnd = 7967;

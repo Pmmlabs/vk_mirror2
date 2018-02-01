@@ -145,7 +145,7 @@ var Feed = {
                 onDone: function(t, o, s) {
                     if (cur.feedUpdateLoading = !1, 1 == e && (!o || -1 == o.indexOf(vk.id + ""))) return void setTimeout(feed.update.pbind(2), 2e3);
                     if (!("feed" !== cur.module || t.section != cur.section || t.timestamp < cur.timestamp || s < cur.timestamp)) {
-                        t.count += cur.count;
+                        statlogsValueEvent("feed_check_update", !!o), t.count += cur.count;
                         var r, i, n, a, c = cur.rowsCont,
                             l = ce("div"),
                             d = 0;
@@ -287,10 +287,10 @@ var Feed = {
                     k = cur.storyLayer;
                 k && (C = !0);
                 var P = !1,
-                    x = b;
+                    T = b;
                 if (C && (b = wall.updatePostImages(b)), y) {
                     if (cur.ignore_owners.length && inArray(intval(y), cur.ignore_owners)) break;
-                    if (p = geByClass1("feed_reposts_wrap" + y, m, "div")) _ = geByClass1("feed_reposts_first", p, "div").firstChild, h = geByClass1("feed_reposts_group", p, "div"), g = geByClass1("feed_reposts_more_link", p, "a"), feed.needScrollPost(t, _) && (c -= _.offsetHeight + l(_)), _.parentNode.replaceChild(f = se(x), _), h.insertBefore(_, h.firstChild), isVisible(h) || val(g, getLang("news_show_X_reposts", h.childNodes.length)), p = p.parentNode, m.firstChild != p && m.insertBefore(p, m.firstChild), feed.needScrollPost(t, p) && (c += p.offsetHeight + l(p)), p.bits = 0;
+                    if (p = geByClass1("feed_reposts_wrap" + y, m, "div")) _ = geByClass1("feed_reposts_first", p, "div").firstChild, h = geByClass1("feed_reposts_group", p, "div"), g = geByClass1("feed_reposts_more_link", p, "a"), feed.needScrollPost(t, _) && (c -= _.offsetHeight + l(_)), _.parentNode.replaceChild(f = se(T), _), h.insertBefore(_, h.firstChild), isVisible(h) || val(g, getLang("news_show_X_reposts", h.childNodes.length)), p = p.parentNode, m.firstChild != p && m.insertBefore(p, m.firstChild), feed.needScrollPost(t, p) && (c += p.offsetHeight + l(p)), p.bits = 0;
                     else if ((w = geByClass("feed_repost" + y, m, "div")) && w.length) {
                         b = rs(cur.wallTpl.grouped_posts, {
                             place: y,
@@ -299,9 +299,9 @@ var Feed = {
                             other: "",
                             label: getLang("news_show_X_reposts", w.length)
                         });
-                        var T = se('<div class="feed_row' + (C ? "_unshown" : "") + '">' + b + "</div>"),
+                        var x = se('<div class="feed_row' + (C ? "_unshown" : "") + '">' + b + "</div>"),
                             S = domFC(S);
-                        Wall.updateAnonNewPost(e, T), m.insertBefore(T, m.firstChild), !C && feed.needScrollPost(t, T) && (c += T.offsetHeight + l(T)), P = !0, p = T.firstChild, f = geByClass1("feed_reposts_first", p, "div"), h = geByClass1("feed_reposts_group", p, "div"), each(clone(w), function() {
+                        Wall.updateAnonNewPost(e, x), m.insertBefore(x, m.firstChild), !C && feed.needScrollPost(t, x) && (c += x.offsetHeight + l(x)), P = !0, p = x.firstChild, f = geByClass1("feed_reposts_first", p, "div"), h = geByClass1("feed_reposts_group", p, "div"), each(clone(w), function() {
                             feed.needScrollPost(t, this) && (c -= this.offsetHeight + l(this)), re(this.parentNode), h.appendChild(this.firstChild)
                         })
                     } else f = se('<div class="feed_row' + (C ? "_unshown" : "") + '"><div class="feed_repost' + y + '">' + b + "</div></div>"), Wall.updateAnonNewPost(e, f), m.insertBefore(f, m.firstChild), P = !0, !C && feed.needScrollPost(t, f) && (c += f.offsetHeight + l(f))
@@ -354,10 +354,10 @@ var Feed = {
                 if (!i || cur.wallMyReplied[r] || ge("post" + e[3])) break;
                 var j = ge("replies" + r),
                     A = ge("replies_wrap" + r),
-                    F = i.offsetHeight,
+                    D = i.offsetHeight,
                     u = r.split("_")[0],
                     d = 0 > u ? 8 & a ? 2 : 2 & a ? 1 : 0 : 0,
-                    D = wall.getNewReplyHTML(e, d),
+                    F = wall.getNewReplyHTML(e, d),
                     f = !1,
                     V = !1;
                 if (isVisible(j) && isVisible(A) && !isVisible("reply_link" + r)) {
@@ -371,12 +371,12 @@ var Feed = {
                         O && (W = intval(O.getAttribute("offs").split("/")[1]) + 1), (W > 5 || W > U) && (O || j.insertBefore(O = ce("a", {
                             className: "wr_header"
                         }), j.firstChild), wall.updateRepliesHeader(r, O, U, W))
-                    } else D = wall.updatePostImages(D), f = se(D), addClass(f, "new_reply"), q && "replies_open" == q.className || (q = ce("div", {
+                    } else F = wall.updatePostImages(F), f = se(F), addClass(f, "new_reply"), q && "replies_open" == q.className || (q = ce("div", {
                         className: "replies_open",
                         onclick: wall.openNewComments.pbind(r)
                     }), j.parentNode.insertBefore(q, j.nextSibling)), q.innerHTML = getLang("wall_x_new_replies_more", Math.min(100, I)), q.newCnt = I
                 } else re("reply_link" + r), show(A, j), V = !0;
-                r.split("_")[0] == vk.id && cur.feedUnreadCount++, f || (f = se(D)), j.appendChild(f), feed.needScrollPost(t, V ? f : q) && (c += i.offsetHeight - F), V && nodeUpdated(f), Wall.repliesSideSetup(r), Wall.updateMentionsIndex();
+                r.split("_")[0] == vk.id && cur.feedUnreadCount++, f || (f = se(F)), j.appendChild(f), feed.needScrollPost(t, V ? f : q) && (c += i.offsetHeight - D), V && nodeUpdated(f), Wall.repliesSideSetup(r), Wall.updateMentionsIndex();
                 break;
             case "del_reply":
                 if (!cur.wallMyDeleted[r] && i) {
@@ -656,7 +656,11 @@ var Feed = {
                         lockButton(o), cur.isFeedLoading = !0
                     },
                     hideProgress: function() {
-                        unlockButton(o), cur.isFeedLoading = !1
+                        if (unlockButton(o), cur.isFeedLoading = !1, o.seen) {
+                            var e = Math.ceil((Date.now() - o.seen) / 1e3),
+                                t = cur.section + (cur.subsection ? "_" + cur.subsection : "");
+                            statlogsValueEvent("feed_load_more_seen_time", e, t), o.seen = !1
+                        }
                     },
                     cache: 1
                 })
@@ -912,8 +916,7 @@ var Feed = {
                 if (t) {
                     var o = gpeByClass("_post_wrap", t),
                         r = geByClass1("_post_content", o);
-                    show(r, geByClass1("_answer_wrap", o)),
-                        hide(t), removeClass(o, "feedback_row_touched")
+                    show(r, geByClass1("_answer_wrap", o)), hide(t), removeClass(o, "feedback_row_touched")
                 }
             },
             showProgress: function() {
@@ -1318,7 +1321,14 @@ var Feed = {
                         var u = feed.postsGetRaws(o);
                         l.push(u), hasClass(o, "feed_to_recomm") && statlogsValueEvent("promo_button_view_blocks", u.index, u.module)
                     }
-                l = l.concat(i.process(a, n)), LongView && LongView.onScroll(a, n), Page.postsSeen(l)
+                l = l.concat(i.process(a, n)), LongView && LongView.onScroll(a, n), Page.postsSeen(l);
+                var f = ge("show_more_link"),
+                    p = f.offsetTop;
+                if (!f.seen && p >= a && a + n > p) {
+                    f.seen = Date.now();
+                    var _ = cur.section + (cur.subsection ? "_" + cur.subsection : "");
+                    statlogsValueEvent("feed_load_more_seen", isButtonLocked(f), _)
+                }
             }
         }
     }, 20),

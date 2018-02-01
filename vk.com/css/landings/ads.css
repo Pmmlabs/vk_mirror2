@@ -2377,6 +2377,10 @@ a.landing_ads_product:hover .landing_ads_product_icon {
     margin-bottom: 20px
 }
 
+.landing_ads_special_project_request_row.wide_row .landing_ads_special_project_request_label {
+    width: 275px
+}
+
 .landing_ads_special_project_request_row.project_type .landing_ads_special_project_request_label {
     padding-top: 0!important
 }
@@ -2418,6 +2422,44 @@ a.landing_ads_product:hover .landing_ads_product_icon {
 
 .landing_ads_special_project_request_value .radiobtn:first-child {
     margin-top: 8px
+}
+
+.landing_ads_special_project_request_value_hint {
+    color: #999;
+    font-size: 12px;
+    margin-top: 12px;
+    line-height: 14px
+}
+
+.landing_ads_special_project_request_offices_add {
+    display: inline-block;
+    margin: 10px 0 0 2px
+}
+
+.landing_ads_special_project_request_offices input+input {
+    margin-top: 10px
+}
+
+.landing_ads_special_project_request_client {
+    margin: 10px 0
+}
+
+.landing_ads_special_project_request_client:first-child {
+    margin-top: 0
+}
+
+.landing_ads_special_project_request_client input {
+    margin-bottom: 5px
+}
+
+.landing_ads_special_project_request_clients_add {
+    display: inline-block;
+    margin-left: 2px
+}
+
+#adv_agency_already_advertise .radiobtn {
+    display: inline-block;
+    margin-right: 12px
 }
 
 #special_project_request_budget_wrap {
@@ -2565,7 +2607,7 @@ a.landing_ads_product:hover .landing_ads_product_icon {
 }
 
 .landing_ads_adv_agency_form {
-    width: 488px;
+    width: 800px;
     margin: 15px auto 0
 }
 
@@ -2573,6 +2615,7 @@ a.landing_ads_product:hover .landing_ads_product_icon {
     margin: 0 0 20px
 }
 
+.landing_ads_adv_agency_form .hidden,
 #adv_agency_form_sent {
     display: none
 }

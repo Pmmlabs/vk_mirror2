@@ -564,8 +564,7 @@ var MoneyTransfer = {
             params.total_amount = parseInt(amount);
             params.amount = parseInt(val('transfer_chunk_amount'));
             params.pin_message = isChecked('transfer_pin_message') ? 1 : 0;
-            params.private = isChecked('transfer_no_private') ? 0 : 1;
-            if (cur.uiAutoacceptCard) {
+            if (isChecked('transfer_autoaccept') && cur.uiAutoacceptCard) {
                 params.accept_card = cur.uiAutoacceptCard.val();
             }
 

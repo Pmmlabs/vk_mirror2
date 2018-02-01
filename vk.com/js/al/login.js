@@ -99,7 +99,7 @@ var Login = {
                     return e ? 1 == e ? (show("login_fast_restore_name_row"), void setTimeout(elfocus("fast_restore_name"), 0)) : 2 == e ? void Login.showFastRestoreError(n, !1, "error") : (val("login_fast_restore_btn", getLang("login_fast_restore_access")), cur.frCode = o, cur.frSentPhone = t, show("login_fast_restore_code_row", "login_fast_restore_resend"), setTimeout(elfocus("fast_restore_code"), 0), cur.frResendDelay = r, cur.frResendInt = setInterval(Login.fastRestoreResendUpdate.pbind(4 == e), 1e3), 4 == e && Login.fastRestoreResendUpdate(!0), void(n && Login.showFastRestoreError(n, !1, "info_msg"))) : void setTimeout(Login.fastRestore.pbind(!1), 1e3)
                 },
                 onFail: function(e) {
-                    return Login.showFastRestoreError(e, "fast_restore_phone"), !0
+                    return e && Login.showFastRestoreError(e, "fast_restore_phone"), !0
                 },
                 showProgress: lockButton.pbind(n),
                 hideProgress: unlockButton.pbind(n)

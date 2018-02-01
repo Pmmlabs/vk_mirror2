@@ -1354,6 +1354,10 @@
     margin-left: 46px
 }
 
+.bt_report_cmt_content .page_doc_row {
+    margin-top: 10px
+}
+
 .bt_report_cmt_text {
     line-height: 17px;
     word-wrap: break-word
