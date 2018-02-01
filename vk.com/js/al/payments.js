@@ -468,6 +468,30 @@ var MoneyTransfer = {
                 hide(cur.uiAutoacceptCard.container);
                 cur.uiAutoacceptCard.container.parentNode.appendChild(link);
             }
+        } else if (ge('transfer_to')) {
+            hide('payments_money_transfer_user');
+            cur.uiTransferTo = Dropdown(ge('transfer_to'), cur.paymentsOptions.friends, {
+                big: true,
+                introText: getLang('votes_transfer_start_typing_recipient'),
+                noResult: '',
+                placeholder: getLang('votes_transfer_choose_recipients'),
+                placeholderColored: true,
+                multiselect: false,
+                enableCustom: true,
+                autocomplete: true,
+                imageId: 'transfer_to_photo',
+                indexkeys: [1, 4],
+                noImageSrc: '/images/blank.gif',
+                onChange: function(value) {
+                    if (!value || value == -1) return;
+                    var transfer_to = cur.uiTransferTo.val_full();
+                    cur.paymentsOptions.toId = transfer_to[0];
+                    cur.paymentsOptions.hash = transfer_to[5];
+                    val('payments_money_transfer_summary', transfer_to[6]);
+                    setTimeout(elfocus.pbind('transfer_amount'), 100);
+                }
+            });
+            cur.destroy.push(cur.uiTransferTo.destroy.bind(cur.uiTransferTo));
         }
         setTimeout(elfocus.pbind('transfer_amount'), 100);
         shortCurrency();
@@ -478,6 +502,10 @@ var MoneyTransfer = {
             btn = ge('payments_money_transfer_send');
         if (isButtonLocked(btn)) return;
 
+        if (!cur.paymentsOptions.toId && cur.uiTransferTo) {
+            notaBene(cur.uiTransferTo.container);
+            return;
+        }
         if (!isChecked('transfer_no_amount')) {
             var amount = val('transfer_amount');
             if (!amount || amount <= 0) {
@@ -518,6 +546,10 @@ var MoneyTransfer = {
                 cur._popup_callback = function() {
                     hide('payments_money_transfer_wrap', 'payments_money_transfer_buttons', 'payments_box_error', 'payments_money_transfer_prg');
                     show('payments_money_transfer_iframe', 'payments_iframe_container');
+                    if (cur.uiTransferTo) {
+                        hide('payments_money_transfer_user_select');
+                        show('payments_money_transfer_user');
+                    }
                     ge('payments_iframe_container').scrollTop = 0;
                     window.addEventListener('message', MoneyTransfer.frameMessage, false);
 
@@ -706,6 +738,10 @@ var MoneyTransfer = {
         var box = curBox();
         hide('payments_money_transfer_iframe');
         show('payments_money_transfer_wrap', 'payments_money_transfer_buttons', 'payments_money_transfer_summary_wrap');
+        if (cur.uiTransferTo) {
+            hide('payments_money_transfer_user');
+            show('payments_money_transfer_user_select');
+        }
         box.changed = false;
         box.setOptions({
             width: 510
@@ -926,13 +962,15 @@ var MoneyTransfer = {
             hideProgress: unlockButton.pbind(btn)
         });
     },
-    cleanAmount: function(o, event) {
+    cleanAmount: function(o, event, onlyClean) {
         if (event.keyCode == 13) {
             return;
         }
         var v = o.value.replace(/[^0-9]/g, '');
         v = v.replace(/^0+/, '');
         if (o.value != v) o.value = v;
+        if (onlyClean) return;
+
         MoneyTransfer.checkAmount(v);
         MoneyTransfer.autosizeAmount();
     },

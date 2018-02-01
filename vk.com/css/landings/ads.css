@@ -2431,30 +2431,18 @@ a.landing_ads_product:hover .landing_ads_product_icon {
     line-height: 14px
 }
 
-.landing_ads_special_project_request_offices_add {
+.landing_ads_special_project_request_add_link {
     display: inline-block;
-    margin: 10px 0 0 2px
+    margin: 6px 0 0 2px
 }
 
-.landing_ads_special_project_request_offices input+input {
+.landing_ads_special_project_request_offices input+input,
+.landing_ads_special_project_request_client+.landing_ads_special_project_request_client {
     margin-top: 10px
 }
 
-.landing_ads_special_project_request_client {
-    margin: 10px 0
-}
-
-.landing_ads_special_project_request_client:first-child {
-    margin-top: 0
-}
-
-.landing_ads_special_project_request_client input {
-    margin-bottom: 5px
-}
-
-.landing_ads_special_project_request_clients_add {
-    display: inline-block;
-    margin-left: 2px
+.landing_ads_special_project_request_client input+input {
+    margin-top: 5px
 }
 
 #adv_agency_already_advertise .radiobtn {

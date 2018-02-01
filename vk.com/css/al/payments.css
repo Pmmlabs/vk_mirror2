@@ -2287,6 +2287,12 @@ h2.payments_getvotes_title {
     vertical-align: top
 }
 
+#payments_box.payments_money_transfer_box .label {
+    color: #828282;
+    padding: 0 0 8px;
+    text-align: left
+}
+
 .payments_money_transfer_chat_photo_wrap {
     width: 36px;
     height: 36px;
@@ -2474,6 +2480,10 @@ h2.payments_getvotes_title {
     text-align: center
 }
 
+.payments_money_transfer_to {
+    width: 460px
+}
+
 .payments_money_transfer_comment {
     padding: 15px 15px 7px!important;
     border: 1px solid #d3d9de;
@@ -2557,8 +2567,7 @@ h2.payments_getvotes_title {
 }
 
 .payments_money_transfer_options .label {
-    color: #828282;
-    padding: 20px 0 8px
+    padding: 20px 0 8px!important
 }
 
 .payments_money_transfer_options .checkbox {
