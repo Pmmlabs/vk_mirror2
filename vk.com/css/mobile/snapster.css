@@ -10,7 +10,7 @@ body {
     font-size: 12px;
     line-height: 1.6;
     font-weight: 400;
-    font-family: Open Sans, HelveticaNeue, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, sans-serif;
     color: #222;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
@@ -98,8 +98,7 @@ body {
     color: #7c7e82;
     font-size: 1.16em;
     line-height: 1.45;
-    margin-bottom: 25px;
-    font-family: Open Sans
+    margin-bottom: 25px
 }
 
 .chronicle_row_icon {

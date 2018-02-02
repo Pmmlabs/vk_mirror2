@@ -20,25 +20,9 @@
     padding: 0
 }
 
-@font-face {
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: 400;
-    src: url(/fonts/opensans400.eot);
-    src: local('Open Sans'), local('OpenSans'), url(/fonts/opensans400.eot?#iefix) format('embedded-opentype'), url(/fonts/opensans400.woff) format('woff'), url(/fonts/opensans400.ttf) format('truetype')
-}
-
-@font-face {
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: 600;
-    src: url(/fonts/opensans600.eot);
-    src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(/fonts/opensans600.eot?#iefix) format('embedded-opentype'), url(/fonts/opensans600.woff) format('woff'), url(/fonts/opensans600.ttf) format('truetype')
-}
-
 body.vkme {
     background: #edeef0;
-    font-family: Open Sans, sans-serif;
+    font-family: sans-serif;
     color: #000
 }
 
@@ -78,7 +62,7 @@ body.vkme #reg_bar {
 }
 
 .vkme .flat_button {
-    font-family: Open Sans, sans-serif
+    font-family: sans-serif
 }
 
 .vkme .flat_button.button_big {
@@ -96,7 +80,7 @@ body.vkme #reg_bar {
 
 .vkme.vkme_mobile,
 .vkme.vkme_mobile .flat_button {
-    font-family: -apple-system, Open Sans, sans-serif
+    font-family: -apple-system sans-serif, Geneva, arial, Tahoma, verdana
 }
 
 .vkme.vkme_mobile .flat_button {
@@ -186,12 +170,12 @@ body.vkme #reg_bar {
 .vkme_page_wrap3 .vkme_client_app_wrap {
     display: none;
     box-shadow: 0px 1px 2px 0px rgba(32, 35, 38, .2);
-    font-family: Open Sans Semibold, sans-serif;
+    font-family: sans-serif;
     background: #fff
 }
 
 .vkme_mobile .vkme_page_wrap3 .vkme_client_app_wrap {
-    font-family: -apple-system, Open Sans, sans-serif
+    font-family: -apple-system sans-serif, Geneva, arial, Tahoma, verdana
 }
 
 .vkme_page_wrap3 .vkme_client_app_wrap .vkme_client_app_link {

@@ -144,7 +144,7 @@ body {
 #sn_pw_actions_list,
 body,
 textarea {
-    font-family: Open Sans, Helvetica Neue, sans-serif
+    font-family: Helvetica Neue, sans-serif
 }
 
 a {
@@ -1286,7 +1286,7 @@ textarea:-ms-input-placeholder {
 
 .auth_big_title,
 .auth_description {
-    font-family: Open Sans, Helvetica, Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-weight: 300
 }
 

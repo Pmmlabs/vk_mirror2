@@ -981,7 +981,7 @@ html:not([lang=ru]) .wall_marked_as_ads {
 #wpe_text.zoom_text font,
 div.submit_post_field[contenteditable=true] font,
 div.submit_post_field font {
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif!important;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif!important;
     color: #000
 }
 
@@ -8760,6 +8760,16 @@ button.wall_block_app_btn {
     font-size: 13px;
     color: #939393;
     margin-top: 8px
+}
+
+.article_snippet .article_snippet__m_info {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, .41176471);
+    padding: 5px 9px;
+    border-radius: 3px
 }
 
 .copy_quote .article_snippet,

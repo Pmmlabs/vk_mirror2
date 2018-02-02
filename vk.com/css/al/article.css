@@ -454,7 +454,7 @@
 }
 
 .article .video_box_wrap {
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif
 }
 
 .article .article_object_gif {
@@ -483,7 +483,7 @@
     background-size: cover;
     background-position: 50%;
     cursor: pointer;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     position: relative
 }
 
@@ -885,7 +885,7 @@
 .blog_entry_text .article>*,
 .blog_entry_text_wrap .article>*,
 .blog_post_text .article>* {
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif
 }
 
 .blog_entry_text .article>ol,
@@ -1508,6 +1508,10 @@ body.article_body .article_layer {
     color: #939393
 }
 
+.article_layer .article_moder_actions {
+    padding: 30px 0 0
+}
+
 .article_full_view {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
@@ -1783,5 +1787,5 @@ body.article_body .article_layer {
 }
 
 .article_layer__content .video_thumb_label_item {
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif
 }

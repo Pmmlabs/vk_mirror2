@@ -108,19 +108,15 @@
 }
 
 .chronicle_title {
+    font-weight: 300;
     font-size: 46px;
     height: 50px;
     color: #333;
     padding-top: 50px
 }
 
-.chronicle_title,
 .chronicle_desc {
-    font-family: Open Sans, Helvetica, Arial, sans-serif;
-    font-weight: 300
-}
-
-.chronicle_desc {
+    font-weight: 300;
     line-height: 150%;
     font-size: 17px;
     color: #888
@@ -391,19 +387,15 @@
 }
 
 .chronicle_slide_title {
+    font-weight: 300;
     font-size: 46px;
     color: #333;
     line-height: 110%;
     margin-bottom: 10px
 }
 
-.chronicle_slide_title,
 .chronicle_slide_desc {
-    font-family: Open Sans, Helvetica, Arial, sans-serif;
-    font-weight: 300
-}
-
-.chronicle_slide_desc {
+    font-weight: 300;
     line-height: 150%;
     font-size: 17px;
     color: #888

@@ -4,38 +4,6 @@
 }
 
 @font-face {
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: 400;
-    src: url(/fonts/opensans400.eot);
-    src: local('Open Sans'), local('OpenSans'), url(/fonts/opensans400.eot?#iefix) format('embedded-opentype'), url(/fonts/opensans400.woff) format('woff'), url(/fonts/opensans400.ttf) format('truetype')
-}
-
-@font-face {
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: 300;
-    src: url(/fonts/opensans300.eot);
-    src: local('Open Sans Light'), local('OpenSans-Light'), url(/fonts/opensans300.eot?#iefix) format('embedded-opentype'), url(/fonts/opensans300.woff) format('woff'), url(/fonts/opensans300.ttf) format('truetype')
-}
-
-@font-face {
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: 600;
-    src: url(/fonts/opensans600.eot);
-    src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(/fonts/opensans600.eot?#iefix) format('embedded-opentype'), url(/fonts/opensans600.woff) format('woff'), url(/fonts/opensans600.ttf) format('truetype')
-}
-
-@font-face {
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: 700;
-    src: url(/fonts/opensans700.eot);
-    src: local('Open Sans Bold'), local('OpenSans-Bold'), url(/fonts/opensans700.eot?#iefix) format('embedded-opentype'), url(/fonts/opensans700.woff) format('woff'), url(/fonts/opensans700.ttf) format('truetype')
-}
-
-@font-face {
     font-family: Roboto;
     font-style: normal;
     font-weight: 400;

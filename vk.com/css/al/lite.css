@@ -223,7 +223,7 @@ body {
     padding: 0;
     direction: ltr;
     font-size: 13px;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     line-height: 1.154;
     font-weight: 400;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -1574,7 +1574,7 @@ input[type~=search],
 input[type~=text],
 textarea {
     font-size: 13px;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     outline: none;
     box-shadow: none
 }
@@ -2406,7 +2406,7 @@ small.divider {
     cursor: pointer;
     white-space: nowrap;
     outline: none;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     vertical-align: top;
     line-height: 15px;
     text-align: center;

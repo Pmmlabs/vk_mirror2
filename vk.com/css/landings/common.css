@@ -58,10 +58,6 @@ body.is_page {
     opacity: 1
 }
 
-.landing .flat_button {
-    font-family: Open Sans, Helvetica Neue, sans-serif
-}
-
 .landing .landing_button {
     font-size: 13px;
     background: #6383a8;
@@ -157,7 +153,6 @@ body.is_page {
 }
 
 .landing .landing_page_text {
-    font-family: Open Sans, Helvetica Neue, sans-serif;
     text-align: left;
     font-weight: 300;
     font-size: 19px;

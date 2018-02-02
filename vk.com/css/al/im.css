@@ -1124,7 +1124,7 @@ img.im_photo_thumb {
     border: none;
     background: none;
     color: #2a5885;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 13px;
     outline: 0;
     padding: 0;
@@ -2319,7 +2319,7 @@ img.im_photo_thumb {
     border: none;
     background: none;
     color: #2a5885;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 13px;
     outline: 0;
     padding: 0;
@@ -2383,7 +2383,7 @@ img.im_photo_thumb {
     border: none;
     background: none;
     color: #2a5885;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 13px;
     outline: 0;
     padding: 0;
@@ -2586,7 +2586,7 @@ img.im_photo_thumb {
     border: none;
     background: none;
     color: #2a5885;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 13px;
     outline: 0;
     padding: 0;
@@ -2741,7 +2741,7 @@ img.im_photo_thumb {
     border: none;
     background: none;
     color: #2a5885;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 13px;
     outline: 0;
     padding: 0;
@@ -2821,7 +2821,7 @@ img.im_photo_thumb {
     background: none;
     border: 0;
     padding: 0 0 0 20px;
-    font: 13px/18px -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font: 13px/18px -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     color: #2a5885;
     cursor: pointer
 }
@@ -3240,7 +3240,7 @@ img.im_photo_thumb {
     background: #fff;
     white-space: nowrap;
     font-size: 13px;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     line-height: 18px
 }
 
@@ -3699,7 +3699,7 @@ img.im_photo_thumb {
     border: 0;
     background: none;
     color: #939393;
-    font: 13px/18px -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font: 13px/18px -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     cursor: pointer;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto
@@ -3866,7 +3866,7 @@ img.im_photo_thumb {
 }
 
 .im-page--pinned_with-bar .im-page-pinned {
-    height: 46px
+    height: 45px
 }
 
 .im-page--pinned_with-bar .im-page-pinned:before {
@@ -3874,7 +3874,7 @@ img.im_photo_thumb {
 }
 
 .im-page-pinned--media-bar {
-    margin-top: 7px;
+    margin-top: 6px;
     background-color: #e5ebf1;
     border-radius: 2px;
     height: 4px;
@@ -4520,7 +4520,7 @@ img.im_photo_thumb {
     border: none;
     background: none;
     color: #2a5885;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 13px;
     outline: 0;
     padding: 0;
@@ -5594,7 +5594,7 @@ img.im_photo_thumb {
     border: none;
     background: none;
     color: #2a5885;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 13px;
     outline: 0;
     padding: 0;
@@ -5747,7 +5747,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     border: none;
     background: none;
     color: #2a5885;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 13px;
     outline: 0;
     padding: 0;
@@ -5773,7 +5773,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     border: none;
     background: none;
     color: #2a5885;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 13px;
     outline: 0;
     padding: 0;
@@ -6645,7 +6645,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     border: none;
     background: none;
     color: #2a5885;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 13px;
     outline: 0;
     padding: 0;
@@ -8060,7 +8060,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     border: none;
     background: none;
     color: #2a5885;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 13px;
     outline: 0;
     padding: 0;
@@ -9018,7 +9018,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     border: none;
     background: none;
     color: #2a5885;
-    font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
     font-size: 13px;
     outline: 0;
     padding: 0;
