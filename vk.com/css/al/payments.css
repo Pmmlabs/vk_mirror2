@@ -2199,7 +2199,8 @@ h2.payments_getvotes_title {
 
 #payments_box.payments_money_transfer_box .payments_box_summary {
     padding-top: 15px;
-    text-align: center
+    text-align: center;
+    height: 36px
 }
 
 #payments_box.payments_money_transfer_box .payments_summary_cont {
@@ -2434,6 +2435,7 @@ h2.payments_getvotes_title {
 }
 
 .payments_money_transfer_amount {
+    margin: 0;
     display: inline-block;
     border: none;
     font-size: 48px!important;
