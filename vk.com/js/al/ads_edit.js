@@ -4992,6 +4992,7 @@ AdsViewEditor.prototype.updateLinkDomain = function(onCompleteNoError) {
     this.updateLinkDomainContext.campaignId = this.params.campaign_id.value;
     this.updateLinkDomainContext.triesLeft = 30;
     this.updateLinkDomainContext.first = true;
+    this.updateLinkDomainContext.hash = this.params.link_domain.get_hash;
     this.updateLinkDomainContext.onCompleteNoError = onCompleteNoError;
 
     var waitTimeout = (this.params.link_url.event_final_time ? 1 : 5000);
@@ -5016,6 +5017,7 @@ AdsViewEditor.prototype.updateLinkDomainTry = function(updateContext) {
         var isWait = false;
 
         var ajaxParams = {};
+        ajaxParams.hash = updateContext.hash;
         ajaxParams.link_type = updateContext.linkType;
         ajaxParams.link_url = updateContext.linkUrl;
         ajaxParams.ad_id = updateContext.adId;
