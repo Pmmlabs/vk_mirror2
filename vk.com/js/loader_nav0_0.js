@@ -250,7 +250,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 128208541116,
-    'imn.js': 143505991395,
+    'imn.js': 141320952224,
     'im.js': 1322065005,
     'emoji.js': 2024669263,
     'wide_dd.css': 18274783082,
@@ -536,11 +536,11 @@ var stVersions = {
     'internal/away_linksban.css': 15460226278,
     'internal/ui_manual.js': 1761369792,
     'internal/patterns_info.css': 17641289175,
-    'article.css': 30596499933,
+    'article.css': 33889942888,
     'article_editor.css': 31139500745,
-    'cmodules/web/article.js': 32307216419,
-    'cmodules/web/article_layer.js': 18841942548,
-    'article_view.js': 16202587013,
+    'cmodules/web/article.js': 33585669844,
+    'cmodules/web/article_layer.js': 20958808571,
+    'article_view.js': 18319453036,
     'internal/cvkmobile.css': 17207636375,
     'internal/cvkmobile.js': 3588813277,
     'shortener.js': 16413120,
@@ -631,4 +631,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 4118;
+var _rnd = 5961;
