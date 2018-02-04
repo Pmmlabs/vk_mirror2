@@ -538,7 +538,7 @@ var stVersions = {
     'internal/patterns_info.css': 17641289175,
     'article.css': 33889942888,
     'article_editor.css': 31139500745,
-    'cmodules/web/article.js': 33330017529,
+    'cmodules/web/article.js': 33960633224,
     'cmodules/web/article_layer.js': 20958808571,
     'article_view.js': 18319453036,
     'internal/cvkmobile.css': 17207636375,
@@ -631,4 +631,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 8037;
+var _rnd = 2396;
