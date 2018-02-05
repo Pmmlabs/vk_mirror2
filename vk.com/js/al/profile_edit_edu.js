@@ -5,7 +5,7 @@ var ProfileEditorEdu = {
             faculties: {},
             chairs: {},
             schools: {}
-        }
+        }, cur.bannedGeodbCountryIds = []
     },
     genOneRow: function(i, t, e, o, n, u) {
         var s = i + "_" + t + e;
@@ -60,7 +60,7 @@ var ProfileEditorEdu = {
             onEnableCustomChange: function(t) {
                 var e = i.uiCountry ? i.uiCountry.val() : i.country,
                     o = i.uiChair ? i.uiChair.val() : i.chair;
-                (i.showAddChair = !t && e > 4 && 8 != e) && !intval(o) ? show("u_add_chair_to_db" + i.id) : hide("u_add_chair_to_db" + i.id)
+                (i.showAddChair = !t && ProfileEditorEdu.isCountryOpenForNewObjects(e)) && !intval(o) ? show("u_add_chair_to_db" + i.id) : hide("u_add_chair_to_db" + i.id)
             },
             onChange: function(t) {
                 intval(t) ? hide("u_add_chair_to_db" + i.id) : i.showAddChair && show("u_add_chair_to_db" + i.id)
@@ -75,7 +75,7 @@ var ProfileEditorEdu = {
             onEnableCustomChange: function(t) {
                 var e = i.uiCountry ? i.uiCountry.val() : i.country,
                     o = i.uiFaculty ? i.uiFaculty.val() : i.faculty;
-                (i.showAddFaculty = !t && e > 4 && 8 != e) && !intval(o) ? show("u_add_fac_to_db" + i.id) : hide("u_add_fac_to_db" + i.id)
+                (i.showAddFaculty = !t && ProfileEditorEdu.isCountryOpenForNewObjects(e)) && !intval(o) ? show("u_add_fac_to_db" + i.id) : hide("u_add_fac_to_db" + i.id)
             },
             onChange: function(t) {
                 intval(t) ? hide("u_add_fac_to_db" + i.id) : i.showAddFaculty && show("u_add_fac_to_db" + i.id)
@@ -92,7 +92,7 @@ var ProfileEditorEdu = {
             onEnableCustomChange: function(t) {
                 var e = i.uiCountry ? i.uiCountry.val() : i.country,
                     o = i.uiUniversity ? i.uiUniversity.val() : i.university;
-                (i.showAddUni = !t && e > 4 && 8 != e) && !intval(o) ? show("u_add_uni_to_db" + i.id) : hide("u_add_uni_to_db" + i.id)
+                (i.showAddUni = !t && ProfileEditorEdu.isCountryOpenForNewObjects(e)) && !intval(o) ? show("u_add_uni_to_db" + i.id) : hide("u_add_uni_to_db" + i.id)
             },
             onChange: function(t) {
                 intval(t) ? (show("u_details" + i.id), hide("u_add_uni_to_db" + i.id)) : (hide("u_details" + i.id), i.showAddUni && show("u_add_uni_to_db" + i.id)), i.uiEducationForm.clear(), i.uiEducationStatus.clear(), i.uiGraduation.clear()
@@ -162,7 +162,7 @@ var ProfileEditorEdu = {
             onEnableCustomChange: function(t) {
                 var e = i.uiCountry ? i.uiCountry.val() : i.country,
                     o = i.uiSchool ? i.uiSchool.val() : i.school;
-                (i.showAddSchool = !t && e > 4 && 8 != e) && !intval(o) ? show("s_add_school_to_db" + i.id) : hide("s_add_school_to_db" + i.id)
+                (i.showAddSchool = !t && ProfileEditorEdu.isCountryOpenForNewObjects(e)) && !intval(o) ? show("s_add_school_to_db" + i.id) : hide("s_add_school_to_db" + i.id)
             },
             onChange: function(t) {
                 intval(t) ? (show("s_details" + i.id), hide("s_add_school_to_db" + i.id)) : (hide("s_details" + i.id), i.showAddSchool && show("s_add_school_to_db" + i.id)), i.uiClass.clear(), i.uiStart.clear(), i.uiFinish.clear(), i.uiGraduation.clear(), ge("s_spec" + i.id + "_custom").value = ""
@@ -341,6 +341,9 @@ var ProfileEditorEdu = {
     },
     schoolChanged: function(i) {
         return !isVisible("school_content" + i.id) || i.country != i.uiCountry.val() || i.city != i.uiCity.val() || i.school != i.uiSchool.val() || i.start != i.uiStart.val() || i.finish != i.uiFinish.val() || i.graduation != i.uiGraduation.val() || i.school_class != i.uiClass.val() || i.spec != ge("s_spec" + i.id + "_custom").value
+    },
+    isCountryOpenForNewObjects: function(i) {
+        return !cur.geodbBannedCountries[i]
     }
 };
 try {
