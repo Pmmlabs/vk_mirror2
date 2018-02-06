@@ -973,3 +973,35 @@ i i.untranslated {
 .tr_row_value_text_short.active:before {
     background-position: 99% 2px
 }
+
+.translations_screen_attach_box .photos_choose_upload_area {
+    width: 100%
+}
+
+.translations_screen_attach_box .web_cam_photo,
+.translations_screen_attach_box_title .ui_box_search {
+    display: none
+}
+
+.translation_box_screen {
+    padding: 13px;
+    border-radius: 3px;
+    background: #f2f4f7
+}
+
+.translation_box_screen .translations_box_screen_item {
+    float: left;
+    margin: 0 5px 5px 0;
+    height: 70px;
+    overflow: hidden
+}
+
+.translation_box_screen .translations_box_screen_item img {
+    max-width: 150px;
+    height: 100%
+}
+
+.translation_box_screen .translations_box_no_screenshots {
+    float: left;
+    color: #777e8c
+}

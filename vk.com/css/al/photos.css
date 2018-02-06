@@ -2718,6 +2718,11 @@ a.photos_tt_edit:hover {
     margin-left: 585px
 }
 
+.photos_choose_more_loader {
+    padding-top: 6px;
+    height: 13px
+}
+
 #add_webcam_photo {
     padding: 20px 25px
 }

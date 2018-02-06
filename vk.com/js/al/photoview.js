@@ -215,28 +215,29 @@ var Photoview = {
         createLayer: function() {
             cur.pvLayerCreated = !0, delete cur.pvLeftBtnAmount, addClass(layerWrap, "pv_layer_wrap"), addClass(layerBG, "pv_layer");
             var o = Photoview.isPhotosList(),
-                e = nav.objLoc[0].match(/^faq(\d)+$/);
-            cur.pvIsLightMode = 0 == nav.objLoc[0].indexOf("blog/") || e || inArray(nav.objLoc[0], ["blog", "about", "support", "helpdesk", "market", "bugtracker"]), cur.pvShowBottomActions = !cur.pvIsLightMode || e || inArray(nav.objLoc[0], ["helpdesk", "support"]);
-            var t = "display: none",
-                r = Photoview.hhCheck() ? "" : t,
-                a = (Photoview.canFullscreen() ? "" : t, cur.pvAlbumsShown ? cur.pvAlbumsData[cur.pvAlbumsShown].html : ""),
-                i = cur.pvAlbumShown ? cur.pvAlbumData[cur.pvAlbumShown].html : "",
-                p = cur.pvVideoTagsShown ? cur.pvVideoTagsData.html : "",
-                s = o ? t : "",
-                v = o ? "" : t,
-                n = cur.pvAlbumsShown ? "" : t,
-                c = cur.pvAlbumShown ? "" : t,
-                u = cur.pvVideoTagsShown ? "" : t;
-            cur.pvPhotoTagShown && (i = cur.pvPhotoTagData[cur.pvPhotoTagShown].html, c = ""), ge("pv_comments") && (cur.pvBackupComments = ge("pv_comments"), domPN(ge("pv_comments")).removeChild(ge("pv_comments")));
-            var l = '<div style="' + v + '" class="box_title_wrap box_grey"><div class="box_x_button" onclick="Photoview.hide(0)"></div><div class="box_title_controls"></div><div class="box_title"></div></div>',
-                d = '       <div class="pv_nav_btn" id="pv_nav_btn_left" onmousedown="cur.pvClicked = true; Photoview.show(false, cur.pvIndex - 1, event);">         <div class="pv_nav_btn_icon"></div>       </div>       <div class="pv_nav_btn" id="pv_nav_btn_right" onmousedown="cur.pvClicked = true; Photoview.show(false, cur.pvIndex + 1, event);"><div class="pv_nav_btn_icon"></div></div>     ',
-                h = cur.pvIsLightMode ? "" : '      <div class="pv_hh_like" style="' + r + '">         <div class="pv_hh_like_base"></div>         <div class="pv_hh_like_liked"></div>       </div>     ',
-                g = cur.pvIsLightMode ? "" : '      <div class="pv_fs_wrap">         <div class="pv_fs_btn" onmousedown="return Photoview.fullscreen(event);"><div></div></div>       </div>     ',
-                _ = '      <div class="pv_bottom_info clear_fix">         <div>           <div class="pv_bottom_info_left"><span class="pv_album_name" onmouseover="setTitle(this)"></span><span class="pv_counter"></span></div>           ' + (cur.pvShowBottomActions ? '<div class="pv_bottom_actions"></div>' : "") + "         </div>       </div>",
-                m = cur.pvIsLightMode ? "" : '      <div class="pv_narrow_column_wrap">        <div class="pv_narrow_column_cont wall_module">          <div class="narrow_column" id="pv_narrow"></div>        </div>      </div>',
-                w = getProgressHtml("pv_image_progress"),
-                f = "pv_mouse_out_layer";
-            layer.innerHTML = '    <div class="pv_cont">      <div id="pv_box" class="_scroll_node pv_box" tabindex="0" onclick="cur.pvClicked = true;" onmouseenter="removeClass(layerWrap, \'' + f + "')\" onmouseleave=\"addClass(layerWrap, '" + f + "')\">         " + l + '        <div class="clear_fix pv_photo_wrap" style="' + s + '">           <div class="pv_close_btn" onclick="Photoview.hide(0)"></div>           <div class="no_select pv_left_wrap">                      <div class="no_select pv_image_wrap">              <div id="pv_tag_info" class="clear_fix">                 <div class="pv_tag_info_buttons_wrap"></div>                 <div class="pv_tag_info_text" onmouseover="setTitle(this)"></div>               </div>              <div id="pv_tag_frame"></div>              <div id="pv_tag_faded"></div>              <div id="pv_tag_person" onmouseout="Photoview.hideTag()"></div>              <div class="pv_photo_tags" id="pv_photo_tags"></div>              <div class="pv_img_area_wrap pv_init_hover" onmouseleave="return Photoview.onImageWrapMouseLeave(event)" onmousedown="return Photoview.onImageWrapMouseDown(event)" onmousemove="Photoview.onImageWrapMouseMove(event)">                 <div class="pv_img_progress_wrap">' + w + '</div>                 <a onselectstart="return cancelEvent(event);" onclick="return checkEvent(event)" href="" id="pv_photo"></a>                 ' + d + '                 <div class="pv_like_fs_wrap">                 ' + h + g + "                </div>               </div>             </div>             " + _ + "          </div>" + m + '        </div>        <div id="pv_albums_wrap" class="pv_white_bg photos_container_albums" style="' + n + '">' + a + '</div>        <div id="pv_album_wrap" class="pv_white_bg" style="' + c + '">' + i + '</div>        <div id="pv_vtagged_wrap" class="pv_white_bg" style="' + u + '">' + p + "</div>      </div>        </div>", cur.pvYourComment && domPN(ge("pv_your_comment")).replaceChild(cur.pvYourComment, ge("pv_your_comment")), extend(cur, {
+                e = nav.objLoc[0].match(/^faq(\d)+$/),
+                t = cur.translationBoxOpened;
+            cur.pvIsLightMode = 0 == nav.objLoc[0].indexOf("blog/") || e || inArray(nav.objLoc[0], ["blog", "about", "support", "helpdesk", "market", "bugtracker", "translation"]) || t, cur.pvShowBottomActions = !cur.pvIsLightMode || e || inArray(nav.objLoc[0], ["helpdesk", "support"]);
+            var r = "display: none",
+                a = Photoview.hhCheck() ? "" : r,
+                i = (Photoview.canFullscreen() ? "" : r, cur.pvAlbumsShown ? cur.pvAlbumsData[cur.pvAlbumsShown].html : ""),
+                p = cur.pvAlbumShown ? cur.pvAlbumData[cur.pvAlbumShown].html : "",
+                s = cur.pvVideoTagsShown ? cur.pvVideoTagsData.html : "",
+                v = o ? r : "",
+                n = o ? "" : r,
+                c = cur.pvAlbumsShown ? "" : r,
+                u = cur.pvAlbumShown ? "" : r,
+                l = cur.pvVideoTagsShown ? "" : r;
+            cur.pvPhotoTagShown && (p = cur.pvPhotoTagData[cur.pvPhotoTagShown].html, u = ""), ge("pv_comments") && (cur.pvBackupComments = ge("pv_comments"), domPN(ge("pv_comments")).removeChild(ge("pv_comments")));
+            var d = '<div style="' + n + '" class="box_title_wrap box_grey"><div class="box_x_button" onclick="Photoview.hide(0)"></div><div class="box_title_controls"></div><div class="box_title"></div></div>',
+                h = '       <div class="pv_nav_btn" id="pv_nav_btn_left" onmousedown="cur.pvClicked = true; Photoview.show(false, cur.pvIndex - 1, event);">         <div class="pv_nav_btn_icon"></div>       </div>       <div class="pv_nav_btn" id="pv_nav_btn_right" onmousedown="cur.pvClicked = true; Photoview.show(false, cur.pvIndex + 1, event);"><div class="pv_nav_btn_icon"></div></div>     ',
+                g = cur.pvIsLightMode ? "" : '      <div class="pv_hh_like" style="' + a + '">         <div class="pv_hh_like_base"></div>         <div class="pv_hh_like_liked"></div>       </div>     ',
+                _ = cur.pvIsLightMode ? "" : '      <div class="pv_fs_wrap">         <div class="pv_fs_btn" onmousedown="return Photoview.fullscreen(event);"><div></div></div>       </div>     ',
+                m = '      <div class="pv_bottom_info clear_fix">         <div>           <div class="pv_bottom_info_left"><span class="pv_album_name" onmouseover="setTitle(this)"></span><span class="pv_counter"></span></div>           ' + (cur.pvShowBottomActions ? '<div class="pv_bottom_actions"></div>' : "") + "         </div>       </div>",
+                w = cur.pvIsLightMode ? "" : '      <div class="pv_narrow_column_wrap">        <div class="pv_narrow_column_cont wall_module">          <div class="narrow_column" id="pv_narrow"></div>        </div>      </div>',
+                f = getProgressHtml("pv_image_progress"),
+                P = "pv_mouse_out_layer";
+            layer.innerHTML = '    <div class="pv_cont">      <div id="pv_box" class="_scroll_node pv_box" tabindex="0" onclick="cur.pvClicked = true;" onmouseenter="removeClass(layerWrap, \'' + P + "')\" onmouseleave=\"addClass(layerWrap, '" + P + "')\">         " + d + '        <div class="clear_fix pv_photo_wrap" style="' + v + '">           <div class="pv_close_btn" onclick="Photoview.hide(0)"></div>           <div class="no_select pv_left_wrap">                      <div class="no_select pv_image_wrap">              <div id="pv_tag_info" class="clear_fix">                 <div class="pv_tag_info_buttons_wrap"></div>                 <div class="pv_tag_info_text" onmouseover="setTitle(this)"></div>               </div>              <div id="pv_tag_frame"></div>              <div id="pv_tag_faded"></div>              <div id="pv_tag_person" onmouseout="Photoview.hideTag()"></div>              <div class="pv_photo_tags" id="pv_photo_tags"></div>              <div class="pv_img_area_wrap pv_init_hover" onmouseleave="return Photoview.onImageWrapMouseLeave(event)" onmousedown="return Photoview.onImageWrapMouseDown(event)" onmousemove="Photoview.onImageWrapMouseMove(event)">                 <div class="pv_img_progress_wrap">' + f + '</div>                 <a onselectstart="return cancelEvent(event);" onclick="return checkEvent(event)" href="" id="pv_photo"></a>                 ' + h + '                 <div class="pv_like_fs_wrap">                 ' + g + _ + "                </div>               </div>             </div>             " + m + "          </div>" + w + '        </div>        <div id="pv_albums_wrap" class="pv_white_bg photos_container_albums" style="' + c + '">' + i + '</div>        <div id="pv_album_wrap" class="pv_white_bg" style="' + u + '">' + p + '</div>        <div id="pv_vtagged_wrap" class="pv_white_bg" style="' + l + '">' + s + "</div>      </div>        </div>", cur.pvYourComment && domPN(ge("pv_your_comment")).replaceChild(cur.pvYourComment, ge("pv_your_comment")), extend(cur, {
                 pvCont: domFC(layer),
                 pvBox: ge("pv_box"),
                 pvImageAreaWrap: geByClass1("pv_img_area_wrap"),
@@ -283,8 +284,8 @@ var Photoview = {
             }), addEvent(layerWrap, "scroll", Photoview.scrollResize), addEvent(layerWrap, "mousemove", Photoview.onLayerMouseMove), Photoview.updateSize(), o && uiScrollBox.init(!1, {
                 parent: layerWrap
             });
-            var P = layerWrap.scrollTop;
-            elfocus(geByClass1("_scroll_node", cur.pvCont)), layerWrap.scrollTop = P
+            var b = layerWrap.scrollTop;
+            elfocus(geByClass1("_scroll_node", cur.pvCont)), layerWrap.scrollTop = b
         },
         doShowAlbums: function(o, e) {
             if (o = intval(o), !e || 2 != e.button && 3 != e.which) {

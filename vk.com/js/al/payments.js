@@ -1107,7 +1107,7 @@ var MoneyTransfer = {
         domReplaceEl(btn, newBtn);
     },
 
-    initHistoryBox: function(oid) {
+    initHistoryBox: function(oid, request_id) {
         var btn = ge('ui_money_transfer_load_more');
         if (btn) {
             var tbl = ge('settings_transfer_history').tBodies[0];
@@ -1117,7 +1117,8 @@ var MoneyTransfer = {
                     ajax.post('al_payments.php', {
                         act: 'money_transfer_history_box',
                         offset: offset,
-                        owner_id: oid
+                        owner_id: oid,
+                        request_id: request_id
                     }, {
                         onDone: cb
                     });

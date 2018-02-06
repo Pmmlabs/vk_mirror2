@@ -1770,14 +1770,49 @@ body.mac #page_header_cont {
     opacity: 0
 }
 
-.top_nav_btn_audio_group,
-.top_audio_play {
+.top_nav_btn_audio_group {
     display: inline-block
+}
+
+@-webkit-keyframes top_audio_play_loading {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@-o-keyframes top_audio_play_loading {
+    0% {
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    to {
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes top_audio_play_loading {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
 }
 
 .top_audio_play {
     position: relative;
     height: 42px;
+    display: inline-block;
     vertical-align: top
 }
 
@@ -1855,6 +1890,21 @@ body.mac #page_header_cont {
     top: 4px;
     width: 13px;
     height: 13px
+}
+
+.top_audio_play .top_audio_play__button.loading:after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%2010%2010%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Ccircle%20cx%3D%225%22%20cy%3D%225%22%20r%3D%224.2%22%20fill%3D%22none%22%20stroke%3D%22%23B4C8E0%22%20stroke-width%3D%221.5%22%20stroke-dasharray%3D%2230%22%20stroke-dashoffset%3D%2210%22%2F%3E%0A%3C%2Fsvg%3E");
+    width: 10px;
+    height: 10px;
+    left: 6px;
+    top: 5px;
+    -webkit-animation: top_audio_play_loading 0.8s infinite linear;
+    -o-animation: top_audio_play_loading 0.8s infinite linear;
+    animation: top_audio_play_loading 0.8s infinite linear
+}
+
+.top_audio_play.light .top_audio_play__button.loading:after {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%2010%2010%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%3Ccircle%20cx%3D%225%22%20cy%3D%225%22%20r%3D%224.2%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%221.5%22%20stroke-dasharray%3D%2230%22%20stroke-dashoffset%3D%2210%22%2F%3E%0A%3C%2Fsvg%3E")
 }
 
 .top_notify_count {
