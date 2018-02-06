@@ -596,8 +596,14 @@ var MoneyTransfer = {
             params.total_amount = parseInt(amount);
             params.amount = parseInt(val('transfer_chunk_amount'));
             params.pin_message = isChecked('transfer_pin_message') ? 1 : 0;
-            if (isChecked('transfer_autoaccept') && cur.uiAutoacceptCard) {
-                params.accept_card = cur.uiAutoacceptCard.val();
+            if (isChecked('transfer_autoaccept')) {
+                if (cur.uiAutoacceptCard) {
+                    params.accept_card = cur.uiAutoacceptCard.val();
+                }
+                if (!params.accept_card || params.accept_card == -1) {
+                    MoneyTransfer.showError(getLang('payments_money_request_error_no_accept_card'));
+                    return false;
+                }
             }
 
             var error = false;

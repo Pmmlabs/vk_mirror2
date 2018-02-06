@@ -861,7 +861,7 @@ var Settings = {
         return window.onReLoginDone = function(e, i) {
             try {
                 var c = a.contentWindow.location.href;
-                if (c.match(/&hash=/) && !c.match(/&hash=[a-z0-9]+/)) return location.href = base_domain + "login.php?op=logout&hash=" + o, !1;
+                if (c.match(/&hash=/) && !c.match(/&hash=[a-z0-9_]+/)) return location.href = base_domain + "login.php?op=logout&hash=" + o, !1;
                 re(n)
             } catch (l) {
                 return

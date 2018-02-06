@@ -118,12 +118,12 @@ var Tickets = {
         for (var l in cur.extraFields) {
             var d = cur.extraFields[l],
                 _ = ge("tickets_new_extra_field_" + l + "_inp"),
-                u = "",
-                p = _;
+                p = "",
+                u = _;
             if (3 != d.required || !cur.verifiedPage) {
-                _ ? u = _.value.trim() : (p = ge("tickets_new_extra_field_" + l), u = data(p, "value"));
+                _ ? p = _.value.trim() : (u = ge("tickets_new_extra_field_" + l), p = data(u, "value"));
                 var h = 1 == d.required || (2 == d.required || 3 == d.required) && !cur.verifiedPage;
-                (!u && h || 4 == d.type && h && -1 == u.indexOf("vk.com")) && (notaBene(p, !1, !o), o = !1), n["extra_field_" + l] = u
+                (!p && h || 4 == d.type && h && -1 == p.indexOf("vk.com")) && (notaBene(u, !1, !o), o = !1), n["extra_field_" + l] = p
             }
         }
         return o ? (nav.objLoc.mobile && (n.mobile = 1), nav.objLoc.bhash && (n.bhash = nav.objLoc.bhash), void Tickets.trySaveTicket(function() {
@@ -164,7 +164,7 @@ var Tickets = {
                     innerHTML: r.replace(/z9q2m/g, "audio")
                 }).innerHTML
             }
-            "new_ads" == nav.objLoc.act && (s.section = 1), "new_pay" == nav.objLoc.act && (s.section = 16), ajax.post("support", s, {
+            "new_ads" == nav.objLoc.act && (s.section = 1), "new_pay" == nav.objLoc.act && (s.section = 16), nav.objLoc.from && (s.from = nav.objLoc.from), ajax.post("support", s, {
                 onDone: function(e) {
                     showDoneBox(e)
                 },
@@ -1025,14 +1025,14 @@ var Tickets = {
             });
         else {
             hide("tickets_new_extra_field__upload_btn_" + e, "tickets_new_extra_field__example_" + e);
-            var u = ge("tickets_new_extra_field__uploaded_" + e);
-            addClass(u, "tickets_new_extra_field__uploaded_p"), cur.attachMediaIndexes || (cur.attachMediaIndexes = {}), cur.attachMediaIndexes[n] = i;
-            var p = '<div><div class="page_attach_progress_wrap">  <div id="upload' + n + '_progress" class="page_attach_progress"></div></div></div></div>' + (c ? '<div class="attach_label">' + c + "</div>" : "") + '<div class="progress_x" onmouseover="showTooltip(this, {text: \'' + getLang("dont_attach") + '\', shift: [6, 3, 3]})" onclick="Upload.terminateUpload(' + t + ", '" + (r || t) + "');\"></div>";
-            u.appendChild(ce("div", {
+            var p = ge("tickets_new_extra_field__uploaded_" + e);
+            addClass(p, "tickets_new_extra_field__uploaded_p"), cur.attachMediaIndexes || (cur.attachMediaIndexes = {}), cur.attachMediaIndexes[n] = i;
+            var u = '<div><div class="page_attach_progress_wrap">  <div id="upload' + n + '_progress" class="page_attach_progress"></div></div></div></div>' + (c ? '<div class="attach_label">' + c + "</div>" : "") + '<div class="progress_x" onmouseover="showTooltip(this, {text: \'' + getLang("dont_attach") + '\', shift: [6, 3, 3]})" onclick="Upload.terminateUpload(' + t + ", '" + (r || t) + "');\"></div>";
+            p.appendChild(ce("div", {
                 id: "upload" + n + "_progress_wrap",
-                innerHTML: p,
+                innerHTML: u,
                 className: "clear_fix upload_" + t + "_progress"
-            })), show(u), l = ge("upload" + n + "_progress"), l.full = !1, s ? setStyle(l, {
+            })), show(p), l = ge("upload" + n + "_progress"), l.full = !1, s ? setStyle(l, {
                 width: l.full ? intval(l.full * o) + "px" : s + "%"
             }) : (setStyle(l, {
                 width: "1px"
@@ -1453,7 +1453,7 @@ var Tickets = {
                 r = "";
             s && (r = s.value.trim(), r && (o.title = r))
         }
-        return t && (o.from = t), i && (o.bhash = i), nav.go(o), !1
+        return t && (o.from = t), i && (o.bhash = i), nav.objLoc.union_id && (o.union_id = nav.objLoc.union_id), nav.objLoc.app_id && (o.app_id = nav.objLoc.app_id), nav.go(o), !1
     },
     listScrollToQuestion: function(e) {
         var t = null;

@@ -649,7 +649,7 @@ var Photoview = {
                     void 0 !== cur.pvBodyScrollTop && (bodyNode.scrollTop = cur.pvBodyScrollTop, delete cur.pvBodyScrollTop)
                 }, 0), Photoview.updateVerticalPosition();
                 var E = domFC(cur.pvPhoto);
-                cur.pvPhotoTags ? cur.pvPhotoTags.reload(E) : cur.pvPhotoTags = new PhotoTags(E, cur.pvPhotoTagsContainer, cur.pvPhWidth, cur.pvPhHeight), setTimeout(Photoview.afterShow, 2)
+                cur.pvPhotoTags ? cur.pvPhotoTags.reload(E) : vk.id && (cur.pvPhotoTags = new PhotoTags(E, cur.pvPhotoTagsContainer, cur.pvPhWidth, cur.pvPhHeight)), setTimeout(Photoview.afterShow, 2)
             }
         },
         toggleTopInfoPanel: function(o, e) {
@@ -1518,7 +1518,7 @@ var Photoview = {
                     angle: o.angle,
                     rot1: o.rot1,
                     rot3: o.rot3
-                }), t == cur.pvListId && r == cur.pvIndex && Photoview.show(t, r), cur.pvPhotoTags && cur.pvPhot
+                }), t == cur.pvListId && r == cur.pvIndex && Photoview.show(t, r), cur.pvPhotoTags && cur.pvPhotoTags.reload()
             }
         },
         likeUpdate: function(o, e, t) {

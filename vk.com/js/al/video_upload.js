@@ -196,7 +196,7 @@ var VideoUpload = {
                                             domPN(a).insertBefore(d, a), re(a)
                                         }
                                     }
-                                    VideoUpload.setStatusHeader(getLang("video_upload_encode_waiting"), e), VideoUpload.setProgressValue(100, getLang("video_upload_waiting"), e), VideoUpload.runVideoProgressUpdate(e, vars.oid, video_id, video_hash, 1, -1)
+                                    VideoUpload.setStatusHeader(getLang("video_upload_encode_waiting"), e), VideoUpload.setProgressValue(100, getLang("video_upload_waiting"), e), VideoUpload.runVideoProgressUpdate(e, vars.oid, video_id, video_hash, 1, -1, 0)
                                 };
                             item ? callback() : VideoUpload.videoUploadCallback = callback
                         }
