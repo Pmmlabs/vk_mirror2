@@ -202,7 +202,7 @@ var stVersions = {
     'video_youtube.css': 15165427311,
     'videoplayer.js': 89412852364,
     'videoplayer.css': 42793584312,
-    'translation.js': 1460426108,
+    'translation.js': 3280478584,
     'translation.css': 18480621953,
     'reg.css': 887926110,
     'reg.js': 1336565657,
@@ -261,7 +261,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 612423272,
+    'feed.js': 502072961,
     'feed.css': 23597440280,
     'privacy.js': 3620108221,
     'privacy.css': 15948598433,
@@ -344,7 +344,7 @@ var stVersions = {
     'achievements.css': 16290810127,
     'sf.css': 18349785042,
     'members.css': 17500044151,
-    'meminfo.css': 20186026517,
+    'meminfo.css': 23820020440,
     'groupinfo.css': 20364800896,
     'bugs.js': 3874995669,
     'bugs.css': 15547071475,
@@ -473,7 +473,7 @@ var stVersions = {
     'landings/vkvalentine.css': 3589450557,
     'landings/vkvalentine.js': 2683872383,
     'landings/ads.css': 19052249979,
-    'landing_aes.js': 15432126537,
+    'landing_aes.js': 14694813984,
     'landings/donors_day.css': 19134320526,
     'landing_donors_day.js': 1027075361,
     'landings/testing.css': 17120932377,
@@ -631,4 +631,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 7778;
+var _rnd = 4396;

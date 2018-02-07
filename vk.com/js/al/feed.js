@@ -551,7 +551,7 @@ var Feed = {
         var o = feed.getSectionParams(cur.section);
         delete cur.feedUpdateLoading, delete cur.isFeedLoading, nav.go(extend(o || {}, {
             0: "feed"
-        })), uiRightMenu.showProgress(cur.feedEls.rmenu)
+        })), uiRightMenu.showProgress(cur.feedEls.rmenu), feed.updateTimer()
     },
     switchSection: function(e, t, o) {
         if (t && checkEvent(t)) return !0;
@@ -585,7 +585,7 @@ var Feed = {
                 toggleClass(cur.feedEls.wrap, "feed_search_shown", o), o && elfocus(cur.feedEls.search), cur.section && val(cur.feedEls.search, "")
             }
             if (2 == t && window.Stories && Stories.updateFeedStories(e), cur.my_feed_types && (~indexOf(cur.my_feed_types.optional_tabs, cur.section) && !~indexOf(cur.my_feed_types.tabs, cur.section) && feed.toggleTabsMenuTab(cur.section, !1), ~indexOf(cur.my_feed_types.optional_tabs, e) && !~indexOf(cur.my_feed_types.tabs, e) && feed.toggleTabsMenuTab(e, !0)), cur.section = e, 4 == t) return void feed.searchUpdate();
-            cur.editingHide = "notifications" == e || "replies" == e ? feed.notifyCheckHideReply : !1, cur.gifAutoplayScrollHandler && cur.gifAutoplayScrollHandler(), cur.videoAutoplayScrollHandler && cur.videoAutoplayScrollHandler()
+            cur.editingHide = "notifications" == e || "replies" == e ? feed.notifyCheckHideReply : !1, cur.gifAutoplayScrollHandler && cur.gifAutoplayScrollHandler(), cur.videoAutoplayScrollHandler && cur.videoAutoplayScrollHandler(), feed.updateTimer()
         }
     },
     applyOptions: function(options, from) {
@@ -1548,7 +1548,7 @@ var Feed = {
             loc: !1
         }, feed.startEvents(), e.article_feature_tooltip && setTimeout(function() {
             Feed.initArticleFeatureTooltip(e.article_feature_tooltip_hash)
-        }, 800), setTimeout(function() {
+        }, 800), feed.updateTimer(), setTimeout(function() {
             feed.scrollCheck({
                 type: "init"
             })
@@ -1739,6 +1739,12 @@ var Feed = {
             }), cur.onShowEditPost = function() {
                 cur.articleFeatureTT.hide(), t()
             }
+        }
+    },
+    updateTimer: function() {
+        if (TimeSpent) {
+            var e = [cur.section, cur.subsection].filter(Boolean).join("_");
+            TimeSpent.update(e)
         }
     }
 };

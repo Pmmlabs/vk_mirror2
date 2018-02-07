@@ -258,24 +258,24 @@
         })
     }
 
-    function _box_initScreens() {
-        if (cur.isSuperTranslator) {
-            var e = new MediaSelector("tr_add_lnk", "tr_preview", [
+    function _box_initScreens(e) {
+        if (cur.isSuperTranslator && !e) {
+            var a = new MediaSelector("tr_add_lnk", "tr_preview", [
                 ["photo", getLang("tran_select_screenshot")]
             ], {
                 mediaHandlers: {
                     photo: _box_chooseScreenHandler
                 }
             });
-            cur.addScreens = e, setTimeout(function() {
-                if (cur.translationsScreensList && cur.translationsScreensList.length > 0 && (each(cur.translationsScreensList, function(a, t) {
-                        e.chooseMedia(t[0], t[1], t[2], "", !0)
+            cur.addScreens = a, setTimeout(function() {
+                if (cur.translationsScreensList && cur.translationsScreensList.length > 0 && (each(cur.translationsScreensList, function(e, t) {
+                        a.chooseMedia(t[0], t[1], t[2], "", !0)
                     }), hide("translations_box_no_screenshots")), cur.addScreens.lnkId) {
                     cur.addMedia[cur.addScreens.lnkId].showPhoto = showScreen;
-                    var a = cur.addMedia[cur.addScreens.lnkId].unchooseMedia;
-                    cur.addMedia[cur.addScreens.lnkId].unchooseMedia = function(e) {
-                        var t = this.chosenMedias[e];
-                        a(e);
+                    var e = cur.addMedia[cur.addScreens.lnkId].unchooseMedia;
+                    cur.addMedia[cur.addScreens.lnkId].unchooseMedia = function(a) {
+                        var t = this.chosenMedias[a];
+                        e(a);
                         var n = !1;
                         cur.translationsScreensList.map(function(e) {
                             return e == t[1] ? !1 : void 0
@@ -389,7 +389,7 @@
                     var s = ge("translation_box_type_" + cur.translationBoxType);
                     s && setTimeout(switchBoxType.pbind(s, cur.translationBoxType), 1)
                 }
-                if (extend(cur, n.cur), _box_initAutosizeTexts(), e || _box_initValuesChangeEvents(), _box_initScreens(), _box_initExtendedForms(n.boxType), _box_restoreValues(), e) {
+                if (extend(cur, n.cur), _box_initAutosizeTexts(), e || _box_initValuesChangeEvents(), _box_initScreens(n.isDeleted), _box_initExtendedForms(n.boxType), _box_restoreValues(), e) {
                     isVisible("translations_key_param_tab_history") && _box_initScrollHeight("translation_history_block");
                     var r;
                     hasClass("translations_box_edit_key", "tr_box_edit_key_simple") && (r = 120), _box_initOtherLangsScroll(r), _box_setValueSize(0)

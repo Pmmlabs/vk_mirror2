@@ -635,13 +635,14 @@ table.history .cur_session {
     width: 100px;
     color: #666;
     text-align: right;
-    padding-top: 6px
+    padding-top: 8px
 }
 
 .mi_ban_form .labeled {
     padding-left: 10px;
     text-align: left;
     float: left;
+    line-height: 18px;
     padding-top: 6px
 }
 
