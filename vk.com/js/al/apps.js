@@ -267,7 +267,7 @@ function detectUnityWebPlayer(e, t) {
     }
 }(window), window._iconAdd || (window._iconAdd = window.devicePixelRatio >= 2 ? "_2x" : "");
 var vkApp = function(e, t, i, o) {
-    if (i = i || {}, t = t || {}, window.parent && window.parent != window && !t.checking && !t.openapi) return !1;
+    if (i = i || {}, t = t || {}, window.parent && window.parent != window && !t.checking && !t.openapi && !t.embed) return !1;
     var n = this;
     if (this.cont = ge(e), this.cont) {
         if (i.hash = i.hash || "", -1 != i.hash.indexOf("#")) {
@@ -579,9 +579,9 @@ var vkApp = function(e, t, i, o) {
                         dark: 1
                     },
                     onFail: function(e) {
-                        return showFastBox({
+                        return void 0 === e && t.embed ? !0 : (showFastBox({
                             title: getLang("global_error")
-                        }, e), !0
+                        }, e), !0)
                     }
                 }), cur.onAppOrderCancel = function() {
                     cur.app.runCallback("onOrderCancel")
@@ -2175,17 +2175,17 @@ AppsSlider.prototype = {
         }, getLang("global_cancel"));
         else r()
     },
-    runApp: function(e, t, i, o, n, s) {
+    runApp: function(e, t, i, o, n, s, a, r) {
         if (!vk.id) return showDoneBox(cur.pleaseSignInLang), !1;
         lockButton(e);
-        var a = clone(nav.objLoc);
-        delete a.w, nav.setLoc(a), window.appsListChanged = 1;
-        var r = "/" + t + "?join=1&hash=" + i + "&sett=" + o;
-        if (cur.fromInstallBox && (r += "&from_install=" + (1 == cur.fromInstallBox ? 1 : 2)), n)
+        var c = clone(nav.objLoc);
+        delete c.w, nav.setLoc(c), window.appsListChanged = 1;
+        var l = "/" + t + "?join=1&hash=" + i + "&sett=" + o;
+        if (a && (l = "/" + t + "?act=embed&join=1&join_hash=" + i + "&sett=" + o + "&hash=" + r), cur.fromInstallBox && (l += "&from_install=" + (1 == cur.fromInstallBox ? 1 : 2)), n)
             if (isObject(n))
-                for (var c in n) "w" != c && (r += "&" + c + "=" + n[c]);
-            else "" != n && (r += "&ref=" + n);
-        s && (r += "&mid=" + s), nav.objLoc["#"] && (r += "#" + nav.objLoc["#"]), nav.go(r)
+                for (var p in n) "w" != p && (l += "&" + p + "=" + n[p]);
+            else "" != n && (l += "&ref=" + n);
+        s && (l += "&mid=" + s), nav.objLoc["#"] && (l += "#" + nav.objLoc["#"]), a && (location.href = l), nav.go(l)
     },
     updatesInterval: null,
     stopUpdates: function() {

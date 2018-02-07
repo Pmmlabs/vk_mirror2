@@ -6218,3 +6218,13 @@ td.apps_cat_new_h {
 .apps_group_hint_icon_count_reached_tt {
     width: 315px
 }
+
+.apps_embed_install_screen_wrap {
+    width: 795px;
+    margin: 0 auto;
+    border: 1px solid #e7e8ec
+}
+
+.apps_embed_install_screen_wrap .apps_i_slider_outer {
+    margin: 25px auto
+}

@@ -437,36 +437,27 @@ var MoneyTransfer = {
         placeholderInit('transfer_comment');
         if (cur.paymentsOptions.isChat) {
             placeholderInit('transfer_chunk_amount');
-            cur.uiAutoacceptCard = new Dropdown(ge('transfer_autoaccept_card'), cur.paymentsOptions.cards, {
-                big: false,
-                multiselect: false,
-                onChange: function(v) {
+            cur.autoacceptCardDD = new InlineDropdown('transfer_autoaccept_card', {
+                items: cur.paymentsOptions.cards,
+                selected: cur.paymentsOptions.cardSeleceted,
+                withArrow: true,
+                onShow: MoneyTransfer.enableAutoaccept,
+                onSelect: function(v) {
                     if (v == -1) {
                         MoneyTransfer.sendBind();
                     }
                 }
             });
-            if (cur.paymentsOptions.autoAcceptEnabled) {
-                MoneyTransfer.enableAutoaccept();
-            } else {
-                cur.uiAutoacceptCard.disable(true);
-            }
-            addEvent(cur.uiAutoacceptCard.container, 'mousedown', MoneyTransfer.enableAutoaccept);
-            box.setOptions({
-                onClean: function() {
-                    if (cur.uiAutoacceptCard) {
-                        removeEvent(cur.uiAutoacceptCard.container, 'mousedown', MoneyTransfer.enableAutoaccept);
-                    }
-                }
-            });
+            cur.autoacceptCardEl = ge('transfer_autoaccept_card');
+            toggleClass('transfer_autoaccept_card', 'disabled', !cur.paymentsOptions.autoAcceptEnabled);
             if (cur.paymentsOptions.cards.length < 2) {
                 var link = ce('a', {
                     id: 'payments_money_transfer_new_card_lnk',
                     innerHTML: getLang('payments_money_transfer_new_card')
                 });
                 addEvent(link, 'mousedown', MoneyTransfer.sendBind);
-                hide(cur.uiAutoacceptCard.container);
-                cur.uiAutoacceptCard.container.parentNode.appendChild(link);
+                hide(cur.autoacceptCardEl);
+                cur.autoacceptCardEl.parentNode.appendChild(link);
             }
         } else if (ge('transfer_to')) {
             hide('payments_money_transfer_user');
@@ -597,8 +588,8 @@ var MoneyTransfer = {
             params.amount = parseInt(val('transfer_chunk_amount'));
             params.pin_message = isChecked('transfer_pin_message') ? 1 : 0;
             if (isChecked('transfer_autoaccept')) {
-                if (cur.uiAutoacceptCard) {
-                    params.accept_card = cur.uiAutoacceptCard.val();
+                if (cur.autoacceptCardDD) {
+                    params.accept_card = cur.autoacceptCardDD.val();
                 }
                 if (!params.accept_card || params.accept_card == -1) {
                     MoneyTransfer.showError(getLang('payments_money_request_error_no_accept_card'));
@@ -662,8 +653,8 @@ var MoneyTransfer = {
                     ge('payments_iframe_container').scrollTop = 0;
                     window.addEventListener('message', MoneyTransfer.frameMessage, false);
 
-                    if (cur.uiAutoacceptCard && isVisible(cur.uiAutoacceptCard.container)) {
-                        cur.uiAutoacceptCard.selectItem(cur.paymentsOptions.cards[0][0]);
+                    if (cur.autoacceptCardDD && isVisible(cur.autoacceptCardEl)) {
+                        cur.autoacceptCardDD.select(cur.paymentsOptions.cards[0][0]);
                     }
 
                     box.changed = true;
@@ -856,15 +847,14 @@ var MoneyTransfer = {
                 if (result == 1) { //success
                     MoneyTransfer.resetSendBox();
                     MoneyTransfer.enableAutoaccept();
-                    if (card && cur.uiAutoacceptCard) {
-                        if (!isVisible(cur.uiAutoacceptCard.container)) {
-                            hide(geByTag('A', cur.uiAutoacceptCard.container.parentNode)[0]);
-                            show(cur.uiAutoacceptCard.container);
+                    if (card && cur.autoacceptCardDD) {
+                        if (!isVisible(cur.autoacceptCardEl)) {
+                            hide(geByTag('A', cur.autoacceptCardEl.parentNode)[0]);
+                            show(cur.autoacceptCardEl);
                         }
                         cur.paymentsOptions.cards.unshift([card.bindingId, card.bin]);
-                        cur.uiAutoacceptCard.setData(cur.paymentsOptions.cards);
-                        cur.uiAutoacceptCard.clear();
-                        cur.uiAutoacceptCard.selectItem(card.bindingId);
+                        cur.autoacceptCardDD.setItems(cur.paymentsOptions.cards);
+                        cur.autoacceptCardDD.select(card.bindingId);
                     }
                 } else if (result == 2) { // failed
                     MoneyTransfer.showError(text);
@@ -1047,15 +1037,12 @@ var MoneyTransfer = {
         }
     },
     checkAutoAccept: function() {
-        cur.uiAutoacceptCard.disable(!isChecked('transfer_autoaccept'));
+        toggleClass('transfer_autoaccept_card', 'disabled', !isChecked('transfer_autoaccept'));
     },
     enableAutoaccept: function() {
         if (!isChecked('transfer_autoaccept')) {
             checkbox('transfer_autoaccept', true);
-            cur.uiAutoacceptCard.disable(false);
-            if (isVisible(cur.uiAutoacceptCard.container)) {
-                triggerEvent(cur.uiAutoacceptCard.selector, 'mousedown');
-            }
+            removeClass('transfer_autoaccept_card', 'disabled');
         }
     },
     aboutBox: function(textKey) {

@@ -7798,6 +7798,29 @@ function extractUrls(text, inactive) {
     return result;
 }
 
+function updateMoney(balance, balanceEx) {
+    if (balance === undefined || balance === false) return;
+    var postfix = '';
+    if (balanceEx === true) {
+        vk.balanceEx = balance;
+        postfix = '_ex';
+    } else {
+        vk.balance = balance;
+    }
+    var els = geByClass('votes_balance_nom' + postfix);
+    for (var i in els) {
+        els[i].innerHTML = balance + ' ' + getLang('votes_flex', balance);
+    }
+    var money = balance * (vk.vcost || 7.0);
+    var els = geByClass('money_balance_nom' + postfix);
+    for (var i in els) {
+        els[i].innerHTML = getLang('global_money_amount_rub', money, true);
+    }
+    if (balanceEx !== undefined && balanceEx !== false && balanceEx !== true) {
+        updateMoney(balanceEx, true);
+    }
+}
+
 addEvent(window, 'DOMContentLoaded load', function() {
     vk.loaded = true;
 });

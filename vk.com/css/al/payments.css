@@ -2199,8 +2199,7 @@ h2.payments_getvotes_title {
 
 #payments_box.payments_money_transfer_box .payments_box_summary {
     padding-top: 15px;
-    text-align: center;
-    height: 36px
+    text-align: center
 }
 
 #payments_box.payments_money_transfer_box .payments_summary_cont {
@@ -2597,17 +2596,21 @@ h2.payments_getvotes_title {
 }
 
 .payments_money_transfer_card_wrap {
-    margin: 6px 0 -6px 10px;
+    margin: 9px 0 -6px 10px;
     float: left
 }
 
 .payments_money_transfer_card_wrap a {
-    padding-top: 3px;
     display: inline-block
 }
 
 #transfer_autoaccept_card {
     width: 140px
+}
+
+#transfer_autoaccept_card.disabled .idd_selected_value {
+    color: #abaeb1;
+    text-decoration: none
 }
 
 .payments_systems_messages_container {
