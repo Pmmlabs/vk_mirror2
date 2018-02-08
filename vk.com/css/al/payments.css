@@ -2197,6 +2197,14 @@ h2.payments_getvotes_title {
     width: 510px
 }
 
+.payments_card_bind_box .payments_money_transfer_prg {
+    height: 403px
+}
+
+.payments_card_bind_box .payments_iframe_container:before {
+    display: none
+}
+
 #payments_box.payments_money_transfer_box .payments_box_summary {
     padding-top: 15px;
     text-align: center

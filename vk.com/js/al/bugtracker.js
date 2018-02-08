@@ -131,12 +131,12 @@ var BugTracker = {
                 attachs = [];
             return each(cur.btNewCommentMedia.getMedias(), function(e, t) {
                 attachs.push(t[0] + "," + t[1])
-            }), m || attachs.length ? void ajax.post("bugtracker", {
-                act: "send_comment",
+            }), m || attachs.length ? void ajax.post("bugtracker?act=a_send_comment", {
                 report_id: cur.bugreportId,
                 hash: cur.bugreportHash,
                 message: m,
-                attachs: attachs
+                attachs: attachs,
+                hidden: +isChecked("bt_comment_hidden")
             }, {
                 showProgress: lockButton.pbind(b),
                 hideProgress: unlockButton.pbind(b),

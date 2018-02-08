@@ -1046,12 +1046,42 @@ var Settings = {
             hash: e
         }, {
             onDone: function(e) {
-                var s = ce("div", {
+                if (s) return cur.autoacceptCards = e.cards, cur.autoacceptCardSelected = e.cardSeleceted, void Settings.initAutoAcceptDD(e.cards, e.cardSeleceted);
+                var o = ce("div", {
                     innerHTML: e,
                     className: "unshown"
                 });
-                t.parentNode.replaceChild(s, t), slideDown(s, 100)
+                t.parentNode.replaceChild(o, t), slideDown(o, 100)
+            },
+            stat: s ? ["ui_controls.js", "ui_controls.css"] : []
+        }), !1
+    },
+    initAutoAcceptDD: function(t, e) {
+        cur.autoacceptCardDD = new InlineDropdown("settings_p2p_receive_card", {
+            items: t,
+            selected: e,
+            withArrow: !0,
+            onSelect: function(t) {
+                -1 == t ? Settings.bindMoneyTransferCard() : t != cur.autoacceptCardSelected && (hash = cur.autoacceptCardDD.getSelected()[2], Settings.saveMoneyTransferCard(t, hash), cur.autoacceptCardSelected = t)
             }
+        })
+    },
+    saveMoneyTransferCard: function(t, e) {
+        ajax.post("al_payments.php", {
+            act: "a_remember_money_transfer_accept_card",
+            card_id: t,
+            hash: e,
+            from: "settings"
+        }, {
+            onDone: window.uiPageBlock && uiPageBlock.showSaved.pbind("settings_p2p_receive_card")
+        })
+    },
+    bindMoneyTransferCard: function() {
+        return showBox("al_payments.php", {
+            act: "promo_box",
+            type: "card_bind"
+        }, {
+            stat: ["ui_controls.js", "ui_controls.css"]
         }), !1
     },
     deletePaymentMethod: function(t, e, s, o) {
@@ -1072,7 +1102,7 @@ var Settings = {
             onDone: function(t) {
                 n.innerHTML = t
             },
-            onDone: function(t) {
+            onFail: function(t) {
                 return n.innerHTML = t, !0
             },
             showProgress: function() {

@@ -450,6 +450,9 @@ var MoneyTransfer = {
             });
             cur.autoacceptCardEl = ge('transfer_autoaccept_card');
             toggleClass('transfer_autoaccept_card', 'disabled', !cur.paymentsOptions.autoAcceptEnabled);
+            if (cur.paymentsOptions.autoAcceptEnabled) {
+                checkbox('transfer_autoaccept', true);
+            }
             if (cur.paymentsOptions.cards.length < 2) {
                 var link = ce('a', {
                     id: 'payments_money_transfer_new_card_lnk',
@@ -1094,11 +1097,12 @@ var MoneyTransfer = {
         domReplaceEl(btn, newBtn);
     },
 
-    initHistoryBox: function(oid, request_id) {
+    initHistoryBox: function(oid, request_id, from_offset) {
         var btn = ge('ui_money_transfer_load_more');
         if (btn) {
             var tbl = ge('settings_transfer_history').tBodies[0];
             cur.userAutoScroll = new AutoList(tbl, {
+                offset: from_offset,
                 onNoMore: re.pbind(btn),
                 onNeedRows: function(cb, offset) {
                     ajax.post('al_payments.php', {

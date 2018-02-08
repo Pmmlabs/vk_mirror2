@@ -106,7 +106,7 @@ var Videocat = window.Videocat || {
         function n() {
             removeEvent(window, "scroll", cur._videocat_onScroll)
         }
-        cur._videocatInited || (cur._videocatInited = !0, Videocat.lists = extend(Videocat.lists || {}, i), Videocat.moreBlocks = e, Videocat.feedData = o, Videocat.preloadLists = t, Videocat.top3playlists = s, Videocat.moreChannelsInfo = a, cur.videoCatRecomsLoaded = !1, cur._sessionChannelsSubscriptions = [], cur._videocat_onScroll && removeEvent(window, "scroll", cur._videocat_onScroll), addEvent(window, "scroll", cur._videocat_onScroll = Videocat._onScroll), cur.destroy.push(n), cur._back.hide.push(n), window.Page && Page.initVideoAutoplay(), ge("videocat_page_block_ugc_popular") && Videocat.sendPopularShownStats(), Video._updateThumbsInView())
+        cur._videocatInited || (cur._videocatInited = !0, Videocat.lists = extend(Videocat.lists || {}, i), Videocat.moreBlocks = e, Videocat.feedData = o, Videocat.preloadLists = t, Videocat.top3playlists = s, Videocat.moreChannelsInfo = a, cur.videoCatRecomsLoaded = !1, cur._sessionChannelsSubscriptions = [], cur._videocat_onScroll && removeEvent(window, "scroll", cur._videocat_onScroll), addEvent(window, "scroll", cur._videocat_onScroll = Videocat._onScroll), cur.destroy.push(n), cur._back.hide.push(n), ge("videocat_page_block_ugc_popular") && Videocat.sendPopularShownStats(), Video._updateThumbsInView())
     },
     sendPopularShownStats: function(e) {
         if (statlogsValueEvent("videocat_popular", "", e ? "more" : "show"), cur.popularQid) {

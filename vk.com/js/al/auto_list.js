@@ -4,7 +4,7 @@ function AutoList(t, s) {
             threshold: 0,
             renderImmediate: !1
         }, s), !this._containerEl) throw new Error("AutoList: container not found");
-    this._rowClasses = this._opts.rowClass ? this._opts.rowClass.split(" ") : !1, delete this._opts.rowClass, this._initialRender = this._opts.renderImmediate, this._isProgressShown = !1, this._prefetched = [], this._offset = this._initialRender ? 0 : this._opts.rowClasses ? this._countRows(this._containerEl.children) : this._containerEl.children.length, this._page = this._offset > 0 ? 1 : 0, addEvent(this._scrollNode, "scroll", this._ev_scroll = this._onScroll.bind(this)), addEvent(window, "resize", this._ev_window_resize = this._onScroll.bind(this)), this._setState(this._opts.renderImmediate ? AutoList.STATE_PENDING_ROWS : AutoList.STATE_PENDING_PREFETCH_ROWS), this._requestRows()
+    this._rowClasses = this._opts.rowClass ? this._opts.rowClass.split(" ") : !1, delete this._opts.rowClass, this._initialRender = this._opts.renderImmediate, this._isProgressShown = !1, this._prefetched = [], this._offset = this._initialRender ? 0 : this._opts.offset ? this._opts.offset : this._opts.rowClasses ? this._countRows(this._containerEl.children) : this._containerEl.children.length, this._page = this._offset > 0 ? 1 : 0, addEvent(this._scrollNode, "scroll", this._ev_scroll = this._onScroll.bind(this)), addEvent(window, "resize", this._ev_window_resize = this._onScroll.bind(this)), this._setState(this._opts.renderImmediate ? AutoList.STATE_PENDING_ROWS : AutoList.STATE_PENDING_PREFETCH_ROWS), this._requestRows()
 }
 AutoList.prototype.getListEl = function() {
     return this._containerEl

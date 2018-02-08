@@ -17,9 +17,14 @@ var Market = {
                 })
             }, 0), Market._createSorters()
         },
+        switchTabSpinner: function(e, t, r, o) {
+            "on" === r ? (val(e, ""), addClass(e, t)) : "off" === r && (removeClass(e, t), val(e, o))
+        },
         switchTab: function(e, t, r) {
             var o = geByClass1("side_link", gpeByClass("ui_tabs", t));
-            return uiTabs.switchTab(t), ajax.post("/al_market.php", {
+            uiTabs.switchTab(t);
+            var a = val(o);
+            return ajax.post("/al_market.php", {
                 id: cur.oid,
                 section: e,
                 load: 1,
@@ -28,8 +33,8 @@ var Market = {
                 onDone: function(t, r, o) {
                     cur.listEl.innerHTML = r, o ? show(cur.more) : hide(cur.more), Market.section(e)
                 },
-                showProgress: addClass.pbind(o, "round_spinner"),
-                hideProgress: removeClass.pbind(o, "round_spinner")
+                showProgress: Market.switchTabSpinner.pbind(o, "round_spinner", "on", a),
+                hideProgress: Market.switchTabSpinner.pbind(o, "round_spinner", "off", a)
             }), !1
         },
         section: function(e) {
@@ -932,7 +937,7 @@ var Market = {
             var t = ge("market_comments_wrap"),
                 r = t ? cur.mkOptions.itemRaw : !1,
                 o = e.match(/^(-?\d+)market(_\d+)/);
-            r && o && ge("market_comment" + o[1] + o[2]) && (cur.mkComments || (cur.mkComments = {}), cur.mkComments[cur.mkOptions.itemRaw] = t);
+            r && o && ge("market_comment" + o[1] + o[2]) && (cur.mkComments || (cur.mkComments = {}), cur.mkComments[cur.mkOptions.itemRaw] = t)
         },
         sendComment: function(e, t, r) {
             var o = ge("reply_field" + e),
@@ -1809,11 +1814,11 @@ var Market = {
             },
             onEnterSearch: function() {
                 var e = trim(val(cur.searchInp));
-                cur.lastQ != e && Marketplace.searchItems()
+                cur.lastQ != e && Marketplace.searchItems();
             },
             onBlurSearch: function() {
                 var e = trim(val(cur.searchInp));
-                cur.lastQ != e && Marketplace.searchItems();
+                cur.lastQ != e && Marketplace.searchItems()
             },
             onChangeQuery: function(e, t, r) {
                 "string" == typeof t && Marketplace.searchItems(t)
