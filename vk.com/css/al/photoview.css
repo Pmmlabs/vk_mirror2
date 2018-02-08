@@ -309,7 +309,7 @@
 }
 
 .photo_tooltip .photo_tooltip__name {
-    padding: 13px;
+    padding: 12px;
     font-size: 13px;
     line-height: 15px;
     font-weight: 500;
@@ -332,10 +332,10 @@
     top: 50%;
     right: 9px;
     margin-top: -8px;
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%2216%2020%2024%2024%22%20version%3D%221.1%22%20style%3D%22%22%3E%0A%20%20%3Cg%20style%3D%22fill-rule%3Aevenodd%3Bfill%3Anone%3Bstroke-width%3A1.5%3Bstroke%3Anone%22%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2220%22%20width%3D%2224%22%20height%3D%2224%22%20opacity%3D%220.4%22%2F%3E%0A%20%20%20%20%3Cg%20style%3D%22stroke-linecap%3Around%3Bstroke-width%3A2.5%3Bstroke%3A%23828A99%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M22.5%2026.5L33.5%2037.5%22%2F%3E%3Cpath%20d%3D%22M33.5%2026.5L22.5%2037.5%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") 50% no-repeat;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%2216%2020%2024%2024%22%3E%3Cg%20fill-rule%3D%22evenodd%22%20fill%3D%22none%22%20stroke-width%3D%221.5%22%3E%3Cpath%20opacity%3D%22.4%22%20d%3D%22M16%2020h24v24H16z%22%2F%3E%3Cg%20stroke-linecap%3D%22round%22%20stroke-width%3D%222.5%22%20stroke%3D%22%23ffffff%22%3E%3Cpath%20d%3D%22M22.5%2026.5l11%2011M33.5%2026.5l-11%2011%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E") 50% no-repeat;
+    background-color: transparent;
     background-size: 15px;
     border: none;
-    background-color: transparent;
     text-indent: -999px;
     cursor: pointer;
     opacity: 0.7;
@@ -346,12 +346,8 @@
     opacity: 0.9
 }
 
-.photo_tooltip.tagged .photo_tooltip__name button {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%2216%2020%2024%2024%22%20version%3D%221.1%22%20style%3D%22%22%3E%0A%20%20%3Cg%20style%3D%22fill-rule%3Aevenodd%3Bfill%3Anone%3Bstroke-width%3A1.5%3Bstroke%3Anone%22%3E%0A%20%20%20%20%3Crect%20x%3D%2216%22%20y%3D%2220%22%20width%3D%2224%22%20height%3D%2224%22%20opacity%3D%220.4%22%2F%3E%0A%20%20%20%20%3Cg%20style%3D%22stroke-linecap%3Around%3Bstroke-width%3A2.5%3Bstroke%3A%23828A99%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M22.5%2026.5L33.5%2037.5%22%2F%3E%3Cpath%20d%3D%22M33.5%2026.5L22.5%2037.5%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%3C%2Fg%3E%0A%3C%2Fsvg%3E") center no-repeat
-}
-
 .suggested_tag_user {
-    padding: 13px;
+    padding: 12px;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -413,16 +409,31 @@
 
 .friends_dropdown__list_input {
     box-sizing: border-box;
-    padding: 12px 0;
     border: none;
+    padding: 12px 0 11px 26px;
     width: 100%;
     font-size: 13px;
-    line-height: 15px;
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%221284%20207%2024%2024%22%3E%3Cg%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M1298.5%20222.9C1297.5%20223.6%201296.3%20224%201295%20224%201291.7%20224%201289%20221.3%201289%20218%201289%20214.7%201291.7%20212%201295%20212%201298.3%20212%201301%20214.7%201301%20218%201301%20219.3%201300.6%20220.5%201299.9%20221.5L1302.7%20224.2C1303%20224.6%201303.1%20225.3%201302.7%20225.7%201302.3%20226%201301.6%20226%201301.2%20225.7L1298.5%20222.9ZM1295%20222C1297.2%20222%201299%20220.2%201299%20218%201299%20215.8%201297.2%20214%201295%20214%201292.8%20214%201291%20215.8%201291%20218%201291%20220.2%201292.8%20222%201295%20222Z%22%20fill%3D%22rgba(130%2C138%2C153%2C0.71)%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
-    background-repeat: no-repeat;
-    background-position: 0;
+    line-height: 16px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%221284%20207%2024%2024%22%3E%3Cg%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M1298.5%20222.9C1297.5%20223.6%201296.3%20224%201295%20224%201291.7%20224%201289%20221.3%201289%20218%201289%20214.7%201291.7%20212%201295%20212%201298.3%20212%201301%20214.7%201301%20218%201301%20219.3%201300.6%20220.5%201299.9%20221.5L1302.7%20224.2C1303%20224.6%201303.1%20225.3%201302.7%20225.7%201302.3%20226%201301.6%20226%201301.2%20225.7L1298.5%20222.9ZM1295%20222C1297.2%20222%201299%20220.2%201299%20218%201299%20215.8%201297.2%20214%201295%20214%201292.8%20214%201291%20215.8%201291%20218%201291%20220.2%201292.8%20222%201295%20222Z%22%20fill%3D%22%23828A99%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") no-repeat 0;
     background-size: 24px auto;
-    padding-left: 26px
+    margin: 0
+}
+
+.friends_dropdown__list_input::-webkit-input-placeholder {
+    color: #6f7985
+}
+
+.friends_dropdown__list_input::-moz-placeholder,
+.friends_dropdown__list_input:-moz-placeholder {
+    color: #6f7985
+}
+
+.friends_dropdown__list_input:-ms-input-placeholder {
+    color: #6f7985
+}
+
+.friends_dropdown__list_input~.placeholder .ph_content {
+    color: #6f7985
 }
 
 .friends_dropdown__list_input::-ms-clear {
@@ -648,7 +659,17 @@
     left: 0;
     height: 100%;
     cursor: pointer;
+    opacity: 0;
+    -o-transition: opacity 0.15s linear;
+    transition: opacity 0.15s linear;
     pointer-events: none
+}
+
+.pv_cont .pv_img_area_wrap.pv_init_hover .pv_nav_btn,
+.pv_cont .pv_img_area_wrap:hover .pv_nav_btn {
+    opacity: 1;
+    -o-transition-delay: 0.2s;
+    transition-delay: 0.2s
 }
 
 .pv_cont .pv_nav_btn .pv_nav_btn_icon {
