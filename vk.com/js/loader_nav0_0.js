@@ -250,7 +250,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 125521045907,
-    'imn.js': 146359390509,
+    'imn.js': 146860829019,
     'im.js': 1322065005,
     'emoji.js': 2024669263,
     'wide_dd.css': 15587287873,
@@ -344,7 +344,7 @@ var stVersions = {
     'achievements.css': 13603314918,
     'sf.css': 15662289833,
     'members.css': 14812548942,
-    'meminfo.css': 21132525231,
+    'meminfo.css': 18655915082,
     'groupinfo.css': 17677305687,
     'bugs.js': 3874995669,
     'bugs.css': 12859576266,
@@ -538,7 +538,7 @@ var stVersions = {
     'internal/patterns_info.css': 15680060076,
     'article.css': 31202447679,
     'article_editor.css': 28452005536,
-    'cmodules/web/article.js': 31807365063,
+    'cmodules/web/article.js': 31795631626,
     'cmodules/web/article_layer.js': 20958808571,
     'article_view.js': 18319453036,
     'internal/cvkmobile.css': 14520141166,
@@ -631,4 +631,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 3986;
+var _rnd = 8021;

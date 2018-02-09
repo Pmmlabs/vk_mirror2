@@ -690,12 +690,16 @@ table.history .cur_session {
     margin-top: 10px
 }
 
-.meminfo_restore_content .meminfo_restore_content_row {
+.meminfo_restore_content_row {
     padding: 8px
 }
 
-.meminfo_restore_content .meminfo_restore_content_row:hover {
+.meminfo_restore_content_row:hover {
     background: #e9ebf0
+}
+
+.meminfo_restore_content_row .meminfo_restore_content_row_time {
+    display: inline-block
 }
 
 .meminfo_restore_limit_progress {
