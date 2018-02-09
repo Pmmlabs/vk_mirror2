@@ -202,8 +202,8 @@ var stVersions = {
     'video_youtube.css': 12477932102,
     'videoplayer.js': 89412852364,
     'videoplayer.css': 40106089103,
-    'translation.js': 3280478584,
-    'translation.css': 15793126744,
+    'translation.js': 1688647909,
+    'translation.css': 14734518689,
     'reg.css': 887926110,
     'reg.js': 1336565657,
     'invite.css': 16360658565,
@@ -218,7 +218,7 @@ var stVersions = {
     'module.css': 17399489212,
     'owner_photo.js': 3401070266,
     'owner_photo.css': 18490384561,
-    'page.js': 1675901880,
+    'page.js': 7217196,
     'page.css': 29857704680,
     'page_help.css': 21227788325,
     'public.css': 26585268034,
@@ -631,4 +631,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 8021;
+var _rnd = 8803;

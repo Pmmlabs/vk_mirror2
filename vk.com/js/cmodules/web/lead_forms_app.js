@@ -11,22 +11,45 @@
     var r = {};
     return t.m = e, t.c = r, t.p = "", t(0)
 }([function(e, t, r) {
-    e.exports = r(11)
-}, function(e, t) {
-    e.exports = {}
-}, function(e, t, r) {
-    var n = r(81),
-        o = r(43);
-    e.exports = function(e) {
-        return function(t, r) {
-            var a, i, s = String(o(t)),
-                u = n(r),
-                l = s.length;
-            return 0 > u || u >= l ? e ? "" : void 0 : (a = s.charCodeAt(u), 55296 > a || a > 56319 || u + 1 === l || (i = s.charCodeAt(u + 1)) < 56320 || i > 57343 ? e ? s.charAt(u) : a : e ? s.slice(u, u + 2) : (a - 55296 << 10) + (i - 56320) + 65536)
-        }
+    e.exports = r(17)
+}, , function(e, t, r) {
+    var n = r(67),
+        o = r(65),
+        a = r(45)(!1),
+        i = r(88)("IE_PROTO");
+    e.exports = function(e, t) {
+        var r, s = o(e),
+            u = 0,
+            l = [];
+        for (r in s) r != i && n(s, r) && l.push(r);
+        for (; t.length > u;) n(s, r = t[u++]) && (~a(l, r) || l.push(r));
+        return l
     }
-}, function(e, t, r) {
-    e.exports = !r(13)(function() {
+}, , , function(e, t, r) {
+    var n = r(35),
+        o = r(52),
+        a = r(60),
+        i = r(88)("IE_PROTO"),
+        s = function() {},
+        u = "prototype",
+        l = function() {
+            var e, t = r(56)("iframe"),
+                n = a.length,
+                o = ">";
+            for (t.style.display = "none", r(85).appendChild(t), t.src = "javascript:", e = t.contentWindow.document, e.open(), e.write("<script>document.F=Object</script" + o), e.close(), l = e.F; n--;) delete l[u][a[n]];
+            return l()
+        };
+    e.exports = Object.create || function(e, t) {
+        var r;
+        return null !== e ? (s[u] = n(e), r = new s, s[u] = null, r[i] = e) : r = l(), void 0 === t ? r : o(r, t)
+    }
+}, , function(e, t) {
+    e.exports = function(e, t, r, n) {
+        if (!(e instanceof t) || void 0 !== n && n in e) throw TypeError(r + ": incorrect invocation!");
+        return e
+    }
+}, , function(e, t, r) {
+    e.exports = !r(75)(function() {
         return 7 != Object.defineProperty({}, "a", {
             get: function() {
                 return 7
@@ -35,194 +58,98 @@
     })
 }, function(e, t, r) {
     "use strict";
-    var n = r(79),
-        o = r(63),
-        a = r(9),
-        i = r(5),
-        s = r(64),
-        u = r(1),
-        l = r(15),
-        c = r(62),
-        p = r(25),
-        _ = r(36)("iterator"),
-        d = !([].keys && "next" in [].keys()),
-        f = "@@iterator",
-        m = "keys",
-        v = "values",
-        g = function() {
-            return this
-        };
-    e.exports = function(e, t, r, h, y, C, w) {
-        l(r, t, h);
-        var b, x, E, F = function(e) {
-                if (!d && e in B) return B[e];
-                switch (e) {
-                    case m:
-                        return function() {
-                            return new r(this, e)
-                        };
-                    case v:
-                        return function() {
-                            return new r(this, e)
-                        }
-                }
-                return function() {
-                    return new r(this, e)
-                }
-            },
-            k = t + " Iterator",
-            S = y == v,
-            A = !1,
-            B = e.prototype,
-            O = B[_] || B[f] || y && B[y],
-            D = O || F(y),
-            T = y ? S ? F("entries") : D : void 0,
-            j = "Array" == t ? B.entries || O : O;
-        if (j && (E = p(j.call(new e)), E !== Object.prototype && (c(E, k, !0), n || s(E, _) || i(E, _, g))), S && O && O.name !== v && (A = !0, D = function() {
-                return O.call(this)
-            }), n && !w || !d && !A && B[_] || i(B, _, D), u[t] = D, u[k] = g, y)
-            if (b = {
-                    values: S ? D : F(v),
-                    keys: C ? D : F(m),
-                    entries: T
-                }, w)
-                for (x in b) x in B || a(B, x, b[x]);
-            else o(o.P + o.F * (d || A), t, b);
-        return b
-    }
-}, function(e, t, r) {
-    var n = r(68),
-        o = r(54);
-    e.exports = r(3) ? function(e, t, r) {
-        return n.f(e, t, o(1, r))
-    } : function(e, t, r) {
-        return e[t] = r, e
-    }
-}, function(e, t) {
-    e.exports = "constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")
-}, function(e, t, r) {
-    "use strict";
-
-    function n(e) {
-        return e && e.__esModule ? e : {
-            "default": e
-        }
-    }
-
-    function o(e) {
-        var t = c.get(e.currentTarget);
-        if (t) {
-            var r = t[e.type];
-            if (r)
-                for (var n = void 0, o = 0; o < r.length; o++) {
-                    var a = s(r[o], 2),
-                        i = a[0],
-                        u = a[1],
-                        l = void 0;
-                    if (hasClass(e.target, i) ? l = u(e, e.target) : (n = gpeByClass(i, e.target, e.currentTarget)) && (l = u(e, n)), l === !1) break
-                }
-        }
-    }
-
-    function a(e, t, r, n) {
-        var a = c.get(e);
-        a || (c.set(e, {}), a = c.get(e));
-        for (var i = t.split(" "), s = 0; s < i.length; s++) {
-            var u = i[s];
-            a[u] || (a[u] = [], addEvent(e, u, o)), a[u].push([r, n])
-        }
-    }
-
-    function i(e, t, r, n) {
-        var a = c.get(e);
-        if (a) {
-            t.split(" ").forEach(function(t) {
-                a[t] && (a[t] = a[t].filter(function(e) {
-                    return e[0] !== r || e[1] !== n
-                }), 0 === a[t].length && removeEvent(e, t, o))
-            });
-            var i = Object.keys(a).map(function(e) {
-                return a[e].length
-            }).reduce(function(e, t) {
-                return e + t
-            });
-            0 === i && c["delete"](e)
-        }
-    }
-    Object.defineProperty(t, "__esModule", {
-        value: !0
-    });
-    var s = function() {
-        function e(e, t) {
-            var r = [],
-                n = !0,
-                o = !1,
-                a = void 0;
-            try {
-                for (var i, s = e[Symbol.iterator](); !(n = (i = s.next()).done) && (r.push(i.value), !t || r.length !== t); n = !0);
-            } catch (u) {
-                o = !0, a = u
-            } finally {
-                try {
-                    !n && s["return"] && s["return"]()
-                } finally {
-                    if (o) throw a
-                }
-            }
-            return r
-        }
-        return function(t, r) {
-            if (Array.isArray(t)) return t;
-            if (Symbol.iterator in Object(t)) return e(t, r);
-            throw new TypeError("Invalid attempt to destructure non-iterable instance")
-        }
-    }();
-    t.addDelegateEvent = a, t.removeDelegateEvent = i;
-    var u = r(12),
-        l = n(u),
-        c = new l["default"]
-}, function(e, t) {
-    e.exports = function(e) {
-        if ("function" != typeof e) throw TypeError(e + " is not a function!");
-        return e
-    }
-}, function(e, t, r) {
-    var n = r(27),
+    var n = r(16).f,
         o = r(5),
-        a = r(64),
-        i = r(49)("src"),
-        s = "toString",
-        u = Function[s],
-        l = ("" + u).split(s);
-    r(55).inspectSource = function(e) {
-        return u.call(e)
-    }, (e.exports = function(e, t, r, s) {
-        var u = "function" == typeof r;
-        u && (a(r, "name") || o(r, "name", t)), e[t] !== r && (u && (a(r, i) || o(r, i, e[t] ? "" + e[t] : l.join(String(t)))), e === n ? e[t] = r : s ? e[t] ? e[t] = r : o(e, t, r) : (delete e[t], o(e, t, r)))
-    })(Function.prototype, s, function() {
-        return "function" == typeof this && this[i] || u.call(this)
-    })
-}, function(e, t, r) {
-    var n = r(8);
-    e.exports = function(e, t, r) {
-        if (n(e), void 0 === t) return e;
-        switch (r) {
-            case 1:
-                return function(r) {
-                    return e.call(t, r)
-                };
-            case 2:
-                return function(r, n) {
-                    return e.call(t, r, n)
-                };
-            case 3:
-                return function(r, n, o) {
-                    return e.call(t, r, n, o)
+        a = (r(92), r(77)),
+        i = r(84),
+        s = r(7),
+        u = r(87),
+        l = r(98),
+        c = r(58),
+        _ = r(46),
+        d = r(100),
+        p = r(9),
+        f = r(93).fastKey,
+        m = p ? "_s" : "size",
+        v = function(e, t) {
+            var r, n = f(t);
+            if ("F" !== n) return e._i[n];
+            for (r = e._f; r; r = r.n)
+                if (r.k == t) return r
+        };
+    e.exports = {
+        getConstructor: function(e, t, r, c) {
+            var _ = e(function(e, n) {
+                s(e, _, t, "_i"), e._i = o(null), e._f = void 0, e._l = void 0, e[m] = 0, void 0 != n && l(n, r, e[c], e)
+            });
+            return a(_.prototype, {
+                clear: function() {
+                    for (var e = this, t = e._i, r = e._f; r; r = r.n) r.r = !0, r.p && (r.p = r.p.n = void 0), delete t[r.i];
+                    e._f = e._l = void 0, e[m] = 0
+                },
+                "delete": function(e) {
+                    var t = this,
+                        r = v(t, e);
+                    if (r) {
+                        var n = r.n,
+                            o = r.p;
+                        delete t._i[r.i], r.r = !0, o && (o.n = n), n && (n.p = o), t._f == r && (t._f = n), t._l == r && (t._l = o), t[m]--
+                    }
+                    return !!r
+                },
+                forEach: function(e) {
+                    s(this, _, "forEach");
+                    for (var t, r = i(e, arguments.length > 1 ? arguments[1] : void 0, 3); t = t ? t.n : this._f;)
+                        for (r(t.v, t.k, this); t && t.r;) t = t.p
+                },
+                has: function(e) {
+                    return !!v(this, e)
                 }
+            }), p && n(_.prototype, "size", {
+                get: function() {
+                    return u(this[m])
+                }
+            }), _
+        },
+        def: function(e, t, r) {
+            var n, o, a = v(e, t);
+            return a ? a.v = r : (e._l = a = {
+                i: o = f(t, !0),
+                k: t,
+                v: r,
+                p: n = e._l,
+                n: void 0,
+                r: !1
+            }, e._f || (e._f = a), n && (n.n = a), e[m]++, "F" !== o && (e._i[o] = a)), e
+        },
+        getEntry: v,
+        setStrong: function(e, t, r) {
+            c(e, t, function(e, t) {
+                this._t = e, this._k = t, this._l = void 0
+            }, function() {
+                for (var e = this, t = e._k, r = e._l; r && r.r;) r = r.p;
+                return e._t && (e._l = r = r ? r.n : e._t._f) ? "keys" == t ? _(0, r.k) : "values" == t ? _(0, r.v) : _(0, [r.k, r.v]) : (e._t = void 0, _(1))
+            }, r ? "entries" : "values", !r, !0), d(t)
         }
-        return function() {
-            return e.apply(t, arguments)
-        }
+    }
+}, , function(e, t, r) {
+    var n = r(24),
+        o = r(44).set;
+    e.exports = function(e, t, r) {
+        var a, i = t.constructor;
+        return i !== r && "function" == typeof i && (a = i.prototype) !== r.prototype && n(a) && o && o(e, a), e
+    }
+}, , , , function(e, t, r) {
+    var n = r(35),
+        o = r(80),
+        a = r(18),
+        i = Object.defineProperty;
+    t.f = r(9) ? Object.defineProperty : function(e, t, r) {
+        if (n(e), t = a(t, !0), n(r), o) try {
+            return i(e, t, r)
+        } catch (s) {}
+        if ("get" in r || "set" in r) throw TypeError("Accessors not supported!");
+        return "value" in r && (e[t] = r.value), e
     }
 }, function(e, t, r) {
     "use strict";
@@ -257,7 +184,7 @@
                 throw new TypeError("Invalid attempt to destructure non-iterable instance")
             }
         }(),
-        a = r(23),
+        a = r(91),
         i = n(a);
     window.LeadFormsApp = {
         showGeneratorBox: function(e) {
@@ -459,6 +386,23 @@
                 var e = vkImage();
                 e.src = "https://vk.com/rtrg?p=" + cur.leadFormsPixel, utilsNode.appendChild(e)
             }
+            this.initSensitiveInputs()
+        },
+        initSensitiveInputs: function() {
+            for (var e = geByClass("lead_form_view_sensitive_input_wrapper"), t = function(t) {
+                    for (var r = e[t], n = domQuery1('.lead_form_view_sensitive_input[data-id="read"]', r), o = domQuery1('.lead_form_view_sensitive_input[data-id="edit"]', r), a = domQuery(".lead_form_view_sensitive_input_action", r), i = 0; i < a.length; i++) {
+                        var s = domData(a[i], "action");
+                        if ("edit" === s) addEvent(a[i], "click", function() {
+                            domData(r, "state", "edit"), addClass(n, "hidden"), removeClass(o, "hidden")
+                        });
+                        else {
+                            if ("cancel" !== s) throw new Error("Unknown action " + s);
+                            addEvent(a[i], "click", function() {
+                                domData(r, "state", "read"), addClass(o, "hidden"), removeClass(n, "hidden"), val(geByTag1("input", o), "")
+                            })
+                        }
+                    }
+                }, r = 0; r < e.length; r++) t(r)
         },
         step1Changed: function() {
             cur.leadFormsStep = 1, this.updatePreview()
@@ -476,39 +420,42 @@
             for (var t = cur.leadFormConfig, r = [], n = !1, o = 0; o < t.step2.questions.length; o++) {
                 var a = t.step2.questions[o],
                     i = "lead_forms_view_input_" + a,
-                    s = trim(val(i));
-                !s || "email" === a && !this.validateEmail(s) || "phone_number" === a && !this.validatePhone(s) || "birthday" === a && !this.validateBirthday(s) ? (notaBene(i, !1, n), n = !0) : r.push({
+                    s = "lead_form_view_sensitive_input_wrapper_" + a,
+                    u = trim(val(i)),
+                    l = "edit",
+                    c = ge(s);
+                c && (l = domData(c, "state")), !u && "edit" === l || "email" === a && "edit" === l && !this.validateEmail(u) || "phone_number" === a && "edit" === l && !this.validatePhone(u) || "birthday" === a && !this.validateBirthday(u) ? (notaBene(i, !1, n), n = !0) : r.push({
                     question: a,
-                    value: s
+                    value: u
                 })
             }
-            for (var u = 0; u < t.step2.custom_questions.length; u++) {
-                var l = t.step2.custom_questions[u],
-                    c = void 0,
+            for (var _ = 0; _ < t.step2.custom_questions.length; _++) {
+                var d = t.step2.custom_questions[_],
                     p = void 0,
-                    _ = geByClass1("_custom_question_" + u);
-                switch (l.type) {
+                    f = void 0,
+                    m = geByClass1("_custom_question_" + _);
+                switch (d.type) {
                     case "input":
                     case "textarea":
-                        p = ge("lead_forms_view_input_custom_question_" + u), c = trim(val(p));
+                        f = ge("lead_forms_view_input_custom_question_" + _), p = trim(val(f));
                         break;
                     case "radio":
-                        c = window.radioBtns["custom_question_" + u].val, c > 0 && (c = l.options[c - 1]);
+                        p = window.radioBtns["custom_question_" + _].val, p > 0 && (p = d.options[p - 1]);
                         break;
                     case "checkbox":
-                        c = [];
-                        for (var d = geByClass("checkbox", _), f = 0; f < d.length; f++) hasClass(d[f], "on") && c.push(l.options[f]);
+                        p = [];
+                        for (var v = geByClass("checkbox", m), g = 0; g < v.length; g++) hasClass(v[g], "on") && p.push(d.options[g]);
                         break;
                     case "select":
-                        c = l.options[parseInt(ge("lead_forms_custom_question_select_" + u).value)]
+                        p = d.options[parseInt(ge("lead_forms_custom_question_select_" + _).value)]
                 }
-                c.length ? r.push({
-                    question: "custom_" + u,
-                    value: c
-                }) : (inArray(l.type, ["input", "textarea"]) ? (notaBene(p, !1, n), n || LeadFormsApp.scrollToEl(p)) : LeadFormsApp.titleError(geByClass1("lead_form_view_labeled_row_label", _), n), n = !0)
+                p.length ? r.push({
+                    question: "custom_" + _,
+                    value: p
+                }) : (inArray(d.type, ["input", "textarea"]) ? (notaBene(f, !1, n), n || LeadFormsApp.scrollToEl(f)) : LeadFormsApp.titleError(geByClass1("lead_form_view_labeled_row_label", m), n), n = !0)
             }
-            var m = geByClass1("lead_form_view_policy");
-            return hasClass(m, "on") ? void(n || ajax.post("lead_forms_app.php", {
+            var h = geByClass1("lead_form_view_policy");
+            return hasClass(h, "on") ? void(n || ajax.post("lead_forms_app.php", {
                 act: "send_form",
                 hash: cur.leadFormSendHash,
                 questions: JSON.stringify(r),
@@ -521,7 +468,7 @@
                 },
                 showProgress: lockButton.pbind(e),
                 hideProgress: unlockButton.pbind(e)
-            })) : LeadFormsApp.titleError(m, n)
+            })) : LeadFormsApp.titleError(h, n)
         },
         titleError: function(e, t) {
             addClass(e, "mark_as_error"), setTimeout(function() {
@@ -632,35 +579,510 @@
         stManager.done("lead_forms_app.js")
     } catch (s) {}
 }, function(e, t, r) {
-    r(41), r(17), r(20), r(71), e.exports = r(55).Map
+    var n = r(24);
+    e.exports = function(e, t) {
+        if (!n(e)) return e;
+        var r, o;
+        if (t && "function" == typeof(r = e.toString) && !n(o = r.call(e))) return o;
+        if ("function" == typeof(r = e.valueOf) && !n(o = r.call(e))) return o;
+        if (!t && "function" == typeof(r = e.toString) && !n(o = r.call(e))) return o;
+        throw TypeError("Can't convert object to primitive value")
+    }
+}, function(e, t, r) {
+    var n = r(2),
+        o = r(60);
+    e.exports = Object.keys || function(e) {
+        return n(e, o)
+    }
 }, function(e, t) {
-    e.exports = function(e) {
-        try {
-            return !!e()
-        } catch (t) {
-            return !0
+    var r = e.exports = "undefined" != typeof window && window.Math == Math ? window : "undefined" != typeof self && self.Math == Math ? self : Function("return this")();
+    "number" == typeof __g && (__g = r)
+}, , function(e, t, r) {
+    for (var n = r(43), o = r(28), a = r(20), i = r(92), s = r(74), u = r(68), l = u("iterator"), c = u("toStringTag"), _ = s.Array, d = ["NodeList", "DOMTokenList", "MediaList", "StyleSheetList", "CSSRuleList"], p = 0; 5 > p; p++) {
+        var f, m = d[p],
+            v = a[m],
+            g = v && v.prototype;
+        if (g) {
+            g[l] || i(g, l, _), g[c] || i(g, c, m), s[m] = _;
+            for (f in n) g[f] || o(g, f, n[f], !0)
         }
     }
 }, function(e, t, r) {
-    var n = r(64),
-        o = r(29),
-        a = r(80)(!1),
-        i = r(74)("IE_PROTO");
+    "use strict";
+    var n = r(20),
+        o = r(94),
+        a = r(28),
+        i = r(77),
+        s = r(93),
+        u = r(98),
+        l = r(7),
+        c = r(24),
+        _ = r(75),
+        d = r(79),
+        p = r(73),
+        f = r(12);
+    e.exports = function(e, t, r, m, v, g) {
+        var h = n[e],
+            y = h,
+            C = v ? "set" : "add",
+            w = y && y.prototype,
+            b = {},
+            x = function(e) {
+                var t = w[e];
+                a(w, e, "delete" == e ? function(e) {
+                    return g && !c(e) ? !1 : t.call(this, 0 === e ? 0 : e)
+                } : "has" == e ? function(e) {
+                    return g && !c(e) ? !1 : t.call(this, 0 === e ? 0 : e)
+                } : "get" == e ? function(e) {
+                    return g && !c(e) ? void 0 : t.call(this, 0 === e ? 0 : e)
+                } : "add" == e ? function(e) {
+                    return t.call(this, 0 === e ? 0 : e), this
+                } : function(e, r) {
+                    return t.call(this, 0 === e ? 0 : e, r), this
+                })
+            };
+        if ("function" == typeof y && (g || w.forEach && !_(function() {
+                (new y).entries().next()
+            }))) {
+            var E = new y,
+                F = E[C](g ? {} : -0, 1) != E,
+                k = _(function() {
+                    E.has(1)
+                }),
+                S = d(function(e) {
+                    new y(e)
+                }),
+                A = !g && _(function() {
+                    for (var e = new y, t = 5; t--;) e[C](t, t);
+                    return !e.has(-0)
+                });
+            S || (y = t(function(t, r) {
+                l(t, y, e);
+                var n = f(new h, t, y);
+                return void 0 != r && u(r, v, n[C], n), n
+            }), y.prototype = w, w.constructor = y), (k || A) && (x("delete"), x("has"), v && x("get")), (A || F) && x(C), g && w.clear && delete w.clear
+        } else y = m.getConstructor(t, e, v, C), i(y.prototype, r), s.NEED = !0;
+        return p(y, e), b[e] = y, o(o.G + o.W + o.F * (y != h), b), g || m.setStrong(y, e, v), y
+    }
+}, function(e, t) {
+    e.exports = function(e) {
+        return "object" == typeof e ? null !== e : "function" == typeof e
+    }
+}, function(e, t, r) {
+    var n = r(20),
+        o = "__core-js_shared__",
+        a = n[o] || (n[o] = {});
+    e.exports = function(e) {
+        return a[e] || (a[e] = {})
+    }
+}, , , function(e, t, r) {
+    var n = r(20),
+        o = r(92),
+        a = r(67),
+        i = r(86)("src"),
+        s = "toString",
+        u = Function[s],
+        l = ("" + u).split(s);
+    r(81).inspectSource = function(e) {
+        return u.call(e)
+    }, (e.exports = function(e, t, r, s) {
+        var u = "function" == typeof r;
+        u && (a(r, "name") || o(r, "name", t)), e[t] !== r && (u && (a(r, i) || o(r, i, e[t] ? "" + e[t] : l.join(String(t)))), e === n ? e[t] = r : s ? e[t] ? e[t] = r : o(e, t, r) : (delete e[t], o(e, t, r)))
+    })(Function.prototype, s, function() {
+        return "function" == typeof this && this[i] || u.call(this)
+    })
+}, function(e, t, r) {
+    var n = r(35);
+    e.exports = function(e, t, r, o) {
+        try {
+            return o ? t(n(r)[0], r[1]) : t(r)
+        } catch (a) {
+            var i = e["return"];
+            throw void 0 !== i && n(i.call(e)), a
+        }
+    }
+}, , function(e, t, r) {
+    var n = r(40),
+        o = r(68)("toStringTag"),
+        a = "Arguments" == n(function() {
+            return arguments
+        }()),
+        i = function(e, t) {
+            try {
+                return e[t]
+            } catch (r) {}
+        };
+    e.exports = function(e) {
+        var t, r, s;
+        return void 0 === e ? "Undefined" : null === e ? "Null" : "string" == typeof(r = i(t = Object(e), o)) ? r : a ? n(t) : "Object" == (s = n(t)) && "function" == typeof t.callee ? "Arguments" : s
+    }
+}, , , , function(e, t, r) {
+    var n = r(24);
+    e.exports = function(e) {
+        if (!n(e)) throw TypeError(e + " is not an object!");
+        return e
+    }
+}, , , function(e, t, r) {
+    "use strict";
+
+    function n(e, t, r) {
+        var n = vkNow(),
+            i = a(n, o(e), "", t.label ? t.label : "", c),
+            s = cur.leadFormsTpls.dropDown.replace("{input_id}", n).replace("{label}", getLang("communityApps_lead_forms_custom_question_answer_type")),
+            u = se(cur.leadFormsTpls.customQuestionWrap.replace("{question}", i).replace("{answer_type}", s)),
+            l = geByClass1("lead_forms_app_labeled_row_cont", u).appendChild(ce("div", {
+                className: "lead_forms_app_custom_question_row_remove"
+            }));
+        return addEvent(l, "click", function() {
+            re(domClosest("lead_forms_app_custom_question_row", l)), r()
+        }), ge("lead_forms_app_custom_questions").appendChild(u), ge("lead_forms_generator_input_" + n).focus(), [u, n]
+    }
+
+    function o(e) {
+        return getLang("communityApps_lead_forms_custom_question_label").replace("%s", e)
+    }
+
+    function a(e, t, r, n, o) {
+        return cur.leadFormsTpls.inputRow.replace(/\{input\_id\}/g, e).replace("{label}", t).replace("{placeholder}", r).replace("{value}", n).replace(/\{max\_length\}/g, o)
+    }
+
+    function i(e, t, r) {
+        return {
+            setText: function(e) {},
+            onTypeChanged: function(e, n) {
+                var o = geByClass1("_lead_forms_app_custom_question_row_extra", r.questionEl);
+                if (removeEvent(geByClass1("lead_forms_app_custom_question_row_extra_add_input", o), "click"), val(o, ""), !inArray(e, ["input", "textarea"])) {
+                    var a = n.options ? n.options.length : 2;
+                    "select" !== e || n.options || (a = 1), val(o, cur.leadFormsTpls.customQuestionExtra.replace("{inputs}", ""));
+                    for (var i = 0; a > i; i++) {
+                        var s = n.options ? n.options[i] : "";
+                        t().addInput(s)
+                    }
+                }
+                addEvent(geByClass1("lead_forms_app_custom_question_row_extra_add_input", o), "click", function(e) {
+                    cancelEvent(e), t().addInput()
+                }), LeadFormsApp.step2Changed()
+            },
+            addInput: function(e) {
+                var n = geByClass1("_lead_forms_app_custom_question_row_extra_inputs", r.questionEl),
+                    o = getLang("communityApps_lead_forms_custom_question_answer_placeholder").replace("%s", n.children.length + 1),
+                    i = n.appendChild(se(a(vkNow(), "", o, e || "", _))),
+                    s = geByClass1("lead_forms_app_labeled_row_cont", i).appendChild(ce("div", {
+                        className: "lead_forms_app_custom_question_row_remove"
+                    }));
+                addEvent(s, "click", function() {
+                    t().removeInput(s)
+                });
+                var u = domCA(geByClass1("lead_forms_app_custom_question_row_extra_add_input", r.questionEl), ".lead_forms_app_labeled_row");
+                n.children.length >= d ? hide(u) : show(u), LeadFormsApp.step2Changed()
+            },
+            removeInput: function(e) {
+                re(domClosest("lead_forms_app_labeled_row", e));
+                for (var t = geByClass("lead_forms_app_generator_input", geByClass1("_lead_forms_app_custom_question_row_extra_inputs", r.questionEl)), n = 0; n < t.length; n++) attr(t[n], "placeholder", getLang("communityApps_lead_forms_custom_question_answer_placeholder").replace("%s", n + 1))
+            },
+            getData: function() {
+                for (var e = {
+                        label: trim(val("lead_forms_generator_input_" + r.ident)),
+                        type: r.answerTypeDD.val(),
+                        options: []
+                    }, t = geByClass("lead_forms_app_generator_input", geByClass1("_lead_forms_app_custom_question_row_extra_inputs", r.questionEl)), n = 0; n < t.length; n++) {
+                    var o = trim(val(t[n]));
+                    o && e.options.push(trim(val(t[n])))
+                }
+                return e
+            },
+            getNum: function() {
+                return r.questionNum
+            },
+            setNum: function(e) {
+                r.questionNum = e, val(geByClass1("lead_forms_app_labeled_row_label", r.questionEl), o(e))
+            },
+            unmount: function() {
+                (0, l.destroyModule)(e)
+            }
+        }
+    }
+
+    function s(e, t, r) {
+        t = t || {};
+        var o = n(e, t, function() {
+                r.onRemove(p().getNum())
+            }),
+            a = u(o, 2),
+            s = a[0],
+            c = a[1],
+            _ = {
+                questionNum: e,
+                ident: c,
+                questionEl: s,
+                callbacks: r
+            },
+            d = (0, l.createMutations)(i),
+            p = d.callMutations,
+            f = d.bindMutations;
+        _.answerTypeDD = new Dropdown(ge("lead_forms_generator_dd_" + c), cur.leadFormsData.customQuestionAnswerTypes, {
+            width: 300,
+            big: 1,
+            onChange: function(e) {
+                p().onTypeChanged(e, {})
+            },
+            selectedItem: t.type ? t.type : void 0
+        }), t.type && setTimeout(function() {
+            p().onTypeChanged(t.type, t)
+        });
+        var m = (0, l.createModule)({
+            handlers: function(e, t) {}
+        });
+        return f(m, p, _)
+    }
+    Object.defineProperty(t, "__esModule", {
+        value: !0
+    });
+    var u = function() {
+        function e(e, t) {
+            var r = [],
+                n = !0,
+                o = !1,
+                a = void 0;
+            try {
+                for (var i, s = e[Symbol.iterator](); !(n = (i = s.next()).done) && (r.push(i.value), !t || r.length !== t); n = !0);
+            } catch (u) {
+                o = !0, a = u
+            } finally {
+                try {
+                    !n && s["return"] && s["return"]()
+                } finally {
+                    if (o) throw a
+                }
+            }
+            return r
+        }
+        return function(t, r) {
+            if (Array.isArray(t)) return t;
+            if (Symbol.iterator in Object(t)) return e(t, r);
+            throw new TypeError("Invalid attempt to destructure non-iterable instance")
+        }
+    }();
+    t["default"] = s;
+    var l = r(70),
+        c = 200,
+        _ = 60,
+        d = 15
+}, , function(e, t) {
+    var r = {}.toString;
+    e.exports = function(e) {
+        return r.call(e).slice(8, -1)
+    }
+}, , , function(e, t, r) {
+    "use strict";
+    var n = r(83),
+        o = r(46),
+        a = r(74),
+        i = r(65);
+    e.exports = r(58)(Array, "Array", function(e, t) {
+        this._t = i(e), this._i = 0, this._k = t
+    }, function() {
+        var e = this._t,
+            t = this._k,
+            r = this._i++;
+        return !e || r >= e.length ? (this._t = void 0, o(1)) : "keys" == t ? o(0, r) : "values" == t ? o(0, e[r]) : o(0, [r, e[r]])
+    }, "values"), a.Arguments = a.Array, n("keys"), n("values"), n("entries")
+}, function(e, t, r) {
+    var n = r(24),
+        o = r(35),
+        a = function(e, t) {
+            if (o(e), !n(t) && null !== t) throw TypeError(t + ": can't set as prototype!")
+        };
+    e.exports = {
+        set: Object.setPrototypeOf || ("__proto__" in {} ? function(e, t, n) {
+            try {
+                n = r(84)(Function.call, r(47).f(Object.prototype, "__proto__").set, 2), n(e, []), t = !(e instanceof Array)
+            } catch (o) {
+                t = !0
+            }
+            return function(e, r) {
+                return a(e, r), t ? e.__proto__ = r : n(e, r), e
+            }
+        }({}, !1) : void 0),
+        check: a
+    }
+}, function(e, t, r) {
+    var n = r(65),
+        o = r(55),
+        a = r(72);
+    e.exports = function(e) {
+        return function(t, r, i) {
+            var s, u = n(t),
+                l = o(u.length),
+                c = a(i, l);
+            if (e && r != r) {
+                for (; l > c;)
+                    if (s = u[c++], s != s) return !0
+            } else
+                for (; l > c; c++)
+                    if ((e || c in u) && u[c] === r) return e || c;
+            return !e && -1
+        }
+    }
+}, function(e, t) {
     e.exports = function(e, t) {
-        var r, s = o(e),
-            u = 0,
-            l = [];
-        for (r in s) r != i && n(s, r) && l.push(r);
-        for (; t.length > u;) n(s, r = t[u++]) && (~a(l, r) || l.push(r));
-        return l
+        return {
+            value: t,
+            done: !!e
+        }
+    }
+}, function(e, t, r) {
+    var n = r(69),
+        o = r(50),
+        a = r(65),
+        i = r(18),
+        s = r(67),
+        u = r(80),
+        l = Object.getOwnPropertyDescriptor;
+    t.f = r(9) ? l : function(e, t) {
+        if (e = a(e), t = i(t, !0), u) try {
+            return l(e, t)
+        } catch (r) {}
+        return s(e, t) ? o(!n.f.call(e, t), e[t]) : void 0
+    }
+}, function(e, t, r) {
+    var n = r(67),
+        o = r(61),
+        a = r(88)("IE_PROTO"),
+        i = Object.prototype;
+    e.exports = Object.getPrototypeOf || function(e) {
+        return e = o(e), n(e, a) ? e[a] : "function" == typeof e.constructor && e instanceof e.constructor ? e.constructor.prototype : e instanceof Object ? i : null
+    }
+}, function(e, t) {
+    e.exports = function(e) {
+        if ("function" != typeof e) throw TypeError(e + " is not a function!");
+        return e
+    }
+}, function(e, t) {
+    e.exports = function(e, t) {
+        return {
+            enumerable: !(1 & e),
+            configurable: !(2 & e),
+            writable: !(4 & e),
+            value: t
+        }
+    }
+}, , function(e, t, r) {
+    var n = r(16),
+        o = r(35),
+        a = r(19);
+    e.exports = r(9) ? Object.defineProperties : function(e, t) {
+        o(e);
+        for (var r, i = a(t), s = i.length, u = 0; s > u;) n.f(e, r = i[u++], t[r]);
+        return e
+    }
+}, , , function(e, t, r) {
+    var n = r(66),
+        o = Math.min;
+    e.exports = function(e) {
+        return e > 0 ? o(n(e), 9007199254740991) : 0
+    }
+}, function(e, t, r) {
+    var n = r(24),
+        o = r(20).document,
+        a = n(o) && n(o.createElement);
+    e.exports = function(e) {
+        return a ? o.createElement(e) : {}
+    }
+}, , function(e, t, r) {
+    "use strict";
+    var n = r(90),
+        o = r(94),
+        a = r(28),
+        i = r(92),
+        s = r(67),
+        u = r(74),
+        l = r(64),
+        c = r(73),
+        _ = r(48),
+        d = r(68)("iterator"),
+        p = !([].keys && "next" in [].keys()),
+        f = "@@iterator",
+        m = "keys",
+        v = "values",
+        g = function() {
+            return this
+        };
+    e.exports = function(e, t, r, h, y, C, w) {
+        l(r, t, h);
+        var b, x, E, F = function(e) {
+                if (!p && e in B) return B[e];
+                switch (e) {
+                    case m:
+                        return function() {
+                            return new r(this, e)
+                        };
+                    case v:
+                        return function() {
+                            return new r(this, e)
+                        }
+                }
+                return function() {
+                    return new r(this, e)
+                }
+            },
+            k = t + " Iterator",
+            S = y == v,
+            A = !1,
+            B = e.prototype,
+            D = B[d] || B[f] || y && B[y],
+            O = D || F(y),
+            T = y ? S ? F("entries") : O : void 0,
+            j = "Array" == t ? B.entries || D : D;
+        if (j && (E = _(j.call(new e)), E !== Object.prototype && (c(E, k, !0), n || s(E, d) || i(E, d, g))), S && D && D.name !== v && (A = !0, O = function() {
+                return D.call(this)
+            }), n && !w || !p && !A && B[d] || i(B, d, O), u[t] = O, u[k] = g, y)
+            if (b = {
+                    values: S ? O : F(v),
+                    keys: C ? O : F(m),
+                    entries: T
+                }, w)
+                for (x in b) x in B || a(B, x, b[x]);
+            else o(o.P + o.F * (p || A), t, b);
+        return b
     }
 }, function(e, t, r) {
     "use strict";
-    var n = r(78),
-        o = r(54),
-        a = r(62),
+    var n = r(10);
+    e.exports = r(23)("Map", function(e) {
+        return function() {
+            return e(this, arguments.length > 0 ? arguments[0] : void 0)
+        }
+    }, {
+        get: function(e) {
+            var t = n.getEntry(this, e);
+            return t && t.v
+        },
+        set: function(e, t) {
+            return n.def(this, 0 === e ? 0 : e, t)
+        }
+    }, n, !0)
+}, function(e, t) {
+    e.exports = "constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")
+}, function(e, t, r) {
+    var n = r(87);
+    e.exports = function(e) {
+        return Object(n(e))
+    }
+}, , function(e, t, r) {
+    "use strict";
+    var n = r(31),
+        o = {};
+    o[r(68)("toStringTag")] = "z", o + "" != "[object z]" && r(28)(Object.prototype, "toString", function() {
+        return "[object " + n(this) + "]"
+    }, !0)
+}, function(e, t, r) {
+    "use strict";
+    var n = r(5),
+        o = r(50),
+        a = r(73),
         i = {};
-    r(5)(i, r(36)("iterator"), function() {
+    r(92)(i, r(68)("iterator"), function() {
         return this
     }), e.exports = function(e, t, r) {
         e.prototype = n(i, {
@@ -668,16 +1090,80 @@
         }), a(e, t + " Iterator")
     }
 }, function(e, t, r) {
-    var n = r(81),
-        o = Math.max,
-        a = Math.min;
+    var n = r(95),
+        o = r(87);
+    e.exports = function(e) {
+        return n(o(e))
+    }
+}, function(e, t) {
+    var r = Math.ceil,
+        n = Math.floor;
+    e.exports = function(e) {
+        return isNaN(e = +e) ? 0 : (e > 0 ? n : r)(e)
+    }
+}, function(e, t) {
+    var r = {}.hasOwnProperty;
     e.exports = function(e, t) {
-        return e = n(e), 0 > e ? o(e + t, 0) : a(e, t)
+        return r.call(e, t)
     }
 }, function(e, t, r) {
+    var n = r(25)("wks"),
+        o = r(86),
+        a = r(20).Symbol,
+        i = "function" == typeof a;
+    e.exports = function(e) {
+        return n[e] || (n[e] = i && a[e] || (i ? a : o)("Symbol." + e))
+    }
+}, function(e, t) {
+    t.f = {}.propertyIsEnumerable
+}, function(e, t, r) {
     "use strict";
-    var n = r(2)(!0);
-    r(4)(String, "String", function(e) {
+
+    function n(e) {
+        return {
+            callMutations: function() {
+                if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
+                return e
+            },
+            bindMutations: function() {
+                if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
+                return e = e.apply(void 0, arguments)
+            }
+        }
+    }
+
+    function o(e, t, r, n) {
+        c(t, r, n), e._registeredHandlers.push(["bind", t, r, n])
+    }
+
+    function a(e, t, r, n, o) {
+        (0, u.addDelegateEvent)(t, r, n, o), e._registeredHandlers.push(["delegate", t, r, n, o])
+    }
+
+    function i(e) {
+        var t = {
+            _registeredHandlers: []
+        };
+        return e.handlers(o.bind(null, t), a.bind(null, t)), t
+    }
+
+    function s(e) {
+        e._registeredHandlers.forEach(function(e) {
+            var t = e.slice(1);
+            "delegate" === e[0] ? u.removeDelegateEvent.apply(void 0, t) : _.apply(void 0, t)
+        }), e._registeredHandlers = []
+    }
+    Object.defineProperty(t, "__esModule", {
+        value: !0
+    }), t.createMutations = n, t.createModule = i, t.destroyModule = s;
+    var u = r(104),
+        l = window,
+        c = l.addEvent,
+        _ = l.removeEvent
+}, function(e, t, r) {
+    "use strict";
+    var n = r(78)(!0);
+    r(58)(String, "String", function(e) {
         this._t = String(e), this._i = 0
     }, function() {
         var e, t = this._t,
@@ -691,7 +1177,51 @@
         })
     })
 }, function(e, t, r) {
-    var n = r(36)("iterator"),
+    var n = r(66),
+        o = Math.max,
+        a = Math.min;
+    e.exports = function(e, t) {
+        return e = n(e), 0 > e ? o(e + t, 0) : a(e, t)
+    }
+}, function(e, t, r) {
+    var n = r(16).f,
+        o = r(67),
+        a = r(68)("toStringTag");
+    e.exports = function(e, t, r) {
+        e && !o(e = r ? e : e.prototype, a) && n(e, a, {
+            configurable: !0,
+            value: t
+        })
+    }
+}, function(e, t) {
+    e.exports = {}
+}, function(e, t) {
+    e.exports = function(e) {
+        try {
+            return !!e()
+        } catch (t) {
+            return !0
+        }
+    }
+}, , function(e, t, r) {
+    var n = r(28);
+    e.exports = function(e, t, r) {
+        for (var o in t) n(e, o, t[o], r);
+        return e
+    }
+}, function(e, t, r) {
+    var n = r(66),
+        o = r(87);
+    e.exports = function(e) {
+        return function(t, r) {
+            var a, i, s = String(o(t)),
+                u = n(r),
+                l = s.length;
+            return 0 > u || u >= l ? e ? "" : void 0 : (a = s.charCodeAt(u), 55296 > a || a > 56319 || u + 1 === l || (i = s.charCodeAt(u + 1)) < 56320 || i > 57343 ? e ? s.charAt(u) : a : e ? s.slice(u, u + 2) : (a - 55296 << 10) + (i - 56320) + 65536)
+        }
+    }
+}, function(e, t, r) {
+    var n = r(68)("iterator"),
         o = !1;
     try {
         var a = [7][n]();
@@ -716,42 +1246,67 @@
         return r
     }
 }, function(e, t, r) {
-    "use strict";
-    var n = r(76),
-        o = r(52),
-        a = r(1),
-        i = r(29);
-    e.exports = r(4)(Array, "Array", function(e, t) {
-        this._t = i(e), this._i = 0, this._k = t
-    }, function() {
-        var e = this._t,
-            t = this._k,
-            r = this._i++;
-        return !e || r >= e.length ? (this._t = void 0, o(1)) : "keys" == t ? o(0, r) : "values" == t ? o(0, e[r]) : o(0, [r, e[r]])
-    }, "values"), a.Arguments = a.Array, n("keys"), n("values"), n("entries")
+    e.exports = !r(9) && !r(75)(function() {
+        return 7 != Object.defineProperty(r(56)("div"), "a", {
+            get: function() {
+                return 7
+            }
+        }).a
+    })
+}, function(e, t) {
+    var r = e.exports = {
+        version: "2.2.1"
+    };
+    "number" == typeof __e && (__e = r)
+}, , function(e, t, r) {
+    var n = r(68)("unscopables"),
+        o = Array.prototype;
+    void 0 == o[n] && r(92)(o, n, {}), e.exports = function(e) {
+        o[n][e] = !0
+    }
 }, function(e, t, r) {
-    for (var n = r(19), o = r(9), a = r(27), i = r(5), s = r(1), u = r(36), l = u("iterator"), c = u("toStringTag"), p = s.Array, _ = ["NodeList", "DOMTokenList", "MediaList", "StyleSheetList", "CSSRuleList"], d = 0; 5 > d; d++) {
-        var f, m = _[d],
-            v = a[m],
-            g = v && v.prototype;
-        if (g) {
-            g[l] || i(g, l, p), g[c] || i(g, c, m), s[m] = p;
-            for (f in n) g[f] || o(g, f, n[f], !0)
+    var n = r(49);
+    e.exports = function(e, t, r) {
+        if (n(e), void 0 === t) return e;
+        switch (r) {
+            case 1:
+                return function(r) {
+                    return e.call(t, r)
+                };
+            case 2:
+                return function(r, n) {
+                    return e.call(t, r, n)
+                };
+            case 3:
+                return function(r, n, o) {
+                    return e.call(t, r, n, o)
+                }
+        }
+        return function() {
+            return e.apply(t, arguments)
         }
     }
 }, function(e, t, r) {
-    var n = r(9);
-    e.exports = function(e, t, r) {
-        for (var o in t) n(e, o, t[o], r);
+    e.exports = r(20).document && document.documentElement
+}, function(e, t) {
+    var r = 0,
+        n = Math.random();
+    e.exports = function(e) {
+        return "Symbol(".concat(void 0 === e ? "" : e, ")_", (++r + n).toString(36))
+    }
+}, function(e, t) {
+    e.exports = function(e) {
+        if (void 0 == e) throw TypeError("Can't call method on  " + e);
         return e
     }
 }, function(e, t, r) {
-    var n = r(1),
-        o = r(36)("iterator"),
-        a = Array.prototype;
+    var n = r(25)("keys"),
+        o = r(86);
     e.exports = function(e) {
-        return void 0 !== e && (n.Array === e || a[o] === e)
+        return n[e] || (n[e] = o(e))
     }
+}, , function(e, t) {
+    e.exports = !1
 }, function(e, t, r) {
     "use strict";
 
@@ -840,69 +1395,122 @@
     Object.defineProperty(t, "__esModule", {
         value: !0
     }), t["default"] = a;
-    var i = r(44),
-        s = r(59),
+    var i = r(70),
+        s = r(38),
         u = n(s),
         l = 5
 }, function(e, t, r) {
-    var n = r(70);
-    e.exports = function(e, t) {
-        if (!n(e)) return e;
-        var r, o;
-        if (t && "function" == typeof(r = e.toString) && !n(o = r.call(e))) return o;
-        if ("function" == typeof(r = e.valueOf) && !n(o = r.call(e))) return o;
-        if (!t && "function" == typeof(r = e.toString) && !n(o = r.call(e))) return o;
-        throw TypeError("Can't convert object to primitive value")
+    var n = r(16),
+        o = r(50);
+    e.exports = r(9) ? function(e, t, r) {
+        return n.f(e, t, o(1, r))
+    } : function(e, t, r) {
+        return e[t] = r, e
     }
 }, function(e, t, r) {
-    var n = r(64),
-        o = r(42),
-        a = r(74)("IE_PROTO"),
-        i = Object.prototype;
-    e.exports = Object.getPrototypeOf || function(e) {
-        return e = o(e), n(e, a) ? e[a] : "function" == typeof e.constructor && e instanceof e.constructor ? e.constructor.prototype : e instanceof Object ? i : null
-    }
-}, , function(e, t) {
-    var r = e.exports = "undefined" != typeof window && window.Math == Math ? window : "undefined" != typeof self && self.Math == Math ? self : Function("return this")();
-    "number" == typeof __g && (__g = r)
+    var n = r(86)("meta"),
+        o = r(24),
+        a = r(67),
+        i = r(16).f,
+        s = 0,
+        u = Object.isExtensible || function() {
+            return !0
+        },
+        l = !r(75)(function() {
+            return u(Object.preventExtensions({}))
+        }),
+        c = function(e) {
+            i(e, n, {
+                value: {
+                    i: "O" + ++s,
+                    w: {}
+                }
+            })
+        },
+        _ = function(e, t) {
+            if (!o(e)) return "symbol" == typeof e ? e : ("string" == typeof e ? "S" : "P") + e;
+            if (!a(e, n)) {
+                if (!u(e)) return "F";
+                if (!t) return "E";
+                c(e)
+            }
+            return e[n].i
+        },
+        d = function(e, t) {
+            if (!a(e, n)) {
+                if (!u(e)) return !0;
+                if (!t) return !1;
+                c(e)
+            }
+            return e[n].w
+        },
+        p = function(e) {
+            return l && f.NEED && u(e) && !a(e, n) && c(e), e
+        },
+        f = e.exports = {
+            KEY: n,
+            NEED: !1,
+            fastKey: _,
+            getWeak: d,
+            onFreeze: p
+        }
 }, function(e, t, r) {
-    e.exports = r(27).document && document.documentElement
+    var n = r(20),
+        o = r(81),
+        a = r(92),
+        i = r(28),
+        s = r(84),
+        u = "prototype",
+        l = function(e, t, r) {
+            var c, _, d, p, f = e & l.F,
+                m = e & l.G,
+                v = e & l.S,
+                g = e & l.P,
+                h = e & l.B,
+                y = m ? n : v ? n[t] || (n[t] = {}) : (n[t] || {})[u],
+                C = m ? o : o[t] || (o[t] = {}),
+                w = C[u] || (C[u] = {});
+            m && (r = t);
+            for (c in r) _ = !f && y && void 0 !== y[c], d = (_ ? y : r)[c], p = h && _ ? s(d, n) : g && "function" == typeof d ? s(Function.call, d) : d, y && i(y, c, d, e & l.U), C[c] != d && a(C, c, p), g && w[c] != d && (w[c] = d)
+        };
+    n.core = o, l.F = 1, l.G = 2, l.S = 4, l.P = 8, l.B = 16, l.W = 32, l.U = 64, l.R = 128, e.exports = l
 }, function(e, t, r) {
-    var n = r(32),
-        o = r(43);
-    e.exports = function(e) {
-        return n(o(e))
-    }
-}, , function(e, t) {
-    var r = {}.toString;
-    e.exports = function(e) {
-        return r.call(e).slice(8, -1)
-    }
-}, function(e, t, r) {
-    var n = r(31);
+    var n = r(40);
     e.exports = Object("z").propertyIsEnumerable(0) ? Object : function(e) {
         return "String" == n(e) ? e.split("") : Object(e)
     }
 }, function(e, t, r) {
-    var n = r(72),
-        o = r(54),
-        a = r(29),
-        i = r(24),
-        s = r(64),
-        u = r(56),
-        l = Object.getOwnPropertyDescriptor;
-    t.f = r(3) ? l : function(e, t) {
-        if (e = a(e), t = i(t, !0), u) try {
-            return l(e, t)
-        } catch (r) {}
-        return s(e, t) ? o(!n.f.call(e, t), e[t]) : void 0
+    var n = r(74),
+        o = r(68)("iterator"),
+        a = Array.prototype;
+    e.exports = function(e) {
+        return void 0 !== e && (n.Array === e || a[o] === e)
     }
-}, function(e, t, r) {
+}, , function(e, t, r) {
+    var n = r(84),
+        o = r(29),
+        a = r(96),
+        i = r(35),
+        s = r(55),
+        u = r(101);
+    e.exports = function(e, t, r, l, c) {
+        var _, d, p, f = c ? function() {
+                return e
+            } : u(e),
+            m = n(r, l, t ? 2 : 1),
+            v = 0;
+        if ("function" != typeof f) throw TypeError(e + " is not iterable!");
+        if (a(f))
+            for (_ = s(e.length); _ > v; v++) t ? m(i(d = e[v])[0], d[1]) : m(e[v]);
+        else
+            for (p = f.call(e); !(d = p.next()).done;) o(p, m, d.value, t)
+    }
+}, , function(e, t, r) {
     "use strict";
-    var n = r(27),
-        o = r(68),
-        a = r(3),
-        i = r(36)("species");
+    var n = r(20),
+        o = r(16),
+        a = r(9),
+        i = r(68)("species");
     e.exports = function(e) {
         var t = n[e];
         a && t && !t[i] && o.f(t, i, {
@@ -913,345 +1521,67 @@
         })
     }
 }, function(e, t, r) {
-    var n = r(81),
-        o = Math.min;
-    e.exports = function(e) {
-        return e > 0 ? o(n(e), 9007199254740991) : 0
-    }
-}, function(e, t, r) {
-    var n = r(61)("wks"),
-        o = r(49),
-        a = r(27).Symbol,
-        i = "function" == typeof a;
-    e.exports = function(e) {
-        return n[e] || (n[e] = i && a[e] || (i ? a : o)("Symbol." + e))
-    }
-}, function(e, t, r) {
-    var n = r(48),
-        o = r(36)("iterator"),
-        a = r(1);
-    e.exports = r(55).getIteratorMethod = function(e) {
+    var n = r(31),
+        o = r(68)("iterator"),
+        a = r(74);
+    e.exports = r(81).getIteratorMethod = function(e) {
         return void 0 != e ? e[o] || e["@@iterator"] || a[n(e)] : void 0
     }
-}, , , function(e, t, r) {
-    var n = r(50);
-    e.exports = function(e, t, r, o) {
-        try {
-            return o ? t(n(r)[0], r[1]) : t(r)
-        } catch (a) {
-            var i = e["return"];
-            throw void 0 !== i && n(i.call(e)), a
-        }
-    }
-}, function(e, t, r) {
-    "use strict";
-    var n = r(48),
-        o = {};
-    o[r(36)("toStringTag")] = "z", o + "" != "[object z]" && r(9)(Object.prototype, "toString", function() {
-        return "[object " + n(this) + "]"
-    }, !0)
-}, function(e, t, r) {
-    var n = r(43);
-    e.exports = function(e) {
-        return Object(n(e))
-    }
-}, function(e, t) {
-    e.exports = function(e) {
-        if (void 0 == e) throw TypeError("Can't call method on  " + e);
-        return e
-    }
+}, , function(e, t, r) {
+    r(63), r(71), r(22), r(59), e.exports = r(81).Map
 }, function(e, t, r) {
     "use strict";
 
     function n(e) {
-        return {
-            callMutations: function() {
-                if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
-                return e
-            },
-            bindMutations: function() {
-                if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
-                return e = e.apply(void 0, arguments)
-            }
+        return e && e.__esModule ? e : {
+            "default": e
         }
-    }
-
-    function o(e, t, r, n) {
-        c(t, r, n), e._registeredHandlers.push(["bind", t, r, n])
-    }
-
-    function a(e, t, r, n, o) {
-        (0, u.addDelegateEvent)(t, r, n, o), e._registeredHandlers.push(["delegate", t, r, n, o])
-    }
-
-    function i(e) {
-        var t = {
-            _registeredHandlers: []
-        };
-        return e.handlers(o.bind(null, t), a.bind(null, t)), t
-    }
-
-    function s(e) {
-        e._registeredHandlers.forEach(function(e) {
-            var t = e.slice(1);
-            "delegate" === e[0] ? u.removeDelegateEvent.apply(void 0, t) : p.apply(void 0, t)
-        }), e._registeredHandlers = []
-    }
-    Object.defineProperty(t, "__esModule", {
-        value: !0
-    }), t.createMutations = n, t.createModule = i, t.destroyModule = s;
-    var u = r(7),
-        l = window,
-        c = l.addEvent,
-        p = l.removeEvent
-}, , function(e, t, r) {
-    var n = r(70),
-        o = r(27).document,
-        a = n(o) && n(o.createElement);
-    e.exports = function(e) {
-        return a ? o.createElement(e) : {}
-    }
-}, function(e, t, r) {
-    var n = r(14),
-        o = r(6);
-    e.exports = Object.keys || function(e) {
-        return n(e, o)
-    }
-}, function(e, t, r) {
-    var n = r(31),
-        o = r(36)("toStringTag"),
-        a = "Arguments" == n(function() {
-            return arguments
-        }()),
-        i = function(e, t) {
-            try {
-                return e[t]
-            } catch (r) {}
-        };
-    e.exports = function(e) {
-        var t, r, s;
-        return void 0 === e ? "Undefined" : null === e ? "Null" : "string" == typeof(r = i(t = Object(e), o)) ? r : a ? n(t) : "Object" == (s = n(t)) && "function" == typeof t.callee ? "Arguments" : s
-    }
-}, function(e, t) {
-    var r = 0,
-        n = Math.random();
-    e.exports = function(e) {
-        return "Symbol(".concat(void 0 === e ? "" : e, ")_", (++r + n).toString(36))
-    }
-}, function(e, t, r) {
-    var n = r(70);
-    e.exports = function(e) {
-        if (!n(e)) throw TypeError(e + " is not an object!");
-        return e
-    }
-}, function(e, t, r) {
-    "use strict";
-    var n = r(27),
-        o = r(63),
-        a = r(9),
-        i = r(21),
-        s = r(77),
-        u = r(66),
-        l = r(53),
-        c = r(70),
-        p = r(13),
-        _ = r(18),
-        d = r(62),
-        f = r(69);
-    e.exports = function(e, t, r, m, v, g) {
-        var h = n[e],
-            y = h,
-            C = v ? "set" : "add",
-            w = y && y.prototype,
-            b = {},
-            x = function(e) {
-                var t = w[e];
-                a(w, e, "delete" == e ? function(e) {
-                    return g && !c(e) ? !1 : t.call(this, 0 === e ? 0 : e)
-                } : "has" == e ? function(e) {
-                    return g && !c(e) ? !1 : t.call(this, 0 === e ? 0 : e)
-                } : "get" == e ? function(e) {
-                    return g && !c(e) ? void 0 : t.call(this, 0 === e ? 0 : e)
-                } : "add" == e ? function(e) {
-                    return t.call(this, 0 === e ? 0 : e), this
-                } : function(e, r) {
-                    return t.call(this, 0 === e ? 0 : e, r), this
-                })
-            };
-        if ("function" == typeof y && (g || w.forEach && !p(function() {
-                (new y).entries().next()
-            }))) {
-            var E = new y,
-                F = E[C](g ? {} : -0, 1) != E,
-                k = p(function() {
-                    E.has(1)
-                }),
-                S = _(function(e) {
-                    new y(e)
-                }),
-                A = !g && p(function() {
-                    for (var e = new y, t = 5; t--;) e[C](t, t);
-                    return !e.has(-0)
-                });
-            S || (y = t(function(t, r) {
-                l(t, y, e);
-                var n = f(new h, t, y);
-                return void 0 != r && u(r, v, n[C], n), n
-            }), y.prototype = w, w.constructor = y), (k || A) && (x("delete"), x("has"), v && x("get")), (A || F) && x(C), g && w.clear && delete w.clear
-        } else y = m.getConstructor(t, e, v, C), i(y.prototype, r), s.NEED = !0;
-        return d(y, e), b[e] = y, o(o.G + o.W + o.F * (y != h), b), g || m.setStrong(y, e, v), y
-    }
-}, function(e, t) {
-    e.exports = function(e, t) {
-        return {
-            value: t,
-            done: !!e
-        }
-    }
-}, function(e, t) {
-    e.exports = function(e, t, r, n) {
-        if (!(e instanceof t) || void 0 !== n && n in e) throw TypeError(r + ": incorrect invocation!");
-        return e
-    }
-}, function(e, t) {
-    e.exports = function(e, t) {
-        return {
-            enumerable: !(1 & e),
-            configurable: !(2 & e),
-            writable: !(4 & e),
-            value: t
-        }
-    }
-}, function(e, t) {
-    var r = e.exports = {
-        version: "2.2.1"
-    };
-    "number" == typeof __e && (__e = r)
-}, function(e, t, r) {
-    e.exports = !r(3) && !r(13)(function() {
-        return 7 != Object.defineProperty(r(46)("div"), "a", {
-            get: function() {
-                return 7
-            }
-        }).a
-    })
-}, , , function(e, t, r) {
-    "use strict";
-
-    function n(e, t, r) {
-        var n = vkNow(),
-            i = a(n, o(e), "", t.label ? t.label : "", c),
-            s = cur.leadFormsTpls.dropDown.replace("{input_id}", n).replace("{label}", getLang("communityApps_lead_forms_custom_question_answer_type")),
-            u = se(cur.leadFormsTpls.customQuestionWrap.replace("{question}", i).replace("{answer_type}", s)),
-            l = geByClass1("lead_forms_app_labeled_row_cont", u).appendChild(ce("div", {
-                className: "lead_forms_app_custom_question_row_remove"
-            }));
-        return addEvent(l, "click", function() {
-            re(domClosest("lead_forms_app_custom_question_row", l)), r()
-        }), ge("lead_forms_app_custom_questions").appendChild(u), ge("lead_forms_generator_input_" + n).focus(), [u, n]
     }
 
     function o(e) {
-        return getLang("communityApps_lead_forms_custom_question_label").replace("%s", e)
-    }
-
-    function a(e, t, r, n, o) {
-        return cur.leadFormsTpls.inputRow.replace(/\{input\_id\}/g, e).replace("{label}", t).replace("{placeholder}", r).replace("{value}", n).replace(/\{max\_length\}/g, o)
-    }
-
-    function i(e, t, r) {
-        return {
-            setText: function(e) {},
-            onTypeChanged: function(e, n) {
-                var o = geByClass1("_lead_forms_app_custom_question_row_extra", r.questionEl);
-                if (removeEvent(geByClass1("lead_forms_app_custom_question_row_extra_add_input", o), "click"), val(o, ""), !inArray(e, ["input", "textarea"])) {
-                    var a = n.options ? n.options.length : 2;
-                    "select" !== e || n.options || (a = 1), val(o, cur.leadFormsTpls.customQuestionExtra.replace("{inputs}", ""));
-                    for (var i = 0; a > i; i++) {
-                        var s = n.options ? n.options[i] : "";
-                        t().addInput(s)
-                    }
+        var t = c.get(e.currentTarget);
+        if (t) {
+            var r = t[e.type];
+            if (r)
+                for (var n = void 0, o = 0; o < r.length; o++) {
+                    var a = s(r[o], 2),
+                        i = a[0],
+                        u = a[1],
+                        l = void 0;
+                    if (hasClass(e.target, i) ? l = u(e, e.target) : (n = gpeByClass(i, e.target, e.currentTarget)) && (l = u(e, n)), l === !1) break
                 }
-                addEvent(geByClass1("lead_forms_app_custom_question_row_extra_add_input", o), "click", function(e) {
-                    cancelEvent(e), t().addInput()
-                }), LeadFormsApp.step2Changed()
-            },
-            addInput: function(e) {
-                var n = geByClass1("_lead_forms_app_custom_question_row_extra_inputs", r.questionEl),
-                    o = getLang("communityApps_lead_forms_custom_question_answer_placeholder").replace("%s", n.children.length + 1),
-                    i = n.appendChild(se(a(vkNow(), "", o, e || "", p))),
-                    s = geByClass1("lead_forms_app_labeled_row_cont", i).appendChild(ce("div", {
-                        className: "lead_forms_app_custom_question_row_remove"
-                    }));
-                addEvent(s, "click", function() {
-                    t().removeInput(s)
-                });
-                var u = domCA(geByClass1("lead_forms_app_custom_question_row_extra_add_input", r.questionEl), ".lead_forms_app_labeled_row");
-                n.children.length >= _ ? hide(u) : show(u), LeadFormsApp.step2Changed()
-            },
-            removeInput: function(e) {
-                re(domClosest("lead_forms_app_labeled_row", e));
-                for (var t = geByClass("lead_forms_app_generator_input", geByClass1("_lead_forms_app_custom_question_row_extra_inputs", r.questionEl)), n = 0; n < t.length; n++) attr(t[n], "placeholder", getLang("communityApps_lead_forms_custom_question_answer_placeholder").replace("%s", n + 1))
-            },
-            getData: function() {
-                for (var e = {
-                        label: trim(val("lead_forms_generator_input_" + r.ident)),
-                        type: r.answerTypeDD.val(),
-                        options: []
-                    }, t = geByClass("lead_forms_app_generator_input", geByClass1("_lead_forms_app_custom_question_row_extra_inputs", r.questionEl)), n = 0; n < t.length; n++) {
-                    var o = trim(val(t[n]));
-                    o && e.options.push(trim(val(t[n])))
-                }
-                return e
-            },
-            getNum: function() {
-                return r.questionNum
-            },
-            setNum: function(e) {
-                r.questionNum = e, val(geByClass1("lead_forms_app_labeled_row_label", r.questionEl), o(e))
-            },
-            unmount: function() {
-                (0, l.destroyModule)(e)
-            }
         }
     }
 
-    function s(e, t, r) {
-        t = t || {};
-        var o = n(e, t, function() {
-                r.onRemove(d().getNum())
-            }),
-            a = u(o, 2),
-            s = a[0],
-            c = a[1],
-            p = {
-                questionNum: e,
-                ident: c,
-                questionEl: s,
-                callbacks: r
-            },
-            _ = (0, l.createMutations)(i),
-            d = _.callMutations,
-            f = _.bindMutations;
-        p.answerTypeDD = new Dropdown(ge("lead_forms_generator_dd_" + c), cur.leadFormsData.customQuestionAnswerTypes, {
-            width: 300,
-            big: 1,
-            onChange: function(e) {
-                d().onTypeChanged(e, {})
-            },
-            selectedItem: t.type ? t.type : void 0
-        }), t.type && setTimeout(function() {
-            d().onTypeChanged(t.type, t)
-        });
-        var m = (0, l.createModule)({
-            handlers: function(e, t) {}
-        });
-        return f(m, d, p)
+    function a(e, t, r, n) {
+        var a = c.get(e);
+        a || (c.set(e, {}), a = c.get(e));
+        for (var i = t.split(" "), s = 0; s < i.length; s++) {
+            var u = i[s];
+            a[u] || (a[u] = [], addEvent(e, u, o)), a[u].push([r, n])
+        }
+    }
+
+    function i(e, t, r, n) {
+        var a = c.get(e);
+        if (a) {
+            t.split(" ").forEach(function(t) {
+                a[t] && (a[t] = a[t].filter(function(e) {
+                    return e[0] !== r || e[1] !== n
+                }), 0 === a[t].length && removeEvent(e, t, o))
+            });
+            var i = Object.keys(a).map(function(e) {
+                return a[e].length
+            }).reduce(function(e, t) {
+                return e + t
+            });
+            0 === i && c["delete"](e)
+        }
     }
     Object.defineProperty(t, "__esModule", {
         value: !0
     });
-    var u = function() {
+    var s = function() {
         function e(e, t) {
             var r = [],
                 n = !0,
@@ -1273,321 +1603,11 @@
         return function(t, r) {
             if (Array.isArray(t)) return t;
             if (Symbol.iterator in Object(t)) return e(t, r);
-            throw new TypeError("Invalid attempt to destructure non-iterable instance");
+            throw new TypeError("Invalid attempt to destructure non-iterable instance")
         }
     }();
-    t["default"] = s;
-    var l = r(44),
-        c = 200,
-        p = 60,
-        _ = 15
-}, , function(e, t, r) {
-    var n = r(27),
-        o = "__core-js_shared__",
-        a = n[o] || (n[o] = {});
-    e.exports = function(e) {
-        return a[e] || (a[e] = {})
-    }
-}, function(e, t, r) {
-    var n = r(68).f,
-        o = r(64),
-        a = r(36)("toStringTag");
-    e.exports = function(e, t, r) {
-        e && !o(e = r ? e : e.prototype, a) && n(e, a, {
-            configurable: !0,
-            value: t
-        })
-    }
-}, function(e, t, r) {
-    var n = r(27),
-        o = r(55),
-        a = r(5),
-        i = r(9),
-        s = r(10),
-        u = "prototype",
-        l = function(e, t, r) {
-            var c, p, _, d, f = e & l.F,
-                m = e & l.G,
-                v = e & l.S,
-                g = e & l.P,
-                h = e & l.B,
-                y = m ? n : v ? n[t] || (n[t] = {}) : (n[t] || {})[u],
-                C = m ? o : o[t] || (o[t] = {}),
-                w = C[u] || (C[u] = {});
-            m && (r = t);
-            for (c in r) p = !f && y && void 0 !== y[c], _ = (p ? y : r)[c], d = h && p ? s(_, n) : g && "function" == typeof _ ? s(Function.call, _) : _, y && i(y, c, _, e & l.U), C[c] != _ && a(C, c, d), g && w[c] != _ && (w[c] = _)
-        };
-    n.core = o, l.F = 1, l.G = 2, l.S = 4, l.P = 8, l.B = 16, l.W = 32, l.U = 64, l.R = 128, e.exports = l
-}, function(e, t) {
-    var r = {}.hasOwnProperty;
-    e.exports = function(e, t) {
-        return r.call(e, t)
-    }
-}, function(e, t, r) {
-    var n = r(68),
-        o = r(50),
-        a = r(47);
-    e.exports = r(3) ? Object.defineProperties : function(e, t) {
-        o(e);
-        for (var r, i = a(t), s = i.length, u = 0; s > u;) n.f(e, r = i[u++], t[r]);
-        return e
-    }
-}, function(e, t, r) {
-    var n = r(10),
-        o = r(40),
-        a = r(22),
-        i = r(50),
-        s = r(35),
-        u = r(37);
-    e.exports = function(e, t, r, l, c) {
-        var p, _, d, f = c ? function() {
-                return e
-            } : u(e),
-            m = n(r, l, t ? 2 : 1),
-            v = 0;
-        if ("function" != typeof f) throw TypeError(e + " is not iterable!");
-        if (a(f))
-            for (p = s(e.length); p > v; v++) t ? m(i(_ = e[v])[0], _[1]) : m(e[v]);
-        else
-            for (d = f.call(e); !(_ = d.next()).done;) o(d, m, _.value, t)
-    }
-}, , function(e, t, r) {
-    var n = r(50),
-        o = r(56),
-        a = r(24),
-        i = Object.defineProperty;
-    t.f = r(3) ? Object.defineProperty : function(e, t, r) {
-        if (n(e), t = a(t, !0), n(r), o) try {
-            return i(e, t, r)
-        } catch (s) {}
-        if ("get" in r || "set" in r) throw TypeError("Accessors not supported!");
-        return "value" in r && (e[t] = r.value), e
-    }
-}, function(e, t, r) {
-    var n = r(70),
-        o = r(73).set;
-    e.exports = function(e, t, r) {
-        var a, i = t.constructor;
-        return i !== r && "function" == typeof i && (a = i.prototype) !== r.prototype && n(a) && o && o(e, a), e
-    }
-}, function(e, t) {
-    e.exports = function(e) {
-        return "object" == typeof e ? null !== e : "function" == typeof e
-    }
-}, function(e, t, r) {
-    "use strict";
-    var n = r(75);
-    e.exports = r(51)("Map", function(e) {
-        return function() {
-            return e(this, arguments.length > 0 ? arguments[0] : void 0)
-        }
-    }, {
-        get: function(e) {
-            var t = n.getEntry(this, e);
-            return t && t.v
-        },
-        set: function(e, t) {
-            return n.def(this, 0 === e ? 0 : e, t)
-        }
-    }, n, !0)
-}, function(e, t) {
-    t.f = {}.propertyIsEnumerable
-}, function(e, t, r) {
-    var n = r(70),
-        o = r(50),
-        a = function(e, t) {
-            if (o(e), !n(t) && null !== t) throw TypeError(t + ": can't set as prototype!")
-        };
-    e.exports = {
-        set: Object.setPrototypeOf || ("__proto__" in {} ? function(e, t, n) {
-            try {
-                n = r(10)(Function.call, r(33).f(Object.prototype, "__proto__").set, 2), n(e, []), t = !(e instanceof Array)
-            } catch (o) {
-                t = !0
-            }
-            return function(e, r) {
-                return a(e, r), t ? e.__proto__ = r : n(e, r), e
-            }
-        }({}, !1) : void 0),
-        check: a
-    }
-}, function(e, t, r) {
-    var n = r(61)("keys"),
-        o = r(49);
-    e.exports = function(e) {
-        return n[e] || (n[e] = o(e))
-    }
-}, function(e, t, r) {
-    "use strict";
-    var n = r(68).f,
-        o = r(78),
-        a = (r(5), r(21)),
-        i = r(10),
-        s = r(53),
-        u = r(43),
-        l = r(66),
-        c = r(4),
-        p = r(52),
-        _ = r(34),
-        d = r(3),
-        f = r(77).fastKey,
-        m = d ? "_s" : "size",
-        v = function(e, t) {
-            var r, n = f(t);
-            if ("F" !== n) return e._i[n];
-            for (r = e._f; r; r = r.n)
-                if (r.k == t) return r
-        };
-    e.exports = {
-        getConstructor: function(e, t, r, c) {
-            var p = e(function(e, n) {
-                s(e, p, t, "_i"), e._i = o(null), e._f = void 0, e._l = void 0, e[m] = 0, void 0 != n && l(n, r, e[c], e)
-            });
-            return a(p.prototype, {
-                clear: function() {
-                    for (var e = this, t = e._i, r = e._f; r; r = r.n) r.r = !0, r.p && (r.p = r.p.n = void 0), delete t[r.i];
-                    e._f = e._l = void 0, e[m] = 0
-                },
-                "delete": function(e) {
-                    var t = this,
-                        r = v(t, e);
-                    if (r) {
-                        var n = r.n,
-                            o = r.p;
-                        delete t._i[r.i], r.r = !0, o && (o.n = n), n && (n.p = o), t._f == r && (t._f = n), t._l == r && (t._l = o), t[m]--
-                    }
-                    return !!r
-                },
-                forEach: function(e) {
-                    s(this, p, "forEach");
-                    for (var t, r = i(e, arguments.length > 1 ? arguments[1] : void 0, 3); t = t ? t.n : this._f;)
-                        for (r(t.v, t.k, this); t && t.r;) t = t.p
-                },
-                has: function(e) {
-                    return !!v(this, e)
-                }
-            }), d && n(p.prototype, "size", {
-                get: function() {
-                    return u(this[m])
-                }
-            }), p
-        },
-        def: function(e, t, r) {
-            var n, o, a = v(e, t);
-            return a ? a.v = r : (e._l = a = {
-                i: o = f(t, !0),
-                k: t,
-                v: r,
-                p: n = e._l,
-                n: void 0,
-                r: !1
-            }, e._f || (e._f = a), n && (n.n = a), e[m]++, "F" !== o && (e._i[o] = a)), e
-        },
-        getEntry: v,
-        setStrong: function(e, t, r) {
-            c(e, t, function(e, t) {
-                this._t = e, this._k = t, this._l = void 0
-            }, function() {
-                for (var e = this, t = e._k, r = e._l; r && r.r;) r = r.p;
-                return e._t && (e._l = r = r ? r.n : e._t._f) ? "keys" == t ? p(0, r.k) : "values" == t ? p(0, r.v) : p(0, [r.k, r.v]) : (e._t = void 0, p(1))
-            }, r ? "entries" : "values", !r, !0), _(t)
-        }
-    }
-}, function(e, t, r) {
-    var n = r(36)("unscopables"),
-        o = Array.prototype;
-    void 0 == o[n] && r(5)(o, n, {}), e.exports = function(e) {
-        o[n][e] = !0
-    }
-}, function(e, t, r) {
-    var n = r(49)("meta"),
-        o = r(70),
-        a = r(64),
-        i = r(68).f,
-        s = 0,
-        u = Object.isExtensible || function() {
-            return !0
-        },
-        l = !r(13)(function() {
-            return u(Object.preventExtensions({}))
-        }),
-        c = function(e) {
-            i(e, n, {
-                value: {
-                    i: "O" + ++s,
-                    w: {}
-                }
-            })
-        },
-        p = function(e, t) {
-            if (!o(e)) return "symbol" == typeof e ? e : ("string" == typeof e ? "S" : "P") + e;
-            if (!a(e, n)) {
-                if (!u(e)) return "F";
-                if (!t) return "E";
-                c(e)
-            }
-            return e[n].i
-        },
-        _ = function(e, t) {
-            if (!a(e, n)) {
-                if (!u(e)) return !0;
-                if (!t) return !1;
-                c(e)
-            }
-            return e[n].w
-        },
-        d = function(e) {
-            return l && f.NEED && u(e) && !a(e, n) && c(e), e
-        },
-        f = e.exports = {
-            KEY: n,
-            NEED: !1,
-            fastKey: p,
-            getWeak: _,
-            onFreeze: d
-        }
-}, function(e, t, r) {
-    var n = r(50),
-        o = r(65),
-        a = r(6),
-        i = r(74)("IE_PROTO"),
-        s = function() {},
-        u = "prototype",
-        l = function() {
-            var e, t = r(46)("iframe"),
-                n = a.length,
-                o = ">";
-            for (t.style.display = "none", r(28).appendChild(t), t.src = "javascript:", e = t.contentWindow.document, e.open(), e.write("<script>document.F=Object</script" + o), e.close(), l = e.F; n--;) delete l[u][a[n]];
-            return l()
-        };
-    e.exports = Object.create || function(e, t) {
-        var r;
-        return null !== e ? (s[u] = n(e), r = new s, s[u] = null, r[i] = e) : r = l(), void 0 === t ? r : o(r, t)
-    }
-}, function(e, t) {
-    e.exports = !1
-}, function(e, t, r) {
-    var n = r(29),
-        o = r(35),
-        a = r(16);
-    e.exports = function(e) {
-        return function(t, r, i) {
-            var s, u = n(t),
-                l = o(u.length),
-                c = a(i, l);
-            if (e && r != r) {
-                for (; l > c;)
-                    if (s = u[c++], s != s) return !0
-            } else
-                for (; l > c; c++)
-                    if ((e || c in u) && u[c] === r) return e || c;
-            return !e && -1
-        }
-    }
-}, function(e, t) {
-    var r = Math.ceil,
-        n = Math.floor;
-    e.exports = function(e) {
-        return isNaN(e = +e) ? 0 : (e > 0 ? n : r)(e)
-    }
+    t.addDelegateEvent = a, t.removeDelegateEvent = i;
+    var u = r(103),
+        l = n(u),
+        c = new l["default"]
 }]);

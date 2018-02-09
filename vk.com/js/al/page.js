@@ -2215,9 +2215,13 @@ var Wall = {
                 act: 'get_suggests',
                 owner_id: cur.oid
             }, {
-                onDone: function(rows, notAll) {
+                onDone: function(rows, notAll, js, count) {
+                    if (js) {
+                        eval(js);
+                    }
                     cur.suggestedLoading = false;
                     uiTabs.hideProgress(el);
+                    wall.suggestUpdateCounter(count);
                     if (cur_oid !== cur.oid) return;
                     if (cur.wallTab != 'suggested') return;
                     wall.suggestLoaded.apply(window, arguments);
@@ -2225,6 +2229,46 @@ var Wall = {
             });
         }
         return false;
+    },
+    deleteSuggested: function(post_id, group_id, hash, el) {
+        if (buttonLocked(el)) {
+            return;
+        }
+        lockButton(el);
+
+        var box = showFastBox({
+                title: getLang('global_action_confirmation'),
+                onHide: function() {
+                    unlockButton(el);
+                },
+            },
+            getLang('wall_delete_suggested_box'),
+            getLang('wall_delete_suggested_btn'),
+            function(btn) {
+                if (buttonLocked(btn)) {
+                    return;
+                }
+                lockButton(btn);
+
+                ajax.post('al_wall.php', {
+                    act: 'delete_suggested',
+                    post_id: post_id,
+                    hash: hash,
+                    group_id: group_id
+                }, {
+                    onDone: function() {
+                        Wall.showSuggested(geByClass1('ui_tab', ge('page_wall_suggest')))
+                        box.hide();
+                    },
+                    showProgress: lockButton.pbind(btn),
+                    hideProgress: unlockButton.pbind(btn),
+                });
+            },
+            getLang('global_cancel')
+        );
+    },
+    suggestUpdateCounter: function(count) {
+        val('page_wall_suggested_cnt', count ? langNumeric(count, '%s', true) : '');
     },
     suggestLoaded: function(rows, notAll) {
         val('page_suggested_posts', rows);
@@ -2267,9 +2311,7 @@ var Wall = {
             if (delta === -1 || delta === 1) {
                 val(c, v += delta);
             }
-            if (ge('page_wall_suggested_cnt')) {
-                val('page_wall_suggested_cnt', v ? langNumeric(v, '%s', true) : '');
-            }
+            wall.suggestUpdateCounter(v);
         }
     },
     suggestPublished: function(post, text, postponed) {
@@ -4654,14 +4696,21 @@ var Wall = {
         (cur.wallLayer ? wkcur : cur).wallMyDeleted[post] = 1;
         var r = ge('post' + post),
             actionsWrap = geByClass1('post_actions', r);
-        ajax.post('al_wall.php', {
+
+        var params = {
             act: 'delete',
             post: post,
             hash: hash,
             root: root ? 1 : 0,
             confirm: force ? 1 : 0,
             from: 'wall'
-        }, {
+        };
+
+        if (cur.suggestedDeletedCount && cur.suggestedDeletedCount >= 2) {
+            params.delete_all = 1;
+        }
+
+        ajax.post('al_wall.php', params, {
             onDone: function(msg, res, need_confirm) {
                 if (need_confirm) {
                     var box = showFastBox(msg, need_confirm, getLang('global_delete'), function() {
@@ -4694,6 +4743,14 @@ var Wall = {
                         cur.pgCount--;
                         FullWall.repliesSummary(cur.pgCount);
                     }
+                }
+
+                var publishWrapEl = ge('post_publish_wrap' + post);
+                if (publishWrapEl && domData(publishWrapEl, 'suggest')) {
+                    if (cur.suggestedDeletedCount === void 0) {
+                        cur.suggestedDeletedCount = 0;
+                    }
+                    cur.suggestedDeletedCount++;
                 }
 
                 if (hasClass(r, 'suggest')) {
@@ -4899,7 +4956,6 @@ var Wall = {
             hideProgress: unlockButton.pbind(obj)
         });
     },
-
     checkPostClick: function(el, event, allowDblclick) {
         event = event || window.event;
         if (!el || !event) return true;

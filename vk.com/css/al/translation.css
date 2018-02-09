@@ -467,6 +467,10 @@ i i.untranslated {
     padding-bottom: 5px
 }
 
+.tr_box_edit_key .tr_box_edit_key_params .subheader {
+    padding: 3px 0
+}
+
 .tr_box_edit_key .tr_key_param_tab,
 .tr_box_edit_key .tr_key_form_tabs {
     display: none
