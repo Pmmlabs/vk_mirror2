@@ -542,18 +542,23 @@ var photos = {
             r = ge("photos_box_edit_data"),
             i = curBox(),
             s = geByClass1("box_title", i.titleWrap);
-        return o ? (hide(t), hide(a), show(r), i.setOptions({
-            width: 500
-        }), val(s, getLang("photos_move_to_new_album_title") + '<span class="divider">|</span><a onclick="return photos.toggleMoveToAlbumMode(false, event)" href="" class="toggle">' + getLang("photos_move_to_another_album_toggle") + "</a>"), i.removeButtons().addButton(getLang("photos_create_album_and_move"), cur.saveNewAlbum).addButton(getLang("global_cancel"), i.hide, "no"), cur.onNewAlbumDone = function(o) {
-            curBox().hide(), photos.movePhotosBox(cur.editPhotosArray.split(","), !1, function() {
-                setTimeout(function() {
-                    var e = ge("album" + o);
-                    photos.doMovePhotos(!1, e)
+        if (o) {
+            hide(t), hide(a), show(r), i.setOptions({
+                width: 500
+            });
+            var n = getLang("photos_move_to_new_album_title");
+            cur.noAlbums || (n += '<span class="divider">|</span><a onclick="return photos.toggleMoveToAlbumMode(false, event)" href="" class="toggle">' + getLang("photos_move_to_another_album_toggle") + "</a>"), val(s, n), i.removeButtons().addButton(getLang("photos_create_album_and_move"), cur.saveNewAlbum).addButton(getLang("global_cancel"), i.hide, "no"), cur.onNewAlbumDone = function(o) {
+                curBox().hide(), photos.movePhotosBox(cur.editPhotosArray.split(","), !1, function() {
+                    setTimeout(function() {
+                        var e = ge("album" + o);
+                        photos.doMovePhotos(!1, e)
+                    })
                 })
-            })
-        }) : (show(t), show(a), hide(r), i.setOptions({
+            }
+        } else show(t), show(a), hide(r), i.setOptions({
             width: 795
-        }), val(s, getLang("photos_move_box_title") + '<span class="divider">|</span><a onclick="return photos.toggleMoveToAlbumMode(true, event)" href="" class="toggle">' + getLang("photos_move_to_new_album") + "</a>"), i.removeButtons().addButton(getLang("global_cancel"), i.hide)), cancelEvent(e)
+        }), val(s, getLang("photos_move_box_title") + '<span class="divider">|</span><a onclick="return photos.toggleMoveToAlbumMode(true, event)" href="" class="toggle">' + getLang("photos_move_to_new_album") + "</a>"), i.removeButtons().addButton(getLang("global_cancel"), i.hide);
+        return cancelEvent(e)
     },
     showMove: function(o, e, t) {
         var a = cur.moveddc,
@@ -1034,19 +1039,19 @@ var photos = {
     },
     registerDragZone: function(o) {
         addEvent(document, "dragenter dragover", function(e) {
-                return photos.checkHtml5Uploader() ? (setTimeout(function() {
-                    clearTimeout(cur.dragTimer), delete cur.dragTimer
-                }, 0), o.on(e), cancelEvent(e)) : void 0
-            }), addEvent(document, "dragleave", function(e) {
-                cur.dragTimer && (clearTimeout(cur.dragTimer), delete cur.dragTimer), cur.dragTimer = setTimeout(function() {
-                    o.un(e)
-                }, 100), cancelEvent(e)
-            }), addEvent(document, "drop", function(e) {
-                return o.un(e, !0), o.drop(e.dataTransfer.files), cancelEvent(e)
-            }),
-            cur.destroy.push(function() {
-                removeEvent(document, "dragenter dragover"), removeEvent(document, "dragleave"), removeEvent(document, "drop")
-            })
+            return photos.checkHtml5Uploader() ? (setTimeout(function() {
+                clearTimeout(cur.dragTimer), delete cur.dragTimer
+            }, 0), o.on(e), cancelEvent(e)) : void 0
+        }), addEvent(document, "dragleave", function(e) {
+            cur.dragTimer && (clearTimeout(cur.dragTimer), delete cur.dragTimer), cur.dragTimer = setTimeout(function() {
+                o.un(e)
+            }, 100), cancelEvent(e)
+        }), addEvent(document, "drop", function(e) {
+            return o.un(e, !0), o.drop(e.dataTransfer.files),
+                cancelEvent(e)
+        }), cur.destroy.push(function() {
+            removeEvent(document, "dragenter dragover"), removeEvent(document, "dragleave"), removeEvent(document, "drop")
+        })
     },
     openWebcamPhoto: function() {
         var o = showBox("al_photos.php", {

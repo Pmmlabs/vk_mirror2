@@ -167,10 +167,10 @@ var stVersions = {
     'sorter.js': 1976440538,
     'qsorter.js': 4013122173,
     'usorter.js': 362016183,
-    'cmodules/web/photos_module.js': 10922321352,
+    'cmodules/web/photos_module.js': 9685953879,
     'photo_tagger_mode.js': 2604367346,
     'photoview.js': 1772679052,
-    'photoview.css': 26283088342,
+    'photoview.css': 27807894699,
     'fullscreen_pv.js': 2393839857,
     'fullscreen_pv.css': 14183812508,
     'spe.js': 2562549032,
@@ -180,8 +180,8 @@ var stVersions = {
     'friends_search.css': 1694758778,
     'board.js': 3844907940,
     'board.css': 22418414616,
-    'photos.css': 24476286851,
-    'photos.js': 3055368376,
+    'photos.css': 24204565991,
+    'photos.js': 3337807894,
     'photos_add.css': 26148336889,
     'photos_add.js': 1811822476,
     'wkpoll.js': 534542755,
@@ -291,7 +291,7 @@ var stVersions = {
     'notes.css': 2351233181,
     'notes.js': 3300062627,
     'wiki.css': 21562070512,
-    'fave.js': 1424071809,
+    'fave.js': 647565245,
     'fave.css': 19376033447,
     'widget_comments.css': 28929031972,
     'widget_auth.css': 28106355983,
@@ -561,6 +561,8 @@ var stVersions = {
     'cmodules/web/stickers.js': 9004259662,
     'cmodules/web/stickers_office.js': 9963462147,
     'cmodules/web/bodymovin.js': 1520167629,
+    'lead_forms_app.js': 17346700711,
+    'lead_forms_app.css': 18185566011,
     'lang': 6877
 };
 var stTypes = {
@@ -631,4 +633,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 8803;
+var _rnd = 5140;

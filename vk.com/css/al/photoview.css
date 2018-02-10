@@ -261,7 +261,8 @@
     position: relative;
     display: inline-block;
     max-width: 280px;
-    box-sizing: border-box
+    box-sizing: border-box;
+    -webkit-transform: translateZ(0)
 }
 
 .photo_tooltip .photo_tooltip__content:after {
@@ -459,6 +460,10 @@
     max-height: 230px;
     overflow: hidden;
     background-color: #fff
+}
+
+body[data-useragent=safari] .friends_dropdown__list_content {
+    overflow: auto
 }
 
 .friends_dropdown__list_content .ui_scroll_outer {

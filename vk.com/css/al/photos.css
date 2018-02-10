@@ -237,6 +237,16 @@
     margin-bottom: -18px
 }
 
+.photos_move_to_no_albums {
+    text-align: center;
+    padding: 25px 0
+}
+
+.photos_move_to_no_albums .photos_move_to_no_albums_title {
+    color: #777;
+    margin-bottom: 15px
+}
+
 .photos_comments_link {
     font-size: 13px;
     float: right
