@@ -478,10 +478,10 @@
                     u = trim(val(i)),
                     l = "edit",
                     c = ge(s);
-                c && (l = domData(c, "state")), (u || "edit" !== l) && ("email" !== a || "edit" !== l || this.validateEmail(u)) && ("phone_number" !== a || "edit" !== l || this.validatePhone(u)) && ("birthday" !== a || this.validateBirthday(u)) ? r.push({
+                c && (l = domData(c, "state")), !u && "edit" === l || "email" === a && "edit" === l && !this.validateEmail(u) || "phone_number" === a && "edit" === l && !this.validatePhone(u) || "birthday" === a && !this.validateBirthday(u) ? (notaBene(i, !1, n), n = !0) : r.push({
                     question: a,
                     value: u
-                }) : (notaBene(i, !1, n), n = !0)
+                })
             }
             for (var _ = 0; _ < t.step2.custom_questions.length; _++) {
                 var d = t.step2.custom_questions[_],
