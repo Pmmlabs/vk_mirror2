@@ -107,6 +107,40 @@
     margin-top: 8px
 }
 
+.sf_report .story {
+    display: inline-block
+}
+
+.sf_report .story .header {
+    position: absolute;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-bottom: 4px;
+    background: #000;
+    background: rgba(0, 0, 0, .4);
+    width: 130px;
+    font-size: 12px;
+    font-weight: 600;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    line-height: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #fff
+}
+
+.sf_report .story .header a {
+    color: #fff
+}
+
+.sf_report .story .story_preview {
+    width: 135px;
+    height: 255px;
+    cursor: pointer;
+    -o-object-fit: cover;
+    object-fit: cover
+}
+
 body.sf .mention_tt_actions {
     display: none
 }

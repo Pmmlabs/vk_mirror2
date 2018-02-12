@@ -342,10 +342,10 @@ var stVersions = {
     'agents.css': 15072785668,
     'achievements.js': 897703126,
     'achievements.css': 13603314918,
-    'sf.css': 15662289833,
+    'sf.css': 19524788788,
     'members.css': 14812548942,
-    'meminfo.css': 18655915082,
-    'groupinfo.css': 17677305687,
+    'meminfo.css': 22377034314,
+    'groupinfo.css': 21497540287,
     'bugs.js': 3874995669,
     'bugs.css': 12859576266,
     'bugtracker.js': 1927876291,
@@ -633,4 +633,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 543;
+var _rnd = 8820;
