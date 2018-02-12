@@ -661,14 +661,14 @@ var Tickets = {
         var i = curBox();
         if (!i) return showPhoto(e, t, a);
         var o = [];
-        each(geByTag("button", i.bodyNode.nextSibling), function() {
+        each(geByTag("button", i.bodyNode.nextElementSibling), function() {
             o.push([this.innerHTML, this.onclick, hasClass(this, "flat_button") ? "yes" : "no"])
         }), cur.boxBackup = {
             body: document.createDocumentFragment(),
             width: getSize(i.bodyNode.parentNode)[0],
-            hideButtons: !isVisible(i.bodyNode.nextSibling),
+            hideButtons: !isVisible(i.bodyNode.nextElementSibling),
             bodyStyle: i.bodyNode.getAttribute("style"),
-            title: geByClass1("box_title", i.bodyNode.previousSibling).innerHTML,
+            title: val(geByClass1("box_title", i.bodyNode.previousElementSibling)),
             btns: o
         };
         var s = i.bodyNode;

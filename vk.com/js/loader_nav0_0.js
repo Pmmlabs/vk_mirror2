@@ -333,7 +333,7 @@ var stVersions = {
     'internal/tasks.css': 13085701389,
     'helpdesk.js': 845624364,
     'helpdesk.css': 19855819836,
-    'tickets.js': 4125652563,
+    'tickets.js': 2459380201,
     'tickets.css': 18981261093,
     'internal/faq.js': 4100753843,
     'faq.css': 18870340437,
@@ -342,10 +342,10 @@ var stVersions = {
     'agents.css': 15072785668,
     'achievements.js': 897703126,
     'achievements.css': 13603314918,
-    'sf.css': 19524788788,
+    'sf.css': 17908147255,
     'members.css': 14812548942,
-    'meminfo.css': 22377034314,
-    'groupinfo.css': 21497540287,
+    'meminfo.css': 20760392781,
+    'groupinfo.css': 19880898754,
     'bugs.js': 3874995669,
     'bugs.css': 12859576266,
     'bugtracker.js': 1927876291,
@@ -530,8 +530,8 @@ var stVersions = {
     'voice_message_player.js': 18578298340,
     'cmodules/web/speech_worker_mp3.js': 1074082218,
     'cmodules/web/speech_worker_opus.js': 2818771805,
-    'stories.js': 22684661752,
-    'stories.css': 16757185843,
+    'stories.js': 21139067659,
+    'stories.css': 14560588287,
     'internal/nospam.css': 15401581135,
     'internal/away_linksban.css': 12772731069,
     'internal/ui_manual.js': 1761369792,
@@ -552,8 +552,8 @@ var stVersions = {
     'surveys.css': 21987937163,
     'surveys.js': 3079369917,
     'landings/author_guide.css': 20481877743,
-    'internal/restore2.css': 12240612833,
-    'internal/restore2.js': 3884948169,
+    'internal/restore2.css': 13638690508,
+    'internal/restore2.js': 323808116,
     'language.js': 3551638980,
     'language.css': 15271029147,
     'internal/admins.js': 2810460581,
@@ -633,4 +633,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 8820;
+var _rnd = 1668;
