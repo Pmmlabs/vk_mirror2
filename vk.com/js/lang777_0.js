@@ -239,7 +239,8 @@ videofile_num = ['', '���������', '���������
 votes_flex = ['', '��������', '��������', '��������'];
 Work_place = '������:';
 yesterday = '��������';
-// section = 0; version = 262;
+global_article_carousel_counter = '{counter} �� {total}';
+// section = 0; version = 263;
 
 friends_no_user_selected = '�� �� ������� �� ������ ����������.';
 // section = 2; version = 9;
