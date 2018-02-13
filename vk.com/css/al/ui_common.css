@@ -3056,6 +3056,25 @@ a.ui_search_custom_link {
     margin: 0 10px
 }
 
+.olist_item_wrap_ignore .olist_item_name {
+    width: 405px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.olist_item_wrap_ignore .olist_item_name .olist_item_ignore_name {
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.olist_item_wrap_ignore .olist_item_name .olist_item_ignore_until {
+    display: inline-block;
+    margin-left: 5px;
+    font-weight: 400;
+    color: #939393
+}
+
 .olist_item_on_label,
 .olist_item_over_label {
     float: right

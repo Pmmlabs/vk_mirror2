@@ -1510,25 +1510,27 @@ var BugTracker = {
         var a = curBox();
         return a.showCloseProgress(), ajax.post("bugtracker?act=a_add_device", {
             device_id: t,
-            from_report: +o,
+            from: o,
             hash: r
         }, {
             hideProgress: function() {
                 a.hideCloseProgress()
             },
-            onDone: function(t, r, n) {
+            onDone: function(t, r, n, i) {
                 a.hide();
-                var i = geByClass1("bugtracker_user_device_list");
-                i.appendChild(sech(t)[0]);
-                if (!o) {
-                    var s = [].map.call(i.childNodes, function(e) {
+                var s = geByClass1("bugtracker_user_device_list");
+                s.appendChild(sech(t)[0]);
+                if ("user_info" === o) {
+                    var c = [].map.call(s.childNodes, function(e) {
                         return e.getAttribute("platform-id")
                     });
                     each(ge("bt_settings_platforms").childNodes, function(e, t) {
-                        s.indexOf(t.getAttribute("platform-id")) >= 0 ? (checkbox(t, !0), disable(t, !0)) : disable(t, !1)
+                        c.indexOf(t.getAttribute("platform-id")) >= 0 ? (checkbox(t, !0), disable(t, !0)) : disable(t, !1)
                     })
-                }
-                BugTracker.editUserDevice(e, r, n, o)
+                } else "checklist" === o && (radioBtns.checklist_device_select = {
+                    els: geByClass("user_device", s)
+                });
+                BugTracker.editUserDevice(e, r, n, o), i ? show("bugtracker_add_device_button") : hide("bugtracker_add_device_button")
             }
         }), !1
     },
@@ -1539,20 +1541,20 @@ var BugTracker = {
         }, {
             showProgress: addClass.pbind(e.parentNode, "locked"),
             hideProgress: removeClass.pbind(e.parentNode, "locked"),
-            onDone: function() {
+            onDone: function(e) {
                 re("bugtracker_device" + t);
-                var e = [].map.call(geByClass1("bugtracker_user_device_list").childNodes, function(e) {
+                var r = [].map.call(geByClass1("bugtracker_user_device_list").childNodes, function(e) {
                     return e.getAttribute("platform-id")
                 });
-                each(ge("bt_settings_platforms").childNodes, function(t, r) {
-                    e.indexOf(r.getAttribute("platform-id")) >= 0 ? (checkbox(r, !0), disable(r, !0)) : disable(r, !1)
-                })
+                each(ge("bt_settings_platforms").childNodes, function(e, t) {
+                    r.indexOf(t.getAttribute("platform-id")) >= 0 ? (checkbox(t, !0), disable(t, !0)) : disable(t, !1)
+                }), e ? show("bugtracker_add_device_button") : hide("bugtracker_add_device_button")
             }
         }), !1
     },
     addUserDeviceBox: function(e, t, r) {
         return showBox("/bugtracker?act=a_add_device_box", {
-            from_report: +r,
+            from: r,
             hash: t
         }, {
             params: {
@@ -1616,42 +1618,43 @@ var BugTracker = {
             }
         }
     },
-    newUserDevice: function(e) {
+    newUserDevice: function(e, t) {
         return showBox("/bugtracker?act=a_new_device_box", {
-            hash: e
+            hash: e,
+            from: t
         }, {
             params: {
                 grey: !0
             }
         }), !1
     },
-    saveDevice: function(e, t, r, o, a) {
-        var n = val(o + "_brand"),
-            i = val(o + "_market_name"),
-            s = val(o + "_device"),
-            c = val(o + "_model");
-        return n || i || s || c ? void ajax.post("bugtracker?act=a_save_device", {
+    saveDevice: function(e, t, r, o, a, n) {
+        var i = val(o + "_brand"),
+            s = val(o + "_market_name"),
+            c = val(o + "_device"),
+            d = val(o + "_model");
+        return i || s || c || d ? void ajax.post("bugtracker?act=a_save_device", {
             hash: t,
             state_hash: r,
             device_id: a,
             platform: val(o + "_platform"),
-            brand: n,
-            market_name: i,
-            device: s,
-            model: c,
+            brand: i,
+            market_name: s,
+            device: c,
+            model: d,
             comment: val(o + "_comment")
         }, {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e),
             onDone: function(t, r) {
-                curBox().hide(), BugTracker.addUserDevice(e, t, r)
+                curBox().hide(), BugTracker.addUserDevice(e, t, r, n)
             }
         }) : (notaBene(o + "_brand"), notaBene(o + "_market_name"), notaBene(o + "_device"), void notaBene(o + "_model"))
     },
     editUserDevice: function(e, t, r, o) {
         return showBox("/bugtracker?act=a_edit_user_device_box", {
             udid: t,
-            from_report: +o,
+            from: o,
             hash: r
         }, {
             params: {
@@ -1665,7 +1668,7 @@ var BugTracker = {
             udid: o,
             title: val(r + "_title"),
             version: val(r + "_version"),
-            from_report: +a
+            from: a
         }, {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e),
@@ -1673,14 +1676,16 @@ var BugTracker = {
                 curBox().hide();
                 var t = sech(e)[0],
                     r = geByClass1("bugtracker_user_device_list");
-                if (r.replaceChild(t, ge("bugtracker_device" + o)), !a) {
+                if (r.replaceChild(t, ge("bugtracker_device" + o)), "user_info" === a) {
                     var n = [].map.call(r.childNodes, function(e) {
                         return e.getAttribute("platform-id")
                     });
                     each(ge("bt_settings_platforms").childNodes, function(e, t) {
                         n.indexOf(t.getAttribute("platform-id")) >= 0 ? (checkbox(t, !0), disable(t, !0)) : disable(t, !1)
                     })
-                }
+                } else "checklist" === a && (radioBtns.checklist_device_select = {
+                    els: geByClass("user_device", r)
+                })
             }
         })
     },

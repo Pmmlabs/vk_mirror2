@@ -1184,7 +1184,7 @@ a.settings_blb_title {
 }
 
 .settings_payments_history .ui_load_more_btn {
-    margin: 0 0 15px
+    margin: 0 -20px
 }
 
 #settings_votes_history tr.settings_votes_history_last td {

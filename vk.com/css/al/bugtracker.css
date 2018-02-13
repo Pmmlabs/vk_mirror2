@@ -3050,6 +3050,10 @@
     white-space: nowrap
 }
 
+.bugtracker_device .bugtracker_device_model a {
+    color: #000
+}
+
 .bugtracker_device.wide .bugtracker_device_info {
     width: 360px
 }
@@ -3138,6 +3142,8 @@
 
 .bugtracker_no_device {
     color: #939393;
+    padding-top: 3px;
+    line-height: 1;
     display: none
 }
 

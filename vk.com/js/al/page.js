@@ -2256,8 +2256,21 @@ var Wall = {
                     hash: hash,
                     group_id: group_id
                 }, {
-                    onDone: function() {
-                        Wall.showSuggested(geByClass1('ui_tab', ge('page_wall_suggest')))
+                    onDone: function(count) {
+                        if (cur.wallType == 'full_own' || cur.wallType == 'full_all') {
+                            var offset = (Math.ceil(count / cur.pgPerPage) - 1) * cur.pgPerPage;
+                            if (offset < cur.pgOffset) {
+                                if (offset > 0) {
+                                    nav.objLoc.offset = offset;
+                                } else {
+                                    delete nav.objLoc.offset;
+                                }
+                                nav.setLoc(nav.objLoc);
+                            }
+                            nav.reload();
+                        } else {
+                            Wall.showSuggested(geByClass1('ui_tab', ge('page_wall_suggest')));
+                        }
                         box.hide();
                     },
                     showProgress: lockButton.pbind(btn),

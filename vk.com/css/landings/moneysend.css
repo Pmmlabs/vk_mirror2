@@ -492,7 +492,7 @@
 }
 
 body.is_moneysend_layer {
-    overflow: auto!important;
+    overflow-y: auto!important;
     -webkit-overflow-scrolling: touch
 }
 
@@ -572,6 +572,10 @@ body.is_moneysend_layer {
 
 .is_moneysend_layer .landing_moneysend_footer {
     margin: 0
+}
+
+.is_mobile {
+    overflow-x: hidden!important
 }
 
 .is_mobile .landing_moneysend {
