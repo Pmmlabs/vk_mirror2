@@ -45,9 +45,13 @@ var photos = {
     },
     _editUpdateSelectedCounter: function() {
         var o, e = photos._editGetSelectedCount();
-        o = e ? getLang("photos_edit_selected_count").replace("{total}", cur.count).replace("{count}", e) : langNumeric(cur.count, cur.lang.photos_edit_selected_count_initial, !0), val(ge("photos_edit_selected_label"), o), toggleClass(ge("photos_edit_selected_actions"), "photos_selected", !!e);
-        var t = ge("photos_select_all_toggle");
-        cur.photosEditSelectedHalf = e >= cur.count / 2, cur.photosEditSelectedHalf ? val(t, getLang("photos_edit_deselect_all")) : val(t, getLang("photos_edit_select_all"))
+        o = e ? getLang("photos_edit_selected_count").replace("{total}", cur.count).replace("{count}", e) : langNumeric(cur.count, cur.lang.photos_edit_selected_count_initial, !0), val(ge("photos_edit_selected_label"), o);
+        var t = ge("photos_edit_selected_actions");
+        toggleClass(t, "photos_selected", !!e), geByClass("photos_edit_selected_action", t).forEach(function(o) {
+            toggleClass(o, "link_lock", !e)
+        });
+        var a = ge("photos_select_all_toggle");
+        cur.photosEditSelectedHalf = e >= cur.count / 2, cur.photosEditSelectedHalf ? val(a, getLang("photos_edit_deselect_all")) : val(a, getLang("photos_edit_select_all"))
     },
     selectEditPhoto: function(o, e) {
         var t = gpeByClass("photos_photo_edit_row", e),
@@ -289,13 +293,14 @@ var photos = {
         var a = "edit" == nav.objLoc.act ? "photo_edit_row_" : "photo_row_",
             r = o.id.replace(a, ""),
             i = (e && e.id || "").replace(a, ""),
-            s = (t && t.id || "").replace(a, "");
-        ajax.post("al_photos.php", {
+            s = (t && t.id || "").replace(a, ""),
+            n = domData(ge("photos_container_photos"), "rev");
+        n = n ? "1" === n ? 1 : "" : nav.objLoc.rev, ajax.post("al_photos.php", {
             act: "reorder_photos",
             photo: r,
             before: i,
             after: s,
-            rev: nav.objLoc.rev,
+            rev: n,
             hash: cur.reorderHash
         })
     },
@@ -951,7 +956,7 @@ var photos = {
         isArray(o) ? r = o : ("" === o && e && (o = gpeByClass("photos_photo_edit_row", e).getAttribute("data-id")), o ? r.push(o) : each(geByClass("photos_edit_selected"), function() {
             r.push(this.getAttribute("data-id"))
         }), i = intval(photos._editGetSelectedCount() > r.length));
-        var s = cur.album ? cur.album.split("_") : [vk.id, -15];
+        var s = cur.album ? cur.album.split("_") : [vk.id];
         return showBox("/al_photos.php", {
             act: "a_move_to_album_box",
             photo_ids: i ? "" : r.join(","),
@@ -1043,12 +1048,12 @@ var photos = {
                 clearTimeout(cur.dragTimer), delete cur.dragTimer
             }, 0), o.on(e), cancelEvent(e)) : void 0
         }), addEvent(document, "dragleave", function(e) {
-            cur.dragTimer && (clearTimeout(cur.dragTimer), delete cur.dragTimer), cur.dragTimer = setTimeout(function() {
+            cur.dragTimer && (clearTimeout(cur.dragTimer),
+                delete cur.dragTimer), cur.dragTimer = setTimeout(function() {
                 o.un(e)
             }, 100), cancelEvent(e)
         }), addEvent(document, "drop", function(e) {
-            return o.un(e, !0), o.drop(e.dataTransfer.files),
-                cancelEvent(e)
+            return o.un(e, !0), o.drop(e.dataTransfer.files), cancelEvent(e)
         }), cur.destroy.push(function() {
             removeEvent(document, "dragenter dragover"), removeEvent(document, "dragleave"), removeEvent(document, "drop")
         })

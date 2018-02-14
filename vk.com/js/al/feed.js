@@ -551,7 +551,7 @@ var Feed = {
         var o = feed.getSectionParams(cur.section);
         delete cur.feedUpdateLoading, delete cur.isFeedLoading, nav.go(extend(o || {}, {
             0: "feed"
-        })), uiRightMenu.showProgress(cur.feedEls.rmenu), feed.updateTimer()
+        })), uiRightMenu.showProgress(cur.feedEls.rmenu)
     },
     switchSection: function(e, t, o) {
         if (t && checkEvent(t)) return !0;
@@ -585,7 +585,7 @@ var Feed = {
                 toggleClass(cur.feedEls.wrap, "feed_search_shown", o), o && elfocus(cur.feedEls.search), cur.section && val(cur.feedEls.search, "")
             }
             if (2 == t && window.Stories && Stories.updateFeedStories(e), cur.my_feed_types && (~indexOf(cur.my_feed_types.optional_tabs, cur.section) && !~indexOf(cur.my_feed_types.tabs, cur.section) && feed.toggleTabsMenuTab(cur.section, !1), ~indexOf(cur.my_feed_types.optional_tabs, e) && !~indexOf(cur.my_feed_types.tabs, e) && feed.toggleTabsMenuTab(e, !0)), cur.section = e, 4 == t) return void feed.searchUpdate();
-            cur.editingHide = "notifications" == e || "replies" == e ? feed.notifyCheckHideReply : !1, cur.gifAutoplayScrollHandler && cur.gifAutoplayScrollHandler(), cur.videoAutoplayScrollHandler && cur.videoAutoplayScrollHandler(), feed.updateTimer()
+            cur.editingHide = "notifications" == e || "replies" == e ? feed.notifyCheckHideReply : !1, cur.gifAutoplayScrollHandler && cur.gifAutoplayScrollHandler(), cur.videoAutoplayScrollHandler && cur.videoAutoplayScrollHandler()
         }
     },
     applyOptions: function(options, from) {
@@ -613,7 +613,7 @@ var Feed = {
             }, browser.msie ? 100 : 0), delete cur.notify)
         }
         var topVerified = "recommended" == cur.section || "search" == cur.section;
-        toggleClass(cur.feedEls.wrap, "mark_top_verified", topVerified), toggleClass(cur.feedEls.wrap, "mark_top", !topVerified), cur.feedSection && cur.feedSection(options.section, options.subsection)
+        toggleClass(cur.feedEls.wrap, "mark_top_verified", topVerified), toggleClass(cur.feedEls.wrap, "mark_top", !topVerified), cur.feedSection && cur.feedSection(options.section, options.subsection), feed.updateTimer()
     },
     showMore: function() {
         if (!cur.isFeedLoading) {
@@ -989,7 +989,7 @@ var Feed = {
         var e = cur.module || "feed_other";
         return "feed" == cur.module && (e = "news" == cur.section ? cur.subsection ? "feed_news_" + cur.subsection : "feed_news" : cur.section ? e + "_" + cur.section : "feed_other"), e
     },
-    ignoreItem: function(post_raw, feed_raw, hash) {
+    ignoreItem: function(post_raw, feed_raw, hash, caption_type, uids) {
         var postEl = ge("post" + post_raw),
             adData = postEl.getAttribute("data-ad"),
             actMenu = geByClass1("ui_actions_menu_wrap", postEl),
@@ -998,6 +998,8 @@ var Feed = {
             act: "a_ignore_item",
             post_raw: post_raw,
             feed_raw: feed_raw,
+            caption_type: caption_type,
+            uids: uids,
             hash: hash,
             ad_data: adData,
             ref: from
@@ -1548,7 +1550,7 @@ var Feed = {
             loc: !1
         }, feed.startEvents(), e.article_feature_tooltip && setTimeout(function() {
             Feed.initArticleFeatureTooltip(e.article_feature_tooltip_hash)
-        }, 800), feed.updateTimer(), setTimeout(function() {
+        }, 800), setTimeout(function() {
             feed.scrollCheck({
                 type: "init"
             })

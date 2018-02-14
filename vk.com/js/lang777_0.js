@@ -240,7 +240,7 @@ votes_flex = ['', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿
 Work_place = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:';
 yesterday = 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 global_article_carousel_counter = '{counter} ï¿½ï¿½ {total}';
-// section = 0; version = 263;
+// section = 0; version = 264;
 
 friends_no_user_selected = 'ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.';
 // section = 2; version = 9;

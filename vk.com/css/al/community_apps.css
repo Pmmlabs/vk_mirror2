@@ -69,8 +69,9 @@
 .apps_group_catalog_header .apps_group_catalog_header_desc .apps_group_catalog_header_desc_link {
     font-size: 14px;
     font-weight: 300;
-    letter-spacing: -0.2px;
-    line-height: 1.57
+    line-height: 1.57;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
 }
 
 .apps_catalog_goto_arrow:after {

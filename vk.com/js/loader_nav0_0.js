@@ -180,9 +180,9 @@ var stVersions = {
     'friends_search.css': 1694758778,
     'board.js': 3844907940,
     'board.css': 22663047175,
-    'photos.css': 24449198550,
-    'photos.js': 3337807894,
-    'photos_add.css': 26392969448,
+    'photos.css': 26480941894,
+    'photos.js': 2623457374,
+    'photos_add.css': 27078339287,
     'photos_add.js': 1811822476,
     'wkpoll.js': 534542755,
     'wkview.js': 3330037574,
@@ -250,7 +250,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 125765678466,
-    'imn.js': 146860829019,
+    'imn.js': 148043636175,
     'im.js': 1322065005,
     'emoji.js': 2024669263,
     'wide_dd.css': 15831920432,
@@ -261,7 +261,7 @@ var stVersions = {
     'fansbox.js': 2740474922,
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
-    'feed.js': 502072961,
+    'feed.js': 1726814941,
     'feed.css': 18220221012,
     'privacy.js': 3620108221,
     'privacy.css': 13505735783,
@@ -461,7 +461,7 @@ var stVersions = {
     'landings/psb.css': 21566754434,
     'landings/psb_context.css': 19990271,
     'landings/psb_mobile.css': 24713594919,
-    'landings/moneysend.css': 13895395564,
+    'landings/moneysend.css': 13126256495,
     'landings/moneysend.js': 2406210925,
     'landings/desktop_messenger.css': 14899084788,
     'landings/vklive.css': 15665220095,
@@ -470,8 +470,8 @@ var stVersions = {
     'landings/vkmusic.js': 1745567881,
     'landings/vkmasks.css': 3103874243,
     'landings/vkmasks.js': 1193444147,
-    'landings/vkvalentine.css': 3589450557,
-    'landings/vkvalentine.js': 2683872383,
+    'landings/vkvalentine.css': 13504744612,
+    'landings/vkvalentine.js': 3463861529,
     'landings/ads.css': 16609387329,
     'landing_aes.js': 14694813984,
     'landings/donors_day.css': 16691457876,
@@ -487,7 +487,7 @@ var stVersions = {
     'apps_flash.js': 574154589,
     'maps.js': 2858461320,
     'places.js': 592992591,
-    'places.css': 20170894450,
+    'places.css': 20856264289,
     'map2.js': 3799102730,
     'map.css': 4020192821,
     'paginated_table.js': 1750088857,
@@ -542,7 +542,7 @@ var stVersions = {
     'cmodules/web/article_layer.js': 20958808571,
     'article_view.js': 18319453036,
     'internal/cvkmobile.css': 14764773725,
-    'internal/cvkmobile.js': 3588813277,
+    'internal/cvkmobile.js': 2752055160,
     'shortener.js': 16413120,
     'cmodules/web/pretty_cards.js': 124004037,
     'cmodules/web/landing_ads_case.js': 3936066274,
@@ -563,6 +563,9 @@ var stVersions = {
     'cmodules/web/bodymovin.js': 1520167629,
     'lead_forms_app.js': 17346700711,
     'lead_forms_app.css': 18430198570,
+    'cmodules/web/stories_admin_panel.js': 10528347,
+    'stories_admin_panel.css': 3041026778,
+    'time_spent.js': 1789786634,
     'lang': 6879
 };
 var stTypes = {
@@ -633,4 +636,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 6077;
+var _rnd = 975;

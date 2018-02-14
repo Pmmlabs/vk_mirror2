@@ -294,6 +294,17 @@
     }
 }
 
+.landing_moneysend_process .landings_moneysend_video {
+    background-image: none;
+    height: 532px;
+    width: 300px
+}
+
+.landing_moneysend_process .landings_moneysend_video>video {
+    width: 300px!important;
+    height: 532px!important
+}
+
 .landing_moneysend_process .landings_moneysend_video_iphone {
     height: 521px;
     width: 252px;
@@ -823,6 +834,14 @@ body.is_moneysend_layer {
         width: 109px;
         height: 225px;
         background-size: 109px 225px
+    }
+    .is_mobile .landing_moneysend_process .landings_moneysend_video {
+        height: 266px;
+        width: 150px
+    }
+    .is_mobile .landing_moneysend_process .landings_moneysend_video>video {
+        width: 150px!important;
+        height: 266px!important
     }
     .is_mobile .landing_moneysend_process .landings_moneysend_video_iphone {
         width: 126px;
