@@ -13322,7 +13322,7 @@ function showStory(list, opts) {
         }));
     }, 1000);
 
-    stManager.add(['stories.js', 'stories.css'], function() {
+    stManager.add(['stories.js', 'stories.css', 'emoji.js'], function() {
         clearTimeout(cur.storiesStaticLoadTimer);
         re('stories_loader');
         Stories.show(list, opts);

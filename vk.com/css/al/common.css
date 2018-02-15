@@ -6805,6 +6805,33 @@ button.ui_load_more_btn {
     margin-bottom: -12px
 }
 
+.eltt.feature_intro_blue_tt {
+    background: #5a9eff;
+    box-shadow: 0 20px 40px 0 rgba(0, 0, 0, .32);
+    color: #fff;
+    padding: 12px;
+    font-size: 14px;
+    line-height: 18px;
+    border-radius: 8px;
+    border: 0
+}
+
+.eltt.feature_intro_blue_tt .feature_intro_tt_hide {
+    background-image: url('/images/svg_icons/feature_intro_blue_tt_hide.svg')
+}
+
+.eltt.feature_intro_blue_tt .eltt_arrow,
+.eltt.feature_intro_blue_tt .eltt_arrow_back {
+    border: 0!important;
+    width: 9px;
+    height: 20px
+}
+
+.eltt.feature_intro_blue_tt .eltt_arrow {
+    background: url('/images/svg_icons/feature_intro_blue_tt_arrow.svg') no-repeat 50% / contain;
+    margin-top: -2px!important
+}
+
 .feature_intro_tt_img {
     position: relative;
     z-index: 1;

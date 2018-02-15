@@ -619,6 +619,16 @@
     float: left
 }
 
+.apps_recent_block.eight_games {
+    height: 313px
+}
+
+.apps_recent_block.eight_games .apps_recent_apps_wrap,
+.apps_recent_block.eight_games .apps_notifications_wrap,
+.apps_recent_block.eight_games .apps_notifications_wrap_inner {
+    height: 258px
+}
+
 .apps_recent_apps_wrap {
     position: relative;
     padding: 0 5px;
@@ -673,6 +683,12 @@
 
 .apps_recent_row_hidden {
     display: none
+}
+
+.apps_recent_row.apps_recent_row_eight_games {
+    width: 85px;
+    height: 85px;
+    background-size: 85px 85px
 }
 
 .apps_cat_row .thumb_x_button,
@@ -921,6 +937,14 @@
     width: 348px;
     height: 385px;
     float: right
+}
+
+.apps_feed_block.eight_games {
+    height: 313px
+}
+
+.apps_feed_block.eight_games .apps_feed_wrap {
+    height: 258px
 }
 
 .apps_feed_wrap {

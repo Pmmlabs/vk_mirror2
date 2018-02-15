@@ -1027,7 +1027,8 @@ var uiTabs = {
                 }]
             }
         }, t
-    }();
+    }(),
+    UiScroll = uiScroll;
 window.Scrollbar = window.Scrollbar || function() {
     function t(t) {
         if (!this.inited) return !1;
