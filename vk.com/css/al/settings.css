@@ -807,7 +807,8 @@ a.settings_blb_title {
 .settings_reason_text {
     margin-top: 8px;
     width: 510px;
-    height: 65px
+    height: 65px;
+    resize: none
 }
 
 .settings_restore_cont {

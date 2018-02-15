@@ -3142,9 +3142,17 @@
 
 .bugtracker_no_device {
     color: #939393;
-    padding-top: 3px;
+    padding-top: 4px;
     line-height: 1;
     display: none
+}
+
+.bt_report_one_info_row_value .bugtracker_no_device {
+    padding-top: 3px
+}
+
+.mi_meminforow_labeled .bugtracker_no_device {
+    padding-top: 0
 }
 
 :empty+.bugtracker_no_device {

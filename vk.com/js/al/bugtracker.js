@@ -242,16 +242,15 @@ var BugTracker = {
             }
         })
     },
-    cancelEdit: function() {
-        var e = geByClass1("bt_comment_edit_form");
-        if (e) {
-            var t = e.getAttribute("data-id"),
-                r = ge("cmt" + t),
-                o = geByClass1("bt_report_cmt_text", r);
-            re(e), setTimeout(function() {
-                show(geByClass1("page_post_sized_thumbs", r)), show(geByClass1("post_thumbed_media", r)), show(o), show(geByClass1("bt_report_cmt_info", r)), toggleClass(r, "editing", !1)
-            })
-        }
+    cancelEdit: function(e) {
+        var t = geByClass1("bt_comment_edit_form");
+        if (!t) return void(e && setTimeout(e));
+        var r = t.getAttribute("data-id"),
+            o = ge("cmt" + r),
+            a = geByClass1("bt_report_cmt_text", o);
+        re(t), setTimeout(function() {
+            show(geByClass1("page_post_sized_thumbs", o)), show(geByClass1("post_thumbed_media", o)), show(a), show(geByClass1("bt_report_cmt_info", o)), toggleClass(o, "editing", !1), e && setTimeout(e)
+        })
     },
     saveComment: function(btn, hash) {
         var editForm = geByClass1("bt_comment_edit_form");
@@ -278,22 +277,23 @@ var BugTracker = {
         }
     },
     editComment: function(e, t, r, o, a) {
-        BugTracker.cancelEdit();
-        var n = ge("cmt" + e),
-            i = geByClass1("bt_report_cmt_text", n),
-            s = '<div class="bt_comment_edit_form" data-id="' + e + '">  <textarea class="text bt_comment_form_text" id="bt_comment_edit_form_text" onkeydown="onCtrlEnter(event, BugTracker.saveComment.bind(null, ge(\'bt_comment_edit_form_submit\'), \'' + t + '\'));" style="overflow: hidden; resize: none; height: 50px;">' + i.innerText + '</textarea>  <div id="bt_comment_edit_form_media_preview" class="clear_fix bt_comment_form_media_preview"></div>  <div id="bt_comment_edit_form_attach" class="bt_comment_form_attach clear_fix"><span class="add_media_lnk"></span></div>  <div>  <button type="button" class="flat_button fl_r" id="bt_comment_edit_form_submit" onclick="BugTracker.saveComment(this, \'' + t + "');\">" + getLang("global_save") + '</button>  <button type="button" class="flat_button button_light secondary fl_r" id="bt_comment_edit_form_cancel" onclick="BugTracker.cancelEdit()">' + getLang("global_cancel") + "</button>  </div>  </div>",
-            c = sech(s)[0];
-        i.parentNode.insertBefore(c, i), hide(i), hide(geByClass1("page_post_sized_thumbs", n)), hide(geByClass1("post_thumbed_media", n)), hide(geByClass1("bt_report_cmt_info", n)), toggleClass(n, "editing", !0), setTimeout(function() {
-            autosizeSetup(geByClass1("bt_comment_form_text", n), {}), cur.btEditCommentMedia = MediaSelector(ge("bt_comment_edit_form_attach").firstChild, "bt_comment_edit_form_media_preview", cur.btCommentMediaTypes, {
-                limit: 10,
-                hideAfterCount: 10,
-                editable: 1,
-                sortable: 1,
-                teWidth: 210,
-                teHeight: 160,
-                toId: a
-            }), r.forEach(function(e) {
-                cur.btEditCommentMedia.chooseMedia(e.type, e[0], e.data)
+        BugTracker.cancelEdit(function() {
+            var o = ge("cmt" + e),
+                n = geByClass1("bt_report_cmt_text", o),
+                i = '<div class="bt_comment_edit_form" data-id="' + e + '"><textarea class="text bt_comment_form_text" id="bt_comment_edit_form_text" onkeydown="onCtrlEnter(event, BugTracker.saveComment.bind(null, ge(\'bt_comment_edit_form_submit\'), \'' + t + '\'));" style="overflow: hidden; resize: none; height: 50px;">' + n.innerText + '</textarea><div id="bt_comment_edit_form_media_preview" class="clear_fix bt_comment_form_media_preview"></div><div id="bt_comment_edit_form_attach" class="bt_comment_form_attach clear_fix"><span class="add_media_lnk"></span></div><div><button type="button" class="flat_button fl_r" id="bt_comment_edit_form_submit" onclick="BugTracker.saveComment(this, \'' + t + "');\">" + getLang("global_save") + '</button><button type="button" class="flat_button button_light secondary fl_r" id="bt_comment_edit_form_cancel" onclick="BugTracker.cancelEdit()">' + getLang("global_cancel") + "</button></div></div>",
+                s = sech(i)[0];
+            n.parentNode.insertBefore(s, n), hide(n), hide(geByClass1("page_post_sized_thumbs", o)), hide(geByClass1("post_thumbed_media", o)), hide(geByClass1("bt_report_cmt_info", o)), toggleClass(o, "editing", !0), setTimeout(function() {
+                autosizeSetup(geByClass1("bt_comment_form_text", o), {}), cur.btEditCommentMedia = MediaSelector(ge("bt_comment_edit_form_attach").firstChild, "bt_comment_edit_form_media_preview", cur.btCommentMediaTypes, {
+                    limit: 10,
+                    hideAfterCount: 10,
+                    editable: 1,
+                    sortable: 1,
+                    teWidth: 210,
+                    teHeight: 160,
+                    toId: a
+                }), r.forEach(function(e) {
+                    cur.btEditCommentMedia.chooseMedia(e.type, e[0], e.data)
+                })
             })
         })
     },
@@ -1101,8 +1101,7 @@ var BugTracker = {
                 platforms: []
             },
             o = !0;
-        "" != r.login_tf && -1 == r.login_tf.indexOf("@") && (notaBene("bt_settings__login_tf"),
-            o = !1), "" != r.login_ha && -1 == r.login_ha.indexOf("@") && (notaBene("bt_settings__login_ha"), o = !1), o && (each(geByClass("on", "bt_settings_platforms"), function(e, t) {
+        "" != r.login_tf && -1 == r.login_tf.indexOf("@") && (notaBene("bt_settings__login_tf"), o = !1), "" != r.login_ha && -1 == r.login_ha.indexOf("@") && (notaBene("bt_settings__login_ha"), o = !1), o && (each(geByClass("on", "bt_settings_platforms"), function(e, t) {
             r.platforms.push(attr(t, "platform-id"))
         }), ajax.post("bugtracker", r, {
             showProgress: lockButton.pbind(e),

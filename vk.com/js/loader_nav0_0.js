@@ -250,7 +250,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 125765678466,
-    'imn.js': 148043636175,
+    'imn.js': 147771788495,
     'im.js': 1322065005,
     'emoji.js': 2024669263,
     'wide_dd.css': 15831920432,
@@ -272,7 +272,7 @@ var stVersions = {
     'apps_check.js': 3204387834,
     'apps_check.css': 26847707887,
     'settings.js': 2599392129,
-    'settings.css': 23504473671,
+    'settings.css': 23931919002,
     'profile_edit.js': 2157979570,
     'profile_edit.css': 15141219851,
     'profile_edit_edu.js': 4232181712,
@@ -335,8 +335,8 @@ var stVersions = {
     'helpdesk.css': 20100452395,
     'tickets.js': 2459380201,
     'tickets.css': 19225893652,
-    'internal/faq.js': 4100753843,
-    'faq.css': 19114972996,
+    'internal/faq.js': 2622161233,
+    'faq.css': 19761146196,
     'talmud.js': 1641838680,
     'agents.js': 2426697933,
     'agents.css': 15317418227,
@@ -348,8 +348,8 @@ var stVersions = {
     'groupinfo.css': 20125531313,
     'bugs.js': 3874995669,
     'bugs.css': 13104208825,
-    'bugtracker.js': 784471299,
-    'bugtracker.css': 23248434104,
+    'bugtracker.js': 485307039,
+    'bugtracker.css': 25931063309,
     'login.css': 15301831596,
     'login.js': 56821690,
     'upload.js': 16891470,
@@ -470,7 +470,7 @@ var stVersions = {
     'landings/vkmusic.js': 1745567881,
     'landings/vkmasks.css': 3103874243,
     'landings/vkmasks.js': 1193444147,
-    'landings/vkvalentine.css': 13504744612,
+    'landings/vkvalentine.css': 15052026873,
     'landings/vkvalentine.js': 3463861529,
     'landings/ads.css': 16609387329,
     'landing_aes.js': 14694813984,
@@ -636,4 +636,4 @@ var stTypes = {
         'ny2018.js': 1
     }
 };
-var _rnd = 5552;
+var _rnd = 7157;

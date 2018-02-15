@@ -2,6 +2,8 @@
     display: none
 }
 
+.faq_category_icon .faq_category_icon_desktop,
+.faq_category_icon .faq_category_icon_mobile,
 .faq_optional_extra_field__close {
     -ms-high-contrast-adjust: none
 }
@@ -1031,4 +1033,252 @@
 
 .faq_tutorials_row_testers__list:empty {
     display: none
+}
+
+.faq_category_row {
+    border-bottom: 1px solid #e7e8ec;
+    padding: 12px 10px;
+    cursor: pointer
+}
+
+.faq_category_row.faq_category_row_full .faq_category_description {
+    width: 695px
+}
+
+.faq_category_row:last-child {
+    border-bottom: 0
+}
+
+.faq_category_row .faq_category_description {
+    float: left;
+    width: 735px
+}
+
+.faq_category_row .faq_category_description .faq_category_title {
+    font-weight: 700
+}
+
+.faq_category_row .faq_category_description .faq_category_title_key {
+    color: #939393
+}
+
+.faq_category_row:hover {
+    background: #f2f4f7
+}
+
+.faq_category_edit_box .faq_category_edit_row {
+    margin-bottom: 7px;
+    width: 520px
+}
+
+.faq_category_edit_box .faq_category_edit_row .faq_category_edit_label {
+    padding: 7px 10px 0;
+    float: left;
+    width: 155px;
+    color: #555
+}
+
+.faq_category_edit_box .faq_category_edit_row .faq_category_edit_labeled {
+    float: left;
+    width: 340px
+}
+
+.faq_category_edit_box .faq_category_edit_row .faq_category_edit_labeled .radiobtn {
+    margin: 10px;
+    display: inline-block
+}
+
+.faq_category_edit_box .faq_category_edit_row .faq_category_edit_labeled input {
+    width: 100%
+}
+
+.faq_category_edit_box .faq_category_edit_row .faq_category_edit_labeled .faq_category_icon {
+    margin: 0;
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer
+}
+
+.faq_category_edit_box .faq_category_edit_row .faq_category_edit_labeled .faq_category_icon:hover {
+    background-color: #f2f4f7
+}
+
+.faq_category_edit_box .faq_category_edit_row .faq_category_edit_labeled .faq_category_icon.faq_category_icon_active,
+.faq_category_edit_box .faq_category_edit_row .faq_category_edit_labeled .faq_category_icon.faq_category_icon_active:hover {
+    background-color: #afd4a9
+}
+
+.faq_category_icon {
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px
+}
+
+.faq_category_icon div {
+    margin: auto
+}
+
+.faq_category_icon .faq_category_icon_desktop {
+    background: url(/images/support/faq_icons.png);
+    width: 28px;
+    height: 28px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .faq_category_icon .faq_category_icon_desktop {
+        background-image: url(/images/support/faq_icons_2x.png);
+        background-size: 28px 392px
+    }
+}
+
+.faq_category_icon .faq_category_icon_desktop_0,
+.faq_category_icon .faq_category_icon_desktop_14 {
+    background-position: 0 -56px
+}
+
+.faq_category_icon .faq_category_icon_desktop_1 {
+    background-position: 0 -224px
+}
+
+.faq_category_icon .faq_category_icon_desktop_2 {
+    background-position: 0 -140px
+}
+
+.faq_category_icon .faq_category_icon_desktop_3 {
+    background-position: 0 -252px
+}
+
+.faq_category_icon .faq_category_icon_desktop_4 {
+    background-position: 0 -196px
+}
+
+.faq_category_icon .faq_category_icon_desktop_5,
+.faq_category_icon .faq_category_icon_desktop_13 {
+    background-position: 0 -168px
+}
+
+.faq_category_icon .faq_category_icon_desktop_6 {
+    background-position: 0 -112px
+}
+
+.faq_category_icon .faq_category_icon_desktop_7 {
+    background-position: 0 -308px
+}
+
+.faq_category_icon .faq_category_icon_desktop_8,
+.faq_category_icon .faq_category_icon_desktop_8 {
+    background-position: 0 -84px
+}
+
+.faq_category_icon .faq_category_icon_desktop_30 {
+    background-position: 0 -28px
+}
+
+.faq_category_icon .faq_category_icon_desktop_11 {
+    background-position: 0 0
+}
+
+.faq_category_icon .faq_category_icon_desktop_12 {
+    background-position: 0 280px
+}
+
+.faq_category_icon .faq_category_icon_desktop_100,
+.faq_category_icon .faq_category_icon_desktop_top {
+    background-position: 0 336px
+}
+
+.faq_category_icon .faq_category_icon_desktop_99,
+.faq_category_icon .faq_category_icon_desktop_search {
+    background-position: 0 364px
+}
+
+.faq_category_icon .faq_category_icon_mobile {
+    background: url(/images/support/mobile_faq_icons.png);
+    margin: -4px;
+    width: 38px;
+    height: 38px;
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    transform: scale(0.8)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .faq_category_icon .faq_category_icon_mobile {
+        background-image: url(/images/support/mobile_faq_icons_2x.png);
+        background-size: 102px 864px
+    }
+}
+
+.faq_category_icon .faq_category_icon_mobile_0 {
+    background-position: 0 -45px
+}
+
+.faq_category_icon .faq_category_icon_mobile_1 {
+    background-position: 0 -413px
+}
+
+.faq_category_icon .faq_category_icon_mobile_2 {
+    background-position: 0 -275px
+}
+
+.faq_category_icon .faq_category_icon_mobile_3 {
+    background-position: 0 -459px
+}
+
+.faq_category_icon .faq_category_icon_mobile_4 {
+    background-position: 0 -366px
+}
+
+.faq_category_icon .faq_category_icon_mobile_5 {
+    background-position: 0 -321px
+}
+
+.faq_category_icon .faq_category_icon_mobile_6 {
+    background-position: 0 -229px
+}
+
+.faq_category_icon .faq_category_icon_mobile_7 {
+    background-position: 0 -597px
+}
+
+.faq_category_icon .faq_category_icon_mobile_8 {
+    background-position: 0 -183px
+}
+
+.faq_category_icon .faq_category_icon_mobile_9 {
+    background-position: 0 -505px
+}
+
+.faq_category_icon .faq_category_icon_mobile_10 {
+    background-position: 0 -136px
+}
+
+.faq_category_icon .faq_category_icon_mobile_13 {
+    background-position: 0 -550px
+}
+
+.faq_category_icon .faq_category_icon_mobile_31 {
+    background-position: 0 -690px
+}
+
+.faq_category_icon .faq_category_icon_mobile_32 {
+    background-position: 0 -736px
+}
+
+.faq_category_icon .faq_category_icon_mobile_33 {
+    background-position: 0 -780px
+}
+
+.faq_category_icon .faq_category_icon_mobile_34 {
+    background-position: 0 -826px
+}
+
+.faq_category_icon .faq_category_icon_mobile_popular {
+    background-position: 0 -92px
 }
