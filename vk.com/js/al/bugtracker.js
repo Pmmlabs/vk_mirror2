@@ -1188,22 +1188,24 @@ var BugTracker = {
             if (Object.getPrototypeOf(this) !== t.prototype) throw new TypeError('Invites should be called via "new"');
             var a = e.initialMembersCount,
                 n = 0,
-                i = !1;
+                i = !1,
+                s = !1,
+                c = !1;
             this.search = function() {
-                n = 0, this.loadMoreResults(!0)
+                n = 0, c = !1, s = i, this.loadMoreResults(!0)
             }, this.loadMoreResults = function(t) {
-                if (!i) {
+                if (!i && !c) {
                     i = !0;
-                    var s = val("bt_invites_search_" + e.randomId);
+                    var d = val("bt_invites_search_" + e.randomId);
                     ajax.post("bugtracker?act=a_product_members_search", extend(this.filter, {
-                        text: s,
+                        text: d,
                         product: o,
                         hash: r,
                         relation: e.relation,
                         offset: n || 0
                     }), {
                         onDone: function(r, o) {
-                            i = !1, a = o, this.appendReporters(t, s, r), t && 3 == e.relation && setTimeout(this.selectForInviteChanged.bind(this), 0)
+                            i = !1, a = o, this.appendReporters(t, d, r), t && 3 == e.relation && setTimeout(this.selectForInviteChanged.bind(this), 0), s && this.search()
                         }.bind(this),
                         onFail: function() {
                             i = !1
@@ -1219,7 +1221,7 @@ var BugTracker = {
                         }); - 1 === r && re(t)
                     });
                     var s = BugTracker.appendReporters(o, !1, !0, a, e.relation);
-                    0 === s && (i = t), n += s
+                    0 === s && (c = !0), n += s
                 }
             }, this.getLastSearchResultsCount = function() {
                 return a
@@ -1529,7 +1531,7 @@ var BugTracker = {
                 } else "checklist" === o && (radioBtns.checklist_device_select = {
                     els: geByClass("user_device", s)
                 });
-                BugTracker.editUserDevice(e, r, n, o), i ? show("bugtracker_add_device_button") : hide("bugtracker_add_device_button")
+                BugTracker.editUserDevice(e, r, n, o), i ? show(geByClass1("bugtracker_add_device_button")) : hide(geByClass1("bugtracker_add_device_button"))
             }
         }), !1
     },
@@ -1547,7 +1549,7 @@ var BugTracker = {
                 });
                 each(ge("bt_settings_platforms").childNodes, function(e, t) {
                     r.indexOf(t.getAttribute("platform-id")) >= 0 ? (checkbox(t, !0), disable(t, !0)) : disable(t, !1)
-                }), e ? show("bugtracker_add_device_button") : hide("bugtracker_add_device_button")
+                }), e ? show(geByClass1("bugtracker_add_device_button")) : hide(geByClass1("bugtracker_add_device_button"))
             }
         }), !1
     },

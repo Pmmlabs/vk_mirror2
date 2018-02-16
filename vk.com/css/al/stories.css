@@ -3061,7 +3061,6 @@
     left: 0;
     width: 100%;
     z-index: 50;
-    min-height: 120px;
     background: url('/images/stories_bottom_shadow.png') repeat-x 50% / contain
 }
 
@@ -3071,10 +3070,7 @@
     display: flex;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-justify-content: flex-end;
-    -ms-flex-pack: end;
-    justify-content: flex-end
+    flex-direction: column
 }
 
 .stories_item.fatal_error .stories_bottom_wrap {

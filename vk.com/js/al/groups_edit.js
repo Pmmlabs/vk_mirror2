@@ -699,6 +699,23 @@ var GroupsEdit = {
             hideProgress: unlockButton.pbind(t)
         })
     },
+    savePayments: function(e) {
+        var t = {
+            act: "save_payments",
+            id: cur.gid,
+            hash: cur.hash
+        };
+        extend(t, GroupsEdit.getFields("transfers_en")), cur.paymentsReceiverDD && (t.receiver_id = cur.paymentsReceiverDD.val()), ajax.post("groupsedit.php", t, {
+            onDone: function() {
+                GroupsEdit.showMessage(getLang("groups_payments_saved_msg")), scrollToTop(), globalHistoryDestroy(nav.objLoc[0])
+            },
+            onFail: function(e) {
+                return e && GroupsEdit.showMessage(e, "error"), !0
+            },
+            showProgress: lockButton.pbind(e),
+            hideProgress: unlockButton.pbind(e)
+        })
+    },
     checkAddr: function(e) {
         if (clearTimeout(cur.checkAddrTimer), e) {
             var t = ge("group_edit_addr"),
@@ -893,26 +910,26 @@ var GroupsEdit = {
             autocomplete: !1,
             selectedItems: e.marketButtonType,
             onChange: function(e) {
-                0 === intval(e) ? (show("market_button_type_im"), hide("market_button_type_link")) : 1 === intval(e) && (hide("market_button_type_im"), show("market_button_type_link"))
+                0 === intval(e) ? (show("market_button_type_im"), hide("market_button_type_link")) : 1 === intval(e) && (hide("market_button_type_im"),
+                    show("market_button_type_link"))
             }
         })), e.wideSections && (extend(cur, {
-                wideSections: e.wideSections,
-                mainSectionDD: new Dropdown(ge("main_section"), e.wideSections, {
-                    dark: !0,
-                    multiselect: !1,
-                    zeroPlaceholder: !0,
-                    zeroDefault: !0,
-                    onChange: GroupsEdit.manageSectionsDD
-                }),
-                secondarySectionDD: new Dropdown(ge("secondary_section"), e.wideSections, {
-                    dark: !0,
-                    multiselect: !1,
-                    zeroPlaceholder: !0,
-                    zeroDefault: !0,
-                    onChange: GroupsEdit.manageSectionsDD
-                })
-            }), cur.mainSectionDD.val(e.mainSection),
-            cur.secondarySectionDD.val(e.secondarySection), GroupsEdit.manageSectionsDD()), cur.destroy.push(function(e) {
+            wideSections: e.wideSections,
+            mainSectionDD: new Dropdown(ge("main_section"), e.wideSections, {
+                dark: !0,
+                multiselect: !1,
+                zeroPlaceholder: !0,
+                zeroDefault: !0,
+                onChange: GroupsEdit.manageSectionsDD
+            }),
+            secondarySectionDD: new Dropdown(ge("secondary_section"), e.wideSections, {
+                dark: !0,
+                multiselect: !1,
+                zeroPlaceholder: !0,
+                zeroDefault: !0,
+                onChange: GroupsEdit.manageSectionsDD
+            })
+        }), cur.mainSectionDD.val(e.mainSection), cur.secondarySectionDD.val(e.secondarySection), GroupsEdit.manageSectionsDD()), cur.destroy.push(function(e) {
             e.marketCountryDD && (e.marketCountryDD.destroy(), e.marketCityDD.destroy(), e.marketCurrencyDD.destroy(), e.marketContactDD.destroy(), e.marketButtonType.destroy())
         })
     },
@@ -1650,7 +1667,7 @@ var GroupsEdit = {
     },
     toggleMsgsBlock: function(e) {
         var t = ge("group_edit_messages_details");
-        e && !isVisible(t) ? slideDown(t, 300) : !e && isVisible(t) && slideUp(t, 300)
+        e && !isVisible(t) ? (slideDown(t, 300), show("ui_rmenu_payments")) : !e && isVisible(t) && (slideUp(t, 300), hide("ui_rmenu_payments"))
     },
     toggleBotBlock: function(e) {
         var t = geByClass1("_gedit_bot_features"),

@@ -8763,7 +8763,7 @@ function articleNav(strLoc, oldLoc, isBack, postId) {
 }
 
 function articlePrepare(articleUrl) {
-    if (!articleUrl) {
+    if (!articleUrl || vk.isBanned) {
         return
     }
 

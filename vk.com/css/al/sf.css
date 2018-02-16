@@ -141,6 +141,31 @@
     object-fit: cover
 }
 
+.sf_report .story .play_button_wrap {
+    position: absolute
+}
+
+.sf_report .story .play_button_wrap .play_button {
+    background: rgba(0, 0, 0, .5) url(/images/icons/video_play_small.png?1) no-repeat 19px 13px;
+    background-size: 17px 24px;
+    background-image: url(/images/icons/video_play_small_2x.png?1);
+    position: absolute;
+    left: 42.5px;
+    top: -152.5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    -o-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
+    will-change: opacity;
+    z-index: 1;
+    cursor: pointer
+}
+
+.sf_report .story .play_button_wrap .play_button:hover {
+    background-color: rgba(0, 0, 0, .6)
+}
+
 body.sf .mention_tt_actions {
     display: none
 }

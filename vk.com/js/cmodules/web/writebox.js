@@ -12,9 +12,9 @@
     return t.m = e, t.c = a, t.p = "", t(0)
 }({
     0: function(e, t, a) {
-        e.exports = a(108)
+        e.exports = a(244)
     },
-    9: function(e, t) {
+    44: function(e, t) {
         "use strict";
 
         function a(e) {
@@ -121,7 +121,7 @@
         var d = t.RECENT_SEARCH_OP = "recent_search",
             m = t.PIN_HIDDEN_ID_OP = "pin_hide"
     },
-    51: function(e, t) {
+    46: function(e, t) {
         "use strict";
 
         function a(e, t, a) {
@@ -179,7 +179,7 @@
             L = "((?:[a-z0-9_]*[a-z0-9])?(?:(?:.[a-z](?:[a-z0-9_]+[a-z0-9])?)*.[a-z][a-z0-9_]{2,40}[a-z0-9])?)";
         t.RE_HASHTAG_EXTRACTION_PATTERN = "(^|[s.,:'\";>)(]?)(" + C + ")(@" + L + ")?(?=$|[s.,:'\"&;?<)(]?)"
     },
-    52: function(e, t, a) {
+    154: function(e, t, a) {
         "use strict";
 
         function r(e) {
@@ -346,7 +346,7 @@
             }
         }();
         t.parseFwd = i, t.replaceHyperLinks = o, t.replaceEmailLinks = c, t.replaceMentions = s, t.replaceHashtags = m, t.confirmDelivery = b, t.linksReplacer = h;
-        var f = a(51),
+        var f = a(46),
             v = void 0,
             y = window,
             k = y.clean,
@@ -354,79 +354,7 @@
             _ = y.statlogsValueEvent,
             x = {}
     },
-    58: function(e, t) {
-        "use strict";
-
-        function a(e, t, a) {
-            return t && (t.im_v = i), new Promise(function(r, n) {
-                ajax.post(e, t, {
-                    timeout: a,
-                    onDone: function() {
-                        r.apply(null, [
-                            [].concat(Array.prototype.slice.call(arguments))
-                        ])
-                    },
-                    onFail: function() {
-                        return n.apply(null, arguments), !0
-                    }
-                })
-            })
-        }
-
-        function r(e, t) {
-            var a = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
-                r = n(e, t, a),
-                i = r.request;
-            return i
-        }
-
-        function n(e, t) {
-            function a() {
-                n.abort()
-            }
-            var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
-                n = void 0;
-            n = window.XDomainRequest ? new XDomainRequest : ajax._getreq();
-            var i = new Promise(function(a, i) {
-                var o = void 0,
-                    c = Date.now(),
-                    s = r.timeout || 60,
-                    l = ajx2q(t);
-                if (window.XDomainRequest) n.open("get", e + "?" + l), n.ontimeout = function() {
-                    i(["", {}])
-                }, n.onerror = function() {
-                    i(["", {}])
-                }, n.onload = function() {
-                    a([n.responseText, {}])
-                }, setTimeout(function() {
-                    n.send()
-                }, 0);
-                else {
-                    n.onreadystatechange = function() {
-                        4 == n.readyState && (clearInterval(o), n.status >= 200 && n.status < 300 ? a([n.responseText, n]) : i([n.responseText, n]))
-                    };
-                    try {
-                        n.open("GET", e + "?" + l, !0)
-                    } catch (u) {
-                        return i([u, n])
-                    }
-                    n.send()
-                }
-                o = setInterval(function() {
-                    Date.now() - c > 1e3 * s && (i(["", {}]), clearInterval(o))
-                }, 1e3)
-            });
-            return {
-                request: i,
-                cancel: a
-            }
-        }
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        }), t.post = a, t.plainget = r, t.plaingetCancelable = n;
-        var i = (t.CONTROLLER = "al_im.php", 2)
-    },
-    82: function(e, t, a) {
+    165: function(e, t, a) {
         "use strict";
 
         function r() {
@@ -525,8 +453,8 @@
             }
         }();
         t.ImDraft = n, t.convertKludgesToAttaches = s, t.loadDraftForPeer = l;
-        var d = a(58),
-            m = a(52);
+        var d = a(242),
+            m = a(154);
         n.prototype.dump = function() {
             this._key && this._db.updateByKey(this._key, o(this.dData))
         }, n.prototype.load = function() {
@@ -620,15 +548,87 @@
             return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
         }
     },
-    108: function(e, t, a) {
+    242: function(e, t) {
+        "use strict";
+
+        function a(e, t, a) {
+            return t && (t.im_v = i), new Promise(function(r, n) {
+                ajax.post(e, t, {
+                    timeout: a,
+                    onDone: function() {
+                        r.apply(null, [
+                            [].concat(Array.prototype.slice.call(arguments))
+                        ])
+                    },
+                    onFail: function() {
+                        return n.apply(null, arguments), !0
+                    }
+                })
+            })
+        }
+
+        function r(e, t) {
+            var a = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
+                r = n(e, t, a),
+                i = r.request;
+            return i
+        }
+
+        function n(e, t) {
+            function a() {
+                n.abort()
+            }
+            var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {},
+                n = void 0;
+            n = window.XDomainRequest ? new XDomainRequest : ajax._getreq();
+            var i = new Promise(function(a, i) {
+                var o = void 0,
+                    c = Date.now(),
+                    s = r.timeout || 60,
+                    l = ajx2q(t);
+                if (window.XDomainRequest) n.open("get", e + "?" + l), n.ontimeout = function() {
+                    i(["", {}])
+                }, n.onerror = function() {
+                    i(["", {}])
+                }, n.onload = function() {
+                    a([n.responseText, {}])
+                }, setTimeout(function() {
+                    n.send()
+                }, 0);
+                else {
+                    n.onreadystatechange = function() {
+                        4 == n.readyState && (clearInterval(o), n.status >= 200 && n.status < 300 ? a([n.responseText, n]) : i([n.responseText, n]))
+                    };
+                    try {
+                        n.open("GET", e + "?" + l, !0)
+                    } catch (u) {
+                        return i([u, n])
+                    }
+                    n.send()
+                }
+                o = setInterval(function() {
+                    Date.now() - c > 1e3 * s && (i(["", {}]), clearInterval(o))
+                }, 1e3)
+            });
+            return {
+                request: i,
+                cancel: a
+            }
+        }
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t.post = a, t.plainget = r, t.plaingetCancelable = n;
+        var i = (t.CONTROLLER = "al_im.php", 2)
+    },
+    244: function(e, t, a) {
         "use strict";
         var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
                 return typeof e
             } : function(e) {
                 return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
             },
-            n = a(9),
-            i = a(82),
+            n = a(44),
+            i = a(165),
             o = window.WriteBox = {
                 mrg: function(e) {
                     return vk.rtl ? {
@@ -761,7 +761,7 @@
                     var t = o.getPeer();
                     if (!(!t || e && t != intval(e) || browser.mobile) && cur.mbMedia) {
                         var a = (0, i.loadDraftForPeer)(cur.ldb, t);
-                        cur.mbForceAttach && "market" == cur.mbForceAttach[0] && (a.setText(unclean(getLang("mail_market_tmpl")).replace(/<br>/g, "\n")), a.removeAllAttaches(), a.addAttach("market", cur.mbForceAttach[1])), o.editableHasVal(cur.mbField) || (cur.mbEditable ? (Emoji.val(cur.mbField, clean(a.dData.txt.replace(/\n/g, "<br/>"))), window.Emoji && Emoji.editableFocus(cur.mbField, !1, !0)) : val(cur.mbField, clean(a.dData.txt))), a.prepareObjects().then(function() {
+                        cur.mbForceAttach && "market" == cur.mbForceAttach[0] && (a.setText(unclean(getLang("mail_market_tmpl")).replace(/<br>/g, "\n")), a.removeAllAttaches(), a.addAttach("market", cur.mbForceAttach[1])), o.editableHasVal(cur.mbField) || (cur.mbEditable ? (Emoji.val(cur.mbField, clean(a.dData.txt)), window.Emoji && Emoji.editableFocus(cur.mbField, !1, !0)) : val(cur.mbField, clean(a.dData.txt))), a.prepareObjects().then(function() {
                             if (cur.mbField && o.getPeer() == t)
                                 for (var e = a.dData.attaches, r = 0; r < e.length; r++) cur.mbMedia.chooseMedia(e[r].type, e[r].id, e[r].object || {}, null, !0)
                         }), o.checkEditable(cur.emojiWId, cur.mbField), o.checkLen(cur.mbField)

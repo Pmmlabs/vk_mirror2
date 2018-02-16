@@ -186,7 +186,7 @@ var VideoUpload = {
                                         }), o.href = "//" + rs(o.getAttribute("data-href-tpl"), {
                                             video_id: video_id
                                         }), show(o);
-                                        var a = geByClass1("video_upload_ready_name", "div");
+                                        var a = geByClass1("video_upload_ready_name", e);
                                         if (a) {
                                             var d = ce("a", {
                                                 innerHTML: a.innerHTML,

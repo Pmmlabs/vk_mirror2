@@ -113,6 +113,10 @@ a.group_ad_post_stats {
     padding-bottom: 1px
 }
 
+.group_edit_labeled .checkbox:before {
+    margin-top: 1px
+}
+
 .group_edit_labeled .idd_wrap .idd_selected_value {
     color: #2a5885
 }
@@ -2359,6 +2363,14 @@ a.group_ad_post_link.deleted.deleted:hover {
     text-align: center
 }
 
+.group_payments .group_edit_label {
+    width: 200px
+}
+
+.group_payments #group_vkpay_receiver {
+    width: 265px
+}
+
 .group_money_transfers_table {
     padding: 0 20px
 }
@@ -2531,6 +2543,10 @@ a.group_ad_post_link.deleted.deleted:hover {
     pointer-events: none;
     position: relative;
     left: -3px
+}
+
+.group_money_transfers_table .ui_load_more_btn {
+    margin: 0 -20px
 }
 
 .group_edit_stories .group_edit_stories_empty {
