@@ -134,7 +134,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 5181750877,
     'common.js': 1161,
-    'common.css': 33427703599,
+    'common.css': 33755888225,
     'cmodules/web/common_web.js': 2,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
@@ -531,7 +531,7 @@ var stVersions = {
     'cmodules/web/speech_worker_mp3.js': 1074082218,
     'cmodules/web/speech_worker_opus.js': 2818771805,
     'stories.js': 35055274033,
-    'stories.css': 13544029900,
+    'stories.css': 14444283315,
     'internal/nospam.css': 14202636405,
     'internal/away_linksban.css': 11573786339,
     'internal/ui_manual.js': 1761369792,
@@ -637,4 +637,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 3636;
+var _rnd = 2092;

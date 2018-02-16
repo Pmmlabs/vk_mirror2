@@ -6832,6 +6832,13 @@ button.ui_load_more_btn {
     margin-top: -2px!important
 }
 
+.eltt.feature_intro_blue_tt.eltt_top .eltt_arrow {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg)
+}
+
 .feature_intro_tt_img {
     position: relative;
     z-index: 1;

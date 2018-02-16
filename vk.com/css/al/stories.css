@@ -2062,7 +2062,8 @@
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: normal
+    white-space: normal;
+    max-width: 100%
 }
 
 .stories_answers {
@@ -3050,8 +3051,8 @@
     opacity: 1
 }
 
-.stories_groups_block_stories_empty:hover {
-    opacity: 0.8
+.stories_groups_block_stories_empty:hover .page_module_upload {
+    text-decoration: underline
 }
 
 .stories_bottom_wrap {
