@@ -1313,6 +1313,14 @@ var BugTracker = {
                                     }
                                     n = this.activityFilter.val_full()[1];
                                     break;
+                                case "tf":
+                                case "ha":
+                                    for (var d = 0; 2 > d; d++) {
+                                        var u = ge("invites_filter_" + o + d + "_" + e.randomId);
+                                        isChecked(u) && (n = u.textContent)
+                                    }
+                                    if (!n) continue;
+                                    break;
                                 case "other_product":
                                     if (0 == this.productBranchFilter.val_full()[0]) {
                                         re(c);
@@ -1321,21 +1329,21 @@ var BugTracker = {
                                     n = this.productBranchFilter.val_full()[1];
                                     break;
                                 default:
-                                    var d = ge("invites_filter_" + o + "_" + e.randomId);
-                                    if (!d) continue;
-                                    n = ge("invites_filter_" + o + "_" + e.randomId).textContent
+                                    var u = ge("invites_filter_" + o + "_" + e.randomId);
+                                    if (!u) continue;
+                                    n = u.textContent
                             }
                             r = !0, n = stripHTML(n);
-                            var u = '<span class="label">' + n + '</span><span class="del_icon"></span>';
-                            if (c) c.innerHTML = u;
+                            var _ = '<span class="label">' + n + '</span><span class="del_icon"></span>';
+                            if (c) c.innerHTML = _;
                             else {
-                                var d = ce("div", {
+                                var u = ce("div", {
                                     id: "invites_filters_token_" + o + "_" + e.randomId,
                                     className: "token",
-                                    innerHTML: u,
+                                    innerHTML: _,
                                     onclick: this.removeFilter.bind(this, o)
                                 });
-                                i && ge("invites_filters_token_" + i) ? domInsertBefore(d, ge("invites_filters_token_" + i)) : s && ge("invites_filters_token_" + s) ? domInsertAfter(d, ge("invites_filters_token_" + s)) : t.appendChild(d)
+                                i && ge("invites_filters_token_" + i) ? domInsertBefore(u, ge("invites_filters_token_" + i)) : s && ge("invites_filters_token_" + s) ? domInsertAfter(u, ge("invites_filters_token_" + s)) : t.appendChild(u)
                             }
                         } else c && re(c)
                     }
@@ -1420,7 +1428,7 @@ var BugTracker = {
                             curBox().hide()
                         }
                     })
-                }), o.setControlsText(getLang("bugs_t_notify_recipients_count", this.getLastSearchResultsCount())), o.show(), autosizeSetup("bugtracker_members_notify_text", {})
+                }.bind(this)), o.setControlsText(getLang("bugs_t_notify_recipients_count", this.getLastSearchResultsCount())), o.show(), autosizeSetup("bugtracker_members_notify_text", {})
             }
         };
         var r = new t(e.searchHash, e.productId);

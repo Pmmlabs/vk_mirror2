@@ -91,7 +91,8 @@
     line-height: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #fff
+    color: #fff;
+    border-radius: 6px 6px 0px 0px
 }
 
 .uploaded_stories_rows .story .header a {
@@ -103,7 +104,8 @@
     height: 255px;
     cursor: pointer;
     -o-object-fit: cover;
-    object-fit: cover
+    object-fit: cover;
+    border-radius: 6px
 }
 
 .mi_body_adaptive #page_layout {

@@ -1036,75 +1036,45 @@ body.dev .tu_row {
     opacity: 1
 }
 
-.tickets_side_tt .side_sh {
+.tt_w.tickets_side_tt .side_sh {
     display: table-cell!important
 }
 
-.tickets_side_tt .hint_wrap {
+.tt_w.tickets_side_tt .tt_text {
+    line-height: 19px
+}
+
+.tt_w.tickets_side_tt .hint_wrap {
     width: 210px;
     line-height: 16px
 }
 
-.tickets_side_tt.extra_field:after,
-.tickets_side_tt.text:after,
-.tickets_side_tt.title:after {
-    width: 0;
-    height: 0;
-    right: -5px;
-    top: 50%;
-    border-bottom: 5px solid transparent;
-    border-left: 5px solid #fff;
-    border-top: 5px solid transparent;
-    content: "";
-    position: absolute;
-    margin-top: -5px;
-    right: -2px
-}
-
-.tickets_side_tt.extra_field:before,
-.tickets_side_tt.text:before,
-.tickets_side_tt.title:before {
-    width: 0;
-    height: 0;
-    right: -5px;
-    top: 50%;
-    border-bottom: 5px solid transparent;
-    border-left: 5px solid #c5d0db;
-    border-top: 5px solid transparent;
-    content: "";
-    position: absolute;
-    margin-top: -5px;
-    right: -4px
-}
-
-.tickets_side_tt.title .hint_wrap {
+.tt_w.tickets_side_tt.title .tt_text {
     width: 190px;
-    color: #000;
-    line-height: 160%
+    color: #000
 }
 
-.tickets_side_tt.text .hint_wrap {
+.tt_w.tickets_side_tt.text .tt_text {
     width: 230px;
-    color: #000;
-    line-height: 160%
+    color: #000
 }
 
-.tickets_side_tt.extra_field {
+.tt_w.tickets_side_tt.extra_field {
     max-width: 256px;
     width: auto
 }
 
-.tickets_side_tt.extra_field .hint_wrap {
+.tt_w.tickets_side_tt.extra_field .hint_wrap {
     max-width: 230px;
     width: auto;
     color: #000
 }
 
-.tickets_side_tt.time .tt_text {
+.tt_w.tickets_side_tt.time .tt_text {
     width: 160px
 }
 
-.tickets_side_tt.mobile .tt_text {
+.tt_w.tickets_side_tt.mobile .tt_text {
     width: 240px
 }
 
@@ -1179,7 +1149,7 @@ body.dev .tickets_side_tt.title .hint_wrap {
     padding: 1px 1px 0px
 }
 
-body.dev .tickets_side_tt.text .hint_wrap {
+body.dev .tickets_side_tt.text {
     width: 257px;
     color: #000
 }

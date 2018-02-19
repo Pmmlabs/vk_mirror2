@@ -80,7 +80,7 @@ var Tickets = {
                 back: !0
             }), t.note && (data(a, "note", t.note), addEvent(a, "focus", function(e) {
                 var t = e.target;
-                Tickets.showTooltip(t, '<div class="hint_wrap">' + data(t, "note") + "</div>", "extra_field", !0, !0)
+                Tickets.showTooltip(t, data(t, "note"), "extra_field", !0, !0)
             }), addEvent(a, "blur", Tickets.hideTooltip.pbind(a)))) : data(ge("tickets_new_extra_field_" + e), "value", ""))
         }
     },

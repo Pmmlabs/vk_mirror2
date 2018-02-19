@@ -8,6 +8,7 @@
 .bt_member_loading .bt_member_details_block,
 .bt_prod_version_edit,
 .bt_report_cmt_a__go,
+.bt_reports_reverse_button .icon,
 .bt_tag_label_remove,
 .bugtracker_device .buttons.locked:before,
 .bugtracker_members_filters .token .del_icon {
@@ -579,7 +580,9 @@
     margin: 0 -15px 0 0;
     color: #828282;
     font-size: 13px;
-    position: relative
+    position: relative;
+    box-sizing: border-box;
+    width: 100%
 }
 
 .bt_reports_found .ui_actions_menu_icons {
@@ -2769,6 +2772,33 @@
 
 .bt_settings .bt_hform_submit_block .bt_hform_control {
     padding-left: 180px
+}
+
+.bt_reports_reverse_button {
+    cursor: pointer;
+    padding: 2px
+}
+
+.bt_reports_reverse_button:active {
+    -webkit-transform: translateY(1px);
+    -ms-transform: translateY(1px);
+    -o-transform: translateY(1px);
+    transform: translateY(1px)
+}
+
+.bt_reports_reverse_button .icon {
+    width: 18px;
+    height: 13px;
+    background: url(/images/icons/reverse_order.png)
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .bt_reports_reverse_button .icon {
+        background-image: url(/images/icons/reverse_order_2x.png);
+        background-size: 18px 26px
+    }
 }
 
 .bt_settings_field_selected {

@@ -1612,7 +1612,8 @@ textarea.dark.mv_live_gift_popup_comment_input {
 #mv_warning {
     background-color: #fff;
     padding: 25px 20px;
-    text-align: center
+    text-align: center;
+    line-height: 1.5
 }
 
 .mv_top_button {

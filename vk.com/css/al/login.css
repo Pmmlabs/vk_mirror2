@@ -547,6 +547,22 @@ table.login_blocked_reason_thumbs {
     padding-bottom: 20px
 }
 
+.login_blocked_reason_wrap .story_preview_wrap {
+    margin: auto;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content
+}
+
+.login_blocked_reason_wrap .story_preview_wrap .story_preview {
+    width: 135px;
+    height: 255px;
+    cursor: pointer;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: 6px
+}
+
 .login_blocked_reason_wrap .login_blocked_reason {
     margin-bottom: 0
 }
