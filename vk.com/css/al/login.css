@@ -15,6 +15,7 @@
 .login_app_device_wp .login_app_device_screen.login_app_device_en,
 .login_app_device_wp .login_app_device_screen.login_app_device_ua,
 .login_app_download_icon,
+.login_blocked_wrap .unblock_form .header .antispam_team_logo,
 .login_mobile_close {
     -ms-high-contrast-adjust: none
 }
@@ -191,16 +192,215 @@
     margin: 20px auto 0px
 }
 
-#login_blocked_wrap {
-    padding: 20px 30px 35px
+.page_block {
+    margin-top: 20px
 }
 
-.login_blocked_centered {
+.login_blocked_wrap .page_block {
+    padding: 24px 30px 20px;
+    letter-spacing: -0.2px
+}
+
+.login_blocked_wrap .page_block:not(:first-child) {
+    margin-top: 20px
+}
+
+.login_blocked_wrap .page_block.finished .content .radiobtn {
+    opacity: 0.5;
+    filter: alpha(opacity=50)
+}
+
+.login_blocked_wrap .page_block .header {
+    height: 36px;
+    border-bottom: 1px solid #e7e8ec;
+    letter-spacing: -0.4px
+}
+
+.login_blocked_wrap .page_block .header h1 {
+    margin-top: 5px
+}
+
+.login_blocked_wrap .page_block .content {
+    margin: 24px auto 0;
+    color: #000;
+    font-size: 14px;
+    line-height: 22px
+}
+
+.login_blocked_wrap .page_block .content .radiobtn {
+    margin-bottom: 14px;
+    letter-spacing: -0.1px;
+    font-size: 13px
+}
+
+.login_blocked_wrap .page_block .content .radiobtn:last-child {
+    margin-bottom: 0px
+}
+
+.login_blocked_wrap .page_block .content .list_of_actions_to_perform {
+    margin-top: 18px;
+    padding-left: 15px;
+    margin-bottom: 4px
+}
+
+.login_blocked_wrap .page_block .content .list_of_actions_to_perform li {
+    color: #768eab;
+    padding-left: 8px
+}
+
+.login_blocked_wrap .page_block .content .list_of_actions_to_perform li span {
+    color: #000
+}
+
+.login_blocked_wrap .page_block .content .list_of_actions_to_perform li:not(:first-child) {
+    margin-top: 16px
+}
+
+.login_blocked_wrap .page_block .content .ban_explanation_piece_wrap:not(:first-child) {
+    margin-top: 10px
+}
+
+.login_blocked_wrap .page_block .content .tutorial_finish_appeal {
+    margin-bottom: 20px
+}
+
+.login_blocked_wrap .page_block .footer {
+    border-top: 1px solid #e7e8ec;
+    margin-top: 25px;
+    padding-top: 20px
+}
+
+.login_blocked_wrap .page_block .footer,
+.login_blocked_wrap .page_block .footer_plug {
+    text-align: center;
+    font-size: 14px;
+    line-height: 22px
+}
+
+.login_blocked_wrap .login_blocked_temporarily {
+    height: 36px;
+    border-bottom: 1px solid #e7e8ec
+}
+
+.login_blocked_wrap .login_blocked_temporarily .login_blocked_temporarily_title {
+    margin-top: 5px
+}
+
+.login_blocked_wrap .login_blocked_about {
+    font-size: 14px;
+    line-height: 22px;
+    color: #000
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_about:not(:empty) {
+    margin-top: 14px
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity {
+    margin-top: 22px;
+    border-radius: 2px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    padding: 18px 20px
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason {
+    font-size: 13px;
+    position: relative;
+    margin: 0;
+    min-width: 450px;
+    max-width: 600px
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason .page_post_thumb_wrap {
+    display: block
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_photo {
+    width: 50px;
+    height: 50px
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_photo .login_blocked_reason_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    overflow: hidden
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_story {
+    margin: auto;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    line-height: 0px
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_story .story_preview {
+    width: 135px;
+    height: 255px;
+    cursor: pointer;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: 6px
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_video_cell .video_preview {
+    max-width: 100%
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_text .login_blocked_reason_action_mail {
+    padding-top: 8px
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_text .login_blocked_reason_action_mail .wall_module {
+    width: 387px
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_text .login_blocked_reason_action_mail .im_msg_media_geo {
+    position: relative
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_text .login_blocked_reason_action_wall .wall_module .wall_text {
+    padding: 0
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_text .login_blocked_reason_action_photo {
+    margin-top: 13px
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_text .login_blocked_reason_action_photo .login_blocked_reason_action_photo_img {
+    max-width: 100%;
+    display: block
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_text .wall_text {
+    padding: 15px 0px 4px;
+    letter-spacing: -0.1px
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_text .wall_text .wall_post_text {
+    padding-top: 0px
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_label {
+    padding-top: 4px;
+    margin-left: 15px
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_label .login_blocked_reason_action_time {
+    color: #939393
+}
+
+.login_blocked_wrap .login_blocked_about .about_bottom {
+    margin-top: 24px
+}
+
+.login_blocked_wrap .login_blocked_centered {
     padding-bottom: 20px
 }
 
-.login_blocked_centered,
-.login_blocked_bottom {
+.login_blocked_wrap .login_blocked_centered,
+.login_blocked_wrap .login_blocked_bottom {
     margin: 0 auto;
     text-align: center;
     font-size: 1.09em;
@@ -209,13 +409,132 @@
     width: 480px
 }
 
-.login_blocked_bottom:empty {
+.login_blocked_wrap .login_blocked_bottom:empty {
     display: none
 }
 
-.login_blocked_bad_form {
+.login_blocked_wrap .login_blocked_bad_form {
     width: 200px;
     margin: 20px auto 0
+}
+
+.login_blocked_wrap .unblock_form .header {
+    margin-bottom: 40px
+}
+
+.login_blocked_wrap .unblock_form .header .antispam_team_logo {
+    background: url(/images/spamfight_brown.png) no-repeat;
+    height: 160px;
+    width: 160px;
+    margin-top: 20px;
+    margin-left: 120px
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .login_blocked_wrap .unblock_form .header .antispam_team_logo {
+        background-image: url(/images/spamfight_brown_2x.png);
+        background-size: 160px 160px
+    }
+}
+
+.login_blocked_wrap .unblock_form .header .reason {
+    text-align: center;
+    margin-top: 12px
+}
+
+.login_blocked_wrap .unblock_form .inputs {
+    margin-left: 100px
+}
+
+.login_blocked_wrap .unblock_form .inputs .input {
+    margin-bottom: 22px
+}
+
+.login_blocked_wrap .unblock_form .inputs .input .label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto
+}
+
+.login_blocked_wrap .unblock_form .inputs .input input {
+    width: 200px;
+    font-size: 13px
+}
+
+.login_blocked_wrap .unblock_form .inputs .input input.finished {
+    background: #e1e7ed
+}
+
+.login_blocked_wrap .unblock_form .inputs .input.new_password_input .blocked_pwd_level0 {
+    display: none
+}
+
+.login_blocked_wrap .unblock_form .inputs .input.new_password_input .blocked_pwd_level1 {
+    background: #cd4849;
+    width: 25%
+}
+
+.login_blocked_wrap .unblock_form .inputs .input.new_password_input .blocked_pwd_level2 {
+    background: #ff762d;
+    width: 50%
+}
+
+.login_blocked_wrap .unblock_form .inputs .input.new_password_input .blocked_pwd_level3 {
+    background: #c9b72d;
+    width: 75%
+}
+
+.login_blocked_wrap .unblock_form .inputs .input.new_password_input .blocked_pwd_level4 {
+    background: #60b92b;
+    width: 100%
+}
+
+.login_blocked_wrap .unblock_form .inputs .input.new_password_input .blocked_pass_strength {
+    color: #777
+}
+
+.login_blocked_wrap .unblock_form .inputs .input.new_password_input #blocked_about_pass {
+    position: absolute;
+    margin-top: -1px;
+    height: 5px;
+    width: 200px;
+    overflow: hidden
+}
+
+.login_blocked_wrap .unblock_form .inputs .input.new_password_input .blocked_about_login {
+    padding-top: 5px;
+    margin-left: 2px;
+    font-size: 12px;
+    color: #777
+}
+
+.login_blocked_wrap .unblock_form .inputs .input ._change_phone_button,
+.login_blocked_wrap .unblock_form .inputs .input ._resend_code_button {
+    margin-left: 8px
+}
+
+.login_blocked_wrap .unblock_form .inputs .check_code_button,
+.login_blocked_wrap .unblock_form .inputs .receive_code_button,
+.login_blocked_wrap .unblock_form .inputs .unblock_button {
+    width: 200px;
+    margin-top: 3px;
+    margin-bottom: 30px
+}
+
+.login_blocked_wrap .unblock_form .submit_error {
+    line-height: 20px
+}
+
+.login_blocked_wrap .login_blocked_reason_wout_msg {
+    min-height: 30px;
+    overflow: hidden
+}
+
+.login_blocked_wrap .login_blocked_reason_wout_msg .login_blocked_reason_label {
+    margin-top: 6px
 }
 
 #login_blocked_wrap h2 {
@@ -238,12 +557,6 @@
 
 #login_blocked_img {
     margin-bottom: 10px
-}
-
-#blocked_submit_result {
-    display: none;
-    margin: 0 auto 10px;
-    width: 515px
 }
 
 #login_blocked_wrap .login_blocked_row {
@@ -327,20 +640,6 @@ input.login_big_text {
     margin-right: 144px
 }
 
-#blocked_about_pass {
-    position: absolute;
-    margin-top: -1px;
-    height: 5px;
-    width: 134px;
-    overflow: hidden
-}
-
-.blocked_about_login {
-    padding-top: 5px;
-    font-size: 0.9em;
-    color: #777
-}
-
 #blocked_phone_table {
     border: 1px solid #c0cad5;
     width: 134px
@@ -397,39 +696,6 @@ input.login_big_text {
     text-align: center
 }
 
-#blocked_send_pass {
-    padding-left: 4px;
-    padding-right: 5px
-}
-
-.blocked_pwd_level0 {
-    display: none
-}
-
-.blocked_pwd_level1 {
-    background: #cd4849;
-    width: 25%
-}
-
-.blocked_pwd_level2 {
-    background: #ff762d;
-    width: 50%
-}
-
-.blocked_pwd_level3 {
-    background: #c9b72d;
-    width: 75%
-}
-
-.blocked_pwd_level4 {
-    background: #60b92b;
-    width: 100%
-}
-
-#blocked_pass_strength {
-    color: #777
-}
-
 .login_blocked_resend_box {
     line-height: 160%
 }
@@ -441,54 +707,7 @@ input.login_big_text {
     background: url(/images/join/robot.gif) no-repeat
 }
 
-.login_blocked_reason,
-.login_blocked_reason_text {
-    position: relative;
-    padding: 10px;
-    margin: 0 auto 20px;
-    min-width: 450px;
-    max-width: 600px;
-    background-color: #edf0f5;
-    line-height: 160%
-}
-
-.login_blocked_reason_text .page_post_thumb_wrap {
-    display: block
-}
-
-.login_blocked_reason_photo {
-    position: absolute
-}
-
-.login_blocked_reason_img {
-    width: 30px;
-    height: 30px;
-    overflow: hidden
-}
-
-.login_blocked_reason_info {
-    margin-left: 45px
-}
-
-.login_blocked_reason_label {
-    padding-bottom: 2px;
-    font-weight: 700;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #45668e
-}
-
-.login_blocked_reason_wout_msg {
-    min-height: 30px;
-    overflow: hidden
-}
-
-.login_blocked_reason_wout_msg .login_blocked_reason_label {
-    margin-top: 6px
-}
-
 table.login_blocked_reason_thumbs {
-    margin-bottom: 20px;
     border-collapse: collapse;
     border-spacing: 0
 }
@@ -509,6 +728,10 @@ table.login_blocked_reason_thumbs {
     padding-bottom: 6px;
     height: 50px;
     width: 50px
+}
+
+.login_blocked_thumb_photo .user_preview {
+    border-radius: 50%
 }
 
 .login_blocked_thumb_name {
@@ -541,30 +764,6 @@ table.login_blocked_reason_thumbs {
     margin-top: 5px;
     display: block;
     text-align: center
-}
-
-.login_blocked_reason_wrap {
-    padding-bottom: 20px
-}
-
-.login_blocked_reason_wrap .story_preview_wrap {
-    margin: auto;
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content
-}
-
-.login_blocked_reason_wrap .story_preview_wrap .story_preview {
-    width: 135px;
-    height: 255px;
-    cursor: pointer;
-    -o-object-fit: cover;
-    object-fit: cover;
-    border-radius: 6px
-}
-
-.login_blocked_reason_wrap .login_blocked_reason {
-    margin-bottom: 0
 }
 
 .login_btn_with_arr {

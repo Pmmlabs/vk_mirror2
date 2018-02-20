@@ -4004,11 +4004,6 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
     width: 530px
 }
 
-.support_tutorial_container .support_tutorial {
-    padding: 20px 0 0;
-    width: 480px
-}
-
 .support_tutorial .help_table_question__q {
     padding-left: 0;
     padding-right: 0;
@@ -4024,10 +4019,6 @@ ul.t0#tickets_tabs #extra_tab .tab_word {
 .support_tutorial_variant {
     margin-top: 8px;
     line-height: 16px
-}
-
-.support_tutorial_container .support_tutorial_variant:first-child {
-    margin-top: 0
 }
 
 .support_tutorial_variant .flat_button {

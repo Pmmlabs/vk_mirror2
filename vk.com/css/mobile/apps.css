@@ -83,7 +83,7 @@ img {
 }
 
 a {
-    color: #4c6b8f;
+    color: #306096;
     text-decoration: none;
     cursor: pointer
 }
@@ -6831,8 +6831,7 @@ input.wide_button {
 
 .privacy_item {
     display: block;
-    padding: 7px;
-    border-bottom: 1px solid #e4e7eb
+    padding: 7px
 }
 
 ._hover .privacy_item:hover {
@@ -6841,23 +6840,27 @@ input.wide_button {
 
 .prv_body {
     background: url(/images/mobile/prv_arrow.png) no-repeat 100%;
-    padding-right: 15px
+    padding-right: 15px;
+    font-size: 15px
 }
 
 .prv_title {
-    color: #111
+    color: #111;
+    margin-bottom: 5px
 }
 
 .prv_value {
     font-size: small;
     margin-top: 2px;
     padding-top: 2px;
-    color: #99a0a8
+    color: #99a0a8;
+    font-size: 13px
 }
 
 .prv_private {
-    background: url(/images/mobile/prv_private.png) no-repeat 0;
-    padding-left: 14px
+    background: url(/images/mobile/prv_private.png) no-repeat 0 3px;
+    padding-left: 17px;
+    line-height: 19px
 }
 
 .prv_group {
@@ -10329,11 +10332,16 @@ img[src^="/images/mobile/places/"] {
     }
 }
 
-@media (min-width: 882px) {
-    .pad {
-        border-top: 1px solid #e9e9e9;
-        border-bottom: 1px solid #e9e9e9
-    }
+.blacklist .ii_img {
+    width: 40px;
+    height: 40px
+}
+
+.blacklist .ii_owner {
+    font-size: 16px;
+    color: #000;
+    font-weight: 500;
+    margin-left: 4px
 }
 
 #apps #apps_box {

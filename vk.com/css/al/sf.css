@@ -82,9 +82,20 @@
     }
 }
 
-.search_page .bottom_loader.shown,
+.search_page .bottom_loader.shown {
+    display: block
+}
+
+.sf_report.message_report .sf_content .sf_entry_lvl_content .sf_entry_lvl_body .sf_post .im-mess--text.wall_module {
+    width: 387px
+}
+
 .sf_report.message_report .sf_content .sf_entry_lvl_content .sf_entry_lvl_body .sf_post .wall_text .wall_post_cont {
     display: block
+}
+
+.sf_report.message_report .sf_content .sf_entry_lvl_content .sf_entry_lvl_body .im_msg_media_geo {
+    position: relative
 }
 
 .sf_report.message_report .sf_content .sf_entry_lvl_content .sf_entry_lvl_body .message_edit_history_block .wr_header {

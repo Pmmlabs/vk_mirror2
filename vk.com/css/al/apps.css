@@ -2702,15 +2702,15 @@ a.page_block_header:hover .apps_cat_header_link:after {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: url(/images/icons/app_settings.png) #648fc9
+    background: url(/images/icons/app_settings.png?1) #648fc9
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .apps_access_icon {
-        background-image: url(/images/icons/app_settings_2x.png);
-        background-size: 40px 600px
+        background-image: url(/images/icons/app_settings_2x.png?1);
+        background-size: 40px 680px
     }
 }
 
@@ -2777,6 +2777,10 @@ a.page_block_header:hover .apps_cat_header_link:after {
 
 .apps_access_phone {
     background-position: 0 -560px
+}
+
+.apps_access_stories {
+    background-position: 0 -640px
 }
 
 .apps_box_change_photo_text {
