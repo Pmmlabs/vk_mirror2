@@ -413,7 +413,7 @@ var Helpdesk = {
                 if (domReplaceEl(ge(t.id), t), e[1]) {
                     var s = se(e[1]);
                     domReplaceEl(ge(s.id), s)
-                } else re("helpdesk_m_list_get_ticket")
+                } else re("helpdesk_m_table_actions")
             },
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e)
@@ -1819,6 +1819,21 @@ var Helpdesk = {
         setStyle(t, {
             width: e[0],
             height: e[1]
+        })
+    },
+    takeRest: function(e, t) {
+        buttonLocked(e) || ajax.post("helpdesk?act=a_take_rest", {
+            hash: t
+        }, {
+            showProgress: lockButton.pbind(e),
+            hideProgress: unlockButton.pbind(e),
+            onDone: function(e) {
+                var t = se(e[0]);
+                if (domReplaceEl(ge(t.id), t), e[1]) {
+                    var s = se(e[1]);
+                    domReplaceEl(ge(s.id), s)
+                } else re("helpdesk_m_table_actions")
+            }
         })
     },
     _eof: 1

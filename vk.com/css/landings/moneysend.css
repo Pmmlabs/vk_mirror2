@@ -296,13 +296,13 @@
 
 .landing_moneysend_process .landings_moneysend_video {
     background-image: none;
-    height: 532px;
+    height: 534px;
     width: 300px
 }
 
 .landing_moneysend_process .landings_moneysend_video>video {
     width: 300px!important;
-    height: 532px!important
+    height: 534px!important
 }
 
 .landing_moneysend_process .landings_moneysend_video_iphone {

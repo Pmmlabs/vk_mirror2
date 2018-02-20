@@ -308,14 +308,12 @@
             if (t && "border-box" === le(e, "boxSizing") && (t = !1), e == document) n = [Math.max(o.clientWidth, bodyNode.scrollWidth, o.scrollWidth, bodyNode.offsetWidth, o.offsetWidth), Math.max(o.clientHeight, bodyNode.scrollHeight, o.scrollHeight, bodyNode.offsetHeight, o.offsetHeight)];
             else if (e) {
                 var s = function() {
-                    if (n = V(e) && (i = Q(e, r)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t) {
-                        each(n, function(t, r) {
-                            var a = t ? ["Top", "Bottom"] : ["Left", "Right"];
-                            each(a, function() {
-                                n[t] -= parseFloat(le(e, "padding" + this)) || 0, n[t] -= parseFloat(le(e, "border" + this + "Width")) || 0
-                            })
+                    n = V(e) && (i = Q(e, r)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t && each(n, function(t, r) {
+                        var a = t ? ["Top", "Bottom"] : ["Left", "Right"];
+                        each(a, function() {
+                            n[t] -= parseFloat(le(e, "padding" + this)) || 0, n[t] -= parseFloat(le(e, "border" + this + "Width")) || 0
                         })
-                    }
+                    })
                 };
                 if (W(e)) s();
                 else {
@@ -1560,9 +1558,7 @@
                                                 i.setBLOB(r, a)
                                             }
                                         })
-                                    }; i = a.shift();) {
-                                    o()
-                                }
+                                    }; i = a.shift();) o()
                 }, e.prototype._flattenAlienParagraphs = function() {
                     var e = this;
                     if (this._fromPasteEvent) {
@@ -1598,9 +1594,7 @@
                                     }
                                 });
                                 return s ? (t.call(e, r, !0), void(n && re(r))) : "continue"
-                            }; r = t.shift();) {
-                            d()
-                        }
+                            }; r = t.shift();) d();
                         this._setAllParagraphsDirty()
                     }
                 }, e.prototype._correctCaptionSelection = function() {
@@ -1744,8 +1738,7 @@
                     showBox("al_video.php", {
                         act: "a_choose_video_box",
                         to_id: this.getArticleOwnerId()
-                    });
-                    cur.chooseMedia = function(t, r, i, s, l) {
+                    }), cur.chooseMedia = function(t, r, i, s, l) {
                         var c = (0, g.getAppropriateImage)(i.editable.sizes, e.getWidth()),
                             d = o(c, 1),
                             p = d[0],
@@ -2330,8 +2323,7 @@
         "use strict";
         Object.defineProperty(t, "__esModule", {
             value: !0
-        });
-        t.Sequences = [{
+        }), t.Sequences = [{
             pattern: /\s-\s$/,
             substitution: " — "
         }, {
@@ -2967,11 +2959,9 @@
             if (e = e.substring(t, r), a && a.length) {
                 var i = [],
                     n = 0;
-                a.forEach(function(r) {
+                return a.forEach(function(r) {
                     r -= t, 0 >= r || r > e.length || (i.push(E(e.substring(n, r) + "<br/>")), n = r)
-                }), i.push(E(e.substring(n)));
-                "" == i[i.length - 1];
-                return i.join("")
+                }), i.push(E(e.substring(n))), "" == i[i.length - 1], i.join("")
             }
             return E(e)
         }
@@ -3095,7 +3085,7 @@
             var t = w(),
                 r = ie(t, 2),
                 a = r[0],
-                i = (r[1], void 0),
+                i = void r[1],
                 n = void 0,
                 o = [];
             return a.startContainer.nodeType == Node.TEXT_NODE ? i = a.startOffset : n = a.startOffset, traverseParent(a.startContainer, function(t) {
@@ -3526,8 +3516,7 @@
         }
         Object.defineProperty(t, "__esModule", {
             value: !0
-        }), t.getAppropriateImage = i;
-        t.ParagraphType = {
+        }), t.getAppropriateImage = i, t.ParagraphType = {
             Text: 1,
             Header1: 2,
             Header2: 3,

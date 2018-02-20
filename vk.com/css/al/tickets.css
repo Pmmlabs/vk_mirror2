@@ -477,10 +477,6 @@ body.dev .tickets_post_field_wrap {
     padding: 0 0 10px
 }
 
-#tickets_get_new .flat_button {
-    margin: auto
-}
-
 .tickets_header {
     box-sizing: border-box;
     padding: 11px 16px;

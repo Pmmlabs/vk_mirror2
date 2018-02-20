@@ -567,7 +567,7 @@
     line-height: 20px
 }
 
-.restore_info_error,
+.page_section .restore_info_error.error.msg,
 .restore_roll_unshown {
     display: none
 }

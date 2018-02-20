@@ -1127,6 +1127,15 @@ body.body_helpdesk_small_sb .left_menu_nav {
     padding: 10px
 }
 
+.helpdesk_m_table_actions {
+    float: left
+}
+
+.helpdesk_m_table_actions .flat_button {
+    float: left;
+    margin-right: 10px
+}
+
 .helpdesk_m_no_new {
     float: left;
     margin: 6px 0 0 10px;

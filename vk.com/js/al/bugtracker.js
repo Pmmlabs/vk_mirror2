@@ -155,7 +155,8 @@ var BugTracker = {
     doUpdateMergeBoxSearch: function(e) {
         ajax.post("bugtracker?act=a_bind_box_search", {
             q: e,
-            bugreports: BugTracker.getSelectedReportIds()
+            bugreports: BugTracker.getSelectedReportIds(),
+            rev: nav.objLoc.rev
         }, {
             showProgress: uiSearch.showProgress.pbind("bt_merge_box_search"),
             hideProgress: uiSearch.hideProgress.pbind("bt_merge_box_search"),
@@ -182,7 +183,8 @@ var BugTracker = {
     },
     updateSearchFilters: function(e, t) {
         var r = {
-            0: "bugtracker"
+            0: "bugtracker",
+            rev: nav.objLoc.rev
         };
         nav.objLoc.act && (r.act = nav.objLoc.act), nav.objLoc.q && (r.q = nav.objLoc.q);
         var o = cur.btSearchProductDD.val(),
@@ -194,7 +196,7 @@ var BugTracker = {
             d = cur.btSearchTagsDD.val(),
             u = cur.btSearchOriginalDD ? parseInt(cur.btSearchOriginalDD.val()) : 0,
             _ = cur.btSearchDeviceDD.val();
-        BugTracker.ddVisible(cur.btSearchProductDD) && o > 0 && (r.product = o), a > 0 && BugTracker.ddVisible(cur.btSearchVersionDD) && (r.version = a), n > 0 && BugTracker.ddVisible(cur.btSearchPlatformDD) && (r.platform = n), i && BugTracker.ddVisible(cur.btSearchPlatformVersionDD) && (r.pversion = i), _ && BugTracker.ddVisible(cur.btSearchDeviceDD) && (r.device = _), s && (r.status = s), c && (r.severity = c), d && BugTracker.ddVisible(cur.btSearchTagsDD) && (r.tag = d), cur.btSearchRegionDD && cur.btSearchRegionDD.val() > 0 && BugTracker.ddVisible(cur.btSearchRegionDD) && (r.region = cur.btSearchRegionDD.val()), u > 0 && (r.original = u), isChecked("bt_sb_search_vulnerabilites") && (r.vulnerability = 1), isChecked("bt_sb_search_wishes") && (r.wishes = 1), isChecked("bt_sb_search_unrated") && (r.unrated = 1), isChecked("bt_sb_search_deleted") && (r.deleted = 1), ge("bt_sb_search_member") && nav.objLoc.mid && (r.mid = nav.objLoc.mid), BugTracker.loadSearch(r, e, t)
+        BugTracker.ddVisible(cur.btSearchProductDD) && o > 0 && (r.product = o), a > 0 && BugTracker.ddVisible(cur.btSearchVersionDD) && (r.version = a), n > 0 && BugTracker.ddVisible(cur.btSearchPlatformDD) && (r.platform = n), i && BugTracker.ddVisible(cur.btSearchPlatformVersionDD) && (r.pversion = i), _ && BugTracker.ddVisible(cur.btSearchDeviceDD) && (r.device = _), s && (r.status = s), c && (r.severity = c), d && BugTracker.ddVisible(cur.btSearchTagsDD) && (r.tag = d), cur.btSearchRegionDD && cur.btSearchRegionDD.val() > 0 && BugTracker.ddVisible(cur.btSearchRegionDD) && (r.region = cur.btSearchRegionDD.val()), u > 0 && (r.original = u), isChecked("bt_sb_search_vulnerabilites") && (r.vulnerability = 1), isChecked("bt_sb_search_wishes") && (r.wishes = 1), isChecked("bt_sb_search_unrated") && (r.unrated = 1), isChecked("bt_sb_search_deleted") && (r.deleted = 1), isChecked("bt_sb_search_unpaid") && (r.unpaid = 1), ge("bt_sb_search_member") && nav.objLoc.mid && (r.mid = nav.objLoc.mid), BugTracker.loadSearch(r, e, t)
     },
     doUpdateSearch: function(e, t) {
         e = e.toLowerCase(), (e != nav.objLoc.q || t) && (e ? nav.objLoc.q = e : delete nav.objLoc.q, BugTracker.loadSearch(nav.objLoc))
@@ -205,11 +207,11 @@ var BugTracker = {
         var o = extend({}, e, {
             load: 1
         });
-        t && cur.btMaxUDate && (o.min_udate = cur.btMaxUDate), delete o[0], ajax.post("bugtracker", o, {
+        t && cur.btUDate && (o.min_udate = cur.btUDate), delete o[0], ajax.post("bugtracker", o, {
             showProgress: uiSearch.showProgress.pbind("bt_search"),
             hideProgress: uiSearch.hideProgress.pbind("bt_search"),
             onDone: function(e, t) {
-                removeClass("bt_reports", "bt_reports_reloading"), val("bt_page_content", e), BugTracker.checkSelectedReports(), cur.btMaxUDate = t
+                removeClass("bt_reports", "bt_reports_reloading"), val("bt_page_content", e), BugTracker.checkSelectedReports(), cur.btUDate = t
             }
         })
     },
@@ -349,16 +351,15 @@ var BugTracker = {
     },
     loadMore: function(e) {
         var t = {
-            load: 1,
-            max_udate: cur.btMaxUDate
+            load: 1
         };
-        cur.btMaxId && (t.max_id = cur.btMaxId), each(["act", "product", "device", "q", "mid", "vulnerability", "wishes", "unrated", "platform", "pversion", "status", "severity", "tag", "original"], function(e, r) {
+        nav.objLoc.rev ? (t.min_udate = cur.btUDate, cur.btLastId && (t.min_id = cur.btLastId)) : (t.max_udate = cur.btUDate, cur.btLastId && (t.max_id = cur.btLastId)), each(["act", "product", "device", "q", "mid", "vulnerability", "wishes", "unrated", "platform", "pversion", "status", "severity", "tag", "original", "rev"], function(e, r) {
             nav.objLoc.hasOwnProperty(r) && (t[r] = nav.objLoc[r])
         }), ajax.post("bugtracker", t, {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e),
             onDone: function(t, r) {
-                cur.btMaxUDate = r, r || re(e);
+                cur.btUDate = r, r || re(e);
                 var o = sech(t),
                     a = ge("bt_reports");
                 each(o, function(e, t) {
@@ -1090,7 +1091,7 @@ var BugTracker = {
             act: "a_restore_bugreport",
             id: e,
             hash: t
-        }, {})
+        }, {});
     },
     saveSettings: function(e, t) {
         var r = {
@@ -1196,16 +1197,19 @@ var BugTracker = {
             }, this.loadMoreResults = function(t) {
                 if (!i && !c) {
                     i = !0;
-                    var d = val("bt_invites_search_" + e.randomId);
+                    var d = curBox(),
+                        u = val("bt_invites_search_" + e.randomId);
                     ajax.post("bugtracker?act=a_product_members_search", extend(this.filter, {
-                        text: d,
+                        text: u,
                         product: o,
                         hash: r,
                         relation: e.relation,
                         offset: n || 0
                     }), {
+                        showProgress: d.tbShowProgress.bind(d),
+                        hideProgress: d.tbHideProgress.bind(d),
                         onDone: function(r, o) {
-                            i = !1, a = o, this.appendReporters(t, d, r), t && 3 == e.relation && setTimeout(this.selectForInviteChanged.bind(this), 0), s && this.search()
+                            i = !1, a = o, this.appendReporters(t, u, r), t && 3 == e.relation && setTimeout(this.selectForInviteChanged.bind(this), 0), s && this.search()
                         }.bind(this),
                         onFail: function() {
                             i = !1
@@ -1576,13 +1580,14 @@ var BugTracker = {
         var e = !1,
             t = 0,
             r = "";
-        return function o(a) {
-            r = a, e || (clearTimeout(t), t = setTimeout(function() {
+        return function o(a, n) {
+            r = n, e || (clearTimeout(t), t = setTimeout(function() {
                 e = !0, ajax.post("bugtracker?act=a_search_device", {
-                    q: a
+                    q: n,
+                    from: a
                 }, {
                     onDone: function(t) {
-                        e = !1, val("bugtracker_device_search_results_container", t), r !== a && o(r)
+                        e = !1, val("bugtracker_device_search_results_container", t), r !== n && o(r)
                     },
                     onFail: function() {
                         e = !1

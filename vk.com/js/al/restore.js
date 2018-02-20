@@ -371,7 +371,7 @@ var Restore = {
             showProgress: lockButton.pbind(e),
             hideProgress: unlockButton.pbind(e),
             onDone: function(e, o, t) {
-                1 != e && (val(r, o), -1 == e && addClass(r, "restore_info_error_big_text"), show(r), t && notaBene(t))
+                1 != e && o && (val(r, o), -1 == e && addClass(r, "restore_info_error_big_text"), show(r), t && notaBene(t))
             }
         })) : notaBene("phone") : notaBene("page_link")
     },

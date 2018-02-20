@@ -12,9 +12,102 @@
     return t.m = e, t.c = r, t.p = "", t(0)
 }({
     0: function(e, t, r) {
-        e.exports = r(68)
+        e.exports = r(85)
     },
-    68: function(e, t, r) {
+    11: function(e, t, r) {
+        "use strict";
+
+        function o(e) {
+            return e && e.__esModule ? e : {
+                "default": e
+            }
+        }
+
+        function a(e, t, r, o) {
+            return {
+                addCustomQuestion: function(e) {
+                    r.length < _ && (r.push((0, l["default"])(r.length + 1, e, {
+                        onRemove: function(e) {
+                            r.splice(e - 1, 1);
+                            for (var o = 0; o < r.length; o++) r[o].setNum(o + 1);
+                            t().updateCustomQuestionsButton(), LeadFormsApp.updatePreview()
+                        }
+                    })), t().updateCustomQuestionsButton(), LeadFormsApp.step2Changed())
+                },
+                updateCustomQuestionsButton: function() {
+                    var e = r.length,
+                        t = ge("lead_forms_app_add_question_button"),
+                        o = geByTag1("span", t);
+                    toggle(t, _ > e), e > 0 ? val(o, " (" + cur.lang.communityApps_lead_forms_custom_questions_limit_pref.replace("%s", _ - e) + ")") : val(o, "")
+                },
+                getCustomQuestionsData: function() {
+                    for (var e = [], t = 0; t < r.length; t++) e.push(r[t].getData());
+                    return e
+                },
+                getAdmins: function() {
+                    return o.adminsDD.val()
+                },
+                getAdminsElem: function() {
+                    return o.adminsDD.container
+                },
+                getEmails: function() {
+                    return o.adminsEmailsDD.selectedItems().map(function(e) {
+                        return e[1]
+                    }).join(",")
+                },
+                getEmailsElem: function() {
+                    return o.adminsEmailsDD.container
+                },
+                renderConfData: function() {
+                    for (var e = cur.leadFormConf, r = e.step2.custom_questions, o = 0; o < r.length; o++) t().addCustomQuestion(r[o])
+                },
+                unmount: function() {
+                    (0, s.destroyModule)(e)
+                }
+            }
+        }
+
+        function n(e) {
+            var t = [],
+                r = {},
+                o = cur.leadFormConf,
+                n = (0, s.createMutations)(a),
+                i = n.callMutations,
+                l = n.bindMutations;
+            r.adminsDD = new Dropdown(ge("lead_forms_generator_dd_settings_admins"), cur.leadFormsAdmins, {
+                width: 300,
+                big: 1,
+                selectedItem: o.step5 ? o.step5.admins : void 0,
+                multiselect: !0,
+                autocomplete: !0,
+                placeholder: getLang("communityApps_lead_form_settings_admins_placeholder"),
+                onChange: LeadFormsApp.checkboxNotificationsChanged
+            }), r.adminsEmailsDD = new Selector(ge("lead_forms_generator_dd_settings_admins_emails"), [], {
+                width: 300,
+                big: 1,
+                dropdown: !1,
+                enableCustom: !0,
+                multiCustom: 1,
+                noResult: "",
+                maxItems: 10,
+                placeholder: getLang("communityApps_lead_form_settings_admins_emails_placeholder"),
+                onChange: LeadFormsApp.checkboxNotificationsChanged,
+                customSearch: LeadFormsApp.checkboxNotificationsChanged
+            }), r.scroll = new uiScroll(e);
+            var _ = (0, s.createModule)({
+                handlers: function(e, t) {}
+            });
+            return l(_, i, t, r)
+        }
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        }), t["default"] = n;
+        var s = r(168),
+            i = r(136),
+            l = o(i),
+            _ = 5
+    },
+    85: function(e, t, r) {
         "use strict";
 
         function o(e) {
@@ -47,7 +140,7 @@
                     throw new TypeError("Invalid attempt to destructure non-iterable instance")
                 }
             }(),
-            n = r(134),
+            n = r(11),
             s = o(n);
         window.LeadFormsApp = {
             showGeneratorBox: function(e) {
@@ -256,12 +349,12 @@
                         for (var r = e[t], o = domQuery1('.lead_form_view_sensitive_input[data-id="read"]', r), a = domQuery1('.lead_form_view_sensitive_input[data-id="edit"]', r), n = domQuery(".lead_form_view_sensitive_input_action", r), s = 0; s < n.length; s++) {
                             var i = domData(n[s], "action");
                             if ("edit" === i) addEvent(n[s], "click", function(e) {
-                                e.preventDefault(), domData(r, "state", "edit"), addClass(o, "hidden"), removeClass(a, "hidden")
+                                domData(r, "state", "edit"), addClass(o, "hidden"), removeClass(a, "hidden")
                             });
                             else {
                                 if ("cancel" !== i) throw new Error("Unknown action " + i);
                                 addEvent(n[s], "click", function(e) {
-                                    e.preventDefault(), domData(r, "state", "read"), addClass(a, "hidden"), removeClass(o, "hidden"), val(geByTag1("input", a), "")
+                                    domData(r, "state", "read"), addClass(a, "hidden"), removeClass(o, "hidden"), val(geByTag1("input", a), "")
                                 })
                             }
                         }
@@ -442,145 +535,81 @@
             stManager.done("lead_forms_app.js")
         } catch (i) {}
     },
-    121: function(e, t, r) {
+    97: function(e, t) {
         "use strict";
 
-        function o(e) {
-            return {
-                callMutations: function() {
-                    if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
-                    return e
-                },
-                bindMutations: function() {
-                    if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
-                    return e = e.apply(void 0, arguments)
-                }
+        function r(e) {
+            var t = s.get(e.currentTarget);
+            if (t) {
+                var r = t[e.type];
+                if (r)
+                    for (var o = void 0, a = 0; a < r.length; a++) {
+                        var i = n(r[a], 2),
+                            l = i[0],
+                            _ = i[1],
+                            d = void 0;
+                        if (hasClass(e.target, l) ? d = _(e, e.target) : (o = gpeByClass(l, e.target, e.currentTarget)) && (d = _(e, o)), d === !1) break
+                    }
             }
         }
 
-        function a(e, t, r, o) {
-            d(t, r, o), e._registeredHandlers.push(["bind", t, r, o])
+        function o(e, t, o, a) {
+            var n = s.get(e);
+            n || (s.set(e, {}), n = s.get(e));
+            for (var i = t.split(" "), l = 0; l < i.length; l++) {
+                var _ = i[l];
+                n[_] || (n[_] = [], addEvent(e, _, r)), n[_].push([o, a])
+            }
         }
 
-        function n(e, t, r, o, a) {
-            (0, l.addDelegateEvent)(t, r, o, a), e._registeredHandlers.push(["delegate", t, r, o, a])
-        }
-
-        function s(e) {
-            var t = {
-                _registeredHandlers: []
-            };
-            return e.handlers(a.bind(null, t), n.bind(null, t)), t
-        }
-
-        function i(e) {
-            e._registeredHandlers.forEach(function(e) {
-                var t = e.slice(1);
-                "delegate" === e[0] ? l.removeDelegateEvent.apply(void 0, t) : u.apply(void 0, t)
-            }), e._registeredHandlers = []
+        function a(e, t, o, a) {
+            var n = s.get(e);
+            if (n) {
+                t.split(" ").forEach(function(t) {
+                    n[t] && (n[t] = n[t].filter(function(e) {
+                        return e[0] !== o || e[1] !== a
+                    }), 0 === n[t].length && removeEvent(e, t, r))
+                });
+                var i = Object.keys(n).map(function(e) {
+                    return n[e].length
+                }).reduce(function(e, t) {
+                    return e + t
+                });
+                0 === i && s["delete"](e)
+            }
         }
         Object.defineProperty(t, "__esModule", {
             value: !0
-        }), t.createMutations = o, t.createModule = s, t.destroyModule = i;
-        var l = r(234),
-            _ = window,
-            d = _.addEvent,
-            u = _.removeEvent
-    },
-    134: function(e, t, r) {
-        "use strict";
-
-        function o(e) {
-            return e && e.__esModule ? e : {
-                "default": e
-            }
-        }
-
-        function a(e, t, r, o) {
-            return {
-                addCustomQuestion: function(e) {
-                    r.length < _ && (r.push((0, l["default"])(r.length + 1, e, {
-                        onRemove: function(e) {
-                            r.splice(e - 1, 1);
-                            for (var o = 0; o < r.length; o++) r[o].setNum(o + 1);
-                            t().updateCustomQuestionsButton(), LeadFormsApp.updatePreview()
-                        }
-                    })), t().updateCustomQuestionsButton(), LeadFormsApp.step2Changed())
-                },
-                updateCustomQuestionsButton: function() {
-                    var e = r.length,
-                        t = ge("lead_forms_app_add_question_button"),
-                        o = geByTag1("span", t);
-                    toggle(t, _ > e), e > 0 ? val(o, " (" + cur.lang.communityApps_lead_forms_custom_questions_limit_pref.replace("%s", _ - e) + ")") : val(o, "")
-                },
-                getCustomQuestionsData: function() {
-                    for (var e = [], t = 0; t < r.length; t++) e.push(r[t].getData());
-                    return e
-                },
-                getAdmins: function() {
-                    return o.adminsDD.val()
-                },
-                getAdminsElem: function() {
-                    return o.adminsDD.container
-                },
-                getEmails: function() {
-                    return o.adminsEmailsDD.selectedItems().map(function(e) {
-                        return e[1]
-                    }).join(",")
-                },
-                getEmailsElem: function() {
-                    return o.adminsEmailsDD.container
-                },
-                renderConfData: function() {
-                    for (var e = cur.leadFormConf, r = e.step2.custom_questions, o = 0; o < r.length; o++) t().addCustomQuestion(r[o])
-                },
-                unmount: function() {
-                    (0, s.destroyModule)(e)
+        });
+        var n = function() {
+            function e(e, t) {
+                var r = [],
+                    o = !0,
+                    a = !1,
+                    n = void 0;
+                try {
+                    for (var s, i = e[Symbol.iterator](); !(o = (s = i.next()).done) && (r.push(s.value), !t || r.length !== t); o = !0);
+                } catch (l) {
+                    a = !0, n = l
+                } finally {
+                    try {
+                        !o && i["return"] && i["return"]()
+                    } finally {
+                        if (a) throw n
+                    }
                 }
+                return r
             }
-        }
-
-        function n(e) {
-            var t = [],
-                r = {},
-                o = cur.leadFormConf,
-                n = (0, s.createMutations)(a),
-                i = n.callMutations,
-                l = n.bindMutations;
-            r.adminsDD = new Dropdown(ge("lead_forms_generator_dd_settings_admins"), cur.leadFormsAdmins, {
-                width: 300,
-                big: 1,
-                selectedItem: o.step5 ? o.step5.admins : void 0,
-                multiselect: !0,
-                autocomplete: !0,
-                placeholder: getLang("communityApps_lead_form_settings_admins_placeholder"),
-                onChange: LeadFormsApp.checkboxNotificationsChanged
-            }), r.adminsEmailsDD = new Selector(ge("lead_forms_generator_dd_settings_admins_emails"), [], {
-                width: 300,
-                big: 1,
-                dropdown: !1,
-                enableCustom: !0,
-                multiCustom: 1,
-                noResult: "",
-                maxItems: 10,
-                placeholder: getLang("communityApps_lead_form_settings_admins_emails_placeholder"),
-                onChange: LeadFormsApp.checkboxNotificationsChanged,
-                customSearch: LeadFormsApp.checkboxNotificationsChanged
-            }), r.scroll = new uiScroll(e);
-            var _ = (0, s.createModule)({
-                handlers: function(e, t) {}
-            });
-            return l(_, i, t, r)
-        }
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        }), t["default"] = n;
-        var s = r(121),
-            i = r(190),
-            l = o(i),
-            _ = 5
+            return function(t, r) {
+                if (Array.isArray(t)) return t;
+                if (Symbol.iterator in Object(t)) return e(t, r);
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }
+        }();
+        t.addDelegateEvent = o, t.removeDelegateEvent = a;
+        var s = new window.Map
     },
-    190: function(e, t, r) {
+    136: function(e, t, r) {
         "use strict";
 
         function o(e, t, r) {
@@ -722,83 +751,54 @@
             }
         }();
         t["default"] = i;
-        var _ = r(121),
+        var _ = r(168),
             d = 200,
             u = 60,
             p = 15
     },
-    234: function(e, t) {
+    168: function(e, t, r) {
         "use strict";
 
-        function r(e) {
-            var t = s.get(e.currentTarget);
-            if (t) {
-                var r = t[e.type];
-                if (r)
-                    for (var o = void 0, a = 0; a < r.length; a++) {
-                        var i = n(r[a], 2),
-                            l = i[0],
-                            _ = i[1],
-                            d = void 0;
-                        if (hasClass(e.target, l) ? d = _(e, e.target) : (o = gpeByClass(l, e.target, e.currentTarget)) && (d = _(e, o)), d === !1) break
-                    }
+        function o(e) {
+            return {
+                callMutations: function() {
+                    if ("function" == typeof e) throw console.trace(), new Error("Mutations are not initialized");
+                    return e
+                },
+                bindMutations: function() {
+                    if ("function" != typeof e) throw console.trace(), new Error("Mutations are already initialized");
+                    return e = e.apply(void 0, arguments)
+                }
             }
         }
 
-        function o(e, t, o, a) {
-            var n = s.get(e);
-            n || (s.set(e, {}), n = s.get(e));
-            for (var i = t.split(" "), l = 0; l < i.length; l++) {
-                var _ = i[l];
-                n[_] || (n[_] = [], addEvent(e, _, r)), n[_].push([o, a])
-            }
+        function a(e, t, r, o) {
+            d(t, r, o), e._registeredHandlers.push(["bind", t, r, o])
         }
 
-        function a(e, t, o, a) {
-            var n = s.get(e);
-            if (n) {
-                t.split(" ").forEach(function(t) {
-                    n[t] && (n[t] = n[t].filter(function(e) {
-                        return e[0] !== o || e[1] !== a
-                    }), 0 === n[t].length && removeEvent(e, t, r))
-                });
-                var i = Object.keys(n).map(function(e) {
-                    return n[e].length
-                }).reduce(function(e, t) {
-                    return e + t
-                });
-                0 === i && s["delete"](e)
-            }
+        function n(e, t, r, o, a) {
+            (0, l.addDelegateEvent)(t, r, o, a), e._registeredHandlers.push(["delegate", t, r, o, a])
+        }
+
+        function s(e) {
+            var t = {
+                _registeredHandlers: []
+            };
+            return e.handlers(a.bind(null, t), n.bind(null, t)), t
+        }
+
+        function i(e) {
+            e._registeredHandlers.forEach(function(e) {
+                var t = e.slice(1);
+                "delegate" === e[0] ? l.removeDelegateEvent.apply(void 0, t) : u.apply(void 0, t)
+            }), e._registeredHandlers = []
         }
         Object.defineProperty(t, "__esModule", {
             value: !0
-        });
-        var n = function() {
-            function e(e, t) {
-                var r = [],
-                    o = !0,
-                    a = !1,
-                    n = void 0;
-                try {
-                    for (var s, i = e[Symbol.iterator](); !(o = (s = i.next()).done) && (r.push(s.value), !t || r.length !== t); o = !0);
-                } catch (l) {
-                    a = !0, n = l
-                } finally {
-                    try {
-                        !o && i["return"] && i["return"]()
-                    } finally {
-                        if (a) throw n
-                    }
-                }
-                return r
-            }
-            return function(t, r) {
-                if (Array.isArray(t)) return t;
-                if (Symbol.iterator in Object(t)) return e(t, r);
-                throw new TypeError("Invalid attempt to destructure non-iterable instance")
-            }
-        }();
-        t.addDelegateEvent = o, t.removeDelegateEvent = a;
-        var s = new window.Map
+        }), t.createMutations = o, t.createModule = s, t.destroyModule = i;
+        var l = r(97),
+            _ = window,
+            d = _.addEvent,
+            u = _.removeEvent
     }
 });
