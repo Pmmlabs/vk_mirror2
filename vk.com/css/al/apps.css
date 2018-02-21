@@ -23,6 +23,7 @@
 .apps_i_slider_next:before,
 .apps_i_slider_prev:before,
 .apps_install_header .apps_i_phone_button:before,
+.apps_install_header .apps_share_button:before,
 .apps_notifications_wrap.loading,
 .apps_paymentbox_close_lnk,
 .apps_paymentbox_spinner,
@@ -326,22 +327,26 @@
     content: none
 }
 
-.apps_install_header .apps_i_phone_button {
+.apps_install_header .apps_i_phone_button,
+.apps_install_header .apps_share_button {
     padding-left: 27px;
     padding-right: 9px;
     position: relative;
     background-color: #f2f4f7
 }
 
-.apps_main .apps_install_header .apps_i_phone_button {
+.apps_main .apps_install_header .apps_i_phone_button,
+.apps_main .apps_install_header .apps_share_button {
     background-color: #fafbfc
 }
 
-.apps_main .apps_install_header .apps_i_phone_button:hover {
+.apps_main .apps_install_header .apps_i_phone_button:hover,
+.apps_main .apps_install_header .apps_share_button:hover {
     background-color: #f2f4f7
 }
 
-.apps_install_header .apps_i_phone_button:before {
+.apps_install_header .apps_i_phone_button:before,
+.apps_install_header .apps_share_button:before {
     content: '';
     position: absolute;
     height: 14px;
@@ -354,10 +359,26 @@
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .apps_install_header .apps_i_phone_button:before {
+    .apps_install_header .apps_i_phone_button:before,
+    .apps_install_header .apps_share_button:before {
         background-image: url(/images/icons/phonebook_2x.png?1);
         background-size: 13px 50px
     }
+}
+
+.apps_install_header .apps_share_button {
+    margin: 0 0 0 2px
+}
+
+.apps_install_header .apps_share_button:before {
+    content: '';
+    position: absolute;
+    top: 9px;
+    height: 14px;
+    width: 16px;
+    left: 6px;
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20style%3D%22fill%3A%233D6899%3B%22%3E%3Cpath%20d%3D%22M0%205.5L0%206.5C0%208%201.6%209%203%209L8%209C8.4%209%209.1%209.2%2010.7%2010.3%2011.7%2011.1%2012.9%2012%2012.9%2012L14%2012%2014%206%2014%206%2014%206%2014%200%2012.9%200C12.9%200%2011.7%200.9%2010.7%201.7%209.1%202.8%208.4%203%208%203L3%203C1.6%203%200%204%200%205.5ZM7.5%2012L6.4%209%204%209%205.3%2014C7.3%2014%207.5%2013.3%207.5%2012Z%22%2F%3E%3C%2Fsvg%3E") no-repeat 0 0;
+    opacity: 0.35
 }
 
 .apps_install_header .apps_i_users {

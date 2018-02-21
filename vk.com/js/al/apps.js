@@ -2660,6 +2660,12 @@ AppsSlider.prototype = {
     },
     closeExternalApp: function() {
         cur.app.clientRpc && cur.app.clientRpc.callMethod("closeExternalApp")
+    },
+    share: function(e, t) {
+        showBox("like.php", {
+            act: "publish_box",
+            object: "app" + e + "_" + t
+        })
     }
 });
 try {
