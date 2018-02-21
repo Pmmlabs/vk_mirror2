@@ -1163,7 +1163,8 @@ body.dev .tickets_side_tt.title .hint_wrap b {
     font-size: 1.09em
 }
 
-.tickets_warning.info_msg {
+.tickets_warning.info_msg,
+.tickets_warning.ok_msg {
     margin: 0 0 10px
 }
 

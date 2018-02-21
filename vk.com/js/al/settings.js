@@ -849,7 +849,7 @@ var Settings = {
         if (Settings.reset_sessions) return !1;
         Settings.reset_sessions = !0;
         var n = bodyNode.appendChild(ce("div", {
-                innerHTML: '<form action="' + vk.loginscheme + '://login.vk.com/" method="POST" target="reset_sessions_frame">  <input name="_origin" value="' + (locProtocol + "//" + locHost) + '" type="hidden" />  <input name="role" value="al_frame" type="hidden" />  <input name="ip_h" value="' + vk.ip_h + '" type="hidden" />  <input name="reset_hash" value="' + cur.options.reset_hash + '" type="hidden" />' + e + '</form><iframe class="upload_frame" name="reset_sessions_frame"></iframe>'
+                innerHTML: '<form action="' + vk.loginscheme + '://login.vk.com/" method="POST" target="reset_sessions_frame">  <input name="_origin" value="' + (locProtocol + "//" + locHost) + '" type="hidden" />  <input name="role" value="al_frame" type="hidden" />  <input name="ip_h" value="' + vk.ip_h + '" type="hidden" />  <input name="reset_hash" value="' + cur.options.reset_hash + '" type="hidden" />' + (void 0 !== e ? e : "") + '</form><iframe class="upload_frame" name="reset_sessions_frame"></iframe>'
             })),
             i = n.firstChild,
             a = i.nextSibling,

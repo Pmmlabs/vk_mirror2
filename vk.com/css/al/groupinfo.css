@@ -223,3 +223,18 @@ table.history tr th {
 .mi_tt_label {
     color: #777
 }
+
+.meminfo_sort_selector {
+    margin: 5px 0
+}
+
+.meminfo_sort_selector .meminfo_sort_selector_label {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px
+}
+
+.meminfo_sort_selector .meminfo_sort_selector_object {
+    display: inline-block;
+    vertical-align: middle
+}

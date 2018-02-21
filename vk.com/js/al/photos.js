@@ -1014,7 +1014,7 @@ var photos = {
             var a = curBox();
             a && a.hide();
             var r = langNumeric(o, cur.lang.photos_x_photos_moved_no_cancel);
-            if (r = r.replace("{album}", e), showDoneBox(r), cur.pvShown && cur.pvCurPhoto && (cur.pvCurPhoto.album = e, geByClass1("pv_album_name").innerHTML = e), t)
+            if (r = r.replace("{album}", e), showDoneBox(r), cur.pvShown && cur.pvCurPhoto && (cur.pvCurPhoto.album = e, geByClass1("pv_album_name").innerHTML = e), t || cur.isPhotoUpload)
                 if (0 == cur.count) nav.reload();
                 else {
                     var i = geByClass("photos_photo_edit_row").length;

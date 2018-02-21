@@ -1822,19 +1822,21 @@ var Helpdesk = {
         })
     },
     takeRest: function(e, t) {
-        buttonLocked(e) || ajax.post("helpdesk?act=a_take_rest", {
-            hash: t
-        }, {
-            showProgress: lockButton.pbind(e),
-            hideProgress: unlockButton.pbind(e),
-            onDone: function(e) {
-                var t = se(e[0]);
-                if (domReplaceEl(ge(t.id), t), e[1]) {
-                    var s = se(e[1]);
-                    domReplaceEl(ge(s.id), s)
-                } else re("helpdesk_m_table_actions")
-            }
-        })
+        buttonLocked(e) || (cur.helpdeskRestBox = showFastBox(getLang("global_warning"), getLang("helpdesk_need_a_rest"), getLang("helpdesk_take_rest"), function() {
+            ajax.post("helpdesk?act=a_take_rest", {
+                hash: t
+            }, {
+                progress: cur.helpdeskRestBox.progress,
+                onDone: function(e) {
+                    cur.helpdeskRestBox.hide();
+                    var t = se(e[0]);
+                    if (domReplaceEl(ge(t.id), t), e[1]) {
+                        var s = se(e[1]);
+                        domReplaceEl(ge(s.id), s)
+                    } else re("helpdesk_m_table_actions")
+                }
+            })
+        }, getLang("global_cancel")))
     },
     _eof: 1
 };

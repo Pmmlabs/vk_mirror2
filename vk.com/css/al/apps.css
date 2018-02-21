@@ -620,13 +620,13 @@
 }
 
 .apps_recent_block.eight_games {
-    height: 313px
+    height: 315px
 }
 
 .apps_recent_block.eight_games .apps_recent_apps_wrap,
 .apps_recent_block.eight_games .apps_notifications_wrap,
 .apps_recent_block.eight_games .apps_notifications_wrap_inner {
-    height: 258px
+    height: 260px
 }
 
 .apps_recent_apps_wrap {
@@ -686,9 +686,9 @@
 }
 
 .apps_recent_row.apps_recent_row_eight_games {
-    width: 85px;
-    height: 85px;
-    background-size: 85px 85px
+    width: 86px;
+    height: 86px;
+    background-size: 86px 86px
 }
 
 .apps_cat_row .thumb_x_button,
@@ -940,11 +940,11 @@
 }
 
 .apps_feed_block.eight_games {
-    height: 313px
+    height: 315px
 }
 
 .apps_feed_block.eight_games .apps_feed_wrap {
-    height: 258px
+    height: 259px
 }
 
 .apps_feed_wrap {

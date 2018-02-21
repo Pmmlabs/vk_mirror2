@@ -513,7 +513,8 @@
 
 .login_blocked_wrap .unblock_form .inputs .input ._change_phone_button,
 .login_blocked_wrap .unblock_form .inputs .input ._resend_code_button {
-    margin-left: 8px
+    display: block;
+    margin: 8px 69px 0px 2px
 }
 
 .login_blocked_wrap .unblock_form .inputs .check_code_button,

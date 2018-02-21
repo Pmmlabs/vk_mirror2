@@ -1827,6 +1827,31 @@ var GroupsEdit = {
             }
         })
     },
+    longpoll: {
+        setEnabled: function(e, t, o) {
+            ajax.post("groupsedit.php", {
+                act: "longpoll_set_enabled",
+                group_id: e,
+                value: t,
+                hash: o
+            }, {
+                onDone: function() {
+                    var e = ge("groups_edit_longpoll_url");
+                    !isVisible(e) && t ? slideDown(e, 300) : slideUp(e, 300)
+                }
+            })
+        },
+        saveSetting: function(e, t, o) {
+            var r = ge("group_api_settings_saved");
+            setStyle(r, "opacity", 1), clearTimeout(cur.groupeditTimeout), cur.groupeditTimeout = setTimeout(setStyle.pbind(r, "opacity", 0), 1e3), ajax.post("groupsedit.php", {
+                act: "longpoll_save_event_setting",
+                group_id: e,
+                name: t,
+                value: isChecked(t),
+                hash: o
+            })
+        }
+    },
     callback: {
         addServer: function(e, t, o) {
             hide(geByClass1("page_actions_cont", ge("content"))), hide(ge("add_server_button")), show(geByClass1("ui_tabs_progress", ge("content"))), ajax.post("groupsedit.php", {
@@ -2093,7 +2118,7 @@ var GroupsEdit = {
                     hash: s
                 }, {
                     onDone: function(t, o) {
-                        "ok" === t ? (nav.objLoc.server = o, nav.go(nav.objLoc)) : (unlockButton(e), GroupsEdit.callback.showError(o), hide(geByClass1("ui_tabs_progress", ge("content"))), show(geByClass1("page_actions_cont", ge("content"))))
+                        "ok" === t ? (nav.objLoc.server = o, nav.go(nav.objLoc)) : (unlockButton(e), GroupsEdit.callback.showError(o), hide(geByClass1("ui_tabs_progress", ge("content"))), show(geByClass1("page_actions_cont", ge("content"))));
                     }
                 })
             }, getLang("global_cancel"))
@@ -2122,7 +2147,7 @@ var GroupsEdit = {
                     var t = ge("group_token" + o);
                     t.parentNode.removeChild(t), val("group_tokens_count", e > 0 ? e : ""), hide(a);
                     var r = geByClass1("group_tokens_rows");
-                    1 == r.childNodes.length && (show(ge("group_tokens_row_empty")), hide(ge("group_tokens_delete_all_btn")))
+                    1 == r.childNodes.length && show(ge("group_tokens_row_empty"))
                 }
             })
         }, getLang("global_cancel"))
@@ -2147,7 +2172,7 @@ var GroupsEdit = {
                     }
                     val("group_tokens_count", e > 0 ? e : ""), hide(a);
                     var i = geByClass1("group_tokens_rows");
-                    1 == i.childNodes.length && (show(ge("group_tokens_row_empty")), hide(ge("group_tokens_delete_all_btn")))
+                    1 == i.childNodes.length && show(ge("group_tokens_row_empty"))
                 }
             })
         }, getLang("global_cancel"))
@@ -2157,16 +2182,15 @@ var GroupsEdit = {
             title: getLang("groups_tokens_confirm_box_title"),
             dark: 1
         }, getLang("groups_tokens_confirm_delete_all_tokens_description"), getLang("groups_tokens_confirm_box_btn"), function() {
-            r.hide();
-            var s = geByClass("progress_inline", e.parentNode)[0];
-            hide(e), show(s), ajax.post("groupsedit.php", {
+            r.hide(), ajax.post("groupsedit.php", {
                 act: "delete_all_tokens",
                 id: t,
                 hash: o
             }, {
                 onDone: function() {
                     for (var e = geByClass1("group_tokens_rows"); e.childNodes.length > 1;) e.removeChild(e.lastChild);
-                    val("group_tokens_count", ""), hide(s), show(ge("group_tokens_row_empty"))
+                    var t = ge("gedit_delete_all_tokens");
+                    hide(t), val("group_tokens_count", ""), show(ge("group_tokens_row_empty"))
                 }
             })
         }, getLang("global_cancel"))
