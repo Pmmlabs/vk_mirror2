@@ -9263,6 +9263,10 @@ body.sf .nim-dialog .nim-dialog--unread {
     color: #656565
 }
 
+.im-money-request-snippet__users_link {
+    color: #656565
+}
+
 .im-money-request-snippet__button {
     float: right
 }

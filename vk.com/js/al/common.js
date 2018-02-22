@@ -8815,12 +8815,6 @@ function zNav(changed, opts, fin) {
             delete(fin.z);
             nav.setLoc(fin);
         }
-
-        if (!~w.indexOf('#') && nav.objLoc['#']) {
-            w += '#' + nav.objLoc['#'];
-            delete nav.objLoc['#'];
-        }
-
         showWiki({
             w: w
         }, w == 'note_new', false, {

@@ -4440,6 +4440,10 @@ input.wide_button {
     padding: 0 0 0 4px
 }
 
+.d .mi_edited_middot {
+    display: none
+}
+
 .di_title,
 .mi_title {
     padding: 4px 0 0;
@@ -11909,6 +11913,18 @@ a.Pad__corner {
     background: #dbe0e6
 }
 
+.ProgressBar {
+    height: 4px;
+    border-radius: 2px;
+    background-color: #ebedf0
+}
+
+.ProgressBar__progress {
+    height: inherit;
+    border-radius: inherit;
+    background-color: #5181b8
+}
+
 .audioAttention {
     position: fixed;
     top: 0;
@@ -17909,9 +17925,8 @@ body.article_body.article_dark {
 
 .pinnedMsg {
     position: relative;
-    height: 56px;
     box-sizing: border-box;
-    padding: 9px 50px 7px 32px;
+    padding: 9px 50px 8px 32px;
     z-index: 1;
     background: #d9e0e7
 }
@@ -17925,6 +17940,18 @@ body.article_body.article_dark {
     border-bottom: 1px solid #e0e0e0
 }
 
+.d .pinnedMsg {
+    padding-right: 16px
+}
+
+.pinnedMsg_type_moneyRequest .di_text.di_text.di_text {
+    display: none!important
+}
+
+.pinnedMsg_type_moneyRequest .mi_medias_plain.mi_medias_plain.mi_medias_plain {
+    display: block!important
+}
+
 .pinnedMsg__link {
     position: absolute;
     left: 0;
@@ -17935,9 +17962,8 @@ body.article_body.article_dark {
 
 .pinnedMsg__pin {
     position: absolute;
-    top: 50%;
-    left: 6px;
-    margin-top: -10px
+    top: 18px;
+    left: 6px
 }
 
 .pinnedMsg__hide {
@@ -18007,9 +18033,9 @@ body.article_body.article_dark {
 
 .m .pinnedMsg .di_text,
 .m .pinnedMsg .mi_medias_plain {
-    padding-top: 2px!important;
+    padding-top: 1px!important;
     font-size: 15px!important;
-    line-height: 20px!important;
+    line-height: 1.33!important;
     display: block!important
 }
 
@@ -19338,17 +19364,7 @@ a.feedBlocks__article:hover {
 }
 
 .moneyChatRequestAttachment__bar {
-    margin: 8px 0 12px;
-    background-color: #ebedf0;
-    border-radius: 2px;
-    height: 4px;
-    width: 100%
-}
-
-.moneyChatRequestAttachment__progress {
-    background-color: #5181b8;
-    border-radius: 2px;
-    height: 4px
+    margin: 8px 0 12px
 }
 
 .moneyChatRequestAttachment__line {
@@ -19386,6 +19402,10 @@ a.feedBlocks__article:hover {
     text-overflow: ellipsis;
     color: #909499;
     font-size: 13px
+}
+
+.d .moneyChatRequestAttachment {
+    margin-right: 25px
 }
 
 .moneyTransferCard__header {
@@ -19743,6 +19763,7 @@ a.feedBlocks__article:hover {
 }
 
 .transfersHistory__empty {
+    font-size: 15px;
     padding: 15px 12px
 }
 
@@ -24285,6 +24306,30 @@ a.feedBlocks__article:hover {
 .ReservedCodes__code_used {
     color: #909499;
     text-decoration: line-through
+}
+
+.MoneyCollectPinned {
+    overflow: hidden
+}
+
+.MoneyCollectPinned__title {
+    color: #000;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.MoneyCollectPinned__progress {
+    margin-top: 5px
+}
+
+.d .MoneyCollectPinned__title {
+    color: #404040;
+    font-weight: 400
+}
+
+.messenger .MoneyCollectPinned__title {
+    font-size: 15px;
+    line-height: 1.33
 }
 
 .notification {

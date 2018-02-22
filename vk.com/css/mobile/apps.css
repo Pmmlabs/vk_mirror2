@@ -4440,6 +4440,10 @@ input.wide_button {
     padding: 0 0 0 4px
 }
 
+.d .mi_edited_middot {
+    display: none
+}
+
 .di_title,
 .mi_title {
     padding: 4px 0 0;

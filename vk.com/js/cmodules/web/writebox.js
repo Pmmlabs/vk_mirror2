@@ -12,9 +12,9 @@
     return t.m = e, t.c = a, t.p = "", t(0)
 }({
     0: function(e, t, a) {
-        e.exports = a(244)
+        e.exports = a(193)
     },
-    44: function(e, t) {
+    13: function(e, t) {
         "use strict";
 
         function a(e) {
@@ -121,7 +121,7 @@
         var d = t.RECENT_SEARCH_OP = "recent_search",
             m = t.PIN_HIDDEN_ID_OP = "pin_hide"
     },
-    46: function(e, t) {
+    27: function(e, t) {
         "use strict";
 
         function a(e, t, a) {
@@ -179,182 +179,7 @@
             L = "((?:[a-z0-9_]*[a-z0-9])?(?:(?:.[a-z](?:[a-z0-9_]+[a-z0-9])?)*.[a-z][a-z0-9_]{2,40}[a-z0-9])?)";
         t.RE_HASHTAG_EXTRACTION_PATTERN = "(^|[s.,:'\";>)(]?)(" + C + ")(@" + L + ")?(?=$|[s.,:'\"&;?<)(]?)"
     },
-    154: function(e, t, a) {
-        "use strict";
-
-        function r(e) {
-            var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [],
-                a = e.split("_"),
-                r = g(a, 2),
-                n = r[0],
-                i = r[1];
-            return [n, i, t]
-        }
-
-        function n(e, t) {
-            var a = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 0,
-                i = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 0;
-            if (i > 50) return [
-                [], e.length
-            ];
-            for (var o = [], c = ""; a < e.length;) {
-                var s = e[a];
-                if ("id" === s) c = t[a];
-                else if ("," === s && c) o.push(r(c)), c = "";
-                else if ("(" === s) {
-                    var l = n(e, t, a + 1, i + 1),
-                        u = g(l, 2),
-                        d = u[0],
-                        m = u[1];
-                    a = m, o.push(r(c, d)), c = ""
-                } else if (")" === s) return "" !== c && o.push(r(c)), [o, a];
-                a++
-            }
-            return c && o.push(r(c)), [o, a]
-        }
-
-        function i(e) {
-            if (x[e]) return x[e];
-            for (var t = e ? e.length : 0, a = [], r = [], i = "", o = 0; t > o; o++) {
-                var c = e[o],
-                    s = c.charCodeAt(0);
-                s >= 48 && 57 >= s || "_" === c || "-" === c ? i += c : ("(" === c || ")" === c || ":" === c || "," === c) && ("" !== i && (r.push(i), a.push("id"), i = ""), r.push(c), a.push(c))
-            }
-            i.length > 0 && (r.push(i), a.push("id"));
-            var l = n(a, r),
-                u = g(l, 1),
-                d = u[0];
-            return Object.keys(x).length > 300 && (x = {}), x[e] = d, d
-        }
-
-        function o(e, t) {
-            for (var a = void 0, r = 0, n = e; null !== (a = f.MESSAGE_REGEXP.exec(e));) {
-                a = l(a);
-                var i = a[0].length,
-                    o = a.index + i,
-                    c = e[a.index - 1],
-                    s = e[o - 1],
-                    d = void 0 !== c && /([\w\$А-Яа-яёЁєЄҐґЇїІіЈј\—\-\_@;.])/i.test(c),
-                    m = void 0 !== s && /([:;$])/i.test(s);
-                if (!d && !m) {
-                    var b = u(a),
-                        h = b.domain;
-                    if (h.length <= f.MAX_DOMAIN_LENGTH && -1 !== f.TOP_DOMAINS.indexOf(h)) {
-                        var p = t(b);
-                        n = n.slice(0, a.index + r) + p + n.slice(o + r), r += p.length - i
-                    }
-                }
-            }
-            return n
-        }
-
-        function c(e, t) {
-            return e.replace(f.EMAIL, t || function(e) {
-                return '<a href="mailto:' + e + '">' + e + "</a>"
-            })
-        }
-
-        function s(e, t) {
-            return e.replace(f.MENTION, t || function(e, t, a, r, n) {
-                return '<a href="/' + (t + a) + '" class="mem_link" mention="' + k(r || "") + '" mention_id="' + k(t + a) + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)">' + n + "</a>"
-            })
-        }
-
-        function l(e) {
-            if (!e[0] || !e[6]) return e;
-            var t = e[0].length - 1,
-                a = e[6].length - 1;
-            return "." === e[0][t] && "." === e[6][a] && (e[0] = e[0].slice(0, t), e[6] = e[6].slice(0, a)), e
-        }
-
-        function u(e) {
-            return {
-                full: e[0],
-                protocol: e[1] || "http://",
-                url: e[2],
-                domain: e[4],
-                query: e[6] || ""
-            }
-        }
-
-        function d() {
-            return v || (v = new RegExp(f.RE_HASHTAG_EXTRACTION_PATTERN, "ig")), v
-        }
-
-        function m(e, t) {
-            return e.replace(d(), function(e, a, r, n, i, o) {
-                return (a || "") + t(r + (i || ""))
-            })
-        }
-
-        function b(e) {
-            _("ttl_message_confirm_delivery", e)
-        }
-
-        function h(e, t) {
-            var a = t.protocol,
-                r = t.url,
-                n = t.query,
-                i = t.domain,
-                o = t.full;
-            try {
-                o = decodeURIComponent(o)
-            } catch (c) {}
-            if (o.length > 55 && (o = o.substr(0, 53) + ".."), o = k(o).replace(/&amp;/g, "&"), !e && i.match(f.OUR_DOMAINS)) {
-                r = w(r).replace(f.ENTITIES, encodeURIComponent);
-                var s = r,
-                    l = r.indexOf("#/"),
-                    u = "",
-                    d = void 0;
-                return l >= 0 ? s = r.substr(l + 1) : (l = r.indexOf("#!"), l >= 0 && (s = "/" + r.substr(l + 2).replace(/^\//, ""))), d = s.match(f.VK_DOMAIN), d && d[1].length < 32 && (u = ' mention_id="' + d[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'), '<a href="' + p(a + r + n) + '" target="_blank"' + u + ">" + o + "</a>"
-            }
-            var m = "away.php?utf=1&to=" + encodeURIComponent(a + w(r + n)),
-                b = k((a + r + n).replace(/'/g, "\\'")),
-                h = "return goAway('" + b + "', {}, event);";
-            return '<a href="' + m + '" target="_blank" onclick="' + h + '">' + o + "</a>"
-        }
-
-        function p(e) {
-            return e.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-        }
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        });
-        var g = function() {
-            function e(e, t) {
-                var a = [],
-                    r = !0,
-                    n = !1,
-                    i = void 0;
-                try {
-                    for (var o, c = e[Symbol.iterator](); !(r = (o = c.next()).done) && (a.push(o.value), !t || a.length !== t); r = !0);
-                } catch (s) {
-                    n = !0, i = s
-                } finally {
-                    try {
-                        !r && c["return"] && c["return"]()
-                    } finally {
-                        if (n) throw i
-                    }
-                }
-                return a
-            }
-            return function(t, a) {
-                if (Array.isArray(t)) return t;
-                if (Symbol.iterator in Object(t)) return e(t, a);
-                throw new TypeError("Invalid attempt to destructure non-iterable instance")
-            }
-        }();
-        t.parseFwd = i, t.replaceHyperLinks = o, t.replaceEmailLinks = c, t.replaceMentions = s, t.replaceHashtags = m, t.confirmDelivery = b, t.linksReplacer = h;
-        var f = a(46),
-            v = void 0,
-            y = window,
-            k = y.clean,
-            w = y.replaceEntities,
-            _ = y.statlogsValueEvent,
-            x = {}
-    },
-    165: function(e, t, a) {
+    63: function(e, t, a) {
         "use strict";
 
         function r() {
@@ -453,8 +278,8 @@
             }
         }();
         t.ImDraft = n, t.convertKludgesToAttaches = s, t.loadDraftForPeer = l;
-        var d = a(242),
-            m = a(154);
+        var d = a(126),
+            m = a(216);
         n.prototype.dump = function() {
             this._key && this._db.updateByKey(this._key, o(this.dData))
         }, n.prototype.load = function() {
@@ -548,7 +373,7 @@
             return e ? e.id < 0 ? e.object.fwd_count : e.id.split(";").length : 0
         }
     },
-    242: function(e, t) {
+    126: function(e, t) {
         "use strict";
 
         function a(e, t, a) {
@@ -620,15 +445,15 @@
         }), t.post = a, t.plainget = r, t.plaingetCancelable = n;
         var i = (t.CONTROLLER = "al_im.php", 2)
     },
-    244: function(e, t, a) {
+    193: function(e, t, a) {
         "use strict";
         var r = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e) {
                 return typeof e
             } : function(e) {
                 return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
             },
-            n = a(44),
-            i = a(165),
+            n = a(13),
+            i = a(63),
             o = window.WriteBox = {
                 mrg: function(e) {
                     return vk.rtl ? {
@@ -880,5 +705,180 @@
         try {
             stManager.done("writebox.js")
         } catch (c) {}
+    },
+    216: function(e, t, a) {
+        "use strict";
+
+        function r(e) {
+            var t = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : [],
+                a = e.split("_"),
+                r = g(a, 2),
+                n = r[0],
+                i = r[1];
+            return [n, i, t]
+        }
+
+        function n(e, t) {
+            var a = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 0,
+                i = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 0;
+            if (i > 50) return [
+                [], e.length
+            ];
+            for (var o = [], c = ""; a < e.length;) {
+                var s = e[a];
+                if ("id" === s) c = t[a];
+                else if ("," === s && c) o.push(r(c)), c = "";
+                else if ("(" === s) {
+                    var l = n(e, t, a + 1, i + 1),
+                        u = g(l, 2),
+                        d = u[0],
+                        m = u[1];
+                    a = m, o.push(r(c, d)), c = ""
+                } else if (")" === s) return "" !== c && o.push(r(c)), [o, a];
+                a++
+            }
+            return c && o.push(r(c)), [o, a]
+        }
+
+        function i(e) {
+            if (x[e]) return x[e];
+            for (var t = e ? e.length : 0, a = [], r = [], i = "", o = 0; t > o; o++) {
+                var c = e[o],
+                    s = c.charCodeAt(0);
+                s >= 48 && 57 >= s || "_" === c || "-" === c ? i += c : ("(" === c || ")" === c || ":" === c || "," === c) && ("" !== i && (r.push(i), a.push("id"), i = ""), r.push(c), a.push(c))
+            }
+            i.length > 0 && (r.push(i), a.push("id"));
+            var l = n(a, r),
+                u = g(l, 1),
+                d = u[0];
+            return Object.keys(x).length > 300 && (x = {}), x[e] = d, d
+        }
+
+        function o(e, t) {
+            for (var a = void 0, r = 0, n = e; null !== (a = f.MESSAGE_REGEXP.exec(e));) {
+                a = l(a);
+                var i = a[0].length,
+                    o = a.index + i,
+                    c = e[a.index - 1],
+                    s = e[o - 1],
+                    d = void 0 !== c && /([\w\$А-Яа-яёЁєЄҐґЇїІіЈј\—\-\_@;.])/i.test(c),
+                    m = void 0 !== s && /([:;$])/i.test(s);
+                if (!d && !m) {
+                    var b = u(a),
+                        h = b.domain;
+                    if (h.length <= f.MAX_DOMAIN_LENGTH && -1 !== f.TOP_DOMAINS.indexOf(h)) {
+                        var p = t(b);
+                        n = n.slice(0, a.index + r) + p + n.slice(o + r), r += p.length - i
+                    }
+                }
+            }
+            return n
+        }
+
+        function c(e, t) {
+            return e.replace(f.EMAIL, t || function(e) {
+                return '<a href="mailto:' + e + '">' + e + "</a>"
+            })
+        }
+
+        function s(e, t) {
+            return e.replace(f.MENTION, t || function(e, t, a, r, n) {
+                return '<a href="/' + (t + a) + '" class="mem_link" mention="' + k(r || "") + '" mention_id="' + k(t + a) + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)">' + n + "</a>"
+            })
+        }
+
+        function l(e) {
+            if (!e[0] || !e[6]) return e;
+            var t = e[0].length - 1,
+                a = e[6].length - 1;
+            return "." === e[0][t] && "." === e[6][a] && (e[0] = e[0].slice(0, t), e[6] = e[6].slice(0, a)), e
+        }
+
+        function u(e) {
+            return {
+                full: e[0],
+                protocol: e[1] || "http://",
+                url: e[2],
+                domain: e[4],
+                query: e[6] || ""
+            }
+        }
+
+        function d() {
+            return v || (v = new RegExp(f.RE_HASHTAG_EXTRACTION_PATTERN, "ig")), v
+        }
+
+        function m(e, t) {
+            return e.replace(d(), function(e, a, r, n, i, o) {
+                return (a || "") + t(r + (i || ""))
+            })
+        }
+
+        function b(e) {
+            _("ttl_message_confirm_delivery", e)
+        }
+
+        function h(e, t) {
+            var a = t.protocol,
+                r = t.url,
+                n = t.query,
+                i = t.domain,
+                o = t.full;
+            try {
+                o = decodeURIComponent(o)
+            } catch (c) {}
+            if (o.length > 55 && (o = o.substr(0, 53) + ".."), o = k(o).replace(/&amp;/g, "&"), !e && i.match(f.OUR_DOMAINS)) {
+                r = w(r).replace(f.ENTITIES, encodeURIComponent);
+                var s = r,
+                    l = r.indexOf("#/"),
+                    u = "",
+                    d = void 0;
+                return l >= 0 ? s = r.substr(l + 1) : (l = r.indexOf("#!"), l >= 0 && (s = "/" + r.substr(l + 2).replace(/^\//, ""))), d = s.match(f.VK_DOMAIN), d && d[1].length < 32 && (u = ' mention_id="' + d[1] + '" onclick="return mentionClick(this, event)" onmouseover="mentionOver(this)"'), '<a href="' + p(a + r + n) + '" target="_blank"' + u + ">" + o + "</a>"
+            }
+            var m = "away.php?utf=1&to=" + encodeURIComponent(a + w(r + n)),
+                b = k((a + r + n).replace(/'/g, "\\'")),
+                h = "return goAway('" + b + "', {}, event);";
+            return '<a href="' + m + '" target="_blank" onclick="' + h + '">' + o + "</a>"
+        }
+
+        function p(e) {
+            return e.replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        }
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        });
+        var g = function() {
+            function e(e, t) {
+                var a = [],
+                    r = !0,
+                    n = !1,
+                    i = void 0;
+                try {
+                    for (var o, c = e[Symbol.iterator](); !(r = (o = c.next()).done) && (a.push(o.value), !t || a.length !== t); r = !0);
+                } catch (s) {
+                    n = !0, i = s
+                } finally {
+                    try {
+                        !r && c["return"] && c["return"]()
+                    } finally {
+                        if (n) throw i
+                    }
+                }
+                return a
+            }
+            return function(t, a) {
+                if (Array.isArray(t)) return t;
+                if (Symbol.iterator in Object(t)) return e(t, a);
+                throw new TypeError("Invalid attempt to destructure non-iterable instance")
+            }
+        }();
+        t.parseFwd = i, t.replaceHyperLinks = o, t.replaceEmailLinks = c, t.replaceMentions = s, t.replaceHashtags = m, t.confirmDelivery = b, t.linksReplacer = h;
+        var f = a(27),
+            v = void 0,
+            y = window,
+            k = y.clean,
+            w = y.replaceEntities,
+            _ = y.statlogsValueEvent,
+            x = {}
     }
 });

@@ -1153,6 +1153,11 @@ a.settings_blb_title {
     width: 220px
 }
 
+.settings_transfer_history .simple_row .settings_history_title {
+    padding-left: 10px;
+    width: 100%
+}
+
 .settings_transfer_history .settings_history_actions {
     width: 1px
 }

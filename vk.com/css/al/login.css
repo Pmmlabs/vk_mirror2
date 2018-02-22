@@ -261,7 +261,20 @@
 }
 
 .login_blocked_wrap .page_block .content .tutorial_finish_appeal {
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    max-height: 44px;
+    overflow-y: hidden;
+    -o-transition-property: all;
+    transition-property: all;
+    -o-transition-duration: 1.5s;
+    transition-duration: 1.5s;
+    -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1)
+}
+
+.login_blocked_wrap .page_block .content .tutorial_finish_appeal.closed {
+    max-height: 0px;
+    margin-bottom: 0px
 }
 
 .login_blocked_wrap .page_block .footer {
@@ -300,7 +313,8 @@
     margin-top: 22px;
     border-radius: 2px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
-    padding: 18px 20px
+    padding: 18px 20px;
+    overflow: hidden
 }
 
 .login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason {
@@ -360,8 +374,12 @@
     position: relative
 }
 
-.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_text .login_blocked_reason_action_wall .wall_module .wall_text {
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_text .login_blocked_reason_action_wall.wall_module .wall_text {
     padding: 0
+}
+
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_text .login_blocked_reason_action_wall.wall_module .wall_text .page_media_thumbed_link:last-child {
+    margin-bottom: 0px
 }
 
 .login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_text .login_blocked_reason_action_photo {
