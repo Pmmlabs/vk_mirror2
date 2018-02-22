@@ -5448,7 +5448,7 @@ var Wall = {
             } else {
                 viewsCount = 5;
             }
-            val(viewsEl, '<em>' + countFormatted + '</em> ' + getLang('global_X_post_views', viewsCount, true));
+            val(viewsEl, '<em>' + count + '</em> ' + getLang('global_X_post_views', viewsCount, true));
         } else if (share) {
             var shareCount = '';
             if (count > 0) {

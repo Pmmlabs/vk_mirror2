@@ -218,7 +218,7 @@ var stVersions = {
     'module.css': 16767507332,
     'owner_photo.js': 3401070266,
     'owner_photo.css': 17858402681,
-    'page.js': 3352810523,
+    'page.js': 3113648224,
     'page.css': 32626363565,
     'page_help.css': 20595806445,
     'public.css': 26210597377,
@@ -364,7 +364,7 @@ var stVersions = {
     'away.css': 17072132223,
     'stats.css': 14435320625,
     'payments.css': 26126061236,
-    'payments.js': 1966729738,
+    'payments.js': 301538576,
     'offers.css': 978996883,
     'offers.js': 2030679272,
     'call.js': 4217435992,
@@ -636,4 +636,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 920;
+var _rnd = 4101;
