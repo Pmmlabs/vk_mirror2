@@ -1055,6 +1055,7 @@ if (!window.Apps) window.Apps = {
             if (!cur.leavePreloadedHeader) delete cur.preload.header;
             if (!cur.leavePreloadedBefore) delete cur.preload.before;
         }
+
         var query = {
                 act: 'load_apps_silent',
                 gid: cur.gid,
@@ -1070,30 +1071,28 @@ if (!window.Apps) window.Apps = {
         ajax.post(this.address, query, {
             cache: 1,
             local: 1,
-            onDone: this.withFastBackCheck(function(data, opts, preload, preload_before, preload_header) {
-                if (opts) {
-                    opts = eval('(' + opts + ')');
-                    extend(opts.lang, cur.lang || {});
-                    extend(cur, opts);
-                }
-
+            onDone: this.withFastBackCheck(function(json, preload, preload_before, preload_header) {
                 cur.preload = extend(cur.preload || {}, preload);
                 cur.preload.before = preload_before;
                 cur.preload.header = preload_header;
 
-                data = eval('(' + data + ')');
-                if (!data) return cur.silent = false;
-                if (cur.searchOffset === void(0)) cur.searchOffset = 0;
+                json = eval('(' + json + ')');
                 cur.curList = 'all';
-                cur.appsList = data[cur.curList] ? data : {
+                cur.appsList = json && json[cur.curList] ? json : {
                     all: []
                 };
-                cur.sectionCount = this.isSection('catalog', 'list') && !cur.searchStr ? 0 : cur.appsList[cur.curList].length;
+                cur.sectionCount = cur.appsList[cur.curList].length;
+                if (cur.searchOffset === void(0)) {
+                    cur.searchOffset = 0;
+                }
 
-                this.indexAll(function() {
+                json && this.indexAll(function() {
                     cur.silent = false;
-                    if (cur.onSilentLoad)
-                        for (var i in cur.onSilentLoad) isFunction(cur.onSilentLoad[i]) && cur.onSilentLoad[i]();
+                    if (cur.onSilentLoad) {
+                        for (var i in cur.onSilentLoad) {
+                            isFunction(cur.onSilentLoad[i]) && cur.onSilentLoad[i]();
+                        }
+                    }
                 });
             }.bind(this))
         });

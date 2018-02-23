@@ -1192,16 +1192,17 @@ AppsSlider.prototype = {
             ajax.post(this.address, query, {
                 cache: 1,
                 local: 1,
-                onDone: this.withFastBackCheck(function(data, opts, preload, preload_before, preload_header) {
-                    return opts && (opts = eval("(" + opts + ")"), extend(opts.lang, cur.lang || {}), extend(cur, opts)), cur.preload = extend(cur.preload || {}, preload), cur.preload.before = preload_before, cur.preload.header = preload_header, (data = eval("(" + data + ")")) ? (void 0 === cur.searchOffset && (cur.searchOffset = 0), cur.curList = "all", cur.appsList = data[cur.curList] ? data : {
+                onDone: this.withFastBackCheck(function(json, preload, preloadBefore, preloadHeader) {
+                    cur.preload = extend(cur.preload || {}, preload), cur.preload.before = preloadBefore, cur.preload.header = preloadHeader, json = eval("(" + json + ")"), cur.curList = "all", cur.appsList = json && json[cur.curList] ? json : {
                         all: []
-                    }, cur.sectionCount = this.isSection("catalog", "list") && !cur.searchStr ? 0 : cur.appsList[cur.curList].length, void this.indexAll(function() {
-                        if (cur.silent = !1, cur.onSilentLoad)
-                            for (var e in cur.onSilentLoad) isFunction(cur.onSilentLoad[e]) && cur.onSilentLoad[e]()
-                    })) : cur.silent = !1
+                    }, cur.sectionCount = cur.appsList[cur.curList].length, void 0 === cur.searchOffset && (cur.searchOffset = 0), json ? this.indexAll(this.onSilentLoad.bind(this)) : this.onSilentLoad()
                 }.bind(this))
             })
         }
+    },
+    onSilentLoad: function() {
+        if (cur.silent = !1, cur.onSilentLoad)
+            for (var e in cur.onSilentLoad) isFunction(cur.onSilentLoad[e]) && cur.onSilentLoad[e]()
     },
     withFastBackCheck: function(e) {
         cur.preventFastBack = !0;
@@ -1319,9 +1320,9 @@ AppsSlider.prototype = {
             var f = [];
             if (o) {
                 var g = escapeRE(o),
-                    v = parseLatin(o);
-                null != v && (g = g + "|" + escapeRE(v));
-                var _ = new RegExp("(?![^&;]+;)(?!<[^<>]*)((\\(*)(" + g + "))(?![^<>]*>)(?![^&;]+;)", "gi")
+                    _ = parseLatin(o);
+                null != _ && (g = g + "|" + escapeRE(_));
+                var v = new RegExp("(?![^&;]+;)(?!<[^<>]*)((\\(*)(" + g + "))(?![^<>]*>)(?![^&;]+;)", "gi")
             }
             var w = function(e, t, i, o) {
                 var n = (i[e[0]], e[1]);
@@ -1339,7 +1340,7 @@ AppsSlider.prototype = {
                 }
             };
             each(a, function() {
-                f.push(rs(d, w(this, o, l, _)))
+                f.push(rs(d, w(this, o, l, v)))
             }), n || f.length || f.push('<div class="no_rows">' + (o ? getLang("global_search_not_found").replace("{search}", clean(o)) : i.lang.apps_blacklist_empty) + "</div>"), re(c), f = f.join(" "), n ? r.appendChild(cf(f)) : val(r, f), h > n + u && (r.appendChild(c), c.onclick = function(e) {
                 return s(o, n + u), cancelEvent(e)
             }), e && e.scroll && e.scroll.update(!1, !0)
@@ -1822,18 +1823,18 @@ AppsSlider.prototype = {
             var h = intval(cur.rateStats[u]),
                 f = n ? intval(100 * h / n) : 0,
                 g = langNumeric(h, "%s", !0),
-                v = cur.userRate != 10 * u && cur.userRate ? "" : "my";
+                _ = cur.userRate != 10 * u && cur.userRate ? "" : "my";
             o.push(rs(cur.rateStatsRowTpl, {
                 id: "apps_rate_row" + u,
                 stars: i,
                 count: g,
                 percent: f,
-                classname: v
+                classname: _
             }));
-            var _ = ge("apps_rate_row" + u);
-            _ && (setStyle(geByClass1("app_rate_bg", _), {
+            var v = ge("apps_rate_row" + u);
+            v && (setStyle(geByClass1("app_rate_bg", v), {
                 width: f + "%"
-            }), val(geByClass1("app_rate_percent", _), f + "%"), val(geByClass1("app_rate_cnt", _), g), geByClass1("app_rate_stars", _).className = "app_rate_stars fl_l " + v)
+            }), val(geByClass1("app_rate_percent", v), f + "%"), val(geByClass1("app_rate_cnt", v), g), geByClass1("app_rate_stars", v).className = "app_rate_stars fl_l " + _)
         }
         p += o.reverse().join(""), t && (a = "top", s = [210, 0, 10], r = 0, c = 15), showTooltip(e, {
             text: p,
@@ -2351,8 +2352,8 @@ AppsSlider.prototype = {
         if (!this.isDelayedOnSilentLoad("searchUpdate", this.searchUpdate.bind(this, e))) {
             if (e = this.searchValFix(e), e.length < 2 && (e = ""), cur.ignoreEqual || cur.searchStr !== e) {
                 this.isSection("list") && e && this.backupListContent(), cur.searchStr = e || "";
-                var t = this.isSection("apps", "settings", "manage", "reports", "ads") ? "all" : "search";
-                if (e && this.isSection("apps", "settings", "manage", "reports", "ads")) {
+                var t = this.isSection("apps", "settings", "manage", "admin_requests", "reports", "ads") ? "all" : "search";
+                if (e && this.isSection("apps", "settings", "manage", "admin_requests", "reports", "ads")) {
                     var i = cur.appsIndex.search(clean(e));
                     cur.curList = t + "_search_" + e, cur.appsList[cur.curList] = i, e += " " + (parseLatin(e) || ""), e = trim(escapeRE(e).split("&").join("&amp;")), cur.selection = {
                         re: new RegExp("(" + e.replace(cur.appsIndex.delimiter, "|") + ")", "gi"),
@@ -2381,10 +2382,10 @@ AppsSlider.prototype = {
                     loadMore: 0
                 }), val(cur.lContent, ""), val(cur.lPreload, ""), this.switchLayout("catalog"), this.searchProgress(!1), this.sliderStart(), window[cur.loadMore ? "show" : "hide"](cur.lShowMoreButton), !1
             }
-            if (this.isSection("settings", "manage", "apps", "reports", "ads")) {
+            if (this.isSection("settings", "manage", "admin_requests", "apps", "reports", "ads")) {
                 if (cur.defaultCount && cur.shownApps < cur.sectionCount) {
                     var e = clean(cur.searchStr),
-                        t = this.isSection("manage"),
+                        t = this.isSection("manage", "admin_requests"),
                         i = "",
                         o = cur.appsList[cur.curList] || [],
                         n = o.length;
@@ -2409,7 +2410,7 @@ AppsSlider.prototype = {
             }
             return cur.loadMore ? this.searchCatalog(cur.searchStr, cur.searchOffset) : (cur.loadMore = !0, hide(cur.lShowMoreButton)), !1
         }
-        return this.isSection("apps", "manage", "settings", "reports", "ads") ? this.showRows() : !0
+        return this.isSection("apps", "manage", "admin_requests", "settings", "reports", "ads") ? this.showRows() : !0
     },
     searchCatalog: function(e, t) {
         e = this.searchValFix(e), ajax.post(this.address, {
@@ -2466,14 +2467,14 @@ AppsSlider.prototype = {
         cur.aSearch && uiSearch.reset(cur.aSearch), cur.searchStr = ""
     },
     switchLayout: function(e) {
-        cur.aWrap && (removeClass(cur.aWrap, "apps_catalog_layout"), removeClass(cur.aWrap, "apps_list_layout"), removeClass(cur.aWrap, "apps_manage_layout"), removeClass(cur.aWrap, "apps_settings_layout"), removeClass(cur.aWrap, "apps_apps_layout"), removeClass(cur.aWrap, "apps_page_layout"), addClass(cur.aWrap, "apps_" + e + "_layout"))
+        cur.aWrap && (removeClass(cur.aWrap, "apps_catalog_layout"), removeClass(cur.aWrap, "apps_list_layout"), removeClass(cur.aWrap, "apps_manage_layout"), removeClass(cur.aWrap, "apps_admin_requests_layout"), removeClass(cur.aWrap, "apps_settings_layout"), removeClass(cur.aWrap, "apps_apps_layout"), removeClass(cur.aWrap, "apps_page_layout"), addClass(cur.aWrap, "apps_" + e + "_layout"))
     },
     geTabBySection: function(e, t) {
         var i = ge("apps_tab_" + e + (t ? "_" + t : ""));
         return i && (i = geByTag1("a", i)) ? i : !1
     },
     setHistoryBackRules: function() {
-        cur._back = {
+        this.isSection("manage", "admin_requests") || (cur._back = {
             show: [function() {
                 if (cur._back.swap && each(cur._back.swap, function(e, t) {
                         t.dummy.parentNode.replaceChild(t.content, t.dummy)
@@ -2491,7 +2492,7 @@ AppsSlider.prototype = {
             }.bind(this)],
             hide: [this.stopEvents.bind(this), this.ttHideAll.bind(this)],
             text: cur.backLang
-        }
+        })
     },
     switchTabPrepared: function(tabAnchor, event) {
         if (event && checkEvent(event)) return !0;
@@ -2511,7 +2512,7 @@ AppsSlider.prototype = {
         var noscroll = !1,
             scrollToHeader = !1,
             scrollToTop = !1,
-            newSection = ~"/apps/catalog/settings/reports/manage/".indexOf(section) ? section : "list",
+            newSection = ~"/apps/catalog/settings/reports/manage/admin_requests/".indexOf(section) ? section : "list",
             newLayout = "reports" == newSection ? "apps" : newSection;
         "catalog" == cur.section && "list" == newSection || "list" == cur.section && "catalog" == newSection || "list" == cur.section && "list" == newSection ? scrollToHeader = noscroll = !0 : cur.section !== newSection && (scrollToTop = noscroll = !0);
         var preload = cur.preload && cur.preload[section];
@@ -2660,6 +2661,59 @@ AppsSlider.prototype = {
     },
     closeExternalApp: function() {
         cur.app.clientRpc && cur.app.clientRpc.callMethod("closeExternalApp")
+    },
+    adminRequestRow: function(e, t, i) {
+        var o = e[0],
+            n = e[3],
+            s = e[2],
+            a = e[5],
+            r = '<img src="' + e[1] + '"/>',
+            c = intval(e[4]),
+            l = "";
+        if (s) {
+            var p = "away.php" == s.substr(0, 8);
+            if (p) {
+                var d = s.replace(/&/g, "&amp;");
+                n = '<a href="' + s + '" target="_blank" onclick="return goAway(\'' + d + "')\">" + n + "</a>", r = '<a href="' + s + '" target="_blank" onclick="return goAway(\'' + d + "')\">" + r + "</a>"
+            } else n = '<a href="' + s + '">' + n + "</a>", r = '<a href="' + s + '">' + r + "</a>"
+        }
+        return cur.adminRequest && void 0 !== cur.adminRequest[o] ? null !== cur.adminRequest && (action = cur.adminRequest[o] ? getLang("apps_admin_request_accepted") : getLang("apps_admin_request_declined")) : l = "<a onclick='Apps.adminRequestAccept(this, " + o + ', "' + a + "\")'>" + getLang("apps_admin_request_accept") + "</a> | <a onclick='Apps.adminRequestDecline(this, " + o + ', "' + a + "\")'>" + getLang("apps_admin_request_decline") + "</a>", rs(cur.rowTpl, {
+            id: o,
+            name: n,
+            img: r,
+            info: '<div class="apps_settings_size">' + (c ? getLang("apps_X_participants", c, !0) : getLang("apps_noparticipants")) + "</div>",
+            actions: l
+        })
+    },
+    adminRequestAccept: function(e, t, i) {
+        var o = gpeByClass("_app_settings_actions", e);
+        o && !cur.adminRequestProcess && (cur.adminRequestProcess = !0, ajax.post("al_apps_edit.php", {
+            act: "a_accept_admin_request",
+            aid: t,
+            hash: i
+        }, {
+            onDone: function(e, i, n) {
+                cur.adminRequest || (cur.adminRequest = {}), cur.adminRequest[t] = n, val(o, e), i && showDoneBox(i)
+            },
+            hideProgress: function() {
+                cur.adminRequestProcess = !1
+            }
+        }))
+    },
+    adminRequestDecline: function(e, t, i) {
+        var o = gpeByClass("_app_settings_actions", e);
+        o && !cur.adminRequestProcess && (cur.adminRequestProcess = !0, ajax.post("al_apps_edit.php", {
+            act: "a_decline_admin_request",
+            aid: t,
+            hash: i
+        }, {
+            onDone: function(e, i, n) {
+                cur.adminRequest || (cur.adminRequest = {}), cur.adminRequest[t] = n, val(o, e), i && showDoneBox(i)
+            },
+            hideProgress: function() {
+                cur.adminRequestProcess = !1
+            }
+        }))
     },
     share: function(e, t) {
         showBox("like.php", {

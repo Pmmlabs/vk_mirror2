@@ -529,10 +529,16 @@
     color: #777
 }
 
-.login_blocked_wrap .unblock_form .inputs .input ._change_phone_button,
+.login_blocked_wrap .unblock_form .inputs .input ._change_phone_button {
+    display: block;
+    position: absolute;
+    right: 135px;
+    margin-top: 5px
+}
+
 .login_blocked_wrap .unblock_form .inputs .input ._resend_code_button {
     display: block;
-    margin: 8px 69px 0px 2px
+    margin: 8px 69px 0px
 }
 
 .login_blocked_wrap .unblock_form .inputs .check_code_button,

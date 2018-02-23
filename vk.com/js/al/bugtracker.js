@@ -207,7 +207,7 @@ var BugTracker = {
         var o = extend({}, e, {
             load: 1
         });
-        t && cur.btUDate && (o.min_udate = cur.btUDate), delete o[0], ajax.post("bugtracker", o, {
+        t && cur.btUDate && (nav.objLoc.rev ? o.max_udate = cur.btUDate : o.min_udate = cur.btUDate), delete o[0], ajax.post("bugtracker", o, {
             showProgress: uiSearch.showProgress.pbind("bt_search"),
             hideProgress: uiSearch.hideProgress.pbind("bt_search"),
             onDone: function(e, t) {
@@ -1091,7 +1091,7 @@ var BugTracker = {
             act: "a_restore_bugreport",
             id: e,
             hash: t
-        }, {});
+        }, {})
     },
     saveSettings: function(e, t) {
         var r = {

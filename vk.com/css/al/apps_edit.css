@@ -2190,6 +2190,7 @@ input.apps_edit_add_user_inp {
 }
 
 .apps_edit_user_actions {
+    float: right;
     color: #777
 }
 
@@ -2222,8 +2223,14 @@ input.apps_edit_add_user_inp {
 }
 
 .apps_edit_admin_name {
-    width: 300px;
-    margin: 0px -100px
+    word-wrap: break-word;
+    max-height: 38px;
+    line-height: 19px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis
 }
 
 .apps_edit_admin_rights {

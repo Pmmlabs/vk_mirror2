@@ -1937,10 +1937,12 @@ a.page_block_header:hover .apps_cat_header_link:after {
     display: block
 }
 
+.apps_admin_requests_layout,
 .apps_manage_layout {
     width: 725px
 }
 
+.apps_admin_requests_layout .apps_list_content,
 .apps_manage_layout .apps_list_content {
     display: block
 }
@@ -2020,6 +2022,7 @@ a.page_block_header:hover .apps_cat_header_link:after {
     padding: 3px 0 8px
 }
 
+.apps_admin_requests_layout .apps_list_content>.apps_cat_wrap,
 .apps_manage_layout .apps_list_content>.apps_cat_wrap {
     margin: 0;
     padding: 0px 20px 5px
@@ -2029,6 +2032,7 @@ a.page_block_header:hover .apps_cat_header_link:after {
     border-top: 1px solid #f0f3f6
 }
 
+.apps_admin_requests_layout .apps_settings_row_wrap:first-child,
 .apps_manage_layout .apps_settings_row_wrap:first-child,
 .apps_settings_layout .apps_settings_row_wrap:first-child,
 .apps_settings_layout .apps_settings_row_wrap:first-child+.apps_settings_row_wrap {
@@ -2079,6 +2083,7 @@ a.page_block_header:hover .apps_cat_header_link:after {
     padding: 12px 0
 }
 
+.apps_admin_requests_layout .app_settings_row,
 .apps_manage_layout .app_settings_row {
     padding: 15px 0
 }
@@ -2090,6 +2095,7 @@ a.page_block_header:hover .apps_cat_header_link:after {
 }
 
 .app_settings_image {
+    float: left;
     width: 34px;
     height: 34px;
     vertical-align: top;
@@ -2102,15 +2108,21 @@ a.page_block_header:hover .apps_cat_header_link:after {
     height: 34px
 }
 
+.apps_admin_requests_layout .app_settings_image,
 .apps_manage_layout .app_settings_image {
     width: 40px;
     height: 40px;
     padding-right: 15px
 }
 
+.apps_admin_requests_layout .app_settings_image img,
 .apps_manage_layout .app_settings_image img {
     width: 40px;
     height: 40px
+}
+
+.app_settings_extra {
+    float: left
 }
 
 .app_settings_name {
@@ -2130,11 +2142,13 @@ a.page_block_header:hover .apps_cat_header_link:after {
     color: #2a5885
 }
 
+.apps_admin_requests_layout .app_settings_name,
 .apps_manage_layout .app_settings_name {
     padding-top: 5px;
     font-size: 0.92em
 }
 
+.apps_admin_requests_layout .app_settings_data,
 .apps_manage_layout .app_settings_data {
     color: #828282;
     font-size: 0.92em
@@ -2145,9 +2159,11 @@ a.page_block_header:hover .apps_cat_header_link:after {
 }
 
 .app_settings_info {
+    float: left;
     line-height: 34px
 }
 
+.apps_admin_requests_layout .app_settings_info,
 .apps_manage_layout .app_settings_info {
     line-height: 1em;
     width: 280px
@@ -2158,9 +2174,11 @@ a.page_block_header:hover .apps_cat_header_link:after {
 }
 
 .app_settings_actions {
+    float: right;
     line-height: 34px
 }
 
+.apps_admin_requests_layout .app_settings_actions,
 .apps_manage_layout .app_settings_actions {
     line-height: 40px
 }

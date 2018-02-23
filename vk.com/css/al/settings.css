@@ -877,6 +877,7 @@ a.settings_blb_title {
 }
 
 .settings_apps .app_settings_image {
+    float: left;
     width: 34px;
     height: 34px;
     vertical-align: top;
@@ -910,8 +911,13 @@ a.settings_blb_title {
     padding-top: 5px
 }
 
-.settings_apps .app_settings_info,
+.settings_apps .app_settings_info {
+    float: left;
+    line-height: 34px
+}
+
 .settings_apps .app_settings_actions {
+    float: right;
     line-height: 34px
 }
 

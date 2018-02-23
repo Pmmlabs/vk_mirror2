@@ -253,7 +253,7 @@ var Dev = {
             navMT = intval(getStyle(nav, 'marginTop')),
             page = ge('dev_page_wrap'),
             pageH = getSize(page)[1],
-            navMB = navMT + 25,
+            navMB = navMT,
             tooBig = navH > pageH,
             navPB = Math.max(0, bottomH + st + wh - bodyNode.clientHeight - navMB),
             lastPos = (cur.filterLastPos === undefined) ? headH : cur.filterLastPos,

@@ -578,10 +578,13 @@ input.dev_wide_input~.placeholder .ph_content,
     width: 215px;
     padding: 14px 0;
     word-wrap: break-word;
-    margin-top: 25px;
     background: #fff;
     border-radius: 2px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8
+}
+
+.dev_left_nav_wrap {
+    margin-top: 25px
 }
 
 .dev_section_methods_wrap {

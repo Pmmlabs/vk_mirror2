@@ -1542,6 +1542,12 @@ body.dev .tickets_faq_row {
     padding-top: 10px
 }
 
+.tickets_new_urgent_colored {
+    border-bottom: 1px solid #c1c9d9;
+    border-top: 1px solid #c1c9d9;
+    background: #f0f2f5
+}
+
 .tickets_faq_img {
     float: left;
     height: 32px;

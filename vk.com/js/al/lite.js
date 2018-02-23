@@ -1765,11 +1765,15 @@ window.ajax = {
                     o.onFail.apply();
                     break;
                 default:
-                    if (code == -1 || code == -2) {
+                    if (code == -1 || code == -2 || code == -3) {
                         var adsShowed = answer.pop();
                         var adsCanShow = answer.pop();
                         var adsHtml = answer.pop();
-                        __adsSet(adsHtml, null, adsCanShow, adsShowed);
+                        var adsProps;
+                        if (code == -3) {
+                            adsProps = answer.pop();
+                        }
+                        __adsSet(adsHtml, null, adsCanShow, adsShowed, null, adsProps);
                     }
                     if (o.onDone) { // page, box or other
                         o.onDone.apply(window, answer);
@@ -6874,11 +6878,11 @@ function __adsUpdate(force) {
     stManager.add(['aes_light.js'], __adsUpdate.pbind(force));
 }
 
-function __adsSet(adsHtml, adsSection, adsCanShow, adsShowed, adsParams) {
+function __adsSet(adsHtml, adsSection, adsCanShow, adsShowed, adsParams, adsProps) {
     __adsSet = function() {
         window.AdsLight && AdsLight.setNewBlock.apply(AdsLight.setNewBlock, arguments);
     };
-    stManager.add(['aes_light.js'], __adsSet.pbind(adsHtml, adsSection, adsCanShow, adsShowed, adsParams));
+    stManager.add(['aes_light.js'], __adsSet.pbind(adsHtml, adsSection, adsCanShow, adsShowed, adsParams, adsProps));
 }
 
 /* Post video */
