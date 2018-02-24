@@ -718,10 +718,6 @@ h5.post_author {
     margin: 5px 0 0
 }
 
-.wall_module .copy_quote .page_doc_photo {
-    margin-top: 8px
-}
-
 .wall_module .published_comment {
     padding-bottom: 8px
 }
@@ -6151,7 +6147,7 @@ div.page_cover_image .ui_actions_menu_icons {
 .page_gif_large {
     position: relative;
     display: inline-block;
-    margin: 9px 0 4px
+    margin: 0 0 4px
 }
 
 .page_gif_preview {
@@ -7547,7 +7543,7 @@ button.wall_block_app_btn {
 }
 
 .wall_browse_images {
-    padding: 4px 0 12px
+    padding: 4px 0 0
 }
 
 .status_audio_shared {

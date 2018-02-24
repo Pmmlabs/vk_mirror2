@@ -32,12 +32,7 @@
 
 .post_thumbed_media {
     margin: 0 -5px -5px 0;
-    padding: 0 0 10px
-}
-
-.post_thumbed_media:first-child,
-.wall_reply_text+.post_thumbed_media {
-    padding-top: 10px
+    padding: 10px 0
 }
 
 .post_thumbed_media:last-child {
@@ -862,7 +857,7 @@ div.medadd_c_nofixed {
 }
 
 div.media_preview {
-    padding: 0 0 10px;
+    padding: 10px 0;
     display: none
 }
 
