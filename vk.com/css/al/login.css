@@ -325,6 +325,10 @@
     max-width: 600px
 }
 
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason .user_info {
+    margin-bottom: 8px
+}
+
 .login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason .page_post_thumb_wrap {
     display: block
 }

@@ -350,8 +350,8 @@ var stVersions = {
     'bugs.css': 11500684785,
     'bugtracker.js': 216510435,
     'bugtracker.css': 18482719339,
-    'login.css': 16234382335,
-    'cmodules/web/login.js': 3950198262,
+    'login.css': 18217180622,
+    'cmodules/web/login.js': 229557255,
     'upload.js': 16891470,
     'upload_photo_transform.js': 1497838791,
     'graffiti.js': 1826105362,
@@ -636,4 +636,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 9653;
+var _rnd = 4675;
