@@ -1052,6 +1052,116 @@ input.wide_button {
     box-sizing: border-box
 }
 
+.new_form {
+    font-size: 15px
+}
+
+.new_form .service_msg {
+    font-size: 14px;
+    line-height: 1.29;
+    padding: 10px 12px 9px;
+    border-radius: 3px
+}
+
+.new_form .textfield {
+    box-sizing: border-box;
+    font-size: 15px;
+    padding: 10px 11px;
+    border-radius: 3px
+}
+
+.new_form .fi_label {
+    margin-top: 2px;
+    color: #909499
+}
+
+.new_form .fi_subrow {
+    padding-top: 12px;
+    padding-bottom: 8px
+}
+
+.new_form .sel {
+    font-size: 15px;
+    height: 40px
+}
+
+.new_form .button {
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 15px!important;
+    font-weight: 600;
+    padding: 10px 16px 12px!important;
+    border-radius: 3px
+}
+
+.new_form .button.success {
+    background-color: #4bb34b
+}
+
+.new_form .fi_row_new {
+    padding-top: 20px
+}
+
+.new_form .fi_field_links,
+.new_form .near_btn {
+    font-size: 15px!important;
+    padding: 0
+}
+
+.new_form .selector {
+    box-sizing: border-box;
+    padding: 10px 11px
+}
+
+.new_form .selector_placeholder {
+    color: #909499;
+    font-size: 15px
+}
+
+.new_form .fi_field_sample {
+    padding-top: 12px;
+    font-size: 15px
+}
+
+.new_form .service_msg_null {
+    font-size: 14px
+}
+
+.new_form .sel_row {
+    padding: 13px 12px
+}
+
+.new_form .sf_bottom_msg {
+    position: relative;
+    padding: 12px 28px;
+    margin-top: -1px;
+    border-bottom: 1px solid #dfe3e8;
+    border-top: 1px solid #efefef;
+    line-height: 1.5em;
+    text-align: center;
+    color: #909499
+}
+
+.new_form .login_help {
+    font-size: 14px;
+    line-height: 1.33
+}
+
+.new_form .control.row {
+    padding: 8px 0 10px 4px
+}
+
+.new_form .field_error,
+.new_form .service_msg_error,
+.new_form .service_msg_warning {
+    border-color: #f2ab99
+}
+
+.new_form .service_msg_error,
+.new_form .service_msg_warning {
+    background-color: #ffefe9
+}
+
 .lvi {
     background: url(/images/mobile/profile_icons.png?5) no-repeat 0;
     width: 0px;
@@ -17057,6 +17167,61 @@ body.article_body.article_dark {
     margin-bottom: 8px
 }
 
+.installApp {
+    background-color: #fff
+}
+
+.installApp__link {
+    color: #517094;
+    font-size: 14px
+}
+
+.installApp__link:hover .installApp__arrow {
+    right: 14px
+}
+
+.installApp__linkWrap {
+    white-space: nowrap
+}
+
+.installApp__label {
+    background: url('/images/icons/mobile.png') no-repeat 0;
+    background-size: 20px;
+    padding: 16px 25px;
+    position: relative;
+    margin-left: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.vk_2x .installApp__label {
+    background-image: url('/images/icons/mobile_2x.png')
+}
+
+@media (max-width: 319px) {
+    .installApp__label {
+        background: none;
+        padding-left: 0
+    }
+}
+
+.installApp__arrow {
+    background: url('/images/icons/blue_arrow.png') no-repeat 50%;
+    background-size: 9px 15px;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    margin-top: -7.5px;
+    width: 9px;
+    height: 15px;
+    -o-transition: right 100ms linear;
+    transition: right 100ms linear
+}
+
+.vk_2x .installApp__arrow {
+    background-image: url('/images/icons/blue_arrow_2x.png')
+}
+
 .leftMenu__header .mhb_logo {
     padding-left: 3px!important;
     padding-right: 15px!important
@@ -20784,129 +20949,122 @@ a.feedBlocks__article:hover {
     margin-top: 12px
 }
 
-.fit_box.jnf {
-    font-size: 15px
-}
-
-.fit_box.jnf .service_msg {
-    font-size: 14px;
-    line-height: 1.29;
-    padding: 10px 12px 9px;
-    border-radius: 3px
-}
-
-.fit_box.jnf .join_header {
+.join_header {
     font-size: 16px;
     font-weight: 600;
     text-align: center;
     padding-top: 24px
 }
 
-.fit_box.jnf .join_desc {
+.join_desc {
     line-height: 1.33;
     text-align: center;
     color: #5f5f5f;
     margin: 10px 0
 }
 
-.fit_box.jnf .textfield {
-    box-sizing: border-box;
-    font-size: 15px;
-    padding: 10px 11px;
-    border-radius: 3px
+.join_friends {
+    background-color: #fff;
+    padding-bottom: 70px
 }
 
-.fit_box.jnf .fi_label {
-    margin-top: 2px;
-    color: #909499
+.join_friends .join_header {
+    margin-bottom: 20px
 }
 
-.fit_box.jnf .fi_subrow {
-    padding-top: 12px;
-    padding-bottom: 8px
+.join_friends .friendsList__divider,
+.join_friends .friendsList__footerBtn {
+    display: none
 }
 
-.fit_box.jnf .sel {
-    font-size: 15px;
-    height: 40px
+.join_friends_button {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px
 }
 
-.fit_box.jnf .button {
-    box-sizing: border-box;
-    width: 100%;
-    font-size: 15px!important;
-    font-weight: 600;
-    padding: 10px 16px 12px!important;
-    border-radius: 3px
+.join_friends_button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    opacity: .9;
+    z-index: 1
 }
 
-.fit_box.jnf .button.reg_btn {
-    background-color: #4bb34b
-}
-
-.fit_box.jnf .fi_row_new {
-    padding-top: 20px
-}
-
-.fit_box.jnf .fi_field_links,
-.fit_box.jnf .near_btn {
-    font-size: 15px!important;
-    padding: 0
-}
-
-.fit_box.jnf .selector {
-    box-sizing: border-box;
-    padding: 10px 11px
-}
-
-.fit_box.jnf .selector_placeholder {
-    color: #909499;
-    font-size: 15px
-}
-
-.fit_box.jnf .fi_field_sample {
-    padding-top: 12px;
-    font-size: 15px
-}
-
-.fit_box.jnf .service_msg_null {
-    font-size: 14px
-}
-
-.fit_box.jnf .sel_row {
-    padding: 13px 12px
-}
-
-.fit_box.jnf .sf_bottom_msg {
+.join_friends_button .button {
     position: relative;
-    padding: 12px 28px;
-    margin-top: -1px;
-    border-bottom: 1px solid #dfe3e8;
-    border-top: 1px solid #efefef;
-    line-height: 1.5em;
+    z-index: 100
+}
+
+.login .mhead {
     text-align: center;
-    color: #909499
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center
 }
 
-.fit_box.jnf .login_help {
-    font-size: 14px;
-    line-height: 1.33
+.login .mhead .mhb_logo {
+    display: inline-block
 }
 
-.fit_box.jnf .Control.Row,
-.fit_box.jnf .Control.vk__page_redesign .basis .fi_row {
-    padding: 8px 0 10px 4px
+.login .login_header {
+    color: #909499;
+    padding-top: 12px
 }
 
-.fit_box.jnf .field_error,
-.fit_box.jnf .service_msg_error,
-.fit_box.jnf .service_msg_warning {
-    border-color: #f2ab99
+.login .installApp {
+    margin-bottom: 12px
 }
 
-.fit_box.jnf .service_msg_error,
-.fit_box.jnf .service_msg_warning {
-    background-color: #ffefe9
+.login .fi_header_light {
+    color: #909499;
+    font-weight: 400
+}
+
+.login .login_restore {
+    margin-top: 5px
+}
+
+.login .login_new_user {
+    margin-top: 30px
+}
+
+.login .socials {
+    text-align: center;
+    margin-top: 5px
+}
+
+.login .social_button {
+    padding: 5px;
+    margin: 5px 10px -5px;
+    display: inline-block;
+    line-height: 24px
+}
+
+.login .social_button:hover {
+    text-decoration: none
+}
+
+.login .social_button .social_icon {
+    background-image: url('/images/mobile/auth_social_networks.png');
+    background-size: 100%;
+    font-size: 15px;
+    padding: 3px 12px;
+    margin-right: 7px
+}
+
+.vk_2x .login .social_button .social_icon {
+    background-image: url('/images/mobile/auth_social_networks_2x.png')
+}
+
+.login .social_button .social_icon.social_google {
+    background-position: 0 -24px
 }
 
 
@@ -20980,7 +21138,8 @@ a.feedBlocks__article:hover {
     padding-bottom: 14px!important;
     height: 19px;
     line-height: 19px!important;
-    text-align: left
+    text-align: left;
+    float: left
 }
 
 .h .mh_header {
@@ -21252,6 +21411,9 @@ a.feedBlocks__article:hover {
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex
+    }
+    .vk .mhb_back {
+        float: none
     }
     .vk .header__left {
         position: relative;

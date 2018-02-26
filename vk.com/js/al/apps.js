@@ -2720,6 +2720,19 @@ AppsSlider.prototype = {
             act: "publish_box",
             object: "app" + e + "_" + t
         })
+    },
+    unverifiedGoBack: function() {
+        return window.history.back(), !1
+    },
+    showUnverifiedBackBtn: function() {
+        var e, t = "apps_unverifiedAppWarning__btn_back",
+            i = "apps_unverifiedAppWarning__btn_active";
+        window.globalHistory && window.globalHistory.length && (e = geByClass1(t), e && addClass(e, i))
+    },
+    runUnverified: function(e, t) {
+        lockButton(e), nav.setLoc(extend(nav.objLoc, {
+            run_hash: t
+        })), nav.reload()
     }
 });
 try {

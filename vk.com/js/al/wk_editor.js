@@ -9,9 +9,9 @@ function WkEditor(e, t) {
     var s = "";
     t.mode && (this.mode = 0, this.modeBtn = t.mode, s = '<a id="wke_b_mode" class="wke_b wke_b_mode" wiki="mode" tooltip="' + t.mode[0] + '" onmousedown="' + this.inst + '.button(this, event);" onmouseover="' + this.inst + '.ttOver(this, true);"></a>'), s += '<a id="wke_b_help" class="wke_b wke_b_help" wiki="help" tooltip="' + t.help[0] + '" onmousedown="' + this.inst + '.button(this, event);" onmouseover="' + this.inst + '.ttOver(this, true);"></a>';
     var n = '<div id="wke_controls" class="wke_controls clear_fix"><div class="wke_loader"></div>' + s + '<div class="wke_panel clear_fix">';
-    for (var r in this.buttons) {
-        var a = this.buttons[r];
-        n += '<a id="wke_b_' + r + '" class="wke_b wke_b_' + r + '" wiki="' + r + '" tooltip="' + a[0] + '" onmousedown="' + this.inst + '.button(this, event);" onmouseover="' + this.inst + '.ttOver(this);"></a>'
+    for (var a in this.buttons) {
+        var r = this.buttons[a];
+        n += '<a id="wke_b_' + a + '" class="wke_b wke_b_' + a + '" wiki="' + a + '" tooltip="' + r[0] + '" onmousedown="' + this.inst + '.button(this, event);" onmouseover="' + this.inst + '.ttOver(this);"></a>'
     }
     n += "</div></div>", this.panelCont ? this.panelCont.innerHTML = n : (this.panelCont = ce("div", {
         innerHTML: n,
@@ -45,14 +45,14 @@ extend(WkEditor.prototype, {
                     var s = this.getRange(),
                         n = this.getState(s);
                     if (n && 2 == n[1]) {
-                        var r = n[0],
-                            a = ce("br");
-                        if (!s.endOffset && this.getText(r)) {
-                            var o = this.prevNode(r);
-                            o && "BR" != o.tagName && (3 != o.nodeType || o.data) && r.parentNode.insertBefore(ce("br"), r), r.parentNode.insertBefore(a, r), this.setFocus(r, {
+                        var a = n[0],
+                            r = ce("br");
+                        if (!s.endOffset && this.getText(a)) {
+                            var o = this.prevNode(a);
+                            o && "BR" != o.tagName && (3 != o.nodeType || o.data) && a.parentNode.insertBefore(ce("br"), a), a.parentNode.insertBefore(r, a), this.setFocus(a, {
                                 toStart: !0
                             })
-                        } else this.insertBreak(e, r);
+                        } else this.insertBreak(e, a);
                         return cancelEvent(e)
                     }
                     break;
@@ -79,11 +79,11 @@ extend(WkEditor.prototype, {
         else if ("focus" == e.type) this.checkEditPlace();
         else if ("blur" == e.type) this.switchMode(0);
         else if ("click" == e.type) {
-            var r = e.target;
-            if (this.isLink(r)) return this.showUrlBox([r, 3]), cancelEvent(e);
-            var h = this.isPhoto(r);
+            var a = e.target;
+            if (this.isLink(a)) return this.showUrlBox([a, 3]), cancelEvent(e);
+            var h = this.isPhoto(a);
             if (h) return this.showPhotoBox(h), cancelEvent(e);
-            if (r == this.cont && browser.opera) return this.setFocus(this.cont), cancelEvent(e)
+            if (a == this.cont && browser.opera) return this.setFocus(this.cont), cancelEvent(e)
         } else if ("cut" != e.type && "copy" != e.type || this.plainMode) "paste" != e.type || this.plainMode || setTimeout(function() {
             var e = geByTag("img", this.cont);
             e = Array.prototype.slice.apply(e);
@@ -94,12 +94,12 @@ extend(WkEditor.prototype, {
                     if ("A" != i.tagName) {
                         var n = getSize(e[t]);
                         if (!n[0]) continue;
-                        var r = ce("a", {
+                        var a = ce("a", {
                             innerHTML: '<img width="' + n[0] + '" height="' + n[1] + '" src="' + e[t].src + '" />',
                             contentEditable: "false",
                             className: "wk_photo"
                         });
-                        i.replaceChild(r, e[t]), i = r
+                        i.replaceChild(a, e[t]), i = a
                     }
                     i.setAttribute("onclick", s[0]), i.setAttribute("wiki", s[1]), i.setAttribute("href", s[2])
                 }
@@ -162,20 +162,20 @@ extend(WkEditor.prototype, {
                 this.plainMode ? this.plainInsert("''", "''") : (n.execCommand("italic", !1, null), this.toggleState(i));
                 break;
             case "image":
-                var r = extend({
+                var a = extend({
                     act: "choose_photo",
                     al_wiki_editor: 1,
                     is_blog_editor: -1 != location.href.indexOf("/blog") ? 1 : 0,
                     to_id: cur.oid,
                     scrollbar_width: window.sbWidth()
                 }, this.pboxParams);
-                this.pbox = this.showBox("al_photos.php", r, {
+                this.pbox = this.showBox("al_photos.php", a, {
                     stat: ["page.css", "page.js"],
                     cache: 1
                 }), window.editorChoosePhoto = this.insertPhoto.bind(this);
                 break;
             case "video":
-                this.vbox = this.showBox("video.php", {
+                this.vbox = this.showBox("al_video.php", {
                     act: "a_choose_video_box",
                     al_wiki_editor: 1,
                     to_id: cur.oid,
@@ -224,8 +224,8 @@ extend(WkEditor.prototype, {
                 }) : this.wrapHeader("wk_sub_sub_header", s);
                 break;
             case "url":
-                var a = this.getState(this.getRange());
-                this.showUrlBox(a, !0);
+                var r = this.getState(this.getRange());
+                this.showUrlBox(r, !0);
                 break;
             case "list":
                 this.plainMode ? this.plainInsert("* ", "", {
@@ -284,13 +284,13 @@ extend(WkEditor.prototype, {
             var s = t[i];
             if (!s.firstChild || "DIV" != s.firstChild.tagName) {
                 for (var n = document.createDocumentFragment(); s.firstChild;) n.appendChild(s.firstChild);
-                var r = ce("div");
-                r.appendChild(n), s.appendChild(r)
+                var a = ce("div");
+                a.appendChild(n), s.appendChild(a)
             }
         }
-        var a = geByClass("wk_photo", e);
-        a.push.apply(a, geByClass("wk_photo_no_padding", e)), a.push.apply(a, geByClass("wk_video", e)), a.push.apply(a, geByClass("audio_row", e));
-        for (var i = a.length; i--;) a[i].setAttribute("contenteditable", "false")
+        var r = geByClass("wk_photo", e);
+        r.push.apply(r, geByClass("wk_photo_no_padding", e)), r.push.apply(r, geByClass("wk_video", e)), r.push.apply(r, geByClass("audio_row", e));
+        for (var i = r.length; i--;) r[i].setAttribute("contenteditable", "false")
     },
     plainGetSel: function() {
         var e, t = 0,
@@ -299,11 +299,11 @@ extend(WkEditor.prototype, {
             if (e = !0, range = document.selection.createRange(), range && range.parentElement() == this.textarea) {
                 var s = this.textarea.value,
                     n = s.length,
-                    r = s.replace(/\r\n/g, "\n"),
-                    a = this.textarea.createTextRange();
-                a.moveToBookmark(range.getBookmark());
+                    a = s.replace(/\r\n/g, "\n"),
+                    r = this.textarea.createTextRange();
+                r.moveToBookmark(range.getBookmark());
                 var o = this.textarea.createTextRange();
-                o.collapse(!1), a.compareEndPoints("StartToEnd", o) > -1 ? t = i = n : (t = -a.moveStart("character", -n), browser.msie && intval(browser.version) < 9 && (t += r.slice(0, t).split("\n").length - 1), a.compareEndPoints("EndToEnd", o) > -1 ? i = n : (i = -a.moveEnd("character", -n), browser.msie && intval(browser.version) < 9 && (i += r.slice(0, i).split("\n").length - 1)))
+                o.collapse(!1), r.compareEndPoints("StartToEnd", o) > -1 ? t = i = n : (t = -r.moveStart("character", -n), browser.msie && intval(browser.version) < 9 && (t += a.slice(0, t).split("\n").length - 1), r.compareEndPoints("EndToEnd", o) > -1 ? i = n : (i = -r.moveEnd("character", -n), browser.msie && intval(browser.version) < 9 && (i += a.slice(0, i).split("\n").length - 1)))
             }
         } else this.textarea.selectionStart || "0" == this.textarea.selectionStart ? (t = this.textarea.selectionStart, i = this.textarea.selectionEnd) : i = t = this.textarea.value.length;
         return [t, i, e]
@@ -312,22 +312,22 @@ extend(WkEditor.prototype, {
         this.textarea.focus(), e = e || "", t = t || "", i = i || {};
         var s = e.length,
             n = t.length,
-            r = this.plainGetSel(),
-            a = r[0],
-            o = r[1],
-            h = (r[2], this.textarea.value.substr(0, a)),
-            l = this.textarea.value.substr(a, o - a),
+            a = this.plainGetSel(),
+            r = a[0],
+            o = a[1],
+            h = (a[2], this.textarea.value.substr(0, r)),
+            l = this.textarea.value.substr(r, o - r),
             c = this.textarea.value.substr(o, this.textarea.value.length - o),
             d = l.match(this.re.endSp);
-        if (d && (len = d[0].length, l = l.substr(0, l.length - len), o -= len, c = d[0] + c), i.replace && (l = ""), a >= s && h.substr(a - s, a) == e && c.substr(0, n) == t) e = "", t = "", h = h.substr(0, a - s), c = c.substr(n), a -= s, o -= s;
-        else if (a += s, o += s, i.newline) {
-            "\n" != h.substr(-1) && (h += "\n", a += 1, o += 1);
+        if (d && (len = d[0].length, l = l.substr(0, l.length - len), o -= len, c = d[0] + c), i.replace && (l = ""), r >= s && h.substr(r - s, r) == e && c.substr(0, n) == t) e = "", t = "", h = h.substr(0, r - s), c = c.substr(n), r -= s, o -= s;
+        else if (r += s, o += s, i.newline) {
+            "\n" != h.substr(-1) && (h += "\n", r += 1, o += 1);
             var u = c.substr(0, 1);
             "\n" != u && "\r" != u && (c = "\n" + c)
         }
         this.textarea.value = h + e + l + t + c;
         setTimeout(function() {
-            this.plainFocus(this.textarea, a, o)
+            this.plainFocus(this.textarea, r, o)
         }.bind(this), 0)
     },
     wrapHeader: function(e, t) {
@@ -340,25 +340,25 @@ extend(WkEditor.prototype, {
     },
     wrapEl: function(e, t, i, s) {
         var n = this.getRange(),
-            r = this.getState(n),
-            a = r[0];
-        a.tagName == e.toUpperCase() ? this.unsurround(a) : (6 == r[1] && this.unsurround(a), this.surround(ce(e), t[1], i, s)), this.checkEditPlace()
+            a = this.getState(n),
+            r = a[0];
+        r.tagName == e.toUpperCase() ? this.unsurround(r) : (6 == a[1] && this.unsurround(r), this.surround(ce(e), t[1], i, s)), this.checkEditPlace()
     },
     wrapList: function(e, t) {
         var i = this.getRange(),
             s = this.getState(i),
             n = s[0];
         if (5 == s[1] && geByTag("li", n).length) {
-            for (var r = n.firstChild, a = document.createDocumentFragment(); r;) {
-                if ("LI" == r.tagName) {
-                    for (var o = ce("div"); r.firstChild;) o.appendChild(r.firstChild);
-                    a.appendChild(o)
+            for (var a = n.firstChild, r = document.createDocumentFragment(); a;) {
+                if ("LI" == a.tagName) {
+                    for (var o = ce("div"); a.firstChild;) o.appendChild(a.firstChild);
+                    r.appendChild(o)
                 }
-                r = r.nextSibling
+                a = a.nextSibling
             }
-            var h = a.firstChild,
-                l = a.lastChild;
-            n.parentNode.replaceChild(a, n), this.setSelection(h, l)
+            var h = r.firstChild,
+                l = r.lastChild;
+            n.parentNode.replaceChild(r, n), this.setSelection(h, l)
         } else this.surround(ce(e, {
             className: "listing"
         }), t[1], '<li><span class="l">', "</span></li>", !0);
@@ -416,14 +416,14 @@ extend(WkEditor.prototype, {
         var t = geByTag1("IMG", e);
         if (!t) return !1;
         var i, s, n = e.getAttribute("href"),
-            r = "",
-            a = (n || "").match(this.re.photoHref);
-        if (a) i = a[1], s = (a[2] || "").substr(1);
+            a = "",
+            r = (n || "").match(this.re.photoHref);
+        if (r) i = r[1], s = (r[2] || "").substr(1);
         else {
             var o = e.getAttribute("wiki");
-            o && (a = o.split("_"), i = a[0], s = a[1]);
+            o && (r = o.split("_"), i = r[0], s = r[1]);
             var h;
-            r = n, r = (h = n.match(this.re.away)) ? decodeURIComponent(h[1]) : n
+            a = n, a = (h = n.match(this.re.away)) ? decodeURIComponent(h[1]) : n
         }
         if (!i || !s) return !1;
         var l = e.getAttribute("title");
@@ -432,10 +432,10 @@ extend(WkEditor.prototype, {
             oid: i,
             pid: s,
             text: l || "",
-            url: r,
+            url: a,
             saveRatio: !0
-        }, cur.wkSavePhoto = function(n, r, a, o) {
-            var h = this.getPhotoHTML(i, s, t.src, n, r, a, o);
+        }, cur.wkSavePhoto = function(n, a, r, o) {
+            var h = this.getPhotoHTML(i, s, t.src, n, a, r, o);
             e.parentNode.replaceChild(se(h), e)
         }.bind(this), cur.wkBoxRange = this.getRange();
         var c = showBox("wiki.php", {
@@ -452,8 +452,8 @@ extend(WkEditor.prototype, {
     getLinkWiki: function(e, t, i) {
         var s, n;
         "/" == e[0] && (e = "https://vk.com" + e);
-        var r = "[",
-            a = "]";
+        var a = "[",
+            r = "]";
         if (s = e.match(this.re.away)) e = decodeURIComponent(s[1]);
         else if ((n = e.match(this.re.pageHref)) && !cur.isBLogEditor) {
             try {
@@ -461,21 +461,21 @@ extend(WkEditor.prototype, {
             } catch (o) {
                 e = n[1]
             }
-            r = "[[", a = "]]"
+            a = "[[", r = "]]"
         } else if ((n = e.match(this.re.devHref)) && !cur.isBLogEditor) {
             try {
                 e = decodeURIComponent(n[1])
             } catch (o) {
                 e = n[1]
             }
-            r = "[[", a = "]]"
-        } else(n = e.match(this.re.pageId)) && !cur.isBLogEditor && (e = n[1], r = "[[", a = "]]");
+            a = "[[", r = "]]"
+        } else(n = e.match(this.re.pageId)) && !cur.isBLogEditor && (e = n[1], a = "[[", r = "]]");
         var h = "";
         if (i) {
             var l = i.getAttribute("onclick");
             l && -1 != l.indexOf("inBox") && (h += "box|")
         }
-        return (h || e != t) && (h += t), r + e + (h ? "|" + h : "") + a
+        return (h || e != t) && (h += t), a + e + (h ? "|" + h : "") + r
     },
     insertLink: function(e, t, i) {
         if (this.plainMode) return this.plainInsert(this.getLinkWiki(t, e), "", {
@@ -568,19 +568,19 @@ extend(WkEditor.prototype, {
         sel = document.selection.createRange(), sel.text
     },
     surround: function(e, t, i, s, n) {
-        var r = this.getRange(),
-            a = this.getRangeText(r, n);
-        if (i = i || "", s = s || "", r.collapsed || !a) t && (e.innerHTML = i + (t || "header") + s);
+        var a = this.getRange(),
+            r = this.getRangeText(a, n);
+        if (i = i || "", s = s || "", a.collapsed || !r) t && (e.innerHTML = i + (t || "header") + s);
         else {
             var o = "";
             if (n) {
-                a = a.split("\n");
-                for (var h in a) a[h] && (o += i + clean(a[h]) + s);
+                r = r.split("\n");
+                for (var h in r) r[h] && (o += i + clean(r[h]) + s);
                 o || (o = i + (t || "header") + s)
-            } else o = i + clean(a || "") + s;
+            } else o = i + clean(r || "") + s;
             e.innerHTML = o
         }
-        this.replaceSelected([e]) && (this.cleanContent(this.getRangeCont(r)), this.setFocus(e, {
+        this.replaceSelected([e]) && (this.cleanContent(this.getRangeCont(a)), this.setFocus(e, {
             noCollapse: !0
         }))
     },
@@ -615,12 +615,12 @@ extend(WkEditor.prototype, {
         if (e) var i = e.startContainer,
             s = e.endContainer;
         var n = !1,
-            r = 0,
-            a = i;
-        for (state = {}; a;) {
-            (i && a == t || a == s) && (i = !1, a = s);
-            var o = a.tagName;
-            if (1 == a.nodeType) {
+            a = 0,
+            r = i;
+        for (state = {}; r;) {
+            (i && r == t || r == s) && (i = !1, r = s);
+            var o = r.tagName;
+            if (1 == r.nodeType) {
                 switch (o) {
                     case "B":
                     case "STRONG":
@@ -633,16 +633,16 @@ extend(WkEditor.prototype, {
                     case "PRE":
                         state.pre = 1
                 }
-                this.testRight(a) && (state.right = 1), this.testCenter(a) && (state.center = 1)
+                this.testRight(r) && (state.right = 1), this.testCenter(r) && (state.center = 1)
             }
-            if ("LI" == o && this.fixList(a), !r) {
-                if (a.className) var h = a.className.match(this.re.header);
-                h ? (h[2] ? state.h3 = 1 : h[1] ? state.h2 = 1 : h[0] && (state.h1 = 1), n = a, r = 2, (state.right || state.center) && this.fixHeader(a)) : this.isLink(a) ? (n = a, r = 3) : "PRE" == o ? (n = a, r = 4) : "UL" == o || "OL" == o ? (n = a, r = 5, state.list = 1) : "BLOCKQUOTE" == o && (n = a, r = 6, state.blockquote = 1)
+            if ("LI" == o && this.fixList(r), !a) {
+                if (r.className) var h = r.className.match(this.re.header);
+                h ? (h[2] ? state.h3 = 1 : h[1] ? state.h2 = 1 : h[0] && (state.h1 = 1), n = r, a = 2, (state.right || state.center) && this.fixHeader(r)) : this.isLink(r) ? (n = r, a = 3) : "PRE" == o ? (n = r, a = 4) : "UL" == o || "OL" == o ? (n = r, a = 5, state.list = 1) : "BLOCKQUOTE" == o && (n = r, a = 6, state.blockquote = 1)
             }
-            if (a == this.cont) break;
-            a = a.parentNode
+            if (r == this.cont) break;
+            r = r.parentNode
         }
-        return this.setState(state), [n, r]
+        return this.setState(state), [n, a]
     },
     replaceSelected: function(e) {
         this.checkFocus();
@@ -684,9 +684,9 @@ extend(WkEditor.prototype, {
     plainFocus: function(e, t, s) {
         if (browser.msie && document.selection) {
             var n = e.value,
-                r = t;
-            for (i = 0; i < r; i++) "\r" == n[i] && (t -= 1, s -= 1);
-            for (r = s; i < r; i++) "\r" == n[i] && (s -= 1)
+                a = t;
+            for (i = 0; i < a; i++) "\r" == n[i] && (t -= 1, s -= 1);
+            for (a = s; i < a; i++) "\r" == n[i] && (s -= 1)
         }
         elfocus(e, t, s)
     },
@@ -707,12 +707,12 @@ extend(WkEditor.prototype, {
         }
         return s
     },
-    insertAudio: function(e, t, i, s, n, r, a) {
+    insertAudio: function(e, t, i, s, n, a, r) {
         if (this.abox.hide(), this.plainMode) return this.plainInsert("[[audio" + s + "]]", "", {
             replace: 1
         }), !1;
-        a = geByClass1("_audio_row", domPN(a));
-        var o = AudioUtils.getAudioFromEl(a),
+        r = geByClass1("_audio_row", domPN(r));
+        var o = AudioUtils.getAudioFromEl(r),
             h = AudioUtils.drawAudio(o),
             l = se(h);
         l.setAttribute("contenteditable", "false"), this.insert([l])
@@ -720,34 +720,34 @@ extend(WkEditor.prototype, {
     insertVideo: function(e, t, i, s, n) {
         return this.vbox.hide(), this.plainMode ? (this.plainInsert("[[video" + n + "]]", "", {
             replace: 1
-        }), !1) : (this.getImgSize(e, function(i, r) {
+        }), !1) : (this.getImgSize(e, function(i, a) {
             if (i > this.imgWidth + 20) {
-                var a = this.imgWidth / i;
-                i = this.imgWidth, r = Math.floor(r * a)
+                var r = this.imgWidth / i;
+                i = this.imgWidth, a = Math.floor(a * r)
             }
-            if (r > this.imgWidth + 20) {
-                var o = this.imgWidth / r;
-                r = this.imgWidth, i = Math.floor(i * o)
+            if (a > this.imgWidth + 20) {
+                var o = this.imgWidth / a;
+                a = this.imgWidth, i = Math.floor(i * o)
             }
             var h = se('<a class="wk_video" href="' + s + '" contentEditable="false" onclick="return showVideo(\'' + n + "', '', {autoplay: 1}, event)\"><img alt=\"" + t + '" title="' + t + '" src="/images/play_video_wide.png?3" style="background-image: url(' + e + ');">');
             this.insert([h])
         }.bind(this)), !1)
     },
-    getPhotoHTML: function(e, t, i, s, n, r, a) {
+    getPhotoHTML: function(e, t, i, s, n, a, r) {
         var o = "width: " + s + "px; height: " + n + "px;";
-        r ? (r = clean(r), act = "return goAway('" + r + "')") : (r = "/photo" + e + "_" + t, act = "return " + this.inst + ".editPhoto(this);");
+        a ? (a = clean(a), act = "return goAway('" + a + "')") : (a = "/photo" + e + "_" + t, act = "return " + this.inst + ".editPhoto(this);");
         var h = "";
-        return a && (h = ' title="' + clean(a) + '"'), '<a contenteditable="false"' + h + ' class="wk_photo" wiki="' + e + "_" + t + '" href="' + r + '" onclick="' + act + '"><img src="' + i + '" style="' + o + '" /></a>'
+        return r && (h = ' title="' + clean(r) + '"'), '<a contenteditable="false"' + h + ' class="wk_photo" wiki="' + e + "_" + t + '" href="' + a + '" onclick="' + act + '"><img src="' + i + '" style="' + o + '" /></a>'
     },
     insertPhoto: function(e, t, i, s) {
         return this.pbox.showProgress(), this.getImgSize(s, function(i, n) {
             if (this.pbox.hide(), i > this.imgWidth + 20) {
-                var r = this.imgWidth / i;
-                i = this.imgWidth, n = Math.floor(n * r)
+                var a = this.imgWidth / i;
+                i = this.imgWidth, n = Math.floor(n * a)
             }
             if (n > this.imgWidth + 20) {
-                var a = this.imgWidth / n;
-                n = this.imgWidth, i = Math.floor(i * a)
+                var r = this.imgWidth / n;
+                n = this.imgWidth, i = Math.floor(i * r)
             }
             return this.plainMode ? (this.plainInsert("[[photo" + e + "_" + t + "|" + i + "x" + n + "px;noborder| ]]", "", {
                 replace: 1
@@ -832,17 +832,17 @@ extend(WkEditor.prototype, {
         var i = "",
             s = "",
             n = !1,
-            r = e.nodeName;
-        ("TD" == r || "TH" == r) && (t |= 1), "PRE" == r && (t |= 2), "LI" == r && (t |= 3);
-        var a = this.getContent(e, t);
-        switch (r) {
+            a = e.nodeName;
+        ("TD" == a || "TH" == a) && (t |= 1), "PRE" == a && (t |= 2), "LI" == a && (t |= 3);
+        var r = this.getContent(e, t);
+        switch (a) {
             case "P":
-                a = a.replace(this.re.trimSp, "");
+                r = r.replace(this.re.trimSp, "");
                 var o = e.previousSibling;
-                o && !this.isCont(o) && "BR" != o.nodeName && (i = "\n"), a ? this.testLeft(e) ? (i = "<left>", s = "</left>\n") : this.testRight(e) ? (i = "<right>", s = "</right>\n") : this.testCenter(e) && (i = "<center>", s = "</center>\n") : n = "\n";
+                o && !this.isCont(o) && "BR" != o.nodeName && (i = "\n"), r ? this.testLeft(e) ? (i = "<left>", s = "</left>\n") : this.testRight(e) ? (i = "<right>", s = "</right>\n") : this.testCenter(e) && (i = "<center>", s = "</center>\n") : n = "\n";
                 break;
             case "DIV":
-                a = a.replace(this.re.trimSp, "");
+                r = r.replace(this.re.trimSp, "");
                 var h = e.className.match(this.re.header);
                 if (h) {
                     var l;
@@ -851,24 +851,24 @@ extend(WkEditor.prototype, {
                     var c = e.getAttribute("data-full-id");
                     c && (n = "[[audio" + c + "]]")
                 } else {
-                    if ("" == a) break;
-                    if ("\n" != a.substr(-1)) {
+                    if ("" == r) break;
+                    if ("\n" != r.substr(-1)) {
                         var d = this.lastNode(e);
                         d && "PRE" == d.tagName || (s = "\n")
                     }
                     var o = this.prevNode(e);
-                    o && !this.isCont(o) && "BR" != o.tagName && (i = "\n"), a ? this.testLeft(e) ? (i += "<left>", s = "</left>\n") : this.testRight(e) ? (i += "<right>", s = "</right>\n") : this.testCenter(e) && (i += "<center>", s = "</center>\n") : s = "\n"
+                    o && !this.isCont(o) && "BR" != o.tagName && (i = "\n"), r ? this.testLeft(e) ? (i += "<left>", s = "</left>\n") : this.testRight(e) ? (i += "<right>", s = "</right>\n") : this.testCenter(e) && (i += "<center>", s = "</center>\n") : s = "\n"
                 }
                 break;
             case "CENTER":
-                a = a.replace(this.re.trimSp, ""), "\n" != a.substr(-1) && (s = "\n"), i += "<center>", s = "</center>" + s;
+                r = r.replace(this.re.trimSp, ""), "\n" != r.substr(-1) && (s = "\n"), i += "<center>", s = "</center>" + s;
                 break;
             case "BR":
                 s = "\n", 1 & t && !cur.isBLogEditor ? s += "<br/>" : 3 & t && (s = "<br/>" + s);
                 break;
             case "B":
             case "STRONG":
-                var u = a.split("\n"),
+                var u = r.split("\n"),
                     g = [],
                     p = this.inBold(e.parentNode);
                 for (var f in u) {
@@ -879,7 +879,7 @@ extend(WkEditor.prototype, {
                 break;
             case "I":
             case "EM":
-                var u = a.split("\n"),
+                var u = r.split("\n"),
                     g = [],
                     b = this.inItalic(e.parentNode);
                 for (var f in u) {
@@ -943,25 +943,25 @@ extend(WkEditor.prototype, {
                 k = k.replace(this.re.n, "\r\n"), n = "<pre>" + k + "</pre>";
                 break;
             case "BLOCKQUOTE":
-                a = a.replace(this.re.trimSp, ""), i = "<blockquote>";
-                var T = a.substr(0, 1);
+                r = r.replace(this.re.trimSp, ""), i = "<blockquote>";
+                var T = r.substr(0, 1);
                 ("*" == T || "#" == T) && (i += "\n"), s = "</blockquote>" + s;
                 break;
             case "CODE":
-                a = a.replace(this.re.trimSp, ""), i = "<code>", s = "</code>";
+                r = r.replace(this.re.trimSp, ""), i = "<code>", s = "</code>";
                 break;
             case "UL":
-                a = a.replace(this.re.trimSp, "");
+                r = r.replace(this.re.trimSp, "");
                 var o = this.prevNode(e);
                 o && !this.isCont(o) && "BR" != o.nodeName && (i = "\n");
                 break;
             case "OL":
-                a = a.replace(this.re.trimSp, "");
+                r = r.replace(this.re.trimSp, "");
                 var o = this.prevNode(e);
                 o && !this.isCont(o) && "BR" != o.nodeName && (i = "\n");
                 break;
             case "LI":
-                var B = a.substr(0, 1);
+                var B = r.substr(0, 1);
                 if ("*" != B && "#" != B) {
                     var y = e.parentNode;
                     for (i = "* "; y && y != this.cont;) {
@@ -973,16 +973,16 @@ extend(WkEditor.prototype, {
                         y = y.parentNode
                     }
                 }
-                s = "\n", a = a.split("\n");
+                s = "\n", r = r.split("\n");
                 var N = "";
-                for (var f in a) {
-                    var L = a[f].match(this.re.wikiLi);
-                    N += L ? (f > 0 ? "\n" : "") + L[1] + a[f] : a[f] ? (f > 0 ? "\n:" : "") + a[f] : "<br/><br/>"
+                for (var f in r) {
+                    var L = r[f].match(this.re.wikiLi);
+                    N += L ? (f > 0 ? "\n" : "") + L[1] + r[f] : r[f] ? (f > 0 ? "\n:" : "") + r[f] : "<br/><br/>"
                 }
-                a = N;
+                r = N;
                 break;
             case "DD":
-                a = a.replace(this.re.trimSp, ""), i = ":";
+                r = r.replace(this.re.trimSp, ""), i = ":";
                 break;
             case "SPAN":
                 hasClass(e, "wk_gray") && (i = "<gray>", s = "</gray>");
@@ -1023,9 +1023,9 @@ extend(WkEditor.prototype, {
                 break;
             case "TD":
             case "TH":
-                a = a.replace(this.re.trimSp, ""), i = "TH" == r ? "! " : "| ", "\n" != a.substr(-1) && (s = "\n"), a = a.replace(this.re.nn, "<br/>")
+                r = r.replace(this.re.trimSp, ""), i = "TH" == a ? "! " : "| ", "\n" != r.substr(-1) && (s = "\n"), r = r.replace(this.re.nn, "<br/>")
         }
-        return n ? n : i + this.getWikiBreak(i, a) + a + this.getWikiBreak(a, s) + s
+        return n ? n : i + this.getWikiBreak(i, r) + r + this.getWikiBreak(r, s) + s
     },
     strToWiki: function(e) {
         var e = e.replace(this.re.trimN, " ");
@@ -1065,8 +1065,8 @@ extend(WkEditor.prototype, {
                         s += n;
                         break;
                     case 1:
-                        var r = i.tagName;
-                        ("DIV" == r || "P" == r || "PRE" == r || "BLOCKQUOTE" == r || "CENTER" == r || "RIGHT" == r || "LEFT" == r || "BR" == r) && (s += "\n"), s += "B" == r || "STRONG" == r ? "<b>" + this.getText(i, !0) + "</b>" : "I" == r || "EM" == r ? "<i>" + this.getText(i, !0) + "</i>" : this.getText(i, !0)
+                        var a = i.tagName;
+                        ("DIV" == a || "P" == a || "PRE" == a || "BLOCKQUOTE" == a || "CENTER" == a || "RIGHT" == a || "LEFT" == a || "BR" == a) && (s += "\n"), s += "B" == a || "STRONG" == a ? "<b>" + this.getText(i, !0) + "</b>" : "I" == a || "EM" == a ? "<i>" + this.getText(i, !0) + "</i>" : this.getText(i, !0)
                 }
                 i = i.nextSibling
             }

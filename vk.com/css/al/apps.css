@@ -6295,3 +6295,46 @@ td.apps_cat_new_h {
 .apps_embed_install_screen_wrap .apps_i_slider_outer {
     margin: 25px auto
 }
+
+.apps_unverifiedAppWarning {
+    text-align: center;
+    padding: 100px 0
+}
+
+.apps_unverifiedAppWarning__images {
+    margin: 0 auto 25px
+}
+
+.apps_unverifiedAppWarning__img {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    margin: 0 12px 0 auto;
+    border-radius: 8px
+}
+
+.apps_unverifiedAppWarning__desc {
+    margin: 0 auto 20px;
+    max-width: 480px;
+    font-size: 14px;
+    line-height: 1.43;
+    color: #000
+}
+
+.apps_unverifiedAppWarning__buttons {
+    margin: 0 auto;
+    display: inline-block
+}
+
+.apps_unverifiedAppWarning__btn {
+    display: block;
+    margin: 0 auto 10px
+}
+
+.apps_unverifiedAppWarning__btn_back {
+    display: none
+}
+
+.apps_unverifiedAppWarning__btn_active {
+    display: block
+}

@@ -12,6 +12,10 @@
 .landing_author_guide_header__background,
 .landing_author_guide_header__close-button,
 .landing_author_guide_header__fire,
+.landing_author_guide_image.oformlenie,
+.landing_author_guide_image.podvodka,
+.landing_author_guide_image.svyaz,
+.landing_author_guide_image.zarabatyvat,
 .stats.female .landing_author_guide_header__background,
 .stats .landing_author_guide_header__background,
 .trending_stats_int_item__icon,
@@ -397,6 +401,63 @@
 .landing_author_guide_content ul.listing {
     color: #000;
     margin-bottom: 0
+}
+
+.landing_author_guide_image {
+    padding-bottom: 50%
+}
+
+.landing_author_guide_image.oformlenie {
+    background: url(/images/landings/author_guide/content_images/oformlenie.jpg) no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_author_guide_image.oformlenie {
+        background-image: url(/images/landings/author_guide/content_images/oformlenie_2x.jpg);
+        background-size: 700px 350px
+    }
+}
+
+.landing_author_guide_image.zarabatyvat {
+    background: url(/images/landings/author_guide/content_images/kak_zarabatyvat_v_soobschestve.jpg) no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_author_guide_image.zarabatyvat {
+        background-image: url(/images/landings/author_guide/content_images/kak_zarabatyvat_v_soobschestve_2x.jpg);
+        background-size: 700px 350px
+    }
+}
+
+.landing_author_guide_image.svyaz {
+    background: url(/images/landings/author_guide/content_images/obratnaya_svyaz_m.jpg) no-repeat
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_author_guide_image.svyaz {
+        background-image: url(/images/landings/author_guide/content_images/obratnaya_svyaz_m_2x.jpg);
+        background-size: 700px 350px
+    }
+}
+
+.landing_author_guide_image.podvodka {
+    background: url(/images/landings/author_guide/content_images/podvodka.jpg) no-repeat;
+    padding-bottom: 28.5%
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(-o-min-device-pixel-ratio: 2/1),
+(min-resolution: 192dpi) {
+    .landing_author_guide_image.podvodka {
+        background-image: url(/images/landings/author_guide/content_images/podvodka_2x.jpg);
+        background-size: 700px 200px
+    }
 }
 
 .trending_stats_title_group {

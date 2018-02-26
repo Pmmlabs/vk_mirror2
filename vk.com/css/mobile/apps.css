@@ -1052,6 +1052,116 @@ input.wide_button {
     box-sizing: border-box
 }
 
+.new_form {
+    font-size: 15px
+}
+
+.new_form .service_msg {
+    font-size: 14px;
+    line-height: 1.29;
+    padding: 10px 12px 9px;
+    border-radius: 3px
+}
+
+.new_form .textfield {
+    box-sizing: border-box;
+    font-size: 15px;
+    padding: 10px 11px;
+    border-radius: 3px
+}
+
+.new_form .fi_label {
+    margin-top: 2px;
+    color: #909499
+}
+
+.new_form .fi_subrow {
+    padding-top: 12px;
+    padding-bottom: 8px
+}
+
+.new_form .sel {
+    font-size: 15px;
+    height: 40px
+}
+
+.new_form .button {
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 15px!important;
+    font-weight: 600;
+    padding: 10px 16px 12px!important;
+    border-radius: 3px
+}
+
+.new_form .button.success {
+    background-color: #4bb34b
+}
+
+.new_form .fi_row_new {
+    padding-top: 20px
+}
+
+.new_form .fi_field_links,
+.new_form .near_btn {
+    font-size: 15px!important;
+    padding: 0
+}
+
+.new_form .selector {
+    box-sizing: border-box;
+    padding: 10px 11px
+}
+
+.new_form .selector_placeholder {
+    color: #909499;
+    font-size: 15px
+}
+
+.new_form .fi_field_sample {
+    padding-top: 12px;
+    font-size: 15px
+}
+
+.new_form .service_msg_null {
+    font-size: 14px
+}
+
+.new_form .sel_row {
+    padding: 13px 12px
+}
+
+.new_form .sf_bottom_msg {
+    position: relative;
+    padding: 12px 28px;
+    margin-top: -1px;
+    border-bottom: 1px solid #dfe3e8;
+    border-top: 1px solid #efefef;
+    line-height: 1.5em;
+    text-align: center;
+    color: #909499
+}
+
+.new_form .login_help {
+    font-size: 14px;
+    line-height: 1.33
+}
+
+.new_form .control.row {
+    padding: 8px 0 10px 4px
+}
+
+.new_form .field_error,
+.new_form .service_msg_error,
+.new_form .service_msg_warning {
+    border-color: #f2ab99
+}
+
+.new_form .service_msg_error,
+.new_form .service_msg_warning {
+    background-color: #ffefe9
+}
+
 .lvi {
     background: url(/images/mobile/profile_icons.png?5) no-repeat 0;
     width: 0px;
@@ -10520,4 +10630,56 @@ img[src^="/images/mobile/places/"] {
 .layout {
     min-height: 100%;
     background-color: #fff
+}
+
+.apps_unverifiedAppWarning {
+    text-align: center;
+    padding: 100px 0;
+    background: #fff
+}
+
+.apps_unverifiedAppWarning__images {
+    margin: 0 auto 25px
+}
+
+.apps_unverifiedAppWarning__img {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    margin: 0 12px 0 auto;
+    display: inline-block
+}
+
+.apps_unverifiedAppWarning__title {
+    font-size: 19px;
+    margin: 0 0 8px
+}
+
+.apps_unverifiedAppWarning__desc {
+    font-size: 14px;
+    line-height: 1.43;
+    color: #222;
+    margin: 0 auto 20px;
+    max-width: 320px
+}
+
+.apps_unverifiedAppWarning__buttons {
+    margin: 0 auto;
+    display: inline-block
+}
+
+.apps_unverifiedAppWarning__btn {
+    min-width: 102px;
+    display: block;
+    margin: 0 auto 10px;
+    width: 100%;
+    box-sizing: border-box
+}
+
+.apps_unverifiedAppWarning__btn_back {
+    display: none
+}
+
+.apps_unverifiedAppWarning__btn_active {
+    display: block
 }

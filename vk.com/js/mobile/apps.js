@@ -3503,7 +3503,33 @@ if (!window.Apps) window.Apps = {
             cur.featuredSlider.removeHandler();
             cur.featuredSlider.slideshowStop();
         }
-    }
+    },
+
+    runUnverified: function(btn, url) {
+        Btn.setLoading(btn, true);
+        if (nav.hash) {
+            url += '#' + nav.hash;
+        }
+        nav.go(url);
+    },
+
+    showUnverifiedBackBtn: function() {
+        var btnCls = 'apps_unverifiedAppWarning__btn_back',
+            activeCls = 'apps_unverifiedAppWarning__btn_active',
+            btn;
+
+        if (window.history && window.history.length > 2) {
+            btn = geByClass1(btnCls);
+            if (btn) {
+                addClass(btn, activeCls);
+            }
+        }
+    },
+
+    unverifiedGoBack: function() {
+        window.history.back();
+        return false;
+    },
 
 };
 
