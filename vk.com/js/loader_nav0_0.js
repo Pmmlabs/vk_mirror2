@@ -152,7 +152,7 @@ var stVersions = {
     'audioplayer.css': 15185173809,
     'audio_html5.js': 287741914,
     'audio.js': 3202340255,
-    'audio.css': 19142541117,
+    'audio.css': 19730258078,
     'gifts.css': 17122131500,
     'gifts.js': 338252255,
     'cc.js': 1644397126,
@@ -636,4 +636,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 6898;
+var _rnd = 8198;

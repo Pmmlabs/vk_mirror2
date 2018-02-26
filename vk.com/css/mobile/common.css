@@ -10348,6 +10348,14 @@ img[src^="/images/mobile/places/"] {
     margin-left: 4px
 }
 
+.vk__page_oauth .mhb_notify {
+    max-height: 48px
+}
+
+.vk__page_oauth .basis__header.basis__header {
+    display: block
+}
+
 .blog_body,
 .blog_body #l .main_menu,
 .blog_body #mcont,

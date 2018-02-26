@@ -2449,7 +2449,27 @@
     margin-left: 0
 }
 
+.audio_section_promo_wrapper {
+    position: relative
+}
+
+.audio_section_promo_wrapper .audio_promo_button {
+    position: absolute;
+    top: 110px;
+    padding: 11px 24px;
+    left: 34px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #fff;
+    color: #000
+}
+
+.audio_section_promo_wrapper .audio_promo_button:hover {
+    opacity: 0.9
+}
+
 .audio_section_promo_block {
+    display: block;
     height: 180px;
     cursor: pointer;
     background-size: cover
@@ -2470,21 +2490,6 @@
     position: absolute;
     top: 67px;
     left: 33px
-}
-
-.audio_section_promo_block .audio_promo_button {
-    position: relative;
-    top: 110px;
-    padding: 11px 24px;
-    left: 34px;
-    font-size: 14px;
-    font-weight: 500;
-    background-color: #fff;
-    color: #000
-}
-
-.audio_section_promo_block .audio_promo_button:hover {
-    opacity: 0.9
 }
 
 .audio_section_promo_block.audio_promo_type_audio_playlist .audio_promo_button,
