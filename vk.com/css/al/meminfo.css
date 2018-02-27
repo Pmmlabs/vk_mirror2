@@ -394,13 +394,17 @@ table.history .cur_session {
     display: none
 }
 
-#refund_comment {
-    width: 170px;
-    height: 40px
+#refund_payment_error .msg {
+    margin: 0
 }
 
-#refund_payment_error {
-    display: none
+#refund_amount {
+    width: 180px
+}
+
+#refund_comment {
+    width: 180px;
+    height: 50px
 }
 
 .mi_status_cancelled,

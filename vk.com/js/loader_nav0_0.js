@@ -167,7 +167,7 @@ var stVersions = {
     'sorter.js': 1976440538,
     'qsorter.js': 4013122173,
     'usorter.js': 362016183,
-    'cmodules/web/photos_module.js': 13601598722,
+    'cmodules/web/photos_module.js': 13327390967,
     'photo_tagger_mode.js': 2604367346,
     'photoview.js': 1772679052,
     'photoview.css': 27689016201,
@@ -180,7 +180,7 @@ var stVersions = {
     'friends_search.css': 1694758778,
     'board.js': 3844907940,
     'board.css': 22299536118,
-    'photos.css': 20250413480,
+    'photos.css': 22666724205,
     'photos.js': 3151850036,
     'photos_add.css': 23293658794,
     'photos_add.js': 3622240298,
@@ -229,7 +229,7 @@ var stVersions = {
     'groups.js': 2855040531,
     'groups_list.js': 3507753248,
     'groups_edit.css': 32646405483,
-    'groups_edit.js': 2656103,
+    'groups_edit.js': 3626122760,
     'profile.css': 17583763742,
     'profile.js': 610604261,
     'calendar.css': 17816604532,
@@ -344,7 +344,7 @@ var stVersions = {
     'achievements.css': 13669516697,
     'sf.css': 16405506872,
     'members.css': 14878750721,
-    'meminfo.css': 21568341240,
+    'meminfo.css': 21393805628,
     'groupinfo.css': 20223367328,
     'bugs.js': 3874995669,
     'bugs.css': 12925778045,
@@ -565,6 +565,7 @@ var stVersions = {
     'lead_forms_app.css': 18251767791,
     'internal/stories_admin_panel.css': 12989369406,
     'time_spent.js': 1789786634,
+    'cmodules/web/app_info.js': 2375115030,
     'lang': 6879
 };
 var stTypes = {
@@ -636,4 +637,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 2955;
+var _rnd = 415;

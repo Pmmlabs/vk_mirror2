@@ -1835,10 +1835,7 @@ var GroupsEdit = {
                 value: t,
                 hash: o
             }, {
-                onDone: function() {
-                    var e = ge("groups_edit_longpoll_url");
-                    !isVisible(e) && t ? slideDown(e, 300) : slideUp(e, 300)
-                }
+                onDone: function() {}
             })
         },
         saveSetting: function(e, t, o) {
@@ -2118,7 +2115,7 @@ var GroupsEdit = {
                     hash: s
                 }, {
                     onDone: function(t, o) {
-                        "ok" === t ? (nav.objLoc.server = o, nav.go(nav.objLoc)) : (unlockButton(e), GroupsEdit.callback.showError(o), hide(geByClass1("ui_tabs_progress", ge("content"))), show(geByClass1("page_actions_cont", ge("content"))));
+                        "ok" === t ? (nav.objLoc.server = o, nav.go(nav.objLoc)) : (unlockButton(e), GroupsEdit.callback.showError(o), hide(geByClass1("ui_tabs_progress", ge("content"))), show(geByClass1("page_actions_cont", ge("content"))))
                     }
                 })
             }, getLang("global_cancel"))
@@ -2492,6 +2489,17 @@ var GroupsEdit = {
                 }
             }), !1
         }
+    },
+    saveLeaveMessage: function(e, t) {
+        ajax.post("groupsedit.php?act=a_save_leave_message", {
+            hash: t,
+            message: val("leave_message_text"),
+            gid: cur.groupId
+        }, {
+            showProgress: lockButton(e),
+            hideProgress: unlockButton(e),
+            onDone: show.pbind("group_edit_msg")
+        })
     }
 };
 try {

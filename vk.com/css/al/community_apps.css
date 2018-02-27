@@ -20,7 +20,8 @@
 .apps_group_catalog_header {
     display: block;
     height: 159px;
-    background: url(/images/apps/apps_groups_catalog_header.png) no-repeat right 0
+    background: url(/images/apps/apps_groups_catalog_header.png) no-repeat right 0;
+    border-bottom: 1px solid #e7e8ec
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
@@ -94,10 +95,6 @@
     margin-left: 4px
 }
 
-#group_apps_catalog .apps_group_catalog_rows {
-    border-top: 1px solid #e7e8ec
-}
-
 #group_apps_catalog_mine .apps_group_catalog_rows,
 #group_apps_catalog_recent .apps_group_catalog_rows {
     border-top: 0
@@ -130,8 +127,7 @@
 }
 
 .apps_group_catalog_rows {
-    padding: 8px 20px;
-    border-top: 1px solid #e7e8ec
+    padding: 8px 20px
 }
 
 .apps_group_catalog_rows.with_search {
@@ -232,4 +228,11 @@
 
 .apps_group_catalog_rows .apps_catalog_row.last_visible {
     border-bottom: 0
+}
+
+.community_apps_catalog_type_tabs.ui_tabs_header {
+    margin: 0 20px;
+    padding: 0;
+    background: #fff;
+    border-bottom: 1px solid #e7e8ec
 }
