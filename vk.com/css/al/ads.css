@@ -2718,6 +2718,19 @@ a.ads_dd_menu_multi_item.label:hover {
     color: #777
 }
 
+.ads_retargeting_box_text_top {
+    margin-top: 0;
+    margin-bottom: 10px
+}
+
+.ads_retargeting_box_row {
+    margin-top: 10px
+}
+
+.ads_retargeting_box_row_big {
+    margin-top: 20px
+}
+
 .ads_retargeting_box input {
     width: 100%
 }
@@ -2846,8 +2859,18 @@ a.ads_dd_menu_multi_item.label:hover {
     display: inline-block
 }
 
+h4.subheader.ads_retargeting_subheader,
+h4.subheader.ads_retargeting_subheader_top {
+    margin-bottom: 10px
+}
+
 h4.subheader.ads_retargeting_subheader_top {
     margin-top: 0
+}
+
+h4.subheader.ads_retargeting_subheader_bordered {
+    border-top: 1px solid #eee;
+    padding-top: 18px
 }
 
 .ads_retargeting_rule_delete {
@@ -2984,6 +3007,47 @@ h4.subheader.ads_retargeting_subheader_top {
 .ads_retargeting_usage_table .ads_retargeting_usage_table_union {
     width: 180px;
     padding-bottom: 6px
+}
+
+.ads_retargeting_box input.ads_retargeting_group_share_target {
+    width: 316px
+}
+
+.ads_retargeting_group_share_button {
+    width: 110px
+}
+
+.ads_retargeting_group_share_history {
+    margin-top: 10px;
+    max-height: 118px;
+    overflow: scroll
+}
+
+.ads_retargeting_group_share_history_row {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 2px
+}
+
+.ads_retargeting_group_share_history_row_time {
+    white-space: nowrap;
+    font-weight: 700;
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: top;
+    -webkit-flex: 0;
+    -ms-flex: 0;
+    flex: 0;
+    min-width: 105px
+}
+
+.ads_retargeting_group_share_history_row_text {
+    display: inline-block;
+    vertical-align: top;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1
 }
 
 .ads_retargeting_price_list {

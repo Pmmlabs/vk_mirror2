@@ -3489,7 +3489,7 @@ Ads.showEditAdminBox = function(event, unionId, userId, userEmail, isRemove) {
     return false;
 }
 
-Ads.showRetargetingGroupActions = function(el, groupId, hasAttachedPixel, canRequestLookalike) {
+Ads.showRetargetingGroupActions = function(el, groupId, hasAttachedPixel, canRequestLookalike, isShared, canShare) {
     cur.options.groupId = groupId;
     cur.uiRetargetingActions.setOptions({
         target: el
@@ -3497,6 +3497,8 @@ Ads.showRetargetingGroupActions = function(el, groupId, hasAttachedPixel, canReq
     var editRuleEl = geByClass1('ads_retargeting_menu_edit_rule', cur.uiRetargetingActions.rows);
     var editAudienceEl = geByClass1('ads_retargeting_menu_edit_audience', cur.uiRetargetingActions.rows);
     var addAudienceEl = geByClass1('ads_retargeting_menu_add_audience', cur.uiRetargetingActions.rows);
+    var excludeAudienceEl = geByClass1('ads_retargeting_menu_exclude_audience', cur.uiRetargetingActions.rows);
+    var shareAudienceEl = geByClass1('ads_retargeting_menu_share_audience', cur.uiRetargetingActions.rows);
     if (hasAttachedPixel) {
         show(editRuleEl);
         show(addAudienceEl);
@@ -3505,6 +3507,17 @@ Ads.showRetargetingGroupActions = function(el, groupId, hasAttachedPixel, canReq
         hide(editRuleEl);
         hide(addAudienceEl);
         show(editAudienceEl);
+    }
+    if (isShared) {
+        hide(addAudienceEl);
+        hide(editAudienceEl);
+        hide(excludeAudienceEl);
+    }
+
+    if (canShare) {
+        show(shareAudienceEl);
+    } else {
+        hide(shareAudienceEl);
     }
 
     var requestLookalikeEl = geByClass1('ads_retargeting_menu_request_lookalike', cur.uiRetargetingActions.rows);
@@ -4089,7 +4102,113 @@ Ads.lookalikeExportAudienceMoveSlider = function(segment_number) {
     }
 }
 
+Ads.retargetingShareGroup = function(groupId, hash) {
+    ajax.post('/ads?act=a_retargeting_share_group', {
+        union_id: cur.options.unionId,
+        group_id: groupId,
+        hash: hash,
+        link: val('retargeting_group_share_target')
+    }, {
+        onDone: function(title, message) {
+            curBox().hide();
+            showFastBox({
+                title: title
+            }, message);
+            return true;
+        },
+        onFail: function(err) {
+            ge('ads_retargeting_box_error').firstChild.innerHTML = err;
+            show('ads_retargeting_box_error');
+            elfocus('retargeting_group_share_target');
+            return true;
+        },
+        showProgress: function() {
+            hide('ads_retargeting_box_error');
+            lockButton('retargeting_group_share_button');
+            disable('retargeting_group_share_target', true);
+        },
+        hideProgress: function() {
+            unlockButton('retargeting_group_share_button');
+            disable('retargeting_group_share_target', false);
+        }
+    });
+}
 
+Ads.retargetingShareGroupAccept = function(shareHash, hash) {
+    var targetUnionId;
+    if (cur.rtrgShareAcceptUnionDropdown) {
+        if (!cur.rtrgShareAcceptUnionDropdown.val()) {
+            notaBene(cur.rtrgShareAcceptUnionDropdown.container);
+            return
+        }
+        targetUnionId = cur.rtrgShareAcceptUnionDropdown.val();
+    } else {
+        targetUnionId = cur.rtrgShareAcceptUnionId;
+    }
+
+    ajax.post('/ads?act=a_retargeting_share_group_accept', {
+        share_hash: shareHash,
+        hash: hash,
+        union_id: targetUnionId
+    }, {
+        onDone: function() {
+            curBox().hide();
+            return true;
+        },
+        onFail: function(err) {
+            ge('ads_retargeting_box_error').firstChild.innerHTML = err;
+            show('ads_retargeting_box_error');
+            return true;
+        },
+        showProgress: function() {
+            hide('ads_retargeting_box_error');
+            lockButton('ads_retargeting_share_accept_button');
+        },
+        hideProgress: function() {
+            unlockButton('ads_retargeting_share_accept_button');
+        }
+    });
+}
+
+Ads.retargetingShareGroupLinkRefresh = function(groupId, hash, remove) {
+    ajax.post('/ads?act=a_retargeting_share_group_link_refresh', {
+        union_id: cur.options.unionId,
+        group_id: groupId,
+        hash: hash,
+        remove: intval(remove),
+    }, {
+        onDone: function(link) {
+            if (remove) {
+                show('retargeting_group_share_link_switcher');
+                hide('retargeting_group_share_link_wrapper');
+            } else {
+                val('retargeting_group_share_link', link);
+                hide('retargeting_group_share_link_switcher');
+                show('retargeting_group_share_link_wrapper');
+            }
+
+            unlockLink('retargeting_group_share_link_copy', ['link_lock_disabled']);
+            ge('retargeting_group_share_link_copy').innerHTML = getLang('ads_retargeting_group_share_link_copy');
+            return true;
+        },
+        onFail: function(err) {
+            ge('ads_retargeting_box_error').firstChild.innerHTML = err;
+            show('ads_retargeting_box_error');
+            return true;
+        },
+        showProgress: function() {
+            hide('ads_retargeting_box_error');
+            lockLink('retargeting_group_share_link_refresh', ['link_lock_disabled']);
+            lockLink('retargeting_group_share_link_remove', ['link_lock_disabled']);
+            lockLink('retargeting_group_share_link_switcher_link', ['link_lock_disabled']);
+        },
+        hideProgress: function() {
+            unlockLink('retargeting_group_share_link_refresh', ['link_lock_disabled']);
+            unlockLink('retargeting_group_share_link_remove', ['link_lock_disabled']);
+            unlockLink('retargeting_group_share_link_switcher_link', ['link_lock_disabled']);
+        }
+    });
+}
 
 Ads.retargetingCheckLink = function() {
     hide('ads_retargeting_box_error');
@@ -4201,28 +4320,28 @@ Ads.retargetingSaveSmartPixel = function() {
 }
 
 Ads.toggleRetargetingInput = function(id, show) {
-        var link = ge('ads_retargeting_' + id + '_link'),
-            input = ge('ads_retargeting_' + id);
-        if (!link || !input) return false;
-        if (!show && isVisible(link)) return false;
-        toggle(link, !show);
-        toggle(ge('ads_retargeting_' + id + '_input'), show);
-        if (show) {
-            input.select();
-            if (!cur.values) cur.values = {};
-            cur.values[id] = input.value;
-        }
-        return false;
-    },
-    Ads.retargetingInputChanged = function(id) {
-        var new_val = trim(ge('ads_retargeting_' + id).value);
-        if (cur.values[id] != new_val) {
-            Ads.saveRetargetingGroupParam(id);
-            cur.values[id] = new_val;
-        } else {
-            Ads.toggleRetargetingInput(id, false);
-        }
+    var link = ge('ads_retargeting_' + id + '_link'),
+        input = ge('ads_retargeting_' + id);
+    if (!link || !input) return false;
+    if (!show && isVisible(link)) return false;
+    toggle(link, !show);
+    toggle(ge('ads_retargeting_' + id + '_input'), show);
+    if (show) {
+        input.select();
+        if (!cur.values) cur.values = {};
+        cur.values[id] = input.value;
     }
+    return false;
+}
+Ads.retargetingInputChanged = function(id) {
+    var new_val = trim(ge('ads_retargeting_' + id).value);
+    if (cur.values[id] != new_val) {
+        Ads.saveRetargetingGroupParam(id);
+        cur.values[id] = new_val;
+    } else {
+        Ads.toggleRetargetingInput(id, false);
+    }
+}
 
 Ads.hideHeroUnit = function(hash) {
     hide('ads_hero_unit');

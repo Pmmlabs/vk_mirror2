@@ -733,11 +733,11 @@ var Page = {
                 case 'feed_search':
                     return 's';
                 case 'feed_news_recent':
-                    return 'r';
+                    return 'rf';
                 case 'feed_news':
-                    return 'r';
+                    return 'rf';
                 case 'feed_news_top':
-                    return 't';
+                    return 'tf';
                 case 'feed_recommended':
                     return 'd';
                 case 'feed_recommended_recent':
@@ -746,6 +746,30 @@ var Page = {
                     return 'e';
                 case 'feed_other':
                     return 'o';
+                case 'feed_friends':
+                    return 'rr';
+                case 'feed_friends_recent':
+                    return 'rr';
+                case 'feed_friends_top':
+                    return 'tr';
+                case 'feed_groups':
+                    return 'rg';
+                case 'feed_groups_recent':
+                    return 'rg';
+                case 'feed_groups_top':
+                    return 'tg';
+                case 'feed_videos':
+                    return 'rv';
+                case 'feed_videos_recent':
+                    return 'rv';
+                case 'feed_videos_top':
+                    return 'tv';
+                case 'feed_photos':
+                    return 'rp';
+                case 'feed_photos_recent':
+                    return 'rp';
+                case 'feed_photos_top':
+                    return 'tp';
                 case 'groups_ads_promoted_post':
                     return 'ag';
                 case 'public_ads_promoted_post':
@@ -4559,6 +4583,8 @@ var Wall = {
                     ref = 'feed_' + (cur.subsection ? cur.subsection : cur.section)
                 } else if (cur.section == 'recommended') {
                     ref = 'feed_recommended' + (cur.subsection != 'recent' ? ('_' + cur.subsection) : '')
+                } else if (cur.section == 'friends' || cur.section == 'groups' || cur.section == 'videos' || cur.section == 'photos') {
+                    ref = 'feed_' + cur.section + (cur.subsection ? '_' + cur.subsection : '');
                 } else {
                     ref = 'feed_' + cur.section
                 }
@@ -7382,14 +7408,16 @@ var Wall = {
         } else if (cur.wallType) {
             if (cur.wallType == 'feed') {
                 if (cur.section == 'news') {
-                    ref = 'feed_' + (cur.subsection ? cur.subsection : cur.section)
+                    ref = 'feed_' + (cur.subsection ? cur.subsection : cur.section);
                 } else if (cur.section == 'recommended') {
-                    ref = 'feed_recommended' + (cur.subsection != 'recent' ? ('_' + cur.subsection) : '')
+                    ref = 'feed_recommended' + (cur.subsection != 'recent' ? ('_' + cur.subsection) : '');
+                } else if (cur.section == 'friends' || cur.section == 'groups' || cur.section == 'videos' || cur.section == 'photos') {
+                    ref = 'feed_' + cur.section + (cur.subsection ? '_' + cur.subsection : '');
                 } else {
-                    ref = 'feed_' + cur.section
+                    ref = 'feed_' + cur.section;
                 }
             } else {
-                ref = 'wall_' + (cur.onepost ? 'one' : (!(cur.wallType || '').indexOf('full_') ? 'full' : 'page'))
+                ref = 'wall_' + (cur.onepost ? 'one' : (!(cur.wallType || '').indexOf('full_') ? 'full' : 'page'));
             }
         } else {
             ref = cur.module;

@@ -275,7 +275,8 @@ ul.help_test_hints {
 }
 
 .help_test_results_like_wrap {
-    margin: 20px 85px
+    margin: 20px 85px;
+    display: inline-block
 }
 
 #help_test_results_like {

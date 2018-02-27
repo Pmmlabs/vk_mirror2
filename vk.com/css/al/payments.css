@@ -2197,12 +2197,26 @@ h2.payments_getvotes_title {
     width: 510px
 }
 
+.payments_card_bind_box .msg {
+    margin: 0 0 15px
+}
+
 .payments_card_bind_box .payments_money_transfer_prg {
     height: 403px
 }
 
 .payments_card_bind_box .payments_iframe_container:before {
     display: none
+}
+
+.payments_card_bind_box #confcode,
+.payments_card_bind_box .payments_form_row {
+    width: 150px
+}
+
+.payments_card_bind_box .payments_form_row {
+    margin-top: 10px;
+    margin-bottom: 0
 }
 
 #payments_box.payments_money_transfer_box .payments_box_summary {

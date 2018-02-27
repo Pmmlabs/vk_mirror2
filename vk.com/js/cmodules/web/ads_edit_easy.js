@@ -12,9 +12,9 @@
     return t.m = e, t.c = s, t.p = "", t(0)
 }({
     0: function(e, t, s) {
-        e.exports = s(125)
+        e.exports = s(42)
     },
-    125: function(e, t) {
+    42: function(e, t) {
         "use strict";
 
         function s(e, t) {
@@ -786,7 +786,7 @@
                         var n = e.options.user_offices[t],
                             i = [t, stripHTML(n.name), 0, 0];
                         "budget_result" in n && (i[2] = langNumeric(intval(n.budget_result), getLang("global_money_amount_rub", "raw"), !0)), n.child_offices ? (i[3] = "label", i[5] = "1", s.push(i), n.child_offices.map(function(e) {
-                            s.push([e.union_id, e.name])
+                            s.push([e.union_id, stripHTML(e.name)])
                         })) : s.push(i)
                     }), this.moreSettingsOfficeDropdown = new Dropdown(t, s, {
                         width: 320,

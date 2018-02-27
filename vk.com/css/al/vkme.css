@@ -52,7 +52,7 @@
 }
 
 .installApp__label {
-    background: url('/images/icons/mobile.png') no-repeat 0;
+    background: url('/images/icons/mobile_new.png') no-repeat 0;
     background-size: 20px;
     padding: 16px 25px;
     position: relative;
@@ -62,7 +62,7 @@
 }
 
 .vk_2x .installApp__label {
-    background-image: url('/images/icons/mobile_2x.png')
+    background-image: url('/images/icons/mobile_new_2x.png')
 }
 
 @media (max-width: 319px) {
@@ -250,14 +250,14 @@ body.vkme #reg_bar {
 }
 
 .vkme_page_wrap3 .installApp__label {
-    background: url(/images/icons/mobile.png?1) no-repeat 0
+    background: url(/images/icons/mobile_new.png?1) no-repeat 0
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .vkme_page_wrap3 .installApp__label {
-        background-image: url(/images/icons/mobile_2x.png?1);
+        background-image: url(/images/icons/mobile_new_2x.png?1);
         background-size: 20px 20px
     }
 }

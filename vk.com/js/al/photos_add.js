@@ -307,9 +307,9 @@ var PhotosAdd = {
                     d = ge("photos_go_to_album");
                 if (!r.pageNode) return;
                 var i = getXY(d.parentNode),
-                    n = getSize(d),
-                    s = Math.max(intval(r.innerHeight), intval(a.clientHeight));
-                e < i[1] + n[1] - s && !cur.scrollFooterFixed && (addClass(d, "fixed"), cur.scrollFooterFixed = !0), e > i[1] + n[1] - s && cur.scrollFooterFixed && (removeClass(d, "fixed"), cur.scrollFooterFixed = !1)
+                    s = getSize(d),
+                    n = Math.max(intval(r.innerHeight), intval(a.clientHeight));
+                e < i[1] + s[1] - n && !cur.scrollFooterFixed && (addClass(d, "fixed"), cur.scrollFooterFixed = !0), e > i[1] + s[1] - n && cur.scrollFooterFixed && (removeClass(d, "fixed"), cur.scrollFooterFixed = !1)
             }
         }
     },
@@ -358,15 +358,15 @@ var PhotosAdd = {
             fid: o
         }, d.rotate);
         "rotate_photo" == i.act && (i.angle = (i.angle + i.to + 4) % 4);
-        var n = (i.to + 4) % 4;
-        if (i["rot" + n]) return i.act = "done_rotate", i.complete = 1, ajax.post("/al_photos.php", i, {
+        var s = (i.to + 4) % 4;
+        if (i["rot" + s]) return i.act = "done_rotate", i.complete = 1, ajax.post("/al_photos.php", i, {
             onDone: PhotosAdd.rotateDone,
             onFail: PhotosAdd.rotateDone
         }), !1;
-        for (var s in i) 0 != s && form.appendChild(ce("input", {
+        for (var n in i) 0 != n && form.appendChild(ce("input", {
             type: "hidden",
-            name: s,
-            value: i[s]
+            name: n,
+            value: i[n]
         }));
         return form.submit(), ajaxCache = {}, delete cur.pvList, delete cur.pvData, !1
     },
@@ -529,8 +529,8 @@ var PhotosAdd = {
         var i = geByClass1("ui_progress_bar", a);
         if (setStyle(i, "width", o * getSize(a)[0]), e || t) {
             e = e || 0, t = t || 0;
-            var n = langNumeric(e, cur.uploaderLang.photos_upload_progress).replace("{count}", e).replace("{total}", t);
-            val(ge("photos_total_progress_text"), n)
+            var s = langNumeric(e, cur.uploaderLang.photos_upload_progress).replace("{count}", e).replace("{total}", t);
+            val(ge("photos_total_progress_text"), s)
         }
     },
     hideUploadProgress: function() {
@@ -562,13 +562,13 @@ var PhotosAdd = {
         }, obj);
         cur.lastPhotoRow = info.prepareCont, cur.photoSaveQ = cur.photoSaveQ || [], cur.photoSaveQ.push(function() {
             ajax.post("al_photos.php", params, {
-                onDone: function(html, js, photoRaw, thumb, editHash) {
+                onDone: function(html, js, photoRaw, thumb, editHash, qParams) {
                     hide("photos_upload_error"), cur.count++, info.prepareCont = domReplaceEl(info.prepareCont, html), re(geByClass1("photos_photo_edit_row_selector", info.prepareCont)), eval(js), cur.savedPhotos = cur.savedPhotos || [], cur.savedPhotos.push(photoRaw), cur.savedThumbs = cur.savedThumbs || {}, cur.savedThumbs[photoRaw] = thumb;
                     var thumbEl = geByClass1("photos_photo_edit_row_thumb", info.prepareCont),
                         thumbImage = vkImage();
                     thumbImage.onload = function() {
                         removeClass(thumbEl, "no_thumb"), setStyle(thumbEl, "background-image", "url('" + thumb + "')"), hide(geByClass1("photos_photo_edit_row_progress", info.prepareCont))
-                    }, thumbImage.src = thumb, PhotosAdd.makeTask(), cur.photoSaveQ.shift(), cur.photoSaveQ[0] && cur.photoSaveQ[0](), cur.onPhotoFirstUploaded && cur.onPhotoFirstUploaded(), setDocumentTitle(cur.uploaderLang.photos_upload_progress_title.replace("{count}", cur.count).replace("{total}", info.totalCount))
+                    }, thumbImage.src = thumb, PhotosAdd.makeTask(), cur.photoSaveQ.shift(), cur.photoSaveQ[0] && cur.photoSaveQ[0](), cur.onPhotoFirstUploaded && cur.onPhotoFirstUploaded(), setDocumentTitle(cur.uploaderLang.photos_upload_progress_title.replace("{count}", cur.count).replace("{total}", info.totalCount)), qParams && PhotosAdd.queueCheckUpdates(qParams)
                 },
                 onFail: function(o) {
                     if (o && (ge("photos_upload_error_msg").innerHTML = o, show("photos_upload_error"), scrollToTop(200)), cur.errorUpload = !0, hasClass(info.prepareCont, "photos_add_first_child")) {
@@ -585,6 +585,21 @@ var PhotosAdd = {
                 }
             })
         }), 1 == cur.photoSaveQ.length && cur.photoSaveQ[0]()
+    },
+    queueCheckUpdates: function(o) {
+        window.Notifier && Notifier.addKey(o, PhotosAdd.queueReceiveUpdates)
+    },
+    queueReceiveUpdates: function(o, e) {
+        e.events && e.events.forEach(function(o) {
+            var e = o.split("<!>"),
+                t = e[1],
+                r = e[2],
+                a = JSON.parse(r);
+            if (a && Object.keys(a).length) {
+                var d = "photo_edit_row_" + t;
+                addClass(ge(d), "has_faces animated")
+            }
+        })
     },
     updateSorterRow: function(o) {
         cur.noSortPhotos || setTimeout(function() {

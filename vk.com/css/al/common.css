@@ -755,6 +755,10 @@ button.flat_btn_lock {
     pointer-events: none
 }
 
+.link_lock_disabled {
+    opacity: 0.7
+}
+
 .link_arrowed_bottom {
     background: url(/images/svg_icons/contour_arrow.svg) no-repeat;
     background-position: right 55%;
@@ -5749,6 +5753,10 @@ a.page_block_header:hover .header_side_link {
 
 .narrow_column {
     width: 230px
+}
+
+.narrow_column.fixed {
+    z-index: 1
 }
 
 body.mac .narrow_column.fixed {

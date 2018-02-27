@@ -7650,19 +7650,25 @@ function linkLocked(el) {
     return hasClass(el, 'link_lock');
 }
 
-function lockLink(el) {
+function lockLink(el, moreClasses) {
     if (!(el = ge(el)) ||
         el.tagName.toLowerCase() != 'a' ||
         linkLocked(el)
     ) return;
     addClass(el, 'link_lock');
+    moreClasses && each(moreClasses, function(k, v) {
+        addClass(el, v);
+    });
 }
 
-function unlockLink(el) {
+function unlockLink(el, moreClasses) {
     if (!(el = ge(el)) ||
         !linkLocked(el)
     ) return;
     removeClass(el, 'link_lock');
+    moreClasses && each(moreClasses, function(k, v) {
+        removeClass(el, v);
+    });
 }
 
 function lockButton(el) {

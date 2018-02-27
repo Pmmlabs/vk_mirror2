@@ -366,6 +366,10 @@
     max-width: 100%
 }
 
+.login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_text {
+    word-wrap: break-word
+}
+
 .login_blocked_wrap .login_blocked_about .login_blocked_reason_activity .login_blocked_reason_text .login_blocked_reason_action_mail {
     padding-top: 8px
 }
@@ -467,7 +471,7 @@
 }
 
 .login_blocked_wrap .unblock_form .inputs {
-    margin-left: 100px
+    margin: 0px 100px
 }
 
 .login_blocked_wrap .unblock_form .inputs .input {
@@ -540,9 +544,13 @@
     margin-top: 5px
 }
 
-.login_blocked_wrap .unblock_form .inputs .input ._resend_code_button {
-    display: block;
-    margin: 8px 69px 0px
+.login_blocked_wrap .unblock_form .inputs .input .resend_button_wrap {
+    text-align: center
+}
+
+.login_blocked_wrap .unblock_form .inputs .input .resend_button_wrap ._resend_code_button {
+    display: inline-block;
+    margin-top: 8px
 }
 
 .login_blocked_wrap .unblock_form .inputs .check_code_button,
