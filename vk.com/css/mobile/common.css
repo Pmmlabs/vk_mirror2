@@ -11349,6 +11349,7 @@ img[src^="/images/mobile/places/"] {
     display: none
 }
 
+.pageAttachMoney .tabs_block,
 .Row,
 .vk__page_redesign .basis .fi_row,
 .vk__page_redesign .basis .inline_item {
@@ -11427,6 +11428,7 @@ img[src^="/images/mobile/places/"] {
 }
 
 @media (min-width: 400px) {
+    .pageAttachMoney .tabs_block,
     .Row,
     .vk__page_redesign .basis .fi_row,
     .vk__page_redesign .basis .inline_item {
@@ -11638,6 +11640,8 @@ a.Pad__corner {
 .Btn,
 .vk__page_redesign .basis .button,
 .vk__page_redesign .basis .near_btn {
+    margin: 0;
+    padding: 0;
     display: inline-block;
     font-size: 14px;
     font-weight: 500;
@@ -11653,7 +11657,8 @@ a.Pad__corner {
     user-select: none;
     text-align: center;
     -webkit-appearance: none;
-    box-sizing: border-box
+    box-sizing: border-box;
+    font-family: inherit
 }
 
 .Btn__loader {
@@ -12041,6 +12046,143 @@ a.Pad__corner {
     height: inherit;
     border-radius: inherit;
     background-color: #5181b8
+}
+
+.Avatar {
+    display: block;
+    border-radius: 50%;
+    overflow: hidden
+}
+
+.Avatar__image {
+    float: left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-color: #ebebeb
+}
+
+.Avatar_0 {
+    background-image: url('/images/mobile/skins/avatar/no_avatar.png')
+}
+
+.vk_2x .Avatar_0 {
+    background-image: url('/images/mobile/skins/avatar/no_avatar_2x.png')
+}
+
+.Avatar_0,
+.Avatar_1 {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-color: #ebebeb
+}
+
+.Avatar_2 .Avatar__image {
+    height: 100%!important
+}
+
+.Avatar_2 .Avatar__image_0 {
+    margin-right: 2px
+}
+
+.Avatar_3 .Avatar__image_0 {
+    height: 100%!important;
+    margin-right: 2px
+}
+
+.Avatar_3 .Avatar__image_1 {
+    margin-bottom: 2px
+}
+
+.Avatar_4 .Avatar__image_0 {
+    margin-right: 2px;
+    margin-bottom: 2px
+}
+
+.Avatar_4 .Avatar__image_1 {
+    margin-bottom: 2px
+}
+
+.Avatar_4 .Avatar__image_2 {
+    margin-right: 2px
+}
+
+.Avatar_size_xs {
+    width: 24px;
+    height: 24px
+}
+
+.Avatar_size_xs .Avatar__image {
+    width: 11px;
+    height: 11px
+}
+
+.Avatar_size_32 {
+    width: 32px;
+    height: 32px
+}
+
+.Avatar_size_32 .Avatar__image {
+    width: 15px;
+    height: 15px
+}
+
+.Avatar_size_s {
+    width: 36px;
+    height: 36px
+}
+
+.Avatar_size_s .Avatar__image {
+    width: 17px;
+    height: 17px
+}
+
+.Avatar_size_m {
+    width: 40px;
+    height: 40px
+}
+
+.Avatar_size_m .Avatar__image {
+    width: 19px;
+    height: 19px
+}
+
+.Avatar_size_l {
+    width: 48px;
+    height: 48px
+}
+
+.Avatar_size_l .Avatar__image {
+    width: 23px;
+    height: 23px
+}
+
+@media (max-width: 319px) {
+    .Avatar_size_l {
+        width: 40px;
+        height: 40px
+    }
+}
+
+.Avatar_size_xl {
+    width: 50px;
+    height: 50px
+}
+
+.Avatar_size_xl .Avatar__image {
+    width: 24px;
+    height: 24px
+}
+
+.Avatar_size_xxl {
+    width: 72px;
+    height: 72px
+}
+
+.Avatar_size_xxl .Avatar__image {
+    width: 35px;
+    height: 35px
 }
 
 .audioAttention {
@@ -17453,12 +17595,24 @@ body.article_body.article_dark {
 }
 
 .pageAttachMoney {
-    padding: 10px
+    background: #fff
 }
 
 .pageAttachMoney .tabs_block {
-    padding-top: 0;
-    padding-bottom: 10px
+    padding-bottom: 0
+}
+
+.pageAttachMoney .tabs_list {
+    margin-top: -8px
+}
+
+.pageAttachMoney .tab_item {
+    height: 28px;
+    line-height: 28px;
+    font-size: 14px;
+    padding: 0 10px;
+    margin: 8px 8px 0 0;
+    border-radius: 4px
 }
 
 .pageMoneyTransferCard {
@@ -19804,18 +19958,31 @@ a.feedBlocks__article:hover {
 }
 
 .sendMoneyForm__row_first {
-    padding: 10px 12px
+    padding: 10px 12px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center
 }
 
 .sendMoneyForm__row_middle {
-    padding: 24px 12px 13px
+    padding: 24px 12px 13px;
+    background: #f4f6f9;
+    height: 102px
 }
 
 .sendMoneyForm__row_last {
-    padding: 16px 12px 17px
+    padding: 16px 12px 17px;
+    background: #f4f6f9;
+    border-radius: 0 0 4px 4px
 }
 
 .sendMoneyForm__avatar {
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
     width: 32px;
     height: 32px;
     display: inline-block;
@@ -19826,12 +19993,17 @@ a.feedBlocks__article:hover {
 }
 
 .sendMoneyForm__userLink {
-    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 10px;
+    padding-right: 10px;
     display: inline-block;
     vertical-align: middle
 }
 
 .sendMoneyForm__infoLink {
+    margin-left: auto;
     float: right;
     padding: 5px
 }
@@ -19844,6 +20016,21 @@ a.feedBlocks__article:hover {
     background-image: url('/images/mobile/icons/info.png');
     background-repeat: no-repeat;
     background-size: 100%
+}
+
+.vk_flex_no .sendMoneyForm__row_first {
+    padding-right: 100px;
+    white-space: nowrap;
+    position: relative
+}
+
+.vk_flex_no .sendMoneyForm__userLink {
+    max-width: 100%
+}
+
+.vk_flex_no .sendMoneyForm__infoLink {
+    position: absolute;
+    right: 12px
 }
 
 .vk_2x .sendMoneyForm__infoLink:before {
@@ -19909,22 +20096,11 @@ a.feedBlocks__article:hover {
 
 .sendMoneyForm__amountNote_max {
     display: none;
-    color: #981c0d
-}
-
-.sendMoneyForm__sendButton {
-    width: 100%;
-    margin-top: 10px;
-    height: 52px;
-    line-height: 52px;
-    font-weight: 400;
-    font-size: 16px!important;
-    padding-top: 0!important;
-    padding-bottom: 0!important
+    color: #bf2413
 }
 
 .sendMoneyForm_error_min .sendMoneyForm__amountNote {
-    color: #981c0d
+    color: #bf2413
 }
 
 .sendMoneyForm_error_max .sendMoneyForm__amountNote_min {
@@ -19933,6 +20109,100 @@ a.feedBlocks__article:hover {
 
 .sendMoneyForm_error_max .sendMoneyForm__amountNote_max {
     display: block
+}
+
+.sendMoneyForm__chooseCard {
+    color: #306096;
+    cursor: pointer
+}
+
+.sendMoneyForm__recommAmountLabel {
+    padding-top: 8px;
+    padding-bottom: 6px;
+    color: #909499
+}
+
+.sendMoneyForm__recommAmountInputRow {
+    padding-top: 0;
+    padding-bottom: 8px
+}
+
+.sendMoneyForm__recommAmountInput {
+    width: 90px;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle
+}
+
+.sendMoneyForm__recommAmountInputSuffix {
+    display: inline-block;
+    margin-top: 8px;
+    position: relative;
+    top: 2px
+}
+
+.sendMoneyForm_recommErrorMax .sendMoneyForm__recommAmountSuffixDefault,
+.sendMoneyForm_recommErrorMin .sendMoneyForm__recommAmountSuffixDefault {
+    display: none
+}
+
+.sendMoneyForm__recommAmountSuffixErrorMax,
+.sendMoneyForm__recommAmountSuffixErrorMin {
+    color: #bf2413;
+    display: none
+}
+
+.sendMoneyForm_recommErrorMax .sendMoneyForm__recommAmountSuffixErrorMax,
+.sendMoneyForm_recommErrorMin .sendMoneyForm__recommAmountSuffixErrorMin {
+    display: inline-block
+}
+
+.sendMoneyForm__row_amount_no {
+    display: none;
+    padding: 9px 12px 12px;
+    min-height: 118px;
+    color: #71757a;
+    font-size: 14px;
+    line-height: 1.36
+}
+
+.sendMoneyForm_noAmount .sendMoneyForm__row_amount_yes {
+    display: none
+}
+
+.sendMoneyForm_noAmount .sendMoneyForm__row_amount_no {
+    display: block
+}
+
+.sendMoneyForm__noAmountIcon {
+    margin-bottom: 4px
+}
+
+.sendMoneyForm__chooseCard {
+    display: none;
+    margin-left: 32px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    -webkit-tap-highlight-color: transparent
+}
+
+.sendMoneyForm_autoAccept .sendMoneyForm__chooseCard {
+    display: block
+}
+
+.sendMoneyForm__popupTitle {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.18
+}
+
+.sendMoneyForm__addCard,
+.sendMoneyForm_addCardVisible .sendMoneyForm__continue {
+    display: none
+}
+
+.sendMoneyForm_addCardVisible .sendMoneyForm__addCard {
+    display: inline-block
 }
 
 .transfersHistory__empty {
@@ -23602,6 +23872,20 @@ a.feedBlocks__article:hover {
     background-position: 0 -168px
 }
 
+.Icon_infinity,
+.Icon_infinity:before {
+    width: 56px;
+    height: 56px
+}
+
+.Icon_infinity:before {
+    background-image: url('/images/mobile/skins/icon/infinity_56.png')
+}
+
+.vk_2x .Icon_infinity:before {
+    background-image: url('/images/mobile/skins/icon/infinity_56_2x.png')
+}
+
 .Spinner {
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -23850,133 +24134,6 @@ a.feedBlocks__article:hover {
     margin: auto
 }
 
-.Avatar {
-    display: block;
-    border-radius: 50%;
-    overflow: hidden
-}
-
-.Avatar__image {
-    float: left;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    background-color: #ebebeb
-}
-
-.Avatar_0 {
-    background-image: url('/images/mobile/skins/avatar/no_avatar.png')
-}
-
-.vk_2x .Avatar_0 {
-    background-image: url('/images/mobile/skins/avatar/no_avatar_2x.png')
-}
-
-.Avatar_0,
-.Avatar_1 {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    background-color: #ebebeb
-}
-
-.Avatar_2 .Avatar__image {
-    height: 100%!important
-}
-
-.Avatar_2 .Avatar__image_0 {
-    margin-right: 2px
-}
-
-.Avatar_3 .Avatar__image_0 {
-    height: 100%!important;
-    margin-right: 2px
-}
-
-.Avatar_3 .Avatar__image_1 {
-    margin-bottom: 2px
-}
-
-.Avatar_4 .Avatar__image_0 {
-    margin-right: 2px;
-    margin-bottom: 2px
-}
-
-.Avatar_4 .Avatar__image_1 {
-    margin-bottom: 2px
-}
-
-.Avatar_4 .Avatar__image_2 {
-    margin-right: 2px
-}
-
-.Avatar_size_xs {
-    width: 24px;
-    height: 24px
-}
-
-.Avatar_size_xs .Avatar__image {
-    width: 11px;
-    height: 11px
-}
-
-.Avatar_size_s {
-    width: 36px;
-    height: 36px
-}
-
-.Avatar_size_s .Avatar__image {
-    width: 17px;
-    height: 17px
-}
-
-.Avatar_size_m {
-    width: 40px;
-    height: 40px
-}
-
-.Avatar_size_m .Avatar__image {
-    width: 19px;
-    height: 19px
-}
-
-.Avatar_size_l {
-    width: 48px;
-    height: 48px
-}
-
-.Avatar_size_l .Avatar__image {
-    width: 23px;
-    height: 23px
-}
-
-@media (max-width: 319px) {
-    .Avatar_size_l {
-        width: 40px;
-        height: 40px
-    }
-}
-
-.Avatar_size_xl {
-    width: 50px;
-    height: 50px
-}
-
-.Avatar_size_xl .Avatar__image {
-    width: 24px;
-    height: 24px
-}
-
-.Avatar_size_xxl {
-    width: 72px;
-    height: 72px
-}
-
-.Avatar_size_xxl .Avatar__image {
-    width: 35px;
-    height: 35px
-}
-
 .ScrollView,
 .sp_body {
     overflow: auto;
@@ -24013,7 +24170,9 @@ a.feedBlocks__article:hover {
     z-index: 10000;
     display: none;
     height: 100%;
-    width: 100%
+    width: 100%;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0)
 }
 
 .Popup_open {
@@ -24026,12 +24185,14 @@ a.feedBlocks__article:hover {
 
 .Popup__overlay {
     position: absolute;
-    top: -100px;
+    top: 0;
     left: 0;
     right: 0;
-    bottom: -100px;
+    bottom: 0;
+    margin: -100px;
     background: rgba(0, 0, 0, .5);
-    cursor: pointer
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent
 }
 
 .Popup__wrap {
@@ -24061,17 +24222,20 @@ a.feedBlocks__article:hover {
     }
 }
 
+.Popup .pageAttachMoney .tabs_block,
 .Popup .Row,
 .Popup .vk__page_redesign .basis .fi_row {
     padding-left: 0!important;
     padding-right: 0!important
 }
 
+.Popup .pageAttachMoney .tabs_block:first-child,
 .Popup .Row:first-child,
 .Popup .vk__page_redesign .basis .fi_row:first-child {
     padding-top: 0!important
 }
 
+.Popup .pageAttachMoney .tabs_block:last-child,
 .Popup .Row:last-child,
 .Popup .vk__page_redesign .basis .fi_row:last-child {
     padding-bottom: 0!important
@@ -24835,6 +24999,7 @@ a.feedBlocks__article:hover {
     position: relative
 }
 
+.settingsRow.pageAttachMoney .tabs_block,
 .settingsRow.Row,
 .settingsRow.vk__page_redesign .basis .fi_row {
     padding-top: 11px
@@ -24887,6 +25052,7 @@ a.feedBlocks__article:hover {
     opacity: 0
 }
 
+.settingsRow_switcher.pageAttachMoney .tabs_block,
 .settingsRow_switcher.Row,
 .settingsRow_switcher.vk__page_redesign .basis .fi_row {
     padding-right: 0!important;
@@ -24894,12 +25060,14 @@ a.feedBlocks__article:hover {
     padding-top: 0!important
 }
 
+.settingsRow_switcher.pageAttachMoney .tabs_block .settingsRow__icon,
 .settingsRow_switcher.Row .settingsRow__icon,
 .settingsRow_switcher.vk__page_redesign .basis .fi_row .settingsRow__icon {
     vertical-align: top;
     padding-top: 15px
 }
 
+.settingsRow_switcher.pageAttachMoney .tabs_block .Control__label,
 .settingsRow_switcher.Row .Control__label,
 .settingsRow_switcher.vk__page_redesign .basis .fi_row .Control__label {
     font-size: 16px;
@@ -24907,6 +25075,7 @@ a.feedBlocks__article:hover {
     color: #222
 }
 
+.settingsRow_switcher.pageAttachMoney .tabs_block .Control,
 .settingsRow_switcher.Row .Control,
 .settingsRow_switcher.vk__page_redesign .basis .fi_row .Control {
     padding-top: 18px;
@@ -24914,21 +25083,25 @@ a.feedBlocks__article:hover {
     margin-left: -56px
 }
 
+.settingsRow_switcher.pageAttachMoney .tabs_block.settingsRow_no_icon,
 .settingsRow_switcher.Row.settingsRow_no_icon,
 .settingsRow_switcher.vk__page_redesign .basis .fi_row.settingsRow_no_icon {
     padding-left: 0
 }
 
+.settingsRow_switcher.pageAttachMoney .tabs_block.settingsRow_no_icon .settingsRow__body,
 .settingsRow_switcher.Row.settingsRow_no_icon .settingsRow__body,
 .settingsRow_switcher.vk__page_redesign .basis .fi_row.settingsRow_no_icon .settingsRow__body {
     display: block
 }
 
+.settingsRow_switcher.pageAttachMoney .tabs_block.settingsRow_no_icon .Control,
 .settingsRow_switcher.Row.settingsRow_no_icon .Control,
 .settingsRow_switcher.vk__page_redesign .basis .fi_row.settingsRow_no_icon .Control {
     margin-left: 0
 }
 
+.settingsRow_switcher.pageAttachMoney .tabs_block.settingsRow_no_icon .Control__label,
 .settingsRow_switcher.Row.settingsRow_no_icon .Control__label,
 .settingsRow_switcher.vk__page_redesign .basis .fi_row.settingsRow_no_icon .Control__label {
     padding-left: 0
@@ -26384,22 +26557,26 @@ a.feedBlocks__article:hover {
     background: transparent!important
 }
 
+.pageAttachMoney .tabs_block .field_prefix,
 .Row .field_prefix,
 .vk__page_redesign .basis .fi_row .field_prefix {
     margin-bottom: 4px;
     margin-right: 8px
 }
 
+.pageAttachMoney .tabs_block .prv_body,
 .Row .prv_body,
 .vk__page_redesign .basis .fi_row .prv_body {
     background: transparent
 }
 
+.pageAttachMoney .tabs_block .prv_title,
 .Row .prv_title,
 .vk__page_redesign .basis .fi_row .prv_title {
     margin-bottom: 2px
 }
 
+.pageAttachMoney .tabs_block .prv_value,
 .Row .prv_value,
 .vk__page_redesign .basis .fi_row .prv_value {
     margin-top: 0;

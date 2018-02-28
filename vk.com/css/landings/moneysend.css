@@ -622,7 +622,7 @@ body.is_moneysend_layer {
 .is_mobile .landing_moneysend_header {
     padding: 0 20px;
     height: 516px;
-    min-width: auto
+    min-width: 0
 }
 
 .is_mobile .landing_moneysend_header:before {

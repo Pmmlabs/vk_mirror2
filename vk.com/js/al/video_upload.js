@@ -369,18 +369,18 @@ var VideoUpload = {
     },
     initTC: function(e, o, a) {
         var d = geByClass1("video_upload_tc_info", a);
-        if (o) return void(d.innerHTML = o);
+        if (o) return void val(d.innerHTML, o);
         re(d), e = se(e);
         var i = geByClass1("video_upload_tc_wrap", a);
         i.appendChild(e);
         var t = geByClass1("video_tc_uploader", a);
         if (t) {
             var r = geByClass1("video_tc_slider_cont", a);
-            r.insertBefore(t, r.children[0])
+            domInsertBefore(t, domFC(r))
         }
         var l = VideoUpload.getPlaceholderEl(e),
             s = geByClass("video_tc_item", e);
-        if (l && !l.getAttribute("data-thumb-id") && s.length > 1) {
+        if (l && !domData(l, "thumb-id") && s.length > 1) {
             var n = geByClass1("video_tc_uploader", e) ? 1 : 0;
             VideoUpload.selectThumb(s[n + (s.length - 1 - n) / 2])
         }
