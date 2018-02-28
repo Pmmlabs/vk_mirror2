@@ -5206,7 +5206,7 @@ em.highlight {
     height: 12px;
     padding-left: 7px;
     margin-left: 7px;
-    background: url(/images/icons/mobile.png?1) no-repeat 0 3px;
+    background: url(/images/icons/mobile.png?2) no-repeat 0 3px;
     cursor: pointer;
     font-size: 13px
 }
@@ -5215,7 +5215,7 @@ em.highlight {
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
     .mob_onl {
-        background-image: url(/images/icons/mobile_2x.png?1);
+        background-image: url(/images/icons/mobile_2x.png?2);
         background-size: 7px 11px
     }
 }

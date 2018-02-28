@@ -2689,6 +2689,56 @@ a.ui_search_custom_link {
     background: #bec8d3
 }
 
+.ui_scroll_dark_theme>.ui_scroll_bar_container>.ui_scroll_bar_outer {
+    -o-transition: background-color 200ms linear;
+    transition: background-color 200ms linear
+}
+
+.ui_scroll_dark_theme>.ui_scroll_bar_container>.ui_scroll_bar_outer>.ui_scroll_bar_inner {
+    -o-transition: background-color 200ms linear, width 150ms linear;
+    transition: background-color 200ms linear, width 150ms linear;
+    background: #828282;
+    border-radius: 3px;
+    width: 6px
+}
+
+.ui_scroll_dark_theme>.ui_scroll_bar_container {
+    -o-transition: opacity 250ms linear;
+    transition: opacity 250ms linear;
+    border: 3px solid transparent
+}
+
+.ui_scroll_dark_theme>.ui_scroll_overflow>.ui_scroll_shadow_bottom,
+.ui_scroll_dark_theme>.ui_scroll_overflow>.ui_scroll_shadow_top {
+    -o-transition: opacity 250ms linear;
+    transition: opacity 250ms linear;
+    box-shadow: 0 2px 3px -1px rgba(0, 0, 0, .12);
+    height: 3px
+}
+
+.ui_scroll_dark_theme>.ui_scroll_overflow>.ui_scroll_shadow_top {
+    top: -3px
+}
+
+.ui_scroll_dark_theme>.ui_scroll_overflow>.ui_scroll_shadow_bottom {
+    bottom: -3px;
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg)
+}
+
+.ui_scroll_dark_theme .ui_scroll_bar_container:hover>.ui_scroll_bar_outer>.ui_scroll_bar_inner,
+.ui_scroll_dark_theme.ui_scroll_dragging>.ui_scroll_bar_outer>.ui_scroll_bar_inner {
+    width: 8px;
+    background: #8c8c8c;
+    border-radius: 4px
+}
+
+.ui_scroll_dark_theme.ui_scroll_scrolled>.ui_scroll_bar_container>.ui_scroll_bar_outer>.ui_scroll_bar_inner {
+    background: #8c8c8c
+}
+
 .ui_scroll_no_transition_theme>.ui_scroll_bar_container>.ui_scroll_bar_outer,
 .ui_scroll_no_transition_theme>.ui_scroll_bar_container>.ui_scroll_bar_outer>.ui_scroll_bar_inner {
     -o-transition: initial;

@@ -555,7 +555,7 @@ stats_loading = '��������...';
 stats_no_data = '����������� ������� ������';
 // section = 38; version = 5;
 
-paysupp_error = 'Error';
+paysupp_error = '������';
 // section = 39; version = 18;
 
 wall_post_info_anon = '���-�� �� ����� ���������';
@@ -636,8 +636,8 @@ mobile_unfave_post = '������ �� ���������';
 mobile_unfave_video = '������ �� ���������';
 mobile_wall_publish_postponed = '������������ ������';
 mobile_zphoto_save_btn = '��������';
-mobile_profile_status_just_now = '������ ���';
-mobile_unknown_error = '����������� ������';
+mobile_profile_status_just_now = 'just now';
+mobile_unknown_error = 'Unknown error';
 // section = 61; version = 79;
 
 bugs_invite_X_members = ['', '���������� %s ���������', '���������� %s ����������', '���������� %s ����������'];
