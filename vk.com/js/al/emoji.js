@@ -2166,7 +2166,7 @@ if (!window.Emoji) {
         favorite: {
             reminder: function(el) {
                 var on = 0;
-                let isOn = hasClass(el, 'on');
+                var isOn = hasClass(el, 'on');
                 if (isOn) {
                     on = Emoji.favoriteRemindOff;
                 } else {
@@ -2225,15 +2225,15 @@ if (!window.Emoji) {
                 if (!Emoji.stickers[Emoji.TAB_FAVORITE_STICKERS]) {
                     return;
                 }
-                let packId = attr(baseEl.parentElement, 'data-pack-id');
-                let stickers = Emoji.stickers[packId].stickers;
+                var packId = attr(baseEl.parentElement, 'data-pack-id');
+                var stickers = Emoji.stickers[packId].stickers;
                 var recentWrap = ge('emoji_favorite_stickers_cont' + optId);
                 if (!recentWrap) {
                     return;
                 }
                 for (var i = 0; i < stickers.length; i++) {
                     if (stickers[i][0] == stickerId) {
-                        let stickerObject = stickers[i];
+                        var stickerObject = stickers[i];
                         stickerObject[4] = 1;
                         Emoji.stickers[Emoji.TAB_FAVORITE_STICKERS].stickers.unshift(stickerObject);
                         var stickerEl = Emoji.render.sticker(optId, Emoji.TAB_FAVORITE_STICKERS, stickerObject);
@@ -2262,7 +2262,7 @@ if (!window.Emoji) {
                 }
                 if (Emoji.stickers[Emoji.TAB_FAVORITE_STICKERS].stickers.length === 0) {
                     addClass(geByClass1('emoji_tab_' + Emoji.TAB_FAVORITE_STICKERS), 'unshown');
-                    let packId = attr(el.parentElement, 'data-pack-id');
+                    var packId = attr(el.parentElement, 'data-pack-id');
                     if (packId === Emoji.TAB_FAVORITE_STICKERS) {
                         addClass(geByClass1('emoji_tab_' + Emoji.TAB_RECENT_STICKERS), 'emoji_tab_sel');
                     }
@@ -3043,8 +3043,8 @@ if (!window.Emoji) {
                     if (!pack) {
                         continue;
                     }
-                    let isRecentTab = packId === Emoji.TAB_RECENT_STICKERS;
-                    let isFavTab = packId === Emoji.TAB_FAVORITE_STICKERS;
+                    var isRecentTab = packId === Emoji.TAB_RECENT_STICKERS;
+                    var isFavTab = packId === Emoji.TAB_FAVORITE_STICKERS;
 
                     var packHtml = '<div class="clear emoji_stickers_spliter" id="emoji_tab_cont_' + packId + '_' + optId + '"></div>';
                     if (isRecentTab) {

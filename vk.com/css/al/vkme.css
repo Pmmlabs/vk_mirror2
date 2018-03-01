@@ -40,11 +40,11 @@
 
 .installApp__link {
     color: #517094;
-    font-size: 14px
+    font-size: 15px
 }
 
 .installApp__link:hover .installApp__arrow {
-    right: 14px
+    right: 10px
 }
 
 .installApp__linkWrap {
@@ -52,11 +52,13 @@
 }
 
 .installApp__label {
-    background: url('/images/icons/mobile_new.png') no-repeat 0;
+    background-image: url('/images/icons/mobile_new.png');
+    background-position: 0;
+    background-repeat: no-repeat;
     background-size: 20px;
-    padding: 16px 25px;
+    padding: 15px 25px;
     position: relative;
-    margin-left: 16px;
+    margin-left: 12px;
     overflow: hidden;
     text-overflow: ellipsis
 }
@@ -66,17 +68,26 @@
 }
 
 @media (max-width: 319px) {
+    .vk_2x .installApp__label,
     .installApp__label {
-        background: none;
+        background-image: none
+    }
+    .installApp__label {
         padding-left: 0
     }
 }
 
+.installApp__label b {
+    font-weight: 500
+}
+
 .installApp__arrow {
-    background: url('/images/icons/blue_arrow.png') no-repeat 50%;
+    background-image: url('/images/icons/blue_arrow.png');
+    background-position: 50%;
+    background-repeat: no-repeat;
     background-size: 9px 15px;
     position: absolute;
-    right: 16px;
+    right: 12px;
     top: 50%;
     margin-top: -7.5px;
     width: 9px;

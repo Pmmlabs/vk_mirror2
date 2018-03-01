@@ -1052,86 +1052,83 @@ input.wide_button {
     box-sizing: border-box
 }
 
-.new_form {
-    font-size: 15px
+.fit_box.new_form {
+    font-size: 15px;
+    background-color: #fff
 }
 
-.new_form .service_msg {
-    font-size: 14px;
-    line-height: 1.29;
-    padding: 10px 12px 9px;
-    border-radius: 3px
-}
-
-.new_form .textfield {
+.fit_box.new_form .selector,
+.fit_box.new_form .textfield {
     box-sizing: border-box;
     font-size: 15px;
-    padding: 10px 11px;
-    border-radius: 3px
+    padding: 9px 10px 11px;
+    border-radius: 4px;
+    border-color: #caced4
 }
 
-.new_form .fi_label {
-    margin-top: 2px;
+.fit_box.new_form .fi_label {
+    padding: 4px 0 8px;
     color: #909499
 }
 
-.new_form .fi_subrow {
-    padding-top: 12px;
-    padding-bottom: 8px
+.fit_box.new_form .fi_subrow {
+    padding: 11px 0
 }
 
-.new_form .sel {
+.fit_box.new_form .fi_row {
+    padding: 10px 0 0
+}
+
+.fit_box.new_form .fi_row_new {
+    padding: 16px 0 0
+}
+
+.fit_box.new_form .near_btn {
+    padding: 6px 0
+}
+
+.fit_box.new_form .fi_field_links,
+.fit_box.new_form .near_btn {
+    font-size: 15px!important
+}
+
+.fit_box.new_form .fi_field_sample {
+    padding: 12px 0 2px;
+    font-size: 15px
+}
+
+.fit_box.new_form .form_item {
+    padding: 0 12px 12px
+}
+
+.fit_box.new_form .sel {
     font-size: 15px;
     height: 40px
 }
 
-.new_form .button {
+.fit_box.new_form .button {
     box-sizing: border-box;
     width: 100%;
     font-size: 15px!important;
     font-weight: 600;
     padding: 10px 16px 12px!important;
-    border-radius: 3px
+    border-radius: 4px
 }
 
-.new_form .button.success {
+.fit_box.new_form .button.success {
     background-color: #4bb34b
 }
 
-.new_form .fi_row_new {
-    padding-top: 20px
-}
-
-.new_form .fi_field_links,
-.new_form .near_btn {
-    font-size: 15px!important;
-    padding: 0
-}
-
-.new_form .selector {
-    box-sizing: border-box;
-    padding: 10px 11px
-}
-
-.new_form .selector_placeholder {
+.fit_box.new_form .selector_placeholder {
     color: #909499;
     font-size: 15px
 }
 
-.new_form .fi_field_sample {
-    padding-top: 12px;
-    font-size: 15px
-}
-
-.new_form .service_msg_null {
-    font-size: 14px
-}
-
-.new_form .sel_row {
+.fit_box.new_form .sel_row {
     padding: 13px 12px
 }
 
-.new_form .sf_bottom_msg {
+.fit_box.new_form .sf_bottom_msg {
     position: relative;
     padding: 12px 28px;
     margin-top: -1px;
@@ -1142,23 +1139,40 @@ input.wide_button {
     color: #909499
 }
 
-.new_form .login_help {
+.fit_box.new_form .login_help {
     font-size: 14px;
-    line-height: 1.33
+    line-height: 1.33;
+    margin-bottom: -2px
 }
 
-.new_form .control.row {
+.fit_box.new_form .control.row {
     padding: 8px 0 10px 4px
 }
 
-.new_form .field_error,
-.new_form .service_msg_error,
-.new_form .service_msg_warning {
+.fit_box.new_form .Control_type_radio {
+    padding: 6px 4px 8px
+}
+
+.fit_box.new_form .service_msg {
+    font-size: 14px;
+    line-height: 1.29;
+    padding: 8px 12px 9px;
+    margin: 2px 0 -8px;
+    border-radius: 4px
+}
+
+.fit_box.new_form .service_msg_null {
+    font-size: 14px
+}
+
+.fit_box.new_form .field_error,
+.fit_box.new_form .service_msg_error,
+.fit_box.new_form .service_msg_warning {
     border-color: #f2ab99
 }
 
-.new_form .service_msg_error,
-.new_form .service_msg_warning {
+.fit_box.new_form .service_msg_error,
+.fit_box.new_form .service_msg_warning {
     background-color: #ffefe9
 }
 
@@ -17444,11 +17458,11 @@ body.article_body.article_dark {
 
 .installApp__link {
     color: #517094;
-    font-size: 14px
+    font-size: 15px
 }
 
 .installApp__link:hover .installApp__arrow {
-    right: 14px
+    right: 10px
 }
 
 .installApp__linkWrap {
@@ -17456,11 +17470,13 @@ body.article_body.article_dark {
 }
 
 .installApp__label {
-    background: url('/images/icons/mobile_new.png') no-repeat 0;
+    background-image: url('/images/icons/mobile_new.png');
+    background-position: 0;
+    background-repeat: no-repeat;
     background-size: 20px;
-    padding: 16px 25px;
+    padding: 15px 25px;
     position: relative;
-    margin-left: 16px;
+    margin-left: 12px;
     overflow: hidden;
     text-overflow: ellipsis
 }
@@ -17470,17 +17486,26 @@ body.article_body.article_dark {
 }
 
 @media (max-width: 319px) {
+    .vk_2x .installApp__label,
     .installApp__label {
-        background: none;
+        background-image: none
+    }
+    .installApp__label {
         padding-left: 0
     }
 }
 
+.installApp__label b {
+    font-weight: 500
+}
+
 .installApp__arrow {
-    background: url('/images/icons/blue_arrow.png') no-repeat 50%;
+    background-image: url('/images/icons/blue_arrow.png');
+    background-position: 50%;
+    background-repeat: no-repeat;
     background-size: 9px 15px;
     position: absolute;
-    right: 16px;
+    right: 12px;
     top: 50%;
     margin-top: -7.5px;
     width: 9px;
@@ -21348,35 +21373,40 @@ a.feedBlocks__article:hover {
     margin-top: 12px
 }
 
-.join_header {
+.vk__page_join,
+.vk__page_join .basis__content {
+    background-color: #ebedf0!important
+}
+
+.vk__page_join .join_header {
     font-size: 16px;
     font-weight: 600;
     text-align: center;
-    padding-top: 24px
+    padding-top: 25px
 }
 
-.join_desc {
-    line-height: 1.33;
+.vk__page_join .join_desc {
+    line-height: 1.36;
     text-align: center;
     color: #5f5f5f;
-    margin: 10px 0
+    margin: 8px 0 11px
 }
 
-.join_friends {
+.vk__page_join .join_friends {
     background-color: #fff;
     padding-bottom: 70px
 }
 
-.join_friends .join_header {
+.vk__page_join .join_friends .join_header {
     margin-bottom: 20px
 }
 
-.join_friends .friendsList__divider,
-.join_friends .friendsList__footerBtn {
+.vk__page_join .join_friends .friendsList__divider,
+.vk__page_join .join_friends .friendsList__footerBtn {
     display: none
 }
 
-.join_friends_button {
+.vk__page_join .join_friends_button {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -21384,7 +21414,7 @@ a.feedBlocks__article:hover {
     padding: 12px
 }
 
-.join_friends_button:before {
+.vk__page_join .join_friends_button:before {
     content: '';
     position: absolute;
     top: 0;
@@ -21396,61 +21426,67 @@ a.feedBlocks__article:hover {
     z-index: 1
 }
 
-.join_friends_button .button {
+.vk__page_join .join_friends_button .button {
     position: relative;
     z-index: 100
 }
 
-.login .mhead {
+.vk__page_login,
+.vk__page_login .basis__content {
+    background-color: #ebedf0!important
+}
+
+.vk__page_login .mhead {
     text-align: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center
 }
 
-.login .mhead .mhb_logo {
+.vk__page_login .mhead .mhb_logo {
     display: inline-block
 }
 
-.login .login_header {
-    color: #909499;
-    padding-top: 12px
-}
-
-.login .installApp {
+.vk__page_login .installApp {
     margin-bottom: 12px
 }
 
-.login .fi_header_light {
+.vk__page_login .fit_box.new_form .login_header {
+    color: #5f5f5f;
+    padding: 13px 0 4px;
+    line-height: 1.33
+}
+
+.vk__page_login .fit_box.new_form .fi_header_light {
     color: #909499;
     font-weight: 400
 }
 
-.login .login_restore {
-    margin-top: 5px
+.vk__page_login .fit_box.new_form .login_restore {
+    padding-bottom: 8px
 }
 
-.login .login_new_user {
-    margin-top: 30px
+.vk__page_login .fit_box.new_form .login_new_user {
+    margin-top: 24px
 }
 
-.login .socials {
+.vk__page_login .fit_box.new_form .button.success {
+    margin-top: -2px
+}
+
+.vk__page_login .fit_box.new_form .socials {
     text-align: center;
-    margin-top: 5px
+    margin-top: 4px
 }
 
-.login .social_button {
+.vk__page_login .fit_box.new_form .social_button {
     padding: 5px;
-    margin: 5px 10px -5px;
+    margin: 5px 20px -3px;
     display: inline-block;
     line-height: 24px
 }
 
-.login .social_button:hover {
-    text-decoration: none
-}
-
-.login .social_button .social_icon {
+.vk__page_login .fit_box.new_form .social_button .social_icon {
     background-image: url('/images/mobile/auth_social_networks.png');
     background-size: 100%;
     font-size: 15px;
@@ -21458,12 +21494,49 @@ a.feedBlocks__article:hover {
     margin-right: 7px
 }
 
-.vk_2x .login .social_button .social_icon {
+.vk_2x .vk__page_login .fit_box.new_form .social_button .social_icon {
     background-image: url('/images/mobile/auth_social_networks_2x.png')
 }
 
-.login .social_button .social_icon.social_google {
+.vk__page_login .fit_box.new_form .social_button.social_google {
+    position: relative;
+    left: -16px
+}
+
+.vk__page_login .fit_box.new_form .social_button.social_google .social_icon {
     background-position: 0 -24px
+}
+
+@media (min-width: 620px) {
+    .vk__page_login #vk_wrap,
+    .vk__page_login .basis__header {
+        max-width: 550px;
+        margin: 0 auto
+    }
+    .vk__page_login .installApp,
+    .vk__page_login .new_form {
+        border-radius: 2px;
+        box-shadow: 0 0 0 1px #e3e4e8
+    }
+    .vk__page_login .installApp {
+        margin-top: 12px
+    }
+    .vk__page_login .form_item,
+    .vk__page_login .mcont {
+        border: none!important
+    }
+    .vk__page_login .fit_box.new_form .form_item {
+        padding: 0 20px 20px
+    }
+    .vk__page_login .fit_box.new_form .login_header {
+        padding: 17px 0 7px
+    }
+    .vk__page_login .fit_box.new_form .social_button {
+        margin: 5px 39px -5px
+    }
+    .vk__page_login .fit_box.new_form .social_button.social_google {
+        left: -10px
+    }
 }
 
 

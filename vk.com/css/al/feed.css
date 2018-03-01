@@ -378,6 +378,25 @@
     text-align: left
 }
 
+.feed_wrap .post .feed_ignore_label.feed_ignore_item {
+    padding: 0 20px 20px
+}
+
+.feed_wrap .post .feed_ignore_label.feed_ignore_item .feed_post_report {
+    text-align: left;
+    border-bottom: 1px solid #e7e8ec;
+    padding: 12px 0 10px
+}
+
+.feed_wrap .post .feed_ignore_label.feed_ignore_item .privacy_edit_wrap {
+    float: right
+}
+
+.feed_wrap .post .feed_ignore_label.feed_ignore_item .feed_ignore_owner_button {
+    display: block;
+    margin: 15px auto 0
+}
+
 .feed_article {
     margin-top: 6px
 }
