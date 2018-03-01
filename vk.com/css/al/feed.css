@@ -866,6 +866,10 @@
     word-break: break-word
 }
 
+.feedback_content .feedback_text:empty {
+    display: none
+}
+
 .feedback_content .feedback_text .wall_post_text,
 .feedback_content .feedback_text .wall_reply_text {
     padding-top: 2px!important;
@@ -897,6 +901,10 @@
 
 .feedback_content .feedback_text .post_thumbed_media {
     margin-bottom: 0
+}
+
+.feedback_content .feedback_attachments:empty {
+    display: none
 }
 
 .feedback_group_photo {
@@ -1111,7 +1119,8 @@
     background: #4bb34b url(/images/svg_icons/feedback/reply.svg) no-repeat
 }
 
-.feedback_reply_story_row .feedback_photo_icon {
+.feedback_reply_story_row .feedback_photo_icon,
+.feedback_story_reply_row .feedback_photo_icon {
     display: block;
     background: #aa65f0 url(/images/svg_icons/feedback/reply_story.svg) no-repeat
 }

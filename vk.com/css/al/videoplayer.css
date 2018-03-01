@@ -1606,7 +1606,8 @@ body[data-useragent=safari] .videoplayer_live_app_link {
     padding: 8px 20px;
     color: hsla(0, 0%, 100%, .7);
     font-size: 13px;
-    cursor: pointer
+    cursor: pointer;
+    white-space: nowrap
 }
 
 .videoplayer_context_menu ._item:first-child {

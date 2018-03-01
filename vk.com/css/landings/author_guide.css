@@ -404,7 +404,8 @@
 }
 
 .landing_author_guide_image {
-    padding-bottom: 50%
+    padding-bottom: 50%;
+    background-size: cover!important
 }
 
 .landing_author_guide_image.oformlenie {

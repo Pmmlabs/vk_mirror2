@@ -36,7 +36,7 @@ var tooltips = {
                     c && h ? (a > p && a + r > 0 && (i = !0, u = !1), i && u ? i = !1 : i || !h || u || (i = !0)) : i && c ? i = !1 : i || !h || c || (i = !0);
                     var v = opts.needLeft || (opts.black || opts.checkLeft) && window.lastWindowWidth && lastWindowWidth - (e[0] + (s ? o[0] + l[0] : d[0] - l[0])) < 1,
                         f = "";
-                    opts.forcetodown && (i = !1), opts.forcetoup && (i = !0), isNewTT ? (removeClass(t, "tt_up"), removeClass(t, "tt_down"), f = opts.dir && inArray(opts.dir, ["up", "down", "left", "right"]) ? "tt_" + opts.dir : "tt_" + (i ? "down" : "up"), addClass(t, f), toggleClass(t, "toleft", !!v), d = getSize(t)) : (f = "toup" + (i ? 1 : ""), (i != opts.toup || v) && (f += v ? " toleft" : "", d = getSize(t)), t.firstChild.className = f, addClass(t, i ? "tt_toup" : ""));
+                    opts.forceright && (v = 0), opts.forcetodown && (i = !1), opts.forcetoup && (i = !0), isNewTT ? (removeClass(t, "tt_up"), removeClass(t, "tt_down"), f = opts.dir && inArray(opts.dir, ["up", "down", "left", "right"]) ? "tt_" + opts.dir : "tt_" + (i ? "down" : "up"), addClass(t, f), toggleClass(t, "toleft", !!v), d = getSize(t)) : (f = "toup" + (i ? 1 : ""), (i != opts.toup || v) && (f += v ? " toleft" : "", d = getSize(t)), t.firstChild.className = f, addClass(t, i ? "tt_toup" : ""));
                     var w = getXY(domPN(t));
                     e[0] -= w[0], e[1] -= w[1];
                     var m = domPN(t);

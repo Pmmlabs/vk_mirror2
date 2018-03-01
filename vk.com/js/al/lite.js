@@ -6202,6 +6202,7 @@ function showDoneBox(msg, opts) {
  type            - ElementTooltip.TYPE_VERTICAL / ElementTooltip.TYPE_HORIZONTAL (default vertical)
  forceSide       - forces tooltip to be shown on particular side top/bottom/left/right. It ignores type option.
  defaultSide
+ align           - align of the tooltip center/left/right (center by default, supports rtl).
  width           - custom tooltip height (function or int value)
  noBorder
  arrowSize       - 'mini', normal', 'big'
@@ -6238,6 +6239,7 @@ function ElementTooltip(el, opts) {
         noHideOnClick: false,
         arrowSize: 'normal',
         customShow: false,
+        align: ElementTooltip.ALIGN_CENTER,
     }, opts);
 
     if (this._opts.customShow) {
@@ -6249,6 +6251,7 @@ function ElementTooltip(el, opts) {
     }
 
     this._opts.cls += ' eltt_arrow_size_' + this._opts.arrowSize
+    this._opts.cls += ' eltt_align_' + this._opts.align;
 
     if (this._opts.noBorder) {
         this._opts.cls += ' eltt_noborder'
@@ -6298,6 +6301,10 @@ ElementTooltip.ARROW_SIZE = 6;
 ElementTooltip.ARROW_SIZE_MINI = 9
 ElementTooltip.ARROW_SIZE_NORMAL = 7
 ElementTooltip.ARROW_SIZE_BIG = 16
+
+ElementTooltip.ALIGN_LEFT = 'left';
+ElementTooltip.ALIGN_CENTER = 'center';
+ElementTooltip.ALIGN_RIGHT = 'right';
 
 ElementTooltip.prototype._initEvents = function(el) {
     if (this._opts.autoShow) {
@@ -6490,7 +6497,17 @@ ElementTooltip.prototype.updatePosition = function() {
     function setArrowCenteredPosition(side, shift) {
         var style = {}
         var sizeIndex = ['marginLeft', 'marginTop'].indexOf(side);
-        style[side] = Math.floor(ttelSize[sizeIndex] / 2) /*tt center*/ - border /*borders*/ - arrowSize - (shift || 0) /*shift compensation*/
+        var align;
+
+        if (_this._opts.align === (vk.rtl ? ElementTooltip.ALIGN_LEFT : ElementTooltip.ALIGN_RIGHT)) {
+            align = ttelSize[sizeIndex] - Math.max(border + arrowSize + (shift || 0), Math.min(ttelSize[sizeIndex], boundingBox[sizeIndex ? 'height' : 'width']) / 2);
+        } else if (_this._opts.align === (vk.rtl ? ElementTooltip.ALIGN_RIGHT : ElementTooltip.ALIGN_LEFT)) {
+            align = Math.max(border + arrowSize + (shift || 0), Math.min(ttelSize[sizeIndex], boundingBox[sizeIndex ? 'height' : 'width']) / 2);
+        } else {
+            align = ttelSize[sizeIndex] / 2;
+        }
+
+        style[side] = Math.floor(align) /*tt align*/ - border /*borders*/ - arrowSize - (shift || 0) /*shift compensation*/
         setStyle(_this._ttArrowEl, style)
     }
 
@@ -6567,17 +6584,31 @@ ElementTooltip.prototype.updatePosition = function() {
 
         this._prevSide = side
 
+        var horAlignOffset;
+        var verAlignOffset;
+
+        if (this._opts.align === (vk.rtl ? ElementTooltip.ALIGN_LEFT : ElementTooltip.ALIGN_RIGHT)) {
+            horAlignOffset = boundingBox.width - ttelSize[0];
+            verAlignOffset = boundingBox.height - ttelSize[1];
+        } else if (this._opts.align === (vk.rtl ? ElementTooltip.ALIGN_RIGHT : ElementTooltip.ALIGN_LEFT)) {
+            horAlignOffset = 0;
+            verAlignOffset = 0;
+        } else {
+            horAlignOffset = -ttelSize[0] / 2 + boundingBox.width / 2;
+            verAlignOffset = boundingBox.height / 2 - ttelSize[1] / 2;
+        }
+
         switch (side) {
             case 'bottom':
                 style = {
-                    left: -ttelSize[0] / 2 + boundingBox.width / 2 + totalLeftOffset,
+                    left: horAlignOffset + totalLeftOffset,
                     top: boundingBox.height + arrowSize - offset[1] + parentOffset[1]
                 };
                 break;
 
             case 'top':
                 style = {
-                    left: -ttelSize[0] / 2 + boundingBox.width / 2 + totalLeftOffset,
+                    left: horAlignOffset + totalLeftOffset,
                     top: -ttelSize[1] - arrowSize + offset[1] + parentOffset[1]
                 };
                 break;
@@ -6585,14 +6616,14 @@ ElementTooltip.prototype.updatePosition = function() {
             case 'right':
                 style = {
                     left: boundingBox.width + arrowSize + totalLeftOffset,
-                    top: boundingBox.height / 2 - ttelSize[1] / 2 + offset[1] + parentOffset[1]
+                    top: verAlignOffset + offset[1] + parentOffset[1]
                 };
                 break;
 
             case 'left':
                 style = {
                     left: -ttelSize[0] - arrowSize + totalLeftOffset,
-                    top: boundingBox.height / 2 - ttelSize[1] / 2 + offset[1] + parentOffset[1]
+                    top: verAlignOffset + offset[1] + parentOffset[1]
                 };
                 break;
         }

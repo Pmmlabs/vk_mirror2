@@ -7657,15 +7657,28 @@ var Wall = {
                     return;
                 }
 
-                el.post_author_data_tt = new ElementTooltip(anchor, {
+                var opts = {
                     content: html,
                     arrowSize: 'mini',
-                    appendToParent: true,
                     cls: 'post_author_data',
-                    offset: vk.widget ? [0, -2] : void 0,
-                    forceSide: 'bottom',
+                    defaultSide: 'bottom',
+                    align: 'left',
                     id: 'author_tt_' + post_raw
-                });
+                };
+
+                var messStack = gpeByClass('_im_mess_stack', el);
+                if (messStack) {
+                    opts.appendTo = messStack;
+                } else {
+                    opts.appendToParent = true;
+                }
+
+                if (vk.widget) {
+                    opts.offset = [0, -2];
+                    opts.forceSide = 'bottom';
+                }
+
+                el.post_author_data_tt = new ElementTooltip(anchor, opts);
                 el.post_author_data_tt.show();
             }
         })

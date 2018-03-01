@@ -95,11 +95,11 @@ var WallEdit = {
                     setTimeout(function() {
                         cur.postFieldZoomText(p)
                     }, 10)
-                })), n.check_sign && !n.no_sign && c.push(function(e) {
-                    e._media_added && WallEdit.editPostDisableSign(e)
-                }.pbind(n)), c.length && (t.options.onAddMediaChange = function(e) {
-                    each(e, function(e, t) {
-                        t()
+                })), n.check_sign && !n.no_sign && c.push(function(e, t) {
+                    e._media_added && "postpone" !== t && WallEdit.editPostDisableSign(e)
+                }.pbind(n)), c.length && (t.options.onAddMediaChange = function(e, t) {
+                    each(e, function(e, i) {
+                        i(t)
                     })
                 }.pbind(c)), cur.wallEditComposer = Composer.init(p, {
                     lang: g,

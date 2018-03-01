@@ -1109,12 +1109,31 @@
     z-index: 100
 }
 
+.stories_done_msg,
 .stories_message_text {
     border-radius: 100px;
     display: inline-block;
     background: rgba(0, 0, 0, .5);
     color: #fff;
     padding: 10px 20px 11px
+}
+
+.stories_done_msg {
+    display: block;
+    top: 50%!important;
+    left: 50%!important;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin: 0!important
+}
+
+.stories_done_msg .top_result_baloon {
+    background: transparent;
+    box-shadow: none;
+    width: auto;
+    padding: 0
 }
 
 .stories_black_list_result {
