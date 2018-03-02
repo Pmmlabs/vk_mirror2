@@ -4343,9 +4343,10 @@ Ads.retargetingInputChanged = function(id) {
     }
 }
 
-Ads.hideHeroUnit = function(hash) {
+Ads.hideHeroUnit = function(key, hash) {
     hide('ads_hero_unit');
     ajax.post('/ads?act=a_hide_hero', {
+        key: key,
         hash: hash
     }, {});
 }

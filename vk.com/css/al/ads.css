@@ -2,6 +2,7 @@
     display: none
 }
 
+.ads_hero_unit,
 .ads_moder_comment_rules_icon.icon_age_16p,
 .ads_moder_comment_rules_icon.icon_age_18p,
 .ads_moder_comment_rules_icon.icon_astrologer,
@@ -22,7 +23,6 @@
 .ads_moder_comment_rules_icon.icon_restricted_site,
 .ads_moder_comment_rules_icon.icon_spy,
 .ads_moder_comment_rules_icon.icon_vocabulary,
-.ads_retargeting_hero,
 .ads_retargeting_price_list_item_edit:after {
     -ms-high-contrast-adjust: none
 }
@@ -2456,122 +2456,51 @@ a.ads_dd_menu_multi_item.label:hover {
     margin-bottom: 20px
 }
 
-#ads_hero_unit {
-    box-sizing: border-box
-}
-
-.ads_retargeting_hero {
+.ads_hero_unit {
+    box-sizing: border-box;
     padding: 20px;
     padding-left: 140px;
     background: url(/images/ads/ads_spotty.png);
     background-position: 20px 20px;
     background-repeat: no-repeat;
-    background-color: #fff
+    background-color: #fff;
+    background-size: 100px auto;
+    min-height: 140px
 }
 
 @media (-webkit-min-device-pixel-ratio: 2),
 (-o-min-device-pixel-ratio: 2/1),
 (min-resolution: 192dpi) {
-    .ads_retargeting_hero {
+    .ads_hero_unit {
         background-image: url(/images/ads/ads_spotty_2x.png);
         background-size: 100px 100px
     }
 }
 
-.ads_retargeting_hero p {
+.ads_hero_footer {
+    margin-top: 20px;
+    text-align: left
+}
+
+.ads_hero_footer a {
+    vertical-align: baseline
+}
+
+.ads_hero_footer .flat_button.unshown+a.as_button {
+    margin-left: -16px
+}
+
+.ads_hero_unit p {
     margin-top: 5px;
     margin-bottom: 0;
     line-height: 1.46
 }
 
-.ads_retargeting_hero_title {
+.ads_hero_title {
     text-align: left;
     margin-bottom: 5px;
     margin-top: 0;
     font-size: 19px
-}
-
-.ads_retargeting_hero_footer {
-    margin-top: 20px;
-    text-align: left
-}
-
-.ads_retargeting_hero_footer a {
-    vertical-align: baseline
-}
-
-.ads_retargeting_hero_units {
-    margin-top: 32px
-}
-
-.ads_retargeting_hero_unit .flat_button {
-    margin-top: 16px
-}
-
-.ads_retargeting_hero_unit {
-    display: inline-block;
-    width: 185px;
-    margin-left: 42px;
-    padding-left: 52px;
-    background-position: 0 0;
-    background-repeat: no-repeat;
-    background-size: 40px 40px;
-    min-height: 40px;
-    vertical-align: top;
-    font-size: 12px;
-    line-height: 17px
-}
-
-.ads_retargeting_hero_unit_wide {
-    width: 335px;
-    margin-left: 26px
-}
-
-.ads_retargeting_hero_unit:first-child {
-    margin-left: 0
-}
-
-.ads_retargeting_hero_unit_1 {
-    background-image: url(/images/ads_retargeting_unit1_2x.png)
-}
-
-.ads_retargeting_hero_unit_2 {
-    background-image: url(/images/ads_retargeting_unit2_2x.png)
-}
-
-.ads_retargeting_hero_unit_3 {
-    background-image: url(/images/ads_retargeting_unit3_2x.png)
-}
-
-.ads_retargeting_hero_unit_5 {
-    background-image: url(/images/ads_retargeting_unit5_2x.png)
-}
-
-.ads_retargeting_hero_bottom_link {
-    display: inline-block;
-    margin-top: 13px
-}
-
-.ads_retargeting_hero_bottom_link_nomargin {
-    margin-top: 0
-}
-
-.ads_retargeting_hero_close {
-    position: absolute;
-    right: 16px;
-    top: 16px;
-    background: url(/images/icons/tag_cross_2x.png) 50% no-repeat;
-    background-size: 10px 10px;
-    width: 10px;
-    height: 10px;
-    opacity: 0.6;
-    -o-transition: opacity 0.2s ease;
-    transition: opacity 0.2s ease;
-    cursor: pointer
-}
-
-.ads_retargeting_hero_close:hover {
-    opacity: 1
 }
 
 .ads_retargeting_expiration_wrap {

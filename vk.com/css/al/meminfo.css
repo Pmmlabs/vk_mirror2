@@ -108,6 +108,24 @@
     border-radius: 6px
 }
 
+.deleted_content_page {
+    padding: 16px 20px
+}
+
+.deleted_content_page .info_block:not(:first-child) {
+    margin-top: 8px
+}
+
+.deleted_content_page .info_block .info_type {
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.deleted_content_page .thumbnail {
+    margin-top: 12px
+}
+
 .mi_body_adaptive #page_layout {
     padding: 0;
     width: 100%!important

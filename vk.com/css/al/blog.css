@@ -894,7 +894,13 @@
 }
 
 .blog_about_company_offices_items {
-    margin-top: 63px
+    margin-top: 63px;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center
 }
 
 .blog_about_company_offices_item {

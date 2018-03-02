@@ -24936,11 +24936,13 @@ a.feedBlocks__article:hover {
     left: 0;
     right: 0;
     top: 0;
-    bottom: 0
+    bottom: 0;
+    z-index: 1
 }
 
 .notification a {
-    position: relative
+    position: relative;
+    z-index: 2
 }
 
 .notification__avatar {
@@ -25065,7 +25067,8 @@ a.feedBlocks__article:hover {
     bottom: -4px;
     width: 12px;
     height: 12px;
-    padding: 6px
+    padding: 6px;
+    z-index: 2
 }
 
 .notification__actions:before {

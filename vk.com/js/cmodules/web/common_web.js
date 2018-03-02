@@ -1184,14 +1184,12 @@
         if (t && "border-box" === le(e, "boxSizing") && (t = !1), e == document) r = [Math.max(a.clientWidth, bodyNode.scrollWidth, a.scrollWidth, bodyNode.offsetWidth, a.offsetWidth), Math.max(a.clientHeight, bodyNode.scrollHeight, a.scrollHeight, bodyNode.offsetHeight, a.offsetHeight)];
         else if (e) {
             var s = function() {
-                if (r = G(e) && (i = K(e, o)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t) {
-                    each(r, function(t, o) {
-                        var n = t ? ["Top", "Bottom"] : ["Left", "Right"];
-                        each(n, function() {
-                            r[t] -= parseFloat(le(e, "padding" + this)) || 0, r[t] -= parseFloat(le(e, "border" + this + "Width")) || 0
-                        })
+                r = G(e) && (i = K(e, o)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t && each(r, function(t, o) {
+                    var n = t ? ["Top", "Bottom"] : ["Left", "Right"];
+                    each(n, function() {
+                        r[t] -= parseFloat(le(e, "padding" + this)) || 0, r[t] -= parseFloat(le(e, "border" + this + "Width")) || 0
                     })
-                }
+                })
             };
             if (W(e)) s();
             else {
@@ -1818,8 +1816,7 @@
         return typeof e
     } : function(e) {
         return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : typeof e
-    };
-    ! function(i) {
+    }, ! function(i) {
         var r = i.HTMLCanvasElement && i.HTMLCanvasElement.prototype,
             a = i.Blob && function() {
                 try {
@@ -3005,8 +3002,7 @@
                     innerHTML: '<div class="input_back"><div class="input_back_content' + (r.big ? " big" : "") + '" style="width: ' + (getSize(n)[0] - 20) + 'px;">' + o + "</div></div>"
                 }), n),
                 f = domFC(h);
-            domFC(f);
-            setStyle(f, a);
+            domFC(f), setStyle(f, a);
             var _ = __phCheck.pbind(n, r),
                 w = browser.mobile ? _ : function(e, t) {
                     setTimeout(_.pbind(e, t), 0)
@@ -3394,8 +3390,7 @@
                     if (!trim(i.value) && t !== !0) return void elfocus(i);
                     var r = geByTag1("img", o.bodyNode),
                         a = r[0];
-                    r[1];
-                    removeEvent(i), removeEvent(a), show(geByClass1("progress", o.bodyNode)), hide(i), n.onSubmit(e, i.value)
+                    r[1], removeEvent(i), removeEvent(a), show(geByClass1("progress", o.bodyNode)), hide(i), n.onSubmit(e, i.value)
                 }
             },
             r = o ? !0 : !1,
@@ -3788,8 +3783,7 @@
             }
         }, this.init = function(e) {
             this.sCont = ge("quick_search"), this.opt = e || {}
-        };
-        this.preload = function() {}
+        }, this.preload = function() {}
     };
     var _cleanHide = function(e) {
         e.temphide && (removeEvent(e, "mouseout", e.temphide), removeAttr(e, "temphide"), removeAttr(e, "showing"))
@@ -4058,25 +4052,21 @@
                 }, o.additional), o), !1)
             }
         }, window.showAlbums = function(e, t, o) {
-            if (cur.viewAsBox) return cur.viewAsBox();
-            if (!checkEvent(o)) return stManager.add(["photoview.js", "photoview.css"], function() {
+            return cur.viewAsBox ? cur.viewAsBox() : checkEvent(o) ? void 0 : (stManager.add(["photoview.js", "photoview.css"], function() {
                 Photoview.showAlbums(e, t)
-            }), !1
+            }), !1)
         }, window.showAlbum = function(e, t, o) {
-            if (cur.viewAsBox) return cur.viewAsBox();
-            if (!checkEvent(o)) return stManager.add(["photoview.js", "photoview.css"], function() {
+            return cur.viewAsBox ? cur.viewAsBox() : checkEvent(o) ? void 0 : (stManager.add(["photoview.js", "photoview.css"], function() {
                 Photoview.showAlbum(e, t)
-            }), !1
+            }), !1)
         }, window.showPhotoTags = function(e, t, o) {
-            if (cur.viewAsBox) return cur.viewAsBox();
-            if (!checkEvent(o)) return stManager.add(["photoview.js", "photoview.css"], function() {
+            return cur.viewAsBox ? cur.viewAsBox() : checkEvent(o) ? void 0 : (stManager.add(["photoview.js", "photoview.css"], function() {
                 Photoview.showTagged(e, t)
-            }), !1
+            }), !1)
         }, window.showVideoTags = function(e, t, o) {
-            if (cur.viewAsBox) return cur.viewAsBox();
-            if (!checkEvent(o)) return stManager.add(["video.js", "video.css", "photoview.js", "photoview.css"], function() {
+            return cur.viewAsBox ? cur.viewAsBox() : checkEvent(o) ? void 0 : (stManager.add(["video.js", "video.css", "photoview.js", "photoview.css"], function() {
                 Photoview.showVideoTags(e, t)
-            }), !1
+            }), !1)
         }, window.showWiki = function(e, t, o, n) {
             if (checkEvent(o)) return !0;
             var n = n || {};
@@ -4510,7 +4500,7 @@
                 }), each(i.getList(e), function(e) {
                     var t = intval(e),
                         i = a[t];
-                    if ((!n || !n[t]) && i) return o-- ? void r.push([t, this]) : !1
+                    return n && n[t] || !i ? void 0 : o-- ? void r.push([t, this]) : !1
                 }), r
             },
             row: function(e, t, o, n, i, r, a, s, l) {
@@ -4595,8 +4585,7 @@
                     o = "",
                     n = t.maxItems,
                     i = ge("ts_cont_wrap");
-                geByClass1("active", i);
-                if (!i || !vk.id) return !1;
+                if (geByClass1("active", i), !i || !vk.id) return !1;
                 if (cur.tsStr && cur.tsStr == e && !t.forceUpdate) return !1;
                 delete t.forceUpdate, t.initListsHtml();
                 var r, a = {};
@@ -5049,7 +5038,7 @@
         }, window.isSameDate = function(e, t) {
             var o = new Date(e),
                 n = new Date(t);
-            return o.getFullYear() === n.getFullYear() && o.getMonth() === n.getMonth() && o.getDate() === n.getDate();
+            return o.getFullYear() === n.getFullYear() && o.getMonth() === n.getMonth() && o.getDate() === n.getDate()
         }, window.leadingZero = function(e) {
             return e >= 10 ? e : "0" + e
         }, window.hashCode = function(e) {
@@ -5171,11 +5160,9 @@
                 return t.name !== e
             }), window.cancelStack
         }, window.cancelStackPush = function(e, t, o) {
-            o && _topHeaderClose(function() {
+            return o && _topHeaderClose(function() {
                 t(), cancelStackFilter(e)
-            });
-            window.cancelStack || [];
-            return window.cancelStack = cancelStackFilter(e).concat([{
+            }), window.cancelStack || [], window.cancelStack = cancelStackFilter(e).concat([{
                 func: t,
                 name: e,
                 dclick: o
@@ -5768,8 +5755,7 @@
 }, function(e, t) {
     Object.defineProperty(t, "__esModule", {
         value: !0
-    });
-    t.EMPTY = "empty", t.UNSTARTED = "unstarted", t.PLAYING = "playing", t.PAUSED = "paused", t.ENDED = "ended", t.ERROR = "error"
+    }), t.EMPTY = "empty", t.UNSTARTED = "unstarted", t.PLAYING = "playing", t.PAUSED = "paused", t.ENDED = "ended", t.ERROR = "error"
 }, function(e, t) {
     var o = e.exports = "undefined" != typeof window && window.Math == Math ? window : "undefined" != typeof self && self.Math == Math ? self : Function("return this")();
     "number" == typeof __g && (__g = o)
@@ -7113,8 +7099,7 @@
                     if (_ = s(e, n), o = a(o), void 0 === _) return
                 } else {
                     var i = o.toString().match(/^([+-]=)?([\d+-.]+)(.*)$/);
-                    h.cur(t, !0) || 0;
-                    i && (o = parseFloat(i[2]), i[1] && (o = ("-=" == i[1] ? -1 : 1) * o + o)), _ = h.cur(t, !0), 0 != _ || "width" != t && "height" != t || (_ = 1), "opacity" == t && o > 0 && !p && (setStyle(e, "opacity", 0), _ = 0, show(e))
+                    h.cur(t, !0) || 0, i && (o = parseFloat(i[2]), i[1] && (o = ("-=" == i[1] ? -1 : 1) * o + o)), _ = h.cur(t, !0), 0 != _ || "width" != t && "height" != t || (_ = 1), "opacity" == t && o > 0 && !p && (setStyle(e, "opacity", 0), _ = 0, show(e))
                 }(_ != o || isArray(_) && _.join(",") == o.join(",")) && (d[t] = _, u[t] = o)
             }), h.start(d, u), data(e, "tween", h), h
         }
@@ -7372,8 +7357,8 @@
                 };
                 vk.staticheader && (v.top = -Math.min(getSize("page_header_cont")[1], n)), setStyle(_stlLeft, v)
             } else 0 !== _stlShown && (hide(_stlLeft, _stlSide), _stlShown = 0);
-            vk.id || (!_regBar && w ? (_regBar = 1,
-                val(ge("reg_bar_content"), cur._regBar), animate(ge("reg_bar"), {
+            vk.id || (!_regBar && w ? (_regBar = 1, val(ge("reg_bar_content"), cur._regBar),
+                animate(ge("reg_bar"), {
                     top: 0,
                     transition: Fx.Transitions.sineInOut
                 }, 400), animate(ge("stl_bg"), {

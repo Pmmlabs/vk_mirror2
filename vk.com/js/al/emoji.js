@@ -1095,7 +1095,7 @@ if (!window.Emoji) {
 
                         var promotedStickers = Emoji.stickers[-1].promoted;
                         each(stickers, function() {
-                            var stickerId = Math.abs(this);
+                            var stickerId = this;
                             html += Emoji.render.stickerHintRs(optId, this, promotedStickers[stickerId]);
                         });
                         Emoji.showStickersHints(stCont, opts, html);
@@ -4012,15 +4012,20 @@ if (!window.Emoji) {
                 return rs(rsHtml, tempOpts);
             },
             stickerHintRs: function(optId, el, stickerMeta) {
-                var stickerId = Math.abs(el);
-                var stickerUrl = stickerMeta ? stickerMeta[2] : window.promotedStickerUrls && window.promotedStickerUrls[stickerId];
+                var stickerId = el;
+                var stickerUrl = '';
+                if (el < 0) {
+                    stickerUrl = window.promotedStickerUrls && window.promotedStickerUrls[-stickerId];
+                } else {
+                    stickerUrl = stickerMeta ? stickerMeta[2] : '';
+                }
                 var animationUrl = stickerMeta ? stickerMeta[3] : '';
                 var tempOpts = {
                     optId: optId,
                     selId: 0,
                     stickerId: stickerId,
                     stickerUrl: stickerUrl,
-                    class: (el < 0 ? 'promo' : ''),
+                    class: (stickerId < 0 ? 'promo' : ''),
                     onclick: 'Emoji.stickerHintClick(' + optId + ', ' + stickerId + ', \'' + stickerUrl + '\'' + ', this)',
                     stickerSize: Emoji.stickerSize
                 };

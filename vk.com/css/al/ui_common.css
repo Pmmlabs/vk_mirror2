@@ -796,6 +796,26 @@ body.sf .ui_rmenu_count {
     display: none
 }
 
+.ui_rmenu_dot {
+    display: inline-block;
+    float: right;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+    text-align: center;
+    margin: 13px 10px;
+    border-radius: 6px;
+    background-color: #f66261;
+    height: 6px;
+    width: 6px;
+    box-sizing: border-box;
+    line-height: 0
+}
+
+.ui_rmenu_dot.unshown {
+    display: none
+}
+
 .ui_rmenu_count.ui_rmenu_count_grey {
     background: none;
     border-radius: 0;
@@ -3107,7 +3127,10 @@ a.ui_search_custom_link {
 }
 
 .olist_item_wrap_ignore .olist_item_name {
-    width: 405px;
+    width: 405px
+}
+
+.olist_item_wrap_ignore .olist_item_name .olist_item_ignore_week {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex

@@ -11,8 +11,8 @@
     var i = {};
     return e.m = t, e.c = i, e.p = "", e(0)
 }([function(t, e, i) {
-    t.exports = i(2)
-}, function(module, exports) {
+    t.exports = i(5)
+}, , , , function(module, exports) {
     "use strict";
 
     function _classCallCheck(t, e) {
@@ -198,8 +198,8 @@
                 throw new TypeError("Invalid attempt to destructure non-iterable instance")
             }
         }(),
-        _audio_unmask_source = __webpack_require__(3),
-        _audio_layer = __webpack_require__(1),
+        _audio_unmask_source = __webpack_require__(8),
+        _audio_layer = __webpack_require__(4),
         _audio_layer2 = _interopRequireDefault(_audio_layer);
     window.AudioLayer = _audio_layer2["default"], window.AudioUtils = {
         AUDIO_ITEM_INDEX_ID: 0,
@@ -1251,6 +1251,8 @@
             return hasClass(domPN(t.target), "top_audio_player_btn") ? void 0 : (1 != t.which || hasClass(t.target, "top_audio_player_btn") || hasClass(t.target, "top_audio_player_act_icon") || AudioUtils.getLayer().toggle(), cancelEvent(t))
         }), addEvent(ge("top_audio"), "mousedown", function(t) {
             return checkEvent(t) === !0 ? !1 : (AudioUtils.getLayer().toggle(), cancelEvent(t))
+        }), browser.safari || addEvent(document, "keydown keyup", function(t) {
+            toggleClass(ge("top_audio_play"), "shuffle", t.shiftKey)
         }), this.onPlay(this.ap.getCurrentAudio())
     }, TopAudioPlayer.prototype.onPlay = function(t, e, i) {
         function o() {
@@ -1752,7 +1754,7 @@
         for (var e in window.localStorage)
             if (0 === e.indexOf(AudioPlayer.LS_KEY_PREFIX + "_")) {
                 var i = e.split("_");
-                t(i[1], i[2]) || localStorage.removeItem(e)
+                t(i[1], i[2]) || localStorage.removeItem(e);
             }
     }, AudioPlayer.prototype.onMediaKeyPressedEvent = function(t) {
         var e = this.getCurrentAudio();
@@ -2407,10 +2409,14 @@
                 d = this.getCurrentAudio(), d && this.isPlaying() && (this.notify(AudioPlayer.EVENT_UPDATE), this._implSetUrl(d), this._implPlay(), this._implSetVolume(this.getVolume()), this._triggerTNSPixel())
             }.bind(this)))))
         }
-    }, AudioPlayer.prototype.instantPlay = function(t, e, i, o) {
-        var a = i ? "shuffle" : "play",
-            s = o ? "light" : "dark";
-        statlogsValueEvent("client_header_play_button", "header_play_button_experiment", a + "_" + s), this.playPlaylist(vk.id, AudioPlaylist.DEFAULT_PLAYLIST_ID, e, "header", i), setTimeout(function() {
+    }, AudioPlayer.prototype.preloadDefaultPlaylist = function(t) {
+        if (browser.safari && !this._lsGet(AudioPlayer.LS_TRACK)) {
+            var e = this.getPlaylist(AudioPlaylist.TYPE_PLAYLIST, vk.id, AudioPlaylist.DEFAULT_PLAYLIST_ID, t);
+            e.load()
+        }
+    }, AudioPlayer.prototype.instantPlay = function(t, e, i) {
+        var o = !browser.safari && e && e.shiftKey;
+        this.playPlaylist(vk.id, AudioPlaylist.DEFAULT_PLAYLIST_ID, i, "header", o), statlogsValueEvent("client_header_play_button", o ? "shuffle" : "play"), setTimeout(function() {
             addClass(t, "loading")
         }, 400)
     }, AudioPlayer.prototype._prefetchAudio = function(t) {
@@ -2559,13 +2565,13 @@
             }.bind(this)
         })
     }, window.AudioPlayerFlash = function(t) {
-        this.opts = t || {}, window._flashAudioInstance = this
+        this.opts = t || {}, window._flashAudioInstance = this;
     }, AudioPlayerFlash.onAudioFinishCallback = function() {
         var t = window._flashAudioInstance;
         t.opts.onEnd && t.opts.onEnd()
     }, AudioPlayerFlash.onAudioProgressCallback = function(t, e) {
         var i = window._flashAudioInstance;
-        e && (i._total = e, i._currProgress = t / e, i.opts.onProgressUpdate && i.opts.onProgressUpdate(i._currProgress, t));
+        e && (i._total = e, i._currProgress = t / e, i.opts.onProgressUpdate && i.opts.onProgressUpdate(i._currProgress, t))
     }, AudioPlayerFlash.onAudioLoadProgressCallback = function(t, e) {
         var i = window._flashAudioInstance;
         i._currBuffered = t / e, i.opts.onBufferUpdate && i.opts.onBufferUpdate(i._currBuffered)
@@ -3008,7 +3014,7 @@
     try {
         stManager.done("audioplayer.js")
     } catch (e) {}
-}, function(t, e) {
+}, , , function(t, e) {
     "use strict";
 
     function i() {

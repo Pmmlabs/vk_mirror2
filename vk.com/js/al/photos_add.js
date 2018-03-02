@@ -568,7 +568,9 @@ var PhotosAdd = {
                         thumbImage = vkImage();
                     thumbImage.onload = function() {
                         removeClass(thumbEl, "no_thumb"), setStyle(thumbEl, "background-image", "url('" + thumb + "')"), hide(geByClass1("photos_photo_edit_row_progress", info.prepareCont))
-                    }, thumbImage.src = thumb, PhotosAdd.makeTask(), cur.photoSaveQ.shift(), cur.photoSaveQ[0] && cur.photoSaveQ[0](), cur.onPhotoFirstUploaded && cur.onPhotoFirstUploaded(), setDocumentTitle(cur.uploaderLang.photos_upload_progress_title.replace("{count}", cur.count).replace("{total}", info.totalCount)), qParams && PhotosAdd.queueCheckUpdates(qParams)
+                    }, thumbImage.src = thumb, PhotosAdd.makeTask(), cur.photoSaveQ.shift(), cur.photoSaveQ[0] && cur.photoSaveQ[0](), cur.onPhotoFirstUploaded && cur.onPhotoFirstUploaded();
+                    var uploadDocumentTitle = cur.uploaderLang.photos_upload_progress_title.replace("{count}", cur.count).replace("{total}", info.totalCount);
+                    setDocumentTitle(replaceEntities(uploadDocumentTitle)), qParams && PhotosAdd.queueCheckUpdates(qParams)
                 },
                 onFail: function(o) {
                     if (o && (ge("photos_upload_error_msg").innerHTML = o, show("photos_upload_error"), scrollToTop(200)), cur.errorUpload = !0, hasClass(info.prepareCont, "photos_add_first_child")) {

@@ -1,6 +1,11 @@
 function OList(t, e, i, s) {
     0 === i.length && (i = {}), s = s || {}, this.indexer = new vkIndexer(e, s.getName ? s.getName : function(t) {
-        return t[1]
+        var e = t[1];
+        if (s.nameClass) {
+            var i = se(e);
+            i && (e = val(geByClass1(s.nameClass, e)) || e)
+        }
+        return e
     }), this.owners = e, this.tpl = s.tpl, this.rsTpl = s.rsTpl, this.idIndex = s.idIndex || 0, this.selected = i, this.getUnsorted = s.getUnsorted, this.unsortedIndex = s.unsortedIndex || 0, this.box = t, this.filter = s.filter, s.onTabUpdate && (this.onTabUpdate = s.onTabUpdate), s.onListClick && (this.onListClick = s.onListClick), t.setButtons(getLang("global_save"), function(i) {
         var n = {},
             r = [],
@@ -831,8 +836,7 @@ var uiTabs = {
                 this.animation && this.animation.stop(), !this.disabled && this.options.stopScrollPropagation && (this.unnecessary ? this.options.stopScrollPropagationAlways && cancelEvent(t) : this.isScrollEventUnused(t) ? cancelEvent(t) : stopEvent(t))
             }.bind(this), !this.options.stopScrollPropagation), this.options["native"] || this.addEvent(this.el.barContainer, "mousedown", this.dragstart.bind(this)), each(this.options.scrollElements, function(t, e) {
                 this.addEvent(e, l, function(t) {
-                    this.disabled || this.unnecessary || (this.scrollBy(this.scrollEventDelta(t)),
-                        (this.options.stopScrollPropagation || !this.isScrollEventUnused(t)) && cancelEvent(t))
+                    this.disabled || this.unnecessary || (this.scrollBy(this.scrollEventDelta(t)), (this.options.stopScrollPropagation || !this.isScrollEventUnused(t)) && cancelEvent(t))
                 }.bind(this))
             }.bind(this)), this.options.reversed && this.addEvent(this.el.container, "mousedown touchstart pointerdown", function(t) {
                 this.released = !1, this.noMore = !0;
@@ -1438,7 +1442,8 @@ Slider.prototype.toggleAdState = function(t) {
 }, Slider.prototype._onMouseMove = function(t) {
     var e = this._getPos(),
         i = Math.max(t.pageX, e[0]);
-    i = Math.min(i, e[0] + this._width), i -= e[0], this.setValue(i / this._width, !0, !0), this._onValueChangeDebounced ? this._onValueChangeDebounced() : this._onValueChange(), this._toggleHint(!0), this._updateHint(t, !0), cancelEvent(t)
+    i = Math.min(i, e[0] + this._width), i -= e[0], this.setValue(i / this._width, !0, !0), this._onValueChangeDebounced ? this._onValueChangeDebounced() : this._onValueChange(),
+        this._toggleHint(!0), this._updateHint(t, !0), cancelEvent(t)
 }, Slider.prototype._getPos = function() {
     return this._slidePos = getXY(this._slideEl)
 }, Slider.LOGFBASE = 35, Slider.prototype._logf = function(t) {
