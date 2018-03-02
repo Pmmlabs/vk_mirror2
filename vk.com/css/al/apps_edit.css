@@ -2980,6 +2980,14 @@ input.execute_field_input {
     padding-top: 5px
 }
 
+.app_stat_retention {
+    display: none
+}
+
+.app_stat_retention.active {
+    display: block
+}
+
 #app_stat_main_blocks .round_tab {
     font-size: 11px;
     margin: 5px

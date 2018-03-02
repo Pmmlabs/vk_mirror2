@@ -2086,8 +2086,13 @@ var AppsEdit = {
             }
         })
     },
-    changeStatBlockPeriod: function(e) {
-        cur.stat_main_block_period || (cur.stat_main_block_period = "yesterday"), cur.stat_main_block_period != e && (cur.stat_main_block_period = e, "yesterday" == e ? (removeClass(ge("app_stat_main_blocks_selector_month"), "selected"), addClass(ge("app_stat_main_blocks_selector_yesterday"), "selected")) : (removeClass(ge("app_stat_main_blocks_selector_yesterday"), "selected"), addClass(ge("app_stat_main_blocks_selector_month"), "selected")), toggle(ge("app_stat_main_block1_day")), toggle(ge("app_stat_main_block2_day")), toggle(ge("app_stat_main_block3_day")), toggle(ge("app_stat_main_block1_subtitle_day")), toggle(ge("app_stat_main_block1_month")), toggle(ge("app_stat_main_block2_month")), toggle(ge("app_stat_main_block3_month")), toggle(ge("app_stat_main_block1_subtitle_month")))
+    changeStatBlockPeriod: function(e, t, a) {
+        var s, i, n;
+        cur.statsMainBlockCurrentPeriodType = cur.statsMainBlockCurrentPeriodType || "day", hasClass(e, "selected") || (s = geByClass("app_stats_main_block_tab"), each(s, function() {
+            removeClass(this, "selected")
+        }), addClass(e, "selected"), n = geByClass("app_stat_retention"), each(n, function() {
+            removeClass(this, "active")
+        }), i = ge("app_stats_retention_" + t), addClass(i, "active"), cur.statsMainBlockCurrentPeriodType !== a && (toggle(ge("app_stat_main_block1_day")), toggle(ge("app_stat_main_block2_day")), toggle(ge("app_stat_main_block3_day")), toggle(ge("app_stat_main_block1_subtitle_day")), toggle(ge("app_stat_main_block1_month")), toggle(ge("app_stat_main_block2_month")), toggle(ge("app_stat_main_block3_month")), toggle(ge("app_stat_main_block1_subtitle_month")), cur.statsMainBlockCurrentPeriodType = a))
     },
     chooseVideo: function(e, t) {
         var a = {

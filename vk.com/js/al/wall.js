@@ -9,12 +9,13 @@ var FullWall = {
     },
     scrollCheck: function(e, o) {
         var a, l, t, r, n = lastWindowHeight,
-            s = 0,
-            i = [];
+            i = 0,
+            s = [];
         if (domPN(cur.topRow) != cur.pgCont && (cur.topRow = domFC(cur.pgCont)), vk.id && cur.topRow && !((window.curNotifier || {}).idle_manager || {}).is_idle) {
-            for (postsUnseen = [], l = domPS(cur.topRow); l; l = domPS(l)) cur.topRow.offsetTop > o && (cur.topRow = l), l.unseen || (l.unseen = !0, postsUnseen.push(FullWall.postsGetRaws(l)));
-            for (Page.postsUnseen(postsUnseen), l = cur.topRow; l && (a = s ? s : l.offsetTop, !(a >= o + n)); l = t) t = domNS(l), s = t ? t.offsetTop : a + l.offsetHeight, o > s && t && (cur.topRow = t), LongView && LongView.register(l, "FullWall"), r = l.bits || 0, r >= 3 || (r |= (a >= o && o + n > a ? 1 : 0) | (s >= o && o + n > s ? 2 : 0)) && (l.bits = r, 3 == r && i.push(FullWall.postsGetRaws(l)));
-            LongView && LongView.onScroll(o, n), Page.postsSeen(i)
+            var c = [];
+            for (l = domPS(cur.topRow); l; l = domPS(l)) cur.topRow.offsetTop > o && (cur.topRow = l), l.unseen || (l.unseen = !0, c.push(FullWall.postsGetRaws(l)));
+            for (Page.postsUnseen(c), l = cur.topRow; l && (a = i ? i : l.offsetTop, !(a >= o + n)); l = t) t = domNS(l), i = t ? t.offsetTop : a + l.offsetHeight, o > i && t && (cur.topRow = t), LongView && LongView.register(l, "FullWall"), r = l.bits || 0, r >= 3 || (r |= (a >= o && o + n > a ? 1 : 0) | (i >= o && o + n > i ? 2 : 0)) && (l.bits = r, 3 == r && s.push(FullWall.postsGetRaws(l)));
+            LongView && LongView.onScroll(o, n), Page.postsSeen(s)
         }
     },
     postsGetRaws: function(e) {
@@ -63,18 +64,18 @@ var FullWall = {
                 lnav: 1,
                 offset: a.offset || void 0
             }, {
-                onDone: function(e, o, l, t, r, n, s, i, c, d) {
+                onDone: function(e, o, l, t, r, n, i, s, c, d) {
                     ge("fw_summary_wrap").innerHTML = e, Pagination.deinit(), extend(cur, {
                         pgStart: r,
                         pgOffset: n,
-                        pgCount: i,
+                        pgCount: s,
                         pgParams: a.own ? {
                             own: 1
                         } : !1,
                         pgHref: t,
                         pgPages: ge("fw_pages"),
                         pgPreload: c
-                    }), toggle(cur.pgMore, i > n + cur.pgPerPage), wall.cancelEdit();
+                    }), toggle(cur.pgMore, s > n + cur.pgPerPage), wall.cancelEdit();
                     var p = ge("page_wall_posts");
                     p.innerHTML = o, each(geByTag("textarea", p), function() {
                         placeholderSetup(this, {
@@ -101,7 +102,7 @@ var FullWall = {
             })
         }), wall.cancelEdit();
         else {
-            for (var s = (cur.pgCont.childNodes.length, 0), i = cur.pgCont.lastChild; i && ++s <= cur.pgPerPage; i = i.previousSibling) placeholderSetup(geByTag1("textarea", i), {
+            for (var i = (cur.pgCont.childNodes.length, 0), s = cur.pgCont.lastChild; s && ++i <= cur.pgPerPage; s = s.previousSibling) placeholderSetup(geByTag1("textarea", s), {
                 fast: 1
             });
             n = l
@@ -158,10 +159,10 @@ var FullWall = {
             (o === !1 || void 0 === o) && (o = scrollGetY()), cur.addBlockTop = getXY(l)[1], cur.addBlockHeight = getSize(t)[1];
             var r = o + lastWindowHeight < cur.addBlockTop + cur.addBlockHeight,
                 n = r ? Math.min(0, Math.max(-bodyNode.scrollLeft, bodyNode.clientWidth - getSize(ge("page_layout"))[0])) : null,
-                s = Math.min(0, o + lastWindowHeight - getXY("fw_replies_header")[1] - cur.addBlockHeight);
+                i = Math.min(0, o + lastWindowHeight - getXY("fw_replies_header")[1] - cur.addBlockHeight);
             setStyle(t, {
                 marginLeft: n,
-                bottom: s
+                bottom: i
             }), r ? (e && cur.docked || setStyle(l, "height", cur.addBlockHeight), cur.docked || (setStyle(t, "width", getSize(l)[0]), addClass(t, "fixed"), cur.docked = !0)) : cur.docked && (setStyle(t, {
                 width: null,
                 marginLeft: null
@@ -175,7 +176,7 @@ var FullWall = {
     },
     loadedReplies: function(e, o, a, l, t, r, n) {
         r || (n = l);
-        for (var s in n) cur.options.reply_names[s] = n[s];
+        for (var i in n) cur.options.reply_names[i] = n[i];
         FullWall.onePostOnScroll(), FullWall.repliesSummary(e)
     },
     repliesSummary: function(e) {

@@ -1327,19 +1327,20 @@ var Feed = {
                 cc2017: !0
             };
             if (vk.id && cur.topRow && "feed_rows_next" != cur.topRow.id && l[cur.section] && (!((window.curNotifier || {}).idle_manager || {}).is_idle || "init" == e.type)) {
-                for (postsUnseen = [], o = domPS(cur.topRow); o; o = domPS(o)) cur.topRow.offsetTop > a && (cur.topRow = o), o.unseen || (o.unseen = !0, postsUnseen.push(Feed.postsGetRaws(o)));
-                for (Page.postsUnseen(postsUnseen), o = cur.topRow; o && (t = c ? c : o.offsetTop, !(t >= a + n)); o = s)
+                var u = [];
+                for (o = domPS(cur.topRow); o; o = domPS(o)) cur.topRow.offsetTop > a && (cur.topRow = o), o.unseen || (o.unseen = !0, u.push(Feed.postsGetRaws(o)));
+                for (Page.postsUnseen(u), o = cur.topRow; o && (t = c ? c : o.offsetTop, !(t >= a + n)); o = s)
                     if (s = domNS(o), "feed_rows_next" == (s || {}).id && (s = null), c = s ? s.offsetTop : t + o.offsetHeight, a > c && s && (cur.topRow = s), LongView && LongView.register(o, "feed"), !i.registerElement(o) && (r = o.bits || 0, !(r >= 3) && (r |= (t >= a && a + n > t ? 1 : 0) | (c >= a && a + n > c ? 2 : 0), r && (o.bits = r, 3 == r)))) {
-                        var u = feed.postsGetRaws(o);
-                        d.push(u), hasClass(o, "feed_to_recomm") && statlogsValueEvent("promo_button_view_blocks", u.index, u.module)
+                        var f = feed.postsGetRaws(o);
+                        d.push(f), hasClass(o, "feed_to_recomm") && statlogsValueEvent("promo_button_view_blocks", f.index, f.module)
                     }
                 d = d.concat(i.process(a, n)), LongView && LongView.onScroll(a, n), Page.postsSeen(d);
-                var f = ge("show_more_link"),
-                    p = f.offsetTop;
-                if (!f.seen && p >= a && a + n > p) {
-                    f.seen = Date.now();
-                    var _ = cur.section + (cur.subsection ? "_" + cur.subsection : "");
-                    statlogsValueEvent("feed_load_more_seen", isButtonLocked(f), _)
+                var p = ge("show_more_link"),
+                    _ = p.offsetTop;
+                if (!p.seen && _ >= a && a + n > _) {
+                    p.seen = Date.now();
+                    var h = cur.section + (cur.subsection ? "_" + cur.subsection : "");
+                    statlogsValueEvent("feed_load_more_seen", isButtonLocked(p), h)
                 }
             }
         }

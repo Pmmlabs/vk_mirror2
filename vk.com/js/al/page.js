@@ -5766,7 +5766,7 @@ var Wall = {
                 !cur.topRow.id.match(/page_wall_count_/) &&
                 !((window.curNotifier || {}).idle_manager || {}).is_idle
             ) {
-                postsUnseen = [];
+                var postsUnseen = [];
                 for (el = Wall.domPS(cur.topRow); el; el = Wall.domPS(el)) {
                     if (cur.topRow.offsetTop > st) cur.topRow = el;
                     if (!el.unseen) {

@@ -413,7 +413,7 @@ var BugTracker = {
     },
     getSelectedReportIds: function() {
         var e = [];
-        return cur.btSelected && each(cur.btSelected.reports, function(t, r) {
+        return cur.btSelected && each(cur.btSelected.reports, function(t) {
             e.push(t)
         }), e
     },
@@ -465,14 +465,14 @@ var BugTracker = {
             hideProgress: unlockButton.pbind(e)
         })
     },
-    checkReportsSelected: function(e, t, r, o) {
-        var a = cur.btSelected ? cur.btSelected.count : 0;
-        if (a) {
+    checkReportsSelected: function(e, t, r) {
+        var o = cur.btSelected ? cur.btSelected.count : 0;
+        if (o) {
             ge("bt_tab_all") && uiTabs.switchTab(geByClass1("ui_tab", "bt_tab_all"), {
                 noAnim: 1
             });
-            var n = showFastBox(getLang("global_action_confirmation"), getLang("bugs_t_confirm_leave_selected_reports"), getLang("global_continue"), function() {
-                n.hide(), BugTracker.diselectAllReports(), nav.go(r)
+            var a = showFastBox(getLang("global_action_confirmation"), getLang("bugs_t_confirm_leave_selected_reports"), getLang("global_continue"), function() {
+                a.hide(), BugTracker.diselectAllReports(), nav.go(r)
             }, getLang("global_cancel"));
             return !1
         }
@@ -955,15 +955,15 @@ var BugTracker = {
             }
         })
     },
-    searchLicence: function(e, t, r) {
-        var o = uiSearch.getWrapEl(e);
-        uiSearch.showProgress(o);
-        var a = nav.objLoc;
-        "" != t ? a.q = t : delete a.q, nav.go(a)
-    },
-    searchMemship: function(e, t, r) {
+    searchLicence: function(e, t) {
+        var r = uiSearch.getWrapEl(e);
+        uiSearch.showProgress(r);
         var o = nav.objLoc;
-        t ? o.q = t : o.q && delete o.q, nav.go(o), uiSearch.showProgress(e)
+        "" != t ? o.q = t : delete o.q, nav.go(o)
+    },
+    searchMemship: function(e, t) {
+        var r = nav.objLoc;
+        t ? r.q = t : r.q && delete r.q, nav.go(r), uiSearch.showProgress(e)
     },
     memshipAcceptSelf: function(e, t) {
         ajax.post("bugtracker", {
@@ -1472,7 +1472,7 @@ var BugTracker = {
     pairedCheckbox: function(e, t) {
         checkbox(e), isChecked && checkbox(t, !1)
     },
-    openMoveToProductBox: function(e, t, r) {
+    openMoveToProductBox: function(e) {
         cur.moveToProductBox = showBox("bugtracker?act=move_bugreport_to_product_box", {
             id: e
         }, {
