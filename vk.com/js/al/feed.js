@@ -317,29 +317,29 @@ var Feed = {
                 m.insertBefore(f, m.firstChild), feed.needScrollPost(t, f) && (c += f.offsetHeight + d(f)), cur.feedUnreadCount++, v.length > 300 ? m.removeChild(v[300]) : v.length <= 1 && removeClass(cur.feedEls.wrap, "feed_is_empty");
                 break;
             case "edit_post":
-                var E, B = ge("wpt" + r);
-                if (!isVisible(i) || !B) break;
-                var L = geByClass1("wall_post_more", B);
-                L && (L = isVisible(domNS(L))), (E = feed.needScrollPost(t, B)) && (c -= B.offsetHeight);
-                var M = psr(rs(e[3], {
+                var B, E = ge("wpt" + r);
+                if (!isVisible(i) || !E) break;
+                var L = geByClass1("wall_post_more", E);
+                L && (L = isVisible(domNS(L))), (B = feed.needScrollPost(t, E)) && (c -= E.offsetHeight);
+                var H = psr(rs(e[3], {
                     poll_hash: cur.wallTpl.poll_hash
                 }));
-                window.ny2018ReplaceText && (M = ny2018ReplaceText(M));
+                window.ny2018ReplaceText && (H = ny2018ReplaceText(H));
                 var m = ge("post" + r);
-                m && !isVisible(m.parentNode) && (M = wall.updatePostImages(M)), val(B, M), L && (L = geByClass1("wall_post_more", B), L && L.onclick()), ge("post_poll_id" + r) && wall.updatePoll(r), E && (c += B.offsetHeight), nodeUpdated(B), window.Wall && Wall.updatePostAuthorData(r);
+                m && !isVisible(m.parentNode) && (H = wall.updatePostImages(H)), val(E, H), L && (L = geByClass1("wall_post_more", E), L && L.onclick()), ge("post_poll_id" + r) && wall.updatePoll(r), B && (c += E.offsetHeight), nodeUpdated(E), window.Wall && Wall.updatePostAuthorData(r);
                 break;
             case "edit_reply":
-                var N = e[3],
-                    B = ge("wpt" + N);
-                if (!isVisible("post" + N) || !B) break;
-                var L = geByClass1("wall_reply_more", B);
-                L && (L = isVisible(domNS(L))), updH = -B.offsetHeight, updY = getXY(B)[1], window.ny2018ReplaceText && val(B, ny2018ReplaceText(psr(e[4]))), L && (L = geByClass1("wall_reply_more", B), L && L.onclick()), updH += B.offsetHeight, nodeUpdated(B);
+                var M = e[3],
+                    E = ge("wpt" + M);
+                if (!isVisible("post" + M) || !E) break;
+                var L = geByClass1("wall_reply_more", E);
+                L && (L = isVisible(domNS(L))), updH = -E.offsetHeight, updY = getXY(E)[1], window.ny2018ReplaceText && val(E, ny2018ReplaceText(psr(e[4]))), L && (L = geByClass1("wall_reply_more", E), L && L.onclick()), updH += E.offsetHeight, nodeUpdated(E);
                 break;
             case "post_parsed_link":
                 if (!i) break;
-                var H = geByClass1("wall_postlink_preview_btn_disabled", i);
-                if (!H) break;
-                intval(e[3]) ? removeClass(H, "wall_postlink_preview_btn_disabled") : re(H);
+                var N = geByClass1("wall_postlink_preview_btn_disabled", i);
+                if (!N) break;
+                intval(e[3]) ? removeClass(N, "wall_postlink_preview_btn_disabled") : re(N);
                 break;
             case "del_post":
                 if (i) {
@@ -1310,13 +1310,13 @@ var Feed = {
     },
     scrollCheck: debounce(function(e) {
         if (e = e || {}, "scroll" == e.type || cur.idleManager && !cur.idleManager.isIdle) {
-            var t, o, s, r, i = feed.longView,
-                n = window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight,
-                a = scrollGetY(),
-                c = 0,
-                d = [];
-            cur.isFeedLoading || cur.disableAutoMore || (o = ge("show_more_link"), isVisible(o) && a + n + 1e3 > o.offsetTop && feed.showMore()), (domPN(cur.topRow) != cur.rowsCont || "feed_rows_next" == (cur.topRow || {}).id) && (cur.topRow = domFC(cur.rowsCont));
-            var l = {
+            var t, o, s, r, i, n, a = feed.longView,
+                c = window.innerHeight || document.documentElement.clientHeight || bodyNode.clientHeight,
+                d = scrollGetY(),
+                l = 0,
+                u = [];
+            cur.isFeedLoading || cur.disableAutoMore || (r = ge("show_more_link"), isVisible(r) && d + c + 1e3 > r.offsetTop && feed.showMore()), (domPN(cur.topRow) != cur.rowsCont || "feed_rows_next" == (cur.topRow || {}).id) && (cur.topRow = domFC(cur.rowsCont));
+            var f = {
                 news: !0,
                 recommended: !0,
                 search: !0,
@@ -1326,21 +1326,21 @@ var Feed = {
                 1917: !0,
                 cc2017: !0
             };
-            if (vk.id && cur.topRow && "feed_rows_next" != cur.topRow.id && l[cur.section] && (!((window.curNotifier || {}).idle_manager || {}).is_idle || "init" == e.type)) {
-                var u = [];
-                for (o = domPS(cur.topRow); o; o = domPS(o)) cur.topRow.offsetTop > a && (cur.topRow = o), o.unseen || (o.unseen = !0, u.push(Feed.postsGetRaws(o)));
-                for (Page.postsUnseen(u), o = cur.topRow; o && (t = c ? c : o.offsetTop, !(t >= a + n)); o = s)
-                    if (s = domNS(o), "feed_rows_next" == (s || {}).id && (s = null), c = s ? s.offsetTop : t + o.offsetHeight, a > c && s && (cur.topRow = s), LongView && LongView.register(o, "feed"), !i.registerElement(o) && (r = o.bits || 0, !(r >= 3) && (r |= (t >= a && a + n > t ? 1 : 0) | (c >= a && a + n > c ? 2 : 0), r && (o.bits = r, 3 == r)))) {
-                        var f = feed.postsGetRaws(o);
-                        d.push(f), hasClass(o, "feed_to_recomm") && statlogsValueEvent("promo_button_view_blocks", f.index, f.module)
+            if (vk.id && cur.topRow && "feed_rows_next" != cur.topRow.id && f[cur.section] && (!((window.curNotifier || {}).idle_manager || {}).is_idle || "init" == e.type)) {
+                var p = [];
+                for (r = domPS(cur.topRow); r; r = domPS(r)) cur.topRow.offsetTop > d && (cur.topRow = r), r.unseen || (r.unseen = !0, p.push(Feed.postsGetRaws(r)));
+                for (Page.postsUnseen(p), r = cur.topRow; r && (t = l ? l : r.offsetTop, !(t >= d + c)); r = i)
+                    if (i = domNS(r), "feed_rows_next" == (i || {}).id && (i = null), l = i ? i.offsetTop : t + r.offsetHeight, d > l && i && (cur.topRow = i), LongView && LongView.register(r, "feed"), !a.registerElement(r) && (n = r.bits || 0, !(n >= 3) && (cur.feedSeenPostHeight > 0 ? (cur.feedPostHeaderHeight = cur.feedPostHeaderHeight || getH(geByClass1("post_header", r)), o = t + cur.feedPostHeaderHeight, s = o + cur.feedSeenPostHeight, r.postBottom || (r.postBottom = o + getH(geByClass1("wall_text", r))), s = Math.min(s, r.postBottom), n |= (o >= d && d + c > o ? 1 : 0) | (s >= d && d + c > s ? 2 : 0)) : n |= (t >= d && d + c > t ? 1 : 0) | (l >= d && d + c > l ? 2 : 0), n && (r.bits = n, 3 == n)))) {
+                        var _ = feed.postsGetRaws(r);
+                        u.push(_), hasClass(r, "feed_to_recomm") && statlogsValueEvent("promo_button_view_blocks", _.index, _.module)
                     }
-                d = d.concat(i.process(a, n)), LongView && LongView.onScroll(a, n), Page.postsSeen(d);
-                var p = ge("show_more_link"),
-                    _ = p.offsetTop;
-                if (!p.seen && _ >= a && a + n > _) {
-                    p.seen = Date.now();
-                    var h = cur.section + (cur.subsection ? "_" + cur.subsection : "");
-                    statlogsValueEvent("feed_load_more_seen", isButtonLocked(p), h)
+                u = u.concat(a.process(d, c)), LongView && LongView.onScroll(d, c), Page.postsSeen(u);
+                var h = ge("show_more_link"),
+                    g = h.offsetTop;
+                if (!h.seen && g >= d && d + c > g) {
+                    h.seen = Date.now();
+                    var w = cur.section + (cur.subsection ? "_" + cur.subsection : "");
+                    statlogsValueEvent("feed_load_more_seen", isButtonLocked(h), w)
                 }
             }
         }

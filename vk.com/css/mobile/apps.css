@@ -10484,6 +10484,11 @@ img[src^="/images/mobile/places/"] {
     display: block
 }
 
+.vk_ariaMode :after,
+.vk_ariaMode :before {
+    background-image: none!important
+}
+
 #apps #apps_box {
     background-color: #fff
 }

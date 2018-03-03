@@ -956,7 +956,7 @@ div#wk_history_more_progress {
 .wl_postreach_stat_bigtext {
     font-size: 24px;
     letter-spacing: 0.4px;
-    padding: 12px 0 13px
+    padding: 0 0 13px
 }
 
 .wl_postreach_stat_smalltext {
@@ -998,7 +998,7 @@ div#wk_history_more_progress {
 .wl_postreach_stat_video_wrap {
     display: table;
     width: 100%;
-    padding: 12px 0 13px;
+    padding: 0 0 13px;
     padding-bottom: 0
 }
 
@@ -1024,9 +1024,10 @@ div#wk_history_more_progress {
 .wk_posts_stats_info_row .comment,
 .wk_posts_stats_info_row .like,
 .wk_posts_stats_info_row .share,
-.wl_postreach_stat_icon_item {
+.wl_postreach_stat_icon_item,
+.wl_postreach_stat_item {
     display: inline-block;
-    padding: 0 20px 0 0;
+    padding: 12px 20px 0 0;
     line-height: 19px;
     vertical-align: top;
     position: relative
@@ -1035,7 +1036,8 @@ div#wk_history_more_progress {
 .wk_posts_stats_info_row .comment:last-child,
 .wk_posts_stats_info_row .like:last-child,
 .wk_posts_stats_info_row .share:last-child,
-.wl_postreach_stat_icon_item:last-child {
+.wl_postreach_stat_icon_item:last-child,
+.wl_postreach_stat_item:last-child {
     padding-right: 0
 }
 
@@ -1142,7 +1144,9 @@ div#wl_post_body_wrap.wl_postreach_wall_module .replies {
 span#wk_posts_reach_tooltip_link {
     color: #b0bfcc;
     font-weight: 700;
-    padding-left: 5px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 14px 0 14px 5px;
     cursor: pointer
 }
 

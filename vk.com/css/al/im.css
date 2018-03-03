@@ -9148,24 +9148,39 @@ body.sf .nim-dialog .nim-dialog--unread {
 }
 
 .im-mask-snippet__image {
+    position: relative;
     display: table-cell;
     vertical-align: top;
-    box-sizing: border-box
+    box-sizing: border-box;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(0, 20, 51, .12) inset;
+    border-radius: 2px 0 0 2px;
+    cursor: pointer
+}
+
+.im-mask-snippet__bg {
+    background-position: 50%;
+    background-size: 300%;
+    -webkit-filter: blur(32px);
+    filter: blur(32px)
+}
+
+.im-mask-snippet__bg,
+.im-mask-snippet__bg-ie {
+    width: 120px;
+    height: 120px
 }
 
 .im-mask-snippet__icon {
-    width: 120px;
-    height: 120px;
-    background-image: url('/images/landings/vkmasks/masksSnippet.png');
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
     background-repeat: no-repeat;
     background-position: 50%;
-    background-size: 120px 120px;
-    box-shadow: 0 0 0 1px rgba(0, 20, 51, .12) inset;
-    border-radius: 2px 0 0 2px
-}
-
-.is_2x .im-mask-snippet__icon {
-    background-image: url('/images/landings/vkmasks/masksSnippet_2x.png')
+    background-color: rgba(0, 20, 51, .12);
+    background-size: 88px 88px
 }
 
 .im-mask-snippet__content {
@@ -9177,7 +9192,7 @@ body.sf .nim-dialog .nim-dialog--unread {
     border: 1px solid rgba(0, 20, 51, .12);
     border-left: 0;
     border-radius: 0 2px 2px 0;
-    word-break: break-word;
+    word-wrap: break-word;
     box-sizing: border-box
 }
 

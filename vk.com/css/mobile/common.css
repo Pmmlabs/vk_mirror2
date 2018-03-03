@@ -10484,6 +10484,11 @@ img[src^="/images/mobile/places/"] {
     display: block
 }
 
+.vk_ariaMode :after,
+.vk_ariaMode :before {
+    background-image: none!important
+}
+
 .blog_body,
 .blog_body #l .main_menu,
 .blog_body #mcont,
@@ -25851,6 +25856,11 @@ a.feedBlocks__article:hover {
 
 .msg_service .ph_img_as_div {
     display: none
+}
+
+.msg .mi_gift_thumb {
+    margin-top: 12px;
+    margin-bottom: 12px
 }
 
 .msg__text {
