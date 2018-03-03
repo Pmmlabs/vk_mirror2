@@ -638,4 +638,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 9514;
+var _rnd = 4990;
