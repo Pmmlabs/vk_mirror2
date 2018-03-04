@@ -7349,7 +7349,6 @@ function MessageBox(options, dark) {
 function showBox(url, params, options, e) {
     if (checkEvent(e)) return false;
 
-
     var opts = options || {};
     var boxParams = opts.params || {};
     if (opts.containerClass) {

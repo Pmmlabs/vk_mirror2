@@ -15443,7 +15443,8 @@ input:checked+.adultConfirm__checkboxIcon:after {
     display: none
 }
 
-.prettyCard__count {
+.prettyCard__count,
+.prettyCard__desc {
     margin-top: 3px;
     font-size: 13px;
     letter-spacing: -0.1px;
@@ -20997,6 +20998,173 @@ a.feedBlocks__article:hover {
 .vk_2x .feedAssistanceImportContacts__goIcon {
     background: url(/images/mobile/prv_arrow_2x.png) no-repeat 100%;
     background-size: 8px 14px!important
+}
+
+.feedAssistance_recommendedFriends .prettyCard {
+    width: 138px;
+    margin-right: 8px;
+    margin-bottom: 12px
+}
+
+.feedAssistance_recommendedFriends .prettyCard__photo {
+    position: relative;
+    box-sizing: border-box;
+    width: 138px;
+    height: 138px;
+    background-size: cover;
+    border-radius: 6px 6px 0 0;
+    border: none
+}
+
+.feedAssistance_recommendedFriends .prettyCard__photo:before {
+    content: '';
+    position: absolute;
+    box-sizing: border-box;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px 6px 0 0;
+    border: 1px solid rgba(0, 12, 26, .12);
+    z-index: 1
+}
+
+.feedAssistance_recommendedFriends .prettyCard__body {
+    border-radius: 0 0 6px 6px
+}
+
+.feedAssistance_recommendedFriends .prettyCard__bodyLink {
+    height: 46px;
+    padding: 10px 8px
+}
+
+.feedAssistance_recommendedFriends .prettyCard__desc,
+.feedAssistance_recommendedFriends .prettyCard__title {
+    text-align: center;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.feedAssistance_recommendedFriends .prettyCard__title:last-child {
+    line-height: 46px
+}
+
+.feedAssistance_recommendedFriends .prettyCard__descs,
+.feedAssistance_recommendedFriends .prettyCard__long_desc {
+    font-size: 12px;
+    line-height: 1.17;
+    margin-top: 2px;
+    color: #909499;
+    text-align: center
+}
+
+.feedAssistance_recommendedFriends .prettyCard__long_desc {
+    height: 28px;
+    padding-bottom: 2px;
+    margin-bottom: -2px;
+    white-space: normal;
+    overflow: hidden;
+    position: relative;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.feedAssistance_recommendedFriends .prettyCard__long_desc_content {
+    max-height: 28px
+}
+
+.feedAssistance_recommendedFriends .prettyCard__descs_line {
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.feedAssistance_recommendedFriends .prettyCard__buttonWrap {
+    padding: 0 10px 10px;
+    margin-top: -2px
+}
+
+.feedAssistance_recommendedFriends .prettyCard__button {
+    padding: 6px 7px 7px 10px;
+    margin: 0 1px 1px;
+    font-size: 12px!important;
+    border-radius: 4px
+}
+
+.feedAssistance_recommendedFriends .prettyCard__button:before {
+    content: '';
+    display: inline-block;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    left: -2px;
+    top: 4px;
+    margin-top: -4px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-image: url('/images/icons/add_16.png')
+}
+
+.feedAssistance_recommendedFriends .prettyCard__button:before,
+.vk_2x .feedAssistance_recommendedFriends .prettyCard__button:before {
+    background-image: -o-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/add_16.svg');
+    background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/add_16.svg')
+}
+
+.vk_2x .feedAssistance_recommendedFriends .prettyCard__button:before {
+    background-image: url('/images/icons/add_2x.png')
+}
+
+.feedAssistance_recommendedFriends .prettyCard__button.prettyCard__button_accepted {
+    font-weight: 400;
+    background: transparent;
+    color: #909499;
+    padding: 5px 0 7px
+}
+
+.feedAssistance_recommendedFriends .prettyCard__button.prettyCard__button_accepted:before,
+.feedAssistance_recommendedFriends .prettyCard__button.prettyCard__button_loading:before {
+    display: none
+}
+
+.feedAssistance_recommendedFriends .prettyCard__closeButton {
+    border-radius: 50%;
+    top: 8px;
+    right: 8px;
+    background-image: url('/images/hide_16.png');
+    background-size: 80%
+}
+
+.feedAssistance_recommendedFriends .prettyCard__closeButton,
+.vk_2x .feedAssistance_recommendedFriends .prettyCard__closeButton {
+    background-image: -o-linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/hide_16.svg');
+    background-image: linear-gradient(transparent, transparent), url('/images/mobile/svg_icons/hide_16.svg')
+}
+
+.vk_2x .feedAssistance_recommendedFriends .prettyCard__closeButton {
+    background-image: url('/images/hide_16_2x.png')
+}
+
+.feedAssistance_recommendedFriends .feedAssistance__header {
+    font-weight: 400;
+    line-height: 1.4;
+    margin-top: -3px;
+    margin-bottom: -2px
+}
+
+.feedAssistance_recommendedFriends__title {
+    font-size: 13px
+}
+
+.feedAssistance_recommendedFriends__all_link {
+    float: right
 }
 
 .vk__page_newCreatePost .Control {
