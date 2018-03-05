@@ -6921,6 +6921,7 @@ div.create_poll_cb {
     z-index: 100
 }
 
+.medadd_c_mask .medadd_c_story_thumb,
 .medadd_c_story .medadd_c_story_thumb {
     background: 50%;
     background-size: cover;
@@ -6928,10 +6929,12 @@ div.create_poll_cb {
     height: 41px
 }
 
+.medadd_c_mask .medadd_c_story_info,
 .medadd_c_story .medadd_c_story_info {
     padding-left: 10px
 }
 
+.medadd_c_mask .medadd_c_story_title,
 .medadd_c_story .medadd_c_story_title {
     max-width: 280px;
     white-space: nowrap;
@@ -6946,6 +6949,7 @@ div.create_poll_cb {
     -moz-osx-font-smoothing: grayscale
 }
 
+.medadd_c_mask .medadd_c_story_desc,
 .medadd_c_story .medadd_c_story_desc {
     padding-top: 5px;
     color: #888;

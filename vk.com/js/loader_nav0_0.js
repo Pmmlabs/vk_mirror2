@@ -219,7 +219,7 @@ var stVersions = {
     'owner_photo.js': 3401070266,
     'owner_photo.css': 22440944822,
     'page.js': 833131001,
-    'page.css': 37010641121,
+    'page.css': 34486521178,
     'page_help.css': 24993268309,
     'public.css': 30608059241,
     'public.js': 1344775948,
@@ -426,7 +426,7 @@ var stVersions = {
     'ui.js': 3953380422,
     'ui_common.js': 2142953891,
     'ui_common.css': 20325445300,
-    'ui_media_selector.js': 350890024,
+    'ui_media_selector.js': 112474283,
     'ui_media_selector.css': 22093525999,
     'ui_manual.css': 18006723385,
     'admin.js': 2866808704,
@@ -538,7 +538,7 @@ var stVersions = {
     'internal/patterns_info.css': 19630620337,
     'article.css': 37451573337,
     'article_editor.css': 37617917465,
-    'cmodules/web/article.js': 36808752257,
+    'cmodules/web/article.js': 37418833694,
     'cmodules/web/article_layer.js': 22276030910,
     'article_view.js': 17227931000,
     'internal/cvkmobile.css': 18470701427,
@@ -566,7 +566,7 @@ var stVersions = {
     'internal/stories_admin_panel.css': 16873727888,
     'time_spent.js': 1789786634,
     'cmodules/web/app_info.js': 2375115030,
-    'lang': 6879
+    'lang': 6880
 };
 var stTypes = {
     fromLib: {
@@ -638,4 +638,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 1491;
+var _rnd = 4184;
