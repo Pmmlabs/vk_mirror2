@@ -564,7 +564,7 @@ var stVersions = {
     'lead_forms_app.js': 11788960687,
     'lead_forms_app.css': 22136126273,
     'internal/stories_admin_panel.css': 16873727888,
-    'time_spent.js': 1789786634,
+    'time_spent.js': 732637085,
     'cmodules/web/app_info.js': 2375115030,
     'lang': 6880
 };
@@ -638,4 +638,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 1899;
+var _rnd = 6094;
