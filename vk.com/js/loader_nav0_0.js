@@ -134,7 +134,7 @@ var stVersions = {
     'nav': 0,
     'fonts_cnt.css': 5181750877,
     'common.js': 1161,
-    'common.css': 40306776506,
+    'common.css': 39487911964,
     'cmodules/web/common_web.js': 2,
     'retina.css': 2633262011,
     'uncommon.js': 1640247993,
@@ -200,7 +200,7 @@ var stVersions = {
     'video_upload.js': 2270908085,
     'video_youtube.js': 458412745,
     'video_youtube.css': 16428492363,
-    'videoplayer.js': 80400705842,
+    'videoplayer.js': 67439319607,
     'videoplayer.css': 40296244289,
     'translation.js': 2188856658,
     'translation.css': 18685078950,
@@ -250,7 +250,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 129984758290,
-    'imn.js': 148097345835,
+    'imn.js': 149404286794,
     'im.js': 1322065005,
     'emoji.js': 2308623021,
     'wide_dd.css': 19537848134,
@@ -530,9 +530,9 @@ var stVersions = {
     'voice_message_player.js': 18549969583,
     'cmodules/web/speech_worker_mp3.js': 1074082218,
     'cmodules/web/speech_worker_opus.js': 2818771805,
-    'stories.js': 37558432641,
+    'stories.js': 38674666738,
     'stories.css': 21293211145,
-    'internal/nospam.css': 19352141396,
+    'internal/nospam.css': 20402125358,
     'internal/away_linksban.css': 16723291330,
     'internal/ui_manual.js': 1761369792,
     'internal/patterns_info.css': 19630620337,
@@ -638,4 +638,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 4184;
+var _rnd = 1899;

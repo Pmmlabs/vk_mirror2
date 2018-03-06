@@ -1870,7 +1870,7 @@ body.mac #page_header_cont {
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%227%22%20height%3D%2210%22%20viewBox%3D%220%200%207%2010%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M.797%209.836c-.44.327-.797.152-.797-.41V.574C0%20.02.353-.166.797.163l5.962%204.42c.31.23.31.603%200%20.833L.797%209.836z%22%20fill%3D%22%23B4C8E0%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E") no-repeat
 }
 
-.top_audio_play.shuffle .top_audio_play__button:after {
+.top_audio_play.shuffle .top_audio_play__button:hover:after {
     background: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2213%22%20height%3D%2212%22%20viewBox%3D%220%200%2013%2012%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M10%203.6h-.524c-1.585%200-2.58%201.385-3.717%202.778C4.495%207.928%203.367%2010%20.826%2010H0V8.4h.826c1.519-.037%202.46-1.632%203.575-3C5.666%203.853%206.936%202%209.484%202H10V0l3%202.75-3%202.75V3.6zm0%204.8V6.5l3%202.75L10%2012v-2h-.516c-1.603%200-2.7-.733-3.609-1.662A57.729%2057.729%200%200%201%206.84%206.92c.76.844%201.562%201.48%202.636%201.48H10zM3.282%205.18C2.57%204.32%201.822%203.625.826%203.6H0V2h.826c1.566%200%202.595.787%203.45%201.753l-.494.706c-.168.238-.335.48-.5.722z%22%20fill%3D%22%23B4C8E0%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E") no-repeat;
     left: 5px;
     top: 4px;
