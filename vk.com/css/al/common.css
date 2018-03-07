@@ -1541,6 +1541,10 @@ textarea.disabled {
     width: 100%
 }
 
+.half_width {
+    width: 50%
+}
+
 h1 {
     font-size: 18px;
     color: #222;

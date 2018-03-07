@@ -115,10 +115,10 @@ var Market = {
                     if (hasClass(a, "ui_search_fltr_label")) {
                         var i = a.textContent,
                             s = "",
-                            c = geByClass1("ui_search_fltr_label_postfix", a);
-                        c && (s = c.getAttribute("data-prefix"), c = c.textContent, i = i.replace(c, "").replace(/,\s$/, ""), s && (c = !1)), geByClass1("ui_search_fltr_sep", o) && each(geByTag("input", o), function(t, r) {
+                            n = geByClass1("ui_search_fltr_label_postfix", a);
+                        n && (s = n.getAttribute("data-prefix"), n = n.textContent, i = i.replace(n, "").replace(/,\s$/, ""), s && (n = !1)), geByClass1("ui_search_fltr_sep", o) && each(geByTag("input", o), function(t, r) {
                             r == e && (i += " " + (0 == t ? getLang("market_filter_range_from") : getLang("market_filter_range_to")))
-                        }), t[1] = i + (s ? " " + s : " ") + t[1] + (c ? " " + c : "")
+                        }), t[1] = i + (s ? " " + s : " ") + t[1] + (n ? " " + n : "")
                     }
                 }
             }
@@ -290,15 +290,15 @@ var Market = {
                         var s = Upload.options[cur.uploadId].base_url + "upload.php?act=market_photo_crop&_query=" + encodeURIComponent(t) + "&_origin=" + encodeURIComponent(locProtocol + "//" + locHost);
                         Market.cropPhoto(a.photos[0], s), Upload.embed(i)
                     } else {
-                        var c = (e.fileName || e).replace(/[&<>"']/g, ""),
-                            n = e.fileName ? i + "_" + e.fileName : e,
-                            l = ge("upload" + n + "_progress_wrap");
+                        var n = (e.fileName || e).replace(/[&<>"']/g, ""),
+                            c = e.fileName ? i + "_" + e.fileName : e,
+                            l = ge("upload" + c + "_progress_wrap");
                         l && hide(geByClass1("market_prg_x", l)), a.photos = JSON.stringify(a.photos), ajax.post("al_photos.php", extend({
                             act: "choose_uploaded"
                         }, a), {
                             onDone: function(t, r) {
                                 Market.choosePhoto(e, t, extend(r, {
-                                    upload_ind: i + "_" + c
+                                    upload_ind: i + "_" + n
                                 }))
                             },
                             onFail: Market.uploadFail.pbind(r, e)
@@ -310,7 +310,7 @@ var Market = {
                     if (r) {
                         var i = getProgressBarEl(ge("form" + a + "_progress"));
                         if (!i) {
-                            for (var s = Upload.obj[a], c = getSize(s)[1], n = c / 2 + 10, l = s.firstChild; l;) 1 == l.nodeType && (l.id == "uploader" + a && browser.msie ? setStyle(l, {
+                            for (var s = Upload.obj[a], n = getSize(s)[1], c = n / 2 + 10, l = s.firstChild; l;) 1 == l.nodeType && (l.id == "uploader" + a && browser.msie ? setStyle(l, {
                                 position: "relative",
                                 left: "-5000px"
                             }) : setStyle(l, {
@@ -320,8 +320,8 @@ var Market = {
                                 className: "market_upload_progress_wrap",
                                 innerHTML: '<div id="form' + a + '_progress" class="ui_progress">                <div class="ui_progress_back"></div>                <div class="ui_progress_bar"></div>              </div>'
                             }, {
-                                height: n + "px",
-                                marginTop: -n + "px"
+                                height: c + "px",
+                                marginTop: -c + "px"
                             })), i = getProgressBarEl(ge("form" + a + "_progress"))
                         }
                         var u = intval(t / o * 100);
@@ -370,17 +370,17 @@ var Market = {
                 var s = ge("market_photo_crop_error");
                 return val(s, o), show(s), !0
             }
-            var c = void 0 !== t.ind ? t.ind : t,
-                n = Upload.options[c];
+            var n = void 0 !== t.ind ? t.ind : t,
+                c = Upload.options[n];
             if (e) {
-                var l = Upload.obj[c],
+                var l = Upload.obj[n],
                     u = domPN(l);
                 hasClass(u, "market_upload_progress") && removeClass(u, "market_upload_progress")
             } else {
-                var m = (t.fileName ? t.fileName : t, t.fileName ? c + "_" + t.fileName : t);
-                re("upload" + m + "_progress_wrap"), Market.unchoosePhoto(c)
+                var m = (t.fileName ? t.fileName : t, t.fileName ? n + "_" + t.fileName : t);
+                re("upload" + m + "_progress_wrap"), Market.unchoosePhoto(n)
             }
-            return Upload.embed(c), showMsg(n.errorObj, o, "error", !0), !0
+            return Upload.embed(n), showMsg(c.errorObj, o, "error", !0), !0
         },
         choosePhoto: function(e, t, r) {
             var o = void 0 !== e.ind ? e.ind : e,
@@ -395,11 +395,11 @@ var Market = {
             var i = cur.itemPhotos.length;
             cur.itemPhotos.push(t);
             var s = '<div class="market_ei_photo"><img class="market_ei_img" src="' + r.thumb_m + '" />',
-                c = '<div class="_ei_photo market_ei_photo_wrap market_ei_photo%ind% inl_bl" id="market_ei_photo%ind%">' + s + '<div nosorthandle="1" class="ui_thumb_x_button ui_thumb_small_x" data-title="' + getLang("dont_attach") + '" onmouseover="showTitle(this)" onclick="Market.unchoosePhoto(%ind%); return cancelEvent(event);"><div class="ui_thumb_x" nosorthandle="1"></div></div></div></div>',
-                n = se(rs(c, {
+                n = '<div class="_ei_photo market_ei_photo_wrap market_ei_photo%ind% inl_bl" id="market_ei_photo%ind%">' + s + '<div nosorthandle="1" class="ui_thumb_x_button ui_thumb_small_x" data-title="' + getLang("dont_attach") + '" onmouseover="showTitle(this)" onclick="Market.unchoosePhoto(%ind%); return cancelEvent(event);"><div class="ui_thumb_x" nosorthandle="1"></div></div></div></div>',
+                c = se(rs(n, {
                     ind: i
                 }));
-            a.insertBefore(n, ge("market_ei_photo_add"));
+            a.insertBefore(c, ge("market_ei_photo_add"));
             var l = e.fileName || e.name || "",
                 u = l ? o + "_" + l : o;
             re("upload" + u + "_progress_wrap"), l && ((!browser.msie || browser.version > 8) && cur.itemPhotos.length > 1 ? stManager.add(["usorter.js"], function() {
@@ -436,19 +436,19 @@ var Market = {
                 i = a ? e + "_" + a : e,
                 s = a ? a.length > 33 ? a.substr(0, 30) + "..." : a : "";
             if (r) {
-                var c = getProgressBarEl(ge("upload" + i + "_progress_wrap"));
-                if (!c) {
-                    var n = '  <div class="ui_progress">    <div class="ui_progress_back"></div>    <div class="ui_progress_bar" style="width: ' + o + '%;"></div>  </div></div>',
+                var n = getProgressBarEl(ge("upload" + i + "_progress_wrap"));
+                if (!n) {
+                    var c = '  <div class="ui_progress">    <div class="ui_progress_back"></div>    <div class="ui_progress_bar" style="width: ' + o + '%;"></div>  </div></div>',
                         l = ce("div", {
                             id: "upload" + i + "_progress_wrap",
-                            innerHTML: '<div class="market_prg_wrap">' + n + "</div>" + (s ? '<div class="market_prg_label">' + s + "</div>" : "") + '<div class="market_prg_x" data-title="' + getLang("dont_attach") + '" onmouseover="showTitle(this)" onclick="Upload.terminateUpload(' + e + ", '" + (a || e) + "'); if (window.tooltips) tooltips.hide(this);\"></div>",
+                            innerHTML: '<div class="market_prg_wrap">' + c + "</div>" + (s ? '<div class="market_prg_label">' + s + "</div>" : "") + '<div class="market_prg_x" data-title="' + getLang("dont_attach") + '" onmouseover="showTitle(this)" onclick="Upload.terminateUpload(' + e + ", '" + (a || e) + "'); if (window.tooltips) tooltips.hide(this);\"></div>",
                             className: "clear_fix"
                         }, {
                             marginTop: "6px"
                         });
-                    r.appendChild(l), c = getProgressBarEl(ge("upload" + i + "_progress_wrap")), show(r), toggle("market_ei_photo_add", Market.uploadedPhotosCount() < Upload.options[e].max_files)
+                    r.appendChild(l), n = getProgressBarEl(ge("upload" + i + "_progress_wrap")), show(r), toggle("market_ei_photo_add", Market.uploadedPhotosCount() < Upload.options[e].max_files)
                 }
-                return o ? (setStyle(c, {
+                return o ? (setStyle(n, {
                     width: o + "%"
                 }), show("upload" + i + "_progress")) : hide("upload" + i + "_progress"), !1
             }
@@ -461,7 +461,7 @@ var Market = {
             }
             if (!r) return void Market.uploadFail(!0);
             var s = Upload.options[cur.extraUploadId].static_url + "v" + r[1] + "/" + r[2] + "/" + r[3] + ".jpg",
-                c = "width: " + r[4] + "px; height: " + r[5] + "px;";
+                n = "width: " + r[4] + "px; height: " + r[5] + "px;";
             cur.photoCropOpts = {
                 size: [o[4], o[5]],
                 thumbSize: [r[4], r[5]],
@@ -471,7 +471,7 @@ var Market = {
             }, cur.destroy.push(function() {
                 cur.photoTaggerDestroy()
             }));
-            var n = ge("market_photo_crop").innerHTML.replace(new RegExp("_tmpl", "g"), "");
+            var c = ge("market_photo_crop").innerHTML.replace(new RegExp("_tmpl", "g"), "");
             box = showFastBox({
                 title: getLang("market_photo_crop_title"),
                 hideButtons: !0,
@@ -479,7 +479,7 @@ var Market = {
                 width: 644,
                 bodyStyle: "padding:20px;border:0px",
                 onClean: cur.photoTaggerDestroy
-            }, n), val("market_photo_crop_thumb", '<div style="' + c + 'margin: 0px auto;"><img id="market_photo_crop_img" src="' + s + '" style="' + c + "\" onload=\"stManager.add(['tagger.css', 'tagger.js'], Market.cropInit);\" /></div>")
+            }, c), val("market_photo_crop_thumb", '<div style="' + n + 'margin: 0px auto;"><img id="market_photo_crop_img" src="' + s + '" style="' + n + "\" onload=\"stManager.add(['tagger.css', 'tagger.js'], Market.cropInit);\" /></div>")
         },
         cropInit: function() {
             var e, t = cur.photoCropOpts,
@@ -720,7 +720,10 @@ var Market = {
                 onSelect: function(e) {
                     Market[e]()
                 }
-            })), WkView.updateSize()
+            }), isArray(cur.mkOptions.ddObjects) && (cur.marketObjDD = new Dropdown(ge("market_shop_add_to_cart_obj"), cur.mkOptions.ddObjects, {
+                big: 1,
+                width: 270
+            }))), WkView.updateSize()
         },
         switchPhoto: function(e, t) {
             if (Market.outPhotoThumb(), void 0 === e || e === !1) e = cur.mkOptions.photoIndex + 1, e >= cur.mkOptions.photos.length && (e = 0);
@@ -927,11 +930,12 @@ var Market = {
         receiveComms: function(e, t, r, o) {
             for (var a = ce("div", {
                     innerHTML: e
-                }), i = ge("market_comments"), s = current = domLC(i), c = getXY(current, !0)[1], n = domLC(a); n; n = domLC(a)) {
-                for (ge("market_reply_form") && addClass(n, "reply_replieable"); current && WkView.cmp(current.id, n.id) > 0;) current = domPS(current);
-                current && !WkView.cmp(current.id, n.id) ? (i.replaceChild(n, current), current = n) : (current && domNS(current) ? (i.insertBefore(n, domNS(current)), ++cur.mkOptions.commCount) : !current && domFC(i) ? r === !0 ? (--cur.mkOptions.commShown, a.removeChild(n)) : i.insertBefore(n, domFC(i)) : i.appendChild(n), ++cur.mkOptions.commShown)
+                }), i = ge("market_comments"), s = current = domLC(i), n = getXY(current, !0)[1], c = domLC(a); c; c = domLC(a)) {
+                for (ge("market_reply_form") && addClass(c, "reply_replieable"); current && WkView.cmp(current.id, c.id) > 0;) current = domPS(current);
+                current && !WkView.cmp(current.id, c.id) ? (i.replaceChild(c, current), current = c) : (current && domNS(current) ? (i.insertBefore(c, domNS(current)), ++cur.mkOptions.commCount) : !current && domFC(i) ? r === !0 ? (--cur.mkOptions.commShown, a.removeChild(c)) : i.insertBefore(c, domFC(i)) : i.appendChild(c), ++cur.mkOptions.commShown)
             }
-            o && s && (wkLayerWrap.scrollTop += getXY(s, !0)[1] - c), extend(cur.mkOptions.reply_names, t), window.updateWndVScroll && updateWndVScroll(), Market.updateComms()
+            o && s && (wkLayerWrap.scrollTop += getXY(s, !0)[1] - n), extend(cur.mkOptions.reply_names, t),
+                window.updateWndVScroll && updateWndVScroll(), Market.updateComms()
         },
         commSaved: function(e) {
             var t = ge("market_comments_wrap"),
@@ -944,19 +948,19 @@ var Market = {
                 a = ge("reply_button" + e),
                 i = (ge("feedback_row" + e), (cur.mkOptions.reply_names[(cur.reply_to || {})[0]] || [])[1]),
                 s = o && data(o, "composer");
-            if (r.stickerId) var c = {
+            if (r.stickerId) var n = {
                 message: "",
                 attach1_type: "sticker",
                 attach1: r.stickerId
             };
             else {
-                var c = s ? Composer.getSendParams(s, Market.sendComment.pbind(e)) : {
+                var n = s ? Composer.getSendParams(s, Market.sendComment.pbind(e)) : {
                     message: trim(Emoji.editableVal(o))
                 };
-                if (c.delayed) return;
-                if (!c.attach1_type && (!c.message || i && !i.indexOf(c.message))) return void Emoji.editableFocus(o, !1, !0)
+                if (n.delayed) return;
+                if (!n.attach1_type && (!n.message || i && !i.indexOf(n.message))) return void Emoji.editableFocus(o, !1, !0)
             }
-            hide("reply_warn" + e), ajax.post("al_market.php", Wall.fixPostParams(extend(c, {
+            hide("reply_warn" + e), ajax.post("al_market.php", Wall.fixPostParams(extend(n, {
                 act: "post_comment",
                 item: cur.mkOptions.itemRaw,
                 hash: cur.mkOptions.hash,
@@ -994,6 +998,192 @@ var Market = {
         },
         _onRemoveFromCatalog: function() {
             Marketplace.updateCatalogByItem(cur.mkOptions.itemId, cur.mkOptions.itemOwnerId, cur.mkOptions.editHash, this, "remove")
+        },
+        sendScores: function(e) {
+            cur.marketSendScoresBox = showBox("market?act=send_scores_box", {
+                owner_id: e
+            }, {
+                onDone: function() {
+                    cur.marketSendScoresBox.removeButtons(), cur.marketSendScoresBox.addButton(getLang("market_send_scores"), Market.doSendScores)
+                }
+            })
+        },
+        doSendScores: function() {
+            var e = extend({}, cur.marketSendScoresData, {
+                    v: trim(val("market_send_scores_value")),
+                    to_id: cur.marketSendScoresToDD.val(),
+                    note: trim(val("market_send_scores_note"))
+                }),
+                t = !1;
+            e.v || (notaBene("market_send_scores_value"), t = !0), e.to_id || (notaBene(cur.marketSendScoresToDD.container), t = !0), t || ajax.post("market?act=a_send_scores", e, {
+                progress: cur.marketSendScoresBox.progress,
+                onDone: function(e, t, r, o) {
+                    cur.marketSendScoresBox.hide(), showDoneBox(t), val("market_balance_page_value", e), val("market_balance_page_rows", r), notaBene(ge(o), "notice")
+                }
+            })
+        },
+        cancelOrder: function(e, t, r, o) {
+            cur.marketCancelConfirm = showFastBox(getLang("global_warning"), getLang("market_sure_cancel_order"), getLang("market_cancel_order"), function() {
+                ajax.post("market?act=a_cancel_order", {
+                    owner_id: t,
+                    order_id: r,
+                    hash: o
+                }, {
+                    progress: cur.marketCancelConfirm.progress,
+                    onDone: function(e, t) {
+                        cur.marketCancelConfirm.hide(), showDoneBox(e), Market.updateView(t)
+                    }
+                })
+            }, getLang("global_cancel"))
+        },
+        updateView: function(e) {
+            var t = se(e);
+            ge(t.id) && domReplaceEl(ge(t.id), t)
+        }
+    },
+    MarketCart = {
+        add: function(e, t, r, o, a) {
+            if (!buttonLocked(e)) {
+                if (!o) {
+                    if (!cur.marketObjDD) return;
+                    var i = cur.marketObjDD.val_full();
+                    if (o = i[0], 0 == o || !i[2]) return notaBene(cur.marketObjDD.container)
+                }
+                ajax.post("market?act=a_modify_count", {
+                    owner_id: t,
+                    item_id: r,
+                    obj_id: o,
+                    hash: a,
+                    value: 1,
+                    delta: 1
+                }, {
+                    showProgress: lockButton.pbind(e),
+                    hideProgress: unlockButton.pbind(e),
+                    onDone: function(t, o, a, i, s, n, c, l, u) {
+                        if (t) {
+                            if (val(e, a ? getLang("market_item_X_added_to_cart", a) : getLang("market_item_add_to_cart")), a) {
+                                var m = !isVisible("market_goto_cart");
+                                show("market_goto_cart"), m && notaBene("market_goto_cart", "#FFFFA0")
+                            }
+                            MarketCart._updateItemCount(r, a), MarketCart._updateInfo(l, u)
+                        }
+                    }
+                })
+            }
+        },
+        setCount: function(e, t, r, o) {
+            var a = ge("market_cart_row" + r + "_" + o),
+                i = trim(val(e)),
+                s = attr(e, "modify-hash");
+            if (a && !hasClass(a, "processing")) return i.match(/^\d+$/) ? void ajax.post("market?act=a_modify_count", {
+                owner_id: t,
+                item_id: r,
+                obj_id: o,
+                value: i,
+                hash: s,
+                cart: 1
+            }, {
+                showProgress: function() {
+                    addClass(a, "processing"), e.readOnly = !0
+                },
+                hideProgress: function() {
+                    removeClass(a, "processing"), e.readOnly = !1
+                },
+                onDone: function(e, t, o, i, s, n, c, l, u) {
+                    e && (val(geByClass1("_price", a), i), val(geByClass1("_sum", a), s), val("market_cart_rows_total", n), cur.marketOrderData.hash = c, MarketCart._updateItemCount(r, o), MarketCart._updateInfo(l, u))
+                }
+            }) : notaBene(e)
+        },
+        clear: function(e, t, r) {
+            buttonLocked(e) || ajax.post("market?act=a_clear_cart", {
+                owner_id: t,
+                hash: r
+            }, {
+                showProgress: lockButton.pbind(e),
+                hideProgress: unlockButton.pbind(e)
+            })
+        },
+        _updateItemCount: function(e, t) {
+            var r = ge("market_item" + e),
+                o = r ? geByClass1("_in_cart", r) : null,
+                a = o ? geByClass1("_count", o) : null;
+            if (o && a) {
+                toggleClass(r, "market_row_in_cart", t > 0), val(a, t), toggle(o, t > 0);
+                var i = geByClass1("_minus", r);
+                i && toggleClass(i, "market_shop_item_action_disabled", 0 == t)
+            }
+        },
+        removeItem: function(e, t, r) {
+            MarketCart._updateItemCount(t, 0), ajax.post("market?act=a_remove_item_cart", {
+                owner_id: e,
+                item_id: t,
+                hash: r
+            }, {
+                onDone: MarketCart._updateInfo
+            })
+        },
+        changeItemCount: function(e, t, r, o, a) {
+            ajax.post("market?act=a_modify_count", {
+                owner_id: t,
+                item_id: r,
+                hash: o,
+                value: a,
+                delta: 1
+            }, {
+                showProgress: addClass.pbind(e, "market_shop_item_processing"),
+                hideProgress: removeClass.pbind(e, "market_shop_item_processing"),
+                onDone: function(e, t, o, a, i, s, n, c, l) {
+                    e && (MarketCart._updateItemCount(r, o), MarketCart._updateInfo(c, l))
+                }
+            })
+        },
+        addItem: function(e, t, r) {
+            MarketCart._updateItemCount(t, 0), ajax.post("market?act=a_add_item_cart", {
+                owner_id: e,
+                item_id: t,
+                hash: r
+            }, {
+                onDone: function(e, r, o) {
+                    Market._updateItemCount(t, e), Market._updateInfo(r, o)
+                }
+            })
+        },
+        _updateInfo: function(e, t) {
+            var r = ge("market_shop_cart_info"),
+                o = ge("market_search_filters_btn");
+            if (r && o && (toggle(r, e > 0), e > 0)) {
+                var a = getLang("market_shop_cart_info");
+                val(r, a.replace("{count}", getLang("market_summary_X_goods", e)).replace("{price}", getLang("market_currency_amount_SCO", t)))
+            }
+        },
+        order: function() {
+            var e = extend({}, cur.marketOrderData, {
+                    contact_phone: trim(val("market_cart_contact_phone")),
+                    delivery_id: cur.marketCartDeliveryDD.val(),
+                    details: trim(val("market_cart_delivery_details"))
+                }),
+                t = !1,
+                r = ge("market_shop_create_order"),
+                o = ge("market_shop_clear_cart");
+            if (!buttonLocked(r)) return lockButton(r), 0 == e.delivery_id && (notaBene(cur.marketCartDeliveryDD.container), t = !0), e.contact_phone.length < 4 && (notaBene("market_cart_contact_phone"), t = !0), isVisible("market_cart_delivery_address_block") && (e.delivery_address = trim(val("market_cart_delivery_address")), e.delivery_person = trim(val("market_cart_delivery_person")), e.delivery_person.length < 4 && (notaBene("market_cart_delivery_person"), t = !0), e.delivery_address.length < 4 && (notaBene("market_cart_delivery_address"), t = !0)), t ? void unlockButton(r) : void ajax.post("market?act=a_create_order", e, {
+                showProgress: function() {
+                    hide(o)
+                },
+                hideProgress: function() {
+                    show(o), unlockButton(r)
+                },
+                onDone: function(e, t) {
+                    if (0 == e) {
+                        var r = se(t.table);
+                        scrollToY(ge(r.id), 400), setTimeout(domReplaceEl.pbind(ge(r.id), r), 450), cur.marketOrderData.hash = t.hash, notaBene(r, "notice")
+                    }
+                }
+            })
+        },
+        deliveryChanged: function(e) {
+            var t = "",
+                r = !1;
+            0 != e && (t = cur.marketCartDeliveriesData[e].descr, r = cur.marketCartDeliveriesData[e].address_required), val("market_cart_delivery_note", t), toggle("market_cart_delivery_address_block", r)
         }
     },
     MarketEditItemBox = {
@@ -1185,15 +1375,15 @@ var Market = {
                             var s = Upload.options[cur.uploadId].base_url + "upload.php?act=market_photo_crop&_query=" + encodeURIComponent(t) + "&_origin=" + encodeURIComponent(locProtocol + "//" + locHost);
                             MarketEditItemBox.upload.cropPhoto(a.photos[0], s), Upload.embed(i)
                         } else {
-                            var c = (e.fileName || e).replace(/[&<>"']/g, ""),
-                                n = e.fileName ? i + "_" + e.fileName : e,
-                                l = ge("upload" + n + "_progress_wrap");
+                            var n = (e.fileName || e).replace(/[&<>"']/g, ""),
+                                c = e.fileName ? i + "_" + e.fileName : e,
+                                l = ge("upload" + c + "_progress_wrap");
                             l && hide(geByClass1("market_prg_x", l)), a.photos = JSON.stringify(a.photos), ajax.post("al_photos.php", extend({
                                 act: "choose_uploaded"
                             }, a), {
                                 onDone: function(t, r) {
                                     MarketEditItemBox.upload.choosePhoto(e, t, extend(r, {
-                                        upload_ind: i + "_" + c
+                                        upload_ind: i + "_" + n
                                     }))
                                 },
                                 onFail: MarketEditItemBox.upload.uploadFail.pbind(r, e)
@@ -1205,7 +1395,7 @@ var Market = {
                         if (r) {
                             var i = getProgressBarEl(ge("form" + a + "_progress"));
                             if (!i) {
-                                for (var s = Upload.obj[a], c = getSize(s)[1], n = c / 2 + 10, l = s.firstChild; l;) 1 == l.nodeType && (l.id == "uploader" + a && browser.msie ? setStyle(l, {
+                                for (var s = Upload.obj[a], n = getSize(s)[1], c = n / 2 + 10, l = s.firstChild; l;) 1 == l.nodeType && (l.id == "uploader" + a && browser.msie ? setStyle(l, {
                                     position: "relative",
                                     left: "-5000px"
                                 }) : setStyle(l, {
@@ -1215,8 +1405,8 @@ var Market = {
                                     className: "market_upload_progress_wrap",
                                     innerHTML: '<div id="form' + a + '_progress" class="ui_progress">                <div class="ui_progress_back"></div>                <div class="ui_progress_bar"></div>              </div>'
                                 }, {
-                                    height: n + "px",
-                                    marginTop: -n + "px"
+                                    height: c + "px",
+                                    marginTop: -c + "px"
                                 })), i = getProgressBarEl(ge("form" + a + "_progress"))
                             }
                             var u = intval(t / o * 100);
@@ -1265,17 +1455,17 @@ var Market = {
                     var s = ge("market_photo_crop_error");
                     return val(s, o), show(s), !0
                 }
-                var c = void 0 !== t.ind ? t.ind : t,
-                    n = Upload.options[c];
+                var n = void 0 !== t.ind ? t.ind : t,
+                    c = Upload.options[n];
                 if (e) {
-                    var l = Upload.obj[c],
+                    var l = Upload.obj[n],
                         u = domPN(l);
                     hasClass(u, "market_upload_progress") && removeClass(u, "market_upload_progress")
                 } else {
-                    var m = (t.fileName ? t.fileName : t, t.fileName ? c + "_" + t.fileName : t);
-                    re("upload" + m + "_progress_wrap"), MarketEditItemBox.upload.unchoosePhoto(c)
+                    var m = (t.fileName ? t.fileName : t, t.fileName ? n + "_" + t.fileName : t);
+                    re("upload" + m + "_progress_wrap"), MarketEditItemBox.upload.unchoosePhoto(n)
                 }
-                return Upload.embed(c), showMsg(n.errorObj, o, "error", !0), !0
+                return Upload.embed(n), showMsg(c.errorObj, o, "error", !0), !0
             },
             choosePhoto: function(e, t, r) {
                 var o = void 0 !== e.ind ? e.ind : e,
@@ -1291,12 +1481,12 @@ var Market = {
                         s = i ? o + "_" + i : o;
                     if (re("upload" + s + "_progress_wrap"), !(MarketEditItemBox.upload.uploadedPhotosCount() >= Upload.options[cur.extraUploadId].max_files)) {
                         vkImage().src = r.thumb_m, isArray(cur.itemPhotos) || (cur.itemPhotos = []);
-                        var c = cur.itemPhotos.length;
+                        var n = cur.itemPhotos.length;
                         cur.itemPhotos.push(t);
-                        var n = '<div class="market_ei_photo"><img class="market_ei_img" src="' + r.thumb_m + '" />',
-                            l = '<div class="_ei_photo market_ei_photo_wrap market_ei_photo%ind% inl_bl" id="market_ei_photo%ind%">' + n + '<div nosorthandle="1" class="ui_thumb_x_button ui_thumb_small_x" data-title="' + getLang("dont_attach") + '" onmouseover="showTitle(this)" onclick="MarketEditItemBox.upload.unchoosePhoto(%ind%); return cancelEvent(event);"><div class="ui_thumb_x" nosorthandle="1"></div></div></div></div>',
+                        var c = '<div class="market_ei_photo"><img class="market_ei_img" src="' + r.thumb_m + '" />',
+                            l = '<div class="_ei_photo market_ei_photo_wrap market_ei_photo%ind% inl_bl" id="market_ei_photo%ind%">' + c + '<div nosorthandle="1" class="ui_thumb_x_button ui_thumb_small_x" data-title="' + getLang("dont_attach") + '" onmouseover="showTitle(this)" onclick="MarketEditItemBox.upload.unchoosePhoto(%ind%); return cancelEvent(event);"><div class="ui_thumb_x" nosorthandle="1"></div></div></div></div>',
                             u = se(rs(l, {
-                                ind: c
+                                ind: n
                             }));
                         a.insertBefore(u, ge("market_ei_photo_add")), i && ((!browser.msie || browser.version > 8) && cur.itemPhotos.length > 1 ? stManager.add(["usorter.js"], function() {
                             a.usorter ? usorter.added(a) : cur.itemPhotos.length > 1 && usorter.init(a, {
@@ -1334,19 +1524,19 @@ var Market = {
                     i = a ? e + "_" + a : e,
                     s = a ? a.length > 33 ? a.substr(0, 30) + "..." : a : "";
                 if (r) {
-                    var c = getProgressBarEl(ge("upload" + i + "_progress_wrap"));
-                    if (!c) {
-                        var n = '  <div class="ui_progress">    <div class="ui_progress_back"></div>    <div class="ui_progress_bar" style="width: ' + o + '%;"></div>  </div></div>',
+                    var n = getProgressBarEl(ge("upload" + i + "_progress_wrap"));
+                    if (!n) {
+                        var c = '  <div class="ui_progress">    <div class="ui_progress_back"></div>    <div class="ui_progress_bar" style="width: ' + o + '%;"></div>  </div></div>',
                             l = ce("div", {
                                 id: "upload" + i + "_progress_wrap",
-                                innerHTML: '<div class="market_prg_wrap">' + n + "</div>" + (s ? '<div class="market_prg_label">' + s + "</div>" : "") + '<div class="market_prg_x" data-title="' + getLang("dont_attach") + '" onmouseover="showTitle(this)" onclick="Upload.terminateUpload(' + e + ", '" + (a || e) + "'); if (window.tooltips) tooltips.hide(this);\"></div>",
+                                innerHTML: '<div class="market_prg_wrap">' + c + "</div>" + (s ? '<div class="market_prg_label">' + s + "</div>" : "") + '<div class="market_prg_x" data-title="' + getLang("dont_attach") + '" onmouseover="showTitle(this)" onclick="Upload.terminateUpload(' + e + ", '" + (a || e) + "'); if (window.tooltips) tooltips.hide(this);\"></div>",
                                 className: "clear_fix"
                             }, {
                                 marginTop: "6px"
                             });
-                        r.appendChild(l), c = getProgressBarEl(ge("upload" + i + "_progress_wrap")), show(r), toggle("market_ei_photo_add", MarketEditItemBox.upload.uploadedPhotosCount() < Upload.options[e].max_files)
+                        r.appendChild(l), n = getProgressBarEl(ge("upload" + i + "_progress_wrap")), show(r), toggle("market_ei_photo_add", MarketEditItemBox.upload.uploadedPhotosCount() < Upload.options[e].max_files)
                     }
-                    return o && (setStyle(c, {
+                    return o && (setStyle(n, {
                         width: o + "%"
                     }), show("upload" + i + "_progress")), !1
                 }
@@ -1359,7 +1549,7 @@ var Market = {
                 }
                 if (!r) return void MarketEditItemBox.upload.uploadFail(!0);
                 var s = Upload.options[cur.extraUploadId].static_url + "v" + r[1] + "/" + r[2] + "/" + r[3] + ".jpg",
-                    c = "width: " + r[4] + "px; height: " + r[5] + "px;";
+                    n = "width: " + r[4] + "px; height: " + r[5] + "px;";
                 cur.photoCropOpts = {
                     size: [o[4], o[5]],
                     thumbSize: [r[4], r[5]],
@@ -1369,7 +1559,7 @@ var Market = {
                 }, cur.destroy.push(function() {
                     cur.photoTaggerDestroy()
                 }));
-                var n = ge("market_photo_crop").innerHTML.replace(new RegExp("_tmpl", "g"), "");
+                var c = ge("market_photo_crop").innerHTML.replace(new RegExp("_tmpl", "g"), "");
                 box = showFastBox({
                     title: getLang("market_photo_crop_title"),
                     hideButtons: !0,
@@ -1377,7 +1567,7 @@ var Market = {
                     width: 644,
                     bodyStyle: "padding:20px;border:0px",
                     onClean: cur.photoTaggerDestroy
-                }, n), val("market_photo_crop_thumb", '<div style="' + c + 'margin: 0px auto;"><img id="market_photo_crop_img" src="' + s + '" style="' + c + "\" onload=\"stManager.add(['tagger.css', 'tagger.js'], MarketEditItemBox.upload.cropInit);\" /></div>")
+                }, c), val("market_photo_crop_thumb", '<div style="' + n + 'margin: 0px auto;"><img id="market_photo_crop_img" src="' + s + '" style="' + n + "\" onload=\"stManager.add(['tagger.css', 'tagger.js'], MarketEditItemBox.upload.cropInit);\" /></div>")
             },
             cropInit: function() {
                 var e, t = cur.photoCropOpts,
@@ -1667,7 +1857,8 @@ var Market = {
                     list = [];
                     for (var a = 0, i = e.length; i > a; a++) {
                         var s = clone(e[a]);
-                        o && (s.push(""), s.push(s[1]), s[1] = s[1].replace(o.re, o.val)), list.push(s)
+                        o && (s.push(""),
+                            s.push(s[1]), s[1] = s[1].replace(o.re, o.val)), list.push(s)
                     }
                     t.showSelectList(r, list)
                 }, 300)) : void t.showSelectList(r, cur.tagsList.slice(0, 10))
@@ -1803,10 +1994,10 @@ var Market = {
                         if (hasClass(a, "ui_search_fltr_label")) {
                             var i = a.textContent,
                                 s = "",
-                                c = geByClass1("ui_search_fltr_label_postfix", a);
-                            c && (s = c.getAttribute("data-prefix"), c = c.textContent, i = i.replace(c, "").replace(/,\s$/, ""), s && (c = !1)), geByClass1("ui_search_fltr_sep", o) && each(geByTag("input", o), function(t, r) {
+                                n = geByClass1("ui_search_fltr_label_postfix", a);
+                            n && (s = n.getAttribute("data-prefix"), n = n.textContent, i = i.replace(n, "").replace(/,\s$/, ""), s && (n = !1)), geByClass1("ui_search_fltr_sep", o) && each(geByTag("input", o), function(t, r) {
                                 r == e && (i += " " + (0 == t ? getLang("market_filter_range_from") : getLang("market_filter_range_to")))
-                            }), t[1] = i + (s ? " " + s : " ") + t[1] + (c ? " " + c : "")
+                            }), t[1] = i + (s ? " " + s : " ") + t[1] + (n ? " " + n : "")
                         }
                     }
                 } else hasClass(e, "checkbox") && isChecked(e) && (t = [1, "", ""]);
@@ -1814,7 +2005,7 @@ var Market = {
             },
             onEnterSearch: function() {
                 var e = trim(val(cur.searchInp));
-                cur.lastQ != e && Marketplace.searchItems();
+                cur.lastQ != e && Marketplace.searchItems()
             },
             onBlurSearch: function() {
                 var e = trim(val(cur.searchInp));
@@ -1889,10 +2080,10 @@ var Market = {
             i && i[0] && i[0].length > 0 ? i[0][0] != cur.defaultCity && (e.city = i[0][0]) : e.city = 0;
             var s = cur.searchFilters.metro.selectedItems();
             s && s[0] && s[0].length > 0 && (e.metro = s[0][0]);
-            var c = val(cur.searchFilters.price_from);
-            c && (e.price_from = c);
-            var n = val(cur.searchFilters.price_to);
-            if (n && (e.price_to = n), e.q) {
+            var n = val(cur.searchFilters.price_from);
+            n && (e.price_from = n);
+            var c = val(cur.searchFilters.price_to);
+            if (c && (e.price_to = c), e.q) {
                 var l = isChecked(cur.searchFilters.by_names);
                 l && (e.by_names = 1)
             }
@@ -1930,7 +2121,7 @@ var Market = {
                 var t = Marketplace.getSearchParams();
                 e && (t.q = e), ajax.post("/al_market.php?act=a_marketplace_search", t, {
                     cache: 1,
-                    onDone: function(r, o, a, i, s, c, n, l) {
+                    onDone: function(r, o, a, i, s, n, c, l) {
                         var u = !1;
                         if (u = t.groups ? 0 != i : 0 == o && 0 != i && !cur.forseTabSwitch, !t.groups && u) {
                             var m = geByClass("ui_tab", "market_place_search_tabs")[1];
@@ -1938,11 +2129,11 @@ var Market = {
                         }
                         var d = u ? s : a,
                             p = u ? i : o,
-                            h = langNumeric(o, "%s", !0),
-                            _ = langNumeric(i, "%s", !0);
-                        cur.searchMode = !l, cur.searchMode ? (cur.filtersShown || searcher.toggleMinimizedFilters(ge("search_filters_minimized")), addClass(cur.onlyFriendsTogglerBlock, "unshown"), removeClass(cur.searchTabs, "hide"), addClass(cur.itemsSubheader, "hide"), addClass(cur.marketplaceContent, "marketplace_content_search"), cur.userItemSearchCounter.innerHTML = o ? h : "0", cur.commItemSearchCounter.innerHTML = i ? _ : "0") : (addClass(cur.searchTabs, "hide"), removeClass(cur.onlyFriendsTogglerBlock, "unshown"), removeClass(cur.itemsSubheader, "hide"), removeClass(cur.marketplaceContent, "marketplace_content_search"), cur.userItemsCounter.innerHTML = h), d ? show(cur.userItemsMoreBtn) : hide(cur.userItemsMoreBtn), cur.marketplaceContent.innerHTML = r, p ? (cur.searchMode || removeClass(cur.itemsSubheader, "hide"), show(cur.marketplaceFull), hide(cur.notFound)) : ("" == t.q && addClass(cur.itemsSubheader, "hide"), cur.notFoundText.innerHTML = c, hide(cur.marketplaceFull), show(cur.notFound)), cur.searchResults || (cur.searchResults = {}), e && n && (!cur.searchResults[e] || cur.searchResults[e].count < o + i) && (cur.searchResults[e] = {
+                            _ = langNumeric(o, "%s", !0),
+                            h = langNumeric(i, "%s", !0);
+                        cur.searchMode = !l, cur.searchMode ? (cur.filtersShown || searcher.toggleMinimizedFilters(ge("search_filters_minimized")), addClass(cur.onlyFriendsTogglerBlock, "unshown"), removeClass(cur.searchTabs, "hide"), addClass(cur.itemsSubheader, "hide"), addClass(cur.marketplaceContent, "marketplace_content_search"), cur.userItemSearchCounter.innerHTML = o ? _ : "0", cur.commItemSearchCounter.innerHTML = i ? h : "0") : (addClass(cur.searchTabs, "hide"), removeClass(cur.onlyFriendsTogglerBlock, "unshown"), removeClass(cur.itemsSubheader, "hide"), removeClass(cur.marketplaceContent, "marketplace_content_search"), cur.userItemsCounter.innerHTML = _), d ? show(cur.userItemsMoreBtn) : hide(cur.userItemsMoreBtn), cur.marketplaceContent.innerHTML = r, p ? (cur.searchMode || removeClass(cur.itemsSubheader, "hide"), show(cur.marketplaceFull), hide(cur.notFound)) : ("" == t.q && addClass(cur.itemsSubheader, "hide"), cur.notFoundText.innerHTML = n, hide(cur.marketplaceFull), show(cur.notFound)), cur.searchResults || (cur.searchResults = {}), e && c && (!cur.searchResults[e] || cur.searchResults[e].count < o + i) && (cur.searchResults[e] = {
                             count: o + i,
-                            countHash: n
+                            countHash: c
                         }), u ? cur.uiMetro.disable(!0) : cur.uiMetro.disable(!1), Marketplace.updateLocation(t)
                     },
                     showProgress: function() {
@@ -1973,9 +2164,9 @@ var Market = {
                     a = "";
                 "my" == cur.act ? a = "a_marketplace_my" : "fav" == cur.act ? a = "a_marketplace_fav" : (r = !0, o = !1, a = "a_marketplace_search"), r && (t = Marketplace.getSearchParams()), o && (t.section = cur.section), t.offset = cur.searchOffset, t.act = a, ajax.post("/al_market.php", t, {
                     onDone: function(e, r, o, a, i, s) {
-                        var c = "a_marketplace_search" == t.act && 1 == t.groups,
-                            n = c ? i : o;
-                        n ? show(cur.userItemsMoreBtn) : hide(cur.userItemsMoreBtn), e && cur.marketplaceContent.appendChild(cf(e))
+                        var n = "a_marketplace_search" == t.act && 1 == t.groups,
+                            c = n ? i : o;
+                        c ? show(cur.userItemsMoreBtn) : hide(cur.userItemsMoreBtn), e && cur.marketplaceContent.appendChild(cf(e))
                     },
                     showProgress: function() {
                         lockButton(cur.userItemsMoreBtn), cur.searchInp && uiSearch.showProgress(cur.searchInp)

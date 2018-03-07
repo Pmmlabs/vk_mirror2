@@ -158,6 +158,10 @@
     padding: 15px 20px
 }
 
+.bt_page_content.no_tb_padding {
+    padding: 0 20px
+}
+
 .bt_terms_content {
     padding: 20px 45px;
     line-height: 160%
@@ -576,7 +580,7 @@
     font-weight: 500;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
-    padding: 15px 5px 10px;
+    padding: 20px 5px 10px;
     margin: 0 -15px 0 0;
     color: #828282;
     font-size: 13px;
@@ -1468,6 +1472,10 @@
     width: 60px
 }
 
+.bt_reporter_search {
+    padding-top: 5px
+}
+
 .bt_member_search .ui_search_field,
 .bt_reporter_search .ui_search_field {
     border-left: 5px solid transparent
@@ -1757,11 +1765,11 @@
     color: #b00
 }
 
-.bt_products_list {
+.bt_products_list_compact {
     padding: 0 20px
 }
 
-.bt_products_list .bt_empty_message {
+.bt_products_list_compact .bt_empty_message {
     padding-top: 59px;
     padding-bottom: 59px
 }
@@ -1986,7 +1994,7 @@
 }
 
 .bt_prod_block {
-    padding: 15px 20px;
+    padding: 20px;
     position: relative
 }
 
@@ -3453,4 +3461,13 @@
 .bt_move_to_product {
     margin-top: 15px;
     color: #656565
+}
+
+.bt_products_search {
+    margin: 0 -20px
+}
+
+.bt_products_search.ui_search_new {
+    margin: 0!important;
+    margin-top: 20px!important
 }

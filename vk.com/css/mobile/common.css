@@ -21095,7 +21095,8 @@ a.feedBlocks__article:hover {
     padding: 6px 7px 7px 10px;
     margin: 0 1px 1px;
     font-size: 12px!important;
-    border-radius: 4px
+    border-radius: 4px;
+    text-transform: uppercase
 }
 
 .feedAssistance_recommendedFriends .prettyCard__button:before {
@@ -21126,7 +21127,8 @@ a.feedBlocks__article:hover {
     font-weight: 400;
     background: transparent;
     color: #909499;
-    padding: 5px 0 7px
+    padding: 5px 0 7px;
+    text-transform: none
 }
 
 .feedAssistance_recommendedFriends .prettyCard__button.prettyCard__button_accepted:before,
@@ -21160,11 +21162,16 @@ a.feedBlocks__article:hover {
 }
 
 .feedAssistance_recommendedFriends__title {
-    font-size: 13px
+    font-size: 13px;
+    text-transform: uppercase
 }
 
 .feedAssistance_recommendedFriends__all_link {
     float: right
+}
+
+.feedAssistance_recommendedFriends .prettyCard__button.goodAuthorSubscribe:before {
+    display: none
 }
 
 .vk__page_newCreatePost .Control {

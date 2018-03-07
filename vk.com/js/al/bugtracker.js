@@ -1716,6 +1716,47 @@ var BugTracker = {
             }
         })
     },
+    productsSearch: function(e, t) {
+        function r(e) {
+            e = e ? e.toLowerCase() : "", a = e, toggle("products_search_results", !!e);
+            var r = "#" == e[0];
+            for (var n in t) {
+                var i = t[n],
+                    s = !1;
+                "" != e && (r || -1 === i[0].indexOf(e) && -1 === i[1].indexOf(e)) && -1 === i[2].indexOf(e) || (s = !0), s ? ge("bt_product_" + n).style.display = null : hide("bt_product_" + n)
+            }
+            o && (clearTimeout(o), o = 0), "" == e ? (delete nav.objLoc.q, nav.setLoc(nav.objLoc)) : o = setTimeout(function() {
+                nav.setLoc(extend(nav.objLoc, {
+                    q: e
+                })), ajax.post("bugtracker?act=a_products_search", {
+                    q: e
+                }, {
+                    onDone: function(t) {
+                        if (a == e) {
+                            for (var r = [], o = 0, n = t.length; n > o; o++) {
+                                var s = ge("bt_product_" + t[o]);
+                                s ? s.style.display = null : r.push(t[o])
+                            }
+                            r.length && ajax.post("bugtracker?act=a_get_products_cards", {
+                                products: r.join(",")
+                            }, {
+                                onDone: function(e, t) {
+                                    var r = sech(e),
+                                        o = ge("products_search_results");
+                                    each(r, function(e, t) {
+                                        o.appendChild(t)
+                                    }), i = extend(i, t)
+                                }
+                            })
+                        }
+                    }
+                })
+            }, 500)
+        }
+        var o = 0,
+            a = "";
+        return r(val("bt_member_search")), r
+    },
     _eof: 1
 };
 try {

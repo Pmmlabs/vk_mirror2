@@ -382,22 +382,22 @@ var WkView = {
         if ("intro" == wkcur.wkRaw) return WkView.introNext(o), cancelEvent(r), !1;
         var t = WkView.getNextWkRaws(),
             i = {};
-        wkcur.from && (i.from = wkcur.from), o > 0 && t[1] && (wkcur.wkRawLoading = !0, addClass(wkcur.wkRightArrow, "wk_arrow_progress"), showProgress(wkcur.wkRightArrow), showWiki(extend(i, {
+        wkcur.from && (i.from = wkcur.from);
+        var a = {
+            cache: wkcur.navNoCache ? 0 : 1
+        };
+        o > 0 && t[1] && (wkcur.wkRawLoading = !0, addClass(wkcur.wkRightArrow, "wk_arrow_progress"), showProgress(wkcur.wkRightArrow), showWiki(extend(i, {
             w: t[1]
         }), !1, !1, {
             fromlist: 1,
             noloader: !0,
-            preload: {
-                cache: 1
-            }
+            preload: a
         }), cancelEvent(r)), 0 > o && t[0] && (wkcur.wkRawLoading = !0, addClass(wkcur.wkLeftArrow, "wk_arrow_progress"), hideProgress(wkcur.wkRightArrow), showWiki(extend(i, {
             w: t[0]
         }), !1, !1, {
             fromlist: -1,
             noloader: !0,
-            preload: {
-                cache: 1
-            }
+            preload: a
         }), cancelEvent(r))
     },
     updateHeight: function() {
@@ -868,8 +868,7 @@ var WkView = {
                 if (w) {
                     if (a)
                         for (var l = geByClass("wk_likes_hidden", w), n = 0, s = l.length; s > n; ++n) w.appendChild(l[n]), removeClass(l[n], "wk_likes_hidden");
-                    w.appendChild(cf(r)),
-                        wkcur.offset = o, t ? WkView.likesPreload() : hide(e), WkView.updateHeight(), i && extend(cur.options.reply_names, i)
+                    w.appendChild(cf(r)), wkcur.offset = o, t ? WkView.likesPreload() : hide(e), WkView.updateHeight(), i && extend(cur.options.reply_names, i)
                 }
             },
             showProgress: lockButton.pbind(e),

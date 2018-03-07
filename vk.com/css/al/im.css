@@ -1403,7 +1403,12 @@ img.im_photo_thumb {
     max-width: 320px
 }
 
-.im-page_classic.im-page .im-mess.im-mess_srv .im-mess--text {
+.im-page_classic.im-page .im-mess.im-mess_srv:not(.im-mess_fwd) {
+    padding-right: 20px
+}
+
+.im-page_classic.im-page .im-mess.im-mess_srv:not(.im-mess_fwd) .im-mess--text {
+    margin-left: 20px;
     max-width: none
 }
 
@@ -4877,7 +4882,7 @@ img.im_photo_thumb {
 }
 
 .im-mess.im-mess_srv {
-    padding-right: 20px;
+    padding-right: 0;
     cursor: default
 }
 
@@ -4886,7 +4891,7 @@ img.im_photo_thumb {
     text-align: center;
     cursor: default;
     font-size: 12.5px;
-    margin-left: 20px
+    margin: 0
 }
 
 .im-mess+.im-mess .im-mess--actions {
