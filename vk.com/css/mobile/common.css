@@ -10071,6 +10071,10 @@ only screen and (min-device-pixel-ratio: 2) {
     font-size: 15px
 }
 
+.informer.election_day .informer_title {
+    font-size: 13px
+}
+
 .informer_view_1 .informer_title {
     margin-top: 8px
 }
@@ -10090,6 +10094,14 @@ only screen and (min-device-pixel-ratio: 2) {
 .informer_button {
     margin-top: 10px;
     box-sizing: content-box
+}
+
+.informer.election_day .informer_button {
+    background: none!important;
+    font-weight: 400;
+    padding: 0!important;
+    min-width: 0!important;
+    margin-top: 5px!important
 }
 
 .informer_view_0 .informer_button,
