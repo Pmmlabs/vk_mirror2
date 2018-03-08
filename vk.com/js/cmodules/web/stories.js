@@ -385,8 +385,7 @@
                 this.isPaused() || (e.prototype.pause.call(this), this.pauseTime = this.getCurrentTime())
             }, t.prototype.setCurrentTime = function() {
                 var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : 0;
-                this.startTs;
-                this.startTs = vkNow() + e, this.isPaused() && (this.pauseTime = e)
+                this.startTs, this.startTs = vkNow() + e, this.isPaused() && (this.pauseTime = e)
             }, t.prototype.getCurrentTime = function() {
                 return vkNow() - this.startTs || 0
             }, t.prototype.getDuration = function() {
@@ -1167,8 +1166,7 @@
     "use strict";
     Object.defineProperty(t, "__esModule", {
         value: !0
-    });
-    t.STORY_HORIZONTAL_RATIO = .563, t.STORY_VERTICAL_RATIO = 1.78, t.STORY_MAX_WIDTH = 540, t.STORY_MAX_HEIGHT = 320
+    }), t.STORY_HORIZONTAL_RATIO = .563, t.STORY_VERTICAL_RATIO = 1.78, t.STORY_MAX_WIDTH = 540, t.STORY_MAX_HEIGHT = 320
 }, function(e, t) {
     "use strict";
 
@@ -1642,8 +1640,7 @@
                 var t = this.downTs;
                 delete this.downTs;
                 var n = !(vkNow() - t < 200 && !this.formLocked && !hasClass(this.wrapEl, "autoplay_failed"));
-                if (this.isActive && hasClass(e.target, "stories_item_back") && !n) return this.prevStory();
-                if (hasClass(e.target, "stories_item_cont") || hasClass(e.target, "stories_item_back")) return this._feedbackTTShown && this.hideFeedbackTooltip(), O(this.wrapEl, "paused"), this.isActive ? n ? void(this.isPaused() && this.playStory()) : void this._onPlayEnd() : void this.opts.onSelect(this)
+                return this.isActive && hasClass(e.target, "stories_item_back") && !n ? this.prevStory() : hasClass(e.target, "stories_item_cont") || hasClass(e.target, "stories_item_back") ? (this._feedbackTTShown && this.hideFeedbackTooltip(), O(this.wrapEl, "paused"), this.isActive ? n ? void(this.isPaused() && this.playStory()) : void this._onPlayEnd() : void this.opts.onSelect(this)) : void 0
             }, e.prototype.isLocked = function() {
                 return B() || this._getSendText() || !this.isActive || this.formLocked || this._feedbackTTShown || document.hidden || this._getSendText() || this._isActionsShown() || isVisible(this.inlineLoader) || hasClass(this.wrapEl, "hiding_reply") ? !0 : !1
             }, e.prototype.playStory = function() {
@@ -7501,14 +7498,12 @@
         if (t && "border-box" === le(e, "boxSizing") && (t = !1), e == document) i = [Math.max(a.clientWidth, bodyNode.scrollWidth, a.scrollWidth, bodyNode.offsetWidth, a.offsetWidth), Math.max(a.clientHeight, bodyNode.scrollHeight, a.scrollHeight, bodyNode.offsetHeight, a.offsetHeight)];
         else if (e) {
             var s = function() {
-                if (i = q(e) && (o = $(e, n)) && void 0 !== o.width ? [o.width, o.height] : [e.offsetWidth, e.offsetHeight], t) {
-                    each(i, function(t, n) {
-                        var r = t ? ["Top", "Bottom"] : ["Left", "Right"];
-                        each(r, function() {
-                            i[t] -= parseFloat(le(e, "padding" + this)) || 0, i[t] -= parseFloat(le(e, "border" + this + "Width")) || 0
-                        })
+                i = q(e) && (o = $(e, n)) && void 0 !== o.width ? [o.width, o.height] : [e.offsetWidth, e.offsetHeight], t && each(i, function(t, n) {
+                    var r = t ? ["Top", "Bottom"] : ["Left", "Right"];
+                    each(r, function() {
+                        i[t] -= parseFloat(le(e, "padding" + this)) || 0, i[t] -= parseFloat(le(e, "border" + this + "Width")) || 0
                     })
-                }
+                })
             };
             if (V(e)) s();
             else {
