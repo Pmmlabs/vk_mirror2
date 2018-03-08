@@ -98,7 +98,7 @@
 
 .stories_back_button_wrap:hover~.stories_layer_close,
 .stories_list:hover~.stories_layer_close,
-.stories_volume_control:hover~.stories_layer_close {
+.stories_volume_control_container:hover~.stories_layer_close {
     opacity: 0.5!important;
     filter: alpha(opacity=50)!important
 }

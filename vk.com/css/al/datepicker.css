@@ -188,3 +188,8 @@
 .cal_month_sel:hover {
     text-decoration: none
 }
+
+.timepicker_dots {
+    float: left;
+    padding: 7px 4px 8px
+}

@@ -1258,17 +1258,11 @@ var BugTracker = {
                     case "soc":
                         checkbox("invites_filter_soc_" + e.randomId, !1);
                         break;
-                    case "tf0":
-                        checkbox("invites_filter_tf0_" + e.randomId, !1);
+                    case "tf":
+                        checkbox("invites_filter_tf0_" + e.randomId, !1), checkbox("invites_filter_tf1_" + e.randomId, !1);
                         break;
-                    case "ha0":
-                        checkbox("invites_filter_ha0_" + e.randomId, !1);
-                        break;
-                    case "tf1":
-                        checkbox("invites_filter_tf1_" + e.randomId, !1);
-                        break;
-                    case "ha1":
-                        checkbox("invites_filter_ha1_" + e.randomId, !1);
+                    case "ha":
+                        checkbox("invites_filter_ha0_" + e.randomId, !1), checkbox("invites_filter_ha1_" + e.randomId, !1);
                         break;
                     case "agents":
                         checkbox("invites_filter_agents_" + e.randomId, !1);
@@ -1643,11 +1637,12 @@ var BugTracker = {
         }), !1
     },
     saveDevice: function(e, t, r, o, a, n) {
-        var i = val(o + "_brand"),
-            s = val(o + "_market_name"),
-            c = val(o + "_device"),
-            d = val(o + "_model");
-        return i || s || c || d ? void ajax.post("bugtracker?act=a_save_device", {
+        var i = trim(val(o + "_brand")),
+            s = trim(val(o + "_market_name")),
+            c = trim(val(o + "_device")),
+            d = trim(val(o + "_model")),
+            u = !1;
+        c || (notaBene(o + "_device"), u = !0), i || (notaBene(o + "_brand"), u = !0), u || ajax.post("bugtracker?act=a_save_device", {
             hash: t,
             state_hash: r,
             device_id: a,
@@ -1663,7 +1658,7 @@ var BugTracker = {
             onDone: function(t, r) {
                 curBox().hide(), BugTracker.addUserDevice(e, t, r, n)
             }
-        }) : (notaBene(o + "_brand"), notaBene(o + "_market_name"), notaBene(o + "_device"), void notaBene(o + "_model"))
+        })
     },
     editUserDevice: function(e, t, r, o) {
         return showBox("/bugtracker?act=a_edit_user_device_box", {
@@ -1677,10 +1672,11 @@ var BugTracker = {
         }), !1
     },
     saveUserDevice: function(e, t, r, o, a) {
-        ajax.post("bugtracker?act=a_save_user_device", {
+        var n = val(r + "_title");
+        return n && !n.trim() ? void notaBene(r + "_title") : void ajax.post("bugtracker?act=a_save_user_device", {
             hash: t,
             udid: o,
-            title: val(r + "_title"),
+            title: n,
             version: val(r + "_version"),
             from: a
         }, {

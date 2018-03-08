@@ -3816,11 +3816,6 @@ a.choose:hover {
     height: 13px
 }
 
-.page_add_event_info .tip {
-    color: #656565;
-    padding: 0 0 3px 23px
-}
-
 .page_members_box {
     overflow: auto;
     max-height: 370px;

@@ -491,6 +491,10 @@ a.groups_messages_block .ui_rmenu_count {
     padding: 0 20px
 }
 
+.ui_tabs_loading .flat_button.groups_list_create_button {
+    display: block
+}
+
 .group_list_row {
     position: relative;
     border-bottom: 1px solid #e7e8ec;
@@ -594,20 +598,6 @@ a.groups_messages_block .ui_rmenu_count {
     text-overflow: ellipsis;
     padding-top: 6px;
     line-height: normal
-}
-
-.groups_create_section {
-    margin-top: 11px
-}
-
-.groups_create_about {
-    color: #656565;
-    padding: 2px 21px 0;
-    font-size: 12.5px
-}
-
-.groups_create_box .dark {
-    width: 100%
 }
 
 .groups_list_search.ui_search.ui_search_new {

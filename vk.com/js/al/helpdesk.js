@@ -1301,8 +1301,7 @@ var Helpdesk = {
         }), !1
     },
     takeTicket: function() {
-        return ajax.post("helpdesk", {
-            act: "take_ticket",
+        return ajax.post("helpdesk?act=a_take_ticket", {
             ticket_id: cur.ticket_id,
             hash: cur.hashes.take_hash
         }, {

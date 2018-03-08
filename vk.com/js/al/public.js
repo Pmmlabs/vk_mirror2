@@ -1,32 +1,5 @@
-function initPublicNewSection(e) {
-    extend(cur, {
-        showError: function(e) {
-            return ge("new_public_error").innerHTML = e, show("new_public_error"), scrollToTop(), !0
-        },
-        newPageSubmit: function(o) {
-            var t = trim(val("new_public_name"));
-            if (!t) return void notaBene("new_public_name");
-            var n = window.radioBtns.new_public_type.val;
-            return n ? isChecked("new_public_confirm") ? void ajax.post("al_public.php", {
-                act: "a_new",
-                name: t,
-                type: n,
-                hash: e.hash,
-                category_0: val("new_public_category_0"),
-                category_1: val("new_public_category_1"),
-                category_2: val("new_public_category_2")
-            }, {
-                onFail: function(e) {
-                    return e ? cur.showError(e) : void 0
-                },
-                showProgress: lockButton.pbind(o),
-                hideProgress: unlockButton.pbind(o)
-            }) : void cur.showError(getLang("public_new_no_agreement_error")) : void cur.showError(getLang("public_new_no_type_error"))
-        }
-    })
-}
 window["public"] = window.Public = {
-    toggleFave: function(e, o, t, n) {
+    toggleFave: function(e, o, t, a) {
         void 0 != cur.toggleFaveAct && (t = cur.toggleFaveAct), ajax.post("fave.php", {
             act: t ? "a_add_group" : "a_delete_group",
             gid: -cur.oid,
@@ -37,23 +10,23 @@ window["public"] = window.Public = {
             },
             showProgress: window.Page && Page.actionsDropdownLock.pbind(e),
             hideProgress: window.Page && Page.actionsDropdownUnlock.pbind(e)
-        }), cancelEvent(n)
+        }), cancelEvent(a)
     },
-    hideHelpStep: function(e, o, t, n) {
-        var a = domClosest("page_block", e);
-        return e && e.tt && e.tt.hide(), a && slideUp(a, 200, re.pbind(a)), ajax.post("/al_public.php", {
+    hideHelpStep: function(e, o, t, a) {
+        var i = domClosest("page_block", e);
+        return e && e.tt && e.tt.hide(), i && slideUp(i, 200, re.pbind(i)), ajax.post("/al_public.php", {
             act: "a_hide_help_step",
             pid: cur.options.public_id,
             step: o,
             hash: t
-        }), n.cancelBubble = !0, cancelEvent(n)
+        }), a.cancelBubble = !0, cancelEvent(a)
     },
     showMapBox: function(e, o, t) {
         if (!window.showZeroZoneBox || !showZeroZoneBox("places", function() {
                 Public.showMapBox()
             })) {
             if (!cur.boxForMap) {
-                var n = {
+                var a = {
                     bodyStyle: "padding: 0;",
                     width: 597,
                     title: e,
@@ -61,7 +34,7 @@ window["public"] = window.Public = {
                         cur.boxMap && cur.boxMap.redraw()
                     }
                 };
-                cur.boxForMap = showFastBox(n, '<div class="box_loader"></div>'), cur.boxForMap.setControlsText('<a href="' + t + '">' + getLang("events_goto_search") + "</a>")
+                cur.boxForMap = showFastBox(a, '<div class="box_loader"></div>'), cur.boxForMap.setControlsText('<a href="' + t + '">' + getLang("events_goto_search") + "</a>")
             }
             cur.boxMap ? cur.boxForMap.show() : (cur.boxForMap.content('<div id="boxMap" style="width: 595px; height: 500px"></div>'), cur.boxMap = new VkMap(ge("boxMap"), {
                 type: "yandex",
@@ -82,24 +55,6 @@ window["public"] = window.Public = {
             act: "a_get_links",
             pid: cur.options.public_id,
             type: e
-        }, {
-            params: {
-                width: 467
-            }
-        });
-        o.setOptions({
-            onHideAttempt: function() {
-                return cur.reloadAfterClose && (nav.reload({
-                    noscroll: !0
-                }), cur.reloadAfterClose = !1), !0
-            }
-        })
-    },
-    showEvents: function(e) {
-        var o = showBox("/al_public.php", {
-            act: "a_get_events",
-            pid: cur.options.public_id,
-            edit: e
         }, {
             params: {
                 width: 467
@@ -181,32 +136,14 @@ window["public"] = window.Public = {
             hideProgress: hp
         }), !1
     },
-    editEvent: function(e, o, t) {
-        showBox("/al_page.php", {
-            act: "a_edit_event_box",
-            pid: e
-        })
-    },
-    deleteEvent: function(e, o, t) {
-        cur.reloadAfterClose = !0, ajax.post("al_public.php", {
-            act: "a_delete_event",
-            pid: e,
-            eid: o,
-            hash: t
-        }, {
-            onDone: function(o) {
-                window.tooltips && tooltips.destroyAll(ge("public_event_cell" + e)), curBox().content(o)
-            }
-        })
-    },
     searchApp: function(e, o) {
         e != cur.lastLink && ajax.post("al_public.php", {
             act: "a_search_app",
             pid: cur.options.public_id,
             page: e
         }, {
-            onDone: function(e, t, n, a, i, r) {
-                return e ? (ge("public_app_error_msg").innerHTML = e, void(cur.appId = !1)) : (cur.appHash = i, cur.appId = t, ge("public_app_error_msg").innerHTML = "", ge("public_app_image").innerHTML = n, ge("public_app_info").innerHTML = a, void 0 !== r && (ge("public_app_address").value = r), void(o && o(e)))
+            onDone: function(e, t, a, i, n, r) {
+                return e ? (ge("public_app_error_msg").innerHTML = e, void(cur.appId = !1)) : (cur.appHash = n, cur.appId = t, ge("public_app_error_msg").innerHTML = "", ge("public_app_image").innerHTML = a, ge("public_app_info").innerHTML = i, void 0 !== r && (ge("public_app_address").value = r), void(o && o(e)))
             }
         })
     },
@@ -293,12 +230,12 @@ window["public"] = window.Public = {
             automore: 1
         })), e.age_disclaimer && Groups && Groups.showDisclaimer(e, "public")
     },
-    toggleTop: function(e, o, t, n, a) {
+    toggleTop: function(e, o, t, a, i) {
         ajax.post("al_groups.php", {
             act: "a_toggle_top",
             gid: o,
             hash: t,
-            nocis: a
+            nocis: i
         }, {
             onDone: function(o) {
                 e.innerHTML = o
@@ -307,7 +244,7 @@ window["public"] = window.Public = {
             hideProgress: window.Page && Page.actionsDropdownUnlock.pbind(e)
         })
     },
-    toggleStickers: function(e, o, t, n) {
+    toggleStickers: function(e, o, t, a) {
         ajax.post("al_groups.php", {
             act: "a_toggle_stickers",
             gid: o,
@@ -327,22 +264,22 @@ window["public"] = window.Public = {
         cur.onPhotoInputChange = function(t) {
             return window.filesToUpload = t, nav.go(e, o)
         };
-        var n = ge("page_upload_photos_input");
-        return n || (n = se('<input id="page_upload_photos_input" class="file page_upload_photos_input" type="file" onchange="cur.onPhotoInputChange(this.files);" multiple="true" accept="image/jpeg,image/png,image/gif" name="photo" />')), n.click(o), !1
+        var a = ge("page_upload_photos_input");
+        return a || (a = se('<input id="page_upload_photos_input" class="file page_upload_photos_input" type="file" onchange="cur.onPhotoInputChange(this.files);" multiple="true" accept="image/jpeg,image/png,image/gif" name="photo" />')), a.click(o), !1
     }
 }, window.showMapBox = Public.showMapBox;
 var PagedList = function(e, o, t) {
-    function n(e) {
+    function a(e) {
         for (var o = [], t = 0; t < e.length; ++t) o[t] = e[t];
         return o
     }
-    var a = function(e, o) {
+    var i = function(e, o) {
             if (!isArray(e) || !isArray(o)) return e == o;
             for (var t = 0; t < e.length; ++t)
                 if (e[t] != o[t]) return !1;
             return !0
         },
-        i = {
+        n = {
             getRow: function(e) {
                 return ""
             },
@@ -355,32 +292,32 @@ var PagedList = function(e, o, t) {
                 return "<div>no rows</div>"
             }
         };
-    t = t ? extend(i, t) : i, this.data = o;
+    t = t ? extend(n, t) : n, this.data = o;
     for (var r = [], s = 0; s < o.length; ++s) r.push(o[s]);
-    var c = [],
-        p = 0;
+    var p = [],
+        c = 0;
     this.setData = function(e) {
-        this.data = e, this.getPage(0, c, !0)
+        this.data = e, this.getPage(0, p, !0)
     };
     var l = t.getRow.bind(this);
-    this.getPage = function(o, i, s) {
-        if (void 0 === i && (i = c), p != o || !a(i, c) || s) {
-            if (p = o, t.onStart && t.onStart(), !a(i, c)) {
-                c = n(i), r = [];
-                for (var u = 0; u < this.data.length; ++u)(!i || t.filter(i, this.data[u])) && r.push(this.data[u])
+    this.getPage = function(o, n, s) {
+        if (void 0 === n && (n = p), c != o || !i(n, p) || s) {
+            if (c = o, t.onStart && t.onStart(), !i(n, p)) {
+                p = a(n), r = [];
+                for (var u = 0; u < this.data.length; ++u)(!n || t.filter(n, this.data[u])) && r.push(this.data[u])
             }
-            if (!r.length) return ge(e).innerHTML = t.emptyRow(i), t.setPages(0, 0, "top"), void t.setPages(0, 0, "bottom");
+            if (!r.length) return ge(e).innerHTML = t.emptyRow(n), t.setPages(0, 0, "top"), void t.setPages(0, 0, "bottom");
             for (var d = [], u = o * t.perPage; u < Math.min(r.length, (o + 1) * t.perPage); ++u) {
-                var h = r[u];
-                d.push(l(h, c))
+                var g = r[u];
+                d.push(l(g, p))
             }
-            var g = getSize(ge(e))[1];
+            var h = getSize(ge(e))[1];
             if (ge(e).innerHTML = d.join(""), setStyle(ge(e), {
-                    height: o ? g : "auto"
+                    height: o ? h : "auto"
                 }), t.onShow)
                 for (var u = o * t.perPage; u < Math.min(r.length, (o + 1) * t.perPage); ++u) {
-                    var h = r[u];
-                    t.onShow(h, u)
+                    var g = r[u];
+                    t.onShow(g, u)
                 }
             var _ = Math.ceil(r.length / t.perPage);
             t.setPages(o, _, "top"), t.setPages(o, _, "bottom"), t.onEnd && t.onEnd()
@@ -389,17 +326,17 @@ var PagedList = function(e, o, t) {
         if (o = trim(o), !o) return e;
         e = -1 == o.indexOf(" ") ? e.split(" ") : [e];
         var t = "",
-            n = parseLatin(o);
-        null != n && (o = o + "|" + n);
-        var a = new RegExp("(?![^&;]+;)(?!<[^<>]*)((\\(*)(" + o.replace("+", "\\+") + "))(?![^<>]*>)(?![^&;]+;)", "gi");
-        for (var i in e) t += (i > 0 ? " " : "") + e[i].replace(a, "$2<em>$3</em>");
+            a = parseLatin(o);
+        null != a && (o = o + "|" + a);
+        var i = new RegExp("(?![^&;]+;)(?!<[^<>]*)((\\(*)(" + o.replace("+", "\\+") + "))(?![^<>]*>)(?![^&;]+;)", "gi");
+        for (var n in e) t += (n > 0 ? " " : "") + e[n].replace(i, "$2<em>$3</em>");
         return t
     }
 };
 window.replaceChars = function(e, o) {
-    for (var t = "", n = 0; n < e.length; n++) {
-        var a = e.charCodeAt(n);
-        switch (a) {
+    for (var t = "", a = 0; a < e.length; a++) {
+        var i = e.charCodeAt(a);
+        switch (i) {
             case 38:
                 t += "&amp;";
                 break;
@@ -425,7 +362,7 @@ window.replaceChars = function(e, o) {
                 t += "&#39;";
                 break;
             default:
-                t += a > 128 && 192 > a || a > 1280 ? "&#" + a + ";" : e.charAt(n)
+                t += i > 128 && 192 > i || i > 1280 ? "&#" + i + ";" : e.charAt(a)
         }
     }
     return t

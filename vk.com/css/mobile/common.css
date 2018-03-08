@@ -1157,7 +1157,6 @@ input.wide_button {
     font-size: 14px;
     line-height: 1.29;
     padding: 8px 12px 9px;
-    margin: 2px 0 -8px;
     border-radius: 4px
 }
 
@@ -21591,6 +21590,11 @@ a.feedBlocks__article:hover {
 .vk__page_join,
 .vk__page_join .basis__content {
     background-color: #ebedf0!important
+}
+
+.vk__page_join .new_form .service_msg {
+    margin-top: 2px;
+    margin-bottom: -8px
 }
 
 .vk__page_join .join_header {

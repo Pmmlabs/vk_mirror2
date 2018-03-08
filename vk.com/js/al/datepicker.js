@@ -302,7 +302,7 @@
                     min: 0,
                     minStep: 5,
                     resfmt: "ts",
-                    format: '{hour}<div class="fl_l" style="padding: 7px 4px 8px;"> : </div>{min}'
+                    format: '{hour}<div class="timepicker_dots"> : </div>{min}'
                 },
                 i = extend({}, s, t),
                 d = e.parentNode;

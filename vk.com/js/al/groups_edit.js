@@ -594,22 +594,26 @@ var GroupsEdit = {
                 age_limits: radioval("group_age_limits"),
                 hash: cur.hash
             };
-        0 == cur.cls || 2 == cur.cls ? (extend(s, GroupsEdit.getFields("access")), s.subject = cur.subjectDD.val(), 2 == cur.cls && extend(s, {
-            start_date: val("group_start_date"),
-            finish_date: isVisible("group_edit_finish_time") ? val("group_finish_date") : 0,
-            host: cur.hostDD ? cur.hostDD.val() : !1,
-            email: val("event_mail"),
-            phone: val("event_phone")
-        })) : 1 == cur.cls && extend(s, {
-            sprivacy: cur.sprivacyDD ? cur.sprivacyDD.val() : void 0,
-            pcategory: cur.pcategoryDD.val(),
-            psubcategory: cur.psubcategoryDD.val(),
-            public_date: val("gedit_public_date")
-        }), cur.newCategoriesDD && extend(s, {
-            category_0: intval(cur.newCategoriesDD[0].val()),
-            category_1: intval(cur.newCategoriesDD[1].val()),
-            category_2: intval(cur.newCategoriesDD[2].val())
-        }), ajax.post("groupsedit.php", s, {
+        if (0 == cur.cls || 2 == cur.cls ? (extend(s, GroupsEdit.getFields("access")), s.subject = cur.subjectDD.val(), 2 == cur.cls && extend(s, {
+                start_date: val("group_start_date"),
+                finish_date: isVisible("group_edit_finish_time") ? val("group_finish_date") : 0,
+                host: cur.hostDD ? cur.hostDD.val() : !1,
+                email: val("event_mail"),
+                phone: val("event_phone")
+            })) : 1 == cur.cls && extend(s, {
+                sprivacy: cur.sprivacyDD ? cur.sprivacyDD.val() : void 0,
+                pcategory: cur.pcategoryDD.val(),
+                psubcategory: cur.psubcategoryDD.val(),
+                public_date: val("gedit_public_date")
+            }), Groups.categoriesGetDropdown(0)) {
+            var a = Groups.categoriesValue();
+            extend(s, {
+                category_0: a[0],
+                category_1: a[1],
+                category_2: a[2]
+            })
+        }
+        ajax.post("groupsedit.php", s, {
             onDone: function(e, t, r) {
                 return 0 > e ? GroupsEdit.nbAddr() : e === !1 ? notaBene(ge("group_edit_name")) : "edit_first" == nav.objLoc.act ? nav.go(nav.objLoc[0]) : (r && val("group_edit_name", replaceEntities(r)), GroupsEdit.showMessage(getLang("groups_saved_msg")), scrollToTop(), t != o && (each(geByTag("a"), function() {
                     this.href = this.href.replace(new RegExp("/" + t + "\\?", "g"), "/" + o + "?").replace(new RegExp("/" + t + "$", "g"), "/" + o)
@@ -632,7 +636,7 @@ var GroupsEdit = {
                 hash: cur.hash
             },
             t = ge("group_save");
-        0 == cur.cls || 2 == cur.cls ? extend(e, GroupsEdit.getFields("wall", "photos", "video", "audio", "docs", "topics", "wiki")) : 1 == cur.cls && each(["enable_topics", "enable_photos", "enable_video", "enable_audio", "enable_links", "enable_events", "enable_places", "enable_contacts"], function(t, o) {
+        0 == cur.cls || 2 == cur.cls ? extend(e, GroupsEdit.getFields("wall", "photos", "video", "audio", "docs", "topics", "wiki", "events")) : 1 == cur.cls && each(["enable_topics", "enable_photos", "enable_video", "enable_audio", "enable_links", "enable_events", "enable_places", "enable_contacts"], function(t, o) {
             e[o] = isChecked(o)
         }), cur.marketCountryDD && (1 == cur.cls ? e.enable_market = isChecked("enable_market") : extend(e, GroupsEdit.getFields("market")), (e.market || e.enable_market) && (extend(e, GroupsEdit.getFields("market_comments", "market_wiki")), e.market_country = cur.marketCountryDD.val(), isVisible("group_market_city_wrap") && (e.market_city = cur.marketCityDD.val()), e.market_currency = cur.marketCurrencyDD.val(), e.market_contact = cur.marketContactDD.val(), isVisible("market_button_type_link") && (e.market_button_type = cur.marketButtonType.val(), e.market_button_name = trim(val("group_market_button_name"))))), cur.mainSectionDD && cur.secondarySectionDD && (e.main_section = intval(cur.mainSectionDD.val()), e.secondary_section = intval(cur.secondarySectionDD.val())), ajax.post("groupsedit.php", e, {
             onDone: function(e) {
@@ -1452,7 +1456,7 @@ var GroupsEdit = {
         })
     },
     onPlaceSave: function(e) {
-        ge("group_edit_address_link").innerHTML = e
+        val("group_edit_address_link", e)
     },
     switchAdSubTab: function(e, t, o) {
         if (checkEvent(o) || hasClass(e, "summary_tab_sel")) return !1;
@@ -2121,7 +2125,8 @@ var GroupsEdit = {
             }, getLang("global_cancel"))
         },
         clearServerId: function() {
-            delete nav.objLoc.server, nav.setLoc(nav.objLoc)
+            delete nav.objLoc.server,
+                nav.setLoc(nav.objLoc)
         },
         showOk: function() {
             hide("group_api_error"), show("group_api_ok"), show("group_api_settings"), hide("group_api_secret_error"), hide("group_api_secret_ok"), show("groups_edit_delete_url")

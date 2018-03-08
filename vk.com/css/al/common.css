@@ -8486,3 +8486,7 @@ button.ui_load_more_btn {
     width: 128px;
     height: 128px
 }
+
+.cache_static_page #page_wrap {
+    background: #edeef0
+}
