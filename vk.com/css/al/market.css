@@ -2758,8 +2758,8 @@
 
 .market_cart_row_img>a>img {
     display: block;
-    max-height: 30px;
-    max-width: 30px
+    max-height: 50px;
+    max-width: 50px
 }
 
 .market_cart_row_title {
@@ -2793,7 +2793,7 @@
     padding: 15px 20px
 }
 
-.market_balance_page .msg {
+.market_balance_block.msg {
     margin: 0 0 20px;
     padding-left: 10px;
     padding-right: 10px

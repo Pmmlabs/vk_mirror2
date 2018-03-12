@@ -450,10 +450,10 @@ var stVersions = {
     'landings/landings.css': 21716679782,
     'landings/vk10_years.css': 18070585902,
     'chronicle.css': 18814776841,
-    'market.css': 31292566242,
+    'market.css': 29881151997,
     'market.js': 3177782117,
-    'market_adm.css': 16482992655,
-    'market_adm.js': 1199207688,
+    'market_adm.css': 20284567743,
+    'market_adm.js': 2677502581,
     'stories_admin.css': 20133896978,
     'stories_admin.js': 1129028316,
     'vk2016.css': 2021229875,
@@ -644,4 +644,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 434;
+var _rnd = 6920;
