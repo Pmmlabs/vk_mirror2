@@ -2960,7 +2960,6 @@
 }
 
 .flat_button.market_shop_balance_info {
-    margin-top: 8px;
     padding-left: 36px;
     padding-right: 12px;
     font-weight: 700;
@@ -2987,4 +2986,13 @@
         background-image: url(/images/icons/payments_s_2x.png);
         background-size: 22px 226px
     }
+}
+
+.ui_search_custom_ctrl .flat_button.market_shop_balance_info {
+    margin-top: 8px
+}
+
+.page_block_header .flat_button.market_shop_balance_info {
+    margin-top: 12px;
+    line-height: 15px
 }

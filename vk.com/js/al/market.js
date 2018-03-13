@@ -1060,13 +1060,7 @@ var Market = {
                     showProgress: lockButton.pbind(e),
                     hideProgress: unlockButton.pbind(e),
                     onDone: function(t, o, a, i, s, n, c, l, u) {
-                        if (t) {
-                            if (val(e, a ? getLang("market_item_X_added_to_cart", a) : getLang("market_item_add_to_cart")), a) {
-                                var m = !isVisible("market_goto_cart");
-                                show("market_goto_cart"), m && notaBene("market_goto_cart", "#FFFFA0")
-                            }
-                            MarketCart._updateItemCount(r, a), MarketCart._updateInfo(l, u)
-                        }
+                        t && (val(e, a ? getLang("market_item_X_added_to_cart", a) : getLang("market_item_add_to_cart")), a && (show("market_goto_cart"), notaBene("market_goto_cart", "#FFFFA0")), MarketCart._updateItemCount(r, a), MarketCart._updateInfo(l, u))
                     }
                 })
             }
@@ -1080,8 +1074,7 @@ var Market = {
                 item_id: r,
                 obj_id: o,
                 value: i,
-                hash: s,
-                cart: 1
+                hash: s
             }, {
                 showProgress: function() {
                     addClass(a, "processing"), e.readOnly = !0
@@ -1089,7 +1082,7 @@ var Market = {
                 hideProgress: function() {
                     removeClass(a, "processing"), e.readOnly = !1
                 },
-                onDone: function(e, t, o, i, s, n, c, l, u) {
+                onDone: function(e, t, o, i, s, n, c, l, u, m) {
                     e && (val(geByClass1("_price", a), i), val(geByClass1("_sum", a), s), val("market_cart_rows_total", n), cur.marketOrderData.hash = c, MarketCart._updateItemCount(r, o), MarketCart._updateInfo(l, u))
                 }
             }) : notaBene(e)
@@ -1857,8 +1850,8 @@ var Market = {
                     list = [];
                     for (var a = 0, i = e.length; i > a; a++) {
                         var s = clone(e[a]);
-                        o && (s.push(""),
-                            s.push(s[1]), s[1] = s[1].replace(o.re, o.val)), list.push(s)
+                        o && (s.push(""), s.push(s[1]), s[1] = s[1].replace(o.re, o.val)),
+                            list.push(s)
                     }
                     t.showSelectList(r, list)
                 }, 300)) : void t.showSelectList(r, cur.tagsList.slice(0, 10))

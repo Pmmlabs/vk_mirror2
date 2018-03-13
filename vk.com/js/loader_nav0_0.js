@@ -202,7 +202,7 @@ var stVersions = {
     'video_upload.js': 2270908085,
     'video_youtube.js': 458412745,
     'video_youtube.css': 16428492363,
-    'videoplayer.js': 67439319607,
+    'videoplayer.js': 67864629340,
     'videoplayer.css': 40296244289,
     'translation.js': 2188856658,
     'translation.css': 18685078950,
@@ -221,7 +221,7 @@ var stVersions = {
     'owner_photo.js': 3401070266,
     'owner_photo.css': 22440944822,
     'page.js': 833131001,
-    'page.css': 34293295677,
+    'page.css': 36958726153,
     'page_help.css': 24993268309,
     'public.css': 29897545054,
     'public.js': 1804234624,
@@ -335,7 +335,7 @@ var stVersions = {
     'tags_dd.css': 18840456512,
     'internal/tasks.js': 3155934960,
     'internal/tasks.css': 17036261650,
-    'helpdesk.js': 1619472592,
+    'helpdesk.js': 1017544317,
     'helpdesk.css': 21665069778,
     'tickets.js': 1561089313,
     'tickets.css': 26066694042,
@@ -450,8 +450,8 @@ var stVersions = {
     'landings/landings.css': 21716679782,
     'landings/vk10_years.css': 18070585902,
     'chronicle.css': 18814776841,
-    'market.css': 29881151997,
-    'market.js': 3177782117,
+    'market.css': 28878280436,
+    'market.js': 750235529,
     'market_adm.css': 20284567743,
     'market_adm.js': 2677502581,
     'stories_admin.css': 20133896978,
@@ -536,7 +536,7 @@ var stVersions = {
     'voice_message_player.js': 18549969583,
     'cmodules/web/speech_worker_mp3.js': 1074082218,
     'cmodules/web/speech_worker_opus.js': 2818771805,
-    'stories.js': 43901510345,
+    'stories.js': 43987162602,
     'stories.css': 19183153697,
     'internal/nospam.css': 20402125358,
     'internal/away_linksban.css': 16723291330,
@@ -544,9 +544,9 @@ var stVersions = {
     'internal/patterns_info.css': 19630620337,
     'article.css': 37451573337,
     'article_editor.css': 37617917465,
-    'cmodules/web/article.js': 37418833694,
-    'cmodules/web/article_layer.js': 22276030910,
-    'article_view.js': 17227931000,
+    'cmodules/web/article.js': 39161640436,
+    'cmodules/web/article_layer.js': 24018837652,
+    'article_view.js': 18970737742,
     'internal/cvkmobile.css': 18470701427,
     'internal/cvkmobile.js': 2752055160,
     'shortener.js': 16413120,
@@ -572,7 +572,7 @@ var stVersions = {
     'internal/stories_admin_panel.css': 16873727888,
     'time_spent.js': 732637085,
     'cmodules/web/app_info.js': 2375115030,
-    'lang': 6880
+    'lang': 6883
 };
 var stTypes = {
     fromLib: {
@@ -644,4 +644,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 6920;
+var _rnd = 4924;

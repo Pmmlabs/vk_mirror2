@@ -1266,7 +1266,7 @@ var Helpdesk = {
         return !1
     },
     doSendPayForm: function(e, t, s) {
-        var a = geByClass1("flat_button", t.bodyNode.nextSibling);
+        var a = geByClass1("flat_button", t.bodyNode);
         return ajax.post("helpdesk", {
             act: "send_pay_form",
             ticket_id: cur.ticket_id,

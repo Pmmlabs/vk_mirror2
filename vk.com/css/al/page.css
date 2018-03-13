@@ -2248,12 +2248,21 @@ a.page_media_link_desc {
     height: auto
 }
 
+.page_media_link_img_wrap.sized .page_media_link_img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%!important;
+    height: 100%!important
+}
+
 .page_media_link_img_wrap {
     display: block;
     max-height: 228px;
     outline: 1px solid rgba(0, 20, 51, .12);
     outline-offset: -1px;
-    line-height: 0
+    line-height: 0;
+    position: relative
 }
 
 .page_media_thumbed_link_wide .page_media_link_img_wrap {
