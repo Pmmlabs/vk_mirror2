@@ -637,8 +637,8 @@ mobile_unfave_post = '������ �� ���������';
 mobile_unfave_video = '������ �� ���������';
 mobile_wall_publish_postponed = '������������ ������';
 mobile_zphoto_save_btn = '��������';
-mobile_profile_status_just_now = '������ ���';
-mobile_unknown_error = '����������� ������';
+mobile_profile_status_just_now = 'just now';
+mobile_unknown_error = 'Unknown error';
 // section = 61; version = 79;
 
 bugs_invite_X_members = ['', '���������� %s ���������', '���������� %s ����������', '���������� %s ����������'];

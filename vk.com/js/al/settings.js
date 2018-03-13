@@ -869,17 +869,17 @@ var Settings = {
             cur.options.reset_hash = i, t ? t !== !0 && r.parentNode.replaceChild(ce("div", {
                 className: "settings_labeled_notice",
                 innerHTML: s ? s : getLang("setting_all_sessions_reset")
-            }), r) : (box = curBox(), box && (box.hideProgress(), box.setControlsText(getLang("setting_all_sessions_reset"))), j = 0, each(ge("activity_history").lastChild.childNodes, function(t, e) {
-                if (1 == e.nodeType) {
-                    if (j > 1 && !hasClass(e, "settings_old_session")) {
-                        addClass(e, "settings_old_session");
-                        var s = geByClass("settings_browser_info", e)[0];
-                        removeData(s, "tooltip"), removeData(s, "inited")
-                    }
-                    j++
-                }
-            })), isFunction(cur.onReLoginDoneCallback) && cur.onReLoginDoneCallback()
+            }), r) : (box = curBox(), box && (box.hideProgress(), box.setControlsText(getLang("setting_all_sessions_reset"))), j = 0, each(ge("activity_history").childNodes, function(t, e) {
+                1 == e.nodeType && (j > 0 && !hasClass(e, "settings_old_session") && (addClass(e, "settings_old_session"), re(geByClass1("settings_cur_session", e))), j++)
+            })), isFunction(cur.onReLoginDoneCallback) && cur.onReLoginDoneCallback(), Settings.reset_sessions = !1
         }, t ? t !== !0 && t.parentNode.replaceChild(r, t) : curBox().showProgress(), i.submit(), !1
+    },
+    ipTTClick: function(t, e) {
+        cancelEvent(e);
+        var s = document.createRange();
+        s.selectNodeContents(t);
+        var o = getSelection();
+        o.removeAllRanges(), o.addRange(s), document.execCommand("copy"), o.removeAllRanges()
     },
     showUserClientTT: function(t, e) {
         var s = "";
