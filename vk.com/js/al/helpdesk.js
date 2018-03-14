@@ -182,8 +182,7 @@ var Helpdesk = {
     },
     addBug: function(e) {
         var t = Helpdesk._getCheckedTicketsList();
-        return !showBox("helpdesk", {
-            act: "add_bug",
+        return !showBox("helpdesk?act=add_bug_box", {
             hash: e,
             ticket_id: cur.ticket_id,
             tickets: t
@@ -712,7 +711,6 @@ var Helpdesk = {
     bindTicket: function(e, t) {
         var s = function(e, t) {
                 var s = {
-                        act: "bind_ticket",
                         bug_id: e,
                         ticket_id: cur.ticket_id,
                         hash: t
@@ -737,7 +735,7 @@ var Helpdesk = {
                             s["answer_text_" + a] = val(t), o && (s["addressing_m_" + a] = val(o)), r && (s["addressing_f_" + a] = val(r))
                         })
                     }
-                    ge("tickets_closed_autoanswer_addressing_m") && (s.addressing_m = val("tickets_closed_autoanswer_addressing_m")), ge("tickets_closed_autoanswer_addressing_f") && (s.addressing_f = val("tickets_closed_autoanswer_addressing_f")), ajax.post("helpdesk", s, {
+                    ge("tickets_closed_autoanswer_addressing_m") && (s.addressing_m = val("tickets_closed_autoanswer_addressing_m")), ge("tickets_closed_autoanswer_addressing_f") && (s.addressing_f = val("tickets_closed_autoanswer_addressing_f")), ajax.post("helpdesk?act=a_bind_ticket", s, {
                         cache: 1,
                         onDone: Helpdesk._show,
                         onFail: function() {

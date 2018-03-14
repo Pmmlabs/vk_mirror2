@@ -336,7 +336,7 @@ var stVersions = {
     'tags_dd.css': 18840456512,
     'internal/tasks.js': 3155934960,
     'internal/tasks.css': 17036261650,
-    'helpdesk.js': 1017544317,
+    'helpdesk.js': 1934543051,
     'helpdesk.css': 21665069778,
     'tickets.js': 1561089313,
     'tickets.css': 26066694042,
@@ -545,9 +545,9 @@ var stVersions = {
     'internal/patterns_info.css': 19630620337,
     'article.css': 37451573337,
     'article_editor.css': 37617917465,
-    'cmodules/web/article.js': 39161640436,
-    'cmodules/web/article_layer.js': 24018837652,
-    'article_view.js': 18970737742,
+    'cmodules/web/article.js': 37503408057,
+    'cmodules/web/article_layer.js': 22360605273,
+    'article_view.js': 17312505363,
     'internal/cvkmobile.css': 18470701427,
     'internal/cvkmobile.js': 2752055160,
     'shortener.js': 16413120,
@@ -646,4 +646,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 9509;
+var _rnd = 5397;

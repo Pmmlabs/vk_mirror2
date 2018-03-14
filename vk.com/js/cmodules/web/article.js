@@ -1101,9 +1101,7 @@
                                             i.setBLOB(r, a)
                                         }
                                     })
-                                }; i = a.shift();) {
-                                n()
-                            }
+                                }; i = a.shift();) n()
             }, e.prototype._flattenAlienParagraphs = function() {
                 var e = this;
                 if (this._fromPasteEvent) {
@@ -1120,9 +1118,7 @@
                             (0, _.isQuoteEl)(r) && !(0, _.isAlienParagraphEl)(r) && (n = r.firstChild);
                             var o = !1;
                             t.call(e, n, !0), o && R(r)
-                        }; r = t.shift();) {
-                        d()
-                    }
+                        }; r = t.shift();) d();
                     this._setAllParagraphsDirty()
                 }
             }, e.prototype._correctCaptionSelection = function() {
@@ -1272,8 +1268,7 @@
                 showBox("al_video.php", {
                     act: "a_choose_video_box",
                     to_id: this.getArticleOwnerId()
-                });
-                T.chooseMedia = function(t, r, i, n, s) {
+                }), T.chooseMedia = function(t, r, i, n, s) {
                     var l = (0, g.getAppropriateImage)(i.editable.sizes, e.getWidth()),
                         c = o(l, 1),
                         d = c[0],
@@ -2570,8 +2565,7 @@
                     }, {
                         cache: 1,
                         stat: ["photos.js", "photos.css", "upload.js"]
-                    });
-                    cur.chooseMedia = d.onPhotoAdd.bind(d), cur.showMediaProgress = function() {
+                    }), cur.chooseMedia = d.onPhotoAdd.bind(d), cur.showMediaProgress = function() {
                         show(d._els.loading), r.getEditor().setMediaUploadMode(!0)
                     }, cur.choosePhotoUploadedAll = function() {
                         hide(d._els.loading), r.getEditor().setMediaUploadMode(!1)
@@ -2922,14 +2916,12 @@
         if (t && "border-box" === le(e, "boxSizing") && (t = !1), e == document) n = [Math.max(o.clientWidth, bodyNode.scrollWidth, o.scrollWidth, bodyNode.offsetWidth, o.offsetWidth), Math.max(o.clientHeight, bodyNode.scrollHeight, o.scrollHeight, bodyNode.offsetHeight, o.offsetHeight)];
         else if (e) {
             var s = function() {
-                if (n = q(e) && (i = V(e, r)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t) {
-                    each(n, function(t, r) {
-                        var a = t ? ["Top", "Bottom"] : ["Left", "Right"];
-                        each(a, function() {
-                            n[t] -= parseFloat(le(e, "padding" + this)) || 0, n[t] -= parseFloat(le(e, "border" + this + "Width")) || 0
-                        })
+                n = q(e) && (i = V(e, r)) && void 0 !== i.width ? [i.width, i.height] : [e.offsetWidth, e.offsetHeight], t && each(n, function(t, r) {
+                    var a = t ? ["Top", "Bottom"] : ["Left", "Right"];
+                    each(a, function() {
+                        n[t] -= parseFloat(le(e, "padding" + this)) || 0, n[t] -= parseFloat(le(e, "border" + this + "Width")) || 0
                     })
-                }
+                })
             };
             if (W(e)) s();
             else {
@@ -3211,8 +3203,8 @@
         return "transform"
     }(), window.vkExpand = window.vkExpand || "VK" + (0, Te.vkNow)(), window.vkUUID = window.vkUUID || 0, window.vkCache = window.vkCache || {};
     var xe = !1;
-    window.ge = a, window.geByTag = i, window.geByTag1 = n, window.geByClass = o, window.geByClass1 = s, window.gpeByClass = l, window.domQuery = c, window.domQuery1 = d, window.domClosest = u, window.ce = _, window.re = g, window.se = f, window.sech = v, window.rs = m, window.psr = y, window.domReplaceEl = b, window.domEL = w, window.domNS = E, window.domPS = C, window.domFC = P, window.domLC = T, window.domPN = x,
-        window.domChildren = S, window.domInsertBefore = O, window.domInsertAfter = k, window.domByClass = j, window.domData = I, window.domChildIndex = L, window.domCA = A, window.domClosestSibling = N, window.matchesSelector = M, window.isHover = D, window.isAncestor = B, window.getScroll = R, window.domClosestPositioned = H, window.domClosestOverflowHidden = U, window.show = F, window.hide = z, window.isVisible = W, window.clientHeight = K, window.getClientRectOffsetY = $, window.toggle = Q, window.boundingRectEnabled = q, window.getXYRect = V, window.getXY = X, window.isWindow = Y, window.getSize = G, window.hasClass = ee, window.addClass = te, window.addClassDelayed = re, window.removeClass = ae, window.removeClassDelayed = ie, window.toggleClass = ne, window.toggleClassDelayed = oe, window.replaceClass = se, window.getStyle = le, window.setStyle = ce, window.setStyleDelayed = de, window.setPseudoStyle = ue, window.data = pe, window.attr = he, window.removeAttr = _e, window.removeData = ge, window.cleanElems = fe, window.setTitle = ve, window.getZoom = me, window.val = ye, window.elfocus = be, window.traverseParent = we, window.getH = Z, window.getW = J, window.domClosestByTag = p, window.setDocumentTitle = Ee, window.lockDocumentTitle = Ce
+    window.ge = a, window.geByTag = i, window.geByTag1 = n, window.geByClass = o, window.geByClass1 = s, window.gpeByClass = l, window.domQuery = c, window.domQuery1 = d, window.domClosest = u, window.ce = _, window.re = g, window.se = f, window.sech = v, window.rs = m, window.psr = y, window.domReplaceEl = b, window.domEL = w, window.domNS = E, window.domPS = C, window.domFC = P, window.domLC = T, window.domPN = x, window.domChildren = S,
+        window.domInsertBefore = O, window.domInsertAfter = k, window.domByClass = j, window.domData = I, window.domChildIndex = L, window.domCA = A, window.domClosestSibling = N, window.matchesSelector = M, window.isHover = D, window.isAncestor = B, window.getScroll = R, window.domClosestPositioned = H, window.domClosestOverflowHidden = U, window.show = F, window.hide = z, window.isVisible = W, window.clientHeight = K, window.getClientRectOffsetY = $, window.toggle = Q, window.boundingRectEnabled = q, window.getXYRect = V, window.getXY = X, window.isWindow = Y, window.getSize = G, window.hasClass = ee, window.addClass = te, window.addClassDelayed = re, window.removeClass = ae, window.removeClassDelayed = ie, window.toggleClass = ne, window.toggleClassDelayed = oe, window.replaceClass = se, window.getStyle = le, window.setStyle = ce, window.setStyleDelayed = de, window.setPseudoStyle = ue, window.data = pe, window.attr = he, window.removeAttr = _e, window.removeData = ge, window.cleanElems = fe, window.setTitle = ve, window.getZoom = me, window.val = ye, window.elfocus = be, window.traverseParent = we, window.getH = Z, window.getW = J, window.domClosestByTag = p, window.setDocumentTitle = Ee, window.lockDocumentTitle = Ce
 }, function(e, t, r) {
     "use strict";
 
@@ -3502,8 +3494,7 @@
     ({
         php: new RegExp("\\b(array|as|break|case|class|const|continue|default|do|else|elseif|for|foreach|function|global|if|return|static|switch|while|try|catch|throw)\\b", "g"),
         js: new RegExp("\\b(break|case|class|const|continue|default|do|else|for|function|if|return|static|switch|while|try|catch|throw|let)\\b", "g")
-    });
-    window.initArticle = a, window.deinitArticle = n, window.updateArticle = i, window.articleCloseImageFullSize = p
+    }), window.initArticle = a, window.deinitArticle = n, window.updateArticle = i, window.articleCloseImageFullSize = p
 }, function(e, t) {
     "use strict";
 
@@ -3690,9 +3681,7 @@
                 }
             });
             var s = e.substring(o);
-            n.push(i ? s : C(s));
-            "" == n[n.length - 1];
-            return n.join("")
+            return n.push(i ? s : C(s)), "" == n[n.length - 1], n.join("")
         }
         return i ? e : C(e)
     }
@@ -3824,7 +3813,7 @@
         var t = E(),
             r = oe(t, 2),
             a = r[0],
-            i = (r[1], void 0),
+            i = void r[1],
             n = void 0,
             o = [];
         return a.startContainer.nodeType == Node.TEXT_NODE ? i = a.startOffset : n = a.startOffset, traverseParent(a.startContainer, function(t) {
@@ -4109,8 +4098,7 @@
     "use strict";
     Object.defineProperty(t, "__esModule", {
         value: !0
-    });
-    t.Sequences = [{
+    }), t.Sequences = [{
         pattern: /\s-\s$/,
         substitution: " — "
     }, {
