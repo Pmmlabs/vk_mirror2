@@ -222,7 +222,7 @@ var stVersions = {
     'owner_photo.js': 3401070266,
     'owner_photo.css': 22440944822,
     'page.js': 833131001,
-    'page.css': 36958726153,
+    'page.css': 34324547716,
     'page_help.css': 24993268309,
     'public.css': 29897545054,
     'public.js': 1804234624,
@@ -233,7 +233,7 @@ var stVersions = {
     'cmodules/web/groups_create.js': 4680249485,
     'groups_create.css': 19437354197,
     'cmodules/web/groups_list.js': 5109346988,
-    'groups_edit.css': 35009001959,
+    'groups_edit.css': 37184149302,
     'groups_edit.js': 3825210905,
     'profile.css': 21468122224,
     'profile.js': 610604261,
@@ -255,7 +255,7 @@ var stVersions = {
     'mail.js': 2691231200,
     'email.css': 2955752408,
     'im.css': 127140841453,
-    'imn.js': 155089810850,
+    'imn.js': 153837933399,
     'im.js': 1322065005,
     'emoji.js': 458823967,
     'wide_dd.css': 19537848134,
@@ -277,7 +277,7 @@ var stVersions = {
     'apps_check.js': 3204387834,
     'apps_check.css': 29448497942,
     'settings.js': 1424293533,
-    'settings.css': 24123329531,
+    'settings.css': 26940589608,
     'profile_edit.js': 2157979570,
     'profile_edit.css': 18847147553,
     'profile_edit_edu.js': 4232181712,
@@ -537,7 +537,7 @@ var stVersions = {
     'voice_message_player.js': 18549969583,
     'cmodules/web/speech_worker_mp3.js': 1074082218,
     'cmodules/web/speech_worker_opus.js': 2818771805,
-    'stories.js': 46506590130,
+    'stories.js': 49871183565,
     'stories.css': 19183153697,
     'internal/nospam.css': 20402125358,
     'internal/away_linksban.css': 16723291330,
@@ -568,12 +568,12 @@ var stVersions = {
     'cmodules/web/stickers.js': 8129833338,
     'cmodules/web/stickers_office.js': 9963462147,
     'cmodules/web/bodymovin.js': 1520167629,
-    'lead_forms_app.js': 11788960687,
+    'lead_forms_app.js': 12114734990,
     'lead_forms_app.css': 22136126273,
     'internal/stories_admin_panel.css': 16873727888,
     'time_spent.js': 732637085,
     'cmodules/web/app_info.js': 2375115030,
-    'internal/stream_quiz.css': 2540969190,
+    'internal/stream_quiz.css': 1680646468,
     'lang': 6883
 };
 var stTypes = {
@@ -646,4 +646,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 4047;
+var _rnd = 9509;

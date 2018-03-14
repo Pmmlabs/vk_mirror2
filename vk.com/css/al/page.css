@@ -2245,7 +2245,9 @@ a.page_media_link_desc {
 
 .page_media_link_img {
     width: 100%;
-    height: auto
+    height: auto;
+    outline: 1px solid rgba(0, 20, 51, .12);
+    outline-offset: -1px
 }
 
 .page_media_link_img_wrap.sized .page_media_link_img {
@@ -2259,8 +2261,6 @@ a.page_media_link_desc {
 .page_media_link_img_wrap {
     display: block;
     max-height: 228px;
-    outline: 1px solid rgba(0, 20, 51, .12);
-    outline-offset: -1px;
     line-height: 0;
     position: relative
 }

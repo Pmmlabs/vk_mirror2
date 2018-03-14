@@ -4160,7 +4160,7 @@ var ajax = {
         url += (url.charAt(url.length - 1) != '?' ? '&' : '') + '_rndVer=' + irand(0, 99999);
         ajax._frameurl = iframeTransport.src = url;
     },
-    plainpost: function(url, query, done, fail, urlonly, options, o) {
+    plainpost: function(url, query, done, fail, urlonly, options, o, noextraheaders) {
         var r = ajax._getreq();
         var q = (typeof(query) != 'string') ? ajx2q(query, o && o.noSort) : query;
         r.onreadystatechange = function() {
@@ -4186,7 +4186,9 @@ var ajax = {
 
         if (!urlonly) {
             r.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            r.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            if (!noextraheaders) {
+                r.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            }
         }
         r.send(q);
         return r;
