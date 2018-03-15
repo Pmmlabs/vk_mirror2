@@ -7878,7 +7878,7 @@ function autosizeSetup(el, options) {
         },
         dirs = ['Top', 'Bottom', 'Left', 'Right'];
     each(dirs, function() {
-        styles['padding' + this] = options.ignorePadding ? '0' : getStyle(el, 'padding' + this);
+        styles['padding' + this] = getStyle(el, 'padding' + this);
     });
     el.autosize = {
         options: options,

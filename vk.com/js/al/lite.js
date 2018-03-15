@@ -4798,7 +4798,7 @@ function autosizeSetup(el, options) {
             fontSize: fs + 'px',
             lineHeight: (lh = getStyle(el, 'lineHeight')),
             boxSizing: getStyle(el, 'boxSizing'),
-            padding: options.ignorePadding ? '0' : getStyle(el, 'padding')
+            padding: getStyle(el, 'padding')
         }),
         handleEvent: function(v, e) {
             var ch = e.charCode ? String.fromCharCode(e.charCode) : e.charCode;
