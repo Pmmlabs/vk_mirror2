@@ -349,7 +349,7 @@ var stVersions = {
     'achievements.css': 17553875179,
     'sf.css': 20289865354,
     'members.css': 18763109203,
-    'meminfo.css': 25448887814,
+    'meminfo.css': 24920971522,
     'groupinfo.css': 24107725810,
     'bugs.js': 3874995669,
     'bugs.css': 16810136527,
@@ -546,8 +546,8 @@ var stVersions = {
     'article.css': 37451573337,
     'article_editor.css': 37617917465,
     'cmodules/web/article.js': 37503408057,
-    'cmodules/web/article_layer.js': 22360605273,
-    'article_view.js': 17312505363,
+    'cmodules/web/article_layer.js': 21435299036,
+    'article_view.js': 16387199126,
     'internal/cvkmobile.css': 18470701427,
     'internal/cvkmobile.js': 2752055160,
     'shortener.js': 16413120,
@@ -646,4 +646,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 5397;
+var _rnd = 3251;

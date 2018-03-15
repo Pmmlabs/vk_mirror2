@@ -123,7 +123,8 @@
 }
 
 .deleted_content_page .thumbnail {
-    margin-top: 12px
+    margin-top: 12px;
+    max-width: 920px
 }
 
 .mi_body_adaptive #page_layout {
