@@ -267,7 +267,7 @@ var stVersions = {
     'postbox.css': 3839233565,
     'postbox.js': 760473537,
     'feed.js': 2007506749,
-    'feed.css': 23773090196,
+    'feed.css': 23548234024,
     'privacy.js': 3620108221,
     'privacy.css': 17211663485,
     'apps.css': 39378153629,
@@ -646,4 +646,4 @@ var stTypes = {
         'groups_edit_stories.js': 1
     }
 };
-var _rnd = 4245;
+var _rnd = 4518;

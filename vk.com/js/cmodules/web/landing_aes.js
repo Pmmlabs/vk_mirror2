@@ -12,7 +12,60 @@
     return t.m = e, t.c = n, t.p = "", t(0)
 }({
     0: function(e, t, n) {
-        e.exports = n(477)
+        e.exports = n(479)
+    },
+    46: function(e, t, n) {
+        "use strict";
+
+        function a(e) {
+            return e && e.__esModule ? e : {
+                "default": e
+            }
+        }
+
+        function i(e, t) {
+            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
+        }
+
+        function s(e, t) {
+            if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+            return !t || "object" != typeof t && "function" != typeof t ? e : t
+        }
+
+        function o(e, t) {
+            if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
+            e.prototype = Object.create(t && t.prototype, {
+                constructor: {
+                    value: e,
+                    enumerable: !1,
+                    writable: !0,
+                    configurable: !0
+                }
+            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
+        }
+        Object.defineProperty(t, "__esModule", {
+            value: !0
+        });
+        var r = n(183),
+            l = a(r),
+            d = function(e) {
+                function t() {
+                    return i(this, t), s(this, e.apply(this, arguments))
+                }
+                return o(t, e), t.prototype._onInited = function() {
+                    e.prototype._onChangeSlide.apply(this, arguments), this.delay = intval(this.opts.delay) || 1e4, this.start()
+                }, t.prototype._onChangeSlide = function() {
+                    e.prototype._onChangeSlide.apply(this, arguments), this.stop(), this.start()
+                }, t.prototype.start = function() {
+                    var e = this;
+                    this.rotationTimer = setTimeout(function() {
+                        e.nextSlide()
+                    }, this.delay)
+                }, t.prototype.stop = function() {
+                    clearTimeout(this.rotationTimer)
+                }, t
+            }(l["default"]);
+        t["default"] = d
     },
     113: function(e, t, n) {
         "use strict";
@@ -46,7 +99,7 @@
         Object.defineProperty(t, "__esModule", {
             value: !0
         });
-        var r = n(145),
+        var r = n(183),
             l = a(r),
             d = function(e) {
                 function t(n, a) {
@@ -64,7 +117,7 @@
             }(l["default"]);
         t["default"] = d
     },
-    145: function(e, t, n) {
+    183: function(e, t, n) {
         "use strict";
 
         function a(e) {
@@ -96,7 +149,7 @@
         Object.defineProperty(t, "__esModule", {
             value: !0
         });
-        var r = n(220),
+        var r = n(346),
             l = a(r),
             d = 1e8,
             c = function(e) {
@@ -113,7 +166,7 @@
             }(l["default"]);
         t["default"] = c
     },
-    191: function(e, t, n) {
+    323: function(e, t, n) {
         "use strict";
 
         function a(e) {
@@ -145,7 +198,7 @@
         Object.defineProperty(t, "__esModule", {
             value: !0
         });
-        var r = n(492),
+        var r = n(46),
             l = a(r),
             d = function(e) {
                 function t() {
@@ -175,7 +228,7 @@
             }(l["default"]);
         t["default"] = d
     },
-    220: function(e, t) {
+    346: function(e, t) {
         "use strict";
 
         function n(e, t) {
@@ -277,7 +330,7 @@
             }();
         t["default"] = i
     },
-    237: function(e, t, n) {
+    395: function(e, t, n) {
         "use strict";
 
         function a(e) {
@@ -309,7 +362,7 @@
         Object.defineProperty(t, "__esModule", {
             value: !0
         });
-        var r = n(145),
+        var r = n(183),
             l = a(r),
             d = 400,
             c = function(e) {
@@ -349,7 +402,7 @@
             }(l["default"]);
         t["default"] = c
     },
-    477: function(e, t, n) {
+    479: function(e, t, n) {
         "use strict";
 
         function a(e) {
@@ -357,11 +410,11 @@
                 "default": e
             }
         }
-        var i = n(191),
+        var i = n(323),
             s = a(i),
             o = n(113),
             r = a(o),
-            l = n(237),
+            l = n(395),
             d = a(l);
         window.LandingAds = {
             init: function(e, t) {
@@ -751,58 +804,5 @@
         try {
             stManager.done("landing_aes.js")
         } catch (c) {}
-    },
-    492: function(e, t, n) {
-        "use strict";
-
-        function a(e) {
-            return e && e.__esModule ? e : {
-                "default": e
-            }
-        }
-
-        function i(e, t) {
-            if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
-        }
-
-        function s(e, t) {
-            if (!e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-            return !t || "object" != typeof t && "function" != typeof t ? e : t
-        }
-
-        function o(e, t) {
-            if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
-            e.prototype = Object.create(t && t.prototype, {
-                constructor: {
-                    value: e,
-                    enumerable: !1,
-                    writable: !0,
-                    configurable: !0
-                }
-            }), t && (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : e.__proto__ = t)
-        }
-        Object.defineProperty(t, "__esModule", {
-            value: !0
-        });
-        var r = n(145),
-            l = a(r),
-            d = function(e) {
-                function t() {
-                    return i(this, t), s(this, e.apply(this, arguments))
-                }
-                return o(t, e), t.prototype._onInited = function() {
-                    e.prototype._onChangeSlide.apply(this, arguments), this.delay = intval(this.opts.delay) || 1e4, this.start()
-                }, t.prototype._onChangeSlide = function() {
-                    e.prototype._onChangeSlide.apply(this, arguments), this.stop(), this.start()
-                }, t.prototype.start = function() {
-                    var e = this;
-                    this.rotationTimer = setTimeout(function() {
-                        e.nextSlide()
-                    }, this.delay)
-                }, t.prototype.stop = function() {
-                    clearTimeout(this.rotationTimer)
-                }, t
-            }(l["default"]);
-        t["default"] = d
     }
 });

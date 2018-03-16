@@ -398,6 +398,7 @@
 
 .feed_wrap .post .feed_ignore_label.feed_ignore_item .privacy_edit_wrap {
     float: right;
+    line-height: inherit;
 }
 
 .feed_wrap .post .feed_ignore_label.feed_ignore_item .feed_ignore_owner_button {
